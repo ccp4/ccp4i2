@@ -9,7 +9,8 @@ import sys
 import os
 from PySide2 import QtCore
 from core.CCP4PluginScript import CPluginScript
-from lxml import etree as lxml_etree
+#from lxml import etree as lxml_etree
+from xml.etree import ElementTree as ET
 from pipelines.aimless_pipe.script.aimless_pipe_utils import *
 from core import CCP4Utils
 from core.CCP4Data import CString
@@ -35,7 +36,7 @@ class aimless_pipe(CPluginScript):
     
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     def process(self):
-      self.rootXML = lxml_etree.Element('AIMLESS_PIPE')
+      self.rootXML = ET.Element('AIMLESS_PIPE')
       # Start up
       print("### Starting aimless pipeline ###")
 
@@ -107,11 +108,11 @@ class aimless_pipe(CPluginScript):
 
         try:
             pointlessXMLPath = self.pointless.makeFileName('PROGRAMXML')
-            pointlessEtree = lxml_etree.parse(pointlessXMLPath)
+            pointlessEtree = ET.parse(pointlessXMLPath)
             self.rootXML.append(pointlessEtree.getroot())
             with open (self.makeFileName('PROGRAMXML'),"w") as outputXML:
                 CCP4Utils.writeXML(\
-                    outputXML,lxml_etree.tostring(self.rootXML,
+                    outputXML,ET.tostring(self.rootXML,
                                              pretty_print=True,
                                              encoding='unicode'))
         except:
@@ -286,7 +287,7 @@ class aimless_pipe(CPluginScript):
             try:
                 self.aimless1xml = CCP4Utils.openFileToEtree(self.aimless.makeFileName( 'PROGRAMXML' ) )
             except:
-                self.aimless1xml = lxml_etree.Element('AIMLESS')
+                self.aimless1xml = ET.Element('AIMLESS')
 
             # Run phaser_analysis to get resolution limit estimate
             # Return:
@@ -361,7 +362,7 @@ class aimless_pipe(CPluginScript):
           #print out.UNMERGEDOUT[-1].fullPath
           shutil.move(str(unmergedfile), str(out.UNMERGEDOUT[-1].fullPath))
           
-      self.collectedCtruncateEtree = lxml_etree.Element('CTRUNCATES')
+      self.collectedCtruncateEtree = ET.Element('CTRUNCATES')
       for file in self.aimless.container.outputData.MTZMERGEDOUT:
          self.process_ctruncate(file)
 
@@ -438,7 +439,7 @@ class aimless_pipe(CPluginScript):
       latestCTruncateEtree = CCP4Utils.openFileToEtree(self.ctruncate.makeFileName('PROGRAMXML'))
       self.collectedCtruncateEtree.append(latestCTruncateEtree)
       # the last dataset so far
-      crystalDatasedId = latestCTruncateEtree.xpath('//CrystalDatasetId')[-1].text 
+      crystalDatasedId = latestCTruncateEtree.findall('.//CrystalDatasetId')[-1].text 
       self.ctruncateOutputDataObject.annotation = crystalDatasedId
       #print "crystalDatasedId",crystalDatasedId
         
@@ -459,38 +460,38 @@ class aimless_pipe(CPluginScript):
 
       print("process_finish", status)
       xmlout = str( self.makeFileName( 'PROGRAMXML' ) )
-      xmlroot = lxml_etree.Element("AIMLESS_PIPE")
+      xmlroot = ET.Element("AIMLESS_PIPE")
 
       # fatalError may contain a list of [errornumber, message, status]
       #  for failures in Pointless or Aimless
       if self.fatalError is not None:
-          errorxml = lxml_etree.Element('PIPELINE_ERROR')
+          errorxml = ET.Element('PIPELINE_ERROR')
           errorxml.text = self.fatalError[1]
           xmlroot.append(errorxml)
 
       # print("HKLIN_FORMAT")
       if self.container.inputData.HKLIN_FORMAT == "MMCIF":
           print("** mmcif")
-          importXML = lxml_etree.Element('IMPORT_LOG')  # information about the import step
+          importXML = ET.Element('IMPORT_LOG')  # information about the import step
           self.makeMmcifXML(importXML)
           xmlroot.append(importXML)
           
       try:
           pointlessxml = CCP4Utils.openFileToEtree(self.pointless.makeFileName( 'PROGRAMXML' ) )
       except:
-          pointlessxml = lxml_etree.Element('POINTLESS')
+          pointlessxml = ET.Element('POINTLESS')
       xmlroot.append (pointlessxml)
 
       try:
           aimlessxml = CCP4Utils.openFileToEtree(self.aimless.makeFileName( 'PROGRAMXML' ) )
       except:
-          aimlessxml = lxml_etree.Element('AIMLESS')
+          aimlessxml = ET.Element('AIMLESS')
 
       haveaimless = False
       if hasattr(self,"aimless"):  # True if self.aimless exists
           # Add ONLYMERGE flag if no scaling, for report
           if self.aimless.container.controlParameters.SCALING_PROTOCOL == 'ONLYMERGE':
-              eom = lxml_etree.Element('ONLYMERGE')
+              eom = ET.Element('ONLYMERGE')
               eom.text = "True"
               aimlessxml.append(eom)
           haveaimless = True
@@ -535,8 +536,8 @@ class aimless_pipe(CPluginScript):
         
         #Add freerflag status to the xmlout - this can be the usual SUCCEEDED,FAILED or
         #is 100 if failure in the mtzjoin stage (likely due to space group mismatch)
-        e = lxml_etree.Element('FREERFLAG')
-        e1= lxml_etree.Element('status')
+        e = ET.Element('FREERFLAG')
+        e1= ET.Element('status')
         e1.text=str(freeStatus)
         e.append(e1)
         if freerReportXML is not None:
@@ -547,7 +548,7 @@ class aimless_pipe(CPluginScript):
                 e.append(freerxml)
         xmlroot.append(e)
 
-      newXml = lxml_etree.tostring(xmlroot,pretty_print=True,encoding='unicode')
+      newXml = ET.tostring(xmlroot,encoding='unicode')
       xmlfile = open( xmlout, "w" )
       xmlfile.write(newXml)
       xmlfile.close()
@@ -558,16 +559,16 @@ class aimless_pipe(CPluginScript):
       # Populate the performance indicator
       if haveaimless:
           try:
-              eList = xmlroot.xpath('AIMLESS/ReflectionFile/SpacegroupName')
+              eList = xmlroot.findall('AIMLESS/ReflectionFile/SpacegroupName')
               #print('aimless_pipe.process_finish spacegroup',str(eList[0].text).strip())
               spGp = self.container.outputData.PERFORMANCE.spaceGroup
               if len(eList)>0: spGp.set(spGp.fix(str(eList[0].text).strip()))
           except:
               pass
 
-          eList = xmlroot.xpath('AIMLESS/Result/Dataset/RmeasOverall/Overall')
+          eList = xmlroot.findall('AIMLESS/Result/Dataset/RmeasOverall/Overall')
           if len(eList)>0: self.container.outputData.PERFORMANCE.rMeas.set(float(str(eList[0].text).strip()))
-          eList = xmlroot.xpath('AIMLESS/Result/Dataset/ResolutionHigh/Overall')
+          eList = xmlroot.findall('AIMLESS/Result/Dataset/ResolutionHigh/Overall')
           if len(eList)>0: self.container.outputData.PERFORMANCE.highResLimit.set(float(str(eList[0].text).strip()))
 
       # Concatenate log files
@@ -639,13 +640,13 @@ class aimless_pipe(CPluginScript):
         print("analyseResolution")
         infothreshold = str(self.container.controlParameters.INFOCONTENTTHRESHOLD)
 
-        self.phaser_analysis1xml = lxml_etree.Element('PHASER_ANALYSES')
+        self.phaser_analysis1xml = ET.Element('PHASER_ANALYSES')
 
         # start XML element for recording the results of the 1st Aimless 
-        self.autocutoffxml = lxml_etree.Element('Autocutoff')
+        self.autocutoffxml = ET.Element('Autocutoff')
         
         # extract high resolution limits, allowing for multiple datasets
-        datasetResultList =  self.aimless1xml.xpath('Result/Dataset')
+        datasetResultList =  self.aimless1xml.findall('Result/Dataset')
 
         # We want to put into the autocutoffxml block information from both
         # Aimless and Phaser, so we need to match them here
@@ -663,7 +664,7 @@ class aimless_pipe(CPluginScript):
             dname = pxdname.split('/')[2]
             inputresolution = \
                  dataset.find('ResolutionHigh/Overall').text.strip()
-            estimates = dataset.xpath('ResolutionLimitEstimate[@type="CChalf"]')
+            estimates = dataset.findall('ResolutionLimitEstimate[@type="CChalf"]')
             reslimit = 0.0
             for estimate in estimates:  # Pick out Overall limit
                 direction = estimate.find('Direction').text
@@ -712,7 +713,7 @@ class aimless_pipe(CPluginScript):
             # <ResolutionEstimate>  limit found by IC metric
             # <Message>  only if data go to maximum resolution
             # <InformationThreshold> information thresholdfor cutoff
-            dset = lxml_etree.Element('Dataset')
+            dset = ET.Element('Dataset')
             dset.set('name', pxdname)
             self.addElement(dset, 'InputResolution',
                             dsetinfo[dname]['InputResolution'])
@@ -766,7 +767,7 @@ class aimless_pipe(CPluginScript):
             # If Aimless is only run once
             self.aimless1xml = CCP4Utils.openFileToEtree(self.aimless.makeFileName( 'PROGRAMXML' ) )
 
-        datasetResultList =  self.aimless1xml.xpath('Result/Dataset')
+        datasetResultList =  self.aimless1xml.findall('Result/Dataset')
         dnames = []
         pxdnames = {}
         inputresolutions = {}
@@ -778,7 +779,7 @@ class aimless_pipe(CPluginScript):
             inputresolutions[dname] = dataset.find('ResolutionHigh/Overall').text.strip()
 
         # This will contain a PHASER_ANALYSIS block for each dataset
-        self.phaser_analysisxml = lxml_etree.Element('PHASER_ANALYSES')
+        self.phaser_analysisxml = ET.Element('PHASER_ANALYSES')
 
         # Loop output datasets, run phaser_analysis for each one
         for filename in self.aimless.container.outputData.MTZMERGEDOUT:
@@ -803,8 +804,8 @@ class aimless_pipe(CPluginScript):
             print("after Phaser, status", rstatus, CPluginScript.FAILED)
             if rstatus  == CPluginScript.FAILED:
                 message = self.phaser_analysis.resultObject.ErrorMessage()
-                phaserelement = lxml_etree.Element('PHASER_ANALYSIS')
-                phaserfailXML = lxml_etree.SubElement(phaserelement,'PhaserFailMessage')
+                phaserelement = ET.Element('PHASER_ANALYSIS')
+                phaserfailXML = ET.SubElement(phaserelement,'PhaserFailMessage')
                 phaserfailXML.text = message
                 self.phaser_analysisxml.append(phaserelement)
                 return
@@ -833,8 +834,8 @@ class aimless_pipe(CPluginScript):
         # Other wise add error message to xmlnode
 
         message = None
-        result = xmlnode.xpath("Result")
-        datasets = result[0].xpath("Dataset")
+        result = xmlnode.findall("Result")
+        datasets = result[0].findall("Dataset")
         if len(datasets) == 0:
             print("no datasets")
             return message
@@ -849,10 +850,10 @@ class aimless_pipe(CPluginScript):
         multiplicity = "0.0"
         for dataset in datasets:
             # Get statistics for inner shell
-            innercchalf = dataset.xpath("CChalf/Inner")[0].text
+            innercchalf = dataset.findall("CChalf/Inner")[0].text
 
             #  Check that there enough data, get multiplicity
-            multiplicity = dataset.xpath("Multiplicity/Inner")[0].text
+            multiplicity = dataset.findall("Multiplicity/Inner")[0].text
 
             # Test against disaster limits
             #    Disaster if CC(1/2) very low in inner shell,
@@ -882,7 +883,7 @@ class aimless_pipe(CPluginScript):
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     def addElement(self, containerXML, elementname, elementtext):
-        e2 = lxml_etree.Element(elementname)
+        e2 = ET.Element(elementname)
         e2.text = elementtext
         containerXML.append(e2)
 
@@ -932,7 +933,7 @@ class aimless_pipe(CPluginScript):
           if self.container.controlParameters.FREER_FRACTION.isSet():
               frac = self.container.controlParameters.FREER_FRACTION
               # print("FreeR fraction", type(frac), frac)
-              freerReportXML = lxml_etree.Element('FreeRfraction')
+              freerReportXML = ET.Element('FreeRfraction')
               freerReportXML.text = frac.__str__()
 
       # Run the FreeR wrapper

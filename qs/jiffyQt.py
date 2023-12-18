@@ -564,8 +564,8 @@ class SimpleDBBrowser(QtGui.QMainWindow):
 
             layout.addWidget(headWidget)
 
-            parser = etree.XMLParser()
-            tree = etree.fromstring(xml, parser)
+            parser = ET.XMLParser()
+            tree = ET.fromstring(xml, parser)
             #print xml
             #print [x[3] for x in self.files if x[3] is not None]
 
@@ -587,18 +587,18 @@ class SimpleDBBrowser(QtGui.QMainWindow):
                 idx = fs.combo.model().index(i,0)
                 print(fs.combo.model().data(idx), fs.combo.model().data(idx,QtCore.Qt.UserRole + 1))
 
-            inputContainers =  tree.xpath("ccp4i2_body/container[@id='inputData']")
+            inputContainers =  tree.findall("ccp4i2_body/container[@id='inputData']")
             for container in inputContainers:
-                contents = container.xpath("content")
+                contents = container.findall("content")
                 for content in contents:
-                    if len(content.xpath("className")) == 0:
+                    if len(content.findall("className")) == 0:
                         continue
-                    className = content.xpath("className")[0].text
+                    className = content.findall("className")[0].text
                     #print className
                     text = content.attrib["id"]
                     if className == "CDictDataFile" or className == "CPdbDataFile" or className == "CMapCoeffsDataFile" or className == "CSeqDataFile":
-                        if len(content.xpath("qualifiers/label")) > 0:
-                            text = content.xpath("qualifiers/label")[0].text
+                        if len(content.findall("qualifiers/label")) > 0:
+                            text = content.findall("qualifiers/label")[0].text
                         fs = FileSelector(text=text)
                         fs.combo.installEventFilter(scrollEater)
                         if className == "CPdbDataFile":
@@ -609,7 +609,7 @@ class SimpleDBBrowser(QtGui.QMainWindow):
                         layout.addWidget(fs)
                     elif className == "CList":
 
-                        subClassName = content.xpath("subItem/className")[0].text
+                        subClassName = content.findall("subItem/className")[0].text
                         frame = QtGui.QFrame()
                         frame.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Sunken)
                         frameLayout = QtGui.QVBoxLayout()
@@ -691,10 +691,10 @@ class SimpleDBBrowser(QtGui.QMainWindow):
 
                         listWidget.selectionModel().select(idx,QtGui.QItemSelectionModel.ClearAndSelect)
                         if subClassName == "CDictDataFile" or subClassName == "CPdbDataFile" or subClassName == "CMapCoeffsDataFile" or subClassName == "CSeqDataFile":
-                            if len(content.xpath("qualifiers/label")) > 0:
-                                text = content.xpath("qualifiers/label")[0].text
-                            if len(content.xpath("subItem/qualifiers/label")) > 0:
-                                text = content.xpath("subItem/qualifiers/label")[0].text
+                            if len(content.findall("qualifiers/label")) > 0:
+                                text = content.findall("qualifiers/label")[0].text
+                            if len(content.findall("subItem/qualifiers/label")) > 0:
+                                text = content.findall("subItem/qualifiers/label")[0].text
                             fs = FileSelector(text=text)
                             fs.combo.installEventFilter(scrollEater)
                             if subClassName == "CPdbDataFile":
@@ -924,57 +924,57 @@ def patchedReport(reportPath, jobId=None, files=[], jobs=[]):
         #
         reportString = reportString.replace("http://127.0.0.1:None/report_files/","/report_files/")
         reportString = reportString.replace("None/report_files/","/report_files/")
-        reportXML = etree.fromstring(reportString)
+        reportXML = ET.fromstring(reportString)
     except:
         print('Failed to parse report', reportPath)
         #Attempt to remake report
         remade = remakeReport(jobId)
         try:
-            reportXML = etree.parse(reportPath)
+            reportXML = ET.parse(reportPath)
         except:
             print('Failed to parse report', reportPath)
             return None
 
     #print 'reportXML parsed',jobId
     # Patch img elements
-    for img in reportXML.xpath('//img'):
+    for img in reportXML.findall('.//img'):
         try: img.set('src', "/jobId/{}/{}".format(jobId, img.get("src")))
-        except: print('Failed patching img', etree.tostring(img, pretty_print=True))
+        except: print('Failed patching img', ET.tostring(img, pretty_print=True))
 
     # Patch drawn spans
-    for drawnSpan in reportXML.xpath("//span[@data-url]"):
+    for drawnSpan in reportXML.findall(".//span[@data-url]"):
         try:
             patchedElement ="/jobId/{}/{}".format(jobId, drawnSpan.get('data-url'))
             #patchedElement ="/ManageCCP4i2Archive/?File=True?jobId="+jobId+"?filePath="+drawnSpan.get('data-url')
             drawnSpan.set('data-url',patchedElement)
-        except: print('Failed patching drawnSpan', etree.tostring(drawnSpan, pretty_print=True))
+        except: print('Failed patching drawnSpan', ET.tostring(drawnSpan, pretty_print=True))
     #print 'data-is-urls patched'
 
     # Patch drawn divs
-    for drawnDiv in reportXML.xpath("//div[@data-is-urls='True']"):
+    for drawnDiv in reportXML.findall(".//div[@data-is-urls='True']"):
         try:
             patchedElement ="/jobId/{}/{}".format(jobId, drawnDiv.get('data-data'))
             #patchedElement ="/ManageCCP4i2Archive/?File=True?jobId="+jobId+"?filePath="+drawnDiv.get('data-data')
             drawnDiv.set('data-data',patchedElement)
-        except: print('Failed patching drawnDiv', etree.tostring(drawnDiv, pretty_print=True))
+        except: print('Failed patching drawnDiv', ET.tostring(drawnDiv, pretty_print=True))
     #print 'data-is-urls patched'
 
     #Patch downloadObjects
-    for qt_object in reportXML.xpath("//object[@class='qt_object']"):
+    for qt_object in reportXML.findall(".//object[@class='qt_object']"):
         try:
-            newDiv = etree.Element('div')
+            newDiv = ET.Element('div')
             newDiv.set('class','qt_object')
 
-            mimeTypeName = qt_object.xpath('param[@name="mimeTypeName"]')[0].get("value")
-            dbFileId = qt_object.xpath('param[@name="dbFileId"]')[0].get("value")
-            try: annotation = qt_object.xpath('param[@name="annotation"]')[0].get("value")
+            mimeTypeName = qt_object.findall('param[@name="mimeTypeName"]')[0].get("value")
+            dbFileId = qt_object.findall('param[@name="dbFileId"]')[0].get("value")
+            try: annotation = qt_object.findall('param[@name="annotation"]')[0].get("value")
             except:
-                try: annotation = qt_object.xpath('param[@name="baseName"]')[0].get("value")
+                try: annotation = qt_object.findall('param[@name="baseName"]')[0].get("value")
                 except: annotation = "Can't find annotation or baseName"
-            imgNode = etree.SubElement(newDiv,"img",src="/icon/"+mimeTypeName, height="20", width="20", style="margin:5px;display:inline-block;border:1px solid grey;")
+            imgNode = ET.SubElement(newDiv,"img",src="/icon/"+mimeTypeName, height="20", width="20", style="margin:5px;display:inline-block;border:1px solid grey;")
 
             fileSpec = "?File=True?fileId="+dbFileId
-            clickDiv = etree.SubElement(newDiv, "div", style="width:500px;height:25px;float:right;font-size:125%;border:0px solid red;margin:2px;", id="Download_"+dbFileId, onclick = 'window.downloadFile("'+fileSpec+'");')
+            clickDiv = ET.SubElement(newDiv, "div", style="width:500px;height:25px;float:right;font-size:125%;border:0px solid red;margin:2px;", id="Download_"+dbFileId, onclick = 'window.downloadFile("'+fileSpec+'");')
             clickDiv.set("class","downloadable")
 
             matchedFiles = [file for file in files if file[0] == dbFileId]
@@ -992,12 +992,12 @@ def patchedReport(reportPath, jobId=None, files=[], jobs=[]):
     #print 'qt_objects patched'
 
     #Patch downloadObjects
-    for qt_launch in reportXML.xpath("//object[@type='x-ccp4-widget/CDownloadButton']"):
+    for qt_launch in reportXML.findall(".//object[@type='x-ccp4-widget/CDownloadButton']"):
         try:
-            downloadsJobId = qt_launch.xpath('param[@name="jobId"]')[0].get("value")
-            dataName = qt_launch.xpath('param[@name="dataName"]')[0].get("value")
+            downloadsJobId = qt_launch.findall('param[@name="jobId"]')[0].get("value")
+            dataName = qt_launch.findall('param[@name="dataName"]')[0].get("value")
             fileSpec = "/jobId/{}/tables_as_csv_files/{}.csv".format(downloadsJobId, dataName);
-            newButton = etree.Element('Button', onclick = 'window.downloadFile("'+fileSpec+'");')
+            newButton = ET.Element('Button', onclick = 'window.downloadFile("'+fileSpec+'");')
             newButton.text = 'Download'
 
             qt_launch.getparent().replace(qt_launch, newButton)
@@ -1005,30 +1005,30 @@ def patchedReport(reportPath, jobId=None, files=[], jobs=[]):
     #print 'CDownloadButtons patched'
 
     #Patch CLauncherButton objects
-    for qt_launch in reportXML.xpath("//object[@type='x-ccp4-widget/CLauncherButton']"):
+    for qt_launch in reportXML.findall(".//object[@type='x-ccp4-widget/CLauncherButton']"):
         try:
-            executable = qt_launch.xpath('param[@name="exe"]')[0].get("value")
+            executable = qt_launch.findall('param[@name="exe"]')[0].get("value")
             if executable == "CCP4mg":
-                sceneJobId = qt_launch.xpath('param[@name="jobId"]')[0].get("value")
-                sceneName = qt_launch.xpath('param[@name="sceneFile"]')[0].get("value")
+                sceneJobId = qt_launch.findall('param[@name="jobId"]')[0].get("value")
+                sceneName = qt_launch.findall('param[@name="sceneFile"]')[0].get("value")
                 #Remove .scene.xml
                 pathElements = sceneName.split(".")
                 noExtension = pathElements[-3]
                 sceneNumber = noExtension.split("_")[-1]
                 urlOfScene = "/ManageCCP4i2Archive/SceneForJob/"+sceneJobId+"/"+sceneNumber
-                newButton = etree.Element('Button', onclick = 'window.open("'+urlOfScene+'");')
+                newButton = ET.Element('Button', onclick = 'window.open("'+urlOfScene+'");')
                 newButton.text = '3D view'
 
                 qt_launch.getparent().replace(qt_launch, newButton)
             else:
-                newButton = etree.Element('Button', disabled='disabled')
+                newButton = ET.Element('Button', disabled='disabled')
                 newButton.text = 'Not active'
 
                 qt_launch.getparent().replace(qt_launch, newButton)
         except: print('Failed to patch qt_launch',etree.tostring(qt_launch,pretty_print=True))
     #print 'Launch MGs patched'
 
-    return etree.tostring(reportXML, pretty_print=True)
+    return ET.tostring(reportXML, pretty_print=True)
 
 class QSSupervisorApp(QtGui.QApplication):
     def __init__(self, *argv, **kw):

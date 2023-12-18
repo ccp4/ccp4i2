@@ -1,6 +1,6 @@
 from report.CCP4ReportParser import *
 import sys
-import xml.etree.ElementTree as etree
+from xml.etree import ElementTree as etree
 import base64
 
 class pimpleGraph():
@@ -18,13 +18,13 @@ class pimpleGraph():
             self.separator = self.headersNode.get('separator')
             self.headers = self.headersNode.text.strip().split(self.separator)
             return
-        self.xmlnode = etree.Element('CCP4Table')
+        self.xmlnode = ET.Element('CCP4Table')
         self.xmlnode.set('title',title)
-        self.dataNode = etree.SubElement(self.xmlnode,'data')
+        self.dataNode = ET.SubElement(self.xmlnode,'data')
         self.data = [[]]
         self.dataNode.text = ''
         self.separator = separator
-        self.headersNode = etree.SubElement(self.xmlnode,'headers',separator=self.separator)
+        self.headersNode = ET.SubElement(self.xmlnode,'headers',separator=self.separator)
         self.headersNode.text = ''
         self.headers = []
         return
@@ -136,7 +136,7 @@ class phaser_mr_report(Report):
 
     def addSolutionsTable(self, parent = None):
         if parent is None: parent = self
-        solutionNodes = self.xmlnode.findall('//Solutions/Solution')
+        solutionNodes = self.xmlnode.findall('.//Solutions/Solution')
         for solutionNode in solutionNodes:
             parent.append('<span>Solution %s has %s components located</span>'%(solutionNode.findall('.//ISOL')[0].text,solutionNode.findall('.//NCOMPONENTS')[0].text))
             table = parent.addTable(xmlnode=solutionNode, select='Component')

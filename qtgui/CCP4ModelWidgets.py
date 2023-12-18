@@ -2159,9 +2159,9 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
           self.handleBrowserOpenFile(textData.split(' ')[0])
         else:
           from lxml import etree
-          tree = etree.fromstring(textData)
+          tree = ET.fromstring(textData)
           if tree.tag == 'SeqDataFile':
-            fileName = os.path.join(tree.xpath('./relPath')[0].text,tree.xpath('./baseName')[0].text)
+            fileName = os.path.join(tree.findall('./relPath')[0].text,tree.findall('./baseName')[0].text)
             self.handleBrowserOpenFile(fileName,None)
           else:
             CCP4Widgets.CDataFileView.acceptDropData(self,textData)

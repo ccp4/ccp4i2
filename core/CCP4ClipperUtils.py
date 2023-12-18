@@ -27,20 +27,20 @@
     In order to keep the operations traceable by i2, non-trivial functions must output:
 
         * plain text log string (not a file)
-        * XML tree in the form of a etree.Element
+        * XML tree in the form of a ET.Element
         * output files (path) if any
 
     """
 
 import clipper
+from xml.etree import ElementTree as ET
 
 def read_pdb ( pdbin = "undefined" ) :
 
     log_string = "\n\t--------- clipper-python snippet: read_pdb ---------\n\n"
     log_string += "\tpdbin: %s\n\n" % pdbin
 
-    from lxml import etree
-    xml_root = etree.Element('read_pdb')
+    xml_root = ET.Element('read_pdb')
 
     f = clipper.MMDBfile()
     try:

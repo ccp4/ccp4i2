@@ -21,7 +21,7 @@ from __future__ import print_function
 
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
-from lxml import etree
+from xml.etree import ElementTree as ET
 
 class refmac_martin(CPluginScript):
     
@@ -91,7 +91,6 @@ class refmac_martin(CPluginScript):
             self.appendErrorReport(201,'Exit code: Unable to recover exitCode')
             return CPluginScript.FAILED
         if exitCode != 0:
-            from lxml import etree
             self.appendErrorReport(201,'Exit code: '+str(exitCode))
             return CPluginScript.FAILED
 
@@ -135,16 +134,16 @@ class refmac_martin(CPluginScript):
         try:
             rxml = CCP4Utils.openFileToEtree(str(self.container.outputData.XMLOUT.fullPath))
         except:
-            rxml = etree.Element('REFMAC')
+            rxml = ET.Element('REFMAC')
             self.appendErrorReport(204,'XML Not generated')
             return CPluginScript.FAILED
 
         outliersByCriteria={}
         #Do the comprehensive log-greppery to add value to the output XML
         self.skimLog(root=rxml, outliersByCriteria=outliersByCriteria)
-        rstats = rxml.xpath("//REFMAC/Overall_stats/stats_vs_cycle")
+        rstats = rxml.findall(".//REFMAC/Overall_stats/stats_vs_cycle")
         if len(rstats)>0:
-            for node in rstats[0].xpath("new_cycle[last()]/r_factor | new_cycle[last()]/r_free | new_cycle[last()]/rmsBOND |  new_cycle[last()]/rmsANGLE"):
+            for node in rstats[0].findall("new_cycle[last()]/r_factor | new_cycle[last()]/r_free | new_cycle[last()]/rmsBOND |  new_cycle[last()]/rmsANGLE"):
                 if node.tag == 'r_factor':
                     self.container.outputData.FINALRFACTOR = float(node.text)
                     if self.container.outputData.FINALRFACTOR>0.0:
@@ -159,21 +158,20 @@ class refmac_martin(CPluginScript):
                     self.container.outputData.FINALRMSANGLE = float(node.text)
     
         #Perform analysis of output coordinate file composition
-        from lxml import etree
         if os.path.isfile(str(self.container.outputData.XYZOUT.fullPath)):
             from core.CCP4ModelData import CPdbData
             aCPdbData = CPdbData()
             aCPdbData.loadFile(self.container.outputData.XYZOUT.fullPath)
-            modelCompositionNode = etree.SubElement(rxml,'ModelComposition')
+            modelCompositionNode = ET.SubElement(rxml,'ModelComposition')
             for chain in aCPdbData.composition.chains:
-                chainNode = etree.SubElement(modelCompositionNode,'Chain',id=chain)
+                chainNode = ET.SubElement(modelCompositionNode,'Chain',id=chain)
             for monomer in aCPdbData.composition.monomers:
-                monomerNode = etree.SubElement(modelCompositionNode,'Monomer',id=monomer)
+                monomerNode = ET.SubElement(modelCompositionNode,'Monomer',id=monomer)
 
         #Skim smartie graphs from the log file
-        smartieNode = etree.SubElement(rxml,'SmartieGraphs')
+        smartieNode = ET.SubElement(rxml,'SmartieGraphs')
         self.scrapeSmartieGraphs(smartieNode)
-        et = etree.ElementTree(rxml)
+        et = ET.ElementTree(rxml)
         
         #And write out the XML
         et.write(self.container.outputData.XMLOUT.fullPath.__str__(), pretty_print=True)
@@ -196,7 +194,6 @@ class refmac_martin(CPluginScript):
 
         linesRead = open(self.makeFileName('LOG')).readlines()
 
-        from lxml import etree
         lastCycleComplete = False
         parsingAlignment = False
         parsingOutliers = False
@@ -215,7 +212,7 @@ class refmac_martin(CPluginScript):
                 lastCycleComplete = True
             elif 'Alignment results' in line:
                 parsingAlignment = True
-                ncsNode = etree.SubElement(root,'NCS')
+                ncsNode = ET.SubElement(root,'NCS')
             elif 'Bond distance outliers' in line or 'VDW outliers' in line:
                 if lastCycleComplete:
                     parsingOutliers = True
@@ -229,16 +226,16 @@ class refmac_martin(CPluginScript):
             elif 'Twin operators with Rmerge' in line:
                 #print '\nEntering parsingTwin1'
                 parsingTwin1 = True
-                self.twinningNode = etree.SubElement(root,'Twinning')
+                self.twinningNode = ET.SubElement(root,'Twinning')
                 tokens = line.split()
                 if len(tokens) > 5:
-                    twinningRmergeFilterNode = etree.SubElement(self.twinningNode,'RmergeFilter')
+                    twinningRmergeFilterNode = ET.SubElement(self.twinningNode,'RmergeFilter')
                     twinningRmergeFilterNode.text = tokens[5]
             elif 'Twin domains with fraction' in line:
                 parsingTwin2 = True
                 tokens = line.split()
                 if len(tokens) > 5:
-                    twinningFractionFilterNode = etree.SubElement(self.twinningNode,'FractionFilter')
+                    twinningFractionFilterNode = ET.SubElement(self.twinningNode,'FractionFilter')
                     twinningFractionFilterNode.text = tokens[5]
             
             if parsingTwin1:
@@ -250,17 +247,17 @@ class refmac_martin(CPluginScript):
                     #print '\n\n Splitting a partingTwin1 Line'
                     #print tokens
                     if len(tokens) > 1:
-                        twinningBySymmetryOperatorNode = etree.SubElement(self.twinningNode,'TwinningSymmetryOperator')
+                        twinningBySymmetryOperatorNode = ET.SubElement(self.twinningNode,'TwinningSymmetryOperator')
                         operatorTokens = tokens[0].split()
                         if len(operatorTokens) > 3:
                             operatorText = operatorTokens[-3]+operatorTokens[-2]+operatorTokens[-1]
-                            twinningSymmetryOperatorNode = etree.SubElement(twinningBySymmetryOperatorNode,'SymmetryOperator')
+                            twinningSymmetryOperatorNode = ET.SubElement(twinningBySymmetryOperatorNode,'SymmetryOperator')
                             twinningSymmetryOperatorNode.text = operatorText
                         otTokens = tokens[1].split('=')
                         if len(otTokens) > 1:
                             operatorText = otTokens[1]
                             if len(operatorTokens) > 1:
-                                twinningRmergeNode = etree.SubElement(twinningBySymmetryOperatorNode,'Rmerge')
+                                twinningRmergeNode = ET.SubElement(twinningBySymmetryOperatorNode,'Rmerge')
                                 twinningRmergeNode.text = operatorText
             
             if parsingTwin2:
@@ -269,13 +266,13 @@ class refmac_martin(CPluginScript):
                 else:
                     tokens = line.split(':')
                     if len(tokens) > 3:
-                        twinningByTwinOperatorNode = etree.SubElement(self.twinningNode,'TwinOperator')
-                        twinningTwinOperatorNode = etree.SubElement(twinningByTwinOperatorNode,'TwinOperator')
+                        twinningByTwinOperatorNode = ET.SubElement(self.twinningNode,'TwinOperator')
+                        twinningTwinOperatorNode = ET.SubElement(twinningByTwinOperatorNode,'TwinOperator')
                         twinningTwinOperatorNode.text = tokens[1]
                         try:
                             fractionText = tokens[2].split(';')[0].split('=')[1]
                             if len(operatorTokens) > 1:
-                                twinningFractionNode = etree.SubElement(twinningByTwinOperatorNode,'Fraction')
+                                twinningFractionNode = ET.SubElement(twinningByTwinOperatorNode,'Fraction')
                                 twinningFractionNode.text = fractionText
                         except:
                             pass
@@ -290,7 +287,7 @@ class refmac_martin(CPluginScript):
             if parsingAlignment:
                 if 'No of aligned' not in line and '---' not in line and 'Alignment results' not in line:
                     tokens = line.split(':')
-                    equivalenceNode = etree.SubElement(ncsNode,'equivalence',selection1 = tokens[2],selection2=tokens[3],nEquivalent=tokens[4],score=tokens[5],rms=tokens[6],ave_rmsLoc=tokens[7])
+                    equivalenceNode = ET.SubElement(ncsNode,'equivalence',selection1 = tokens[2],selection2=tokens[3],nEquivalent=tokens[4],score=tokens[5],rms=tokens[6],ave_rmsLoc=tokens[7])
             
             if parsingOutliers:
                 outliersLine += 1
@@ -327,20 +324,20 @@ class refmac_martin(CPluginScript):
                         outliersByCriteria[outliersMode]['Outliers'].append(outlier)
             
             if 'ERROR' in line or 'error' in line or 'Error' in line:
-                if errorNode is None: errorNode = etree.SubElement(root,'ErrorLines')
-                errorLine = etree.SubElement(errorNode,'ErrorLine')
+                if errorNode is None: errorNode = ET.SubElement(root,'ErrorLines')
+                errorLine = ET.SubElement(errorNode,'ErrorLine')
                 errorLine.text = line
 
         if len(list(outliersByCriteria.keys())) is not 0:
-            outliersNode = etree.SubElement(root,'OutliersByCriteria')
+            outliersNode = ET.SubElement(root,'OutliersByCriteria')
             for key in list(outliersByCriteria.keys()):
                 outlierDict = outliersByCriteria[key]
-                outlierCriterionNode = etree.SubElement(outliersNode,key)
-                outlierCriterionCriteriaNode = etree.SubElement(outlierCriterionNode,'Criteria')
+                outlierCriterionNode = ET.SubElement(outliersNode,key)
+                outlierCriterionCriteriaNode = ET.SubElement(outlierCriterionNode,'Criteria')
                 outlierCriterionCriteriaNode.text = outlierDict['Criteria']
                 outliers = outlierDict['Outliers']
                 for outlier in outliers:
-                    outlierNode = etree.SubElement(outlierCriterionNode,'Outlier')
+                    outlierNode = ET.SubElement(outlierCriterionNode,'Outlier')
                     for key in list(outlier.keys()):
                         outlierNode.set(key,outlier[key])
 
@@ -374,8 +371,6 @@ class refmac_martin(CPluginScript):
         smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
         sys.path.append(smartiePath)
         import smartie
-        
-        from lxml import etree
         
         logfile = smartie.parselog(self.makeFileName('LOG'))
         for smartieTable in logfile.tables():
@@ -475,7 +470,6 @@ class refmac_martin(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def logToXML(self, refmacInProgressElement):
-        from lxml import etree
         nTLSCycles = 0
         nCGMATCycles = 0
         nCycles = 0
@@ -516,25 +510,25 @@ class refmac_martin(CPluginScript):
     
         for iCycle in range(0, len(cyclesDone)):
             cycleDone = cyclesDone[iCycle]
-            cycleElement=etree.SubElement(refmacInProgressElement, 'Cycle')
-            cycleNumberElement = etree.SubElement(cycleElement, "number")
+            cycleElement=ET.SubElement(refmacInProgressElement, 'Cycle')
+            cycleNumberElement = ET.SubElement(cycleElement, "number")
             cycleNumberElement.text = cycleDone["number"]
             
-            rfactorElement = etree.SubElement(cycleElement, "r_factor")
+            rfactorElement = ET.SubElement(cycleElement, "r_factor")
             if "r_factor" in cycleDone:
                 rfactorElement.text = cycleDone["r_factor"]
             
-            rfreeElement = etree.SubElement(cycleElement, "r_free")
+            rfreeElement = ET.SubElement(cycleElement, "r_free")
             if "r_free" in cycleDone:
                 rfreeElement.text = cycleDone["r_free"]
             
-            rmsBondsx10Element = etree.SubElement(cycleElement, "rmsBondsx10")
+            rmsBondsx10Element = ET.SubElement(cycleElement, "rmsBondsx10")
             if "rmsBondsx10" in cycleDone:
                 rmsBondsx10Element.text = cycleDone["rmsBondsx10"]
             else:
                 rmsBondsx10Element.text = ""
 
-            rmsBondsElement = etree.SubElement(cycleElement, "rmsBonds")
+            rmsBondsElement = ET.SubElement(cycleElement, "rmsBonds")
             if "rmsBonds" in cycleDone:
                 rmsBondsElement.text = cycleDone["rmsBonds"]
             else:

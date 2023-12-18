@@ -36,6 +36,7 @@ import copy
 import shutil
 import tarfile
 from lxml import etree
+from xml.etree import ElementTree as ET
 from core.CCP4Config import DEVELOPER
 from core.CCP4ErrorHandling import *
 
@@ -235,11 +236,11 @@ def saveEtreeToFile(tree=None, fileName=None):
         raise CException(CUtils, 101, fileName)
     if DEVELOPER():  ##  KJS ** This is the cause of the coupling to CCP4Config.
         # No error trapping - we just want it to crash so we have to fix it!
-        text = etree.tostring(tree, pretty_print=True, xml_declaration=True)
+        text = ET.tostring(tree, pretty_print=True, xml_declaration=True)
         saveFile(fileName=fileName, text=text, overwrite=1)
     else:
         try:
-            text = etree.tostring(tree, pretty_print=True, xml_declaration=True)
+            text = ET.tostring(tree, pretty_print=True, xml_declaration=True)
         except:
             raise CException(CUtils, 102, fileName)
         try:
@@ -247,42 +248,44 @@ def saveEtreeToFile(tree=None, fileName=None):
         except:
             raise CException(CUtils, 103, fileName)
 
-utf8_parser = etree.XMLParser(encoding='utf-8')
+utf8_parser = ET.XMLParser(encoding='utf-8')
 
 def parse_from_unicode(unicode_str,useLXML=True):
     if useLXML:
         s = unicode_str.encode('utf-8')
-        return etree.fromstring(s, parser=utf8_parser)
+        return ET.fromstring(etree.tostring(etree.fromstring(s, parser=utf8_parser)))
     else:
-        import xml.etree.ElementTree as etree_xml
+        from xml.etree import ElementTree as etree_xml
         return etree_xml.fromstring(unicode_str)
 
 def openFileToEtree(fileName=None, printout=False,useLXML=True):
-    # Use this as etree.parse() seg faults on some Linux
+    # Use this as ET.parse() seg faults on some Linux
     try:
         f = open(os.path.normpath(fileName))
         s = f.read()
         f.close()
-        tree = parse_from_unicode(s,useLXML=useLXML)
+        tree = parse_from_unicode(s,useLXML=False)
+        #tree = ET.Element('ccp4i2root')
+        #tree.append(_tree)
     except:
         raise CException(CUtils, 104, fileName)
     else:
         if printout:
-            print(etree.tostring(tree, pretty_print=True))
+            print(ET.tostring(tree, pretty_print=True))
         return tree
     '''
     if DEVELOPER():
-        tree = etree.parse(fileName)
+        tree = ET.parse(fileName)
     else:
         try:
-          tree = etree.parse(fileName)
+          tree = ET.parse(fileName)
         except:
           raise CException(CUtils,104,filename)
       try:
         root = tree.getroot()
     except:
         raise CException(CUtils,105,filename)
-    if printout: print etree.tostring(root,pretty_print=True)
+    if printout: print ET.tostring(root,pretty_print=True)
 
     return root
     '''
@@ -638,7 +641,7 @@ def getProgramVersion(programName, mode='version'):
             return versionHeader.creationTime.date()
         elif mode == 'revision':
             text = readFile(os.path.join(getCCP4I2Dir(), 'core', 'version.params.xml'))
-            tree = etree.fromstring(text)
+            tree = ET.fromstring(text)
             if os.path.exists(os.path.join(getCCP4I2Dir(),".bzr","branch","last-revision")):
                 try:
                     bzrrevf = open(os.path.join(getCCP4I2Dir(),".bzr","branch","last-revision"))
@@ -649,7 +652,7 @@ def getProgramVersion(programName, mode='version'):
                     pass #Read from version.params.xml
             #Aaargh, pluginVersion is a CVersion in CI2XmlHeader, but does not adhere to CVersion rules...
             try:
-                plugVer = tree.xpath('/ccp4i2/ccp4i2_header/pluginVersion')[0].text
+                plugVer = tree.findall('./ccp4i2/ccp4i2_header/pluginVersion')[0].text
                 return plugVer
             except:
                 return ""

@@ -7,6 +7,7 @@ from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
 import pathlib
 import base64
+from xml.etree import ElementTree as ET
 
 class pdbset_ui(CPluginScript):
 
@@ -48,15 +49,14 @@ class pdbset_ui(CPluginScript):
       return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
-        from lxml import etree
         import sys
         with open(self.makeFileName("PROGRAMXML"),"w") as programXMLFile:
-            xmlStructure = etree.Element("pdbset_ui")
-            logText = etree.SubElement(xmlStructure,"LogText")
+            xmlStructure = ET.Element("pdbset_ui")
+            logText = ET.SubElement(xmlStructure,"LogText")
             with open(self.makeFileName("LOG"),"r") as logFile:
-                #logText.text = etree.CDATA(logFile.read())
+                #logText.text = ET.CDATA(logFile.read())
                 logText.text = base64.b64encode(logFile.read())
-            CCP4Utils.writeXML(programXMLFile,etree.tostring(xmlStructure))
+            CCP4Utils.writeXML(programXMLFile,ET.tostring(xmlStructure))
 
         return CPluginScript.SUCCEEDED
       

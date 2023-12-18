@@ -20,7 +20,7 @@ from __future__ import print_function
 from report.CCP4ReportParser import Report
 import sys
 #from lxml import etree
-import xml.etree.ElementTree as etree
+from xml.etree import ElementTree as ET
 from core import CCP4Utils
 
 class MakeLink_report(Report):
@@ -58,12 +58,12 @@ class MakeLink_report(Report):
        with open(baseScenePath,'r') as baseScene:
            baseSceneText = baseScene.read()
            specializedText = baseSceneText.replace('SUBSTITUTEME',pdbPath)
-           rootNode = etree.fromstring(specializedText)
-           molDataNode = rootNode.findall('/scene/data/MolData')[0]
-           customResNode = etree.fromstring('''<customResCIFFiles> <cifmonomer> <name>'''+tlc+'''</name> <filename>'''+dictPath+'''</filename> </cifmonomer> </customResCIFFiles>''')
+           rootNode = ET.fromstring(specializedText)
+           molDataNode = rootNode.findall('./scene/data/MolData')[0]
+           customResNode = ET.fromstring('''<customResCIFFiles> <cifmonomer> <name>'''+tlc+'''</name> <filename>'''+dictPath+'''</filename> </cifmonomer> </customResCIFFiles>''')
            molDataNode.append(customResNode)
            with open(scenePath,'w') as specializedScene:
-               CCP4Utils.writeXML(specializedScene,etree.tostring(rootNode))
+               CCP4Utils.writeXML(specializedScene,ET.tostring(rootNode))
            pic = pictureGallery.addPicture(label=annotation,sceneFile=scenePath)
        return
 

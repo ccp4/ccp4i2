@@ -1,7 +1,7 @@
 from __future__ import print_function
 from report.CCP4ReportParser import *
 from core import CCP4ErrorHandling
-import xml.etree.ElementTree as etree
+from xml.etree import ElementTree as etree
 
 class phaser_singleMR_report(Report):
 
@@ -34,7 +34,7 @@ class phaser_singleMR_report(Report):
                                     style="height:%dpx; width:%dpx; float:left; border:0px;"%(graph_height, graph_width), 
                                     outputXml=self.outputXml, internalId="PhaserGraphs")
         # The xrt file contains graph info (note, this needs to be correctly set in a format specific to the ccp4).
-        loadf = etree.parse(os.path.join(self.jobInfo['fileroot'], "program.xrt"))
+        loadf = ET.parse(os.path.join(self.jobInfo['fileroot'], "program.xrt"))
         if not loadf:
             print("Failed to load xrt file in phaser_singleMR_reports : Report will be missing")
             return

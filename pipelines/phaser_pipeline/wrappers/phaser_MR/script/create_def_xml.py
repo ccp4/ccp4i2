@@ -4,7 +4,9 @@ from __future__ import print_function
 """create phaser_MR_AUTO.def.xml from PHIL parameters"""
 import os, sys
 import re
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
+
 ccp4i2_dir = os.path.join(os.environ['CCP4'], 'share', 'ccp4i2')
 sys.path.append(ccp4i2_dir)
 from utils.phil_handlers import Phil2Etree
@@ -18,7 +20,7 @@ class PhaserPhil2Etree(Phil2Etree):
     self.modes = modes
   
   def __call__(self, root_id):
-    phil_params = etree.Element('container', id=root_id)
+    phil_params = ET.Element('container', id=root_id)
     self.convertScope(self.phil_scope, phil_params, self.modes)
     return phil_params
     
@@ -52,58 +54,58 @@ class PhaserPhil2Etree(Phil2Etree):
   def attributesToQualifiers(self, qualifiers, phil_obj, modes, force_label=True):
     # guiLabel
     if phil_obj.short_caption is not None:
-      gui_label = etree.SubElement(qualifiers, "guiLabel")
+      gui_label = ET.SubElement(qualifiers, "guiLabel")
       gui_label.text = self.sanitize_text(phil_obj.short_caption)
     elif force_label:
-      gui_label = etree.SubElement(qualifiers, "guiLabel")
+      gui_label = ET.SubElement(qualifiers, "guiLabel")
       gui_label.text = self.sanitize_text(phil_obj.name)
     # toolTip
     if phil_obj.help is not None:
-      toolTip = etree.SubElement(qualifiers, "toolTip")
+      toolTip = ET.SubElement(qualifiers, "toolTip")
       toolTip.text = self.sanitize_text(phil_obj.help)
     # guiDefinition
-    guiDefinition = etree.SubElement(qualifiers, "guiDefinition")
+    guiDefinition = ET.SubElement(qualifiers, "guiDefinition")
     if phil_obj.style is not None and 'phaser:mode' in phil_obj.style:
-      phaser_mode = etree.SubElement(guiDefinition, "phaserMode")
+      phaser_mode = ET.SubElement(guiDefinition, "phaserMode")
       phaser_mode.text = str(','.join([mode for mode in re.split('[:, ]', phil_obj.style) if mode in modes]))
     if phil_obj.expert_level is not None:
-      expert_level = etree.SubElement(guiDefinition, "expertLevel")
+      expert_level = ET.SubElement(guiDefinition, "expertLevel")
       expert_level.text = str(phil_obj.expert_level)
     if phil_obj.multiple is not None:
-      multiple = etree.SubElement(guiDefinition, "multiple")
+      multiple = ET.SubElement(guiDefinition, "multiple")
       multiple.text = self.sanitize_text(str(phil_obj.multiple))
     return
 
   def definitionToElement(self, keyword, phil_params):
     value = keyword.extract()
-    elem = etree.SubElement(phil_params, "content")
+    elem = ET.SubElement(phil_params, "content")
     elem.set("id", self.make_keyword(keyword.full_path()))
-    elem_class = etree.SubElement(elem, "className")
+    elem_class = ET.SubElement(elem, "className")
 
     # Map phil type to class and qualifiers
     phil_type = keyword.type.phil_type
     if phil_type == "bool" and str(value) not in ["True", "False"]:
       phil_type = "ternary"
     elem_class.text = self.phil_type_as_class_name.get(phil_type, "CString")
-    qualifiers = etree.SubElement(elem, "qualifiers")
+    qualifiers = ET.SubElement(elem, "qualifiers")
     self.attributesToQualifiers(qualifiers, keyword, modes=modes)
 
     # Set defaults for strings and bools
     if (phil_type in ["bool", "str"]) and (value is not None):
-      default = etree.SubElement(qualifiers, "default")
+      default = ET.SubElement(qualifiers, "default")
       default.text = self.sanitize_text(str(value))
 
     # Set default for ternary logic, treated like a choice
     elif (phil_type == "ternary"):
       if value is None:
         value = "Auto"
-      enum = etree.SubElement(qualifiers, "enumerators")
+      enum = ET.SubElement(qualifiers, "enumerators")
       enum.text = "True,False," + self.sanitize_text(str(value))
-      menu_text = etree.SubElement(qualifiers, "menuText")
+      menu_text = ET.SubElement(qualifiers, "menuText")
       menu_text.text = "Yes,No," + value if value ==  "Auto" else self.sanitize_text(str(value))
-      default = etree.SubElement(qualifiers, "default")
+      default = ET.SubElement(qualifiers, "default")
       default.text = self.sanitize_text(str(value))
-      only = etree.SubElement(qualifiers, "onlyEnumerators")
+      only = ET.SubElement(qualifiers, "onlyEnumerators")
       only.text = "True"
 
     # Set attributes for choices
@@ -111,32 +113,32 @@ class PhaserPhil2Etree(Phil2Etree):
       if (keyword.type.multi):
         # enumerators do not map to PHIL's multi choice well. In that case
         # just use a string.
-        default = etree.SubElement(qualifiers, "default")
+        default = ET.SubElement(qualifiers, "default")
         default.text = keyword.as_str().split('=')[1].strip()
       else:
-        enum = etree.SubElement(qualifiers, "enumerators")
+        enum = ET.SubElement(qualifiers, "enumerators")
         enum.text = self.parse_choice_options(keyword)
         if keyword.caption is not None:
           menuText = self.make_menu_text(keyword.words, keyword.caption)
           if menuText is not None:
-            menu_text = etree.SubElement(qualifiers, "menuText")
+            menu_text = ET.SubElement(qualifiers, "menuText")
             menu_text.text = self.sanitize_text(str(menuText))
-        default = etree.SubElement(qualifiers, "default")
+        default = ET.SubElement(qualifiers, "default")
         if isinstance(value, list):
           value = " ".join(["*" + self.sanitize_text(str(v)) for v in value])
         default.text = self.sanitize_text(str(value))
-        only = etree.SubElement(qualifiers, "onlyEnumerators")
+        only = ET.SubElement(qualifiers, "onlyEnumerators")
         only.text = "True"
 
     # Set defaults and limits for numerics
     elif (phil_type in ["int", "float"]) :
-      default = etree.SubElement(qualifiers, "default")
+      default = ET.SubElement(qualifiers, "default")
       default.text = self.sanitize_text(str(value))
       if (keyword.type.value_min is not None) :
-        min = etree.SubElement(qualifiers, "min")
+        min = ET.SubElement(qualifiers, "min")
         min.text = str(keyword.type.value_min)
       if (keyword.type.value_max is not None) :
-        max = etree.SubElement(qualifiers, "max")
+        max = ET.SubElement(qualifiers, "max")
         max.text = str(keyword.type.value_max)
     return elem
     
@@ -151,8 +153,8 @@ class PhaserPhil2Etree(Phil2Etree):
           print('not adding: ', obj.full_path())
       elif obj.is_scope and self.is_selected_mode(obj, modes):
         if obj.primary_parent_scope.name == 'keywords':
-          sub_container = etree.Element('container', id=obj.full_path().split('.')[-1])
-          qualifiers = etree.SubElement(sub_container, "qualifiers")
+          sub_container = ET.Element('container', id=obj.full_path().split('.')[-1])
+          qualifiers = ET.SubElement(sub_container, "qualifiers")
           self.attributesToQualifiers(qualifiers, obj, modes=modes, force_label=False)
           container.append(sub_container)
           self.convertScope(obj, sub_container, modes=modes)
@@ -215,7 +217,7 @@ class PhaserKeywordsCreator(PhilTaskCreator):
     </ccp4i2>
     '''
     
-    self.inputDataXML = etree.fromstring('''
+    self.inputDataXML = ET.fromstring('''
     <container id="inputData">
         <content id="F_OR_I">
             <className>CString</className>
@@ -313,7 +315,7 @@ class PhaserKeywordsCreator(PhilTaskCreator):
 
   def __call__(self):
 
-    task_xml = etree.fromstring(self.boilerPlateXML.format(**self.fmt_dic))
+    task_xml = ET.fromstring(self.boilerPlateXML.format(**self.fmt_dic))
 
     # Insert inputData
     if self.inputDataXML is not None:
@@ -324,17 +326,17 @@ class PhaserKeywordsCreator(PhilTaskCreator):
 
     # Write out prettified version
     out_file = self.fmt_dic['PLUGINNAME'] + '.def.xml'
-    parser = etree.XMLParser(remove_blank_text=True)
+    parser = ET.XMLParser(remove_blank_text=True)
     if sys.version_info >= (3,0):
         import io
-        tree = etree.parse(io.StringIO(etree.tostring(task_xml).decode("utf-8")), parser)
+        tree = ET.parse(io.StringIO(ET.tostring(task_xml).decode("utf-8")), parser)
     else:
         import StringIO
-        tree = etree.parse(StringIO.StringIO(etree.tostring(task_xml)), parser)
+        tree = ET.parse(StringIO.StringIO(ET.tostring(task_xml)), parser)
     try:
       with open(out_file, 'wb') as f:
         print('Writing def.xml to %s' % out_file)
-        f.write(etree.tostring(tree, pretty_print=True, xml_declaration=True))
+        f.write(ET.tostring(tree, pretty_print=True, xml_declaration=True))
     except OSError as exception:
       if exception.errno == errno.EACCES:
         raise RuntimeError('No write permission to this directory')

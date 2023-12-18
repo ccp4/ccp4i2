@@ -37,6 +37,7 @@ import time
 import traceback
 from core import CCP4Config
 # from core import CCP4Data  # - KJS : Causes issues. Circular dependency with globals.
+from xml.etree import ElementTree as ET
 
 def formatExceptionInfo(maxTBlevel=5):
     cla, exc, trbk = sys.exc_info()
@@ -276,7 +277,7 @@ class CErrorReport():
         from core import CCP4Config
         if CCP4Config.XMLPARSER() == 'lxml':
            from lxml import etree
-        element = etree.Element('report')
+        element = ET.Element('report')
         element.text = self.report()
         return element
     '''
@@ -284,33 +285,33 @@ class CErrorReport():
     def getEtree(self):
         if CCP4Config.XMLPARSER() == 'lxml':
             from lxml import etree
-        element = etree.Element('errorReportList')
+        element = ET.Element('errorReportList')
         for item in self._reports:
             try:
-                ele = etree.Element('errorReport')
-                e = etree.Element('className')
+                ele = ET.Element('errorReport')
+                e = ET.Element('className')
                 e.text = item['class'].__name__
                 ele.append(e)
-                e = etree.Element('code')
+                e = ET.Element('code')
                 e.text = str(item['code'])
                 ele.append(e)
-                e = etree.Element('description')
+                e = ET.Element('description')
                 desc,severity = self.description(item)
                 e.text = desc
                 ele.append(e)
-                e = etree.Element('severity')
+                e = ET.Element('severity')
                 e.text = SEVERITY_TEXT[severity]
                 ele.append(e)
                 if item['details'] is not None:
-                    e = etree.Element('details')
+                    e = ET.Element('details')
                     e.text = str(item['details'])
                     ele.append(e)
                 if item.get('time',None) is not None:
-                    e = etree.Element('time')
+                    e = ET.Element('time')
                     e.text = str(item['time'])
                     ele.append(e)
                 if item.get('stack',None) is not None:
-                    e = etree.Element('stack')
+                    e = ET.Element('stack')
                     #print 'CErrorReport.getEtree stack',item['stack'],type(item['stack']),type(item['stack'][0])
                     text = ''
                     for line in item['stack']:
@@ -336,7 +337,7 @@ class CErrorReport():
         for ele in body:
             if str(ele.tag) == 'errorReport':
                 report = {}
-                for e in ele.iterchildren():
+                for e in ele:
                     name = str(e.tag)
                     if name == 'className':
                         clsName = str(e.text)
@@ -413,7 +414,7 @@ class testError(unittest.TestCase):
         from core import CCP4Data
         e = CException(CCP4Data.CData, 1, 'foo')
         tree = e.getEtree()
-        #text = etree.tostring(tree, pretty_print=True, xml_declaration=True)
+        #text = ET.tostring(tree, pretty_print=True, xml_declaration=True)
         #print text
         f = CException()
         f.setEtree(tree)

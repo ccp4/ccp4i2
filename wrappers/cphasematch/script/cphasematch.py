@@ -17,6 +17,8 @@
 """
 
 from core.CCP4PluginScript import CPluginScript
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 class cphasematch(CPluginScript):
 
@@ -61,8 +63,7 @@ class cphasematch(CPluginScript):
 
 
     def processOutputFiles(self):
-        from lxml import etree
-
+      
         error = self.splitHklout( [ 'ABCDOUT' ], [ 'i2.ABCD.A,i2.ABCD.B,i2.ABCD.C,i2.ABCD.D' ] )
         self.container.outputData.ABCDOUT.annotation = 'shifted ABCD'
 
@@ -78,17 +79,17 @@ class cphasematch(CPluginScript):
             self.container.outputData.PERFORMANCE.weightedPhaseError = float(wdphi1)
             self.container.outputData.PERFORMANCE.reflectionCorrelation = float(ecorr)
 
-            self.xmlnode = etree.Element('cphasematch')
-            etree.SubElement(self.xmlnode,'phaseError').text = dphi
-            etree.SubElement(self.xmlnode,'weightedPhaseError1').text = wdphi1
-            etree.SubElement(self.xmlnode,'weightedPhaseError2').text = wdphi2
-            etree.SubElement(self.xmlnode,'reflectionFCorrelation').text = fcorr
-            etree.SubElement(self.xmlnode,'reflectionECorrelation').text = ecorr
+            self.xmlnode = ET.Element('cphasematch')
+            ET.SubElement(self.xmlnode,'phaseError').text = dphi
+            ET.SubElement(self.xmlnode,'weightedPhaseError1').text = wdphi1
+            ET.SubElement(self.xmlnode,'weightedPhaseError2').text = wdphi2
+            ET.SubElement(self.xmlnode,'reflectionFCorrelation').text = fcorr
+            ET.SubElement(self.xmlnode,'reflectionECorrelation').text = ecorr
 
-            smartieNode = etree.SubElement(self.xmlnode,'SmartieGraphs')
+            smartieNode = ET.SubElement(self.xmlnode,'SmartieGraphs')
             self.scrapeSmartieGraphs(smartieNode)
 
-            etree.ElementTree(self.xmlnode).write(self.makeFileName('PROGRAMXML'))
+            ET.ElementTree(self.xmlnode).write(self.makeFileName('PROGRAMXML'))
 
             return CPluginScript.SUCCEEDED
 
@@ -99,7 +100,6 @@ class cphasematch(CPluginScript):
         import sys, os
         from core import CCP4Utils
         from pimple import MGQTmatplotlib        
-        from lxml import etree
         smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
         sys.path.append(smartiePath)
         import smartie

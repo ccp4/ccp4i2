@@ -2,7 +2,8 @@ from __future__ import print_function
 
 
 from core.CCP4PluginScript import CPluginScript
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 import threading
 import socketserver
 import os, sys
@@ -30,20 +31,19 @@ class MosflmRequestHandler(socketserver.StreamRequestHandler):
                 responseText = self.rfile.readline().strip()
         
         #print '\n\nInto listen loop\n\n'
-        from lxml import etree
         inBlockIntegrate = False
         while responseText != "<done>":
             #Block until readable
             responseText = self.rfile.readline().strip()
             if responseText != "<done>":
                 try:
-                    aDom = etree.fromstring(responseText)
+                    aDom = ET.fromstring(responseText)
                     MosflmRequestHandler.xmlRoot.append(aDom)
                     if aDom.tag == 'integration_response':
                         inBlockIntegrate = True
                     elif inBlockIntegrate:
                         inBlockIntegrate = False
-                        newXML = etree.tostring(MosflmRequestHandler.xmlRoot,pretty_print=True)
+                        newXML = ET.tostring(MosflmRequestHandler.xmlRoot,pretty_print=True)
                         if len(newXML) > len(currentXML):
                             currentXML=newXML
                             with open(MosflmRequestHandler.xmlFilepath+'.tmp',"w") as myfile:
@@ -56,7 +56,7 @@ class MosflmRequestHandler(socketserver.StreamRequestHandler):
             self.wfile.write('continue\n')
             self.wfile.flush()
         with open(MosflmRequestHandler.xmlFilepath+'.tmp',"w") as myfile:
-            CCP4Utils.writeXML(myfile,etree.tostring(MosflmRequestHandler.xmlRoot,pretty_print=True))
+            CCP4Utils.writeXML(myfile,ET.tostring(MosflmRequestHandler.xmlRoot,pretty_print=True))
             myfile.flush()
             os.fsync(myfile.fileno())
         os.rename(MosflmRequestHandler.xmlFilepath+'.tmp',MosflmRequestHandler.xmlFilepath)
@@ -89,7 +89,7 @@ class mosflm(CPluginScript):
         
         address = ('127.0.0.1', 0)
 
-        MosflmRequestHandler.xmlRoot = etree.Element('MosflmXML')
+        MosflmRequestHandler.xmlRoot = ET.Element('MosflmXML')
         MosflmRequestHandler.xmlFilepath = self.makeFileName( 'PROGRAMXML' )
         MosflmRequestHandler.commandLines = self.container.controlParameters.SCRIPT.split('\n')
 

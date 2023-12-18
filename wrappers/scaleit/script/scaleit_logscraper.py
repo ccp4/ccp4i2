@@ -1,6 +1,7 @@
 import os, sys
 import lxml
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 from pathlib import Path
 
@@ -15,7 +16,7 @@ from core import CCP4Utils
 class makeGraphs:
     def __init__(self, logfilename):
         self.logfilename = logfilename
-        self.scaleitgraphs = etree.Element('SCALEITGRAPHS')
+        self.scaleitgraphs = ET.Element('SCALEITGRAPHS')
         # Extract graphs from log file
         self.scrapeSmartieGraphs(self.scaleitgraphs)
 
@@ -118,7 +119,7 @@ class scaleitLogScraper:
         # Returns an XML block SCALEITLOG
         #print(">>>logscraper makeXML")
 
-        xmlroot = etree.Element('SCALEITLOG')
+        xmlroot = ET.Element('SCALEITLOG')
 
         if self.resolutionMax is not None:
             addElement(xmlroot, 'ResolutionMax', self.resolutionMax)
@@ -131,7 +132,7 @@ class scaleitLogScraper:
         addElement(xmlroot, 'Nderivatives', str(self.nderivatives))
         for i in range(self.nderivatives):
             lab = self.derivativeIndex[i]
-            e = etree.Element('Derivative')
+            e = ET.Element('Derivative')
             addElement(e, 'Name', self.datasetsused[lab][1])
             addElement(e, 'ColName', lab)
             
@@ -151,7 +152,7 @@ class scaleitLogScraper:
             addElement(e, m, ' '.join(scales[3:]))
 
             # Analysis v. resolution
-            er = etree.Element('ResolutionAnalysis')
+            er = ET.Element('ResolutionAnalysis')
             addElement(er, 'Headers', ' '.join(self.resolutionHeaders[i]))
             addElement(er, 'Totals', ' '.join(self.resolutionTotalLines[i]))
             for key, value in self.resolutionTotals[i].items():
@@ -165,7 +166,7 @@ class scaleitLogScraper:
 
         # Normal probability analysis if present
         if self.normalProbabilityHeaders is not None:
-            e = etree.Element('NormalProbability')
+            e = ET.Element('NormalProbability')
             addElement(e, 'Headers', ' '.join(self.normalProbabilityHeaders))
             addElement(e, 'Centric', ' '.join(self.normalProbCentric))
             addElement(e, 'Acentric', ' '.join(self.normalProbAcentric))
@@ -395,7 +396,7 @@ class scaleitLogScraper:
     # - - - - - - - - -  - - - - - - - - -  - - - - - - - - - 
     def addElement(self, containerXML, elementname, elementtext):
         #print 'addElement', elementname, type(elementtext), elementtext 
-        e2 = etree.Element(elementname)
+        e2 = ET.Element(elementname)
         e2.text = elementtext
         containerXML.append(e2)
         
@@ -424,18 +425,18 @@ class LargeDifferenceList():
 
     # - - - - - - - - -  - - - - - - - - -  - - - - - - - - - 
     def makeXML(self):
-        largeDiffXML = etree.Element('LARGE_DIFFERENCES')
+        largeDiffXML = ET.Element('LARGE_DIFFERENCES')
 
         for i in range(self.nderivatives):
-            e = etree.Element('Derivative')
+            e = ET.Element('Derivative')
             addElement(e, 'Name', self.derivativeNames[i])
             limits = self.differenceLimits[i]
-            el = etree.Element('IsomorphousDifferences')
+            el = ET.Element('IsomorphousDifferences')
             self.formatLimits(limits[0], el)
             e.append(el)
             if limits[1] is not None:
                 # Anomalous
-                el = etree.Element('AnomalousDifferences')
+                el = ET.Element('AnomalousDifferences')
                 self.formatLimits(limits[1], el)
                 e.append(el)
 
@@ -460,7 +461,7 @@ class LargeDifferenceList():
 # - - - - - - - - -  - - - - - - - - -  - - - - - - - - - 
 def addElement(containerXML, elementname, elementtext):
     #print 'addElement', elementname, type(elementtext), elementtext 
-    e2 = etree.Element(elementname)
+    e2 = ET.Element(elementname)
     e2.text = elementtext
     containerXML.append(e2)
 
@@ -478,7 +479,8 @@ if __name__ == "__main__":
     print("\nData\n")
     xml = logscrape.makeXML()
 
-    et = etree.ElementTree(xml)
+    et = ET.ElementTree(xml)
     # and write out the XML
-    et.write('scl.xml', pretty_print=True)
+    ET.indent(et)
+    et.write('scl.xml')
 

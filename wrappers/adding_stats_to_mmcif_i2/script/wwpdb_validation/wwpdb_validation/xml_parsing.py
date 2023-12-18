@@ -2,7 +2,7 @@
 
 import logging
 import os
-import xml.etree.ElementTree as ET
+from xml.etree import ElementTree as ET
 
 
 def parse_xml(xml_file):

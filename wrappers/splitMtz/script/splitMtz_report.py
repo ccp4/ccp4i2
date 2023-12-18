@@ -1,6 +1,6 @@
 from report.CCP4ReportParser import *
 import sys
-from lxml import etree
+#from lxml import etree
 
 class splitMtz_report(Report):
     # Specify which gui task and/or pluginscript this applies to

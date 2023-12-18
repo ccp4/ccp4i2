@@ -9,7 +9,8 @@
 
 import sys
 import os
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 # Nasty trick required to import PhilTaskCreator when running with ccp4-python
 this_dir = os.path.dirname(os.path.realpath(__file__))
@@ -26,7 +27,7 @@ class Xia2MultiplexTaskCreator(PhilTaskCreator):
         PhilTaskCreator.__init__(self, phil_scope, debug)
         self.fmt_dic["PLUGINNAME"] = "xia2_multiplex"
 
-        self.inputDataXML = etree.fromstring(
+        self.inputDataXML = ET.fromstring(
             """
 <container id="inputData">
   <content id="SEARCH_ROOT_DIR">
@@ -83,7 +84,7 @@ class Xia2MultiplexTaskCreator(PhilTaskCreator):
 """
         )
 
-        self.outputDataXML = etree.fromstring(
+        self.outputDataXML = ET.fromstring(
             """
 <container id="outputData">
   <content id="UNMERGEDOUT">
@@ -144,7 +145,8 @@ class Xia2MultiplexTaskCreator(PhilTaskCreator):
         )
 
         if self.debug:
-            print(etree.tostring(self.phil_tree, pretty_print=True))
+            ET.indent(self.phil_tree)
+            print(ET.tostring(self.phil_tree))
 
         super(Xia2MultiplexTaskCreator, self).__call__()
 

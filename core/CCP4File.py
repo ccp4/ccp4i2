@@ -41,6 +41,8 @@ from core.CCP4Modules import MIMETYPESHANDLER, PROJECTSMANAGER
 from core.CCP4ErrorHandling import *
 from report.CCP4ReportParser import CCP4NS
 
+from xml.etree import ElementTree as ET
+
 # Version number of form n.m or n.m.i
 class CVersion(CCP4Data.CString):
     '''A (string) version number of the form n.m.i'''
@@ -1126,7 +1128,7 @@ class CXmlDataFile(CDataFile):
             fileName = self.fullPath.get()
         root = self.getEtreeRoot(fileName)
         if printout:
-            print(etree.tostring(root, pretty_print=True)) # KJS - problem here. etree not defined. Fix in.
+            print(ET.tostring(root, pretty_print=True)) # KJS - problem here. etree not defined. Fix in.
         return root
         
         
@@ -1144,7 +1146,7 @@ class CXmlDataFile(CDataFile):
             from lxml import etree
         try:
             tree = CCP4Utils.openFileToEtree(fileName,useLXML=useLXML)
-        except etree.LxmlError as e:
+        except ET.LxmlError as e:
             raise CException(self.__class__, 1009, fileName + ' : ' + str(e), name=self.objectPath())
         except Exception as e:
             raise CException(self.__class__, 1001, fileName + ' : ' + str(e), name=self.objectPath())
@@ -1164,18 +1166,20 @@ class CXmlDataFile(CDataFile):
         if CCP4Config.XMLPARSER() == 'lxml':
             from lxml import etree
         fileName = self.fullPath.get()
+        print('bodyEtree is', bodyEtree)
         if bodyEtree is None:
             pass
-        elif not isinstance(bodyEtree, etree._Element):
+        elif not isinstance(bodyEtree, ET.Element):
             import traceback
             traceback.print_stack()
             raise CException(self.__class__, 1006, fileName, name=self.objectPath())
         if CCP4Config.DEVELOPER():
-            text = etree.tostring(bodyEtree, pretty_print=True, xml_declaration=True)
+            ET.indent(bodyEtree)
+            text = ET.tostring(bodyEtree, xml_declaration=True)
             CCP4Utils.saveFile(fileName=fileName, text=text, overwrite=1)
         else:
             try:
-                text = etree.tostring(bodyEtree, pretty_print=True, xml_declaration=True) # KJS - Code is broken here. Fix in.
+                text = ET.tostring(bodyEtree, pretty_print=True, xml_declaration=True) # KJS - Code is broken here. Fix in.
             except:
                 raise CException(self.__module__, 1007, fileName)
             try:
@@ -1209,7 +1213,7 @@ class CXmlDataFile(CDataFile):
             c.header.creationTime.setCurrentTime()
         if CCP4Config.XMLPARSER() == 'lxml':
             from lxml import etree
-        body = etree.Element(CI2XmlDataFile.BODY_TAG)
+        body = ET.Element(CI2XmlDataFile.BODY_TAG)
         body.append(self.getEtreeRoot(myFileName))
         c.saveFile(bodyEtree=body)
 
@@ -1248,8 +1252,8 @@ class CI2XmlDataFile(CXmlDataFile):
         root = self.getEtreeRoot(fileName)
         if printout:
             if CCP4Config.XMLPARSER() == 'lxml':
-                from lxml import etree
-                print(etree.tostring(root, pretty_print=True))
+                ET.indent(root)
+                print(ET.tostring(root))
         return self.loadHeader(root)
 
     def getEtreeRoot(self, fileName=None,useLXML=True):
@@ -1261,7 +1265,7 @@ class CI2XmlDataFile(CXmlDataFile):
         #print 'getEtreeRoot fileName', fileName, type(fileName)
         try:
             root = CCP4Utils.openFileToEtree(fileName,useLXML=useLXML)
-        except etree.LxmlError as e:
+        except ET.LxmlError as e:
             raise CException(self.__class__, 1009, fileName + ' : ' + str(e), name=self.objectPath())
         except Exception as e:
             raise CException(self.__class__, 1001, fileName + ' : ' + str(e), name=self.objectPath())
@@ -1290,7 +1294,7 @@ class CI2XmlDataFile(CXmlDataFile):
             #except:
             #  print 'Error loading header'
             #  from lxml import etree
-            #  print etree.tostring(header_etree,pretty_print=True)
+            #  print ET.tostring(header_etree,pretty_print=True)
         return err
 
     def getBodyEtree(self):
@@ -1304,14 +1308,14 @@ class CI2XmlDataFile(CXmlDataFile):
             raise CException(self.__class__, 1005, fileName, name=self.objectPath())
         return body_etree
 
-    def saveFile(self, bodyEtree=None,useLXML=True):
+    def saveFile(self, bodyEtree=None,useLXML=False):
         from core import CCP4Utils
         if CCP4Config.XMLPARSER() == 'lxml' and useLXML:
             from lxml import etree
             testType = etree._Element
         else:
-            import xml.etree.ElementTree as etree
-            testType = etree.Element
+            from xml.etree import ElementTree as etree
+            testType = ET.Element
         fileName = self.getFullPath()
         if bodyEtree is None:
             pass
@@ -1320,7 +1324,7 @@ class CI2XmlDataFile(CXmlDataFile):
         else:
             if bodyEtree.tag != CI2XmlDataFile.BODY_TAG:
                 bodyEtree.tag = CI2XmlDataFile.BODY_TAG
-        doc = etree.parse(StringIO( '<ccp4:ccp4i2 xmlns:ccp4="' + CCP4NS + '"></ccp4:ccp4i2>'))
+        doc = ET.parse(StringIO( '<ccp4:ccp4i2 xmlns:ccp4="' + CCP4NS + '"></ccp4:ccp4i2>'))
         root = doc.getroot()
         headerEtree = self.__dict__['_value']['header'].getEtree(useLXML=useLXML)
         headerEtree.tag = CI2XmlDataFile.HEADER_TAG
@@ -1331,14 +1335,15 @@ class CI2XmlDataFile(CXmlDataFile):
             root.append(bodyEtree)
         if CCP4Config.DEVELOPER():
             if useLXML:
-                text = etree.tostring(doc, pretty_print=True, xml_declaration=True)
+                text = etree.tostring(doc, xml_declaration=True)
                 CCP4Utils.saveFile(fileName=fileName, text=text,overwrite=1)
             else:
                 doc.write(os.path.normpath(str(fileName)), encoding = "ASCII", xml_declaration = True)  
         else:
             if useLXML:
                 try:
-                    text = etree.tostring(doc, pretty_print=True, xml_declaration=True)
+                    ET.indent(doc)
+                    text = ET.tostring(doc, xml_declaration=True)
                 except:
                     raise CException(self.__module__, 1007, fileName)
                 try:
@@ -1397,7 +1402,7 @@ def getEquivalentNode(node, otherParent):
             path = path + " and @"+idItems[1]+"='" + node.get(idItems[1]) + "'"
         path = path + ']'
     #print path
-    return otherParent.xpath(path)
+    return otherParent.findall(path)
 
 def getNodePath(node, key=None):
     name = getUniqueNodeLabel(node)
@@ -1444,16 +1449,15 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
     body = xFile.getBodyEtree()
     #FIXME - And then there are the lists. Not considered yet.
     #This sees if we have a sequence in old task which has become ASU in new version of task and so creates and runs a ProvideAsuContents.
-    if len(body.xpath("inputData"))>0:
-        if len(body.xpath("inputData/SEQIN")) > 0 or len(body.xpath("inputData/SEQUENCE_LIST")) > 0 or len(body.xpath("inputData/AWA_SEQIN"))>0:
-            if len(body.xpath("inputData/SEQIN")) > 0:
+    if len(body.findall("inputData"))>0:
+        if len(body.findall("inputData/SEQIN")) > 0 or len(body.findall("inputData/SEQUENCE_LIST")) > 0 or len(body.findall("inputData/AWA_SEQIN"))>0:
+            if len(body.findall("inputData/SEQIN")) > 0:
                 oldTag = "SEQIN"
-            elif len(body.xpath("inputData/SEQUENCE_LIST")) > 0:
+            elif len(body.findall("inputData/SEQUENCE_LIST")) > 0:
                 oldTag = "SEQUENCE_LIST"
-            elif len(body.xpath("inputData/AWA_SEQIN")) > 0:
+            elif len(body.findall("inputData/AWA_SEQIN")) > 0:
                 oldTag = "AWA_SEQIN"
             #OK, old task had a SEQIN
-            from lxml import etree
             print("--------------------------------------------------")
             print("OK, old task had a ",oldTag)
             print("Now I need to know the def.xml for",taskName)
@@ -1463,15 +1467,15 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
                 if defFile is None:
                     print("I did not find a def file")
             print("Found def file",defFile)
-            parser = etree.XMLParser()
+            parser = ET.XMLParser()
             f = open(defFile)
             s = f.read()
             f.close()
-            tree = etree.fromstring(s, parser)
+            tree = ET.fromstring(s, parser)
             inputs = []
             input_els = []
-            for inputCont in tree.xpath("ccp4i2_body/container[@id='inputData']"):
-                for inputEl in inputCont.xpath("content"):
+            for inputCont in tree.findall("ccp4i2_body/container[@id='inputData']"):
+                for inputEl in inputCont.findall("content"):
                     try:
                         inputs.append(inputEl.attrib["id"])
                         input_els.append(inputEl)
@@ -1481,23 +1485,23 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
                         sys.stderr.write(str(exc_type)+'\n')
                         sys.stderr.write(str(exc_value)+'\n')
 
-            for additionalFile in tree.xpath("ccp4i2_body/file"):
+            for additionalFile in tree.findall("ccp4i2_body/file"):
                 try:
-                    add_xml = additionalFile.xpath("CI2XmlDataFile")[0]
-                    add_relPath = add_xml.xpath("relPath")[0].text
-                    add_baseName = add_xml.xpath("baseName")[0].text
+                    add_xml = additionalFile.findall("CI2XmlDataFile")[0]
+                    add_relPath = add_xml.findall("relPath")[0].text
+                    add_baseName = add_xml.findall("baseName")[0].text
                     add_defFile = os.path.join(CCP4Utils.getCCP4I2Dir(),add_relPath,add_baseName)
-                    parser2 = etree.XMLParser()
+                    parser2 = ET.XMLParser()
                     f2 = open(add_defFile)
                     s2 = f2.read()
                     f2.close()
-                    tree2 = etree.fromstring(s2, parser2)
+                    tree2 = ET.fromstring(s2, parser2)
                 except:
                     print("Failed to read additional file")
                 else:
                     print("Read additional file",add_defFile,tree2)
-                for inputCont in tree2.xpath("ccp4i2_body/container[@id='inputData']"):
-                    for inputEl in inputCont.xpath("content"):
+                for inputCont in tree2.findall("ccp4i2_body/container[@id='inputData']"):
+                    for inputEl in inputCont.findall("content"):
                         try:
                             inputs.append(inputEl.attrib["id"])
                             input_els.append(inputEl)
@@ -1508,7 +1512,7 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
                             sys.stderr.write(str(exc_value)+'\n')
             print("--------------------------------------------------")
             doStuff = False
-            if len(body.xpath("inputData/"+oldTag+"/dbFileId")) > 0 and len(body.xpath("inputData/"+oldTag+"/baseName")) > 0 and len(body.xpath("inputData/"+oldTag+"/project")) > 0 and len(body.xpath("inputData/"+oldTag+"/annotation")) > 0 and len(body.xpath("inputData/"+oldTag+"/relPath")) > 0 and len(body.xpath("inputData/"+oldTag+"/selection")) == 0:
+            if len(body.findall("inputData/"+oldTag+"/dbFileId")) > 0 and len(body.findall("inputData/"+oldTag+"/baseName")) > 0 and len(body.findall("inputData/"+oldTag+"/project")) > 0 and len(body.findall("inputData/"+oldTag+"/annotation")) > 0 and len(body.findall("inputData/"+oldTag+"/relPath")) > 0 and len(body.findall("inputData/"+oldTag+"/selection")) == 0:
                 print("OLD JOB "+oldTag+" IS THE OLD TYPE")
 
                 if "ASUIN" in inputs and not oldTag in inputs:
@@ -1518,30 +1522,30 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
                 if "SEQIN" in inputs and not "ASUIN" in inputs:
                     print("SEQIN to SEQIN, change may or may not be required....")
                     theElement = input_els[inputs.index("SEQIN")]
-                    if len(theElement.xpath("className")) > 0 and theElement.xpath("className")[0].text == "CSeqDataFile":
+                    if len(theElement.findall("className")) > 0 and theElement.findall("className")[0].text == "CSeqDataFile":
                         print("New task is a sequence too, so do nothing")
-                    if len(theElement.xpath("className")) > 0 and theElement.xpath("className")[0].text == "CAsuDataFile":
+                    if len(theElement.findall("className")) > 0 and theElement.findall("className")[0].text == "CAsuDataFile":
                         print("New task is a CASU, so perhaps ought to do something...")
                         doStuff = True
                         newTag = "SEQIN"
                 if "AWA_SEQIN" in inputs and not "ASUIN" in inputs:
                     theElement = input_els[inputs.index("AWA_SEQIN")]
-                    if len(theElement.xpath("className")) > 0 and theElement.xpath("className")[0].text == "CSeqDataFile":
+                    if len(theElement.findall("className")) > 0 and theElement.findall("className")[0].text == "CSeqDataFile":
                         print("New task is a sequence too, so do nothing")
-                    if len(theElement.xpath("className")) > 0 and theElement.xpath("className")[0].text == "CAsuDataFile":
+                    if len(theElement.findall("className")) > 0 and theElement.findall("className")[0].text == "CAsuDataFile":
                         print("New task is a CASU, so perhaps ought to do something...")
                         doStuff = True
                         newTag = "AWA_SEQIN"
             asu_inps = []
-            if len(body.xpath("inputData/"+oldTag+"/CSeqDataFile")) > 0:
+            if len(body.findall("inputData/"+oldTag+"/CSeqDataFile")) > 0:
                 #Again, we need to check how this compares with current task spec.
                 print("We have a list of sequences ...")
-                for df in body.xpath("inputData/"+oldTag+"/CSeqDataFile"):
-                    seq_dbFileId = df.xpath("dbFileId")[0].text
-                    seq_baseName = df.xpath("baseName")[0].text
-                    seq_project = df.xpath("project")[0].text
-                    seq_annotation = df.xpath("annotation")[0].text.split()[-1]
-                    seq_relPath = df.xpath("relPath")[0].text
+                for df in body.findall("inputData/"+oldTag+"/CSeqDataFile"):
+                    seq_dbFileId = df.findall("dbFileId")[0].text
+                    seq_baseName = df.findall("baseName")[0].text
+                    seq_project = df.findall("project")[0].text
+                    seq_annotation = df.findall("annotation")[0].text.split()[-1]
+                    seq_relPath = df.findall("relPath")[0].text
                     print(seq_dbFileId,seq_baseName,seq_project,seq_annotation,seq_relPath)
                     projectName=PROJECTSMANAGER().db().getProjectInfo(projectId=seq_project,mode='projectdirectory')
                     seqFileName = os.path.join(projectName,seq_relPath,seq_baseName)
@@ -1557,8 +1561,8 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
                 if "ASUIN" in inputs and not oldTag in inputs:
                     print("Looks like a list SEQIN -> ASUIN translation")
                     newTag = "ASUIN"
-                    inpD = body.xpath("inputData")[0]
-                    SEQIN_el = inpD.xpath(oldTag)[0]
+                    inpD = body.findall("inputData")[0]
+                    SEQIN_el = inpD.findall(oldTag)[0]
                     inpD.remove(SEQIN_el)
                     print("REMOVED OLD")
                 else:
@@ -1566,13 +1570,13 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
                     asu_inps = []
             print("Do stuff is", doStuff)
             if doStuff:
-                seq_dbFileId = body.xpath("inputData/" + oldTag + "/dbFileId")[0].text
-                seq_baseName = body.xpath("inputData/" + oldTag + "/baseName")[0].text
-                seq_project = body.xpath("inputData/" + oldTag + "/project")[0].text
-                seq_annotation = body.xpath("inputData/" + oldTag + "/annotation")[0].text.split()[-1] #Remove possible leading job number and space.
-                seq_relPath = body.xpath("inputData/" + oldTag + "/relPath")[0].text
-                inpD = body.xpath("inputData")[0]
-                SEQIN_el = inpD.xpath(oldTag)[0]
+                seq_dbFileId = body.findall("inputData/" + oldTag + "/dbFileId")[0].text
+                seq_baseName = body.findall("inputData/" + oldTag + "/baseName")[0].text
+                seq_project = body.findall("inputData/" + oldTag + "/project")[0].text
+                seq_annotation = body.findall("inputData/" + oldTag + "/annotation")[0].text.split()[-1] #Remove possible leading job number and space.
+                seq_relPath = body.findall("inputData/" + oldTag + "/relPath")[0].text
+                inpD = body.findall("inputData")[0]
+                SEQIN_el = inpD.findall(oldTag)[0]
                 inpD.remove(SEQIN_el)
                 print("REMOVED OLD")
                 projectName=PROJECTSMANAGER().db().getProjectInfo(projectId=seq_project, mode='projectdirectory')
@@ -1625,45 +1629,44 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
                 print("--------------------",taskName,"--------------------")
                 if taskName != "clamshelx":
                     jobFiles = PROJECTSMANAGER().db().getJobFilesInfo(jobId = asuJob.jobId)
-                    ASUIN = etree.SubElement(body.xpath("inputData")[0],newTag)
-                    ASUIN_dbFileId = etree.SubElement(ASUIN,"dbFileId")
+                    ASUIN = ET.SubElement(body.findall("inputData")[0],newTag)
+                    ASUIN_dbFileId = ET.SubElement(ASUIN,"dbFileId")
                     ASUIN_dbFileId.text = "UNKNOWN"
                     if len(jobFiles)>0:
                         ASUIN_dbFileId.text = jobFiles[0]['fileId']
-                    ASUIN_baseName = etree.SubElement(ASUIN,"baseName")
+                    ASUIN_baseName = ET.SubElement(ASUIN,"baseName")
                     ASUIN_baseName.text = "ASUCONTENTFILE.asu.xml"
-                    ASUIN_project = etree.SubElement(ASUIN,"project")
+                    ASUIN_project = ET.SubElement(ASUIN,"project")
                     ASUIN_project.text = seq_project
-                    ASUIN_annotation = etree.SubElement(ASUIN,"annotation")
+                    ASUIN_annotation = ET.SubElement(ASUIN,"annotation")
                     ASUIN_annotation.text = str(asuJob.info["jobnumber"]) + " Asu content file from Define AU contents"
                     print("SETTING JOB NUMBER IN ASUIN_annotation TO",asuJob.info["jobnumber"])
-                    ASUIN_relPath = etree.SubElement(ASUIN,"relPath")
+                    ASUIN_relPath = ET.SubElement(ASUIN,"relPath")
                     ASUIN_relPath.text = "CCP4_JOBS/job_"+str(asuJob.info["jobnumber"])
                     print("SETTING JOB NUMBER IN ASUIN_relPath TO",asuJob.info["jobnumber"])
-                    ASUIN_selection = etree.SubElement(ASUIN,"selection")
-                    ASUIN_selection_item = etree.SubElement(ASUIN_selection,"item")
-                    ASUIN_selection_item_key = etree.SubElement(ASUIN_selection_item,"key")
+                    ASUIN_selection = ET.SubElement(ASUIN,"selection")
+                    ASUIN_selection_item = ET.SubElement(ASUIN_selection,"item")
+                    ASUIN_selection_item_key = ET.SubElement(ASUIN_selection_item,"key")
                     ASUIN_selection_item_key.text = seq_annotation
-                    ASUIN_selection_item_value = etree.SubElement(ASUIN_selection_item,"value")
+                    ASUIN_selection_item_value = ET.SubElement(ASUIN_selection_item,"value")
                     ASUIN_selection_item_value.text = "True"
                     #print "A NEW HOPE"
-                    #print etree.tostring(ASUIN,pretty_print=True)
+                    #print ET.tostring(ASUIN,pretty_print=True)
                     #print ASUIN
-                    #print etree.tostring(body.xpath("inputData/"+newTag)[0])
+                    #print ET.tostring(body.findall("inputData/"+newTag)[0])
 
     if suggestedParams is not None:
-        from lxml import etree
         print("cloneI2XmlFile verdict suggestions")
-        ctlParams =  body.xpath("controlParameters")
+        ctlParams =  body.findall("controlParameters")
         if len(ctlParams)>0:
             try:
                 for suggestion in suggestedParams:
                     print(suggestion.tag)
-                    poss = body.xpath("controlParameters/"+suggestion.tag)
+                    poss = body.findall("controlParameters/"+suggestion.tag)
                     if len(poss)>0:
                         poss[0].text = suggestion.text
                     else: #Let's hope it's a real parameter....
-                        newEl = etree.SubElement(ctlParams[0],suggestion.tag)
+                        newEl = ET.SubElement(ctlParams[0],suggestion.tag)
                         newEl.text = suggestion.text
             except:
                 import traceback
@@ -1675,20 +1678,20 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
                 raise
 
     #Exclude interruptStatus container
-    interruptContainer = body.xpath("./interruptStatus")
+    interruptContainer = body.findall("./interruptStatus")
     if len(interruptContainer) > 0:
         body.remove(interruptContainer[0])
     xFile.setFullPath(targetFile)
     xFile.saveFile(bodyEtree=body)
     """
     print "**************************************************"
-    parser = etree.XMLParser()
+    parser = ET.XMLParser()
     f = open(targetFile)
     s = f.read()
     f.close()
-    tree = etree.fromstring(s, parser)
+    tree = ET.fromstring(s, parser)
     print "The new file"
-    print etree.tostring(tree,pretty_print=True)
+    print ET.tostring(tree,pretty_print=True)
     print "**************************************************"
     """
 
@@ -1934,7 +1937,7 @@ class testI2XmlDataFile(unittest.TestCase):
         if c.fullPath.exists() : os.remove(c.fullPath.get())
         from core import CCP4Config
         if CCP4Config.XMLPARSER() == 'lxml': from lxml import etree
-        ele = etree.Element(CI2XmlDataFile.BODY_TAG)
+        ele = ET.Element(CI2XmlDataFile.BODY_TAG)
         c.saveFile(bodyEtree=ele)
         self.assertTrue(os.path.exists(c.fullPath.get()),'No file written by saveFile')
 

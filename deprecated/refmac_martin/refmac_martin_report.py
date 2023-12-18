@@ -2,7 +2,8 @@ from __future__ import print_function
 
 from report.CCP4ReportParser import *
 import sys
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 class refmac_martin_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -108,7 +109,7 @@ class refmac_martin_report(Report):
     def addSymmetryAnalysis(self, parent=None):
         if parent is None:
             parent=self
-        equivalenceNodes = self.xmlnode.xpath('//NCS/equivalence')
+        equivalenceNodes = self.xmlnode.findall('.//NCS/equivalence')
         if len(equivalenceNodes) == 0: return
         symmetryFold = parent.addFold(label='Non-crystallographic symmetry identified by Refmac')
         table = symmetryFold.addTable(select='//NCS/equivalence')
@@ -121,13 +122,13 @@ class refmac_martin_report(Report):
     def addTwinningAnalysis(self, parent=None):
         if parent is None:
             parent=self
-        twinningNode = self.xmlnode.xpath0('//Twinning')
+        twinningNode = self.xmlnode.findall0('//Twinning')
         if twinningNode is None: return
         twinningFold = parent.addFold(label='Refmac analysis of twinning')
         criteriaText = ""
-        rMergeNode = self.xmlnode.xpath0('//Twinning/RmergeFilter')
+        rMergeNode = self.xmlnode.findall0('//Twinning/RmergeFilter')
         if rMergeNode is not None: criteriaText += ('Twins included if Rmerge < %s.'%rMergeNode.text)
-        fractionNode = self.xmlnode.xpath0('//Twinning/FractionFilter')
+        fractionNode = self.xmlnode.findall0('//Twinning/FractionFilter')
         if fractionNode is not None: criteriaText += ('Twins included if Fraction > %s.'%fractionNode.text)
         if len(criteriaText)>0:
             textDiv = twinningFold.addDiv()
@@ -145,7 +146,7 @@ class refmac_martin_report(Report):
         if parent is None:
             parent=self
         reportFold = parent.addFold(label='Other plots from log file')
-        graphTableList = self.xmlnode.xpath('// CCP4ApplicationOutput/CCP4Table')
+        graphTableList = self.xmlnode.findall('.// CCP4ApplicationOutput/CCP4Table')
         graphgroup = reportFold.addFlotGraphGroup(style="width:500px;  height:400px;")
         for graphTableNode in graphTableList:
             graph = graphgroup.addFlotGraph( xmlnode=graphTableNode, title=graphTableNode.get("title") )
@@ -157,7 +158,7 @@ class refmac_martin_report(Report):
         
         outlierFold = parent.addFold(label="Outliers identified by Refmac")
         #Check to see if outliers are captured in the program XML
-        outliersByCriteriaNodes = self.xmlnode.xpath('//OutliersByCriteria')
+        outliersByCriteriaNodes = self.xmlnode.findall('.//OutliersByCriteria')
         if len(outliersByCriteriaNodes) == 0 or len(outliersByCriteriaNodes[0])==0:
             outlierFold.append('<span style="font-size:110%">No outliers observed </span>')
         else:
@@ -167,7 +168,7 @@ class refmac_martin_report(Report):
             from sets import Set
             criteriaThatFail = Set()
             for outlierDictNode in outliersByCriteriaNodes[0]:
-                outliers = outlierDictNode.xpath('Outlier')
+                outliers = outlierDictNode.findall('Outlier')
                 criteriaThatFail.add(outlierDictNode.tag)
                 for outlier in outliers:
                     identifier1 = outlier.get('chainId1') + outlier.get('resId1') + outlier.get('ins1')
@@ -204,68 +205,68 @@ class refmac_martin_report(Report):
 
     def appendMolDisp(self, molDataNode=None, selectionText='all', carbonColour='yellow', othersByElement=True,style='CYLINDER',bondOrder=False):
         if molDataNode is None: return
-        molDispNode = etree.SubElement(molDataNode,'MolDisp')
+        molDispNode = ET.SubElement(molDataNode,'MolDisp')
         if bondOrder:
-            drawingStyleNode = etree.fromstring('''<show_multiple_bonds>1</show_multiple_bonds>
+            drawingStyleNode = ET.fromstring('''<show_multiple_bonds>1</show_multiple_bonds>
                                                 <deloc_ring>1</deloc_ring>
                                                 </drawing_style>''')
             molDispNode.append(drawingStyleNode)
         
-        selectNode = etree.SubElement(molDispNode,'select')
+        selectNode = ET.SubElement(molDispNode,'select')
         selectNode.text = selectionText
         '''
-            selectionParametersNode = etree.SubElement(molDispNode,'selection_parameters')
-            selectNode = etree.SubElement(selectionParametersNode,'select')
+            selectionParametersNode = ET.SubElement(molDispNode,'selection_parameters')
+            selectNode = ET.SubElement(selectionParametersNode,'select')
             selectNode.text = 'cid'
             
-            cidNode = etree.SubElement(selectionParametersNode,'cid')
+            cidNode = ET.SubElement(selectionParametersNode,'cid')
             cidNode.text = selectionText
             '''
-        colourParametersNode = etree.SubElement(molDispNode,'colour_parameters')
+        colourParametersNode = ET.SubElement(molDispNode,'colour_parameters')
         
-        colourModeNode = etree.SubElement(colourParametersNode,'colour_mode')
+        colourModeNode = ET.SubElement(colourParametersNode,'colour_mode')
         colourModeNode.text = 'one_colour'
         if othersByElement:
-            nonCNode = etree.SubElement(colourParametersNode,'non_C_atomtype')
+            nonCNode = ET.SubElement(colourParametersNode,'non_C_atomtype')
             nonCNode.text='1'
-        oneColourNode = etree.SubElement(colourParametersNode,'one_colour')
+        oneColourNode = ET.SubElement(colourParametersNode,'one_colour')
         oneColourNode.text=carbonColour
         #
-        styleNode = etree.SubElement(molDispNode,'style')
+        styleNode = ET.SubElement(molDispNode,'style')
         styleNode.text=style
 
     def addMap(self, mapDataNode = None, fPhiObjectName='FPHIOUT', fCol='F', phiCol='PHI', gridSize=0.5, contourUnits='sigma', model='id1', contourLevel=1.0, isDifmap=False):
         if mapDataNode is None: return
-        filenameNode = etree.SubElement(mapDataNode,'filename',database='filenames/'+fPhiObjectName)
+        filenameNode = ET.SubElement(mapDataNode,'filename',database='filenames/'+fPhiObjectName)
         columnsNode = None
         if isDifmap:
-            columnsNode = etree.SubElement(mapDataNode,'difColumns')
-            isDifferenceMapNode = etree.SubElement(mapDataNode,'isDifferenceMap')
+            columnsNode = ET.SubElement(mapDataNode,'difColumns')
+            isDifferenceMapNode = ET.SubElement(mapDataNode,'isDifferenceMap')
             isDifferenceMapNode.text='True'
         else:
-            columnsNode = etree.SubElement(mapDataNode,'columns')
-            isDifferenceMapNode = etree.SubElement(mapDataNode,'isDifferenceMap')
+            columnsNode = ET.SubElement(mapDataNode,'columns')
+            isDifferenceMapNode = ET.SubElement(mapDataNode,'isDifferenceMap')
             isDifferenceMapNode.text='False'
-        fColNode = etree.SubElement(columnsNode,'F')
+        fColNode = ET.SubElement(columnsNode,'F')
         fColNode.text = fCol
-        phiColNode = etree.SubElement(columnsNode,'PHI')
+        phiColNode = ET.SubElement(columnsNode,'PHI')
         phiColNode.text = phiCol
         
-        modelNode = etree.SubElement(mapDataNode,'model')
+        modelNode = ET.SubElement(mapDataNode,'model')
         modelNode.text = model
-        gridSizeNode = etree.SubElement(mapDataNode,'gridSize')
+        gridSizeNode = ET.SubElement(mapDataNode,'gridSize')
         gridSizeNode.text=str(gridSize)
-        contourUnitsNode = etree.SubElement(mapDataNode,'contourUnits')
+        contourUnitsNode = ET.SubElement(mapDataNode,'contourUnits')
         contourUnitsNode.text = contourUnits
-        mapDispNode = etree.SubElement(mapDataNode,'MapDisp')
-        contourLevelNode = etree.SubElement(mapDispNode,'contourLevel')
+        mapDispNode = ET.SubElement(mapDataNode,'MapDisp')
+        contourLevelNode = ET.SubElement(mapDispNode,'contourLevel')
         contourLevelNode.text = str(contourLevel)
-        differenceNode = etree.SubElement(mapDispNode,'difference')
-        colourNode = etree.SubElement(mapDispNode,'colour')
+        differenceNode = ET.SubElement(mapDispNode,'difference')
+        colourNode = ET.SubElement(mapDispNode,'colour')
         if isDifmap:
             differenceNode.text='1'
             colourNode.text='green'
-            colourNode2 = etree.SubElement(mapDispNode,'second_colour')
+            colourNode2 = ET.SubElement(mapDispNode,'second_colour')
             colourNode2.text='red'
         else:
             differenceNode.text='0'
@@ -276,7 +277,6 @@ class refmac_martin_report(Report):
         if xmlnode is None: xmlnode = self.xmlnode
         if jobInfo is None: jobInfo = self.jobInfo
         
-        from lxml import etree
         #I *do not know* why This is needed
         clearingDiv = parent.addDiv(style="clear:both;")
         
@@ -288,7 +288,7 @@ class refmac_martin_report(Report):
         ccp4i2_root = CCP4Utils.getCCP4I2Dir()
         import os
         baseScenePath = os.path.join(ccp4i2_root,'pipelines','prosmart_refmac','script','prosmart_refmac_1.scene.xml')
-        monomerNodes = xmlnode.xpath('//RefmacWeight[1]/REFMAC/ModelComposition/Monomer')
+        monomerNodes = xmlnode.findall('.//RefmacWeight[1]/REFMAC/ModelComposition/Monomer')
         
         #Subsets for snapshotting are each observed monomer and the whole molecule
         interestingBits = [monomerNode.get('id') for monomerNode in monomerNodes] + ['all']
@@ -296,30 +296,30 @@ class refmac_martin_report(Report):
         iMonomer = 1
         for interestingBit in interestingBits:
             baseSceneXML = CCP4Utils.openFileToEtree(baseScenePath)
-            sceneNode = baseSceneXML.xpath('//scene')[0]
+            sceneNode = baseSceneXML.findall('.//scene')[0]
             
             #Define data and associated display objects
-            dataNode = etree.SubElement(sceneNode,'data')
+            dataNode = ET.SubElement(sceneNode,'data')
             
             #Load model and draw representations
-            molDataNode = etree.SubElement(dataNode,'MolData',id='id1')
-            fileNode = etree.SubElement(molDataNode,'filename',database='filenames/XYZOUT')
+            molDataNode = ET.SubElement(dataNode,'MolData',id='id1')
+            fileNode = ET.SubElement(molDataNode,'filename',database='filenames/XYZOUT')
             
             #Define view (possibly some advantage in doing this after loading the moelcule from which it is inferred)
-            viewNode = etree.SubElement(sceneNode,'View')
-            autoScaleNode = etree.SubElement(viewNode,'scale_auto')
+            viewNode = ET.SubElement(sceneNode,'View')
+            autoScaleNode = ET.SubElement(viewNode,'scale_auto')
             autoScaleNode.text = '1'
-            autoScaleNode = etree.SubElement(viewNode,'slab_enabled')
+            autoScaleNode = ET.SubElement(viewNode,'slab_enabled')
             autoScaleNode.text = '1'
-            centreMolDataNode = etree.SubElement(viewNode,'centre_MolData')
+            centreMolDataNode = ET.SubElement(viewNode,'centre_MolData')
             centreMolDataNode.text = 'id1'
-            centreSelectionNode = etree.SubElement(viewNode,'centre_selection')
+            centreSelectionNode = ET.SubElement(viewNode,'centre_selection')
             centreSelectionNode.text = interestingBit
             
-            orientationAutoNode = etree.SubElement(viewNode,'orientation_auto')
-            orientationAutoMolDataNode = etree.SubElement(orientationAutoNode,'molData')
+            orientationAutoNode = ET.SubElement(viewNode,'orientation_auto')
+            orientationAutoMolDataNode = ET.SubElement(orientationAutoNode,'molData')
             orientationAutoMolDataNode.text = 'id1'
-            orientationAutoSelectionNode = etree.SubElement(orientationAutoNode,'selection')
+            orientationAutoSelectionNode = ET.SubElement(orientationAutoNode,'selection')
             orientationAutoSelectionNode.text = interestingBit
             
             #Draw stuff around the interesting bit
@@ -331,15 +331,15 @@ class refmac_martin_report(Report):
             self.appendMolDisp(molDataNode=molDataNode, selectionText=selectionText, carbonColour='yellow', othersByElement=True,style='BALLSTICK')
             
             #Load and draw 2Fo-Fc
-            mapDataNode = etree.SubElement(dataNode,'MapData',id='id3')
+            mapDataNode = ET.SubElement(dataNode,'MapData',id='id3')
             self.addMap(mapDataNode, fPhiObjectName='FPHIOUT', fCol='F', phiCol='PHI', gridSize=0.5, contourUnits='sigma', model='id1', contourLevel=1.0, isDifmap=False)
             
             #Load and draw Fo-Fc
-            mapDataNode = etree.SubElement(dataNode,'MapData',id='id4')
+            mapDataNode = ET.SubElement(dataNode,'MapData',id='id4')
             self.addMap(mapDataNode, fPhiObjectName='DIFFPHIOUT', fCol='F', phiCol='PHI', gridSize=0.5, contourUnits='sigma', model='id1', contourLevel=3.0, isDifmap=True)
             
             # Dump out the XML
-            et = etree.ElementTree(baseSceneXML)
+            et = ET.ElementTree(baseSceneXML)
             sceneFilePath = os.path.join(jobDirectory,'monomer'+str(iMonomer)+'.scene.xml')
             et.write(sceneFilePath,pretty_print=True)
             # And add the picture
@@ -367,19 +367,19 @@ class refmac_martin_report(Report):
         
         table1 = parent.addTable(xmlnode=xmlnode, style="width:240px;float:left;", downloadable=downloadable)
         
-        ResolutionLowNode =xmlnode.xpath('.//Overall_stats/resolution_low')
-        ResolutionHighNode =xmlnode.xpath('.//Overall_stats/resolution_high')
-        ReflectionsAll =xmlnode.xpath('.//Overall_stats/n_reflections_all')
-        ResolutionsFree =xmlnode.xpath('.//Overall_stats/n_reflections_free')
-        ReflectionsWorkNode =xmlnode.xpath('.//Overall_stats/resolution_high')
-        RFactorNodes = xmlnode.xpath('.//Overall_stats/stats_vs_cycle/new_cycle[last()]/r_factor')
-        RFreeNodes = xmlnode.xpath('.//Overall_stats/stats_vs_cycle/new_cycle[last()]/r_free')
-        RMSBondsNodes = xmlnode.xpath('.//Overall_stats/stats_vs_cycle/new_cycle[last()]/rmsBOND')
-        RMSAnglesNodes = xmlnode.xpath('.//Overall_stats/stats_vs_cycle/new_cycle[last()]/rmsANGLE')
+        ResolutionLowNode =xmlnode.findall('.//Overall_stats/resolution_low')
+        ResolutionHighNode =xmlnode.findall('.//Overall_stats/resolution_high')
+        ReflectionsAll =xmlnode.findall('.//Overall_stats/n_reflections_all')
+        ResolutionsFree =xmlnode.findall('.//Overall_stats/n_reflections_free')
+        ReflectionsWorkNode =xmlnode.findall('.//Overall_stats/resolution_high')
+        RFactorNodes = xmlnode.findall('.//Overall_stats/stats_vs_cycle/new_cycle[last()]/r_factor')
+        RFreeNodes = xmlnode.findall('.//Overall_stats/stats_vs_cycle/new_cycle[last()]/r_free')
+        RMSBondsNodes = xmlnode.findall('.//Overall_stats/stats_vs_cycle/new_cycle[last()]/rmsBOND')
+        RMSAnglesNodes = xmlnode.findall('.//Overall_stats/stats_vs_cycle/new_cycle[last()]/rmsANGLE')
         
-        MeanBChainNameNodes = xmlnode.xpath('.//Overall_stats/bvalue_stats/chain_by_chain/new_chain/chain_name')
-        MeanBAllCountNodes = xmlnode.xpath('.//Overall_stats/bvalue_stats/chain_by_chain/new_chain/all/number')
-        MeanBAllAverageNodes = xmlnode.xpath('.//Overall_stats/bvalue_stats/chain_by_chain/new_chain/all/average')
+        MeanBChainNameNodes = xmlnode.findall('.//Overall_stats/bvalue_stats/chain_by_chain/new_chain/chain_name')
+        MeanBAllCountNodes = xmlnode.findall('.//Overall_stats/bvalue_stats/chain_by_chain/new_chain/all/number')
+        MeanBAllAverageNodes = xmlnode.findall('.//Overall_stats/bvalue_stats/chain_by_chain/new_chain/all/average')
         
         
         table1.addData(title='Statistic',data=['Resolution','No. reflections all/free','R-factor/R-free','RMS Deviations','Bonds','Angles','Chain mean B (No. atoms)']+[MeanBChainNameNodes[i].text for i in range(len(MeanBChainNameNodes))])
@@ -398,7 +398,7 @@ def test(xmlFile=None,jobId=None,reportFile=None):
     print(xmlFile)
     try:
         text = open( xmlFile ).read()
-        xmlnode = etree.fromstring( text, PARSER() )
+        xmlnode = ET.fromstring( text, PARSER() )
     except:
         print('FAILED loading XML file:', kw['xmlFile'])
     if reportFile is None and xmlFile is not None:

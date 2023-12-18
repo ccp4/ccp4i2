@@ -64,10 +64,10 @@ class CBackupDBBrowser(QtWidgets.QDialog):
         dbListBackup = dbListBackupFile.read()
         dbListBackupFile.close()
 
-        parser = etree.XMLParser()
-        backupListTree = etree.fromstring(dbListBackup, parser)
+        parser = ET.XMLParser()
+        backupListTree = ET.fromstring(dbListBackup, parser)
 
-        for p in backupListTree.xpath("project"):
+        for p in backupListTree.findall("project"):
             projectDirectories.append(p.text)
 
         tFile = tempfile.NamedTemporaryFile(delete=True)
@@ -83,13 +83,13 @@ class CBackupDBBrowser(QtWidgets.QDialog):
             if os.path.exists(dbXML):
                 print("Trying",dbXML)
                 try:
-                    parser = etree.XMLParser()
+                    parser = ET.XMLParser()
                     f = open(dbXML)
                     s = f.read()
                     f.close()
-                    tree = etree.fromstring(s, parser)
-                    projectId = tree.xpath('ccp4i2_header/projectId')[0].text
-                    projectName = tree.xpath('ccp4i2_header/projectName')[0].text
+                    tree = ET.fromstring(s, parser)
+                    projectId = tree.findall('ccp4i2_header/projectId')[0].text
+                    projectName = tree.findall('ccp4i2_header/projectName')[0].text
                     db.createProject(projectName,projectId=projectId,projectDirectory=projectDirectory)
                     dbImport = CDbXml(db=db,xmlFile=dbXML)
                     err = dbImport.loadTable()

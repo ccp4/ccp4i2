@@ -6,7 +6,8 @@ from __future__ import print_function
 """
 
 import os
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
@@ -163,9 +164,9 @@ class scaleit(CPluginScript):
 
         # Complete XML file, including information about input files
         nativeDname, derivativeDnames = logscrape.fileInfo()
-        xmlroot = etree.Element('SCALEIT')
+        xmlroot = ET.Element('SCALEIT')
 
-        inputfiletypes = etree.Element('InputFileTypes')
+        inputfiletypes = ET.Element('InputFileTypes')
         label = 'Native'
                   
         for signature in self.fileSignatures:
@@ -198,12 +199,12 @@ class scaleit(CPluginScript):
     # - - - - - - - - -  - - - - - - - - -  - - - - - - - - - 
     def makeFailXML(self, message):
         print("makeFailXML", message)
-        xmlfail = etree.Element('SCALEIT')
+        xmlfail = ET.Element('SCALEIT')
         addElement(xmlfail, 'Fail', message)
         self.writeXML(xmlfail)
     # - - - - - - - - -  - - - - - - - - -  - - - - - - - - - 
     def writeXML(self, xml):
         print("*writeXML")
-        et = etree.ElementTree(xml)
+        et = ET.ElementTree(xml)
         # and write out the XML
-        et.write(self.makeFileName('PROGRAMXML'), pretty_print=True)
+        et.write(self.makeFileName('PROGRAMXML'))

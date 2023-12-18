@@ -127,7 +127,7 @@ class pointless_report(Report):
   # - - - - - - - - - - - - - - - - -
   def solutionWarning(self,parent=None):
     if len(self.xmlnode.findall('SolutionWarning'))>0:
-      solutionwarning = html_linebreak(self.xmlnode.xpath('SolutionWarning')[0].text)
+      solutionwarning = html_linebreak(self.xmlnode.findall('SolutionWarning')[0].text)
       parent.append('<div style="color:red">'+solutionwarning+'</div>')
 
   # - - - - - - - - - - - - - - - - -
@@ -994,5 +994,6 @@ if __name__ == "__main__":
 
   report = pointless_report(xmlFile = sys.argv[1] )
   tree= report.as_etree()
-  #  print etree.tostring(tree,pretty_print=True)
+  ET.indent(tree)
+  #  print ET.tostring(tree)
   report.as_html_file(fileName='./test.html')

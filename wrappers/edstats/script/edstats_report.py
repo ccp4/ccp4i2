@@ -2,7 +2,7 @@ from report.CCP4ReportParser import *
 from core import CCP4Utils
 from core.CCP4ClipperUtils import is_aminoacid
 import os
-import xml.etree.ElementTree as etree
+from xml.etree import ElementTree as etree
 
 """
     edstats report generator
@@ -30,10 +30,10 @@ class edstats_report(Report):
 
     list_of_chains = [ ] # We are going to separate results by chains
 
-    new_tree = etree.Element('edstats_report')
-    protein_fragments = etree.SubElement ( new_tree, 'protein' )
-    ligands = etree.SubElement ( new_tree, 'ligands')
-    waters = etree.SubElement ( new_tree, 'waters' )
+    new_tree = ET.Element('edstats_report')
+    protein_fragments = ET.SubElement ( new_tree, 'protein' )
+    ligands = ET.SubElement ( new_tree, 'ligands')
+    waters = ET.SubElement ( new_tree, 'waters' )
 
     for residue in self.xmlnode.findall ( ".//Residue" ):
         if is_aminoacid ( residue.find("Name").text ) :
@@ -41,7 +41,7 @@ class edstats_report(Report):
             residue.remove ( residue.find ( "Chain" ) )
             if chain_id not in list_of_chains :
                 list_of_chains.append ( chain_id )
-                chain = etree.SubElement ( protein_fragments, 'chain', id=chain_id )
+                chain = ET.SubElement ( protein_fragments, 'chain', id=chain_id )
                 chain.append(residue)
             else :
                 chain.append(residue)
@@ -114,7 +114,7 @@ class edstats_report(Report):
         p.append( 'yrange',  rightaxis='true', min = '0.0', max = '20.0' )
         p.append( 'yrange',  rightaxis='false', min = '-8.0', max = '6.0' )
         #plot_tree = p.as_etree()
-        #etree.SubElement( plot_tree, 'polygon', linecolour="#cccccc", fillcolour="#aaaaaa", alpha="0.2" ).text = "0 5 10 15 20 25 30 35"
+        #ET.SubElement( plot_tree, 'polygon', linecolour="#cccccc", fillcolour="#aaaaaa", alpha="0.2" ).text = "0 5 10 15 20 25 30 35"
         #rect = p.append( 'polygon', linecolour="#cccccc", fillcolour="#aaaaaa", alpha="0.2" )
 
         l = p.append( 'plotline', xcol = 1, ycol = 2, rightaxis=True  ) # ZOm

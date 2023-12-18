@@ -5,7 +5,8 @@ from core.CCP4PluginScript import CPluginScript
 from PySide2 import QtCore
 import os,glob,re,time,sys
 from core import CCP4XtalData
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 import math
 from core import CCP4Modules,CCP4Utils
 from core import CCP4ErrorHandling
@@ -21,8 +22,8 @@ class lidiaAcedrgNew(CPluginScript):
 
     def process(self):
         
-        self.xmlroot = etree.Element('LidiaAcedrg')
-        tlcNode = etree.SubElement(self.xmlroot,'TLC')
+        self.xmlroot = ET.Element('LidiaAcedrg')
+        tlcNode = ET.SubElement(self.xmlroot,'TLC')
         tlcNode.text = 'UNL'
         if self.container.inputData.TLC.isSet():
             tlcNode.text = self.container.inputData.TLC.__str__()
@@ -143,4 +144,4 @@ class lidiaAcedrgNew(CPluginScript):
 
     def flushXML(self):
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-            CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot,pretty_print=True))
+            CCP4Utils.writeXML(programXML,ET.tostring(self.xmlroot))

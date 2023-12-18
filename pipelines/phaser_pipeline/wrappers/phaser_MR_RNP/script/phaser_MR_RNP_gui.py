@@ -100,7 +100,7 @@ class phaser_MR_RNP_gui(CTaskWidget):
                     elements.append(elements.makeItem())
                     elements[-1] = label
                 #for nd in solution.KNOWN:
-                #componentNode = etree.SubElement(solutionNode,'COMPONENT')
+                #componentNode = ET.SubElement(solutionNode,'COMPONENT')
                 #node = self.subElementWithNameAndText(componentNode,'modlid',str(nd.getModlid()))
         self.validate()
         #Following update wil only work if the widget is "active" (i.e. interface is drawn as before the task is run)

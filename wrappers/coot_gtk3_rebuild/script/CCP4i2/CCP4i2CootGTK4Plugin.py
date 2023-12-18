@@ -1,7 +1,7 @@
 
 import urllib.request
 import urllib.parse
-import xml.etree.ElementTree as ET
+from xml.etree import ElementTree as ET
 from pathlib import Path
 import os
 import sys

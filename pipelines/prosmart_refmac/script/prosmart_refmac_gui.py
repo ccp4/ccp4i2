@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-from lxml import etree
+#from lxml import etree
 
 """
      pipelines/refmac_ii2/Crefmac.py: CCP4 GUI Project

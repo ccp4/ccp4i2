@@ -1,7 +1,8 @@
 from __future__ import print_function
 
 from wrappers.molrep_mr.script import molrep_mr
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
 
@@ -15,10 +16,10 @@ class molrep_selfrot(molrep_mr.molrep_mr):
         result = super(molrep_selfrot,self).processOutputFiles()
         if result == CPluginScript.FAILED: return CPluginScript.FAILED
         
-        self.xmlnode = etree.Element('MolrepResult')
+        self.xmlnode = ET.Element('MolrepResult')
         self.scrapeDocFile()
         with open(self.makeFileName('PROGRAMXML'),'w') as xmlFile:
-            CCP4Utils.writeXML(xmlFile,etree.tostring(self.xmlnode,pretty_print=True))
+            CCP4Utils.writeXML(xmlFile,ET.tostring(self.xmlnode,pretty_print=True))
         return CPluginScript.SUCCEEDED
 
     def scrapeDocFile(self):
@@ -35,7 +36,7 @@ class molrep_selfrot(molrep_mr.molrep_mr):
         for line in lines:
             strippedLine = line.strip()
             if strippedLine.startswith('-- Structure Factors --'):
-                structureFactorNode = etree.SubElement(self.xmlnode,'StructureFactors')
+                structureFactorNode = ET.SubElement(self.xmlnode,'StructureFactors')
                 nearStructureFactorBlock = True
             elif nearStructureFactorBlock and strippedLine.startswith('---------'):
                 inStructureFactorBlock = True
@@ -69,7 +70,7 @@ class molrep_selfrot(molrep_mr.molrep_mr):
                     self.subElementOfTypeWithText(structureFactorNode,'INFO',strippedLine[5:])
             elif strippedLine.startswith('--- Patterson ---'):
                 inPattersonBlock = True
-                pattersonNode = etree.SubElement(self.xmlnode,'Patterson')
+                pattersonNode = ET.SubElement(self.xmlnode,'Patterson')
             elif inPattersonBlock:
                 splitLine = strippedLine.split()
                 if strippedLine.startswith('INFO'):
@@ -81,8 +82,8 @@ class molrep_selfrot(molrep_mr.molrep_mr):
                     self.parsePeakLine(strippedLine, pattersonNode)
             elif strippedLine.startswith('Sol_Rf'):
                 
-                try: rotationsNode = self.xmlnode.xpath('//SelfRotation')[0]
-                except: rotationsNode = etree.SubElement(self.xmlnode,'SelfRotation')
+                try: rotationsNode = self.xmlnode.findall('.//SelfRotation')[0]
+                except: rotationsNode = ET.SubElement(self.xmlnode,'SelfRotation')
                 
                 self.parseRotationLine(strippedLine, rotationsNode)
     
@@ -92,7 +93,7 @@ class molrep_selfrot(molrep_mr.molrep_mr):
             headings = 'No IX  IY  IZ  Xfrac  Yfrac  Zfrac  Xort   Yort    Zort   Dens Dens_sigma'.split()
             values = line.split()
             try:
-                peakNode = etree.SubElement(pattersonNode,'Peak')
+                peakNode = ET.SubElement(pattersonNode,'Peak')
                 for iHeading in range(len(headings)):
                     try:
                         self.subElementOfTypeWithText(peakNode,headings[iHeading],values[iHeading])
@@ -106,7 +107,7 @@ class molrep_selfrot(molrep_mr.molrep_mr):
         headings=  'No theta    phi     chi    alpha    beta   gamma      Rf    Rf_sigma'.split()
         values = line.split()
         try:
-            peakNode = etree.SubElement(rotationNode,'Peak')
+            peakNode = ET.SubElement(rotationNode,'Peak')
             for iHeading in range(len(headings)):
                 try:
                     self.subElementOfTypeWithText(peakNode,headings[iHeading],values[iHeading+1])
@@ -118,7 +119,7 @@ class molrep_selfrot(molrep_mr.molrep_mr):
 
     def subElementOfTypeWithText(self, parent=None, key=None, text=None):
         print(parent, key, text)
-        newNode = etree.SubElement(parent, str(key))
+        newNode = ET.SubElement(parent, str(key))
         newNode.text = str(text)
         return newNode
 

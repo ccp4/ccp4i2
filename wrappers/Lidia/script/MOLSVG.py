@@ -1,7 +1,8 @@
 from __future__ import print_function
 
 import sys
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 class MDLAtom(object):
     def __init__(self, molLine=None):
@@ -113,10 +114,10 @@ class MDLMolecule(object):
         import math
         if size is None: size = (240,180)
         self.normalize(size)
-        svgNode = etree.fromstring('''
+        svgNode = ET.fromstring('''
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="WIDTHpx" height="HEIGHTpx">
 </svg>'''.replace('WIDTH',str(size[0])).replace('HEIGHT',str(size[1])))
-        styleNode = etree.SubElement(svgNode,'style',type='text/css')
+        styleNode = ET.SubElement(svgNode,'style',type='text/css')
         fontSize = 8.*(self.factor/8.)
         bondStrokeWidth = 1.*self.factor/8.
         textOutlineStrokeWidth = fontSize/2.
@@ -141,7 +142,7 @@ class MDLMolecule(object):
             if bond.order == 1 and bond.stereo == 1:
                 points = [[at1.x,at1.y],[at2.x+1.5*norm[0],at2.y+1.5*norm[1]], [at2.x-1.5*norm[0],at2.y-1.5*norm[1]]]
                 pointsString = " ".join([str(point[0])+','+str(point[1]) for point in points])
-                polygonNode = etree.SubElement(svgNode,'polygon',points=pointsString)
+                polygonNode = ET.SubElement(svgNode,'polygon',points=pointsString)
                 polygonNode.set('class','forwards')
             elif bond.order == 1 and bond.stereo == 6:
                 offsetMax = 1.5
@@ -161,14 +162,14 @@ class MDLMolecule(object):
                               [centreStart[0] - offsetStart*norm[0],  centreStart[1] - offsetStart*norm[1]],
                               ]
                     pointsString = " ".join([str(point[0])+','+str(point[1]) for point in points])
-                    polygonNode = etree.SubElement(svgNode,'polygon',points=pointsString)
+                    polygonNode = ET.SubElement(svgNode,'polygon',points=pointsString)
                     polygonNode.set('class','backwards')
             elif bond.order == 2:
-                lineNode = etree.SubElement(svgNode,'line',x1=str(at1.x-norm[0]), y1=str(at1.y-norm[1]), x2=str(at2.x-norm[0]), y2=str(at2.y-norm[1]))
-                lineNode = etree.SubElement(svgNode,'line',x1=str(at1.x+norm[0]), y1=str(at1.y+norm[1]), x2=str(at2.x+norm[0]), y2=str(at2.y+norm[1]))
+                lineNode = ET.SubElement(svgNode,'line',x1=str(at1.x-norm[0]), y1=str(at1.y-norm[1]), x2=str(at2.x-norm[0]), y2=str(at2.y-norm[1]))
+                lineNode = ET.SubElement(svgNode,'line',x1=str(at1.x+norm[0]), y1=str(at1.y+norm[1]), x2=str(at2.x+norm[0]), y2=str(at2.y+norm[1]))
             
             else:
-                lineNode = etree.SubElement(svgNode,'line',x1=str(at1.x), y1=str(at1.y), x2=str(at2.x), y2=str(at2.y))
+                lineNode = ET.SubElement(svgNode,'line',x1=str(at1.x), y1=str(at1.y), x2=str(at2.x), y2=str(at2.y))
         for atom in self.atoms:
             if atom.element != 'C' or atom.charge != 0:
                 element = atom.element
@@ -193,10 +194,10 @@ class MDLMolecule(object):
                     elif Hes == 1: element += 'H'
                 if atom.charge == 1: element += '+'
                 if atom.charge == -1: element += '-'
-                elementOutlineNode = etree.SubElement(svgNode, 'text', x=str(atom.x), y=str(atom.y), dy='0.5em', dx='-0.5em')
+                elementOutlineNode = ET.SubElement(svgNode, 'text', x=str(atom.x), y=str(atom.y), dy='0.5em', dx='-0.5em')
                 elementOutlineNode.set('class','outline')
                 elementOutlineNode.text = element
-                elementForegroundNode = etree.SubElement(svgNode, 'text', x=str(atom.x), y=str(atom.y), dy='0.5em', dx='-0.5em')
+                elementForegroundNode = ET.SubElement(svgNode, 'text', x=str(atom.x), y=str(atom.y), dy='0.5em', dx='-0.5em')
                 elementForegroundNode.set('class','foreground')
                 elementForegroundNode.text = element
 
@@ -207,7 +208,7 @@ if __name__ == '__main__':
     newLigand = MDLMolecule('job_1/prodrg-in.mdl')
     newLigand.normalize()
     aNode = newLigand.svgXML()
-    a = etree.tostring(aNode, pretty_print=True)
+    a = ET.tostring(aNode, pretty_print=True)
     with open('new.svg','w') as outputSVG:
         CCP4Utils.writeXML(outputSVG,a)
 

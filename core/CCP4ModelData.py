@@ -48,6 +48,7 @@ else:
     from PySide2 import QtCore
 if XMLPARSER() == 'lxml':
     from lxml import etree
+from xml.etree import ElementTree as ET
 
 from core import CCP4Data
 from core import CCP4File
@@ -511,7 +512,6 @@ class CSequenceMeta(CCP4Data.CData):
         print('handleDownloadError', code)
 
     def loadFromUniprotXml(self, fileName=None, projectId=None):
-        from lxml import etree
         from core import CCP4Utils
         if fileName is None:
             fileName = self.getUniprotXml(projectId=projectId)
@@ -522,23 +522,23 @@ class CSequenceMeta(CCP4Data.CData):
         ret = {}
         root = CCP4Utils.openFileToEtree(fileName)
         try:
-            eleList = root.xpath('./u:entry', namespaces=nsmap)
+            eleList = root.findall('./u:entry', namespaces=nsmap)
             if len(eleList) > 0:
                 ret['db'] = eleList[0].get('dataset')
-            eleList = root.xpath('./u:entry/u:accession', namespaces=nsmap)
+            eleList = root.findall('./u:entry/u:accession', namespaces=nsmap)
             if len(eleList) > 0:
                 ret['accessionList'] = []
                 for ele in eleList:
                     ret['accessionList'].append(str(ele.text))
         except:
             raise CErrorReport(self.__class__, 404, str(fileName))
-        eleList = root.xpath('./u:entry/u:protein', namespaces=nsmap)
+        eleList = root.findall('./u:entry/u:protein', namespaces=nsmap)
         if len(eleList) > 0:
-            e = eleList[0].xpath('./u:recommendedName/u:fullName', namespaces=nsmap)
+            e = eleList[0].findall('./u:recommendedName/u:fullName', namespaces=nsmap)
             print('e', e)
             if len(e) > 0: 
                 ret['proteinFullName'] = str(e[0].text)
-        eleList = root.xpath('./u:entry/u:sequence', namespaces=nsmap)
+        eleList = root.findall('./u:entry/u:sequence', namespaces=nsmap)
         if len(eleList) > 0:
             ret['sequence'] = str(eleList[0].text)
         return ret
@@ -1153,7 +1153,7 @@ class CSeqDataFile(CCP4File.CDataFile):
             #print 'identifyFile trying uniprot',filename
             from core import CCP4Utils
             root = CCP4Utils.openFileToEtree(filename)
-            eleList = root.xpath('./u:entry/u:accession', namespaces=nsmap)
+            eleList = root.findall('./u:entry/u:accession', namespaces=nsmap)
             #print 'identifyFile eleList', eleList
         except:
             pass
@@ -1407,7 +1407,7 @@ class CSeqAlignDataFile(CCP4File.CDataFile):
           #print 'identifyFile trying uniprot',filename
           from core import CCP4Utils
           root = CCP4Utils.openFileToEtree(filename)
-          eleList = root.xpath('./u:entry/u:accession',namespaces=nsmap)
+          eleList = root.findall('./u:entry/u:accession',namespaces=nsmap)
           #print 'identifyFile eleList',eleList
         except:      
           pass
@@ -3679,18 +3679,17 @@ class CChainMatch:
             print(ret)
 
     def reportXmlAlignments(self):
-        from lxml import etree
         matchList = self.score()
-        root = etree.Element('ChainMatching')
+        root = ET.Element('ChainMatching')
         for chIndx1, chIndx2 in matchList:
             #print 'chIndx1,chIndx2', chIndx1, chIndx2
-            ele = etree.SubElement(root, 'AlignChain')
+            ele = ET.SubElement(root, 'AlignChain')
             align = CPairwiseAlignment(str(self.chains1[chIndx1].sequence), str(self.chains2[chIndx2].sequence))
-            e = etree.SubElement(ele, 'ChainId')
+            e = ET.SubElement(ele, 'ChainId')
             e.text = self.chains1[chIndx1].name.__str__()
-            e = etree.SubElement(ele, 'ChainId2')
+            e = ET.SubElement(ele, 'ChainId2')
             e.text = self.chains2[chIndx2].name.__str__()
-            e = etree.SubElement(ele, 'Alignment')
+            e = ET.SubElement(ele, 'Alignment')
             e.text = align.formattedAlignment(str(self.chains1[chIndx1].name), str(self.chains2[chIndx2].name))
         return root
 

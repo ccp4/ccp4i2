@@ -13,7 +13,6 @@ from __future__ import print_function
 
 import os
 import sys
-from lxml import etree
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4XtalData
 from core import CCP4ErrorHandling

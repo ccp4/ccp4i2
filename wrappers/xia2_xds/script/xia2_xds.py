@@ -9,7 +9,8 @@ from core.CCP4PluginScript import CPluginScript
 from core.CCP4ErrorHandling import *
 import os, glob, shutil
 from core import CCP4Utils
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 from core import CCP4Container
 import platform
 
@@ -28,7 +29,7 @@ class Cxia2_xds(xia2_dials.Cxia2_dials):
         # Create PHIL file and command line
         self._setCommandLineCore(phil_filename="xia2_xds.phil")
 
-        self.xmlroot = etree.Element("Xia2Xds")
+        self.xmlroot = ET.Element("Xia2Xds")
 
         self.watchFile(
             os.path.normpath(os.path.join(self.getWorkDirectory(), "xia2.txt")),

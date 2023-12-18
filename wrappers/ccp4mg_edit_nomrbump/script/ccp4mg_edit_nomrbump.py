@@ -46,24 +46,24 @@ class ccp4mg_edit_nomrbump(CPluginScript):
         NSMAP = {'xsi':"http://www.w3.org/2001/XMLSchema-instance"}
         NS = NSMAP['xsi']
         location_attribute = '{%s}noNamespaceSchemaLocation' % NS
-        tree = etree.Element("CCP4MG_Status",nsmap = NSMAP,attrib={location_attribute: 'http://www.ysbl.york.ac.uk/~mcnicholas/schema/CCP4MGApplicationOutput.xsd'})
+        tree = ET.Element("CCP4MG_Status",nsmap = NSMAP,attrib={location_attribute: 'http://www.ysbl.york.ac.uk/~mcnicholas/schema/CCP4MGApplicationOutput.xsd'})
 
         if self.container.inputData.XYZIN_LIST.isSet():
             if len(self.container.inputData.XYZIN_LIST)>0:
                try:
-                   View = etree.Element('View')
-                   scale_auto = etree.Element('scale_auto')
+                   View = ET.Element('View')
+                   scale_auto = ET.Element('scale_auto')
                    scale_auto.text = "true"
                    View.append(scale_auto)
-                   centre_molData = etree.Element('centre_MolData')
+                   centre_molData = ET.Element('centre_MolData')
                    XYZIN = self.container.inputData.XYZIN_LIST[0]
                    centre_molData.text = os.path.splitext(os.path.basename(XYZIN.__str__()))[0]
                    View.append(centre_molData)
-                   orientation_auto = etree.Element('orientation_auto')
-                   molData = etree.Element('molData')
+                   orientation_auto = ET.Element('orientation_auto')
+                   molData = ET.Element('molData')
                    molData.text = os.path.splitext(os.path.basename(XYZIN.__str__()))[0]
                    orientation_auto.append(molData)
-                   selection = etree.Element('selection')
+                   selection = ET.Element('selection')
                    selection.text = "all"
                    orientation_auto.append(selection)
                    View.append(orientation_auto)
@@ -75,23 +75,23 @@ class ccp4mg_edit_nomrbump(CPluginScript):
                 iFile = 1
                 for XYZIN in self.container.inputData.XYZIN_LIST:
                     if os.path.isfile(XYZIN.__str__()):
-                        molData = etree.Element('MolData')
-                        name = etree.Element('name')
+                        molData = ET.Element('MolData')
+                        name = ET.Element('name')
                         name.text = os.path.splitext(os.path.basename(XYZIN.__str__()))[0]
                         molData.append(name)
-                        filename = etree.Element('filename')
-                        filetype = etree.Element('filetype')
+                        filename = ET.Element('filename')
+                        filetype = ET.Element('filetype')
                         filetype.text = "FULLPATH"
                         filename.append(filetype)
-                        shortPath = etree.Element('shortPath')
+                        shortPath = ET.Element('shortPath')
                         shortPath.text = os.path.basename(XYZIN.__str__())
                         filename.append(shortPath)
-                        fullPath = etree.Element('fullPath')
+                        fullPath = ET.Element('fullPath')
                         fullPath.text = XYZIN.__str__()
                         filename.append(fullPath)
                         molData.append(filename)
-                        molDisp = etree.Element("MolDisp")
-                        style = etree.Element("style")
+                        molDisp = ET.Element("MolDisp")
+                        style = ET.Element("style")
                         style.text = "BONDS"
                         molDisp.append(style)
                         molData.append(molDisp)
@@ -104,9 +104,9 @@ class ccp4mg_edit_nomrbump(CPluginScript):
                 pass
 
         if sys.version_info > (3,0):
-            status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True).decode("utf-8")
+            status_xml += ET.tostring(tree,encoding='utf-8', pretty_print=True).decode("utf-8")
         else:
-            status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True)
+            status_xml += ET.tostring(tree,encoding='utf-8', pretty_print=True)
 
         print("Writing",self.mgStatusPath)
         print(status_xml)
@@ -184,8 +184,8 @@ class ccp4mg_edit_nomrbump(CPluginScript):
 
             # Create a trivial xml output file
             from lxml import etree
-            self.xmlroot = etree.Element('ccp4mg_edit_nomrbump')
-            e = etree.Element('number_output_files')
+            self.xmlroot = ET.Element('ccp4mg_edit_nomrbump')
+            e = ET.Element('number_output_files')
             e.text = str(self.numberOfOutputFiles())
             self.xmlroot.append(e)
             
@@ -208,9 +208,9 @@ class ccp4mg_edit_nomrbump(CPluginScript):
     def addReportWarning(self, text):
         from lxml import etree
         warningsNode = None
-        warningsNodes = self.xmlroot.xpath('//Warnings')
-        if len(warningsNodes) == 0: warningsNode = etree.SubElement(self.xmlroot, 'Warnings')
+        warningsNodes = self.xmlroot.findall('.//Warnings')
+        if len(warningsNodes) == 0: warningsNode = ET.SubElement(self.xmlroot, 'Warnings')
         else: warningsNode = warningsNodes[0]
-        warningNode = etree.SubElement(warningsNode,'Warning')
+        warningNode = ET.SubElement(warningsNode,'Warning')
         warningNode.text = text
 

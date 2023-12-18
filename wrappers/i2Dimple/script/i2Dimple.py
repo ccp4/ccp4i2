@@ -22,6 +22,8 @@ from core import CCP4XtalData
 from core import CCP4ErrorHandling
 import platform
 import base64
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 class i2Dimple(CPluginScript):
     TASKNAME = 'i2Dimple'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -105,10 +107,9 @@ class i2Dimple(CPluginScript):
             return CPluginScript.FAILED
                 
         #Create (dummy) PROGRAMXML
-        from lxml import etree
         import sys
         with open(self.makeFileName("PROGRAMXML"),"wb") as programXMLFile:
-            xmlStructure = etree.Element("i2Dimple")
+            xmlStructure = ET.Element("i2Dimple")
             
             #Here transform information parsed from dimple.log into program.xml
             #Parse the dimple log (which is compatible with configparser !)
@@ -119,7 +120,7 @@ class i2Dimple(CPluginScript):
             try:
                 #Extract phaser outputs if any
                 if "phaser" in configParser.sections():
-                    phaserElement = etree.SubElement(xmlStructure,"PHASER")
+                    phaserElement = ET.SubElement(xmlStructure,"PHASER")
                     phaserElement.text = configParser.get("phaser","status")
                 refmacCycleArrays = {}
                 #Extract refmac5 jelly cycles output
@@ -142,7 +143,7 @@ class i2Dimple(CPluginScript):
                             if alt_reindex["cc"] > bestReindex[1]:
                                 bestReindex = (alt_reindex["op"], alt_reindex["cc"])
                         if bestReindex[0] != "[h,k,l]":
-                            etree.SubElement(xmlStructure,"REINDEX").text = "{}".format(bestReindex[0])
+                            ET.SubElement(xmlStructure,"REINDEX").text = "{}".format(bestReindex[0])
                             
                             reindexCommandPath = os.path.join(self.getWorkDirectory(),"reindex.txt")
                             with open(reindexCommandPath,"w") as reindexCommandFile:
@@ -165,45 +166,45 @@ class i2Dimple(CPluginScript):
                                 self.container.outputData.FREERFLAG_OUT.annotation = ("FreeR reindexed by operator {}".format(bestReindex[0]))
 
                 if len(refmacCycleArrays) > 0:
-                    refmacCyclesNode = etree.SubElement(xmlStructure,"REFMAC")
-                    overall_statsNode = etree.SubElement(refmacCyclesNode,"Overall_stats")
-                    stats_vs_cycleNode = etree.SubElement(overall_statsNode,"stats_vs_cycle")
+                    refmacCyclesNode = ET.SubElement(xmlStructure,"REFMAC")
+                    overall_statsNode = ET.SubElement(refmacCyclesNode,"Overall_stats")
+                    stats_vs_cycleNode = ET.SubElement(overall_statsNode,"stats_vs_cycle")
                     for iCycle in range(len(refmacCycleArrays["iter_overall_r"])):
-                        refmacCycleNode = etree.SubElement(stats_vs_cycleNode,"new_cycle")
-                        etree.SubElement(refmacCycleNode,"cycle").text = str(iCycle+1)
+                        refmacCycleNode = ET.SubElement(stats_vs_cycleNode,"new_cycle")
+                        ET.SubElement(refmacCycleNode,"cycle").text = str(iCycle+1)
                         for property, value in refmacCycleArrays.items():
                             modPropName = property
                             if modPropName == 'iter_overall_r': modPropName = 'r_factor'
                             elif modPropName == 'iter_free_r': modPropName = 'r_free'
                             elif modPropName == 'rmsANGL': modPropName = 'rmsANGLE'
-                            propertyNode = etree.SubElement(refmacCycleNode, modPropName)
+                            propertyNode = ET.SubElement(refmacCycleNode, modPropName)
                             propertyNode.text = str(value[iCycle])
                 #Report on blobs found
                 if "find-blobs" in configParser.sections():
-                    findBlobsNode = etree.SubElement(xmlStructure,"find-blobs")
+                    findBlobsNode = ET.SubElement(xmlStructure,"find-blobs")
                     blobPositionsArray = json.loads(configParser.get("find-blobs","blobs"))
                     blobScoresArray = json.loads(configParser.get("find-blobs","scores"))
                     for iBlob, blobScore in enumerate(blobScoresArray):
                         blobPosition = blobPositionsArray[iBlob]
-                        blobNode = etree.SubElement(findBlobsNode,"Blob")
-                        etree.SubElement(blobNode,"x").text = str(blobPosition[0])
-                        etree.SubElement(blobNode,"y").text = str(blobPosition[1])
-                        etree.SubElement(blobNode,"z").text = str(blobPosition[2])
-                        etree.SubElement(blobNode,"score").text = str(blobScore)
+                        blobNode = ET.SubElement(findBlobsNode,"Blob")
+                        ET.SubElement(blobNode,"x").text = str(blobPosition[0])
+                        ET.SubElement(blobNode,"y").text = str(blobPosition[1])
+                        ET.SubElement(blobNode,"z").text = str(blobPosition[2])
+                        ET.SubElement(blobNode,"score").text = str(blobScore)
             except Exception as err:
                 self.appendErrorReport(201, err.__str__())
                 return CPluginScript.FAILED
             
-            logText = etree.SubElement(xmlStructure,"LogText")
+            logText = ET.SubElement(xmlStructure,"LogText")
             with open(self.makeFileName("LOG"),"r") as logFile:
-                #logText.text = etree.CDATA(logFile.read())
+                #logText.text = ET.CDATA(logFile.read())
                 logText.text = base64.b64encode(logFile.read())
             
             #Extract performanceindictors from XML
             try:
-                self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(xmlStructure.xpath("//Cycle/iter_overall_r")[-1].text)
-                self.container.outputData.PERFORMANCEINDICATOR.RFree.set(xmlStructure.xpath("//Cycle/iter_free_r")[-1].text)
+                self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(xmlStructure.findall(".//Cycle/iter_overall_r")[-1].text)
+                self.container.outputData.PERFORMANCEINDICATOR.RFree.set(xmlStructure.findall(".//Cycle/iter_free_r")[-1].text)
             except: pass
             
-            programXMLFile.write(etree.tostring(xmlStructure))
+            programXMLFile.write(ET.tostring(xmlStructure))
         return CPluginScript.SUCCEEDED

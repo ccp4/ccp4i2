@@ -12,6 +12,8 @@ from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core import CCP4Utils
 import base64
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 class phaser_mr(CPluginScript):
 
@@ -208,10 +210,9 @@ class phaser_mr(CPluginScript):
             self.container.outputData.DIFMAPOUT[indx].subType.set(2)
             self.container.outputData.PHASEOUT[indx].annotation.set('Phases for solution '+str(indx+1))
 
-        from lxml import etree
-        
         phaserMRElement = self.generateProgramXML()
-        newXml = etree.tostring(phaserMRElement,pretty_print=True)
+        ET.indent(phaserMRElement)
+        newXml = ET.tostring(phaserMRElement)
         import sys,os
         with open( self.makeFileName( 'PROGRAMXML' )+'.tmp','w') as aFile:
             CCP4Utils.writeXML(aFile,newXml)
@@ -232,9 +233,9 @@ class phaser_mr(CPluginScript):
         import os, sys
         if (os.stat(logFilename).st_size - self.oldLogLength) > 1000:
             self.oldLogLength = os.stat(logFilename).st_size
-            from lxml import etree
             phaserMRElement = self.generateProgramXML()
-            newXml = etree.tostring(phaserMRElement,pretty_print=True)
+            ET.indent(phaserMRElement)
+            newXml = ET.tostring(phaserMRElement)
             if self.xmlText is None or len(newXml)>len(self.xmlText):
                 with open( self.makeFileName( 'PROGRAMXML' )+'.tmp','w') as aFile:
                     aFile.write( newXml )
@@ -243,8 +244,7 @@ class phaser_mr(CPluginScript):
                 self.xmlText = newXml
 
     def generateProgramXML(self):
-        from lxml import etree
-        phaserMRElement = etree.Element("PhaserMrResult")
+        phaserMRElement = ET.Element("PhaserMrResult")
         total_ncomp = 0
         
         from time import gmtime, strftime
@@ -266,36 +266,34 @@ class phaser_mr(CPluginScript):
         return phaserMRElement
 
     def analyseProblem(self,phaserMRElement,total_ncomp):
-        from lxml import etree
         #print '\n\n** in analyseProblem'
         #Analyse the problem as given
         total_ncomp = 0
         for i in range(len(self.container.inputData.ASU_COMPONENTS)):
             total_ncomp += self.container.inputData.ASU_COMPONENTS[i].numberOfCopies
-        targetElement = etree.SubElement(phaserMRElement,'Target')
-        totalCompsElement = etree.SubElement(targetElement,'TotalComps')
+        targetElement = ET.SubElement(phaserMRElement,'Target')
+        totalCompsElement = ET.SubElement(targetElement,'TotalComps')
         totalCompsElement.text = str(total_ncomp)
-        compTypesElement = etree.SubElement(targetElement,'CompTypes')
+        compTypesElement = ET.SubElement(targetElement,'CompTypes')
         compTypesElement.text =str(len(self.container.inputData.ASU_COMPONENTS))
     
     def analyseSolfile(self, phaserMRElement, total_ncomp):
-        from lxml import etree
         import os
         #print '\n\n** in analyseSolFile'
         phaser_solfile = os.path.join(self.getWorkDirectory(), "PHASER.sol")
         if os.path.exists(phaser_solfile):
             solfile = open( phaser_solfile )
             nsol = 0
-            solutionsElement = etree.SubElement(phaserMRElement,'Solutions')
+            solutionsElement = ET.SubElement(phaserMRElement,'Solutions')
             for line in solfile.readlines():
                 if line.strip().startswith( 'SOLU SPAC' ):
                     spacegroup = line.strip()[10:]
-                    spaceGroupElement = etree.SubElement(phaserMRElement,'spaceGroup')
+                    spaceGroupElement = ET.SubElement(phaserMRElement,'spaceGroup')
                     spaceGroupElement.text = spacegroup
                 elif line.strip().startswith( 'SOLU SET' ):
-                    solutionElement = etree.SubElement(solutionsElement,'Solution')
+                    solutionElement = ET.SubElement(solutionsElement,'Solution')
                     nsol = nsol + 1
-                    iSolElement = etree.SubElement(solutionElement,'ISOL')
+                    iSolElement = ET.SubElement(solutionElement,'ISOL')
                     iSolElement.text=str(nsol)
                     RFZ = []
                     TFZ = []
@@ -323,26 +321,26 @@ class phaser_mr(CPluginScript):
                         elif word[0:3] == 'LLG':
                             LLG.append(word[4:])
                     ncomp = len(RFZ)
-                    nComponentsElement = etree.SubElement(solutionElement,'NCOMPONENTS')
+                    nComponentsElement = ET.SubElement(solutionElement,'NCOMPONENTS')
                     nComponentsElement.text = str(ncomp)
-                    allCompFoundElement = etree.SubElement(solutionElement,'AllCompFound')
+                    allCompFoundElement = ET.SubElement(solutionElement,'AllCompFound')
                     if ncomp < total_ncomp:
                         allCompFoundElement.text = 'False'
                     else:
                         allCompFoundElement.text = 'True'
                     for icomp in range(ncomp):
-                        componentElement=etree.SubElement(solutionElement,'Component')
-                        rfzElement = etree.SubElement(componentElement,'RFZ')
+                        componentElement=ET.SubElement(solutionElement,'Component')
+                        rfzElement = ET.SubElement(componentElement,'RFZ')
                         rfzElement.text = str(RFZ[icomp])
-                        tfzElement = etree.SubElement(componentElement,'TFZ')
+                        tfzElement = ET.SubElement(componentElement,'TFZ')
                         tfzElement.text = str(TFZ[icomp])
-                        pakElement = etree.SubElement(componentElement,'PAK')
+                        pakElement = ET.SubElement(componentElement,'PAK')
                         pakElement.text = str(PAK[icomp])
-                        llgElement = etree.SubElement(componentElement,'LLG')
+                        llgElement = ET.SubElement(componentElement,'LLG')
                         llgElement.text = str(LLG[icomp])
                     #overall scores printed iff all components found
                     if len(LLG) > ncomp:
-                        overallLLGElement = etree.SubElement(solutionElement,'overallLLG')
+                        overallLLGElement = ET.SubElement(solutionElement,'overallLLG')
                         overallLLGElement.text = str(LLG[ncomp])
                     #if len(LLG) > ncomp:
                     #refTFZ does not seem to be output by recent versions of phaser
@@ -355,7 +353,6 @@ class phaser_mr(CPluginScript):
 
     def appendSmartieStuff(self, programEtree):
         import os, sys
-        from lxml import etree
         #print '\n\n** In appendSmartie'
         smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
         sys.path.append(smartiePath)
@@ -382,7 +379,7 @@ class phaser_mr(CPluginScript):
             if smartieTable.ngraphs() > 0:
                 #print '\n\n** found a graph table'
                 tableelement = MGQTmatplotlib.CCP4LogToEtree(smartieTable.rawtable())
-                graphTableNodes = tableelement.xpath('.//CCP4Table')
+                graphTableNodes = tableelement.findall('.//CCP4Table')
                 #print '\n\n** found %d graphTableNodes'%len(graphTableNodes)
                 graphTableNode = None
                 if len(graphTableNodes)>0: graphTableNode = graphTableNodes[0]
@@ -407,11 +404,11 @@ class phaser_mr(CPluginScript):
                         refinementTablesDict[hashedNumber].append(tableelement)
                     elif 'Cell Content Analysis' in graphTableNode.get("title"):
                         #print '\n\n** made a refinement graph table node'
-                        cellContentProbabilityNode = etree.SubElement(programEtree,"ContentProbability")
+                        cellContentProbabilityNode = ET.SubElement(programEtree,"ContentProbability")
                         cellContentProbabilityNode.append(tableelement)
                     elif 'Intensity distribution for Data' in graphTableNode.get("title"):
                         #print '\n\n** made a refinement graph table node'
-                        intensityDistributionNode = etree.SubElement(programEtree,"IntensityDistribution")
+                        intensityDistributionNode = ET.SubElement(programEtree,"IntensityDistribution")
                         intensityDistributionNode.append(tableelement)
 
         summaryCount = logfile.nsummaries()
@@ -423,7 +420,7 @@ class phaser_mr(CPluginScript):
             summaryTextLines = []
             with open(self.makeFileName('LOG')) as myLogFile:
                 summaryTextLines = myLogFile.readlines()[summary.start():summary.end()]
-            preElement = etree.Element('CCP4Summary')
+            preElement = ET.Element('CCP4Summary')
             if 'Search Order (next search *):' in "".join(summaryTextLines):
                 #print '\n\n** Found a search order summary'
                 preElement.text = ''
@@ -438,16 +435,16 @@ class phaser_mr(CPluginScript):
             else:
                 summaryText = "".join(summaryTextLines)
                 #print '\n\n** Found a non-search order summary'
-                #preElement.text = etree.CDATA(summaryText)
+                #preElement.text = ET.CDATA(summaryText)
                 preElement.text = base64.b64encode(summaryText)
-                programEtree.append(preElement)
+                programET.append(preElement)
 
         #print len(searchComponentSummaries), len(rotationTables), len(translationTables), len(refinementTables)
         if len(searchComponentSummaries) > 0:
-            searchesElement = etree.SubElement(programEtree,"Searches")
+            searchesElement = ET.SubElement(programEtree,"Searches")
             iSearch = 0
             for searchComponentSummary in searchComponentSummaries:
-                searchElement = etree.SubElement(programEtree,"Search")
+                searchElement = ET.SubElement(programEtree,"Search")
                 searchElement.append(searchComponentSummary)
                 # Identify the sought component in this search
                 searchSummaryLines = searchComponentSummary.text.split('\n')[1:]
@@ -465,5 +462,4 @@ class phaser_mr(CPluginScript):
                         for refinementTable in refinementTablesDict[hashedSoughtComponent]:
                             searchElement.append(refinementTable)
                                 
-                #print etree.tostring(searchElement,pretty_print=True)
 

@@ -5,6 +5,8 @@ from core import CCP4Utils
 
 from PySide2 import QtCore
 import os,re,time,sys
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 class coot_rebuild(CPluginScript):
 #class coot_rebuild(CInternalPlugin):
@@ -315,11 +317,11 @@ file_to_preferences('template_key_bindings.py')
             dictoutList = dictoutList[0:len(cifOutList)]
 
             # Create a trivial xml output file
-            from lxml import etree
-            self.xmlroot = etree.Element('coot_rebuild')
-            e = etree.Element('number_output_files')
+            #from lxml import etree
+            self.xmlroot = ET.Element('coot_rebuild')
+            e = ET.Element('number_output_files')
             e.text = str(self.numberOfOutputFiles())
-            e = etree.Element('number_output_dicts')
+            e = ET.Element('number_output_dicts')
             e.text = str(len(dictoutList))
             self.xmlroot.append(e)
 
@@ -333,13 +335,13 @@ file_to_preferences('template_key_bindings.py')
                     except:
                         self.addReportWarning('mergeDictToProjectLib raised exception: Does not compromise output Dict')
 
-                    ligNodes = self.xmlroot.xpath('//LIGANDS')
-                    if len(ligNodes) == 0: ligNode = etree.SubElement(self.xmlroot,'LIGANDS')
+                    ligNodes = self.xmlroot.findall('.//LIGANDS')
+                    if len(ligNodes) == 0: ligNode = ET.SubElement(self.xmlroot,'LIGANDS')
                     else: ligNode = ligNodes[0]
                     try:
                         annotation='Coot/Prodrg created geometry for'
                         for item in dictFile.fileContent.monomerList:
-                            lig =  etree.SubElement(ligNode,'ligand')
+                            lig =  ET.SubElement(ligNode,'ligand')
                             lig.text = str(item.three_letter_code)
                             annotation += (' ' + str(item.three_letter_code))
                         dictFile.annotation = annotation
@@ -374,10 +376,9 @@ file_to_preferences('template_key_bindings.py')
         CCP4Utils.saveFile(os.path.normpath(os.path.join(self.dropDir,'0-coot-history.scm')),text)
 
     def addReportWarning(self, text):
-        from lxml import etree
         warningsNode = None
-        warningsNodes = self.xmlroot.xpath('//Warnings')
-        if len(warningsNodes) == 0: warningsNode = etree.SubElement(self.xmlroot, 'Warnings')
+        warningsNodes = self.xmlroot.findall('.//Warnings')
+        if len(warningsNodes) == 0: warningsNode = ET.SubElement(self.xmlroot, 'Warnings')
         else: warningsNode = warningsNodes[0]
-        warningNode = etree.SubElement(warningsNode,'Warning')
+        warningNode = ET.SubElement(warningsNode,'Warning')
         warningNode.text = text

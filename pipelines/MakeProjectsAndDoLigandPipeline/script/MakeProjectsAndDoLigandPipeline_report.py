@@ -19,7 +19,7 @@
 from report.CCP4ReportParser import Report
 import sys
 #from lxml import etree
-import xml.etree.ElementTree as etree
+from xml.etree import ElementTree as etree
 from core import CCP4Utils
 
 class MakeProjectsAndDoLigandPipeline_report(Report):
@@ -56,7 +56,7 @@ class MakeProjectsAndDoLigandPipeline_report(Report):
                     mol = Chem.MolFromSmiles(smilesString)
                     confId2D = AllChem.Compute2DCoords(mol)
                     svgStructure = acedrg.svgFromMol(mol)
-                    svgText = etree.tostring(svgStructure,pretty_print=True)
+                    svgText = ET.tostring(svgStructure,pretty_print=True)
                     svgText = svgText.replace("<svg>","<svg:svg>").replace("</svg>","</svg:svg>").replace("<line>","<svg:line>").replace("</line>","</svg:line>").replace("<text>","<svg:text>").replace("</text>","</svg:text>").replace("<polygon>","<svg:polygon>").replace("</polygon>","</svg:polygon>").replace('xmlns="http://www.w3.org/2000/svg"','xmlns:svg="http://www.w3.org/2000/svg"')
                     with open(svgFilename,"w") as svgFile:
                         CCP4Utils.writeXML(svgFile,svgText)

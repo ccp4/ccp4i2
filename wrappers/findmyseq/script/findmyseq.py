@@ -1,6 +1,7 @@
 import os
 import json
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4XtalData
 from core import CCP4ErrorHandling
@@ -67,11 +68,11 @@ class findmyseq(CPluginScript):
             self.container.outputData.SEQOUT = self.seqout
             self.container.outputData.SEQOUT.annotation = "Best sequence file from FindMySequence"
         # xml (should not be necessary for graphs but images will not load)
-        rootNode = etree.Element("FindMySeq")
-        #xmlRI = etree.SubElement(rootNode, "RunInfo")
+        rootNode = ET.Element("FindMySeq")
+        #xmlRI = ET.SubElement(rootNode, "RunInfo")
         # Save xml
         xmlfile = open(self.xmlout, 'wb')
-        xmlString= etree.tostring(rootNode, pretty_print=True)
+        xmlString= ET.tostring(rootNode, pretty_print=True)
         xmlfile.write(xmlString)
         xmlfile.close()
         return CPluginScript.SUCCEEDED

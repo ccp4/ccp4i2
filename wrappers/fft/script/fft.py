@@ -18,7 +18,8 @@
 """
 
 from core.CCP4PluginScript import CPluginScript
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 from core import CCP4Utils
 
 class fft(CPluginScript):
@@ -62,7 +63,7 @@ class fft(CPluginScript):
         self.container.outputData.MAPOUT.annotation = 'Computed using ' + str(self.container.inputData.FPHIIN.annotation)
       
         lines = open(self.makeFileName('LOG')).readlines()
-        xmlRoot = etree.Element('Cfft')
+        xmlRoot = ET.Element('Cfft')
 
         readingStuff = False
 
@@ -72,33 +73,33 @@ class fft(CPluginScript):
 
             if readingStuff :
                 if line.strip().startswith ( 'Number of' ) :
-                    npoints = etree.SubElement(xmlRoot,'NPoints')
+                    npoints = ET.SubElement(xmlRoot,'NPoints')
                     npoints.text = line.strip().split ( )[5]
                 elif line.strip().startswith ( '1st' ) :
-                    firstMomZero = etree.SubElement(xmlRoot, 'FirstMomZero' )
+                    firstMomZero = ET.SubElement(xmlRoot, 'FirstMomZero' )
                     firstMomZero.text = line.strip().split ( )[5]
-                    firstMomMean = etree.SubElement(xmlRoot, 'FirstMomMean' )
+                    firstMomMean = ET.SubElement(xmlRoot, 'FirstMomMean' )
                     firstMomMean.text = line.strip().split ( )[9] 
                 elif line.strip().startswith ( '2nd' ) :
-                    secondMomZero = etree.SubElement(xmlRoot, 'SecondMomZero' )
+                    secondMomZero = ET.SubElement(xmlRoot, 'SecondMomZero' )
                     secondMomZero.text = line.strip().split ( )[5]
-                    secondMomMean = etree.SubElement(xmlRoot, 'SecondMomMean' )
+                    secondMomMean = ET.SubElement(xmlRoot, 'SecondMomMean' )
                     secondMomMean.text = line.strip().split ( )[9] 
                 elif line.strip().startswith ( '3rd' ) :
-                    thirdMomZero = etree.SubElement(xmlRoot, 'ThirdMomZero' )
+                    thirdMomZero = ET.SubElement(xmlRoot, 'ThirdMomZero' )
                     thirdMomZero.text = line.strip().split ( )[5]
-                    thirdMomMean = etree.SubElement(xmlRoot, 'ThirdMomMean' )
+                    thirdMomMean = ET.SubElement(xmlRoot, 'ThirdMomMean' )
                     thirdMomMean.text = line.strip().split ( )[9] 
                 elif line.strip().startswith ( 'Range' ) :
-                    minimum = etree.SubElement(xmlRoot, 'Min' )
+                    minimum = ET.SubElement(xmlRoot, 'Min' )
                     minimum.text = line.strip().split ( )[2]
-                    maximum = etree.SubElement(xmlRoot, 'Max' )
+                    maximum = ET.SubElement(xmlRoot, 'Max' )
                     maximum.text = line.strip().split ( )[4] 
             elif line.strip().startswith ( 'Map statistics' ) :
                 readingStuff = True
 
         with open ( self.makeFileName('PROGRAMXML'),'w' ) as xmlFile:
-            xmlString = etree.tostring ( xmlRoot, pretty_print=True )
+            xmlString = ET.tostring ( xmlRoot, pretty_print=True )
             CCP4Utils.writeXML(xmlFile,xmlString)
 
         return CPluginScript.SUCCEEDED

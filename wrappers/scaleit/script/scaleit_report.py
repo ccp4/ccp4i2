@@ -2,7 +2,7 @@ from __future__ import print_function
 
 # -------------------------------------------------
 import os,sys
-import xml.etree.ElementTree as etree
+from xml.etree import ElementTree as etree
 try:
   from report.CCP4ReportParser import *
 except:
@@ -309,7 +309,7 @@ class scaleit_report(Report):
         temp.append(plotelement)
       newplotelements = temp
 
-      newblock = etree.Element(thisgraph.tag)
+      newblock = ET.Element(thisgraph.tag)
       newblock.attrib['title'] = thisgraph.get('title')
       for elem in thisgraph:
           if elem.tag != 'plot':
@@ -354,7 +354,7 @@ class scaleit_report(Report):
 # - - - - - - - - -  - - - - - - - - -  - - - - - - - - - 
 def addElement(containerXML, elementname, elementtext):
     #print 'addElement', elementname, type(elementtext), elementtext 
-    e2 = etree.Element(elementname)
+    e2 = ET.Element(elementname)
     e2.text = elementtext
     containerXML.append(e2)
 
@@ -388,6 +388,7 @@ if __name__ == "__main__":
 
   report = scaleit_report(xmlFile = sys.argv[1],jobStatus="Finished" )
   tree= report.as_etree()
-  #print etree.tostring(tree,pretty_print=True)
+  ET.indent(tree)
+  #print ET.tostring(tree)
   report.as_html_file(fileName='./test-scaleit.html')
   if len(report.errorReport())>0: print('ERRORS:',r.errorReport())

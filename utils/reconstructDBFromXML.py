@@ -16,6 +16,7 @@ from distutils.version import LooseVersion
 from dateutil import parser
 from dateutil.tz import tzlocal
 from lxml import etree
+from xml.etree import ElementTree as ET
 
 """
 This is a script which attempts to construct an XML file such as is created by export (or backupDB) from input_params.xml/params.xml/stdout.txt files.
@@ -156,20 +157,20 @@ def generate_xml_from_project_directory(project_dir):
     endOfTime = parser.parse(endOfTimeStr + " " + timeZoneName)
     creationTime = endOfTime
     
-    eleTree = etree.parse(StringIO('<ccp4:ccp4i2 xmlns:ccp4="'+CCP4NS+'"></ccp4:ccp4i2>'))
+    eleTree = ET.parse(StringIO('<ccp4:ccp4i2 xmlns:ccp4="'+CCP4NS+'"></ccp4:ccp4i2>'))
     root = eleTree.getroot()
-    ccp4i2_header = etree.SubElement(root,"ccp4i2_header")
-    ccp4i2_body = etree.SubElement(root,"ccp4i2_body")
-    jobTable_el = etree.SubElement(ccp4i2_body,"jobTable")
-    fileTable_el = etree.SubElement(ccp4i2_body,"fileTable")
-    fileUseTable_el = etree.SubElement(ccp4i2_body,"fileuseTable")
+    ccp4i2_header = ET.SubElement(root,"ccp4i2_header")
+    ccp4i2_body = ET.SubElement(root,"ccp4i2_body")
+    jobTable_el = ET.SubElement(ccp4i2_body,"jobTable")
+    fileTable_el = ET.SubElement(ccp4i2_body,"fileTable")
+    fileUseTable_el = ET.SubElement(ccp4i2_body,"fileuseTable")
     
     jobs = []
     
     def parse_from_unicode(unicode_str):
-        utf8_parser = etree.XMLParser(encoding='utf-8')
+        utf8_parser = ET.XMLParser(encoding='utf-8')
         s = unicode_str.encode('utf-8')
-        return etree.fromstring(s, parser=utf8_parser)
+        return ET.fromstring(s, parser=utf8_parser)
     
     for fn in params_files:
         with open(fn) as f:
@@ -177,61 +178,61 @@ def generate_xml_from_project_directory(project_dir):
             #print t
             if sys.version_info < (3,0):
                 try:
-                    xmlparser = etree.XMLParser()
-                    tree = etree.fromstring(t, xmlparser)
+                    xmlparser = ET.XMLParser()
+                    tree = ET.fromstring(t, xmlparser)
                 except:
                     print("Failed to process file",fn)
             else:
                 tree = parse_from_unicode(t)
-            #print tree.xpath("ccp4i2_header")[0].xpath("jobId")
-            if len(tree.xpath("ccp4i2_header")[0].xpath("creationTime"))>0:
-                dt = tree.xpath("ccp4i2_header")[0].xpath("creationTime")[0].text
+            #print tree.findall("ccp4i2_header")[0].findall("jobId")
+            if len(tree.findall("ccp4i2_header")[0].findall("creationTime"))>0:
+                dt = tree.findall("ccp4i2_header")[0].findall("creationTime")[0].text
                 dt += " "+timeZoneName
                 t = parser.parse(dt)
                 #print "Date",dt,t
                 if t<creationTime:
                     creationTime = t
-            if len(tree.xpath("ccp4i2_header")[0].xpath("projectName"))>0:
+            if len(tree.findall("ccp4i2_header")[0].findall("projectName"))>0:
                 if projectName == "":
-                    if  tree.xpath("ccp4i2_header")[0].xpath("projectName")[0].text != None and len(tree.xpath("ccp4i2_header")[0].xpath("projectName")[0].text.strip())>0:
-                        projectName = tree.xpath("ccp4i2_header")[0].xpath("projectName")[0].text
-                elif tree.xpath("ccp4i2_header")[0].xpath("projectName")[0].text != projectName:
-                    print("Problem, project name changed",tree.xpath("ccp4i2_header")[0].xpath("projectName")[0].text,projectName)
+                    if  tree.findall("ccp4i2_header")[0].findall("projectName")[0].text != None and len(tree.findall("ccp4i2_header")[0].findall("projectName")[0].text.strip())>0:
+                        projectName = tree.findall("ccp4i2_header")[0].findall("projectName")[0].text
+                elif tree.findall("ccp4i2_header")[0].findall("projectName")[0].text != projectName:
+                    print("Problem, project name changed",tree.findall("ccp4i2_header")[0].findall("projectName")[0].text,projectName)
                     print("Keeping old name",projectName)
-            if len(tree.xpath("ccp4i2_header")[0].xpath("projectId"))>0:
+            if len(tree.findall("ccp4i2_header")[0].findall("projectId"))>0:
                 if projectId == "":
-                    if tree.xpath("ccp4i2_header")[0].xpath("projectId")[0].text != None and len(tree.xpath("ccp4i2_header")[0].xpath("projectId")[0].text.strip())>0:
-                        projectId = tree.xpath("ccp4i2_header")[0].xpath("projectId")[0].text
-                elif tree.xpath("ccp4i2_header")[0].xpath("projectId")[0].text != projectId:
-                    print("Problem, project id changed",tree.xpath("ccp4i2_header")[0].xpath("projectId")[0].text,projectId)
+                    if tree.findall("ccp4i2_header")[0].findall("projectId")[0].text != None and len(tree.findall("ccp4i2_header")[0].findall("projectId")[0].text.strip())>0:
+                        projectId = tree.findall("ccp4i2_header")[0].findall("projectId")[0].text
+                elif tree.findall("ccp4i2_header")[0].findall("projectId")[0].text != projectId:
+                    print("Problem, project id changed",tree.findall("ccp4i2_header")[0].findall("projectId")[0].text,projectId)
                     print("Keeping old id",projectId)
-            if len(tree.xpath("ccp4i2_header")[0].xpath("hostName"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("hostName")[0].text)>0:
-                hostName = tree.xpath("ccp4i2_header")[0].xpath("hostName")[0].text
-            if len(tree.xpath("ccp4i2_header")[0].xpath("userId"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("userId")[0].text)>0:
-                userId = tree.xpath("ccp4i2_header")[0].xpath("userId")[0].text
-            if len(tree.xpath("ccp4i2_header")[0].xpath("ccp4iVersion"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("ccp4iVersion")[0].text)>0:
-                ccp4iVersion = tree.xpath("ccp4i2_header")[0].xpath("ccp4iVersion")[0].text
-            if len(tree.xpath("ccp4i2_header")[0].xpath("OS"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("OS")[0].text)>0:
-                OS = tree.xpath("ccp4i2_header")[0].xpath("OS")[0].text
+            if len(tree.findall("ccp4i2_header")[0].findall("hostName"))>0 and len(tree.findall("ccp4i2_header")[0].findall("hostName")[0].text)>0:
+                hostName = tree.findall("ccp4i2_header")[0].findall("hostName")[0].text
+            if len(tree.findall("ccp4i2_header")[0].findall("userId"))>0 and len(tree.findall("ccp4i2_header")[0].findall("userId")[0].text)>0:
+                userId = tree.findall("ccp4i2_header")[0].findall("userId")[0].text
+            if len(tree.findall("ccp4i2_header")[0].findall("ccp4iVersion"))>0 and len(tree.findall("ccp4i2_header")[0].findall("ccp4iVersion")[0].text)>0:
+                ccp4iVersion = tree.findall("ccp4i2_header")[0].findall("ccp4iVersion")[0].text
+            if len(tree.findall("ccp4i2_header")[0].findall("OS"))>0 and len(tree.findall("ccp4i2_header")[0].findall("OS")[0].text)>0:
+                OS = tree.findall("ccp4i2_header")[0].findall("OS")[0].text
     
-            if len(tree.xpath("ccp4i2_header")[0].xpath("jobId"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text)>0:
-                if len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text)>0:
-                    if len(tree.xpath("ccp4i2_header")[0].xpath("pluginName"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("pluginName")[0].text)>0:
-                        jobId = tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text
-                        jobNumber = tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text
-                        pluginName = tree.xpath("ccp4i2_header")[0].xpath("pluginName")[0].text
+            if len(tree.findall("ccp4i2_header")[0].findall("jobId"))>0 and len(tree.findall("ccp4i2_header")[0].findall("jobId")[0].text)>0:
+                if len(tree.findall("ccp4i2_header")[0].findall("jobNumber"))>0 and len(tree.findall("ccp4i2_header")[0].findall("jobNumber")[0].text)>0:
+                    if len(tree.findall("ccp4i2_header")[0].findall("pluginName"))>0 and len(tree.findall("ccp4i2_header")[0].findall("pluginName")[0].text)>0:
+                        jobId = tree.findall("ccp4i2_header")[0].findall("jobId")[0].text
+                        jobNumber = tree.findall("ccp4i2_header")[0].findall("jobNumber")[0].text
+                        pluginName = tree.findall("ccp4i2_header")[0].findall("pluginName")[0].text
                         attrib = {}
                         attrib["jobid"] = jobId
                         attrib["jobnumber"] = jobNumber
-                        if len(tree.xpath("ccp4i2_header")[0].xpath("creationTime"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("creationTime")[0].text)>0:
-                            dt = tree.xpath("ccp4i2_header")[0].xpath("creationTime")[0].text
+                        if len(tree.findall("ccp4i2_header")[0].findall("creationTime"))>0 and len(tree.findall("ccp4i2_header")[0].findall("creationTime")[0].text)>0:
+                            dt = tree.findall("ccp4i2_header")[0].findall("creationTime")[0].text
                             dt += " "+timeZoneName
                             t = parser.parse(dt)
                             strfloattime = str(datetime_to_float(t))
                             attrib["creationtime"] = strfloattime
                         attrib["useragent"] = "1" # We have no way of knowing and I cannot think it matters
-                        if len(tree.xpath("ccp4i2_header")[0].xpath("pluginTitle"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("pluginTitle")[0].text)>0:
-                            pluginTitle = tree.xpath("ccp4i2_header")[0].xpath("pluginTitle")[0].text
+                        if len(tree.findall("ccp4i2_header")[0].findall("pluginTitle"))>0 and len(tree.findall("ccp4i2_header")[0].findall("pluginTitle")[0].text)>0:
+                            pluginTitle = tree.findall("ccp4i2_header")[0].findall("pluginTitle")[0].text
                             attrib["jobtitle"] = pluginTitle
                         attrib["projectid"] = projectId
                         attrib["taskname"] = pluginName
@@ -240,22 +241,22 @@ def generate_xml_from_project_directory(project_dir):
                             with open(parentXML) as f2:
                                 t2 = f2.read()
                                 if sys.version_info < (3,0):
-                                    xmlparser2 = etree.XMLParser()
-                                    tree2 = etree.fromstring(t2, xmlparser2)
+                                    xmlparser2 = ET.XMLParser()
+                                    tree2 = ET.fromstring(t2, xmlparser2)
                                 else:
                                     tree2 = parse_from_unicode(t2)
-                                if len(tree2.xpath("ccp4i2_header")[0].xpath("jobId"))>0 and len(tree2.xpath("ccp4i2_header")[0].xpath("jobId")[0].text)>0:
-                                    jobId2 = tree2.xpath("ccp4i2_header")[0].xpath("jobId")[0].text
+                                if len(tree2.findall("ccp4i2_header")[0].findall("jobId"))>0 and len(tree2.findall("ccp4i2_header")[0].findall("jobId")[0].text)>0:
+                                    jobId2 = tree2.findall("ccp4i2_header")[0].findall("jobId")[0].text
                                     attrib["parentjobid"] = jobId2
                         #Hmm, no good. Not all jobs have a diagnostic.xml, only top level jobs. If a top-level has finished, then all sub-jobs must be!
                         try:
                             with open(os.path.join(os.path.dirname(fn),"diagnostic.xml")) as fdiag:
                                 tdiag = fdiag.read()
                                 if sys.version_info < (3,0):
-                                    treediag = etree.fromstring(tdiag, xmlparser)
+                                    treediag = ET.fromstring(tdiag, xmlparser)
                                 else:
                                     treediag = parse_from_unicode(tdiag)
-                                if len(treediag.xpath("ccp4i2_body")[0].xpath("errorReport"))>0:
+                                if len(treediag.findall("ccp4i2_body")[0].findall("errorReport"))>0:
                                     attrib["status"] = "5"
                                 else:
                                     attrib["status"] = "6" #IT may be running of course, but we skip that possibility and leave user to deal with.
@@ -279,8 +280,8 @@ def generate_xml_from_project_directory(project_dir):
         with open(pluginDefXml) as f:
             t = f.read()
             if sys.version_info < (3,0):
-                xmlparser = etree.XMLParser()
-                tree = etree.fromstring(t, xmlparser)
+                xmlparser = ET.XMLParser()
+                tree = ET.fromstring(t, xmlparser)
             else:
                 tree = parse_from_unicode(t)
         return tree
@@ -299,20 +300,20 @@ def generate_xml_from_project_directory(project_dir):
         """
         typeid 29 is set to 1, since this is what export seems to do, although that seems a bit iffy to me.
         """
-        if len(pluginDefXml.xpath("ccp4i2_body")[0])>0:
-            for cont in pluginDefXml.xpath("ccp4i2_body")[0].xpath("container"):
+        if len(pluginDefXml.findall("ccp4i2_body")[0])>0:
+            for cont in pluginDefXml.findall("ccp4i2_body")[0].findall("container"):
                 if "id" in cont.attrib:
                     if cont.attrib["id"] == inout:
-                        for param in cont.xpath("content"):
+                        for param in cont.findall("content"):
                             if "id" in param.attrib:
                                 if param.attrib["id"] == jobparamname:
-                                    if len(param.xpath("className"))>0:
-                                        className = param.xpath("className")[0].text
+                                    if len(param.findall("className"))>0:
+                                        className = param.findall("className")[0].text
                                         if className in LISTCLASSES:
-                                            if len(param.xpath("subItem"))>0:
-                                                subItem = param.xpath("subItem")[0]
-                                                if len(subItem.xpath("className"))>0:
-                                                    className2 = subItem.xpath("className")[0].text
+                                            if len(param.findall("subItem"))>0:
+                                                subItem = param.findall("subItem")[0]
+                                                if len(subItem.findall("className"))>0:
+                                                    className2 = subItem.findall("className")[0].text
                                                 if len(className2) > 1:
                                                     if className2 in FILETYPE_ALIAS:
                                                         className2 = FILETYPE_ALIAS[className2]
@@ -344,23 +345,23 @@ def generate_xml_from_project_directory(project_dir):
         with open(fn) as f:
             t = f.read()
             if sys.version_info < (3,0):
-                xmlparser = etree.XMLParser()
-                tree = etree.fromstring(t, xmlparser)
+                xmlparser = ET.XMLParser()
+                tree = ET.fromstring(t, xmlparser)
             else:
                 tree = parse_from_unicode(t)
-            if len(tree.xpath("ccp4i2_header")[0].xpath("jobId"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text)>0:
-                if len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text)>0:
-                    if len(tree.xpath("ccp4i2_header")[0].xpath("pluginName"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("pluginName")[0].text)>0:
-                        jobId = tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text
-                        jobNumber = tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text
-                        pluginName = tree.xpath("ccp4i2_header")[0].xpath("pluginName")[0].text
-                        if len(tree.xpath("ccp4i2_body")[0].xpath("outputData"))>0:
-                            inputData_el = tree.xpath("ccp4i2_body")[0].xpath("outputData")[0]
+            if len(tree.findall("ccp4i2_header")[0].findall("jobId"))>0 and len(tree.findall("ccp4i2_header")[0].findall("jobId")[0].text)>0:
+                if len(tree.findall("ccp4i2_header")[0].findall("jobNumber"))>0 and len(tree.findall("ccp4i2_header")[0].findall("jobNumber")[0].text)>0:
+                    if len(tree.findall("ccp4i2_header")[0].findall("pluginName"))>0 and len(tree.findall("ccp4i2_header")[0].findall("pluginName")[0].text)>0:
+                        jobId = tree.findall("ccp4i2_header")[0].findall("jobId")[0].text
+                        jobNumber = tree.findall("ccp4i2_header")[0].findall("jobNumber")[0].text
+                        pluginName = tree.findall("ccp4i2_header")[0].findall("pluginName")[0].text
+                        if len(tree.findall("ccp4i2_body")[0].findall("outputData"))>0:
+                            inputData_el = tree.findall("ccp4i2_body")[0].findall("outputData")[0]
                             inps = inputData_el.iterdescendants()
                             for inp in inps:
-                                if len(inp.xpath("dbFileId"))>0 and len(inp.xpath("baseName"))>0:
-                                    fileid =  inp.xpath("dbFileId")[0].text
-                                    filename = inp.xpath("baseName")[0].text
+                                if len(inp.findall("dbFileId"))>0 and len(inp.findall("baseName"))>0:
+                                    fileid =  inp.findall("dbFileId")[0].text
+                                    filename = inp.findall("baseName")[0].text
                                     jobparamname = inp.tag
                                     parent = inp.find("..")
                                     while parent.tag != "outputData":
@@ -380,14 +381,14 @@ def generate_xml_from_project_directory(project_dir):
                                     else:
                                         typeid = getTypeId(pluginDefXml,jobparamname,"outputData")
                                         attrib["filetypeid"] = str(typeid)
-                                    if len(inp.xpath("annotation"))>0:
-                                        attrib["annotation"] = inp.xpath("annotation")[0].text
-                                    if len(inp.xpath("subType"))>0:
-                                        attrib["filesubtype"] = inp.xpath("subType")[0].text
-                                    if len(inp.xpath("contentFlag"))>0:
-                                        attrib["filecontent"] = inp.xpath("contentFlag")[0].text
-                                    if len(inp.xpath("relPath"))>0:
-                                        relPath = inp.xpath("relPath")[0].text
+                                    if len(inp.findall("annotation"))>0:
+                                        attrib["annotation"] = inp.findall("annotation")[0].text
+                                    if len(inp.findall("subType"))>0:
+                                        attrib["filesubtype"] = inp.findall("subType")[0].text
+                                    if len(inp.findall("contentFlag"))>0:
+                                        attrib["filecontent"] = inp.findall("contentFlag")[0].text
+                                    if len(inp.findall("relPath"))>0:
+                                        relPath = inp.findall("relPath")[0].text
                                         if relPath == "CCP4_IMPORTED_FILES":
                                             attrib["pathflag"] = "2"
                                         else:
@@ -398,28 +399,28 @@ def generate_xml_from_project_directory(project_dir):
         with open(fn) as f:
             t = f.read()
             if sys.version_info < (3,0):
-                xmlparser = etree.XMLParser()
-                tree = etree.fromstring(t, xmlparser)
+                xmlparser = ET.XMLParser()
+                tree = ET.fromstring(t, xmlparser)
             else:
                 tree = parse_from_unicode(t)
-            if len(tree.xpath("ccp4i2_header")[0].xpath("jobId"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text)>0:
-                if len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text)>0:
-                    if len(tree.xpath("ccp4i2_header")[0].xpath("pluginName"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("pluginName")[0].text)>0:
-                        jobId = tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text
-                        jobNumber = tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text
-                        pluginName = tree.xpath("ccp4i2_header")[0].xpath("pluginName")[0].text
-                        if len(tree.xpath("ccp4i2_body")[0].xpath("inputData"))>0:
-                            inputData_el = tree.xpath("ccp4i2_body")[0].xpath("inputData")[0]
+            if len(tree.findall("ccp4i2_header")[0].findall("jobId"))>0 and len(tree.findall("ccp4i2_header")[0].findall("jobId")[0].text)>0:
+                if len(tree.findall("ccp4i2_header")[0].findall("jobNumber"))>0 and len(tree.findall("ccp4i2_header")[0].findall("jobNumber")[0].text)>0:
+                    if len(tree.findall("ccp4i2_header")[0].findall("pluginName"))>0 and len(tree.findall("ccp4i2_header")[0].findall("pluginName")[0].text)>0:
+                        jobId = tree.findall("ccp4i2_header")[0].findall("jobId")[0].text
+                        jobNumber = tree.findall("ccp4i2_header")[0].findall("jobNumber")[0].text
+                        pluginName = tree.findall("ccp4i2_header")[0].findall("pluginName")[0].text
+                        if len(tree.findall("ccp4i2_body")[0].findall("inputData"))>0:
+                            inputData_el = tree.findall("ccp4i2_body")[0].findall("inputData")[0]
                             for inp in inputData_el.iterdescendants():
-                                if len(inp.xpath("dbFileId"))>0 and len(inp.xpath("baseName"))>0:
-                                    fileid =  inp.xpath("dbFileId")[0].text
-                                    filename = inp.xpath("baseName")[0].text
+                                if len(inp.findall("dbFileId"))>0 and len(inp.findall("baseName"))>0:
+                                    fileid =  inp.findall("dbFileId")[0].text
+                                    filename = inp.findall("baseName")[0].text
                                     jobparamname = inp.tag
                                     parent = inp.find("..")
                                     while parent.tag != "inputData":
                                         jobparamname = parent.tag
                                         parent = parent.find("..")
-                                    #file_el = etree.SubElement(fileTable_el,"file")
+                                    #file_el = ET.SubElement(fileTable_el,"file")
                                     attrib = OrderedDict()
                                     attrib["fileid"] = fileid
                                     attrib["filename"] = filename
@@ -434,14 +435,14 @@ def generate_xml_from_project_directory(project_dir):
                                         typeid = getTypeId(pluginDefXml,jobparamname,"inputData")
                                         attrib["filetypeid"] = str(typeid)
     
-                                    if len(inp.xpath("annotation"))>0:
-                                        attrib["annotation"] = inp.xpath("annotation")[0].text
-                                    if len(inp.xpath("subType"))>0:
-                                        attrib["filesubtype"] = inp.xpath("subType")[0].text
-                                    if len(inp.xpath("contentFlag"))>0:
-                                        attrib["filecontent"] = inp.xpath("contentFlag")[0].text
-                                    if len(inp.xpath("relPath"))>0:
-                                        relPath = inp.xpath("relPath")[0].text
+                                    if len(inp.findall("annotation"))>0:
+                                        attrib["annotation"] = inp.findall("annotation")[0].text
+                                    if len(inp.findall("subType"))>0:
+                                        attrib["filesubtype"] = inp.findall("subType")[0].text
+                                    if len(inp.findall("contentFlag"))>0:
+                                        attrib["filecontent"] = inp.findall("contentFlag")[0].text
+                                    if len(inp.findall("relPath"))>0:
+                                        relPath = inp.findall("relPath")[0].text
                                         if relPath == "CCP4_IMPORTED_FILES":
                                             attrib["pathflag"] = "2"
                                         else:
@@ -485,7 +486,7 @@ def generate_xml_from_project_directory(project_dir):
     currentids = []
     
     for j in jobs:
-        job_el = etree.SubElement(jobTable_el,"job")
+        job_el = ET.SubElement(jobTable_el,"job")
         for k,v in j.items():
             job_el.attrib[k] = v
 
@@ -499,7 +500,7 @@ def generate_xml_from_project_directory(project_dir):
                         j.attrib["status"] = "6"
 
     for f in fileuses:
-        file_el = etree.Element("fileuse")
+        file_el = ET.Element("fileuse")
         file_el.attrib["fileid"] = f["fileid"]
         file_el.attrib["jobid"] = f["jobid"]
         file_el.attrib["roleid"] = f["roleid"]
@@ -507,7 +508,7 @@ def generate_xml_from_project_directory(project_dir):
         fileUseTable_el.append(file_el)
     
     for f in files:
-        file_el = etree.Element("file")
+        file_el = ET.Element("file")
         for k,v in f.items():
             if v is not None:
                 if not k in ("number","inout"):
@@ -530,27 +531,27 @@ def generate_xml_from_project_directory(project_dir):
     #print creationTime
     #print OS
     
-    fn = etree.SubElement(ccp4i2_header,"function")
+    fn = ET.SubElement(ccp4i2_header,"function")
     fn.text = "PROJECTDATABASE"
-    projectName_el = etree.SubElement(ccp4i2_header,"projectName")
+    projectName_el = ET.SubElement(ccp4i2_header,"projectName")
     projectName_el.text = projectName
-    hostName_el = etree.SubElement(ccp4i2_header,"hostName")
+    hostName_el = ET.SubElement(ccp4i2_header,"hostName")
     hostName_el.text = hostName
-    userId_el = etree.SubElement(ccp4i2_header,"userId")
+    userId_el = ET.SubElement(ccp4i2_header,"userId")
     userId_el.text = userId
-    ccp4iVersion_el = etree.SubElement(ccp4i2_header,"ccp4iVersion")
+    ccp4iVersion_el = ET.SubElement(ccp4i2_header,"ccp4iVersion")
     ccp4iVersion_el.text = ccp4iVersion
-    projectId_el = etree.SubElement(ccp4i2_header,"projectId")
+    projectId_el = ET.SubElement(ccp4i2_header,"projectId")
     projectId_el.text = projectId
-    creationTime_el = etree.SubElement(ccp4i2_header,"creationTime")
+    creationTime_el = ET.SubElement(ccp4i2_header,"creationTime")
     creationTime_el.text = datetime.datetime.strftime(creationTime,"%H:%M %d/%b/%y")
-    OS_el = etree.SubElement(ccp4i2_header,"OS")
+    OS_el = ET.SubElement(ccp4i2_header,"OS")
     OS_el.text = OS
     
-    databaseTable_el = etree.SubElement(ccp4i2_body,"databaseTable") #Ug.
+    databaseTable_el = ET.SubElement(ccp4i2_body,"databaseTable") #Ug.
     
-    projectTable_el = etree.SubElement(ccp4i2_body,"projectTable")
-    project_el = etree.SubElement(projectTable_el,"project")
+    projectTable_el = ET.SubElement(ccp4i2_body,"projectTable")
+    project_el = ET.SubElement(projectTable_el,"project")
     project_el.attrib["projectid"] = projectId
     project_el.attrib["projectname"] = projectName
     project_el.attrib["projectcreated"] = str(datetime_to_float(creationTime))
@@ -558,23 +559,23 @@ def generate_xml_from_project_directory(project_dir):
     project_el.attrib["projectdirectory"] = projectRoot
     project_el.attrib["username"] = userId
     
-    importfileTable_el = etree.SubElement(ccp4i2_body,"importfileTable")
-    exportfileTable_el = etree.SubElement(ccp4i2_body,"exportfileTable")
-    xdataTable_el = etree.SubElement(ccp4i2_body,"xdataTable")
-    commentTable_el = etree.SubElement(ccp4i2_body,"commentTable")
-    projectcommentTable_el = etree.SubElement(ccp4i2_body,"projectcommentTable")
-    jobkeyvalueTable_el = etree.SubElement(ccp4i2_body,"jobkeyvalueTable")
-    jobkeycharvalueTable_el = etree.SubElement(ccp4i2_body,"jobkeycharvalueTable")
-    fileassociationmemberTable_el = etree.SubElement(ccp4i2_body,"fileassociationmemberTable")
-    fileassociationTable_el = etree.SubElement(ccp4i2_body,"fileassociationTable")
-    projecttagTable_el = etree.SubElement(ccp4i2_body,"projecttagTable")
-    tagTable_el = etree.SubElement(ccp4i2_body,"tagTable")
+    importfileTable_el = ET.SubElement(ccp4i2_body,"importfileTable")
+    exportfileTable_el = ET.SubElement(ccp4i2_body,"exportfileTable")
+    xdataTable_el = ET.SubElement(ccp4i2_body,"xdataTable")
+    commentTable_el = ET.SubElement(ccp4i2_body,"commentTable")
+    projectcommentTable_el = ET.SubElement(ccp4i2_body,"projectcommentTable")
+    jobkeyvalueTable_el = ET.SubElement(ccp4i2_body,"jobkeyvalueTable")
+    jobkeycharvalueTable_el = ET.SubElement(ccp4i2_body,"jobkeycharvalueTable")
+    fileassociationmemberTable_el = ET.SubElement(ccp4i2_body,"fileassociationmemberTable")
+    fileassociationTable_el = ET.SubElement(ccp4i2_body,"fileassociationTable")
+    projecttagTable_el = ET.SubElement(ccp4i2_body,"projecttagTable")
+    tagTable_el = ET.SubElement(ccp4i2_body,"tagTable")
     
     for kv in jkv:
         jobid = kv[0]
         for k,v in kv[1].items():
            if type(v) == float or type(v) == int:
-               kve = etree.SubElement(jobkeyvalueTable_el,"jobkeyvalue")
+               kve = ET.SubElement(jobkeyvalueTable_el,"jobkeyvalue")
                kve.attrib["jobid"] = jobid
                kve.attrib["keytypeid"] = str([x[1] for x in KEYTYPELIST].index(k))
                kve.attrib["value"] = str(v)
@@ -587,7 +588,7 @@ def generate_xml_from_project_directory(project_dir):
            if type(v) == float or type(v) == int:
                pass
            else:
-               kve = etree.SubElement(jobkeycharvalueTable_el,"jobkeycharvalue")
+               kve = ET.SubElement(jobkeycharvalueTable_el,"jobkeycharvalue")
                kve.attrib["jobid"] = jobid
                kve.attrib["keytypeid"] = str([x[1] for x in KEYTYPELIST].index(k))
                kve.attrib["value"] = v
@@ -596,7 +597,5 @@ def generate_xml_from_project_directory(project_dir):
 
 if __name__ == "__main__":
     project_tree = generate_xml_from_project_directory(sys.argv[1])
-    if sys.version_info < (3,0):
-        print(etree.tostring(project_tree,pretty_print=True))
-    else:
-        print(etree.tostring(project_tree,pretty_print=True).decode())
+    ET.indent(project_tree)
+    print(ET.tostring(project_tree).decode())

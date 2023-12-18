@@ -24,7 +24,8 @@ from PySide2 import QtCore
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
 from core.CCP4ErrorHandling import *
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 class molrep_pipe(CPluginScript):
 
@@ -51,10 +52,10 @@ class molrep_pipe(CPluginScript):
       else:
         self.newspacegroup = str(self.container.inputData.F_SIGF.fileContent.spaceGroup)
 
-      self.xmlroot = etree.Element('MolrepPipe')
+      self.xmlroot = ET.Element('MolrepPipe')
       self.xmlroot.text = '\n'
       with open(str(self.makeFileName('PROGRAMXML')), 'w') as ostream:
-        CCP4Utils.writeXML(ostream,etree.tostring(self.xmlroot,pretty_print=True))
+        CCP4Utils.writeXML(ostream,ET.tostring(self.xmlroot))
 
       if str(self.container.controlParameters.SG_OPTIONS) == 'laue':
         self.run1()
@@ -84,21 +85,21 @@ class molrep_pipe(CPluginScript):
 
         '''
         # not suitable for lxml
-        e1 = etree.SubElement(tree, 'RFsorted' + str(cou))
+        e1 = ET.SubElement(tree, 'RFsorted' + str(cou))
         e1.text = '\n    '
         e1.tail = '\n  '
         for rf, e2 in sorted(rf_list):
           e1.append(e2)
         '''
-        f1 = etree.SubElement(tree, 'RFsorted' + str(cou))
+        f1 = ET.SubElement(tree, 'RFsorted' + str(cou))
         f1.text = e1.text
         f1.tail = e1.tail
         for rf, e2 in sorted(rf_list):
-          f2 = etree.SubElement(f1, e2.tag)
+          f2 = ET.SubElement(f1, e2.tag)
           f2.text = e2.text
           f2.tail = e2.tail
           for e3 in e2:
-            f3 = etree.SubElement(f2, e3.tag)
+            f3 = ET.SubElement(f2, e3.tag)
             f3.text = e3.text
             f3.tail = e3.tail
 
@@ -112,7 +113,7 @@ class molrep_pipe(CPluginScript):
       tree.tail = '\n'
       tree.tag = tag
       with open(str(self.makeFileName('PROGRAMXML')), 'w') as ostream:
-        CCP4Utils.writeXML(ostream,etree.tostring(self.xmlroot,pretty_print=True))
+        CCP4Utils.writeXML(ostream,ET.tostring(self.xmlroot))
 
     @QtCore.Slot(dict)
     def fin1(self, status):
@@ -137,7 +138,7 @@ class molrep_pipe(CPluginScript):
       testList = laueE.findall('test')
       eleNames = ['space_group', 'score', 'contrast']
       for testE in testList:
-        e1 = etree.SubElement(testE, 'selected')
+        e1 = ET.SubElement(testE, 'selected')
         e1.text = '-'
         laueData.append({})
         for name in eleNames:
@@ -155,7 +156,7 @@ class molrep_pipe(CPluginScript):
       self.newspacegroup = laueData[best]['space_group']
       e1 = testList[best].find('selected')
       e1.text = 'yes'
-      e0 = etree.SubElement(laueE, 'selected')
+      e0 = ET.SubElement(laueE, 'selected')
       e0.text = self.newspacegroup
       e0.tail = '\n'
 

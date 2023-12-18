@@ -82,7 +82,7 @@ class tableone_report(Report):
         datar.append(self.xmlnode.findall('.//Ramachandran_maps/Totals/Residues')[0].text)
         datar.append(self.xmlnode.findall('.//tableone/DataInfo/Rotamers')[0].text)
         datar.append(self.xmlnode.findall('.//tableone/DataInfo/Clashscore')[0].text)
-        datar.append(str(round(float(self.xmlnode.findall('//B_averages/Totals/Aminoacids/Mean_B')[0].text), 3)))
+        datar.append(str(round(float(self.xmlnode.findall('.//B_averages/Totals/Aminoacids/Mean_B')[0].text), 3)))
         nRes = float(self.xmlnode.findall('.//Ramachandran_maps/Totals/Residues')[0].text)
         nfRes = float(self.xmlnode.findall('.//Ramachandran_maps/Totals/Favoured')[0].text)
         naRes = float(self.xmlnode.findall('.//Ramachandran_maps/Totals/Allowed')[0].text)

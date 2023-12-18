@@ -45,14 +45,14 @@ if __name__ == "__main__":
             print("------------------------------------------------------------")
             print(d)
             project_tree = reconstructDBFromXML.generate_xml_from_project_directory(str(d))
-            if len(project_tree.xpath("//ccp4i2_body/jobTable")) == 0:
+            if len(project_tree.findall(".//ccp4i2_body/jobTable")) == 0:
                 continue
-            if len(project_tree.xpath("//ccp4i2_body/jobTable/job")) == 0:
+            if len(project_tree.findall(".//ccp4i2_body/jobTable/job")) == 0:
                 continue
             if sys.version_info < (3,0):
-                outl = etree.tostring(project_tree,pretty_print=True)
+                outl = ET.tostring(project_tree,pretty_print=True)
             else:
-                outl = etree.tostring(project_tree,pretty_print=True).decode()
+                outl = ET.tostring(project_tree,pretty_print=True).decode()
             dbxmlout = os.path.join(str(d),"DATABASE.db.xml")
             with open(dbxmlout,"w+") as outfd:
                 outfd.write(outl)

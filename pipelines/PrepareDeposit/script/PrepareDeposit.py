@@ -5,7 +5,8 @@ from core.CCP4PluginScript import CPluginScript
 from PySide2 import QtCore
 import os,glob,re,time,sys,shutil
 from core import CCP4XtalData
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 import math
 from core import CCP4Modules
 from core import CCP4Utils
@@ -25,7 +26,7 @@ class PrepareDeposit(CPluginScript):
 
     def process(self):
         
-        self.xmlroot = etree.Element('PrepareDeposit')
+        self.xmlroot = ET.Element('PrepareDeposit')
         
         invalidFiles = self.checkInputData()
         if len(invalidFiles)>0:
@@ -166,6 +167,6 @@ class PrepareDeposit(CPluginScript):
         import os
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
         with open(tmpFilename,'w') as tmpFile:
-            CCP4Utils.writeXML(tmpFile,etree.tostring(xml, pretty_print=True))
+            CCP4Utils.writeXML(tmpFile,ET.tostring(xml, pretty_print=True))
         self.renameFile(tmpFilename, self.makeFileName('PROGRAMXML'))
 

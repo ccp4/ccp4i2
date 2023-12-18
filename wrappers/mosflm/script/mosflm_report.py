@@ -2,7 +2,7 @@ from __future__ import print_function
 
 from report.CCP4ReportParser import *
 import sys
-import xml.etree.ElementTree as etree
+from xml.etree import ElementTree as etree
 
 from wrappers.import_mosflm.script import import_mosflm_report
 
@@ -16,7 +16,7 @@ class mosflm_report(Report):
         if jobStatus.lower()=="nooutput": return
         
         integrationResultNode=self.makeIntegrationResult()
-        #print etree.tostring(integrationResultNode)
+        #print ET.tostring(integrationResultNode)
         importMosflmReport = import_mosflm_report.import_mosflm_report(xmlnode=integrationResultNode,jobInfo=jobInfo, jobStatus="nooutput")
 
         detectorFold = self.addFold(label="Detector and beam", initiallyOpen=True)
@@ -85,7 +85,7 @@ class mosflm_report(Report):
         regionalProfiles = []
         regionalProfileNodes = self.xmlnode.findall('.//regional_spot_profile_response')
         for regionalProfileNode in regionalProfileNodes:
-            regionalProfile = etree.Element('profile_grid')
+            regionalProfile = ET.Element('profile_grid')
             regionalProfiles += [regionalProfile]
             regionalProfile.set('block', str(len(regionalProfiles)))
             for child in regionalProfileNode:
@@ -94,7 +94,7 @@ class mosflm_report(Report):
                 elif child.tag == 'number_of_profiles_y':
                     regionalProfile.set('num_y', child.text)
                 elif child.tag == 'profile':
-                    subProfile = etree.SubElement(regionalProfile,'regional_profile')
+                    subProfile = ET.SubElement(regionalProfile,'regional_profile')
                     for grandChild in child:
                         if grandChild.tag in ['box','width','height']:
                             subProfile.set(grandChild.tag, grandChild.text)
@@ -147,7 +147,7 @@ class mosflm_report(Report):
         #And then turn this into additional XML
         #Get sorted list of image names
         imageNames = sorted([imageName for imageName in collectedData])
-        integrationResultNode = etree.Element('integration_result')
+        integrationResultNode = ET.Element('integration_result')
         integrationResultNode.set('image_files_being_processed',' '.join([imageName for imageName in imageNames]))
         for tag in integration_positional_refinement_tags:
             integrationResultNode.set(tag,' '.join([collectedData[imageName][tag] for imageName in imageNames]))
@@ -192,7 +192,7 @@ class mosflm_report(Report):
         imageNames = sorted([imageName for imageName in spotProfiles])
         profileTagLookup = {'width':'width','height':'height', 'profile':'raw_data', 'mask':'mask','image_name':'label'}
         for imageName in imageNames:
-            newProfile = etree.SubElement(integrationResultNode,'profile')
+            newProfile = ET.SubElement(integrationResultNode,'profile')
             for tag in spot_profile_tags:
                 newProfile.set(profileTagLookup[tag], spotProfiles[imageName][tag].strip())
             newProfile.set('max_data_value',str(max([int(value) for value in newProfile.get('raw_data').strip().split()])))

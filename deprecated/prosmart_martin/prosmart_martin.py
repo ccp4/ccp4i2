@@ -2,6 +2,7 @@ from __future__ import print_function
 
 
 from core.CCP4PluginScript import CPluginScript
+from xml.etree import ElementTree as ET
 
 
 class prosmart_martin(CPluginScript):
@@ -39,12 +40,13 @@ class prosmart_martin(CPluginScript):
             from core import CCP4Utils
             xmlRoot= CCP4Utils.openFileToEtree(xmlPath)
         except:
-            xmlRoot = etree.Element('PROSMART')
+            xmlRoot = ET.Element('PROSMART')
         from lxml import etree
-        htmlNode = etree.SubElement(xmlRoot,'htmlPath')
+        htmlNode = ET.SubElement(xmlRoot,'htmlPath')
         htmlNode.text = 'ProSMART_Results.html'
         with open(xmlPath,'w') as xmlFile:
-            xmlFile.write(etree.tostring(xmlRoot,pretty_print=True))
+            ET.indent(xmlRoot)
+            xmlFile.write(ET.tostring(xmlRoot))
         
         #import os, shutil
         #try:

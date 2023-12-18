@@ -12,11 +12,11 @@ if __name__ == "__main__":
     sys.path.append(os.path.join(os.path.dirname(__file__),".."))
 import importDir
 
-utf8_parser = etree.XMLParser(encoding='utf-8')
+utf8_parser = ET.XMLParser(encoding='utf-8')
 
 def parse_from_unicode(unicode_str):
     s = unicode_str.encode('utf-8')
-    return etree.fromstring(s, parser=utf8_parser)
+    return ET.fromstring(s, parser=utf8_parser)
 
 def reconstruct(inputFileName,fileName):
     with open(inputFileName, 'r') as infile: 
@@ -24,7 +24,7 @@ def reconstruct(inputFileName,fileName):
         if inputFileName.endswith(".xml"):
             s = infile.read()
             tree = parse_from_unicode(s)
-            projs = tree.xpath("//project")
+            projs = tree.findall(".//project")
             for proj in projs:
                 print("Adding",proj.text.strip(),"to list of directories to process.")
                 dirs.append(proj.text.strip())

@@ -8,7 +8,7 @@ import sys
 import functools
 
 #from lxml import etree
-import xml.etree.ElementTree as etree
+from xml.etree import ElementTree as ET
 
 from PySide2 import QtCore
 from core.CCP4ErrorHandling import *
@@ -112,22 +112,22 @@ class CReportGenerator(QtCore.QObject):
         with open(outputXmlFile,'r') as inputFile:
             text = inputFile.read()
             if sys.version_info > (3,0):
-                outputXml = etree.fromstring( text.encode('utf-8'))
+                outputXml = ET.fromstring( text.encode('utf-8'))
             else:
-                outputXml = etree.fromstring( text,CCP4ReportParser.PARSER() )
+                outputXml = ET.fromstring( text,CCP4ReportParser.PARSER() )
     except Exception as e:
         #print('Error in getOutputXml',e)
         outputXmlFile =  os.path.join(os.path.split(outputXmlFile)[0],'XMLOUT.xml')
         try:
           with open(outputXmlFile,'r') as inputFile:
               text = inputFile.read()
-              outputXml = etree.fromstring( text,CCP4ReportParser.PARSER() )
+              outputXml = ET.fromstring( text,CCP4ReportParser.PARSER() )
         except Exception as e :
             outputXmlFile = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='RVAPIXML')
             try:
              with open(outputXmlFile,'r') as inputFile:
                  text = inputFile.read()
-                 outputXml = etree.fromstring( text, CCP4RvapiParser.PARSER() )
+                 outputXml = ET.fromstring( text, CCP4RvapiParser.PARSER() )
             except:
                 # no recognised form of XML data has been found
                 outputXmlFile=None
@@ -173,7 +173,7 @@ class CReportGenerator(QtCore.QObject):
         
         #print 'makeReportFile outputXml',outputXml
     else:
-        outputXml = etree.fromstring('<dummy/>')
+        outputXml = ET.fromstring('<dummy/>')
         
     if self.jobInfo is None:
       self.jobInfo = getReportJobInfo(self.jobId)
@@ -191,12 +191,12 @@ class CReportGenerator(QtCore.QObject):
       self.report.as_html_file(fileName=self.reportFile,htmlBase=self.htmlBase())
     else:
       try:
-        xrtTree = etree.XML( open(xrtFile ).read() )
+        xrtTree = ET.XML( open(xrtFile ).read() )
       except Exception as e:
         print(e)
         raise CCP4ErrorHandling.CException(self.__class__,3,stack=False)  
       # standardise  report (add i/o/ files etc) if self.jobStatus is not Running
-      self.report = CCP4ReportParser.Report( xrtTree.xpath( "/report" )[0], outputXml,jobInfo=self.jobInfo, standardise=( self.jobStatus not in [ 'Running','Running remotely']) , jobNumber=self.jobNumber, taskVersion=self.jobInfo.get('taskversion',None) )
+      self.report = CCP4ReportParser.Report( xrtTree.findall( "/report" )[0], outputXml,jobInfo=self.jobInfo, standardise=( self.jobStatus not in [ 'Running','Running remotely']) , jobNumber=self.jobNumber, taskVersion=self.jobInfo.get('taskversion',None) )
       self.report.as_html_file(fileName=self.reportFile,htmlBase=self.htmlBase())
       
     #print 'makeReportFile',self.report.containsPictures(),self.report.pictureQueue
@@ -238,7 +238,7 @@ class CReportGenerator(QtCore.QObject):
       self.jobInfo = getReportJobInfo(self.jobId)
     doc = CCP4ReportParser.htmlDoc()
     body = doc.getroot().findall('./body')[0]
-    h3 = etree.Element('h3')
+    h3 = ET.Element('h3')
     if jobRunning:
       h3.text = 'Please wait, no output yet from job '+str(self.jobInfo['jobnumber'])+': '+ self.jobInfo['tasktitle']
     else:
@@ -246,7 +246,7 @@ class CReportGenerator(QtCore.QObject):
     body.append(h3)
 
     # Write to file
-    text = etree.tostring(doc.getroot())
+    text = ET.tostring(doc.getroot())
     CCP4Utils.saveFile(fileName=self.reportFile,text=text)
     return self.reportFile
 
@@ -266,7 +266,7 @@ class CReportGenerator(QtCore.QObject):
     if reportClass is not None:
       if self.jobInfo is None:
         self.jobInfo = getReportJobInfo(self.jobId)
-      outputXml = etree.Element('dummy')
+      outputXml = ET.Element('dummy')
       report = reportClass(xmlnode=outputXml,jobInfo=self.jobInfo, standardise=True, jobStatus = self.jobStatus , jobNumber=self.jobNumber )
       #print 'CReportGenerator report',report
       report.as_html_file(fileName=self.reportFile,htmlBase=self.htmlBase())
@@ -415,43 +415,43 @@ class CReportGenerator(QtCore.QObject):
 
 
   def mergeIntoParent(self,parentFile=None):
-    #parentTree = etree.parse(parentFile)
+    #parentTree = ET.parse(parentFile)
     parentTree = CCP4Utils.openFileToEtree(parentFile)
     #print 'mergeIntoParent jobId',self.jobId
     # Find the span-link created by CCP4ReportParser.foldLinkLine
     path = 'body/div[@class="sub-job-list"]/span[@class="folder_link"]/a[@id="jobId'+str(self.jobId)+'"]'
-    aEle = parentTree.xpath(path)
+    aEle = parentTree.findall(path)
     #print 'mergeIntoParent aEle',aEle
     if len(aEle) == 0: return CErrorReport(self.__class__,5,parentFile,stack=False)
     aEle = aEle[0]
     label = aEle.text
     #print 'mergeIntoParent',label
-    insertEle = aEle.xpath('../..')[0]
-    insertIndex = insertEle.index(aEle.xpath('..')[0])
+    insertEle = aEle.findall('../..')[0]
+    insertIndex = insertEle.index(aEle.findall('..')[0])
 
     # Convert body of sub-job report to a hidesection div
-    #myTree =  etree.parse(self.reportFile)
+    #myTree =  ET.parse(self.reportFile)
     myTree = CCP4Utils.openFileToEtree(self.reportFile)
-    body = myTree.xpath('./body')[0]
+    body = myTree.findall('./body')[0]
     body.tag ='div'
     body.set('id','jobId'+str(self.jobId))
     body.set('class','subjob')
 
     # make a span for the folder title
     # This should do the same as CCP4ReportParser.foldTitleLine()
-    span = etree.Element('span')
+    span = ET.Element('span')
     span.set('class','folder')
     span.set('onclick','toggleview(this)')
     span.text = label
 
     # Swap out the span-link and swap in proper folder
-    insertEle.remove(aEle.xpath('..')[0])
+    insertEle.remove(aEle.findall('..')[0])
     insertEle.insert(insertIndex,span)
     insertEle.insert(insertIndex+1,body)
 
     newFile = os.path.join(os.path.split(parentFile)[0],'tmp_report.html')
     #print 'mergeIntoParent newFile',newFile
-    text = etree.tostring(parentTree)
+    text = ET.tostring(parentTree)
     try:
       CCP4Utils.saveFile(fileName=newFile,text=text)
     except:

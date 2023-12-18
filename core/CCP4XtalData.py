@@ -47,6 +47,7 @@ if XMLPARSER() == 'lxml':
     from lxml import etree
 else:
     from elementtree import ElementTree as etree
+from xml.etree import ElementTree as ET
 
 def SYMMETRYMANAGER():
     # Horrible mess if loadSymLib crashes!
@@ -1433,7 +1434,7 @@ class CColumnTypeList(CCP4Data.CList):
             tag = self.objectName()
         if tag is None or len(tag) == 0:
             tag = self.className()
-        element = etree.Element(tag)
+        element = ET.Element(tag)
         txt = ''
         for item in self.__dict__['_value']:
             txt = txt + item.get() + ','
@@ -1972,10 +1973,10 @@ class CMtzData(CCP4File.CDataFileContent):
         rv = {'results' : []}
         xTree = CCP4Utils.openFileToEtree(fileName=f1[1])
         try:
-            rv['cell_volume'] = float( xTree.xpath('cell')[0].get('volume'))
+            rv['cell_volume'] = float( xTree.findall('cell')[0].get('volume'))
         except:
             pass
-        xResultList = xTree.xpath('result')
+        xResultList = xTree.findall('result')
         for xResult in xResultList:
             rv['results'].append({'nmol_in_asu' : int(xResult.get('nmol_in_asu'))})
             for item in ['matth_coef','percent_solvent','prob_matth']:
@@ -2035,15 +2036,15 @@ class CColumnGroupItem(CCP4Data.CData):
                    2 : {'description' : 'Attempting to access unknown attribute'}}
 
     def getEtree(self):
-        ele = etree.Element('columnGroupItem')
+        ele = ET.Element('columnGroupItem')
         ele.set('id',str(self.__dict__['_value']['columnName']))
         ele.append(self.__dict__['_value']['columnType'].getEtree())
         if self.__dict__['_value']['partnerTo'].get() is not None:
-            rcData = etree.Element('partnerTo')
+            rcData = ET.Element('partnerTo')
             rcData.text = str(self.__dict__['_value']['partnerTo'])
             ele.append(rcData)
             if self.__dict__['_value']['partnerOffset'].get() is not None:
-                rcOffset = etree.Element('partnerOffset')
+                rcOffset = ET.Element('partnerOffset')
                 rcOffset.text = str(self.__dict__['_value']['partnerOffset'])
                 ele.append(rcOffset)
         if self.__dict__['_value']['defaultList'].get() is not None:
@@ -2053,7 +2054,7 @@ class CColumnGroupItem(CCP4Data.CData):
 
     def setEtree(self, element, checkValidity=True):
         self.__dict__['_value']['columnName'].set(str(element.get('id')))
-        for ele in element.iterchildren():
+        for ele in element:
             name = str(ele.tag)
             if name in self.__dict__['_value']:
                 self.__dict__['_value'][name].setEtree(ele)
@@ -2179,7 +2180,7 @@ class CProgramColumnGroup0(CCP4Data.CData):
         if element is not None:
             cGele = element.find('columnGroup')
             if cGele is not None:
-                for ele in cGele.iterchildren():
+                for ele in cGele:
                     try:
                         if str(ele.tag) == 'columnGroupItem':
                             item = CColumnGroupItem(parent=self)
@@ -2211,7 +2212,7 @@ class CProgramColumnGroup0(CCP4Data.CData):
                 root.remove(ele)
         except:
             pass
-        ele = etree.Element('columnGroup')
+        ele = ET.Element('columnGroup')
         columnGroups = self.qualifiers('columnGroup')
         if columnGroups is not NotImplemented:
             for item in columnGroups:
@@ -2404,9 +2405,9 @@ class CProgramColumnGroup(CCP4Data.CData):
         name = self.objectName()
         if name is None or len(name) == 0:
             name = self.className()
-        element = etree.Element(name)
+        element = ET.Element(name)
         for columnName in self.columnGroupNames():
-            ele = etree.Element(columnName)
+            ele = ET.Element(columnName)
             if self.__dict__['_value'][columnName] is not None:
                 ele.text = self.__dict__['_value'][columnName]
             else:
@@ -2454,7 +2455,7 @@ class CProgramColumnGroup(CCP4Data.CData):
         if element is not None:
             cGele = element.find('columnGroup')
             if cGele is not None:
-                for ele in cGele.iterchildren():
+                for ele in cGele:
                     try:
                         if str(ele.tag) == 'columnGroupItem':
                             item = CColumnGroupItem(parent=self)
@@ -2486,7 +2487,7 @@ class CProgramColumnGroup(CCP4Data.CData):
                 root.remove(ele)
         except:
             pass
-        ele = etree.Element('columnGroup')
+        ele = ET.Element('columnGroup')
         columnGroups = self.qualifiers('columnGroup')
         if columnGroups is not NotImplemented:
             for item in columnGroups:

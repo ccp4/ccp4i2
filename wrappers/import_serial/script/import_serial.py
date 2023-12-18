@@ -4,7 +4,6 @@ import shutil
 import subprocess
 import glob
 import json
-from lxml import etree
 
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4XtalData
@@ -92,10 +91,10 @@ class import_serial(CPluginScript):
 
         # XML output 'program.xml' is produced by the command line application
         self.xmlout = self.makeFileName('PROGRAMXML')
-        # rootNode = etree.Element("import_serial")
+        # rootNode = ET.Element("import_serial")
         # Save xml
         #xmlfile = open(self.xmlout, 'wb')
-        #xmlString= etree.tostring(rootNode, pretty_print=True)
+        #xmlString= ET.tostring(rootNode, pretty_print=True)
         #xmlfile.write(xmlString)
         #xmlfile.close()
         print("import_serial: makeCommandAndScript end")
@@ -109,7 +108,7 @@ class import_serial(CPluginScript):
 
         # Save xml
         #xmlfile = open(self.xmlout, 'wb')
-        #xmlString= etree.tostring(root, pretty_print=True)
+        #xmlString= ET.tostring(root, pretty_print=True)
         #xmlfile.write(xmlString)
         #xmlfile.close()
         print("import_serial: processOutputFiles end")

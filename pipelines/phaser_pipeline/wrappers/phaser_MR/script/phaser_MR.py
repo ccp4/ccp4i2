@@ -5,7 +5,9 @@ import os
 import re
 from core import CCP4Data
 
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
+
 class CallbackObject(object):
     def __init__(self, xmlroot=None, xmlResponders = []):
         super(CallbackObject,self).__init__()
@@ -13,12 +15,12 @@ class CallbackObject(object):
         self.xmlResponders = xmlResponders
     def currentActivityNode(self):
         try:
-            aNode = self.xmlroot.xpath('CurrentActivity')[0]
+            aNode = self.xmlroot.findall('CurrentActivity')[0]
         except:
-            aNode = etree.SubElement(self.xmlroot,'CurrentActivity')
-            self.currentActivityLabel = etree.SubElement(aNode,'label')
-            self.currentActivityMax = etree.SubElement(aNode,'max')
-            self.currentActivityValue = etree.SubElement(aNode,'value')
+            aNode = ET.SubElement(self.xmlroot,'CurrentActivity')
+            self.currentActivityLabel = ET.SubElement(aNode,'label')
+            self.currentActivityMax = ET.SubElement(aNode,'max')
+            self.currentActivityValue = ET.SubElement(aNode,'value')
         return aNode
     def startProgressBar(self, arg1, arg2):
         aNode = self.currentActivityNode()
@@ -36,9 +38,9 @@ class CallbackObject(object):
         pass
     def warn(self, warning):
         try:
-            warningsElement = self.xmlroot.xpath('PhaserWarnings')[0]
-        except: warningsElement = etree.SubElement(self.xmlroot,'PhaserWarnings')
-        warningElement = etree.SubElement(warningsElement,'Warning')
+            warningsElement = self.xmlroot.findall('PhaserWarnings')[0]
+        except: warningsElement = ET.SubElement(self.xmlroot,'PhaserWarnings')
+        warningElement = ET.SubElement(warningsElement,'Warning')
         warningElement.text = warning
         self.notifyResponders()
     def loggraph(self, arg1, arg2):
@@ -255,7 +257,7 @@ class phaser_MR(CPluginScript):
         return CPluginScript.SUCCEEDED
 
 def subElementWithText(parent, type, value):
-    result = etree.SubElement(parent,type)
+    result = ET.SubElement(parent,type)
     result.text = str(value)
     return result
 
@@ -265,23 +267,23 @@ def xmlFromSol(solText, parentNode):
     solutionElement = None
     for line in solText.split('\n'):
         if line.strip().startswith( 'SOLU SET' ):
-            solutionElement = etree.SubElement(parentNode,'Solution')
+            solutionElement = ET.SubElement(parentNode,'Solution')
             splitLine = line.strip().split()
             if len(splitLine) > 2:
-                annotationElement = etree.SubElement(solutionElement,'Annotation')
+                annotationElement = ET.SubElement(solutionElement,'Annotation')
                 annotationElement.text = ' '.join(splitLine[2:])
         elif line.strip().startswith( 'SOLU SPAC' ):
-            spaceGroupElement = etree.SubElement(solutionElement,'spaceGroup')
+            spaceGroupElement = ET.SubElement(solutionElement,'spaceGroup')
             spaceGroupElement.text = line.strip()[10:]
         elif line.strip().startswith('SOLU 6DIM'):
-            componentElement=etree.SubElement(solutionElement,'Component')
-            nameElement = etree.SubElement(componentElement,'Name')
+            componentElement=ET.SubElement(solutionElement,'Component')
+            nameElement = ET.SubElement(componentElement,'Name')
             nameElement.text = line.strip().split()[3]
         elif not line.strip().startswith('SOLU') and not line.strip().startswith('#') and solutionElement is not None:
             #Here if the annotation is spread over multiple lines:
-            annotationElements = solutionElement.xpath('Annotation')
+            annotationElements = solutionElement.findall('Annotation')
             if len(annotationElements) > 0: annotationElements[0].text += (' ' + line.strip())
-    solutionSets = parentNode.xpath('Solution')
+    solutionSets = parentNode.findall('Solution')
     for solutionSet in solutionSets:
         expandSolutionAnnotation(solutionSet)
 
@@ -339,8 +341,8 @@ def parseAnnotation(annotation):
     return solutions
 
 def expandSolutionAnnotation(solutionSet):
-    componentNodes = solutionSet.xpath('Component')
-    annotationNodes = solutionSet.xpath('Annotation')
+    componentNodes = solutionSet.findall('Component')
+    annotationNodes = solutionSet.findall('Annotation')
     if len(annotationNodes)>0:
         annotation = annotationNodes[0].text
         solnArray = parseAnnotation(annotation)

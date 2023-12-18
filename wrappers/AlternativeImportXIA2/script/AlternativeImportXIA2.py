@@ -3,11 +3,12 @@ from __future__ import print_function
 
 from core.CCP4PluginScript import CPluginScript
 import os, sys
-from lxml import etree
 from core import CCP4Utils
 import shutil
 import glob
 import base64
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 class AlternativeImportXIA2(CPluginScript):
 
@@ -29,8 +30,7 @@ class AlternativeImportXIA2(CPluginScript):
         
         self.checkOutputData()
         
-        from lxml import etree
-        self.xmlroot = etree.Element('XIA2Import')
+        self.xmlroot = ET.Element('XIA2Import')
 
         unmergedOut =  self.container.outputData.UNMERGEDOUT
         obsOut =  self.container.outputData.HKLOUT
@@ -38,7 +38,7 @@ class AlternativeImportXIA2(CPluginScript):
 
         for runSummary in self.container.controlParameters.runSummaries:
             runName = runSummary.split(':')[0]
-            runXML = etree.SubElement(self.xmlroot,'XIA2Run',name=str(runName))
+            runXML = ET.SubElement(self.xmlroot,'XIA2Run',name=str(runName))
             dirPath = os.path.join(self.container.controlParameters.directoryPath.__str__(), runName)
             destDirPath = self.workDirectory
 
@@ -116,7 +116,7 @@ class AlternativeImportXIA2(CPluginScript):
                 print('Unable to find merged data to import for run ', runName)
     
             with open(self.makeFileName('PROGRAMXML'),'w') as xmlFile:
-                CCP4Utils.writeXML(xmlFile,etree.tostring(self.xmlroot, pretty_print=True))
+                CCP4Utils.writeXML(xmlFile,ET.tostring(self.xmlroot, pretty_print=True))
 
         self.reportStatus(CPluginScript.SUCCEEDED)
         return CPluginScript.SUCCEEDED
@@ -139,8 +139,7 @@ class AlternativeImportXIA2(CPluginScript):
             sys.path.append(smartiePath)
             import smartie
             
-            from lxml import etree
-            pointlessEtree = etree.Element(programName.upper())
+            pointlessEtree = ET.Element(programName.upper())
             
             logfile = smartie.parselog(toPath)
             for smartieTable in logfile.tables():
@@ -153,11 +152,11 @@ class AlternativeImportXIA2(CPluginScript):
                 summaryTextLines = []
                 with open(toPath) as myLogFile:
                     summaryTextLines = myLogFile.readlines()[summary.start():summary.end()-1]
-                preElement = etree.SubElement(pointlessEtree,'CCP4Summary')
+                preElement = ET.SubElement(pointlessEtree,'CCP4Summary')
                 preElementText = ''
                 for summaryTextLine in summaryTextLines:
                     preElementText += (summaryTextLine)
-                #preElement.text=etree.CDATA(preElementText)
+                #preElement.text=ET.CDATA(preElementText)
                 preElement.text=base64.b64encode(preElementText)
                     
         return pointlessEtree

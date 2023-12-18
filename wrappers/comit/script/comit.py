@@ -20,6 +20,8 @@ import os
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
 import base64
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 class comit(CPluginScript):
     TASKNAME = 'comit'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -70,13 +72,13 @@ class comit(CPluginScript):
 
         #Create (dummy) PROGRAMXML, which basically contains only the log text of the job
         #without this, a report will not be generated
-        from lxml import etree
+        
         import sys
         with open(self.makeFileName("PROGRAMXML"),"w") as programXMLFile:
-            xmlStructure = etree.Element("i2comit")
-            logText = etree.SubElement(xmlStructure,"LogText")
+            xmlStructure = ET.Element("i2comit")
+            logText = ET.SubElement(xmlStructure,"LogText")
             with open(self.makeFileName("LOG"),"r") as logFile:
-                #logText.text = etree.CDATA(logFile.read())
+                #logText.text = ET.CDATA(logFile.read())
                 logText.text = base64.b64encode(logFile.read())
-            CCP4Utils.writeXML(programXMLFile,etree.tostring(xmlStructure))
+            CCP4Utils.writeXML(programXMLFile,ET.tostring(xmlStructure))
         return CPluginScript.SUCCEEDED

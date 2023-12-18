@@ -24,7 +24,8 @@ import sys
 import time
 import os
 import shutil
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 from copy import deepcopy
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
@@ -391,13 +392,13 @@ class buccaneer_build_refine_mr(CPluginScript):
     def initialiseXML(self):
         self.pipelinexmlfile = self.makeFileName('PROGRAMXML')
         if self.restarted and os.path.exists(self.pipelinexmlfile):
-            self.xmlroot = etree.fromstring(open(self.pipelinexmlfile).read())
+            self.xmlroot = ET.fromstring(open(self.pipelinexmlfile).read())
         else:
-            self.xmlroot = etree.Element("BuccaneerBuildRefineResult")
+            self.xmlroot = ET.Element("BuccaneerBuildRefineResult")
 
     def addXMLCycle(self):
-        self.xmlcyc = etree.SubElement(self.xmlroot, "BuildRefineCycle")
-        etree.SubElement(self.xmlcyc, "Number").text = str(self.cycle + 1)
+        self.xmlcyc = ET.SubElement(self.xmlroot, "BuildRefineCycle")
+        ET.SubElement(self.xmlcyc, "Number").text = str(self.cycle + 1)
 
     def appendXMLToRoot(self, xml):
         self.xmlroot.append(xml)
@@ -408,8 +409,8 @@ class buccaneer_build_refine_mr(CPluginScript):
         self.writeXMLRoot()
 
     def writeFinalXML(self):
-        xml = etree.Element("FinalStatistics")
-        etree.SubElement(xml, "BestCycle").text = str(self.best_cycle + 1)
+        xml = ET.Element("FinalStatistics")
+        ET.SubElement(xml, "BestCycle").text = str(self.best_cycle + 1)
         cycle = self.xmlroot.findall("BuildRefineCycle")[self.best_cycle]
         for node in cycle.find("BuccaneerResult").find("Final"):
             xml.append(deepcopy(node))
@@ -419,16 +420,16 @@ class buccaneer_build_refine_mr(CPluginScript):
 
     def writeXMLRoot(self):
         with open(self.pipelinexmlfile, 'w') as f:
-            CCP4Utils.writeXML(f, etree.tostring(self.xmlroot, pretty_print=True))
+            CCP4Utils.writeXML(f, ET.tostring(self.xmlroot, pretty_print=True))
 
     def parseBuccaneerXML(self, plugin):
         return CCP4Utils.openFileToEtree(plugin.makeFileName('PROGRAMXML'))
 
     def parseRefmacXML(self, plugin):
         raw_xml = CCP4Utils.openFileToEtree(plugin.makeFileName('PROGRAMXML'))
-        stats = raw_xml.xpath("//REFMAC/Overall_stats/stats_vs_cycle")
-        new_xml = etree.Element('RefmacResult')
-        for node in stats[0].xpath("new_cycle[last()]/r_factor | new_cycle[last()]/r_free | new_cycle[last()]/rmsBOND |  new_cycle[last()]/rmsANGLE"):
+        stats = raw_xml.findall(".//REFMAC/Overall_stats/stats_vs_cycle")
+        new_xml = ET.Element('RefmacResult')
+        for node in stats[0].findall("new_cycle[last()]/r_factor | new_cycle[last()]/r_free | new_cycle[last()]/rmsBOND |  new_cycle[last()]/rmsANGLE"):
             node.text = str(node.text).strip()
             if node.tag == 'rmsBOND':
                 node.text = str(100*float(node.text))
@@ -437,27 +438,27 @@ class buccaneer_build_refine_mr(CPluginScript):
         return new_xml
 
     def parseXmlFromBeforeInterrupt(self):
-        cycles = self.xmlroot.xpath("//BuccaneerBuildRefineResult/BuildRefineCycle")
+        cycles = self.xmlroot.findall(".//BuccaneerBuildRefineResult/BuildRefineCycle")
         for cycle in cycles:
-            bxml = cycle.xpath("//BuildRefineCycle/BuccaneerResult")[-1]
+            bxml = cycle.findall(".//BuildRefineCycle/BuccaneerResult")[-1]
             self.extractBuccaneerMetrics(bxml)
-            rxml = cycle.xpath("//BuildRefineCycle/RefmacResult")[-1]
+            rxml = cycle.findall(".//BuildRefineCycle/RefmacResult")[-1]
             self.extractRefmacMetrics(rxml)
             self.checkForImprovement()
 
     def extractBuccaneerMetrics(self, xml):
-        self.completeness_by_res = float(xml.xpath('//BuccaneerResult/Final/CompletenessByResiduesBuilt')[-1].text)
-        self.completeness_by_chn = float(xml.xpath('//BuccaneerResult/Final/CompletenessByChainsBuilt')[-1].text)
-        self.n_fragments = int(xml.xpath('//BuccaneerResult/Final/FragmentsBuilt')[-1].text)
-        self.longest_fragment = int(xml.xpath('//BuccaneerResult/Final/ResiduesLongestFragment')[-1].text)
-        self.residues_built = int(xml.xpath('//BuccaneerResult/Final/ResiduesBuilt')[-1].text)
-        self.residues_sequenced = int(xml.xpath('//BuccaneerResult/Final/ResiduesSequenced')[-1].text)
+        self.completeness_by_res = float(xml.findall('.//BuccaneerResult/Final/CompletenessByResiduesBuilt')[-1].text)
+        self.completeness_by_chn = float(xml.findall('.//BuccaneerResult/Final/CompletenessByChainsBuilt')[-1].text)
+        self.n_fragments = int(xml.findall('.//BuccaneerResult/Final/FragmentsBuilt')[-1].text)
+        self.longest_fragment = int(xml.findall('.//BuccaneerResult/Final/ResiduesLongestFragment')[-1].text)
+        self.residues_built = int(xml.findall('.//BuccaneerResult/Final/ResiduesBuilt')[-1].text)
+        self.residues_sequenced = int(xml.findall('.//BuccaneerResult/Final/ResiduesSequenced')[-1].text)
         print('Number of fragments:', self.n_fragments, " Completeness:", self.completeness_by_res)
         if self.n_fragments == 0: self.reportStatus(CPluginScript.UNSATISFACTORY)
 
     def extractRefmacMetrics(self, xml):
-        self.rwork = float(xml.xpath('//RefmacResult/r_factor')[-1].text)
-        self.rfree = float(xml.xpath('//RefmacResult/r_free')[-1].text)
+        self.rwork = float(xml.findall('.//RefmacResult/r_factor')[-1].text)
+        self.rfree = float(xml.findall('.//RefmacResult/r_free')[-1].text)
         print('R-work:', self.rwork, " R-free:", self.rfree)
         if self.rwork < 0.30: self.essentiallyComplete = True
 

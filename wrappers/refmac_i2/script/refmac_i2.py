@@ -23,7 +23,8 @@ from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core.CCP4ErrorHandling import *
 from core import CCP4Modules
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 import pathlib
 
 class refmac_i2(CPluginScript):
@@ -46,7 +47,7 @@ class refmac_i2(CPluginScript):
     def __init__(self,*args, **kwargs):
         super(refmac_i2, self).__init__(*args, **kwargs)
         self._readyReadStandardOutputHandler = self.handleReadyReadStandardOutput
-        self.xmlroot = etree.Element('REFMAC')
+        self.xmlroot = ET.Element('REFMAC')
         from .refmacLogScraper import logScraper
         self.logScraper = logScraper(xmlroot=self.xmlroot, flushXML=self.flushXML)
         self.xmlLength = 0
@@ -69,7 +70,7 @@ class refmac_i2(CPluginScript):
             self.logScraper.processLogChunk(str(availableStdout))
     
     def flushXML(self):
-        newXml = etree.tostring(self.xmlroot,pretty_print=True)
+        newXml = ET.tostring(self.xmlroot)
         if len(newXml)>self.xmlLength:
             self.xmlLength = len(newXml)
             with open (self.makeFileName('PROGRAMXML')+'_tmp','w') as programXmlFile:
@@ -241,7 +242,7 @@ class refmac_i2(CPluginScript):
         try:
             rxml = CCP4Utils.openFileToEtree(os.path.normpath(os.path.join(self.getWorkDirectory(),'XMLOUT.xml')))
         except:
-            rxml = etree.Element('REFMAC')
+            rxml = ET.Element('REFMAC')
             self.appendErrorReport(204,self.makeFileName('PROGRAMXML'))
             return CPluginScript.FAILED
         
@@ -250,26 +251,26 @@ class refmac_i2(CPluginScript):
         
         #Extract performanceindictors from XML
         try:
-            self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(rxml.xpath("//new_cycle[last()]/r_factor")[-1].text)
-            self.container.outputData.PERFORMANCEINDICATOR.RFree.set(rxml.xpath("//new_cycle[last()]/r_free")[-1].text)
+            self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(rxml.findall(".//new_cycle[last()]/r_factor")[-1].text)
+            self.container.outputData.PERFORMANCEINDICATOR.RFree.set(rxml.findall(".//new_cycle[last()]/r_free")[-1].text)
         except: pass
 
         #Perform analysis of output coordinate file composition
         if os.path.isfile(str(self.container.outputData.XYZOUT.fullPath)):
             self.container.outputData.XYZOUT.fileContent.loadFile(self.container.outputData.XYZOUT.fullPath)
-            modelCompositionNode = etree.SubElement(rxml,'ModelComposition')
+            modelCompositionNode = ET.SubElement(rxml,'ModelComposition')
             for chain in self.container.outputData.XYZOUT.fileContent.composition.chains:
-                chainNode = etree.SubElement(modelCompositionNode,'Chain',id=chain)
+                chainNode = ET.SubElement(modelCompositionNode,'Chain',id=chain)
             for monomer in self.container.outputData.XYZOUT.fileContent.composition.monomers:
-                monomerNode = etree.SubElement(modelCompositionNode,'Monomer',id=monomer)
+                monomerNode = ET.SubElement(modelCompositionNode,'Monomer',id=monomer)
 
         #Skim smartie graphs from the log file
-        smartieNode = etree.SubElement(rxml,'SmartieGraphs')
+        smartieNode = ET.SubElement(rxml,'SmartieGraphs')
         self.scrapeSmartieGraphs(smartieNode)
-        et = etree.ElementTree(rxml)
+        et = ET.ElementTree(rxml)
         
         #And write out the XML
-        et.write(self.makeFileName('PROGRAMXML'), pretty_print=True)
+        et.write(self.makeFileName('PROGRAMXML'))
        
         with open(self.container.outputData.COOTSCRIPTOUT.fullPath.__str__(),"w") as cootscript:
             #Write a GUI to regions that Refmac has identified as containing duffers
@@ -287,11 +288,11 @@ class refmac_i2(CPluginScript):
         badResidueSet = set()
         badStretches = []
         
-        outlierNodes = rxml.xpath('//OutliersByCriteria')
+        outlierNodes = rxml.findall('.//OutliersByCriteria')
         if len(outlierNodes) == 0: return badStretches
         for outlierTypeNode in outlierNodes[0]:
             key = outlierTypeNode.tag
-            for outlier in outlierTypeNode.xpath('Outlier'):
+            for outlier in outlierTypeNode.findall('Outlier'):
                 res1Tuple = outlier.get('chainId1'),outlier.get('resId1')
                 res2Tuple = outlier.get('chainId2'),outlier.get('resId2')
                 badResidueSet.add(res1Tuple)

@@ -16,7 +16,8 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Lesser General Public License for more details.
 """
 
-from lxml import etree
+#from lxml import etree
+from lxml.etree import ElementTree as ET
 import os
 import shutil
 import base64
@@ -230,7 +231,7 @@ class AMPLE(CPluginScript):
             ['-ccp4i2_xml', self.makeFileName('PROGRAMXML')])
         #self.appendCommandLine(['-do_mr', False])
 
-        #         self.xmlroot = etree.Element(AMPLE_ROOT_NODE)
+        #         self.xmlroot = ET.Element(AMPLE_ROOT_NODE)
         #         logFile = os.path.join(self.getWorkDirectory(),LOGFILE_NAME)
         #         self.watchFile(logFile,self.handleLogChanged)
         return self.SUCCEEDED
@@ -238,18 +239,18 @@ class AMPLE(CPluginScript):
     def handleLogChanged(self, filename):
         with open(os.path.join(self.getWorkDirectory(), 'foo.txt'), 'a') as w:
             w.write('flushXML: {0}\n'.format(self.makeFileName('PROGRAMXML')))
-        for ampleTxtNode in self.xmlroot.xpath(AMPLE_LOG_NODE):
+        for ampleTxtNode in self.xmlroot.findall(AMPLE_LOG_NODE):
             self.xmlroot.remove(ampleTxtNode)
-        element = etree.SubElement(self.xmlroot, AMPLE_LOG_NODE)
+        element = ET.SubElement(self.xmlroot, AMPLE_LOG_NODE)
         with open(filename, 'r') as logFile:
-            #element.text = etree.CDATA(logFile.read())
+            #element.text = ET.CDATA(logFile.read())
             element.text = base64.b64encode(logFile.read())
         self.flushXML()
 
     def flushXML(self):
         tmpFilename = self.makeFileName('PROGRAMXML') + '_tmp'
         with open(tmpFilename, 'wb') as xmlFile:
-            xmlFile.write(etree.tostring(self.xmlroot, pretty_print=True))
+            xmlFile.write(ET.tostring(self.xmlroot, pretty_print=True))
         if os.path.exists(self.makeFileName('PROGRAMXML')):
             os.remove(self.makeFileName('PROGRAMXML'))
         os.rename(tmpFilename, self.makeFileName('PROGRAMXML'))

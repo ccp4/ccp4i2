@@ -5,7 +5,8 @@ import sys, os
 from core import CCP4ErrorHandling
 from core import CCP4Modules
 from pipelines.phaser_pipeline.wrappers.phaser_MR.script import phaser_MR
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 from core import CCP4Utils
 
 class EPAUTOCallbackObject(phaser_MR.CallbackObject):
@@ -17,9 +18,9 @@ class EPAUTOCallbackObject(phaser_MR.CallbackObject):
     def call_back(self, label, text):
         if label == 'current best solution':
             try:
-                for oldNode in self.xmlroot.xpath('//PhaserCurrentBestSolution'):
+                for oldNode in self.xmlroot.findall('.//PhaserCurrentBestSolution'):
                     oldNode.getparent().remove(oldNode)
-                bestSolNode =etree.SubElement(self.xmlroot,'PhaserCurrentBestSolution')
+                bestSolNode =ET.SubElement(self.xmlroot,'PhaserCurrentBestSolution')
                 phaser_MR.xmlFromSol(text, bestSolNode)
                 self.notifyResponders()
             except:
@@ -34,7 +35,7 @@ class EPAUTOCallbackObject(phaser_MR.CallbackObject):
 
 
     def flushSummary(self):
-        summaryNode = etree.SubElement(self.xmlroot,'Summary')
+        summaryNode = ET.SubElement(self.xmlroot,'Summary')
         summaryNode.text = self._summary_buffer
         self.notifyResponders()
         self._summary_buffer = ""
@@ -62,7 +63,7 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
         #Create a callback Object that will respond to callbacks from Phaser, principally by putting information
         #intp the outputXML of this plugin
 
-        self.xmlroot = etree.Element('PhaserEpResults')
+        self.xmlroot = ET.Element('PhaserEpResults')
         self.callbackObject = EPAUTOCallbackObject(self.xmlroot, [self.flushXML])
     
     def startProcess(self, command, **kw):
@@ -176,16 +177,15 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
         return CPluginScript.SUCCEEDED
     
     def subElementWithNameAndText(self, parentNode, name, text):
-        newNode = etree.SubElement(parentNode, name)
+        newNode = ET.SubElement(parentNode, name)
         newNode.text = text
         return newNode
 
     def flushXML(self, xml):
-        from lxml import etree
         import os
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
         with open(tmpFilename,'w') as tmpFile:
-            CCP4Utils.writeXML(tmpFile,etree.tostring(xml, pretty_print=True))
+            CCP4Utils.writeXML(tmpFile,ET.tostring(xml, pretty_print=True))
         self.renameFile(tmpFilename, self.makeFileName('PROGRAMXML'))
 
 

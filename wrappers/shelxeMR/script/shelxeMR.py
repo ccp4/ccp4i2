@@ -16,7 +16,8 @@ import os
 import re
 import sys
 import shutil
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
 from core import CCP4ErrorHandling
@@ -104,22 +105,23 @@ class shelxeMR(CPluginScript):
     def parseLogfile(self):
         from mrbump.parsers.parse_shelxe import ShelxeLogParser
         # Parse the shelxe logfile
-        rootNode = etree.Element("shelxeMR")
+        rootNode = ET.Element("shelxeMR")
         sxlog = ShelxeLogParser(self.makeFileName('LOG'))
-        xmlRI = etree.SubElement(rootNode, "RunInfo")
-        xmlbcyc = etree.SubElement(xmlRI, "BestCycle")
-        etree.SubElement(xmlbcyc, "BCycle").text = str(sxlog.cycle)
-        etree.SubElement(xmlbcyc, "BestCC").text = str(sxlog.CC)
-        etree.SubElement(xmlbcyc, "ChainLen").text = str(sxlog.avgChainLength)
-        etree.SubElement(xmlbcyc, "NumChains").text = str(sxlog.numChains)
+        xmlRI = ET.SubElement(rootNode, "RunInfo")
+        xmlbcyc = ET.SubElement(xmlRI, "BestCycle")
+        ET.SubElement(xmlbcyc, "BCycle").text = str(sxlog.cycle)
+        ET.SubElement(xmlbcyc, "BestCC").text = str(sxlog.CC)
+        ET.SubElement(xmlbcyc, "ChainLen").text = str(sxlog.avgChainLength)
+        ET.SubElement(xmlbcyc, "NumChains").text = str(sxlog.numChains)
         for iCyc, cycDat in enumerate(sxlog.cycleData):
-            xmlcyc = etree.SubElement(xmlRI, "Cycle")
-            etree.SubElement(xmlcyc, "NCycle").text = str(iCyc + 1)
-            etree.SubElement(xmlcyc, "CorrelationCoef").text = str(cycDat[0])
-            etree.SubElement(xmlcyc, "AverageChainLen").text = str(cycDat[1])
-            etree.SubElement(xmlcyc, "NumChains").text = str(cycDat[3])
+            xmlcyc = ET.SubElement(xmlRI, "Cycle")
+            ET.SubElement(xmlcyc, "NCycle").text = str(iCyc + 1)
+            ET.SubElement(xmlcyc, "CorrelationCoef").text = str(cycDat[0])
+            ET.SubElement(xmlcyc, "AverageChainLen").text = str(cycDat[1])
+            ET.SubElement(xmlcyc, "NumChains").text = str(cycDat[3])
         xmlfile = open(self.xmlout, 'wb')
-        xmlString= etree.tostring(rootNode, pretty_print=True)
+        ET.indent(rootNode)
+        xmlString= ET.tostring(rootNode)
         xmlfile.write(xmlString)
 
     def makeCommandAndScript(self, container=None):

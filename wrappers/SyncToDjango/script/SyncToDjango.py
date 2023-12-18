@@ -24,13 +24,12 @@ class SyncToDjango(CTaskWidget):
     DIRECTION="NeitherUpNorDown"
     
     def drawContents(self):
-        from lxml import etree
         self.openFolder(folderFunction='inputData',followFrom=False)
         from core import CCP4Modules
         container = CCP4Modules.SERVERSETUP()
         container.load()
         serversEtree = container.getEtree(excludeUnset=True)
-        allServerNames = serversEtree.xpath("//CHostname/text()")
+        allServerNames = serversEtree.findall(".//CHostname/text()")
         archiveServerNames = [name for name in allServerNames if "ManageCCP4i2Archive" in name]
         
         self.createLine(['label','Select server','widget','serverName'])

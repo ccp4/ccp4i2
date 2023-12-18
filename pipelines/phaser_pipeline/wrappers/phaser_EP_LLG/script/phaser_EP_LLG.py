@@ -4,7 +4,7 @@ import sys, os
 from core import CCP4ErrorHandling
 from core import CCP4Modules
 from pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script import phaser_EP_AUTO
-from lxml import etree
+#from lxml import etree
 
 class phaser_EP_LLG(phaser_EP_AUTO.phaser_EP_AUTO):
 

@@ -29,6 +29,8 @@ from core import CCP4Data
 from core.CCP4ErrorHandling import *
 from core.CCP4DataManager import DATAMANAGER
 from core.CCP4Config import DEVELOPER,XMLPARSER
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 
 class CContainer(CCP4Data.CData):
@@ -206,7 +208,6 @@ class CContainer(CCP4Data.CData):
         if f.header.pluginName is not None:
             self.setObjectName(str(f.header.pluginName))
         errorReport = self.loadContentsFromEtree(element=f.getBodyEtree())
-        from lxml import etree
         #print 'CContainer.loadContentsFromXml after loadContentsFromEtree',self.objectName()
         if guiAdmin:
             self.addGuiAdminContents()
@@ -306,10 +307,10 @@ class CContainer(CCP4Data.CData):
         f.header.setCurrent()
         bodyEtree = self.getEtree(excludeUnset=True)
         if subContainer is not None:
-            subConList = bodyEtree.xpath('./' + subContainer)
+            subConList = bodyEtree.findall('./' + subContainer)
             if len(subConList) > 0:
                 #from lxml import etree
-                #bodyEtree = etree.Element('dummy')
+                #bodyEtree = ET.Element('dummy')
                 #bodyEtree.append(subConList[0])
                 bodyEtree = subConList[0]
         try:
@@ -326,7 +327,7 @@ class CContainer(CCP4Data.CData):
         name = element.get('id', None)
         if name is not None:
             self.setObjectName(name)
-        for ele in element.iterchildren():
+        for ele in element:
             className = ele.tag
             cls = DATAMANAGER().getClass(className)
             if cls is None:
@@ -366,7 +367,7 @@ class CContainer(CCP4Data.CData):
             # Beware reading the ccp4i2_body id from a 'base' def file
             # readHeader will be False in this case
             self.setObjectName(name)
-        for ele in element.iterchildren():
+        for ele in element:
             obj = None
             if ele.tag == 'content':
                 #try:
@@ -456,7 +457,7 @@ class CContainer(CCP4Data.CData):
             from lxml import etree
         errors = CErrorReport()
         # Create element
-        element = etree.Element('container')
+        element = ET.Element('container')
         name = self.objectName()
         if name is not None and len(name) > 0:
             element.set('id', name)
@@ -475,7 +476,7 @@ class CContainer(CCP4Data.CData):
                     # also keep qualifiers
                     qualiEle, errs = obj.qualifiersEtree(customOnly=True, tag='qualifiers', recurse=False)
                     #print 'saveContentsToEtree qualiEle'
-                    #print etree.tostring(qualiEle, pretty_print=True)
+                    #print ET.tostring(qualiEle, pretty_print=True)
                     errors.extend(errs)
                     ele.append(qualiEle)
                     element.append(ele)
@@ -483,9 +484,9 @@ class CContainer(CCP4Data.CData):
                     #  errors.append(self.__class__, 128, name)
                 else:
                     #try:
-                        ele = etree.Element('content')
+                        ele = ET.Element('content')
                         ele.set('id',name)
-                        classEle = etree.Element('className')
+                        classEle = ET.Element('className')
                         cls =  self.CONTENTS[name].get('class', None)
                         if cls is not None:
                             classEle.text = cls.__name__
@@ -513,7 +514,7 @@ class CContainer(CCP4Data.CData):
         className = None
         qEle = None
         cEleList = []
-        for subEle in element.iterchildren():
+        for subEle in element:
             if subEle.tag == 'className':
                 className = str(subEle.text)
             elif subEle.tag == 'qualifiers':

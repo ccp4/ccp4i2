@@ -3,7 +3,7 @@ from __future__ import print_function
 from report.CCP4ReportParser import *
 from core import CCP4Utils
 import sys
-import xml.etree.ElementTree as etree
+from xml.etree import ElementTree as etree
 
 class ccp4mg_edit_model_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -141,11 +141,11 @@ class ccp4mg_edit_model_report(Report):
                          break
 
              baseSceneXML = CCP4Utils.openFileToEtree(baseScenePath)
-             et = etree.ElementTree(baseSceneXML)
+             et = ET.ElementTree(baseSceneXML)
              filename_element = et.findall(".//scene/data/MolData/filename")[0]
              MolData_element = et.findall(".//scene/data/MolData")[0]
              if len(annot)>0:
-                 name_element = etree.Element("name")
+                 name_element = ET.Element("name")
                  name_element.text = annot
                  MolData_element.append(name_element)
              del filename_element.attrib["database"]

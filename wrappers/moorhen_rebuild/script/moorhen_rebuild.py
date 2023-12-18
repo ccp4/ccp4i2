@@ -14,7 +14,8 @@ from PySide2 import QtWebEngineWidgets
 from PySide2 import QtWidgets
 from core import CCP4Modules
 from core import CCP4Utils
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 class moorhen_rebuild(CCP4PluginScript.CPluginScript):
     # class moorhen_rebuild(CInternalPlugin):
@@ -45,7 +46,7 @@ class moorhen_rebuild(CCP4PluginScript.CPluginScript):
         #def startProcess(self, *args, **kwargs):
         app = QtWidgets.QApplication.instance()    
 
-        self.xmlroot = etree.Element('moorhen_rebuild')
+        self.xmlroot = ET.Element('moorhen_rebuild')
         self.dropDir = os.path.join(self.workDirectory,'COOT_FILE_DROP')
         if not os.path.exists(self.dropDir):
             os.mkdir(self.dropDir)
@@ -113,10 +114,10 @@ class moorhen_rebuild(CCP4PluginScript.CPluginScript):
 
     def addReportWarning(self, text):
         warningsNode = None
-        warningsNodes = self.xmlroot.xpath('//Warnings')
+        warningsNodes = self.xmlroot.findall('.//Warnings')
         if len(warningsNodes) == 0:
-            warningsNode = etree.SubElement(self.xmlroot, 'Warnings')
+            warningsNode = ET.SubElement(self.xmlroot, 'Warnings')
         else:
             warningsNode = warningsNodes[0]
-        warningNode = etree.SubElement(warningsNode, 'Warning')
+        warningNode = ET.SubElement(warningsNode, 'Warning')
         warningNode.text = text

@@ -1,6 +1,7 @@
 from __future__ import print_function
 from core.CCP4PluginScript import CPluginScript
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 import os
 from wrappers.ShelxCDE.script import ShelxCDEBase
 
@@ -25,7 +26,7 @@ class ShelxCE(ShelxCDEBase.ShelxCDEBase):
         result = self.runShelxc()
         if result != CPluginScript.SUCCEEDED: return result
         
-        self.xmlroot = etree.Element('ShelxCE')
+        self.xmlroot = ET.Element('ShelxCE')
         
         logFile =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'shelxc.log'))
         self.scrapeShelxcLog(self.xmlroot, logFile)
@@ -66,14 +67,14 @@ class ShelxCE(ShelxCDEBase.ShelxCDEBase):
             return CPluginScript.FAILED
         self.scrapeShelxeLog(self.xmlroot)
         self.flushXML()
-        if len(self.xmlroot.xpath('//BETAEXPIRED')) != 0:
+        if len(self.xmlroot.findall('.//BETAEXPIRED')) != 0:
             print('ShelxCE exited with beta expired')
             self.appendErrorReport(212)
             return CPluginScript.FAILED
-        if len(self.xmlroot.xpath('//OverallFOMs/FOM')) > 0:
-            self.container.outputData.PERFORMANCE.FOM.set(float(self.xmlroot.xpath('//OverallFOMs/FOM')[-1].text))
-        if len(self.xmlroot.xpath('//OverallFOMs/PseudoFreeCC')) > 0:
-            self.container.outputData.PERFORMANCE.CC.set(float(self.xmlroot.xpath('//OverallFOMs/PseudoFreeCC')[-1].text))
+        if len(self.xmlroot.findall('.//OverallFOMs/FOM')) > 0:
+            self.container.outputData.PERFORMANCE.FOM.set(float(self.xmlroot.findall('.//OverallFOMs/FOM')[-1].text))
+        if len(self.xmlroot.findall('.//OverallFOMs/PseudoFreeCC')) > 0:
+            self.container.outputData.PERFORMANCE.CC.set(float(self.xmlroot.findall('.//OverallFOMs/PseudoFreeCC')[-1].text))
         
         phsFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'result.phs'))
         if self.container.keywords.i.isSet() and self.container.keywords.i:

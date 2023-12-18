@@ -5,7 +5,7 @@ import sys, os
 from core import CCP4ErrorHandling
 from core import CCP4Modules
 from pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script import phaser_MR_AUTO
-from lxml import etree
+#from lxml import etree
 
 class phaser_MR_RNP(phaser_MR_AUTO.phaser_MR_AUTO):
 

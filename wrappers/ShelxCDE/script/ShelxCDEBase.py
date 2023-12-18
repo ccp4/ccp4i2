@@ -3,7 +3,8 @@ from core.CCP4PluginScript import CPluginScript
 from PySide2 import QtCore
 import os,re,time,sys
 from core import CCP4XtalData
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 import math
 from core import CCP4Modules,CCP4Utils
 import base64
@@ -292,7 +293,7 @@ class ShelxCDEBase(CPluginScript):
             return CPluginScript.FAILED
 
     def scrapeShelxcLog(self, xmlroot, logFile):
-        shelxcNode = etree.SubElement(xmlroot, 'Shelxc')
+        shelxcNode = ET.SubElement(xmlroot, 'Shelxc')
         analysisNode = None
         with open(logFile,'r') as insFile:
             insLines = [line.strip() for line in insFile.readlines()]
@@ -301,7 +302,7 @@ class ShelxCDEBase(CPluginScript):
             for line in insLines:
                 tokens = line.split()
                 if 'Reflections read from' in line:
-                    datasetNode = etree.SubElement(shelxcNode,'Dataset')
+                    datasetNode = ET.SubElement(shelxcNode,'Dataset')
                     self.subElementOfTypeWithText(datasetNode,'Name', tokens[4])
                     self.subElementOfTypeWithText(datasetNode,'ReflectionsRead', tokens[0])
                 elif 'Unique reflections, highest resolution' in line:
@@ -317,9 +318,9 @@ class ShelxCDEBase(CPluginScript):
                 elif len(tokens) == 8 and 'Friedel pairs used on average for local' in line and datasetNode is not None:
                     self.subElementOfTypeWithText(datasetNode,'AverageFriedelsPerBin', tokens[0])
                 elif len(tokens) > 0 and tokens[0] == 'Resl.' and datasetNode is not None:
-                    analysisNode = etree.SubElement(datasetNode,'DataAnalysis')
+                    analysisNode = ET.SubElement(datasetNode,'DataAnalysis')
                     for iBin in range (1, len(tokens)-1):
-                        binNode = etree.SubElement(analysisNode,'Bin')
+                        binNode = ET.SubElement(analysisNode,'Bin')
                         self.subElementOfTypeWithText(binNode,'LowRes', tokens[iBin])
                         self.subElementOfTypeWithText(binNode,'HighRes', tokens[iBin+1])
                 elif len(tokens) > 0 and tokens[0] in ShelxCDEBase.tagsAndKeys and analysisNode is not None:
@@ -331,7 +332,7 @@ class ShelxCDEBase(CPluginScript):
                 elif e2TableLine >= 0:
                     if len(tokens) == 0: e2TableLine = -1
                     else:
-                        datasetNodes = shelxcNode.xpath('//Dataset')
+                        datasetNodes = shelxcNode.findall('.//Dataset')
                         if e2TableLine < len(datasetNodes):
                             self.subElementOfTypeWithText(datasetNodes[e2TableLine],'eSquaredMinus1',tokens[1])
                             e2TableLine += 1
@@ -359,14 +360,15 @@ class ShelxCDEBase(CPluginScript):
             self.lastScrapeTime = timeNow
 
     def subElementOfTypeWithText(self, parent, type, text):
-        result = etree.SubElement(parent,type)
+        result = ET.SubElement(parent,type)
         result.text = str(text)
         return result
 
     def flushXML(self):
         tmpFileName = self.makeFileName('PROGRAMXML') + '_tmp'
         with open(tmpFileName,'w') as xmlFile:
-            CCP4Utils.writeXML(xmlFile,etree.tostring(self.xmlroot, pretty_print=True))
+            ET.indent(self.xmlroot)
+            CCP4Utils.writeXML(xmlFile,ET.tostring(self.xmlroot))
         #This is attempt to fix error overwriting exisiting file on Windows
         PROGRAMXML = self.makeFileName('PROGRAMXML')
         #print 'flushXML',PROGRAMXML
@@ -534,10 +536,10 @@ OUTPUT frac
 
     def scrapeShelxdLog(self, xmlroot):
         if True:
-            oldShelxdNodes = xmlroot.xpath('Shelxd')
+            oldShelxdNodes = xmlroot.findall('Shelxd')
             for oldShelxNode in oldShelxdNodes:
                 xmlroot.remove(oldShelxNode)
-            shelxdNode = etree.SubElement(xmlroot,'Shelxd')
+            shelxdNode = ET.SubElement(xmlroot,'Shelxd')
             with open(self.makeFileName('LOG')) as logFile:
                 longlines = logFile.readlines()
                 lines = [line.strip() for line in longlines]
@@ -547,7 +549,7 @@ OUTPUT frac
                     tokens = line.replace('CPU','CPU ').split()
                     if len(tokens) > 0 and tokens[0] == 'Try':
                         # Try     15, CPU 4, CC All/Weak 37.5 / 22.8, CFOM 60.3, best 60.7, PATFOM  45.67
-                        tryNode = etree.SubElement(shelxdNode,'Try')
+                        tryNode = ET.SubElement(shelxdNode,'Try')
                         self.subElementOfTypeWithText(tryNode,'Number',tokens[1][:-1])
                         self.subElementOfTypeWithText(tryNode,'CCAll',tokens[6])
                         self.subElementOfTypeWithText(tryNode,'CCWeak',tokens[8][:-1])
@@ -562,7 +564,7 @@ OUTPUT frac
             if os.path.isfile(lstPath):
                 with open(lstPath,'r') as lstFile:
                     lstText = lstFile.read()
-                    lstNode = etree.SubElement(shelxdNode,'LstText')
+                    lstNode = ET.SubElement(shelxdNode,'LstText')
                     #lstNode.text=etree.CDATA(lstText)
                     lstNode.text=base64.b64encode(lstText)
             return CPluginScript.SUCCEEDED
@@ -573,11 +575,11 @@ OUTPUT frac
 
     def scrapeShelxeLog(self, xmlroot):
         try:
-            oldShelxeNodes = xmlroot.xpath('Shelxe')
+            oldShelxeNodes = xmlroot.findall('Shelxe')
             for oldShelxNode in oldShelxeNodes:
                 xmlroot.remove(oldShelxNode)
-            shelxeNode = etree.SubElement(xmlroot,'Shelxe')
-            globalTraceNode = etree.SubElement(shelxeNode,'GlobalAutotracingCycle')
+            shelxeNode = ET.SubElement(xmlroot,'Shelxe')
+            globalTraceNode = ET.SubElement(shelxeNode,'GlobalAutotracingCycle')
             numberNode = self.subElementOfTypeWithText(globalTraceNode,'Number','1')
             
             with open(self.makeFileName('LOG')) as logFile:
@@ -587,19 +589,19 @@ OUTPUT frac
                     tokens = line.split()
                     if len(tokens) > 0 and 'for dens.mod.' in line:
                         # Try     15, CPU 4, CC All/Weak 37.5 / 22.8, CFOM 60.3, best 60.7, PATFOM  45.67
-                        cycleNode = etree.SubElement(globalTraceNode,'Cycle')
+                        cycleNode = ET.SubElement(globalTraceNode,'Cycle')
                         self.subElementOfTypeWithText(cycleNode,'Wt',tokens[2][:-1])
                         self.subElementOfTypeWithText(cycleNode,'Contrast',tokens[5][:-1])
                         self.subElementOfTypeWithText(cycleNode,'Connect',tokens[8])
                         self.subElementOfTypeWithText(cycleNode,'Number',tokens[12])
                     elif 'Global autotracing cycle' in line:
-                        globalTraceNode = etree.SubElement(shelxeNode,'GlobalAutotracingCycle')
+                        globalTraceNode = ET.SubElement(shelxeNode,'GlobalAutotracingCycle')
                         numberNode = self.subElementOfTypeWithText(globalTraceNode,'Number',tokens[3])
                     elif 'This beta-test version has expired - please update it' in line:
-                        betaExpiredNode = etree.SubElement(shelxeNode,'BETAEXPIRED')
+                        betaExpiredNode = ET.SubElement(shelxeNode,'BETAEXPIRED')
                     elif 'Estimated mean FOM =' in line:
                         #Estimated mean FOM = 0.494   Pseudo-free CC = 52.89 %
-                        overallFOMsNode = etree.SubElement(globalTraceNode,'OverallFOMs')
+                        overallFOMsNode = ET.SubElement(globalTraceNode,'OverallFOMs')
                         self.subElementOfTypeWithText(overallFOMsNode,'FOM',tokens[4])
                         self.subElementOfTypeWithText(overallFOMsNode,'PseudoFreeCC',tokens[8])
     
@@ -609,7 +611,7 @@ OUTPUT frac
                 if os.path.isfile(lstPath):
                     with open(lstPath,'r') as lstFile:
                         lstText = lstFile.read()
-                        lstNode = etree.SubElement(shelxeNode,'LstText')
+                        lstNode = ET.SubElement(shelxeNode,'LstText')
                         #lstNode.text=etree.CDATA(lstText)
                         lstNode.text=base64.b64encode(lstText)
             return CPluginScript.SUCCEEDED

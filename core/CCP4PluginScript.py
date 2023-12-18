@@ -42,6 +42,7 @@ else:
     from core.CCP4Object import CObject
 from core.CCP4ErrorHandling import *
 from core import CCP4Modules
+from xml.etree import ElementTree as ET
 
 class CPluginScript(CObject):
 
@@ -567,8 +568,8 @@ class CPluginScript(CObject):
                 myErrorReport.append(self.__class__, 54, paramsFile)
             else:
                 body = f.getBodyEtree()
-                for cEle in body.iterchildren():
-                    for pEle in cEle.iterchildren():
+                for cEle in body:
+                    for pEle in cEle:
                         oldParamsList.append(pEle.tag)
             print('Creating project default parameters - loading old defaults for', oldParamsList)
             oldContainer = CCP4Container.CContainer()
@@ -1981,17 +1982,16 @@ class CPluginScript(CObject):
         return report
 
     def createWarningsXML(self, logfiles=[]):
-        from lxml import etree
         """
         This is an example which works well with refmac logfiles containing ATTENTION,WARNING,ERROR. 
         And at time of writing it is only called from derived prosmart_refmac plugin.
         We could probably make this more generic.
         It is up to wrapper authors to implement this appropriately and call when required.
         """
-        warningsNode = etree.SubElement(self.xmlroot,"Warnings")
+        warningsNode = ET.SubElement(self.xmlroot,"Warnings")
         for f in logfiles:
-           fileNode = etree.SubElement(warningsNode,"logFile")
-           fileNameNode = etree.SubElement(fileNode,"fileName")
+           fileNode = ET.SubElement(warningsNode,"logFile")
+           fileNameNode = ET.SubElement(fileNode,"fileName")
            fileNameNode.text = f
            with open(f) as fh:
                lines = fh.readlines()
@@ -1999,29 +1999,29 @@ class CPluginScript(CObject):
                for l in lines:
                    errors = re.findall("ERROR",l)
                    if len(errors)>0:
-                       warningNode = etree.SubElement(fileNode,"warning")
-                       typeNode = etree.SubElement(warningNode,"type")
-                       warningTextNode = etree.SubElement(warningNode,"text")
+                       warningNode = ET.SubElement(fileNode,"warning")
+                       typeNode = ET.SubElement(warningNode,"type")
+                       warningTextNode = ET.SubElement(warningNode,"text")
                        typeNode.text = "ERROR"
-                       lineNumberNode = etree.SubElement(warningNode,"lineNumber")
+                       lineNumberNode = ET.SubElement(warningNode,"lineNumber")
                        warningTextNode.text = l.rstrip("\n")
                        lineNumberNode.text = str(il)
                    warnings = re.findall("WARNING",l)
                    if len(warnings)>0:
-                       warningNode = etree.SubElement(fileNode,"warning")
-                       typeNode = etree.SubElement(warningNode,"type")
-                       warningTextNode = etree.SubElement(warningNode,"text")
+                       warningNode = ET.SubElement(fileNode,"warning")
+                       typeNode = ET.SubElement(warningNode,"type")
+                       warningTextNode = ET.SubElement(warningNode,"text")
                        typeNode.text = "WARNING"
-                       lineNumberNode = etree.SubElement(warningNode,"lineNumber")
+                       lineNumberNode = ET.SubElement(warningNode,"lineNumber")
                        warningTextNode.text = l.rstrip("\n")
                        lineNumberNode.text = str(il)
                    attentions = re.findall("ATTENTION",l)
                    if len(attentions)>0:
-                       warningNode = etree.SubElement(fileNode,"warning")
-                       typeNode = etree.SubElement(warningNode,"type")
-                       warningTextNode = etree.SubElement(warningNode,"text")
+                       warningNode = ET.SubElement(fileNode,"warning")
+                       typeNode = ET.SubElement(warningNode,"type")
+                       warningTextNode = ET.SubElement(warningNode,"text")
                        typeNode.text = "ATTENTION"
-                       lineNumberNode = etree.SubElement(warningNode,"lineNumber")
+                       lineNumberNode = ET.SubElement(warningNode,"lineNumber")
                        warningTextNode.text = l.rstrip("\n")
                        lineNumberNode.text = str(il)
                    il += 1
@@ -2463,20 +2463,19 @@ class CRunPlugin(CObject):
         self.emitFinishSignal(0)
 
     def makeLog(self):
-        from lxml import etree
-        progTree = etree.Element('programVersions')
+        progTree = ET.Element('programVersions')
         try:
             progVersions = self.plugin.getProgramVersions()
         except:
             print('ERROR trying to get program versions')
         else:
             for pV in list(progVersions.items()):
-                ele = etree.Element('programVersion')
+                ele = ET.Element('programVersion')
                 progTree.append(ele)
-                e = etree.Element('program')
+                e = ET.Element('program')
                 e.text = pV[0]
                 ele.append(e)
-                e = etree.Element('version')
+                e = ET.Element('version')
                 e.text = pV[1]
                 ele.append(e)
         body = self.errorReport.getEtree()
@@ -2487,7 +2486,9 @@ class CRunPlugin(CObject):
             print('Error saving diagnostic log file')
             print('The contents are:')
             try:
-                print(etree.tostring(self.errorReport.getEtree(), pretty_print=True))
+                theEtree = self.errorReport.getEtree()
+                ET.indent(theEtree)
+                print(ET.tostring(theEtree))
             except:
                 print('Error writing contents')
 

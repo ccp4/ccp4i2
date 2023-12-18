@@ -89,7 +89,7 @@ class import_merged(CPluginScript):
       self.freeout = None
       if self.fformat == 'mtz':
         if self.resolutioncutoff:
-            self.importXML = etree.Element('IMPORT_LOG')  # information about the import step
+            self.importXML = ET.Element('IMPORT_LOG')  # information about the import step
             status = self.importmtz()
             self.makeReportXML(self.importXML)  # add initial stuff for XML into self.importXML
             self.process1(status)
@@ -105,7 +105,7 @@ class import_merged(CPluginScript):
         # return +1 if intensity, -1 if amplitude, 0 if unknown
         self.isintensity = self.isIntensity(self.container.inputData.HKLIN_OBS_COLUMNS,
                                             fcontent.listOfColumns)
-        self.importXML = etree.Element('IMPORT_LOG')  # information about the import step
+        self.importXML = ET.Element('IMPORT_LOG')  # information about the import step
         self.makeReportXML(self.importXML)  # add initial stuff for XML into self.importXML
 
         if len(fcontent.datasets)>=2:
@@ -130,7 +130,7 @@ class import_merged(CPluginScript):
         self.process1({'finishStatus': ret })
       else:
           # not MTZ
-          self.importXML = etree.Element('IMPORT_LOG')  # information about the import step
+          self.importXML = ET.Element('IMPORT_LOG')  # information about the import step
           #  +1 if intensity, -1 if amplitude, 0 if unknown
           self.isintensity = 0
           if str(self.fformat) in [ 'sca' ]:
@@ -287,7 +287,7 @@ class import_merged(CPluginScript):
       # Add x2mtz XML if present
       if self.x2mtz is not None:
           x2mtz_XMLpath = self.x2mtz.makeFileName('PROGRAMXML')
-          x2mtz_Etree = etree.parse(x2mtz_XMLpath)
+          x2mtz_Etree = ET.parse(x2mtz_XMLpath)
           x2mtz = x2mtz_Etree.getroot()
           self.importXML.append(x2mtz)
       if self.mmcifXML is not None:
@@ -373,7 +373,7 @@ class import_merged(CPluginScript):
           #   b) aimless pipe report
           # so put these together into an IMPORT_MERGED block
           aimless_pipe_XMLpath = self.aimlesspipe.makeFileName('PROGRAMXML')
-          aimless_pipe_Etree = etree.parse(aimless_pipe_XMLpath)
+          aimless_pipe_Etree = ET.parse(aimless_pipe_XMLpath)
           aimless_pipe = aimless_pipe_Etree.getroot()
           #print 'aimless_pipe', type(aimless_pipe), aimless_pipe
           self.outputLogXML(self.importXML, aimless_pipe)  # and output it
@@ -419,12 +419,13 @@ class import_merged(CPluginScript):
     def outputLogXML(self, x1XML, x2XML=None):
       'output x1XML and optionally x2XML to program.xml'
       #print "outputLogXML", x1XML
-      rootXML = etree.Element('IMPORT_MERGED') # Global XML for everything
+      rootXML = ET.Element('IMPORT_MERGED') # Global XML for everything
       rootXML.append(x1XML)
       if x2XML is not None:
           rootXML.append(x2XML)
       with open (self.makeFileName('PROGRAMXML'),"w") as outputXML:
-          CCP4Utils.writeXML(outputXML,etree.tostring(rootXML,pretty_print=True))
+          ET.indent(rootXML)
+          CCP4Utils.writeXML(outputXML,ET.tostring(rootXML))
 
     #------------------------------------------------------------------------
     def makeReportXML(self, containerXML):
@@ -460,7 +461,7 @@ class import_merged(CPluginScript):
             resorange = self.makeResoRange()
             if resorange is not None:
                 # XML version of resolution range, a tuple of (dmax, dmin)
-                resoxml = etree.Element('ResolutionRange')
+                resoxml = ET.Element('ResolutionRange')
                 resoxml.set('id', 'cutresolution')
                 if resorange[0] > 0.0:
                     self.addElement(resoxml, 'min', "{:.3f}".format(resorange[0]))
@@ -485,7 +486,7 @@ class import_merged(CPluginScript):
     #------------------------------------------------------------------------
     def addElement(self, containerXML, elementname, elementtext):
         #print 'addElement', elementname, type(elementtext), elementtext 
-        e2 = etree.Element(elementname)
+        e2 = ET.Element(elementname)
         e2.text = elementtext
         containerXML.append(e2)
 

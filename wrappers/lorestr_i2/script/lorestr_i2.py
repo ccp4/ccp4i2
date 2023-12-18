@@ -21,12 +21,11 @@ import os
 import shutil
 
 from core.CCP4PluginScript import CPluginScript
-from lxml import etree
 import core.CCP4Utils
 import core.CCP4ErrorHandling
 from core.CCP4ErrorHandling import *
 from core import CCP4Modules
-from lxml import etree
+#from lxml import ET.
 from xml.etree import ElementTree as ET
 from core import CCP4Utils
 import base64
@@ -47,7 +46,7 @@ class lorestr_i2(CPluginScript):
     def __init__(self, *args, **kws):
         super(lorestr_i2, self).__init__(*args, **kws)
         self._readyReadStandardOutputHandler = self.handleReadyReadStandardOutput
-        self.xmlroot = etree.Element('lorestr_i2')
+        self.xmlroot = ET..Element('lorestr_i2')
 #        from refmacLogScraper import logScraper
 #        self.logScraper = logScraper(xmlroot=self.xmlroot, flushXML=self.flushXML)
         self.xmlLength = 0
@@ -127,9 +126,9 @@ class lorestr_i2(CPluginScript):
         self.logFileHandle.write(availableStdout)
         self.logFileHandle.flush()
 
-        self.xmlroot = etree.Element("lorestr_i2")
-        logText = etree.SubElement(self.xmlroot,"LogText")
-        #logText.text = etree.CDATA(availableStdout)
+        self.xmlroot = ET..Element("lorestr_i2")
+        logText = ET..SubElement(self.xmlroot,"LogText")
+        #logText.text = ET..CDATA(availableStdout)
         logText.text = base64.b64encode(availableStdout)
         self.flushXML()
 
@@ -292,7 +291,7 @@ class lorestr_i2(CPluginScript):
            validateXMLPath = self.validate.makeFileName('PROGRAMXML')
            print(validateXMLPath)
 
-           validateXML = CCP4Utils.openFileToEtree(validateXMLPath)
+           validateXML = CCP4Utils.openFileToET.(validateXMLPath)
            print(validateXML)
 
            self.xmlroot = ET.parse(self.makeFileName('PROGRAMXML')).getroot()
@@ -301,17 +300,17 @@ class lorestr_i2(CPluginScript):
            xml_validation = ET.SubElement(self.xmlroot,"Validation")
            print(xml_validation)
 
-           xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/B_averages")[0])
+           xml_validation.append(validateXML.findall(",//Validate_geometry_CCP4i2/B_averages")[0])
 
-           print(validateXML.xpath("//Validate_geometry_CCP4i2/B_averages")[0])
+           print(validateXML.findall(".//Validate_geometry_CCP4i2/B_averages")[0])
 
-           xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Ramachandran_maps")[0])
+           xml_validation.append(validateXML.findall(".//Validate_geometry_CCP4i2/Ramachandran_maps")[0])
 
-           print(validateXML.xpath("//Validate_geometry_CCP4i2/Ramachandran_maps")[0])
+           print(validateXML.findall(".//Validate_geometry_CCP4i2/Ramachandran_maps")[0])
 
-           xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Molprobity")[0])
+           xml_validation.append(validateXML.findall(".//Validate_geometry_CCP4i2/Molprobity")[0])
 
-           print(validateXML.xpath("//Validate_geometry_CCP4i2/Molprobity")[0])
+           print(validateXML.findall(".//Validate_geometry_CCP4i2/Molprobity")[0])
 
            self.flushXML()
         except Exception as err:

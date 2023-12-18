@@ -143,14 +143,14 @@ class CBaseWidget:
     def makeDragEtree(self, path, mimeType):
         from lxml import etree
         rel, base = os.path.split(path)
-        fileEle = etree.Element(str(mimeType).encode('ascii', 'ignore'))
-        ele = etree.Element('relPath')
+        fileEle = ET.Element(str(mimeType).encode('ascii', 'ignore'))
+        ele = ET.Element('relPath')
         ele.text = rel
         fileEle.append(ele)
-        ele = etree.Element('baseName')
+        ele = ET.Element('baseName')
         ele.text = base
         fileEle.append(ele)
-        text = etree.tostring(fileEle)
+        text = ET.tostring(fileEle)
         return text
 
     def acceptMimeData(self, mimeData):
@@ -172,13 +172,13 @@ class CBaseWidget:
             elif mimeData.hasFormat('jobId'):
                 dropText = mimeData.data('jobId').data()
                 from lxml import etree
-                tree = etree.fromstring(dropText)
+                tree = ET.fromstring(dropText)
                 for groupName in ['outputFiles','outputData']:
                     groupEle = tree.find(groupName)
                     if groupEle is not None:
                         for ele in groupEle:
                             if ele.tag in dragTypeList:
-                                return etree.tostring(ele)
+                                return ET.tostring(ele)
         fileList = self.getFilesFromMimeData(mimeData)
         #print('acceptMimeData fileList',fileList, self.dropTypes())
         for path,mimeType in fileList:
@@ -1594,7 +1594,7 @@ class CComplexLineWidget(CViewWidget):
   def acceptDropData(self,textData):
     #print 'CComplexLineWidget.acceptDropData',textData
     from lxml import etree
-    tree = etree.fromstring(textData)
+    tree = ET.fromstring(textData)
     tree.tag = self.dragType()
     #print 'CComplexLineWidget.acceptDropData',textData,tree.tag
     self.connectUpdateViewFromModel(False)
@@ -2568,12 +2568,12 @@ class CDataFileView(CComplexLineWidget):
     '''Reimplement drop to handle drag from outside i2'''
     #print('CDataFileView.acceptDropData',textData)
     from lxml import etree
-    tree = etree.fromstring(textData)
+    tree = ET.fromstring(textData)
     if tree.find('dbFileId') is not None and len(tree.find('dbFileId').text)>0:
       CComplexLineWidget.acceptDropData(self,textData)
     else:
       try:
-        path = os.path.join(tree.xpath('//relPath')[0].text.__str__(),tree.xpath('//baseName')[0].text.__str__())
+        path = os.path.join(tree.findall('.//relPath')[0].text.__str__(),tree.findall('.//baseName')[0].text.__str__())
         #print 'CDataFileView.acceptDropData path',path
       except:
         pass
@@ -4563,7 +4563,7 @@ class CFollowFromJobView(CComplexLineWidget):
         #print 'CFollowFromJobView.updateMenu data:',str(item),mimeData.data(item)
         if str(item).startswith('taskParameters') and str(item)[15:]==self.parentTaskWidget().taskName():
           from lxml import etree
-          root = etree.fromstring(str(mimeData.data(item)))
+          root = ET.fromstring(str(mimeData.data(item)))
           jobNo = root.find('jobNumber').text
           projectName = root.find('projectName').text
           if root.find('projectId').text == self.parentTaskWidget().projectId():
@@ -4667,7 +4667,7 @@ class CFollowFromJobView(CComplexLineWidget):
     #print 'CFollowFromJob.acceptDropData',textData, textData.count('taskParameters')
     if textData.count('taskParameters') > 0:
       from lxml import etree
-      root = etree.fromstring(textData)
+      root = ET.fromstring(textData)
       #print 'CFollowFromJob.acceptDropData',root.find('taskName').text,self.parentTaskWidget().taskName()
       try:
         if root.find('taskName').text == self.parentTaskWidget().taskName():

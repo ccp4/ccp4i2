@@ -33,7 +33,8 @@ from core import CCP4ErrorHandling
 import ccp4mg
 import hklfile
 import logging
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 logger = logging.getLogger()
 FORMAT = "%(filename)s - %(funcName)s - %(message)s"
 logging.basicConfig(format=FORMAT)
@@ -78,7 +79,7 @@ class adding_stats_to_mmcif_i2(CPluginScript):
 
     def __init__(self, *args, **kws):
         super(adding_stats_to_mmcif_i2, self).__init__(*args, **kws)
-        self.xmlroot = etree.Element('adding_stats_to_mmcif')
+        self.xmlroot = ET.Element('adding_stats_to_mmcif')
         #print("db=", PROJECTSMANAGER().db())
 
     def processInputFiles(self):
@@ -103,12 +104,12 @@ class adding_stats_to_mmcif_i2(CPluginScript):
         #print("aimless_xml_file is", aimless_xml_file)
         if aimless_xml_file is not '':
             with open(aimless_xml_file, "r") as aimlessXMLFile:
-                aimlessXML = etree.fromstring(aimlessXMLFile.read())
+                aimlessXML = ET.fromstring(aimlessXMLFile.read())
                 try:
-                    lastAimlessNode = aimlessXML.xpath('.//AIMLESS_PIPE')[-1]
+                    lastAimlessNode = aimlessXML.findall('.//AIMLESS_PIPE')[-1]
                 except IndexError as err:
                     try:
-                        lastAimlessNode = aimlessXML.xpath('.//AIMLESS')[-1]
+                        lastAimlessNode = aimlessXML.findall('.//AIMLESS')[-1]
                     except IndexError as err:
                         self.appendErrorReport(203, aimless_xml_file)
                         return CPluginScript.FAILED
@@ -119,7 +120,7 @@ class adding_stats_to_mmcif_i2(CPluginScript):
                 aimless_xml_file = os.path.join(
                     self.workDirectory, 'TempAimlessXML.xml')
                 with open(aimless_xml_file, 'wb') as tempAimlessXML:
-                    tempAimlessXML.write(etree.tostring(lastAimlessNode))
+                    tempAimlessXML.write(ET.tostring(lastAimlessNode))
 
         output_mmcif = str(self.container.outputData.MMCIFOUT.fullPath)
 
@@ -136,7 +137,7 @@ class adding_stats_to_mmcif_i2(CPluginScript):
             return self.reportStatus(CPluginScript.FAILED)
 
         with open(self.makeFileName('PROGRAMXML'), 'w') as programXML:
-            CCP4Utils.writeXML(programXML, etree.tostring(self.xmlroot))
+            CCP4Utils.writeXML(programXML, ET.tostring(self.xmlroot))
 
         if self.container.controlParameters.SENDTOVALIDATIONSERVER:
             self.performOnedepValidation()
@@ -275,10 +276,10 @@ except Exception as err:
             logging.debug('getting xml status: {}'.format(ret))
 
             with open(output_xml_file_name, "r") as validationXMLFile:
-                validationXML = etree.fromstring(validationXMLFile.read())
+                validationXML = ET.fromstring(validationXMLFile.read())
                 self.xmlroot.append(validationXML)
                 with open(self.makeFileName('PROGRAMXML'), 'w') as thisXMLFile:
-                    CCP4Utils.writeXML(thisXMLFile, etree.tostring(
+                    CCP4Utils.writeXML(thisXMLFile, ET.tostring(
                         self.xmlroot, pretty_print=True))
 
             if output_svg_file_name:

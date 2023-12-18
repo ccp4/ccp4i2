@@ -35,6 +35,7 @@ import tempfile
 import zipfile
 import tarfile
 import functools
+from xml.etree import ElementTree as ET
 
 from PySide2 import QtCore
 
@@ -200,18 +201,18 @@ class CProjectsManager(CObject):
             os.remove(b)
 
     def backupDBXML(self):
-        from lxml import etree
         from core import CCP4Utils, CCP4Modules
 
         proj_dir_list0=CCP4Modules.PROJECTSMANAGER().db().getProjectDirectoryList()
-        root = etree.Element("ProjectRoots")
+        root = ET.Element("ProjectRoots")
         for projectInfo in proj_dir_list0:
-            projectRoot = etree.Element("project")
+            projectRoot = ET.Element("project")
             projectRoot.text =  projectInfo[2]
             root.append(projectRoot)
         dbListBackupName = os.path.join(CCP4Utils.getDotDirectory(),'projectList-backup.xml')
         dbListBackupFile = open(dbListBackupName,"w+")
-        CCP4Utils.writeXML(dbListBackupFile,etree.tostring(root,pretty_print=True))
+        ET.indent(root)
+        CCP4Utils.writeXML(dbListBackupFile,ET.tostring(root))
         dbListBackupFile.close()
         print("Backed up list of projects to",dbListBackupName)
 
@@ -638,7 +639,6 @@ class CProjectsManager(CObject):
         from core import CCP4Modules
         from core import CCP4Utils
         from dbapi import CCP4DbUtils
-        from lxml import etree
         print('PROJECTSMANAGER.deleteJob importFiles', jobId, importFiles, deleteImportFiles)
         if jobId is None:
             jobId = self._db.getJobId(jobNumber=jobNumber, projectName=projectName, projectId=projectId)
@@ -722,7 +722,7 @@ class CProjectsManager(CObject):
             except:
                 raise CException(self.__class__, 143, str(jobDir))
             # Add a dummy program.xml
-            dummy = etree.Element('dummy')
+            dummy = ET.Element('dummy')
             CCP4Utils.saveEtreeToFile(dummy, os.path.join(jobDir, 'program.xml'))
             self._db.setJobToImport(jobId=jobId, projectId=projectId)
             # Save the job db backup
@@ -1857,9 +1857,8 @@ class testJob(unittest.TestCase):
         j = CJob(jobId=99,taskName='testing')  # KJS : Looks like this may not work ...
         j.inputFiles.HKLIN = {  'baseName' : 'foo.mtz', 'project' : 'myProject' }
         j.outputFiles.set({'HKLOUT' : { 'baseName' : 'foo_99.mtz', 'project' : 'myProject' }} )
-        from lxml import etree
         tree = j.getEtree()
-        text = etree.tostring(tree, pretty_print=True)
+        text = ET.tostring(tree, pretty_print=True)
         #print text
         k = CJob(jobId=99)
         k.setEtree(tree)
@@ -1890,7 +1889,6 @@ class testProject(unittest.TestCase):
         jobId = p.newJob(taskName='testing',title='Just testing projects')
         fileName = p.makeFileName(jobId=jobId,mode='LOG')
         self.assertEqual(fileName,'/Users/me/myProject/'+jobId+'_testing.log')
-        from lxml import etree
         tree = p.getEtree()
         q = CProject(name='myproject')
         q.setEtree(tree)

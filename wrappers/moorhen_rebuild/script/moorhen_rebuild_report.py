@@ -1,7 +1,5 @@
 from report.CCP4ReportParser import Report
 import sys
-from lxml import etree
-
 
 class moorhen_rebuild_report(Report):
     # Specify which gui task and/or pluginscript this applies to

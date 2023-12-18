@@ -30,7 +30,8 @@ from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
 from core.CCP4ErrorHandling import *
 
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 class x2mtz(CPluginScript):
 
@@ -53,7 +54,7 @@ class x2mtz(CPluginScript):
         self.appendErrorReport(301)
         return CPluginScript.FAILED
 
-      self.x2mtzXML = etree.Element('X2MTZ')
+      self.x2mtzXML = ET.Element('X2MTZ')
 
       #print '\nx2mtz content', inputData.HKLIN.getFileContent()
 
@@ -125,7 +126,8 @@ class x2mtz(CPluginScript):
       
       with open (self.makeFileName('PROGRAMXML'),"w") as outputXML:
           #print("*x2mtz write XML to ",outputXML)
-          CCP4Utils.writeXML(outputXML,etree.tostring(self.x2mtzXML,pretty_print=True))
+          ET.indent(self.x2mtzXML)
+          CCP4Utils.writeXML(outputXML,ET.tostring(self.x2mtzXML))
 
       #print( 'x2mtz splitHklout err',err)
       if err.maxSeverity()>SEVERITY_WARNING:
@@ -138,6 +140,6 @@ class x2mtz(CPluginScript):
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     def addElement(self, containerXML, elementname, elementtext):
         #print 'addElement', elementname, type(elementtext), elementtext 
-        e2 = etree.Element(elementname)
+        e2 = ET.Element(elementname)
         e2.text = elementtext
         containerXML.append(e2)

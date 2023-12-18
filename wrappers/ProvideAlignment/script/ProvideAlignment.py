@@ -9,6 +9,7 @@ from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
 import os
 import base64
+from xml.etree import ElementTree as ET
 
 class ProvideAlignment(CPluginScript):
 
@@ -31,7 +32,6 @@ class ProvideAlignment(CPluginScript):
     
     def startProcess(self, command, **kw):
         import os
-        from lxml import etree        
         from Bio import AlignIO, SeqIO
 
         status = CPluginScript.SUCCEEDED
@@ -81,27 +81,28 @@ class ProvideAlignment(CPluginScript):
               commentary = 'Succeeded extracting alignment from '+format+' file'
           
         # Write xml
-        root = etree.Element('ProvideAlignment')
-        commentaryNode = etree.SubElement(root,"Commentary")
+        root = ET.Element('ProvideAlignment')
+        commentaryNode = ET.SubElement(root,"Commentary")
         commentaryNode.text = commentary
-        formatNode = etree.SubElement(root,'Format')
+        formatNode = ET.SubElement(root,'Format')
         formatNode.text = format
         if status == CPluginScript.SUCCEEDED:
-          alignmentNode = etree.SubElement(root,'Alignment')
-          #alignmentNode.text = etree.CDATA(alignmentText)
+          alignmentNode = ET.SubElement(root,'Alignment')
+          #alignmentNode.text = ET.CDATA(alignmentText)
           alignmentNode.text = base64.b64encode(alignmentText)
           # Try putting sequences in to xml
           try:
             fileType, fileContent = self.container.outputData.ALIGNMENTFILE.identifyFile()
             for constituentSeq in fileContent:
-              newSequence = etree.SubElement(root, 'Sequence')
-              seqName = etree.SubElement(newSequence,'Identifier')
+              newSequence = ET.SubElement(root, 'Sequence')
+              seqName = ET.SubElement(newSequence,'Identifier')
               seqName.text = str(constituentSeq)
           except:
             pass
             
         with open (self.makeFileName('PROGRAMXML'),'w') as programXML:
-            CCP4Utils.writeXML(programXML,etree.tostring(root,pretty_print=True))
+            ET.indent(root)
+            CCP4Utils.writeXML(programXML,ET.tostring(root))
        
         return status
 

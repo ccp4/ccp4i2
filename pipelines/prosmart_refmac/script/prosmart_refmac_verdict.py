@@ -2,7 +2,8 @@ from __future__ import print_function
 
 import sys,os
 
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 import gemmi
 
@@ -11,7 +12,7 @@ from pycofe.verdicts import verdict_refmac
 
 def getJSCOFERefmac5Verdict(programxml=None,pdbfile=None,refmaclog=None):
     verdict_meta_refmac = verdict_refmac.parseRefmacLog(refmaclog)
-    tree = etree.parse(programxml)
+    tree = ET.parse(programxml)
     st = gemmi.read_structure(pdbfile)
     st.setup_entities()
 
@@ -43,7 +44,7 @@ def getJSCOFERefmac5Verdict(programxml=None,pdbfile=None,refmaclog=None):
 
     totallen = ligandlen + macrolen + waterlen
 
-    resolution = float(tree.xpath("//resolution_high")[0].text)
+    resolution = float(tree.findall(".//resolution_high")[0].text)
 
     verdict_meta = {
         "refmac":verdict_meta_refmac,
@@ -57,13 +58,13 @@ def getJSCOFERefmac5Verdict(programxml=None,pdbfile=None,refmaclog=None):
                 'ligands': []
             }, 
             'molprobity': {
-                'clashscore': float(tree.xpath("//Molprobity/Summary/Clashscore")[0].text),
-                'molp_score': float(tree.xpath("//Molprobity/Summary/Molprobity_score")[0].text),
-                'rms_bonds': float(tree.xpath("//Molprobity/Summary/RMS_bonds")[0].text),
-                'rms_angles': float(tree.xpath("//Molprobity/Summary/RMS_angles")[0].text),
-                'rama_outliers': float(tree.xpath("//Molprobity/Summary/Ramachandran_outliers")[0].text.replace('%','')),
-                'rama_favored': float(tree.xpath("//Molprobity/Summary/Ramachandran_favoured")[0].text.replace('%','')),
-                'rota_outliers':  float(tree.xpath("//Molprobity/Summary/Rotamer_outliers")[0].text.replace('%','')),
+                'clashscore': float(tree.findall(".//Molprobity/Summary/Clashscore")[0].text),
+                'molp_score': float(tree.findall(".//Molprobity/Summary/Molprobity_score")[0].text),
+                'rms_bonds': float(tree.findall(".//Molprobity/Summary/RMS_bonds")[0].text),
+                'rms_angles': float(tree.findall(".//Molprobity/Summary/RMS_angles")[0].text),
+                'rama_outliers': float(tree.findall(".//Molprobity/Summary/Ramachandran_outliers")[0].text.replace('%','')),
+                'rama_favored': float(tree.findall(".//Molprobity/Summary/Ramachandran_favoured")[0].text.replace('%','')),
+                'rota_outliers':  float(tree.findall(".//Molprobity/Summary/Rotamer_outliers")[0].text.replace('%','')),
                 #'cbeta_deviations': 1.0,
                 #'bfac_overall': 20.9,
                 #'bfac_macro': 20.1,

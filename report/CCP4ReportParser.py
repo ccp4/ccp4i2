@@ -28,10 +28,11 @@ except ImportError:
     from io import StringIO
 import os
 #from lxml import etree
-import xml.etree.ElementTree as etree
-etree.register_namespace('ccp4','http://www.ccp4.ac.uk/ccp4ns')
+from xml.etree import ElementTree as ET
+ET.register_namespace('ccp4','http://www.ccp4.ac.uk/ccp4ns')
 
 from lxml import html as lxml_html
+from xml.etree import ElementTree as ET
 
 from core.CCP4ErrorHandling import *
 
@@ -166,7 +167,7 @@ def htmlDoc(htmlBase=None,cssVersion=None,cssFile=None,jsFile=None,title=None, a
   import sys
   if cssFile is None:cssFile = 'xreport.css'
   if jsFile is None: jsFile = 'xreport.js'
-  doc = etree.parse(StringIO(DOCTYPE))
+  doc = ET.parse(StringIO(DOCTYPE))
   html = doc.getroot()
   if htmlBase is None: htmlBase = '../../report_files'
   
@@ -177,56 +178,56 @@ def htmlDoc(htmlBase=None,cssVersion=None,cssFile=None,jsFile=None,title=None, a
     if cssVersion is None: cssVersion = CURRENT_CSS_VERSION
     #print 'htmlDoc cssVersion',cssVersion
     htmlBase = htmlBase + '/'+cssVersion
-  head = etree.Element('head')
+  head = ET.Element('head')
   if title is not None:
-    titleEle =  etree.Element('title')
+    titleEle =  ET.Element('title')
     titleEle.text=title
     head.append(titleEle)
   
   allJsFiles = [jsFile]
   if additionalJsFiles is not None: allJsFiles += additionalJsFiles
   for aJsFile in allJsFiles:
-    script = etree.Element('script')
+    script = ET.Element('script')
     script.set('src',htmlBase+'/'+aJsFile)
     head.append(script)
 
   allCssFiles= [cssFile,'jspimple.css','jquery-ui-1.10.4.custom.min.css']
   if additionalCssFiles is not None: allCssFiles += additionalCssFiles
   for aCssFile in allCssFiles:
-    link = etree.Element('link')
+    link = ET.Element('link')
     link.set('rel','stylesheet')
     link.set('type','text/css')
     link.set('href',htmlBase+'/'+aCssFile)
     head.append(link)
 
   for webgl_source in WEBGLSOURCES:
-      script = etree.Element('script')
+      script = ET.Element('script')
       script.attrib['src'] = htmlBase+'/MGWebGL/'+webgl_source
       script.attrib['type'] = "text/javascript"
       head.append(script)
 
   if additionalScript is not None:
-    script = etree.Element('script')
+    script = ET.Element('script')
     script.text = additionalScript
     head.append(script)
 
   if requireDataMain is not None:
-    script = etree.Element('script')
+    script = ET.Element('script')
     script.set('src',htmlBase+'/require.min.js')
     script.set('data-main',htmlBase+'/'+requireDataMain)
     head.append(script)
 
-  script = etree.Element('script')
+  script = ET.Element('script')
   script.attrib['src'] = htmlBase+'/'+"qwebchannel.js"
   script.attrib['type'] = "text/javascript"
   head.append(script)
 
-  script = etree.Element('script')
+  script = ET.Element('script')
   script.attrib['src'] = htmlBase+'/'+"jquery.min.js"
   script.attrib['type'] = "text/javascript"
   head.append(script)
 
-  script = etree.Element('script')
+  script = ET.Element('script')
   script.attrib['src'] = htmlBase+'/'+"jquery-ui-1.10.4.custom.min.js"
   script.attrib['type'] = "text/javascript"
   head.append(script)
@@ -249,7 +250,7 @@ function onMouseOut(event,id) {
 }
   """
 
-  script = etree.Element('script')
+  script = ET.Element('script')
   script.text = mouseOutText
   head.append(script)
 
@@ -622,13 +623,13 @@ function onMouseOut(event,id) {
     
   """
 
-  script = etree.Element('script')
+  script = ET.Element('script')
   script.text = onLoadText
   head.append(script)
 
   html.append(head)
 
-  body = etree.Element('body')
+  body = ET.Element('body')
   html.append(body)
   return doc
 
@@ -746,7 +747,7 @@ def applySelect(xrtnode,xmlnode,jobInfo={}):
   return xrtnode
 
 def saveToFile(tree,fileName):
-    text = etree.tostring(tree, xml_declaration=True)
+    text = ET.tostring(tree, xml_declaration=True)
     f = open(fileName,'w')
     f.write(text)
     f.close()
@@ -772,7 +773,7 @@ def findallEval( srcexpr, xmlnode ):
 
 
 """
-class SearchableElement(etree.ElementBase):
+class SearchableElement(ET.ElementBase):
    def select(self,path):
      l = self.findall(path)
      if len(l)>0:
@@ -812,9 +813,9 @@ class SearchableElement(etree.ElementBase):
 
 def PARSER():
   if sys.version_info > (3,0):
-        I2XmlParser.insts = etree.XMLParser(encoding='utf-8')
+        I2XmlParser.insts = ET.XMLParser(encoding='utf-8')
   else:
-        I2XmlParser.insts = etree.XMLParser()
+        I2XmlParser.insts = ET.XMLParser()
   return I2XmlParser.insts
 
 class I2XmlParser:
@@ -849,7 +850,7 @@ class ReportClass(object):
     def data_url(self):
         return './tables_as_xml_files/'+self.data_id()+'.xml'
     def as_data_etree(self):
-        root = etree.Element(
+        root = ET.Element(
           'CCP4i2Report{}'.format(type(self).__name__),
           key=self.internalId,
         )
@@ -1021,7 +1022,7 @@ class Container(ReportClass):
   def as_etree(self):
     # Test if marked for removal or tag is not str (probably <!-- --> comment)
     if self.tag == XRTNS+'remove' or not isinstance(self.tag,str): return None
-    root = etree.Element(self.tag)
+    root = ET.Element(self.tag)
     root.text = self.text
     root.tail = self.tail
     if self.id is not None: root.set('id',self.id)
@@ -1048,7 +1049,7 @@ class Container(ReportClass):
               root.append(tree)
       except:
           raise
-          root.append(etree.fromstring(child))
+          root.append(ET.fromstring(child))
     return root
 
   def graph_data_as_rtf(self,fileName=None):
@@ -1078,7 +1079,7 @@ class Container(ReportClass):
   def loadXmlFile(self,fileName):
     from core import CCP4Utils
     text = CCP4Utils.readFile(fileName)
-    ele = etree.fromstring(text)
+    ele = ET.fromstring(text)
     return ele
 
   def scriptErrorReport(self):
@@ -1103,18 +1104,18 @@ class IfContainer( Container ):
     #print 'ReportParser IfContainer',xmlnode.findall( xrtnode.get( "select" ) ),type(xmlnode.findall( xrtnode.get( "select" ) ))
     if xmlnode is not None and len(xmlnode.findall( xrtnode.get( "select" ) )) != 1:
       # Failed to find the 'if' parameter in the output so do not put anything in report
-      Container.__init__ ( self, etree.Element(XRTNS+"remove"), xmlnode, jobInfo, **kw )
+      Container.__init__ ( self, ET.Element(XRTNS+"remove"), xmlnode, jobInfo, **kw )
       return
     try:
       value = toBoolean(xmlnode.findall( xrtnode.get( "select" ) )[0].text)
     except:
-      Container.__init__ ( self,  etree.Element(XRTNS+"remove"), xmlnode, jobInfo , **kw )
+      Container.__init__ ( self,  ET.Element(XRTNS+"remove"), xmlnode, jobInfo , **kw )
       return
     #print 'ReportParser IfContainer from program output:',value,'target:',target
     if value == target:
       Container.__init__ ( self, xrtnode, xmlnode, jobInfo )
     else:
-      Container.__init__ ( self, etree.Element(XRTNS+"remove"), xmlnode, jobInfo, **kw  )
+      Container.__init__ ( self, ET.Element(XRTNS+"remove"), xmlnode, jobInfo, **kw  )
 
 class Loop(ReportClass):
 
@@ -1141,7 +1142,7 @@ class Loop(ReportClass):
 
       
   def as_etree(self):
-    root = etree.Element('root')
+    root = ET.Element('root')
     root.text = self.text
     root.tail = self.tail
     if self.id is not None: root.set('id',self.id)
@@ -1219,7 +1220,7 @@ class Report( Container ):
         if xmlnode is None and 'xmlFile' in kw:
             try:
                 text = open( kw['xmlFile'] ).read()
-                self.xmlnode = etree.fromstring( text, PARSER() )
+                self.xmlnode = ET.fromstring( text, PARSER() )
             except Exception as e:
                 self.errReport.append(self.__class__,106, 'Reading file: '+str(kw['xmlFile'])+'\n'+str(e))
                 return
@@ -1253,7 +1254,7 @@ class Report( Container ):
                     self.errReport.append(self.__class__,101,fileName)
                 else:
                     try:
-                        ele = etree.fromstring( open(fileName ).read(), PARSER() )
+                        ele = ET.fromstring( open(fileName ).read(), PARSER() )
                     except:
                         self.errReport.append(self.__class__,102,fileName)
                     else:
@@ -1274,7 +1275,7 @@ class Report( Container ):
             if ele is not None:      
                 for child in ele.getchildren(): insertEle.addnext(child)
                 insertEle.getparent().remove(insertEle)
-            #print etree.tostring(xrtnode,pretty_print=True)
+            #print ET.tostring(xrtnode,pretty_print=True)
         return xrtnode
 
     def containsPictures(self):
@@ -1315,19 +1316,19 @@ class Report( Container ):
                
     def standardiseXrtReport(self,report):
         #if report.find(XRTNS+'title') is None:
-        #  titleEle = etree.Element(XRTNS+'title')
+        #  titleEle = ET.Element(XRTNS+'title')
         #  report.insert(0,titleEle)      
         if report.find(XRTNS+'inputdata') is None:
-            inEle = etree.Element(XRTNS+'inputdata')
+            inEle = ET.Element(XRTNS+'inputdata')
             report.append(inEle)
         if report.find(XRTNS+'outputdata') is None:
-            outEle = etree.Element(XRTNS+'outputdata')
+            outEle = ET.Element(XRTNS+'outputdata')
             report.append(outEle)
         #if report.find(XRTNS+'drilldown') is None:
-        #  jobEle = etree.Element(XRTNS+'drilldown')
+        #  jobEle = ET.Element(XRTNS+'drilldown')
         #  report.append(jobEle)
         if report.find(XRTNS+'jobdetails') is None:
-            jobEle = etree.Element(XRTNS+'jobdetails')
+            jobEle = ET.Element(XRTNS+'jobdetails')
             report.append(jobEle)
         return report
 
@@ -1363,7 +1364,7 @@ class Report( Container ):
         tree = self.as_etree(htmlBase,cssVersion=cssVersion)
         remove_namespace(tree, u"http://www.w3.org/2000/svg","svg","svg")
         remove_namespace(tree, u"http://www.w3.org/1999/xlink","xlink")
-        text = b'<!DOCTYPE html>\n'+etree.tostring(tree.getroot(), short_empty_elements=False, method="html")
+        text = b'<!DOCTYPE html>\n'+ET.tostring(tree.getroot(), short_empty_elements=False, method="html")
         return text
 
     def as_data_etree(self):
@@ -1385,7 +1386,9 @@ class Report( Container ):
         else:
             doc = htmlDoc(cssFile=self.cssFile,jsFile=self.jsFile,cssVersion=cssVersion,title=self.getTitle(), additionalJsFiles=self.additionalJsFiles, additionalCssFiles=self.additionalCssFiles, requireDataMain=self.requireDataMain, additionalScript=self.additionalScript)
         body = doc.getroot().findall('./body')[0]
-        #print 'Report.as_etree',self,etree.tostring(Container.as_etree(self),pretty_print=True)
+        #anEtree=Container.as_etree(self)
+        #ET.indent(anEtree)
+        #print 'Report.as_etree',self,ET.tostring(anEtree)
         tree = Container.as_etree(self)
         body.text = tree.text
         body.tail = tree.tail
@@ -1395,9 +1398,9 @@ class Report( Container ):
         return doc
 
     def addLinks(self,body):
-        links = etree.Element('div')
+        links = ET.Element('div')
         #links.set('class','links')
-        #eleTree = etree.parse(StringIO('<ccp4:ccp4_data xmlns:ccp4="'+CCP4NS+'"></ccp4:ccp4_data>'))
+        #eleTree = ET.parse(StringIO('<ccp4:ccp4_data xmlns:ccp4="'+CCP4NS+'"></ccp4:ccp4_data>'))
         #links = eleTree.getroot()
         links.set('id','navbar')
         #links.set('type','CLinksInReport')
@@ -1411,7 +1414,7 @@ class Report( Container ):
         #print 'addLinks linkList',linkList
         for href,label in linkList:
             print(href)
-            anchor = etree.Element('a')
+            anchor = ET.Element('a')
             anchor.set('href','#'+href)
             anchor.text = label
             links.append(anchor)   
@@ -1580,11 +1583,11 @@ class Report( Container ):
 
 class Results(Container):
   def as_etree(self, htmlBase=None):
-    root = etree.Element('root')
-    anchor = etree.Element('a')
+    root = ET.Element('root')
+    anchor = ET.Element('a')
     anchor.set('name','results')
     root.append(anchor)
-    head = etree.Element('h5')
+    head = ET.Element('h5')
     if self.id is not None: head.set('id',self.id)
     if self.class_ is not None:
       head.set('class',self.class_)
@@ -1613,7 +1616,7 @@ class DrillDown(ReportClass):
     if jobDir is not None: jobDir = os.path.split(jobDir)[0]  
     subJobs = self.getSubJobs(jobDir)
     #print 'DrillDown.as_etree subJobs',subJobs
-    if len(subJobs)==0: return  etree.Element('root')
+    if len(subJobs)==0: return  ET.Element('root')
     
     # make a folder
     '''
@@ -1624,11 +1627,11 @@ class DrillDown(ReportClass):
       root.append(fold)
     div = root.find('div')
     '''
-    div = etree.Element('div')
+    div = ET.Element('div')
     div.set('class','sub-job-list')
     if self.id is not None: div.set('id',self.id)
     if self.class_ is not None: div.set('class',self.class_)
-    h4 = etree.Element('h4')
+    h4 = ET.Element('h4')
     h4.text = 'Sub-Jobs'
     div.append(h4)
     
@@ -1654,24 +1657,24 @@ class DrillDown(ReportClass):
       '''
       # Simple link mode
       div = root.find('div')
-      a =  etree.Element('a')
+      a =  ET.Element('a')
       a.set('href',job[3])
       a.set('id','jobId'+str(job[1]))
       a.text= text
       div.append(a)
-      div.append(etree.Element('br'))
+      div.append(ET.Element('br'))
       '''   
       
       '''
       # Alternative 'button' mode
-      obj = etree.Element('object')
+      obj = ET.Element('object')
       obj.set('class','qt_object_subjob')
       obj.set('type','x-ccp4-widget/CSubJobButton')
       #obj.set('id',self.id+'_'+str(job[0]))
       div.append(obj)
 
       for key,value in [['label',text],['jobId',str(self.jobInfo.get('jobid',None))],['subJobNumber',job[0]],['link',job[2]]:
-        p = etree.Element('param')
+        p = ET.Element('param')
         p.set('name',key)
         p.set('value',value)
         obj.append(p)
@@ -1713,11 +1716,11 @@ class DrillDown(ReportClass):
 
 
 def foldTitleLine(label, initiallyOpen, brief = None):
-  root = etree.Element('root')
-  anchor = etree.Element('a')
+  root = ET.Element('root')
+  anchor = ET.Element('a')
   anchor.set('name',label)
   root.append(anchor)
-  span = etree.Element('span')
+  span = ET.Element('span')
   span.set('class','folder')
   if brief is not None: span.set('title',brief)
   span.set('onclick',"toggleview(this)")
@@ -1726,7 +1729,7 @@ def foldTitleLine(label, initiallyOpen, brief = None):
   else:
       span.text = u"\u25B6"+ " "+label
   root.append(span)
-  div = etree.Element('div')
+  div = ET.Element('div')
   if initiallyOpen:
       div.set('class','hidesection displayed')
   else:
@@ -1736,13 +1739,13 @@ def foldTitleLine(label, initiallyOpen, brief = None):
 
 def foldLinkLine(label,href,id):
   '''
-  root = etree.Element('root')
-  anchor = etree.Element('a')
+  root = ET.Element('root')
+  anchor = ET.Element('a')
   anchor.set('name',label)
   root.append(anchor)
-  span = etree.Element('span')
+  span = ET.Element('span')
   span.set('class','folder_link')
-  a =  etree.Element('a')
+  a =  ET.Element('a')
   a.set('href',href)
   a.set('id',id)
   a.text = 'Show '+label
@@ -1756,13 +1759,13 @@ def foldLinkLine(label,href,id):
   <span class="folder" onclick="togglesubjob(this)">Show 1: Model building - Buccaneer</span>
   <div id="jobId613" class="subjob"></div>
   '''
-  root = etree.Element('root')
-  span = etree.Element('span')
+  root = ET.Element('root')
+  span = ET.Element('span')
   span.set('class','folder')
   span.set('onclick',"togglesubjob(this)")
   span.text = 'Show '+label
   root.append(span)
-  div = etree.Element('div')
+  div = ET.Element('div')
   div.set('id',id)
   div.set('class','subjob')
   root.append(div)
@@ -1832,7 +1835,7 @@ class Text(ReportClass):
   def as_etree(self):
     # Tag as dummy so parent container will strip the tags
     if self.outputXml:
-        return  etree.fromstring('<span data-url="'+self.data_url()+'"></span>')
+        return  ET.fromstring('<span data-url="'+self.data_url()+'"></span>')
     else:
         return self.data_as_xml()
       
@@ -1840,9 +1843,9 @@ class Text(ReportClass):
     # Tag as dummy so parent container will strip the tags
 
     if self.text is not None:
-        root = etree.Element("div")
+        root = ET.Element("div")
     else:
-        root = etree.Element(self.tag)
+        root = ET.Element(self.tag)
 
     if self.style is not None: root.set('style',self.style)
     if self.class_ is not None: root.set('class',self.class_)
@@ -1851,7 +1854,7 @@ class Text(ReportClass):
           #This is a hack to deal with libxml2 crash with "some" strings on macOS. SJM 01/09/2023
           ts = self.text.split("\n")
           for t in ts:
-              el = etree.Element(self.tag)
+              el = ET.Element(self.tag)
               if self.style is None: el.set('style',"line-height: normal; margin: 0px 0px 0px 0px;")
               el.text = t
               root.append(el)
@@ -1865,10 +1868,7 @@ class Text(ReportClass):
     
     if fileName is not None:
         with open(fileName,'w') as outputFile:
-            if sys.version_info > (3,0):
-                outputFile.write(etree.tostring(root).decode())
-            else:
-                outputFile.write(etree.tostring(root))
+            outputFile.write(ET.tostring(root).decode())
     
     return root
 
@@ -1888,7 +1888,7 @@ class Status(Container):
     return "<div width='100%' style='background-color:#80FF80;'><h1>"+self.text+"</h1></div>"
 
   def as_etree(self):
-    div = etree.Element('div')
+    div = ET.Element('div')
     if self.id is not None: div.set('id',self.id)
     if self.class_ is not None: div.set('class',self.class_)
     #div.set('width','100%')
@@ -1905,7 +1905,7 @@ class Copy(ReportClass):
   def __init__( self, xrtnode=None, xmlnode=None, **kw ):
     super(Copy,self).__init__(xrtnode=xrtnode, xmlnode=xmlnode, **kw)
     self.text = ""
-    self.root = etree.Element('root')
+    self.root = ET.Element('root')
     if xmlnode is not None:
        if xrtnode is not None:
           self.root.extend(xmlnode.findall( xrtnode.get( "select" ) ))
@@ -1918,7 +1918,7 @@ class Copy(ReportClass):
   def as_html( self ):
     text = ''
     for node in self.root.iterChildren(): 
-      text += etree.tostring( node )
+      text += ET.tostring( node )
     return text
 
   def as_etree(self):
@@ -1939,15 +1939,15 @@ class Generic(ReportClass):
     if xrtnode is None and text is not None:
       try:
         if sys.version_info > (3,0):
-            xrtnode = etree.fromstring(text.encode('utf-8'))
+            xrtnode = ET.fromstring(text.encode('utf-8'))
         else:
-            xrtnode = etree.fromstring(text,PARSER())
+            xrtnode = ET.fromstring(text,PARSER())
       except:
         try:
             if sys.version_info > (3,0) and type(text) == bytes:
-                xrtnode = etree.fromstring('<'+defaultTag+'>'+text.encode('utf-8')+'</'+defaultTag+'>')
+                xrtnode = ET.fromstring('<'+defaultTag+'>'+text.encode('utf-8')+'</'+defaultTag+'>')
             else:
-                xrtnode = etree.fromstring('<'+defaultTag+'>'+text+'</'+defaultTag+'>')
+                xrtnode = ET.fromstring('<'+defaultTag+'>'+text+'</'+defaultTag+'>')
         except:
           raise
           raise CException(self.__class__,1,str(text))
@@ -2143,16 +2143,16 @@ class BaseTable(ReportClass):
   def as_etree(self):
     # check for subheads
     hassubhead = sum( [ x != None for x in self.colsubtitle ] ) > 0
-    table = etree.Element('table')
+    table = ET.Element('table')
     if self.id is not None: table.set('id',self.id)
     if self.class_ is not None: table.set('class',self.class_)
     if self.style is not None: table.set('style',self.style)
     
     # deal with normal and transpose tables in turn
     if not self.transpose:
-      head = etree.Element('thead')
+      head = ET.Element('thead')
       table.append(head)
-      headtr = etree.Element('tr')
+      headtr = ET.Element('tr')
       for i in range(len(self.coltitle)):
         if self.coltitle[i] != None:
           span = 1
@@ -2160,47 +2160,47 @@ class BaseTable(ReportClass):
             if self.coltitle[i+span] != None:
               break
             span += 1
-          th =  etree.Element('th')
+          th =  ET.Element('th')
           th.text = self.coltitle[i] if self.coltitle[i] else ""
           if span > 1: th.set('colspan',str(span))
           headtr.append(th)
       head.append(headtr)
-      tbody = etree.Element('tbody')
+      tbody = ET.Element('tbody')
       tbody.set('class','fancy')
       for i in range(len(self.coldata[0])):
-        tr= etree.Element('tr')
+        tr= ET.Element('tr')
         for col in self.coldata:
-          td = etree.Element('td')
+          td = ET.Element('td')
           td.text = str(col[i])
           tr.append(td)
         tbody.append(tr)
       table.append(tbody)
     else:
-      tbody = etree.Element('tbody')
+      tbody = ET.Element('tbody')
       tbody.set('class','fancy')
       for i in range(len(self.coldata)):
-        tr = etree.Element('tr')
+        tr = ET.Element('tr')
         tbody.append(tr)
-        th = etree.Element('th')
+        th = ET.Element('th')
         if self.coltitle[i] != None: th.text = str(self.coltitle[i])
         tr.append(th)
         if hassubhead:
-          th1 = etree.Element('th')
+          th1 = ET.Element('th')
           if self.colsubtitle[i] != None: th1.text = self.colsubtitle[i]
           tr.append(th1)
         for j in range(len(self.coldata[i])):
-          td = etree.Element('td')
+          td = ET.Element('td')
           td.text = str(self.coldata[i][j])
           tr.append(td)
       table.append(tbody)
 
-    root = etree.Element('root')
+    root = ET.Element('root')
     if self.help is None and self.download is None:
       root.append(table)
     else:
       
       #This is not working well
-      div = etree.Element('div')
+      div = ET.Element('div')
       div.set('id',self.id)
       root.append(div)
       div.append(table)
@@ -2209,13 +2209,13 @@ class BaseTable(ReportClass):
       if self.download is not None:
         div.append(self.download.as_etree())
       '''
-      tab = etree.Element('table')
-      tab.append(etree.Element('tr'))
-      tab.append(etree.Element('tr'))
-      tab[0].append(etree.Element('td'))
+      tab = ET.Element('table')
+      tab.append(ET.Element('tr'))
+      tab.append(ET.Element('tr'))
+      tab[0].append(ET.Element('td'))
       tab[0][0].set('colspan','2')
-      tab[1].append(etree.Element('td'))
-      tab[1].append(etree.Element('td'))
+      tab[1].append(ET.Element('td'))
+      tab[1].append(ET.Element('td'))
       tab[0][0].append(table)
       if self.help is not None:
         tab[1][0].append(self.help.as_etree())
@@ -2275,11 +2275,11 @@ class BaseTable(ReportClass):
     try:
       dataAsEtree = self.data_as_etree()
       #As it comes out here, the data tag is in ccp4 namespace (i.e. ccp4_data:data)
-      rootNode = etree.Element('CCP4ApplicationOutput')
+      rootNode = ET.Element('CCP4ApplicationOutput')
       for childTable in dataAsEtree:
           childTable.tag = 'CCP4Table'
           rootNode.append(childTable)
-      dataAsText = etree.tostring(rootNode)
+      dataAsText = ET.tostring(rootNode)
       f.write(dataAsText)
     except:
       print('Failed to select data')
@@ -2308,7 +2308,7 @@ class Table(BaseTable):
     # check for subheads
     hassubhead = sum( [ x != None for x in self.colsubtitle ] ) > 0
     
-    root = etree.Element('root')
+    root = ET.Element('root')
 
     # deal with normal and transpose tables in turn
     if True:
@@ -2321,7 +2321,7 @@ class Table(BaseTable):
       else:
           drawnDiv = DrawnDiv(style = styleStr, height=styleDict['height'], width=styleDict['width'], data = 'data_'+self.internalId, data_is_urls=False, renderer='CCP4i2Widgets.CCP4TableRenderer', require='CCP4i2Widgets', initiallyDrawn='True')
       root.append(self.data_as_etree())
-      surroundingDiv = etree.SubElement(root,'div')
+      surroundingDiv = ET.SubElement(root,'div')
       surroundingDiv.append(drawnDiv.as_etree())
       surroundingDiv.set('id',self.id)
 
@@ -2338,16 +2338,16 @@ class Table(BaseTable):
   def data_as_etree(self,fileName=None):
 
     hassubhead = sum( [ x != None for x in self.colsubtitle ] ) > 0
-    eleTree = etree.parse(StringIO('<script></script>'))
+    eleTree = ET.parse(StringIO('<script></script>'))
     ccp4_data = eleTree.getroot()
     ccp4_data.set('id','data_'+self.internalId)
     ccp4_data.set('type','application/xml')
 
-    table = etree.Element('table')
+    table = ET.Element('table')
     if not self.transpose:
-      head = etree.Element('thead')
+      head = ET.Element('thead')
       table.append(head)
-      headtr = etree.Element('tr')
+      headtr = ET.Element('tr')
       for i in range(len(self.coltitle)):
         if self.coltitle[i] != None:
           span = 1
@@ -2355,18 +2355,18 @@ class Table(BaseTable):
             if self.coltitle[i+span] != None:
               break
             span += 1
-          th =  etree.Element('th')
+          th =  ET.Element('th')
           if i >=0 and i<len(self.colTips) and self.colTips[i] is not None: th.set('title', self.colTips[i])
           th.text = self.coltitle[i] if self.coltitle[i] else ""
           if span > 1: th.set('colspan',str(span))
           headtr.append(th)
       head.append(headtr)
-      tbody = etree.Element('tbody')
+      tbody = ET.Element('tbody')
       if len(self.coldata) > 0:
         for i in range(len(self.coldata[0])):
-          tr= etree.Element('tr')
+          tr= ET.Element('tr')
           for col in self.coldata:
-            td = etree.Element('td')
+            td = ET.Element('td')
             if i >=0 and i<len(self.colTips) and self.colTips[i] is not None: td.set('title', self.colTips[i])
             td.text = str(col[i])
             tr.append(td)
@@ -2375,20 +2375,20 @@ class Table(BaseTable):
       if hasattr(self,"class_") and self.class_ is not None:
           table.set('class',self.class_)
     else:
-      tbody = etree.Element('tbody')
+      tbody = ET.Element('tbody')
       for i in range(len(self.coldata)):
-        tr = etree.Element('tr')
+        tr = ET.Element('tr')
         tbody.append(tr)
-        th = etree.Element('th')
+        th = ET.Element('th')
         if self.coltitle[i] != None: th.text = str(self.coltitle[i])
         if i >=0 and i<len(self.colTips) and self.colTips[i] is not None: th.set('title', self.colTips[i])
         tr.append(th)
         if hassubhead:
-          th1 = etree.Element('th')
+          th1 = ET.Element('th')
           if self.colsubtitle[i] != None: th1.text = self.colsubtitle[i]
           tr.append(th1)
         for j in range(len(self.coldata[i])):
-          td = etree.Element('td')
+          td = ET.Element('td')
           if i >=0 and i<len(self.colTips) and self.colTips[i] is not None: td.set('title', self.colTips[i])
           td.text = str(self.coldata[i][j])
           tr.append(td)
@@ -2400,7 +2400,7 @@ class Table(BaseTable):
 
     ccp4_data.append(table)
       
-    #print etree.tostring(ccp4_data,encoding='utf-8')
+    #print ET.tostring(ccp4_data,encoding='utf-8')
     return ccp4_data
 
 class Div(Container):
@@ -2433,17 +2433,17 @@ class Progress(ReportClass):
             styleDict.update(extraStyleDict)
         styleStr = ';'.join([key + ':'+styleDict[key] for key in styleDict]) + ';'
         
-        root = etree.Element('div',style=styleStr)
-        progressElement = etree.Element('progress', value=str(self.value), max=str(self.max), style=styleStr)
+        root = ET.Element('div',style=styleStr)
+        progressElement = ET.Element('progress', value=str(self.value), max=str(self.max), style=styleStr)
         if self.outputXml:
             drawnDiv = DrawnDiv(style = styleStr, height=styleDict['height'], width=styleDict['width'], data = self.data_url(), data_is_urls=True, renderer='CCP4i2Widgets.CCP4i2HTMLChunk', require='CCP4i2Widgets', initiallyDrawn=str(self.initiallyDrawn))
         else:
-            t = etree.tostring(progressElement)
+            t = ET.tostring(progressElement)
             if hasattr(t,"decode"):
                 t = t.decode()
             drawnDiv = DrawnDiv(style = styleStr, height=styleDict['height'], width=styleDict['width'], data = t, data_is_urls=False, renderer='CCP4i2Widgets.CCP4i2HTMLChunk', require='CCP4i2Widgets', initiallyDrawn=str(self.initiallyDrawn))
 
-            #print etree.tostring(drawnDiv.as_etree(), pretty_print=True)
+            #print ET.tostring(drawnDiv.as_etree(), pretty_print=True)
         root.append(drawnDiv.as_etree())
 
         if self.style is not None: root.set("style",styleStr)
@@ -2451,12 +2451,12 @@ class Progress(ReportClass):
         return root
             
     def data_as_xml(self,fileName=None):
-      dataAsEtree = etree.Element('span')
+      dataAsEtree = ET.Element('span')
       dataAsEtree.text = self.label
-      dataAsEtree.append(etree.Element('progress', value=str(self.value), max=str(self.max), style=self.style))
-      rootNode = etree.Element('CCP4ApplicationOutput')
+      dataAsEtree.append(ET.Element('progress', value=str(self.value), max=str(self.max), style=self.style))
+      rootNode = ET.Element('CCP4ApplicationOutput')
       rootNode.append(dataAsEtree)
-      dataAsText = etree.tostring(rootNode)
+      dataAsText = ET.tostring(rootNode)
       with open(fileName,'wb') as f:
         f.write(dataAsText)
       return CErrorReport()
@@ -2476,7 +2476,7 @@ class GraphGroup(Container):
     #print 'GraphGroup.__init__',self.children
 
     if kw.get('launcher',None) is not None:
-      ele = etree.Element('launch')
+      ele = ET.Element('launch')
       ele.set('label',kw['launcher'])
       ele.set('exe','loggraph')
       self.launch = Launch(ele,jobInfo=jobInfo)
@@ -2492,7 +2492,7 @@ class GraphGroup(Container):
       self.help = Help(ref=kw['help'])
 
   def as_etree(self):
-    root = etree.Element('root')
+    root = ET.Element('root')
     
     # Beware children could include Loop or other non-Graph elements
     graphObjList = []
@@ -2511,7 +2511,7 @@ class GraphGroup(Container):
     if len(graphObjList)==0: return root
 
     if self.launch is None:
-      loggraphObj = etree.Element('object')
+      loggraphObj = ET.Element('object')
       loggraphObj.set('type','x-ccp4-widget/LogGraph')
       loggraphObj.set('class','loggraph')
       if self.style is not None:
@@ -2522,7 +2522,7 @@ class GraphGroup(Container):
       
     for graphObj in graphObjList:
       #print '    ',graphObj.title     
-      param = etree.Element('param')
+      param = ET.Element('param')
       param.set('name','ccp4_data_id')
       param.set('value','data_'+graphObj.internalId)
       if self.launch is None:
@@ -2552,7 +2552,7 @@ class FlotGraphGroup(Container):
         #print 'GraphGroup.__init__',self.children
         
         self.launch = None
-        ele = etree.Element('launch')
+        ele = ET.Element('launch')
         if kw.get('launcher',None) is not None:
             self.launchOnly = True
             ele.set('label',kw['launcher'])
@@ -2570,7 +2570,7 @@ class FlotGraphGroup(Container):
     
     
     def as_etree(self):
-        root = etree.Element('root')
+        root = ET.Element('root')
         
         # Beware children could include Loop or other non-Graph elements
         graphObjList = []
@@ -2592,7 +2592,7 @@ class FlotGraphGroup(Container):
         for graphObj in graphObjList:
             #print '    ',graphObj.title
             if self.launch is not None:
-                param = etree.Element('param')
+                param = ET.Element('param')
                 param.set('name','ccp4_data_id')
                 param.set('value','data_'+graphObj.internalId)
                 self.launch.appendDataId('data_'+graphObj.id)
@@ -2611,7 +2611,7 @@ class FlotGraphGroup(Container):
         
         launchButtonLocation = root
         if not self.launchOnly:
-            surroundingDiv = etree.SubElement(root,'div',style=styleStr)
+            surroundingDiv = ET.SubElement(root,'div',style=styleStr)
             launchButtonLocation = surroundingDiv
             #Here I shring the Flot Div if I am going to append a launch button
             if self.launch is not None:
@@ -2628,7 +2628,7 @@ class FlotGraphGroup(Container):
             
             styleStr = ';'.join([key + ':'+styleDict[key] for key in styleDict]) + ';'
             drawnDiv = DrawnDiv(style = styleStr, height=styleDict['height'], width=styleDict['width'], data = dataList, renderer='CCP4i2Widgets.CCP4FlotRenderer', require='CCP4i2Widgets', initiallyDrawn='True')
-            #print etree.tostring(drawnDiv.as_etree(), pretty_print=True)
+            #print ET.tostring(drawnDiv.as_etree(), pretty_print=True)
             surroundingDiv.append(drawnDiv.as_etree())
 
         if self.launch:
@@ -2682,7 +2682,7 @@ class DrawnDiv(Container):
         self.data_initially_drawn = kw.get('initiallyDrawn', False)
         
     def as_etree(self):
-        rootDiv = etree.Element('div')
+        rootDiv = ET.Element('div')
         rootDiv.set('style',self.style)
         try:
           from core import CCP4Modules
@@ -2725,20 +2725,20 @@ class ObjectGallery(Container):
         self.style = kw.get('style', 'padding:0px;overflow:auto;display:inline-block;margin:1px;')
         
     def as_etree(self):
-        rootElement = etree.Element('root')
-        rootDiv = etree.SubElement(rootElement, 'div', style=self.style)
+        rootElement = ET.Element('root')
+        rootDiv = ET.SubElement(rootElement, 'div', style=self.style)
         rootDiv.set('class','ObjectGallery')
-        listDiv = etree.SubElement(rootDiv, 'div', style='width:'+self.tableWidth+';height:'+self.height+';overflow:auto;float:left;margin:0px;')
-        contentDiv = etree.SubElement(rootDiv, 'div', style = 'width:'+self.contentWidth+';height:'+self.height+';overflow:auto;padding:0px;border-width:0px;margin:0px;float:left;' )
+        listDiv = ET.SubElement(rootDiv, 'div', style='width:'+self.tableWidth+';height:'+self.height+';overflow:auto;float:left;margin:0px;')
+        contentDiv = ET.SubElement(rootDiv, 'div', style = 'width:'+self.contentWidth+';height:'+self.height+';overflow:auto;padding:0px;border-width:0px;margin:0px;float:left;' )
 
-        tableElement = etree.SubElement(listDiv,'table',style='width:'+self.tableWidth+';')
-        bodyElement = etree.SubElement(tableElement,'tbody')
+        tableElement = ET.SubElement(listDiv,'table',style='width:'+self.tableWidth+';')
+        bodyElement = ET.SubElement(tableElement,'tbody')
         bodyElement.set('class','fancy')
         for iChild, child in enumerate(self.children):
             #Make an entry for each child in the list
-            rowElement = etree.SubElement(bodyElement,'tr')
+            rowElement = ET.SubElement(bodyElement,'tr')
 
-            cellElement = etree.SubElement(rowElement,'td',onclick='galleryListObjClicked(this)')
+            cellElement = ET.SubElement(rowElement,'td',onclick='galleryListObjClicked(this)')
             cellElement.set('value',self.id+'_item_'+str(iChild))
             
             if iChild == 0: cellElement.set('class','galleryListObj Selected')
@@ -2749,7 +2749,7 @@ class ObjectGallery(Container):
             if hasattr(child,'label'): cellElement.text = child.label
             
             #and make a Div for each child of the contentDiv
-            correspondingDiv = etree.SubElement(contentDiv,'div',style = 'width:'+self.contentWidth+';height:'+self.height+';padding:0px;margin:0px;overflow:auto;',id=self.id+'_item_'+str(iChild)+'_div')
+            correspondingDiv = ET.SubElement(contentDiv,'div',style = 'width:'+self.contentWidth+';height:'+self.height+';padding:0px;margin:0px;overflow:auto;',id=self.id+'_item_'+str(iChild)+'_div')
 
             if iChild == 0: correspondingDiv.set('class','galleryDivObj displayed')
             
@@ -2783,13 +2783,13 @@ class GraphLineChooser(Container):
         self.style = kw.get('style', 'margin:0px;padding:0px;display:inline-block;') + 'height:'+self.height+'; width:'+totalWidth+';'
 
     def as_etree(self):
-        rootDiv = etree.Element('div', style=self.style, id=self.id)
+        rootDiv = ET.Element('div', style=self.style, id=self.id)
         rootDiv.set('data-widget-type','CCP4i2LineChooser')
         rootDiv.set('data-table-width', self.tableWidth)
         rootDiv.set('data-content-width', self.contentWidth)
         rootDiv.set('data-height', self.height)
         self.children[0].makeTableText()
-        rootDiv.set('data-data',etree.tostring(self.children[0].data_as_etree()))
+        rootDiv.set('data-data',ET.tostring(self.children[0].data_as_etree()))
         return rootDiv
 
 # Graph class
@@ -2838,7 +2838,7 @@ class Graph(ReportClass):
       self.title = kw['title']
       
     if kw.get('launcher',None) is not None:
-      ele = etree.Element('launch')
+      ele = ET.Element('launch')
       ele.set('label',kw.get('launcher','More graphs'))
       ele.set('exe','loggraph')
       self.launch = Launch(ele,jobInfo=jobInfo,ccp4_data_id='data_'+self.internalId)
@@ -2887,18 +2887,14 @@ class Graph(ReportClass):
   def addPimpleData(self,xmlnode=None,select=None,usePlotly=False):
     if xmlnode is None: xmlnode = self.xmlnode
     if select is not None: xmlnode=xmlnode.findall0(select)
-    self.pimpleData = etree.Element('pimple_data')
+    self.pimpleData = ET.Element('pimple_data')
     if usePlotly: self.pimpleData.set('usePlotly','True')
     from copy import deepcopy
     for key in ['headers','data','plot']:
       eleList = xmlnode.findall(key)
       for ele in eleList:
         #print('addPimpleData',key,ele.get('id'))
-        if isinstance(ele, etree.Element):
-          self.pimpleData.append(etree.fromstring(etree.tostring(ele)))
-        else:
-          from lxml import etree as lxmlEtree
-          self.pimpleData.append(etree.fromstring(lxmlEtree.tostring(ele)))
+        self.pimpleData.append(ele)
     for attr in list(xmlnode.attrib.keys()):
       #print('addPimpleData',attr,xmlnode.get(attr))
       self.pimpleData.set(attr,xmlnode.get(attr))
@@ -2963,7 +2959,7 @@ class Graph(ReportClass):
           text = re.sub('<xrt:','<',text)
           text = re.sub('</xrt:','</',text)
           #print 'addPlot plot',text
-          xrtnode = etree.fromstring(text)
+          xrtnode = ET.fromstring(text)
         except:
           raise CException(self.__class__,1,str(kw['plotFile']))
       if kw.get('plot',None) is not None:
@@ -2976,7 +2972,7 @@ class Graph(ReportClass):
         else:
             text = re.sub('<xrt:','<',kw['plot'])
         text = re.sub('</xrt:','</',text)
-        xrtnode = etree.fromstring(text)
+        xrtnode = ET.fromstring(text)
       #except:
       #  raise CException(self.__class__,1,str(text))
 
@@ -3042,10 +3038,10 @@ class Graph(ReportClass):
   def as_etree(self):
 
     self.makeTableText()
-    root = etree.Element('root')
+    root = ET.Element('root')
 
     if not self.launch:
-      obj = etree.Element('object')
+      obj = ET.Element('object')
       obj.set('type','x-ccp4-widget/LogGraph')
       if self.class_ is not None:
         obj.set('class',self.class_)
@@ -3054,7 +3050,7 @@ class Graph(ReportClass):
       if self.id is not None: obj.set('id',self.id)
       if self.style is not None: obj.set('style',self.style)
       root.append(obj)
-      param = etree.Element('param')
+      param = ET.Element('param')
       param.set('name','ccp4_data_id')
       param.set('value','data_'+self.internalId)
       obj.append(param)
@@ -3079,10 +3075,10 @@ class Graph(ReportClass):
     return root
 
   def data_as_etree(self):
-    eleTree = etree.parse(StringIO('<ccp4:ccp4_data xmlns:ccp4="'+CCP4NS+'"></ccp4:ccp4_data>'))
+    eleTree = ET.parse(StringIO('<ccp4:ccp4_data xmlns:ccp4="'+CCP4NS+'"></ccp4:ccp4_data>'))
     ccp4_data = eleTree.getroot()
     if self.title is not None: ccp4_data.set('title',self.title)
-    #ccp4_data = etree.Element('ccp4_data')
+    #ccp4_data = ET.Element('ccp4_data')
     ccp4_data.set('id','data_'+self.internalId)
     ccp4_data.set('style','display:none;')
 
@@ -3094,12 +3090,12 @@ class Graph(ReportClass):
       if self.pimpleData.get('title') is not None: ccp4_data.set('title',self.pimpleData.get('title'))
       if self.pimpleData.get('usePlotly') is not None: ccp4_data.set('usePlotly',self.pimpleData.get('usePlotly'))
     else:
-      header = etree.Element('headers')
+      header = ET.Element('headers')
       header.text = self.headerText
       if self.headerSeparator is not None: header.set('separator',self.headerSeparator)
       ccp4_data.append(header)
 
-      data = etree.Element('data')
+      data = ET.Element('data')
       data.text = self.tableText
       ccp4_data.append(data)
 
@@ -3197,9 +3193,9 @@ class Graph(ReportClass):
       dataAsEtree = self.data_as_etree()
       #As it comes out here, the data tag is in ccp4 namespace (i.e. ccp4_data:data)
       dataAsEtree.tag = 'CCP4Table'
-      rootNode = etree.Element('CCP4ApplicationOutput')
+      rootNode = ET.Element('CCP4ApplicationOutput')
       rootNode.append(dataAsEtree)
-      dataAsText = etree.tostring(rootNode)
+      dataAsText = ET.tostring(rootNode)
       f.write(dataAsText)
     except Exception as e:
       return CErrorReport(Report,108,fileName)
@@ -3221,7 +3217,7 @@ class FlotGraph(Graph):
         self.launch = None
         self.launchOnly = False
         self.flot_id = kw.get ( 'internalId', None )
-        ele = etree.Element('launch')
+        ele = ET.Element('launch')
         if  kw.get('launcher',None) is not None:
           self.launchOnly = True
           ele.set('label',kw.get('launcher','More graphs'))
@@ -3231,7 +3227,7 @@ class FlotGraph(Graph):
 
     def as_etree(self):
         self.makeTableText()
-        root = etree.Element('root')
+        root = ET.Element('root')
         
         styleDict = {'height':'250px', 'width':'250px','margin':'0px','padding':'0px','display':'inline-block','border':'1px solid black','margin-top':'1px'}
         if self.style is not None:
@@ -3244,7 +3240,7 @@ class FlotGraph(Graph):
         styleStr = ';'.join([key + ':'+styleDict[key] for key in styleDict]) + ';'
         launchButtonLocation = root
         if not self.launchOnly:
-            surroundingDiv = etree.SubElement(root,'div',style=styleStr)
+            surroundingDiv = ET.SubElement(root,'div',style=styleStr)
             launchButtonLocation = surroundingDiv
             #Here I shring the Flot Div if I am going to append a launch button
             if self.launch is not None:
@@ -3275,7 +3271,7 @@ class FlotGraph(Graph):
                     drawnDiv = DrawnDiv(style = styleStr, height=styleDict['height'], width=styleDict['width'], data = self.data_id(), data_is_urls=False, renderer='CCP4i2Widgets.CCP4FlotRenderer', require='CCP4i2Widgets', initiallyDrawn=str(self.initiallyDrawn))
             
 
-            #print etree.tostring(drawnDiv.as_etree(), pretty_print=True)
+            #print ET.tostring(drawnDiv.as_etree(), pretty_print=True)
             surroundingDiv.append(drawnDiv.as_etree())
         if self.launch is not None:
             l = self.launch.as_etree()
@@ -3333,7 +3329,7 @@ class GenericElement(ReportClass):
 
   def as_etree(self):
     #print 'GenericElement.as_etree',self.tag,self.text,self.attributes
-    ele = etree.Element(self.tag)
+    ele = ET.Element(self.tag)
     if self.id is not None: ele.set('id',self.id)
     if self.class_ is not None: ele.set('class',self.class_)
     if self.text is not None: ele.text = self.text
@@ -3375,11 +3371,11 @@ class Plot(GenericElement):
 
     tree = self.as_etree()
     
-    table = etree.Element('CCP4Table')
+    table = ET.Element('CCP4Table')
     table.append(tree)
-    output = etree.Element('CCP4ApplicationOutput')
+    output = ET.Element('CCP4ApplicationOutput')
     output.append(table)
-    valid = schema.validate(lxml_etree.fromstring(etree.tostring(output)))
+    valid = schema.validate(lxml_etree.fromstring(ET.tostring(output)))
     if not valid:
       log = str(schema.error_log)
       #print 'validate log',log
@@ -3410,7 +3406,7 @@ class IODataList(ReportClass):
     import json
     import collections
 
-    root = etree.Element('div')
+    root = ET.Element('div')
     root.set('class','datalist')
 
     if role not in self.jobInfo: return root
@@ -3419,9 +3415,9 @@ class IODataList(ReportClass):
       
       print(fileInfo)
 
-      outerDiv = etree.Element('div')
+      outerDiv = ET.Element('div')
       outerDiv.set('class','dataline')
-      obj = etree.Element('div')
+      obj = ET.Element('div')
       obj.set('class','alignright')
 
       obj.set('type','x-ccp4-widget/C'+fileInfo['filetypeclass'])
@@ -3466,7 +3462,7 @@ SceneDataFile
           projectDir = PROJECTSMANAGER().db().getProjectInfo(projectId=params['project'],mode='projectdirectory')
           filePath = os.path.join(projectDir,params['relPath'],params['baseName'])
 
-          launchImage = etree.Element('img')
+          launchImage = ET.Element('img')
           launchImage.set('class','alignleft')
           if fileInfo['filetypeclass'] in PNGCACHE:
               launchImage.set('src',PNGCACHE[fileInfo['filetypeclass']])
@@ -3478,7 +3474,7 @@ SceneDataFile
           launchImage.set('id',params['dbFileId'])
           launchImage.set('filepath',filePath)
           outerDiv.append(launchImage)
-          menu = etree.Element('ul')
+          menu = ET.Element('ul')
           menu.set('class','menu')
           menu.set('id',"menu"+params['dbFileId'])
           outerDiv.append(menu)
@@ -3526,8 +3522,8 @@ SceneDataFile
           objid = escapeI2Quotify("menu"+params['dbFileId'])
 
           for k,v in menuparams.items():
-             li1 =  etree.Element('li')
-             a1 =  etree.Element('a')
+             li1 =  ET.Element('li')
+             a1 =  ET.Element('a')
              a1.text = v
              itemparams = dict(params)
              itemparams["action"] = k
@@ -3549,7 +3545,7 @@ SceneDataFile
 
       outerDiv.append(obj)
       root.append(outerDiv)
-      clear = etree.Element('div')
+      clear = ET.Element('div')
       clear.set('class','clear')
       root.append(clear)
 
@@ -3559,11 +3555,11 @@ class InputData(IODataList):
 
   def as_etree(self):
     from dbapi import CCP4DbApi
-    root = etree.Element('root')
-    anchor = etree.Element('a')
+    root = ET.Element('root')
+    anchor = ET.Element('a')
     anchor.set('name','inputData')
     root.append(anchor)
-    head = etree.Element('h5')
+    head = ET.Element('h5')
     head.set('class','section')
     head.text = 'Input Data'
     root.append(head)
@@ -3580,11 +3576,11 @@ class OutputData(IODataList):
 
   def as_etree(self):
     from dbapi import CCP4DbApi
-    root = etree.Element('root')
-    anchor = etree.Element('a')
+    root = ET.Element('root')
+    anchor = ET.Element('a')
     anchor.set('name','outputData')
     root.append(anchor)
-    head = etree.Element('h5')
+    head = ET.Element('h5')
     head.set('class','section')
     head.text = 'Output Data'
     root.append(head)
@@ -3600,11 +3596,11 @@ class ImportedFiles(IODataList):
 
   def as_etree(self):
     from dbapi import CCP4DbApi
-    root = etree.Element('root')
-    anchor = etree.Element('a')
+    root = ET.Element('root')
+    anchor = ET.Element('a')
     anchor.set('name','importedFiles')
     root.append(anchor)
-    head = etree.Element('h5')
+    head = ET.Element('h5')
     head.set('class','section')
     head.text = 'Imported Files'
     root.append(head)
@@ -3640,18 +3636,18 @@ class Title(ReportClass):
     return root
 
   def as_etree(self):
-    root =  etree.Element('div')
+    root =  ET.Element('div')
     root.set('class','title')
     #for item in ['title0','title1','title2']:
     for item in ['title1','title2']:
       if getattr(self,item,None) is not None:
-        h1 = etree.Element('p')
+        h1 = ET.Element('p')
         h1.set('class',item)
         h1.text = getattr(self,item)
         root.append(h1)
 
     '''
-    intLinks = etree.Element('p')
+    intLinks = ET.Element('p')
     intLinks.set('class','links')
     root.append(intLinks)
     '''
@@ -3701,11 +3697,11 @@ class JobDetails(ReportClass):
 
 
   def makeRow(self,key,value):
-    tr = etree.Element('tr')
-    th = etree.Element('th')
+    tr = ET.Element('tr')
+    th = ET.Element('th')
     th.text = str(key)
     tr.append(th)
-    td = etree.Element('td')
+    td = ET.Element('td')
     td.text = str(value)
     tr.append(td)
     return tr
@@ -3734,13 +3730,13 @@ class Help:
       self.label = kw.get('label','About this '+kw.get('mode',''))
 
   def as_etree(self):
-    root = etree.Element('root')
-    span = etree.Element('span')
+    root = ET.Element('root')
+    span = ET.Element('span')
     if self.id is not None: span.set('id',self.id)
     root.append(span)
     span.set('class','help')
     if self.ref is not None:
-      a =  etree.Element('a')
+      a =  ET.Element('a')
       a.set('href',self.ref)
       a.text= self.label
       span.append(a)
@@ -3785,9 +3781,9 @@ class Launch:
   <object class="qt_launch" type="x-ccp4-widget/CLauncherButton"><param name="label" value="View in CCP4mg" /><param name="exe" value="CCP4mg" /><param name="sceneFile" value="./scene_26.scene.xml" /><param name="jobId" value="de3c23abab0511eabf72820f1d307bc0" /></object>
     """
 
-    root =etree.Element('root')
+    root =ET.Element('root')
 
-    obj = etree.Element('button')
+    obj = ET.Element('button')
     obj.set('style','line-height: 14pt; box-sizing: border-box;')
     if getattr(self,"label",None ) is not None:
         obj.text = getattr(self,"label")
@@ -3836,7 +3832,7 @@ class Download:
   def as_etree(self):
     import json
 
-    obj = etree.Element('button')
+    obj = ET.Element('button')
 
     obj.set('style','line-height: 14pt; box-sizing: border-box;')
     obj.text = "Download"
@@ -3878,8 +3874,8 @@ class LaunchTask:
 
   def as_etree(self):
 
-    #root =etree.Element('root')
-    obj = etree.Element('object')
+    #root =ET.Element('root')
+    obj = ET.Element('object')
     obj.set('class','qt_launch_task')
     obj.set('type','x-ccp4-widget/CLaunchTaskButton')
     if self.id is not None: obj.set('id',self.id)
@@ -3887,13 +3883,13 @@ class LaunchTask:
 
     for key in ['label','taskName','ccp4_data_id']:
       if getattr(self,key,None ) is not None:
-        p = etree.Element('param')
+        p = ET.Element('param')
         p.set('name',key)
         p.set('value',getattr(self,key))
         obj.append(p)
     
     if self.jobId is not None:
-      p = etree.Element('param')
+      p = ET.Element('param')
       p.set('name','jobId')
       p.set('value',str(self.jobId))
       obj.append(p)
@@ -3913,8 +3909,8 @@ class Picture:
     self.class_ = kw.get('class_',None)
     self.launchList = []
 
-    bodyEle = etree.Element('ccp4i2_body')
-    sceneEle = etree.Element('scene')
+    bodyEle = ET.Element('ccp4i2_body')
+    sceneEle = ET.Element('scene')
     bodyEle.append(sceneEle)
 
     sceneRoot = None
@@ -3922,7 +3918,7 @@ class Picture:
       sceneRoot = xrtnode
     elif kw.get('scene',None) is not None:
       try:
-        sceneRoot = etree.fromstring( kw['scene'], PARSER() )
+        sceneRoot = ET.fromstring( kw['scene'], PARSER() )
       except:
         raise CException(self.__class__,103, kw['scene'])
     elif kw.get('sceneFile',None) is not None:
@@ -3936,7 +3932,7 @@ class Picture:
         raise CException(self.__class__,101,fileName)
       else:
         try:
-          sceneRoot = etree.fromstring( open(fileName ).read(), PARSER() )
+          sceneRoot = ET.fromstring( open(fileName ).read(), PARSER() )
         except:
           raise CException(self.__class__,102,fileName)
     
@@ -3947,7 +3943,7 @@ class Picture:
       sceneEle.append(copy.deepcopy(child))
       bodyEle = applySelect(bodyEle,xmlnode,jobInfo)
   
-    #print etree.tostring(bodyEle,pretty_print=True)
+    #print ET.tostring(bodyEle,pretty_print=True)
     
     from core import CCP4File
     import glob
@@ -3975,14 +3971,14 @@ class Picture:
     else:
       self.label= kw.get('label',None)
     
-    launchNode = etree.Element('launch')
+    launchNode = ET.Element('launch')
     launchNode.set('exe','CCP4mg')
     launchNode.set('label','View in CCP4mg')
     if self.picDefFile is not None:
       launchNode.set('sceneFile',str(self.picDefFile))
     self.launchList.append(Launch(launchNode,jobInfo=jobInfo))
 
-    launchNode = etree.Element('launch')
+    launchNode = ET.Element('launch')
     launchNode.set('exe','Coot')
     launchNode.set('label','View in Coot')
     #launchNode.set('cootScript',self.cootScript)
@@ -3994,7 +3990,7 @@ class Picture:
     import json
     from core import CCP4Utils
     
-    root = etree.Element('div')
+    root = ET.Element('div')
     if self.picDefFile is None: return root
 
     # Make the path relative or will be broken on exporting project
@@ -4002,45 +3998,45 @@ class Picture:
     picFile = './'+fileRoot+'.png'
     #print 'Picture.as_etree picFile',picFile
     
-    t = etree.Element('table')
+    t = ET.Element('table')
     if self.class_ is None:
       t.set('class','picture')
     else:
       t.set('class',self.class_)
     if self.id is not None: t.set('id',self.id)
-    r = etree.Element('tr')
+    r = ET.Element('tr')
     t.append(r)
     
-    d =  etree.Element('td')
+    d =  ET.Element('td')
     d.set('colspan',str(len(self.launchList)))
     r.append(d)
 
-    webglDiv = etree.Element('div')
+    webglDiv = ET.Element('div')
     uuid_str = uuid.uuid4().hex
     webglDiv.set('id',uuid_str)
     webglDiv.set('style','border: none; width: 350px; height: 350px; float: left;')
     d.append(webglDiv)
 
-    table = etree.Element('div')
+    table = ET.Element('div')
     d.append(table)
-    tr = etree.Element('tr')
+    tr = ET.Element('tr')
     table.append(tr)
-    td = etree.Element('td')
+    td = ET.Element('td')
     td.text = "Fog"
     tr.append(td)
-    td = etree.Element('td')
-    fog_slider_rangeDiv = etree.Element('div')
+    td = ET.Element('td')
+    fog_slider_rangeDiv = ET.Element('div')
     fog_slider_range_uuid_str = uuid.uuid4().hex
     fog_slider_rangeDiv.set('id',fog_slider_range_uuid_str)
     td.append(fog_slider_rangeDiv)
     tr.append(td)
-    tr = etree.Element('tr')
+    tr = ET.Element('tr')
     table.append(tr)
-    td = etree.Element('td')
+    td = ET.Element('td')
     td.text = "Clip"
     tr.append(td)
-    td = etree.Element('td')
-    clip_slider_rangeDiv = etree.Element('div')
+    td = ET.Element('td')
+    clip_slider_rangeDiv = ET.Element('div')
     clip_slider_range_uuid_str = uuid.uuid4().hex
     clip_slider_rangeDiv.set('id',clip_slider_range_uuid_str)
     td.append(clip_slider_rangeDiv)
@@ -4054,7 +4050,7 @@ class Picture:
         if fn[0].text is not None:
           with open(fn[0].text) as f:
               fnt = f.read()
-          fd = etree.SubElement(m,"filedata")
+          fd = ET.SubElement(m,"filedata")
           fd.text = fnt.replace("<","&lt;").replace(">","&gt;")
           m.remove(fn[0])
     MapDatas = tree.findall("ccp4i2_body/scene/data/MapData")
@@ -4062,10 +4058,10 @@ class Picture:
     #I think I want to put this "in a different file", for on demand loading.
     for m in MapDatas:
         fn = m.findall("filename")
-        fd = etree.SubElement(m,"filedata")
+        fd = ET.SubElement(m,"filedata")
         #FIXME - So how do I get these?
-        fd_projid = etree.SubElement(m,"ccp4i2_project")
-        fd_jobno = etree.SubElement(m,"ccp4i2_jobno")
+        fd_projid = ET.SubElement(m,"ccp4i2_project")
+        fd_jobno = ET.SubElement(m,"ccp4i2_jobno")
         if fn[0].text is not None:
           b64map, mean,std_dev = MTZToB64Map(fn[0].text)
           mapName = fn[0].text[:-3]+"map"
@@ -4073,17 +4069,17 @@ class Picture:
           with open(mapName,"wb+") as mapF:
               mapF.write(b64map)
           fd.text = mapName
-          sigma = etree.SubElement(m,"sigma")
+          sigma = ET.SubElement(m,"sigma")
           sigma.text = str(std_dev)
-          mean = etree.SubElement(m,"mean")
+          mean = ET.SubElement(m,"mean")
           mean.text = str(mean)
           m.remove(fn[0])
 
     mapLoad_uuid_str = uuid.uuid4().hex
 
-    sceneText = etree.tostring(tree).decode("utf-8")
+    sceneText = ET.tostring(tree).decode("utf-8")
 
-    script = etree.Element('script')
+    script = ET.Element('script')
     script.text = """
     function webglfun(fogdiv,clipdiv,maploadButton) {
 
@@ -4135,22 +4131,22 @@ class Picture:
     """
     d.append(script)
 
-    d =  etree.Element('td')
+    d =  ET.Element('td')
     r.append(d)
     if self.label is not None:
-      anno = etree.Element('p')
+      anno = ET.Element('p')
       anno.set('class','annotation')
       anno.text = self.label
     d.append(anno)
 
-    buttonRow = etree.Element('tr')
+    buttonRow = ET.Element('tr')
     t.append(buttonRow)
     root.append(t)
 
     model_uuid_str = uuid.uuid4().hex
-    pbc =  etree.Element('td')
+    pbc =  ET.Element('td')
     buttonRow.append(pbc)
-    pb = etree.Element("button")
+    pb = ET.Element("button")
     pb.set("type","button")
     pb.text = "Expand"
     pb.set("class","webgllaunchbutton");
@@ -4163,7 +4159,7 @@ class Picture:
     pb.set("onclick",'window.buttonBridge.clicked('+stringparams+');');
     pbc.append(pb)
 
-    pb = etree.Element("button")
+    pb = ET.Element("button")
     pb.set("type","button")
     pb.text = "Load maps"
     pb.set("class","webgllaunchbutton");
@@ -4174,12 +4170,12 @@ class Picture:
 #FIXME - This probably isn't the right thing to do anyway. The modal dialog can only be as big as visible report area. That's not big enough. Want a Qt dialog
     pb.set("onclick",'var modal = document.getElementById("'+model_uuid_str+'"); modal.style.display = "block";');
     
-    myModal = etree.Element('div')
+    myModal = ET.Element('div')
     myModal.set("id",model_uuid_str)
     myModal.set("class","modal")
-    myModalContent = etree.Element('div')
+    myModalContent = ET.Element('div')
     myModalContent.set("class","modal-content")
-    closeButton = etree.Element("span")
+    closeButton = ET.Element("span")
     closeButton.set("class","close")
     closeButton.text = u"\u00D7"
     closeButton.set("onclick",'var modal = document.getElementById("'+model_uuid_str+'"); modal.style.display = "none";')
@@ -4189,7 +4185,7 @@ class Picture:
     """
 
     for launch in self.launchList:
-      d =  etree.Element('td')
+      d =  ET.Element('td')
       buttonRow.append(d)
       l = launch.as_etree()
       if l.tag == 'root':
@@ -4204,8 +4200,8 @@ class Picture:
 # Usage: python report.py my.xrt my.xml
 if __name__ == "__main__":
   import sys
-  xrt = etree.fromstring( open( sys.argv[1] ).read(), PARSER() )
-  xml = etree.fromstring( open( sys.argv[2] ).read(), PARSER() )
+  xrt = ET.fromstring( open( sys.argv[1] ).read(), PARSER() )
+  xml = ET.fromstring( open( sys.argv[2] ).read(), PARSER() )
   xreport = xrt.findall( "/report" )[0]
   report = Report( xreport, xml )
   #print report.as_html()
@@ -4246,42 +4242,42 @@ class Reference(ReportClass):
     return root
 
   def as_etree(self):
-    root = etree.Element('div')
+    root = ET.Element('div')
     root.set('class','bibreference')
     '''
-    div = etree.SubElement(root,'div')
+    div = ET.SubElement(root,'div')
     div.set('style','float:left;')
     if USEQTICONS:
-      icon = etree.SubElement(div,'object')
+      icon = ET.SubElement(div,'object')
       icon.set('class','qticon')
       icon.set('type','x-ccp4-widget/CReferenceIcon')
     else: 
-      icon = etree.SubElement(div,'image')
+      icon = ET.SubElement(div,'image')
       icon.set('height','24')
       icon.set('width','24')
       icon.set('src',htmlBase()+"/book.svg")
       icon.set('alt','Bibliographic reference icon')
-    div = etree.SubElement(root,'div')
+    div = ET.SubElement(root,'div')
     div.set('style','float:left;')
     '''
     div = root
-    p = etree.SubElement(div,'p')    
+    p = ET.SubElement(div,'p')    
     p.set('class','articletitle')
     if self.articleLink is not None:
-      a = etree.SubElement(p,'a')
+      a = ET.SubElement(p,'a')
       a.set('href',self.articleLink)
       a.text = self.articleTitle
     else:
       p.text = self.articleTitle
-    #div = etree.SubElement(root,'div')
+    #div = ET.SubElement(root,'div')
     #div.set('style','clear:both;') 
     if len(self.authorList)>0:
-      ele = etree.SubElement(div,'p')
+      ele = ET.SubElement(div,'p')
       ele.set('class','authors')
       t = ''
       for item in self.authorList: t += item + ', '
       ele.text = t[0:-2]
-    ele = etree.SubElement(div,'p')
+    ele = ET.SubElement(div,'p')
     ele.set('class','source')
     ele.text = self.source
 
@@ -4308,30 +4304,30 @@ class ReferenceGroup(Container):
     else:
       title = 'References'
       
-    root = etree.Element('div')
+    root = ET.Element('div')
     root.set('class','bibreference_group')
 
-    div = etree.SubElement(root,'div')
+    div = ET.SubElement(root,'div')
     div.set('style','float:left;')
     if USEQTICONS:
-      icon = etree.SubElement(div,'object')
+      icon = ET.SubElement(div,'object')
       icon.set('class','qticon')
       icon.set('type','x-ccp4-widget/CReferenceIcon')
-      param = etree.SubElement(icon,'param')
+      param = ET.SubElement(icon,'param')
       param.set('name','taskName')
       param.set('value',str(self.taskName))
     else: 
-      icon = etree.SubElement(div,'image')
+      icon = ET.SubElement(div,'image')
       icon.set('height','24')
       icon.set('width','24')
       icon.set('src',htmlBase()+"/book.svg")
       icon.set('alt','Bibliographic reference icon')
-    div = etree.SubElement(root,'div')
+    div = ET.SubElement(root,'div')
     div.set('style','float:left;') 
-    #p = etree.SubElement(div,'p')    
+    #p = ET.SubElement(div,'p')    
     div.set('class','reference_group_title')
     div.text=title
-    div = etree.SubElement(root,'div')
+    div = ET.SubElement(root,'div')
     div.set('style','clear:both;') 
     for child in self.children:
       tree = child.as_etree()
@@ -4394,7 +4390,7 @@ class BaublesHtml:
     head = self.fileNode.findall("/html/head[1]")
 
     for jsFile in jsFileList:
-      script = etree.Element('script')
+      script = ET.Element('script')
       script.set('src',base+'/'+jsFile)
       head.insert(0,script)
 
@@ -4496,8 +4492,8 @@ numbers
 
 #========================================================================================
 def test(arg1,arg2,arg3=None):
-  xrt = etree.fromstring( open( arg1 ).read(), PARSER() )
-  xml = etree.fromstring( open( arg2 ).read(), PARSER() )
+  xrt = ET.fromstring( open( arg1 ).read(), PARSER() )
+  xml = ET.fromstring( open( arg2 ).read(), PARSER() )
   #print 'text',xrt.findall( "/report" )
   standardise = False
   xreport = xrt.findall( "/report" )[0]
@@ -4515,7 +4511,7 @@ def test(arg1,arg2,arg3=None):
   if len(report.errReport)>0:
     print('ERROR REPORT')
     print(report.errReport.report())
-  text = etree.tostring(tree)
+  text = ET.tostring(tree)
   #print text
   from core import CCP4Utils
   CCP4Utils.saveFile('report.html',text=text)

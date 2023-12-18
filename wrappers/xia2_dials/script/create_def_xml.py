@@ -11,7 +11,8 @@ from __future__ import print_function
 
 import sys
 import os
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 # Nasty trick required to import PhilTaskCreator when running with ccp4-python
 this_dir = os.path.dirname(os.path.realpath(__file__))
@@ -42,7 +43,7 @@ class Xia2DialsTaskCreator(PhilTaskCreator):
             "xia2__settings__input__image",
         ]
 
-        self.inputDataXML = etree.fromstring(
+        self.inputDataXML = ET.fromstring(
             """
 <container id="inputData">
   <content id="IMAGE_FILE">
@@ -71,7 +72,7 @@ class Xia2DialsTaskCreator(PhilTaskCreator):
 """
         )
 
-        self.outputDataXML = etree.fromstring(
+        self.outputDataXML = ET.fromstring(
             """
 <container id="outputData">
   <content id="UNMERGEDOUT">
@@ -152,7 +153,8 @@ class Xia2DialsTaskCreator(PhilTaskCreator):
         self._remove_elements_by_id(self.phil_tree, self._elts_to_remove)
 
         if self.debug:
-            print(etree.tostring(self.phil_tree, pretty_print=True))
+            ET.indent(self.phil_tree)
+            print(ET.tostring(self.phil_tree))
 
         super(Xia2DialsTaskCreator, self).__call__()
 

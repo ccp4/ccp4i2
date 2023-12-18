@@ -30,7 +30,8 @@ import inspect
 import glob
 import json
 import importlib
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 from core.CCP4Config import GRAPHICAL, DEVELOPER
 from core.CCP4ErrorHandling import *
 from core.CCP4Modules import WEBBROWSER, PROJECTSMANAGER, WORKFLOWMANAGER, CUSTOMTASKMANAGER
@@ -1162,48 +1163,48 @@ class CMakeDocsIndex():
         try:
             # html document as etree
             docTree = CCP4ReportParser.htmlDoc(htmlBase='.', title='CCP4i2 Tasks', cssFile='task.css')
-            body = docTree.getroot().xpath('./body')[0]
+            body = docTree.getroot().findall('./body')[0]
             #print 'makeDocsIndex',docList
-            t = etree.Element('div')
+            t = ET.Element('div')
             t.text = 'CCP4i2 Task Documentation'
             t.set('class', 'title')
             body.append(t)
             for module, title, taskList in TASKMANAGER().taskTree():
-                modEle = etree.Element('div')
+                modEle = ET.Element('div')
                 modEle.set('class', 'module')
-                imgEle = etree.Element('img')
+                imgEle = ET.Element('img')
                 pixFile = TASKMANAGER().searchIconFile(module)
                 if pixFile is not None:
                     imgEle.set('src', '../../qticons/' + os.path.split(pixFile)[1])
                 imgEle.set('alt', module)
                 modEle.append(imgEle)
-                e = etree.Element('p')
+                e = ET.Element('p')
                 e.text = title
                 modEle.append(e)
                 body.append(modEle)
-                listEle = etree.Element('div')
+                listEle = ET.Element('div')
                 listEle.set('class', 'taskList')
                 body.append(listEle)
                 for taskName in taskList:
                     rank = TASKMANAGER().getTaskAttribute(taskName, 'RANK')
                     pixFile = TASKMANAGER().searchIconFile(taskName)
-                    imgEle = etree.Element('img')
+                    imgEle = ET.Element('img')
                     if pixFile is not None:
                         imgEle.set('src', '../../qticons/' + os.path.split(pixFile)[1])
                     imgEle.set('alt', taskName)
                     imgEle.set('class', 'taskIcon')
-                    taskEle = etree.Element('p')
+                    taskEle = ET.Element('p')
                     taskEle.text = TASKMANAGER().getTitle(taskName)
                     if taskName in docList:
-                        hrefEle = etree.Element('a')
+                        hrefEle = ET.Element('a')
                         hrefEle.set('href', './' + taskName + '/index.html')
                         hrefEle.append(taskEle)
                     else:
                         hrefEle = None
-                    descEle = etree.Element('p')
+                    descEle = ET.Element('p')
                     descEle.set('class', 'taskDesc')
                     descEle.text = TASKMANAGER().getTaskAttribute(taskName, 'DESCRIPTION')
-                    div1 = etree.Element('div')
+                    div1 = ET.Element('div')
                     div1.set('class', 'taskTitle')
                     div1.append(imgEle)
                     if hrefEle is not None:
@@ -1216,7 +1217,7 @@ class CMakeDocsIndex():
             return CErrorReport(self.__class__, 101, str(e))
         sph_pth = os.path.join(CCP4Utils.getCCP4I2Dir(), 'docs', 'sphinx', 'build', 'html')
         try:
-            text = etree.tostring(docTree, pretty_print=True)
+            text = ET.tostring(docTree, pretty_print=True)
             CCP4Utils.saveFile(os.path.join(sph_pth, 'tasks', 'index.html'), text, overwrite=True)
         except:
             return CErrorReport(self.__class__, 101, details=os.path.join(sph_pth, 'tasks', 'index.html'))

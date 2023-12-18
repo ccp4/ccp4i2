@@ -19,6 +19,7 @@ from __future__ import print_function
 
 import os
 from core.CCP4PluginScript import CPluginScript
+from xml.etree import ElementTree as ET
 
 class MakeLink(CPluginScript):
     TASKNAME = 'MakeLink'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -442,7 +443,7 @@ class MakeLink(CPluginScript):
         from lxml import etree
         from core import CCP4Utils
         import sys, os, shutil
-        pipelineXMLStructure = etree.Element("MakeLink")
+        pipelineXMLStructure = ET.Element("MakeLink")
         
         for iPlugin, AcedrgLinkPlugin in enumerate(self.AcedrgLinkPlugins):
             self.container.outputData.CIF_OUT.setFullPath(os.path.join(self.getWorkDirectory(),AcedrgLinkPlugin.container.inputData.LINK_ID.__str__()+"_link.cif"))
@@ -458,11 +459,11 @@ class MakeLink(CPluginScript):
             
             #Catenate output XMLs
             pluginXMLStructure = CCP4Utils.openFileToEtree(AcedrgLinkPlugin.makeFileName("PROGRAMXML"))
-            cycleElement = etree.SubElement(pluginXMLStructure,"Cycle")
+            cycleElement = ET.SubElement(pluginXMLStructure,"Cycle")
             cycleElement.text = str(iPlugin)
             pipelineXMLStructure.append(pluginXMLStructure)
         
         with open(self.makeFileName("PROGRAMXML"),"w") as pipelineXMLFile:
-            CCP4Utils.writeXML(pipelineXMLFile,etree.tostring(pipelineXMLStructure))
+            CCP4Utils.writeXML(pipelineXMLFile,ET.tostring(pipelineXMLStructure))
         
         return CPluginScript.SUCCEEDED

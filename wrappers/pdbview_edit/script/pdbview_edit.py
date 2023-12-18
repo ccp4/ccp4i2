@@ -4,8 +4,8 @@ from __future__ import print_function
 from core.CCP4PluginScript import CPluginScript
 from PySide2 import QtCore
 import os,re,time,sys
-from lxml import etree
 from core import CCP4Utils
+from xml.etree import ElementTree as ET
 
 class pdbview_edit(CPluginScript):
     
@@ -125,9 +125,8 @@ class pdbview_edit(CPluginScript):
                 xyzoutList[-1].subType = 1
 
             # Create a trivial xml output file
-            from lxml import etree
-            self.xmlroot = etree.Element('pdbview_edit')
-            e = etree.Element('number_output_files')
+            self.xmlroot = ET.Element('pdbview_edit')
+            e = ET.Element('number_output_files')
             e.text = str(self.numberOfOutputFiles())
             self.xmlroot.append(e)
             
@@ -148,11 +147,10 @@ class pdbview_edit(CPluginScript):
           return CPluginScript.MARK_TO_DELETE
 
     def addReportWarning(self, text):
-        from lxml import etree
         warningsNode = None
-        warningsNodes = self.xmlroot.xpath('//Warnings')
-        if len(warningsNodes) == 0: warningsNode = etree.SubElement(self.xmlroot, 'Warnings')
+        warningsNodes = self.xmlroot.findall('.//Warnings')
+        if len(warningsNodes) == 0: warningsNode = ET.SubElement(self.xmlroot, 'Warnings')
         else: warningsNode = warningsNodes[0]
-        warningNode = etree.SubElement(warningsNode,'Warning')
+        warningNode = ET.SubElement(warningsNode,'Warning')
         warningNode.text = text
 

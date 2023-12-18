@@ -15,15 +15,15 @@ class cmapcoeff_report(Report):
         results = self.addResults()
         results.append ( 'Please find below the output files. If you want to do a peak search, you can select <i>Manual model rebuilding</i>. ' ) 
 #        results.append ( '<h3>Map statistics:</h3>' )
-#        results.append ( '&#160; &#160; &#160; &#160; Number of points: ' + self.xmlnode.xpath ( "//Cfft/NPoints" )[0].text )
-#        results.append ( '&#160; &#160; &#160; &#160; 1st moment about zero (mean) =' + self.xmlnode.xpath ( "//Cfft/FirstMomZero" )[0].text +
-#                ' &#160; &#160; &#160; &#160; 1st moment about mean =' + self.xmlnode.xpath ( "//Cfft/FirstMomMean" )[0].text )
-#        results.append ( '&#160; &#160; &#160; &#160; 2nd moment about zero =' + self.xmlnode.xpath ( "//Cfft/SecondMomZero" )[0].text +
-#                ' &#160; &#160; &#160; &#160; 2nd moment about mean =' + self.xmlnode.xpath ( "//Cfft/SecondMomZero" )[0].text )
-#        results.append ( '&#160; &#160; &#160; &#160; 3rd moment about zero =' + self.xmlnode.xpath ( "//Cfft/ThirdMomZero" )[0].text +
-#                ' &#160; &#160; &#160; &#160; 3rd moment about mean =' + self.xmlnode.xpath ( "//Cfft/ThirdMomZero" )[0].text )
-#        results.append ( '&#160; &#160; &#160; &#160; Range: min =' + self.xmlnode.xpath ( "//Cfft/Min" )[0].text +
-#                ' &#160; &#160; &#160; &#160; max =' + self.xmlnode.xpath ( "//Cfft/Max" )[0].text )
+#        results.append ( '&#160; &#160; &#160; &#160; Number of points: ' + self.xmlnode.findall ( "//Cfft/NPoints" )[0].text )
+#        results.append ( '&#160; &#160; &#160; &#160; 1st moment about zero (mean) =' + self.xmlnode.findall ( "//Cfft/FirstMomZero" )[0].text +
+#                ' &#160; &#160; &#160; &#160; 1st moment about mean =' + self.xmlnode.findall ( "//Cfft/FirstMomMean" )[0].text )
+#        results.append ( '&#160; &#160; &#160; &#160; 2nd moment about zero =' + self.xmlnode.findall ( "//Cfft/SecondMomZero" )[0].text +
+#                ' &#160; &#160; &#160; &#160; 2nd moment about mean =' + self.xmlnode.findall ( "//Cfft/SecondMomZero" )[0].text )
+#        results.append ( '&#160; &#160; &#160; &#160; 3rd moment about zero =' + self.xmlnode.findall ( "//Cfft/ThirdMomZero" )[0].text +
+#                ' &#160; &#160; &#160; &#160; 3rd moment about mean =' + self.xmlnode.findall ( "//Cfft/ThirdMomZero" )[0].text )
+#        results.append ( '&#160; &#160; &#160; &#160; Range: min =' + self.xmlnode.findall ( "//Cfft/Min" )[0].text +
+#                ' &#160; &#160; &#160; &#160; max =' + self.xmlnode.findall ( "//Cfft/Max" )[0].text )
 
 if __name__ == "__main__":
     import sys

@@ -7,7 +7,8 @@ import pickle
 from core import CCP4ErrorHandling
 from core import CCP4Modules
 from pipelines.phaser_pipeline.wrappers.phaser_MR.script import phaser_MR
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 from core import CCP4Utils
 
 class MRAUTOCallbackObject(phaser_MR.CallbackObject):
@@ -20,9 +21,9 @@ class MRAUTOCallbackObject(phaser_MR.CallbackObject):
     def call_back(self, label, text):
         if label == 'current best solution':
             try:
-                for oldNode in self.xmlroot.xpath('//PhaserCurrentBestSolution'):
+                for oldNode in self.xmlroot.findall('.//PhaserCurrentBestSolution'):
                     oldNode.getparent().remove(oldNode)
-                bestSolNode =etree.SubElement(self.xmlroot,'PhaserCurrentBestSolution')
+                bestSolNode =ET.SubElement(self.xmlroot,'PhaserCurrentBestSolution')
                 phaser_MR.xmlFromSol(text, bestSolNode)
                 self.notifyResponders()
             except:
@@ -40,7 +41,7 @@ class MRAUTOCallbackObject(phaser_MR.CallbackObject):
 
 
     def flushSummary(self):
-        summaryNode = etree.SubElement(self.xmlroot,'Summary')
+        summaryNode = ET.SubElement(self.xmlroot,'Summary')
         summaryNode.text = self._summary_buffer
         self.notifyResponders()
         self._summary_buffer = ""
@@ -80,7 +81,7 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
         super(phaser_MR_AUTO, self).__init__(*args, **kw)
         #Create a callback Object that will respond to callbacks from Phaser, principally by putting information
         #intp the outputXML of this plugin
-        self.xmlroot = etree.Element('PhaserMrResults')
+        self.xmlroot = ET.Element('PhaserMrResults')
         self.callbackObject = MRAUTOCallbackObject(self.xmlroot, [self.flushXML], self.workDirectory)
 
     def runMR_DAT(self, outputObject):
@@ -268,31 +269,31 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
                     self.container.outputData.SOLOUT.annotation.set('Solutions from Phaser')
 
         #Remove warnings and replace with ones parsed from the resultObject
-        if len(self.xmlroot.xpath('PhaserWarnings')) > 0:
+        if len(self.xmlroot.findall('PhaserWarnings')) > 0:
             phaser_warnings = [wrng for wrng in resultObject.warnings()]
-            for warningsElement in self.xmlroot.xpath('PhaserWarnings')[0]:
+            for warningsElement in self.xmlroot.findall('PhaserWarnings')[0]:
                 if warningsElement.text not in phaser_warnings:
-                    advisoriesElement = etree.SubElement(self.xmlroot,'PhaserAdvisories')
-                    advisoryElement = etree.SubElement(advisoriesElement,'Advisory')
+                    advisoriesElement = ET.SubElement(self.xmlroot,'PhaserAdvisories')
+                    advisoryElement = ET.SubElement(advisoriesElement,'Advisory')
                     advisoryElement.text = warningsElement.text
-            for warningsElement in self.xmlroot.xpath('PhaserWarnings')[0]:
+            for warningsElement in self.xmlroot.findall('PhaserWarnings')[0]:
                 warningsElement.getparent().remove(warningsElement)
             for warning in phaser_warnings:
-                warningsElement = etree.SubElement(self.xmlroot,'PhaserWarnings')
-                warningElement = etree.SubElement(warningsElement,'Warning')
+                warningsElement = ET.SubElement(self.xmlroot,'PhaserWarnings')
+                warningElement = ET.SubElement(warningsElement,'Warning')
                 warningElement.text = warning
       
         #Remove old digested summaries and add new ones parsed from the result summary block
-        for summaryNode in self.xmlroot.xpath('Summary'):
+        for summaryNode in self.xmlroot.findall('Summary'):
             summaryNode.getparent().remove(summaryNode)
         summary_buffer = '***'
         for text in resultObject.summary().split('\n'):
             if text.startswith("**********") and not summary_buffer.strip().endswith("***"):
-                summaryNode = etree.SubElement(self.xmlroot,'Summary')
+                summaryNode = ET.SubElement(self.xmlroot,'Summary')
                 summaryNode.text = summary_buffer
                 summary_buffer = ""
             summary_buffer += (text+'\n')
-        summaryNode = etree.SubElement(self.xmlroot,'Summary')
+        summaryNode = ET.SubElement(self.xmlroot,'Summary')
         summaryNode.text = summary_buffer
         
         self.flushXML(self.xmlroot)
@@ -301,14 +302,14 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
 
     def analyseResults(self, results):
         import phaser      
-        solutionsNode = etree.SubElement(self.xmlroot,'PhaserMrSolutions')
+        solutionsNode = ET.SubElement(self.xmlroot,'PhaserMrSolutions')
         
         if not results.foundSolutions():
             node=self.subElementWithNameAndText(solutionsNode,'solutionsFound','False')
         else:
             node=self.subElementWithNameAndText(solutionsNode,'solutionsFound','True')
 
-        solutionListNode = etree.SubElement(solutionsNode,'Solutions')
+        solutionListNode = ET.SubElement(solutionsNode,'Solutions')
 
         isol = 0
         # available items are in phaser/source/phaser/include/mr_set.h
@@ -316,32 +317,32 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
 
         for solution in results.getDotSol():
             if isol == 0:
-                for oldNode in self.xmlroot.xpath('//PhaserCurrentBestSolution'):
+                for oldNode in self.xmlroot.findall('.//PhaserCurrentBestSolution'):
                     oldNode.getparent().remove(oldNode)
-                bcsNode = etree.SubElement(self.xmlroot,'PhaserCurrentBestSolution')
-                solutionNode = etree.SubElement(bcsNode,'Solution')
+                bcsNode = ET.SubElement(self.xmlroot,'PhaserCurrentBestSolution')
+                solutionNode = ET.SubElement(bcsNode,'Solution')
                 for nd in solution.KNOWN:
-                    componentNode = etree.SubElement(solutionNode,'Component')
-                    componentNameNode = etree.SubElement(componentNode,'Name')
+                    componentNode = ET.SubElement(solutionNode,'Component')
+                    componentNameNode = ET.SubElement(componentNode,'Name')
                     componentNameNode.text = nd.MODLID
-                spaceGroupNode = etree.SubElement(solutionNode,'spaceGroup')
+                spaceGroupNode = ET.SubElement(solutionNode,'spaceGroup')
 
                 spaceGroupNode.text = solution.getSpaceGroupName()
-                annotationNode = etree.SubElement(solutionNode,'Annotation')
+                annotationNode = ET.SubElement(solutionNode,'Annotation')
                 annotationNode.text = solution.ANNOTATION
                 phaser_MR.expandSolutionAnnotation(solutionNode)
             if isol == 0 and self.inputSpaceGroup != solution.getSpaceGroupName():
                 self.container.outputData.dataReindexed.set(True)
-                warningsElements = self.xmlroot.xpath('PhaserWarnings')
+                warningsElements = self.xmlroot.findall('PhaserWarnings')
                 if len(warningsElements) > 0: warningsElement = warningsElements[0]
-                else: warningsElement = etree.SubElement(self.xmlroot,'PhaserWarnings')
-                warningElement = etree.SubElement(warningsElement,'Warning')
+                else: warningsElement = ET.SubElement(self.xmlroot,'PhaserWarnings')
+                warningElement = ET.SubElement(warningsElement,'Warning')
                 warningElement.text = 'Spacegroup of best solution (%s) does not match input data spacegroup (%s)' % (str(solution.getSpaceGroupName()), str(self.inputSpaceGroup))
             elif isol == 0:
                 self.container.outputData.dataReindexed.set(False)
 
             isol += 1
-            solutionNode = etree.SubElement(solutionListNode,'Solution')
+            solutionNode = ET.SubElement(solutionListNode,'Solution')
             node = self.subElementWithNameAndText(solutionNode,'ISOL',str(isol))
             node = self.subElementWithNameAndText(solutionNode,'SPG',str(solution.getSpaceGroupName()))
             #Properties not carried over:'CELL', 'DRMS','MAPCOEFS', 'NEWVRMS', 'RLIST', 'VRMS', 'TMPLT', 'KNOWN'
@@ -350,26 +351,25 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
                 if value is not None:
                     node = self.subElementWithNameAndText(solutionNode, property,str(value))
             for nd in solution.KNOWN:
-                componentNode = etree.SubElement(solutionNode,'COMPONENT')
+                componentNode = ET.SubElement(solutionNode,'COMPONENT')
                 node = self.subElementWithNameAndText(componentNode,'modlid',str(nd.MODLID))
 
         #print dir(self.results.getTemplatesForSolution(0))
         #print dir(self.results.getDotSol()[0])
-        #print etree.tostring(self.xmlroot, pretty_print=True)
+        #print ET.tostring(self.xmlroot, pretty_print=True)
         #print results.getTopPdbFile()
 
         return CPluginScript.SUCCEEDED
     
     def subElementWithNameAndText(self, parentNode, name, text):
-        newNode = etree.SubElement(parentNode, name)
+        newNode = ET.SubElement(parentNode, name)
         newNode.text = text
         return newNode
 
     def flushXML(self, xml):
-        from lxml import etree
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
         with open(tmpFilename,'w') as tmpFile:
-            xmlText = etree.tostring(xml, pretty_print=True)
+            xmlText = ET.tostring(xml, pretty_print=True)
             CCP4Utils.writeXML(tmpFile,xmlText)
             #Here adapt the update frequency to depend on the size of the current XML structure
             xmlUpdateDelay = max(5, int(len(xmlText)/100000))
@@ -405,18 +405,18 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
 
 def xmlFromMRSolution(mrSolutions, root):
     for solution in mrSolutions:
-        solNode = etree.SubElement(root, 'Solution')
+        solNode = ET.SubElement(root, 'Solution')
         for attr in ['ANNOTATION', 'EQUIV', 'HALL', 'KEEP', 'LLG','NUM', 'ORIG_LLG', 'ORIG_NUM', 'ORIG_R', 'PAK', 'R', 'RLIST', 'TF', 'TFZ', 'TFZeq', 'TMPLT']:
             node = textedSubNode(solNode, attr, getattr(solution,attr))
         for attr in ['CELL', 'DRMS', 'NEWVRMS','VRMS']:
             wrappedObject = getattr(solution,attr)
-            node = etree.SubElement(solNode,attr)
+            node = ET.SubElement(solNode,attr)
             for key in list(wrappedObject.keys()):
-                pairNode = etree.SubElement(node,'Pair')
+                pairNode = ET.SubElement(node,'Pair')
                 keyNode = textedSubNode(pairNode, 'Key', key)
                 valueNode = textedSubNode(pairNode,'Value', wrappedObject.get(key))
         for component in getattr(solution,'KNOWN'):
-            componentNode = etree.SubElement(solNode,'Component')
+            componentNode = ET.SubElement(solNode,'Component')
             node = textedSubNode(componentNode,'BFAC',component.getBfac())
             node = textedSubNode(componentNode,'EULER',component.getEuler())
             node = textedSubNode(componentNode,'FIXB',component.getFixB())

@@ -11,7 +11,8 @@ from qtgui import CCP4Widgets
 import glob
 import os
 from core import CCP4Utils
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 class CTaskAlternativeImportXIA2(CCP4TaskWidget.CTaskWidget):
     
@@ -74,11 +75,11 @@ class CTaskAlternativeImportXIA2(CCP4TaskWidget.CTaskWidget):
             if os.path.isfile(xmlFilePath):
                 with open(xmlFilePath) as xmlFile:
                     text = xmlFile.read()
-                    xmlOfFile = etree.fromstring(text)
+                    xmlOfFile = ET.fromstring(text)
                     try:
-                        spaceGroupText = (' '+xmlOfFile.xpath('//spaceGroup')[0].text)
-                        resolutionText = (' Res: '+xmlOfFile.xpath('//resolutionLimitHigh')[0].text)
-                        rMeasText = (' Rmeas: '+xmlOfFile.xpath('//rMeasAllIPlusIMinus')[0].text)
+                        spaceGroupText = (' '+xmlOfFile.findall('.//spaceGroup')[0].text)
+                        resolutionText = (' Res: '+xmlOfFile.findall('.//resolutionLimitHigh')[0].text)
+                        rMeasText = (' Rmeas: '+xmlOfFile.findall('.//rMeasAllIPlusIMinus')[0].text)
                         runSummaries.append(runSummaries.makeItem())
                         runSummaries[-1] = candidateJob + ':'
                         runSummaries[-1] += spaceGroupText

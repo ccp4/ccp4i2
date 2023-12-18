@@ -64,10 +64,11 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
       self.runningJobs=[]
       self.newspacegroup = str(self.container.inputData.F_SIGF.fileContent.spaceGroup)
 
-      self.xmlroot = etree.Element('CCP4i2DRMRMBPipe')
+      self.xmlroot = ET.Element('CCP4i2DRMRMBPipe')
       self.xmlroot.text = '\n'
       with open(str(self.makeFileName('PROGRAMXML')), 'w') as ostream:
-        CCP4Utils.writeXML(ostream,etree.tostring(self.xmlroot,pretty_print=True))
+        ET.indent(self.xmlroot)
+        CCP4Utils.writeXML(ostream,ET.tostring(self.xmlroot))
 
       if self.container.controlParameters.LIGANDAS.__str__() == 'DICT':
             self.dictToUse = self.container.inputData.DICTIN
@@ -231,18 +232,18 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
         self.enantio = False
         self.enantiomorphs = []
 
-        if len(self.xmlroot.xpath('/CCP4i2DRMRMBPipe/AIMLESS_PIPE/POINTLESS/SolutionWarning')) > 0:
-            for el in self.xmlroot.xpath('/CCP4i2DRMRMBPipe/AIMLESS_PIPE/POINTLESS/SolutionWarning'):
+        if len(self.xmlroot.findall('./CCP4i2DRMRMBPipe/AIMLESS_PIPE/POINTLESS/SolutionWarning')) > 0:
+            for el in self.xmlroot.findall('./CCP4i2DRMRMBPipe/AIMLESS_PIPE/POINTLESS/SolutionWarning'):
                 if "enantiomorph".lower() in el.text.lower():
                     self.enantio = True
                     break
 
         if self.enantio:
-            best_sg = self.xmlroot.xpath('/CCP4i2DRMRMBPipe/AIMLESS_PIPE/POINTLESS/BestSolution/GroupName')[0].text
-            best_sg_prob = float(self.xmlroot.xpath('/CCP4i2DRMRMBPipe/AIMLESS_PIPE/POINTLESS/BestSolution/TotalProb')[0].text)
-            sglist = self.xmlroot.xpath('/CCP4i2DRMRMBPipe/AIMLESS_PIPE/POINTLESS/SpacegroupList/Spacegroup')
+            best_sg = self.xmlroot.findall('./CCP4i2DRMRMBPipe/AIMLESS_PIPE/POINTLESS/BestSolution/GroupName')[0].text
+            best_sg_prob = float(self.xmlroot.findall('./CCP4i2DRMRMBPipe/AIMLESS_PIPE/POINTLESS/BestSolution/TotalProb')[0].text)
+            sglist = self.xmlroot.findall('./CCP4i2DRMRMBPipe/AIMLESS_PIPE/POINTLESS/SpacegroupList/Spacegroup')
             for sg in sglist:
-                sgname, total_prob = (sg.xpath('SpacegroupName')[0].text.strip(), float(sg.xpath('TotalProb')[0].text))
+                sgname, total_prob = (sg.findall('SpacegroupName')[0].text.strip(), float(sg.findall('TotalProb')[0].text))
                 if abs(total_prob-best_sg_prob)<1e-5:
                     self.enantiomorphs.append(sgname)
             #print("possible enantiomorphic space groups:",self.enantiomorphs)
@@ -290,9 +291,9 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
 
             try:
                 print("Get rfactors")
-                rfactors = self.xmlroot.xpath('/CCP4i2DRMRMBPipe/BuccaneerBuildRefineResult/FinalStatistics/r_factor')
+                rfactors = self.xmlroot.findall('./CCP4i2DRMRMBPipe/BuccaneerBuildRefineResult/FinalStatistics/r_factor')
                 print("Get rfrees")
-                rfrees = self.xmlroot.xpath('/CCP4i2DRMRMBPipe/BuccaneerBuildRefineResult/FinalStatistics/r_free')
+                rfrees = self.xmlroot.findall('./CCP4i2DRMRMBPipe/BuccaneerBuildRefineResult/FinalStatistics/r_free')
                 r0 = rfactors[0].text
                 r1 = rfactors[1].text
                 rf0 = rfrees[0].text
@@ -391,8 +392,8 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
                 self.molrep_job.container.inputData.ASUIN.set(self.container.inputData.ASUIN)
             rv = self.molrep_job.process()
             rvfin = self.fin_molrep(rv,self.molrep_job)
-            rfactors = self.xmlroot.xpath('/CCP4i2DRMRMBPipe/BuccaneerBuildRefineResult/FinalStatistics/r_factor')
-            rfrees = self.xmlroot.xpath('/CCP4i2DRMRMBPipe/BuccaneerBuildRefineResult/FinalStatistics/r_free')
+            rfactors = self.xmlroot.findall('./CCP4i2DRMRMBPipe/BuccaneerBuildRefineResult/FinalStatistics/r_factor')
+            rfrees = self.xmlroot.findall('./CCP4i2DRMRMBPipe/BuccaneerBuildRefineResult/FinalStatistics/r_free')
             USE_BUCCANEER = self.container.controlParameters.BUCCANEER_OR_MODELCRAFT.__str__() == 'BUCCANEER'
             if USE_BUCCANEER:
                 r0 = rfactors[0].text
@@ -628,7 +629,7 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
             self.xmlroot.append(tree)
         else:
             print("Do something else!"); sys.stdout.flush()
-            tree = etree.Element("ModelCraft")
+            tree = ET.Element("ModelCraft")
             directory = os.path.join(buccaneer.getWorkDirectory(), "modelcraft")
             tree.text = directory
             self.xmlroot.append(tree)
@@ -779,7 +780,7 @@ coot.write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))''')
         if not USE_BUCCANEER:
             self.oldTree = copy.deepcopy(self.xmlroot)
             self.xmlroot = copy.deepcopy(self.oldTree)
-            tree = etree.Element("ModelCraft")
+            tree = ET.Element("ModelCraft")
             directory = os.path.join(plugin.getWorkDirectory(), "modelcraft")
             tree.text = directory
             self.xmlroot.append(tree)
@@ -834,4 +835,5 @@ coot.write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))''')
 
     def flushXML(self):
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-            CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot,pretty_print=True))
+            ET.indent(self.xmlroot)
+            CCP4Utils.writeXML(programXML,ET.tostring(self.xmlroot))

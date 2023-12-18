@@ -1,7 +1,7 @@
 from report.CCP4ReportParser import *
 import sys
 #from lxml import etree
-import xml.etree.ElementTree as etree
+from xml.etree import ElementTree as etree
 import math
 from wrappers.acedrg.script.acedrg_report import acedrg_report
 class lidiaAcedrg_report(Report):
@@ -31,12 +31,12 @@ class lidiaAcedrg_report(Report):
         for svgNode in svgNodes:
             #Append the pretty printed svg for each SVGNode
             structureDiv = structureGallery.addDiv(label='From Lidia', title='From Lidia',style='width:355px;height:355px;border:0px solid white;')
-            structureDiv.append(etree.tostring(svgNode[0]))
+            structureDiv.append(ET.tostring(svgNode[0]))
         svgNodes = self.xmlnode.findall('.//Acedrg/SVGNode')
         for svgNode in svgNodes:
             #Append the pretty printed svg for each SVGNode
             structureDiv = structureGallery.addDiv(label='Interpreted by Acedrg/Rdkit', title='Interpreted by Acedrg/Rdkit', style='width:355px;height:355px;border:0px solid white;')
-            structureDiv.append(etree.tostring(svgNode[0]))
+            structureDiv.append(ET.tostring(svgNode[0]))
         '''for node in self.xmlnode.findall('.//Acedrg/Warning'):
             parent.addText(text=node.text)
             parent.append('<br/>')
@@ -67,7 +67,7 @@ class lidiaAcedrg_report(Report):
                 with open(baseScenePath,'r') as baseScene:
                     baseSceneText = baseScene.read()
                     specializedText = baseSceneText.replace('SUBSTITUTEME',pdbPath)
-                    rootNode = etree.fromstring(specializedText)
+                    rootNode = ET.fromstring(specializedText)
                     
                     
                     if 'filenames' in self.jobInfo and 'DICTOUT_LIST' in self.jobInfo['filenames'] and len(self.jobInfo['filenames']['DICTOUT_LIST'])>0:
@@ -75,12 +75,12 @@ class lidiaAcedrg_report(Report):
                         tlcNodes = self.xmlnode.findall('.//TLC')
                         if len(tlcNodes) > 0:
                             tlc = tlcNodes[0].text
-                            molDataNode = rootNode.findall('/scene/data/MolData')[0]
-                            customResNode = etree.fromstring('''<customResCIFFiles> <cifmonomer> <name>'''+tlc+'''</name> <filename>'''+dictPath+'''</filename> </cifmonomer> </customResCIFFiles>''')
+                            molDataNode = rootNode.findall('./scene/data/MolData')[0]
+                            customResNode = ET.fromstring('''<customResCIFFiles> <cifmonomer> <name>'''+tlc+'''</name> <filename>'''+dictPath+'''</filename> </cifmonomer> </customResCIFFiles>''')
                             molDataNode.append(customResNode)
                     
                     with open(scenePath,'w') as specializedScene:
-                        specializedScene.write(etree.tostring(rootNode))
+                        specializedScene.write(ET.tostring(rootNode))
                     pic = pictureGallery.addPicture(label=os.path.split(pdbPath.__str__())[1],title=os.path.split(pdbPath.__str__())[1],sceneFile=scenePath)
         return
     

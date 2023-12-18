@@ -136,13 +136,14 @@ class phaser_phil(CPluginScript):
         #Create (dummy) PROGRAMXML, which basically contains only the log text of the job
         #without this, a report will not be generated
         '''
-        from lxml import etree
+        #from lxml import etree
+        from xml.etree import ElementTree as ET
         import sys
         with open(self.makeFileName("PROGRAMXML"),"w") as programXMLFile:
-            xmlStructure = etree.Element("i2Dimple")
-            logText = etree.SubElement(xmlStructure,"LogText")
+            xmlStructure = ET.Element("i2Dimple")
+            logText = ET.SubElement(xmlStructure,"LogText")
             with open(self.makeFileName("LOG"),"r") as logFile:
-                logText.text = etree.CDATA(logFile.read())
-            programXMLFile.write(etree.tostring(xmlStructure))
+                logText.text = ET.CDATA(logFile.read())
+            programXMLFile.write(ET.tostring(xmlStructure))
         '''
         return CPluginScript.SUCCEEDED

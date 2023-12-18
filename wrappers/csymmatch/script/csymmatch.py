@@ -4,6 +4,8 @@ from __future__ import print_function
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
 import pathlib
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 class csymmatch(CPluginScript):
 
@@ -54,37 +56,36 @@ class csymmatch(CPluginScript):
     def processOutputFiles(self):
         logName = self.makeFileName('LOG')
         
-        from lxml import etree
-        xmlRoot = etree.Element('Csymmatch')
+        xmlRoot = ET.Element('Csymmatch')
         segmentNode = None
         with open (logName,'r') as logFile:
             lines = logFile.readlines()
             for line in lines:
                 if line.strip().startswith('Change of hand'):
-                    handNode = etree.SubElement(xmlRoot,'ChangeOfHand')
+                    handNode = ET.SubElement(xmlRoot,'ChangeOfHand')
                     handNode.text = line.strip().split(':')[1]
                 elif line.strip().startswith('Change of origin'):
-                    originNode = etree.SubElement(xmlRoot,'ChangeOfOrigin')
+                    originNode = ET.SubElement(xmlRoot,'ChangeOfOrigin')
                     originNode.text = line.strip().split(':')[1]
                 elif line.strip().startswith('Chain'):
-                    segmentNode = etree.SubElement(xmlRoot,'Segment')
-                    rangeNode = etree.SubElement(segmentNode,'Range')
+                    segmentNode = ET.SubElement(xmlRoot,'Segment')
+                    rangeNode = ET.SubElement(segmentNode,'Range')
                     rangeNode.text = line.strip().split('will')[0]
                 elif line.strip().startswith('Symmetry operator'):
                     if segmentNode is not None:
-                        operatorNode = etree.SubElement(segmentNode,'Operator')
+                        operatorNode = ET.SubElement(segmentNode,'Operator')
                         operatorNode.text = line.strip().split(':')[1]
                 elif line.strip().startswith('Lattice shift'):
                     if segmentNode is not None:
-                        shiftNode = etree.SubElement(segmentNode,'Shift')
+                        shiftNode = ET.SubElement(segmentNode,'Shift')
                         shiftNode.text = line.strip().split(':')[1]
                 elif line.strip().startswith('with normalised score'):
                     if segmentNode is not None:
-                        scoreNode = etree.SubElement(segmentNode,'Score')
+                        scoreNode = ET.SubElement(segmentNode,'Score')
                         scoreNode.text = line.strip().split(':')[1]
     
         with open(self.makeFileName('PROGRAMXML'),'w') as xmlFile:
-            xmlString = etree.tostring(xmlRoot, pretty_print=True)
+            xmlString = ET.tostring(xmlRoot, pretty_print=True)
             CCP4Utils.writeXML(xmlFile,xmlString)
 
 

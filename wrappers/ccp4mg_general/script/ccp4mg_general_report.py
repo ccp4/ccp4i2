@@ -3,7 +3,7 @@ from __future__ import print_function
 from report.CCP4ReportParser import *
 from core import CCP4Utils
 import sys
-import xml.etree.ElementTree as etree
+from xml.etree import ElementTree as etree
 
 class ccp4mg_general_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -52,11 +52,12 @@ class ccp4mg_general_report(Report):
           i = 0
           for fname in self.jobInfo['filenames']["XYZOUT"]:
              baseSceneXML = CCP4Utils.openFileToEtree(baseScenePath)
-             et = etree.ElementTree(baseSceneXML)
+             et = ET.ElementTree(baseSceneXML)
              filename_element = et.findall(".//scene/data/MolData/filename")[0]
              del filename_element.attrib["database"]
              filename_element.text = fname
-             print(etree.tostring(et,pretty_print=True))
+             ET.indent(et)
+             print(ET.tostring(et))
              sceneFilePath = os.path.join(jobDirectory,'ccp4mg_general_scene'+str(i)+'.scene.xml')
              et.write(sceneFilePath,pretty_print=True)
              pic = pictureGallery.addPicture(sceneFile=sceneFilePath,label='Picture of structure '+str(i+1))

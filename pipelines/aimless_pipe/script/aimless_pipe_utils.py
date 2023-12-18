@@ -7,6 +7,7 @@ try:
 except:
   exec(compile(open(os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc')).read(), os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc'), 'exec'))
   from report.CCP4ReportParser import *
+from xml.etree import ElementTree as ET
 
 # - - - - - - - - - - - - - - - - -
 def displayFile(fileroot, parent, filenames, text, projectid=None, jobNumber=None):
@@ -278,7 +279,7 @@ def selectGraphs(xmlnode, baseElement="CCP4Table",
                  graphID=None,
                  graphTitle=None,
                  plotTitleList=None):
-  import xml.etree.ElementTree as ET
+  from xml.etree import ElementTree as ET
   '''
   Select from xmlnode (usually = <CCP4Table> element) graphs
   with id= graphID
@@ -330,7 +331,7 @@ def selectGraphs(xmlnode, baseElement="CCP4Table",
           newplot.append(plot)
 
       if len(newplot) != 0:
-        newCCP4Table = etree.Element("CCP4Table", attrib=attrib)
+        newCCP4Table = ET.Element("CCP4Table", attrib=attrib)
         for plot in newplot:
           newCCP4Table.append(plot)
 
@@ -376,14 +377,12 @@ class CellCheck:
 
   # - - - - - - - - - - - - - - - - -
   def addElement(self, containerXML, elementname, elementtext):
-    from lxml import etree
-    e2 = etree.Element(elementname)
+    e2 = ET.Element(elementname)
     e2.text = elementtext
     containerXML.append(e2)
 
   # - - - - - - - - - - - - - - - - -
   def cellCompatibilityXML (self,mtzContent1 ,mtzContent2, cellsAreTheSame):
-    from lxml import etree
     " Make XML report of cells and their compatibility"
     # Mostly for comparing observed data with freer data,
     #  but also for observed v. observed
@@ -401,7 +400,7 @@ class CellCheck:
     'tolerance'   in A
     """
 
-    cellReportXML= etree.Element('ObsFreeCellComparison')
+    cellReportXML= ET.Element('ObsFreeCellComparison')
     
     cellformat = CellFormat()
     self.addElement(cellReportXML, 'cell1',cellformat.shortformatCell(mtzContent1.cell))
@@ -418,8 +417,8 @@ class CellCheck:
     self.addElement(cellReportXML, 'sgname1', sgname1)
     self.addElement(cellReportXML, 'sgname2', sgname2)
     
-
-    #print "cellReportXML",etree.tostring(cellReportXML,pretty_print=True)
+    #ET.indent(cellReportXML)
+    #print "cellReportXML",ET.tostring(cellReportXML)
     return cellReportXML
 # end class CellCheck
 

@@ -14,14 +14,14 @@ dummy_report += '<body>\n<h3>CRANK2 job running - no report available yet</h3>\n
 
 
 def et(fileName=None):
-  parser = etree.HTMLParser()
+  parser = ET.HTMLParser()
   try:
-    #root = etree.parse( os.path.join(rundir, "index.html"), parser=parser ).getroot()
-    root = etree.parse( fileName, parser=parser ).getroot()
+    #root = ET.parse( os.path.join(rundir, "index.html"), parser=parser ).getroot()
+    root = ET.parse( fileName, parser=parser ).getroot()
     script=root.find('body/script')
     if script is not None:
       script.text=script.text.replace('docURI         = "";', 'docURI         = "{}";'.format(os.path.dirname(fileName)+os.sep))
-      #root = etree.Element('iframe')
+      #root = ET.Element('iframe')
       #root.set('src', fileName)
   except Exception as e:
     print('Crank2 report failed with error message: {0}'.format(e))
@@ -29,19 +29,19 @@ def et(fileName=None):
     if os.path.isfile(os.path.join(os.path.dirname(fileName),'log.txt')):
       with open(os.path.join(os.path.dirname(fileName),'log.txt')) as f:
         g = StringIO(f.read().replace('\n','<BR>'))
-        root = etree.parse( g, parser=parser ).getroot()
+        root = ET.parse( g, parser=parser ).getroot()
         g.close()
     else:
     # the code below opens the presentation in the i2 browser.  could be used as an alternative.
       try:
-        root = etree.Element('a')
+        root = ET.Element('a')
         root.set('href', fileName)
         root.set('style', "font-size: 130%")
         root.text="Presentation not loaded. You can try to click this link to open it or use the View -> Log file  option."
       except Exception as e:
         print('Crank2 report failed (also returning the error message in report): {0}'.format(e))
         f = StringIO(dummy_report)
-        root = etree.parse( f, parser=parser ).getroot()
+        root = ET.parse( f, parser=parser ).getroot()
         f.close()
   return root
 

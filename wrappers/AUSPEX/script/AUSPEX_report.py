@@ -2,7 +2,6 @@ from __future__ import print_function
 from report.CCP4ReportParser import *
 import sys
 import os
-from lxml import etree
 
 class AUSPEX_report(Report):
 

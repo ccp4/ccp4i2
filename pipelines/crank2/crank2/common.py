@@ -184,7 +184,7 @@ class stats(object):
   def __init__(self,name=None,regexp=None,xpath=None,multiple=False,attrib=None,convert=True,accept_none=False):
     self.name=name
     self.regexp=regexp
-    self.xpath=xpath
+    self.findall=xpath
     self.multiple=multiple
     self.attrib=attrib
     self.convert=convert

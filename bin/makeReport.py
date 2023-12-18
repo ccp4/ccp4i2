@@ -2,7 +2,8 @@ from __future__ import print_function
 
 
 import os,sys
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 def getCCP4I2Dir(up=1):
     target = os.path.join(os.path.realpath(sys.argv[0]),"..")
@@ -31,8 +32,8 @@ if __name__ == '__main__':
         print('Usage: makeReport xrtFileName xmlDataFileName')
         sys.exit()
 
-    xrt = etree.XML( open( argList[0] ).read() )
-    xml = etree.XML( open( argList[1] ).read() )
+    xrt = ET.XML( open( argList[0] ).read() )
+    xml = ET.XML( open( argList[1] ).read() )
     jobId = None
     outputFile = './report.html'
     ifPrint = False
@@ -58,7 +59,7 @@ if __name__ == '__main__':
     else:
         jobInfo = {}
 
-    xreport = xrt.xpath( "/report" )[0]
+    xreport = xrt.findall( "/report" )[0]
     report = CCP4ReportParser.Report( xreport, xml,jobInfo=jobInfo )
     text = report.as_html()
     if ifPrint: print(text)

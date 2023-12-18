@@ -5,7 +5,8 @@ from core.CCP4PluginScript import CPluginScript
 from PySide2 import QtCore
 import os,glob,re,time,sys
 from core import CCP4XtalData
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 import math
 from core import CCP4Modules,CCP4Utils
 import platform
@@ -28,7 +29,7 @@ class acedrg(CPluginScript):
     
     def __init__(self,*args,**kws):
         CPluginScript.__init__(self, *args,**kws)
-        self.xmlroot = etree.Element('Acedrg')
+        self.xmlroot = ET.Element('Acedrg')
     
     def processInputFiles(self):
         from rdkit import Chem
@@ -57,7 +58,7 @@ class acedrg(CPluginScript):
             atom.ClearProp('molAtomMapNumber')
         from rdkit.Chem import AllChem
         AllChem.Compute2DCoords(mol)
-        smilesNode = etree.SubElement(self.xmlroot,'SMILES')
+        smilesNode = ET.SubElement(self.xmlroot,'SMILES')
         smilesNode.text = Chem.MolToSmiles(mol, isomericSmiles=True)
         self.smilesString = smilesNode.text
         
@@ -133,7 +134,7 @@ class acedrg(CPluginScript):
             try:
                 from .MyCIFDigestor import MyCIFFile
                 myCIFFile = MyCIFFile(filePath=cifFilePath)
-                geometryNode = etree.SubElement(self.xmlroot,'Geometry')
+                geometryNode = ET.SubElement(self.xmlroot,'Geometry')
                 propertiesOfCategories = {'_chem_comp_bond':['atom_id_1','atom_id_2','value_dist','value_dist_esd','type'],
                 '_chem_comp_angle':['atom_id_1','atom_id_2','atom_id_3','value_angle','value_angle_esd'],
                 '_chem_comp_tor':['atom_id_1','atom_id_2','atom_id_3','atom_id_4','value_angle','period','value_angle_esd'],
@@ -152,10 +153,10 @@ class acedrg(CPluginScript):
                                     if property in loopline:
                                         examples[-1][property] = loopline[property]
                         for example in examples:
-                            exampleNode = etree.SubElement(geometryNode, category)
+                            exampleNode = ET.SubElement(geometryNode, category)
                             for property in properties:
                                 if property in example:
-                                    propertyNode = etree.SubElement(exampleNode, property)
+                                    propertyNode = ET.SubElement(exampleNode, property)
                                     propertyNode.text = example[property]
             except:
                 self.apppendErrorReport(202)
@@ -185,7 +186,7 @@ class acedrg(CPluginScript):
             atomsOfMol = mol.GetSubstructMatch(pattern)
             atomsOfTemplate = referenceMol.GetSubstructMatch(pattern)
         except:
-            warningNode = etree.SubElement(self.xmlroot,'Warning')
+            warningNode = ET.SubElement(self.xmlroot,'Warning')
             warningNode.text = 'RDKIT failed to use MaximumCommonStructure matching - chirality less likely to be right'
         for iEquiv in range(len(atomsOfMol)):
             atomOfMol = mol.GetAtomWithIdx(atomsOfMol[iEquiv])
@@ -207,10 +208,10 @@ class acedrg(CPluginScript):
     
         #Provide data to allow graphing of conformer energies
         for cid, energy in sortedEnergyArray:
-            confNode = etree.SubElement(self.xmlroot,'Conformer')
-            rankNode = etree.SubElement(confNode,'Rank')
+            confNode = ET.SubElement(self.xmlroot,'Conformer')
+            rankNode = ET.SubElement(confNode,'Rank')
             rankNode.text = str(iConf)
-            energyNode = etree.SubElement(confNode,'Energy')
+            energyNode = ET.SubElement(confNode,'Energy')
             energyNode.text = str(energy)
             iConf += 1
         
@@ -262,11 +263,11 @@ class acedrg(CPluginScript):
                 pass
 
         # Get 2D picture of structure from the RDKit mol and place in report
-        svgNode = etree.SubElement(self.xmlroot,'SVGNode')
+        svgNode = ET.SubElement(self.xmlroot,'SVGNode')
         svgNode.append(svgFromMol(molToWrite))
 
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-            CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot, pretty_print=True))
+            CCP4Utils.writeXML(programXML,ET.tostring(self.xmlroot, pretty_print=True))
 
         return CPluginScript.SUCCEEDED
 
@@ -292,7 +293,7 @@ def svgFromMol(mol):
         print 'includeAtom',myDrawing.drawingOptions.includeAtomNumbers'''
         myDrawing.AddMol(mol)
         svg = myCanvas.canvas.text()#.replace('svg:','')
-        return etree.fromstring(svg)
+        return ET.fromstring(svg)
     except:
         from rdkit import Chem
         molBlock = Chem.MolToMolBlock(mol)
@@ -322,7 +323,7 @@ def svgFromRdkitMol(mol):
     drawingOptions.includeAtomNumbers=False
     myDrawing.AddMol(mol, drawingOptions=drawingOptions)
     svg = myCanvas.canvas.text().replace('svg:','')
-    return etree.fromstring(svg)
+    return ET.fromstring(svg)
 
 
 def molFromDict(cifFilePath):

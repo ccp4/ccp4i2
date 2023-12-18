@@ -508,29 +508,29 @@ class CSubJobReport(QtCore.QObject):
         from lxml import etree
         from core import CCP4Utils
         '''
-        parentTree = etree.parse(parentFile)
+        parentTree = ET.parse(parentFile)
         print 'mergeIntoParent jobId',self.jobId
         # Find the span-link created by CCP4ReportParser.foldLinkLine
         path = 'body/div[@class="sub-job-list"]/span[@class="folder_link"]/a[@id="jobId'+str(self.jobId)+'"]'
-        aEle = parentTree.xpath(path)
+        aEle = parentTree.findall(path)
         print 'mergeIntoParent aEle',aEle
         if len(aEle) == 0: return CErrorReport(self.__class__,5,parentFile)
         aEle = aEle[0]
         label = aEle.text
         print 'mergeIntoParent',label
-        insertEle = aEle.xpath('../..')[0]
-        insertIndex = insertEle.index(aEle.xpath('..')[0])
+        insertEle = aEle.findall('../..')[0]
+        insertIndex = insertEle.index(aEle.findall('..')[0])
         '''
-        #myTree =  etree.parse(reportFile)
+        #myTree =  ET.parse(reportFile)
         myTree = CCP4Utils.openFileToEtree(reportFile)
         # Load the ccp4_data while we have the file as xml
         self.parent().report.loadFromEtree(myTree)
         # Convert body of sub-job report html to a div.subjob
-        body = myTree.xpath('./body')[0]
+        body = myTree.findall('./body')[0]
         body.tag ='div'
         body.set('id',str(idText))
         body.set('class','subjob')
-        subJobText = etree.tostring(body)
+        subJobText = ET.tostring(body)
         #print 'CSubJobReport.merge subJobText(cut)',subJobText[0:200]
         ele = self.parent().page().currentFrame().findFirstElement('body div#'+idText)
         if ele:

@@ -25,7 +25,7 @@ from dbapi import CCP4DbApi
 import functools
 from core.CCP4Modules import PROJECTSMANAGER
 from core.CCP4ErrorHandling import CException
-import xml.etree.ElementTree as ET
+from xml.etree import ElementTree as ET
 
 # -------------------------------------------------------------------
 

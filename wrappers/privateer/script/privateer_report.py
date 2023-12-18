@@ -5,7 +5,7 @@ import numpy
 import os
 import shutil
 
-import xml.etree.ElementTree as etree
+from xml.etree import ElementTree as etree
 
 class privateer_report(Report):
   # Specify which gui task and/or pluginscript this applies to
@@ -54,13 +54,13 @@ class privateer_report(Report):
     # This change to graphical representation was suggested by Dave Brown and Paul Emsley
     #   at a CCP4 WG2 meeting at Birkbeck in London (January 2019). Users nodded in agreement.
 
-    new_tree = etree.Element('privateer_report')
-    pyranose_tree = etree.SubElement ( new_tree, 'pyranoses' )
-    furanose_tree = etree.SubElement ( new_tree, 'furanoses')
+    new_tree = ET.Element('privateer_report')
+    pyranose_tree = ET.SubElement ( new_tree, 'pyranoses' )
+    furanose_tree = ET.SubElement ( new_tree, 'furanoses')
 
-    low_energy_pyranoses   = etree.SubElement ( pyranose_tree, 'low_energy'   )
-    high_energy_pyranoses  = etree.SubElement ( pyranose_tree, 'high_energy'  )
-    other_issues_pyranoses = etree.SubElement ( pyranose_tree, 'other_issues' )
+    low_energy_pyranoses   = ET.SubElement ( pyranose_tree, 'low_energy'   )
+    high_energy_pyranoses  = ET.SubElement ( pyranose_tree, 'high_energy'  )
+    other_issues_pyranoses = ET.SubElement ( pyranose_tree, 'other_issues' )
 
     for sugar in self.xmlnode.findall ( ".//ValidationData/Pyranose" ):
         if "conformation" in sugar.find("SugarDiagnostic").text.lower() :

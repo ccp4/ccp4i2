@@ -20,7 +20,8 @@ from __future__ import print_function
 
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 import sys, os
 
 
@@ -140,7 +141,7 @@ print "PRM postProcessCheck"
                 with open(self.makeFileName('PROGRAMXML'),'r') as unfixedXMLFile:
                     text = unfixedXMLFile.read()
                 try:
-                    rootNode = etree.fromstring(text)
+                    rootNode = ET.fromstring(text)
                 except:
                     #MN Pointless's XML can be corrupt...I've spotted this in instances where the XYZIN_REF has been set, and
                     #the corresponding XML closing tag is split across two lines.
@@ -159,13 +160,13 @@ print "PRM postProcessCheck"
                         if (inMarkup and character != '\n') or not inMarkup: fixedText += character
                     with open(self.makeFileName('PROGRAMXML'),'w') as fixedXMLFile:
                         fixedXMLFile.write(fixedText)
-                    rootNode = etree.fromstring(fixedText)
+                    rootNode = ET.fromstring(fixedText)
                 print( '#PRM rootNode',rootNode)
                 
                 if taskoption != 'ANALYSE' and taskoption != 'LATTICE':
-                    bestReindexNodes = rootNode.xpath('//BestReindex')
-                    scoreCountNodes = rootNode.xpath('//ScoreCount')
-                    copyMessageNodes = rootNode.xpath('//CopyMessage')
+                    bestReindexNodes = rootNode.findall('.//BestReindex')
+                    scoreCountNodes = rootNode.findall('.//ScoreCount')
+                    copyMessageNodes = rootNode.findall('.//CopyMessage')
                     if len(bestReindexNodes) == 0 and len(scoreCountNodes) == 0 and len(copyMessageNodes) == 0:
                         self.container.outputData.BestReindexIdentified = False
                         self.appendErrorReport(203, 'No reindex found')

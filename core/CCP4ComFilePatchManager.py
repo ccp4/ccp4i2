@@ -159,7 +159,7 @@ class CComFilePatchManager(CCP4CustomManager.CCustomManager):
         defFile = CCP4TaskManager.TASKMANAGER().lookupDefFile(name=container.taskNameList[-1].__str__())
         f = CCP4File.CI2XmlDataFile(fullPath=defFile)
         f.loadFile()
-        eleList = f.getBodyEtree().xpath("./container[@id='controlParameters']")
+        eleList = f.getBodyEtree().findall("./container[@id='controlParameters']")
         if len(eleList) > 0:
             container.controlParameters.loadContentsFromEtree(eleList[0])
             container.loadDataFromXml(fileName=fileName, check=False)

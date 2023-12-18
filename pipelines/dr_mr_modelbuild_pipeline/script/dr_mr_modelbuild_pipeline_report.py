@@ -5,7 +5,7 @@ import json
 from report.CCP4ReportParser import *
 from wrappers.refmac_i2.script.refmac_report import refmac_report
 #from lxml import etree
-import xml.etree.ElementTree as etree
+from xml.etree import ElementTree as etree
 from wrappers.sheetbend.script.sheetbend_report import sheetbend_report
 from wrappers.pointless.script import pointless_report
 from wrappers.aimless.script import aimless_report

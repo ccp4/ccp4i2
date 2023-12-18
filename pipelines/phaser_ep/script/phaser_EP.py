@@ -4,7 +4,8 @@ from core.CCP4PluginScript import CPluginScript
 import sys, os
 from core import CCP4ErrorHandling
 from core import CCP4Modules
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 from core import CCP4Utils
 
 
@@ -19,7 +20,7 @@ class phaser_EP(CPluginScript):
     ERROR_CODES = {202:{'description':'Failed in harvest operation'},}
 
     def process(self):
-        self.xmlroot = etree.Element('PhaserEP')
+        self.xmlroot = ET.Element('PhaserEP')
         if self.container.inputData.PARTIALMODELORMAP == 'SEARCH':
             rv = self.run_shelx()
             if rv == CPluginScript.SUCCEEDED:
@@ -137,19 +138,19 @@ class phaser_EP(CPluginScript):
 
     def updateXml(self, xmlFilename, element, hand=None):
         if hand == None:
-            for oldNode in self.xmlroot.xpath(element):
+            for oldNode in self.xmlroot.findall(element):
                 self.xmlroot.remove(oldNode)
             newXML = CCP4Utils.openFileToEtree(xmlFilename)
             self.xmlroot.append(newXML)
         else:
-            if len(self.xmlroot.xpath('//{}/{}'.format(hand,element))) > 0:
-                self.xmlroot.remove(self.xmlroot.xpath('//{}/{}'.format(hand,element))[0])
-            hand_node = etree.SubElement(self.xmlroot, hand)
+            if len(self.xmlroot.findall('.//{}/{}'.format(hand,element))) > 0:
+                self.xmlroot.remove(self.xmlroot.findall('.//{}/{}'.format(hand,element))[0])
+            hand_node = ET.SubElement(self.xmlroot, hand)
             newXML = CCP4Utils.openFileToEtree(xmlFilename)
             hand_node.append(newXML)
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
         with open(tmpFilename,'w') as xmlfile:
-            CCP4Utils.writeXML(xmlfile,etree.tostring(self.xmlroot,pretty_print=True))
+            CCP4Utils.writeXML(xmlfile,ET.tostring(self.xmlroot))
         self.renameFile(tmpFilename,self.makeFileName('PROGRAMXML'))
 
     def copyPluginOutput(self, pluginOutputItem, pipelineOutputList, annotation=None):

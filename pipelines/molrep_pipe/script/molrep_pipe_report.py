@@ -3,7 +3,7 @@ import sys
 from report.CCP4ReportParser import *
 from wrappers.refmac_i2.script.refmac_report import refmac_report
 #from lxml import etree
-import xml.etree.ElementTree as etree
+from xml.etree import ElementTree as etree
 from wrappers.sheetbend.script.sheetbend_report import sheetbend_report
 
 class molrep_pipe_report(refmac_report):
@@ -40,28 +40,28 @@ class molrep_pipe_report(refmac_report):
   )
 
   def molrep_plot_xml(self, title, nmon, yincr, label_list):
-    e0 = etree.Element('plot')
+    e0 = ET.Element('plot')
     e0.text = '\n'
-    e1 = etree.SubElement(e0, 'title')
+    e1 = ET.SubElement(e0, 'title')
     e1.text = title
     e1.tail = '\n'
-    e1 = etree.SubElement(e0, 'plottype')
+    e1 = ET.SubElement(e0, 'plottype')
     e1.text = 'xy'
     e1.tail = '\n'
     for imon in range(nmon):
-      e1 = etree.SubElement(e0, 'plotline')
+      e1 = ET.SubElement(e0, 'plotline')
       e1.attrib['xcol'] = str(3* imon + 1)
       e1.attrib['ycol'] = str(3* imon + yincr)
       e1.text = '\n'
       e1.tail = '\n'
-      e2 = etree.SubElement(e1, 'colour')
+      e2 = ET.SubElement(e1, 'colour')
       e2.text = self.COLOUR[imon][1]
       e2.tail = '\n'
-      e2 = etree.SubElement(e1, 'label')
+      e2 = ET.SubElement(e1, 'label')
       e2.text = label_list[imon]
       e2.tail = '\n'
 
-    return etree.tostring(e0)
+    return ET.tostring(e0)
 
   def molrep_report(self, parent, prefix, sgtest=False):
     label_list = list()
@@ -228,7 +228,7 @@ def test(xmlFile=None,jobId=None,reportFile=None):
     import sys,os
     try:
         text = open( xmlFile ).read()
-        xmlnode = etree.fromstring( text )
+        xmlnode = ET.fromstring( text )
     except:
         print('FAILED loading XML file:', kw['xmlFile'])
     if reportFile is None and xmlFile is not None:

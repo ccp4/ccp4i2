@@ -1,4 +1,4 @@
-from lxml import etree
+#from lxml import etree
 from report.CCP4ReportParser import *
 import sys
 

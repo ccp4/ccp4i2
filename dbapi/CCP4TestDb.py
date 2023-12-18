@@ -122,8 +122,8 @@ class CTestDb(CObject):
     #If the params file has a project set to $THISPROJECTID then substitute in
     # the current projectId and save to a temporary file
     root = fileObj.getEtreeRoot()
-    body = root.xpath('//ccp4i2_body')[0]
-    projectNodeList = body.xpath('//project')
+    body = root.findall('.//ccp4i2_body')[0]
+    projectNodeList = body.findall('.//project')
     ifChanged = False
     for projectNode in projectNodeList:
       if projectNode.text == '$THISPROJECTID':

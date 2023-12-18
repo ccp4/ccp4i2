@@ -7,7 +7,7 @@ import gi
 import os
 import sys
 import glob
-import xml.etree.ElementTree as ET
+from xml.etree import ElementTree as ET
 
 import django
 from pathlib import Path

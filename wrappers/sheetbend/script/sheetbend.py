@@ -18,7 +18,8 @@
 
 import os
 from core.CCP4PluginScript import CPluginScript
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 import pathlib
 
 class sheetbend(CPluginScript):
@@ -76,6 +77,6 @@ class sheetbend(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):        
-        self.xmlroot = etree.parse(self.makeFileName('PROGRAMXML')).getroot()
+        self.xmlroot = ET.parse(self.makeFileName('PROGRAMXML')).getroot()
         return CPluginScript.SUCCEEDED
 

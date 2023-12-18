@@ -24,6 +24,7 @@ from __future__ import print_function
 from PySide2 import QtCore
 import os
 from lxml import etree
+from xml.etree import ElementTree as ET
 from core.CCP4ErrorHandling import *
 from core.CCP4DataManager import DATAMANAGER
 from core.CCP4Data import CData
@@ -182,7 +183,7 @@ class CReport(QtCore.QObject):
       root = CCP4Utils.openFileToEtree(self.filename)
       #root = tree.getroot()
       #print 'CReport.loadFromXmlFile',root
-    except etree.ParseError as e:
+    except ET.ParseError as e:
       #print 'CReport.loadFromXmlFile',e.filename,e.lineno,e.msg,e.offset,e.print_file_and_line,e.text
       raise CException(self.__class__,102,e.msg+' in file '+filename)
     except:
@@ -210,14 +211,14 @@ class CReport(QtCore.QObject):
   def toString(self,root):
     text = ''
     try:
-      text = etree.tostring(root,pretty_print=True)
+      text = ET.tostring(root,pretty_print=True)
     except:
       raise CException(self.__class__,103)
     return text
   
   def saveToXmlFile(self,root,filename):
     try:
-      text = etree.tostring(root,pretty_print=True)
+      text = ET.tostring(root,pretty_print=True)
     except:
       raise CException(self.__class__,104,filename)
     #print 'CReport.saveXMLFile',filename,text
@@ -229,7 +230,7 @@ class CReport(QtCore.QObject):
     
 
   def tostring(self,root):
-    if root is not None: return etree.tostring(root)
+    if root is not None: return ET.tostring(root)
     return ''
 
   def extractBaseHref(self,root):
@@ -238,7 +239,7 @@ class CReport(QtCore.QObject):
     self.resetBaseHref= None
     if sys.platform[0:3] == 'win': return
     ifSame = False
-    eleList = root.xpath('//html/head/base')
+    eleList = root.findall('.//html/head/base')
     if len(eleList)>0 and eleList[0].get('href') is not None:
       self.baseHref = QtCore.QUrl(eleList[0].get('href')).toLocalFile().__str__()
       if self.baseHref is None: return
@@ -296,18 +297,18 @@ class CReport(QtCore.QObject):
 
   def extractTopFolds(self,root):
     topFolds = []
-    foldElements = root.xpath("//span[@class='folder']")
+    foldElements = root.findall(".//span[@class='folder']")
     #print 'into CCP4Report.listTopFolds',len(foldElements)
     for ele in foldElements:
       isTop = True
-      parent = ele.xpath('..')[0]
+      parent = ele.findall('..')[0]
       while parent.tag != 'body' and isTop:
         if parent.tag == 'div' and parent.get('class','').count('hidesection'):
           isTop = False
         else:
-          parent = parent.xpath('..')[0]
+          parent = parent.findall('..')[0]
       if isTop:
-        #print etree.tostring(ele,pretty_print=True)
+        #print ET.tostring(ele,pretty_print=True)
         if ele.text.count( u"\u25BC") or  ele.text.count( u"\u25B6"):
           #Confused - seems to work if chop first two chrs rather than first seven
           txt = str(ele.text[2:])

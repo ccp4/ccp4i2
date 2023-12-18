@@ -34,7 +34,8 @@ import sys
 import time
 import glob
 import re
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 if sys.version_info >= (3,7):
     from collections.abc import Callable
 else:
@@ -125,8 +126,8 @@ def saveStatus():
     if CMainWindow.STATUS_SAVED:
         return ''
     from qtgui import CCP4ProjectViewer
-    body = etree.Element('body')
-    root = etree.Element('windows')
+    body = ET.Element('body')
+    root = ET.Element('windows')
     body.append(root)
     #print 'saveStatus',CBrowserWindow.Instances,CCP4ProjectViewer.CProjectViewer.Instances
     #import traceback
@@ -134,19 +135,19 @@ def saveStatus():
     for win in CCP4I1Projects.CI1ProjectViewer.Instances:
         win.Exit()
     for win in CBrowserWindow.Instances:
-        winEle = etree.Element('browser')
+        winEle = ET.Element('browser')
         try:
             size = (win.size().width(),win.size().height())
-            sizeEle = etree.Element('windowSize')
+            sizeEle = ET.Element('windowSize')
             sizeEle.text = str(size[0]) + ',' + str(size[1])
             winEle.append(sizeEle)
         except:
             pass
         #print 'CMainWindow.saveStatus browser',win.tab().count()
         for ii in range(win.tab().count()):
-            tabEle = etree.Element('tab')
+            tabEle = ET.Element('tab')
             winEle.append(tabEle)
-            fileEle =  etree.Element('filename')
+            fileEle =  ET.Element('filename')
             try:
                 url = win.tab().widget(ii).url()
             except:
@@ -168,7 +169,7 @@ def saveStatus():
             tabEle.append(fileEle)
             title = win.tab().widget(ii).title()
             if title is not None:
-                titleEle = etree.Element('title')
+                titleEle = ET.Element('title')
                 titleEle.text = title
             tabEle.append(titleEle)
         root.append(winEle)
@@ -181,21 +182,21 @@ def saveStatus():
         except:
             pass
         else:
-            winEle = etree.Element('projectViewer')
-            projectEle = etree.Element('project')
+            winEle = ET.Element('projectViewer')
+            projectEle = ET.Element('project')
             #print 'CMainWindow.saveStatus projectName',projectName
             projectEle.text = projectName
             winEle.append(projectEle)
             if jobNumber is not None:
-                jobEle = etree.Element('openJobNumber')
+                jobEle = ET.Element('openJobNumber')
                 jobEle.text = str(jobNumber)
                 winEle.append(jobEle)
                 if size is not None:
-                    sizeEle = etree.Element('windowSize')
+                    sizeEle = ET.Element('windowSize')
                     sizeEle.text = str(size[0])+','+str(size[1])
                     winEle.append(sizeEle)
             # Issues with handing ByteArray - skip this for now
-            #ele = etree.SubElement(projectEle,'headerState')
+            #ele = ET.SubElement(projectEle,'headerState')
             #ele.text = win.projectWidget().getHeaderState()
             root.append(winEle)
     #print 'CCP4WebBrowser.saveStatus',etree.tostring(body,pretty_print=True)
@@ -216,7 +217,7 @@ def restoreStatus():
     if statusEtree is None:
         return
     nBrowserWindows = 0
-    for winEle in statusEtree.iterchildren():
+    for winEle in statusEtree:
         #print 'CCP4WebBrowser.restoreStatus', winEle.tag
         if str(winEle.tag) == 'projectViewer':
             for  projectEle in winEle.iter('project'):
@@ -270,7 +271,7 @@ def restoreStatus():
                 browser.show()
                 browser.raise_()
             nBrowserWindows = nBrowserWindows + 1
-            for tab in winEle.iterchildren():
+            for tab in winEle:
                 if tab.tag == 'windowSize':
                     try:
                         sizeStr = tab.text.split(',')
@@ -280,7 +281,7 @@ def restoreStatus():
                 elif tab.tag == 'tab':
                     fileName = None
                     title = None
-                    for ele in tab.iterchildren():
+                    for ele in tab:
                         if ele.tag == 'filename':
                             fileName = str(ele.text)
                             #print 'restoreStatus fileName',fileName

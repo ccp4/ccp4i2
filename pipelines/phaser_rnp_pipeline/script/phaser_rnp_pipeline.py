@@ -4,7 +4,8 @@ import sys, os
 from core import CCP4ErrorHandling
 from core import CCP4Modules
 from pipelines.phaser_pipeline.script import phaser_pipeline
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 from core import CCP4Utils
   
 class phaser_rnp_pipeline(phaser_pipeline.phaser_pipeline):
@@ -31,7 +32,7 @@ class phaser_rnp_pipeline(phaser_pipeline.phaser_pipeline):
             self.reportStatus(CPluginScript.FAILED)        
         self.checkOutputData()
 
-        self.xmlroot = etree.Element('PhaserPipeline')
+        self.xmlroot = ET.Element('PhaserPipeline')
 
         self.F_SIGF_TOUSE = self.container.inputData.F_SIGF
         self.FREERFLAG_TOUSE = self.container.inputData.FREERFLAG

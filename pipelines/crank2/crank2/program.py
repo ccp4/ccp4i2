@@ -461,18 +461,18 @@ class program(object):
   def GetStatXML(self, stat, multiple=False):
     value=None
     xmlobj=self.out.Get(filetype='xml')
-    if not xmlobj or stat not in self.stat or self.stat[stat].xpath is None:
+    if not xmlobj or stat not in self.stat or self.stat[stat].findall is None:
       return None
     else:
       xmlfile=xmlobj.GetFileName('xml')
     try:
       xtree = ET.ElementTree( file=xmlfile )
-      value = xtree.findall(self.stat[stat].xpath)
+      value = xtree.findall(self.stat[stat].findall)
     except Exception:
       if hasattr(sys,'exc_clear'): sys.exc_clear()
     if not value:
       try:
-        tag_split = self.stat[stat].xpath.split('/',1)
+        tag_split = self.stat[stat].findall.split('/',1)
         elems = xtree.findall(tag_split[1])
       except Exception:
         if hasattr(sys,'exc_clear'): sys.exc_clear()

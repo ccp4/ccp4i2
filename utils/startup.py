@@ -32,6 +32,8 @@ import atexit
 import time
 import tempfile
 from PySide2 import QtCore, QtGui, QtWidgets
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 class DatabaseFailException(Exception):
     pass
@@ -116,7 +118,6 @@ def setQtWidgetStyle():
         print(e)
 
 def createMissingDATABASEdbXML():
-    from lxml import etree
     from core import CCP4Modules, CCP4Utils
     proj_dir_list0=CCP4Modules.PROJECTSMANAGER().db().getProjectDirectoryList()
 
@@ -166,30 +167,31 @@ def createMissingDATABASEdbXML():
         print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
 
     elif os.path.exists(dbListBackupName):
-        utf8_parser = etree.XMLParser(encoding='utf-8')
+        utf8_parser = ET.XMLParser(encoding='utf-8')
 
         def parse_from_unicode(unicode_str):
             s = unicode_str.encode('utf-8')
-            return etree.fromstring(s, parser=utf8_parser)
+            return ET.fromstring(s)
     
         with open(dbListBackupName, 'r') as infile: 
             s = infile.read()
-            tree = parse_from_unicode(s)
-            projs = tree.xpath("//project")
-            setXML = set([str(x.text) for x in projs])
-            setDB = set([str(x[2]) for x in proj_dir_list0])
-            if (setXML!=setDB):
-                if setXML.issubset(setDB):
-                    print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-                    print("Project directory list is not up to date, recreating")
-                    CCP4Modules.PROJECTSMANAGER().backupDBXML()
-                    print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-                else:
-                   dirListStr =  "<br/>".join([str(x) for x in (setXML - setDB)])
-                   print("Backup project list is inconsistent with database contents. This might be a serious problem.")
-                   res = QtWidgets.QMessageBox.warning(None,"Database file / Project list backup","Backup project list file "+dbListBackupName+" is inconsistent with database contents. This might be a serious problem.<br/><br/>The following project directories contained in "+dbListBackupName+" do not correspond to anything in the database:<br/><br/>"+dirListStr+"<br/><br/>If you think all is well, then click 'OK', otherwise click 'Abort' and investigate the problem.<br/><br/>Do not click 'OK' if you are not sure what is wrong.",QtWidgets.QMessageBox.Ok|QtWidgets.QMessageBox.Abort)
-                   if res == QtWidgets.QMessageBox.Abort:
-                       sys.exit()
+            if len(s) > 0:
+                tree = parse_from_unicode(s)
+                projs = tree.findall(".//project")
+                setXML = set([str(x.text) for x in projs])
+                setDB = set([str(x[2]) for x in proj_dir_list0])
+                if (setXML!=setDB):
+                    if setXML.issubset(setDB):
+                        print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+                        print("Project directory list is not up to date, recreating")
+                        CCP4Modules.PROJECTSMANAGER().backupDBXML()
+                        print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+                    else:
+                        dirListStr =  "<br/>".join([str(x) for x in (setXML - setDB)])
+                        print("Backup project list is inconsistent with database contents. This might be a serious problem.")
+                        res = QtWidgets.QMessageBox.warning(None,"Database file / Project list backup","Backup project list file "+dbListBackupName+" is inconsistent with database contents. This might be a serious problem.<br/><br/>The following project directories contained in "+dbListBackupName+" do not correspond to anything in the database:<br/><br/>"+dirListStr+"<br/><br/>If you think all is well, then click 'OK', otherwise click 'Abort' and investigate the problem.<br/><br/>Do not click 'OK' if you are not sure what is wrong.",QtWidgets.QMessageBox.Ok|QtWidgets.QMessageBox.Abort)
+                        if res == QtWidgets.QMessageBox.Abort:
+                            sys.exit()
 
 def startBrowser(args, app=None, splash=None):
     from core import CCP4Modules

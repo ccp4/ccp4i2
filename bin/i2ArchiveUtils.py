@@ -10,6 +10,8 @@ else:
 import itertools
 import mimetools
 import mimetypes
+from xml.etree import ElementTree as ET
+
 try:
     from cStringIO import StringIO
 except ImportError:
@@ -167,12 +169,12 @@ class DjangoSession (object):
         responseHTML=response.read()
         formURL = response.geturl()
         #Here check that this looks like a properly crafted login form
-        from lxml import etree
-        parser = etree.HTMLParser()
-        responseAsEtree = etree.parse(StringIO(responseHTML), parser)
-        if len(responseAsEtree.xpath("//input[@name='username']")) == 0:
+        from xml.etree import ElementTree as ET
+        #parser = ET.HTMLParser()
+        responseAsEtree = ET..parse(StringIO(responseHTML))
+        if len(responseAsEtree.findall(".//input[@name='username']")) == 0:
             raise Exception("No username field in login page retrieved from ", response.geturl())
-        if len(responseAsEtree.xpath("//input[@name='password']")) == 0:
+        if len(responseAsEtree.findall(".//input[@name='password']")) == 0:
             raise Exception("No password field in login page retrieved from ", response.geturl())
         else:
             print('Retrieved login form with url', formURL)

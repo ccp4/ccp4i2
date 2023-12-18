@@ -13,6 +13,7 @@ import types
 import re
 import os
 import sqlite3
+from xml.etree import ElementTree as ET
 
 """
     CCP4DbApi.py: CCP4 GUI Project
@@ -2359,13 +2360,12 @@ TaskTitle TEXT );''')
         return ret
 
     def getTablesEtree(self, projectId=None, after=None, status=None, jobList=None, inputFileList=None, inputFileFromJobList=None):
-        from lxml import etree
 
         # print 'getTablesEtree',jobList,inputFileList,inputFileFromJobList
 
         errReport = CErrorReport()
         jobNumberList = []
-        root = etree.Element('project')
+        root = ET.Element('project')
 
         table = self.getDatabaseInfo(returnList=True)
         databaseTableEle = self.tableEtree(
@@ -2520,7 +2520,7 @@ TaskTitle TEXT );''')
         tableEtree = self.tableEtree('xdata', self.XDATAITEMS[0:-1], table)
         # Add the actual xml representation in as etree
         for ii in range(len(table)):
-            dataTree = etree.fromstring(table[ii][-1])
+            dataTree = ET.fromstring(table[ii][-1])
             dataTree.tag = 'xdataxml'
             tableEtree[ii].append(dataTree)
         root.append(tableEtree)
@@ -2611,10 +2611,9 @@ TaskTitle TEXT );''')
         return root, jobNumberList, errReport
 
     def tableEtree(self, itemName, attributeList, table):
-        from lxml import etree
-        tableEle = etree.Element(itemName+'Table')
+        tableEle = ET.Element(itemName+'Table')
         for row in table:
-            ele = etree.Element(itemName)
+            ele = ET.Element(itemName)
             ii = 0
             for attrib in attributeList:
                 if row[ii] is not None:
@@ -2624,25 +2623,24 @@ TaskTitle TEXT );''')
         return tableEle
 
     def getProjectEtree(self, projectId):
-        from lxml import etree
         errReport = CErrorReport()
-        root = etree.Element('project')
+        root = ET.Element('project')
         info = self.getProjectInfo(projectId)
         for itemName in ['projectname', 'projectdirectory', 'projectcreated']:
-            item = etree.Element(itemName)
+            item = ET.Element(itemName)
             item.text = str(info[itemName])
             root.append(item)
-        item = etree.Element('userid')
+        item = ET.Element('userid')
         userName = self.getUserInfo(info['userid'], 'username')
-        item = etree.Element('username')
+        item = ET.Element('username')
         item.text = str(userName)
         root.append(item)
 
-        jobBranch = etree.Element('jobs')
+        jobBranch = ET.Element('jobs')
         allJobsInfo = self.getProjectJobListInfo(
             projectId=projectId, order='ASC')
         if len(allJobsInfo) > 0:
-            jobBranch = etree.Element('jobs')
+            jobBranch = ET.Element('jobs')
             for jobInfo in allJobsInfo:
                 jobItem, err = self.getJobEtree(
                     jobId=jobInfo['jobid'], jobInfo=jobInfo)
@@ -2654,23 +2652,22 @@ TaskTitle TEXT );''')
         return root, errReport
 
     def getJobEtree(self, jobId=None, jobInfo={}):
-        from lxml import etree
         errReport = CErrorReport()
 
         if len(jobInfo) == 0:
             jobInfo = self.getJobInfo(jobId)
-        root = etree.Element('job')
+        root = ET.Element('job')
         for itemName in self.JOBITEMS:
             if jobInfo[itemName] is not None:
                 if itemName not in ['projectid', 'preceedingjobid']:
-                    item = etree.Element(itemName)
+                    item = ET.Element(itemName)
                     item.text = str(jobInfo[itemName])
                     root.append(item)
                 elif itemName == 'preceedingjobid' and jobInfo['preceedingjobid'] is not None:
                     preceedingNumber = self.getJobInfo(
                         jobInfo['preceedingjobid'], 'jobnumber')
                     if preceedingNumber is not None:
-                        item = etree.Element('preceedingjobnumber')
+                        item = ET.Element('preceedingjobnumber')
                         item.text = str(preceedingNumber)
                         root.append(item)
 
@@ -2678,7 +2675,7 @@ TaskTitle TEXT );''')
 
         outputFileIds = self.getJobFiles(jobId=jobInfo['jobid'])
         if len(outputFileIds) > 0:
-            fileBranch = etree.Element('outputFiles')
+            fileBranch = ET.Element('outputFiles')
             for fileId in outputFileIds:
                 fileItem, err = self.getFileEtree(
                     fileId=fileId, role=FILE_ROLE_OUT, projectId=projectId)
@@ -2689,7 +2686,7 @@ TaskTitle TEXT );''')
         inputFileIds = self.getJobFiles(
             jobId=jobInfo['jobid'], role=FILE_ROLE_IN)
         if len(inputFileIds) > 0:
-            fileBranch = etree.Element('inputFiles')
+            fileBranch = ET.Element('inputFiles')
             for fileId in inputFileIds:
                 try:
                     fileItem, err = self.getFileEtree(
@@ -2703,7 +2700,7 @@ TaskTitle TEXT );''')
         xDataIds = self.getXData(jobId=jobInfo['jobid'])
         # print 'getJobEtree xDataIds',xDataIds
         if len(xDataIds) > 0:
-            dataBranch = etree.Element('outputData')
+            dataBranch = ET.Element('outputData')
             for xDataId in xDataIds:
                 xDataItem = self.getXDataEtree(xDataId)
                 if xDataItem is not None:
@@ -2713,8 +2710,7 @@ TaskTitle TEXT );''')
         return root, errReport
 
     def getJobOutputHtmlEtree(self, jobId=None, projectId=None):
-        from lxml import etree
-        root = etree.Element('div')
+        root = ET.Element('div')
         root.set('id', 'result_data')
         outputFileIds = self.getJobFiles(jobId=jobId)
         for fileId in outputFileIds:
@@ -2725,16 +2721,15 @@ TaskTitle TEXT );''')
     def getFileEtree(self, fileId, fileInfo={}, role=FILE_ROLE_OUT, projectId=None):
         # !!!! Does not include jobId !! Assume this is only used in heirarchical representation below jobs
         # Create xml compatible with CDataFile xml
-        from lxml import etree
         err = CErrorReport()
         if len(fileInfo) == 0:
             fileInfo = self.getFileInfo(fileId, mode=[
                                         'filename', 'relpath', 'annotation', 'fileclass', 'importid', 'filecontent', 'filesubtype'])
         # print 'getFileEtree fileInfo',fileInfo
-        root = etree.Element(fileInfo['fileclass'])
+        root = ET.Element(fileInfo['fileclass'])
         for itemName, xmlTag in [['filename', 'baseName'], ['relpath', 'relPath'], ['annotation', 'annotation'], ['filecontent', 'contentFlag'], ['filesubtype', 'subType']]:
             if fileInfo[itemName] is not None:
-                item = etree.Element(xmlTag)
+                item = ET.Element(xmlTag)
                 item.text = str(fileInfo[itemName])
                 root.append(item)
         '''
@@ -2742,22 +2737,22 @@ TaskTitle TEXT );''')
         projectname = 'FULLPATH'
       else:
         projectname = self.getProjectInfo(fileInfo['projectid'],'projectname')
-      item = etree.Element('project')
+      item = ET.Element('project')
       item.text = str(projectname)
       root.append(item)
       '''
-        item = etree.Element('dbFileId')
+        item = ET.Element('dbFileId')
         item.text = str(fileId)
         root.append(item)
         if fileInfo['importid'] is not None:
             try:
                 importInfo = self.getImportFileInfo(
                     importId=fileInfo['importid'])
-                importItem = etree.Element('importFile')
+                importItem = ET.Element('importFile')
                 root.append(importItem)
                 for itemName, xmlTag in [['sourcefilename', 'sourceFilename'], ['sourcefileid', 'sourceFileId'], ['exportfileid', 'exportFileId'], ['annotation', 'annotation']]:
                     if importInfo[itemName] is not None:
-                        item = etree.Element(xmlTag)
+                        item = ET.Element(xmlTag)
                         item.text = str(importInfo[itemName])
                         importItem.append(item)
             except:
@@ -2770,11 +2765,11 @@ TaskTitle TEXT );''')
 
         for exportInfo in exportInstances:
             try:
-                exportItem = etree.Element('fileExport')
+                exportItem = ET.Element('fileExport')
                 root.append(exportItem)
                 for itemName, xmlTag in [['exportid', 'exportFileId'], ['exportfilename', 'exportFilename']]:
                     if exportInfo[itemName] is not None:
-                        item = etree.Element(xmlTag)
+                        item = ET.Element(xmlTag)
                         item.text = str(exportInfo[itemName])
                         exportItem.append(item)
             except:
@@ -2785,7 +2780,6 @@ TaskTitle TEXT );''')
         # Create xml compatible with CDataFile xml
         if projectId is None:
             print('NEED projectId in getFileHtmlEtree')
-        from lxml import etree
         if len(fileInfo) == 0:
             fileInfo = self.getFileInfo(
                 fileId, mode=['filename', 'relpath', 'annotation', 'fileclass'])
@@ -2798,39 +2792,39 @@ TaskTitle TEXT );''')
         # </object>
 
         # print 'getFileEtree fileInfo',fileInfo
-        root = etree.Element('object')
+        root = ET.Element('object')
         root.set('type', 'x-ccp4-widget/C'+fileInfo['fileclass'])
         root.set('id', 'file_'+str(fileId))
         root.set('width', '600')
         root.set('height', '300')
         for itemName, xmlTag in [['filename', 'baseName'], ['relpath', 'relPath'], ['annotation', 'annotation']]:
             if fileInfo[itemName] is not None:
-                item = etree.Element('param')
+                item = ET.Element('param')
                 item.set('name', xmlTag)
                 item.set('value', str(fileInfo[itemName]))
                 root.append(item)
         # if fileInfo['projectid'] != projectId:
 
         projectname = self.getProjectInfo(projectId, 'projectname')
-        item = etree.Element('param')
+        item = ET.Element('param')
         item.set('name', 'project')
         item.set('value', str(projectname))
         root.append(item)
-        item = etree.Element('param')
+        item = ET.Element('param')
         item.set('name', 'dbFileId')
         item.set('value', str(fileId))
         root.append(item)
-        # print 'getFileHtmlEtree',etree.tostring(root,pretty_print=True)
+        ET.indent(root)
+        # print 'getFileHtmlEtree',ET.tostring(root)
         return root
 
     def getXDataEtree(self, xDataId, xDataInfo={}):
-        from lxml import etree
         if len(xDataInfo) == 0:
             xDataInfo = self.getXDataInfo(xDataId)
         if len(xDataInfo) == 0:
             # print 'getXDataEtree no data',xDataId
             return None
-        item = etree.Element(xDataInfo['xdataclass'])
+        item = ET.Element(xDataInfo['xdataclass'])
         item.text = str(xDataInfo['xdataxml'])
         return item
 
@@ -3430,10 +3424,9 @@ TaskTitle TEXT );''')
         rv = self.fetchAll2PyList([str, str])
         if len(rv) > 0:
             try:
-                from lxml import etree
                 from core import CCP4DataManager
                 obj = CCP4DataManager.DATAMANAGER().getClass(rv[0][0])()
-                obj.setEtree(etree.fromstring(rv[0][1]))
+                obj.setEtree(ET.fromstring(rv[0][1]))
                 return obj
             except Exception as e:
                 print(e)
@@ -3600,7 +3593,7 @@ TaskTitle TEXT );''')
         for jid,cls,data in perfList:
           try:
             perfDict[jid] = DM.getClass(cls)()
-            perfDict[jid].setEtree(etree.fromstring(data))
+            perfDict[jid].setEtree(ET.fromstring(data))
           except:
             print 'Error in CDbApi.getProjectJobListInfo creating Performace Indicator data object'
         """
@@ -6228,7 +6221,7 @@ class CDbXml(QtCore.QObject):
         from core import CCP4File
         f = CCP4File.CI2XmlDataFile(fullPath=self.xmlFile)
         f.loadFile()
-        root = f.getEtreeRoot().xpath('./ccp4i2_body')[0]
+        root = f.getEtreeRoot().findall('./ccp4i2_body')[0]
         return root
 
     def headerInfo(self, load=False):
@@ -6246,14 +6239,14 @@ class CDbXml(QtCore.QObject):
             root = self.loadFile()
         except:
             raise CException(self.__class__, 120, self.xmlFile)
-        eleList = root.xpath('databaseTable/database')
+        eleList = root.findall('databaseTable/database')
         if len(eleList) != 1:
             raise CException(self.__class__, 122, self.xmlFile)
         dbInfo = {}
         exportInfo = {}
         for key, value in list(eleList[0].items()):
             dbInfo[key] = value
-        eleList = root.xpath('projectexportTable/projectexport')
+        eleList = root.findall('projectexportTable/projectexport')
         if len(eleList) != 1:
             raise CException(self.__class__, 122, self.xmlFile,)
         for key, value in list(eleList[0].items()):
@@ -6278,7 +6271,7 @@ class CDbXml(QtCore.QObject):
         except:
             raise CException(self.__class__, 120, self.xmlFile)
 
-        pEleList = root.xpath('projectTable/project')
+        pEleList = root.findall('projectTable/project')
         if len(pEleList) != 1:
             raise CException(self.__class__, 121, self.xmlFile, stack=False)
 
@@ -6484,7 +6477,6 @@ class CDbXml(QtCore.QObject):
     def loadJobsFromTable(self, commitPolicy=None):
         if commitPolicy is None:
             commitPolicy = CDbXml.COMMIT_POLICY_NO_ERRORS
-        from lxml import etree
         root = self.loadFile()
         if root is None:
             self.errReport.append(self.__class__, 1, str(self.xmlFile))
@@ -6502,7 +6494,6 @@ class CDbXml(QtCore.QObject):
     def loadTable(self, commitPolicy=None, newJobNumber=None, selectJobIdList=None, updateJobStatus=False):
         if commitPolicy is None:
             commitPolicy = CDbXml.COMMIT_POLICY_NO_ERRORS
-        from lxml import etree
         self.loadedJobs = {}
         root = self.loadFile()
         if root is None:
@@ -6512,7 +6503,7 @@ class CDbXml(QtCore.QObject):
 
         # Jobs
         try:
-            table = root.xpath('./jobTable')[0]
+            table = root.findall('./jobTable')[0]
         except:
             self.errReport.append(self.__class__, 200, 'jobTable')
         else:
@@ -6591,7 +6582,7 @@ class CDbXml(QtCore.QObject):
         # Files
         loadedFiles = []
         try:
-            table = root.xpath('./fileTable')[0]
+            table = root.findall('./fileTable')[0]
         except:
             self.errReport.append(self.__class__, 200, 'fileTable')
         else:
@@ -6616,7 +6607,7 @@ class CDbXml(QtCore.QObject):
         # ImportFiles
         # There is issue that file may be recorded with an importID that is not yet valid
         try:
-            table = root.xpath('./importfileTable')[0]
+            table = root.findall('./importfileTable')[0]
         except:
             self.errReport.append(self.__class__, 200, 'importfileTable')
         else:
@@ -6636,7 +6627,7 @@ class CDbXml(QtCore.QObject):
 
         # ExportFiles
         try:
-            table = root.xpath('./exportfileTable')[0]
+            table = root.findall('./exportfileTable')[0]
         except:
             self.errReport.append(self.__class__, 200, 'exportfileTable')
         else:
@@ -6654,7 +6645,7 @@ class CDbXml(QtCore.QObject):
 
         # FileUses
         try:
-            table = root.xpath('./fileuseTable')[0]
+            table = root.findall('./fileuseTable')[0]
         except:
             self.errReport.append(self.__class__, 200, 'fileuseTable')
         else:
@@ -6680,7 +6671,7 @@ class CDbXml(QtCore.QObject):
 
         # XData
         try:
-            table = root.xpath('./xdataTable')[0]
+            table = root.findall('./xdataTable')[0]
         except:
             self.errReport.append(self.__class__, 200, 'xdataTable')
         else:
@@ -6694,11 +6685,11 @@ class CDbXml(QtCore.QObject):
                         self.__class__, 219, 'XData: '+str(rowData))
                 else:
                     try:
-                        xdataEtree = rowTree.xpath('./xdataxml')[0]
+                        xdataEtree = rowTree.findall('./xdataxml')[0]
                         cls = rowData[self.db.XDATAITEMS.index('xdataclass')]
                         xdataEtree.tag = rowData[self.db.XDATAITEMS.index(
                             'xdataclass')]
-                        xdataString = etree.tostring(xdataEtree)
+                        xdataString = ET.tostring(xdataEtree)
                     except Exception as e:
                         self.errReport.append(
                             self.__class__, 205, str(rowData)+' '+str(e))
@@ -6714,7 +6705,7 @@ class CDbXml(QtCore.QObject):
 
         # Comments
         try:
-            table = root.xpath('./commentTable')[0]
+            table = root.findall('./commentTable')[0]
         except:
             self.errReport.append(self.__class__, 200, 'commentTable')
         else:
@@ -6746,7 +6737,7 @@ class CDbXml(QtCore.QObject):
 
         # ProjectComments
         try:
-            table = root.xpath('./projectcommentTable')[0]
+            table = root.findall('./projectcommentTable')[0]
         except:
             self.errReport.append(self.__class__, 200, 'projectcommentTable')
         else:
@@ -6781,7 +6772,7 @@ class CDbXml(QtCore.QObject):
         for tableName, items, types, label in [['jobkeyvalueTable', self.db.JOBKEYVALUEITEMS, self.db.JOBKEYVALUETYPES, 'JobKeyValues'],
                                                ['jobkeycharvalueTable', self.db.JOBKEYCHARVALUEITEMS, self.db.JOBKEYCHARVALUETYPES, 'JobKeyCharValues']]:
             try:
-                table = root.xpath('./'+tableName)[0]
+                table = root.findall('./'+tableName)[0]
             except:
                 self.errReport.append(self.__class__, 200, tableName)
             else:
@@ -6803,7 +6794,7 @@ class CDbXml(QtCore.QObject):
                                     self.__class__, 213, label+' '+str(rowData))
                    # FileAssociations
         try:
-            table = root.xpath('./fileassociationTable')[0]
+            table = root.findall('./fileassociationTable')[0]
         except:
             self.errReport.append(self.__class__, 200, 'fileassociationTable')
         else:
@@ -6821,7 +6812,7 @@ class CDbXml(QtCore.QObject):
 
                    # FileAssociationMembers
         try:
-            table = root.xpath('./fileassociationmemberTable')[0]
+            table = root.findall('./fileassociationmemberTable')[0]
         except:
             self.errReport.append(self.__class__, 200,
                                   'fileassociationmemberTable')
@@ -6877,7 +6868,7 @@ class CDbXml(QtCore.QObject):
 
         # Jobs
         try:
-            table = root.xpath('./jobTable')[0]
+            table = root.findall('./jobTable')[0]
         except:
             self.errReport.append(self.__class__, 200, 'jobTable')
         else:
@@ -6902,7 +6893,7 @@ class CDbXml(QtCore.QObject):
 
         # Files
         try:
-            table = root.xpath('./fileTable')[0]
+            table = root.findall('./fileTable')[0]
         except:
             self.errReport.append(self.__class__, 200, 'fileTable')
         else:
@@ -6917,7 +6908,7 @@ class CDbXml(QtCore.QObject):
         # ImportFiles
         # There is issue that file may be recorded with an importID that is not yet valid
         try:
-            table = root.xpath('./importfileTable')[0]
+            table = root.findall('./importfileTable')[0]
         except:
             self.errReport.append(self.__class__, 200, 'importfileTable')
         else:
@@ -6932,7 +6923,7 @@ class CDbXml(QtCore.QObject):
 
         # ExportFiles
         try:
-            table = root.xpath('./exportfileTable')[0]
+            table = root.findall('./exportfileTable')[0]
         except:
             self.errReport.append(self.__class__, 200, 'exportfileTable')
         else:
@@ -6947,7 +6938,7 @@ class CDbXml(QtCore.QObject):
 
         # FileUses
         try:
-            table = root.xpath('./fileuseTable')[0]
+            table = root.findall('./fileuseTable')[0]
         except:
             self.errReport.append(self.__class__, 200, 'fileuseTable')
         else:
@@ -6962,7 +6953,7 @@ class CDbXml(QtCore.QObject):
 
         # XData
         try:
-            table = root.xpath('./xdataTable')[0]
+            table = root.findall('./xdataTable')[0]
         except:
             self.errReport.append(self.__class__, 200, 'xdataTable')
         else:
@@ -6971,11 +6962,11 @@ class CDbXml(QtCore.QObject):
                     rowTree, self.db.XDATAITEMS[0:-1], self.db.XDATATYPES[0:-1])
                 # print 'CImportDb.loadTable xdata rowData',rowData
                 try:
-                    xdataEtree = rowTree.xpath('./xdataxml')[0]
+                    xdataEtree = rowTree.findall('./xdataxml')[0]
                     cls = rowData[self.db.XDATAITEMS.index('xdataclass')]
                     xdataEtree.tag = rowData[self.db.XDATAITEMS.index(
                         'xdataclass')]
-                    xdataString = etree.tostring(xdataEtree)
+                    xdataString = ET.tostring(xdataEtree)
                 except Exception as e:
                     self.errReport.append(
                         self.__class__, 205, str(rowData)+' '+str(e))
@@ -6993,7 +6984,7 @@ class CDbXml(QtCore.QObject):
         for tableName, tempTableName, items, types in [['jobkeyvalueTable', 'TempJobKeyValues', self.db.JOBKEYVALUEITEMS, self.db.JOBKEYVALUETYPES],
                                                        ['jobkeycharvalueTable', 'TempJobKeyCharValues', self.db.JOBKEYCHARVALUEITEMS, self.db.JOBKEYCHARVALUETYPES]]:
             try:
-                table = root.xpath('./'+tableName)[0]
+                table = root.findall('./'+tableName)[0]
             except:
                 self.errReport.append(self.__class__, 200, tableName)
             else:
@@ -7010,7 +7001,7 @@ class CDbXml(QtCore.QObject):
 
         # Comments
         try:
-            table = root.xpath('./commentTable')[0]
+            table = root.findall('./commentTable')[0]
         except:
             self.errReport.append(self.__class__, 200, 'commentTable')
         else:
@@ -7037,7 +7028,7 @@ class CDbXml(QtCore.QObject):
 
         # ProjectComments
         try:
-            table = root.xpath('./projectcommentTable')[0]
+            table = root.findall('./projectcommentTable')[0]
         except:
             self.errReport.append(self.__class__, 200, 'projectcommentTable')
         else:
@@ -7065,7 +7056,7 @@ class CDbXml(QtCore.QObject):
 
         # FileAssociations
         try:
-            table = root.xpath('./fileassociationTable')[0]
+            table = root.findall('./fileassociationTable')[0]
         except:
             self.errReport.append(self.__class__, 200, 'fileassociationTable')
         else:
@@ -7082,7 +7073,7 @@ class CDbXml(QtCore.QObject):
 
         # FileAssociationmembers
         try:
-            table = root.xpath('./fileassociationmemberTable')[0]
+            table = root.findall('./fileassociationmemberTable')[0]
         except:
             self.errReport.append(self.__class__, 200,
                                   'fileassociationmemberTable')
@@ -7101,7 +7092,7 @@ class CDbXml(QtCore.QObject):
 
         # Tags
         try:
-            table = root.xpath('./tagTable')[0]
+            table = root.findall('./tagTable')[0]
         except:
             self.errReport.append(self.__class__, 200, 'tagTable')
         else:
@@ -7117,7 +7108,7 @@ class CDbXml(QtCore.QObject):
                         self.errReport.append(
                             self.__class__, 213, 'Tags '+str(rowData))
         try:
-            table = root.xpath('./projecttagTable')[0]
+            table = root.findall('./projecttagTable')[0]
         except:
             self.errReport.append(self.__class__, 200, 'projecttagTable')
         else:

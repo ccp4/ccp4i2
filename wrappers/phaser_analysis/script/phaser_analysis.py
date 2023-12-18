@@ -24,7 +24,8 @@ import math
 
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4Modules
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 from core import CCP4Utils
 
 #from phaser_analysis_utils import *
@@ -149,7 +150,7 @@ class phaser_analysis(CPluginScript):
     def makeXML(self, xmlout):
         from .phaser_analysis_utils import Tabledata, AnalyseGraph, AnalysisLog, Makexmlgraph
         # Uses self.logfile and self.loggraphs
-        self.xmlroot = etree.Element('PHASER_ANALYSIS')
+        self.xmlroot = ET.Element('PHASER_ANALYSIS')
         self.xmlroot.set('name', self.pxdname)  # dataset name
 
         # Save all loggraphs to file (for now anyway)
@@ -181,7 +182,8 @@ class phaser_analysis(CPluginScript):
         self.resolutionlimit(self.threshold)
 
         with open(xmlout, 'wb') as f:
-            f.write(etree.tostring(self.xmlroot, pretty_print=True))
+            ET.indent(self.xmlroot)
+            f.write(ET.tostring(self.xmlroot))
 
     # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
     def makeXMLloggraph(self, graphtitle, gname):
@@ -233,7 +235,7 @@ class phaser_analysis(CPluginScript):
         elif allOK < 0:
             message = 'No acceptable data'
 
-        resolutionxml = etree.Element('ResolutionEstimate', type=name)
+        resolutionxml = ET.Element('ResolutionEstimate', type=name)
         addElement(resolutionxml, 'Threshold', "{:6.2f}".format(threshold))
         addElement(resolutionxml, 'Columns', xcol+' '+ycol)
         addElement(resolutionxml, 'ResolutionLimitEstimate', "{:6.2f}".format(reslimit))

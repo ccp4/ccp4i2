@@ -11,7 +11,8 @@ except ImportError:
     from io import StringIO
 from core import CCP4ModelData
 from core import CCP4Utils
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 class ProvideSequence(CPluginScript):
 
@@ -31,7 +32,7 @@ class ProvideSequence(CPluginScript):
         import tempfile
         from wrappers.ProvideAlignment.script.ProvideAlignment import importAlignment
         
-        root = etree.Element('ProvideSequence')
+        root = ET.Element('ProvideSequence')
         
         # Create a temporary file to store the sequence(s) that will be used
         tempFile = tempfile.NamedTemporaryFile(suffix='.txt',delete=False)
@@ -44,16 +45,17 @@ class ProvideSequence(CPluginScript):
         #Attempt to interpret that as an alignment and/or stack of sequences
         alignment, format, commentary = importAlignment(tempFile.name)
         
-        commentaryNode = etree.SubElement(root,"Commentary")
+        commentaryNode = ET.SubElement(root,"Commentary")
         commentaryNode.text = commentary.getvalue()
         
         if alignment is None:
             with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-                CCP4Utils.writeXML(programXML,etree.tostring(root, pretty_print=True))
+                ET.indent(root)
+                CCP4Utils.writeXML(programXML,ET.tostring(root))
             self.reportStatus(CPluginScript.UNSATISFACTORY)
             return
         
-        formatNode = etree.SubElement(root,'Format')
+        formatNode = ET.SubElement(root,'Format')
         formatNode.text = format
         
         from Bio import SeqIO
@@ -67,16 +69,17 @@ class ProvideSequence(CPluginScript):
                 SeqIO.write([seq],outputFileHandle,'fasta')
             outputFile.annotation = seq.id + '-' + seq.description
         
-            sequenceElement = etree.SubElement(root,'Sequence')
+            sequenceElement = ET.SubElement(root,'Sequence')
             outputString = StringIO()
             SeqIO.write([seq],outputString,'fasta')
             sequenceElement.text = outputString.getvalue()
             for property in ['id','name','description','seq']:
-                newElement = etree.SubElement(sequenceElement,property)
+                newElement = ET.SubElement(sequenceElement,property)
                 newElement.text = str(getattr(seq,property,'Undefined'))
 
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-            CCP4Utils.writeXML(programXML,etree.tostring(root, pretty_print=True))
+            ET.indent(root)
+            CCP4Utils.writeXML(programXML,ET.tostring(root))
         return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self, *args, **kwargs):

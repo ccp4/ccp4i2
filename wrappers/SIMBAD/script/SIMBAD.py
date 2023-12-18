@@ -16,7 +16,7 @@
     GNU Lesser General Public License for more details.
     """
 
-from lxml import etree
+#from lxml import etree
 import os
 import shutil
 import platform

@@ -1,6 +1,7 @@
 import os
 import sys
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 try:
   from report.CCP4ReportParser import *
@@ -83,6 +84,6 @@ class freerflag_report(Report):
 if __name__ == "__main__":
     report = freerflag_report(xmlFile = sys.argv[1] )
     tree= report.as_etree()
-    #  print etree.tostring(tree,pretty_print=True)
+    #  print ET.tostring(tree,pretty_print=True)
     report.as_html_file(fileName='./test-freer.html')
 

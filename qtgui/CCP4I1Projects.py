@@ -178,7 +178,7 @@ class CI1TreeItemFolder(CCP4ProjectWidget.CTreeItemFolder):
         self.appendChildProject(pItem)
 
   def getEtree(self):
-    ele = etree.Element('folder')
+    ele = ET.Element('folder')
     ele.set('name',self.name)
     for fItem in self.childFolders:
       ele.append(fItem.getEtree())
@@ -188,7 +188,7 @@ class CI1TreeItemFolder(CCP4ProjectWidget.CTreeItemFolder):
     
   def mimeData(self):
     from lxml import etree
-    root = etree.Element('name')
+    root = ET.Element('name')
     root.text = self.name
     encodedData = QtCore.QByteArray()
     encodedData.append(etree.tostring(root,pretty_print=False))
@@ -252,21 +252,21 @@ class CI1TreeItemProject(CCP4ProjectWidget.CTreeItemProject):
 
   def getEtree(self):
     #print 'CI1TreeItemProject.getEtree',self.annotation,self.tagList
-    ele = etree.Element('project')
+    ele = ET.Element('project')
     ele.set('name',self.refProject)
     if self.annotation is not None:
-      e = etree.Element('annotation')
+      e = ET.Element('annotation')
       e.text = str(self.annotation)
       ele.append(e)
     if len(self.tagList)>0:
-      eL = etree.Element('tagList')
+      eL = ET.Element('tagList')
       for item in self.tagList:
-        e = etree.Element('tag')
+        e = ET.Element('tag')
         e.text = item
         eL.append(e)
       ele.append(eL)
     if self.machineTime is not None:
-      e = etree.Element('lastTaskTime')
+      e = ET.Element('lastTaskTime')
       e.text = str(self.machineTime )
       ele.append(e)
         
@@ -466,7 +466,7 @@ class CI1TreeItemProject(CCP4ProjectWidget.CTreeItemProject):
   def mimeData(self):
     #print 'CI1TreeItemProject.mimeData'
     from lxml import etree
-    root = etree.Element('name')
+    root = ET.Element('name')
     root.text = self.getProjectName()
     encodedData = QtCore.QByteArray()
     encodedData.append(etree.tostring(root,pretty_print=False))
@@ -618,13 +618,13 @@ class CI1ProjectModel(QtCore.QAbstractItemModel):
       f.header.setCurrent()
       f.header.function.set('I1SUPPLEMENT')
       f.header.comment = self.sourceFile
-    body = etree.Element('body')
-    fEleList = etree.Element('folderList')
+    body = ET.Element('body')
+    fEleList = ET.Element('folderList')
     body.append(fEleList)
     if hasattr(self,"root") and hasattr(self.root,"childFolders"):
         for fItem in self.rootItem.childFolders:
             fEleList.append(fItem.getEtree())
-    pEleList = etree.Element('projectList')
+    pEleList = ET.Element('projectList')
     for pItem in self.rootItem.childProjects:
       if pItem.hasAnnotation(): pEleList.append( pItem.getEtree())
     if len(pEleList)>0: body.append(pEleList)
@@ -1019,7 +1019,7 @@ class CI1ProjectView(QtWidgets.QTreeView):
   def event2MimeData(self,event,label):
     text = str(event.mimeData().data(label).data())
     #print 'event2MimeData',text
-    tree = etree.fromstring(text)
+    tree = ET.fromstring(text)
     params = { }
     if tree.tag != 'root' : params[str(tree.tag)]=str(tree.text)
     for child in tree:
@@ -1758,13 +1758,13 @@ class CI1Preferences:
       f.header.setCurrent()
       f.header.function.set('UNKNOWN')
       f.header.comment = 'Preferences for I1 Project Viewer'
-    body = etree.Element('body')
-    fEleList = etree.Element('tagList')
+    body = ET.Element('body')
+    fEleList = ET.Element('tagList')
     body.append(fEleList)
     #print 'CI1Preferences.save tagList',self.tagList
     for tag in self.tagList:
       if tag is not None:
-        fEleList.append(etree.Element('tag'))
+        fEleList.append(ET.Element('tag'))
         fEleList[-1].text = tag
     f.saveFile(bodyEtree=body)
 

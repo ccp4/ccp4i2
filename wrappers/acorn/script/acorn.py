@@ -20,6 +20,8 @@ import time
 from io import *
 import os, sys, string, traceback
 import clipper
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 class acorn(CPluginScript):
     
@@ -158,9 +160,8 @@ class acorn(CPluginScript):
         #   ex3   = CCP4Modules.PROCESSMANAGER().getJobData( pid3,'exitCode' )
         
         # Parse the output text file to create an xml file which can then be parsed by the report to make html .......
-        from lxml import etree
-        rootNode = etree.Element("acorn")
-        xmlRI = etree.SubElement(rootNode,"RunInfo")
+        rootNode = ET.Element("acorn")
+        xmlRI = ET.SubElement(rootNode,"RunInfo")
         
         # Use the ccp4 Smartie Class to parse the ascii log file from Acorn.
         smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
@@ -175,12 +176,12 @@ class acorn(CPluginScript):
         vccoef = tabs[0].col("CC")
         
         for cn, cc in zip(vcycnum,vccoef):
-            xmlcyc = etree.SubElement(xmlRI,"Cycle")
-            etree.SubElement(xmlcyc,"NCycle").text          = str(cn)
-            etree.SubElement(xmlcyc,"CorrelationCoef").text = str(cc)
+            xmlcyc = ET.SubElement(xmlRI,"Cycle")
+            ET.SubElement(xmlcyc,"NCycle").text          = str(cn)
+            ET.SubElement(xmlcyc,"CorrelationCoef").text = str(cc)
         
         xmlfile = open(self.xmlout,'w')
-        xmlString = etree.tostring(rootNode,pretty_print=True)
+        xmlString = ET.tostring(rootNode,pretty_print=True)
 
         xmlfile.write(xmlString.decode("utf-8"))
         

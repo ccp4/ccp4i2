@@ -51,10 +51,10 @@ class import_serial_pipe(CPluginScript):
         #self.importSerialProcess.container.outputData.copyData(otherContainer=self.container.outputData,dataList=['HKLOUT','OBSOUT'])
         # XML output 'program.xml' is produced by the command line application
         self.xmlout = self.makeFileName('PROGRAMXML')
-        # rootNode = etree.Element("import_serial")
+        # rootNode = ET.Element("import_serial")
         # Save xml
         #xmlfile = open(self.xmlout, 'wb')
-        #xmlString= etree.tostring(rootNode, pretty_print=True)
+        #xmlString= ET.tostring(rootNode, pretty_print=True)
         #xmlfile.write(xmlString)
         #xmlfile.close()
         ###self.connectSignal(self.importSerialProcess, 'finished', self.process2)
@@ -90,7 +90,7 @@ class import_serial_pipe(CPluginScript):
         self.aimlessPipe.container.controlParameters.SDCORRECTION_SDB = 0.0
         self.aimlessPipe.container.controlParameters.SDCORRECTION_SDADD = 0.0
 
-        ####self.importXML = etree.Element('IMPORT_LOG')  # information about the import step
+        ####self.importXML = ET.Element('IMPORT_LOG')  # information about the import step
         #  +1 if intensity, -1 if amplitude, 0 if unknown
         # self.isintensity = 0
         ####self.makeReportXML(self.importXML)  # add initial stuff for XML into self.importXML
@@ -115,12 +115,12 @@ class import_serial_pipe(CPluginScript):
 
         # Save xml
         #xmlfile = open(self.xmlout, 'wb')
-        #xmlString= etree.tostring(root, pretty_print=True)
+        #xmlString= ET.tostring(root, pretty_print=True)
         #xmlfile.write(xmlString)
         #xmlfile.close()
         self.xmlout = self.makeFileName('PROGRAMXML')
         importSerialProcessXMLpath = self.importSerialProcess.makeFileName('PROGRAMXML')
-        #importSerialProcessEtree = etree.parse(importSerialProcessXMLpath)
+        #importSerialProcessEtree = ET.parse(importSerialProcessXMLpath)
         #importSerialProcessRoot = importSerialProcessEtree.getroot()
         #self.outputLogXML(self.xmlout, importSerialProcessRoot)  # and output it
         importSerialPipelineXMLpath = self.makeFileName('PROGRAMXML')
@@ -132,9 +132,9 @@ class import_serial_pipe(CPluginScript):
         #def outputLogXML(self, x1XML, x2XML=None):
         #'output x1XML and optionally x2XML to program.xml'
         ##print "outputLogXML", x1XML
-        #rootXML = etree.Element('import_serial') # Global XML for everything
+        #rootXML = ET.Element('import_serial') # Global XML for everything
         #rootXML.append(x1XML)
         #if x2XML is not None:
         #    rootXML.append(x2XML)
         #with open(self.makeFileName('PROGRAMXML'), "w") as outputXML:
-        #    CCP4Utils.writeXML(outputXML, etree.tostring(rootXML, pretty_print=True))
+        #    CCP4Utils.writeXML(outputXML, ET.tostring(rootXML, pretty_print=True))

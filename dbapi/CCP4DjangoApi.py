@@ -684,7 +684,7 @@ def uploadFileForJobObject(jobId=None, projectId=None, projectName=None, jobNumb
     objectElement.loadFile()
     objectElement.setContentFlag()
     saveParamsForJob(theJobPlugin=theJobPlugin, theJob=theJob)
-    return etree.tostring(objectElement.getEtree()).decode('utf-8')
+    return ET.tostring(objectElement.getEtree()).decode('utf-8')
 
 
 def getProjectDirectory(projectId=None, projectName=None, jobId=None):
@@ -984,14 +984,14 @@ def getJobContainer(theJob):
 
 @UsingFakePM
 def setJobParameterByXML(jobId, objectPath, valueXMLText):
-    newValueEtree = etree.fromstring(valueXMLText)
+    newValueEtree = ET.fromstring(valueXMLText)
     theJob = models.Jobs.objects.get(jobid=jobId)
     theJobPlugin = getJobPlugin(theJob)
     objectElement = theJobPlugin.container.locateElement(objectPath)
     objectElement.unSet()
     objectElement.setEtree(newValueEtree)
     saveParamsForJob(theJobPlugin=theJobPlugin, theJob=theJob)
-    return etree.tostring(objectElement.getEtree()).decode('utf-8')
+    return ET.tostring(objectElement.getEtree()).decode('utf-8')
 
 
 @UsingFakePM
@@ -1112,8 +1112,8 @@ def getReportJobInfo(jobId=None):
 
 @UsingFakePM
 def simpleFailedReport(title1, title2=""):
-    outer = etree.Element('CCP4i2Report', key="report_0")
-    inner = etree.SubElement(
+    outer = ET.Element('CCP4i2Report', key="report_0")
+    inner = ET.SubElement(
         outer, 'CCP4i2ReportTitle', title1=title1, title2=title2)
     return outer
 
@@ -1133,7 +1133,7 @@ def getReportXML(jobId=None, projectId=None, jobNumber=None, projectName=None):
     watchFile = CCP4Modules.TASKMANAGER().getReportAttribute(
         theJob.taskname, 'WATCHED_FILE')
     reportJobInfo = getReportJobInfo(theJob.jobid)
-    parser = etree.XMLParser()
+    parser = ET.XMLParser()
 
     from report import CCP4RvapiParser
     from report import CCP4ReportParser
@@ -1155,11 +1155,11 @@ def getReportXML(jobId=None, projectId=None, jobNumber=None, projectName=None):
 
     outputXml = None
     if xmlPath is not None:
-        lookup = etree.ElementDefaultClassLookup(
+        lookup = ET.ElementDefaultClassLookup(
             element=CCP4ReportParser.SearchableElement)
         parser.set_element_class_lookup(lookup)
 
-        outputXml = etree.fromstring(
+        outputXml = ET.fromstring(
             bytes(open(xmlPath, "r").read(), "utf-8"), parser)
 
     status = theJob.status.statustext
@@ -1169,4 +1169,4 @@ def getReportXML(jobId=None, projectId=None, jobNumber=None, projectName=None):
                                       'Running', 'Running remotely', 'Pending', 'Unknown', 'Queued']),
                          jobStatus=status, jobNumber=theJob.jobnumber)
     reportEtree = report.as_data_etree()
-    return etree.tostring(reportEtree).decode('utf-8')
+    return ET.tostring(reportEtree).decode('utf-8')

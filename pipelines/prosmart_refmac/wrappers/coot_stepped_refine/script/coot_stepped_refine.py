@@ -1,6 +1,7 @@
 from __future__ import print_function
 
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 from core.CCP4PluginScript import CPluginScript
 
@@ -17,8 +18,8 @@ class coot_stepped_refine(CPluginScript):
 
     def processInputFiles(self):
       #Create root for Output XML
-      self.xmlroot = etree.Element('Coot_stepped_refine')
-      self.tableelement = etree.SubElement(self.xmlroot, 'Table', title='Per residue statistics')
+      self.xmlroot = ET.Element('Coot_stepped_refine')
+      self.tableelement = ET.SubElement(self.xmlroot, 'Table', title='Per residue statistics')
       self.xmlLength = 0
       # watch the log file
       logFilename = self.makeFileName('LOG')
@@ -54,8 +55,8 @@ class coot_stepped_refine(CPluginScript):
         print('coot_stepped_refine.handleLogChanged',inHandleFinish)
 
         if getattr(self,'xmlroot',None) is None:
-          self.xmlroot = etree.Element('Coot_stepped_refine')
-          self.tableelement = etree.SubElement(self.xmlroot, 'Table', title='Per residue statistics')
+          self.xmlroot = ET.Element('Coot_stepped_refine')
+          self.tableelement = ET.SubElement(self.xmlroot, 'Table', title='Per residue statistics')
           self.xmlLength = 0
         
         self.tableelement.clear()
@@ -63,7 +64,7 @@ class coot_stepped_refine(CPluginScript):
         
         pairs = [('Col_0','N'),('Col_1','StartBonds'),('Col_2','FinalBonds')]
         for pair in pairs:
-            headerElement = etree.SubElement(tableelement,'Header',label=pair[1],identifier=pair[0])
+            headerElement = ET.SubElement(tableelement,'Header',label=pair[1],identifier=pair[0])
         
         cootlines = open(self.makeFileName('LOG')).readlines()
         iRow = 1
@@ -75,25 +76,25 @@ class coot_stepped_refine(CPluginScript):
                     currentChangeList.append(line.split()[1])
                 else:
                     currentChangeList.append(line.split()[1])
-                    rowElement = etree.SubElement(tableelement,"row")
-                    rowNoElement = etree.SubElement(rowElement,'Col_0')
+                    rowElement = ET.SubElement(tableelement,"row")
+                    rowNoElement = ET.SubElement(rowElement,'Col_0')
                     rowNoElement.text = str(iRow)
-                    startBondsElement = etree.SubElement(rowElement,'Col_1')
+                    startBondsElement = ET.SubElement(rowElement,'Col_1')
                     startBondsElement.text = str(currentChangeList[0])
-                    finalBondsElement = etree.SubElement(rowElement,'Col_2')
+                    finalBondsElement = ET.SubElement(rowElement,'Col_2')
                     finalBondsElement.text = str(currentChangeList[1])
                     currentChangeList = []
                     iRow += 1
 
-        graphElement = etree.SubElement(tableelement,"Graph", title = "By residue bonds")
-        graphColumnElement = etree.SubElement(graphElement,"Column", label='N', positionInList=str(0))
-        graphColumnElement = etree.SubElement(graphElement,"Column", label='StartBonds', positionInList=str(1))
-        graphColumnElement = etree.SubElement(graphElement,"Column", label='FinalBonds', positionInList=str(2))
+        graphElement = ET.SubElement(tableelement,"Graph", title = "By residue bonds")
+        graphColumnElement = ET.SubElement(graphElement,"Column", label='N', positionInList=str(0))
+        graphColumnElement = ET.SubElement(graphElement,"Column", label='StartBonds', positionInList=str(1))
+        graphColumnElement = ET.SubElement(graphElement,"Column", label='FinalBonds', positionInList=str(2))
 
         if iRow%20 == 0 or inHandleFinish:
             from core import CCP4File
             f = CCP4File.CXmlDataFile(fullPath=self.makeFileName('PROGRAMXML'))
-            newXml = etree.tostring(self.xmlroot,pretty_print=True)
+            newXml = ET.tostring(self.xmlroot)
         
             if len(newXml) > self.xmlLength:
                 # Save the xml if it has grown

@@ -2,7 +2,8 @@
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
 import base64
-
+#from lxml import etree
+from xml.etree import ElementTree as ET
 class phaser_ensembler(CPluginScript):
     TASKNAME = 'phaser_ensembler'                                  # Task name - should be same as class name
     TASKCOMMAND = 'phaser.ensembler'                                     # The command to run the executable
@@ -64,14 +65,13 @@ class phaser_ensembler(CPluginScript):
             
             self.container.outputData.XYZOUT.annotation = 'Merged ensemble'
             
-            from lxml import etree
             logText = open(self.makeFileName('LOG'),"r").read()
-            rootNode = etree.Element('PHASER_ENSEMBLER')
-            logNode = etree.SubElement(rootNode,'LOGTEXT')
-            #logNode.text = etree.CDATA(logText)
+            rootNode = ET.Element('PHASER_ENSEMBLER')
+            logNode = ET.SubElement(rootNode,'LOGTEXT')
+            #logNode.text = ET.CDATA(logText)
             logNode.text = base64.b64encode(logText)
             with open (self.makeFileName('PROGRAMXML'),'w') as outputFile:
-                CCP4Utils.writeXML(outputFile,etree.tostring(rootNode))
+                CCP4Utils.writeXML(outputFile,ET.tostring(rootNode))
             return CPluginScript.SUCCEEDED
         else:
             return CPluginScript.FAILED

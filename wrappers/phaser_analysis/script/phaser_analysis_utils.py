@@ -9,8 +9,8 @@
 #   addElement
 
 from __future__ import print_function
-from lxml import etree
-
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -214,7 +214,7 @@ class AnalyseGraph:
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 def addElement(containerXML, elementname, elementtext,
                attributes=None):
-    e2 = etree.Element(elementname, attrib=attributes)
+    e2 = ET.Element(elementname, attrib=attributes)
     if elementtext is not None: e2.text = elementtext
     containerXML.append(e2)
 
@@ -228,7 +228,7 @@ class AnalysisLog:
             xtag = 'Analysis'
         else:
             xtag = tag
-        self.xmlroot = etree.Element(xtag)
+        self.xmlroot = ET.Element(xtag)
                 
         lines = logdata.splitlines()
         rlines = reversed(lines)  # for searching backwards
@@ -249,7 +249,7 @@ class AnalysisLog:
         if len(infoblock) == 0:
             return
 
-        infocontentxml = etree.Element('InformationContent')
+        infocontentxml = ET.Element('InformationContent')
 
         tag = "Information can only be estimated for intensity data"
         if tag in infoblock[0]:
@@ -288,7 +288,7 @@ class AnalysisLog:
         selectedresolution = line.split()[5]
         nrefselected = line.split()[7].strip('()')
 
-        resolutionxml = etree.Element('Resolution')
+        resolutionxml = ET.Element('Resolution')
         addElement(resolutionxml, 'ResolutionAll', self.allresolution)
         addElement(resolutionxml, 'NResolutionAll', nrefall)
         addElement(resolutionxml, 'SelectedResolution', selectedresolution)
@@ -298,7 +298,7 @@ class AnalysisLog:
         
     # . . . . . . . . . . . . . . . . . . . . . . . . . . .
     def tncs(self, lines):
-        tNCSxml = etree.Element('tNCS')
+        tNCSxml = ET.Element('tNCS')
         tag = 'No tNCS found in Patterson'
         tNCS = False
         s = 'False'
@@ -322,7 +322,7 @@ class AnalysisLog:
                 vector = self.findline(lines, 'Final vector').split()[3:6]
                 dvalues = self.findline(lines, 'tNCS D-values').split()[6:]
                 # xml
-                pattxml = etree.SubElement(tNCSxml, 'NonOriginPatterson')
+                pattxml = ET.SubElement(tNCSxml, 'NonOriginPatterson')
                 addElement(pattxml, 'PeakHeight', peaksize)
                 addElement(pattxml, 'Vector', ' '.join(vector))
                 addElement(pattxml, 'Angle', ' '.join(angle))
@@ -356,14 +356,14 @@ class AnalysisLog:
         v = moments[1].split('+/-')
         momentssd = [moments[0], v[0], v[1]]  # centric, acentric sd(acentric)
 
-        twinxml = etree.Element('Twinning')
-        centricxml = etree.SubElement(twinxml, 'CentricMoments')
+        twinxml = ET.Element('Twinning')
+        centricxml = ET.SubElement(twinxml, 'CentricMoments')
         addElement(centricxml, 'Theoretical', theoretical[0])
         addElement(centricxml, 'TheoreticalTwin', theoreticaltwin[0])
         addElement(centricxml, 'Observed', momentssd[0])
         twinxml.append(centricxml)
 
-        acentricxml = etree.SubElement(twinxml, 'AcentricMoments')
+        acentricxml = ET.SubElement(twinxml, 'AcentricMoments')
         addElement(acentricxml, 'Theoretical', theoretical[1])
         addElement(acentricxml, 'TheoreticalTwin', theoreticaltwin[1])
         addElement(acentricxml, 'Observed', momentssd[1])
@@ -398,7 +398,7 @@ class AnalysisLog:
         
         deltaB = anisotropy[3].split()[7]
 
-        anisotropyxml = etree.Element('Anisotropy')
+        anisotropyxml = ET.Element('Anisotropy')
         addElement(anisotropyxml, 'deltaB', deltaB)
         addElement(anisotropyxml, 'Eigenvalues', eigenvalues)
         addElement(anisotropyxml, 'Eigenvectors', eigenvectors)
@@ -478,7 +478,7 @@ class Makexmlgraph:
         title = ''
         if 'TABLE' in t[0]:
             title = t[1]
-        self.xmlgraph = etree.Element('CCP4Table',
+        self.xmlgraph = ET.Element('CCP4Table',
                                       attrib={'groupID':'Graph',
                                               'id': graphid,
                                               'title': title})
@@ -498,7 +498,7 @@ class Makexmlgraph:
                 props.append(f)
 
         for graph in graphs:
-            plot = etree.Element('plot')
+            plot = ET.Element('plot')
             # graph title
             addElement(plot, 'title', graph[0])
             cols = graph[2].split(',')

@@ -30,7 +30,8 @@ import glob
 import functools
 
 from PySide2 import QtCore
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 from core import CCP4Data
 from dbapi import CCP4DbApi
@@ -502,24 +503,24 @@ class CProjectDirToDb:
         if xmlFile is None:
             xmlFile = os.path.join(os.path.split(self.projectDirectory)[0],os.path.split(self.projectDirectory)[1]+'.ccp4i2db.xml')
         self.etree = self.createEtree(self.projectDirectory)
-        self.jobsEtree = etree.Element('jobs')
+        self.jobsEtree = ET.Element('jobs')
         self.etree.append(self.jobsEtree)
         self.globJobs(os.path.join(self.projectDirectory,'CCP4_JOBS'))
         self.saveEtree(xmlFile)
 
     def createEtree(self,projectDirectory):
         from core import CCP4Utils
-        root = etree.Element('root')
-        ele =  etree.Element('projectname')
+        root = ET.Element('root')
+        ele =  ET.Element('projectname')
         ele.text = self.projectName
         root.append(ele)
-        ele = etree.Element('projectdirectory')
+        ele = ET.Element('projectdirectory')
         ele.text = projectDirectory
         root.append(ele)
-        ele = etree.Element('projectcreated')
+        ele = ET.Element('projectcreated')
         ele.text = str(time.time())
         root.append(ele)
-        ele = etree.Element('username')
+        ele = ET.Element('username')
         ele.text = CCP4Utils.getUserId()
         root.append(ele)
         return root
@@ -585,24 +586,24 @@ class CProjectDirToDb:
 
     def getJobTree(self, header, container, parentJobId=None):
         from core import CCP4File
-        job = etree.Element('job')
+        job = ET.Element('job')
         for item,name  in [['jobId', 'jobid'], ['jobNumber', 'jobnumber'], ['pluginName', 'taskname'],
                            ['creationTime', 'creationtime'], ['creationTime', 'finishtime']]:
-            ele = etree.Element(name)
+            ele = ET.Element(name)
             ele.text = str(header.get(item))
             job.append(ele)
-        ele = etree.Element('userAgent')
+        ele = ET.Element('userAgent')
         ele.text = 'CCP4i2'
         job.append(ele)
         if parentJobId is not None:
-            ele = etree.Element('parentJobId')
+            ele = ET.Element('parentJobId')
             ele.text = str(parentJobId)
             job.append(ele)
         if container is not None:
-            ele = etree.Element('status')
+            ele = ET.Element('status')
             ele.text = container.guiAdmin.jobStatus.__str__()
             job.append(ele)
-            inputFiles = etree.Element('inputFiles')
+            inputFiles = ET.Element('inputFiles')
             job.append(inputFiles)
             keyList = container.inputData.dataOrder()
             for key in keyList:
@@ -612,7 +613,7 @@ class CProjectDirToDb:
                     ele = obj.getEtree()
                     ele.tag = str(obj.__class__.__name__)[1:]
                     inputFiles.append( ele )
-            outputFiles = etree.Element('outputFiles')
+            outputFiles = ET.Element('outputFiles')
             job.append(outputFiles)
             keyList = container.outputData.dataOrder()
             for key in keyList:
@@ -649,14 +650,14 @@ class CMakeProjectDbXml(QtCore.QThread):
         self.projectId = None
         self.diagnostic = True
         self.errReport = CErrorReport()
-        self.projectTable = etree.Element('projectTable')
-        self.jobTable = etree.Element('jobTable')
-        self.fileTable = etree.Element('fileTable')
-        self.fileuseTable = etree.Element('fileuseTable')
-        self.importfileTable = etree.Element('importfileTable')
-        self.exportfileTable = etree.Element('exportfileTable')
-        self.xdataTable = etree.Element('xdataTable')
-        self.commentTable = etree.Element('commentTable')
+        self.projectTable = ET.Element('projectTable')
+        self.jobTable = ET.Element('jobTable')
+        self.fileTable = ET.Element('fileTable')
+        self.fileuseTable = ET.Element('fileuseTable')
+        self.importfileTable = ET.Element('importfileTable')
+        self.exportfileTable = ET.Element('exportfileTable')
+        self.xdataTable = ET.Element('xdataTable')
+        self.commentTable = ET.Element('commentTable')
         self._fileIdList = []
 
     def run(self):
@@ -688,7 +689,7 @@ class CMakeProjectDbXml(QtCore.QThread):
         from core import CCP4File
         if xmlFile is None:
             xmlFile = self.projectDir+'.ccp4db.xml'
-        body = etree.Element('ccp4i2_body')
+        body = ET.Element('ccp4i2_body')
         for key in ['projectTable','jobTable','fileTable','fileuseTable','importfileTable','exportfileTable','xdataTable','commentTable']:
             body.append(getattr(self,key))
         fileObj = CCP4File.CI2XmlDataFile(fullPath=xmlFile)
@@ -761,7 +762,7 @@ class CMakeProjectDbXml(QtCore.QThread):
         ele,jobId = self.jobEle(jobNumber=jobNumber,status=status,header=header,parentJobId=parentJobId,ctime=ctime)
         if backup is not None:
             try:
-                backupEle = backup.xpath('./jobTable/job')[0]
+                backupEle = backup.findall('./jobTable/job')[0]
                 #print 'CMakeProjectDbXml.loadJob backupEle',backupEle
                 for key,value in list(backupEle.items()):
                     if key == 'evaluation':
@@ -812,7 +813,7 @@ class CMakeProjectDbXml(QtCore.QThread):
                                     importid= None
                                     if backup is not None:
                                         try:
-                                            backupEle = backup.xpath("./importfileTable/importfile[@fileid='"+fileId+"']")[0]
+                                            backupEle = backup.findall("./importfileTable/importfile[@fileid='"+fileId+"']")[0]
                                             #print 'loadJobParams backupEle',backupEle
                                             sourcefilename = backupEle.get('sourcefilename',None)
                                             creationtime = backupEle.get('creationtime',None)
@@ -846,21 +847,21 @@ class CMakeProjectDbXml(QtCore.QThread):
 
     def loadFromBackup(self,jobId=None,backup=None):
         if backup is None: return
-        exportEleList = backup.xpath('./exportfileTable/exportfile')
+        exportEleList = backup.findall('./exportfileTable/exportfile')
         for exEle in exportEleList:
             fileid = exEle.get('fileid',None)
             if fileid is not None:
                 ele = self.exportEle(exportid=exEle.get('exportid', None), fileId=fileid,
                                      exportfilename=exEle.get('exportfilename', None), creationtime=exEle.get('creationtime', None))
                 self.exportfileTable.append(ele)
-        commentEleList = backup.xpath('./commentTable/comment')
+        commentEleList = backup.findall('./commentTable/comment')
         for comEle in commentEleList:
             ele = self.commentEle(jobId=jobId,commentid=comEle.get('commentid',None),username=comEle.get('username',None),
                                   timeofcomment=comEle.get('timeofcomment',None),comment=comEle.get('comment',None))
             self.commentTable.append(ele)
 
     def commentEle(self,jobId=None,commentid=None,username=None,timeofcomment=None,comment=None):
-        ele = etree.Element('comment')
+        ele = ET.Element('comment')
         ele.set('commentid',commentid)
         if jobId is not None:
             ele.set('jobid',str(jobId))
@@ -873,7 +874,7 @@ class CMakeProjectDbXml(QtCore.QThread):
         return ele
 
     def exportEle(self,exportid=None,fileId=None,exportfilename=None,creationtime=None):
-        ele = etree.Element('exportfile')
+        ele = ET.Element('exportfile')
         ele.set('exportid',str(exportid))
         if fileId is not None: ele.set('fileid',str(fileId))
         if exportfilename is not None: ele.set('exportfilename',exportfilename)
@@ -888,18 +889,18 @@ class CMakeProjectDbXml(QtCore.QThread):
             self.errReport.append(self.__class__,107,str(dataObject))
             return None,None
         self._lastXdataId = self._lastXdataId + 1
-        ele = etree.Element('xdata')
+        ele = ET.Element('xdata')
         ele.set('xdataid',str(xdataId))
         ele.set('xdataclass',str(dataClass))
         ele.set('jobid',str(jobId))
         dataEle.tag = 'xdataxml'
         ele.append(dataEle)
-        #print 'xdataEle',etree.tostring(ele)
+        #print 'xdataEle',ET.tostring(ele)
         return ele
 
     def importEle(self,importid=None,fileid=None,sourcefilename=None,creationtime=None):
         # !!! Needs more info
-        ele = etree.Element('importfile')
+        ele = ET.Element('importfile')
         ele.set('importid',str(importid))
         ele.set('fileid',str(fileid))
         if sourcefilename is not None: ele.set('sourcefilename',sourcefilename)
@@ -907,14 +908,14 @@ class CMakeProjectDbXml(QtCore.QThread):
         return ele
 
     def fileuseEle(self,jobId=None,fileId=None,roleId=CCP4DbApi.FILE_ROLE_IN):
-        ele = etree.Element('fileuse')
+        ele = ET.Element('fileuse')
         ele.set('fileid',str(fileId))
         ele.set('jobid',str(jobId))
         ele.set('roleid',str(roleId))
         return ele
 
     def fileEle(self,fileId=None,jobId=None,fileObject=None):
-        ele = etree.Element('file')
+        ele = ET.Element('file')
         if fileId is not None:
             ele.set('fileid',str(fileId))
         elif fileObject.dbFileId.isSet():
@@ -940,7 +941,7 @@ class CMakeProjectDbXml(QtCore.QThread):
         return ele
 
     def jobEle(self,jobNumber='',status=None,header=None,parentJobId=None,ctime=0):
-        ele = etree.Element('job')    
+        ele = ET.Element('job')    
         jobId = header.jobId.__str__()
         ele.set('jobid',jobId)
         ele.set('jobnumber',header.jobNumber.__str__())
@@ -969,7 +970,7 @@ class CMakeProjectDbXml(QtCore.QThread):
         return ele,jobId
 
     def projectEle(self,projectId=None):
-        ele = etree.Element('project')
+        ele = ET.Element('project')
         ele.set('projectid',projectId)
         ele.set('projectname',self.projectName)
         ele.set('projectdirectory',self.projectDir)
@@ -1023,7 +1024,7 @@ class CJobDbBackup:
         if self.xmlFile.exists():
             root = self.xmlFile.getEtreeRoot()
             #print 'CJobDbBackup root',root.tag
-            self.body = copy.deepcopy(root.xpath('./ccp4i2_body')[0])
+            self.body = copy.deepcopy(root.findall('./ccp4i2_body')[0])
         else:
             jobInfo = {}
             if jobNumber is None or taskName is None:
@@ -1043,29 +1044,29 @@ class CJobDbBackup:
         self.xmlFile.saveFile(bodyEtree=self.body)
 
     def buildTree(self,jobId=None,jobNumber=None):
-        top = etree.Element('ccp4i2_body')
+        top = ET.Element('ccp4i2_body')
         for table in ['jobTable','importfileTable','exportfileTable','commentTable']:
-            ele = etree.Element(table)
+            ele = ET.Element(table)
             top.append(ele)
-        ele = etree.Element('job')
+        ele = ET.Element('job')
         if jobId is not None: ele.set('jobid',str(jobId))
         if jobNumber is not None: ele.set('jobnumber',str(jobNumber))
-        top.xpath('./jobTable')[0].append(ele)
+        top.findall('./jobTable')[0].append(ele)
         return top
 
     def updateJob(self,key,value):
         if self._diagnostic: print('CJobDbBackup.updateJob',key,value)
-        ele = self.body.xpath('./jobTable/job')[0]
+        ele = self.body.findall('./jobTable/job')[0]
         #print 'CJobDbBackup.updateJob',ele
         ele.set(key,str(value))
 
     def editImportFile(self,fileId=None,importId=None,sourceFileName=None,fileName=None,annotation=None,creationTime=None):
         if self._diagnostic: print('CJobDbBackup.editImportFile',fileId,importId,sourceFileName,fileName,annotation,creationTime)
         try:
-            ele = self.body.xpath("./importfileTable/importfile[@importid='"+str(importId)+"']")[0]
+            ele = self.body.findall("./importfileTable/importfile[@importid='"+str(importId)+"']")[0]
         except:
-            ele =  etree.Element('importfile')
-            self.body.xpath('./importfileTable')[0].append(ele)
+            ele =  ET.Element('importfile')
+            self.body.findall('./importfileTable')[0].append(ele)
         if importId is not None: ele.set('importid',str(importId))
         if fileId is not None: ele.set('fileid',str(fileId))
         if sourceFileName is not None: ele.set('sourcefilename',str(sourceFileName))
@@ -1077,10 +1078,10 @@ class CJobDbBackup:
     def editExportFile(self,fileId=None,exportId=None,exportFileName=None,creationTime=None):
         if self._diagnostic: print('CJobDbBackup.editExportFile',fileId,exportId,exportFileName,creationTime)
         try:
-            ele = self.body.xpath("./exportfileTable/exportfile[@exportid='"+str(exportId)+"']")[0]
+            ele = self.body.findall("./exportfileTable/exportfile[@exportid='"+str(exportId)+"']")[0]
         except:
-            ele =  etree.Element('exportfile')
-            self.body.xpath('./exportfileTable')[0].append(ele)
+            ele =  ET.Element('exportfile')
+            self.body.findall('./exportfileTable')[0].append(ele)
         if exportId is not None: ele.set('exportid',str(exportId))
         if fileId is not None: ele.set('fileid',str(fileId))
         if exportFileName is not None:  ele.set('exportfilename',str(exportFileName))
@@ -1089,10 +1090,10 @@ class CJobDbBackup:
     def editComment(self,commentId=None,userName=None,timeOfComment=None,comment=None):
         if self._diagnostic: print('CJobDbBackup.editComment',commentId,userName,timeOfComment,comment)
         try:
-            ele = self.body.xpath("./commentTable/comment[@commentid='"+str(commentId)+"']")[0]
+            ele = self.body.findall("./commentTable/comment[@commentid='"+str(commentId)+"']")[0]
         except:
-            ele =  etree.Element('comment')
-            self.body.xpath('./commentTable')[0].append(ele)
+            ele =  ET.Element('comment')
+            self.body.findall('./commentTable')[0].append(ele)
         if commentId is not None: ele.set('commentid',str(commentId))
         if userName is not None: ele.set('username',str(userName))
         if timeOfComment is not None: ele.set('timeofcomment',str(timeOfComment))
@@ -1101,10 +1102,10 @@ class CJobDbBackup:
     def scrapeFromDb(self,db=None):
         saveItems = ['jobnumber','evaluation','preceedingjobid','jobtitle','creationtime','finishtime']
         try:
-            ele = self.body.xpath('./jobTable/job')[0]
+            ele = self.body.findall('./jobTable/job')[0]
         except:
-            ele = etree.Element('job')
-            top.xpath('./jobTable')[0].append(ele)   # KJS : Worse than useless, this is messed up.
+            ele = ET.Element('job')
+            top.findall('./jobTable')[0].append(ele)   # KJS : Worse than useless, this is messed up.
         info = db.getJobInfo(jobId=self.jobId,mode =saveItems )
         if info['evaluation'] in CCP4DbApi.JOB_EVALUATION_TEXT:
             info['evaluation'] = CCP4DbApi.JOB_EVALUATION_TEXT.index(info['evaluation'])

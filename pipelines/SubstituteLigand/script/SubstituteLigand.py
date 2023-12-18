@@ -19,7 +19,7 @@ class SubstituteLigand(CPluginScript):
 
     def __init__(self, *args,**kws):
         super(SubstituteLigand, self).__init__(*args, **kws)
-        self.xmlroot = etree.Element('SubstituteLigand')
+        self.xmlroot = ET.Element('SubstituteLigand')
         self.obsToUse = None
         self.freerToUse = None
     
@@ -104,20 +104,20 @@ class SubstituteLigand(CPluginScript):
         self.xmlroot.append(pluginRoot)
         #Here check on the resolution estimate, and cut dataset back accordingly
         if self.aimlessCycle == 0:
-            datasetresultnodes = pluginRoot.xpath("//Result/Dataset")
+            datasetresultnodes = pluginRoot.findall(".//Result/Dataset")
             if len(datasetresultnodes) == 0:
                 self.appendErrorReport(201,'No result nodes found')
                 self.reportStatus(CPluginScript.FAILED)
             datasetresultnode = datasetresultnodes[0]
-            dataresonodes = datasetresultnode.xpath("ResolutionHigh/Overall")
-            reslimitnodes = datasetresultnode.xpath("ResolutionLimitEstimate")
+            dataresonodes = datasetresultnode.findall("ResolutionHigh/Overall")
+            reslimitnodes = datasetresultnode.findall("ResolutionLimitEstimate")
             if len(dataresonodes)<1 or len(reslimitnodes)< 1:
                 self.appendErrorReport(201,'Unable to identify resolution estimate limits')
                 self.reportStatus(CPluginScript.FAILED)
-            datareso = datasetresultnode.xpath("ResolutionHigh/Overall")[0].text
-            reslimitnodes = datasetresultnode.xpath("ResolutionLimitEstimate")
+            datareso = datasetresultnode.findall("ResolutionHigh/Overall")[0].text
+            reslimitnodes = datasetresultnode.findall("ResolutionLimitEstimate")
             if reslimitnodes[0].get("type") == "CChalf":
-                reslimit = reslimitnodes[0].xpath("MaximumResolution")[0].text
+                reslimit = reslimitnodes[0].findall("MaximumResolution")[0].text
             else:
                 self.appendErrorReport(201,'Reso detection failed (first estimate not on CCHalf)')
                 self.reportStatus(CPluginScript.FAILED)
@@ -266,14 +266,14 @@ coot.write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))'''
             #print 'aCPdbData.chains',aCPdbData.composition.chains
             #print 'aCPdbData.monomers',aCPdbData.composition.monomers
             modelCompositionNode = None
-            modelCompositionNodes = self.xmlroot.xpath('//ModelComposition')
+            modelCompositionNodes = self.xmlroot.findall('.//ModelComposition')
             if len(modelCompositionNodes) > 0: modelCompositionNode = modelCompositionNodes[-1]
             else:
-                refmacNodes = self.xmlroot.xpath('//REFMAC')
-                if len(refmacNodes) > 0: modelCompositionNode = etree.SubElement(refmacNodes[-1],"ModelComposition")
+                refmacNodes = self.xmlroot.findall('.//REFMAC')
+                if len(refmacNodes) > 0: modelCompositionNode = ET.SubElement(refmacNodes[-1],"ModelComposition")
             if modelCompositionNode is not None:
                 for monomer in aCPdbData.composition.monomers:
-                    monomerNode = etree.SubElement(modelCompositionNode,'Monomer',id=monomer)
+                    monomerNode = ET.SubElement(modelCompositionNode,'Monomer',id=monomer)
         self.finishWithStatus(CPluginScript.SUCCEEDED)
 
     def harvestFile(self, pluginOutputItem, pipelineOutputItem):
@@ -289,7 +289,7 @@ coot.write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))'''
 
     def appendXML(self, changedFile, replacingElementOfType=None):
         newXML = CCP4Utils.openFileToEtree(changedFile)
-        oldNodes = self.xmlroot.xpath(replacingElementOfType)
+        oldNodes = self.xmlroot.findall(replacingElementOfType)
         if len(oldNodes) > 0: oldNodes[0].parent().remove(oldNodes[0])
         self.xmlroot.append(newXML)
         with open(self.makeFileName('PROGRAMXML'),'w') as xmlfile:

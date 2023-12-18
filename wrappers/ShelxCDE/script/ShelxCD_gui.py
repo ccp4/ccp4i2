@@ -12,7 +12,6 @@ from qtgui.CCP4TaskWidget import CTaskWidget
 
 def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None):
     import os
-    from lxml import etree
     from core import CCP4Modules
     from core import CCP4Utils
     from core import CCP4File

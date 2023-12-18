@@ -30,7 +30,7 @@ class pointless_reindexToMatch_report(pointless_report):
         xmlnode = kw['xmlnode']
       else:
         if 'xmlFile' in kw:
-          xmlnode = etree.parse(kw['xmlFile'])  # for testing
+          xmlnode = ET.parse(kw['xmlFile'])  # for testing
       if xmlnode is None:
         print("**** no xmlnode or xmlFile ****")
         return
@@ -58,5 +58,6 @@ class pointless_reindexToMatch_report(pointless_report):
 if __name__ == "__main__":
   report = pointless_reindexToMatch_report(xmlFile = sys.argv[1],jobStatus="Finished" )
   tree= report.as_etree()
-  #  print etree.tostring(tree,pretty_print=True)
+  ET.indent(tree)
+  #  print ET.tostring(tree)
   report.as_html_file(fileName='./test-reindex.html')

@@ -19,7 +19,7 @@
 from report.CCP4ReportParser import Report
 import os
 import sys
-import xml.etree.ElementTree as etree
+from xml.etree import ElementTree as etree
 from wrappers.refmac_i2.script import refmac_report
 from wrappers.aimless.script.aimless_report import aimless_report
 
@@ -74,7 +74,7 @@ class adding_stats_to_mmcif_i2_report(Report):
 
         if validationXMLFilename != '' and os.path.isfile(validationXMLFilename): # we did send files to validation server:
             with open(validationXMLFilename,'r') as validationXMLFile:
-                validationXML = etree.fromstring(validationXMLFile.read())
+                validationXML = ET.fromstring(validationXMLFile.read())
             summary = self.parseXml(validationXML)
             if os.path.exists(validationSvg):
                 with open(validationSvg,'r') as f:

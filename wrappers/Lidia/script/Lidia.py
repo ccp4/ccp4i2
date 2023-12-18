@@ -5,7 +5,8 @@ from core.CCP4PluginScript import CPluginScript
 from PySide2 import QtCore
 import os,glob,re,time,sys
 from core import CCP4XtalData
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 import math
 from core import CCP4Modules
 from core import CCP4Utils
@@ -53,7 +54,7 @@ class lidia(CPluginScript):
 
     @QtCore.Slot()
     def handleFinished(self):
-        rootNode = etree.Element('Lidia')
+        rootNode = ET.Element('Lidia')
         #This is looking forward to a position where more things might work
         globPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'*.mdl'))
         outList = glob.glob(globPath)
@@ -75,15 +76,15 @@ class lidia(CPluginScript):
             
             with open (os.path.normpath(outputMOL),'r') as molFile:
                 molText = molFile.read()
-                molNode = etree.SubElement(rootNode,'MOLDATA')
-                #molNode.text = etree.CDATA(molText)
+                molNode = ET.SubElement(rootNode,'MOLDATA')
+                #molNode.text = ET.CDATA(molText)
                 molNode.text = base64.b64encode(molText)
-            svgNode = etree.SubElement(rootNode,'SVGNode')
+            svgNode = ET.SubElement(rootNode,'SVGNode')
             
             svgNode.append(self.svgForMolFile(outputMOL))
     
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-            q = etree.tostring(rootNode,encoding='utf-8',pretty_print=True)
+            q = ET.tostring(rootNode,encoding='utf-8',pretty_print=True)
 #           programXML.write(q.decode("utf-8"))
             CCP4Utils.writeXML(programXML,q)
         

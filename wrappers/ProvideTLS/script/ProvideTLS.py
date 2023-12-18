@@ -1,7 +1,7 @@
 
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
-
+from xml.etree import ElementTree as ET
   
 class ProvideTLS(CPluginScript):
 
@@ -27,12 +27,12 @@ class ProvideTLS(CPluginScript):
         with open(self.container.outputData.TLSFILE.fullPath.__str__(),"w") as myFile:
             myFile.write(self.container.controlParameters.TLSTEXT.__str__() )
         
-        from lxml import etree
-        root = etree.Element('ProvideTLSOutput')
-        tlsElement = etree.SubElement(root,'TLSProvided')
+        root = ET.Element('ProvideTLSOutput')
+        tlsElement = ET.SubElement(root,'TLSProvided')
         tlsElement.text = self.container.controlParameters.TLSTEXT.__str__()
         with open(self.makeFileName('PROGRAMXML'),'w') as xmlFile:
-            CCP4Utils.writeXML(xmlFile,etree.tostring(root,pretty_print=True))
+            ET.indent(root)
+            CCP4Utils.writeXML(xmlFile,ET.tostring(root))
 
         self.reportStatus(CPluginScript.SUCCEEDED)
 

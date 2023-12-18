@@ -2,7 +2,7 @@ from __future__ import print_function
 
 from report.CCP4ReportParser import *
 import sys
-import xml.etree.ElementTree as etree
+from xml.etree import ElementTree as etree
 
 class ProvideSequence_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -39,7 +39,7 @@ class ProvideSequence_report(Report):
         print("OK 2")
         parent.addText(text="Sequence(s) in fasta format:")
         print("OK 3")
-        print(etree.tostring(self.xmlnode))
+        print(ET.tostring(self.xmlnode))
         for aliNode in self.xmlnode.findall('./Sequence'):
             print("OK 4?")
             print("Adding ...",aliNode.text)

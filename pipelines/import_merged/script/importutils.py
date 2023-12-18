@@ -3,7 +3,7 @@ from lxml import etree
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 def addXMLelement(containerXML, elementname, elementtext):
     #print 'addElement', elementname, type(elementtext), elementtext 
-    e2 = etree.Element(elementname)
+    e2 = ET.Element(elementname)
     e2.text = elementtext
     containerXML.append(e2)
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 

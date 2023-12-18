@@ -25,6 +25,8 @@ from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
 from core import CCP4ErrorHandling
 from core import CCP4XtalData
+from lxml import etree
+from xml.etree import ElementTree as ET
 
 
 class parrot(CPluginScript):
@@ -73,17 +75,16 @@ class parrot(CPluginScript):
       self.container.outputData.FPHIOUT.annotation = self.jobNumberString() + ' Map coefficients from density modification'
       
       # extend XML output
-      from lxml import etree
-      rootNode = etree.Element("ParrotResult")
+      rootNode = ET.Element("ParrotResult")
       with open(self.xmlout,'r') as xmlFile:
-        rootNode = etree.fromstring(xmlFile.read())
-      smartieNode = etree.SubElement(rootNode,'SmartieGraphs')
+        rootNode = ET.fromstring(xmlFile.read())
+      smartieNode = ET.SubElement(rootNode,'SmartieGraphs')
       self.scrapeSmartieGraphs(smartieNode)
       with open(self.xmlout,'w') as xmlFile:
-        CCP4Utils.writeXML(xmlFile,etree.tostring(rootNode,pretty_print=True))
+        CCP4Utils.writeXML(xmlFile,ET.tostring(rootNode,pretty_print=True))
 
       # performance data
-      final_fom = float(rootNode.xpath('//ParrotResult/Final/MeanFOM')[0].text)
+      final_fom = float(rootNode.findall('.//ParrotResult/Final/MeanFOM')[0].text)
       self.container.outputData.PERFORMANCE.FOM = final_fom
 
       # error checking
@@ -97,8 +98,6 @@ class parrot(CPluginScript):
         smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
         sys.path.append(smartiePath)
         import smartie
-        
-        from lxml import etree
         
         logfile = smartie.parselog(self.makeFileName('LOG'))
         for smartieTable in logfile.tables():

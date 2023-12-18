@@ -442,7 +442,7 @@ class CTreeItemFile(CTreeItem):
     relPath = root.find('relPath')
     #print 'CTreeItemFile.mimeData projectId',info,PROJECTSMANAGER().getProjectDirectory(projectId=info['projectid']),relPath.text
     relPath.text = os.path.normpath(os.path.join(PROJECTSMANAGER().getProjectDirectory(projectId=info['projectid']),str(relPath.text)))
-    dragText = etree.tostring(root,pretty_print=False)
+    dragText = ET.tostring(root,pretty_print=False)
     urlList = [QtCore.QUrl()]
     urlList[0].setPath( PROJECTSMANAGER().db().getFullPath(fileId=self.fileId ) )
     urlList[0].setScheme("file")
@@ -1249,9 +1249,9 @@ class CTreeItemJob(CTreeItem):
     from lxml import etree
     urlList = []
     mimeType = 'FollowFromJob'
-    root = etree.Element('jobId')
+    root = ET.Element('jobId')
     root.text = str(self.jobId)
-    dragText = etree.tostring(root,pretty_print=False)
+    dragText = ET.tostring(root,pretty_print=False)
     sceneFiles = PROJECTSMANAGER().getSceneFiles(jobId=self.jobId)
     if len(sceneFiles)>0:
       urlList = [QtCore.QUrl()]
@@ -2531,12 +2531,12 @@ class CProjectWidget(QtWidgets.QFrame):
       # Set 'taskParameters' data on the application clipboard
       # to enable it to be pasted elsewhere
       from lxml import etree
-      root = etree.Element('taskParameters')
+      root = ET.Element('taskParameters')
       jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId,mode=['taskname','jobnumber','projectname','projectid'])
       for name,value in [[ 'jobId' , jobId],['taskName',jobInfo['taskname']],['jobNumber',jobInfo['jobnumber']],['projectName',jobInfo['projectname']],['projectId',jobInfo['projectid']]]:
-        e = etree.SubElement(root,name)
+        e = ET.SubElement(root,name)
         e.text = value
-      dragText = etree.tostring(root,pretty_print=True)
+      dragText = ET.tostring(root,pretty_print=True)
       data = QtCore.QByteArray()
       data.append(dragText)
       mimeData = QtCore.QMimeData()
@@ -3024,7 +3024,7 @@ class CProjectDirView(QtWidgets.QTreeView):
     from lxml import etree   
     mimeType = PROJECTSMANAGER().db().getFileInfo(fileId=fileId,mode='fileclass')
     root,err = PROJECTSMANAGER().db().getFileEtree(fileId=fileId)
-    dragText = etree.tostring(root)
+    dragText = ET.tostring(root)
     #print 'CProjectDirView.startDrag',mimeType,dragText
     
     encodedData = QtCore.QByteArray()

@@ -27,6 +27,7 @@ import os
 import re
 from PySide2 import QtCore
 from core.CCP4ErrorHandling import *
+from xml.etree import ElementTree as ET
 
 PARAMIKO_PORT=22
 
@@ -129,19 +130,18 @@ class CServerParams:
     '''
 
     def getEtree(self):
-        from lxml import etree
-        ele = etree.Element('serverParams')
+        ele = ET.Element('serverParams')
         ele.set('jobId', str(self.jobId))
         for key in CServerParams.SAVELIST:
             if getattr(self, key, None) is not None:
-                e = etree.Element(key)
+                e = ET.Element(key)
                 e.text = str(getattr(self,key))
                 ele.append(e)
         return ele
 
     def setEtree(self,ele):
         self.jobId = ele.get('jobId')
-        for e in ele.iterchildren():
+        for e in ele:
             setattr(self, str(e.tag), str(e.text))
         self.setDbParams()
 
@@ -223,14 +223,13 @@ class CJobServer(QtCore.QObject):
             return None
 
     def saveParams(self, fileName=None):
-        from lxml import etree
         from core import CCP4File
         if fileName is None:
             fileName = self.defaultParamsFileName()
         fileObj = CCP4File.CI2XmlDataFile(fileName)
         fileObj.header.setCurrent()
         fileObj.header.function.set('JOBSERVERSTATUS')
-        bodyEtree = etree.Element('serverParamsList')
+        bodyEtree = ET.Element('serverParamsList')
         for jobId, sP in list(self._serverParams.items()):
             bodyEtree.append(sP.getEtree())
         fileObj.saveFile(bodyEtree)
@@ -277,7 +276,7 @@ class CJobServer(QtCore.QObject):
         #print 'CJobServer.loadParams body',body.tag
         # pollFinish flags: 0=no poll (eg ssh expecting a signal) 1=poll for FINISHED file 2=poll qsub
         #                   3=custom poll (started in current i2 session) 4 = custom poll (from previous i2 session)
-        for ele in body.iterchildren():
+        for ele in body:
             jobId = ele.get('jobId')
             if len(ele) > 0:
                 sP = self._serverParams[jobId] = CServerParams()
@@ -405,15 +404,14 @@ class CJobServer(QtCore.QObject):
         self.setServerParam(jobId, 'pollReport', 0)
 
     def parseQsubStat(self, returnString, mode='finished'):
-        from lxml import etree
-        parser = etree.XMLParser()
-        tree = etree.fromstring(returnString, parser)
+        parser = ET.XMLParser()
+        tree = ET.fromstring(returnString, parser)
         if mode == 'finished':
             qsubIdDict = {}
-            jobs = tree.xpath("job_info|queue_info")
+            jobs = tree.findall("job_info|queue_info")
             for job in jobs:
-                for jobl in job.xpath("job_list"):
-                    qsubIdDict[str(jobl.xpath("JB_job_number")[0].text)] = str(jobl.attrib["state"])
+                for jobl in job.findall("job_list"):
+                    qsubIdDict[str(jobl.findall("JB_job_number")[0].text)] = str(jobl.attrib["state"])
             #print 'parseQsubStat',qsubIdDict
             return qsubIdDict
         elif mode == 'status':

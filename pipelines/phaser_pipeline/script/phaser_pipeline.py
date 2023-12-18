@@ -12,7 +12,8 @@ from core.CCP4PluginScript import CPluginScript
 import sys, os
 from core import CCP4ErrorHandling
 from core import CCP4Modules
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 from core import CCP4Utils
   
 class phaser_pipeline(CPluginScript):
@@ -42,7 +43,7 @@ class phaser_pipeline(CPluginScript):
             self.reportStatus(CPluginScript.FAILED)
         self.checkOutputData()
 
-        self.xmlroot = etree.Element('PhaserPipeline')
+        self.xmlroot = ET.Element('PhaserPipeline')
         
         if self.container.inputData.MODE_TY == "MR_FRF":
             self.phaserPlugin = self.makePluginObject('phaser_MR_FRF')
@@ -92,12 +93,12 @@ class phaser_pipeline(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def phaserXMLUpdated(self, newXML):
-        for oldNode in self.xmlroot.xpath('PhaserMrResults'): self.xmlroot.remove(oldNode)
+        for oldNode in self.xmlroot.findall('PhaserMrResults'): self.xmlroot.remove(oldNode)
         from copy import deepcopy
         self.xmlroot.append(deepcopy(newXML))
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
         with open(tmpFilename,'w') as xmlfile:
-            CCP4Utils.writeXML(xmlfile,etree.tostring(self.xmlroot,pretty_print=True))
+            CCP4Utils.writeXML(xmlfile,ET.tostring(self.xmlroot))
         self.renameFile(tmpFilename,self.makeFileName('PROGRAMXML'))
 
     @QtCore.Slot(dict)
@@ -312,15 +313,15 @@ coot.write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
             self.reportStatus(CPluginScript.FAILED)
 
     def appendXML(self, changedFile, replacingElementOfType=None):
-        for oldNode in self.xmlroot.xpath(replacingElementOfType):
+        for oldNode in self.xmlroot.findall(replacingElementOfType):
             self.xmlroot.remove(oldNode)
         try:
             newXML = CCP4Utils.openFileToEtree(changedFile)
         except:
-            newXML = etree.Element(replacingElementOfType)
+            newXML = ET.Element(replacingElementOfType)
         self.xmlroot.append(newXML)
         with open(self.makeFileName('PROGRAMXML'),'w') as xmlfile:
-            CCP4Utils.writeXML(xmlfile,etree.tostring(self.xmlroot,pretty_print=True))
+            CCP4Utils.writeXML(xmlfile,ET.tostring(self.xmlroot))
 
     def checkFinishStatus( self, statusDict,failedErrCode,outputFile = None,noFileErrCode= None):
         if len(statusDict)>0 and statusDict['finishStatus'] == CPluginScript.FAILED:
@@ -337,5 +338,5 @@ coot.write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
             self.appendErrorReport(failedErrCode)
             self.reportStatus(statusDict['finishStatus'])
         self.appendXML(self.phaserPlugin.makeFileName('PROGRAMXML'),'PhaserMrResults')
-        if self.xmlroot.xpath('//solutionsFound')[0].text == 'False':
+        if self.xmlroot.findall('.//solutionsFound')[0].text == 'False':
             self.reportStatus(CPluginScript.UNSATISFACTORY)

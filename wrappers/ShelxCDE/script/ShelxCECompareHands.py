@@ -1,7 +1,8 @@
 from __future__ import print_function
 from PySide2 import QtCore
 from core.CCP4PluginScript import CPluginScript
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 import os
 from wrappers.ShelxCDE.script import ShelxCE
 import functools
@@ -22,7 +23,7 @@ class ShelxCECompareHands(ShelxCE.ShelxCE):
             self.reportStatus(CPluginScript.FAILED)
         self.checkOutputData()
         
-        self.xmlroot = etree.Element('ShelxCECompareHands')
+        self.xmlroot = ET.Element('ShelxCECompareHands')
         
         self.firstHandPlugin = self.makePluginObject('ShelxCE')
         self.firstHandPlugin.container.inputData.copyData(self.container.inputData)
@@ -61,7 +62,7 @@ class ShelxCECompareHands(ShelxCE.ShelxCE):
         #Pick a winner !
         firstHandCC = float(self.firstHandPlugin.container.outputData.PERFORMANCE.CC)
         secondHandCC = float(self.secondHandPlugin.container.outputData.PERFORMANCE.CC)
-        choiceNode = etree.SubElement(self.xmlroot,'HandChosen')
+        choiceNode = ET.SubElement(self.xmlroot,'HandChosen')
         if secondHandCC > firstHandCC:
             pluginOutput = self.secondHandPlugin.container.outputData
             choiceNode.text='Inverted'
@@ -87,13 +88,12 @@ class ShelxCECompareHands(ShelxCE.ShelxCE):
             with open(changedFile,'r') as changedXML:
                 newText = changedXML.read()
             if True:
-                from lxml import etree
-                changedRoot = etree.fromstring(newText)
+                changedRoot = ET.fromstring(newText)
                 #Remove old copies of XML
-                oldNodes = self.xmlroot.xpath(nodeName)
+                oldNodes = self.xmlroot.findall(nodeName)
                 for oldNode in oldNodes:
                     oldNode.getparent().remove(oldNode)
-                newNode = etree.SubElement(self.xmlroot,nodeName)
+                newNode = ET.SubElement(self.xmlroot,nodeName)
                 newNode.append(changedRoot)
                 import datetime
                 timeNow = datetime.datetime.now()
@@ -109,13 +109,13 @@ class ShelxCECompareHands(ShelxCE.ShelxCE):
         import tempfile
         import sys
         try:
-            from lxml import etree
             xmlPath = self.makeFileName('PROGRAMXML')
             tfile = tempfile.NamedTemporaryFile()
             xmlTmpPath = tfile.name
             tfile.close()
             with open(xmlTmpPath,'w') as tmpFile:
-                CCP4Utils.writeXML(tmpFile,etree.tostring(self.xmlroot, pretty_print=True))
+                ET.indent(self.xmlroot)
+                CCP4Utils.writeXML(tmpFile,ET.tostring(self.xmlroot))
             import shutil
             shutil.move(xmlTmpPath, xmlPath)
             

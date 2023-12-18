@@ -6,7 +6,8 @@ import pickle
 from core import CCP4ErrorHandling
 from core import CCP4Modules
 from pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script import phaser_MR_AUTO
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 class phaser_MR_FRF(phaser_MR_AUTO.phaser_MR_AUTO):
 
@@ -101,16 +102,16 @@ class phaser_MR_FRF(phaser_MR_AUTO.phaser_MR_AUTO):
                         print('Unable to Pickle Rfile solutions', e)
                     self.container.outputData.RFILEOUT.annotation.set('Rfile (pkl) from rotation search')
         #Remove old digested summaries and add new ones parsed from the result summary block
-        for summaryNode in self.xmlroot.xpath('Summary'):
+        for summaryNode in self.xmlroot.findall('Summary'):
             summaryNode.getparent().remove(summaryNode)
         summary_buffer = '***'
         for text in resultObject.summary().split('\n'):
             if text.startswith("**********") and not summary_buffer.strip().endswith("***"):
-                summaryNode = etree.SubElement(self.xmlroot,'Summary')
+                summaryNode = ET.SubElement(self.xmlroot,'Summary')
                 summaryNode.text = summary_buffer
                 summary_buffer = ""
             summary_buffer += (text+'\n')
-        summaryNode = etree.SubElement(self.xmlroot,'Summary')
+        summaryNode = ET.SubElement(self.xmlroot,'Summary')
         summaryNode.text = summary_buffer
                 
         self.flushXML(self.xmlroot)
@@ -118,16 +119,16 @@ class phaser_MR_FRF(phaser_MR_AUTO.phaser_MR_AUTO):
 
 
     def analyseResults(self, results):
-        solutionsNode = etree.SubElement(self.xmlroot,'PhaserMrSolutions')
+        solutionsNode = ET.SubElement(self.xmlroot,'PhaserMrSolutions')
         if len(results.getDotRlist()) > 0:
             node=self.subElementWithNameAndText(solutionsNode,'solutionsFound','True')
         else:
             node=self.subElementWithNameAndText(solutionsNode,'solutionsFound','False')
-        solutionListNode = etree.SubElement(solutionsNode,'Solutions')
+        solutionListNode = ET.SubElement(solutionsNode,'Solutions')
 
         for rlists in results.getDotRlist():
             for solution in rlists.RLIST:
-                solutionNode = etree.SubElement(solutionListNode,'Solution')
+                solutionNode = ET.SubElement(solutionListNode,'Solution')
                 for property in ['DEEP', 'EULER', 'GRF', 'MODLID', 'RF', 'RFZ']:
                     value = getattr(solution,property,None)
                     if value is not None:

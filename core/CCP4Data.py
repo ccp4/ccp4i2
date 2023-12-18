@@ -35,6 +35,7 @@ from core.CCP4ErrorHandling import *
 from core.CCP4Config import QT, XMLPARSER
 from core.CCP4QtObject import CObject
 from lxml import etree
+from xml.etree import ElementTree as ET
 
 def isQualifier(cls, name=None):
     while issubclass(cls, CData):
@@ -280,14 +281,14 @@ class CDataQualifiers:
         if tag is None or len(tag) == 0:
             tag = self.__class__.__name__
             error.append(self.__class__, 14, name=self.objectPath())
-        element = etree.Element(str(tag))
+        element = ET.Element(str(tag))
         if customOnly:
             qualis = self.qualifiers(default=False, contentQualifiers=False)
         else:
             qualis = self.qualifiers(contentQualifiers=False)
         for key, value in list(qualis.items()):
             try:
-                ele = etree.Element(key)
+                ele = ET.Element(key)
                 if self.qualifiersDefinition(key).get('type', str) == list:
                     txt = ''
                     for item in value:
@@ -316,7 +317,7 @@ class CDataQualifiers:
     def dictQualifersEtree(self, root, inputDict):
         error = CErrorReport()
         for key,value in list(inputDict.items()):
-            root.append(etree.Element(key))
+            root.append(ET.Element(key))
             if isinstance(value,list):
                 txt = ''
                 for item in value:
@@ -332,13 +333,15 @@ class CDataQualifiers:
 
     def qualifiersXmlText(self, pretty_print=True, xml_declaration=False):
         tree, error = self.qualifiersEtree()
-        text = etree.tostring(tree, pretty_print=pretty_print, xml_declaration=xml_declaration)
+        if pretty_print:
+            ET.indent(tree)
+        text = ET.tostring(tree, xml_declaration=xml_declaration)
         return text
 
     def setQualifiersEtree(self, element):
         rv = CErrorReport()
         qualifiers = {}
-        for ele in element.iterchildren():
+        for ele in element:
             name = str(ele.tag)
             value = str(ele.text)
             if value == 'None':
@@ -398,7 +401,7 @@ class CDataQualifiers:
 
     def eTreeToDict(self, root):
         ret = {}
-        for ele in root.iterchildren():
+        for ele in root:
             if len(ele) > 0:
                 ret[ele.tag] = self.eTreeToDict(ele)
             else:
@@ -721,7 +724,9 @@ class CData(CObject, CDataQualifiers):
 
     def xmlText(self, pretty_print=True, xml_declaration=False):
         tree = self.getEtree()
-        text = etree.tostring(tree, pretty_print=pretty_print, xml_declaration=xml_declaration)
+        if pretty_print:
+            ET.indent(tree)
+        text = ET.tostring(tree, xml_declaration=xml_declaration)
         return text
 
     def __len__(self):
@@ -855,10 +860,9 @@ class CData(CObject, CDataQualifiers):
         if name is None or len(name) == 0:
             name = self.className()
         if useLXML:
-            element = etree.Element(name)
+            element = ET.Element(name)
         else:
-            import xml.etree.ElementTree as etree_xml
-            element = etree_xml.Element(name)
+            element = ET.Element(name)
         for key in self.dataOrder():
             if not excludeUnset or self._value[key].isSet(allSet=False):
                 ele = self._value[key].getEtree(useLXML=useLXML)
@@ -867,7 +871,7 @@ class CData(CObject, CDataQualifiers):
 
     def setEtree(self, element, checkValidity=True):
         rv = CErrorReport()
-        for ele in element.iterchildren():
+        for ele in element:
             name = ele.tag
             if name in self.dataOrder():
                 try:
@@ -1146,10 +1150,9 @@ class CBaseData(CData):
         if name is None or len(name) == 0:
             name = self.className()
         if useLXML:
-            element = etree.Element(str(name))
+            element = ET.Element(str(name))
         else:
-            import xml.etree.ElementTree as etree_xml
-            element = etree_xml.Element(str(name))
+            element = ET.Element(str(name))
         if hasattr(self.__str__(),"decode"):
             text = self.__str__().decode('ISO-8859-1')
         else:
@@ -2383,11 +2386,11 @@ class CCollection(CData):
 
     def subItemEtree(self, customOnly=True):
         errors = CErrorReport()
-        element = etree.Element('subItem')
+        element = ET.Element('subItem')
         if self.__dict__['_subItemObject'] is None:
             errors.append(self.__class__, 112, name=self.objectPath())
             return element, errors
-        classEle = etree.Element('className')
+        classEle = ET.Element('className')
         classEle.text = self.subItemClassName()
         element.append(classEle)
         qualiEle,errs = self.__dict__['_subItemObject'].qualifiersEtree(customOnly=True, tag='qualifiers')
@@ -2564,7 +2567,7 @@ class CDict(CCollection):
 
     def setEtree(self, element, checkValidity=True):
         rv = CErrorReport()
-        for ele in element.iterchildren():
+        for ele in element:
             key = ele.find('key').text
             value =  ele.find('value').text
             if key not in self._value:
@@ -2584,19 +2587,18 @@ class CDict(CCollection):
         if name is None or len(name) == 0:
             name = self.className()
         if useLXML:
-            element = etree.Element(name)
+            element = ET.Element(name)
         else:
-            import xml.etree.ElementTree as etree_xml
-            element = etree_xml.Element(name)
+            element = ET.Element(name)
         for key in self.dataOrder():
             if useLXML:
-                element.append(etree.Element('item'))
+                element.append(ET.Element('item'))
             else:
-                element.append(etree_xml.Element('item'))
+                element.append(ET.Element('item'))
             if useLXML:
-                ele = etree.Element('key')
+                ele = ET.Element('key')
             else:
-                ele = etree_xml.Element('key')
+                ele = ET.Element('key')
             ele.text = key
             element[-1].append(ele)
             element[-1].append(self.__dict__['_value'][key].getEtree(name='value'))
@@ -2777,10 +2779,9 @@ class CList(CCollection):
         if name is None or len(name) == 0:
             name = self.className()
         if useLXML:
-            element = etree.Element(name)
+            element = ET.Element(name)
         else:
-            import xml.etree.ElementTree as etree_xml
-            element = etree_xml.Element(name)
+            element = ET.Element(name)
         if len(self.__dict__['_value']) == 0:
             #This seems to be necessary to get empty list written out properly
             element.text = ''
@@ -2796,7 +2797,7 @@ class CList(CCollection):
         self.unSet()
         ii = 0
         self.blockSignals(True)
-        for ele in element.iterchildren():
+        for ele in element:
             ii = ii + 1
             name = str(ele.tag).split('.')[-1]
             if name != itemClassName and name != 'item':
@@ -3178,10 +3179,9 @@ class COutputFileList(CList):
         if name is None or len(name) == 0:
             name = self.className()
         if useLXML:
-            element = etree.Element(name)
+            element = ET.Element(name)
         else:
-            import xml.etree.ElementTree as etree_xml
-            element = etree_xml.Element(name)
+            element = ET.Element(name)
         if len(self.__dict__['_value']) == 0:
             #This seems to be necessary to get empty list written out properly
             element.text = ''
@@ -3189,7 +3189,7 @@ class COutputFileList(CList):
             for item in self.__dict__['_value']:
                 ele = item.getEtree(useLXML=useLXML)
                 element.append(ele)
-        print(etree.tostring(element))
+        print(ET.tostring(element))
         return element
 
 
@@ -3488,7 +3488,7 @@ class testCListAssorted(unittest.TestCase):
 '''
         self.l.set([{'start' : 2, 'end':6},{'start' : 4, 'end':14},{'start' : 5, 'end':15}])
         element = self.l.getEtree()
-        text = etree.tostring(element,pretty_print=True)
+        text = ET.tostring(element,pretty_print=True)
         #print text
         self.assertEqual(text,testXML,'Failed writing XML comparison')
         m = CList(subItemClass=CIntRange,listMaxLength=4)

@@ -30,7 +30,9 @@ if __name__ == '__main__':
     #sys.path.append(os.path.join(ccp4, 'share', 'ccp4i2', 'core'))
     sys.path.append(os.path.join(ccp4, 'lib', 'python2.7', 'site-packages'))
 
-from lxml import etree as ET
+#from lxml import etree as ET
+from xml.etree import ElementTree as ET
+
 from report.CCP4ReportParser import Report
 # from CCP4RvapiParser import RvapiReport
 
@@ -191,9 +193,9 @@ if __name__ == '__main__':
 # #
 # #      def addDefaultReport(self, parent=None):
 # #              if parent is None: parent=self
-# #              if len(self.xmlnode.xpath("LogText")) > 0:
+# #              if len(self.xmlnode.findall("LogText")) > 0:
 # #                      newFold = parent.addFold(label="Log text", initiallyOpen=True)
-# #                      newFold.addPre(text = self.xmlnode.xpath("LogText")[0].text)
+# #                      newFold.addPre(text = self.xmlnode.findall("LogText")[0].text)
 #
 # class AMPLE_report(RvapiReport):
 # #class crank2_report(Report):

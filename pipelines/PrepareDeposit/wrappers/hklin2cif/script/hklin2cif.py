@@ -1,7 +1,8 @@
 from core.CCP4PluginScript import CPluginScript
 import os,glob,re,time,sys
 from core import CCP4XtalData
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 import math
 from core import CCP4Modules,CCP4Utils
 
@@ -17,7 +18,7 @@ class hklin2cif(CPluginScript):
     
     def __init__(self,*args,**kws):
         innate=CPluginScript.__init__(self, *args, **kws)
-        self.xmlroot = etree.Element('Hklin2cif')
+        self.xmlroot = ET.Element('Hklin2cif')
 
     def makeCommandAndScript(self):
         self.outputCifPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'Reflections.cif'))

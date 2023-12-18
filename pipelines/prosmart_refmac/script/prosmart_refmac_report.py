@@ -2,7 +2,7 @@ from __future__ import print_function
 
 import sys
 #from lxml import etree
-import xml.etree.ElementTree as etree
+from xml.etree import ElementTree as etree
 from report.CCP4ReportParser import *
 
 from wrappers.refmac_i2.script import refmac_report
@@ -389,9 +389,9 @@ class prosmart_refmac_report(Report):
                 if not rmsBond_data.count('-') == len(rmsBond_data):
                    progressTable.addData(title="Bond RMSD",   expr="x if float(x)>=0.0 else '-'", data=rmsBond_data)
 
-#                rmsBonds = self.xmlnode.findall('//'+tag+'/Cycle/rmsBonds')
+#                rmsBonds = self.xmlnode.findall('.//'+tag+'/Cycle/rmsBonds')
 #                if len(rmsBonds)> 0:
-#                    cycleNodes = self.xmlnode.findall('//'+tag+'/Cycle')
+#                    cycleNodes = self.xmlnode.findall('.//'+tag+'/Cycle')
 #                    data = []
 #                    for iCycleNode, cycleNode in enumerate(cycleNodes):
 #                        if iCycleNode == 0 or iCycleNode == nCycles-2 or iCycleNode == nCycles-1:
@@ -465,7 +465,7 @@ def test(xmlFile=None,jobId=None,reportFile=None):
     import sys,os
     try:
         text = open( xmlFile ).read()
-        xmlnode = etree.fromstring( text, PARSER() )
+        xmlnode = ET.fromstring( text, PARSER() )
     except:
         print('FAILED loading XML file:', kw['xmlFile'])
     if reportFile is None and xmlFile is not None:

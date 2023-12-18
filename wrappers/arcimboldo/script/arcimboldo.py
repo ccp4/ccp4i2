@@ -21,7 +21,8 @@
 # This script runs all three versions of arcimboldo
 
 #!/usr/bin/env ccp4-python
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 import os, subprocess, sys, time, json, re
 from distutils.dir_util import copy_tree
@@ -166,15 +167,15 @@ class arcimboldo(CPluginScript):
         nameJob = str(guiAdmin.jobTitle)
         pathHtml = str(os.path.join(self.getWorkDirectory(),'arcimboldo.html'))
         pathXml = str(os.path.join(self.getWorkDirectory(),'arcimboldo.xml'))
-        self.programXml = etree.Element('arcimboldo')
-        element = etree.SubElement(self.programXml, 'nameJob')
+        self.programXml = ET.Element('arcimboldo')
+        element = ET.SubElement(self.programXml, 'nameJob')
         element.text = nameJob
-        element = etree.SubElement(self.programXml, 'pathHtml')
+        element = ET.SubElement(self.programXml, 'pathHtml')
         element.text = pathHtml
-        element = etree.SubElement(self.programXml, 'pathXml')
+        element = ET.SubElement(self.programXml, 'pathXml')
         element.text = pathXml
         with open(self.makeFileName('PROGRAMXML'), 'w+') as xml:
-            xml.write(etree.tostring(self.programXml, encoding='unicode', pretty_print=True))
+            xml.write(ET.tostring(self.programXml, encoding='unicode', pretty_print=True))
         self.watchFile(pathXml, self.refreshXML)
 
     def processInputFiles ( self ):
@@ -228,7 +229,7 @@ class arcimboldo(CPluginScript):
     def refreshXML(self, filename):
         tmpFilename = self.makeFileName('PROGRAMXML') + '_tmp'
         with open(tmpFilename, 'w+') as xmlFile:
-            xmlFile.write(etree.tostring(self.programXml, encoding='unicode', pretty_print=True))
+            xmlFile.write(ET.tostring(self.programXml, encoding='unicode', pretty_print=True))
         if os.path.exists(self.makeFileName('PROGRAMXML')):
             os.remove(self.makeFileName('PROGRAMXML'))
         os.rename(tmpFilename, self.makeFileName('PROGRAMXML'))

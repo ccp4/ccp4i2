@@ -9,6 +9,7 @@ from __future__ import print_function
 """
 
 from core.CCP4PluginScript import CPluginScript
+from xml.etree import ElementTree as ET
 
 class sculptor(CPluginScript):
 
@@ -122,9 +123,9 @@ class sculptor(CPluginScript):
 
         # Create a trivial xml output file
         from core import CCP4Utils
-        from lxml import etree
-        root = etree.Element('sculptor')
-        e = etree.Element('number_output_files')
+        #from lxml import etree
+        root = ET.Element('sculptor')
+        e = ET.Element('number_output_files')
         e.text = str(len(xyzoutList))
         root.append(e)
         CCP4Utils.saveEtreeToFile(root,self.makeFileName('PROGRAMXML'))

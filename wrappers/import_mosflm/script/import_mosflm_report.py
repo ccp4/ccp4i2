@@ -3,7 +3,7 @@ from __future__ import print_function
 from report.CCP4ReportParser import *
 import sys
 import math
-import xml.etree.ElementTree as etree
+from xml.etree import ElementTree as etree
 
 class import_mosflm_report(Report):
 
@@ -97,7 +97,7 @@ class import_mosflm_report(Report):
         profileNodes = self.xmlnode.findall('.//profile')
         firstOne = True
         for iProfile, profileNode in enumerate(profileNodes):
-            dataDiv = gallery.addDrawnDiv(data=etree.tostring(profileNode), renderer="mosflm.profileRenderer", 
+            dataDiv = gallery.addDrawnDiv(data=ET.tostring(profileNode), renderer="mosflm.profileRenderer", 
                                           require='mosflm',initiallyDrawn=firstOne, title="Image "+str(iProfile), label="Image "+str(iProfile))
             firstOne = False
 
@@ -150,7 +150,7 @@ class import_mosflm_report(Report):
         profileGridNodes = self.xmlnode.findall('.//profile_grid')
         firstOne = True
         for iProfileGridNode, profileGridNode in enumerate(profileGridNodes):
-            dataDiv = gallery.addDrawnDiv(data=etree.tostring(profileGridNode), renderer='mosflm.profileGridRenderer', 
+            dataDiv = gallery.addDrawnDiv(data=ET.tostring(profileGridNode), renderer='mosflm.profileGridRenderer', 
                                           require='mosflm', initiallyDrawn=firstOne, title=str(iProfileGridNode),
                                           label="Block "+str(iProfileGridNode))
             firstOne = False
@@ -320,7 +320,7 @@ class import_mosflm_report(Report):
                         plotLine = plotObject.append('plotline',xcol=1,ycol=coordinate,colour=colors[iHistogramLabel%len(colors)])
                         coordinate += 1
             graph.makeTableText()
-            drawnDiv = gallery.addDrawnDiv(data=etree.tostring(graph.data_as_etree()), renderer="CCP4i2Widgets.CCP4i2Graph",
+            drawnDiv = gallery.addDrawnDiv(data=ET.tostring(graph.data_as_etree()), renderer="CCP4i2Widgets.CCP4i2Graph",
                                            require='CCP4i2Widgets', initiallyDrawn=firstOne, width='285px',  height='285px', 
                                            title=str(iImageName),  label="Image "+str(iImageName))
             firstOne = False

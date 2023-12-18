@@ -22,6 +22,8 @@ import os
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core import CCP4Utils
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 class MakeProjectsAndDoLigandPipeline(CPluginScript):
     TASKNAME = 'MakeProjectsAndDoLigandPipeline'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -51,10 +53,9 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
 
     def __init__(self, *args, **kws):
         super(MakeProjectsAndDoLigandPipeline, self).__init__(*args, **kws)
-        from lxml import etree
-        self.xmlroot = etree.Element("MakeProjectsAndDoLigandPipeline")
-        etree.SubElement(self.xmlroot,"Message").text = "Starting processing"
-        etree.SubElement(self.xmlroot,"Warnings").text = "No warnings"
+        self.xmlroot = ET.Element("MakeProjectsAndDoLigandPipeline")
+        ET.SubElement(self.xmlroot,"Message").text = "Starting processing"
+        ET.SubElement(self.xmlroot,"Warnings").text = "No warnings"
         self.jobIds = []
         self.runningJobs = []
         self.processes = {}
@@ -69,24 +70,23 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
         import sys, os
         import functools
         from datetime import datetime
-        from lxml import etree
         from PySide2 import QtCore
         pm = PROJECTSMANAGER()
         
         for iLigand, projectName in enumerate(self.container.inputData.PROJECTNAME_LIST):
             print(iLigand, projectName)
-            messageNode = self.xmlroot.xpath("Message")[0]
+            messageNode = self.xmlroot.findall("Message")[0]
             messageNode.text = "Starting on project " + projectName.__str__() + " which is " + str(iLigand+1) + "/" + str(len(self.container.inputData.PROJECTNAME_LIST))
             pluginName = "SubstituteLigand"
             pluginTitle = "SubstituteLigand"
             projectNameStr = projectName.__str__()
             
-            datasetElement = etree.SubElement(self.xmlroot,"Dataset")
-            etree.SubElement(datasetElement,"ProjectName").text = projectNameStr
-            etree.SubElement(datasetElement,"SMILES").text = self.container.inputData.SMILES_LIST[iLigand].__str__()
-            etree.SubElement(datasetElement,"MaximumResolution").text = "-"
-            etree.SubElement(datasetElement,"Rfree").text = "-"
-            etree.SubElement(datasetElement,"Rfactor").text = "-"
+            datasetElement = ET.SubElement(self.xmlroot,"Dataset")
+            ET.SubElement(datasetElement,"ProjectName").text = projectNameStr
+            ET.SubElement(datasetElement,"SMILES").text = self.container.inputData.SMILES_LIST[iLigand].__str__()
+            ET.SubElement(datasetElement,"MaximumResolution").text = "-"
+            ET.SubElement(datasetElement,"Rfree").text = "-"
+            ET.SubElement(datasetElement,"Rfactor").text = "-"
             self.dumpXml()
 
             #Scriptmatically create a new project with specified name and location
@@ -96,14 +96,14 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
                 projectId = pm.createProject(projectName=projectNameStr, projectPath=projectPath)
             except:
                 self.appendErrorReport(201, projectNameStr)
-                self.xmlroot.xpath("//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
+                self.xmlroot.findall("//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
                 self.dumpXml()
                 try:
                     projectId = pm.db().getProjectId(projectNameStr)
                     projectPath = pm.db().getProjectDirectory(projectId=projectId)
                 except:
                     self.appendErrorReport(212, projectNameStr)
-                    self.xmlroot.xpath("//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
+                    self.xmlroot.findall(".//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
                     return CPluginScript.FAILED
 
             #Scriptmatically reparent project to be child of this one
@@ -112,7 +112,7 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
                 print("Reparented", projectId)
             except:
                 self.appendErrorReport(210, projectNameStr+" "+projectId+" to "+str(self.projectId()))
-                self.xmlroot.xpath("//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
+                self.xmlroot.findall(".//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
                 continue
 
             #Create a placeholder job
@@ -121,7 +121,7 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
                 print("jobId is", jobId)
             except CException as err:
                 self.appendErrorReport(202, projectId+" "+pluginName)
-                self.xmlroot.xpath("//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
+                self.xmlroot.findall(".//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
                 continue
             
             #Record the mapping between jobId and etree Element
@@ -135,7 +135,7 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
                 print("jobNumber is", jobNumber)
             except:
                 self.appendErrorReport(203, str(jobId))
-                self.xmlroot.xpath("//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
+                self.xmlroot.findall(".//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
                 continue
 
             #Create a dbHandler for the plugin
@@ -147,7 +147,7 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
                 print("dbHandler opened")
             except CException as e:
                 self.appendErrorReport(204, "")
-                self.xmlroot.xpath("//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
+                self.xmlroot.findall(".//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
                 continue
 
             #Create job's working directory
@@ -159,7 +159,7 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
             except:
                 print("Unable to create workDir ",workDirectory)
                 self.appendErrorReport(205, "")
-                self.xmlroot.xpath("//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
+                self.xmlroot.findall(".//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
                 continue
             name = projectNameStr+'_'+str(jobNumber)
 
@@ -168,7 +168,7 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
             cls = CCP4TaskManager.TASKMANAGER().getPluginScriptClass(pluginName)
             if cls is None:
                 self.appendErrorReport(206, pluginName)
-                self.xmlroot.xpath("//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
+                self.xmlroot.findall(".//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
                 continue
 
             #Instantiate plugin
@@ -177,7 +177,7 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
                 print("able to instantiate plugin")
             except:
                 self.appendErrorReport(207, pluginName)
-                self.xmlroot.xpath("//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
+                self.xmlroot.findall(".//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
                 continue
 
             if pluginTitle is not None and plugin.container is not None: plugin.container.header.pluginTitle = pluginTitle
@@ -188,7 +188,7 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
                 print("Able to link to dbHandler")
             except CException as e:
                 self.appendErrorReport(208, pluginName + e.__str__())
-                self.xmlroot.xpath("//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
+                self.xmlroot.findall(".//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
                 continue
 
             #Configure the pipeline inputs and controlParameters
@@ -242,42 +242,40 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
     #This method will be called as each plugin completes
     def pluginFinished(self, jobId):
         print("Have heard from ", jobId)
-        from lxml import etree
         whichPlugin = self.pluginsStarted[jobId]
         self.runningJobs.remove(jobId)
         datasetElement = self.datasetElements[jobId]
-        datasetElement.xpath("MaximumResolution")[0].text = "N/D"
-        datasetElement.xpath("Rfree")[0].text = "N/D"
-        datasetElement.xpath("Rfactor")[0].text = "N/D"
+        datasetElement.findall("MaximumResolution")[0].text = "N/D"
+        datasetElement.findall("Rfree")[0].text = "N/D"
+        datasetElement.findall("Rfactor")[0].text = "N/D"
         try:
             print("name of correspnding PROGRAMXML", whichPlugin.makeFileName("PROGRAMXML"))
             pluginEtree = CCP4Utils.openFileToEtree(whichPlugin.makeFileName("PROGRAMXML"))
             try:
-                rnodeText = pluginEtree.xpath('//ResolutionLimitEstimate[@type="CChalf" and ./Direction[text()="Overall"]]/MaximumResolution/text()')[-1]
-                datasetElement.xpath("MaximumResolution")[0].text = rnodeText
+                rnodeText = pluginEtree.findall('.//ResolutionLimitEstimate[@type="CChalf" and ./Direction[text()="Overall"]]/MaximumResolution/text()')[-1]
+                datasetElement.findall("MaximumResolution")[0].text = rnodeText
             except:
                 pass
             
             try:
-                rfreeNodeText = pluginEtree.xpath('//Overall_stats/stats_vs_cycle/new_cycle[last()]/r_free/text()')[-1]
-                datasetElement.xpath("Rfree")[0].text = rfreeNodeText
+                rfreeNodeText = pluginEtree.findall('.//Overall_stats/stats_vs_cycle/new_cycle[last()]/r_free/text()')[-1]
+                datasetElement.findall("Rfree")[0].text = rfreeNodeText
             except:
                 pass
                     
             try:
-                rfactorNodeText = pluginEtree.xpath('//Overall_stats/stats_vs_cycle/new_cycle[last()]/r_factor/text()')[-1]
-                datasetElement.xpath("Rfactor")[0].text = rfreeNodeText
+                rfactorNodeText = pluginEtree.findall('.//Overall_stats/stats_vs_cycle/new_cycle[last()]/r_factor/text()')[-1]
+                datasetElement.findall("Rfactor")[0].text = rfreeNodeText
             except:
                 pass
         except Exception as e:
             self.appendErrorReport(211, jobId)
-            self.xmlroot.xpath("//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
+            self.xmlroot.findall(".//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)
 
         self.dumpXml()
         
         return CPluginScript.SUCCEEDED
 
     def dumpXml(self):
-        from lxml import etree
         with open(self.makeFileName("PROGRAMXML"),"w") as programXmlFile:
-            CCP4Utils.writeXML(programXmlFile,etree.tostring(self.xmlroot))
+            CCP4Utils.writeXML(programXmlFile,ET.tostring(self.xmlroot))

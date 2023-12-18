@@ -30,7 +30,8 @@ from core.CCP4Modules import PROCESSMANAGER
 from core import CCP4ErrorHandling
 from core.CCP4ClipperUtils import is_aminoacid
 from core import CCP4Utils
-
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 class edstats(CPluginScript):
 
@@ -80,8 +81,7 @@ class edstats(CPluginScript):
             out.COOTSCRIPTOUT.set ( fileName3 )
             out.COOTSCRIPTOUT.annotation.set ( 'guided tour on the reported issues' )
 
-        from lxml import etree
-        xmlRoot = etree.Element('Edstats')
+        xmlRoot = ET.Element('Edstats')
         segmentNode = None
 
         lines = open(self.makeFileName('LOG')).readlines()
@@ -101,63 +101,63 @@ class edstats(CPluginScript):
 
             if readingTable :
                 if len( line.strip().split ( ) ) > 20:
-                    residueNode = etree.SubElement(xmlRoot,'Residue')
+                    residueNode = ET.SubElement(xmlRoot,'Residue')
 
-                    resnameNode     = etree.SubElement(residueNode,'Name')
+                    resnameNode     = ET.SubElement(residueNode,'Name')
                     resnameNode.text = line.strip().split( )[0]
 
-                    resChainNode      = etree.SubElement(residueNode,'Chain')
+                    resChainNode      = ET.SubElement(residueNode,'Chain')
                     resChainNode.text = line.strip().split( )[1]
 
-                    resNumberNode      = etree.SubElement(residueNode,'Number')
+                    resNumberNode      = ET.SubElement(residueNode,'Number')
                     resNumberNode.text = line.strip().split( )[2]
 
-                    resBAmNode    = etree.SubElement(residueNode,'BAm')
+                    resBAmNode    = ET.SubElement(residueNode,'BAm')
                     resBAmNode.text = line.strip().split( )[3]
 
-                    resZCCmNode    = etree.SubElement(residueNode,'ZCCm')
+                    resZCCmNode    = ET.SubElement(residueNode,'ZCCm')
                     resZCCmNode.text = line.strip().split( )[10]
 
-                    resZOmNode    = etree.SubElement(residueNode,'ZOm')
+                    resZOmNode    = ET.SubElement(residueNode,'ZOm')
                     resZOmNode.text = line.strip().split( )[11]
 
-                    resZDmmNode    = etree.SubElement(residueNode,'ZDmm')
+                    resZDmmNode    = ET.SubElement(residueNode,'ZDmm')
                     resZDmmNode.text = line.strip().split( )[13]
 
-                    resZDpmNode    = etree.SubElement(residueNode,'ZDpm')
+                    resZDpmNode    = ET.SubElement(residueNode,'ZDpm')
                     resZDpmNode.text = line.strip().split( )[14]
 
-                    resBAsNode    = etree.SubElement(residueNode,'BAs')
+                    resBAsNode    = ET.SubElement(residueNode,'BAs')
                     resBAsNode.text = line.strip().split( )[15]
 
-                    resZCCsNode    = etree.SubElement(residueNode,'ZCCs')
+                    resZCCsNode    = ET.SubElement(residueNode,'ZCCs')
                     resZCCsNode.text = line.strip().split( )[22]
 
-                    resZOsNode    = etree.SubElement(residueNode,'ZOs')
+                    resZOsNode    = ET.SubElement(residueNode,'ZOs')
                     resZOsNode.text = line.strip().split( )[23]
 
-                    resZDmsNode    = etree.SubElement(residueNode,'ZDms')
+                    resZDmsNode    = ET.SubElement(residueNode,'ZDms')
                     resZDmsNode.text = line.strip().split( )[25]
 
-                    resZDpsNode    = etree.SubElement(residueNode,'ZDps')
+                    resZDpsNode    = ET.SubElement(residueNode,'ZDps')
                     resZDpsNode.text = line.strip().split( )[26]
 
-                    resBAaNode    = etree.SubElement(residueNode,'BAa')
+                    resBAaNode    = ET.SubElement(residueNode,'BAa')
                     resBAaNode.text = line.strip().split( )[27]
 
-                    resCCPaNode    = etree.SubElement(residueNode,'CCPa')
+                    resCCPaNode    = ET.SubElement(residueNode,'CCPa')
                     resCCPaNode.text = line.strip().split( )[33]
 
-                    resZCCaNode    = etree.SubElement(residueNode,'ZCCa')
+                    resZCCaNode    = ET.SubElement(residueNode,'ZCCa')
                     resZCCaNode.text = line.strip().split( )[34]
 
-                    resZOaNode    = etree.SubElement(residueNode,'ZOa')
+                    resZOaNode    = ET.SubElement(residueNode,'ZOa')
                     resZOaNode.text = line.strip().split( )[35]
 
-                    resZDmaNode    = etree.SubElement(residueNode,'ZDma')
+                    resZDmaNode    = ET.SubElement(residueNode,'ZDma')
                     resZDmaNode.text = line.strip().split( )[37]
 
-                    resZDpaNode    = etree.SubElement(residueNode,'ZDpa')
+                    resZDpaNode    = ET.SubElement(residueNode,'ZDpa')
                     resZDpaNode.text = line.strip().split( )[38]
 
                     diagnostic = "Nothing"
@@ -336,7 +336,7 @@ class edstats(CPluginScript):
 
 
         with open(self.makeFileName('PROGRAMXML'),'w') as xmlFile:
-            xmlString = etree.tostring(xmlRoot, pretty_print=True)
+            xmlString = ET.tostring(xmlRoot, pretty_print=True)
             CCP4Utils.writeXML(xmlFile,xmlString)
 
         return CPluginScript.SUCCEEDED

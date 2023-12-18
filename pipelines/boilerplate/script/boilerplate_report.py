@@ -21,7 +21,7 @@ from __future__ import print_function
 from report.CCP4ReportParser import Report
 import sys
 #from lxml import etree
-import xml.etree.ElementTree as etree
+from xml.etree import ElementTree as etree
 
 class ZZPipelineNameZZ_report(Report):
     # Specify which gui task and/or pluginscript this applies to

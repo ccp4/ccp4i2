@@ -28,6 +28,7 @@ import sys
 import re
 import glob
 from lxml import etree
+from xml.etree import ElementTree as ET
 
 def DEFCONFIG():
     if  CConfig.insts is None:
@@ -44,7 +45,7 @@ utf8_parser = etree.XMLParser(encoding='utf-8')
 
 def parse_from_unicode(unicode_str):
     s = unicode_str.encode('utf-8')
-    return etree.fromstring(s, parser=utf8_parser)
+    return ET.fromstring(etree.tostring(etree.fromstring(s, parser=utf8_parser)))
 
 class CConfig:
     '''This class should be instantiated when process (browser,jobcontroller) is started'''
@@ -141,22 +142,22 @@ class CConfig:
 
     def saveDataToXml(self, fileName):
         from core import CCP4File
-        root = etree.Element('configs')
+        root = ET.Element('configs')
         for tag in ['developer', 'graphical', 'qt', 'dbMode', 'dbFile', 'dbUser', 'maxRunningProcesses']:
-            ele = etree.Element(tag)
+            ele = ET.Element(tag)
             ele.text = str(getattr(self, tag))
             root.append(ele)
-        ele = etree.Element('searchPath')
+        ele = ET.Element('searchPath')
         root.append(ele)
         #print 'CConfig.saveDataToXml',self.searchPath.keys()
         for exe in list(self.searchPath.keys()):
-            exeEle = etree.Element(exe)
+            exeEle = ET.Element(exe)
             ele.append(exeEle)
             for platform in list(self.searchPath[exe].keys()):
-                platformEle = etree.Element(platform)
+                platformEle = ET.Element(platform)
                 exeEle.append(platformEle)
                 for item in self.searchPath[exe][platform]:
-                    pathEle = etree.Element('path')
+                    pathEle = ET.Element('path')
                     pathEle.text = item
                     platformEle.append(pathEle)
         # Initialise CI2XmlDataFile thisway to avoid calling PROJECTSMANAGER().db to
@@ -174,8 +175,10 @@ class CConfig:
         # Do not use CCP4File here - config not set - broken without Qt 
         from core import CCP4Utils
         text = CCP4Utils.readFile(os.path.join(CCP4Utils.getCCP4I2Dir(), 'core', 'version.params.xml'))
-        tree = etree.fromstring(text)
-        self.ccp4iVersion = tree.xpath('/ccp4i2/ccp4i2_header/ccp4iVersion')[0].text
+        _tree = ET.fromstring(text)
+        tree=ET.Element('ccp4i2root')
+        tree.append(_tree)
+        self.ccp4iVersion = tree.findall('./ccp4i2/ccp4i2_header/ccp4iVersion')[0].text
         print('ccp4i2 version', self.ccp4iVersion)
         revision = CCP4Utils.getProgramVersion('ccp4i2',mode='revision')
         print('ccp4i2 source revision', revision)

@@ -3,7 +3,8 @@ import os
 import shutil
 import json
 import multiprocessing
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 from core import CCP4Utils
 from core import CCP4XtalData
 from core import CCP4File
@@ -167,29 +168,30 @@ class slicendice(CPluginScript):
         except:
             print("Failed to load r-factors from json log")
         # xml info
-        rootNode = etree.Element("SliceNDice")
-        xmlRI = etree.SubElement(rootNode, "RunInfo")
-        xmlbcyc = etree.SubElement(xmlRI, "Best")
-        etree.SubElement(xmlbcyc, "bid").text = str(bid)
-        etree.SubElement(xmlbcyc, "R").text = str(rrfr[0])
-        etree.SubElement(xmlbcyc, "RFree").text = str(rrfr[1])
+        rootNode = ET.Element("SliceNDice")
+        xmlRI = ET.SubElement(rootNode, "RunInfo")
+        xmlbcyc = ET.SubElement(xmlRI, "Best")
+        ET.SubElement(xmlbcyc, "bid").text = str(bid)
+        ET.SubElement(xmlbcyc, "R").text = str(rrfr[0])
+        ET.SubElement(xmlbcyc, "RFree").text = str(rrfr[1])
         # Get solns & save
         #for key in jdd.get('split_id').keys():
         for key in jdd['dice'].keys():
-            xmlcyc = etree.SubElement(xmlRI, "Sol")
-            etree.SubElement(xmlcyc, "SolID").text = str(key.split("_")[-1])
-            etree.SubElement(xmlcyc, "llg").text = str(jdd['dice'][key]['phaser_llg'])
-            etree.SubElement(xmlcyc, "tfz").text = str(jdd['dice'][key]['phaser_tfz'])
-            etree.SubElement(xmlcyc, "srf").text = str(jdd['dice'][key]['final_r_fact'])
-            etree.SubElement(xmlcyc, "sre").text = str(jdd['dice'][key]['final_r_free'])
-            #etree.SubElement(xmlcyc, "SolID").text = str(jdd.get('split_id').get(key))
-            #etree.SubElement(xmlcyc, "llg").text = str(jdd.get('phaser_llg').get(key))
-            #etree.SubElement(xmlcyc, "tfz").text = str(jdd.get('phaser_tfz').get(key))
-            #etree.SubElement(xmlcyc, "srf").text = str(jdd.get('final_r_fact').get(key))
-            #etree.SubElement(xmlcyc, "sre").text = str(jdd.get('final_r_free').get(key))
+            xmlcyc = ET.SubElement(xmlRI, "Sol")
+            ET.SubElement(xmlcyc, "SolID").text = str(key.split("_")[-1])
+            ET.SubElement(xmlcyc, "llg").text = str(jdd['dice'][key]['phaser_llg'])
+            ET.SubElement(xmlcyc, "tfz").text = str(jdd['dice'][key]['phaser_tfz'])
+            ET.SubElement(xmlcyc, "srf").text = str(jdd['dice'][key]['final_r_fact'])
+            ET.SubElement(xmlcyc, "sre").text = str(jdd['dice'][key]['final_r_free'])
+            #ET.SubElement(xmlcyc, "SolID").text = str(jdd.get('split_id').get(key))
+            #ET.SubElement(xmlcyc, "llg").text = str(jdd.get('phaser_llg').get(key))
+            #ET.SubElement(xmlcyc, "tfz").text = str(jdd.get('phaser_tfz').get(key))
+            #ET.SubElement(xmlcyc, "srf").text = str(jdd.get('final_r_fact').get(key))
+            #ET.SubElement(xmlcyc, "sre").text = str(jdd.get('final_r_free').get(key))
         # Save xml
         xmlfile = open(self.xmlout, 'wb')
-        xmlString= etree.tostring(rootNode, pretty_print=True)
+        ET.indent(rootNode)
+        xmlString= ET.tostring(rootNode)
         xmlfile.write(xmlString)
         xmlfile.close()
         return CPluginScript.SUCCEEDED

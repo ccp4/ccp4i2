@@ -36,6 +36,7 @@ from core import CCP4Utils
 import ccp4mg  # Ensure mmdb/hklfile etc available in testing
 from PySide2 import QtCore
 from lxml import etree
+from xml.etree import ElementTree as ET
 from core.CCP4ErrorHandling import *
 from core.CCP4Modules import PROJECTSMANAGER,JOBCONTROLLER,QTAPPLICATION,PROCESSMANAGER
 
@@ -192,7 +193,7 @@ class CProjectBasedTesting(QtCore.QObject):
                 return
             sourceProject0 = self.sourceProjectList.pop(0)
             if self.logXmlRoot is not None:
-                self.currentProjectNode = etree.SubElement(self.logXmlRoot,'Project',projectPath=str(sourceProject0))
+                self.currentProjectNode = ET.SubElement(self.logXmlRoot,'Project',projectPath=str(sourceProject0))
             if sourceProject0.endswith('zip'):
                 sourceProject = self.unpackProject(sourceProject0)
             else:
@@ -216,7 +217,7 @@ class CProjectBasedTesting(QtCore.QObject):
                     self.finish()
                     return
         if hasattr(self, 'currentProjectNode') and self.currentProjectNode is not None:
-            self.currentJobNode = etree.SubElement(self.currentProjectNode,'Job',number=self.sourceJobInfo['jobnumber'])
+            self.currentJobNode = ET.SubElement(self.currentProjectNode,'Job',number=self.sourceJobInfo['jobnumber'])
         job = CCP4DbUtils.COpenJob(projectId=self.testProjectId)
         ret = job.createJob(taskName=self.sourceJobInfo['taskname'], jobNumber=self.sourceJobInfo['jobnumber'], cloneJobId=self.sourceJobInfo['jobid'], copyInputFiles=self.copyFiles)
         if self.copyFiles:
@@ -381,11 +382,11 @@ class CProjectBasedTesting(QtCore.QObject):
         if not expected:
             self.log.write('Job database status: ' + status)
             if hasattr(self, 'currentJobNode'):
-                etree.SubElement(self.currentJobNode,'Status').text = str(status)
+                ET.SubElement(self.currentJobNode,'Status').text = str(status)
         else:
             self.log.write('Job database expected status: ' + status)
             if hasattr(self, 'currentJobNode'):
-                etree.SubElement(self.currentJobNode,'ExpectedStatus').text = str(status)
+                ET.SubElement(self.currentJobNode,'ExpectedStatus').text = str(status)
 
     def listPluginErrorReport(self, jobId):
         try:
@@ -400,9 +401,9 @@ class CProjectBasedTesting(QtCore.QObject):
             if len(report) > 0:
                 self.log.write(report.report(ifStack=True, mode=0, minSeverity=SEVERITY_WARNING))
                 if hasattr(self, 'currentJobNode'):
-                    etree.SubElement(self.currentJobNode,'Warnings').text = report.report(ifStack=True, mode=0, minSeverity=SEVERITY_WARNING)
+                    ET.SubElement(self.currentJobNode,'Warnings').text = report.report(ifStack=True, mode=0, minSeverity=SEVERITY_WARNING)
                     if report.maxSeverity() >= SEVERITY_ERROR:
-                        etree.SubElement(self.currentJobNode,'Errors').text = report.report(ifStack=True, mode=0, minSeverity=SEVERITY_ERROR)
+                        ET.SubElement(self.currentJobNode,'Errors').text = report.report(ifStack=True, mode=0, minSeverity=SEVERITY_ERROR)
                         
 
     def finishProject(self):

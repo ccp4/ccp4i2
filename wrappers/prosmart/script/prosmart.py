@@ -328,16 +328,7 @@ class prosmart(CPluginScript):
             shutil.copyfile(resFileList[0],self.container.outputData.RESTRAINTS.__str__())
 
         self.container.outputData.RESTRAINTS.annotation = 'Restraints for ' + str(self.container.inputData.TARGET_MODEL.annotation)
-        
-        #htmlFilePath = os.path.join(self.workDirectory.__str__(),'ProSMART_Results.html')
-        '''xmlPath = self.makeFileName('PROGRAMXML')
-        from lxml import etree
-        xmlRoot = etree.Element('PROSMART')
-        xmlString = etree.tostring(xmlRoot,pretty_print=True)
-        xmlFile=open( xmlPath,'w')
-        xmlFile.write( xmlString )
-        xmlFile.close()'''
-                
+                        
         # sanity check that prosmart has produced something
         ok = False
         logText = self.logFileText()

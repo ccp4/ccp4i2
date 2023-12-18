@@ -3,8 +3,8 @@ from __future__ import print_function
 import os
 import sys
 import networkx
-from lxml import etree
-
+#from lxml import etree
+from xml.etree import ElementTree as ET
 import gemmi
 import iotbx.phil
 from iotbx.data_manager import DataManager
@@ -164,7 +164,7 @@ class editbfac(CPluginScript):
         status = CPluginScript.SUCCEEDED
         # Create a trivial xml output file
         from core import CCP4File
-        root = etree.Element('editbfac')
+        root = ET.Element('editbfac')
         self.container.outputData.XYZOUT.subType = 1
         f = CCP4File.CXmlDataFile(fullPath=self.makeFileName('PROGRAMXML'))
         f.saveFile(root)
@@ -275,7 +275,7 @@ class editbfac(CPluginScript):
 #         # Create a trivial xml output file
 #         from core import CCP4File
 #         from lxml import etree
-#         root = etree.Element('editbfac')
+#         root = ET.Element('editbfac')
 # 
 #         self.container.outputData.XYZOUT.subType = 1
 # 

@@ -322,7 +322,7 @@ class CData():
       
 
     def getEtree(self):
-      element = etree.Element(self.dataType())
+      element = ET.Element(self.dataType())
       if len(self.CONTENTS) == 0:
         element.text = str(self._value)
       else:
@@ -334,30 +334,30 @@ class CData():
       
     def xmlText(self):
       element = self.eTree()
-      text = etree.tostring(element,pretty_print=True, xml_declaration=True)
+      text = ET.tostring(element,pretty_print=True, xml_declaration=True)
       return text
 
     def setEtree(self,element):
       if len(self.CONTENTS) == 0:      
         rv = self.set(str(element.text))
       else:
-        for ele in element.iterchildren():
+        for ele in element:
           name = ele.tag
           ele_id = str(ele.get('id'))
           if ele_id in self.CONTENTS:
             self._value[ele_id].setEtree(ele)
 
     def getQualifiersEtree(self):
-      element = etree.Element(self.dataType())
-      #element = etree.Element('qualifiers')
+      element = ET.Element(self.dataType())
+      #element = ET.Element('qualifiers')
       for key,value in list(self._qualifiers.items()):
-        ele = etree.Element(key)
+        ele = ET.Element(key)
         ele.text = str(value)
         element.append(ele)
       return element
       
     def setQualifiersEtree(self,element):
-      for ele in element.iterchildren():
+      for ele in element:
         name = ele.tag
         if name in self.QUALIFIERS_DESCRIPTION:
           if self.QUALIFIERS_DESCRIPTION[name]['type'] in [int,float,bool,bool,str]:

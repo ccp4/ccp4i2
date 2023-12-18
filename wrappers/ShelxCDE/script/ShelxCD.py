@@ -1,5 +1,5 @@
 from core.CCP4PluginScript import CPluginScript
-from lxml import etree
+#from lxml import etree
 import os
 from wrappers.ShelxCDE.script import ShelxCDEBase
 
@@ -21,7 +21,7 @@ class ShelxCD(ShelxCDEBase.ShelxCDEBase):
         result = self.runShelxc()
         if result != CPluginScript.SUCCEEDED: return result
 
-        self.xmlroot = etree.Element('ShelxCD')
+        self.xmlroot = ET.Element('ShelxCD')
         
         logFile =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'shelxc.log'))
         self.scrapeShelxcLog(self.xmlroot, logFile)
@@ -63,10 +63,10 @@ class ShelxCD(ShelxCDEBase.ShelxCDEBase):
         self.txtOutputFiles()
 
         unsortedList = []
-        tries = self.xmlroot.xpath('//Try')
+        tries = self.xmlroot.findall('.//Try')
         for aTry in tries:
-            if len(aTry.xpath('CFOM')) > 0 and len(aTry.xpath('CCAll'))>0:
-                unsortedList.append({'CFOM':float(aTry.xpath('CFOM')[-1].text), 'CC':float(aTry.xpath('CCAll')[-1].text)})
+            if len(aTry.findall('CFOM')) > 0 and len(aTry.findall('CCAll'))>0:
+                unsortedList.append({'CFOM':float(aTry.findall('CFOM')[-1].text), 'CC':float(aTry.findall('CCAll')[-1].text)})
         if len(unsortedList) > 0:
             sortedList = sorted(unsortedList, key=lambda aTry: aTry['CFOM'])
             self.container.outputData.PERFORMANCE.CFOM.set(sortedList[-1]['CFOM'])

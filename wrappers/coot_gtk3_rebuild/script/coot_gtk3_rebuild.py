@@ -8,7 +8,8 @@ import shutil
 from PySide2 import QtCore
 from core import CCP4Modules
 from core import CCP4Utils
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 
 class coot_gtk3_rebuild(CCP4PluginScript.CPluginScript):
     # class coot_gtk3_rebuild(CInternalPlugin):
@@ -113,10 +114,10 @@ except Exception as err:
             dictoutList = dictoutList[0:len(cifOutList)]
 
             # Create a trivial xml output file
-            self.xmlroot = etree.Element('coot_rebuild')
-            e = etree.Element('number_output_files')
+            self.xmlroot = ET.Element('coot_rebuild')
+            e = ET.Element('number_output_files')
             e.text = str(self.numberOfOutputFiles())
-            e = etree.Element('number_output_dicts')
+            e = ET.Element('number_output_dicts')
             e.text = str(len(dictoutList))
             self.xmlroot.append(e)
 
@@ -131,15 +132,15 @@ except Exception as err:
                         self.addReportWarning(
                             'mergeDictToProjectLib raised exception: Does not compromise output Dict')
 
-                    ligNodes = self.xmlroot.xpath('//LIGANDS')
+                    ligNodes = self.xmlroot.findall('.//LIGANDS')
                     if len(ligNodes) == 0:
-                        ligNode = etree.SubElement(self.xmlroot, 'LIGANDS')
+                        ligNode = ET.SubElement(self.xmlroot, 'LIGANDS')
                     else:
                         ligNode = ligNodes[0]
                     try:
                         annotation = 'Coot/Prodrg created geometry for'
                         for item in dictFile.fileContent.monomerList:
-                            lig = etree.SubElement(ligNode, 'ligand')
+                            lig = ET.SubElement(ligNode, 'ligand')
                             lig.text = str(item.three_letter_code)
                             annotation += (' ' + str(item.three_letter_code))
                         dictFile.annotation = annotation
@@ -161,10 +162,10 @@ except Exception as err:
 
     def addReportWarning(self, text):
         warningsNode = None
-        warningsNodes = self.xmlroot.xpath('//Warnings')
+        warningsNodes = self.xmlroot.findall('.//Warnings')
         if len(warningsNodes) == 0:
-            warningsNode = etree.SubElement(self.xmlroot, 'Warnings')
+            warningsNode = ET.SubElement(self.xmlroot, 'Warnings')
         else:
             warningsNode = warningsNodes[0]
-        warningNode = etree.SubElement(warningsNode, 'Warning')
+        warningNode = ET.SubElement(warningsNode, 'Warning')
         warningNode.text = text

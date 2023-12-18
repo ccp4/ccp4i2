@@ -4,7 +4,7 @@ import argparse
 import sys
 import os
 import traceback
-import xml.etree.ElementTree as ET
+from xml.etree import ElementTree as ET
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from core import CCP4TaskManager
 from core import CCP4Config
@@ -18,7 +18,8 @@ if sys.platform == "win32":
 else:
     from ccp4mg import hklfile
 from core import CCP4Modules
-from lxml import etree
+#from lxml import etree
+from xml.etree import ElementTree as ET
 #import clipper
 import gemmi
 import numpy
@@ -337,8 +338,8 @@ class CI2Runner(object):
             xmlFileObject.header.setCurrent()
             xmlFileObject.header.function.set('ASUCONTENT')
             #xmlFileObject.header.projectName.set(projectName)
-            baseRoot=etree.Element("root")
-            sequenceListRoot=etree.SubElement(baseRoot, 'seqList')
+            baseRoot=ET.Element("root")
+            sequenceListRoot=ET.SubElement(baseRoot, 'seqList')
             xmlFileObject.saveFile(baseRoot)
             cAsuDataFile.setFullPath(tempASUFile.name)
             firstSequence = True

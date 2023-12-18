@@ -1,6 +1,6 @@
 from report.CCP4ReportParser import *
 import sys
-from lxml import etree
+#from lxml import etree
 import math
 import base64
 
@@ -23,12 +23,12 @@ class ShelxCDEBaseReport(Report):
         
         shelxcFolder = parent.addFold(label='Shelxc data analysis', initiallyOpen = initiallyOpen)
         shelxcFolder.addText(text='Analysis of the different datasets provided')
-        datasetNodes = self.xmlnode.xpath('//Dataset')
+        datasetNodes = self.xmlnode.findall('.//Dataset')
         if len(datasetNodes) > 0:
             galleryObject = shelxcFolder.addObjectGallery(contentWidth='600px',height='214px',tableWidth='50px',style='border:1px solid black;float:left;width:660px;height:224px;')
         for iDataset, datasetNode in enumerate(datasetNodes):
-            if len(datasetNode.xpath('DataAnalysis'))>0:
-                try: title=datasetNode.xpath('Name')[0].text
+            if len(datasetNode.findall('DataAnalysis'))>0:
+                try: title=datasetNode.findall('Name')[0].text
                 except: title = 'Dataset'
                 datasetDiv = galleryObject.addDiv(style='border:0px solid white;width:590px;height:210px;float:left;',label=title)
                 tableDiv = datasetDiv.addDiv(style='border:0px solid white;width:200px;height:210px;float:left;')
@@ -38,7 +38,7 @@ class ShelxCDEBaseReport(Report):
                 table.addData(title='Unique refl.',select='UniqueReflections')
                 table.addData(title='Highest res.',select='HighestResolution')
                 graph = datasetDiv.addFlotGraph(xmlnode=datasetNode, select = 'DataAnalysis/Bin',style='width:300px;height:200px;border:0px solid white;float:left;',title=title,internalId='ShelxCDataset_Graph_'+str(iDataset), outputXml=False)
-                resNodes = datasetNode.xpath('DataAnalysis/Bin/HighRes')
+                resNodes = datasetNode.findall('DataAnalysis/Bin/HighRes')
                 resData = [1./math.pow(float(resNode.text),2.0) for resNode in resNodes]
                 graph.addData(title='Resolution',data=resData)
                 iKey = 2
@@ -55,7 +55,7 @@ class ShelxCDEBaseReport(Report):
 
     def shelXDReport(self, parent=None, initiallyOpen=False):
         if parent is None: parent = self
-        shelXDNode = self.xmlnode.xpath0('//Shelxd')
+        shelXDNode = self.xmlnode.findall('.//Shelxd')[0]
         if shelXDNode is not None:
             shelxdFold = parent.addFold(label='ShelxD solutions',initiallyOpen=initiallyOpen)
             shelxdFold.addText(text='Quality metrics of different solutions')
@@ -86,7 +86,7 @@ class ShelxCDEBaseReport(Report):
                 iProperty += 1
             shelxdFold.addDiv(style='clear:both;')
             
-            lstNodes = shelXDNode.xpath('LstText')
+            lstNodes = shelXDNode.findall('LstText')
             if len(lstNodes) > 0:
                 lstFold = shelxdFold.addFold(label='Text of result_fa.lst file', initiallyOpen=False)
                 for lstNode in lstNodes:
@@ -95,25 +95,25 @@ class ShelxCDEBaseReport(Report):
 
     def shelXEReport(self, parent=None, initiallyOpen=False, idRoot=""):
         if parent is None: parent = self
-        globalTraceNodes = self.xmlnode.xpath('Shelxe/GlobalAutotracingCycle')
+        globalTraceNodes = self.xmlnode.findall('Shelxe/GlobalAutotracingCycle')
         if len(globalTraceNodes) >0:
             shelxeFold = parent.addFold(label='ShelxE progress',initiallyOpen=initiallyOpen)
             shelxeFold.addText(text='Progress of density modification for each cycle of autobuild')
             galleryObject = shelxeFold.addObjectGallery(contentWidth='600px',height='230px',tableWidth='50px',style='border:1px solid black;float:left;width:660px;height:230px;')
             for globalTraceNode in reversed(globalTraceNodes):
-                cycleNumber = globalTraceNode.xpath('Number')[0].text
+                cycleNumber = globalTraceNode.findall('Number')[0].text
                 cycleDiv = galleryObject.addDiv(style='border:1px solid green;height:230px; width:600px;',label=cycleNumber)
                 summaryText = ''
-                fomNodes = globalTraceNode.xpath('OverallFOMs/FOM')
+                fomNodes = globalTraceNode.findall('OverallFOMs/FOM')
                 if len(fomNodes) > 0:
                     summaryText += ('FOM: ' + fomNodes[-1].text)
-                ccNodes = globalTraceNode.xpath('OverallFOMs/PseudoFreeCC')
+                ccNodes = globalTraceNode.findall('OverallFOMs/PseudoFreeCC')
                 if len(ccNodes) > 0:
                     summaryText += (', Pseudo Free-CC: ' + ccNodes[-1].text)
-                contrastNodes = globalTraceNode.xpath('Cycle/Contrast')
+                contrastNodes = globalTraceNode.findall('Cycle/Contrast')
                 if len(contrastNodes) > 0:
                     summaryText += (', Contrast: ' + contrastNodes[-1].text)
-                connectNodes = globalTraceNode.xpath('Cycle/Connect')
+                connectNodes = globalTraceNode.findall('Cycle/Connect')
                 if len(connectNodes) > 0:
                     summaryText += (', Connect: ' + connectNodes[-1].text)
                 cycleDiv.append('<span style="font-size:110%;">'+summaryText+'</span>')
@@ -129,7 +129,7 @@ class ShelxCDEBaseReport(Report):
                             plot.append('xintegral','true')
                             plotLine = plot.append('plotline',xcol=1,ycol=iProperty)
                         iProperty += 1
-            lstNodes = self.xmlnode.xpath('Shelxe/LstText')
+            lstNodes = self.xmlnode.findall('Shelxe/LstText')
             if len(lstNodes) > 0:
                 shelxeFold.addDiv(style='clear:both;')
                 lstFold = shelxeFold.addFold(label='Text of ".lst" file', initiallyOpen=False)
