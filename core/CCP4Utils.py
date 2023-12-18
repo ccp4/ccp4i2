@@ -255,8 +255,8 @@ def parse_from_unicode(unicode_str,useLXML=True):
         s = unicode_str.encode('utf-8')
         return ET.fromstring(etree.tostring(etree.fromstring(s, parser=utf8_parser)))
     else:
-        from xml.etree import ElementTree as etree_xml
-        return etree_xml.fromstring(unicode_str)
+        from xml.etree import ElementTree as ET
+        return ET.fromstring(unicode_str)
 
 def openFileToEtree(fileName=None, printout=False,useLXML=True):
     # Use this as ET.parse() seg faults on some Linux

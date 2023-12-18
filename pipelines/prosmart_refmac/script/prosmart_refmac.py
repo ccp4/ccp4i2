@@ -179,8 +179,11 @@ class prosmart_refmac(CPluginScript):
     def handleXmlChanged(self, xmlFilename):
         self.xmlroot.clear()
         refmacEtree = CCP4Utils.openFileToEtree(xmlFilename)
-        print('refmacEtree', refmacEtree)
-        refmacXML = refmacEtree
+        #MN Here is a for example...with lxml could search for //REFMAC xpath to find REFMAC nodes. Now have a challenge since toplevel nodes are REFMAC nodes
+        if refmacEtree.tag == 'REFMAC':
+            refmacXML = [refmacEtree]
+        else:
+            refmacXML = refmacEtree.findall(".//REFMAC")
         if len(refmacXML) == 1:
             refmacXML[0].tag="RefmacInProgress"
             self.xmlroot.append(refmacXML[0])

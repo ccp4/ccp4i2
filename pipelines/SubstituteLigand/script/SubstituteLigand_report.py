@@ -2,7 +2,7 @@
 from report.CCP4ReportParser import *
 import sys
 #from lxml import etree
-from xml.etree import ElementTree as etree
+#from xml.etree import ElementTree as ET
 import math
 
 class SubstituteLigand_report(Report):
