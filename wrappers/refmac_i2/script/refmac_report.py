@@ -2,7 +2,7 @@ from __future__ import print_function
 
 from report.CCP4ReportParser import *
 import sys
-from xml.etree import ElementTree as etree
+from xml.etree import ElementTree as ET
 
 class refmac_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -304,11 +304,7 @@ class refmac_report(Report):
             if "title" in tableNode.attrib and "resln" in tableNode.attrib["title"]:
                 plots = tableNode.findall("./plot")
                 for plot in plots:
-                    if isinstance(plot, ET.Element):
-                        plot.append(ET.fromstring('<xscale>oneoversqrt</xscale>'))
-                    else:
-                        from lxml import etree as lxmlEtree
-                        plot.append(lxmlEtree.fromstring('<xscale>oneoversqrt</xscale>'))
+                    plot.append(ET.fromstring('<xscale>oneoversqrt</xscale>'))
         graphTableList = self.xmlnode.findall('SmartieGraphs/CCP4ApplicationOutput/CCP4Table')
         gallery = reportFold.addObjectGallery(height='300px',contentWidth='420px',tableWidth='360px',style='float:left;width:800px;')
         

@@ -2,7 +2,7 @@ from __future__ import print_function
 
 # -------------------------------------------------
 import os,sys
-from xml.etree import ElementTree as etree
+from xml.etree import ElementTree as ET
 try:
   from report.CCP4ReportParser import *
 except:

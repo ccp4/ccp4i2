@@ -5,7 +5,7 @@ import numpy
 import os
 import shutil
 
-from xml.etree import ElementTree as etree
+from xml.etree import ElementTree as ET
 
 class privateer_report(Report):
   # Specify which gui task and/or pluginscript this applies to

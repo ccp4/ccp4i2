@@ -3,7 +3,7 @@ from __future__ import print_function
 from report.CCP4ReportParser import *
 import sys
 import math
-from xml.etree import ElementTree as etree
+from xml.etree import ElementTree as ET
 
 class import_mosflm_report(Report):
 

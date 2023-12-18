@@ -1481,7 +1481,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         result = ""
         if len(etreeElement) == 0:
             subKeyword = "/".join(root.getpath(etreeElement).split("/")[2:])
-            #print(etree.tostring(etreeElement))
+            #print(ET.tostring(etreeElement))
             if etreeElement.text is not None and len(etreeElement.text) != 0:
                 textToUse = etreeElement.text
                 #Here apply some patching to make syntax a bit more compact:

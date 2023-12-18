@@ -3,7 +3,7 @@ from report.CCP4ReportParser import *
 from core.CCP4Modules import PREFERENCES
 import os
 
-from xml.etree import ElementTree as etree
+from xml.etree import ElementTree as ET
 
 def parse_from_unicode(unicode_str):
     utf8_parser = ET.XMLParser(encoding='utf-8')

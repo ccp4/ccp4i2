@@ -2,7 +2,7 @@ from __future__ import print_function
 
 from report.CCP4ReportParser import *
 import sys
-from xml.etree import ElementTree as etree
+from xml.etree import ElementTree as ET
 
 from wrappers.import_mosflm.script import import_mosflm_report
 

@@ -19,7 +19,7 @@
 from report.CCP4ReportParser import Report
 import os
 import sys
-from xml.etree import ElementTree as etree
+from xml.etree import ElementTree as ET
 from wrappers.refmac_i2.script import refmac_report
 from wrappers.aimless.script.aimless_report import aimless_report
 

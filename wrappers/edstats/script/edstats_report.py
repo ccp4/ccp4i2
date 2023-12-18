@@ -2,7 +2,7 @@ from report.CCP4ReportParser import *
 from core import CCP4Utils
 from core.CCP4ClipperUtils import is_aminoacid
 import os
-from xml.etree import ElementTree as etree
+from xml.etree import ElementTree as ET
 
 """
     edstats report generator

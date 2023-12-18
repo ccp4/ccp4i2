@@ -1,7 +1,7 @@
 from __future__ import print_function
 from report.CCP4ReportParser import *
 from core import CCP4ErrorHandling
-from xml.etree import ElementTree as etree
+from xml.etree import ElementTree as ET
 
 class phaser_singleMR_report(Report):
 

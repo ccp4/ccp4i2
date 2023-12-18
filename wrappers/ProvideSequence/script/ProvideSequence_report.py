@@ -2,7 +2,7 @@ from __future__ import print_function
 
 from report.CCP4ReportParser import *
 import sys
-from xml.etree import ElementTree as etree
+from xml.etree import ElementTree as ET
 
 class ProvideSequence_report(Report):
     # Specify which gui task and/or pluginscript this applies to

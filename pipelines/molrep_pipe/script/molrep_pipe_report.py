@@ -3,7 +3,7 @@ import sys
 from report.CCP4ReportParser import *
 from wrappers.refmac_i2.script.refmac_report import refmac_report
 #from lxml import etree
-from xml.etree import ElementTree as etree
+from xml.etree import ElementTree as ET
 from wrappers.sheetbend.script.sheetbend_report import sheetbend_report
 
 class molrep_pipe_report(refmac_report):

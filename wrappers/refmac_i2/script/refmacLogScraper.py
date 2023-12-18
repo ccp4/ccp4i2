@@ -87,8 +87,14 @@ class logScraper(object):
         
         for trigger in self.triggers:
             if trigger['triggerText'] in line:
+                rootTag = f"//{self.xmlroot.tag}/"
                 try:
-                    parentNode = self.xmlroot.findall(trigger['parentTag'])[-1]
+                    if f"//{self.xmlroot.tag}" == trigger['parentTag']:
+                        parentNode = self.xmlroot
+                    elif trigger['parentTag'].startswith(rootTag):
+                        parentNode = self.xmlroot.findall(f".//{trigger['parentTag'][len(rootTag):]}")[-1]
+                    else:
+                        parentNode = self.xmlroot.findall(trigger['parentTag'])[-1]
                     for tag in trigger['tagPath'].split("/"):
                         parentNode = ET.SubElement(parentNode,tag)
                     parentNode.text = str(trigger['extractor'](line))

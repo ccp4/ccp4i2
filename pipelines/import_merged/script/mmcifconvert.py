@@ -825,7 +825,8 @@ class ConvertCIF():
 
         self.contentflag = refdata.contentFlag()
         self.XMLreport = refdata.getXML()
-        #print(etree.tostring(self.XMLreport, pretty_print=True))
+        #ET.indent(self.XMLreport)
+        #print(ET.tostring(self.XMLreport))
 
         if not self.status:
             print("Data write failed")

@@ -1,7 +1,7 @@
 from report.CCP4ReportParser import *
 import sys
 import copy
-from xml.etree import ElementTree as etree
+from xml.etree import ElementTree as ET
 
 class phaser_EP_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -64,14 +64,14 @@ class phaser_EP_report(Report):
         parrotInvertedHandNode = self.xmlnode.findall('.//inverted/ParrotResult')[0]
         if parrotOriginalHandNode is not None:
             from wrappers.parrot.script.parrot_report import parrot_report
-            parrotOriginalNode = ET.fromstring(etree.tostring(parrotOriginalHandNode))
+            parrotOriginalNode = parrotOriginalHandNode
             parrot_original_report = parrot_report(xmlnode=parrotOriginalNode, jobStatus='nooutput')
             parrot_original_hand = parent.addFold(label='Density modification: Original hand', initiallyOpen=False)
             parrot_original_report.defaultReport(parent=parrot_original_hand)
             parrot_original_hand.addDiv(style="clear:both;")
         if parrotInvertedHandNode is not None:
             from wrappers.parrot.script.parrot_report import parrot_report
-            parrotInvertedNode = ET.fromstring(etree.tostring(parrotInvertedHandNode))
+            parrotInvertedNode = parrotInvertedHandNode
             parrot_inverted_report = parrot_report(xmlnode=parrotInvertedNode, jobStatus='nooutput')
             parrot_inverted_hand = parent.addFold(label='Density modification: Inverted hand', initiallyOpen=False)
             parrot_inverted_report.defaultReport(parent=parrot_inverted_hand)
@@ -83,8 +83,8 @@ class phaser_EP_report(Report):
         buccsg2 = None
 
         if len(buccxml)>1:
-            buccsg1 = ET.fromstring(etree.tostring(buccxml[0]))
-            buccsg2 = ET.fromstring(etree.tostring(buccxml[1]))
+            buccsg1 = ET.fromstring(ET.tostring(buccxml[0]))
+            buccsg2 = ET.fromstring(ET.tostring(buccxml[1]))
         elif len(buccxml)>0:
             buccsg1 = buccxml[0]
 

@@ -1314,7 +1314,7 @@ class CI2XmlDataFile(CXmlDataFile):
             from lxml import etree
             testType = etree._Element
         else:
-            from xml.etree import ElementTree as etree
+            from xml.etree import ElementTree as ET
             testType = ET.Element
         fileName = self.getFullPath()
         if bodyEtree is None:

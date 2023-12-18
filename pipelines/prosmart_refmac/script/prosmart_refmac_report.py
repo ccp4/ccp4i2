@@ -2,7 +2,7 @@ from __future__ import print_function
 
 import sys
 #from lxml import etree
-from xml.etree import ElementTree as etree
+from xml.etree import ElementTree as ET
 from report.CCP4ReportParser import *
 
 from wrappers.refmac_i2.script import refmac_report
@@ -40,7 +40,7 @@ class prosmart_refmac_report(Report):
         try:
             if len(self.xmlnode.findall('svg')) > 0:
                 sketchDiv = parent.addDiv(style="width:350px; height:350px; border:1px solid black;")
-                sketchDiv.append(etree.tostring(self.xmlnode.findall('.//svg')[0]))
+                sketchDiv.append(ET.tostring(self.xmlnode.findall('.//svg')[0]))
         except:
             pass
 

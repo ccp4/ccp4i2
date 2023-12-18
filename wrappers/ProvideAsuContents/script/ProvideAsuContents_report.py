@@ -4,7 +4,7 @@ from report.CCP4ReportParser import *
 from core import CCP4ModelData, CCP4Modules
 from report import CCP4ReportParser
 import sys,os
-from xml.etree import ElementTree as etree
+from xml.etree import ElementTree as ET
 
 class ProvideAsuContents_report(Report):
     TASKNAME = 'ProvideAsuContents'

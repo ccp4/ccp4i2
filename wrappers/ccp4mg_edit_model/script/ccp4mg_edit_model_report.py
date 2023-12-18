@@ -3,7 +3,7 @@ from __future__ import print_function
 from report.CCP4ReportParser import *
 from core import CCP4Utils
 import sys
-from xml.etree import ElementTree as etree
+from xml.etree import ElementTree as ET
 
 class ccp4mg_edit_model_report(Report):
     # Specify which gui task and/or pluginscript this applies to

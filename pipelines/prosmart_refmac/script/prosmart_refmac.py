@@ -179,7 +179,8 @@ class prosmart_refmac(CPluginScript):
     def handleXmlChanged(self, xmlFilename):
         self.xmlroot.clear()
         refmacEtree = CCP4Utils.openFileToEtree(xmlFilename)
-        refmacXML = refmacEtree.findall('.//REFMAC')
+        print('refmacEtree', refmacEtree)
+        refmacXML = refmacEtree
         if len(refmacXML) == 1:
             refmacXML[0].tag="RefmacInProgress"
             self.xmlroot.append(refmacXML[0])

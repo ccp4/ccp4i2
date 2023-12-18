@@ -1,6 +1,6 @@
 from report.CCP4ReportParser import *
 import sys
-from xml.etree import ElementTree as etree
+from xml.etree import ElementTree as ET
 import base64
 
 class pimpleGraph():
