@@ -175,7 +175,7 @@ class freerflag(CPluginScript):
                               '{:6.2f}'.format(resmax))
 
       with open ( self.makeFileName('PROGRAMXML'),'w' ) as xmlFile:
-         xmlString = ET.tostring (self.xmlRoot, pretty_print=True )
+         xmlString = ET.tostring (self.xmlRoot)
          CCP4Utils.writeXML(xmlFile,xmlString)
 
       if self.container.controlParameters.GEN_MODE == 'COMPLETE':

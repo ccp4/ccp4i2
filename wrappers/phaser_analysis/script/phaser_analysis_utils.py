@@ -7,7 +7,6 @@
 #   findvalueinlist
 #   interpolate
 #   addElement
-
 from __future__ import print_function
 #from lxml import etree
 from xml.etree import ElementTree as ET
@@ -213,7 +212,7 @@ class AnalyseGraph:
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 def addElement(containerXML, elementname, elementtext,
-               attributes=None):
+               attributes={}):
     e2 = ET.Element(elementname, attrib=attributes)
     if elementtext is not None: e2.text = elementtext
     containerXML.append(e2)

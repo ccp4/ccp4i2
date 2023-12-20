@@ -182,7 +182,11 @@ class phaser_analysis(CPluginScript):
         self.resolutionlimit(self.threshold)
 
         with open(xmlout, 'wb') as f:
-            ET.indent(self.xmlroot)
+            try:
+               ET.indent(self.xmlroot)
+            except:
+               #indent is only in Python 3.9+, so this should be OK in CCP4 9.0+
+               pass
             f.write(ET.tostring(self.xmlroot))
 
     # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
