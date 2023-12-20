@@ -170,6 +170,11 @@ def createMissingDATABASEdbXML():
         utf8_parser = ET.XMLParser(encoding='utf-8')
 
         def parse_from_unicode(unicode_str):
+            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+            print(ET)
+            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
             s = unicode_str.encode('utf-8')
             return ET.fromstring(s)
     

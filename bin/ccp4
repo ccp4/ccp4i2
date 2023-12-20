@@ -20,7 +20,7 @@ export CCP4I2 CCP4I2_TOP PYTHONSTARTUP
 if test -d $CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.7/cctbx; then
   LIBTBX_BUILD=$CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.7/cctbx
 elif test -d $CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.9/site-packages/ccp4i2; then
-  CCP4I2=$CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.9/site-packages/ccp4i2
+  LIBTBX_BUILD=$CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.9/site-packages/ccp4i2
 elif test -d $CCP4/lib/python3.7/cctbx; then
   LIBTBX_BUILD=$CCP4/lib/python3.7/cctbx
 elif test -d $CCP4/lib/python3.9/cctbx; then
