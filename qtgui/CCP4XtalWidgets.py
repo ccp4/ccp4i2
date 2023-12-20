@@ -1023,7 +1023,7 @@ class CImportUnmergedView(CCP4Widgets.CComplexLineWidget):
             tree = self.model.file.getEtree()
             tree.tag = 'UnmergedDataFile'
             from lxml import etree
-            text = ET.tostring(tree,pretty_print=False)
+            text = ET.tostring(tree)
             return text
         else:
             return None

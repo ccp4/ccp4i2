@@ -3635,7 +3635,7 @@ CCP4I2 3D View
                     mean.text = str(mean)
                     m.remove(fn[0])
 
-                sceneText = ET.tostring(tree,pretty_print=True).decode("utf-8")
+                sceneText = ET.tostring(tree).decode("utf-8")
 
                 fog_slider_range_uuid_str = "fog_slider"
                 clip_slider_range_uuid_str = "clip_slider"

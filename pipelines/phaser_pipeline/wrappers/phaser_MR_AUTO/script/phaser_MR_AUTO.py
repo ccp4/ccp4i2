@@ -356,7 +356,7 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
 
         #print dir(self.results.getTemplatesForSolution(0))
         #print dir(self.results.getDotSol()[0])
-        #print ET.tostring(self.xmlroot, pretty_print=True)
+        #print ET.tostring(self.xmlroot)
         #print results.getTopPdbFile()
 
         return CPluginScript.SUCCEEDED
@@ -369,7 +369,7 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
     def flushXML(self, xml):
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
         with open(tmpFilename,'w') as tmpFile:
-            xmlText = ET.tostring(xml, pretty_print=True)
+            xmlText = ET.tostring(xml)
             CCP4Utils.writeXML(tmpFile,xmlText)
             #Here adapt the update frequency to depend on the size of the current XML structure
             xmlUpdateDelay = max(5, int(len(xmlText)/100000))

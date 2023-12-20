@@ -181,7 +181,7 @@ class acorn(CPluginScript):
             ET.SubElement(xmlcyc,"CorrelationCoef").text = str(cc)
         
         xmlfile = open(self.xmlout,'w')
-        xmlString = ET.tostring(rootNode,pretty_print=True)
+        xmlString = ET.tostring(rootNode)
 
         xmlfile.write(xmlString.decode("utf-8"))
         

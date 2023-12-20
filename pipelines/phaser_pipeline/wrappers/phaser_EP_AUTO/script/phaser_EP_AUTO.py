@@ -185,7 +185,7 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
         import os
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
         with open(tmpFilename,'w') as tmpFile:
-            CCP4Utils.writeXML(tmpFile,ET.tostring(xml, pretty_print=True))
+            CCP4Utils.writeXML(tmpFile,ET.tostring(xml))
         self.renameFile(tmpFilename, self.makeFileName('PROGRAMXML'))
 
 

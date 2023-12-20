@@ -1310,9 +1310,9 @@ class LogGraph(QtWidgets.QWidget):
 
 
         if sys.version_info > (3,0):
-            status_xml += ET.tostring(tree,encoding='utf-8', pretty_print=True).decode("utf-8")
+            status_xml += ET.tostring(tree,encoding='utf-8').decode("utf-8")
         else:
-            status_xml += ET.tostring(tree,encoding='utf-8', pretty_print=True)
+            status_xml += ET.tostring(tree,encoding='utf-8')
         return status_xml
 
     @QtCore.Slot(bool,bool)
@@ -3872,7 +3872,7 @@ def CCP4LogToXML(b):
         tree = table.toEtree()
         bigtree.append(tree)
 
-    status_xml += ET.tostring(bigtree,encoding='utf-8', pretty_print=True)
+    status_xml += ET.tostring(bigtree,encoding='utf-8')
     return status_xml
 
 def CCP4LogFileNameToXML(f):

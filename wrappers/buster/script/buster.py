@@ -177,7 +177,7 @@ class buster(CPluginScript):
             ET.SubElement(xmlcyc, "RMSA").text = str(cycle[6])
         # Save xml
         xmlfile = open(self.xmlout, 'wb')
-        xmlString= ET.tostring(rootNode, pretty_print=True)
+        xmlString= ET.tostring(rootNode)
         xmlfile.write(xmlString)
         xmlfile.close()
         return CPluginScript.SUCCEEDED

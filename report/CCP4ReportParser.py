@@ -1279,7 +1279,7 @@ class Report( Container ):
             if ele is not None:      
                 for child in ele.getchildren(): insertEle.addnext(child)
                 insertEle.getparent().remove(insertEle)
-            #print ET.tostring(xrtnode,pretty_print=True)
+            #print ET.tostring(xrtnode)
         return xrtnode
 
     def containsPictures(self):
@@ -2447,7 +2447,7 @@ class Progress(ReportClass):
                 t = t.decode()
             drawnDiv = DrawnDiv(style = styleStr, height=styleDict['height'], width=styleDict['width'], data = t, data_is_urls=False, renderer='CCP4i2Widgets.CCP4i2HTMLChunk', require='CCP4i2Widgets', initiallyDrawn=str(self.initiallyDrawn))
 
-            #print ET.tostring(drawnDiv.as_etree(), pretty_print=True)
+            #print ET.tostring(drawnDiv.as_etree())
         root.append(drawnDiv.as_etree())
 
         if self.style is not None: root.set("style",styleStr)
@@ -2632,7 +2632,7 @@ class FlotGraphGroup(Container):
             
             styleStr = ';'.join([key + ':'+styleDict[key] for key in styleDict]) + ';'
             drawnDiv = DrawnDiv(style = styleStr, height=styleDict['height'], width=styleDict['width'], data = dataList, renderer='CCP4i2Widgets.CCP4FlotRenderer', require='CCP4i2Widgets', initiallyDrawn='True')
-            #print ET.tostring(drawnDiv.as_etree(), pretty_print=True)
+            #print ET.tostring(drawnDiv.as_etree())
             surroundingDiv.append(drawnDiv.as_etree())
 
         if self.launch:
@@ -3275,7 +3275,7 @@ class FlotGraph(Graph):
                     drawnDiv = DrawnDiv(style = styleStr, height=styleDict['height'], width=styleDict['width'], data = self.data_id(), data_is_urls=False, renderer='CCP4i2Widgets.CCP4FlotRenderer', require='CCP4i2Widgets', initiallyDrawn=str(self.initiallyDrawn))
             
 
-            #print ET.tostring(drawnDiv.as_etree(), pretty_print=True)
+            #print ET.tostring(drawnDiv.as_etree())
             surroundingDiv.append(drawnDiv.as_etree())
         if self.launch is not None:
             l = self.launch.as_etree()
@@ -3947,7 +3947,7 @@ class Picture:
       sceneEle.append(copy.deepcopy(child))
       bodyEle = applySelect(bodyEle,xmlnode,jobInfo)
   
-    #print ET.tostring(bodyEle,pretty_print=True)
+    #print ET.tostring(bodyEle)
     
     from core import CCP4File
     import glob

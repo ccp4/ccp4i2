@@ -43,7 +43,7 @@ class MosflmRequestHandler(socketserver.StreamRequestHandler):
                         inBlockIntegrate = True
                     elif inBlockIntegrate:
                         inBlockIntegrate = False
-                        newXML = ET.tostring(MosflmRequestHandler.xmlRoot,pretty_print=True)
+                        newXML = ET.tostring(MosflmRequestHandler.xmlRoot)
                         if len(newXML) > len(currentXML):
                             currentXML=newXML
                             with open(MosflmRequestHandler.xmlFilepath+'.tmp',"w") as myfile:
@@ -56,7 +56,7 @@ class MosflmRequestHandler(socketserver.StreamRequestHandler):
             self.wfile.write('continue\n')
             self.wfile.flush()
         with open(MosflmRequestHandler.xmlFilepath+'.tmp',"w") as myfile:
-            CCP4Utils.writeXML(myfile,ET.tostring(MosflmRequestHandler.xmlRoot,pretty_print=True))
+            CCP4Utils.writeXML(myfile,ET.tostring(MosflmRequestHandler.xmlRoot))
             myfile.flush()
             os.fsync(myfile.fileno())
         os.rename(MosflmRequestHandler.xmlFilepath+'.tmp',MosflmRequestHandler.xmlFilepath)

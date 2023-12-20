@@ -151,6 +151,6 @@ class ccp4mg_edit_model_report(Report):
              del filename_element.attrib["database"]
              filename_element.text = fname
              sceneFilePath = os.path.join(jobDirectory,'ccp4mg_edit_model_scene'+str(i)+'.scene.xml')
-             et.write(sceneFilePath,pretty_print=True)
+             et.write(sceneFilePath)
              pic = pictureGallery.addPicture(sceneFile=sceneFilePath,label='Picture of structure '+str(i+1))
              i = i + 1

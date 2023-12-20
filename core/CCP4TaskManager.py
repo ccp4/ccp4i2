@@ -1217,7 +1217,7 @@ class CMakeDocsIndex():
             return CErrorReport(self.__class__, 101, str(e))
         sph_pth = os.path.join(CCP4Utils.getCCP4I2Dir(), 'docs', 'sphinx', 'build', 'html')
         try:
-            text = ET.tostring(docTree, pretty_print=True)
+            text = ET.tostring(docTree)
             CCP4Utils.saveFile(os.path.join(sph_pth, 'tasks', 'index.html'), text, overwrite=True)
         except:
             return CErrorReport(self.__class__, 101, details=os.path.join(sph_pth, 'tasks', 'index.html'))

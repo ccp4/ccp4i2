@@ -94,7 +94,7 @@ class import_serial(CPluginScript):
         # rootNode = ET.Element("import_serial")
         # Save xml
         #xmlfile = open(self.xmlout, 'wb')
-        #xmlString= ET.tostring(rootNode, pretty_print=True)
+        #xmlString= ET.tostring(rootNode)
         #xmlfile.write(xmlString)
         #xmlfile.close()
         print("import_serial: makeCommandAndScript end")
@@ -108,7 +108,7 @@ class import_serial(CPluginScript):
 
         # Save xml
         #xmlfile = open(self.xmlout, 'wb')
-        #xmlString= ET.tostring(root, pretty_print=True)
+        #xmlString= ET.tostring(root)
         #xmlfile.write(xmlString)
         #xmlfile.close()
         print("import_serial: processOutputFiles end")

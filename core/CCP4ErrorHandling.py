@@ -414,7 +414,7 @@ class testError(unittest.TestCase):
         from core import CCP4Data
         e = CException(CCP4Data.CData, 1, 'foo')
         tree = e.getEtree()
-        #text = ET.tostring(tree, pretty_print=True, xml_declaration=True)
+        #text = ET.tostring(tree, xml_declaration=True)
         #print text
         f = CException()
         f.setEtree(tree)

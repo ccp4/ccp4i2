@@ -54,7 +54,7 @@ class import_serial_pipe(CPluginScript):
         # rootNode = ET.Element("import_serial")
         # Save xml
         #xmlfile = open(self.xmlout, 'wb')
-        #xmlString= ET.tostring(rootNode, pretty_print=True)
+        #xmlString= ET.tostring(rootNode)
         #xmlfile.write(xmlString)
         #xmlfile.close()
         ###self.connectSignal(self.importSerialProcess, 'finished', self.process2)
@@ -115,7 +115,7 @@ class import_serial_pipe(CPluginScript):
 
         # Save xml
         #xmlfile = open(self.xmlout, 'wb')
-        #xmlString= ET.tostring(root, pretty_print=True)
+        #xmlString= ET.tostring(root)
         #xmlfile.write(xmlString)
         #xmlfile.close()
         self.xmlout = self.makeFileName('PROGRAMXML')
@@ -137,4 +137,4 @@ class import_serial_pipe(CPluginScript):
         #if x2XML is not None:
         #    rootXML.append(x2XML)
         #with open(self.makeFileName('PROGRAMXML'), "w") as outputXML:
-        #    CCP4Utils.writeXML(outputXML, ET.tostring(rootXML, pretty_print=True))
+        #    CCP4Utils.writeXML(outputXML, ET.tostring(rootXML))

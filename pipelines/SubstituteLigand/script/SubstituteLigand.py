@@ -293,7 +293,7 @@ coot.write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))'''
         if len(oldNodes) > 0: oldNodes[0].parent().remove(oldNodes[0])
         self.xmlroot.append(newXML)
         with open(self.makeFileName('PROGRAMXML'),'w') as xmlfile:
-            CCP4Utils.writeXML(xmlfile,etree.tostring(self.xmlroot,pretty_print=True))
+            CCP4Utils.writeXML(xmlfile,etree.tostring(self.xmlroot))
 
     def checkFinishStatus( self, statusDict,failedErrCode,outputFile = None,noFileErrCode= None):
         import os
@@ -312,4 +312,4 @@ coot.write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))'''
 
     def flushXML(self):
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-            CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot,pretty_print=True))
+            CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot))

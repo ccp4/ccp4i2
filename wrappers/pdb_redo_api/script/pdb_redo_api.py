@@ -215,6 +215,6 @@ class pdb_redo_api(CPluginScript):
             if pdbRedoLog:
                 pdbRedoLogEle = ET.SubElement(xmlStructure,'PDB_REDO_LOG_FILE')
                 pdbRedoLogEle.text = str(pdbRedoLog)
-            CCP4Utils.writeXML(programXMLFile,ET.tostring(xmlStructure,encoding='utf-8', pretty_print=True))
+            CCP4Utils.writeXML(programXMLFile,ET.tostring(xmlStructure,encoding='utf-8'))
 
         return CPluginScript.SUCCEEDED

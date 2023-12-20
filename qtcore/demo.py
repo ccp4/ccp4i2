@@ -334,7 +334,7 @@ class CData():
       
     def xmlText(self):
       element = self.eTree()
-      text = ET.tostring(element,pretty_print=True, xml_declaration=True)
+      text = ET.tostring(element, xml_declaration=True)
       return text
 
     def setEtree(self,element):

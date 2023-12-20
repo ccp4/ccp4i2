@@ -236,11 +236,11 @@ def saveEtreeToFile(tree=None, fileName=None):
         raise CException(CUtils, 101, fileName)
     if DEVELOPER():  ##  KJS ** This is the cause of the coupling to CCP4Config.
         # No error trapping - we just want it to crash so we have to fix it!
-        text = ET.tostring(tree, pretty_print=True, xml_declaration=True)
+        text = ET.tostring(tree, xml_declaration=True)
         saveFile(fileName=fileName, text=text, overwrite=1)
     else:
         try:
-            text = ET.tostring(tree, pretty_print=True, xml_declaration=True)
+            text = ET.tostring(tree, xml_declaration=True)
         except:
             raise CException(CUtils, 102, fileName)
         try:
@@ -271,7 +271,7 @@ def openFileToEtree(fileName=None, printout=False,useLXML=True):
         raise CException(CUtils, 104, fileName)
     else:
         if printout:
-            print(ET.tostring(tree, pretty_print=True))
+            print(ET.tostring(tree))
         return tree
     '''
     if DEVELOPER():
@@ -285,7 +285,7 @@ def openFileToEtree(fileName=None, printout=False,useLXML=True):
         root = tree.getroot()
     except:
         raise CException(CUtils,105,filename)
-    if printout: print ET.tostring(root,pretty_print=True)
+    if printout: print(ET.tostring(root))
 
     return root
     '''

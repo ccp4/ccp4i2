@@ -144,7 +144,7 @@ class coordinate_selector(CPluginScript):
             polytype.text = ",".join(list(set(polytypes)))
 
         with open(self.makeFileName('PROGRAMXML'),'w') as outputFile:
-            CCP4Utils.writeXML(outputFile,ET.tostring(rxml, pretty_print=True))
+            CCP4Utils.writeXML(outputFile,ET.tostring(rxml))
 
         print("########################################")
         print("Set NATOMS")

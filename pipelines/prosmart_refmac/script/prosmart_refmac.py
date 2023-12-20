@@ -190,7 +190,7 @@ class prosmart_refmac(CPluginScript):
         self.saveXml()
 
     def saveXml2(self):
-        newXml = ET.tostring(self.xmlroot2,pretty_print=True)
+        newXml = ET.tostring(self.xmlroot2)
         if len(newXml) > self.xmlLength2:
            firstFileName = self.pipelinexmlfile+'_first'
            with open(firstFileName,'r') as aFile:
@@ -198,7 +198,7 @@ class prosmart_refmac(CPluginScript):
            oldXml.findall('.//RefmacOptimiseWeight')[0].append(self.xmlroot2.findall(".//RefmacOptimiseWeight/RefmacPostCootInProgress")[0])
            tmpFileName = self.pipelinexmlfile+'_tmp'
            with open(tmpFileName,'w') as aFile:
-               CCP4Utils.writeXML(aFile,ET.tostring(oldXml,pretty_print=True) )
+               CCP4Utils.writeXML(aFile,ET.tostring(oldXml) )
            shutil.move(tmpFileName, self.pipelinexmlfile)
            self.xmlLength2 = len(newXml)
 
@@ -473,7 +473,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
             postRefmacCoot.text = "Coot added "+nwaters+" waters"
             oldXml.append(postRefmacCoot)
             aFile = open(self.pipelinexmlfile+'_tmpcoot','w')
-            CCP4Utils.writeXML(aFile,ET.tostring(oldXml,pretty_print=True))
+            CCP4Utils.writeXML(aFile,ET.tostring(oldXml))
             aFile.close()
             shutil.move(self.pipelinexmlfile+'_tmpcoot', self.pipelinexmlfile)
           self.cootPlugin.container.outputData.XYZOUT[0].subType = 1
@@ -509,7 +509,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
             aFile.close()
             oldXml.extend(refmacPostCoot)
             aFile = open(self.pipelinexmlfile,'w')
-            CCP4Utils.writeXML(aFile,ET.tostring(oldXml,pretty_print=True))
+            CCP4Utils.writeXML(aFile,ET.tostring(oldXml))
             aFile.close()
 
         self.finishUp(refmacJob)

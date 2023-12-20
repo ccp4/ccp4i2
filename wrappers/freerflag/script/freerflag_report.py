@@ -84,6 +84,6 @@ class freerflag_report(Report):
 if __name__ == "__main__":
     report = freerflag_report(xmlFile = sys.argv[1] )
     tree= report.as_etree()
-    #  print ET.tostring(tree,pretty_print=True)
+    #  print ET.tostring(tree)
     report.as_html_file(fileName='./test-freer.html')
 

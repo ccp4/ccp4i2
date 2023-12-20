@@ -191,7 +191,7 @@ class CI1TreeItemFolder(CCP4ProjectWidget.CTreeItemFolder):
     root = ET.Element('name')
     root.text = self.name
     encodedData = QtCore.QByteArray()
-    encodedData.append(etree.tostring(root,pretty_print=False))
+    encodedData.append(etree.tostring(root))
     mimeData = QtCore.QMimeData()
     mimeData.setData('I1Folder',encodedData)
     return mimeData
@@ -469,7 +469,7 @@ class CI1TreeItemProject(CCP4ProjectWidget.CTreeItemProject):
     root = ET.Element('name')
     root.text = self.getProjectName()
     encodedData = QtCore.QByteArray()
-    encodedData.append(etree.tostring(root,pretty_print=False))
+    encodedData.append(etree.tostring(root))
     mimeData = QtCore.QMimeData()
     mimeData.setData('I1Project',encodedData)
     return mimeData

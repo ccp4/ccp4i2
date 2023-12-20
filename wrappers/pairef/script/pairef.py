@@ -116,7 +116,7 @@ class pairef(CPluginScript):
         rootNode = ET.Element("Pairef")
         # Save xml
         xmlfile = open(self.xmlout, 'wb')
-        xmlString= ET.tostring(rootNode, pretty_print=True)
+        xmlString= ET.tostring(rootNode)
         xmlfile.write(xmlString)
         xmlfile.close()
         
@@ -166,7 +166,7 @@ class pairef(CPluginScript):
 
         # Save xml
         xmlfile = open(self.xmlout, 'wb')
-        xmlString= ET.tostring(rootNode, pretty_print=True)
+        xmlString= ET.tostring(rootNode)
         xmlfile.write(xmlString)
         xmlfile.close()
         return CPluginScript.SUCCEEDED

@@ -1858,7 +1858,7 @@ class testJob(unittest.TestCase):
         j.inputFiles.HKLIN = {  'baseName' : 'foo.mtz', 'project' : 'myProject' }
         j.outputFiles.set({'HKLOUT' : { 'baseName' : 'foo_99.mtz', 'project' : 'myProject' }} )
         tree = j.getEtree()
-        text = ET.tostring(tree, pretty_print=True)
+        text = ET.tostring(tree)
         #print text
         k = CJob(jobId=99)
         k.setEtree(tree)

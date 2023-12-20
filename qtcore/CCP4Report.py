@@ -211,14 +211,14 @@ class CReport(QtCore.QObject):
   def toString(self,root):
     text = ''
     try:
-      text = ET.tostring(root,pretty_print=True)
+      text = ET.tostring(root)
     except:
       raise CException(self.__class__,103)
     return text
   
   def saveToXmlFile(self,root,filename):
     try:
-      text = ET.tostring(root,pretty_print=True)
+      text = ET.tostring(root)
     except:
       raise CException(self.__class__,104,filename)
     #print 'CReport.saveXMLFile',filename,text
@@ -268,7 +268,7 @@ class CReport(QtCore.QObject):
       #for element in body.findall('ccp4:ccp4_data',namespaces=NSMAP):
       for tag in ('ccp4_data','{http://www.ccp4.ac.uk/ccp4ns}ccp4_data'):
         for element in body.findall('.//'+tag):
-          #print 'CReport.extractCCP4Data found ccp4_data',etree.tostring(element,pretty_print=True)
+          #print 'CReport.extractCCP4Data found ccp4_data',etree.tostring(element)
           data_type = element.get('type','')
           id = element.get('id','')
           #print 'CReport.extractCCP4Data',data_type,id
@@ -284,11 +284,11 @@ class CReport(QtCore.QObject):
        raise CException(self.__class__,106,data_type)
      #print 'CReport.parseCCP4Data',data_type,name,dataClass
      dataobj = dataClass(parent=self,name=name)
-     #print 'CReport.parseCCP4Data',name,data_type,etree.tostring(element,pretty_print=True)
+     #print 'CReport.parseCCP4Data',name,data_type,etree.tostring(element)
      if data_type == 'CContainer':
        e = dataobj.loadFromEtree(element)
      else:
-       #print 'CReport.parseCCP4Data',name,data_type,etree.tostring(element,pretty_print=True)
+       #print 'CReport.parseCCP4Data',name,data_type,etree.tostring(element)
        e = dataobj.setEtree(element)      
      self.dataArray[name] = dataobj
      return e
@@ -308,7 +308,7 @@ class CReport(QtCore.QObject):
         else:
           parent = parent.findall('..')[0]
       if isTop:
-        #print ET.tostring(ele,pretty_print=True)
+        #print ET.tostring(ele)
         if ele.text.count( u"\u25BC") or  ele.text.count( u"\u25B6"):
           #Confused - seems to work if chop first two chrs rather than first seven
           txt = str(ele.text[2:])

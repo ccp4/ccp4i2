@@ -258,9 +258,9 @@ class ccp4mg_general(CPluginScript):
                 pass
 
         if sys.version_info > (3,0):
-            status_xml += ET.tostring(tree,encoding='utf-8', pretty_print=True).decode("utf-8")
+            status_xml += ET.tostring(tree,encoding='utf-8').decode("utf-8")
         else:
-            status_xml += ET.tostring(tree,encoding='utf-8', pretty_print=True)
+            status_xml += ET.tostring(tree,encoding='utf-8')
 
         print("Writing",self.mgStatusPath)
         print(status_xml)

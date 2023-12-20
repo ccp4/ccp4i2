@@ -51,7 +51,7 @@ def onTestRunnerComplete(logXmlPath, logXmlRoot, app):
     if logXmlRoot is not None:
         logXmlTree = ET.ElementTree(logXmlRoot)
         with open(logXmlPath, 'wb') as f:
-            f.write(ET.tostring(logXmlTree,pretty_print=True))
+            f.write(ET.tostring(logXmlTree))
     sys.exit()
 
 if __name__ == '__main__':

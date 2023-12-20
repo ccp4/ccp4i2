@@ -116,7 +116,7 @@ class AlternativeImportXIA2(CPluginScript):
                 print('Unable to find merged data to import for run ', runName)
     
             with open(self.makeFileName('PROGRAMXML'),'w') as xmlFile:
-                CCP4Utils.writeXML(xmlFile,ET.tostring(self.xmlroot, pretty_print=True))
+                CCP4Utils.writeXML(xmlFile,ET.tostring(self.xmlroot))
 
         self.reportStatus(CPluginScript.SUCCEEDED)
         return CPluginScript.SUCCEEDED

@@ -303,7 +303,7 @@ class gesamt(CPluginScript):
                     matrixNode.text = ",".join(transform)
                 
         with open(self.makeFileName('PROGRAMXML'),'w') as xmlFile:
-            xmlString = ET.tostring(xmlRoot, pretty_print=True)
+            xmlString = ET.tostring(xmlRoot)
             CCP4Utils.writeXML(xmlFile,xmlString)
 
         out.XYZOUT.annotation.set("Gesamt output file (selected atoms from query and target only)")

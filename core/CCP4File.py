@@ -1128,7 +1128,7 @@ class CXmlDataFile(CDataFile):
             fileName = self.fullPath.get()
         root = self.getEtreeRoot(fileName)
         if printout:
-            print(ET.tostring(root, pretty_print=True)) # KJS - problem here. etree not defined. Fix in.
+            print(ET.tostring(root)) # KJS - problem here. etree not defined. Fix in.
         return root
         
         
@@ -1179,7 +1179,7 @@ class CXmlDataFile(CDataFile):
             CCP4Utils.saveFile(fileName=fileName, text=text, overwrite=1)
         else:
             try:
-                text = ET.tostring(bodyEtree, pretty_print=True, xml_declaration=True) # KJS - Code is broken here. Fix in.
+                text = ET.tostring(bodyEtree, xml_declaration=True) # KJS - Code is broken here. Fix in.
             except:
                 raise CException(self.__module__, 1007, fileName)
             try:
@@ -1294,7 +1294,7 @@ class CI2XmlDataFile(CXmlDataFile):
             #except:
             #  print 'Error loading header'
             #  from lxml import etree
-            #  print ET.tostring(header_etree,pretty_print=True)
+            #  print ET.tostring(header_etree)
         return err
 
     def getBodyEtree(self):
@@ -1651,7 +1651,7 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
                     ASUIN_selection_item_value = ET.SubElement(ASUIN_selection_item,"value")
                     ASUIN_selection_item_value.text = "True"
                     #print "A NEW HOPE"
-                    #print ET.tostring(ASUIN,pretty_print=True)
+                    #print ET.tostring(ASUIN)
                     #print ASUIN
                     #print ET.tostring(body.findall("inputData/"+newTag)[0])
 
@@ -1691,7 +1691,7 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
     f.close()
     tree = ET.fromstring(s, parser)
     print "The new file"
-    print ET.tostring(tree,pretty_print=True)
+    print ET.tostring(tree)
     print "**************************************************"
     """
 

@@ -19,7 +19,7 @@ class molrep_selfrot(molrep_mr.molrep_mr):
         self.xmlnode = ET.Element('MolrepResult')
         self.scrapeDocFile()
         with open(self.makeFileName('PROGRAMXML'),'w') as xmlFile:
-            CCP4Utils.writeXML(xmlFile,ET.tostring(self.xmlnode,pretty_print=True))
+            CCP4Utils.writeXML(xmlFile,ET.tostring(self.xmlnode))
         return CPluginScript.SUCCEEDED
 
     def scrapeDocFile(self):

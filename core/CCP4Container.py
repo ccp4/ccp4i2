@@ -476,7 +476,7 @@ class CContainer(CCP4Data.CData):
                     # also keep qualifiers
                     qualiEle, errs = obj.qualifiersEtree(customOnly=True, tag='qualifiers', recurse=False)
                     #print 'saveContentsToEtree qualiEle'
-                    #print ET.tostring(qualiEle, pretty_print=True)
+                    #print ET.tostring(qualiEle)
                     errors.extend(errs)
                     ele.append(qualiEle)
                     element.append(ele)

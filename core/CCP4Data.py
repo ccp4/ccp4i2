@@ -3488,7 +3488,7 @@ class testCListAssorted(unittest.TestCase):
 '''
         self.l.set([{'start' : 2, 'end':6},{'start' : 4, 'end':14},{'start' : 5, 'end':15}])
         element = self.l.getEtree()
-        text = ET.tostring(element,pretty_print=True)
+        text = ET.tostring(element)
         #print text
         self.assertEqual(text,testXML,'Failed writing XML comparison')
         m = CList(subItemClass=CIntRange,listMaxLength=4)

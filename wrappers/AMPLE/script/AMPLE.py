@@ -250,7 +250,7 @@ class AMPLE(CPluginScript):
     def flushXML(self):
         tmpFilename = self.makeFileName('PROGRAMXML') + '_tmp'
         with open(tmpFilename, 'wb') as xmlFile:
-            xmlFile.write(ET.tostring(self.xmlroot, pretty_print=True))
+            xmlFile.write(ET.tostring(self.xmlroot))
         if os.path.exists(self.makeFileName('PROGRAMXML')):
             os.remove(self.makeFileName('PROGRAMXML'))
         os.rename(tmpFilename, self.makeFileName('PROGRAMXML'))

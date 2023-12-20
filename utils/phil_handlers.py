@@ -276,7 +276,7 @@ class PhilTaskCreator(object):
         tree = ET.parse(StringIO(ET.tostring(task_xml)), parser)
         with open(out_file, "w") as f:
             f.write(
-                ET.tostring(tree, pretty_print=True, xml_declaration=True).decode(
+                ET.tostring(tree, xml_declaration=True).decode(
                     "utf-8"
                 )
             )

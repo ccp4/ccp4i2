@@ -174,7 +174,7 @@ class refmac_martin(CPluginScript):
         et = ET.ElementTree(rxml)
         
         #And write out the XML
-        et.write(self.container.outputData.XMLOUT.fullPath.__str__(), pretty_print=True)
+        et.write(self.container.outputData.XMLOUT.fullPath.__str__())
        
         with open(self.container.outputData.COOTSCRIPTOUT.fullPath.__str__(),"w") as cootscript:
             #Write a GUI to regions that Refmac has identified as containing duffers

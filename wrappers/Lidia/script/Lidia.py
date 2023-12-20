@@ -84,7 +84,7 @@ class lidia(CPluginScript):
             svgNode.append(self.svgForMolFile(outputMOL))
     
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-            q = ET.tostring(rootNode,encoding='utf-8',pretty_print=True)
+            q = ET.tostring(rootNode,encoding='utf-8')
 #           programXML.write(q.decode("utf-8"))
             CCP4Utils.writeXML(programXML,q)
         

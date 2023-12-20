@@ -442,7 +442,7 @@ class CTreeItemFile(CTreeItem):
     relPath = root.find('relPath')
     #print 'CTreeItemFile.mimeData projectId',info,PROJECTSMANAGER().getProjectDirectory(projectId=info['projectid']),relPath.text
     relPath.text = os.path.normpath(os.path.join(PROJECTSMANAGER().getProjectDirectory(projectId=info['projectid']),str(relPath.text)))
-    dragText = ET.tostring(root,pretty_print=False)
+    dragText = ET.tostring(root)
     urlList = [QtCore.QUrl()]
     urlList[0].setPath( PROJECTSMANAGER().db().getFullPath(fileId=self.fileId ) )
     urlList[0].setScheme("file")
@@ -1251,7 +1251,7 @@ class CTreeItemJob(CTreeItem):
     mimeType = 'FollowFromJob'
     root = ET.Element('jobId')
     root.text = str(self.jobId)
-    dragText = ET.tostring(root,pretty_print=False)
+    dragText = ET.tostring(root)
     sceneFiles = PROJECTSMANAGER().getSceneFiles(jobId=self.jobId)
     if len(sceneFiles)>0:
       urlList = [QtCore.QUrl()]
@@ -2536,7 +2536,7 @@ class CProjectWidget(QtWidgets.QFrame):
       for name,value in [[ 'jobId' , jobId],['taskName',jobInfo['taskname']],['jobNumber',jobInfo['jobnumber']],['projectName',jobInfo['projectname']],['projectId',jobInfo['projectid']]]:
         e = ET.SubElement(root,name)
         e.text = value
-      dragText = ET.tostring(root,pretty_print=True)
+      dragText = ET.tostring(root)
       data = QtCore.QByteArray()
       data.append(dragText)
       mimeData = QtCore.QMimeData()

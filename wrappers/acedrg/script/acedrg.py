@@ -267,7 +267,7 @@ class acedrg(CPluginScript):
         svgNode.append(svgFromMol(molToWrite))
 
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-            CCP4Utils.writeXML(programXML,ET.tostring(self.xmlroot, pretty_print=True))
+            CCP4Utils.writeXML(programXML,ET.tostring(self.xmlroot))
 
         return CPluginScript.SUCCEEDED
 

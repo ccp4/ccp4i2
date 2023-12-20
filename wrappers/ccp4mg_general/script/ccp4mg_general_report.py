@@ -59,6 +59,6 @@ class ccp4mg_general_report(Report):
              ET.indent(et)
              print(ET.tostring(et))
              sceneFilePath = os.path.join(jobDirectory,'ccp4mg_general_scene'+str(i)+'.scene.xml')
-             et.write(sceneFilePath,pretty_print=True)
+             et.write(sceneFilePath)
              pic = pictureGallery.addPicture(sceneFile=sceneFilePath,label='Picture of structure '+str(i+1))
              i = i + 1

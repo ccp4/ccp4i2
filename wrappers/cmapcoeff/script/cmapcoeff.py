@@ -141,7 +141,7 @@ class cmapcoeff(CPluginScript):
 
         with open ( self.makeFileName('PROGRAMXML'),'w' ) as xmlFile:
             xmlRoot = ET.Element('cmapcoeff')
-            xmlString = ET.tostring ( xmlRoot, pretty_print=True )
+            xmlString = ET.tostring ( xmlRoot )
             CCP4Utils.writeXML(xmlFile,xmlString)
 
         return CPluginScript.SUCCEEDED

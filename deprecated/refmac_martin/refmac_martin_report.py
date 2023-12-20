@@ -341,7 +341,7 @@ class refmac_martin_report(Report):
             # Dump out the XML
             et = ET.ElementTree(baseSceneXML)
             sceneFilePath = os.path.join(jobDirectory,'monomer'+str(iMonomer)+'.scene.xml')
-            et.write(sceneFilePath,pretty_print=True)
+            et.write(sceneFilePath)
             # And add the picture
             pic = pictureGallery.addPicture(sceneFile=sceneFilePath,label='Picture of selection "'+interestingBit+'"')
 

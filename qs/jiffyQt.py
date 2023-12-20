@@ -939,7 +939,7 @@ def patchedReport(reportPath, jobId=None, files=[], jobs=[]):
     # Patch img elements
     for img in reportXML.findall('.//img'):
         try: img.set('src', "/jobId/{}/{}".format(jobId, img.get("src")))
-        except: print('Failed patching img', ET.tostring(img, pretty_print=True))
+        except: print('Failed patching img', ET.tostring(img))
 
     # Patch drawn spans
     for drawnSpan in reportXML.findall(".//span[@data-url]"):
@@ -947,7 +947,7 @@ def patchedReport(reportPath, jobId=None, files=[], jobs=[]):
             patchedElement ="/jobId/{}/{}".format(jobId, drawnSpan.get('data-url'))
             #patchedElement ="/ManageCCP4i2Archive/?File=True?jobId="+jobId+"?filePath="+drawnSpan.get('data-url')
             drawnSpan.set('data-url',patchedElement)
-        except: print('Failed patching drawnSpan', ET.tostring(drawnSpan, pretty_print=True))
+        except: print('Failed patching drawnSpan', ET.tostring(drawnSpan))
     #print 'data-is-urls patched'
 
     # Patch drawn divs
@@ -956,7 +956,7 @@ def patchedReport(reportPath, jobId=None, files=[], jobs=[]):
             patchedElement ="/jobId/{}/{}".format(jobId, drawnDiv.get('data-data'))
             #patchedElement ="/ManageCCP4i2Archive/?File=True?jobId="+jobId+"?filePath="+drawnDiv.get('data-data')
             drawnDiv.set('data-data',patchedElement)
-        except: print('Failed patching drawnDiv', ET.tostring(drawnDiv, pretty_print=True))
+        except: print('Failed patching drawnDiv', ET.tostring(drawnDiv))
     #print 'data-is-urls patched'
 
     #Patch downloadObjects
@@ -988,7 +988,7 @@ def patchedReport(reportPath, jobId=None, files=[], jobs=[]):
             clickDiv.text = "Job: "+str(jobNumber) + " - "+annotation
 
             qt_object.getparent().replace(qt_object, newDiv)
-        except Exception as err: print('Failed to patch qt_object',etree.tostring(qt_object,pretty_print=True), err)
+        except Exception as err: print('Failed to patch qt_object',etree.tostring(qt_object), err)
     #print 'qt_objects patched'
 
     #Patch downloadObjects
@@ -1001,7 +1001,7 @@ def patchedReport(reportPath, jobId=None, files=[], jobs=[]):
             newButton.text = 'Download'
 
             qt_launch.getparent().replace(qt_launch, newButton)
-        except: print('Failed to patch qt_launch',etree.tostring(qt_launch,pretty_print=True))
+        except: print('Failed to patch qt_launch',etree.tostring(qt_launch))
     #print 'CDownloadButtons patched'
 
     #Patch CLauncherButton objects
@@ -1025,10 +1025,10 @@ def patchedReport(reportPath, jobId=None, files=[], jobs=[]):
                 newButton.text = 'Not active'
 
                 qt_launch.getparent().replace(qt_launch, newButton)
-        except: print('Failed to patch qt_launch',etree.tostring(qt_launch,pretty_print=True))
+        except: print('Failed to patch qt_launch',etree.tostring(qt_launch))
     #print 'Launch MGs patched'
 
-    return ET.tostring(reportXML, pretty_print=True)
+    return ET.tostring(reportXML)
 
 class QSSupervisorApp(QtGui.QApplication):
     def __init__(self, *argv, **kw):

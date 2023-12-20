@@ -935,7 +935,7 @@ if __name__ == "__main__":
 
   report = import_merged_report(xmlFile = sys.argv[1],jobStatus="Finished" )
   tree= report.as_etree()
-  #print ET.tostring(tree,pretty_print=True)
+  #print ET.tostring(tree)
   report.as_html_file(fileName='./test-import.html')
   if len(report.errorReport())>0: print('ERRORS:',r.errorReport())
 

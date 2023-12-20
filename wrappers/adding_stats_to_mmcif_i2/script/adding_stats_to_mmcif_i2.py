@@ -280,7 +280,7 @@ except Exception as err:
                 self.xmlroot.append(validationXML)
                 with open(self.makeFileName('PROGRAMXML'), 'w') as thisXMLFile:
                     CCP4Utils.writeXML(thisXMLFile, ET.tostring(
-                        self.xmlroot, pretty_print=True))
+                        self.xmlroot))
 
             if output_svg_file_name:
                 ret = val.getOutputByType(

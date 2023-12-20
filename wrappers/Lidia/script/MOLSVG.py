@@ -208,7 +208,7 @@ if __name__ == '__main__':
     newLigand = MDLMolecule('job_1/prodrg-in.mdl')
     newLigand.normalize()
     aNode = newLigand.svgXML()
-    a = ET.tostring(aNode, pretty_print=True)
+    a = ET.tostring(aNode)
     with open('new.svg','w') as outputSVG:
         CCP4Utils.writeXML(outputSVG,a)
 

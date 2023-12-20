@@ -85,7 +85,7 @@ class csymmatch(CPluginScript):
                         scoreNode.text = line.strip().split(':')[1]
     
         with open(self.makeFileName('PROGRAMXML'),'w') as xmlFile:
-            xmlString = ET.tostring(xmlRoot, pretty_print=True)
+            xmlString = ET.tostring(xmlRoot)
             CCP4Utils.writeXML(xmlFile,xmlString)
 
 

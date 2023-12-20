@@ -336,7 +336,7 @@ class PhaserKeywordsCreator(PhilTaskCreator):
     try:
       with open(out_file, 'wb') as f:
         print('Writing def.xml to %s' % out_file)
-        f.write(ET.tostring(tree, pretty_print=True, xml_declaration=True))
+        f.write(ET.tostring(tree, xml_declaration=True))
     except OSError as exception:
       if exception.errno == errno.EACCES:
         raise RuntimeError('No write permission to this directory')
