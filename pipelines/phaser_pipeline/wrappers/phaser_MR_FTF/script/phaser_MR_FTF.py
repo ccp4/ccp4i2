@@ -107,6 +107,7 @@ class phaser_MR_FTF(phaser_MR_AUTO.phaser_MR_AUTO):
                         print('Unable to Pickle solutions')
                     self.container.outputData.SOLOUT.annotation = 'Solutions from Phaser'
 
+        parent_map = {c: p for p in self.xmlroot.iter() for c in p}
         #Remove warnings and replace with ones parsed from the resultObject
         if len(self.xmlroot.findall('PhaserWarnings')) > 0:
             phaser_warnings = [wrng for wrng in resultObject.warnings()]
@@ -116,7 +117,7 @@ class phaser_MR_FTF(phaser_MR_AUTO.phaser_MR_AUTO):
                     advisoryElement = ET.SubElement(advisoriesElement,'Advisory')
                     advisoryElement.text = warningsElement.text
             for warningsElement in self.xmlroot.findall('PhaserWarnings')[0]:
-                warningsElement.getparent().remove(warningsElement)
+                parent_map[warningsElement].remove(warningsElement)
             for warning in phaser_warnings:
                 warningsElement = ET.SubElement(self.xmlroot,'PhaserWarnings')
                 warningElement = ET.SubElement(warningsElement,'Warning')
@@ -124,7 +125,7 @@ class phaser_MR_FTF(phaser_MR_AUTO.phaser_MR_AUTO):
 
         #Remove old digested summaries and add new ones parsed from the result summary block
         for summaryNode in self.xmlroot.findall('Summary'):
-            summaryNode.getparent().remove(summaryNode)
+            parent_map[summaryNode].remove(summaryNode)
         summary_buffer = '***'
         for text in resultObject.summary().split('\n'):
             if text.startswith("**********") and not summary_buffer.strip().endswith("***"):

@@ -88,11 +88,12 @@ class ShelxCECompareHands(ShelxCE.ShelxCE):
             with open(changedFile,'r') as changedXML:
                 newText = changedXML.read()
             if True:
+                parent_map = {c: p for p in self.xmlroot.iter() for c in p}
                 changedRoot = ET.fromstring(newText)
                 #Remove old copies of XML
                 oldNodes = self.xmlroot.findall(nodeName)
                 for oldNode in oldNodes:
-                    oldNode.getparent().remove(oldNode)
+                    parent_map[oldNode].remove(oldNode)
                 newNode = ET.SubElement(self.xmlroot,nodeName)
                 newNode.append(changedRoot)
                 import datetime

@@ -16,10 +16,11 @@ class EPAUTOCallbackObject(phaser_MR.CallbackObject):
         self._summary_buffer = ""
     
     def call_back(self, label, text):
+        parent_map = {c: p for p in self.xmlroot.iter() for c in p}
         if label == 'current best solution':
             try:
                 for oldNode in self.xmlroot.findall('.//PhaserCurrentBestSolution'):
-                    oldNode.getparent().remove(oldNode)
+                    parent_map[oldNode].remove(oldNode)
                 bestSolNode =ET.SubElement(self.xmlroot,'PhaserCurrentBestSolution')
                 phaser_MR.xmlFromSol(text, bestSolNode)
                 self.notifyResponders()

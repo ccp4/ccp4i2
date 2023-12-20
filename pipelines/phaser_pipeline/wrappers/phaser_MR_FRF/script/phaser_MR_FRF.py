@@ -102,8 +102,9 @@ class phaser_MR_FRF(phaser_MR_AUTO.phaser_MR_AUTO):
                         print('Unable to Pickle Rfile solutions', e)
                     self.container.outputData.RFILEOUT.annotation.set('Rfile (pkl) from rotation search')
         #Remove old digested summaries and add new ones parsed from the result summary block
+        parent_map = {c: p for p in self.xmlroot.iter() for c in p}
         for summaryNode in self.xmlroot.findall('Summary'):
-            summaryNode.getparent().remove(summaryNode)
+            parent_map[summaryNode].remove(summaryNode)
         summary_buffer = '***'
         for text in resultObject.summary().split('\n'):
             if text.startswith("**********") and not summary_buffer.strip().endswith("***"):

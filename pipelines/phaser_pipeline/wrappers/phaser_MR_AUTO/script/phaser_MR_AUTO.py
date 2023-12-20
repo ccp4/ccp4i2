@@ -19,10 +19,11 @@ class MRAUTOCallbackObject(phaser_MR.CallbackObject):
         self.minimumDelayInSeconds = 5
     
     def call_back(self, label, text):
+        parent_map = {c: p for p in self.xmlroot.iter() for c in p}
         if label == 'current best solution':
             try:
                 for oldNode in self.xmlroot.findall('.//PhaserCurrentBestSolution'):
-                    oldNode.getparent().remove(oldNode)
+                    parent_map[oldNode].remove(oldNode)
                 bestSolNode =ET.SubElement(self.xmlroot,'PhaserCurrentBestSolution')
                 phaser_MR.xmlFromSol(text, bestSolNode)
                 self.notifyResponders()
@@ -268,6 +269,8 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
                         print('Unable to Pickle solutions')
                     self.container.outputData.SOLOUT.annotation.set('Solutions from Phaser')
 
+        parent_map = {c: p for p in self.xmlroot.iter() for c in p}
+
         #Remove warnings and replace with ones parsed from the resultObject
         if len(self.xmlroot.findall('PhaserWarnings')) > 0:
             phaser_warnings = [wrng for wrng in resultObject.warnings()]
@@ -277,7 +280,7 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
                     advisoryElement = ET.SubElement(advisoriesElement,'Advisory')
                     advisoryElement.text = warningsElement.text
             for warningsElement in self.xmlroot.findall('PhaserWarnings')[0]:
-                warningsElement.getparent().remove(warningsElement)
+                parent_map[warningsElement].remove(warningsElement)
             for warning in phaser_warnings:
                 warningsElement = ET.SubElement(self.xmlroot,'PhaserWarnings')
                 warningElement = ET.SubElement(warningsElement,'Warning')
@@ -285,7 +288,7 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
       
         #Remove old digested summaries and add new ones parsed from the result summary block
         for summaryNode in self.xmlroot.findall('Summary'):
-            summaryNode.getparent().remove(summaryNode)
+            parent_map[summaryNode].remove(summaryNode)
         summary_buffer = '***'
         for text in resultObject.summary().split('\n'):
             if text.startswith("**********") and not summary_buffer.strip().endswith("***"):
@@ -315,10 +318,12 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
         # available items are in phaser/source/phaser/include/mr_set.h
         # example of usage in phaser/source/phaser/phaser/test_reporter.py
 
+        parent_map = {c: p for p in self.xmlroot.iter() for c in p}
+
         for solution in results.getDotSol():
             if isol == 0:
                 for oldNode in self.xmlroot.findall('.//PhaserCurrentBestSolution'):
-                    oldNode.getparent().remove(oldNode)
+                    parent_map[oldNode].remove(oldNode)
                 bcsNode = ET.SubElement(self.xmlroot,'PhaserCurrentBestSolution')
                 solutionNode = ET.SubElement(bcsNode,'Solution')
                 for nd in solution.KNOWN:
