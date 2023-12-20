@@ -15,6 +15,7 @@ from iotbx import mtz
 import ccp4mg
 import mmdb2
 from mmtbx.command_line import molprobity
+from xml.etree import ElementTree as ET
 
 class tableone(CPluginScript):
 
@@ -111,7 +112,8 @@ class tableone(CPluginScript):
     def processOutputFiles(self):
         self.parseLogfile()
         with open(self.makeFileName('PROGRAMXML'), 'w') as xml_file:
-            CCP4Utils.writeXML(xml_file,etree.tostring(self.xml_root, pretty_print=True))
+            ET.indent(self.xml_root)
+            CCP4Utils.writeXML(xml_file,ET.tostring(self.xml_root))
         return CPluginScript.SUCCEEDED
 
     def makeCommandAndScript(self, container=None):
