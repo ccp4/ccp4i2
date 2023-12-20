@@ -427,9 +427,15 @@ class buccaneer_build_refine_mr(CPluginScript):
 
     def parseRefmacXML(self, plugin):
         raw_xml = CCP4Utils.openFileToEtree(plugin.makeFileName('PROGRAMXML'))
-        stats = raw_xml.findall(".//REFMAC/Overall_stats/stats_vs_cycle")
+        stats = raw_xml.findall(".//Overall_stats/stats_vs_cycle")
         new_xml = ET.Element('RefmacResult')
-        for node in stats[0].findall("new_cycle[last()]/r_factor | new_cycle[last()]/r_free | new_cycle[last()]/rmsBOND |  new_cycle[last()]/rmsANGLE"):
+        nodes = []
+        if len(stats[0].findall("new_cycle[last()]/r_factor"))>0:
+            nodes = [stats[0].findall("new_cycle[last()]/r_factor")[0],
+                stats[0].findall("new_cycle[last()]/r_free")[0],
+                stats[0].findall("new_cycle[last()]/rmsBOND")[0],
+                stats[0].findall("new_cycle[last()]/rmsANGLE")[0]]
+        for node in nodes:
             node.text = str(node.text).strip()
             if node.tag == 'rmsBOND':
                 node.text = str(100*float(node.text))
@@ -438,27 +444,29 @@ class buccaneer_build_refine_mr(CPluginScript):
         return new_xml
 
     def parseXmlFromBeforeInterrupt(self):
-        cycles = self.xmlroot.findall(".//BuccaneerBuildRefineResult/BuildRefineCycle")
+        cycles = self.xmlroot.findall(".//BuildRefineCycle")
         for cycle in cycles:
-            bxml = cycle.findall(".//BuildRefineCycle/BuccaneerResult")[-1]
-            self.extractBuccaneerMetrics(bxml)
-            rxml = cycle.findall(".//BuildRefineCycle/RefmacResult")[-1]
-            self.extractRefmacMetrics(rxml)
+            if len(cycle.findall(".//BuccaneerResult"))>0:
+                bxml = cycle.findall(".//BuccaneerResult")[-1]
+                self.extractBuccaneerMetrics(bxml)
+            if len(cycle.findall(".//RefmacResult"))>0:
+                rxml = cycle.findall(".//RefmacResult")[-1]
+                self.extractRefmacMetrics(rxml)
             self.checkForImprovement()
 
     def extractBuccaneerMetrics(self, xml):
-        self.completeness_by_res = float(xml.findall('.//BuccaneerResult/Final/CompletenessByResiduesBuilt')[-1].text)
-        self.completeness_by_chn = float(xml.findall('.//BuccaneerResult/Final/CompletenessByChainsBuilt')[-1].text)
-        self.n_fragments = int(xml.findall('.//BuccaneerResult/Final/FragmentsBuilt')[-1].text)
-        self.longest_fragment = int(xml.findall('.//BuccaneerResult/Final/ResiduesLongestFragment')[-1].text)
-        self.residues_built = int(xml.findall('.//BuccaneerResult/Final/ResiduesBuilt')[-1].text)
-        self.residues_sequenced = int(xml.findall('.//BuccaneerResult/Final/ResiduesSequenced')[-1].text)
+        self.completeness_by_res = float(xml.findall('Final/CompletenessByResiduesBuilt')[-1].text)
+        self.completeness_by_chn = float(xml.findall('Final/CompletenessByChainsBuilt')[-1].text)
+        self.n_fragments = int(xml.findall('Final/FragmentsBuilt')[-1].text)
+        self.longest_fragment = int(xml.findall('Final/ResiduesLongestFragment')[-1].text)
+        self.residues_built = int(xml.findall('Final/ResiduesBuilt')[-1].text)
+        self.residues_sequenced = int(xml.findall('Final/ResiduesSequenced')[-1].text)
         print('Number of fragments:', self.n_fragments, " Completeness:", self.completeness_by_res)
         if self.n_fragments == 0: self.reportStatus(CPluginScript.UNSATISFACTORY)
 
     def extractRefmacMetrics(self, xml):
-        self.rwork = float(xml.findall('.//RefmacResult/r_factor')[-1].text)
-        self.rfree = float(xml.findall('.//RefmacResult/r_free')[-1].text)
+        self.rwork = float(xml.findall('.//r_factor')[-1].text)
+        self.rfree = float(xml.findall('.//r_free')[-1].text)
         print('R-work:', self.rwork, " R-free:", self.rfree)
         if self.rwork < 0.30: self.essentiallyComplete = True
 
