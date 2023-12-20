@@ -22,6 +22,8 @@ from __future__ import print_function
 #Questions: does reading cause formatting straight away?
 #Or do we store the content for later? Yes.
 
+import re
+
 try:
     from StringIO import StringIO
 except ImportError:
@@ -905,6 +907,8 @@ class Container(ReportClass):
   def append(self,child):
     if isinstance(child,str):
       self.children.append(Generic(xmlnode=self.xmlnode,text=child))
+    elif isinstance(child,bytes):
+      self.children.append(Generic(xmlnode=self.xmlnode,text=child.decode('utf-8')))
     else:
       self.children.append(child)
       
@@ -1939,15 +1943,15 @@ class Generic(ReportClass):
     if xrtnode is None and text is not None:
       try:
         if sys.version_info > (3,0):
-            xrtnode = ET.fromstring(text.encode('utf-8'))
+            xrtnode = ET.fromstring(re.sub("&(?!#[0-9a-fA-F]+;|[a-zA-Z]+;)", "&amp;", text).encode('utf-8'))
         else:
-            xrtnode = ET.fromstring(text,PARSER())
+            xrtnode = ET.fromstring(re.sub("&(?!#[0-9a-fA-F]+;|[a-zA-Z]+;)", "&amp;", text),PARSER())
       except:
         try:
             if sys.version_info > (3,0) and type(text) == bytes:
-                xrtnode = ET.fromstring('<'+defaultTag+'>'+text.encode('utf-8')+'</'+defaultTag+'>')
+                xrtnode = ET.fromstring('<'+defaultTag+'>'+re.sub("&(?!#[0-9a-fA-F]+;|[a-zA-Z]+;)", "&amp;", text).encode('utf-8')+'</'+defaultTag+'>')
             else:
-                xrtnode = ET.fromstring('<'+defaultTag+'>'+text+'</'+defaultTag+'>')
+                xrtnode = ET.fromstring('<'+defaultTag+'>'+re.sub("&(?!#[0-9a-fA-F]+;|[a-zA-Z]+;)", "&amp;", text)+'</'+defaultTag+'>')
         except:
           raise
           raise CException(self.__class__,1,str(text))

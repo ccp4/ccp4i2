@@ -304,7 +304,7 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
             self.send_header('Content-type', contentType)
             self.send_header('Content-length', len(data))
             self.end_headers()
-            if not isBinary:
+            if not isBinary and not type(data) == bytes:
                 self.wfile.write(bytes(data, "utf-8"))
             else:
                 self.wfile.write(data)
