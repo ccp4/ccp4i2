@@ -36,8 +36,9 @@ class phaser_EP_report(Report):
 
     def drawContent(self, jobStatus=None, parent=None):
         if parent is None: parent = self
-        shelxNode = self.xmlnode.findall('ShelxCD')[0]
-        if shelxNode is not None:
+        shelxNodes = self.xmlnode.findall('ShelxCD')
+        if len(shelxNodes)>0:
+            shelxNode = shelxNodes[0]
             from wrappers.ShelxCDE.script.ShelxCD_report import ShelxCD_report
             shelx_report = ShelxCD_report (xmlnode=shelxNode, jobStatus='nooutput')
             self.addDiv(style='clear:both;')
@@ -60,16 +61,19 @@ class phaser_EP_report(Report):
             phaser_report = phaser_EP_AUTO_report(xmlnode=phaserNode, jobStatus='nooutput')
             phaser_report.drawContent(jobStatus=jobStatus, parent=phaserDiv)
 
-        parrotOriginalHandNode = self.xmlnode.findall('.//original/ParrotResult')[0]
-        parrotInvertedHandNode = self.xmlnode.findall('.//inverted/ParrotResult')[0]
-        if parrotOriginalHandNode is not None:
+        parrotOriginalHandNodes = self.xmlnode.findall('.//original/ParrotResult')
+        parrotInvertedHandNodes = self.xmlnode.findall('.//inverted/ParrotResult')
+
+        if len(parrotOriginalHandNodes)>0:
+            parrotOriginalHandNode = parrotOriginalHandNodes[0]
             from wrappers.parrot.script.parrot_report import parrot_report
             parrotOriginalNode = parrotOriginalHandNode
             parrot_original_report = parrot_report(xmlnode=parrotOriginalNode, jobStatus='nooutput')
             parrot_original_hand = parent.addFold(label='Density modification: Original hand', initiallyOpen=False)
             parrot_original_report.defaultReport(parent=parrot_original_hand)
             parrot_original_hand.addDiv(style="clear:both;")
-        if parrotInvertedHandNode is not None:
+        if len(parrotInvertedHandNodes)>0:
+            parrotInvertedHandNode = parrotInvertedHandNodes[0]
             from wrappers.parrot.script.parrot_report import parrot_report
             parrotInvertedNode = parrotInvertedHandNode
             parrot_inverted_report = parrot_report(xmlnode=parrotInvertedNode, jobStatus='nooutput')
