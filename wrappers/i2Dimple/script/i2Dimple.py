@@ -196,9 +196,9 @@ class i2Dimple(CPluginScript):
                 return CPluginScript.FAILED
             
             logText = ET.SubElement(xmlStructure,"LogText")
-            with open(self.makeFileName("LOG"),"r") as logFile:
+            with open(self.makeFileName("LOG"),"rb") as logFile:
                 #logText.text = ET.CDATA(logFile.read())
-                logText.text = base64.b64encode(logFile.read())
+                logText.text = base64.b64encode(logFile.read()).decode("utf-8")
             
             #Extract performanceindictors from XML
             try:
