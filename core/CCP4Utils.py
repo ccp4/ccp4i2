@@ -256,7 +256,21 @@ def parse_from_unicode(unicode_str,useLXML=True):
         return ET.fromstring(etree.tostring(etree.fromstring(s, parser=utf8_parser)))
     else:
         from xml.etree import ElementTree as ET
-        return ET.fromstring(unicode_str)
+        try:
+            return ET.fromstring(unicode_str)
+        except:
+            """
+            This removes ansi color codes from the string (e.g. AMPLE failure) so that diagnostic.xml can be shown in report.
+            """
+            try:
+                ansi_escape_8bit = re.compile( br'(?:\x1B[@-Z\\-_]|[\x80-\x9A\x9C-\x9F]|(?:\x1B\[|\x9B)[0-?]*[ -/]*[@-~])')
+                b2 = ansi_escape_8bit.sub(b'', bytes(unicode_str,"utf-8")).decode("utf-8")
+            except:
+                exc_type, exc_value,exc_tb = sys.exc_info()[:3]
+                sys.stderr.write(str(exc_type)+'\n')
+                sys.stderr.write(str(exc_value)+'\n')
+
+            return ET.fromstring(b2)
 
 def openFileToEtree(fileName=None, printout=False,useLXML=True):
     # Use this as ET.parse() seg faults on some Linux

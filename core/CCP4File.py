@@ -1265,8 +1265,10 @@ class CI2XmlDataFile(CXmlDataFile):
         #print 'getEtreeRoot fileName', fileName, type(fileName)
         try:
             root = CCP4Utils.openFileToEtree(fileName,useLXML=useLXML)
+            """
         except ET.LxmlError as e:
             raise CException(self.__class__, 1009, fileName + ' : ' + str(e), name=self.objectPath())
+            """
         except Exception as e:
             raise CException(self.__class__, 1001, fileName + ' : ' + str(e), name=self.objectPath())
         '''
