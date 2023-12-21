@@ -84,7 +84,7 @@ class parrot(CPluginScript):
         CCP4Utils.writeXML(xmlFile,ET.tostring(rootNode))
 
       # performance data
-      final_fom = float(rootNode.findall('.//ParrotResult/Final/MeanFOM')[0].text)
+      final_fom = float(rootNode.findall('.//Final/MeanFOM')[0].text)
       self.container.outputData.PERFORMANCE.FOM = final_fom
 
       # error checking
