@@ -46,7 +46,7 @@ class lorestr_i2(CPluginScript):
     def __init__(self, *args, **kws):
         super(lorestr_i2, self).__init__(*args, **kws)
         self._readyReadStandardOutputHandler = self.handleReadyReadStandardOutput
-        self.xmlroot = ET..Element('lorestr_i2')
+        self.xmlroot = ET.Element('lorestr_i2')
 #        from refmacLogScraper import logScraper
 #        self.logScraper = logScraper(xmlroot=self.xmlroot, flushXML=self.flushXML)
         self.xmlLength = 0
@@ -126,9 +126,9 @@ class lorestr_i2(CPluginScript):
         self.logFileHandle.write(availableStdout)
         self.logFileHandle.flush()
 
-        self.xmlroot = ET..Element("lorestr_i2")
-        logText = ET..SubElement(self.xmlroot,"LogText")
-        #logText.text = ET..CDATA(availableStdout)
+        self.xmlroot = ET.Element("lorestr_i2")
+        logText = ET.SubElement(self.xmlroot,"LogText")
+        #logText.text = ET.CDATA(availableStdout)
         logText.text = base64.b64encode(availableStdout)
         self.flushXML()
 
@@ -291,7 +291,7 @@ class lorestr_i2(CPluginScript):
            validateXMLPath = self.validate.makeFileName('PROGRAMXML')
            print(validateXMLPath)
 
-           validateXML = CCP4Utils.openFileToET.(validateXMLPath)
+           validateXML = CCP4Utils.openFileToEtree(validateXMLPath)
            print(validateXML)
 
            self.xmlroot = ET.parse(self.makeFileName('PROGRAMXML')).getroot()
