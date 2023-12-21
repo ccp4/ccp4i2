@@ -108,7 +108,7 @@ class editbfac(CPluginScript):
         self.params = master_phil.extract()
         p = self.params.process_predicted_model
         # standard options
-        p.b_value_field_is = self.container.controlParameters.BTREATMENT.__str__()  # 'lddt'
+        p.b_value_field_is = self.container.controlParameters.BTREATMENT.__str__()  # 'plddt'
         p.remove_low_confidence_residues = self.container.controlParameters.CONFCUT      # True
         p.split_model_by_compact_regions = self.container.controlParameters.COMPACTREG   # True
         p.maximum_domains = self.container.controlParameters.MAXDOM  # 3
@@ -117,7 +117,7 @@ class editbfac(CPluginScript):
         p.maximum_fraction_close = self.container.controlParameters.MAXFRACCL
         p.minimum_sequential_residues = self.container.controlParameters.MINSEQRESI
         p.minimum_remainder_sequence_length = self.container.controlParameters.MINREMSEQL
-        p.minimum_lddt = self.container.controlParameters.MINLDDT.__float__() # 0.7
+        p.minimum_plddt = self.container.controlParameters.MINLDDT.__float__() # 0.7
         p.maximum_rmsd = self.container.controlParameters.MAXRMSD.__float__() # 1.5
         # pae options
         p.pae_power = self.container.controlParameters.PAEPOWER
@@ -169,118 +169,3 @@ class editbfac(CPluginScript):
         f = CCP4File.CXmlDataFile(fullPath=self.makeFileName('PROGRAMXML'))
         f.saveFile(root)
         return status
-
-# Stuart's previous stuff - changed.
-#===============================================================================
-#     def convert_plddt_to_bfactor(self, struct):
-#         """
-#         Adam's code from MrParse to convert pLDDT scores to bfactors based on the original cctbx function (process_predicted_model)
-#         """
-#         for chain in struct[0]:
-#             for residue in chain:
-#                 for atom in residue:
-#                     plddt_value = atom.b_iso
-#                     atom.b_iso = self._convert_to_bfactor(plddt=plddt_value)
-#         return struct
-#     
-#     def convert_rmsd_to_bfactor(self, struct):
-#         """
-#         Convert rmsd scores to bfactors based on the original cctbx function (process_predicted_model)
-#         """
-#         for chain in struct[0]:
-#             for residue in chain:
-#                 for atom in residue:
-#                     rmsd_value = atom.b_iso
-#                     atom.b_iso = self._convert_to_bfactor(rmsd=rmsd_value)
-#         return struct
-#     
-#     def _convert_to_bfactor(self, plddt=None, rmsd=None):
-#         """
-#         pLDDT/rmsd conversion algorithm
-#         """
-#         if plddt is not None:
-#             lddt = plddt / 100
-#             if lddt <= 0.5:
-#                 return 657.97  # Same as the b-factor value with an rmsd estimate of 5.0
-#             rmsd_est = (0.6 / (lddt ** 3))
-#         elif plddt is None and rmsd is not None:
-#             # Make sure error estimates are in reasonable range
-#             if rmsd < 0:
-#                 rmsd = 0
-#             elif rmsd > 20:
-#                 rmsd = 20
-#             rmsd_est = rmsd
-#         elif plddt is None and rmsd is None:
-#             rmsd_est = 1.2
-#         bfactor = ((8 * (np.pi ** 2)) / 3.0) * (rmsd_est ** 2)
-#         if bfactor > 999.99:
-#             return 999.99
-#         return bfactor
-# 
-#     def alphaFoldAutoSet(self,st):
-#         """
-#         Call to Adam's convertor for pLDDT values
-#         """
-#         self.convert_plddt_to_bfactor(st)
-# 
-#     def rosettaFoldAutoSet(self,st):
-#         """
-#         Call to Adam's convertor for rmsd values
-#         """
-#         self.convert_rmsd_to_bfactor(st)
-# 
-#     def startProcess(self,comList,**kw):
-#     
-#         inp = self.container.inputData
-#         par = self.container.controlParameters
-#         out = self.container.outputData
-# 
-#         import gemmi
-# 
-#         inputFile = inp.XYZIN.fullPath.__str__()
-#         outputFile = out.XYZOUT.fullPath.__str__()
-# 
-#         st = gemmi.read_structure(inputFile)
-# 
-#         if par.BTREATMENT.isSet() :
-#             if str( par.BTREATMENT ) == 'a' :
-#                 self.alphaFoldAutoSet(st)
-#             elif str( par.BTREATMENT ) == 'r' :
-#                self.rosettaFoldAutoSet(st)
-#             elif str( par.BTREATMENT ) == 'f' :
-#                 for model in st:
-#                     for cra in model.all():
-#                         cra.atom.b_iso = par.BFACTOR_STATIC
-#             else :
-#                raise Exception()
-#         else:
-#            raise Exception()
-# 
-# #        if par.AUTOSETALPHAFOLD:
-# #            self.alphaFoldAutoSet(st)
-# #        elif par.AUTOSETROSETTAFOLD:
-# #            self.rosettaFoldAutoSet(st)
-# #        else:
-# #            for model in st:
-# #                for cra in model.all():
-# #                    cra.atom.b_iso = par.BFACTOR_STATIC
-# 
-#         st.write_pdb(outputFile)
-# 
-#     def processOutputFiles(self):
-#         import os
-#         status = CPluginScript.FAILED
-#         if os.path.exists(self.container.outputData.XYZOUT.__str__()): status = CPluginScript.SUCCEEDED
-#         print('editbfac.handleFinish',self.container.outputData.XYZOUT, os.path.exists(self.container.outputData.XYZOUT.__str__()))
-#         # Create a trivial xml output file
-#         from core import CCP4File
-#         from lxml import etree
-#         root = ET.Element('editbfac')
-# 
-#         self.container.outputData.XYZOUT.subType = 1
-# 
-#         f = CCP4File.CXmlDataFile(fullPath=self.makeFileName('PROGRAMXML'))
-#         f.saveFile(root)
-#         return status
-#===============================================================================
-

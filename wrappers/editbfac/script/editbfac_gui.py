@@ -31,7 +31,7 @@ class editbfac_gui(CCP4TaskWidget.CTaskWidget):
         self.createLine(['subtitle', 'Options'])
         self.openSubFrame(frame=[True])
         self.createLine(['advice', 'Select B-factor treatment option - it is important this is set correctly' ])
-        self.setMenuText('BTREATMENT', {'lddt': 'AlphaFold model - convert pLDDT scores to B-factors',
+        self.setMenuText('BTREATMENT', {'plddt': 'AlphaFold model - convert pLDDT scores to B-factors',
                                         'rmsd': 'RoseTTAFold model - convert rmsd estimates to B-factors',
                                         'b_value': 'Model is already using B-factors, rather than lddt or rmsd values' })
         self.createLine(['label', '         ', 'widget', '-guiMode', 'multiLineRadio', 'BTREATMENT']) 
