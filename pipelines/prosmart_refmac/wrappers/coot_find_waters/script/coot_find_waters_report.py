@@ -8,6 +8,6 @@ class coot_find_waters_report(Report):
     RUNNING = False
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):
         Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo,**kw)
-        watersFoundPath = './/coot_find_waters/WatersFound'
+        watersFoundPath = './/WatersFound'
         watersFoundString = xmlnode.findall(watersFoundPath)[0].text
         self.addText(text='Number of waters found: ' + watersFoundString)
