@@ -37,7 +37,7 @@ class sheetbend_report(Report):
         parent.append( "<p>Note: R factors and free R factors are only comparable for cycles where the resolution is the same.</p>" )
 
         tableDiv = parent.addDiv(style="float:left;border:0px;")
-        table = tableDiv.addTable(select=".//SheetbendResult", transpose=False, id='cycles') 
+        table = tableDiv.addTable(select=".", transpose=False, id='cycles') 
         try:
           for title,select,expr in [[ "Cycle" , "Cycles/Cycle/Number", "x" ],
                                     [ "Resolution" , "Cycles/Cycle/Resolution", "x" ],
