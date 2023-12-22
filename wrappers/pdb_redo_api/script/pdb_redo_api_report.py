@@ -22,10 +22,11 @@ class pdb_redo_api_report(Report):
             jobDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId = jobId)
             shutil.copyfile(os.path.join(os.path.dirname(__file__),"test-page.html"),os.path.join(jobDirectory,self.xmlnode.findall('PDB_REDO_RESULTS_DIR')[0].text,"test-page.html"))
 
+
             pdbredourl = (
-                "/database/?getProjectJobFile?projectId="
+                "/database/getProjectJobFileName?projectId="
                 + projectid
-                + "?fileName="+os.path.join(self.xmlnode.findall('PDB_REDO_RESULTS_DIR')[0].text,"test-page.html")+"?jobNumber="
+                + "&fileName="+os.path.join(self.xmlnode.findall('PDB_REDO_RESULTS_DIR')[0].text,"test-page.html")+"&jobNumber="
                 + jobNumber
             )
 
