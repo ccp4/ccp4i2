@@ -20,8 +20,17 @@ class pdb_redo_api_report(Report):
         #FIXME - Need to copy test-page.html into job directory.
 
             jobDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId = jobId)
-            shutil.copyfile(os.path.join(os.path.dirname(__file__),"test-page.html"),os.path.join(jobDirectory,self.xmlnode.findall('PDB_REDO_RESULTS_DIR')[0].text,"test-page.html"))
 
+            pdbdataurl = (
+                "/database/getProjectJobFileName?projectId="
+                + projectid +"&jobNumber=" + jobNumber
+                + "&fileName="+self.xmlnode.findall('PDB_REDO_RESULTS_DIR')[0].text
+            )
+
+            with open(os.path.join(os.path.dirname(__file__),"test-page.html")) as test_html_in:
+                contents = test_html_in.read().replace("XXXXXXXXXX_PDB_REDO_CCP4I2_URL_TEMPLATE_XXXXXXXXXX",pdbdataurl)
+                with open(os.path.join(jobDirectory,self.xmlnode.findall('PDB_REDO_RESULTS_DIR')[0].text,"test-page.html"),"w") as test_html_out:
+                    test_html_out.write(contents)
 
             pdbredourl = (
                 "/database/getProjectJobFileName?projectId="
