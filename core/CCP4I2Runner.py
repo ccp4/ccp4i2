@@ -682,7 +682,7 @@ class CI2Runner(object):
         theWrapper.doAsync=False
         theWrapper.process()
         rv = theWrapper.getErrorReport()
-        print(rv.report(ifStack=False))
+        print(rv.report(ifStack=True))
 
     def runWithDb(self, cOpenJob):
         from PySide2 import QtCore
