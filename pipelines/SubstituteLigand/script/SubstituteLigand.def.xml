@@ -22,6 +22,14 @@
                     <guiMode>multiLine</guiMode>
                 </qualifiers>
             </content>
+            <content id='TLC'>
+                <className>CString</className>
+                <qualifiers>
+                    <toolTip>Three-to-five letter Code to be given to the ligand generated</toolTip>
+                    <default>DRG</default>
+                    <guiLabel>Three-to-five letter Code to be given to the ligand generated</guiLabel>
+                </qualifiers>
+            </content>
             <content id='XYZIN'>
                 <className>CPdbDataFile</className>
                 <qualifiers>

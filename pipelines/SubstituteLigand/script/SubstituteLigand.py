@@ -56,7 +56,7 @@ class SubstituteLigand(CPluginScript):
             if self.container.inputData.SMILESIN.isSet():
                 self.lidiaAcedrgPlugin.container.inputData.SMILESIN=self.container.inputData.SMILESIN
             self.lidiaAcedrgPlugin.container.inputData.CONFORMERSFROM = 'RDKIT'
-            self.lidiaAcedrgPlugin.container.inputData.TLC='DRG'
+            self.lidiaAcedrgPlugin.container.inputData.TLC=self.container.inputData.TLC
             self.connectSignal(self.lidiaAcedrgPlugin,'finished',self.lidiaAcedrg_finished)
             self.lidiaAcedrgPlugin.process()
 
@@ -226,7 +226,7 @@ class SubstituteLigand(CPluginScript):
         self.cootPlugin.container.inputData.DICT = self.dictToUse
         #coot_stepped_refine,coot_fit_residues,coot_script_lines
         self.cootPlugin.container.controlParameters.SCRIPT = '''#Script to fit lignad into density
-monomerMolNo = coot.get_monomer('DRG')
+monomerMolNo = coot.get_monomer('LIG')
 coot.add_ligand_clear_ligands()
 coot.set_ligand_search_protein_molecule(MolHandle_1)
 coot.set_ligand_search_map_molecule(MapHandle_1)
