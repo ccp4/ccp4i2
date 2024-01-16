@@ -1357,9 +1357,14 @@ class Report( Container ):
             ns = u'{%s}' % namespace
             nsl = len(ns)
             for elem in doc.iter():
+                to_pop = []
+                new_attrib = {}
                 for k,v in elem.attrib.items():
                     if type(k) is str and k.startswith(ns):
-                        elem.attrib[newname+":"+k[nsl:]] = elem.attrib.pop(k)
+                        new_attrib[newname+":"+k[nsl:]] = elem.attrib[k]
+                    else:
+                        new_attrib[k] = v
+                elem.attrib = new_attrib
                 if elem.tag.startswith(ns):
                     elem.tag = elem.tag[nsl:]
                     if elem.tag == toplevel:
