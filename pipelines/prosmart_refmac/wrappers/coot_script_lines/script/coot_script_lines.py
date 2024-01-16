@@ -35,8 +35,8 @@ class coot_script_lines(CPluginScript):
     
         cootScriptPath = os.path.join(self.workDirectory,'script.py')
         
-        #if self.container.inputData.DICT.isSet():
-            #self.appendCommandLine(['--dictionary',self.container.inputData.DICT.fullPath.__str__()])
+        if self.container.inputData.DICT.isSet():
+            self.appendCommandLine(['--dictionary',self.container.inputData.DICT.fullPath.__str__()])
         self.appendCommandLine(['--no-state-script', '--no-graphics', '--script',cootScriptPath])
 
         cootScript = open(cootScriptPath,"w")
