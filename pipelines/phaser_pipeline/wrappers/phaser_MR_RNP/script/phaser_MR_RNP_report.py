@@ -62,7 +62,7 @@ class phaser_MR_RNP_report(Report):
         if parent is None: parent = self
         solutionNode = self.xmlnode.findall('PhaserCurrentBestSolution/Solution')[0]
         if solutionNode is not None:
-            if self.xmlnode.findall('PhaserCurrentBestSolution/spaceGroup')[0] is not None:
+            if len(self.xmlnode.findall('PhaserCurrentBestSolution/spaceGroup')) > 0:
                 parent.append('<span>Current best solution <br/> spacegroup %s </span>'%(self.xmlnode.findall('PhaserCurrentBestSolution/spaceGroup')[0].text))
             if len(solutionNode.findall('./overallLLG')) > 0:
                 parent.append('<span>Refined overall LLG: %s </span>'%(solutionNode.findall('./overallLLG')[0].text))
