@@ -1,7 +1,7 @@
 import sys
 import math
 
-from lxml import etree
+from xml.etree import ElementTree as ET
 
 import gemmi
 from  pipelines.import_merged.script.mmcifutils import *

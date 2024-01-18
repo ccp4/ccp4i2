@@ -22,6 +22,8 @@ class pairef_report(Report):
         if os.path.exists(pairef_html):
             projectid = self.jobInfo.get("projectid", None)
             jobNumber = self.jobInfo.get("jobnumber", None)
+            """
+#SJM 16/01/2024 - I don't know why this here is different from arcimboldo/pdb_redo/dials/etc. so using the line below this comeented code which is the same
             pairef_url = (
                 "/database/projectId/"
                 + projectid
@@ -29,6 +31,8 @@ class pairef_report(Report):
                 + jobNumber
                 + "/fileName/pairef_project/PAIREF_project.html"
             )
+            """
+            pairef_url = "/database/getProjectJobFile?projectId=" + projectid + "&fileName="+os.path.join("pairef_project","PAIREF_project.html")+"&jobNumber=" + jobNumber
             pairefrFolder = self.addFold(label="pairef report", initiallyOpen=True)
             pairefrFolder.append(
                 '<span style="font-size:110%">Click on the '
@@ -37,6 +41,9 @@ class pairef_report(Report):
             if not jobStatus in ["Running", "Running remotely"]:
                 pairefrFolder.append('<a href="{0}">Open Results</a>'.format(pairef_url))
             else:
+                if sys.platform == "win32":
+                    import pathlib
+                    pairef_html = pathlib.Path(pairef_html).as_uri()
                 pairefrFolder.append('<a href="{0}">Open Results</a>'.format(pairef_html))
         else:
             self.append("The html report is not ready yet")
