@@ -2903,9 +2903,9 @@ class Graph(ReportClass):
       #print('addPimpleData',attr,xmlnode.get(attr))
       self.pimpleData.set(attr,xmlnode.get(attr))
     
-  def addData(self,xmldata=None,title=None,select=None,expr=None,data=[]):  
+  def addData(self,xmldata=None,title=None,select=None,expr=None,data=None):  
     colvals = []
-    if len(data)>0:
+    if data is not None:
       """
       print("##################################################")
       print("Have some data",title)
