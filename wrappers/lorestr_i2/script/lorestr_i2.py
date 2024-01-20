@@ -300,17 +300,17 @@ class lorestr_i2(CPluginScript):
            xml_validation = ET.SubElement(self.xmlroot,"Validation")
            print(xml_validation)
 
-           xml_validation.append(validateXML.findall(",//Validate_geometry_CCP4i2/B_averages")[0])
+           xml_validation.append(validateXML.findall("./B_averages")[0])
 
-           print(validateXML.findall(".//Validate_geometry_CCP4i2/B_averages")[0])
+           print(validateXML.findall("./B_averages")[0])
 
-           xml_validation.append(validateXML.findall(".//Validate_geometry_CCP4i2/Ramachandran_maps")[0])
+           xml_validation.append(validateXML.findall("./Ramachandran_maps")[0])
 
-           print(validateXML.findall(".//Validate_geometry_CCP4i2/Ramachandran_maps")[0])
+           print(validateXML.findall("./Ramachandran_maps")[0])
 
-           xml_validation.append(validateXML.findall(".//Validate_geometry_CCP4i2/Molprobity")[0])
+           xml_validation.append(validateXML.findall("./Molprobity")[0])
 
-           print(validateXML.findall(".//Validate_geometry_CCP4i2/Molprobity")[0])
+           print(validateXML.findall("./Molprobity")[0])
 
            self.flushXML()
         except Exception as err:

@@ -715,15 +715,15 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                 validateXMLPath = self.validate.makeFileName('PROGRAMXML')
                 validateXML = CCP4Utils.openFileToEtree(validateXMLPath)
                 xml_validation = ET.SubElement(self.xmlroot,"Validation")
-                xml_validation.append(validateXML.findall(".//Validate_geometry_CCP4i2/Model_info")[0]) 
+                xml_validation.append(validateXML.findall("./Model_info")[0]) 
                 if self.validate.container.controlParameters.DO_IRIS:
-                   xml_validation.append(validateXML.findall(".//Validate_geometry_CCP4i2/Iris")[0]) 
+                   xml_validation.append(validateXML.findall("./Iris")[0]) 
                 if self.validate.container.controlParameters.DO_BFACT:
-                   xml_validation.append(validateXML.findall(".//Validate_geometry_CCP4i2/B_factors")[0])
+                   xml_validation.append(validateXML.findall("./B_factors")[0])
                 if self.validate.container.controlParameters.DO_RAMA:
-                   xml_validation.append(validateXML.findall(".//Validate_geometry_CCP4i2/Ramachandran")[0])
+                   xml_validation.append(validateXML.findall("./Ramachandran")[0])
                 if self.validate.container.controlParameters.DO_MOLPROBITY:
-                   xml_validation.append(validateXML.findall(".//Validate_geometry_CCP4i2/Molprobity")[0])
+                   xml_validation.append(validateXML.findall("./Molprobity")[0])
                    try:
                        from . import prosmart_refmac_verdict
                        programxml = self.makeFileName('PROGRAMXML')                  #"/Users/stuart/CCP4I2_PROJECTS/5_7_2021/CCP4_JOBS/job_19/program.xml"
