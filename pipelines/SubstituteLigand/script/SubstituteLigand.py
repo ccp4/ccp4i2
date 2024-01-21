@@ -96,6 +96,7 @@ class SubstituteLigand(CPluginScript):
         self.aimlessPlugin.container.controlParameters.SCALING_PROTOCOL.set(
             'DEFAULT')
         self.aimlessPlugin.container.controlParameters.ONLYMERGE.set(False)
+        self.aimlessPlugin.container.controlParameters.AUTOCUTOFF.set(False)
         self.aimlessPlugin.container.controlParameters.REFERENCE_DATASET.set(
             'XYZ')
         self.aimlessPlugin.container.inputData.copyData(
@@ -117,39 +118,26 @@ class SubstituteLigand(CPluginScript):
             self.aimlessPlugin.makeFileName('PROGRAMXML'))
         self.xmlroot.append(pluginRoot)
         # Here check on the resolution estimate, and cut dataset back accordingly
-        if self.aimlessCycle == 0:
-            datasetresultnodes = pluginRoot.findall(".//Result/Dataset")
-            if len(datasetresultnodes) == 0:
-                self.appendErrorReport(201, 'No result nodes found')
-                self.reportStatus(CPluginScript.FAILED)
-            datasetresultnode = datasetresultnodes[0]
-            dataresonodes = datasetresultnode.findall("ResolutionHigh/Overall")
-            reslimitnodes = datasetresultnode.findall(
-                "ResolutionLimitEstimate")
-            if len(dataresonodes) < 1 or len(reslimitnodes) < 1:
-                self.appendErrorReport(
-                    201, 'Unable to identify resolution estimate limits')
-                self.reportStatus(CPluginScript.FAILED)
-            datareso = datasetresultnode.findall(
-                "ResolutionHigh/Overall")[0].text
-            reslimitnodes = datasetresultnode.findall(
-                "ResolutionLimitEstimate")
-            if reslimitnodes[0].get("type") == "CChalf":
-                reslimit = reslimitnodes[0].findall(
-                    "MaximumResolution")[0].text
-            else:
-                self.appendErrorReport(
-                    201, 'Reso detection failed (first estimate not on CCHalf)')
-                self.reportStatus(CPluginScript.FAILED)
-            if float(reslimit) == float(datareso):
-                self.aimlessCyclesFinished()
-            else:
-                self.aimlessCycle = 1
-                self.container.controlParameters.RESOLUTION_RANGE.end = float(
-                    reslimit)
-                self.aimlessPipe()
-        else:
-            self.aimlessCyclesFinished()
+        # Amend in light of AUTOCUTOFF in Aimless MN JAN-2024
+
+        datasetresultnodes = pluginRoot.findall(".//Result/Dataset")
+        if len(datasetresultnodes) == 0:
+            self.appendErrorReport(201, 'No result nodes found')
+            self.reportStatus(CPluginScript.FAILED)
+        datasetresultnode = datasetresultnodes[0]
+        dataresonodes = datasetresultnode.findall("ResolutionHigh/Overall")
+        reslimitnodes = datasetresultnode.findall(
+            "ResolutionLimitEstimate")
+        if len(dataresonodes) < 1 or len(reslimitnodes) < 1:
+            self.appendErrorReport(
+                201, 'Unable to identify resolution estimate limits')
+            self.reportStatus(CPluginScript.FAILED)
+        datareso = dataresonodes[0].text
+        reslimitnode = reslimitnodes[0]
+        reslimit = reslimitnode.findall( "MaximumResolution")[0].text
+        self.container.controlParameters.RESOLUTION_RANGE.end = float(
+            reslimit)
+        self.aimlessCyclesFinished()
 
     def aimlessCyclesFinished(self):
         self.flushXML()
@@ -261,6 +249,16 @@ class SubstituteLigand(CPluginScript):
         fphiinList[-1].set(self.mapToUse)
         self.cootPlugin.container.inputData.DICT = self.dictToUse
         # coot_stepped_refine,coot_fit_residues,coot_script_lines
+
+        # The following bit stopped working
+        '''
+        #Check on ncs
+print('Off to check for ncs equivs')
+equivs = coot.ncs_chain_ids(0)
+print("equivs", equivs)
+if equivs is not None and len(equivs)>0:
+    nToCopy = min(len(ligandsFound),len(equivs[0]))
+'''
         self.cootPlugin.container.controlParameters.SCRIPT = f'''#Script to fit lignad into density
 monomerMolNo = coot.get_monomer('{self.container.inputData.TLC}')
 coot.add_ligand_clear_ligands()
@@ -270,17 +268,15 @@ coot.add_ligand_search_wiggly_ligand_molecule(monomerMolNo)
 #Execute search
 nToCopy = 0
 ligandsFound=coot.execute_ligand_search()
-if ligandsFound is not False:
+print("ligandsFound", ligandsFound)
+if ligandsFound is not None and ligandsFound is not False:
     nToCopy = len(ligandsFound)
-#Check on ncs
-equivs = coot.ncs_chain_ids(0)
-if equivs is not False and len(equivs)>0:
-    nToCopy = min(len(ligandsFound),len(equivs[0]))
+    print("nToCopy", nToCopy)
 if nToCopy > 0:
     ligandsToCopy = ligandsFound[0:nToCopy]
     coot.merge_molecules(ligandsToCopy,0)
 
-coot.write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))'''
+coot.write_cif_file(MolHandle_1,os.path.join(dropDir,"output.cif"))'''
         self.connectSignal(self.cootPlugin, 'finished',
                            self.cootPlugin_finished)
         self.cootPlugin.process()
