@@ -32,10 +32,14 @@ class SubstituteLigand_gui(CTaskWidget):
         folder = self.openFolder(folderFunction='inputData',title='Input Data')
         self.createLine( [ 'subtitle', 'Ligand geometry' ])
         self.createLine(['label','Format in which geometry will be specified: ','stretch','widget','LIGANDAS'])
-        self.container.controlParameters.OBSAS.dataChanged.connect(self.LIGANDASChanged)
+        self.container.controlParameters.LIGANDAS.dataChanged.connect(self.LIGANDASChanged)
         
         self.openSubFrame(frame=True,toggle=['LIGANDAS','open',['MOL']])
         self.createLine(['widget','MOLIN'])
+        self.closeSubFrame()
+
+        self.openSubFrame(frame=True,toggleFunction=[self.anomalousAvailable,['F_SIGF_IN', 'OBSAS']])
+        self.createLine(['label','Make anomalous map (if input data allows)','widget','MAKEANOM'])
         self.closeSubFrame()
 
         self.openSubFrame(frame=True,toggle=['LIGANDAS','open',['DICT']])
@@ -73,6 +77,24 @@ class SubstituteLigand_gui(CTaskWidget):
         self.closeSubFrame()
 
         self.OBSASChanged()
+
+    def anomalousAvailable(self):
+        print('In anomalous available')
+        if not self.isEditable():
+            return True
+        if self.container.controlParameters.OBSAS.__str__() == 'UNMERGED':
+            return True
+        if not self.container.inputData.F_SIGF_IN.isSet(): return False
+        #Peak to see if we can make F+/F-
+        self.container.inputData.F_SIGF_IN.setContentFlag(reset=True)
+        canConvertString, toType = self.container.inputData.F_SIGF_IN.conversion(2)
+        print('Can convert ?',self.container.inputData.F_SIGF_IN.contentFlag, canConvertString, toType)
+        self.validate()
+        if canConvertString == 'no':
+            self.container.controlParameters.MAKEANOM = False
+            return False
+        else:
+            return True
 
     @QtCore.Slot()
     def OBSASChanged(self):

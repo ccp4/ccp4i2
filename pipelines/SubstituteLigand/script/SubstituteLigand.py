@@ -6,6 +6,7 @@ from core import CCP4Utils
 # from lxml import etree
 from xml.etree import ElementTree as ET
 import os
+import sys
 import shutil
 
 
@@ -188,12 +189,12 @@ class SubstituteLigand(CPluginScript):
                 self.harvestFile(
                     self.rnpPlugin.container.outputData.F_SIGF_OUT, self.container.outputData.F_SIGF_OUT)
                 self.obsToUse = self.container.outputData.F_SIGF_OUT
+            self.coordinatesForCoot = self.rnpPlugin.container.outputData.XYZOUT_REFMAC
             if self.container.controlParameters.LIGANDAS.__str__() == 'NONE':
                 self.harvestFile(
                     self.rnpPlugin.container.outputData.XYZOUT[0], self.container.outputData.XYZOUT)
                 self.reportStatus(CPluginScript.SUCCEEDED)
             else:
-                self.coordinatesForCoot = self.rnpPlugin.container.outputData.XYZOUT_REFMAC
                 self.cootAddLigand()
         except:
             self.appendErrorReport(201, 'Failed in rnpplugin finished')
@@ -228,12 +229,12 @@ class SubstituteLigand(CPluginScript):
             if os.path.isfile(self.i2Dimple.container.outputData.FREERFLAG_OUT.fullPath.__str__()):
                 self.harvestFile(self.i2Dimple.container.outputData.FREERFLAG_OUT,
                                  self.container.outputData.FREERFLAG_OUT)
+            self.coordinatesForCoot = self.i2Dimple.container.outputData.XYZOUT
             if self.container.controlParameters.LIGANDAS.__str__() == 'NONE':
                 self.harvestFile(
                     self.i2Dimple.container.outputData.XYZOUT, self.container.outputData.XYZOUT)
                 self.reportStatus(CPluginScript.SUCCEEDED)
             else:
-                self.coordinatesForCoot = self.i2Dimple.container.outputData.XYZOUT
                 self.cootAddLigand()
         except:
             self.appendErrorReport(201, 'Failed in i2Dimple finished')
@@ -283,10 +284,8 @@ coot.write_cif_file(MolHandle_1,os.path.join(dropDir,"output.cif"))'''
 
     @QtCore.Slot(dict)
     def cootPlugin_finished(self, status):
-        print("\n\n1", status)
-        if status.get('finishStatus') == CPluginScript.FAILED:
+        if status.get('finishStatus', CPluginScript.FAILED) == CPluginScript.FAILED:
             self.reportStatus(status)
-        print("\n\n1", "beyond")
         if len(self.cootPlugin.container.outputData.XYZOUT) > 0:
             self.harvestFile(
                 self.cootPlugin.container.outputData.XYZOUT[0], self.container.outputData.XYZOUT)
@@ -296,12 +295,7 @@ coot.write_cif_file(MolHandle_1,os.path.join(dropDir,"output.cif"))'''
         # Substitute the composition section of REFMAC output to include new monomers
         # Perform analysis of output coordinate file composition
         if os.path.isfile(str(self.container.outputData.XYZOUT.fullPath)):
-            from core.CCP4ModelData import CPdbData
-            aCPdbData = CPdbData()
-            aCPdbData.loadFile(self.container.outputData.XYZOUT.fullPath)
-            # print 'aCPdbData',aCPdbData
-            # print 'aCPdbData.chains',aCPdbData.composition.chains
-            # print 'aCPdbData.monomers',aCPdbData.composition.monomers
+            aCPdbData = self.container.outputData.XYZOUT.getFileContent()
             modelCompositionNode = None
             modelCompositionNodes = self.xmlroot.findall('.//ModelComposition')
             if len(modelCompositionNodes) > 0:
@@ -315,6 +309,36 @@ coot.write_cif_file(MolHandle_1,os.path.join(dropDir,"output.cif"))'''
                 for monomer in aCPdbData.composition.monomers:
                     monomerNode = ET.SubElement(
                         modelCompositionNode, 'Monomer', id=monomer)
+                    
+        if self.container.inputData.MAKEANOM:
+            print('Make anom requested')
+            sys.stdout.flush()
+            self.obsToUse.setContentFlag(reset=True)
+            canConvertString, toType = self.obsToUse.conversion(2)
+            if canConvertString == 'no':
+                self.finishWithStatus(CPluginScript.SUCCEEDED)
+            else:
+                self.phaser_EP_LLG()
+        else:
+            self.finishWithStatus(CPluginScript.SUCCEEDED)
+
+    def phaser_EP_LLG(self):
+        self.phaser_EP_LLG_plugin = self.makePluginObject('phaser_EP_LLG')
+        self.phaser_EP_LLG_plugin.container.inputData.PARTIALMODELORMAP = 'MODEL'
+        self.phaser_EP_LLG_plugin.container.inputData.HAND = 'off'
+        self.phaser_EP_LLG_plugin.container.inputData.XYZO = False
+        self.phaser_EP_LLG_plugin.container.inputData.PURE_ANOMALOUS = True
+        self.phaser_EP_LLG_plugin.container.inputData.XYZIN_PARTIAL = self.coordinatesForCoot
+        self.phaser_EP_LLG_plugin.container.inputData.F_SIGF = self.obsToUse
+        self.phaser_EP_LLG_plugin.container.inputData.FREERFLAG = self.freerToUse
+        self.phaser_EP_LLG_plugin.container.inputData.COMP_BY = 'DEFAULT'
+        self.connectSignal(self.phaser_EP_LLG_plugin, 'finished', self.phaser_EP_LLG_finished)
+        self.phaser_EP_LLG_plugin.process()
+        self.finishWithStatus(CPluginScript.SUCCEEDED)
+
+    def phaser_EP_LLG_finished(self):
+        self.harvestFile(self.phaser_EP_LLG_plugin.container.outputData.LLGMAPOUT,
+                            self.container.outputData.ANOMFPHIOUT)        
         self.finishWithStatus(CPluginScript.SUCCEEDED)
 
     def harvestFile(self, pluginOutputItem, pipelineOutputItem):

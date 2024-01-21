@@ -86,6 +86,12 @@
                     <default>PHASER_RNP</default>
                 </qualifiers>
             </content>
+            <content id="MAKEANOM">
+                <className>CBoolean</className>
+                <qualifiers>
+                  <default>False</default>
+                </qualifiers>
+            </content>
             <content id="DICTIN">
                 <className>CDictDataFile</className>
                 <qualifiers>
@@ -126,6 +132,16 @@
                     <default>
                         <contentFlag>1</contentFlag>
                         <subType>1</subType>
+                    </default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="ANOMFPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <default>
+                        <contentFlag>1</contentFlag>
+                        <subType>3</subType>
                     </default>
                     <saveToDb>True</saveToDb>
                 </qualifiers>
