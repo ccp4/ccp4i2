@@ -8,6 +8,7 @@ from pipelines.phaser_pipeline.wrappers.phaser_MR.script import phaser_MR
 #from lxml import etree
 from xml.etree import ElementTree as ET
 from core import CCP4Utils
+import pathlib
 
 class EPAUTOCallbackObject(phaser_MR.CallbackObject):
     def __init__(self, xmlroot=None, xmlResponders = [],workDirectory=None):
@@ -121,7 +122,13 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
 
         if self.container.inputData.PARTIALMODELORMAP.__str__() == 'MODEL':
             if self.container.inputData.XYZIN_PARTIAL.isSet() and os.path.isfile(self.container.inputData.XYZIN_PARTIAL.fullPath.__str__()):
-                i.setPART_PDB(self.container.inputData.XYZIN_PARTIAL.fullPath.__str__())
+                if self.container.inputData.XYZIN_PARTIAL.isMMCIF():
+                    cifPath = pathlib.Path(self.container.inputData.XYZIN_PARTIAL.fullPath.__str__())
+                    pdbPath = cifPath.with_suffix('.pdb')
+                    self.container.inputData.XYZIN_PARTIAL.convertFormat('pdb', pdbPath.__str__())
+                    i.setPART_PDB(pdbPath.__str__())
+                else:
+                    i.setPART_PDB(self.container.inputData.XYZIN_PARTIAL.fullPath.__str__())
         elif self.container.inputData.PARTIALMODELORMAP.__str__() == 'MAP':
             if self.container.inputData.MAPCOEFF_PARTIAL.isSet() and os.path.isfile(self.container.inputData.MAPCOEFF_PARTIAL.fullPath.__str__()):
                 i.setPART_HKLI(self.container.inputData.MAPCOEFF_PARTIAL.fullPath.__str__())
