@@ -66,15 +66,18 @@ class coot_script_lines(CPluginScript):
           else: pass
             #print '\n\n ** Non-file :[' +str(i)+ ']'+str(DELFPHIIN.fullPath)
 
-        cootScript.write ("dropDir=r'"+self.dropDir+"'\n\n")
+        cootScript.write ("dropDir='"+self.dropDir+"'\n\n")
 
         if self.container.controlParameters.SCRIPT.isSet():
             #Here try to except and exit if script is faulty
             scriptLines = self.container.controlParameters.SCRIPT.__str__().split('\n')
             cootScript.write ('try:\n')
             for scriptLine in scriptLines:
-                cootScript.write('    '+scriptLine+'\n')
-            cootScript.write('except:\n    coot.coot_real_exit(0)\n')
+                cootScript.write(f'    {scriptLine}\n')
+            cootScript.write('except Exception as err:\n')
+            cootScript.write('    import traceback\n')
+            cootScript.write('    traceback.print_exc()\n')
+            cootScript.write('    coot.coot_real_exit(0)\n')
             cootScript.write ('\n')
           
         cootScript.write("coot.coot_real_exit(0)\n")
@@ -109,6 +112,23 @@ class coot_script_lines(CPluginScript):
                 shutil.copyfile(outputPDB, outputFilePath)
                 xyzoutList[-1].setFullPath(outputFilePath)
                 xyzoutList[-1].annotation=fname
+                iPDBOut += 1
+        except:
+            return CPluginScript.FAILED
+
+        try:
+            import os, glob, shutil
+            outList = glob.glob(os.path.join(self.dropDir,'*.cif'))
+            xyzoutList = self.container.outputData.XYZOUT
+            print(outList)
+            for outputPDB in outList:
+                fpath,fname = os.path.split(outputPDB)
+                xyzoutList.append(xyzoutList.makeItem())
+                outputFilePath = os.path.join(self.workDirectory,'XYZOUT_'+str(iPDBOut)+'-coordinates.cif')
+                shutil.copyfile(outputPDB, outputFilePath)
+                xyzoutList[-1].setFullPath(outputFilePath)
+                xyzoutList[-1].annotation=fname
+                xyzoutList[-1].contentFlag=2
                 iPDBOut += 1
         except:
             return CPluginScript.FAILED
