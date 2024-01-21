@@ -1271,7 +1271,9 @@ class aimless_report(Report):
         datasetnames.append(dataset.findall("[@name]")[0].attrib["name"])
         runnumbers.append(run.findall("number")[0].text)
         batchranges.append(run.findall("BatchRange")[0].text)
-        excludedbatches.append(run.findall("ExcludedBatches")[0].text)
+        ebNodes = run.findall("ExcludedBatches")
+        if len(ebNodes) > 0: 
+          excludedbatches.append([0].text)
         
     table2.addData(title="DatasetName", data=datasetnames)
     table2.addData(title="RunNumber", data=runnumbers)
