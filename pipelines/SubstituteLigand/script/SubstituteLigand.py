@@ -289,9 +289,11 @@ coot.write_cif_file(MolHandle_1,os.path.join(dropDir,"output.cif"))'''
         if len(self.cootPlugin.container.outputData.XYZOUT) > 0:
             self.harvestFile(
                 self.cootPlugin.container.outputData.XYZOUT[0], self.container.outputData.XYZOUT)
+            self.container.outputData.XYZOUT.annotation = 'Coords output from Coot'
         else:
             self.harvestFile(
                 self.cootPlugin.container.inputData.XYZIN[0], self.container.outputData.XYZOUT)
+            self.container.outputData.XYZOUT.annotation = 'Coords input to Coot'
         # Substitute the composition section of REFMAC output to include new monomers
         # Perform analysis of output coordinate file composition
         if os.path.isfile(str(self.container.outputData.XYZOUT.fullPath)):
@@ -319,8 +321,10 @@ coot.write_cif_file(MolHandle_1,os.path.join(dropDir,"output.cif"))'''
                 self.finishWithStatus(CPluginScript.SUCCEEDED)
             else:
                 self.phaser_EP_LLG()
+                return
         else:
             self.finishWithStatus(CPluginScript.SUCCEEDED)
+            return
 
     def phaser_EP_LLG(self):
         self.phaser_EP_LLG_plugin = self.makePluginObject('phaser_EP_LLG')
@@ -334,12 +338,14 @@ coot.write_cif_file(MolHandle_1,os.path.join(dropDir,"output.cif"))'''
         self.phaser_EP_LLG_plugin.container.inputData.COMP_BY = 'DEFAULT'
         self.connectSignal(self.phaser_EP_LLG_plugin, 'finished', self.phaser_EP_LLG_finished)
         self.phaser_EP_LLG_plugin.process()
-        self.finishWithStatus(CPluginScript.SUCCEEDED)
+        return
 
     def phaser_EP_LLG_finished(self):
         self.harvestFile(self.phaser_EP_LLG_plugin.container.outputData.LLGMAPOUT[0],
-                            self.container.outputData.ANOMFPHIOUT)        
+                            self.container.outputData.ANOMFPHIOUT)  
+        self.container.outputData.ANOMFPHIOUT.annotation = 'Anomalous map'      
         self.finishWithStatus(CPluginScript.SUCCEEDED)
+        return
 
     def harvestFile(self, pluginOutputItem, pipelineOutputItem):
         try:
