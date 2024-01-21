@@ -337,7 +337,7 @@ coot.write_cif_file(MolHandle_1,os.path.join(dropDir,"output.cif"))'''
         self.finishWithStatus(CPluginScript.SUCCEEDED)
 
     def phaser_EP_LLG_finished(self):
-        self.harvestFile(self.phaser_EP_LLG_plugin.container.outputData.LLGMAPOUT,
+        self.harvestFile(self.phaser_EP_LLG_plugin.container.outputData.LLGMAPOUT[0],
                             self.container.outputData.ANOMFPHIOUT)        
         self.finishWithStatus(CPluginScript.SUCCEEDED)
 
