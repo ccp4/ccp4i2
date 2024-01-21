@@ -236,10 +236,12 @@ def saveEtreeToFile(tree=None, fileName=None):
         raise CException(CUtils, 101, fileName)
     if DEVELOPER():  ##  KJS ** This is the cause of the coupling to CCP4Config.
         # No error trapping - we just want it to crash so we have to fix it!
+        ET.indent(tree, xml_declaration=True)
         text = ET.tostring(tree, xml_declaration=True)
         saveFile(fileName=fileName, text=text, overwrite=1)
     else:
         try:
+            ET.indent(tree, xml_declaration=True)
             text = ET.tostring(tree, xml_declaration=True)
         except:
             raise CException(CUtils, 102, fileName)

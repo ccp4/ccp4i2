@@ -162,6 +162,7 @@ class coot_script_lines(CPluginScript):
         
         try:
             aFile=open( self.makeFileName('PROGRAMXML'),'w')
+            ET.indent(self.xmlroot)
             CCP4Utils.writeXML(aFile,ET.tostring(self.xmlroot))
             aFile.close()
         except:
