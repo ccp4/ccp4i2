@@ -232,6 +232,7 @@ class CJobServer(QtCore.QObject):
         bodyEtree = ET.Element('serverParamsList')
         for jobId, sP in list(self._serverParams.items()):
             bodyEtree.append(sP.getEtree())
+        ET.indent(bodyEtree)
         fileObj.saveFile(bodyEtree)
 
     def defaultParamsFileName(self):

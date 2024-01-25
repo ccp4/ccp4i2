@@ -113,6 +113,7 @@
             "dr_mr_modelbuild_pipeline",
             "ccp4mg_general",
             "coot_gtk3_rebuild",
+            "coot_headless_script_lines",
             "moorhen_rebuild"
         ],
         "model_data_utility": [
@@ -746,6 +747,15 @@
                 "class": "wrappers.coot_gtk3_rebuild.script.coot_gtk3_rebuild_reportcoot_gtk3_rebuild_report",
                 "clsModule": "wrappers.coot_gtk3_rebuild.script.coot_gtk3_rebuild_report",
                 "clsName": "coot_gtk3_rebuild_report",
+                "modes": []
+            }
+        },
+        "coot_headless_script_lines": {
+            "0.0.0": {
+                "MAINTAINER": "Nobody",
+                "class": "wrappers.coot_headless_script_lines.script.coot_headless_script_lines_reportcoot_headless_script_lines_report",
+                "clsModule": "wrappers.coot_headless_script_lines.script.coot_headless_script_lines_report",
+                "clsName": "coot_headless_script_lines_report",
                 "modes": []
             }
         },
@@ -2426,6 +2436,19 @@
                 "subTasks": []
             }
         },
+        "coot_headless_script_lines": {
+            "0.0": {
+                "DESCRIPTION": null,
+                "INTERRUPTLABEL": null,
+                "MAINTAINER": "Nobody",
+                "TASKTITLE": "Execute arbitrary script code within Coot",
+                "class": "wrappers.coot_headless_script_lines.script.coot_headless_script_linescoot_headless_script_lines",
+                "clsModule": "wrappers.coot_headless_script_lines.script.coot_headless_script_lines",
+                "clsName": "coot_headless_script_lines",
+                "internal": false,
+                "subTasks": []
+            }
+        },
         "coot_rebuild": {
             "0.0": {
                 "DESCRIPTION": null,
@@ -4066,6 +4089,7 @@
         "coot_find_waters": "qticons/coot_find_waters.png",
         "coot_fit_residues": "qticons/ccp4.png",
         "coot_gtk3_rebuild": "qticons/ccp4.png",
+        "coot_headless_script_lines": "qticons/ccp4.png",
         "coot_rebuild": "qticons/coot_rebuild.png",
         "coot_rsr_morph": "qticons/coot_rsr_morph.png",
         "coot_script_lines": "qticons/coot_script_lines.png",
@@ -5076,6 +5100,20 @@
                 "clsName": "Ccoot_gtk3_rebuild",
                 "shortTitle": "COOT-Gtk3",
                 "taskName": "coot_gtk3_rebuild",
+                "taskVersion": 0.1
+            }
+        },
+        "coot_headless_script_lines": {
+            "0.0.0": {
+                "DESCRIPTION": "Use scripts to fit sidechains, perform stepped refinement, fill and fit... (non-interactive Coot)",
+                "MAINTAINER": "Nobody",
+                "RANK": null,
+                "TASKTITLE": "Scripted model building - Coot Headless",
+                "class": "wrappers.coot_headless_script_lines.script.coot_headless_script_lines_guiCcoot_headless_script_lines",
+                "clsModule": "wrappers.coot_headless_script_lines.script.coot_headless_script_lines_gui",
+                "clsName": "Ccoot_headless_script_lines",
+                "shortTitle": "Scripted COOT Headless",
+                "taskName": "coot_headless_script_lines",
                 "taskVersion": 0.1
             }
         },

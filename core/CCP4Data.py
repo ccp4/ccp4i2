@@ -896,6 +896,7 @@ class CData(CObject, CDataQualifiers):
         f.header.setCurrent()
         bodyEtree = self.getEtree()
         try:
+            ET.indent(bodyEtree)
             f.saveFile(bodyEtree=bodyEtree)
         except CException as e:
             errorReport.append(e)

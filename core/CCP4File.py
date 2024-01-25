@@ -501,7 +501,7 @@ class CDataFile(CCP4Data.CData):
             return CFilePath(path, qualifiers=self.__dict__['_value']['relPath'].qualifiers(custom=True))
         else:
             return CFilePath()
-
+        
     def makeFullPath(self, projectId=None, relPath=None, baseName=None, projectName=None):
         if projectId is None and projectName is not None:
             projectId = self.getProjectId(projectName=projectName)

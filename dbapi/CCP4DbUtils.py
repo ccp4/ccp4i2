@@ -424,6 +424,7 @@ class COpenJob(QtCore.QObject):
         if self.__dict__['info']['jobnumber'] is not None:
             f.header.jobNumber.set(self.__dict__['info']['jobnumber'])
         bodyEtree = self.__dict__['container'].getEtree()
+        ET.indent(bodyEtree)
         f.saveFile(bodyEtree=bodyEtree)
         return CErrorReport()
 

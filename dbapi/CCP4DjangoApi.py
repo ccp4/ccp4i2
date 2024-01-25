@@ -22,6 +22,7 @@ from core import CCP4ProjectsManager
 from core import CCP4Data
 from core import CCP4ModelData
 from core import CCP4PerformanceData
+from xml.etree import ElementTree as ET
 
 BASE_DIR = Path(__file__).resolve().parent
 sys.path.append(BASE_DIR.__str__())
@@ -958,7 +959,7 @@ def saveParamsForJob(theJobPlugin, theJob, mode='JOB_INPUT', excludeUnset=True):
     f.header.function.set('PARAMS')
     f.header.setCurrent()
     bodyEtree = theJobPlugin.container.getEtree(excludeUnset=excludeUnset)
-
+    ET.indent(bodyEtree)
     f.saveFile(bodyEtree=bodyEtree)
     # print(f'out of saveParams for {theJob.jobnumber} excludeUnset: {excludeUnset}')
     # sys.stdout.flush()

@@ -35,12 +35,11 @@ class coot_script_lines(CPluginScript):
     
         cootScriptPath = os.path.join(self.workDirectory,'script.py')
         
-        if self.container.inputData.DICT.isSet():
-            self.appendCommandLine(['--dictionary',self.container.inputData.DICT.fullPath.__str__()])
-        self.appendCommandLine(['--no-state-script', '--no-graphics', '--script',cootScriptPath])
+        self.appendCommandLine(['--no-graphics', '--script',cootScriptPath])
 
         cootScript = open(cootScriptPath,"w")
         cootScript.write('import coot\n')
+        cootScript.write('import os\n')
         
         i = 1
         for XYZIN in self.container.inputData.XYZIN:
@@ -65,6 +64,9 @@ class coot_script_lines(CPluginScript):
             i += 1
           else: pass
             #print '\n\n ** Non-file :[' +str(i)+ ']'+str(DELFPHIIN.fullPath)
+          
+        if self.container.inputData.DICT.isSet():
+            cootScript.write(f"coot.read_cif_dictionary('{self.container.inputData.DICT.fullPath.__str__()}')\n")
 
         cootScript.write ("dropDir='"+self.dropDir+"'\n\n")
 

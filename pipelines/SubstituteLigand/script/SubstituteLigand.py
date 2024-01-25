@@ -2,6 +2,7 @@ from __future__ import print_function
 
 from PySide2 import QtCore
 from core.CCP4PluginScript import CPluginScript
+from core.CCP4ModelData import CPdbDataFile
 from core import CCP4Utils
 # from lxml import etree
 from xml.etree import ElementTree as ET
@@ -47,7 +48,6 @@ class SubstituteLigand(CPluginScript):
             self.getWorkDirectory(), 'selected_atoms.pdb'))
         self.container.inputData.XYZIN.getSelectedAtomsPdbFile(
             selAtomsFilePath)
-        from core.CCP4ModelData import CPdbDataFile
         self.selAtomsFile = CPdbDataFile(selAtomsFilePath)
 
         if self.container.controlParameters.LIGANDAS.__str__() == 'DICT':
@@ -178,16 +178,20 @@ class SubstituteLigand(CPluginScript):
             self.flushXML()
             self.harvestFile(
                 self.rnpPlugin.container.outputData.MAPOUT_REFMAC, self.container.outputData.FPHIOUT)
+            self.container.outputData.FPHIOUT.annotation = 'Phaser RNP map'
             self.mapToUse = self.container.outputData.FPHIOUT
             self.harvestFile(self.rnpPlugin.container.outputData.DIFMAPOUT_REFMAC,
                              self.container.outputData.DIFFPHIOUT)
+            self.container.outputData.DIFFPHIOUT.annotation = 'Phaser RNP difference map'
             if os.path.isfile(str(self.rnpPlugin.container.outputData.FREERFLAG_OUT)):
                 self.harvestFile(self.rnpPlugin.container.outputData.FREERFLAG_OUT,
                                  self.container.outputData.FREERFLAG_OUT)
                 self.freerToUse = self.container.outputData.FREERFLAG_OUT
+                self.container.outputData.FREERFLAG_OUT.annotation = 'Phaser RNP reindexed FreeR'
             if os.path.isfile(str(self.rnpPlugin.container.outputData.F_SIGF_OUT)):
                 self.harvestFile(
                     self.rnpPlugin.container.outputData.F_SIGF_OUT, self.container.outputData.F_SIGF_OUT)
+                self.container.outputData.F_SIGF_OUT.annotation = 'Phaser RNP reindexed Obs'
                 self.obsToUse = self.container.outputData.F_SIGF_OUT
             self.coordinatesForCoot = self.rnpPlugin.container.outputData.XYZOUT_REFMAC
             if self.container.controlParameters.LIGANDAS.__str__() == 'NONE':
@@ -219,16 +223,20 @@ class SubstituteLigand(CPluginScript):
             self.flushXML()
             self.harvestFile(
                 self.i2Dimple.container.outputData.FPHIOUT, self.container.outputData.FPHIOUT)
+            self.container.outputData.FPHIOUT.annotation = 'Dimple map'
             self.mapToUse = self.container.outputData.FPHIOUT
             self.harvestFile(self.i2Dimple.container.outputData.DIFFPHIOUT,
                              self.container.outputData.DIFFPHIOUT)
+            self.container.outputData.DIFFPHIOUT.annotation = 'Dimple difference map'
             # Adopt the reindexed output of the dimple file if present
             if os.path.isfile(self.i2Dimple.container.outputData.F_SIGF_OUT.fullPath.__str__()):
                 self.harvestFile(
                     self.i2Dimple.container.outputData.F_SIGF_OUT, self.container.outputData.F_SIGF_OUT)
+                self.container.outputData.F_SIGF_OUT.annotation = 'Dimple reindexed Obs'
             if os.path.isfile(self.i2Dimple.container.outputData.FREERFLAG_OUT.fullPath.__str__()):
                 self.harvestFile(self.i2Dimple.container.outputData.FREERFLAG_OUT,
                                  self.container.outputData.FREERFLAG_OUT)
+                self.container.outputData.F_SIGF_OUT.annotation = 'Dimple reindexed FreeR'
             self.coordinatesForCoot = self.i2Dimple.container.outputData.XYZOUT
             if self.container.controlParameters.LIGANDAS.__str__() == 'NONE':
                 self.harvestFile(
@@ -319,6 +327,7 @@ coot.write_cif_file(MolHandle_1,os.path.join(dropDir,"output.cif"))'''
             canConvertString, toType = self.obsToUse.conversion(2)
             if canConvertString == 'no':
                 self.finishWithStatus(CPluginScript.SUCCEEDED)
+                return
             else:
                 self.phaser_EP_LLG()
                 return
@@ -349,10 +358,14 @@ coot.write_cif_file(MolHandle_1,os.path.join(dropDir,"output.cif"))'''
 
     def harvestFile(self, pluginOutputItem, pipelineOutputItem):
         try:
+            pipelineOutputItem.annotation = pluginOutputItem.annotation
+            pluginOutputItem.setContentFlag(reset=True)
+            pipelineOutputItem.contentFlag = pluginOutputItem.contentFlag
+            if isinstance(pluginOutputItem, CPdbDataFile):
+                if pluginOutputItem.isMMCIF():
+                    pipelineOutputItem.setFullPath(pipelineOutputItem.fullPath.__str__().replace('.pdb','.cif'))
             shutil.copyfile(str(pluginOutputItem.fullPath),
                             str(pipelineOutputItem.fullPath))
-            pipelineOutputItem.annotation = pluginOutputItem.annotation
-            pipelineOutputItem.contentFlag = pluginOutputItem.contentFlag
             # print '#harvestFile',pluginOutputItem.fullPath, pluginOutputItem.contentFlag
             pipelineOutputItem.subType = pluginOutputItem.subType
         except:

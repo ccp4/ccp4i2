@@ -314,6 +314,7 @@ class CContainer(CCP4Data.CData):
                 #bodyEtree.append(subConList[0])
                 bodyEtree = subConList[0]
         try:
+            ET.indent(bodyEtree)
             f.saveFile(bodyEtree=bodyEtree)
         except CException as e:
             errorReport.append(e)

@@ -169,6 +169,7 @@ class CConfig:
         f.header.function.set('PARAMS')
         f.header.pluginName = 'ccp4i2_config'
         f.header.pluginTitle = 'CCP4i2 Configuration'
+        ET.indent(root)
         f.saveFile(root)
 
     def loadVersion(self):
