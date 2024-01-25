@@ -7,11 +7,19 @@ from core.CCP4PluginScript import CPluginScript
 import pathlib
 import uuid
 import sys
+import os
 import importlib
 import gemmi
 
 import sys
-sys.path.insert(0,'/Applications/ccp4-9.0/coot_py3/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages')
+import platform
+if platform.platform().startswith('macOS'):
+    sys.path.insert(0,'/Applications/ccp4-9.0/coot_py3/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages')
+elif platform.platform().startswith('Linux'):
+    sys.path.insert(0,pathlib.Path(os.environ['CCP4']) / 'coot_py3' / 'lib' / 'python3.9' / 'site-packages')
+os.environ.setdefault('COOT_PREFIX', str(pathlib.Path(os.environ['CCP4']) / 'coot_py3'))
+os.environ.setdefault('COOT_DATA_DIR', str(pathlib.Path(os.environ['CCP4']) / 'coot_py3' / 'share' / 'coot'))
+
 import coot_headless_api as chapi
 
 class coot_headless_script_lines(CPluginScript):
