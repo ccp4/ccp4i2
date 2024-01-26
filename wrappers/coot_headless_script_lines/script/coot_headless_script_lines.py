@@ -16,7 +16,7 @@ import platform
 if platform.platform().startswith('macOS'):
     sys.path.insert(0,'/Applications/ccp4-9.0/coot_py3/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages')
 elif platform.platform().startswith('Linux'):
-    sys.path.insert(0,pathlib.Path(os.environ['CCP4']) / 'coot_py3' / 'lib' / 'python3.9' / 'site-packages')
+    sys.path.insert(0,str(pathlib.Path(os.environ['CCP4']) / 'coot_py3' / 'lib' / 'python3.9' / 'site-packages'))
 os.environ.setdefault('COOT_PREFIX', str(pathlib.Path(os.environ['CCP4']) / 'coot_py3'))
 os.environ.setdefault('COOT_DATA_DIR', str(pathlib.Path(os.environ['CCP4']) / 'coot_py3' / 'share' / 'coot'))
 
