@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <projectName></projectName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId></jobId>
+        <pluginName>moorhen_node_tools</pluginName>
+        <pluginVersion></pluginVersion>
+        <projectId></projectId>
+        <creationTime>09:40 23/Dec/12</creationTime>
+        <pluginTitle></pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="moorhen_node_tools">
+        <container id="inputData">
+            <content id="XYZIN">
+                <className>CList</className>
+                <qualifiers>
+		    <listMinLength>1</listMinLength>
+                </qualifiers>
+                <subItem>
+                    <className>CPdbDataFile</className>
+                    <qualifiers>
+                        <mustExist>True</mustExist>
+                        <allowUndefined>True</allowUndefined>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="FPHIIN">
+                <className>CList</className>
+                <qualifiers>
+                </qualifiers>
+                <subItem>
+                    <className>CMapCoeffsDataFile</className>
+                    <qualifiers>
+                        <requiredSubType>1</requiredSubType>
+                        <allowUndefined>True</allowUndefined>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="DELFPHIIN">
+                <className>CList</className>
+                <qualifiers>
+                </qualifiers>
+                <subItem>
+                    <className>CMapCoeffsDataFile</className>
+                    <qualifiers>
+                        <requiredSubType>2</requiredSubType>
+                        <allowUndefined>True</allowUndefined>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="MAPIN">
+                <className>CList</className>
+                <qualifiers>
+                </qualifiers>
+                <subItem>
+                    <className>CMapDataFile</className>
+                    <qualifiers>
+                        <requiredSubType>1</requiredSubType>
+                        <allowUndefined>True</allowUndefined>
+                    </qualifiers>
+                </subItem>
+            </content>            
+            <content id="DICTIN">
+                <className>CList</className>
+                <qualifiers>
+                </qualifiers>
+                <subItem>
+                    <className>CDictDataFile</className>
+                    <qualifiers>
+                        <allowUndefined>True</allowUndefined>
+                    </qualifiers>
+                </subItem>
+            </content>            
+        </container>
+        <container id="controlParameters">
+            <content id="STARTPOINT">
+                <className>CString</className>
+                <qualifiers>
+                <onlyEnumerators>True</onlyEnumerators>
+                <enumerators>FIT_LIGAND</enumerators>
+                <menuText>Fit ligand</menuText>
+                <label>Code snippet to start from</label>
+                <default>BLANK</default>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="XYZOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CPdbDataFile</className>
+                    <qualifiers/>
+                </subItem>
+            </content>
+            <content id="DICTOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CDictDataFile</className>
+                    <qualifiers/>
+                </subItem>
+            </content>
+            <content id="MAPOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CMapDataFile</className>
+                    <qualifiers/>
+                </subItem>
+            </content>
+            <content id="MAPCOEFFSOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CMapCoeffsDataFile</className>
+                    <qualifiers/>
+                </subItem>
+            </content>
+            <content id="DIFMAPCOEFFSOUT">
+                <className>CList</className>
+                <subItem>
+                    <className>CMapCoeffsDataFile</className>
+                    <qualifiers/>
+                </subItem>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>
