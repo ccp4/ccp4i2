@@ -88,7 +88,16 @@
                 <default>BLANK</default>
                 </qualifiers>
             </content>
-        </container>
+            <container id="FIT_LIGAND">
+                <content id="TLC">
+                    <className>CString</className>
+                    <qualifiers>
+                    <label>Three letter code</label>
+                    <default>LIG</default>
+                    </qualifiers>
+                </content>
+            </container>
+            </container>
         <container id="outputData">
             <content id="XYZOUT">
                 <className>CList</className>

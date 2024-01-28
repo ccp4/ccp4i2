@@ -114,6 +114,7 @@
             "ccp4mg_general",
             "coot_gtk3_rebuild",
             "coot_headless_script_lines",
+            "moorhen_node_tools",
             "moorhen_rebuild"
         ],
         "model_data_utility": [
@@ -1188,6 +1189,15 @@
                 "class": "wrappers.molrep_selfrot.script.molrep_selfrot_reportmolrep_selfrot_report",
                 "clsModule": "wrappers.molrep_selfrot.script.molrep_selfrot_report",
                 "clsName": "molrep_selfrot_report",
+                "modes": []
+            }
+        },
+        "moorhen_node_tools": {
+            "0.0.0": {
+                "MAINTAINER": "Nobody",
+                "class": "wrappers.moorhen_node_tools.script.moorhen_node_tools_reportmoorhen_node_tools_report",
+                "clsModule": "wrappers.moorhen_node_tools.script.moorhen_node_tools_report",
+                "clsName": "moorhen_node_tools_report",
                 "modes": []
             }
         },
@@ -3086,6 +3096,19 @@
                 "subTasks": []
             }
         },
+        "moorhen_node_tools": {
+            "0.0": {
+                "DESCRIPTION": null,
+                "INTERRUPTLABEL": null,
+                "MAINTAINER": "Nobody",
+                "TASKTITLE": "Access the coot toolbox through moorhen javascript",
+                "class": "wrappers.moorhen_node_tools.script.moorhen_node_toolsmoorhen_node_tools",
+                "clsModule": "wrappers.moorhen_node_tools.script.moorhen_node_tools",
+                "clsName": "moorhen_node_tools",
+                "internal": false,
+                "subTasks": []
+            }
+        },
         "moorhen_rebuild": {
             "0.0": {
                 "DESCRIPTION": null,
@@ -4146,6 +4169,7 @@
         "molrep_mr": "qticons/ccp4.png",
         "molrep_pipe": "qticons/molrep_pipe.png",
         "molrep_selfrot": "qticons/molrep_selfrot.png",
+        "moorhen_node_tools": "qticons/ccp4.png",
         "moorhen_rebuild": "qticons/ccp4.png",
         "morda_i2": "qticons/morda_i2.png",
         "mosflm": "qticons/ccp4.png",
@@ -5717,6 +5741,20 @@
                 "shortTitle": "Calculate self rotation function",
                 "taskName": "molrep_selfrot",
                 "taskVersion": "0.0.0"
+            }
+        },
+        "moorhen_node_tools": {
+            "0.0.0": {
+                "DESCRIPTION": "Use scripts to fit sidechains, perform stepped refinement, fill and fit... (non-interactive Moorhen)",
+                "MAINTAINER": "Nobody",
+                "RANK": null,
+                "TASKTITLE": "Scripted model building - Moorhen Headless",
+                "class": "wrappers.moorhen_node_tools.script.moorhen_node_tools_guiCmoorhen_node_tools",
+                "clsModule": "wrappers.moorhen_node_tools.script.moorhen_node_tools_gui",
+                "clsName": "Cmoorhen_node_tools",
+                "shortTitle": "Scripted Moorhen Headless",
+                "taskName": "moorhen_node_tools",
+                "taskVersion": 0.1
             }
         },
         "moorhen_rebuild": {

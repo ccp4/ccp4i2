@@ -27,6 +27,7 @@ class Cmoorhen_node_tools(CTaskWidget):
         self.openSubFrame( frame=[True] )
         self.createLine(['subtitle','Coot operation to perform'])
         self.createLine( [ 'widget', 'STARTPOINT'] )
+        self.createLine( [ 'widget', 'TLC'] )
         self.closeSubFrame()
         
         self.openSubFrame( frame=[True] )

@@ -28,6 +28,7 @@ import re
 import types
 import time
 import traceback
+import json
 
 from PySide2 import QtCore
 
@@ -424,7 +425,98 @@ class CDataQualifiers:
             else:
                 dobj = dobj.parent()
         return None
+    
+    def valueDict(self):
+        #This method recursively generates a pyhton dictionary corresponding to the contents of the object
+        if isinstance(self, dict):
+            result = {}
+            for key in self:
+                result[key] = self[key].valueDict()
+            return result
+        elif isinstance(self, list):
+            result = []
+            for value in self:
+                result.append(value.valueDict())
+            return result
+        elif not hasattr(self, '_value'):
+            print('No value on', self)
+            return {}
+        elif isinstance(self._value, str) or isinstance(self._value, CString):
+            return str(self._value)
+        elif isinstance(self._value, float) or isinstance(self._value, CFloat):
+            return float(self._value)
+        elif isinstance(self._value, bool) or isinstance(self._value, CBoolean):
+            return bool(self._value)
+        elif isinstance(self._value, int) or isinstance(self._value, CInt):
+            return int(self._value)
+        elif hasattr(self, '_value'):
+            if isinstance(self._value, dict):
+                result = {}
+                for key in self._value:
+                    result[key] = self._value[key].valueDict()
+                return result
+            elif isinstance(self._value, list):
+                result = []
+                for value in self._value:
+                    result.append(value.valueDict())
+                return result
+        return {}
+    
+    def jsonString(self):
+        #Uses the MyEncoder serialiser to turn any CData into JSON, including metadata
+        return json.dumps(self, cls=MyEncoder, indent=4, separators=(',', ': '), ensure_ascii=False)
 
+    def baseClass(self):
+        from core.CCP4File import CDataFile
+        from core.CCP4Container import CContainer
+        if isinstance(self, CDataFile):
+            result = 'CDataFile'
+        elif isinstance(self, CList):
+            result = 'CList'
+        elif isinstance(self, CContainer):
+            result = 'CContainer'
+        elif isinstance(self, CString):
+            result = 'CString'
+        elif isinstance(self, CInt):
+            result = 'CInt'
+        elif isinstance(self, CFloat):
+            result = 'CFloat'
+        elif isinstance(self, CBoolean):
+            result = 'CBoolean'
+        else:
+            result = 'CData'
+        return result
+
+#Here a json encoder that will recursively serialize a CData object, with value in _value, and all other metadata
+class MyEncoder(json.JSONEncoder):
+    def default(self, o):
+        from core.CCP4File import CDataFile
+        if isinstance(o, CData):
+            qualifiers = {}
+            qualifiers.update(type(o).QUALIFIERS)
+            qualifiers.update(o._qualifiers)
+            qualifiers = dict(
+                filter(lambda elem: elem[1] != NotImplemented, qualifiers.items()))
+            result = {
+                '_class': type(o).__name__,
+                '_value': o._value,
+                '_qualifiers': qualifiers,
+                '_CONTENTS_ORDER': o.__class__.CONTENTS_ORDER,
+                '_objectPath': o.objectPath()
+            }
+            result['_baseClass'] = o.baseClass()
+            if isinstance(o, CList):
+                result['_subItem'] = o.makeItem()
+            if isinstance(o, CDataFile):
+                result['_fullPath'] = str(o.getFullPath())
+            return result
+        try:
+            result = json.dumps(o)
+        except TypeError as exc:
+            # print(exc)
+            result = json.dumps(str(o))
+        return result
+    
 
 # A base class for all data classes
 class CData(CObject, CDataQualifiers):

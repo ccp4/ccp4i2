@@ -1,4 +1,3 @@
-const CootWorker = require('./node_modules/moorhen/baby-gru/wasm/moorhen.js')
 
 const fs = require('fs').promises
 const path = require('path')
@@ -12,45 +11,46 @@ const errorToConsole = (thing) => {
     console.error(thing)
 }
 
-const loadCoot = async () => createCootModule({
+const loadCoot = async (codeRoot) => createCootModule({
     print: printToConsole,
     printErr: errorToConsole,
-    locateFile: (file) => `./node_modules/moorhen/baby-gru/wasm/${file}`
+    locateFile: (file) => `${codeRoot}/node_modules/moorhen/baby-gru/wasm/${file}`
 })
 
 class MoleculesContainer {
-    constructor(cootModule) {
+    constructor(cootModule, PWD) {
         this.cootModule = cootModule
         this.molecules_container = new cootModule.molecules_container_js(false);
+        this.PWD = PWD
     }
     async read_pdb(filePath) {
         const fileName = filePath.split('/').at(-1)
-        const fileContent = await fs.readFile(fileName)
+        const fileContent = await fs.readFile(filePath)
         const tempFilePath = `./${fileName}`
         this.cootModule.FS_createDataFile(".", fileName, fileContent, true, true);
         const molNo = this.molecules_container.read_pdb(tempFilePath)
         this.cootModule.FS_unlink(tempFilePath)
-        return molNo
+        return Promise.resolve(molNo)
     }
 
     async read_mtz(filePath, FLabel, PhiLabel, dunno, isDiff, erm) {
         const fileName = filePath.split('/').at(-1)
-        const fileContent = await fs.readFile(fileName)
+        const fileContent = await fs.readFile(filePath)
         const tempFilePath = `./${fileName}`
         this.cootModule.FS_createDataFile(".", fileName, fileContent, true, true);
         const molNo = this.molecules_container.read_mtz(tempFilePath, FLabel, PhiLabel, dunno, isDiff, erm)
         this.cootModule.FS_unlink(tempFilePath)
-        return molNo
+        return Promise.resolve(molNo)
     }
 
     async import_cif_dictionary(filePath, iMol) {
         const fileName = filePath.split('/').at(-1)
-        const fileContent = await fs.readFile(fileName)
+        const fileContent = await fs.readFile(filePath)
         const tempFilePath = `./${fileName}`
         this.cootModule.FS_createDataFile(".", fileName, fileContent, true, true);
-        const molNo = this.molecules_container.import_cif_dictionary(tempFilePath, iMol)
+        const dictReadResult = this.molecules_container.import_cif_dictionary(tempFilePath, iMol)
         this.cootModule.FS_unlink(tempFilePath)
-        return molNo
+        return Promise.resolve(dictReadResult)
     }
 
     async writeCIFASCII(iMol, filePath) {
@@ -60,7 +60,7 @@ class MoleculesContainer {
         const fileContent = this.cootModule.FS.readFile(tempFilePath, { encoding: 'utf8' });
         const bytesWritten = fs.writeFile(filePath, fileContent)
         this.cootModule.FS_unlink(tempFilePath)
-        return bytesWritten
+        return Promise.resolve(bytesWritten)
     }
 
     interestingPlaceDataToJSArray(interestingPlaceData) {
@@ -146,26 +146,62 @@ class MoleculesContainer {
     fit_ligand_right_here(imol_protein, imol_map, imol_ligand, x, y, z, n_rmsd, use_conformers, n_conformers) {
         return this.molecules_container.fit_ligand_right_here(imol_protein, imol_map, imol_ligand, x, y, z, n_rmsd, use_conformers, n_conformers)
     }
+
+    fit_ligand(MolHandle_1, MapHandle_1, imol_lig, val1, val2, val3) {
+        return this.molecules_container.fit_ligand(MolHandle_1, MapHandle_1, imol_lig, val1, val2, val3)
+    }
 }
 
-const executeScript = async () => {
-    const cootModule = await loadCoot()
-    const molecules_container = new MoleculesContainer(cootModule)
-    const iMol = await molecules_container.read_pdb('./t2.pdb')
-    const iMap = await molecules_container.read_mtz('./3-prosmart_refmac.mtz', 'F', 'PHI', '', false, false)
-    molecules_container.set_imol_refinement_map(iMap)
-    const readDictResult = await molecules_container.import_cif_dictionary('./NCL-00025200.cif', iMol)
-    const iDictMol = molecules_container.get_monomer_from_dictionary('DRG', iMol, false)
-    const blobsResults = molecules_container.unmodelled_blobs(iMol, iMap)
-    const modelledBlobs = []
-    blobsResults.forEach(blobsResult=>{
-        const fitResult = molecules_container.fit_ligand_right_here(iMol, iMap, iDictMol, blobsResult.coordX,
-            blobsResult.coordY, blobsResult.coordZ
-            , 3, true, 1)
-        modelledBlobs.push(fitResult.get(0))
+const FIT_LIGAND = async (molecules_container, args) => {
+    try {
+        const { XYZIN_0, FPHIIN_0, DICTIN_0, TLC } = args
+        const iMol = await molecules_container.read_pdb(XYZIN_0)
+        const iMap = await molecules_container.read_mtz(FPHIIN_0, 'F', 'PHI', '', false, false)
+        molecules_container.set_imol_refinement_map(iMap)
+        const readDictResult = await molecules_container.import_cif_dictionary(DICTIN_0, iMol)
+        const iDictMol = molecules_container.get_monomer_from_dictionary(TLC, iMol, false)
+        const solutions = molecules_container.fit_ligand(iMol, iMap, iDictMol, 1.0, true, 30)
+        const nSolutions = solutions.size()
+        const solutionMols = []
+        for (let iSolution = 0; iSolution < nSolutions; iSolution++) {
+            solutionMols.push(`${solutions.get(iSolution).imol}`)
+        }
+        const mergeResult = molecules_container.merge_molecules(iMol, `${solutionMols.join(':')}`)
+        const outputFilePath = `${molecules_container.PWD}/result.pdb`
+        const writeResult = await molecules_container.writeCIFASCII(iMol, outputFilePath)
+        return Promise.resolve({ XYZOUT: [{ filePath: outputFilePath, annotation: "Model with ligands fit" }] })
+    }
+    catch (err) {
+        return Promise.reject()
+    }
+}
+
+const methods = {
+    FIT_LIGAND
+}
+
+const main = async () => {
+    containerContentJson = await fs.readFile(process.argv[2])
+    const cootModule = await loadCoot(process.argv[3])
+    const PWD = process.argv[4]
+
+    const molecules_container = new MoleculesContainer(cootModule, PWD)
+    containerContent = JSON.parse(containerContentJson)
+    args = {}
+    Object.keys(containerContent._value.inputData._value).forEach(inputType => {
+        const inputList = containerContent._value.inputData._value[inputType]._value
+        inputList.forEach((inputFile, iInputFile) => {
+            args[`${inputType}_${iInputFile}`] = inputFile._fullPath
+        })
     })
-    const mergeResult = molecules_container.merge_molecules(iMol, `${modelledBlobs.join(':')}`)
-    molecules_container.writeCIFASCII(iMol, `result.pdb`)
+    const methodName = containerContent._value.controlParameters._value.STARTPOINT._value
+    const methodParameters = containerContent._value.controlParameters._value[methodName]
+    Object.keys(methodParameters._value).forEach(parameterName => {
+        args[parameterName] = methodParameters._value[parameterName]._value
+    })
+    result = await methods[methodName](molecules_container, args)
+    const outputFilePath = `${PWD}/output.json`
+    const bytesWritten = fs.writeFile(outputFilePath, JSON.stringify(result))
 }
 
-console.log(process.arg)
+main()
