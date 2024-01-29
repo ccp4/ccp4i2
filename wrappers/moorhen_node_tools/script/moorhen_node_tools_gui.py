@@ -27,26 +27,29 @@ class Cmoorhen_node_tools(CTaskWidget):
         self.openSubFrame( frame=[True] )
         self.createLine(['subtitle','Coot operation to perform'])
         self.createLine( [ 'widget', 'STARTPOINT'] )
-        self.createLine( [ 'widget', 'TLC'] )
+        for scriptName in self.container.controlParameters.contents():
+            if scriptName != 'STARTPOINT':
+                self.openSubFrame(toggle=['STARTPOINT',[scriptName]])
+                self.autoGenerate(container=self.container.controlParameters.FIT_LIGAND, subFrame=False)
+                self.closeSubFrame()
         self.closeSubFrame()
         
         self.openSubFrame( frame=[True] )
         self.createLine( [ 'subtitle', 'Models:' ] )
         self.createLine( [ 'widget', 'XYZIN' ] )
+        self.createLine( [ 'subtitle', 'Restraint dictionaries:' ] )
+        self.createLine( [ 'widget', 'DICTIN' ] )
         self.createLine( [ 'subtitle', 'Density map coefficients:' ] )
         self.createLine( [ 'widget', 'FPHIIN' ] )
         self.createLine( [ 'subtitle', 'Difference density map coefficients:' ] )
         self.createLine( [ 'widget', 'DELFPHIIN' ] )
         self.createLine( [ 'subtitle', 'Density maps:' ] )
         self.createLine( [ 'widget', 'MAPIN' ] )
-        self.createLine( [ 'subtitle', 'Restraint dictionaries:' ] )
-        self.createLine( [ 'widget', 'DICTIN' ] )
         self.closeSubFrame()
         
     @QtCore.Slot()
     def handleStartpointChanged(self):
         if str(self.container.controlParameters.STARTPOINT) == 'BLANK':
-            self.container.controlParameters.SHOWSCRIPT=True
             self.container.controlParameters.SCRIPT='''
 import os
 import coot_headless_api as chapi

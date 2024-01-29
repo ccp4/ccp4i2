@@ -60,6 +60,7 @@ class moorhen_node_tools(CPluginScript):
                         newOutput = outputDataList[-1]
                         newOutput.setFullPath(outputFile['filePath'])
                         newOutput.annotation = outputFile['annotation']
+                        newOutput.setContentFlag(reset=True)
         return CPluginScript.SUCCEEDED
 
 

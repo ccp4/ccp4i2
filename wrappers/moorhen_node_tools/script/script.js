@@ -17,7 +17,7 @@ const loadCoot = async (codeRoot) => createCootModule({
     locateFile: (file) => `${codeRoot}/node_modules/moorhen/baby-gru/wasm/${file}`
 })
 
-class MoleculesContainer {
+class CootWrapper {
     constructor(cootModule, PWD) {
         this.cootModule = cootModule
         this.molecules_container = new cootModule.molecules_container_js(false);
@@ -152,23 +152,30 @@ class MoleculesContainer {
     }
 }
 
-const FIT_LIGAND = async (molecules_container, args) => {
+const FIT_LIGAND = async (cootWrapper, args) => {
     try {
-        const { XYZIN_0, FPHIIN_0, DICTIN_0, TLC } = args
-        const iMol = await molecules_container.read_pdb(XYZIN_0)
-        const iMap = await molecules_container.read_mtz(FPHIIN_0, 'F', 'PHI', '', false, false)
-        molecules_container.set_imol_refinement_map(iMap)
-        const readDictResult = await molecules_container.import_cif_dictionary(DICTIN_0, iMol)
-        const iDictMol = molecules_container.get_monomer_from_dictionary(TLC, iMol, false)
-        const solutions = molecules_container.fit_ligand(iMol, iMap, iDictMol, 1.0, true, 30)
+        const { XYZIN_0, FPHIIN_0, DICTIN_0, TLC, MAXCOPIES } = args
+
+        mc = cootWrapper.molecules_container
+        const iMol = await cootWrapper.read_pdb(XYZIN_0)
+        const iMap = await cootWrapper.read_mtz(FPHIIN_0, 'F', 'PHI', '', false, false)
+        mc.set_imol_refinement_map(iMap)
+        const readDictResult = await cootWrapper.import_cif_dictionary(DICTIN_0, iMol)
+        const iDictMol = mc.get_monomer_from_dictionary(TLC, iMol, false)
+        const solutions = mc.fit_ligand(iMol, iMap, iDictMol, 1.0, true, 30)
         const nSolutions = solutions.size()
+        console.log({nSolutions})
         const solutionMols = []
-        for (let iSolution = 0; iSolution < nSolutions; iSolution++) {
+        for (let iSolution = 0; iSolution < (nSolutions < MAXCOPIES ? nSolutions: MAXCOPIES); iSolution++) {
             solutionMols.push(`${solutions.get(iSolution).imol}`)
         }
-        const mergeResult = molecules_container.merge_molecules(iMol, `${solutionMols.join(':')}`)
-        const outputFilePath = `${molecules_container.PWD}/result.pdb`
-        const writeResult = await molecules_container.writeCIFASCII(iMol, outputFilePath)
+        console.log({solutionMols})
+        const mergeResult = mc.merge_molecules(iMol, `${solutionMols.join(':')}`)
+        console.log({mergeResult})
+        const outputFilePath = `${cootWrapper.PWD}/result.pdb`
+        console.log({outputFilePath})
+        const writeResult = await cootWrapper.writeCIFASCII(iMol, outputFilePath)
+        console.log({writeResult})
         return Promise.resolve({ XYZOUT: [{ filePath: outputFilePath, annotation: "Model with ligands fit" }] })
     }
     catch (err) {
@@ -185,7 +192,7 @@ const main = async () => {
     const cootModule = await loadCoot(process.argv[3])
     const PWD = process.argv[4]
 
-    const molecules_container = new MoleculesContainer(cootModule, PWD)
+    const cootWrapper = new CootWrapper(cootModule, PWD)
     containerContent = JSON.parse(containerContentJson)
     args = {}
     Object.keys(containerContent._value.inputData._value).forEach(inputType => {
@@ -199,7 +206,7 @@ const main = async () => {
     Object.keys(methodParameters._value).forEach(parameterName => {
         args[parameterName] = methodParameters._value[parameterName]._value
     })
-    result = await methods[methodName](molecules_container, args)
+    result = await methods[methodName](cootWrapper, args)
     const outputFilePath = `${PWD}/output.json`
     const bytesWritten = fs.writeFile(outputFilePath, JSON.stringify(result))
 }

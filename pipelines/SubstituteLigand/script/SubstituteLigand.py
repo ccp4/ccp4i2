@@ -249,43 +249,19 @@ class SubstituteLigand(CPluginScript):
             self.reportStatus(CPluginScript.FAILED)
 
     def cootAddLigand(self):
-        self.cootPlugin = self.makePluginObject('coot_script_lines')
+        self.cootPlugin = self.makePluginObject('moorhen_node_tools')
         xyzinList = self.cootPlugin.container.inputData.XYZIN
-        xyzinList.append(xyzinList.makeItem())
+        if len(xyzinList) == 0:
+            xyzinList.append(xyzinList.makeItem())
         xyzinList[-1].set(self.coordinatesForCoot)
         fphiinList = self.cootPlugin.container.inputData.FPHIIN
         fphiinList.append(fphiinList.makeItem())
         fphiinList[-1].set(self.mapToUse)
-        self.cootPlugin.container.inputData.DICT = self.dictToUse
-        # coot_stepped_refine,coot_fit_residues,coot_script_lines
-
-        # The following bit stopped working
-        '''
-        #Check on ncs
-print('Off to check for ncs equivs')
-equivs = coot.ncs_chain_ids(0)
-print("equivs", equivs)
-if equivs is not None and len(equivs)>0:
-    nToCopy = min(len(ligandsFound),len(equivs[0]))
-'''
-        self.cootPlugin.container.controlParameters.SCRIPT = f'''#Script to fit lignad into density
-monomerMolNo = coot.get_monomer('{self.container.inputData.TLC}')
-coot.add_ligand_clear_ligands()
-coot.set_ligand_search_protein_molecule(MolHandle_1)
-coot.set_ligand_search_map_molecule(MapHandle_1)
-coot.add_ligand_search_wiggly_ligand_molecule(monomerMolNo)
-#Execute search
-nToCopy = 0
-ligandsFound=coot.execute_ligand_search()
-print("ligandsFound", ligandsFound)
-if ligandsFound is not None and ligandsFound is not False:
-    nToCopy = len(ligandsFound)
-    print("nToCopy", nToCopy)
-if nToCopy > 0:
-    ligandsToCopy = ligandsFound[0:nToCopy]
-    coot.merge_molecules(ligandsToCopy,0)
-
-coot.write_cif_file(MolHandle_1,os.path.join(dropDir,"output.cif"))'''
+        dictinList = self.cootPlugin.container.inputData.DICTIN
+        dictinList.append(dictinList.makeItem())
+        dictinList[-1].set(self.dictToUse)
+        self.cootPlugin.container.controlParameters.STARTPOINT.set('FIT_LIGAND')
+        self.cootPlugin.container.controlParameters.FIT_LIGAND.TLC.set(self.container.inputData.TLC)
         self.connectSignal(self.cootPlugin, 'finished',
                            self.cootPlugin_finished)
         self.cootPlugin.process()

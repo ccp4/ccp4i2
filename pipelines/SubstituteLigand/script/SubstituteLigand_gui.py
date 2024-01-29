@@ -32,14 +32,12 @@ class SubstituteLigand_gui(CTaskWidget):
         folder = self.openFolder(folderFunction='inputData',title='Input Data')
         self.createLine( [ 'subtitle', 'Ligand geometry' ])
         self.createLine(['label','Format in which geometry will be specified: ','stretch','widget','LIGANDAS'])
+        self.createLine(['label','3-5 letter code for new ligand: ','stretch','widget','TLC'], 
+                        toggle=['LIGANDAS',['MOL','SMILES','SMILESIN']])
         self.container.controlParameters.LIGANDAS.dataChanged.connect(self.LIGANDASChanged)
         
         self.openSubFrame(frame=True,toggle=['LIGANDAS','open',['MOL']])
         self.createLine(['widget','MOLIN'])
-        self.closeSubFrame()
-
-        self.openSubFrame(frame=True,toggleFunction=[self.anomalousAvailable,['F_SIGF_IN', 'OBSAS']])
-        self.createLine(['label','Make anomalous map (if input data allows)','widget','MAKEANOM'])
         self.closeSubFrame()
 
         self.openSubFrame(frame=True,toggle=['LIGANDAS','open',['DICT']])
@@ -54,6 +52,10 @@ class SubstituteLigand_gui(CTaskWidget):
         self.createLine(['label','For rigid body refinement use','widget','PIPELINE'])
         self.closeSubFrame()
         
+        self.openSubFrame(frame=True,toggleFunction=[self.anomalousAvailable,['F_SIGF_IN', 'OBSAS']])
+        self.createLine(['label','Make anomalous map (if input data allows)','widget','MAKEANOM'])
+        self.closeSubFrame()
+
         self.createLine( [ 'subtitle', 'Starting PDB <i>In the appropriate spacegroup</i>.' ])
         self.createLine(['widget','-title','Parent structure','XYZIN'])
         self.getWidget('XYZIN').showAtomSelection()

@@ -92,12 +92,19 @@
                 <content id="TLC">
                     <className>CString</className>
                     <qualifiers>
-                    <label>Three letter code</label>
-                    <default>LIG</default>
+                        <guiLabel>Three letter code</guiLabel>
+                        <default>LIG</default>
                     </qualifiers>
                 </content>
-            </container>
-            </container>
+                <content id="MAXCOPIES">
+                    <className>CInt</className>
+                    <qualifiers>
+                        <guiLabel>Maximum number to place</guiLabel>
+                        <default>3</default>
+                    </qualifiers>
+                </content>
+            </container>    
+        </container>
         <container id="outputData">
             <content id="XYZOUT">
                 <className>CList</className>
