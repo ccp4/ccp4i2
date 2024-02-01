@@ -15,8 +15,8 @@ class pdbset_ui_report(Report):
             self.append("<p><b>The job is currently running.</b></p>")
 
         fold = self.addFold(label="Log file")
-        if len(self.xmlnode.findall(".//pdbset_ui/LogText"))>0:
-            xmlPath = './/pdbset_ui/LogText'
+        if len(self.xmlnode.findall(".//LogText"))>0:
+            xmlPath = './/LogText'
             xmlNodes = self.xmlnode.findall(xmlPath)
             for node in xmlNodes:
-               fold.addPre(text=base64.b64decode(node.text))
+               fold.addPre(text=base64.b64decode(node.text).decode("utf-8"))

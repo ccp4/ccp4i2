@@ -53,9 +53,9 @@ class pdbset_ui(CPluginScript):
         with open(self.makeFileName("PROGRAMXML"),"w") as programXMLFile:
             xmlStructure = ET.Element("pdbset_ui")
             logText = ET.SubElement(xmlStructure,"LogText")
-            with open(self.makeFileName("LOG"),"r") as logFile:
+            with open(self.makeFileName("LOG"),"rb") as logFile:
                 #logText.text = ET.CDATA(logFile.read())
-                logText.text = base64.b64encode(logFile.read())
+                logText.text = base64.b64encode(logFile.read()).decode("utf-8")
             CCP4Utils.writeXML(programXMLFile,ET.tostring(xmlStructure))
 
         return CPluginScript.SUCCEEDED
