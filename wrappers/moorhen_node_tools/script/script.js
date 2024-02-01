@@ -63,6 +63,31 @@ class CootWrapper {
         return Promise.resolve(bytesWritten)
     }
 
+    async writeGEMMICIFASCII(iMol, filePath) {
+        const fileName = filePath.split('/').at(-1)
+        const [fileRoot, fileExt] = fileName.split('.')
+        const tempPDBFilePath = `./${fileRoot}.pdb`
+        const tempCIFFilePath = `./${fileRoot}.cif`
+        this.molecules_container.writePDBASCII(iMol, tempPDBFilePath)
+        const gemmiStructure=this.cootModule.read_structure_file(tempPDBFilePath, cootModule.CoorFormat.Detect)
+        gemmiStructure.make_mmcif_document().write_file(tempCIFFilePath)
+        const fileContent = this.cootModule.FS.readFile(tempCIFFilePath, { encoding: 'utf8' });
+        const bytesWritten = fs.writeFile(filePath, fileContent)
+        this.cootModule.FS_unlink(tempCIFFilePath)
+        this.cootModule.FS_unlink(tempPDBFilePath)
+        return Promise.resolve(bytesWritten)
+    }
+
+    async writePDBASCII(iMol, filePath) {
+        const fileName = filePath.split('/').at(-1)
+        const tempFilePath = `./${fileName}`
+        this.molecules_container.writePDBASCII(iMol, tempFilePath)
+        const fileContent = this.cootModule.FS.readFile(tempFilePath, { encoding: 'utf8' });
+        const bytesWritten = fs.writeFile(filePath, fileContent)
+        this.cootModule.FS_unlink(tempFilePath)
+        return Promise.resolve(bytesWritten)
+    }
+
     interestingPlaceDataToJSArray(interestingPlaceData) {
         let returnResult = [];
 
@@ -164,18 +189,36 @@ const FIT_LIGAND = async (cootWrapper, args) => {
         const iDictMol = mc.get_monomer_from_dictionary(TLC, iMol, false)
         const solutions = mc.fit_ligand(iMol, iMap, iDictMol, 1.0, true, 30)
         const nSolutions = solutions.size()
-        console.log({nSolutions})
+        console.log({ nSolutions })
         const solutionMols = []
-        for (let iSolution = 0; iSolution < (nSolutions < MAXCOPIES ? nSolutions: MAXCOPIES); iSolution++) {
-            solutionMols.push(`${solutions.get(iSolution).imol}`)
+        for (let iSolution = 0; iSolution < nSolutions; iSolution++) {
+            solutionMols.push({ imol: solutions.get(iSolution).imol, cluster_idx: solutions.get(iSolution).cluster_idx })
         }
-        console.log({solutionMols})
-        const mergeResult = mc.merge_molecules(iMol, `${solutionMols.join(':')}`)
-        console.log({mergeResult})
+        console.log({ solutionMols })
+        const representedClusters = []
+        const filteredSolutions = []
+        solutionMols.forEach(solution => {
+            if (!representedClusters.includes(solution.cluster_idx)) {
+                representedClusters.push(solution.cluster_idx)
+                filteredSolutions.push(solution.imol)
+            }
+        })
+        console.log({ representedClusters })
+        console.log({ filteredSolutions })
+        let useSolutions
+        if (filteredSolutions.length > MAXCOPIES) {
+            useSolutions = filteredSolutions.slice(0, MAXCOPIES)
+        }
+        else {
+            useSolutions = filteredSolutions
+        }
+        console.log({useSolutions}, `${useSolutions.join(':')}`)
+        const mergeResult = mc.merge_molecules(iMol, `${useSolutions.join(':')}`)
+        console.log({ mergeResult })
         const outputFilePath = `${cootWrapper.PWD}/result.pdb`
-        console.log({outputFilePath})
-        const writeResult = await cootWrapper.writeCIFASCII(iMol, outputFilePath)
-        console.log({writeResult})
+        console.log({ outputFilePath })
+        const writeResult = await cootWrapper.writePDBASCII(iMol, outputFilePath)
+        console.log({ writeResult })
         return Promise.resolve({ XYZOUT: [{ filePath: outputFilePath, annotation: "Model with ligands fit" }] })
     }
     catch (err) {
