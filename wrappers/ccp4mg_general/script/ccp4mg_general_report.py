@@ -13,7 +13,7 @@ class ccp4mg_general_report(Report):
         Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo,**kw)
         self.addResults()
         self.addText(text='The CCP4MG session is finished.')
-        pdbsWrittenPath = './/ccp4mg_general/number_output_files'
+        pdbsWrittenPath = './/number_output_files'
         pdbsWrittenStringS = xmlnode.findall(pdbsWrittenPath)
         if len(pdbsWrittenStringS) > 0:
           pdbsWrittenString = xmlnode.findall(pdbsWrittenPath)[0].text
@@ -53,11 +53,10 @@ class ccp4mg_general_report(Report):
           for fname in self.jobInfo['filenames']["XYZOUT"]:
              baseSceneXML = CCP4Utils.openFileToEtree(baseScenePath)
              et = ET.ElementTree(baseSceneXML)
-             filename_element = et.findall(".//scene/data/MolData/filename")[0]
+             filename_element = et.findall(".//data/MolData/filename")[0]
              del filename_element.attrib["database"]
              filename_element.text = fname
              ET.indent(et)
-             print(ET.tostring(et))
              sceneFilePath = os.path.join(jobDirectory,'ccp4mg_general_scene'+str(i)+'.scene.xml')
              et.write(sceneFilePath)
              pic = pictureGallery.addPicture(sceneFile=sceneFilePath,label='Picture of structure '+str(i+1))
