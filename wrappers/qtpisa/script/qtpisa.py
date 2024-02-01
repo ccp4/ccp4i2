@@ -81,10 +81,10 @@ class qtpisa(CPluginScript):
                 f.close()
                 tree = ET.fromstring(s, parser)
 
-                pisa_type = tree.findall(".//pisa_file/type")[0].text
-                pisa_no = tree.findall(".//pisa_file/ser_no")[0].text
+                pisa_type = tree.findall(".//type")[0].text
+                pisa_no = tree.findall(".//ser_no")[0].text
 
-                pisa_file = tree.findall(".//pisa_file/file")[0].text
+                pisa_file = tree.findall(".//file")[0].text
 
                 outputFilePath = os.path.normpath(os.path.join(self.workDirectory,'XYZOUT_'+pisa_no+'-'+pisa_type+'-coordinates.pdb'))
 
@@ -114,7 +114,9 @@ class qtpisa(CPluginScript):
 
             self.appendErrorReport(202,'Data harvesting failed')
             
-        CCP4Utils.saveEtreeToFile(self.xmlroot,self.makeFileName('PROGRAMXML'))
+        with open(self.makeFileName("PROGRAMXML"),"w") as programXMLFile:
+            CCP4Utils.writeXML(programXMLFile,ET.tostring(self.xmlroot))
+
         if ( len(outList) ) > 0:
           return CPluginScript.SUCCEEDED
         else:
