@@ -53,11 +53,10 @@ class ccp4mg_edit_no_mrbump_report(Report):
           for fname in self.jobInfo['filenames']["XYZOUT"]:
              baseSceneXML = CCP4Utils.openFileToEtree(baseScenePath)
              et = ET.ElementTree(baseSceneXML)
-             filename_element = et.findall(".//scene/data/MolData/filename")[0]
+             filename_element = et.findall(".//data/MolData/filename")[0]
              del filename_element.attrib["database"]
              filename_element.text = fname
              ET.indent(et)
-             print(ET.tostring(et))
              sceneFilePath = os.path.join(jobDirectory,'ccp4mg_edit_nomrbump'+str(i)+'.scene.xml')
              et.write(sceneFilePath)
              pic = pictureGallery.addPicture(sceneFile=sceneFilePath,label='Picture of structure '+str(i+1))

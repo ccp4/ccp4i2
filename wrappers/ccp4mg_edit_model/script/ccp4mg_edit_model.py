@@ -46,7 +46,7 @@ class ccp4mg_edit_model(CPluginScript):
         NSMAP = {'xsi':"http://www.w3.org/2001/XMLSchema-instance"}
         NS = NSMAP['xsi']
         location_attribute = '{%s}noNamespaceSchemaLocation' % NS
-        tree = ET.Element("CCP4MG_Status",nsmap = NSMAP,attrib={location_attribute: 'http://www.ysbl.york.ac.uk/~mcnicholas/schema/CCP4MGApplicationOutput.xsd'})
+        tree = ET.Element("CCP4MG_Status")
 
         if sys.version_info > (3,0):
             status_xml += ET.tostring(tree,encoding='utf-8').decode("utf-8")
@@ -247,7 +247,8 @@ class ccp4mg_edit_model(CPluginScript):
 
             self.appendErrorReport(202,'Data harvesting failed')
             
-        CCP4Utils.saveEtreeToFile(self.xmlroot,self.makeFileName('PROGRAMXML'))
+        with open(self.makeFileName('PROGRAMXML'),"w") as programXMLFile:
+            CCP4Utils.writeXML(programXMLFile,ET.tostring(self.xmlroot))
         """
         if ( len(outList) ) > 0:
           return CPluginScript.SUCCEEDED

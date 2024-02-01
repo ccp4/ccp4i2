@@ -142,8 +142,8 @@ class ccp4mg_edit_model_report(Report):
 
              baseSceneXML = CCP4Utils.openFileToEtree(baseScenePath)
              et = ET.ElementTree(baseSceneXML)
-             filename_element = et.findall(".//scene/data/MolData/filename")[0]
-             MolData_element = et.findall(".//scene/data/MolData")[0]
+             filename_element = et.findall(".//data/MolData/filename")[0]
+             MolData_element = et.findall(".//data/MolData")[0]
              if len(annot)>0:
                  name_element = ET.Element("name")
                  name_element.text = annot

@@ -6,6 +6,7 @@ from PySide2 import QtCore
 import os,re,time,sys
 from lxml import etree
 from core import CCP4Utils
+from xml.etree import ElementTree as ET
 
 class ccp4mg_edit_nomrbump(CPluginScript):
     
@@ -46,7 +47,7 @@ class ccp4mg_edit_nomrbump(CPluginScript):
         NSMAP = {'xsi':"http://www.w3.org/2001/XMLSchema-instance"}
         NS = NSMAP['xsi']
         location_attribute = '{%s}noNamespaceSchemaLocation' % NS
-        tree = ET.Element("CCP4MG_Status",nsmap = NSMAP,attrib={location_attribute: 'http://www.ysbl.york.ac.uk/~mcnicholas/schema/CCP4MGApplicationOutput.xsd'})
+        tree = ET.Element("CCP4MG_Status")
 
         if self.container.inputData.XYZIN_LIST.isSet():
             if len(self.container.inputData.XYZIN_LIST)>0:
@@ -199,7 +200,8 @@ class ccp4mg_edit_nomrbump(CPluginScript):
 
             self.appendErrorReport(202,'Data harvesting failed')
             
-        CCP4Utils.saveEtreeToFile(self.xmlroot,self.makeFileName('PROGRAMXML'))
+        with open(self.makeFileName('PROGRAMXML'),"w") as programXMLFile:
+            CCP4Utils.writeXML(programXMLFile,ET.tostring(self.xmlroot))
         if ( len(outList) ) > 0:
           return CPluginScript.SUCCEEDED
         else:
