@@ -377,8 +377,8 @@ class molrep_mr(CPluginScript):
             eTest.find('score').text = scores.pop(0)
         results.append(eLaue)
           
-      CCP4Utils.saveEtreeToFile(results,programXmlFileName)
-                
+      with open(programXmlFileName,"w") as programXMLFile:
+            CCP4Utils.writeXML(programXMLFile,ET.tostring(results))
 
     def extractLaueDataFromLog(self):
       from core import CCP4Utils
