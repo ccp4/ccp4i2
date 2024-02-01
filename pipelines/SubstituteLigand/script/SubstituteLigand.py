@@ -272,8 +272,8 @@ class SubstituteLigand(CPluginScript):
             self.reportStatus(status)
         if len(self.cootPlugin.container.outputData.XYZOUT) > 0:
             self.harvestFile(
-                self.cootPlugin.container.outputData.XYZOUT[0], self.container.outputData.XYZOUT)
-            self.container.outputData.XYZOUT.annotation = 'Coords output from Coot'
+                self.cootPlugin.container.outputData.XYZOUT[-1], self.container.outputData.XYZOUT)
+            self.container.outputData.XYZOUT.annotation = f"Coords output from Coot"
         else:
             self.harvestFile(
                 self.cootPlugin.container.inputData.XYZIN[0], self.container.outputData.XYZOUT)
