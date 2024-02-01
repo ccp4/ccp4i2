@@ -232,7 +232,18 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
     # database
     def do_GET(self):
         #print('CHTTPRequestHandler.do_GET', self.path)
-        parsedRequest = urlparse(self.path)
+        path = self.path
+        if("Referer" in self.headers):
+            #This deals with the css/images in the embedded report from pairef.
+            b = self.headers["Referer"].split('?')[1]
+            a = self.path
+            if a.startswith("/database/") and not "getProjectJobFile?projectId=" in a:
+                old = b[b.find("fileName=")+len("fileName="):].split("&")[0].split("/")[-1]
+                new = a[10:].split("?")[0]
+                newpath = "/database/getProjectJobFile?"+b.replace(old,new)
+                path = newpath
+
+        parsedRequest = urlparse(path)
         #print('parsedRequest', parsedRequest)
         pathElements = parsedRequest.path[1:].split("/")
         #print('pathElements', pathElements)

@@ -728,7 +728,7 @@ def getProjectJobFile(projectId=None, projectName=None, fileName=None, jobNumber
         with open(fname, "rb") as f:
             d = f.read()
     else:
-        with open(fname) as f:
+        with open(fname,"rb") as f:
             d = f.read()
     return d
 
