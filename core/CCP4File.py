@@ -1326,7 +1326,7 @@ class CI2XmlDataFile(CXmlDataFile):
         else:
             if bodyEtree.tag != CI2XmlDataFile.BODY_TAG:
                 bodyEtree.tag = CI2XmlDataFile.BODY_TAG
-        doc = ET.parse(StringIO( '<ccp4:ccp4i2 xmlns:ccp4="' + CCP4NS + '"></ccp4:ccp4i2>'))
+        doc = ET.parse(StringIO( f'<ccp4:ccp4i2 xmlns:ccp4="{CCP4NS}"></ccp4:ccp4i2>'))
         root = doc.getroot()
         headerEtree = self.__dict__['_value']['header'].getEtree(useLXML=useLXML)
         headerEtree.tag = CI2XmlDataFile.HEADER_TAG
@@ -1337,14 +1337,14 @@ class CI2XmlDataFile(CXmlDataFile):
             root.append(bodyEtree)
         if CCP4Config.DEVELOPER():
             if useLXML:
-                text = etree.tostring(doc, xml_declaration=True)
+                text = etree.tostring(doc, xml_declaration=True, pretty_print=True)
                 CCP4Utils.saveFile(fileName=fileName, text=text,overwrite=1)
             else:
                 doc.write(os.path.normpath(str(fileName)), encoding = "ASCII", xml_declaration = True)  
         else:
+            ET.indent(root)
             if useLXML:
                 try:
-                    ET.indent(doc)
                     text = ET.tostring(doc, xml_declaration=True)
                 except:
                     raise CException(self.__module__, 1007, fileName)
@@ -1354,6 +1354,7 @@ class CI2XmlDataFile(CXmlDataFile):
                     raise CException(self.__module__, 1008, fileName)
             else:
                 try:
+                    ET.indent(doc)
                     doc.write(os.path.normpath(str(fileName)), encoding = "ASCII", xml_declaration = True)  
                 except:
                     raise CException(self.__module__, 1008, fileName)
