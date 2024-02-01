@@ -128,7 +128,8 @@ class sculptor(CPluginScript):
         e = ET.Element('number_output_files')
         e.text = str(len(xyzoutList))
         root.append(e)
-        CCP4Utils.saveEtreeToFile(root,self.makeFileName('PROGRAMXML'))
+        with open(self.makeFileName('PROGRAMXML'),"w") as programXMLFile:
+            CCP4Utils.writeXML(programXMLFile,ET.tostring(root))
 
         self.container.outputData.PERFORMANCE.setFromPdbDataFile(self.container.outputData.XYZOUT[0])
 
