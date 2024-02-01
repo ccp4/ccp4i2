@@ -5,8 +5,11 @@ import unittest
 from xml.etree import ElementTree as ET
 
 from core.CCP4PluginScript import CPluginScript
+from core import CCP4ModelData
 import pathlib
 import json
+import shutil
+import gemmi
 
 # import coot_headless_api as chapi
 
@@ -61,6 +64,24 @@ class moorhen_node_tools(CPluginScript):
                         newOutput.setFullPath(outputFile['filePath'])
                         newOutput.annotation = outputFile['annotation']
                         newOutput.setContentFlag(reset=True)
+
+                        fullPath = pathlib.Path(outputFile['filePath'])
+                        # We are an mmcif organisation, rename file if it is one, and convert to crate 
+                        # an mmcif version (using gemmi) if not
+                        if isinstance(newOutput, CCP4ModelData.CPdbDataFile) and fullPath.suffix == '.pdb':
+                            cifFullPath = fullPath.with_suffix('.cif')
+                            if newOutput.isMMCIF():
+                                shutil.copy(fullPath.__str__(), cifFullPath.__str__())
+                                newOutput.setFullPath(cifFullPath.__str__())
+                            else:
+                                gemmiStructure = gemmi.read_structure(fullPath.__str__())
+                                gemmiStructure.make_mmcif_document().write_file(cifFullPath.__str__())
+                                outputDataList.append(outputDataList.makeItem())
+                                cifOutput = outputDataList[-1]
+                                cifOutput.setFullPath(cifFullPath.__str__())
+                                cifOutput.annotation = f"CIF copy of {outputFile['annotation']}"
+                                cifOutput.setContentFlag(reset=True)
+                                
         return CPluginScript.SUCCEEDED
 
 
