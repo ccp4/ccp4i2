@@ -25,7 +25,7 @@ class pairef_report(Report):
             """
 #SJM 16/01/2024 - I don't know why this here is different from arcimboldo/pdb_redo/dials/etc. so using the line below this comeented code which is the same
             pairef_url = (
-                "/database/projectId/"
+                "/database/getProjectJobFile/projectId/"
                 + projectid
                 + "/jobNumber/"
                 + jobNumber
