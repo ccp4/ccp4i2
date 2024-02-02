@@ -92,41 +92,37 @@ def getMatplotlibFontList():
     return items
 
 class MyHTMLParser(HTMLParser):
-    in_ccp4_data = False
-    root = ET.Element("ccp4_report")
-    current_element = None
-    old_current_element = None
-    parent_map = {}
+
+    def __init__(self):
+        super().__init__()
+        self.in_ccp4_data = False
+        self.root = ET.Element("ccp4_report")
+        self.current_element = None
+        self.old_current_element = None
+        self.parent_map = {}
+
     def handle_starttag(self, tag, attrs):
         if tag.lower() == "ccp4:ccp4_data":
-            #print("Encountered a start tag:", tag)
             self.current_element = ET.SubElement(self.root, 'ccp4_data')
             for attr in attrs:
                 self.current_element.attrib[attr[0]] = attr[1]
             self.parent_map[self.current_element] = self.root
             self.in_ccp4_data = True
-        if tag.lower() != "ccp4:ccp4_data" and self.in_ccp4_data:
+        elif self.in_ccp4_data:
             self.old_current_element = self.current_element
             self.current_element = ET.SubElement(self.current_element, tag)
             for attr in attrs:
                 self.current_element.attrib[attr[0]] = attr[1]
             self.parent_map[self.current_element] = self.old_current_element
-            #print("Encountered a start tag:", tag)
 
     def handle_endtag(self, tag):
         if tag.lower() == "ccp4:ccp4_data":
-            #print("Encountered an end tag :", tag)
             self.in_ccp4_data = False
-            #print(self.current_element)
-            #print("parent",self.parent_map[self.current_element])
-        if tag.lower() != "ccp4:ccp4_data" and self.in_ccp4_data:
-            #print("Encountered a end tag:", tag)
+        elif self.in_ccp4_data:
             self.current_element = self.parent_map[self.current_element]
-            #print(self.current_element)
 
     def handle_data(self, data):
         if self.in_ccp4_data:
-            #print("Encountered some data  :", data)
             self.current_element.text = data
 
 def openFileToEtree(fileName=None,printout=True):
