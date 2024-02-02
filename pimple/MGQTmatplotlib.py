@@ -41,8 +41,8 @@ import matplotlib.gridspec as gridspec
 import matplotlib.transforms as mtransforms
 import matplotlib
 import numpy
-#from lxml import etree
 from xml.etree import ElementTree as ET
+from html.parser import HTMLParser
 
 from matplotlib.backends.backend_pdf import PdfPages
 
@@ -91,15 +91,53 @@ def getMatplotlibFontList():
 
     return items
 
+class MyHTMLParser(HTMLParser):
+    in_ccp4_data = False
+    root = ET.Element("ccp4_report")
+    current_element = None
+    old_current_element = None
+    parent_map = {}
+    def handle_starttag(self, tag, attrs):
+        if tag.lower() == "ccp4:ccp4_data":
+            #print("Encountered a start tag:", tag)
+            self.current_element = ET.SubElement(self.root, 'ccp4_data')
+            for attr in attrs:
+                self.current_element.attrib[attr[0]] = attr[1]
+            self.parent_map[self.current_element] = self.root
+            self.in_ccp4_data = True
+        if tag.lower() != "ccp4:ccp4_data" and self.in_ccp4_data:
+            self.old_current_element = self.current_element
+            self.current_element = ET.SubElement(self.current_element, tag)
+            for attr in attrs:
+                self.current_element.attrib[attr[0]] = attr[1]
+            self.parent_map[self.current_element] = self.old_current_element
+            #print("Encountered a start tag:", tag)
+
+    def handle_endtag(self, tag):
+        if tag.lower() == "ccp4:ccp4_data":
+            #print("Encountered an end tag :", tag)
+            self.in_ccp4_data = False
+            #print(self.current_element)
+            #print("parent",self.parent_map[self.current_element])
+        if tag.lower() != "ccp4:ccp4_data" and self.in_ccp4_data:
+            #print("Encountered a end tag:", tag)
+            self.current_element = self.parent_map[self.current_element]
+            #print(self.current_element)
+
+    def handle_data(self, data):
+        if self.in_ccp4_data:
+            #print("Encountered some data  :", data)
+            self.current_element.text = data
+
 def openFileToEtree(fileName=None,printout=True):
 
-  # Use this as ET.parse() seg faults on some Linux
-  parser = ET.HTMLParser()
-  f = open(fileName)
-  s = f.read()
-  f.close()
-  tree = ET.fromstring(s, parser)
-  return tree
+    parser = MyHTMLParser()
+
+    with open(fileName,"r") as f:
+       s = f.read()
+       parser.feed(s)
+
+    return parser.root
 
 class StackedWidget(QtWidgets.QStackedWidget):
 
@@ -648,9 +686,9 @@ class LogGraph(QtWidgets.QWidget):
                             selector['family'].setCurrentIndex(selector['family'].findText(unicode(fn['family'],"utf-8")))
                     else:
                         if sys.version_info >= (3,0):
-                            selector['family'].setCurrentIndex(selector['family'].findText('Bitstream Vera Sans'))
+                            selector['family'].setCurrentIndex(selector['family'].findText('Helvetica'))
                         else:
-                            selector['family'].setCurrentIndex(selector['family'].findText(unicode('Bitstream Vera Sans',"utf-8")))
+                            selector['family'].setCurrentIndex(selector['family'].findText(unicode('Helvetica',"utf-8")))
                     if fn and "family" in fn:
                         selector['size'].setValue(fn['size'])
                     else:
@@ -1995,17 +2033,14 @@ class LogGraph(QtWidgets.QWidget):
             QtWidgets.QMessageBox.warning(self,"Report HTML parse error","File "+fname+" does not seem to be valid HTML")
             return []
         graphList = []
-        #ET.indent(doc)
-        #print 'CCP4Table.addCCP4ReportFile doc',ET.tostring(doc)
-        for tag in ('ccp4_data','{http://www.ccp4.ac.uk/ccp4ns}ccp4_data'):
-            for tableEle in doc.iter(tag = tag):
-                #print 'CCP4Table.addCCP4ReportFile found ccp4_data',tableEle.tag
-                if select is None or tableEle.get('id',None) in select:
-                    try:
-                        graph = self.addTableFromEtree(tableEle)
-                        graphList.append(graph)
-                    except:
-                        print('ERROR loading table',tableEle.tag)
+        ET.indent(doc)
+        for tableEle in doc.findall(".//ccp4_data"):
+            if select is None or tableEle.get('id',None) in select:
+                try:
+                    graph = self.addTableFromEtree(tableEle)
+                    graphList.append(graph)
+                except:
+                    print('ERROR loading table',tableEle.tag)
 
         # This section deals with data coming from external XML files.
         for tableEle in doc.iter(tag = "div"):
@@ -2868,7 +2903,7 @@ class QtMatplotlibCanvas(FigureCanvas):
                 if 'family' in params:
                     family = params['family']
                 else:
-                    family = "Bitstream Vera Sans" 
+                    family = "Helvetica" 
                 if 'size' in params:
                     size = params['size']
                 else:
@@ -2876,7 +2911,7 @@ class QtMatplotlibCanvas(FigureCanvas):
                 newFont = FontProperties(family=family,size=size)
                 self.legend_font = newFont
             else:
-                newFont = FontProperties(family="Bitstream Vera Sans",size=8)
+                newFont = FontProperties(family="Helvetica",size=10)
                 self.legend_font = newFont
         except:
             print("error 1")
@@ -2888,7 +2923,7 @@ class QtMatplotlibCanvas(FigureCanvas):
                 if 'family' in params:
                     family = params['family']
                 else:
-                    family = "Bitstream Vera Sans" 
+                    family = "Helvetica" 
                 if 'size' in params:
                     size = params['size']
                 else:
@@ -2896,7 +2931,7 @@ class QtMatplotlibCanvas(FigureCanvas):
                 newFont = FontProperties(family=family,size=size)
                 self.title_font = newFont
             else:
-                newFont = FontProperties(family="Bitstream Vera Sans",size=8)
+                newFont = FontProperties(family="Helvetica",size=10)
                 self.title_font = newFont
         except:
             print("error 2")
@@ -2907,7 +2942,7 @@ class QtMatplotlibCanvas(FigureCanvas):
                 if 'family' in params:
                     family = params['family']
                 else:
-                    family = "Bitstream Vera Sans" 
+                    family = "Helvetica" 
                 if 'size' in params:
                     size = params['size']
                 else:
@@ -2915,7 +2950,7 @@ class QtMatplotlibCanvas(FigureCanvas):
                 newFont = FontProperties(family=family,size=size)
                 self.axes_font = newFont
             else:
-                newFont = FontProperties(family="Bitstream Vera Sans",size=8)
+                newFont = FontProperties(family="Helvetica",size=10)
                 self.axes_font = newFont
         except:
             print("error 3")
@@ -2926,7 +2961,7 @@ class QtMatplotlibCanvas(FigureCanvas):
                 if 'family' in params:
                     family = params['family']
                 else:
-                    family = "Bitstream Vera Sans" 
+                    family = "Helvetica" 
                 if 'size' in params:
                     size = params['size']
                 else:
@@ -2934,7 +2969,7 @@ class QtMatplotlibCanvas(FigureCanvas):
                 newFont = FontProperties(family=family,size=size)
                 self.label_font = newFont
             else:
-                newFont = FontProperties(family="Bitstream Vera Sans",size=8)
+                newFont = FontProperties(family="Helvetica",size=10)
                 self.label_font = newFont
         except:
             print("error 4")
@@ -3028,7 +3063,7 @@ class QtMatplotlibCanvas(FigureCanvas):
                 else:
                     points = self.ax[0].get_legend().get_bbox_to_anchor().get_points()[1]
                 loc = self.ax[0].get_legend().parent.transAxes.inverted().transform_point((xratio*points[0],points[1]))
-                fm = QtGui.QFontMetrics(QtGui.QFont(self.legend_font.get_family()[0],self.legend_font.get_size()))
+                fm = QtGui.QFontMetrics(QtGui.QFont(self.legend_font.get_family()[0],int(self.legend_font.get_size())))
                 maxp = 0
                 for lab in leg_labels:
                     maxp = max(maxp,fm.width(lab))
@@ -3115,7 +3150,7 @@ class QtMatplotlibCanvas(FigureCanvas):
         else:
             if self.title:
                 if sys.version_info >= (3,0) or type(self.label_font.get_family()[0]) == unicode:
-                        fontscale = math.pow(float(QtGui.QFontMetrics(QtGui.QFont(self.title_font.get_family()[0],self.title_font.get_size())).height())/self.defaultTextHeight,0.6)
+                        fontscale = math.pow(float(QtGui.QFontMetrics(QtGui.QFont(self.title_font.get_family()[0],int(self.title_font.get_size()))).height())/self.defaultTextHeight,0.6)
                 else:
                         fontscale = math.pow(float(QtGui.QFontMetrics(QtGui.QFont(unicode(self.title_font.get_family()[0],"utf-8"),self.title_font.get_size())).height())/self.defaultTextHeight,0.6)
                 self.top = 1 - 0.15 / self.height()*200.*fontscale
@@ -3127,7 +3162,7 @@ class QtMatplotlibCanvas(FigureCanvas):
                 self.bottom = 0.1 / self.height()*200.
 
         if sys.version_info >= (3,0) or type(self.label_font.get_family()[0]) == unicode:
-            axesFontscale = math.pow(float(QtGui.QFontMetrics(QtGui.QFont(self.axes_font.get_family()[0],self.axes_font.get_size())).height())/self.defaultTextHeight,0.6)-1.
+            axesFontscale = math.pow(float(QtGui.QFontMetrics(QtGui.QFont(self.axes_font.get_family()[0],int(self.axes_font.get_size()))).height())/self.defaultTextHeight,0.6)-1.
         else:
             axesFontscale = math.pow(float(QtGui.QFontMetrics(QtGui.QFont(unicode(self.axes_font.get_family()[0],"utf-8"),self.axes_font.get_size())).height())/self.defaultTextHeight,0.6)-1.
         self.left += 0.3 / self.width()*200.*axesFontscale
@@ -3207,8 +3242,8 @@ class QtMatplotlibCanvas(FigureCanvas):
                 self.movingLegend = False
         else:
             if pos.x() > self.left*self.width() and pos.x() < self.right*self.width() and pos.y() > (1-self.top)*self.height() and pos.y() < (1-self.bottom)*self.height():
-                painter.drawLine(pos.x(),(1-self.top)*self.height(),pos.x(),(1-self.bottom)*self.height())
-                painter.drawLine(self.left*self.width(),pos.y(),self.right*self.width(),pos.y())
+                painter.drawLine(pos.x(),int((1-self.top)*self.height()),pos.x(),int((1-self.bottom)*self.height()))
+                painter.drawLine(int(self.left*self.width()),pos.y(),int(self.right*self.width()),pos.y())
         if self._painted == False:
             self._painted = True
             self.resizeEvent(QtGui.QResizeEvent(QtCore.QSize(self.width(),self.height()),QtCore.QSize(self.width(),self.height())))
@@ -3323,9 +3358,9 @@ class QtMatplotlibCanvas(FigureCanvas):
 
         for ax in axis:
             ax.xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(xticks,integer=self.xintegral))
-            ax.xaxis.get_major_locator().refresh()
+            #ax.xaxis.get_major_locator().refresh()
             ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(yticks,integer=self.yintegral))
-            ax.yaxis.get_major_locator().refresh()
+            #ax.yaxis.get_major_locator().refresh()
     
 
         for ax in axis:
@@ -3629,7 +3664,7 @@ class QtMatplotlibCanvas(FigureCanvas):
         self.gs = [gridspec.GridSpec(1,1)]
         self.ax = [self.fig.add_subplot(self.gs[0][:])]
         self.rax = []
-        self.defaultTextHeight = QtGui.QFontMetrics(QtGui.QFont("Bitstream Vera Sans",10)).height()
+        self.defaultTextHeight = QtGui.QFontMetrics(QtGui.QFont("Helvetica",14)).height()
 
         self.top = 0.95
         self.left = 0.1
@@ -3640,7 +3675,7 @@ class QtMatplotlibCanvas(FigureCanvas):
         self.yintegral = False
 
         #font = FontProperties(family="sans-serif",style="normal",weight="normal",size="10")
-        font = FontProperties(family="Bitstream Vera Sans",size=10)
+        font = FontProperties(family="Helvetica",size=14)
 
         self.title_font = font.copy()
         #self.title_font.set_weight('bold')
