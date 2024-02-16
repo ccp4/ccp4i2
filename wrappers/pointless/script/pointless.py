@@ -37,14 +37,16 @@ class pointless(CPluginScript):
                   self.container.inputData.UNMERGEDFILES[i].file.fileContent)
         ndatasets = \
           int(self.container.inputData.UNMERGEDFILES[i].file.fileContent.numberofdatasets)
+        merged = str(self.container.inputData.UNMERGEDFILES[i].file.fileContent.merged)
+        merged = (merged == 'merged')
 
         if self.container.inputData.UNMERGEDFILES[i].crystalName.isSet() and \
-               self.container.inputData.UNMERGEDFILES[i].dataset.isSet() and \
-               ndatasets < 2:
-            self.appendCommandScript("NAME PROJECT %s CRYSTAL %s DATASET %s" % \
-                                     (self._dbProjectName,
-                                      self.container.inputData.UNMERGEDFILES[i].crystalName,
-                                      self.container.inputData.UNMERGEDFILES[i].dataset))
+               self.container.inputData.UNMERGEDFILES[i].dataset.isSet():
+            if (merged or ndatasets<2):
+                self.appendCommandScript("NAME PROJECT %s CRYSTAL %s DATASET %s" % \
+                                         (self._dbProjectName,
+                                   self.container.inputData.UNMERGEDFILES[i].crystalName,
+                                   self.container.inputData.UNMERGEDFILES[i].dataset))
         hklin_command = 'HKLIN'
         # if mmCIF, set blockname
         fformat = self.container.inputData.UNMERGEDFILES[i].file.fileContent.format
@@ -56,7 +58,6 @@ class pointless(CPluginScript):
         self.appendCommandScript("%s %s" %  (hklin_command, self.container.inputData.UNMERGEDFILES[i].file.fullPath))
       # end loop files
 
-
       if par.MODE == 'MATCH':
         if par.REFERENCE_DATASET == 'XYZ':
           self.appendCommandScript("XYZIN %s" % self.container.inputData.XYZIN_REF.fullPath)
@@ -66,12 +67,15 @@ class pointless(CPluginScript):
 
       # There are some cases where HKLOUT can be a merged file, 
       # for example when using pointless for reindexing.
-      # Not implemented yet.
       if par.WRITE_HKLOUT:
+        # unmerged output
         self.appendCommandScript("HKLOUT %s" % self.container.outputData.MTZUNMERGEDOUT.fullPath)
+        if merged and (par.MODE == 'MATCH'):
+            #  OUTPUT UNMERGED for Pointless from 1.12.16
+            self.appendCommandScript("OUTPUT UNMERGED")
+        self.container.outputData.deleteObject('MTZMERGEDOUT')
       else:
         self.container.outputData.deleteObject('MTZUNMERGEDOUT')
-      self.container.outputData.deleteObject('MTZMERGEDOUT')
 
       if par.CELL.isSet():
           #print("**par.CELL",par.CELL)

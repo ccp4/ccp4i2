@@ -100,12 +100,6 @@ class EstimatesofResolution:
         sr += "\n - "
       if maxresIC:
         sr += " beyond "
-      print("**************************************************")
-      print("**************************************************")
-      print(reslimitIC)
-      print(thresholdIC)
-      print("**************************************************")
-      print("**************************************************")
       sr += reslimitIC+"&#197; from information content > "+thresholdIC
 
     # Estimates from CC(1/2) and I/sigI
@@ -186,7 +180,7 @@ class aimless_report(Report):
 
     # Get info about reference data file
     # If HKLREF defined, sets self.referencedata
-    #   name: filename, scaletoreference: True (or absent)
+   #   name: filename, scaletoreference: True (or absent)
     reflectionfiles = self.xmlnode.findall("ReflectionFile")
     self.referencedata = None
     
@@ -266,6 +260,7 @@ class aimless_report(Report):
 
     self.ReflectionDataDetails(rDiv, infold=False)
 
+    
     self.sdAnalysis(parent)
 
   # - - - - - - - - - - - - - - - - -
@@ -477,8 +472,10 @@ class aimless_report(Report):
     print("keyTextMerged")
     if not self.datasetsProcessed:
       self.setup()
-    self.numberofdatasets = 1
+    self.numberofdatasets = self.numberOfDatasets()
+
     parent.append("Key statistics for "+self.datasetheader)
+    self.sdcpar = None  # ignore SD corrections (should be absent)
 
     # usually no CC(1/2) information for merged files
     s = ""
@@ -539,8 +536,10 @@ class aimless_report(Report):
       self.ResultTable(parent, extraitems)
 
   # - - - - - - - - - - - - - - - - -
-  def importantGraphs(self,parent=None):
+  def importantGraphs(self,parent=None, merged=False):
     """ Main graphs by resolution and batch """
+
+    # print("Aimless importantGraphs", merged)
 
     summaryGraphsDiv = parent.addDiv(
       style="width:100%; border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
@@ -556,34 +555,47 @@ class aimless_report(Report):
     byResolutionDiv = summaryGraphsDiv.addDiv(style="width:48%;float:left;text-align:center;margin:6px; padding:0px; ")
     byResolutionDiv.addText(text='Analysis as a function of resolution',style='font-size:130%;font-weight:bold;')
     byResolutionDiv.append('<br/>')
-    resmessage = "Plot of CC(1/2) vs. resolution may indicate a suitable resolution cutoff, and indicate presence of an anomalous signal"  
-    byResolutionDiv.addText(text=resmessage,style='font-size:100%;font-style:italic;')
-    byResolutionDiv.append('<br/>')
-    resmessage = "(but check anisotropy)"  
-    byResolutionDiv.addText(text=resmessage,style='font-size:100%;font-style:italic;')
-    byResolutionDiv.append('<br/>')
     
-    self.ByResolutionGraphs(byResolutionDiv)
+    if merged:
+      self.ByResolutionGraphsMerged(byResolutionDiv)
+    else:
+      resmessage = "Plot of CC(1/2) vs. resolution may indicate a suitable resolution cutoff, and indicate presence of an anomalous signal"  
+      byResolutionDiv.addText(text=resmessage,style='font-size:100%;font-style:italic;')
+      byResolutionDiv.append('<br/>')
+      resmessage = "(but check anisotropy)"  
+      byResolutionDiv.addText(text=resmessage,style='font-size:100%;font-style:italic;')
+      byResolutionDiv.append('<br/>')
+      self.ByResolutionGraphs(byResolutionDiv)
     
-    byBatchDiv = summaryGraphsDiv.addDiv(style="width:48%;float:left;text-align:center;margin:6px; padding:0px; ")
-    byBatchDiv.addText(text='Analysis as a function of batch',style='font-size:130%;font-weight:bold;')
-    byBatchDiv.append('<br/>')
-    batchmessage = "Analyses against Batch may show radiation damage, and which parts of the data should be removed"  
-    byBatchDiv.addText(text=batchmessage,style='font-size:100%;font-style:italic;')
-    byBatchDiv.append('<br/>')
-    batchmessage = " (but consider completeness)"  
-    byBatchDiv.addText(text=batchmessage,style='font-size:100%;font-style:italic;')
-    byBatchDiv.append('<br/>')
-    #print("Important graphs")
-    self.ByBatchGraphs(byBatchDiv)
+    if not merged:
+      byBatchDiv = summaryGraphsDiv.addDiv(style="width:48%;float:left;text-align:center;margin:6px; padding:0px; ")
+      byBatchDiv.addText(text='Analysis as a function of batch',style='font-size:130%;font-weight:bold;')
+      byBatchDiv.append('<br/>')
+      batchmessage = "Analyses against Batch may show radiation damage, and which parts of the data should be removed"  
+      byBatchDiv.addText(text=batchmessage,style='font-size:100%;font-style:italic;')
+      byBatchDiv.append('<br/>')
+      batchmessage = " (but consider completeness)"  
+      byBatchDiv.addText(text=batchmessage,style='font-size:100%;font-style:italic;')
+      byBatchDiv.append('<br/>')
+      # print("Important graphs")
+      self.ByBatchGraphs(byBatchDiv)
 
     if self.referencedata is not None:
-      # We may have a graph of statistics against reference vs batch
-      referenceDiv = summaryGraphsDiv.addDiv(style="width:98%;float:left;text-align:center;margin:6px; padding:0px; ")
-      referenceDiv.addText(text="Analysis of agreement with reference by batch",
-                           style="font-weight:bold; font-size:125%;")
-      self.referenceGraph(referenceDiv)
+      if not merged:
+        # We may have a graph of statistics against reference vs batch
+        referenceDiv = summaryGraphsDiv.addDiv(style="width:98%;float:left;text-align:center;margin:6px; padding:0px; ")
+        referenceDiv.addText(text="Analysis of agreement with reference by batch",
+                             style="font-weight:bold; font-size:125%;")
+        self.referenceGraph(referenceDiv)
+      else:
+        referenceDiv = summaryGraphsDiv.addDiv(style="width:48%;float:left;text-align:center;margin:6px; padding:0px; ")
 
+      # and reference vs resolution
+      referenceDiv.addText(text="Analysis of agreement with reference by resolution",
+                           style="font-weight:bold; font-size:125%;")
+      refresolist = self.xmlnode.findall("CCP4Table[@id='Graph-DatasetRefStatsVsReso']")
+      if len(refresolist) > 0:
+        self.referenceGraphReso(referenceDiv)
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   def moreGraphs(self, parent=None):
@@ -727,7 +739,6 @@ class aimless_report(Report):
   def AddToTable(self, parent=None, \
                  datasetresultnodes="",\
                  table="", label="", tag="", tip=""):
-    #print "AddToTable"
     data = []
     ndts = len(datasetresultnodes)
     count = 0
@@ -740,7 +751,8 @@ class aimless_report(Report):
         if (count < ndts): data += " "
         found = True
 
-    if found: table.addData(title=label, data=data, tip=tip)
+    if found:
+      table.addData(title=label, data=data, tip=tip)
     return found
 
   # - - - - - - - - - - - - - - - - -
@@ -751,7 +763,6 @@ class aimless_report(Report):
 
   # - - - - - - - - - - - - - - - - -
   def processDatasets(self):
-    #print("processDatasets")
     if self.datasetsProcessed: return
     self.datasetsProcessed = True
     self.onebatchperdataset = False
@@ -768,8 +779,10 @@ class aimless_report(Report):
       self.numberofdatasets = 0
       return
     
+    self.datasetnames = []
     if numberofdatasets == 1:
       datasetname = datasetresultnodes[0].get("name")
+      self.datasetnames.append(datasetname)
       self.datasetheader = "Dataset: "+datasetname
       if len(datasetresultnodes[0].findall("AnomalousCompleteness"))>0:
         anomcompleteness = datasetresultnodes[0].findall("AnomalousCompleteness/Overall")[0]
@@ -786,6 +799,7 @@ class aimless_report(Report):
           if float(anomcompleteness.text) > 0.0:
             self.hasAnomalous = True
         datasetname = datasetresultnode.get("name")
+        self.datasetnames.append(datasetname)
         if notfirst:
           self.datasetheader += ", "
         notfirst = True
@@ -934,20 +948,43 @@ class aimless_report(Report):
   def ResultTableMerged(self,parent=None, extraitems=None):
     # extraitems if present, a list for each item
     # [title,[for each dataset, [data, 3 numbers Overall, Inner, Outer], tip]
-    #print("ResultTableMerged")
+    # print("ResultTableMerged")
     
     self.processDatasets()
     datasettext = ""
     datasetnumberlist = []
-    
-    datasetname = self.datasetresultnodes[0].get("name")
-    parent.append("Summary of statistics for merged dataset "+"<br/>"+datasetname)
+    ndts = self.numberofdatasets
+
+    datasetnames = []
+    dtsnames = ""
+    for node in self.datasetresultnodes:
+      datasetnames.append(node.get("name").split("/")[2])
+      dtsnames += datasetnames[-1] + ", "
+    dtsnames = dtsnames[:-2]
+
+    if ndts == 1:
+      parent.append("Summary of statistics for merged dataset "+\
+                    datasetnames[0])
+    else:
+      parent.append("Summary of statistics for merged datasets "+\
+                    dtsnames)
+      
 
     table = parent.addTable(select="Result", transpose=True,
                 style="line-height:100%; font-size:100%;",downloadable=True, class_="center")
 
-    headers = ["Overall", "Inner", "Outer"]
-    table.addData(title="", data=headers)
+    count = 0
+    headers = []
+    dtsheaders = []
+    for i in range(ndts):
+      headers += ["Overall", "Inner", "Outer"]
+      dtsheaders += [datasetnames[i], datasetnames[i], datasetnames[i]]
+      count += 1
+      if count < ndts:
+        headers += [' ']
+        dtsheaders += [' ']
+    table.addData(title="Dataset", data=dtsheaders)
+    table.addData(title="Range", data=headers)
 
     # List of header, tag, tool-tip
     taglist = \
@@ -963,16 +1000,15 @@ class aimless_report(Report):
                       table=table, label=label, tag=tag, tip=tip)
 
     # extra items if present
-    #print("extraitems",extraitems)
     if extraitems is not None:
       for extra in extraitems:
         label = extra[0]
         tip = extra[1]
         data = []
-        for i in range(self.numberofdatasets):
+        for i in range(ndts):
           num3 = extra[i+2]
           data += num3
-          if i < self.numberofdatasets-1:
+          if i < ndts-1:
             data += ' '
       table.addData(title=label, data=data, tip=tip)
 
@@ -1322,7 +1358,7 @@ class aimless_report(Report):
       if select == "notBatch" and not isBatch: plotit = True
 
       if plotit:
-        print("Graph ", graphID, isBatch)
+        # print("Graph ", graphID, isBatch)
         #print "Graph type", type(thisgraph)
         graph = graphgroup.addFlotGraph( xmlnode=thisgraph, title=thisgraph.get("title") )
         graph = graph.addPimpleData(xmlnode=thisgraph)
@@ -1350,6 +1386,7 @@ class aimless_report(Report):
   def ByResolutionGraphsMerged(self,parent=None):
       # A GraphGroup is a group of graphs displayed in the same graph viewer widget
       #      graphgroup = parent.addGraphGroup(style="width:370px;  height:300px;")
+      # print("ByResolutionGraphsMerged NDTS", self.numberofdatasets)
       byresoDiv = parent.addDiv(
         style="text-align:center;margin:0px auto; padding:3px;")
       graphgroup = parent.addFlotGraphGroup(style="width:300px;  height:270px;")
@@ -1362,10 +1399,10 @@ class aimless_report(Report):
         graphlist.extend(self.xmlnode.findall("CCP4Table[@id='Graph-Anisotropy']"))
       
       for thisgraph in graphlist:
-        #print "Aimless ByResolutionGraphsMerged thisgraph", thisgraph.get("title")
+        title = thisgraph.get("title")
         graph = graphgroup.addFlotGraph( xmlnode=thisgraph, title=thisgraph.attrib["title"] )
         graph = graph.addPimpleData(xmlnode=thisgraph)
-
+    
   # - - - - - - - - - - - - - - - - -
   def ByBatchGraphs(self,parent=None):
       #print("ByBatchGraphs")
@@ -1389,41 +1426,81 @@ class aimless_report(Report):
         graph = graph.addPimpleData(xmlnode=thisgraph)
   # - - - - - - - - - - - - - - - - -
   def referenceGraph(self,parent=None):
-      # A GraphGroup is a group of graphs displayed in the same graph viewer widget
-##      graphgroup = parent.addGraphGroup(style="width:370px; height:300px;")
-      graphgroup = parent.addFlotGraphGroup(style="width:700px;  height:270px;")
-      # Add a Graph to the GraphGroup - add a table of data and plot instructions to the graph
+    # graph vs batch
+    # A GraphGroup is a group of graphs displayed in the same graph viewer widget
+
+    style = "width:700px;  height:270px;"
+    graphgroup = parent.addFlotGraphGroup(style=style)
+    # Add a Graph to the GraphGroup - add a table of data and plot instructions to the graph
       
-      # Loop over all Graph tables in the program output and add to the GraphGroup
-      # The plotting instructions are provided as xml text
-      # Make Rmerge vs. batch the top graph
-      selection = "CCP4Table[@id='Graph-RefStatsVsBatch']"
-      graphs = self.xmlnode.findall(selection)
-      refdatalist = []
-      for thisgraph in graphs:
-        refdatalist.append(self.getRefGraphInfo(thisgraph))
-        #print(refdatalist[-1])
-        graph = graphgroup.addFlotGraph( xmlnode=thisgraph, title=thisgraph.get("title") )
-        graph = graph.addPimpleData(xmlnode=thisgraph)
+    # Loop over all Graph tables in the program output and add to the GraphGroup
+    # The plotting instructions are provided as xml text
+
+    # for Batch make Rmerge vs. batch the top graph
+    selection = "CCP4Table[@id='Graph-RefStatsVsBatch']"
+    graphs = self.xmlnode.findall(selection)
+    refdatalist = []
+    for thisgraph in graphs:
+      refdatalist.append(self.getRefGraphInfo(thisgraph))
+      graph = graphgroup.addFlotGraph( xmlnode=thisgraph, title=thisgraph.get("title") )
+      graph = graph.addPimpleData(xmlnode=thisgraph)
 
       s = 'Overall comparison with reference data: correlation coefficients and R-factors\n'
       for refdata in refdatalist:
         s += "Dataset: {};  Mn(CCref) {:7.3f}; Mn(Rref) {:7.3f}; number {:9d}\n".\
             format(refdata[0], refdata[1], refdata[2], refdata[3])
 
-      #print(s)
       s = html_linebreak(s, False)
       parent.append(s)
+
+    # - - - - - - - - - - - - - - - - -
+  def referenceGraphReso(self,parent=None):
+    # resolution
+    style = "width:370px; height:300px;"
+      
+    graphgroup = parent.addFlotGraphGroup(style=style)
+    # Add a Graph to the GraphGroup - add a table of data and plot instructions to the graph
+      
+    # Should be just one graph
+    # The plotting instructions are provided as xml text
+
+    selection =  "CCP4Table[@id='Graph-DatasetRefStatsVsReso']"
+    graphs = self.xmlnode.findall(selection)
+    thisgraph = graphs[0]
+    refdata = self.getRefGraphResoInfo(thisgraph)
+    graph = graphgroup.addFlotGraph( xmlnode=thisgraph, title=thisgraph.get("title") )
+    graph = graph.addPimpleData(xmlnode=thisgraph)
+
+    s = 'Overall comparison with reference data: correlation coefficients and R-factors\n'
+    s = html_linebreak(s, False)
+    parent.append(s)
+
+    table = parent.addTable(transpose=True,
+                            style="line-height:100%; font-size:100%;"
+                            ,downloadable=True, class_="center")
+    ndts = len(refdata[0])
+    headers = ['CCref', 'Rref', 'Num']
+    table.addData(title="Dataset", data=headers)
+
+    for i in range(ndts):
+      cc = "{:.3f}".format(refdata[0][i])
+      r  = "{:.3f}".format(refdata[1][i])
+      num = "{}".format(refdata[2][i])
+      data = [cc, r, num]
+
+      dname = self.datasetnames[i].split('/')[-1]
+      table.addData(title=dname, data=data)
+
 
   # - - - - - - - - - - - - - - - - -
   def getRefGraphInfo(self, refgraph):
     # Extract information from graph of agreement with reference by batch
     title = refgraph.get('title')
-    #print(">> getRefGraphInfo", title)
+    # print(">> getRefGraphInfo", title)
     dname = title.split()[-1]
-    #print('dname', dname)
+    # print('dname', dname)
     headers = refgraph.findall('headers')[0].text.split()
-    #print(headers)
+    # print(headers)
     fail = False
     avgrref = 0.0
     avgccref = 0.0
@@ -1438,7 +1515,6 @@ class aimless_report(Report):
       data = refgraph.findall('data')[0].text
       # get weighted average of Rref and CCref
       #  there are clever Pythonic ways of doing averages, but this will do
-      ncol = len(headers)
       lines = data.splitlines()
       sumwrrr = 0.0
       sumwccr = 0.0
@@ -1460,6 +1536,72 @@ class aimless_report(Report):
 
     return [dname, avgccref, avgrref, int(ndata)]
       
+  # - - - - - - - - - - - - - - - - -
+  def getRefGraphResoInfo(self, refgraph):
+    # Extract information from graph of agreement with reference by resolution
+    title = refgraph.get('title')
+    # print(">> getRefGraphResoInfo", title)
+    headers = refgraph.findall('headers')[0].text.split()
+    fail = False
+
+    ndts = 0
+    irref = []
+    iccref = []
+    inumref = []
+    # eg N  1/d^2   Dmid     R-1     CC-1     N-1    R-2     CC-2     N-2
+    for idx, label in enumerate(headers):
+      if label[0] == 'R':
+        irref.append(idx)
+      elif label[0] == 'C':
+        iccref.append(idx)
+      elif label[0:2] == 'N-':
+        inumref.append(idx)
+    # lists of indices to the columns we want
+    fail = False
+    if len(irref) == 0 or len(iccref) == 0: fail = True
+
+    if not fail:
+      ndts = len(irref)
+      data = refgraph.findall('data')[0].text
+      # get weighted average of R-x and CC-x
+      #  there are clever Pythonic ways of doing averages, but this will do
+      lines = data.splitlines()
+      sumwrrr = [0.0] * ndts
+      sumwccr = [0.0] * ndts
+      sumw = [0.0] * ndts
+      ndata = [0] * ndts
+      for line in lines:
+        fields = line.split()
+        if len(fields) > 0:
+          for i in range(ndts):
+            num = self.numconvert(fields[inumref[i]])
+            if num is not None and num > 0.0:
+              w = 1.0/num
+              r = self.numconvert(fields[irref[i]])
+              cc = self.numconvert(fields[iccref[i]])
+              if r is not None and cc is not None:
+                sumwrrr[i] += w * r
+                sumwccr[i] += w * cc
+                sumw[i] += w
+                ndata[i] += int(num)
+
+        avgrref = []
+        avgccref = []
+        for i in range(ndts):
+          if sumw[i] > 0.0:
+            avgrref.append(sumwrrr[i]/sumw[i])
+            avgccref.append(sumwccr[i]/sumw[i])
+
+    return [avgccref, avgrref, ndata]
+      
+  # - - - - - - - - - - - - - - - - -
+  def numconvert(self, s):
+    # return float if s is a number, else None
+    try:
+      f = float(s)
+    except:
+      f = None
+    return f
   # - - - - - - - - - - - - - - - - -
   def formatTable(self, tablein, title, celltitle, datalabel,
                   includenumbers, parent=None):
@@ -1568,31 +1710,38 @@ class aimless_report(Report):
   def interdatasetIntensityGraph(self,parent=None):
     #  Graph of interdataset correlations
     #
-    gt = "=== Correlation of intensities between datasets"
-    gpath = "CCP4Table[@title='" + gt + "']"
-    graph = self.xmlnode.findall(gpath)[0]
-    #  chenge to this for Aimless 0.7.13+
-    #graph = self.xmlnode.findall("CCP4Table[@id='Graph-Intensities']")
-    if graph != None:
-      agraph = parent.addFlotGraph(xmlnode=graph, title=graph.get("title"))
+    #gt = "=== Correlation of intensities between datasets"
+    #gpath = "CCP4Table[@title='" + gt + "']"
+    #graph = self.xmlnode.findall(gpath)[0]
+    #  change to this for Aimless 0.7.13+
+    graph = self.xmlnode.findall("CCP4Table[@id='Graph-Intensities']")
+    if len(graph) > 0:
+      graph = graph[0]
+      title =  graph.attrib['title']
+      agraph = parent.addFlotGraph(xmlnode=graph, title=title)
 ##                             style="width:370px;" )
       agraph.addPimpleData(xmlnode=graph)
 
   # - - - - - - - - - - - - - - - - -
   def interdatasetAnomalousGraph(self,parent=None):
     #  Graph of interdataset correlations
-    graph = self.xmlnode.findall("CCP4Table[@id='Graph-AnomalousDifferences']")[0].text
-    if graph != None:
-      agraph = parent.addFlotGraph(xmlnode=graph, title=graph.get("title"))
+    graph = self.xmlnode.findall("CCP4Table[@id='Graph-AnomalousDifferences']")
+    #graph = self.xmlnode.findall("CCP4Table[@id='Graph-AnomalousDifferences']")[0].text
+    if len(graph) > 0:
+      graph = graph[0]
+      title =  graph.attrib['title']
+      agraph = parent.addFlotGraph(xmlnode=graph, title=title)
 ##                             style="width:370px;" )
       agraph.addPimpleData(xmlnode=graph)
 
   # - - - - - - - - - - - - - - - - -
   def interdatasetDispersionGraph(self,parent=None):
     #  Graph of interdataset correlations
-    graph = self.xmlnode.findall("CCP4Table[@id='Graph-DispersiveDifferences']")[0].text
-    if graph != None:
-      agraph = parent.addFlotGraph(xmlnode=graph, title=graph.get("title"))
+    graph = self.xmlnode.findall("CCP4Table[@id='Graph-DispersiveDifferences']")
+    if len(graph) > 0:
+      graph = graph[0]
+      title =  graph.attrib['title']
+      agraph = parent.addFlotGraph(xmlnode=graph, title=title)
 ##                             style="width:370px;" )
       agraph.addPimpleData(xmlnode=graph)
 
@@ -1600,7 +1749,7 @@ class aimless_report(Report):
   def addScaleBfacReport(self, parent=None):
     #  Report on relative scales and B-factors for multiple datasets
     #  but only if there is a single batch/rotationrange per dataset
-    print("addScaleBfacReport", self.onebatchperdataset)
+    # print("addScaleBfacReport", self.onebatchperdataset)
     if not self.onebatchperdataset: return
     graphs = self.xmlnode.findall("CCP4Table[@id='Graph-ScalesVsRotationRange']")
     if len(graphs) < 2: return  # Only if there are multiple datasets
@@ -1683,6 +1832,7 @@ class aimless_report(Report):
   def sdAnalysis(self, parent=None):
     ''' Plots and tables for analysis of sig(I) '''
 
+    if self.sdcpar is None: return
     #print("SDANALYSIS")
     sdanaldiv = parent.addDiv()
     sdanaldiv.addText(text="Analysis of sd(I)", style='font-size: 150%;')

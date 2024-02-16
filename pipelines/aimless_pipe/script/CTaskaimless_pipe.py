@@ -14,6 +14,9 @@ from PySide2 import QtGui, QtWidgets,QtCore
 from qtgui import CCP4TaskWidget
 from qtgui import CCP4Widgets
 
+# to determine the sub-type of XDS files 
+from pipelines.aimless_pipe.script.xdstype import *
+
 from  pipelines.import_merged.script.mmcifutils import *
 from  pipelines.import_merged.script.mmcifconvert import *
 from  pipelines.import_merged.script.dybuttons import *
@@ -349,8 +352,11 @@ class CTaskaimless_pipe(CCP4TaskWidget.CTaskWidget):
 
         forceCell = False
         forceWavelength = False
+        self.container.inputData.HKLIN_IS_MERGED.set(False)
 
+        print("Number of files:", len(self.container.inputData.UNMERGEDFILES))
         for i in range(len(self.container.inputData.UNMERGEDFILES)):
+            print("File:", self.container.inputData.UNMERGEDFILES[i].file)
             print("***getUnknownCell fileContent", i, \
                   self.container.inputData.UNMERGEDFILES[i].file.fileContent)
             print("**getUnknownCell self.container.inputData.UNMERGEDFILES[i].file",
@@ -363,12 +369,16 @@ class CTaskaimless_pipe(CCP4TaskWidget.CTaskWidget):
             #     self.container.inputData.UNMERGEDFILES[i].file.fileContent)
 
             fformat = self.container.inputData.UNMERGEDFILES[i].file.fileContent.format
+            xdsformat = False
             if fformat == 'mtz':
                 self.container.inputData.HKLIN_FORMAT.set('MTZ')
             elif fformat == 'mmcif':
                 self.container.inputData.HKLIN_FORMAT.set('MMCIF')
             elif fformat == 'sca':
                 self.container.inputData.HKLIN_FORMAT.set('SCA')
+            elif fformat == 'xds':
+                self.container.inputData.HKLIN_FORMAT.set('XDS')
+                xdsformat = True
             else:
                 self.container.inputData.HKLIN_FORMAT.set('OTHER')
             if fformat == 'mmcif':
@@ -421,8 +431,30 @@ class CTaskaimless_pipe(CCP4TaskWidget.CTaskWidget):
             else:
                 anyunknowncell = True
 
-            knownwavelength = self.container.inputData.UNMERGEDFILES[i].file.fileContent.knownwavelength
-            wavelength = self.container.inputData.UNMERGEDFILES[i].file.fileContent.wavelength
+            if xdsformat:
+                # There are 4 types of XDS format with different information
+                #  about wavelengths and scaleability
+                xtype = Xdstype(str(self.container.inputData.UNMERGEDFILES[i].file))
+                xtype.dump()
+                knownwavelength = self.container.inputData.UNMERGEDFILES[i].file.fileContent.knownwavelength
+                wavelength = self.container.inputData.UNMERGEDFILES[i].file.fileContent.wavelength
+                if not xtype.scaleable:
+                    anyunscaleablefile = True
+            else:
+                knownwavelength = self.container.inputData.UNMERGEDFILES[i].file.fileContent.knownwavelength
+                wavelength = self.container.inputData.UNMERGEDFILES[i].file.fileContent.wavelength
+                
+                fileformat = self.container.inputData.UNMERGEDFILES[i].file.fileContent.format
+                mergedfile = self.container.inputData.UNMERGEDFILES[i].file.fileContent.merged
+                print("getUnknownCell fileformat, mergedfile", fileformat, mergedfile)
+                # print("getUnknownCell filecontent",
+                # self.container.inputData.UNMERGEDFILES[i].file.fileContent)
+                if mergedfile == 'merged':
+                    self.container.inputData.HKLIN_IS_MERGED.set(True)
+                if (not knowncell) or (fileformat == 'sca') or (mergedfile == 'merged'):
+                    print("getUnknownCell notscaleable")
+                    anyunscaleablefile = True
+
             print('knownwavelength, wavelength', knownwavelength, wavelength)
             if knownwavelength:
                 # wavelength from file or GUI
@@ -430,15 +462,8 @@ class CTaskaimless_pipe(CCP4TaskWidget.CTaskWidget):
                 forceWavelength = True
             else:
                 anyunknownwavelength = True
-                
-            fileformat = self.container.inputData.UNMERGEDFILES[i].file.fileContent.format
-            mergedfile = self.container.inputData.UNMERGEDFILES[i].file.fileContent.merged
-            print("getUnknownCell fileformat, mergedfile", fileformat, mergedfile)
-            #print("getUnknownCell filecontent",
-            #self.container.inputData.UNMERGEDFILES[i].file.fileContent)
-            if (not knowncell) or (fileformat == 'sca') or (mergedfile == 'merged'):
-                print("getUnknownCell notscaleable")
-                anyunscaleablefile = True
+
+
         # end loop files
                 
         # Set cell if needed
@@ -479,12 +504,23 @@ class CTaskaimless_pipe(CCP4TaskWidget.CTaskWidget):
                 #print("SCALING_PROTOCOL_SET false")
                 self.container.controlParameters.ONLYMERGE.set(False)
                 self.container.controlParameters.SCALING_PROTOCOL.set('DEFAULT')
+
+        if self.container.inputData.HKLIN_IS_MERGED:
+            # switch off optimisation of SD corrections
+            self.container.controlParameters.SDCORRECTION_OVERRIDE.set(True)
+            self.container.controlParameters.SDCORRECTION_REFINE.set(False)
                 
         nfmult = 0
         for i in range(len(self.container.inputData.UNMERGEDFILES)):
             print(">> getUnknownCell  filecontent",
                 self.container.inputData.UNMERGEDFILES[i].file.fileContent)
-            ndatasets = int(self.container.inputData.UNMERGEDFILES[i].file.fileContent.numberofdatasets)
+            ndatasets = self.container.inputData.UNMERGEDFILES[i].file.fileContent.numberofdatasets
+            print("ndatasets", ndatasets, type(ndatasets))
+            if ndatasets:
+                ndatasets = int(ndatasets)
+            else:
+                ndatasets = 1
+            print("ndatasets", ndatasets, type(ndatasets))
             self.container.inputData.NUMBER_OF_DATASETS.append(ndatasets)
             if ndatasets > 1:
                 xdname = 'Multiple'
@@ -605,7 +641,7 @@ class CTaskaimless_pipe(CCP4TaskWidget.CTaskWidget):
         # . . . . . }
 
     # -------------------------------------------------------------
-    def SDcorrection(self)  :
+    def SDcorrection(self):
         # parameters for SD correction
         self.createLine(['widget','SDCORRECTION_OVERRIDE',
                          'advice','override default parameters for SD correction'])
@@ -888,6 +924,11 @@ class CTaskaimless_pipe(CCP4TaskWidget.CTaskWidget):
 
      if self.container.inputData.HKLIN_REF.isSet():
          self.container.controlParameters.MODE.set('MATCH')
+         # set MODE = COMBINE if hklin is merged
+         print(">> handleSelectHklinRef ", self.container.inputData.HKLIN_IS_MERGED)
+         if self.container.inputData.HKLIN_IS_MERGED:
+             self.container.controlParameters.MODE.set('LAUE')
+             print("MODE = LAUE", self.container.inputData.HKLIN_REF)
          self.container.guiParameters.REFERENCE_DATASET_SET.set(True)
      else:
          # Don't forget users can unselect something!
@@ -914,7 +955,8 @@ class CTaskaimless_pipe(CCP4TaskWidget.CTaskWidget):
     @QtCore.Slot()
     def handleChangeMode(self):
 
-        if self.container.controlParameters.MODE != 'MATCH':
+        if self.container.controlParameters.MODE != 'MATCH' and \
+               not self.container.inputData.HKLIN_IS_MERGED:
             self.container.inputData.HKLIN_REF.unSet()
             self.container.inputData.XYZIN_REF.unSet()
 

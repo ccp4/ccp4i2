@@ -76,8 +76,21 @@
         <className>CString</className>
         <qualifiers>
           <onlyEnumerators>True</onlyEnumerators>
-          <enumerators>NONE,MTZ,MMCIF,SCA,OTHER</enumerators>
+          <enumerators>NONE,MTZ,MMCIF,SCA,XDS,OTHER</enumerators>
           <default>NONE</default>
+        </qualifiers>
+      </content>
+      <content id="HKLIN_IS_SCALED">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <toolTip>Run Phaser analysis after Aimless</toolTip>
+        </qualifiers>
+      </content>
+      <content id="HKLIN_IS_MERGED">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
         </qualifiers>
       </content>
       <content id="NUMBER_OF_DATASETS">

@@ -73,7 +73,7 @@ class aimless_pipe(CPluginScript):
       self.pointless.container.inputData.copyData(self.container.inputData,['UNMERGEDFILES'])
       if self.container.inputData.HKLIN_REF:
           self.pointless.container.inputData.copyData(self.container.inputData,['HKLIN_REF'])
-      if self.container.inputData.HKLIN_REF:
+      if self.container.inputData.XYZIN_REF:
           self.pointless.container.inputData.copyData(self.container.inputData,['XYZIN_REF'])
 
       self.pointless.container.controlParameters.copyData \
@@ -308,7 +308,6 @@ class aimless_pipe(CPluginScript):
         
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     def process_phaseranalysis(self):
-        # If after 2nd or only Aimless run, run phaser_analysis on Aimless
         # If after 2nd or only Aimless run, run phaser_analysis on Aimless
         # output files
         # For autocutoff mode, if the 1st Aimless run was accepted, then
