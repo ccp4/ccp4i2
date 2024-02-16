@@ -461,15 +461,15 @@ class pointless_report(Report):
     # Special option added to deal with a weird file from EJD
 
     pattern = "deduced from reflection data is different from that in the input symmetry"
-    if len(self.xmlnode.findall(".//*[@class='warningmessage']"))>0:
-      warnings =  self.xmlnode.findall("//*[@class='warningmessage']")
+    if len(self.xmlnode.findall("*[@class='warningmessage']"))>0:
+      warnings =  self.xmlnode.findall("*[@class='warningmessage']")
       for warning in warnings:
         if pattern in warning.text:
           # Make a better error message
           words = warning.text.split()
           lat_deduced = words[3]
           lat_input = words[16]
-          print( lat_deduced, lat_input)
+          # print( lat_deduced, lat_input)
           message = "SERIOUS PROBLEM: apparent lattice type "+lat_deduced+\
                     " does not match type specified in the input file "+\
                     lat_input
