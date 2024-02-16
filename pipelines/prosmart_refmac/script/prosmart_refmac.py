@@ -624,7 +624,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                      # ... but this certainly does.
                      for i in range(nSelAtoms):
                          at = mmdb2.getPCAtom(selAtoms,i)
-                         at.segID = "    "
+                         at.segID = b"    "
                      m.FinishStructEdit()
 
                      #Looking at the molprobity output, it seems to me that it tres to handle alternates properly...
@@ -733,6 +733,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                        else:
                            refmaclog = self.firstRefmac.makeFileName('LOG')
 
+                       self.saveXml()
                        verdict_result = prosmart_refmac_verdict.getJSCOFERefmac5Verdict(programxml=programxml,pdbfile=pdbfile,refmaclog=refmaclog)
                        verdict_score = verdict_result["score"]
                        verdict_message  = verdict_result["message"]
