@@ -54,7 +54,8 @@
             "matthews",
             "molrep_selfrot",
             "AUSPEX",
-            "xia2_multiplex"
+            "xia2_multiplex",
+            "xia2_ssx_reduce"
         ],
         "demo": [
             "pdbset",
@@ -229,6 +230,11 @@
             "class": "core.CCP4PerformanceDataCAtomCountPerformance",
             "clsModule": "core.CCP4PerformanceData",
             "clsName": "CAtomCountPerformance"
+        },
+        "CDataReductionCCPerformance": {
+            "class": "core.CCP4PerformanceDataCDataReductionCCPerformance",
+            "clsModule": "core.CCP4PerformanceData",
+            "clsName": "CDataReductionCCPerformance"
         },
         "CDataReductionPerformance": {
             "class": "core.CCP4PerformanceDataCDataReductionPerformance",
@@ -1713,6 +1719,17 @@
                 "class": "pipelines.import_xia2.wrappers.xia2_run.script.xia2_run_reportxia2_run_report",
                 "clsModule": "pipelines.import_xia2.wrappers.xia2_run.script.xia2_run_report",
                 "clsName": "xia2_run_report",
+                "modes": [
+                    "Running"
+                ]
+            }
+        },
+        "xia2_ssx_reduce": {
+            "0.0.0": {
+                "MAINTAINER": "Nobody",
+                "class": "wrappers.xia2_ssx_reduce.script.xia2_ssx_reduce_reportxia2_ssx_reduce_report",
+                "clsModule": "wrappers.xia2_ssx_reduce.script.xia2_ssx_reduce_report",
+                "clsName": "xia2_ssx_reduce_report",
                 "modes": [
                     "Running"
                 ]
@@ -4036,6 +4053,19 @@
                 "subTasks": []
             }
         },
+        "xia2_ssx_reduce": {
+            "0.0": {
+                "DESCRIPTION": null,
+                "INTERRUPTLABEL": null,
+                "MAINTAINER": "martin.maly@soton.ac.uk",
+                "TASKTITLE": "Reduction of serial datasets using xia2.ssx_reduce",
+                "class": "wrappers.xia2_ssx_reduce.script.xia2_ssx_reduceCxia2_ssx_reduce",
+                "clsModule": "wrappers.xia2_ssx_reduce.script.xia2_ssx_reduce",
+                "clsName": "Cxia2_ssx_reduce",
+                "internal": false,
+                "subTasks": []
+            }
+        },
         "xia2_xds": {
             "0.0": {
                 "DESCRIPTION": null,
@@ -4221,6 +4251,7 @@
         "wrappers": "qticons/ccp4.png",
         "xia2_dials": "qticons/xia2_dials.png",
         "xia2_multiplex": "qticons/xia2_multiplex.png",
+        "xia2_ssx_reduce": "qticons/xia2_ssx_reduce.png",
         "xia2_xds": "qticons/xia2_xds.png",
         "zanuda": "qticons/zanuda.png"
     },
@@ -4484,6 +4515,11 @@
             "class": "core.CCP4PerformanceDataCDataReductionPerformance",
             "clsModule": "core.CCP4PerformanceData",
             "clsName": "CDataReductionPerformance"
+        },
+        "xia2_ssx_reduce": {
+            "class": "core.CCP4PerformanceDataCDataReductionCCPerformance",
+            "clsModule": "core.CCP4PerformanceData",
+            "clsName": "CDataReductionCCPerformance"
         },
         "xia2_xds": {
             "class": "core.CCP4PerformanceDataCDataReductionPerformance",
@@ -6384,6 +6420,20 @@
                 "clsName": "xia2_multiplex_gui",
                 "shortTitle": "multiplex",
                 "taskName": "xia2_multiplex",
+                "taskVersion": 0.1
+            }
+        },
+        "xia2_ssx_reduce": {
+            "0.0.0": {
+                "DESCRIPTION": "Select integrated data from xia2.ssx or dials.stills_process",
+                "MAINTAINER": "Nobody",
+                "RANK": 1,
+                "TASKTITLE": "Reduction of serial datasets using xia2.ssx_reduce",
+                "class": "wrappers.xia2_ssx_reduce.script.xia2_ssx_reduce_guixia2_ssx_reduce_gui",
+                "clsModule": "wrappers.xia2_ssx_reduce.script.xia2_ssx_reduce_gui",
+                "clsName": "xia2_ssx_reduce_gui",
+                "shortTitle": "xia2.ssx_reduce",
+                "taskName": "xia2_ssx_reduce",
                 "taskVersion": 0.1
             }
         },
