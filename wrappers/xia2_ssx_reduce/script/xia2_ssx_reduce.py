@@ -5,13 +5,9 @@
 #
 # TO DO
 # =====
-# how to use grouping...
 # errors when files missing
 # Stuart reference path
 # Stuart verdict Rmeas
-# James RAM
-# James space group
-# James remove files in data_reduction
 # clean comments
 #  ***************  new performance classes also need the keytype to be registered with the database **************************
 #   See the definition of KEYTYPELIST in dbapi/CCP4DbApi.py
@@ -30,6 +26,7 @@ from dxtbx.model.experiment_list import ExperimentList
 import gemmi
 import glob
 from pathlib import Path
+import shutil
 
 
 class Cxia2_ssx_reduce(CPluginScript):
@@ -201,6 +198,13 @@ class Cxia2_ssx_reduce(CPluginScript):
             element = etree.SubElement(self.xmlroot, "Xia2SsxReduceError")
             element.text = "Unknown xia2.ssx_reduce error"
             return exitStatus
+
+        # Remove data_reduction directory to save space
+        dataReductionPath = os.path.normpath(
+            os.path.join(self.getWorkDirectory(), "data_reduction")
+        )
+        if os.path.isdir(dataReductionPath):
+            shutil.rmtree(dataReductionPath)
 
         # Read xia2.ssx_reduce.log
         xia2SsxReduceLogPath = os.path.normpath(
