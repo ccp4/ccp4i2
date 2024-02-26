@@ -78,10 +78,10 @@ class xia2_ssx_reduce_gui(CTaskWidget):
             ]
         )
         # self.createLine(['tip', 'Reference structure or data', 'widget', 'reference'])
-
         self.closeSubFrame()
 
         # Basic parameters
+        self.openSubFrame(frame=[True])
         self.createLine(
             ["tip", "Subset of xia2.ssx_reduce control parameters", "subtitle", "Basic parameters"]
         )
@@ -93,33 +93,49 @@ class xia2_ssx_reduce_gui(CTaskWidget):
             self.container.controlParameters,
             selection={"includeParameters": ["reference"]},
         )
+        self.closeSubFrame()
+        self.openSubFrame(frame=[True])
+        self.createLine(["subtitle", "Performance"])
+        self.createLine(
+            ["advice", "Reduction of batch size and number of processors prevents system memory issues."]
+        )
+        self.autoGenerate(
+            self.container.controlParameters,
+            selection={"includeParameters": ["reduction_batch_size"]},
+        )
+        self.autoGenerate(
+            self.container.controlParameters,
+            selection={"includeParameters": ["multiprocessing__nproc"]},
+        )
+        self.closeSubFrame()
         #self.simpleAutoGenerate(container=self.container.controlParameters)
         #self.simpleAutoGenerateInputFiles(container=self.container.inputFiles)
 
         # Advanced parameters in a separate folder
         self.openFolder(folderFunction="controlParameters", title="Advanced parameters")
-        self.createLine(['label', 'Batch size', 'widget', 'reduction_batch_size'])
+        self.createLine(['widget', 'symmetry__space_group'])
+        # self.createLine(['label', 'Batch size', 'widget', 'reduction_batch_size']) # in basic parameters
         self.createLine(['label', 'Partiality threshold', 'widget', 'partiality_threshold'])
         # self.createLine(['label', 'I/sigma threshold', 'widget', 'filtering__mean_i_over_sigma_threshold']) # not in DIALS stable release yet
         self.createLine(['label', 'Tolerance for lattice symmetry analysis', 'widget', 'symmetry__lattice_symmetry_max_delta'])
         self.createLine(['label', 'Workflow: ', 'widget', '-guiMode', 'radio', 'workflow__steps' ] )
         self.createLine(['label', 'Keep anomalous pairs separate during scaling', 'widget', 'scaling__anomalous'], toggle=['workflow__steps', 'open', ['scale+merge']])
         self.createLine(['label', 'High resolution cutoff for dials.cosym', 'widget', 'dials_cosym_phil_d_min'])
-        self.createLine(['label', 'Number of processors for multiprocessing', 'widget', 'multiprocessing__nproc'])
-        self.openSubFrame(frame=[True])
-        self.createLine(['advice', 'Clustering'])
-        self.createLine(['label', 'Clustering threshold', 'widget', 'clustering__threshold'])
-        self.createLine(['label', 'Absolute angle tolerance', 'widget', 'clustering__absolute_angle_tolerance'])
-        self.createLine(['label', 'Absolute length tolerance', 'widget', 'clustering__absolute_length_tolerance'])
-        self.createLine(['label', 'Central unit cell', 'widget', 'clustering__central_unit_cell'])
-        self.closeSubFrame()
+        # self.createLine(['label', 'Number of processors for multiprocessing', 'widget', 'multiprocessing__nproc']) # in basic parameters
         # self.openSubFrame(frame=[True])
         # self.createLine(['advice', 'Grouping'])
         # self.createLine(['label', 'Grouping .yml file', 'widget', 'grouping'])
         self.createLine(['label', 'Dose series - number of repeated measurements at each point', 'widget', 'dose_series_repeat'])
         # self.closeSubFrame()
         self.openSubFrame(frame=[True])
-        self.createLine(['advice', 'Reference model options (if used)'])
+        self.createLine(['subtitle', 'Clustering'])
+        self.createLine(['label', 'Clustering threshold', 'widget', 'clustering__threshold'])
+        self.createLine(['label', 'Absolute angle tolerance', 'widget', 'clustering__absolute_angle_tolerance'])
+        self.createLine(['label', 'Absolute length tolerance', 'widget', 'clustering__absolute_length_tolerance'])
+        self.createLine(['label', 'Central unit cell', 'widget', 'clustering__central_unit_cell'])
+        self.closeSubFrame()
+        self.openSubFrame(frame=[True])
+        self.createLine(['subtitle', 'Reference model options (if used)'])
         self.createLine(['label', 'Average solvent density k_sol', 'widget', 'reference_model__k_sol'])
         self.createLine(['label', 'Average solvent B-factor b_sol', 'widget', 'reference_model__b_sol'])
         self.closeSubFrame()
