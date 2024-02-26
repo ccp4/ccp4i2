@@ -44,7 +44,7 @@ class Cxia2_ssx_reduce(CPluginScript):
     ERROR_CODES = {
         200: {"description": "Failed harvesting integrated data"},
     }
-    PERFORMANCECLASS = "CDataReductionCCPerformance"
+    PERFORMANCECLASS = "CDataReductionPerformance"
     ASYNCHRONOUS = True
     WHATNEXT = [
         "phaser_pipeline",
@@ -173,7 +173,7 @@ class Cxia2_ssx_reduce(CPluginScript):
         json_root = list(dataset)[0] # usually wavelength
         stat = dataset[json_root]["merging_stats"]["overall"] # MM
         results = {}
-        # results["Rmeas overall"] = stat["r_meas"]
+        results["Rmeas overall"] = stat["r_meas"]
         results["CC1/2 overall"] = stat["cc_one_half"]
         results["High resolution limit"] = 1 / sqrt(stat["d_star_sq_min"])
         # results["space group"] is get from merged.mtz
@@ -398,12 +398,12 @@ class Cxia2_ssx_reduce(CPluginScript):
         spGp = self.container.outputData.PERFORMANCE.spaceGroup
         spGp.set(spGp.fix(str(run_data["space group"]).strip()))
 
-        #self.container.outputData.PERFORMANCE.rMeas.set(
-        #    float(str(run_data["Rmeas overall"]).strip())
-        #)
-        self.container.outputData.PERFORMANCE.ccHalf.set(
-            float(str(run_data["CC1/2 overall"]).strip())
+        self.container.outputData.PERFORMANCE.rMeas.set(
+            float(str(run_data["Rmeas overall"]).strip())
         )
+        #self.container.outputData.PERFORMANCE.ccHalf.set(
+        #    float(str(run_data["CC1/2 overall"]).strip())
+        #)
 
         self.container.outputData.PERFORMANCE.highResLimit.set(
             float(str(run_data["High resolution limit"]).strip())
