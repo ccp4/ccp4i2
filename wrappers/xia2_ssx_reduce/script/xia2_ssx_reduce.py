@@ -40,6 +40,8 @@ class Cxia2_ssx_reduce(CPluginScript):
     TASKVERSION = 0.0
     ERROR_CODES = {
         200: {"description": "Failed harvesting integrated data"},
+        205: {"description": "Unable to find merged MTZ files"},
+        206: {"description": "A process in the process pool was terminated abruptly while the future was running or pending.\nOverload of RAM memory occured likely.\nRe-run the job with lower batch size and number of processors.."},
     }
     PERFORMANCECLASS = "CDataReductionPerformance"
     ASYNCHRONOUS = True
@@ -79,6 +81,7 @@ class Cxia2_ssx_reduce(CPluginScript):
                     result.append((name, val))
                     continue
                 if name == "dials_cosym_phil_d_min":      # MM
+                    val = self.container.controlParameters.dials_cosym_phil_d_min.__str__()
                     phil_file_cosym = os.path.normpath(
                         os.path.join(self.getWorkDirectory(), "cosym_i2.phil")
                     )
@@ -199,6 +202,30 @@ class Cxia2_ssx_reduce(CPluginScript):
             element.text = "Unknown xia2.ssx_reduce error"
             return exitStatus
 
+        # Locate DataFiles/*.mtz files
+        xia2SsxReduceLogPath = os.path.normpath(
+            os.path.join(self.getWorkDirectory(), "xia2.ssx_reduce.log")
+        )
+        DataFilesPath = os.path.normpath(
+            os.path.join(self.getWorkDirectory(), "DataFiles")
+        )
+        merged = []
+        merged.extend(glob.glob(os.path.normpath(os.path.join(DataFilesPath, "*.mtz"))))
+        if not merged:
+            element = etree.SubElement(self.xmlroot, "Xia2SsxReduceError")
+            with open(xia2SsxReduceLogPath, "r") as xia2SsxReduceLogFile:
+                xia2SsxReduceLog = xia2SsxReduceLogFile.read()
+                text_terminated_abruptly = \
+                    "A process in the process pool was terminated abruptly while the future was running or pending."
+            if text_terminated_abruptly in xia2SsxReduceLog:
+                self.appendErrorReport(206)
+                element.text = text_terminated_abruptly
+                element.text += " Overload of RAM memory occured likely. Re-run the job with lower batch size and number of processors."
+            else:
+                self.appendErrorReport(202)
+                element.text = "Unable to find merged MTZ files"
+            return CPluginScript.FAILED
+
         # Remove data_reduction directory to save space
         dataReductionPath = os.path.normpath(
             os.path.join(self.getWorkDirectory(), "data_reduction")
@@ -207,9 +234,6 @@ class Cxia2_ssx_reduce(CPluginScript):
             shutil.rmtree(dataReductionPath)
 
         # Read xia2.ssx_reduce.log
-        xia2SsxReduceLogPath = os.path.normpath(
-            os.path.join(self.getWorkDirectory(), "xia2.ssx_reduce.log")
-        )
         if os.path.isfile(xia2SsxReduceLogPath):
             with open(xia2SsxReduceLogPath, "r") as xia2SsxReduceLogFile:
                 element = etree.SubElement(self.xmlroot, "Xia2SsxReduceLog")
@@ -246,18 +270,19 @@ class Cxia2_ssx_reduce(CPluginScript):
                     print(element.text)
 
         # Read the 1st LogFiles/dials.merge*.json file to read performance
-        xia2SsxReduceJsonPath = DialsMergeJsonFilesPath[0]
-        if os.path.isfile(xia2SsxReduceJsonPath):
-            with open(xia2SsxReduceJsonPath, "r") as xia2SsxReduceJsonFile:
-                json_txt = xia2SsxReduceJsonFile.read()
-                run_data = self._extract_data_from_json(json_txt)
-        else:
-            run_data = {}
-            run_data["space group"] = ""
-            run_data["unit cell"] = ""
-            # run_data["Rmeas overall"] = 0
-            run_data["CC1/2 overall"] = 0
-            run_data["High resolution limit"] = 0
+        if DialsMergeJsonFilesPath:
+            xia2SsxReduceJsonPath = DialsMergeJsonFilesPath[0]
+            if os.path.isfile(xia2SsxReduceJsonPath):
+                with open(xia2SsxReduceJsonPath, "r") as xia2SsxReduceJsonFile:
+                    json_txt = xia2SsxReduceJsonFile.read()
+                    run_data = self._extract_data_from_json(json_txt)
+            else:
+                run_data = {}
+                run_data["space group"] = ""
+                run_data["unit cell"] = ""
+                # run_data["Rmeas overall"] = 0
+                run_data["CC1/2 overall"] = 0
+                run_data["High resolution limit"] = 0
 
         # Read LogFiles/dials.cosym_reindex.log - if exists - it appears when indexing ambiguity
         DialsCosymLogPath = os.path.normpath(
@@ -270,12 +295,6 @@ class Cxia2_ssx_reduce(CPluginScript):
                 print(element.text)
 
         obsOut = self.container.outputData.HKLOUT
-
-        DataFilesPath = os.path.normpath(
-            os.path.join(self.getWorkDirectory(), "DataFiles")
-        )
-        merged = []
-        merged.extend(glob.glob(os.path.normpath(os.path.join(DataFilesPath, "*.mtz"))))
 
         # Find MTZs
         #search = [
@@ -324,11 +343,6 @@ class Cxia2_ssx_reduce(CPluginScript):
         #    else:
         #        unmergedOut[-1].setFullPath(candidate)
         #        unmergedOut[-1].annotation.set("Unmerged reflections: " + srcFilename)
-
-        if not merged:
-            element = etree.SubElement(self.xmlroot, "Xia2SsxReduceError")
-            element.text = "Unable to find merged MTZs"
-            return CPluginScript.FAILED
 
         # Read space group and cell from the 1st merged MTZ to complete performance info
         MergedMtzPath = merged[0]

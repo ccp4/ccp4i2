@@ -284,6 +284,8 @@ class CDbApi(CObject):
                    201: {'severity': SEVERITY_WARNING, 'description': 'Invalid key name in updateProject'},
                    202: {'description': 'Invalid value data type in updateProject'},
                    203: {'description': 'In updateProject setting parent project is already child of this project'},
+                   205: {'description': 'Unable to find merged MTZ files...'},
+                   206: {'description': 'A process in the process pool was terminated abruptly while the future was running or pending.\nOverload of RAM memory occured likely.\nRe-run the job with lower batch size and number of processors..'},
                    211: {'description': 'Error attempting to convert project data to XML'},
                    212: {'description': 'Error attempting to write project data to XML file'},
                    220: {'description': 'Database has no database version information'},
