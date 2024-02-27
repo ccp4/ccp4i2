@@ -9,6 +9,10 @@ from qtgui.CCP4TaskWidget import CTaskWidget
 from core import CCP4Container
 import qtgui
 from .find_expt_refl import find_expt_refl
+from dxtbx.serialize import load
+from cctbx import uctbx
+from scitbx.array_family import flex
+import os
 
 
 class FindIntegratedWorker(QtCore.QObject):
@@ -77,7 +81,6 @@ class xia2_ssx_reduce_gui(CTaskWidget):
                 "DIALS_INTEGRATED",
             ]
         )
-        # self.createLine(['tip', 'Reference structure or data', 'widget', 'reference'])
         self.closeSubFrame()
 
         # Basic parameters
@@ -94,8 +97,28 @@ class xia2_ssx_reduce_gui(CTaskWidget):
             selection={"includeParameters": ["reference"]},
         )
         self.closeSubFrame()
+        #self.simpleAutoGenerate(container=self.container.controlParameters)
+        #self.simpleAutoGenerateInputFiles(container=self.container.inputFiles)
+
+        # Advanced parameters in a separate folder
+        self.openFolder(folderFunction="controlParameters", title="Advanced parameters")
+        self.autoGenerate(
+            self.container.controlParameters,
+            selection={"includeParameters": ["partiality_threshold"]},
+        )
+        self.createLine(
+            ['label', 'Keep anomalous pairs separate during scaling', 'widget', 'scaling__anomalous'],
+            toggle=['workflow__steps', 'open', ['scale+merge']],
+        )
+        self.autoGenerate(
+            self.container.controlParameters,
+            selection={"includeParameters": ["dials_cosym_phil_d_min"]},
+        )
+
         self.openSubFrame(frame=[True])
-        self.createLine(["subtitle", "Performance"])
+        self.createLine(['subtitle', 'Workflow options'])
+        self.createLine(['label', 'Lattice tolerance for triggering mis-indexing assessment', 'widget', 'symmetry__lattice_symmetry_max_delta'])
+        self.createLine(['label', 'Workflow: ', 'widget', '-guiMode', 'radio', 'workflow__steps' ] )
         self.createLine(
             ["advice", "Reduction of batch size and number of processors prevents system memory issues."]
         )
@@ -108,36 +131,37 @@ class xia2_ssx_reduce_gui(CTaskWidget):
             selection={"includeParameters": ["multiprocessing__nproc"]},
         )
         self.closeSubFrame()
-        #self.simpleAutoGenerate(container=self.container.controlParameters)
-        #self.simpleAutoGenerateInputFiles(container=self.container.inputFiles)
 
-        # Advanced parameters in a separate folder
-        self.openFolder(folderFunction="controlParameters", title="Advanced parameters")
-        self.createLine(['widget', 'symmetry__space_group'])
-        # self.createLine(['label', 'Batch size', 'widget', 'reduction_batch_size']) # in basic parameters
-        self.createLine(['label', 'Partiality threshold', 'widget', 'partiality_threshold'])
-        # self.createLine(['label', 'I/sigma threshold', 'widget', 'filtering__mean_i_over_sigma_threshold']) # not in DIALS stable release yet
-        self.createLine(['label', 'Tolerance for lattice symmetry analysis', 'widget', 'symmetry__lattice_symmetry_max_delta'])
-        self.createLine(['label', 'Workflow: ', 'widget', '-guiMode', 'radio', 'workflow__steps' ] )
-        self.createLine(['label', 'Keep anomalous pairs separate during scaling', 'widget', 'scaling__anomalous'], toggle=['workflow__steps', 'open', ['scale+merge']])
-        self.createLine(['label', 'High resolution cutoff for dials.cosym', 'widget', 'dials_cosym_phil_d_min'])
-        # self.createLine(['label', 'Number of processors for multiprocessing', 'widget', 'multiprocessing__nproc']) # in basic parameters
-        # self.openSubFrame(frame=[True])
-        # self.createLine(['advice', 'Grouping'])
-        # self.createLine(['label', 'Grouping .yml file', 'widget', 'grouping'])
-        self.createLine(['label', 'Dose series - number of repeated measurements at each point', 'widget', 'dose_series_repeat'])
-        # self.closeSubFrame()
         self.openSubFrame(frame=[True])
-        self.createLine(['subtitle', 'Clustering'])
-        self.createLine(['label', 'Clustering threshold', 'widget', 'clustering__threshold'])
-        self.createLine(['label', 'Absolute angle tolerance', 'widget', 'clustering__absolute_angle_tolerance'])
-        self.createLine(['label', 'Absolute length tolerance', 'widget', 'clustering__absolute_length_tolerance'])
-        self.createLine(['label', 'Central unit cell', 'widget', 'clustering__central_unit_cell'])
+        self.createLine(['subtitle', 'Unit cell filtering'])
+        self.createLine(['advice', 'A filter is applied based on the median cell and the absolute tolerances.'])
+        self.createLine(['label', 'Calculated median cell', 'widget', 'MEDIAN_CELL'])
+        self.getWidget('MEDIAN_CELL').setEnabled(False)
+        self.getWidget('MEDIAN_CELL').setFixedWidth(300)
+        self.createLine(['label', 'Absolute angle tolerance (degrees)', 'widget', 'clustering__absolute_angle_tolerance'])
+        self.createLine(['label', 'Absolute length tolerance (A)', 'widget', 'clustering__absolute_length_tolerance'])
+        self.createLine(['label', 'Instead of using the median cell, use these central cell values for the cell filtering<br>(Separate unit cell parameters using comma)', 'widget', 'clustering__central_unit_cell'])
+        self.getWidget('clustering__central_unit_cell').setFixedWidth(300)
+        self.createLine(['label', 'Instead of filtering based on cell values and tolerances, use a clustering approach to select a cell cluster.<br>Clustering threshold (Andrews–Bernstein distance)', 'widget', 'clustering__threshold'])
         self.closeSubFrame()
+
         self.openSubFrame(frame=[True])
-        self.createLine(['subtitle', 'Reference model options (if used)'])
-        self.createLine(['label', 'Average solvent density k_sol', 'widget', 'reference_model__k_sol'])
-        self.createLine(['label', 'Average solvent B-factor b_sol', 'widget', 'reference_model__b_sol'])
+        self.createLine(['label', 'Space group for scaling and merging', 'widget', 'symmetry__space_group'])
+        self.closeSubFrame()
+
+        self.openSubFrame(frame=[True])
+        self.createLine(['subtitle', 'Reference model options (if generating reference from PDB model)'])
+        self.createLine(['label', 'Average solvent density (k-sol)', 'widget', 'reference_model__k_sol'])
+        self.createLine(['label', 'Average solvent B-factor (B-sol)', 'widget', 'reference_model__b_sol'])
+        self.closeSubFrame()
+
+        self.openSubFrame(frame=[True])
+        self.createLine(['subtitle', 'Splitting mixed-condition data'])
+        self.createLine(['label', 'Dose series - number of repeated measurements at each point', 'widget', 'dose_series_repeat'])
+        self.autoGenerate(
+            self.container.controlParameters,
+            selection={"includeParameters": ["grouping"]},
+        )
         self.closeSubFrame()
 
         # Advanced parameters in a separate folder - autogenerated
@@ -213,6 +237,25 @@ class xia2_ssx_reduce_gui(CTaskWidget):
                             'QFrame [isValid="false"] { background: qlineargradient( x1:0.15 y1:0, x2:1 y2:0, stop:0 transparent, stop:1 #f55); border:0px; }'
                         )
         self.validate()
+
+        # Update median cell
+        exptPaths = []
+        for i, path in enumerate(results):
+            exptPath = results[i] + ".expt"
+            if os.path.isfile(exptPath):
+                exptPaths.append(exptPath)
+        try:
+            expts = [load.experiment_list(path, check_format=False) for path in exptPaths]
+            uc_params = [flex.double() for _ in range(6)]
+            for experiments in expts:
+                for c in experiments.crystals():
+                    for i, p in enumerate(c.get_unit_cell().parameters()):
+                        uc_params[i].append(p)
+            medianCell = uctbx.unit_cell(parameters=[flex.median(p) for p in uc_params])
+            medianCellStr = str(medianCell).replace("(", "").replace(")", "")
+            self.container.controlParameters.MEDIAN_CELL.set(medianCellStr)
+        except:
+            print("WARNING: Median unit cell could not be calculated.")
 
     # def drawAdvanced(self):
     #     self.nestedAutoGenerate(

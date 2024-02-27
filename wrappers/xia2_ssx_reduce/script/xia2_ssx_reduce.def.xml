@@ -96,7 +96,7 @@
         </subItem>
       </content>
       <content id="PERFORMANCE">
-        <className>CDataReductionPerformance</className>
+        <className>CDataReductionCCPerformance</className>
         <qualifiers/>
       </content>
       <qualifiers/>
@@ -130,6 +130,13 @@
         <className>CDataFile</className>
         <qualifiers>
           <guiLabel>Other grouping – YML file specifying groupings</guiLabel>
+          <guiDefinition/>
+        </qualifiers>
+      </content>
+      <content id="MEDIAN_CELL">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Median cell</guiLabel>
           <guiDefinition/>
         </qualifiers>
       </content>

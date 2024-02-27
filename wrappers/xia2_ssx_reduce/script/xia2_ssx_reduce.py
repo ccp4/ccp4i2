@@ -7,10 +7,7 @@
 # =====
 # errors when files missing
 # Stuart reference path
-# Stuart verdict Rmeas
 # clean comments
-#  ***************  new performance classes also need the keytype to be registered with the database **************************
-#   See the definition of KEYTYPELIST in dbapi/CCP4DbApi.py
 from core.CCP4PluginScript import CPluginScript
 from core.CCP4ErrorHandling import *
 import os, glob, shutil
@@ -43,7 +40,7 @@ class Cxia2_ssx_reduce(CPluginScript):
         205: {"description": "Unable to find merged MTZ files"},
         206: {"description": "A process in the process pool was terminated abruptly while the future was running or pending.\nOverload of RAM memory occured likely.\nRe-run the job with lower batch size and number of processors.."},
     }
-    PERFORMANCECLASS = "CDataReductionPerformance"
+    PERFORMANCECLASS = "CDataReductionCCPerformance"
     ASYNCHRONOUS = True
     WHATNEXT = [
         "phaser_pipeline",
@@ -80,7 +77,11 @@ class Cxia2_ssx_reduce(CPluginScript):
                     val = self.container.controlParameters.reference.fullPath.__str__()
                     result.append((name, val))
                     continue
-                if name == "dials_cosym_phil_d_min":      # MM
+                elif name == "grouping":                   # MM
+                    val = self.container.controlParameters.grouping.fullPath.__str__()
+                    result.append((name, val))
+                    continue
+                elif name == "dials_cosym_phil_d_min":      # MM
                     val = self.container.controlParameters.dials_cosym_phil_d_min.__str__()
                     phil_file_cosym = os.path.normpath(
                         os.path.join(self.getWorkDirectory(), "cosym_i2.phil")
@@ -90,6 +91,8 @@ class Cxia2_ssx_reduce(CPluginScript):
                     name_xia2 = "symmetry.phil"
                     val_xia2 = "cosym_i2.phil"
                     result.append((name_xia2, val_xia2))
+                    continue
+                elif name == "MEDIAN_CELL":                   # MM
                     continue
                 # ensure commas are converted to whitespace-separated lists.
                 # Only whitespace appears to work correctly with PHIL multiple
@@ -416,12 +419,12 @@ class Cxia2_ssx_reduce(CPluginScript):
         spGp = self.container.outputData.PERFORMANCE.spaceGroup
         spGp.set(spGp.fix(str(run_data["space group"]).strip()))
 
-        self.container.outputData.PERFORMANCE.rMeas.set(
-            float(str(run_data["Rmeas overall"]).strip())
+        # self.container.outputData.PERFORMANCE.rMeas.set(
+        #     float(str(run_data["Rmeas overall"]).strip())
+        # )
+        self.container.outputData.PERFORMANCE.ccHalf.set(
+            float(str(run_data["CC1/2 overall"]).strip())
         )
-        #self.container.outputData.PERFORMANCE.ccHalf.set(
-        #    float(str(run_data["CC1/2 overall"]).strip())
-        #)
 
         self.container.outputData.PERFORMANCE.highResLimit.set(
             float(str(run_data["High resolution limit"]).strip())

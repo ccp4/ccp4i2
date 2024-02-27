@@ -250,6 +250,11 @@
             "clsModule": "core.CCP4File",
             "clsName": "CDataFileContent"
         },
+        "CDataReductionCCPerformance": {
+            "class": "core.CCP4PerformanceDataCDataReductionCCPerformance",
+            "clsModule": "core.CCP4PerformanceData",
+            "clsName": "CDataReductionCCPerformance"
+        },
         "CDataReductionPerformance": {
             "class": "core.CCP4PerformanceDataCDataReductionPerformance",
             "clsModule": "core.CCP4PerformanceData",
@@ -1127,6 +1132,7 @@
         "cdata": "CData",
         "cdatafile": "CDataFile",
         "cdatafilecontent": "CDataFileContent",
+        "cdatareductionccperformance": "CDataReductionCCPerformance",
         "cdatareductionperformance": "CDataReductionPerformance",
         "cdataset": "CDataset",
         "cdatasetlist": "CDatasetList",
@@ -1379,9 +1385,9 @@
             "clsName": "CCustomTaskParamListView"
         },
         "CData": {
-            "class": "qtgui.CCP4ModelWidgetsCEnsembleView",
-            "clsModule": "qtgui.CCP4ModelWidgets",
-            "clsName": "CEnsembleView"
+            "class": "qtgui.CCP4RefmacWidgetsCRefmacRigidGroupHeaderView",
+            "clsModule": "qtgui.CCP4RefmacWidgets",
+            "clsName": "CRefmacRigidGroupHeaderView"
         },
         "CDataFile": {
             "class": "qtgui.CCP4WidgetsCDataFileView",
