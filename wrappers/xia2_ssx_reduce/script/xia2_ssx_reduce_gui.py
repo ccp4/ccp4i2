@@ -44,7 +44,7 @@ class xia2_ssx_reduce_gui(CTaskWidget):
     def drawContents(self):
 
         # Input data
-        self.openFolder(folderFunction="inputData")
+        self.openFolder(folderFunction="inputData", followFrom=False)
 
         self.createLine(
             [
