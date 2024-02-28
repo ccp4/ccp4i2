@@ -40,8 +40,8 @@ class Cxia2_ssx_reduce(CPluginScript):
     TASKVERSION = 0.0
     ERROR_CODES = {
         200: {"description": "Failed harvesting integrated data"},
-        205: {"description": "Unable to find merged MTZ files"},
-        206: {"description": "A process in the process pool was terminated abruptly while the future was running or pending.\nOverload of RAM memory occured likely.\nRe-run the job with lower batch size and number of processors.."},
+        225: {"description": "Unable to find merged MTZ files"},
+        226: {"description": "A process in the process pool was terminated abruptly while the future was running or pending.\nOverload of RAM memory occured likely.\nRe-run the job with lower batch size and number of processes."},
     }
     PERFORMANCECLASS = "CDataReductionCCPerformance"
     ASYNCHRONOUS = True
