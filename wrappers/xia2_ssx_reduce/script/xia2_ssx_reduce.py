@@ -7,7 +7,6 @@
 # =====
 # errors when files missing
 # reference path
-# resolution - full or number when specified
 # merge what was scaled
 # use data from job
 # clean comments
@@ -46,6 +45,7 @@ class Cxia2_ssx_reduce(CPluginScript):
     PERFORMANCECLASS = "CDataReductionCCPerformance"
     ASYNCHRONOUS = True
     WHATNEXT = [
+        "xia2_ssx_reduce",
         "phaser_pipeline",
         "molrep_pipe",
         "prosmart_refmac"
@@ -309,6 +309,7 @@ class Cxia2_ssx_reduce(CPluginScript):
                 print(element.text)
 
         obsOut = self.container.outputData.HKLOUT
+        scaledOut = self.container.outputData.DIALS_INTEGRATED
 
         # Find MTZs
         #search = [
@@ -423,7 +424,43 @@ class Cxia2_ssx_reduce(CPluginScript):
             else:
                 self.appendErrorReport(200)
                 return CPluginScript.FAILED
+            self.flushXML()
 
+        # Locate scaled .refl and .expt files
+        scaledPaths = []
+        print("\n\n\nglob.iglob(str(Path(DataFilesPath)")
+        print(glob.iglob(str(Path(DataFilesPath) / "*.expt")))
+        for expt in glob.iglob(str(Path(DataFilesPath) / "*.expt")):
+            if not "scaled" in os.path.splitext(os.path.basename(expt))[0]:
+                continue
+            # Only keep files for which a prefix.{expt,refl} pair exists
+            prefix = os.path.splitext(expt)[0]
+            refl = prefix + ".refl"
+            if not os.path.exists(refl):
+                continue
+            # print("--- It has .refl " + str(expt))
+            # Load the experiments
+            el = ExperimentList.from_file(expt, check_format=False)
+            if any((not e.scaling_model for e in el)):
+                continue
+            # Otherwise, looks good. Keep it
+            scaledPaths.append(prefix)
+        print(str(scaledPaths))
+        for scaledPath in scaledPaths:
+            scaledDirectory, scaledFilename = os.path.split(scaledPath)
+            scaledOut.append(scaledOut.makeItem())
+            dest = os.path.join(
+                self.getWorkDirectory(),
+                os.path.basename(scaledDirectory) + "_" + scaledFilename,
+            )
+            shutil.copy(scaledPath + ".refl", dest + ".refl")
+            shutil.copy(scaledPath + ".expt", dest + ".expt")
+            os.remove(scaledPath + ".refl")
+            scaledOut[-1].setFullPath(dest + ".refl")
+            scaledOut[-1].annotation.set(
+                "Reflections: "
+                + os.path.basename(scaledDirectory) + "_" + scaledFilename + ".refl"
+            )
             self.flushXML()
 
         # Populate the performance indicator

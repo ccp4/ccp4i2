@@ -95,6 +95,19 @@
           </qualifiers>
         </subItem>
       </content>
+      <content id="DIALS_INTEGRATED">
+        <className>CList</className>
+        <qualifiers />
+        <subItem>
+          <className>CDataFile</className>
+          <qualifiers>
+            <saveToDb>True</saveToDb>
+            <mustExist>True</mustExist>
+            <allowUndefined>True</allowUndefined>
+            <isDirectory>False</isDirectory>
+          </qualifiers>
+        </subItem>
+      </content>
       <content id="PERFORMANCE">
         <className>CDataReductionCCPerformance</className>
         <qualifiers/>
