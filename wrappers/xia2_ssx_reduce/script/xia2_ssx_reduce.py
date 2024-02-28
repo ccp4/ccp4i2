@@ -224,11 +224,11 @@ class Cxia2_ssx_reduce(CPluginScript):
                 text_terminated_abruptly = \
                     "A process in the process pool was terminated abruptly while the future was running or pending."
             if text_terminated_abruptly in xia2SsxReduceLog:
-                self.appendErrorReport(206)
+                self.appendErrorReport(226)
                 element.text = text_terminated_abruptly
                 element.text += " Overload of RAM memory occured likely. Re-run the job with lower batch size and number of processors."
             else:
-                self.appendErrorReport(202)
+                self.appendErrorReport(225)
                 element.text = "Unable to find merged MTZ files"
             return CPluginScript.FAILED
 
