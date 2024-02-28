@@ -199,6 +199,7 @@ class xia2_ssx_reduce_report(Report):
         names = []
         spaceGroups = []
         cells = []
+        n_crystals = []
 
         statisticDict = OrderedDict(
             [
@@ -314,9 +315,12 @@ class xia2_ssx_reduce_report(Report):
             n_uniq = _format_stat(merging_stats, "n_uniq", "d")
             statisticDict["#Unique"].append(n_uniq)
 
+            n_crystals = [len(datasets[k]["unit_cell_plots"]["uc_hist"]["data"][0]["x"])]
+
         runTable.addData(title="Wavelength", data=names)
         runTable.addData(title="Space group", data=spaceGroups)
         runTable.addData(title="Unit cell", data=cells)
+        runTable.addData(title="#Crystals", data=n_crystals)
         for k, v in statisticDict.items():
             runTable.addData(title=k, data=v)
         return
