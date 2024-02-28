@@ -6,7 +6,10 @@
 # TO DO
 # =====
 # errors when files missing
-# Stuart reference path
+# reference path
+# resolution - full or number when specified
+# merge what was scaled
+# use data from job
 # clean comments
 from core.CCP4PluginScript import CPluginScript
 from core.CCP4ErrorHandling import *
@@ -287,11 +290,19 @@ class Cxia2_ssx_reduce(CPluginScript):
                 run_data["CC1/2 overall"] = 0
                 run_data["High resolution limit"] = 0
 
-        # Read LogFiles/dials.cosym_reindex.log - if exists - it appears when indexing ambiguity
-        DialsCosymLogPath = os.path.normpath(
+        # Read LogFiles/dials.cosym_reindex.log or dials.scale.scaled_batch1.log - if exists - it appears when indexing ambiguity
+        DialsCosymLogPath1 = os.path.normpath(
             os.path.join(self.getWorkDirectory(), "LogFiles", "dials.cosym_reindex.log")
         )
-        if os.path.isfile(DialsCosymLogPath):
+        DialsCosymLogPath2 = os.path.normpath(
+            os.path.join(self.getWorkDirectory(), "LogFiles", "dials.scale.scaled_batch1.log")
+        )
+        DialsCosymLogPath = None
+        if os.path.isfile(DialsCosymLogPath1):
+            DialsCosymLogPath = DialsCosymLogPath1
+        elif os.path.isfile(DialsCosymLogPath2):
+            DialsCosymLogPath = DialsCosymLogPath2
+        if DialsCosymLogPath:
             with open(DialsCosymLogPath, "r") as DialsCosymLogFile:
                 element = etree.SubElement(self.xmlroot, "DialsCosymLog")
                 element.text = etree.CDATA(DialsCosymLogFile.read())

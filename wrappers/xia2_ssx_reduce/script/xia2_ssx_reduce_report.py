@@ -87,11 +87,19 @@ class xia2_ssx_reduce_report(Report):
                 '<a href="{0}">Open Results</a>'.format(xia2SsxReduceUrl)
             )
 
-        # Link to dials.cosym.html if exists
-        DialsCosymHtml = os.path.normpath(
+        # Link to dials.cosym.html or dials.cosym.0.html if exists
+        DialsCosymHtml1 = os.path.normpath(
             os.path.join(self.jobInfo["fileroot"], "LogFiles", "dials.cosym.html") # MM
         )
-        if os.path.exists(DialsCosymHtml):
+        DialsCosymHtml2 = os.path.normpath(
+            os.path.join(self.jobInfo["fileroot"], "LogFiles", "dials.cosym.0.html") # MM
+        )
+        DialsCosymHtml = None
+        if os.path.exists(DialsCosymHtml1):
+            DialsCosymHtml = DialsCosymHtml1
+        elif os.path.exists(DialsCosymHtml2):
+            DialsCosymHtml = DialsCosymHtml2
+        if DialsCosymHtml:
             DialsCosymI2Html = os.path.normpath(
                 os.path.join(self.jobInfo["fileroot"], "dials.cosym-i2.html") # MM
             )
