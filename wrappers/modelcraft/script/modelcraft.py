@@ -27,7 +27,7 @@ from core.CCP4XtalData import CMapCoeffsDataFile, CObsDataFile, CPhsDataFile
 
 class modelcraft(CPluginScript):
     TASKMODULE = "model_building"
-    TASKTITLE = "ModelCraft"
+    TASKTITLE = "Autobuild with ModelCraft, Buccaneer and Nautilus"
     TASKNAME = "modelcraft"
     TASKVERSION = 0.1
     TASKCOMMAND = "modelcraft"
@@ -107,6 +107,16 @@ class modelcraft(CPluginScript):
             self.appendCommandLine(["--twinned"])
         if not params.SHEETBEND:
             self.appendCommandLine(["--disable-sheetbend"])
+        if not params.BASIC and not params.PRUNING:
+            self.appendCommandLine(["--disable-pruning"])
+        if not params.PARROT:
+            self.appendCommandLine(["--disable-parrot"])
+        if not params.BASIC and not params.DUMMY_ATOMS:
+            self.appendCommandLine(["--disable-dummy-atoms"])
+        if not params.BASIC and not params.WATERS:
+            self.appendCommandLine(["--disable-waters"])
+        if not params.BASIC and not params.SIDE_CHAIN_FIXING:
+            self.appendCommandLine(["--disable-side-chain-fixing"])
         self.appendCommandLine(["--directory", "modelcraft"])
         return CPluginScript.SUCCEEDED
 
