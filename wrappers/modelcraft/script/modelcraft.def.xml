@@ -2,7 +2,7 @@
 <ccp4i2>
     <ccp4i2_header>
         <function>DEF</function>
-        <pluginTitle>ModelCraft</pluginTitle>
+        <pluginTitle>Autobuild with ModelCraft, Buccaneer and Nautilus</pluginTitle>
         <pluginName>modelcraft</pluginName>
         <userId>paul.bond@york.ac.uk</userId>
     </ccp4i2_header>
@@ -83,6 +83,36 @@
                 </qualifiers>
             </content>
             <content id="SHEETBEND">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="PRUNING">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="PARROT">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="DUMMY_ATOMS">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="WATERS">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+            <content id="SIDE_CHAIN_FIXING">
                 <className>CBoolean</className>
                 <qualifiers>
                     <default>True</default>

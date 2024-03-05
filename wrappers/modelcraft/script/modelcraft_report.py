@@ -43,27 +43,43 @@ class modelcraft_report(Report):
             self.add_table()
             self.add_message(jobStatus)
             self.add_graph()
-#FIXME - XML PICTURE
-            #self.add_picture(jobInfo=self.jobInfo, parent=self)
+
+    # FIXME - XML PICTURE
+    # self.add_picture(jobInfo=self.jobInfo, parent=self)
 
     def add_picture(self, xmlnode=None, jobInfo=None, parent=None, initiallyOpen=False):
         if parent is None:
             parent = self
-        if xmlnode is None: xmlnode = self.xmlnode
-        if jobInfo is None: jobInfo = self.jobInfo
-        
-        #I *do not know* why This is needed
+        if xmlnode is None:
+            xmlnode = self.xmlnode
+        if jobInfo is None:
+            jobInfo = self.jobInfo
+
+        # I *do not know* why This is needed
         clearingDiv = parent.addDiv(style="clear:both;")
 
-        pictureFold = parent.addFold(label='Picture', initiallyOpen=initiallyOpen,brief='Picture')
-        pictureGallery = pictureFold.addObjectGallery(style='float:left;',height='550px', tableWidth='260px', contentWidth='450px')
+        pictureFold = parent.addFold(
+            label="Picture", initiallyOpen=initiallyOpen, brief="Picture"
+        )
+        pictureGallery = pictureFold.addObjectGallery(
+            style="float:left;",
+            height="550px",
+            tableWidth="260px",
+            contentWidth="450px",
+        )
         clearingDiv = parent.addDiv(style="clear:both;")
-        jobDirectory = jobInfo['fileroot']
+        jobDirectory = jobInfo["fileroot"]
         from core import CCP4Utils
+
         ccp4i2_root = CCP4Utils.getCCP4I2Dir()
         import os
-        baseScenePath = os.path.join(ccp4i2_root,'wrappers','modelcraft','script','modelcraft_1.scene.xml')
-        parent.addPicture(label="Autobuilt structure",sceneFile=baseScenePath,id='autobuild_1')
+
+        baseScenePath = os.path.join(
+            ccp4i2_root, "wrappers", "modelcraft", "script", "modelcraft_1.scene.xml"
+        )
+        parent.addPicture(
+            label="Autobuilt structure", sceneFile=baseScenePath, id="autobuild_1"
+        )
 
     def add_running_job(self, parent=None):
         if parent is None:
