@@ -700,30 +700,62 @@ class CI2Runner(object):
         jc=CCP4Modules.JOBCONTROLLER()
         jc.setDiagnostic(True)
         jc.setDbFile(self.pm.db()._fileName)
-        #print("USE_QPROCESS",jc.USE_QPROCESS)
+        lastJobFinishCheckTime = time.time()
         jc.runTask(cOpenJob.jobId)
-        #Here a not-so-elegant way to make sure the task knows the CCP4I2_HTTP_PORT
         
-        try:
-            childProcess = jc.findChildren(QtCore.QProcess)[-1]
-            stopFilePath = os.path.join(self.pm.jobDirectory(jobId=cOpenJob.jobId),"StopDjangoCCP4")
-            doContinue = not os.path.isfile(stopFilePath)
-            while doContinue:
-                completedInTime = childProcess.waitForFinished(5000)
-                doContinue = (not completedInTime) and (not os.path.isfile(stopFilePath))
-        except IndexError:
-            print("list of child processes of job Controller has zero entries")
-            
+        doContinue = True
+        while doContinue:
+            t = time.time()
+            finishedJobs = self.pm.db().getRecentlyFinishedJobs(after=lastJobFinishCheckTime)
+            print("Any recently finished jobs ...?")
+            print(finishedJobs)
+            lastJobFinishCheckTime = t
+            if len(finishedJobs) > 0:
+                print("... yes ...")
+                for j in finishedJobs:
+                    if len(j)>5 and not j[5]:
+                         print("... attempting to stop ...")
+                         doContinue = False
+            time.sleep(4)
+        
+        print("Attempting to close DB...")
         self.pm.db().close()
+        print("Returning...")
         return
 
 if __name__ == "__main__":
+    print("##################################################")
+    print("##################################################")
+    print("RUNNING NEW CCP4I2Runner")
+    print("##################################################")
+    print("##################################################")
+
     try:
         theRunner = CI2Runner(sys.argv)
         theRunner.run()
+#Quit any web server threads
+        from PySide2 import QtCore
+        app = QtCore.QCoreApplication.instance()
+        threads = app.findChildren(QtCore.QThread)
+        print("##################################################")
+        print("Quitting threads ...")
+        print("##################################################")
+        for t in threads:
+            if hasattr(t,"quitServer"):
+                t.quitServer()
+            print("Waiting for thread",t)
+            timer = QtCore.QDeadlineTimer(1000)
+            t.wait(timer)
+            t.exit()
+        print("##################################################")
+        print("##################################################")
+        print("EXITING FROM NEW CCP4I2Runner")
+        print("##################################################")
+        print("##################################################")
+
         sys.exit(0)
     except Exception as err:
         print("Failed with exception ", err)
         traceback.print_exc()
-        
+
     sys.exit(1)

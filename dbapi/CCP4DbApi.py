@@ -6361,13 +6361,13 @@ class CDbXml(QtCore.QObject):
 
         self.db.commit()
 
-        outputFilesEleList = root.find('outputFiles').getchildren()
+        outputFilesEleList = root.find('outputFiles').findall("*")
         if self._diagnostic:
             print('Loading', len(outputFilesEleList), 'output files')
         for outputFileEle in outputFilesEleList:
             self.createFile(outputFileEle, jobId=jobId)
 
-        inputFilesEleList = root.find('inputFiles').getchildren()
+        inputFilesEleList = root.find('inputFiles').findall("*")
         if self._diagnostic:
             print('Loading', len(inputFilesEleList), 'input files')
         for inputFileEle in inputFilesEleList:
@@ -6507,7 +6507,7 @@ class CDbXml(QtCore.QObject):
         except:
             self.errReport.append(self.__class__, 200, 'jobTable')
         else:
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.JOBITEMS, self.db.JOBTYPES)
                 jobId = rowData[self.db.JOBITEMS.index('jobid')]
@@ -6586,7 +6586,7 @@ class CDbXml(QtCore.QObject):
         except:
             self.errReport.append(self.__class__, 200, 'fileTable')
         else:
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.FILEITEMS, self.db.FILETYPES)
                 # test that job has been imported
@@ -6611,7 +6611,7 @@ class CDbXml(QtCore.QObject):
         except:
             self.errReport.append(self.__class__, 200, 'importfileTable')
         else:
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.IMPORTFILEITEMS, self.db.IMPORTFILETYPES)
                 # Test if we have the corresponding row in the file table
@@ -6631,7 +6631,7 @@ class CDbXml(QtCore.QObject):
         except:
             self.errReport.append(self.__class__, 200, 'exportfileTable')
         else:
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.EXPORTFILEITEMS, self.db.EXPORTFILETYPES)
                 # Test if fileId of exported file is in the database
@@ -6649,7 +6649,7 @@ class CDbXml(QtCore.QObject):
         except:
             self.errReport.append(self.__class__, 200, 'fileuseTable')
         else:
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.FILEUSEITEMS, self.db.FILEUSETYPES)
                 # Test that job has been imported and that FileId exisits
@@ -6675,7 +6675,7 @@ class CDbXml(QtCore.QObject):
         except:
             self.errReport.append(self.__class__, 200, 'xdataTable')
         else:
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.XDATAITEMS[0:-1], self.db.XDATATYPES[0:-1])
                 # print 'CImportDb.loadTable xdata rowData',rowData
@@ -6709,7 +6709,7 @@ class CDbXml(QtCore.QObject):
         except:
             self.errReport.append(self.__class__, 200, 'commentTable')
         else:
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.COMMENTITEMS, self.db.COMMENTTYPES)
                 if self.db.idExists(rowData[self.db.COMMENTITEMS.index('commentid')], 'Comments'):
@@ -6741,7 +6741,7 @@ class CDbXml(QtCore.QObject):
         except:
             self.errReport.append(self.__class__, 200, 'projectcommentTable')
         else:
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.PROJECTCOMMENTITEMS, self.db.PROJECTCOMMENTTYPES)
                 if self.db.idExists(rowData[self.db.PROJECTCOMMENTITEMS.index('projectcommentid')], 'ProjectComments'):
@@ -6776,7 +6776,7 @@ class CDbXml(QtCore.QObject):
             except:
                 self.errReport.append(self.__class__, 200, tableName)
             else:
-                for rowTree in table.getchildren():
+                for rowTree in table.findall("*"):
                     rowData = self.getRowFromEtree(rowTree, items, types)
                     if 0:   # Need test if item already in db
                         pass
@@ -6798,7 +6798,7 @@ class CDbXml(QtCore.QObject):
         except:
             self.errReport.append(self.__class__, 200, 'fileassociationTable')
         else:
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.FILEASSOCIATIONITEMS, self.db.FILEASSOCIATIONTYPES)
                 if self.db.idExists(rowData[self.db.FILEASSOCIATIONITEMS.index('fileassociationid')], 'FileAssociations'):
@@ -6817,7 +6817,7 @@ class CDbXml(QtCore.QObject):
             self.errReport.append(self.__class__, 200,
                                   'fileassociationmemberTable')
         else:
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.FILEASSOCIATIONMEMBERITEMS, self.db.FILEASSOCIATIONMEMBERTYPES)
                 if 0:  # need to test if alrady loaded
@@ -6873,7 +6873,7 @@ class CDbXml(QtCore.QObject):
             self.errReport.append(self.__class__, 200, 'jobTable')
         else:
             doneLoaded = []
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.JOBITEMS, self.db.JOBTYPES)
                 if resetProjectId is not None:
@@ -6897,7 +6897,7 @@ class CDbXml(QtCore.QObject):
         except:
             self.errReport.append(self.__class__, 200, 'fileTable')
         else:
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.FILEITEMS, self.db.FILETYPES)
                 try:
@@ -6912,7 +6912,7 @@ class CDbXml(QtCore.QObject):
         except:
             self.errReport.append(self.__class__, 200, 'importfileTable')
         else:
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.IMPORTFILEITEMS, self.db.IMPORTFILETYPES)
                 try:
@@ -6927,7 +6927,7 @@ class CDbXml(QtCore.QObject):
         except:
             self.errReport.append(self.__class__, 200, 'exportfileTable')
         else:
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.EXPORTFILEITEMS, self.db.EXPORTFILETYPES)
                 try:
@@ -6942,7 +6942,7 @@ class CDbXml(QtCore.QObject):
         except:
             self.errReport.append(self.__class__, 200, 'fileuseTable')
         else:
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.FILEUSEITEMS, self.db.FILEUSETYPES)
                 try:
@@ -6957,7 +6957,7 @@ class CDbXml(QtCore.QObject):
         except:
             self.errReport.append(self.__class__, 200, 'xdataTable')
         else:
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.XDATAITEMS[0:-1], self.db.XDATATYPES[0:-1])
                 # print 'CImportDb.loadTable xdata rowData',rowData
@@ -6988,7 +6988,7 @@ class CDbXml(QtCore.QObject):
             except:
                 self.errReport.append(self.__class__, 200, tableName)
             else:
-                for rowTree in table.getchildren():
+                for rowTree in table.findall("*"):
                     rowData = self.getRowFromEtree(rowTree, items, types)
                     if self._diagnostic:
                         print('CDbXml create JobKeyValue',
@@ -7005,7 +7005,7 @@ class CDbXml(QtCore.QObject):
         except:
             self.errReport.append(self.__class__, 200, 'commentTable')
         else:
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.COMMENTITEMS, self.db.COMMENTTYPES)
                 # user not recognised in this database !!!!
@@ -7032,7 +7032,7 @@ class CDbXml(QtCore.QObject):
         except:
             self.errReport.append(self.__class__, 200, 'projectcommentTable')
         else:
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.PROJECTCOMMENTITEMS, self.db.PROJECTCOMMENTTYPES)
                 # user not recognised in this database !!!!
@@ -7060,7 +7060,7 @@ class CDbXml(QtCore.QObject):
         except:
             self.errReport.append(self.__class__, 200, 'fileassociationTable')
         else:
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.FILEASSOCIATIONITEMS, self.db.FILEASSOCIATIONTYPES)
                 if self._diagnostic:
@@ -7078,7 +7078,7 @@ class CDbXml(QtCore.QObject):
             self.errReport.append(self.__class__, 200,
                                   'fileassociationmemberTable')
         else:
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.FILEASSOCIATIONMEMBERITEMS, self.db.FILEASSOCIATIONMEMBERTYPES)
                 if self._diagnostic:
@@ -7096,7 +7096,7 @@ class CDbXml(QtCore.QObject):
         except:
             self.errReport.append(self.__class__, 200, 'tagTable')
         else:
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.TAGITEMS, self.db.TAGTYPES)
                 if self.db.idExists(rowData[self.db.TAGITEMS.index('tagid')], 'Tags'):
@@ -7112,7 +7112,7 @@ class CDbXml(QtCore.QObject):
         except:
             self.errReport.append(self.__class__, 200, 'projecttagTable')
         else:
-            for rowTree in table.getchildren():
+            for rowTree in table.findall("*"):
                 rowData = self.getRowFromEtree(
                     rowTree, self.db.PROJECTTAGITEMS, self.db.PROJECTTAGTYPES)
 

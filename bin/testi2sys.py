@@ -47,11 +47,13 @@ def onTestRunnerComplete(logXmlPath, logXmlRoot, app):
     for t in threads:
         if hasattr(t,"quitServer"):
             t.quitServer()
-        t.wait()
+        print("Waiting for thread",t)
+        timer = QtCore.QDeadlineTimer(1000)
+        t.wait(timer)
+        t.exit()
     if logXmlRoot is not None:
-        logXmlTree = ET.ElementTree(logXmlRoot)
         with open(logXmlPath, 'wb') as f:
-            f.write(ET.tostring(logXmlTree))
+            f.write(ET.tostring(logXmlRoot))
     sys.exit()
 
 if __name__ == '__main__':

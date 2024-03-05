@@ -11,6 +11,18 @@
 int main(int argc, char* argv[]){
 
 #if PY_MAJOR_VERSION > 2
+#if PY_MINOR_VERSION > 7
+    PyStatus status;
+    PyPreConfig preconfig;
+    PyPreConfig_InitPythonConfig(&preconfig);
+
+    preconfig.utf8_mode = 1;
+
+    status = Py_PreInitialize(&preconfig);
+    if (PyStatus_Exception(status)) {
+        Py_ExitStatusException(status);
+    }
+#endif
     wchar_t *program = Py_DecodeLocale(argv[0], NULL);
     if (program == NULL) {
         fprintf(stderr, "Fatal error: cannot decode argv[0]\n");
@@ -35,7 +47,7 @@ int main(int argc, char* argv[]){
 #else
     Py_Initialize();
     int err = Py_Main(argc,argv);
-    Py_Finalize();  
+    Py_Finalize();
     return err;
 #endif
 }
