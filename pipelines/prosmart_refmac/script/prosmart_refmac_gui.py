@@ -39,7 +39,7 @@ def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None)
     if jobStatus == 'Unsatisfactory':
         returnList = ['LidiaAcedrg', 'prosmart_refmac']
     else:
-        returnList = ['prosmart_refmac', 'coot_rebuild', 'buccaneer_build_refine_mr', 'moorhen_rebuild', 'modelcraft']
+        returnList = ['prosmart_refmac', 'coot_rebuild', 'modelcraft', 'moorhen_rebuild']
     return returnList
 
 class Cprosmart_refmac(CCP4TaskWidget.CTaskWidget):

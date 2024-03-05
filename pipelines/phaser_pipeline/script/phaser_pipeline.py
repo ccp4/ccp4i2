@@ -29,7 +29,7 @@ class phaser_pipeline(CPluginScript):
     INTERRUPTABLE=True
 
     ERROR_CODES = {  200 : { 'description' : 'Phaser exited with error status' }, 202 : { 'description' : 'Failed in harvest operation' }, 203 : { 'description' : 'Columns not present' }, 204 : { 'description' : 'Failed in plugin:' },}
-    WHATNEXT = ['prosmart_refmac','buccaneer_build_refine_mr','coot_rebuild','modelcraft']
+    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
     
 
     '''
