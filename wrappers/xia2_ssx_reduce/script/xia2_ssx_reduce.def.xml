@@ -29,6 +29,7 @@
           <guiLabel>DIALS .refl</guiLabel>
           <toolTip>Must have an associated .expt file</toolTip>
           <listMinLength>1</listMinLength>
+          <fromPreviousJob>True</fromPreviousJob>
         </qualifiers>
         <subItem>
           <className>CDataFile</className>
@@ -39,6 +40,7 @@
             <isDirectory>False</isDirectory>
             <guiLabel>Bar</guiLabel>
             <toolTip>Foo</toolTip>
+            <fromPreviousJob>True</fromPreviousJob>
           </qualifiers>
         </subItem>
       </content>
@@ -71,6 +73,31 @@
              <menuText>integrated.refl, scaled.refl</menuText>
              <enumerators>integrated,scaled</enumerators>
              <default>integrated</default>
+          </qualifiers>
+        </content>
+        <content id="reference">
+          <className>CDataFile</className>
+          <qualifiers>
+            <guiLabel>Reference model or intensities</guiLabel>
+            <toolTip>A reference to use for scaling + indexing ambiguity resolution. Can be a model pdb/cif file or a cif/mtz data file contaning intensity information.</toolTip>
+            <saveToDb>True</saveToDb>
+            <mustExist>False</mustExist>
+            <allowUndefined>True</allowUndefined>
+            <fromPreviousJob>True</fromPreviousJob>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+          </qualifiers>
+        </content>
+        <content id="grouping">
+          <className>CDataFile</className>
+          <qualifiers>
+            <guiLabel>Other grouping – YML file specifying groupings</guiLabel>
+            <saveToDb>True</saveToDb>
+            <mustExist>False</mustExist>
+            <allowUndefined>True</allowUndefined>
+            <fromPreviousJob>True</fromPreviousJob>
+            <guiDefinition/>
           </qualifiers>
         </content>
       <qualifiers/>
@@ -139,13 +166,6 @@
           </qualifiers>
         </content>
       </container>
-      <content id="grouping">
-        <className>CDataFile</className>
-        <qualifiers>
-          <guiLabel>Other grouping – YML file specifying groupings</guiLabel>
-          <guiDefinition/>
-        </qualifiers>
-      </content>
       <content id="MEDIAN_CELL">
         <className>CString</className>
         <qualifiers>
@@ -203,17 +223,6 @@
             <expertLevel>2</expertLevel>
           </guiDefinition>
           <default>1000</default>
-        </qualifiers>
-      </content>
-      <content id="reference">
-        <className>CDataFile</className>
-        <qualifiers>
-          <guiLabel>Reference model or intensities</guiLabel>
-          <toolTip>A reference to use for scaling + indexing ambiguity resolution. Can be a model pdb/cif file or a cif/mtz data file contaning intensity information.</toolTip>
-          <saveToDb>True</saveToDb>
-          <guiDefinition>
-            <expertLevel>1</expertLevel>
-          </guiDefinition>
         </qualifiers>
       </content>
       <content id="partiality_threshold">

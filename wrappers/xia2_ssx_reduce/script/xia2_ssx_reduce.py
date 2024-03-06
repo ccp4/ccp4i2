@@ -3,12 +3,9 @@
 #
 #  Author: Martin Maly, David Waterman
 #
-# TO DO
-# =====
-# errors when files missing
-# reference path
 # merge what was scaled
 # use data from job
+# dpapi
 # clean comments
 from core.CCP4PluginScript import CPluginScript
 from core.CCP4ErrorHandling import *
@@ -58,7 +55,9 @@ class Cxia2_ssx_reduce(CPluginScript):
     #     CPluginScript.__init__(self, *args, **kwargs)
 
     # def processInputFiles(self):
-    #     # if self.container.inputData.reference.isSet():
+    #     if self.container.inputData.reference.isSet():
+    #         print("\n\n\n+++ reference")
+    #         print(self.container.inputData.reference.fullPath.__str__())
     #     #     self.reference = self.container.inputData.reference.fullPath.__str__()
     #     if self.container.controlParameters.reference.isSet():
     #         self.reference = self.container.controlParameters.reference.fullPath.__str__()
@@ -75,16 +74,16 @@ class Cxia2_ssx_reduce(CPluginScript):
                 result.extend(self.extract_parameters(model))
             elif model.isSet():
                 name = model.objectName().replace("__", ".")
-                if name == "reference":                   # MM
-                    # val = self.reference
-                    val = self.container.controlParameters.reference.fullPath.__str__()
-                    result.append((name, val))
-                    continue
-                elif name == "grouping":                   # MM
-                    val = self.container.controlParameters.grouping.fullPath.__str__()
-                    result.append((name, val))
-                    continue
-                elif name == "dials_cosym_phil_d_min":      # MM
+                # if name == "reference":                   # MM
+                #     # val = self.reference
+                #     val = self.container.controlParameters.reference.fullPath.__str__()
+                #     result.append((name, val))
+                #     continue
+                # if name == "grouping":                   # MM
+                #    val = self.container.controlParameters.grouping.fullPath.__str__()
+                #    result.append((name, val))
+                #    continue
+                if name == "dials_cosym_phil_d_min":      # MM
                     val = self.container.controlParameters.dials_cosym_phil_d_min.__str__()
                     phil_file_cosym = os.path.normpath(
                         os.path.join(self.getWorkDirectory(), "cosym_i2.phil")
@@ -115,6 +114,15 @@ class Cxia2_ssx_reduce(CPluginScript):
         )
         with open(phil_file, "w") as f:
             for (name, val) in self.extract_parameters(par):
+                f.write(name + "={0}\n".format(val))
+            # reference and grouping are in self.container.inputData
+            if self.container.inputData.reference.isSet():
+                name = "reference"
+                val = self.container.inputData.reference.fullPath.__str__()
+                f.write(name + "={0}\n".format(val))
+            if self.container.inputData.grouping.isSet():
+                name = "grouping"
+                val = self.container.inputData.grouping.fullPath.__str__()
                 f.write(name + "={0}\n".format(val))
         self.appendCommandLine(phil_file)
 

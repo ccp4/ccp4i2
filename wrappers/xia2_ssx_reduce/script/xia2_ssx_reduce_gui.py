@@ -93,7 +93,7 @@ class xia2_ssx_reduce_gui(CTaskWidget):
             selection={"includeParameters": ["d_min"]},
         )
         self.autoGenerate(
-            self.container.controlParameters,
+            self.container.inputData,
             selection={"includeParameters": ["reference"]},
         )
         self.closeSubFrame()
@@ -159,7 +159,7 @@ class xia2_ssx_reduce_gui(CTaskWidget):
         self.createLine(['subtitle', 'Splitting mixed-condition data'])
         self.createLine(['label', 'Dose series - number of repeated measurements at each point', 'widget', 'dose_series_repeat'])
         self.autoGenerate(
-            self.container.controlParameters,
+            self.container.inputData,
             selection={"includeParameters": ["grouping"]},
         )
         self.closeSubFrame()
