@@ -30,16 +30,15 @@
           <toolTip>Must have an associated .expt file</toolTip>
           <listMinLength>1</listMinLength>
           <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>True</allowUndefined>
         </qualifiers>
         <subItem>
-          <className>CDataFile</className>
+          <className>CDataReflFile</className>
           <qualifiers>
             <saveToDb>False</saveToDb>
             <mustExist>True</mustExist>
             <allowUndefined>True</allowUndefined>
             <isDirectory>False</isDirectory>
-            <guiLabel>Bar</guiLabel>
-            <toolTip>Foo</toolTip>
             <fromPreviousJob>True</fromPreviousJob>
           </qualifiers>
         </subItem>
@@ -90,7 +89,7 @@
           </qualifiers>
         </content>
         <content id="grouping">
-          <className>CDataFile</className>
+          <className>CYmlFile</className>
           <qualifiers>
             <guiLabel>Other grouping – YML file specifying groupings</guiLabel>
             <saveToDb>True</saveToDb>
@@ -126,7 +125,7 @@
         <className>CList</className>
         <qualifiers />
         <subItem>
-          <className>CDataFile</className>
+          <className>CDataReflFile</className>
           <qualifiers>
             <saveToDb>True</saveToDb>
             <mustExist>True</mustExist>

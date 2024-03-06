@@ -3,10 +3,6 @@
 #
 #  Author: Martin Maly, David Waterman
 #
-# merge what was scaled
-# use data from job
-# dpapi
-# clean comments
 from core.CCP4PluginScript import CPluginScript
 from core.CCP4ErrorHandling import *
 import os, glob, shutil

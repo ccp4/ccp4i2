@@ -7,6 +7,7 @@
 from PySide2 import QtCore, QtWidgets
 from qtgui.CCP4TaskWidget import CTaskWidget
 from core import CCP4Container
+# from core import CCP4Modules
 import qtgui
 from .find_expt_refl import find_expt_refl
 from dxtbx.serialize import load
@@ -41,10 +42,28 @@ class xia2_ssx_reduce_gui(CTaskWidget):
     SHORTTASKTITLE = "xia2.ssx_reduce"
     TASKVERSION = 0.1
 
+    # def __init__(self,parent):
+    #     CTaskWidget.__init__(self,parent)
+
+    def isValid(self):
+        if self.container.inputData.DIALS_INTEGRATED.isSet():
+            if len(self.container.inputData.DIALS_INTEGRATED) >= 1:
+                firstReflPath = self.container.inputData.DIALS_INTEGRATED[0].__str__()
+                if os.path.isfile(firstReflPath):
+                    if "DataFiles_scaled" in os.path.split(firstReflPath)[-1]:
+                        self.container.inputData.SEARCH_PREFERENCE.set('scaled')
+                        self.updateScaleMerge1()
+        #     if self.getWidget('followFrom') is None: return
+        #     followJobId = self.getWidget('followFrom').currentJobId()
+        #     if followJobId is not None:
+        #         container_follow = CCP4Modules.PROJECTSMANAGER().getJobParams(jobId=followJobId)
+        return CTaskWidget.isValid(self)
+
+
     def drawContents(self):
 
         # Input data
-        self.openFolder(folderFunction="inputData", followFrom=False)
+        self.openFolder(folderFunction="inputData")
 
         self.createLine(
             [
@@ -64,7 +83,7 @@ class xia2_ssx_reduce_gui(CTaskWidget):
                 'label', 'files',
             ]
         )
-        self.connectDataChanged('SEARCH_PREFERENCE', self.updateScaleMerge)
+        self.connectDataChanged('SEARCH_PREFERENCE', self.updateScaleMerge1)
         self.createLine(
             [
                 "widget",
@@ -119,6 +138,7 @@ class xia2_ssx_reduce_gui(CTaskWidget):
         self.createLine(['subtitle', 'Workflow options'])
         self.createLine(['label', 'Lattice tolerance for triggering mis-indexing assessment', 'widget', 'symmetry__lattice_symmetry_max_delta'])
         self.createLine(['label', 'Workflow: ', 'widget', '-guiMode', 'radio', 'workflow__steps' ] )
+        self.connectDataChanged('workflow__steps', self.updateScaleMerge2)
         self.createLine(
             ["advice", "Reduction of batch size and number of processors prevents system memory issues."]
         )
@@ -175,11 +195,21 @@ class xia2_ssx_reduce_gui(CTaskWidget):
 
         return
 
-    def updateScaleMerge(self):
+    def updateScaleMerge1(self):
         if self.container.inputData.SEARCH_PREFERENCE == 'scaled':
             self.container.controlParameters.workflow.workflow__steps.set('merge')
+            self.getWidget('reference').setEnabled(False)
+            self.container.inputData.reference.unSet()
         elif self.container.inputData.SEARCH_PREFERENCE == 'integrated':
             self.container.controlParameters.workflow.workflow__steps.set('scale+merge')
+            self.getWidget('reference').setEnabled(True)
+
+    def updateScaleMerge2(self):
+        if self.container.controlParameters.workflow.workflow__steps == 'merge':
+            self.getWidget('reference').setEnabled(False)
+            self.container.inputData.reference.unSet()
+        elif self.container.controlParameters.workflow.workflow__steps == 'scale+merge':
+            self.getWidget('reference').setEnabled(True)
 
     @QtCore.Slot()
     def handleSearchRootDir(self):
