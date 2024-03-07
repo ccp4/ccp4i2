@@ -114,7 +114,6 @@
             "ccp4mg_general",
             "chapi_tools",
             "coot_gtk3_rebuild",
-            "coot_headless_script_lines",
             "moorhen_node_tools",
             "moorhen_rebuild"
         ],
@@ -764,7 +763,7 @@
         "coot_headless_script_lines": {
             "0.0.0": {
                 "MAINTAINER": "Nobody",
-                "class": "wrappers.coot_headless_script_lines.script.coot_headless_script_lines_reportcoot_headless_script_lines_report",
+                "class": null,
                 "clsModule": "wrappers.coot_headless_script_lines.script.coot_headless_script_lines_report",
                 "clsName": "coot_headless_script_lines_report",
                 "modes": []
@@ -2328,10 +2327,10 @@
         },
         "chapi_tools": {
             "0.0": {
-                "DESCRIPTION": "Use scripts to fit sidechains, perform stepped refinement, fill and fit... (non-interactive coot)",
+                "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "Nobody",
-                "TASKTITLE": null,
+                "TASKTITLE": "Access the coot toolbox through coot headless api",
                 "class": "wrappers.chapi_tools.script.chapi_toolschapi_tools",
                 "clsModule": "wrappers.chapi_tools.script.chapi_tools",
                 "clsName": "chapi_tools",
@@ -2475,7 +2474,7 @@
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "Nobody",
                 "TASKTITLE": "Execute arbitrary script code within Coot",
-                "class": "wrappers.coot_headless_script_lines.script.coot_headless_script_linescoot_headless_script_lines",
+                "class": null,
                 "clsModule": "wrappers.coot_headless_script_lines.script.coot_headless_script_lines",
                 "clsName": "coot_headless_script_lines",
                 "internal": false,
@@ -5193,7 +5192,7 @@
                 "MAINTAINER": "Nobody",
                 "RANK": null,
                 "TASKTITLE": "Scripted model building - Coot Headless",
-                "class": "wrappers.coot_headless_script_lines.script.coot_headless_script_lines_guiCcoot_headless_script_lines",
+                "class": null,
                 "clsModule": "wrappers.coot_headless_script_lines.script.coot_headless_script_lines_gui",
                 "clsName": "Ccoot_headless_script_lines",
                 "shortTitle": "Scripted COOT Headless",
