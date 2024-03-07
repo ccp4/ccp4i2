@@ -1,0 +1,15 @@
+{
+    "name": "coot_script_lines_node",
+    "version": "0.0.1",
+    "description": "Use emsdk coot library for various tasks",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Martin Noble",
+    "license": "LGPL-3.0-or-later",
+    "dependencies": {
+        "commander": "^7.2.0",
+        "moorhen": "https://github.com/moorhen-coot/Moorhen/releases/download/v0.7.2/moorhen-0.7.2.tgz"
+    }
+}
