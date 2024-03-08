@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <projectName></projectName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId></jobId>
+        <pluginName>molrep_map</pluginName>
+        <pluginVersion></pluginVersion>
+        <projectId></projectId>
+        <creationTime>09:40 23/Dec/12</creationTime>
+        <pluginTitle></pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="molrep_map">
+        <container id="inputData">
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                </qualifiers>
+            </content>
+            <content id="MAPIN">
+                <className>CMapDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="controlParameters">
+        </container>
+        <container id="outputData">
+            <content id="BLURREDTRIMMEDMAP">
+                <className>CMapDataFile</className>
+                <qualifiers>
+                    <default>
+                        <annotation>Blurred trimmed input map</annotation>
+                    </default>
+                </qualifiers>
+            </content>
+            <content id="BLURREDTRIMMEDFLIPPEDMAP">
+                <className>CMapDataFile</className>
+                <qualifiers>
+                    <default>
+                        <annotation>Blurred trimmed flipped input map</annotation>
+                    </default>
+                </qualifiers>
+            </content>
+            <content id="ORIGINALHANDCOORDS">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default>
+                        <annotation>Coordinates fit in original hand</annotation>
+                    </default>
+                </qualifiers>
+            </content>
+            <content id="FLIPPEDHANDCOORDS">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default>
+                        <annotation>Coordinates fit in original hand</annotation>
+                    </default>
+                </qualifiers>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>
