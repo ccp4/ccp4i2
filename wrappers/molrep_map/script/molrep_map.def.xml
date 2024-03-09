@@ -19,19 +19,35 @@
             <content id="XYZIN">
                 <className>CPdbDataFile</className>
                 <qualifiers>
-                    <mustExist>True</mustExist>
+                    <mustExist>False</mustExist>
                     <allowUndefined>False</allowUndefined>
                 </qualifiers>
             </content>
             <content id="MAPIN">
                 <className>CMapDataFile</className>
                 <qualifiers>
-                    <mustExist>True</mustExist>
+                    <mustExist>False</mustExist>
                     <allowUndefined>False</allowUndefined>
                 </qualifiers>
             </content>
         </container>
         <container id="controlParameters">
+            <container id="MOLREP">
+                <content id="NMON">
+                    <className>CInt</className>
+                    <qualifiers>
+                        <default>1</default>
+                        <guiLabel>Number of copies to position</guiLabel>
+                    </qualifiers>
+                </content>
+                <content id="NP">
+                    <className>CInt</className>
+                    <qualifiers>
+                        <default>5</default>
+                        <guiLabel>Number of rotation peaks to consider</guiLabel>
+                    </qualifiers>
+                </content>
+            </container>
         </container>
         <container id="outputData">
             <content id="ORIGINALTRIMMEDMAP">

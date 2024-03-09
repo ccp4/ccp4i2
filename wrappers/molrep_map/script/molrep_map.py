@@ -26,8 +26,7 @@ class molrep_map(CPluginScript):
     WHATNEXT = ['prosmart_refmac']
     ASYNCHRONOUS = False
     TIMEOUT_PERIOD = 9999999.9
-    TASKCOMMAND = 'molrep'
-    RUNEXTERNALPROCESS = True
+    RUNEXTERNALPROCESS = False
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -60,7 +59,10 @@ class molrep_map(CPluginScript):
         jobDir = pathlib.Path(self.getWorkDirectory())
 
         with open(jobDir / "molrep_com.txt", "w") as comFile:
-            comFile.write("NMON 1\n")
+            if self.container.controlParameters.MOLREP.NMON.isSet():                
+                comFile.write(f"NMON {self.container.controlParameters.MOLREP.NMON.__str__()}\n")
+            if self.container.controlParameters.MOLREP.NP.isSet():                
+                comFile.write(f"NP {self.container.controlParameters.MOLREP.NP.__str__()}\n")
 
         with open(jobDir / "mapextend_com.txt", "w") as comFile:
             comFile.write("BORDER 15\n")
@@ -70,7 +72,8 @@ class molrep_map(CPluginScript):
         with open(jobDir / "molrep_com.txt") as comIn:
             subprocess.run(['molrep', 
                             '-f', self.originalBlurredMapPath, 
-                            '-m', self.container.inputData.XYZIN.fullPath.__str__()],
+                            '-m', self.container.inputData.XYZIN.fullPath.__str__(), 
+                            '-i'],
                            cwd=firstHandDir.__str__(), 
                            stdin=comIn)
 
@@ -91,7 +94,8 @@ class molrep_map(CPluginScript):
         with open(jobDir / "molrep_com.txt") as comIn:
             subprocess.run(['molrep', 
                             '-f', self.flippedBlurredMapPath.__str__(), 
-                            '-m', self.container.inputData.XYZIN.fullPath.__str__()],
+                            '-m', self.container.inputData.XYZIN.fullPath.__str__(), 
+                            '-i'],
                            cwd=secondHandDir.__str__(), 
                            stdin=comIn)
 
@@ -111,19 +115,19 @@ class molrep_map(CPluginScript):
     def processOutputFiles(self):
         if self.originalModel.exists():
             self.container.outputData.ORIGINALMODEL.setFullPath(self.originalModel.__str__())
-            #self.container.outputData.ORIGINALMODEL.annotation = "Model placed in original map"
+            self.container.outputData.ORIGINALMODEL.annotation = "Model placed in original map"
             
         if self.flippedModel.exists():
             self.container.outputData.FLIPPEDMODEL.setFullPath(self.flippedModel.__str__())
-            #self.container.outputData.FLIPPED.annotation = "Model placed in flipped map"
+            self.container.outputData.FLIPPEDMODEL.annotation = "Model placed in flipped map"
             
         if self.originalTrimmedMapPath.exists():
             self.container.outputData.ORIGINALTRIMMEDMAP.setFullPath(self.originalTrimmedMapPath.__str__())
-            #self.container.outputData.ORIGINALTRIMMEDMAP.annotation = "Original map trimmed to model"
+            self.container.outputData.ORIGINALTRIMMEDMAP.annotation = "Original map trimmed to model"
             
         if self.flippedTrimmedMapPath.exists():
             self.container.outputData.FLIPPEDTRIMMEDMAP.setFullPath(self.flippedTrimmedMapPath.__str__())
-            #self.container.outputData.FLIPPEDTRIMMEDMAP.annotation = "Flipped map trimmed to model"
+            self.container.outputData.FLIPPEDTRIMMEDMAP.annotation = "Flipped map trimmed to model"
             
         if self.originalBlurredMapPath.exists():
             self.originalBlurredMapPath.unlink()

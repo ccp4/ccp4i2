@@ -29,3 +29,6 @@ class Cmolrep_map(CTaskWidget):
         self.createLine( [ 'widget', 'MAPIN' ] )
         self.closeSubFrame()
         
+        for scriptName in self.container.controlParameters.contents():
+            self.autoGenerate(container=getattr(self.container.controlParameters, scriptName), subFrame=False)
+

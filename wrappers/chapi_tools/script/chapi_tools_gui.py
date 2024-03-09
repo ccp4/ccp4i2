@@ -30,7 +30,7 @@ class Cchapi_tools(CTaskWidget):
         for scriptName in self.container.controlParameters.contents():
             if scriptName != 'STARTPOINT':
                 self.openSubFrame(toggle=['STARTPOINT', 'open', [scriptName]])
-                self.autoGenerate(container=self.container.controlParameters.FIT_LIGAND, subFrame=False)
+                self.autoGenerate(container=getattr(self.container.controlParameters, scriptName), subFrame=False)
                 self.closeSubFrame()
         self.closeSubFrame()
         
