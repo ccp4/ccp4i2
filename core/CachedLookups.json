@@ -114,6 +114,7 @@
             "ccp4mg_general",
             "chapi_tools",
             "coot_gtk3_rebuild",
+            "molrep_map",
             "moorhen_node_tools",
             "moorhen_rebuild"
         ],
@@ -137,6 +138,7 @@
             "arcimboldo",
             "comit",
             "i2Dimple",
+            "molrep_map",
             "morda_i2",
             "phaser_singleMR"
         ],
@@ -1169,6 +1171,15 @@
                 "class": "wrappers.molrep_den.script.molrep_den_reportmolrep_den_report",
                 "clsModule": "wrappers.molrep_den.script.molrep_den_report",
                 "clsName": "molrep_den_report",
+                "modes": []
+            }
+        },
+        "molrep_map": {
+            "0.0.0": {
+                "MAINTAINER": "Nobody",
+                "class": "wrappers.molrep_map.script.molrep_map_reportmolrep_map_report",
+                "clsModule": "wrappers.molrep_map.script.molrep_map_report",
+                "clsName": "molrep_map_report",
                 "modes": []
             }
         },
@@ -3079,6 +3090,19 @@
                 "subTasks": []
             }
         },
+        "molrep_map": {
+            "0.0": {
+                "DESCRIPTION": null,
+                "INTERRUPTLABEL": null,
+                "MAINTAINER": "Nobody",
+                "TASKTITLE": "Access the coot toolbox through coot headless api",
+                "class": "wrappers.molrep_map.script.molrep_mapmolrep_map",
+                "clsModule": "wrappers.molrep_map.script.molrep_map",
+                "clsName": "molrep_map",
+                "internal": false,
+                "subTasks": []
+            }
+        },
         "molrep_mr": {
             "null": {
                 "DESCRIPTION": null,
@@ -4201,6 +4225,7 @@
         "modelcraft": "qticons/modelcraft.png",
         "molecular_replacement": "qticons/molecular_replacement.png",
         "molrep_den": "qticons/molrep_den.png",
+        "molrep_map": "qticons/ccp4.png",
         "molrep_mr": "qticons/ccp4.png",
         "molrep_pipe": "qticons/molrep_pipe.png",
         "molrep_selfrot": "qticons/molrep_selfrot.png",
@@ -5758,6 +5783,20 @@
                 "shortTitle": "MOLREP with density",
                 "taskName": "molrep_den",
                 "taskVersion": "0.0.0"
+            }
+        },
+        "molrep_map": {
+            "0.0.0": {
+                "DESCRIPTION": "Molrep into cryo EM map",
+                "MAINTAINER": "Nobody",
+                "RANK": null,
+                "TASKTITLE": "Molrep into cryo EM map",
+                "class": "wrappers.molrep_map.script.molrep_map_guiCmolrep_map",
+                "clsModule": "wrappers.molrep_map.script.molrep_map_gui",
+                "clsName": "Cmolrep_map",
+                "shortTitle": "Molrep into cryo EM map",
+                "taskName": "molrep_map",
+                "taskVersion": 0.1
             }
         },
         "molrep_mr": {

@@ -31,10 +31,14 @@ class molrep_map(CPluginScript):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.blurredMapPath = (pathlib.Path(
-            self.getWorkDirectory()) / 'Blurred.map').absolute().__str__()
-        self.blurredFlippedMapPath = (pathlib.Path(
-            self.getWorkDirectory()) / 'BlurredFlipped.map').absolute().__str__()
+        self.jobDir = pathlib.Path(self.getWorkDirectory())
+        self.originalModel = self.jobDir / 'Original.pdb'
+        self.flippedModel = self.jobDir / 'Flipped.pdb'
+        self.flippedMapPath = self.jobDir / 'Flipped.map'
+        self.originalBlurredMapPath = self.jobDir / 'OriginalBlurred.map'
+        self.flippedBlurredMapPath = self.jobDir / 'FlippedBlurred.map'
+        self.originalTrimmedMapPath = self.jobDir / 'OriginalTrimmed.map'
+        self.flippedTrimmedMapPath = self.jobDir / 'FlippedTrimmed.map'
 
     def makeCommandAndScript(self, container=None):
         return CPluginScript.SUCCEEDED
@@ -43,48 +47,90 @@ class molrep_map(CPluginScript):
         mc = chapi.molecules_container_t(False)
         iMap = mc.read_ccp4_map(
             self.container.inputData.MAPIN.__str__(), False)
+        iMapFlipped = mc.flip_hand(iMap)
+        mc.write_map(iMapFlipped, self.flippedMapPath.__str__())        
         iMapDownSampled = mc.sharpen_blur_map(iMap, 50,  False)
-        print({"blurredMapPath": self.blurredMapPath})
-        mc.write_map(iMapDownSampled, self.blurredMapPath)
-        iMapFlipped = mc.flip_hand(iMapDownSampled)
-        mc.write_map(iMapFlipped, self.blurredFlippedMapPath)
+        mc.write_map(iMapDownSampled, self.originalBlurredMapPath.__str__())
+        iMapFlippedDown = mc.flip_hand(iMapDownSampled)
+        mc.write_map(iMapFlippedDown, self.flippedBlurredMapPath.__str__())
         return CPluginScript.SUCCEEDED
 
     def startProcess(self, command=None, handler=None, **kw):
         self.makeCommandAndScript()
         jobDir = pathlib.Path(self.getWorkDirectory())
-        with open(jobDir / "com.txt", "w") as comFile:
+
+        with open(jobDir / "molrep_com.txt", "w") as comFile:
             comFile.write("NMON 1\n")
 
-        firstHandDir = jobDir / 'FirstHand'
+        with open(jobDir / "mapextend_com.txt", "w") as comFile:
+            comFile.write("BORDER 15\n")
+            
+        firstHandDir = self.jobDir / 'FirstHand'
         firstHandDir.mkdir()
-        with open(jobDir / "com.txt") as comIn:
-            subprocess.run(['molrep', '-f', self.blurredMapPath, '-m',
-                            self.container.inputData.XYZIN.fullPath.__str__()],
-                           cwd=firstHandDir.__str__(), stdin=comIn)
-        outputCoordPath = firstHandDir/"molrep.pdb"
-        if outputCoordPath.exists():
-            subprocess.run(['mapmask', 'MAPIN', self.blurredMapPath, 'XYZIN',
-                            outputCoordPath.fullPath.__str__(), 
-                            'MAPOUT', (firstHandDir / 'trimmed.map').__str__()],
-                           cwd=firstHandDir.__str__())
+        with open(jobDir / "molrep_com.txt") as comIn:
+            subprocess.run(['molrep', 
+                            '-f', self.originalBlurredMapPath, 
+                            '-m', self.container.inputData.XYZIN.fullPath.__str__()],
+                           cwd=firstHandDir.__str__(), 
+                           stdin=comIn)
 
-        secondHandDir = jobDir / 'SecondHand'
-        secondHandDir.mkdir()
-        with open(jobDir / "com.txt") as comIn:
-            subprocess.run(['molrep', '-f', self.blurredFlippedMapPath, '-m',
-                            self.container.inputData.XYZIN.fullPath.__str__()],
-                           cwd=firstHandDir.__str__(), stdin=comIn)
-        outputCoordPath = secondHandDir/"molrep.pdb"
+        outputCoordPath = firstHandDir / "molrep.pdb"
+
         if outputCoordPath.exists():
-            subprocess.run(['mapmask', 'MAPIN', self.blurredFlippedMapPath, 'XYZIN',
-                            outputCoordPath.fullPath.__str__(), 
-                            'MAPOUT', (secondHandDir / 'trimmed.map').__str__()],
-                           cwd=secondHandDir.__str__())
+            shutil.copyfile(outputCoordPath, self.originalModel)
+            with open(jobDir/"mapextend_com.txt", "r") as comIn:
+                subprocess.run(['mapmask', 
+                                'MAPIN', self.originalBlurredMapPath.__str__(), 
+                                'XYZIN', outputCoordPath.__str__(),
+                                'MAPOUT', self.originalTrimmedMapPath.__str__()],
+                            cwd=firstHandDir.__str__(),
+                            stdin=comIn)
+
+        secondHandDir = self.jobDir / 'SecondHand'
+        secondHandDir.mkdir()
+        with open(jobDir / "molrep_com.txt") as comIn:
+            subprocess.run(['molrep', 
+                            '-f', self.flippedBlurredMapPath.__str__(), 
+                            '-m', self.container.inputData.XYZIN.fullPath.__str__()],
+                           cwd=secondHandDir.__str__(), 
+                           stdin=comIn)
+
+        outputCoordPath = secondHandDir / "molrep.pdb"
+        if outputCoordPath.exists():
+            shutil.copyfile(outputCoordPath, self.flippedModel)
+            with open(jobDir/"mapextend_com.txt", "r") as comIn:
+                subprocess.run(['mapmask', 
+                                'MAPIN', self.flippedMapPath.__str__(), 
+                                'XYZIN', outputCoordPath.__str__(),
+                                'MAPOUT', self.flippedTrimmedMapPath.__str__()],
+                                cwd=secondHandDir.__str__(),
+                                stdin=comIn)
 
         return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
+        if self.originalModel.exists():
+            self.container.outputData.ORIGINALMODEL.setFullPath(self.originalModel.__str__())
+            #self.container.outputData.ORIGINALMODEL.annotation = "Model placed in original map"
+            
+        if self.flippedModel.exists():
+            self.container.outputData.FLIPPEDMODEL.setFullPath(self.flippedModel.__str__())
+            #self.container.outputData.FLIPPED.annotation = "Model placed in flipped map"
+            
+        if self.originalTrimmedMapPath.exists():
+            self.container.outputData.ORIGINALTRIMMEDMAP.setFullPath(self.originalTrimmedMapPath.__str__())
+            #self.container.outputData.ORIGINALTRIMMEDMAP.annotation = "Original map trimmed to model"
+            
+        if self.flippedTrimmedMapPath.exists():
+            self.container.outputData.FLIPPEDTRIMMEDMAP.setFullPath(self.flippedTrimmedMapPath.__str__())
+            #self.container.outputData.FLIPPEDTRIMMEDMAP.annotation = "Flipped map trimmed to model"
+            
+        if self.originalBlurredMapPath.exists():
+            self.originalBlurredMapPath.unlink()
+            
+        if self.flippedBlurredMapPath.exists():
+            self.flippedBlurredMapPath.unlink()
+            
         return CPluginScript.SUCCEEDED
 
 

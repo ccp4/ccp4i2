@@ -34,35 +34,35 @@
         <container id="controlParameters">
         </container>
         <container id="outputData">
-            <content id="BLURREDTRIMMEDMAP">
+            <content id="ORIGINALTRIMMEDMAP">
                 <className>CMapDataFile</className>
                 <qualifiers>
                     <default>
-                        <annotation>Blurred trimmed input map</annotation>
+                        <annotation>Original trimmed map</annotation>
                     </default>
                 </qualifiers>
             </content>
-            <content id="BLURREDTRIMMEDFLIPPEDMAP">
+            <content id="FLIPPEDTRIMMEDMAP">
                 <className>CMapDataFile</className>
                 <qualifiers>
                     <default>
-                        <annotation>Blurred trimmed flipped input map</annotation>
+                        <annotation>Flipped trimmed map</annotation>
                     </default>
                 </qualifiers>
             </content>
-            <content id="ORIGINALHANDCOORDS">
+            <content id="ORIGINALMODEL">
                 <className>CPdbDataFile</className>
                 <qualifiers>
                     <default>
-                        <annotation>Coordinates fit in original hand</annotation>
+                        <annotation>Coordinates fit in original map</annotation>
                     </default>
                 </qualifiers>
             </content>
-            <content id="FLIPPEDHANDCOORDS">
+            <content id="FLIPPEDMODEL">
                 <className>CPdbDataFile</className>
                 <qualifiers>
                     <default>
-                        <annotation>Coordinates fit in original hand</annotation>
+                        <annotation>Coordinates fit in flipped map</annotation>
                     </default>
                 </qualifiers>
             </content>
