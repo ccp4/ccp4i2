@@ -32,6 +32,15 @@
             </content>
         </container>
         <container id="controlParameters">
+            <container id="PREPARE">
+                <content id="BADD">
+                    <className>CFloat</className>
+                    <qualifiers>
+                        <default>50</default>
+                        <guiLabel>Additional B-factor to apply to model and map</guiLabel>
+                    </qualifiers>
+                </content>
+            </container>
             <container id="MOLREP">
                 <content id="NMON">
                     <className>CInt</className>

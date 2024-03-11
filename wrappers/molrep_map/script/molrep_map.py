@@ -49,7 +49,7 @@ class molrep_map(CPluginScript):
             self.container.inputData.MAPIN.__str__(), False)
         iMapFlipped = mc.flip_hand(iMap)
         mc.write_map(iMapFlipped, self.flippedMapPath.__str__())
-        iMapDownSampled = mc.sharpen_blur_map(iMap, 50,  False)
+        iMapDownSampled = mc.sharpen_blur_map(iMap, float(self.container.controlParameters.PREPARE.BADD),  False)
         mc.write_map(iMapDownSampled, self.originalBlurredMapPath.__str__())
         iMapFlippedDown = mc.flip_hand(iMapDownSampled)
         mc.write_map(iMapFlippedDown, self.flippedBlurredMapPath.__str__())
@@ -66,6 +66,9 @@ class molrep_map(CPluginScript):
             if self.container.controlParameters.MOLREP.NP.isSet():
                 comFile.write(
                     f"NP {self.container.controlParameters.MOLREP.NP.__str__()}\n")
+            if self.container.controlParameters.PREPARE.BADD.isSet():
+                comFile.write(
+                    f"BADD {self.container.controlParameters.PREPARE.BADD.__str__()}\n")
 
         with open(jobDir / "mapextend_com.txt", "w") as comFile:
             comFile.write("BORDER 15\n")
