@@ -57,6 +57,15 @@
                     </qualifiers>
                 </content>
             </container>
+            <container id="OUTPUT">
+                <content id="BORDER">
+                    <className>CFloat</className>
+                    <qualifiers>
+                        <default>5</default>
+                        <guiLabel>Border around positioned molecule for trimmed map</guiLabel>
+                    </qualifiers>
+                </content>
+        </container>
         </container>
         <container id="outputData">
             <content id="ORIGINALTRIMMEDMAP">

@@ -9,7 +9,7 @@ from core import CCP4ModelData
 import pathlib
 import json
 import shutil
-import chapi
+from chapi import chapi
 import subprocess
 
 # import coot_headless_api as chapi
@@ -71,7 +71,11 @@ class molrep_map(CPluginScript):
                     f"BADD {self.container.controlParameters.PREPARE.BADD.__str__()}\n")
 
         with open(jobDir / "mapextend_com.txt", "w") as comFile:
-            comFile.write("BORDER 15\n")
+            if self.container.controlParameters.OUTPUT.BORDER.isSet():
+                comFile.write(
+                    f"BORDER {self.container.controlParameters.OUTPUT.BORDER.__str__()}\n")
+            else:
+                comFile.write("BORDER 5\n")
 
         firstHandDir = self.jobDir / 'FirstHand'
         firstHandDir.mkdir()
