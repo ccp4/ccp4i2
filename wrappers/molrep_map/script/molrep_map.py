@@ -9,7 +9,11 @@ from core import CCP4ModelData
 import pathlib
 import json
 import shutil
-from chapi import chapi
+import sys
+if sys.platform in ['darwin']:
+    import chapi
+else:
+    from chapi import chapi
 import subprocess
 
 # import coot_headless_api as chapi
