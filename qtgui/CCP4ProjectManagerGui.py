@@ -1990,15 +1990,39 @@ class CProjectManagerDialog(QtWidgets.QDialog):
       progressLayout = QtWidgets.QVBoxLayout()
       progressLayout.addWidget(progressLabel)
       progressLayout.addWidget(progressBar)
+      progressDBB = QtWidgets.QDialogButtonBox()
+      cancelButton = progressDBB.addButton(QtWidgets.QDialogButtonBox.Cancel)
+      doneButton = progressDBB.addButton(QtWidgets.QDialogButtonBox.Ok)
+      doneButton.setEnabled(False)
+      progressLayout.addWidget(progressDBB)
       progressWindow.setLayout(progressLayout)
       progressWindow.show()
       progressWindow.raise_()
+
+
+      @QtCore.Slot(bool)
+      def doneClicked(dum=False):
+          progressWindow.close()
+          return
+      doneButton.clicked.connect(doneClicked)
+
+      self.cancelExportAll = False
+
+      @QtCore.Slot(bool)
+      def cancelClicked(dum=False):
+          self.cancelExportAll = True
+          cancelButton.setEnabled(False)
+          progressLabel.setText("Cancelling...")
+      cancelButton.clicked.connect(cancelClicked)
 
       iproject = 0
 
       @QtCore.Slot(int)
       def exportNextProject(iproject):
           try:
+              if self.cancelExportAll:
+                  progressWindow.close()
+                  return
               name = projects.pop()[1]
               pc = int(100. * iproject / origLenProjects)
               progressBar.setValue(pc)
@@ -2007,7 +2031,10 @@ class CProjectManagerDialog(QtWidgets.QDialog):
               compClass.doneSignal.connect(functools.partial(exportNextProject,iproject+1))
               compClass.run()
           except:
-              progressWindow.close()
+              progressLabel.setText("Finished exporting "+str(origLenProjects)+" projects")
+              progressBar.setValue(100)
+              #progressWindow.close()
+              doneButton.setEnabled(True)
               return
 
       exportNextProject(iproject)
