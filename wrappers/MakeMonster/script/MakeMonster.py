@@ -6,6 +6,7 @@ import os,re,time,sys
 class MakeMonster(CPluginScript):
     
     TASKNAME = 'MakeMonster'                                  # Task name - should be same as class name
+    TASKMODULE='test'
     TASKVERSION= 0.0                                     # Version of this plugin
     ASYNCHRONOUS = False
     TIMEOUT_PERIOD = 9999999.9
