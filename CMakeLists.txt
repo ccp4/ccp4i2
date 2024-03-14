@@ -82,6 +82,7 @@ install(DIRECTORY ${CMAKE_SOURCE_DIR}/wrappers2 DESTINATION ${Python_SITELIB}/cc
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/tipsOfTheDay DESTINATION ${Python_SITELIB}/ccp4i2)
 install(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/ccp4i2 DESTINATION bin)
 install(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/ccp4i2-update DESTINATION bin)
+install(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/i2run-inst DESTINATION bin RENAME i2run)
 
 if(WIN32)
   install(FILES ${CMAKE_SOURCE_DIR}/Windows/ccp4i2.ico DESTINATION .)
