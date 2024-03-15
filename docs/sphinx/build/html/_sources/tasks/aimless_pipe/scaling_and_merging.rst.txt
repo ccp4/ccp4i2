@@ -112,12 +112,17 @@ AIMLESS analyses anisotropy from CC(1/2) and <I/ |sgr| (I)> in cones of data
 around the principal axes (fig 10a), so a rough resolution estimate can be made
 for each direction (fig 10d). Phaser (fig 10b) and Ctruncate (fig 10c) fit
 orthogonal ellipsoids to the merged data, with different definitions - the important
-thing is to note is that, for example, in this case, the data are quite severely
+thing to note is that, for example, in this case, the data are quite severely
 anisotropic, and this may influence your decisions of whether or where to cut
-the data. 
-Other resources such as the Staraniso server might be useful in deciding what to
-do with severely anisotropic data, though the value of anisotropic
-cutoffs is controversial.
+the data.
+
+Other resources such as the `STARANISO server
+<https://staraniso.globalphasing.org/>` or the `Diffraction Anisotropy Server
+<https://srv.mbi.ucla.edu/Anisoscale/>` might be useful in analysing and
+potentially adjusting data with significant anisotropy. It should be noted though,
+that upon final deposition all data prior to any anisotropy correction and/or
+cut-off should also be included - ideally up to the scaled and unmerged
+reflection data.
 
 .. _Analysis of radiation damage etc:
 
