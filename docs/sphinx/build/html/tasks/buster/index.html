@@ -251,7 +251,7 @@ documentation</a></p></li>
 <h2 id="input">Input<a class="headerlink" href="#input" title="Permalink to this heading">¶</a></h2>
 <p><img alt="image1" src="../../_images/buster_input_data.png"/></p>
 <p>The CCP4i2 interface to BUSTER comprises input data and the most common options.</p>
-<p>The mandatory input data is a set of reflections, a FreeR set and an atom model. Optionally a ditionanary of ligand restraints may
+<p>The mandatory input data is a set of reflections, a FreeR set and an atomic model. Optionally a dictionary of ligand restraints may
 be provided.</p>
 <p class="rubric" id="main-inputs">Main Inputs</p>
 <p><em>Atomic Model</em> – File containing model coordinates and other
@@ -271,10 +271,10 @@ representing ideal ligand geometry. This file specifies restraints to
 be used during refinement. Such restraints must be provided for any
 non-standard ligand/residue/heterogen in the input model. To generate
 restraints using Acedrg, see the “Make Ligand” task in the “Model
-building and refinement” section.</p>
+building and refinement” section. Alternatively, the <a class="reference external" href="https://grade.globalphasing.org/">Grade webserver</a> can be used for the same task. </p>
 <p class="rubric" id="main-options">Mandatory options</p>
 <p><em>Number of refinement cycles</em></p>
-<p>The number of BIG (refinement/water building/bulk solvent mask update/weight adjustment) and SMALL (refinement iterations during each BIG cycle). These are 5 and 100 by default respectively. A fuller description is in the <a class="reference external" href="http://www.globalphasing.com/buster/manual/autobuster/manual/autoBUSTER4.html#refine_args">BUSTER command line documentation</a> .</p>
+<p>The number of BIG (refinement/water building/bulk solvent mask update/weight adjustment) and SMALL (refinement iterations during each BIG cycle). These are 5 and 100 by default respectively. A fuller description is in the <a class="reference external" href="https://www.globalphasing.com/buster/manual/autobuster/manual/autoBUSTER4.html#refine_args">BUSTER command line documentation</a> .</p>
 <p><em>Water solvent treatment</em></p>
 <p>BUSTER’s solvent treatment must be specified. There are 3 options:</p>
 <ul class="simple">
@@ -283,17 +283,17 @@ building and refinement” section.</p>
 <li><p>Switch on water solvent treatment for big cycle n onwards</p></li>
 </ul>
 <p>These options and advice on how to use them can be found in
-<a class="reference external" href="http://www.globalphasing.com/buster/manual/autobuster/manual/autoBUSTER5.html#normal_wat">the BUSTER waters documentation</a></p>
+<a class="reference external" href="https://www.globalphasing.com/buster/manual/autobuster/manual/autoBUSTER5.html#normal_wat">the BUSTER waters documentation</a></p>
 <p class="rubric" id="additional-options">Additional options</p>
 <ul class="simple">
-<li><p>Automatically detect NCS (non-crystallographic symmetry) and impose LSSR (local structure similarity restraints) - This turns on the <a class="reference external" href="http://www.globalphasing.com/buster/manual/autobuster/manual/autoBUSTER5.html#normal_ncs">-autoncs option in BUSTER.</a></p></li>
-<li><p>Turn on <a class="reference external" href="http://www.globalphasing.com/buster/manual/autobuster/manual/autoBUSTER5.html#normal_rig">rigid body refinement for the first big cycle</a></p></li>
-<li><p>Carry out TLS (Translation/Libration/Screw) refinement using a simple model (one domain per chain) - Use the <a class="reference external" href="http://www.globalphasing.com/buster/manual/autobuster/manual/autoBUSTER5.html#normal_tls">TLSBasic</a> option with  a single TLS group per macro-molecular chain.</p></li>
+<li><p>Automatically detect NCS (non-crystallographic symmetry) and impose LSSR (local structure similarity restraints) - This turns on the <a class="reference external" href="https://www.globalphasing.com/buster/manual/autobuster/manual/autoBUSTER5.html#normal_ncs">-autoncs option in BUSTER.</a></p></li>
+<li><p>Turn on <a class="reference external" href="https://www.globalphasing.com/buster/manual/autobuster/manual/autoBUSTER5.html#normal_rig">rigid body refinement for the first big cycle</a></p></li>
+<li><p>Carry out TLS (Translation/Libration/Screw) refinement using a simple model (one domain per chain) - Use the <a class="reference external" href="https://www.globalphasing.com/buster/manual/autobuster/manual/autoBUSTER5.html#normal_tls">TLSBasic</a> option with  a single TLS group per macro-molecular chain.</p></li>
 </ul>
 </section>
 <section id="results">
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permalink to this heading">¶</a></h2>
-<p>The BUSTER report has summary showing final R/RFree, a plot of R and RFRee versus refinement cycle, BUSTER’s summary.png and summary_LL.png plots, and the usual list of input and output data.
+<p>The BUSTER report has summary showing final R/Rfree, a plot of R and Rfree versus refinement cycle, BUSTER’s summary.png and summary_LL.png plots, and the usual list of input and output data.
 <img alt="image2" src="../../_images/buster_output1.png"/>
 <img alt="image3" src="../../_images/buster_output2.png"/>
 <img alt="image4" src="../../_images/buster_output3.png"/>
