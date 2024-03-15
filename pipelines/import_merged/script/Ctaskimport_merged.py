@@ -64,7 +64,7 @@ class CTaskimport_merged(CTaskWidget):
                       'This file appears to be from the STARANISO server (https://staraniso.globalphasing.org/)'],
                      toggle=['STARANISO_DATA', 'closed', [False]])
     self.createLine (['label',
-                      'By default the FreeR flag will be imported unchanged without completion'],
+                      'By default the FreeR flag will be imported unchanged without completion (to accommodate default REFMAC behaviour concerning DFc-completion in electron density maps)'],
                      toggle=['STARANISO_DATA', 'closed', [False]])
     
     # Optional resolution cutoff
@@ -105,7 +105,7 @@ class CTaskimport_merged(CTaskWidget):
                      'label', 'Leave input FreeR set unchanged'],
                     toggleFunction=[self.toggleSkip, ['FREERFLAG', 'HASFREER', 'STARANISO_DATA']])
     self.createLine(['widget', 'SKIP_FREER',
-                     'label', 'Leave input FreeR set unchanged (recommended for STARANISO data'],
+                     'label', 'Leave input FreeR set unchanged (recommended for STARANISO data (to accommodate default REFMAC behaviour concerning DFc-completion in electron density maps)'],
                     toggleFunction=[self.toggleSkip2, ['FREERFLAG', 'HASFREER', 'STARANISO_DATA']])
 
     # We almost certainly want to keep whatever was set when the data was saved so dont call updateFromFile
