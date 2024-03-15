@@ -136,7 +136,7 @@ class CGuiPreferences(CTaskWidget):
     self.createLine( ['label' , 'Coot executable full path', 'widget','-jobCombo',False,'COOT_EXECUTABLE' ] )
     self.createLine( ['label' , 'Directory containing Shelx programs', 'widget','-jobCombo',False,'SHELXDIR' ] )
     self.createLine( ['label' , 'Directory containing DIALS programs', 'widget','-jobCombo',False,'DIALSDIR' ] )
-    self.createLine(['label', 'Directory containing BUSTER (GPL)', 'widget', '-jobCombo', False, 'BUSTERDIR'])
+    self.createLine(['label', 'Directory containing BUSTER (Global Phasing Ltd.)', 'widget', '-jobCombo', False, 'BUSTERDIR'])
     self.createLine( ['advice', 'Enter full path to any program executable that is not the standard release version'])
     self.createLine( ['widget' , 'EXEPATHLIST' ] )
 

@@ -16,7 +16,7 @@ class buster_report(Report):
         if parent is None:
             parent = self
         parent.addResults()
-        parent.append("Buster Refinement complete.")
+        parent.append("BUSTER Refinement complete.")
         bestR = float(self.xmlnode.findall('.//RunInfo/Best/R')[0].text)
         bestRFree = float(self.xmlnode.findall('.//RunInfo/Best/RFree')[0].text)
         sbestR = f'{round(bestR, 3):.3g}'
@@ -38,7 +38,7 @@ class buster_report(Report):
         graph.addData (title="RMS Angle",  select="RMSA" )
         # Add R-Factor plot
         p = graph.addPlotObject()
-        p.append('title', 'R-Factors by Buster Cycle (inc. all large cycles)')
+        p.append('title', 'R-Factors by BUSTER Cycle (inc. all large cycles)')
         p.append('plottype','xy')
         p.append('xintegral','true')
         p.append('xlabel','Cycle')
