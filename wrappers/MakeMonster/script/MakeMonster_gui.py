@@ -48,9 +48,7 @@ class MakeMonster_gui(CTaskWidget):
                 try:
                     self.createLine( ['label','Output as: ','widget',outputAsName,'label',' with column Suffix', 'widget',SuffixName] )
                 except Exception as err:
-                    print(err)
-                    traceback.print_exc()
-                    self.createLine( ['label','Output column Suffix', 'widget',SuffixName] )
+                    self.createLine( ['label','Output column Suffix', 'widget', SuffixName] )
                 self.closeSubFrame()
             
             self.handleNObjectsChanged(dataType)
@@ -71,8 +69,7 @@ class MakeMonster_gui(CTaskWidget):
             try:
                 getattr(self.container.inputData,outputAsName).setQualifiers({'allowUndefined':False})
             except Exception as err:
-                print(err)
-                traceback.print_exc()
+                pass
         for i in range(getattr(self.container.inputData,countObjectName).__int__(),6):
             dataObjectName = dataType+"_"+str(i+1)
             outputAsName = dataObjectName + "_OutputRepresentation"
@@ -82,15 +79,14 @@ class MakeMonster_gui(CTaskWidget):
             try:
                 getattr(self.container.inputData,outputAsName).setQualifiers({'allowUndefined':True})
             except Exception as err:
-                print(err)
-                traceback.print_exc()
+                pass
             getattr(self.container.inputData,dataObjectName).unSet()
         self.validate()
 
     @QtCore.Slot(str)
     def handleObjectChanged(self, dataObjectName):
         if dataObjectName.startswith('Obs'):
-            dataObject = self.container.inputData.Obs_1#getattr(self.container.inputData, dataObjectName)._value_
+            dataObject = getattr(self.container.inputData, dataObjectName)
             dataObject.setContentFlag(reset=True)
             outputAsName = dataObjectName + "_OutputRepresentation"
             if hasattr(self.container.inputData,outputAsName):
