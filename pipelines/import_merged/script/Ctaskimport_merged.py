@@ -61,7 +61,7 @@ class CTaskimport_merged(CTaskWidget):
     self.createLine (['label',''])
 
     self.createLine (['label',
-                      'This file appears to be from the StarAniso server'],
+                      'This file appears to be from the STARANISO server (https://staraniso.globalphasing.org/)'],
                      toggle=['STARANISO_DATA', 'closed', [False]])
     self.createLine (['label',
                       'By default the FreeR flag will be imported unchanged without completion'],
@@ -105,7 +105,7 @@ class CTaskimport_merged(CTaskWidget):
                      'label', 'Leave input FreeR set unchanged'],
                     toggleFunction=[self.toggleSkip, ['FREERFLAG', 'HASFREER', 'STARANISO_DATA']])
     self.createLine(['widget', 'SKIP_FREER',
-                     'label', 'Leave input FreeR set unchanged (recommended for StarAniso data)'],
+                     'label', 'Leave input FreeR set unchanged (recommended for STARANISO data'],
                     toggleFunction=[self.toggleSkip2, ['FREERFLAG', 'HASFREER', 'STARANISO_DATA']])
 
     # We almost certainly want to keep whatever was set when the data was saved so dont call updateFromFile
@@ -238,7 +238,7 @@ class CTaskimport_merged(CTaskWidget):
           if 'FREER' in str(column.columnLabel).upper():
             self.container.inputData.HASFREER.set(True)
           if str(column.columnLabel) == 'SA_flag':
-            # Data comes from StarAniso
+            # Data comes probably from STARANISO
             #print('>>** found SA_FLAG')
             self.container.controlParameters.STARANISO_DATA.set(True)
             self.container.controlParameters.SKIP_FREER.set(True)

@@ -221,7 +221,7 @@ class import_merged_report(Report):
      5) Complete failed on 1st attempt, 2nd attempt to make new set failes
         two newFreeR == "False", "True", two FreeRfailed == "True", Again
         Probably should not occur
-     6) No generation of FreeR (SKIP_FREER), probably for StarAniso data
+     6) No generation of FreeR (SKIP_FREER), probably for STARANISO data
         freeRsource = 'None'
     '''
     print("freeRmessage")
@@ -327,15 +327,15 @@ class import_merged_report(Report):
       if freeRsource == 'Explicit':
         text.append("The "+failed+"FreeR set was taken from explicit data object or file")
         if staraniso:
-          text[-1] += ", overriding FreeR set from StarAniso"
+          text[-1] += ", overriding FreeR set from STARANISO"
       elif freeRsource == 'Input':
         text.append("The "+failed+"FreeR set was taken from main input data")
         if staraniso:
-          text[-1] += ", and completed, even though it came from StarAniso"
+          text[-1] += ", and completed, even though it came from STARANISO"
       elif freeRsource == 'None':
         text.append("The "+failed+"FreeR set was taken from main input data unchanged")
         if staraniso:
-          text[-1] += ", since it came from StarAniso"
+          text[-1] += ", since it came from STARANISO"
       else:
         headlines.append("SCRIPT ERROR: wrong value of freeRsource: "+
                            freeRsource)  # shouldn't happen

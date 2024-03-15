@@ -13,7 +13,7 @@ from core import CCP4Modules
 
 class buster(CPluginScript):
     TASKMODULE = 'refinement'         # Gui menu location
-    TASKTITLE = 'Refinement with Buster (Global Phasing Limited)'        # Short title for Gui
+    TASKTITLE = 'Refinement with BUSTER (Global Phasing Limited)'        # Short title for Gui
     TASKNAME = 'buster'               # Task name - same as class name
     TASKCOMMAND = 'refine'            # The command to run the executable
     TASKVERSION = 1.0                 # plugin version
@@ -35,7 +35,7 @@ class buster(CPluginScript):
 
     def process(self):
         goodtogo = False
-        # Need to first check that Buster is switch on / present. Rem to put Buster in no-Windows list before release.
+        # Need to first check that BUSTER is switched on / present. Rem to put BUSTER in no-Windows list before release.
         bpres_act = shutil.which('refine')
         if bpres_act:
             goodtogo = True
@@ -160,7 +160,7 @@ class buster(CPluginScript):
             if fig:
                 graphf = True
         # xml (should not be necessary for graphs but images will not load)
-        rootNode = ET.Element("Buster")
+        rootNode = ET.Element("BUSTER")
         xmlRI = ET.SubElement(rootNode, "RunInfo")
         xmlbcyc = ET.SubElement(xmlRI, "Best")
         ET.SubElement(xmlbcyc, "R").text = str(rrfr[0])

@@ -164,7 +164,7 @@ class import_merged(CPluginScript):
       
         # Is FreeR generation switched off?
         if self.container.controlParameters.SKIP_FREER:
-            # No freeR generation, leave as is, eg from StarAniso
+            # No freeR generation, leave as is, eg from STARANISO
             self.process2(CPluginScript.SUCCEEDED)
 
         if not self.container.inputData.HASFREER:
