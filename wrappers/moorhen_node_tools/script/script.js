@@ -69,7 +69,7 @@ class CootWrapper {
         const tempPDBFilePath = `./${fileRoot}.pdb`
         const tempCIFFilePath = `./${fileRoot}.cif`
         this.molecules_container.writePDBASCII(iMol, tempPDBFilePath)
-        const gemmiStructure=this.cootModule.read_structure_file(tempPDBFilePath, cootModule.CoorFormat.Detect)
+        const gemmiStructure = this.cootModule.read_structure_file(tempPDBFilePath, cootModule.CoorFormat.Detect)
         gemmiStructure.make_mmcif_document().write_file(tempCIFFilePath)
         const fileContent = this.cootModule.FS.readFile(tempCIFFilePath, { encoding: 'utf8' });
         const bytesWritten = fs.writeFile(filePath, fileContent)
@@ -187,8 +187,13 @@ const FIT_LIGAND = async (cootWrapper, args) => {
         mc.set_imol_refinement_map(iMap)
         const readDictResult = await cootWrapper.import_cif_dictionary(DICTIN_0, iMol)
         const iDictMol = mc.get_monomer_from_dictionary(TLC, iMol, false)
-        const solutions = mc.fit_ligand(iMol, iMap, iDictMol, 1.0, true, 30)
-        const nSolutions = solutions.size()
+        let solutions = mc.fit_ligand(iMol, iMap, iDictMol, 1.0, true, 30)
+        let nSolutions = solutions.size()
+        if (nSolutions == 0) {
+            //Try without requesting flexible fit incase failure is due to no rotatable bonds
+            solutions = mc.fit_ligand(iMol, iMap, iDictMol, 1.0, false, 0)
+            nSolutions = solutions.size()
+        }
         console.log({ nSolutions })
         const solutionMols = []
         for (let iSolution = 0; iSolution < nSolutions; iSolution++) {
@@ -212,9 +217,11 @@ const FIT_LIGAND = async (cootWrapper, args) => {
         else {
             useSolutions = filteredSolutions
         }
-        console.log({useSolutions}, `${useSolutions.join(':')}`)
-        const mergeResult = mc.merge_molecules(iMol, `${useSolutions.join(':')}`)
-        console.log({ mergeResult })
+        if (useSolutions.length > 0) {
+            console.log({ useSolutions }, `${useSolutions.join(':')}`)
+            const mergeResult = mc.merge_molecules(iMol, `${useSolutions.join(':')}`)
+            console.log({ mergeResult })
+        }
         const outputFilePath = `${cootWrapper.PWD}/result.pdb`
         console.log({ outputFilePath })
         const writeResult = await cootWrapper.writePDBASCII(iMol, outputFilePath)
