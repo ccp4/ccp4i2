@@ -235,8 +235,7 @@ class xia2_ssx_reduce_report(Report):
             return
 
         # Extract relevant parts for the summary
-        # datasets = dic["datasets"] # MM
-        datasets = dic               # MM
+        datasets = dic
         dataset_ids = sorted(datasets.keys())
 
         def _format_stat(dataset, key, fmt, callback=None):

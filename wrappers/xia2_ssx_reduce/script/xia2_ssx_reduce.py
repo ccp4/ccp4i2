@@ -7,7 +7,6 @@ from core.CCP4PluginScript import CPluginScript
 from core.CCP4ErrorHandling import *
 import os, glob, shutil
 
-# from core import CCP4Utils
 from lxml import etree
 from core import CCP4Container
 from core import CCP4XtalData
@@ -52,8 +51,6 @@ class Cxia2_ssx_reduce(CPluginScript):
 
     # def processInputFiles(self):
     #     if self.container.inputData.reference.isSet():
-    #         print("\n\n\n+++ reference")
-    #         print(self.container.inputData.reference.fullPath.__str__())
     #     #     self.reference = self.container.inputData.reference.fullPath.__str__()
     #     if self.container.controlParameters.reference.isSet():
     #         self.reference = self.container.controlParameters.reference.fullPath.__str__()
@@ -70,16 +67,7 @@ class Cxia2_ssx_reduce(CPluginScript):
                 result.extend(self.extract_parameters(model))
             elif model.isSet():
                 name = model.objectName().replace("__", ".")
-                # if name == "reference":                   # MM
-                #     # val = self.reference
-                #     val = self.container.controlParameters.reference.fullPath.__str__()
-                #     result.append((name, val))
-                #     continue
-                # if name == "grouping":                   # MM
-                #    val = self.container.controlParameters.grouping.fullPath.__str__()
-                #    result.append((name, val))
-                #    continue
-                if name == "dials_cosym_phil_d_min":      # MM
+                if name == "dials_cosym_phil_d_min":
                     val = self.container.controlParameters.dials_cosym_phil_d_min.__str__()
                     phil_file_cosym = os.path.normpath(
                         os.path.join(self.getWorkDirectory(), "cosym_i2.phil")
@@ -90,7 +78,7 @@ class Cxia2_ssx_reduce(CPluginScript):
                     val_xia2 = "cosym_i2.phil"
                     result.append((name_xia2, val_xia2))
                     continue
-                elif name == "MEDIAN_CELL":                   # MM
+                elif name == "MEDIAN_CELL":
                     continue
                 # ensure commas are converted to whitespace-separated lists.
                 # Only whitespace appears to work correctly with PHIL multiple
@@ -128,16 +116,9 @@ class Cxia2_ssx_reduce(CPluginScript):
             expt = refl.rsplit(".refl", 1)[0] + ".expt"
 
             self.appendCommandLine([f"experiments={expt}", f"reflections={refl}"])
-
-        # Disable unit cell refinement by two_theta_refine, as the geometry
-        # derived from MTZ files is suspect.
-        # if self._disable_geometry_refinement:
-        #    self.appendCommandLine(["unit_cell.refine=None",])
-
         return
 
     def makeCommandAndScript(self):
-
         # Create PHIL file and command line
         self._setCommandLineCore(phil_filename="xia2_ssx_reduce.phil")
 
@@ -151,30 +132,6 @@ class Cxia2_ssx_reduce(CPluginScript):
         )
 
         return CPluginScript.SUCCEEDED
-
-    # def extract_integrated_dials_files(self, datafiles_dir):
-
-    #     results = []
-
-    #     # Start by looking for DIALS files from a xia2/dials run
-    #     experiments = glob.glob(os.path.join(datafiles_dir, "*.expt"))
-    #     reflections = glob.glob(os.path.join(datafiles_dir, "*.refl"))
-
-    #     # Exclude scaled files and sort
-    #     experiments = sorted(e for e in experiments if not e.endswith("_scaled.expt"))
-    #     reflections = sorted(e for e in reflections if not e.endswith("_scaled.refl"))
-
-    #     for expt, refl in zip(experiments, reflections):
-    #         results.append((expt, refl))
-
-    #     if results:
-    #          return results
-
-    #     # If there are no DIALS files, then import integrated MTZ to DIALS files
-    #     self._disable_geometry_refinement = False
-    #     # XXX TODO
-
-    #     return results
 
     @staticmethod
     def _extract_data_from_json(json_txt):
@@ -200,7 +157,6 @@ class Cxia2_ssx_reduce(CPluginScript):
         ]
 
     def processOutputFiles(self):
-
         # Check for exit status of the program
         from core.CCP4Modules import PROCESSMANAGER
 
@@ -314,54 +270,6 @@ class Cxia2_ssx_reduce(CPluginScript):
 
         obsOut = self.container.outputData.HKLOUT
         scaledOut = self.container.outputData.DIALS_INTEGRATED
-
-        # Find MTZs
-        #search = [
-        #    dirpath
-        #    for dirpath, _, _ in os.walk(
-        #        self.getWorkDirectory(),
-        #    )
-        #]
-        #candidates = []
-        #for pth in search:
-        #    candidates.extend(glob.glob(os.path.normpath(os.path.join(pth, "*.mtz"))))
-        #merged = []
-        #for mtz in candidates:
-        #    _, srcFilename = os.path.split(mtz)
-        #    if srcFilename[0].isdigit():
-        #        # exclude files like 3_scaled_unmerged.mtz, which are considered intermediate output
-        #        continue
-        #    # if mtz.endswith("unmerged.mtz"): # MM
-        #    #     unmerged.append(mtz)  # MM
-        #    else:
-        #        merged.append(mtz)
-
-        #if not unmerged:
-        #    element = etree.SubElement(self.xmlroot, "Xia2SsxReduceError")
-        #    element.text = "Unable to find unmerged MTZs"
-        #    return CPluginScript.FAILED
-        #for candidate in unmerged:
-
-        #    srcDirectory, srcFilename = os.path.split(candidate)
-        #    unmergedOut.append(unmergedOut.makeItem())
-        #    if os.path.normpath(srcDirectory) != os.path.normpath(
-        #        self.getWorkDirectory()
-        #    ):
-        #        dest = os.path.join(
-        #            self.getWorkDirectory(),
-        #            os.path.basename(srcDirectory) + "_" + srcFilename,
-        #        )
-        #        shutil.copy(candidate, dest)
-        #        unmergedOut[-1].setFullPath(dest)
-        #        unmergedOut[-1].annotation.set(
-        #            "Unmerged reflections: "
-        #            + os.path.basename(srcDirectory)
-        #            + "_"
-        #            + srcFilename
-        #        )
-        #    else:
-        #        unmergedOut[-1].setFullPath(candidate)
-        #        unmergedOut[-1].annotation.set("Unmerged reflections: " + srcFilename)
 
         # Read space group and cell from the 1st merged MTZ to complete performance info
         MergedMtzPath = merged[0]
