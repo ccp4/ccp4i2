@@ -32,30 +32,33 @@ class pointless(CPluginScript):
 
       for i in range(len(self.container.inputData.UNMERGEDFILES)):
         # Note: NAME, CIFBLOCK commands must preceed HKLIN
-        print(">>>HKLIN ", self.container.inputData.UNMERGEDFILES[i])
-        print("*** fileContent", i, \
-                  self.container.inputData.UNMERGEDFILES[i].file.fileContent)
+        # print(">>>HKLIN ", self.container.inputData.UNMERGEDFILES[i], file=logit)
+
         ndatasets = \
-          int(self.container.inputData.UNMERGEDFILES[i].file.fileContent.numberofdatasets)
+          self.container.inputData.UNMERGEDFILES[i].file.fileContent.numberofdatasets
+        if str(ndatasets) == 'None':
+            ndatasets = 1
+        ndatasets = int(ndatasets)
+        
+        merged = str(self.container.inputData.UNMERGEDFILES[i].file.fileContent.merged)
+        merged = (merged == 'merged')
 
         if self.container.inputData.UNMERGEDFILES[i].crystalName.isSet() and \
-               self.container.inputData.UNMERGEDFILES[i].dataset.isSet() and \
-               ndatasets < 2:
-            self.appendCommandScript("NAME PROJECT %s CRYSTAL %s DATASET %s" % \
-                                     (self._dbProjectName,
-                                      self.container.inputData.UNMERGEDFILES[i].crystalName,
-                                      self.container.inputData.UNMERGEDFILES[i].dataset))
+               self.container.inputData.UNMERGEDFILES[i].dataset.isSet():
+            if (merged or ndatasets<2):
+                self.appendCommandScript("NAME PROJECT %s CRYSTAL %s DATASET %s" % \
+                                         (self._dbProjectName,
+                                   self.container.inputData.UNMERGEDFILES[i].crystalName,
+                                   self.container.inputData.UNMERGEDFILES[i].dataset))
         hklin_command = 'HKLIN'
         # if mmCIF, set blockname
         fformat = self.container.inputData.UNMERGEDFILES[i].file.fileContent.format
-        print("Pointless format", fformat, self.container.controlParameters.MMCIF_SELECTED_BLOCK)
         if fformat == 'mmcif':
-          if self.container.controlParameters.MMCIF_SELECTED_BLOCK.isSet():
-            self.appendCommandScript("CIFBLOCK %s"%(self.container.controlParameters.MMCIF_SELECTED_BLOCK))
+            if self.container.controlParameters.MMCIF_SELECTED_BLOCK.isSet():
+                self.appendCommandScript("CIFBLOCK %s"%(self.container.controlParameters.MMCIF_SELECTED_BLOCK))
             hklin_command = 'CIFIN'    # needed by Pointless to process CIFBLOCK command
         self.appendCommandScript("%s %s" %  (hklin_command, self.container.inputData.UNMERGEDFILES[i].file.fullPath))
       # end loop files
-
 
       if par.MODE == 'MATCH':
         if par.REFERENCE_DATASET == 'XYZ':
@@ -66,12 +69,15 @@ class pointless(CPluginScript):
 
       # There are some cases where HKLOUT can be a merged file, 
       # for example when using pointless for reindexing.
-      # Not implemented yet.
       if par.WRITE_HKLOUT:
+        # unmerged output
         self.appendCommandScript("HKLOUT %s" % self.container.outputData.MTZUNMERGEDOUT.fullPath)
+        if merged and (par.MODE == 'MATCH'):
+            #  OUTPUT UNMERGED for Pointless from 1.12.16
+            self.appendCommandScript("OUTPUT UNMERGED")
+        self.container.outputData.deleteObject('MTZMERGEDOUT')
       else:
         self.container.outputData.deleteObject('MTZUNMERGEDOUT')
-      self.container.outputData.deleteObject('MTZMERGEDOUT')
 
       if par.CELL.isSet():
           #print("**par.CELL",par.CELL)

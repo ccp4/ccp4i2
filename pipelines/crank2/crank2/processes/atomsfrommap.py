@@ -27,7 +27,7 @@ class atomsfrommap(process):
     # set to False will use the original defaults
     if not self.IsParam('max_new_atoms'):
       if self.inp.Get('model',typ=('substr','partial+substr'),has_num_atoms=True):
-        self.SetParam('max_new_atoms', int(max(2,self.inp.Get('model',typ=('substr','partial+substr'),has_num_atoms=True).exp_num_atoms//2)))
+        self.SetParam('max_new_atoms', int(max(2,self.inp.Get('model',typ=('substr','partial+substr'),has_num_atoms=True).exp_num_atoms//2.1)))
       else:
         self.SetParam('max_new_atoms', 10)
     if not self.IsParam('too_close'):
@@ -122,7 +122,6 @@ class atomsfrommap(process):
               if j>i and s1.atom.element.name=='S' and s2.atom.element.name=='S' and struct.cell.find_nearest_image(s1.atom.pos,s2.atom.pos).dist()<=2.75:
                 if s1.atom.pos not in disulist:  disulist.append(s1.atom.pos)
                 if s2.atom.pos not in disulist:  disulist.append(s2.atom.pos)
-          struct=gemmi.read_structure(self.out.Get('model').GetFileName())
           for ch1 in struct[0]:
             totres1=len(ch1)
             for i,r1 in enumerate(reversed(ch1)): # we need to loop excplicitly and backwards to remove residues with the current gemmi
@@ -141,7 +140,7 @@ class atomsfrommap(process):
           delfilename=self.out.Get('model').GetFileName()[:-4]+'_del.pdb'
           struct.write_pdb(delfilename)
           self.out.AddFileToChild(self.out.Get('model'),delfilename,'pdb')
-        #print deleted_list
+        #print(deleted_list)
       except ImportError:
       # deprecated.  kept as fallback if gemmi not available.
           # first generate the entire unit cell - pdbcur's deldist does not take symmetry into account

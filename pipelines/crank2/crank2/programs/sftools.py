@@ -24,6 +24,7 @@ class sftools(program):
   stat['resolution'] = common.stats(regexp=r"\s+\d+\s+\S\s+{0}\s+\-?\d+\.\d+\s*(?:(?:\-?\d+\.\d+)|(?:\*+))\s+\-?\d+\.\d+\s+(\d+\.\d+)")
   stat['low_resol'] = common.stats(regexp=r"\s+\d+\s+\S\s+{0}\s+\-?\d+\.\d+\s*(?:(?:\-?\d+\.\d+)|(?:\*+))\s+\-?\d+\.\d+\s+\d+\.\d+\s+(\d+\.\d+)")
   stat['max'] = common.stats(regexp=r"\s+\d+\s+\S\s+{0}\s+-?\d+\.\d\d\s*(\d+\.\d+)")
+  stat['min'] = common.stats(regexp=r"\s+\d+\s+\S\s+{0}\s+-?(\d+\.\d\d)\s*\d+\.\d+")
   stat['aver'] = common.stats(regexp=r"\s+\d+\s+\S\s+{0}\s+-?\d+\.\d\d\s*\d+\.\d+\s*(-?\d+\.\d+)")
   stat['wavelength'] = common.stats(regexp=r"\s+(\d+\.\d+)\s+{0}\s+{1}")  # xname,dname
   stat['illegal_cell'] = common.stats(regexp=r"!!! ERROR: illegal cell parameters !!!")

@@ -11,6 +11,7 @@ class faest(process):
   supported_params = {}
   supported_params['target'] = common.parameter( desc='Experiment/refinement target', typ=str, cap=True )
   supported_params['bfactor'] = common.parameter( desc='set B factor of atoms', typ=(float,bool) )
+  supported_params['high_res_cutoff'] = common.parameter( desc='use high resolution data cutoff in FA est. (default: none)', typ=(float,bool), share=False )
 
   def TreatInOutPar(self, set_all_par=False):
     #self.GetProg(supported=True).SetKey('MULT')
@@ -78,9 +79,30 @@ class faest(process):
         wilsonB = gcx.GetStat('wilson_B')
       self.programs.remove(gcx)
       self.SetParam('bfactor', wilsonB)
+    if self.GetParam('high_res_cutoff') is None:  # disabled by default
+      self.SetParam('high_res_cutoff',False)
 
-#  def RunPreprocess(self,*args,**kwargs):
-#    process.RunPreprocess(self,*args,**kwargs)
+  def RunPreprocess(self,*args,**kwargs):
+    process.RunPreprocess(self,*args,**kwargs)
+    cp = self.GetCrankParent()
+    if self.GetProg('afro') and cp and self in cp.processes and self.GetParam('high_res_cutoff') is None:
+      sd = next(sd for sd in cp.GetProcesses('substrdet') if sd in cp.processes[cp.processes.index(self):])
+      if sd:
+        crank = copy.copy(cp)
+        crank.processes = cp.processes[:]
+        substrdet = crank.AddProcessCopy( sd, propagate_inp=True )
+        ecalc=self.AddProg('ecalc',propagate_out=False)
+        if self.inp.Get('fsigf',filetype='mtz',typ='delta-anom'):
+          ecalc.Run()
+          self.inp.Add( ecalc.out.Get('fsigf',typ=('fa','delta-anom'),col='e') )
+        substrdet.TreatInOutPar()
+        highrescut = substrdet.GetParam('high_res_cutoff')
+        highrescut_rad = substrdet.GetParam('high_res_cutoff_radius')
+        self.programs.remove(ecalc)
+        if (highrescut and highrescut_rad):
+          self.SetParam('high_res_cutoff',highrescut-highrescut_rad)
+        #if not highrescut_rad:
+         # print(substrdet.Cutoffs())
 #    if self.GetProg('ecalc'):
 #      fp_obj=self.inp.Get('fsigf',typ='plus')
 #      fm_obj=self.inp.Get('fsigf',typ='minus')
@@ -93,6 +115,7 @@ class faest(process):
 #        fa_obj = mtzmadmod.out.Get(filetype='mtz',typ='delta-anom')
 #        self.inp.Add(fa_obj)
 #      self.ExcludeRefs(fa_obj,fp_obj,fm_obj)
+    self.rescut08=1000.
 
   def ExcludeRefs(self,fa_obj,fp_obj,fm_obj):
     # do not try to determine if called only to check binaries...
@@ -177,6 +200,10 @@ class faest(process):
             self.LGInfo('{0} {1}'.format(reso[0][i],dsigd[0][i]))
           self.LGInfo('$$\n')
     if reso:
+        if dsigd: 
+          for r,d,n in zip(reso,dsigd,name):
+            if n!='NAT':
+              self.rescut08 = min( [1000.,]+[float(rv) for dv,rv in zip(d,r) if float(dv)>=0.8] )
         if self.rv_report is not None:
           if dsigd:
             self.rv_plot1 = self.rv_report.Plot( 'Dano/Sigdano', "Resolution [Angstrom]", block="Data stats vs resolution", legendloc='ne', ymin=0. )
@@ -254,6 +281,9 @@ class faest(process):
           prog.out.Delete(o)
           if self.GetParam('target')=='SAD':
             common.Warning('CIF file with anomalous data not outputted by {0}.'.format(prog.name))
+      # quit if shelxc reports input file corruption
+      if prog.GetStat('corruption_error'):
+        common.Error('Input file not accepted by SHELXC. Check your data.')
     # check whether any anomalous data is present
     fa_mtz = prog.out.Get('fsigf',typ=('fa'),col='f',filetype='mtz')
     if fa_mtz:
@@ -263,6 +293,10 @@ class faest(process):
       sft.Run()
       if sft.GetStat('all_absent',fa_mtz.GetLabel('f'),accept_none=True) or sft.GetStat('all_zero',fa_mtz.GetLabel('f'),accept_none=True):
         common.Error('No anomalous signal found. Check your data.')
+#    elif prog.nick=='shelxc' and not prog.GetStat("dano_bins") or not list(filter(None,[list(filter(lambda x: x not in (None,'','0','0.0','0.00','00.00'),d)) for d in prog.GetStat("dano_bins")])):
+    if prog.nick in ('shelxc', 'afro'):
+      if not prog.GetStat("dano_bins") or not list(filter(None,[list(filter(lambda x: x not in (None,'','.','0','0.0','0.00','00.00'),d)) for d in prog.GetStat("dano_bins")])):
+        common.Error('No anomalous signal found. Check your data...')
     # use CC1/2 cutoff by default if unmerged data inputted and if shelxc was run
     # (perhaps this should be in manager?)
     thres=25.

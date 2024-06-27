@@ -45,6 +45,9 @@ class lidiaAcedrgNew(CPluginScript):
         elif self.container.inputData.MOLSMILESORSKETCH.__str__() == 'MOL':
             result = self.doAcedrg('MOL', self.container.inputData.MOLIN)
             self.finishWithStatus(result)
+        elif self.container.inputData.MOLSMILESORSKETCH.__str__() == 'MOL2':
+            result = self.doAcedrg('MOL2', self.container.inputData.MOL2IN)
+            self.finishWithStatus(result)
         elif self.container.inputData.MOLSMILESORSKETCH.__str__() == 'SMILES':
             result = self.doAcedrg('SMILES', self.container.inputData.SMILESIN)
             self.finishWithStatus(result)
@@ -79,16 +82,25 @@ class lidiaAcedrgNew(CPluginScript):
         
         acedrgPlugin = self.makePluginObject('acedrgNew')
         acedrgPlugin.container.inputData.MOLORSMILES = inputType
+        acedrgPlugin.container.controlParameters.USE_COORD = self.container.controlParameters.USE_COORD
         if inputType == 'MOL':
             acedrgPlugin.container.inputData.MOLIN = inputObject
+        elif inputType == 'MOL2':
+            acedrgPlugin.container.inputData.MOL2IN = inputObject
         elif inputType == 'SMILESFILE':
             acedrgPlugin.container.inputData.SMILESFILEIN = inputObject
         elif inputType == 'SMILES':
             acedrgPlugin.container.inputData.SMILESIN = inputObject
         elif inputType == 'DICT':
             acedrgPlugin.container.inputData.DICTIN2 = inputObject
-        acedrgPlugin.container.inputData.TLC = self.container.inputData.TLC
-        acedrgPlugin.container.inputData.NRANDOM = self.container.inputData.NRANDOM
+        try:
+           acedrgPlugin.container.inputData.TLC.set(self.container.inputData.TLC)
+           acedrgPlugin.container.inputData.NRANDOM.set(self.container.inputData.NRANDOM)
+        except:
+           exc_type, exc_value,exc_tb = sys.exc_info()[:3]
+           sys.stdout.write(str(exc_type)+'\n')
+           sys.stdout.write(str(exc_value)+'\n')
+           raise
 
         myMatchTLC = self.container.inputData.MATCHTLC
         print("My MATCHTLC",myMatchTLC.__str__())

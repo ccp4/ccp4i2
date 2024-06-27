@@ -36,8 +36,23 @@
 	  <saveToDb>False</saveToDb>
         </qualifiers>
       </content>
+       <content id="UNITCELL">
+        <className>CCell</className>
+        <qualifiers>
+	  <allowUndefined>True</allowUndefined>
+        </qualifiers>
+       </content>
+       <content id="SPACEGROUP">
+         <className>CSpaceGroup</className>
+        <qualifiers>
+	  <allowUndefined>True</allowUndefined>
+        </qualifiers>
+       </content>
        <content id="SPACEGROUPCELL">
         <className>CSpaceGroupCell</className>
+        <qualifiers>
+	  <allowUndefined>True</allowUndefined>
+        </qualifiers>
        </content>
        <content id="WAVELENGTH">
         <className>CWavelength</className>
@@ -173,6 +188,13 @@
         <className>CBoolean</className>
         <qualifiers>
           <default>True</default>
+        </qualifiers>
+      </content>
+      <content id="OVERRIDE_CELL_DIFFERENCE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <guiLabel></guiLabel>
+          <default>False</default>
         </qualifiers>
       </content>
     </container>

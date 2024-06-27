@@ -131,13 +131,13 @@
                <default>3</default>
           </qualifiers>
       </content>
-      <content id="MODELSOURCE">
+      <content id="BFACTOR_TREATMENT">
         <className>CString</className>
         <qualifiers>
-          <default>pdb</default>
+          <default>bfactor</default>
           <onlyEnumerators>True</onlyEnumerators>
-          <enumerators>alphafold,rosetta,pdb</enumerators>
-          <toolTip>Model source</toolTip>
+          <enumerators>plddt,rms,fractional_plddt,predicted_bfactor,bfactor</enumerators>
+          <toolTip>B-factor treatment</toolTip>
         </qualifiers>
       </content>
 

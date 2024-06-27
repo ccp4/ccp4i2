@@ -91,7 +91,7 @@ class handdet(process):
   def ProcessPhasHand1(self):
     if not self.phas.out.Get('mapcoef',typ='best'):
       self.phas.Run()
-      self.phas.fom = self.phas.GetProg(supported=True).GetStat('fom')
+      self.phas.fom = self.phas.GetProg(supported=True).GetStat('fom')[-1]
     self.GetCLD(1, self.phas)
 
   def ProcessPhasHand2(self,changedmtz):
@@ -106,7 +106,7 @@ class handdet(process):
           self.phas2.SetParam('cycles',1)
       self.phas2.Run(rundir=os.path.join(self.rundir,'phas2'))
       self.phas2.out.model[-1].custom.append('otherhand')
-      self.phas2.fom = self.phas2.GetProg().GetStat('fom')
+      self.phas2.fom = self.phas2.GetProg().GetStat('fom')[-1]
     self.GetCLD(2, self.phas2)
 
   def GetCLD(self,hand,phas):
@@ -207,7 +207,7 @@ class handdet(process):
       otherhand=(hand+1)%2
       #self.score.append( weight*int(self.cld[hand]>self.cld[otherhand]) + \
       #                   len([1 for h,oh in zip(self.fomcontr[hand],self.fomcontr[otherhand]) if h>oh]) )
-      self.score.append( weight*min(1.,abs(self.cld[hand]-self.cld[otherhand]-max(self.cld[otherhand],0.))/0.02)*int(self.cld[hand]>self.cld[otherhand]) + \
+      self.score.append( weight*min(1.,abs(self.cld[hand]-self.cld[otherhand]+max(self.cld[otherhand]/3.,0.))/0.02)*int(self.cld[hand]>self.cld[otherhand]) + \
                          len([1 for h,oh in zip(self.dmf[hand].ph.fom_all,self.dmf[otherhand].ph.fom_all) if h>oh]) )
     # decide the hand
     self.spacegroup_change=False

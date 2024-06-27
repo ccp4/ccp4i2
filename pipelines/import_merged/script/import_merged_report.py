@@ -12,6 +12,7 @@ try:
   import aimless_report
   import ctruncate_report
   from aimless_pipe_utils import *
+  import phaser_analysis_report
 except:
   from wrappers.pointless.script import pointless_report
   from wrappers.aimless.script import aimless_report
@@ -106,7 +107,9 @@ class import_merged_report(Report):
       #               style='font-weight:bold; font-size:150%; color:red;')
 
 
-    self.importxml = self.xmlnode.findall("IMPORT_LOG")[0] # all information from import_merged task
+    self.importxml = self.xmlnode.findall("IMPORT_LOG")
+    if len(self.importxml) == 0: return
+    self.importxml = self.importxml[0] # all information from import_merged task
 
     self.IorFtype = "Unknown"
 
@@ -212,7 +215,8 @@ class import_merged_report(Report):
     Cases:
      1) Completed existing FreeR succesfully on 1st attempt
         newFreeR == "False", no FreeRfailed block
-     2) New FreeR set on first attempt
+        but maybe ObsFreeCellComparison block if incompatbility was overridden
+     2) New FreeR set on first attempt, maybe because of mismatch
         newFreeR == "True", no FreeRfailed block
      3) Complete failed on 1st attempt, running 2nd attempt to make new set
          newFreeR == "False", FreeRfailed == "True"
@@ -246,10 +250,13 @@ class import_merged_report(Report):
       for frf in freerfailed:
         frfs.append(frf.text)
 
+    newfreermade = False
     if len(self.importxml.findall('newFreeR'))>0:
       newfreer = self.importxml.findall('newFreeR')
       for nfr in newfreer:
         nfrs.append(nfr.text)
+        if nfr.text == 'True':
+          newfreermade = True
 
     obsfreecellcomparison = None
     if len(self.importxml.findall('ObsFreeCellComparison'))>0:
@@ -290,11 +297,13 @@ class import_merged_report(Report):
       OK = True
       if len(nfrs) > 0:
         if nfrs[0] == 'False':
-          #print("Case 1")
+          print("Case 1", len(nfrs))
+          message = ''
           if freeRcolumnLabel is None:
             message = "The imported FreeR set has been copied and completed"
           else:
-            message = "The imported FreeR set has been copied and completed from column " + freeRcolumnLabel
+            if freeRsource is not None and freeRsource != 'Explicit':
+              message = "The imported FreeR set has been copied and completed from column " + freeRcolumnLabel
           text.append(message)
           # Was the freer set cut in resolution?
           if len(self.importxml.findall('FREERFLAGINFO/FreerCutResolution'))>0:
@@ -302,16 +311,21 @@ class import_merged_report(Report):
             message = \
              "The resolution of the FreeR set was cut to match the data, "+cutres+" A"
             text.append(message)
+          # But was there an incompatibility warning?
+          freeRmessage = self.freerwarning(newfreermade, freeRsource, obsfreecellcomparison)
+          if freeRmessage is not None:
+            for message in freeRmessage:
+              headlines.append(message)
+            if newfreermade: headlines.append("A new FreeR set has been generated instead")
         else:
           #print("Case 2")
           #  but maybe an incompatible explicit FreeR set was rejected
-          if freeRsource == 'Explicit' and \
-             obsfreecellcomparison.findall('validity')[0].text == 'False':
-            freeRmessage = self.makeFreeRwarningMessage(obsfreecellcomparison)
+          freeRmessage = self.freerwarning(newfreermade, freeRsource, obsfreecellcomparison)
+          if freeRmessage is not None:
             for message in freeRmessage:
               headlines.append(message)
+              OK = False
             headlines.append("A new FreeR set has been generated instead")
-            OK = False
           else:
             text.append("A new FreeR set has been constructed")
 
@@ -359,7 +373,15 @@ class import_merged_report(Report):
       #parent.append("<br/>")
 
   # . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .
-  def makeFreeRwarningMessage(self, obsfreecellcomparison):
+  def freerwarning(self, newfreermade, freeRsource, obsfreecellcomparison):
+    freeRmessage = None
+    if freeRsource == 'Explicit':
+      if obsfreecellcomparison is not None:
+        if obsfreecellcomparison.findall('validity')[0].text == 'False':
+          freeRmessage = self.makeFreeRwarningMessage(newfreermade, obsfreecellcomparison)
+          return freeRmessage
+  # . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .
+  def makeFreeRwarningMessage(self, newfreermade, obsfreecellcomparison):
     ''' called if failed to extend FreeR set, returns message, cf aimless_pipe_report '''
     if obsfreecellcomparison is None:
       return ["WARNING: the imported FreeR set could not be extended, because all input values are the same"]
@@ -367,9 +389,19 @@ class import_merged_report(Report):
       # we have cell etc comparison
       freeRmessage = []
 
-      message = '<p>'+\
-        'WARNING: the FreeR set has not been extended, because the input FreeR set is incompatible with the new data'+\
-           '<br/>An input FreeR set for copying or extending must match the current data in cell and Laue group'
+      if newfreermade:
+        message = '<p>'+\
+                  'WARNING: the FreeR set has not been extended,'+\
+                  '  because the input FreeR set is incompatible with the observed data'+\
+                  '<br/>An input FreeR set for copying or extending must match the current data in cell and Laue group'
+      else:
+        # cell discrepancy overridden
+        message = '<p>'+\
+                  'WARNING: the input FreeR set is incompatible with the observed data'+\
+                  ' but acceptance was explicitly allowed<br/>'+\
+                  '  BEWARE check that this is OK'+\
+                  '<br/>An input FreeR set for copying or extending should match the current data in cell and Laue group'
+        
       freeRmessage.append(colourText(message+'</p>', 'red'))
       #      print "** frm", type(obsfreecellcomparison)
       # some XML names were changed in Nov 2022, allow both PRE
@@ -459,18 +491,23 @@ class import_merged_report(Report):
         self.pointlessreport.setFileRoot(self.fileroot) # pass on fileroot
 
     #  2) AIMLESS
-    aimlessxml = drpipelinexml.findall("AIMLESS")[0]
+    aimlessxml = drpipelinexml.findall("AIMLESS")
+    if len(aimlessxml) == 0:
+      aimlessxml = None
+    else:
+      aimlessxml = aimlessxml[0]
     if (aimlessxml != None):
-      if len(aimlessxml) == 0:
-        aimlessxml = None
-      else:
-        self.aimlessreport = \
-          aimless_report.aimless_report(xmlnode=aimlessxml, jobStatus='nooutput')
+      self.aimlessreport = \
+       aimless_report.aimless_report(xmlnode=aimlessxml, jobStatus='nooutput')
 
     #  3) PHASER_ANALYSIS
     self.phaserreport = None
     phaserfailmessage = None
-    phaserxml = drpipelinexml.findall("PHASER_ANALYSES/PHASER_ANALYSIS")[0]
+    phaserxml = drpipelinexml.findall("PHASER_ANALYSES/PHASER_ANALYSIS")
+    if len(phaserxml) == 0:
+      phaserxml = None
+    else:
+      phaserxml = phaserxml[0]
     phaserinfo = None
     table_info = None  # from Phaser
     phaserOK = False
@@ -494,7 +531,11 @@ class import_merged_report(Report):
 
 
     #  4) CTRUNCATE
-    ctruncatexmlsnode = drpipelinexml.findall("CTRUNCATES")[0]
+    ctruncatexmlsnode = drpipelinexml.findall("CTRUNCATES")
+    if len(ctruncatexmlsnode) == 0:
+      ctruncatexmlsnode = None
+    else:
+      ctruncatexmlsnode = drpipelinexml.findall("CTRUNCATES")[0]
     ctruncatexmlnodelist = None
     self.ctruncatereports = None
     if ctruncatexmlsnode != None:

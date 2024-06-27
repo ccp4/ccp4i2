@@ -38,6 +38,9 @@ class fixsubstrpdb(process):
       elif atomtype=='AS':
         pdbcur.SetKey('renresidue', "[{0}]:* 'ARS'".format(atomtype))
         pdbcur.SetKey('renatom', "[{0}]:* '{0}'".format(atomtype))
+      elif atomtype=='Y':
+        pdbcur.SetKey('renresidue', "[{0}]:* 'YT3'".format(atomtype))
+        pdbcur.SetKey('renatom', "[{0}]:* '{0}'".format(atomtype))
       #elif atomtype=='TA':
         #pdbcur.SetKey('renresidue', "[{0}]:* 'TBR'".format(atomtype))
         #pdbcur.SetKey('renatom', "(TBR)/{0}[{0}]:* 'TA1'".format(atomtype))

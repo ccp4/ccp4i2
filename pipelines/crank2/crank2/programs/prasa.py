@@ -86,8 +86,8 @@ class prasa(program):
       # expected number of atoms from substr. object
       #if self.inp.Get(typ='substr',has_num_atoms=True) and not self.IsKey('natoms'):
       #  self.SetKey('natoms', self.inp.Get(typ='substr',has_num_atoms=True).exp_num_atoms)
-      if not self.IsKey('ncycles') and ((self.process.GetParam('num_atoms') and self.process.GetParam('num_atoms')>20) or
-         (self.inp.Get(typ='substr',has_num_atoms=True) and self.inp.Get(typ='substr',has_num_atoms=True).exp_num_atoms>20)):
+      if not self.IsKey('ncycles') and ((self.process.GetParam('num_atoms') and self.process.GetParam('num_atoms')>=20) or
+         (self.inp.Get(typ='substr',has_num_atoms=True) and self.inp.Get(typ='substr',has_num_atoms=True).exp_num_atoms>=20)):
         if not self.process.IsInputtedParam('num_trials') and self.process.GetParam('num_trials') and not self.GetKey('pdbin'):
           self.SetKey('ncycles', 750)
           if not self.IsKey('ntrials'):
@@ -108,10 +108,14 @@ class prasa(program):
           num_at = self.inp.Get(typ='substr',has_num_atoms=True).exp_num_atoms
         if num_at:
           if num_at>13 and not self.GetKey('minpeaks'):
-            self.SetKey('minpeaks', int(0.2*num_at))  #eg ssec
+            if num_at<=40:
+              self.SetKey('minpeaks', int(0.2*num_at))  #eg ssec
+            else:
+              self.SetKey('minpeaks', 8+int(0.1*(num_at-40)))  # eg 8dop
           if not self.GetKey('natoms'):
             self.SetKey('natoms', int(3*num_at))
       if self.process.IsParam('min_dist_symm_atoms') and not self.IsKey('specialpos'):
+        #self.SetKey('specialpos', min(0.6,int(bool(not(self.process.GetParam('min_dist_symm_atoms')>0)))))
         self.SetKey('specialpos', int(bool(not(self.process.GetParam('min_dist_symm_atoms')>0))))
       if self.process.GetParam('num_threads') and not self.GetKey('numthreads'):
         self.SetKey('numthreads', self.process.GetParam('num_threads'))

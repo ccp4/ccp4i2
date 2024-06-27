@@ -79,7 +79,7 @@ else:
     try:
         istr = open(os.path.join(os.environ['CCP4'], 'lib', 'ccp4', 'MAJOR_MINOR'))
         running_version = istr.read().strip()
-
+        istr.close()
     except:
         running_version = '7.0.000'
 

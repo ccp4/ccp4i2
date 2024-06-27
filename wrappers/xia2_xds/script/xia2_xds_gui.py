@@ -55,3 +55,8 @@ class xia2_xds_gui(xia2_dials_gui.xia2_dials_gui):
             return
 
         super(xia2_xds_gui, self).drawContents()
+
+    @QtCore.Slot()
+    def handleIndexMethod(self):
+        # This is for DIALS only, so do nothing here
+        pass

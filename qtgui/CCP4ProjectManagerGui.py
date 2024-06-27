@@ -188,7 +188,7 @@ class CNewProjectGui(QtWidgets.QDialog):
       self.createButton.setEnabled(True)
       QtWidgets.QMessageBox.warning(self,'No project name','You must provide a project name')
       return
-    elif PROJECTSMANAGER().projectNameStatus(name) is not 0:
+    elif PROJECTSMANAGER().projectNameStatus(name) != 0:
       self.createButton.setEnabled(True)
       QtWidgets.QMessageBox.warning(self,'Project exists','A project of that name already exists')
       return
@@ -210,7 +210,7 @@ class CNewProjectGui(QtWidgets.QDialog):
     if name is None:
       QtWidgets.QMessageBox.warning(self,'No project name','You must provide a project name')
       return
-    elif PROJECTSMANAGER().projectNameStatus(name) is not 0:
+    elif PROJECTSMANAGER().projectNameStatus(name) != 0:
       QtWidgets.QMessageBox.warning(self,'Project exists','A project of that name already exists')
       return
 
@@ -1534,6 +1534,8 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     exportButton.clicked.connect(self.handleExport1)
     importButton = self.buttonFrame.addButton('Import',QtWidgets.QDialogButtonBox.ActionRole)
     importButton.clicked.connect(self.handleImportProject)
+    exportAlltButton = self.buttonFrame.addButton('Export all projects',QtWidgets.QDialogButtonBox.ActionRole)
+    exportAlltButton.clicked.connect(self.handleExportAll)
     openButton.setAutoDefault(False)
     renameButton.setAutoDefault(False)
     editDescriptionButton.setAutoDefault(False)
@@ -1967,6 +1969,75 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     self.exportThread.deleteLater()
     self.exportThread = None
     self.doneSavingJobDataSignal.emit()
+
+  @QtCore.Slot()
+  def handleExportAll(self):
+      from utils import ExportAllProjects
+      projects = PROJECTSMANAGER().db().getProjectDirectoryList()
+
+      cwd = os.getcwd()
+
+      rv = QtWidgets.QFileDialog.getExistingDirectory(caption='Select directory for saving all projects')
+      if not rv:
+          return
+
+      origLenProjects = len(projects)
+
+      progressWindow = QtWidgets.QWidget()
+      progressLabel = QtWidgets.QLabel("Exporting "+str(len(projects))+" projects")
+      progressBar = QtWidgets.QProgressBar()
+      progressBar.setValue(0)
+      progressLayout = QtWidgets.QVBoxLayout()
+      progressLayout.addWidget(progressLabel)
+      progressLayout.addWidget(progressBar)
+      progressDBB = QtWidgets.QDialogButtonBox()
+      cancelButton = progressDBB.addButton(QtWidgets.QDialogButtonBox.Cancel)
+      doneButton = progressDBB.addButton(QtWidgets.QDialogButtonBox.Ok)
+      doneButton.setEnabled(False)
+      progressLayout.addWidget(progressDBB)
+      progressWindow.setLayout(progressLayout)
+      progressWindow.show()
+      progressWindow.raise_()
+
+
+      @QtCore.Slot(bool)
+      def doneClicked(dum=False):
+          progressWindow.close()
+          return
+      doneButton.clicked.connect(doneClicked)
+
+      self.cancelExportAll = False
+
+      @QtCore.Slot(bool)
+      def cancelClicked(dum=False):
+          self.cancelExportAll = True
+          cancelButton.setEnabled(False)
+          progressLabel.setText("Cancelling...")
+      cancelButton.clicked.connect(cancelClicked)
+
+      iproject = 0
+
+      @QtCore.Slot(int)
+      def exportNextProject(iproject):
+          try:
+              if self.cancelExportAll:
+                  progressWindow.close()
+                  return
+              name = projects.pop()[1]
+              pc = int(100. * iproject / origLenProjects)
+              progressBar.setValue(pc)
+              progressLabel.setText("Exporting project "+name+" "+str(iproject+1)+" of "+str(origLenProjects))
+              compClass = ExportAllProjects.CompressClass(projectName=name,fileName=os.path.join(rv,name+".ccp4_project.zip"))
+              compClass.doneSignal.connect(functools.partial(exportNextProject,iproject+1))
+              compClass.run()
+          except:
+              progressLabel.setText("Finished exporting "+str(origLenProjects)+" projects")
+              progressBar.setValue(100)
+              #progressWindow.close()
+              doneButton.setEnabled(True)
+              return
+
+      exportNextProject(iproject)
 
   @QtCore.Slot()
   def handleImportProject(self):
@@ -2737,7 +2808,7 @@ class CProjectDescription(QtWidgets.QFrame):
 
   @QtCore.Slot(int)
   def selectDeleteTag(self,indx):
-    if indx is 0:
+    if indx == 0:
       self.deleteTagWarning.setText('')
       return
     tagId = self.deleteTagCombo.itemData(self.deleteTagCombo.currentIndex(),QtCore.Qt.UserRole).__str__()

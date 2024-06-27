@@ -15,6 +15,7 @@ class dm(process):
   supported_params['ncs_det_mr'] = par( desc='Determine NCS from partial model (Parrot only)', typ=bool )
   supported_params['solventmask_radius'] = par( desc='Use the specified solvent mask radius (Parrot only)', typ=float )
   supported_params['solvent_perturb'] = par(desc='Adjust the solvent by the specified change', typ=(float,bool))
+  supported_params['map_segmentation'] = par( desc='Use map solvent segmentation from deep learning', typ=bool, share=True )
 
 
   def TreatInOutPar(self, set_all_par=False):
@@ -67,3 +68,20 @@ class dm(process):
     if self.GetParam('ncs_det') is False:
       self.GetParam('ncs_det_ha')
       self.GetParam('ncs_det_mr')
+
+  def RunPostprocess(self, *args, **kwargs):
+    # the existing mapseg implementation passes mask as F,PH which include missing refs for better precision.  Removing them from the output here.
+    if self.GetParam('map_segmentation'):
+      import gemmi,numpy as np
+      out_obj=self.out.Get('mapcoef',typ='densmod')
+      mtz = gemmi.read_mtz_file(out_obj.GetFileName('mtz'))
+      fsfinp = self.inp.Get('fsigf',typ='average',col='sigf')
+      if hasattr(self.parent_process,'ref_use') and self.parent_process.ref_use:# and len(self.parent_process.ref_use)>0:
+        mtz.copy_column(-1,self.parent_process.ref_use)
+        use = ~np.isnan( mtz.array[:,-1] )
+        #print('debuggg',sum(use),len(use))
+        all_data = np.array(mtz, copy=False)
+        mtz.set_data(all_data[use])
+        mtz.write_to_file(out_obj.GetFileName('mtz'))
+        self.parent_process.ref_use=[] # needed for both hands - gemmi column cannot be pickled
+    process.RunPostprocess(self,*args,**kwargs)

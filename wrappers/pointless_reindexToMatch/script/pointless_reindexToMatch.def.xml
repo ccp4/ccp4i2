@@ -70,9 +70,9 @@
             <content id="REFERENCE">
                 <className>CString</className>
                 <qualifiers>
-                    <menuText>Observed data reference,Calculated data reference,2FoFc coefficient reference,Coordinate reference,User specified spacegroup and reindex,Remove lattice absences,Just analyse data symmetry</menuText>
+                    <menuText>Observed data reference,Calculated data reference,2FoFc coefficient reference,Coordinate reference,User specified spacegroup and reindex,Remove lattice absences,Just analyse data symmetry,Expand to space group P1</menuText>
                     <onlyEnumerators>True</onlyEnumerators>
-                    <enumerators>HKLIN_FOBS_REF,HKLIN_FC_REF,HKLIN_FMAP_REF,XYZIN_REF,SPECIFY,LATTICE,ANALYSE</enumerators>
+                    <enumerators>HKLIN_FOBS_REF,HKLIN_FC_REF,HKLIN_FMAP_REF,XYZIN_REF,SPECIFY,LATTICE,ANALYSE,EXPAND</enumerators>
                     <default>XYZIN_REF</default>
                 </qualifiers>
             </content>

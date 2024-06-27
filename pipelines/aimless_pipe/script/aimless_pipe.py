@@ -11,6 +11,8 @@ from PySide2 import QtCore
 from core.CCP4PluginScript import CPluginScript
 from lxml import etree as lxml_etree
 from pipelines.aimless_pipe.script.aimless_pipe_utils import *
+from  pipelines.aimless_pipe.script.aimless_cifstats import *
+
 from core import CCP4Utils
 from core.CCP4Data import CString
 
@@ -72,7 +74,7 @@ class aimless_pipe(CPluginScript):
       self.pointless.container.inputData.copyData(self.container.inputData,['UNMERGEDFILES'])
       if self.container.inputData.HKLIN_REF:
           self.pointless.container.inputData.copyData(self.container.inputData,['HKLIN_REF'])
-      if self.container.inputData.HKLIN_REF:
+      if self.container.inputData.XYZIN_REF:
           self.pointless.container.inputData.copyData(self.container.inputData,['XYZIN_REF'])
 
       self.pointless.container.controlParameters.copyData \
@@ -85,6 +87,7 @@ class aimless_pipe(CPluginScript):
           'REMOVE_LATTICE_CENTERING','LATTICE_CENTERING','ALLOW_NONCHIRAL',
           'MMCIF_SELECTED_BLOCK'])
 
+      
       self.connectSignal(self.pointless,'finished',self.process_cycle_aimless)
       self.pointless.process()
 
@@ -244,8 +247,8 @@ class aimless_pipe(CPluginScript):
             traceback.print_exc()
             return
 
-        print("** process_post_aimless self.aimlessruncount self.aimlessruncount:",
-              self.aimlessruncount)
+        # print("** process_post_aimless self.aimlessruncount self.aimlessruncount:",
+        #  self.aimlessruncount)
 
         # aimless has finished, and produced an output file for each dataset
         self.ndatasets = len(self.aimless.container.outputData.MTZMERGEDOUT)
@@ -311,7 +314,6 @@ class aimless_pipe(CPluginScript):
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     def process_phaseranalysis(self):
         # If after 2nd or only Aimless run, run phaser_analysis on Aimless
-        # If after 2nd or only Aimless run, run phaser_analysis on Aimless
         # output files
         # For autocutoff mode, if the 1st Aimless run was accepted, then
         # there is no need to run phaser_analysis again
@@ -344,7 +346,6 @@ class aimless_pipe(CPluginScript):
           from core.CCP4XtalData import CUnmergedDataContent
           unmergedcontent = CUnmergedDataContent()
           unmergedcontent.loadFile(unmergedfile.fullPath)
-          #print "CONTENTS:",unmergedcontent.CONTENTS
           dname = str(unmergedcontent.datasetName)
           # Before August 2017: xname is wrongly swapped with pname,
           #   fixed, but don't use it for now
@@ -470,7 +471,6 @@ class aimless_pipe(CPluginScript):
 
       # print("HKLIN_FORMAT")
       if self.container.inputData.HKLIN_FORMAT == "MMCIF":
-          print("** mmcif")
           importXML = lxml_etree.Element('IMPORT_LOG')  # information about the import step
           self.makeMmcifXML(importXML)
           xmlroot.append(importXML)
@@ -555,6 +555,10 @@ class aimless_pipe(CPluginScript):
         with open(str(self.container.outputData.XMLOUT.fullPath), 'w') as f:
             f.write(newXml)
         self.container.outputData.XMLOUT.annotation = 'Pipeline XML'
+
+        #  Write mmcif file of statistics from Aimless, not for import_merge
+        self.makeCifStats(xmlroot)
+
       # Populate the performance indicator
       if haveaimless:
           try:
@@ -611,7 +615,31 @@ class aimless_pipe(CPluginScript):
         if self.container.inputData.MMCIF_SELECTED_COLUMNS.isSet():
                 self.addElement(containerXML, 'mmcifblockcolumns',
                                 str(self.container.inputData.MMCIF_SELECTED_COLUMNS))
-            
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    def makeCifStats(self, aimlesspipexml):
+        # Make mmcif-style statistics from Aimless_pipe XML
+
+        # aimlesspipexml should contain a block AIMLESS_PIPE
+        #   containing <AIMLESS> and <CTRUNCATE>
+        filePath = os.path.join(self.workDirectory,'DataStatistics.cif')
+        self.container.outputData.CIFSTATSOUT.setFullPath(filePath)
+        self.container.outputData.CIFSTATSOUT.annotation = \
+                                      'Statistics in mmcif format'
+        outputfile = str(filePath)
+
+        # Use 1st datasetname as blockname
+        if self.ndatasets == 1:
+            blkname = self.container.inputData.UNMERGEDFILES[0].dataset
+        else:
+            blkname = self.container.inputData.UNMERGEDFILES[0].crystalName
+
+        blockid = str(blkname)
+
+        cifStatsExtractFromXML = \
+                  CifStatsExtractFromXML(aimlesspipexml, outputfile, blockid)
+        
+        
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     def cleanup(self):
         # Clean up some files which are not always removed by

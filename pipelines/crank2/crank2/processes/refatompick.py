@@ -101,7 +101,7 @@ class refatompick(process):
     if self.GetParam('res_cut') and not self.ph.GetProg(supported=True).IsKey('reso'):
       if self.GetParam('res_cut') is True:
         substrdet=self.AddProcess('substrdet', propagate_out=False)
-        cutoff = substrdet.EstimateCutOff()
+        cutoff = substrdet.EstimateCutOff(use_faest_08=True)
         self.processes.remove(substrdet)
       else:
         cutoff = float( self.GetParam('res_cut') )
@@ -140,12 +140,15 @@ class refatompick(process):
           # to cover the obscure but possible case of substr only with ref
           if model_type=='partial+substr' and not self.ph.out.Get('model',typ='partial+substr') and self.ph.out.Get('model',typ='substr'):
             model_type='substr'
-          if self.GetParam('occ_cut')>=0.0 and (i<self.GetParam('num_iter')-1 or not self.GetParam('skip_last_occ_cut')):
+          if model_type=='substr' and self.GetParam('occ_cut')>=0.0 and (i<self.GetParam('num_iter')-1 or not self.GetParam('skip_last_occ_cut')):
             occ,pdbcur=self.GetOccB( self.out.Get('model',typ=model_type,filetype='pdb') )
             max_occ=max(occ) if occ else 1.0
             B,pdbcur=self.GetOccB( self.out.Get('model',typ=model_type,filetype='pdb'), occ=0 )
             aver_B=sum(B)/len(B) if B else 500.0
-            if ((occ and occ[0]<=0.7*max_occ) or (B and B[0]>=1.5*aver_B) or (len([o for o in occ if o<0.15*max_occ])>0.7*len(occ))): #or len(self.ph.GetProg().GetStat('rfact'))>=50:
+            #print(len([o for o in occ if o<=(self.GetParam('occ_cut')-0.01)*max_occ]),len(occ))
+            if ((occ and occ[0]<=0.7*max_occ) or (B and B[0]>=1.5*aver_B) or \
+               ((abs(self.ph.GetProg().GetStat('fom')[0]-self.ph.GetProg().GetStat('fom')[-1])>0.075) and len([o for o in occ if o<=(self.GetParam('occ_cut')-0.01)*max_occ])>=0.5*len(occ)) or \
+               ((abs(self.ph.GetProg().GetStat('fom')[0]-self.ph.GetProg().GetStat('fom')[-1])>0.1) and len([o for o in occ if o<=(self.GetParam('occ_cut')-0.01)*max_occ])>=0.33*len(occ))): #or len(self.ph.GetProg().GetStat('rfact'))>=50:
               cyc=self.ph.GetParam('cycles')
               problemcyc = 0  if refprob  else 1
               self.ph.SetParam('cycles',problemcyc)

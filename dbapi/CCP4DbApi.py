@@ -175,7 +175,8 @@ KEYTYPELIST = [(0, 'Unknown', 'Key type unknown'),
                (15, 'weightedPhaseError', 'weighted phase error'),
                (16, 'reflectionCorrelation', 'reflection correlation'),
                (17, 'RMSxyz', 'RMS displacement'),
-               (18, 'cutoff', 'Pairef cutoff'), ]
+               (18, 'cutoff', 'Pairef cutoff'),
+               (19, 'ccHalf', 'correlation coefficient between two half datasets'),]
 
 FILEASSOCIATIONTYPELIST = [(0, 'Unknown', 'File association type unknown'),
                            (1, 'Observed-Free', 'Observed data and FreeR set')]
@@ -283,11 +284,15 @@ class CDbApi(CObject):
                    201: {'severity': SEVERITY_WARNING, 'description': 'Invalid key name in updateProject'},
                    202: {'description': 'Invalid value data type in updateProject'},
                    203: {'description': 'In updateProject setting parent project is already child of this project'},
+                   225: {'description': 'Unable to find merged MTZ files.'},
+                   226: {'description': 'A process in the process pool was terminated abruptly while the future was running or pending.\nOverload of RAM memory occured likely.\nRe-run the job with lower batch size and number of processes.'},
                    211: {'description': 'Error attempting to convert project data to XML'},
                    212: {'description': 'Error attempting to write project data to XML file'},
                    220: {'description': 'Database has no database version information'},
                    221: {'description': 'Database has no schema version information'},
                    222: {'description': 'Database is based on out-of-date schema'},
+                   225: {'description': 'Unable to find merged MTZ files.'},
+                   226: {'description': 'A process in the process pool was terminated abruptly while the future was running or pending.\nOverload of RAM memory occured likely.\nRe-run the job with lower batch size and number of processes.'},
                    230: {'description': 'Invalid key name in updateFile'},
                    231: {'description': 'Unable to retrieve the project for fileID'},
                    240: {'description': 'Attempting to create a Comment with no/invalid jobId'},

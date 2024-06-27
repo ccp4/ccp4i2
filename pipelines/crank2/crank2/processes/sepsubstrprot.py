@@ -69,10 +69,10 @@ class sepsubstrprot(process):
     self.pdbcur.SetKey('delter')
     # at the moment, an exception is needed for TA as its name is TA1 in the only residue existing
     # we could only check the atom type in the future but for the moment this is safer
-    if at_str=='TA':
-      self.pdbcur.SetKey('lvatom', '"{1}{0}1[{0}]:*"'.format(at_str,substr_chains_filter))
-    else:
-      self.pdbcur.SetKey('lvatom', '"{1}{0}[{0}]:*"'.format(at_str,substr_chains_filter))
+    #if at_str=='TA':
+    #  self.pdbcur.SetKey('lvatom', '"{1}{0}1[{0}]:*"'.format(at_str,substr_chains_filter))
+    #else:
+    self.pdbcur.SetKey('lvatom', '"{1}{0}[{0}]:*"'.format(at_str,substr_chains_filter))
       #self.pdbcur.SetKey('lvatom', '"(!MSE)/{0}[{0}]:*"'.format(at_str))
     self.pdbcur.outfilename['pdb']='heavy.pdb'
     self.pdbcur.Run()

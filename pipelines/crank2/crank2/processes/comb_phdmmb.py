@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import os,sys,re,shutil,copy,multiprocessing
+import os,sys,re,shutil,copy
 from process import process, crvapi
 from program import program
 import common, inout
@@ -18,6 +18,7 @@ class comb_phdmmb(process):
   supported_params['ncs_det'] = par( desc='Determine NCS from heavy atoms or partial model (Parrot only)', typ=bool, share=True )
   supported_params['ncs_det_ha'] = par( desc='Determine NCS from heavy atoms (Parrot only)', typ=bool, share=True )
   supported_params['ncs_det_mr'] = par( desc='Determine NCS from partial model (Parrot only)', typ=bool, share=True )
+  supported_params['solvent_content'] = par( desc='(Expected) solvent fraction of crystal', typ=float, share=True )
   supported_params['solventmask_radius'] = par( desc='Use the specified solvent mask radius (Parrot only)', typ=float, share=True )
   supported_params['no_bias_est'] = par( desc='Do not estimate bias in density modification', typ=bool, share=True )
   supported_params['skip_initial_build'] = par( desc='Skip model bulding in the first "big" cycle', typ=bool )
@@ -167,7 +168,7 @@ class comb_phdmmb(process):
         self.mb_res_all.append( (self.mb.cyc, mb_stat('res_built'), mb_stat('frag_built'), 
                                  mb_stat('compl_chain'), mb_stat('compl_res')) )
     elif update=='ph':
-      self.ref_res_all.append( (ph_stat('rfact')[-1], ph_stat('fom'), (ph_stat('rfree',accept_none=True) or [None])[-1]) )
+      self.ref_res_all.append( (ph_stat('rfact')[-1], ph_stat('fom')[-1], (ph_stat('rfree',accept_none=True) or [None])[-1]) )
     if not skip_output:
       self.PrintActualLogGraph(update)
 
@@ -344,7 +345,7 @@ class comb_phdmmb(process):
     self.ref_res_all.extend( self.dmbr.res_all[-(self.dmbr.GetParam('dmcyc') if self.dmbr.nick=='dmfull' else 1):] )
     self.mb_res_all.append( self.mb.res_all[-1] )
 
-  def save_reset_Win(self):
+  def save_reset(self):
     if os.name=='nt':  # windows cannot spawn instances with non-picklable attributes
       if hasattr(self,'ccp4i2job'):  i2job,self.ccp4i2job=self.ccp4i2job,None
       else:  i2job=None
@@ -354,7 +355,7 @@ class comb_phdmmb(process):
     else:
       return None,None,None,None,None,None,None
 
-  def restore_Win(self,data):
+  def restore(self,data):
     i2job,logfh,logfhdmbr,logfhdm,logfhph,logfhmb,parent=data[0],data[1],data[2],data[3],data[4],data[5],data[6]
     if os.name=='nt':  # reattaching the atrributes for windows
       if hasattr(self,'ccp4i2job'):  self.ccp4i2job=i2job
@@ -365,7 +366,8 @@ class comb_phdmmb(process):
       self.RunComb()
       self.PrintActualLogGraph(update='endparal') # rewrites the graph for paral
     else:
-      windata=self.save_reset_Win() # windows cannot spawn instances with non-picklable attributes
+      windata=self.save_reset() # windows cannot spawn instances with non-picklable attributes
+      import multiprocessing
       manager = multiprocessing.Manager()
       queue, queue2 = manager.Queue(), manager.Queue()
       comb_hand,self.cmb_hand=[],[]
@@ -375,7 +377,7 @@ class comb_phdmmb(process):
           comb_hand[i].daemon=True
         comb_hand[i].start()
         self.cmb_hand.append(None)
-      self.restore_Win(windata)
+      self.restore(windata)
       num_finished, stop_other = 0, None
       while num_finished<len(comb_hand):
         j,cmb_now,logdict = queue.get()
@@ -807,16 +809,16 @@ class comb_phdmmb(process):
   def FOMresult(self):
     """rough FOM/R based result estimation and its printing"""
     if self.finish_mode:
-      self.result_str="Majority of model was successfully built!"
+      self.result_str="Majority of model should be successfully built!"
     else:
       self.GetParam('refcyc_finish')
-      if self.ph.fom<self.fom_tresh_min or self.ph.R>self.R_tresh+0.06:
+      if self.ph.fom<self.fom_tresh_min-0.05 or self.ph.R>self.R_tresh+0.06:
         if not self.mb_res_all[-1][1] or not self.ph.out.Get('model',typ=('partial+substr','partial')):
           self.result_str = "No residues could be traced, map too noisy. Structure solution was unsuccessful."
           common.Error(self.result_str, nosuccess=True)
         self.result_str="Wrong substructure or very weak phases suspected: the model building seems unsuccessful."
       else:
-        self.result_str="A partial model might be correctly built."
+        self.result_str="A partial model was built."
     self.Info('\n'+self.result_str)
 
 
@@ -875,12 +877,17 @@ class comb_phdmmb(process):
       queue,queue2,parent = self.queue,self.queue2,self.parent_process
       if hasattr(self,'ccp4i2job'):  i2job,self.ccp4i2job=self.ccp4i2job,None
       logfh,phlogfh,dmlogfh,dmbrlogfh,mblogfh,dmflogfh = self.logfilehandle,self.ph.logfilehandle,self.dm.logfilehandle,self.dmbr.logfilehandle,self.mb.logfilehandle,self.GetProcess('dmfull').logfilehandle
+      mapseg = self.GetProcess('dmfull').GetProcess('segmentmap') 
+      if mapseg:
+        self.GetProcess('dmfull').processes.remove(mapseg)
       processes=self.processes[:]
       self.queue,self.queue2,self.parent_process = None,None,None
       self.logfilehandle,self.ph.logfilehandle,self.dm.logfilehandle,self.dmbr.logfilehandle,self.mb.logfilehandle,self.GetProcess('dmfull').logfilehandle = None,None,None,None,None,None
       self.processes=[p for p in processes if p in (self.dmbr,self.ph,self.mb,self.dm)]
       queue.put((self.num_proc,self,{'update':update,'paral_num':paral_num}))
       self.processes=processes
+      if mapseg:
+        self.GetProcess('dmfull').processes.append(mapseg)
       self.queue,self.queue2,self.parent_process = queue,queue2,parent
       if hasattr(self,'ccp4i2job'):  self.ccp4i2job=i2job
       self.logfilehandle,self.ph.logfilehandle,self.dm.logfilehandle,self.dmbr.logfilehandle,self.mb.logfilehandle,self.GetProcess('dmfull').logfilehandle = logfh,phlogfh,dmlogfh,dmbrlogfh,mblogfh,dmflogfh

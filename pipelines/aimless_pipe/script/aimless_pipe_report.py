@@ -108,8 +108,13 @@ class aimless_pipe_report(Report):
     havePhaserReport = self.phaseranalysisxml is not None
     
     #  5) CTRUNCATE
-    ctruncatexmlsnode = self.xmlnode.findall("CTRUNCATES")[0]
-    haveCtruncateReport = (ctruncatexmlsnode != None) and (len(ctruncatexmlsnode) > 0)
+    ctruncatexmlsnode = self.xmlnode.findall("CTRUNCATES")
+    if len(ctruncatexmlsnode) == 0:
+      haveCtruncateReport = False
+      ctruncatexmlsnode = None
+    else:
+      ctruncatexmlsnode = self.xmlnode.findall("CTRUNCATES")[0]
+      haveCtruncateReport = True
 
     # Empty XML file
     if not havePointlessReport and not haveAimlessReport and not haveCtruncateReport:
@@ -117,11 +122,13 @@ class aimless_pipe_report(Report):
                      style='color:red;')
       return
 
+    self.merged = False   # files are usually unmerged
     if havePointlessReport:
       self.pointlessreport = \
           pointless_report.pointless_report(xmlnode=pointlessxml, jobStatus='nooutput')
       self.pointlessreport.setFileRoot(self.fileroot) # pass on fileroot
       #print("self.pointlessreport", self.pointlessreport)
+      self.merged = self.pointlessreport.isMerged()  # in case all files are merged
 
     if (haveAimlessReport):
       self.aimlessreport = \
@@ -255,11 +262,18 @@ class aimless_pipe_report(Report):
                                      initiallyOpen=True)
 
     if havePointlessReport:
-      self.pointlessreport.keyText(summaryfold)
+      if self.merged:
+        self.pointlessreport.keyTextMerged(summaryfold)
+      else:
+        self.pointlessreport.keyText(summaryfold)
 
     if haveAimlessReport:
-      # Pass Autocutoff stuff to Aimless report
-      self.aimlessreport.keyText(self.autocutoffnode, summaryfold)
+      if self.merged:
+        phaserinfo = None  # maybe add this
+        self.aimlessreport.keyTextMerged(summaryfold, phaserinfo)
+      else:
+        # Pass Autocutoff stuff to Aimless report
+        self.aimlessreport.keyText(self.autocutoffnode, summaryfold)
 
       # Report from optional automatic cutoff
       self.cutoffText(self.xmlnode, summaryfold)
@@ -280,8 +294,9 @@ class aimless_pipe_report(Report):
                                 phasertncs=self.phasertNCS,
                                 phasertwin=self.phaserTwin)
 
-    freerxml = self.xmlnode.findall('FREERFLAG')[0]
-    if freerxml != None:
+    freerxml = self.xmlnode.findall('FREERFLAG')
+    if len(freerxml) > 0:
+      freerxml = freerxml[0]
       self.addFreerReports(freerxml, summaryfold)
 
     if self.phaserErrorMessage is not None:
@@ -301,19 +316,21 @@ class aimless_pipe_report(Report):
     # Put the key messages about spacegroup and resolution at the very top
     headlineDiv = overallfold.addDiv(style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:5px;")
     leftDiv = headlineDiv.addDiv(style="width:49%;float:left;text-align:center;margin:0px; padding:0px; line-height:100%; font-size:100%;border:0px;")
-    if havePointlessReport:
-      self.addPointlessSummary(leftDiv)
-    # Pointless element table in:
-    #    (1) if 1 dataset, in leftDiv with Pointless summary
-    #    (2) if >1 dataset in new Div on right of Pointless summary
-    if self.numberofdatasets == 1:
-      nextDiv = leftDiv.addDiv(style="border: 1px solid black; margin: 1px; padding:1px;")
-    else:
-      nextDiv = headlineDiv.addDiv(style="width:49%;float:left;margin:1px;text-align:center; \
-        padding:3px;border:1px solid black;")
+    if not self.merged:  
+      # for merged files, not usually much intereseting in Pointless output
+      if havePointlessReport:
+        self.addPointlessSummary(leftDiv)
 
-    if havePointlessReport:
-      self.pointlessreport.ElementScoresTable(nextDiv)
+        # Pointless element table in:
+        #    (1) if 1 dataset, in leftDiv with Pointless summary
+        #    (2) if >1 dataset in new Div on right of Pointless summary
+        if self.numberofdatasets == 1:
+          nextDiv = leftDiv.addDiv(style="border: 1px solid black; margin: 1px; padding:1px;")
+        else:
+          nextDiv = headlineDiv.addDiv(style="width:49%;float:left;margin:1px;text-align:center; \
+          padding:3px;border:1px solid black;")
+
+          self.pointlessreport.ElementScoresTable(nextDiv)
 
     if haveAimlessReport:
       # Aimless summary
@@ -329,7 +346,10 @@ class aimless_pipe_report(Report):
         table_info = [self.infocontent()]
         #print("table_info", table_info)
 
-      self.aimlessreport.addAimlessSummary(statsDiv, table_info)
+      if self.merged:  
+        self.addAimlessSummaryMerged(statsDiv, table_info)
+      else:
+        self.aimlessreport.addAimlessSummary(statsDiv, table_info)
 
       if self.numberofdatasets > 1:
         interdatasetDiv = overallfold.addDiv(style="border-width: 1px; border-color: black; \
@@ -342,7 +362,7 @@ class aimless_pipe_report(Report):
         self.aimlessreport.addScaleBfacReport(interdatasetDiv)
 
       # Main graphs as function of resolution and batch
-      self.aimlessreport.importantGraphs(headlineDiv)
+      self.aimlessreport.importantGraphs(headlineDiv, self.merged)
 
       nextDiv = overallfold.addDiv(style="clear:both;")
       nextleftDiv = nextDiv.addDiv(style="width:48%;float:left;text-align:center;margin:6px; padding:0px; ")
@@ -411,9 +431,10 @@ class aimless_pipe_report(Report):
       nextfold = nextgraphsDiv.addFold(label='Other merging graphs', brief='Merging', initiallyOpen=True)
       self.aimlessreport.moreGraphs(nextfold)
 
-      sdDiv = parent.addDiv(style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
-      sdfold =sdDiv.addFold(label='SD analysis', brief='SDanalysis', initiallyOpen=True)
-      self.aimlessreport.sdAnalysis(sdfold)
+      if not self.merged:
+        sdDiv = parent.addDiv(style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+        sdfold =sdDiv.addFold(label='SD analysis', brief='SDanalysis', initiallyOpen=True)
+        self.aimlessreport.sdAnalysis(sdfold)
       
       details2Div = parent.addDiv(style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
       fold = details2Div.addFold(label="Details of merging", brief='Details')
@@ -444,6 +465,16 @@ class aimless_pipe_report(Report):
       parent.addDiv(style="width:95%; clear:both;")
 
   # - - - - - - - - - - - - - - - - - - - - - - - 
+  def addAimlessSummaryMerged(self, parent=None, extraitems=None):
+    aHeaderDiv = parent.addDiv(
+      style="clear:both;font-weight:bold; font-size:130%;margin:0px;padding:0px;")
+    aHeaderDiv.append('Data internal consistency statistics')
+
+    #print("addAimlessSummaryMerged", extraitems)
+
+    self.aimlessreport.ResultTableMerged(parent, extraitems)
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
   def infocontent(self):
     # getinformation content for the Table 1, in resolution bins
     # Overall, Inner, Outer
@@ -488,7 +519,6 @@ class aimless_pipe_report(Report):
     s = ""
     if self.autocutoffnode is not None:
       acdone = self.autocutoffnode.findall('Cutoff')[0].text
-      acmessage = self.autocutoffnode.findall('Message')[0].text
 
       cutoffdatasets = self.autocutoffnode.findall('Dataset')
       ndatasets = len(cutoffdatasets)
@@ -604,10 +634,10 @@ class aimless_pipe_report(Report):
     mmcifDiv.addText(text='Information about the imported  mmCIF file :',
                         style='font-weight:bold; font-size:110%; color:blue;')
 
-    mmcifDiv.append("<br/>")
+    #mmcifDiv.append("<br/>")
     for line in text:
       mmcifDiv.addText(text=line)
-      mmcifDiv.append("<br/>")
+      #mmcifDiv.append("<br/>")
 
   # - - - - - - - - - - - - - - - - - - - - - - - 
   def pointlessReport(self, parent=None):
@@ -796,7 +826,7 @@ class aimless_pipe_report(Report):
         #print('ObsFreeCellComparison')
 
         # some XML names were changed in Nov 2022, allow both PRE
-        if len(freerxml.findall('cellObserved'))>0:
+        if len(freerxml.findall('ObsFreeCellComparison/cellObserved'))>0:
           # old style
           sg1 = 'SGnameObserved'
           cl1 = 'cellObserved'

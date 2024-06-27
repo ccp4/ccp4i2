@@ -47,6 +47,8 @@ class afro(program):
       # disabling no hires cutoff as it is done elsewhere
       self.SetKey('HIRE',0)
       self.SetKey('DNAME', self.obj['f+'].dname)
+      if self.process.GetVirtPar('high_res_cutoff'):
+        self.SetKey('RESO',(999.,self.process.GetVirtPar('high_res_cutoff')))
       self.SetArg( 'hklin', self.obj['f+'].GetFileName('mtz') )
       self.SetKey(  'colu', ('F+='+self.obj['f+'].GetLabel('f'), 'SF+='+self.obj['f+'].GetLabel('sigf')) )
       self.AddToKey('colu', ('F-='+self.obj['f-'].GetLabel('f'), 'SF-='+self.obj['f-'].GetLabel('sigf')) )
@@ -54,7 +56,13 @@ class afro(program):
         fp,fpp,dn,att=self.obj['mod'].Getfpfpp(at,self.obj['f+'].dname)
         if fp is not None and fpp is not None:
           self.SetKey('FORM', '{0} FP={1} FPP={2}'.format(at,fp,fpp))
-      self.SetKey('EXCL','EOUT')
+      # if EXCL was inputted before then move here (so that EXCL can be passed by command line - works for SAD only)
+      excl=['EOUT',]
+      if self.GetKey('EXCL'):
+        excl.extend(self.GetKey('EXCL',allval=True))
+        self.UnsetParam('EXCL',is_arg=False,is_key=True)
+      self.SetKey('EXCL',excl)
+      #self.SetKey('EXCL','EOUT')
       self.SetKey('FOUT')
 
   def TreatParams(self):

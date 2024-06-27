@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import os,sys
+import os,sys,math
 from process import process
 from program import program
 import common
@@ -84,6 +84,7 @@ class matthews(process):
       common.Warning('Could not grep Matthews distribution used for report, due to error:'+str(e))
       if hasattr(sys,'exc_clear'): sys.exc_clear()
     else:
+     if y and not math.isnan(y[0]):  # a gcx issue with nan in probs...
       if prog.nick=='matthews_coef':
         y2 = list( map( lambda q: q*0.01, y2 ) )
       if len(x)>10:

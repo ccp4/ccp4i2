@@ -20,7 +20,8 @@ class shelxd(program):
     regexp=r"\s+PATFOM\s+(\S+)")
   stat['cutoff'] = common.stats(name='used high resolution cutoff', regexp=r"\s*SHEL\s+dmax\s+\S+\s+dmin\s+(\S+)")
   stat['expired'] = common.stats(name='expired - update from SHELX web needed', regexp=r'version has expired - please update it', accept_none=True)
-  stat['error'] = common.stats(name='error', regexp=r' \*\* CANNOT', accept_none=True)
+  stat['error_cannot'] = common.stats(name='error_cannot', regexp=r' \*\* CANNOT', accept_none=True)
+  stat['error_toosmall'] = common.stats(name='error_toosmall', regexp=r' \*\*.+TOO SMALL', accept_none=True)
   stat['command_line_switches'] = common.stats(name='command line switches outputted', regexp=r'Command line switches', accept_none=True)
   # this is regexp for the output RES, not log
   stat['occup'] = common.stats(name='atom occupancies', regexp=r'\S+\s+\d\s+-?\d\.\d+\s+-?\d\.\d+\s+-?\d\.\d+\s+(\d\.\d+)\s+\d\.\d+', multiple=True)
@@ -38,9 +39,17 @@ class shelxd(program):
         common.Error(bin_issue+' command line switches not outputted - please check the binary')
     return ok
 
+  class Exception_ShelxD_TooSmall(Exception):
+    def __init__(self,message=None):
+      self.message=message
+      Warning(message)
+      Exception.__init__(self, message)
+
   def Interact_output(self, line, popen, empty):
-    if self.GetStatGrep('error',from_str=line):
+    if self.GetStatGrep('error_cannot',from_str=line):
       common.Error('{0} failed with error message: {1}'.format(self.name,line))
+    if self.GetStatGrep('error_toosmall',from_str=line):
+      raise self.Exception_ShelxD_TooSmall(line)
     self.process.UpdateInfo(line)
 
   def Stop(self,popen=None):

@@ -31,17 +31,26 @@ Shut down all instances of CCP4i2 and then reboot computer.
 <ul>
 <li>Windows
 <pre>
-set CCP4I2=%CCP4%\share\ccp4i2
-ccp4-python %CCP4I2%\utils\reconstructFromDBXML.py
+set CCP4I2=%CCP4%\Lib\site-packages\ccp4i2
+ccp4-python %CCP4I2%\utils\reconstructFromDBXML.py  --inputFileName %UserProfile%\CCP4I2\projectList-backup.xml --dbFile %UserProfile%\ccp4i2_backup_db.sqlite
 </pre>
-<li>Linux/Mac (csh)
+<li>Linux (csh)
 <pre>
-setenv CCP4I2 $CCP4/share/ccp4i2
-ccp4-python utils/reconstructFromDBXML.py --inputFileName $HOME/projectList-backup.xml --dbFile ccp4i2_backup_db.sqlite
+setenv CCP4I2 $CCP4/lib/python3.7/site-packages/ccp4i2
+ccp4-python utils/reconstructFromDBXML.py --inputFileName $HOME/.CCP4I2/projectList-backup.xml --dbFile $HOME/ccp4i2_backup_db.sqlite
 </pre>
-<li>Linux/Mac (sh)
+<li>Linux (sh)
 <pre>
-CCP4I2=$CCP4/share/ccp4i2 ccp4-python utils/reconstructFromDBXML.py --inputFileName $HOME/projectList-backup.xml --dbFile ccp4i2_backup_db.sqlite
+CCP4I2=$CCP4/lib/python3.7/site-packages/ccp4i2 ccp4-python utils/reconstructFromDBXML.py --inputFileName $HOME/.CCP4I2/projectList-backup.xml --dbFile $HOME/ccp4i2_backup_db.sqlite
+</pre>
+<li>Mac (csh)
+<pre>
+setenv CCP4I2 $CCP4/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/ccp4i2
+ccp4-python utils/reconstructFromDBXML.py --inputFileName $HOME/.CCP4I2/projectList-backup.xml --dbFile $HOME/ccp4i2_backup_db.sqlite
+</pre>
+<li>Mac (sh)
+<pre>
+CCP4I2=$CCP4/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/ccp4i2 ccp4-python utils/reconstructFromDBXML.py --inputFileName $HOME/.CCP4I2/projectList-backup.xml --dbFile $HOME/ccp4i2_backup_db.sqlite
 </pre>
 </ul>
 A file will be written in your home directory called
@@ -143,11 +152,13 @@ Restart ccp4i2.<br/>
 <ul>
 <li>Windows
 <pre>
-set CCP4I2=%CCP4%\share\ccp4i2
+set CCP4I2=%CCP4%\Lib\site-packages\ccp4i2
 ccp4-python %CCP4I2%\utils\reconstructBrowser.py
 </pre>
-<li>Linux/Mac
-<pre>sh $CCP4/share/ccp4i2/bin/reconstructDB</pre>
+<li>Linux
+<pre>sh $CCP4/lib/python3.7/site-packages/ccp4i2/bin/reconstructDB</pre>
+<li>Mac
+<pre>sh $CCP4/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/ccp4i2/bin/reconstructDB</pre>
 </ul>
 
 Click OK. After a while (depending on number of projects/jobs/disk speed, etc.) a file will be written in your home directory called
@@ -162,7 +173,7 @@ Click OK. After a while (depending on number of projects/jobs/disk speed, etc.) 
 <ul>
 <li>Windows<br/>
 <br/>
-Move <tt>$HOME/ccp4i2_backup_db.sqlite</tt> to <tt>$HOME/CCP4I2/db/database.sqlite</tt> either with a command
+Move <tt>%UserProfile%\ccp4i2_backup_db.sqlite</tt> to <tt>%UserProfile%\CCP4I2\db\database.sqlite</tt> either with a command
 prompt or Explorer window.
 <br/>
 <br/>

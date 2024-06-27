@@ -173,6 +173,7 @@ class CIFReflectionData:
             conv = gemmi.CifToMtz()
             conv.spec_lines = freerspecs
             mtz = conv.convert_block_to_mtz(self.rblock)
+            mtz.datasets.pop()
             if resorange is not None:
                 mtz = self.setMtzResolutionLimits(mtz, resorange)
             mtz.write_to_file(self.freerfile)
@@ -808,7 +809,7 @@ class ConvertCIF():
                 # Unmerged data
                 print("Can't convert unmerged data")
             elif blkinfo.allowanomalouswrite():
-                #print("anom pairs")
+                print("anom pairs")
                 # Data with anomalous pairs on different lines
                 self.status = refdata.anomMTZwritedata(reducehkl,
                                                        haveFreeR, resorange)

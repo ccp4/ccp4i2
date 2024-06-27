@@ -59,20 +59,22 @@ class Cslicendice(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'widget', 'ASUIN' ] )
     self.createLine( [ 'label', 'The number of monomers to search for', 'widget', 'NO_MOLS' ] )
 
-    self.createLine( [ 'subtitle', 'Search Model', 'Molecular Replacement search model (alphafold, rosetta or pdb)' ] )
+    self.createLine( [ 'subtitle', 'Search Model', 'Molecular Replacement search model (e.g. Alphafold or RosettaFold prediction, deposited pdb structure)' ] )
 
     self.createLine( [ 'widget', 'XYZIN' ] )
 
     self.createLine(['advice', 'Select B-factor treatment option - it is important this is set correctly' ])
-    self.setMenuText('MODELSOURCE', {'alphafold': 'AlphaFold model - convert pLDDT scores to B-factors',
-                                    'rosetta': 'RoseTTAFold model - convert rmsd estimates to B-factors',
-                                    'pdb': 'Model is standard PDB format with B-factors' })
-    self.createLine(['label', '         ', 'widget', '-guiMode', 'multiLineRadio', 'MODELSOURCE']) 
+    self.setMenuText('BFACTOR_TREATMENT', {'plddt': 'Convert pLDDT scores to B-factors (typical of Alphafold predictions)',
+                                           'rms': 'Convert rmsd estimates to B-factors (RosettaFold)',
+                                           'fractional_plddt': 'Convert fractional pLDDT scores to B-factors (ESMFold predicitons)',
+                                           'predicted_bfactor': 'Predicted B-factors (no conversion required)',
+                                           'bfactor': 'B-factors already present (e.g. deposited PDB structure)' })
+    self.createLine(['label', '         ', 'widget', '-guiMode', 'multiLineRadio', 'BFACTOR_TREATMENT']) 
 
-    self.createLine( [ 'advice', 'AlphaFold pLDDT residue score threshold:' ] , toggle=['MODELSOURCE', 'open', [ 'alphafold' ] ]   )
-    self.createLine( [ 'label', indent, 'widget', 'PLDDT_THRESHOLD' ] , toggle=['MODELSOURCE', 'open', [ 'alphafold' ] ]   )
-    self.createLine( [ 'advice', 'rosetta residue rms threshold:' ] , toggle=['MODELSOURCE', 'open', [ 'rosetta' ] ]   )
-    self.createLine( [ 'label', indent, 'widget', 'RMS_THRESHOLD' ] , toggle=['MODELSOURCE', 'open', [ 'rosetta' ] ]   )
+    self.createLine( [ 'advice', 'pLDDT residue score threshold:' ] , toggle=['BFACTOR_TREATMENT', 'open', [ 'plddt' ] ]   )
+    self.createLine( [ 'label', indent, 'widget', 'PLDDT_THRESHOLD' ] , toggle=['BFACTOR_TREATMENT', 'open', [ 'plddt' ] ]   )
+    self.createLine( [ 'advice', 'rms residue score threshold:' ] , toggle=['BFACTOR_TREATMENT', 'open', [ 'rms' ] ]   )
+    self.createLine( [ 'label', indent, 'widget', 'RMS_THRESHOLD' ] , toggle=['BFACTOR_TREATMENT', 'open', [ 'rms' ] ]   )
 
 #-   --------------------          --------------------          --------------------
 

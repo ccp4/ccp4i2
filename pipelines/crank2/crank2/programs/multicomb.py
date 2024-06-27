@@ -9,7 +9,7 @@ class multicomb(program):
   labelout_prefix="MULT_"
   ccp4_parsing=True
   stat={}
-  stat['fom'] = common.stats(name='FOM', regexp=r"Overall MEAN FOM is\s+(\S+)")
+  stat['fom'] = common.stats(name='FOM', regexp=r"Overall MEAN FOM is\s+(\S+)",multiple=True)
   stat['correl'] = common.stats(name='correlation coefficient', regexp=r"Overall Correlation is\s+(\S+)")
   references = ( "Skubak P, Waterreus WJ and Pannu NS (2010) " +
                  "Multivariate phase combination improves automated crystallographic" +

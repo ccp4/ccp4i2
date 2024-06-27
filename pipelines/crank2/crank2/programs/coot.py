@@ -21,3 +21,6 @@ class coot(program):
     self.SetArg('--script')
     self.SetArg(self.inpfilename['py'])
 
+  def TreatOutput(self):
+    self.outmodel = self.out.AddCopy(self.inp.Get('model'))
+    self.out.SetFileToChild(self.outmodel, self.outfilename['pdb'], 'pdb')

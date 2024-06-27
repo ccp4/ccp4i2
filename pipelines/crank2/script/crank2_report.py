@@ -14,10 +14,9 @@ dummy_report += '<body>\n<h3>CRANK2 job running - no report available yet</h3>\n
 
 
 def et(fileName=None):
-  parser = etree.HTMLParser()
   try:
     #root = etree.parse( os.path.join(rundir, "index.html"), parser=parser ).getroot()
-    root = etree.parse( fileName, parser=parser ).getroot()
+    root = etree.parse( fileName ).getroot()
     script=root.find('body/script')
     if script is not None:
       script.text=script.text.replace('docURI         = "";', 'docURI         = "{}";'.format(os.path.dirname(fileName)+os.sep))
@@ -28,9 +27,12 @@ def et(fileName=None):
     # show logfile 
     if os.path.isfile(os.path.join(os.path.dirname(fileName),'log.txt')):
       with open(os.path.join(os.path.dirname(fileName),'log.txt')) as f:
-        g = StringIO(f.read().replace('\n','<BR>'))
-        root = etree.parse( g, parser=parser ).getroot()
-        g.close()
+        t = f.read()
+        root = etree.Element("div")
+        clearDiv =  etree.SubElement(root,"div")
+        clearDiv.set('style','clear:both;')
+        pre = etree.SubElement(root,"pre")
+        pre.text = t
     else:
     # the code below opens the presentation in the i2 browser.  could be used as an alternative.
       try:
@@ -41,7 +43,7 @@ def et(fileName=None):
       except Exception as e:
         print('Crank2 report failed (also returning the error message in report): {0}'.format(e))
         f = StringIO(dummy_report)
-        root = etree.parse( f, parser=parser ).getroot()
+        root = etree.parse( f ).getroot()
         f.close()
   return root
 

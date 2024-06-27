@@ -19,7 +19,7 @@ class ReconstructBrowserDialog(QtWidgets.QDialog):
 
     @QtCore.Slot()
     def addDirectory(self):
-        root = str(QtWidgets.QFileDialog.getExistingDirectory(self, self.tr("Open Directory"), expanduser("~"), QtWidgets.QFileDialog.ShowDirsOnly | QtWidgets.QFileDialog.DontResolveSymlinks).toUtf8())
+        root = str(QtWidgets.QFileDialog.getExistingDirectory(self, self.tr("Open Directory"), expanduser("~"), QtWidgets.QFileDialog.ShowDirsOnly | QtWidgets.QFileDialog.DontResolveSymlinks))
         print(root)
         if root:
             if os.path.exists(os.path.join(root,"CCP4_JOBS")) and  os.path.exists(os.path.join(root,"CCP4_PROJECT_FILES")):

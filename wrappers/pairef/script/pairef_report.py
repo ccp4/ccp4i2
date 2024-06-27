@@ -37,6 +37,9 @@ class pairef_report(Report):
             if not jobStatus in ["Running", "Running remotely"]:
                 pairefrFolder.append('<a href="{0}">Open Results</a>'.format(pairef_url))
             else:
+                if sys.platform == "win32":
+                    import pathlib
+                    pairef_html = pathlib.Path(pairef_html).as_uri()
                 pairefrFolder.append('<a href="{0}">Open Results</a>'.format(pairef_html))
         else:
             self.append("The html report is not ready yet")

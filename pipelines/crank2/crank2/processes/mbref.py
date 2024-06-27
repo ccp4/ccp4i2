@@ -402,7 +402,7 @@ class mbref(process):
         common.Error(self.result_str, nosuccess=True)
     elif update=='ph':
       ph_stat = self.ph.GetProg(supported=True).GetStat
-      self.ref_res_all.append( (ph_stat('rfact')[-1], ph_stat('fom'), (ph_stat('rfree',accept_none=True) or [None])[-1]) )
+      self.ref_res_all.append( (ph_stat('rfact')[-1], ph_stat('fom')[-1], (ph_stat('rfree',accept_none=True) or [None])[-1]) )
       self.report_R, self.report_Rfree = self.ref_res_all[-1][0], self.ref_res_all[-1][2]
       if self.cyc_fin is None and self.report_R<self.R_thres and self.GetParam('minbigcyc'):
         self.cyc_fin=self.GetParam('minbigcyc')+self.mb.cyc+min(self.mb.cyc,self.GetParam('minbigcyc'))-2
@@ -422,12 +422,14 @@ class mbref(process):
   def PrintActualLogGraph(self, update=None, paral_num=None, hand=-1):
     if self.queue and self.num_proc>=0:
       # in case of both hands, passing to/from the main mbref process
-      queue,queue2,parent,logfilehandle = self.queue,self.queue2,self.parent_process,self.logfilehandle
+      queue,queue2,parent,lfh,phlfh,mblfh,dmlfh = self.queue,self.queue2,self.parent_process,self.logfilehandle,self.ph.logfilehandle,self.mb.logfilehandle,self.GetProcess('dmfull').logfilehandle if self.GetProcess('dmfull') else None
       # the queue and parent process are removed and reattached after putting to the queue
-      self.queue,self.queue2,self.parent_process,self.logfilehandle = None,None,None,None
+      self.queue,self.queue2,self.parent_process,self.logfilehandle,self.mb.logfilehandle,self.ph.logfilehandle = None,None,None,None,None,None
+      if dmlfh: self.GetProcess('dmfull').logfilehandle = None
       if hasattr(self,'ccp4i2job'):  i2job,self.ccp4i2job=self.ccp4i2job,None
       queue.put((self.num_proc,self,{'update':update,'paral_num':paral_num}))
-      self.queue,self.queue2,self.parent_process,self.logfilehandle = queue,queue2,parent,logfilehandle
+      self.queue,self.queue2,self.parent_process,self.logfilehandle,self.ph.logfilehandle,self.mb.logfilehandle = queue,queue2,parent,lfh,phlfh,mblfh
+      if dmlfh: self.GetProcess('dmfull').logfilehandle = dmlfh
       if hasattr(self,'ccp4i2job'):  self.ccp4i2job=i2job
       numproc,check_stop=self.queue2.get()
       if check_stop=='stop' and self.num_proc==numproc and not self.stop_message:

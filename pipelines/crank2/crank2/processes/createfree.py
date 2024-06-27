@@ -32,7 +32,7 @@ class createfree(process):
     exclude_out=self.sft.out.AddNew('exclude', self.sft.nick+'_free.mtz', typ=self.GetParam('freetype'))
     exclude_out.SetLabel('free')
     backup=self.sft.BackupAnyPars()
-    self.sft.SetKey( 'read', '"'+mtzobj.GetFileName('mtz')+'"' )
+    self.sft.SetKey( 'read', ('"'+mtzobj.GetFileName('mtz')+'"', '\nY') )
     # increase the fraction if too small - for bias est. only as of now
     if not self.IsInputtedParam('fraction') and self.GetParam('freetype'):
       self.sft.Run(clear_out=False)

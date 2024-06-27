@@ -108,7 +108,7 @@ class editbfac(CPluginScript):
         self.params = master_phil.extract()
         p = self.params.process_predicted_model
         # standard options
-        p.b_value_field_is = self.container.controlParameters.BTREATMENT.__str__()  # 'lddt'
+        p.b_value_field_is = self.container.controlParameters.BTREATMENT.__str__()  # 'plddt'
         p.remove_low_confidence_residues = self.container.controlParameters.CONFCUT      # True
         p.split_model_by_compact_regions = self.container.controlParameters.COMPACTREG   # True
         p.maximum_domains = self.container.controlParameters.MAXDOM  # 3
@@ -117,7 +117,7 @@ class editbfac(CPluginScript):
         p.maximum_fraction_close = self.container.controlParameters.MAXFRACCL
         p.minimum_sequential_residues = self.container.controlParameters.MINSEQRESI
         p.minimum_remainder_sequence_length = self.container.controlParameters.MINREMSEQL
-        p.minimum_lddt = self.container.controlParameters.MINLDDT.__float__() # 0.7
+        p.minimum_plddt = self.container.controlParameters.MINLDDT.__float__() # 0.7
         p.maximum_rmsd = self.container.controlParameters.MAXRMSD.__float__() # 1.5
         # pae options
         p.pae_power = self.container.controlParameters.PAEPOWER

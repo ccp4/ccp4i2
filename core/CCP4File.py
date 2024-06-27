@@ -1102,6 +1102,14 @@ class CSceneDataFile(CDataFile):
                   'mimeTypeDescription' : 'CCP4mg scene file', 'guiLabel' : 'CCP4mg scene',
                   'fileExtensions' : ['scene.xml'], 'fileContentClassName' : NotImplemented }
 
+class CYmlFile(CDataFile):
+    '''A yml data file'''
+    QUALIFIERS = {'mimeTypeName' : '"text/plain"', 'mimeTypeDescription' : 'Standard plain text',
+                  'guiLabel' : 'yml file', 'fileExtensions' : ['yml']}
+
+class CDataReflFile(CDataFile):
+    '''Reflection file from DIALS'''
+    QUALIFIERS = {'guiLabel' : 'Reflections from DIALS', 'fileExtensions' : ['refl']}
 
 class CXmlDataFile(CDataFile):
     '''A reference to an XML file'''

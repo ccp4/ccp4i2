@@ -5,7 +5,7 @@ try:
 except:
   exec(compile(open(os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc'), "rb").read(), os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc'), 'exec'))
   from report.CCP4ReportParser import *
-from lxml import etree
+#from lxml import etree
 from wrappers.pointless.script.pointless_report import pointless_report
 #from pointless_report import pointless_report
 
@@ -36,14 +36,29 @@ class pointless_reindexToMatch_report(pointless_report):
         return
       
       analyse = True
-      if xmlnode.find('CopyMessage') is not None:
+      copymessagelist = xmlnode.findall('CopyMessage')
+      if len(copymessagelist) > 0:
         # usual copy option, not ANALYSE
         analyse = False
+
+      expand = False
+      expandmessagelist = xmlnode.findall('CopyMerged/ExpandtoP1')
+      if len(expandmessagelist) > 0:
+        expand = True
+        analyse = False
+        summaryDiv = self.addDiv(\
+          style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+
+        extratext = "Expanding data to space group P1"
+        summaryDiv.addText(text='POINTLESS', style='font-size: 150%;text-align:center')
+        summaryDiv.addText(text=extratext,
+                 style='font-weight:bold;font-size: 130%;text-align:center')
+        return
 
       extratext = None
       if analyse:
         extratext = "Analysing merged file with Pointless"
-
+        
       projectid = None
       jobNumber = None
       if 'jobInfo' in kw:

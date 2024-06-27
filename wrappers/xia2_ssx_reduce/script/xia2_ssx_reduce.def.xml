@@ -1,0 +1,396 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <userId>martin</userId>
+    <hostName>precision</hostName>
+    <creationTime>2023-09-12T14:24:01.291479</creationTime>
+    <pluginVersion/>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <pluginName>xia2_ssx_reduce</pluginName>
+    <OS>linux</OS>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="xia2_ssx_reduce">
+    <container id="inputData">
+      <content id="SEARCH_ROOT_DIR">
+        <className>CDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <isDirectory>True</isDirectory>
+          <guiLabel>Root directory</guiLabel>
+          <toolTip>Start search from this directory</toolTip>
+        </qualifiers>
+      </content>
+      <content id="DIALS_INTEGRATED">
+        <className>CList</className>
+        <qualifiers>
+          <guiLabel>DIALS .refl</guiLabel>
+          <toolTip>Must have an associated .expt file</toolTip>
+          <listMinLength>1</listMinLength>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
+        <subItem>
+          <className>CDataReflFile</className>
+          <qualifiers>
+            <saveToDb>False</saveToDb>
+            <mustExist>True</mustExist>
+            <allowUndefined>True</allowUndefined>
+            <isDirectory>False</isDirectory>
+            <fromPreviousJob>True</fromPreviousJob>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="XIA2_RUN">
+        <className>CList</className>
+        <qualifiers>
+          <guiLabel>Previous xia2 run directories</guiLabel>
+          <listMinLength>2</listMinLength>
+        </qualifiers>
+        <subItem>
+          <className>CDataFile</className>
+          <qualifiers>
+            <mustExist>True</mustExist>
+            <allowUndefined>True</allowUndefined>
+            <isDirectory>True</isDirectory>
+            <guiLabel>Path to a previous xia2 run directory (containing a DataFiles sub-directory)</guiLabel>
+            <toolTip>Integration files will be automatically extracted from a previous xia2 run</toolTip>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="SEARCH_PREFERENCE">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <guiLabel>Search for</guiLabel>
+          <toolTip></toolTip>
+          <guiDefinition>
+            <expertLevel>1</expertLevel>
+          </guiDefinition>
+             <menuText>integrated.refl, scaled.refl</menuText>
+             <enumerators>integrated,scaled</enumerators>
+             <default>integrated</default>
+          </qualifiers>
+        </content>
+        <content id="reference">
+          <className>CDataFile</className>
+          <qualifiers>
+            <guiLabel>Reference model or intensities</guiLabel>
+            <toolTip>A reference to use for scaling + indexing ambiguity resolution. Can be a model pdb/cif file or a cif/mtz data file contaning intensity information.</toolTip>
+            <saveToDb>True</saveToDb>
+            <mustExist>False</mustExist>
+            <allowUndefined>True</allowUndefined>
+            <fromPreviousJob>True</fromPreviousJob>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+          </qualifiers>
+        </content>
+        <content id="grouping">
+          <className>CYmlFile</className>
+          <qualifiers>
+            <guiLabel>Other grouping – YML file specifying groupings</guiLabel>
+            <saveToDb>True</saveToDb>
+            <mustExist>False</mustExist>
+            <allowUndefined>True</allowUndefined>
+            <fromPreviousJob>True</fromPreviousJob>
+            <guiDefinition/>
+          </qualifiers>
+        </content>
+      <qualifiers/>
+    </container>
+    <container id="outputData">
+      <content id="HKLOUT">
+        <className>CList</className>
+        <qualifiers/>
+        <subItem>
+          <className>CObsDataFile</className>
+          <qualifiers>
+            <default/>
+            <contentFlag>
+              <min>0</min>
+            </contentFlag>
+            <subType>
+              <menuText>observed data,derived data,reference data</menuText>
+              <onlyEnumerators>True</onlyEnumerators>
+              <enumerators>1,2,3</enumerators>
+              <default>1</default>
+            </subType>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="DIALS_INTEGRATED">
+        <className>CList</className>
+        <qualifiers />
+        <subItem>
+          <className>CDataReflFile</className>
+          <qualifiers>
+            <saveToDb>True</saveToDb>
+            <mustExist>True</mustExist>
+            <allowUndefined>True</allowUndefined>
+            <isDirectory>False</isDirectory>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="PERFORMANCE">
+        <className>CDataReductionCCPerformance</className>
+        <qualifiers/>
+      </content>
+      <qualifiers/>
+    </container>
+    <container id="controlParameters">
+      <container id="input">
+        <qualifiers>
+          <guiDefinition/>
+        </qualifiers>
+      </container>
+      <container id="workflow">
+        <qualifiers>
+          <guiDefinition/>
+        </qualifiers>
+        <content id="workflow__steps">
+          <className>CString</className>
+          <qualifiers>
+            <onlyEnumerators>True</onlyEnumerators>
+            <guiLabel>Workflow</guiLabel>
+            <toolTip>Option to control either full reduction (steps=scale+merge) or just merging already scaled data (steps=merge).</toolTip>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+               <menuText>scale and merge, only merge already-scaled data</menuText>
+               <enumerators>scale+merge,merge</enumerators>
+               <default>scale+merge</default>
+          </qualifiers>
+        </content>
+      </container>
+      <content id="MEDIAN_CELL">
+        <className>CString</className>
+        <qualifiers>
+          <guiLabel>Median cell</guiLabel>
+          <guiDefinition/>
+        </qualifiers>
+      </content>
+      <content id="multiprocessing__nproc">
+        <className>CInt</className>
+        <qualifiers>
+          <guiLabel>Number of parallel processes used</guiLabel>
+          <guiDefinition>
+            <expertLevel>1</expertLevel>
+          </guiDefinition>
+          <default>Auto</default>
+        </qualifiers>
+      </content>
+      <content id="d_min">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>High resolution cutoff</guiLabel>
+          <guiDefinition>
+            <expertLevel>1</expertLevel>
+          </guiDefinition>
+          <default>None</default>
+        </qualifiers>
+      </content>
+      <content id="dials_cosym_phil_d_min">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>High resolution cutoff for dials.cosym</guiLabel>
+          <guiDefinition>
+            <expertLevel>1</expertLevel>
+          </guiDefinition>
+          <default>None</default>
+        </qualifiers>
+      </content>
+      <content id="dose_series_repeat">
+        <className>CInt</className>
+        <qualifiers>
+          <guiLabel>Dose series - number of repeated measurements at each point</guiLabel>
+          <toolTip>This option allows the user to specify that the data is a dose series by providing the number of repeated measurements at each point. i.e. it is assumed that $dose_series_repeat measurements are taken on each crystal and that these form consecutive images in the input image files. Each dose point will be merged separately</toolTip>
+          <guiDefinition>
+            <expertLevel>2</expertLevel>
+          </guiDefinition>
+          <default>None</default>
+          <min>2</min>
+        </qualifiers>
+      </content>
+      <content id="reduction_batch_size">
+        <className>CInt</className>
+        <qualifiers>
+          <guiLabel>Batch size (number of crystals) in each processing batch</guiLabel>
+          <guiDefinition>
+            <expertLevel>2</expertLevel>
+          </guiDefinition>
+          <default>1000</default>
+        </qualifiers>
+      </content>
+      <content id="partiality_threshold">
+        <className>CFloat</className>
+        <qualifiers>
+          <guiLabel>Partiality threshold – observations below this partiality will be discarded</guiLabel>
+          <toolTip>Filter out reflections below this partiality in data reduction.</toolTip>
+          <guiDefinition/>
+          <default>0.25</default>
+        </qualifiers>
+      </content>
+      <container id="reference_model">
+        <qualifiers>
+          <guiDefinition/>
+        </qualifiers>
+        <content id="reference_model__k_sol">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Average solvent density (k-sol)</guiLabel>
+            <toolTip>Average solvent density to use when calculating the bulk solvent contribution to the structure factors from a structural model. See Fokine and Urzhumtsev, Acta Cryst. (2002). D58, 1387-1392 for further details on the meaning of this parameter.</toolTip>
+            <guiDefinition>
+              <expertLevel>3</expertLevel>
+            </guiDefinition>
+            <default>0.35</default>
+          </qualifiers>
+        </content>
+        <content id="reference_model__b_sol">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Average solvent B-factor (B-sol)</guiLabel>
+            <toolTip>Average solvent B-factor to use when calculating the bulk solvent contribution to the structure factors from a structural model. See Fokine and Urzhumtsev, Acta Cryst. (2002). D58, 1387-1392 for further details on the meaning of this parameter.</toolTip>
+            <guiDefinition>
+              <expertLevel>3</expertLevel>
+            </guiDefinition>
+            <default>46.0</default>
+          </qualifiers>
+        </content>
+      </container>
+      <container id="clustering">
+        <qualifiers>
+          <guiLabel>Clustering</guiLabel>
+          <guiDefinition/>
+        </qualifiers>
+        <content id="clustering__threshold">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Instead of filtering based on cell values and tolerances, use a clustering approach to select a cell cluster. Clustering threshold (Andrews–Bernstein distance)</guiLabel>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+            <default>None</default>
+            <min>0</min>
+          </qualifiers>
+        </content>
+        <content id="clustering__absolute_angle_tolerance">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Absolute angle tolerance (degrees)</guiLabel>
+            <toolTip>Filter the integrated data based on the median unit cell angles and this tolerance.</toolTip>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+            <default>1.0</default>
+            <min>0</min>
+          </qualifiers>
+        </content>
+        <content id="clustering__absolute_length_tolerance">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Absolute length tolerance (A)</guiLabel>
+            <toolTip>Filters the integrated data based on the median unit cell lengths and this tolerance.</toolTip>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+            <default>1.0</default>
+            <min>0</min>
+          </qualifiers>
+        </content>
+        <content id="clustering__central_unit_cell">
+          <className>CString</className>
+          <qualifiers>
+            <guiLabel>Instead of using the median cell, use these central cell values for the cell filtering</guiLabel>
+            <toolTip>Filter the integrated data based on the tolerances about these cell parameters, rather than the median cell.</toolTip>
+            <allowUndefined>True</allowUndefined>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+          </qualifiers>
+        </content>
+      </container>
+      <container id="symmetry">
+        <qualifiers>
+          <guiLabel>Symmetry</guiLabel>
+          <guiDefinition/>
+        </qualifiers>
+        <content id="symmetry__lattice_symmetry_max_delta">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>Lattice tolerance for triggering mis-indexing assessment</guiLabel>
+            <toolTip>Tolerance for lattice symmetry analysis, used for example when determining possible symmetries for ambiguity resolution.</toolTip>
+            <guiDefinition>
+              <expertLevel>3</expertLevel>
+            </guiDefinition>
+            <default>0.5</default>
+          </qualifiers>
+        </content>
+        <content id="symmetry__phil">
+          <className>CDataFile</className>
+          <qualifiers>
+            <guiLabel>Phil options file for dials.cosym</guiLabel>
+            <toolTip>Phil options file to use for symmetry analysis with dials.cosym.  Parameters defined in the xia2.ssx phil scope will take precedent over identical options defined in the phil file.</toolTip>
+            <guiDefinition>
+              <expertLevel>3</expertLevel>
+            </guiDefinition>
+          </qualifiers>
+        </content>
+        <content id="symmetry__space_group">
+          <className>CSpaceGroup</className>
+          <qualifiers>
+            <guiLabel>Space group for scaling and merging</guiLabel>
+            <guiDefinition>
+              <expertLevel>2</expertLevel>
+            </guiDefinition>
+          </qualifiers>
+        </content>
+      </container>
+      <container id="scaling">
+        <qualifiers>
+          <guiLabel>Scaling</guiLabel>
+          <guiDefinition/>
+        </qualifiers>
+        <content id="scaling__anomalous">
+          <className>CBoolean</className>
+          <qualifiers>
+            <guiLabel>Anomalous</guiLabel>
+            <toolTip>If True, keep anomalous pairs separate during scaling.</toolTip>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+            </guiDefinition>
+            <default>False</default>
+          </qualifiers>
+        </content>
+        <content id="scaling__phil">
+          <className>CDataFile</className>
+          <qualifiers>
+            <guiLabel>Phil options file for dials.scale</guiLabel>
+            <toolTip>Phil options file to use for dials.scale.  Parameters defined in the xia2.ssx phil scope will take precedent over identical options defined in the phil file.</toolTip>
+            <guiDefinition>
+              <expertLevel>3</expertLevel>
+            </guiDefinition>
+          </qualifiers>
+        </content>
+      </container>
+      <container id="filtering">
+        <qualifiers>
+          <guiDefinition/>
+        </qualifiers>
+        <content id="filtering__mean_i_over_sigma_threshold">
+          <className>CFloat</className>
+          <qualifiers>
+            <guiLabel>I/sigma threshold</guiLabel>
+            <guiDefinition>
+              <expertLevel>1</expertLevel>
+              <toolTip>Apply a per-image mean I/sigma filter, calculated on reflections with partialities above the partiality_threshold.</toolTip>
+            </guiDefinition>
+            <default>None</default>
+          </qualifiers>
+        </content>
+      </container>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

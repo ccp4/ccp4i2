@@ -66,7 +66,7 @@ class pointless_report(Report):
     summaryDiv.addText(text='POINTLESS', style='font-size: 150%;text-align:center')
     if self.fileroot is not None:
       displayFile(self.fileroot, summaryDiv,
-                  ['job_1/log.txt', './log.txt'], 'Show log file',projectid=projectid,jobNumber=jobNumber)
+                  ['./log.txt'], 'Show log file',projectid=projectid,jobNumber=jobNumber)
 
     if extratext is not None:
       summaryDiv.addText(text=extratext,
@@ -181,8 +181,10 @@ class pointless_report(Report):
             "limited to testing for under-merging"
         parent.addText(text=s, style="color:darkorange;")
         parent.append("<br/>")
-        s = "No scaling will be done, just analysis"
-        parent.addText(text=s, style="color:darkorange;")
+        datasetlist = self.xmlnode.findall("ReflectionData/Dataset")
+        if len(datasetlist) < 2:
+          s = "No scaling will be done, just analysis"
+          parent.addText(text=s, style="color:darkorange;")
 
     if len(self.xmlnode.findall('BestSolutionType'))>0:
       solutionmessage = html_linebreak(self.xmlnode.findall("SolutionMessage")[0].text)
@@ -373,6 +375,18 @@ class pointless_report(Report):
     # return list of warning messages
     return self.xmlnode.findall(".//*[@class='warningmessage']")
   # - - - - - - - - - - - - - - - - -
+  def isMerged(self):
+    # Returns true if all HKLIN files are merged
+    merged = False
+    mergeddata = self.xmlnode.findall("ReflectionFile[@stream='HKLIN']/MergedData")
+    if len(mergeddata) > 0:
+      merged = True
+      for md in mergeddata:
+        if md.text != "True":
+          merged = False
+    self.merged = merged
+    return merged
+  # - - - - - - - - - - - - - - - - -
   def dataMissing(self,parent=None, colour='red'):
     # Process DataMissing block
     if len(self.xmlnode.findall('DataMissing'))>0:
@@ -447,15 +461,15 @@ class pointless_report(Report):
     # Special option added to deal with a weird file from EJD
 
     pattern = "deduced from reflection data is different from that in the input symmetry"
-    if len(self.xmlnode.findall(".//*[@class='warningmessage']"))>0:
-      warnings =  self.xmlnode.findall("//*[@class='warningmessage']")
+    if len(self.xmlnode.findall("*[@class='warningmessage']"))>0:
+      warnings =  self.xmlnode.findall("*[@class='warningmessage']")
       for warning in warnings:
         if pattern in warning.text:
           # Make a better error message
           words = warning.text.split()
           lat_deduced = words[3]
           lat_input = words[16]
-          print( lat_deduced, lat_input)
+          # print( lat_deduced, lat_input)
           message = "SERIOUS PROBLEM: apparent lattice type "+lat_deduced+\
                     " does not match type specified in the input file "+\
                     lat_input
@@ -536,17 +550,20 @@ class pointless_report(Report):
   def BestReindex(self,parent=None):
     # -- Indexing relative to reference file --
     if len(self.xmlnode.findall('.//BestReindex'))>0:
+      #  XYZIN reference
       if len(self.xmlnode.findall(".//XYZIN"))>0:
-        parent.append('Reference reflection list generated from coordinate file'+ self.xmlnode.findall(".//XYZIN")[0].text+'<br/>' + \
-                    'Space group '+self.xmlnode.findall(".//BestReindex/RefSpaceGroup")[0].text )
-
+        reffile, refSG = self.refSpaceGroup('XYZIN')
+        if refSG is not None:
+          parent.append('Reference reflection list generated from coordinate file'+ reffile+'<br/>' + \
+                    'Space group '+ refSG )
       else:
-          if len(self.xmlnode.findall(".//BestReindex/RefSpaceGroup"))>0:
-            if len(self.xmlnode.findall(".//BestReindex/RefSpaceGroup")) != 0:
-              parent.append('Determining best alternative indexing relative to reference file: ' + 
-                        '<br/> ' + self.xmlnode.findall(".//BestReindex/HKLREF")[0].text + '<br/>' + 
-                        'Space group '+ self.xmlnode.findall(".//BestReindex/RefSpaceGroup")[0].text  )
-          else:
+        # HKLREF reference
+        reffile, refSG = self.refSpaceGroup('HKLREF')
+        if refSG is not None:
+          parent.append('Determining best alternative indexing relative to reference file: ' + 
+                        '<br/> ' + reffile + '<br/>' + 
+                        'Space group '+ refSG )
+        else:
             parent.append('Determining best alternative indexing relative to first input file: ')
 
       tablenode = None
@@ -898,6 +915,12 @@ class pointless_report(Report):
         table.addData( title=title , select = select )
 
   # - - - - - - - - - - - - - - - - -
+  def refSpaceGroup(self, source):
+    #  source  ==  XYZIN or HKLREF
+    reffile = self.xmlnode.findall(".//BestReindex/"+source)[0].text
+    refSG = self.xmlnode.findall(".//BestReindex/RefSpaceGroup")[0].text
+    return reffile, refSG    # may be None
+  # - - - - - - - - - - - - - - - - -
   def IndexScores(self,parent=None, open1=False):
     if len(self.xmlnode.findall(".//IndexScores"))>0:
       fold = parent.addFold(label="Alternative index scores",brief='IndexScores',
@@ -908,11 +931,11 @@ class pointless_report(Report):
                     'Space group '+self.xmlnode.findall("XYZREFspacegroup")[0].text )
 
       else:
-        if len(self.xmlnode.findall(".//BestReindex/RefSpaceGroup"))>0:
-          if len(self.xmlnode.findall(".//BestReindex/RefSpaceGroup"))>0:
+        reffile, refSG = self.refSpaceGroup('HKLREF')
+        if refSG is not None:
             fold.append('Determining best alternative indexing relative to reference file: ' + \
-                        self.xmlnode.findall(".//BestReindex/HKLREF")[0].text + '<br/>' + \
-                        'Space group '+ self.xmlnode.findall(".//BestReindex/RefSpaceGroup")[0].text  )
+                        reffile + '<br/>' + \
+                        'Space group '+ refSG  )
         else:
             fold.append('Determining best alternative indexing relative to first input file: ')            
 

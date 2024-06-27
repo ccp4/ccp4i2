@@ -29,9 +29,9 @@
                 <className>CString</className>
                 <qualifiers>
                     <onlyEnumerators>True</onlyEnumerators>
-                    <enumerators>MOL,SMILES,SMILESFILE,SKETCH,DICT</enumerators>
-                    <menuText>a MOL file,a SMILES string,a SMILES file,a sketch,a cif dictionary</menuText>
-                    <default>SKETCH</default>
+                    <enumerators>MOL,MOL2,SMILES,SMILESFILE,SKETCH,DICT</enumerators>
+                    <menuText>a MOL or SDF file,a MOL2 file,a SMILES string,a SMILES file,a sketch,a CIF dictionary</menuText>
+                    <default>DICT</default>
                     <guiLabel>Atom match option</guiLabel>
                 </qualifiers>
             </content>
@@ -40,7 +40,7 @@
                 <qualifiers>
                     <onlyEnumerators>True</onlyEnumerators>
                     <enumerators>NOMATCH,MONLIBCODE,LOCALDICT,ALLMONLIB</enumerators>
-                    <menuText>nothing,a specific 3 letter code,user dictionary,all monomers</menuText>
+                    <menuText>nothing,a specific code,user dictionary,all monomers</menuText>
                     <default>NOMATCH</default>
                     <guiLabel>Start from</guiLabel>
                 </qualifiers>
@@ -49,9 +49,11 @@
                 <className>CString</className>
                 <qualifiers>
                     <minLength>3</minLength>
-                    <maxLength>3</maxLength>
-                    <default>DRG</default>
-                    <guiLabel>Three letter code for new molecule</guiLabel>
+                    <maxLength>5</maxLength>
+                    <default></default>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <guiLabel>3-5 letter code for new molecule (required except of a CIF file is provided)</guiLabel>
                 </qualifiers>
             </content>
             <content id='MATCHTLC'>
@@ -79,6 +81,15 @@
                     <saveToDb>True</saveToDb>
                 </qualifiers>
             </content>
+            <content id='MOL2IN'>
+                <className>CMDLMolDataFile</className>
+                <qualifiers>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
             <content id='SMILESIN'>
                 <className>CString</className>
             </content>
@@ -94,7 +105,9 @@
             <content id='NRANDOM'>
                 <className>CInt</className>
                 <qualifiers>
-                    <default>500</default>
+                    <default></default>
+                    <guiLabel>Number of random RDKit start structures</guiLabel>
+                    <toolTip>More start structures may provide a better start conformer (20 by default)</toolTip>
                 </qualifiers>
             </content>
         </container>
@@ -126,6 +139,14 @@
                     </qualifiers>
                 </subItem>
             </content>            
+        </container>
+        <container id="controlParameters">
+            <content id='USE_COORD'>
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
         </container>
     </ccp4i2_body>
 </ccp4:ccp4i2>

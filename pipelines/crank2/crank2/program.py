@@ -656,6 +656,7 @@ class program(object):
     if not is_key and not is_arg:
       self.GetSupportedParam(par)
     array[par].Unset(is_key,is_arg)
+    self.RemoveArgKeyFromList(par, is_key, is_arg)
 
   def GetParam(self, par, is_key=None, is_arg=None, ind=-1, as_list=False, capitalized=False, allval=False):
     # Returns the value of parameter 'par', None if not defined
