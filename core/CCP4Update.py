@@ -81,7 +81,7 @@ else:
         running_version = istr.read().strip()
         istr.close()
     except:
-        running_version = '7.0.000'
+        running_version = '9.0.000'
 
 def get_revno():
     numeric = ''.join(running_version.split('.'))

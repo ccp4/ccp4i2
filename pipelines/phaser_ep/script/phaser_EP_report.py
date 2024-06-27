@@ -36,14 +36,14 @@ class phaser_EP_report(Report):
 
     def drawContent(self, jobStatus=None, parent=None):
         if parent is None: parent = self
-        shelxNode = self.xmlnode.findall('ShelxCD')[0]
-        if shelxNode is not None:
+        if len(self.xmlnode.findall('ShelxCD'))>0:
+            shelxNode = self.xmlnode.findall('ShelxCD')[0]
             from wrappers.ShelxCDE.script.ShelxCD_report import ShelxCD_report
             shelx_report = ShelxCD_report (xmlnode=shelxNode, jobStatus='nooutput')
             self.addDiv(style='clear:both;')
             datasetNodes = shelxNode.findall('.//Dataset')
-            shelXDNode = shelxNode.findall('.//Shelxd')[0]
-            if shelXDNode is None:
+            if len(shelxNode.findall('.//Shelxd'))>0:
+                shelXDNode = shelxNode.findall('.//Shelxd')[0]
                 shelx_report.shelXCReport(self, initiallyOpen=True )
             else:
                 shelx_report.shelXCReport(self, initiallyOpen=False )
@@ -60,16 +60,16 @@ class phaser_EP_report(Report):
             phaser_report = phaser_EP_AUTO_report(xmlnode=phaserNode, jobStatus='nooutput')
             phaser_report.drawContent(jobStatus=jobStatus, parent=phaserDiv)
 
-        parrotOriginalHandNode = self.xmlnode.findall('.//original/ParrotResult')[0]
-        parrotInvertedHandNode = self.xmlnode.findall('.//inverted/ParrotResult')[0]
-        if parrotOriginalHandNode is not None:
+        if len(self.xmlnode.findall('.//original/ParrotResult'))>0:
+            parrotOriginalHandNode = self.xmlnode.findall('.//original/ParrotResult')[0]
             from wrappers.parrot.script.parrot_report import parrot_report
             parrotOriginalNode = etree.fromstring(etree.tostring(parrotOriginalHandNode))
             parrot_original_report = parrot_report(xmlnode=parrotOriginalNode, jobStatus='nooutput')
             parrot_original_hand = parent.addFold(label='Density modification: Original hand', initiallyOpen=False)
             parrot_original_report.defaultReport(parent=parrot_original_hand)
             parrot_original_hand.addDiv(style="clear:both;")
-        if parrotInvertedHandNode is not None:
+        if len(self.xmlnode.findall('.//inverted/ParrotResult'))>0:
+            parrotInvertedHandNode = self.xmlnode.findall('.//inverted/ParrotResult')[0]
             from wrappers.parrot.script.parrot_report import parrot_report
             parrotInvertedNode = etree.fromstring(etree.tostring(parrotInvertedHandNode))
             parrot_inverted_report = parrot_report(xmlnode=parrotInvertedNode, jobStatus='nooutput')

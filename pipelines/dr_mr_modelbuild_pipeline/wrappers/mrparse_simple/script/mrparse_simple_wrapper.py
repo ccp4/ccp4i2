@@ -8,7 +8,7 @@ from core import CCP4ErrorHandling
 
 
 class mrparse_simple(CPluginScript):
-    TASKMODULE = 'bioinformatics'      # Gui menu location
+    TASKMODULE = 'developer_tools'      # Gui menu location
     TASKTITLE = 'mrparse_simple'              # Short title for Gui
     TASKNAME = 'mrparse_simple'               # Task name - same as class name
     TASKCOMMAND = 'mrparse'            # The command to run the executable

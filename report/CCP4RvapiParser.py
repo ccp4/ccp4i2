@@ -215,7 +215,16 @@ class RvapiReport(Report):
                   'title': tables[i].attrib["title"],
               })
 
-              dataDiv.extend(tables[i].getchildren())
+              try:
+                 #lxml
+                 dataDiv.extend(tables[i].getchildren())
+              except:
+                 try:
+                 #xml
+                     dataDiv.extend(tables[i].findall("./"))
+                 except:
+                    #Give up!
+                    pass
 
               f2_right.append(self.graph_div(dataDivName, e2.get('id')+str(i)))
               f2_right.append(dataDiv)

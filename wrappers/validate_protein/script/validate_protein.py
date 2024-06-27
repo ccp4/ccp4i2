@@ -54,7 +54,7 @@ from iris_validation.metrics import metrics_model_series_from_files
 class validate_protein(CPluginScript):
     TASKNAME = 'validate_protein'
     WHATNEXT = [ 'coot_rebuild' ]
-    MAINTAINER = 'ak2535@york.ac.uk'
+    MAINTAINER = 'jon.agirre@york.ac.uk'
 
     def process(self):
         log_string = ''
@@ -119,6 +119,7 @@ class validate_protein(CPluginScript):
     def calculate_iris_metrics(self):
         log_string = ''
         xml_root = etree.Element('Model_info')
+        print("PATHS",self.previous_model_path, self.latest_model_path,self.previous_reflections_path, self.latest_reflections_path)
         self.model_series = metrics_model_series_from_files(model_paths=(self.previous_model_path, self.latest_model_path),
                                                             reflections_paths=(self.previous_reflections_path, self.latest_reflections_path),
                                                             sequence_paths=None,

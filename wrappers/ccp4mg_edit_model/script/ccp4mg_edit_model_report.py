@@ -142,8 +142,8 @@ class ccp4mg_edit_model_report(Report):
 
              baseSceneXML = CCP4Utils.openFileToEtree(baseScenePath)
              et = etree.ElementTree(baseSceneXML)
-             filename_element = et.findall(".//scene/data/MolData/filename")[0]
-             MolData_element = et.findall(".//scene/data/MolData")[0]
+             filename_element = et.findall(".//data/MolData/filename")[0]
+             MolData_element = et.findall(".//data/MolData")[0]
              if len(annot)>0:
                  name_element = etree.Element("name")
                  name_element.text = annot
@@ -151,6 +151,6 @@ class ccp4mg_edit_model_report(Report):
              del filename_element.attrib["database"]
              filename_element.text = fname
              sceneFilePath = os.path.join(jobDirectory,'ccp4mg_edit_model_scene'+str(i)+'.scene.xml')
-             et.write(sceneFilePath,pretty_print=True)
+             et.write(sceneFilePath)
              pic = pictureGallery.addPicture(sceneFile=sceneFilePath,label='Picture of structure '+str(i+1))
              i = i + 1

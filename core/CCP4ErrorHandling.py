@@ -214,7 +214,7 @@ class CErrorReport():
                             else:
                                 text = text + "\n" + desc
                         #print 'report', className, name, '*', text, '*', desc, mode, user
-                    if report['details'] is not None and len(str(report['details'])) > 0 and report['details'] != 'None':
+                    if 'details' in report and report['details'] is not None and len(str(report['details'])) > 0 and report['details'] != 'None':
                         if mode == 1:
                             text = text + ' ' + str(report['details'])
                         else:

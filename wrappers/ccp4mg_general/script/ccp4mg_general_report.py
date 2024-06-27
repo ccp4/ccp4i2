@@ -53,11 +53,10 @@ class ccp4mg_general_report(Report):
           for fname in self.jobInfo['filenames']["XYZOUT"]:
              baseSceneXML = CCP4Utils.openFileToEtree(baseScenePath)
              et = etree.ElementTree(baseSceneXML)
-             filename_element = et.findall(".//scene/data/MolData/filename")[0]
+             filename_element = et.findall(".//data/MolData/filename")[0]
              del filename_element.attrib["database"]
              filename_element.text = fname
-             print(etree.tostring(et,pretty_print=True))
              sceneFilePath = os.path.join(jobDirectory,'ccp4mg_general_scene'+str(i)+'.scene.xml')
-             et.write(sceneFilePath,pretty_print=True)
+             et.write(sceneFilePath)
              pic = pictureGallery.addPicture(sceneFile=sceneFilePath,label='Picture of structure '+str(i+1))
              i = i + 1

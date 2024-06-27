@@ -2513,7 +2513,7 @@ class CPdbDataFile(CCP4File.CDataFile):
     QUALIFIERS.update(CCP4File.CDataFile.QUALIFIERS)
     QUALIFIERS.update({'mimeTypeName' : 'chemical/x-pdb',
                        'mimeTypeDescription' : 'Model coordinates',
-                       'fileExtensions' : ['pdb','cif','ent'],
+                       'fileExtensions' : ['pdb','cif','mmcif','ent'],
                        'fileContentClassName' : 'CPdbData',
                        'fileLabel' : 'coordinates',
                        'guiLabel': 'Atomic model',
@@ -2884,7 +2884,7 @@ class CEnsemblePdbDataFile(CPdbDataFile):
     QUALIFIERS = {}
     QUALIFIERS.update(CPdbDataFile.QUALIFIERS)
     QUALIFIERS.update({'mimeTypeName' : 'chemical/x-pdb', 'mimeTypeDescription' : 'Model coordinates',
-                       'fileExtensions' : ['pdb','cif','ent'], 'fileContentClassName' : 'CPdbData',
+                       'fileExtensions' : ['pdb','cif','mmcif','ent'], 'fileContentClassName' : 'CPdbData',
                        'fileLabel' : 'ensemble coordinates', 'guiLabel': 'Model ensemble',
                        'toolTip' : 'An ensemble of model coordinates in PDB or mmCIF format',
                        'downloadModes' : [], 'helpFile' : 'model_data#ensemble_coordinate_files' } )

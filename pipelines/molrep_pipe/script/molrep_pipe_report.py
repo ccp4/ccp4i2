@@ -158,7 +158,7 @@ class molrep_pipe_report(refmac_report):
       sheetbendReport = sheetbend_report(xmlnode=sheetbendNode, jobStatus='nooutput')
       opened = not refmacdone and not refmacrunning
       sheetbendFold = self.addFold(label='Shift field refinement',initiallyOpen=opened,brief='Shift field')
-      sheetbendReport.defaultReport(parent=sheetbendFold)
+      sheetbendReport.defaultReport(parent=sheetbendFold,select=".//SheetbendResult")
 
     if refmacdone:
       self.addSummary()

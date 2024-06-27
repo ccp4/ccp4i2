@@ -3714,6 +3714,7 @@ function MGWebGL(divName,noLoadButtons,asyncShaders_in) {
         self.canvas.addEventListener("wheel",
             function(evt){
             self.doWheel(evt);
+            evt.preventDefault();
             },
             false);
         self.gl.viewportWidth = self.canvas.width;

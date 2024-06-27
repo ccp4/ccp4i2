@@ -1507,7 +1507,7 @@ class LogGraph(QtWidgets.QWidget):
 
     @QtCore.Slot(int)
     def setCurrentData(self,idx):
-        #print 'setCurrentData', idx
+        print('setCurrentData', idx)
         #traceback.print_stack()
         if idx < 0: return
         #print self.table_combo.currentIndex(), idx, self.graph.currentIndex(), self.graph.count()
@@ -1539,7 +1539,7 @@ class LogGraph(QtWidgets.QWidget):
 
     @QtCore.Slot(int)
     def setCurrentTable(self,idx):
-        #print 'setCurrentTable',self.graph_lists
+        print('setCurrentTable',self.graph_lists)
         self.data_combo.clear()
         for g in self.graph_lists[idx]:
             #print "Adding", g[0]
@@ -3205,12 +3205,13 @@ class QtMatplotlibCanvas(FigureCanvas):
                 self.movingLegend = False
         else:
             if pos.x() > self.left*self.width() and pos.x() < self.right*self.width() and pos.y() > (1-self.top)*self.height() and pos.y() < (1-self.bottom)*self.height():
-                painter.drawLine(pos.x(),(1-self.top)*self.height(),pos.x(),(1-self.bottom)*self.height())
-                painter.drawLine(self.left*self.width(),pos.y(),self.right*self.width(),pos.y())
+                painter.drawLine(pos.x(),int((1-self.top)*self.height()),pos.x(),int((1-self.bottom)*self.height()))
+                painter.drawLine(int(self.left*self.width()),pos.y(),int(self.right*self.width()),pos.y())
         if self._painted == False:
             self._painted = True
             self.resizeEvent(QtGui.QResizeEvent(QtCore.QSize(self.width(),self.height()),QtCore.QSize(self.width(),self.height())))
             self.legend()
+        painter.end()
 
     def autoscale_based_on(self,ax):
         lines = ax.get_lines()
@@ -3321,10 +3322,7 @@ class QtMatplotlibCanvas(FigureCanvas):
 
         for ax in axis:
             ax.xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(xticks,integer=self.xintegral))
-            ax.xaxis.get_major_locator().refresh()
             ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(yticks,integer=self.yintegral))
-            ax.yaxis.get_major_locator().refresh()
-    
 
         for ax in axis:
             if self.x_scaling: ax.xaxis.set_major_formatter(FuncFormatter(self.x_scaling))

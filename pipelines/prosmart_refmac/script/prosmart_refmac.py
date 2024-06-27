@@ -212,19 +212,6 @@ class prosmart_refmac(CPluginScript):
         #input data for this refmac instance is the same as the input data for the program
         result.container.inputData.copyData(self.container.inputData)
         #result.container.inputData = self.container.inputData
-
-        #Copy over most of the control parameters
-        for attr in self.container.controlParameters.dataOrder():
-            if (attr != "OPTIMISE_WEIGHT"
-                  and attr != "REFMAC_CLEANUP"
-                  and attr != "VALIDATE_IRIS"
-                  and attr != "VALIDATE_BAVERAGE"
-                  and attr != "VALIDATE_RAMACHANDRAN"
-                  and attr != "VALIDATE_MOLPROBITY"
-                  and attr != "RUN_MOLPROBITY"):
-                setattr(result.container.controlParameters, attr, getattr(self.container.controlParameters, attr))
-
-        #Set parameters if there is prior ProSMART or Platonyzer
         if self.container.prosmartProtein.TOGGLE:
             result.container.controlParameters.PROSMART_PROTEIN_WEIGHT=self.container.prosmartProtein.WEIGHT
             result.container.controlParameters.PROSMART_PROTEIN_ALPHA=self.container.prosmartProtein.ALPHA
@@ -239,7 +226,17 @@ class prosmart_refmac(CPluginScript):
             result.container.inputData.PLATONYZER_RESTRAINTS=self.platonyzer.container.outputData.RESTRAINTS
             result.container.inputData.XYZIN=self.platonyzer.container.outputData.XYZOUT
 
-        #Specify weight if a meaningful one has been offered
+        #Copy over most of the control parameters
+        for attr in self.container.controlParameters.dataOrder():
+            if (attr != "OPTIMISE_WEIGHT"
+                  and attr != "REFMAC_CLEANUP"
+                  and attr != "VALIDATE_IRIS"
+                  and attr != "VALIDATE_BAVERAGE"
+                  and attr != "VALIDATE_RAMACHANDRAN"
+                  and attr != "VALIDATE_MOLPROBITY"
+                  and attr != "RUN_MOLPROBITY"):
+                setattr(result.container.controlParameters, attr, getattr(self.container.controlParameters, attr))
+        #specify weight if a meaningful one hsa been offered
         if withWeight>=0.:
             result.container.controlParameters.WEIGHT_OPT='MANUAL'
             result.container.controlParameters.WEIGHT = withWeight
@@ -691,6 +688,10 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                 self.validate.container.inputData.F_SIGF_1 = self.container.inputData.F_SIGF
                 self.validate.container.inputData.XYZIN_2 = self.container.outputData.XYZOUT
                 self.validate.container.inputData.F_SIGF_2 = self.container.inputData.F_SIGF
+                """
+                self.validate.container.inputData.XYZIN = self.container.inputData.XYZIN
+                self.validate.container.inputData.F_SIGF = self.container.inputData.F_SIGF
+                """
                 #MN...Using "="" to set this is an odd thing and breaks under some circumstances.
                 #Specifically, the path for this is now in the prosmart_refmac (i.e. parent job) directory,
                 #but it is an output of the validate_protein subjob.  When that subjob seeks to save it to the
@@ -711,15 +712,22 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                 validateXMLPath = self.validate.makeFileName('PROGRAMXML')
                 validateXML = CCP4Utils.openFileToEtree(validateXMLPath)
                 xml_validation = etree.SubElement(self.xmlroot,"Validation")
-                xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Model_info")[0]) 
+                if len(validateXML.xpath("//Validate_geometry_CCP4i2/Model_info"))>0:
+                   xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Model_info")[0]) 
                 if self.validate.container.controlParameters.DO_IRIS:
-                   xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Iris")[0]) 
+                   if len(validateXML.xpath("//Validate_geometry_CCP4i2/Iris"))>0:
+                      xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Iris")[0]) 
                 if self.validate.container.controlParameters.DO_BFACT:
-                   xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/B_factors")[0])
+                   if len(validateXML.xpath("//Validate_geometry_CCP4i2/B_factors"))>0:
+                      xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/B_factors")[0])
+                   if len(validateXML.xpath("//Validate_geometry_CCP4i2/B_averages"))>0:
+                      xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/B_averages")[0])
                 if self.validate.container.controlParameters.DO_RAMA:
-                   xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Ramachandran")[0])
+                   if len(validateXML.xpath("//Validate_geometry_CCP4i2/Ramachandran"))>0:
+                      xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Ramachandran")[0])
                 if self.validate.container.controlParameters.DO_MOLPROBITY:
-                   xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Molprobity")[0])
+                   if len(validateXML.xpath("//Validate_geometry_CCP4i2/Molprobity"))>0:
+                      xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Molprobity")[0])
                    self.saveXml()
                    try:
                        from . import prosmart_refmac_verdict

@@ -178,9 +178,9 @@ class validate_protein_report(Report):
         section_div = parent.addDiv()
         section_div.append('<p style="font-weight:bold; font-size:14px;"><b>Ramachandran Analyses</b></p>')
 
-        background_PRO = 'img/rama_pro.png'
-        background_GLY = 'img/rama_gly.png'
-        background_RST = 'img/rama_rst.png'
+        background_PRO = 'http://127.0.0.1:43434/report_files/0.1.0/rama_pro.png'
+        background_GLY = 'http://127.0.0.1:43434/report_files/0.1.0/rama_gly.png'
+        background_RST = 'http://127.0.0.1:43434/report_files/0.1.0/rama_rst.png'
 
         graph_div = parent.addDiv(style='float:left; margin-left:50px;')
         rama_graph = graph_div.addFlotGraph(title='Ramachandran Plot', select='.//Ramachandran', style='height:500px; width:500px; border:0px; float:left; padding:10px; padding-left:15px;')

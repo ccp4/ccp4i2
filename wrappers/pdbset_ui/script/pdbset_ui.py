@@ -49,11 +49,12 @@ class pdbset_ui(CPluginScript):
     def processOutputFiles(self):
         from lxml import etree
         import sys
+        import base64
         with open(self.makeFileName("PROGRAMXML"),"w") as programXMLFile:
             xmlStructure = etree.Element("pdbset_ui")
             logText = etree.SubElement(xmlStructure,"LogText")
-            with open(self.makeFileName("LOG"),"r") as logFile:
-                logText.text = etree.CDATA(logFile.read())
+            with open(self.makeFileName("LOG"),"rb") as logFile:
+                logText.text = base64.b64encode(logFile.read())
             CCP4Utils.writeXML(programXMLFile,etree.tostring(xmlStructure))
 
         return CPluginScript.SUCCEEDED
