@@ -381,10 +381,13 @@ class CJobController(CCP4JobServer.CJobServer):
             ccp4i2Dir = CCP4Utils.getCCP4I2Dir()
             runTask = os.path.join(ccp4i2Dir, 'bin', 'runTask.py')
             # For some reason, ccp4-python fails to start qprocesses on windows,so fall back to sys.executable...something fishy here: MN
+            """
             if sys.platform.startswith('win'):
                 exe = sys.executable
             else:
                 exe = CCP4Utils.pythonExecutable()
+            """
+            exe = sys.executable
         argList = [exe, runTask, fileName]
         if self.configFile is not None:
             argList.extend(['-config', self.configFile])
@@ -477,8 +480,8 @@ class CJobController(CCP4JobServer.CJobServer):
             if wait is not None:
                 p.waitForFinished(wait)
             self.db.updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_RUNNING)
-            self.db.updateJob(jobId, 'processId', int(p.pid()))
-            #print 'runTask processId',p.pid(),type(p.pid())
+            self.db.updateJob(jobId, 'processId', int(p.processId()))
+            print('runTask processId',p.processId(),type(p.processId()))
             return p
 
     def saveSh(self,jobId,argList,local_sh,pidfile=None):

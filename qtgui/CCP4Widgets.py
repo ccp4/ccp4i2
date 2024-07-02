@@ -3279,7 +3279,7 @@ class CListView(CComplexLineWidget):
       self.listWidget.setProperty('isValid',True)
     self.listWidget.style().unpolish(self)
     self.listWidget.style().polish(self)
-    self.listWidget.update()
+    #self.listWidget.update()
 
 
   def getNofLines(self):

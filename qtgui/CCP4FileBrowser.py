@@ -318,7 +318,7 @@ class CFileDialog1(QtWidgets.QWidget):
         layout0.addWidget(ccp4i_label2)
         layout0.addStretch()
         self.layout().addLayout(layout0)
-        self.projectCombo.currentIndexChanged[str].connect(self.projectComboChanged)
+        self.projectCombo.currentIndexChanged.connect(self.projectComboChanged)
         CCP4Modules.PROJECTSMANAGER().projectsListChanged.connect(self.loadProjectCombo)
 
     @QtCore.Slot()

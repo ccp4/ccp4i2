@@ -1123,7 +1123,7 @@ class CTreeItemJob(CTreeItem):
         else:
             label = QtWidgets.QLabel("Am I in the dark?")
             text_hsv_value = label.palette().color(QtGui.QPalette.WindowText).value()
-            bg_hsv_value = label.palette().color(QtGui.QPalette.Background).value()
+            bg_hsv_value = label.palette().color(QtGui.QPalette.Window).value()
             isDarkMode = text_hsv_value > bg_hsv_value
             if isDarkMode:
                 bigStr += " <td class=\"jobStatusRunning\"><img height=\""+self.IMG_HEIGHT_STR+"\" src=\""+self.RUNNING_DARK_PIX+"\"/>&nbsp;&nbsp;<span>" + self.statusStr + " " + str(self.dateTime) + "</span></td>"

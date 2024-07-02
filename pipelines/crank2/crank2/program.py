@@ -438,7 +438,7 @@ class program(object):
       from_str = f.read()
     if param:
       import collections
-      if common.is_string(param) or not isinstance(param, collections.Iterable):
+      if common.is_string(param) or not isinstance(param, collections.abc.Iterable):
         param = [param,]
       if param_escape:
         param = [re.escape(str(p)) for p in param]

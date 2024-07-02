@@ -1426,7 +1426,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
 
     @QtCore.Slot(int)
     def handleTaskFrameChanged(self, mode):
-        print("Hello .......!!!!!!!!!!!")
         '''If necessary create the task input frame when the task frame tab changed to input
           This is part of mechanism to ensure slow task frame drawing is only done when necessary'''
         if mode == CProjectViewer.INPUT_TAB and self.taskFrame.inputFrame.taskWidget is None:
