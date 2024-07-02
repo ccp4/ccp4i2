@@ -261,7 +261,7 @@ class CErrorReport():
             message = message + '\n'
         if CCP4Config.GRAPHICAL() and parent is not None:
             print('CException.warningMessage GRAPHICAL', CCP4Config.GRAPHICAL())
-            #from PySide2 import QtGui, QtWidgets
+            #from PySide6 import QtGui, QtWidgets
             #QtWidgets.QMessageBox.warning(None, windowTitle, message + self.report())
             from qtgui import CCP4MessageBox
             m = CCP4MessageBox.CMessageBox(parent, title=windowTitle, message=message,

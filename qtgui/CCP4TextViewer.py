@@ -24,7 +24,7 @@ from __future__ import print_function
      Liz Potterton Jan 2010 - Create CCP4AbstractViewer
 """
 ##@package CCP4TextViewer (QtGui) Web browser plugin to view text files and coordinate files
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide6 import QtGui, QtWidgets,QtCore
 from qtgui import CCP4AbstractViewer
 from core.CCP4ErrorHandling import *
 from core.CCP4Modules import MIMETYPESHANDLER,QTAPPLICATION,PREFERENCES

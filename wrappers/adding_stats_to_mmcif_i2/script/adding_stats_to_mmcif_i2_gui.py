@@ -18,8 +18,8 @@ from __future__ import print_function
     """
 
 from qtgui.CCP4TaskWidget import CTaskWidget
-from PySide2 import QtGui, QtWidgets
-from PySide2 import QtCore
+from PySide6 import QtGui, QtWidgets
+from PySide6 import QtCore
 import os
 from dbapi import CCP4DbApi
 import functools
@@ -241,7 +241,7 @@ class adding_stats_to_mmcif_i2_gui(CTaskWidget):
         self.updateViewFromModel()
 
     def warn(self, windowTitle, informativeText, detailedText):
-        from PySide2.QtWidgets import QMessageBox
+        from PySide6.QtWidgets import QMessageBox
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Warning)
         msg.setText(windowTitle)

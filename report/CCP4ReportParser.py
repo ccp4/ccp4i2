@@ -1052,7 +1052,7 @@ class Container(ReportClass):
 
   def graph_data_as_rtf(self,fileName=None):
     try:
-      from PySide2 import QtGui, QtWidgets,QtCore
+      from PySide6 import QtGui, QtWidgets,QtCore
     except:
       raise CException(self.__class__,4,fileName)
 
@@ -3143,7 +3143,7 @@ class Graph(ReportClass):
 
   def data_as_rtf(self,document=None):
     try:
-      from PySide2 import QtGui, QtWidgets
+      from PySide6 import QtGui, QtWidgets
     except:
       raise CException(self.__class__,3)
 

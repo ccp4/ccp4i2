@@ -7,7 +7,7 @@ import glob
 from datetime import datetime
 import functools
 
-from PySide2 import QtCore, QtGui, QtWidgets
+from PySide6 import QtCore, QtGui, QtWidgets
 import sqlite3
 
 def datetimesort(k1,k2):

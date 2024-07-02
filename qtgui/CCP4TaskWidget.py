@@ -27,7 +27,7 @@ import os
 import re
 import traceback
 import functools
-from PySide2 import QtGui, QtWidgets, QtCore
+from PySide6 import QtGui, QtWidgets, QtCore
 from qtgui import CCP4Widgets
 from core.CCP4Modules import *
 from core.CCP4ErrorHandling import *
@@ -44,7 +44,6 @@ USER_EXPERT = 2
 
 def whatNext(self, jobId=None, childJobs=[], childTaskName=None):
     return []
-
 
 class CFolderAttributes:
 

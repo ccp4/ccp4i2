@@ -304,7 +304,7 @@ class CDataManager:
     def widget(self, model=None, parentWidget=None, qualifiers={}, name='', modelClass=None):
         if not GRAPHICAL():
             return None
-        from PySide2 import QtGui, QtWidgets
+        from PySide6 import QtGui, QtWidgets
         widgetClass = self.getWidgetClass(model=model, modelClass=modelClass, name=name)
         if parentWidget is None:
             raise CException(self.__class__, 103)
@@ -333,7 +333,7 @@ class CDataManager:
         return widget
 
     def buildQStandardItemModel(self, parent=None, mode=None):
-        from PySide2 import QtGui, QtWidgets
+        from PySide6 import QtGui, QtWidgets
         import inspect
         from core import CCP4Data
         myErrorReport = CErrorReport()
@@ -430,7 +430,7 @@ class testDataManager(unittest.TestCase):
           from core.CCP4Modules import QTAPPLICATION
           self.app = QTAPPLICATION()
           print 'testDataManager.setUp',GRAPHICAL(),type(self.app)
-          from PySide2 import QtGui, QtWidgets
+          from PySide6 import QtGui, QtWidgets
           self.dialog = QtWidgets.QDialog()
         '''
         from core.CCP4Data import CFloat
@@ -452,7 +452,7 @@ class testDataManager(unittest.TestCase):
             from core.CCP4Modules import QTAPPLICATION
             app = QTAPPLICATION()
             from qtgui import CCP4Widgets
-            from PySide2 import QtGui, QtWidgets
+            from PySide6 import QtGui, QtWidgets
             dialog = QtWidgets.QDialog()
             widget = self.manager.widget(model=self.testData,parentWidget=dialog)
             self.assertTrue(isinstance(widget,CCP4Widgets.CFloatView),'Failed to create CFloatView widget')

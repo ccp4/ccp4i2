@@ -28,7 +28,7 @@ from __future__ import print_function
 import os
 import time
 import tempfile
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide6 import QtGui, QtWidgets,QtCore
 from qtgui import CCP4AbstractViewer
 from qtgui import CCP4TextViewer
 #from CCP4ErrorHandling import *

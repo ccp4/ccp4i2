@@ -26,13 +26,13 @@ import os
 import re
 import traceback
 
-from PySide2 import QtGui, QtWidgets, QtCore, QtWebEngine, QtWebEngineWidgets
+from PySide6 import QtGui, QtWidgets, QtCore, QtWebEngineCore, QtWebEngineWidgets
 from core.CCP4ErrorHandling import *
 from core import CCP4Modules, CCP4Config
 
 def isAlive(qobj):
-    import shiboken2
-    return shiboken2.isValid(qobj)
+    import shiboken6
+    return shiboken6.isValid(qobj)
 
 def setGlobalSettings():
     """
@@ -47,13 +47,13 @@ def setGlobalSettings():
         if isAlive(window):
             window.setLoggraphFont()
 
-class CWebPage(QtWebEngineWidgets.QWebEnginePage):
+class CWebPage(QtWebEngineCore.QWebEnginePage):
 
     NavigationRequest = QtCore.Signal('QUrl')
     CustomMimeTypeRequested = QtCore.Signal('QUrl')
 
     def __init__(self, parent=None):
-        QtWebEngineWidgets.QWebEnginePage.__init__(self, parent)
+        QtWebEngineCore.QWebEnginePage.__init__(self, parent)
         #self.setLinkDelegationPolicy(QtWebEngineWidgets.QWebEnginePage.DelegateAllLinks)
         #self.setForwardUnsupportedContent(True)
         #self.settings().setAttribute(QtWebKit.QWebSettings.JavascriptEnabled ,1)
@@ -169,7 +169,7 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
         #self.mgpage.linkClicked.connect(self.load)
         self.loadFinished.connect(self.LoadFinished)
         self.loadStarted.connect(self.LoadStarted)
-        shortcut = QtWidgets.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+C", "Copy")), self)
+        shortcut = QtGui.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+C", "Copy")), self)
         shortcut.activated.connect(self.copyHighlighted)
         self.setTarget('')
         #self.mgpage.unsupportedContent.connect(self.handleUnsupportedContent)
@@ -185,11 +185,13 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
             print('CCP4WebView Error creating web plugin factory')
         """
         fontDataBase = QtGui.QFontDatabase()
-        defaultSettings = QtWebEngineWidgets.QWebEngineSettings.globalSettings()
+
+        profile = QtWebEngineCore.QWebEngineProfile.defaultProfile()
+        defaultSettings = profile.settings()
         standardFont = fontDataBase.font("Courier","",14)
-        defaultSettings.setFontFamily(QtWebEngineWidgets.QWebEngineSettings.StandardFont, standardFont.family())
+        defaultSettings.setFontFamily(QtWebEngineCore.QWebEngineSettings.StandardFont, standardFont.family())
         if CCP4Modules.PREFERENCES().DISABLE_WEBGL:
-            defaultSettings.setAttribute(QtWebEngineWidgets.QWebEngineSettings.WebGLEnabled,False)
+            defaultSettings.setAttribute(QtWebEngineCore.QWebEngineSettings.WebGLEnabled,False)
 
     @staticmethod
     def updateInstances(qobj):
@@ -319,11 +321,11 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
         def searchCallback(t):
             self.searchFound.emit(t)
 
-        flags = QtWebEngineWidgets.QWebEnginePage.FindFlags(0)
+        flags = QtWebEngineCore.QWebEnginePage.FindFlags(0)
         if direction < 0:
-            flags = flags | QtWebEngineWidgets.QWebEnginePage.FindBackward 
+            flags = flags | QtWebEngineCore.QWebEnginePage.FindBackward 
         if caseSensitive:
-            flags = flags | QtWebEngineWidgets.QWebEnginePage.FindCaseSensitively
+            flags = flags | QtWebEngineCore.QWebEnginePage.FindCaseSensitively
         QtWebEngineWidgets.QWebEngineView.findText(self, subString, flags, searchCallback)
 
     def getFileExt(self):

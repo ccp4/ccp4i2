@@ -21,7 +21,7 @@
 """
 
 import functools
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide6 import QtGui, QtWidgets,QtCore
 from core.CCP4ErrorHandling import *
 from core import CCP4Annotation, CCP4Modules
 from qtgui import CCP4Widgets

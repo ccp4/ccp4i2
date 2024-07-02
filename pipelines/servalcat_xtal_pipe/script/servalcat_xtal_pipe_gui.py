@@ -27,7 +27,7 @@ from __future__ import print_function
      Liz Potterton Oct 2012 - Moved mini-MTZ version to refmac_martin
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide6 import QtGui, QtWidgets,QtCore
 from qtgui import CCP4TaskWidget
 from qtgui import CCP4Widgets
 from core.CCP4PluginScript import CPluginScript
@@ -891,7 +891,7 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
           if str(self.container.inputData.XYZIN.fileContent.mmdbManager.GetSpaceGroup()) != str(self.container.inputData.HKLIN.fileContent.spaceGroup): sgMismatch = True
           if cellMismatch or sgMismatch:
               if functionNames[-2] == 'runTask':
-                  from PySide2.QtWidgets import QMessageBox
+                  from PySide6.QtWidgets import QMessageBox
                   msg = QMessageBox()
                   msg.setIcon(QMessageBox.Question)
                   msg.setText("Warning")
@@ -911,7 +911,7 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
 
       if functionNames[-2] == 'runTask':
           if not self.container.inputData.FREERFLAG.isSet():
-            from PySide2.QtWidgets import QMessageBox
+            from PySide6.QtWidgets import QMessageBox
             #from PyQt4.QtCore import *
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Question)

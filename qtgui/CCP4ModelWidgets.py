@@ -25,7 +25,7 @@ import os
 import sys
 import re
 import functools
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide6 import QtGui, QtWidgets,QtCore
 from core import CCP4ModelData
 from core import CCP4Modules,CCP4Utils
 from core.CCP4ErrorHandling import *
@@ -2108,7 +2108,8 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
             else:
                 self.selectionGroup.setExclusive(False)
             self.selectionButtons = []
-            self.selectionGroup.buttonClicked[int].connect(self.updateModelSelection)
+            #self.selectionGroup.buttonClicked[int].connect(self.updateModelSelection)
+            self.selectionGroup.buttonClicked.connect(self.updateModelSelection)
             if self.selectionMode == 2:
                 self.selectionFrame.hide()
                 self.selectionLabel.hide()

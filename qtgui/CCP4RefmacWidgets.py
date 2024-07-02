@@ -1,6 +1,6 @@
 
-from PySide2 import QtGui, QtWidgets
-from PySide2 import QtCore
+from PySide6 import QtGui, QtWidgets
+from PySide6 import QtCore
 from qtgui import CCP4Widgets
 from core import CCP4RefmacData
 

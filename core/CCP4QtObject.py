@@ -22,7 +22,7 @@
    Liz Potterton Aug 2010 -Wrapper fQtCore.or QtCore.QObject complementing CCP4Object
 """
 
-from PySide2 import QtCore
+from PySide6 import QtCore
 
 class CObject(QtCore.QObject):
 

@@ -23,7 +23,7 @@ from __future__ import print_function
      Liz Potterton June 2011 - Viewer for file system based on QDirModel
 """
 ##@package CCP4WebView (QtWebKit) Web browser 'plugin' to view web pages
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide6 import QtGui, QtWidgets,QtCore
 from core.CCP4ErrorHandling import *
 from qtgui import CCP4AbstractViewer
 

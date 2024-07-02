@@ -20,7 +20,7 @@ from __future__ import print_function
 """
 
 ##@package CCP4Widgets (QtGui) Collection of widgets for simple data types
-from PySide2 import QtGui, QtWidgets,QtCore,QtSvg
+from PySide6 import QtGui, QtWidgets,QtCore,QtSvg
 from core import CCP4Data
 from core import CCP4ModelData
 from core import CCP4XtalData
@@ -89,7 +89,7 @@ class CBaseWidget:
             dummy = QtWidgets.QLineEdit()
             fn = dummy.font()
             fm = QtGui.QFontMetrics(fn)
-            CBaseWidget.CHARSIZE = fm.width(someText) / len(someText)
+            CBaseWidget.CHARSIZE = fm.horizontalAdvance(someText) / len(someText)
 
     def setCharWidth(self, charWidth=None, mode='fixed'):
         #print 'CBaseWidget.setCharWidth',self,charWidth
@@ -1769,7 +1769,7 @@ class CDataFileView(CComplexLineWidget):
           layout.addWidget(browserButton)
           if iconName == "file_manager" and ifDemoData:
               menu = QtWidgets.QMenu();
-              testAction = QtWidgets.QAction("Browse for demo data",browserButton);
+              testAction = QtGui.QAction("Browse for demo data",browserButton);
               @QtCore.Slot(bool)
               def handleOpenTrigger():
                   self.openBrowser(os.path.join(os.environ["CCP4"],"share/ccp4i2/demo_data"))
@@ -2187,7 +2187,7 @@ class CDataFileView(CComplexLineWidget):
     #for i in range(layout.count()):
     #  print layout.itemAt(i).widget(),layout.itemAt(i).widget().width(),
     #print ' self',self.width()
-    CDataFileView.MAXCHARS = (((self.width()-40) * len(someText)) / fm.width(someText))-8
+    CDataFileView.MAXCHARS = (((self.width()-40) * len(someText)) / fm.horizontalAdvance(someText))-8
     #print 'setMaxChars',self.jobCombo.width(),self.width(),fm.width(someText),CDataFileView.MAXCHARS
 
   @QtCore.Slot(str)
@@ -4071,7 +4071,8 @@ class CStringView(CViewWidget):
           label = QtWidgets.QLabel(qualis.get('label'),self)
           layout.addWidget(label)
         self.widget = CRadioButtonGroup(self)
-        self.widget.buttonReleased[int].connect(self.updateModelFromView1)
+        #self.widget.buttonReleased[int].connect(self.updateModelFromView1)
+        self.widget.buttonReleased.connect(self.updateModelFromView1)
       elif self.mode == 'label':
         labelText = qualis.get('label')
         if labelText is not NotImplemented and labelText is not None:

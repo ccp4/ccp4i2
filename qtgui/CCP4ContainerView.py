@@ -23,7 +23,7 @@
 """
 
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide6 import QtGui, QtWidgets,QtCore
 from core.CCP4ErrorHandling import *
 from core.CCP4Config import DEVELOPER
 from core.CCP4Modules import  WEBBROWSER,PROJECTSMANAGER

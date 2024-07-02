@@ -28,7 +28,7 @@ import sys
 import socket
 import functools
 from core.CCP4ErrorHandling import *
-from PySide2 import QtCore, QtGui
+from PySide6 import QtCore, QtGui
 
 class NamedSocket(socket.socket):
     def __init__(self,domain,protocol):
@@ -562,7 +562,7 @@ class CLauncher(QtCore.QObject):
         return None
 
     def queryExecutable(self,viewer,guiParent):
-        from PySide2 import QtGui, QtWidgets
+        from PySide6 import QtGui, QtWidgets
         from qtgui import CCP4FileBrowser
         self.findViewerDialog = CCP4FileBrowser.CFileDialog(guiParent,'Find '+viewer,filters=[' (*)'],projectCombo=False)
         label = QtWidgets.QLabel("""Sorry - failed to find """+viewer+""". Please enter the program executable and then view again.\n The executable can also be set in Preferences.""",self.findViewerDialog)

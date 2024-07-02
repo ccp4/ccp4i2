@@ -664,7 +664,7 @@ def getProgramVersion(programName, mode='version'):
     elif programName == 'python':
         return sys.version.split()[0]
     elif programName == 'qt':
-        from PySide2 import QtCore
+        from PySide6 import QtCore
         return QtCore.qVersion()
     elif programName == 'arp_warp':
         # Need to get the it exit
@@ -720,8 +720,8 @@ def listReMatch(lst,reExp):
     return locs, matches
 
 def isAlive(qobj):
-    import shiboken2
-    return shiboken2.isValid(qobj)
+    import shiboken6
+    return shiboken6.isValid(qobj)
 
 # Slightly modified from http://timgolden.me.uk/python/win32_how_do_i/see_if_two_files_are_the_same_file.html
 def get_read_handle(filename):

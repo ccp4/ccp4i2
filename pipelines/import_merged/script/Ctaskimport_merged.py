@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 from qtgui.CCP4TaskWidget import CTaskWidget
-from PySide2 import QtCore,QtGui, QtWidgets
+from PySide6 import QtCore,QtGui, QtWidgets
 from core import CCP4XtalData
 from qtgui import CCP4XtalWidgets
 from core.CCP4ErrorHandling import *

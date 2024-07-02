@@ -24,7 +24,7 @@ from __future__ import print_function
 """
 
 ##@package CCP4ImageViewer  (QtGui) Web browser widget for image files
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide6 import QtGui, QtWidgets,QtCore
 from qtgui import CCP4AbstractViewer
 from core.CCP4ErrorHandling import *
 

@@ -4,7 +4,7 @@
 #  Author: Martin Maly, David Waterman
 #
 
-from PySide2 import QtCore, QtWidgets
+from PySide6 import QtCore, QtWidgets
 from qtgui.CCP4TaskWidget import CTaskWidget
 from core import CCP4Container
 import qtgui

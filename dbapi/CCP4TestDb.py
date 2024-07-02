@@ -6,7 +6,7 @@ from core import CCP4File
 from core.CCP4ErrorHandling import *
 from core.CCP4Modules import PROJECTSMANAGER,TASKMANAGER,QTAPPLICATION,JOBCONTROLLER
 from core.CCP4QtObject import CObject
-from PySide2 import QtCore
+from PySide6 import QtCore
 
 # Kick of from pyi2 prompt with something like..
 # import CCP4TestDb; t = CCP4TestDb.CTestDb(); t.createProject('simple1')

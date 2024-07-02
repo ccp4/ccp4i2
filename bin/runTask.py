@@ -5,7 +5,7 @@ import os
 import sys
 import argparse
 import functools
-from PySide2 import QtCore
+from PySide6 import QtCore
 
 def getCCP4I2Dir(up=1):
     target = os.path.join(os.path.realpath(sys.argv[0]),"..")

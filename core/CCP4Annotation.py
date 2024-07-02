@@ -81,7 +81,7 @@ class CTime(CCP4Data.CInt):
                 raise e
 
     def getQDateTime(self):
-        from PySide2 import QtCore
+        from PySide6 import QtCore
         q = QtCore.QDateTime()
         if self.__dict__['_value'] is not None:
             q.setTime_t(int(self.__dict__['_value']))
@@ -228,7 +228,7 @@ class CFont(CCP4Data.CData):
                                           'menuText' : ['light', 'normal', 'demi-bold', 'bold', 'black']}}}
 
     def getQFont(self):
-        from PySide2 import QtGui, QtWidgets
+        from PySide6 import QtGui, QtWidgets
         italic = (self.style == QtGui.QFont.StyleItalic)
         f = QtGui.QFont(str(self.family),int(self.pointSize),int(self.weight),italic)
         #print 'CFont.getQFont', f, str(f.family()),f.pointSize()

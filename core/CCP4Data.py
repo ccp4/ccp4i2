@@ -29,7 +29,7 @@ import types
 import time
 import traceback
 
-from PySide2 import QtCore
+from PySide6 import QtCore
 
 from core.CCP4ErrorHandling import *
 from core.CCP4Config import QT, XMLPARSER
@@ -3481,7 +3481,7 @@ class testQObject(unittest.TestCase):
     def setUp(self):
         self.bleeped = False
         if QT():
-            from PySide2 import QtCore
+            from PySide6 import QtCore
             self.app = QtCore.QCoreApplication(sys.argv)
             self.master = QtCore.QObject(self.app)
 
@@ -3492,7 +3492,7 @@ class testQObject(unittest.TestCase):
 
     def test1(self):
         if QT():
-            from PySide2 import QtCore
+            from PySide6 import QtCore
             f = CFloat(parent=self.master)
             f.dataChanged.connect(self.bleep)
             f.set(12.0)

@@ -2,7 +2,7 @@ from __future__ import print_function
 
 
 import os,sys
-from PySide2 import QtCore
+from PySide6 import QtCore
 
 def getCCP4I2Dir(up=1):
     target = os.path.join(os.path.realpath(sys.argv[0]),"..")

@@ -36,7 +36,7 @@ import shutil
 import functools
 from core.CCP4Config import QT, XMLPARSER, DEVELOPER, PATH
 if QT():
-    from PySide2 import QtCore
+    from PySide6 import QtCore
     from core.CCP4QtObject import CObject
 else:
     from core.CCP4Object import CObject
@@ -1765,7 +1765,7 @@ class CPluginScript(CObject):
             return CPluginScript.FAILED
 
     def timedCallback(self, timeout=60.0, handler=None, singleShot=True):
-        from PySide2 import QtCore
+        from PySide6 import QtCore
         t = QtCore.QTimer(self)
         t.setSingleShot(singleShot)
         t.setInterval(int(timeout*1000.0))
@@ -1779,7 +1779,7 @@ class CPluginScript(CObject):
 
     def removeTimedCallback(self, timerId):
         #print 'CPLuginScript.removeTimedCallback'
-        from PySide2 import QtCore
+        from PySide6 import QtCore
         timerList = self.findChildren(QtCore.QTimer)
         for timer in timerList:
             if timer.timerId() == timerId:
@@ -1791,7 +1791,7 @@ class CPluginScript(CObject):
 
     @QtCore.Slot()
     def cleanupTimer(self):
-        from PySide2 import QtCore
+        from PySide6 import QtCore
         timerList = self.findChildren(QtCore.QTimer)
         for timer in timerList:
             if not timer.isActive():
@@ -1799,7 +1799,7 @@ class CPluginScript(CObject):
                 timer.deleteLater()
 
     def fileWatcher(self):
-        from PySide2 import QtCore
+        from PySide6 import QtCore
         if (not hasattr(self, "fileSystemWatcher")) or self.fileSystemWatcher is None:
             self.fileSystemWatcher = QtCore.QFileSystemWatcher(parent=self)
             if CCP4Modules.PREFERENCES().FILESYSTEMWATCHERPOLLER:
@@ -1866,7 +1866,7 @@ class CPluginScript(CObject):
 
     def displayEditor(self):
         #print 'displayEditor',self.commandScript
-        from PySide2 import QtGui, QtWidgets, QtCore
+        from PySide6 import QtGui, QtWidgets, QtCore
         if self.mainWindow is None:
             self.mainWindow = QtWidgets.QDialog()
             self.mainWindow.setModal(True)
@@ -2239,7 +2239,7 @@ class CRunPlugin(CObject):
 
     def compressJobData(self, jobNumber=None):
         from qtcore import CCP4Export
-        from PySide2 import QtCore
+        from PySide6 import QtCore
         path,base= os.path.split(self.compressedFile)
         splitBase = base.split('.')
         if splitBase[0][-6:] == '_setup':

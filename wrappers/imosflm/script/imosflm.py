@@ -1,6 +1,6 @@
 
 from core.CCP4PluginScript import CPluginScript
-from PySide2 import QtCore
+from PySide6 import QtCore
 import os,re,time,sys
 import platform
 

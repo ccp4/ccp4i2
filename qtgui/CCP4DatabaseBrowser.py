@@ -32,7 +32,7 @@ There is no special handling of the current project so theer is a possiblity of 
 in the current project.
 '''
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide6 import QtGui, QtWidgets,QtCore
 from core import CCP4Modules
 from qtgui import CCP4ProjectWidget
 

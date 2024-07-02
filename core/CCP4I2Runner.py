@@ -13,11 +13,6 @@ from core import CCP4File
 from core import CCP4Data
 from core import CCP4ModelData
 from core import CCP4XtalData
-if sys.platform == "win32":
-    import ccp4mg
-    import hklfile
-else:
-    from ccp4mg import hklfile
 from core import CCP4Modules
 from lxml import etree
 #import clipper
@@ -685,7 +680,7 @@ class CI2Runner(object):
         print(rv.report(ifStack=False))
 
     def runWithDb(self, cOpenJob):
-        from PySide2 import QtCore
+        from PySide6 import QtCore
         rv = cOpenJob.saveParams()
     
         cOpenJob.openJob()
@@ -733,7 +728,7 @@ if __name__ == "__main__":
         theRunner = CI2Runner(sys.argv)
         theRunner.run()
 #Quit any web server threads
-        from PySide2 import QtCore
+        from PySide6 import QtCore
         app = QtCore.QCoreApplication.instance()
         threads = app.findChildren(QtCore.QThread)
         print("##################################################")

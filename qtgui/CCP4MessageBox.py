@@ -26,7 +26,7 @@ from __future__ import print_function
 
 ##@package CCP4ProjectWidget View a project
                             
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide6 import QtGui, QtWidgets,QtCore
 
 class CMessageBox(QtWidgets.QDialog):
 

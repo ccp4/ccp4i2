@@ -24,7 +24,7 @@ from __future__ import print_function
 """
 
 import functools
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide6 import QtGui, QtWidgets,QtCore
 from core.CCP4ErrorHandling import *
 from qtgui import CCP4TaskWidget
 from qtgui import CCP4Widgets

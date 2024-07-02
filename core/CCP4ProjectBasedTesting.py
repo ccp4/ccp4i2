@@ -34,7 +34,7 @@ from core import CCP4Container
 from core import CCP4TaskManager
 from core import CCP4Utils
 import ccp4mg  # Ensure mmdb/hklfile etc available in testing
-from PySide2 import QtCore
+from PySide6 import QtCore
 from lxml import etree
 from core.CCP4ErrorHandling import *
 from core.CCP4Modules import PROJECTSMANAGER,JOBCONTROLLER,QTAPPLICATION,PROCESSMANAGER

@@ -5,7 +5,7 @@ from core.CCP4QtObject import CObject
 import collections
 from core.CCP4ErrorHandling import *
 from core import CCP4Config
-from PySide2 import QtCore, QtSql
+from PySide6 import QtCore, QtSql
 import copy
 import traceback
 import sys

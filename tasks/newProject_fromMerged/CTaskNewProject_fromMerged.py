@@ -23,7 +23,7 @@ from __future__ import print_function
      Liz Potterton June 2011 - task to import data files
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide6 import QtGui, QtWidgets,QtCore
 from qtgui import CCP4TaskWidget
 from core import CCP4XtalData
 from core.CCP4Modules import WEBBROWSER,PROJECTSMANAGER,MIMETYPESHANDLER

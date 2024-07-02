@@ -27,7 +27,7 @@ import os
 import re
 import functools
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide6 import QtGui, QtWidgets,QtCore
 from core import CCP4Container
 from qtgui import CCP4CustomisationGui
 from core.CCP4ErrorHandling import *

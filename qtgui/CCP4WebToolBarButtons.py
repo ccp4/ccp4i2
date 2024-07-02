@@ -2,7 +2,7 @@ from __future__ import print_function
 import sys, os
 import functools
 
-from PySide2 import QtCore, QtGui, QtWidgets, QtWebEngine, QtWebEngineWidgets, QtWebChannel
+from PySide6 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets, QtWebChannel
 
 class CCP4WebToolBarButtonBridge(QtCore.QObject):
     buttonClicked = QtCore.Signal(str)
@@ -24,7 +24,7 @@ class CCP4WebToolBarButtons(QtWebEngineWidgets.QWebEngineView):
 
     def contextMenuEvent(self,e):
         self.menu = QtWidgets.QMenu()
-        act = QtWidgets.QAction("Customize",self)
+        act = QtGui.QAction("Customize",self)
         self.menu.addAction(act)
         self.menu.popup(self.mapToGlobal(e.pos()))
         act.triggered.connect(self.editVisible.emit)

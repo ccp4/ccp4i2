@@ -69,6 +69,6 @@ def showTrace(messageBox=False, title="Crash report"):
         err = err + '    ' + str(s[3]) + '\n'
     print(err)
     if messageBox and GRAPHICAL():
-        from PySide2 import QtGui, QtWidgets
+        from PySide6 import QtGui, QtWidgets
         QtWidgets.QMessageBox.critical(self, title, title + ":\n"+str(exc_type) + '\n' + str(exc_value) + '\n' + err)
 

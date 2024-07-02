@@ -4,7 +4,7 @@ import sys
 import functools
 import textwrap
 
-from PySide2 import QtCore, QtGui, QtWidgets
+from PySide6 import QtCore, QtGui, QtWidgets
 
 """
 This is a simple implementation of an edit for a sequence data model (name,no of copies, description, sequence).
@@ -175,7 +175,7 @@ class NoSpaceDelegate(QtWidgets.QStyledItemDelegate):
 
     def createEditor(self,parent, option, index):
         editor = QtWidgets.QLineEdit(parent)
-        validator = QtGui.QRegExpValidator(QtCore.QRegExp("\\S+"), self )
+        validator = QtGui.QRegularExpressionValidator(QtCore.QRegularExpression("\\S+"), self )
         editor.setValidator(validator)
         editor.setFrame(False)
         return editor
@@ -267,7 +267,7 @@ class SequenceTableView(QtWidgets.QTableView):
         tb.setLineWrapMode(QtWidgets.QTextEdit.FixedColumnWidth)
         tb.setLineWrapColumnOrWidth(80)
         win.setLayout(layout)
-        rv = win.exec_()
+        rv = win.exec()
         if rv == QtWidgets.QDialog.Accepted and self.model()._editable:
             self.model().setSequenceData(val,"".join(str(tb.toPlainText()).split()))
 
@@ -341,7 +341,6 @@ class SequenceTable(QtWidgets.QWidget):
         buttonLayout.addWidget(self.minusButton)
         buttonLayout.addStretch(3)
         layout.addWidget(buttons)
-        buttonLayout.setMargin(0)
         buttonLayout.setSpacing(0)
         buttonLayout.setContentsMargins(0,0,0,0)
         layout.setContentsMargins(0,0,0,0)
@@ -390,7 +389,7 @@ class SequenceTable(QtWidgets.QWidget):
                     editTypeAct.triggered.connect(self.doEditType)
                 delAct = contextMenu.addAction("Delete "+r+" "+indices)
                 delAct.triggered.connect(self.checkDelete)
-                contextMenu.exec_(self.table.viewport().mapToGlobal(pos))
+                contextMenu.exec(self.table.viewport().mapToGlobal(pos))
 
         self.table.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.table.customContextMenuRequested.connect(onCustomContextMenu)
@@ -464,7 +463,7 @@ class SequenceTable(QtWidgets.QWidget):
         discardButton = dbb.addButton(QtWidgets.QDialogButtonBox.Discard)
         closeButton.clicked.connect(win.accept)
         discardButton.clicked.connect(win.reject)
-        rv = win.exec_()
+        rv = win.exec()
         if rv == QtWidgets.QDialog.Accepted:
             name = nameEdit.text()
             copies = copiesSpin.value()
@@ -567,8 +566,6 @@ class SequenceTableDialog(QtWidgets.QDialog):
         layout.setContentsMargins(0,0,0,0)
 
 if __name__ == "__main__":
-    import sip
-    sip.setdestroyonexit(False)
 
     app = QtWidgets.QApplication(sys.argv)
 
@@ -600,4 +597,4 @@ if __name__ == "__main__":
     for i in range(10):
         addRandomSequence()
 
-    sys.exit(app.exec_())
+    sys.exit(app.exec())

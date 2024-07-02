@@ -209,7 +209,7 @@ class CTaskManager:
                                 print ("---------------------")
                                 """
                                 if GRAPHICAL():
-                                    from PySide2 import QtWidgets
+                                    from PySide6 import QtWidgets
                                     QtWidgets.QMessageBox.warning(None, "Problem Loading CachedLookups JSON", tmpM)
                                 """
                             #Don't bother to load class, but set it to "None", obliging it to be loaded when needed

@@ -32,7 +32,7 @@ import types
 import functools
 import requests
 import datetime
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide6 import QtGui, QtWidgets,QtCore
 from core import CCP4Modules
 from core import CCP4File
 

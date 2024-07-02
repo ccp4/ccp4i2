@@ -1,7 +1,7 @@
 
 import os, sys
 import subprocess as SP
-from PySide2 import QtGui, QtWidgets, QtCore
+from PySide6 import QtGui, QtWidgets, QtCore
 from qtgui import CCP4WebBrowser
 
 class CUpdateMessageBox(QtWidgets.QMessageBox):

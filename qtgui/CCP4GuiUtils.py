@@ -29,7 +29,7 @@ if sys.version_info >= (3,7):
     from collections.abc import Callable
 else:
     from collections import Callable
-from PySide2 import QtGui, QtWidgets,QtCore,QtSvg
+from PySide6 import QtGui, QtWidgets,QtCore,QtSvg
 from qtgui import CCP4Widgets
 
 LOADED_PIXMAPS = {}
@@ -77,13 +77,13 @@ def createAction(name='',parent=None,definition={},icon_path='',default_icon='')
             text = adef['text']
     # Is it grouped with other actions
     if 'group' in adef:
-        group=parent.findChild(QtWidgets.QActionGroup,adef['group'])
+        group=parent.findChild(QtGui.QActionGroup,adef['group'])
         if not group:
-            group = QtWidgets.QActionGroup(parent)
+            group = QtGui.QActionGroup(parent)
             group.setObjectName(adef['group'])
         a = group.addAction(text)
     else:
-        a = QtWidgets.QAction(text,parent)
+        a = QtGui.QAction(text,parent)
     a.setObjectName(name)
     if 'shortcut' in adef and adef['shortcut']:
         if isinstance(adef['shortcut'],int):
@@ -282,7 +282,7 @@ def populateToolBar(parent=None,toolBarWidget=None,definition=[],
                     adef = parent.getActionDef(*[item], **info)
                 if adef:
                     #print "createAction adef",adef
-                    a = parent.findChild(QtWidgets.QAction,item)
+                    a = parent.findChild(QtGui.QAction,item)
                     #print "populateMenu find action",item,a
                     if not a:
                         a = createAction(item,parent,adef,default_icon=default_icon)

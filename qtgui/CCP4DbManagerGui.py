@@ -21,7 +21,7 @@
      Liz Potterton Sep 2014 - Tools to manage database
 """
 
-from PySide2 import QtGui,QtWidgets,QtCore
+from PySide6 import QtGui,QtWidgets,QtCore
   
 class CChallengeUnknownUser(QtWidgets.QDialog):
     # This class is being used to create a pop-up (in the initialiser) as part of a db user/passwd system

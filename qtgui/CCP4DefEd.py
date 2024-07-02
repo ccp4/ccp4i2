@@ -81,7 +81,7 @@ Optionally add short title that will be used in the GUI.</p>
 CONTAINER_NAMES = ['inputData','controlParameters','outputData','guiControls']
 
 import os
-from PySide2 import QtGui, QtWidgets, QtCore
+from PySide6 import QtGui, QtWidgets, QtCore
 from core.CCP4ErrorHandling import *
 from core.CCP4Config import DEVELOPER
 from core.CCP4DataManager import DATAMANAGER
@@ -795,8 +795,8 @@ class CDefEd(QtWidgets.QMainWindow):
   def setInfoHistoryActions(self):
     nS = len(self.infoHistory)
     nP = self.infoHistoryPosition
-    self.findChild(QtWidgets.QAction,'forward').setEnabled(nS>0 and nP<(nS-1))
-    self.findChild(QtWidgets.QAction,'back').setEnabled(nS>0 and nP>0)
+    self.findChild(QtGui.QAction,'forward').setEnabled(nS>0 and nP<(nS-1))
+    self.findChild(QtGui.QAction,'back').setEnabled(nS>0 and nP>0)
 
 
   def close(self):

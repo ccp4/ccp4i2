@@ -27,7 +27,7 @@ import os
 import glob
 import time
 import shutil
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide6 import QtGui, QtWidgets,QtCore
 from core.CCP4ErrorHandling import *
 from core import CCP4Utils
 from core import CCP4Modules

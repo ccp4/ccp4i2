@@ -21,7 +21,7 @@ from __future__ import print_function
 
 # May 2012 Tools to handle import/export of files
 
-from PySide2 import QtCore,QtGui, QtWidgets
+from PySide6 import QtCore,QtGui, QtWidgets
 from qtgui import CCP4Widgets
 from core import CCP4File,CCP4Annotation,CCP4Data
 from core.CCP4ErrorHandling import *

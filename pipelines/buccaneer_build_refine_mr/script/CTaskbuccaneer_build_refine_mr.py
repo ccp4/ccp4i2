@@ -22,7 +22,7 @@
      Jon Agirre 2014 - Add new MR options, revise the gui and simplify it
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide6 import QtGui, QtWidgets,QtCore
 from qtgui import CCP4TaskWidget
 from qtgui import CCP4Widgets
 

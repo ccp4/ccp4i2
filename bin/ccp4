@@ -48,11 +48,11 @@ if [ "$(uname)" = MINGW32_NT-6.1 ]; then
 fi
 #${CCP4}/libexec/ccp4i2 ${CCP4I2}/bin/browser.py $@
 
-LC_ALL=C
+LC_ALL=UTF-8
 export LC_ALL
 
-QT_QPA_PLATFORM_PLUGIN_PATH=$CCP4/QtPlugins/
-export QT_QPA_PLATFORM_PLUGIN_PATH
+#QT_QPA_PLATFORM_PLUGIN_PATH=$CCP4/QtPlugins/
+#export QT_QPA_PLATFORM_PLUGIN_PATH
 
 if [ x`uname` = x"Linux" ]; then
     DIR_QT_LIBRARY_DATA=${CCP4}/resources
@@ -69,7 +69,12 @@ BOOST_ADAPTBX_FPE_DEFAULT=1
 export BOOST_ADAPTBX_FPE_DEFAULT
 
 browser=${CCP4I2}/bin/browser.py
-launcher=${CCP4}/libexec/ccp4i2
+
+#launcher=${CCP4}/libexec/ccp4i2
+launcher=/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10
+
+echo "try $launcher"
 test -x ${launcher} || launcher=${CCP4}/bin/ccp4-python
+echo $launcher
 export LD_LIBRARY_PATH=$CCP4/lib:$LD_LIBRARY_PATH
 exec ${launcher} ${browser} $@

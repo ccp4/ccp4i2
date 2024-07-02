@@ -25,7 +25,7 @@ from __future__ import print_function
 
 ##@package CCP4ProjectWidget View a project
                             
-from PySide2 import QtGui, QtWidgets,QtCore,QtSvg
+from PySide6 import QtGui, QtWidgets,QtCore,QtSvg
 from core.CCP4Modules import WEBBROWSER,PROJECTSMANAGER,MIMETYPESHANDLER,QTAPPLICATION,LAUNCHER,PREFERENCES
 from core.CCP4TaskManager import TASKMANAGER
 from core.CCP4ErrorHandling import *
@@ -489,7 +489,6 @@ class JobListHTMLDelegate(QtWidgets.QStyledItemDelegate):
         window = QtWidgets.QDialog(parent)
         window.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.Dialog)
         layout = QtWidgets.QVBoxLayout()
-        layout.setMargin(CProjectWidget.MARGIN)
         layout.setContentsMargins(CProjectWidget.MARGIN,CProjectWidget.MARGIN,
                                 CProjectWidget.MARGIN,CProjectWidget.MARGIN)
         window.setLayout(layout)
@@ -2024,7 +2023,6 @@ class CProjectWidget(QtWidgets.QFrame):
     self.projectId = projectId
 
     layout = QtWidgets.QVBoxLayout()
-    layout.setMargin(CProjectWidget.MARGIN)
     layout.setContentsMargins(CProjectWidget.MARGIN,CProjectWidget.MARGIN,
                                 CProjectWidget.MARGIN,CProjectWidget.MARGIN)
     #layout.setSizeConstraint(QtWidgets.QLayout.SetMinAndMaxSize)
@@ -2115,9 +2113,7 @@ class CProjectWidget(QtWidgets.QFrame):
 
     self.projectView.rightMousePress.connect(self.showJobListPopup)
 
-    searchLayout.setMargin(0)
     searchLayout.setContentsMargins(0,0,0,0)
-    advSearchLayout.setMargin(0)
     advSearchLayout.setContentsMargins(0,0,0,0)
     advSearchLayout.setSpacing(0)
 
@@ -2130,7 +2126,6 @@ class CProjectWidget(QtWidgets.QFrame):
     frame.setLayout(QtWidgets.QVBoxLayout())
     frame.layout().addLayout(searchLayout)
     frame.layout().addWidget(advWidget)
-    frame.layout().setMargin(CProjectWidget.MARGIN)
     frame.layout().setContentsMargins(CProjectWidget.MARGIN,CProjectWidget.MARGIN,
                                 CProjectWidget.MARGIN,CProjectWidget.MARGIN)
     frame.layout().addWidget(self.historyGui)
@@ -3118,7 +3113,6 @@ class CJobEditDelegate(QtWidgets.QStyledItemDelegate):
     window = QtWidgets.QDialog(parent)
     window.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.Dialog)
     layout = QtWidgets.QVBoxLayout()
-    layout.setMargin(CProjectWidget.MARGIN)
     layout.setContentsMargins(CProjectWidget.MARGIN,CProjectWidget.MARGIN,
                                 CProjectWidget.MARGIN,CProjectWidget.MARGIN)
     window.setLayout(layout)
@@ -3222,7 +3216,6 @@ class CHistoryGui(QtWidgets.QFrame):
   def __init__(self,parent):
     QtWidgets.QFrame.__init__(self,parent)
     self.setLayout(QtWidgets.QVBoxLayout())
-    self.layout().setMargin(CProjectWidget.MARGIN)
     self.layout().setContentsMargins(CProjectWidget.MARGIN,CProjectWidget.MARGIN,
                                 CProjectWidget.MARGIN,CProjectWidget.MARGIN)
     line = QtWidgets.QHBoxLayout()
@@ -3240,7 +3233,6 @@ class CHistoryGui(QtWidgets.QFrame):
     self.slider.setTickPosition(QtWidgets.QSlider.TicksBelow)
     self.sliderFrame.layout().addWidget(QtWidgets.QLabel('Show route to final job..',self),0,0,1,2)
     self.sliderFrame.layout().addWidget(self.slider,1,0,1,1)
-    self.sliderFrame.layout().setMargin(CProjectWidget.MARGIN)
     self.sliderFrame.layout().setContentsMargins(CProjectWidget.MARGIN,CProjectWidget.MARGIN,
                                 CProjectWidget.MARGIN,CProjectWidget.MARGIN)
     self.layout().addWidget(self.sliderFrame)
@@ -3300,7 +3292,6 @@ class CJobSearchWidget(QtWidgets.QFrame):
     from qtgui import CCP4AnnotationWidgets
     QtWidgets.QFrame.__init__(self,parent=parent)
     self.setLayout(QtWidgets.QVBoxLayout())
-    self.layout().setMargin(CJobSearchWidget.MARGIN)
     self.layout().setContentsMargins(CJobSearchWidget.MARGIN,CJobSearchWidget.MARGIN,
                                 CJobSearchWidget.MARGIN,CJobSearchWidget.MARGIN)
 
@@ -3543,7 +3534,6 @@ class CJobSearchDialog(QtWidgets.QDialog):
     QtWidgets.QDialog.__init__(self,parent)
     self.setWindowTitle('Search jobs in project: '+projectName)
     self.setLayout(QtWidgets.QVBoxLayout())
-    self.layout().setMargin(CProjectWidget.MARGIN)
     self.layout().setContentsMargins(CProjectWidget.MARGIN,CProjectWidget.MARGIN,
                                 CProjectWidget.MARGIN,CProjectWidget.MARGIN)
     self.widgets = []

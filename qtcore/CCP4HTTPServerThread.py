@@ -8,7 +8,7 @@ else:
     import BaseHTTPServer
     from SimpleHTTPServer import SimpleHTTPRequestHandler
     
-from PySide2 import QtCore
+from PySide6 import QtCore
 from core import CCP4Modules
 
 DEFAULT_PORT = 43434

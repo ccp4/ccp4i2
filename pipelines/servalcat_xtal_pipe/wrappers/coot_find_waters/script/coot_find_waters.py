@@ -3,7 +3,7 @@ from __future__ import print_function
 #from lxml import etree
 from xml.etree import ElementTree as ET
 from core.CCP4PluginScript import CPluginScript
-from PySide2 import QtCore
+from PySide6 import QtCore
 
 class coot_find_waters(CPluginScript):
     

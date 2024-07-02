@@ -27,8 +27,8 @@ import os
 import sys
 from core import CCP4Modules, CCP4Utils
 
-from PySide2.QtGui import QPalette
-from PySide2.QtWidgets import QLabel,QApplication
+from PySide6.QtGui import QPalette
+from PySide6.QtWidgets import QLabel,QApplication
 
 HIGHLIGHTCOLOUR = '#87C8D5'
 LOWLIGHTCOLOUR ='#C1D8E0'
@@ -43,7 +43,7 @@ def setStyleSheet(app=None):
 
     label = QLabel("Am I in the dark?")
     text_hsv_value = label.palette().color(QPalette.WindowText).value()
-    bg_hsv_value = label.palette().color(QPalette.Background).value()
+    bg_hsv_value = label.palette().color(QPalette.Window).value()
     isDarkMode = text_hsv_value > bg_hsv_value
 
     print("########################################")

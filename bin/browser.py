@@ -43,7 +43,7 @@ if __name__ == '__main__':
     print('Running CCP4i2 browser from: ' + top_path)
     print('Python ' + sys.version)
     try:
-        from PySide2 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets
+        from PySide6 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets, QtWebEngineCore
         print('Qt version', QtCore.qVersion())
     except:
         print('Failed finding Qt verion')
@@ -56,7 +56,7 @@ if __name__ == '__main__':
     setupGuiPluginsPath(top=top_path)
     from core.CCP4Modules import QTAPPLICATION
     app = QTAPPLICATION(graphical=True)
-    QtWebEngineWidgets.QWebEngineProfile.defaultProfile().clearHttpCache()
+    QtWebEngineCore.QWebEngineProfile.defaultProfile().clearHttpCache()
     splash = None
     # This splash screen is not used properly as it does not wait for any window.
     # However it does seem to set whatever is necessary to get the app to switch to the correct menu bar on OS X.

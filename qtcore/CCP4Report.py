@@ -21,7 +21,7 @@ from __future__ import print_function
 
 ##@package CCP4Report (QtCore) Data types for tables,graphs etc found in reports
 
-from PySide2 import QtCore
+from PySide6 import QtCore
 import os
 from lxml import etree
 from core.CCP4ErrorHandling import *

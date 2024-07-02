@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-from PySide2 import QtCore
+from PySide6 import QtCore
 
 """
      CCP4CustomTaskManager.py: CCP4 GUI Project

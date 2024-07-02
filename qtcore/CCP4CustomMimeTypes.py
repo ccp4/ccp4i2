@@ -27,7 +27,7 @@ from __future__ import print_function
 import os
 from core.CCP4Config import GRAPHICAL
 from core.CCP4ErrorHandling import *
-from PySide2 import QtCore
+from PySide6 import QtCore
 from core import CCP4Utils
 
 #-------------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ from core import CCP4Utils
 # or the Qt DesktpServices class to handle display
 
 if GRAPHICAL():
-    from PySide2 import QtGui
+    from PySide6 import QtGui
 
 if False:
     from PyQt4 import QtWebKit, QtGui

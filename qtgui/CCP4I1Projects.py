@@ -37,7 +37,7 @@ from core import CCP4File
 from core.CCP4Modules import *
 from core.CCP4TaskManager import TASKMANAGER
 from core.CCP4ErrorHandling import *
-from PySide2 import QtCore,QtGui, QtWidgets
+from PySide6 import QtCore,QtGui, QtWidgets
 from lxml import etree
 
 
@@ -53,8 +53,8 @@ def CI1PREFERENCES():
   return CI1Preferences.insts
 
 def isAlive(qobj):
-    import shiboken2
-    return shiboken2.isValid(qobj)
+    import shiboken6
+    return shiboken6.isValid(qobj)
 
 
 def splitDefLine(line):

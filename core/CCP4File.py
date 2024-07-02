@@ -33,7 +33,7 @@ try:
 except ImportError:
     from io import StringIO
 
-from PySide2 import QtCore
+from PySide6 import QtCore
 
 from core import CCP4Data
 from core import CCP4Config

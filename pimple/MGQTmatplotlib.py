@@ -2728,13 +2728,13 @@ class LogGraph(QtWidgets.QWidget):
         self.table_combo.currentIndexChanged[int].connect(self.setCurrentTable)
         self.data_combo.currentIndexChanged[int].connect(self.setCurrentData)
         self.setWindowTitle("Pimple")
-        self.fileOpen = QtWidgets.QAction("Open..",self)
-        self.fileSave = QtWidgets.QAction("Save figure..",self)
-        self.fileSaveStatus = QtWidgets.QAction("Save status..",self)
-        self.fileSaveAll = QtWidgets.QAction("Save all figures..",self)
-        self.prefAction = QtWidgets.QAction("Preferences..",self)
-        self.editLegendPos = QtWidgets.QAction("Edit legend position",self)
-        self.editPlotStyle = QtWidgets.QAction("Edit plot style",self)
+        self.fileOpen = QtGui.QAction("Open..",self)
+        self.fileSave = QtGui.QAction("Save figure..",self)
+        self.fileSaveStatus = QtGui.QAction("Save status..",self)
+        self.fileSaveAll = QtGui.QAction("Save all figures..",self)
+        self.prefAction = QtGui.QAction("Preferences..",self)
+        self.editLegendPos = QtGui.QAction("Edit legend position",self)
+        self.editPlotStyle = QtGui.QAction("Edit plot style",self)
         haveEditIcon = True
         try:
             icon = QtGui.QIcon()
@@ -3029,7 +3029,7 @@ class QtMatplotlibCanvas(FigureCanvas):
                 fm = QtGui.QFontMetrics(QtGui.QFont(self.legend_font.get_family()[0],self.legend_font.get_size()))
                 maxp = 0
                 for lab in leg_labels:
-                    maxp = max(maxp,fm.width(lab))
+                    maxp = max(maxp,fm.horizontalAdvance(lab))
                 leg_h = fm.height()*len(leg_labels)
                 if sys.platform == "darwin":
                     #No idea why I have to do this hack.

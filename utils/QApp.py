@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-from PySide2 import QtCore,QtGui, QtWidgets
+from PySide6 import QtCore,QtGui, QtWidgets
 import os
 
 MYAPPLICATION = None
@@ -67,5 +67,5 @@ class CGuiApplication(QtWidgets.QApplication):
         return pyKeyList
 
     def screenSize(self):
-        rect = self.desktop().screenGeometry()
+        rect = self.primaryScreen().geometry()
         return rect.width(),rect.height()

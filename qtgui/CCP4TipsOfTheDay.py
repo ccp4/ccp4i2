@@ -2,7 +2,7 @@ import os
 import random
 import glob
 
-from PySide2 import QtGui, QtWidgets, QtCore, QtWebEngine, QtWebEngineWidgets
+from PySide6 import QtGui, QtWidgets, QtCore, QtWebEngine, QtWebEngineWidgets
 
 from core import CCP4Utils, CCP4Modules
 
@@ -87,10 +87,10 @@ class CTipsOfTheDay(QtWidgets.QDialog):
         def resetZoom():
             tipWindow.setZoomFactor(1.0)
 
-        zoomOutShortcut = QtWidgets.QShortcut(QtGui.QKeySequence.ZoomOut,self)
-        zoomInShortcut = QtWidgets.QShortcut(QtGui.QKeySequence.ZoomIn,self)
-        zoomInShortcut2 = QtWidgets.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+=", "Zoom in")),self)
-        resetZoomShortcut = QtWidgets.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+0", "Reset Zoom")),self)
+        zoomOutShortcut = QtGui.QShortcut(QtGui.QKeySequence.ZoomOut,self)
+        zoomInShortcut = QtGui.QShortcut(QtGui.QKeySequence.ZoomIn,self)
+        zoomInShortcut2 = QtGui.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+=", "Zoom in")),self)
+        resetZoomShortcut = QtGui.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+0", "Reset Zoom")),self)
 
         zoomInShortcut.activated.connect(zoomIn)
         zoomInShortcut2.activated.connect(zoomIn)

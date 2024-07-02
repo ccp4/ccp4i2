@@ -14,7 +14,7 @@ if __name__ == "__main__":
     sys.path.append(os.path.join(os.path.dirname(__file__),".."))
 import shutil
 
-from PySide2 import QtCore
+from PySide6 import QtCore
 from lxml import etree
 
 from dbapi import CCP4DbApi,CCP4DbUtils

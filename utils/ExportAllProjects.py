@@ -6,7 +6,7 @@ import zipfile
 import sqlite3
 import functools
 
-from PySide2 import QtCore
+from PySide6 import QtCore
 
 if __name__ == "__main__":
     sys.path.append(os.path.join(os.path.dirname(__file__),".."))

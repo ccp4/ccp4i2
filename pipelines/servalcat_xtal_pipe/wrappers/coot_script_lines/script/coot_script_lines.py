@@ -4,7 +4,7 @@ from __future__ import print_function
 from xml.etree import ElementTree as ET
 
 from core.CCP4PluginScript import CPluginScript
-from PySide2 import QtCore
+from PySide6 import QtCore
 from core import CCP4Utils
 
 class coot_script_lines(CPluginScript):

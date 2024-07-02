@@ -2,7 +2,7 @@ from __future__ import print_function
 
 import sys
 
-from PySide2 import QtCore, QtGui, QtWidgets
+from PySide6 import QtCore, QtGui, QtWidgets
 
 import ccp4mg
 import PdbView

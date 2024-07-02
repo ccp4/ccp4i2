@@ -21,7 +21,7 @@ from __future__ import print_function
 '''
      Liz Potterton Mar 2010 - Prototype viewer for data expected to be in reports
 '''
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide6 import QtGui, QtWidgets,QtCore
 from core.CCP4ErrorHandling import *
 
 ##@package CCP4ReportWidgets (QtGui) QtWebKit plugins for CCP4 Reports

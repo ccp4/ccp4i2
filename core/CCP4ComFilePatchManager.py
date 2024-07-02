@@ -23,7 +23,7 @@ from __future__ import print_function
      Liz Potterton July 2013 - create and manage com file patches
 """
 
-from PySide2 import QtCore
+from PySide6 import QtCore
 
 import os
 from core import CCP4Modules

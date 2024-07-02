@@ -22,7 +22,7 @@
 '''
 import os
 import shutil
-from PySide2 import QtCore
+from PySide6 import QtCore
 from core import CCP4Container
 
 class CPreferences(CCP4Container.CContainer):

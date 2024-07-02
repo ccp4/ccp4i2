@@ -20,7 +20,7 @@ from __future__ import print_function
     """
 
 from lxml import etree
-from PySide2 import QtCore
+from PySide6 import QtCore
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core import CCP4Utils

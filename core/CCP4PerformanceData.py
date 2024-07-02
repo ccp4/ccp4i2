@@ -25,7 +25,7 @@ es may be
 """
 
 from core import CCP4Data,CCP4XtalData
-from PySide2 import QtCore
+from PySide6 import QtCore
 from core.CCP4ErrorHandling import *
 
 def performanceIndicatorClasses():

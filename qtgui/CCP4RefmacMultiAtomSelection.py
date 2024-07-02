@@ -7,20 +7,10 @@ from __future__ import print_function
 
 import sys
 
-try:
-    from PySide2.QtCore import Slot, Signal
-    from PySide2.QtCore import QAbstractTableModel, QRegExp, Qt
-    from PySide2.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout, QTableView, QAbstractItemView, QHeaderView, QStyledItemDelegate, QSpinBox, QLineEdit, QToolButton, QSizePolicy, QStyleOptionToolButton, QStyle, QMessageBox, QMenu
-    from PySide2.QtGui import QRegExpValidator, QPainter
-except:
-    if __name__ == "__main__":
-        from PyQt4 import sip
-        sip.setapi('QString', 2)
-        sip.setapi('QVariant', 2)
-    from PyQt4.QtCore import pyqtSlot as Slot
-    from PyQt4.QtCore import pyqtSignal as Signal
-    from PyQt4.QtCore import QAbstractTableModel, QRegExp, Qt
-    from PyQt4.QtGui import QApplication, QWidget, QHBoxLayout, QVBoxLayout, QTableView, QAbstractItemView, QHeaderView, QStyledItemDelegate, QSpinBox, QLineEdit, QRegExpValidator, QToolButton, QSizePolicy, QStyleOptionToolButton, QStyle, QPainter, QMessageBox, QMenu
+from PySide6.QtCore import Slot, Signal
+from PySide6.QtCore import QAbstractTableModel, QRegularExpression, Qt
+from PySide6.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout, QTableView, QAbstractItemView, QHeaderView, QStyledItemDelegate, QSpinBox, QLineEdit, QToolButton, QSizePolicy, QStyleOptionToolButton, QStyle, QMessageBox, QMenu
+from PySide6.QtGui import QRegularExpressionValidator, QPainter
 
 class SquareButton(QToolButton):
 
@@ -437,7 +427,7 @@ class NoSpaceDelegate(QStyledItemDelegate):
 
     def createEditor(self,parent, option, index):
         editor = QLineEdit(parent)
-        validator = QRegExpValidator(QRegExp("\\S+"), self )
+        validator = QRegularExpressionValidator(QRegularExpression("\\S+"), self )
         editor.setValidator(validator)
         editor.setFrame(False)
         return editor

@@ -31,7 +31,7 @@ if sys.version_info >= (3,7):
     from collections.abc import Callable
 else:
     from collections import Callable
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide6 import QtGui, QtWidgets,QtCore
 from core.CCP4ErrorHandling import *
 from core import CCP4Modules
 from core import CCP4Annotation

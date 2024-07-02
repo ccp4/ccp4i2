@@ -25,7 +25,7 @@ from __future__ import print_function
 """
 ##@package CCP4ProcessManagerWidget (QtGui) Placeholder for manager of running processes
 
-from PySide2 import QtCore,QtGui, QtWidgets
+from PySide6 import QtCore,QtGui, QtWidgets
 from core.CCP4Modules import *
 from core import CCP4ProcessManager
 

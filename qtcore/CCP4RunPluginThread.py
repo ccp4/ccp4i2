@@ -24,7 +24,7 @@ from __future__ import print_function
 '''
     
 from core import CCP4PluginScript
-from PySide2 import QtCore
+from PySide6 import QtCore
 
 class CRunPluginThread(QtCore.QThread):
 

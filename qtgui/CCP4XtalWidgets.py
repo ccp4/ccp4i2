@@ -23,7 +23,7 @@ from __future__ import print_function
 import os
 import functools
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide6 import QtGui, QtWidgets,QtCore
 from core import CCP4XtalData
 from qtgui import  CCP4Widgets
 from core.CCP4Utils import safeFloat

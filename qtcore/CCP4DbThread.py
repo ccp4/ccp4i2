@@ -1,7 +1,7 @@
 from __future__ import print_function
 import sys
 
-from PySide2 import QtCore
+from PySide6 import QtCore
 class CDbThread(QtCore.QThread):
     insts = None
     databaseCalls = [

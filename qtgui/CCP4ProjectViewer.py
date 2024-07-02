@@ -36,7 +36,7 @@ import base64
 import tempfile
 from lxml import etree
 
-from PySide2 import QtGui, QtWidgets, QtCore, QtWebEngineWidgets, QtWebChannel
+from PySide6 import QtGui, QtWidgets, QtCore, QtWebEngineWidgets, QtWebChannel, QtWebEngineCore
 
 from core.CCP4Config import DEVELOPER
 from core.CCP4TaskManager import TASKMANAGER
@@ -68,8 +68,8 @@ DEFAULT_WINDOW_SIZE = (1400, 800)
 ALWAYS_SHOW_SERVER_BUTTON = False
 
 def isAlive(qobj):
-    import shiboken2
-    return shiboken2.isValid(qobj)
+    import shiboken6
+    return shiboken6.isValid(qobj)
 
 def PROJECTVIEWER(projectId=None, open=False):
     for pv in CProjectViewer.Instances:
@@ -729,7 +729,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
 
         label = QtWidgets.QLabel("Am I in the dark?")
         text_hsv_value = label.palette().color(QtGui.QPalette.WindowText).value()
-        bg_hsv_value = label.palette().color(QtGui.QPalette.Background).value()
+        bg_hsv_value = label.palette().color(QtGui.QPalette.Window).value()
         isDarkMode = text_hsv_value > bg_hsv_value
         if sys.platform == "darwin" and not isDarkMode:
             self.toolBar('project').hide()
@@ -743,8 +743,8 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
             self.dockWidget = dockWidget
             @QtCore.Slot(str)
             def handleToolBarClick(buttonName):
-                if self.findChild(QtWidgets.QAction, buttonName):
-                    self.findChild(QtWidgets.QAction, buttonName).trigger()
+                if self.findChild(QtGui.QAction, buttonName):
+                    self.findChild(QtGui.QAction, buttonName).trigger()
             self.webviewToolBar.buttonClicked.connect(handleToolBarClick)
             self.webviewToolBar.loadFinished.connect(functools.partial(self.updateActionEnabled,None))
             PREFERENCES().GUI_FONT_SIZE.dataChanged.connect(self.setToolButtonFontSize)
@@ -764,8 +764,8 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                     name = v
                     if str(name) in CCP4WebBrowser.CToolBar.toolBarPreferencesMapping:
                         mapping = CCP4WebBrowser.CToolBar.toolBarPreferencesMapping[str(name)]
-                        if self.findChild(QtWidgets.QAction, name):
-                            child = self.findChild(QtWidgets.QAction, name)
+                        if self.findChild(QtGui.QAction, name):
+                            child = self.findChild(QtGui.QAction, name)
                             item = QtWidgets.QListWidgetItem()
                             item.setText(child.text())
                             item.setIcon(child.icon())
@@ -1125,40 +1125,40 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
             for item in ['run', 'clone', 'task_help','show_i2run', 'show_log', 'references', 'export_mtz']:
                 if hasattr(self,"webviewToolBar"):
                     self.webviewToolBar.setButtonEnabled(item,False)
-                self.findChild(QtWidgets.QAction, item).setEnabled(False)
+                self.findChild(QtGui.QAction, item).setEnabled(False)
                 for item in ['run_remote']:
                     if hasattr(self,"webviewToolBar"):
                         self.webviewToolBar.setButtonEnabled(item,False)
-                    obj = self.findChild(QtWidgets.QAction, item)
+                    obj = self.findChild(QtGui.QAction, item)
                     if obj is not None:
                         obj.setEnabled(False)
         else:
             if self.taskFrame.buttons.mode in ['task', 'input']:
-                self.findChild(QtWidgets.QAction, 'run').setEnabled(jobStatus in ['Pending', 'Interrupted'])
-                self.findChild(QtWidgets.QAction, 'view_coot').setEnabled(jobStatus in ['Finished', 'Interrupted'])
-                self.findChild(QtWidgets.QAction, 'view_ccp4mg').setEnabled(jobStatus in ['Finished', 'Interrupted'])
+                self.findChild(QtGui.QAction, 'run').setEnabled(jobStatus in ['Pending', 'Interrupted'])
+                self.findChild(QtGui.QAction, 'view_coot').setEnabled(jobStatus in ['Finished', 'Interrupted'])
+                self.findChild(QtGui.QAction, 'view_ccp4mg').setEnabled(jobStatus in ['Finished', 'Interrupted'])
                 if hasattr(self,"webviewToolBar"):
                     self.webviewToolBar.setButtonEnabled('run',jobStatus in ['Pending', 'Interrupted'])
                     self.webviewToolBar.setButtonEnabled('run_remote',jobStatus in ['Pending', 'Interrupted'])
                     self.webviewToolBar.setButtonEnabled('view_coot',jobStatus in ['Finished', 'Interrupted'])
                     self.webviewToolBar.setButtonEnabled('view_ccp4mg',jobStatus in ['Finished', 'Interrupted'])
-                obj =  self.findChild(QtWidgets.QAction, 'run_remote')
+                obj =  self.findChild(QtGui.QAction, 'run_remote')
                 if obj is not None:
                     obj.setEnabled(jobStatus in ['Pending', 'Interrupted'])
             else:
-                self.findChild(QtWidgets.QAction, 'run').setEnabled(False)
-                obj = self.findChild(QtWidgets.QAction,'run_remote')
+                self.findChild(QtGui.QAction, 'run').setEnabled(False)
+                obj = self.findChild(QtGui.QAction,'run_remote')
                 if obj is not None:
                     obj.setEnabled(False)
-            #self.findChild(QtWidgets.QAction,'view').setEnabled(jobStatus in ['Finished','Interrupted','To delete'])
-            self.findChild(QtWidgets.QAction, 'clone').setEnabled(True)
+            #self.findChild(QtGui.QAction,'view').setEnabled(jobStatus in ['Finished','Interrupted','To delete'])
+            self.findChild(QtGui.QAction, 'clone').setEnabled(True)
             if hasattr(self,"webviewToolBar"):
                 self.webviewToolBar.setButtonEnabled('clone',True)
             refFileList = TASKMANAGER().searchReferenceFile(name=self.taskFrame.openJob.taskName, drillDown=True)
             if len(refFileList) == 0:
                 # Is ther acustom biblio for this job
                 refFileList = glob.glob(os.path.join(self.taskFrame.openJob.jobDir, '*.medline.txt'))
-            self.findChild(QtWidgets.QAction, 'references').setEnabled((len(refFileList) > 0))
+            self.findChild(QtGui.QAction, 'references').setEnabled((len(refFileList) > 0))
             enabled = False
             exportMenu = []
             if jobStatus in ['Finished', 'Interrupted']:
@@ -1170,11 +1170,11 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                     params = TASKMANAGER().getTaskAttribute(taskName=self.taskFrame.openJob.taskName, attribute='EXPORTMTZPARAMS', default=None)
                     if params is not None:
                         enabled = True
-            self.findChild(QtWidgets.QAction,'export_mtz').setEnabled(enabled)
-            self.findChild(QtWidgets.QAction,'show_log').setEnabled(jobStatus in ['Running','Finished','Failed','Interrupted','To delete','Unsatisfactory'])
+            self.findChild(QtGui.QAction,'export_mtz').setEnabled(enabled)
+            self.findChild(QtGui.QAction,'show_log').setEnabled(jobStatus in ['Running','Finished','Failed','Interrupted','To delete','Unsatisfactory'])
             helpFile = TASKMANAGER().searchHelpFile(name=self.taskFrame.openJob.taskName)
-            self.findChild(QtWidgets.QAction,'task_help').setEnabled((helpFile is not None))
-            self.findChild(QtWidgets.QAction,'show_i2run').setEnabled(True)
+            self.findChild(QtGui.QAction,'task_help').setEnabled((helpFile is not None))
+            self.findChild(QtGui.QAction,'show_i2run').setEnabled(True)
             if hasattr(self,"webviewToolBar"):
                 self.webviewToolBar.setButtonEnabled('export_mtz',enabled)
                 self.webviewToolBar.setButtonEnabled('show_i2run',jobStatus in ['Pending','Running','Finished','Failed','Interrupted','To delete','Unsatisfactory'])
@@ -1192,8 +1192,8 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         cssUrl = QtCore.QUrl("data:text/css;charset=utf-8;base64,"+base64.b64encode(css).decode())
         settings.setUserStyleSheetUrl(cssUrl)
         """
-        settings.setFontSize(QtWebEngineWidgets.QWebEngineSettings.DefaultFontSize,int(PREFERENCES().GUI_FONT_SIZE))
-        settings.setFontSize(QtWebEngineWidgets.QWebEngineSettings.DefaultFixedFontSize,int(PREFERENCES().GUI_FONT_SIZE))
+        settings.setFontSize(QtWebEngineCore.QWebEngineSettings.DefaultFontSize,int(PREFERENCES().GUI_FONT_SIZE))
+        settings.setFontSize(QtWebEngineCore.QWebEngineSettings.DefaultFixedFontSize,int(PREFERENCES().GUI_FONT_SIZE))
         self.setToolButtonStyle()
 
     @QtCore.Slot(str)
@@ -1207,7 +1207,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
     def initialiseActionDefinitions(self):
         label = QtWidgets.QLabel("Am I in the dark?")
         text_hsv_value = label.palette().color(QtGui.QPalette.WindowText).value()
-        bg_hsv_value = label.palette().color(QtGui.QPalette.Background).value()
+        bg_hsv_value = label.palette().color(QtGui.QPalette.Window).value()
         isDarkMode = text_hsv_value > bg_hsv_value
 
         CCP4WebBrowser.CMainWindow.initialiseActionDefinitions(self)
@@ -1244,8 +1244,8 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                                                     slot=self.showI2run, icon='showlogfile')
 
     def setShortcuts(self):
-        for name, key in [['taskmenu', QtCore.Qt.CTRL + QtCore.Qt.Key_M], ['nextproject', QtCore.Qt.CTRL + QtCore.Qt.Key_N]]:
-            self.shortcuts[name] = QtWidgets.QShortcut(QtGui.QKeySequence(key),self)
+        for name, key in [['taskmenu', QtCore.Qt.CTRL | QtCore.Qt.Key_M], ['nextproject', QtCore.Qt.CTRL | QtCore.Qt.Key_N]]:
+            self.shortcuts[name] = QtGui.QShortcut(QtGui.QKeySequence(key),self)
             self.shortcuts[name].activated.connect(functools.partial(self.handleShortcut, name))
 
     @QtCore.Slot(str)
@@ -1271,9 +1271,9 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         action = menu.addAction('Bibliographic references')
         action.setObjectName('references')
         refFileList = TASKMANAGER().searchReferenceFile(name=self.taskFrame.openJob.taskName, drillDown=True)
-        menu.findChild(QtWidgets.QAction, 'references').setEnabled((len(refFileList) > 0))
+        menu.findChild(QtGui.QAction, 'references').setEnabled((len(refFileList) > 0))
         helpFile = TASKMANAGER().searchHelpFile(name=self.taskFrame.openJob.taskName)
-        menu.findChild(QtWidgets.QAction, 'task_help').setEnabled((helpFile is not None))
+        menu.findChild(QtGui.QAction, 'task_help').setEnabled((helpFile is not None))
         # Add task-specific help
         if hasattr(self,"webviewToolBar"):
             self.webviewToolBar.setButtonEnabled('references',(len(refFileList) > 0))
@@ -1377,7 +1377,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
 
         if state:#   KJS - Removed this code until the bug is fixed.
             for item in ['run_remote','run', 'clone','view_coot','view_ccp4mg','export_mtz','show_log','show_i2run']:
-                obj = self.findChild(QtWidgets.QAction, item)
+                obj = self.findChild(QtGui.QAction, item)
                 if obj is not None:
                     obj.setEnabled(False)
                 if hasattr(self,"webviewToolBar"):
@@ -1426,6 +1426,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
 
     @QtCore.Slot(int)
     def handleTaskFrameChanged(self, mode):
+        print("Hello .......!!!!!!!!!!!")
         '''If necessary create the task input frame when the task frame tab changed to input
           This is part of mechanism to ensure slow task frame drawing is only done when necessary'''
         if mode == CProjectViewer.INPUT_TAB and self.taskFrame.inputFrame.taskWidget is None:
@@ -1565,7 +1566,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         #print(i2Runner.defXml,'i2Runner.defXml')
         result = "i2run {} --projectName {} \\\n".format(taskName, projectName) + self.listContents(self.taskFrame.inputFrame.taskWidget.container, i2Runner.defXml)
 
-        from PySide2 import QtWidgets
+        from PySide6 import QtWidgets
         d = QtWidgets.QDialog()
         okButton = QtWidgets.QPushButton("OK")
 
@@ -3002,7 +3003,7 @@ class CReportView(QtWidgets.QStackedWidget):
         self.openChildJob = None
         self.generator = None
         self._reportFile = None
-        self.findShortcut = QtWidgets.QShortcut(QtGui.QKeySequence.Find, self)
+        self.findShortcut = QtGui.QShortcut(QtGui.QKeySequence.Find, self)
         self.findWidget = CCP4WebBrowser.CFindFrame(self)
 
         @QtCore.Slot()
@@ -4165,7 +4166,8 @@ class CTaskInputFrame(QtWidgets.QFrame):
         self.taskWidget = taskWidget
         if CTaskInputFrame.lastOpenFolder.get(jobId,None) is not None:
             self.taskWidget.setVisibleFolder(CTaskInputFrame.lastOpenFolder[jobId])
-        self.layout().insertWidget(1,self.taskWidget)
+        #self.layout().insertWidget(1,self.taskWidget) # <--------!!!!!! This causes crash!!!!!!
+        self.layout().addWidget(self.taskWidget)
         self.taskWidget.show()
         invalidList = self.taskWidget.isValid()
         return self.taskWidget
@@ -4181,7 +4183,7 @@ class CTaskInputFrame(QtWidgets.QFrame):
     def runTask(self,runMode):
         # Update control file path in db and set status to queue the job
         #print 'CTaskInputFrame.runTask',runMode
-        if isinstance(runMode,QtWidgets.QAction): runMode = runMode.text().__str__()
+        if isinstance(runMode,QtGui.QAction): runMode = runMode.text().__str__()
         if self.taskWidget is None: return
         self.taskWidget.updateModelFromView()
         # The method to fix any issues in user input
@@ -4538,13 +4540,13 @@ class CTaskFrame(QtWidgets.QFrame):
 
     @QtCore.Slot()
     def setZoomActionsEnabled(self):
-        ar = self.parent().findChild(QtWidgets.QAction, 'resetZoom')
-        ap = self.parent().findChild(QtWidgets.QAction, 'zoomIn')
-        am = self.parent().findChild(QtWidgets.QAction, 'zoomOut')
+        ar = self.parent().findChild(QtGui.QAction, 'resetZoom')
+        ap = self.parent().findChild(QtGui.QAction, 'zoomIn')
+        am = self.parent().findChild(QtGui.QAction, 'zoomOut')
         if hasattr(self.parent(),"parent") and hasattr(self.parent().parent(),"parent") and hasattr(self.parent().parent().parent(),"findChild"):
-            ar = self.parent().parent().parent().findChild(QtWidgets.QAction, 'resetZoom')
-            ap = self.parent().parent().parent().findChild(QtWidgets.QAction, 'zoomIn')
-            am = self.parent().parent().parent().findChild(QtWidgets.QAction, 'zoomOut')
+            ar = self.parent().parent().parent().findChild(QtGui.QAction, 'resetZoom')
+            ap = self.parent().parent().parent().findChild(QtGui.QAction, 'zoomIn')
+            am = self.parent().parent().parent().findChild(QtGui.QAction, 'zoomOut')
         if not ar:
             return
         if self.tab.currentIndex() == 1:

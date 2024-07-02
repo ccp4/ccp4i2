@@ -32,7 +32,7 @@ import types
 import math
 import sys
 
-from PySide2 import QtCore
+from PySide6 import QtCore
 
 from core import CCP4Data
 from core import CCP4File
@@ -3753,7 +3753,7 @@ class testAssorted(unittest.TestCase):
 
     def setUp(self):
         if QT():
-            from PySide2 import QtCore
+            from PySide6 import QtCore
             self.app = CCP4Modules.QTAPPLICATION()
         from core import CCP4Container
         self.mummy = CCP4Container.CContainer()
@@ -3780,7 +3780,7 @@ class testMtz(unittest.TestCase):
         # make all background jobs wait for completion
         CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
         if QT():
-            from PySide2 import QtCore
+            from PySide6 import QtCore
             self.app = CCP4Modules.QTAPPLICATION()
             self.mummy = QtCore.QObject(self.app)
         else:
@@ -3907,7 +3907,7 @@ class testCObsDataFile(unittest.TestCase):
     def setUp(self):
         self.testDataDir =  os.path.normpath(os.path.join(CCP4Utils.getCCP4I2Dir(),'test','data'))
         self.app = CCP4Modules.QTAPPLICATION()
-        from PySide2 import QtCore
+        from PySide6 import QtCore
         self.mummy = QtCore.QObject(self.app)
 
     def test1(self):
@@ -3924,7 +3924,7 @@ class testCPhsDataFile(unittest.TestCase):
     def setUp(self):
         self.testDataDir =  os.path.normpath(os.path.join(CCP4Utils.getCCP4I2Dir(),'test','data'))
         self.app = CCP4Modules.QTAPPLICATION()
-        from PySide2 import QtCore
+        from PySide6 import QtCore
         self.mummy = QtCore.QObject(self.app)
 
     def test1(self):

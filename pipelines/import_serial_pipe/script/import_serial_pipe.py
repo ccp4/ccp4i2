@@ -5,7 +5,7 @@ import subprocess
 import glob
 import json
 from lxml import etree
-from PySide2 import QtCore
+from PySide6 import QtCore
 
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4XtalData
@@ -13,7 +13,7 @@ from core import CCP4ErrorHandling
 from core import CCP4Utils
 from core import CCP4Modules
 # try:
-#     from PySide2.QtCore import Slot
+#     from PySide6.QtCore import Slot
 # except:
 #     from PyQt4.QtCore import pyqtSlot as Slot
 

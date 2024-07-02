@@ -3,7 +3,7 @@ from __future__ import print_function
 
 import os, sys, time
 import subprocess
-from PySide2 import QtGui, QtWidgets, QtCore
+from PySide6 import QtGui, QtWidgets, QtCore
 from core.CCP4Bazaar import CUpdateUser
 
 class CUpdateThread(QtCore.QThread, CUpdateUser):

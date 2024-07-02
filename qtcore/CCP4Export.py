@@ -4,7 +4,7 @@ from __future__ import print_function
 import os
 import sys
 
-from PySide2 import QtCore
+from PySide6 import QtCore
 from core.CCP4ErrorHandling import *
 from core.CCP4Modules import PROJECTSMANAGER
 

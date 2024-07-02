@@ -33,7 +33,7 @@ from core import CCP4Modules
 from core import CCP4Config
 
 #NOQ - remove
-from PySide2 import QtCore
+from PySide6 import QtCore
 
 def PopenInThread(pid, callArgList, callDict, onExit=None):
     """

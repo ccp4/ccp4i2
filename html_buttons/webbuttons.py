@@ -3,7 +3,7 @@ import sys, os
 import functools
 
 
-from PySide2 import QtWidgets, QtCore, QtWebEngineWidgets, QtWebChannel
+from PySide6 import QtWidgets, QtCore, QtWebEngineWidgets, QtWebChannel
 
 class CCP4WebToolBarButtonBridge(QtCore.QObject):
 

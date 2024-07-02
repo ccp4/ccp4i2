@@ -5,7 +5,7 @@ from core import CCP4PluginScript
 import os
 import glob
 import shutil
-from PySide2 import QtCore
+from PySide6 import QtCore
 from core import CCP4Modules
 from core import CCP4Utils
 from lxml import etree

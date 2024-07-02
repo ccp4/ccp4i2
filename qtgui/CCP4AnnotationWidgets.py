@@ -19,7 +19,7 @@ from __future__ import print_function
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
 """
-from PySide2 import QtCore,QtGui, QtWidgets
+from PySide6 import QtCore,QtGui, QtWidgets
 from core.CCP4Modules import *
 from core.CCP4ErrorHandling import *
 from core import CCP4Annotation
@@ -221,13 +221,13 @@ class CDateRangeView(CCP4Widgets.CComplexLineWidget):
             self.widgets[item] = CCP4Widgets.CComboBox(parent=self,qualifiers=qualis)
             self.layout().addWidget(self.widgets[item])
         self.layout().addWidget(QtWidgets.QLabel('+/-',self))
-        self.widgets['year'].setMaximumWidth(QtGui.QFontMetrics(self.widgets['year'].font()).width('2222')+30)
-        self.widgets['month'].setMaximumWidth(QtGui.QFontMetrics(self.widgets['month'].font()).width('September')+30)
-        self.widgets['day'].setMaximumWidth(QtGui.QFontMetrics(self.widgets['day'].font()).width('28')+30)
+        self.widgets['year'].setMaximumWidth(QtGui.QFontMetrics(self.widgets['year'].font()).horizontalAdvance('2222')+30)
+        self.widgets['month'].setMaximumWidth(QtGui.QFontMetrics(self.widgets['month'].font()).horizontalAdvance('September')+30)
+        self.widgets['day'].setMaximumWidth(QtGui.QFontMetrics(self.widgets['day'].font()).horizontalAdvance('28')+30)
         self.widgets['month'].currentIndexChanged[int].connect(self.updateDayCombo)
         for item in [ 'yearRange', 'monthRange', 'dayRange']:
             self.widgets[item] = CCP4Widgets.CIntView(parent=self,qualifiers=qualis)
-            self.widgets[item].setMaximumWidth(QtGui.QFontMetrics(self.widgets[item].font()).width('9999'))
+            self.widgets[item].setMaximumWidth(QtGui.QFontMetrics(self.widgets[item].font()).horizontalAdvance('9999'))
             self.layout().addWidget(self.widgets[item])
             self.layout().addWidget(QtWidgets.QLabel(item[0:-5]+'s',self))
         self.setModel(model)

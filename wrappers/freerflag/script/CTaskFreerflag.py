@@ -4,7 +4,7 @@
      Author: Martyn Winn
 
 """
-from PySide2 import QtCore
+from PySide6 import QtCore
 from qtgui.CCP4TaskWidget import CTaskWidget
 
 class CTaskFreerflag(CTaskWidget):

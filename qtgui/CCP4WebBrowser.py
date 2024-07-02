@@ -40,7 +40,7 @@ if sys.version_info >= (3,7):
 else:
     from collections import Callable
 import functools
-from PySide2 import QtWebEngine, QtWebEngineWidgets, QtGui, QtWidgets, QtCore
+from PySide6 import QtWebEngineWidgets, QtGui, QtWidgets, QtCore
 from qtgui import CCP4WebView
 from core import CCP4Modules
 from core.CCP4ErrorHandling import *
@@ -792,7 +792,7 @@ class CToolBar(QtWidgets.QToolBar):
             checkState, tb = item.checkState(), item.data(QtCore.Qt.UserRole)
             theName = tb.defaultAction().objectName()
             for window in CCP4ProjectViewer.CProjectViewer.Instances:
-                acts = window.findChildren(QtWidgets.QAction,theName)
+                acts = window.findChildren(QtGui.QAction,theName)
                 for act in acts: #Should be length 0 or 1
                     if checkState:
                         act.setVisible(True)
@@ -842,14 +842,14 @@ class CToolBar(QtWidgets.QToolBar):
         if self.parent().objectName() != 'projectViewer':
             return
         menu = QtWidgets.QMenu(self)
-        custAct = QtWidgets.QAction("Customize",self)
+        custAct = QtGui.QAction("Customize",self)
         custAct.triggered.connect(self.editPreferences)
         menu.addAction(custAct);
         menu.exec_(e.globalPos());
 
 def isAlive(qobj):
-    import shiboken2
-    return shiboken2.isValid(qobj)
+    import shiboken6
+    return shiboken6.isValid(qobj)
 
 def mainWindowIcon():
     if CMainWindow._MAINWINDOWICON is None:
@@ -905,7 +905,7 @@ class CMainWindow(QtWidgets.QMainWindow):
         self.setMenuBar(CMenuBar(self))
         if sys.platform == "darwin":
             self.setUnifiedTitleAndToolBarOnMac(True)
-            shortcut = QtWidgets.QShortcut(QtGui.QKeySequence.Quit, self);
+            shortcut = QtGui.QShortcut(QtGui.QKeySequence.Quit, self);
             shortcut.setContext(QtCore.Qt.ApplicationShortcut)
             shortcut.activated.connect(exitBrowser)
 
@@ -1094,9 +1094,9 @@ class CMainWindow(QtWidgets.QMainWindow):
         self.setActionDefinition('clearStatusFiles', dict(text = "Clear shutdown/restart status", tip="Remove possibly corrupt status files",
                                                           slot = functools.partial(purgeStatusFiles,0)))
 
-        otherBackShortCut = QtWidgets.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+Left", "Back")),self)
+        otherBackShortCut = QtGui.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+Left", "Back")),self)
         otherBackShortCut.activated.connect(self.historyBack)
-        otherForwardShortCut = QtWidgets.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+Right", "Forward")),self)
+        otherForwardShortCut = QtGui.QShortcut(QtGui.QKeySequence(self.tr("Ctrl+Right", "Forward")),self)
         otherForwardShortCut.activated.connect(self.historyForward)
 
     def resetZoom(self):
@@ -1118,7 +1118,7 @@ class CMainWindow(QtWidgets.QMainWindow):
     def updateActionEnabled(self, dummy1=None, dummy2=None):
         for actionName in ['print', 'run', 'find', 'save']:
             ifEnabled = self.actionDefinitions[actionName]['enabled']()
-            action = self.findChild(QtWidgets.QAction,actionName)
+            action = self.findChild(QtGui.QAction,actionName)
             #print 'updateActionEnabled',actionName,ifEnabled,action
             if action is not None:
                 action.setEnabled(ifEnabled)
@@ -1726,8 +1726,8 @@ class CBrowserWindow(CMainWindow):
             self.addDockWidget(QtCore.Qt.TopDockWidgetArea,dockWidget)
             dockWidget.setFixedHeight(103)    # Don't want any scroolbars or resize decorations.
             def handleToolBarClick(buttonName):
-                if self.findChild(QtWidgets.QAction, buttonName):
-                    self.findChild(QtWidgets.QAction, buttonName).trigger()
+                if self.findChild(QtGui.QAction, buttonName):
+                    self.findChild(QtGui.QAction, buttonName).trigger()
             self.webviewToolBar.buttonClicked.connect(handleToolBarClick)
             self.webviewToolBar.loadFinished.connect(functools.partial(self.updateActionEnabled,None))
             self.webviewToolBar.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
@@ -1926,7 +1926,7 @@ class CBrowserWindow(CMainWindow):
             elif os.path.splitext(path)[1] == '.i2com':
                 com = os.path.split(os.path.splitext(path)[0])[1]
                 #print 'CustomMimeTypeRequested i2com',com
-                action = self.findChild(QtWidgets.QAction,com)
+                action = self.findChild(QtGui.QAction,com)
                 if action is not None:
                     action.trigger()
                 elif com in self.actionDefinitions and 'slot' in self.actionDefinitions[com]:
@@ -2239,8 +2239,8 @@ class CBrowserWindow(CMainWindow):
 
     def setHistoryActionAvailability(self):
         widget = self.tab().currentWidget()
-        forwardAction = self.findChild(QtWidgets.QAction, 'forward')
-        backAction = self.findChild(QtWidgets.QAction, 'back')
+        forwardAction = self.findChild(QtGui.QAction, 'forward')
+        backAction = self.findChild(QtGui.QAction, 'back')
         if hasattr(widget,"history") and isinstance(widget.history, Callable):
             history = widget.history()
             #print 'setHistoryActionAvailability', backAction, history.canGoBack()

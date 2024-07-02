@@ -26,7 +26,7 @@ from __future__ import print_function
 
 ##@package CCP4ProjectWidget (QtGui) The demo project view widget
                             
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide6 import QtGui, QtWidgets,QtCore
 from core.CCP4Modules import WEBBROWSER
 
 FONT_SIZE = 14

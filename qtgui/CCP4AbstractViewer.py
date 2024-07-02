@@ -25,7 +25,7 @@ from __future__ import print_function
 
 ## @package CCP4AbstractViewer (QtGui) Base for file viewers in CCP4WebBrowser
 import os
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide6 import QtGui, QtWidgets,QtCore
 from core import CCP4Modules
 from core.CCP4ErrorHandling import *
 

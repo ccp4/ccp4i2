@@ -43,9 +43,9 @@ if QT():
 else:
     from core.CCP4Object import CObject
 if GRAPHICAL():
-    from PySide2 import QtCore,QtGui, QtWidgets
+    from PySide6 import QtCore,QtGui, QtWidgets
 else:
-    from PySide2 import QtCore
+    from PySide6 import QtCore
 if XMLPARSER() == 'lxml':
     from lxml import etree
 

@@ -23,7 +23,7 @@
 
 import os
 import glob
-from PySide2 import QtCore
+from PySide6 import QtCore
 from core import CCP4Modules
 from core import CCP4File
 from core.CCP4QtObject import CObject

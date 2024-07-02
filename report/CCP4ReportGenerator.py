@@ -10,7 +10,7 @@ import functools
 #from lxml import etree
 import xml.etree.ElementTree as etree
 
-from PySide2 import QtCore
+from PySide6 import QtCore
 from core.CCP4ErrorHandling import *
 from dbapi import CCP4DbApi
 from core.CCP4Modules import PREFERENCES

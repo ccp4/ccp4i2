@@ -29,7 +29,7 @@ import functools
 import datetime
 import sys
 import os
-from PySide2 import QtGui, QtWidgets, QtCore
+from PySide6 import QtGui, QtWidgets, QtCore
 from core.CCP4Modules import PROJECTSMANAGER,WEBBROWSER,PREFERENCES,MIMETYPESHANDLER
 from core.CCP4ErrorHandling import *
 from qtgui import CCP4Widgets

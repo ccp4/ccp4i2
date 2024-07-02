@@ -29,7 +29,7 @@ import shutil
 import glob
 import functools
 
-from PySide2 import QtCore
+from PySide6 import QtCore
 from lxml import etree
 
 from core import CCP4Data

@@ -20,7 +20,7 @@
 '''
     Liz Potterton - create class to maintain GUIPreferences - Sept 2011
 '''
-from PySide2 import QtCore,QtGui, QtWidgets
+from PySide6 import QtCore,QtGui, QtWidgets
 
 
 class CPreferencesWindow(QtWidgets.QDialog):

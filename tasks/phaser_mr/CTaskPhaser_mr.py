@@ -8,7 +8,7 @@ from __future__ import print_function
 """
 
 from qtgui.CCP4TaskWidget import CTaskWidget
-from PySide2 import QtCore
+from PySide6 import QtCore
 
 #-------------------------------------------------------------------
 class CTaskPhaser_mr(CTaskWidget):

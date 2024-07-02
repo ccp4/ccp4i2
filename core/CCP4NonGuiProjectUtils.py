@@ -30,7 +30,7 @@ from __future__ import print_function
 """
 from core.CCP4Modules import PROJECTSMANAGER
 from core.CCP4ErrorHandling import CException, SEVERITY_WARNING
-from PySide2 import QtCore
+from PySide6 import QtCore
 from core import CCP4Utils
 
 DIAGNOSTIC=True
