@@ -36,7 +36,7 @@ class CTextBrowser(QtWidgets.QPlainTextEdit):
 
   def wheelEvent(self,e):
       if ((e.modifiers() & QtCore.Qt.ControlModifier) or (e.modifiers() & QtCore.Qt.MetaModifier) and hasattr(self,"parent")) and hasattr(self.parent(),"setZoomFactor"):
-          if e.delta() > 0:
+          if e.angleDelta() > 0:
               self.parent().setZoomFactor(self.parent().zoomFactor()*1.2)
           else:
               self.parent().setZoomFactor(self.parent().zoomFactor()/1.2)
