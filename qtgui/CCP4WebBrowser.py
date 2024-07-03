@@ -2195,6 +2195,7 @@ class CBrowserWindow(CMainWindow):
             view.load(url)
             view.setTarget(target)
             view.loadFinished.connect(self.loadFinished)
+            view.page().settings().setAttribute(QtWebEngineCore.QWebEngineSettings.LocalContentCanAccessRemoteUrls, True)
 
             #FIXME - Do not know why I have to do things differently. Why do new tabs get triggered anyway when address changes.
             #Added a "True" as this test was clearly broken. Now confused. SJM 9/5/2017

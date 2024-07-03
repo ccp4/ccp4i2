@@ -3701,6 +3701,7 @@ CCP4I2 3D View
 
                 self.web_view = QtWebEngineWidgets.QWebEngineView()
                 self.web_view.load(QtCore.QUrl("file://"+tfilename))
+                self.web_view.page().settings().setAttribute(QtWebEngineCore.QWebEngineSettings.LocalContentCanAccessRemoteUrls, True)
                 self.web_view.resize(630,660)
                 self.web_view.show()
                 self.web_view.raise_()
@@ -3833,6 +3834,7 @@ CCP4I2 3D View
             newUrl = QtCore.QUrl.fromLocalFile(self._reportFile)
             newUrl.setFragment(url.fragment())
             self.webView.load(newUrl)
+            self.webView.page().settings().setAttribute(QtWebEngineCore.QWebEngineSettings.LocalContentCanAccessRemoteUrls, True)
             return
         print('CReportView.handleNavigationRequest 3'); sys.stdout.flush()
         print(len(path), path[-11:])

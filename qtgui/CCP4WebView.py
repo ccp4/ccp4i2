@@ -58,6 +58,7 @@ class CWebPage(QtWebEngineCore.QWebEnginePage):
         #self.setForwardUnsupportedContent(True)
         #self.settings().setAttribute(QtWebKit.QWebSettings.JavascriptEnabled ,1)
         #self.settings().setAttribute(QtWebKit.QWebSettings.PluginsEnabled ,1)
+        self.settings().setAttribute(QtWebEngineCore.QWebEngineSettings.LocalContentCanAccessRemoteUrls, True)
 
     def shouldInterruptJavaScript(self):
         # Reimplemented to prevent accasianally seen message box (by Phil) when creating DR reports
