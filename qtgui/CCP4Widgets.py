@@ -82,11 +82,6 @@ class CBaseWidget:
 
     def __init__(self, dragType=None):
         self._dragType = dragType
-#With PySide6, we cannot call this here!
-        """
-        if self.dragType() is not None:
-            self.setAcceptDrops(1)
-        """
         if CBaseWidget.CHARSIZE is None:
             someText = "/99/Z/999.2/HG51"
             dummy = QtWidgets.QLineEdit()
@@ -402,6 +397,8 @@ class CLabel(QtWidgets.QLabel,CBaseWidget):
         qualis.update(kw)
         QtWidgets.QLabel.__init__(self, parent)
         CBaseWidget.__init__(self, dragType=qualis.get('dragType', None))
+        if self.dragType() is not None:
+            self.setAcceptDrops(1)
         if 'text' in qualis:
             if qualis['text'] is not None:
                 self.setText(qualis['text'])
@@ -486,6 +483,8 @@ class CMultiAtomSelection(CCP4RefmacMultiAtomSelection.MultiAtomSelection, CBase
         qualis.update(kw)
         CCP4RefmacMultiAtomSelection.MultiAtomSelection.__init__(self, parent)
         CBaseWidget.__init__(self, dragType=qualis.get('dragType', None))
+        if self.dragType() is not None:
+            self.setAcceptDrops(1)
         self.setCharWidth(qualis.get('charWidth', None))
         self.customContextMenu = qualis.get('customContextMenu', False)
         tip = self.makeToolTip(qualis)
@@ -503,6 +502,8 @@ class CSequenceTable(CCP4SequenceList.SequenceTable, CBaseWidget):
         qualis.update(kw)
         CCP4SequenceList.SequenceTable.__init__(self, parent)
         CBaseWidget.__init__(self, dragType=qualis.get('dragType', None))
+        if self.dragType() is not None:
+            self.setAcceptDrops(1)
         self.setCharWidth(qualis.get('charWidth', None))
         self.customContextMenu = qualis.get('customContextMenu', False)
         tip = self.makeToolTip(qualis)
@@ -524,6 +525,8 @@ class CLineEdit(QtWidgets.QLineEdit, CBaseWidget):
         qualis.update(kw)
         QtWidgets.QLineEdit.__init__(self, parent)
         CBaseWidget.__init__(self, dragType=qualis.get('dragType', None))
+        if self.dragType() is not None:
+            self.setAcceptDrops(1)
         self.setCharWidth(qualis.get('charWidth', None))
         self.customContextMenu = qualis.get('customContextMenu', False)
         tip = self.makeToolTip(qualis)
@@ -630,6 +633,8 @@ class CComboBox(QtWidgets.QComboBox, CBaseWidget):
         self.onlyEnumerators = qualis.get('onlyEnumerators', False)
         QtWidgets.QComboBox.__init__(self, parent)
         CBaseWidget.__init__(self,dragType=qualis.get('dragType', None))
+        if self.dragType() is not None:
+            self.setAcceptDrops(1)
         values = qualis.get('enumerators', [])
         if len(values) > 0:
             self.populate(values, qualis.get('menuText', []))
@@ -768,6 +773,8 @@ class CTextEdit(QtWidgets.QTextEdit, CBaseWidget):
         qualis.update(kw)
         QtWidgets.QTextEdit.__init__(self, parent)
         CBaseWidget.__init__(self, dragType=qualis.get('dragType', None))
+        if self.dragType() is not None:
+            self.setAcceptDrops(1)
         if not qualis.get('editable', True):
             self.setReadOnly(True)
         tip = self.makeToolTip(qualis)
@@ -810,6 +817,8 @@ class CRadioButtonGroup(QtWidgets.QButtonGroup, CBaseWidget):
         QtWidgets.QButtonGroup.__init__(self, parent)
         self.setExclusive(True)
         CBaseWidget.__init__(self, dragType=qualis.get('dragType',None))
+        if self.dragType() is not None:
+            self.setAcceptDrops(1)
         self.toolTip = self.makeToolTip(qualis)
         self.lastButtonId = -1
 
