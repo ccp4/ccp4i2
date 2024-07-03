@@ -278,7 +278,7 @@ class CProcessManager(QtCore.QObject):
                     callDict['shell'] = 'True'
                 #print 'calling subprocess',argList,callDict
                 rv = subprocess.call(*[argList], **callDict)
-                self.handleFinish(pid, rv, 0)
+                self.handleFinish(pid, rv, QtCore.QProcess.NormalExit)
             except subprocess.CalledProcessError as e:
                 self.processInfo[pid]['exitStatus'] = -2
                 self.processInfo[pid]['exitCode'] = e.errno
@@ -412,7 +412,7 @@ class CProcessManager(QtCore.QObject):
         ok = p.waitForStarted(1000)
         #print 'startQProcess waitForStarted',ok
         if not ok:
-            self.handleFinish(pid, 1, 101)
+            self.handleFinish(pid, 1, QtCore.QProcess.CrashExit)
             return
         if not self.processInfo[pid]['ifAsync']:
             p.waitForFinished(self.processInfo[pid]['timeout'])
@@ -439,14 +439,18 @@ class CProcessManager(QtCore.QObject):
     def PopenInThreadExit(self, pid, rv):
         #print 'PopenInThreadExit',pid,rv
         #self.processInfo[pid]['finishTime'] = time.time()
-        self.handleFinish(pid, rv, 0)
+        self.handleFinish(pid, rv, QtCore.QProcess.NormalExit)
         #self.runHandler(pid)
 
-    @QtCore.Slot(str,int,int)
-    def handleFinish(self, pid, exitCode=0, exitStatus=0):
-        print('Process finished:', pid, 'exit code:', exitCode, 'exit status:', exitStatus,'time:', time.strftime('%H:%M:%S %d/%b/%Y', time.localtime(time.time())))
+    @QtCore.Slot(str,int,QtCore.QProcess.ExitStatus)
+    def handleFinish(self, pid, exitCode=0, exitStatus=QtCore.QProcess.NormalExit):
+        if exitStatus==QtCore.QProcess.NormalExit:
+            intExitStatus = 0
+        else:
+            intExitStatus = 101
+        print('Process finished:', pid, 'exit code:', exitCode, 'exit status:', intExitStatus,'time:', time.strftime('%H:%M:%S %d/%b/%Y', time.localtime(time.time())))
         self.processInfo[pid]['finishTime'] = time.time()
-        self.processInfo[pid]['exitStatus'] = int(exitStatus)
+        self.processInfo[pid]['exitStatus'] = intExitStatus
         self.processInfo[pid]['exitCode'] = exitCode
         if "logFile" in self.processInfo[pid] and self.processInfo[pid]["logFile"]:
             if "jobId" in self.processInfo[pid] and self.processInfo[pid]["jobId"]:
