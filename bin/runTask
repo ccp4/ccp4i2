@@ -66,5 +66,4 @@ export PYTHONSTARTUP=$CCP4I2/bin/ccp4i2.pythonrc
 LC_ALL=C
 export LC_ALL
 
-#${CCP4}/bin/ccp4-python ${CCP4I2}/bin/runTask.py $@
-/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10 ${CCP4I2}/bin/runTask.py $@
+${CCP4}/bin/ccp4-python ${CCP4I2}/bin/runTask.py $@

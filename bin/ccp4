@@ -69,12 +69,7 @@ BOOST_ADAPTBX_FPE_DEFAULT=1
 export BOOST_ADAPTBX_FPE_DEFAULT
 
 browser=${CCP4I2}/bin/browser.py
-
-#launcher=${CCP4}/libexec/ccp4i2
-launcher=/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10
-
-echo "try $launcher"
+launcher=${CCP4}/libexec/ccp4i2
 test -x ${launcher} || launcher=${CCP4}/bin/ccp4-python
-echo $launcher
 export LD_LIBRARY_PATH=$CCP4/lib:$LD_LIBRARY_PATH
 exec ${launcher} ${browser} $@
