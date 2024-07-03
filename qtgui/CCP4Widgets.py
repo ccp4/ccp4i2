@@ -82,8 +82,11 @@ class CBaseWidget:
 
     def __init__(self, dragType=None):
         self._dragType = dragType
+#With PySide6, we cannot call this here!
+        """
         if self.dragType() is not None:
             self.setAcceptDrops(1)
+        """
         if CBaseWidget.CHARSIZE is None:
             someText = "/99/Z/999.2/HG51"
             dummy = QtWidgets.QLineEdit()
