@@ -40,7 +40,7 @@ if sys.version_info >= (3,7):
 else:
     from collections import Callable
 import functools
-from PySide6 import QtWebEngineWidgets, QtGui, QtWidgets, QtCore
+from PySide6 import QtWebEngineWidgets, QtGui, QtWidgets, QtCore, QtWebEngineCore
 from qtgui import CCP4WebView
 from core import CCP4Modules
 from core.CCP4ErrorHandling import *
