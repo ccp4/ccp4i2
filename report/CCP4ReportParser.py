@@ -29,12 +29,10 @@ try:
 except ImportError:
     from io import StringIO
 import os
-#from lxml import etree
 from xml.etree import ElementTree as ET
 ET.register_namespace('ccp4','http://www.ccp4.ac.uk/ccp4ns')
 
 from lxml import html as lxml_html
-from xml.etree import ElementTree as ET
 
 from core.CCP4ErrorHandling import *
 
@@ -1375,7 +1373,7 @@ class Report( Container ):
         remove_namespace(tree, u"http://www.w3.org/1999/xlink","xlink")
         text = b'<!DOCTYPE html>\n'
         try:
-            text += etree.tostring(ET.getroot(), short_empty_elements=False, method="html")
+            text += ET.tostring(tree.getroot(), short_empty_elements=False, method="html")
         except:
             exc_type, exc_value, exc_tb = sys.exc_info()[:3]
             sys.stderr.write(str(exc_type) + '\n')
@@ -2918,7 +2916,7 @@ class Graph(ReportClass):
     
   def addData(self,xmldata=None,title=None,select=None,expr=None,data=None):  
     colvals = []
-    if len(data)>0:
+    if data is not None and len(data)>0:
       colvals.extend(data)
     elif select:
       if xmldata is None: xmldata = self.xmldata
