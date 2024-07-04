@@ -2918,17 +2918,7 @@ class Graph(ReportClass):
     
   def addData(self,xmldata=None,title=None,select=None,expr=None,data=None):  
     colvals = []
-<<<<<<< HEAD
-    if data is not None:
-      """
-      print("##################################################")
-      print("Have some data",title)
-      print(data)
-      print("##################################################")
-      """
-=======
     if len(data)>0:
->>>>>>> main
       colvals.extend(data)
     elif select:
       if xmldata is None: xmldata = self.xmldata
