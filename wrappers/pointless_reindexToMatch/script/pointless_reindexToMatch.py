@@ -164,7 +164,7 @@ print "PRM postProcessCheck"
                     rootNode = ET.fromstring(fixedText)
                 #print( '#PRM rootNode',rootNode)
                 
-                if taskoption != 'ANALYSE' and taskoption != 'LATTICE':
+                if taskoption != 'ANALYSE' and taskoption != 'LATTICE' and taskoption != 'EXPAND':
                     bestReindexNodes = rootNode.findall('.//BestReindex')
                     scoreCountNodes = rootNode.findall('.//ScoreCount')
                     copyMessageNodes = rootNode.findall('.//CopyMessage')
