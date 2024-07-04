@@ -39,9 +39,9 @@
                 <className>CString</className>
                 <qualifiers>
                     <onlyEnumerators>True</onlyEnumerators>
-                    <enumerators>MOL,SMILES,SMILESFILE,DICT</enumerators>
-                    <default>MOL</default>
-                    <guiLabel>Input mol file or SMILES string</guiLabel>
+                    <enumerators>MOL,MOL2,SMILES,SMILESFILE,DICT</enumerators>
+                    <default>DICT</default>
+                    <guiLabel>Input mol file or CIF file or SMILES string</guiLabel>
                 </qualifiers>
             </content>
             <content id='TLC'>

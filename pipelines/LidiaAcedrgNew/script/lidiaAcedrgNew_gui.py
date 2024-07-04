@@ -48,7 +48,7 @@ class lidiaAcedrgNew_gui(CTaskWidget):
 
         self.createLine(['subtitle','Output monomer'])
         self.openSubFrame( frame=[True])
-        self.createLine ( [ 'label','3-5 letter code for output monomer (required when a CIF file is not provided)','stretch','widget','TLC' ])
+        self.createLine ( [ 'label','3-5 letter code for output monomer','stretch','widget','TLC' ])
         self.closeSubFrame()
         
         try:

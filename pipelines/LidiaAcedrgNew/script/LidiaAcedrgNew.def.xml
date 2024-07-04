@@ -52,8 +52,8 @@
                     <maxLength>5</maxLength>
                     <default></default>
                     <mustExist>True</mustExist>
-                    <allowUndefined>True</allowUndefined>
-                    <guiLabel>3-5 letter code for new molecule (required except of a CIF file is provided)</guiLabel>
+                    <allowUndefined>False</allowUndefined>
+                    <guiLabel>3-5 letter code for new molecule</guiLabel><!-- (required except of a CIF file is provided)-->
                 </qualifiers>
             </content>
             <content id='MATCHTLC'>
@@ -82,7 +82,7 @@
                 </qualifiers>
             </content>
             <content id='MOL2IN'>
-                <className>CMDLMolDataFile</className>
+                <className>CMol2DataFile</className>
                 <qualifiers>
                     <fromPreviousJob>True</fromPreviousJob>
                     <mustExist>True</mustExist>

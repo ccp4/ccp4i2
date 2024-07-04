@@ -1040,9 +1040,18 @@ class CMDLMolDataFile(CCP4File.CDataFile):
     QUALIFIERS = {'fileLabel' : 'mol', 'mimeTypeName' : 'chemical/x-mdl-molfile',
                   'mimeTypeDescription' : 'MDL Molfile', 'guiLabel' : 'Mol file',
                   'toolTip' : 'Structure geometry of ligands for refinement in MDL mol format',
-                  'fileExtensions' : ['mol'], 'fileContentClassName' : None,
+                  'fileExtensions' : ['mol', 'sdf'], 'fileContentClassName' : None,
                   'helpFile' : 'model_data#mol_file' }
 
+
+class CMol2DataFile(CCP4File.CDataFile):
+    '''A molecule definition file (MOL2)'''
+
+    QUALIFIERS = {'fileLabel' : 'mol2', 'mimeTypeName' : 'chemical/x-mol2',
+                  'mimeTypeDescription' : 'MOL2 file', 'guiLabel' : 'MOL2 file',
+                  'toolTip' : 'Structure geometry of ligands for refinement in MOL2 format',
+                  'fileExtensions' : ['mol2'], 'fileContentClassName' : None,
+                  'helpFile' : 'model_data#mol2_file' }
 
 class CSeqDataFile(CCP4File.CDataFile):
     '''A sequence file'''

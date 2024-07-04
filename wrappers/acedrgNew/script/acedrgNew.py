@@ -36,6 +36,8 @@ class acedrgNew(CPluginScript):
         self.originalMolFilePath = None
         if self.container.inputData.MOLIN.isSet():
             self.originalMolFilePath = os.path.normpath(self.container.inputData.MOLIN.__str__())
+        if self.container.inputData.MOL2IN.isSet():
+            self.originalMolFilePath = os.path.normpath(self.container.inputData.MOL2IN.__str__())
         if self.container.inputData.MOLORSMILES.__str__() == 'DICT':
             self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))
             print(self.originalMolFilePath)
@@ -84,7 +86,10 @@ class acedrgNew(CPluginScript):
         #print 'Original mol file path', self.originalMolFilePath
     
         #Get the SMILES of the input MOL and put into report
-        mol = Chem.MolFromMolFile(self.originalMolFilePath)
+        if self.container.inputData.MOL2IN.isSet():
+            mol = Chem.MolFromMol2File(self.originalMolFilePath)
+        else:
+            mol = Chem.MolFromMolFile(self.originalMolFilePath)
         for iAtom in range(mol.GetNumAtoms()):
             atom = mol.GetAtomWithIdx(iAtom)
             atom.ClearProp('molAtomMapNumber')
@@ -263,7 +268,10 @@ class acedrgNew(CPluginScript):
         # Generate another RDKIT mol directly from the mol or smiles: this one *will* hopefully have proper
         # chirality information
         referenceMol = None
-        referenceMol = Chem.MolFromMolFile(self.originalMolFilePath)
+        if self.container.inputData.MOL2IN.isSet():
+            referenceMol = Chem.MolFromMol2File(self.originalMolFilePath)
+        else:
+            referenceMol = Chem.MolFromMolFile(self.originalMolFilePath)
 
         Chem.SanitizeMol(referenceMol)
         Chem.Kekulize(referenceMol)
