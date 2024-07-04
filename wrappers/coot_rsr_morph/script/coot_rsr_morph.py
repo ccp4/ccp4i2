@@ -2,7 +2,7 @@ from __future__ import print_function
 
 import sys,os
 import textwrap
-import lxml
+from xml.etree import ElementTree as ET
 
 from core import CCP4File
 from core.CCP4PluginScript import CPluginScript
@@ -68,7 +68,7 @@ class coot_rsr_morph(CPluginScript):
             os.path.exists(self.container.outputData.XYZOUT.__str__()),
         )
         # Create a trivial xml output file
-        root = lxml.ET.Element("coot_rsr_morph")
+        root = ET.Element("coot_rsr_morph")
         self.container.outputData.XYZOUT.subType = 1
         xml_file = CCP4File.CXmlDataFile(fullPath=self.makeFileName("PROGRAMXML"))
         xml_file.saveFile(root)
