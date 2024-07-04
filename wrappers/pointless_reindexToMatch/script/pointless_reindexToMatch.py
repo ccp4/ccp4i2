@@ -20,7 +20,6 @@ from __future__ import print_function
 
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
-#from lxml import etree
 from xml.etree import ElementTree as ET
 import sys, os
 
@@ -70,6 +69,8 @@ class pointless_reindexToMatch(CPluginScript):
                                              str(self.container.controlParameters.CHOOSE_SPACEGROUP))
             if self.container.controlParameters.USE_REINDEX:
                 self.appendCommandScript("reindex %s, %s, %s" % (par.REINDEX_OPERATOR.h,par.REINDEX_OPERATOR.k,par.REINDEX_OPERATOR.l))
+        elif str(self.container.controlParameters.REFERENCE) == 'EXPAND':
+            self.appendCommandScript('expand')
         elif self.container.controlParameters.LATTICE_CENTERING.isSet():
             lattype = str(self.container.controlParameters.LATTICE_CENTERING)
             if lattype != 'P':
@@ -161,7 +162,7 @@ print "PRM postProcessCheck"
                     with open(self.makeFileName('PROGRAMXML'),'w') as fixedXMLFile:
                         fixedXMLFile.write(fixedText)
                     rootNode = ET.fromstring(fixedText)
-                print( '#PRM rootNode',rootNode)
+                #print( '#PRM rootNode',rootNode)
                 
                 if taskoption != 'ANALYSE' and taskoption != 'LATTICE':
                     bestReindexNodes = rootNode.findall('.//BestReindex')
@@ -197,6 +198,11 @@ print "PRM postProcessCheck"
         reindexedFilename = os.path.join(self.workDirectory,'Reindexed.mtz')
         # set contentFlag here so that splitmtz (as called from splitHklout) will know what columns to expect
         self.container.outputData.F_SIGF_OUT.contentFlag.set(self.container.inputData.F_SIGF.contentFlag)
+        print("** splitHklout ", outputFilesList, outputColumnsList, reindexedFilename)
+        print("CF", self.container.outputData.F_SIGF_OUT.contentFlag)
+        print("FSO", self.container.outputData.F_SIGF_OUT)
+
+
         error = self.splitHklout(outputFilesList,outputColumnsList,infile = reindexedFilename)
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             self.appendErrorReport(202,'Pointless_reindexToMatch: error in splitting file')
@@ -213,21 +219,17 @@ print "PRM postProcessCheck"
             highres = "%7.2f" % self.container.outputData.F_SIGF_OUT.fileContent.resolutionRange.high
             title ='SG:'+str(sgname).strip()+';Resolution:'+highres.strip()+\
                     ";Cell:"+self.shortformatCell(self.container.outputData.F_SIGF_OUT.fileContent.cell)
-            print('#1')
             if self.container.controlParameters.REINDEX_OPERATOR.isSet():
                 par = self.container.controlParameters
                 reindexop = "Reindexed:"+("[%s, %s, %s]" % (par.REINDEX_OPERATOR.h,par.REINDEX_OPERATOR.k,par.REINDEX_OPERATOR.l)).strip()
                 title = reindexop + ";" + title
             else:
                 title = "New" + title
-            print('#2')
                 
             self.container.outputData.F_SIGF_OUT.annotation = \
               str(self.container.inputData.F_SIGF.annotation) + " " + title
-            print('#3')
 
             self.container.outputData.F_SIGF_OUT.subType = self.container.inputData.F_SIGF.subType
             if self.container.inputData.FREERFLAG.isSet():
                 self.container.outputData.FREERFLAG_OUT.annotation = title
-            print('#4')
 

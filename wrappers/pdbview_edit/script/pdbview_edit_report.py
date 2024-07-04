@@ -57,7 +57,6 @@ class pdbview_edit_report(Report):
              del filename_element.attrib["database"]
              filename_element.text = fname
              ET.indent(et)
-             print(ET.tostring(et))
              sceneFilePath = os.path.join(jobDirectory,'pdbview_edit_scene'+str(i)+'.scene.xml')
              et.write(sceneFilePath)
              pic = pictureGallery.addPicture(sceneFile=sceneFilePath,label='Picture of structure '+str(i+1))

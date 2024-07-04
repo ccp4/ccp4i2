@@ -494,12 +494,13 @@ class CSpaceGroupCell(CCP4Data.CData):
 
     def validity(self, arg):
         ''' Needs checking of cell paramenters to be consistent with space group '''
-        # triclinic     a != b != c; alpha != beta != gamma
-        # monoclinic    a != b != c; alpha= gamma = 90; beta != 90
-        # orthorhombic  a != b != c; alpha = beta = gamma = 90
-        # tetragonal    a = b != c; alpha = beta = gamma = 90
+        #  
+        # triclinic     a != b != c; alpha != beta != gamma  or anything
+        # monoclinic    a != b != c; alpha= gamma = 90; beta != 90  a,b,c,beta unspecified
+        # orthorhombic  a != b != c; alpha = beta = gamma = 90 a,b,c unspecified
+        # tetragonal    a = b != c; alpha = beta = gamma = 90  c may be = a,b 
         # rhombohedral  a = b = c;  alpha = beta = gamma != 90
-        # hexagonal     a = b != c; alpha = beta = 90; gamma = 120
+        # hexagonal     a = b != c; alpha = beta = 90; gamma = 120 c may be = a,b
         # cubic         a = b = c;  alpha = beta = gamma = 90
         v = self.itemValidity()
         if len(v) > 0:
@@ -517,26 +518,35 @@ class CSpaceGroupCell(CCP4Data.CData):
         if xtlSys is None:
             pass
         elif xtlSys == 'triclinic':
+            pass  # allow anything
+            """
             if cell['a'] == cell['b'] or cell['a'] == cell['c'] or cell['b'] == cell['c']:
                 v.append(self.__class__, 101, 'all cell lengths in a triclinic space group',
                          name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
             if cell['alpha'] == cell['beta'] or cell['alpha'] == cell['gamma'] or cell['beta'] == cell['gamma']:
                 v.append(self.__class__, 102, 'all cell angles in a triclinic space group',
                          name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
+            """
         elif xtlSys == 'monoclinic':
+            """
             if cell['a'] == cell['b'] or cell['a'] == cell['c'] or cell['b'] == cell['c']:
                 v.append(self.__class__, 101, 'all cell lengths in a monoclinic space group',
                          name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
+            """
             if not self.isNinety(cell['alpha']) or not self.isNinety(cell['gamma']):
                 v.append(self.__class__, 103, 'alpha and gamma in monoclinic space group',
                          name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
+            """
             if self.isNinety(cell['beta']):
                 v.append(self.__class__, 104, 'beta in monoclinic space group',
                          name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
+            """
         elif xtlSys == 'orthorhombic':
+            """
             if cell['a'] == cell['b'] or cell['a'] == cell['c'] or cell['b'] == cell['c']:
                 v.append(self.__class__, 101, 'all cell lengths in an orthorhombic space group',
                          name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
+            """
             if not self.isNinety(cell['alpha']) or not self.isNinety(cell['beta']) or not self.isNinety(cell['gamma']):
                 v.append(self.__class__, 103, 'all cell angles in an orthorhombic space group',
                          name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
@@ -544,9 +554,11 @@ class CSpaceGroupCell(CCP4Data.CData):
             if cell['a'] != cell['b']:
                 v.append(self.__class__, 105, 'a and b in a tetragonal space group',
                          name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
+            """
             if cell['a'] == cell['c']:
                 v.append(self.__class__, 101, 'a/b and c in a tetragonal space group',
                          name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
+            """
             if not self.isNinety(cell['alpha']) or not self.isNinety(cell['beta']) or not self.isNinety(cell['gamma']):
                 v.append(self.__class__, 103, 'all cell angles in a tetragonal space group',
                          name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
@@ -554,9 +566,11 @@ class CSpaceGroupCell(CCP4Data.CData):
             if cell['a'] != cell['b'] or cell['a'] != cell['c'] or cell['b'] != cell['c']:
                 v.append(self.__class__, 105, 'All cell lengths in a rhombohedral space group',
                          name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
+            """
             if self.isNinety(cell['alpha']) or self.isNinety(cell['beta']) or self.isNinety(cell['gamma']):
                 v.append(self.__class__, 104, 'All cell angles in a rhombohedral space group',
                          name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
+            """
             if cell['alpha'] != cell['beta'] or cell['alpha'] != cell['gamma']:
                 v.append(self.__class__, 107, 'All cell angles in a rhombohedral space group',
                          name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
@@ -564,9 +578,11 @@ class CSpaceGroupCell(CCP4Data.CData):
             if cell['a'] != cell['b']:
                 v.append(self.__class__, 105, 'a and b in a hexagonal space group',
                          name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
+            """
             if cell['a'] == cell['c'] or cell['b'] == cell['c']:
                 v.append(self.__class__, 101, 'a/b and c in a hexagonal space group',
                          name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
+            """
             if not self.isNinety(cell['alpha']) or not self.isNinety(cell['beta']):
                 v.append(self.__class__, 103, 'alpha and beta in a hexagonal space group',
                          name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)

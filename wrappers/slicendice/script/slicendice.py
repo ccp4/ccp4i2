@@ -58,27 +58,27 @@ class slicendice(CPluginScript):
         if self.container.inputData.XYZIN.isSet():
             self.xyzin = self.container.inputData.XYZIN.__str__()
     
-        self.appendCommandLine( [ '-xyzin', self.xyzin ] )
-        self.appendCommandLine( [ '-hklin', self.hklin ] )
+        self.appendCommandLine( [ '--xyzin', self.xyzin ] )
+        self.appendCommandLine( [ '--hklin', self.hklin ] )
         seqFile = os.path.join(self.workDirectory,'SEQIN.fasta')
         inp.ASUIN.writeFasta(fileName=seqFile)
-        self.appendCommandLine( [ '-seqin', seqFile ] )
-        if self.container.modelParameters.MODELSOURCE:
-            self.appendCommandLine( [ '-xyz_source', str(self.container.modelParameters.MODELSOURCE) ] )
-            if str(self.container.modelParameters.MODELSOURCE) == "alphafold":
-                self.appendCommandLine( [ '-plddt_threshold', str(self.container.modelParameters.PLDDT_THRESHOLD) ] )
-            elif str(self.container.modelParameters.MODELSOURCE) == "rosetta":
-                self.appendCommandLine( [ '-rms_threshold', str(self.container.modelParameters.RMS_THRESHOLD) ] )
+        self.appendCommandLine( [ '--seqin', seqFile ] )
+        if self.container.modelParameters.BFACTOR_TREATMENT:
+            self.appendCommandLine( [ '--bfactor_column', str(self.container.modelParameters.BFACTOR_TREATMENT) ] )
+            if str(self.container.modelParameters.BFACTOR_TREATMENT) == "plddt":
+                self.appendCommandLine( [ '--plddt_threshold', str(self.container.modelParameters.PLDDT_THRESHOLD) ] )
+            elif str(self.container.modelParameters.BFACTOR_TREATMENT) == "rms":
+                self.appendCommandLine( [ '--rms_threshold', str(self.container.modelParameters.RMS_THRESHOLD) ] )
         if self.container.modelParameters.MIN_SPLITS:
-            self.appendCommandLine( [ '-min_splits', str(self.container.modelParameters.MIN_SPLITS) ] )
+            self.appendCommandLine( [ '--min_splits', str(self.container.modelParameters.MIN_SPLITS) ] )
         if self.container.modelParameters.MAX_SPLITS:
-            self.appendCommandLine( [ '-max_splits', str(self.container.modelParameters.MAX_SPLITS) ] )
+            self.appendCommandLine( [ '--max_splits', str(self.container.modelParameters.MAX_SPLITS) ] )
         if self.container.controlParameters.NPROC:
-            self.appendCommandLine( [ '-nproc', str(self.container.controlParameters.NPROC) ] )
+            self.appendCommandLine( [ '--nproc', str(self.container.controlParameters.NPROC) ] )
         if self.container.controlParameters.NCYC:
-            self.appendCommandLine( [ '-ncyc', str(self.container.controlParameters.NCYC) ] )
+            self.appendCommandLine( [ '--ncyc_refmac', str(self.container.controlParameters.NCYC) ] )
         if self.container.controlParameters.NO_MOLS:
-            self.appendCommandLine( [ '-no_mols', str(self.container.controlParameters.NO_MOLS) ] )
+            self.appendCommandLine( [ '--no_mols', str(self.container.controlParameters.NO_MOLS) ] )
         self.appendCommandScript( "" )
         # Create output xml file
         self.xmlout = self.makeFileName('PROGRAMXML')

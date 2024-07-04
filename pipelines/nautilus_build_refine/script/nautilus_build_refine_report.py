@@ -44,15 +44,15 @@ class nautilus_build_refine_report(Report):
 
     def summaryTable(self, parent=None):
         if parent is None: parent=self
-        xmlPath = './/NautilusBuildRefineResult/BuildRefineCycle'
+        xmlPath = './/BuildRefineCycle'
         xmlNodes = self.xmlnode.findall(xmlPath)
 #FIXME - XML XPATH LOGIC
         if len(xmlNodes)>0:
-            selectString = ".//NautilusBuildRefineResult/BuildRefineCycle[1] "
+            selectString = ".//BuildRefineCycle[1] "
             if len(xmlNodes)>2:
-                selectString += " | .//NautilusBuildRefineResult/BuildRefineCycle[%d]" % (len(xmlNodes)-1)
+                selectString += " | .//BuildRefineCycle[%d]" % (len(xmlNodes)-1)
             if len(xmlNodes)>1:
-                selectString += " | .//NautilusBuildRefineResult/BuildRefineCycle[%d]" % len(xmlNodes)
+                selectString += " | .//BuildRefineCycle[%d]" % len(xmlNodes)
             tableDiv = parent.addDiv(style="height:20em; width:20em; float:left; border:0px;")
             progressTable = tableDiv.addTable(select=selectString)
             progressTable.addData(title="Cycle", select="Number")
@@ -63,7 +63,7 @@ class nautilus_build_refine_report(Report):
             progressTable.addData(title="R<sub>Free</sub>", select="RefmacResult/r_free",   expr="x if float(x)>=0.0 else '-'")
 
     def completenessGraph(self, parent=None, graph_width=450, graph_height=300):
-        graph = parent.addFlotGraph( title="Progress by build-refine iteration", select=".//NautilusBuildRefineResult/BuildRefineCycle",style="height:%dpx; width:%dpx; float:right; border:0px;" % (graph_height, graph_width) )
+        graph = parent.addFlotGraph( title="Progress by build-refine iteration", select=".//BuildRefineCycle",style="height:%dpx; width:%dpx; float:right; border:0px;" % (graph_height, graph_width) )
         graph.addData (title="Cycle",  select="Number" )
         graph.addData (title="Number of Nucleotides", select="NautilusResult/Final/NucletidesBuilt")
 
@@ -112,7 +112,7 @@ class nautilus_build_refine_report(Report):
         if parent is None:
             parent = self
         fold = parent.addFold(label="Detailed progress by iteration")
-        table = fold.addTable(select=".//NautilusBuildRefineResult/BuildRefineCycle", transpose=True, downloadable=True,id='details')
+        table = fold.addTable(select=".//BuildRefineCycle", transpose=True, downloadable=True,id='details')
         
         table.addData ( title='Iteration', select='Number', expr='int(x)' )
 
@@ -130,7 +130,7 @@ class nautilus_build_refine_report(Report):
         if parent is None:
             parent = self
         tableDiv = parent.addDiv(style="height:30em;width:20em;float:left;border:0px;")
-        table = tableDiv.addTable(select=".//NautilusBuildRefineResult", transpose=True, id='table_1') 
+        table = tableDiv.addTable(select=".", transpose=True, id='table_1') 
         try:
           for title,select in  [[ "Nucleotides built" ,  "BuildRefineCycle[last()]/NautilusResult/Final/NucletidesBuilt" ],
                                 [ "Longest fragment" ,   "BuildRefineCycle[last()]/NautilusResult/Final/NucletidesLongestFragment" ],

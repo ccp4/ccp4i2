@@ -140,7 +140,7 @@ class ref(process):
     if hasattr(self,'save_refmac'):
       refmac.RestoreAnyPars(self.save_refmac)
     self.R, self.Rfree = refmac.GetStat('rfact')[-1], (refmac.GetStat('rfree', accept_none=True) or [None])[-1]
-    self.fom=refmac.GetStat('fom')
+    self.fom=refmac.GetStat('fom')[-1]
     self.report_R, self.report_Rfree = self.R, self.Rfree
     if self.parent_process.nick != 'dmfull':
       self.Info('{0} after refinement is {1}'.format(refmac.stat['rfact'].name, self.R))

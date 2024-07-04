@@ -161,6 +161,7 @@ QTabBar::tab {
     border-bottom-right-radius: 4px;
     min-width: 8ex;
     padding: 2px;
+    color: rgb(255, 255, 255);
 }
 
 QTabBar::tab:selected, QTabBar::tab:hover {

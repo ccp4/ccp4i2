@@ -155,6 +155,14 @@ class prosmart_refmac_report(Report):
                      self.addText("Warning - Iris report failed")
                         
                   try:
+                     if len(validateReportNode.findall ( ".//B_averages" ))>0 :
+                        baverageFold = self.addFold ( label="B-factor analysis", initiallyOpen=False )
+                        validateReport.b_factor_tables(parent=baverageFold)
+                        validateReport.b_factor_graph(parent=baverageFold)
+                  except:
+                     self.addText("Warning - B-factor analysis failed")
+
+                  try:
                      if len(validateReportNode.findall ( ".//B_factors" ))>0 and validateReportNode.findall ( ".//B_factors" )[0].text != "" :
                         baverageFold = self.addFold ( label="B-factor analysis", initiallyOpen=False )
                         validateReport.add_b_factors(parent=baverageFold)

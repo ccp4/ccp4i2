@@ -9,7 +9,7 @@ class bp3(program):
   labelout_prefix="BP3_"
   ccp4_parsing=True
   stat={}
-  stat['fom'] = common.stats(name='FOM', regexp=r"The overall FOM is\s+(\S+)")
+  stat['fom'] = common.stats(name='FOM', regexp=r"The overall FOM is\s+(\S+)",multiple=True)
   stat['luzzati'] = common.stats(name='average Luzzati parameter', regexp=r"the average anomalous Luzzati error is\s+(\S+)")
   stat['version'] = common.stats(name='version', regexp=r"bp3;\s+version\s+(\S+)")
   stat['ccp4_version'] = common.stats(name='version', regexp=r"CP4 software suite: library version\s+(\S+)")

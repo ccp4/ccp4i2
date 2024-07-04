@@ -1351,13 +1351,13 @@ class Report( Container ):
             CCP4Utils.saveFile(fileName=fileName,text=text)
 
     def as_html(self, htmlBase=None,cssVersion=None):
+        import sys
 
         def remove_namespace(doc,namespace,newname,toplevel="XXXXX_UNLIKELY_XXXXX"):
             """Remove namespace in the passed document in place."""
             ns = u'{%s}' % namespace
             nsl = len(ns)
             for elem in doc.iter():
-                to_pop = []
                 new_attrib = {}
                 for k,v in elem.attrib.items():
                     if type(k) is str and k.startswith(ns):
@@ -1373,7 +1373,15 @@ class Report( Container ):
         tree = self.as_etree(htmlBase,cssVersion=cssVersion)
         remove_namespace(tree, u"http://www.w3.org/2000/svg","svg","svg")
         remove_namespace(tree, u"http://www.w3.org/1999/xlink","xlink")
-        text = b'<!DOCTYPE html>\n'+ET.tostring(tree.getroot(), short_empty_elements=False, method="html")
+        text = b'<!DOCTYPE html>\n'
+        try:
+            text += etree.tostring(ET.getroot(), short_empty_elements=False, method="html")
+        except:
+            exc_type, exc_value, exc_tb = sys.exc_info()[:3]
+            sys.stderr.write(str(exc_type) + '\n')
+            sys.stderr.write(str(exc_value) + '\n')
+            import traceback
+            traceback.print_stack()
         return text
 
     def as_data_etree(self):
@@ -2754,8 +2762,8 @@ class ObjectGallery(Container):
             else: cellElement.set('class','galleryListObj NotSelected')
             
             cellElement.text = 'Item '+str(iChild)
-            if hasattr(child,'title'): cellElement.text = child.title
-            if hasattr(child,'label'): cellElement.text = child.label
+            if hasattr(child,'title') and child.title: cellElement.text = child.title
+            if hasattr(child,'label') and child.label: cellElement.text = child.label
             
             #and make a Div for each child of the contentDiv
             correspondingDiv = ET.SubElement(contentDiv,'div',style = 'width:'+self.contentWidth+';height:'+self.height+';padding:0px;margin:0px;overflow:auto;',id=self.id+'_item_'+str(iChild)+'_div')
@@ -2910,6 +2918,7 @@ class Graph(ReportClass):
     
   def addData(self,xmldata=None,title=None,select=None,expr=None,data=None):  
     colvals = []
+<<<<<<< HEAD
     if data is not None:
       """
       print("##################################################")
@@ -2917,8 +2926,11 @@ class Graph(ReportClass):
       print(data)
       print("##################################################")
       """
+=======
+    if len(data)>0:
+>>>>>>> main
       colvals.extend(data)
-    else:
+    elif select:
       if xmldata is None: xmldata = self.xmldata
       for x in xmldata:
         selectedList = x.findall(select)

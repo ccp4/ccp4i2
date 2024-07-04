@@ -19,7 +19,7 @@ class substrdet(process):
   supported_params['num_trials'] = par( desc='(Maximal) Number of substructure detection trials', typ=(int,bool) )
   supported_params['patterson_seed'] = par( desc='Seed from Patterson (shelxd/crunch2 only)', typ=bool )
   supported_params['num_threads'] = par( desc='Number of CPU threads (shelxd/prasa only)', typ=(int,bool) )
-  supported_params['high_res_cutoff'] = par( desc='High resolution cutoff (in A)', typ=(float,bool) )
+  supported_params['high_res_cutoff'] = par( desc='High resolution cutoff (in A)', typ=(float,bool), share=False )
   supported_params['high_res_cutoff_radius'] = par( desc='Radius of high resolution cutoff search (in A)', typ=(float,bool) )
   supported_params['high_res_cutoff_step'] = par( desc='Step of high resolution cutoff search (in A)', typ=(float,bool) )
   supported_params['high_res_cutoff_cchalf'] = par( desc='Determine high resolution cutoff from CCanom1/2 (if avail.)', typ=bool )
@@ -86,7 +86,7 @@ class substrdet(process):
           if at in ('S','SE'):
             self.SetParam('threshold_stop',26.0)
           else:
-            self.SetParam('threshold_stop',30.0)
+            self.SetParam('threshold_stop',31.0)
       if self.IsTrueOrNoneParam('threshold_weak'):
         if prog.nick=='shelxd':
           self.SetParam('threshold_weak',45.0)
@@ -187,7 +187,8 @@ class substrdet(process):
         prog.SetKey('histmatch',2)
     process.TreatInOutPar(self,set_all_par)
 
-  def EstimateCutOff(self,halfang=False):
+  def EstimateCutOff(self,halfang=False,use_faest_08=False,verbose=True):
+    cut08=1000.
     # do not try to determine if called only to check binaries...
     if self.GetCrankParent() and hasattr(self.GetCrankParent(),'check_binaries'):  return None
     cutoff=None
@@ -198,12 +199,16 @@ class substrdet(process):
         return cutoff
       else:
         common.Warning('Resolution for cutoff could not be determined.')
-    # only do this if ecalc was used in the previous step - it does not work for E's from shelxc/afro...
+    # only do this if ecalc was used in the previous step - it does not work for E's from shelxc...
     cp, fa_obj = self.GetCrankParent(), None
-    if cp and self in cp.processes and cp.processes.index(self)-1>=0 and \
-       cp.processes[cp.processes.index(self)-1].nick=='faest' and \
-       'ecalc' in [p.nick for p in cp.processes[cp.processes.index(self)-1].programs]:
-      fa_obj = self.inp.Get('fsigf',typ=('fa','delta-anom'),col='e')
+    if cp and self in cp.processes and cp.processes.index(self)-1>=0:
+      faest = next(p for p in cp.processes if p.nick=='faest')
+      if faest and faest.nick!='shelxc':
+        fa_obj = faest.inp.Get('fsigf',typ=('delta-anom'),col='e')
+        if not fa_obj:
+          fa_obj = self.inp.Get('fsigf',typ=('delta-anom'),col='e')
+      if faest and hasattr(faest,'rescut08') and use_faest_08:
+        cut08=faest.rescut08
     # this should always happens in emulation mode (to get the default cutoff from GUI) but fa's/delta's needed...
     # it may currently happen that the cutoff in emulation mode is different from the real run if different fa's are produced!
     if not fa_obj:
@@ -332,11 +337,14 @@ class substrdet(process):
               if (r[0]+0.5)>cutoff:
                 cutoff = r[0]+0.5
               break
-          print('Anom. cutoff:',cutoff)
+          if verbose:
+            print('Anom. cutoff:',cutoff)
         else:
           common.Warning('Unexpected sftools problem when determining resolution cutoff.')
     elif not halfang:
       common.Warning('Resolution cutoff could not be determined.')
+    if use_faest_08:
+      cutoff=min(cutoff,cut08)
     return cutoff
 
   def RunPreprocess(self,*args,**kwargs):
@@ -390,14 +398,19 @@ class substrdet(process):
     if self.stop_file and self.GetCrankParent() and self.GetCrankParent().rundir:
       self.stop_file = os.path.join(self.GetCrankParent().rundir,self.stop_file)
 
+  def Cutoffs(self):
+    # multiplied by 100 just so that range can be used
+    cut0, radius, step = int(self.GetParam('high_res_cutoff')*100), int(self.GetParam('high_res_cutoff_radius')*100), int(self.GetParam('high_res_cutoff_step')*100)
+    reso = self.inp.Get(filetype='mtz').GetResolution(self)*100
+    #print(reso,step,reso-step)
+    cutoffs = [float(format(cut*0.01,"2.2f")) for cut in range(cut0,cut0+radius+1,step)] + [float(format(cut*0.01,"2.2f")) for cut in range(cut0-step,cut0-radius-1,-step) if cut>=reso-step]
+    return cutoffs
+
   def RunBody(self,*args,**kwargs):
     prog0=self.GetProg(supported=True)
     if self.GetParam('high_res_cutoff_radius') and self.GetParam('high_res_cutoff'):
-      # multiplied by 100 just so that range can be used
-      cut0, radius, step = int(self.GetParam('high_res_cutoff')*100), int(self.GetParam('high_res_cutoff_radius')*100), int(self.GetParam('high_res_cutoff_step')*100)
-      reso, tot_trials = self.inp.Get(filetype='mtz').GetResolution(self)*100, self.GetParam('num_trials')
-      print(reso,step,reso-step)
-      cutoffs = [float(format(cut*0.01,"2.2f")) for cut in range(cut0,cut0+radius+1,step)] + [float(format(cut*0.01,"2.2f")) for cut in range(cut0-step,cut0-radius-1,-step) if cut>=reso-step]
+      cutoffs=self.Cutoffs()
+      tot_trials=self.GetParam('num_trials')
       self.Info('The following high resolution cutoffs will be tried: '+', '.join(format(r,"2.2f") for r in cutoffs))
       if prog0.nick=='prasa':
         #prog0.SetKey('statrescut', max(max(cutoffs), reso+2))
@@ -428,7 +441,13 @@ class substrdet(process):
           break
       self.programs.remove(prog0)
     else:
-      prog0.Run()#restore=False)
+      try:
+        prog0.Run()#restore=False)
+      except program.from_name('shelxd',None).Exception_ShelxD_TooSmall:
+        self.Info('ShelxD arrays too small - trying with -L20')
+        prog0.ClearAllArgs()
+        prog0.SetArg('L20')
+        prog0.Run()
 
   def RunPostprocess(self,restore=True,*args,**kwargs):
     prg=self.GetProg(supported=True)
@@ -454,6 +473,12 @@ class substrdet(process):
       if self.IsTrueOrNoneParam('optimize_sol') or self.GetParam('optimize_sol') in (1,2):
         ref_all_sol = True if self.GetParam('optimize_sol')==2 or \
           (self.GetParam('optimize_sol') is None and self.score_adj*100<self.GetParam('threshold_weak')) else False
+        if not ref_all_sol and self.GetParam('optimize_sol') is None: # be careful with solutions with many special pos.
+          import gemmi
+          struct=gemmi.read_structure(self.prog.out.Get('model').GetFileName())
+          spec_pos=[struct.cell.is_special_position(s.atom.pos) for s in struct[0].all() if s.atom.occ>=0.3]
+          if spec_pos and sum(spec_pos)/len(spec_pos)>0.35:
+            ref_all_sol = True
         if ref_all_sol:
           self.score_cut=-1000
         for ip,prog in enumerate(self.GetProgs('prasa')):
@@ -463,8 +488,9 @@ class substrdet(process):
           prasa_ref.runname = prasa_ref.name+'_ref'
           self.refsol = True
           self.score = None
-          prasa_ref.SetKey('specialpos', 1)
+          prasa_ref.SetKey('specialpos', 1) #perhaps disable due to 3og5?
           prasa_ref.SetKey('chargeflip', 2, keep_previous=False)
+          #prasa_ref.SetKey('histmatch', 1, keep_previous=False)
           if os.path.isfile(os.path.join(prog.rundir,'stop_prasa')):
             os.remove( os.path.join(prog.rundir,'stop_prasa') )
           if ref_all_sol:
@@ -479,14 +505,14 @@ class substrdet(process):
               prasa_ref.SetKey('pdbin', self.prog.GetTrialPdb(prog.trial_stop))
             self.prog=prasa_ref
             #prasa_ref.SetKey('chargeflip',0)
-          prasa_ref.SetKey('shannon', 2.15)
-          prasa_ref.SetKey('statcyc', 3, keep_previous=False)
-          prasa_ref.SetKey('statcycskip', 3), prasa_ref.SetKey('ncycles', 40, keep_previous=False)
+          prasa_ref.SetKey('shannon', 2.2) #larger needed eg for 3uot (issues with large for 7bmv?, 6fmw not with 2?)
+          prasa_ref.SetKey('statcyc', 20, keep_previous=False) # larger needed eg for 7bmy
+          prasa_ref.SetKey('statcycskip', 1), prasa_ref.SetKey('ncycles', 45, keep_previous=False)
           prasa_ref.SetKey('ntrials', False, keep_previous=False)#, prasa_ref.SetKey('addhalfstat', 0)
           if prasa_ref.GetKey('delta'):
             prasa_ref.SetKey('delta', prasa_ref.GetKey('delta')+0.1, keep_previous=False)
           elif prasa_ref.GetKey('chargeflip') and prasa_ref.GetKey('chargeflip')==2:
-            prasa_ref.SetKey('delta', 1.825, keep_previous=False)
+            prasa_ref.SetKey('delta', 1.81, keep_previous=False) # lower helps 7waa, larger helps uncorrected 2w5o? and 3tx3
           else:
             prasa_ref.SetKey('delta', -0.1, keep_previous=False)
           prasa_ref.outfilename['pdb'] = 'prasa_ref.pdb'
@@ -528,6 +554,8 @@ class substrdet(process):
           crank.prep.GetProcess('refatompick').SetParam('bfactor',20)
         elif self.GetProg(supported=True).nick=='prasa' and not crank.prep.GetProcess('refatompick').IsParam('bfactor'):
           crank.prep.GetProcess('refatompick').SetParam('bfactor',30)
+        #if not crank.prep.GetProcess('refatompick').IsParam('res_cut'):
+         # crank.prep.GetProcess('refatompick').SetParam('res_cut',self.EstimateCutOff(use_faest_08=True))
     self.GetParam('high_res_cutoff_cchalf')
     process.RunPostprocess(self,restore,*args,**kwargs)
 
@@ -766,8 +794,8 @@ class substrdet(process):
           self.check_solution=(self.trial,self.score_cut)
       if self.score is None:  self.score=-1000
       score_sum = score_cut + score if score_cut else score
-      if score_sum>=self.score and (prog.nick!='prasa' or score_cut>=0.8*self.score_cut or score_cut is None):
-        if prog.nick=='prasa' and (self.prog is prog or score_cut>=0.97*self.score_cut or score_cut is None):
+      if score_sum>=self.score and (prog.nick!='prasa' or score_cut is None or score_cut>=0.8*self.score_cut):
+        if prog.nick=='prasa' and (self.prog is prog or score_cut is None or score_cut>=0.97*self.score_cut):
           stats_info=['corr.coef. {0}'.format(cc),]
           if score_cut: stats_info.append( 'corr.coef.range {0}'.format(score_cut) )
           self.Info('{0} in trial {1}: {2}'.format(stat_str,trial,', '.join(stats_info)))

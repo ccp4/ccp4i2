@@ -110,8 +110,9 @@ class import_serial_pipe(CPluginScript):
         # shutil.copyfile(str(self.aimlessPipe.container.outputData.HKLOUT[0]), str(self.container.outputData.HKLOUT))
         shutil.copyfile(str(self.aimlessPipe.container.outputData.IMEANOUT[0]), str(self.container.outputData.HKLOUT))
         self.container.outputData.HKLOUT.set(self.aimlessPipe.container.outputData.HKLOUT)
-        self.container.outputData.HKLOUT.setAnnotation("Merged reflections")
-        #self.container.outputData.HKLOUT.contentFlag = CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR
+        self.container.outputData.HKLOUT.setAnnotation("Merged intensities")
+        # self.container.outputData.HKLOUT.contentFlag = 3 # CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN
+        self.container.outputData.HKLOUT.setContentFlag(reset=True) # this will set contentFlag to 3 (CONTENT_FLAG_IMEAN)
 
         # Save xml
         #xmlfile = open(self.xmlout, 'wb')

@@ -34,8 +34,11 @@ class acedrgNew(CPluginScript):
     def processInputFiles(self):
         from rdkit import Chem
         from rdkit.Chem import AllChem
+        self.originalMolFilePath = None
         if self.container.inputData.MOLIN.isSet():
             self.originalMolFilePath = os.path.normpath(self.container.inputData.MOLIN.__str__())
+        if self.container.inputData.MOL2IN.isSet():
+            self.originalMolFilePath = os.path.normpath(self.container.inputData.MOL2IN.__str__())
         if self.container.inputData.MOLORSMILES.__str__() == 'DICT':
             self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))
             print(self.originalMolFilePath)
@@ -84,7 +87,10 @@ class acedrgNew(CPluginScript):
         #print 'Original mol file path', self.originalMolFilePath
     
         #Get the SMILES of the input MOL and put into report
-        mol = Chem.MolFromMolFile(self.originalMolFilePath)
+        if self.container.inputData.MOL2IN.isSet():
+            mol = Chem.MolFromMol2File(self.originalMolFilePath)
+        else:
+            mol = Chem.MolFromMolFile(self.originalMolFilePath)
         for iAtom in range(mol.GetNumAtoms()):
             atom = mol.GetAtomWithIdx(iAtom)
             atom.ClearProp('molAtomMapNumber')
@@ -96,47 +102,63 @@ class acedrgNew(CPluginScript):
         
         #I infer that ACEDRG reads in the bond and atom counts and the bonded atom indices as free input, whereas in practise
         #they are fixed format (i3,i3)...where nBonds > 99, this makes problems.  Insert a space to deal with this
-        self.tmpMolFileName = os.path.normpath(os.path.join(self.getWorkDirectory(),'Kludged.mol'))
-        with open(self.originalMolFilePath,'r') as molinFile:
-            molBlock = molinFile.read()
-            headerRead = False
-            iAtom= 0
-            iBond= 0
-            molLines = molBlock.split('\n')
-            for i in range(len(molLines)):
-                molLine = molLines[i]
-                if not headerRead:
-                    if '999' in molLine.upper():
-                        nBonds = int(molLine[3:6])
-                        nAtoms = int(molLine[0:3])
+        if os.path.isfile(self.originalMolFilePath):
+            self.tmpMolFileName = os.path.normpath(os.path.join(self.getWorkDirectory(),'Kludged.mol'))
+            with open(self.originalMolFilePath,'r') as molinFile:
+                molBlock = molinFile.read()
+                headerRead = False
+                iAtom= 0
+                iBond= 0
+                molLines = molBlock.split('\n')
+                for i in range(len(molLines)):
+                    molLine = molLines[i]
+                    if not headerRead:
+                        if '999' in molLine.upper():
+                            nBonds = int(molLine[3:6])
+                            nAtoms = int(molLine[0:3])
+                            if molLine[3:4] == ' ': newMolLine = molLine
+                            else: newMolLine = molLine[0:3] + ' ' + molLine[3:]
+                            molLines[i] = newMolLine
+                            headerRead = True
+                    elif iAtom < nAtoms:
+                        iAtom += 1
+                    elif iBond < nBonds:
                         if molLine[3:4] == ' ': newMolLine = molLine
                         else: newMolLine = molLine[0:3] + ' ' + molLine[3:]
                         molLines[i] = newMolLine
-                        headerRead = True
-                elif iAtom < nAtoms:
-                    iAtom += 1
-                elif iBond < nBonds:
-                    if molLine[3:4] == ' ': newMolLine = molLine
-                    else: newMolLine = molLine[0:3] + ' ' + molLine[3:]
-                    molLines[i] = newMolLine
-                    iBond += 1
-            molBlock = '\n'.join(molLines)
-            with open(self.tmpMolFileName,'w') as tmpMolFile:
-                tmpMolFile.write(molBlock)
+                        iBond += 1
+                molBlock = '\n'.join(molLines)
+                with open(self.tmpMolFileName,'w') as tmpMolFile:
+                    tmpMolFile.write(molBlock)
     
     def makeCommandAndScript(self):
-        tmpSmileFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'tmp.smi'))
-        with open(tmpSmileFilePath,'w') as tmpSmileFile:
-            tmpSmileFile.write(self.smilesString)
-        self.appendCommandLine('-j')
-        self.appendCommandLine(self.container.inputData.NRANDOM)
-        self.appendCommandLine('-i')
-        self.appendCommandLine(tmpSmileFilePath)
-        self.appendCommandLine('-r')
-        if self.smileStrCode != None and re.match("^[a-zA-Z0-9]*$", self.smileStrCode):
-            self.appendCommandLine(self.smileStrCode)
+        if self.container.inputData.DICTIN2.isSet():
+            self.appendCommandLine('-c')
+            self.appendCommandLine(str(self.container.inputData.DICTIN2))
+        elif self.container.inputData.MOLIN.isSet():
+            self.appendCommandLine('-m')
+            self.appendCommandLine(str(self.container.inputData.MOLIN))
+        elif self.container.inputData.MOL2IN.isSet():
+            self.appendCommandLine('-g')
+            self.appendCommandLine(str(self.container.inputData.MOL2IN))
+        if self.container.inputData.DICTIN2.isSet() or self.container.inputData.MOLIN.isSet() or self.container.inputData.MOL2IN.isSet():
+            if self.container.controlParameters.USE_COORD:
+                self.appendCommandLine('-p')
         else:
-            self.appendCommandLine(self.container.inputData.TLC.__str__())
+            tmpSmileFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'tmp.smi'))
+            with open(tmpSmileFilePath,'w') as tmpSmileFile:
+                tmpSmileFile.write(self.smilesString)
+            self.appendCommandLine('-i')
+            self.appendCommandLine(tmpSmileFilePath)
+            if self.container.inputData.NRANDOM:
+                self.appendCommandLine('-j')
+                self.appendCommandLine(self.container.inputData.NRANDOM)
+        if self.container.inputData.TLC.__str__() or self.smileStrCode:
+            self.appendCommandLine('-r')
+            if self.smileStrCode != None and re.match("^[a-zA-Z0-9]*$", self.smileStrCode):
+                self.appendCommandLine(self.smileStrCode)
+            else:
+                self.appendCommandLine(self.container.inputData.TLC.__str__())
         return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
@@ -148,8 +170,8 @@ class acedrgNew(CPluginScript):
             annoCde = self.smileStrCode
         else:
             annoCde = self.container.inputData.TLC.__str__()
+        retMatches = {}
         if os.path.isfile(pdbFilePath):
-            retMatches = {}
             try:
                 import ccp4srs
                 dummy = ccp4srs.Graph()
@@ -247,7 +269,10 @@ class acedrgNew(CPluginScript):
         # Generate another RDKIT mol directly from the mol or smiles: this one *will* hopefully have proper
         # chirality information
         referenceMol = None
-        referenceMol = Chem.MolFromMolFile(self.originalMolFilePath)
+        if self.container.inputData.MOL2IN.isSet():
+            referenceMol = Chem.MolFromMol2File(self.originalMolFilePath)
+        else:
+            referenceMol = Chem.MolFromMolFile(self.originalMolFilePath)
 
         Chem.SanitizeMol(referenceMol)
         Chem.Kekulize(referenceMol)

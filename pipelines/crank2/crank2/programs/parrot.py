@@ -12,6 +12,7 @@ class parrot(program):
   stat={}
   stat['ncs_operator'] = common.stats(name='NCS operator', multiple=True,
             regexp=r"-ncs-operator\s+(\S+,\S+,\S+,\S+,\S+,\S+,\S+,\S+,\S+)")
+  stat['ncs_operator_correl'] = common.stats(name='NCS operator correlation', regexp=r'NCS operator statistics:\s+Operator_number  Mask_volume\/ASU  Correlation'+r'(?:\s+\d+\s+\S+\s+(\S+)\s)?'*99)
   stat['radius_auto'] = common.stats(name='Automatically determined filtering radius for solvent flattening',
             regexp=r"Suggested radius for solvent mask determination:\s*(\S+)")
   references = ( "Cowtan K (2010) Recent developments in classical density modification. Acta Cryst. D66, 470-478.", )
@@ -40,10 +41,11 @@ class parrot(program):
     else:
       common.Error('No phase distribution inputted for {0}'.format(self.name))
     # input map (optional - phase distr. and Fo used if not inputted)
-    mapc=self.inp.Get('mapcoef',typ='weighted',col=('f','ph'))
+    mapc=self.inp.Get('mapcoef',typ=('weighted','mask'),col=('f','ph'))
     if mapc:
       if 'dmmsk' in mapc.custom:
         self.SetKey('colin-wrk-fmsk', mapc.GetFullLabel('f','ph'))
+        #self.SetKey('mapin', '../segmentmap/out.ccp4')
         mapc=self.inp.Get('mapcoef',typ='weighted',col=('f','ph'),exclude_cont=mapc) # used for unt models feedback recycling
         if mapc:
           self.SetKey('colin-wrk-fc', mapc.GetFullLabel('f','ph'))

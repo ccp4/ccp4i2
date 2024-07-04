@@ -204,7 +204,9 @@ class import_merged(CPluginScript):
                                     self.freerflag.container.inputData.FREERFLAG.fileContent,
                                     tolerance)
                 cellsAreTheSame, freerReportXML = cellcheck.checks()
-                if not cellsAreTheSame['validity']:
+                if (not self.container.controlParameters.OVERRIDE_CELL_DIFFERENCE) and \
+                       (not cellsAreTheSame['validity']):
+                    # not compatible
                     completeFreeR = False
 
                 if freerReportXML is not None:
@@ -321,18 +323,16 @@ class import_merged(CPluginScript):
       unmergedList[0].crystalName.set(xname)
       unmergedList[0].dataset.set(dname)
       #print 'unmergedList 2',    unmergedList
-      unmergedList[0].cell.set(self.container.inputData.SPACEGROUPCELL.cell)
+      unmergedList[0].cell.set(self.container.inputData.UNITCELL)
       #print 'unmergedList 3',    unmergedList
       #print 'self.container.inputData',self.container.inputData
-      #print 'self.container.inputData.SPACEGROUPCELL',\
-      #      self.container.inputData.SPACEGROUPCELL
       unmergedList[0].wavelength.set(self.container.inputData.WAVELENGTH)
 
       # parameters for Pointless
       self.aimlesspipe.container.controlParameters.MODE = 'CHOOSE'
       self.aimlesspipe.container.controlParameters.CHOOSE_MODE = 'SPACEGROUP'
       self.aimlesspipe.container.controlParameters.CHOOSE_SPACEGROUP = \
-            self.container.inputData.SPACEGROUPCELL.spaceGroup
+            self.container.inputData.SPACEGROUP
       # parameters for Aimless
       self.aimlesspipe.container.controlParameters.SCALING_PROTOCOL = 'CONSTANT'
       self.aimlesspipe.container.controlParameters.ONLYMERGE = True
@@ -666,47 +666,78 @@ class import_merged(CPluginScript):
                   iBestObs = ii
         return iBestObs, ifree   # indices to columngroups for Obs and Free
 
-"""
-# Function to return list of names of exportable MTZ(s)
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Function to return name of exportable MTZ
 def exportJobFile(jobId=None,mode=None):
+    #  If the input file contained intensities,
+    #     then return the output from ctruncate + freer
+    #     ie I and F and FreeR
+    #  If amplitudes F, then return Fs + FreeR
+    #     don't use ctruncate output which has intensities derived from F^2
+    #     which would mean truncate applied twice
     import os
     from core import CCP4Modules
     from core import CCP4XtalData
 
+    print("\nexportJobFile")
     jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
     exportFile = os.path.join(jobDir,'exportMtz.mtz')
     if os.path.exists(exportFile): return exportFile
 
-    childJobs = CCP4Modules.PROJECTSMANAGER().db().getChildJobs(jobId=jobId,details=True)
-    print 'import_merged.exportMtz',childJobs
+    db = CCP4Modules.PROJECTSMANAGER().db()
+    #print("DB:", db.getJobFilesInfo(jobId=jobId))
+    info = db.getJobFilesInfo(jobId=jobId,jobParamName='OBSOUT')
+    obsfileContent = info[0]['fileContent']
+    #print("obsfilecontent", obsfileContent)
+    # intensity I if fileContent == 1 or 3
+    isIntensity = (int(obsfileContent)%2 == 1)
+    #print("obsfilecontent", obsfileContent, isIntensity)
+    obsfilename =info[0]['fileName']
+
     truncateOut = None
+    if isIntensity:
+        # Use truncate output
+        childJobs = CCP4Modules.PROJECTSMANAGER().db().getChildJobs(jobId=jobId,details=True)
+        #print('import_merged.exportMtz',childJobs)
+        for jobNo,subJobId,taskName  in childJobs:
+            if taskName == 'aimless_pipe':
+                aimlessChildJobs = CCP4Modules.PROJECTSMANAGER().db().getChildJobs(jobId=subJobId,details=True)
+                print('import_merged.exportMtz aimlessChildJobs',aimlessChildJobs)
+                for jobNo0,subJobId0,taskName0  in aimlessChildJobs:
+                    if taskName0 == 'ctruncate':
+                        truncateOut = os.path.join( CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=subJobId0,create=False),'HKLOUT.mtz')
+                        if not os.path.exists(truncateOut): truncateOut = None
+        obsOut = truncateOut
+    else:
+        # Amplitudes F, use original processed file
+        obsOut = os.path.join( CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False), obsfilename)
+
+
+    #print("now FreeR")
+    info = db.getJobFilesInfo(jobId=jobId,jobParamName='FREEOUT')
+    freerfilename = info[0]['fileName']
     freerflagOut = None
-    for jobNo,subJobId,taskName  in childJobs:
-      if taskName == 'aimless_pipe':
-         aimlessChildJobs = CCP4Modules.PROJECTSMANAGER().db().getChildJobs(jobId=subJobId,details=True)
-         print 'import_merged.exportMtz aimlessChildJobs',aimlessChildJobs
-         for jobNo0,subJobId0,taskName0  in aimlessChildJobs:
-           if taskName0 == 'ctruncate':
-             truncateOut = os.path.join( CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=subJobId0,create=False),'HKLOUT.mtz')
-             if not os.path.exists(truncateOut): truncateOut = None
-     
-    freerflagOut = os.path.join( CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False),'FREEOUT.mtz')
+    freerflagOut = os.path.join( CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False),freerfilename)
     if not os.path.exists(freerflagOut): freerflagOut = None
-    if truncateOut is None: return None
-    if freerflagOut is None: return truncateOut
+    #if truncateOut is None: return None
+    #if freerflagOut is None: return truncateOut
+    if freerflagOut is None: return None
 
-    print 'aimless_pipe.exportJobFile  runCad:',exportFile,[ freerflagOut ]
+    #print('import_merge.exportJobFile  runCad:',exportFile,[ freerflagOut ])
     
-
-    m = CCP4XtalData.CMtzDataFile(truncateOut)
-    #print m.runCad.__doc__   #Print out docs for the function
-    outfile,err = m.runCad(exportFile,[ freerflagOut ] )
-    print 'aimless_pipe.exportJobFile',outfile,err.report()
+    m = CCP4XtalData.CMtzDataFile(obsOut)   # observed data
+    #print(m.runCad.__doc__)   #Print out docs for the function
+    #  Make sure that FreeR is flagged as base dataset
+    comLines = ["XNAME FILE_NUMBER 2 ALL=HKL_base",
+                "DNAME FILE_NUMBER 2 ALL=HKL_base"]
+    outfile,err = m.runCad(exportFile,[ freerflagOut ], comLines)
+    print('aimless_pipe.exportJobFile',outfile,err.report())
     return   outfile                                                   
  
 def exportJobFileMenu(jobId=None):
+    print("exportJobFileMenu")
     # Return a list of items to appear on the 'Export' menu - each has three subitems:
     # [ unique identifier - will be mode argument to exportJobFile() , menu item , mime type (see CCP4CustomMimeTypes module) ]
+    print("Result:", [ [ 'complete_mtz' ,'MTZ file' , 'application/CCP4-mtz' ] ])
     return [ [ 'complete_mtz' ,'MTZ file' , 'application/CCP4-mtz' ] ]
                                                 
-"""

@@ -28,17 +28,18 @@ elif test -d $CCP4/lib/python3.9/cctbx; then
 elif test -d $CCP4/lib/cctbx; then
   LIBTBX_BUILD=$CCP4/lib/cctbx
 elif test -d $CCP4/lib/python3.9/site-packages/cctbx; then
-  LIBTBX_BUILD=$CCP4/lib/cctbx
+  LIBTBX_BUILD=$CCP4/lib/python3.9/site-packages/cctbx
 else
-  CCP4I2=`python -c "import sysconfig; print(sysconfig.get_path('purelib'))"`
+  LIBTBX_BUILD=`python -c "import sysconfig; print(sysconfig.get_path('purelib'))"`
 fi
 export LIBTBX_BUILD
 
 # Old PYTHONPATH is ignored -- it may be set for different Python version.
 # Special case when Windows Python is called from MSYS/MinGW shell is handled
 # near to "python.exe" below (";" must be used as a separator in that case).
-export PYTHONPATH="$LIBTBX_BUILD/../site-packages/phaser:$LIBTBX_BUILD/../site-packages/tntbx:$LIBTBX_BUILD/../site-packages:$LIBTBX_BUILD/../site-packages/cctbx_project:$LIBTBX_BUILD/../site-packages/cctbx_project/boost_adaptbx:$LIBTBX_BUILD/../site-packages/cctbx_project/libtbx/pythonpath:$LIBTBX_BUILD/lib:$CCP4/share/python:$LIBTBX_BUILD/../site-packages/dxtbx/src:$CCP4I2"
 #echo $PYTHONPATH
+export PYTHONPATH="$LIBTBX_BUILD/../site-packages/phaser:$LIBTBX_BUILD/../site-packages/tntbx:$LIBTBX_BUILD/../site-packages:$LIBTBX_BUILD/../site-packages/cctbx_project:$LIBTBX_BUILD/../site-packages/cctbx_project/boost_adaptbx:$LIBTBX_BUILD/../site-packages/cctbx_project/libtbx/pythonpath:$LIBTBX_BUILD/lib:$LIBTBX_BUILD/../dxtbx/src:$LIBTBX_BUILD/../site-packages/dxtbx/src:$CCP4/share/python"
+
 
 # MSYS translates most of paths automatically, but it needs help here
 if [ "$(uname)" = MINGW32_NT-6.1 ]; then
@@ -52,6 +53,11 @@ export LC_ALL
 
 QT_QPA_PLATFORM_PLUGIN_PATH=$CCP4/QtPlugins/
 export QT_QPA_PLATFORM_PLUGIN_PATH
+
+if [ x`uname` = x"Linux" ]; then
+    DIR_QT_LIBRARY_DATA=${CCP4}/resources
+    export DIR_QT_LIBRARY_DATA
+fi
 
 if [ x`uname` = x"Linux" ]; then
     DIR_QT_LIBRARY_DATA=${CCP4}/resources

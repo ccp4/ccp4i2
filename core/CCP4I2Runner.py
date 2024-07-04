@@ -4,7 +4,8 @@ import argparse
 import sys
 import os
 import traceback
-from xml.etree import ElementTree as ET
+import time
+import xml.etree.ElementTree as ET
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from core import CCP4TaskManager
 from core import CCP4Config
@@ -18,8 +19,6 @@ if sys.platform == "win32":
 else:
     from ccp4mg import hklfile
 from core import CCP4Modules
-#from lxml import etree
-from xml.etree import ElementTree as ET
 #import clipper
 import gemmi
 import numpy
@@ -729,7 +728,6 @@ if __name__ == "__main__":
     print("RUNNING NEW CCP4I2Runner")
     print("##################################################")
     print("##################################################")
-
     try:
         theRunner = CI2Runner(sys.argv)
         theRunner.run()
@@ -752,10 +750,8 @@ if __name__ == "__main__":
         print("EXITING FROM NEW CCP4I2Runner")
         print("##################################################")
         print("##################################################")
-
         sys.exit(0)
     except Exception as err:
         print("Failed with exception ", err)
         traceback.print_exc()
-
     sys.exit(1)

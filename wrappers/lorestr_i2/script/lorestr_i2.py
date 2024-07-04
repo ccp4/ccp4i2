@@ -250,10 +250,10 @@ class lorestr_i2(CPluginScript):
 
 
         xmlRoot = ET.parse(self.makeFileName('PROGRAMXML')).getroot()
-        bestProtocolNumber = int(xmlRoot.find("Protocols").findtext("BestProtocol"))
-        bestRestraintsFileName = str(xmlRoot.find("Protocols").findtext("BestProtocolRestraintsFileName")) # Contains absolute path
-        rFact = xmlRoot.find("Protocols").find("P%d" % bestProtocolNumber).findtext("Rfact")
-        rFree = xmlRoot.find("Protocols").find("P%d" % bestProtocolNumber).findtext("Rfree")
+        bestProtocolNumber = int(xmlRoot.find("Protocols/BestProtocol").text)
+        bestRestraintsFileName = str(xmlRoot.find("Protocols/BestProtocolRestraintsFileName").text) # Contains absolute path
+        rFact = xmlRoot.find("Protocols/P%d/Rfact" % bestProtocolNumber).text
+        rFree = xmlRoot.find("Protocols/P%d/Rfree" % bestProtocolNumber).text
 
         self.container.outputData.PERFORMANCE.RFactor = float(rFact)
         self.container.outputData.PERFORMANCE.RFree = float(rFree)
@@ -274,8 +274,14 @@ class lorestr_i2(CPluginScript):
 # CCP4i2 validation
         try:
            self.validate = self.makePluginObject('validate_protein')
+           """
            self.validate.container.inputData.XYZIN = self.container.outputData.XYZOUT
            self.validate.container.inputData.F_SIGF = self.container.inputData.F_SIGF
+           """
+           self.validate.container.inputData.XYZIN_1 = self.container.outputData.XYZOUT
+           self.validate.container.inputData.F_SIGF_1 = self.container.inputData.F_SIGF
+           self.validate.container.inputData.XYZIN_2 = self.container.outputData.XYZOUT
+           self.validate.container.inputData.F_SIGF_2 = self.container.inputData.F_SIGF
            self.validate.container.outputData.COOTSCRIPTOUT = self.container.outputData.COOTSCRIPTOUT
 
            self.validate.container.controlParameters.DO_BFACT = True

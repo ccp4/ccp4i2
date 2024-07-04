@@ -190,7 +190,7 @@ class shelxe(program):
       self.out.AddCopy(substrin)
     if self.GetArg('a'):
       x_name = self.fnat.xname if self.fnat else self.inp.Get('fsigf',typ='average').xname
-      if self.IsArg('h') and self.res:
+      if self.IsArg('h') and self.res and not self.IsArg('O'):  #currently, -O option means that -h ignored!  discussed with Isabel and looks like this will remain - adjust once changed
         partial=self.out.AddNew('model', out_path+'.pdb', typ='partial+substr', filetype='pdb', xname=x_name, atomtypes=substrin.GetAtomTypes())
       else:
         partial=self.out.AddNew('model', out_path+'.pdb', typ='partial', filetype='pdb', xname=x_name)

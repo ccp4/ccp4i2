@@ -28,6 +28,7 @@ class shelxc(program):
                               regexp=[r"highest resolution\s+(\S+)\s+Angstroms"])
   stat['version'] = common.stats(name='version', regexp=r"Version (\d+/\d+)")
   stat['increase_maxm_error'] = common.stats(name='increase MAXM', regexp=r' \*\*.+increase MAXM', accept_none=True)
+  stat['corruption_error'] = common.stats(name='input file corrupted', regexp=r' \*\*.+corrupted at line', accept_none=True)
 
   references = ( "Sheldrick GM (2008) A short history of SHELX. " +
                  "Acta Cryst. A64, 112-122.", )
@@ -105,6 +106,11 @@ class shelxc(program):
         loc_file = loc_file[:max_length-4] + loc_file[-4:]
       shutil.copy(self.GetKey(key)[1],loc_file)
       self.SetKey(key, (fi_opt, loc_file), keep_previous=False)
+
+
+  def TreatParams(self):
+    if self.process.nick in ('faest','substrdet') and self.process.GetParam('high_res_cutoff') and not self.GetKey('SHEL'):
+      self.SetKey('SHEL', (999., self.process.GetParam('high_res_cutoff')))
 
 
   def DefineOutput(self):

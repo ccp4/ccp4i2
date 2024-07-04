@@ -66,7 +66,7 @@ class pointless_report(Report):
     summaryDiv.addText(text='POINTLESS', style='font-size: 150%;text-align:center')
     if self.fileroot is not None:
       displayFile(self.fileroot, summaryDiv,
-                  ['job_1/log.txt', './log.txt'], 'Show log file',projectid=projectid,jobNumber=jobNumber)
+                  ['./log.txt'], 'Show log file',projectid=projectid,jobNumber=jobNumber)
 
     if extratext is not None:
       summaryDiv.addText(text=extratext,

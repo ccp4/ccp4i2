@@ -39,7 +39,18 @@ class CTaskimport_merged(CTaskWidget):
 
   # -------------------------------------------------------------
   def drawContents(self):
+    #print("Ctaskimport_merged.py drawContents")
 
+    if self.container.inputData.SPACEGROUPCELL.isSet():
+      #print("SPACEGROUPCELL set")
+      #   SPACEGROUPCELL object exists in old cloned jobs only
+      # copy information to separate objects, new style (PRE February 2024)
+      self.container.inputData.UNITCELL.set\
+          (self.container.inputData.SPACEGROUPCELL.cell)
+      self.container.inputData.SPACEGROUP.set\
+          (self.container.inputData.SPACEGROUPCELL.spaceGroup)
+      self.container.inputData.SPACEGROUPCELL.unSet()
+    
     self.openFolder(folderFunction='inputData',followFrom=False)
 
     self.createLine ( [ 'subtitle','Select a merged data file' ] )
@@ -48,7 +59,7 @@ class CTaskimport_merged(CTaskWidget):
     #  Extra information wanted for non-MTZ files
     self.openSubFrame(toggle=[ 'HKLINISMTZ', 'open', [ False ] ] )
     self.createLine ( [ 'subtitle','Enter additional information' ] )
-    self.createLine ( [ 'widget', 'SPACEGROUPCELL' ] )
+    self.createLine ( [  'widget', 'SPACEGROUP', 'widget', 'UNITCELL' ] )
     self.createLine ( [ 'label','Wavelength','widget', 'WAVELENGTH' ] )
     self.createLine ( [ 'label', 'Crystal name','widget','CRYSTALNAME','label', 'Dataset name','widget','DATASETNAME' ] )
 
@@ -108,11 +119,27 @@ class CTaskimport_merged(CTaskWidget):
                      'label', 'Leave input FreeR set unchanged (recommended for STARANISO data (to accommodate default REFMAC behaviour concerning DFc-completion in electron density maps)'],
                     toggleFunction=[self.toggleSkip2, ['FREERFLAG', 'HASFREER', 'STARANISO_DATA']])
 
+    # Parameters for Free R
+    self.openSubFrame(frame=True,
+                      toggle=['COMPLETE', 'open', [True]])
+    self.createLine( ['subtitle','Options for FreeR set extension:  -------'])
+
+    self.createLine( ['advice','If you are extending an existing FreeR set, it must match the observed data in unit cell and Laue group'])
+    self.createLine( ['advice','The unit cells should match to the lower resolution of the two datasets'])
+    self.createLine([
+      'tip','DANGEROUS: only sensible if the unit cells are very similar',
+      'widget', 'OVERRIDE_CELL_DIFFERENCE',
+      'label', 'allow existing freeR set to have different unit cells'])
+    self.createLine(['advice',
+          '<span style="color: DarkOrange;font-weight: bold;">Be sure you know what you are doing: the cells must be very similar even if outside the test limits</span>'])
+    self.closeSubFrame()
+
     # We almost certainly want to keep whatever was set when the data was saved so dont call updateFromFile
     #self.updateFromFile(force=False)
     # Beware connecting to any dataChanged from HKLIN got a signal at run time when dbFileId set on the HKLIN
     self.container.inputData.HKLIN.dataChanged.connect(self.updateFromFile)
-    self.getWidget('SPACEGROUPCELL').validate()
+    # old combination of spacegroup and cell, now separate
+    #self.getWidget('SPACEGROUPCELL').validate()
     ###self.updateFromFile()
 
   # -------------------------------------------------------------
@@ -141,12 +168,12 @@ class CTaskimport_merged(CTaskWidget):
 
 # -------------------------------------------------------------
   def fix(self):
-    # disconnect updateFromFile() cos that and unSetAll() were being called by processing of the  HKLIN file (ef setDbFileId())
+    # disconnect updateFromFile() cos that and unSetAll() were being called by processing of the  HKLIN file (ef setDbFileId()) (maybe not?)
 
     print("\n*** CTaskimport_merge, fix")
     self.container.inputData.HKLIN.dataChanged.disconnect(self.updateFromFile)
     if self.container.guiParameters.HKLINISMTZ:
-      for item in [ 'SPACEGROUPCELL' , 'WAVELENGTH', 'CRYSTALNAME', 'DATASETNAME' ]:
+      for item in [ 'WAVELENGTH', 'CRYSTALNAME', 'DATASETNAME' ]:
         self.container.inputData.get(item).setQualifiers( { 'allowUndefined' : True } )
         self.getWidget(item).validate()
     return CErrorReport()
@@ -192,7 +219,8 @@ class CTaskimport_merged(CTaskWidget):
         if ret == 1:
             # Abort button selected, bail out
             self.container.inputData.HKLIN.unSet()
-            self.container.inputData.SPACEGROUPCELL.unSet()
+            self.container.inputData.UNITCELL.unSet()
+            self.container.inputData.SPACEGROUP.unSet()
             return
         # Open button, continue to try
        
@@ -209,9 +237,9 @@ class CTaskimport_merged(CTaskWidget):
       # Not mmcif
       print('CTaskimport_merged.updateFromFile fileContent',type(fileContent))
       print(fileContent)
-      self.container.inputData.SPACEGROUPCELL.cell.set(fileContent.cell.fix(fileContent.cell.get()))
+      self.container.inputData.UNITCELL.set(fileContent.cell.fix(fileContent.cell.get()))
       if force or fileContent.spaceGroup.isSet():
-        self.container.inputData.SPACEGROUPCELL.spaceGroup.set(fileContent.spaceGroup)
+        self.container.inputData.SPACEGROUP.set(fileContent.spaceGroup)
       #print('***CTaskimport_merged.updateFromFile wavelengths ',fileContent.contents('wavelengths'))
       if fileContent.contents('wavelengths') is not None and fileContent.wavelengths.isSet() and len(fileContent.wavelengths)>0:
         # extract relevant wavelength
@@ -235,7 +263,8 @@ class CTaskimport_merged(CTaskWidget):
         self.container.controlParameters.STARANISO_DATA.set(False)
         self.container.inputData.HASFREER.set(False)
         for column in fileContent.listOfColumns:
-          if 'FREER' in str(column.columnLabel).upper():
+          if 'FREE' in str(column.columnLabel).upper():
+          # if 'FREER' in str(column.columnLabel).upper():
             self.container.inputData.HASFREER.set(True)
           if str(column.columnLabel) == 'SA_flag':
             # Data comes probably from STARANISO
@@ -244,6 +273,7 @@ class CTaskimport_merged(CTaskWidget):
             self.container.controlParameters.SKIP_FREER.set(True)
             self.container.controlParameters.COMPLETE.set(False)
             self.container.inputData.FREERFLAG.unSet()
+            self.container.inputData.HASFREER.unSet()
 
         # MTZ
         self.selectObsColumns()
@@ -356,7 +386,7 @@ class CTaskimport_merged(CTaskWidget):
         else:
           self.container.inputData.DATASETNAME.set(str(mtzModel.fileContent.datasets[idts]))
         self.container.inputData.CRYSTALNAME.set(str(mtzModel.fileContent.crystalNames[idts]))
-        self.container.inputData.SPACEGROUPCELL.cell.set(mtzModel.fileContent.datasetCells[idts])
+        self.container.inputData.UNITCELL.set(mtzModel.fileContent.datasetCells[idts])
         self.getWidget('DATASETNAME').validate()
         self.getWidget('CRYSTALNAME').validate()
 
@@ -373,6 +403,7 @@ class CTaskimport_merged(CTaskWidget):
 
     if self.container.inputData.FREERFLAG.isSet():
       self.container.controlParameters.COMPLETE.set(True)
+      self.container.inputData.HASFREER.set(True)
     else:
       self.container.controlParameters.COMPLETE.set(False)
 
@@ -451,7 +482,8 @@ class CTaskimport_merged(CTaskWidget):
           msgbox.singleButton()
           ret = msgbox.displayText('Cannot import merged file, illegal format')
           self.container.inputData.HKLIN.unSet()
-          self.container.inputData.SPACEGROUPCELL.unSet()
+          self.container.inputData.UNITCELL.unSet()
+          self.container.inputData.SPACEGROUP.unSet()
           return False
       
         self.rblocks = gemmi.as_refln_blocks(self.mmcif)
@@ -595,8 +627,8 @@ class CTaskimport_merged(CTaskWidget):
       print("**extractMmcifInfo", blockname)
       '''
       We want to set:
-      self.container.inputData.SPACEGROUPCELL.cell
-      self.container.inputData.SPACEGROUPCELL.spaceGroup
+      self.container.inputData.UNITCELL
+      self.container.inputData.SPACEGROUP
       self.container.inputData.WAVELENGTH.
       self.container.inputData.DATASETNAME
       self.container.inputData.CRYSTALNAME
@@ -629,9 +661,9 @@ class CTaskimport_merged(CTaskWidget):
       #print("*Rwvl:",cifinfo.wavelength)
 
       rc = cifinfo.cell
-      self.container.inputData.SPACEGROUPCELL.cell.set(rc)
+      self.container.inputData.UNITCELL.set(rc)
 
-      self.container.inputData.SPACEGROUPCELL.spaceGroup.set(cifinfo.spacegroup_name)
+      self.container.inputData.SPACEGROUP.set(cifinfo.spacegroup_name)
       self.container.inputData.WAVELENGTH.set(cifinfo.wavelength)
 
       self.container.inputData.DATASETNAME.set(blockname)

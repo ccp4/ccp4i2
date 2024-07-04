@@ -1040,6 +1040,30 @@ CCP4GraphPlot.prototype.loadXML = function(graphObject,root,tables) {
                 options["showlegend"]=true;
             }
 
+            // Added by Martin Maly
+            var legendx = null;
+            var legendy = null;
+            options["legendposition"] = null;
+            try {
+                legendx = plot.getElementsByTagName("legendposition")[0].getAttributeNode("x").nodeValue;
+                legendy = plot.getElementsByTagName("legendposition")[0].getAttributeNode("y").nodeValue;
+                if(legendx==0){
+                    if(legendy==0){
+                        options["legendposition"]="sw";
+                    } else if(legendy==1){
+                    options["legendposition"]="nw";
+                    }
+                } else if(legendx==1){
+                    if(legendy==0){
+                        options["legendposition"]="se";
+                    } else if(legendy==1){
+                    options["legendposition"]="ne";
+                    } 
+                }
+            } catch(err) {
+                options["legendposition"]=null;
+            }
+
             var fixaspectratio = null;
             try {
                 fixaspectratio = plot.getElementsByTagName("fixaspectratio")[0].childNodes[0].nodeValue;
@@ -2183,6 +2207,9 @@ CCP4GraphPlot.prototype.plot = function() {
             if(options["showlegend"]===false){
                 legend = {show:false};
             }
+            if(options["legendposition"]!==null){
+                legend = {position: options["legendposition"]};
+            }
             if(ib<bs.length-1){
                 var xaxes = [xax[ib]];
                 if(options["xscale"]==="oneoversqrt"){
@@ -2462,7 +2489,9 @@ CCP4GraphPlot.prototype.plot = function() {
         if(options["showlegend"]===false){
             legend = {show:false};
         }
-
+        if(options["legendposition"]!==null){
+            legend = {position: options["legendposition"]};
+        }
         if(options["fixaspectratio"]===true){
             var h = parseInt($(divTop).height());
             var w = parseInt($(divTop).width());

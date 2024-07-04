@@ -308,14 +308,22 @@ class crank(process):
                 dtype,idt = self.GuessDtype(dn,xname,atomtype,wl)
                 model_to_fix.SetAtomType( atomtype, *(crossec.GetStat('anom_scat_coef',atomtype)[i]), dname=dn, guessed_dtype=dtype )
                 fp,fpp,d,a = model_to_fix.Getfpfpp(atomtype,dn)
-                if atomtype.upper()=='SE' and dtype in ('infl','inflection') and fpp and fpp<1.0: # workaround for crossec providing wrong values for SE inflection point
-                  model_to_fix.SetAtomType( atomtype, fp=-9.0, fpp=2.0, dname=dn, guessed_dtype=dtype )
-                  self.Info("Using f''=2 for SE inflection point.")
                 if atomtype.upper()=='SE' and dtype == 'peak' and fpp and fpp<1.5: # workaround for crossec providing wrong values for SE peak if wavelength is at the edge
                   model_to_fix.SetAtomType( atomtype, fp=-8.0, fpp=4.0, dname=dn, guessed_dtype=dtype )
-                  self.Info("Using f''=4 for SE peak.")
+                  self.Info("Will use f''=4 for SE peak.")
+                elif atomtype.upper()=='SE' and dtype in ('infl','inflection') and fpp and fpp<1.0: # workaround for crossec providing wrong values for SE inflection point
+                  model_to_fix.SetAtomType( atomtype, fp=-9.0, fpp=2.0, dname=dn, guessed_dtype=dtype )
+                  self.Info("Will use f''=2 for SE inflection point.")
+                elif [p for p in self.GetFlatSubTree() if p.nick in ('refatompick','comb_phdmmb')]:  # adjust for SAD - numberical reasons (too small fpp may lead to refmac crashes but also in general, it's hardly possible to solve by SAD otherwise)
+                  if atomtype.upper()=='SE' and fpp and fpp<1.0:
+                    model_to_fix.SetAtomType( atomtype, fp=fp, fpp=1.0, dname=dn, guessed_dtype=dtype )
+                    self.Info("Will use f''=1")
+                  elif fpp and fpp<0.5:
+                    model_to_fix.SetAtomType( atomtype, fp=fp, fpp=0.5, dname=dn, guessed_dtype=dtype )
+                    self.Info("Will use f''=0.5")
+              self.Info("Determined f'={} and f''={} for data {}".format(fp,fpp,d))
           self.programs.remove(crossec)
-      ok=False if models_to_fix and [p for p in self.GetFlatSubTree() if p.nick in ('phas','refatompick','comb_phdmmb')] else True
+      ok=False if models_to_fix and [p for p in self.GetFlatSubTree() if p.nick in ('refatompick','comb_phdmmb')] else True
       for model_to_fix in models_to_fix:  # report an issue if we have no fp,fpp for the SAD function
         if not ok:
           for at in model_to_fix.GetAtomTypes():
@@ -432,7 +440,7 @@ class crank(process):
     if objs:
       for i,f in enumerate(objs):
         sft=self.AddProg('sftools')
-        sft.SetKey('read "{0}"'.format(f))
+        sft.SetKey('read ("{0}", "\nY")'.format(f))
         sft.SetKey('quit\nY')
         sft.Run()
         if sft.GetStat('zero_sigma',accept_none=True):
@@ -443,6 +451,10 @@ class crank(process):
           sft.SetKey('write', outmtz, insert_index=-1)
           sft.Run()
         self.programs.remove(sft)
+    # check for an empty sequence
+    if self.inp.Get('sequence') and not self.inp.Get('sequence').GetSequenceString():
+      common.Error('Check the input sequence file - it appears to be empty.')
+
 
   def SetTargetDefault(self, proc, emulate=False):
     # exclude processes that never need/support targets first
@@ -658,6 +670,7 @@ class crank(process):
 #          p_run.programs.remove(sft)
 
         orig_i = [copy.deepcopy(o),]
+        om,oa=None,None
         if o.GetType()=='plus':
           om = p_run.inp.Get('fsigf',typ='minus',col='i',xname=o.GetCrystalName(),dname=o.GetDataName(),filetype='mtz')
           oa = p_run.inp.Get('fsigf',typ='average',col='i',xname=o.GetCrystalName(),dname=o.GetDataName(),filetype='mtz')
@@ -673,7 +686,9 @@ class crank(process):
           if hasattr(sys,'exc_clear'): sys.exc_clear()
           ctrun.out.ClearAll()
           trun=p_run.AddProg('truncate',propagate_out=False)
-          trun.inp.Set(orig_i)
+          trun.inp.Set(o)
+          if om: trun.inp.Add(om)
+          if oa: trun.inp.Add(oa)
           trun.runname+='_'+str(num)
           trun.outfilename['mtz'] = o_base+'_'+trun.name[:3]+str(num)+'.mtz'
           self.Info('{0} failed with error message: {1}'.format(ctrun.name,e))
@@ -844,7 +859,7 @@ class crank(process):
         shutil.copy(outpdb.GetFileName(), self.xyzout)
       outpdb=self.run.out.Get(filetype='pdb',typ='substr')
       if outpdb and hasattr(self,'xyzsubout') and outpdb.GetFileName()!=self.xyzsubout:
-        shutil.copy(outpdb.GetFileName(), self.xyzsubout)
+        shutil.copy(outpdb.GetFileName('pdb'), self.xyzsubout)
       process.RunPostprocess(self,restore)
     self.Verdict()
     if hasattr(self,'logout'):

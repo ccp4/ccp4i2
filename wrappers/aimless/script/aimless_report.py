@@ -736,8 +736,7 @@ class aimless_report(Report):
     return list
 
   # - - - - - - - - - - - - - - - - -
-  def AddToTable(self, parent=None, \
-                 datasetresultnodes="",\
+  def AddToTable(self, datasetresultnodes="",\
                  table="", label="", tag="", tip=""):
     data = []
     ndts = len(datasetresultnodes)
@@ -837,7 +836,7 @@ class aimless_report(Report):
       parent.append("Summary of merging statistics for dataset "+"<br/>"+datasetname)
     else:
       parent.append("Summary of merging statistics for multiple datasets")
-      #print "self.datasetlabellist", self.datasetlabellist
+      #print("self.datasetlabellist", self.datasetlabellist)
       datasettext = "Datasets: "
       jset = int(0)
       notfirst = False
@@ -852,7 +851,7 @@ class aimless_report(Report):
         numbers.extend([str(jset), str(jset), str(jset)])
         datasetnumberlist.extend(numbers)
       
-      #print "datasettext", datasettext
+      #print("datasettext", datasettext)
       parent.append(datasettext)
 
     table = parent.addTable(select="Result", transpose=True,
@@ -872,18 +871,24 @@ class aimless_report(Report):
     taglist = \
         [["Low resolution limit", "ResolutionLow",""],
          ["High resolution limit", "ResolutionHigh",""],
-         ["Rmerge(within I+/I-)*", "Rmerge",
-          '\u2211 \u2211 | Ihl - <Ih> |/ \u2211  <Ih>'],
-         ["Rmerge(all I+ and I-)*", "RmergeOverall",
-          '\u2211 \u2211 | Ihl - <Ih> |/ \u2211  <Ih>'],
-         ["Rmeas (within I+/I-)*", "Rmeas",
-          '\u2211 \u2211 \u221A(n/n-1) | Ihl - <Ih> |/ \u2211  <Ih>'],
-         ["Rmeas (all I+ & I-)*", "RmeasOverall",
-          '\u2211 \u2211 \u221A(n/n-1) | Ihl - <Ih> |/ \u2211  <Ih>'],
-         ["Rpim (within I+/I-)", "Rpim",
-          '\u2211 \u2211 \u221A(1/n-1) | Ihl - <Ih> |/ \u2211  <Ih>'],
-         ["Rpim (all I+ & I-)", "RpimOverall",
-          '\u2211 \u2211 \u221A(1/n-1) | Ihl - <Ih> |/ \u2211  <Ih>'],
+#         ["Rmerge(within I+/I-)*", "Rmerge",
+#          '\u2211 \u2211 | Ihl - <Ih> |/ \u2211  <Ih>'],
+#         ["Rmerge(all I+ and I-)*", "RmergeOverall",
+#          '\u2211 \u2211 | Ihl - <Ih> |/ \u2211  <Ih>'],
+#         ["Rmeas (within I+/I-)*", "Rmeas",
+#          '\u2211 \u2211 \u221A(n/n-1) | Ihl - <Ih> |/ \u2211  <Ih>'],
+#         ["Rmeas (all I+ & I-)*", "RmeasOverall",
+#          '\u2211 \u2211 \u221A(n/n-1) | Ihl - <Ih> |/ \u2211  <Ih>'],
+#         ["Rpim (within I+/I-)", "Rpim",
+#          '\u2211 \u2211 \u221A(1/n-1) | Ihl - <Ih> |/ \u2211  <Ih>'],
+#         ["Rpim (all I+ & I-)", "RpimOverall",
+#          '\u2211 \u2211 \u221A(1/n-1) | Ihl - <Ih> |/ \u2211  <Ih>'],
+         ["Rmerge(within I+/I-)*", "Rmerge", ''],
+         ["Rmerge(all I+ and I-)*", "RmergeOverall", ''],
+         ["Rmeas (within I+/I-)*", "Rmeas", ''],
+         ["Rmeas (all I+ & I-)*", "RmeasOverall", ''],
+         ["Rpim (within I+/I-)", "Rpim", ''],
+         ["Rpim (all I+ & I-)", "RpimOverall",  ''],
          ["Rmerge in top intensity bin*", "RmergeTopI",''],
          ["Number of observations", "NumberObservations",''],
          ["Number unique", "NumberReflections",''],
@@ -894,7 +899,7 @@ class aimless_report(Report):
          ["Filtered Mean(chi^2)", "MeanChiSq",'']]
 
     for label, tag, tip in taglist:
-      self.AddToTable(parent, datasetresultnodes=self.datasetresultnodes, \
+      self.AddToTable(datasetresultnodes=self.datasetresultnodes, \
                       table=table, label=label, tag=tag, tip=tip)
 
     # extra items if present
@@ -919,7 +924,7 @@ class aimless_report(Report):
          ["Mid-Slope of Anom Probability", "AnomalousNPslope",'']]
 
     for label, tag, tip in taglist:
-      self.AddToTable(parent, datasetresultnodes=self.datasetresultnodes, \
+      self.AddToTable(datasetresultnodes=self.datasetresultnodes, \
                       table=table, label=label, tag=tag, tip=tip)
 
     if len(self.xmlnode.findall("AnomalousStatus"))>0:
@@ -996,7 +1001,7 @@ class aimless_report(Report):
          ["Completeness %", "Completeness",'']]
 
     for label, tag, tip in taglist:
-      self.AddToTable(parent, datasetresultnodes=self.datasetresultnodes, \
+      self.AddToTable(datasetresultnodes=self.datasetresultnodes, \
                       table=table, label=label, tag=tag, tip=tip)
 
     # extra items if present
@@ -1018,7 +1023,7 @@ class aimless_report(Report):
          ["Mid-Slope of Anom Probability", "AnomalousNPslope",'']]
 
       for label, tag, tip in taglist:
-        self.AddToTable(parent, datasetresultnodes=self.datasetresultnodes, \
+        self.AddToTable(datasetresultnodes=self.datasetresultnodes, \
                         table=table, label=label, tag=tag, tip=tip)
 
     parent.append('Note that CC(1/2) is derived from correlating I+ and I-')
@@ -1307,9 +1312,8 @@ class aimless_report(Report):
         datasetnames.append(dataset.findall("[@name]")[0].attrib["name"])
         runnumbers.append(run.findall("number")[0].text)
         batchranges.append(run.findall("BatchRange")[0].text)
-        ebNodes = run.findall("ExcludedBatches")
-        if len(ebNodes) > 0: 
-          excludedbatches.append([0].text)
+        if len(run.findall("ExcludedBatches"))>0:
+            excludedbatches.append(run.findall("ExcludedBatches")[0].text)
         
     table2.addData(title="DatasetName", data=datasetnames)
     table2.addData(title="RunNumber", data=runnumbers)

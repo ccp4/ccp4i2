@@ -28,16 +28,21 @@ export CCP4 CCP4I2 PYTHONSTARTUP
 # LIBTBX_BUILD is used in cctbx to find libtbx_env file (pickle)
 if test -d $CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.7/cctbx; then
   LIBTBX_BUILD=$CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.7/cctbx
-elif test -d $CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.9/site-packages/ccp4i2; then
-  CCP4I2=$CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.9/site-packages/ccp4i2
+elif test -d $CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.9/cctbx; then
+  LIBTBX_BUILD=$CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.9/cctbx
+elif test -d $CCP4/Frameworks/Python.framework/Versions/3.9/share/cctbx; then
+  LIBTBX_BUILD=$CCP4/Frameworks/Python.framework/Versions/3.9/share/cctbx
 elif test -d $CCP4/lib/python3.7/cctbx; then
   LIBTBX_BUILD=$CCP4/lib/python3.7/cctbx
 elif test -d $CCP4/lib/python3.9/cctbx; then
   LIBTBX_BUILD=$CCP4/lib/python3.9/cctbx
 elif test -d $CCP4/lib/cctbx; then
   LIBTBX_BUILD=$CCP4/lib/cctbx
+elif test -d $CCP4/lib/python3.9/site-packages/cctbx; then
+  LIBTBX_BUILD=$CCP4/lib/python3.9/site-packages/cctbx
 else
-  CCP4I2=`python -c "import sysconfig; print(sysconfig.get_path('purelib'))"`
+#I do not understand this else, but I am leaving it for the moment as we should not get here. SJM 27/11/2023
+  LIBTBX_BUILD=`python -c "import sysconfig; print(sysconfig.get_path('purelib'))"`
 fi
 export LIBTBX_BUILD
 

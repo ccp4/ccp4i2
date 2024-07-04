@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-import os
+import sys,os
 import textwrap
 import lxml
 
@@ -23,7 +23,9 @@ class coot_rsr_morph(CPluginScript):
     def makeCommandAndScript(self):
         pdb_path = self.container.inputData.XYZIN.fullPath.__str__()
         mtz_path = self.container.inputData.FPHIIN.fullPath.__str__()
-        out_path = self.container.outputData.XYZOUT.__str__()
+        out_path = os.path.normpath(self.container.outputData.XYZOUT.__str__())
+        if sys.platform.startswith("win"):
+            out_path = out_path.replace("\\","\\\\")
         local_radius = self.container.controlParameters.LOCAL_RADIUS
         gm_alpha = self.container.controlParameters.GM_ALPHA
         blur_b_factor = self.container.controlParameters.BLUR_B_FACTOR

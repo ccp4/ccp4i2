@@ -64,8 +64,10 @@ class xia2_dials_gui(CTaskWidget):
 
         self.connectDataChanged("IMAGE_FILE", self.handleImageFile)
         self.connectDataChanged("IMAGE_DIRECTORY", self.handleImageDirectory)
+        self.connectDataChanged("dials__index__method", self.handleIndexMethod)
         self.handleImageFile()
         self.handleImageDirectory()
+        self.handleIndexMethod()
 
         return
 
@@ -87,6 +89,17 @@ class xia2_dials_gui(CTaskWidget):
         else:
             self.container.inputData.IMAGE_FILE.setQualifiers({"listMinLength": 1})
         self.getWidget("IMAGE_FILE").validate()
+
+    @QtCore.Slot()
+    def handleIndexMethod(self):
+        try:
+            unit_cell_required = str(self.container.controlParameters.dials.dials__index.dials__index__method) == "real_space_grid_search"
+        except:
+            #Default option of index method fft3d. We can get here in xia2_xds
+            unit_cell_required = False
+        self.container.controlParameters.xia2.xia2__settings.xia2__settings__unit_cell.setQualifiers({'allowUndefined':(not unit_cell_required)})
+        self.getWidget("xia2__settings__unit_cell").validate()
+
 
     def drawAdvanced(self):
         self.nestedAutoGenerate(

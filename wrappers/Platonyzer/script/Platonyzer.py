@@ -39,12 +39,13 @@ class Platonyzer(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def makeCommandAndScript(self,**kw):
-        self.appendCommandLine([self.container.inputData.XYZIN.__str__()])
-        self.appendCommandLine(['-o',self.container.outputData.XYZOUT.__str__()])
         if self.container.controlParameters.MODE.__str__() == 'NA_MG':
            self.appendCommandLine(['--create-na-mg-links'])
            if self.container.controlParameters.RM_VDW:
               self.appendCommandLine(['--delete-vdw-rest'])
+        self.appendCommandLine([self.container.inputData.XYZIN.__str__()])
+        self.appendCommandLine([self.container.outputData.XYZOUT.__str__()])
+
         return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):

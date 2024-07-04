@@ -79,9 +79,9 @@ else:
     try:
         istr = open(os.path.join(os.environ['CCP4'], 'lib', 'ccp4', 'MAJOR_MINOR'))
         running_version = istr.read().strip()
-
+        istr.close()
     except:
-        running_version = '7.0.000'
+        running_version = '9.0.000'
 
 def get_revno():
     numeric = ''.join(running_version.split('.'))

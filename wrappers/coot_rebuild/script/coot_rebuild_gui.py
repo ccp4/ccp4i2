@@ -36,7 +36,7 @@ class Ccoot_rebuild(CTaskWidget):
     self.createLine( [ 'widget', 'FPHIIN_LIST' ] )
     self.createLine( [ 'subtitle', 'Difference density maps' ] )
     self.createLine( [ 'widget', 'DELFPHIIN_LIST' ] )
-    self.createLine( [ 'subtitle', 'Anamolous difference density maps' ] )
+    self.createLine( [ 'subtitle', 'Anomalous difference density maps' ] )
     self.createLine( [ 'widget', 'DELFPHIINANOM_LIST' ] )
     self.createLine( [ 'subtitle', 'Additional data' ] )
     self.createLine( [ 'widget', 'DICT' ] )

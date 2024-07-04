@@ -104,7 +104,7 @@ class import_serial(CPluginScript):
         print("import_serial: processOutputFiles start")
         self.container.outputData.HKLOUT.setFullPath(os.path.join(self.getWorkDirectory(), "project_dataset.mtz"))
         self.container.outputData.HKLOUT.setAnnotation("Merged intensities")
-        self.container.outputData.HKLOUT.contentFlag = CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR
+        self.container.outputData.HKLOUT.contentFlag = CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN # not sure if does anything
 
         # Save xml
         #xmlfile = open(self.xmlout, 'wb')

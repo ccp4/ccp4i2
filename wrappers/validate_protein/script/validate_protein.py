@@ -55,7 +55,7 @@ from iris_validation.metrics import metrics_model_series_from_files
 class validate_protein(CPluginScript):
     TASKNAME = 'validate_protein'
     WHATNEXT = [ 'coot_rebuild' ]
-    MAINTAINER = 'ak2535@york.ac.uk'
+    MAINTAINER = 'jon.agirre@york.ac.uk'
 
     def process(self):
         log_string = ''

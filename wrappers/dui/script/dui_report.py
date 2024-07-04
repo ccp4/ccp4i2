@@ -33,7 +33,7 @@ class dui_report(Report):
             useDialsDir = os.path.join(self.jobInfo['fileroot'], "dui_files")
         self.ReadDuiFileListFromJson(useDialsDir)
         projectid = self.jobInfo.get("projectid", None)
-        for mfile in self.DUI_Outputlist.items():
+        for mfile in self.DUI_Outputlist:
             # mfile[0] is the mtz file path, [1] the html report.
             rfilepath = mfile[1].get('report') # is the dict.
             jobNumber = os.path.basename(os.path.dirname(rfilepath))[4:]

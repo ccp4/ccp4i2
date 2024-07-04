@@ -55,8 +55,8 @@ class phas(process):
 
   def PrintActualLogGraph(self, finished=False):
     if finished:
-      result = "Mean figure of merit (all reflections) is {0}".format(self.GetProg().GetStat('fom'))
-      self.report_fom = self.GetProg().GetStat('fom')
+      result = "Mean figure of merit (all reflections) is {0}".format(self.GetProg().GetStat('fom')[-1])
+      self.report_fom = self.GetProg().GetStat('fom')[-1]
     if self.opened_loggraph:
       self.GetLogGraphHandle().seek(0,0)
       self.LGInfo(self.GetCCP4Header())
@@ -71,7 +71,7 @@ class phas(process):
         self.rv_report.Text('<BR><i><small>Result:</small></i>')
         button=crvapi.init_meta["help_btn_template"].replace('.html','.html#term-what-is-fom') if "help_btn_template" in crvapi.init_meta else ""
         self.rv_report.Text('&emsp;'+result.replace("merit ","merit "+button+" "))
-        conclusion='&emsp;The value of FOM indicates the phases may be weak but could be still sufficient for structure solution.'
+        conclusion='&emsp;The value of FOM indicates the phases may be weaker but could be still sufficient for structure solution.'
         if self.report_fom<0.15:
           conclusion='&emsp;Judging from the value of FOM, the phases are weak or wrong.'
         if self.report_fom>0.3:
@@ -88,7 +88,7 @@ class phas(process):
 
   def RunBody(self,*args,**kwargs):
     self.GetProg().Run()
-    self.Info( "Mean phasing figure of merit (all reflections) is {0}".format(self.GetProg().GetStat('fom')) )
+    self.Info( "Mean phasing figure of merit (all reflections) is {0}".format(self.GetProg().GetStat('fom')[-1]) )
     self.PrintActualLogGraph(finished=True)
 
   def RunPostprocess(self,restore=True,*args,**kwargs):

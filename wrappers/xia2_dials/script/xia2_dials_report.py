@@ -39,7 +39,6 @@ class xia2_dials_report(Report):
             parent = self
         self.addDiv(style="clear:both;")  # gives space for the title
         xia2TxtNode = self.xmlnode.findall("Xia2Txt")[0]
-        xia2ErrorNode = self.xmlnode.findall("Xia2Error")[0]
         xia2html = os.path.normpath(os.path.join(self.jobInfo["fileroot"], "xia2.html"))
         if os.path.exists(xia2html):
             projectid = self.jobInfo.get("projectid", None)
@@ -57,7 +56,8 @@ class xia2_dials_report(Report):
                 "following link to display the xia2.html report </span>"
             )
             xia2HtmlFold.append('<a href="{0}">Open Results</a>'.format(xia2url))
-        if xia2ErrorNode is not None:
+        if len(self.xmlnode.findall("Xia2Error"))>0:
+            xia2ErrorNode = self.xmlnode.findall("Xia2Error")[0]
             parent.addText(
                 style="font-size:125%;color:red;", text="xia2 exited with an error"
             )

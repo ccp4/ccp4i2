@@ -15,8 +15,8 @@ class pointless_reindexToMatch_gui(CTaskWidget):
     
     # Subclass CTaskWidget to give specific task window
     TASKMODULE=['expt_data_utility']
-    TASKTITLE='Reindex or  change spacegroup'
-    DESCRIPTION = '''Reindex: match to reference data/coordinates and/or change space group of reflections, FreeR; or analyse symmetry (Pointless)'''
+    TASKTITLE='Reindex reflections or change spacegroup'
+    DESCRIPTION = 'Reindex: match to reference data/coordinates; change space group; analyse symmetry; or expand to P1 (Pointless)'
     TASKNAME = 'pointless_reindexToMatch'
     TASKVERSION = 0.1
     RANK = 2
@@ -39,11 +39,16 @@ class pointless_reindexToMatch_gui(CTaskWidget):
         self.createLine(['spacing',5,
                          'label','Define new indexing and spacegroup using',
                          'widget','REFERENCE'],
-                        toggle=['REFERENCE','closed',['ANALYSE']])
+                        toggle=['REFERENCE','closed',['ANALYSE','EXPAND']])
         self.createLine(['spacing',5,
                          'label','Analyse data symmetry',
                          'widget','REFERENCE'],
                         toggle=['REFERENCE','open',['ANALYSE']])
+
+        self.createLine(['spacing',5,
+                         'label','Expand to space group P1',
+                         'widget','REFERENCE'],
+                        toggle=['REFERENCE','open',['EXPAND']])
 
         self.createLine(['widget','HKLIN_FOBS_REF'],toggle=['REFERENCE','open',['HKLIN_FOBS_REF']])
         self.createLine(['widget','HKLIN_FC_REF'],toggle=['REFERENCE','open',['HKLIN_FC_REF']])

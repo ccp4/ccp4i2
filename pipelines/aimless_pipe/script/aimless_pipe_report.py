@@ -108,8 +108,13 @@ class aimless_pipe_report(Report):
     havePhaserReport = self.phaseranalysisxml is not None
     
     #  5) CTRUNCATE
-    ctruncatexmlsnode = self.xmlnode.findall("CTRUNCATES")[0]
-    haveCtruncateReport = (ctruncatexmlsnode != None) and (len(ctruncatexmlsnode) > 0)
+    ctruncatexmlsnode = self.xmlnode.findall("CTRUNCATES")
+    if len(ctruncatexmlsnode) == 0:
+      haveCtruncateReport = False
+      ctruncatexmlsnode = None
+    else:
+      ctruncatexmlsnode = self.xmlnode.findall("CTRUNCATES")[0]
+      haveCtruncateReport = True
 
     # Empty XML file
     if not havePointlessReport and not haveAimlessReport and not haveCtruncateReport:
@@ -289,8 +294,9 @@ class aimless_pipe_report(Report):
                                 phasertncs=self.phasertNCS,
                                 phasertwin=self.phaserTwin)
 
-    freerxml = self.xmlnode.findall('FREERFLAG')[0]
-    if freerxml != None:
+    freerxml = self.xmlnode.findall('FREERFLAG')
+    if len(freerxml) > 0:
+      freerxml = freerxml[0]
       self.addFreerReports(freerxml, summaryfold)
 
     if self.phaserErrorMessage is not None:
@@ -513,7 +519,6 @@ class aimless_pipe_report(Report):
     s = ""
     if self.autocutoffnode is not None:
       acdone = self.autocutoffnode.findall('Cutoff')[0].text
-      acmessage = self.autocutoffnode.findall('Message')[0].text
 
       cutoffdatasets = self.autocutoffnode.findall('Dataset')
       ndatasets = len(cutoffdatasets)

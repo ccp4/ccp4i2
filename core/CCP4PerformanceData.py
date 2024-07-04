@@ -31,7 +31,7 @@ from core.CCP4ErrorHandling import *
 def performanceIndicatorClasses():
   # This is used by CCP4DbApi.getJobPerformance (and perhaps other methods) to get the
   # appropriate classes from  XData table
-  return "('CPerformanceIndicator','CRefinementPerformance','CModelBuildPerformance','CDataReductionPerformance','CTestObsConversionsPerformance','CExpPhasPerformance','CPhaseErrorPerformance','CAtomCountPerformance','CPairefPerformance')"
+  return "('CPerformanceIndicator','CRefinementPerformance','CModelBuildPerformance','CDataReductionPerformance','CDataReductionCCPerformance','CTestObsConversionsPerformance','CExpPhasPerformance','CPhaseErrorPerformance','CAtomCountPerformance','CPairefPerformance')"
 
 #  ***************  new performance classes also need the keytype to be registered with the database **************************
 #   See the definition of KEYTYPELIST in dbapi/CCP4DbApi.py
@@ -220,7 +220,35 @@ class CDataReductionPerformance(CPerformanceIndicator):
   
   def assertSame(self,other,diagnostic=False):
     return CPerformanceIndicator.assertSame(self,other,[['rMeas',0.01,-1],['highResLimit',0.01,0],['spaceGroup','',0]],diagnostic=diagnostic)
+
+
+class CDataReductionCCPerformance(CPerformanceIndicator):
+  CONTENTS_ORDER = [ 'spaceGroup', 'highResLimit', 'ccHalf' ]
+  CONTENTS = { 'spaceGroup' : { 'class' : CCP4XtalData.CSpaceGroup },
+               'highResLimit' : { 'class' : CCP4Data.CFloat, 'qualifiers' : { 'min' : 0.0 } },
+                'ccHalf' :  { 'class' : CCP4Data.CFloat }
+                }
+
+  def __str__(self):
+    text = ''
+    if self.__dict__['_value']['spaceGroup'].isSet(): text += 'Sgp='+str(self.__dict__['_value']['spaceGroup']) 
+    if self.__dict__['_value']['highResLimit'].isSet():  text += ' res=' +  format(self.__dict__['_value']['highResLimit'],'.2f')
+    if self.__dict__['_value']['ccHalf'].isSet():  text += ' CC1/2=' + format(self.__dict__['_value']['ccHalf'],'.3f')
+    return text
+
+
+  def saveToDb(self):
+    ret = { }
+    if self.__dict__['_value']['spaceGroup'].isSet(): ret['spaceGroup'] = str(self.__dict__['_value']['spaceGroup'])
+    if self.__dict__['_value']['highResLimit'].isSet(): ret['highResLimit'] = self.highResLimit.__float__()
+    if self.__dict__['_value']['ccHalf'].isSet(): ret['ccHalf'] = self.ccHalf.__float__() 
+    #print 'CDataReductionPerformance.saveToDb',ret
+    return  [],None,ret
   
+  def assertSame(self,other,diagnostic=False):
+    return CPerformanceIndicator.assertSame(self,other,[['ccHalf',0.01,-1],['highResLimit',0.01,0],['spaceGroup','',0]],diagnostic=diagnostic)
+
+
 class CAtomCountPerformance(CPerformanceIndicator):
   # Trivial performance test for chainsaw/sculptor for use in project-based-testing
   CONTENTS_ORDER = [ 'nAtoms', 'nResidues']

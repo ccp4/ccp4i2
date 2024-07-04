@@ -26,7 +26,7 @@ class dmfull(process):
   supported_params['threshold_stop'] = par( desc='Stop earlier if this FOM threshold is reached', typ=(float,bool) )
   supported_params['handdet'] = par( desc='Run with both hands (not set by default unless prev.steps failed to determine hand)', typ=bool )
   supported_params['solvent_perturb'] = par( desc='Use solvent perturbation by the specified solvent fraction difference', typ=(float,bool), share=True )
-  supported_params['map_segmentation'] = par( desc='Use map solvent segmentation from deep learning', typ=bool )
+  supported_params['map_segmentation'] = par( desc='Use map solvent segmentation from deep learning', typ=bool, share=True )
 
 
   def Init(self):
@@ -39,6 +39,8 @@ class dmfull(process):
     self.guess=None
     self.ph=None
     self.dm=None
+    self.dmcyc_base=25
+    self.ncs_opers,self.ncs_oper_correls,self.ncs_cyc=[],[],-1
 
   def TreatInOutPar(self, set_all_par=False):
     # defaults if no programs and no subprocesses are specified
@@ -72,15 +74,10 @@ class dmfull(process):
           if solv_obj:
             solv_cont=solv_obj.solvent_content
       if self.GetParam('dmcyc') is None:
-        self.SetParam('dmcyc',25)
+        self.SetParam('dmcyc',self.dmcyc_base)
         if self.GetParam('target') in ('MLHL','MAD'):
           self.SetParam('dmcyc',15)
-        if solv_cont and solv_cont<0.45:
-          self.SetParam('dmcyc',int(self.GetParam('dmcyc')*4/5))
-        if solv_cont and solv_cont<0.4:
-          self.SetParam('dmcyc',int(self.GetParam('dmcyc')*4/5))
-        if solv_cont and solv_cont<0.35:
-          self.SetParam('dmcyc',int(self.GetParam('dmcyc')*4/5))
+        self.SetDMcycSolv(solv_cont)  # this can change with mapseg after its solv. det.
         if self.parent_process and self.parent_process.nick=='handdet':
           self.SetParam('dmcyc',10)
       # bias estimation parameters
@@ -115,9 +112,9 @@ class dmfull(process):
       if self.GetParam('threshold_stop') is None:
         self.SetParam('threshold_stop', 0.56)
       if self.GetParam('solvent_perturb') is None:
-        if self.GetParam('map_segmentation'):
-          self.SetParam('solvent_perturb', 0.0)
-        elif solv_cont:
+        #if self.GetParam('map_segmentation'):
+        #  self.SetParam('solvent_perturb', 0.0)
+        #elif solv_cont:
           self.SetParam('solvent_perturb', 0.05)#-0.1*abs(solv_cont-0.5))
       self.ph.TreatInOutPar(set_all_par)
       self.dm.TreatInOutPar(set_all_par)
@@ -125,6 +122,14 @@ class dmfull(process):
       #self.dm.GetProg().keep_nodata=True
     process.TreatInOutPar(self,set_all_par)
 
+  def SetDMcycSolv(self,solv_cont):
+    self.SetParam('dmcyc',int(self.dmcyc_base))
+    if solv_cont and solv_cont<0.45:
+      self.SetParam('dmcyc',int(self.GetParam('dmcyc')*4/5))
+    if solv_cont and solv_cont<0.4:
+      self.SetParam('dmcyc',int(self.GetParam('dmcyc')*4/5))
+    if solv_cont and solv_cont<0.35:
+      self.SetParam('dmcyc',int(self.GetParam('dmcyc')*4/5))
 
   def RunBody(self,*args,**kwargs):
     # if program is to be run directly (eg "original" parrot, shelxe)
@@ -155,6 +160,7 @@ class dmfull(process):
           if hasattr(self,'ccp4i2job'):  i2job,self.ccp4i2job=self.ccp4i2job,None
           logfh,parent=self.logfilehandle,self.parent_process
           self.logfilehandle,self.parent_process=None,None
+        #import multiprocessing
         manager = multiprocessing.Manager()
         queue = manager.Queue()
         dm_hand,self.dmf=[],[]
@@ -321,22 +327,36 @@ class dmfull(process):
         comb.SetParam('solventmask_radius', self.dm.GetProg(supported=True).GetKey('solvent-mask-filter-radius'))
       if self.GetParam('handdet') and self.dmf[0].dm.GetProg(supported=True).GetKey('solvent-mask-filter-radius') and self.dmf[1].dm.GetProg(supported=True).GetKey('solvent-mask-filter-radius'):
         comb.SetParam('solventmask_radius', min(self.dmf[0].dm.GetProg(supported=True).GetKey('solvent-mask-filter-radius'), self.dmf[1].dm.GetProg(supported=True).GetKey('solvent-mask-filter-radius')))
+    # take determined solvent cont. to comb
+      if self.GetParam('map_segmentation'):
+        if self.GetParam('handdet') and self.dmf[0].GetParam('solvent_content') and self.dmf[1].GetParam('solvent_content'):
+          comb.SetParam('solvent_content', min(self.dmf[0].GetParam('solvent_content'), self.dmf[1].GetParam('solvent_content')))
+        else:
+          comb.SetParam('solvent_content',self.GetParam('solvent_content'))
     #self.MergeBiasedPhases()
     self.guess=1
     if self.ph and self.ph.fom_all and self.ph.fom_all[-1]<0.35:
       self.guess=0
     elif self.ph and self.ph.fom_all and self.ph.fom_all[-1]<0.5:
       self.guess=2
+    mapseg=self.GetProcess('segmentmap')
+    if mapseg:
+      self.processes.remove(mapseg)  # useful for comb - the s.cont. will be estimated again after the next building
     process.RunPostprocess(self,restore,*args,**kwargs)
 
   def PrintActualLogGraph(self, finished=False, beta=False, ncs=False, hand=-1, clear=False):
     if self.queue and self.num_proc>=0:
-      queue,parent,logfilehandle = self.queue,self.parent_process,self.logfilehandle
+      queue,parent,logfilehandle,ph_lfh,dm_lfh = self.queue,self.parent_process,self.logfilehandle,self.ph.logfilehandle,self.dm.logfilehandle
       if hasattr(self,'ccp4i2job'):  i2job,self.ccp4i2job=self.ccp4i2job,None
       # the queue and parent process are removed and reattached after putting to the queue
-      self.queue,self.parent_process,self.logfilehandle = None,None,None
+      self.queue,self.parent_process,self.logfilehandle,self.ph.logfilehandle,self.dm.logfilehandle = None,None,None,None,None
+      mapseg=self.GetProcess('segmentmap')
+      if mapseg:
+        self.processes.remove(mapseg)
       queue.put((self.num_proc,self,{'finished':finished,'beta':beta,'ncs':ncs,'clear':clear}))
-      self.queue,self.parent_process,self.logfilehandle = queue,parent,logfilehandle
+      if mapseg:
+        self.processes.append(mapseg)
+      self.queue,self.parent_process,self.logfilehandle,self.ph.logfilehandle,self.dm.logfilehandle = queue,parent,logfilehandle,ph_lfh,dm_lfh
       if hasattr(self,'ccp4i2job'):  self.ccp4i2job=i2job
       return
     if self.opened_loggraph and hand<2:  # loggraph for hand 2 not printed, may be removed completely at some point.
@@ -468,19 +488,20 @@ class dmfull(process):
 
   def RunComb(self):
     # contin is used so that the process can be repeated if needed
-    num_failed_bias, feedback, contin, mult = 0, 0, 1, 1
+    num_failed_bias, feedback, contin, mult, beta_aver = 0, 0, 1, 1, 0.
     while contin:
       #if hasattr(self,'rv_plot') and num_failed_bias:
       if num_failed_bias:
         #self.rv_plot.parent.parent.Remove()
         #del self.rv_plot
         self.PrintActualLogGraph(clear=True)
+        beta_aver+=self.ph.GetParam('beta')
       # estimate density modification bias
       extra_corr=False
       if not self.GetParam('no_bias_est') and self.GetParam('biascyc')>0:
         if num_failed_bias>3:
-          self.Info('Beta estimation seems unstable and will be skipped, with beta set to 1.\n')
-          self.ph.SetParam('beta',1.0)
+          self.ph.SetParam('beta',beta_aver/num_failed_bias)
+          self.Info('Beta estimation seems unstable and will be skipped, with beta set to {}.\n'.format(self.ph.GetParam('beta')))
           self.SetParam('no_bias_est', True)
         else:
           # possibly restarting due to detected NCS estimation issues
@@ -488,9 +509,9 @@ class dmfull(process):
             continue
           self.EstBias()
           mult = self.TestAdjFeedSolvmask(mult)
-          if mult>1.001 and not feedback and self.ph.GetProg(supported=True).nick=='refmac' and self.dm.GetProg(supported=True).nick=='parrot':
-            feedback=1
-            continue
+#          if mult>1.001 and not feedback and not self.GetParam('map_segmentation') and self.ph.GetProg(supported=True).nick=='refmac' and self.dm.GetProg(supported=True).nick=='parrot':
+#            feedback=1
+#            continue
           # if beta is low then we should estimate the correction separately - ie more cycles needed...
           if self.ph.GetParam('beta')<0.7 or self.GetParam('optimize_solvent'):
             extra_corr=True
@@ -532,8 +553,8 @@ class dmfull(process):
   def AdjustResol(self,o1,o2):
     # adjusts resolution of mtz from o1 to that of o2
     import gemmi,numpy as np
-    mtz = gemmi.read_mtz_file(o1.GetFileName())
-    mtz_resol = gemmi.read_mtz_file(o2.GetFileName())
+    mtz = gemmi.read_mtz_file(o1.GetFileName('mtz'))
+    mtz_resol = gemmi.read_mtz_file(o2.GetFileName('mtz'))
     all_data = np.array(mtz, copy=False)
     mtz.set_data(all_data[mtz.make_d_array() <= mtz_resol.resolution_low()])
     mtz.write_to_file(o1.GetFileName())
@@ -576,6 +597,7 @@ class dmfull(process):
       self.dm.inp.AddCopy(self.ph.out.Get('mapcoef',typ=('best','combined')))
     self.ph.out.Set(self.ph.inp.model, propagate=False)
     init_solmask = self.dm.GetProg(supported=True).GetKey('solvent-mask-filter-radius')
+    init_mapseg_solv,prev_solv,max_solv_move=None,None,0.125  # solvent related variables used with map_segmentation
     # the recycling starts here
     for self.cyc in range(1, ncyc+1):
       if self.IsNonFalseParam('solvent_perturb'):# and not bias_est and not extra_corr and not feedback:
@@ -593,20 +615,56 @@ class dmfull(process):
         self.Info(" Cycle {0}".format(self.cyc))
       self.out.ClearAll(propagate=False)
       self.SetNCSParams(feedback)  # parrot only (skip ncs det. in feedback)
-      if self.GetParam('map_segmentation'):
-        inthemiddle = self.GetProcess('segmentmap')
-        mapseg = self.GetOrAddProcess('segmentmap')
+      self.ref_use=[]
+      fom=self.ph.fom_all
+      if self.GetParam('map_segmentation') and ((self.cyc-3)%5!=0 or (self.cyc>3 and self.cyc>=ncyc-1) or (self.cyc>6 and fom and fom[-1]>self.GetParam('threshold_stop')-0.03)):# or self.cyc==6):# and self.cyc!=4):
+        inthemiddle,mapseg=True,self.GetProcess('segmentmap')
+        if not mapseg:
+          inthemiddle=False
+          mapseg=self.AddProcess('segmentmap')
+          matthews=self.GetOrAddProcess('matthews')
+          matthews.out.never_propagate=True
+          matthews.Run()
+          matthews_probs = [float(prob) for prob in matthews.GetProg().GetStat('probab_matth_all') if prob!='']
+          matthews_solvs = [float(sol) for sol in matthews.GetProg().GetStat('solvent_content_all') if sol]
         if self.dm.inp.Get('mapcoef',typ='weighted'):
           mapseg.inp.Set(self.dm.inp.Get('mapcoef',typ='weighted'))
+        else:
+          mapseg.inp.Set(self.dm.inp.Get('mapcoef',typ=('combined','best')))
         mapseg.Run()
-        #if self.cyc<4:
-         # shutil.copy('/data/shared/palo/test-sys/runs/crank/sad-all-afro-prasa-combined-parr-fullref/232/2fna-2/from_crank1_substr/2-refatompick/phas/tests/segmentmap_combend.mtz','segmentmap/segmentmap.mtz')
-        mapseg.out.Get('mapcoef',typ='weighted').custom.append('dmmsk')
-        if self.cyc==1 and not inthemiddle and not self.IsInputtedParam('solvent_content'):
-          self.SetParam('solvent_content',mapseg.est_solvcont)
-          #if not self.IsInputtedParam('solvent_perturb') and self.cyc==1 and not inthemiddle:
-            #self.SetParam('solvent_perturb', 0.05-0.1*abs(mapseg.est_solvcont-0.5))
-        self.dm.inp.Add(mapseg.out.Get('mapcoef',typ='weighted',custom='dmmsk'))
+        mapseg.out.Get('mapcoef',typ='mask').custom.append('dmmsk')
+        if not self.IsInputtedParam('solvent_content') and self.parent_process.nick!='comb_phdmmb':# and self.parent_process.nick!='comb_phdmmb':# and self.cyc==1 and not inthemiddle:
+          prev_solv=self.GetParam('solvent_content') if self.GetParam('solvent_content') else self.inp.Get(has_solvent_content=True).solvent_content
+          if self.cyc==1 and not inthemiddle:
+            logit_estsolv = mapseg.GetLogitFromSolv(mapseg.est_solvcont)
+            matthews_logits = [mapseg.GetLogitFromSolv(sol) for sol in matthews_solvs]
+            matthews_probs2 = [ mapseg.GetProbFromLogitDiff(abs(logit_diff-logit_estsolv) if logit_diff is not None else None) for logit_diff in matthews_logits ]
+            matthews_probs_joint = [p2*matthews_probs[i] for i,p2 in enumerate(matthews_probs2)]
+            init_solv = matthews_solvs [ matthews_probs_joint.index( max(matthews_probs_joint) ) ]
+            if max(matthews_probs_joint)<0.25 or abs(mapseg.est_solvcont-init_solv)>0.1:
+              if max(matthews_probs_joint)<0.005:
+                init_solv = mapseg.est_solvcont
+              else:
+                matthews_probs = [0]+matthews_probs+[0]
+                matthews_solvs = [1.]+matthews_solvs+[0.]
+                init_solv=mapseg.GetExpSolvFromCombDist(matthews_solvs,matthews_probs)
+            init_solv=round(init_solv,3)
+            matthews_solv=self.inp.Get(has_solvent_content=True).solvent_content
+            #if matthews_solv and matthews_solv>mapseg.est_solvcont_min and matthews_solv<mapseg.est_solvcont_max and abs(matthews_solv-init_solv)<0.1: 
+             # if mapseg.est_solvcont_max-mapseg.est_solvcont_min>0.2:
+            #    init_solv=matthews_solv
+             # elif mapseg.est_solvcont_max-mapseg.est_solvcont_min>0.12:
+            #    init_solv=(mapseg.est_solvcont+matthews_solv)/2.0
+          #self.SetParam('solvent_content',init_solv+max(-max_solv_move,min(max_solv_move,(mapseg.est_solvcont+prev_solv)/2.-init_solv))) # do not go further than max_solv_move from the initial estimate
+            self.SetParam('solvent_content',init_solv)
+            if abs(matthews_solv-self.GetParam('solvent_content'))>0.001:
+              self.Info("Using solvent content {} estimated using map segmentation instead of the Matthews estimate {}".format(self.GetParam('solvent_content'),matthews_solv))
+            if not self.IsInputtedParam('dmcyc'):
+              init_dmcyc=self.GetParam('dmcyc')
+              self.SetDMcycSolv(init_solv)
+              if init_dmcyc!=self.GetParam('dmcyc'):
+                self.Info('Number of DM cycles to run adjusted to {}'.format(self.GetParam('dmcyc')))
+        self.dm.inp.Add(mapseg.out.Get('mapcoef',typ='mask',custom='dmmsk'))
       self.dm.GetProg().runname=self.dm.GetProg().name+'_cyc'+str(self.cyc)
       self.dm.Run()
       if self.GetParam('map_segmentation'):
@@ -676,11 +734,11 @@ class dmfull(process):
         self.ReInitPhDM()
         return 1
     elif feedback:
-      if not self.GetParam('map_segmentation'):
+      if not self.GetParam('map_segmentation'): ###!!!
         self.ph.out.Get('mapcoef',typ='weighted').custom.append('dmmsk')
         self.inp.Set(self.ph.out.Get('mapcoef',typ='weighted',custom='dmmsk'))
-      feedback+=1 #if we wanted more feedback recycling
-      feedback=0 if not self.GetParam('map_segmentation') or feedback>2 else feedback
+      #feedback+=1 #if we wanted more feedback recycling
+      feedback=0 #if not self.GetParam('map_segmentation') or feedback>2 else feedback
       if self.GetParam('map_segmentation'): # return to the determined beta
         self.ph.SetParam('beta',beta_saved)
       if self.RunWithGivenBeta(no_corr=True,feedback=feedback):
@@ -693,7 +751,7 @@ class dmfull(process):
     self.dm.GetProg().SetKey( 'solvent-mask-filter-radius', min(self.dm.GetProg().GetStat('radius_auto')*mult,maxim), keep_previous=False )
 
   def GetActualStats(self,verbose,update_loggraph):
-    self.ph.fom = self.ph.GetProg().GetStat('fom')
+    self.ph.fom = self.ph.GetProg().GetStat('fom')[-1]
     self.ph.fom_all.append(self.ph.fom)
     if verbose:
       self.Info("  Overall MEAN FOM is {0}".format(self.ph.fom))
@@ -722,7 +780,8 @@ class dmfull(process):
       self.dm.SetParam('ncs_det', False)
       return
     # we do not want to run ncs determination every cycle
-    if ((self.cyc-2)%10==0 or self.cyc==4) and not skip_ncs:
+    if ((self.cyc-2)%10==0 or (self.cyc-4)%13==0) and not skip_ncs:
+      self.ncs_cyc = self.cyc
       self.dm.SetParam('ncs_det', self.GetParam('ncs_det'))
       self.dm.GetProg('parrot').SetKey('ncs-operator',False,keep_previous=False)
     else:
@@ -736,9 +795,20 @@ class dmfull(process):
       return 0
     #if self.dm.GetParam('ncs_det') is not False:
     ncs_opers=self.dm.GetProg('parrot').GetStat('ncs_operator')
+    ncs_oper_correls=[float(c) for c in self.dm.GetProg('parrot').GetStat('ncs_operator_correl') if c!=''] if ncs_opers else []
     self.dm.GetProg('parrot').SetKey('ncs-operator',False,keep_previous=False)
-    for ncs in ncs_opers:
-      self.dm.GetProg('parrot').SetKey('ncs-operator',ncs)
+    if self.cyc==self.ncs_cyc:
+      for ncs in ncs_opers:
+        self.dm.GetProg('parrot').SetKey('ncs-operator',ncs)
+    elif ncs_opers:
+      for i,(ncs,ncsp,c,cp) in enumerate(zip(ncs_opers,self.ncs_opers,ncs_oper_correls,self.ncs_oper_correls)):
+        if c>cp:
+          self.dm.GetProg('parrot').SetKey('ncs-operator',ncs)
+        else:
+          self.dm.GetProg('parrot').SetKey('ncs-operator',ncsp)
+          ncs_opers[i]=ncsp
+          ncs_oper_correls[i]=cp
+    self.ncs_opers,self.ncs_oper_correls=ncs_opers,ncs_oper_correls
     if self.dm.GetParam('ncs_det') is not False and (self.dm.GetParam('ncs_det_ha') or self.dm.GetParam('ncs_det_mr')):
       self.Info('  {0} NCS operators detected by {1}.'.format(len(ncs_opers), self.dm.GetProg('parrot').name))
       if update_loggraph and self.cyc>3 and self.cyc<10:
@@ -746,11 +816,11 @@ class dmfull(process):
         if self.parent_process and self.parent_process.nick=='comb_phdmmb' and self.parent_process.ncs_oper!=len(ncs_opers):
           self.parent_process.ncs_oper=len(ncs_opers)
           self.parent_process.PrintActualLogGraph(update='ncs')
-    # if NCS detection seems to go wrong disable it; this assumes NCS detection is run every (self.cyc-2)%10==0 cycle
+    # if NCS detection seems to go wrong disable it
     # also this assumes the phases should improve (ie starting phases are from phasing)!
     if self.GetParam('ncs_det') is None and self.dm.GetParam('ncs_det') is not False and \
        self.ph.nick=='phcomb' and not self.GetParam('optimize_solvent') and \
-       (self.cyc-3)%10==0 and self.ph.fom_all[self.cyc-1]+0.003<self.ph.fom_all[self.cyc-3]:
+       self.cyc==self.ncs_cyc+1 and self.ph.fom_all[self.cyc-1]+0.003<self.ph.fom_all[self.cyc-3]:
       self.Info("Disabling automatic NCS detection and restarting DM.\n")
       self.SetParam('ncs_det', False)
       self.dm.GetProg('parrot').SetKey('ncs-operator',False,keep_previous=False)

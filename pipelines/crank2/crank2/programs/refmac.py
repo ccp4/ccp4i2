@@ -9,7 +9,7 @@ class refmac(program):
   labelout_prefix="REFM_"
   ccp4_parsing=True
   stat={}
-  stat['fom'] = common.stats(name='FOM', regexp=r"Overall figure of merit\s+=\s+(\S+)")
+  stat['fom'] = common.stats(name='FOM', regexp=r"Overall figure of merit\s+=\s+(\S+)", multiple=True)
   stat['correl'] = common.stats(name='correlation coefficient', regexp=r"Overall correlation coefficient\s+=\s+(\S+)")
   stat['rfact'] = common.stats(name='R factor', regexp=r"Overall R factor\s+=\s+(\S+)", multiple=True)
   stat['rfree'] = common.stats(name='R-free factor', regexp=r"Free R factor\s+=\s+(\S+)", multiple=True)
@@ -129,10 +129,10 @@ class refmac(program):
               numat+=1
           except ImportError:
             pass
-          if numat>3:
-            self.SetKey('DM2')
-          else:
+          if numat<2:
             self.SetKey('DM')
+          else:
+            self.SetKey('DM2')
       if not self.IsKey('ncyc'):
         self.SetKey('ncyc',0)
     if self.process.nick!='ref':

@@ -809,7 +809,7 @@ class mapcoef(data_container):
   supported_filetypes=('mtz','map','phs')
   deffiletype='mtz'
   col_list=['f', 'ph', 'fom', 'hla', 'hlb', 'hlc', 'hld',]
-  types=('best','weighted','combined','densmod','anomalous','anom-diff','diff')
+  types=('best','weighted','combined','densmod','anomalous','anom-diff','diff','mask')
   typ='best'
   label_default = { 'best': ['FB','PHIB','FOM','HLA','HLB','HLC','HLD'], \
                     'weighted': ['FWT','PHWT',None,None,None,None,None], \
@@ -818,6 +818,7 @@ class mapcoef(data_container):
                     'anomalous': ['FAN','PHAN',None,None,None,None,None], \
                     'anom-diff': ['DELFAN','PHDELAN',None,None,None,None,None], \
                     'diff': ['DELFWT','PHDELWT',None,None,None,None,None], \
+                    'mask': ['FMSK','PHMSK',None,None,None,None,None], \
                   }
   supported_attributes=('typ','file','xname','dname','custom','spgr','cell','resol')
 
@@ -842,13 +843,15 @@ class sequence(data_container):
       return self.seqstr
     self.seqstr=""
     if self.GetFileName() and os.path.isfile(self.GetFileName()):
-      with open(self.GetFileName(),'rU') as f:
+      with open(self.GetFileName(),'r') as f:
         il,lines=0,0
         monom,im = ["",], 0
         for il,line in enumerate(f):
           line=line.strip().replace(' ','').upper()
           if not line.startswith('>') and not line.startswith('#'):
-            self.seqstr+=line;  monom[im]+=line;  lines+=1
+            #exclude RNA/DNA
+            if len(line)<4 or (line.count('C')+line.count('G')+line.count('A')+line.count('U')+line.count('T'))/len(line)<0.9:
+              self.seqstr+=line;  monom[im]+=line;  lines+=1
           else:
             monom.append("");  im+=1
           if il==1 and self.GetFile().typ=='pir' and len(line)<80:

@@ -28,12 +28,13 @@ class gcx(program):
     else:
       common.Error('Neither sequence nor number of residues inputted for {0}'.format(self.name))
     # data
-    f, fmin = self.inp.Get('fsigf',filetype='mtz',typ='average'), None
-    if not f:
-      f=self.inp.Get('fsigf',filetype='mtz',typ='plus')
-      fmin=self.inp.Get('fsigf',filetype='mtz',typ='minus')
-      if not f:
-        common.Error('No X-ray data inputted for {0}'.format(self.name))
+    f, fmin, fpl = self.inp.Get('fsigf',filetype='mtz',typ='average'), self.inp.Get('fsigf',filetype='mtz',typ='minus'), self.inp.Get('fsigf',filetype='mtz',typ='plus')
+    f_use = f if f else fmin
+    #if not f:
+     # f=self.inp.Get('fsigf',filetype='mtz',typ='plus')
+      #fmin=self.inp.Get('fsigf',filetype='mtz',typ='minus')
+    if not f and (not fmin or not fpl):
+      common.Error('No X-ray data inputted for {0}'.format(self.name))
     self.model=self.inp.Get('model')
     if self.model: 
       if self.model.xname!=self.model.default_unknown:
@@ -44,16 +45,16 @@ class gcx(program):
       self.SetKey('XTAL', 'dummy')
     if not self.IsKey('DNAME'):
       self.SetKey('DNAME', 'dummy')
-    self.SetKey('MTZIn',f.GetFileName('mtz'))
-    if f.GetLabel('sigf'):
-      if fmin:
-        self.SetKey('COLU', ('F+='+f.GetLabel('f'),'SF+='+f.GetLabel('sigf')) )
+    self.SetKey('MTZIn',f_use.GetFileName('mtz'))
+    if f_use.GetLabel('sigf'):
+      if fmin and fpl and fmin.GetLabel('sigf') and fpl.GetLabel('sigf'):
+        self.SetKey('COLU', ('F+='+fpl.GetLabel('f'),'SF+='+fpl.GetLabel('sigf')) )
         self.SetKey('COLU', ('F-='+fmin.GetLabel('f'),'SF-='+fmin.GetLabel('sigf')) )
       else:
         self.SetKey('COLU', ('F='+f.GetLabel('f'),'SF='+f.GetLabel('sigf')) )
     else:
-      if fmin:
-        self.SetKey('COLU', ('I+='+f.GetLabel('i'),'SI+='+f.GetLabel('sigi')) )
+      if fmin and fpl and fmin.GetLabel('sigi') and fpl.GetLabel('sigi'):
+        self.SetKey('COLU', ('I+='+fpl.GetLabel('i'),'SI+='+fpl.GetLabel('sigi')) )
         self.SetKey('COLU', ('I-='+fmin.GetLabel('i'),'SI-='+fmin.GetLabel('sigi')) )
       else:
         self.SetKey('COLU', ('I='+f.GetLabel('i'),'SI='+f.GetLabel('sigi')) )

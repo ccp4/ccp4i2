@@ -30,7 +30,7 @@
                 <qualifiers>
                     <onlyEnumerators>True</onlyEnumerators>
                     <enumerators>NOMATCH,MONLIBCODE,LOCALDICT,ALLMONLIB</enumerators>
-                    <menuText>nothing,a specific 3 letter code,user dictionary,all monomers</menuText>
+                    <menuText>nothing,a specific 3-5 letter code,user dictionary,all monomers</menuText>
                     <default>NOMATCH</default>
                     <guiLabel>Atom match option</guiLabel>
                 </qualifiers>
@@ -39,25 +39,25 @@
                 <className>CString</className>
                 <qualifiers>
                     <onlyEnumerators>True</onlyEnumerators>
-                    <enumerators>MOL,SMILES,SMILESFILE,DICT</enumerators>
-                    <default>MOL</default>
-                    <guiLabel>Input mol file or SMILES string</guiLabel>
+                    <enumerators>MOL,MOL2,SMILES,SMILESFILE,DICT</enumerators>
+                    <default>DICT</default>
+                    <guiLabel>Input mol file or CIF file or SMILES string</guiLabel>
                 </qualifiers>
             </content>
             <content id='TLC'>
                 <className>CString</className>
                 <qualifiers>
                     <minLength>3</minLength>
-                    <maxLength>3</maxLength>
+                    <maxLength>5</maxLength>
                     <default>DRG</default>
-                    <guiLabel>Three letter code for new molecule</guiLabel>
+                    <guiLabel>3-5 letter code for new molecule</guiLabel>
                 </qualifiers>
             </content>
             <content id='MATCHTLC'>
                 <className>CString</className>
                 <qualifiers>
                     <minLength>3</minLength>
-                    <guiLabel>Three letter code to match atom names with</guiLabel>
+                    <guiLabel>3-5 letter code to match atom names with</guiLabel>
                 </qualifiers>
             </content>
             <content id='SMILESFILEIN'>
@@ -74,6 +74,14 @@
                 <qualifiers>
                     <fromPreviousJob>True</fromPreviousJob>
                     <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id='MOL2IN'>
+                <className>CDataFile</className>
+                <qualifiers>
+                    <fromPreviousJob>True</fromPreviousJob>
                     <allowUndefined>True</allowUndefined>
                     <saveToDb>True</saveToDb>
                 </qualifiers>
@@ -117,6 +125,14 @@
                 <className>CMDLMolDataFile</className>
                 <qualifiers>
                     <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="controlParameters">
+            <content id='USE_COORD'>
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
                 </qualifiers>
             </content>
         </container>
