@@ -21,7 +21,7 @@ class coot_find_waters(CPluginScript):
 
         # Defaults to XYZOUT.pdb even though it has a cif content type
         xyzoutPath = os.path.join(self.workDirectory, "XYZOUT.cif")
-        self.container.outputData.XYZOUT.fullPath.set(xyzoutPath)
+        self.container.outputData.XYZOUT.setFullPath(xyzoutPath)
         self.container.outputData.XYZOUT.contentFlag.set(CPdbDataFile.CONTENT_FLAG_MMCIF)
 
         self.appendCommandLine(['--no-state-script','--no-graphics','--python','--pdb',self.container.inputData.XYZIN.fullPath,'--script',cootScriptPath])
