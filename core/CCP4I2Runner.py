@@ -361,13 +361,13 @@ class CI2Runner(object):
             entry = cAsuDataFile.fileContent.seqList[-1]
             
         entry.nCopies = 1
-        entry.sequence = sequenceFile.fileContent.sequence
-        entry.name = sequenceFile.fileContent.identifier.replace(" ","_").replace("|","_").replace("/","_").replace(":","_")
-        entry.description = sequenceFile.fileContent.description
+        entry.sequence.set(sequenceFile.fileContent.sequence)
+        entry.name.set(sequenceFile.fileContent.identifier.replace(" ","_").replace("|","_").replace("/","_").replace(":","_"))
+        entry.description.set(sequenceFile.fileContent.description)
         entry.autoSetPolymerType()
         cAsuDataFile.buildSelection()
         cAsuDataFile.saveFile()
-        return cAsuDataFile.fullPath
+        return str(cAsuDataFile.fullPath)
         
     def extractColumns(self, inputFile, columnsToExtract, jobDirectory):
         targetPath = os.path.join(jobDirectory,os.path.basename(inputFile.getFullPath().__str__()))
