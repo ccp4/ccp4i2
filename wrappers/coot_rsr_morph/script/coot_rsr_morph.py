@@ -1,10 +1,12 @@
 from __future__ import print_function
 
+import pathlib
 import sys,os
 import textwrap
 import lxml
 
 from core import CCP4File
+from core.CCP4ModelData import CPdbDataFile
 from core.CCP4PluginScript import CPluginScript
 
 
@@ -21,9 +23,15 @@ class coot_rsr_morph(CPluginScript):
     MAINTAINER = "stuart.mcnicholas@york.ac.uk"
 
     def makeCommandAndScript(self):
-        pdb_path = self.container.inputData.XYZIN.fullPath.__str__()
-        mtz_path = self.container.inputData.FPHIIN.fullPath.__str__()
-        out_path = os.path.normpath(self.container.outputData.XYZOUT.__str__())
+        outFormat = "cif" if self.container.inputData.XYZIN.isMMCIF() else "pdb"
+        oldFullPath = pathlib.Path(str(self.container.outputData.XYZOUT.fullPath))
+        if outFormat == "cif":
+            self.container.outputData.XYZOUT.setFullPath(str(oldFullPath.with_suffix('.cif')))
+            self.container.outputData.XYZOUT.contentFlag.set(CPdbDataFile.CONTENT_FLAG_MMCIF)
+
+        pdb_path = str(self.container.inputData.XYZIN.fullPath)
+        mtz_path = str(self.container.inputData.FPHIIN.fullPath)
+        out_path = os.path.normpath(str(self.container.outputData.XYZOUT))
         if sys.platform.startswith("win"):
             out_path = out_path.replace("\\","\\\\")
         local_radius = self.container.controlParameters.LOCAL_RADIUS
@@ -45,7 +53,7 @@ class coot_rsr_morph(CPluginScript):
                     residues = fit_protein_make_specs(imol, "all-chains")
                     with AutoAccept():
                         refine_residues_py(imol, residues)
-                write_pdb_file(imol, "{out_path}")
+                write_{outFormat}_file(imol, "{out_path}")
             except Exception:
                 import traceback
                 print(traceback.format_exc())
