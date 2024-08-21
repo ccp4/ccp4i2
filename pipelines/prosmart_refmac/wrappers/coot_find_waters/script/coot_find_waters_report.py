@@ -1,6 +1,4 @@
-#from lxml import etree
 from report.CCP4ReportParser import *
-import sys
 
 class coot_find_waters_report(Report):
     # Specify which gui task and/or pluginscript this applies to

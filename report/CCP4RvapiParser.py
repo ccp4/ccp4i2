@@ -215,7 +215,11 @@ class RvapiReport(Report):
                   'title': tables[i].attrib["title"],
               })
 
-              dataDiv.extend(tables[i].findall("*"))
+              try:
+                  dataDiv.extend(tables[i].findall("./"))
+              except:
+                  #Give up!
+                  pass
 
               f2_right.append(self.graph_div(dataDivName, e2.get('id')+str(i)))
               f2_right.append(dataDiv)

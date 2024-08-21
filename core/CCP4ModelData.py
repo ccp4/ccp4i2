@@ -2098,7 +2098,7 @@ class CPdbData(CCP4File.CDataFileContent):
         # Beware the calling function must clean up the selHnd
         return nselatoms, selHnd
 
-    def writeSelection(self, selHnd, fileName, format='PDB' ):
+    def writeSelection(self, selHnd, fileName):
         # Does an atom-by-atom copy so potentially slow
         try:
             import ccp4mg
@@ -2126,6 +2126,7 @@ class CPdbData(CCP4File.CDataFileContent):
                 for i in range(0, nSelAtoms):
                     pcat = mmdb.CAtomPtr(mmdb.getPCAtom(selAtoms, i))
                     thisMolHnd.PutAtom(i+1, pcat)
+        format = "CIF" if fileName.endswith('.cif') or fileName.endswith(".mmcif") else "PDB"
         if format == "PDB":
             RC = thisMolHnd.WritePDBASCII(fileName)
         else:

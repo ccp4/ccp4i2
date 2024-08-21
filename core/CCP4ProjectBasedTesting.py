@@ -45,6 +45,7 @@ MODES = {'runMode' : {'default' : 3 , 'allowed' : {0 : 'no testing' , 1 : 'run j
          'verbosity' : {'default' : 1 , 'allowed' : {0 : 'fails only' , 1 : 'jobs and parameters tested', 3 : 'jobs, parameters and parameter values'}},
          'testSubJobs' : {'default' : 0 , 'allowed' : {0 : 'no' , 1 : 'for failed jobs', 2: 'for all jobs'}},
          'copyFiles' : {'default' : 0 , 'allowed' : {0 : 'no' , 1 : 'yes'}},
+         'copyCCP4ImportedFiles' : {'default' : 0 , 'allowed' : {0 : 'no' , 1 : 'yes'}},
          'resetBaseline' : {'default' : 0 , 'allowed' : {0 : 'no' , 1 : 'yes'}}}
 
 
@@ -227,6 +228,9 @@ class CProjectBasedTesting(QtCore.QObject):
         targetProjectId = PROJECTSMANAGER().db().getJobInfo(job.jobId,'projectid')
         sourceDir = PROJECTSMANAGER().db().getProjectDirectory(projectId=sourceProjectId)
         targetDir = PROJECTSMANAGER().db().getProjectDirectory(projectId=targetProjectId)
+        if self.copyCCP4ImportedFiles:
+            if os.path.isdir(os.path.join(sourceDir,"CCP4_IMPORTED_FILES")):
+                shutil.copytree(os.path.join(sourceDir,"CCP4_IMPORTED_FILES"), os.path.join(targetDir,"CCP4_IMPORTED_FILES"), dirs_exist_ok=True)
         if os.path.isdir(os.path.join(sourceDir,"CCP4_TEST_FILES")):
             shutil.copytree(os.path.join(sourceDir,"CCP4_TEST_FILES"), os.path.join(targetDir,"CCP4_TEST_FILES"))
 

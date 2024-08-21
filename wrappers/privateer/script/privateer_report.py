@@ -218,7 +218,9 @@ class privateer_report(Report):
 
 
     ########## Glycan structures ########
-    trees = self.xmlnode.findall ( ".//ValidationData/Glycan" )[0].text
+    trees = ""
+    if len(self.xmlnode.findall ( ".//ValidationData/Glycan" ))>0:
+        self.xmlnode.findall ( ".//ValidationData/Glycan" )[0].text
 
     if trees != "" :
         treesFold = results.addFold ( label="N- and O-glycan structure 2D descriptions", initiallyOpen=False )

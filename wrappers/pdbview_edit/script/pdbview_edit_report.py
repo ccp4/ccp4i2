@@ -53,7 +53,7 @@ class pdbview_edit_report(Report):
           for fname in self.jobInfo['filenames']["XYZOUT"]:
              baseSceneXML = CCP4Utils.openFileToEtree(baseScenePath)
              et = ET.ElementTree(baseSceneXML)
-             filename_element = et.findall(".//scene/data/MolData/filename")[0]
+             filename_element = et.findall(".//data/MolData/filename")[0]
              del filename_element.attrib["database"]
              filename_element.text = fname
              ET.indent(et)

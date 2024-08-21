@@ -84,6 +84,7 @@ if __name__ == '__main__':
     parser.add_argument('-v', '--verbosity', help = "Verbosity - 0 : 'fails only' , 1 : 'jobs and parameters tested', 3 : 'jobs, parameters and parameter values'", type=int, default=1, choices=[0,1,3])
     parser.add_argument('-t', '--testSubJobs', help = "Tset sub jobs - 0 : 'no' , 1 : 'for failed jobs', 2: 'for all jobs'", type=int, default=0,choices=[0,1,2])
     parser.add_argument('-f', '--copyFiles', help = "Copy files 0 : 'no' , 1 : 'yes'", type=int, default=0, choices=[0,1])
+    parser.add_argument('-i', '--copyCCP4ImportedFiles', help = "Copy CCP4_IMPORTED_FILES files 0 : 'no' , 1 : 'yes'", type=int, default=0, choices=[0,1])
     parser.add_argument('-l', '--resetBaseline', help = "Reset baseline - 0 : 'no' , 1 : 'yes", type=int, default=0, choices=[0,1])
     pns = parser.parse_args()
 

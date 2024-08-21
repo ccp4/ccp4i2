@@ -287,10 +287,14 @@ file_to_preferences('template_key_bindings.py')
             outList += glob.glob(os.path.normpath(os.path.join(self.dropDir,'output*.cif')))
 
             xyzoutList = self.container.outputData.XYZOUT
-            for iFile, outputPDB in enumerate(outList):
-                fpath,fname = os.path.split(outputPDB)
+            for outputPDB in outList:
+                fname = os.path.split(outputPDB)[1]
                 iFile = int(fname[6:-4])
-                os.rename(outputPDB, xyzoutList[iFile].fullPath.__str__())
+                newPath = str(xyzoutList[iFile].fullPath)
+                if fname.endswith(".cif") and newPath.endswith(".pdb"):
+                    newPath = newPath[:-4] + ".cif"
+                    xyzoutList[iFile].setFullPath(newPath)
+                os.rename(outputPDB, newPath)
                 xyzoutList[iFile].annotation = "Coot output file number"+str(iFile)
                 xyzoutList[iFile].subType = 1
             #Here truncate the xyzoutList back to the numberof files that werew actually found

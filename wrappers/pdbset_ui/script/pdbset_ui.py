@@ -1,6 +1,5 @@
 from __future__ import print_function
 
-import sys
 import os
 import tempfile
 
@@ -56,6 +55,5 @@ class pdbset_ui(CPluginScript):
             with open(self.makeFileName("LOG"),"rb") as logFile:
                 logText.text = base64.b64encode(logFile.read()).decode("utf-8")
             CCP4Utils.writeXML(programXMLFile,ET.tostring(xmlStructure))
-
         return CPluginScript.SUCCEEDED
       

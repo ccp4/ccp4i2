@@ -695,10 +695,6 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                 self.validate.container.inputData.F_SIGF_1 = self.container.inputData.F_SIGF
                 self.validate.container.inputData.XYZIN_2 = self.container.outputData.XYZOUT
                 self.validate.container.inputData.F_SIGF_2 = self.container.inputData.F_SIGF
-                """
-                self.validate.container.inputData.XYZIN = self.container.inputData.XYZIN
-                self.validate.container.inputData.F_SIGF = self.container.inputData.F_SIGF
-                """
                 #MN...Using "="" to set this is an odd thing and breaks under some circumstances.
                 #Specifically, the path for this is now in the prosmart_refmac (i.e. parent job) directory,
                 #but it is an output of the validate_protein subjob.  When that subjob seeks to save it to the

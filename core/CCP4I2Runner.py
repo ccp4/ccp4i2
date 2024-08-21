@@ -193,7 +193,8 @@ class CI2Runner(object):
                     'JQJQ':{'cls':CCP4XtalData.CObsDataFile, 'contentType':1}, # surely not
                     'AAAA':{'cls':CCP4XtalData.CPhsDataFile, 'contentType':1},
                     'PW':{'cls':CCP4XtalData.CPhsDataFile, 'contentType':2},
-                    'I':{'cls':CCP4XtalData.CFreeRDataFile, 'contentType':1}
+                    'I':{'cls':CCP4XtalData.CFreeRDataFile, 'contentType':1},
+                    'FP':{'cls':CCP4XtalData.CMapCoeffsDataFile, 'contentType':1},
                     }
         outputColumnLabels.extend(getattr(labelsDict[typeSignature]['cls'], "CONTENT_SIGNATURE_LIST")[labelsDict[typeSignature]['contentType']-1])
         for i, column in enumerate(outputColumns):
@@ -359,13 +360,13 @@ class CI2Runner(object):
             entry = cAsuDataFile.fileContent.seqList[-1]
             
         entry.nCopies = 1
-        entry.sequence = sequenceFile.fileContent.sequence
-        entry.name = sequenceFile.fileContent.identifier.replace(" ","_").replace("|","_").replace("/","_").replace(":","_")
-        entry.description = sequenceFile.fileContent.description
+        entry.sequence.set(sequenceFile.fileContent.sequence)
+        entry.name.set(sequenceFile.fileContent.identifier.replace(" ","_").replace("|","_").replace("/","_").replace(":","_"))
+        entry.description.set(sequenceFile.fileContent.description)
         entry.autoSetPolymerType()
         cAsuDataFile.buildSelection()
         cAsuDataFile.saveFile()
-        return cAsuDataFile.fullPath
+        return str(cAsuDataFile.fullPath)
         
     def extractColumns(self, inputFile, columnsToExtract, jobDirectory):
         targetPath = os.path.join(jobDirectory,os.path.basename(inputFile.getFullPath().__str__()))
@@ -468,8 +469,9 @@ class CI2Runner(object):
             self.pm = startup.startProjectsManager(dbFileName=kwargs.get('dbFile',None))
             if kwargs.get('projectPath', None) is not None:
                 try:
+                    projectPath = os.path.abspath(kwargs.get('projectPath'))
                     projectId =  self.pm.createProject(projectName=kwargs.get('projectName',None),
-                                                       projectPath=kwargs.get('projectPath',None))
+                                                       projectPath=projectPath)
                     print('Created project [{}] with name [{}] in directory [{}]'.format(projectId, kwargs.get('projectName',None), kwargs.get('projectPath',None)))
                 except CException as err:
                     #print(len(err._reports))
