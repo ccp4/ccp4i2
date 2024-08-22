@@ -267,7 +267,12 @@ class prosmart_refmac_report(Report):
             verdictScoreDiv.addText(text="Verdict score: %.2f" % float(verdictNodes[0].findall("verdict_score")[0].text))
             verdictFold.append('<script>var score_widget = new scoreWidget("myScoreWidgetCanvas",'+str(float(verdictNodes[0].findall("verdict_score")[0].text)/100.)+');</script>')
             messageDiv = topDiv.addDiv(style='border:0px solid magenta; width:400px; float: left;')
-            messageDiv.append(cleaner.clean_html(base64.b64decode(verdictNodes[0].findall("verdict_message")[0].text)))
+            verdict_message_b64 = verdictNodes[0].findall("verdict_message")[0].text
+            if verdict_message_b64 and len(verdict_message_b64)>0:
+                try:
+                    messageDiv.append(cleaner.clean_html(base64.b64decode(verdict_message_b64)))
+                except:
+                    pass
 
             RFreeNode = xmlnode.findall('.//RefmacWeight/REFMAC/Overall_stats/stats_vs_cycle/new_cycle[last()]/r_free')
             final_rfree = 'NA'
@@ -277,7 +282,9 @@ class prosmart_refmac_report(Report):
             if len(ClashNode)>0: final_clash = ClashNode[0].text
 
             bottomLineDiv = verdictFold.addDiv(style='border:0px solid black; width:700px; overflow:auto;')
-            bottomLineDiv.append(cleaner.clean_html(base64.b64decode(verdictNodes[0].findall("bottomline")[0].text)))
+            bottomline_message_b64 = verdictNodes[0].findall("verdict_message")[0].text
+            if bottomline_message_b64 and len(bottomline_message_b64)>0:
+                bottomLineDiv.append(cleaner.clean_html(base64.b64decode(bottomline_message_b64)))
             tableText = "<table>\n"
             tableText += "<tr><td>R-Free:</td><td>"+final_rfree+"</td><td>(mean in resolution bin: "+verdictNodes[0].findall("meanRfree")[0].text+")</td></tr>\n"
             tableText += "<tr><td>Clashscore:</td><td>"+final_clash+"</td><td>(median in resolution bin: "+verdictNodes[0].findall("medianClash")[0].text+")</td></tr>\n"

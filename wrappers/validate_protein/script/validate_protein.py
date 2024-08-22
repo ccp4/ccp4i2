@@ -58,13 +58,21 @@ class validate_protein(CPluginScript):
     MAINTAINER = 'jon.agirre@york.ac.uk'
 
     def process(self):
+        from core import CCP4XtalData
         log_string = ''
         self.xml_root = ET.Element('Validate_geometry_CCP4i2')
 
+
+        F_SIGF_1,errReport = self.makeHklin([['F_SIGF_1',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]],hklin="hklin_1")
+        F_SIGF_2,errReport = self.makeHklin([['F_SIGF_2',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]],hklin="hklin_2")
+
+        #F_SIGF_1,errReport = self.container.inputData.F_SIGF_1.convert(targetContent=CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN)
+        #F_SIGF_2,errReport = self.container.inputData.F_SIGF_2.convert(targetContent=CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN)
+
         self.latest_model_path = str(self.container.inputData.XYZIN_1)
-        self.latest_reflections_path = str(self.container.inputData.F_SIGF_1)
+        self.latest_reflections_path = str(F_SIGF_1)
         self.previous_model_path = str(self.container.inputData.XYZIN_2)
-        self.previous_reflections_path = str(self.container.inputData.F_SIGF_2)
+        self.previous_reflections_path = str(F_SIGF_2)
 
         log_string += _print_and_return('\n\n######### Calculating metrics using Iris #########\n')
         try:
@@ -123,8 +131,9 @@ class validate_protein(CPluginScript):
         xml_root = ET.Element('Model_info')
         self.model_series = metrics_model_series_from_files(model_paths=(self.previous_model_path, self.latest_model_path),
                                                             reflections_paths=(self.previous_reflections_path, self.latest_reflections_path),
-                                                            sequence_paths=None,
-                                                            distpred_paths=None,
+                                                            sequence_paths=(None,),
+                                                            distpred_paths=(None,),
+                                                            model_json_paths=(None,),
                                                             run_covariance=False,
                                                             run_molprobity=self.container.controlParameters.DO_MOLPROBITY,
                                                             multiprocessing=None)

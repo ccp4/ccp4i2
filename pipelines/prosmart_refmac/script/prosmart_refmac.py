@@ -715,22 +715,22 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                 validateXMLPath = self.validate.makeFileName('PROGRAMXML')
                 validateXML = CCP4Utils.openFileToEtree(validateXMLPath)
                 xml_validation = ET.SubElement(self.xmlroot,"Validation")
-                if len(validateXML.findall("//Validate_geometry_CCP4i2/Model_info"))>0:
-                   xml_validation.append(validateXML.findall("//Validate_geometry_CCP4i2/Model_info")[0]) 
+                if len(validateXML.findall("Model_info"))>0:
+                   xml_validation.append(validateXML.findall("Model_info")[0])
                 if self.validate.container.controlParameters.DO_IRIS:
-                   if len(validateXML.findall("//Validate_geometry_CCP4i2/Iris"))>0:
-                      xml_validation.append(validateXML.findall("//Validate_geometry_CCP4i2/Iris")[0]) 
+                   if len(validateXML.findall("Iris"))>0:
+                      xml_validation.append(validateXML.findall("Iris")[0])
                 if self.validate.container.controlParameters.DO_BFACT:
-                   if len(validateXML.findall("//Validate_geometry_CCP4i2/B_factors"))>0:
-                      xml_validation.append(validateXML.findall("//Validate_geometry_CCP4i2/B_factors")[0])
-                   if len(validateXML.findall("//Validate_geometry_CCP4i2/B_averages"))>0:
-                      xml_validation.append(validateXML.findall("//Validate_geometry_CCP4i2/B_averages")[0])
+                   if len(validateXML.findall("B_factors"))>0:
+                      xml_validation.append(validateXML.findall("B_factors")[0])
+                   if len(validateXML.findall("B_averages"))>0:
+                      xml_validation.append(validateXML.findall("B_averages")[0])
                 if self.validate.container.controlParameters.DO_RAMA:
-                   if len(validateXML.findall("//Validate_geometry_CCP4i2/Ramachandran"))>0:
-                      xml_validation.append(validateXML.findall("//Validate_geometry_CCP4i2/Ramachandran")[0])
+                   if len(validateXML.findall("Ramachandran"))>0:
+                      xml_validation.append(validateXML.findall("Ramachandran")[0])
                 if self.validate.container.controlParameters.DO_MOLPROBITY:
-                   if len(validateXML.findall("//Validate_geometry_CCP4i2/Molprobity"))>0:
-                      xml_validation.append(validateXML.findall("//Validate_geometry_CCP4i2/Molprobity")[0])
+                   if len(validateXML.findall("Molprobity"))>0:
+                      xml_validation.append(validateXML.findall("Molprobity")[0])
                    self.saveXml()
                    try:
                        from . import prosmart_refmac_verdict
@@ -758,10 +758,10 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                        xml_verdict_score.text = str(verdict_score)
                        xml_verdict_message = ET.SubElement(xml_verdict,"verdict_message")
                        #xml_verdict_message.text = ET.CDATA(verdict_message)
-                       xml_verdict_message.text = base64.b64encode(verdict_message)
+                       xml_verdict_message.text = base64.b64encode(verdict_message.encode()).decode()
                        xml_bottomline = ET.SubElement(xml_verdict,"bottomline")
                        #xml_bottomline.text = ET.CDATA(bottomline)
-                       xml_bottomline.text = base64.b64encode(bottomline)
+                       xml_bottomline.text = base64.b64encode(bottomline.encode()).decode()
                        xml_meanRfree = ET.SubElement(xml_verdict,"meanRfree")
                        xml_meanRfree.text = str(meanRfree)
                        xml_medianClash = ET.SubElement(xml_verdict,"medianClash")
