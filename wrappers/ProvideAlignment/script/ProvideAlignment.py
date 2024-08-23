@@ -89,7 +89,7 @@ class ProvideAlignment(CPluginScript):
         if status == CPluginScript.SUCCEEDED:
           alignmentNode = ET.SubElement(root,'Alignment')
           #alignmentNode.text = ET.CDATA(alignmentText)
-          alignmentNode.text = base64.b64encode(alignmentText)
+          alignmentNode.text = base64.b64encode(alignmentText.encode()).decode()
           # Try putting sequences in to xml
           try:
             fileType, fileContent = self.container.outputData.ALIGNMENTFILE.identifyFile()

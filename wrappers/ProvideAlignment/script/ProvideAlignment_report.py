@@ -31,7 +31,7 @@ class ProvideAlignment_report(Report):
         
         for aliNode in self.xmlnode.findall('.//Alignment'):
             parent.addText(text="Alignment in clustal format:")
-            parent.addPre(text=base64.b64decode(aliNode.text))
+            parent.addPre(text=base64.b64decode(aliNode.text).decode())
 
         for aliNode in self.xmlnode.findall('.//Commentary'):
             commentFold = parent.addFold(label="Conversion commentary", initiallyOpen=False)
