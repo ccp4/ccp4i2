@@ -65,11 +65,11 @@ class phaser_ensembler(CPluginScript):
             
             self.container.outputData.XYZOUT.annotation = 'Merged ensemble'
             
-            logText = open(self.makeFileName('LOG'),"r").read()
+            logText = open(self.makeFileName('LOG'),"rb").read()
             rootNode = ET.Element('PHASER_ENSEMBLER')
             logNode = ET.SubElement(rootNode,'LOGTEXT')
             #logNode.text = ET.CDATA(logText)
-            logNode.text = base64.b64encode(logText)
+            logNode.text = base64.b64encode(logText).decode()
             with open (self.makeFileName('PROGRAMXML'),'w') as outputFile:
                 CCP4Utils.writeXML(outputFile,ET.tostring(rootNode))
             return CPluginScript.SUCCEEDED
