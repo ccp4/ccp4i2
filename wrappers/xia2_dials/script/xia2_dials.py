@@ -181,10 +181,10 @@ class Cxia2_dials(CPluginScript):
             os.path.join(self.getWorkDirectory(), "xia2.txt")
         )
         if os.path.isfile(xia2TxtPath):
-            with open(xia2TxtPath, "r") as xia2TxtFile:
+            with open(xia2TxtPath, "rb") as xia2TxtFile:
                 element = ET.SubElement(self.xmlroot, "Xia2Txt")
                 #element.text = ET.CDATA(xia2TxtFile.read())
-                element.text = base64.b64encode(xia2TxtFile.read())
+                element.text = base64.b64encode(xia2TxtFile.read()).decode()
 
         # Infer if xia2 gave an error by virtue of xia2.error existing
         xia2ErrorPath = os.path.normpath(
