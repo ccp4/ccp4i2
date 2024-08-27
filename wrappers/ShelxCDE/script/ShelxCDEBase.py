@@ -562,11 +562,11 @@ OUTPUT frac
             lstPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'result_fa.lst'))
             if not os.path.isfile(lstPath): lstPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'result_fa.lst.txt'))
             if os.path.isfile(lstPath):
-                with open(lstPath,'r') as lstFile:
+                with open(lstPath,'rb') as lstFile:
                     lstText = lstFile.read()
                     lstNode = ET.SubElement(shelxdNode,'LstText')
                     #lstNode.text=etree.CDATA(lstText)
-                    lstNode.text=base64.b64encode(lstText)
+                    lstNode.text=base64.b64encode(lstText).decode()
             return CPluginScript.SUCCEEDED
         else:
             self.appendErrorReport(207,self.getWorkDirectory())

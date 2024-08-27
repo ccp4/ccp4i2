@@ -90,7 +90,7 @@ class ShelxCDEBaseReport(Report):
             if len(lstNodes) > 0:
                 lstFold = shelxdFold.addFold(label='Text of result_fa.lst file', initiallyOpen=False)
                 for lstNode in lstNodes:
-                    lstFold.addPre(outputXml=self.outputXml, internalId="ShelxDLstText", text = base64.b64decode(lstNode.text))
+                    lstFold.addPre(outputXml=self.outputXml, internalId="ShelxDLstText", text = base64.b64decode(lstNode.text).decode())
             
 
     def shelXEReport(self, parent=None, initiallyOpen=False, idRoot=""):

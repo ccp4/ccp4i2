@@ -1,5 +1,5 @@
 from core.CCP4PluginScript import CPluginScript
-#from lxml import etree
+from xml.etree import ElementTree as ET
 import os
 from wrappers.ShelxCDE.script import ShelxCDEBase
 
