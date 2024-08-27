@@ -137,10 +137,14 @@ class nautilus_build_refine(CPluginScript):
 
     def copyRefmacXML(self,plugin):
         rxml = CCP4Utils.openFileToEtree(plugin.makeFileName('PROGRAMXML'))
-        rstats = rxml.findall(".//REFMAC/Overall_stats/stats_vs_cycle")
+        rstats = rxml.findall("Overall_stats/stats_vs_cycle")
         if len(rstats)>0:
           refele = ET.SubElement(self.xmlcyc,'RefmacResult')
-          for node in rstats[0].findall("new_cycle[last()]/r_factor | new_cycle[last()]/r_free | new_cycle[last()]/rmsBOND |  new_cycle[last()]/rmsANGLE"):
+          r_factor =  rstats[0].findall("new_cycle/r_factor")[-1]
+          r_free =  rstats[0].findall("new_cycle/r_free")[-1]
+          rmsBOND =  rstats[0].findall("new_cycle/rmsBOND")[-1]
+          rmsANGLE =  rstats[0].findall("new_cycle/rmsANGLE")[-1]
+          for node in [r_factor,r_free,rmsBOND,rmsANGLE]:
             node.text = str(node.text).strip()
             if node.tag == 'rmsBOND':
               node.text = str(100*float(node.text))
