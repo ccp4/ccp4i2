@@ -157,7 +157,7 @@ class AlternativeImportXIA2(CPluginScript):
                 for summaryTextLine in summaryTextLines:
                     preElementText += (summaryTextLine)
                 #preElement.text=ET.CDATA(preElementText)
-                preElement.text=base64.b64encode(preElementText)
+                preElement.text=base64.b64encode(preElementText.encode()).decode()
                     
         return pointlessEtree
                 
