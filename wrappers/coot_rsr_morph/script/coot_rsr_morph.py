@@ -3,6 +3,7 @@ from __future__ import print_function
 import pathlib
 import sys,os
 import textwrap
+import base64
 from xml.etree import ElementTree as ET
 
 from core import CCP4File
@@ -79,5 +80,9 @@ class coot_rsr_morph(CPluginScript):
         root = ET.Element("coot_rsr_morph")
         self.container.outputData.XYZOUT.subType = 1
         xml_file = CCP4File.CXmlDataFile(fullPath=self.makeFileName("PROGRAMXML"))
+        log = ET.SubElement(root,'Log')
+        with open(self.makeFileName('LOG'),"rb") as logFile:
+           t = logFile.read()
+           log.text = base64.b64encode(t).decode()
         xml_file.saveFile(root)
         return status
