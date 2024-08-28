@@ -22,10 +22,11 @@ class pdb_redo_api_report(Report):
             jobDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId = jobId)
 
             pdbdataurl = (
-                "/database/getProjectJobFileName?projectId="
+                "/database/getProjectJobFile?projectId="
                 + projectid +"&jobNumber=" + jobNumber
                 + "&fileName="+self.xmlnode.findall('PDB_REDO_RESULTS_DIR')[0].text
             )
+            pdbdataurl = "."
 
             with open(os.path.join(os.path.dirname(__file__),"test-page.html")) as test_html_in:
                 contents = test_html_in.read().replace("XXXXXXXXXX_PDB_REDO_CCP4I2_URL_TEMPLATE_XXXXXXXXXX",pdbdataurl)
@@ -33,7 +34,7 @@ class pdb_redo_api_report(Report):
                     test_html_out.write(contents)
 
             pdbredourl = (
-                "/database/getProjectJobFileName?projectId="
+                "/database/getProjectJobFile?projectId="
                 + projectid
                 + "&fileName="+os.path.join(self.xmlnode.findall('PDB_REDO_RESULTS_DIR')[0].text,"test-page.html")+"&jobNumber="
                 + jobNumber
