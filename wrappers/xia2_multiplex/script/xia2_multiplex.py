@@ -173,10 +173,10 @@ class Cxia2_multiplex(CPluginScript):
             os.path.join(self.getWorkDirectory(), "xia2.multiplex.log")
         )
         if os.path.isfile(xia2MultiplexLogPath):
-            with open(xia2MultiplexLogPath, "r") as xia2MultiplexLogFile:
+            with open(xia2MultiplexLogPath, "rb") as xia2MultiplexLogFile:
                 element = ET.SubElement(self.xmlroot, "Xia2MultiplexLog")
                 #element.text = ET.CDATA(xia2MultiplexLogFile.read())
-                element.text = base64.b64encode(xia2MultiplexLogFile.read())
+                element.text = base64.b64encode(xia2MultiplexLogFile.read()).decode()
 
         # Read xia2.multiplex.json to read performance
         xia2MultiplexJsonPath = os.path.normpath(
@@ -332,9 +332,9 @@ class Cxia2_multiplex(CPluginScript):
         for Xia2MultiplexLogNode in self.xmlroot.findall("Xia2MultiplexLog"):
             self.xmlroot.remove(Xia2MultiplexLogNode)
         xia2MultiplexLogNode = ET.SubElement(self.xmlroot, "Xia2MultiplexLog")
-        with open(filename, "r") as xia2MultiplexLogFile:
+        with open(filename, "rb") as xia2MultiplexLogFile:
             #xia2MultiplexLogNode.text = ET.CDATA(xia2MultiplexLogFile.read())
-            xia2MultiplexLogNode.text = base64.b64encode(xia2MultiplexLogFile.read())
+            xia2MultiplexLogNode.text = base64.b64encode(xia2MultiplexLogFile.read()).decode()
         self.flushXML()
 
     def flushXML(self):

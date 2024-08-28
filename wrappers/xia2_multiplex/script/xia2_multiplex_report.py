@@ -9,6 +9,7 @@ from report.CCP4ReportParser import Report
 import json
 from collections import OrderedDict
 from math import sqrt
+import base64
 
 
 class xia2_multiplex_report(Report):
@@ -35,7 +36,7 @@ class xia2_multiplex_report(Report):
 
         xia2MultiplexLogNode = self.xmlnode.findall("Xia2MultiplexLog")[0]
         if xia2MultiplexLogNode is not None:
-            xia2MultiplexLogFold.addPre(text=xia2MultiplexLogNode.text)
+            xia2MultiplexLogFold.addPre(text= base64.b64decode(xia2MultiplexLogNode.text).decode())
 
     def defaultReport(self, parent=None):
         if parent is None:
