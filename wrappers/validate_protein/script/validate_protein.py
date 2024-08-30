@@ -131,9 +131,6 @@ class validate_protein(CPluginScript):
         xml_root = ET.Element('Model_info')
         self.model_series = metrics_model_series_from_files(model_paths=(self.previous_model_path, self.latest_model_path),
                                                             reflections_paths=(self.previous_reflections_path, self.latest_reflections_path),
-                                                            sequence_paths=(None,),
-                                                            distpred_paths=(None,),
-                                                            model_json_paths=(None,),
                                                             run_covariance=False,
                                                             run_molprobity=self.container.controlParameters.DO_MOLPROBITY,
                                                             multiprocessing=None)
