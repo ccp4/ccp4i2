@@ -24,7 +24,7 @@ class zanuda_gui(CTaskWidget):
     TASKTITLE = 'Zanuda'
     TASKNAME = 'zanuda'
     TASKVERSION = 0.1
-    DESCRIPTION = 'Automated model building of protein, nucleic acid and water'
+    DESCRIPTION = 'Space group validation'
     MGDISPLAYFILES = ['XYZIN']
     WHATNEXT = ['aimless_pipe', 'coot_rebuild']
 

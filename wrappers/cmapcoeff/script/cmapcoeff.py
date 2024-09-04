@@ -17,8 +17,13 @@
      GNU Lesser General Public License for more details.
 """
 
+import os
+import unittest
+import xml.etree.ElementTree as ET
 from core.CCP4PluginScript import CPluginScript
+from core import CCP4ErrorHandling
 from core import CCP4Utils
+from core import CCP4XtalData
 
 class cmapcoeff(CPluginScript):
 
@@ -32,8 +37,6 @@ class cmapcoeff(CPluginScript):
 
     def processInputFiles ( self ):
         list_of_stuff = [ ]
-
-        from core import CCP4XtalData
 
         inp = self.container.inputData
         con = self.container.controlParameters
@@ -62,7 +65,6 @@ class cmapcoeff(CPluginScript):
         out = self.container.outputData
         con = self.container.controlParameters
 
-        import os
         self.hklout = os.path.join(self.workDirectory,"hklout.mtz")
 
         self.appendCommandLine([ '-stdin' ])
@@ -71,8 +73,6 @@ class cmapcoeff(CPluginScript):
         self.appendCommandScript( '-mtzout ' + self.hklout )
 
         self.appendCommandScript( '-colout i2' )
-
-        from core import CCP4XtalData
 
         if con.MAPTYPE == 'anom' :
             self.appendCommandScript ([ '-colin-fano F_SIGF1_Fplus,F_SIGF1_SIGFplus,F_SIGF1_Fminus,F_SIGF1_SIGFminus' ])
@@ -109,22 +109,20 @@ class cmapcoeff(CPluginScript):
 
     def processOutputFiles(self):
 
-        from core import CCP4ErrorHandling
-
         error = self.splitHklout ( [ 'FPHIOUT' ],[ 'i2.F_phi.F,i2.F_phi.phi' ] )
 
         if error.maxSeverity ( ) > CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
 
         if self.container.controlParameters.MAPTYPE == "anom" :
-            self.container.outputData.FPHIOUT.annotation = 'Anomalous difference map coefficients'
-            self.container.outputData.FPHIOUT.subType = 3 # subtype for anomalous difference maps
+            self.container.outputData.FPHIOUT.annotation.set('Anomalous difference map coefficients')
+            self.container.outputData.FPHIOUT.subType.set(CCP4XtalData.CMapCoeffsDataFile.SUBTYPE_ANOM_DIFFERENCE)
         elif self.container.controlParameters.MAPTYPE == "fobsfobs" :
-            self.container.outputData.FPHIOUT.annotation = 'Fobs - Fobs difference map coefficients'
-            self.container.outputData.FPHIOUT.subType = 2 # subtype for difference maps
+            self.container.outputData.FPHIOUT.annotation.set('Fobs - Fobs difference map coefficients')
+            self.container.outputData.FPHIOUT.subType.set(CCP4XtalData.CMapCoeffsDataFile.SUBTYPE_DIFFERENCE)
         else :
-            self.container.outputData.FPHIOUT.annotation = 'Fobs weighted map coefficients'
-            self.container.outputData.FPHIOUT.subType = 1
+            self.container.outputData.FPHIOUT.annotation.set('Fobs weighted map coefficients')
+            self.container.outputData.FPHIOUT.subType.set(CCP4XtalData.CMapCoeffsDataFile.SUBTYPE_NORMAL)
 
         if self.container.controlParameters.MAP_OUTPUT :    # get ready for producing a map file
 
@@ -137,11 +135,9 @@ class cmapcoeff(CPluginScript):
                 self.container.outputData.MAPOUT = self.cfftPlugin.container.outputData.MAPOUT
                 self.container.outputData.MAPOUT.annotation.set ( 'Calculated using ' + str ( self.container.outputData.FPHIOUT.annotation ) )
 
-        from lxml import etree
-
         with open ( self.makeFileName('PROGRAMXML'),'w' ) as xmlFile:
-            xmlRoot = etree.Element('cmapcoeff')
-            xmlString = etree.tostring ( xmlRoot, pretty_print=True )
+            xmlRoot = ET.Element('cmapcoeff')
+            xmlString = ET.tostring ( xmlRoot, pretty_print=True )
             CCP4Utils.writeXML(xmlFile,xmlString)
 
         return CPluginScript.SUCCEEDED
@@ -162,9 +158,6 @@ class cmapcoeff(CPluginScript):
 #=================================test suite=========================================================
 #=====================================================================================================
 
-import unittest
-from core.CCP4Utils import getCCP4I2Dir,getTMP
-
 # unit testing asynchronous processes potential tricky but QProcess has option to wait for finished
 
 class testCmapcoeff(unittest.TestCase):
@@ -178,15 +171,14 @@ class testCmapcoeff(unittest.TestCase):
 
 
   def testCmapcoeff(self):
-    import os
     inputData =  CScriptDataContainer(name='cmapcoeff_test',containerType='inputData',initialise=cmapcoeff.INPUTDATA)
     outputData =  CScriptDataContainer(name='cmapcoeff_test',containerType='outputData',initialise=cmapcoeff.OUTPUTDATA)
     try:
-      inputData.importXML(os.path.join(getCCP4I2Dir(),'wrappers','cmapcoeff','test_data','cmapcoeff_test_1.def.xml'))
+      inputData.importXML(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','cmapcoeff','test_data','cmapcoeff_test_1.def.xml'))
     except CException as e:
       self.fail(e.errorType)
     try:
-      outputData.importXML(os.path.join(getCCP4I2Dir(),'wrappers','cmapcoeff','test_data','cmapcoeff_test_1.def.xml'))
+      outputData.importXML(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','cmapcoeff','test_data','cmapcoeff_test_1.def.xml'))
     except CException as e:
       self.fail(e.errorType)
 

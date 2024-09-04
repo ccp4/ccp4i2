@@ -53,9 +53,10 @@ class pointless(CPluginScript):
         hklin_command = 'HKLIN'
         # if mmCIF, set blockname
         fformat = self.container.inputData.UNMERGEDFILES[i].file.fileContent.format
+        print("Pointless format", fformat, self.container.controlParameters.MMCIF_SELECTED_BLOCK)
         if fformat == 'mmcif':
-            if self.container.controlParameters.MMCIF_SELECTED_BLOCK.isSet():
-                self.appendCommandScript("CIFBLOCK %s"%(self.container.controlParameters.MMCIF_SELECTED_BLOCK))
+          if self.container.controlParameters.MMCIF_SELECTED_BLOCK.isSet():
+            self.appendCommandScript("CIFBLOCK %s"%(self.container.controlParameters.MMCIF_SELECTED_BLOCK))
             hklin_command = 'CIFIN'    # needed by Pointless to process CIFBLOCK command
         self.appendCommandScript("%s %s" %  (hklin_command, self.container.inputData.UNMERGEDFILES[i].file.fullPath))
       # end loop files

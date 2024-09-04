@@ -737,22 +737,23 @@ if __name__ == "__main__":
 #Quit any web server threads
         from PySide2 import QtCore
         app = QtCore.QCoreApplication.instance()
-        threads = app.findChildren(QtCore.QThread)
-        print("##################################################")
-        print("Quitting threads ...")
-        print("##################################################")
-        for t in threads:
-            if hasattr(t,"quitServer"):
-                t.quitServer()
-            print("Waiting for thread",t)
-            timer = QtCore.QDeadlineTimer(1000)
-            t.wait(timer)
-            t.exit()
-        print("##################################################")
-        print("##################################################")
-        print("EXITING FROM NEW CCP4I2Runner")
-        print("##################################################")
-        print("##################################################")
+        if app:
+            threads = app.findChildren(QtCore.QThread)
+            print("##################################################")
+            print("Quitting threads ...")
+            print("##################################################")
+            for t in threads:
+                if hasattr(t,"quitServer"):
+                    t.quitServer()
+                print("Waiting for thread",t)
+                timer = QtCore.QDeadlineTimer(1000)
+                t.wait(timer)
+                t.exit()
+            print("##################################################")
+            print("##################################################")
+            print("EXITING FROM NEW CCP4I2Runner")
+            print("##################################################")
+            print("##################################################")
         sys.exit(0)
     except Exception as err:
         print("Failed with exception ", err)

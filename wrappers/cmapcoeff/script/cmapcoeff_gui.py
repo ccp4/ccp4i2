@@ -51,10 +51,6 @@ class cmapcoeff_gui(CTaskWidget):
         self.createLine ( [ 'widget', 'ABCD2' ] )
         self.closeSubFrame ( )
 
-        self.closeFolder ( )
-
-        self.openFolder ( folderFunction='controlParameters', title='Advanced' )
-
         self.createLine ( [ 'subtitle', 'Basic operations on map coefficients', 'All these operations are done in reciprocal space.' ] )
         self.openSubFrame ( frame = [True] )
         self.createLine ( [ 'tip', 'Use a negative B-factor to sharpen the map, or a positive one to blur it', 'label', 'Sharpen or blur the output map using an isotropic B-factor: ', 'widget', 'B_VALUE' ] )
