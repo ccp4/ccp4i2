@@ -1610,7 +1610,7 @@ CCP4GraphPlot.prototype.drawBackground = function(thePlot,divTop) {
         var ctx = canvas.getContext('2d');
         var outer = document.getElementById(graphName);
         var offset = thePlot.getPlotOffset();
-        var h = parseInt($(divTop).height())-offset["left"]-offset["right"]+9; //was +9
+        var h = parseInt($(divTop).height())-offset["left"]-offset["right"]; //was +9
         var w = parseInt($(divTop).width())-offset["top"]-offset["bottom"];
         h *= window.devicePixelRatio;
         w *= window.devicePixelRatio;
@@ -1620,7 +1620,7 @@ CCP4GraphPlot.prototype.drawBackground = function(thePlot,divTop) {
             drawing.onload = function() {
                 ctx.save();
                 ctx.globalCompositeOperation='destination-over';
-                ctx.drawImage(drawing,offset["left"],offset["top"],w-9,h);
+                ctx.drawImage(drawing,offset["left"]*window.devicePixelRatio,offset["top"]*window.devicePixelRatio,w,h);
                 ctx.restore();
             };
         }
