@@ -27,6 +27,11 @@ from xml.etree import ElementTree as ET
 BASE_DIR = Path(__file__).resolve().parent
 sys.path.append(BASE_DIR.__str__())
 
+if sys.platform == "win32":
+    HOME_CCP4I2_DIR_NAME = "CCP4I2"
+else:
+    HOME_CCP4I2_DIR_NAME = ".CCP4I2"
+
 settings.configure(
     INSTALLED_APPS=(
         'CCP4i2',
@@ -35,7 +40,7 @@ settings.configure(
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             # FIXME...not all database files are stored here
-            'NAME': Path(CCP4Utils.getHOME()) / '.CCP4I2' / 'db' / 'database.sqlite',
+            'NAME': Path(CCP4Utils.getHOME()) / HOME_CCP4I2_DIR_NAME / 'db' / 'database.sqlite',
             'CONN_MAX_AGE': 0
         }
     },
