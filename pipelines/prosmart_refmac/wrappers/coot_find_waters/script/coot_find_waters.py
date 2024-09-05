@@ -1,7 +1,6 @@
 import os
 import pathlib
-from xml.etree import ElementTree as ET
-
+from lxml import etree
 from core.CCP4PluginScript import CPluginScript
 from core.CCP4ModelData import CPdbDataFile
 
@@ -51,7 +50,7 @@ class coot_find_waters(CPluginScript):
         cootlines = open(self.makeFileName('LOG')).readlines()
         for line in cootlines:
             if line.startswith('INFO:: found'):
-                nWatersElement = ET.SubElement(root,'WatersFound')
+                nWatersElement = etree.SubElement(root,'WatersFound')
                 lineElements = line.split()
                 nWatersElement.text = lineElements[2]
     
