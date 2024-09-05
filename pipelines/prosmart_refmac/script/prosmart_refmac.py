@@ -321,7 +321,7 @@ class prosmart_refmac(CPluginScript):
                print("AAA15.1")
                if self.container.controlParameters.ADD_WATERS and best_r_free < self.container.controlParameters.REFPRO_RSR_RWORK_LIMIT :
                    print("AAA16")
-                   self.currentCoordinates = self.firstRefmac.container.outputData.XYZOUT
+                   self.currentCoordinates = self.firstRefmac.container.outputData.CIFFILE
                    self.cootPlugin = self.makeCootPlugin()
                    self.cootPlugin.doAsync = self.doAsync
                    self.cootPlugin.connectSignal(self.cootPlugin,'finished',self.cootFinished)
@@ -337,48 +337,9 @@ class prosmart_refmac(CPluginScript):
 
     def makeCootPlugin(self):
          # FIXME - This is all nonsense - needs to consider best task, etc... *NOT* just firstRefmaca?
-        cootPlugin = self.makePluginObject('coot_script_lines')
-        xyzinList = cootPlugin.container.inputData.XYZIN
-        xyzinList.append(xyzinList.makeItem())
-        xyzinList[-1].set(self.currentCoordinates)
-        fphiinList = cootPlugin.container.inputData.FPHIIN
-        fphiinList.append(fphiinList.makeItem())
-        fphiinList[-1].set(self.firstRefmac.container.outputData.FPHIOUT)
-        #coot_stepped_refine,coot_fit_residues,coot_script_lines
-        if self.container.controlParameters.ADD_WATERS:
-            cootPlugin.container.controlParameters.SCRIPT = '''set_ligand_water_to_protein_distance_limits(2.2, 3.3)
-execute_find_waters_real(MapHandle_1,MolHandle_1,0,1.3)
-write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
-'''
-        """
-        rso = self.container.controlParameters.REFPRO_COOT_REALSPACE_OPERATION.__str__()
-        if rso == "coot_script_lines":
-            cootPlugin.container.controlParameters.SCRIPT = self.container.controlParameters.SCRIPT
-        elif rso == "coot_fit_residues":
-            cootPlugin.container.controlParameters.SCRIPT = '''fill_partial_residues(MolHandle_1)
-fit_protein(MolHandle_1)
-write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
-'''
-        elif rso == "coot_stepped_refine":
-            if self.container.controlParameters.USERAMA.isSet() and self.container.controlParameters.USERAMA:
-                cootPlugin.container.controlParameters.SCRIPT = '''fill_partial_residues(MolHandle_1)
-stepped_refine_protein_for_rama(MolHandle_1)
-write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
-'''
-            else:
-                cootPlugin.container.controlParameters.SCRIPT = '''fill_partial_residues(MolHandle_1)
-stepped_refine_protein(MolHandle_1)
-write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
-'''
-        elif rso == "coot_add_waters":
-            cootPlugin.container.controlParameters.SCRIPT = '''set_ligand_water_to_protein_distance_limits(2.2, 3.3)
-execute_find_waters_real(MapHandle_1,MolHandle_1,0,1.3)
-write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
-'''
-        elif rso == "none":
-            cootPlugin.container.controlParameters.SCRIPT = '''write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
-'''
-        """
+        cootPlugin = self.makePluginObject('coot_find_waters')
+        cootPlugin.container.inputData.XYZIN.set(self.currentCoordinates)
+        cootPlugin.container.inputData.FPHIIN.set(self.firstRefmac.container.outputData.FPHIOUT)
         return cootPlugin
 
     def mapVerdictSuggestionsToi2Params(self,suggestedParameters):
@@ -444,17 +405,14 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
     def cootFinished(self, statusDict={}):
         import functools
         # Check coot status and start refmac
-        if len(self.cootPlugin.container.outputData.XYZOUT) == 0:
-            self.appendErrorReport(205,'Coot failed to produce an output file')
-            self.reportStatus(CPluginScript.FAILED)
-        self.checkFinishStatus(statusDict=statusDict,failedErrCode=204, outputFile= self.cootPlugin.container.outputData.XYZOUT[0],noFileErrCode=205)
+        self.checkFinishStatus(statusDict=statusDict,failedErrCode=204, outputFile= self.cootPlugin.container.outputData.XYZOUT,noFileErrCode=205)
         try:
           if self.container.controlParameters.ADD_WATERS:
             aFile = open(self.pipelinexmlfile,'r')
             oldXml = etree.fromstring(aFile.read())
             aFile.close()
             nwaters = "unknown"
-            cootLogTxt = os.path.join(os.path.dirname(self.cootPlugin.container.outputData.XYZOUT[0].__str__()),"log.txt")
+            cootLogTxt = os.path.join(os.path.dirname(self.cootPlugin.container.outputData.XYZOUT.__str__()),"log.txt")
             with open(cootLogTxt, 'r') as f:
                for l in f:
                    if l.startswith("INFO::") and "found" in l and "water fitting" in l:
@@ -470,8 +428,8 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
             CCP4Utils.writeXML(aFile,etree.tostring(oldXml,pretty_print=True))
             aFile.close()
             shutil.move(self.pipelinexmlfile+'_tmpcoot', self.pipelinexmlfile)
-          self.cootPlugin.container.outputData.XYZOUT[0].subType = 1
-          self.currentCoordinates = self.cootPlugin.container.outputData.XYZOUT[0]
+          self.cootPlugin.container.outputData.XYZOUT.subType = 1
+          self.currentCoordinates = self.cootPlugin.container.outputData.XYZOUT
           self.refmacPostCootPlugin = self.refmacJobWithWeight(inputCoordinates=self.currentCoordinates,ncyc=5)
           self.refmacPostCootPlugin.doAsync = True
           self.refmacPostCootPlugin.connectSignal(self.refmacPostCootPlugin,'finished',functools.partial(self.postCootRefmacFinished,self.refmacPostCootPlugin))
