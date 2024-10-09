@@ -493,11 +493,11 @@ class CSpaceGroupCell(CCP4Data.CData):
 
     def validity(self, arg):
         ''' Needs checking of cell paramenters to be consistent with space group '''
-        #  
+        #
         # triclinic     a != b != c; alpha != beta != gamma  or anything
         # monoclinic    a != b != c; alpha= gamma = 90; beta != 90  a,b,c,beta unspecified
         # orthorhombic  a != b != c; alpha = beta = gamma = 90 a,b,c unspecified
-        # tetragonal    a = b != c; alpha = beta = gamma = 90  c may be = a,b 
+        # tetragonal    a = b != c; alpha = beta = gamma = 90  c may be = a,b
         # rhombohedral  a = b = c;  alpha = beta = gamma != 90
         # hexagonal     a = b != c; alpha = beta = 90; gamma = 120 c may be = a,b
         # cubic         a = b = c;  alpha = beta = gamma = 90
@@ -1360,7 +1360,7 @@ class CImportUnmergedList(CCP4Data.CList):
 
 class CImageFile(CCP4File.CDataFile):
     QUALIFIERS = {'mimeTypeName' : 'application/CCP4-image', 'mimeTypeDescription' : 'Image file',
-                  'fileExtensions' : ['img', 'cbf', 'mccd', 'mar1600', 'h5'],
+                  'fileExtensions' : ['img', 'cbf', 'mccd', 'mar1600', 'h5', 'nxs'],
                   'fileContentClassName' : None, 'guiLabel' : 'Image file', 'toolTip' : "First image file in a directory"}
 
     # Override to avoid copying image
@@ -1838,7 +1838,7 @@ class CMtzData(CCP4File.CDataFileContent):
         result = {'validity': equals, 'maximumResolution1': recipdifference[0],
                   'maximumResolution2': recipdifference[1], 'difference': difference, 'tolerance': tolerance}
         return result
-        
+
     def clipperSameCell(self, other, tolerance=None):
         import clipper
         if tolerance is None:

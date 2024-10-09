@@ -149,6 +149,7 @@ class prosmart_refmac_report(Report):
                   try:
                      if len(validateReportNode.findall ( ".//Iris" ))>0 and validateReportNode.findall ( ".//Iris" )[0].text != "" :
                         irisFold = self.addFold ( label="Iris report", initiallyOpen=False, brief='Iris' )
+                        irisdiv = irisFold.addDiv(style="clear:both; margin-top:30px; width:800px;")
                         validateReport.add_iris_panel(parent=irisFold)
                   except:
                      self.addText("Warning - Iris report failed")

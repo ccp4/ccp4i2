@@ -8,7 +8,7 @@ from core import CCP4XtalData
 from lxml import etree
 import math
 from core import CCP4Modules,CCP4Utils
-from . import atomMatching,cifToMolBlock
+from . import atomMatching, cifToMolBlock
 import platform
 
 class acedrgNew(CPluginScript):
@@ -41,15 +41,17 @@ class acedrgNew(CPluginScript):
         if self.container.inputData.MOLORSMILES.__str__() == 'DICT':
             self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))
             print(self.originalMolFilePath)
-            try:
+            #try:
+            if True:
                 molBlock = cifToMolBlock.cifFileToMolBlock(self.container.inputData.DICTIN2.__str__())
                 print("molBlock:")
                 print(molBlock)
                 with open(self.originalMolFilePath,'w') as molinFile:
                     molinFile.write(molBlock)
-            except:
-                self.appendErrorReport(200,exc_info=sys.exc_info())
-                return CPluginScript.FAILED
+            #except:
+            #    pass
+            #    #self.appendErrorReport(200, exc_info=sys.exc_info())
+            #    #return CPluginScript.FAILED
 
         if self.container.inputData.MOLORSMILES.__str__() == 'SMILESFILE':
             self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))
@@ -86,19 +88,23 @@ class acedrgNew(CPluginScript):
         #print 'Original mol file path', self.originalMolFilePath
     
         #Get the SMILES of the input MOL and put into report
-        if self.container.inputData.MOL2IN.isSet():
-            mol = Chem.MolFromMol2File(self.originalMolFilePath)
-        else:
-            mol = Chem.MolFromMolFile(self.originalMolFilePath)
-        for iAtom in range(mol.GetNumAtoms()):
-            atom = mol.GetAtomWithIdx(iAtom)
-            atom.ClearProp('molAtomMapNumber')
-        from rdkit.Chem import AllChem
-        AllChem.Compute2DCoords(mol)
         smilesNode = etree.SubElement(self.xmlroot,'SMILES')
-        smilesNode.text = Chem.MolToSmiles(mol, isomericSmiles=True)
+        try:
+            if self.container.inputData.MOL2IN.isSet():
+                mol = Chem.MolFromMol2File(self.originalMolFilePath)
+            else:
+                mol = Chem.MolFromMolFile(self.originalMolFilePath)
+            for iAtom in range(mol.GetNumAtoms()):
+                atom = mol.GetAtomWithIdx(iAtom)
+                atom.ClearProp('molAtomMapNumber')
+            from rdkit.Chem import AllChem
+            AllChem.Compute2DCoords(mol)
+            smilesNode.text = Chem.MolToSmiles(mol, isomericSmiles=True)
+        except:
+            sys.stderr.write("ERROR: Getting SMILES from the input file failed.")
+            smilesNode.text = "N/A"
         self.smilesString = smilesNode.text
-        
+            
         #I infer that ACEDRG reads in the bond and atom counts and the bonded atom indices as free input, whereas in practise
         #they are fixed format (i3,i3)...where nBonds > 99, this makes problems.  Insert a space to deal with this
         if os.path.isfile(self.originalMolFilePath):
@@ -204,10 +210,13 @@ class acedrgNew(CPluginScript):
 
         #Make database entry for Acedrg-generated CIF file
         cifFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'AcedrgOut.cif'))
+        cifFilePath_alternative = os.path.normpath(os.path.join(self.getWorkDirectory(),'AcedrgOut_final.cif'))
+        if not os.path.isfile(cifFilePath) and os.path.isfile(cifFilePath_alternative):
+            cifFilePath = cifFilePath_alternative
         
         #Annoying kludge....for a brief window in time, Acedrg is not honouring the specified TLC
         if True:
-            cifFilePathTmp = os.path.normpath(os.path.join(self.getWorkDirectory(),'AcedrgOut.cif'))
+            cifFilePathTmp = cifFilePath
             cifFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'AcedrgOut_patched.cif'))
             with open(cifFilePathTmp,'r') as unpatchedFile:
                 with open(cifFilePath,'w') as patchedFile:
@@ -273,12 +282,10 @@ class acedrgNew(CPluginScript):
         else:
             referenceMol = Chem.MolFromMolFile(self.originalMolFilePath)
 
-        Chem.SanitizeMol(referenceMol)
-        Chem.Kekulize(referenceMol)
-
-        molToWrite = referenceMol
-        
         try:
+            Chem.SanitizeMol(referenceMol)
+            Chem.Kekulize(referenceMol)
+            molToWrite = referenceMol
             # Output a MOL file
             molBlock = Chem.MolToMolBlock(molToWrite)
             with open(self.container.outputData.MOLOUT.fullPath.__str__(),'w') as outputMOL:
@@ -287,10 +294,21 @@ class acedrgNew(CPluginScript):
             print("-----------------------")
             print("Written",self.container.outputData.MOLOUT.fullPath.__str__())
         except:
+            import shutil
+            molToWrite = referenceMol
             exc_type, exc_value = sys.exc_info()[:2]
             print("Failed writing MOL file")
             print(exc_type, exc_value)
             print(molToWrite)
+            try:
+                shutil.copy2(
+                    os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol')),
+                    self.container.outputData.MOLOUT.fullPath.__str__())
+                print("Copied", os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol')),
+                      "to", self.container.outputData.MOLOUT.fullPath.__str__())
+            except:
+                print("Failed copying MOL file")
+            
         
         # Get 2D picture of structure from the RDKit mol and place in report
         svgNode = etree.SubElement(self.xmlroot,'SVGNode')

@@ -273,13 +273,9 @@ class lorestr_i2(CPluginScript):
 # CCP4i2 validation
         try:
            self.validate = self.makePluginObject('validate_protein')
-           """
-           self.validate.container.inputData.XYZIN = self.container.outputData.XYZOUT
-           self.validate.container.inputData.F_SIGF = self.container.inputData.F_SIGF
-           """
            self.validate.container.inputData.XYZIN_1 = self.container.outputData.XYZOUT
-           self.validate.container.inputData.F_SIGF_1 = self.container.inputData.F_SIGF
            self.validate.container.inputData.XYZIN_2 = self.container.outputData.XYZOUT
+           self.validate.container.inputData.F_SIGF_1 = self.container.inputData.F_SIGF
            self.validate.container.inputData.F_SIGF_2 = self.container.inputData.F_SIGF
            self.validate.container.outputData.COOTSCRIPTOUT = self.container.outputData.COOTSCRIPTOUT
 

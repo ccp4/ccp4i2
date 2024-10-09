@@ -18,7 +18,7 @@
                 <qualifiers>
                     <mustExist>True</mustExist>
                     <requiredContentFlag>1,2,3,4</requiredContentFlag>
-                    <allowUndefined>False</allowUndefined>
+                    <allowUndefined>True</allowUndefined>
                     <fromPreviousJob>True</fromPreviousJob>
                 </qualifiers>
             </content>
@@ -28,7 +28,7 @@
                 <qualifiers>
                     <requiredSubType>1,0</requiredSubType>
                     <default><subType>1</subType></default>
-                    <allowUndefined>False</allowUndefined>
+                    <allowUndefined>True</allowUndefined>
                     <fromPreviousJob>True</fromPreviousJob>
                 </qualifiers>
             </content>
@@ -52,6 +52,33 @@
                     <fromPreviousJob>True</fromPreviousJob>
                 </qualifiers>
             </content>
+
+            <content id="NAME_1">
+                <className>CString</className>
+                <qualifiers>
+                   <onlyEnumerators>False</onlyEnumerators>
+                    <allowUndefined>True</allowUndefined>
+                    <minLength>3</minLength>
+                    <maxLength>8</maxLength>
+                    <charWidth>8</charWidth>
+                    <guiLabel>Label dataset 1 as </guiLabel>
+                    <default>Latest</default>
+                </qualifiers>
+            </content>
+
+            <content id="NAME_2">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>False</onlyEnumerators>
+                    <allowUndefined>True</allowUndefined>
+                    <minLength>3</minLength>
+                    <maxLength>8</maxLength>
+                    <charWidth>8</charWidth>
+                    <guiLabel>Label dataset 2 as </guiLabel>
+                    <default>Previous</default>
+                </qualifiers>
+            </content>
+
         </container>
 
         <container id="outputData">
@@ -71,14 +98,14 @@
                 </qualifiers>
             </content>
 
-            <content id="DO_BFACT">
+             <content id="DO_RAMA">
                 <className>CBoolean</className>
                 <qualifiers>
                     <default>True</default>
                 </qualifiers>
             </content>
 
-            <content id="DO_RAMA">
+            <content id="DO_BFACT">
                 <className>CBoolean</className>
                 <qualifiers>
                     <default>True</default>
@@ -89,6 +116,20 @@
                 <className>CBoolean</className>
                 <qualifiers>
                     <default>True</default>
+                </qualifiers>
+            </content>
+
+            <content id="DO_TORTOIZE">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+
+            <content id="TWO_DATASETS">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
                 </qualifiers>
             </content>
         </container>

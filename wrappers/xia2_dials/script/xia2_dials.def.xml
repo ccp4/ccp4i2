@@ -4,7 +4,7 @@
     <function>DEF</function>
     <userId>fcx32934</userId>
     <hostName>nedvedice</hostName>
-    <creationTime>2022-11-09T14:48:35.214107</creationTime>
+    <creationTime>2024-09-06T09:54:02.219656</creationTime>
     <pluginVersion/>
     <ccp4iVersion>0.0.1</ccp4iVersion>
     <pluginName>xia2_dials</pluginName>
@@ -1666,6 +1666,28 @@
                     <expertLevel>1</expertLevel>
                   </guiDefinition>
                 </qualifiers>
+                <content id="xia2__settings__input__geometry__beam__type">
+                  <className>CString</className>
+                  <qualifiers>
+                    <guiLabel>beam_type</guiLabel>
+                    <toolTip>Override the beam type</toolTip>
+                    <guiDefinition/>
+                    <enumerators>monochromatic,polychromatic</enumerators>
+                    <default>monochromatic</default>
+                    <onlyEnumerators>True</onlyEnumerators>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__beam__probe">
+                  <className>CString</className>
+                  <qualifiers>
+                    <guiLabel>beam_probe</guiLabel>
+                    <toolTip>Override the beam probe</toolTip>
+                    <guiDefinition/>
+                    <enumerators>x-ray,electron,neutron</enumerators>
+                    <default>x-ray</default>
+                    <onlyEnumerators>True</onlyEnumerators>
+                  </qualifiers>
+                </content>
                 <content id="xia2__settings__input__geometry__beam__wavelength">
                   <className>CFloat</className>
                   <qualifiers>
@@ -1681,6 +1703,24 @@
                     <guiLabel>Sample to source direction</guiLabel>
                     <toolTip>Override the sample to source direction</toolTip>
                     <guiDefinition/>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__beam__divergence">
+                  <className>CFloat</className>
+                  <qualifiers>
+                    <guiLabel>divergence</guiLabel>
+                    <toolTip>Override the beam divergence</toolTip>
+                    <guiDefinition/>
+                    <default>None</default>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__beam__sigma_divergence">
+                  <className>CFloat</className>
+                  <qualifiers>
+                    <guiLabel>sigma_divergence</guiLabel>
+                    <toolTip>Override the beam sigma divergence</toolTip>
+                    <guiDefinition/>
+                    <default>None</default>
                   </qualifiers>
                 </content>
                 <content id="xia2__settings__input__geometry__beam__polarization_normal">
@@ -1700,6 +1740,41 @@
                     <default>None</default>
                     <min>0.0</min>
                     <max>1.0</max>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__beam__transmission">
+                  <className>CFloat</className>
+                  <qualifiers>
+                    <guiLabel>transmission</guiLabel>
+                    <toolTip>Override the transmission</toolTip>
+                    <guiDefinition/>
+                    <default>None</default>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__beam__flux">
+                  <className>CFloat</className>
+                  <qualifiers>
+                    <guiLabel>flux</guiLabel>
+                    <toolTip>Override the flux</toolTip>
+                    <guiDefinition/>
+                    <default>None</default>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__beam__sample_to_source_distance">
+                  <className>CFloat</className>
+                  <qualifiers>
+                    <guiLabel>sample_to_source_distance</guiLabel>
+                    <toolTip>Override the distance between sample and source (mm)</toolTip>
+                    <guiDefinition/>
+                    <default>None</default>
+                  </qualifiers>
+                </content>
+                <content id="xia2__settings__input__geometry__beam__wavelength_range">
+                  <className>CString</className>
+                  <qualifiers>
+                    <guiLabel>wavelength_range</guiLabel>
+                    <toolTip>Override the wavelength range for polychromatic beams (A)</toolTip>
+                    <guiDefinition/>
                   </qualifiers>
                 </content>
               </container>
@@ -1780,7 +1855,7 @@
                     <className>CString</className>
                     <qualifiers>
                       <guiLabel>Panel trusted range</guiLabel>
-                      <toolTip>Override the panel trusted range</toolTip>
+                      <toolTip>Override the panel trusted range: [min-trusted-value, max-trusted-value]</toolTip>
                       <guiDefinition/>
                     </qualifiers>
                   </content>
@@ -2252,6 +2327,16 @@
               </qualifiers>
             </content>
           </container>
+          <content id="xia2__settings__chemical_formula">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Chemical formula for shelxt</guiLabel>
+              <toolTip>Insert this chemical formula into the shelxt ins file. Otherwise will use the default CHNO</toolTip>
+              <guiDefinition>
+                <expertLevel>1</expertLevel>
+              </guiDefinition>
+            </qualifiers>
+          </content>
           <content id="xia2__settings__space_group">
             <className>CString</className>
             <qualifiers>
@@ -2430,7 +2515,7 @@
                 <guiDefinition>
                   <expertLevel>1</expertLevel>
                 </guiDefinition>
-                <default>100</default>
+                <default>50</default>
               </qualifiers>
             </content>
             <content id="xia2__settings__resolution__reflections_per_bin">
@@ -2942,7 +3027,7 @@
               <qualifiers>
                 <guiLabel>resolution_bins</guiLabel>
                 <guiDefinition/>
-                <default>20</default>
+                <default>None</default>
               </qualifiers>
             </content>
             <content id="xia2__settings__report__anomalous">
@@ -3155,12 +3240,12 @@
                 <className>CString</className>
                 <qualifiers>
                   <guiLabel>pdb_version</guiLabel>
-                  <toolTip>This controls which pdb mmcif dictionary version the output mmcif file should comply with. v5_next adds support for recording unmerged data as well as additional scan metadata and statistics, however writing can be slow for large datasets.</toolTip>
+                  <toolTip>This controls which pdb mmcif dictionary version the output mmcif file should comply with. Unmerged data is exported in both formats, v5_next adds additional support for scan metadata.</toolTip>
                   <guiDefinition>
                     <expertLevel>2</expertLevel>
                   </guiDefinition>
                   <enumerators>v5,v5_next</enumerators>
-                  <default>v5_next</default>
+                  <default>v5</default>
                   <onlyEnumerators>True</onlyEnumerators>
                 </qualifiers>
               </content>

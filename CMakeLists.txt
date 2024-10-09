@@ -87,7 +87,6 @@ install(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/i2run-inst DESTINATION bin RENAME i2run
 if(WIN32)
   install(FILES ${CMAKE_SOURCE_DIR}/Windows/ccp4i2.ico DESTINATION .)
   install(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/ccp4i2.bat DESTINATION bin)
-  install(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/ccp4i2-update.bat DESTINATION bin)
 endif()
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")

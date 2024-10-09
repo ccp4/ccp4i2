@@ -22,7 +22,7 @@ from qtgui.CCP4TaskWidget import CTaskWidget
 
 class modelcraft_gui(CTaskWidget):
     TASKMODULE = "model_building"
-    TASKTITLE = "ModelCraft"
+    TASKTITLE = "Autobuild with ModelCraft, Buccaneer and Nautilus"
     TASKNAME = "modelcraft"
     TASKVERSION = 0.1
     DESCRIPTION = "Automated model building of protein, nucleic acid and water"

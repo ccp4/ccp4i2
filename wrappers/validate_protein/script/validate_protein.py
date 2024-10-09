@@ -1,6 +1,6 @@
 """
-     validate_protein.py: CCP4 GUI 2 Project
-     Copyright (C) 2022 William Rochira
+     validate_protein.py: CCP4i2 validation task
+     Copyright (C) 2022-2024 William Rochira & Jon Agirre
 
      This library is free software: you can redistribute it and/or
      modify it under the terms of the GNU Lesser General Public License
@@ -26,6 +26,7 @@ import sys
 import time
 import shutil
 from math import pi
+import traceback
 
 # Ignore NumPy warnings
 import warnings
@@ -49,7 +50,7 @@ except ImportError:
 
 from iris_validation.graphics import Panel
 from iris_validation.metrics import metrics_model_series_from_files
-
+import iris_validation
 
 class validate_protein(CPluginScript):
     TASKNAME = 'validate_protein'
@@ -60,17 +61,31 @@ class validate_protein(CPluginScript):
         log_string = ''
         self.xml_root = etree.Element('Validate_geometry_CCP4i2')
 
-        self.latest_model_path = str(self.container.inputData.XYZIN_1)
-        self.latest_reflections_path, _ = self.makeHklin([['F_SIGF_1', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]], hklin='F_SIGF_1')
-        self.previous_model_path = str(self.container.inputData.XYZIN_2)
-        self.previous_reflections_path, _ = self.makeHklin([['F_SIGF_2', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]], hklin='F_SIGF_2')
+        self.latest_model_path = self.previous_model_path = self.latest_reflections_path = self.previous_reflections_path = None
 
+        print ("Using Iris installation: " + iris_validation.__file__.replace(f"/__init__.py", ""))
+
+        if self.container.inputData.XYZIN_1.isSet(): # Latest dataset first
+            self.latest_model_path = str(self.container.inputData.XYZIN_1)
+        if self.container.inputData.F_SIGF_1.isSet():
+            self.latest_reflections_path, _ = self.makeHklin([['F_SIGF_1',
+                                                             CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]], 
+                                                             hklin='F_SIGF_1')
+        if self.container.inputData.XYZIN_2.isSet(): # Previous dataset for comparison, if set
+            self.previous_model_path = str(self.container.inputData.XYZIN_2)
+        if self.container.inputData.F_SIGF_2.isSet():
+            self.previous_reflections_path, _ = self.makeHklin([['F_SIGF_2',
+                                                               CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]], 
+                                                               hklin='F_SIGF_2')
+            
         log_string += _print_and_return('\n\n######### Calculating metrics using Iris #########\n')
+
         try:
             fn_log, fn_xml = self.calculate_iris_metrics()
             log_string += fn_log
             self.xml_root.append(fn_xml)
         except Exception as e:
+            traceback.print_exc()
             log_string += _print_and_return('UNHANDLED ERROR:\n%s' % e)
 
         if self.container.controlParameters.DO_IRIS:
@@ -80,6 +95,7 @@ class validate_protein(CPluginScript):
                 log_string += fn_log
                 self.xml_root.append(fn_xml)
             except Exception as e:
+                traceback.print_exc()
                 log_string += _print_and_return('UNHANDLED ERROR:\n%s' % e)
 
         if self.container.controlParameters.DO_MOLPROBITY:
@@ -89,6 +105,7 @@ class validate_protein(CPluginScript):
                 log_string += fn_log
                 self.xml_root.append(fn_xml)
             except Exception as e:
+                traceback.print_exc()
                 log_string += _print_and_return('UNHANDLED ERROR:\n%s' % e)
 
         if self.container.controlParameters.DO_BFACT:
@@ -98,6 +115,7 @@ class validate_protein(CPluginScript):
                 log_string += fn_log
                 self.xml_root.append(fn_xml)
             except Exception as e:
+                traceback.print_exc()
                 log_string += _print_and_return('UNHANDLED ERROR:\n%s' % e)
 
         if self.container.controlParameters.DO_RAMA:
@@ -107,6 +125,7 @@ class validate_protein(CPluginScript):
                 log_string += fn_log
                 self.xml_root.append(fn_xml)
             except Exception as e:
+                traceback.print_exc()
                 log_string += _print_and_return('UNHANDLED ERROR:\n%s' % e)
 
         with open(self.makeFileName('PROGRAMXML'), 'w') as xml_file:
@@ -119,16 +138,20 @@ class validate_protein(CPluginScript):
     def calculate_iris_metrics(self):
         log_string = ''
         xml_root = etree.Element('Model_info')
-        print("PATHS",self.previous_model_path, self.latest_model_path,self.previous_reflections_path, self.latest_reflections_path)
-        self.model_series = metrics_model_series_from_files(model_paths=(self.previous_model_path, self.latest_model_path),
-                                                            reflections_paths=(self.previous_reflections_path, self.latest_reflections_path),
-                                                            sequence_paths=None,
-                                                            distpred_paths=None,
+
+        print("PATHS\n",self.latest_model_path, self.previous_model_path,self.latest_reflections_path, self.previous_reflections_path)
+        self.model_series = metrics_model_series_from_files(model_paths=(self.latest_model_path, self.previous_model_path),
+                                                            reflections_paths=(self.latest_reflections_path, self.previous_reflections_path),
+                                                            sequence_paths=(None, None),
+                                                            distpred_paths=(None, None),
+                                                            model_json_paths=(None, None),
                                                             run_covariance=False,
+                                                            calculate_rama_z=self.container.controlParameters.DO_TORTOIZE,
                                                             run_molprobity=self.container.controlParameters.DO_MOLPROBITY,
-                                                            multiprocessing=None)
+                                                            multiprocessing=False)
         self.latest_model = self.model_series.metrics_models[-1]
         etree.SubElement(xml_root, 'Chain_count').text = str(self.latest_model.chain_count)
+        print ("Number of models returned: {}".format(len(self.model_series.metrics_models)))
         return log_string, xml_root
 
 
@@ -136,7 +159,11 @@ class validate_protein(CPluginScript):
         log_string = ''
         xml_root = etree.Element('Iris')
         model_series_data = self.model_series.get_raw_data()
-        panel = Panel(model_series_data)
+        panel = Panel(model_series_data, 
+                      custom_labels={'Latest': self.container.inputData.NAME_1, 
+                                     'Previous': self.container.inputData.NAME_2
+                                    }
+                     )
         panel.dwg.attribs['style'] += ' margin-top: -20px;'
         panel_string = panel.dwg.tostring()
         etree.SubElement(xml_root, 'Panel_svg').text = panel_string

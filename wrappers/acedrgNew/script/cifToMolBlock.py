@@ -6,6 +6,33 @@ import gemmi
 from rdkit import Chem
 from rdkit.Chem import AllChem
 
+# http://www.rdkit.org/new_docs/Cookbook.html#organometallics-with-dative-bonds
+def is_transition_metal(at):
+    n = at.GetAtomicNum()
+    return (n>=22 and n<=29) or (n>=40 and n<=47) or (n>=72 and n<=79)
+
+def set_dative_bonds(mol, fromAtoms=(7,8)):
+    """ convert some bonds to dative
+
+    Replaces some single bonds between metals and atoms with atomic numbers in fomAtoms
+    with dative bonds. The replacement is only done if the atom has "too many" bonds.
+
+    Returns the modified molecule.
+
+    """
+    pt = Chem.GetPeriodicTable()
+    rwmol = Chem.RWMol(mol)
+    rwmol.UpdatePropertyCache(strict=False)
+    metals = [at for at in rwmol.GetAtoms() if is_transition_metal(at)]
+    for metal in metals:
+        for nbr in metal.GetNeighbors():
+            if nbr.GetAtomicNum() in fromAtoms and \
+               nbr.GetExplicitValence()>pt.GetDefaultValence(nbr.GetAtomicNum()) and \
+               rwmol.GetBondBetweenAtoms(nbr.GetIdx(),metal.GetIdx()).GetBondType() == Chem.BondType.SINGLE:
+                rwmol.RemoveBond(nbr.GetIdx(),metal.GetIdx())
+                rwmol.AddBond(nbr.GetIdx(),metal.GetIdx(),Chem.BondType.DATIVE)
+    return rwmol
+
 def cifFileToMolBlock(input_file):
 
     f = tempfile.NamedTemporaryFile(suffix=".pdb")
@@ -48,14 +75,34 @@ def cifFileToMolBlock(input_file):
         return ""
 
     smiles_list = list(smiles_dict.values())
+    mol = None
     for s in smiles_list:
         if s['_pdbx_chem_comp_descriptor.type'].startswith("SMILES"):
             ss = s['_pdbx_chem_comp_descriptor.descriptor'].strip().lstrip('"').rstrip('"')
             mol = Chem.MolFromSmiles(ss)
-            AllChem.Compute2DCoords(mol)
-            mol.SetProp("_MolFileChiralFlag","1")
-            molBlock = Chem.MolToMolBlock(mol, includeStereo=True, forceV3000=False)
-            return molBlock
+            if not mol:
+                print("Not successful Chem.MolFromSmiles(ss) for ss =", ss)
+                try:
+                    mol = Chem.MolFromSmiles(ss, sanitize=False)
+                    mol = set_dative_bonds(mol)
+                except:
+                    print("Not successful try Chem.MolFromSmiles(ss, sanitize=False) or set_dative_bonds(mol) for ss =", ss)
+                    continue
+                if not mol:
+                    print("Not successful Chem.MolFromSmiles(ss, sanitize=False) or set_dative_bonds(mol) for ss =", ss)
+                    continue
+            if mol:
+                try:
+                    AllChem.Compute2DCoords(mol)
+                    mol.SetProp("_MolFileChiralFlag","1")
+                    molBlock = Chem.MolToMolBlock(mol, includeStereo=True, forceV3000=False)
+                    return molBlock
+                except:
+                    print("Not successful try set_dative_bonds(mol) for ", ss)
+                    continue
+            else:  # invalid SMILES
+                print("Not successful set_dative_bonds(mol) for", ss)
+                continue
 
 #If no SMILES string, we hope there is at least one molecule, either in PDB or acedrg chem_comp format.
     try:

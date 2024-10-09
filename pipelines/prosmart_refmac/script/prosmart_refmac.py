@@ -212,6 +212,19 @@ class prosmart_refmac(CPluginScript):
         #input data for this refmac instance is the same as the input data for the program
         result.container.inputData.copyData(self.container.inputData)
         #result.container.inputData = self.container.inputData
+
+        #Copy over most of the control parameters
+        for attr in self.container.controlParameters.dataOrder():
+            if (attr != "OPTIMISE_WEIGHT"
+                  and attr != "REFMAC_CLEANUP"
+                  and attr != "VALIDATE_IRIS"
+                  and attr != "VALIDATE_BAVERAGE"
+                  and attr != "VALIDATE_RAMACHANDRAN"
+                  and attr != "VALIDATE_MOLPROBITY"
+                  and attr != "RUN_MOLPROBITY"):
+                setattr(result.container.controlParameters, attr, getattr(self.container.controlParameters, attr))
+
+        #Set parameters if there is prior ProSMART or Platonyzer
         if self.container.prosmartProtein.TOGGLE:
             result.container.controlParameters.PROSMART_PROTEIN_WEIGHT=self.container.prosmartProtein.WEIGHT
             result.container.controlParameters.PROSMART_PROTEIN_ALPHA=self.container.prosmartProtein.ALPHA
@@ -226,17 +239,7 @@ class prosmart_refmac(CPluginScript):
             result.container.inputData.PLATONYZER_RESTRAINTS=self.platonyzer.container.outputData.RESTRAINTS
             result.container.inputData.XYZIN=self.platonyzer.container.outputData.XYZOUT
 
-        #Copy over most of the control parameters
-        for attr in self.container.controlParameters.dataOrder():
-            if (attr != "OPTIMISE_WEIGHT"
-                  and attr != "REFMAC_CLEANUP"
-                  and attr != "VALIDATE_IRIS"
-                  and attr != "VALIDATE_BAVERAGE"
-                  and attr != "VALIDATE_RAMACHANDRAN"
-                  and attr != "VALIDATE_MOLPROBITY"
-                  and attr != "RUN_MOLPROBITY"):
-                setattr(result.container.controlParameters, attr, getattr(self.container.controlParameters, attr))
-        #specify weight if a meaningful one hsa been offered
+        #Specify weight if a meaningful one has been offered
         if withWeight>=0.:
             result.container.controlParameters.WEIGHT_OPT='MANUAL'
             result.container.controlParameters.WEIGHT = withWeight
@@ -646,10 +649,8 @@ class prosmart_refmac(CPluginScript):
                 self.validate.container.inputData.F_SIGF_1 = self.container.inputData.F_SIGF
                 self.validate.container.inputData.XYZIN_2 = self.container.outputData.XYZOUT
                 self.validate.container.inputData.F_SIGF_2 = self.container.inputData.F_SIGF
-                """
-                self.validate.container.inputData.XYZIN = self.container.inputData.XYZIN
-                self.validate.container.inputData.F_SIGF = self.container.inputData.F_SIGF
-                """
+                self.validate.container.inputData.NAME_1 = "Refined"
+                self.validate.container.inputData.NAME_2 = "Input"
                 #MN...Using "="" to set this is an odd thing and breaks under some circumstances.
                 #Specifically, the path for this is now in the prosmart_refmac (i.e. parent job) directory,
                 #but it is an output of the validate_protein subjob.  When that subjob seeks to save it to the
