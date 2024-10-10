@@ -41,17 +41,15 @@ class acedrgNew(CPluginScript):
         if self.container.inputData.MOLORSMILES.__str__() == 'DICT':
             self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))
             print(self.originalMolFilePath)
-            #try:
-            if True:
+            try:
                 molBlock = cifToMolBlock.cifFileToMolBlock(self.container.inputData.DICTIN2.__str__())
                 print("molBlock:")
                 print(molBlock)
                 with open(self.originalMolFilePath,'w') as molinFile:
                     molinFile.write(molBlock)
-            #except:
-            #    pass
-            #    #self.appendErrorReport(200, exc_info=sys.exc_info())
-            #    #return CPluginScript.FAILED
+            except:
+                self.appendErrorReport(200, exc_info=sys.exc_info())
+                return CPluginScript.FAILED
 
         if self.container.inputData.MOLORSMILES.__str__() == 'SMILESFILE':
             self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))
