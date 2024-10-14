@@ -94,13 +94,17 @@ class lidiaAcedrgNew(CPluginScript):
         elif inputType == 'DICT':
             acedrgPlugin.container.inputData.DICTIN2 = inputObject
         try:
-           acedrgPlugin.container.inputData.TLC.set(self.container.inputData.TLC)
-           acedrgPlugin.container.inputData.NRANDOM.set(self.container.inputData.NRANDOM)
+            acedrgPlugin.container.inputData.TLC.set(self.container.inputData.TLC)
+            acedrgPlugin.container.inputData.NRANDOM.set(self.container.inputData.NRANDOM)
+            if self.container.controlParameters.TOGGLE_METAL:
+                acedrgPlugin.container.inputData.METAL_STRUCTURE = self.container.inputData.METAL_STRUCTURE
+            if self.container.controlParameters.NOPROT:
+                acedrgPlugin.container.inputData.NOPROT = self.container.inputData.NOPROT
         except:
-           exc_type, exc_value,exc_tb = sys.exc_info()[:3]
-           sys.stdout.write(str(exc_type)+'\n')
-           sys.stdout.write(str(exc_value)+'\n')
-           raise
+            exc_type, exc_value,exc_tb = sys.exc_info()[:3]
+            sys.stdout.write(str(exc_type)+'\n')
+            sys.stdout.write(str(exc_value)+'\n')
+            raise
 
         myMatchTLC = self.container.inputData.MATCHTLC
         print("My MATCHTLC",myMatchTLC.__str__())

@@ -144,6 +144,10 @@ class acedrgNew(CPluginScript):
         elif self.container.inputData.MOL2IN.isSet():
             self.appendCommandLine('-g')
             self.appendCommandLine(str(self.container.inputData.MOL2IN))
+        if self.container.inputData.METAL_STRUCTURE.isSet():
+            self.appendCommandLine('--metalPDB=' + str(self.container.inputData.METAL_STRUCTURE))
+        if self.container.controlParameters.NOPROT:
+            self.appendCommandLine('--noProt')
         if self.container.inputData.DICTIN2.isSet() or self.container.inputData.MOLIN.isSet() or self.container.inputData.MOL2IN.isSet():
             if self.container.controlParameters.USE_COORD:
                 self.appendCommandLine('-p')

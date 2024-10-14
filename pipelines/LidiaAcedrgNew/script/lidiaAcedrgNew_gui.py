@@ -8,9 +8,9 @@ from __future__ import print_function
     """
 
 from PySide2 import QtGui, QtWidgets,QtCore
-
+import os
 from qtgui.CCP4TaskWidget import CTaskWidget
-from gemmi import cif
+import gemmi
 
 #-------------------------------------------------------------------
 class lidiaAcedrgNew_gui(CTaskWidget):
@@ -23,6 +23,7 @@ class lidiaAcedrgNew_gui(CTaskWidget):
     RANK=1
 
     def drawContents(self):
+        indent = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
         
         self.openFolder(folderFunction='inputData')
         
@@ -41,16 +42,22 @@ class lidiaAcedrgNew_gui(CTaskWidget):
         
         self.createLine ( [ 'widget', '-guiMode', 'multiLine', 'SMILESIN' ] , toggle=['MOLSMILESORSKETCH','open',['SMILES']])
         self.createLine ( [ 'label', 'SMILES file', 'widget', 'SMILESFILEIN' ] , toggle=['MOLSMILESORSKETCH','open',['SMILESFILE']])
-        self.createLine ( [ 'label', 'Dictionary CIF file', 'widget', 'DICTIN2' ] , toggle=['MOLSMILESORSKETCH','open',['DICT']])
+        self.createLine ( [ 'widget', 'DICTIN2' ] , toggle=['MOLSMILESORSKETCH','open',['DICT']])
         self.connectDataChanged('DICTIN2', self.updateTLC)
-        self.createLine ( [ 'widget','USE_COORD', 'label', 'Use the coordinates from the input file' ],
+        self.createLine ( [ 'widget', 'USE_COORD', 'label', 'Use the coordinates from the input file' ],
                           toggle=['MOLSMILESORSKETCH','open',['MOL','MOL2','DICT']] )
+        self.createLine ( [ 'widget', 'TOGGLE_METAL', 'label' , 'This monomer contains a metal atom.' ] )
+        self.connectDataChanged('controlParameters.TOGGLE_METAL', self.ToggleShowContainsMetal)
+        self.createLine ( [ 'label', indent + 'Provide a relevant structure model in complex with this monomer to get ideal bond angles in the output:'] , toggleFunction=[self.ToggleShowContainsMetal, ['controlParameters.TOGGLE_METAL']])
+        self.createLine ( [ 'label', indent, 'widget', 'METAL_STRUCTURE'] , toggleFunction=[self.ToggleShowContainsMetal, ['controlParameters.TOGGLE_METAL']])
         self.closeSubFrame()
 
 
-        self.createLine(['subtitle','Output monomer'])
+        self.createLine(['subtitle', 'Output monomer'])
         self.openSubFrame( frame=[True])
-        self.createLine ( [ 'label','3-5 letter code for output monomer','stretch','widget','TLC' ])
+        self.createLine ( [ 'label', 'Monomer code (3-5 characters)','stretch','widget','TLC' ])
+        # Codes XXX, LIG, DRG, INH, LG0, LG1, LG2, LG3, LG4, LG5, LG6, LG7, LG8, LG9 are reserved by Coot and cannot be used here.
+        self.createLine ( [ 'widget', 'NOPROT', 'label' , 'No further protonation/deprotonation to be done by AceDRG' ] )
         self.closeSubFrame()
         
         try:
@@ -88,7 +95,7 @@ class lidiaAcedrgNew_gui(CTaskWidget):
     def updateTLC(self):
         tlc = None
         try:
-            blocks = cif.read(str(self.container.inputData.DICTIN2.fullPath))
+            blocks = gemmi.cif.read(str(self.container.inputData.DICTIN2.fullPath))
             for block in blocks:
                 tlc = block.find_value('_chem_comp.three_letter_code')
                 if tlc:
@@ -99,5 +106,27 @@ class lidiaAcedrgNew_gui(CTaskWidget):
             if tlc:
                 if len(str(tlc)) >= 3 and len(str(tlc)) <= 5:
                     self.container.inputData.TLC.set(str(tlc))
+            self.ToggleShowContainsMetal(fromUpdateTLC=True)
         except:
             pass
+
+    def ToggleShowContainsMetal(self, fromUpdateTLC=False):
+        if self.container.controlParameters.TOGGLE_METAL and not fromUpdateTLC:
+            return True
+        if not self.container.controlParameters.TOGGLE_METAL and not fromUpdateTLC:
+            return False
+        if self.container.inputData.MOLSMILESORSKETCH != 'DICT':
+            return False
+        if not str(self.container.inputData.DICTIN2.fullPath):
+            return False
+        if not os.path.isfile(str(self.container.inputData.DICTIN2.fullPath)):
+            return False
+        try:
+            blocks = gemmi.cif.read(str(self.container.inputData.DICTIN2.fullPath))
+            for block in blocks:
+                for element in block.find_loop("_chem_comp_atom.type_symbol"):
+                    if gemmi.Element(element).is_metal:
+                        self.container.controlParameters.TOGGLE_METAL.set(True)
+                        return True
+        except:
+            return False

@@ -95,6 +95,15 @@
             <content id='SMILESIN'>
                 <className>CString</className>
             </content>
+            <content id='METAL_STRUCTURE'>
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
         </container>
         <container id="outputData">
             <content id="DICTOUT">
@@ -133,6 +142,13 @@
                 <className>CBoolean</className>
                 <qualifiers>
                     <default>True</default>
+                </qualifiers>
+            </content>
+            <content id='NOPROT'>
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                    <guiLabel>No further protonation/deprotonation will be done by AceDRG</guiLabel>
                 </qualifiers>
             </content>
         </container>

@@ -53,7 +53,7 @@
                     <default>LIG</default>
                     <mustExist>True</mustExist>
                     <allowUndefined>False</allowUndefined>
-                    <guiLabel>3-5 letter code for new molecule</guiLabel><!-- (required except of a CIF file is provided)-->
+                    <guiLabel>Monomer code (3-5 characters) for new molecule</guiLabel><!-- (required except of a CIF file is provided)-->
                 </qualifiers>
             </content>
             <content id='MATCHTLC'>
@@ -92,6 +92,15 @@
             </content>
             <content id='SMILESIN'>
                 <className>CString</className>
+            </content>
+            <content id='METAL_STRUCTURE'>
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
             </content>
             <content id='CONFORMERSFROM'>
                 <className>CString</className>
@@ -145,6 +154,20 @@
                 <className>CBoolean</className>
                 <qualifiers>
                     <default>True</default>
+                </qualifiers>
+            </content>
+            <content id='TOGGLE_METAL'>
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                    <guiLabel>This monomer contains a metal atom.</guiLabel>
+                </qualifiers>
+            </content>
+            <content id='NOPROT'>
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                    <guiLabel>No further protonation/deprotonation will be done by AceDRG</guiLabel>
                 </qualifiers>
             </content>
         </container>
