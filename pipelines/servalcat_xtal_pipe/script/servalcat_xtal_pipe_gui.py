@@ -204,6 +204,7 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     self.container.inputData.HKLIN.dataChanged.connect( self.hklinChanged )
     self.createLine( [ 'label', 'Refinement against <b>amplitudes</b>.'], toggle = ['HKLIN_IS_I_SIGI', 'open', [ False ] ] )
     self.createLine( [ 'label', 'Refinement against', 'widget', 'F_SIGF_OR_I_SIGI'], toggle = ['HKLIN_IS_I_SIGI', 'open', [ True ] ] )
+    #self.createLine( [ 'widget', '-browseDb', True, 'UNMERGED' ])
     #self.createLine( [ 'label','Use anomalous data for ', 'widget', 'USEANOMALOUSFOR', 'stretch', 'label', 'Wavelength', 'widget', 'WAVELENGTH'],toggleFunction=[self.anomalousAvailable,['HKLIN']])
     #if self.isEditable():
     #    if not self.container.controlParameters.WAVELENGTH.isSet(): self.getWavelength()
@@ -480,7 +481,14 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'widget', 'prosmartNucleicAcid.TOGGLE_ALT', 'label', 'Allow restraints involving atoms with alt codes.', 'stretch' , 'label', 'Ignore atoms with occupancies lower than', 'widget', 'prosmartNucleicAcid.OCCUPANCY'], toggle = ['prosmartNucleicAcid.ADVANCED', 'open', [ True ] ] )
     self.createLine( [ 'label', 'Additional ProSMART keywords:', 'widget','prosmartNucleicAcid.KEYWORDS' ], toggle = ['prosmartNucleicAcid.ADVANCED', 'open', [ True ] ] )
     self.closeSubFrame()
-    
+
+    self.createLine( [ 'subtitle', 'MetalCoord External Restraints for Metals'] )
+    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRestraintsOn,['UNRESTRAINED', 'FIX_XYZ', 'JELLY_ONLY']])
+    self.createLine( [ 'widget', 'RUN_METALCOORD', 'label', 'Generate and apply metalCoord restraints for metal sites' ] )
+    self.closeSubFrame()
+    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRestraintsOff,['UNRESTRAINED', 'FIX_XYZ', 'JELLY_ONLY']])
+    self.createLine( [ 'label', '<i>Not available.</i>' ] )
+    self.closeSubFrame()
     '''
     self.createLine( [ 'subtitle', 'LibG External Restraints for Nucleic Acids'] )
     if self.isEditable():
@@ -654,8 +662,14 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     # self.createLine( [ 'label', '<i>Keywords specified below will overwrite options which were set elsewhere.</i>'] )
     # self.createLine( [ 'widget', '-guiMode','multiLine','EXTRAREFMACKEYWORDS' ] )
     self.createLine( [ 'widget', '-browseDb', True, 'SERVALCAT_KEYWORD_FILE' ] )
-    self.createLine( [ 'label', 'Extra servalcat command line options', 'widget', 'EXTRA_SERVALCAT_OPTIONS' ] )
+    self.createLine( [ 'label', 'Extra servalcat command line options:', 'widget', 'EXTRA_SERVALCAT_OPTIONS' ] )
     self.getWidget('EXTRA_SERVALCAT_OPTIONS').setFixedWidth(400)
+    self.createLine( [ 'subtitle', 'Monitoring' ] )
+    self.openSubFrame(frame=[True])
+    self.createLine( [ 'label', 'Minimum deviation of atom coordinates to be reported:', 'stretch', 'widget', 'monitor.MIN_COORDDEV' ] )
+    self.createLine( [ 'label', 'Minimum deviation of B-values to be reported:', 'stretch', 'widget', 'monitor.MIN_ADPDEV' ] )
+    self.createLine( [ 'label', 'Atoms with a B-value lower than <i>the first quartile - factor * interquartile_range</i><br />or higher than <i>the third quartile + factor * interquartile_range</i> to be reported. Factor:', 'stretch', 'widget', 'monitor.ADP_IQR_FACTOR' ] )
+    self.closeSubFrame()
     return
 
 #-  --------------------          --------------------          --------------------

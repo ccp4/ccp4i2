@@ -30,6 +30,7 @@ import os
 import json
 import shutil
 
+
 class servalcat_xtal(CPluginScript):
     
     TASKMODULE = 'wrappers'
@@ -73,52 +74,6 @@ class servalcat_xtal(CPluginScript):
         #    self.logScraper.processLogChunk(availableStdout.data().decode("utf-8"))
         #else:
         #    self.logScraper.processLogChunk(str(availableStdout))
-
-    def json2xml(self, json_obj, tag_name=None, tag_name_subroot="subroot"):
-    # https://gist.github.com/bewestphal/0d2f884b3327f31b86122b5f6a38b3e2
-        def tag_name_clear(tag_name):
-            tag_name_clean = tag_name.replace(" ", "_")
-            tag_name_clean = tag_name_clean.replace("-", "minus")
-            tag_name_clean = tag_name_clean.replace(",", "")
-            tag_name_clean = tag_name_clean.replace(".", "")
-            tag_name_clean = tag_name_clean.replace("(", "")
-            tag_name_clean = tag_name_clean.replace(")", "")
-            tag_name_clean = tag_name_clean.replace("/", "")
-            tag_name_clean = tag_name_clean.replace("|", "")
-            tag_name_clean = tag_name_clean.replace("*", "")
-            tag_name_clean = tag_name_clean.replace(":", "_")
-            return tag_name_clean
-        result_list = list()
-        json_obj_type = type(json_obj)
-        if tag_name:
-            # print(tag_name)
-            tag_name_clean = tag_name_clear(tag_name)
-        else:
-            tag_name_clean = tag_name_subroot
-        if json_obj_type is list:
-            for sub_elem in json_obj:
-                result_list.append("\n<%s>" % (tag_name_clean))
-                result_list.append(self.json2xml(sub_elem, tag_name=tag_name))
-                # tag_name = re.sub('\s\w+="\w+"', '', tag_name)
-                result_list.append("</%s>" % (tag_name_clean))
-            return "".join(result_list)
-        if json_obj_type is dict:
-            for tag_name in json_obj:
-                if tag_name: tag_name_clean = tag_name_clear(tag_name)
-                sub_obj = json_obj[tag_name]
-                if isinstance(sub_obj, list):
-                    result_list.append(self.json2xml(sub_obj, tag_name=tag_name))
-                elif isinstance(sub_obj, dict):
-                    result_list.append("\n<%s>" % (tag_name_clean))
-                    result_list.append(self.json2xml(sub_obj, tag_name=tag_name))
-                    result_list.append("\n</%s>" % (tag_name_clean))
-                else:
-                    result_list.append("\n<%s>" % (tag_name_clean))
-                    result_list.append(self.json2xml(sub_obj, tag_name=tag_name))
-                    # tag_name = re.sub('\s\w+="\w+"', '', tag_name_clean)
-                    result_list.append("</%s>" % (tag_name_clean))
-            return "".join(result_list)
-        return "%s" % json_obj
 
     def xmlAddRoot(self, xmlText, xmlFilePath=None, xmlRootName=None):
         if xmlRootName:
@@ -179,14 +134,7 @@ class servalcat_xtal(CPluginScript):
             return CPluginScript.FAILED
         else:
             return CPluginScript.SUCCEEDED
-    
-    def processOutputFilesToDelete(self):
-        try:
-            self.processOutputFiles2()
-        except Exception as e:
-            with open("/tmp/ee.txt", "w") as ee:
-                ee.write(e)
-            
+
     def processOutputFiles(self):
         if hasattr(self,'logFileHandle'):
             self.logFileHandle.write("JOB TITLE SECTION\n")
@@ -332,7 +280,7 @@ class servalcat_xtal(CPluginScript):
                         1 / (list(jsonStats)[i]["data"]["binned"][j]['d_min'] * list(jsonStats)[i]["data"]["binned"][j]['d_min'])
                     jsonStats[i]["data"]["binned"][j]['d_max_4ssqll'] = \
                         1 / (list(jsonStats)[i]["data"]["binned"][j]['d_max'] * list(jsonStats)[i]["data"]["binned"][j]['d_max'])
-            xmlText = self.json2xml(jsonStats, tag_name_subroot="cycle")
+            xmlText = json2xml(jsonStats, tag_name_subroot="cycle")
             xmlFilePath = str(os.path.join(self.getWorkDirectory(), "refined_stats.xml"))
             xmlText = self.xmlAddRoot(xmlText, xmlFilePath, xmlRootName="SERVALCAT")
             # self.xmlroot = CCP4Utils.openFileToEtree(xmlFilePath)
@@ -358,12 +306,12 @@ class servalcat_xtal(CPluginScript):
             self.container.outputData.PERFORMANCEINDICATOR.RFree.set(statsOverall["Rfree"])
         except:
             try:
-                statsOverall["R2work"] = jsonStats[-1]['data']['summary']['R2work']
-                statsOverall["R2free"] = jsonStats[-1]['data']['summary']['R2free']
+                statsOverall["R1work"] = jsonStats[-1]['data']['summary']['R1work']
+                statsOverall["R1free"] = jsonStats[-1]['data']['summary']['R1free']
                 statsOverall["CCIworkavg"] = jsonStats[-1]['data']['summary']['CCIworkavg']
                 statsOverall["CCIfreeavg"] = jsonStats[-1]['data']['summary']['CCIfreeavg']
-                self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(statsOverall["R2work"]) # TO DO
-                self.container.outputData.PERFORMANCEINDICATOR.RFree.set(statsOverall["R2free"])   # TO DO
+                self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(statsOverall["R1work"]) # TO DO
+                self.container.outputData.PERFORMANCEINDICATOR.RFree.set(statsOverall["R1free"])   # TO DO
             except:
                 pass
 
@@ -676,7 +624,7 @@ class servalcat_xtal(CPluginScript):
                             1 / (list(jsonStats)[i]["data"]["binned"][j]['d_min'] * list(jsonStats)[i]["data"]["binned"][j]['d_min'])
                         jsonStats[i]["data"]["binned"][j]['d_max_4ssqll'] = \
                             1 / (list(jsonStats)[i]["data"]["binned"][j]['d_max'] * list(jsonStats)[i]["data"]["binned"][j]['d_max'])
-                xmlText = self.json2xml(list(jsonStats), tag_name_subroot="cycle")
+                xmlText = json2xml(list(jsonStats), tag_name_subroot="cycle")
                 xmlFilePath = str(os.path.join(self.getWorkDirectory(), "refined_stats.xml"))
                 xmlText = self.xmlAddRoot(xmlText, xmlFilePath, xmlRootName="SERVALCAT")
                 self.xmlroot = ET.fromstring(xmlText)
@@ -697,364 +645,52 @@ class servalcat_xtal(CPluginScript):
                 CCP4Utils.writeXML(programXmlFile, newXml)
             shutil.move(self.makeFileName('PROGRAMXML')+'_tmp', self.makeFileName('PROGRAMXML'))
 
-    def mmaakeCommandAndScript_refmac_ToDelete(self):
-        import os
-        from core import CCP4Utils
-        self.hklout = os.path.join(self.workDirectory,"hklout.mtz")
-        # make refmac command script
-        self.appendCommandLine(['XYZIN',self.inputCoordPath])
-        self.appendCommandLine(['HKLIN',self.hklin])
-
-        if self.container.outputData.DICT.isSet():
-            if os.path.exists(str(self.container.outputData.DICT.fullPath)):
-                self.appendCommandLine(['LIBIN',self.container.outputData.DICT.fullPath])
-            else:
-                print("Warning: input restraint dictionary does not exist and so will not be used.")
-
-        if self.container.controlParameters.REFINEMENT_MODE.isSet() and str(self.container.controlParameters.REFINEMENT_MODE) == 'RESTR':
-           if self.container.controlParameters.TLSMODE.isSet() and str(self.container.controlParameters.TLSMODE) == 'FILE':
-               if self.container.inputData.TLSIN.isSet():
-                   self.appendCommandLine(['TLSIN',self.container.inputData.TLSIN.fullPath])
-        self.appendCommandLine(['XYZOUT',self.container.outputData.XYZOUT.fullPath])
-        self.appendCommandLine(['HKLOUT',self.hklout])
-                #self.appendCommandLine(['LIBOUT',self.libout])
-        self.appendCommandLine(['LIBOUT',self.container.outputData.LIBOUT.fullPath])
-        self.appendCommandLine(['XMLOUT',os.path.normpath(os.path.join(self.getWorkDirectory(),'XMLOUT.xml'))])
-        if self.container.controlParameters.SCATTERING_FACTORS.isSet():
-           if self.container.controlParameters.SCATTERING_FACTORS.__str__() == 'ELECTRON':
-              if self.container.controlParameters.SCATTERING_ELECTRON.isSet():
-                 if self.container.controlParameters.SCATTERING_ELECTRON.__str__() == 'GAUSSIAN':
-                    self.appendCommandLine(['ATOMSF',os.path.join(CCP4Utils.getCCP4Dir().__str__(), 'lib', 'data', 'atomsf_electron.lib')])
-           elif self.container.controlParameters.SCATTERING_FACTORS.__str__() == 'NEUTRON':
-              self.appendCommandLine(['ATOMSF',os.path.join(CCP4Utils.getCCP4Dir().__str__(), 'lib', 'data', 'atomsf_neutron.lib')])
-
-        if self.container.controlParameters.TITLE.isSet():
-            self.appendCommandScript("TITLE %s"%(str(self.container.controlParameters.TITLE)))
-
-        # Main refinement options, and rigid body
-        
-        if self.container.controlParameters.REFINEMENT_MODE.isSet():
-           if str(self.container.controlParameters.REFINEMENT_MODE) == 'RIGID':
-              self.appendCommandScript("MODE RIGID")
-              if self.container.controlParameters.NCYCRIGID.isSet():
-                 self.appendCommandScript("RIGID NCYCLE %s" % (str(self.container.controlParameters.NCYCRIGID)))
-
-              for sel0 in self.container.controlParameters.RIGID_BODY_SELECTION:
-                  sel = sel0.get()
-                  if sel['groupId'] and sel['chainId'] and sel['firstRes'] and sel['lastRes']:
-                      rigidText = "RIGID GROUP %s FROM %s %s TO %s %s" % (str(sel['groupId']),str(sel['firstRes']),str(sel['chainId']),str(sel['lastRes']),str(sel['chainId']))
-                      self.appendCommandScript(rigidText + '\n')
-           else:
-              if self.container.controlParameters.NCYCLES.isSet():
-                  self.appendCommandScript("NCYCLES %s"%(str(self.container.controlParameters.NCYCLES)))
-
-              # Occupancy refinement
-              if self.container.controlParameters.OCCUPANCY_GROUPS:
-                 occup_groupids = []
-                 for sel0 in self.container.controlParameters.OCCUPANCY_SELECTION:
-                    sel = sel0.get()
-                    if sel['groupId'] and sel['chainIds'] and sel['firstRes'] and sel['lastRes']:
-                       occupText = "OCCUPANCY GROUP ID %s CHAIN %s RESIDUE FROM %s TO %s" % (str(sel['groupId']),str(sel['chainIds']),str(sel['firstRes']),str(sel['lastRes']))
-                       if sel['atoms']:
-                          occupText += " ATOM %s" % (str(sel['atoms']))
-                       if sel['alt']:
-                          occupText += " ALT %s" % (str(sel['alt']))
-                       self.appendCommandScript(occupText + '\n')
-                       occup_groupids.append(sel['groupId'])
-#                    else:
-#                       self.appendErrorReport(201,"Error - incorrectly specified occupancy group.")
-#                       return CPluginScript.FAILED
-
-                 if self.container.controlParameters.OCCUPANCY_REFINEMENT:
-                    self.appendCommandScript("OCCUPANCY REFINE")
-
-                 if self.container.controlParameters.OCCUPANCY_COMPLETE:
-                    for sel0 in self.container.controlParameters.OCCUPANCY_COMPLETE_TABLE:
-                       sel = sel0.get()
-#                       for id in sel['groupIds'].split(' '):
-#                          if not id in occup_groupids:
-#                             self.appendErrorReport(201,"Error - group ID "+id+" not specified in the list of occupancy groups.")
-#                             return CPluginScript.FAILED
-                       occupText = "OCCUPANCY GROUP ALTS COMPLETE %s" % (str(sel['groupIds']))
-                       self.appendCommandScript(occupText + '\n')
-
-                 if self.container.controlParameters.OCCUPANCY_INCOMPLETE:
-                    for sel0 in self.container.controlParameters.OCCUPANCY_INCOMPLETE_TABLE:
-                       sel = sel0.get()
-#                       for id in sel['groupIds'].split(' '):
-#                          if not id in occup_groupids:
-#                             self.appendErrorReport(201,"Error - group ID "+id+" not specified in the list of occupancy groups.")
-#                             return CPluginScript.FAILED
-                       occupText = "OCCUPANCY GROUP ALTS INCOMPLETE %s" % (str(sel['groupIds']))
-                       self.appendCommandScript(occupText + '\n')
-
-        if str(self.container.controlParameters.WEIGHT_OPT) == 'AUTO':
-            self.appendCommandScript("WEIGHT AUTO")
-        elif self.container.controlParameters.WEIGHT.isSet():
-            self.appendCommandScript("WEIGHT MATRIX %s"%(str(self.container.controlParameters.WEIGHT)))
-        
-        if self.container.controlParameters.USE_TWIN:
-            self.appendCommandScript("TWIN")
-            
-        if self.container.controlParameters.HYDR_USE:
-            if str(self.container.controlParameters.HYDR_ALL) == 'ALL':
-                self.appendCommandScript("MAKE HYDR ALL")
-            else:
-                self.appendCommandScript("MAKE HYDR YES")
-        else:
-            self.appendCommandScript("MAKE HYDR NO")
-        
-        # Parameters
-
-        if self.container.controlParameters.B_REFINEMENT_MODE.isSet():
-            self.appendCommandScript("REFI BREF %s"%(str(self.container.controlParameters.B_REFINEMENT_MODE)))
-
-        if self.container.controlParameters.REFINEMENT_MODE.isSet() and str(self.container.controlParameters.REFINEMENT_MODE) == 'RESTR':
-          if self.container.controlParameters.TLSMODE.isSet():
-            if str(self.container.controlParameters.TLSMODE) != 'NONE' and self.container.controlParameters.NTLSCYCLES.isSet():
-                self.appendCommandScript("REFI TLSC %s"%(str(self.container.controlParameters.NTLSCYCLES)))
-                self.appendCommandLine(["TLSOUT",self.container.outputData.TLSOUT.fullPath])
-                if self.container.controlParameters.TLSOUT_ADDU:
-                    self.appendCommandScript("TLSOUT ADDU")
-
-        if self.container.controlParameters.BFACSETUSE and self.container.controlParameters.BFACSET.isSet():
-            self.appendCommandScript("BFAC SET "+str(self.container.controlParameters.BFACSET))
-
-        # Restraints
-
-        if self.container.controlParameters.USE_NCS:
-            if str(self.container.controlParameters.NCS_TYPE) == 'L':
-                self.appendCommandScript("NCSR LOCAL")
-            else:
-                self.appendCommandScript("NCSR GLOBAL")
-        elif self.container.controlParameters.USE_LOCAL_SYMMETRY: # USE_LOCAL_SYMMETRY is not used by the refinement pipeline, but is used by the bucaneer pipeline
-            self.appendCommandScript("NCSR LOCAL")
-
-
-        if self.container.controlParameters.USE_JELLY:
-            if self.container.controlParameters.JELLY_SIGMA.isSet():
-                self.appendCommandScript("RIDG DIST SIGM %s"%(str(self.container.controlParameters.JELLY_SIGMA)))
-            else:
-                self.appendCommandScript("RIDG DIST SIGM 0.01")
-            if self.container.controlParameters.JELLY_DIST.isSet():
-                self.appendCommandScript("RIDG DIST DMAX %s"%(str(self.container.controlParameters.JELLY_DIST)))
-     
-        if self.container.controlParameters.MAKE_LINK:
-            if self.container.controlParameters.OVERRIDE_LINK:
-                self.appendCommandScript("MAKE LINK DEFINE")
-            else:
-                self.appendCommandScript("MAKE LINK YES")
-
-        # Output options
-
-        if self.container.controlParameters.MAP_SHARP:
-            if self.container.controlParameters.MAP_SHARP_CUSTOM and self.container.controlParameters.BSHARP.isSet():
-                self.appendCommandScript("MAPC SHAR "+str(self.container.controlParameters.BSHARP))
-            else:
-                self.appendCommandScript("MAPC SHAR")
-
-        # Advanced options
-
-        if self.container.controlParameters.SCATTERING_FACTORS.isSet():
-           if self.container.controlParameters.SCATTERING_FACTORS.__str__() == 'ELECTRON':
-              if self.container.controlParameters.SCATTERING_ELECTRON.isSet():
-                 if self.container.controlParameters.SCATTERING_ELECTRON.__str__() == 'GAUSSIAN':
-                    self.appendCommandScript("SOURCE ELECTRON")
-                 elif self.container.controlParameters.SCATTERING_ELECTRON.__str__() == 'MB':
-                    self.appendCommandScript("SOURCE ELECTRON MB")
-           elif self.container.controlParameters.SCATTERING_FACTORS.__str__() == 'NEUTRON':
-              self.appendCommandScript("SOURCE NEUTRON")
-
-        if self.container.controlParameters.SCATTERING_FACTORS.isSet():
-          if self.container.controlParameters.SCATTERING_FACTORS.__str__() == 'NEUTRON':
-            if self.container.controlParameters.HYDR_USE:
-              if self.container.controlParameters.H_REFINE:
-                 if self.container.controlParameters.H_REFINE_SELECT.__str__() == 'ALL':
-                    self.appendCommandScript("HYDROGEN REFINE ALL")
-
-                 elif self.container.controlParameters.H_REFINE_SELECT.__str__() == 'POLAR':
-                    self.appendCommandScript("HYDROGEN REFINE POLAR")
-                 elif self.container.controlParameters.H_REFINE_SELECT.__str__() == 'RPOLAR':
-                    self.appendCommandScript("HYDROGEN REFINE RPOLAR")
-              if self.container.controlParameters.H_TORSION:
-                 self.appendCommandScript("RESTRAINT TORSION HYDROGEN INCLUDE ALL")
-              if self.container.controlParameters.HD_FRACTION:
-                 self.appendCommandScript("REFINEMENT DFRACTION")
-                 if self.container.controlParameters.HD_FRACTION_TYPE.__str__() == 'ALL':
-                    self.appendCommandScript("HYDROGEN DFRACTION ALL")
-                 elif self.container.controlParameters.HD_FRACTION_TYPE.__str__() == 'POLAR':
-                    self.appendCommandScript("HYDROGEN DFRACTION POLAR")
-                 if str(self.container.controlParameters.HYDR_ALL) == 'YES':
-                    if self.container.controlParameters.HD_INIT.__str__() == 'DEUTERIUM':
-                       self.appendCommandScript("HYDROGEN DFRACTION INIT")
-                    elif self.container.controlParameters.HD_INIT.__str__() == 'MIXTURE':
-                       self.appendCommandScript("HYDROGEN DFRACTION INIT REFINEABLE 1 UNREFINEABLE 0")
-                 elif str(self.container.controlParameters.HYDR_ALL) == 'ALL':
-                    if self.container.controlParameters.HD_INIT_HALL.__str__() == 'DEUTERIUM':
-                       self.appendCommandScript("HYDROGEN DFRACTION INIT")
-                    elif self.container.controlParameters.HD_INIT_HALL.__str__() == 'MIXTURE':
-                       self.appendCommandScript("HYDROGEN DFRACTION INIT REFINEABLE 1 UNREFINEABLE 0")
-
-        if self.container.controlParameters.RES_CUSTOM:
-            if self.container.controlParameters.RES_MIN.isSet() and self.container.controlParameters.RES_MAX.isSet():
-                self.appendCommandScript("REFI RESO %s %s"%(str(self.container.controlParameters.RES_MIN),str(self.container.controlParameters.RES_MAX)))
-            elif self.container.controlParameters.RES_MIN.isSet() and not self.container.controlParameters.RES_MAX.isSet():
-                self.appendCommandScript("REFI RESO %s 999"%(str(self.container.controlParameters.RES_MIN)))
-            elif not self.container.controlParameters.RES_MIN.isSet() and self.container.controlParameters.RES_MAX.isSet():
-                self.appendCommandScript("REFI RESO 0 %s"%(str(self.container.controlParameters.RES_MAX)))
-        elif self.container.controlParameters.RESOLUTION.isSet():   # RESOLUTION is not used by the refinement pipeline, but is used by the bucaneer pipeline
-            self.appendCommandScript("REFI RESO %s"%(str(self.container.controlParameters.RESOLUTION)))
-
-        if self.container.controlParameters.MAKE_NEW_LIGAND_EXIT:
-            self.appendCommandScript("MAKE NEWLIGAND EXIT")
-        else:
-            self.appendCommandScript("MAKE NEWLIGAND NOEXIT")
-        
-        #if self.container.controlParameters.SCALETYPE.isSet():
-        #    if self.container.controlParameters.SCALETYPE.__str__() == 'REFMACDEFAULT':
-        #        pass
-        #    if self.container.controlParameters.SCALETYPE.__str__() == 'BABINET':
-        #        self.appendCommandScript("SCALE TYPE BULK")
-        #        self.appendCommandScript("SOLVENT NO")
-        #    if self.container.controlParameters.SCALETYPE.__str__() == 'SIMPLE':
-        #        self.appendCommandScript("SCALE TYPE SIMPLE")
-        #        self.appendCommandScript("SOLVENT YES")
-        #        if self.container.controlParameters.SOLVENT_ADVANCED:
-        #            if self.container.controlParameters.SOLVENT_VDW_RADIUS.isSet():
-        #               self.appendCommandScript("SOLVENT VDWProb %s"%(str(self.container.controlParameters.SOLVENT_VDW_RADIUS)))
-        #            if self.container.controlParameters.SOLVENT_IONIC_RADIUS.isSet():
-        #                self.appendCommandScript("SOLVENT IONProb %s"%(str(self.container.controlParameters.SOLVENT_IONIC_RADIUS)))
-        #            if self.container.controlParameters.SOLVENT_SHRINK.isSet():
-        #                self.appendCommandScript("SOLVENT RSHRink %s"%(str(self.container.controlParameters.SOLVENT_SHRINK)))
-        #    if self.container.controlParameters.SCALETYPE.__str__() == 'WILSON':
-        #        self.appendCommandScript("SCALE TYPE SIMPLE")
-        #        self.appendCommandScript("SOLVENT NO")
-
-        if self.container.controlParameters.SCALE_TYPE.isSet():
-            if self.container.controlParameters.SCALE_TYPE.__str__() == 'SIMPLE':
-                self.appendCommandScript("SCALE TYPE SIMPLE")
-            if self.container.controlParameters.SCALE_TYPE.__str__() == 'BABINET':
-                self.appendCommandScript("SCALE TYPE BULK")
-        if self.container.controlParameters.SOLVENT_MASK_TYPE.__str__() == 'EXPLICIT':
-            self.appendCommandScript("SOLVENT YES")
-            if self.container.controlParameters.SOLVENT_ADVANCED:
-               if self.container.controlParameters.SOLVENT_VDW_RADIUS.isSet():
-                  self.appendCommandScript("SOLVENT VDWProb %s"%(str(self.container.controlParameters.SOLVENT_VDW_RADIUS)))
-               if self.container.controlParameters.SOLVENT_IONIC_RADIUS.isSet():
-                  self.appendCommandScript("SOLVENT IONProb %s"%(str(self.container.controlParameters.SOLVENT_IONIC_RADIUS)))
-               if self.container.controlParameters.SOLVENT_SHRINK.isSet():
-                  self.appendCommandScript("SOLVENT RSHRink %s"%(str(self.container.controlParameters.SOLVENT_SHRINK)))
-        else:
-            self.appendCommandScript("SOLVENT NO")
-
-        if self.container.controlParameters.SCATTERING_FACTORS.__str__() == 'NEUTRON':
-           self.appendCommandScript("MAKE HOUT YES")
-        elif self.container.controlParameters.OUTPUT_HYDROGENS.isSet():
-           if self.container.controlParameters.OUTPUT_HYDROGENS.__str__() == 'YES':
-              self.appendCommandScript("MAKE HOUT YES")
-           elif self.container.controlParameters.OUTPUT_HYDROGENS.__str__() == 'NO':
-              self.appendCommandScript("MAKE HOUT NO")
-
-        if self.container.controlParameters.USEANOMALOUS:
-            if self.container.controlParameters.USEANOMALOUSFOR.__str__() == 'OUTPUTMAPS':
-                self.appendCommandScript("ANOMALOUS MAPONLY")
-            elif self.container.controlParameters.USEANOMALOUSFOR.__str__() == 'SADREFINEMENT':
-                self.appendCommandScript("REFINE OREFINE ANOMALOUS")
-            if self.container.controlParameters.WAVELENGTH.isSet():
-                self.appendCommandScript("ANOMALOUS WAVELENGTH %10.5f"%self.container.controlParameters.WAVELENGTH)
-            else:
-                self.appendCommandScript("ANOMALOUS WAVELENGTH %10.5f"%self.container.inputData.HKLIN.fileContent.getListOfWavelengths()[-1])
-        # Additional input/output
-        if self.container.controlParameters.PHOUT:
-            self.appendCommandScript("PHOUT")
-    
-        # Filter outlier monitoring, to avoid bloating the logfile
-        self.appendCommandScript("MONI DIST 1000000")
-        
-        # Maintain the same chain IDs as in the input model.
-        #self.appendCommandScript("PDBOUT KEEP TRUE")
-        # New Refmac keyword that will keep the user's chain IDs in the report page.
-        self.appendCommandScript("PDBOUT KEEP USERS")
-        
-        # Precedence to platonyzer, so that prosmart-related weights don't interfere with platonyzer restraints.
-        if self.container.inputData.PLATONYZER_RESTRAINTS.isSet():
-            self.appendCommandScript("@%s"%(str(self.container.inputData.PLATONYZER_RESTRAINTS.fullPath)))
-
-        # Next precedence to external restraints file provided
-        if self.container.inputData.EXTERNAL_RESTRAINTS_FILE.isSet():
-            self.appendCommandScript("@%s"%(str(self.container.inputData.EXTERNAL_RESTRAINTS_FILE.fullPath)))
-
-        # This general external restraints option is no longer used in the Refinement pipeline, but is maintained for legacy purposes (and if e.g. needed by Lorestr)
-        if self.container.inputData.EXTERNALRESTRAINTS.isSet():
-            self.appendCommandScript("@%s"%(str(self.container.inputData.EXTERNALRESTRAINTS.fullPath)))
-        
-        # External restraints options currently available in the Refinement pipeline
-        if self.container.inputData.PROSMART_PROTEIN_RESTRAINTS.isSet():
-           if self.container.controlParameters.PROSMART_PROTEIN_WEIGHT.isSet():
-              self.appendCommandScript("EXTERNAL WEIGHT SCALE %s"%(str(self.container.controlParameters.PROSMART_PROTEIN_WEIGHT)))
-           if self.container.controlParameters.PROSMART_PROTEIN_ALPHA.isSet():
-              self.appendCommandScript("EXTERNAL ALPHA %s"%(str(self.container.controlParameters.PROSMART_PROTEIN_ALPHA)))
-           if self.container.controlParameters.PROSMART_PROTEIN_DMAX.isSet():
-              self.appendCommandScript("EXTERNAL DMAX %s"%(str(self.container.controlParameters.PROSMART_PROTEIN_DMAX)))
-           self.appendCommandScript("@%s"%(str(self.container.inputData.PROSMART_PROTEIN_RESTRAINTS.fullPath)))
-        if self.container.inputData.PROSMART_NUCLEICACID_RESTRAINTS.isSet():
-           if self.container.controlParameters.PROSMART_NUCLEICACID_WEIGHT.isSet():
-              self.appendCommandScript("EXTERNAL WEIGHT SCALE %s"%(str(self.container.controlParameters.PROSMART_NUCLEICACID_WEIGHT)))
-           if self.container.controlParameters.PROSMART_NUCLEICACID_ALPHA.isSet():
-              self.appendCommandScript("EXTERNAL ALPHA %s"%(str(self.container.controlParameters.PROSMART_NUCLEICACID_ALPHA)))
-           if self.container.controlParameters.PROSMART_NUCLEICACID_DMAX.isSet():
-              self.appendCommandScript("EXTERNAL DMAX %s"%(str(self.container.controlParameters.PROSMART_NUCLEICACID_DMAX)))
-           self.appendCommandScript("@%s"%(str(self.container.inputData.PROSMART_NUCLEICACID_RESTRAINTS.fullPath)))
-
-        labin = "LABIN FP=F SIGFP=SIGF"
-        if self.container.controlParameters.USE_TWIN:
-            if self.container.inputData.HKLIN.isSet():
-                from core import CCP4XtalData
-                if self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN or self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR:
-                    labin = "LABIN IP=I SIGIP=SIGI"
-        else:
-            if self.container.controlParameters.USEANOMALOUS:
-                labin = "LABIN F+=Fplus SIGF+=SIGFplus F-=Fminus SIGF-=SIGFminus"
-
-
-#        labin = None
-#        if self.container.controlParameters.USE_TWIN and self.container.controlParameters.TWIN_TYPE.isSet() and self.container.controlParameters.TWIN_TYPE=="I":
-#            if self.container.controlParameters.USEANOMALOUSFOR.isSet() and self.container.controlParameters.USEANOMALOUSFOR.__str__() != 'NOTHING':
-#                labin = "LABIN I+=Iplus SIGI+=SIGIplus I-=Iminus SIGI-=SIGIminus"
-#            else:
-#                labin = "LABIN IP=I SIGIP=SIGI"
-#        else:
-#            if self.container.controlParameters.USEANOMALOUSFOR.isSet() and self.container.controlParameters.USEANOMALOUSFOR.__str__() != 'NOTHING':
-#                labin = "LABIN F+=Fplus SIGF+=SIGFplus F-=Fminus SIGF-=SIGFminus"
-#            else:
-#                labin = "LABIN FP=F SIGFP=SIGF"
-
-        if self.container.inputData.ABCD.isSet():
-            from core import CCP4XtalData
-            if  self.container.inputData.ABCD.contentFlag == CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL:
-                labin += " HLA=HLA HLB=HLB HLC=HLC HLD=HLD"
-            else:
-                labin += " PHIB=PHI FOM=FOM"
-
-        if self.container.inputData.FREERFLAG.isSet(): 
-            labin += " FREE=FREER"
-            print('FreeR flag set')
-
-        if self.container.inputData.REFMAC_KEYWORD_FILE.isSet():
-            self.appendCommandScript("@%s"%(str(self.container.inputData.REFMAC_KEYWORD_FILE.fullPath)))
-      
-        if self.container.controlParameters.EXTRAREFMACKEYWORDS.isSet():
-            for kwLine in str(self.container.controlParameters.EXTRAREFMACKEYWORDS).split('\n'):
-                #print 'KwLine','['+str(kwLine)+']'
-                self.appendCommandScript(kwLine.rstrip() + '\n')
-
-        self.appendCommandScript(labin)
-        self.appendCommandScript('END')
-    
-        return CPluginScript.SUCCEEDED
-
     def setProgramVersion(self):
       print('refmac.getProgramVersion')
       return CPluginScript.setProgramVersion(self,'Refmac_5')
 
-
+def json2xml(json_obj, tag_name=None, tag_name_subroot="subroot"):
+# https://gist.github.com/bewestphal/0d2f884b3327f31b86122b5f6a38b3e2
+    def tag_name_clear(tag_name):
+        tag_name_clean = tag_name.replace(" ", "_")
+        tag_name_clean = tag_name_clean.replace("-", "minus")
+        tag_name_clean = tag_name_clean.replace(",", "")
+        tag_name_clean = tag_name_clean.replace(".", "")
+        tag_name_clean = tag_name_clean.replace("(", "")
+        tag_name_clean = tag_name_clean.replace(")", "")
+        tag_name_clean = tag_name_clean.replace("/", "")
+        tag_name_clean = tag_name_clean.replace("|", "")
+        tag_name_clean = tag_name_clean.replace("*", "")
+        tag_name_clean = tag_name_clean.replace(":", "_")
+        return tag_name_clean
+    result_list = list()
+    json_obj_type = type(json_obj)
+    if tag_name:
+        # print(tag_name)
+        tag_name_clean = tag_name_clear(tag_name)
+    else:
+        tag_name_clean = tag_name_subroot
+    if json_obj_type is list:
+        for sub_elem in json_obj:
+            result_list.append("\n<%s>" % (tag_name_clean))
+            result_list.append(json2xml(sub_elem, tag_name=tag_name))
+            # tag_name = re.sub('\s\w+="\w+"', '', tag_name)
+            result_list.append("</%s>" % (tag_name_clean))
+        return "".join(result_list)
+    if json_obj_type is dict:
+        for tag_name in json_obj:
+            if tag_name: tag_name_clean = tag_name_clear(tag_name)
+            sub_obj = json_obj[tag_name]
+            if isinstance(sub_obj, list):
+                result_list.append(json2xml(sub_obj, tag_name=tag_name))
+            elif isinstance(sub_obj, dict):
+                result_list.append("\n<%s>" % (tag_name_clean))
+                result_list.append(json2xml(sub_obj, tag_name=tag_name))
+                result_list.append("\n</%s>" % (tag_name_clean))
+            else:
+                result_list.append("\n<%s>" % (tag_name_clean))
+                result_list.append(json2xml(sub_obj, tag_name=tag_name))
+                # tag_name = re.sub('\s\w+="\w+"', '', tag_name_clean)
+                result_list.append("</%s>" % (tag_name_clean))
+        return "".join(result_list)
+    return "%s" % json_obj

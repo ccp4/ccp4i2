@@ -55,46 +55,6 @@ class servalcat_xtal_report(Report):
             self.addTablePerCycle(cycle_data, parent=perCycleFold, initialFinalOnly=False)
             self.addGraphsVsResolution()
             self.addOutlierAnalysis()
-    
-    def addRunningProgressGraph_ToDelete(self, parent=None, xmlnode=None):
-        if parent is None: parent=self
-        if xmlnode is None: xmlnode = self.xmlnode
-        # I *do not know* why this is needed
-        if len(xmlnode.findall("cycle")) > 0:
-            progressGraph = parent.addFlotGraph(title="Running servalcat", style="height:250px; width:400px;float:left;", outputXml=self.outputXml,internalId="SummaryGraph") # , select="Cycle")
-            progressGraph.addData(title="Cycle", select=".//cycle/Ncyc")
-            # progressGraph.addData(title="R_Factor", select="r_factor")
-            # progressGraph.addData(title="R_Free",   select="r_free")
-            if len(xmlnode.findall('.//cycle[last()]/data/summary/Rwork')) > 0:
-                progressGraph.addData(title="R-work", select=".//cycle/data/summary/Rwork", expr="x if float(x)>=0.0 else ''")
-                if len(xmlnode.findall('.//cycle[last()]/data/summary/Rfree')) > 0:
-                    progressGraph.addData(title="R-free", select=".//cycle/data/summary/Rfree", expr="x if float(x)>=0.0 else '-'")
-            elif len(xmlnode.findall('.//cycle[last()]/data/summary/R2work')) > 0:
-                progressGraph.addData(title="R2work", select=".//cycle/data/summary/R2work", expr="x if float(x)>=0.0 else ''")
-                if len(xmlnode.findall('.//cycle[last()]/data/summary/R2free')) > 0:
-                    progressGraph.addData(title="R2free", select=".//cycle/data/summary/R2free", expr="x if float(x)>=0.0 else '-'")
-            plot = progressGraph.addPlotObject()
-            plot.append('title', 'Running servalcat R-values')
-            plot.append('plottype', 'xy')
-            plot.append('yrange', rightaxis='false')
-            plot.append('xlabel', 'Cycle')
-            plot.append('xintegral', 'true')
-            plot.append('ylabel', 'R-factor')
-            plot.append('rylabel', 'Geometry')
-            for coordinate, colour in [(2,'blue'),(3,'green')]:
-                plotLine = plot.append('plotline', xcol=1, ycol=coordinate, rightaxis='false', colour=colour)
-            
-            rmsBonds = self.xmlnode.findall('.//cycle/geom/summary/rmsd/Bond_distances_non_H')
-            if len(rmsBonds) > 0:
-                plot.append('yrange', rightaxis='true')
-                # cycleNodes = self.xmlnode.findall('.//cycle/Ncyc')
-                # data = []
-                # for cycleNode in cycleNodes:
-                #     try: data.append(cycleNode.findall('rmsBonds')[0].text)
-                #     except: data.append(None)
-                # progressGraph.addData(title="rmsBonds",  data=data)
-                progressGraph.addData(title="RMSDbondx100", select=".//cycle/geom/summary/rmsd/Bond_distances_non_H")
-                plotLine = plot.append('plotline', xcol=1, ycol=4, rightaxis='true', colour='red')
 
     def addGraphPerCycle(self, parent=None, xmlnode=None):
         if parent is None: parent = self
@@ -106,18 +66,18 @@ class servalcat_xtal_report(Report):
             xmlnode=self.xmlnode,
             style="height:250px;width:400px;float:left;") # select = ".//Overall_stats/stats_vs_cycle/new_cycle", 
         progressGraph.addData(title="Cycle", select=".//cycle/Ncyc") # ycol=1
-        progressGraph.addData(title="-LL", select=".//cycle/data/summary/minusLL", expr="x if float(x)>=0.0 else ''") # ycol=2
+        progressGraph.addData(title="-LL", select=".//cycle/data/summary/minusLL") # ycol=2
         if len(xmlnode.findall('.//cycle[last()]/data/summary/Rwork')) > 0:
             progressGraph.addData(title="Rwork", select=".//cycle/data/summary/Rwork", expr="x if float(x)>=0.0 else ''")  # ycol=3
             progressGraph.addData(title="CCFwork_avg", select=".//cycle/data/summary/CCFworkavg", expr="x if float(x)>=-1.0 else ''")  # ycol=4
             if len(xmlnode.findall('.//cycle[last()]/data/summary/Rfree')) > 0:
                 progressGraph.addData(title="Rfree", select=".//cycle/data/summary/Rfree", expr="x if float(x)>=0.0 else '-'")  # ycol=5
                 progressGraph.addData(title="CCFfree_avg", select=".//cycle/data/summary/CCFfreeavg", expr="x if float(x)>=-1.0 else '-'")  # ycol=6
-        elif len(xmlnode.findall('.//cycle[last()]/data/summary/R2work')) > 0:
-            progressGraph.addData(title="R2work", select=".//cycle/data/summary/R2work", expr="x if float(x)>=0.0 else ''")  # ycol=3
+        elif len(xmlnode.findall('.//cycle[last()]/data/summary/R1work')) > 0:
+            progressGraph.addData(title="R1work", select=".//cycle/data/summary/R1work", expr="x if float(x)>=0.0 else ''")  # ycol=3
             progressGraph.addData(title="CCIwork_avg", select=".//cycle/data/summary/CCIworkavg", expr="x if float(x)>=-1.0 else ''")  # ycol=4
-            if len(xmlnode.findall('.//cycle[last()]/data/summary/R2free')) > 0:
-                progressGraph.addData(title="R2free", select=".//cycle/data/summary/R2free", expr="x if float(x)>=0.0 else '-'")  # ycol=5
+            if len(xmlnode.findall('.//cycle[last()]/data/summary/R1free')) > 0:
+                progressGraph.addData(title="R1free", select=".//cycle/data/summary/R1free", expr="x if float(x)>=0.0 else '-'")  # ycol=5
                 progressGraph.addData(title="CCIfree_avg", select=".//cycle/data/summary/CCIfreeavg", expr="x if float(x)>=-1.0 else '-'") # ycol=6
         # For lines that don''t have a value for each point, the trick is to replace missing values with '-'.
         # Out of refmac, they are flagged with a value of -999.
@@ -141,6 +101,7 @@ class servalcat_xtal_report(Report):
         plotR.append('ylabel', 'R-value')
         # plotR.append('rylabel', 'Geometry')  ### NOT VISIBLE !?
         plotR.append('xintegral', 'true')
+        plotR.append('legendposition', x=0, y=0)
         # for coordinate, colour in [(2,'blue'),(3,'green')]:
         #     plotLine = plotR.append('plotline', xcol=1, ycol=coordinate, rightaxis='false', colour=colour)
         plotLine = plotR.append('plotline', xcol=1, ycol=3)
@@ -158,6 +119,7 @@ class servalcat_xtal_report(Report):
         plotCC.append('xlabel', 'Cycle')
         plotCC.append('ylabel', 'Correlation')
         plotCC.append('xintegral', 'true')
+        plotCC.append('legendposition', x=0, y=1)
         plotLine = plotCC.append('plotline', xcol=1, ycol=4)
         plotLine.append('colour', 'orange')
         plotLine.append('symbolsize', '0')
@@ -171,6 +133,7 @@ class servalcat_xtal_report(Report):
         plotLL.append('xlabel', 'Cycle')
         plotLL.append('ylabel', '-LL')
         plotLL.append('xintegral', 'true')
+        plotLL.append('legendposition', x=0, y=1)
         plotLine.append('colour', 'orange')
         plotLine = plotLL.append('plotline', xcol=1, ycol=2)
         plotLine.append('colour', 'blue')
@@ -197,6 +160,7 @@ class servalcat_xtal_report(Report):
             plotRmsd.append('xlabel', 'Cycle')
             plotRmsd.append('ylabel', ' ')
             plotRmsd.append('xintegral', 'true')
+            plotRmsd.append('legendposition', x=0, y=0)
             plotLine = plotRmsd.append('plotline', xcol=1, ycol=2, rightaxis='false')
             plotRmsd.append('yrange', rightaxis='true')
             plotLine.append('colour', 'blue')
@@ -211,6 +175,7 @@ class servalcat_xtal_report(Report):
             plotRmsz.append('xlabel', '')
             plotRmsz.append('ylabel', '')
             plotRmsz.append('xintegral', 'true')
+            plotRmsz.append('legendposition', x=0, y=0)
             plotLine = plotRmsz.append('plotline', xcol=1, ycol=4, rightaxis='false')
             plotLine.append('colour', 'blue')
             plotLine.append('symbolsize', '0')
@@ -220,8 +185,8 @@ class servalcat_xtal_report(Report):
 
     def getCycleData(self, xmlnode=None):
         if xmlnode is None: xmlnode = self.xmlnode
-        R2WorkNodes = xmlnode.findall('.//cycle[last()]/data/summary/R2work')
-        #R2FreeNodes = xmlnode.findall('.//cycle[last()]/data/summary/R2free')
+        R2WorkNodes = xmlnode.findall('.//cycle[last()]/data/summary/R1work')
+        #R2FreeNodes = xmlnode.findall('.//cycle[last()]/data/summary/R1free')
         #CCIWorkNodes = xmlnode.findall('.//cycle[last()]/data/summary/CCIworkavg')
         #CCIFreeNodes = xmlnode.findall('.//cycle[last()]/data/summary/CCIfreeavg')
         #RWorkNodes = xmlnode.findall('.//cycle[last()]/data/summary/Rwork')
@@ -239,8 +204,8 @@ class servalcat_xtal_report(Report):
                       'Rfree':['-']*ncyc,
                       'CCFworkavg':['-']*ncyc,
                       'CCFfreeavg':['-']*ncyc,
-                      'R2work':['-']*ncyc,
-                      'R2free':['-']*ncyc,
+                      'R1work':['-']*ncyc,
+                      'R1free':['-']*ncyc,
                       'CCIworkavg':['-']*ncyc,
                       'CCIfreeavg':['-']*ncyc,
                       'rmsBOND':['-']*ncyc,
@@ -268,9 +233,9 @@ class servalcat_xtal_report(Report):
             try: cycle_data['-LL'][idx] = "{:.4f}".format(float(cycle.findall('data/summary/-LL')[0].text))
             except: pass
             if len(R2WorkNodes) > 0:  # Refinement against intensities
-                try: cycle_data['R2work'][idx] = "{:.4f}".format(float(cycle.findall('data/summary/R2work')[0].text))
+                try: cycle_data['R1work'][idx] = "{:.4f}".format(float(cycle.findall('data/summary/R1work')[0].text))
                 except: pass
-                try: cycle_data['R2free'][idx] = "{:.4f}".format(float(cycle.findall('data/summary/R2free')[0].text))
+                try: cycle_data['R1free'][idx] = "{:.4f}".format(float(cycle.findall('data/summary/R1free')[0].text))
                 except: pass
                 try: cycle_data['CCIworkavg'][idx] = "{:.4f}".format(float(cycle.findall('data/summary/CCIworkavg')[0].text))
                 except: pass
@@ -286,17 +251,17 @@ class servalcat_xtal_report(Report):
                 try: cycle_data['CCFfreeavg'][idx] = "{:.4f}".format(float(cycle.findall('data/summary/CCFfreeavg')[0].text))
                 except: pass
             if cycle_data['mode'][idx] == 'Restr':
-                try: cycle_data['rmsBOND'][idx] = "{:.4f}".format(float(cycle.findall('geom/summary/rmsd/Bond_distances_non_H')[0].text))
+                try: cycle_data['rmsBOND'][idx] = "{:.3f}".format(float(cycle.findall('geom/summary/rmsd/Bond_distances_non_H')[0].text))
                 except: pass
-                try: cycle_data['rmsANGLE'][idx] = "{:.4f}".format(float(cycle.findall('geom/summary/rmsd/Bond_angles_non_H')[0].text))
+                try: cycle_data['rmsANGLE'][idx] = "{:.3f}".format(float(cycle.findall('geom/summary/rmsd/Bond_angles_non_H')[0].text))
                 except: pass
-                try: cycle_data['rmsCHIRAL'][idx] = "{:.4f}".format(float(cycle.findall('geom/summary/rmsd/Chiral_centres')[0].text))
+                try: cycle_data['rmsCHIRAL'][idx] = "{:.3f}".format(float(cycle.findall('geom/summary/rmsd/Chiral_centres')[0].text))
                 except: pass
-                try: cycle_data['zBOND'][idx] = "{:.4f}".format(float(cycle.findall('geom/summary/rmsZ/Bond_distances_non_H')[0].text))
+                try: cycle_data['zBOND'][idx] = "{:.3f}".format(float(cycle.findall('geom/summary/rmsZ/Bond_distances_non_H')[0].text))
                 except: pass
-                try: cycle_data['zANGLE'][idx] = "{:.4f}".format(float(cycle.findall('geom/summary/rmsZ/Bond_angles_non_H')[0].text))
+                try: cycle_data['zANGLE'][idx] = "{:.3f}".format(float(cycle.findall('geom/summary/rmsZ/Bond_angles_non_H')[0].text))
                 except: pass
-                try: cycle_data['zCHIRAL'][idx] = "{:.4f}".format(float(cycle.findall('geom/summary/rmsZ/Chiral_centres')[0].text))
+                try: cycle_data['zCHIRAL'][idx] = "{:.3f}".format(float(cycle.findall('geom/summary/rmsZ/Chiral_centres')[0].text))
                 except: pass
             idx += 1
         return cycle_data
@@ -378,10 +343,10 @@ class servalcat_xtal_report(Report):
         if len(TLSIdx) > 0 and len(RestrIdx) > 0:
            mode = ['TLS']*len(TLSIdx) + ['Full Atom']*len(RestrIdx)
         fullTable.addData(title="Cycle", data=cycle_data_sel['cycle'])
-        if isnumber(cycle_data_sel['R2work'][-1]):  # Refinement against intensities
-            fullTable.addData(title="R2work", data=cycle_data_sel['R2work'])
-            if isnumber(cycle_data_sel['R2free'][-1]):
-                fullTable.addData(title="R2free", data=cycle_data_sel['R2free'])
+        if isnumber(cycle_data_sel['R1work'][-1]):  # Refinement against intensities
+            fullTable.addData(title="R1work", data=cycle_data_sel['R1work'])
+            if isnumber(cycle_data_sel['R1free'][-1]):
+                fullTable.addData(title="R1free", data=cycle_data_sel['R1free'])
             fullTable.addData(title="CCIwork_avg", data=cycle_data_sel['CCIworkavg'])
             if isnumber(cycle_data_sel['CCIfreeavg'][-1]):
                 fullTable.addData(title="CCIfree_avg", data=cycle_data_sel['CCIfreeavg'])
@@ -499,24 +464,24 @@ class servalcat_xtal_report(Report):
             label=graphRtitle,
             style=galleryGraphStyle,
             initiallyDrawn=True)
-        graphR.addData(title="Resolution(A)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
+        graphR.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
         if len(xmlnode.findall('.//cycle[last()]/data/binned/Rwork')) > 0:
             graphR.addData(title="Rwork", select=".//cycle[last()]/data/binned/./Rwork")
             if len(xmlnode.findall('.//cycle[last()]/data/binned/Rfree')) > 0:
                 graphR.addData(title="Rfree", select=".//cycle[last()]/data/binned/./Rfree")
         else:
-            graphR.addData(title="R2work", select=".//cycle[last()]/data/binned/./R2work")
-            if len(xmlnode.findall('.//cycle[last()]/data/binned/R2free')) > 0:
-                graphR.addData(title="R2free", select=".//cycle[last()]/data/binned/./R2free")
+            graphR.addData(title="R1work", select=".//cycle[last()]/data/binned/./R1work")
+            if len(xmlnode.findall('.//cycle[last()]/data/binned/R1free')) > 0:
+                graphR.addData(title="R1free", select=".//cycle[last()]/data/binned/./R1free")
         plotR = graphR.addPlotObject()
         plotR.append('title', graphRtitle)
         plotR.append('plottype', 'xy')
-        plotR.append('xlabel', 'Resolution (A)')
+        plotR.append('xlabel', 'Resolution (&Aring;)')
         plotR.append('ylabel', 'R-value')
         plotR.append('xscale', 'oneoversqrt')
-        plotR.append('legendposition', x=0, y=0)
+        plotR.append('legendposition', x=1, y=0)  # right bottom corner
         plotR.append('line', x1=0, x2=1, y1=0.42, y2=0.42, linecolour="red", linestyle="--")
-        plotR.append('line', x1=0, x2=1, y1=0.63, y2=0.58, linecolour="red", linestyle="--")
+        plotR.append('line', x1=0, x2=1, y1=0.58, y2=0.58, linecolour="red", linestyle="--")
         plotLine = plotR.append('plotline', xcol=1, ycol=2)
         plotLine.append('colour', 'orange')
         plotLine.append('symbolsize', '0')
@@ -532,7 +497,7 @@ class servalcat_xtal_report(Report):
             outputXml=self.outputXml,
             label=graphCCtitle,
             style=galleryGraphStyle)
-        graphCC.addData(title="Resolution(A)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
+        graphCC.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
         if len(xmlnode.findall('.//cycle[last()]/data/binned/CCFwork')) > 0:
             graphCC.addData(title="CCFwork", select=".//cycle[last()]/data/binned/./CCFwork")
             if len(xmlnode.findall('.//cycle[last()]/data/binned/CCFfree')) > 0:
@@ -544,9 +509,10 @@ class servalcat_xtal_report(Report):
         plotCC = graphCC.addPlotObject()
         plotCC.append('title', graphCCtitle)
         plotCC.append('plottype', 'xy')
-        plotCC.append('xlabel', 'Resolution (A)')
+        plotCC.append('xlabel', 'Resolution (&Aring;)')
         plotCC.append('ylabel', 'Correlation')
         plotCC.append('xscale', 'oneoversqrt')
+        plotCC.append('legendposition', x=1, y=1)
         plotLine = plotCC.append('plotline', xcol=1, ycol=2)
         plotLine.append('colour', 'orange')
         plotLine.append('symbolsize', '0')
@@ -562,14 +528,15 @@ class servalcat_xtal_report(Report):
             outputXml=self.outputXml,
             label=graphNtitle,
             style=galleryGraphStyle)
-        graphN.addData(title="Resolution(A)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
+        graphN.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
         graphN.addData(title="Nobs", select=".//cycle[last()]/data/binned/./n_obs")
         graphN.addData(title="Nwork", select=".//cycle[last()]/data/binned/./n_work")
         graphN.addData(title="Nfree", select=".//cycle[last()]/data/binned/./n_free")
         plotN = graphN.addPlotObject()
         plotN.append('title', graphNtitle)
         plotN.append('plottype', 'xy')
-        plotN.append('xlabel', 'Resolution (A)')
+        plotN.append('xlabel', 'Resolution (&Aring;)')
+        plotN.append('legendposition', x=0, y=1)
         # plotN.append('ylabel', '')
         plotN.append('xscale', 'oneoversqrt')
         plotLine = plotN.append('plotline', xcol=1, ycol=2)
@@ -591,15 +558,16 @@ class servalcat_xtal_report(Report):
             outputXml=self.outputXml,
             label=graphDtitle,
             style=galleryGraphStyle)
-        graphD.addData(title="Resolution(A)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
+        graphD.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
         graphD.addData(title="Mean|D0*FC0|", select=".//cycle[last()]/data/binned/./MnD0FC0")
         graphD.addData(title="Mean|D1*FCbulk|", select=".//cycle[last()]/data/binned/./MnD1FCbulk")
         plotD = graphD.addPlotObject()
         plotD.append('title', graphDtitle)
         plotD.append('plottype', 'xy')
-        plotD.append('xlabel', 'Resolution (A)')
+        plotD.append('xlabel', 'Resolution (&Aring;)')
         # plotD.append('ylabel', '')
         plotD.append('xscale', 'oneoversqrt')
+        plotN.append('legendposition', x=1, y=1)
         plotLine = plotD.append('plotline', xcol=1, ycol=2)
         plotLine.append('colour', 'blue')
         plotLine.append('symbolsize', '0')
@@ -614,31 +582,6 @@ class servalcat_xtal_report(Report):
         #reportFold = parent.addFold(label='Outliers identified by servalcat', brief='Other')
         #reportFold = parent.addFold(label='Validation', brief='Other')
         #reportFold = parent.addFold(label='Verdict', brief='Other')
-
-    def addSmartieGraphs_old(self, parent=None, internalIdPrefix=''):
-        if parent is None:
-            parent=self
-        reportFold = parent.addFold(label='Other plots from log file',brief='Other')
-        
-        """
-        #MN Here explicitly correct the absence of annotation of xscale as oneoversqrt in plots versus resln
-        for fixmeNode in self.xmlnode.findall(".//CCP4ApplicationOutput/CCP4Table[contains(@title,'resln')]/plot"):
-            fixmeNode.append(ET.fromstring('<xscale>oneoversqrt</xscale>'))
-        """
-        #SJM - A python xml library version of above.    
-        for tableNode in self.xmlnode.findall(".//CCP4ApplicationOutput/CCP4Table"):
-            if "title" in tableNode.attrib and "resln" in tableNode.attrib["title"]:
-                plots = tableNode.findall("./plot")
-                for plot in plots:
-                    plot.append(ET.fromstring('<xscale>oneoversqrt</xscale>'))
-        graphTableList = self.xmlnode.findall('SmartieGraphs/CCP4ApplicationOutput/CCP4Table')
-        gallery = reportFold.addObjectGallery(height='300px',contentWidth='420px',tableWidth='360px',style='float:left;width:800px;')
-        
-        isFirstGraph = True
-        for iGraph, graphTableNode in enumerate(graphTableList):
-            graph = gallery.addFlotGraph( xmlnode=graphTableNode, title=graphTableNode.get("title"), internalId=internalIdPrefix+'SmartiePlot'+str(iGraph), outputXml=self.outputXml, label=graphTableNode.get("title"),style="width:410px;height:290px;", initiallyDrawn=isFirstGraph )
-            graph = graph.addPimpleData(xmlnode=graphTableNode)
-            isFirstGraph = False
 
     def addOutlierAnalysis(self, parent=None, xmlnode=None):
         if parent is None: parent = self
@@ -668,6 +611,7 @@ class servalcat_xtal_report(Report):
                        'value': ["-"]*n_outliers,
                        'ideal': ["-"]*n_outliers,
                        'z': ["-"]*n_outliers,
+                       'z_abs': ["-"]*n_outliers,
                        'difference': ["-"]*n_outliers,
                        'sigma': ["-"]*n_outliers,
                        'percent': ["-"]*n_outliers,
@@ -697,38 +641,40 @@ class servalcat_xtal_report(Report):
                     outData['ideal'][i] = "{:.2f}".format(ideal)
                     z = float(outlier.findall('z')[0].text)
                     outData['z'][i] = "{:.2f}".format(z)
+                    outData['z_abs'][i] = round(abs(z), 2)
                     # difference = | value - ideal |
                     difference = abs(value - ideal)
                     outData['difference'][i] = "{:.2f}".format(difference)
                     # sigma = | value - ideal | / z
                     sigma = abs((value - ideal) / z)
-                    outData['sigma'][i] = "{:.2f}".format(sigma)
-                    # relative deviation in per cent = 100 * difference / ideal
+                    outData['sigma'][i] = round(sigma, 2)
                     percent = 100 * abs(value - ideal) / ideal
-                    outData['percent'][i] = "{:.2f}".format(percent)
+                    outData['percent'][i] = round(percent, 2)
                 except:
                     outData['value'][i] = '-'
                     outData['ideal'][i] = '-'
                     outData['z'][i] = '-'
+                    outData['z_abs'][i] = '-'
                     outData['difference'][i] = '-'
                     outData['sigma'][i] = '-'
                     outData['percent'][i] = '-'
-            outDataZip = list(zip(outData['type'], outData['percent'], outData['sigma'], outData['atom1'], outData['atom2'],
+            outDataZip = list(zip(outData['z_abs'], outData['percent'], outData['sigma'], outData['type'], outData['atom1'], outData['atom2'],
                                   outData['value'], outData['ideal'], outData['difference'], outData['z']))
             outDataZip.sort(reverse=True)
-            outData['type'], outData['percent'], outData['sigma'], outData['atom1'], outData['atom2'], \
+            outData['z_abs'], outData['percent'], outData['sigma'], outData['type'], outData['atom1'], outData['atom2'], \
                 outData['value'], outData['ideal'], outData['difference'], outData['z'] = zip(*outDataZip)
     
             clearingDiv = outlierFold.addDiv(style="clear:both;")
+            styleDiv = outlierFold.addDiv(style="color:navy; text-align: right;")
             fullTable = None
-            fullTable = outlierFold.addTable()
+            fullTable = styleDiv.addTable()
             fullTable.addData(title="Atom 1", data=outData['atom1'])
             fullTable.addData(title="Atom 2", data=outData['atom2'])
             fullTable.addData(title="Deviation<br>(in %)", data=outData['percent'])
-            fullTable.addData(title="Bond<br>length (A)", data=outData['value'])
-            fullTable.addData(title="Ideal<br>length (A)", data=outData['ideal'])
-            fullTable.addData(title="Difference<br>from ideal (A)", data=outData['difference'])
-            fullTable.addData(title="Sigma (A)", data=outData['sigma'])
+            fullTable.addData(title="Bond<br>length (&Aring;)", data=outData['value'])
+            fullTable.addData(title="Ideal<br>length (&Aring;)", data=outData['ideal'])
+            fullTable.addData(title="Difference<br>from ideal (&Aring;)", data=outData['difference'])
+            fullTable.addData(title="Sigma (&Aring;)", data=outData['sigma'])
             fullTable.addData(title="Z", data=outData['z'])
             fullTable.addData(title="Note", data=outData['note'])
 
@@ -748,6 +694,7 @@ class servalcat_xtal_report(Report):
                        'difference': ["-"]*n_outliers,
                        'difference_float': ["-"]*n_outliers,
                        'z': ["-"]*n_outliers,
+                       'z_abs': ["-"]*n_outliers,
                        'sigma': ["-"]*n_outliers}
             for i, outlier in enumerate(outAngle):
                 try: outData['atom1'][i] = str(outlier.findall('atom1')[0].text)
@@ -763,27 +710,30 @@ class servalcat_xtal_report(Report):
                     outData['ideal'][i] = "{:.2f}".format(ideal)
                     z = float(outlier.findall('z')[0].text)
                     outData['z'][i] = "{:.2f}".format(z)
+                    outData['z_abs'][i] = round(abs(z), 2)
                     difference = abs(value - ideal)
                     outData['difference_float'][i] = difference
                     outData['difference'][i] = "{:.2f}".format(difference)
                     sigma = abs((value - ideal) / z)
-                    outData['sigma'][i] = "{:.2f}".format(sigma)
+                    outData['sigma'][i] = round(sigma, 2)
                 except:
                     outData['value'][i] = '-'
                     outData['ideal'][i] = '-'
                     outData['z'][i] = '-'
+                    outData['z_abs'][i] = '-'
                     outData['difference'][i] = '-'
                     outData['difference_float'][i] = '-'
                     outData['sigma'][i] = '-'
-            outDataZip = list(zip(outData['difference_float'], outData['sigma'], outData['atom1'], outData['atom2'], outData['atom3'],
-                                  outData['value'], outData['ideal'], outData['z'], outData['difference']))
+            outDataZip = list(zip(outData['z_abs'], outData['difference_float'], outData['sigma'], outData['atom1'], outData['atom2'],
+                                  outData['atom3'], outData['value'], outData['ideal'], outData['z'], outData['difference']))
             outDataZip.sort(reverse=True)
-            outData['difference_float'], outData['sigma'], outData['atom1'], outData['atom2'], outData['atom3'], \
-                outData['value'], outData['ideal'], outData['z'], outData['difference'] = zip(*outDataZip)
+            outData['z_abs'], outData['difference_float'], outData['sigma'], outData['atom1'], outData['atom2'], \
+                outData['atom3'], outData['value'], outData['ideal'], outData['z'], outData['difference'] = zip(*outDataZip)
 
             clearingDiv = outlierFold.addDiv(style="clear:both;")
+            styleDiv = outlierFold.addDiv(style="color:navy; text-align: right;")
             fullTable = None
-            fullTable = outlierFold.addTable()
+            fullTable = styleDiv.addTable()
             fullTable.addData(title="Atom 1", data=outData['atom1'])
             fullTable.addData(title="Atom 2", data=outData['atom2'])
             fullTable.addData(title="Atom 3", data=outData['atom3'])
@@ -808,6 +758,7 @@ class servalcat_xtal_report(Report):
                        'value': ["-"]*n_outliers,
                        'ideal': ["-"]*n_outliers,
                        'z': ["-"]*n_outliers,
+                       'z_abs': ["-"]*n_outliers,
                        'per': ["-"]*n_outliers,
                        'ideal_per': ["-"]*n_outliers,
                        'difference_float': ["-"]*n_outliers,
@@ -831,6 +782,7 @@ class servalcat_xtal_report(Report):
                     outData['ideal'][i] = "{:.2f}".format(ideal)
                     z = float(outlier.findall('z')[0].text)
                     outData['z'][i] = "{:.2f}".format(z)
+                    outData['z_abs'][i] = round(abs(z), 2)
                     periodicity = int(outlier.findall('per')[0].text)
                     outData['per'][i] = periodicity
                     # difference = | value - ideal |
@@ -864,19 +816,21 @@ class servalcat_xtal_report(Report):
                     outData['ideal'][i] = '-'
                     outData['per'][i] = '-'
                     outData['z'][i] = '-'
+                    outData['z_abs'][i] = '-'
                     outData['difference'][i] = '-'
                     outData['difference_float'][i] = '-'
                     outData['sigma'][i] = '-'
 
-            outDataZip = list(zip(outData['difference_float'], outData['label'], outData['atom1'], outData['atom2'], outData['atom3'],
+            outDataZip = list(zip(outData['z_abs'], outData['difference_float'], outData['label'], outData['atom1'], outData['atom2'], outData['atom3'],
                                   outData['atom4'], outData['value'], outData['ideal'], outData['per'], outData['ideal_per'], outData['z'], outData['difference'], outData['sigma']))
             outDataZip.sort(reverse=True)
-            outData['difference_float'], outData['label'], outData['atom1'], outData['atom2'], outData['atom3'], \
+            outData['z_abs'], outData['difference_float'], outData['label'], outData['atom1'], outData['atom2'], outData['atom3'], \
                 outData['atom4'], outData['value'], outData['ideal'], outData['per'], outData['ideal_per'], outData['z'], outData['difference'], outData['sigma'] = zip(*outDataZip)
 
             clearingDiv = outlierFold.addDiv(style="clear:both;")
+            styleDiv = outlierFold.addDiv(style="color:navy; text-align: right;")
             fullTable = None
-            fullTable = outlierFold.addTable()
+            fullTable = styleDiv.addTable()
             fullTable.addData(title="Label", data=outData['label'])
             fullTable.addData(title="Atom 1", data=outData['atom1'])
             fullTable.addData(title="Atom 2", data=outData['atom2'])
@@ -907,6 +861,7 @@ class servalcat_xtal_report(Report):
                        # 'percent': ["-"]*n_outliers,
                        'signum': ["-"]*n_outliers,
                        'z': ["-"]*n_outliers,
+                       'z_abs': ["-"]*n_outliers,
                        'sigma': ["-"]*n_outliers}
             for i, outlier in enumerate(outChir):
                 try: outData['atomc'][i] = str(outlier.findall('atomc')[0].text)
@@ -924,6 +879,7 @@ class servalcat_xtal_report(Report):
                     outData['ideal'][i] = "{:.2f}".format(ideal)
                     z = float(outlier.findall('z')[0].text)
                     outData['z'][i] = "{:.2f}".format(z)
+                    outData['z_abs'][i] = round(abs(z), 2)
                     if bool(outlier.findall('both')[0].text) == "True":
                         both = True
                     else:
@@ -947,28 +903,30 @@ class servalcat_xtal_report(Report):
                     outData['value'][i] = '-'
                     outData['ideal'][i] = '-'
                     outData['z'][i] = '-'
+                    outData['z_abs'][i] = '-'
                     outData['both'][i] = '-'
                     outData['difference'][i] = '-'
                     outData['difference_float'][i] = '-'
                     outData['sigma'][i] = '-'
                     # outData['percent'][i] = '-'
                     outData['signum'][i] = '-'
-            outDataZip = list(zip(outData['difference_float'], outData['atomc'], outData['atom1'], outData['atom2'], outData['atom3'],
+            outDataZip = list(zip(outData['z_abs'], outData['difference_float'], outData['atomc'], outData['atom1'], outData['atom2'], outData['atom3'],
                                   outData['value'], outData['ideal'], outData['z'], outData['both'], outData['difference'], outData['sigma'], outData['signum']))
             outDataZip.sort(reverse=True)
-            outData['difference_float'], outData['atomc'], outData['atom1'], outData['atom2'], outData['atom3'], outData['value'], outData['ideal'], outData['z'], outData['both'], outData['difference'], outData['sigma'], outData['signum'] = zip(*outDataZip)
+            outData['z_abs'], outData['difference_float'], outData['atomc'], outData['atom1'], outData['atom2'], outData['atom3'], outData['value'], outData['ideal'], outData['z'], outData['both'], outData['difference'], outData['sigma'], outData['signum'] = zip(*outDataZip)
 
             clearingDiv = outlierFold.addDiv(style="clear:both;")
+            styleDiv = outlierFold.addDiv(style="color:navy; text-align: right;")
             fullTable = None
-            fullTable = outlierFold.addTable()
+            fullTable = styleDiv.addTable()
             fullTable.addData(title="Chiral atom", data=outData['atomc'])
             fullTable.addData(title="Atom 1", data=outData['atom1'])
             fullTable.addData(title="Atom 2", data=outData['atom2'])
             fullTable.addData(title="Atom 3", data=outData['atom3'])
             # fullTable.addData(title="Deviation<br>(in %)", data=outData['percent'])
-            fullTable.addData(title="Chiral<br>volume (A<sup>3</sup>)", data=outData['value'])
-            fullTable.addData(title="Ideal<br>value (A<sup>3</sup>)", data=outData['ideal'])
-            fullTable.addData(title="Difference<br>from ideal (A<sup>3</sup>)", data=outData['difference'])
+            fullTable.addData(title="Chiral<br>volume (&Aring;<sup>3</sup>)", data=outData['value'])
+            fullTable.addData(title="Ideal<br>value (&Aring;<sup>3</sup>)", data=outData['ideal'])
+            fullTable.addData(title="Difference<br>from ideal (&Aring;<sup>3</sup>)", data=outData['difference'])
             fullTable.addData(title="Z", data=outData['z'])
             fullTable.addData(title="Correct sign?", data=outData['signum'])
         else:
@@ -982,7 +940,8 @@ class servalcat_xtal_report(Report):
             outData = {'atom': ["-"]*n_outliers,
                        'label': ["-"]*n_outliers,
                        'dev': ["-"]*n_outliers,
-                       'z': ["-"]*n_outliers}
+                       'z': ["-"]*n_outliers,
+                       'z_abs': ["-"]*n_outliers}
             for i, outlier in enumerate(outPlane):
                 try: outData['label'][i] = str(outlier.findall('label')[0].text)
                 except: outData['label'][i] = '-'
@@ -990,15 +949,19 @@ class servalcat_xtal_report(Report):
                 except: outData['atom'][i] = '-'
                 try: outData['dev'][i] = "{:.2f}".format(float(outlier.findall('dev')[0].text))
                 except: outData['dev'][i] = '-'
-                try: outData['z'][i] = "{:.2f}".format(float(outlier.findall('z')[0].text))
-                except: outData['z'][i] = '-'
+                try:
+                    outData['z'][i] = "{:.2f}".format(float(outlier.findall('z')[0].text))
+                    outData['z_abs'][i] = round(abs(z), 2)
+                except:
+                    outData['z'][i] = '-'
+                    outData['z_abs'][i] = '-'
             # Does not need to be sorted
             clearingDiv = outlierFold.addDiv(style="clear:both;")
             fullTable = None
             fullTable = outlierFold.addTable()
             fullTable.addData(title="Label", data=outData['label'])
             fullTable.addData(title="Atom", data=outData['atom'])
-            fullTable.addData(title="Deviation (A)", data=outData['dev'])
+            fullTable.addData(title="Deviation (&Aring;)", data=outData['dev'])
             fullTable.addData(title="Z", data=outData['z'])
         else:
             div = outlierFold.addDiv(style='font-size:110%')
@@ -1013,6 +976,7 @@ class servalcat_xtal_report(Report):
                        'value': ["-"]*n_outliers,
                        'ideal': ["-"]*n_outliers,
                        'z': ["-"]*n_outliers,
+                       'z_abs': ["-"]*n_outliers,
                        'type': ["-"]*n_outliers,
                        'note': ["-"]*n_outliers,
                        'difference': ["-"]*n_outliers,
@@ -1026,8 +990,12 @@ class servalcat_xtal_report(Report):
                 except: outData['value'][i] = '-'
                 try: outData['ideal'][i] = "{:.2f}".format(float(outlier.findall('ideal')[0].text))
                 except: outData['ideal'][i] = '-'
-                try: outData['z'][i] = "{:.2f}".format(float(outlier.findall('z')[0].text))
-                except: outData['z'][i] = '-'
+                try:
+                    outData['z'][i] = "{:.2f}".format(float(outlier.findall('z')[0].text))
+                    outData['z_abs'][i] = round(abs(z), 2)
+                except:
+                    outData['z'][i] = '-'
+                    outData['z_abs'][i] = '-'
                 try:
                     outType = int(outlier.findall('type')[0].text)
                     if outType == 1:
@@ -1057,20 +1025,21 @@ class servalcat_xtal_report(Report):
                     outData['difference'] = '-'
                     outData['difference_float'] = '-'
 
-            outDataZip = list(zip(outData['difference_float'], outData['type'], outData['atom1'], outData['atom2'],
+            outDataZip = list(zip(outData['z_abs'], outData['difference_float'], outData['type'], outData['atom1'], outData['atom2'],
                                   outData['value'], outData['ideal'], outData['z'], outData['difference']))
             outDataZip.sort(reverse=True)
-            outData['difference_float'], outData['type'], outData['atom1'], outData['atom2'], \
+            outData['z_abs'], outData['difference_float'], outData['type'], outData['atom1'], outData['atom2'], \
                 outData['value'], outData['ideal'], outData['z'], outData['difference'] = zip(*outDataZip)
 
             clearingDiv = outlierFold.addDiv(style="clear:both;")
+            styleDiv = outlierFold.addDiv(style="color:navy; text-align: right;")
             fullTable = None
-            fullTable = outlierFold.addTable()
+            fullTable = styleDiv.addTable()
             fullTable.addData(title="Atom 1", data=outData['atom1'])
             fullTable.addData(title="Atom 2", data=outData['atom2'])
-            fullTable.addData(title="Distance (A)", data=outData['value'])
-            fullTable.addData(title="Critical<br>distance (A)", data=outData['ideal'])
-            fullTable.addData(title="Difference from<br>critical (A)", data=outData['difference'])
+            fullTable.addData(title="Distance (&Aring;)", data=outData['value'])
+            fullTable.addData(title="Critical<br>distance (&Aring;)", data=outData['ideal'])
+            fullTable.addData(title="Difference from<br>critical (&Aring;)", data=outData['difference'])
             fullTable.addData(title="Z", data=outData['z'])
             fullTable.addData(title="Type", data=outData['note'])
         else:
@@ -1088,6 +1057,7 @@ class servalcat_xtal_report(Report):
                        'difference': ["-"]*n_outliers,
                        'difference_float': ["-"]*n_outliers,
                        'z': ["-"]*n_outliers,
+                       'z_abs': ["-"]*n_outliers,
                        'sigma': ["-"]*n_outliers}
             for i, outlier in enumerate(outStacd):
                 try: outData['plane1'][i] = str(outlier.findall('plane1')[0].text)
@@ -1101,6 +1071,7 @@ class servalcat_xtal_report(Report):
                     outData['ideal'][i] = "{:.2f}".format(ideal)
                     z = float(outlier.findall('z')[0].text)
                     outData['z'][i] = "{:.2f}".format(z)
+                    outData['z_abs'][i] = round(abs(z), 2)
                     # difference = | value - ideal |
                     difference = abs(value - ideal)
                     outData['difference_float'][i] = difference
@@ -1112,28 +1083,30 @@ class servalcat_xtal_report(Report):
                     outData['value'][i] = '-'
                     outData['ideal'][i] = '-'
                     outData['z'][i] = '-'
+                    outData['z_abs'][i] = '-'
                     outData['difference'][i] = '-'
                     outData['difference_float'][i] = '-'
                     outData['sigma'][i] = '-'
-            outDataZip = list(zip(outData['difference_float'], outData['sigma'], outData['plane1'], outData['plane2'],
+            outDataZip = list(zip(outData['z_abs'], outData['difference_float'], outData['sigma'], outData['plane1'], outData['plane2'],
                                   outData['value'], outData['ideal'], outData['z'], outData['difference']))
             outDataZip.sort(reverse=True)
-            outData['difference_float'], outData['sigma'], outData['plane1'], outData['plane2'], \
+            outData['z_abs'], outData['difference_float'], outData['sigma'], outData['plane1'], outData['plane2'], \
                 outData['value'], outData['ideal'], outData['z'], outData['difference'] = zip(*outDataZip)
 
             clearingDiv = outlierFold.addDiv(style="clear:both;")
+            styleDiv = outlierFold.addDiv(style="color:navy; text-align: right;")
             fullTable = None
-            fullTable = outlierFold.addTable()
+            fullTable = styleDiv.addTable()
             fullTable.addData(title="Plane 1", data=outData['plane1'])
             fullTable.addData(title="Plane 2", data=outData['plane2'])
-            fullTable.addData(title="Stacking<br>distance (A)", data=outData['value'])
-            fullTable.addData(title="Ideal<br>distance (A)", data=outData['ideal'])
-            fullTable.addData(title="Difference<br>from ideal (A)", data=outData['difference'])
-            fullTable.addData(title="Sigma (A)", data=outData['sigma'])
+            fullTable.addData(title="Stacking<br>distance (&Aring;)", data=outData['value'])
+            fullTable.addData(title="Ideal<br>distance (&Aring;)", data=outData['ideal'])
+            fullTable.addData(title="Difference<br>from ideal (&Aring;)", data=outData['difference'])
+            fullTable.addData(title="Sigma (&Aring;)", data=outData['sigma'])
             fullTable.addData(title="Z", data=outData['z'])
         else:
             div = outlierFold.addDiv(style='font-size:110%')
-            div.append("No stacking distance outliers.")
+            div.append("No stacking distance outliers observed.")
 
         if len(outStaca) > 0:
             n_outliers = len(outStaca)
@@ -1146,6 +1119,7 @@ class servalcat_xtal_report(Report):
                        'difference': ["-"]*n_outliers,
                        'difference_float': ["-"]*n_outliers,
                        'z': ["-"]*n_outliers,
+                       'z_abs': ["-"]*n_outliers,
                        'sigma': ["-"]*n_outliers}
             for i, outlier in enumerate(outStaca):
                 try: outData['plane1'][i] = str(outlier.findall('plane1')[0].text)
@@ -1170,18 +1144,20 @@ class servalcat_xtal_report(Report):
                     outData['value'][i] = '-'
                     outData['ideal'][i] = '-'
                     outData['z'][i] = '-'
+                    outData['z_abs'][i] = '-'
                     outData['difference'][i] = '-'
                     outData['difference_float'][i] = '-'
                     outData['sigma'][i] = '-'
-            outDataZip = list(zip(outData['difference_float'], outData['sigma'], outData['plane1'], outData['plane2'],
+            outDataZip = list(zip(outData['z_abs'], outData['difference_float'], outData['sigma'], outData['plane1'], outData['plane2'],
                                   outData['value'], outData['ideal'], outData['z'], outData['difference']))
             outDataZip.sort(reverse=True)
-            outData['difference_float'], outData['sigma'], outData['plane1'], outData['plane2'], \
+            outData['z_abs'], outData['difference_float'], outData['sigma'], outData['plane1'], outData['plane2'], \
                 outData['value'], outData['ideal'], outData['z'], outData['difference'] = zip(*outDataZip)
 
             clearingDiv = outlierFold.addDiv(style="clear:both;")
+            styleDiv = outlierFold.addDiv(style="color:navy; text-align: right;")
             fullTable = None
-            fullTable = outlierFold.addTable()
+            fullTable = styleDiv.addTable()
             fullTable.addData(title="Plane 1", data=outData['plane1'])
             fullTable.addData(title="Plane 2", data=outData['plane2'])
             fullTable.addData(title="Stacking<br>angle (°)", data=outData['value'])
@@ -1191,66 +1167,7 @@ class servalcat_xtal_report(Report):
             fullTable.addData(title="Z", data=outData['z'])
         else:
             div = outlierFold.addDiv(style='font-size:110%')
-            div.append("No stacking angle outliers.")
-
-    def addOutlierAnalysisOldToDelete(self, parent=None):
-        if parent is None: parent=self
-        
-        outlierFold = parent.addFold(label="Outliers identified by Refmac",brief='Outliers')
-        #Check to see if outliers are captured in the program XML
-        outliersByCriteriaNodes = self.xmlnode.findall('.//OutliersByCriteria')
-        if len(outliersByCriteriaNodes) == 0 or len(outliersByCriteriaNodes[0])==0:
-            outlierFold.append('<span style="font-size:110%">No outliers observed </span>')
-        else:
-            outlierFold.append('<span style="font-size:110%">Residues failing one or more outlier test are flagged below with corresponding Z-score </span>')
-            #identify a unique list of amino acids flagged by Refmac, and their associated set of deviations, flagged by the most deviant score observed
-            naughtyBits = {}
-            criteriaThatFail = set()
-            for outlierDictNode in outliersByCriteriaNodes[-1
-                                                           ]:
-                outliers = outlierDictNode.findall('Outlier')
-                criteriaThatFail.add(outlierDictNode.tag)
-                for outlier in outliers:
-                  try:
-                    identifier1 = outlier.get('chainId1') + outlier.get('resId1') + outlier.get('ins1')
-                    identifier2 = outlier.get('chainId2') + outlier.get('resId2') + outlier.get('ins2')
-                    deviationAsSigma = (float(outlier.get('mod'))-float(outlier.get('ideal'))) / float(outlier.get('sigma'))
-                    for identifier in [identifier1, identifier2]:
-                        if identifier not in naughtyBits:
-                            naughtyBits[identifier] = {}
-                        if outlierDictNode.tag not in naughtyBits[identifier]:
-                            naughtyBits[identifier][outlierDictNode.tag] = deviationAsSigma
-                        elif abs(naughtyBits[identifier][outlierDictNode.tag]) < abs(deviationAsSigma):
-                            naughtyBits[identifier][outlierDictNode.tag] = deviationAsSigma
-                  except:
-                    pass
-            if len(criteriaThatFail) > 0:
-                offendersTable = outlierFold.addTable(title='Ooh',label='Aah')
-                identifiers = []
-                for naughtyBit in naughtyBits:
-                    identifiers.append(naughtyBit)
-                offendersTable.addData(title='Residue',data=identifiers)
-                for criterion in criteriaThatFail:
-                    transgression = []
-                    for naughtyBit in naughtyBits:
-                        if criterion in naughtyBits[naughtyBit]:
-                            transgression.append(str(naughtyBits[naughtyBit][criterion]))
-                        else:
-                            transgression.append('-')
-                    offendersTable.addData(title=criterion,data=transgression)
-                
-        #Allow user to open a sub-folder in which criteria used in screening are supplied
-        if len(outliersByCriteriaNodes) > 0 and len(outliersByCriteriaNodes[0]) > 0:
-            criteriaFold = outlierFold.addFold(label='Criteria used to spot outliers',brief='Criteria')
-            criteriaTable = criteriaFold.addTable(title='Ooh',label='Aah',select='.//OutliersByCriteria')
-            
-            types = []
-            criteria = []
-            for outlierTypeNode in outliersByCriteriaNodes[-1]:
-                types.append(str(outlierTypeNode.tag))
-                criteria.append(str(outlierTypeNode.findall('Criteria')[0].text))
-            criteriaTable.addData(title='Interaction type',data=types)
-            criteriaTable.addData(title='Criterion',data=criteria)
+            div.append("No stacking angle outliers observed.")
 
     def appendMolDisp(self, molDataNode=None, selectionText='all', carbonColour='yellow', othersByElement=True,style='CYLINDER',bondOrder=False):
         if molDataNode is None: return
@@ -1539,14 +1456,14 @@ class servalcat_xtal_report(Report):
         statisticInitial = []
         statisticFinal = []
 
-        if isnumber(cycle_data["R2work"][-1]):  # refinement against intensities
-            statisticNames.append('R2work')
-            statisticInitial.append(cycle_data['R2work'][0])
-            statisticFinal.append(cycle_data['R2work'][-1])
-            if isnumber(cycle_data["R2free"][-1]):
-                statisticNames.append('R2free')
-                statisticInitial.append(cycle_data['R2free'][0])
-                statisticFinal.append(cycle_data['R2free'][-1])
+        if isnumber(cycle_data["R1work"][-1]):  # refinement against intensities
+            statisticNames.append('R1work')
+            statisticInitial.append(cycle_data['R1work'][0])
+            statisticFinal.append(cycle_data['R1work'][-1])
+            if isnumber(cycle_data["R1free"][-1]):
+                statisticNames.append('R1free')
+                statisticInitial.append(cycle_data['R1free'][0])
+                statisticFinal.append(cycle_data['R1free'][-1])
             statisticNames.append('CCIwork_avg')
             statisticInitial.append(cycle_data['CCIworkavg'][0])
             statisticFinal.append(cycle_data['CCIworkavg'][-1])
@@ -1598,110 +1515,6 @@ class servalcat_xtal_report(Report):
         table1.addData(title='', data=statisticNames)
         table1.addData(title='Initial', data=statisticInitial)
         table1.addData(title='Final', data=statisticFinal)
-        return table1
-
-    def addTable1_ToDelete(self, xmlnode=None, parent=None, downloadable=False, internalId='Table1'):
-        if xmlnode is None: xmlnode = self.xmlnode
-        if parent is None: parent = self
-
-        # TO DO width and height
-        table1 = parent.addTable(xmlnode=xmlnode, style="width:240px;float:left;", downloadable=downloadable,outputXml=self.outputXml,internalId=internalId)
-        
-        #ResolutionLowNode =xmlnode.findall('.//Overall_stats/resolution_low')
-        #ResolutionHighNode =xmlnode.findall('.//Overall_stats/resolution_high')
-        #ReflectionsAll =xmlnode.findall('.//Overall_stats/n_reflections_all')
-        #ResolutionsFree =xmlnode.findall('.//Overall_stats/n_reflections_free')
-        #ReflectionsWorkNode =xmlnode.findall('.//Overall_stats/resolution_high')
-
-        R2WorkNodes = xmlnode.findall('.//cycle[last()]/data/summary/R2work')
-        R2FreeNodes = xmlnode.findall('.//cycle[last()]/data/summary/R2free')
-        CCIWorkNodes = xmlnode.findall('.//cycle[last()]/data/summary/CCIworkavg')
-        CCIFreeNodes = xmlnode.findall('.//cycle[last()]/data/summary/CCIfreeavg')
-
-        RWorkNodes = xmlnode.findall('.//cycle[last()]/data/summary/Rwork')
-        RFreeNodes = xmlnode.findall('.//cycle[last()]/data/summary/Rfree')
-        CCFWorkNodes = xmlnode.findall('.//cycle[last()]/data/summary/CCFworkavg')
-        CCFFreeNodes = xmlnode.findall('.//cycle[last()]/data/summary/CCFfreeavg')
-
-        RMSBondsNodes = xmlnode.findall('.//cycle[last()]/geom/summary/rmsd/Bond_distances_non_H')
-        RMSAnglesNodes = xmlnode.findall('.//cycle[last()]/geom/summary/rmsd/Bond_angles_non_H')
-        # RMS Chiral_centre ?
-        
-        #MeanBChainNameNodes = xmlnode.findall('.//Overall_stats/bvalue_stats/chain_by_chain/new_chain/chain_name')
-        #MeanBAllCountNodes = xmlnode.findall('.//Overall_stats/bvalue_stats/chain_by_chain/new_chain/all/number')
-        #MeanBAllAverageNodes = xmlnode.findall('.//Overall_stats/bvalue_stats/chain_by_chain/new_chain/all/average')
-        
-        statisticNames = []
-        statisticValues = []
-        
-        #statisticNames.append('Resolution')
-        #if len(ResolutionLowNode)>0: statisticValues.append("{0:.2f}".format(float(ResolutionLowNode[0].text))+'-'+"{0:.2f}".format(float(ResolutionHighNode[0].text)))
-        #else: statisticValues.append("-")
-        
-        #statisticNames.append('No. reflections all/free')
-        #if len(ReflectionsAll)>0:
-        #    nRefText = ReflectionsAll[0].text+'/'
-        #    if len(ResolutionsFree)>0: nRefText += ResolutionsFree[0].text
-        #    else: nRefText += "-"
-        #    statisticValues.append(nRefText)
-        #else: statisticValues.append("-")
-
-        if len(R2WorkNodes) > 0:  # Refinement against intensities
-            statisticNames.append('R2work/R2free')
-            if len(R2WorkNodes) > 0:
-                text = "{:.4f}".format(float(R2WorkNodes[0].text)) + ' / '
-                if len(R2FreeNodes) > 0: text += "{:.4f}".format(float(R2FreeNodes[0].text))
-                else: text += "-"
-                statisticValues.append(text)
-            else: statisticValues.append("-")
-
-            statisticNames.append('CCIwork_avg/CCIfree_avg')
-            if len(CCIWorkNodes) > 0:
-                text = "{:.4f}".format(float(CCIWorkNodes[0].text)) + ' / '
-                if len(CCIFreeNodes) > 0: text += "{:.4f}".format(float(CCIFreeNodes[0].text))
-                else: text += "-"
-                statisticValues.append(text)
-            else: statisticValues.append("-")
-
-        else:  # Refinement against amplitudes
-            statisticNames.append('Rwork/Rfree')
-            if len(RWorkNodes) > 0:
-                text = "{:.4f}".format(float(RWorkNodes[0].text)) + ' / '
-                if len(RFreeNodes) > 0: text += "{:.4f}".format(float(RFreeNodes[0].text))
-                else: text += "-"
-                statisticValues.append(text)
-            else: statisticValues.append("-")
-
-            statisticNames.append('CCFwork_avg/CCFfree_avg')
-            if len(CCFWorkNodes) > 0:
-                text = "{:.4f}".format(float(CCFWorkNodes[0].text)) + ' / '
-                if len(CCFFreeNodes) > 0: text += "{:.4f}".format(float(CCFFreeNodes[0].text))
-                else: text += "-"
-                statisticValues.append(text)
-            else: statisticValues.append("-")
-
-        if len(self.xmlnode.findall("RigidMode")) == 0:
-            statisticNames.append('<i>RMS Deviations</i>')
-            statisticValues.append(' ')
-
-            statisticNames.append('Bonds')
-            if len(RMSBondsNodes)>0:
-                statisticValues.append("{:.4f}".format(float(RMSBondsNodes[0].text)))
-            else: statisticValues.append("-")
-
-            statisticNames.append('Angles')
-            if len(RMSAnglesNodes)>0:
-                statisticValues.append("{:.4f}".format(float(RMSAnglesNodes[0].text)))
-            else: statisticValues.append("-")
-
-            #statisticNames.append('<i>Chain B-factors</i>')
-            #statisticValues.append('<i>mean B (#atoms)</i>')
-            #statisticNames += [MeanBChainNameNodes[i].text for i in range(len(MeanBChainNameNodes))]
-            #statisticValues +=  [("{0:.1f}".format(float(MeanBAllAverageNodes[i].text))+'('+MeanBAllCountNodes[i].text+')') for i in range(len(MeanBChainNameNodes))]
-
-        table1.addData(title='', data=statisticNames)
-        table1.addData(title='Initial', data=statisticValues)
-        
         return table1
 
 def test(xmlFile=None,jobId=None,reportFile=None):

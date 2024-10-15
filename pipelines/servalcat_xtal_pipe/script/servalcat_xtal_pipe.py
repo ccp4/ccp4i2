@@ -25,8 +25,16 @@ from PySide2 import QtCore
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core import CCP4Utils
+from pipelines.servalcat_xtal_pipe.script import monitor_refinement_differences
+from wrappers.servalcat_xtal.script.servalcat_xtal import json2xml
 import os, sys, shutil, re
 import base64
+import gemmi
+import numpy
+import json
+import statistics
+from operator import itemgetter
+
 
 class servalcat_xtal_pipe(CPluginScript):
 
@@ -194,7 +202,7 @@ class servalcat_xtal_pipe(CPluginScript):
                 oldXml = etree.fromstring(aFile.read()) # oldXml = ET.fromstring(aFile.read())
             # Add content of program.xml of the last servalcat subjob
             oldXml.xpath('//SERVALCAT')[0].append(self.xmlroot2.xpath("//SERVALCAT/SERVALCAT_WATERS")[0])
-            # Save as program.xml_tmo and then move to program.xml
+            # Save as program.xml_tmp and then move to program.xml
             tmpFileName = self.pipelinexmlfile + '_tmp'
             with open(tmpFileName, 'w') as aFile:
                 CCP4Utils.writeXML(aFile,etree.tostring(oldXml, pretty_print=True) ) # CCP4Utils.writeXML(aFile,ET.tostring(oldXml) )
@@ -256,6 +264,242 @@ class servalcat_xtal_pipe(CPluginScript):
             if ncyc > 0:
                 result.container.controlParameters.NCYCLES.set(ncyc)
         return result
+
+
+    def adp_analysis(self, modelPath, iqrFactor=2.0):
+        # TO DO: scatter plot X:resi Y:ADP. Main and side chains separately, carefuly with HETATM. Also per individual chains.
+        # TO DO: outliers
+        adp_dict = {}
+        adp_per_resi = {}
+        adp_dict["All"] = []
+        st = gemmi.read_structure(modelPath)
+        for model in st:
+            for chain in model:
+                polymer = chain.get_polymer()
+                ptype = polymer.check_polymer_type()
+                adp_dict[chain.name] = []
+                adp_per_resi[chain.name] = [[],[],[]]  # residue.seqid.num; mean ADP in backbone; mean ADP in side chain
+                for residue in chain:
+                    adp_this_resi = []
+                    adp_this_resi_sidechain = []
+                    for atom in residue:
+                        if not atom.is_hydrogen() and atom.occ > 0:
+                            if atom.aniso.nonzero():
+                                adp_atom = gemmi.calculate_b_est(atom)
+                            else:
+                                adp_atom = atom.b_iso
+                            adp_dict["All"].append(adp_atom)
+                            adp_dict[chain.name].append(adp_atom)
+                            if ptype in [gemmi.PolymerType.PeptideL, gemmi.PolymerType.PeptideD] and \
+                                    atom.name not in ["CA", "C", "O", "N", "OXT"]:
+                                adp_this_resi_sidechain.append(adp_atom)
+                            else:
+                                adp_this_resi.append(adp_atom)
+                    try:
+                        adp_per_resi[chain.name][0].append(residue.seqid.num)  # ignoring insertion code, sorry
+                        if adp_this_resi:
+                            adp_per_resi[chain.name][1].append(numpy.mean(adp_this_resi))
+                        else:
+                            adp_per_resi[chain.name][1].append(None)
+                        if adp_this_resi_sidechain:
+                            adp_per_resi[chain.name][2].append(numpy.mean(adp_this_resi_sidechain))
+                        else:
+                            adp_per_resi[chain.name][2].append(None)
+                    except:
+                        pass
+
+        # Find ADP values which are too small or large - outliers
+        median = numpy.median(adp_dict["All"])
+        q1 = numpy.quantile(adp_dict["All"], 0.25)
+        q3 = numpy.quantile(adp_dict["All"], 0.75)
+        iqr = q3 - q1
+        # med_minus2iqr = median - 2 * iqr
+        # med_plus2iqr = median + 2 * iqr
+        adp_limit_low = q1 - iqrFactor * iqr
+        adp_limit_high = q3 + iqrFactor * iqr
+        adp_low = []
+        adp_high = []
+        for model in st:
+            for chain in model:
+                for residue in chain:
+                    for atom in residue:
+                        if atom.element != gemmi.Element('H') and atom.occ > 0:
+                            if atom.aniso.nonzero():
+                                adp_atom = gemmi.calculate_b_est(atom)
+                            else:
+                                adp_atom = atom.b_iso
+                            if adp_atom < adp_limit_low:
+                                adp_low.append({"atom": str(model.get_cra(atom)),
+                                                "adp": adp_atom})
+                            elif adp_atom > adp_limit_high:
+                                adp_high.append({"atom": str(model.get_cra(atom)),
+                                                 "adp": adp_atom})
+        adp_low = sorted(adp_high, key=itemgetter('adp'))
+        adp_high = sorted(adp_high, key=itemgetter('adp'), reverse=True)
+
+        # Write the analysis in XML
+        adp_root = etree.Element('ADP_ANALYSIS')
+        chains_root = etree.SubElement(adp_root, "chains")
+        for ch, values in adp_dict.items():
+            chain = etree.SubElement(chains_root, "chain")
+            chain_name = etree.SubElement(chain, "name")
+            chain_name.text = str(ch)
+            chain.set("name", str(ch))
+            chain_min = etree.SubElement(chain, "min")
+            chain_min.text = "{:.2f}".format(min(values))
+            chain_max = etree.SubElement(chain, "max")
+            chain_max.text = "{:.2f}".format(max(values))
+            chain_med_val = numpy.median(values)
+            chain_mad_val = numpy.median(numpy.absolute(values - chain_med_val))
+            chain_med = etree.SubElement(chain, "med")
+            chain_med.text = "{:.2f}".format(chain_med_val)
+            chain_mad = etree.SubElement(chain, "mad")
+            chain_mad.text = "{:.2f}".format(chain_mad_val)
+            # chain_med_mad = etree.SubElement(chain, "med_mad")
+            # chain_med_mad.text = "{:.2f}".format(chain_med_val) + " &plusmn; " + "{:.2f}".format(chain_mad_val)
+            chain_q1 = etree.SubElement(chain, "q1")
+            chain_q1.text = "{:.2f}".format(numpy.quantile(values, 0.25))
+            chain_q3 = etree.SubElement(chain, "q3")
+            chain_q3.text = "{:.2f}".format(numpy.quantile(values, 0.75))
+            chain_mean_val = numpy.mean(values)
+            chain_std_val = numpy.std(values)
+            chain_mean = etree.SubElement(chain, "mean")
+            chain_mean.text = "{:.2f}".format(chain_mean_val)
+            chain_std = etree.SubElement(chain, "std")
+            chain_std.text = "{:.2f}".format(chain_std_val)
+            # chain_mean_std = etree.SubElement(chain, "mean_std")
+            # chain_mean_std.text = "{:.2f}".format(chain_mean_val) + " &plusmn; " + "{:.2f}".format(chain_std_val)
+
+            hist, bin_edges = numpy.histogram(values, bins="auto")
+            bin_edges = numpy.delete(bin_edges, -1)
+            chain_histogram = etree.SubElement(chain, 'histogram')
+            for i in range(len(bin_edges)):
+                bin_elem = etree.SubElement(chain_histogram, 'bin')
+                bin_adp = etree.SubElement(bin_elem, 'adp')
+                bin_adp.text = "{:.2f}".format(bin_edges[i])
+                bin_count = etree.SubElement(bin_elem, 'count')
+                bin_count.text = str(hist[i])
+
+            if ch != "All":
+                chain_per_resi = etree.SubElement(chain, "per_resi")
+                for i in range(len(adp_per_resi[str(ch)][0])):
+                    adp_per_resi_elem = etree.SubElement(chain_per_resi, "data")
+                    adp_per_resi_resi = etree.SubElement(adp_per_resi_elem, 'resi')
+                    adp_per_resi_resi.text = str(adp_per_resi[str(ch)][0][i])
+                    adp_per_resi_adp = etree.SubElement(adp_per_resi_elem, 'adp')
+                    if adp_per_resi[str(ch)][1][i]:
+                        adp_per_resi_adp.text = "{:.2f}".format(adp_per_resi[str(ch)][1][i])
+                    else:
+                        adp_per_resi_adp.text = "-"
+                    adp_per_resi_adp_sidechain = etree.SubElement(adp_per_resi_elem, 'adp_sidechain')
+                    if adp_per_resi[str(ch)][2][i]:
+                        adp_per_resi_adp_sidechain.text = "{:.2f}".format(adp_per_resi[str(ch)][2][i])
+                    else:
+                        adp_per_resi_adp_sidechain.text = "-"
+
+        outliers_root = etree.SubElement(adp_root, "outliers")
+        outliers_adp_limit_low = etree.SubElement(outliers_root, "adp_limit_low")
+        outliers_adp_limit_low.text = "{:.2f}".format(adp_limit_low)
+        outliers_adp_limit_high = etree.SubElement(outliers_root, "adp_limit_high")
+        outliers_adp_limit_high.text = "{:.2f}".format(adp_limit_high)
+        outliers_adp_iqr_factor = etree.SubElement(outliers_root, "iqr_factor")
+        outliers_adp_iqr_factor.text = "{:.2f}".format(iqrFactor)
+        outliers_low = etree.SubElement(outliers_root, "low")
+        for outlier in adp_low:
+            outlier_elem = etree.SubElement(outliers_low, "data")
+            outlier_adp = etree.SubElement(outlier_elem, "adp")
+            outlier_adp.text = "{:.2f}".format(outlier["adp"])
+            outlier_atom = etree.SubElement(outlier_elem, "atom")
+            outlier_atom.text = str(outlier["atom"])
+        outliers_high = etree.SubElement(outliers_root, "high")
+        for outlier in adp_high:
+            outlier_elem = etree.SubElement(outliers_high, "data")
+            outlier_adp = etree.SubElement(outlier_elem, "adp")
+            outlier_adp.text = "{:.2f}".format(outlier["adp"])
+            outlier_atom = etree.SubElement(outlier_elem, "atom")
+            outlier_atom.text = str(outlier["atom"])
+
+        aFile = open(self.pipelinexmlfile, 'r')
+        oldXml = etree.fromstring(aFile.read()) # oldXml = ET.fromstring(aFile.read())
+        aFile.close()
+        oldXml.append(adp_root)
+        aFile = open(self.pipelinexmlfile + '_tmp', 'w')
+        CCP4Utils.writeXML(aFile,etree.tostring(oldXml, pretty_print=True)) # CCP4Utils.writeXML(aFile,ET.tostring(oldXml))
+        aFile.close()
+        shutil.move(self.pipelinexmlfile + '_tmp', self.pipelinexmlfile)
+
+
+    def coord_adp_dev_analysis(self, model1Path, model2Path):
+        try:
+            coordDevMinReported = self.container.monitor.MIN_COORDDEV
+            ADPAbsDevMinReported = self.container.monitor.MIN_ADPDEV
+            jsonFilePath = str(os.path.join(self.getWorkDirectory(), "report_coord_adp_dev.json"))
+            monitor_refinement_differences.main(
+                [model1Path, model2Path, jsonFilePath, str(coordDevMinReported), str(ADPAbsDevMinReported)])
+            if os.path.isfile(jsonFilePath):
+                # Load
+                with open(jsonFilePath, "r") as jsonFile:
+                    jsonText = jsonFile.read()
+                jsonStats = json.loads(jsonText)
+                coordDevValues = [atom['CoordDev'] for atom in jsonStats]
+                coordDevMean = statistics.mean(coordDevValues)
+                # coordDevSigma = statistics.stdev(coordDevValues)
+                ADPAbsDevValues = [abs(atom['ADPDev']) for atom in jsonStats]
+                ADPAbsDevMean = statistics.mean(ADPAbsDevValues)
+                # ADPAbsDevSigma = statistics.stdev(ADPAbsDevValues)
+                # Sort and filter
+                jsonStats_sorted_CoordDev = jsonStats.copy()
+                jsonStats_sorted_CoordDev = \
+                    [atom for atom in jsonStats_sorted_CoordDev if atom['CoordDev'] >= coordDevMinReported]
+                jsonStats_sorted_CoordDev.sort(key=itemgetter('CoordDev'), reverse=True)
+                jsonStats_sorted_ADPDev = jsonStats.copy()
+                jsonStats_sorted_ADPDev = \
+                    [atom for atom in jsonStats_sorted_ADPDev if abs(atom['ADPDev']) >= ADPAbsDevMinReported]
+                jsonStats_sorted_ADPDev.sort(key=lambda atom: abs(itemgetter('ADPDev')(atom)), reverse=True)
+                # Save in program.xml
+                xmlText = "\n<COORD_ADP_DEV>"
+                xmlText += "\n<STATISTICS>"
+                xmlText += "\n<coordDevMean>"
+                xmlText += str(round(coordDevMean, 2))
+                xmlText += "</coordDevMean>"
+                xmlText += "\n<coordDevMinReported>"
+                xmlText += str(round(coordDevMinReported, 2))
+                xmlText += "</coordDevMinReported>"
+                # xmlText += "\n<coordDevSigma>"
+                # xmlText += str(round(coordDevSigma, 2))
+                # xmlText += "</coordDevSigma>"
+                xmlText += "\n<ADPAbsDevMean>"
+                xmlText += str(round(ADPAbsDevMean, 2))
+                xmlText += "</ADPAbsDevMean>"
+                xmlText += "\n<coordADPAbsMinReported>"
+                xmlText += str(round(ADPAbsDevMinReported, 2))
+                xmlText += "</coordADPAbsMinReported>"
+                # xmlText += "\n<ADPAbsDevSigma>"
+                # xmlText += str(round(ADPAbsDevSigma, 2))
+                # xmlText += "</ADPAbsDevSigma>"
+                xmlText += "\n</STATISTICS>"
+                xmlText += "\n<COORD_DEV>"
+                xmlText += json2xml(list(jsonStats_sorted_CoordDev), tag_name_subroot="atom")
+                xmlText += "\n</COORD_DEV>"
+                xmlText += "\n<ADP_DEV>"
+                xmlText += json2xml(list(jsonStats_sorted_ADPDev), tag_name_subroot="atom")
+                xmlText += "\n</ADP_DEV>"
+                xmlText += "\n</COORD_ADP_DEV>"
+                # xmlFilePath = str(os.path.join(self.getWorkDirectory(), "report_coord_adp_dev.xml"))
+                # with open(xmlFilePath, "w") as xmlFile:
+                #     xmlFile.write(xmlText)
+                xmlTree = etree.fromstring(xmlText)
+                aFile = open(self.pipelinexmlfile, 'r')
+                oldXml = etree.fromstring(aFile.read()) # oldXml = ET.fromstring(aFile.read())
+                aFile.close()
+                oldXml.append(xmlTree)
+                aFile = open(self.pipelinexmlfile + '_tmp', 'w')
+                CCP4Utils.writeXML(aFile, etree.tostring(oldXml, pretty_print=True)) # CCP4Utils.writeXML(aFile,ET.tostring(oldXml))
+                aFile.close()
+                shutil.move(self.pipelinexmlfile + '_tmp', self.pipelinexmlfile)
+        except Exception as e:
+            sys.stderr.write("Monitoring of the changes in coordinates and ADPs was not successful:", e, "\n")
+        return
 
     @QtCore.Slot(dict)
     def firstServalcatFinished(self, statusDict):
@@ -592,6 +836,13 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                     cleanup = CCP4ProjectsManager.CPurgeProject(self.servalcatPostCootPlugin._dbProjectId)
                     print('servalcat_xtal_pipe.finishUp 7'); sys.stdout.flush()
                     cleanup.purgeJob(self.servalcatPostCootPlugin.jobId,context="extended_intermediate",reportMode="skip")
+
+        self.adp_analysis(
+            str(self.container.outputData.CIFFILE.fullPath),
+            float(self.container.monitor.ADP_IQR_FACTOR))
+        self.coord_adp_dev_analysis(
+            str(self.container.inputData.XYZIN.fullPath),
+            str(self.container.outputData.CIFFILE.fullPath))
 
         self.reportStatus(CPluginScript.SUCCEEDED)
         return # MM

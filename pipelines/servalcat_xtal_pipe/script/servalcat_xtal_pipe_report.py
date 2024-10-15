@@ -161,6 +161,8 @@ class servalcat_xtal_pipe_report(Report):
                 servalcatReport1.addTablePerCycle(cycle_data1, parent=perCycleFold1, initialFinalOnly=False)
             servalcatReport.addGraphsVsResolution(parent=self, xmlnode=servalcatReportNodeLast)
             servalcatReport.addOutlierAnalysis(parent=self, xmlnode=servalcatReportNodeLast)
+            self.addAdpAnalysis()
+            self.addCoordADPDev()
 
         else:  # Report while running
             # servalcatReport.addTablePerCycle(cycle_data, parent=summaryFold, running=True)
@@ -366,6 +368,155 @@ class servalcat_xtal_pipe_report(Report):
                 suggestedDiv.append('<p><b>You can do this by clicking the <i>"Re-run with suggested parameters"</i> button at the bottom of this report.</b></p>')
 
         self.showWarnings()
+
+    def addAdpAnalysis(self):
+        adpFold = self.addFold(label='ADP analysis', initiallyOpen=False, brief='ADP')
+
+        noteDiv = adpFold.addDiv(style='font-size:110%;font-style:italic')
+        noteDiv.append("Note: Atoms with an occupancy of 0 and hydrogen atoms are not included in this analysis.")
+
+        adpTable = adpFold.addTable ( select=".//ADP_ANALYSIS/chains", transpose=False, downloadable=True, id='adp_table' )
+        adpTable.addData ( title = "Chain", select="*/name" )
+        adpTable.addData ( title = "Min", select="*/min" )
+        adpTable.addData ( title = "Q1", select="*/q1" )
+        # adpTable.addData ( title = "Median &plusmn; absolute deviation", select="*/med_mad" )
+        adpTable.addData ( title = "Median", select="*/med" )
+        adpTable.addData ( title = "Med. abs. dev.", select="*/mad" )
+        adpTable.addData ( title = "Q3", select="*/q3" )
+        adpTable.addData ( title = "Max", select="*/max" )
+        # adpTable.addData ( title = "Mean &plusmn; standard deviation", select="*/mean_std" )
+        adpTable.addData ( title = "Mean", select="*/mean" )
+        adpTable.addData ( title = "Std. dev.", select="*/std" )
+
+        headerDiv = adpFold.addDiv(style='font-size:110%;font-weight:bold;')
+        headerDiv.append("Average B-values per residue number for individual chains")
+
+        graph_per_resi = adpFold.addFlotGraph(
+            # xmlnode=xmlnode,
+            title="B values for individual residues",
+            select=".//ADP_ANALYSIS/chains",
+            # internalId=graphRtitle,
+            # outputXml=self.outputXml,
+            # label=graphRtitle,
+            style="height:330px; width:585px; border:0px; padding:10px; padding-left:15px; margin-right:15px;")
+        i = 0
+        for chain in self.xmlnode.findall(".//ADP_ANALYSIS/chains/chain"):
+            chain_name = chain.get('name')
+            if chain_name == "All":
+                continue  # and i does not increase
+            graph_per_resi.addData(title="residue_number", select="chain[@name='" + chain_name + "']/per_resi/data/resi")
+            graph_per_resi.addData(title="B-values(main-chain)", select="chain[@name='" + chain_name + "']/per_resi/data/adp")
+            graph_per_resi.addData(title="B-value(side-chain) ", select="chain[@name='" + chain_name + "']/per_resi/data/adp_sidechain")
+            plotADP = graph_per_resi.addPlotObject()
+            plotADP.append('title', "chain " + chain_name)
+            plotADP.append('plottype', 'xy')
+            plotADP.append('xlabel', 'residue number')
+            plotADP.append('ylabel', 'B-value (A^2)')
+            plotADP.append('legendposition', x=1, y=0)  # right bottom corner
+            plotLine = plotADP.append('plotline', xcol=1 + i * 3, ycol=2 + i * 3)
+            plotLine.append('symbolsize', '1')
+            plotLine.append('linestyle', '.')
+            plotLine.append('colour', 'blue')
+            plotLine = plotADP.append('plotline', xcol=1 + i * 3, ycol=3 + i * 3)
+            plotLine.append('symbolsize', '1')
+            plotLine.append('linestyle', '.')
+            plotLine.append('colour', 'red')
+            i = i + 1
+
+        headerDiv = adpFold.addDiv(style='font-size:110%;font-weight:bold;')
+        headerDiv.append("B-value histogram for all and individual chains")
+
+        ch_graph = adpFold.addFlotGraph ( title="B-value histograms", select=".//ADP_ANALYSIS/chains", style="height:330px; width:585px; border:0px; padding:10px; padding-left:15px; margin-right:15px;" ) # float:right;
+        for i, chain in enumerate(self.xmlnode.findall(".//ADP_ANALYSIS/chains/chain")):
+            chain_name = chain.get('name')
+            ch_graph.addData ( title = "B-value_" + chain_name, select = "chain[@name='" + chain_name + "']/histogram/bin/adp" )
+            ch_graph.addData ( title = "Count" , select = "chain[@name='" + chain_name + "']/histogram/bin/count" )
+            p = ch_graph.addPlotObject()
+            # p.append( 'description', '...')
+            p.append( 'title', "B-value histogram - " + chain_name)
+            plot_hist = p.append( 'barchart', col=1 + i * 2, tcol=2 + i * 2 )
+            plot_hist.append ( 'xlabel' ).text = "B-value (A^2)"
+            # p.append ( 'ylabel' ).text = "..."
+            try:
+                bin_first = self.xmlnode.findall(".//ADP_ANALYSIS/chains/chain[@name='" + chain_name + "']/histogram/bin/adp")[0].text
+                bin_second = self.xmlnode.findall(".//ADP_ANALYSIS/chains/chain[@name='" + chain_name + "']/histogram/bin/adp")[1].text
+                width = float(bin_second) - float(bin_first)
+            except:
+                width = 3
+            plot_hist.append ( 'width' ).text = str(width)
+            plot_hist.append ( 'colour' ).text = '#4682B4'
+
+        # headerDiv = adpFold.addDiv(style='font-size:110%;font-weight:bold;')
+        # headerDiv.append("Possible B-value outliers")
+        outliersDiv = adpFold.addDiv(style='font-size:110%;')
+        if len(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/iqr_factor")) > 0:
+            outliersDiv.append("Atoms with a B-value lower than <i>the first quartile - " + \
+                str(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/iqr_factor")[0].text) + \
+                " * interquartile_range</i> or higher than <i>the third quartile + " + \
+                str(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/iqr_factor")[0].text) + \
+                " * interquartile_range</i> are reported below.")
+        if len(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/adp_limit_low")) > 0:
+            outliersLowDiv = outliersDiv.addDiv(style='font-size:110%;float:left;box-sizing:border-box;margin-right:1em')
+            if float(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/adp_limit_low")[0].text) > 0:
+                outliersLowDiv.append("No atoms with too<br />low B-value observed.")
+            elif len(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/low/data")) == 0 and \
+                    float(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/adp_limit_low")[0].text) > 0:
+                outliersLowDiv.append("No atoms with a B-value<br />lower than " + \
+                                      str(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/adp_limit_low")[0].text) + " A<sup>2</sup> observed.")
+            else:
+                outliersLowDiv.append("Atoms with a B-value<br />lower than " + \
+                                      str(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/adp_limit_low")[0].text) + " A<sup>2</sup>:")
+                outliersTable = outliersLowDiv.addTable ( select=".//ADP_ANALYSIS/outliers/low", transpose=False, downloadable=False, id='ADPoutliers_low_table' )
+                outliersTable.addData ( title = "Atom", select="*/atom" )
+                outliersTable.addData ( title = "B-value (&Aring;<sup>2</sup>)", select="*/adp" )
+        if len(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/adp_limit_high")) > 0:
+            outliersHighDiv = outliersDiv.addDiv(style='font-size:110%;float:right;box-sizing:border-box;margin-right:1em')
+            if len(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/high/data")) == 0:
+                outliersHighDiv.append("No atoms with a B-value<br />higher than " + \
+                                       str(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/adp_limit_high")[0].text) + " A<sup>2</sup> observed.")
+            else:
+                outliersHighDiv.append("Atoms with a B-value<br />higher than " + \
+                                       str(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/adp_limit_high")[0].text) + " A<sup>2</sup>:")
+                outliersTable = outliersHighDiv.addTable ( select=".//ADP_ANALYSIS/outliers/high", transpose=False, downloadable=False, id='ADPoutliers_low_table' )
+                outliersTable.addData ( title = "Atom", select="*/atom" )
+                outliersTable.addData ( title = "B-value (&Aring;<sup>2</sup>)", select="*/adp" )
+        clearingDiv = adpFold.addDiv(style="clear:both;")
+
+
+    def addCoordADPDev(self, parent=None, xmlnode=None):
+        if parent is None: parent = self
+        if xmlnode is None: xmlnode = self.xmlnode
+        devFold = parent.addFold(label="Deviations of atom coordinates and ADPs", brief='Deviations')
+        coordDevDiv = devFold.addDiv(style='font-size:110%;float:left;box-sizing:border-box;margin-right:1em')
+        if len(xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordDevMean")) > 0:
+            coordDevDiv.append("Average deviation of atom coordinates: " + \
+                xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordDevMean")[0].text + " A.")
+        if len(xmlnode.findall(".//COORD_ADP_DEV/COORD_DEV/atom")) > 0:
+            coordDevDiv.append("Deviations of atom coordinates<br />higher than " + \
+                xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordDevMinReported")[0].text + " A:")
+            coordDevTable = coordDevDiv.addTable ( select=".//COORD_ADP_DEV/COORD_DEV", transpose=False, downloadable=False, id='coordDev_table' )
+            coordDevTable.addData ( title = "Atom", select="*/AtomAddress" )
+            coordDevTable.addData ( title = "Deviation of coordinates (&Aring;)", select="*/CoordDev" )
+        else:
+            if len(xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordDevMinReported")) > 0:
+                coordDevDiv.append("No deviations of atom coordinates<br />higher than " + \
+                    xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordDevMinReported")[0].text + " A.")
+        ADPDevDiv = devFold.addDiv(style='font-size:110%;float:left;box-sizing:border-box')
+        if len(xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/ADPAbsDevMean")) > 0:
+            ADPDevDiv.append("Average absolute value of deviation of B-values: " + \
+                xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/ADPAbsDevMean")[0].text + " A<sup>2</sup>.")
+        if len(xmlnode.findall(".//COORD_ADP_DEV/ADP_DEV/atom")) > 0:
+            ADPDevDiv.append("Deviations of B-values with an<br />absolute value higher than " + \
+                xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordADPAbsMinReported")[0].text + " A<sup>2</sup>:")
+            ADPDevTable = ADPDevDiv.addTable ( select=".//COORD_ADP_DEV/ADP_DEV", transpose=False, downloadable=False, id='ADPDev_table' )
+            ADPDevTable.addData ( title = "Atom", select="*/AtomAddress" )
+            ADPDevTable.addData ( title = "Deviation of B-values (&Aring;<sup>2</sup>)", select="*/ADPDev" )
+        else:
+            if len(xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordADPAbsMinReported")) > 0:
+                ADPDevDiv.append("No deviations of B-values with<br />absolute value higher than " + \
+                    xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordADPAbsMinReported")[0].text + " A<sup>2</sup>.")
+        clearingDiv = devFold.addDiv(style="clear:both;")
+        
 
     def addProgressGraph(self, parent, xmlnode,internalId="SummaryGraph", tag="RefmacInProgress"):
         if len(self.xmlnode.findall(tag))>0:

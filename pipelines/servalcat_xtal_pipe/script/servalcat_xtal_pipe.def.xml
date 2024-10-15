@@ -483,6 +483,29 @@
                 </qualifiers>
             </content>
         </container>
+        <container id="monitor">
+           <content id="MIN_COORDDEV">
+              <className>CFloat</className>
+              <qualifiers>
+                 <guiLabel>Minimum deviation of atom coordinates to be reported</guiLabel>
+                 <default>1</default>
+              </qualifiers>
+           </content>
+           <content id="MIN_ADPDEV">
+              <className>CFloat</className>
+              <qualifiers>
+                 <guiLabel>Minimum deviation of ADPs to be reported</guiLabel>
+                 <default>10</default>
+              </qualifiers>
+           </content>
+           <content id="ADP_IQR_FACTOR">
+              <className>CFloat</className>
+              <qualifiers>
+                 <guiLabel>Atoms with a B-value lower than the first quartile - factor * interquartile_range or higher than the third quartile + factor * interquartile_range to be reported</guiLabel>
+                 <default>2</default>
+              </qualifiers>
+           </content>
+        </container>
         <container id="controlParameters">
             <content id="OPTIMISE_WEIGHT">
                 <className>CBoolean</className>
@@ -521,6 +544,12 @@
                </qualifiers>
             </content>
             <content id="RUN_MOLPROBITY">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>False</default>
+               </qualifiers>
+            </content>
+            <content id="RUN_METALCOORD">
                <className>CBoolean</className>
                <qualifiers>
                   <default>False</default>
