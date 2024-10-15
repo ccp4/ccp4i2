@@ -808,7 +808,7 @@ class CPluginScript(CObject):
           do not call the database as we already have all necessary info '''
         defNames = {'ROOT' : '', 'PARAMS' : 'params.xml', 'JOB_INPUT' : 'input_params.xml', 'PROGRAMXML' : 'program.xml',
                     'LOG' : 'log.txt', 'STDOUT' : 'stdout.txt', 'STDERR' : 'stderr.txt', 'INTERRUPT' : 'interrupt_status.xml',
-                    'DIAGNOSTIC' : 'diagnostic.xml', 'REPORT' : 'report.html', 'LOG' : 'log.txt', 'COM' : 'com.txt',
+                    'DIAGNOSTIC' : 'diagnostic.xml', 'REPORT' : 'report.html', 'COM' : 'com.txt',
                     'MGPICDEF' : 'report.mgpic.py', 'PIC' : 'report.png', 'RVAPIXML' : 'i2.xml' }
 
         fileName = defNames.get(format, 'unknown.unk')

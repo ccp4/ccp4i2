@@ -271,6 +271,7 @@ class CProcessManager(QtCore.QObject):
                     callDict['stdin'] = open(self.processInfo[pid]['inputFile'])
                 if self.processInfo[pid]['logFile'] is not None:
                     callDict['stdout'] = open(self.processInfo[pid]['logFile'],'w')
+                    callDict['stderr'] = callDict['stdout']
                 callDict['env'] = self.ccp4Env(self.processInfo[pid]['resetEnv'])
                 if self.processInfo[pid]['cwd'] is not None:
                     callDict['cwd'] = self.processInfo[pid]['cwd']

@@ -812,7 +812,7 @@ class CProjectsManager(CObject):
                     'INTERRUPT' : 'interrupt_status.xml', 'DIAGNOSTIC' : 'diagnostic.xml', 'REPORT' : 'report.html',
                     'DIAGNOSTIC_REPORT' : 'diagnostic_report.html', 'TABLE_RTF' : 'tables.rtf',
                     'TABLES_DIR' : 'tables_as_csv_files', 'XML_TABLES_DIR' : 'tables_as_xml_files',
-                    'LOG' : 'log.txt', 'COM' : 'com.txt', 'MGPICDEF' : 'report.mgpic.py', 'PIC' : 'report.png', 'RVAPIXML' : 'i2.xml'}
+                    'COM' : 'com.txt', 'MGPICDEF' : 'report.mgpic.py', 'PIC' : 'report.png', 'RVAPIXML' : 'i2.xml'}
         #fileName = exceptions.get(taskName,{}).get(mode,None)
         #if fileName is None:
         fileName = defNames.get(mode, 'unknown.unk')
