@@ -10,6 +10,45 @@ import math
 from core import CCP4Modules,CCP4Utils
 from . import atomMatching, cifToMolBlock
 import platform
+from rdkit.Chem.Draw import rdMolDraw2D
+from rdkit import Chem
+
+def svgFromMol(mol):
+    try:
+        d = rdMolDraw2D.MolDraw2DSVG(300, 300)
+        d.DrawMolecule(mol)
+        d.FinishDrawing()
+        p = d.GetDrawingText()
+    except:
+        p = "<svg/>"
+    return etree.fromstring(bytes(p,encoding="iso-8859-1"))
+
+def is_transition_metal(at):
+    n = at.GetAtomicNum()
+    return (n>=22 and n<=29) or (n>=40 and n<=47) or (n>=72 and n<=79)
+
+def set_dative_bonds(mol, fromAtoms=(7,8)):
+    """ convert some bonds to dative
+
+    Replaces some single bonds between metals and atoms with atomic numbers in fomAtoms
+    with dative bonds. The replacement is only done if the atom has "too many" bonds.
+
+    Returns the modified molecule.
+
+    """
+    pt = Chem.GetPeriodicTable()
+    rwmol = Chem.RWMol(mol)
+    rwmol.UpdatePropertyCache(strict=False)
+    metals = [at for at in rwmol.GetAtoms() if is_transition_metal(at)]
+    for metal in metals:
+        for nbr in metal.GetNeighbors():
+            if nbr.GetAtomicNum() in fromAtoms and \
+               nbr.GetExplicitValence()>pt.GetDefaultValence(nbr.GetAtomicNum()) and \
+               rwmol.GetBondBetweenAtoms(nbr.GetIdx(),metal.GetIdx()).GetBondType() == Chem.BondType.SINGLE:
+                rwmol.RemoveBond(nbr.GetIdx(),metal.GetIdx())
+                rwmol.AddBond(nbr.GetIdx(),metal.GetIdx(),Chem.BondType.DATIVE)
+    return rwmol
+
 
 class acedrgNew(CPluginScript):
     TASKMODULE = 'wrappers'                               # Where this plugin will appear on the gui
@@ -275,10 +314,13 @@ class acedrgNew(CPluginScript):
         # Generate another RDKIT mol directly from the mol or smiles: this one *will* hopefully have proper
         # chirality information
         referenceMol = None
+        referenceMolToDraw = None
         if self.container.inputData.MOL2IN.isSet():
             referenceMol = Chem.MolFromMol2File(self.originalMolFilePath)
+            referenceMolToDraw = Chem.MolFromMol2File(self.originalMolFilePath)
         else:
             referenceMol = Chem.MolFromMolFile(self.originalMolFilePath)
+            referenceMolToDraw = Chem.MolFromMolFile(self.originalMolFilePath)
 
         try:
             Chem.SanitizeMol(referenceMol)
@@ -310,43 +352,14 @@ class acedrgNew(CPluginScript):
         
         # Get 2D picture of structure from the RDKit mol and place in report
         svgNode = etree.SubElement(self.xmlroot,'SVGNode')
-        svgNode.append(svgFromMol(molToWrite))
+
+        m2draw2 = set_dative_bonds(referenceMolToDraw)
+        Chem.SanitizeMol(m2draw2)
+        Chem.Kekulize(m2draw2)
+        
+        svgNode.append(svgFromMol(m2draw2))
 
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
             CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot,pretty_print=True))
 
         return CPluginScript.SUCCEEDED
-
-def svgFromMol(mol):
-    try:
-        from rdkit.Chem.Draw import spingCanvas
-        import rdkit.Chem.Draw.MolDrawing
-        from rdkit.Chem.Draw.MolDrawing import DrawingOptions
-        
-        myCanvas = spingCanvas.Canvas(size=(350,350),name='MyCanvas',imageType='svg')
-        myDrawing = rdkit.Chem.Draw.MolDrawing(canvas=myCanvas)
-        for iAtom in range(mol.GetNumAtoms()):
-            atom = mol.GetAtomWithIdx(iAtom)
-            atom.ClearProp('molAtomMapNumber')
-            '''
-            print 'ANr',atom.GetAtomicNum()
-            print 'FC',atom.GetFormalCharge()
-            print 'NRadEl',atom.GetNumRadicalElectrons()
-            print 'Isot',atom.GetIsotope()
-            print 'HasProp',atom.HasProp('molAtomMapNumber')
-            print 'Degree',atom.GetDegree()
-        print 'noCarbSym',myDrawing.drawingOptions.noCarbonSymbols
-        print 'includeAtom',myDrawing.drawingOptions.includeAtomNumbers'''
-        myDrawing.AddMol(mol)
-        svg = myCanvas.canvas.text().replace('svg:','')
-        return etree.fromstring(bytes(svg,encoding="iso-8859-1"))
-    except:
-        from rdkit import Chem
-        try:
-            molBlock = Chem.MolToMolBlock(mol)
-            import MOLSVG
-            mdlMolecule = MOLSVG.MDLMolecule(molBlock=molBlock)
-            return mdlMolecule.svgXML(size=(350,350))
-        except:
-            return etree.fromstring("<svg></svg>")
-
