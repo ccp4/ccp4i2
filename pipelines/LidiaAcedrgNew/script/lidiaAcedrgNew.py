@@ -94,9 +94,12 @@ class lidiaAcedrgNew(CPluginScript):
             acedrgPlugin.container.inputData.DICTIN2 = inputObject
         try:
             acedrgPlugin.container.inputData.TLC.set(self.container.inputData.TLC)
-            acedrgPlugin.container.inputData.NRANDOM.set(self.container.inputData.NRANDOM)
             acedrgPlugin.container.controlParameters.NOPROT.set(self.container.controlParameters.NOPROT)
             acedrgPlugin.container.controlParameters.USE_COORD.set(self.container.controlParameters.USE_COORD)
+            if self.container.controlParameters.TOGGLE_NRANDOM:
+                acedrgPlugin.container.inputData.NRANDOM.set(self.container.inputData.NRANDOM)
+            else:
+                acedrgPlugin.container.inputData.NRANDOM.set(0)
             if self.container.controlParameters.TOGGLE_METAL:
                 acedrgPlugin.container.inputData.METAL_STRUCTURE = self.container.inputData.METAL_STRUCTURE
         except:

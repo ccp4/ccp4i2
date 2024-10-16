@@ -47,9 +47,9 @@
             <content id='TLC'>
                 <className>CString</className>
                 <qualifiers>
-                    <minLength>3</minLength>
+                    <minLength>1</minLength>
                     <maxLength>5</maxLength>
-                    <default>DRG</default>
+                    <default>LIG</default>
                     <guiLabel>3-5 letter code for new molecule</guiLabel>
                 </qualifiers>
             </content>
@@ -89,7 +89,7 @@
             <content id='NRANDOM'>
                 <className>CInt</className>
                 <qualifiers>
-                    <default>500</default>
+                    <default>20</default>
                     </qualifiers>
                 </content>
             <content id='SMILESIN'>
@@ -141,7 +141,7 @@
             <content id='USE_COORD'>
                 <className>CBoolean</className>
                 <qualifiers>
-                    <default>True</default>
+                    <default>False</default>
                 </qualifiers>
             </content>
             <content id='NOPROT'>

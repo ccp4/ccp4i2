@@ -157,9 +157,9 @@ class acedrgNew(CPluginScript):
                 tmpSmileFile.write(self.smilesString)
             self.appendCommandLine('-i')
             self.appendCommandLine(tmpSmileFilePath)
-            if self.container.inputData.NRANDOM:
-                self.appendCommandLine('-j')
-                self.appendCommandLine(self.container.inputData.NRANDOM)
+        if self.container.inputData.NRANDOM and not self.container.controlParameters.USE_COORD:
+            self.appendCommandLine('-j')
+            self.appendCommandLine(self.container.inputData.NRANDOM)
         if self.container.inputData.TLC.__str__() or self.smileStrCode:
             self.appendCommandLine('-r')
             if self.smileStrCode != None and re.match("^[a-zA-Z0-9]*$", self.smileStrCode):

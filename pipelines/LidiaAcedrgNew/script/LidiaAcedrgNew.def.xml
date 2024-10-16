@@ -48,12 +48,12 @@
             <content id='TLC'>
                 <className>CString</className>
                 <qualifiers>
-                    <minLength>3</minLength>
+                    <minLength>1</minLength>
                     <maxLength>5</maxLength>
                     <default>LIG</default>
                     <mustExist>True</mustExist>
                     <allowUndefined>False</allowUndefined>
-                    <guiLabel>Monomer code (3-5 characters) for new molecule</guiLabel><!-- (required except of a CIF file is provided)-->
+                    <guiLabel>Monomer code (usually 3-5 characters) for new molecule</guiLabel><!-- (required except of a CIF file is provided)-->
                 </qualifiers>
             </content>
             <content id='MATCHTLC'>
@@ -114,8 +114,8 @@
             <content id='NRANDOM'>
                 <className>CInt</className>
                 <qualifiers>
-                    <default></default>
-                    <guiLabel>Number of random RDKit start structures</guiLabel>
+                    <default>20</default>
+                    <guiLabel>Number of initial conformers to try</guiLabel>
                     <toolTip>More start structures may provide a better start conformer (20 by default)</toolTip>
                 </qualifiers>
             </content>
@@ -153,7 +153,7 @@
             <content id='USE_COORD'>
                 <className>CBoolean</className>
                 <qualifiers>
-                    <default>True</default>
+                    <default>False</default>
                 </qualifiers>
             </content>
             <content id='TOGGLE_METAL'>
@@ -161,6 +161,13 @@
                 <qualifiers>
                     <default>False</default>
                     <guiLabel>This monomer contains a metal atom.</guiLabel>
+                </qualifiers>
+            </content>
+            <content id='TOGGLE_NRANDOM'>
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                    <guiLabel>Set number of initial conformers to try</guiLabel>
                 </qualifiers>
             </content>
             <content id='NOPROT'>
