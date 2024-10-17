@@ -60,6 +60,16 @@
                  <allowUndefined>True</allowUndefined>
               </qualifiers>
            </content>
+            <content id="LINKS">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>UPDATE,KEEP,NOTTOUCH</enumerators>
+                    <menuText>update: delete and add again from scratch,update: keep existing and add new,keep as they are</menuText>
+                    <default>UPDATE</default>
+                    <guiLabel>Link records to metal sites in the atomic model:</guiLabel>
+                </qualifiers>
+            </content>
             <content id="TOGGLE_ADVANCED">
                <className>CBoolean</className>
                <qualifiers>

@@ -25,7 +25,7 @@ from PySide2 import QtCore
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core import CCP4Utils
-from pipelines.servalcat_xtal_pipe.script import monitor_refinement_differences
+from . import monitor_refinement_differences
 from wrappers.servalcat_xtal.script.servalcat_xtal import json2xml
 import os, sys, shutil, re
 import base64
@@ -144,6 +144,12 @@ class servalcat_xtal_pipe(CPluginScript):
         ligand_codes = self.container.metalCoordPipeline.LIGAND_CODES
         for ligand_code in ligand_codes:
             self.executeMetalCoord(ligand_code)
+        # put all JSON files together
+        # convert to restraints
+        # get the PDB/mmCIF with new links
+        # keep links? LINKS<enumerators>UPDATE,KEEP,NOTTOUCH</enumerators> if NOTTOUCH: old model; else: new model
+        #                  <menuText>update: delete and add again from scratch,update: keep existing and add new,keep as they are</menuText>
+        # use new or original PDB/mmCIF?
         return
 
     def executeMetalCoord(self, ligand_code):
@@ -152,6 +158,9 @@ class servalcat_xtal_pipe(CPluginScript):
             self.metalCoordPlugin.container.inputData.XYZIN.set(self.container.inputData.XYZIN)
             self.metalCoordPlugin.container.controlParameters.copyData(self.container.metalCoordWrapper.controlParameters)
             self.metalCoordPlugin.container.inputData.LIGAND_CODE.set(ligand_code)
+            self.metalCoordPlugin.container.controlParameters.SAVE_PDBMMCIF.set(False)
+            if str(self.container.metalCoordPipeline.LINKS) == "KEEP":
+                self.metalCoordPlugin.container.controlParameters.KEEP_LINKS.set(True)
             self.connectSignal(self.metalCoordPlugin, 'finished', self.metalCoordFinished)
             self.metalCoordPlugin.waitForFinished = -1
             self.metalCoordPlugin.process()

@@ -488,6 +488,8 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'label', 'Codes of monomers including metal sites:' ], toggle = ['metalCoordPipeline.RUN_METALCOORD', 'open', [ True ] ] )
     self.createLine( [ 'widget', 'metalCoordPipeline.LIGAND_CODES' ], toggle = ['metalCoordPipeline.RUN_METALCOORD', 'open', [ True ] ] )
     self.createLine( [ 'widget', 'metalCoordPipeline.TOGGLE_ADVANCED', 'label', 'Show advanced options' ], toggle = ['metalCoordPipeline.RUN_METALCOORD', 'open', [ True ] ] )
+    self.createLine( [ 'label', 'Link records to metal sites in the atomic model:', 'stretch', 'widget', 'metalCoordPipeline.LINKS' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
+    #self.createLine( [ 'widget', 'metalCoordWrapper.KEEP_LINKS', 'label', 'Do not delete the link records to metal sites which are already present in the atomic model' ], toggle = ['metalCoordPipeline.UPDATE_LINKS', 'open', [ True ] ] )
     self.createLine( [ 'label', 'Distance threshold: (range 0-1)<br/><i>A threshold d to select atoms is (r<sub>1</sub> + r<sub>2</sub>)*(1 + d) where r<sub>1</sub> and r<sub>2</sub> are covalent radii.</i>', 'stretch', 'widget', 'metalCoordWrapper.DISTANCE_THRESHOLD' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
     self.createLine( [ 'label', 'Maximum coordination number:', 'stretch', 'widget', 'metalCoordWrapper.MAXIMUM_COORDINATION_NUMBER' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
     self.createLine( [ 'label', 'Procrustes distance threshold: (range 0-1)', 'stretch', 'widget', 'metalCoordWrapper.PROCRUSTES_DISTANCE_THRESHOLD' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
