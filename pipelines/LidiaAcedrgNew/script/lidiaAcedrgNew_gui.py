@@ -44,6 +44,8 @@ class lidiaAcedrgNew_gui(CTaskWidget):
         self.createLine ( [ 'label', 'SMILES file', 'widget', 'SMILESFILEIN' ] , toggle=['MOLSMILESORSKETCH','open',['SMILESFILE']])
         self.createLine ( [ 'widget', 'DICTIN2' ] , toggle=['MOLSMILESORSKETCH','open',['DICT']])
         self.connectDataChanged('DICTIN2', self.updateTLC)
+        self.createLine ( [ 'widget', 'PDBMMCIFIN' ] , toggle=['MOLSMILESORSKETCH','open',['PDBMMCIF']])
+        self.createLine ( [ 'label', '<i>Specified PDB/mmCIF file must contain only one monomer including hydrogen atoms.</i>' ] , toggle=['MOLSMILESORSKETCH','open',['PDBMMCIF']])
         self.createLine ( [ 'widget', 'TOGGLE_METAL', 'label' , 'This monomer contains a metal atom.' ] )
         self.connectDataChanged('controlParameters.TOGGLE_METAL', self.ToggleShowContainsMetal)
         self.createLine ( [ 'label', indent + 'Provide a relevant structure model in complex with this monomer to get ideal bond angles in the output:'] , toggleFunction=[self.ToggleShowContainsMetal, ['controlParameters.TOGGLE_METAL']])
@@ -64,7 +66,7 @@ class lidiaAcedrgNew_gui(CTaskWidget):
         self.openSubFrame( frame=[False], toggle=['CONFORMERSFROM','open',['RDKIT']] )
         """
         self.createLine ( [ 'widget', 'USE_COORD', 'label', 'Use the coordinates from the input file for further optimisation (requires a reasonable input conformation)' ],
-                          toggle=['MOLSMILESORSKETCH','open',['MOL','MOL2','DICT']] )
+                          toggle=['MOLSMILESORSKETCH','open',['MOL','MOL2','DICT','PDBMMCIF']] )
         self.connectDataChanged('USE_COORD', self.useCoord)
         self.createLine ( [ 'widget','TOGGLE_NRANDOM','label','Set number of initial conformers to try:','stretch','widget','NRANDOM' ] )
         self.createLine ( [ 'widget', 'NOPROT', 'label' , 'No further protonation/deprotonation to be done by AceDRG' ] )

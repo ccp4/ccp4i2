@@ -54,6 +54,9 @@ class lidiaAcedrgNew(CPluginScript):
         elif self.container.inputData.MOLSMILESORSKETCH.__str__() == 'DICT':
             result = self.doAcedrg('DICT', self.container.inputData.DICTIN2)
             self.finishWithStatus(result)
+        elif self.container.inputData.MOLSMILESORSKETCH.__str__() == 'PDBMMCIF':
+            result = self.doAcedrg('PDBMMCIF', self.container.inputData.PDBMMCIFIN)
+            self.finishWithStatus(result)
 
     @QtCore.Slot(dict)
     def lidiaFinished(self, statusDict):
@@ -92,6 +95,8 @@ class lidiaAcedrgNew(CPluginScript):
             acedrgPlugin.container.inputData.SMILESIN = inputObject
         elif inputType == 'DICT':
             acedrgPlugin.container.inputData.DICTIN2 = inputObject
+        elif inputType == 'PDBMMCIF':
+            acedrgPlugin.container.inputData.PDBMMCIFIN = inputObject
         try:
             acedrgPlugin.container.inputData.TLC.set(self.container.inputData.TLC)
             acedrgPlugin.container.controlParameters.NOPROT.set(self.container.controlParameters.NOPROT)

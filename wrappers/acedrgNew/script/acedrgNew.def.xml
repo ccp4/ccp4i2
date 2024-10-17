@@ -39,7 +39,7 @@
                 <className>CString</className>
                 <qualifiers>
                     <onlyEnumerators>True</onlyEnumerators>
-                    <enumerators>MOL,MOL2,SMILES,SMILESFILE,DICT</enumerators>
+                    <enumerators>MOL,MOL2,SMILES,SMILESFILE,DICT,PDBMMCIF</enumerators>
                     <default>DICT</default>
                     <guiLabel>Input mol file or CIF file or SMILES string</guiLabel>
                 </qualifiers>
@@ -80,6 +80,14 @@
             </content>
             <content id='MOL2IN'>
                 <className>CDataFile</className>
+                <qualifiers>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <allowUndefined>True</allowUndefined>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
+            <content id='PDBMMCIFIN'>
+                <className>CPdbDataFile</className>
                 <qualifiers>
                     <fromPreviousJob>True</fromPreviousJob>
                     <allowUndefined>True</allowUndefined>

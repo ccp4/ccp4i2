@@ -38,11 +38,30 @@ class acedrgNew(CPluginScript):
             self.originalMolFilePath = os.path.normpath(self.container.inputData.MOLIN.__str__())
         if self.container.inputData.MOL2IN.isSet():
             self.originalMolFilePath = os.path.normpath(self.container.inputData.MOL2IN.__str__())
-        if self.container.inputData.MOLORSMILES.__str__() == 'DICT':
+        try_mmCIF = False
+        elif self.container.inputData.MOLORSMILES.__str__() == 'PDBMMCIF':
+            import gemmi
+            try:
+                if gemmi.read_structure(self.container.inputData.PDBMMCIFIN.__str__()).input_format == gemmi.CoorFormat.Pdb:
+                    self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))
+                    molBlock = Chem.rdmolfiles.MolFromPDBFile(self.container.inputData.PDBMMCIFIN.__str__())
+                    with open(self.originalMolFilePath,'w') as molinFile:
+                        molinFile.write(molBlock)
+                else:
+                    try_mmCIF = True
+            except:
+                self.appendErrorReport(200, exc_info=sys.exc_info())
+                return CPluginScript.FAILED
+        if self.container.inputData.MOLORSMILES.__str__() == 'DICT' or try_mmCIF == True:
             self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))
             print(self.originalMolFilePath)
             try:
-                molBlock = cifToMolBlock.cifFileToMolBlock(self.container.inputData.DICTIN2.__str__())
+                if self.container.inputData.DICTIN2.isSet():
+                    molBlock = cifToMolBlock.cifFileToMolBlock(self.container.inputData.DICTIN2.__str__())
+                elif self.container.inputData.PDBMMCIFIN.isSet() and try_mmCIF:
+                    molBlock = cifToMolBlock.cifFileToMolBlock(self.container.inputData.PDBMMCIFIN.__str__())
+                else:
+                    pass #  should not happen
                 print("molBlock:")
                 print(molBlock)
                 with open(self.originalMolFilePath,'w') as molinFile:
@@ -51,7 +70,7 @@ class acedrgNew(CPluginScript):
                 self.appendErrorReport(200, exc_info=sys.exc_info())
                 return CPluginScript.FAILED
 
-        if self.container.inputData.MOLORSMILES.__str__() == 'SMILESFILE':
+        elif self.container.inputData.MOLORSMILES.__str__() == 'SMILESFILE':
             self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))
             try:
                 with open(self.container.inputData.SMILESFILEIN.__str__(),'r') as molinFile:
@@ -66,7 +85,7 @@ class acedrgNew(CPluginScript):
                 self.appendErrorReport(200,exc_info=sys.exc_info())
                 return CPluginScript.FAILED
 
-        if self.container.inputData.MOLORSMILES.__str__() == 'SMILES':
+        elif self.container.inputData.MOLORSMILES.__str__() == 'SMILES':
             #Use rdkit to make mol from smiles...this will mean that we are always starting from a mol, and can
             #(hopefully) therefore assume that the atom order in our mol is the same as that in our dict
             self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))
@@ -144,6 +163,9 @@ class acedrgNew(CPluginScript):
         elif self.container.inputData.MOL2IN.isSet():
             self.appendCommandLine('-g')
             self.appendCommandLine(str(self.container.inputData.MOL2IN))
+        elif self.container.inputData.PDBMMCIFIN.isSet():
+            self.appendCommandLine('-x')
+            self.appendCommandLine(str(self.container.inputData.PDBMMCIFIN))
         if self.container.inputData.METAL_STRUCTURE.isSet():
             self.appendCommandLine('--metalPDB=' + str(self.container.inputData.METAL_STRUCTURE))
         if self.container.controlParameters.NOPROT:
