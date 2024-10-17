@@ -20,7 +20,7 @@ class metalCoord(CPluginScript):
     ERROR_CODES = { 201 : { 'description' : 'No output JSON file from metalCoord' },
                     202 : { 'description' : 'Log file does not report successful job completion' , 'severity' : SEVERITY_WARNING },
                     }
-   
+
 
     def processInputFiles(self):
         ##import os
@@ -30,42 +30,40 @@ class metalCoord(CPluginScript):
         ##print('prosmart tempFile',self.tempFile)
         ##shutil.copyfile(self.container.inputData.TARGET_MODEL.__str__(), self.tempFile)
         return CPluginScript.SUCCEEDED
-    
+
+
     def makeCommandAndScript(self):
         self.appendCommandLine(['stats'])
         if self.container.inputData.XYZIN.isSet():
             self.appendCommandLine(['-p', str(self.container.inputData.XYZIN.fullPath)])
-        if self.container.inputData.MAXIMUM_COORDINATION_NUMBER.isSet():
-            self.appendCommandLine(['-c', str(self.container.inputData.MAXIMUM_COORDINATION_NUMBER)])
-        if self.container.inputData.MINIMUM_SAMPLE_SIZE.isSet():
-            self.appendCommandLine(['-m', str(self.container.inputData.MINIMUM_SAMPLE_SIZE)])
-        if self.container.inputData.DISTANCE_THRESHOLD.isSet():
-            self.appendCommandLine(['-d', str(self.container.inputData.DISTANCE_THRESHOLD)])
-        if self.container.inputData.PROCRUSTES_DISTANCE_THRESHOLD.isSet():
-            self.appendCommandLine(['-t', str(self.container.inputData.PROCRUSTES_DISTANCE_THRESHOLD)])
-        if self.container.inputData.IDEAL_ANGLES:
+        if self.container.controlParameters.MAXIMUM_COORDINATION_NUMBER.isSet():
+            self.appendCommandLine(['-c', str(self.container.controlParameters.MAXIMUM_COORDINATION_NUMBER)])
+        if self.container.controlParameters.MINIMUM_SAMPLE_SIZE.isSet():
+            self.appendCommandLine(['-m', str(self.container.controlParameters.MINIMUM_SAMPLE_SIZE)])
+        if self.container.controlParameters.DISTANCE_THRESHOLD.isSet():
+            self.appendCommandLine(['-d', str(self.container.controlParameters.DISTANCE_THRESHOLD)])
+        if self.container.controlParameters.PROCRUSTES_DISTANCE_THRESHOLD.isSet():
+            self.appendCommandLine(['-t', str(self.container.controlParameters.PROCRUSTES_DISTANCE_THRESHOLD)])
+        if self.container.controlParameters.IDEAL_ANGLES:
             self.appendCommandLine(['--ideal-angles'])
-        if self.container.inputData.SIMPLE:
+        if self.container.controlParameters.SIMPLE:
             self.appendCommandLine(['--simple'])
-        if self.container.inputData.USE_PDB:
+        if self.container.controlParameters.USE_PDB:
             self.appendCommandLine(['--use-pdb'])
-        self.appendCommandLine(['-l', self.container.controlParameters.LIGAND_CODE])
-        self.outputJsonFilename = str(self.container.controlParameters.LIGAND_CODE) + ".json"
+        self.appendCommandLine(['-l', self.container.inputData.LIGAND_CODE])
+        self.outputJsonFilename = str(self.container.inputData.LIGAND_CODE) + ".json"
         self.outputJsonPath = os.path.join(self.getWorkDirectory(), self.outputJsonFilename)
         self.appendCommandLine(['-o', self.outputJsonFilename])
 
-    def processOutputFiles(self):
-        import os,glob,shutil
 
+    def processOutputFiles(self):
         if os.path.isfile(self.outputJsonPath):
-            self.container.outputData.JSON = self.outputJsonPath
+            self.container.outputData.JSON.setFullPath(self.outputJsonPath)
+            self.container.outputData.JSON.annotation = 'Full analysis for monomer ' + str(self.container.inputData.LIGAND_CODE)
         else:
             self.appendErrorReport(201,str(self.container.outputData.JSON))
             return CPluginScript.FAILED
 
-        # self.container.outputData.RESTRAINTS.annotation = 'Restraints for ' + str(self.container.inputData.TARGET_MODEL.annotation)
-        
-        #htmlFilePath = os.path.join(self.workDirectory.__str__(),'ProSMART_Results.html')
         '''xmlPath = self.makeFileName('PROGRAMXML')
         from lxml import etree
         xmlRoot = etree.Element('PROSMART')
@@ -73,7 +71,7 @@ class metalCoord(CPluginScript):
         xmlFile=open( xmlPath,'w')
         xmlFile.write( xmlString )
         xmlFile.close()'''
-                
+
         # sanity check that metalCoord has produced something
         ##ok = False
         ##logText = self.logFileText()
@@ -83,7 +81,9 @@ class metalCoord(CPluginScript):
         ##        ok = True
         ##if not ok: self.appendErrorReport(202)
 
-        # Convert JSON to extranal restraint keywords
+        # Convert JSON to external restraint keywords
+
+        # self.container.outputData.RESTRAINTS.annotation = 'Restraints for ' + str(self.container.inputData.TARGET_MODEL.annotation)
 
         return CPluginScript.SUCCEEDED
 
