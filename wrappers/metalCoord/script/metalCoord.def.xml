@@ -13,30 +13,6 @@
   <ccp4i2_body id="metalCoord">
 
     <container id="inputData">
-      <content id="XYZIN">
-         <className>CPdbDataFile</className>
-         <qualifiers>
-            <mustExist>True</mustExist>
-            <allowUndefined>True</allowUndefined>
-            <fromPreviousJob>True</fromPreviousJob>
-         </qualifiers>
-      </content>
-    </container>
-    
-    <container id="outputData">
-      <content id="RESTRAINTS">
-        <className>CRefmacRestraintsDataFile</className>
-        <qualifiers>
-        </qualifiers>
-      </content>
-      <content id="JSON">
-        <className>CJsonFile</className>
-        <qualifiers>
-        </qualifiers>
-      </content>
-    </container>
-
-    <container id="controlParameters">
        <content id="LIGAND_CODE">
           <className>CString</className>
           <qualifiers>
@@ -47,6 +23,30 @@
              <maxLength>5</maxLength>
           </qualifiers>
        </content>
+      <content id="XYZIN">
+         <className>CPdbDataFile</className>
+         <qualifiers>
+            <mustExist>True</mustExist>
+            <allowUndefined>True</allowUndefined>
+            <fromPreviousJob>True</fromPreviousJob>
+         </qualifiers>
+      </content>
+    </container>
+
+    <container id="outputData">
+      <content id="RESTRAINTS">
+        <className>CRefmacRestraintsDataFile</className>
+        <qualifiers>
+        </qualifiers>
+      </content>
+      <content id="JSON">
+        <className>CDataFile</className>
+        <qualifiers>
+        </qualifiers>
+      </content>
+    </container>
+
+    <container id="controlParameters">
       <content id="MAXIMUM_COORDINATION_NUMBER">
         <className>CInt</className>
         <qualifiers>
@@ -57,18 +57,25 @@
         <className>CInt</className>
         <qualifiers>
            <guiLabel>Minimum sample size for statistics</guiLabel>
+           <toolTip>Default: 30</toolTip>
         </qualifiers>
       </content>
       <content id="DISTANCE_THRESHOLD">
         <className>CFloat</className>
         <qualifiers>
-           <guiLabel>Distance threshold</guiLabel>
+           <guiLabel>Distance threshold to select atoms</guiLabel>
+           <toolTip>A threshold to select atoms is (r1 + r2)*(1 + d) where r1 and r2 are covalent radii. Range: 0-1. Default: 0.5</toolTip>
+           <min>0</min>
+           <max>1</max>
         </qualifiers>
       </content>
       <content id="PROCRUSTES_DISTANCE_THRESHOLD">
         <className>CFloat</className>
         <qualifiers>
            <guiLabel>Procrustes distance threshold</guiLabel>
+           <toolTip>Range: 0-1. Default: 0.3</toolTip>
+           <min>0</min>
+           <max>1</max>
         </qualifiers>
       </content>
       <content id="IDEAL_ANGLES">
