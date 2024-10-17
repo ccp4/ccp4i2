@@ -27,7 +27,7 @@
          <className>CPdbDataFile</className>
          <qualifiers>
             <mustExist>True</mustExist>
-            <allowUndefined>True</allowUndefined>
+            <allowUndefined>False</allowUndefined>
             <fromPreviousJob>True</fromPreviousJob>
          </qualifiers>
       </content>
@@ -47,6 +47,26 @@
     </container>
 
     <container id="controlParameters">
+    <!--
+  -l LIGAND CODE, - -ligand LIGAND CODE
+                        Ligand code.
+  -p PDB CODE|PDB FILE, - -pdb PDB CODE|PDB FILE
+                        PDB code or pdb file.
+  -o OUTPUT JSON FILE, - -output OUTPUT JSON FILE
+                        Output json file.
+  -d DISTANCE THRESHOLD, - -dist DISTANCE THRESHOLD
+                        Distance threshold.
+  -t PROCRUSTES DISTANCE THRESHOLD, - -threshold PROCRUSTES DISTANCE THRESHOLD
+                        Procrustes distance threshold.
+  -m MINIMUM SAMPLE SIZE, - -min_size MINIMUM SAMPLE SIZE
+                        Minimum sample size for statistics.
+  - -ideal-angles        Provide only ideal angles
+  -s, - -simple          Simple distance based filtering
+  - -save                Save COD files used in statistics
+  - -use-pdb             Use COD structures based on pdb coordinates
+  -c MAXIMUM COORDINATION NUMBER, - -coordination MAXIMUM COORDINATION NUMBER
+                        Maximum coordination number.
+-->
       <content id="MAXIMUM_COORDINATION_NUMBER">
         <className>CInt</className>
         <qualifiers>
@@ -99,26 +119,24 @@
             <guiLabel>Use COD structures based on PDB/mmCIF coordinates</guiLabel>
          </qualifiers>
       </content>
+
+      <!-- json2restraints.py -->
+      <!-- def main(jsonPaths, stPath=None, outputPrefix="restraints", jsonEquivalentsPath=None, keep_links=False):
+                    list       string       string                     string                    bool               -->
+      <content id="SAVE_PDBMMCIF">
+         <!-- if True,  stPath will be provided   -->
+         <!-- if False, stPath will not be provided so no PDB and mmCIF file will be created at the output -->
+         <className>CBoolean</className>
+         <qualifiers>
+            <default>True</default>
+         </qualifiers>
+      </content>
+      <content id="KEEP_LINKS">
+         <className>CBoolean</className>
+         <qualifiers>
+            <default>False</default>
+         </qualifiers>
+      </content>
     </container>
-<!--
-  -l LIGAND CODE, - -ligand LIGAND CODE
-                        Ligand code.
-  -p PDB CODE|PDB FILE, - -pdb PDB CODE|PDB FILE
-                        PDB code or pdb file.
-  -o OUTPUT JSON FILE, - -output OUTPUT JSON FILE
-                        Output json file.
-  -d DISTANCE THRESHOLD, - -dist DISTANCE THRESHOLD
-                        Distance threshold.
-  -t PROCRUSTES DISTANCE THRESHOLD, - -threshold PROCRUSTES DISTANCE THRESHOLD
-                        Procrustes distance threshold.
-  -m MINIMUM SAMPLE SIZE, - -min_size MINIMUM SAMPLE SIZE
-                        Minimum sample size for statistics.
-  - -ideal-angles        Provide only ideal angles
-  -s, - -simple          Simple distance based filtering
-  - -save                Save COD files used in statistics
-  - -use-pdb             Use COD structures based on pdb coordinates
-  -c MAXIMUM COORDINATION NUMBER, - -coordination MAXIMUM COORDINATION NUMBER
-                        Maximum coordination number.
--->
   </ccp4i2_body>
 </ccp4i2>

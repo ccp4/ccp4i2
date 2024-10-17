@@ -34,8 +34,7 @@ class metalCoord(CPluginScript):
 
     def makeCommandAndScript(self):
         self.appendCommandLine(['stats'])
-        if self.container.inputData.XYZIN.isSet():
-            self.appendCommandLine(['-p', str(self.container.inputData.XYZIN.fullPath)])
+        self.appendCommandLine(['-p', str(self.container.inputData.XYZIN.fullPath)])
         if self.container.controlParameters.MAXIMUM_COORDINATION_NUMBER.isSet():
             self.appendCommandLine(['-c', str(self.container.controlParameters.MAXIMUM_COORDINATION_NUMBER)])
         if self.container.controlParameters.MINIMUM_SAMPLE_SIZE.isSet():
@@ -82,8 +81,24 @@ class metalCoord(CPluginScript):
         ##if not ok: self.appendErrorReport(202)
 
         # Convert JSON to external restraint keywords
-
-        # self.container.outputData.RESTRAINTS.annotation = 'Restraints for ' + str(self.container.inputData.TARGET_MODEL.annotation)
+        self.outputRestraintsPrefix = str(self.container.inputData.LIGAND_CODE) + "_restraints"
+        self.outputRestraintsFilename = self.outputRestraintsPrefix + ".txt"
+        self.outputRestraintsPathPrefix = os.path.join(self.getWorkDirectory(), self.outputRestraintsPrefix)
+        self.outputRestraintsPath = os.path.join(self.getWorkDirectory(), self.outputRestraintsFilename)
+        if self.container.controlParameters.SAVE_PDBMMCIF:
+            stPath = str(self.container.inputData.XYZIN.fullPath)
+        else:
+            stPath = None
+        from . import json2restraints
+        json2restraints.main(
+            jsonPaths=[self.outputJsonPath],
+            stPath=stPath,
+            outputPrefix=self.outputRestraintsPathPrefix,
+            jsonEquivalentsPath=None,
+            keep_links=bool(self.container.controlParameters.KEEP_LINKS))
+        if os.path.isfile(self.outputRestraintsPath):
+            self.container.outputData.RESTRAINTS.setFullPath(self.outputRestraintsPath)
+            self.container.outputData.RESTRAINTS.annotation = 'Restraints for ' + str(self.container.inputData.LIGAND_CODE)
 
         return CPluginScript.SUCCEEDED
 
