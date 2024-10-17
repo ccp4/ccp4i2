@@ -75,6 +75,7 @@ class servalcat_xtal_pipe(CPluginScript):
         try:
            self.executeProsmartProtein()
            self.executeProsmartNucleicAcid()
+           self.executeMetalCoords()
            #self.executePlatonyzer()
            self.executeFirstServalcat()
         except:
@@ -134,6 +135,29 @@ class servalcat_xtal_pipe(CPluginScript):
 
     @QtCore.Slot(dict)
     def prosmartNucleicAcidFinished(self, statusDict):
+        status = statusDict['finishStatus']
+        if status == CPluginScript.FAILED:
+            self.reportStatus(status)
+            return
+
+    def executeMetalCoords(self):
+        ligand_codes = self.container.metalCoordPipeline.LIGAND_CODES
+        for ligand_code in ligand_codes:
+            self.executeMetalCoord(ligand_code)
+        return
+
+    def executeMetalCoord(self, ligand_code):
+        if self.container.metalCoordPipeline.RUN_METALCOORD:
+            self.metalCoordPlugin = self.makePluginObject('metalCoord')
+            self.metalCoordPlugin.container.inputData.XYZIN.set(self.container.inputData.XYZIN)
+            self.metalCoordPlugin.container.controlParameters.copyData(self.container.metalCoordWrapper.controlParameters)
+            self.metalCoordPlugin.container.inputData.LIGAND_CODE.set(ligand_code)
+            self.connectSignal(self.metalCoordPlugin, 'finished', self.metalCoordFinished)
+            self.metalCoordPlugin.waitForFinished = -1
+            self.metalCoordPlugin.process()
+
+    @QtCore.Slot(dict)
+    def metalCoordFinished(self, statusDict):
         status = statusDict['finishStatus']
         if status == CPluginScript.FAILED:
             self.reportStatus(status)

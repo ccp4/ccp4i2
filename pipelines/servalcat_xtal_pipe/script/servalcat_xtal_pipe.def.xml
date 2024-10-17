@@ -13,6 +13,7 @@
         <jobNumber></jobNumber>
     </ccp4i2_header>
     <ccp4i2_body id="servalcat_xtal_pipe">
+
         <file>
             <CI2XmlDataFile>
                 <project>CCP4I2_TOP</project>
@@ -20,6 +21,7 @@
                 <baseName>servalcat_xtal.def.xml</baseName>
             </CI2XmlDataFile>
         </file>
+
         <container id="inputData">
            <content id="AMINOACID_CHAINS">
               <className>CList</className>
@@ -34,6 +36,38 @@
               </qualifiers>
            </content>
         </container>
+
+        <container id="metalCoordWrapper">
+            <file><!-- controlParameters container will be used -->
+                <CI2XmlDataFile>
+                    <project>CCP4I2_TOP</project>
+                    <relPath>wrappers/metalCoord/script</relPath>
+                    <baseName>metalCoord.def.xml</baseName>-->
+                </CI2XmlDataFile>
+            </file>
+        </container>
+
+        <container id="metalCoordPipeline">
+            <content id="RUN_METALCOORD">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>False</default>
+               </qualifiers>
+            </content>
+           <content id="LIGAND_CODES">
+              <className>CList</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+              </qualifiers>
+           </content>
+            <content id="TOGGLE_ADVANCED">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>False</default>
+               </qualifiers>
+            </content>
+        </container>
+
         <container id="prosmartProtein">
             <!--<content id="REFERENCE_MODEL">
               <className>CPdbDataFile</className>
@@ -231,6 +265,7 @@
                </qualifiers>
             </content>
         </container>
+
         <container id="prosmartNucleicAcid">
            <content id="REFERENCE_MODELS">
               <className>CList</className>
@@ -414,6 +449,7 @@
               </qualifiers>
            </content>
         </container>
+
         <container id="libg">
            <content id="MODE">
               <className>CString</className>
@@ -459,6 +495,7 @@
               </qualifiers>
            </content>
         </container>
+
         <container id="platonyzer">
             <content id="TOGGLE">
                 <className>CBoolean</className>
@@ -506,6 +543,7 @@
               </qualifiers>
            </content>
         </container>
+
         <container id="controlParameters">
             <content id="OPTIMISE_WEIGHT">
                 <className>CBoolean</className>
@@ -544,12 +582,6 @@
                </qualifiers>
             </content>
             <content id="RUN_MOLPROBITY">
-               <className>CBoolean</className>
-               <qualifiers>
-                  <default>False</default>
-               </qualifiers>
-            </content>
-            <content id="RUN_METALCOORD">
                <className>CBoolean</className>
                <qualifiers>
                   <default>False</default>
