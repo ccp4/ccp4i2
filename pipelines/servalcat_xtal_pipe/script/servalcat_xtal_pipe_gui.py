@@ -51,7 +51,7 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
   TASKNAME = 'servalcat_xtal_pipe'
   TASKLABEL = 'servalcat_xtal_pipe'
   TASKVERSION = 0.0
-  TASKMODULE = 'refinement'
+  TASKMODULE = 'test'
   MGDISPLAYFILES = ['XYZOUT','FPHIOUT','DIFFPHIOUT']
   AUTOPOPULATEINPUT = True
   RANK=1

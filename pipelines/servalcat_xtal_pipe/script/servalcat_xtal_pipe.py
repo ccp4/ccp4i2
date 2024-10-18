@@ -30,7 +30,7 @@ import base64
 
 class servalcat_xtal_pipe(CPluginScript):
 
-    TASKMODULE = 'refinement'
+    TASKMODULE = 'test'
     TASKTITLE = 'Refinement - Servalcat (experimental)'
     TASKNAME = 'servalcat_xtal_pipe'
     TASKVERSION= 0.0
