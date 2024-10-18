@@ -45,6 +45,7 @@ class lidiaAcedrgNew_gui(CTaskWidget):
         self.createLine ( [ 'widget', 'DICTIN2' ] , toggle=['MOLSMILESORSKETCH','open',['DICT']])
         self.connectDataChanged('DICTIN2', self.updateTLC)
         self.createLine ( [ 'widget', 'PDBMMCIFIN' ] , toggle=['MOLSMILESORSKETCH','open',['PDBMMCIF']])
+        self.connectDataChanged('PDBMMCIFIN', self.updateTLC)
         self.createLine ( [ 'label', '<i>Specified PDB/mmCIF file must contain only one monomer including hydrogen atoms.</i>' ] , toggle=['MOLSMILESORSKETCH','open',['PDBMMCIF']])
         self.createLine ( [ 'widget', 'TOGGLE_METAL', 'label' , 'This monomer contains a metal atom.' ] )
         self.connectDataChanged('controlParameters.TOGGLE_METAL', self.ToggleShowContainsMetal)
@@ -96,14 +97,20 @@ class lidiaAcedrgNew_gui(CTaskWidget):
     def updateTLC(self):
         tlc = None
         try:
-            blocks = gemmi.cif.read(str(self.container.inputData.DICTIN2.fullPath))
-            for block in blocks:
-                tlc = block.find_value('_chem_comp.three_letter_code')
-                if tlc:
-                    break
-                tlc = block.find_value('_chem_comp.id')
-                if tlc:
-                    break
+            if self.container.inputData.MOLSMILESORSKETCH == "DICT":
+                blocks = gemmi.cif.read(str(self.container.inputData.DICTIN2.fullPath))
+                for block in blocks:
+                    tlc = block.find_value('_chem_comp.three_letter_code')
+                    if tlc:
+                        break
+                    tlc = block.find_value('_chem_comp.id')
+                    if tlc:
+                        break
+            elif self.container.inputData.MOLSMILESORSKETCH == "PDBMMCIF":
+                st = gemmi.read_structure(str(self.container.inputData.PDBMMCIFIN.fullPath))
+                # lookup = {x.atom: x for x in st[0].all()}
+                # tlc = list(lookup.values())[0].residue.name
+                tlc = st[0][0][0].name
             if tlc:
                 if len(str(tlc)) >= 1 and len(str(tlc)) <= 5:
                     self.container.inputData.TLC.set(str(tlc))
@@ -116,19 +123,33 @@ class lidiaAcedrgNew_gui(CTaskWidget):
             return True
         if not self.container.controlParameters.TOGGLE_METAL and not fromUpdateTLC:
             return False
-        if self.container.inputData.MOLSMILESORSKETCH != 'DICT':
+        if self.container.inputData.MOLSMILESORSKETCH != 'DICT' and \
+                self.container.inputData.MOLSMILESORSKETCH != 'PDBMMCIF':
             return False
-        if not str(self.container.inputData.DICTIN2.fullPath):
+        if not self.container.inputData.DICTIN2.isSet() and \
+                not self.container.inputData.PDBMMCIFIN.isSet():
             return False
-        if not os.path.isfile(str(self.container.inputData.DICTIN2.fullPath)):
+        if not os.path.isfile(str(self.container.inputData.DICTIN2.fullPath)) and \
+                not os.path.isfile(str(self.container.inputData.PDBMMCIFIN.fullPath)):
             return False
         try:
-            blocks = gemmi.cif.read(str(self.container.inputData.DICTIN2.fullPath))
-            for block in blocks:
-                for element in block.find_loop("_chem_comp_atom.type_symbol"):
-                    if gemmi.Element(element).is_metal:
+            if self.container.inputData.MOLSMILESORSKETCH == 'DICT' and self.container.inputData.DICTIN2.isSet():
+                if os.path.isfile(str(self.container.inputData.DICTIN2.fullPath)):
+                    blocks = gemmi.cif.read(str(self.container.inputData.DICTIN2.fullPath))
+                    for block in blocks:
+                        for element in block.find_loop("_chem_comp_atom.type_symbol"):
+                            if gemmi.Element(element).is_metal:
+                                self.container.controlParameters.TOGGLE_METAL.set(True)
+                                return True
+            elif self.container.inputData.MOLSMILESORSKETCH == 'PDBMMCIF' and self.container.inputData.PDBMMCIFIN.isSet():
+                st = gemmi.read_structure(str(self.container.inputData.PDBMMCIFIN.fullPath))
+                lookup = {x.atom: x for x in st[0].all()}
+                for atom in lookup.keys():
+                    if atom.element.is_metal:
                         self.container.controlParameters.TOGGLE_METAL.set(True)
                         return True
+            else:
+                return False
         except:
             return False
 
