@@ -33,6 +33,7 @@ class metalCoord(CPluginScript):
 
 
     def makeCommandAndScript(self):
+        self.appendCommandLine(['--no-progress'])
         self.appendCommandLine(['stats'])
         self.appendCommandLine(['-p', str(self.container.inputData.XYZIN.fullPath)])
         if self.container.controlParameters.MAXIMUM_COORDINATION_NUMBER.isSet():
