@@ -63,13 +63,14 @@ if __name__ == "__main__":
         sys.exit(2)
     verbose = False
     mol = None
+    output = None
     for o, a in opts:
         if o in ("-s", "--smiles"):
             mol = Chem.MolFromSmiles(a, sanitize=False)
         elif o in ("-m", "--molfile"):
             with open(a) as f:
                b = f.read()
-               mol = Chem.MolFromMolBlock(b)
+               mol = Chem.MolFromMolBlock(b, sanitize=False)
         elif o in ("-o", "--output"):
             output = a
         else:
