@@ -30,8 +30,11 @@ from __future__ import print_function
 from PySide2 import QtGui, QtWidgets,QtCore
 from qtgui import CCP4TaskWidget
 from qtgui import CCP4Widgets
+from qtgui import CCP4XtalWidgets
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4XtalData
+from pipelines.import_merged.script.dybuttons import *  # for ChoiceButtons()
+
 
 def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None):
     import os
@@ -40,7 +43,7 @@ def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None)
     if jobStatus == 'Unsatisfactory':
         returnList = ['LidiaAcedrg', 'servalcat_xtal_pipe']
     else:
-        returnList = ['servalcat_xtal_pipe', 'coot_rebuild', 'buccaneer_build_refine_mr', 'moorhen_rebuild', 'modelcraft']
+        returnList = ['servalcat_xtal_pipe', 'coot_rebuild', 'moorhen_rebuild', 'modelcraft']
     return returnList
 
 class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
@@ -408,6 +411,34 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'label', '<i>Not available.</i>' ] )
     self.closeSubFrame()
 
+    self.createLine( [ 'subtitle', 'MetalCoord External Restraints for Metals'] )
+    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRestraintsOn,['UNRESTRAINED', 'FIX_XYZ', 'JELLY_ONLY']])
+    self.createLine( [ 'widget', 'metalCoordPipeline.RUN_METALCOORD', 'label', 'Generate and apply metalCoord restraints for metal sites' ] )
+    # self.createLine( [ 'widget', 'metalCoordPipeline.LIGAND_CODES' ], toggle = ['metalCoordPipeline.RUN_METALCOORD', 'open', [ True ] ] )
+    if self.widget.subFrame is not None:
+        self.currentLayout = self.widget.subFrame.layout()
+    else:
+        self.currentLayout = self.widget.currentFolderLayout
+    self.ligands_checkboxes = ChoiceButtons()
+    self.currentLayout.addWidget(self.ligands_checkboxes)
+    self.ligands_checkboxes.setChoices(
+        "Codes of monomers including metal sites:",
+        self.container.metalCoordPipeline.LIGAND_CODES, tags=[], notes=[], singleChoice=False)
+    self.createLine( [ 'widget', 'metalCoordPipeline.TOGGLE_ADVANCED', 'label', 'Show advanced options' ], toggle = ['metalCoordPipeline.RUN_METALCOORD', 'open', [ True ] ] )
+    self.createLine( [ 'label', 'Link records to metal sites in the atomic model:', 'stretch', 'widget', 'metalCoordPipeline.LINKS' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
+    #self.createLine( [ 'widget', 'metalCoordWrapper.KEEP_LINKS', 'label', 'Do not delete the link records to metal sites which are already present in the atomic model' ], toggle = ['metalCoordPipeline.UPDATE_LINKS', 'open', [ True ] ] )
+    self.createLine( [ 'label', 'Distance threshold: (range 0-1)<br/><i>A threshold d to select atoms is (r<sub>1</sub> + r<sub>2</sub>)*(1 + d) where r<sub>1</sub> and r<sub>2</sub> are covalent radii.</i>', 'stretch', 'widget', 'metalCoordWrapper.DISTANCE_THRESHOLD' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
+    self.createLine( [ 'label', 'Maximum coordination number:', 'stretch', 'widget', 'metalCoordWrapper.MAXIMUM_COORDINATION_NUMBER' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
+    self.createLine( [ 'label', 'Procrustes distance threshold: (range 0-1)', 'stretch', 'widget', 'metalCoordWrapper.PROCRUSTES_DISTANCE_THRESHOLD' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
+    self.createLine( [ 'label', 'Minimum sample size for statistics:', 'stretch', 'widget', 'metalCoordWrapper.MINIMUM_SAMPLE_SIZE' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
+    self.createLine( [ 'widget', 'metalCoordWrapper.USE_PDB', 'label', 'Use COD structures based on the input PDB/mmCIF coordinates' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
+    self.createLine( [ 'widget', 'metalCoordWrapper.IDEAL_ANGLES', 'label', 'Provide only ideal bond angles' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
+    self.createLine( [ 'widget', 'metalCoordWrapper.SIMPLE', 'label', 'Simple distance based filtering' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
+    self.closeSubFrame()
+    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRestraintsOff,['UNRESTRAINED', 'FIX_XYZ', 'JELLY_ONLY']])
+    self.createLine( [ 'label', '<i>Not available.</i>' ] )
+    self.closeSubFrame()
+
     self.createLine( [ 'subtitle', 'ProSMART External Restraints for Protein Chains'] )
     if self.isEditable():
        self.container.prosmartProtein.TOGGLE.dataChanged.connect(self.setProsmartProteinMode)
@@ -480,26 +511,6 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'widget', 'prosmartNucleicAcid.TOGGLE_BFAC', 'label', 'Remove restraints where homologue has high B-factors.', 'stretch', 'label', 'Maximum B-factor: median plus ', 'widget', 'prosmartNucleicAcid.BFAC', 'label', 'x interquartile range' ], toggleFunction=[self.showProsmartNucleicAcidBfac, ['prosmartNucleicAcid.ADVANCED','prosmartNucleicAcid.TOGGLE_BFAC']])
     self.createLine( [ 'widget', 'prosmartNucleicAcid.TOGGLE_ALT', 'label', 'Allow restraints involving atoms with alt codes.', 'stretch' , 'label', 'Ignore atoms with occupancies lower than', 'widget', 'prosmartNucleicAcid.OCCUPANCY'], toggle = ['prosmartNucleicAcid.ADVANCED', 'open', [ True ] ] )
     self.createLine( [ 'label', 'Additional ProSMART keywords:', 'widget','prosmartNucleicAcid.KEYWORDS' ], toggle = ['prosmartNucleicAcid.ADVANCED', 'open', [ True ] ] )
-    self.closeSubFrame()
-
-    self.createLine( [ 'subtitle', 'MetalCoord External Restraints for Metals'] )
-    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRestraintsOn,['UNRESTRAINED', 'FIX_XYZ', 'JELLY_ONLY']])
-    self.createLine( [ 'widget', 'metalCoordPipeline.RUN_METALCOORD', 'label', 'Generate and apply metalCoord restraints for metal sites' ] )
-    self.createLine( [ 'label', 'Codes of monomers including metal sites:' ], toggle = ['metalCoordPipeline.RUN_METALCOORD', 'open', [ True ] ] )
-    self.createLine( [ 'widget', 'metalCoordPipeline.LIGAND_CODES' ], toggle = ['metalCoordPipeline.RUN_METALCOORD', 'open', [ True ] ] )
-    self.createLine( [ 'widget', 'metalCoordPipeline.TOGGLE_ADVANCED', 'label', 'Show advanced options' ], toggle = ['metalCoordPipeline.RUN_METALCOORD', 'open', [ True ] ] )
-    self.createLine( [ 'label', 'Link records to metal sites in the atomic model:', 'stretch', 'widget', 'metalCoordPipeline.LINKS' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
-    #self.createLine( [ 'widget', 'metalCoordWrapper.KEEP_LINKS', 'label', 'Do not delete the link records to metal sites which are already present in the atomic model' ], toggle = ['metalCoordPipeline.UPDATE_LINKS', 'open', [ True ] ] )
-    self.createLine( [ 'label', 'Distance threshold: (range 0-1)<br/><i>A threshold d to select atoms is (r<sub>1</sub> + r<sub>2</sub>)*(1 + d) where r<sub>1</sub> and r<sub>2</sub> are covalent radii.</i>', 'stretch', 'widget', 'metalCoordWrapper.DISTANCE_THRESHOLD' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
-    self.createLine( [ 'label', 'Maximum coordination number:', 'stretch', 'widget', 'metalCoordWrapper.MAXIMUM_COORDINATION_NUMBER' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
-    self.createLine( [ 'label', 'Procrustes distance threshold: (range 0-1)', 'stretch', 'widget', 'metalCoordWrapper.PROCRUSTES_DISTANCE_THRESHOLD' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
-    self.createLine( [ 'label', 'Minimum sample size for statistics:', 'stretch', 'widget', 'metalCoordWrapper.MINIMUM_SAMPLE_SIZE' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
-    self.createLine( [ 'widget', 'metalCoordWrapper.USE_PDB', 'label', 'Use COD structures based on the input PDB/mmCIF coordinates' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
-    self.createLine( [ 'widget', 'metalCoordWrapper.IDEAL_ANGLES', 'label', 'Provide only ideal bond angles' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
-    self.createLine( [ 'widget', 'metalCoordWrapper.SIMPLE', 'label', 'Simple distance based filtering' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
-    self.closeSubFrame()
-    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRestraintsOff,['UNRESTRAINED', 'FIX_XYZ', 'JELLY_ONLY']])
-    self.createLine( [ 'label', '<i>Not available.</i>' ] )
     self.closeSubFrame()
 
     '''
@@ -984,3 +995,4 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
 
 
       return invalidElements
+
