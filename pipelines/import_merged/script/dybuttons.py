@@ -50,7 +50,7 @@ class ChoiceButtons(QtWidgets.QWidget):
         layout.setSpacing(0)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    def setChoices(self, title, choices, tags=None, notes=None, subtitle=None, singleChoice=True):
+    def setChoices(self, title, choices, tags=None, notes=None, subtitle=None, exclusiveChoice=True):
         # title       heading for the pane (bold)
         # choices     list of button names
         # tags        list of labels for button names, displayed on same line
@@ -83,10 +83,11 @@ class ChoiceButtons(QtWidgets.QWidget):
             label = QtWidgets.QLabel('>> ')
             linelayout.addWidget(label)
             c = str(choices[i])  # the choice
-            if singleChoice:
+            if exclusiveChoice:
                 button = QtWidgets.QRadioButton(str(c))
             else:
                 button = QtWidgets.QCheckBox(str(c))
+                button.setChecked(True)
             button.setMinimumWidth(80)
             linelayout.addWidget(button)
             button.clicked.connect(functools.partial(self.setSelected, c))
