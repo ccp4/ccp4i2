@@ -879,17 +879,19 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
                 self.updateMonomersWithMetalsWidget()
 
   def updateMonomersWithMetalsWidget(self):
-        if self.monomersWithMetals:
-            self.ligands_checkboxes.setChoices(
-                "Codes of monomers including metal sites:",
-                self.monomersWithMetals, tags=[], notes=[], exclusiveChoice=False)
-        else:
-            self.ligands_checkboxes.setChoices(
-                "<i>No monomers including metal sites were found in the input atomic model.</i>",
-                self.monomersWithMetals, tags=[], notes=[], exclusiveChoice=False)
+        if hasattr(self, "ligands_checkboxes"):
+            if self.monomersWithMetals:
+                self.ligands_checkboxes.setChoices(
+                    "Codes of monomers including metal sites:",
+                    self.monomersWithMetals, tags=[], notes=[], exclusiveChoice=False)
+            else:
+                self.ligands_checkboxes.setChoices(
+                    "<i>No monomers including metal sites were found in the input atomic model.</i>",
+                    self.monomersWithMetals, tags=[], notes=[], exclusiveChoice=False)
 
   def updateMonomersWithMetalsSelection(self):
-        self.container.metalCoordPipeline.LIGAND_CODES_SELECTED = self.ligands_checkboxes.selectedList
+        if hasattr(self, "ligands_checkboxes"):   \
+            self.container.metalCoordPipeline.LIGAND_CODES_SELECTED = self.ligands_checkboxes.selectedList
 
   def getChainList(self):
      chain_list = {}
