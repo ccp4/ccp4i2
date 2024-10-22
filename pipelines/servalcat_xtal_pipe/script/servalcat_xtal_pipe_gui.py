@@ -866,11 +866,12 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
                 self.monomersWithMetals = set()
                 try:
                     st = gemmi.read_structure(str(self.container.inputData.XYZIN.fullPath))
-                    lookup = {x.atom: x for x in st[0].all()}
-                    for cra in lookup.values():
-                        if cra.atom.element.is_metal:
-                            if cra.residue.name not in self.monomersWithMetals:
-                                self.monomersWithMetals.add(cra.residue.name)
+                    for model in st:
+                        lookup = {x.atom: x for x in model.all()}
+                        for cra in lookup.values():
+                            if cra.atom.element.is_metal:
+                                if cra.residue.name not in self.monomersWithMetals:
+                                    self.monomersWithMetals.add(cra.residue.name)
                     self.monomersWithMetals = list(self.monomersWithMetals)
                 except Exception as e:
                     print("Getting codes for monomers containing metals was not successful: ", e)
