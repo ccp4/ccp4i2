@@ -35,8 +35,8 @@ def set_dative_bonds(mol, fromAtoms=(7,8)):
 def svgFromMol(mol):
     m2 = set_dative_bonds(mol)
     try:
-        Chem.SanitizeMol(m2draw2)
-        Chem.Kekulize(m2draw2)
+        Chem.SanitizeMol(m2)
+        Chem.Kekulize(m2)
     except:
         print("Warning, could not sanitize/kekulize molecule.")
 
@@ -76,11 +76,12 @@ if __name__ == "__main__":
         else:
             assert False, "unhandled option: "+o
 
-    p = svgFromMol(mol)
+    if mol:
+        p = svgFromMol(mol)
 
-    if output:
-        with open(output,"w+") as f:
-            f.write(p)
-    else:
-        print(p)
+        if output:
+            with open(output,"w+") as f:
+                f.write(p)
+        else:
+            print(p)
         
