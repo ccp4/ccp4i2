@@ -34,6 +34,8 @@ from qtgui import CCP4XtalWidgets
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4XtalData
 from pipelines.import_merged.script.dybuttons import *  # for ChoiceButtons()
+import os
+import gemmi
 
 
 def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None):
@@ -421,9 +423,8 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
         self.currentLayout = self.widget.currentFolderLayout
     self.ligands_checkboxes = ChoiceButtons()
     self.currentLayout.addWidget(self.ligands_checkboxes)
-    self.ligands_checkboxes.setChoices(
-        "Codes of monomers including metal sites:",
-        self.container.metalCoordPipeline.LIGAND_CODES, tags=[], notes=[], singleChoice=False)
+    self.updateMonomersWithMetals()
+    # self.ligands_checkboxes.clickedSignal.connect(self.updateMonomersWithMetals)
     self.createLine( [ 'widget', 'metalCoordPipeline.TOGGLE_ADVANCED', 'label', 'Show advanced options' ], toggle = ['metalCoordPipeline.RUN_METALCOORD', 'open', [ True ] ] )
     self.createLine( [ 'label', 'Link records to metal sites in the atomic model:', 'stretch', 'widget', 'metalCoordPipeline.LINKS' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
     #self.createLine( [ 'widget', 'metalCoordWrapper.KEEP_LINKS', 'label', 'Do not delete the link records to metal sites which are already present in the atomic model' ], toggle = ['metalCoordPipeline.UPDATE_LINKS', 'open', [ True ] ] )
@@ -781,6 +782,7 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
      self.setProsmartProteinMode()
      self.setProsmartNucleicAcidMode()
      self.setLibgMode()
+     self.getMonomersWithMetals()
      return
 
   @QtCore.Slot()
@@ -853,6 +855,34 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
         self.container.libg.MODE.set('DISABLED')
      self.validate()
      return
+
+  def getMonomersWithMetals(self):
+        if self.container.inputData.XYZIN.isSet():
+            if os.path.isfile(str(self.container.inputData.XYZIN.fullPath)):
+                self.monomersWithMetals = set()
+                try:
+                    st = gemmi.read_structure(str(self.container.inputData.XYZIN.fullPath))
+                    lookup = {x.atom: x for x in st[0].all()}
+                    for cra in lookup.values():
+                        if cra.atom.element.is_metal:
+                            if cra.residue.name not in self.monomersWithMetals:
+                                self.monomersWithMetals.add(cra.residue.name)
+                    self.monomersWithMetals = list(self.monomersWithMetals)
+                except Exception as e:
+                    print("Getting codes for monomers containing metals was not successful: ", e)
+                    self.monomersWithMetals = []
+                self.container.metalCoordPipeline.LIGAND_CODES = self.monomersWithMetals
+                self.updateMonomersWithMetals()
+
+  def updateMonomersWithMetals(self):
+        if self.container.metalCoordPipeline.LIGAND_CODES:
+            self.ligands_checkboxes.setChoices(
+                "Codes of monomers including metal sites:",
+                self.container.metalCoordPipeline.LIGAND_CODES, tags=[], notes=[], exclusiveChoice=False)
+        else:
+            self.ligands_checkboxes.setChoices(
+                "<i>No monomers including metal sites were found in the input atomic model.</i>",
+                self.container.metalCoordPipeline.LIGAND_CODES, tags=[], notes=[], exclusiveChoice=False)
 
   def getChainList(self):
      chain_list = {}
