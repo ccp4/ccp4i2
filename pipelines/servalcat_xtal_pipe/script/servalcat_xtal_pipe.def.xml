@@ -54,6 +54,18 @@
                   <default>False</default>
                </qualifiers>
             </content>
+           <content id="LIGAND_CODES_AVAILABLE">
+              <className>CList</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+              </qualifiers>
+           </content>
+           <content id="LIGAND_CODES_SELECTED">
+              <className>CList</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+              </qualifiers>
+           </content>
            <content id="LIGAND_CODES">
               <className>CList</className>
               <qualifiers>

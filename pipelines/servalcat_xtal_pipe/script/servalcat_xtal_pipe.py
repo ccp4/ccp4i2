@@ -141,7 +141,7 @@ class servalcat_xtal_pipe(CPluginScript):
             return
 
     def executeMetalCoords(self):
-        ligand_codes = self.container.metalCoordPipeline.LIGAND_CODES
+        ligand_codes_selected = self.container.metalCoordPipeline.LIGAND_CODES_SELECTED
         for ligand_code in ligand_codes:
             self.executeMetalCoord(ligand_code)
         # put all JSON files together

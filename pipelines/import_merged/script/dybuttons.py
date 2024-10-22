@@ -45,6 +45,7 @@ class ChoiceButtons(QtWidgets.QWidget):
     def __init__(self,parent=None):
         QtWidgets.QWidget.__init__(self, parent)
         self.selected = ""
+        self.selectedList = []
         layout = QtWidgets.QVBoxLayout()
         self.setLayout(layout)
         layout.setSpacing(0)
@@ -64,6 +65,7 @@ class ChoiceButtons(QtWidgets.QWidget):
             if (len(notes) == 0 or (len(notes) == 1 and notes[0] == '')):
                 notes_ = None
 
+        self.selectedList = []
         layout = self.layout()
         self.clearLayout(layout)
 
@@ -88,9 +90,13 @@ class ChoiceButtons(QtWidgets.QWidget):
             else:
                 button = QtWidgets.QCheckBox(str(c))
                 button.setChecked(True)
+                self.selectedList.append(str(c))
             button.setMinimumWidth(80)
             linelayout.addWidget(button)
-            button.clicked.connect(functools.partial(self.setSelected, c))
+            if exclusiveChoice:
+                button.clicked.connect(functools.partial(self.setSelected, c))
+            else:
+                button.clicked.connect(self.setSelectedList)
             button.clicked.connect(functools.partial(self.clickedSignal.emit, c))
             linelayout.setStretch(1,5)
             if tags_[i] != '':
@@ -113,6 +119,15 @@ class ChoiceButtons(QtWidgets.QWidget):
     @QtCore.Slot(str)
     def setSelected(self,s):
         self.selected = s
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # @QtCore.Slot(str)
+    def setSelectedList(self, state):
+        # print(state, self.sender().text())
+        if self.sender().text() not in self.selectedList and state == True:
+            self.selectedList.append(self.sender().text())
+        elif self.sender().text() in self.selectedList and state == False:
+            self.selectedList.remove(self.sender().text())
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def clearLayout(self, layout):
