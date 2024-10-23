@@ -86,6 +86,16 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                   <toolTip>File specifying additional REFMAC5 external restraints (e.g. from ProSMART or LibG)</toolTip>
                </qualifiers>
             </content>-->
+            <content id="METALCOORD_RESTRAINTS">
+               <className>CRefmacRestraintsDataFile</className>
+               <qualifiers>
+                  <saveToDb>True</saveToDb>
+                  <mustExist>True</mustExist>
+                  <allowUndefined>True</allowUndefined>
+                  <fromPreviousJob>True</fromPreviousJob>
+                  <guiLabel>MetalCoord restraints for metal sites</guiLabel>
+               </qualifiers>
+            </content>
             <content id="PROSMART_PROTEIN_RESTRAINTS">
                <className>CRefmacRestraintsDataFile</className>
                <qualifiers>
