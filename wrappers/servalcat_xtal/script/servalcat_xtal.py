@@ -503,6 +503,9 @@ class servalcat_xtal(CPluginScript):
             self.appendCommandLine(['--no_solvent'])
 
         keywordFilePath = str(os.path.join(self.getWorkDirectory(), 'keywords.txt'))
+        if self.container.inputData.METALCOORD_RESTRAINTS.isSet():
+            with open(keywordFilePath, "a+") as keywordFile:
+                keywordFile.write("\n@%s"%(str(self.container.inputData.METALCOORD_RESTRAINTS.fullPath)))
         if self.container.inputData.PROSMART_PROTEIN_RESTRAINTS.isSet():
             with open(keywordFilePath, "a+") as keywordFile:
                 # if self.container.controlParameters.PROSMART_PROTEIN_WEIGHT.isSet():
