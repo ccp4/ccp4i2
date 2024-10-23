@@ -91,6 +91,24 @@
                   <default>False</default>
                </qualifiers>
             </content>
+            <content id="GENERATE_OR_USE">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>GENERATE,USE</enumerators>
+                    <menuText>generate new restraints,use a keyword file with restraints generated previously</menuText>
+                    <default>GENERATE</default>
+                    <guiLabel>Generate new restraints or use a keyword file with restraints generated previously</guiLabel>
+                </qualifiers>
+            </content>
+           <content id="METALCOORD_RESTRAINTS">
+              <className>CRefmacRestraintsDataFile</className>
+              <qualifiers>
+                 <mustExist>True</mustExist>
+                 <allowUndefined>True</allowUndefined>
+                 <ifAtomSelection>False</ifAtomSelection>
+              </qualifiers>
+           </content>
         </container>
 
         <container id="prosmartProtein">

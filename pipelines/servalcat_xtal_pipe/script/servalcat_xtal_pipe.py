@@ -191,7 +191,7 @@ class servalcat_xtal_pipe(CPluginScript):
         return
 
     def executeMetalCoord(self, ligand_code):
-        if self.container.metalCoordPipeline.RUN_METALCOORD:
+        if self.container.metalCoordPipeline.RUN_METALCOORD and self.container.metalCoordPipeline.GENERATE_OR_USE == "GENERATE":
             self.metalCoordPlugin = self.makePluginObject('metalCoord')
             self.metalCoordPlugin.container.inputData.XYZIN.set(self.container.inputData.XYZIN)
             self.metalCoordPlugin.container.controlParameters.copyData(self.container.metalCoordWrapper.controlParameters)
@@ -311,13 +311,15 @@ class servalcat_xtal_pipe(CPluginScript):
                   and attr != "RUN_MOLPROBITY"):
                 setattr(result.container.controlParameters, attr, getattr(self.container.controlParameters, attr))
 
-
         if self.container.metalCoordPipeline.RUN_METALCOORD:
-            if self.container.outputData.METALCOORD_XYZ and self.container.metalCoordPipeline.RUN_METALCOORD != "NOTTOUCH":
-                if os.path.isfile(str(self.container.outputData.METALCOORD_XYZ.fullPath)):
-                    result.container.inputData.XYZIN.set(self.container.outputData.METALCOORD_XYZ)
-                # else report error?
-            result.container.inputData.METALCOORD_RESTRAINTS=self.container.outputData.METALCOORD_RESTRAINTS
+            if self.container.metalCoordPipeline.GENERATE_OR_USE == "GENERATE":
+                result.container.inputData.METALCOORD_RESTRAINTS=self.container.outputData.METALCOORD_RESTRAINTS
+                if self.container.outputData.METALCOORD_XYZ and self.container.metalCoordPipeline.LINKS != "NOTTOUCH":
+                    if os.path.isfile(str(self.container.outputData.METALCOORD_XYZ.fullPath)):
+                        result.container.inputData.XYZIN.set(self.container.outputData.METALCOORD_XYZ)
+                    # else report error?
+            else:  # self.container.metalCoordPipeline.GENERATE_OR_USE == "USE":
+                result.container.inputData.METALCOORD_RESTRAINTS=self.container.metalCoordPipeline.METALCOORD_RESTRAINTS
         if self.container.prosmartProtein.TOGGLE:
             # result.container.controlParameters.PROSMART_PROTEIN_WEIGHT=self.container.prosmartProtein.WEIGHT
             result.container.controlParameters.PROSMART_PROTEIN_SGMN=self.container.prosmartProtein.SGMN
