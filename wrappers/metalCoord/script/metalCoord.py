@@ -6,6 +6,7 @@ from __future__ import print_function
 """
 
 import os
+import json
 from core.CCP4PluginScript import CPluginScript
 from core.CCP4ErrorHandling import *
 
@@ -57,11 +58,29 @@ class metalCoord(CPluginScript):
 
 
     def processOutputFiles(self):
+        # sanity check that metalCoord finished successfully - from .json.status.json
+        self.outputJsonStatusFilename = str(self.container.inputData.LIGAND_CODE) + ".json.status.json"
+        self.outputJsonStatusPath = os.path.join(self.getWorkDirectory(), self.outputJsonStatusFilename)
+        with open(self.outputJsonStatusPath, 'r') as file:
+            data = json.load(file)
+        if data['status'] != "Success":
+            self.appendErrorReport(202)
+
+        # sanity check that metalCoord finished successfully - from log
+        ok = False
+        logText = self.logFileText()
+        pyListLogLines = logText.split("\n")
+        for j, pyStrLine in enumerate(pyListLogLines):
+            if "Report written" in pyStrLine:
+                ok = True
+        if not ok: self.appendErrorReport(202)
+
+        # sanity check that metalCoord has produced JSON
         if os.path.isfile(self.outputJsonPath):
             self.container.outputData.JSON.setFullPath(self.outputJsonPath)
             self.container.outputData.JSON.annotation = 'Full analysis for monomer ' + str(self.container.inputData.LIGAND_CODE)
         else:
-            self.appendErrorReport(201,str(self.container.outputData.JSON))
+            self.appendErrorReport(201, str(self.container.outputData.JSON))
             return CPluginScript.FAILED
 
         '''xmlPath = self.makeFileName('PROGRAMXML')
@@ -71,15 +90,6 @@ class metalCoord(CPluginScript):
         xmlFile=open( xmlPath,'w')
         xmlFile.write( xmlString )
         xmlFile.close()'''
-
-        # sanity check that metalCoord has produced something
-        ##ok = False
-        ##logText = self.logFileText()
-        ##pyListLogLines = logText.split("\n")
-        ##for j, pyStrLine in enumerate(pyListLogLines):
-        ##    if "Report written" in pyStrLine:
-        ##        ok = True
-        ##if not ok: self.appendErrorReport(202)
 
         # Convert JSON to external restraint keywords
         self.outputRestraintsPrefix = str(self.container.inputData.LIGAND_CODE) + "_restraints"
