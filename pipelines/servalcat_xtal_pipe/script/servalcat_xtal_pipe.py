@@ -73,14 +73,25 @@ class servalcat_xtal_pipe(CPluginScript):
 
     def startProcess(self, processId):
         try:
-           self.executeProsmartProtein()
-           self.executeProsmartNucleicAcid()
-           self.executeMetalCoords()
-           #self.executePlatonyzer()
-           self.executeFirstServalcat()
-        except:
-           self.reportStatus(CPluginScript.FAILED)
-           return CPluginScript.FAILED
+            self.executeProsmartProtein()
+            self.executeProsmartNucleicAcid()
+        except Exception as e:
+            sys.stderr.write("ERROR while running ProSMART: " + str(e) + "\n")
+            self.reportStatus(CPluginScript.FAILED)
+            return CPluginScript.FAILED
+        try:
+            self.executeMetalCoords()
+            # self.executePlatonyzer()
+        except Exception as e:
+            sys.stderr.write("ERROR while running MetalCoord: " + str(e) + "\n")
+            self.reportStatus(CPluginScript.FAILED)
+            return CPluginScript.FAILED
+        try:
+            self.executeFirstServalcat()
+        except Exception as e:
+            sys.stderr.write("ERROR while running Servalcat: " + str(e) + "\n")
+            self.reportStatus(CPluginScript.FAILED)
+            return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 
     def executeProsmartProtein(self):
@@ -141,15 +152,42 @@ class servalcat_xtal_pipe(CPluginScript):
             return
 
     def executeMetalCoords(self):
+        self.metalCoordOutputJsonPaths = []
         ligand_codes_selected = self.container.metalCoordPipeline.LIGAND_CODES_SELECTED
         for ligand_code in ligand_codes_selected:
             self.executeMetalCoord(ligand_code)
-        # put all JSON files together
-        # convert to restraints
-        # get the PDB/mmCIF with new links
-        # keep links? LINKS<enumerators>UPDATE,KEEP,NOTTOUCH</enumerators> if NOTTOUCH: old model; else: new model
-        #                  <menuText>update: delete and add again from scratch,update: keep existing and add new,keep as they are</menuText>
-        # use new or original PDB/mmCIF?
+        if not self.metalCoordOutputJsonPaths:
+            return
+        # Get all the JSON files together and convert JSON to external restraint keywords
+        self.outputRestraintsPrefix = "metal_restraints"
+        self.outputRestraintsFilename = self.outputRestraintsPrefix + ".txt"
+        self.outputRestraintsMmcifFilename = self.outputRestraintsPrefix + ".mmcif"
+        self.outputRestraintsPathPrefix = os.path.join(self.getWorkDirectory(), self.outputRestraintsPrefix)
+        self.outputRestraintsPath = os.path.join(self.getWorkDirectory(), self.outputRestraintsFilename)
+        self.outputRestraintsMmcifPath = os.path.join(self.getWorkDirectory(), self.outputRestraintsMmcifFilename)
+        if self.container.metalCoordPipeline.LINKS == "UPDATE":
+            stPath = str(self.container.inputData.XYZIN.fullPath)
+            keep_links = False
+        elif self.container.metalCoordPipeline.LINKS == "KEEP":
+            stPath = str(self.container.inputData.XYZIN.fullPath)
+            keep_links = True
+        else:  # self.container.metalCoordPipeline.LINKS == "NOTTOUCH":
+            stPath = None
+            keep_links = True
+        print("Converting MetalCoord analyses from JSON files to restraints")
+        from wrappers.metalCoord.script import json2restraints
+        json2restraints.main(
+            jsonPaths=self.metalCoordOutputJsonPaths,
+            stPath=stPath,
+            outputPrefix=self.outputRestraintsPathPrefix,
+            jsonEquivalentsPath=None,
+            keep_links=keep_links)
+        if os.path.isfile(self.outputRestraintsPath):
+            self.container.outputData.METALCOORD_RESTRAINTS.setFullPath(self.outputRestraintsPath)
+            self.container.outputData.METALCOORD_RESTRAINTS.annotation = 'Restraints for metal sites'
+        if os.path.isfile(self.outputRestraintsMmcifPath) and stPath:
+            self.container.outputData.METALCOORD_XYZ.setFullPath(self.outputRestraintsMmcifPath)
+            self.container.outputData.METALCOORD_XYZ.annotation = 'Input structure with links from MetalCoord'
         return
 
     def executeMetalCoord(self, ligand_code):
@@ -164,6 +202,10 @@ class servalcat_xtal_pipe(CPluginScript):
             self.connectSignal(self.metalCoordPlugin, 'finished', self.metalCoordFinished)
             self.metalCoordPlugin.waitForFinished = -1
             self.metalCoordPlugin.process()
+            self.outputJsonFilename = str(self.metalCoordPlugin.container.inputData.LIGAND_CODE) + ".json"
+            self.outputJsonPath = os.path.join(self.metalCoordPlugin.getWorkDirectory(), self.outputJsonFilename)
+            if os.path.isfile(self.outputJsonPath):
+                self.metalCoordOutputJsonPaths.append(self.outputJsonPath)
 
     @QtCore.Slot(dict)
     def metalCoordFinished(self, statusDict):
@@ -269,6 +311,13 @@ class servalcat_xtal_pipe(CPluginScript):
                   and attr != "RUN_MOLPROBITY"):
                 setattr(result.container.controlParameters, attr, getattr(self.container.controlParameters, attr))
 
+
+        if self.container.metalCoordPipeline.RUN_METALCOORD:
+            if self.container.outputData.METALCOORD_XYZ and self.container.metalCoordPipeline.RUN_METALCOORD != "NOTTOUCH":
+                if os.path.isfile(str(self.container.outputData.METALCOORD_XYZ.fullPath)):
+                    result.container.inputData.XYZIN.set(self.container.outputData.METALCOORD_XYZ)
+                # else report error?
+            result.container.inputData.METALCOORD_RESTRAINTS=self.container.outputData.METALCOORD_RESTRAINTS
         if self.container.prosmartProtein.TOGGLE:
             # result.container.controlParameters.PROSMART_PROTEIN_WEIGHT=self.container.prosmartProtein.WEIGHT
             result.container.controlParameters.PROSMART_PROTEIN_SGMN=self.container.prosmartProtein.SGMN
@@ -799,9 +848,13 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
         from core import CCP4ProjectsManager
         print('into servalcat_xtal_pipe.finishUp')
         for attr in self.container.outputData.dataOrder():
-            print('servalcat_xtal_pipe.finishUp attr',attr)
-            wrappersAttr = getattr(servalcatJob.container.outputData, attr)
-            pipelinesAttr = getattr(self.container.outputData, attr)
+            try:
+                wrappersAttr = getattr(servalcatJob.container.outputData, attr)
+                pipelinesAttr = getattr(self.container.outputData, attr)
+            except:
+                print('servalcat_xtal_pipe.finishUp attr', attr, 'not copied from wrapper to pipeline')
+                continue
+            print('servalcat_xtal_pipe.finishUp attr', attr)
             if attr in ["PERFORMANCEINDICATOR"]:
                 setattr(self.container.outputData, attr, wrappersAttr)
             else:
