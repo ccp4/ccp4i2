@@ -37,6 +37,15 @@
            </content>
         </container>
 
+        <container id="outputData">
+           <content id="METALCOORD_XYZ">
+              <className>CPdbDataFile</className>
+           </content>
+           <content id="METALCOORD_RESTRAINTS">
+              <className>CRefmacRestraintsDataFile</className>
+           </content>
+        </container>
+
         <container id="metalCoordWrapper">
             <file><!-- controlParameters container will be used -->
                 <CI2XmlDataFile>
