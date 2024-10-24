@@ -585,7 +585,7 @@ class servalcat_xtal_pipe(CPluginScript):
                 aFile.close()
                 shutil.move(self.pipelinexmlfile + '_tmp', self.pipelinexmlfile)
         except Exception as e:
-            sys.stderr.write("Monitoring of the changes in coordinates and ADPs was not successful:", e, "\n")
+            sys.stderr.write("Monitoring of the changes in coordinates and ADPs was not successful: " + str(e) + "\n")
         return
 
     @QtCore.Slot(dict)
