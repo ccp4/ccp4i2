@@ -152,60 +152,63 @@ class servalcat_xtal_pipe(CPluginScript):
             return
 
     def executeMetalCoords(self):
-        self.metalCoordOutputJsonPaths = []
-        ligand_codes_selected = self.container.metalCoordPipeline.LIGAND_CODES_SELECTED
-        for ligand_code in ligand_codes_selected:
-            self.executeMetalCoord(ligand_code)
-        if not self.metalCoordOutputJsonPaths:
-            return
-        # Get all the JSON files together and convert JSON to external restraint keywords
-        self.outputRestraintsPrefix = "metal_restraints"
-        self.outputRestraintsFilename = self.outputRestraintsPrefix + ".txt"
-        self.outputRestraintsMmcifFilename = self.outputRestraintsPrefix + ".mmcif"
-        self.outputRestraintsPathPrefix = os.path.join(self.getWorkDirectory(), self.outputRestraintsPrefix)
-        self.outputRestraintsPath = os.path.join(self.getWorkDirectory(), self.outputRestraintsFilename)
-        self.outputRestraintsMmcifPath = os.path.join(self.getWorkDirectory(), self.outputRestraintsMmcifFilename)
-        if self.container.metalCoordPipeline.LINKS == "UPDATE":
-            stPath = str(self.container.inputData.XYZIN.fullPath)
-            keep_links = False
-        elif self.container.metalCoordPipeline.LINKS == "KEEP":
-            stPath = str(self.container.inputData.XYZIN.fullPath)
-            keep_links = True
-        else:  # self.container.metalCoordPipeline.LINKS == "NOTTOUCH":
-            stPath = None
-            keep_links = True
-        print("Converting MetalCoord analyses from JSON files to restraints")
-        from wrappers.metalCoord.script import json2restraints
-        json2restraints.main(
-            jsonPaths=self.metalCoordOutputJsonPaths,
-            stPath=stPath,
-            outputPrefix=self.outputRestraintsPathPrefix,
-            jsonEquivalentsPath=None,
-            keep_links=keep_links)
-        if os.path.isfile(self.outputRestraintsPath):
-            self.container.outputData.METALCOORD_RESTRAINTS.setFullPath(self.outputRestraintsPath)
-            self.container.outputData.METALCOORD_RESTRAINTS.annotation = 'Restraints for metal sites'
-        if os.path.isfile(self.outputRestraintsMmcifPath) and stPath:
-            self.container.outputData.METALCOORD_XYZ.setFullPath(self.outputRestraintsMmcifPath)
-            self.container.outputData.METALCOORD_XYZ.annotation = 'Input structure with links from MetalCoord'
+        if self.container.metalCoordPipeline.RUN_METALCOORD and \
+                self.container.metalCoordPipeline.GENERATE_OR_USE == "GENERATE":
+            self.metalCoordOutputJsonPaths = []
+            ligand_codes_selected = self.container.metalCoordPipeline.LIGAND_CODES_SELECTED
+            for ligand_code in ligand_codes_selected:
+                self.executeMetalCoord(ligand_code)
+            print(self.metalCoordOutputJsonPaths)
+            if not self.metalCoordOutputJsonPaths:
+                print("ERROR: No output from MetalCoord found.")
+                return
+            # Get all the JSON files together and convert JSON to external restraint keywords
+            self.outputRestraintsPrefix = "metal_restraints"
+            self.outputRestraintsFilename = self.outputRestraintsPrefix + ".txt"
+            self.outputRestraintsMmcifFilename = self.outputRestraintsPrefix + ".mmcif"
+            self.outputRestraintsPathPrefix = os.path.join(self.getWorkDirectory(), self.outputRestraintsPrefix)
+            self.outputRestraintsPath = os.path.join(self.getWorkDirectory(), self.outputRestraintsFilename)
+            self.outputRestraintsMmcifPath = os.path.join(self.getWorkDirectory(), self.outputRestraintsMmcifFilename)
+            if self.container.metalCoordPipeline.LINKS == "UPDATE":
+                stPath = str(self.container.inputData.XYZIN.fullPath)
+                keep_links = False
+            elif self.container.metalCoordPipeline.LINKS == "KEEP":
+                stPath = str(self.container.inputData.XYZIN.fullPath)
+                keep_links = True
+            else:  # self.container.metalCoordPipeline.LINKS == "NOTTOUCH":
+                stPath = None
+                keep_links = True
+            print("Converting MetalCoord analyses from JSON files to restraints")
+            from wrappers.metalCoord.script import json2restraints
+            json2restraints.main(
+                jsonPaths=self.metalCoordOutputJsonPaths,
+                stPath=stPath,
+                outputPrefix=self.outputRestraintsPathPrefix,
+                jsonEquivalentsPath=None,
+                keep_links=keep_links)
+            if os.path.isfile(self.outputRestraintsPath):
+                self.container.outputData.METALCOORD_RESTRAINTS.setFullPath(self.outputRestraintsPath)
+                self.container.outputData.METALCOORD_RESTRAINTS.annotation = 'Restraints for metal sites'
+            if os.path.isfile(self.outputRestraintsMmcifPath) and stPath:
+                self.container.outputData.METALCOORD_XYZ.setFullPath(self.outputRestraintsMmcifPath)
+                self.container.outputData.METALCOORD_XYZ.annotation = 'Input structure with links from MetalCoord'
         return
 
     def executeMetalCoord(self, ligand_code):
-        if self.container.metalCoordPipeline.RUN_METALCOORD and self.container.metalCoordPipeline.GENERATE_OR_USE == "GENERATE":
-            self.metalCoordPlugin = self.makePluginObject('metalCoord')
-            self.metalCoordPlugin.container.inputData.XYZIN.set(self.container.inputData.XYZIN)
-            self.metalCoordPlugin.container.controlParameters.copyData(self.container.metalCoordWrapper.controlParameters)
-            self.metalCoordPlugin.container.inputData.LIGAND_CODE.set(ligand_code)
-            self.metalCoordPlugin.container.controlParameters.SAVE_PDBMMCIF.set(False)
-            if str(self.container.metalCoordPipeline.LINKS) == "KEEP":
-                self.metalCoordPlugin.container.controlParameters.KEEP_LINKS.set(True)
-            self.connectSignal(self.metalCoordPlugin, 'finished', self.metalCoordFinished)
-            self.metalCoordPlugin.waitForFinished = -1
-            self.metalCoordPlugin.process()
-            self.outputJsonFilename = str(self.metalCoordPlugin.container.inputData.LIGAND_CODE) + ".json"
-            self.outputJsonPath = os.path.join(self.metalCoordPlugin.getWorkDirectory(), self.outputJsonFilename)
-            if os.path.isfile(self.outputJsonPath):
-                self.metalCoordOutputJsonPaths.append(self.outputJsonPath)
+        self.metalCoordPlugin = self.makePluginObject('metalCoord')
+        self.metalCoordPlugin.container.inputData.XYZIN.set(self.container.inputData.XYZIN)
+        self.metalCoordPlugin.container.controlParameters.copyData(self.container.metalCoordWrapper.controlParameters)
+        self.metalCoordPlugin.container.inputData.LIGAND_CODE.set(ligand_code)
+        self.metalCoordPlugin.container.controlParameters.SAVE_PDBMMCIF.set(False)
+        if str(self.container.metalCoordPipeline.LINKS) == "KEEP":
+            self.metalCoordPlugin.container.controlParameters.KEEP_LINKS.set(True)
+        self.connectSignal(self.metalCoordPlugin, 'finished', self.metalCoordFinished)
+        self.metalCoordPlugin.waitForFinished = -1
+        self.metalCoordPlugin.process()
+        self.outputJsonFilename = str(self.metalCoordPlugin.container.inputData.LIGAND_CODE) + ".json"
+        self.outputJsonPath = os.path.join(self.metalCoordPlugin.getWorkDirectory(), self.outputJsonFilename)
+        if os.path.isfile(self.outputJsonPath):
+            self.metalCoordOutputJsonPaths.append(self.outputJsonPath)
 
     @QtCore.Slot(dict)
     def metalCoordFinished(self, statusDict):
