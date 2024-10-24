@@ -296,24 +296,41 @@ class servalcat_xtal(CPluginScript):
 
         # Extract performance indicators from JSON
         statsOverall = {}
-        try:
-            statsOverall["-LL"] = jsonStats[-1]['data']['summary']['-LL']
-            statsOverall["Rwork"] = jsonStats[-1]['data']['summary']['Rwork']
-            statsOverall["Rfree"] = jsonStats[-1]['data']['summary']['Rfree']
-            statsOverall["CCFworkavg"] = jsonStats[-1]['data']['summary']['CCFworkavg']
-            statsOverall["CCFfreeavg"] = jsonStats[-1]['data']['summary']['CCFfreeavg']
-            self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(statsOverall["Rwork"])
-            self.container.outputData.PERFORMANCEINDICATOR.RFree.set(statsOverall["Rfree"])
-        except:
+        if self.container.inputData.FREERFLAG.isSet():
             try:
-                statsOverall["R1work"] = jsonStats[-1]['data']['summary']['R1work']
-                statsOverall["R1free"] = jsonStats[-1]['data']['summary']['R1free']
-                statsOverall["CCIworkavg"] = jsonStats[-1]['data']['summary']['CCIworkavg']
-                statsOverall["CCIfreeavg"] = jsonStats[-1]['data']['summary']['CCIfreeavg']
-                self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(statsOverall["R1work"]) # TO DO
-                self.container.outputData.PERFORMANCEINDICATOR.RFree.set(statsOverall["R1free"])   # TO DO
+                statsOverall["-LL"] = jsonStats[-1]['data']['summary']['-LL']
+                statsOverall["Rwork"] = jsonStats[-1]['data']['summary']['Rwork']
+                statsOverall["Rfree"] = jsonStats[-1]['data']['summary']['Rfree']
+                statsOverall["CCFworkavg"] = jsonStats[-1]['data']['summary']['CCFworkavg']
+                statsOverall["CCFfreeavg"] = jsonStats[-1]['data']['summary']['CCFfreeavg']
+                self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(statsOverall["Rwork"])
+                self.container.outputData.PERFORMANCEINDICATOR.RFree.set(statsOverall["Rfree"])
             except:
-                pass
+                try:
+                    statsOverall["R1work"] = jsonStats[-1]['data']['summary']['R1work']
+                    statsOverall["R1free"] = jsonStats[-1]['data']['summary']['R1free']
+                    statsOverall["CCIworkavg"] = jsonStats[-1]['data']['summary']['CCIworkavg']
+                    statsOverall["CCIfreeavg"] = jsonStats[-1]['data']['summary']['CCIfreeavg']
+                    self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(statsOverall["R1work"]) # TO DO
+                    self.container.outputData.PERFORMANCEINDICATOR.RFree.set(statsOverall["R1free"])   # TO DO
+                except:
+                    pass
+        else:
+            try:
+                statsOverall["-LL"] = jsonStats[-1]['data']['summary']['-LL']
+                statsOverall["R"] = jsonStats[-1]['data']['summary']['R']
+                statsOverall["CCFavg"] = jsonStats[-1]['data']['summary']['CCFavg']
+                self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(statsOverall["R"])  # TO DO
+                self.container.outputData.PERFORMANCEINDICATOR.RFree.set(0)
+            except:
+                try:
+                    statsOverall["-LL"] = jsonStats[-1]['data']['summary']['-LL']
+                    statsOverall["R1"] = jsonStats[-1]['data']['summary']['R1']
+                    statsOverall["CCIavg"] = jsonStats[-1]['data']['summary']['CCIavg']
+                    self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(statsOverall["R1"])  # TO DO
+                    self.container.outputData.PERFORMANCEINDICATOR.RFree.set(0)
+                except:
+                    pass
 
         # Perform analysis of output coordinate file composition
         # TO DO what if PDB does not exist
@@ -411,17 +428,22 @@ class servalcat_xtal(CPluginScript):
                 else:
                     print(f"WARNING: input restraint dictionary {dictionary} does not exist and so will not be used.")
 
-        # TO DO - labin, free
         if self.container.controlParameters.F_SIGF_OR_I_SIGI.isSet():
             if str(self.container.controlParameters.F_SIGF_OR_I_SIGI) == "F_SIGF" or not self.container.controlParameters.HKLIN_IS_I_SIGI:
-                self.appendCommandLine(['--labin', 'F,SIGF,FREER'])
+                labin = 'F,SIGF'
             else:
-                self.appendCommandLine(['--labin', 'I,SIGI,FREER'])
+                labin = 'I,SIGI'
         elif self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR \
                 or self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN:
-            self.appendCommandLine(['--labin', 'I,SIGI,FREER'])
+            labin = 'I,SIGI'
         else:
-            self.appendCommandLine(['--labin', 'F,SIGF,FREER'])
+            labin = 'F,SIGF'
+        if self.container.inputData.FREERFLAG.isSet():
+            if self.container.controlParameters.FREERFLAG_NUMBER.isSet():
+                self.appendCommandLine(['--free', str(self.container.controlParameters.FREERFLAG_NUMBER)])
+            labin += ",FREE"
+        self.appendCommandLine(['--labin', labin])
+
         self.appendCommandLine(['--source', str(self.container.controlParameters.SCATTERING_FACTORS)])
         if self.container.controlParameters.NCYCLES.isSet():
             self.appendCommandLine(["--ncycle", str(self.container.controlParameters.NCYCLES)])
@@ -497,8 +519,6 @@ class servalcat_xtal(CPluginScript):
         if self.container.controlParameters.RANDOMIZEUSE and \
                 str(self.container.controlParameters.RANDOMIZE):
             self.appendCommandLine(['--randomize', str(self.container.controlParameters.RANDOMIZE)])
-        if str(self.container.controlParameters.FREERFLAG_NUMBER):
-            self.appendCommandLine(['--free', str(self.container.controlParameters.FREERFLAG_NUMBER)])
         if self.container.controlParameters.NO_SOLVENT:
             self.appendCommandLine(['--no_solvent'])
 
