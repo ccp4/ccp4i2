@@ -295,13 +295,17 @@ def search_write_json(atomSiteLabelAtomId, atomSiteLabelAtomId2, \
                         if atomSitePDBInsCode[i].strip():
                             address += atomSitePDBInsCode[i].strip()
                         address += "/"
-                        address += atomSiteLabelAtomId[i].strip()
+                        atomSiteLabelAtomIdCurrent = atomSiteLabelAtomId[i].strip()
+                        if atomSiteLabelAtomIdCurrent[0] == '"' and atomSiteLabelAtomIdCurrent[-1] == '"' or \
+                                atomSiteLabelAtomIdCurrent[0] == "'" and atomSiteLabelAtomIdCurrent[-1] == "'":
+                            atomSiteLabelAtomIdCurrent = atomSiteLabelAtomId[i].strip()[1:-1].strip()
+                        address += atomSiteLabelAtomIdCurrent
                         if atomSiteLabelAltId[i].strip():
                             address += "."
                             address += atomSiteLabelAltId[i].strip()
-                        data_json.append(8 * " " + "\"AtomAddress\": \"" + address + "\",\n")
-                        data_json.append(8 * " " + "\"CoordDev\": " + str(round(coordDev, 2)) + ",\n")
-                        data_json.append(8 * " " + "\"ADPDev\": " + str(round(ADPDev, 2)) + "\n")
+                        data_json.append(8 * ' ' + '\"AtomAddress\": \"' + address + '\",\n')
+                        data_json.append(8 * ' ' + '\"CoordDev\": ' + str(round(coordDev, 2)) + ',\n')
+                        data_json.append(8 * ' ' + '\"ADPDev\": ' + str(round(ADPDev, 2)) + '\n')
                         data_json.append("    }")
                         data_json.append(",")
                     break
