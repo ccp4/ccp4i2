@@ -201,6 +201,7 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     indent = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
     if self.container.metalCoordPipeline.LIGAND_CODES_AVAILABLE:
         self.monomersWithMetals = self.container.metalCoordPipeline.LIGAND_CODES_AVAILABLE
+        self.container.metalCoordPipeline.LIGAND_CODES_SELECTED = self.container.metalCoordPipeline.LIGAND_CODES_AVAILABLE
     else:
         self.monomersWithMetals = []
     #-  --------------------          --------------------          --------------------
