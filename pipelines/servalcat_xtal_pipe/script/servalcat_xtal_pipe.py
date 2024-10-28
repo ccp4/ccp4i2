@@ -26,7 +26,7 @@ from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core import CCP4Utils
 from . import monitor_refinement_differences
-from wrappers.servalcat_xtal.script.servalcat_xtal import json2xml
+from wrappers.servalcat_xtal.script.json2xml import json2xml
 import os, sys, shutil, re
 import base64
 import gemmi
