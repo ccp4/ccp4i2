@@ -7,8 +7,12 @@ from __future__ import print_function
 
 import os
 import json
+from xml.etree import ElementTree as ET
 from core.CCP4PluginScript import CPluginScript
 from core.CCP4ErrorHandling import *
+from core import CCP4Utils
+from wrappers.servalcat_xtal.script.json2xml import json2xml
+
 
 class metalCoord(CPluginScript):
     
@@ -75,10 +79,12 @@ class metalCoord(CPluginScript):
                 ok = True
         if not ok: self.appendErrorReport(202)
 
-        # sanity check that metalCoord has produced JSON
+        # Load JSON file content
         if os.path.isfile(self.outputJsonPath):
             self.container.outputData.JSON.setFullPath(self.outputJsonPath)
             self.container.outputData.JSON.annotation = 'Full analysis for monomer ' + str(self.container.inputData.LIGAND_CODE)
+            with open(self.outputJsonPath, 'r') as outputJsonFile:
+                outputJsonText = outputJsonFile.read()
         else:
             self.appendErrorReport(201, str(self.container.outputData.JSON))
             return CPluginScript.FAILED
@@ -110,6 +116,14 @@ class metalCoord(CPluginScript):
         if os.path.isfile(self.outputRestraintsPath):
             self.container.outputData.RESTRAINTS.setFullPath(self.outputRestraintsPath)
             self.container.outputData.RESTRAINTS.annotation = 'Restraints for ' + str(self.container.inputData.LIGAND_CODE)
+
+        # Convert JSON to program.xml for i2 report
+        outputJsonStats = json.loads(outputJsonText)
+        xmlText = json2xml(list(outputJsonStats), tag_name_subroot="site")
+        self.xmlroot = ET.fromstringlist(["<METALCOORD>", xmlText, "</METALCOORD>"])
+        ET.indent(self.xmlroot, space="\t", level=0)
+        with open(self.makeFileName('PROGRAMXML'), 'w') as programXML:
+            CCP4Utils.writeXML(programXML, ET.tostring(self.xmlroot)) # CCP4Utils.writeXML(programXML, etree.tostring(self.xmlroot, pretty_print=True))
 
         return CPluginScript.SUCCEEDED
 
