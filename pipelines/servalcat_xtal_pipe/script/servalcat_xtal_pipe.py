@@ -354,8 +354,6 @@ class servalcat_xtal_pipe(CPluginScript):
 
 
     def adp_analysis(self, modelPath, iqrFactor=2.0):
-        # TO DO: scatter plot X:resi Y:ADP. Main and side chains separately, carefuly with HETATM. Also per individual chains.
-        # TO DO: outliers
         adp_dict = {}
         adp_per_resi = {}
         adp_dict["All"] = []
