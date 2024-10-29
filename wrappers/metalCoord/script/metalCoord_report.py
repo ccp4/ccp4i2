@@ -56,17 +56,39 @@ class metalCoord_report(Report):
             if entry.findall(nodePrefix + "altloc")[0].text:
                 atomAddress += "." + entry.findall(nodePrefix + "altloc")[0].text
             return atomAddress
-            
+
+        def makeSymmetry(entry, node="ligand"):
+            atomSymmetry = entry.findall(node + "/symmetry")[0].text
+            if int(atomSymmetry) == 0:
+                return "-"
+            else:
+                return str(atomSymmetry)
+
         for i, site in enumerate(self.xmlnode.findall(".//site")):
             metalAddress = makeAddress(site, node="")
+            siteFold = parent.addFold(label="Metal site " + metalAddress, initiallyOpen=True)
+            n_classes = len(site.findall(".//ligands"))
+            noteDiv = siteFold.addDiv(style='font-size:110%;')
+            if n_classes == 1:
+                noteDiv.append("Only one symmetry class is reported for this metal site.")
+            elif n_classes > 1:
+                noteDiv.append(f"{n_classes} possible symmetry classes are reported. The class with the lowest procrustes distance is the most favourable, has been used for restraints generation and is listed as the first.")
             for j, symmClass in enumerate(site.findall(".//ligands")):
-                table = parent.addTable(xmlnode=symmClass)
-                table.addData(title="Symmetry class", select='class')
-                table.addData(title="Procrustes", select='procrustes')
-                table.addData(title="Coordination", select='coordination')
-                table.addData(title="Count", select='count')
-                table.addData(title="Description", select='description')
-                indentDiv = parent.addDiv(style="margin-left:3em;")
+                indentDiv = siteFold.addDiv(style="margin-left:3em;")
+                if j == 0: initiallyOpen=True
+                else: initiallyOpen=False
+                classFold = indentDiv.addFold(
+                    label=symmClass.findall(".//class")[0].text + " symmetry class",
+                    initiallyOpen=initiallyOpen)
+                table = classFold.addTable(xmlnode=symmClass)
+                # table.addData(title="Symmetry class", select='class')
+                table.addData(title="Procrustes distance", select='procrustes')
+                table.addData(title="Coordination number", select='coordination')
+                table.addData(title="No. reference structures", select='count')
+                table.addData(title="Note", select='description')
+
+                headerDiv = classFold.addDiv(style='font-size:110%;font-weight:bold;')
+                headerDiv.append("Ideal distances")
                 for k, entry in enumerate(symmClass.findall(".//base")):
                     n_options = len(entry.findall("std"))
                     #if n_options >= 2:
@@ -76,12 +98,16 @@ class metalCoord_report(Report):
                         ligandAddress = makeAddress(entry, node="ligand")
                         ligandAddressElement = ET.SubElement(entry, "ligandAtomAddress")
                         ligandAddressElement.text = ligandAddress
+                        ligandSymmetry = makeSymmetry(entry, node="ligand")
+                        ligandSymmetryElement = ET.SubElement(entry, "ligandAtomSymmetry")
+                        ligandSymmetryElement.text = ligandSymmetry
                         metalAddressElement = ET.SubElement(entry, "metalAtomAddress")
                         metalAddressElement.text = metalAddress
                 if symmClass.findall(".//base"):
-                    table = indentDiv.addTable(xmlnode=symmClass)
+                    table = classFold.addTable(xmlnode=symmClass)
                     table.addData(title="Metal site", select='base/metalAtomAddress')
                     table.addData(title="Atom", select='base/ligandAtomAddress')
+                    table.addData(title="Symmetry?", select='base/ligandAtomSymmetry')
                     table.addData(title="Distance (&Aring;)", select='base/distance')
                     table.addData(title="St. dev. (&Aring;)", select='base/std')
 
@@ -91,31 +117,45 @@ class metalCoord_report(Report):
                         ligandAddress = makeAddress(entry, node="ligand")
                         ligandAddressElement = ET.SubElement(entry, "ligandAtomAddress")
                         ligandAddressElement.text = ligandAddress
+                        ligandSymmetry = makeSymmetry(entry, node="ligand")
+                        ligandSymmetryElement = ET.SubElement(entry, "ligandAtomSymmetry")
+                        ligandSymmetryElement.text = ligandSymmetry
                         metalAddressElement = ET.SubElement(entry, "metalAtomAddress")
                         metalAddressElement.text = metalAddress
                 if symmClass.findall(".//pdb"):
-                    table = indentDiv.addTable(xmlnode=symmClass)
+                    table = classFold.addTable(xmlnode=symmClass)
                     table.addData(title="Metal site", select='pdb/metalAtomAddress')
                     table.addData(title="Atom", select='pdb/ligandAtomAddress')
+                    table.addData(title="Symmetry?", select='pdb/ligandAtomSymmetry')
                     table.addData(title="Distance (&Aring;)", select='pdb/distance')
                     table.addData(title="St. dev. (&Aring;)", select='pdb/std')
 
+                headerDiv = classFold.addDiv(style='font-size:110%;font-weight:bold;')
+                headerDiv.append("Ideal angles")
                 for k, entry in enumerate(symmClass.findall(".//angles")):
                     n_options = len(entry.findall("std"))
                     for l in range(n_options):
                         ligand1Address = makeAddress(entry, node="ligand1")
                         ligand1AddressElement = ET.SubElement(entry, "ligand1AtomAddress")
                         ligand1AddressElement.text = ligand1Address
+                        ligand1Symmetry = makeSymmetry(entry, node="ligand1")
+                        ligand1SymmetryElement = ET.SubElement(entry, "ligand1AtomSymmetry")
+                        ligand1SymmetryElement.text = ligand1Symmetry
                         metalAddressElement = ET.SubElement(entry, "metalAtomAddress")
                         metalAddressElement.text = metalAddress
                         ligand2Address = makeAddress(entry, node="ligand2")
                         ligand2AddressElement = ET.SubElement(entry, "ligand2AtomAddress")
                         ligand2AddressElement.text = ligand2Address
+                        ligand2Symmetry = makeSymmetry(entry, node="ligand2")
+                        ligand2SymmetryElement = ET.SubElement(entry, "ligand2AtomSymmetry")
+                        ligand2SymmetryElement.text = ligand2Symmetry
                 if symmClass.findall(".//angles"):
-                    table = indentDiv.addTable(xmlnode=symmClass)
+                    table = classFold.addTable(xmlnode=symmClass)
                     table.addData(title="Atom", select='angles/ligand1AtomAddress')
+                    table.addData(title="Symmetry?", select='angles/ligand1AtomSymmetry')
                     table.addData(title="Metal site", select='angles/metalAtomAddress')
                     table.addData(title="Atom", select='angles/ligand2AtomAddress')
+                    table.addData(title="Symmetry?", select='angles/ligand2AtomSymmetry')
                     table.addData(title="Angle (&deg;)", select='angles/angle')
                     table.addData(title="St. dev. (&deg;)", select='angles/std')
 
