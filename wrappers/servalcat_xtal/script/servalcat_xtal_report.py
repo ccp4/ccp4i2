@@ -530,7 +530,11 @@ class servalcat_xtal_report(Report):
             label=graphCCtitle,
             style=galleryGraphStyle)
         graphCC.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
-        if len(xmlnode.findall('.//cycle[last()]/data/binned/CCFwork')) > 0:
+        if len(xmlnode.findall('.//cycle[last()]/data/binned/CCI')) > 0:
+            graphCC.addData(title="CCI", select=".//cycle[last()]/data/binned/./CCI")
+        elif len(xmlnode.findall('.//cycle[last()]/data/binned/CCF')) > 0:
+            graphCC.addData(title="CCF", select=".//cycle[last()]/data/binned/./CCF")
+        elif len(xmlnode.findall('.//cycle[last()]/data/binned/CCFwork')) > 0:
             graphCC.addData(title="CCFwork", select=".//cycle[last()]/data/binned/./CCFwork")
             if len(xmlnode.findall('.//cycle[last()]/data/binned/CCFfree')) > 0:
                 graphCC.addData(title="CCFfree", select=".//cycle[last()]/data/binned/./CCFfree")
