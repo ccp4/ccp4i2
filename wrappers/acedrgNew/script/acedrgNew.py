@@ -8,8 +8,10 @@ from core import CCP4XtalData
 from lxml import etree
 import math
 from core import CCP4Modules,CCP4Utils
-from . import atomMatching, cifToMolBlock
+from . import atomMatching, cifToMolBlock, mol2svg
 import platform
+from rdkit.Chem.Draw import rdMolDraw2D
+from rdkit import Chem
 
 class acedrgNew(CPluginScript):
     TASKMODULE = 'wrappers'                               # Where this plugin will appear on the gui
@@ -304,10 +306,13 @@ class acedrgNew(CPluginScript):
         # Generate another RDKIT mol directly from the mol or smiles: this one *will* hopefully have proper
         # chirality information
         referenceMol = None
+        referenceMolToDraw = None
         if self.container.inputData.MOL2IN.isSet():
             referenceMol = Chem.MolFromMol2File(self.originalMolFilePath)
+            referenceMolToDraw = Chem.MolFromMol2File(self.originalMolFilePath)
         else:
             referenceMol = Chem.MolFromMolFile(self.originalMolFilePath)
+            referenceMolToDraw = Chem.MolFromMolFile(self.originalMolFilePath)
 
         try:
             Chem.SanitizeMol(referenceMol)
@@ -339,43 +344,13 @@ class acedrgNew(CPluginScript):
         
         # Get 2D picture of structure from the RDKit mol and place in report
         svgNode = etree.SubElement(self.xmlroot,'SVGNode')
-        svgNode.append(svgFromMol(molToWrite))
+
+        svgText = bytes(mol2svg.svgFromMol(referenceMolToDraw),"utf-8")
+        svgMolNode = etree.fromstring(svgText)
+
+        svgNode.append(svgMolNode)
 
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
             CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot,pretty_print=True))
 
         return CPluginScript.SUCCEEDED
-
-def svgFromMol(mol):
-    try:
-        from rdkit.Chem.Draw import spingCanvas
-        import rdkit.Chem.Draw.MolDrawing
-        from rdkit.Chem.Draw.MolDrawing import DrawingOptions
-        
-        myCanvas = spingCanvas.Canvas(size=(350,350),name='MyCanvas',imageType='svg')
-        myDrawing = rdkit.Chem.Draw.MolDrawing(canvas=myCanvas)
-        for iAtom in range(mol.GetNumAtoms()):
-            atom = mol.GetAtomWithIdx(iAtom)
-            atom.ClearProp('molAtomMapNumber')
-            '''
-            print 'ANr',atom.GetAtomicNum()
-            print 'FC',atom.GetFormalCharge()
-            print 'NRadEl',atom.GetNumRadicalElectrons()
-            print 'Isot',atom.GetIsotope()
-            print 'HasProp',atom.HasProp('molAtomMapNumber')
-            print 'Degree',atom.GetDegree()
-        print 'noCarbSym',myDrawing.drawingOptions.noCarbonSymbols
-        print 'includeAtom',myDrawing.drawingOptions.includeAtomNumbers'''
-        myDrawing.AddMol(mol)
-        svg = myCanvas.canvas.text().replace('svg:','')
-        return etree.fromstring(bytes(svg,encoding="iso-8859-1"))
-    except:
-        from rdkit import Chem
-        try:
-            molBlock = Chem.MolToMolBlock(mol)
-            import MOLSVG
-            mdlMolecule = MOLSVG.MDLMolecule(molBlock=molBlock)
-            return mdlMolecule.svgXML(size=(350,350))
-        except:
-            return etree.fromstring("<svg></svg>")
-
