@@ -29,10 +29,8 @@
                 <className>CString</className>
                 <qualifiers>
                     <onlyEnumerators>True</onlyEnumerators>
-                    <!--<enumerators>MOL,MOL2,SMILES,SMILESFILE,SKETCH,DICT,PDBMMCIF</enumerators>-->
-                    <enumerators>MOL,MOL2,SMILES,SMILESFILE,SKETCH,DICT</enumerators>
-                    <!--<menuText>a MOL or SDF file,a MOL2 file,a SMILES string,a SMILES file,a sketch,a CIF dictionary,a PDB or mmCIF file</menuText>-->
-                    <menuText>a MOL or SDF file,a MOL2 file,a SMILES string,a SMILES file,a sketch,a CIF dictionary</menuText>
+                    <enumerators>MOL,MOL2,SMILES,SMILESFILE,SKETCH,DICT,PDBMMCIF</enumerators>
+                    <menuText>a MOL or SDF file,a MOL2 file,a SMILES string,a SMILES file,a sketch,a CIF dictionary,a PDB or mmCIF file</menuText>
                     <default>DICT</default>
                     <guiLabel>Atom match option</guiLabel>
                 </qualifiers>
