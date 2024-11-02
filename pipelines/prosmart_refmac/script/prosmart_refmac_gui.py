@@ -187,7 +187,7 @@ class Cprosmart_refmac(CCP4TaskWidget.CTaskWidget):
        #except:
        #pass
     self.createLine( [ 'widget', '-browseDb', True, 'F_SIGF' ])
-    self.createLine( [ 'label','Use anomalous data for ', 'widget', 'USEANOMALOUSFOR', 'stretch', 'label', 'Wavelength', 'widget', 'WAVELENGTH'],toggleFunction=[self.anomalousAvailable,['F_SIGF']])
+    self.createLine( [ 'label','Use anomalous data for ', 'widget', 'USEANOMALOUSFOR', 'stretch', 'label', 'Wavelength', 'widget', 'WAVELENGTH'],toggleFunction=[self.anomalousAvailable,['F_SIGF', 'SCATTERING_FACTORS']])
     if self.isEditable():
         self.container.inputData.F_SIGF.dataChanged.connect( self.F_SIGFChanged)
         if not self.container.controlParameters.WAVELENGTH.isSet(): self.getWavelength()
@@ -591,6 +591,9 @@ class Cprosmart_refmac(CCP4TaskWidget.CTaskWidget):
 
   def anomalousAvailable(self):
     if not self.container.inputData.F_SIGF.isSet(): return False
+    if self.container.controlParameters.SCATTERING_FACTORS != 'XRAY':
+       self.container.controlParameters.USEANOMALOUS = False
+       return False
     if not self.isEditable():
        if self.container.controlParameters.USEANOMALOUS:
           return True #only display after job is run if USEANOMALOUS has already been set to True
@@ -648,6 +651,8 @@ class Cprosmart_refmac(CCP4TaskWidget.CTaskWidget):
       self.container.controlParameters.H_REFINE.set(True)
     else:
       self.container.controlParameters.H_REFINE.set(False)
+    if self.container.controlParameters.SCATTERING_FACTORS != 'XRAY':
+       self.container.controlParameters.USEANOMALOUS.set(False)
     return
     
   @QtCore.Slot()
