@@ -110,7 +110,7 @@ class scaleit(CPluginScript):
                                        extendOutputColnames, useInputColnames,
                                        infiles, allColout)
         #print('/\ outfile, infiles', outfile, infiles)
-        print("/\/\ ", self.fileSignatures)
+        #print("/\/\ ", self.fileSignatures)
         # Combine files
         status, ret = self.joinMtz(outfile, infiles)
         if status != CPluginScript.SUCCEEDED and ret not in ignoreErrorCodes:
