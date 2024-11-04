@@ -67,7 +67,7 @@ class Phil2Etree(object):
 
     def parse_choice_options(self, phil_def):
 
-        s = ",".join([re.sub("\*", "", word.value) for word in phil_def.words])
+        s = ",".join([re.sub(r"\*", "", word.value) for word in phil_def.words])
         return self.sanitize_text(s)
 
     def parse_captions(self, phil_def):
