@@ -13,7 +13,7 @@ phil_type_as_class_name = {
 
 import re
 def parse_choice_options (phil_def) :
-    return ",".join([ re.sub("\*", "", word.value) for word in phil_def.words ])
+    return ",".join([ re.sub(r"\*", "", word.value) for word in phil_def.words ])
 
 def parse_captions (phil_def) :
     return ",".join([re.sub("_"," ",item) for item in phil_def.caption.split()])
