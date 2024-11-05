@@ -154,16 +154,19 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
   def ToggleTLSModeFile(self):
     return str(self.container.controlParameters.TLSMODE) == 'FILE'
 
-  def ToggleTwinAvailable(self):
-    if not self.container.controlParameters.USEANOMALOUS:
-        return True
-    self.container.controlParameters.USE_TWIN = False
-    return False
+  #def ToggleTwinAvailable(self):
+  #  if not self.container.controlParameters.USEANOMALOUS:
+  #      return True
+  #  self.container.controlParameters.USE_TWIN = False
+  #  return False
 
-  def ToggleTwinNotAvailable(self):
-   if self.container.controlParameters.USEANOMALOUS:
-      return True
-   return False
+  #def ToggleTwinNotAvailable(self):
+  # if self.container.controlParameters.USEANOMALOUS:
+  #    return True
+  # return False
+
+  def ToggleTwinSuboptimal(self):
+    return (not self.container.controlParameters.HKLIN_IS_I_SIGI or self.container.controlParameters.F_SIGF_OR_I_SIGI == "F_SIGF")
 
   def CheckScaleType(self):
     if str(self.container.controlParameters.SCALE_TYPE) == 'BABINET':
@@ -254,7 +257,8 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'widget', 'HYDR_USE', 'label', 'Use riding hydrogens during refinement', 'stretch', 'widget', 'HYDR_ALL'], toggle = ['HYDR_USE', 'open', [ True ] ] )
     add_waters = self.createLine( [ 'widget', 'ADD_WATERS', 'label', 'Add waters' ] )
     self.createLine( [ 'label', '&nbsp;and then perform further ', 'widget', 'NCYCLES_AFTER_ADD_WATERS', 'label', ' refinement cycles' ], toggle = [ 'ADD_WATERS','open', [ True ] ], appendLine=add_waters  )
-    #use_twin = self.createLine( [ 'widget', 'USE_TWIN', 'label', 'Crystal is twinned' ], toggleFunction=[self.ToggleTwinAvailable,['USEANOMALOUSFOR','HKLIN']])
+    self.createLine( [ 'widget', 'USE_TWIN', 'label', 'Crystal is twinned' ] )
+    self.createLine( [ 'label', '<i>Warning: Intensities should be given for twin refinement. Using amplitudes is suboptimal.</i>' ], toggleFunction=[self.ToggleTwinSuboptimal, ['HKLIN_IS_I_SIGI', 'F_SIGF_OR_I_SIGI', 'HKLIN']])
 
     """self.createLine( [ 'label', '' ], toggleFunction=[self.ToggleTwinNotAvailable,['USEANOMALOUSFOR','HKLIN']])
     msg11 = 'Twin refinement not available for anomalous data.'
@@ -961,6 +965,7 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
         self.container.controlParameters.HKLIN_IS_I_SIGI = True
       else:
         self.container.controlParameters.HKLIN_IS_I_SIGI = False
+        self.container.controlParameters.F_SIGF_OR_I_SIGI = 'F_SIGF'
 
   def isValid(self):
       invalidElements = super(Cservalcat_xtal_pipe, self).isValid()

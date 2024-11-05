@@ -114,7 +114,6 @@ class servalcat_xtal(CPluginScript):
         #    dataObjects += ['ABCD']
         
         #Apply coordinate selection if set
-        import os
         self.inputCoordPath = os.path.normpath(self.container.inputData.XYZIN.fullPath.__str__())
         if self.container.inputData.XYZIN.isSelectionSet():
             self.inputCoordPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'selected.pdb'))
@@ -195,7 +194,6 @@ class servalcat_xtal(CPluginScript):
 
         from core import CCP4XtalData
         from core import CCP4File
-        import os
         
         # Need to set the expected content flag  for phases data
 
@@ -229,8 +227,6 @@ class servalcat_xtal(CPluginScript):
             outputFiles += ['ANOMFPHIOUT']
             outputColumns += ['FAN,PHAN']"""
         
-        from core import CCP4XtalData
-        import os
         #hkloutFile=CCP4XtalData.CMtzDataFile(os.path.join(self.getWorkDirectory(), "hklout.mtz"))
         hkloutFilePath = str(os.path.join(self.getWorkDirectory(), "refined.mtz"))
         #hkloutFile=CCP4XtalData.CMtzDataFile(os.path.join(self.getWorkDirectory(), "refined.mtz"))
@@ -444,6 +440,8 @@ class servalcat_xtal(CPluginScript):
                 self.appendCommandLine(['--free', str(self.container.controlParameters.FREERFLAG_NUMBER)])
             labin += ",FREE"
         self.appendCommandLine(['--labin', labin])
+        if self.container.controlParameters.USE_TWIN:  # I,SIGI for optimal results
+            self.appendCommandLine(['--twin'])
 
         self.appendCommandLine(['--source', str(self.container.controlParameters.SCATTERING_FACTORS)])
         if self.container.controlParameters.NCYCLES.isSet():
