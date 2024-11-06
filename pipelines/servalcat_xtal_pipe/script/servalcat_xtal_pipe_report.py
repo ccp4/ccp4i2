@@ -161,6 +161,7 @@ class servalcat_xtal_pipe_report(Report):
                 servalcatReport1.addTablePerCycle(cycle_data1, parent=perCycleFold1, initialFinalOnly=False)
             servalcatReport.addGraphsVsResolution(parent=self, xmlnode=servalcatReportNodeLast)
             servalcatReport.addOutlierAnalysis(parent=self, xmlnode=servalcatReportNodeLast)
+            self.validationReport()
             self.addAdpAnalysis()
             self.addCoordADPDev()
 
@@ -368,6 +369,64 @@ class servalcat_xtal_pipe_report(Report):
                 suggestedDiv.append('<p><b>You can do this by clicking the <i>"Re-run with suggested parameters"</i> button at the bottom of this report.</b></p>')
 
         self.showWarnings()
+
+    def validationReport(self):
+        try:
+            validateReport = None
+            validateReportNode = self.xmlnode.findall(".//Validation")[0]
+            if validateReportNode is not None:
+                validateReport = validate_protein_report.validate_protein_report(xmlnode=validateReportNode, jobStatus='nooutput', jobInfo=self.jobInfo)
+
+            if validateReport is not None:
+                try:
+                    if len(validateReportNode.findall ( ".//Iris" ))>0 and validateReportNode.findall ( ".//Iris" )[0].text != "" :
+                        irisFold = self.addFold ( label="Iris report", initiallyOpen=False, brief='Iris' )
+                        irisdiv = irisFold.addDiv(style="clear:both; margin-top:30px; width:800px;")
+                        validateReport.add_iris_panel(parent=irisFold)
+                except:
+                    self.addText("Warning - Iris report failed")
+
+                # try:
+                #     if len(validateReportNode.findall ( ".//B_averages" ))>0 :
+                #     baverageFold = self.addFold ( label="B-factor analysis", initiallyOpen=False )
+                #     validateReport.b_factor_tables(parent=baverageFold)
+                #     validateReport.b_factor_graph(parent=baverageFold)
+                # except:
+                #     self.addText("Warning - B-factor analysis failed")
+
+                # try:
+                #     if len(validateReportNode.findall ( ".//B_factors" ))>0 and validateReportNode.findall ( ".//B_factors" )[0].text != "" :
+                #     baverageFold = self.addFold ( label="B-factor analysis", initiallyOpen=False )
+                #     validateReport.add_b_factors(parent=baverageFold)
+                # except:
+                #     self.addText("Warning - B-factor analysis failed")
+
+                try:
+                    if len(validateReportNode.findall ( ".//Molprobity" ))>0 and validateReportNode.findall ( ".//Molprobity" )[0].text != "" :
+                        molprobityFold = self.addFold ( label="MolProbity analysis", initiallyOpen=False )
+                        validateReport.add_molprobity(parent=molprobityFold)
+                except:
+                    self.addText("Warning - MolProbity analysis failed")
+
+                try:
+                    if len(validateReportNode.findall ( ".//Ramachandran" ))>0 and validateReportNode.findall ( ".//Ramachandran" )[0].text != "" :
+                        ramachandranFold = self.addFold ( label="Ramachandran plots", initiallyOpen=False )
+                        validateReport.add_ramachandran(parent=ramachandranFold)
+                except:
+                    self.addText("Warning - Ramachandran plot generation failed")           
+                
+        except:
+            traceback.print_exc()
+        clearingDiv = self.addDiv(style="clear:both;")
+
+        #try:
+        #    molprobityOutputNode = self.xmlnode.findall('.//Molprobity/Output')[0]
+        #    molprobityFold = self.addFold(label='Molprobity analysis', initiallyOpen=False,brief='Molprobity')
+        #    molprobityFold.addPre(text = molprobityOutputNode.text)
+        #    clearingDiv = self.addDiv(style="clear:both;")
+        #except:
+        #    pass
+
 
     def addAdpAnalysis(self):
         adpFold = self.addFold(label='ADP analysis', initiallyOpen=False, brief='ADP')

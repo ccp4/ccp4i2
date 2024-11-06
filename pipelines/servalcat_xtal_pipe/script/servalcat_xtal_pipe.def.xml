@@ -588,13 +588,13 @@
         </container>
 
         <container id="controlParameters">
-            <content id="OPTIMISE_WEIGHT">
+            <content id="OPTIMISE_WEIGHT"><!-- not used -->
                 <className>CBoolean</className>
                 <qualifiers>
                     <default>False</default>
                 </qualifiers>
             </content>
-            <content id="REFMAC_CLEANUP">
+            <content id="REFMAC_CLEANUP"><!-- not used -->
                 <className>CBoolean</className>
                 <qualifiers>
                   <default>False</default><!--<default>True</default>-->
@@ -603,7 +603,7 @@
             <content id="VALIDATE_IRIS">
                <className>CBoolean</className>
                <qualifiers>
-                  <default>False</default>
+                  <default>True</default>
                </qualifiers>
             </content>
             <content id="VALIDATE_BAVERAGE">
@@ -615,7 +615,7 @@
             <content id="VALIDATE_RAMACHANDRAN">
                <className>CBoolean</className>
                <qualifiers>
-                  <default>False</default><!--<default>True</default>-->
+                  <default>True</default><!--<default>True</default>-->
                </qualifiers>
             </content>
             <content id="VALIDATE_MOLPROBITY">
@@ -624,7 +624,7 @@
                   <default>True</default>
                </qualifiers>
             </content>
-            <content id="RUN_MOLPROBITY">
+            <content id="RUN_MOLPROBITY"><!-- not used -->
                <className>CBoolean</className>
                <qualifiers>
                   <default>False</default>

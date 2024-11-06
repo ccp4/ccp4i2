@@ -192,6 +192,7 @@ class servalcat_xtal(CPluginScript):
                 self.appendErrorReport(201, 'Exit code: '+ str(exitCode))
             return CPluginScript.FAILED
 
+        import os
         from core import CCP4XtalData
         from core import CCP4File
         

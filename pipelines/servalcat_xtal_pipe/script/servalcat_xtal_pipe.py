@@ -40,7 +40,7 @@ class servalcat_xtal_pipe(CPluginScript):
 
     TASKMODULE = 'refinement'
     TASKTITLE = 'Refinement - Servalcat (experimental)'
-    TASKNAME = 'servalcat_xtal_pipe'
+    TASKNAME = 'Refinement in Servalcat'
     TASKVERSION= 0.0
     WHATNEXT = ['servalcat_xtal_pipe','buccaneer_build_refine_mr','coot_rebuild','modelcraft']
     ASYNCHRONOUS = True
@@ -352,6 +352,118 @@ class servalcat_xtal_pipe(CPluginScript):
                 result.container.controlParameters.NCYCLES.set(ncyc)
         return result
 
+
+    def multimericValidation(self):
+        # Geometry validation
+        validate_iris = False
+        if hasattr(self.container.controlParameters,"VALIDATE_IRIS"):
+            validate_iris = self.container.controlParameters.VALIDATE_IRIS
+
+        validate_baverage = False
+        if hasattr(self.container.controlParameters,"VALIDATE_BAVERAGE"):
+            validate_baverage = self.container.controlParameters.VALIDATE_BAVERAGE
+
+        validate_ramachandran = False
+        if hasattr(self.container.controlParameters,"VALIDATE_RAMACHANDRAN"):
+            validate_ramachandran = self.container.controlParameters.VALIDATE_RAMACHANDRAN
+
+        validate_molprobity = False
+        if hasattr(self.container.controlParameters,"VALIDATE_MOLPROBITY"):
+            validate_molprobity = self.container.controlParameters.VALIDATE_MOLPROBITY
+
+        if validate_iris or validate_baverage or validate_molprobity or validate_ramachandran:
+            # try:
+            self.validate = self.makePluginObject('validate_protein')
+            self.validate.container.inputData.XYZIN_1.set(self.container.outputData.XYZOUT)
+            self.validate.container.inputData.F_SIGF_1.set(self.container.inputData.HKLIN)
+            self.validate.container.inputData.XYZIN_2.set(self.container.outputData.XYZOUT)
+            self.validate.container.inputData.F_SIGF_2.set(self.container.inputData.HKLIN)
+            self.validate.container.inputData.NAME_1.set("Refined")
+            self.validate.container.inputData.NAME_2.set("Input")
+            # self.validate.container.outputData.COOTSCRIPTOUT.set(self.container.outputData.COOTSCRIPTOUT)
+
+            self.validate.container.controlParameters.DO_IRIS.set(validate_iris)
+            self.validate.container.controlParameters.DO_BFACT.set(validate_baverage)
+            self.validate.container.controlParameters.DO_RAMA.set(validate_ramachandran)
+            self.validate.container.controlParameters.DO_MOLPROBITY.set(validate_molprobity)
+
+            self.validate.doAsync = False
+            self.validate.waitForFinished = -1
+            self.validate.process()
+
+            validateXMLPath = self.validate.makeFileName('PROGRAMXML')
+            validateXML = CCP4Utils.openFileToEtree(validateXMLPath)
+            xml_validation = etree.SubElement(self.xmlroot,"Validation")
+            if len(validateXML.xpath("//Validate_geometry_CCP4i2/Model_info"))>0:
+                xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Model_info")[0]) 
+            if self.validate.container.controlParameters.DO_IRIS:
+                if len(validateXML.xpath("//Validate_geometry_CCP4i2/Iris"))>0:
+                    xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Iris")[0]) 
+            if self.validate.container.controlParameters.DO_BFACT:
+                if len(validateXML.xpath("//Validate_geometry_CCP4i2/B_factors"))>0:
+                    xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/B_factors")[0])
+                if len(validateXML.xpath("//Validate_geometry_CCP4i2/B_averages"))>0:
+                    xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/B_averages")[0])
+            if self.validate.container.controlParameters.DO_RAMA:
+                if len(validateXML.xpath("//Validate_geometry_CCP4i2/Ramachandran"))>0:
+                    xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Ramachandran")[0])
+            if self.validate.container.controlParameters.DO_MOLPROBITY:
+                if len(validateXML.xpath("//Validate_geometry_CCP4i2/Molprobity"))>0:
+                    xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Molprobity")[0])
+                self.saveXml()
+                # try:
+                if False:
+                    from . import prosmart_refmac_verdict
+                    programxml = self.makeFileName('PROGRAMXML')                  #"/Users/stuart/CCP4I2_PROJECTS/5_7_2021/CCP4_JOBS/job_19/program.xml"
+                    pdbfile = self.container.outputData.XYZOUT.fullPath.__str__() #"/Users/stuart/CCP4I2_PROJECTS/5_7_2021/CCP4_JOBS/job_19/19_5_7_2021_xyzout_prosmart_refmac.pdb"
+                    if hasattr(self,"refmacPostCootPlugin"):
+                        refmaclog = self.refmacPostCootPlugin.makeFileName('LOG') #"/Users/stuart/CCP4I2_PROJECTS/5_7_2021/CCP4_JOBS/job_19/job_1/log.txt"
+                    else:
+                        refmaclog = self.firstRefmac.makeFileName('LOG')
+
+                    verdict_result = prosmart_refmac_verdict.getJSCOFERefmac5Verdict(programxml=programxml,pdbfile=pdbfile,refmaclog=refmaclog)
+                    verdict_score = verdict_result["score"]
+                    verdict_message  = verdict_result["message"]
+                    bottomline = verdict_result["bottomLine"]
+                    meanRfree = verdict_result["meanRfree"]
+                    medianClash = verdict_result["medianClash"]
+                    ramaOutliers = verdict_result["ramaOutliers"]
+                    suggestedParameters = verdict_result["suggestedParameters"]
+
+                    suggestedParameters = self.mapVerdictSuggestionsToi2Params(suggestedParameters)
+
+                    xml_verdict = etree.SubElement(self.xmlroot,"Verdict")
+                    xml_verdict_score = etree.SubElement(xml_verdict,"verdict_score")
+                    xml_verdict_score.text = str(verdict_score)
+                    xml_verdict_message = etree.SubElement(xml_verdict,"verdict_message")
+                    xml_verdict_message.text = etree.CDATA(verdict_message)
+                    xml_bottomline = etree.SubElement(xml_verdict,"bottomline")
+                    xml_bottomline.text = etree.CDATA(bottomline)
+                    xml_meanRfree = etree.SubElement(xml_verdict,"meanRfree")
+                    xml_meanRfree.text = str(meanRfree)
+                    xml_medianClash = etree.SubElement(xml_verdict,"medianClash")
+                    xml_medianClash.text = str(medianClash)
+                    xml_ramaOutliers = etree.SubElement(xml_verdict,"ramaOutliers")
+                    xml_ramaOutliers.text = str(ramaOutliers)
+                    xml_suggestedParameters = etree.SubElement(xml_verdict,"suggestedParameters")
+                    for k,v in suggestedParameters.items():
+                        xml_suggestedParameters_k = etree.SubElement(xml_suggestedParameters,k)
+                        xml_suggestedParameters_k.text = str(v)
+
+                    self.saveXml()
+                #except:
+                #    import traceback
+                #    print("Some problem with verdict...."); sys.stdout.flush()
+                #    exc_type, exc_value, exc_tb = sys.exc_info()[:3]
+                #    sys.stderr.write(str(exc_type) + '\n')
+                #    sys.stderr.write(str(exc_value) + '\n')
+                #    traceback.print_tb(exc_tb)
+            self.saveXml()
+            #except Exception as err:
+            #import traceback
+            #traceback.print_exc()
+            #print("...Failed validation run after refinement", err)
+    
 
     def adp_analysis(self, modelPath, iqrFactor=2.0):
         adp_dict = {}
@@ -836,7 +948,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
         else:
             # self.addCycleXML(servalcatJob,"servalcatPostCoot") # MM
             newXml = etree.tostring(self.xmlroot,pretty_print=True) # newXml = ET.tostring(self.xmlroot)
-            servalcatPostCoot = self.xmlroot.xpath("servalcatPostCoot") # servalcatPostCoot = self.xmlroot.findall("servalcatPostCoot")
+            servalcatPostCoot = self.xmlroot.xpath("SERVALCAT_WATERS") # servalcatPostCoot = self.xmlroot.findall("servalcatPostCoot")
             aFile = open(self.pipelinexmlfile,'r')
             oldXml = etree.fromstring(aFile.read()) # oldXml = ET.fromstring(aFile.read())
             aFile.close()
@@ -926,229 +1038,21 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                     print('servalcat_xtal_pipe.finishUp 7'); sys.stdout.flush()
                     cleanup.purgeJob(self.servalcatPostCootPlugin.jobId,context="extended_intermediate",reportMode="skip")
 
+        self.multimericValidation()
         self.adp_analysis(
             str(self.container.outputData.CIFFILE.fullPath),
             float(self.container.monitor.ADP_IQR_FACTOR))
         self.coord_adp_dev_analysis(
             str(self.container.inputData.XYZIN.fullPath),
             str(self.container.outputData.CIFFILE.fullPath))
+        # self.reportStatus(CPluginScript.SUCCEEDED)
+        # return # MM
 
-        self.reportStatus(CPluginScript.SUCCEEDED)
-        return # MM
-        if not str(self.container.controlParameters.REFINEMENT_MODE) == 'RIGID':
-           #Geometry validation not performed in rigid body mode
-
-           runMolprobity = False
-           if hasattr(self.container.controlParameters,"RUN_MOLPROBITY"):
-              runMolprobity = self.container.controlParameters.RUN_MOLPROBITY
-              if runMolprobity:
-                 #MN: First order attempt at providing molprobity analysis
-                 try:
-                     print("Attempting molprobity run after refinement...")
-                     from mmtbx.command_line import molprobity
-                     coordPath = self.container.outputData.XYZOUT.fullPath.__str__()
-                     fileRoot, fileExt = os.path.splitext(coordPath)
-                     sanitizedCoordPath = fileRoot + "+asPDB.pdb"
-
-                     #Use mmdb to do some sanitization
-                     import ccp4mg
-                     import mmdb2
-                     mmdb2.InitMatType()
-                     m = mmdb2.Manager()
-
-                     #This line ought to just do it, but seems not to...
-                     m.SetFlag(mmdb2.MMDBF_IgnoreSegID)
-                     m.ReadCoorFile(coordPath)
-
-                     #Remove any SEGIDs (which can confuse molprobity if heterogenous)
-                     sel = m.NewSelection()
-                     m.SelectAtoms(sel, 0,"*",mmdb2.ANY_RES,"*",mmdb2.ANY_RES,"*","*","*","*","*",mmdb2.SKEY_OR )
-                     selindexp = mmdb2.intp()
-                     selAtoms = mmdb2.GetAtomSelIndex(m,sel,selindexp)
-                     nSelAtoms = selindexp.value()
-                     # ... but this certainly does.
-                     for i in range(nSelAtoms):
-                         at = mmdb2.getPCAtom(selAtoms,i)
-                         at.segID = b"    "
-                     m.FinishStructEdit()
-
-                     #Looking at the molprobity output, it seems to me that it tres to handle alternates properly...
-                     #I am not sure that the following code is appropriate, so am commenting out MN
-                     '''
-                     #Delete alternate locations using mmdb logic
-                     sel = m.NewSelection()
-                     m.SelectAtoms(sel, 0,"*",mmdb2.ANY_RES,"*",mmdb2.ANY_RES,"*","*","*","*","! ",mmdb2.SKEY_OR )
-                     selindexp = mmdb2.intp()
-                     selAtoms = mmdb2.GetAtomSelIndex(m,sel,selindexp)
-                     nSelAtoms = selindexp.value()
-                     # Edit out the SEGIDs - should have happened at read time ?
-                     residuesWithAltes = set()
-                     for i in range(nSelAtoms):
-                         at = mmdb2.getPCAtom(selAtoms,i)
-                         residuesWithAltes.add(at.GetResidue())
-                     for residue in residuesWithAltes:
-                         residue.DeleteAltLocs()
-                     m.FinishStructEdit()
-                     '''
-                     m.WritePDBASCII(sanitizedCoordPath)
-
-                     fileRoot = os.path.join(self.getWorkDirectory(),"molprobity")
-                     molprobity.run(["input.pdb.file_name={}".format(sanitizedCoordPath),
-                                     "output.prefix={}".format(fileRoot)])
-                     mpCootScriptPath = fileRoot+"_coot.py"
-                     mpProbePath = fileRoot+"_probe.txt"
-                     if os.path.isfile(mpCootScriptPath):
-                         with (open(self.container.outputData.COOTSCRIPTOUT.fullPath.__str__(),"a+")) as cootScript:
-                             cootScript.write("\n")
-                             with open(mpCootScriptPath,"r") as mpCootScript:
-                                 content = mpCootScript.read()
-                                 content = content.replace('"molprobity_probe.txt"',
-                                                           '"{}"'.format(mpProbePath))
-                                 cootScript.write(content)
-
-                     mpOutPath = fileRoot+".out"
-                     if os.path.isfile(mpOutPath):
-                         etree.SubElement(etree.SubElement(self.xmlroot,"Molprobity"), "Output").text = etree.CDATA(open(mpOutPath).read())
-                     self.saveXml()
-                     print("...Succeeded molprobity run after refinement :-)")
-                 except Exception as err:
-                     etree.SubElement(etree.SubElement(self.xmlroot,"Molprobity"), "Output").text = etree.CDATA(str(err))
-                     self.saveXml()
-                     print("...Failed molprobity run after refinement :-(", err)
-
-           validate_iris = False
-           if hasattr(self.container.controlParameters,"VALIDATE_IRIS"):
-               validate_iris = self.container.controlParameters.VALIDATE_IRIS
-
-           validate_baverage = False
-           if hasattr(self.container.controlParameters,"VALIDATE_BAVERAGE"):
-               validate_baverage = self.container.controlParameters.VALIDATE_BAVERAGE
-
-           validate_ramachandran = False
-           if hasattr(self.container.controlParameters,"VALIDATE_RAMACHANDRAN"):
-              validate_ramachandran = self.container.controlParameters.VALIDATE_RAMACHANDRAN
-
-           validate_molprobity = False
-           if hasattr(self.container.controlParameters,"VALIDATE_MOLPROBITY"):
-              validate_molprobity = self.container.controlParameters.VALIDATE_MOLPROBITY
-
-           # if validate_baverage or validate_molprobity or validate_ramachandran:
-           if True:    
-             try:
-                print("\n\n\n++++1") 
-                self.validate = self.makePluginObject('validate_protein')
-                self.validate.container.inputData.XYZIN_1 = self.container.outputData.XYZOUT
-                self.validate.container.inputData.F_SIGF_1 = self.container.inputData.HKLIN # I ???
-                self.validate.container.inputData.XYZIN_2 = self.container.outputData.XYZOUT
-                self.validate.container.inputData.F_SIGF_2 = self.container.inputData.HKLIN
-                # self.validate.container.inputData.XYZIN = self.container.inputData.XYZIN
-                # self.validate.container.inputData.XYZIN_1.setFullPath(coordPath)
-                # self.validate.container.inputData.F_SIGF_1 = self.container.inputData.HKLIN
-                #MN...Using "="" to set this is an odd thing and breaks under some circumstances.
-                #Specifically, the path for this is now in the prosmart_refmac (i.e. parent job) directory,
-                #but it is an output of the validate_protein subjob.  When that subjob seeks to save it to the
-                #database, it finds that it is in the wrong directory and croaks.  I have tried to get round this
-                #by flagging it as saveToDb=False in the validate_protein .def.xml. But htis needs consideration by jon
-                #Agirre and Rob Nicholls
-                self.validate.container.outputData.COOTSCRIPTOUT = self.container.outputData.COOTSCRIPTOUT
-                # self.validate.container.outputData.COOTSCRIPTOUT.setFullPath("/tmp/coot.tmp")
-                print("\n\n\n++++2")
-
-                """self.validate.container.controlParameters.DO_IRIS = validate_iris
-                self.validate.container.controlParameters.DO_BFACT = validate_baverage
-                self.validate.container.controlParameters.DO_RAMA = validate_ramachandran
-                self.validate.container.controlParameters.DO_MOLPROBITY = validate_molprobity"""
-                self.validate.container.controlParameters.DO_IRIS = True
-                self.validate.container.controlParameters.DO_BFACT = True
-                self.validate.container.controlParameters.DO_RAMA = True
-                self.validate.container.controlParameters.DO_MOLPROBITY = True
-
-                print(str(validate_baverage), str(validate_ramachandran), str(validate_molprobity))
-                self.validate.doAsync = False
-                self.validate.waitForFinished = -1
-                print("\n\n\n++++3")
-                self.validate.process()
-                print("\n\n\n++++4")
-
-                validateXMLPath = self.validate.makeFileName('PROGRAMXML')
-                validateXML = CCP4Utils.openFileToEtree(validateXMLPath)
-                xml_validation = etree.SubElement(self.xmlroot,"Validation")
-                if len(validateXML.xpath("//Validate_geometry_CCP4i2/Model_info"))>0:
-                   xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Model_info")[0]) 
-                """
-                if self.validate.container.controlParameters.DO_IRIS:
-                   if len(validateXML.xpath("//Validate_geometry_CCP4i2/Iris"))>0:
-                      xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Iris")[0]) 
-                """
-                if self.validate.container.controlParameters.DO_BFACT:
-                   if len(validateXML.xpath("//Validate_geometry_CCP4i2/B_factors"))>0:
-                      xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/B_factors")[0])
-                   if len(validateXML.xpath("//Validate_geometry_CCP4i2/B_averages"))>0:
-                      xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/B_averages")[0])
-                if self.validate.container.controlParameters.DO_RAMA:
-                   if len(validateXML.xpath("//Validate_geometry_CCP4i2/Ramachandran"))>0:
-                      xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Ramachandran")[0])
-                if self.validate.container.controlParameters.DO_MOLPROBITY:
-                   if len(validateXML.xpath("//Validate_geometry_CCP4i2/Molprobity"))>0:
-                      xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Molprobity")[0])
-                   self.saveXml()
-                   try:
-                       from . import prosmart_refmac_verdict
-                       programxml = self.makeFileName('PROGRAMXML')                  #"/Users/stuart/CCP4I2_PROJECTS/5_7_2021/CCP4_JOBS/job_19/program.xml"
-                       pdbfile = self.container.outputData.XYZOUT.fullPath.__str__() #"/Users/stuart/CCP4I2_PROJECTS/5_7_2021/CCP4_JOBS/job_19/19_5_7_2021_xyzout_prosmart_refmac.pdb"
-                       if hasattr(self,"servalcatPostCootPlugin"):
-                           servalcatlog = self.servalcatPostCootPlugin.makeFileName('LOG') #"/Users/stuart/CCP4I2_PROJECTS/5_7_2021/CCP4_JOBS/job_19/job_1/log.txt"
-                       else:
-                           servalcatlog = self.firstServalcat.makeFileName('LOG')
-
-                       verdict_result = prosmart_refmac_verdict.getJSCOFERefmac5Verdict(programxml=programxml,pdbfile=pdbfile,refmaclog=servalcatlog)
-                       verdict_score = verdict_result["score"]
-                       verdict_message  = verdict_result["message"]
-                       bottomline = verdict_result["bottomLine"]
-                       meanRfree = verdict_result["meanRfree"]
-                       medianClash = verdict_result["medianClash"]
-                       ramaOutliers = verdict_result["ramaOutliers"]
-                       suggestedParameters = verdict_result["suggestedParameters"]
-
-                       suggestedParameters = self.mapVerdictSuggestionsToi2Params(suggestedParameters)
-
-                       xml_verdict = etree.SubElement(self.xmlroot,"Verdict")
-                       xml_verdict_score = etree.SubElement(xml_verdict,"verdict_score")
-                       xml_verdict_score.text = str(verdict_score)
-                       xml_verdict_message = etree.SubElement(xml_verdict,"verdict_message")
-                       xml_verdict_message.text = etree.CDATA(verdict_message)
-                       xml_bottomline = etree.SubElement(xml_verdict,"bottomline")
-                       xml_bottomline.text = etree.CDATA(bottomline)
-                       xml_meanRfree = etree.SubElement(xml_verdict,"meanRfree")
-                       xml_meanRfree.text = str(meanRfree)
-                       xml_medianClash = etree.SubElement(xml_verdict,"medianClash")
-                       xml_medianClash.text = str(medianClash)
-                       xml_ramaOutliers = etree.SubElement(xml_verdict,"ramaOutliers")
-                       xml_ramaOutliers.text = str(ramaOutliers)
-                       xml_suggestedParameters = etree.SubElement(xml_verdict,"suggestedParameters")
-                       for k,v in suggestedParameters.items():
-                          xml_suggestedParameters_k = etree.SubElement(xml_suggestedParameters,k)
-                          xml_suggestedParameters_k.text = str(v)
-
-                       self.saveXml()
-                   except:
-                       import traceback
-                       print("Some problem with verdict...."); sys.stdout.flush()
-                       exc_type, exc_value, exc_tb = sys.exc_info()[:3]
-                       sys.stderr.write(str(exc_type) + '\n')
-                       sys.stderr.write(str(exc_value) + '\n')
-                       traceback.print_tb(exc_tb)
-                self.saveXml()
-             except Exception as err:
-                import traceback
-                traceback.print_exc()
-                print("...Failed validation run after refinement", err)
-
-        logfiles = []
-        if hasattr(self,"firstServalcat"):
-            logfiles.append(self.firstServalcat.makeFileName('LOG'))
-        if hasattr(self,"servalcatPostCootPlugin"):
-            logfiles.append(self.servalcatPostCootPlugin.makeFileName('LOG'))
+        # logfiles = []
+        # if hasattr(self,"firstServalcat"):
+        #     logfiles.append(self.firstServalcat.makeFileName('LOG'))
+        # if hasattr(self,"servalcatPostCootPlugin"):
+        #     logfiles.append(self.servalcatPostCootPlugin.makeFileName('LOG'))
 
         # self.createWarningsXML(logfiles) # MM
         self.saveXml()
@@ -1156,7 +1060,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
         print('done servalcat_xtal_pipe.finishUp'); sys.stdout.flush()
         self.reportStatus(CPluginScript.SUCCEEDED)
 
-    def tryVariousRefmacWeightsAround(self, weight):
+    """def tryVariousRefmacWeightsAround(self, weight):
         import math
         print('Generating jobs with weights around ', weight)
         #make an array to hold the child-jobs
@@ -1230,7 +1134,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                     best_r_free = float(rtask.container.outputData.PERFORMANCEINDICATOR.RFree)
                     self.best_rtask = rtask
             self.finishUp(self.best_rtask)
-        return
+        return"""
 
     """def addCycleXML(self, rtask, name="RefmacWeight"):
         xmlcyc = ET.SubElement(self.xmlroot,name)

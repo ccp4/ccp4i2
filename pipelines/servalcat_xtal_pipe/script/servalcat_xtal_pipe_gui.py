@@ -699,17 +699,26 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
 
     self.createLine( [ 'widget', 'USE_WORK_IN_EST', 'label', 'Use work reflections in ML parameter estimates' ] )
     self.createLine( [ 'widget', 'KEEP_CHARGES', 'label', 'Keep charges, i.e. use scattering factor for charged atoms where relevant' ] )
-
     #self.createLine( [ 'widget', 'REFMAC_CLEANUP', 'label', 'Clean up intermediate files at end of job' ] )
-    self.createLine( [ 'widget', 'RUN_MOLPROBITY', 'label', 'Run MolProbity validation' ] )
+
     self.createLine( [ 'subtitle', 'Additional keywords'] )
     # self.createLine( [ 'label', '<i>Keywords specified below will overwrite options which were set elsewhere.</i>'] )
     # self.createLine( [ 'widget', '-guiMode','multiLine','EXTRAREFMACKEYWORDS' ] )
     self.createLine( [ 'widget', '-browseDb', True, 'SERVALCAT_KEYWORD_FILE' ] )
     self.createLine( [ 'label', 'Extra servalcat command line options:', 'widget', 'EXTRA_SERVALCAT_OPTIONS' ] )
     self.getWidget('EXTRA_SERVALCAT_OPTIONS').setFixedWidth(400)
-    self.createLine( [ 'subtitle', 'Monitoring' ] )
+
+    self.createLine( [ 'subtitle', 'Validation and Analysis' ] )
     self.openSubFrame(frame=[True])
+    self.createLine( [ 'widget', 'VALIDATE_IRIS', 'label', 'Generate Iris report' ] )
+    # self.createLine( [ 'widget', 'VALIDATE_BAVERAGE', 'label', 'Analyse B-factor distributions' ] )
+    self.createLine( [ 'widget', 'VALIDATE_RAMACHANDRAN', 'label', 'Generate Ramachandran plots' ] )
+    self.createLine( [ 'widget', 'VALIDATE_MOLPROBITY', 'label', 'Run MolProbity to analyse geometry' ] )
+    # self.closeSubFrame()
+
+    # self.createLine( [ 'subtitle', 'Monitoring' ] )
+    # self.openSubFrame(frame=[True])
+    # TO DO - on/off
     self.createLine( [ 'label', 'Minimum deviation of atom coordinates to be reported:', 'stretch', 'widget', 'monitor.MIN_COORDDEV' ] )
     self.createLine( [ 'label', 'Minimum deviation of B-values to be reported:', 'stretch', 'widget', 'monitor.MIN_ADPDEV' ] )
     self.createLine( [ 'label', 'Atoms with a B-value lower than <i>the first quartile - factor * interquartile_range</i><br />or higher than <i>the third quartile + factor * interquartile_range</i> to be reported. Factor:', 'stretch', 'widget', 'monitor.ADP_IQR_FACTOR' ] )
