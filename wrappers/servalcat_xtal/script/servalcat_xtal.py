@@ -439,7 +439,7 @@ class servalcat_xtal(CPluginScript):
         if self.container.inputData.FREERFLAG.isSet():
             if self.container.controlParameters.FREERFLAG_NUMBER.isSet():
                 self.appendCommandLine(['--free', str(self.container.controlParameters.FREERFLAG_NUMBER)])
-            labin += ",FREE"
+            labin += ",FREER"
         self.appendCommandLine(['--labin', labin])
         if self.container.controlParameters.USE_TWIN:  # I,SIGI for optimal results
             self.appendCommandLine(['--twin'])
