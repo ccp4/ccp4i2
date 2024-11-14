@@ -25,6 +25,7 @@ import os
 import sys
 import time
 import shutil
+import subprocess
 from math import pi
 import traceback
 
@@ -66,13 +67,31 @@ class validate_protein(CPluginScript):
         print ("Using Iris installation: " + iris_validation.__file__.replace(f"/__init__.py", ""))
 
         if self.container.inputData.XYZIN_1.isSet(): # Latest dataset first
-            self.latest_model_path = str(self.container.inputData.XYZIN_1)
+            xyz_fn_1 = str(self.container.inputData.XYZIN_1)
+            self.latest_model_path = xyz_fn_1
+            if sys.platform == "linux" and xyz_fn_1.endswith(".pdb"):
+                print("Converting PDB format to MMCIF format for Iris")
+                xyz_mmcif_fn_1 = xyz_fn_1.rstrip("pdb") + "mmcif"
+                if not os.path.exists(xyz_mmcif_fn_1):
+                    cp = subprocess.run(["pdb2cif", xyz_fn_1,xyz_mmcif_fn_1])
+                    if cp.returncode == 0:
+                        self.latest_model_path = xyz_mmcif_fn_1
+            print("Validate protein latest_model_path",self.latest_model_path)
         if self.container.inputData.F_SIGF_1.isSet():
             self.latest_reflections_path, _ = self.makeHklin([['F_SIGF_1',
                                                              CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]], 
                                                              hklin='F_SIGF_1')
         if self.container.inputData.XYZIN_2.isSet(): # Previous dataset for comparison, if set
-            self.previous_model_path = str(self.container.inputData.XYZIN_2)
+            xyz_fn_2 = str(self.container.inputData.XYZIN_2)
+            self.previous_model_path = xyz_fn_2
+            if sys.platform == "linux" and xyz_fn_2.endswith(".pdb"):
+                print("Converting PDB format to MMCIF format for Iris")
+                xyz_mmcif_fn_2 = xyz_fn_2.rstrip("pdb") + "mmcif"
+                if not os.path.exists(xyz_mmcif_fn_2):
+                    cp = subprocess.run(["pdb2cif", xyz_fn_2,xyz_mmcif_fn_2])
+                    if cp.returncode == 0:
+                        self.previous_model_path = xyz_mmcif_fn_2
+            print("Validate protein previous_model_path",self.previous_model_path)
         if self.container.inputData.F_SIGF_2.isSet():
             self.previous_reflections_path, _ = self.makeHklin([['F_SIGF_2',
                                                                CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]], 
