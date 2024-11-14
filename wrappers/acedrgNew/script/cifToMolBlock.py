@@ -109,7 +109,7 @@ def cifFileToMolBlock(input_file):
             a = gemmi.Atom()
             a.name = atom['_chem_comp_atom.atom_id']
             a.element = gemmi.Element(atom['_chem_comp_atom.type_symbol'])
-            a.charge = int(atom['_chem_comp_atom.charge'])
+            a.charge = int(float(atom['_chem_comp_atom.charge']))
             if '_chem_comp_atom.x' in atom:
                 pos = gemmi.Position(float(atom['_chem_comp_atom.x']),float(atom['_chem_comp_atom.y']),float(atom['_chem_comp_atom.z']))
             elif '_chem_comp_atom.model_Cartn_x' in atom:
