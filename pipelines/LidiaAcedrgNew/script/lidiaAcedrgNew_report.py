@@ -22,10 +22,12 @@ class lidiaAcedrgNew_report(Report):
 
     def defaultReport(self, parent=None):
         if parent is None: parent = self
-        parent.addDiv(style="float:left;")
+        # parent.addDiv(style="float:left;")
+        parent.addDiv(style='clear:both;')
         smilesNodes = self.xmlnode.findall('.//SMILES')
         for smilesNode in smilesNodes:
             parent.addText(text='SMILES String: '+smilesNode.text)
+        parent.addDiv(style='clear:both;')
         structureFold = parent.addFold(label='2D Structures',initiallyOpen=True)
         structureGallery = structureFold.addObjectGallery(style='float:left;border:1px solid black;',height='360px', tableWidth='260px', contentWidth='360px')
         clearingDiv = parent.addDiv(style="clear:both;")
