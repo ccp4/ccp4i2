@@ -412,11 +412,19 @@ class servalcat_xtal(CPluginScript):
 
     def makeCommandAndScript(self):
         # self.appendCommandLine(['-m', 'servalcat'])
+        if self.container.inputData.MAPIN.isSet():
+            self.appendCommandLine(['refine_spa_norefmac'])
+            self.appendCommandLine(['--model', self.inputCoordPath])
+            self.appendCommandLine(['--map', str(self.container.inputData.MAPIN.fullPath)])
+            self.appendCommandLine(['--source', "electron"])
+            self.appendCommandLine(['-d', "2.58"])
+            return CPluginScript.SUCCEEDED
+            self.appendCommandLine(['#'])
         self.appendCommandLine(['refine_xtal_norefmac'])
+        self.appendCommandLine(['--hklin', self.hklin])
         self.appendCommandLine(['-o', 'refined'])
         self.hklout = os.path.join(self.workDirectory, "refined.mtz")
         self.appendCommandLine(['--model', self.inputCoordPath])
-        self.appendCommandLine(['--hklin', self.hklin])
 
         if self.container.inputData.DICT_LIST.isSet():
             self.appendCommandLine(['--ligand'])

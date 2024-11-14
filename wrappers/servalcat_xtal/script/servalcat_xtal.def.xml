@@ -31,7 +31,16 @@
                 <className>CObsDataFile</className>
                 <qualifiers>
                     <mustExist>True</mustExist>
-                    <allowUndefined>False</allowUndefined>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <toolTip>File containing structure factor amplitudes/intensities and uncertainties (F/SigF or I/SigI).</toolTip>
+                </qualifiers>
+            </content>
+            <content id="MAPIN">
+                <className>CDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
                     <fromPreviousJob>True</fromPreviousJob>
                     <toolTip>File containing structure factor amplitudes/intensities and uncertainties (F/SigF or I/SigI).</toolTip>
                 </qualifiers>

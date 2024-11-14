@@ -223,6 +223,7 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
        #except:
        #pass
     self.createLine( [ 'widget', '-browseDb', True, 'HKLIN' ])
+    self.createLine( [ 'widget', '-browseDb', True, 'MAPIN' ])
     self.container.inputData.HKLIN.dataChanged.connect( self.hklinChanged )
     self.createLine( [ 'label', 'Refinement against <b>amplitudes</b>.'], toggle = ['HKLIN_IS_I_SIGI', 'open', [ False ] ] )
     self.createLine( [ 'label', 'Refinement against', 'widget', 'F_SIGF_OR_I_SIGI'], toggle = ['HKLIN_IS_I_SIGI', 'open', [ True ] ] )
