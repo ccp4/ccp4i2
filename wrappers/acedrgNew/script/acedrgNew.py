@@ -344,10 +344,13 @@ class acedrgNew(CPluginScript):
         
         # Get 2D picture of structure from the RDKit mol and place in report
         svgNode = etree.SubElement(self.xmlroot,'SVGNode')
-
-        svgText = bytes(mol2svg.svgFromMol(referenceMolToDraw),"utf-8")
-        svgMolNode = etree.fromstring(svgText)
-
+        try:
+            svgText = bytes(mol2svg.svgFromMol(referenceMolToDraw),"utf-8")
+            svgMolNode = etree.fromstring(svgText)
+        except Exception as e:
+            print("ERROR: Drawing SVG picture of molecule was not successful.")
+            print(e)
+            svgMolNode = etree.fromstring("<svg></svg>")
         svgNode.append(svgMolNode)
 
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
