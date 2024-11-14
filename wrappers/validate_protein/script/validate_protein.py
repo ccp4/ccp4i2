@@ -73,9 +73,9 @@ class validate_protein(CPluginScript):
                 print("Converting PDB format to MMCIF format for Iris")
                 xyz_mmcif_fn_1 = xyz_fn_1.rstrip("pdb") + "mmcif"
                 if not os.path.exists(xyz_mmcif_fn_1):
-                    cp = subprocess.run(["pdb2cif", xyz_fn_1,xyz_mmcif_fn_1])
-                    if cp.returncode == 0:
-                        self.latest_model_path = xyz_mmcif_fn_1
+                    subprocess.run(["pdb2cif", xyz_fn_1,xyz_mmcif_fn_1])
+                if os.path.exists(xyz_mmcif_fn_1):
+                    self.latest_model_path = xyz_mmcif_fn_1
             print("Validate protein latest_model_path",self.latest_model_path)
         if self.container.inputData.F_SIGF_1.isSet():
             self.latest_reflections_path, _ = self.makeHklin([['F_SIGF_1',
@@ -88,9 +88,9 @@ class validate_protein(CPluginScript):
                 print("Converting PDB format to MMCIF format for Iris")
                 xyz_mmcif_fn_2 = xyz_fn_2.rstrip("pdb") + "mmcif"
                 if not os.path.exists(xyz_mmcif_fn_2):
-                    cp = subprocess.run(["pdb2cif", xyz_fn_2,xyz_mmcif_fn_2])
-                    if cp.returncode == 0:
-                        self.previous_model_path = xyz_mmcif_fn_2
+                    subprocess.run(["pdb2cif", xyz_fn_2,xyz_mmcif_fn_2])
+                if os.path.exists(xyz_mmcif_fn_2):
+                    self.previous_model_path = xyz_mmcif_fn_2
             print("Validate protein previous_model_path",self.previous_model_path)
         if self.container.inputData.F_SIGF_2.isSet():
             self.previous_reflections_path, _ = self.makeHklin([['F_SIGF_2',
