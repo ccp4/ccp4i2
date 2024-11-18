@@ -36,15 +36,6 @@
                     <toolTip>File containing structure factor amplitudes/intensities and uncertainties (F/SigF or I/SigI).</toolTip>
                 </qualifiers>
             </content>
-            <content id="MAPIN">
-                <className>CMapDataFile</className>
-                <qualifiers>
-                    <mustExist>True</mustExist>
-                    <allowUndefined>True</allowUndefined>
-                    <fromPreviousJob>True</fromPreviousJob>
-                    <toolTip>File containing structure factor amplitudes/intensities and uncertainties (F/SigF or I/SigI).</toolTip>
-                </qualifiers>
-            </content>
             <content id="FREERFLAG">
                 <className>CFreeRDataFile</className>
                 <qualifiers>
@@ -54,6 +45,33 @@
                     <sameCrystalAs>HKLIN</sameCrystalAs>
                     <toolTip>Free R set corresponding to the reflection data.
 See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
+                </qualifiers>
+            </content>
+            <content id="MAPIN1">
+                <className>CMapDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <toolTip>Half map 1 (MRC format)</toolTip>
+                </qualifiers>
+            </content>
+            <content id="MAPIN2">
+                <className>CMapDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <toolTip>Half map 2 (MRC format)</toolTip>
+                </qualifiers>
+            </content>
+            <content id="MAPMASK">
+                <className>CMapDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <toolTip>Map mask (MRC format)</toolTip>
                 </qualifiers>
             </content>
             <!--<content id="ABCD">
@@ -260,6 +278,16 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
             </content>
         </container>
         <container id="controlParameters">
+           <content id="DATA_METHOD">
+              <className>CString</className>
+              <qualifiers>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <menuText>Diffraction data,SPA maps</menuText>
+                 <enumerators>xtal,spa</enumerators>
+                 <default>xtal</default>
+                 <allowUndefined>False</allowUndefined>
+              </qualifiers>
+           </content>
             <content id="FREERFLAG_NUMBER">
                 <className>CInt</className>
                 <qualifiers>

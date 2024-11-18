@@ -67,7 +67,11 @@ class servalcat_xtal_report(Report):
             style="height:250px;width:400px;float:left;") # select = ".//Overall_stats/stats_vs_cycle/new_cycle", 
         progressGraph.addData(title="Cycle", select=".//cycle/Ncyc") # ycol=1
         progressGraph.addData(title="-LL", select=".//cycle/data/summary/minusLL") # ycol=2
-        if len(xmlnode.findall('.//cycle[last()]/data/summary/Rwork')) > 0:
+        spa_refinement = False
+        if len(xmlnode.findall('.//cycle[last()]/data/summary/FSCaverage')) > 0:
+            progressGraph.addData(title="FSCaverage", select=".//cycle/data/summary/FSCaverage", expr="x if float(x)>=0.0 else ''")  # ycol=3
+            spa_refinement = True
+        elif len(xmlnode.findall('.//cycle[last()]/data/summary/Rwork')) > 0:
             progressGraph.addData(title="Rwork", select=".//cycle/data/summary/Rwork", expr="x if float(x)>=0.0 else ''")  # ycol=3
             progressGraph.addData(title="CCFwork_avg", select=".//cycle/data/summary/CCFworkavg", expr="x if float(x)>=-1.0 else ''")  # ycol=4
             if len(xmlnode.findall('.//cycle[last()]/data/summary/Rfree')) > 0:
@@ -98,40 +102,52 @@ class servalcat_xtal_report(Report):
         ##Out of refmac, they are flagged with a value of -999.
         #progressGraph.addData(title="rmsBONDx100", select=".//rmsBOND", expr="str(100.*float(x)) if float(x)>=0.0 else '-'")
         #progressGraph.addData(title="rmsANGLE", select=".//rmsANGLE", expr="x if float(x)>=0.0 else '-'")
-        
-        plotR = progressGraph.addPlotObject()
-        plotR.append('title', 'R-values')
-        plotR.append('plottype', 'xy')
-        # plotR.append('yrange', rightaxis='false')
-        plotR.append('xlabel', 'Cycle')
-        plotR.append('ylabel', 'R-value')
-        # plotR.append('rylabel', 'Geometry')  ### NOT VISIBLE !?
-        plotR.append('xintegral', 'true')
-        plotR.append('legendposition', x=0, y=0)
-        # for coordinate, colour in [(2,'blue'),(3,'green')]:
-        #     plotLine = plotR.append('plotline', xcol=1, ycol=coordinate, rightaxis='false', colour=colour)
-        plotLine = plotR.append('plotline', xcol=1, ycol=3)
-        plotLine.append('colour', 'orange')
-        plotLine.append('symbolsize', '0')
-        plotLine = plotR.append('plotline', xcol=1, ycol=5)
-        plotLine.append('colour', 'blue')
-        plotLine.append('symbolsize', '0')
-        # plot.append('yrange', rightaxis='true')
-        # for coordinate, colour in [(4,'red'),(5,'purple')]:
-        #     plotLine = plot.append('plotline', xcol=1, ycol=coordinate, rightaxis='true', colour=colour)
-        plotCC = progressGraph.addPlotObject()
-        plotCC.append('title', 'Correlations')
-        plotCC.append('plottype', 'xy')
-        plotCC.append('xlabel', 'Cycle')
-        plotCC.append('ylabel', 'Correlation')
-        plotCC.append('xintegral', 'true')
-        plotCC.append('legendposition', x=0, y=1)
-        plotLine = plotCC.append('plotline', xcol=1, ycol=4)
-        plotLine.append('colour', 'orange')
-        plotLine.append('symbolsize', '0')
-        plotLine = plotCC.append('plotline', xcol=1, ycol=6)
-        plotLine.append('colour', 'blue')
-        plotLine.append('symbolsize', '0')
+
+        if spa_refinement:
+            plotCC = progressGraph.addPlotObject()
+            plotCC.append('title', 'FSCaverage')
+            plotCC.append('plottype', 'xy')
+            plotCC.append('xlabel', 'Cycle')
+            plotCC.append('ylabel', 'FSCaverage')
+            plotCC.append('xintegral', 'true')
+            plotCC.append('legendposition', x=0, y=1)
+            plotLine = plotCC.append('plotline', xcol=1, ycol=3)
+            plotLine.append('colour', 'orange')
+            plotLine.append('symbolsize', '0')
+        else:
+            plotR = progressGraph.addPlotObject()
+            plotR.append('title', 'R-values')
+            plotR.append('plottype', 'xy')
+            # plotR.append('yrange', rightaxis='false')
+            plotR.append('xlabel', 'Cycle')
+            plotR.append('ylabel', 'R-value')
+            # plotR.append('rylabel', 'Geometry')  ### NOT VISIBLE !?
+            plotR.append('xintegral', 'true')
+            plotR.append('legendposition', x=0, y=0)
+            # for coordinate, colour in [(2,'blue'),(3,'green')]:
+            #     plotLine = plotR.append('plotline', xcol=1, ycol=coordinate, rightaxis='false', colour=colour)
+            plotLine = plotR.append('plotline', xcol=1, ycol=3)
+            plotLine.append('colour', 'orange')
+            plotLine.append('symbolsize', '0')
+            plotLine = plotR.append('plotline', xcol=1, ycol=5)
+            plotLine.append('colour', 'blue')
+            plotLine.append('symbolsize', '0')
+            # plot.append('yrange', rightaxis='true')
+            # for coordinate, colour in [(4,'red'),(5,'purple')]:
+            #     plotLine = plot.append('plotline', xcol=1, ycol=coordinate, rightaxis='true', colour=colour)
+            plotCC = progressGraph.addPlotObject()
+            plotCC.append('title', 'Correlations')
+            plotCC.append('plottype', 'xy')
+            plotCC.append('xlabel', 'Cycle')
+            plotCC.append('ylabel', 'Correlation')
+            plotCC.append('xintegral', 'true')
+            plotCC.append('legendposition', x=0, y=1)
+            plotLine = plotCC.append('plotline', xcol=1, ycol=4)
+            plotLine.append('colour', 'orange')
+            plotLine.append('symbolsize', '0')
+            plotLine = plotCC.append('plotline', xcol=1, ycol=6)
+            plotLine.append('colour', 'blue')
+            plotLine.append('symbolsize', '0')
 
         plotLL = progressGraph.addPlotObject()
         plotLL.append('title', '-LL')
@@ -191,6 +207,7 @@ class servalcat_xtal_report(Report):
 
     def getCycleData(self, xmlnode=None):
         if xmlnode is None: xmlnode = self.xmlnode
+        FSCaverageNodes = xmlnode.findall('.//cycle[last()]/data/summary/FSCaverage')
         R1WorkNodes = xmlnode.findall('.//cycle[last()]/data/summary/R1work')
         R1Nodes = xmlnode.findall('.//cycle[last()]/data/summary/R1')
         RNodes = xmlnode.findall('.//cycle[last()]/data/summary/R')
@@ -208,6 +225,7 @@ class servalcat_xtal_report(Report):
         cycle_data = {'mode':['-']*ncyc,
                       'cycle':['-']*ncyc,
                       '-LL':['-']*ncyc,
+                      'FSCaverage':['-']*ncyc,
                       'Rwork':['-']*ncyc,
                       'Rfree':['-']*ncyc,
                       'R':['-']*ncyc,
@@ -244,7 +262,10 @@ class servalcat_xtal_report(Report):
             except: pass
             try: cycle_data['-LL'][idx] = "{:.4f}".format(float(cycle.findall('data/summary/-LL')[0].text))
             except: pass
-            if len(R1Nodes) > 0:       # Refinement against intensities without free flags
+            if len(FSCaverageNodes) > 0: # SPA refinement
+                try: cycle_data['FSCaverage'][idx] = "{:.4f}".format(float(cycle.findall('data/summary/FSCaverage')[0].text))
+                except: pass
+            elif len(R1Nodes) > 0:       # Refinement against intensities without free flags
                 try: cycle_data['R1'][idx] = "{:.4f}".format(float(cycle.findall('data/summary/R1')[0].text))
                 except: pass
                 try: cycle_data['CCIavg'][idx] = "{:.4f}".format(float(cycle.findall('data/summary/CCIavg')[0].text))
@@ -365,13 +386,15 @@ class servalcat_xtal_report(Report):
         if len(TLSIdx) > 0 and len(RestrIdx) > 0:
            mode = ['TLS']*len(TLSIdx) + ['Full Atom']*len(RestrIdx)
         fullTable.addData(title="Cycle", data=cycle_data_sel['cycle'])
-        if isnumber(cycle_data_sel['R1'][-1]):  # Refinement against intensities without free flags
+        if isnumber(cycle_data_sel['FSCaverage'][-1]):  # SPA refinement
+            fullTable.addData(title="FSCaverage", data=cycle_data_sel['FSCaverage'])
+        elif isnumber(cycle_data_sel['R1'][-1]):        # Refinement against intensities without free flags
             fullTable.addData(title="R1", data=cycle_data_sel['R1'])
             fullTable.addData(title="CCI_avg", data=cycle_data_sel['CCIavg'])
-        elif isnumber(cycle_data_sel['R'][-1]):  # Refinement against amplitudes without free flags
+        elif isnumber(cycle_data_sel['R'][-1]):         # Refinement against amplitudes without free flags
             fullTable.addData(title="R", data=cycle_data_sel['R'])
             fullTable.addData(title="CCF_avg", data=cycle_data_sel['CCFavg'])
-        elif isnumber(cycle_data_sel['R1work'][-1]):  # Refinement against intensities with free flags
+        elif isnumber(cycle_data_sel['R1work'][-1]):    # Refinement against intensities with free flags
             fullTable.addData(title="R1work", data=cycle_data_sel['R1work'])
             if isnumber(cycle_data_sel['R1free'][-1]):
                 fullTable.addData(title="R1free", data=cycle_data_sel['R1free'])
@@ -492,28 +515,31 @@ class servalcat_xtal_report(Report):
             label=graphRtitle,
             style=galleryGraphStyle,
             initiallyDrawn=True)
-        graphR.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
-        if len(xmlnode.findall('.//cycle[last()]/data/binned/R1')) > 0:
-            graphR.addData(title="R1", select=".//cycle[last()]/data/binned/./R1")
-        elif len(xmlnode.findall('.//cycle[last()]/data/binned/R')) > 0:
-            graphR.addData(title="R", select=".//cycle[last()]/data/binned/./R")
-        elif len(xmlnode.findall('.//cycle[last()]/data/binned/Rwork')) > 0:
-            graphR.addData(title="Rwork", select=".//cycle[last()]/data/binned/./Rwork")
-            if len(xmlnode.findall('.//cycle[last()]/data/binned/Rfree')) > 0:
-                graphR.addData(title="Rfree", select=".//cycle[last()]/data/binned/./Rfree")
-        else:
-            graphR.addData(title="R1work", select=".//cycle[last()]/data/binned/./R1work")
-            if len(xmlnode.findall('.//cycle[last()]/data/binned/R1free')) > 0:
-                graphR.addData(title="R1free", select=".//cycle[last()]/data/binned/./R1free")
         plotR = graphR.addPlotObject()
+        graphR.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
+        if len(xmlnode.findall('.//cycle[last()]/data/binned/Rcmplx_FC_full')) > 0: # SPA refinement
+            graphR.addData(title="Rcmplx_FC_full", select=".//cycle[last()]/data/binned/./Rcmplx_FC_full")
+        else:
+            plotR.append('line', x1=0, x2=1, y1=0.42, y2=0.42, linecolour="red", linestyle="--")
+            plotR.append('line', x1=0, x2=1, y1=0.58, y2=0.58, linecolour="red", linestyle="--")
+            if len(xmlnode.findall('.//cycle[last()]/data/binned/R1')) > 0:
+                graphR.addData(title="R1", select=".//cycle[last()]/data/binned/./R1")
+            elif len(xmlnode.findall('.//cycle[last()]/data/binned/R')) > 0:
+                graphR.addData(title="R", select=".//cycle[last()]/data/binned/./R")
+            elif len(xmlnode.findall('.//cycle[last()]/data/binned/Rwork')) > 0:
+                graphR.addData(title="Rwork", select=".//cycle[last()]/data/binned/./Rwork")
+                if len(xmlnode.findall('.//cycle[last()]/data/binned/Rfree')) > 0:
+                    graphR.addData(title="Rfree", select=".//cycle[last()]/data/binned/./Rfree")
+            elif len(xmlnode.findall('.//cycle[last()]/data/binned/R1work')) > 0:
+                graphR.addData(title="R1work", select=".//cycle[last()]/data/binned/./R1work")
+                if len(xmlnode.findall('.//cycle[last()]/data/binned/R1free')) > 0:
+                    graphR.addData(title="R1free", select=".//cycle[last()]/data/binned/./R1free")
         plotR.append('title', graphRtitle)
         plotR.append('plottype', 'xy')
         plotR.append('xlabel', 'Resolution (&Aring;)')
         plotR.append('ylabel', 'R-value')
         plotR.append('xscale', 'oneoversqrt')
         plotR.append('legendposition', x=1, y=0)  # right bottom corner
-        plotR.append('line', x1=0, x2=1, y1=0.42, y2=0.42, linecolour="red", linestyle="--")
-        plotR.append('line', x1=0, x2=1, y1=0.58, y2=0.58, linecolour="red", linestyle="--")
         plotLine = plotR.append('plotline', xcol=1, ycol=2)
         plotLine.append('colour', 'orange')
         plotLine.append('symbolsize', '0')
@@ -530,7 +556,13 @@ class servalcat_xtal_report(Report):
             label=graphCCtitle,
             style=galleryGraphStyle)
         graphCC.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
-        if len(xmlnode.findall('.//cycle[last()]/data/binned/CCI')) > 0:
+        if len(xmlnode.findall('.//cycle[last()]/data/binned/fsc_FC_full')) > 0:  # SPA refinement
+            graphCC.addData(title="fsc_FC_full", select=".//cycle[last()]/data/binned/./fsc_FC_full")
+            if len(xmlnode.findall('.//cycle[last()]/data/binned/cc_FC_full')) > 0:
+                graphCC.addData(title="CC_FC_full", select=".//cycle[last()]/data/binned/./cc_FC_full")
+            if len(xmlnode.findall('.//cycle[last()]/data/binned/mcos_FC_full')) > 0:
+                graphCC.addData(title="mcos_FC_full", select=".//cycle[last()]/data/binned/./mcos_FC_full")
+        elif len(xmlnode.findall('.//cycle[last()]/data/binned/CCI')) > 0:
             graphCC.addData(title="CCI", select=".//cycle[last()]/data/binned/./CCI")
         elif len(xmlnode.findall('.//cycle[last()]/data/binned/CCF')) > 0:
             graphCC.addData(title="CCF", select=".//cycle[last()]/data/binned/./CCF")
@@ -556,61 +588,66 @@ class servalcat_xtal_report(Report):
         plotLine.append('colour', 'blue')
         plotLine.append('symbolsize', '0')
 
-        graphNtitle = "Number of reflections"
-        graphN = gallery.addFlotGraph(
-            xmlnode=xmlnode,
-            title=graphNtitle,
-            internalId=graphNtitle,
-            outputXml=self.outputXml,
-            label=graphNtitle,
-            style=galleryGraphStyle)
-        graphN.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
-        graphN.addData(title="Nobs", select=".//cycle[last()]/data/binned/./n_obs")
-        graphN.addData(title="Nwork", select=".//cycle[last()]/data/binned/./n_work")
-        graphN.addData(title="Nfree", select=".//cycle[last()]/data/binned/./n_free")
-        plotN = graphN.addPlotObject()
-        plotN.append('title', graphNtitle)
-        plotN.append('plottype', 'xy')
-        plotN.append('xlabel', 'Resolution (&Aring;)')
-        plotN.append('legendposition', x=0, y=1)
-        # plotN.append('ylabel', '')
-        plotN.append('xscale', 'oneoversqrt')
-        plotLine = plotN.append('plotline', xcol=1, ycol=2)
-        plotLine.append('colour', 'orange')
-        plotLine.append('symbolsize', '0')
-        plotLine = plotN.append('plotline', xcol=1, ycol=3)
-        plotLine.append('colour', 'blue')
-        plotLine.append('symbolsize', '0')
-        plotN.append('yrange', rightaxis='true')
-        plotLine = plotN.append('plotline', xcol=1, ycol=4) # , rightaxis='true')
-        plotLine.append('colour', 'red')
-        plotLine.append('symbolsize', '0')
+        if len(xmlnode.findall('.//cycle[last()]/data/binned/n_obs')) > 0 and \
+                len(xmlnode.findall('.//cycle[last()]/data/binned/n_work')) > 0:
+            graphN.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
+            graphN.addData(title="Nobs", select=".//cycle[last()]/data/binned/./n_obs")
+            graphN.addData(title="Nwork", select=".//cycle[last()]/data/binned/./n_work")
+            if len(xmlnode.findall('.//cycle[last()]/data/binned/n_free')) > 0:
+                graphN.addData(title="Nfree", select=".//cycle[last()]/data/binned/./n_free")
+            graphNtitle = "Number of reflections"
+            graphN = gallery.addFlotGraph(
+                xmlnode=xmlnode,
+                title=graphNtitle,
+                internalId=graphNtitle,
+                outputXml=self.outputXml,
+                label=graphNtitle,
+                style=galleryGraphStyle)
+            plotN = graphN.addPlotObject()
+            plotN.append('title', graphNtitle)
+            plotN.append('plottype', 'xy')
+            plotN.append('xlabel', 'Resolution (&Aring;)')
+            plotN.append('legendposition', x=0, y=1)
+            # plotN.append('ylabel', '')
+            plotN.append('xscale', 'oneoversqrt')
+            plotLine = plotN.append('plotline', xcol=1, ycol=2)
+            plotLine.append('colour', 'orange')
+            plotLine.append('symbolsize', '0')
+            plotLine = plotN.append('plotline', xcol=1, ycol=3)
+            plotLine.append('colour', 'blue')
+            plotLine.append('symbolsize', '0')
+            plotN.append('yrange', rightaxis='true')
+            plotLine = plotN.append('plotline', xcol=1, ycol=4) # , rightaxis='true')
+            plotLine.append('colour', 'red')
+            plotLine.append('symbolsize', '0')
 
-        graphDtitle = "Mean |D0*FC0| and |D1*FCbulk|"
-        graphD = gallery.addFlotGraph(
-            xmlnode=xmlnode,
-            title=graphDtitle,
-            internalId=graphDtitle,
-            outputXml=self.outputXml,
-            label=graphDtitle,
-            style=galleryGraphStyle)
-        graphD.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
-        graphD.addData(title="Mean|D0*FC0|", select=".//cycle[last()]/data/binned/./MnD0FC0")
-        graphD.addData(title="Mean|D1*FCbulk|", select=".//cycle[last()]/data/binned/./MnD1FCbulk")
-        plotD = graphD.addPlotObject()
-        plotD.append('title', graphDtitle)
-        plotD.append('plottype', 'xy')
-        plotD.append('xlabel', 'Resolution (&Aring;)')
-        # plotD.append('ylabel', '')
-        plotD.append('xscale', 'oneoversqrt')
-        plotN.append('legendposition', x=1, y=1)
-        plotLine = plotD.append('plotline', xcol=1, ycol=2)
-        plotLine.append('colour', 'blue')
-        plotLine.append('symbolsize', '0')
-        plotD.append('yrange', rightaxis='true')
-        plotLine = plotD.append('plotline', xcol=1, ycol=3, rightaxis='true')
-        plotLine.append('colour', 'red')
-        plotLine.append('symbolsize', '0')
+        if len(xmlnode.findall('.//cycle[last()]/data/binned/MnD0FC0')) > 0 and \
+                len(xmlnode.findall('.//cycle[last()]/data/binned/MnD1FCbulk')) > 0:
+            graphDtitle = "Mean |D0*FC0| and |D1*FCbulk|"
+            graphD = gallery.addFlotGraph(
+                xmlnode=xmlnode,
+                title=graphDtitle,
+                internalId=graphDtitle,
+                outputXml=self.outputXml,
+                label=graphDtitle,
+                style=galleryGraphStyle)
+            graphD.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
+            graphD.addData(title="Mean|D0*FC0|", select=".//cycle[last()]/data/binned/./MnD0FC0")
+            graphD.addData(title="Mean|D1*FCbulk|", select=".//cycle[last()]/data/binned/./MnD1FCbulk")
+            plotD = graphD.addPlotObject()
+            plotD.append('title', graphDtitle)
+            plotD.append('plottype', 'xy')
+            plotD.append('xlabel', 'Resolution (&Aring;)')
+            # plotD.append('ylabel', '')
+            plotD.append('xscale', 'oneoversqrt')
+            plotN.append('legendposition', x=1, y=1)
+            plotLine = plotD.append('plotline', xcol=1, ycol=2)
+            plotLine.append('colour', 'blue')
+            plotLine.append('symbolsize', '0')
+            plotD.append('yrange', rightaxis='true')
+            plotLine = plotD.append('plotline', xcol=1, ycol=3, rightaxis='true')
+            plotLine.append('colour', 'red')
+            plotLine.append('symbolsize', '0')
 
         clearingDiv = parent.addDiv(style="clear:both;")
 
@@ -1492,14 +1529,17 @@ class servalcat_xtal_report(Report):
         statisticInitial = []
         statisticFinal = []
 
-        if isnumber(cycle_data["R1"][-1]):  # refinement against intensities without free flags
+        if isnumber(cycle_data["FSCaverage"][-1]):# SPA refinement
+            statisticNames.append('FSCaverage')
+            statisticInitial.append(cycle_data['FSCaverage'][0])
+        elif isnumber(cycle_data["R1"][-1]):      # refinement against intensities without free flags
             statisticNames.append('R1')
             statisticInitial.append(cycle_data['R1'][0])
             statisticFinal.append(cycle_data['R1'][-1])
             statisticNames.append('CCI_avg')
             statisticInitial.append(cycle_data['CCIavg'][0])
             statisticFinal.append(cycle_data['CCIavg'][-1])
-        elif isnumber(cycle_data["R"][-1]):  # refinement against amplitudes without free flags
+        elif isnumber(cycle_data["R"][-1]):       # refinement against amplitudes without free flags
             statisticNames.append('R')
             statisticInitial.append(cycle_data['R'][0])
             statisticFinal.append(cycle_data['R'][-1])

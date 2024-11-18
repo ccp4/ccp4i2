@@ -88,26 +88,6 @@ class servalcat_xtal(CPluginScript):
         error = None
         self.hklin = None
         dataObjects = []
-        #print '\n\n\n***contentFlag',self.container.inputData.HKLIN.contentFlag
-        #Append Observation with representation dependent on whether we are detwining on Is or not
-        
-        obsTypeRoot = 'CONTENT_FLAG_F'
-        #if self.container.controlParameters.USE_TWIN and self.container.inputData.HKLIN.isSet():
-        if self.container.inputData.HKLIN.isSet():
-            if self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR:
-                obsTypeRoot = 'CONTENT_FLAG_I'
-            elif self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN:
-                obsTypeRoot = 'CONTENT_FLAG_I'
-        if self.container.controlParameters.F_SIGF_OR_I_SIGI.isSet():
-            if str(self.container.controlParameters.F_SIGF_OR_I_SIGI) == "F_SIGF":
-                obsTypeRoot = 'CONTENT_FLAG_F'
-        
-        obsPairOrMean = 'MEAN'
-        if self.container.controlParameters.USEANOMALOUS:
-            obsPairOrMean = 'PAIR'
-                
-        obsType = getattr(CCP4XtalData.CObsDataFile, obsTypeRoot+obsPairOrMean)
-        dataObjects += [['HKLIN', obsType]]
 
         #Include phase estimates if called for
         #if self.container.inputData.ABCD.isSet():
@@ -126,13 +106,35 @@ class servalcat_xtal(CPluginScript):
         rv = self.joinDicts(self.container.outputData.DICT, self.container.inputData.DICT_LIST)
         #CPluginScript.joinDicts(self.container.inputData.DICT.fullPath.__str__(), self.container.inputData.DICT_LIST)
 
-        #Include FreeRflag if called for
-        if self.container.inputData.FREERFLAG.isSet():
-            dataObjects += ['FREERFLAG']
-        self.hklin,error = self.makeHklin(dataObjects)
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
-            return CPluginScript.FAILED
-        else:
+        #print '\n\n\n***contentFlag',self.container.inputData.HKLIN.contentFlag
+        #Append Observation with representation dependent on whether we are detwining on Is or not
+
+        if str(self.container.controlParameters.DATA_METHOD) == 'xtal':
+            obsTypeRoot = 'CONTENT_FLAG_F'
+            #if self.container.controlParameters.USE_TWIN and self.container.inputData.HKLIN.isSet():
+            if self.container.inputData.HKLIN.isSet():
+                if self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR:
+                    obsTypeRoot = 'CONTENT_FLAG_I'
+                elif self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN:
+                    obsTypeRoot = 'CONTENT_FLAG_I'
+            if self.container.controlParameters.F_SIGF_OR_I_SIGI.isSet():
+                if str(self.container.controlParameters.F_SIGF_OR_I_SIGI) == "F_SIGF":
+                    obsTypeRoot = 'CONTENT_FLAG_F'
+            
+            obsPairOrMean = 'MEAN'
+            if self.container.controlParameters.USEANOMALOUS:
+                obsPairOrMean = 'PAIR'
+                    
+            obsType = getattr(CCP4XtalData.CObsDataFile, obsTypeRoot+obsPairOrMean)
+            dataObjects += [['HKLIN', obsType]]
+
+            #Include FreeRflag if called for
+            if self.container.inputData.FREERFLAG.isSet():
+                dataObjects += ['FREERFLAG']
+            self.hklin,error = self.makeHklin(dataObjects)
+            if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+                return CPluginScript.FAILED
+
             return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
@@ -204,45 +206,43 @@ class servalcat_xtal(CPluginScript):
         self.outputPdbPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined.pdb'))
         self.container.outputData.XYZOUT.setFullPath(self.outputPdbPath)
 
-        self.container.outputData.CIFFILE.annotation = 'Model from refinement (mmCIF format)'
-        self.container.outputData.XYZOUT.annotation = 'Model from refinement (PDB format)'
-        self.container.outputData.FPHIOUT.annotation = 'Weighted map from refinement'
-        self.container.outputData.DIFFPHIOUT.annotation = 'Weighted difference map from refinement'
         # self.container.outputData.ABCDOUT.annotation = 'Calculated phases from refinement'
         # self.container.outputData.ABCDOUT.contentFlag = CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL
         self.container.outputData.TLSOUT.annotation = 'TLS parameters from refinement'
         self.container.outputData.LIBOUT.annotation = 'Generated dictionary from refinement'
-        self.container.outputData.ANOMFPHIOUT.annotation = 'Weighted anomalous difference map from refinement'
-        self.container.outputData.DIFANOMFPHIOUT.annotation = 'Weighted differences of anomalous difference map'
 
-        # Split out data objects that have been generated. Do this after applying the annotation, and flagging
-        # above, since splitHklout needs to know the ABCDOUT contentFlag
-        
-        outputFiles = ['FPHIOUT', 'DIFFPHIOUT']
-        outputColumns = ['FWT,PHWT', 'DELFWT,PHDELWT']
-        """if self.container.controlParameters.PHOUT:
-            outputFiles+=['ABCDOUT']
-            outputColumns+=['HLACOMB,HLBCOMB,HLCCOMB,HLDCOMB']
-        
-        if self.container.controlParameters.USEANOMALOUS:
-            outputFiles += ['ANOMFPHIOUT']
-            outputColumns += ['FAN,PHAN']"""
-        
-        #hkloutFile=CCP4XtalData.CMtzDataFile(os.path.join(self.getWorkDirectory(), "hklout.mtz"))
-        hkloutFilePath = str(os.path.join(self.getWorkDirectory(), "refined.mtz"))
-        #hkloutFile=CCP4XtalData.CMtzDataFile(os.path.join(self.getWorkDirectory(), "refined.mtz"))
-        hkloutFile=CCP4XtalData.CMtzDataFile(hkloutFilePath)
-        hkloutFile.loadFile()
-        columnLabelsInFile = [column.columnLabel.__str__() for column in hkloutFile.fileContent.listOfColumns]
-        print('columnLabelsInFile',columnLabelsInFile)
-        
-        """if self.container.controlParameters.USEANOMALOUS and 'DELFAN' in columnLabelsInFile and 'PHDELAN' in columnLabelsInFile:
-            outputFiles += ['DIFANOMFPHIOUT']
-            outputColumns += ['DELFAN,PHDELAN']"""
+        if str(self.container.controlParameters.DATA_METHOD) == "xtal":
+            self.container.outputData.FPHIOUT.annotation = 'Weighted map from refinement'
+            self.container.outputData.DIFFPHIOUT.annotation = 'Weighted difference map from refinement'
+            self.container.outputData.ANOMFPHIOUT.annotation = 'Weighted anomalous difference map from refinement'
+            self.container.outputData.DIFANOMFPHIOUT.annotation = 'Weighted differences of anomalous difference map'
+            # Split out data objects that have been generated. Do this after applying the annotation, and flagging
+            # above, since splitHklout needs to know the ABCDOUT contentFlag
+            outputFiles = ['FPHIOUT', 'DIFFPHIOUT']
+            outputColumns = ['FWT,PHWT', 'DELFWT,PHDELWT']
+            """if self.container.controlParameters.PHOUT:
+                outputFiles+=['ABCDOUT']
+                outputColumns+=['HLACOMB,HLBCOMB,HLCCOMB,HLDCOMB']
+            
+            if self.container.controlParameters.USEANOMALOUS:
+                outputFiles += ['ANOMFPHIOUT']
+                outputColumns += ['FAN,PHAN']"""
+            
+            #hkloutFile=CCP4XtalData.CMtzDataFile(os.path.join(self.getWorkDirectory(), "hklout.mtz"))
+            hkloutFilePath = str(os.path.join(self.getWorkDirectory(), "refined.mtz"))
+            #hkloutFile=CCP4XtalData.CMtzDataFile(os.path.join(self.getWorkDirectory(), "refined.mtz"))
+            hkloutFile=CCP4XtalData.CMtzDataFile(hkloutFilePath)
+            hkloutFile.loadFile()
+            columnLabelsInFile = [column.columnLabel.__str__() for column in hkloutFile.fileContent.listOfColumns]
+            print('columnLabelsInFile',columnLabelsInFile)
+            
+            """if self.container.controlParameters.USEANOMALOUS and 'DELFAN' in columnLabelsInFile and 'PHDELAN' in columnLabelsInFile:
+                outputFiles += ['DIFANOMFPHIOUT']
+                outputColumns += ['DELFAN,PHDELAN']"""
 
-        error = self.splitHklout(outputFiles,outputColumns,hkloutFilePath)
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
-            return CPluginScript.FAILED
+            error = self.splitHklout(outputFiles,outputColumns,hkloutFilePath)
+            if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+                return CPluginScript.FAILED
 
         #Use Refmacs XMLOUT as the basis for output XML.  If not existent (probably due to failure), then create a new one
         # from core import CCP4Utils
@@ -294,9 +294,14 @@ class servalcat_xtal(CPluginScript):
 
         # Extract performance indicators from JSON
         statsOverall = {}
-        if self.container.inputData.FREERFLAG.isSet():
+        try:
+            statsOverall["-LL"] = jsonStats[-1]['data']['summary']['-LL']
+        except:
+            pass
+        if str(self.container.controlParameters.DATA_METHOD) == 'spa':
+            statsOverall["FSCaverage"] = jsonStats[-1]['data']['summary']['FSCaverage']
+        elif self.container.inputData.FREERFLAG.isSet():
             try:
-                statsOverall["-LL"] = jsonStats[-1]['data']['summary']['-LL']
                 statsOverall["Rwork"] = jsonStats[-1]['data']['summary']['Rwork']
                 statsOverall["Rfree"] = jsonStats[-1]['data']['summary']['Rfree']
                 statsOverall["CCFworkavg"] = jsonStats[-1]['data']['summary']['CCFworkavg']
@@ -315,14 +320,12 @@ class servalcat_xtal(CPluginScript):
                     pass
         else:
             try:
-                statsOverall["-LL"] = jsonStats[-1]['data']['summary']['-LL']
                 statsOverall["R"] = jsonStats[-1]['data']['summary']['R']
                 statsOverall["CCFavg"] = jsonStats[-1]['data']['summary']['CCFavg']
                 self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(statsOverall["R"])  # TO DO
                 self.container.outputData.PERFORMANCEINDICATOR.RFree.set(0)
             except:
                 try:
-                    statsOverall["-LL"] = jsonStats[-1]['data']['summary']['-LL']
                     statsOverall["R1"] = jsonStats[-1]['data']['summary']['R1']
                     statsOverall["CCIavg"] = jsonStats[-1]['data']['summary']['CCIavg']
                     self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(statsOverall["R1"])  # TO DO
@@ -412,46 +415,49 @@ class servalcat_xtal(CPluginScript):
 
     def makeCommandAndScript(self):
         # self.appendCommandLine(['-m', 'servalcat'])
-        if self.container.inputData.MAPIN.isSet():
+        if str(self.container.controlParameters.DATA_METHOD) == "spa":
             self.appendCommandLine(['refine_spa_norefmac'])
-            self.appendCommandLine(['--model', self.inputCoordPath])
-            self.appendCommandLine(['--map', str(self.container.inputData.MAPIN.fullPath)])
-            self.appendCommandLine(['--source', "electron"])
-            self.appendCommandLine(['-d', "2.58"])
-            return CPluginScript.SUCCEEDED
-            self.appendCommandLine(['#'])
-        self.appendCommandLine(['refine_xtal_norefmac'])
-        self.appendCommandLine(['--hklin', self.hklin])
-        self.appendCommandLine(['-o', 'refined'])
-        self.hklout = os.path.join(self.workDirectory, "refined.mtz")
-        self.appendCommandLine(['--model', self.inputCoordPath])
+            self.appendCommandLine(['--halfmaps',
+                                    str(self.container.inputData.MAPIN1.fullPath),
+                                    str(self.container.inputData.MAPIN2.fullPath)])
+            if self.container.inputData.MAPMASK.isSet():
+                self.appendCommandLine(['--mask_for_fofc',
+                                        str(self.container.inputData.MAPMASK.fullPath)])
+            self.appendCommandLine(['-d', str(self.container.controlParameters.RES_MIN)])
+            self.hklout = "" ###
+            # self.appendCommandLine(['--source', "electron"])
+            # d
 
-        if self.container.inputData.DICT_LIST.isSet():
-            self.appendCommandLine(['--ligand'])
-            for dictionary in self.container.inputData.DICT_LIST:
-                if os.path.exists(str(dictionary)):
-                    self.appendCommandLine([str(dictionary)])
+        elif str(self.container.controlParameters.DATA_METHOD) == "xtal":
+            self.appendCommandLine(['refine_xtal_norefmac'])
+            self.appendCommandLine(['--hklin', self.hklin])
+            if self.container.controlParameters.F_SIGF_OR_I_SIGI.isSet():
+                if str(self.container.controlParameters.F_SIGF_OR_I_SIGI) == "F_SIGF" or not self.container.controlParameters.HKLIN_IS_I_SIGI:
+                    labin = 'F,SIGF'
                 else:
-                    print(f"WARNING: input restraint dictionary {dictionary} does not exist and so will not be used.")
-
-        if self.container.controlParameters.F_SIGF_OR_I_SIGI.isSet():
-            if str(self.container.controlParameters.F_SIGF_OR_I_SIGI) == "F_SIGF" or not self.container.controlParameters.HKLIN_IS_I_SIGI:
-                labin = 'F,SIGF'
-            else:
+                    labin = 'I,SIGI'
+            elif self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR \
+                    or self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN:
                 labin = 'I,SIGI'
-        elif self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR \
-                or self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN:
-            labin = 'I,SIGI'
-        else:
-            labin = 'F,SIGF'
-        if self.container.inputData.FREERFLAG.isSet():
-            if self.container.controlParameters.FREERFLAG_NUMBER.isSet():
-                self.appendCommandLine(['--free', str(self.container.controlParameters.FREERFLAG_NUMBER)])
-            labin += ",FREER"
-        self.appendCommandLine(['--labin', labin])
-        if self.container.controlParameters.USE_TWIN:  # I,SIGI for optimal results
-            self.appendCommandLine(['--twin'])
+            else:
+                labin = 'F,SIGF'
+            if self.container.inputData.FREERFLAG.isSet():
+                if self.container.controlParameters.FREERFLAG_NUMBER.isSet():
+                    self.appendCommandLine(['--free', str(self.container.controlParameters.FREERFLAG_NUMBER)])
+                labin += ",FREER"
+            self.appendCommandLine(['--labin', labin])
+            if self.container.controlParameters.USE_TWIN:  # I,SIGI for optimal results
+                self.appendCommandLine(['--twin'])
+            self.hklout = os.path.join(self.workDirectory, "refined.mtz")
+            if self.container.controlParameters.UNRESTRAINED:
+                self.appendCommandLine(['--unrestrained'])
+            if self.container.controlParameters.USE_WORK_IN_EST:
+                self.appendCommandLine(['--use_work_in_est'])
+            if self.container.controlParameters.NO_SOLVENT:
+                self.appendCommandLine(['--no_solvent'])            
 
+        self.appendCommandLine(['--model', self.inputCoordPath])
+        self.appendCommandLine(['-o', 'refined'])
         self.appendCommandLine(['--source', str(self.container.controlParameters.SCATTERING_FACTORS)])
         if self.container.controlParameters.NCYCLES.isSet():
             self.appendCommandLine(["--ncycle", str(self.container.controlParameters.NCYCLES)])
@@ -466,6 +472,15 @@ class servalcat_xtal(CPluginScript):
                 self.appendCommandLine(['--refine_h'])
         else:
             self.appendCommandLine(['--hydrogen', 'no'])
+
+        if self.container.inputData.DICT_LIST.isSet():
+            self.appendCommandLine(['--ligand'])
+            for dictionary in self.container.inputData.DICT_LIST:
+                if os.path.exists(str(dictionary)):
+                    self.appendCommandLine([str(dictionary)])
+                else:
+                    print(f"WARNING: input restraint dictionary {dictionary} does not exist and so will not be used.")
+
         # Resolution
         if self.container.controlParameters.RES_CUSTOM:
             if self.container.controlParameters.RES_MIN.isSet():
@@ -516,19 +531,13 @@ class servalcat_xtal(CPluginScript):
         #     self.appendCommandLine(['--adp_restraint_mode', str(self.container.controlParameters.ADP_RESTRAINT_MODE)])
         if self.container.controlParameters.FIND_LINKS:
             self.appendCommandLine(['--find-links'])
-        if self.container.controlParameters.UNRESTRAINED:
-            self.appendCommandLine(['--unrestrained'])
         if self.container.controlParameters.FIX_XYZ:
             self.appendCommandLine(['--fix_xyz'])
         if self.container.controlParameters.KEEP_CHARGES:
             self.appendCommandLine(['--keep_charges'])
-        if self.container.controlParameters.USE_WORK_IN_EST:
-            self.appendCommandLine(['--use_work_in_est'])
         if self.container.controlParameters.RANDOMIZEUSE and \
                 str(self.container.controlParameters.RANDOMIZE):
             self.appendCommandLine(['--randomize', str(self.container.controlParameters.RANDOMIZE)])
-        if self.container.controlParameters.NO_SOLVENT:
-            self.appendCommandLine(['--no_solvent'])
 
         keywordFilePath = str(os.path.join(self.getWorkDirectory(), 'keywords.txt'))
         if self.container.inputData.METALCOORD_RESTRAINTS.isSet():

@@ -222,8 +222,9 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
        #self.getWidget('XYZIN').showAtomSelection()
        #except:
        #pass
-    self.createLine( [ 'widget', '-browseDb', True, 'HKLIN' ])
-    self.createLine( [ 'widget', '-browseDb', True, 'MAPIN' ])
+    self.createLine( [ 'label', 'Experimental data type:', 'widget', 'DATA_METHOD' ])
+    self.openSubFrame(toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ] )
+    self.createLine( [ 'widget', '-browseDb', True, 'HKLIN' ] )
     self.container.inputData.HKLIN.dataChanged.connect( self.hklinChanged )
     self.createLine( [ 'label', 'Refinement against <b>amplitudes</b>.'], toggle = ['HKLIN_IS_I_SIGI', 'open', [ False ] ] )
     self.createLine( [ 'label', 'Refinement against', 'widget', 'F_SIGF_OR_I_SIGI'], toggle = ['HKLIN_IS_I_SIGI', 'open', [ True ] ] )
@@ -232,6 +233,13 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     #if self.isEditable():
     #    if not self.container.controlParameters.WAVELENGTH.isSet(): self.getWavelength()
     self.createLine( [ 'widget', '-browseDb', True, 'FREERFLAG' ] )
+    self.closeSubFrame()
+    self.openSubFrame(toggle = ['DATA_METHOD', 'open', [ 'spa' ] ] )
+    self.createLine( [ 'label', 'Half map 1', 'widget', '-browseDb', True, 'MAPIN1' ] )
+    self.createLine( [ 'label', 'Half map 2', 'widget', '-browseDb', True, 'MAPIN2' ] )
+    self.createLine( [ 'label', 'Mask', 'widget', '-browseDb', True, 'MAPMASK' ] )
+    self.createLine( [ 'label', 'Resolution', 'widget', 'RES_MIN' ] )
+  
     self.closeSubFrame()
     #self.createLine( [ 'advice',' '] )
     #self.createLine( [ 'subtitle', 'Experimental phase information', 'stretch' ])
@@ -711,7 +719,7 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
 
     self.createLine( [ 'subtitle', 'Validation and Analysis' ] )
     self.openSubFrame(frame=[True])
-    self.createLine( [ 'widget', 'VALIDATE_IRIS', 'label', 'Generate Iris report' ] )
+    self.createLine( [ 'widget', 'VALIDATE_IRIS', 'label', 'Generate Iris validation report' ] )
     # self.createLine( [ 'widget', 'VALIDATE_BAVERAGE', 'label', 'Analyse B-factor distributions' ] )
     self.createLine( [ 'widget', 'VALIDATE_RAMACHANDRAN', 'label', 'Generate Ramachandran plots' ] )
     self.createLine( [ 'widget', 'VALIDATE_MOLPROBITY', 'label', 'Run MolProbity to analyse geometry' ] )
@@ -983,82 +991,84 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
       import traceback
       functionNames = [a[2] for a in traceback.extract_stack()]
 
-      if self.container.inputData.HKLIN.isSet() and  self.container.inputData.XYZIN.isSet() and self.container.inputData.XYZIN.fileContent.mmdbManager and hasattr(self.container.inputData.XYZIN.fileContent.mmdbManager,"GetCell"):
-          cellMismatch = False
-          sgMismatch = False
-          if abs(float(self.container.inputData.HKLIN.fileContent.cell.a) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[1]) > 1e-2: cellMismatch = True
-          if abs(float(self.container.inputData.HKLIN.fileContent.cell.b) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[2]) > 1e-2: cellMismatch = True
-          if abs(float(self.container.inputData.HKLIN.fileContent.cell.c) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[3]) > 1e-2: cellMismatch = True
-          if abs(float(self.container.inputData.HKLIN.fileContent.cell.alpha) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[4]) > 1e-2: cellMismatch = True
-          if abs(float(self.container.inputData.HKLIN.fileContent.cell.beta) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[5]) > 1e-2: cellMismatch = True
-          if abs(float(self.container.inputData.HKLIN.fileContent.cell.gamma) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[6]) > 1e-2: cellMismatch = True
-          if str(self.container.inputData.XYZIN.fileContent.mmdbManager.GetSpaceGroup()) != str(self.container.inputData.HKLIN.fileContent.spaceGroup): sgMismatch = True
-          if cellMismatch or sgMismatch:
-              if functionNames[-2] == 'runTask':
-                  from PySide2.QtWidgets import QMessageBox
-                  msg = QMessageBox()
-                  msg.setIcon(QMessageBox.Question)
-                  msg.setText("Warning")
-                  infoText = "You are trying to execute refinement with possible space group/cell mismatch between reflection and model.<br/>"
-                  infoText += "<br/>Reflections:<br/>"
-                  refCell = self.container.inputData.HKLIN.fileContent.cell
-                  infoText += "%.3f %.3f %.3f<br/>%.3f %.3f %.3f<br/>%s<br/>" % (float(refCell.a),  float(refCell.b), float(refCell.c) ,float(refCell.alpha), float(refCell.beta), float(refCell.gamma),  str(self.container.inputData.HKLIN.fileContent.spaceGroup))
-                  infoText += "<br/>Model:<br/>"
-                  modCell = self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()
-                  infoText += "%.3f %.3f %.3f<br/>%.3f %.3f %.3f<br/>%s<br/>" % (float(modCell[1]), float(modCell[2]), float(modCell[3]),float(modCell[4]), float(modCell[5]), float(modCell[6]), str(self.container.inputData.XYZIN.fileContent.mmdbManager.GetSpaceGroup()))
-                  msg.setInformativeText(infoText)
-                  msg.setStandardButtons(QMessageBox.Ignore | QMessageBox.Cancel)
-                  retval = msg.exec_()
-                  if retval == QMessageBox.Cancel:
-                      invalidElements.append(self.container.inputData.HKLIN)
-                      invalidElements.append(self.container.inputData.XYZIN)
+      #if str(self.container.controlParameters.DATA_METHOD) == 'xtal':
+      if True:
+         if self.container.inputData.HKLIN.isSet() and  self.container.inputData.XYZIN.isSet() and self.container.inputData.XYZIN.fileContent.mmdbManager and hasattr(self.container.inputData.XYZIN.fileContent.mmdbManager,"GetCell"):
+            cellMismatch = False
+            sgMismatch = False
+            if abs(float(self.container.inputData.HKLIN.fileContent.cell.a) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[1]) > 1e-2: cellMismatch = True
+            if abs(float(self.container.inputData.HKLIN.fileContent.cell.b) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[2]) > 1e-2: cellMismatch = True
+            if abs(float(self.container.inputData.HKLIN.fileContent.cell.c) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[3]) > 1e-2: cellMismatch = True
+            if abs(float(self.container.inputData.HKLIN.fileContent.cell.alpha) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[4]) > 1e-2: cellMismatch = True
+            if abs(float(self.container.inputData.HKLIN.fileContent.cell.beta) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[5]) > 1e-2: cellMismatch = True
+            if abs(float(self.container.inputData.HKLIN.fileContent.cell.gamma) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[6]) > 1e-2: cellMismatch = True
+            if str(self.container.inputData.XYZIN.fileContent.mmdbManager.GetSpaceGroup()) != str(self.container.inputData.HKLIN.fileContent.spaceGroup): sgMismatch = True
+            if cellMismatch or sgMismatch:
+               if functionNames[-2] == 'runTask':
+                     from PySide2.QtWidgets import QMessageBox
+                     msg = QMessageBox()
+                     msg.setIcon(QMessageBox.Question)
+                     msg.setText("Warning")
+                     infoText = "You are trying to execute refinement with possible space group/cell mismatch between reflection and model.<br/>"
+                     infoText += "<br/>Reflections:<br/>"
+                     refCell = self.container.inputData.HKLIN.fileContent.cell
+                     infoText += "%.3f %.3f %.3f<br/>%.3f %.3f %.3f<br/>%s<br/>" % (float(refCell.a),  float(refCell.b), float(refCell.c) ,float(refCell.alpha), float(refCell.beta), float(refCell.gamma),  str(self.container.inputData.HKLIN.fileContent.spaceGroup))
+                     infoText += "<br/>Model:<br/>"
+                     modCell = self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()
+                     infoText += "%.3f %.3f %.3f<br/>%.3f %.3f %.3f<br/>%s<br/>" % (float(modCell[1]), float(modCell[2]), float(modCell[3]),float(modCell[4]), float(modCell[5]), float(modCell[6]), str(self.container.inputData.XYZIN.fileContent.mmdbManager.GetSpaceGroup()))
+                     msg.setInformativeText(infoText)
+                     msg.setStandardButtons(QMessageBox.Ignore | QMessageBox.Cancel)
+                     retval = msg.exec_()
+                     if retval == QMessageBox.Cancel:
+                        invalidElements.append(self.container.inputData.HKLIN)
+                        invalidElements.append(self.container.inputData.XYZIN)
 
-      if functionNames[-2] == 'runTask':
-          if not self.container.inputData.FREERFLAG.isSet():
-            from PySide2.QtWidgets import QMessageBox
-            #from PyQt4.QtCore import *
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Question)
+         if functionNames[-2] == 'runTask':
+            if not self.container.inputData.FREERFLAG.isSet():
+               from PySide2.QtWidgets import QMessageBox
+               #from PyQt4.QtCore import *
+               msg = QMessageBox()
+               msg.setIcon(QMessageBox.Question)
 
-            msg.setText("Warning")
-            msg.setInformativeText("You are trying to execute refinement without selecting a Free-R data item")
-            msg.setWindowTitle("Free-R warning")
-            msg.setDetailedText("While refinement without FreeR is reasonable under some circumstances, it is generally discouraged because it can provide a misleading impression of progress in refinement where over-fitting of the data can occur")
-            msg.setStandardButtons(QMessageBox.Ignore | QMessageBox.Cancel)
-            #msg.buttonClicked.connect(msgbtn)
-            retval = msg.exec_()
-            #print "value of pressed message box button:", retval, 0x00100000, 0x00400000
-            if retval == QMessageBox.Cancel:
-                invalidElements.append(self.container.inputData.FREERFLAG)
-  
-      if self.container.controlParameters.REFINEMENT_MODE.isSet():
-         if str(self.container.controlParameters.REFINEMENT_MODE) == 'RIGID':
-            for sel0 in self.container.controlParameters.RIGID_BODY_SELECTION:
-               sel = sel0.get()
-               if not sel['groupId'] or not sel['chainId'] or not sel['firstRes'] or not sel['lastRes']:
-                  invalidElements.append(self.container.controlParameters.RIGID_BODY_SELECTION)
-         else:
-            if self.container.controlParameters.OCCUPANCY_GROUPS:
-               occup_groupids = []
-               for sel0 in self.container.controlParameters.OCCUPANCY_SELECTION:
+               msg.setText("Warning")
+               msg.setInformativeText("You are trying to execute refinement without selecting a Free-R data item")
+               msg.setWindowTitle("Free-R warning")
+               msg.setDetailedText("While refinement without FreeR is reasonable under some circumstances, it is generally discouraged because it can provide a misleading impression of progress in refinement where over-fitting of the data can occur")
+               msg.setStandardButtons(QMessageBox.Ignore | QMessageBox.Cancel)
+               #msg.buttonClicked.connect(msgbtn)
+               retval = msg.exec_()
+               #print "value of pressed message box button:", retval, 0x00100000, 0x00400000
+               if retval == QMessageBox.Cancel:
+                  invalidElements.append(self.container.inputData.FREERFLAG)
+   
+         if self.container.controlParameters.REFINEMENT_MODE.isSet():
+            if str(self.container.controlParameters.REFINEMENT_MODE) == 'RIGID':
+               for sel0 in self.container.controlParameters.RIGID_BODY_SELECTION:
                   sel = sel0.get()
-                  if not sel['groupId'] or not sel['chainIds'] or not sel['firstRes'] or not sel['lastRes']:
-                     invalidElements.append(self.container.controlParameters.OCCUPANCY_SELECTION)
-                  if sel['groupId']:
-                     occup_groupids.append(str(sel['groupId']))
-               if self.container.controlParameters.OCCUPANCY_COMPLETE:
-                  for sel0 in self.container.controlParameters.OCCUPANCY_COMPLETE_TABLE:
+                  if not sel['groupId'] or not sel['chainId'] or not sel['firstRes'] or not sel['lastRes']:
+                     invalidElements.append(self.container.controlParameters.RIGID_BODY_SELECTION)
+            else:
+               if self.container.controlParameters.OCCUPANCY_GROUPS:
+                  occup_groupids = []
+                  for sel0 in self.container.controlParameters.OCCUPANCY_SELECTION:
                      sel = sel0.get()
-                     for id in sel['groupIds'].split(' '):
-                        if not id in occup_groupids:
-                           invalidElements.append(self.container.controlParameters.OCCUPANCY_COMPLETE_TABLE)
-               if self.container.controlParameters.OCCUPANCY_INCOMPLETE:
-                  for sel0 in self.container.controlParameters.OCCUPANCY_INCOMPLETE_TABLE:
-                     sel = sel0.get()
-                     for id in sel['groupIds'].split(' '):
-                        if not id in occup_groupids:
-                           invalidElements.append(self.container.controlParameters.OCCUPANCY_INCOMPLETE_TABLE)
+                     if not sel['groupId'] or not sel['chainIds'] or not sel['firstRes'] or not sel['lastRes']:
+                        invalidElements.append(self.container.controlParameters.OCCUPANCY_SELECTION)
+                     if sel['groupId']:
+                        occup_groupids.append(str(sel['groupId']))
+                  if self.container.controlParameters.OCCUPANCY_COMPLETE:
+                     for sel0 in self.container.controlParameters.OCCUPANCY_COMPLETE_TABLE:
+                        sel = sel0.get()
+                        for id in sel['groupIds'].split(' '):
+                           if not id in occup_groupids:
+                              invalidElements.append(self.container.controlParameters.OCCUPANCY_COMPLETE_TABLE)
+                  if self.container.controlParameters.OCCUPANCY_INCOMPLETE:
+                     for sel0 in self.container.controlParameters.OCCUPANCY_INCOMPLETE_TABLE:
+                        sel = sel0.get()
+                        for id in sel['groupIds'].split(' '):
+                           if not id in occup_groupids:
+                              invalidElements.append(self.container.controlParameters.OCCUPANCY_INCOMPLETE_TABLE)
 
 
-      return invalidElements
+         return invalidElements
 

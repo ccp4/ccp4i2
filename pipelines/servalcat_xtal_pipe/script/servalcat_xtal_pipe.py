@@ -1042,9 +1042,9 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
         self.adp_analysis(
             str(self.container.outputData.CIFFILE.fullPath),
             float(self.container.monitor.ADP_IQR_FACTOR))
-        self.coord_adp_dev_analysis(
-            str(self.container.inputData.XYZIN.fullPath),
-            str(self.container.outputData.CIFFILE.fullPath))
+        #self.coord_adp_dev_analysis(
+        #    str(self.container.inputData.XYZIN.fullPath),
+        #    str(self.container.outputData.CIFFILE.fullPath))
         # self.reportStatus(CPluginScript.SUCCEEDED)
         # return # MM
 
