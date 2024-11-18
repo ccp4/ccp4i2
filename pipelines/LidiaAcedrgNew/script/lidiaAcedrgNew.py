@@ -54,6 +54,9 @@ class lidiaAcedrgNew(CPluginScript):
         elif self.container.inputData.MOLSMILESORSKETCH.__str__() == 'DICT':
             result = self.doAcedrg('DICT', self.container.inputData.DICTIN2)
             self.finishWithStatus(result)
+        elif self.container.inputData.MOLSMILESORSKETCH.__str__() == 'PDBMMCIF':
+            result = self.doAcedrg('PDBMMCIF', self.container.inputData.PDBMMCIFIN)
+            self.finishWithStatus(result)
 
     @QtCore.Slot(dict)
     def lidiaFinished(self, statusDict):
@@ -82,7 +85,6 @@ class lidiaAcedrgNew(CPluginScript):
         
         acedrgPlugin = self.makePluginObject('acedrgNew')
         acedrgPlugin.container.inputData.MOLORSMILES = inputType
-        acedrgPlugin.container.controlParameters.USE_COORD = self.container.controlParameters.USE_COORD
         if inputType == 'MOL':
             acedrgPlugin.container.inputData.MOLIN = inputObject
         elif inputType == 'MOL2':
@@ -93,14 +95,23 @@ class lidiaAcedrgNew(CPluginScript):
             acedrgPlugin.container.inputData.SMILESIN = inputObject
         elif inputType == 'DICT':
             acedrgPlugin.container.inputData.DICTIN2 = inputObject
+        elif inputType == 'PDBMMCIF':
+            acedrgPlugin.container.inputData.PDBMMCIFIN = inputObject
         try:
-           acedrgPlugin.container.inputData.TLC.set(self.container.inputData.TLC)
-           acedrgPlugin.container.inputData.NRANDOM.set(self.container.inputData.NRANDOM)
+            acedrgPlugin.container.inputData.TLC.set(self.container.inputData.TLC)
+            acedrgPlugin.container.controlParameters.NOPROT.set(self.container.controlParameters.NOPROT)
+            acedrgPlugin.container.controlParameters.USE_COORD.set(self.container.controlParameters.USE_COORD)
+            if self.container.controlParameters.TOGGLE_NRANDOM:
+                acedrgPlugin.container.inputData.NRANDOM.set(self.container.inputData.NRANDOM)
+            else:
+                acedrgPlugin.container.inputData.NRANDOM.set(0)
+            if self.container.controlParameters.TOGGLE_METAL:
+                acedrgPlugin.container.inputData.METAL_STRUCTURE = self.container.inputData.METAL_STRUCTURE
         except:
-           exc_type, exc_value,exc_tb = sys.exc_info()[:3]
-           sys.stdout.write(str(exc_type)+'\n')
-           sys.stdout.write(str(exc_value)+'\n')
-           raise
+            exc_type, exc_value,exc_tb = sys.exc_info()[:3]
+            sys.stdout.write(str(exc_type)+'\n')
+            sys.stdout.write(str(exc_value)+'\n')
+            raise
 
         myMatchTLC = self.container.inputData.MATCHTLC
         print("My MATCHTLC",myMatchTLC.__str__())
