@@ -564,6 +564,12 @@
             </content>
         </container>
         <container id="monitor">
+            <content id="RUN_COORDADPDEV_ANALYSIS">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>True</default>
+               </qualifiers>
+            </content>
            <content id="MIN_COORDDEV">
               <className>CFloat</className>
               <qualifiers>
@@ -578,6 +584,12 @@
                  <default>10</default>
               </qualifiers>
            </content>
+            <content id="RUN_ADP_ANALYSIS">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>True</default>
+               </qualifiers>
+            </content>
            <content id="ADP_IQR_FACTOR">
               <className>CFloat</className>
               <qualifiers>

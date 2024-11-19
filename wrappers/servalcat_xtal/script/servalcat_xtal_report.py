@@ -590,11 +590,6 @@ class servalcat_xtal_report(Report):
 
         if len(xmlnode.findall('.//cycle[last()]/data/binned/n_obs')) > 0 and \
                 len(xmlnode.findall('.//cycle[last()]/data/binned/n_work')) > 0:
-            graphN.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
-            graphN.addData(title="Nobs", select=".//cycle[last()]/data/binned/./n_obs")
-            graphN.addData(title="Nwork", select=".//cycle[last()]/data/binned/./n_work")
-            if len(xmlnode.findall('.//cycle[last()]/data/binned/n_free')) > 0:
-                graphN.addData(title="Nfree", select=".//cycle[last()]/data/binned/./n_free")
             graphNtitle = "Number of reflections"
             graphN = gallery.addFlotGraph(
                 xmlnode=xmlnode,
@@ -603,6 +598,11 @@ class servalcat_xtal_report(Report):
                 outputXml=self.outputXml,
                 label=graphNtitle,
                 style=galleryGraphStyle)
+            graphN.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
+            graphN.addData(title="Nobs", select=".//cycle[last()]/data/binned/./n_obs")
+            graphN.addData(title="Nwork", select=".//cycle[last()]/data/binned/./n_work")
+            if len(xmlnode.findall('.//cycle[last()]/data/binned/n_free')) > 0:
+                graphN.addData(title="Nfree", select=".//cycle[last()]/data/binned/./n_free")
             plotN = graphN.addPlotObject()
             plotN.append('title', graphNtitle)
             plotN.append('plottype', 'xy')

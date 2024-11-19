@@ -429,6 +429,8 @@ class servalcat_xtal_pipe_report(Report):
 
 
     def addAdpAnalysis(self):
+        if len(self.xmlnode.findall(".//ADP_ANALYSIS")) == 0:
+            return
         adpFold = self.addFold(label='ADP analysis', initiallyOpen=False, brief='ADP')
 
         noteDiv = adpFold.addDiv(style='font-size:110%;font-style:italic')
@@ -516,7 +518,7 @@ class servalcat_xtal_pipe_report(Report):
                 " * interquartile_range</i> are reported below.")
         if len(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/adp_limit_low")) > 0:
             outliersLowDiv = outliersDiv.addDiv(style='font-size:110%;float:left;box-sizing:border-box;margin-right:1em')
-            if float(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/adp_limit_low")[0].text) > 0:
+            if float(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/adp_limit_low")[0].text) < 0:
                 outliersLowDiv.append("No atoms with too<br />low B-value observed.")
             elif len(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/low/data")) == 0 and \
                     float(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/adp_limit_low")[0].text) > 0:
@@ -543,6 +545,8 @@ class servalcat_xtal_pipe_report(Report):
 
 
     def addCoordADPDev(self, parent=None, xmlnode=None):
+        if len(self.xmlnode.findall(".//COORD_ADP_DEV")) == 0:
+            return
         if parent is None: parent = self
         if xmlnode is None: xmlnode = self.xmlnode
         devFold = parent.addFold(label="Deviations of atom coordinates and ADPs", brief='Deviations')

@@ -531,7 +531,7 @@ class servalcat_xtal_pipe(CPluginScript):
                             elif adp_atom > adp_limit_high:
                                 adp_high.append({"atom": str(model.get_cra(atom)),
                                                  "adp": adp_atom})
-        adp_low = sorted(adp_high, key=itemgetter('adp'))
+        adp_low = sorted(adp_low, key=itemgetter('adp'))
         adp_high = sorted(adp_high, key=itemgetter('adp'), reverse=True)
 
         # Write the analysis in XML
@@ -1039,12 +1039,14 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                     cleanup.purgeJob(self.servalcatPostCootPlugin.jobId,context="extended_intermediate",reportMode="skip")
 
         self.multimericValidation()
-        self.adp_analysis(
-            str(self.container.outputData.CIFFILE.fullPath),
-            float(self.container.monitor.ADP_IQR_FACTOR))
-        #self.coord_adp_dev_analysis(
-        #    str(self.container.inputData.XYZIN.fullPath),
-        #    str(self.container.outputData.CIFFILE.fullPath))
+        if self.container.monitor.RUN_COORDADPDEV_ANALYSIS:
+            self.adp_analysis(
+                str(self.container.outputData.CIFFILE.fullPath),
+                float(self.container.monitor.ADP_IQR_FACTOR))
+        if self.container.monitor.RUN_COORDADPDEV_ANALYSIS:
+            self.coord_adp_dev_analysis(
+                str(self.container.inputData.XYZIN.fullPath),
+                str(self.container.outputData.CIFFILE.fullPath))
         # self.reportStatus(CPluginScript.SUCCEEDED)
         # return # MM
 
