@@ -160,9 +160,10 @@ class servalcat_xtal_pipe_report(Report):
                 perCycleFold1 = self.addFold(label='Per cycle statistics after addition of water molecules', brief='Per cycle after waters', initiallyOpen=False)
                 servalcatReport1.addTablePerCycle(cycle_data1, parent=perCycleFold1, initialFinalOnly=False)
             servalcatReport.addGraphsVsResolution(parent=self, xmlnode=servalcatReportNodeLast)
-            servalcatReport.addOutlierAnalysis(parent=self, xmlnode=servalcatReportNodeLast)
-            self.validationReport()
-            self.addAdpAnalysis()
+            validationFold = self.addFold ( label="Validation", initiallyOpen=False, brief='Validation' )
+            indentDiv = validationFold.addDiv(style="margin-left:1.5em;")
+            servalcatReport.addOutlierAnalysis(parent=indentDiv, xmlnode=servalcatReportNodeLast)
+            self.validationReport(parent=indentDiv)
             self.addCoordADPDev()
 
         else:  # Report while running
@@ -370,48 +371,56 @@ class servalcat_xtal_pipe_report(Report):
 
         self.showWarnings()
 
-    def validationReport(self):
+    def validationReport(self, parent=None):
+        if parent is None:
+            parent = self
         try:
             validateReport = None
             validateReportNode = self.xmlnode.findall(".//Validation")[0]
             if validateReportNode is not None:
                 validateReport = validate_protein_report.validate_protein_report(xmlnode=validateReportNode, jobStatus='nooutput', jobInfo=self.jobInfo)
 
-            if validateReport is not None:
                 try:
-                    if len(validateReportNode.findall ( ".//Iris" ))>0 and validateReportNode.findall ( ".//Iris" )[0].text != "" :
-                        irisFold = self.addFold ( label="Iris report", initiallyOpen=False, brief='Iris' )
-                        irisdiv = irisFold.addDiv(style="clear:both; margin-top:30px; width:800px;")
-                        validateReport.add_iris_panel(parent=irisFold)
+                    if len(validateReportNode.findall ( ".//Iris" )) > 0:
+                        if validateReportNode.findall ( ".//Iris" )[0].text != "":
+                            irisFold = parent.addFold ( label="Iris validation report", initiallyOpen=False, brief='Iris' )
+                            irisdiv = irisFold.addDiv(style="clear:both; margin-top:30px; width:800px;")
+                            validateReport.add_iris_panel(parent=irisFold)
                 except:
                     self.addText("Warning - Iris report failed")
 
+            if len(self.xmlnode.findall(".//ADP_ANALYSIS")) > 0:
+                adpFold = parent.addFold(label='ADP analysis', initiallyOpen=False, brief='ADP')
+                self.addAdpAnalysis(adpFold=adpFold)
                 # try:
                 #     if len(validateReportNode.findall ( ".//B_averages" ))>0 :
-                #     baverageFold = self.addFold ( label="B-factor analysis", initiallyOpen=False )
-                #     validateReport.b_factor_tables(parent=baverageFold)
-                #     validateReport.b_factor_graph(parent=baverageFold)
+                #         baverageFold = self.addFold ( label="B-factor analysis", initiallyOpen=False )
+                #         validateReport.b_factor_tables(parent=baverageFold)
+                #         validateReport.b_factor_graph(parent=baverageFold)
                 # except:
                 #     self.addText("Warning - B-factor analysis failed")
 
                 # try:
-                #     if len(validateReportNode.findall ( ".//B_factors" ))>0 and validateReportNode.findall ( ".//B_factors" )[0].text != "" :
-                #     baverageFold = self.addFold ( label="B-factor analysis", initiallyOpen=False )
-                #     validateReport.add_b_factors(parent=baverageFold)
+                #     if len(validateReportNode.findall ( ".//B_factors" ))>0:
+                #         if validateReportNode.findall ( ".//B_factors" )[0].text != "" :
+                #             baverageFold = self.addFold ( label="B-factor analysis", initiallyOpen=False )
+                #             validateReport.add_b_factors(parent=baverageFold)
                 # except:
                 #     self.addText("Warning - B-factor analysis failed")
 
                 try:
-                    if len(validateReportNode.findall ( ".//Molprobity" ))>0 and validateReportNode.findall ( ".//Molprobity" )[0].text != "" :
-                        molprobityFold = self.addFold ( label="MolProbity analysis", initiallyOpen=False )
-                        validateReport.add_molprobity(parent=molprobityFold)
+                    if len(validateReportNode.findall ( ".//Molprobity" )) > 0:
+                        if validateReportNode.findall ( ".//Molprobity" )[0].text != "":
+                            molprobityFold = parent.addFold ( label="MolProbity analysis", initiallyOpen=False )
+                            validateReport.add_molprobity(parent=molprobityFold)
                 except:
                     self.addText("Warning - MolProbity analysis failed")
 
                 try:
-                    if len(validateReportNode.findall ( ".//Ramachandran" ))>0 and validateReportNode.findall ( ".//Ramachandran" )[0].text != "" :
-                        ramachandranFold = self.addFold ( label="Ramachandran plots", initiallyOpen=False )
-                        validateReport.add_ramachandran(parent=ramachandranFold)
+                    if len(validateReportNode.findall ( ".//Ramachandran" )) > 0:
+                        if validateReportNode.findall ( ".//Ramachandran" )[0].text != "":
+                            ramachandranFold = parent.addFold ( label="Ramachandran plots", initiallyOpen=False )
+                            validateReport.add_ramachandran(parent=ramachandranFold)
                 except:
                     self.addText("Warning - Ramachandran plot generation failed")           
                 
@@ -428,10 +437,9 @@ class servalcat_xtal_pipe_report(Report):
         #    pass
 
 
-    def addAdpAnalysis(self):
-        if len(self.xmlnode.findall(".//ADP_ANALYSIS")) == 0:
-            return
-        adpFold = self.addFold(label='ADP analysis', initiallyOpen=False, brief='ADP')
+    def addAdpAnalysis(self, adpFold=None):
+        if adpFold is None:
+            adpFold = self.addFold(label='ADP analysis', initiallyOpen=False, brief='ADP')
 
         noteDiv = adpFold.addDiv(style='font-size:110%;font-style:italic')
         noteDiv.append("Note: Atoms with an occupancy of 0 and hydrogen atoms are not included in this analysis.")
@@ -549,7 +557,7 @@ class servalcat_xtal_pipe_report(Report):
             return
         if parent is None: parent = self
         if xmlnode is None: xmlnode = self.xmlnode
-        devFold = parent.addFold(label="Deviations of atom coordinates and ADPs", brief='Deviations')
+        devFold = parent.addFold(label="Changes in atom coordinates and ADPs", brief='Deviations')
         coordDevDiv = devFold.addDiv(style='font-size:110%;float:left;box-sizing:border-box;margin-right:1em')
         if len(xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordDevMean")) > 0:
             coordDevDiv.append("Average deviation of atom coordinates: " + \

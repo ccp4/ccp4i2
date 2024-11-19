@@ -1039,10 +1039,10 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                     cleanup.purgeJob(self.servalcatPostCootPlugin.jobId,context="extended_intermediate",reportMode="skip")
 
         self.multimericValidation()
-        if self.container.monitor.RUN_COORDADPDEV_ANALYSIS:
+        if self.container.controlParameters.RUN_ADP_ANALYSIS:
             self.adp_analysis(
                 str(self.container.outputData.CIFFILE.fullPath),
-                float(self.container.monitor.ADP_IQR_FACTOR))
+                float(self.container.controlParameters.ADP_IQR_FACTOR))
         if self.container.monitor.RUN_COORDADPDEV_ANALYSIS:
             self.coord_adp_dev_analysis(
                 str(self.container.inputData.XYZIN.fullPath),
