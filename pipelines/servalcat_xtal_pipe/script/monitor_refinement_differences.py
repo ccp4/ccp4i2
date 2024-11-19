@@ -308,6 +308,16 @@ def search_write_json(atomSiteLabelAtomId, atomSiteLabelAtomId2, \
                         data_json.append(8 * ' ' + '\"ADPDev\": ' + str(round(ADPDev, 2)) + '\n')
                         data_json.append("    }")
                         data_json.append(",")
+                    del atomSiteLabelAtomId2[j]
+                    del atomSiteLabelAltId2[j]
+                    del atomSiteLabelCompId2[j]
+                    del atomSiteAuthAsymId2[j]
+                    del atomSiteAuthSeqId2[j]
+                    del atomSitePDBInsCode2[j]
+                    del atomSiteCartnX2[j]
+                    del atomSiteCartnY2[j]
+                    del atomSiteCartnZ2[j]
+                    del atomSiteBIsoOrEquiv2[j]
                     break
     data_json.pop()
     data_json.append("\n]")
