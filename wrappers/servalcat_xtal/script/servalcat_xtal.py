@@ -424,9 +424,12 @@ class servalcat_xtal(CPluginScript):
                 self.appendCommandLine(['--mask_for_fofc',
                                         str(self.container.inputData.MAPMASK.fullPath)])
             self.appendCommandLine(['-d', str(self.container.controlParameters.RES_MIN)])
-            self.hklout = "" ###
-            # self.appendCommandLine(['--source', "electron"])
-            # d
+            self.appendCommandLine(['--source', "electron"])
+            if str(self.container.controlParameters.POINTGROUP):
+                self.appendCommandLine(['--pg', str(self.container.controlParameters.POINTGROUP)])
+            if self.container.controlParameters.CROSS_VALIDATION:
+                self.appendCommandLine(['--cross_validation'])
+            self.hklout = ""
 
         elif str(self.container.controlParameters.DATA_METHOD) == "xtal":
             self.appendCommandLine(['refine_xtal_norefmac'])
@@ -449,16 +452,16 @@ class servalcat_xtal(CPluginScript):
             if self.container.controlParameters.USE_TWIN:  # I,SIGI for optimal results
                 self.appendCommandLine(['--twin'])
             self.hklout = os.path.join(self.workDirectory, "refined.mtz")
+            self.appendCommandLine(['--source', str(self.container.controlParameters.SCATTERING_FACTORS)])
             if self.container.controlParameters.UNRESTRAINED:
                 self.appendCommandLine(['--unrestrained'])
             if self.container.controlParameters.USE_WORK_IN_EST:
                 self.appendCommandLine(['--use_work_in_est'])
             if self.container.controlParameters.NO_SOLVENT:
-                self.appendCommandLine(['--no_solvent'])            
+                self.appendCommandLine(['--no_solvent'])          
 
         self.appendCommandLine(['--model', self.inputCoordPath])
         self.appendCommandLine(['-o', 'refined'])
-        self.appendCommandLine(['--source', str(self.container.controlParameters.SCATTERING_FACTORS)])
         if self.container.controlParameters.NCYCLES.isSet():
             self.appendCommandLine(["--ncycle", str(self.container.controlParameters.NCYCLES)])
         # Hydrogens

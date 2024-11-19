@@ -233,14 +233,18 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     #if self.isEditable():
     #    if not self.container.controlParameters.WAVELENGTH.isSet(): self.getWavelength()
     self.createLine( [ 'widget', '-browseDb', True, 'FREERFLAG' ] )
+    self.createLine( [ 'widget', 'USE_TWIN', 'label', 'Crystal is twinned' ] )
+    self.createLine( [ 'label', '<i>Warning: Intensities should be given for twin refinement. Using amplitudes is suboptimal.</i>' ], toggleFunction=[self.ToggleTwinSuboptimal, ['HKLIN_IS_I_SIGI', 'F_SIGF_OR_I_SIGI', 'HKLIN']])
     self.closeSubFrame()
+
     self.openSubFrame(toggle = ['DATA_METHOD', 'open', [ 'spa' ] ] )
     self.createLine( [ 'label', 'Half map 1', 'widget', '-browseDb', True, 'MAPIN1' ] )
     self.createLine( [ 'label', 'Half map 2', 'widget', '-browseDb', True, 'MAPIN2' ] )
     self.createLine( [ 'label', 'Mask', 'widget', '-browseDb', True, 'MAPMASK' ] )
     self.createLine( [ 'label', 'Resolution', 'widget', 'RES_MIN' ] )
-  
+    self.createLine( [ 'label', 'Point group', 'widget', 'POINTGROUP' ] )
     self.closeSubFrame()
+
     #self.createLine( [ 'advice',' '] )
     #self.createLine( [ 'subtitle', 'Experimental phase information', 'stretch' ])
     #self.openSubFrame(frame=[True])
@@ -266,8 +270,6 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'widget', 'HYDR_USE', 'label', 'Use riding hydrogens during refinement', 'stretch', 'widget', 'HYDR_ALL'], toggle = ['HYDR_USE', 'open', [ True ] ] )
     add_waters = self.createLine( [ 'widget', 'ADD_WATERS', 'label', 'Add waters' ] )
     self.createLine( [ 'label', '&nbsp;and then perform further ', 'widget', 'NCYCLES_AFTER_ADD_WATERS', 'label', ' refinement cycles' ], toggle = [ 'ADD_WATERS','open', [ True ] ], appendLine=add_waters  )
-    self.createLine( [ 'widget', 'USE_TWIN', 'label', 'Crystal is twinned' ] )
-    self.createLine( [ 'label', '<i>Warning: Intensities should be given for twin refinement. Using amplitudes is suboptimal.</i>' ], toggleFunction=[self.ToggleTwinSuboptimal, ['HKLIN_IS_I_SIGI', 'F_SIGF_OR_I_SIGI', 'HKLIN']])
 
     """self.createLine( [ 'label', '' ], toggleFunction=[self.ToggleTwinNotAvailable,['USEANOMALOUSFOR','HKLIN']])
     msg11 = 'Twin refinement not available for anomalous data.'
@@ -329,8 +331,8 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     #self.createLine( [ 'label', '<i>Not available in Rigid Body mode.</i>' ] )
     #self.closeSubFrame()
     
-    self.createLine( [ 'subtitle', 'Scaling'] )
-    self.openSubFrame(frame=[True])
+    self.createLine( [ 'subtitle', 'Scaling'], toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ] )
+    self.openSubFrame(frame=[True], toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ] )
     self.createLine( [ 'widget', 'NO_SOLVENT', 'label', 'Do not consider bulk solvent contribution' ])
     #self.createLine( [ 'widget', 'SCALE_TYPE', 'label', 'solvent scaling, with', 'widget', 'SOLVENT_MASK_TYPE', 'label', 'solvent mask' ] )
     #self.createLine( [ 'widget', 'SCALE_TYPE', 'label', 'solvent scaling, with', 'widget', 'SOLVENT_MASK_TYPE', 'label', 'solvent mask' ], toggleFunction=[self.CheckScaleType, ['SCALE_TYPE']] )
@@ -605,7 +607,7 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
 
     self.createLine( [ 'subtitle', 'Infrequently Used Options'] )
     self.openSubFrame()
-    self.createLine( [ 'widget', 'UNRESTRAINED', 'label', 'No positional restraints' ] )
+    self.createLine( [ 'widget', 'UNRESTRAINED', 'label', 'No positional restraints' ], toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ] )
     self.createLine( [ 'widget', 'FIX_XYZ', 'label', 'Fix coordinates' ] )
     self.closeSubFrame()
     return
@@ -689,6 +691,7 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'label', indent, 'label', 'Initialise H/D fractions', 'widget', 'HD_INIT_HALL' ], toggleFunction=[self.ToggleNeutronModeHD_ALL,['HYDR_USE','HYDR_ALL','HD_FRACTION']])
     self.closeSubFrame()"""
 
+    self.openSubFrame(frame=[True], toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ] )
     custom_res = self.createLine( [ 'widget', 'RES_CUSTOM', 'label', 'Use custom resolution limits' ] )
     self.createLine( [ 'label', indent+indent+'highest (d<sub>min</sub>):', 'widget', 'RES_MIN', 'label', ' lowest (d<sub>max</sub>):', 'widget', 'RES_MAX' ], toggle = ['RES_CUSTOM', 'open', [ True ] ], appendLine=custom_res )
     self.createLine( [ 'label', 'FreeR flag number for test set:' , 'widget', 'FREERFLAG_NUMBER'])
@@ -696,7 +699,16 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     #if self.isEditable():
     #    self.container.controlParameters.SCATTERING_FACTORS.dataChanged.connect( self.ExperimentChanged)
     #self.createLine( [ 'label', indent+indent+'Form factor calculation:', 'widget', 'SCATTERING_ELECTRON' ], toggleFunction=[self.ToggleElectronDiffraction, ['SCATTERING_FACTORS']], appendLine=scattering_factors )
+    self.createLine( [ 'widget', 'USE_WORK_IN_EST', 'label', 'Use work reflections in maximum likelihood parameter estimates' ] )
+    self.closeSubFrame()
+
+    self.openSubFrame(frame=[True], toggle = ['DATA_METHOD', 'open', [ 'spa' ] ] )
+    self.createLine( [ 'widget', 'CROSS_VALIDATION', 'label', 'Cross validation with half maps' ] )
+    self.closeSubFrame()
+
     self.createLine( [ 'widget', 'H_REFINE', 'label', 'Refine hydrogen positions' ], toggle = ['HYDR_USE', 'open', [ True ] ] )
+    self.createLine( [ 'widget', 'KEEP_CHARGES', 'label', 'Keep charges, i.e. use scattering factor for charged atoms where relevant' ] )
+    #self.createLine( [ 'widget', 'REFMAC_CLEANUP', 'label', 'Clean up intermediate files at end of job' ] )
 
     self.createLine( [ 'subtitle', 'Structure model modification before refinement' ] )
     self.openSubFrame(frame=[True])
@@ -705,10 +717,6 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     randomize = self.createLine( [ 'widget', 'RANDOMIZEUSE', 'label', 'Shake coordinates at start' ])
     self.createLine( [ 'label', '&nbsp;with specified RMSD:', 'widget', 'RANDOMIZE' ], toggle = ['RANDOMIZEUSE', 'open', [ True ] ], appendLine=randomize )
     self.closeSubFrame()
-
-    self.createLine( [ 'widget', 'USE_WORK_IN_EST', 'label', 'Use work reflections in ML parameter estimates' ] )
-    self.createLine( [ 'widget', 'KEEP_CHARGES', 'label', 'Keep charges, i.e. use scattering factor for charged atoms where relevant' ] )
-    #self.createLine( [ 'widget', 'REFMAC_CLEANUP', 'label', 'Clean up intermediate files at end of job' ] )
 
     self.createLine( [ 'subtitle', 'Additional keywords'] )
     # self.createLine( [ 'label', '<i>Keywords specified below will overwrite options which were set elsewhere.</i>'] )
@@ -993,8 +1001,8 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
       import traceback
       functionNames = [a[2] for a in traceback.extract_stack()]
 
-      #if str(self.container.controlParameters.DATA_METHOD) == 'xtal':
-      if True:
+      if str(self.container.controlParameters.DATA_METHOD) == 'xtal':
+         #if True:
          if self.container.inputData.HKLIN.isSet() and  self.container.inputData.XYZIN.isSet() and self.container.inputData.XYZIN.fileContent.mmdbManager and hasattr(self.container.inputData.XYZIN.fileContent.mmdbManager,"GetCell"):
             cellMismatch = False
             sgMismatch = False
@@ -1070,7 +1078,8 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
                         for id in sel['groupIds'].split(' '):
                            if not id in occup_groupids:
                               invalidElements.append(self.container.controlParameters.OCCUPANCY_INCOMPLETE_TABLE)
-
+      else:
+         invalidElements = []
 
          return invalidElements
 

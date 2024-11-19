@@ -414,6 +414,13 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                     <toolTip>Number of refinement cycles to perform.</toolTip>
                 </qualifiers>
             </content>
+            <content id="POINTGROUP">
+                <className>CString</className>
+                <qualifiers>
+                    <default></default>
+                    <toolTip>Point group</toolTip>
+                </qualifiers>
+            </content>
             <!--<content id="TLSMODE">
                <className>CString</className>
                <qualifiers>
@@ -624,6 +631,13 @@ For manual specification, see the help page.</toolTip>
                 <qualifiers>
                     <default>False</default>
                     <toolTip>Jelly body refinement only.</toolTip>
+                </qualifiers>
+            </content>
+            <content id="CROSS_VALIDATION">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                    <toolTip>Half map 1 will be used for refinement, and map 2 for validation. Combine this option with randomisation of coordinates (e.g. 0.3 A) to follow the method described in Brown et al. 2015.</toolTip>
                 </qualifiers>
             </content>
           <!--<content id="PROSMART_PROTEIN_WEIGHT">
@@ -1038,7 +1052,7 @@ For manual specification, see the help page.</toolTip>
                       <default>True</default>
                   </qualifiers>
             </content>
-            <content id="SCATTERING_FACTORS">
+            <content id="SCATTERING_FACTORS"><!-- only for xtal, not for spa -->
                <className>CString</className>
                <qualifiers>
                   <onlyEnumerators>True</onlyEnumerators>
