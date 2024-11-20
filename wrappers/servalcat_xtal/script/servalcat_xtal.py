@@ -416,6 +416,7 @@ class servalcat_xtal(CPluginScript):
     def makeCommandAndScript(self):
         # self.appendCommandLine(['-m', 'servalcat'])
         if str(self.container.controlParameters.DATA_METHOD) == "spa":
+            # options only for servalcat refine_spa_norefmac
             self.appendCommandLine(['refine_spa_norefmac'])
             self.appendCommandLine(['--halfmaps',
                                     str(self.container.inputData.MAPIN1.fullPath),
@@ -423,15 +424,51 @@ class servalcat_xtal(CPluginScript):
             if self.container.inputData.MAPMASK.isSet():
                 self.appendCommandLine(['--mask_for_fofc',
                                         str(self.container.inputData.MAPMASK.fullPath)])
+            if self.container.controlParameters.MASK_RADIUS.isSet():
+                self.appendCommandLine(['-r', str(float(str(self.container.controlParameters.MASK_RADIUS)))])
             self.appendCommandLine(['-d', str(self.container.controlParameters.RES_MIN)])
             self.appendCommandLine(['--source', "electron"])
-            if str(self.container.controlParameters.POINTGROUP):
+            if self.container.controlParameters.PIXEL_SIZE.isSet():
+                self.appendCommandLine(['--pixel_size', str(self.container.controlParameters.PIXEL_SIZE)])
+            if self.container.controlParameters.POINTGROUP.isSet():
                 self.appendCommandLine(['--pg', str(self.container.controlParameters.POINTGROUP)])
+            if self.container.controlParameters.TWIST.isSet():
+                self.appendCommandLine(['--twist', str(self.container.controlParameters.TWIST)])
+            if self.container.controlParameters.RISE.isSet():
+                self.appendCommandLine(['--rise', str(self.container.controlParameters.RISE)])
+            if self.container.controlParameters.CENTER_X.isSet() and \
+                    self.container.controlParameters.CENTER_Y.isSet() and \
+                    self.container.controlParameters.CENTER_Z.isSet():
+                self.appendCommandLine(['--center',
+                                        str(self.container.controlParameters.CENTER_X),
+                                        str(self.container.controlParameters.CENTER_Y),
+                                        str(self.container.controlParameters.CENTER_Z)])
+            if self.container.controlParameters.AXIS1_X.isSet() and \
+                    self.container.controlParameters.AXIS1_Y.isSet() and \
+                    self.container.controlParameters.AXIS1_Z.isSet():
+                self.appendCommandLine(['--axis1',
+                                        str(self.container.controlParameters.AXIS1_X),
+                                        str(self.container.controlParameters.AXIS1_Y),
+                                        str(self.container.controlParameters.AXIS1_Z)])
+            if self.container.controlParameters.AXIS2_X.isSet() and \
+                    self.container.controlParameters.AXIS2_Y.isSet() and \
+                    self.container.controlParameters.AXIS2_Z.isSet():
+                self.appendCommandLine(['--axis2',
+                                        str(self.container.controlParameters.AXIS2_X),
+                                        str(self.container.controlParameters.AXIS2_Y),
+                                        str(self.container.controlParameters.AXIS2_Z)])
+            if self.container.controlParameters.IGNORE_SYMMETRY:
+                self.appendCommandLine(['--ignore_symmetry'])
+            if self.container.controlParameters.PIXEL_SIZE.isSet():
+                self.appendCommandLine(['--pixel_size', str(float(str(self.container.controlParameters.PIXEL_SIZE)))])
             if self.container.controlParameters.CROSS_VALIDATION:
                 self.appendCommandLine(['--cross_validation'])
+            if self.container.controlParameters.BLURUSE and self.container.controlParameters.BLUR.isSet():
+                self.appendCommandLine(['--blur', str(self.container.controlParameters.BLUR)])
             self.hklout = ""
 
         elif str(self.container.controlParameters.DATA_METHOD) == "xtal":
+            # options only for servalcat refine_xtal_norefmac
             self.appendCommandLine(['refine_xtal_norefmac'])
             self.appendCommandLine(['--hklin', self.hklin])
             if self.container.controlParameters.F_SIGF_OR_I_SIGI.isSet():
@@ -452,6 +489,12 @@ class servalcat_xtal(CPluginScript):
             if self.container.controlParameters.USE_TWIN:  # I,SIGI for optimal results
                 self.appendCommandLine(['--twin'])
             self.hklout = os.path.join(self.workDirectory, "refined.mtz")
+            # Resolution
+            if self.container.controlParameters.RES_CUSTOM:
+                if self.container.controlParameters.RES_MIN.isSet():
+                    self.appendCommandLine(['--d_min', str(self.container.controlParameters.RES_MIN)])
+                if self.container.controlParameters.RES_MAX.isSet():
+                    self.appendCommandLine(['--d_max', str(self.container.controlParameters.RES_MAX)])
             self.appendCommandLine(['--source', str(self.container.controlParameters.SCATTERING_FACTORS)])
             if self.container.controlParameters.UNRESTRAINED:
                 self.appendCommandLine(['--unrestrained'])
@@ -460,6 +503,7 @@ class servalcat_xtal(CPluginScript):
             if self.container.controlParameters.NO_SOLVENT:
                 self.appendCommandLine(['--no_solvent'])          
 
+        # options only for both servalcat refine_xtal_norefmac and servalcat refine_spa_norefmac
         self.appendCommandLine(['--model', self.inputCoordPath])
         self.appendCommandLine(['-o', 'refined'])
         if self.container.controlParameters.NCYCLES.isSet():
@@ -475,25 +519,28 @@ class servalcat_xtal(CPluginScript):
                 self.appendCommandLine(['--refine_h'])
         else:
             self.appendCommandLine(['--hydrogen', 'no'])
-
+        if self.container.controlParameters.H_OUT:
+            self.appendCommandLine(['--hout'])
         if self.container.inputData.DICT_LIST.isSet():
-            self.appendCommandLine(['--ligand'])
-            for dictionary in self.container.inputData.DICT_LIST:
-                if os.path.exists(str(dictionary)):
-                    self.appendCommandLine([str(dictionary)])
-                else:
-                    print(f"WARNING: input restraint dictionary {dictionary} does not exist and so will not be used.")
-
-        # Resolution
-        if self.container.controlParameters.RES_CUSTOM:
-            if self.container.controlParameters.RES_MIN.isSet():
-                self.appendCommandLine(['--d_min', str(self.container.controlParameters.RES_MIN)])
-            if self.container.controlParameters.RES_MAX.isSet():
-                self.appendCommandLine(['--d_max', str(self.container.controlParameters.RES_MAX)])
+            if len(self.container.inputData.DICT_LIST) > 0:
+                self.appendCommandLine(['--ligand'])
+                for dictionary in self.container.inputData.DICT_LIST:
+                    if os.path.exists(str(dictionary)):
+                        self.appendCommandLine([str(dictionary)])
+                    else:
+                        print(f"WARNING: input restraint dictionary {dictionary} does not exist and so will not be used.")
         # Weight
-        if str(self.container.controlParameters.WEIGHT_OPT) == "MANUAL" and \
-                str(self.container.controlParameters.WEIGHT):
-            self.appendCommandLine(['--weight', str(self.container.controlParameters.WEIGHT)])
+        if str(self.container.controlParameters.WEIGHT_OPT) == "MANUAL":
+            if self.container.controlParameters.WEIGHT.isSet():
+                self.appendCommandLine(['--weight', str(self.container.controlParameters.WEIGHT)])
+        else:  # WEIGHT_OPT == "AUTO":
+            if self.container.controlParameters.WEIGHT_NO_ADJUST:
+                self.appendCommandLine(['--no_weight_adjust'])
+            elif self.container.controlParameters.WEIGHT_TARGET_BOND_RMSZ_RANGE_MIN.isSet() and \
+                    self.container.controlParameters.WEIGHT_TARGET_BOND_RMSZ_RANGE_MAX.isSet():
+                self.appendCommandLine(['--target_bond_rmsz_range',
+                                        str(self.container.controlParameters.WEIGHT_TARGET_BOND_RMSZ_RANGE_MIN),
+                                        str(self.container.controlParameters.WEIGHT_TARGET_BOND_RMSZ_RANGE_MAX)])
         # ADP
         if str(self.container.controlParameters.B_REFINEMENT_MODE) == "aniso":
             self.appendCommandLine(['--adp', 'aniso'])
@@ -507,11 +554,11 @@ class servalcat_xtal(CPluginScript):
             if self.container.controlParameters.JELLY_SIGMA.isSet():
                 self.appendCommandLine([str(self.container.controlParameters.JELLY_SIGMA)])
             else:
-                self.appendCommandLine(['0.01'])
+                self.appendCommandLine(['0.01'])  # default
             if self.container.controlParameters.JELLY_DIST.isSet():
                 self.appendCommandLine([str(self.container.controlParameters.JELLY_DIST)])
             else:
-                self.appendCommandLine(['4.2'])
+                self.appendCommandLine(['4.2'])  # default
             if self.container.controlParameters.JELLY_ONLY:
                 self.appendCommandLine(['--jellyonly'])
 
@@ -533,7 +580,7 @@ class servalcat_xtal(CPluginScript):
         # if self.container.controlParametersADP_RESTRAINT_MODE.isSet():
         #     self.appendCommandLine(['--adp_restraint_mode', str(self.container.controlParameters.ADP_RESTRAINT_MODE)])
         if self.container.controlParameters.FIND_LINKS:
-            self.appendCommandLine(['--find-links'])
+            self.appendCommandLine(['--find_links'])
         if self.container.controlParameters.FIX_XYZ:
             self.appendCommandLine(['--fix_xyz'])
         if self.container.controlParameters.KEEP_CHARGES:

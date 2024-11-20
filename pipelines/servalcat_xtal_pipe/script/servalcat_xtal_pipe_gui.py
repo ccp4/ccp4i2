@@ -64,8 +64,11 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
   def __init__(self,parent):
     CCP4TaskWidget.CTaskWidget.__init__(self,parent)
 
-  def ToggleWeightAuto(self):
-    return str(self.container.controlParameters.WEIGHT_OPT) == 'MANUAL'
+  #def ToggleWeightAuto(self):
+  #  return str(self.container.controlParameters.WEIGHT_OPT) == 'MANUAL'
+  def ToggleWeightAdjustRmszAvailable(self):
+    return str(self.container.controlParameters.WEIGHT_OPT) == 'AUTO' and \
+      not self.container.controlParameters.WEIGHT_NO_ADJUST
 
   #def ToggleTLS(self):
   #return self.container.inputData.TLSIN.isSet()
@@ -241,8 +244,8 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'label', 'Half map 1', 'widget', '-browseDb', True, 'MAPIN1' ] )
     self.createLine( [ 'label', 'Half map 2', 'widget', '-browseDb', True, 'MAPIN2' ] )
     self.createLine( [ 'label', 'Mask', 'widget', '-browseDb', True, 'MAPMASK' ] )
-    self.createLine( [ 'label', 'Resolution', 'widget', 'RES_MIN' ] )
-    self.createLine( [ 'label', 'Point group', 'widget', 'POINTGROUP' ] )
+    self.createLine( [ 'label', 'Resolution:', 'stretch', 'widget', 'RES_MIN' ] )
+    self.createLine( [ 'label', 'Mask radius:', 'stretch', 'widget', 'MASK_RADIUS' ] )
     self.closeSubFrame()
 
     #self.createLine( [ 'advice',' '] )
@@ -268,7 +271,7 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     #self.createLine( [ 'stretch', 'widget', 'HYDR_ALL'], toggle = ['HYDR_USE', 'open', [ True ] ] , appendLine=use_hydr)
     self.createLine( [ 'widget', 'HYDR_USE', 'label', 'Use riding hydrogens during refinement'], toggle = ['HYDR_USE', 'open', [ False ] ])
     self.createLine( [ 'widget', 'HYDR_USE', 'label', 'Use riding hydrogens during refinement', 'stretch', 'widget', 'HYDR_ALL'], toggle = ['HYDR_USE', 'open', [ True ] ] )
-    add_waters = self.createLine( [ 'widget', 'ADD_WATERS', 'label', 'Add waters' ] )
+    add_waters = self.createLine( [ 'widget', 'ADD_WATERS', 'label', 'Add waters' ], toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ])
     self.createLine( [ 'label', '&nbsp;and then perform further ', 'widget', 'NCYCLES_AFTER_ADD_WATERS', 'label', ' refinement cycles' ], toggle = [ 'ADD_WATERS','open', [ True ] ], appendLine=add_waters  )
 
     """self.createLine( [ 'label', '' ], toggleFunction=[self.ToggleTwinNotAvailable,['USEANOMALOUSFOR','HKLIN']])
@@ -322,15 +325,30 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
 
   def drawParameters( self ):
     indent = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-
     self.createLine( [ 'subtitle', 'Atomic displacement parameters (ADPs)'] )
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOff,['REFINEMENT_MODE']] )
-    self.createLine( [ 'widget', 'B_REFINEMENT_MODE', 'label','ADPs'] )
+    self.createLine( [ 'widget', 'B_REFINEMENT_MODE', 'label', 'ADPs'] )
     self.closeSubFrame()
     #self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOn,['REFINEMENT_MODE']] )
     #self.createLine( [ 'label', '<i>Not available in Rigid Body mode.</i>' ] )
     #self.closeSubFrame()
-    
+
+    self.createLine( [ 'subtitle', 'Single particle analysis (SPA) settings'], toggle = ['DATA_METHOD', 'open', [ 'spa' ] ] )
+    self.openSubFrame(frame=[True], toggle = ['DATA_METHOD', 'open', [ 'spa' ] ] )
+    self.createLine( [ 'label', 'Pixel size (angstroem/pixel):', 'stretch', 'widget', 'PIXEL_SIZE' ] )
+    self.createLine( [ 'label', 'Point group:', 'stretch', 'widget', 'POINTGROUP' ] )
+    self.createLine( [ 'label', 'Helical twist (degrees):', 'stretch', 'widget', 'TWIST' ] )
+    self.createLine( [ 'label', 'Helical rise (angstroem):', 'stretch', 'widget', 'RISE' ] )
+    self.createLine( [ 'label', 'Set centre, <i>i.e.</i> the origin of symmetry. (Default is centre of the box.):', 'stretch', 'widget', 'CENTER_X', 'widget', 'CENTER_Y', 'widget', 'CENTER_Z' ] )
+    self.createLine( [ 'label', 'Axis 1:', 'stretch', 'widget', 'AXIS1_X', 'widget', 'AXIS1_Y', 'widget', 'AXIS1_Z' ] )
+    self.createLine( [ 'label', 'Axis 2:', 'stretch', 'widget', 'AXIS2_X', 'widget', 'AXIS2_Y', 'widget', 'AXIS2_Z' ] )
+    self.createLine( [ 'label', '<i>Hint for axis: I: 5-fold, O: 4-fold, T: 3-fold, D<sub>n</sub>: 2-fold).</i>' ] )
+    self.createLine( [ 'widget', 'IGNORE_SYMMETRY', 'label', 'Ignore symmetry information (MTRIX/_struct_ncs_oper) in the input structure model file' ])
+    blurline = self.createLine( [ 'widget', 'BLURUSE', 'label', 'Map blurring (workaround for oversharpened maps)'] )
+    self.createLine( [ 'label', indent + 'B-value:', 'stretch', 'widget', 'BLUR'], toggle = ['BLURUSE', 'open', [ True ] ] , appendLine=blurline)
+    self.createLine( [ 'label', '<i>Note: This option does not affect output maps.</i>'], toggle = ['BLURUSE', 'open', [ True ] ] )
+    self.closeSubFrame()
+
     self.createLine( [ 'subtitle', 'Scaling'], toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ] )
     self.openSubFrame(frame=[True], toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ] )
     self.createLine( [ 'widget', 'NO_SOLVENT', 'label', 'Do not consider bulk solvent contribution' ])
@@ -403,7 +421,12 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'subtitle', 'Weights'] )
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOff,['REFINEMENT_MODE']])
     auto_weight = self.createLine( [ 'label', 'Weight restraints versus experimental data using', 'widget', 'WEIGHT_OPT', 'label', 'weight'] )
-    self.createLine( [ 'label', ':', 'widget', 'WEIGHT' ], toggleFunction=[self.ToggleWeightAuto, ['WEIGHT_OPT']], appendLine=auto_weight )
+    self.createLine( [ 'label', ':', 'widget', 'WEIGHT' ], toggle = ['WEIGHT_OPT', 'open', [ 'MANUAL' ] ], appendLine=auto_weight )
+    self.createLine( [ 'widget', 'WEIGHT_NO_ADJUST', 'label', 'Do not adjust weight during refinement'], toggle = ['WEIGHT_OPT', 'open', [ 'AUTO' ] ] )
+    self.createLine( ['label', 'Bond RMSZ range for weight adjustment:', 'stretch',
+                      'widget', 'WEIGHT_TARGET_BOND_RMSZ_RANGE_MIN',
+                      'widget', 'WEIGHT_TARGET_BOND_RMSZ_RANGE_MAX'],
+                      toggleFunction = [self.ToggleWeightAdjustRmszAvailable, ['WEIGHT_OPT', 'WEIGHT_NO_ADJUST', 'DATA_METHOD']])
     self.closeSubFrame()
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOn,['REFINEMENT_MODE']])
     self.createLine( [ 'label', '<i>Not available in Rigid Body mode.</i>' ] )
@@ -702,10 +725,9 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'widget', 'USE_WORK_IN_EST', 'label', 'Use work reflections in maximum likelihood parameter estimates' ] )
     self.closeSubFrame()
 
-    self.openSubFrame(frame=[True], toggle = ['DATA_METHOD', 'open', [ 'spa' ] ] )
-    self.createLine( [ 'widget', 'CROSS_VALIDATION', 'label', 'Cross validation with half maps' ] )
-    self.closeSubFrame()
+    self.createLine( [ 'widget', 'CROSS_VALIDATION', 'label', 'Cross validation with half maps' ], toggle = ['DATA_METHOD', 'open', [ 'spa' ] ] )
 
+    self.createLine( [ 'widget', 'H_OUT', 'label', 'Write hydrogen atoms in the output model' ] )
     self.createLine( [ 'widget', 'H_REFINE', 'label', 'Refine hydrogen positions' ], toggle = ['HYDR_USE', 'open', [ True ] ] )
     self.createLine( [ 'widget', 'KEEP_CHARGES', 'label', 'Keep charges, i.e. use scattering factor for charged atoms where relevant' ] )
     #self.createLine( [ 'widget', 'REFMAC_CLEANUP', 'label', 'Clean up intermediate files at end of job' ] )
@@ -1081,5 +1103,5 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
       else:
          invalidElements = []
 
-         return invalidElements
+      return invalidElements
 
