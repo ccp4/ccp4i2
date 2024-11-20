@@ -1024,7 +1024,6 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
       functionNames = [a[2] for a in traceback.extract_stack()]
 
       if str(self.container.controlParameters.DATA_METHOD) == 'xtal':
-         #if True:
          if self.container.inputData.HKLIN.isSet() and  self.container.inputData.XYZIN.isSet() and self.container.inputData.XYZIN.fileContent.mmdbManager and hasattr(self.container.inputData.XYZIN.fileContent.mmdbManager,"GetCell"):
             cellMismatch = False
             sgMismatch = False
@@ -1072,7 +1071,7 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
                #print "value of pressed message box button:", retval, 0x00100000, 0x00400000
                if retval == QMessageBox.Cancel:
                   invalidElements.append(self.container.inputData.FREERFLAG)
-   
+
          if self.container.controlParameters.REFINEMENT_MODE.isSet():
             if str(self.container.controlParameters.REFINEMENT_MODE) == 'RIGID':
                for sel0 in self.container.controlParameters.RIGID_BODY_SELECTION:
@@ -1100,8 +1099,47 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
                         for id in sel['groupIds'].split(' '):
                            if not id in occup_groupids:
                               invalidElements.append(self.container.controlParameters.OCCUPANCY_INCOMPLETE_TABLE)
-      else:
-         invalidElements = []
+
+      elif str(self.container.controlParameters.DATA_METHOD) == 'spa':
+         if not self.container.inputData.MAPIN1.isSet() or not self.container.inputData.MAPIN2.isSet():
+            if functionNames[-2] == 'runTask':
+               from PySide2.QtWidgets import QMessageBox
+               msg = QMessageBox()
+               msg.setIcon(QMessageBox.Critical)
+               msg.setText("Error")
+               msg.setInformativeText("Two half maps are required but were not provided.")
+               msg.setWindowTitle("Half maps missing")
+               # msg.setDetailedText("Two half maps are required but were not provided.")
+               msg.setStandardButtons(QMessageBox.Cancel)
+               retval = msg.exec_()
+               if not self.container.inputData.MAPIN1.isSet():
+                  invalidElements.append(self.container.inputData.MAPIN1)
+               elif not self.container.inputData.MAPIN2.isSet():
+                  invalidElements.append(self.container.inputData.MAPIN2)
+         if not self.container.inputData.MAPMASK.isSet():
+            if functionNames[-2] == 'runTask':
+               from PySide2.QtWidgets import QMessageBox
+               msg = QMessageBox()
+               msg.setIcon(QMessageBox.Critical)
+               msg.setText("Error")
+               msg.setInformativeText("Map mask is required but was not provided.")
+               msg.setWindowTitle("Map mask missing")
+               # msg.setDetailedText("Map mask is required but was not provided.")
+               msg.setStandardButtons(QMessageBox.Cancel)
+               retval = msg.exec_()
+               invalidElements.append(self.container.inputData.MAPMASK)
+         if not self.container.controlParameters.RES_MIN.isSet():
+            if functionNames[-2] == 'runTask':
+               from PySide2.QtWidgets import QMessageBox
+               msg = QMessageBox()
+               msg.setIcon(QMessageBox.Critical)
+               msg.setText("Error")
+               msg.setInformativeText("Resolution is required but was not provided.")
+               msg.setWindowTitle("Resolution missing")
+               # msg.setDetailedText("Resolutionis required but was not provided.")
+               msg.setStandardButtons(QMessageBox.Cancel)
+               retval = msg.exec_()
+               invalidElements.append(self.container.controlParameters.RES_MIN)
 
       return invalidElements
 

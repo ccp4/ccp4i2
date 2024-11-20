@@ -218,14 +218,28 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                   <saveToDb>True</saveToDb>
                </qualifiers>
             </content>
-            <content id="ANOMFPHIOUT">
+            <content id="MAP_FO"><!-- only from servalcat refine_spa_norefmac -->
+                <className>CMapDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                    <default><annotation>Density map (in real space)</annotation></default>
+                </qualifiers>
+            </content>
+            <content id="MAP_FOFC"><!-- only from servalcat refine_spa_norefmac -->
+                <className>CMapDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                    <default><annotation>Difference density map (in real space)</annotation></default>
+                </qualifiers>
+            </content>
+            <content id="ANOMFPHIOUT"><!-- only from servalcat refine_xtal_norefmac -->
                 <className>CMapCoeffsDataFile</className>
                 <qualifiers>
                     <default><subType>3</subType><contentFlag>1</contentFlag></default>
                     <saveToDb>True</saveToDb>
                 </qualifiers>
             </content>
-            <content id="DIFANOMFPHIOUT">
+            <content id="DIFANOMFPHIOUT"><!-- only from servalcat refine_xtal_norefmac -->
                <className>CMapCoeffsDataFile</className>
                <qualifiers><default><subType>3</subType><contentFlag>1</contentFlag></default>
                   <saveToDb>True</saveToDb>
@@ -237,7 +251,7 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                 <saveToDb>True</saveToDb>
                 </qualifiers>
             </content>-->
-            <content id="TLSOUT">
+            <!--<content id="TLSOUT">
                 <className>CTLSDataFile</className>
                 <qualifiers>
                     <saveToDb>True</saveToDb>
@@ -248,7 +262,7 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                 <qualifiers>
                     <saveToDb>True</saveToDb>
                 </qualifiers>
-            </content>
+            </content>-->
             <content id="DICT">
                <className>CDictDataFile</className>
                <qualifiers>
@@ -267,12 +281,12 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                   <saveToDb>True</saveToDb>
                </qualifiers>
             </content>
-            <content id="PSOUT">
+            <!--<content id="PSOUT">
                 <className>CPostscriptDataFile</className>
                 <qualifiers>
                     <saveToDb>True</saveToDb>
                 </qualifiers>
-            </content>
+            </content>-->
             <content id="PERFORMANCEINDICATOR">
                 <className>CRefinementPerformance</className>
             </content>
@@ -307,6 +321,9 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
 
           <content id="RES_MIN">
             <className>CFloat</className>
+            <qualifiers>
+               <toolTip>High resolution (d_min)</toolTip>
+            </qualifiers>
           </content>
           <content id="NCYCLES">
                 <className>CInt</className>
@@ -597,6 +614,9 @@ hydrogens are only to be used if already present in the input coordinate file.</
           </content>
           <content id="RES_MAX">
             <className>CFloat</className>
+            <qualifiers>
+               <toolTip>High resolution (d_min)</toolTip>
+            </qualifiers>
           </content>
           <content id="USE_TWIN">
             <className>CBoolean</className>

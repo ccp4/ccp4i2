@@ -982,7 +982,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                 if attr == "XMLOUT":
                     pass
 
-        print('servalcat_xtal_pipe.finishUp 1')
+        """print('servalcat_xtal_pipe.finishUp 1')
         from core import CCP4XtalData
         # Apply database annotations
         self.container.outputData.XYZOUT.annotation.set('Model from refinement (PDB format)')
@@ -993,7 +993,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
         self.container.outputData.DIFFPHIOUT.subType = 2
         # self.container.outputData.ABCDOUT.annotation = 'Calculated phases from refinement'
         # self.container.outputData.ABCDOUT.contentFlag = CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL
-        self.container.outputData.TLSOUT.annotation = 'TLS parameters from refinement'
+        # self.container.outputData.TLSOUT.annotation = 'TLS parameters from refinement'
         self.container.outputData.COOTSCRIPTOUT.annotation = 'Coot script written from refinement'
         self.container.outputData.ANOMFPHIOUT.annotation = 'Weighted anomalous difference map from refinement'
         self.container.outputData.DIFANOMFPHIOUT.annotation = 'Weighted differences of anomalous difference map'
@@ -1021,8 +1021,39 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
               self.mergeDictToProjectLib(fileName=self.container.outputData.LIBOUT.__str__())
           except:
               print('Error merging library to Project Dictionary')
+        print('servalcat_xtal_pipe.finishUp 3'); sys.stdout.flush()"""
+
+        print('servalcat_xtal_pipe.finishUp 1')
+        from core import CCP4XtalData
+        # Apply database annotations
+        self.container.outputData.XYZOUT.annotation.set(servalcatJob.container.outputData.XYZOUT.annotation)
+        self.container.outputData.CIFFILE.annotation.set(servalcatJob.container.outputData.CIFFILE.annotation)
+        self.container.outputData.FPHIOUT.annotation.set(servalcatJob.container.outputData.FPHIOUT.annotation)
+        self.container.outputData.FPHIOUT.subType = servalcatJob.container.outputData.FPHIOUT.subType
+        self.container.outputData.DIFFPHIOUT.annotation.set(servalcatJob.container.outputData.DIFFPHIOUT.annotation)
+        self.container.outputData.DIFFPHIOUT.subType = servalcatJob.container.outputData.DIFFPHIOUT.subType
+        # self.container.outputData.ABCDOUT.annotation = 'Calculated phases from refinement'
+        # self.container.outputData.ABCDOUT.contentFlag = CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL
+        # self.container.outputData.TLSOUT.annotation = 'TLS parameters from refinement'
+        if servalcatJob.container.outputData.COOTSCRIPTOUT.exists():
+            if servalcatJob.container.outputData.COOTSCRIPTOUT.annotation.isSet():
+                self.container.outputData.COOTSCRIPTOUT.annotation.set(servalcatJob.container.outputData.COOTSCRIPTOUT.annotation)
+        if str(servalcatJob.container.controlParameters.DATA_METHOD) == 'xtal':
+            if servalcatJob.container.outputData.ANOMFPHIOUT.exists():
+                if servalcatJob.container.outputData.ANOMFPHIOUT.annotation.isSet():
+                    self.container.outputData.ANOMFPHIOUT.annotation.set(servalcatJob.container.outputData.ANOMFPHIOUT.annotation)
+            if servalcatJob.container.outputData.DIFANOMFPHIOUT.exists():
+                if servalcatJob.container.outputData.DIFANOMFPHIOUT.annotation.isSet():
+                    self.container.outputData.DIFANOMFPHIOUT.annotation.set(servalcatJob.container.outputData.DIFANOMFPHIOUT.annotation)
+        elif str(servalcatJob.container.controlParameters.DATA_METHOD) == 'spa':
+            self.container.outputData.MAP_FO.annotation.set(servalcatJob.container.outputData.MAP_FO.annotation)
+            self.container.outputData.MAP_FO.subType = servalcatJob.container.outputData.MAP_FO.subType
+            self.container.outputData.MAP_FOFC.annotation.set(servalcatJob.container.outputData.MAP_FOFC.annotation)
+            self.container.outputData.MAP_FOFC.subType = servalcatJob.container.outputData.MAP_FOFC.subType
+        # outputData.LIBOUT ?
+        # outputData.DICT ?
         print('servalcat_xtal_pipe.finishUp 3'); sys.stdout.flush()
-#
+
         cleanUpIntermediate = False
         if hasattr(self.container.controlParameters,"REFMAC_CLEANUP"):
             cleanUpIntermediate = self.container.controlParameters.REFMAC_CLEANUP

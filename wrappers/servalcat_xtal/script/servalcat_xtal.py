@@ -200,49 +200,59 @@ class servalcat_xtal(CPluginScript):
         
         # Need to set the expected content flag  for phases data
 
-        self.outputCifPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined.mmcif'))
-        self.container.outputData.CIFFILE.setFullPath(self.outputCifPath)
-        # TO DO what if PDB not on output
-        self.outputPdbPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined.pdb'))
-        self.container.outputData.XYZOUT.setFullPath(self.outputPdbPath)
-
+        outputCifPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined.mmcif'))
+        self.container.outputData.CIFFILE.setFullPath(outputCifPath)
+        self.container.outputData.CIFFILE.annotation.set('Model from refinement (mmCIF format)')
+        outputPdbPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined.pdb'))
+        if os.path.isfile(outputPdbPath):
+            self.container.outputData.XYZOUT.setFullPath(outputPdbPath)
+            self.container.outputData.XYZOUT.annotation.set('Model from refinement (PDB format)')
         # self.container.outputData.ABCDOUT.annotation = 'Calculated phases from refinement'
         # self.container.outputData.ABCDOUT.contentFlag = CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL
-        self.container.outputData.TLSOUT.annotation = 'TLS parameters from refinement'
-        self.container.outputData.LIBOUT.annotation = 'Generated dictionary from refinement'
+        # self.container.outputData.TLSOUT.annotation = 'TLS parameters from refinement'
+        # self.container.outputData.LIBOUT.annotation = 'Generated dictionary from refinement'
+        self.container.outputData.FPHIOUT.annotation.set('Density map (Fourier coeff.)')
+        self.container.outputData.FPHIOUT.subType = 1
+        self.container.outputData.DIFFPHIOUT.annotation.set('Difference density map (Fourier coeff.)')
+        self.container.outputData.FPHIOUT.subType = 2
+        outputFiles = ['FPHIOUT', 'DIFFPHIOUT']
+        outputColumns = ['FWT,PHWT', 'DELFWT,PHDELWT']
 
         if str(self.container.controlParameters.DATA_METHOD) == "xtal":
-            self.container.outputData.FPHIOUT.annotation = 'Weighted map from refinement'
-            self.container.outputData.DIFFPHIOUT.annotation = 'Weighted difference map from refinement'
-            self.container.outputData.ANOMFPHIOUT.annotation = 'Weighted anomalous difference map from refinement'
-            self.container.outputData.DIFANOMFPHIOUT.annotation = 'Weighted differences of anomalous difference map'
+            self.container.outputData.ANOMFPHIOUT.annotation.set('Weighted anomalous difference map from refinement')
+            self.container.outputData.DIFANOMFPHIOUT.annotation.set('Weighted differences of anomalous difference map')
+            hkloutFilePath = str(os.path.join(self.getWorkDirectory(), "refined.mtz"))
+            #hkloutFile=CCP4XtalData.CMtzDataFile(os.path.join(self.getWorkDirectory(), "hklout.mtz"))
+            #hkloutFile=CCP4XtalData.CMtzDataFile(os.path.join(self.getWorkDirectory(), "refined.mtz"))
             # Split out data objects that have been generated. Do this after applying the annotation, and flagging
             # above, since splitHklout needs to know the ABCDOUT contentFlag
-            outputFiles = ['FPHIOUT', 'DIFFPHIOUT']
-            outputColumns = ['FWT,PHWT', 'DELFWT,PHDELWT']
             """if self.container.controlParameters.PHOUT:
                 outputFiles+=['ABCDOUT']
                 outputColumns+=['HLACOMB,HLBCOMB,HLCCOMB,HLDCOMB']
-            
             if self.container.controlParameters.USEANOMALOUS:
                 outputFiles += ['ANOMFPHIOUT']
                 outputColumns += ['FAN,PHAN']"""
-            
-            #hkloutFile=CCP4XtalData.CMtzDataFile(os.path.join(self.getWorkDirectory(), "hklout.mtz"))
-            hkloutFilePath = str(os.path.join(self.getWorkDirectory(), "refined.mtz"))
-            #hkloutFile=CCP4XtalData.CMtzDataFile(os.path.join(self.getWorkDirectory(), "refined.mtz"))
-            hkloutFile=CCP4XtalData.CMtzDataFile(hkloutFilePath)
-            hkloutFile.loadFile()
-            columnLabelsInFile = [column.columnLabel.__str__() for column in hkloutFile.fileContent.listOfColumns]
-            print('columnLabelsInFile',columnLabelsInFile)
-            
-            """if self.container.controlParameters.USEANOMALOUS and 'DELFAN' in columnLabelsInFile and 'PHDELAN' in columnLabelsInFile:
-                outputFiles += ['DIFANOMFPHIOUT']
-                outputColumns += ['DELFAN,PHDELAN']"""
-
-            error = self.splitHklout(outputFiles,outputColumns,hkloutFilePath)
-            if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
-                return CPluginScript.FAILED
+        elif str(self.container.controlParameters.DATA_METHOD) == 'spa':
+            hkloutFilePath = str(os.path.join(self.getWorkDirectory(), "refined_diffmap.mtz"))
+            self.container.outputData.MAP_FO.annotation.set('Density map (in real space)')
+            self.container.outputData.MAP_FOFC.annotation.set('Difference density map (in real space)')
+            outputMapFoPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined_diffmap_normalized_fo.mrc'))
+            self.container.outputData.MAP_FO.setFullPath(outputMapFoPath)
+            outputMapFoFcPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined_diffmap_normalized_fofc.mrc'))
+            self.container.outputData.MAP_FOFC.setFullPath(outputMapFoFcPath)
+            self.container.outputData.COOTSCRIPTOUT.annotation.set('Coot script')
+            outputCootScriptPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined_coot.py'))
+            self.container.outputData.COOTSCRIPTOUT.setFullPath(outputCootScriptPath)
+        hkloutFile=CCP4XtalData.CMtzDataFile(hkloutFilePath)
+        hkloutFile.loadFile()
+        columnLabelsInFile = [column.columnLabel.__str__() for column in hkloutFile.fileContent.listOfColumns]
+        print('columnLabelsInFile', columnLabelsInFile)
+        """if self.container.controlParameters.USEANOMALOUS and 'DELFAN' in columnLabelsInFile and 'PHDELAN' in columnLabelsInFile:
+            outputFiles += ['DIFANOMFPHIOUT']
+            outputColumns += ['DELFAN,PHDELAN']"""
+        error = self.splitHklout(outputFiles, outputColumns, hkloutFilePath)
+        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+            return CPluginScript.FAILED
 
         #Use Refmacs XMLOUT as the basis for output XML.  If not existent (probably due to failure), then create a new one
         # from core import CCP4Utils
@@ -300,6 +310,8 @@ class servalcat_xtal(CPluginScript):
             pass
         if str(self.container.controlParameters.DATA_METHOD) == 'spa':
             statsOverall["FSCaverage"] = jsonStats[-1]['data']['summary']['FSCaverage']
+            self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(statsOverall["FSCaverage"])  # TO DO
+            self.container.outputData.PERFORMANCEINDICATOR.RFree.set(0)                             # TO DO
         elif self.container.inputData.FREERFLAG.isSet():
             try:
                 statsOverall["Rwork"] = jsonStats[-1]['data']['summary']['Rwork']
@@ -323,13 +335,13 @@ class servalcat_xtal(CPluginScript):
                 statsOverall["R"] = jsonStats[-1]['data']['summary']['R']
                 statsOverall["CCFavg"] = jsonStats[-1]['data']['summary']['CCFavg']
                 self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(statsOverall["R"])  # TO DO
-                self.container.outputData.PERFORMANCEINDICATOR.RFree.set(0)
+                self.container.outputData.PERFORMANCEINDICATOR.RFree.set(0)                    # TO DO
             except:
                 try:
                     statsOverall["R1"] = jsonStats[-1]['data']['summary']['R1']
                     statsOverall["CCIavg"] = jsonStats[-1]['data']['summary']['CCIavg']
                     self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(statsOverall["R1"])  # TO DO
-                    self.container.outputData.PERFORMANCEINDICATOR.RFree.set(0)
+                    self.container.outputData.PERFORMANCEINDICATOR.RFree.set(0)                     # TO DO
                 except:
                     pass
 
