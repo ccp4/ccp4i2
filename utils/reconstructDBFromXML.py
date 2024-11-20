@@ -61,6 +61,27 @@ DATABASE.db.xml:209
 
 """
 
+def treeMerge(a, b):
+    from copy import deepcopy
+    """Merge two xml trees A and B, so that each recursively found leaf element of B is added to A.  If the element
+    already exists in A, it is replaced with B's version.  Tree structure is created in A as required to reflect the
+    position of the leaf element in B.
+    Given <top><first><a/><b/></first></top> and  <top><first><c/></first></top>, a merge results in
+    <top><first><a/><b/><c/></first></top> (order not guaranteed)
+    """
+
+    def inner(aparent, bparent):
+        for bchild in bparent:
+            achild = aparent.xpath('./' + bchild.tag)
+            if not achild:
+                aparent.append(bchild)
+            elif bchild.getchildren():
+                inner(achild[0], bchild)
+
+    res = deepcopy(a)
+    inner(res, b)
+    return res
+
 timeZoneName = datetime.datetime.now(tzlocal()).tzname().split()[0]
 
 CCP4NS = "http://www.ccp4.ac.uk/ccp4ns"
@@ -173,16 +194,17 @@ def generate_xml_from_project_directory(project_dir):
     
     for fn in params_files:
         with open(fn) as f:
-            t = f.read()
-            #print t
-            if sys.version_info < (3,0):
-                try:
-                    xmlparser = etree.XMLParser()
-                    tree = etree.fromstring(t, xmlparser)
-                except:
-                    print("Failed to process file",fn)
+
+            t1 = f.read()
+            tree1 = parse_from_unicode(t1)
+            if os.path.basename(fn) == "params.xml" and os.path.exists(os.path.join(os.path.dirname(fn),"input_params.xml")):
+                with open(os.path.join(os.path.dirname(fn),"input_params.xml")) as f2:
+                    t2 = f2.read()
+                    tree2 = parse_from_unicode(t2)
+                tree = treeMerge(tree1,tree2)
             else:
-                tree = parse_from_unicode(t)
+                tree = tree1
+
             #print tree.xpath("ccp4i2_header")[0].xpath("jobId")
             if len(tree.xpath("ccp4i2_header")[0].xpath("creationTime"))>0:
                 dt = tree.xpath("ccp4i2_header")[0].xpath("creationTime")[0].text
@@ -260,7 +282,7 @@ def generate_xml_from_project_directory(project_dir):
                                 else:
                                     attrib["status"] = "6" #IT may be running of course, but we skip that possibility and leave user to deal with.
                                 attrib["finishtime"] = str(os.path.getmtime(os.path.join(os.path.dirname(fn),"diagnostic.xml")))
-                        except IOError:
+                        except: 
                             attrib["status"] = "1"
                         jobs.append(attrib)
     
@@ -342,12 +364,17 @@ def generate_xml_from_project_directory(project_dir):
     
     for fn in params_files:
         with open(fn) as f:
-            t = f.read()
-            if sys.version_info < (3,0):
-                xmlparser = etree.XMLParser()
-                tree = etree.fromstring(t, xmlparser)
+
+            t1 = f.read()
+            tree1 = parse_from_unicode(t1)
+            if os.path.basename(fn) == "params.xml" and os.path.exists(os.path.join(os.path.dirname(fn),"input_params.xml")):
+                with open(os.path.join(os.path.dirname(fn),"input_params.xml")) as f2:
+                    t2 = f2.read()
+                    tree2 = parse_from_unicode(t2)
+                tree = treeMerge(tree1,tree2)
             else:
-                tree = parse_from_unicode(t)
+                tree = tree1
+
             if len(tree.xpath("ccp4i2_header")[0].xpath("jobId"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text)>0:
                 if len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text)>0:
                     if len(tree.xpath("ccp4i2_header")[0].xpath("pluginName"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("pluginName")[0].text)>0:
@@ -358,9 +385,25 @@ def generate_xml_from_project_directory(project_dir):
                             inputData_el = tree.xpath("ccp4i2_body")[0].xpath("outputData")[0]
                             inps = inputData_el.iterdescendants()
                             for inp in inps:
+                                fileid = ""
+                                filename = ""
                                 if len(inp.xpath("dbFileId"))>0 and len(inp.xpath("baseName"))>0:
                                     fileid =  inp.xpath("dbFileId")[0].text
                                     filename = inp.xpath("baseName")[0].text
+                                elif len(inp.xpath("baseName"))>0:
+                                    filename = inp.xpath("baseName")[0].text
+                                    if os.path.exists(os.path.join(os.path.dirname(fn),"report.html")):
+                                        with open(os.path.join(os.path.dirname(fn),"report.html")) as f:
+                                            t = f.read()
+                                            html_parser = etree.HTMLParser()
+                                            html_tree = etree.fromstring(t,html_parser)
+                                            imgs = html_tree.xpath("//img")
+                                            for img in imgs:
+                                                if "id" in img.attrib and "filepath" in img.attrib:
+                                                    if os.path.basename(img.attrib["filepath"]) == filename:
+                                                        fileid = img.attrib["id"] 
+                                                        break
+                                if fileid and filename:
                                     jobparamname = inp.tag
                                     parent = inp.find("..")
                                     while parent.tag != "outputData":
@@ -374,7 +417,10 @@ def generate_xml_from_project_directory(project_dir):
                                     attrib["inout"] = "0"
                                     attrib["roleid"] = "0"
                                     attrib["jobparamname"] = jobparamname
-                                    pluginDefXml  = getPluginDefXml(pluginName,wrapper_cache)
+                                    try:
+                                        pluginDefXml  = getPluginDefXml(pluginName,wrapper_cache)
+                                    except:
+                                        pluginDefXml  = None
                                     if pluginDefXml is None:
                                         print("Not found def.xml for", pluginName,". Cannot determine typeid for",jobparamname)
                                     else:
@@ -396,12 +442,15 @@ def generate_xml_from_project_directory(project_dir):
     
     for fn in params_files:
         with open(fn) as f:
-            t = f.read()
-            if sys.version_info < (3,0):
-                xmlparser = etree.XMLParser()
-                tree = etree.fromstring(t, xmlparser)
-            else:
-                tree = parse_from_unicode(t)
+
+            t1 = f.read()
+            tree1 = parse_from_unicode(t1)
+            if os.path.basename(fn) == "params.xml" and os.path.exists(os.path.join(os.path.dirname(fn),"input_params.xml")):
+                with open(os.path.join(os.path.dirname(fn),"input_params.xml")) as f2:
+                    t2 = f2.read()
+                    tree2 = parse_from_unicode(t2)
+            tree = treeMerge(tree1,tree2)
+
             if len(tree.xpath("ccp4i2_header")[0].xpath("jobId"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text)>0:
                 if len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text)>0:
                     if len(tree.xpath("ccp4i2_header")[0].xpath("pluginName"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("pluginName")[0].text)>0:
@@ -427,7 +476,10 @@ def generate_xml_from_project_directory(project_dir):
                                     attrib["number"] = jobNumber
                                     attrib["inout"] = "1"
                                     attrib["jobparamname"] = jobparamname
-                                    pluginDefXml  = getPluginDefXml(pluginName,wrapper_cache)
+                                    try:
+                                         pluginDefXml  = getPluginDefXml(pluginName,wrapper_cache)
+                                    except:
+                                         pluginDefXml  = None
                                     if pluginDefXml is None:
                                         print("Not found def.xml for", pluginName,". Cannot determine typeid for",jobparamname)
                                     else:
@@ -574,10 +626,13 @@ def generate_xml_from_project_directory(project_dir):
         jobid = kv[0]
         for k,v in kv[1].items():
            if type(v) == float or type(v) == int:
-               kve = etree.SubElement(jobkeyvalueTable_el,"jobkeyvalue")
-               kve.attrib["jobid"] = jobid
-               kve.attrib["keytypeid"] = str([x[1] for x in KEYTYPELIST].index(k))
-               kve.attrib["value"] = str(v)
+               try:
+                   kve = etree.SubElement(jobkeyvalueTable_el,"jobkeyvalue")
+                   kve.attrib["jobid"] = jobid
+                   kve.attrib["keytypeid"] = str([x[1] for x in KEYTYPELIST].index(k))
+                   kve.attrib["value"] = str(v)
+               except:
+                   pass
            else:
                pass # We'll add if to jobkeycharvalueTable later
     
@@ -587,10 +642,13 @@ def generate_xml_from_project_directory(project_dir):
            if type(v) == float or type(v) == int:
                pass
            else:
-               kve = etree.SubElement(jobkeycharvalueTable_el,"jobkeycharvalue")
-               kve.attrib["jobid"] = jobid
-               kve.attrib["keytypeid"] = str([x[1] for x in KEYTYPELIST].index(k))
-               kve.attrib["value"] = v
+               try:
+                   kve = etree.SubElement(jobkeycharvalueTable_el,"jobkeycharvalue")
+                   kve.attrib["jobid"] = jobid
+                   kve.attrib["keytypeid"] = str([x[1] for x in KEYTYPELIST].index(k))
+                   kve.attrib["value"] = v
+               except:
+                   pass
     
     return root
 
