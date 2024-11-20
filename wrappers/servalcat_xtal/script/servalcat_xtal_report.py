@@ -547,47 +547,53 @@ class servalcat_xtal_report(Report):
         plotLine.append('colour', 'blue')
         plotLine.append('symbolsize', '0')
 
-        graphRtitle = "R-values"
-        graphR = gallery.addFlotGraph(
-            xmlnode=xmlnode,
-            title=graphRtitle,
-            internalId=graphRtitle,
-            outputXml=self.outputXml,
-            label=graphRtitle,
-            style=galleryGraphStyle,
-            initiallyDrawn=True)
-        plotR = graphR.addPlotObject()
-        graphR.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
-        if len(xmlnode.findall('.//cycle[last()]/data/binned/Rcmplx_FC_full')) > 0: # SPA refinement
-            graphR.addData(title="Rcmplx_FC_full", select=".//cycle[last()]/data/binned/./Rcmplx_FC_full")
-        else:
-            plotR.append('line', x1=0, x2=1, y1=0.42, y2=0.42, linecolour="red", linestyle="--")
-            plotR.append('line', x1=0, x2=1, y1=0.58, y2=0.58, linecolour="red", linestyle="--")
-            if len(xmlnode.findall('.//cycle[last()]/data/binned/R1')) > 0:
-                graphR.addData(title="R1", select=".//cycle[last()]/data/binned/./R1")
-            elif len(xmlnode.findall('.//cycle[last()]/data/binned/R')) > 0:
-                graphR.addData(title="R", select=".//cycle[last()]/data/binned/./R")
-            elif len(xmlnode.findall('.//cycle[last()]/data/binned/Rwork')) > 0:
-                graphR.addData(title="Rwork", select=".//cycle[last()]/data/binned/./Rwork")
-                if len(xmlnode.findall('.//cycle[last()]/data/binned/Rfree')) > 0:
-                    graphR.addData(title="Rfree", select=".//cycle[last()]/data/binned/./Rfree")
-            elif len(xmlnode.findall('.//cycle[last()]/data/binned/R1work')) > 0:
-                graphR.addData(title="R1work", select=".//cycle[last()]/data/binned/./R1work")
-                if len(xmlnode.findall('.//cycle[last()]/data/binned/R1free')) > 0:
-                    graphR.addData(title="R1free", select=".//cycle[last()]/data/binned/./R1free")
-        plotR.append('title', graphRtitle)
-        plotR.append('plottype', 'xy')
-        plotR.append('xlabel', 'Resolution (&Aring;)')
-        plotR.append('ylabel', 'R-value')
-        plotR.append('xscale', 'oneoversqrt')
-        plotR.append('legendposition', x=1, y=0)  # right bottom corner
-        plotLine = plotR.append('plotline', xcol=1, ycol=2)
-        plotLine.append('colour', 'orange')
-        plotLine.append('symbolsize', '0')
-        plotLine = plotR.append('plotline', xcol=1, ycol=3)
-        plotLine.append('colour', 'blue')
-        plotLine.append('symbolsize', '0')
+        # R-values vs. resolution - only for servalcat_xtal_norefmac
+        if len(xmlnode.findall('.//cycle[last()]/data/binned/R1')) > 0 or \
+                len(xmlnode.findall('.//cycle[last()]/data/binned/R')) > 0 or \
+                len(xmlnode.findall('.//cycle[last()]/data/binned/Rwork')) > 0 or \
+                len(xmlnode.findall('.//cycle[last()]/data/binned/R1work')) > 0:
+            graphRtitle = "R-values"
+            graphR = gallery.addFlotGraph(
+                xmlnode=xmlnode,
+                title=graphRtitle,
+                internalId=graphRtitle,
+                outputXml=self.outputXml,
+                label=graphRtitle,
+                style=galleryGraphStyle,
+                initiallyDrawn=True)
+            plotR = graphR.addPlotObject()
+            graphR.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
+            if len(xmlnode.findall('.//cycle[last()]/data/binned/Rcmplx_FC_full')) > 0: # SPA refinement
+                graphR.addData(title="Rcmplx_FC_full", select=".//cycle[last()]/data/binned/./Rcmplx_FC_full")
+            else:
+                plotR.append('line', x1=0, x2=1, y1=0.42, y2=0.42, linecolour="red", linestyle="--")
+                plotR.append('line', x1=0, x2=1, y1=0.58, y2=0.58, linecolour="red", linestyle="--")
+                if len(xmlnode.findall('.//cycle[last()]/data/binned/R1')) > 0:
+                    graphR.addData(title="R1", select=".//cycle[last()]/data/binned/./R1")
+                elif len(xmlnode.findall('.//cycle[last()]/data/binned/R')) > 0:
+                    graphR.addData(title="R", select=".//cycle[last()]/data/binned/./R")
+                elif len(xmlnode.findall('.//cycle[last()]/data/binned/Rwork')) > 0:
+                    graphR.addData(title="Rwork", select=".//cycle[last()]/data/binned/./Rwork")
+                    if len(xmlnode.findall('.//cycle[last()]/data/binned/Rfree')) > 0:
+                        graphR.addData(title="Rfree", select=".//cycle[last()]/data/binned/./Rfree")
+                elif len(xmlnode.findall('.//cycle[last()]/data/binned/R1work')) > 0:
+                    graphR.addData(title="R1work", select=".//cycle[last()]/data/binned/./R1work")
+                    if len(xmlnode.findall('.//cycle[last()]/data/binned/R1free')) > 0:
+                        graphR.addData(title="R1free", select=".//cycle[last()]/data/binned/./R1free")
+            plotR.append('title', graphRtitle)
+            plotR.append('plottype', 'xy')
+            plotR.append('xlabel', 'Resolution (&Aring;)')
+            plotR.append('ylabel', 'R-value')
+            plotR.append('xscale', 'oneoversqrt')
+            plotR.append('legendposition', x=1, y=0)  # right bottom corner
+            plotLine = plotR.append('plotline', xcol=1, ycol=2)
+            plotLine.append('colour', 'orange')
+            plotLine.append('symbolsize', '0')
+            plotLine = plotR.append('plotline', xcol=1, ycol=3)
+            plotLine.append('colour', 'blue')
+            plotLine.append('symbolsize', '0')
 
+        # n_obs, n_work, n_free - only for servalcat_xtal_norefmac
         if len(xmlnode.findall('.//cycle[last()]/data/binned/n_obs')) > 0 and \
                 len(xmlnode.findall('.//cycle[last()]/data/binned/n_work')) > 0:
             graphNtitle = "Number of reflections"
@@ -621,6 +627,7 @@ class servalcat_xtal_report(Report):
             plotLine.append('colour', 'red')
             plotLine.append('symbolsize', '0')
 
+        # MnD0FC0, MnD1FCbulk - only for servalcat_xtal_norefmac
         if len(xmlnode.findall('.//cycle[last()]/data/binned/MnD0FC0')) > 0 and \
                 len(xmlnode.findall('.//cycle[last()]/data/binned/MnD1FCbulk')) > 0:
             graphDtitle = "Mean |D0*FC0| and |D1*FCbulk|"
@@ -648,13 +655,7 @@ class servalcat_xtal_report(Report):
             plotLine = plotD.append('plotline', xcol=1, ycol=3, rightaxis='true')
             plotLine.append('colour', 'red')
             plotLine.append('symbolsize', '0')
-
         clearingDiv = parent.addDiv(style="clear:both;")
-
-        #reportFold = parent.addFold(label='Picture', brief='Other')
-        #reportFold = parent.addFold(label='Outliers identified by servalcat', brief='Other')
-        #reportFold = parent.addFold(label='Validation', brief='Other')
-        #reportFold = parent.addFold(label='Verdict', brief='Other')
 
     def addOutlierAnalysis(self, parent=None, xmlnode=None):
         if parent is None: parent = self
