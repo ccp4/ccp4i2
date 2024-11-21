@@ -602,6 +602,47 @@ class servalcat_xtal(CPluginScript):
             self.appendCommandLine(['--randomize', str(self.container.controlParameters.RANDOMIZE)])
 
         keywordFilePath = str(os.path.join(self.getWorkDirectory(), 'keywords.txt'))
+
+        # Occupancy refinement
+        if self.container.controlParameters.OCCUPANCY_GROUPS:
+            with open(keywordFilePath, "a+") as keywordFile:
+                if self.container.controlParameters.OCCUPANCY_REFINEMENT:
+                    keywordFile.write("OCCUPANCY REFINE \n")  # self.appendCommandScript("OCCUPANCY REFINE")
+                # if self.container.controlParameters.OCCUPANCY_NCYCLE.isSet():
+                #     keywordFile.write("OCCUPANCY REFINE NCYCLE " + str(self.container.controlParameters.OCCUPANCY_NCYCLE) + "\n")
+                occup_groupids = []
+                for sel0 in self.container.controlParameters.OCCUPANCY_SELECTION:
+                    sel = sel0.get()
+                    if sel['groupId'] and sel['chainIds'] and sel['firstRes'] and sel['lastRes']:
+                        occupText = "OCCUPANCY GROUP ID %s CHAIN %s RESIDUE FROM %s TO %s" % (str(sel['groupId']),str(sel['chainIds']),str(sel['firstRes']),str(sel['lastRes']))
+                        if sel['atoms']:
+                            occupText += " ATOM %s" % (str(sel['atoms']))
+                        if sel['alt']:
+                            occupText += " ALT %s" % (str(sel['alt']))
+                        keywordFile.write(occupText + '\n')  # self.appendCommandScript(occupText + '\n')
+                        occup_groupids.append(sel['groupId'])
+#                   else:
+#                       self.appendErrorReport(201,"Error - incorrectly specified occupancy group.")
+#                       return CPluginScript.FAILED
+                if self.container.controlParameters.OCCUPANCY_COMPLETE:
+                    for sel0 in self.container.controlParameters.OCCUPANCY_COMPLETE_TABLE:
+                        sel = sel0.get()
+#                       for id in sel['groupIds'].split(' '):
+#                          if not id in occup_groupids:
+#                             self.appendErrorReport(201,"Error - group ID "+id+" not specified in the list of occupancy groups.")
+#                             return CPluginScript.FAILED
+                        occupText = "OCCUPANCY GROUP ALTS COMPLETE %s" % (str(sel['groupIds']))
+                        keywordFile.write(occupText + '\n')  # self.appendCommandScript(occupText + '\n')
+                if self.container.controlParameters.OCCUPANCY_INCOMPLETE:
+                    for sel0 in self.container.controlParameters.OCCUPANCY_INCOMPLETE_TABLE:
+                        sel = sel0.get()
+#                       for id in sel['groupIds'].split(' '):
+#                          if not id in occup_groupids:
+#                             self.appendErrorReport(201,"Error - group ID "+id+" not specified in the list of occupancy groups.")
+#                             return CPluginScript.FAILED
+                        occupText = "OCCUPANCY GROUP ALTS INCOMPLETE %s" % (str(sel['groupIds']))
+                        keywordFile.write(occupText + '\n')  # self.appendCommandScript(occupText + '\n')
+
         if self.container.inputData.METALCOORD_RESTRAINTS.isSet():
             with open(keywordFilePath, "a+") as keywordFile:
                 keywordFile.write("\n@%s"%(str(self.container.inputData.METALCOORD_RESTRAINTS.fullPath)))
