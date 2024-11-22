@@ -98,24 +98,26 @@ FILETYPES_CLASS = ['DataFile', 'SeqDataFile', 'PdbDataFile', '', 'MtzDataFile', 
                    'ImosflmXmlDataFile', 'ImageFile', 'GenericReflDataFile', 'HhpredDataFile',
                    'BlastDataFile', 'EnsemblePdbDataFile', 'AsuDataFile', 'DialsJsonFile', 'DialsPickleFile']
 
-KEYTYPELIST =  [ (0,'Unknown','Key type unknown'),
-                    (1,'RFactor','R Factor'),
-                    (2,'RFree','Free R Factor'),
-                    (3,'completeness','model completeness'),
-                    (4, 'spaceGroup','space group'),
-                    (5, 'highResLimit', 'high resolution limit'),
-                    (6, 'rMeas', 'Rmeas data consistency'),
-                    (7,'FOM','figure of merit of phases'),
-                    (8,'CFOM','correlation FOM'),
-                    (9,'Hand1Score','Hand 1 score'),
-                    (10,'Hand2Score','Hand 2 score'),
-                    (11,'CC','correlation coefficient between Fo and Fc'),
-                    (12,'nAtoms','number of atoms in model'),
-                    (13,'nResidues','number of residues in model'),
-                    (14,'phaseError','phase error'),
-                    (15,'weightedPhaseError','weighted phase error'),
-                    (16,'reflectionCorrelation','reflection correlation'),
-                    (17,'RMSxyz','RMS displacement'), ]
+KEYTYPEDICT = {
+    "Unknown": 0,                  # Key type unknown
+    "RFactor": 1,                  # R Factor
+    "RFree": 2,                    # Free R Factor
+    "completeness": 3,             # model completeness
+    "spaceGroup": 4,               # space group
+    "highResLimit": 5,             # high resolution limit
+    "rMeas": 6,                    # Rmeas data consistency
+    "FOM": 7,                      # figure of merit of phases
+    "CFOM": 8,                     # correlation FOM
+    "Hand1Score": 9,               # Hand 1 score
+    "Hand2Score": 1,               # Hand 2 score
+    "CC": 11,                      # correlation coefficient between Fo and Fc
+    "nAtoms": 12,                  # number of atoms in model
+    "nResidues": 13,               # number of residues in model
+    "phaseError": 14,              # phase error
+    "weightedPhaseError": 15,      # weighted phase error
+    "reflectionCorrelation": 16,   # reflection correlation
+    "RMSxyz": 17,                  # RMS displacement
+}
 
 
 def datetime_to_float(d):
@@ -622,34 +624,16 @@ def generate_xml_from_project_directory(project_dir):
     projecttagTable_el = etree.SubElement(ccp4i2_body,"projecttagTable")
     tagTable_el = etree.SubElement(ccp4i2_body,"tagTable")
     
-    for kv in jkv:
-        jobid = kv[0]
-        for k,v in kv[1].items():
-           if type(v) == float or type(v) == int:
-               try:
-                   kve = etree.SubElement(jobkeyvalueTable_el,"jobkeyvalue")
-                   kve.attrib["jobid"] = jobid
-                   kve.attrib["keytypeid"] = str([x[1] for x in KEYTYPELIST].index(k))
-                   kve.attrib["value"] = str(v)
-               except:
-                   pass
-           else:
-               pass # We'll add if to jobkeycharvalueTable later
-    
-    for kv in jkv:
-        jobid = kv[0]
-        for k,v in kv[1].items():
-           if type(v) == float or type(v) == int:
-               pass
-           else:
-               try:
-                   kve = etree.SubElement(jobkeycharvalueTable_el,"jobkeycharvalue")
-                   kve.attrib["jobid"] = jobid
-                   kve.attrib["keytypeid"] = str([x[1] for x in KEYTYPELIST].index(k))
-                   kve.attrib["value"] = v
-               except:
-                   pass
-    
+    for jobId, vals in jkv:
+        for k, v in vals.items():
+            if isinstance(v, float) or isinstance(v, int):
+                kve = etree.SubElement(jobkeyvalueTable_el, "jobkeyvalue")
+            else:
+                kve = etree.SubElement(jobkeycharvalueTable_el, "jobkeycharvalue")
+            kve.attrib["jobid"] = jobId
+            kve.attrib["keytypeid"] = KEYTYPEDICT.get(k, default=0)  # default to unknown
+            kve.attrib["value"] = str(v)
+
     return root
 
 if __name__ == "__main__":
