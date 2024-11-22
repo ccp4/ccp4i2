@@ -861,6 +861,8 @@ class Cprosmart_refmac(CCP4TaskWidget.CTaskWidget):
                      invalidElements.append(self.container.controlParameters.OCCUPANCY_SELECTION)
                   if sel['groupId']:
                      occup_groupids.append(str(sel['groupId']))
+               if len(occup_groupids) > len(set(occup_groupids)):  # duplicate groupId
+                  invalidElements.append(self.container.controlParameters.OCCUPANCY_SELECTION)
                if self.container.controlParameters.OCCUPANCY_COMPLETE:
                   for sel0 in self.container.controlParameters.OCCUPANCY_COMPLETE_TABLE:
                      sel = sel0.get()
