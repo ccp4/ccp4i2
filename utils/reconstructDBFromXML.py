@@ -5,6 +5,7 @@ import datetime
 from io import StringIO
 from collections import OrderedDict
 from operator import itemgetter
+from pathlib import Path
 
 from distutils.version import LooseVersion
 
@@ -189,92 +190,92 @@ def generate_xml_from_project_directory(project_dir):
         s = unicode_str.encode('utf-8')
         return etree.fromstring(s, parser=utf8_parser)
     
+    def parse_possibly_merged_xml(path):
+        path = Path(path)
+        with path.open() as f1:
+            tree1 = parse_from_unicode(f1.read())
+        if path.name == "params.xml" and (path.parent / "input_params.xml").exists():
+            with (path.parent / "input_params.xml").open() as f2:
+                tree2 = parse_from_unicode(f2.read())
+            return treeMerge(tree1, tree2)
+        return tree1
+
     for fn in params_files:
-        with open(fn) as f:
+        tree = parse_possibly_merged_xml(fn)
 
-            t1 = f.read()
-            tree1 = parse_from_unicode(t1)
-            if os.path.basename(fn) == "params.xml" and os.path.exists(os.path.join(os.path.dirname(fn),"input_params.xml")):
-                with open(os.path.join(os.path.dirname(fn),"input_params.xml")) as f2:
-                    t2 = f2.read()
-                    tree2 = parse_from_unicode(t2)
-                tree = treeMerge(tree1,tree2)
-            else:
-                tree = tree1
+        #print tree.xpath("ccp4i2_header")[0].xpath("jobId")
+        if len(tree.xpath("ccp4i2_header")[0].xpath("creationTime"))>0:
+            dt = tree.xpath("ccp4i2_header")[0].xpath("creationTime")[0].text
+            dt += " "+timeZoneName
+            t = parser.parse(dt)
+            #print "Date",dt,t
+            if t<creationTime:
+                creationTime = t
+        if len(tree.xpath("ccp4i2_header")[0].xpath("projectName"))>0:
+            if projectName == "":
+                if  tree.xpath("ccp4i2_header")[0].xpath("projectName")[0].text != None and len(tree.xpath("ccp4i2_header")[0].xpath("projectName")[0].text.strip())>0:
+                    projectName = tree.xpath("ccp4i2_header")[0].xpath("projectName")[0].text
+            elif tree.xpath("ccp4i2_header")[0].xpath("projectName")[0].text != projectName:
+                print("Problem, project name changed",tree.xpath("ccp4i2_header")[0].xpath("projectName")[0].text,projectName)
+                print("Keeping old name",projectName)
+        if len(tree.xpath("ccp4i2_header")[0].xpath("projectId"))>0:
+            if projectId == "":
+                if tree.xpath("ccp4i2_header")[0].xpath("projectId")[0].text != None and len(tree.xpath("ccp4i2_header")[0].xpath("projectId")[0].text.strip())>0:
+                    projectId = tree.xpath("ccp4i2_header")[0].xpath("projectId")[0].text
+            elif tree.xpath("ccp4i2_header")[0].xpath("projectId")[0].text != projectId:
+                print("Problem, project id changed",tree.xpath("ccp4i2_header")[0].xpath("projectId")[0].text,projectId)
+                print("Keeping old id",projectId)
+        if len(tree.xpath("ccp4i2_header")[0].xpath("hostName"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("hostName")[0].text)>0:
+            hostName = tree.xpath("ccp4i2_header")[0].xpath("hostName")[0].text
+        if len(tree.xpath("ccp4i2_header")[0].xpath("userId"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("userId")[0].text)>0:
+            userId = tree.xpath("ccp4i2_header")[0].xpath("userId")[0].text
+        if len(tree.xpath("ccp4i2_header")[0].xpath("ccp4iVersion"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("ccp4iVersion")[0].text)>0:
+            ccp4iVersion = tree.xpath("ccp4i2_header")[0].xpath("ccp4iVersion")[0].text
+        if len(tree.xpath("ccp4i2_header")[0].xpath("OS"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("OS")[0].text)>0:
+            OS = tree.xpath("ccp4i2_header")[0].xpath("OS")[0].text
 
-            #print tree.xpath("ccp4i2_header")[0].xpath("jobId")
-            if len(tree.xpath("ccp4i2_header")[0].xpath("creationTime"))>0:
-                dt = tree.xpath("ccp4i2_header")[0].xpath("creationTime")[0].text
-                dt += " "+timeZoneName
-                t = parser.parse(dt)
-                #print "Date",dt,t
-                if t<creationTime:
-                    creationTime = t
-            if len(tree.xpath("ccp4i2_header")[0].xpath("projectName"))>0:
-                if projectName == "":
-                    if  tree.xpath("ccp4i2_header")[0].xpath("projectName")[0].text != None and len(tree.xpath("ccp4i2_header")[0].xpath("projectName")[0].text.strip())>0:
-                        projectName = tree.xpath("ccp4i2_header")[0].xpath("projectName")[0].text
-                elif tree.xpath("ccp4i2_header")[0].xpath("projectName")[0].text != projectName:
-                    print("Problem, project name changed",tree.xpath("ccp4i2_header")[0].xpath("projectName")[0].text,projectName)
-                    print("Keeping old name",projectName)
-            if len(tree.xpath("ccp4i2_header")[0].xpath("projectId"))>0:
-                if projectId == "":
-                    if tree.xpath("ccp4i2_header")[0].xpath("projectId")[0].text != None and len(tree.xpath("ccp4i2_header")[0].xpath("projectId")[0].text.strip())>0:
-                        projectId = tree.xpath("ccp4i2_header")[0].xpath("projectId")[0].text
-                elif tree.xpath("ccp4i2_header")[0].xpath("projectId")[0].text != projectId:
-                    print("Problem, project id changed",tree.xpath("ccp4i2_header")[0].xpath("projectId")[0].text,projectId)
-                    print("Keeping old id",projectId)
-            if len(tree.xpath("ccp4i2_header")[0].xpath("hostName"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("hostName")[0].text)>0:
-                hostName = tree.xpath("ccp4i2_header")[0].xpath("hostName")[0].text
-            if len(tree.xpath("ccp4i2_header")[0].xpath("userId"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("userId")[0].text)>0:
-                userId = tree.xpath("ccp4i2_header")[0].xpath("userId")[0].text
-            if len(tree.xpath("ccp4i2_header")[0].xpath("ccp4iVersion"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("ccp4iVersion")[0].text)>0:
-                ccp4iVersion = tree.xpath("ccp4i2_header")[0].xpath("ccp4iVersion")[0].text
-            if len(tree.xpath("ccp4i2_header")[0].xpath("OS"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("OS")[0].text)>0:
-                OS = tree.xpath("ccp4i2_header")[0].xpath("OS")[0].text
-    
-            if len(tree.xpath("ccp4i2_header")[0].xpath("jobId"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text)>0:
-                if len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text)>0:
-                    if len(tree.xpath("ccp4i2_header")[0].xpath("pluginName"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("pluginName")[0].text)>0:
-                        jobId = tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text
-                        jobNumber = tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text
-                        pluginName = tree.xpath("ccp4i2_header")[0].xpath("pluginName")[0].text
-                        attrib = {}
-                        attrib["jobid"] = jobId
-                        attrib["jobnumber"] = jobNumber
-                        if len(tree.xpath("ccp4i2_header")[0].xpath("creationTime"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("creationTime")[0].text)>0:
-                            dt = tree.xpath("ccp4i2_header")[0].xpath("creationTime")[0].text
-                            dt += " "+timeZoneName
-                            t = parser.parse(dt)
-                            strfloattime = str(datetime_to_float(t))
-                            attrib["creationtime"] = strfloattime
-                        attrib["useragent"] = "1" # We have no way of knowing and I cannot think it matters
-                        if len(tree.xpath("ccp4i2_header")[0].xpath("pluginTitle"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("pluginTitle")[0].text)>0:
-                            pluginTitle = tree.xpath("ccp4i2_header")[0].xpath("pluginTitle")[0].text
-                            attrib["jobtitle"] = pluginTitle
-                        attrib["projectid"] = projectId
-                        attrib["taskname"] = pluginName
-                        parentXML = os.path.join(os.path.dirname(os.path.dirname(fn)),"params.xml")
-                        if os.path.exists(parentXML):
-                            with open(parentXML) as f2:
-                                t2 = f2.read()
-                                tree2 = parse_from_unicode(t2)
-                                if len(tree2.xpath("ccp4i2_header")[0].xpath("jobId"))>0 and len(tree2.xpath("ccp4i2_header")[0].xpath("jobId")[0].text)>0:
-                                    jobId2 = tree2.xpath("ccp4i2_header")[0].xpath("jobId")[0].text
-                                    attrib["parentjobid"] = jobId2
-                        #Hmm, no good. Not all jobs have a diagnostic.xml, only top level jobs. If a top-level has finished, then all sub-jobs must be!
-                        try:
-                            with open(os.path.join(os.path.dirname(fn),"diagnostic.xml")) as fdiag:
-                                tdiag = fdiag.read()
-                                treediag = parse_from_unicode(tdiag)
-                                if len(treediag.xpath("ccp4i2_body")[0].xpath("errorReport"))>0:
-                                    attrib["status"] = "5"
-                                else:
-                                    attrib["status"] = "6" #IT may be running of course, but we skip that possibility and leave user to deal with.
-                                attrib["finishtime"] = str(os.path.getmtime(os.path.join(os.path.dirname(fn),"diagnostic.xml")))
-                        except: 
-                            attrib["status"] = "1"
-                        jobs.append(attrib)
+        if len(tree.xpath("ccp4i2_header")[0].xpath("jobId"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text)>0:
+            if len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text)>0:
+                if len(tree.xpath("ccp4i2_header")[0].xpath("pluginName"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("pluginName")[0].text)>0:
+                    jobId = tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text
+                    jobNumber = tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text
+                    pluginName = tree.xpath("ccp4i2_header")[0].xpath("pluginName")[0].text
+                    attrib = {}
+                    attrib["jobid"] = jobId
+                    attrib["jobnumber"] = jobNumber
+                    if len(tree.xpath("ccp4i2_header")[0].xpath("creationTime"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("creationTime")[0].text)>0:
+                        dt = tree.xpath("ccp4i2_header")[0].xpath("creationTime")[0].text
+                        dt += " "+timeZoneName
+                        t = parser.parse(dt)
+                        strfloattime = str(datetime_to_float(t))
+                        attrib["creationtime"] = strfloattime
+                    attrib["useragent"] = "1" # We have no way of knowing and I cannot think it matters
+                    if len(tree.xpath("ccp4i2_header")[0].xpath("pluginTitle"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("pluginTitle")[0].text)>0:
+                        pluginTitle = tree.xpath("ccp4i2_header")[0].xpath("pluginTitle")[0].text
+                        attrib["jobtitle"] = pluginTitle
+                    attrib["projectid"] = projectId
+                    attrib["taskname"] = pluginName
+                    parentXML = os.path.join(os.path.dirname(os.path.dirname(fn)),"params.xml")
+                    if os.path.exists(parentXML):
+                        with open(parentXML) as f2:
+                            t2 = f2.read()
+                            tree2 = parse_from_unicode(t2)
+                            if len(tree2.xpath("ccp4i2_header")[0].xpath("jobId"))>0 and len(tree2.xpath("ccp4i2_header")[0].xpath("jobId")[0].text)>0:
+                                jobId2 = tree2.xpath("ccp4i2_header")[0].xpath("jobId")[0].text
+                                attrib["parentjobid"] = jobId2
+                    #Hmm, no good. Not all jobs have a diagnostic.xml, only top level jobs. If a top-level has finished, then all sub-jobs must be!
+                    try:
+                        with open(os.path.join(os.path.dirname(fn),"diagnostic.xml")) as fdiag:
+                            tdiag = fdiag.read()
+                            treediag = parse_from_unicode(tdiag)
+                            if len(treediag.xpath("ccp4i2_body")[0].xpath("errorReport"))>0:
+                                attrib["status"] = "5"
+                            else:
+                                attrib["status"] = "6" #IT may be running of course, but we skip that possibility and leave user to deal with.
+                            attrib["finishtime"] = str(os.path.getmtime(os.path.join(os.path.dirname(fn),"diagnostic.xml")))
+                    except: 
+                        attrib["status"] = "1"
+                    jobs.append(attrib)
     
     #TODO - We need to construct fileuse from file stuff as well
     
@@ -349,161 +350,141 @@ def generate_xml_from_project_directory(project_dir):
     
     
     for fn in params_files:
-        with open(fn) as f:
+        tree = parse_possibly_merged_xml(fn)
 
-            t1 = f.read()
-            tree1 = parse_from_unicode(t1)
-            if os.path.basename(fn) == "params.xml" and os.path.exists(os.path.join(os.path.dirname(fn),"input_params.xml")):
-                with open(os.path.join(os.path.dirname(fn),"input_params.xml")) as f2:
-                    t2 = f2.read()
-                    tree2 = parse_from_unicode(t2)
-                tree = treeMerge(tree1,tree2)
-            else:
-                tree = tree1
-
-            if len(tree.xpath("ccp4i2_header")[0].xpath("jobId"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text)>0:
-                if len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text)>0:
-                    if len(tree.xpath("ccp4i2_header")[0].xpath("pluginName"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("pluginName")[0].text)>0:
-                        jobId = tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text
-                        jobNumber = tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text
-                        pluginName = tree.xpath("ccp4i2_header")[0].xpath("pluginName")[0].text
-                        if len(tree.xpath("ccp4i2_body")[0].xpath("outputData"))>0:
-                            inputData_el = tree.xpath("ccp4i2_body")[0].xpath("outputData")[0]
-                            inps = inputData_el.iterdescendants()
-                            for inp in inps:
-                                fileid = ""
-                                filename = ""
-                                if len(inp.xpath("dbFileId"))>0 and len(inp.xpath("baseName"))>0:
-                                    fileid =  inp.xpath("dbFileId")[0].text
-                                    filename = inp.xpath("baseName")[0].text
-                                elif len(inp.xpath("baseName"))>0:
-                                    filename = inp.xpath("baseName")[0].text
-                                    if os.path.exists(os.path.join(os.path.dirname(fn),"report.html")):
-                                        with open(os.path.join(os.path.dirname(fn),"report.html")) as f:
-                                            t = f.read()
-                                            html_parser = etree.HTMLParser()
-                                            html_tree = etree.fromstring(t,html_parser)
-                                            imgs = html_tree.xpath("//img")
-                                            for img in imgs:
-                                                if "id" in img.attrib and "filepath" in img.attrib:
-                                                    if os.path.basename(img.attrib["filepath"]) == filename:
-                                                        fileid = img.attrib["id"] 
-                                                        break
-                                if fileid and filename:
-                                    jobparamname = inp.tag
-                                    parent = inp.find("..")
-                                    while parent.tag != "outputData":
-                                        jobparamname = parent.tag
-                                        parent = parent.find("..")
-                                    attrib = OrderedDict()
-                                    attrib["fileid"] = fileid
-                                    attrib["filename"] = filename
-                                    attrib["jobid"] = jobId
-                                    attrib["number"] = jobNumber
-                                    attrib["inout"] = "0"
-                                    attrib["roleid"] = "0"
-                                    attrib["jobparamname"] = jobparamname
-                                    try:
-                                        pluginDefXml  = getPluginDefXml(pluginName,wrapper_cache)
-                                    except:
-                                        pluginDefXml  = None
-                                    if pluginDefXml is None:
-                                        print("Not found def.xml for", pluginName,". Cannot determine typeid for",jobparamname)
+        if len(tree.xpath("ccp4i2_header")[0].xpath("jobId"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text)>0:
+            if len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text)>0:
+                if len(tree.xpath("ccp4i2_header")[0].xpath("pluginName"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("pluginName")[0].text)>0:
+                    jobId = tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text
+                    jobNumber = tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text
+                    pluginName = tree.xpath("ccp4i2_header")[0].xpath("pluginName")[0].text
+                    if len(tree.xpath("ccp4i2_body")[0].xpath("outputData"))>0:
+                        inputData_el = tree.xpath("ccp4i2_body")[0].xpath("outputData")[0]
+                        inps = inputData_el.iterdescendants()
+                        for inp in inps:
+                            fileid = ""
+                            filename = ""
+                            if len(inp.xpath("dbFileId"))>0 and len(inp.xpath("baseName"))>0:
+                                fileid =  inp.xpath("dbFileId")[0].text
+                                filename = inp.xpath("baseName")[0].text
+                            elif len(inp.xpath("baseName"))>0:
+                                filename = inp.xpath("baseName")[0].text
+                                if os.path.exists(os.path.join(os.path.dirname(fn),"report.html")):
+                                    with open(os.path.join(os.path.dirname(fn),"report.html")) as f:
+                                        t = f.read()
+                                        html_parser = etree.HTMLParser()
+                                        html_tree = etree.fromstring(t,html_parser)
+                                        imgs = html_tree.xpath("//img")
+                                        for img in imgs:
+                                            if "id" in img.attrib and "filepath" in img.attrib:
+                                                if os.path.basename(img.attrib["filepath"]) == filename:
+                                                    fileid = img.attrib["id"] 
+                                                    break
+                            if fileid and filename:
+                                jobparamname = inp.tag
+                                parent = inp.find("..")
+                                while parent.tag != "outputData":
+                                    jobparamname = parent.tag
+                                    parent = parent.find("..")
+                                attrib = OrderedDict()
+                                attrib["fileid"] = fileid
+                                attrib["filename"] = filename
+                                attrib["jobid"] = jobId
+                                attrib["number"] = jobNumber
+                                attrib["inout"] = "0"
+                                attrib["roleid"] = "0"
+                                attrib["jobparamname"] = jobparamname
+                                try:
+                                    pluginDefXml  = getPluginDefXml(pluginName,wrapper_cache)
+                                except:
+                                    pluginDefXml  = None
+                                if pluginDefXml is None:
+                                    print("Not found def.xml for", pluginName,". Cannot determine typeid for",jobparamname)
+                                else:
+                                    typeid = getTypeId(pluginDefXml,jobparamname,"outputData")
+                                    attrib["filetypeid"] = str(typeid)
+                                if len(inp.xpath("annotation"))>0:
+                                    attrib["annotation"] = inp.xpath("annotation")[0].text
+                                if len(inp.xpath("subType"))>0:
+                                    attrib["filesubtype"] = inp.xpath("subType")[0].text
+                                if len(inp.xpath("contentFlag"))>0:
+                                    attrib["filecontent"] = inp.xpath("contentFlag")[0].text
+                                if len(inp.xpath("relPath"))>0:
+                                    relPath = inp.xpath("relPath")[0].text
+                                    if relPath == "CCP4_IMPORTED_FILES":
+                                        attrib["pathflag"] = "2"
                                     else:
-                                        typeid = getTypeId(pluginDefXml,jobparamname,"outputData")
-                                        attrib["filetypeid"] = str(typeid)
-                                    if len(inp.xpath("annotation"))>0:
-                                        attrib["annotation"] = inp.xpath("annotation")[0].text
-                                    if len(inp.xpath("subType"))>0:
-                                        attrib["filesubtype"] = inp.xpath("subType")[0].text
-                                    if len(inp.xpath("contentFlag"))>0:
-                                        attrib["filecontent"] = inp.xpath("contentFlag")[0].text
-                                    if len(inp.xpath("relPath"))>0:
-                                        relPath = inp.xpath("relPath")[0].text
-                                        if relPath == "CCP4_IMPORTED_FILES":
-                                            attrib["pathflag"] = "2"
-                                        else:
-                                            attrib["pathflag"] = "1"
-                                    files.append(attrib)
+                                        attrib["pathflag"] = "1"
+                                files.append(attrib)
     
     for fn in params_files:
-        with open(fn) as f:
+        tree = parse_possibly_merged_xml(fn)
 
-            t1 = f.read()
-            tree1 = parse_from_unicode(t1)
-            if os.path.basename(fn) == "params.xml" and os.path.exists(os.path.join(os.path.dirname(fn),"input_params.xml")):
-                with open(os.path.join(os.path.dirname(fn),"input_params.xml")) as f2:
-                    t2 = f2.read()
-                    tree2 = parse_from_unicode(t2)
-                tree = treeMerge(tree1,tree2)
-            else:
-                tree = tree1
+        if len(tree.xpath("ccp4i2_header")[0].xpath("jobId"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text)>0:
+            if len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text)>0:
+                if len(tree.xpath("ccp4i2_header")[0].xpath("pluginName"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("pluginName")[0].text)>0:
+                    jobId = tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text
+                    jobNumber = tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text
+                    pluginName = tree.xpath("ccp4i2_header")[0].xpath("pluginName")[0].text
+                    if len(tree.xpath("ccp4i2_body")[0].xpath("inputData"))>0:
+                        inputData_el = tree.xpath("ccp4i2_body")[0].xpath("inputData")[0]
+                        for inp in inputData_el.iterdescendants():
+                            if len(inp.xpath("dbFileId"))>0 and len(inp.xpath("baseName"))>0:
+                                fileid =  inp.xpath("dbFileId")[0].text
+                                filename = inp.xpath("baseName")[0].text
+                                jobparamname = inp.tag
+                                parent = inp.find("..")
+                                while parent.tag != "inputData":
+                                    jobparamname = parent.tag
+                                    parent = parent.find("..")
+                                #file_el = etree.SubElement(fileTable_el,"file")
+                                attrib = OrderedDict()
+                                attrib["fileid"] = fileid
+                                attrib["filename"] = filename
+                                attrib["jobid"] = jobId
+                                attrib["number"] = jobNumber
+                                attrib["inout"] = "1"
+                                attrib["jobparamname"] = jobparamname
+                                try:
+                                        pluginDefXml  = getPluginDefXml(pluginName,wrapper_cache)
+                                except:
+                                        pluginDefXml  = None
+                                if pluginDefXml is None:
+                                    print("Not found def.xml for", pluginName,". Cannot determine typeid for",jobparamname)
+                                else:
+                                    typeid = getTypeId(pluginDefXml,jobparamname,"inputData")
+                                    attrib["filetypeid"] = str(typeid)
 
-            if len(tree.xpath("ccp4i2_header")[0].xpath("jobId"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text)>0:
-                if len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text)>0:
-                    if len(tree.xpath("ccp4i2_header")[0].xpath("pluginName"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("pluginName")[0].text)>0:
-                        jobId = tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text
-                        jobNumber = tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text
-                        pluginName = tree.xpath("ccp4i2_header")[0].xpath("pluginName")[0].text
-                        if len(tree.xpath("ccp4i2_body")[0].xpath("inputData"))>0:
-                            inputData_el = tree.xpath("ccp4i2_body")[0].xpath("inputData")[0]
-                            for inp in inputData_el.iterdescendants():
-                                if len(inp.xpath("dbFileId"))>0 and len(inp.xpath("baseName"))>0:
-                                    fileid =  inp.xpath("dbFileId")[0].text
-                                    filename = inp.xpath("baseName")[0].text
-                                    jobparamname = inp.tag
-                                    parent = inp.find("..")
-                                    while parent.tag != "inputData":
-                                        jobparamname = parent.tag
-                                        parent = parent.find("..")
-                                    #file_el = etree.SubElement(fileTable_el,"file")
-                                    attrib = OrderedDict()
-                                    attrib["fileid"] = fileid
-                                    attrib["filename"] = filename
-                                    attrib["jobid"] = jobId
-                                    attrib["number"] = jobNumber
-                                    attrib["inout"] = "1"
-                                    attrib["jobparamname"] = jobparamname
-                                    try:
-                                         pluginDefXml  = getPluginDefXml(pluginName,wrapper_cache)
-                                    except:
-                                         pluginDefXml  = None
-                                    if pluginDefXml is None:
-                                        print("Not found def.xml for", pluginName,". Cannot determine typeid for",jobparamname)
+                                if len(inp.xpath("annotation"))>0:
+                                    attrib["annotation"] = inp.xpath("annotation")[0].text
+                                if len(inp.xpath("subType"))>0:
+                                    attrib["filesubtype"] = inp.xpath("subType")[0].text
+                                if len(inp.xpath("contentFlag"))>0:
+                                    attrib["filecontent"] = inp.xpath("contentFlag")[0].text
+                                if len(inp.xpath("relPath"))>0:
+                                    relPath = inp.xpath("relPath")[0].text
+                                    if relPath == "CCP4_IMPORTED_FILES":
+                                        attrib["pathflag"] = "2"
                                     else:
-                                        typeid = getTypeId(pluginDefXml,jobparamname,"inputData")
-                                        attrib["filetypeid"] = str(typeid)
-    
-                                    if len(inp.xpath("annotation"))>0:
-                                        attrib["annotation"] = inp.xpath("annotation")[0].text
-                                    if len(inp.xpath("subType"))>0:
-                                        attrib["filesubtype"] = inp.xpath("subType")[0].text
-                                    if len(inp.xpath("contentFlag"))>0:
-                                        attrib["filecontent"] = inp.xpath("contentFlag")[0].text
-                                    if len(inp.xpath("relPath"))>0:
-                                        relPath = inp.xpath("relPath")[0].text
-                                        if relPath == "CCP4_IMPORTED_FILES":
-                                            attrib["pathflag"] = "2"
-                                        else:
-                                            attrib["pathflag"] = "1"
-                                    files.append(attrib)
-                                    if(os.path.basename(os.path.dirname(os.path.dirname(fn)))) == "CCP4_JOBS":
-                                        #FIXME - I think only for completed jobs! So we need to search job tree and then filter.
-                                        attribuse = {}
-                                        for k,v in attrib.items():
-                                            if k == "fileid" or k == "jobid" or k == "jobparamname":
-                                                attribuse[k] = v
-                                            attribuse["roleid"] = "1"
-                                        fileuses.append(attribuse)
-                        fnout = os.path.join(os.path.dirname(fn),"stdout.txt")
-                        if os.path.exists(fnout):
-                            with open(fnout) as f:
-                                tls = f.readlines()
-                                for l in reversed(tls):
-                                    if l.strip().startswith("Saving key:value pairs"):
-                                        vals = eval(l.strip().lstrip("Saving key:value pairs"))
-                                        jkv.append((jobId, vals))
-                                        break
+                                        attrib["pathflag"] = "1"
+                                files.append(attrib)
+                                if(os.path.basename(os.path.dirname(os.path.dirname(fn)))) == "CCP4_JOBS":
+                                    #FIXME - I think only for completed jobs! So we need to search job tree and then filter.
+                                    attribuse = {}
+                                    for k,v in attrib.items():
+                                        if k == "fileid" or k == "jobid" or k == "jobparamname":
+                                            attribuse[k] = v
+                                        attribuse["roleid"] = "1"
+                                    fileuses.append(attribuse)
+                    fnout = os.path.join(os.path.dirname(fn),"stdout.txt")
+                    if os.path.exists(fnout):
+                        with open(fnout) as f:
+                            tls = f.readlines()
+                            for l in reversed(tls):
+                                if l.strip().startswith("Saving key:value pairs"):
+                                    vals = eval(l.strip().lstrip("Saving key:value pairs"))
+                                    jkv.append((jobId, vals))
+                                    break
     
     if projectName == "" or projectId == "":
         return root
