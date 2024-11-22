@@ -109,7 +109,7 @@ KEYTYPEDICT = {
     "FOM": 7,                      # figure of merit of phases
     "CFOM": 8,                     # correlation FOM
     "Hand1Score": 9,               # Hand 1 score
-    "Hand2Score": 1,               # Hand 2 score
+    "Hand2Score": 10,              # Hand 2 score
     "CC": 11,                      # correlation coefficient between Fo and Fc
     "nAtoms": 12,                  # number of atoms in model
     "nResidues": 13,               # number of residues in model
