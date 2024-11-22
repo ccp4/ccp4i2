@@ -435,7 +435,9 @@ def generate_xml_from_project_directory(project_dir):
                 with open(os.path.join(os.path.dirname(fn),"input_params.xml")) as f2:
                     t2 = f2.read()
                     tree2 = parse_from_unicode(t2)
-            tree = treeMerge(tree1,tree2)
+                tree = treeMerge(tree1,tree2)
+            else:
+                tree = tree1
 
             if len(tree.xpath("ccp4i2_header")[0].xpath("jobId"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text)>0:
                 if len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text)>0:
