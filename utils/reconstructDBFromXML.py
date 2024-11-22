@@ -1,13 +1,8 @@
-from __future__ import print_function
-
 import sys
 import os
 import fnmatch
 import datetime
-if sys.version_info < (3,0):
-    from StringIO import StringIO
-else:
-    from io import StringIO
+from io import StringIO
 from collections import OrderedDict
 from operator import itemgetter
 
@@ -263,11 +258,7 @@ def generate_xml_from_project_directory(project_dir):
                         if os.path.exists(parentXML):
                             with open(parentXML) as f2:
                                 t2 = f2.read()
-                                if sys.version_info < (3,0):
-                                    xmlparser2 = etree.XMLParser()
-                                    tree2 = etree.fromstring(t2, xmlparser2)
-                                else:
-                                    tree2 = parse_from_unicode(t2)
+                                tree2 = parse_from_unicode(t2)
                                 if len(tree2.xpath("ccp4i2_header")[0].xpath("jobId"))>0 and len(tree2.xpath("ccp4i2_header")[0].xpath("jobId")[0].text)>0:
                                     jobId2 = tree2.xpath("ccp4i2_header")[0].xpath("jobId")[0].text
                                     attrib["parentjobid"] = jobId2
@@ -275,10 +266,7 @@ def generate_xml_from_project_directory(project_dir):
                         try:
                             with open(os.path.join(os.path.dirname(fn),"diagnostic.xml")) as fdiag:
                                 tdiag = fdiag.read()
-                                if sys.version_info < (3,0):
-                                    treediag = etree.fromstring(tdiag, xmlparser)
-                                else:
-                                    treediag = parse_from_unicode(tdiag)
+                                treediag = parse_from_unicode(tdiag)
                                 if len(treediag.xpath("ccp4i2_body")[0].xpath("errorReport"))>0:
                                     attrib["status"] = "5"
                                 else:
@@ -302,11 +290,7 @@ def generate_xml_from_project_directory(project_dir):
                 pluginDefXml = os.path.join(wrap_root,items)
         with open(pluginDefXml) as f:
             t = f.read()
-            if sys.version_info < (3,0):
-                xmlparser = etree.XMLParser()
-                tree = etree.fromstring(t, xmlparser)
-            else:
-                tree = parse_from_unicode(t)
+            tree = parse_from_unicode(t)
         return tree
     
     def getPluginDefXml(pluginName,wrapper_cache):
@@ -638,7 +622,4 @@ def generate_xml_from_project_directory(project_dir):
 
 if __name__ == "__main__":
     project_tree = generate_xml_from_project_directory(sys.argv[1])
-    if sys.version_info < (3,0):
-        print(etree.tostring(project_tree,pretty_print=True))
-    else:
-        print(etree.tostring(project_tree,pretty_print=True).decode())
+    print(etree.tostring(project_tree,pretty_print=True).decode())
