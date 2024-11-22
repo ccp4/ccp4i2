@@ -1538,7 +1538,7 @@ class PositiveIntegerDelegate(QtWidgets.QStyledItemDelegate):
 
     def setEditorData(self,editor, index):
         value = index.data(QtCore.Qt.EditRole)
-        editor.setText(value)
+        editor.setText(str(value))
 
     def setModelData(self,editor, model, index):
         model.setData(index, editor.text(), QtCore.Qt.EditRole)
