@@ -1531,7 +1531,7 @@ class PositiveIntegerDelegate(QtWidgets.QStyledItemDelegate):
 
     def createEditor(self,parent, option, index):
         editor = QtWidgets.QLineEdit(parent)
-        validator = QtWidgets.QRegExpValidator(QtCore.QRegExp("^[1-9]+\d*"), self )
+        validator = QtGui.QRegExpValidator(QtCore.QRegExp("^[1-9]+\d*"), self )
         editor.setValidator(validator)
         editor.setFrame(False)
         return editor
