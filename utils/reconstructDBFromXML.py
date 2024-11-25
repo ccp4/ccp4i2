@@ -57,27 +57,6 @@ DATABASE.db.xml:209
 
 """
 
-def treeMerge(a, b):
-    from copy import deepcopy
-    """Merge two xml trees A and B, so that each recursively found leaf element of B is added to A.  If the element
-    already exists in A, it is replaced with B's version.  Tree structure is created in A as required to reflect the
-    position of the leaf element in B.
-    Given <top><first><a/><b/></first></top> and  <top><first><c/></first></top>, a merge results in
-    <top><first><a/><b/><c/></first></top> (order not guaranteed)
-    """
-
-    def inner(aparent, bparent):
-        for bchild in bparent:
-            achild = aparent.xpath('./' + bchild.tag)
-            if not achild:
-                aparent.append(bchild)
-            elif bchild.getchildren():
-                inner(achild[0], bchild)
-
-    res = deepcopy(a)
-    inner(res, b)
-    return res
-
 timeZoneName = datetime.datetime.now(tzlocal()).tzname().split()[0]
 
 CCP4NS = "http://www.ccp4.ac.uk/ccp4ns"
@@ -190,18 +169,41 @@ def generate_xml_from_project_directory(project_dir):
         s = unicode_str.encode('utf-8')
         return etree.fromstring(s, parser=utf8_parser)
     
-    def parse_possibly_merged_xml(path):
+    def merge_header_info(path):
         path = Path(path)
         with path.open() as f1:
             tree1 = parse_from_unicode(f1.read())
         if path.name == "params.xml" and (path.parent / "input_params.xml").exists():
             with (path.parent / "input_params.xml").open() as f2:
                 tree2 = parse_from_unicode(f2.read())
-            return treeMerge(tree1, tree2)
+
+                if len(tree1.xpath("./ccp4i2_header"))>0:
+                    origHeader = tree1.xpath("./ccp4i2_header")[0]
+
+                    if len(tree2.xpath("./ccp4i2_header/projectId"))>0:
+                        projectId_2 = tree2.xpath("./ccp4i2_header/projectId")[0].text
+                        newProjId = etree.SubElement(origHeader,"projectId")
+                        newProjId.text = projectId_2
+
+                    if len(tree2.xpath("./ccp4i2_header/jobId"))>0:
+                        jobId_2 = tree2.xpath("./ccp4i2_header/jobId")[0].text
+                        newJobId = etree.SubElement(origHeader,"jobId")
+                        newJobId.text = jobId_2
+
+                    if len(tree2.xpath("./ccp4i2_header/projectName"))>0:
+                        projectName_2 = tree2.xpath("./ccp4i2_header/projectName")[0].text
+                        newProjectName = etree.SubElement(origHeader,"projectName")
+                        newProjectName.text = projectName_2
+
+                    if len(tree2.xpath("./ccp4i2_header/jobNumber"))>0:
+                        jobNumber_2 = tree2.xpath("./ccp4i2_header/jobNumber")[0].text
+                        newJobNumber = etree.SubElement(origHeader,"jobNumber")
+                        newJobNumber.text = jobNumber_2
+
         return tree1
 
     for fn in params_files:
-        tree = parse_possibly_merged_xml(fn)
+        tree = merge_header_info(fn)
 
         #print tree.xpath("ccp4i2_header")[0].xpath("jobId")
         if len(tree.xpath("ccp4i2_header")[0].xpath("creationTime"))>0:
@@ -350,7 +352,7 @@ def generate_xml_from_project_directory(project_dir):
     
     
     for fn in params_files:
-        tree = parse_possibly_merged_xml(fn)
+        tree = merge_header_info(fn)
 
         if len(tree.xpath("ccp4i2_header")[0].xpath("jobId"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text)>0:
             if len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text)>0:
@@ -418,7 +420,7 @@ def generate_xml_from_project_directory(project_dir):
                                 files.append(attrib)
     
     for fn in params_files:
-        tree = parse_possibly_merged_xml(fn)
+        tree = merge_header_info(fn)
 
         if len(tree.xpath("ccp4i2_header")[0].xpath("jobId"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobId")[0].text)>0:
             if len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("jobNumber")[0].text)>0:
@@ -599,7 +601,8 @@ def generate_xml_from_project_directory(project_dir):
                 kve = etree.SubElement(jobkeycharvalueTable_el, "jobkeycharvalue")
             kve.attrib["jobid"] = jobId
             if k in KEYTYPEDICT:
-                kve.attrib["keytypeid"] = KEYTYPEDICT[k]
+                key = KEYTYPEDICT[k]
+                kve.attrib["keytypeid"] = str(key)
                 kve.attrib["value"] = str(v)
 
     return root
