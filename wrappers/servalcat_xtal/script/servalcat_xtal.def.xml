@@ -558,13 +558,13 @@ hydrogens are only to be used if already present in the input coordinate file.</
                   <toolTip>Specify for subunitary atomic occupancy parameters to be refined.</toolTip>
                </qualifiers>
             </content>
-            <!--<content id="OCCUPANCY_NCYCLE">
+            <content id="OCCUPANCY_NCYCLE">
                <className>CInt</className>
                <qualifiers>
-                  <default></default>
+                  <default>1</default>
                   <guiLabel>Occupancy refinement will be performed every n-th cycle.</guiLabel>
                </qualifiers>
-            </content>-->
+            </content>
             <content id="OCCUPANCY_GROUPS">
                <className>CBoolean</className>
                <qualifiers>

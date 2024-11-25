@@ -606,9 +606,9 @@ class servalcat_xtal(CPluginScript):
         if self.container.controlParameters.OCCUPANCY_GROUPS:
             with open(keywordFilePath, "a+") as keywordFile:
                 if self.container.controlParameters.OCCUPANCY_REFINEMENT:
-                    keywordFile.write("OCCUPANCY REFINE \n")  # self.appendCommandScript("OCCUPANCY REFINE")
-                # if self.container.controlParameters.OCCUPANCY_NCYCLE.isSet():
-                #     keywordFile.write("OCCUPANCY REFINE NCYCLE " + str(self.container.controlParameters.OCCUPANCY_NCYCLE) + "\n")
+                    keywordFile.write("OCCUPANCY REFINE\n")  # self.appendCommandScript("OCCUPANCY REFINE")
+                if self.container.controlParameters.OCCUPANCY_NCYCLE.isSet():
+                    keywordFile.write("OCCUPANCY REFINE NCYCLE " + str(self.container.controlParameters.OCCUPANCY_NCYCLE) + "\n")
                 occup_groupids = []
                 for sel0 in self.container.controlParameters.OCCUPANCY_SELECTION:
                     sel = sel0.get()

@@ -401,7 +401,7 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'widget', 'OCCUPANCY_COMPLETE_TABLE' ], toggleFunction=[self.ToggleOccComplete, ['OCCUPANCY_GROUPS','OCCUPANCY_COMPLETE']] )
     self.createLine( [ 'widget', 'OCCUPANCY_INCOMPLETE', 'label', 'Specify overlapping alternative conformer groups (occupancies sum to less than one)' ], toggle = ['OCCUPANCY_GROUPS', 'open', [ True ] ] )
     self.createLine( [ 'widget', 'OCCUPANCY_INCOMPLETE_TABLE' ], toggleFunction=[self.ToggleOccIncomplete, ['OCCUPANCY_GROUPS','OCCUPANCY_INCOMPLETE']] )
-    self.createLine( [ 'widget', 'OCCUPANCY_REFINEMENT', 'label', 'Perform refinement of atomic occupancies' ], toggle = ['OCCUPANCY_GROUPS', 'open', [ True ] ] )
+    self.createLine( [ 'widget', 'OCCUPANCY_REFINEMENT', 'label', 'Perform refinement of atomic occupancies every', 'widget', 'OCCUPANCY_NCYCLE', 'label', 'cycle.'], toggle = ['OCCUPANCY_GROUPS', 'open', [ True ] ] )
     self.closeSubFrame()
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOn,['REFINEMENT_MODE']] )
     self.createLine( [ 'label', '<i>Not available in Rigid Body mode.</i>' ] )
