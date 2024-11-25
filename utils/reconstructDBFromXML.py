@@ -177,28 +177,14 @@ def generate_xml_from_project_directory(project_dir):
             with (path.parent / "input_params.xml").open() as f2:
                 tree2 = parse_from_unicode(f2.read())
 
-                if len(tree1.xpath("./ccp4i2_header"))>0:
-                    origHeader = tree1.xpath("./ccp4i2_header")[0]
+                if tree1.xpath("./ccp4i2_header") and tree2.xpath("./ccp4i2_header"):
+                    header1 = tree1.xpath("./ccp4i2_header")[0]
+                    header2 = tree2.xpath("./ccp4i2_header")[0]
 
-                    if len(tree2.xpath("./ccp4i2_header/projectId"))>0:
-                        projectId_2 = tree2.xpath("./ccp4i2_header/projectId")[0].text
-                        newProjId = etree.SubElement(origHeader,"projectId")
-                        newProjId.text = projectId_2
-
-                    if len(tree2.xpath("./ccp4i2_header/jobId"))>0:
-                        jobId_2 = tree2.xpath("./ccp4i2_header/jobId")[0].text
-                        newJobId = etree.SubElement(origHeader,"jobId")
-                        newJobId.text = jobId_2
-
-                    if len(tree2.xpath("./ccp4i2_header/projectName"))>0:
-                        projectName_2 = tree2.xpath("./ccp4i2_header/projectName")[0].text
-                        newProjectName = etree.SubElement(origHeader,"projectName")
-                        newProjectName.text = projectName_2
-
-                    if len(tree2.xpath("./ccp4i2_header/jobNumber"))>0:
-                        jobNumber_2 = tree2.xpath("./ccp4i2_header/jobNumber")[0].text
-                        newJobNumber = etree.SubElement(origHeader,"jobNumber")
-                        newJobNumber.text = jobNumber_2
+                    for name in ("projectId", "jobId", "projectName", "jobNumber"):
+                        if header2.xpath(name) and not header1.xpath(name):
+                            element = etree.SubElement(header1, name)
+                            element.text = header2.xpath(name)[0].text
 
         return tree1
 
@@ -601,8 +587,7 @@ def generate_xml_from_project_directory(project_dir):
                 kve = etree.SubElement(jobkeycharvalueTable_el, "jobkeycharvalue")
             kve.attrib["jobid"] = jobId
             if k in KEYTYPEDICT:
-                key = KEYTYPEDICT[k]
-                kve.attrib["keytypeid"] = str(key)
+                kve.attrib["keytypeid"] = str(KEYTYPEDICT[k])
                 kve.attrib["value"] = str(v)
 
     return root
