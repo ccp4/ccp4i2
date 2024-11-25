@@ -630,7 +630,7 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
 
     self.createLine( [ 'subtitle', 'Infrequently Used Options'] )
     self.openSubFrame()
-    self.createLine( [ 'widget', 'UNRESTRAINED', 'label', 'No positional restraints' ], toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ] )
+    self.createLine( [ 'widget', 'UNRESTRAINED', 'label', 'No positional restraints' ] )
     self.createLine( [ 'widget', 'FIX_XYZ', 'label', 'Fix coordinates' ] )
     self.closeSubFrame()
     return

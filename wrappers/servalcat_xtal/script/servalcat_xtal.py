@@ -508,14 +508,12 @@ class servalcat_xtal(CPluginScript):
                 if self.container.controlParameters.RES_MAX.isSet():
                     self.appendCommandLine(['--d_max', str(self.container.controlParameters.RES_MAX)])
             self.appendCommandLine(['--source', str(self.container.controlParameters.SCATTERING_FACTORS)])
-            if self.container.controlParameters.UNRESTRAINED:
-                self.appendCommandLine(['--unrestrained'])
             if self.container.controlParameters.USE_WORK_IN_EST:
                 self.appendCommandLine(['--use_work_in_est'])
             if self.container.controlParameters.NO_SOLVENT:
                 self.appendCommandLine(['--no_solvent'])          
 
-        # options only for both servalcat refine_xtal_norefmac and servalcat refine_spa_norefmac
+        # options for both servalcat refine_xtal_norefmac and servalcat refine_spa_norefmac
         self.appendCommandLine(['--model', self.inputCoordPath])
         self.appendCommandLine(['-o', 'refined'])
         if self.container.controlParameters.NCYCLES.isSet():
@@ -573,7 +571,8 @@ class servalcat_xtal(CPluginScript):
                 self.appendCommandLine(['4.2'])  # default
             if self.container.controlParameters.JELLY_ONLY:
                 self.appendCommandLine(['--jellyonly'])
-
+        if self.container.controlParameters.UNRESTRAINED:
+            self.appendCommandLine(['--unrestrained'])
         if self.container.controlParameters.USE_NCS:
             self.appendCommandLine(['--ncsr'])
         if self.container.controlParameters.BFACSETUSE and \

@@ -372,6 +372,13 @@ hydrogens are only to be used if already present in the input coordinate file.</
               <toolTip>Write hydrogen atoms in the output model</toolTip>
             </qualifiers>
           </content>
+          <content id="UNRESTRAINED">
+             <className>CBoolean</className>
+             <qualifiers>
+                 <default>False</default>
+                 <toolTip>No positional restraints</toolTip>
+             </qualifiers>
+          </content>
           <content id="WEIGHT_OPT">
             <className>CString</className>
             <qualifiers>
@@ -653,13 +660,6 @@ hydrogens are only to be used if already present in the input coordinate file.</
              <qualifiers>
                  <default>False</default>
                  <toolTip>Use work reflections in maximum-likelihood parameter estimates.</toolTip>
-             </qualifiers>
-          </content>
-          <content id="UNRESTRAINED">
-             <className>CBoolean</className>
-             <qualifiers>
-                 <default>False</default>
-                 <toolTip>No positional restraints</toolTip>
              </qualifiers>
           </content>
 
