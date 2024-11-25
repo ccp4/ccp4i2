@@ -598,8 +598,9 @@ def generate_xml_from_project_directory(project_dir):
             else:
                 kve = etree.SubElement(jobkeycharvalueTable_el, "jobkeycharvalue")
             kve.attrib["jobid"] = jobId
-            kve.attrib["keytypeid"] = KEYTYPEDICT.get(k, default=0)  # default to unknown
-            kve.attrib["value"] = str(v)
+            if k in KEYTYPEDICT:
+                kve.attrib["keytypeid"] = KEYTYPEDICT[k]
+                kve.attrib["value"] = str(v)
 
     return root
 
