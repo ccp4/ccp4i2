@@ -240,9 +240,19 @@ class servalcat_xtal(CPluginScript):
             self.container.outputData.MAP_FO.setFullPath(outputMapFoPath)
             outputMapFoFcPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined_diffmap_normalized_fofc.mrc'))
             self.container.outputData.MAP_FOFC.setFullPath(outputMapFoFcPath)
-            self.container.outputData.COOTSCRIPTOUT.annotation.set('Coot script')
-            outputCootScriptPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined_coot.py'))
-            self.container.outputData.COOTSCRIPTOUT.setFullPath(outputCootScriptPath)
+            # Write a Coot script with set_contour_level_absolute() - only for refine_spa_norefmac
+            cootScriptOrigFilePath = str(os.path.join(self.getWorkDirectory(), "refined_coot.py"))
+            if os.path.isfile(cootScriptOrigFilePath):
+                with open(cootScriptOrigFilePath, "r") as cootScriptOrigFile:
+                    cootScriptOrigText = cootScriptOrigFile.readlines()
+                cootScriptI2FilePath = os.path.join(self.getWorkDirectory(), "refined_coot_i2.py")
+                with open(cootScriptI2FilePath, "w") as cootScriptI2File:
+                    cootScriptI2File.write("imol_fo = 1\n")
+                    cootScriptI2File.write("imol_fofc = 2\n")
+                    cootScriptI2File.write(cootScriptOrigText[-2])  # set_contour_level_absolute(imol_fo, FLOAT)
+                    cootScriptI2File.write(cootScriptOrigText[-1])  # set_contour_level_absolute(imol_fofc, FLOAT)
+                self.container.outputData.COOTSCRIPTOUT.annotation.set('Coot script')
+                self.container.outputData.COOTSCRIPTOUT.setFullPath(cootScriptI2FilePath)
         hkloutFile=CCP4XtalData.CMtzDataFile(hkloutFilePath)
         hkloutFile.loadFile()
         columnLabelsInFile = [column.columnLabel.__str__() for column in hkloutFile.fileContent.listOfColumns]
@@ -254,6 +264,18 @@ class servalcat_xtal(CPluginScript):
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
 
+        if False: # MM
+            with open(self.container.outputData.COOTSCRIPTOUT.fullPath.__str__(),"w") as cootscript:
+                #Write a GUI to regions that Refmac has identified as containing duffers
+                ##badStretches = self.listOfTransgressingSegments(rxml)
+                badStretches = [] # MM
+                if len(badStretches) > 0:
+                    interestingBitsDef = 'interestingBits = ['
+                    for badStretch in badStretches:
+                        interestingBitsDef += ('{"chain":"%s","firstResidue":%s,"lastResidue":%s},'%(badStretch['chain'],badStretch['firstResidue'],badStretch['lastResidue']))
+                    interestingBitsDef += ']\n'
+                    cootscript.write(interestingBitsDef)
+                    cootscript.write('ccp4i2Interface.addInterestingBitsMenu(title="Refmac-identified outliers", interestingBits=interestingBits)\n')
         #Use Refmacs XMLOUT as the basis for output XML.  If not existent (probably due to failure), then create a new one
         # from core import CCP4Utils
         # rxml = None
@@ -365,18 +387,6 @@ class servalcat_xtal(CPluginScript):
         #And write out the XML
         et.write(self.makeFileName('PROGRAMXML'))
 
-        if False: # MM
-            with open(self.container.outputData.COOTSCRIPTOUT.fullPath.__str__(),"w") as cootscript:
-                #Write a GUI to regions that Refmac has identified as containing duffers
-                ##badStretches = self.listOfTransgressingSegments(rxml)
-                badStretches = [] # MM
-                if len(badStretches) > 0:
-                    interestingBitsDef = 'interestingBits = ['
-                    for badStretch in badStretches:
-                        interestingBitsDef += ('{"chain":"%s","firstResidue":%s,"lastResidue":%s},'%(badStretch['chain'],badStretch['firstResidue'],badStretch['lastResidue']))
-                    interestingBitsDef += ']\n'
-                    cootscript.write(interestingBitsDef)
-                    cootscript.write('ccp4i2Interface.addInterestingBitsMenu(title="Refmac-identified outliers", interestingBits=interestingBits)\n')
         return CPluginScript.SUCCEEDED
 
     def listOfTransgressingSegments(self, rxml):
