@@ -254,19 +254,13 @@ class servalcat_xtal(CPluginScript):
             self.container.outputData.MAP_FO.setFullPath(outputMapFoPath)
             outputMapFoFcPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined_diffmap_normalized_fofc.mrc'))
             self.container.outputData.MAP_FOFC.setFullPath(outputMapFoFcPath)
-            # Write a Coot script with set_contour_level_absolute() - only for refine_spa_norefmac
-            cootScriptOrigFilePath = str(os.path.join(self.getWorkDirectory(), "refined_coot.py"))
-            if os.path.isfile(cootScriptOrigFilePath):
-                with open(cootScriptOrigFilePath, "r") as cootScriptOrigFile:
-                    cootScriptOrigText = cootScriptOrigFile.readlines()
-                cootScriptI2FilePath = os.path.join(self.getWorkDirectory(), "refined_coot_i2.py")
-                with open(cootScriptI2FilePath, "w") as cootScriptI2File:
-                    cootScriptI2File.write("imol_fo = 1\n")
-                    cootScriptI2File.write("imol_fofc = 2\n")
-                    cootScriptI2File.write(cootScriptOrigText[-2])  # set_contour_level_absolute(imol_fo, FLOAT)
-                    cootScriptI2File.write(cootScriptOrigText[-1])  # set_contour_level_absolute(imol_fofc, FLOAT)
-                self.container.outputData.COOTSCRIPTOUT.annotation.set('Coot script')
-                self.container.outputData.COOTSCRIPTOUT.setFullPath(cootScriptI2FilePath)
+            # Write a Coot script with set_contour_level_absolute()
+            cootScriptI2FilePath = os.path.join(self.getWorkDirectory(), "refined_coot_i2.py")
+            with open(cootScriptI2FilePath, "w") as cootScriptI2File:
+                cootScriptI2File.write("set_contour_level_absolute(1, 1.2)\n")
+                cootScriptI2File.write("set_contour_level_absolute(2, 3.0)\n")
+            self.container.outputData.COOTSCRIPTOUT.annotation.set('Coot script')
+            self.container.outputData.COOTSCRIPTOUT.setFullPath(cootScriptI2FilePath)
 
         if False: # MM
             with open(self.container.outputData.COOTSCRIPTOUT.fullPath.__str__(),"w") as cootscript:
