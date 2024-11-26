@@ -125,9 +125,13 @@ class servalcat_xtal(CPluginScript):
                 elif self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN:
                     obsTypeRoot = 'CONTENT_FLAG_F'
                     obsPairOrMean = 'MEAN'
-            if self.container.controlParameters.F_SIGF_OR_I_SIGI.isSet():  # overwrite to use F despite available I
+            if self.container.controlParameters.F_SIGF_OR_I_SIGI.isSet():
+                # overwrite to use F despite available I
                 if str(self.container.controlParameters.F_SIGF_OR_I_SIGI) == "F_SIGF":
                     obsTypeRoot = 'CONTENT_FLAG_F'
+            if str(self.container.controlParameters.SCATTERING_FACTORS) in ["electron", "neutron"]:
+                # overwrite to not use anomalous pairs even if they are present in case of data from electron or neutron diffraction
+                obsPairOrMean = 'MEAN'
             obsType = getattr(CCP4XtalData.CObsDataFile, obsTypeRoot+obsPairOrMean)
             dataObjects += [['HKLIN', obsType]]
 
