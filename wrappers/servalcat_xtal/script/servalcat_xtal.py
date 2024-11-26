@@ -111,20 +111,23 @@ class servalcat_xtal(CPluginScript):
 
         if str(self.container.controlParameters.DATA_METHOD) == 'xtal':
             obsTypeRoot = 'CONTENT_FLAG_F'
-            #if self.container.controlParameters.USE_TWIN and self.container.inputData.HKLIN.isSet():
+            obsPairOrMean = 'MEAN'
             if self.container.inputData.HKLIN.isSet():
                 if self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR:
                     obsTypeRoot = 'CONTENT_FLAG_I'
+                    obsPairOrMean = 'PAIR'
                 elif self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN:
                     obsTypeRoot = 'CONTENT_FLAG_I'
-            if self.container.controlParameters.F_SIGF_OR_I_SIGI.isSet():
+                    obsPairOrMean = 'MEAN'
+                elif self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_FPAIR:
+                    obsTypeRoot = 'CONTENT_FLAG_F'
+                    obsPairOrMean = 'PAIR'
+                elif self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN:
+                    obsTypeRoot = 'CONTENT_FLAG_F'
+                    obsPairOrMean = 'MEAN'
+            if self.container.controlParameters.F_SIGF_OR_I_SIGI.isSet():  # overwrite to use F despite available I
                 if str(self.container.controlParameters.F_SIGF_OR_I_SIGI) == "F_SIGF":
                     obsTypeRoot = 'CONTENT_FLAG_F'
-            
-            obsPairOrMean = 'MEAN'
-            if self.container.controlParameters.USEANOMALOUS:
-                obsPairOrMean = 'PAIR'
-                    
             obsType = getattr(CCP4XtalData.CObsDataFile, obsTypeRoot+obsPairOrMean)
             dataObjects += [['HKLIN', obsType]]
 
@@ -197,8 +200,6 @@ class servalcat_xtal(CPluginScript):
         import os
         from core import CCP4XtalData
         from core import CCP4File
-        
-        # Need to set the expected content flag  for phases data
 
         outputCifPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined.mmcif'))
         self.container.outputData.CIFFILE.setFullPath(outputCifPath)
@@ -207,8 +208,6 @@ class servalcat_xtal(CPluginScript):
         if os.path.isfile(outputPdbPath):
             self.container.outputData.XYZOUT.setFullPath(outputPdbPath)
             self.container.outputData.XYZOUT.annotation.set('Model from refinement (PDB format)')
-        # self.container.outputData.ABCDOUT.annotation = 'Calculated phases from refinement'
-        # self.container.outputData.ABCDOUT.contentFlag = CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL
         # self.container.outputData.TLSOUT.annotation = 'TLS parameters from refinement'
         # self.container.outputData.LIBOUT.annotation = 'Generated dictionary from refinement'
         self.container.outputData.FPHIOUT.annotation.set('Density map (Fourier coeff.)')
@@ -219,19 +218,30 @@ class servalcat_xtal(CPluginScript):
         outputColumns = ['FWT,PHWT', 'DELFWT,PHDELWT']
 
         if str(self.container.controlParameters.DATA_METHOD) == "xtal":
-            self.container.outputData.ANOMFPHIOUT.annotation.set('Weighted anomalous difference map from refinement')
-            self.container.outputData.DIFANOMFPHIOUT.annotation.set('Weighted differences of anomalous difference map')
             hkloutFilePath = str(os.path.join(self.getWorkDirectory(), "refined.mtz"))
-            #hkloutFile=CCP4XtalData.CMtzDataFile(os.path.join(self.getWorkDirectory(), "hklout.mtz"))
-            #hkloutFile=CCP4XtalData.CMtzDataFile(os.path.join(self.getWorkDirectory(), "refined.mtz"))
-            # Split out data objects that have been generated. Do this after applying the annotation, and flagging
-            # above, since splitHklout needs to know the ABCDOUT contentFlag
-            """if self.container.controlParameters.PHOUT:
-                outputFiles+=['ABCDOUT']
-                outputColumns+=['HLACOMB,HLBCOMB,HLCCOMB,HLDCOMB']
-            if self.container.controlParameters.USEANOMALOUS:
+            hkloutFile=CCP4XtalData.CMtzDataFile(hkloutFilePath)
+            hkloutFile.loadFile()
+            columnLabelsInFile = [column.columnLabel.__str__() for column in hkloutFile.fileContent.listOfColumns]
+            print('columnLabelsInFile', columnLabelsInFile)
+            if 'FAN' in columnLabelsInFile and 'PHAN' in columnLabelsInFile:
+                self.container.outputData.ANOMFPHIOUT.annotation.set('Anomalous difference map')
                 outputFiles += ['ANOMFPHIOUT']
-                outputColumns += ['FAN,PHAN']"""
+                outputColumns += ['FAN,PHAN']
+            """if self.container.controlParameters.USEANOMALOUS and 'DELFAN' in columnLabelsInFile and 'PHDELAN' in columnLabelsInFile:
+                self.container.outputData.DIFANOMFPHIOUT.annotation.set('Weighted differences of anomalous difference map')
+                outputFiles += ['DIFANOMFPHIOUT']
+                outputColumns += ['DELFAN,PHDELAN']"""
+            """if self.container.controlParameters.PHOUT:
+                # Need to set the expected content flag for phases data
+                # self.container.outputData.ABCDOUT.annotation = 'Calculated phases from refinement'
+                # self.container.outputData.ABCDOUT.contentFlag = CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL
+                outputFiles += ['ABCDOUT']
+                outputColumns += ['HLACOMB,HLBCOMB,HLCCOMB,HLDCOMB']"""
+            # Split out data objects that have been generated. Do this after applying the annotation, and flagging
+            # above, since splitHklout needs to know contentFlags
+            error = self.splitHklout(outputFiles, outputColumns, hkloutFilePath)
+            if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+                return CPluginScript.FAILED
         elif str(self.container.controlParameters.DATA_METHOD) == 'spa':
             hkloutFilePath = str(os.path.join(self.getWorkDirectory(), "refined_diffmap.mtz"))
             self.container.outputData.MAP_FO.annotation.set('Density map (in real space)')
@@ -253,16 +263,6 @@ class servalcat_xtal(CPluginScript):
                     cootScriptI2File.write(cootScriptOrigText[-1])  # set_contour_level_absolute(imol_fofc, FLOAT)
                 self.container.outputData.COOTSCRIPTOUT.annotation.set('Coot script')
                 self.container.outputData.COOTSCRIPTOUT.setFullPath(cootScriptI2FilePath)
-        hkloutFile=CCP4XtalData.CMtzDataFile(hkloutFilePath)
-        hkloutFile.loadFile()
-        columnLabelsInFile = [column.columnLabel.__str__() for column in hkloutFile.fileContent.listOfColumns]
-        print('columnLabelsInFile', columnLabelsInFile)
-        """if self.container.controlParameters.USEANOMALOUS and 'DELFAN' in columnLabelsInFile and 'PHDELAN' in columnLabelsInFile:
-            outputFiles += ['DIFANOMFPHIOUT']
-            outputColumns += ['DELFAN,PHDELAN']"""
-        error = self.splitHklout(outputFiles, outputColumns, hkloutFilePath)
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
-            return CPluginScript.FAILED
 
         if False: # MM
             with open(self.container.outputData.COOTSCRIPTOUT.fullPath.__str__(),"w") as cootscript:
@@ -493,21 +493,24 @@ class servalcat_xtal(CPluginScript):
             # options only for servalcat refine_xtal_norefmac
             self.appendCommandLine(['refine_xtal_norefmac'])
             self.appendCommandLine(['--hklin', self.hklin])
-            if self.container.controlParameters.F_SIGF_OR_I_SIGI.isSet():
-                if str(self.container.controlParameters.F_SIGF_OR_I_SIGI) == "F_SIGF" or not self.container.controlParameters.HKLIN_IS_I_SIGI:
-                    labin = 'F,SIGF'
-                else:
-                    labin = 'I,SIGI'
-            elif self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR \
-                    or self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN:
-                labin = 'I,SIGI'
-            else:
-                labin = 'F,SIGF'
+            # The following commented code to specify --labin is not necessary as the columns which will be
+            # in hklin.mtz are selected in processInputFiles()
+            # There is also a bug in the following commented code as it does not deal with anomalous pairs.
+            # if self.container.controlParameters.F_SIGF_OR_I_SIGI.isSet():
+            #     if str(self.container.controlParameters.F_SIGF_OR_I_SIGI) == "F_SIGF" or not self.container.controlParameters.HKLIN_IS_I_SIGI:
+            #         labin = 'F,SIGF'
+            #     else:
+            #         labin = 'I,SIGI'
+            # elif self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR \
+            #         or self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN:
+            #     labin = 'I,SIGI'
+            # else:
+            #     labin = 'F,SIGF'
             if self.container.inputData.FREERFLAG.isSet():
                 if self.container.controlParameters.FREERFLAG_NUMBER.isSet():
                     self.appendCommandLine(['--free', str(self.container.controlParameters.FREERFLAG_NUMBER)])
-                labin += ",FREER"
-            self.appendCommandLine(['--labin', labin])
+            #     labin += ",FREER"
+            # self.appendCommandLine(['--labin', labin])
             if self.container.controlParameters.USE_TWIN:  # I,SIGI for optimal results
                 self.appendCommandLine(['--twin'])
             self.hklout = os.path.join(self.workDirectory, "refined.mtz")
