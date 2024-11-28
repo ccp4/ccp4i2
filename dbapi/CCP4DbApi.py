@@ -2162,7 +2162,7 @@ TaskTitle TEXT );''')
 
     def getJobsByTime(self,projectId=None,before=None,after=None,mode='JobID',topLevel=False,status=None,jobList=None):
       jobSelectCom,jobSelectArgs = self.exportJobSelectionCommand(projectId=projectId,after=after,status=status,jobList=jobList)
-      com = 'SELECT '+mode+' FROM Jobs ' +  re.sub('Jobs\.','',jobSelectCom)
+      com = 'SELECT '+mode+' FROM Jobs ' +  re.sub(r'Jobs\.','',jobSelectCom)
 
       if topLevel: com = com + ' AND parentJobId IS NULL'
       #self.setDiagnostic(True)
@@ -2174,7 +2174,7 @@ TaskTitle TEXT );''')
     def getUnfinishedExportJobs(self,projectId=None,after=None,status=None,jobList=None):
       status = [JOB_STATUS_PENDING,JOB_STATUS_INTERRUPTED]
       jobSelectCom,jobSelectArgs = self.exportJobSelectionCommand(projectId=projectId,after=after,status=status,jobList=jobList)
-      com = 'SELECT JobId FROM Jobs ' + re.sub('Jobs\.','',jobSelectCom)
+      com = 'SELECT JobId FROM Jobs ' + re.sub(r'Jobs\.','',jobSelectCom)
       self.execute(com,jobSelectArgs)
       jobList = self.fetchAll2Py(UUIDTYPE)
       return jobList
@@ -2248,7 +2248,7 @@ TaskTitle TEXT );''')
       com = 'SELECT '+self.JOBITEMS[0]
       for item in self.JOBITEMS[1:]: com = com + ', '+item
       com = com + ' FROM Jobs'
-      com += re.sub('Jobs\.','',jobSelectCom)
+      com += re.sub(r'Jobs\.','',jobSelectCom)
       self.execute(com,jobSelectArgs)
       table = self.fetchAll2PyList(self.JOBTYPES)
       # Make the list of jobs before adding the jobs that provide the input files

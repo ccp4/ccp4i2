@@ -622,7 +622,7 @@ class data_container(object):
         with open(hkl_sca.name,'r') as f:
           for i,line in enumerate(f):
             if hkl_sca.typ=='sca' and i==2:
-              cell_space = re.match('\s*(\d+\.\d+)\s*(\S+)\s*(\S+)\s*(\S+)\s*(\S+)\s*(\S+)\s*(\S+)',line)
+              cell_space = re.match(r'\s*(\d+\.\d+)\s*(\S+)\s*(\S+)\s*(\S+)\s*(\S+)\s*(\S+)\s*(\S+)',line)
               if cell_space and len(cell_space.groups())>6:
                 if get=='cell':  self.SetCell( cell_space.groups()[:6] )
                 if get=='spg':  self.spgr = cell_space.groups()[6]
@@ -630,21 +630,21 @@ class data_container(object):
             if hkl_sca.typ=='HKL':
               if re.match('!END_OF_HEADER',line):
                 break
-              if re.match('\s*-?\d+\s+-?\d+\s+-?\d+\s+-?\d\.\d+\s+\d\.\d+',line):
+              if re.match(r'\s*-?\d+\s+-?\d+\s+-?\d+\s+-?\d\.\d+\s+\d\.\d+',line):
                 break
               if get=='cell':
-                cell = re.match('!UNIT_CELL_CONSTANTS=\s*(\S+)\s*(\S+)\s*(\S+)\s*(\S+)\s*(\S+)\s*(\S+)',line)
+                cell = re.match(r'!UNIT_CELL_CONSTANTS=\s*(\S+)\s*(\S+)\s*(\S+)\s*(\S+)\s*(\S+)\s*(\S+)',line)
                 if cell:
                   if len(cell.groups())>5:
                     self.SetCell( cell.groups()[:6] )
                   break
               if get=='spgn':
-                spg_num = re.match('!SPACE_GROUP_NUMBER=\s*(\d+)',line)
+                spg_num = re.match(r'!SPACE_GROUP_NUMBER=\s*(\d+)',line)
                 if spg_num:
                   self.spgr_num=spg_num.group(1)
                   break
               if get=='wavel':
-                wavel = re.match('!X-RAY_WAVELENGTH=\s*(\d*\.\d+)',line)
+                wavel = re.match(r'!X-RAY_WAVELENGTH=\s*(\d*\.\d+)',line)
                 if wavel:
                   self.SetWavel( wavel.group(1) )
                   break

@@ -691,10 +691,10 @@ def searchVersion(text, programName=None):
         if m1 is not None:
             text = m1.groups()[1]
         print('CCP4Utils.getProgramVersion m1', m1.groups())
-    m2 = re.search('(.*)(V|v)ersion([ :\.]*)([0123456789.]*)',text)
+    m2 = re.search(r'(.*)(V|v)ersion([ :\.]*)([0123456789.]*)',text)
     if m2 is not None and len(m2.groups()[3]) > 0:
         return m2.groups()[3]
-    m2 = re.search('(.*)(V|v)er([ :\.]*)([0123456789.]*)',text)
+    m2 = re.search(r'(.*)(V|v)er([ :\.]*)([0123456789.]*)',text)
     if m2 is not None and len(m2.groups()[3]) > 0:
         return m2.groups()[3]
     m2 = re.search('(.*)([V|v])([0123456789.]*)',text)

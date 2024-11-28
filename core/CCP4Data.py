@@ -1832,7 +1832,7 @@ class CRangeSelection(CString):
                 err.append(CData, 2, name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
             return err
         arg = self.removeWhiteSpace(arg)
-        s = re.search('[^0-9,\,,\-]',arg)
+        s = re.search(r'[^0-9,\,,\-]',arg)
         if s is not None:
             err.append(self.__class__, 201, name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
         else:

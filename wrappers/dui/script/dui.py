@@ -30,7 +30,7 @@ class dui(CPluginScript):
             self.isNewRun = False
         if not self.isNewRun:
             annot = str(self.container.inputData.DUI_DIR.annotation)
-            reresult = re.search('\(([^\)]*)', annot)
+            reresult = re.search(r'\(([^\)]*)', annot)
             self.job_dloc = reresult.group(1)
             self.useDialsDir = os.path.join(os.path.split(self.getWorkDirectory())[0], self.job_dloc)
             self.appendCommandLine("directory=%s"%self.useDialsDir)

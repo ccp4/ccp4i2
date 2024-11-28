@@ -81,7 +81,7 @@ class CWebPage(QtWebEngineWidgets.QWebEnginePage):
         isXiaReport = (re.search('xia2.html', url.path()) is not None) or (re.search('xia2.html', url.query()) is not None)
         isPairefRep = (re.search('PAIREF_project.html', url.path()) is not None) or (re.search('PAIREF_project.html', url.query()) is not None)
         isArcimboldoReport = (re.search('arcimboldo.html', url.path()) is not None) or (re.search('arcimboldo.html', url.query()) is not None)
-        isDuiReport = (re.search('dui_files.*?\d_report\.html', url.path()) is not None) or (re.search('dui_files.*?\d_report\.html', url.query()) is not None)
+        isDuiReport = (re.search(r'dui_files.*?\d_report\.html', url.path()) is not None) or (re.search(r'dui_files.*?\d_report\.html', url.query()) is not None)
         isMRParseRe = (re.search('mrparse_i2.html', url.path()) is not None) or (re.search('mrparse_i2.html', url.query()) is not None)
         isDocx = (re.search('tabtest.docx', url.path()) is not None) or (re.search('tabtest.docx', url.query()) is not None)
         isReportFile = False

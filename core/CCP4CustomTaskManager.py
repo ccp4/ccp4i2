@@ -133,7 +133,7 @@ class CCustomTaskManager(CCP4CustomManager.CCustomManager):
 
     def extractParams(self, tag, text):
         tagLen = len(tag)
-        hits = re.findall(tag + '[0-9,a-z,A-Z,\-,_]*', text)
+        hits = re.findall(tag + r'[0-9,a-z,A-Z,\-,_]*', text)
         ret = []
         for item in hits:
             ret.append(item[tagLen:])

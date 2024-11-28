@@ -180,7 +180,7 @@ class SelectionParser:
     #print "quoted",quoted
     if len(quoted)>0:wk_str = re.sub('".*?"','QuOTE',wk_str)
       
-    rx = re.compile('\{| and | or | xor | excl | not |\}')
+    rx = re.compile(r'\{| and | or | xor | excl | not |\}')
     nq = -1
     for ele in rx.split(wk_str):
       qu = re.findall('QuOTE',ele)

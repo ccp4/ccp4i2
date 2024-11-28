@@ -1027,11 +1027,11 @@ class CTaskWidget(QtWidgets.QFrame):
                 value = value.decode()
             except:
                 pass
-            value = str(re.sub('[^\w\s-]', '', value).strip().lower())
-            value = str(re.sub('[-\s]+', '-', value))
+            value = str(re.sub(r'[^\w\s-]', '', value).strip().lower())
+            value = str(re.sub(r'[-\s]+', '-', value))
         else:
-            value = unicode(re.sub('[^\w\s-]', '', value).strip().lower())
-            value = unicode(re.sub('[-\s]+', '-', value))
+            value = unicode(re.sub(r'[^\w\s-]', '', value).strip().lower())
+            value = unicode(re.sub(r'[-\s]+', '-', value))
         
         return value
     

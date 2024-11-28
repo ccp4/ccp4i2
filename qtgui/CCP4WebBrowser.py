@@ -2225,7 +2225,7 @@ class CBrowserWindow(CMainWindow):
     @QtCore.Slot()
     def searchEdited(self):
 #FIXME PYQT - potential hairiness
-        text =  re.sub('\s+',' ',self.editSplitter.searchEdit.text())
+        text =  re.sub(r'\s+',' ',self.editSplitter.searchEdit.text())
         #print 'QWebBrowser.searchEdited', text
         self.loadPage(QtCore.QUrl(self.searchEngineString + str(text)))
 

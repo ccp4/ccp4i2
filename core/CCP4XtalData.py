@@ -355,7 +355,7 @@ class CReindexOperator(CCP4Data.CData):
             op = self.__dict__['_value'][key].__str__().strip()
             if len(op) < 1:
                 err.append(self.__class__, 203, name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
-            s = re.search('[^0-9,\,,\-,\+,\/,h,k,l]', op)
+            s = re.search(r'[^0-9,\,,\-,\+,\/,h,k,l]', op)
             if s is not None:
                 err.append(self.__class__, 202, name=self.objectPath())
         return err

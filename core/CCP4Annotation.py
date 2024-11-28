@@ -359,7 +359,7 @@ class CBibReferenceGroup(CCP4Data.CData):
         #  err.append(self.__class__,101,details='For taskname: '+str(self.taskName)+' version: '+str(self.version)+' cformat: '+str(format))
         #else:
         if cformat == 'bibtex':
-            source = re.sub('\.medline','.bibtex',self.__dict__['fileNameList'][0])
+            source = re.sub(r'\.medline','.bibtex',self.__dict__['fileNameList'][0])
         else:
             source = self.__dict__['fileNameList'][0]       
         try:

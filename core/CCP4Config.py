@@ -223,7 +223,7 @@ def PATH(exe, firstOnly = True):
             return []
     for path in CConfig.insts.searchPath[exe][platform]:
         # Test for envvar that glob does not seem to handle
-        m = re.match('\$([^/]*)(.*)',path)
+        m = re.match(r'\$([^/]*)(.*)',path)
         if m is not None:
             env,relpath = m.groups()
             if env in os.environ:

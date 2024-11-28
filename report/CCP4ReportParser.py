@@ -3726,10 +3726,10 @@ class Help:
       if sys.platform == "win32":
         tweak = CCP4Utils.getCCP4I2Dir().replace('\\','/') # This had better be sane.
         tweakref = self.ref.replace('\\','/')              # Ditto
-        self.ref = re.sub('\$CCP4I2',tweak,tweakref)
+        self.ref = re.sub(r'\$CCP4I2',tweak,tweakref)
         self.ref = os.path.normpath(self.ref)
       else:
-        self.ref = re.sub('\$CCP4I2',CCP4Utils.getCCP4I2Dir(),self.ref)
+        self.ref = re.sub(r'\$CCP4I2',CCP4Utils.getCCP4I2Dir(),self.ref)
     if xrtnode is not None:
       self.label =  xrtnode.get('label','About this '+kw.get('mode',''))
     else:
