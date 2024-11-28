@@ -14,6 +14,12 @@ def cifFileToMolBlock(input_file):
 
     searches_SMILES = ["_pdbx_chem_comp_descriptor.type","_pdbx_chem_comp_descriptor.descriptor"]
 
+    bond_searches = ["_chem_comp_atom.comp_id",
+    "_chem_comp_bond.atom_id_1",
+    "_chem_comp_bond.atom_id_2",
+    "_chem_comp_bond.value_order"
+    ]
+
     searches = ["_chem_comp_atom.comp_id",
     "_chem_comp_atom.atom_id",
     "_chem_comp_atom.type_symbol",
@@ -27,6 +33,7 @@ def cifFileToMolBlock(input_file):
     "_chem_comp_atom.model_Cartn_z" ]
 
     atom_dict = {}
+    bond_dict = {}
     found_molecule = False
     found_SMILES = False
 
@@ -81,7 +88,7 @@ def cifFileToMolBlock(input_file):
     try:
         for block in doc:
             if found_molecule:
-                break # We only tke the first molecule.
+                break # We only take the first molecule.
             for search in searches:
                 i = 0
                 for thing in block.find_loop(search):
@@ -91,11 +98,19 @@ def cifFileToMolBlock(input_file):
                         atom_dict[i] = {}
                     atom_dict[i][search] = thing
                     i += 1
+            for search in bond_searches:
+                i = 0
+                for thing in block.find_loop(search):
+                    if not i in bond_dict:
+                        bond_dict[i] = {}
+                    bond_dict[i][search] = thing
+                    i += 1
     except Exception as e:
         print("Oops. %s" % e)
         return ""
 
     atom_list = list(atom_dict.values())
+    bond_list = list(bond_dict.values())
 
     if len(atom_list) > 0:
         s = gemmi.Structure()
@@ -121,6 +136,35 @@ def cifFileToMolBlock(input_file):
         s.add_model(m)
         s.write_pdb(output_file)
         mol = Chem.MolFromPDBFile(output_file)
+        for b in mol.GetBonds():
+            at1 = atom_list[b.GetBeginAtomIdx()]['_chem_comp_atom.atom_id']
+            at2 = atom_list[b.GetEndAtomIdx()]['_chem_comp_atom.atom_id']
+            for b2 in bond_list:
+                if '_chem_comp_bond.atom_id_1' in b2 and '_chem_comp_bond.atom_id_2' in b2:
+                    if (b2['_chem_comp_bond.atom_id_1'] == at1 and b2['_chem_comp_bond.atom_id_2'] == at2) or (b2['_chem_comp_bond.atom_id_1'] == at2 and b2['_chem_comp_bond.atom_id_2'] == at1):
+                        if b2["_chem_comp_bond.value_order"].upper()[0:4] == "AROM":
+                            b.SetBondType(Chem.BondType.AROMATIC)
+                        elif b2["_chem_comp_bond.value_order"].upper()[0:4] == "SING":
+                            b.SetBondType(Chem.BondType.SINGLE)
+                        elif b2["_chem_comp_bond.value_order"].upper()[0:4] == "DOUB":
+                            b.SetBondType(Chem.BondType.DOUBLE)
+                        elif b2["_chem_comp_bond.value_order"].upper()[0:4] == "TRIP":
+                            b.SetBondType(Chem.BondType.TRIPLE)
+                        elif b2["_chem_comp_bond.value_order"].upper()[0:4] == "QUAD":
+                            b.SetBondType(Chem.BondType.QUADRUPLE)
+                        elif b2["_chem_comp_bond.value_order"].upper()[0:4] == "QUIN":
+                            b.SetBondType(Chem.BondType.QUINTUPLE)
+                        elif b2["_chem_comp_bond.value_order"].upper()[0:3] == "HEX":
+                            b.SetBondType(Chem.BondType.HEXTUPLE)
+                        elif b2["_chem_comp_bond.value_order"].upper() == "DATIVE":
+                            b.SetBondType(Chem.BondType.DATIVE)
+                        elif b2["_chem_comp_bond.value_order"].upper() == "DATIVEL":
+                            b.SetBondType(Chem.BondType.DATIVEL)
+                        elif b2["_chem_comp_bond.value_order"].upper() == "DATIVER":
+                            b.SetBondType(Chem.BondType.DATIVER)
+                        elif b2["_chem_comp_bond.value_order"].upper() == "DATIVEONE":
+                            b.SetBondType(Chem.BondType.DATIVEONE)
+                        print("Match!",b.GetBondType(),b2["_chem_comp_bond.value_order"])
         AllChem.Compute2DCoords(mol)
         mol.SetProp("_MolFileChiralFlag","1")
         molBlock = Chem.MolToMolBlock(mol, includeStereo=True, forceV3000=False)

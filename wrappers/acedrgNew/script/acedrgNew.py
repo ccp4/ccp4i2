@@ -93,7 +93,9 @@ class acedrgNew(CPluginScript):
 
         if self.container.inputData.MOLORSMILES.__str__() == 'DICT' or try_mmCIF == True:
             self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))
+            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
             print(self.originalMolFilePath)
+            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
             try:
                 if self.container.inputData.DICTIN2.isSet():
                     molBlock = cifToMolBlock.cifFileToMolBlock(self.container.inputData.DICTIN2.__str__())
@@ -101,8 +103,10 @@ class acedrgNew(CPluginScript):
                     molBlock = cifToMolBlock.cifFileToMolBlock(self.container.inputData.PDBMMCIFIN.__str__())
                 else:
                     pass #  should not happen
+                print("**************************************************")
                 print("molBlock:")
                 print(molBlock)
+                print("**************************************************")
                 with open(self.originalMolFilePath,'w') as molinFile:
                     molinFile.write(molBlock)
             except:
@@ -319,15 +323,15 @@ class acedrgNew(CPluginScript):
             referenceMol = Chem.MolFromMol2File(self.originalMolFilePath)
             referenceMolToDraw = Chem.MolFromMol2File(self.originalMolFilePath)
             if not referenceMol:
-                referenceMol = Chem.MolFromMol2File(self.originalMolFilePath, sanitize=False)
-                referenceMolToDraw = Chem.MolFromMol2File(self.originalMolFilePath, sanitize=False)
+                referenceMol = Chem.RemoveHs(Chem.MolFromMol2File(self.originalMolFilePath, sanitize=False), sanitize=False)
+                referenceMolToDraw = Chem.RemoveHs(Chem.MolFromMol2File(self.originalMolFilePath, sanitize=False), sanitize=False)
                 doSanitize = False
         else:
             referenceMol = Chem.MolFromMolFile(self.originalMolFilePath)
             referenceMolToDraw = Chem.MolFromMolFile(self.originalMolFilePath)
             if not referenceMol:
-                referenceMol = Chem.MolFromMolFile(self.originalMolFilePath, sanitize=False)
-                referenceMolToDraw = Chem.MolFromMolFile(self.originalMolFilePath, sanitize=False)
+                referenceMol = Chem.RemoveHs(Chem.MolFromMolFile(self.originalMolFilePath, sanitize=False), sanitize=False)
+                referenceMolToDraw = Chem.RemoveHs(Chem.MolFromMolFile(self.originalMolFilePath, sanitize=False), sanitize=False)
                 doSanitize = False
 
         try:
