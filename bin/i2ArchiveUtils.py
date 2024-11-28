@@ -218,8 +218,8 @@ class CCP4i2DjangoSession(DjangoSession):
             """
         import unicodedata, re
         value = unicodedata.normalize('NFKD', value.decode('unicode-escape')).encode('ascii', 'ignore')
-        value = str(re.sub('[^\w\s-]', '', value).strip().lower())
-        result = re.sub('[-\s]+', '-', value)
+        value = str(re.sub(r'[^\w\s-]', '', value).strip().lower())
+        result = re.sub(r'[-\s]+', '-', value)
         return result
 
     def pushProject(self,projectName):

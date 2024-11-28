@@ -193,7 +193,7 @@ class CComTemplateElement(CObject):
     def evaluateCode(self, code='', container=None):
         localVars,errorReport = self.getLocalVars(code, container=container)
         #print 'evaluateCode',code,localVars
-        testCode = re.sub('\$','',code)
+        testCode = re.sub(r'\$','',code)
         #print 'CComTemplateElement.evaluateCode localVars', localVars, testCode
         result = NotImplemented
         #try:

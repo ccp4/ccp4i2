@@ -31,8 +31,8 @@ class arpwarp(program):
   def DefineOutput(self):
     with open(self.par.GetFileName()) as f:
       content=f.read()
-      arp_dir=re.findall('set\s+WORKDIR\s+=\s+\'?(.+)\'?',content)[-1].strip()
-      job=re.findall('set\s+JOB_ID\s+=\s+\'?(.+)\'?',content)[-1].strip()
+      arp_dir=re.findall(r'set\s+WORKDIR\s+=\s+\'?(.+)\'?',content)[-1].strip()
+      job=re.findall(r'set\s+JOB_ID\s+=\s+\'?(.+)\'?',content)[-1].strip()
     pdbfname=job+'_warpNtrace.pdb'
     mtzfname=job+'_warpNtrace.mtz'
     out_model = self.out.AddNew( 'model', os.path.join(arp_dir,pdbfname), typ='partial', xname=self.fsf.xname )

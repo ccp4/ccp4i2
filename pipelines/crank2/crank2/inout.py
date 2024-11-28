@@ -171,7 +171,7 @@ class input_output(object):
       while os.path.isfile(filename):
         base,dot,suffix=filename.rpartition('.')
         num=0
-        re_res=re.search('_(\d+)$',base)
+        re_res=re.search(r'_(\d+)$',base)
         if re_res:
           base=base[:len(base)-len(re_res.group(0))]
           num=int(re_res.group(1))

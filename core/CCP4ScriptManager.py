@@ -158,7 +158,7 @@ class CScriptManager:
         if len(text) == 0:
             raise CException(self.__class__, 109)   # KJS : removed newPluginDir (not defined here)
         text = licenseText + text
-        wrapperText = re.sub('\$NAME\$', name, text)
+        wrapperText = re.sub(r'\$NAME\$', name, text)
         return wrapperText
 
 
