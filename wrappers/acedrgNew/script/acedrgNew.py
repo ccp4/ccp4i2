@@ -330,14 +330,6 @@ class acedrgNew(CPluginScript):
                 referenceMolToDraw = Chem.MolFromMolFile(self.originalMolFilePath, sanitize=False)
                 doSanitize = False
 
-        print("########################################")
-        print("########################################")
-        print("referenceMolToDraw")
-        print(referenceMolToDraw)
-        print("referenceMol")
-        print(referenceMol)
-        print("########################################")
-        print("########################################")
         try:
             if doSanitize:
                 Chem.SanitizeMol(referenceMol)
