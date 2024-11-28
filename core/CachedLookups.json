@@ -144,6 +144,7 @@
         ],
         "refinement": [
             "prosmart_refmac",
+            "servalcat_pipe",
             "ProvideTLS",
             "SubtractNative",
             "buster",
@@ -153,8 +154,7 @@
             "pdb_redo_api",
             "sheetbend",
             "zanuda",
-            "phaser_rnp_pipeline",
-            "servalcat_xtal_pipe"
+            "phaser_rnp_pipeline"
         ],
         "test": [
             "demo_copycell",
@@ -219,9 +219,10 @@
             "cmapcoeff",
             "cpatterson",
             "import_mosflm",
+            "metalCoord",
             "prosmart",
             "refmac",
-            "servalcat_xtal",
+            "servalcat",
             "pdb_extract_wrapper",
             "reindex_minimtz"
         ]
@@ -779,8 +780,8 @@
         "coot_script_lines": {
             "0.0.0": {
                 "MAINTAINER": "Nobody",
-                "class": "pipelines.servalcat_xtal_pipe.wrappers.coot_script_lines.script.coot_script_lines_reportcoot_script_lines_report",
-                "clsModule": "pipelines.servalcat_xtal_pipe.wrappers.coot_script_lines.script.coot_script_lines_report",
+                "class": "pipelines.servalcat_pipe.wrappers.coot_script_lines.script.coot_script_lines_reportcoot_script_lines_report",
+                "clsModule": "pipelines.servalcat_pipe.wrappers.coot_script_lines.script.coot_script_lines_report",
                 "clsName": "coot_script_lines_report",
                 "modes": []
             }
@@ -1148,6 +1149,17 @@
                 "clsModule": "wrappers.mergeMtz.script.mergeMtz_report",
                 "clsName": "mergeMtz_report",
                 "modes": []
+            }
+        },
+        "metalCoord": {
+            "0.0.0": {
+                "MAINTAINER": "Nobody",
+                "class": "wrappers.metalCoord.script.metalCoord_reportmetalCoord_report",
+                "clsModule": "wrappers.metalCoord.script.metalCoord_report",
+                "clsName": "metalCoord_report",
+                "modes": [
+                    "Running"
+                ]
             }
         },
         "modelcraft": {
@@ -1614,23 +1626,23 @@
                 "modes": []
             }
         },
-        "servalcat_xtal": {
+        "servalcat": {
             "0.0.0": {
                 "MAINTAINER": "Nobody",
-                "class": "wrappers.servalcat_xtal.script.servalcat_xtal_reportservalcat_xtal_report",
-                "clsModule": "wrappers.servalcat_xtal.script.servalcat_xtal_report",
-                "clsName": "servalcat_xtal_report",
+                "class": "wrappers.servalcat.script.servalcat_reportservalcat_report",
+                "clsModule": "wrappers.servalcat.script.servalcat_report",
+                "clsName": "servalcat_report",
                 "modes": [
                     "Running"
                 ]
             }
         },
-        "servalcat_xtal_pipe": {
+        "servalcat_pipe": {
             "0.0.0": {
                 "MAINTAINER": "Nobody",
-                "class": "pipelines.servalcat_xtal_pipe.script.servalcat_xtal_pipe_reportservalcat_xtal_pipe_report",
-                "clsModule": "pipelines.servalcat_xtal_pipe.script.servalcat_xtal_pipe_report",
-                "clsName": "servalcat_xtal_pipe_report",
+                "class": "pipelines.servalcat_pipe.script.servalcat_pipe_reportservalcat_pipe_report",
+                "clsModule": "pipelines.servalcat_pipe.script.servalcat_pipe_report",
+                "clsName": "servalcat_pipe_report",
                 "modes": [
                     "Running"
                 ]
@@ -2520,8 +2532,8 @@
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "Nobody",
                 "TASKTITLE": "Execute arbitrary script code within Coot",
-                "class": "pipelines.servalcat_xtal_pipe.wrappers.coot_script_lines.script.coot_script_linescoot_script_lines",
-                "clsModule": "pipelines.servalcat_xtal_pipe.wrappers.coot_script_lines.script.coot_script_lines",
+                "class": "pipelines.servalcat_pipe.wrappers.coot_script_lines.script.coot_script_linescoot_script_lines",
+                "clsModule": "pipelines.servalcat_pipe.wrappers.coot_script_lines.script.coot_script_lines",
                 "clsName": "coot_script_lines",
                 "internal": false,
                 "subTasks": []
@@ -3069,6 +3081,19 @@
                 "class": "wrappers.mergeMtz.script.mergeMtzmergeMtz",
                 "clsModule": "wrappers.mergeMtz.script.mergeMtz",
                 "clsName": "mergeMtz",
+                "internal": false,
+                "subTasks": []
+            }
+        },
+        "metalCoord": {
+            "0.1": {
+                "DESCRIPTION": null,
+                "INTERRUPTLABEL": null,
+                "MAINTAINER": "martin.maly@soton.ac.uk",
+                "TASKTITLE": null,
+                "class": "wrappers.metalCoord.script.metalCoordmetalCoord",
+                "clsModule": "wrappers.metalCoord.script.metalCoord",
+                "clsName": "metalCoord",
                 "internal": false,
                 "subTasks": []
             }
@@ -3818,33 +3843,33 @@
                 "subTasks": []
             }
         },
-        "servalcat_xtal": {
+        "servalcat": {
             "0.0": {
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
-                "MAINTAINER": "Nobody",
-                "TASKTITLE": "Refinement (servalcat)",
-                "class": "wrappers.servalcat_xtal.script.servalcat_xtalservalcat_xtal",
-                "clsModule": "wrappers.servalcat_xtal.script.servalcat_xtal",
-                "clsName": "servalcat_xtal",
+                "MAINTAINER": "martin.maly@mrc-lmb.cam.ac.uk",
+                "TASKTITLE": "servalcat",
+                "class": "wrappers.servalcat.script.servalcatservalcat",
+                "clsModule": "wrappers.servalcat.script.servalcat",
+                "clsName": "servalcat",
                 "internal": false,
                 "subTasks": []
             }
         },
-        "servalcat_xtal_pipe": {
+        "servalcat_pipe": {
             "0.0": {
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
-                "MAINTAINER": "Nobody",
-                "TASKTITLE": "Refinement - Servalcat (experimental)",
-                "class": "pipelines.servalcat_xtal_pipe.script.servalcat_xtal_pipeservalcat_xtal_pipe",
-                "clsModule": "pipelines.servalcat_xtal_pipe.script.servalcat_xtal_pipe",
-                "clsName": "servalcat_xtal_pipe",
+                "MAINTAINER": "martin.maly@mrc-lmb.cam.ac.uk",
+                "TASKTITLE": "Servalcat",
+                "class": "pipelines.servalcat_pipe.script.servalcat_pipeservalcat_pipe",
+                "clsModule": "pipelines.servalcat_pipe.script.servalcat_pipe",
+                "clsName": "servalcat_pipe",
                 "internal": false,
                 "subTasks": [
-                    "Platonyzer",
                     "prosmart",
-                    "servalcat"
+                    "servalcat",
+                    "metalCoord"
                 ]
             }
         },
@@ -4298,7 +4323,7 @@
         "scaleit": "qticons/scaleit.png",
         "scalepack2mtz": "qticons/ccp4.png",
         "sculptor": "qticons/sculptor.png",
-        "servalcat_xtal_pipe": "qticons/ccp4.png",
+        "servalcat_pipe": "qticons/servalcat_pipe.png",
         "sheetbend": "qticons/ccp4.png",
         "shelx": "qticons/shelx.png",
         "shelxeMR": "qticons/shelxeMR.png",
@@ -4545,12 +4570,12 @@
             "clsModule": "core.CCP4PerformanceData",
             "clsName": "CAtomCountPerformance"
         },
-        "servalcat_xtal": {
+        "servalcat": {
             "class": "core.CCP4PerformanceDataCRefinementPerformance",
             "clsModule": "core.CCP4PerformanceData",
             "clsName": "CRefinementPerformance"
         },
-        "servalcat_xtal_pipe": {
+        "servalcat_pipe": {
             "class": "core.CCP4PerformanceDataCRefinementPerformance",
             "clsModule": "core.CCP4PerformanceData",
             "clsName": "CRefinementPerformance"
@@ -5271,8 +5296,8 @@
                 "MAINTAINER": "Nobody",
                 "RANK": null,
                 "TASKTITLE": "Scripted model building - COOT",
-                "class": "pipelines.servalcat_xtal_pipe.wrappers.coot_script_lines.script.coot_script_lines_guiCcoot_script_lines",
-                "clsModule": "pipelines.servalcat_xtal_pipe.wrappers.coot_script_lines.script.coot_script_lines_gui",
+                "class": "pipelines.servalcat_pipe.wrappers.coot_script_lines.script.coot_script_lines_guiCcoot_script_lines",
+                "clsModule": "pipelines.servalcat_pipe.wrappers.coot_script_lines.script.coot_script_lines_gui",
                 "clsName": "Ccoot_script_lines",
                 "shortTitle": "Scripted COOT",
                 "taskName": "coot_script_lines",
@@ -6329,17 +6354,17 @@
                 "taskVersion": 0.1
             }
         },
-        "servalcat_xtal_pipe": {
+        "servalcat_pipe": {
             "0.0.0": {
-                "DESCRIPTION": null,
+                "DESCRIPTION": "Refinement against diffraction data or SPA map & optional restraints from ProSMART or MetalCoord",
                 "MAINTAINER": "Nobody",
                 "RANK": 1,
-                "TASKTITLE": "Refinement - Servalcat (experimental)",
-                "class": "pipelines.servalcat_xtal_pipe.script.servalcat_xtal_pipe_guiCservalcat_xtal_pipe",
-                "clsModule": "pipelines.servalcat_xtal_pipe.script.servalcat_xtal_pipe_gui",
-                "clsName": "Cservalcat_xtal_pipe",
-                "shortTitle": "servalcat_xtal_pipe",
-                "taskName": "servalcat_xtal_pipe",
+                "TASKTITLE": "Refinement - Servalcat",
+                "class": "pipelines.servalcat_pipe.script.servalcat_pipe_guiCservalcat_pipe",
+                "clsModule": "pipelines.servalcat_pipe.script.servalcat_pipe_gui",
+                "clsName": "Cservalcat_pipe",
+                "shortTitle": "Servalcat",
+                "taskName": "servalcat_pipe",
                 "taskVersion": 0.0
             }
         },

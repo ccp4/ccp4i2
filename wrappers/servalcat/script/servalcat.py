@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 """
-    servalcat_xtal.py: CCP4 GUI Project
+    servalcat.py: CCP4 GUI Project
     Copyright (C) 2024 MRC-LBM, University of Southampton
     
     This library is free software: you can redistribute it and/or
@@ -32,15 +32,15 @@ import json
 import shutil
 
 
-class servalcat_xtal(CPluginScript):
+class servalcat(CPluginScript):
     
     TASKMODULE = 'wrappers'
     TASKTITLE = 'Refinement (servalcat)'
-    TASKNAME = 'servalcat_xtal'
-    TASKCOMMAND = 'servalcat'  # refine_xtal_norefmac
+    TASKNAME = 'servalcat'
+    TASKCOMMAND = 'servalcat'
     # TASKCOMMAND = 'python3'  # -m servalcat refine_xtal_norefmac
     TASKVERSION= 0.0
-    WHATNEXT = ['servalcat_xtal','buccaneer_build_refine_mr']
+    WHATNEXT = ['servalcat','buccaneer_build_refine_mr']
     ASYNCHRONOUS = False
     PERFORMANCECLASS = 'CRefinementPerformance'
         
@@ -51,7 +51,7 @@ class servalcat_xtal(CPluginScript):
                     }
     
     def __init__(self,*args, **kwargs):
-        super(servalcat_xtal, self).__init__(*args, **kwargs)
+        super(servalcat, self).__init__(*args, **kwargs)
         self._readyReadStandardOutputHandler = self.handleReadyReadStandardOutput
         self.xmlroot = ET.Element('SERVALCAT')
         self.xmlLength = 0

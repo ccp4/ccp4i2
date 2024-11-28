@@ -3,7 +3,7 @@ from __future__ import print_function
 #from lxml import etree
 
 """
-    servalcat_xtal_pipe_gui.py: CCP4 GUI Project
+    servalcat_pipe_gui.py: CCP4 GUI Project
     Copyright (C) 2024 University of Southampton, MRC LMB Cambridge
 
      This library is free software: you can redistribute it and/or
@@ -43,18 +43,18 @@ def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None)
     from core import CCP4Modules, CCP4Utils, CCP4File, CCP4Container, CCP4Data, CCP4PluginScript
     jobStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId,'status')
     if jobStatus == 'Unsatisfactory':
-        returnList = ['LidiaAcedrg', 'servalcat_xtal_pipe']
+        returnList = ['LidiaAcedrg', 'servalcat_pipe']
     else:
-        returnList = ['servalcat_xtal_pipe', 'coot_rebuild', 'moorhen_rebuild', 'modelcraft']
+        returnList = ['servalcat_pipe', 'coot_rebuild', 'moorhen_rebuild', 'modelcraft']
     return returnList
 
-class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
+class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
 
-  TASKTITLE='Refinement - Servalcat (experimental)'
-  SHORTTASKTITLE='servalcat_xtal_pipe'
-  # DESCRIPTION='Refine (Refmacat/Refmac5) with optional restraints (Prosmart, Platonyzer)'
-  TASKNAME = 'servalcat_xtal_pipe'
-  TASKLABEL = 'servalcat_xtal_pipe'
+  TASKTITLE='Refinement - Servalcat'
+  SHORTTASKTITLE='Servalcat'
+  DESCRIPTION='Refinement against diffraction data or SPA map & optional restraints from ProSMART or MetalCoord'
+  TASKNAME = 'servalcat_pipe'
+  TASKLABEL = 'servalcat_pipe'
   TASKVERSION = 0.0
   TASKMODULE = 'refinement'
   MGDISPLAYFILES = ['XYZOUT','FPHIOUT','DIFFPHIOUT']
@@ -203,7 +203,7 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     return False
 
   def drawContents(self):
-    self.setProgramHelpFile('servalcat_xtal')
+    self.setProgramHelpFile('servalcat')
     indent = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
     if self.container.metalCoordPipeline.LIGAND_CODES_AVAILABLE:
         self.monomersWithMetals = self.container.metalCoordPipeline.LIGAND_CODES_AVAILABLE
@@ -1018,7 +1018,7 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
         self.container.controlParameters.F_SIGF_OR_I_SIGI = 'F_SIGF'
 
   def isValid(self):
-      invalidElements = super(Cservalcat_xtal_pipe, self).isValid()
+      invalidElements = super(Cservalcat_pipe, self).isValid()
       #Check whether invocation is from runTask
       import traceback
       functionNames = [a[2] for a in traceback.extract_stack()]

@@ -11,7 +11,7 @@ from xml.etree import ElementTree as ET
 from core.CCP4PluginScript import CPluginScript
 from core.CCP4ErrorHandling import *
 from core import CCP4Utils
-from wrappers.servalcat_xtal.script.json2xml import json2xml
+from wrappers.servalcat.script.json2xml import json2xml
 
 
 class metalCoord(CPluginScript):

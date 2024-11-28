@@ -17,9 +17,9 @@ def isnumber(n):
     return is_number
 
 
-class servalcat_xtal_report(Report):
+class servalcat_report(Report):
     # Specify which gui task and/or pluginscript this applies to
-    TASKNAME = 'servalcat_xtal'
+    TASKNAME = 'servalcat'
     TASKTITLE = 'Servalcat - Macromolecular refinement'
     RUNNING = True
     SEPARATEDATA = True
@@ -1625,4 +1625,4 @@ def test(xmlFile=None,jobId=None,reportFile=None):
 
 if __name__ == "__main__":
     import sys
-    servalcat_xtal_report(xmlFile=sys.argv[1],jobId=sys.argv[2])
+    servalcat_report(xmlFile=sys.argv[1],jobId=sys.argv[2])

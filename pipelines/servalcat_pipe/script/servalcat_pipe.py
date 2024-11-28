@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 """
-    servalcat_xtal_pipe.py: CCP4 GUI Project
+    servalcat_pipe.py: CCP4 GUI Project
     Copyright (C) 2024 University of Southampton, MRC LMB Cambridge
 
     This library is free software: you can redistribute it and/or
@@ -26,7 +26,7 @@ from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core import CCP4Utils
 from . import monitor_refinement_differences
-from wrappers.servalcat_xtal.script.json2xml import json2xml
+from wrappers.servalcat.script.json2xml import json2xml
 import os, sys, shutil, re
 import base64
 import gemmi
@@ -36,13 +36,15 @@ import statistics
 from operator import itemgetter
 
 
-class servalcat_xtal_pipe(CPluginScript):
+class servalcat_pipe(CPluginScript):
 
     TASKMODULE = 'refinement'
-    TASKTITLE = 'Refinement - Servalcat (experimental)'
-    TASKNAME = 'Refinement in Servalcat'
+    TASKTITLE = 'Servalcat' # Short title for GUI
+    # TASKTITLE = 'Refinement against diffraction data or SPA map & optional restraints from ProSMART & MetalCoord' # Short title for GUI
+    TASKNAME = 'servalcat'  # Task name - same as class name
+    MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
     TASKVERSION= 0.0
-    WHATNEXT = ['servalcat_xtal_pipe','buccaneer_build_refine_mr','coot_rebuild','modelcraft']
+    WHATNEXT = ['servalcat_pipe','buccaneer_build_refine_mr','coot_rebuild','modelcraft']
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 240
     MAXNJOBS = 4
@@ -56,7 +58,7 @@ class servalcat_xtal_pipe(CPluginScript):
                     }
 
     def __init__(self, *args, **kws):
-        super(servalcat_xtal_pipe, self).__init__(*args, **kws)
+        super(servalcat_pipe, self).__init__(*args, **kws)
         self.pipelinexmlfile = self.makeFileName(format='PROGRAMXML')
         self.refmacMonitors = {}
         self.xmlroot = etree.Element("SERVALCAT") #self.xmlroot = ET.Element("RefmacOptimiseWeight")
@@ -298,7 +300,7 @@ class servalcat_xtal_pipe(CPluginScript):
            self.xmlLength = len(newXml)
 
     def createServalcatJob(self, withWeight=-1, inputCoordinates=None, ncyc=-1):
-        result = self.makePluginObject('servalcat_xtal')
+        result = self.makePluginObject('servalcat')
         #input data for this servalcat instance is the same as the input data for the program
         result.container.inputData.copyData(self.container.inputData)
         #result.container.inputData = self.container.inputData
@@ -783,7 +785,7 @@ class servalcat_xtal_pipe(CPluginScript):
                else:
                      self.fileSystemWatcher = None
                      self.finishUp(self.firstServalcat)
-        print('done servalcat_xtal_pipe.firstServalcatFinished')
+        print('done servalcat_pipe.firstServalcatFinished')
         return
 
     def makeCootPlugin(self):
@@ -961,15 +963,15 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
 
     def finishUp(self, servalcatJob):
         from core import CCP4ProjectsManager
-        print('into servalcat_xtal_pipe.finishUp')
+        print('into servalcat_pipe.finishUp')
         for attr in self.container.outputData.dataOrder():
             try:
                 wrappersAttr = getattr(servalcatJob.container.outputData, attr)
                 pipelinesAttr = getattr(self.container.outputData, attr)
             except:
-                print('servalcat_xtal_pipe.finishUp attr', attr, 'not copied from wrapper to pipeline')
+                print('servalcat_pipe.finishUp attr', attr, 'not copied from wrapper to pipeline')
                 continue
-            print('servalcat_xtal_pipe.finishUp attr', attr)
+            print('servalcat_pipe.finishUp attr', attr)
             if attr in ["PERFORMANCEINDICATOR"]:
                 setattr(self.container.outputData, attr, wrappersAttr)
             else:
@@ -982,7 +984,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                 if attr == "XMLOUT":
                     pass
 
-        """print('servalcat_xtal_pipe.finishUp 1')
+        """print('servalcat_pipe.finishUp 1')
         from core import CCP4XtalData
         # Apply database annotations
         self.container.outputData.XYZOUT.annotation.set('Model from refinement (PDB format)')
@@ -998,7 +1000,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
         self.container.outputData.ANOMFPHIOUT.annotation = 'Weighted anomalous difference map from refinement'
         self.container.outputData.DIFANOMFPHIOUT.annotation = 'Weighted differences of anomalous difference map'
 
-        print('servalcat_xtal_pipe.finishUp 2')
+        print('servalcat_pipe.finishUp 2')
         if self.container.outputData.DICT.exists():
            self.container.outputData.DICT.annotation = 'Accumulated ligand geometry dictionary'
         if self.container.outputData.LIBOUT.exists():
@@ -1021,9 +1023,9 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
               self.mergeDictToProjectLib(fileName=self.container.outputData.LIBOUT.__str__())
           except:
               print('Error merging library to Project Dictionary')
-        print('servalcat_xtal_pipe.finishUp 3'); sys.stdout.flush()"""
+        print('servalcat_pipe.finishUp 3'); sys.stdout.flush()"""
 
-        print('servalcat_xtal_pipe.finishUp 1')
+        print('servalcat_pipe.finishUp 1')
         from core import CCP4XtalData
         # Apply database annotations
         self.container.outputData.XYZOUT.annotation.set(servalcatJob.container.outputData.XYZOUT.annotation)
@@ -1052,21 +1054,21 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
             self.container.outputData.MAP_FOFC.subType = servalcatJob.container.outputData.MAP_FOFC.subType
         # outputData.LIBOUT ?
         # outputData.DICT ?
-        print('servalcat_xtal_pipe.finishUp 3'); sys.stdout.flush()
+        print('servalcat_pipe.finishUp 3'); sys.stdout.flush()
 
         cleanUpIntermediate = False
         if hasattr(self.container.controlParameters,"REFMAC_CLEANUP"):
             cleanUpIntermediate = self.container.controlParameters.REFMAC_CLEANUP
             if cleanUpIntermediate:
-                print('servalcat_xtal_pipe.finishUp 4'); sys.stdout.flush()
+                print('servalcat_pipe.finishUp 4'); sys.stdout.flush()
                 cleanup = CCP4ProjectsManager.CPurgeProject(self.firstServalcat._dbProjectId)
-                print('servalcat_xtal_pipe.finishUp 5'); sys.stdout.flush()
+                print('servalcat_pipe.finishUp 5'); sys.stdout.flush()
                 cleanup.purgeJob(self.firstServalcat.jobId,context="extended_intermediate",reportMode="skip")
 
                 if hasattr(self,"servalcatPostCootPlugin"):
-                    print('servalcat_xtal_pipe.finishUp 6'); sys.stdout.flush()
+                    print('servalcat_pipe.finishUp 6'); sys.stdout.flush()
                     cleanup = CCP4ProjectsManager.CPurgeProject(self.servalcatPostCootPlugin._dbProjectId)
-                    print('servalcat_xtal_pipe.finishUp 7'); sys.stdout.flush()
+                    print('servalcat_pipe.finishUp 7'); sys.stdout.flush()
                     cleanup.purgeJob(self.servalcatPostCootPlugin.jobId,context="extended_intermediate",reportMode="skip")
 
         self.multimericValidation()
@@ -1090,7 +1092,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
         # self.createWarningsXML(logfiles) # MM
         self.saveXml()
 
-        print('done servalcat_xtal_pipe.finishUp'); sys.stdout.flush()
+        print('done servalcat_pipe.finishUp'); sys.stdout.flush()
         self.reportStatus(CPluginScript.SUCCEEDED)
 
     """def tryVariousRefmacWeightsAround(self, weight):

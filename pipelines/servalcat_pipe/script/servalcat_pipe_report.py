@@ -5,21 +5,21 @@ import sys
 from xml.etree import ElementTree as ET
 from report.CCP4ReportParser import *
 
-from wrappers.servalcat_xtal.script import servalcat_xtal_report
+from wrappers.servalcat.script import servalcat_report
 from wrappers.validate_protein.script import validate_protein_report
 import base64
 
 
-class servalcat_xtal_pipe_report(Report):
+class servalcat_pipe_report(Report):
     # Specify which gui task and/or pluginscript this applies to
-    TASKNAME = 'servalcat_xtal_pipe'
+    TASKNAME = 'servalcat_pipe'
     TASKTITLE = 'Servalcat - Macromolecular refinement'
     RUNNING = True
     SEPARATEDATA = True
     def __init__(self, *args, **kw): # def __init__(self, xmlnode=None, jobInfo={}, jobStatus=None, **kw):
         #try:
-        super(servalcat_xtal_pipe_report, self).__init__(*args, **kw)
-        #print 'servalcat_xtal_pipe_report',self,self.jobStatus
+        super(servalcat_pipe_report, self).__init__(*args, **kw)
+        #print 'servalcat_pipe_report',self,self.jobStatus
         self.outputXml = self.jobStatus is not None and self.jobStatus.lower().count('running')
         if self.jobStatus is not None and not self.jobStatus.lower().count('running'): self.outputXml = False
         if self.jobStatus is not None and self.jobStatus.lower() == 'nooutput': return
@@ -101,14 +101,14 @@ class servalcat_xtal_pipe_report(Report):
         except:
             pass
         if servalcatReportNode0 is not None:
-            servalcatReport = servalcat_xtal_report.servalcat_xtal_report(xmlnode=servalcatReportNode0, jobStatus='nooutput', jobInfo=self.jobInfo)
+            servalcatReport = servalcat_report.servalcat_report(xmlnode=servalcatReportNode0, jobStatus='nooutput', jobInfo=self.jobInfo)
             cycle_data = servalcatReport.getCycleData(xmlnode=servalcatReportNode0)
         try:
             servalcatReportNode1 = xmlnode.findall('.//SERVALCAT_WATERS')[0]
         except:
             pass
         if servalcatReportNode1 is not None:
-            servalcatReport1 = servalcat_xtal_report.servalcat_xtal_report(xmlnode=servalcatReportNode1, jobStatus='nooutput', jobInfo=self.jobInfo)
+            servalcatReport1 = servalcat_report.servalcat_report(xmlnode=servalcatReportNode1, jobStatus='nooutput', jobInfo=self.jobInfo)
             cycle_data1 = servalcatReport.getCycleData(xmlnode=servalcatReportNode1)
             servalcatReportNodeLast = servalcatReportNode1
         else:
@@ -260,7 +260,7 @@ class servalcat_xtal_pipe_report(Report):
             if refmacReportNode1 is not None:
                 summaryFold2 = self.addFold(label='Refinement after Running Coot Add waters', initiallyOpen=True,brief='After Coot scripts')
                 clearingDiv2 = self.addDiv(style="clear:both;")
-                refmacReport2 = servalcat_xtal_report.servalcat_xtal_report(xmlnode=refmacReportNode1, jobStatus='nooutput', jobInfo=self.jobInfo)
+                refmacReport2 = servalcat_report.servalcat_report(xmlnode=refmacReportNode1, jobStatus='nooutput', jobInfo=self.jobInfo)
                 topElementsDiv2 = summaryFold2.addDiv(style='width:800px; height:270px;overflow:auto;')
                 if refmacReport2 is not None and not self.jobStatus.lower().count('running'):
                     refmacReport2.addScrollableDownloadableTable1(parent=topElementsDiv2,internalId='Table1PostCoot')
@@ -737,7 +737,7 @@ class servalcat_xtal_pipe_report(Report):
         if refmacWeightNode is None: refmacWeightNode = self.xmlnode
         if len(refmacWeightNode.findall('./REFMAC'))>0:
             refmacReportNode = refmacWeightNode.findall('./REFMAC')[0]
-            refmacReport = servalcat_xtal_report.servalcat_xtal_report(xmlnode=refmacReportNode, jobStatus='nooutput')
+            refmacReport = servalcat_report.servalcat_report(xmlnode=refmacReportNode, jobStatus='nooutput')
         if refmacReport is not None:
             refmacReport.addSummary(parent = parent)
 
@@ -750,9 +750,9 @@ def test(xmlFile=None,jobId=None,reportFile=None):
         print('FAILED loading XML file:', kw['xmlFile'])
     if reportFile is None and xmlFile is not None:
         reportFile = os.path.join(os.path.split(xmlFile)[0],'report.html')
-    r = servalcat_xtal_pipe_report(xmlFile=xmlFile,jobId=jobId, xmlnode=xmlnode)
+    r = servalcat_pipe_report(xmlFile=xmlFile,jobId=jobId, xmlnode=xmlnode)
     r.as_html_file(reportFile)
 
 if __name__ == "__main__":
     import sys
-    servalcat_xtal_pipe_report(xmlFile=sys.argv[1],jobId=sys.argv[2])
+    servalcat_pipe_report(xmlFile=sys.argv[1],jobId=sys.argv[2])
