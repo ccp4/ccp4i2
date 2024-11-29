@@ -64,12 +64,13 @@ def cifFileToMolBlock(input_file):
                 print("Not successful Chem.MolFromSmiles(ss) for ss =", ss)
                 try:
                     mol = Chem.MolFromSmiles(ss, sanitize=False)
-                    mol = set_dative_bonds(mol)
+                    #mol = set_dative_bonds(mol)
+                    print("Success with",ss)
                 except:
-                    print("Not successful try Chem.MolFromSmiles(ss, sanitize=False) or set_dative_bonds(mol) for ss =", ss)
+                    print("Not successful try Chem.MolFromSmiles(ss, sanitize=False) for ss =", ss)
                     continue
                 if not mol:
-                    print("Not successful Chem.MolFromSmiles(ss, sanitize=False) or set_dative_bonds(mol) for ss =", ss)
+                    print("Not successful Chem.MolFromSmiles(ss, sanitize=False) for ss =", ss)
                     continue
             if mol:
                 try:
@@ -78,10 +79,10 @@ def cifFileToMolBlock(input_file):
                     molBlock = Chem.MolToMolBlock(mol, includeStereo=True, forceV3000=False)
                     return molBlock
                 except:
-                    print("Not successful try set_dative_bonds(mol) for ", ss)
+                    print("Not successful for ", ss)
                     continue
             else:  # invalid SMILES
-                print("Not successful set_dative_bonds(mol) for", ss)
+                print("Not successful for", ss)
                 continue
 
 #If no SMILES string, we hope there is at least one molecule, either in PDB or acedrg chem_comp format.
