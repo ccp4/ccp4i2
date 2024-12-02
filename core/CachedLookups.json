@@ -268,6 +268,11 @@
             "clsModule": "core.CCP4PerformanceData",
             "clsName": "CRefinementPerformance"
         },
+        "CServalcatPerformance": {
+            "class": "core.CCP4PerformanceDataCServalcatPerformance",
+            "clsModule": "core.CCP4PerformanceData",
+            "clsName": "CServalcatPerformance"
+        },
         "CSuperposePerformance": {
             "class": "core.CCP4PerformanceDataCSuperposePerformance",
             "clsModule": "core.CCP4PerformanceData",
@@ -4571,14 +4576,14 @@
             "clsName": "CAtomCountPerformance"
         },
         "servalcat": {
-            "class": "core.CCP4PerformanceDataCRefinementPerformance",
+            "class": "core.CCP4PerformanceDataCServalcatPerformance",
             "clsModule": "core.CCP4PerformanceData",
-            "clsName": "CRefinementPerformance"
+            "clsName": "CServalcatPerformance"
         },
         "servalcat_pipe": {
-            "class": "core.CCP4PerformanceDataCRefinementPerformance",
+            "class": "core.CCP4PerformanceDataCServalcatPerformance",
             "clsModule": "core.CCP4PerformanceData",
-            "clsName": "CRefinementPerformance"
+            "clsName": "CServalcatPerformance"
         },
         "shelx": {
             "class": "core.CCP4PerformanceDataCExpPhasPerformance",

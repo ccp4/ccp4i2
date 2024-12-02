@@ -40,9 +40,9 @@ class servalcat(CPluginScript):
     TASKCOMMAND = 'servalcat'
     # TASKCOMMAND = 'python3'  # -m servalcat refine_xtal_norefmac
     TASKVERSION= 0.0
-    WHATNEXT = ['servalcat','buccaneer_build_refine_mr']
+    # WHATNEXT = ['servalcat','buccaneer_build_refine_mr']
     ASYNCHRONOUS = False
-    PERFORMANCECLASS = 'CRefinementPerformance'
+    PERFORMANCECLASS = 'CServalcatPerformance'
         
     ERROR_CODES = { 201 : {'description' : 'Refmac returned with non zero status' },
                     202:  {'description': 'New library created but strictly required' },
@@ -330,8 +330,7 @@ class servalcat(CPluginScript):
             pass
         if str(self.container.controlParameters.DATA_METHOD) == 'spa':
             statsOverall["FSCaverage"] = jsonStats[-1]['data']['summary']['FSCaverage']
-            self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(statsOverall["FSCaverage"])  # TO DO
-            self.container.outputData.PERFORMANCEINDICATOR.RFree.set(0)                             # TO DO
+            self.container.outputData.PERFORMANCEINDICATOR.FSCaverage.set(statsOverall["FSCaverage"])
         elif self.container.inputData.FREERFLAG.isSet():
             try:
                 statsOverall["Rwork"] = jsonStats[-1]['data']['summary']['Rwork']
@@ -346,22 +345,20 @@ class servalcat(CPluginScript):
                     statsOverall["R1free"] = jsonStats[-1]['data']['summary']['R1free']
                     statsOverall["CCIworkavg"] = jsonStats[-1]['data']['summary']['CCIworkavg']
                     statsOverall["CCIfreeavg"] = jsonStats[-1]['data']['summary']['CCIfreeavg']
-                    self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(statsOverall["R1work"]) # TO DO
-                    self.container.outputData.PERFORMANCEINDICATOR.RFree.set(statsOverall["R1free"])   # TO DO
+                    self.container.outputData.PERFORMANCEINDICATOR.R1Factor.set(statsOverall["R1work"])
+                    self.container.outputData.PERFORMANCEINDICATOR.R1Free.set(statsOverall["R1free"])
                 except:
                     pass
         else:
             try:
                 statsOverall["R"] = jsonStats[-1]['data']['summary']['R']
                 statsOverall["CCFavg"] = jsonStats[-1]['data']['summary']['CCFavg']
-                self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(statsOverall["R"])  # TO DO
-                self.container.outputData.PERFORMANCEINDICATOR.RFree.set(0)                    # TO DO
+                self.container.outputData.PERFORMANCEINDICATOR.R.set(statsOverall["R"]) 
             except:
                 try:
                     statsOverall["R1"] = jsonStats[-1]['data']['summary']['R1']
                     statsOverall["CCIavg"] = jsonStats[-1]['data']['summary']['CCIavg']
-                    self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(statsOverall["R1"])  # TO DO
-                    self.container.outputData.PERFORMANCEINDICATOR.RFree.set(0)                     # TO DO
+                    self.container.outputData.PERFORMANCEINDICATOR.R1.set(statsOverall["R1"]) 
                 except:
                     pass
 

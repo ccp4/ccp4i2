@@ -49,8 +49,8 @@ class servalcat_pipe(CPluginScript):
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 240
     MAXNJOBS = 4
-    PERFORMANCECLASS = 'CRefinementPerformance'
-    SUBTASKS=['Platonyzer','prosmart','servalcat']
+    PERFORMANCECLASS = 'CServalcatPerformance'
+    SUBTASKS=['servalcat','prosmart','metalCoord']
     RUNEXTERNALPROCESS=False
     PURGESEARCHLIST =  [[ 'refmac%*/hklout.mtz', 0, "hklout" ], [ 'refmac%*/hklout.mtz', 7, "hklout" ], [ '*%*/ANOMFPHIOUT.mtz', 1, "ANOMFPHIOUT" ], [ '*%*/DIFANOMFPHIOUT.mtz', 1, "DIFANOMFPHIOUT" ]]
 
@@ -773,7 +773,7 @@ class servalcat_pipe(CPluginScript):
                 self.tryVariousRefmacWeightsAround(weightUsed)
             else:
                print("AAA15")
-               best_r_free = self.firstServalcat.container.outputData.PERFORMANCEINDICATOR.RFactor
+               # best_r_free = self.firstServalcat.container.outputData.PERFORMANCEINDICATOR.RFactor
                print("AAA15.1")
                if self.container.controlParameters.ADD_WATERS: # and best_r_free < self.container.controlParameters.REFPRO_RSR_RWORK_LIMIT :
                    # Coot sujob to add waters

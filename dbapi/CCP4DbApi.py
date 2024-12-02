@@ -150,8 +150,8 @@ FILETYPELIST = [ (0,'Unknown','File type unknown'),
                 ]
 
 KEYTYPELIST =  [ (0,'Unknown','Key type unknown'),
-                    (1,'RFactor','R Factor'),
-                    (2,'RFree','Free R Factor'),
+                    (1,'RFactor','R value'),
+                    (2,'RFree','Free R value'),
                     (3,'completeness','model completeness'),
                     (4, 'spaceGroup','space group'),
                     (5, 'highResLimit', 'high resolution limit'),
@@ -168,7 +168,12 @@ KEYTYPELIST =  [ (0,'Unknown','Key type unknown'),
                     (16,'reflectionCorrelation','reflection correlation'),
                     (17,'RMSxyz','RMS displacement'),
                     (18,'cutoff','Pairef cutoff'),
-                    (19,'ccHalf','correlation coefficient between two half datasets'),]
+                    (19,'ccHalf','correlation coefficient between two half datasets'),
+                    (20,'R','R value'),
+                    (21,'R1Factor','R1 value'),
+                    (22,'R1Free','Free R1 value'),
+                    (23,'R1','R1 value'),
+                    (24,'FSCaverage','Weighted average of map-model Fourier shell correlation'),]
 
 FILEASSOCIATIONTYPELIST =  [(0,'Unknown','File association type unknown'),
                             (1,'Observed-Free','Observed data and FreeR set') ]
