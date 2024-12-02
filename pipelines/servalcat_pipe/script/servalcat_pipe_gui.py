@@ -34,6 +34,7 @@ from qtgui import CCP4XtalWidgets
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4XtalData
 from pipelines.import_merged.script.dybuttons import *  # for ChoiceButtons()
+from .which import which
 import os
 import gemmi
 
@@ -467,27 +468,30 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
 
     self.createLine( [ 'subtitle', 'MetalCoord External Restraints for Metals'] )
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRestraintsOn,['UNRESTRAINED', 'FIX_XYZ', 'JELLY_ONLY']])
-    self.createLine( [ 'widget', 'metalCoordPipeline.RUN_METALCOORD', 'label', 'Apply MetalCoord restraints for metal sites:' ] , toggle = ['metalCoordPipeline.RUN_METALCOORD', 'open', [ False ] ])
-    self.createLine( [ 'widget', 'metalCoordPipeline.RUN_METALCOORD', 'label', 'Apply MetalCoord restraints for metal sites:' , 'stretch' , 'widget', 'metalCoordPipeline.GENERATE_OR_USE'] , toggle = ['metalCoordPipeline.RUN_METALCOORD', 'open', [ True ] ])
-    self.createLine( [ 'widget', 'metalCoordPipeline.METALCOORD_RESTRAINTS'] , toggleFunction=[self.ToggleMetalCoordUse, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE']])
-    if self.widget.subFrame is not None:
-        self.currentLayout = self.widget.subFrame.layout()
+    if which("metalCoord"):
+      if self.widget.subFrame is not None:
+         self.currentLayout = self.widget.subFrame.layout()
+      else:
+         self.currentLayout = self.widget.currentFolderLayout
+      self.ligands_checkboxes = ChoiceButtons()
+      self.currentLayout.addWidget(self.ligands_checkboxes)
+      self.updateMonomersWithMetalsWidget()
+      self.createLine( [ 'widget', 'metalCoordPipeline.RUN_METALCOORD', 'label', 'Apply MetalCoord restraints for metal sites:' ] , toggle = ['metalCoordPipeline.RUN_METALCOORD', 'open', [ False ] ])
+      self.createLine( [ 'widget', 'metalCoordPipeline.RUN_METALCOORD', 'label', 'Apply MetalCoord restraints for metal sites:' , 'stretch' , 'widget', 'metalCoordPipeline.GENERATE_OR_USE'] , toggle = ['metalCoordPipeline.RUN_METALCOORD', 'open', [ True ] ])
+      self.createLine( [ 'widget', 'metalCoordPipeline.METALCOORD_RESTRAINTS'] , toggleFunction=[self.ToggleMetalCoordUse, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE']])
+      self.ligands_checkboxes.clickedSignal.connect(self.updateMonomersWithMetalsSelection)
+      self.createLine( [ 'widget', 'metalCoordPipeline.TOGGLE_ADVANCED', 'label', 'Show advanced options' ], toggleFunction=[self.ToggleMetalCoordGenerate, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE']] )
+      self.createLine( [ 'label', 'Link records to metal sites in the atomic model:', 'stretch', 'widget', 'metalCoordPipeline.LINKS' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
+      #self.createLine( [ 'widget', 'metalCoordWrapper.KEEP_LINKS', 'label', 'Do not delete the link records to metal sites which are already present in the atomic model' ], toggle = ['metalCoordPipeline.UPDATE_LINKS', 'open', [ True ] ] )
+      self.createLine( [ 'label', 'Distance threshold: (range 0-1)<br/><i>A threshold d to select atoms is (r<sub>1</sub> + r<sub>2</sub>)*(1 + d) where r<sub>1</sub> and r<sub>2</sub> are covalent radii.</i>', 'stretch', 'widget', 'metalCoordWrapper.DISTANCE_THRESHOLD' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
+      self.createLine( [ 'label', 'Maximum coordination number:', 'stretch', 'widget', 'metalCoordWrapper.MAXIMUM_COORDINATION_NUMBER' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
+      self.createLine( [ 'label', 'Procrustes distance threshold: (range 0-1)', 'stretch', 'widget', 'metalCoordWrapper.PROCRUSTES_DISTANCE_THRESHOLD' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
+      self.createLine( [ 'label', 'Minimum sample size for statistics:', 'stretch', 'widget', 'metalCoordWrapper.MINIMUM_SAMPLE_SIZE' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
+      self.createLine( [ 'widget', 'metalCoordWrapper.USE_PDB', 'label', 'Use COD structures based on the input PDB/mmCIF coordinates' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
+      self.createLine( [ 'widget', 'metalCoordWrapper.IDEAL_ANGLES', 'label', 'Provide only ideal bond angles' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
+      self.createLine( [ 'widget', 'metalCoordWrapper.SIMPLE', 'label', 'Simple distance based filtering' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
     else:
-        self.currentLayout = self.widget.currentFolderLayout
-    self.ligands_checkboxes = ChoiceButtons()
-    self.currentLayout.addWidget(self.ligands_checkboxes)
-    self.updateMonomersWithMetalsWidget()
-    self.ligands_checkboxes.clickedSignal.connect(self.updateMonomersWithMetalsSelection)
-    self.createLine( [ 'widget', 'metalCoordPipeline.TOGGLE_ADVANCED', 'label', 'Show advanced options' ], toggleFunction=[self.ToggleMetalCoordGenerate, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE']] )
-    self.createLine( [ 'label', 'Link records to metal sites in the atomic model:', 'stretch', 'widget', 'metalCoordPipeline.LINKS' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
-    #self.createLine( [ 'widget', 'metalCoordWrapper.KEEP_LINKS', 'label', 'Do not delete the link records to metal sites which are already present in the atomic model' ], toggle = ['metalCoordPipeline.UPDATE_LINKS', 'open', [ True ] ] )
-    self.createLine( [ 'label', 'Distance threshold: (range 0-1)<br/><i>A threshold d to select atoms is (r<sub>1</sub> + r<sub>2</sub>)*(1 + d) where r<sub>1</sub> and r<sub>2</sub> are covalent radii.</i>', 'stretch', 'widget', 'metalCoordWrapper.DISTANCE_THRESHOLD' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
-    self.createLine( [ 'label', 'Maximum coordination number:', 'stretch', 'widget', 'metalCoordWrapper.MAXIMUM_COORDINATION_NUMBER' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
-    self.createLine( [ 'label', 'Procrustes distance threshold: (range 0-1)', 'stretch', 'widget', 'metalCoordWrapper.PROCRUSTES_DISTANCE_THRESHOLD' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
-    self.createLine( [ 'label', 'Minimum sample size for statistics:', 'stretch', 'widget', 'metalCoordWrapper.MINIMUM_SAMPLE_SIZE' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
-    self.createLine( [ 'widget', 'metalCoordWrapper.USE_PDB', 'label', 'Use COD structures based on the input PDB/mmCIF coordinates' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
-    self.createLine( [ 'widget', 'metalCoordWrapper.IDEAL_ANGLES', 'label', 'Provide only ideal bond angles' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
-    self.createLine( [ 'widget', 'metalCoordWrapper.SIMPLE', 'label', 'Simple distance based filtering' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
+      self.createLine( [ 'label', '<i>MetalCoord is not installed.</i>' ] )
     self.closeSubFrame()
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRestraintsOff,['UNRESTRAINED', 'FIX_XYZ', 'JELLY_ONLY']])
     self.createLine( [ 'label', '<i>Not available.</i>' ] )

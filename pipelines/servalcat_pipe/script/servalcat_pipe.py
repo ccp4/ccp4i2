@@ -26,6 +26,7 @@ from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core import CCP4Utils
 from . import monitor_refinement_differences
+from .which import which
 from wrappers.servalcat.script.json2xml import json2xml
 import os, sys, shutil, re
 import base64
@@ -156,6 +157,9 @@ class servalcat_pipe(CPluginScript):
     def executeMetalCoords(self):
         if self.container.metalCoordPipeline.RUN_METALCOORD and \
                 self.container.metalCoordPipeline.GENERATE_OR_USE == "GENERATE":
+            if not which("metalCoord"):
+                print("WARNING: MetalCoord will not be executed because it is not insttalled.")
+                return
             self.metalCoordOutputJsonPaths = []
             ligand_codes_selected = self.container.metalCoordPipeline.LIGAND_CODES_SELECTED
             for ligand_code in ligand_codes_selected:
