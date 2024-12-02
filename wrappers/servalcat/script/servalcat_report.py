@@ -649,7 +649,7 @@ class servalcat_report(Report):
             plotD.append('xlabel', 'Resolution (&Aring;)')
             # plotD.append('ylabel', '')
             plotD.append('xscale', 'oneoversqrt')
-            plotN.append('legendposition', x=1, y=1)
+            plotD.append('legendposition', x=1, y=1)
             plotLine = plotD.append('plotline', xcol=1, ycol=2)
             plotLine.append('colour', 'blue')
             plotLine.append('symbolsize', '0')
