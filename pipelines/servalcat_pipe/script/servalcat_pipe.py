@@ -418,59 +418,7 @@ class servalcat_pipe(CPluginScript):
             if self.validate.container.controlParameters.DO_MOLPROBITY:
                 if len(validateXML.xpath("//Validate_geometry_CCP4i2/Molprobity"))>0:
                     xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Molprobity")[0])
-                self.saveXml()
-                # try:
-                if False:
-                    from . import prosmart_refmac_verdict
-                    programxml = self.makeFileName('PROGRAMXML')                  #"/Users/stuart/CCP4I2_PROJECTS/5_7_2021/CCP4_JOBS/job_19/program.xml"
-                    pdbfile = self.container.outputData.XYZOUT.fullPath.__str__() #"/Users/stuart/CCP4I2_PROJECTS/5_7_2021/CCP4_JOBS/job_19/19_5_7_2021_xyzout_prosmart_refmac.pdb"
-                    if hasattr(self,"refmacPostCootPlugin"):
-                        refmaclog = self.refmacPostCootPlugin.makeFileName('LOG') #"/Users/stuart/CCP4I2_PROJECTS/5_7_2021/CCP4_JOBS/job_19/job_1/log.txt"
-                    else:
-                        refmaclog = self.firstRefmac.makeFileName('LOG')
-
-                    verdict_result = prosmart_refmac_verdict.getJSCOFERefmac5Verdict(programxml=programxml,pdbfile=pdbfile,refmaclog=refmaclog)
-                    verdict_score = verdict_result["score"]
-                    verdict_message  = verdict_result["message"]
-                    bottomline = verdict_result["bottomLine"]
-                    meanRfree = verdict_result["meanRfree"]
-                    medianClash = verdict_result["medianClash"]
-                    ramaOutliers = verdict_result["ramaOutliers"]
-                    suggestedParameters = verdict_result["suggestedParameters"]
-
-                    suggestedParameters = self.mapVerdictSuggestionsToi2Params(suggestedParameters)
-
-                    xml_verdict = etree.SubElement(self.xmlroot,"Verdict")
-                    xml_verdict_score = etree.SubElement(xml_verdict,"verdict_score")
-                    xml_verdict_score.text = str(verdict_score)
-                    xml_verdict_message = etree.SubElement(xml_verdict,"verdict_message")
-                    xml_verdict_message.text = etree.CDATA(verdict_message)
-                    xml_bottomline = etree.SubElement(xml_verdict,"bottomline")
-                    xml_bottomline.text = etree.CDATA(bottomline)
-                    xml_meanRfree = etree.SubElement(xml_verdict,"meanRfree")
-                    xml_meanRfree.text = str(meanRfree)
-                    xml_medianClash = etree.SubElement(xml_verdict,"medianClash")
-                    xml_medianClash.text = str(medianClash)
-                    xml_ramaOutliers = etree.SubElement(xml_verdict,"ramaOutliers")
-                    xml_ramaOutliers.text = str(ramaOutliers)
-                    xml_suggestedParameters = etree.SubElement(xml_verdict,"suggestedParameters")
-                    for k,v in suggestedParameters.items():
-                        xml_suggestedParameters_k = etree.SubElement(xml_suggestedParameters,k)
-                        xml_suggestedParameters_k.text = str(v)
-
-                    self.saveXml()
-                #except:
-                #    import traceback
-                #    print("Some problem with verdict...."); sys.stdout.flush()
-                #    exc_type, exc_value, exc_tb = sys.exc_info()[:3]
-                #    sys.stderr.write(str(exc_type) + '\n')
-                #    sys.stderr.write(str(exc_value) + '\n')
-                #    traceback.print_tb(exc_tb)
             self.saveXml()
-            #except Exception as err:
-            #import traceback
-            #traceback.print_exc()
-            #print("...Failed validation run after refinement", err)
     
 
     def adp_analysis(self, modelPath, iqrFactor=2.0):
@@ -795,7 +743,7 @@ class servalcat_pipe(CPluginScript):
         return
 
     def makeCootPlugin(self):
-         # FIXME - This is all nonsense - needs to consider best task, etc... *NOT* just firstServalcata?
+        # FIXME - This is all nonsense - needs to consider best task, etc... *NOT* just firstServalcat?
         cootPlugin = self.makePluginObject('coot_script_lines')
         xyzinList = cootPlugin.container.inputData.XYZIN
         xyzinList.append(xyzinList.makeItem())
@@ -977,50 +925,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                   #self.container.outputData.copyData(servalcatJob.container.outputData,[attr])
                 if attr == "XMLOUT":
                     pass
-
-        """print('servalcat_pipe.finishUp 1')
-        from core import CCP4XtalData
-        # Apply database annotations
-        self.container.outputData.XYZOUT.annotation.set('Model from refinement (PDB format)')
-        self.container.outputData.CIFFILE.annotation.set('Model from refinement (mmCIF format)')
-        self.container.outputData.FPHIOUT.annotation = 'Weighted map from refinement'
-        self.container.outputData.FPHIOUT.subType = 1
-        self.container.outputData.DIFFPHIOUT.annotation = 'Weighted difference map from refinement'
-        self.container.outputData.DIFFPHIOUT.subType = 2
-        # self.container.outputData.ABCDOUT.annotation = 'Calculated phases from refinement'
-        # self.container.outputData.ABCDOUT.contentFlag = CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL
-        # self.container.outputData.TLSOUT.annotation = 'TLS parameters from refinement'
-        self.container.outputData.COOTSCRIPTOUT.annotation = 'Coot script written from refinement'
-        self.container.outputData.ANOMFPHIOUT.annotation = 'Weighted anomalous difference map from refinement'
-        self.container.outputData.DIFANOMFPHIOUT.annotation = 'Weighted differences of anomalous difference map'
-
-        print('servalcat_pipe.finishUp 2')
-        if self.container.outputData.DICT.exists():
-           self.container.outputData.DICT.annotation = 'Accumulated ligand geometry dictionary'
-        if self.container.outputData.LIBOUT.exists():
-          annotation = 'Refmac generated geometry'
-          try:
-            print('LIBOUT monomerList',self.container.outputData.LIBOUT.fileContent.monomerList)
-            if len(self.container.outputData.LIBOUT.fileContent.monomerList)>0:
-              annotation = 'Refmac generated geometry for:'
-              for item in self.container.outputData.LIBOUT.fileContent.monomerList:
-                annotation = annotation + ' ' + str(item.three_letter_code)
-              ligxml = etree.SubElement(self.xmlroot,"LIGANDS")
-              for item in self.container.outputData.LIBOUT.fileContent.monomerList:
-                ligNode = etree.SubElement(ligxml,"ligand")
-                ligNode.text = str(item.three_letter_code)
-              self.saveXml()
-          except:
-              print('Error creating LIBOUT annotation')
-              self.container.outputData.LIBOUT.annotation = annotation
-          try:
-              self.mergeDictToProjectLib(fileName=self.container.outputData.LIBOUT.__str__())
-          except:
-              print('Error merging library to Project Dictionary')
-        print('servalcat_pipe.finishUp 3'); sys.stdout.flush()"""
-
         print('servalcat_pipe.finishUp 1')
-        from core import CCP4XtalData
         # Apply database annotations
         self.container.outputData.XYZOUT.annotation.set(servalcatJob.container.outputData.XYZOUT.annotation)
         self.container.outputData.CIFFILE.annotation.set(servalcatJob.container.outputData.CIFFILE.annotation)
@@ -1028,9 +933,14 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
         self.container.outputData.FPHIOUT.subType = servalcatJob.container.outputData.FPHIOUT.subType
         self.container.outputData.DIFFPHIOUT.annotation.set(servalcatJob.container.outputData.DIFFPHIOUT.annotation)
         self.container.outputData.DIFFPHIOUT.subType = servalcatJob.container.outputData.DIFFPHIOUT.subType
+        # from core import CCP4XtalData
         # self.container.outputData.ABCDOUT.annotation = 'Calculated phases from refinement'
         # self.container.outputData.ABCDOUT.contentFlag = CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL
         # self.container.outputData.TLSOUT.annotation = 'TLS parameters from refinement'
+        # if self.container.outputData.DICT.exists():
+        #    self.container.outputData.DICT.annotation = 'Accumulated ligand geometry dictionary'
+        # outputData.LIBOUT ?
+        # outputData.DICT ?
         if servalcatJob.container.outputData.COOTSCRIPTOUT.exists():
             if servalcatJob.container.outputData.COOTSCRIPTOUT.annotation.isSet():
                 self.container.outputData.COOTSCRIPTOUT.annotation.set(servalcatJob.container.outputData.COOTSCRIPTOUT.annotation)
@@ -1046,8 +956,6 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
             self.container.outputData.MAP_FO.subType = servalcatJob.container.outputData.MAP_FO.subType
             self.container.outputData.MAP_FOFC.annotation.set(servalcatJob.container.outputData.MAP_FOFC.annotation)
             self.container.outputData.MAP_FOFC.subType = servalcatJob.container.outputData.MAP_FOFC.subType
-        # outputData.LIBOUT ?
-        # outputData.DICT ?
         print('servalcat_pipe.finishUp 3'); sys.stdout.flush()
 
         cleanUpIntermediate = False
@@ -1074,118 +982,11 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
             self.coord_adp_dev_analysis(
                 str(self.container.inputData.XYZIN.fullPath),
                 str(self.container.outputData.CIFFILE.fullPath))
-        # self.reportStatus(CPluginScript.SUCCEEDED)
-        # return # MM
-
-        # logfiles = []
-        # if hasattr(self,"firstServalcat"):
-        #     logfiles.append(self.firstServalcat.makeFileName('LOG'))
-        # if hasattr(self,"servalcatPostCootPlugin"):
-        #     logfiles.append(self.servalcatPostCootPlugin.makeFileName('LOG'))
-
-        # self.createWarningsXML(logfiles) # MM
         self.saveXml()
 
         print('done servalcat_pipe.finishUp'); sys.stdout.flush()
         self.reportStatus(CPluginScript.SUCCEEDED)
 
-    """def tryVariousRefmacWeightsAround(self, weight):
-        import math
-        print('Generating jobs with weights around ', weight)
-        #make an array to hold the child-jobs
-        refmacJobs = []
-        for factorExponent in range(-3,4):
-            if factorExponent != 0:
-                factor = math.pow(2., factorExponent)
-                refmacJobs.append(self.createServalcatJob(float(factor)*float(weight)))
-                # Set to run asynchronously and set a callback
-        self.submitBunchOfJobs(refmacJobs)
-
-    def submitBunchOfJobs(self, jobs):
-        self.jobsToSubmit = []
-        self.jobsInTrain = {}
-        self.jobsCompleted = []
-        for job in jobs:
-            job.doAsync  = True
-            job.connectSignal(job,'finished',self.handleDone)
-            self.jobsToSubmit.append(job)
-        print('ready to submit from list of length ',len(self.jobsToSubmit))
-
-        for job in self.jobsToSubmit:
-            if len(self.jobsInTrain) < prosmart_refmac.MAXNJOBS:
-                self.submitJob(job)
-
-    def submitJob(self,job):
-        rv = job.process()
-        #The mtzdump instance must be saved to keep it in scope and everything else can be got from that.
-        self.jobsInTrain[str(job.processId)]=job
-        self.jobsToSubmit.remove(job)
-        print('submitted job 0')
-
-    @QtCore.Slot(dict)
-    def handleDone(self, ret):
-        pid =  ret.get('pid',None)
-        status,exitStatus,exitCode = self.postProcessCheck(pid)
-        if  status == CPluginScript.FAILED:
-            self.reportStatus(status)
-            return
-        import sys
-        # callback is passed the jobId (=Non
-        # if not in ccp4i2-db context) and processId that
-        # can serve at identifier for subProcess
-        import sys
-        import time
-        from copy import deepcopy
-
-        #print 'demo_multi_mtzdump.handleDone',ret
-
-        rtask = self.jobsInTrain[str(pid)]
-
-        # self.addCycleXML(rtask) # MM
-        # Save the xml on every cycle
-        aFile=open( self.pipelinexmlfile,'w')
-        CCP4Utils.writeXML(aFile, etree.tostring(self.xmlroot,pretty_print=True) ) # CCP4Utils.writeXML(aFile, ET.tostring(self.xmlroot) )
-        aFile.close()
-
-        #decrement count of running jobs
-        self.jobsCompleted.append(rtask)
-        del self.jobsInTrain[str(pid)]
-
-        if len(self.jobsToSubmit) != 0:
-            job = self.jobsToSubmit[0]
-            self.submitJob(job)
-
-        elif len(self.jobsInTrain)==0:
-            best_r_free = 9999.
-            self.best_rtask = 0
-            for rtask in self.jobsCompleted:
-                if float(rtask.container.outputData.PERFORMANCEINDICATOR.RFree) < best_r_free:
-                    best_r_free = float(rtask.container.outputData.PERFORMANCEINDICATOR.RFree)
-                    self.best_rtask = rtask
-            self.finishUp(self.best_rtask)
-        return"""
-
-    """def addCycleXML(self, rtask, name="RefmacWeight"):
-        xmlcyc = ET.SubElement(self.xmlroot,name)
-        cycWeightNode = ET.SubElement(xmlcyc,"weight")
-        _rxml = CCP4Utils.openFileToEtree(rtask.makeFileName('PROGRAMXML'))
-        rxml=ET.Element('ccp4i2root')
-        rxml.append(_rxml)
-        try: cycWeightNode.text = rxml.findall(".//Cycle/WeightUsed")[-1].text
-        except: pass
-        rstats = rxml.findall(".//REFMAC")
-        xmlcyc.append(rstats[0])"""
-
-    """def addCycleXML(self, rtask, name="RefmacWeight"):
-        # TO DO MM AVOID THIS!
-        xmlcyc = etree.SubElement(self.xmlroot,name)
-        cycWeightNode = etree.SubElement(xmlcyc,"weight")
-        return
-        rxml = CCP4Utils.openFileToEtree(rtask.makeFileName('PROGRAMXML'))
-        try: cycWeightNode.text = rxml.xpath("//Cycle/WeightUsed")[-1].text
-        except: pass
-        rstats = rxml.xpath("//REFMAC") # rstats = rxml.findall(".//REFMAC")
-        xmlcyc.append (rstats[0])"""
 
     def handleTimeout(self):
         import sys;sys.stdout.flush()
@@ -1241,15 +1042,15 @@ def exportJobFile(jobId=None,mode=None,fileInfo={}):
         #print 'refmac.exportJobFile',mode
         childJobs = theDb.getChildJobs(jobId=jobId,details=True)
         #print 'exportJobFile childJobs',childJobs
-        if childJobs[-1][2] == 'refmac':
+        if childJobs[-1][2] == 'servalcat':
           jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=childJobs[-1][1],create=False)
-          if os.path.exists(os.path.join(jobDir,'hklout.mtz')):
-             return  os.path.join(jobDir,'hklout.mtz')
+          if os.path.exists(os.path.join(jobDir,'refined.mtz')):
+             return  os.path.join(jobDir,'refined.mtz')
         elif childJobs[-1][2] == 'validate_protein':
-          if childJobs[-2][2] == 'refmac':
+          if childJobs[-2][2] == 'servalcat':
              jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=childJobs[-2][1],create=False)
-             if os.path.exists(os.path.join(jobDir,'hklout.mtz')):
-                return  os.path.join(jobDir,'hklout.mtz')
+             if os.path.exists(os.path.join(jobDir,'refined.mtz')):
+                return  os.path.join(jobDir,'refined.mtz')
 
     elif mode == '2FoFc_as_map' or mode == 'FoFc_as_map':
         files = theDb.getJobFiles(jobId=jobId, role=FILE_ROLE_OUT, searchFileUses=True, fileTypes=[13])
