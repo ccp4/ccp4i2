@@ -785,8 +785,8 @@
         "coot_script_lines": {
             "0.0.0": {
                 "MAINTAINER": "Nobody",
-                "class": "pipelines.servalcat_pipe.wrappers.coot_script_lines.script.coot_script_lines_reportcoot_script_lines_report",
-                "clsModule": "pipelines.servalcat_pipe.wrappers.coot_script_lines.script.coot_script_lines_report",
+                "class": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines_reportcoot_script_lines_report",
+                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines_report",
                 "clsName": "coot_script_lines_report",
                 "modes": []
             }
@@ -2537,8 +2537,8 @@
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "Nobody",
                 "TASKTITLE": "Execute arbitrary script code within Coot",
-                "class": "pipelines.servalcat_pipe.wrappers.coot_script_lines.script.coot_script_linescoot_script_lines",
-                "clsModule": "pipelines.servalcat_pipe.wrappers.coot_script_lines.script.coot_script_lines",
+                "class": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_linescoot_script_lines",
+                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines",
                 "clsName": "coot_script_lines",
                 "internal": false,
                 "subTasks": []
@@ -3852,8 +3852,8 @@
             "0.0": {
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
-                "MAINTAINER": "martin.maly@mrc-lmb.cam.ac.uk",
-                "TASKTITLE": "servalcat",
+                "MAINTAINER": "Nobody",
+                "TASKTITLE": "Refinement (servalcat)",
                 "class": "wrappers.servalcat.script.servalcatservalcat",
                 "clsModule": "wrappers.servalcat.script.servalcat",
                 "clsName": "servalcat",
@@ -3862,7 +3862,7 @@
             }
         },
         "servalcat_pipe": {
-            "0.0": {
+            "0.1": {
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "martin.maly@mrc-lmb.cam.ac.uk",
@@ -3872,8 +3872,8 @@
                 "clsName": "servalcat_pipe",
                 "internal": false,
                 "subTasks": [
-                    "prosmart",
                     "servalcat",
+                    "prosmart",
                     "metalCoord"
                 ]
             }
@@ -5301,8 +5301,8 @@
                 "MAINTAINER": "Nobody",
                 "RANK": null,
                 "TASKTITLE": "Scripted model building - COOT",
-                "class": "pipelines.servalcat_pipe.wrappers.coot_script_lines.script.coot_script_lines_guiCcoot_script_lines",
-                "clsModule": "pipelines.servalcat_pipe.wrappers.coot_script_lines.script.coot_script_lines_gui",
+                "class": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines_guiCcoot_script_lines",
+                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines_gui",
                 "clsName": "Ccoot_script_lines",
                 "shortTitle": "Scripted COOT",
                 "taskName": "coot_script_lines",
