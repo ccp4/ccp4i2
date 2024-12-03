@@ -42,9 +42,9 @@ class servalcat_pipe(CPluginScript):
     TASKMODULE = 'refinement'
     TASKTITLE = 'Servalcat' # Short title for GUI
     # TASKTITLE = 'Refinement against diffraction data or SPA map & optional restraints from ProSMART & MetalCoord' # Short title for GUI
-    TASKNAME = 'servalcat'  # Task name - same as class name
+    TASKNAME = 'servalcat_pipe'  # Task name - same as class name
     MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
-    TASKVERSION= 0.0
+    TASKVERSION= 0.1
     WHATNEXT = ['servalcat_pipe','buccaneer_build_refine_mr','coot_rebuild','modelcraft']
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 240

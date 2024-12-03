@@ -89,7 +89,7 @@ def i2run(args, outputFilename="XYZOUT.cif"):
     command += ["--projectPath", tmp_name]
     command += ["--dbFile", f"{tmp_name}.sqlite"]
     call(command)
-    directory: Path = Path("tmp", "CCP4_JOBS", "job_1")
+    directory: Path = Path(tmp_name, "CCP4_JOBS", "job_1")
     xml_path = str(directory / "diagnostic.xml")
     out_path = str(directory / outputFilename)
     assert len(list(ET.parse(xml_path).iter("errorReport"))) == 0

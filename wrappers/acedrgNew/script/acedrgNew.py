@@ -8,8 +8,10 @@ from core import CCP4XtalData
 from lxml import etree
 import math
 from core import CCP4Modules,CCP4Utils
-from . import atomMatching, cifToMolBlock
+from . import atomMatching, cifToMolBlock, mol2svg
 import platform
+from rdkit.Chem.Draw import rdMolDraw2D
+from rdkit import Chem
 
 class acedrgNew(CPluginScript):
     TASKMODULE = 'wrappers'                               # Where this plugin will appear on the gui
@@ -33,27 +35,14 @@ class acedrgNew(CPluginScript):
     def processInputFiles(self):
         from rdkit import Chem
         from rdkit.Chem import AllChem
+        try_mmCIF = False
         self.originalMolFilePath = None
         if self.container.inputData.MOLIN.isSet():
             self.originalMolFilePath = os.path.normpath(self.container.inputData.MOLIN.__str__())
-        if self.container.inputData.MOL2IN.isSet():
+        elif self.container.inputData.MOL2IN.isSet():
             self.originalMolFilePath = os.path.normpath(self.container.inputData.MOL2IN.__str__())
-        if self.container.inputData.MOLORSMILES.__str__() == 'DICT':
-            self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))
-            print(self.originalMolFilePath)
-            #try:
-            if True:
-                molBlock = cifToMolBlock.cifFileToMolBlock(self.container.inputData.DICTIN2.__str__())
-                print("molBlock:")
-                print(molBlock)
-                with open(self.originalMolFilePath,'w') as molinFile:
-                    molinFile.write(molBlock)
-            #except:
-            #    pass
-            #    #self.appendErrorReport(200, exc_info=sys.exc_info())
-            #    #return CPluginScript.FAILED
 
-        if self.container.inputData.MOLORSMILES.__str__() == 'SMILESFILE':
+        elif self.container.inputData.MOLORSMILES.__str__() == 'SMILESFILE':
             self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))
             try:
                 with open(self.container.inputData.SMILESFILEIN.__str__(),'r') as molinFile:
@@ -68,7 +57,7 @@ class acedrgNew(CPluginScript):
                 self.appendErrorReport(200,exc_info=sys.exc_info())
                 return CPluginScript.FAILED
 
-        if self.container.inputData.MOLORSMILES.__str__() == 'SMILES':
+        elif self.container.inputData.MOLORSMILES.__str__() == 'SMILES':
             #Use rdkit to make mol from smiles...this will mean that we are always starting from a mol, and can
             #(hopefully) therefore assume that the atom order in our mol is the same as that in our dict
             self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))
@@ -84,6 +73,39 @@ class acedrgNew(CPluginScript):
                 with open(self.originalMolFilePath,'w') as molinFile:
                     molinFile.write(molBlock)
             except:
+                return CPluginScript.FAILED
+
+        elif self.container.inputData.MOLORSMILES.__str__() == 'PDBMMCIF':
+            import gemmi
+            try:
+                if gemmi.read_structure(self.container.inputData.PDBMMCIFIN.__str__()).input_format == gemmi.CoorFormat.Pdb:
+                    self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))
+                    mol = Chem.rdmolfiles.MolFromPDBFile(self.container.inputData.PDBMMCIFIN.__str__())
+                    molBlock = Chem.MolToMolBlock(mol, includeStereo=True, forceV3000=False)
+                    with open(self.originalMolFilePath,'w') as molinFile:
+                        molinFile.write(molBlock)
+                else:
+                    try_mmCIF = True
+            except:
+                self.appendErrorReport(200, exc_info=sys.exc_info())
+                return CPluginScript.FAILED
+
+        if self.container.inputData.MOLORSMILES.__str__() == 'DICT' or try_mmCIF == True:
+            self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))
+            print(self.originalMolFilePath)
+            try:
+                if self.container.inputData.DICTIN2.isSet():
+                    molBlock = cifToMolBlock.cifFileToMolBlock(self.container.inputData.DICTIN2.__str__())
+                elif self.container.inputData.PDBMMCIFIN.isSet() and try_mmCIF:
+                    molBlock = cifToMolBlock.cifFileToMolBlock(self.container.inputData.PDBMMCIFIN.__str__())
+                else:
+                    pass #  should not happen
+                print("molBlock:")
+                print(molBlock)
+                with open(self.originalMolFilePath,'w') as molinFile:
+                    molinFile.write(molBlock)
+            except:
+                self.appendErrorReport(200, exc_info=sys.exc_info())
                 return CPluginScript.FAILED
         #print 'Original mol file path', self.originalMolFilePath
     
@@ -146,7 +168,14 @@ class acedrgNew(CPluginScript):
         elif self.container.inputData.MOL2IN.isSet():
             self.appendCommandLine('-g')
             self.appendCommandLine(str(self.container.inputData.MOL2IN))
-        if self.container.inputData.DICTIN2.isSet() or self.container.inputData.MOLIN.isSet() or self.container.inputData.MOL2IN.isSet():
+        elif self.container.inputData.PDBMMCIFIN.isSet():
+            self.appendCommandLine('-x')
+            self.appendCommandLine(str(self.container.inputData.PDBMMCIFIN))
+        if self.container.inputData.METAL_STRUCTURE.isSet():
+            self.appendCommandLine('--metalPDB=' + str(self.container.inputData.METAL_STRUCTURE))
+        if self.container.controlParameters.NOPROT:
+            self.appendCommandLine('--noProt')
+        if self.container.inputData.DICTIN2.isSet() or self.container.inputData.MOLIN.isSet() or self.container.inputData.MOL2IN.isSet() or self.container.inputData.PDBMMCIFIN.isSet():
             if self.container.controlParameters.USE_COORD:
                 self.appendCommandLine('-p')
         else:
@@ -155,9 +184,9 @@ class acedrgNew(CPluginScript):
                 tmpSmileFile.write(self.smilesString)
             self.appendCommandLine('-i')
             self.appendCommandLine(tmpSmileFilePath)
-            if self.container.inputData.NRANDOM:
-                self.appendCommandLine('-j')
-                self.appendCommandLine(self.container.inputData.NRANDOM)
+        if self.container.inputData.NRANDOM and not self.container.controlParameters.USE_COORD:
+            self.appendCommandLine('-j')
+            self.appendCommandLine(self.container.inputData.NRANDOM)
         if self.container.inputData.TLC.__str__() or self.smileStrCode:
             self.appendCommandLine('-r')
             if self.smileStrCode != None and re.match("^[a-zA-Z0-9]*$", self.smileStrCode):
@@ -277,10 +306,13 @@ class acedrgNew(CPluginScript):
         # Generate another RDKIT mol directly from the mol or smiles: this one *will* hopefully have proper
         # chirality information
         referenceMol = None
+        referenceMolToDraw = None
         if self.container.inputData.MOL2IN.isSet():
             referenceMol = Chem.MolFromMol2File(self.originalMolFilePath)
+            referenceMolToDraw = Chem.MolFromMol2File(self.originalMolFilePath)
         else:
             referenceMol = Chem.MolFromMolFile(self.originalMolFilePath)
+            referenceMolToDraw = Chem.MolFromMolFile(self.originalMolFilePath)
 
         try:
             Chem.SanitizeMol(referenceMol)
@@ -312,43 +344,16 @@ class acedrgNew(CPluginScript):
         
         # Get 2D picture of structure from the RDKit mol and place in report
         svgNode = etree.SubElement(self.xmlroot,'SVGNode')
-        svgNode.append(svgFromMol(molToWrite))
+        try:
+            svgText = bytes(mol2svg.svgFromMol(referenceMolToDraw),"utf-8")
+            svgMolNode = etree.fromstring(svgText)
+        except Exception as e:
+            print("ERROR: Drawing SVG picture of molecule was not successful.")
+            print(e)
+            svgMolNode = etree.fromstring("<svg></svg>")
+        svgNode.append(svgMolNode)
 
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
             CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot,pretty_print=True))
 
         return CPluginScript.SUCCEEDED
-
-def svgFromMol(mol):
-    try:
-        from rdkit.Chem.Draw import spingCanvas
-        import rdkit.Chem.Draw.MolDrawing
-        from rdkit.Chem.Draw.MolDrawing import DrawingOptions
-        
-        myCanvas = spingCanvas.Canvas(size=(350,350),name='MyCanvas',imageType='svg')
-        myDrawing = rdkit.Chem.Draw.MolDrawing(canvas=myCanvas)
-        for iAtom in range(mol.GetNumAtoms()):
-            atom = mol.GetAtomWithIdx(iAtom)
-            atom.ClearProp('molAtomMapNumber')
-            '''
-            print 'ANr',atom.GetAtomicNum()
-            print 'FC',atom.GetFormalCharge()
-            print 'NRadEl',atom.GetNumRadicalElectrons()
-            print 'Isot',atom.GetIsotope()
-            print 'HasProp',atom.HasProp('molAtomMapNumber')
-            print 'Degree',atom.GetDegree()
-        print 'noCarbSym',myDrawing.drawingOptions.noCarbonSymbols
-        print 'includeAtom',myDrawing.drawingOptions.includeAtomNumbers'''
-        myDrawing.AddMol(mol)
-        svg = myCanvas.canvas.text().replace('svg:','')
-        return etree.fromstring(bytes(svg,encoding="iso-8859-1"))
-    except:
-        from rdkit import Chem
-        try:
-            molBlock = Chem.MolToMolBlock(mol)
-            import MOLSVG
-            mdlMolecule = MOLSVG.MDLMolecule(molBlock=molBlock)
-            return mdlMolecule.svgXML(size=(350,350))
-        except:
-            return etree.fromstring("<svg></svg>")
-

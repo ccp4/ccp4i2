@@ -39,7 +39,7 @@
                 <className>CString</className>
                 <qualifiers>
                     <onlyEnumerators>True</onlyEnumerators>
-                    <enumerators>MOL,MOL2,SMILES,SMILESFILE,DICT</enumerators>
+                    <enumerators>MOL,MOL2,SMILES,SMILESFILE,DICT,PDBMMCIF</enumerators>
                     <default>DICT</default>
                     <guiLabel>Input mol file or CIF file or SMILES string</guiLabel>
                 </qualifiers>
@@ -47,9 +47,9 @@
             <content id='TLC'>
                 <className>CString</className>
                 <qualifiers>
-                    <minLength>3</minLength>
+                    <minLength>1</minLength>
                     <maxLength>5</maxLength>
-                    <default>DRG</default>
+                    <default>LIG</default>
                     <guiLabel>3-5 letter code for new molecule</guiLabel>
                 </qualifiers>
             </content>
@@ -86,14 +86,31 @@
                     <saveToDb>True</saveToDb>
                 </qualifiers>
             </content>
+            <content id='PDBMMCIFIN'>
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <allowUndefined>True</allowUndefined>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
             <content id='NRANDOM'>
                 <className>CInt</className>
                 <qualifiers>
-                    <default>500</default>
+                    <default>20</default>
                     </qualifiers>
                 </content>
             <content id='SMILESIN'>
                 <className>CString</className>
+            </content>
+            <content id='METAL_STRUCTURE'>
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
             </content>
         </container>
         <container id="outputData">
@@ -132,7 +149,14 @@
             <content id='USE_COORD'>
                 <className>CBoolean</className>
                 <qualifiers>
-                    <default>True</default>
+                    <default>False</default>
+                </qualifiers>
+            </content>
+            <content id='NOPROT'>
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>False</default>
+                    <guiLabel>No further protonation/deprotonation will be done by AceDRG</guiLabel>
                 </qualifiers>
             </content>
         </container>

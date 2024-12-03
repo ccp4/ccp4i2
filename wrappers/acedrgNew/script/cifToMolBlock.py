@@ -1,37 +1,10 @@
 import sys
 import tempfile
-
 import gemmi
-
 from rdkit import Chem
 from rdkit.Chem import AllChem
+from .setDativeBonds import set_dative_bonds
 
-# http://www.rdkit.org/new_docs/Cookbook.html#organometallics-with-dative-bonds
-def is_transition_metal(at):
-    n = at.GetAtomicNum()
-    return (n>=22 and n<=29) or (n>=40 and n<=47) or (n>=72 and n<=79)
-
-def set_dative_bonds(mol, fromAtoms=(7,8)):
-    """ convert some bonds to dative
-
-    Replaces some single bonds between metals and atoms with atomic numbers in fomAtoms
-    with dative bonds. The replacement is only done if the atom has "too many" bonds.
-
-    Returns the modified molecule.
-
-    """
-    pt = Chem.GetPeriodicTable()
-    rwmol = Chem.RWMol(mol)
-    rwmol.UpdatePropertyCache(strict=False)
-    metals = [at for at in rwmol.GetAtoms() if is_transition_metal(at)]
-    for metal in metals:
-        for nbr in metal.GetNeighbors():
-            if nbr.GetAtomicNum() in fromAtoms and \
-               nbr.GetExplicitValence()>pt.GetDefaultValence(nbr.GetAtomicNum()) and \
-               rwmol.GetBondBetweenAtoms(nbr.GetIdx(),metal.GetIdx()).GetBondType() == Chem.BondType.SINGLE:
-                rwmol.RemoveBond(nbr.GetIdx(),metal.GetIdx())
-                rwmol.AddBond(nbr.GetIdx(),metal.GetIdx(),Chem.BondType.DATIVE)
-    return rwmol
 
 def cifFileToMolBlock(input_file):
 
@@ -136,7 +109,7 @@ def cifFileToMolBlock(input_file):
             a = gemmi.Atom()
             a.name = atom['_chem_comp_atom.atom_id']
             a.element = gemmi.Element(atom['_chem_comp_atom.type_symbol'])
-            a.charge = int(atom['_chem_comp_atom.charge'])
+            a.charge = int(float(atom['_chem_comp_atom.charge']))
             if '_chem_comp_atom.x' in atom:
                 pos = gemmi.Position(float(atom['_chem_comp_atom.x']),float(atom['_chem_comp_atom.y']),float(atom['_chem_comp_atom.z']))
             elif '_chem_comp_atom.model_Cartn_x' in atom:

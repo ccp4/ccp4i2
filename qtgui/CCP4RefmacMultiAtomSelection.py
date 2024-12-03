@@ -292,12 +292,10 @@ class OccupancySelectionListModel(QAbstractTableModel):
 
     def data(self,index,role=Qt.DisplayRole):
         if role == Qt.DisplayRole or role == Qt.EditRole:
-            #print(self._data)
             return self._data[index.row()][index.column()]
         return None
 
     def setData(self,index,val,role):
-        print("setData")
         if role == Qt.EditRole:
             self._data[index.row()][index.column()] = val
         tl = self.index(0,0)
@@ -544,7 +542,6 @@ class MultiAtomSelection(QWidget):
             self.minusButton.setEnabled(False)
 
     def enableMinusDepOnSelection(self,sel,desel):
-        print(len(self.table.selectionModel().selectedRows()))
         if len(self.table.selectionModel().selectedRows()) == 0:
             self.minusButton.setEnabled(False)
         else:
