@@ -258,13 +258,13 @@ class servalcat_pipe(CPluginScript):
         rv = self.firstServalcat.process()
 
     @QtCore.Slot(str)
-    def handleXmlChanged2(self, xmlFilename):
+    def handleXmlChanged2(self, xmlFilename2):
         self.xmlroot2.clear()
-        servalcatEtree = CCP4Utils.openFileToEtree(xmlFilename) #, useLXML=False)
-        servalcatXML = servalcatEtree.xpath('//SERVALCAT')
-        if len(servalcatXML) == 1:
-            servalcatXML[0].tag = "SERVALCAT_WATERS"
-            self.xmlroot2.append(servalcatXML[0])
+        servalcatEtree2 = CCP4Utils.openFileToEtree(xmlFilename2) #, useLXML=False)
+        servalcatXML2 = servalcatEtree2.xpath('//SERVALCAT')
+        if len(servalcatXML2) == 1:
+            servalcatXML2[0].tag = "SERVALCAT_WATERS"
+            self.xmlroot2.append(servalcatXML2[0])
         self.saveXml2()
 
     @QtCore.Slot(str)
@@ -283,20 +283,22 @@ class servalcat_pipe(CPluginScript):
             # Get content of program.xml_first
             firstFileName = self.pipelinexmlfile + '_first'
             with open(firstFileName, 'r') as aFile:
-                oldXml = etree.fromstring(aFile.read()) # oldXml = ET.fromstring(aFile.read())
+                masterXml = etree.fromstring(aFile.read()) # oldXml = ET.fromstring(aFile.read())
             # Add content of program.xml of the last servalcat subjob
-            oldXml.xpath('//SERVALCAT')[0].append(self.xmlroot2.xpath("//SERVALCAT/SERVALCAT_WATERS")[0])
+            masterXml.xpath('//SERVALCAT')[0].append(self.xmlroot2.xpath("//SERVALCAT/SERVALCAT_WATERS")[0])
+            self.xmlLength2 = len(newXml)
             # Save as program.xml_tmp and then move to program.xml
             tmpFileName = self.pipelinexmlfile + '_tmp'
             with open(tmpFileName, 'w') as aFile:
-                CCP4Utils.writeXML(aFile,etree.tostring(oldXml, pretty_print=True) ) # CCP4Utils.writeXML(aFile,ET.tostring(oldXml) )
+                CCP4Utils.writeXML(aFile,etree.tostring(masterXml, pretty_print=True) ) # CCP4Utils.writeXML(aFile,ET.tostring(oldXml) )
             shutil.move(tmpFileName, self.pipelinexmlfile)
-            self.xmlLength2 = len(newXml)
+            self.xmlroot = masterXml
 
     def saveXml(self):
         # Save the xml if it has grown
         newXml = etree.tostring(self.xmlroot, pretty_print=True) # newXml = ET.tostring(self.xmlroot)
         if len(newXml) > self.xmlLength:
+           # Save as program.xml_tmp and then move to program.xml
            tmpFileName = self.pipelinexmlfile + '_tmp'
            with open(tmpFileName, 'w') as aFile:
                CCP4Utils.writeXML(aFile, newXml)
@@ -931,38 +933,26 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
           self.currentCoordinates = self.cootPlugin.container.outputData.XYZOUT[0]
           self.servalcatPostCootPlugin = self.createServalcatJob(inputCoordinates=self.currentCoordinates, ncyc=int(self.container.controlParameters.NCYCLES_AFTER_ADD_WATERS))
           self.servalcatPostCootPlugin.doAsync = True
-          self.servalcatPostCootPlugin.connectSignal(self.servalcatPostCootPlugin,'finished',functools.partial(self.postCootRefmacFinished,self.servalcatPostCootPlugin))
+          self.servalcatPostCootPlugin.connectSignal(self.servalcatPostCootPlugin,'finished',functools.partial(self.postCootServalcatFinished,self.servalcatPostCootPlugin))
           servalcatPostCootXMLFilename = self.servalcatPostCootPlugin.makeFileName(format='PROGRAMXML')
           self.xmlLength2 = 0
           self.watchFile(servalcatPostCootXMLFilename, handler=self.handleXmlChanged2, minDeltaSize=34, unwatchWhileHandling=True)
-          shutil.copyfile(self.pipelinexmlfile, self.pipelinexmlfile+"_first")
+          shutil.copyfile(self.pipelinexmlfile, self.pipelinexmlfile + "_first")
           rv = self.servalcatPostCootPlugin.process()
           if rv == CPluginScript.FAILED: self.reportStatus(rv)
         except Exception as e:
           self.appendErrorReport(CPluginScript,39,str(e))
 
     @QtCore.Slot('CPluginScript', dict)
-    def postCootRefmacFinished(self, servalcatJob, statusDict={}):
+    def postCootServalcatFinished(self, servalcatJob, statusDict={}):
         self.handleXmlChanged2(servalcatJob.makeFileName(format='PROGRAMXML'))
-
-        import os
         self.fileSystemWatcher = None
         if statusDict['finishStatus'] == CPluginScript.FAILED:
             #This gets done in the firstServalcat.reportStatus() - Liz
             self.reportStatus(CPluginScript.FAILED)
             return
         else:
-            # self.addCycleXML(servalcatJob,"servalcatPostCoot") # MM
-            newXml = etree.tostring(self.xmlroot,pretty_print=True) # newXml = ET.tostring(self.xmlroot)
-            servalcatPostCoot = self.xmlroot.xpath("SERVALCAT_WATERS") # servalcatPostCoot = self.xmlroot.findall("servalcatPostCoot")
-            aFile = open(self.pipelinexmlfile,'r')
-            oldXml = etree.fromstring(aFile.read()) # oldXml = ET.fromstring(aFile.read())
-            aFile.close()
-            oldXml.extend(servalcatPostCoot)
-            aFile = open(self.pipelinexmlfile,'w')
-            CCP4Utils.writeXML(aFile,etree.tostring(oldXml,pretty_print=True)) # CCP4Utils.writeXML(aFile,ET.tostring(oldXml))
-            aFile.close()
-
+            self.handleXmlChanged2(self.servalcatPostCootPlugin.makeFileName(format='PROGRAMXML'))
         self.finishUp(servalcatJob)
 
     def finishUp(self, servalcatJob):
