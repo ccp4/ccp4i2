@@ -262,32 +262,6 @@ class servalcat(CPluginScript):
             self.container.outputData.COOTSCRIPTOUT.annotation.set('Coot script')
             self.container.outputData.COOTSCRIPTOUT.setFullPath(cootScriptI2FilePath)
 
-        if False: # MM
-            with open(self.container.outputData.COOTSCRIPTOUT.fullPath.__str__(),"w") as cootscript:
-                #Write a GUI to regions that Refmac has identified as containing duffers
-                ##badStretches = self.listOfTransgressingSegments(rxml)
-                badStretches = [] # MM
-                if len(badStretches) > 0:
-                    interestingBitsDef = 'interestingBits = ['
-                    for badStretch in badStretches:
-                        interestingBitsDef += ('{"chain":"%s","firstResidue":%s,"lastResidue":%s},'%(badStretch['chain'],badStretch['firstResidue'],badStretch['lastResidue']))
-                    interestingBitsDef += ']\n'
-                    cootscript.write(interestingBitsDef)
-                    cootscript.write('ccp4i2Interface.addInterestingBitsMenu(title="Refmac-identified outliers", interestingBits=interestingBits)\n')
-        #Use Refmacs XMLOUT as the basis for output XML.  If not existent (probably due to failure), then create a new one
-        # from core import CCP4Utils
-        # rxml = None
-        #try:
-        #    rxml = CCP4Utils.openFileToEtree(os.path.normpath(os.path.join(self.getWorkDirectory(),'XMLOUT.xml')))
-        #except:
-        #    rxml = ET.Element('REFMAC')
-        #    self.appendErrorReport(204,self.makeFileName('PROGRAMXML'))
-        #    return CPluginScript.FAILED
-        # MM
-        # rxml = ET.Element('REFMAC')
-        # Copy across the segments of the scraped log file into this new xml root
-        # for childElement in self.xmlroot: rxml.append(childElement) # MM
-
         # Use output JSON from servalcat as the basis for output XML
         # Get stats from JSON, convert to XML, save and load to self.xmlroot
         rxml = None
@@ -368,73 +342,10 @@ class servalcat(CPluginScript):
                 except:
                     pass
 
-        # Perform analysis of output coordinate file composition
-        # TO DO what if PDB does not exist
-        if False: # MM
-            if os.path.isfile(str(self.container.outputData.XYZOUT.fullPath)):
-                self.container.outputData.XYZOUT.fileContent.loadFile(self.container.outputData.XYZOUT.fullPath)
-                modelCompositionNode = ET.SubElement(rxml,'ModelComposition')
-                for chain in self.container.outputData.XYZOUT.fileContent.composition.chains:
-                    chainNode = ET.SubElement(modelCompositionNode,'Chain',id=chain)
-                for monomer in self.container.outputData.XYZOUT.fileContent.composition.monomers:
-                    monomerNode = ET.SubElement(modelCompositionNode,'Monomer',id=monomer)
-
-        #Skim smartie graphs from the log file
-        #smartieNode = ET.SubElement(rxml,'SmartieGraphs')
-        #self.scrapeSmartieGraphs(smartieNode)
-        # martin = ET.SubElement(rxml,'test') # MM
         et = ET.ElementTree(self.xmlroot)
-        
-        #And write out the XML
         et.write(self.makeFileName('PROGRAMXML'))
-
         return CPluginScript.SUCCEEDED
 
-    def listOfTransgressingSegments(self, rxml):
-        badResidueSet = set()
-        badStretches = []
-        
-        outlierNodes = rxml.findall('.//OutliersByCriteria')
-        if len(outlierNodes) == 0: return badStretches
-        for outlierTypeNode in outlierNodes[0]:
-            key = outlierTypeNode.tag
-            for outlier in outlierTypeNode.findall('Outlier'):
-                res1Tuple = outlier.get('chainId1'),outlier.get('resId1')
-                res2Tuple = outlier.get('chainId2'),outlier.get('resId2')
-                badResidueSet.add(res1Tuple)
-                badResidueSet.add(res2Tuple)
-        badResidueTuple = [tuple for tuple in badResidueSet]
-        
-        #Sort on the basis of a string formed by adding the chain and residue elements of the tuple
-        orderedBadResidues = sorted(badResidueTuple, key=lambda residue: residue[0]+residue[1])
-        for orderedBadResidue in orderedBadResidues:
-            if len(badStretches) == 0 or badStretches[-1]['chain'] != orderedBadResidue[0] or int(orderedBadResidue[1])-int(badStretches[-1]['lastResidue']) > 1:
-                badStretch = {"chain":orderedBadResidue[0], "firstResidue":orderedBadResidue[1], "lastResidue":orderedBadResidue[1]}
-                badStretches.append(badStretch)
-            else:
-                badStretch["lastResidue"] = orderedBadResidue[1]
-        return badStretches
-            
-            
-    def scrapeSmartieGraphs(self, smartieNode):
-        import sys, os
-        from core import CCP4Utils
-        smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
-        sys.path.append(smartiePath)
-        import smartie
-        
-        logfile = smartie.parselog(self.makeFileName('LOG'))
-        for smartieTable in logfile.tables():
-            if smartieTable.ngraphs() > 0:
-                tableelement = self.xmlForSmartieTable(smartieTable, smartieNode)
-        
-        return
-    
-    def xmlForSmartieTable(self, table, parent):
-        from pimple import MGQTmatplotlib
-        tableetree = MGQTmatplotlib.CCP4LogToEtree(table.rawtable())
-        parent.append(tableetree)
-        return tableetree
 
     def makeCommandAndScript(self):
         # self.appendCommandLine(['-m', 'servalcat'])
@@ -709,39 +620,9 @@ class servalcat(CPluginScript):
                         for i in range(len(linesToDelete)):
                             lines.pop(i)
                         with open(keywordFilePath, "w") as keywordFile:
-                            keywordFile.writelines(lines)
-            # External restraints from ProSMART
-            if self.container.inputData.PROSMART_PROTEIN_RESTRAINTS.isSet():
-                with open(keywordFilePath, "a+") as keywordFile:
-                    if self.container.controlParameters.PROSMART_PROTEIN_WEIGHT.isSet():
-                        keywordFile.write("\nEXTERNAL WEIGHT SCALE %s"%(str(self.container.controlParameters.PROSMART_PROTEIN_WEIGHT)))
-                    if self.container.controlParameters.PROSMART_PROTEIN_ALPHA.isSet():
-                        keywordFile.write("\nEXTERNAL ALPHA %s"%(str(self.container.controlParameters.PROSMART_PROTEIN_ALPHA)))
-                    if self.container.controlParameters.PROSMART_PROTEIN_DMAX.isSet():
-                        keywordFile.write("\nEXTERNAL DMAX %s"%(str(self.container.controlParameters.PROSMART_PROTEIN_DMAX)))
-                    keywordFile.write("\n@%s"%(str(self.container.inputData.PROSMART_PROTEIN_RESTRAINTS.fullPath)))
-            if self.container.inputData.PROSMART_NUCLEICACID_RESTRAINTS.isSet():
-                with open(keywordFilePath, "a+") as keywordFile:
-                    if self.container.controlParameters.PROSMART_NUCLEICACID_WEIGHT.isSet():
-                        keywordFile.write("\nEXTERNAL WEIGHT SCALE %s"%(str(self.container.controlParameters.PROSMART_NUCLEICACID_WEIGHT)))
-                    if self.container.controlParameters.PROSMART_NUCLEICACID_ALPHA.isSet():
-                        keywordFile.write("\nEXTERNAL ALPHA %s"%(str(self.container.controlParameters.PROSMART_NUCLEICACID_ALPHA)))
-                    if self.container.controlParameters.PROSMART_NUCLEICACID_DMAX.isSet():
-                        keywordFile.write("\nEXTERNAL DMAX %s"%(str(self.container.controlParameters.PROSMART_NUCLEICACID_DMAX)))
-                    keywordFile.write("\n@%s"%(str(self.container.inputData.PROSMART_NUCLEICACID_RESTRAINTS.fullPath)))
-            if self.container.inputData.PROSMART_PROTEIN_RESTRAINTS.isSet() or self.container.inputData.PROSMART_NUCLEICACID_RESTRAINTS.isSet():
-                with open(keywordFilePath, "a+") as keywordFile:
-                    keywordFile.write("\nEND")"""
+                            keywordFile.writelines(lines)"""
         if os.path.isfile(keywordFilePath):
             self.appendCommandLine(["--keyword_file", keywordFilePath])
-
-        ##if self.container.controlParameters.EXTRAREFMACKEYWORDS.isSet():
-        ##   self.appendCommandLine(["--keywords", self.container.controlParameters.EXTRAREFMACKEYWORDS])
-            # for kwLine in str(self.container.controlParameters.EXTRAREFMACKEYWORDS).split('\n'):
-            #     #print 'KwLine','['+str(kwLine)+']'
-            #     self.appendCommandScript(kwLine.rstrip() + '\n')
-        #self.appendCommandScript("END")
-
         if self.container.controlParameters.EXTRA_SERVALCAT_OPTIONS.isSet():
             self.appendCommandLine(str(self.container.controlParameters.EXTRA_SERVALCAT_OPTIONS).split())
 
@@ -752,20 +633,6 @@ class servalcat(CPluginScript):
     @QtCore.Slot(str)
     def handleJsonChanged(self, jsonFilePath):
         self.xmlroot.clear()
-        # refmacEtree = CCP4Utils.openFileToEtree(xmlFilename)
-        # # MN Here is a for example...with lxml could search for //REFMAC xpath to find REFMAC nodes. Now have a challenge since toplevel nodes are REFMAC nodes
-        #if refmacEtree.tag == 'REFMAC':
-        #    refmacXML = [refmacEtree]
-        #else:
-        #    refmacXML = refmacEtree.findall(".//REFMAC")
-        #if len(refmacXML) == 1:
-        #    refmacXML[0].tag="RefmacInProgress"
-        #    self.xmlroot.append(refmacXML[0])
-        #else:
-        #    rxml = ET.Element('SERVALCAT')
-        #    self.appendErrorReport(204, self.makeFileName('PROGRAMXML'))
-        #    return CPluginScript.FAILED
-
         # Use output JSON from servalcat as the basis for output XML
         if os.path.isfile(jsonFilePath):
             with open(jsonFilePath, "r") as jsonFile:
