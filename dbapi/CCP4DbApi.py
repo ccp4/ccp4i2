@@ -173,7 +173,13 @@ KEYTYPELIST =  [ (0,'Unknown','Key type unknown'),
                     (21,'R1Factor','R1 value'),
                     (22,'R1Free','Free R1 value'),
                     (23,'R1','R1 value'),
-                    (24,'FSCaverage','Weighted average of map-model Fourier shell correlation'),]
+                    (24,'FSCaverage','Weighted average of map-model Fourier shell correlation'),
+                    (25,'CCFwork_avg','Weighted average correlation between observed and calculated amplitudes within resolution bins'),
+                    (26,'CCFfree_avg','Free weighted average correlation between observed and calculated amplitudes within resolution bins'),
+                    (27,'CCF_avg','Weighted average correlation between observed and calculated amplitudes within resolution bins'),
+                    (28,'CCIwork_avg','Weighted average correlation between observed and calculated intensities within resolution bins'),
+                    (29,'CCIfree_avg','Free weighted average correlation between observed and calculated intensities within resolution bins'),
+                    (30,'CCI_avg','Weighted average correlation between observed and calculated intensities within resolution bins'),]
 
 FILEASSOCIATIONTYPELIST =  [(0,'Unknown','File association type unknown'),
                             (1,'Observed-Free','Observed data and FreeR set') ]
