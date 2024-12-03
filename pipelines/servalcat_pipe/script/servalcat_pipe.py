@@ -728,7 +728,7 @@ class servalcat_pipe(CPluginScript):
                if self.container.controlParameters.ADD_WATERS: # and best_r_free < self.container.controlParameters.REFPRO_RSR_RWORK_LIMIT :
                    # Coot sujob to add waters
                    print("AAA16")
-                   self.currentCoordinates = self.firstServalcat.container.outputData.XYZOUT
+                   self.currentCoordinates = self.firstServalcat.container.outputData.CIFFILE
                    self.cootPlugin = self.makeCootPlugin()
                    self.cootPlugin.doAsync = self.doAsync
                    self.cootPlugin.connectSignal(self.cootPlugin, 'finished', self.cootFinished)
@@ -743,6 +743,13 @@ class servalcat_pipe(CPluginScript):
         return
 
     def makeCootPlugin(self):
+         # FIXME - This is all nonsense - needs to consider best task, etc... *NOT* just firstRefmaca?
+        cootPlugin = self.makePluginObject('coot_find_waters')
+        cootPlugin.container.inputData.XYZIN.set(self.currentCoordinates)
+        cootPlugin.container.inputData.FPHIIN.set(self.firstServalcat.container.outputData.FPHIOUT)
+        return cootPlugin
+
+    def makeCootPluginOld(self):  # old version of makeCootPlugin(self):
         # FIXME - This is all nonsense - needs to consider best task, etc... *NOT* just firstServalcat?
         cootPlugin = self.makePluginObject('coot_script_lines')
         xyzinList = cootPlugin.container.inputData.XYZIN
@@ -851,17 +858,14 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
     def cootFinished(self, statusDict={}):
         import functools
         # Check coot status and start servalcat
-        if len(self.cootPlugin.container.outputData.XYZOUT) == 0:
-            self.appendErrorReport(205,'Coot failed to produce an output file')
-            self.reportStatus(CPluginScript.FAILED)
-        self.checkFinishStatus(statusDict=statusDict,failedErrCode=204, outputFile= self.cootPlugin.container.outputData.XYZOUT[0],noFileErrCode=205)
+        self.checkFinishStatus(statusDict=statusDict, failedErrCode=204, outputFile=self.cootPlugin.container.outputData.XYZOUT, noFileErrCode=205)
         try:
           if self.container.controlParameters.ADD_WATERS:
             aFile = open(self.pipelinexmlfile,'r')
             oldXml = etree.fromstring(aFile.read()) # oldXml = ET.fromstring(aFile.read())
             aFile.close()
             nwaters = "unknown"
-            cootLogTxt = os.path.join(os.path.dirname(self.cootPlugin.container.outputData.XYZOUT[0].__str__()), "log.txt")
+            cootLogTxt = os.path.join(os.path.dirname(self.cootPlugin.container.outputData.XYZOUT.__str__()), "log.txt")
             with open(cootLogTxt, 'r') as f:
                for l in f:
                    if l.startswith("INFO::") and "found" in l and "water fitting" in l:
@@ -877,8 +881,8 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
             CCP4Utils.writeXML(aFile,etree.tostring(oldXml,pretty_print=True)) # CCP4Utils.writeXML(aFile,ET.tostring(oldXml))
             aFile.close()
             shutil.move(self.pipelinexmlfile+'_tmpcoot', self.pipelinexmlfile)
-          self.cootPlugin.container.outputData.XYZOUT[0].subType = 1
-          self.currentCoordinates = self.cootPlugin.container.outputData.XYZOUT[0]
+          self.cootPlugin.container.outputData.XYZOUT.subType = 1
+          self.currentCoordinates = self.cootPlugin.container.outputData.XYZOUT
           self.servalcatPostCootPlugin = self.createServalcatJob(inputCoordinates=self.currentCoordinates, ncyc=int(self.container.controlParameters.NCYCLES_AFTER_ADD_WATERS))
           self.servalcatPostCootPlugin.doAsync = True
           self.servalcatPostCootPlugin.connectSignal(self.servalcatPostCootPlugin,'finished',functools.partial(self.postCootServalcatFinished,self.servalcatPostCootPlugin))
