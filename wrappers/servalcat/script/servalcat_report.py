@@ -69,26 +69,26 @@ class servalcat_report(Report):
         progressGraph.addData(title="-LL", select=".//cycle/data/summary/minusLL") # ycol=2
         spa_refinement = False
         if len(xmlnode.findall('.//cycle[last()]/data/summary/FSCaverage')) > 0:
-            progressGraph.addData(title="FSCaverage", select=".//cycle/data/summary/FSCaverage", expr="x if float(x)>=0.0 else ''")  # ycol=3
+            progressGraph.addData(title="⟨FSCmodel⟩", select=".//cycle/data/summary/FSCaverage", expr="x if float(x)>=0.0 else ''")  # ycol=3
             spa_refinement = True
         elif len(xmlnode.findall('.//cycle[last()]/data/summary/Rwork')) > 0:
             progressGraph.addData(title="Rwork", select=".//cycle/data/summary/Rwork", expr="x if float(x)>=0.0 else ''")  # ycol=3
-            progressGraph.addData(title="CCFwork_avg", select=".//cycle/data/summary/CCFworkavg", expr="x if float(x)>=-1.0 else ''")  # ycol=4
+            progressGraph.addData(title="⟨CCFwork⟩", select=".//cycle/data/summary/CCFworkavg", expr="x if float(x)>=-1.0 else ''")  # ycol=4
             if len(xmlnode.findall('.//cycle[last()]/data/summary/Rfree')) > 0:
                 progressGraph.addData(title="Rfree", select=".//cycle/data/summary/Rfree", expr="x if float(x)>=0.0 else '-'")  # ycol=5
-                progressGraph.addData(title="CCFfree_avg", select=".//cycle/data/summary/CCFfreeavg", expr="x if float(x)>=-1.0 else '-'")  # ycol=6
+                progressGraph.addData(title="⟨CCFfree⟩", select=".//cycle/data/summary/CCFfreeavg", expr="x if float(x)>=-1.0 else '-'")  # ycol=6
         elif len(xmlnode.findall('.//cycle[last()]/data/summary/R1work')) > 0:
             progressGraph.addData(title="R1work", select=".//cycle/data/summary/R1work", expr="x if float(x)>=0.0 else ''")  # ycol=3
-            progressGraph.addData(title="CCIwork_avg", select=".//cycle/data/summary/CCIworkavg", expr="x if float(x)>=-1.0 else ''")  # ycol=4
+            progressGraph.addData(title="⟨CCIwork⟩", select=".//cycle/data/summary/CCIworkavg", expr="x if float(x)>=-1.0 else ''")  # ycol=4
             if len(xmlnode.findall('.//cycle[last()]/data/summary/R1free')) > 0:
                 progressGraph.addData(title="R1free", select=".//cycle/data/summary/R1free", expr="x if float(x)>=0.0 else '-'")  # ycol=5
-                progressGraph.addData(title="CCIfree_avg", select=".//cycle/data/summary/CCIfreeavg", expr="x if float(x)>=-1.0 else '-'") # ycol=6
+                progressGraph.addData(title="⟨CCIfree⟩", select=".//cycle/data/summary/CCIfreeavg", expr="x if float(x)>=-1.0 else '-'") # ycol=6
         elif len(xmlnode.findall('.//cycle[last()]/data/summary/R')) > 0:
             progressGraph.addData(title="R", select=".//cycle/data/summary/R", expr="x if float(x)>=0.0 else ''")  # ycol=3
-            progressGraph.addData(title="CCF_avg", select=".//cycle/data/summary/CCFavg", expr="x if float(x)>=-1.0 else ''")  # ycol=4
+            progressGraph.addData(title="⟨CCF⟩", select=".//cycle/data/summary/CCFavg", expr="x if float(x)>=-1.0 else ''")  # ycol=4
         elif len(xmlnode.findall('.//cycle[last()]/data/summary/R1')) > 0:
             progressGraph.addData(title="R1", select=".//cycle/data/summary/R1", expr="x if float(x)>=0.0 else ''")  # ycol=3
-            progressGraph.addData(title="CCI_avg", select=".//cycle/data/summary/CCIavg", expr="x if float(x)>=-1.0 else ''")  # ycol=4
+            progressGraph.addData(title="⟨CCI⟩", select=".//cycle/data/summary/CCIavg", expr="x if float(x)>=-1.0 else ''")  # ycol=4
         # For lines that don''t have a value for each point, the trick is to replace missing values with '-'.
         # Out of refmac, they are flagged with a value of -999.
         # progressGraph.addData(title="RMSDbondx100", select=".//cycle/geom/summary/rmsd/Bond_distances_non_H", expr="str(100.*float(x)) if float(x)>=0.0 else '-'")
@@ -105,10 +105,10 @@ class servalcat_report(Report):
 
         if spa_refinement:
             plotCC = progressGraph.addPlotObject()
-            plotCC.append('title', 'FSCaverage')
+            plotCC.append('title', '⟨FSCmodel⟩')
             plotCC.append('plottype', 'xy')
             plotCC.append('xlabel', 'Cycle')
-            plotCC.append('ylabel', 'FSCaverage')
+            plotCC.append('ylabel', '⟨FSCmodel⟩')
             plotCC.append('yrange', max=1.0)
             plotCC.append('xintegral', 'true')
             plotCC.append('legendposition', x=0, y=1)
@@ -388,27 +388,27 @@ class servalcat_report(Report):
            mode = ['TLS']*len(TLSIdx) + ['Full Atom']*len(RestrIdx)
         fullTable.addData(title="Cycle", data=cycle_data_sel['cycle'])
         if isnumber(cycle_data_sel['FSCaverage'][-1]):  # SPA refinement
-            fullTable.addData(title="FSCaverage", data=cycle_data_sel['FSCaverage'])
+            fullTable.addData(title="⟨FSCmodel⟩", data=cycle_data_sel['FSCaverage'])
         elif isnumber(cycle_data_sel['R1'][-1]):        # Refinement against intensities without free flags
             fullTable.addData(title="R1", data=cycle_data_sel['R1'])
-            fullTable.addData(title="CCI_avg", data=cycle_data_sel['CCIavg'])
+            fullTable.addData(title="⟨CCI⟩", data=cycle_data_sel['CCIavg'])
         elif isnumber(cycle_data_sel['R'][-1]):         # Refinement against amplitudes without free flags
             fullTable.addData(title="R", data=cycle_data_sel['R'])
-            fullTable.addData(title="CCF_avg", data=cycle_data_sel['CCFavg'])
+            fullTable.addData(title="⟨CCF⟩", data=cycle_data_sel['CCFavg'])
         elif isnumber(cycle_data_sel['R1work'][-1]):    # Refinement against intensities with free flags
             fullTable.addData(title="R1work", data=cycle_data_sel['R1work'])
             if isnumber(cycle_data_sel['R1free'][-1]):
                 fullTable.addData(title="R1free", data=cycle_data_sel['R1free'])
-            fullTable.addData(title="CCIwork_avg", data=cycle_data_sel['CCIworkavg'])
+            fullTable.addData(title="⟨CCIwork⟩", data=cycle_data_sel['CCIworkavg'])
             if isnumber(cycle_data_sel['CCIfreeavg'][-1]):
-                fullTable.addData(title="CCIfree_avg", data=cycle_data_sel['CCIfreeavg'])
+                fullTable.addData(title="⟨CCIfree⟩", data=cycle_data_sel['CCIfreeavg'])
         else:                                # Refinement against amplitudes with free flags
             fullTable.addData(title="Rwork", data=cycle_data_sel['Rwork'])
             if isnumber(cycle_data_sel['Rfree'][-1]):
                 fullTable.addData(title="Rfree", data=cycle_data_sel['Rfree'])
-            fullTable.addData(title="CCFwork_avg", data=cycle_data_sel['CCFworkavg'])
+            fullTable.addData(title="⟨CCFwork⟩", data=cycle_data_sel['CCFworkavg'])
             if isnumber(cycle_data_sel['CCFfreeavg'][-1]):
-                fullTable.addData(title="CCFfree_avg", data=cycle_data_sel['CCFfreeavg'])
+                fullTable.addData(title="⟨CCFfree⟩", data=cycle_data_sel['CCFfreeavg'])
         if isnumber(cycle_data_sel['rmsANGLE'][-1]):
             fullTable.addData(title="RMSD (bond/angle/chiral)", subtitle="Bond", data=cycle_data_sel['rmsBOND'])
             fullTable.addData(subtitle="Angle", data=cycle_data_sel['rmsANGLE'])
@@ -1533,20 +1533,20 @@ class servalcat_report(Report):
         statisticFinal = []
 
         if isnumber(cycle_data["FSCaverage"][-1]):# SPA refinement
-            statisticNames.append('FSCaverage')
+            statisticNames.append('⟨FSCmodel⟩')
             statisticInitial.append(cycle_data['FSCaverage'][0])
         elif isnumber(cycle_data["R1"][-1]):      # refinement against intensities without free flags
             statisticNames.append('R1')
             statisticInitial.append(cycle_data['R1'][0])
             statisticFinal.append(cycle_data['R1'][-1])
-            statisticNames.append('CCI_avg')
+            statisticNames.append('⟨CCI⟩')
             statisticInitial.append(cycle_data['CCIavg'][0])
             statisticFinal.append(cycle_data['CCIavg'][-1])
         elif isnumber(cycle_data["R"][-1]):       # refinement against amplitudes without free flags
             statisticNames.append('R')
             statisticInitial.append(cycle_data['R'][0])
             statisticFinal.append(cycle_data['R'][-1])
-            statisticNames.append('CCF_avg')
+            statisticNames.append('⟨CCF⟩')
             statisticInitial.append(cycle_data['CCFavg'][0])
             statisticFinal.append(cycle_data['CCFavg'][-1])
         elif isnumber(cycle_data["R1work"][-1]):  # refinement against intensities with free flags
@@ -1557,11 +1557,11 @@ class servalcat_report(Report):
                 statisticNames.append('R1free')
                 statisticInitial.append(cycle_data['R1free'][0])
                 statisticFinal.append(cycle_data['R1free'][-1])
-            statisticNames.append('CCIwork_avg')
+            statisticNames.append('⟨CCIwork⟩')
             statisticInitial.append(cycle_data['CCIworkavg'][0])
             statisticFinal.append(cycle_data['CCIworkavg'][-1])
             if isnumber(cycle_data["CCIfreeavg"][-1]):
-                statisticNames.append('CCIfree_avg')
+                statisticNames.append('⟨CCIfree⟩')
                 statisticInitial.append(cycle_data['CCIfreeavg'][0])
                 statisticFinal.append(cycle_data['CCIfreeavg'][-1])
         else:                               # refinement against amplitudes with free flags
@@ -1572,11 +1572,11 @@ class servalcat_report(Report):
                 statisticNames.append('Rfree')
                 statisticInitial.append(cycle_data['Rfree'][0])
                 statisticFinal.append(cycle_data['Rfree'][-1])
-            statisticNames.append('CCFwork_avg')
+            statisticNames.append('⟨CCFwork⟩')
             statisticInitial.append(cycle_data['CCFworkavg'][0])
             statisticFinal.append(cycle_data['CCFworkavg'][-1])
             if isnumber(cycle_data["CCFfreeavg"][-1]):
-                statisticNames.append('CCFfree_avg')
+                statisticNames.append('⟨CCFfree⟩')
                 statisticInitial.append(cycle_data['CCFfreeavg'][0])
                 statisticFinal.append(cycle_data['CCFfreeavg'][-1])
         if isnumber(cycle_data['rmsBOND'][-1]):
