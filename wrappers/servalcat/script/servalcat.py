@@ -223,10 +223,13 @@ class servalcat(CPluginScript):
 
         if str(self.container.controlParameters.DATA_METHOD) == "xtal":
             hkloutFilePath = str(os.path.join(self.getWorkDirectory(), "refined.mtz"))
-            hkloutFile=CCP4XtalData.CMtzDataFile(hkloutFilePath)
-            hkloutFile.loadFile()
-            columnLabelsInFile = [column.columnLabel.__str__() for column in hkloutFile.fileContent.listOfColumns]
-            print('columnLabelsInFile', columnLabelsInFile)
+        else:  # spa
+            hkloutFilePath = str(os.path.join(self.getWorkDirectory(), "refined_diffmap.mtz"))
+        hkloutFile=CCP4XtalData.CMtzDataFile(hkloutFilePath)
+        hkloutFile.loadFile()
+        columnLabelsInFile = [column.columnLabel.__str__() for column in hkloutFile.fileContent.listOfColumns]
+        print('columnLabelsInFile', columnLabelsInFile)
+        if str(self.container.controlParameters.DATA_METHOD) == "xtal":
             if 'FAN' in columnLabelsInFile and 'PHAN' in columnLabelsInFile:
                 self.container.outputData.ANOMFPHIOUT.annotation.set('Anomalous difference map')
                 outputFiles += ['ANOMFPHIOUT']
@@ -241,17 +244,17 @@ class servalcat(CPluginScript):
                 # self.container.outputData.ABCDOUT.contentFlag = CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL
                 outputFiles += ['ABCDOUT']
                 outputColumns += ['HLACOMB,HLBCOMB,HLCCOMB,HLDCOMB']"""
-            # Split out data objects that have been generated. Do this after applying the annotation, and flagging
-            # above, since splitHklout needs to know contentFlags
-            error = self.splitHklout(outputFiles, outputColumns, hkloutFilePath)
-            if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
-                return CPluginScript.FAILED
-        elif str(self.container.controlParameters.DATA_METHOD) == 'spa':
-            hkloutFilePath = str(os.path.join(self.getWorkDirectory(), "refined_diffmap.mtz"))
+        # Split out data objects that have been generated. Do this after applying the annotation, and flagging
+        # above, since splitHklout needs to know contentFlags
+        error = self.splitHklout(outputFiles, outputColumns, hkloutFilePath)
+        if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+            return CPluginScript.FAILED
+
+        if str(self.container.controlParameters.DATA_METHOD) == 'spa':
             self.container.outputData.MAP_FO.annotation.set('Density map (in real space)')
-            self.container.outputData.MAP_FOFC.annotation.set('Difference density map (in real space)')
             outputMapFoPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined_diffmap_normalized_fo.mrc'))
             self.container.outputData.MAP_FO.setFullPath(outputMapFoPath)
+            self.container.outputData.MAP_FOFC.annotation.set('Difference density map (in real space)')
             outputMapFoFcPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined_diffmap_normalized_fofc.mrc'))
             self.container.outputData.MAP_FOFC.setFullPath(outputMapFoFcPath)
             # Write a Coot script with set_contour_level_absolute()
