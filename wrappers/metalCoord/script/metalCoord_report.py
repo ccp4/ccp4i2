@@ -70,15 +70,19 @@ class metalCoord_report(Report):
             n_classes = len(site.findall(".//ligands"))
             noteDiv = siteFold.addDiv(style='font-size:110%;')
             if n_classes == 1:
-                noteDiv.append("Only one symmetry class is reported for this metal site.")
+                noteDiv.append("Only one coordination class is reported for this metal site.")
             elif n_classes > 1:
-                noteDiv.append(f"{n_classes} possible symmetry classes are reported. The class with the lowest procrustes distance is the most favourable, has been used for restraints generation and is listed as the first.")
+                noteDiv.append(f"{n_classes} possible coordination classes are reported. The class with the lowest procrustes distance is the most favourable, has been used for restraints generation and is listed as the first.")
             for j, symmClass in enumerate(site.findall(".//ligands")):
                 indentDiv = siteFold.addDiv(style="margin-left:3em;")
                 if j == 0: initiallyOpen=True
                 else: initiallyOpen=False
+                label = ""
+                if len(symmClass.findall(".//class")) > 0:
+                    if symmClass.findall(".//class")[0].text:
+                        label = symmClass.findall(".//class")[0].text + " coordination class"
                 classFold = indentDiv.addFold(
-                    label=symmClass.findall(".//class")[0].text + " symmetry class",
+                    label=label,
                     initiallyOpen=initiallyOpen)
                 table = classFold.addTable(xmlnode=symmClass)
                 # table.addData(title="Symmetry class", select='class')
