@@ -660,21 +660,6 @@ class servalcat_pipe(CPluginScript):
         if statusDict['finishStatus'] == CPluginScript.UNSATISFACTORY:
             print("AAA1.UNSATISFACTORY")
             import os
-            if os.path.isfile(self.firstServalcat.container.outputData.LIBOUT.__str__()):
-                from wrappers.acedrg.script import acedrg
-                try:
-                    rdkitMol = acedrg.molFromDict(self.firstServalcat.container.outputData.LIBOUT.__str__())
-                    from rdkit import Chem
-                    molRemovedHs = Chem.RemoveHs(rdkitMol)
-                    svgXml = acedrg.svgFromMol(molRemovedHs)
-                    self.xmlroot.append(svgXml)
-                except:
-                    print('Unable to generate svg from DICT')
-                shutil.copyfile(self.firstServalcat.container.outputData.LIBOUT.__str__(), self.container.outputData.LIBOUT.__str__())
-                self.container.outputData.LIBOUT.annotation = 'Refmac-generated library...use with caution'
-            if os.path.isfile(self.firstServalcat.container.outputData.PSOUT.__str__()):
-                shutil.copyfile(self.firstServalcat.container.outputData.PSOUT.__str__(), self.container.outputData.PSOUT.__str__())
-                self.container.outputData.PSOUT.annotation.set('Pictures of ligand prepared by refmac')
             with open(self.makeFileName('PROGRAMXML'), 'w') as programXML:
                 CCP4Utils.writeXML(programXML, etree.tostring(self.xmlroot, pretty_print=True)) # CCP4Utils.writeXML(programXML, ET.tostring(self.xmlroot))
             self.reportStatus(CPluginScript.UNSATISFACTORY)
