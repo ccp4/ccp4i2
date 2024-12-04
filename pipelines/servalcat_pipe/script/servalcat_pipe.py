@@ -926,10 +926,8 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
         # self.container.outputData.ABCDOUT.annotation = 'Calculated phases from refinement'
         # self.container.outputData.ABCDOUT.contentFlag = CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL
         # self.container.outputData.TLSOUT.annotation = 'TLS parameters from refinement'
-        # if self.container.outputData.DICT.exists():
-        #    self.container.outputData.DICT.annotation = 'Accumulated ligand geometry dictionary'
-        # outputData.LIBOUT ?
-        # outputData.DICT ?
+        if self.container.outputData.DICT.exists():
+            self.container.outputData.DICT.annotation = 'Accumulated monomer dictionary'
         if servalcatJob.container.outputData.COOTSCRIPTOUT.exists():
             if servalcatJob.container.outputData.COOTSCRIPTOUT.annotation.isSet():
                 self.container.outputData.COOTSCRIPTOUT.annotation.set(servalcatJob.container.outputData.COOTSCRIPTOUT.annotation)
