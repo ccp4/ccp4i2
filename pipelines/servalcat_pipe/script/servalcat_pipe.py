@@ -1039,7 +1039,7 @@ def exportJobFile(jobId=None,mode=None,fileInfo={}):
              if os.path.exists(os.path.join(jobDir,'refined.mtz')):
                 return  os.path.join(jobDir,'refined.mtz')
 
-    elif mode == '2FoFc_as_map' or mode == 'FoFc_as_map':
+    """elif mode == '2FoFc_as_map' or mode == 'FoFc_as_map':
         files = theDb.getJobFiles(jobId=jobId, role=FILE_ROLE_OUT, searchFileUses=True, fileTypes=[13])
         for fileId in files:
             fileInfo = theDb.getFileInfo(fileId=fileId, mode='jobparamname')
@@ -1048,7 +1048,7 @@ def exportJobFile(jobId=None,mode=None,fileInfo={}):
                 mapPath = os.path.splitext(os.path.abspath(filePath))[0]+".map"
                 if os.path.isfile(mapPath):
                     return mapPath
-                return coefficientsToMap(filePath, mapPath=mapPath, overSample=1.5)
+                return coefficientsToMap(filePath, mapPath=mapPath, overSample=1.5)"""
 
     return None
 
@@ -1057,6 +1057,6 @@ def exportJobFileMenu(jobId=None):
     # Return a list of items to appear on the 'Export' menu - each has three subitems:
     # [ unique identifier - will be mode argument to exportJobFile() , menu item , mime type (see CCP4CustomMimeTypes module) ]
     return [ [ 'complete_mtz' ,'MTZ file' , 'application/CCP4-mtz' ],
-            ['2FoFc_as_map', '2FoFc as map', 'application/CCP4-map'],
-            ['FoFc_as_map', 'FoFc as map', 'application/CCP4-map'],
+#            ['2FoFc_as_map', '2FoFc as map', 'application/CCP4-map'],
+#            ['FoFc_as_map', 'FoFc as map', 'application/CCP4-map'],
             ]
