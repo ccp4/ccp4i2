@@ -34,8 +34,8 @@ from qtgui import CCP4XtalWidgets
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4XtalData
 from pipelines.import_merged.script.dybuttons import *  # for ChoiceButtons()
-from .which import which
 import os
+import shutil
 import gemmi
 
 
@@ -468,7 +468,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
 
     self.createLine( [ 'subtitle', 'MetalCoord External Restraints for Metals'] )
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRestraintsOn,['UNRESTRAINED', 'FIX_XYZ', 'JELLY_ONLY']])
-    if which("metalCoord"):
+    if shutil.which("metalCoord", mode=os.X_OK):
       if self.widget.subFrame is not None:
          self.currentLayout = self.widget.subFrame.layout()
       else:
