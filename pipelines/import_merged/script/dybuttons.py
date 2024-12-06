@@ -107,9 +107,7 @@ class ChoiceButtons(QtWidgets.QWidget):
             layout.addLayout(linelayout)
 
             # additional info if present
-            if not notes_:
-                continue
-            if notes_ is not None or len(notes_) < i+1:
+            if notes_:
                 if notes_[i] != '':
                     s = "    "+str(notes_[i])
                     layout.addWidget(QtWidgets.QLabel(s))
