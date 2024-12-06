@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
     servalcat.py: CCP4 GUI Project
     Copyright (C) 2024 MRC-LBM, University of Southampton
@@ -18,12 +16,12 @@ from __future__ import print_function
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
     """
+
 from PySide2 import QtCore
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core.CCP4ErrorHandling import *
 from core import CCP4Modules, CCP4XtalData, CCP4Utils
-# from lxml import etree
 from xml.etree import ElementTree as ET
 from .json2xml import json2xml
 import pathlib

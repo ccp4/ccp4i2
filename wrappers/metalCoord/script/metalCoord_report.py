@@ -1,6 +1,6 @@
 from report.CCP4ReportParser import *
 from core import CCP4Modules
-import sys, os
+import os
 from xml.etree import ElementTree as ET
 
 

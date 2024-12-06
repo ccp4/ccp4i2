@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
     servalcat_pipe.py: CCP4 GUI Project
     Copyright (C) 2024 University of Southampton, MRC LMB Cambridge
@@ -20,15 +18,13 @@ from __future__ import print_function
     """
 
 from lxml import etree
-#from xml.etree import ElementTree as ET
 from PySide2 import QtCore
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core import CCP4Utils
 from . import monitor_refinement_differences
 from wrappers.servalcat.script.json2xml import json2xml
-import os, sys, shutil, re
-import base64
+import os, sys, shutil
 import gemmi
 import numpy
 import json

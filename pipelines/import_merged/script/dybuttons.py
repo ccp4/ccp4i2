@@ -2,9 +2,8 @@ from __future__ import print_function
 
 # Some classes to help handle dynamic GUI buttons
 
-from PySide2 import QtCore,QtGui, QtWidgets
+from PySide2 import QtCore, QtWidgets
 
-import math
 import functools
 # -------------------------------------------------------------
 class ChoiceButtons(QtWidgets.QWidget):

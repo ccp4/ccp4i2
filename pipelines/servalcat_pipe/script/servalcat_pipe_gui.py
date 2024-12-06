@@ -1,7 +1,3 @@
-from __future__ import print_function
-
-#from lxml import etree
-
 """
     servalcat_pipe_gui.py: CCP4 GUI Project
     Copyright (C) 2024 University of Southampton, MRC LMB Cambridge
@@ -27,13 +23,10 @@ from __future__ import print_function
      Liz Potterton Oct 2012 - Moved mini-MTZ version to refmac_martin
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide2 import QtWidgets,QtCore
 from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
-from qtgui import CCP4XtalWidgets
-from core.CCP4PluginScript import CPluginScript
 from core import CCP4XtalData
-from pipelines.import_merged.script.dybuttons import *  # for ChoiceButtons()
+from pipelines.import_merged.script.dybuttons import ChoiceButtons
 import os
 import shutil
 import gemmi

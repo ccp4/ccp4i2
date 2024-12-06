@@ -1,7 +1,4 @@
-from __future__ import print_function
-
 import sys
-#from lxml import etree
 from xml.etree import ElementTree as ET
 from report.CCP4ReportParser import *
 

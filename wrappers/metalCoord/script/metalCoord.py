@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
     metalCoord.py: CCP4 GUI Project
     Martin Maly, MRC-LMB
