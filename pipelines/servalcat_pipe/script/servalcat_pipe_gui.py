@@ -1,9 +1,5 @@
-from __future__ import print_function
-
-#from lxml import etree
-
 """
-    servalcat_xtal_pipe_gui.py: CCP4 GUI Project
+    servalcat_pipe_gui.py: CCP4 GUI Project
     Copyright (C) 2024 University of Southampton, MRC LMB Cambridge
 
      This library is free software: you can redistribute it and/or
@@ -27,31 +23,34 @@ from __future__ import print_function
      Liz Potterton Oct 2012 - Moved mini-MTZ version to refmac_martin
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide2 import QtWidgets,QtCore
 from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
-from core.CCP4PluginScript import CPluginScript
 from core import CCP4XtalData
+from pipelines.import_merged.script.dybuttons import ChoiceButtons
+import os
+import shutil
+import gemmi
+
 
 def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None):
     import os
     from core import CCP4Modules, CCP4Utils, CCP4File, CCP4Container, CCP4Data, CCP4PluginScript
     jobStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId,'status')
     if jobStatus == 'Unsatisfactory':
-        returnList = ['LidiaAcedrg', 'servalcat_xtal_pipe']
+        returnList = ['LidiaAcedrg', 'servalcat_pipe']
     else:
-        returnList = ['servalcat_xtal_pipe', 'coot_rebuild', 'buccaneer_build_refine_mr', 'moorhen_rebuild', 'modelcraft']
+        returnList = ['servalcat_pipe', 'coot_rebuild', 'moorhen_rebuild', 'modelcraft']
     return returnList
 
-class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
+class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
 
-  TASKTITLE='Refinement - Servalcat (experimental)'
-  SHORTTASKTITLE='servalcat_xtal_pipe'
-  # DESCRIPTION='Refine (Refmacat/Refmac5) with optional restraints (Prosmart, Platonyzer)'
-  TASKNAME = 'servalcat_xtal_pipe'
-  TASKLABEL = 'servalcat_xtal_pipe'
+  TASKTITLE='Refinement - Servalcat'
+  SHORTTASKTITLE='Servalcat'
+  DESCRIPTION='Refinement against diffraction data or cryo-EM SPA map with optional restraints from ProSmart and/or MetalCoord'
+  TASKNAME = 'servalcat_pipe'
+  TASKLABEL = 'servalcat_pipe'
   TASKVERSION = 0.0
-  TASKMODULE = 'test'
+  TASKMODULE = 'refinement'
   MGDISPLAYFILES = ['XYZOUT','FPHIOUT','DIFFPHIOUT']
   AUTOPOPULATEINPUT = True
   RANK=1
@@ -59,8 +58,11 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
   def __init__(self,parent):
     CCP4TaskWidget.CTaskWidget.__init__(self,parent)
 
-  def ToggleWeightAuto(self):
-    return str(self.container.controlParameters.WEIGHT_OPT) == 'MANUAL'
+  #def ToggleWeightAuto(self):
+  #  return str(self.container.controlParameters.WEIGHT_OPT) == 'MANUAL'
+  def ToggleWeightAdjustRmszAvailable(self):
+    return str(self.container.controlParameters.WEIGHT_OPT) == 'AUTO' and \
+      not self.container.controlParameters.WEIGHT_NO_ADJUST
 
   #def ToggleTLS(self):
   #return self.container.inputData.TLSIN.isSet()
@@ -101,6 +103,15 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
   def ToggleRestraintsOff(self):
     return bool(self.container.controlParameters.UNRESTRAINED) or bool(self.container.controlParameters.FIX_XYZ) or bool(self.container.controlParameters.JELLY_ONLY)
 
+  def ToggleMetalCoordGenerate(self):
+    return bool(self.container.metalCoordPipeline.RUN_METALCOORD) and str(self.container.metalCoordPipeline.GENERATE_OR_USE) == "GENERATE"
+
+  def ToggleMetalCoordGenerateAdvanced(self):
+    return bool(self.container.metalCoordPipeline.RUN_METALCOORD) and str(self.container.metalCoordPipeline.GENERATE_OR_USE) == "GENERATE" and bool(self.container.metalCoordPipeline.TOGGLE_ADVANCED)
+
+  def ToggleMetalCoordUse(self):
+    return bool(self.container.metalCoordPipeline.RUN_METALCOORD) and str(self.container.metalCoordPipeline.GENERATE_OR_USE) == "USE"
+
   def ToggleJellyOn(self):
     return (not bool(self.container.controlParameters.UNRESTRAINED)) and (not bool(self.container.controlParameters.FIX_XYZ))
 
@@ -140,16 +151,19 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
   def ToggleTLSModeFile(self):
     return str(self.container.controlParameters.TLSMODE) == 'FILE'
 
-  def ToggleTwinAvailable(self):
-    if not self.container.controlParameters.USEANOMALOUS:
-        return True
-    self.container.controlParameters.USE_TWIN = False
-    return False
+  #def ToggleTwinAvailable(self):
+  #  if not self.container.controlParameters.USEANOMALOUS:
+  #      return True
+  #  self.container.controlParameters.USE_TWIN = False
+  #  return False
 
-  def ToggleTwinNotAvailable(self):
-   if self.container.controlParameters.USEANOMALOUS:
-      return True
-   return False
+  #def ToggleTwinNotAvailable(self):
+  # if self.container.controlParameters.USEANOMALOUS:
+  #    return True
+  # return False
+
+  def ToggleTwinSuboptimal(self):
+    return (not self.container.controlParameters.HKLIN_IS_I_SIGI or self.container.controlParameters.F_SIGF_OR_I_SIGI == "F_SIGF")
 
   def CheckScaleType(self):
     if str(self.container.controlParameters.SCALE_TYPE) == 'BABINET':
@@ -183,8 +197,13 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     return False
 
   def drawContents(self):
-    self.setProgramHelpFile('servalcat_xtal')
+    self.setProgramHelpFile('servalcat')
     indent = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+    if self.container.metalCoordPipeline.LIGAND_CODES_AVAILABLE:
+        self.monomersWithMetals = self.container.metalCoordPipeline.LIGAND_CODES_AVAILABLE
+        self.container.metalCoordPipeline.LIGAND_CODES_SELECTED = self.container.metalCoordPipeline.LIGAND_CODES_AVAILABLE
+    else:
+        self.monomersWithMetals = []
     #-  --------------------          --------------------          --------------------
     folder = self.openFolder(folderFunction='inputData',title='Input Data')
     self.hklinChanged()
@@ -200,15 +219,29 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
        #self.getWidget('XYZIN').showAtomSelection()
        #except:
        #pass
-    self.createLine( [ 'widget', '-browseDb', True, 'HKLIN' ])
+    self.createLine( [ 'label', 'Experimental data type:', 'widget', 'DATA_METHOD' ])
+    self.openSubFrame(toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ] )
+    self.createLine( [ 'widget', '-browseDb', True, 'HKLIN' ] )
     self.container.inputData.HKLIN.dataChanged.connect( self.hklinChanged )
     self.createLine( [ 'label', 'Refinement against <b>amplitudes</b>.'], toggle = ['HKLIN_IS_I_SIGI', 'open', [ False ] ] )
     self.createLine( [ 'label', 'Refinement against', 'widget', 'F_SIGF_OR_I_SIGI'], toggle = ['HKLIN_IS_I_SIGI', 'open', [ True ] ] )
+    #self.createLine( [ 'widget', '-browseDb', True, 'UNMERGED' ])
     #self.createLine( [ 'label','Use anomalous data for ', 'widget', 'USEANOMALOUSFOR', 'stretch', 'label', 'Wavelength', 'widget', 'WAVELENGTH'],toggleFunction=[self.anomalousAvailable,['HKLIN']])
     #if self.isEditable():
     #    if not self.container.controlParameters.WAVELENGTH.isSet(): self.getWavelength()
     self.createLine( [ 'widget', '-browseDb', True, 'FREERFLAG' ] )
+    self.createLine( [ 'widget', 'USE_TWIN', 'label', 'Crystal is twinned' ] )
+    self.createLine( [ 'label', '<i>Warning: Intensities should be given for twin refinement. Using amplitudes is suboptimal.</i>' ], toggleFunction=[self.ToggleTwinSuboptimal, ['HKLIN_IS_I_SIGI', 'F_SIGF_OR_I_SIGI', 'HKLIN']])
     self.closeSubFrame()
+
+    self.openSubFrame(toggle = ['DATA_METHOD', 'open', [ 'spa' ] ] )
+    self.createLine( [ 'label', 'Half map 1', 'widget', '-browseDb', True, 'MAPIN1' ] )
+    self.createLine( [ 'label', 'Half map 2', 'widget', '-browseDb', True, 'MAPIN2' ] )
+    self.createLine( [ 'label', 'Mask', 'widget', '-browseDb', True, 'MAPMASK' ] )
+    self.createLine( [ 'label', 'Resolution:', 'stretch', 'widget', 'RES_MIN' ] )
+    self.createLine( [ 'label', 'Mask radius:', 'stretch', 'widget', 'MASK_RADIUS' ] )
+    self.closeSubFrame()
+
     #self.createLine( [ 'advice',' '] )
     #self.createLine( [ 'subtitle', 'Experimental phase information', 'stretch' ])
     #self.openSubFrame(frame=[True])
@@ -232,9 +265,8 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     #self.createLine( [ 'stretch', 'widget', 'HYDR_ALL'], toggle = ['HYDR_USE', 'open', [ True ] ] , appendLine=use_hydr)
     self.createLine( [ 'widget', 'HYDR_USE', 'label', 'Use riding hydrogens during refinement'], toggle = ['HYDR_USE', 'open', [ False ] ])
     self.createLine( [ 'widget', 'HYDR_USE', 'label', 'Use riding hydrogens during refinement', 'stretch', 'widget', 'HYDR_ALL'], toggle = ['HYDR_USE', 'open', [ True ] ] )
-    add_waters = self.createLine( [ 'widget', 'ADD_WATERS', 'label', 'Add waters' ] )
+    add_waters = self.createLine( [ 'widget', 'ADD_WATERS', 'label', 'Add waters' ], toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ])
     self.createLine( [ 'label', '&nbsp;and then perform further ', 'widget', 'NCYCLES_AFTER_ADD_WATERS', 'label', ' refinement cycles' ], toggle = [ 'ADD_WATERS','open', [ True ] ], appendLine=add_waters  )
-    #use_twin = self.createLine( [ 'widget', 'USE_TWIN', 'label', 'Crystal is twinned' ], toggleFunction=[self.ToggleTwinAvailable,['USEANOMALOUSFOR','HKLIN']])
 
     """self.createLine( [ 'label', '' ], toggleFunction=[self.ToggleTwinNotAvailable,['USEANOMALOUSFOR','HKLIN']])
     msg11 = 'Twin refinement not available for anomalous data.'
@@ -287,17 +319,32 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
 
   def drawParameters( self ):
     indent = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-
     self.createLine( [ 'subtitle', 'Atomic displacement parameters (ADPs)'] )
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOff,['REFINEMENT_MODE']] )
-    self.createLine( [ 'widget', 'B_REFINEMENT_MODE', 'label','ADPs'] )
+    self.createLine( [ 'widget', 'B_REFINEMENT_MODE', 'label', 'ADPs'] )
     self.closeSubFrame()
     #self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOn,['REFINEMENT_MODE']] )
     #self.createLine( [ 'label', '<i>Not available in Rigid Body mode.</i>' ] )
     #self.closeSubFrame()
-    
-    self.createLine( [ 'subtitle', 'Scaling'] )
-    self.openSubFrame(frame=[True])
+
+    self.createLine( [ 'subtitle', 'Single particle analysis (SPA) settings'], toggle = ['DATA_METHOD', 'open', [ 'spa' ] ] )
+    self.openSubFrame(frame=[True], toggle = ['DATA_METHOD', 'open', [ 'spa' ] ] )
+    self.createLine( [ 'label', 'Pixel size (angstroem/pixel):', 'stretch', 'widget', 'PIXEL_SIZE' ] )
+    self.createLine( [ 'label', 'Point group:', 'stretch', 'widget', 'POINTGROUP' ] )
+    self.createLine( [ 'label', 'Helical twist (degrees):', 'stretch', 'widget', 'TWIST' ] )
+    self.createLine( [ 'label', 'Helical rise (angstroem):', 'stretch', 'widget', 'RISE' ] )
+    self.createLine( [ 'label', 'Set centre, <i>i.e.</i> the origin of symmetry. (Default is centre of the box.):', 'stretch', 'widget', 'CENTER_X', 'widget', 'CENTER_Y', 'widget', 'CENTER_Z' ] )
+    self.createLine( [ 'label', 'Axis 1:', 'stretch', 'widget', 'AXIS1_X', 'widget', 'AXIS1_Y', 'widget', 'AXIS1_Z' ] )
+    self.createLine( [ 'label', 'Axis 2:', 'stretch', 'widget', 'AXIS2_X', 'widget', 'AXIS2_Y', 'widget', 'AXIS2_Z' ] )
+    self.createLine( [ 'label', '<i>Hint for axis: I: 5-fold, O: 4-fold, T: 3-fold, D<sub>n</sub>: 2-fold).</i>' ] )
+    self.createLine( [ 'widget', 'IGNORE_SYMMETRY', 'label', 'Ignore symmetry information (MTRIX/_struct_ncs_oper) in the input structure model file' ])
+    blurline = self.createLine( [ 'widget', 'BLURUSE', 'label', 'Map blurring (workaround for oversharpened maps)'] )
+    self.createLine( [ 'label', indent + 'B-value:', 'stretch', 'widget', 'BLUR'], toggle = ['BLURUSE', 'open', [ True ] ] , appendLine=blurline)
+    self.createLine( [ 'label', '<i>Note: This option does not affect output maps.</i>'], toggle = ['BLURUSE', 'open', [ True ] ] )
+    self.closeSubFrame()
+
+    self.createLine( [ 'subtitle', 'Scaling'], toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ] )
+    self.openSubFrame(frame=[True], toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ] )
     self.createLine( [ 'widget', 'NO_SOLVENT', 'label', 'Do not consider bulk solvent contribution' ])
     #self.createLine( [ 'widget', 'SCALE_TYPE', 'label', 'solvent scaling, with', 'widget', 'SOLVENT_MASK_TYPE', 'label', 'solvent mask' ] )
     #self.createLine( [ 'widget', 'SCALE_TYPE', 'label', 'solvent scaling, with', 'widget', 'SOLVENT_MASK_TYPE', 'label', 'solvent mask' ], toggleFunction=[self.CheckScaleType, ['SCALE_TYPE']] )
@@ -348,7 +395,7 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'widget', 'OCCUPANCY_COMPLETE_TABLE' ], toggleFunction=[self.ToggleOccComplete, ['OCCUPANCY_GROUPS','OCCUPANCY_COMPLETE']] )
     self.createLine( [ 'widget', 'OCCUPANCY_INCOMPLETE', 'label', 'Specify overlapping alternative conformer groups (occupancies sum to less than one)' ], toggle = ['OCCUPANCY_GROUPS', 'open', [ True ] ] )
     self.createLine( [ 'widget', 'OCCUPANCY_INCOMPLETE_TABLE' ], toggleFunction=[self.ToggleOccIncomplete, ['OCCUPANCY_GROUPS','OCCUPANCY_INCOMPLETE']] )
-    self.createLine( [ 'widget', 'OCCUPANCY_REFINEMENT', 'label', 'Perform refinement of atomic occupancies' ], toggle = ['OCCUPANCY_GROUPS', 'open', [ True ] ] )
+    self.createLine( [ 'widget', 'OCCUPANCY_REFINEMENT', 'label', 'Perform refinement of atomic occupancies every', 'widget', 'OCCUPANCY_NCYCLE', 'label', 'cycle.'], toggle = ['OCCUPANCY_GROUPS', 'open', [ True ] ] )
     self.closeSubFrame()
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOn,['REFINEMENT_MODE']] )
     self.createLine( [ 'label', '<i>Not available in Rigid Body mode.</i>' ] )
@@ -368,7 +415,12 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'subtitle', 'Weights'] )
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOff,['REFINEMENT_MODE']])
     auto_weight = self.createLine( [ 'label', 'Weight restraints versus experimental data using', 'widget', 'WEIGHT_OPT', 'label', 'weight'] )
-    self.createLine( [ 'label', ':', 'widget', 'WEIGHT' ], toggleFunction=[self.ToggleWeightAuto, ['WEIGHT_OPT']], appendLine=auto_weight )
+    self.createLine( [ 'label', ':', 'widget', 'WEIGHT' ], toggle = ['WEIGHT_OPT', 'open', [ 'MANUAL' ] ], appendLine=auto_weight )
+    self.createLine( [ 'widget', 'WEIGHT_NO_ADJUST', 'label', 'Do not adjust weight during refinement'], toggle = ['WEIGHT_OPT', 'open', [ 'AUTO' ] ] )
+    self.createLine( ['label', 'Bond RMSZ range for weight adjustment:', 'stretch',
+                      'widget', 'WEIGHT_TARGET_BOND_RMSZ_RANGE_MIN',
+                      'widget', 'WEIGHT_TARGET_BOND_RMSZ_RANGE_MAX'],
+                      toggleFunction = [self.ToggleWeightAdjustRmszAvailable, ['WEIGHT_OPT', 'WEIGHT_NO_ADJUST', 'DATA_METHOD']])
     self.closeSubFrame()
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOn,['REFINEMENT_MODE']])
     self.createLine( [ 'label', '<i>Not available in Rigid Body mode.</i>' ] )
@@ -407,6 +459,37 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'label', '<i>Not available.</i>' ] )
     self.closeSubFrame()
 
+    self.createLine( [ 'subtitle', 'MetalCoord External Restraints for Metals'] )
+    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRestraintsOn,['UNRESTRAINED', 'FIX_XYZ', 'JELLY_ONLY']])
+    if shutil.which("metalCoord", mode=os.X_OK):
+      if self.widget.subFrame is not None:
+         self.currentLayout = self.widget.subFrame.layout()
+      else:
+         self.currentLayout = self.widget.currentFolderLayout
+      self.ligands_checkboxes = ChoiceButtons()
+      self.currentLayout.addWidget(self.ligands_checkboxes)
+      self.updateMonomersWithMetalsWidget()
+      self.createLine( [ 'widget', 'metalCoordPipeline.RUN_METALCOORD', 'label', 'Apply MetalCoord restraints for metal sites:' ] , toggle = ['metalCoordPipeline.RUN_METALCOORD', 'open', [ False ] ])
+      self.createLine( [ 'widget', 'metalCoordPipeline.RUN_METALCOORD', 'label', 'Apply MetalCoord restraints for metal sites:' , 'stretch' , 'widget', 'metalCoordPipeline.GENERATE_OR_USE'] , toggle = ['metalCoordPipeline.RUN_METALCOORD', 'open', [ True ] ])
+      self.createLine( [ 'widget', 'metalCoordPipeline.METALCOORD_RESTRAINTS'] , toggleFunction=[self.ToggleMetalCoordUse, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE']])
+      self.ligands_checkboxes.clickedSignal.connect(self.updateMonomersWithMetalsSelection)
+      self.createLine( [ 'widget', 'metalCoordPipeline.TOGGLE_ADVANCED', 'label', 'Show advanced options' ], toggleFunction=[self.ToggleMetalCoordGenerate, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE']] )
+      self.createLine( [ 'label', 'Link records to metal sites in the atomic model:', 'stretch', 'widget', 'metalCoordPipeline.LINKS' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
+      #self.createLine( [ 'widget', 'metalCoordWrapper.KEEP_LINKS', 'label', 'Do not delete the link records to metal sites which are already present in the atomic model' ], toggle = ['metalCoordPipeline.UPDATE_LINKS', 'open', [ True ] ] )
+      self.createLine( [ 'label', 'Distance threshold: (range 0-1)<br/><i>A threshold d to select atoms is (r<sub>1</sub> + r<sub>2</sub>)*(1 + d) where r<sub>1</sub> and r<sub>2</sub> are covalent radii.</i>', 'stretch', 'widget', 'metalCoordWrapper.DISTANCE_THRESHOLD' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
+      self.createLine( [ 'label', 'Maximum coordination number:', 'stretch', 'widget', 'metalCoordWrapper.MAXIMUM_COORDINATION_NUMBER' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
+      self.createLine( [ 'label', 'Procrustes distance threshold: (range 0-1)', 'stretch', 'widget', 'metalCoordWrapper.PROCRUSTES_DISTANCE_THRESHOLD' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
+      self.createLine( [ 'label', 'Minimum sample size for statistics:', 'stretch', 'widget', 'metalCoordWrapper.MINIMUM_SAMPLE_SIZE' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
+      self.createLine( [ 'widget', 'metalCoordWrapper.USE_PDB', 'label', 'Use COD structures based on the input PDB/mmCIF coordinates' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
+      self.createLine( [ 'widget', 'metalCoordWrapper.IDEAL_ANGLES', 'label', 'Provide only ideal bond angles' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
+      self.createLine( [ 'widget', 'metalCoordWrapper.SIMPLE', 'label', 'Simple distance based filtering' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
+    else:
+      self.createLine( [ 'label', '<i>MetalCoord is not installed.</i>' ] )
+    self.closeSubFrame()
+    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRestraintsOff,['UNRESTRAINED', 'FIX_XYZ', 'JELLY_ONLY']])
+    self.createLine( [ 'label', '<i>Not available.</i>' ] )
+    self.closeSubFrame()
+
     self.createLine( [ 'subtitle', 'ProSMART External Restraints for Protein Chains'] )
     if self.isEditable():
        self.container.prosmartProtein.TOGGLE.dataChanged.connect(self.setProsmartProteinMode)
@@ -427,10 +510,10 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'label', '<i>Not available.</i>' ] )
     self.closeSubFrame()
     self.openSubFrame(frame=[True], toggle = ['prosmartProtein.MODE', 'open', [ 'UNSELECTED' ] ] )
-    self.createLine( [ 'widget', 'prosmartProtein.TOGGLE', 'label', 'Generate restraints for protein chains using homologous models' ] )
+    self.createLine( [ 'widget', 'prosmartProtein.TOGGLE', 'label', 'Generate and apply restraints for protein chains using homologous models' ] )
     self.closeSubFrame()
     self.openSubFrame(frame=[True], toggle = ['prosmartProtein.MODE', 'open', [ 'SELECTED' ] ] )
-    self.createLine( [ 'widget', 'prosmartProtein.TOGGLE', 'label', 'Generate restraints for protein chain(s):', 'widget', 'prosmartProtein.CHAINLIST_1', 'label', 'using homologous model(s):' ] )
+    self.createLine( [ 'widget', 'prosmartProtein.TOGGLE', 'label', 'Generate and apply restraints for protein chain(s):', 'widget', 'prosmartProtein.CHAINLIST_1', 'label', 'using homologous model(s):' ] )
     #self.createLine( [ 'widget', '-browseDb', True, 'prosmartProtein.REFERENCE_MODEL' ] )
     self.createLine( [ 'widget', '-browseDb', True, 'prosmartProtein.REFERENCE_MODELS' ] )
     self.createLine( [ 'label', 'Use', 'widget', 'prosmartProtein.ALL_BEST', 'label', 'chain(s) from the reference model(s).', 'stretch', 'label', 'Minimum sequence identity:', 'widget', 'prosmartProtein.SEQID', 'label', '%' ] )
@@ -467,10 +550,10 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'label', '<i>Not available.</i>' ] )
     self.closeSubFrame()
     self.openSubFrame(frame=[True], toggle = ['prosmartNucleicAcid.MODE', 'open', [ 'UNSELECTED' ] ] )
-    self.createLine( [ 'widget', 'prosmartNucleicAcid.TOGGLE', 'label', 'Generate restraints for nucleotide chain(s) using homologous models' ] )
+    self.createLine( [ 'widget', 'prosmartNucleicAcid.TOGGLE', 'label', 'Generate and apply restraints for nucleotide chain(s) using homologous models' ] )
     self.closeSubFrame()
     self.openSubFrame(frame=[True], toggle = ['prosmartNucleicAcid.MODE', 'open', [ 'SELECTED' ] ] )
-    self.createLine( [ 'widget', 'prosmartNucleicAcid.TOGGLE', 'label', 'Generate restraints for nucleotide chain(s):', 'widget', 'prosmartNucleicAcid.CHAINLIST_1', 'label', 'using homologous model(s):' ] )
+    self.createLine( [ 'widget', 'prosmartNucleicAcid.TOGGLE', 'label', 'Generate and apply restraints for nucleotide chain(s):', 'widget', 'prosmartNucleicAcid.CHAINLIST_1', 'label', 'using homologous model(s):' ] )
     self.createLine( [ 'widget', '-browseDb', True, 'prosmartNucleicAcid.REFERENCE_MODELS' ] )
     self.createLine( [ 'label', 'Use', 'widget', 'prosmartNucleicAcid.ALL_BEST', 'label', 'chain(s) from the reference model(s).', 'stretch', 'label', 'Minimum sequence identity:', 'widget', 'prosmartNucleicAcid.SEQID', 'label', '%' ] )
     self.createLine( [ 'label', 'Generate restraints between', 'widget', 'prosmartNucleicAcid.SIDE_MAIN', 'label', 'atom-pairs.', 'stretch', 'label', 'Interatomic distance range:', 'widget', 'prosmartNucleicAcid.RMIN', 'label', 'to', 'widget', 'prosmartNucleicAcid.RMAX', 'label', 'angstroem' ] )
@@ -480,7 +563,7 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'widget', 'prosmartNucleicAcid.TOGGLE_ALT', 'label', 'Allow restraints involving atoms with alt codes.', 'stretch' , 'label', 'Ignore atoms with occupancies lower than', 'widget', 'prosmartNucleicAcid.OCCUPANCY'], toggle = ['prosmartNucleicAcid.ADVANCED', 'open', [ True ] ] )
     self.createLine( [ 'label', 'Additional ProSMART keywords:', 'widget','prosmartNucleicAcid.KEYWORDS' ], toggle = ['prosmartNucleicAcid.ADVANCED', 'open', [ True ] ] )
     self.closeSubFrame()
-    
+
     '''
     self.createLine( [ 'subtitle', 'LibG External Restraints for Nucleic Acids'] )
     if self.isEditable():
@@ -628,6 +711,7 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'label', indent, 'label', 'Initialise H/D fractions', 'widget', 'HD_INIT_HALL' ], toggleFunction=[self.ToggleNeutronModeHD_ALL,['HYDR_USE','HYDR_ALL','HD_FRACTION']])
     self.closeSubFrame()"""
 
+    self.openSubFrame(frame=[True], toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ] )
     custom_res = self.createLine( [ 'widget', 'RES_CUSTOM', 'label', 'Use custom resolution limits' ] )
     self.createLine( [ 'label', indent+indent+'highest (d<sub>min</sub>):', 'widget', 'RES_MIN', 'label', ' lowest (d<sub>max</sub>):', 'widget', 'RES_MAX' ], toggle = ['RES_CUSTOM', 'open', [ True ] ], appendLine=custom_res )
     self.createLine( [ 'label', 'FreeR flag number for test set:' , 'widget', 'FREERFLAG_NUMBER'])
@@ -635,7 +719,15 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     #if self.isEditable():
     #    self.container.controlParameters.SCATTERING_FACTORS.dataChanged.connect( self.ExperimentChanged)
     #self.createLine( [ 'label', indent+indent+'Form factor calculation:', 'widget', 'SCATTERING_ELECTRON' ], toggleFunction=[self.ToggleElectronDiffraction, ['SCATTERING_FACTORS']], appendLine=scattering_factors )
+    self.createLine( [ 'widget', 'USE_WORK_IN_EST', 'label', 'Use work reflections in maximum likelihood parameter estimates' ] )
+    self.closeSubFrame()
+
+    self.createLine( [ 'widget', 'CROSS_VALIDATION', 'label', 'Cross validation with half maps' ], toggle = ['DATA_METHOD', 'open', [ 'spa' ] ] )
+
+    self.createLine( [ 'widget', 'H_OUT', 'label', 'Write hydrogen atoms in the output model' ] )
     self.createLine( [ 'widget', 'H_REFINE', 'label', 'Refine hydrogen positions' ], toggle = ['HYDR_USE', 'open', [ True ] ] )
+    self.createLine( [ 'widget', 'KEEP_CHARGES', 'label', 'Keep charges, i.e. use scattering factor for charged atoms where relevant' ] )
+    #self.createLine( [ 'widget', 'REFMAC_CLEANUP', 'label', 'Clean up intermediate files at end of job' ] )
 
     self.createLine( [ 'subtitle', 'Structure model modification before refinement' ] )
     self.openSubFrame(frame=[True])
@@ -645,17 +737,30 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'label', '&nbsp;with specified RMSD:', 'widget', 'RANDOMIZE' ], toggle = ['RANDOMIZEUSE', 'open', [ True ] ], appendLine=randomize )
     self.closeSubFrame()
 
-    self.createLine( [ 'widget', 'USE_WORK_IN_EST', 'label', 'Use work reflections in ML parameter estimates' ] )
-    self.createLine( [ 'widget', 'KEEP_CHARGES', 'label', 'Keep charges, i.e. use scattering factor for charged atoms where relevant' ] )
-
-    #self.createLine( [ 'widget', 'REFMAC_CLEANUP', 'label', 'Clean up intermediate files at end of job' ] )
-    self.createLine( [ 'widget', 'RUN_MOLPROBITY', 'label', 'Run MolProbity validation' ] )
     self.createLine( [ 'subtitle', 'Additional keywords'] )
     # self.createLine( [ 'label', '<i>Keywords specified below will overwrite options which were set elsewhere.</i>'] )
     # self.createLine( [ 'widget', '-guiMode','multiLine','EXTRAREFMACKEYWORDS' ] )
     self.createLine( [ 'widget', '-browseDb', True, 'SERVALCAT_KEYWORD_FILE' ] )
-    self.createLine( [ 'label', 'Extra servalcat command line options', 'widget', 'EXTRA_SERVALCAT_OPTIONS' ] )
+    self.createLine( [ 'label', 'Extra servalcat command line options:', 'widget', 'EXTRA_SERVALCAT_OPTIONS' ] )
     self.getWidget('EXTRA_SERVALCAT_OPTIONS').setFixedWidth(400)
+
+    self.createLine( [ 'subtitle', 'Validation and Analysis' ] )
+    self.openSubFrame(frame=[True])
+    self.createLine( [ 'widget', 'VALIDATE_IRIS', 'label', 'Generate Iris validation report' ] )
+    # self.createLine( [ 'widget', 'VALIDATE_BAVERAGE', 'label', 'Analyse B-factor distributions' ] )
+    self.createLine( [ 'widget', 'VALIDATE_RAMACHANDRAN', 'label', 'Generate Ramachandran plots' ] )
+    self.createLine( [ 'widget', 'VALIDATE_MOLPROBITY', 'label', 'Run MolProbity to analyse geometry' ] )
+    # self.closeSubFrame()
+
+    # self.createLine( [ 'subtitle', 'Monitoring' ] )
+    # self.openSubFrame(frame=[True])
+    self.createLine( [ 'widget', 'RUN_ADP_ANALYSIS', 'label', 'Run ADP analysis' ] )
+    self.createLine( [ 'label', 'Atoms with a B-value lower than <i>the first quartile - factor * interquartile_range</i><br />or higher than <i>the third quartile + factor * interquartile_range</i> to be reported. Factor:',
+                       'stretch', 'widget', 'ADP_IQR_FACTOR' ], toggle = ['RUN_ADP_ANALYSIS', 'open', [ True ] ] )
+    self.createLine( [ 'widget', 'RUN_COORDADPDEV_ANALYSIS', 'label', 'Run analysis of changes in coordinates and ADPs' ] )
+    self.createLine( [ 'label', 'Minimum deviation of atom coordinates to be reported:', 'stretch', 'widget', 'monitor.MIN_COORDDEV' ], toggle = ['RUN_COORDADPDEV_ANALYSIS', 'open', [ True ] ] )
+    self.createLine( [ 'label', 'Minimum deviation of B-values to be reported:', 'stretch', 'widget', 'monitor.MIN_ADPDEV' ], toggle = ['RUN_COORDADPDEV_ANALYSIS', 'open', [ True ] ] )
+    self.closeSubFrame()
     return
 
 #-  --------------------          --------------------          --------------------
@@ -743,6 +848,7 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
      self.setProsmartProteinMode()
      self.setProsmartNucleicAcidMode()
      self.setLibgMode()
+     self.getMonomersWithMetals()
      return
 
   @QtCore.Slot()
@@ -816,6 +922,40 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
      self.validate()
      return
 
+  def getMonomersWithMetals(self):
+        if self.container.inputData.XYZIN.isSet():
+            if os.path.isfile(str(self.container.inputData.XYZIN.fullPath)):
+                self.monomersWithMetals = set()
+                try:
+                    st = gemmi.read_structure(str(self.container.inputData.XYZIN.fullPath))
+                    for model in st:
+                        lookup = {x.atom: x for x in model.all()}
+                        for cra in lookup.values():
+                            if cra.atom.element.is_metal:
+                                if cra.residue.name not in self.monomersWithMetals:
+                                    self.monomersWithMetals.add(cra.residue.name)
+                    self.monomersWithMetals = list(self.monomersWithMetals)
+                except Exception as e:
+                    print("Getting codes for monomers containing metals was not successful: ", e)
+                    self.monomersWithMetals = []
+                self.container.metalCoordPipeline.LIGAND_CODES_AVAILABLE.set(self.monomersWithMetals)
+                self.updateMonomersWithMetalsWidget()
+
+  def updateMonomersWithMetalsWidget(self):
+        if hasattr(self, "ligands_checkboxes"):
+            if self.monomersWithMetals:
+                self.ligands_checkboxes.setChoices(
+                    "Codes of monomers including metal sites:",
+                    self.monomersWithMetals, tags=[], notes=[], exclusiveChoice=False)
+            else:
+                self.ligands_checkboxes.setChoices(
+                    "<i>No monomers including metal sites were found in the input atomic model.</i>",
+                    self.monomersWithMetals, tags=[], notes=[], exclusiveChoice=False)
+
+  def updateMonomersWithMetalsSelection(self):
+        if hasattr(self, "ligands_checkboxes"):   \
+            self.container.metalCoordPipeline.LIGAND_CODES_SELECTED = self.ligands_checkboxes.selectedList
+
   def getChainList(self):
      chain_list = {}
      if self.container.inputData.XYZIN.isSet():
@@ -872,88 +1012,131 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
         self.container.controlParameters.HKLIN_IS_I_SIGI = True
       else:
         self.container.controlParameters.HKLIN_IS_I_SIGI = False
+        self.container.controlParameters.F_SIGF_OR_I_SIGI = 'F_SIGF'
 
   def isValid(self):
-      invalidElements = super(Cservalcat_xtal_pipe, self).isValid()
+      invalidElements = super(Cservalcat_pipe, self).isValid()
       #Check whether invocation is from runTask
       import traceback
       functionNames = [a[2] for a in traceback.extract_stack()]
 
-      if self.container.inputData.HKLIN.isSet() and  self.container.inputData.XYZIN.isSet() and self.container.inputData.XYZIN.fileContent.mmdbManager and hasattr(self.container.inputData.XYZIN.fileContent.mmdbManager,"GetCell"):
-          cellMismatch = False
-          sgMismatch = False
-          if abs(float(self.container.inputData.HKLIN.fileContent.cell.a) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[1]) > 1e-2: cellMismatch = True
-          if abs(float(self.container.inputData.HKLIN.fileContent.cell.b) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[2]) > 1e-2: cellMismatch = True
-          if abs(float(self.container.inputData.HKLIN.fileContent.cell.c) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[3]) > 1e-2: cellMismatch = True
-          if abs(float(self.container.inputData.HKLIN.fileContent.cell.alpha) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[4]) > 1e-2: cellMismatch = True
-          if abs(float(self.container.inputData.HKLIN.fileContent.cell.beta) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[5]) > 1e-2: cellMismatch = True
-          if abs(float(self.container.inputData.HKLIN.fileContent.cell.gamma) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[6]) > 1e-2: cellMismatch = True
-          if str(self.container.inputData.XYZIN.fileContent.mmdbManager.GetSpaceGroup()) != str(self.container.inputData.HKLIN.fileContent.spaceGroup): sgMismatch = True
-          if cellMismatch or sgMismatch:
-              if functionNames[-2] == 'runTask':
-                  from PySide2.QtWidgets import QMessageBox
-                  msg = QMessageBox()
-                  msg.setIcon(QMessageBox.Question)
-                  msg.setText("Warning")
-                  infoText = "You are trying to execute refinement with possible space group/cell mismatch between reflection and model.<br/>"
-                  infoText += "<br/>Reflections:<br/>"
-                  refCell = self.container.inputData.HKLIN.fileContent.cell
-                  infoText += "%.3f %.3f %.3f<br/>%.3f %.3f %.3f<br/>%s<br/>" % (float(refCell.a),  float(refCell.b), float(refCell.c) ,float(refCell.alpha), float(refCell.beta), float(refCell.gamma),  str(self.container.inputData.HKLIN.fileContent.spaceGroup))
-                  infoText += "<br/>Model:<br/>"
-                  modCell = self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()
-                  infoText += "%.3f %.3f %.3f<br/>%.3f %.3f %.3f<br/>%s<br/>" % (float(modCell[1]), float(modCell[2]), float(modCell[3]),float(modCell[4]), float(modCell[5]), float(modCell[6]), str(self.container.inputData.XYZIN.fileContent.mmdbManager.GetSpaceGroup()))
-                  msg.setInformativeText(infoText)
-                  msg.setStandardButtons(QMessageBox.Ignore | QMessageBox.Cancel)
-                  retval = msg.exec_()
-                  if retval == QMessageBox.Cancel:
-                      invalidElements.append(self.container.inputData.HKLIN)
-                      invalidElements.append(self.container.inputData.XYZIN)
+      if str(self.container.controlParameters.DATA_METHOD) == 'xtal':
+         if self.container.inputData.HKLIN.isSet() and  self.container.inputData.XYZIN.isSet() and self.container.inputData.XYZIN.fileContent.mmdbManager and hasattr(self.container.inputData.XYZIN.fileContent.mmdbManager,"GetCell"):
+            cellMismatch = False
+            sgMismatch = False
+            if abs(float(self.container.inputData.HKLIN.fileContent.cell.a) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[1]) > 1e-2: cellMismatch = True
+            if abs(float(self.container.inputData.HKLIN.fileContent.cell.b) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[2]) > 1e-2: cellMismatch = True
+            if abs(float(self.container.inputData.HKLIN.fileContent.cell.c) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[3]) > 1e-2: cellMismatch = True
+            if abs(float(self.container.inputData.HKLIN.fileContent.cell.alpha) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[4]) > 1e-2: cellMismatch = True
+            if abs(float(self.container.inputData.HKLIN.fileContent.cell.beta) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[5]) > 1e-2: cellMismatch = True
+            if abs(float(self.container.inputData.HKLIN.fileContent.cell.gamma) - self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()[6]) > 1e-2: cellMismatch = True
+            if str(self.container.inputData.XYZIN.fileContent.mmdbManager.GetSpaceGroup()) != str(self.container.inputData.HKLIN.fileContent.spaceGroup): sgMismatch = True
+            if cellMismatch or sgMismatch:
+               if functionNames[-2] == 'runTask':
+                     from PySide2.QtWidgets import QMessageBox
+                     msg = QMessageBox()
+                     msg.setIcon(QMessageBox.Question)
+                     msg.setText("Warning")
+                     infoText = "You are trying to execute refinement with possible space group/cell mismatch between reflection and model.<br/>"
+                     infoText += "<br/>Reflections:<br/>"
+                     refCell = self.container.inputData.HKLIN.fileContent.cell
+                     infoText += "%.3f %.3f %.3f<br/>%.3f %.3f %.3f<br/>%s<br/>" % (float(refCell.a),  float(refCell.b), float(refCell.c) ,float(refCell.alpha), float(refCell.beta), float(refCell.gamma),  str(self.container.inputData.HKLIN.fileContent.spaceGroup))
+                     infoText += "<br/>Model:<br/>"
+                     modCell = self.container.inputData.XYZIN.fileContent.mmdbManager.GetCell()
+                     infoText += "%.3f %.3f %.3f<br/>%.3f %.3f %.3f<br/>%s<br/>" % (float(modCell[1]), float(modCell[2]), float(modCell[3]),float(modCell[4]), float(modCell[5]), float(modCell[6]), str(self.container.inputData.XYZIN.fileContent.mmdbManager.GetSpaceGroup()))
+                     msg.setInformativeText(infoText)
+                     msg.setStandardButtons(QMessageBox.Ignore | QMessageBox.Cancel)
+                     retval = msg.exec_()
+                     if retval == QMessageBox.Cancel:
+                        invalidElements.append(self.container.inputData.HKLIN)
+                        invalidElements.append(self.container.inputData.XYZIN)
 
-      if functionNames[-2] == 'runTask':
-          if not self.container.inputData.FREERFLAG.isSet():
-            from PySide2.QtWidgets import QMessageBox
-            #from PyQt4.QtCore import *
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Question)
+         if functionNames[-2] == 'runTask':
+            if not self.container.inputData.FREERFLAG.isSet():
+               from PySide2.QtWidgets import QMessageBox
+               #from PyQt4.QtCore import *
+               msg = QMessageBox()
+               msg.setIcon(QMessageBox.Question)
 
-            msg.setText("Warning")
-            msg.setInformativeText("You are trying to execute refinement without selecting a Free-R data item")
-            msg.setWindowTitle("Free-R warning")
-            msg.setDetailedText("While refinement without FreeR is reasonable under some circumstances, it is generally discouraged because it can provide a misleading impression of progress in refinement where over-fitting of the data can occur")
-            msg.setStandardButtons(QMessageBox.Ignore | QMessageBox.Cancel)
-            #msg.buttonClicked.connect(msgbtn)
-            retval = msg.exec_()
-            #print "value of pressed message box button:", retval, 0x00100000, 0x00400000
-            if retval == QMessageBox.Cancel:
-                invalidElements.append(self.container.inputData.FREERFLAG)
-  
-      if self.container.controlParameters.REFINEMENT_MODE.isSet():
-         if str(self.container.controlParameters.REFINEMENT_MODE) == 'RIGID':
-            for sel0 in self.container.controlParameters.RIGID_BODY_SELECTION:
-               sel = sel0.get()
-               if not sel['groupId'] or not sel['chainId'] or not sel['firstRes'] or not sel['lastRes']:
-                  invalidElements.append(self.container.controlParameters.RIGID_BODY_SELECTION)
-         else:
-            if self.container.controlParameters.OCCUPANCY_GROUPS:
-               occup_groupids = []
-               for sel0 in self.container.controlParameters.OCCUPANCY_SELECTION:
+               msg.setText("Warning")
+               msg.setInformativeText("You are trying to execute refinement without selecting a Free-R data item")
+               msg.setWindowTitle("Free-R warning")
+               msg.setDetailedText("While refinement without FreeR is reasonable under some circumstances, it is generally discouraged because it can provide a misleading impression of progress in refinement where over-fitting of the data can occur")
+               msg.setStandardButtons(QMessageBox.Ignore | QMessageBox.Cancel)
+               #msg.buttonClicked.connect(msgbtn)
+               retval = msg.exec_()
+               #print "value of pressed message box button:", retval, 0x00100000, 0x00400000
+               if retval == QMessageBox.Cancel:
+                  invalidElements.append(self.container.inputData.FREERFLAG)
+
+         if self.container.controlParameters.REFINEMENT_MODE.isSet():
+            if str(self.container.controlParameters.REFINEMENT_MODE) == 'RIGID':
+               for sel0 in self.container.controlParameters.RIGID_BODY_SELECTION:
                   sel = sel0.get()
-                  if not sel['groupId'] or not sel['chainIds'] or not sel['firstRes'] or not sel['lastRes']:
-                     invalidElements.append(self.container.controlParameters.OCCUPANCY_SELECTION)
-                  if sel['groupId']:
-                     occup_groupids.append(str(sel['groupId']))
-               if self.container.controlParameters.OCCUPANCY_COMPLETE:
-                  for sel0 in self.container.controlParameters.OCCUPANCY_COMPLETE_TABLE:
+                  if not sel['groupId'] or not sel['chainId'] or not sel['firstRes'] or not sel['lastRes']:
+                     invalidElements.append(self.container.controlParameters.RIGID_BODY_SELECTION)
+            else:
+               if self.container.controlParameters.OCCUPANCY_GROUPS:
+                  occup_groupids = []
+                  for sel0 in self.container.controlParameters.OCCUPANCY_SELECTION:
                      sel = sel0.get()
-                     for id in sel['groupIds'].split(' '):
-                        if not id in occup_groupids:
-                           invalidElements.append(self.container.controlParameters.OCCUPANCY_COMPLETE_TABLE)
-               if self.container.controlParameters.OCCUPANCY_INCOMPLETE:
-                  for sel0 in self.container.controlParameters.OCCUPANCY_INCOMPLETE_TABLE:
-                     sel = sel0.get()
-                     for id in sel['groupIds'].split(' '):
-                        if not id in occup_groupids:
-                           invalidElements.append(self.container.controlParameters.OCCUPANCY_INCOMPLETE_TABLE)
+                     if not sel['groupId'] or not sel['chainIds'] or not sel['firstRes'] or not sel['lastRes']:
+                        invalidElements.append(self.container.controlParameters.OCCUPANCY_SELECTION)
+                     if sel['groupId']:
+                        occup_groupids.append(str(sel['groupId']))
+                  if self.container.controlParameters.OCCUPANCY_COMPLETE:
+                     for sel0 in self.container.controlParameters.OCCUPANCY_COMPLETE_TABLE:
+                        sel = sel0.get()
+                        for id in sel['groupIds'].split(' '):
+                           if not id in occup_groupids:
+                              invalidElements.append(self.container.controlParameters.OCCUPANCY_COMPLETE_TABLE)
+                  if self.container.controlParameters.OCCUPANCY_INCOMPLETE:
+                     for sel0 in self.container.controlParameters.OCCUPANCY_INCOMPLETE_TABLE:
+                        sel = sel0.get()
+                        for id in sel['groupIds'].split(' '):
+                           if not id in occup_groupids:
+                              invalidElements.append(self.container.controlParameters.OCCUPANCY_INCOMPLETE_TABLE)
 
+      elif str(self.container.controlParameters.DATA_METHOD) == 'spa':
+         if not self.container.inputData.MAPIN1.isSet() or not self.container.inputData.MAPIN2.isSet():
+            if functionNames[-2] == 'runTask':
+               from PySide2.QtWidgets import QMessageBox
+               msg = QMessageBox()
+               msg.setIcon(QMessageBox.Critical)
+               msg.setText("Error")
+               msg.setInformativeText("Two half maps are required but were not provided.")
+               msg.setWindowTitle("Half maps missing")
+               # msg.setDetailedText("Two half maps are required but were not provided.")
+               msg.setStandardButtons(QMessageBox.Cancel)
+               retval = msg.exec_()
+               if not self.container.inputData.MAPIN1.isSet():
+                  invalidElements.append(self.container.inputData.MAPIN1)
+               elif not self.container.inputData.MAPIN2.isSet():
+                  invalidElements.append(self.container.inputData.MAPIN2)
+         if not self.container.inputData.MAPMASK.isSet():
+            if functionNames[-2] == 'runTask':
+               from PySide2.QtWidgets import QMessageBox
+               msg = QMessageBox()
+               msg.setIcon(QMessageBox.Critical)
+               msg.setText("Error")
+               msg.setInformativeText("Map mask is required but was not provided.")
+               msg.setWindowTitle("Map mask missing")
+               # msg.setDetailedText("Map mask is required but was not provided.")
+               msg.setStandardButtons(QMessageBox.Cancel)
+               retval = msg.exec_()
+               invalidElements.append(self.container.inputData.MAPMASK)
+         if not self.container.controlParameters.RES_MIN.isSet():
+            if functionNames[-2] == 'runTask':
+               from PySide2.QtWidgets import QMessageBox
+               msg = QMessageBox()
+               msg.setIcon(QMessageBox.Critical)
+               msg.setText("Error")
+               msg.setInformativeText("Resolution is required but was not provided.")
+               msg.setWindowTitle("Resolution missing")
+               # msg.setDetailedText("Resolutionis required but was not provided.")
+               msg.setStandardButtons(QMessageBox.Cancel)
+               retval = msg.exec_()
+               invalidElements.append(self.container.controlParameters.RES_MIN)
 
       return invalidElements
+

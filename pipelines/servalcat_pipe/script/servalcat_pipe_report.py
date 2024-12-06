@@ -1,25 +1,22 @@
-from __future__ import print_function
-
 import sys
-#from lxml import etree
 from xml.etree import ElementTree as ET
 from report.CCP4ReportParser import *
 
-from wrappers.servalcat_xtal.script import servalcat_xtal_report
+from wrappers.servalcat.script import servalcat_report
 from wrappers.validate_protein.script import validate_protein_report
 import base64
 
 
-class servalcat_xtal_pipe_report(Report):
+class servalcat_pipe_report(Report):
     # Specify which gui task and/or pluginscript this applies to
-    TASKNAME = 'servalcat_xtal_pipe'
+    TASKNAME = 'servalcat_pipe'
     TASKTITLE = 'Servalcat - Macromolecular refinement'
     RUNNING = True
     SEPARATEDATA = True
     def __init__(self, *args, **kw): # def __init__(self, xmlnode=None, jobInfo={}, jobStatus=None, **kw):
         #try:
-        super(servalcat_xtal_pipe_report, self).__init__(*args, **kw)
-        #print 'servalcat_xtal_pipe_report',self,self.jobStatus
+        super(servalcat_pipe_report, self).__init__(*args, **kw)
+        #print 'servalcat_pipe_report',self,self.jobStatus
         self.outputXml = self.jobStatus is not None and self.jobStatus.lower().count('running')
         if self.jobStatus is not None and not self.jobStatus.lower().count('running'): self.outputXml = False
         if self.jobStatus is not None and self.jobStatus.lower() == 'nooutput': return
@@ -101,14 +98,14 @@ class servalcat_xtal_pipe_report(Report):
         except:
             pass
         if servalcatReportNode0 is not None:
-            servalcatReport = servalcat_xtal_report.servalcat_xtal_report(xmlnode=servalcatReportNode0, jobStatus='nooutput', jobInfo=self.jobInfo)
+            servalcatReport = servalcat_report.servalcat_report(xmlnode=servalcatReportNode0, jobStatus='nooutput', jobInfo=self.jobInfo)
             cycle_data = servalcatReport.getCycleData(xmlnode=servalcatReportNode0)
         try:
             servalcatReportNode1 = xmlnode.findall('.//SERVALCAT_WATERS')[0]
         except:
             pass
         if servalcatReportNode1 is not None:
-            servalcatReport1 = servalcat_xtal_report.servalcat_xtal_report(xmlnode=servalcatReportNode1, jobStatus='nooutput', jobInfo=self.jobInfo)
+            servalcatReport1 = servalcat_report.servalcat_report(xmlnode=servalcatReportNode1, jobStatus='nooutput', jobInfo=self.jobInfo)
             cycle_data1 = servalcatReport.getCycleData(xmlnode=servalcatReportNode1)
             servalcatReportNodeLast = servalcatReportNode1
         else:
@@ -160,7 +157,11 @@ class servalcat_xtal_pipe_report(Report):
                 perCycleFold1 = self.addFold(label='Per cycle statistics after addition of water molecules', brief='Per cycle after waters', initiallyOpen=False)
                 servalcatReport1.addTablePerCycle(cycle_data1, parent=perCycleFold1, initialFinalOnly=False)
             servalcatReport.addGraphsVsResolution(parent=self, xmlnode=servalcatReportNodeLast)
-            servalcatReport.addOutlierAnalysis(parent=self, xmlnode=servalcatReportNodeLast)
+            validationFold = self.addFold ( label="Validation", initiallyOpen=False, brief='Validation' )
+            indentDiv = validationFold.addDiv(style="margin-left:1.5em;")
+            servalcatReport.addOutlierAnalysis(parent=indentDiv, xmlnode=servalcatReportNodeLast)
+            self.validationReport(parent=indentDiv)
+            self.addCoordADPDev()
 
         else:  # Report while running
             # servalcatReport.addTablePerCycle(cycle_data, parent=summaryFold, running=True)
@@ -256,7 +257,7 @@ class servalcat_xtal_pipe_report(Report):
             if refmacReportNode1 is not None:
                 summaryFold2 = self.addFold(label='Refinement after Running Coot Add waters', initiallyOpen=True,brief='After Coot scripts')
                 clearingDiv2 = self.addDiv(style="clear:both;")
-                refmacReport2 = servalcat_xtal_report.servalcat_xtal_report(xmlnode=refmacReportNode1, jobStatus='nooutput', jobInfo=self.jobInfo)
+                refmacReport2 = servalcat_report.servalcat_report(xmlnode=refmacReportNode1, jobStatus='nooutput', jobInfo=self.jobInfo)
                 topElementsDiv2 = summaryFold2.addDiv(style='width:800px; height:270px;overflow:auto;')
                 if refmacReport2 is not None and not self.jobStatus.lower().count('running'):
                     refmacReport2.addScrollableDownloadableTable1(parent=topElementsDiv2,internalId='Table1PostCoot')
@@ -366,6 +367,224 @@ class servalcat_xtal_pipe_report(Report):
                 suggestedDiv.append('<p><b>You can do this by clicking the <i>"Re-run with suggested parameters"</i> button at the bottom of this report.</b></p>')
 
         self.showWarnings()
+
+    def validationReport(self, parent=None):
+        if parent is None:
+            parent = self
+        try:
+            validateReport = None
+            validateReportNode = self.xmlnode.findall(".//Validation")[0]
+            if validateReportNode is not None:
+                validateReport = validate_protein_report.validate_protein_report(xmlnode=validateReportNode, jobStatus='nooutput', jobInfo=self.jobInfo)
+
+                try:
+                    if len(validateReportNode.findall ( ".//Iris" )) > 0:
+                        if validateReportNode.findall ( ".//Iris" )[0].text != "":
+                            irisFold = parent.addFold ( label="Iris validation report", initiallyOpen=False, brief='Iris' )
+                            irisdiv = irisFold.addDiv(style="clear:both; margin-top:30px; width:800px;")
+                            validateReport.add_iris_panel(parent=irisFold)
+                except:
+                    self.addText("Warning - Iris report failed")
+
+            if len(self.xmlnode.findall(".//ADP_ANALYSIS")) > 0:
+                adpFold = parent.addFold(label='ADP analysis', initiallyOpen=False, brief='ADP')
+                self.addAdpAnalysis(adpFold=adpFold)
+                # try:
+                #     if len(validateReportNode.findall ( ".//B_averages" ))>0 :
+                #         baverageFold = self.addFold ( label="B-factor analysis", initiallyOpen=False )
+                #         validateReport.b_factor_tables(parent=baverageFold)
+                #         validateReport.b_factor_graph(parent=baverageFold)
+                # except:
+                #     self.addText("Warning - B-factor analysis failed")
+
+                # try:
+                #     if len(validateReportNode.findall ( ".//B_factors" ))>0:
+                #         if validateReportNode.findall ( ".//B_factors" )[0].text != "" :
+                #             baverageFold = self.addFold ( label="B-factor analysis", initiallyOpen=False )
+                #             validateReport.add_b_factors(parent=baverageFold)
+                # except:
+                #     self.addText("Warning - B-factor analysis failed")
+
+                try:
+                    if len(validateReportNode.findall ( ".//Molprobity" )) > 0:
+                        if validateReportNode.findall ( ".//Molprobity" )[0].text != "":
+                            molprobityFold = parent.addFold ( label="MolProbity analysis", initiallyOpen=False )
+                            validateReport.add_molprobity(parent=molprobityFold)
+                except:
+                    self.addText("Warning - MolProbity analysis failed")
+
+                try:
+                    if len(validateReportNode.findall ( ".//Ramachandran" )) > 0:
+                        if validateReportNode.findall ( ".//Ramachandran" )[0].text != "":
+                            ramachandranFold = parent.addFold ( label="Ramachandran plots", initiallyOpen=False )
+                            validateReport.add_ramachandran(parent=ramachandranFold)
+                except:
+                    self.addText("Warning - Ramachandran plot generation failed")           
+                
+        except:
+            traceback.print_exc()
+        clearingDiv = self.addDiv(style="clear:both;")
+
+        #try:
+        #    molprobityOutputNode = self.xmlnode.findall('.//Molprobity/Output')[0]
+        #    molprobityFold = self.addFold(label='Molprobity analysis', initiallyOpen=False,brief='Molprobity')
+        #    molprobityFold.addPre(text = molprobityOutputNode.text)
+        #    clearingDiv = self.addDiv(style="clear:both;")
+        #except:
+        #    pass
+
+
+    def addAdpAnalysis(self, adpFold=None):
+        if adpFold is None:
+            adpFold = self.addFold(label='ADP analysis', initiallyOpen=False, brief='ADP')
+
+        noteDiv = adpFold.addDiv(style='font-size:110%;font-style:italic')
+        noteDiv.append("Note: Atoms with an occupancy of 0 and hydrogen atoms are not included in this analysis.")
+
+        adpTable = adpFold.addTable ( select=".//ADP_ANALYSIS/chains", transpose=False, downloadable=True, id='adp_table' )
+        adpTable.addData ( title = "Chain", select="*/name" )
+        adpTable.addData ( title = "Min", select="*/min" )
+        adpTable.addData ( title = "Q1", select="*/q1" )
+        # adpTable.addData ( title = "Median &plusmn; absolute deviation", select="*/med_mad" )
+        adpTable.addData ( title = "Median", select="*/med" )
+        adpTable.addData ( title = "Med. abs. dev.", select="*/mad" )
+        adpTable.addData ( title = "Q3", select="*/q3" )
+        adpTable.addData ( title = "Max", select="*/max" )
+        # adpTable.addData ( title = "Mean &plusmn; standard deviation", select="*/mean_std" )
+        adpTable.addData ( title = "Mean", select="*/mean" )
+        adpTable.addData ( title = "Std. dev.", select="*/std" )
+
+        headerDiv = adpFold.addDiv(style='font-size:110%;font-weight:bold;')
+        headerDiv.append("Average B-values per residue number for individual chains")
+
+        graph_per_resi = adpFold.addFlotGraph(
+            # xmlnode=xmlnode,
+            title="B values for individual residues",
+            select=".//ADP_ANALYSIS/chains",
+            # internalId=graphRtitle,
+            # outputXml=self.outputXml,
+            # label=graphRtitle,
+            style="height:330px; width:585px; border:0px; padding:10px; padding-left:15px; margin-right:15px;")
+        i = 0
+        for chain in self.xmlnode.findall(".//ADP_ANALYSIS/chains/chain"):
+            chain_name = chain.get('name')
+            if chain_name == "All":
+                continue  # and i does not increase
+            graph_per_resi.addData(title="residue_number", select="chain[@name='" + chain_name + "']/per_resi/data/resi")
+            graph_per_resi.addData(title="B-values(main-chain)", select="chain[@name='" + chain_name + "']/per_resi/data/adp")
+            graph_per_resi.addData(title="B-value(side-chain) ", select="chain[@name='" + chain_name + "']/per_resi/data/adp_sidechain")
+            plotADP = graph_per_resi.addPlotObject()
+            plotADP.append('title', "chain " + chain_name)
+            plotADP.append('plottype', 'xy')
+            plotADP.append('xlabel', 'residue number')
+            plotADP.append('ylabel', 'B-value (A^2)')
+            plotADP.append('legendposition', x=1, y=0)  # right bottom corner
+            plotLine = plotADP.append('plotline', xcol=1 + i * 3, ycol=2 + i * 3)
+            plotLine.append('symbolsize', '1')
+            plotLine.append('linestyle', '.')
+            plotLine.append('colour', 'blue')
+            plotLine = plotADP.append('plotline', xcol=1 + i * 3, ycol=3 + i * 3)
+            plotLine.append('symbolsize', '1')
+            plotLine.append('linestyle', '.')
+            plotLine.append('colour', 'red')
+            i = i + 1
+
+        headerDiv = adpFold.addDiv(style='font-size:110%;font-weight:bold;')
+        headerDiv.append("B-value histogram for all and individual chains")
+
+        ch_graph = adpFold.addFlotGraph ( title="B-value histograms", select=".//ADP_ANALYSIS/chains", style="height:330px; width:585px; border:0px; padding:10px; padding-left:15px; margin-right:15px;" ) # float:right;
+        for i, chain in enumerate(self.xmlnode.findall(".//ADP_ANALYSIS/chains/chain")):
+            chain_name = chain.get('name')
+            ch_graph.addData ( title = "B-value_" + chain_name, select = "chain[@name='" + chain_name + "']/histogram/bin/adp" )
+            ch_graph.addData ( title = "Count" , select = "chain[@name='" + chain_name + "']/histogram/bin/count" )
+            p = ch_graph.addPlotObject()
+            # p.append( 'description', '...')
+            p.append( 'title', "B-value histogram - " + chain_name)
+            plot_hist = p.append( 'barchart', col=1 + i * 2, tcol=2 + i * 2 )
+            plot_hist.append ( 'xlabel' ).text = "B-value (A^2)"
+            # p.append ( 'ylabel' ).text = "..."
+            try:
+                bin_first = self.xmlnode.findall(".//ADP_ANALYSIS/chains/chain[@name='" + chain_name + "']/histogram/bin/adp")[0].text
+                bin_second = self.xmlnode.findall(".//ADP_ANALYSIS/chains/chain[@name='" + chain_name + "']/histogram/bin/adp")[1].text
+                width = float(bin_second) - float(bin_first)
+            except:
+                width = 3
+            plot_hist.append ( 'width' ).text = str(width)
+            plot_hist.append ( 'colour' ).text = '#4682B4'
+
+        # headerDiv = adpFold.addDiv(style='font-size:110%;font-weight:bold;')
+        # headerDiv.append("Possible B-value outliers")
+        outliersDiv = adpFold.addDiv(style='font-size:110%;')
+        if len(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/iqr_factor")) > 0:
+            outliersDiv.append("Atoms with a B-value lower than <i>the first quartile - " + \
+                str(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/iqr_factor")[0].text) + \
+                " * interquartile_range</i> or higher than <i>the third quartile + " + \
+                str(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/iqr_factor")[0].text) + \
+                " * interquartile_range</i> are reported below.")
+        if len(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/adp_limit_low")) > 0:
+            outliersLowDiv = outliersDiv.addDiv(style='font-size:110%;float:left;box-sizing:border-box;margin-right:1em')
+            if float(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/adp_limit_low")[0].text) < 0:
+                outliersLowDiv.append("No atoms with too<br />low B-value observed.")
+            elif len(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/low/data")) == 0 and \
+                    float(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/adp_limit_low")[0].text) > 0:
+                outliersLowDiv.append("No atoms with a B-value<br />lower than " + \
+                                      str(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/adp_limit_low")[0].text) + " A<sup>2</sup> observed.")
+            else:
+                outliersLowDiv.append("Atoms with a B-value<br />lower than " + \
+                                      str(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/adp_limit_low")[0].text) + " A<sup>2</sup>:")
+                outliersTable = outliersLowDiv.addTable ( select=".//ADP_ANALYSIS/outliers/low", transpose=False, downloadable=False, id='ADPoutliers_low_table' )
+                outliersTable.addData ( title = "Atom", select="*/atom" )
+                outliersTable.addData ( title = "B-value (&Aring;<sup>2</sup>)", select="*/adp" )
+        if len(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/adp_limit_high")) > 0:
+            outliersHighDiv = outliersDiv.addDiv(style='font-size:110%;float:right;box-sizing:border-box;margin-right:1em')
+            if len(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/high/data")) == 0:
+                outliersHighDiv.append("No atoms with a B-value<br />higher than " + \
+                                       str(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/adp_limit_high")[0].text) + " A<sup>2</sup> observed.")
+            else:
+                outliersHighDiv.append("Atoms with a B-value<br />higher than " + \
+                                       str(self.xmlnode.findall(".//ADP_ANALYSIS/outliers/adp_limit_high")[0].text) + " A<sup>2</sup>:")
+                outliersTable = outliersHighDiv.addTable ( select=".//ADP_ANALYSIS/outliers/high", transpose=False, downloadable=False, id='ADPoutliers_low_table' )
+                outliersTable.addData ( title = "Atom", select="*/atom" )
+                outliersTable.addData ( title = "B-value (&Aring;<sup>2</sup>)", select="*/adp" )
+        clearingDiv = adpFold.addDiv(style="clear:both;")
+
+
+    def addCoordADPDev(self, parent=None, xmlnode=None):
+        if len(self.xmlnode.findall(".//COORD_ADP_DEV")) == 0:
+            return
+        if parent is None: parent = self
+        if xmlnode is None: xmlnode = self.xmlnode
+        devFold = parent.addFold(label="Changes in atom coordinates and ADPs", brief='Deviations')
+        coordDevDiv = devFold.addDiv(style='font-size:110%;float:left;box-sizing:border-box;margin-right:1em')
+        if len(xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordDevMean")) > 0:
+            coordDevDiv.append("Average deviation of atom coordinates: " + \
+                xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordDevMean")[0].text + " A.")
+        if len(xmlnode.findall(".//COORD_ADP_DEV/COORD_DEV/atom")) > 0:
+            coordDevDiv.append("Deviations of atom coordinates<br />higher than " + \
+                xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordDevMinReported")[0].text + " A:")
+            coordDevTable = coordDevDiv.addTable ( select=".//COORD_ADP_DEV/COORD_DEV", transpose=False, downloadable=False, id='coordDev_table' )
+            coordDevTable.addData ( title = "Atom", select="*/AtomAddress" )
+            coordDevTable.addData ( title = "Deviation of coordinates (&Aring;)", select="*/CoordDev" )
+        else:
+            if len(xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordDevMinReported")) > 0:
+                coordDevDiv.append("No deviations of atom coordinates<br />higher than " + \
+                    xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordDevMinReported")[0].text + " A.")
+        ADPDevDiv = devFold.addDiv(style='font-size:110%;float:left;box-sizing:border-box')
+        if len(xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/ADPAbsDevMean")) > 0:
+            ADPDevDiv.append("Average absolute value of deviation of B-values: " + \
+                xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/ADPAbsDevMean")[0].text + " A<sup>2</sup>.")
+        if len(xmlnode.findall(".//COORD_ADP_DEV/ADP_DEV/atom")) > 0:
+            ADPDevDiv.append("Deviations of B-values with an<br />absolute value higher than " + \
+                xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordADPAbsMinReported")[0].text + " A<sup>2</sup>:")
+            ADPDevTable = ADPDevDiv.addTable ( select=".//COORD_ADP_DEV/ADP_DEV", transpose=False, downloadable=False, id='ADPDev_table' )
+            ADPDevTable.addData ( title = "Atom", select="*/AtomAddress" )
+            ADPDevTable.addData ( title = "Deviation of B-values (&Aring;<sup>2</sup>)", select="*/ADPDev" )
+        else:
+            if len(xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordADPAbsMinReported")) > 0:
+                ADPDevDiv.append("No deviations of B-values with<br />absolute value higher than " + \
+                    xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordADPAbsMinReported")[0].text + " A<sup>2</sup>.")
+        clearingDiv = devFold.addDiv(style="clear:both;")
+        
 
     def addProgressGraph(self, parent, xmlnode,internalId="SummaryGraph", tag="RefmacInProgress"):
         if len(self.xmlnode.findall(tag))>0:
@@ -515,7 +734,7 @@ class servalcat_xtal_pipe_report(Report):
         if refmacWeightNode is None: refmacWeightNode = self.xmlnode
         if len(refmacWeightNode.findall('./REFMAC'))>0:
             refmacReportNode = refmacWeightNode.findall('./REFMAC')[0]
-            refmacReport = servalcat_xtal_report.servalcat_xtal_report(xmlnode=refmacReportNode, jobStatus='nooutput')
+            refmacReport = servalcat_report.servalcat_report(xmlnode=refmacReportNode, jobStatus='nooutput')
         if refmacReport is not None:
             refmacReport.addSummary(parent = parent)
 
@@ -528,9 +747,9 @@ def test(xmlFile=None,jobId=None,reportFile=None):
         print('FAILED loading XML file:', kw['xmlFile'])
     if reportFile is None and xmlFile is not None:
         reportFile = os.path.join(os.path.split(xmlFile)[0],'report.html')
-    r = servalcat_xtal_pipe_report(xmlFile=xmlFile,jobId=jobId, xmlnode=xmlnode)
+    r = servalcat_pipe_report(xmlFile=xmlFile,jobId=jobId, xmlnode=xmlnode)
     r.as_html_file(reportFile)
 
 if __name__ == "__main__":
     import sys
-    servalcat_xtal_pipe_report(xmlFile=sys.argv[1],jobId=sys.argv[2])
+    servalcat_pipe_report(xmlFile=sys.argv[1],jobId=sys.argv[2])
