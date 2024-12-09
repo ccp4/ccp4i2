@@ -58,20 +58,9 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
   def __init__(self,parent):
     CCP4TaskWidget.CTaskWidget.__init__(self,parent)
 
-  #def ToggleWeightAuto(self):
-  #  return str(self.container.controlParameters.WEIGHT_OPT) == 'MANUAL'
   def ToggleWeightAdjustRmszAvailable(self):
     return str(self.container.controlParameters.WEIGHT_OPT) == 'AUTO' and \
       not self.container.controlParameters.WEIGHT_NO_ADJUST
-
-  #def ToggleTLS(self):
-  #return self.container.inputData.TLSIN.isSet()
-  #def ToggleTLSNot(self):
-  #return not self.container.inputData.TLSIN.isSet()
-  #def ToggleTLSUsed(self):
-  #return self.container.inputData.TLSIN.isSet() or self.container.controlParameters.AUTOTLS
-  #def ToggleTLSNotUsed(self):
-  #return not self.container.inputData.TLSIN.isSet() and not self.container.controlParameters.AUTOTLS
 
   def ToggleTLSModeOn(self):
     if str(self.container.controlParameters.TLSMODE) != 'NONE':
@@ -151,17 +140,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
   def ToggleTLSModeFile(self):
     return str(self.container.controlParameters.TLSMODE) == 'FILE'
 
-  #def ToggleTwinAvailable(self):
-  #  if not self.container.controlParameters.USEANOMALOUS:
-  #      return True
-  #  self.container.controlParameters.USE_TWIN = False
-  #  return False
-
-  #def ToggleTwinNotAvailable(self):
-  # if self.container.controlParameters.USEANOMALOUS:
-  #    return True
-  # return False
-
   def ToggleTwinSuboptimal(self):
     return (not self.container.controlParameters.HKLIN_IS_I_SIGI or self.container.controlParameters.F_SIGF_OR_I_SIGI == "F_SIGF")
 
@@ -198,37 +176,27 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
 
   def drawContents(self):
     self.setProgramHelpFile('servalcat')
-    indent = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
     if self.container.metalCoordPipeline.LIGAND_CODES_AVAILABLE:
         self.monomersWithMetals = self.container.metalCoordPipeline.LIGAND_CODES_AVAILABLE
         self.container.metalCoordPipeline.LIGAND_CODES_SELECTED = self.container.metalCoordPipeline.LIGAND_CODES_AVAILABLE
     else:
         self.monomersWithMetals = []
     #-  --------------------          --------------------          --------------------
-    folder = self.openFolder(folderFunction='inputData',title='Input Data')
+    self.openFolder(folderFunction='inputData',title='Input Data')
     self.hklinChanged()
 
-    #self.createLine( [ 'advice',' '] )
     self.createLine( [ 'subtitle', 'Main inputs' ])
     self.openSubFrame(frame=[True])
     self.createLine( [ 'widget', '-browseDb', True, 'XYZIN' ])
     self.closeSubFrame()
     if self.isEditable():
        self.container.inputData.XYZIN.dataChanged.connect( self.modelChanged)
-       #try:
-       #self.getWidget('XYZIN').showAtomSelection()
-       #except:
-       #pass
     self.createLine( [ 'label', 'Experimental data type:', 'widget', 'DATA_METHOD' ])
     self.openSubFrame(toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ] )
     self.createLine( [ 'widget', '-browseDb', True, 'HKLIN' ] )
     self.container.inputData.HKLIN.dataChanged.connect( self.hklinChanged )
     self.createLine( [ 'label', 'Refinement against <b>amplitudes</b>.'], toggle = ['HKLIN_IS_I_SIGI', 'open', [ False ] ] )
     self.createLine( [ 'label', 'Refinement against', 'widget', 'F_SIGF_OR_I_SIGI'], toggle = ['HKLIN_IS_I_SIGI', 'open', [ True ] ] )
-    #self.createLine( [ 'widget', '-browseDb', True, 'UNMERGED' ])
-    #self.createLine( [ 'label','Use anomalous data for ', 'widget', 'USEANOMALOUSFOR', 'stretch', 'label', 'Wavelength', 'widget', 'WAVELENGTH'],toggleFunction=[self.anomalousAvailable,['HKLIN']])
-    #if self.isEditable():
-    #    if not self.container.controlParameters.WAVELENGTH.isSet(): self.getWavelength()
     self.createLine( [ 'widget', '-browseDb', True, 'FREERFLAG' ] )
     self.createLine( [ 'widget', 'USE_TWIN', 'label', 'Crystal is twinned' ] )
     self.createLine( [ 'label', '<i>Warning: Intensities should be given for twin refinement. Using amplitudes is suboptimal.</i>' ], toggleFunction=[self.ToggleTwinSuboptimal, ['HKLIN_IS_I_SIGI', 'F_SIGF_OR_I_SIGI', 'HKLIN']])
@@ -242,49 +210,25 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'label', 'Mask radius:', 'stretch', 'widget', 'MASK_RADIUS' ] )
     self.closeSubFrame()
 
-    #self.createLine( [ 'advice',' '] )
-    #self.createLine( [ 'subtitle', 'Experimental phase information', 'stretch' ])
-    #self.openSubFrame(frame=[True])
-    #self.createLine( [ 'widget', '-browseDb', True, 'ABCD' ] )
-    #self.closeSubFrame()
     self.createLine( [ 'subtitle', 'Additional geometry dictionaries', 'stretch' ])
     self.openSubFrame(frame=[True])
-    #self.createLine( [ 'widget', '-browseDb', True, 'DICT' ] )
     self.createLine( [ 'widget', '-browseDb', True, 'DICT_LIST' ] )
-    #if self.isEditable():
-       #self.container.inputData.DICT_LIST.dataChanged.connect( self.MergeDictionaries)
     self.closeSubFrame()
     
     self.createLine( [ 'subtitle', 'Options'] )
     self.openSubFrame(frame=[True])
-    #self.createLine( [ 'label', 'Refinement mode (restrained or rigid body):', 'stretch', 'widget', 'REFINEMENT_MODE' ] )
     self.createLine( [ 'label', 'Number of refinement cycles:', 'stretch', 'widget', 'NCYCLES' ])#, toggleFunction=[self.ToggleRigidModeOff,['REFINEMENT_MODE']] )
-    #self.createLine( [ 'label', 'Number of rigid body refinement cycles:', 'stretch', 'widget', 'NCYCRIGID' ], toggleFunction=[self.ToggleRigidModeOn,['REFINEMENT_MODE']] )
 
-    #use_hydr = self.createLine( [ 'widget', 'HYDR_USE', 'label', 'Use riding hydrogens during refinement'] )
-    #self.createLine( [ 'stretch', 'widget', 'HYDR_ALL'], toggle = ['HYDR_USE', 'open', [ True ] ] , appendLine=use_hydr)
     self.createLine( [ 'widget', 'HYDR_USE', 'label', 'Use riding hydrogens during refinement'], toggle = ['HYDR_USE', 'open', [ False ] ])
     self.createLine( [ 'widget', 'HYDR_USE', 'label', 'Use riding hydrogens during refinement', 'stretch', 'widget', 'HYDR_ALL'], toggle = ['HYDR_USE', 'open', [ True ] ] )
     add_waters = self.createLine( [ 'widget', 'ADD_WATERS', 'label', 'Add waters' ], toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ])
     self.createLine( [ 'label', '&nbsp;and then perform further ', 'widget', 'NCYCLES_AFTER_ADD_WATERS', 'label', ' refinement cycles' ], toggle = [ 'ADD_WATERS','open', [ True ] ], appendLine=add_waters  )
 
-    """self.createLine( [ 'label', '' ], toggleFunction=[self.ToggleTwinNotAvailable,['USEANOMALOUSFOR','HKLIN']])
-    msg11 = 'Twin refinement not available for anomalous data.'
-    line = self.createLine( [ 'label', msg11 ], toggleFunction=[self.ToggleTwinNotAvailable,['USEANOMALOUSFOR','HKLIN']])
-    sizeFix = QtWidgets.QSizePolicy.Fixed
-    btn = QtWidgets.QPushButton('help', line)
-    btn.setSizePolicy(sizeFix, sizeFix)
-    btn.released.connect(self.twinHelpPressed)
-    line.layout().insertWidget(1, btn)"""
-
     self.closeSubFrame()
     
-    #folder = self.openFolder(folderFunction='controlParameters',title='Options', drawFolder=self.drawControlParameters)
-    #folder = self.openFolder(folderFunction='controlParameters',title='Advanced Options', drawFolder=self.drawAdvancedOptions)
-    folder = self.openFolder(folderFunction='controlParameters',title='Parameterisation', drawFolder=self.drawParameters)
-    folder = self.openFolder(folderFunction='controlParameters',title='Restraints', drawFolder=self.drawRestraints)
-    #folder = self.openFolder(folderFunction='controlParameters',title='Output', drawFolder=self.drawOutput) # MM
-    folder = self.openFolder(folderFunction='controlParameters',title='Advanced')
+    self.openFolder(folderFunction='controlParameters',title='Parameterisation', drawFolder=self.drawParameters)
+    self.openFolder(folderFunction='controlParameters',title='Restraints', drawFolder=self.drawRestraints)
+    self.openFolder(folderFunction='controlParameters',title='Advanced')
     self.drawAdvanced() # small change introduced to allow for automatically loading a keyword file in the 'advanced' tab
     self.setProsmartProteinMode()
     self.setProsmartNucleicAcidMode()
@@ -323,9 +267,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOff,['REFINEMENT_MODE']] )
     self.createLine( [ 'widget', 'B_REFINEMENT_MODE', 'label', 'ADPs'] )
     self.closeSubFrame()
-    #self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOn,['REFINEMENT_MODE']] )
-    #self.createLine( [ 'label', '<i>Not available in Rigid Body mode.</i>' ] )
-    #self.closeSubFrame()
 
     self.createLine( [ 'subtitle', 'Single particle analysis (SPA) settings'], toggle = ['DATA_METHOD', 'open', [ 'spa' ] ] )
     self.openSubFrame(frame=[True], toggle = ['DATA_METHOD', 'open', [ 'spa' ] ] )
@@ -346,46 +287,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'subtitle', 'Scaling'], toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ] )
     self.openSubFrame(frame=[True], toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ] )
     self.createLine( [ 'widget', 'NO_SOLVENT', 'label', 'Do not consider bulk solvent contribution' ])
-    #self.createLine( [ 'widget', 'SCALE_TYPE', 'label', 'solvent scaling, with', 'widget', 'SOLVENT_MASK_TYPE', 'label', 'solvent mask' ] )
-    #self.createLine( [ 'widget', 'SCALE_TYPE', 'label', 'solvent scaling, with', 'widget', 'SOLVENT_MASK_TYPE', 'label', 'solvent mask' ], toggleFunction=[self.CheckScaleType, ['SCALE_TYPE']] )
-    #self.createLine( [ 'widget', 'SOLVENT_ADVANCED', 'label', 'Use custom solvent mask parameters' ], toggleFunction=[self.ToggleUseSolventMask, ['SOLVENT_MASK_TYPE']] )
-    #self.createLine( [ 'label', indent, 'label', 'Increase VDW radius of non-ion atoms by', 'widget', 'SOLVENT_VDW_RADIUS' ], toggleFunction=[self.ToggleSolventAdvanced, ['SOLVENT_MASK_TYPE', 'SOLVENT_ADVANCED']] )
-    #self.createLine( [ 'label', indent, 'label', 'Increase ionic radius of potential ion atoms by', 'widget', 'SOLVENT_IONIC_RADIUS' ], toggleFunction=[self.ToggleSolventAdvanced, ['SOLVENT_MASK_TYPE', 'SOLVENT_ADVANCED']] )
-    #self.createLine( [ 'label', indent, 'label', 'Shrink the mask area by', 'widget', 'SOLVENT_SHRINK', 'label', 'after calculation' ], toggleFunction=[self.ToggleSolventAdvanced, ['SOLVENT_MASK_TYPE', 'SOLVENT_ADVANCED']] )
     self.closeSubFrame()
-
-    """self.createLine( [ 'subtitle', 'Translation-Libration-Screw (TLS)'] )
-    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOff,['REFINEMENT_MODE']] )
-    self.createLine( [ 'label', 'TLS parameters', 'widget', 'TLSMODE' ], toggleFunction=[self.ToggleTLSModeOff, ['TLSMODE']] )
-    self.createLine( [ 'label', 'TLS parameters', 'widget', 'TLSMODE', 'stretch', 'label', 'Number of TLS refinement cycles:', 'widget', 'NTLSCYCLES' ], toggleFunction=[ self.ToggleTLSModeOn, ['TLSMODE']] )
-    self.createLine( [ 'label', '(To create TLS groups, use the "Import and/or edit TLS definitions" task in the Refinement Task menu)'], toggleFunction=[self.ToggleTLSModeFile, ['TLSMODE']] )
-    self.createLine( [ 'widget', '-browseDb', True, 'TLSIN'], toggleFunction=[self.ToggleTLSModeFile, ['TLSMODE']] )
-    reset_bfac_tls = self.createLine( [ 'widget', 'BFACSETUSE', 'label', 'Reset all B-factors at start' ], toggleFunction=[self.ToggleTLSModeOn, ['TLSMODE']])
-    self.createLine( [ 'label', '&nbsp;to fixed value:', 'widget', 'BFACSET' ], toggle = ['BFACSETUSE', 'open', [ True ] ], appendLine=reset_bfac_tls )
-    self.createLine( [ 'widget', 'TLSOUT_ADDU', 'label', 'Add TLS contribution to output B-factors (only for analysis and deposition)' ], toggleFunction=[self.ToggleTLSModeOn, ['TLSMODE']] )
-    self.container.inputData.TLSIN.dataChanged.connect(self.checkAllowUndefined)
-    self.closeSubFrame()
-    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOn,['REFINEMENT_MODE']] )
-    self.createLine( [ 'label', '<i>Not available in Rigid Body mode.</i>' ] )
-    self.closeSubFrame()
-    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOn,['REFINEMENT_MODE']] )
-    self.createLine( [ 'label', '<i>Not available in Rigid Body mode.</i>' ] )
-    self.closeSubFrame()
-
-    #self.createLine( [ 'label', 'TLS input file has been provided. Number of TLS refinement cycles:', 'stretch', 'widget', 'NTLSCYCLES' ], toggleFunction=[self.ToggleTLS, ['TLSIN']])
-    #tls_cycles = self.createLine( [ 'widget', 'AUTOTLS', 'label', 'Use TLS parameters' ], toggleFunction=[self.ToggleTLSNot, ['TLSIN']])
-    #self.createLine( [ 'label', 'Number of TLS refinement cycles:', 'widget', 'NTLSCYCLES_AUTO' ], toggleFunction=[self.ToggleTLSUsed, ['TLSIN','AUTOTLS']], appendLine=tls_cycles)
-    #reset_bfac_tls = self.createLine( [ 'label', indent, 'widget', 'TLSBFACSETUSE', 'label', 'Reset all B-factors at start' ], toggleFunction=[self.ToggleTLSUsed, ['TLSIN','AUTOTLS']])
-    #self.createLine( [ 'label', '&nbsp;to fixed value:', 'widget', 'TLSBFACSET' ], toggle = ['TLSBFACSETUSE', 'open', [ True ] ], appendLine=reset_bfac_tls )"""
-    
-    """self.createLine( [ 'subtitle', 'Rigid body groups'] )
-    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOn,['REFINEMENT_MODE']] )
-    self.createLine( [ 'widget', 'RIGID_BODY_SELECTION' ] )
-    self.closeSubFrame()
-    self.getWidget('RIGID_BODY_SELECTION').setMinimumHeight(200)
-    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOff,['REFINEMENT_MODE']] )
-    self.createLine( [ 'label', '<i>Only available in Rigid Body mode.</i>' ] )
-    self.closeSubFrame()"""
     
     self.createLine( [ 'subtitle', 'Conformer groups and occupancy refinement'] )
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOff,['REFINEMENT_MODE']] )
@@ -410,8 +312,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     return
 
   def drawRestraints( self ):
-    indent = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-    
     self.createLine( [ 'subtitle', 'Weights'] )
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOff,['REFINEMENT_MODE']])
     auto_weight = self.createLine( [ 'label', 'Weight restraints versus experimental data using', 'widget', 'WEIGHT_OPT', 'label', 'weight'] )
@@ -427,34 +327,24 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.closeSubFrame()
 
     self.createLine( [ 'subtitle', 'Non-Crystallographic Symmetry (NCS)'] )
-    #self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOff,['REFINEMENT_MODE']])
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRestraintsOn,['UNRESTRAINED', 'FIX_XYZ', 'JELLY_ONLY']])
     self.createLine( [ 'widget', 'USE_NCS', 'label', 'Use local non-crystallographic symmetry (NCS) restraints' ] )
-    #self.createLine( [ 'label', indent+'Use automatic', 'widget', 'NCS_TYPE', 'label', 'NCS restraints' ], toggle = ['USE_NCS', 'open', [ True ] ] )
     self.closeSubFrame()
-    #self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOn,['REFINEMENT_MODE']])
-    #self.createLine( [ 'label', '<i>Not available in Rigid Body mode.</i>' ] )
-    #self.closeSubFrame()
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRestraintsOff,['UNRESTRAINED', 'FIX_XYZ', 'JELLY_ONLY']])
     self.createLine( [ 'label', '<i>Not available.</i>' ] )
     self.closeSubFrame()
 
     self.createLine( [ 'subtitle', 'Covalent links'] )
-    #self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOff,['REFINEMENT_MODE']])
     self.openSubFrame(frame=[True])
     self.createLine( [ 'widget', 'FIND_LINKS', 'label', 'Detect and apply covalent linkages based on the current atomic coordinates' ] )
     self.closeSubFrame()
 
     self.createLine( [ 'subtitle', 'Jelly-body'] )
-    #self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOff,['REFINEMENT_MODE']])
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleJellyOn,['UNRESTRAINED', 'FIX_XYZ']])
     use_jellybody = self.createLine( [ 'widget', 'USE_JELLY', 'label', 'Use jelly-body restraints' ] )
     self.createLine( [ 'label', '&nbsp;with sigma:', 'widget', 'JELLY_SIGMA', 'label', 'and max distance:', 'widget', 'JELLY_DIST' ], toggle = ['USE_JELLY', 'open', [ True ] ], appendLine=use_jellybody)
     self.createLine( [ 'widget', 'JELLY_ONLY', 'label', 'Jelly body refinement only' ], toggle = ['USE_JELLY', 'open', [ True ] ] )
     self.closeSubFrame()
-    #self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOn,['REFINEMENT_MODE']])
-    #self.createLine( [ 'label', '<i>Not available in Rigid Body mode.</i>' ] )
-    #self.closeSubFrame()
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleJellyOff,['UNRESTRAINED', 'FIX_XYZ']])
     self.createLine( [ 'label', '<i>Not available.</i>' ] )
     self.closeSubFrame()
@@ -475,7 +365,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
       self.ligands_checkboxes.clickedSignal.connect(self.updateMonomersWithMetalsSelection)
       self.createLine( [ 'widget', 'metalCoordPipeline.TOGGLE_ADVANCED', 'label', 'Show advanced options' ], toggleFunction=[self.ToggleMetalCoordGenerate, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE']] )
       self.createLine( [ 'label', 'Link records to metal sites in the atomic model:', 'stretch', 'widget', 'metalCoordPipeline.LINKS' ], toggle = ['metalCoordPipeline.TOGGLE_ADVANCED', 'open', [ True ] ] )
-      #self.createLine( [ 'widget', 'metalCoordWrapper.KEEP_LINKS', 'label', 'Do not delete the link records to metal sites which are already present in the atomic model' ], toggle = ['metalCoordPipeline.UPDATE_LINKS', 'open', [ True ] ] )
       self.createLine( [ 'label', 'Distance threshold: (range 0-1)<br/><i>A threshold d to select atoms is (r<sub>1</sub> + r<sub>2</sub>)*(1 + d) where r<sub>1</sub> and r<sub>2</sub> are covalent radii.</i>', 'stretch', 'widget', 'metalCoordWrapper.DISTANCE_THRESHOLD' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
       self.createLine( [ 'label', 'Maximum coordination number:', 'stretch', 'widget', 'metalCoordWrapper.MAXIMUM_COORDINATION_NUMBER' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
       self.createLine( [ 'label', 'Procrustes distance threshold: (range 0-1)', 'stretch', 'widget', 'metalCoordWrapper.PROCRUSTES_DISTANCE_THRESHOLD' ], toggleFunction=[self.ToggleMetalCoordGenerateAdvanced, ['metalCoordPipeline.RUN_METALCOORD', 'metalCoordPipeline.GENERATE_OR_USE', 'metalCoordPipeline.TOGGLE_ADVANCED']] )
@@ -514,18 +403,13 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.closeSubFrame()
     self.openSubFrame(frame=[True], toggle = ['prosmartProtein.MODE', 'open', [ 'SELECTED' ] ] )
     self.createLine( [ 'widget', 'prosmartProtein.TOGGLE', 'label', 'Generate and apply restraints for protein chain(s):', 'widget', 'prosmartProtein.CHAINLIST_1', 'label', 'using homologous model(s):' ] )
-    #self.createLine( [ 'widget', '-browseDb', True, 'prosmartProtein.REFERENCE_MODEL' ] )
     self.createLine( [ 'widget', '-browseDb', True, 'prosmartProtein.REFERENCE_MODELS' ] )
     self.createLine( [ 'label', 'Use', 'widget', 'prosmartProtein.ALL_BEST', 'label', 'chain(s) from the reference model(s).', 'stretch', 'label', 'Minimum sequence identity:', 'widget', 'prosmartProtein.SEQID', 'label', '%' ] )
     self.createLine( [ 'label', 'Generate restraints between', 'widget', 'prosmartProtein.SIDE_MAIN', 'label', 'atom-pairs.', 'stretch', 'label', 'Interatomic distance range:', 'widget', 'prosmartProtein.RMIN', 'label', 'to', 'widget', 'prosmartProtein.RMAX', 'label', 'angstroem' ] )
-    ###self.createLine( [ 'label', 'Apply restraints up to distance', 'widget', 'prosmartProtein.DMAX', 'label', 'angstroem with weight', 'widget', 'prosmartProtein.WEIGHT', 'label', 'and robustness parameter (alpha)', 'widget', 'prosmartProtein.ALPHA', 'stretch', 'label', 'Show advanced options', 'widget', 'prosmartProtein.ADVANCED' ])
     self.createLine( [ 'label', 'Apply restraints up to distance', 'widget', 'prosmartProtein.DMAX', 'label', 'angstroem with robustness parameter (alpha)', 'widget', 'prosmartProtein.ALPHA' , 'stretch', 'label', 'Show advanced options', 'widget', 'prosmartProtein.ADVANCED' ])
-    ##self.createLine( [ 'label', 'Apply restraints with weight', 'widget', 'prosmartProtein.WEIGHT', 'label', 'and robustness parameter (alpha)', 'widget', 'prosmartProtein.ALPHA', 'stretch' , 'label', 'Show advanced options', 'widget', 'prosmartProtein.ADVANCED' ])
     self.createLine( [ 'label', 'Minimum and maximum sigma', 'widget', 'prosmartProtein.SGMN', 'widget', 'prosmartProtein.SGMX'], toggle = ['prosmartProtein.ADVANCED', 'open', [ True ] ] )    
     self.createLine( [ 'widget', 'prosmartProtein.TOGGLE_BFAC', 'label', 'Remove restraints where homologue has high ADPs.' ] , toggleFunction=[self.hideProsmartProteinBfac, ['prosmartProtein.ADVANCED','prosmartProtein.TOGGLE_BFAC']])
-    ##self.createLine( [ 'widget', 'prosmartProtein.TOGGLE_BFAC', 'label', 'Remove restraints where homologue has high B-factors.' ] , toggleFunction=[self.hideProsmartProteinBfac, 'prosmartProtein.TOGGLE_BFAC'])
     self.createLine( [ 'widget', 'prosmartProtein.TOGGLE_BFAC', 'label', 'Remove restraints where homologue has high ADPs.', 'stretch', 'label', 'Maximum B-factor: median plus ', 'widget', 'prosmartProtein.BFAC', 'label', 'x interquartile range' ] , toggleFunction=[self.showProsmartProteinBfac, ['prosmartProtein.ADVANCED','prosmartProtein.TOGGLE_BFAC']])
-    ##self.createLine( [ 'widget', 'prosmartProtein.TOGGLE_BFAC', 'label', 'Remove restraints where homologue has high B-factors.', 'stretch', 'label', 'Maximum B-factor: median plus ', 'widget', 'prosmartProtein.BFAC', 'label', 'x interquartile range' ] , toggleFunction=[self.showProsmartProteinBfac, ['prosmartProtein.TOGGLE_BFAC']])
     self.createLine( [ 'widget', 'prosmartProtein.TOGGLE_ALT', 'label', 'Allow restraints involving atoms with alt codes.', 'stretch' , 'label', 'Ignore atoms with occupancies lower than', 'widget', 'prosmartProtein.OCCUPANCY'] , toggle = ['prosmartProtein.ADVANCED', 'open', [ True ] ] )
     self.createLine( [ 'label', 'Additional ProSMART keywords:', 'widget', 'prosmartProtein.KEYWORDS' ] , toggle = ['prosmartProtein.ADVANCED', 'open', [ True ] ] )
     self.closeSubFrame()
@@ -564,65 +448,12 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'label', 'Additional ProSMART keywords:', 'widget','prosmartNucleicAcid.KEYWORDS' ], toggle = ['prosmartNucleicAcid.ADVANCED', 'open', [ True ] ] )
     self.closeSubFrame()
 
-    '''
-    self.createLine( [ 'subtitle', 'LibG External Restraints for Nucleic Acids'] )
-    if self.isEditable():
-       self.container.libg.TOGGLE.dataChanged.connect( self.setLibgMode)
-       self.container.controlParameters.REFINEMENT_MODE.dataChanged.connect(self.setLibgMode)
-    self.openSubFrame(frame=[True], toggle = ['libg.MODE', 'open', [ 'DISABLED' ] ] )
-    self.createLine( [ 'label', '<i>Specify atomic model before setting up external restraints</i>' ] )
-    self.closeSubFrame()
-    self.openSubFrame(frame=[True], toggle = ['libg.MODE', 'open', [ 'NONUCLEICACID' ] ] )
-    self.createLine( [ 'label', '<i>Input atomic model contains no nucleotide chains</i>' ] )
-    self.closeSubFrame()
-    self.openSubFrame(frame=[True], toggle = ['prosmartProtein.MODE', 'open', [ 'RIGIDMODE' ] ] )
-    self.createLine( [ 'label', '<i>Not available in Rigid Body mode.</i>' ] )
-    self.closeSubFrame()
-    self.openSubFrame(frame=[True], toggle = ['libg.MODE', 'open', [ 'UNSELECTED' ] ] )
-    self.createLine( [ 'widget', 'libg.TOGGLE', 'label', 'Generate restraints for nucleic acids' ] )
-    self.closeSubFrame()
-    self.openSubFrame(frame=[True], toggle = ['libg.MODE', 'open', [ 'SELECTED' ] ] )
-    self.createLine( [ 'widget', 'libg.TOGGLE', 'label', 'Generate restraints for nucleic acids:', 'widget', 'libg.OPTION' ] )
-    self.createLine( [ 'label', indent, 'widget', 'libg.BP', 'label', 'Base-pairs' ], toggleFunction=[self.showLibgOptions, ['libg.OPTION']])
-    self.createLine( [ 'widget', 'libg.ADVANCED', 'label', 'Show advanced options' ])
-    self.createLine( [ 'label', 'Additional LibG keywords:', 'widget', 'libg.KEYWORDS' ], toggle = ['libg.ADVANCED', 'open', [ True ] ] )
-    self.closeSubFrame()
-    '''
-
-    """self.createLine( [ 'subtitle', 'Platonyzer Metal Site Restraints'] )
-    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOff,['REFINEMENT_MODE']])
-    use_platonyzer = self.createLine( [ 'widget', 'platonyzer.TOGGLE', 'label', 'Use Platonyzer restraints' ] )
-    self.createLine( [ 'label', '&nbsp;for', 'widget', 'platonyzer.MODE', 'label', 'ions' ], toggle = ['platonyzer.TOGGLE', 'open', [ True ] ], appendLine=use_platonyzer)
-    self.createLine( [ 'widget', 'platonyzer.RM_VDW', 'label', 'Remove VDW restraints for octohedral ions' ], toggleFunction=[self.TogglePlatonyzerNAMG,['platonyzer.TOGGLE','platonyzer.MODE']] )
-    self.closeSubFrame()
-    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOn,['REFINEMENT_MODE']])
-    self.createLine( [ 'label', '<i>Not available in Rigid Body mode.</i>' ] )
-    self.closeSubFrame()"""
-
-    """self.createLine( [ 'subtitle', 'Additional Restraints'] )
-    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOff,['REFINEMENT_MODE']])
-    self.createLine( [ 'widget', '-browseDb', True, 'EXTERNAL_RESTRAINTS_FILE' ] )
-    self.closeSubFrame()
-    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOn,['REFINEMENT_MODE']])
-    self.createLine( [ 'label', '<i>Not available in Rigid Body mode.</i>' ] )
-    self.closeSubFrame()"""
-    
-    """self.createLine( [ 'subtitle', 'Advanced Options'] )
-    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOff,['REFINEMENT_MODE']])
-    self.createLine( [ 'widget', 'MAKE_LINK', 'label', 'Detect and apply covalent linkages based on the current atomic coordinates' ] )
-    self.createLine( [ 'widget', 'OVERRIDE_LINK', 'label', 'Ignore all LINK records in the input model' ], toggle = ['MAKE_LINK', 'open', [ True ] ] )
-    self.closeSubFrame()
-    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOn,['REFINEMENT_MODE']])
-    self.createLine( [ 'label', '<i>Not available in Rigid Body mode.</i>' ] )
-    self.closeSubFrame()"""
-
     self.createLine( [ 'subtitle', 'ADP Restraints'] )
     self.openSubFrame()
     self.createLine( [ 'label', 'ADP restraint weight:', 'stretch', 'widget', 'ADPR_WEIGHT' ] )
     self.createLine( [ 'label', 'Maximum distance for ADP restraint:', 'stretch', 'widget', 'MAX_DIST_FOR_ADP_RESTRAINT' ] )
     self.createLine( [ 'label', 'ADP restraint power:', 'widget', 'stretch', 'ADP_RESTRAINT_POWER' ] )
     self.createLine( [ 'widget', 'ADP_RESTRAINT_NO_LONG_RANGE', 'label', 'No long range for ADP restraint' ] )
-    #self.createLine( [ 'label', 'ADP restraint mode:', 'stretch', 'widget', 'ADP_RESTRAINT_MODE' ] )
     self.closeSubFrame()
 
     self.createLine( [ 'subtitle', 'Infrequently Used Options'] )
@@ -633,92 +464,28 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     return
 
   def showProsmartProteinBfac(self):
-     # if self.container.prosmartProtein.ADVANCED and self.container.prosmartProtein.TOGGLE_BFAC:
-     if self.container.prosmartProtein.TOGGLE_BFAC:
-         return True
-     return False
+     return bool(self.container.prosmartProtein.TOGGLE_BFAC)
 
   def showProsmartNucleicAcidBfac(self):
-     # if self.container.prosmartNucleicAcid.ADVANCED and self.container.prosmartNucleicAcid.TOGGLE_BFAC:
-     if self.container.prosmartNucleicAcid.TOGGLE_BFAC:
-         return True
-     return False
-         
+     return bool(self.container.prosmartNucleicAcid.TOGGLE_BFAC)
+
   def hideProsmartProteinBfac(self):
-     if self.container.prosmartProtein.ADVANCED and not self.container.prosmartProtein.TOGGLE_BFAC:
-        ##if not self.container.prosmartProtein.TOGGLE_BFAC:
-        return True
-     return False
+     return self.container.prosmartProtein.ADVANCED and not self.container.prosmartProtein.TOGGLE_BFAC
 
   def hideProsmartNucleicAcidBfac(self):
-     if self.container.prosmartNucleicAcid.ADVANCED and not self.container.prosmartNucleicAcid.TOGGLE_BFAC:
-        ##if not self.container.prosmartNucleicAcid.TOGGLE_BFAC:
-        return True
-     return False
+     return self.container.prosmartNucleicAcid.ADVANCED and not self.container.prosmartNucleicAcid.TOGGLE_BFAC
   
   def showLibgOptions(self):
-     if str(self.container.libg.OPTION) == 'MANUAL':
-        return True
-     return False
-
-  def drawOutput( self ):
-    indent = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-
-    """self.createLine( [ 'subtitle', 'Output Options' ], toggleFunction=[self.ToggleNeutronModeOff,['SCATTERING_FACTORS']] )
-    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleNeutronModeOff,['SCATTERING_FACTORS']])
-    self.createLine( [ 'label', 'Output calculated riding hydrogens to file', 'widget', 'OUTPUT_HYDROGENS' ] )
-    self.closeSubFrame()"""
-
-    """self.createLine( [ 'subtitle', 'Map Calculation' ] )
-    self.openSubFrame(frame=[True])
-    self.createLine( [ 'widget', 'MAP_SHARP', 'label', 'Perform map sharpening when calculating maps' ] )
-    use_mapsharp = self.createLine( [ 'label', indent, 'widget', 'MAP_SHARP_CUSTOM', 'label', 'Use custom sharpening parameter (B-factor)' ], toggle = ['MAP_SHARP', 'open', [ True ] ] )
-    self.createLine( [ 'label', ':', 'widget', 'BSHARP' ], toggle = ['MAP_SHARP_CUSTOM', 'open', [ True ] ], appendLine=use_mapsharp)
-    self.createLine( [ 'label', '' ] )
-
-    self.createLine( [ 'label', '<i>Anomalous maps will not be generated - anomalous data not provided in Input Data</i>' ] , toggle = ['USEANOMALOUS', 'open', [ False ] ] )
-    self.createLine( [ 'label', '<i>Anomalous maps will be generated</i>' ] , toggle = ['USEANOMALOUS', 'open', [ True ] ] )
-    self.closeSubFrame()"""
-
-    """self.createLine( [ 'subtitle', 'Validation and Analysis' ] )
-    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOff,['REFINEMENT_MODE']])
-    self.createLine( [ 'widget', 'VALIDATE_IRIS', 'label', 'Generate Iris report' ] )
-    self.createLine( [ 'widget', 'VALIDATE_BAVERAGE', 'label', 'Analyse B-factor distributions' ] )
-    self.createLine( [ 'widget', 'VALIDATE_RAMACHANDRAN', 'label', 'Generate Ramachandran plots' ] )
-    self.createLine( [ 'widget', 'VALIDATE_MOLPROBITY', 'label', 'Run MolProbity to analyse geometry' ] )
-    #self.createLine( [ 'widget', 'RUN_MOLPROBITY', 'label', 'Run standalone MolProbity (to be deprecated)' ] )
-    self.closeSubFrame()
-    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOn,['REFINEMENT_MODE']])
-    self.createLine( [ 'label', '<i>Not available in Rigid Body mode.</i>' ] )
-    self.closeSubFrame()"""
-    return
+     return str(self.container.libg.OPTION) == 'MANUAL'
 
   def drawAdvanced( self ):
     indent = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-    #- REMOVED: self.createLine( [ 'label','Exit if new ligand encountered','stretch','widget', 'MAKE_NEW_LIGAND_EXIT'] )
-
-    """self.createLine( [ 'label', indent+'<i>(see Parameterisation tab for H/D fraction refinement)</i>' ], toggleFunction=[self.ToggleNeutronModeOn, ['SCATTERING_FACTORS']], appendLine=scattering_factors )
-    self.createLine( [ 'subtitle', 'Neutron refinement options'], toggleFunction=[self.ToggleNeutronModeOn,['SCATTERING_FACTORS']] )
-    self.openSubFrame(frame=[True], toggleFunction=[self.ToggleNeutronModeOn,['SCATTERING_FACTORS']] )
-    self.createLine( [ 'widget', 'HYDR_USE', 'label', 'Use hydrogens during refinement'], toggle = ['HYDR_USE', 'open', [ False ] ])
-    self.createLine( [ 'widget', 'HYDR_USE', 'label', 'Use hydrogens during refinement', 'widget', 'HYDR_ALL'], toggle = ['HYDR_USE', 'open', [ True ] ] )
-    use_h = self.createLine( [ 'widget', 'H_REFINE', 'label', 'Refine hydrogen positions' ], toggle = ['HYDR_USE', 'open', [ True ] ] )
-    self.createLine( [ 'label', 'for', 'widget', 'H_REFINE_SELECT' ], toggleFunction=[self.ToggleH_REFINE,['HYDR_USE','H_REFINE']], appendLine=use_h)
-    self.createLine( [ 'widget', 'H_TORSION', 'label', 'Use hydrogen torsion angle restraints' ], toggle = ['HYDR_USE', 'open', [ True ] ] )
-    use_hd = self.createLine( [ 'widget', 'HD_FRACTION', 'label', 'Refine hydrogen/deuterium fractions' ], toggle = ['HYDR_USE', 'open', [ True ] ] )
-    self.createLine( [ 'label', 'for', 'widget', 'HD_FRACTION_TYPE' ], toggleFunction=[self.ToggleNeutronModeHD,['HYDR_USE','HD_FRACTION']], appendLine=use_hd)
-    self.createLine( [ 'label', indent, 'label', 'Initialise H/D fractions', 'widget', 'HD_INIT' ], toggleFunction=[self.ToggleNeutronModeHD_YES,['HYDR_USE','HYDR_ALL','HD_FRACTION']])
-    self.createLine( [ 'label', indent, 'label', 'Initialise H/D fractions', 'widget', 'HD_INIT_HALL' ], toggleFunction=[self.ToggleNeutronModeHD_ALL,['HYDR_USE','HYDR_ALL','HD_FRACTION']])
-    self.closeSubFrame()"""
 
     self.openSubFrame(frame=[True], toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ] )
     custom_res = self.createLine( [ 'widget', 'RES_CUSTOM', 'label', 'Use custom resolution limits' ] )
     self.createLine( [ 'label', indent+indent+'highest (d<sub>min</sub>):', 'widget', 'RES_MIN', 'label', ' lowest (d<sub>max</sub>):', 'widget', 'RES_MAX' ], toggle = ['RES_CUSTOM', 'open', [ True ] ], appendLine=custom_res )
     self.createLine( [ 'label', 'FreeR flag number for test set:' , 'widget', 'FREERFLAG_NUMBER'])
-    scattering_factors = self.createLine( [ 'label', 'Diffraction experiment type:', 'widget', 'SCATTERING_FACTORS' ] )
-    #if self.isEditable():
-    #    self.container.controlParameters.SCATTERING_FACTORS.dataChanged.connect( self.ExperimentChanged)
-    #self.createLine( [ 'label', indent+indent+'Form factor calculation:', 'widget', 'SCATTERING_ELECTRON' ], toggleFunction=[self.ToggleElectronDiffraction, ['SCATTERING_FACTORS']], appendLine=scattering_factors )
+    self.createLine( [ 'label', 'Diffraction experiment type:', 'widget', 'SCATTERING_FACTORS' ] )
     self.createLine( [ 'widget', 'USE_WORK_IN_EST', 'label', 'Use work reflections in maximum likelihood parameter estimates' ] )
     self.closeSubFrame()
 
@@ -727,7 +494,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'widget', 'H_OUT', 'label', 'Write hydrogen atoms in the output model' ] )
     self.createLine( [ 'widget', 'H_REFINE', 'label', 'Refine hydrogen positions' ], toggle = ['HYDR_USE', 'open', [ True ] ] )
     self.createLine( [ 'widget', 'KEEP_CHARGES', 'label', 'Keep charges, i.e. use scattering factor for charged atoms where relevant' ] )
-    #self.createLine( [ 'widget', 'REFMAC_CLEANUP', 'label', 'Clean up intermediate files at end of job' ] )
 
     self.createLine( [ 'subtitle', 'Structure model modification before refinement' ] )
     self.openSubFrame(frame=[True])
@@ -738,8 +504,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.closeSubFrame()
 
     self.createLine( [ 'subtitle', 'Additional keywords'] )
-    # self.createLine( [ 'label', '<i>Keywords specified below will overwrite options which were set elsewhere.</i>'] )
-    # self.createLine( [ 'widget', '-guiMode','multiLine','EXTRAREFMACKEYWORDS' ] )
     self.createLine( [ 'widget', '-browseDb', True, 'SERVALCAT_KEYWORD_FILE' ] )
     self.createLine( [ 'label', 'Extra servalcat command line options:', 'widget', 'EXTRA_SERVALCAT_OPTIONS' ] )
     self.getWidget('EXTRA_SERVALCAT_OPTIONS').setFixedWidth(400)
@@ -747,13 +511,9 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'subtitle', 'Validation and Analysis' ] )
     self.openSubFrame(frame=[True])
     self.createLine( [ 'widget', 'VALIDATE_IRIS', 'label', 'Generate Iris validation report' ] )
-    # self.createLine( [ 'widget', 'VALIDATE_BAVERAGE', 'label', 'Analyse B-factor distributions' ] )
     self.createLine( [ 'widget', 'VALIDATE_RAMACHANDRAN', 'label', 'Generate Ramachandran plots' ] )
     self.createLine( [ 'widget', 'VALIDATE_MOLPROBITY', 'label', 'Run MolProbity to analyse geometry' ] )
-    # self.closeSubFrame()
 
-    # self.createLine( [ 'subtitle', 'Monitoring' ] )
-    # self.openSubFrame(frame=[True])
     self.createLine( [ 'widget', 'RUN_ADP_ANALYSIS', 'label', 'Run ADP analysis' ] )
     self.createLine( [ 'label', 'Atoms with a B-value lower than <i>the first quartile - factor * interquartile_range</i><br />or higher than <i>the third quartile + factor * interquartile_range</i> to be reported. Factor:',
                        'stretch', 'widget', 'ADP_IQR_FACTOR' ], toggle = ['RUN_ADP_ANALYSIS', 'open', [ True ] ] )
@@ -768,10 +528,8 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
   def anomalousAvailable(self):
     if not self.container.inputData.HKLIN.isSet(): return False
     if not self.isEditable():
-       if self.container.controlParameters.USEANOMALOUS:
-          return True #only display after job is run if USEANOMALOUS has already been set to True
-       else:
-          return False
+       #only display after job is run if USEANOMALOUS has already been set to True
+       return bool(self.container.controlParameters.USEANOMALOUS)
     #Peak to see if we can make F+/F-
     self.container.inputData.HKLIN.setContentFlag(reset=True)
     canConvertString, toType = self.container.inputData.HKLIN.conversion(2)
@@ -784,40 +542,9 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
        self.container.controlParameters.USEANOMALOUS = True
        return True
 
-  #def anomalousMapUsed(self):
-  #  if not self.container.inputData.HKLIN.isSet(): return False
-  #  if not self.container.controlParameters.USEANOMALOUSFOR.isSet(): return False
-  #  if str(self.container.controlParameters.USEANOMALOUSFOR) == 'NOTHING': return False
-  #  return True
-
-#def anomalousMapIgnored(self):
-#   if self.anomalousAvailable():
-#      if self.container.controlParameters.USEANOMALOUSFOR.isSet():
-#         if str(self.container.controlParameters.USEANOMALOUSFOR) == 'NOTHING': return True
-#   return False
-
-
   @QtCore.Slot()
   def hklinChanged(self):
-    self.getWavelength()
     self.getObsType()
-  #self.setTwinMode()
-
-  #def setTwinMode(self):
-  #  if self.container.inputData.HKLIN.isSet():
-  #     columnLabelsInFile = [column.columnLabel.__str__() for column in self.container.inputData.HKLIN.fileContent.listOfColumns]
-  #     if not 'I' in columnLabelsInFile and not 'Iplus' in columnLabelsInFile:
-  #         self.container.controlParameters.TWIN_TYPE.setQualifiers({'enumerators':['F'],'menuText':['SF Amplitudes (F)']})
-  #         self.container.controlParameters.TWIN_TYPE.set('F')
-  #     else:
-  #         self.container.controlParameters.TWIN_TYPE.setQualifiers({'enumerators':['I','F'],'menuText':['Intensities (I)','SF Amplitudes (F)']})
-  #         self.container.controlParameters.TWIN_TYPE.set('I')
-  #     try:
-  #         self.getWidget('TWIN_TYPE').populateComboBox(self.container.controlParameters.TWIN_TYPE)
-  #         self.getWidget('TWIN_TYPE').updateViewFromModel()
-  #     except:
-  #         pass
-  #     self.validate()
   
   @QtCore.Slot()
   def ExperimentChanged(self):
@@ -825,7 +552,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
       self.container.controlParameters.H_REFINE.set(True)
     else:
       self.container.controlParameters.H_REFINE.set(False)
-    return
     
   @QtCore.Slot()
   def modelChanged(self):
@@ -849,12 +575,10 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
      self.setProsmartNucleicAcidMode()
      self.setLibgMode()
      self.getMonomersWithMetals()
-     return
 
   @QtCore.Slot()
   def setProsmartProteinMode(self):
      self.container.prosmartProtein.CHAINLIST_1.setQualifiers({'allowUndefined':True})
-     #self.container.prosmartProtein.REFERENCE_MODEL.setQualifiers({'allowUndefined':True})
      self.container.prosmartProtein.REFERENCE_MODELS.setQualifiers({'listMinLength':0})
      if self.ToggleRigidModeOn():
         self.container.prosmartProtein.MODE.set('RIGIDMODE')
@@ -866,7 +590,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
               if self.container.prosmartProtein.TOGGLE:
                  self.container.prosmartProtein.MODE.set('SELECTED')
                  self.container.prosmartProtein.CHAINLIST_1.setQualifiers({'allowUndefined':False})
-                 #self.container.prosmartProtein.REFERENCE_MODEL.setQualifiers({'allowUndefined':False})
                  self.container.prosmartProtein.REFERENCE_MODELS.setQualifiers({'listMinLength':1})
               else:
                  self.container.prosmartProtein.MODE.set('UNSELECTED')
@@ -876,7 +599,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
      else:
         self.container.prosmartProtein.MODE.set('DISABLED')
      self.validate()
-     return
 
   @QtCore.Slot()
   def setProsmartNucleicAcidMode(self):
@@ -901,7 +623,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
      else:
         self.container.prosmartNucleicAcid.MODE.set('DISABLED')
      self.validate()
-     return
 
   @QtCore.Slot()
   def setLibgMode(self):
@@ -920,7 +641,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
      else:
         self.container.libg.MODE.set('DISABLED')
      self.validate()
-     return
 
   def getMonomersWithMetals(self):
         if self.container.inputData.XYZIN.isSet():
@@ -978,31 +698,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
                   chain_list["nucleotide"].append(chain.GetChainID())
                else:
                   chain_list["other"].append(chain.GetChainID())
-         #print "Model content: "+str(chain_list)
      return chain_list
-
-#      from iotbx.pdb import hierarchy
-#      pdb_in = hierarchy.input(file_name=self.container.inputData.XYZIN.fullPath.__str__())
-#      for chain in pdb_in.hierarchy.only_model().chains():
-#         if chain.is_protein():
-#            print "protein: "+chain.id
-#         elif chain.is_na():
-#            print "dna/rna: "+chain.id
-#         else:
-#            print "neither: "+chain.id
-
-  #def MergeDictionaries(self):
-  #   print 'Dictionaries are not merged here - its now done when the job is executed...'
-
-  def getWavelength(self):
-    return  # MM
-    #if self.container.inputData.HKLIN.isSet():
-    #    wavelengths = self.container.inputData.HKLIN.fileContent.getListOfWavelengths()
-    #    if len(wavelengths)>0: self.container.controlParameters.WAVELENGTH = round(wavelengths[-1],3)
-    #    try:
-    #        self.getWidget('WAVELENGTH').updateViewFromModel()
-    #    except:
-    #        print('prosmart_refmac - WAVELENGTH widget  updateViewFromModel failed')
 
   def getObsType(self):
     if self.container.inputData.HKLIN.isSet():
@@ -1054,7 +750,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
          if functionNames[-2] == 'runTask':
             if not self.container.inputData.FREERFLAG.isSet():
                from PySide2.QtWidgets import QMessageBox
-               #from PyQt4.QtCore import *
                msg = QMessageBox()
                msg.setIcon(QMessageBox.Question)
 
@@ -1063,9 +758,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
                msg.setWindowTitle("Free-R warning")
                msg.setDetailedText("While refinement without FreeR is reasonable under some circumstances, it is generally discouraged because it can provide a misleading impression of progress in refinement where over-fitting of the data can occur")
                msg.setStandardButtons(QMessageBox.Ignore | QMessageBox.Cancel)
-               #msg.buttonClicked.connect(msgbtn)
                retval = msg.exec_()
-               #print "value of pressed message box button:", retval, 0x00100000, 0x00400000
                if retval == QMessageBox.Cancel:
                   invalidElements.append(self.container.inputData.FREERFLAG)
 
@@ -1106,7 +799,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
                msg.setText("Error")
                msg.setInformativeText("Two half maps are required but were not provided.")
                msg.setWindowTitle("Half maps missing")
-               # msg.setDetailedText("Two half maps are required but were not provided.")
                msg.setStandardButtons(QMessageBox.Cancel)
                retval = msg.exec_()
                if not self.container.inputData.MAPIN1.isSet():
@@ -1121,7 +813,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
                msg.setText("Error")
                msg.setInformativeText("Map mask is required but was not provided.")
                msg.setWindowTitle("Map mask missing")
-               # msg.setDetailedText("Map mask is required but was not provided.")
                msg.setStandardButtons(QMessageBox.Cancel)
                retval = msg.exec_()
                invalidElements.append(self.container.inputData.MAPMASK)
@@ -1133,7 +824,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
                msg.setText("Error")
                msg.setInformativeText("Resolution is required but was not provided.")
                msg.setWindowTitle("Resolution missing")
-               # msg.setDetailedText("Resolutionis required but was not provided.")
                msg.setStandardButtons(QMessageBox.Cancel)
                retval = msg.exec_()
                invalidElements.append(self.container.controlParameters.RES_MIN)

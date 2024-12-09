@@ -40,7 +40,7 @@ class servalcat_pipe(CPluginScript):
     TASKNAME = 'servalcat_pipe'  # Task name - same as class name
     MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
     TASKVERSION= 0.1
-    WHATNEXT = ['servalcat_pipe','buccaneer_build_refine_mr','coot_rebuild','modelcraft']
+    WHATNEXT = ['servalcat_pipe','coot_rebuild','modelcraft']
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 240
     MAXNJOBS = 4
@@ -57,17 +57,8 @@ class servalcat_pipe(CPluginScript):
         super(servalcat_pipe, self).__init__(*args, **kws)
         self.pipelinexmlfile = self.makeFileName(format='PROGRAMXML')
         self.refmacMonitors = {}
-        self.xmlroot = etree.Element("SERVALCAT") #self.xmlroot = ET.Element("RefmacOptimiseWeight")
-        self.xmlroot2 = etree.Element("SERVALCAT") #self.xmlroot2 = ET.Element("RefmacOptimiseWeight")
-
-#    def startProcess(self, processId):
-#        if self.container.prosmartProtein.TOGGLE:
-#            self.executeProsmartProtein()
-#        else:
-#            if self.container.controlParameters.WEIGHT_OPT.__str__()=='MANUAL' and self.container.controlParameters.WEIGHT.isSet(): withWeight = float(self.container.controlParameters.WEIGHT)
-#            else: withWeight = -1.
-#            self.executeFirstServalcat(withWeight)
-#        return CPluginScript.SUCCEEDED
+        self.xmlroot = etree.Element("SERVALCAT")
+        self.xmlroot2 = etree.Element("SERVALCAT")
 
     def startProcess(self, processId):
         try:
@@ -79,7 +70,6 @@ class servalcat_pipe(CPluginScript):
             return CPluginScript.FAILED
         try:
             self.executeMetalCoords()
-            # self.executePlatonyzer()
         except Exception as e:
             sys.stderr.write("ERROR while running MetalCoord: " + str(e) + "\n")
             self.reportStatus(CPluginScript.FAILED)
@@ -218,23 +208,6 @@ class servalcat_pipe(CPluginScript):
             self.reportStatus(status)
             return
 
-    def executePlatonyzer(self):
-       if self.container.platonyzer.TOGGLE:
-          self.platonyzer = self.makePluginObject('Platonyzer')
-          self.platonyzer.container.inputData.XYZIN = self.container.inputData.XYZIN
-          self.platonyzer.container.controlParameters.MODE = self.container.platonyzer.MODE
-          self.platonyzer.container.controlParameters.RM_VDW = self.container.platonyzer.RM_VDW
-          self.connectSignal(self.platonyzer,'finished',self.platonyzerFinished)
-          self.platonyzer.waitForFinished = -1
-          self.platonyzer.process()
-
-    @QtCore.Slot(dict)
-    def platonyzerFinished(self, statusDict):
-        status = statusDict['finishStatus']
-        if status == CPluginScript.FAILED:
-            self.reportStatus(status)
-            return
-
     def executeFirstServalcat(self, withWeight=-1):
         #create wrapper
         self.firstServalcat = self.createServalcatJob(withWeight)
@@ -242,7 +215,7 @@ class servalcat_pipe(CPluginScript):
         # (i.e. logwatcher) will be calledbefore process completion
         self.firstServalcat.doAsync = self.doAsync
         self.firstServalcat.connectSignal(self.firstServalcat,'finished',self.firstServalcatFinished)
-        # Install xml node for an in progress servalcat
+        # Install xml node for an in progress from core import CCP4ProjectsManager
         self.xmlLength = 0
         # Start process
         firstServalcatXMLFilename = self.firstServalcat.makeFileName(format='PROGRAMXML')
@@ -273,25 +246,25 @@ class servalcat_pipe(CPluginScript):
         self.saveXml()
 
     def saveXml2(self):
-        newXml = etree.tostring(self.xmlroot2, pretty_print=True) # newXml = ET.tostring(self.xmlroot2)
+        newXml = etree.tostring(self.xmlroot2, pretty_print=True)
         if len(newXml) > self.xmlLength2:
             # Get content of program.xml_first
             firstFileName = self.pipelinexmlfile + '_first'
             with open(firstFileName, 'r') as aFile:
-                masterXml = etree.fromstring(aFile.read()) # oldXml = ET.fromstring(aFile.read())
+                masterXml = etree.fromstring(aFile.read())
             # Add content of program.xml of the last servalcat subjob
             masterXml.xpath('//SERVALCAT')[0].append(self.xmlroot2.xpath("//SERVALCAT/SERVALCAT_WATERS")[0])
             self.xmlLength2 = len(newXml)
             # Save as program.xml_tmp and then move to program.xml
             tmpFileName = self.pipelinexmlfile + '_tmp'
             with open(tmpFileName, 'w') as aFile:
-                CCP4Utils.writeXML(aFile,etree.tostring(masterXml, pretty_print=True) ) # CCP4Utils.writeXML(aFile,ET.tostring(oldXml) )
+                CCP4Utils.writeXML(aFile,etree.tostring(masterXml, pretty_print=True) )
             shutil.move(tmpFileName, self.pipelinexmlfile)
             self.xmlroot = masterXml
 
     def saveXml(self):
         # Save the xml if it has grown
-        newXml = etree.tostring(self.xmlroot, pretty_print=True) # newXml = ET.tostring(self.xmlroot)
+        newXml = etree.tostring(self.xmlroot, pretty_print=True)
         if len(newXml) > self.xmlLength:
            # Save as program.xml_tmp and then move to program.xml
            tmpFileName = self.pipelinexmlfile + '_tmp'
@@ -324,27 +297,22 @@ class servalcat_pipe(CPluginScript):
                     if os.path.isfile(str(self.container.outputData.METALCOORD_XYZ.fullPath)):
                         result.container.inputData.XYZIN.set(self.container.outputData.METALCOORD_XYZ)
                     # else report error?
-            else:  # self.container.metalCoordPipeline.GENERATE_OR_USE == "USE":
+            else:
                 result.container.inputData.METALCOORD_RESTRAINTS=self.container.metalCoordPipeline.METALCOORD_RESTRAINTS
         if self.container.prosmartProtein.TOGGLE:
-            # result.container.controlParameters.PROSMART_PROTEIN_WEIGHT=self.container.prosmartProtein.WEIGHT
             result.container.controlParameters.PROSMART_PROTEIN_SGMN=self.container.prosmartProtein.SGMN
             result.container.controlParameters.PROSMART_PROTEIN_SGMX=self.container.prosmartProtein.SGMX
             result.container.controlParameters.PROSMART_PROTEIN_ALPHA=self.container.prosmartProtein.ALPHA
             result.container.controlParameters.PROSMART_PROTEIN_DMAX=self.container.prosmartProtein.DMAX
             result.container.inputData.PROSMART_PROTEIN_RESTRAINTS=self.prosmart_protein.container.outputData.RESTRAINTS
         if self.container.prosmartNucleicAcid.TOGGLE:
-            # result.container.controlParameters.PROSMART_NUCLEICACID_WEIGHT=self.container.prosmartNucleicAcid.WEIGHT
             result.container.controlParameters.PROSMART_NUCLEICACID_SGMN=self.container.prosmartNucleicAcid.SGMN
             result.container.controlParameters.PROSMART_NUCLEICACID_SGMX=self.container.prosmartNucleicAcid.SGMX
             result.container.controlParameters.PROSMART_NUCLEICACID_ALPHA=self.container.prosmartNucleicAcid.ALPHA
             result.container.controlParameters.PROSMART_NUCLEICACID_DMAX=self.container.prosmartNucleicAcid.DMAX
             result.container.inputData.PROSMART_NUCLEICACID_RESTRAINTS=self.prosmart_nucleicacid.container.outputData.RESTRAINTS
-        """if self.container.platonyzer.TOGGLE:
-            result.container.inputData.PLATONYZER_RESTRAINTS=self.platonyzer.container.outputData.RESTRAINTS
-            result.container.inputData.XYZIN=self.platonyzer.container.outputData.XYZOUT"""
 
-        #specify weight if a meaningful one hsa been offered
+        #Specify weight if a meaningful one has been offered
         if withWeight>=0.:
             result.container.controlParameters.WEIGHT_OPT='MANUAL'
             result.container.controlParameters.WEIGHT = withWeight
@@ -375,7 +343,6 @@ class servalcat_pipe(CPluginScript):
             validate_molprobity = self.container.controlParameters.VALIDATE_MOLPROBITY
 
         if validate_iris or validate_baverage or validate_molprobity or validate_ramachandran:
-            # try:
             self.validate = self.makePluginObject('validate_protein')
             self.validate.container.inputData.XYZIN_1.set(self.container.outputData.XYZOUT)
             self.validate.container.inputData.F_SIGF_1.set(self.container.inputData.HKLIN)
@@ -383,7 +350,6 @@ class servalcat_pipe(CPluginScript):
             self.validate.container.inputData.F_SIGF_2.set(self.container.inputData.HKLIN)
             self.validate.container.inputData.NAME_1.set("Refined")
             self.validate.container.inputData.NAME_2.set("Input")
-            # self.validate.container.outputData.COOTSCRIPTOUT.set(self.container.outputData.COOTSCRIPTOUT)
 
             self.validate.container.controlParameters.DO_IRIS.set(validate_iris)
             self.validate.container.controlParameters.DO_BFACT.set(validate_baverage)
@@ -461,8 +427,6 @@ class servalcat_pipe(CPluginScript):
         q1 = numpy.quantile(adp_dict["All"], 0.25)
         q3 = numpy.quantile(adp_dict["All"], 0.75)
         iqr = q3 - q1
-        # med_minus2iqr = median - 2 * iqr
-        # med_plus2iqr = median + 2 * iqr
         adp_limit_low = q1 - iqrFactor * iqr
         adp_limit_high = q3 + iqrFactor * iqr
         adp_low = []
@@ -503,8 +467,6 @@ class servalcat_pipe(CPluginScript):
             chain_med.text = "{:.2f}".format(chain_med_val)
             chain_mad = etree.SubElement(chain, "mad")
             chain_mad.text = "{:.2f}".format(chain_mad_val)
-            # chain_med_mad = etree.SubElement(chain, "med_mad")
-            # chain_med_mad.text = "{:.2f}".format(chain_med_val) + " &plusmn; " + "{:.2f}".format(chain_mad_val)
             chain_q1 = etree.SubElement(chain, "q1")
             chain_q1.text = "{:.2f}".format(numpy.quantile(values, 0.25))
             chain_q3 = etree.SubElement(chain, "q3")
@@ -515,8 +477,6 @@ class servalcat_pipe(CPluginScript):
             chain_mean.text = "{:.2f}".format(chain_mean_val)
             chain_std = etree.SubElement(chain, "std")
             chain_std.text = "{:.2f}".format(chain_std_val)
-            # chain_mean_std = etree.SubElement(chain, "mean_std")
-            # chain_mean_std.text = "{:.2f}".format(chain_mean_val) + " &plusmn; " + "{:.2f}".format(chain_std_val)
 
             hist, bin_edges = numpy.histogram(values, bins="auto")
             bin_edges = numpy.delete(bin_edges, -1)
@@ -568,11 +528,11 @@ class servalcat_pipe(CPluginScript):
             outlier_atom.text = str(outlier["atom"])
 
         aFile = open(self.pipelinexmlfile, 'r')
-        oldXml = etree.fromstring(aFile.read()) # oldXml = ET.fromstring(aFile.read())
+        oldXml = etree.fromstring(aFile.read())
         aFile.close()
         oldXml.append(adp_root)
         aFile = open(self.pipelinexmlfile + '_tmp', 'w')
-        CCP4Utils.writeXML(aFile,etree.tostring(oldXml, pretty_print=True)) # CCP4Utils.writeXML(aFile,ET.tostring(oldXml))
+        CCP4Utils.writeXML(aFile,etree.tostring(oldXml, pretty_print=True))
         aFile.close()
         shutil.move(self.pipelinexmlfile + '_tmp', self.pipelinexmlfile)
 
@@ -613,18 +573,12 @@ class servalcat_pipe(CPluginScript):
                 xmlText += "\n<coordDevMinReported>"
                 xmlText += str(round(coordDevMinReported, 2))
                 xmlText += "</coordDevMinReported>"
-                # xmlText += "\n<coordDevSigma>"
-                # xmlText += str(round(coordDevSigma, 2))
-                # xmlText += "</coordDevSigma>"
                 xmlText += "\n<ADPAbsDevMean>"
                 xmlText += str(round(ADPAbsDevMean, 2))
                 xmlText += "</ADPAbsDevMean>"
                 xmlText += "\n<coordADPAbsMinReported>"
                 xmlText += str(round(ADPAbsDevMinReported, 2))
                 xmlText += "</coordADPAbsMinReported>"
-                # xmlText += "\n<ADPAbsDevSigma>"
-                # xmlText += str(round(ADPAbsDevSigma, 2))
-                # xmlText += "</ADPAbsDevSigma>"
                 xmlText += "\n</STATISTICS>"
                 xmlText += "\n<COORD_DEV>"
                 xmlText += json2xml(list(jsonStats_sorted_CoordDev), tag_name_subroot="atom")
@@ -633,9 +587,6 @@ class servalcat_pipe(CPluginScript):
                 xmlText += json2xml(list(jsonStats_sorted_ADPDev), tag_name_subroot="atom")
                 xmlText += "\n</ADP_DEV>"
                 xmlText += "\n</COORD_ADP_DEV>"
-                # xmlFilePath = str(os.path.join(self.getWorkDirectory(), "report_coord_adp_dev.xml"))
-                # with open(xmlFilePath, "w") as xmlFile:
-                #     xmlFile.write(xmlText)
                 xmlTree = etree.fromstring(xmlText)
                 aFile = open(self.pipelinexmlfile, 'r')
                 oldXml = etree.fromstring(aFile.read()) # oldXml = ET.fromstring(aFile.read())
@@ -656,7 +607,7 @@ class servalcat_pipe(CPluginScript):
             print("AAA1.UNSATISFACTORY")
             import os
             with open(self.makeFileName('PROGRAMXML'), 'w') as programXML:
-                CCP4Utils.writeXML(programXML, etree.tostring(self.xmlroot, pretty_print=True)) # CCP4Utils.writeXML(programXML, ET.tostring(self.xmlroot))
+                CCP4Utils.writeXML(programXML, etree.tostring(self.xmlroot, pretty_print=True))
             self.reportStatus(CPluginScript.UNSATISFACTORY)
 
         elif self.firstServalcat.errorReport.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
@@ -665,12 +616,12 @@ class servalcat_pipe(CPluginScript):
             #self.extendErrorReport(self.firstServalcat.errorReport)
             try:
                 servalcatEtree = CCP4Utils.openFileToEtree(self.firstServalcat.makeFileName('PROGRAMXML'))
-                servalcatXML = servalcatEtree.xpath('//SERVALCAT') # servalcatXML = servalcatEtree.findall('.//SERVALCAT')
+                servalcatXML = servalcatEtree.xpath('//SERVALCAT')
                 if len(servalcatXML) == 1: self.xmlroot.append(servalcatXML[0])
             except:
                 print('Failed attempt to read XML file from first Refmac')
             try:
-                newXml = etree.tostring(self.xmlroot,pretty_print=True) # newXml = ET.tostring(self.xmlroot)
+                newXml = etree.tostring(self.xmlroot,pretty_print=True)
                 aFile = open(self.pipelinexmlfile, 'w')
                 CCP4Utils.writeXML(aFile, newXml)
                 aFile.close()
@@ -693,19 +644,18 @@ class servalcat_pipe(CPluginScript):
             print("AAA12")
             # self.addCycleXML(self.firstServalcat) # MM
             aFile=open( self.pipelinexmlfile,'w')
-            CCP4Utils.writeXML(aFile, etree.tostring(self.xmlroot, pretty_print=True) ) # CCP4Utils.writeXML(aFile, ET.tostring(self.xmlroot) )
+            CCP4Utils.writeXML(aFile, etree.tostring(self.xmlroot, pretty_print=True) )
             aFile.close()
             print("AAA13")
             if self.container.controlParameters.OPTIMISE_WEIGHT:
                 print("AAA14")
                 self.fileSystemWatcher = None
-                weightUsed = float(self.xmlroot.xpath('//weight')[-1].text) # weightUsed = float(self.xmlroot.findall('.//weight')[-1].text)
+                weightUsed = float(self.xmlroot.xpath('//weight')[-1].text)
                 self.tryVariousRefmacWeightsAround(weightUsed)
             else:
                print("AAA15")
-               # best_r_free = self.firstServalcat.container.outputData.PERFORMANCEINDICATOR.RFactor
                print("AAA15.1")
-               if self.container.controlParameters.ADD_WATERS: # and best_r_free < self.container.controlParameters.REFPRO_RSR_RWORK_LIMIT :
+               if self.container.controlParameters.ADD_WATERS:
                    # Coot sujob to add waters
                    print("AAA16")
                    self.currentCoordinates = self.firstServalcat.container.outputData.CIFFILE
@@ -727,52 +677,6 @@ class servalcat_pipe(CPluginScript):
         cootPlugin = self.makePluginObject('coot_find_waters')
         cootPlugin.container.inputData.XYZIN.set(self.currentCoordinates)
         cootPlugin.container.inputData.FPHIIN.set(self.firstServalcat.container.outputData.FPHIOUT)
-        return cootPlugin
-
-    def makeCootPluginOld(self):  # old version of makeCootPlugin(self):
-        # FIXME - This is all nonsense - needs to consider best task, etc... *NOT* just firstServalcat?
-        cootPlugin = self.makePluginObject('coot_script_lines')
-        xyzinList = cootPlugin.container.inputData.XYZIN
-        xyzinList.append(xyzinList.makeItem())
-        xyzinList[-1].set(self.currentCoordinates)
-        fphiinList = cootPlugin.container.inputData.FPHIIN
-        fphiinList.append(fphiinList.makeItem())
-        fphiinList[-1].set(self.firstServalcat.container.outputData.FPHIOUT)
-        #coot_stepped_refine,coot_fit_residues,coot_script_lines
-        if self.container.controlParameters.ADD_WATERS:
-            cootPlugin.container.controlParameters.SCRIPT = '''coot.set_ligand_water_to_protein_distance_limits(2.2, 3.3)
-coot.execute_find_waters_real(MapHandle_1,MolHandle_1,0,1.3)
-coot.write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
-'''
-        """
-        rso = self.container.controlParameters.REFPRO_COOT_REALSPACE_OPERATION.__str__()
-        if rso == "coot_script_lines":
-            cootPlugin.container.controlParameters.SCRIPT = self.container.controlParameters.SCRIPT
-        elif rso == "coot_fit_residues":
-            cootPlugin.container.controlParameters.SCRIPT = '''fill_partial_residues(MolHandle_1)
-fit_protein(MolHandle_1)
-write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
-'''
-        elif rso == "coot_stepped_refine":
-            if self.container.controlParameters.USERAMA.isSet() and self.container.controlParameters.USERAMA:
-                cootPlugin.container.controlParameters.SCRIPT = '''fill_partial_residues(MolHandle_1)
-stepped_refine_protein_for_rama(MolHandle_1)
-write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
-'''
-            else:
-                cootPlugin.container.controlParameters.SCRIPT = '''fill_partial_residues(MolHandle_1)
-stepped_refine_protein(MolHandle_1)
-write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
-'''
-        elif rso == "coot_add_waters":
-            cootPlugin.container.controlParameters.SCRIPT = '''set_ligand_water_to_protein_distance_limits(2.2, 3.3)
-execute_find_waters_real(MapHandle_1,MolHandle_1,0,1.3)
-write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
-'''
-        elif rso == "none":
-            cootPlugin.container.controlParameters.SCRIPT = '''write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
-'''
-        """
         return cootPlugin
 
     def mapVerdictSuggestionsToi2Params(self,suggestedParameters):
@@ -842,7 +746,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
         try:
           if self.container.controlParameters.ADD_WATERS:
             aFile = open(self.pipelinexmlfile,'r')
-            oldXml = etree.fromstring(aFile.read()) # oldXml = ET.fromstring(aFile.read())
+            oldXml = etree.fromstring(aFile.read())
             aFile.close()
             nwaters = "unknown"
             cootLogTxt = os.path.join(os.path.dirname(self.cootPlugin.container.outputData.XYZOUT.__str__()), "log.txt")
@@ -854,11 +758,11 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                       if len(numsearch)>0:
                          nwaters = numsearch[0]
                       break
-            postRefmacCoot = etree.Element("CootAddWaters") # postRefmacCoot = ET.Element("CootAddWaters")
+            postRefmacCoot = etree.Element("CootAddWaters")
             postRefmacCoot.text = "Coot added " + nwaters + " water molecules."
             oldXml.append(postRefmacCoot)
             aFile = open(self.pipelinexmlfile+'_tmpcoot','w')
-            CCP4Utils.writeXML(aFile,etree.tostring(oldXml,pretty_print=True)) # CCP4Utils.writeXML(aFile,ET.tostring(oldXml))
+            CCP4Utils.writeXML(aFile,etree.tostring(oldXml,pretty_print=True))
             aFile.close()
             shutil.move(self.pipelinexmlfile+'_tmpcoot', self.pipelinexmlfile)
           self.cootPlugin.container.outputData.XYZOUT.subType = 1
@@ -917,10 +821,6 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
         self.container.outputData.FPHIOUT.subType = servalcatJob.container.outputData.FPHIOUT.subType
         self.container.outputData.DIFFPHIOUT.annotation.set(servalcatJob.container.outputData.DIFFPHIOUT.annotation)
         self.container.outputData.DIFFPHIOUT.subType = servalcatJob.container.outputData.DIFFPHIOUT.subType
-        # from core import CCP4XtalData
-        # self.container.outputData.ABCDOUT.annotation = 'Calculated phases from refinement'
-        # self.container.outputData.ABCDOUT.contentFlag = CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL
-        # self.container.outputData.TLSOUT.annotation = 'TLS parameters from refinement'
         if self.container.outputData.DICT.exists():
             self.container.outputData.DICT.annotation = 'Accumulated monomer dictionary'
         if servalcatJob.container.outputData.COOTSCRIPTOUT.exists():
@@ -992,7 +892,6 @@ def coefficientsToMap(coefficientsPath, mapPath=None, overSample=1.0):
     sg, cell = hkl_info.spacegroup(), hkl_info.cell()
     fphidata = clipper.HKL_data_F_phi_float(hkl_info)
     mtz_file.import_hkl_data( fphidata, str("/*/*/[F,PHI]") );
-    #mtz_file.import_hkl_data( fphidata, str("/*/*/[FC,PHFC]") );
     mtz_file.close_read()
     #Clipper will sample the output map according to Fourier theory and hte nominal resolution
     #for visualisation, it is generally nicer to make things a bit more finely sampled
@@ -1034,24 +933,10 @@ def exportJobFile(jobId=None,mode=None,fileInfo={}):
              if os.path.exists(os.path.join(jobDir,'refined.mtz')):
                 return  os.path.join(jobDir,'refined.mtz')
 
-    """elif mode == '2FoFc_as_map' or mode == 'FoFc_as_map':
-        files = theDb.getJobFiles(jobId=jobId, role=FILE_ROLE_OUT, searchFileUses=True, fileTypes=[13])
-        for fileId in files:
-            fileInfo = theDb.getFileInfo(fileId=fileId, mode='jobparamname')
-            if (fileInfo == 'FPHIOUT' and mode == '2FoFc_as_map') or (fileInfo == 'DIFFPHIOUT' and mode == 'FoFc_as_map'):
-                filePath = theDb.getFullPath(fileId=fileId)
-                mapPath = os.path.splitext(os.path.abspath(filePath))[0]+".map"
-                if os.path.isfile(mapPath):
-                    return mapPath
-                return coefficientsToMap(filePath, mapPath=mapPath, overSample=1.5)"""
-
     return None
 
 # Function to return list of names of exportable MTZ(s)
 def exportJobFileMenu(jobId=None):
     # Return a list of items to appear on the 'Export' menu - each has three subitems:
     # [ unique identifier - will be mode argument to exportJobFile() , menu item , mime type (see CCP4CustomMimeTypes module) ]
-    return [ [ 'complete_mtz' ,'MTZ file' , 'application/CCP4-mtz' ],
-#            ['2FoFc_as_map', '2FoFc as map', 'application/CCP4-map'],
-#            ['FoFc_as_map', 'FoFc as map', 'application/CCP4-map'],
-            ]
+    return [[ 'complete_mtz' ,'MTZ file' , 'application/CCP4-mtz' ]]

@@ -165,7 +165,6 @@ def main(jsonPaths, stPath=None, outputPrefix="restraints", jsonEquivalentsPath=
                         line += f" type 1"
                     if len(atom_ligand['distance']) >= 2:
                         line += f" # variant {str(i + 1)}"
-                    # print(line)
                     outputLines.append(line + "\n")
                     # restaints for Coot cannot include atoms with altloc and symmetry identifiers
                     if not atom_metal['altloc'] and \
@@ -203,7 +202,6 @@ def main(jsonPaths, stPath=None, outputPrefix="restraints", jsonEquivalentsPath=
                             st[0][atom_ligand['ligand']['chain']],
                             st[0][atom_ligand['ligand']['chain']][atom_ligand['ligand']['sequence_icode']][atom_ligand['ligand']['residue']],
                             st[0][atom_ligand['ligand']['chain']][atom_ligand['ligand']['sequence_icode']][atom_ligand['ligand']['residue']].find_atom(atom_ligand['ligand']['name'], atom_ligand_altloc))
-                        # con.reported_distance = atom_ligand['distance'][i]
                         con_exists = False
                         for con_existing in st.connections:
                             if (con_existing.partner1 == con.partner1 and con_existing.partner2 == con.partner2) or \
@@ -252,8 +250,7 @@ def main(jsonPaths, stPath=None, outputPrefix="restraints", jsonEquivalentsPath=
                     line += "symm y "
                 line += f"value {round(atom_ligands['angle'], 2)} sigma {round(atom_ligands['std'], 2)}"
                 line_coot += f"value {round(atom_ligands['angle'], 2)} sigma {round(atom_ligands['std'], 2)}"
-                line += f" type 0"
-                # print(line)
+                line += " type 0"
                 outputLines.append(line + "\n")
                 # restaints for Coot cannot include atoms with altloc and symmetry identifiers
                 if not atom_metal['altloc'] and \

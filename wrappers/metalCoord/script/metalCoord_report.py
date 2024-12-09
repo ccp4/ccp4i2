@@ -13,14 +13,12 @@ class metalCoord_report(Report):
 
         if jobStatus is None or jobStatus.lower() == 'nooutput': return
 
-        # projectid = self.jobInfo.get("projectid", None)
-        # jobNumber = self.jobInfo.get("jobnumber", None)
         jobId = self.jobInfo.get("jobid", None)
         jobDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId = jobId)
         self.jobLog = os.path.join(jobDirectory, "log.txt")
         if jobStatus is not None and jobStatus.lower() == "running":
             self.runningReport(parent=self)
-        else:  # elif jobStatus in ["Finished"]:
+        else:
             self.defaultReport(parent=self)
 
 
@@ -50,7 +48,7 @@ class metalCoord_report(Report):
             if icode: atomAddress += "." + icode
             if entry.findall(nodePrefix + "name"):
                 name_or_metal = "name"   # for ligand, ligand1, ligand2
-            else:  # if entry.findall(nodePrefix + "metal"):
+            else:
                 name_or_metal = "metal"  # for metal
             atomAddress += "/" + entry.findall(nodePrefix + name_or_metal)[0].text
             if entry.findall(nodePrefix + "altloc")[0].text:
@@ -64,7 +62,7 @@ class metalCoord_report(Report):
             else:
                 return str(atomSymmetry)
 
-        for i, site in enumerate(self.xmlnode.findall(".//site")):
+        for site in self.xmlnode.findall(".//site"):
             metalAddress = makeAddress(site, node="")
             siteFold = parent.addFold(label="Metal site " + metalAddress, initiallyOpen=True)
             n_classes = len(site.findall(".//ligands"))
@@ -85,7 +83,6 @@ class metalCoord_report(Report):
                     label=label,
                     initiallyOpen=initiallyOpen)
                 table = classFold.addTable(xmlnode=symmClass)
-                # table.addData(title="Symmetry class", select='class')
                 table.addData(title="Procrustes distance", select='procrustes')
                 table.addData(title="Coordination number", select='coordination')
                 table.addData(title="No. reference structures", select='count')
@@ -93,11 +90,8 @@ class metalCoord_report(Report):
 
                 headerDiv = classFold.addDiv(style='font-size:110%;font-weight:bold;')
                 headerDiv.append("Ideal distances")
-                for k, entry in enumerate(symmClass.findall(".//base")):
+                for entry in symmClass.findall(".//base"):
                     n_options = len(entry.findall("std"))
-                    #if n_options >= 2:
-                    #    for l in range(n_options - 1):
-                    #        entry.append(copy.deepcopy(entry.findall("ligand")[0]))
                     for l in range(n_options):
                         ligandAddress = makeAddress(entry, node="ligand")
                         ligandAddressElement = ET.SubElement(entry, "ligandAtomAddress")
@@ -115,7 +109,7 @@ class metalCoord_report(Report):
                     table.addData(title="Distance (&Aring;)", select='base/distance')
                     table.addData(title="St. dev. (&Aring;)", select='base/std')
 
-                for k, entry in enumerate(symmClass.findall(".//pdb")):
+                for entry in symmClass.findall(".//pdb"):
                     n_options = len(entry.findall("std"))
                     for l in range(n_options):
                         ligandAddress = makeAddress(entry, node="ligand")
@@ -136,7 +130,7 @@ class metalCoord_report(Report):
 
                 headerDiv = classFold.addDiv(style='font-size:110%;font-weight:bold;')
                 headerDiv.append("Ideal angles")
-                for k, entry in enumerate(symmClass.findall(".//angles")):
+                for entry in symmClass.findall(".//angles"):
                     n_options = len(entry.findall("std"))
                     for l in range(n_options):
                         ligand1Address = makeAddress(entry, node="ligand1")

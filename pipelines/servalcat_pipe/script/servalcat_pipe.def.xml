@@ -112,20 +112,6 @@
         </container>
 
         <container id="prosmartProtein">
-            <!--<content id="REFERENCE_MODEL">
-              <className>CPdbDataFile</className>
-              <qualifiers>
-                 <saveToDb>True</saveToDb>
-                 <mustExist>True</mustExist>
-                 <allowUndefined>True</allowUndefined>
-                 <fromPreviousJob>False</fromPreviousJob>
-                 <guiLabel>Reference model</guiLabel>
-                 <requiredSubType>2,1,0</requiredSubType>
-                 <default>
-                    <subType>2</subType>
-                 </default>
-              </qualifiers>
-            </content>-->
             <content id="REFERENCE_MODELS">
                <className>CList</className>
                <qualifiers>
@@ -184,22 +170,11 @@
                   <toolTip>Minimum sequence identity between reference and target chains.</toolTip>
                </qualifiers>
             </content>
-            <!--<content id="WEIGHT">
-               <className>CFloat</className>
-               <qualifiers>
-                  <allowUndefined>True</allowUndefined>
-                  <charWidth>4</charWidth>-->
-                  <!--<default>10.0</default>--><!--
-                  <min>0.0</min>
-                  <toolTip>Controls the influence of external restraints during refinement (default: 1.0).</toolTip>
-               </qualifiers>
-            </content>-->
            <content id="SGMN">
               <className>CFloat</className>
               <qualifiers>
                  <allowUndefined>True</allowUndefined>
                  <charWidth>4</charWidth>
-                 <!--<default>10.0</default>-->
                  <min>0.0</min>
                  <toolTip>Minimum sigma to be used for external restraints.</toolTip>
               </qualifiers>
@@ -209,7 +184,6 @@
               <qualifiers>
                  <allowUndefined>True</allowUndefined>
                  <charWidth>4</charWidth>
-                 <!--<default>10.0</default>-->
                  <min>0.0</min>
                  <toolTip>Maximum sigma to be used for external restraints.</toolTip>
               </qualifiers>
@@ -219,8 +193,6 @@
                <qualifiers>
                   <allowUndefined>True</allowUndefined>
                   <charWidth>4</charWidth>
-                  <!--<default>0.02</default>-->
-                  <!--<min>0.0</min>-->
                   <toolTip>Alpha parameter - controls robustness to outliers, with lower values resulting in outliers having less of an effect (default: 1.0). E.g. 2.0 corresponds to Least Squares, and -2.0 corresponds to the Geman-McClure loss function.</toolTip>
                </qualifiers>
             </content>
@@ -272,7 +244,7 @@
             <content id="TOGGLE_BFAC">
                <className>CBoolean</className>
                <qualifiers>
-                  <default>False</default><!--<default>True</default>-->
+                  <default>False</default>
                </qualifiers>
             </content>
             <content id="BFAC">
@@ -373,7 +345,6 @@
               <qualifiers>
                  <allowUndefined>True</allowUndefined>
                  <charWidth>4</charWidth>
-                 <!--<default>10.0</default>-->
                  <min>0.0</min>
                  <toolTip>Controls the influence of external restraints during refinement (default: 1.0).</toolTip>
               </qualifiers>
@@ -383,7 +354,6 @@
               <qualifiers>
                  <allowUndefined>True</allowUndefined>
                  <charWidth>4</charWidth>
-                 <!--<default>10.0</default>-->
                  <min>0.0</min>
                  <toolTip>Minimum sigma to be used for external restraints.</toolTip>
               </qualifiers>
@@ -393,7 +363,6 @@
               <qualifiers>
                  <allowUndefined>True</allowUndefined>
                  <charWidth>4</charWidth>
-                 <!--<default>10.0</default>-->
                  <min>0.0</min>
                  <toolTip>Maximum sigma to be used for external restraints.</toolTip>
               </qualifiers>
@@ -403,8 +372,6 @@
               <qualifiers>
                  <allowUndefined>True</allowUndefined>
                  <charWidth>4</charWidth>
-                 <!--<default>0.02</default>-->
-                 <!--<min>0.0</min>-->
                  <toolTip>Alpha parameter - controls robustness to outliers, with lower values resulting in outliers having less of an effect (default: 1.0). E.g. 2.0 corresponds to Least Squares, and -2.0 corresponds to the Geman-McClure loss function.</toolTip>
               </qualifiers>
            </content>
@@ -596,7 +563,7 @@
             <content id="REFMAC_CLEANUP"><!-- not used -->
                 <className>CBoolean</className>
                 <qualifiers>
-                  <default>False</default><!--<default>True</default>-->
+                  <default>False</default>
                 </qualifiers>
             </content>
             <content id="VALIDATE_IRIS">
@@ -608,13 +575,13 @@
             <content id="VALIDATE_BAVERAGE">
                <className>CBoolean</className>
                <qualifiers>
-                  <default>False</default><!--<default>True</default>-->
+                  <default>False</default>
                </qualifiers>
             </content>
             <content id="VALIDATE_RAMACHANDRAN">
                <className>CBoolean</className>
                <qualifiers>
-                  <default>True</default><!--<default>True</default>-->
+                  <default>True</default>
                </qualifiers>
             </content>
             <content id="VALIDATE_MOLPROBITY">

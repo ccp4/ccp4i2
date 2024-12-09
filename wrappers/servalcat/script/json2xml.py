@@ -15,7 +15,6 @@ def json2xml(json_obj, tag_name=None, tag_name_subroot="subroot"):
     result_list = list()
     json_obj_type = type(json_obj)
     if tag_name:
-        # print(tag_name)
         tag_name_clean = tag_name_clear(tag_name)
     else:
         tag_name_clean = tag_name_subroot
@@ -23,7 +22,6 @@ def json2xml(json_obj, tag_name=None, tag_name_subroot="subroot"):
         for sub_elem in json_obj:
             result_list.append("\n<%s>" % (tag_name_clean))
             result_list.append(json2xml(sub_elem, tag_name=tag_name))
-            # tag_name = re.sub('\s\w+="\w+"', '', tag_name)
             result_list.append("</%s>" % (tag_name_clean))
         return "".join(result_list)
     if json_obj_type is dict:
@@ -39,7 +37,6 @@ def json2xml(json_obj, tag_name=None, tag_name_subroot="subroot"):
             else:
                 result_list.append("\n<%s>" % (tag_name_clean))
                 result_list.append(json2xml(sub_obj, tag_name=tag_name))
-                # tag_name = re.sub('\s\w+="\w+"', '', tag_name_clean)
                 result_list.append("</%s>" % (tag_name_clean))
         return "".join(result_list)
     return "%s" % json_obj
