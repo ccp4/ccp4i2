@@ -22,7 +22,7 @@ from PySide2 import QtCore
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core import CCP4Utils
-from . import monitor_refinement_differences
+from . import monitor_differences
 from wrappers.servalcat.script.json2xml import json2xml
 import os, sys, shutil
 import gemmi
@@ -578,12 +578,14 @@ class servalcat_pipe(CPluginScript):
 
 
     def coord_adp_dev_analysis(self, model1Path, model2Path):
-        try:
+        #try:
+        if True:
             coordDevMinReported = self.container.monitor.MIN_COORDDEV
             ADPAbsDevMinReported = self.container.monitor.MIN_ADPDEV
             jsonFilePath = str(os.path.join(self.getWorkDirectory(), "report_coord_adp_dev.json"))
-            monitor_refinement_differences.main(
-                [model1Path, model2Path, jsonFilePath, str(coordDevMinReported), str(ADPAbsDevMinReported)])
+            monitor_differences.main(
+                file1=model1Path, file2=model2Path, output=jsonFilePath,
+                minCoordDev=float(coordDevMinReported), minADPDev=float(ADPAbsDevMinReported))
             if os.path.isfile(jsonFilePath):
                 # Load
                 with open(jsonFilePath, "r") as jsonFile:
@@ -645,8 +647,8 @@ class servalcat_pipe(CPluginScript):
                 CCP4Utils.writeXML(aFile, etree.tostring(oldXml, pretty_print=True)) # CCP4Utils.writeXML(aFile,ET.tostring(oldXml))
                 aFile.close()
                 shutil.move(self.pipelinexmlfile + '_tmp', self.pipelinexmlfile)
-        except Exception as e:
-            sys.stderr.write("Monitoring of the changes in coordinates and ADPs was not successful: " + str(e) + "\n")
+        #except Exception as e:
+        #    sys.stderr.write("Monitoring of the changes in coordinates and ADPs was not successful: " + str(e) + "\n")
         return
 
     @QtCore.Slot(dict)
