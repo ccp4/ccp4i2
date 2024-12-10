@@ -34,7 +34,11 @@ class lidia(CPluginScript):
             if os.path.isfile(str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)):
                 cootExeDir = str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)
         if cootExeDir is None:
-            cootExeDir = CCP4Utils.which('coot')
+            cootExeDir = CCP4Utils.which('lidia')
+
+        if cootExeDir is None:
+            cootExeDir = os.path.join(os.environ["CCP4"],"coot_py2","bin","coot")
+
         cootDir = os.path.normpath(os.path.dirname(os.path.dirname(cootExeDir)))
         envEdit = [['COOT_PREFIX',cootDir]]
         COOT_DATA_DIR =os.path.normpath(os.path.join(cootDir,'share','coot'))
@@ -42,12 +46,12 @@ class lidia(CPluginScript):
         envEdit.append(['PWD',os.path.normpath(self.getWorkDirectory())])
         if sys.platform.startswith('linux'):
             envEdit.append(['PATH',os.path.join(os.environ["CCP4"],"libexec")])
-        argList = []
+        argList = [os.path.join(cootDir,"bin","lidia")]
         if self.container.inputData.MOLIN.isSet():
             argList.append(self.container.inputData.MOLIN.__str__())
 ### quick fix for 8.0.006, lidia from external coot will not work
         envEdit = [['PWD',os.path.normpath(self.getWorkDirectory())]]
-        CCP4Modules.LAUNCHER().launch(viewer='lidia', argList = argList, callBack = self.handleFinished, envEdit=envEdit,logFile = self.makeFileName('LOG'))
+        CCP4Modules.LAUNCHER().launch(viewer='/bin/sh', argList = argList, callBack = self.handleFinished, envEdit=envEdit,logFile = self.makeFileName('LOG'))
         return CPluginScript.SUCCEEDED
 
     @QtCore.Slot()
