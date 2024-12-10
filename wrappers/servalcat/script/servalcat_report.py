@@ -44,7 +44,6 @@ class servalcat_report(Report):
         
         summaryFold = parent.addFold(label='Summary of refinement', brief='Summary', initiallyOpen=True)
         cycle_data = self.getCycleData()
-        # self.addScrollableDownloadableTable1(cycle_data, parent=summaryFold)
         self.addTablePerCycle(cycle_data, parent=summaryFold, initialFinalOnly=True)
         self.addGraphPerCycle(parent=summaryFold)
         if withTables:
@@ -62,7 +61,7 @@ class servalcat_report(Report):
         progressGraph = parent.addFlotGraph(
             title="Refinement results",
             xmlnode=self.xmlnode,
-            style="height:250px;width:400px;float:left;") # select = ".//Overall_stats/stats_vs_cycle/new_cycle", 
+            style="height:250px;width:400px;float:left;")
         progressGraph.addData(title="Cycle", select=".//cycle/Ncyc") # ycol=1
         progressGraph.addData(title="-LL", select=".//cycle/data/summary/minusLL") # ycol=2
         spa_refinement = False
@@ -87,19 +86,6 @@ class servalcat_report(Report):
         elif len(xmlnode.findall('.//cycle[last()]/data/summary/R1')) > 0:
             progressGraph.addData(title="R1", select=".//cycle/data/summary/R1", expr="x if float(x)>=0.0 else ''")  # ycol=3
             progressGraph.addData(title="⟨CCI⟩", select=".//cycle/data/summary/CCIavg", expr="x if float(x)>=-1.0 else ''")  # ycol=4
-        # For lines that don''t have a value for each point, the trick is to replace missing values with '-'.
-        # Out of refmac, they are flagged with a value of -999.
-        # progressGraph.addData(title="RMSDbondx100", select=".//cycle/geom/summary/rmsd/Bond_distances_non_H", expr="str(100.*float(x)) if float(x)>=0.0 else '-'")
-        # progressGraph.addData(title="RMSDangle", select=".//cycle/geom/summary/rmsd/Bond_angles_non_H", expr="x if float(x)>=0.0 else '-'")
-
-        #progressGraph = parent.addFlotGraph( title="Refinement results", xmlnode=self.xmlnode, select = ".//Overall_stats/stats_vs_cycle/new_cycle",style="height:250px; width:400px;float:left;")
-        #progressGraph.addData(title="Cycle",   select=".//cycle")
-        #progressGraph.addData(title="R-free",   select=".//r_free", expr="x if float(x)>=0.0 else '-'")
-        #progressGraph.addData(title="R-factor", select=".//r_factor", expr="x if float(x)>=0.0 else ''")
-        ##For  lines that dont have a value for each point, the trick is to replace missing values with '-'.
-        ##Out of refmac, they are flagged with a value of -999.
-        #progressGraph.addData(title="rmsBONDx100", select=".//rmsBOND", expr="str(100.*float(x)) if float(x)>=0.0 else '-'")
-        #progressGraph.addData(title="rmsANGLE", select=".//rmsANGLE", expr="x if float(x)>=0.0 else '-'")
 
         if spa_refinement:
             plotCC = progressGraph.addPlotObject()
@@ -117,23 +103,16 @@ class servalcat_report(Report):
             plotR = progressGraph.addPlotObject()
             plotR.append('title', 'R-values')
             plotR.append('plottype', 'xy')
-            # plotR.append('yrange', rightaxis='false')
             plotR.append('xlabel', 'Cycle')
             plotR.append('ylabel', 'R-value')
-            # plotR.append('rylabel', 'Geometry')  ### NOT VISIBLE !?
             plotR.append('xintegral', 'true')
             plotR.append('legendposition', x=0, y=0)
-            # for coordinate, colour in [(2,'blue'),(3,'green')]:
-            #     plotLine = plotR.append('plotline', xcol=1, ycol=coordinate, rightaxis='false', colour=colour)
             plotLine = plotR.append('plotline', xcol=1, ycol=3)
             plotLine.append('colour', 'orange')
             plotLine.append('symbolsize', '0')
             plotLine = plotR.append('plotline', xcol=1, ycol=5)
             plotLine.append('colour', 'blue')
             plotLine.append('symbolsize', '0')
-            # plot.append('yrange', rightaxis='true')
-            # for coordinate, colour in [(4,'red'),(5,'purple')]:
-            #     plotLine = plot.append('plotline', xcol=1, ycol=coordinate, rightaxis='true', colour=colour)
             plotCC = progressGraph.addPlotObject()
             plotCC.append('title', 'Correlations')
             plotCC.append('plottype', 'xy')
@@ -210,15 +189,6 @@ class servalcat_report(Report):
         R1WorkNodes = xmlnode.findall('.//cycle[last()]/data/summary/R1work')
         R1Nodes = xmlnode.findall('.//cycle[last()]/data/summary/R1')
         RNodes = xmlnode.findall('.//cycle[last()]/data/summary/R')
-        #R2FreeNodes = xmlnode.findall('.//cycle[last()]/data/summary/R1free')
-        #CCIWorkNodes = xmlnode.findall('.//cycle[last()]/data/summary/CCIworkavg')
-        #CCIFreeNodes = xmlnode.findall('.//cycle[last()]/data/summary/CCIfreeavg')
-        #RWorkNodes = xmlnode.findall('.//cycle[last()]/data/summary/Rwork')
-        #RFreeNodes = xmlnode.findall('.//cycle[last()]/data/summary/Rfree')
-        #CCFWorkNodes = xmlnode.findall('.//cycle[last()]/data/summary/CCFworkavg')
-        #CCFFreeNodes = xmlnode.findall('.//cycle[last()]/data/summary/CCFfreeavg')
-        #RMSBondsNodes = xmlnode.findall('.//cycle[last()]/geom/summary/rmsd/Bond_distances_non_H')
-        #RMSAnglesNodes = xmlnode.findall('.//cycle[last()]/geom/summary/rmsd/Bond_angles_non_H')
         all_cycles = xmlnode.findall('.//cycle')
         ncyc = len(all_cycles)
         cycle_data = {'mode':['-']*ncyc,
@@ -245,17 +215,6 @@ class servalcat_report(Report):
                       'zCHIRAL':['-']*ncyc}
         idx = 0
         for cycle in all_cycles:
-            #try:  # TO DO
-            #   if len(xmlnode.findall("RigidMode"))>0:
-            #      cycle_data['mode'][idx] = 'Rigid'
-            #   elif float(cycle.findall('rmsBOND')[0].text) >= 0.0:
-            #      cycle_data['mode'][idx] = 'Restr'
-            #   elif str(float(cycle.findall('rmsBOND')[0].text)) == '-999.0' and len(xmlnode.findall("TLSMode"))>0:
-            #      cycle_data['mode'][idx] = 'TLS'
-            #   else: raise
-            #except:
-            #   print("*** ERROR - UNABLE TO INTERPRET REFMAC5 LOG FILE TO CONSTRUCT REFINEMENT TABLES - PLEASE CONTACT CCP4 WITH THIS ERROR (ccp4@ccp4.ac.uk) ***")
-            #   return None
             cycle_data['mode'][idx] = 'Restr'
             try: cycle_data['cycle'][idx] = str(int(cycle.findall('Ncyc')[0].text))
             except: pass
@@ -310,7 +269,6 @@ class servalcat_report(Report):
 
     def addTablePerCycle(self, cycle_data, parent=None, initialFinalOnly=False):
         if parent is None: parent = self
-        # if xmlnode is None: xmlnode = self.xmlnode
         clearingDiv = parent.addDiv(style="clear:both;")
         if initialFinalOnly:
             # Pick only data for the first and last cycle
@@ -325,61 +283,7 @@ class servalcat_report(Report):
         TLSIdx = [idx for idx, val in enumerate([mode == 'TLS' for mode in cycle_data_sel['mode']]) if val]
         RestrIdx = [idx for idx, val in enumerate([mode == 'Restr' for mode in cycle_data_sel['mode']]) if val]
 
-        """
-        # Only display first and last in the summary tables
-        if len(RigidIdx)>2: RigidIdx = [RigidIdx[0],RigidIdx[-1]]
-        if len(TLSIdx)>2: TLSIdx = [TLSIdx[0],TLSIdx[-1]]
-        if len(RestrIdx)>2: RestrIdx = [RestrIdx[0],RestrIdx[-1]]
-        start_end = ['Initial', 'Final']
-
-        rigid_data = {}
-        tls_data = {}
-        restr_data = {}
-        for key,val in cycle_data_local.items():
-           if len(RigidIdx)>0: rigid_data[key] = [val[i] for i in RigidIdx]
-           if len(TLSIdx)>0: tls_data[key] = [val[i] for i in TLSIdx]
-           if len(RestrIdx)>0: restr_data[key] = [val[i] for i in RestrIdx]
-
-        if len(RigidIdx)>0:
-           RigidDiv = perCycleFold.addDiv(style="float:left;")
-           RigidDiv.addText(text="Rigid body refinement")
-           RigidTable = RigidDiv.addTable()
-           RigidTable.addData(title="",data=start_end)
-           RigidTable.addData(title="Cycle", data=rigid_data['cycle'])
-           RigidTable.addData(title="R-factor", data=rigid_data['r_factor'])
-           RigidTable.addData(title="R-free", data=rigid_data['r_free'])
-           #RigidTable.addData(title="FSCAv", data=rigid_data['fscAver'])
-           #RigidTable.addData(title="FSCAv-free", data=rigid_data['fscAverFree'])
-
-        if len(TLSIdx)>0:
-           TLSDiv = perCycleFold.addDiv(style="float:left; width:250px;")
-           TLSDiv.addText(text="TLS refinement")
-           TLSTable = TLSDiv.addTable()
-           TLSTable.addData(title="",data=start_end)
-           TLSTable.addData(title="Cycle", data=tls_data['cycle'])
-           TLSTable.addData(title="R-factor", data=tls_data['r_factor'])
-           TLSTable.addData(title="R-free", data=tls_data['r_free'])
-           #TLSTable.addData(title="FSCAv", data=tls_data['fscAver'])
-           #TLSTable.addData(title="FSCAv-free", data=tls_data['fscAverFree'])
-
-        if len(RestrIdx)>0:
-           RestrDiv = perCycleFold.addDiv(style="float:left;")
-           RestrDiv.addText(text="Full atom refinement - XYZ, B (Occ)")
-           RestrTable = RestrDiv.addTable()
-           RestrTable.addData(title="",data=start_end)
-           RestrTable.addData(title="Cycle", data=restr_data['cycle'])
-           RestrTable.addData(title="R-factor", data=restr_data['r_factor'])
-           RestrTable.addData(title="R-free", data=restr_data['r_free'])
-           #RestrTable.addData(title="FSCAv", data=restr_data['fscAver'])
-           #RestrTable.addData(title="FSCAv-free", data=restr_data['fscAverFree'])
-           RestrTable.addData(title="RMSD (bond/angle/chiral)", subtitle="Bond", data=restr_data['rmsBOND'])
-           RestrTable.addData(subtitle="Angle", data=restr_data['rmsANGLE'])
-           RestrTable.addData(subtitle="Chiral", data=restr_data['rmsCHIRAL'])
-        """
-
         clearingDiv = parent.addDiv(style="clear:both;")
-        # detailFold = parent.addFold(label='All cycles', initiallyOpen=False, brief='All cycles')
-        # fullTable = detailFold.addTable()
         fullTable = None
         fullTable = parent.addTable()
         if len(TLSIdx) > 0 and len(RestrIdx) > 0:
@@ -484,14 +388,6 @@ class servalcat_report(Report):
            FractionTable.addData(title="Fraction",data=fraction_data['fraction'])
         except: pass
         
-#        table = twinningFold.addTable(select='//Twinning[last()]/TwinningSymmetryOperator',style="width:250px;float:left;",internalId="TwinningOperatorTable",outputXml=self.outputXml)
-#        for title,select in  [[ "Symmetry operator" ,"SymmetryOperator" ], [ "Rmerge"  , "Rmerge" ]]:
-#            table.addData(title=title,select=select)
-#        
-#        table = twinningFold.addTable(select='//Twinning[last()]/TwinOperator',style="width:250px;float:left;",internalId="TwinningFractionTable",outputXml=self.outputXml)
-#        for title,select in  [[ "Twinning operator" ,"SymmetryOperator" ], [ "Fraction"  , "Fraction" ]]:
-#            table.addData(title=title,select=select)
-
         clearingDiv = parent.addDiv(style="clear:both;")
         return
 
@@ -593,7 +489,6 @@ class servalcat_report(Report):
             plotLine.append('colour', 'blue')
             plotLine.append('symbolsize', '0')
 
-        # n_obs, n_work, n_free - only for servalcat_xtal_norefmac
         if len(xmlnode.findall('.//cycle[last()]/data/binned/n_obs')) > 0 and \
                 len(xmlnode.findall('.//cycle[last()]/data/binned/n_work')) > 0:
             graphNtitle = "Number of reflections"
@@ -614,7 +509,6 @@ class servalcat_report(Report):
             plotN.append('plottype', 'xy')
             plotN.append('xlabel', 'Resolution (&Aring;)')
             plotN.append('legendposition', x=0, y=1)
-            # plotN.append('ylabel', '')
             plotN.append('xscale', 'oneoversqrt')
             plotLine = plotN.append('plotline', xcol=1, ycol=2)
             plotLine.append('colour', 'orange')
@@ -645,7 +539,6 @@ class servalcat_report(Report):
             plotD.append('title', graphDtitle)
             plotD.append('plottype', 'xy')
             plotD.append('xlabel', 'Resolution (&Aring;)')
-            # plotD.append('ylabel', '')
             plotD.append('xscale', 'oneoversqrt')
             plotD.append('legendposition', x=1, y=1)
             plotLine = plotD.append('plotline', xcol=1, ycol=2)
@@ -664,8 +557,6 @@ class servalcat_report(Report):
         # ADP will be added
         # 'per_atom' not to be used
         outlierFold = parent.addFold(label="Outliers identified by Servalcat", brief='Outliers')
-        #outlierNodes = self.xmlnode.findall('.//cycle[last()]/geom/outliers/outliers')
-        #outBond = outlierNodes.findall('bond')
         outBond = xmlnode.findall('.//cycle[last()]/geom/outliers/bond')
         outAngle = xmlnode.findall('.//cycle[last()]/geom/outliers/angle')
         outTorsion = xmlnode.findall('.//cycle[last()]/geom/outliers/torsion')
@@ -674,7 +565,6 @@ class servalcat_report(Report):
         outStaca = xmlnode.findall('.//cycle[last()]/geom/outliers/staca')
         outStacd = xmlnode.findall('.//cycle[last()]/geom/outliers/stacd')
         outVdw = xmlnode.findall('.//cycle[last()]/geom/outliers/vdw')
-        # outPerAtom = xmlnode.findall('.//cycle[last()]/geom/outliers/per_atom')
 
         if len(outBond) > 0:
             n_outliers = len(outBond)
@@ -698,10 +588,6 @@ class servalcat_report(Report):
                 except: outData['atom2'][i] = '-'
                 try:
                     outType = int(outlier.findall('type')[0].text)
-                    #if outType == 0:
-                    #    outData['note'][i] = "Bond type restraint"
-                    #elif outType == 1:
-                    #    outData['note'][i] = "Additional restraint"
                     if outType == 2:
                         outData['note'][i] = "External restraint"
                     outData['type'][i] = -outType
@@ -716,10 +602,8 @@ class servalcat_report(Report):
                     z = float(outlier.findall('z')[0].text)
                     outData['z'][i] = "{:.2f}".format(z)
                     outData['z_abs'][i] = round(abs(z), 2)
-                    # difference = | value - ideal |
                     difference = abs(value - ideal)
                     outData['difference'][i] = "{:.2f}".format(difference)
-                    # sigma = | value - ideal | / z
                     sigma = abs((value - ideal) / z)
                     outData['sigma'][i] = round(sigma, 2)
                     percent = 100 * abs(value - ideal) / ideal
@@ -859,7 +743,6 @@ class servalcat_report(Report):
                     outData['z_abs'][i] = round(abs(z), 2)
                     periodicity = int(outlier.findall('per')[0].text)
                     outData['per'][i] = periodicity
-                    # difference = | value - ideal |
                     differences = []
                     if periodicity > 0:
                         differences = []
@@ -932,7 +815,6 @@ class servalcat_report(Report):
                        'both': ["-"]*n_outliers,
                        'difference': ["-"]*n_outliers,
                        'difference_float': ["-"]*n_outliers,
-                       # 'percent': ["-"]*n_outliers,
                        'signum': ["-"]*n_outliers,
                        'z': ["-"]*n_outliers,
                        'z_abs': ["-"]*n_outliers,
@@ -959,19 +841,15 @@ class servalcat_report(Report):
                     else:
                         both = False
                     outData['both'][i] = str(both)
-                    # difference = | value - ideal |
                     difference = abs(value - ideal)
                     outData['difference_float'][i] = difference
                     outData['difference'][i] = "{:.2f}".format(difference)
-                    # sigma = | value - ideal | / z
                     sigma = abs((value - ideal) / z)
                     outData['sigma'][i] = "{:.2f}".format(sigma)
-                    # percent = 100 * abs((value - ideal) / ideal) # be careful if ideal == 0
                     if int(sign(value) * sign(ideal)) != 1 and not both:
                         signum = "No"  # "Ideal value has an opposite sign"
                     else:
                         signum = 'Yes'
-                    # outData['percent'][i] = "{:.2f}".format(percent)
                     outData['signum'][i] = signum
                 except:
                     outData['value'][i] = '-'
@@ -982,7 +860,6 @@ class servalcat_report(Report):
                     outData['difference'][i] = '-'
                     outData['difference_float'][i] = '-'
                     outData['sigma'][i] = '-'
-                    # outData['percent'][i] = '-'
                     outData['signum'][i] = '-'
             outDataZip = list(zip(outData['z_abs'], outData['difference_float'], outData['atomc'], outData['atom1'], outData['atom2'], outData['atom3'],
                                   outData['value'], outData['ideal'], outData['z'], outData['both'], outData['difference'], outData['sigma'], outData['signum']))
@@ -997,7 +874,6 @@ class servalcat_report(Report):
             fullTable.addData(title="Atom 1", data=outData['atom1'])
             fullTable.addData(title="Atom 2", data=outData['atom2'])
             fullTable.addData(title="Atom 3", data=outData['atom3'])
-            # fullTable.addData(title="Deviation<br>(in %)", data=outData['percent'])
             fullTable.addData(title="Chiral<br>volume (&Aring;<sup>3</sup>)", data=outData['value'])
             fullTable.addData(title="Ideal<br>value (&Aring;<sup>3</sup>)", data=outData['ideal'])
             fullTable.addData(title="Difference<br>from ideal (&Aring;<sup>3</sup>)", data=outData['difference'])
@@ -1146,11 +1022,9 @@ class servalcat_report(Report):
                     z = float(outlier.findall('z')[0].text)
                     outData['z'][i] = "{:.2f}".format(z)
                     outData['z_abs'][i] = round(abs(z), 2)
-                    # difference = | value - ideal |
                     difference = abs(value - ideal)
                     outData['difference_float'][i] = difference
                     outData['difference'][i] = "{:.2f}".format(difference)
-                    # sigma = | value - ideal | / z
                     sigma = abs((value - ideal) / z)
                     outData['sigma'][i] = "{:.2f}".format(sigma)
                 except:
@@ -1252,14 +1126,6 @@ class servalcat_report(Report):
         
         selectNode = ET.SubElement(molDispNode,'select')
         selectNode.text = selectionText
-        '''
-            selectionParametersNode = ET.SubElement(molDispNode,'selection_parameters')
-            selectNode = ET.SubElement(selectionParametersNode,'select')
-            selectNode.text = 'cid'
-            
-            cidNode = ET.SubElement(selectionParametersNode,'cid')
-            cidNode.text = selectionText
-            '''
         colourParametersNode = ET.SubElement(molDispNode,'colour_parameters')
         
         colourModeNode = ET.SubElement(colourParametersNode,'colour_mode')
@@ -1269,7 +1135,6 @@ class servalcat_report(Report):
             nonCNode.text='1'
         oneColourNode = ET.SubElement(colourParametersNode,'one_colour')
         oneColourNode.text=carbonColour
-        #
         styleNode = ET.SubElement(molDispNode,'style')
         styleNode.text=style
 
@@ -1342,7 +1207,7 @@ class servalcat_report(Report):
         
         for iMonomer, interestingBit in enumerate(interestingBits):
             baseSceneXML = CCP4Utils.openFileToEtree(baseScenePath,useLXML=False) #This is lxml, not xml ...
-            sceneNode = baseSceneXML#.findall('.//scene')[0]
+            sceneNode = baseSceneXML
             
             #Define data and associated display objects
             dataNode = ET.SubElement(sceneNode,'data')
@@ -1419,7 +1284,7 @@ class servalcat_report(Report):
 
         #And finally the full monty picture :-)
         baseSceneXML = CCP4Utils.openFileToEtree(baseScenePath,useLXML=False)
-        sceneNode = baseSceneXML#.findall('scene')[0]
+        sceneNode = baseSceneXML
         
         #Define data and associated display objects
         dataNode = ET.SubElement(sceneNode,'data')
@@ -1516,9 +1381,7 @@ class servalcat_report(Report):
         scrollableTableDiv = scrollableDownloadableTableDiv.addDiv(style="height:225px; width:300px;clear:both;overflow:auto;")
         #Put table1 into this (autoscrolling) div
         table1 = self.addTable1(cycle_data, parent=scrollableTableDiv,internalId=internalId)
-        #scrollableDownloadableTableDiv.addDiv(style="height:10px;width:15px; float:right;")
         #Add a hyperlink to this table in the "tables_as_csv_files" directory
-        #print '\n\nJobInfo',self.jobInfo
         download = scrollableDownloadableTableDiv.addDownload(jobInfo=self.jobInfo,dataName=table1.id)
 
     def addTable1(self, cycle_data, xmlnode=None, parent=None, downloadable=False, internalId='Table1'):

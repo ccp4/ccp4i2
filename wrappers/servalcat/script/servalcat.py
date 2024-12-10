@@ -36,9 +36,7 @@ class servalcat(CPluginScript):
     TASKTITLE = 'Refinement (servalcat)'
     TASKNAME = 'servalcat'
     TASKCOMMAND = 'servalcat'
-    # TASKCOMMAND = 'python3'  # -m servalcat refine_xtal_norefmac
     TASKVERSION= 0.0
-    # WHATNEXT = ['servalcat','buccaneer_build_refine_mr']
     ASYNCHRONOUS = False
     PERFORMANCECLASS = 'CServalcatPerformance'
         
@@ -53,8 +51,6 @@ class servalcat(CPluginScript):
         self._readyReadStandardOutputHandler = self.handleReadyReadStandardOutput
         self.xmlroot = ET.Element('SERVALCAT')
         self.xmlLength = 0
-        #from .refmacLogScraper import logScraper
-        #self.logScraper = logScraper(xmlroot=self.xmlroot, flushXML=self.flushXML)
 
     @QtCore.Slot()
     def handleReadyReadStandardOutput(self):
@@ -68,11 +64,6 @@ class servalcat(CPluginScript):
         else:
             self.logFileHandle.write(availableStdout)
         self.logFileHandle.flush()
-        # MM
-        #if sys.version_info > (3,0):
-        #    self.logScraper.processLogChunk(availableStdout.data().decode("utf-8"))
-        #else:
-        #    self.logScraper.processLogChunk(str(availableStdout))
 
     def xmlAddRoot(self, xmlText, xmlFilePath=None, xmlRootName=None):
         if xmlRootName:
@@ -86,10 +77,6 @@ class servalcat(CPluginScript):
         error = None
         self.hklin = None
         dataObjects = []
-
-        #Include phase estimates if called for
-        #if self.container.inputData.ABCD.isSet():
-        #    dataObjects += ['ABCD']
         
         #Apply coordinate selection if set
         self.inputCoordPath = os.path.normpath(self.container.inputData.XYZIN.fullPath.__str__())
@@ -102,9 +89,7 @@ class servalcat(CPluginScript):
 
         #Create DICT by merging dictionaries in DICT_LIST
         rv = self.joinDicts(self.container.outputData.DICT, self.container.inputData.DICT_LIST)
-        #CPluginScript.joinDicts(self.container.inputData.DICT.fullPath.__str__(), self.container.inputData.DICT_LIST)
 
-        #print '\n\n\n***contentFlag',self.container.inputData.HKLIN.contentFlag
         #Append Observation with representation dependent on whether we are detwining on Is or not
 
         if str(self.container.controlParameters.DATA_METHOD) == 'xtal':
@@ -155,7 +140,6 @@ class servalcat(CPluginScript):
             self.logFileHandle.close()
         else:
             self.xmlroot.clear()
-            # self.logScraper.scrapeFile( self.makeFileName('LOG') ) MM
         
         # First up check for exit status of the program
         from core.CCP4Modules import PROCESSMANAGER
@@ -181,27 +165,12 @@ class servalcat(CPluginScript):
             import os
             try:
                 logFileText = open(self.makeFileName('LOG')).read()
-                # if 'Your coordinate file has a ligand which has either minimum or no description in the library' in logFileText and self.container.controlParameters.MAKE_NEW_LIGAND_EXIT.isSet() and self.container.controlParameters.MAKE_NEW_LIGAND_EXIT:
-                #     self.appendErrorReport(201,'You did not supply a full ligand geometry file: either make and supply one (Make Ligand task), or set the appropriate flag in the advanced options')
-                #     import re
-                #     #Example line: * Plotfile: /tmp/martin/refmac5_temp1.64630_new_TM7.ps
-                #     plotFiles = re.findall(r'^.*\* Plotfile:.*$',logFileText,re.MULTILINE)
-                #     print(plotFiles)
-                #     for plotFile in plotFiles:
-                #         psfileName = plotFile.split()[-1]
-                #         import shutil
-                #         shutil.copyfile(psfileName, self.container.outputData.PSOUT.__str__())
-                #         self.container.outputData.PSOUT.annotation.set(psfileName+' from REFMAC')
-                #     return CPluginScript.UNSATISFACTORY
-                # else:
-                #     self.appendErrorReport(201,'Exit code: '+str(exitCode))
             except:
                 self.appendErrorReport(201, 'Exit code: '+ str(exitCode))
             return CPluginScript.FAILED
 
         import os
         from core import CCP4XtalData
-        from core import CCP4File
 
         outputCifPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined.mmcif'))
         self.container.outputData.CIFFILE.setFullPath(outputCifPath)
@@ -210,8 +179,6 @@ class servalcat(CPluginScript):
         if os.path.isfile(outputPdbPath):
             self.container.outputData.XYZOUT.setFullPath(outputPdbPath)
             self.container.outputData.XYZOUT.annotation.set('Model from refinement (PDB format)')
-        # self.container.outputData.TLSOUT.annotation = 'TLS parameters from refinement'
-        # self.container.outputData.LIBOUT.annotation = 'Generated dictionary from refinement'
         self.container.outputData.FPHIOUT.annotation.set('Density map (Fourier coeff.)')
         self.container.outputData.FPHIOUT.subType = 1
         self.container.outputData.DIFFPHIOUT.annotation.set('Difference density map (Fourier coeff.)')
@@ -232,16 +199,6 @@ class servalcat(CPluginScript):
                 self.container.outputData.ANOMFPHIOUT.annotation.set('Anomalous difference map')
                 outputFiles += ['ANOMFPHIOUT']
                 outputColumns += ['FAN,PHAN']
-            """if self.container.controlParameters.USEANOMALOUS and 'DELFAN' in columnLabelsInFile and 'PHDELAN' in columnLabelsInFile:
-                self.container.outputData.DIFANOMFPHIOUT.annotation.set('Weighted differences of anomalous difference map')
-                outputFiles += ['DIFANOMFPHIOUT']
-                outputColumns += ['DELFAN,PHDELAN']"""
-            """if self.container.controlParameters.PHOUT:
-                # Need to set the expected content flag for phases data
-                # self.container.outputData.ABCDOUT.annotation = 'Calculated phases from refinement'
-                # self.container.outputData.ABCDOUT.contentFlag = CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL
-                outputFiles += ['ABCDOUT']
-                outputColumns += ['HLACOMB,HLBCOMB,HLCCOMB,HLDCOMB']"""
         # Split out data objects that have been generated. Do this after applying the annotation, and flagging
         # above, since splitHklout needs to know contentFlags
         error = self.splitHklout(outputFiles, outputColumns, hkloutFilePath)
@@ -349,7 +306,6 @@ class servalcat(CPluginScript):
 
 
     def makeCommandAndScript(self):
-        # self.appendCommandLine(['-m', 'servalcat'])
         if str(self.container.controlParameters.DATA_METHOD) == "spa":
             # options only for servalcat refine_spa_norefmac
             self.appendCommandLine(['refine_spa_norefmac'])
@@ -406,24 +362,9 @@ class servalcat(CPluginScript):
             # options only for servalcat refine_xtal_norefmac
             self.appendCommandLine(['refine_xtal_norefmac'])
             self.appendCommandLine(['--hklin', self.hklin])
-            # The following commented code to specify --labin is not necessary as the columns which will be
-            # in hklin.mtz are selected in processInputFiles()
-            # There is also a bug in the following commented code as it does not deal with anomalous pairs.
-            # if self.container.controlParameters.F_SIGF_OR_I_SIGI.isSet():
-            #     if str(self.container.controlParameters.F_SIGF_OR_I_SIGI) == "F_SIGF" or not self.container.controlParameters.HKLIN_IS_I_SIGI:
-            #         labin = 'F,SIGF'
-            #     else:
-            #         labin = 'I,SIGI'
-            # elif self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR \
-            #         or self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN:
-            #     labin = 'I,SIGI'
-            # else:
-            #     labin = 'F,SIGF'
             if self.container.inputData.FREERFLAG.isSet():
                 if self.container.controlParameters.FREERFLAG_NUMBER.isSet():
                     self.appendCommandLine(['--free', str(self.container.controlParameters.FREERFLAG_NUMBER)])
-            #     labin += ",FREER"
-            # self.appendCommandLine(['--labin', labin])
             if self.container.controlParameters.USE_TWIN:  # I,SIGI for optimal results
                 self.appendCommandLine(['--twin'])
             self.hklout = os.path.join(self.workDirectory, "refined.mtz")
@@ -447,10 +388,6 @@ class servalcat(CPluginScript):
         # Hydrogens
         if self.container.controlParameters.HYDR_USE:
             self.appendCommandLine(['--hydrogen', str(self.container.controlParameters.HYDR_ALL)])
-            #if self.container.controlParameters.HYDR_ALL:
-            #    self.appendCommandLine(['--hydrogen', str(self.container.controlParameters.HYDR_ALL)])
-            #else:
-            #    self.appendCommandLine(['--hydrogen', 'yes'])
             if self.container.controlParameters.H_REFINE:
                 self.appendCommandLine(['--refine_h'])
         else:
@@ -510,12 +447,8 @@ class servalcat(CPluginScript):
             self.appendCommandLine(['--max_dist_for_adp_restraint', str(self.container.controlParameters.MAX_DIST_FOR_ADP_RESTRAINT)])
         if self.container.controlParameters.ADP_RESTRAINT_POWER.isSet():
             self.appendCommandLine(['--adp_restraint_power', str(self.container.controlParameters.ADP_RESTRAINT_POWER)])
-        # if self.container.controlParameters.ADP_RESTRAINT_EXP_FAC.isSet():
-        #     self.appendCommandLine(['--adp_restraint_exp_fac', str(self.container.controlParameters.ADP_RESTRAINT_EXP_FAC)])
         if self.container.controlParameters.ADP_RESTRAINT_NO_LONG_RANGE:
             self.appendCommandLine(['--adp_restraint_no_long_range'])
-        # if self.container.controlParametersADP_RESTRAINT_MODE.isSet():
-        #     self.appendCommandLine(['--adp_restraint_mode', str(self.container.controlParameters.ADP_RESTRAINT_MODE)])
         if self.container.controlParameters.FIND_LINKS:
             self.appendCommandLine(['--find_links'])
         if self.container.controlParameters.FIX_XYZ:
@@ -532,7 +465,7 @@ class servalcat(CPluginScript):
         if self.container.controlParameters.OCCUPANCY_GROUPS:
             with open(keywordFilePath, "a+") as keywordFile:
                 if self.container.controlParameters.OCCUPANCY_REFINEMENT:
-                    keywordFile.write("OCCUPANCY REFINE\n")  # self.appendCommandScript("OCCUPANCY REFINE")
+                    keywordFile.write("OCCUPANCY REFINE\n")
                 if self.container.controlParameters.OCCUPANCY_NCYCLE.isSet():
                     keywordFile.write("OCCUPANCY REFINE NCYCLE " + str(self.container.controlParameters.OCCUPANCY_NCYCLE) + "\n")
                 occup_groupids = []
@@ -544,27 +477,16 @@ class servalcat(CPluginScript):
                             occupText += " ATOM %s" % (str(sel['atoms']))
                         if sel['alt']:
                             occupText += " ALT %s" % (str(sel['alt']))
-                        keywordFile.write(occupText + '\n')  # self.appendCommandScript(occupText + '\n')
+                        keywordFile.write(occupText + '\n')
                         occup_groupids.append(sel['groupId'])
-#                   else:
-#                       self.appendErrorReport(201,"Error - incorrectly specified occupancy group.")
-#                       return CPluginScript.FAILED
                 if self.container.controlParameters.OCCUPANCY_COMPLETE:
                     for sel0 in self.container.controlParameters.OCCUPANCY_COMPLETE_TABLE:
                         sel = sel0.get()
-#                       for id in sel['groupIds'].split(' '):
-#                          if not id in occup_groupids:
-#                             self.appendErrorReport(201,"Error - group ID "+id+" not specified in the list of occupancy groups.")
-#                             return CPluginScript.FAILED
                         occupText = "OCCUPANCY GROUP ALTS COMPLETE %s" % (str(sel['groupIds']))
                         keywordFile.write(occupText + '\n')  # self.appendCommandScript(occupText + '\n')
                 if self.container.controlParameters.OCCUPANCY_INCOMPLETE:
                     for sel0 in self.container.controlParameters.OCCUPANCY_INCOMPLETE_TABLE:
                         sel = sel0.get()
-#                       for id in sel['groupIds'].split(' '):
-#                          if not id in occup_groupids:
-#                             self.appendErrorReport(201,"Error - group ID "+id+" not specified in the list of occupancy groups.")
-#                             return CPluginScript.FAILED
                         occupText = "OCCUPANCY GROUP ALTS INCOMPLETE %s" % (str(sel['groupIds']))
                         keywordFile.write(occupText + '\n')  # self.appendCommandScript(occupText + '\n')
 
@@ -573,8 +495,6 @@ class servalcat(CPluginScript):
                 keywordFile.write("\n@%s"%(str(self.container.inputData.METALCOORD_RESTRAINTS.fullPath)))
         if self.container.inputData.PROSMART_PROTEIN_RESTRAINTS.isSet():
             with open(keywordFilePath, "a+") as keywordFile:
-                # if self.container.controlParameters.PROSMART_PROTEIN_WEIGHT.isSet():
-                #     keywordFile.write("\nEXTERNAL WEIGHT SCALE %s"%(str(self.container.controlParameters.PROSMART_PROTEIN_WEIGHT)))
                 if self.container.controlParameters.PROSMART_PROTEIN_SGMN.isSet():
                     keywordFile.write("\nEXTERNAL WEIGHT SGMN %s"%(str(self.container.controlParameters.PROSMART_PROTEIN_SGMN)))
                 if self.container.controlParameters.PROSMART_PROTEIN_SGMX.isSet():
@@ -586,8 +506,6 @@ class servalcat(CPluginScript):
                 keywordFile.write("\n@%s"%(str(self.container.inputData.PROSMART_PROTEIN_RESTRAINTS.fullPath)))
         if self.container.inputData.PROSMART_NUCLEICACID_RESTRAINTS.isSet():
             with open(keywordFilePath, "a+") as keywordFile:
-                # if self.container.controlParameters.PROSMART_NUCLEICACID_WEIGHT.isSet():
-                #     keywordFile.write("\nEXTERNAL WEIGHT SCALE %s"%(str(self.container.controlParameters.PROSMART_NUCLEICACID_WEIGHT)))
                 if self.container.controlParameters.PROSMART_NUCLEICACID_SGMN.isSet():
                     keywordFile.write("\nEXTERNAL WEIGHT SGMN %s"%(str(self.container.controlParameters.PROSMART_NUCLEICACID_SGMN)))
                 if self.container.controlParameters.PROSMART_NUCLEICACID_SGMX.isSet():
@@ -600,28 +518,7 @@ class servalcat(CPluginScript):
         if self.container.inputData.SERVALCAT_KEYWORD_FILE.isSet():
             with open(keywordFilePath, "a+") as keywordFile:
                 keywordFile.write("\n@%s"%(str(self.container.inputData.SERVALCAT_KEYWORD_FILE.fullPath)))
-        # if self.container.controlParameters.EXTRAREFMACKEYWORDS.isSet():
-        #     with open(keywordFilePath, "a+") as keywordFile:
-        #         keywordFile.write("\n" + str(self.container.controlParameters.EXTRAREFMACKEYWORDS))
 
-        """if self.container.inputData.SERVALCAT_KEYWORD_FILE.isSet() or self.container.inputData.PROSMART_PROTEIN_RESTRAINTS.isSet() or self.container.inputData.PROSMART_NUCLEICACID_RESTRAINTS.isSet():
-            keywordFilePath = str(os.path.join(self.getWorkDirectory(), 'keywords.txt'))
-            if self.container.inputData.SERVALCAT_KEYWORD_FILE.isSet():
-                shutil.copy2(str(self.container.inputData.SERVALCAT_KEYWORD_FILE.fullPath), keywordFilePath)
-                if self.container.inputData.PROSMART_PROTEIN_RESTRAINTS.isSet() or self.container.inputData.PROSMART_NUCLEICACID_RESTRAINTS.isSet():
-                    import re
-                    # Remove END if was in the input keyword file
-                    linesToDelete = []
-                    with open(keywordFilePath, "r") as keywordFile:
-                        lines = keywordFile.readlines()
-                        for i, line in enumerate(lines):
-                            if re.search("END", line, re.IGNORECASE):
-                                linesToDelete.append(i)
-                    if linesToDelete:
-                        for i in range(len(linesToDelete)):
-                            lines.pop(i)
-                        with open(keywordFilePath, "w") as keywordFile:
-                            keywordFile.writelines(lines)"""
         if os.path.isfile(keywordFilePath):
             self.appendCommandLine(["--keyword_file", keywordFilePath])
         if self.container.controlParameters.EXTRA_SERVALCAT_OPTIONS.isSet():
@@ -652,7 +549,6 @@ class servalcat(CPluginScript):
                 xmlFilePath = str(os.path.join(self.getWorkDirectory(), "refined_stats.xml"))
                 xmlText = self.xmlAddRoot(xmlText, xmlFilePath, xmlRootName="SERVALCAT")
                 self.xmlroot = ET.fromstring(xmlText)
-                # self.xmlroot = CCP4Utils.openFileToEtree(xmlFilePath)
                 et = ET.ElementTree(self.xmlroot)
                 # Write program.xml_tmp and move it to program.xml
                 self.flushXml()

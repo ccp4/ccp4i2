@@ -26,12 +26,6 @@ class metalCoord(CPluginScript):
 
 
     def processInputFiles(self):
-        ##import os
-        ##import shutil
-        # Use temp input filename from which prosmart takes output restraints filename
-        ##self.tempFile = os.path.splitext(str(self.container.outputData.RESTRAINTS))[0]+'_TARGET.pdb'
-        ##print('prosmart tempFile',self.tempFile)
-        ##shutil.copyfile(self.container.inputData.TARGET_MODEL.__str__(), self.tempFile)
         return CPluginScript.SUCCEEDED
 
 
@@ -87,14 +81,6 @@ class metalCoord(CPluginScript):
             self.appendErrorReport(201, str(self.container.outputData.JSON))
             return CPluginScript.FAILED
 
-        '''xmlPath = self.makeFileName('PROGRAMXML')
-        from lxml import etree
-        xmlRoot = etree.Element('PROSMART')
-        xmlString = etree.tostring(xmlRoot,pretty_print=True)
-        xmlFile=open( xmlPath,'w')
-        xmlFile.write( xmlString )
-        xmlFile.close()'''
-
         # Convert JSON to external restraint keywords
         self.outputRestraintsPrefix = str(self.container.inputData.LIGAND_CODE) + "_restraints"
         self.outputRestraintsFilename = self.outputRestraintsPrefix + ".txt"
@@ -121,73 +107,6 @@ class metalCoord(CPluginScript):
         self.xmlroot = ET.fromstringlist(["<METALCOORD>", xmlText, "</METALCOORD>"])
         ET.indent(self.xmlroot, space="\t", level=0)
         with open(self.makeFileName('PROGRAMXML'), 'w') as programXML:
-            CCP4Utils.writeXML(programXML, ET.tostring(self.xmlroot)) # CCP4Utils.writeXML(programXML, etree.tostring(self.xmlroot, pretty_print=True))
+            CCP4Utils.writeXML(programXML, ET.tostring(self.xmlroot))
 
         return CPluginScript.SUCCEEDED
-
-#======================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-"""
-import unittest
-
-class testprosmart(unittest.TestCase):
-    
-    def setUp(self):
-        from core import CCP4Modules
-        self.app = CCP4Modules.QTAPPLICATION()
-        # make all background jobs wait for completion
-        # this is essential for unittest to work
-        CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
-    
-    def tearDown(self):
-        from core import CCP4Modules
-        CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
-    
-    def test_1(self):
-        from core import CCP4Modules, CCP4Utils
-        import os
-        
-        workDirectory = CCP4Utils.getTestTmpDir()
-        # this needs to agree with name attribute below
-        logFile = os.path.join(workDirectory,'prosmart_test1.log')
-        # Delete any existing log file
-        if os.path.exists(logFile): os.remove(logFile)
-        
-        self.wrapper = prosmart(parent=CCP4Modules.QTAPPLICATION(),name='prosmart_test1',workDirectory=workDirectory)
-        self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','prosmart','test_data','prosmart_test1.data.xml'))
-        
-        self.wrapper.setWaitForFinished(1000000)
-        pid = self.wrapper.process()
-        self.wrapper.setWaitForFinished(-1)
-        if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-    #self.assertTrue(os.path.exists(logFile),'No log file found')
-    
-    def test_2(self):
-        from core import CCP4Modules, CCP4Utils
-        import os
-        
-        workDirectory = CCP4Utils.getTestTmpDir()
-        # this needs to agree with name attribute below
-        logFile = os.path.join(workDirectory,'prosmart_test2.log')
-        # Delete any existing log file
-        if os.path.exists(logFile): os.remove(logFile)
-        
-        self.wrapper = prosmart(parent=CCP4Modules.QTAPPLICATION(),name='prosmart_test2',workDirectory=workDirectory)
-        self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','prosmart','test_data','prosmart_test2.data.xml'))
-        
-        self.wrapper.setWaitForFinished(1000000)
-        pid = self.wrapper.process()
-        self.wrapper.setWaitForFinished(-1)
-        if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-#self.assertTrue(os.path.exists(logFile),'No log file found')
-
-
-def TESTSUITE():
-    suite = unittest.TestLoader().loadTestsFromTestCase(testprosmart)
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)
-"""
