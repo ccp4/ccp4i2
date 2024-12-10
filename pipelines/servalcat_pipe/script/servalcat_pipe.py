@@ -35,8 +35,8 @@ from operator import itemgetter
 class servalcat_pipe(CPluginScript):
 
     TASKMODULE = 'refinement'
-    TASKTITLE = 'Servalcat' # Short title for GUI
-    # TASKTITLE = 'Refinement against diffraction data or SPA map & optional restraints from ProSMART & MetalCoord' # Short title for GUI
+    SHORTTASKTITLE = 'Servalcat'
+    TASKTITLE = 'Refinement against diffraction data or SPA map & optional restraints from ProSMART & MetalCoord'
     TASKNAME = 'servalcat_pipe'  # Task name - same as class name
     MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
     TASKVERSION= 0.1
@@ -108,7 +108,6 @@ class servalcat_pipe(CPluginScript):
         status = statusDict['finishStatus']
         if status == CPluginScript.FAILED:
             self.reportStatus(status)
-            return
 
     def executeProsmartNucleicAcid(self):
        if self.container.prosmartNucleicAcid.TOGGLE:
@@ -137,13 +136,12 @@ class servalcat_pipe(CPluginScript):
         status = statusDict['finishStatus']
         if status == CPluginScript.FAILED:
             self.reportStatus(status)
-            return
 
     def executeMetalCoords(self):
         if self.container.metalCoordPipeline.RUN_METALCOORD and \
                 self.container.metalCoordPipeline.GENERATE_OR_USE == "GENERATE":
             if not shutil.which("metalCoord", mode=os.X_OK):
-                print("WARNING: MetalCoord will not be executed because it is not insttalled.")
+                print("WARNING: MetalCoord will not be executed because it is not installed.")
                 return
             self.metalCoordOutputJsonPaths = []
             ligand_codes_selected = self.container.metalCoordPipeline.LIGAND_CODES_SELECTED
@@ -183,7 +181,6 @@ class servalcat_pipe(CPluginScript):
             if os.path.isfile(self.outputRestraintsMmcifPath) and stPath:
                 self.container.outputData.METALCOORD_XYZ.setFullPath(self.outputRestraintsMmcifPath)
                 self.container.outputData.METALCOORD_XYZ.annotation = 'Input structure with links from MetalCoord'
-        return
 
     def executeMetalCoord(self, ligand_code):
         self.metalCoordPlugin = self.makePluginObject('metalCoord')
@@ -206,7 +203,6 @@ class servalcat_pipe(CPluginScript):
         status = statusDict['finishStatus']
         if status == CPluginScript.FAILED:
             self.reportStatus(status)
-            return
 
     def executeFirstServalcat(self, withWeight=-1):
         #create wrapper
@@ -223,12 +219,12 @@ class servalcat_pipe(CPluginScript):
         print("executeFirstServalcat, firstServalcatXMLFilename", firstServalcatXMLFilename)
         self.watchFile(firstServalcatXMLFilename, handler=self.handleXmlChanged, minDeltaSize=34, unwatchWhileHandling=True)
         print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-        rv = self.firstServalcat.process()
+        self.firstServalcat.process()
 
     @QtCore.Slot(str)
     def handleXmlChanged2(self, xmlFilename2):
         self.xmlroot2.clear()
-        servalcatEtree2 = CCP4Utils.openFileToEtree(xmlFilename2) #, useLXML=False)
+        servalcatEtree2 = CCP4Utils.openFileToEtree(xmlFilename2) # MM , useLXML=False)
         servalcatXML2 = servalcatEtree2.xpath('//SERVALCAT')
         if len(servalcatXML2) == 1:
             servalcatXML2[0].tag = "SERVALCAT_WATERS"
@@ -238,7 +234,7 @@ class servalcat_pipe(CPluginScript):
     @QtCore.Slot(str)
     def handleXmlChanged(self, xmlFilename):
         self.xmlroot.clear()
-        servalcatEtree = CCP4Utils.openFileToEtree(xmlFilename) # , useLXML=False)
+        servalcatEtree = CCP4Utils.openFileToEtree(xmlFilename) # MM , useLXML=False)
         servalcatXML = servalcatEtree.xpath("//SERVALCAT")
         if len(servalcatXML) == 1:
             servalcatXML[0].tag = "SERVALCAT_FIRST"
@@ -277,7 +273,6 @@ class servalcat_pipe(CPluginScript):
         result = self.makePluginObject('servalcat')
         #input data for this servalcat instance is the same as the input data for the program
         result.container.inputData.copyData(self.container.inputData)
-        #result.container.inputData = self.container.inputData
 
         #Copy over most of the control parameters
         for attr in self.container.controlParameters.dataOrder():
@@ -423,7 +418,6 @@ class servalcat_pipe(CPluginScript):
                         pass
 
         # Find ADP values which are too small or large - outliers
-        median = numpy.median(adp_dict["All"])
         q1 = numpy.quantile(adp_dict["All"], 0.25)
         q3 = numpy.quantile(adp_dict["All"], 0.75)
         iqr = q3 - q1
@@ -538,76 +532,68 @@ class servalcat_pipe(CPluginScript):
 
 
     def coord_adp_dev_analysis(self, model1Path, model2Path):
-        #try:
-        if True:
-            coordDevMinReported = self.container.monitor.MIN_COORDDEV
-            ADPAbsDevMinReported = self.container.monitor.MIN_ADPDEV
-            jsonFilePath = str(os.path.join(self.getWorkDirectory(), "report_coord_adp_dev.json"))
-            monitor_differences.main(
-                file1=model1Path, file2=model2Path, output=jsonFilePath,
-                minCoordDev=float(coordDevMinReported), minADPDev=float(ADPAbsDevMinReported))
-            if os.path.isfile(jsonFilePath):
-                # Load
-                with open(jsonFilePath, "r") as jsonFile:
-                    jsonText = jsonFile.read()
-                jsonStats = json.loads(jsonText)
-                coordDevValues = [atom['CoordDev'] for atom in jsonStats]
-                coordDevMean = statistics.mean(coordDevValues)
-                # coordDevSigma = statistics.stdev(coordDevValues)
-                ADPAbsDevValues = [abs(atom['ADPDev']) for atom in jsonStats]
-                ADPAbsDevMean = statistics.mean(ADPAbsDevValues)
-                # ADPAbsDevSigma = statistics.stdev(ADPAbsDevValues)
-                # Sort and filter
-                jsonStats_sorted_CoordDev = jsonStats.copy()
-                jsonStats_sorted_CoordDev = \
-                    [atom for atom in jsonStats_sorted_CoordDev if atom['CoordDev'] >= coordDevMinReported]
-                jsonStats_sorted_CoordDev.sort(key=itemgetter('CoordDev'), reverse=True)
-                jsonStats_sorted_ADPDev = jsonStats.copy()
-                jsonStats_sorted_ADPDev = \
-                    [atom for atom in jsonStats_sorted_ADPDev if abs(atom['ADPDev']) >= ADPAbsDevMinReported]
-                jsonStats_sorted_ADPDev.sort(key=lambda atom: abs(itemgetter('ADPDev')(atom)), reverse=True)
-                # Save in program.xml
-                xmlText = "\n<COORD_ADP_DEV>"
-                xmlText += "\n<STATISTICS>"
-                xmlText += "\n<coordDevMean>"
-                xmlText += str(round(coordDevMean, 2))
-                xmlText += "</coordDevMean>"
-                xmlText += "\n<coordDevMinReported>"
-                xmlText += str(round(coordDevMinReported, 2))
-                xmlText += "</coordDevMinReported>"
-                xmlText += "\n<ADPAbsDevMean>"
-                xmlText += str(round(ADPAbsDevMean, 2))
-                xmlText += "</ADPAbsDevMean>"
-                xmlText += "\n<coordADPAbsMinReported>"
-                xmlText += str(round(ADPAbsDevMinReported, 2))
-                xmlText += "</coordADPAbsMinReported>"
-                xmlText += "\n</STATISTICS>"
-                xmlText += "\n<COORD_DEV>"
-                xmlText += json2xml(list(jsonStats_sorted_CoordDev), tag_name_subroot="atom")
-                xmlText += "\n</COORD_DEV>"
-                xmlText += "\n<ADP_DEV>"
-                xmlText += json2xml(list(jsonStats_sorted_ADPDev), tag_name_subroot="atom")
-                xmlText += "\n</ADP_DEV>"
-                xmlText += "\n</COORD_ADP_DEV>"
-                xmlTree = etree.fromstring(xmlText)
-                aFile = open(self.pipelinexmlfile, 'r')
-                oldXml = etree.fromstring(aFile.read()) # oldXml = ET.fromstring(aFile.read())
-                aFile.close()
-                oldXml.append(xmlTree)
-                aFile = open(self.pipelinexmlfile + '_tmp', 'w')
-                CCP4Utils.writeXML(aFile, etree.tostring(oldXml, pretty_print=True)) # CCP4Utils.writeXML(aFile,ET.tostring(oldXml))
-                aFile.close()
-                shutil.move(self.pipelinexmlfile + '_tmp', self.pipelinexmlfile)
-        #except Exception as e:
-        #    sys.stderr.write("Monitoring of the changes in coordinates and ADPs was not successful: " + str(e) + "\n")
-        return
+        coordDevMinReported = self.container.monitor.MIN_COORDDEV
+        ADPAbsDevMinReported = self.container.monitor.MIN_ADPDEV
+        jsonFilePath = str(os.path.join(self.getWorkDirectory(), "report_coord_adp_dev.json"))
+        monitor_differences.main(
+            file1=model1Path, file2=model2Path, output=jsonFilePath,
+            minCoordDev=float(coordDevMinReported), minADPDev=float(ADPAbsDevMinReported))
+        if os.path.isfile(jsonFilePath):
+            # Load
+            with open(jsonFilePath, "r") as jsonFile:
+                jsonText = jsonFile.read()
+            jsonStats = json.loads(jsonText)
+            coordDevValues = [atom['CoordDev'] for atom in jsonStats]
+            coordDevMean = statistics.mean(coordDevValues)
+            ADPAbsDevValues = [abs(atom['ADPDev']) for atom in jsonStats]
+            ADPAbsDevMean = statistics.mean(ADPAbsDevValues)
+            # Sort and filter
+            jsonStats_sorted_CoordDev = jsonStats.copy()
+            jsonStats_sorted_CoordDev = \
+                [atom for atom in jsonStats_sorted_CoordDev if atom['CoordDev'] >= coordDevMinReported]
+            jsonStats_sorted_CoordDev.sort(key=itemgetter('CoordDev'), reverse=True)
+            jsonStats_sorted_ADPDev = jsonStats.copy()
+            jsonStats_sorted_ADPDev = \
+                [atom for atom in jsonStats_sorted_ADPDev if abs(atom['ADPDev']) >= ADPAbsDevMinReported]
+            jsonStats_sorted_ADPDev.sort(key=lambda atom: abs(itemgetter('ADPDev')(atom)), reverse=True)
+            # Save in program.xml
+            xmlText = "\n<COORD_ADP_DEV>"
+            xmlText += "\n<STATISTICS>"
+            xmlText += "\n<coordDevMean>"
+            xmlText += str(round(coordDevMean, 2))
+            xmlText += "</coordDevMean>"
+            xmlText += "\n<coordDevMinReported>"
+            xmlText += str(round(coordDevMinReported, 2))
+            xmlText += "</coordDevMinReported>"
+            xmlText += "\n<ADPAbsDevMean>"
+            xmlText += str(round(ADPAbsDevMean, 2))
+            xmlText += "</ADPAbsDevMean>"
+            xmlText += "\n<coordADPAbsMinReported>"
+            xmlText += str(round(ADPAbsDevMinReported, 2))
+            xmlText += "</coordADPAbsMinReported>"
+            xmlText += "\n</STATISTICS>"
+            xmlText += "\n<COORD_DEV>"
+            xmlText += json2xml(list(jsonStats_sorted_CoordDev), tag_name_subroot="atom")
+            xmlText += "\n</COORD_DEV>"
+            xmlText += "\n<ADP_DEV>"
+            xmlText += json2xml(list(jsonStats_sorted_ADPDev), tag_name_subroot="atom")
+            xmlText += "\n</ADP_DEV>"
+            xmlText += "\n</COORD_ADP_DEV>"
+            xmlTree = etree.fromstring(xmlText)
+            aFile = open(self.pipelinexmlfile, 'r')
+            oldXml = etree.fromstring(aFile.read())
+            aFile.close()
+            oldXml.append(xmlTree)
+            aFile = open(self.pipelinexmlfile + '_tmp', 'w')
+            CCP4Utils.writeXML(aFile, etree.tostring(oldXml, pretty_print=True))
+            aFile.close()
+            shutil.move(self.pipelinexmlfile + '_tmp', self.pipelinexmlfile)
 
     @QtCore.Slot(dict)
     def firstServalcatFinished(self, statusDict):
         print("AAA1")
         if statusDict['finishStatus'] == CPluginScript.UNSATISFACTORY:
             print("AAA1.UNSATISFACTORY")
-            import os
             with open(self.makeFileName('PROGRAMXML'), 'w') as programXML:
                 CCP4Utils.writeXML(programXML, etree.tostring(self.xmlroot, pretty_print=True))
             self.reportStatus(CPluginScript.UNSATISFACTORY)
@@ -615,7 +601,6 @@ class servalcat_pipe(CPluginScript):
         elif self.firstServalcat.errorReport.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
             print("AAA1.MAXSEVERITY")
             #This gets done in thefirstServalcat.reportStatus() - Liz
-            #self.extendErrorReport(self.firstServalcat.errorReport)
             try:
                 servalcatEtree = CCP4Utils.openFileToEtree(self.firstServalcat.makeFileName('PROGRAMXML'))
                 servalcatXML = servalcatEtree.xpath('//SERVALCAT')
@@ -636,7 +621,6 @@ class servalcat_pipe(CPluginScript):
         self.handleXmlChanged(self.firstServalcat.makeFileName(format='PROGRAMXML'))
 
         print("AAA10")
-        import os
         if statusDict['finishStatus'] == CPluginScript.FAILED:
             # This gets done in the firstServalcat.reportStatus() - Liz
             self.fileSystemWatcher = None
@@ -672,7 +656,6 @@ class servalcat_pipe(CPluginScript):
                      self.fileSystemWatcher = None
                      self.finishUp(self.firstServalcat)
         print('done servalcat_pipe.firstServalcatFinished')
-        return
 
     def makeCootPlugin(self):
          # FIXME - This is all nonsense - needs to consider best task, etc... *NOT* just firstRefmaca?
@@ -738,7 +721,6 @@ class servalcat_pipe(CPluginScript):
         if outputFile is not None and not outputFile.exists():
             self.appendErrorReport(noFileErrCode,'Expected file: '+str(outputFile))
             self.reportStatus(CPluginScript.FAILED)
-        return
 
     @QtCore.Slot(dict)
     def cootFinished(self, statusDict={}):
@@ -812,7 +794,6 @@ class servalcat_pipe(CPluginScript):
                     shutil.copyfile( str(wrappersAttr.fullPath), str(pipelinesAttr.fullPath) )
                   except:
                     self.appendErrorReport(101,str(wrappersAttr.fullPath)+' to '+str(pipelinesAttr.fullPath))
-                  #self.container.outputData.copyData(servalcatJob.container.outputData,[attr])
                 if attr == "XMLOUT":
                     pass
         print('servalcat_pipe.finishUp 1')
@@ -873,7 +854,7 @@ class servalcat_pipe(CPluginScript):
 
 
     def handleTimeout(self):
-        import sys;sys.stdout.flush()
+        sys.stdout.flush()
 
         for rtask in self.jobsInTrain:
             print('TERMINATING', rtask.processId,sys.stdout.flush())
@@ -891,7 +872,6 @@ def coefficientsToMap(coefficientsPath, mapPath=None, overSample=1.0):
     hkl_info = clipper.HKL_info()
     mtz_file.open_read (str(coefficientsPath))
     mtz_file.import_hkl_info ( hkl_info )
-    sg, cell = hkl_info.spacegroup(), hkl_info.cell()
     fphidata = clipper.HKL_data_F_phi_float(hkl_info)
     mtz_file.import_hkl_data( fphidata, str("/*/*/[F,PHI]") );
     mtz_file.close_read()
@@ -915,16 +895,11 @@ def coefficientsToMap(coefficientsPath, mapPath=None, overSample=1.0):
 
 # Function called from gui to support exporting MTZ files
 def exportJobFile(jobId=None,mode=None,fileInfo={}):
-    import os
     from core import CCP4Modules
-    from dbapi.CCP4DbApi import CDbApi
-    from dbapi.CCP4DbApi import FILE_ROLE_OUT
 
     theDb = CCP4Modules.PROJECTSMANAGER().db()
     if mode == 'complete_mtz':
-        #print 'refmac.exportJobFile',mode
         childJobs = theDb.getChildJobs(jobId=jobId,details=True)
-        #print 'exportJobFile childJobs',childJobs
         if childJobs[-1][2] == 'servalcat':
           jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=childJobs[-1][1],create=False)
           if os.path.exists(os.path.join(jobDir,'refined.mtz')):
@@ -935,7 +910,6 @@ def exportJobFile(jobId=None,mode=None,fileInfo={}):
              if os.path.exists(os.path.join(jobDir,'refined.mtz')):
                 return  os.path.join(jobDir,'refined.mtz')
 
-    return None
 
 # Function to return list of names of exportable MTZ(s)
 def exportJobFileMenu(jobId=None):
