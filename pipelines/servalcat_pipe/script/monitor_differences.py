@@ -36,24 +36,28 @@ def make_address_str(cra):
 
 def search_write_json(lookup1, lookup2, output, minCoordDev, minADPDev):
     data = []
-    for i, entry1 in enumerate(lookup1):
+    for entry1 in lookup1:
         for j, entry2 in enumerate(lookup2):
-            if (lookup1[i].atom.name == lookup2[j].atom.name) \
-                and (lookup1[i].atom.altloc == lookup2[j].atom.altloc) \
-                and (lookup1[i].residue.name == lookup2[j].residue.name) \
-                and (lookup1[i].residue.seqid.num == lookup2[j].residue.seqid.num) \
-                and (lookup1[i].residue.seqid.icode == lookup2[j].residue.seqid.icode) \
-                and (lookup1[i].chain.name == lookup2[j].chain.name):
-                    coordDev = calculate_shift(lookup1[i].atom.pos, lookup2[j].atom.pos)
-                    ADPDev = lookup2[j].atom.b_iso - lookup1[i].atom.b_iso
-                    if coordDev >= minCoordDev or abs(ADPDev) >= minADPDev:
-                        address = make_address_str(lookup1[i])
-                        entry_dict = {"AtomAddress": address,
-                                      "CoordDev": round(coordDev, 2),
-                                      "ADPDev": round(ADPDev, 2)}
-                        data.append(entry_dict)
-                    del lookup2[j]
-                    break
+            if (
+                entry1.atom.name == entry2.atom.name
+                and entry1.atom.altloc == entry2.atom.altloc
+                and entry1.residue.name == entry2.residue.name
+                and entry1.residue.seqid.num == entry2.residue.seqid.num
+                and entry1.residue.seqid.icode == entry2.residue.seqid.icode
+                and entry1.chain.name == entry2.chain.name
+            ):
+                coordDev = calculate_shift(entry1.atom.pos, entry2.atom.pos)
+                ADPDev = entry2.atom.b_iso - entry1.atom.b_iso
+                if coordDev >= minCoordDev or abs(ADPDev) >= minADPDev:
+                    address = make_address_str(entry1)
+                    entry_dict = {
+                        "AtomAddress": address,
+                        "CoordDev": round(coordDev, 2),
+                        "ADPDev": round(ADPDev, 2),
+                    }
+                    data.append(entry_dict)
+                del lookup2[j]
+                break
     with open(output, "w") as file:
         data_json = json.dumps(data, indent=4)
         file.writelines(data_json)
