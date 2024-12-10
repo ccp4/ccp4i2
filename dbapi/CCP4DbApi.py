@@ -150,8 +150,8 @@ FILETYPELIST = [ (0,'Unknown','File type unknown'),
                 ]
 
 KEYTYPELIST =  [ (0,'Unknown','Key type unknown'),
-                    (1,'RFactor','R value'),
-                    (2,'RFree','Free R value'),
+                    (1,'RFactor','R Factor'),
+                    (2,'RFree','Free R Factor'),
                     (3,'completeness','model completeness'),
                     (4, 'spaceGroup','space group'),
                     (5, 'highResLimit', 'high resolution limit'),
