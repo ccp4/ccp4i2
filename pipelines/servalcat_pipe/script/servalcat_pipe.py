@@ -532,62 +532,65 @@ class servalcat_pipe(CPluginScript):
 
 
     def coord_adp_dev_analysis(self, model1Path, model2Path):
-        coordDevMinReported = self.container.monitor.MIN_COORDDEV
-        ADPAbsDevMinReported = self.container.monitor.MIN_ADPDEV
-        jsonFilePath = str(os.path.join(self.getWorkDirectory(), "report_coord_adp_dev.json"))
-        monitor_differences.main(
-            file1=model1Path, file2=model2Path, output=jsonFilePath,
-            minCoordDev=float(coordDevMinReported), minADPDev=float(ADPAbsDevMinReported))
-        if os.path.isfile(jsonFilePath):
-            # Load
-            with open(jsonFilePath, "r") as jsonFile:
-                jsonText = jsonFile.read()
-            jsonStats = json.loads(jsonText)
-            coordDevValues = [atom['CoordDev'] for atom in jsonStats]
-            coordDevMean = statistics.mean(coordDevValues)
-            ADPAbsDevValues = [abs(atom['ADPDev']) for atom in jsonStats]
-            ADPAbsDevMean = statistics.mean(ADPAbsDevValues)
-            # Sort and filter
-            jsonStats_sorted_CoordDev = jsonStats.copy()
-            jsonStats_sorted_CoordDev = \
-                [atom for atom in jsonStats_sorted_CoordDev if atom['CoordDev'] >= coordDevMinReported]
-            jsonStats_sorted_CoordDev.sort(key=itemgetter('CoordDev'), reverse=True)
-            jsonStats_sorted_ADPDev = jsonStats.copy()
-            jsonStats_sorted_ADPDev = \
-                [atom for atom in jsonStats_sorted_ADPDev if abs(atom['ADPDev']) >= ADPAbsDevMinReported]
-            jsonStats_sorted_ADPDev.sort(key=lambda atom: abs(itemgetter('ADPDev')(atom)), reverse=True)
-            # Save in program.xml
-            xmlText = "\n<COORD_ADP_DEV>"
-            xmlText += "\n<STATISTICS>"
-            xmlText += "\n<coordDevMean>"
-            xmlText += str(round(coordDevMean, 2))
-            xmlText += "</coordDevMean>"
-            xmlText += "\n<coordDevMinReported>"
-            xmlText += str(round(coordDevMinReported, 2))
-            xmlText += "</coordDevMinReported>"
-            xmlText += "\n<ADPAbsDevMean>"
-            xmlText += str(round(ADPAbsDevMean, 2))
-            xmlText += "</ADPAbsDevMean>"
-            xmlText += "\n<coordADPAbsMinReported>"
-            xmlText += str(round(ADPAbsDevMinReported, 2))
-            xmlText += "</coordADPAbsMinReported>"
-            xmlText += "\n</STATISTICS>"
-            xmlText += "\n<COORD_DEV>"
-            xmlText += json2xml(list(jsonStats_sorted_CoordDev), tag_name_subroot="atom")
-            xmlText += "\n</COORD_DEV>"
-            xmlText += "\n<ADP_DEV>"
-            xmlText += json2xml(list(jsonStats_sorted_ADPDev), tag_name_subroot="atom")
-            xmlText += "\n</ADP_DEV>"
-            xmlText += "\n</COORD_ADP_DEV>"
-            xmlTree = etree.fromstring(xmlText)
-            aFile = open(self.pipelinexmlfile, 'r')
-            oldXml = etree.fromstring(aFile.read())
-            aFile.close()
-            oldXml.append(xmlTree)
-            aFile = open(self.pipelinexmlfile + '_tmp', 'w')
-            CCP4Utils.writeXML(aFile, etree.tostring(oldXml, pretty_print=True))
-            aFile.close()
-            shutil.move(self.pipelinexmlfile + '_tmp', self.pipelinexmlfile)
+        try:
+            coordDevMinReported = self.container.monitor.MIN_COORDDEV
+            ADPAbsDevMinReported = self.container.monitor.MIN_ADPDEV
+            jsonFilePath = str(os.path.join(self.getWorkDirectory(), "report_coord_adp_dev.json"))
+            monitor_differences.main(
+                file1=model1Path, file2=model2Path, output=jsonFilePath,
+                minCoordDev=float(coordDevMinReported), minADPDev=float(ADPAbsDevMinReported))
+            if os.path.isfile(jsonFilePath):
+                # Load
+                with open(jsonFilePath, "r") as jsonFile:
+                    jsonText = jsonFile.read()
+                jsonStats = json.loads(jsonText)
+                coordDevValues = [atom['CoordDev'] for atom in jsonStats]
+                coordDevMean = statistics.mean(coordDevValues)
+                ADPAbsDevValues = [abs(atom['ADPDev']) for atom in jsonStats]
+                ADPAbsDevMean = statistics.mean(ADPAbsDevValues)
+                # Sort and filter
+                jsonStats_sorted_CoordDev = jsonStats.copy()
+                jsonStats_sorted_CoordDev = \
+                    [atom for atom in jsonStats_sorted_CoordDev if atom['CoordDev'] >= coordDevMinReported]
+                jsonStats_sorted_CoordDev.sort(key=itemgetter('CoordDev'), reverse=True)
+                jsonStats_sorted_ADPDev = jsonStats.copy()
+                jsonStats_sorted_ADPDev = \
+                    [atom for atom in jsonStats_sorted_ADPDev if abs(atom['ADPDev']) >= ADPAbsDevMinReported]
+                jsonStats_sorted_ADPDev.sort(key=lambda atom: abs(itemgetter('ADPDev')(atom)), reverse=True)
+                # Save in program.xml
+                xmlText = "\n<COORD_ADP_DEV>"
+                xmlText += "\n<STATISTICS>"
+                xmlText += "\n<coordDevMean>"
+                xmlText += str(round(coordDevMean, 2))
+                xmlText += "</coordDevMean>"
+                xmlText += "\n<coordDevMinReported>"
+                xmlText += str(round(coordDevMinReported, 2))
+                xmlText += "</coordDevMinReported>"
+                xmlText += "\n<ADPAbsDevMean>"
+                xmlText += str(round(ADPAbsDevMean, 2))
+                xmlText += "</ADPAbsDevMean>"
+                xmlText += "\n<coordADPAbsMinReported>"
+                xmlText += str(round(ADPAbsDevMinReported, 2))
+                xmlText += "</coordADPAbsMinReported>"
+                xmlText += "\n</STATISTICS>"
+                xmlText += "\n<COORD_DEV>"
+                xmlText += json2xml(list(jsonStats_sorted_CoordDev), tag_name_subroot="atom")
+                xmlText += "\n</COORD_DEV>"
+                xmlText += "\n<ADP_DEV>"
+                xmlText += json2xml(list(jsonStats_sorted_ADPDev), tag_name_subroot="atom")
+                xmlText += "\n</ADP_DEV>"
+                xmlText += "\n</COORD_ADP_DEV>"
+                xmlTree = etree.fromstring(xmlText)
+                aFile = open(self.pipelinexmlfile, 'r')
+                oldXml = etree.fromstring(aFile.read())
+                aFile.close()
+                oldXml.append(xmlTree)
+                aFile = open(self.pipelinexmlfile + '_tmp', 'w')
+                CCP4Utils.writeXML(aFile, etree.tostring(oldXml, pretty_print=True))
+                aFile.close()
+                shutil.move(self.pipelinexmlfile + '_tmp', self.pipelinexmlfile)
+        except Exception as e:
+            sys.stderr.write("Monitoring of the changes in coordinates and ADPs was not successful: " + str(e) + "\n")
 
     @QtCore.Slot(dict)
     def firstServalcatFinished(self, statusDict):
