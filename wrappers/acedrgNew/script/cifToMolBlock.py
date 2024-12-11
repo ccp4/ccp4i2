@@ -18,6 +18,7 @@ def cifFileToMolBlock(input_file):
     "_chem_comp_bond.atom_id_1",
     "_chem_comp_bond.atom_id_2",
     "_chem_comp_bond.value_order"
+    "_chem_comp_bond.type"
     ]
 
     searches = ["_chem_comp_atom.comp_id",
@@ -125,7 +126,8 @@ def cifFileToMolBlock(input_file):
             a = gemmi.Atom()
             a.name = atom['_chem_comp_atom.atom_id']
             a.element = gemmi.Element(atom['_chem_comp_atom.type_symbol'])
-            a.charge = int(float(atom['_chem_comp_atom.charge']))
+            if '_chem_comp_atom.charge' in atom:
+                a.charge = int(float(atom['_chem_comp_atom.charge']))
             if '_chem_comp_atom.x' in atom:
                 pos = gemmi.Position(float(atom['_chem_comp_atom.x']),float(atom['_chem_comp_atom.y']),float(atom['_chem_comp_atom.z']))
             elif '_chem_comp_atom.model_Cartn_x' in atom:
@@ -143,29 +145,35 @@ def cifFileToMolBlock(input_file):
             for b2 in bond_list:
                 if '_chem_comp_bond.atom_id_1' in b2 and '_chem_comp_bond.atom_id_2' in b2:
                     if (b2['_chem_comp_bond.atom_id_1'] == at1 and b2['_chem_comp_bond.atom_id_2'] == at2) or (b2['_chem_comp_bond.atom_id_1'] == at2 and b2['_chem_comp_bond.atom_id_2'] == at1):
-                        if b2["_chem_comp_bond.value_order"].upper()[0:4] == "AROM":
+                        if "_chem_comp_bond.value_order" in b2:
+                            orderString = "_chem_comp_bond.value_order"
+                        elif "_chem_comp_bond.type" in b2:
+                            orderString = "_chem_comp_bond.type"
+                        else:
+                            continue
+                        if b2[orderString].upper()[0:4] == "AROM":
                             b.SetBondType(Chem.BondType.AROMATIC)
-                        elif b2["_chem_comp_bond.value_order"].upper()[0:4] == "SING":
+                        elif b2[orderString].upper()[0:4] == "SING":
                             b.SetBondType(Chem.BondType.SINGLE)
-                        elif b2["_chem_comp_bond.value_order"].upper()[0:4] == "DOUB":
+                        elif b2[orderString].upper()[0:4] == "DOUB":
                             b.SetBondType(Chem.BondType.DOUBLE)
-                        elif b2["_chem_comp_bond.value_order"].upper()[0:4] == "TRIP":
+                        elif b2[orderString].upper()[0:4] == "TRIP":
                             b.SetBondType(Chem.BondType.TRIPLE)
-                        elif b2["_chem_comp_bond.value_order"].upper()[0:4] == "QUAD":
+                        elif b2[orderString].upper()[0:4] == "QUAD":
                             b.SetBondType(Chem.BondType.QUADRUPLE)
-                        elif b2["_chem_comp_bond.value_order"].upper()[0:4] == "QUIN":
+                        elif b2[orderString].upper()[0:4] == "QUIN":
                             b.SetBondType(Chem.BondType.QUINTUPLE)
-                        elif b2["_chem_comp_bond.value_order"].upper()[0:3] == "HEX":
+                        elif b2[orderString].upper()[0:3] == "HEX":
                             b.SetBondType(Chem.BondType.HEXTUPLE)
-                        elif b2["_chem_comp_bond.value_order"].upper() == "DATIVE":
+                        elif b2[orderString].upper() == "DATIVE":
                             b.SetBondType(Chem.BondType.DATIVE)
-                        elif b2["_chem_comp_bond.value_order"].upper() == "DATIVEL":
+                        elif b2[orderString].upper() == "DATIVEL":
                             b.SetBondType(Chem.BondType.DATIVEL)
-                        elif b2["_chem_comp_bond.value_order"].upper() == "DATIVER":
+                        elif b2[orderString].upper() == "DATIVER":
                             b.SetBondType(Chem.BondType.DATIVER)
-                        elif b2["_chem_comp_bond.value_order"].upper() == "DATIVEONE":
+                        elif b2[orderString].upper() == "DATIVEONE":
                             b.SetBondType(Chem.BondType.DATIVEONE)
-                        print("Match!",b.GetBondType(),b2["_chem_comp_bond.value_order"])
+                        print("Match!",b.GetBondType(),b2[orderString])
         AllChem.Compute2DCoords(mol)
         mol.SetProp("_MolFileChiralFlag","1")
         molBlock = Chem.MolToMolBlock(mol, includeStereo=True, forceV3000=False)
