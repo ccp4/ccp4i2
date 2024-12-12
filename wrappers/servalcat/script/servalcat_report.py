@@ -183,6 +183,31 @@ class servalcat_report(Report):
             plotLine.append('colour', 'red')
             plotLine.append('symbolsize', '0')
 
+        clearingDiv = parent.addDiv(style="clear:both;")
+        if len(xmlnode.findall('.//cycle[last()]/data/summary/FSCaverage')) > 0:
+            return
+        noteDiv = parent.addDiv(style="margin-bottom:0;")
+        note = ""
+        # noteDiv.append("CC<sub><i>I</i></sub> = &#931; (<i>I</i><sub>obs</sub> &#8722; ⟨<i>I</i><sub>obs</sub>⟩ ) (<i>I</i><sub>calc</sub> &#8722; ⟨<i>I</i><sub>calc</sub>⟩ ) / &#8730; (<i>I</i><sub>obs</sub> &#8722; ⟨<i>I</i><sub>obs</sub>⟩ )<sup>2</sup> (<i>I</i><sub>calc</sub> &#8722; ⟨<i>I</i><sub>calc</sub>⟩ )<sup>2</sup>")
+        # noteDiv.append("⟨CC<sub><i>I</i></sub>⟩ is a weighted average of CC<sub><i>I</i></sub> within resolution bins.")
+        if len(xmlnode.findall('.//cycle[last()]/data/summary/Rwork')) > 0 or \
+                    len(xmlnode.findall('.//cycle[last()]/data/summary/R')) > 0:
+            #noteDiv.append("R = &#931; | <i>F</i><sub>obs</sub> &#8722; <i>F</i><sub>calc</sub> | / &#931; <i>F</i><sub>obs</sub>")
+            #noteDiv.append("CC<sub><i>F</i></sub> = &#931; (<i>F</i><sub>obs</sub> &#8722; ⟨<i>F</i><sub>obs</sub>⟩ ) (<i>F</i><sub>calc</sub> &#8722; ⟨<i>F</i><sub>calc</sub>⟩ ) / &#8730; (<i>F</i><sub>obs</sub> &#8722; ⟨<i>F</i><sub>obs</sub>⟩ )<sup>2</sup> (<i>F</i><sub>calc</sub> &#8722; ⟨<i>F</i><sub>calc</sub>⟩ )<sup>2</sup>")
+            #noteDiv.append("⟨CC<sub><i>F</i></sub>⟩ is a weighted average of CC<sub><i>F</i></sub> within resolution bins.")
+            note = "R = &#931; | <i>F</i><sub>obs</sub> &#8722; <i>F</i><sub>calc</sub> | / &#931; <i>F</i><sub>obs</sub><br />" + \
+                "CC<sub><i>F</i></sub> = (⟨<i>F</i><sub>obs</sub> <i>F</i><sub>calc</sub>⟩ &#8722; ⟨<i>F</i><sub>obs</sub>⟩⟨<i>F</i><sub>calc</sub>⟩ / " + \
+                "&#8730; (⟨<i>F</i><sub>obs</sub><sup>2</sup>⟩ &#8722; ⟨<i>F</i><sub>obs</sub>⟩<sup>2</sup>) &#8730; (⟨<i>F</i><sub>calc</sub><sup>2</sup>⟩ &#8722; ⟨<i>F</i><sub>calc</sub>⟩<sup>2</sup>)<br />" + \
+                "⟨CC<sub><i>F</i></sub>⟩ = &#931; <i>N<sub>i</sub></i> CC<sub><i>F,i</i></sub> / &#931; <i>N<sub>i</sub></i> &#160;&#160; where <i>N<sub>i</sub></i> and CC<sub><i>F,i</i></sub> are the number of reflections and the correlation in a resolution bin."
+        elif len(xmlnode.findall('.//cycle[last()]/data/summary/R1work')) > 0 or \
+                    len(xmlnode.findall('.//cycle[last()]/data/summary/R1')) > 0:
+            note = "R1 = &#931; | &#8730;<i>I</i><sub>obs</sub> &#8722; <i>F</i><sub>calc</sub> | / &#931; &#8730;<i>I</i><sub>obs</sub> &#160;&#160; " + \
+                "where <i>I</i><sub>obs</sub>/&#963;(<i>I</i><sub>obs</sub>) >= 2<br />" + \
+                "CC<sub><i>I</i></sub> = (⟨<i>I</i><sub>obs</sub> <i>I</i><sub>calc</sub>⟩ &#8722; ⟨<i>I</i><sub>obs</sub>⟩⟨<i>I</i><sub>calc</sub>⟩ / " + \
+                "&#8730; (⟨<i>I</i><sub>obs</sub><sup>2</sup>⟩ &#8722; ⟨<i>I</i><sub>obs</sub>⟩<sup>2</sup>) &#8730; (⟨<i>I</i><sub>calc</sub><sup>2</sup>⟩ &#8722; ⟨<i>I</i><sub>calc</sub>⟩<sup>2</sup>)<br />" + \
+                "⟨CC<sub><i>I</i></sub>⟩ = &#931; <i>N<sub>i</sub></i> CC<sub><i>I,i</i></sub> / &#931; <i>N<sub>i</sub></i> &#160;&#160; where <i>N<sub>i</sub></i> and CC<sub><i>I,i</i></sub> are the number of reflections and the correlation in a resolution bin."
+        noteDiv.append(note)
+
     def getCycleData(self, xmlnode=None):
         if xmlnode is None: xmlnode = self.xmlnode
         FSCaverageNodes = xmlnode.findall('.//cycle[last()]/data/summary/FSCaverage')
