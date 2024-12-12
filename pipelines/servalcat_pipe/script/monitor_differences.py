@@ -2,9 +2,9 @@
 ''' monitor_refinement_differences.py is written to analyze differences
 between refinement input and output.
 
-Usage: python3 monitor_refinement_differences.py INPUT OUTPUT
+Usage: python3 monitor_refinement_differences.py file1.mmcif file2.mmcif output_file
 
-The report is written into the JSON file (default output.json).
+The report is written into JSON file and CSV file if an output file name is given.
 '''
 
 __author__ = "Petr Kolenko, Martin Maly"
@@ -15,6 +15,8 @@ import sys
 import json
 from math import sqrt
 import gemmi
+import csv
+import io
 
 
 def calculate_shift(pos1, pos2):
@@ -34,7 +36,7 @@ def make_address_str(cra):
     return address
 
 
-def search_write_json(lookup1, lookup2, output, minCoordDev, minADPDev):
+def search(lookup1, lookup2, output, minCoordDev, minADPDev):
     data = []
     for entry1 in lookup1:
         for j, entry2 in enumerate(lookup2):
@@ -58,9 +60,23 @@ def search_write_json(lookup1, lookup2, output, minCoordDev, minADPDev):
                     data.append(entry_dict)
                 del lookup2[j]
                 break
-    with open(output, "w") as file:
-        data_json = json.dumps(data, indent=4)
-        file.writelines(data_json)
+    # JSON
+    if output:
+        with open(output + ".json", "w") as file:
+            data_json = json.dumps(data, indent=4)
+            file.writelines(data_json)
+    # CSV
+    csv_io = io.StringIO()
+    fieldnames = ["AtomAddress", "CoordDev", "ADPDev"]
+    writer = csv.DictWriter(csv_io, fieldnames=fieldnames, quoting=csv.QUOTE_NONNUMERIC)
+    writer.writeheader()
+    for entry in data:
+        writer.writerow(entry)
+    csv_string = csv_io.getvalue()
+    if output:
+        with open(output + ".csv", "w") as file:
+            file.write(csv_string)
+    return csv_string
 
 
 def main(file1, file2, output=None, minCoordDev=0, minADPDev=0):
@@ -73,7 +89,8 @@ def main(file1, file2, output=None, minCoordDev=0, minADPDev=0):
     if len(lookup1) != len(lookup2):
         print("Number of atoms in the 1st file does not match the number"
             + " of atoms in the second file.")
-    search_write_json(lookup1, lookup2, output, minCoordDev, minADPDev)
+    csv_string = search(lookup1, lookup2, output, minCoordDev, minADPDev)
+    return csv_string
 
 
 if __name__ == "__main__":
@@ -92,7 +109,7 @@ if __name__ == "__main__":
     if len(argv) >= 3:
         output = argv[2]
     else:
-        output = "report.json"
+        output = None
 
     if len(argv) >= 4:
         try:
