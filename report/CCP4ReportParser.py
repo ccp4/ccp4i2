@@ -977,8 +977,8 @@ class Container(ReportClass):
   def addDownload(self,xrtnode=None,xmlnode=None,jobInfo=None,**kw):
       return self.addObjectOfClass(Download, xrtnode, xmlnode, jobInfo, **kw)
 
-  def addCopyToClipboard(self,xrtnode=None,xmlnode=None,jobInfo=None,text="",**kw):
-      return self.addObjectOfClass(CopyToClipboard, text=text, **kw)
+  def addCopyToClipboard(self,xrtnode=None,xmlnode=None,jobInfo=None,text="",label="",**kw):
+      return self.addObjectOfClass(CopyToClipboard, text=text,label=label, **kw)
 
   def addResults(self,xrtnode=None,xmlnode=None,jobInfo=None,**kw):
       return self.addObjectOfClass(Results, xrtnode, xmlnode, jobInfo, **kw)
@@ -3720,19 +3720,21 @@ class JobDetails(ReportClass):
                         t = f.read()
                         allText += t + "\n\n"
 
-    download = logFold.addCopyToClipboard(text=allText)
+    download = logFold.addCopyToClipboard(text=allText,label="Copy all to clipboard")
 
     for root, subFolders, files in os.walk(jobDirectory):
         for fn in files:
             if (fn.endswith(".log") or fn.endswith(".txt")) and os.path.exists(os.path.join(root,fn)):
                 fileName = os.path.join(root,fn)
                 if os.path.exists(fileName):
-                    logDiv = logFold.addDiv(style="border-radius: 4px;background: #98DCED;padding: 2px;width: 100%")
-                    logDiv.addText(text=fileName)
-                    logPre = logFold.addPre()
+                    fileFold = Fold(label=fileName,brief=os.path.basename(fileName))
+                    logFold.append(fileFold)
+                    t = ""
                     with open(fileName) as f:
                         t = f.read()
-                        logPre.text = t
+                    download = fileFold.addCopyToClipboard(text=t,label="Copy "+os.path.basename(fileName)+" to clipboard")
+                    logPre = fileFold.addPre()
+                    logPre.text = t
 
     return fold.as_etree()
 
@@ -3853,8 +3855,9 @@ class Launch:
     return root
 
 class CopyToClipboard:
-  def __init__(self,text="",**kw):
+  def __init__(self,text="",label="Copy to clipboard",**kw):
     self.text=text
+    self.label=label
 
   def as_etree(self):
     import json
@@ -3862,7 +3865,7 @@ class CopyToClipboard:
     obj = etree.Element('button')
 
     obj.set('style','line-height: 14pt; box-sizing: border-box;')
-    obj.text = "Copy to clipboard"
+    obj.text = self.label
     obj.set('title',"CopyToClipboard")
 
     n = 4096
