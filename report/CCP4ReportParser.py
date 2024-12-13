@@ -33,6 +33,7 @@ import xml.etree.ElementTree as etree
 from lxml import html as lxml_html
 
 from core.CCP4ErrorHandling import *
+from core.CCP4Modules import PROJECTSMANAGER
 
 XRTNS = "{http://www.ccp4.ac.uk/xrt}"
 CCP4NS = "http://www.ccp4.ac.uk/ccp4ns"
@@ -975,6 +976,9 @@ class Container(ReportClass):
 
   def addDownload(self,xrtnode=None,xmlnode=None,jobInfo=None,**kw):
       return self.addObjectOfClass(Download, xrtnode, xmlnode, jobInfo, **kw)
+
+  def addCopyToClipboard(self,xrtnode=None,xmlnode=None,jobInfo=None,text="",**kw):
+      return self.addObjectOfClass(CopyToClipboard, text=text, **kw)
 
   def addResults(self,xrtnode=None,xmlnode=None,jobInfo=None,**kw):
       return self.addObjectOfClass(Results, xrtnode, xmlnode, jobInfo, **kw)
@@ -3463,7 +3467,6 @@ SceneDataFile
       """
 
       if True and "project" in params and "relPath" in params and "baseName" in params:
-          from core.CCP4Modules import PROJECTSMANAGER
 
           projectDir = PROJECTSMANAGER().db().getProjectInfo(projectId=params['project'],mode='projectdirectory')
           filePath = os.path.join(projectDir,params['relPath'],params['baseName'])
@@ -3699,6 +3702,38 @@ class JobDetails(ReportClass):
       if key1 in self.jobInfo:
         tab.addData(title=key2,data=[str(self.jobInfo[key1])])
     tab.transpose=True
+
+    logFold = Fold(label='Log files',brief='Logs')
+    fold.append(logFold)
+
+    jobId = self.jobInfo["jobid"]
+    jobDirectory = PROJECTSMANAGER().makeFileName(jobId=jobId,mode='ROOT')
+
+    allText = ""
+    for root, subFolders, files in os.walk(jobDirectory):
+        for fn in files:
+            if (fn.endswith(".log") or fn.endswith(".txt")) and os.path.exists(os.path.join(root,fn)):
+                fileName = os.path.join(root,fn)
+                if os.path.exists(fileName):
+                    allText += fileName + "\n"
+                    with open(fileName) as f:
+                        t = f.read()
+                        allText += t + "\n\n"
+
+    download = logFold.addCopyToClipboard(text=allText)
+
+    for root, subFolders, files in os.walk(jobDirectory):
+        for fn in files:
+            if (fn.endswith(".log") or fn.endswith(".txt")) and os.path.exists(os.path.join(root,fn)):
+                fileName = os.path.join(root,fn)
+                if os.path.exists(fileName):
+                    logDiv = logFold.addDiv(style="border-radius: 4px;background: #98DCED;padding: 2px;width: 100%")
+                    logDiv.addText(text=fileName)
+                    logPre = logFold.addPre()
+                    with open(fileName) as f:
+                        t = f.read()
+                        logPre.text = t
+
     return fold.as_etree()
 
 
@@ -3816,6 +3851,27 @@ class Launch:
     root.append(obj)
 
     return root
+
+class CopyToClipboard:
+  def __init__(self,text="",**kw):
+    self.text=text
+
+  def as_etree(self):
+    import json
+
+    obj = etree.Element('button')
+
+    obj.set('style','line-height: 14pt; box-sizing: border-box;')
+    obj.text = "Copy to clipboard"
+    obj.set('title',"CopyToClipboard")
+
+    n = 4096
+    split_text = [escapeI2Quotify(self.text[i:i+n]) for i in range(0, len(self.text), n)]
+
+    obj.set('onclick','navigator.clipboard.writeText('+"+".join(split_text)+')')
+
+    return obj
+
 
 class Download:
   
