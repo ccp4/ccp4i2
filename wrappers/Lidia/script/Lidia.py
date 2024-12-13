@@ -51,7 +51,10 @@ class lidia(CPluginScript):
             argList.append(self.container.inputData.MOLIN.__str__())
 ### quick fix for 8.0.006, lidia from external coot will not work
         envEdit = [['PWD',os.path.normpath(self.getWorkDirectory())]]
-        CCP4Modules.LAUNCHER().launch(viewer='/bin/sh', argList = argList, callBack = self.handleFinished, envEdit=envEdit,logFile = self.makeFileName('LOG'))
+        if sys.platform.startswith("win"):
+            CCP4Modules.LAUNCHER().launch(viewer='lidia', argList = [], callBack = self.handleFinished, envEdit=envEdit,logFile = self.makeFileName('LOG'))
+        else:
+            CCP4Modules.LAUNCHER().launch(viewer='/bin/sh', argList = argList, callBack = self.handleFinished, envEdit=envEdit,logFile = self.makeFileName('LOG'))
         return CPluginScript.SUCCEEDED
 
     @QtCore.Slot()
