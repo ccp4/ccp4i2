@@ -16,9 +16,8 @@
     GNU Lesser General Public License for more details.
 """
 
-from cProfile import run
 import json
-import os
+from pathlib import Path
 from report.CCP4ReportParser import Report
 
 
@@ -26,7 +25,7 @@ class modelcraft_report(Report):
     TASKNAME = "modelcraft"
     RUNNING = True
     USEPROGRAMXML = False
-    WATCHED_FILE = os.path.join("modelcraft", "modelcraft.json")
+    WATCHED_FILE = str(Path("modelcraft/modelcraft.json"))
 
     def __init__(self, xmlnode=None, jobInfo={}, jobStatus=None, **kw):
         Report.__init__(
@@ -35,48 +34,36 @@ class modelcraft_report(Report):
         self.addDiv(style="clear:both;")
         if jobStatus in ["Running", "Running remotely"]:
             self.append("<p><b>The job is currently running.</b></p>")
-        json_path = os.path.join(jobInfo["fileroot"], "modelcraft", "modelcraft.json")
-        if os.path.exists(json_path):
-            with open(json_path) as stream:
-                self.json = json.load(stream)
-            self.add_running_job()
-            self.add_table()
-            self.add_message(jobStatus)
-            self.add_graph()
-#FIXME - XML PICTURE
-            #self.add_picture(jobInfo=self.jobInfo, parent=self)
+        json_path = Path(jobInfo["fileroot"], "modelcraft/modelcraft.json")
+        if json_path.exists():
+            with json_path.open(encoding="utf-8") as text:
+                self.json = json.load(text)
+            self.add_running_job(parent=self)
+            summaryFold = self.addFold(
+                label="Summary", initiallyOpen=True, brief="Summary"
+            )
+            self.add_table(parent=summaryFold)
+            self.add_message(jobStatus, parent=summaryFold)
+            self.add_graph(parent=summaryFold)
+            self.add_picture()
+            self.addDiv(style="clear:both;")
 
-    def add_picture(self, xmlnode=None, jobInfo=None, parent=None, initiallyOpen=False):
-        if parent is None:
-            parent = self
-        if xmlnode is None: xmlnode = self.xmlnode
-        if jobInfo is None: jobInfo = self.jobInfo
-        
-        #I *do not know* why This is needed
-        clearingDiv = parent.addDiv(style="clear:both;")
+    def add_picture(self):
+        self.addDiv(style="clear:both;")
+        pictureFold = self.addFold(label="Picture", initiallyOpen=True, brief="Picture")
+        baseScenePath = Path(__file__).resolve().parent / "modelcraft_1.scene.xml"
+        pictureFold.addPicture(
+            label="Autobuilt structure", sceneFile=str(baseScenePath), id="autobuild_1"
+        )
 
-        pictureFold = parent.addFold(label='Picture', initiallyOpen=initiallyOpen,brief='Picture')
-        pictureGallery = pictureFold.addObjectGallery(style='float:left;',height='550px', tableWidth='260px', contentWidth='450px')
-        clearingDiv = parent.addDiv(style="clear:both;")
-        jobDirectory = jobInfo['fileroot']
-        from core import CCP4Utils
-        ccp4i2_root = CCP4Utils.getCCP4I2Dir()
-        import os
-        baseScenePath = os.path.join(ccp4i2_root,'wrappers','modelcraft','script','modelcraft_1.scene.xml')
-        parent.addPicture(label="Autobuilt structure",sceneFile=baseScenePath,id='autobuild_1')
-
-    def add_running_job(self, parent=None):
-        if parent is None:
-            parent = self
+    def add_running_job(self, parent):
         subjob = self.json.get("running_job")
         if subjob:
             parent.append(f"<p>The sub-job that is currently running is: {subjob}</p>")
 
-    def add_table(self, parent=None):
+    def add_table(self, parent):
         if "final" not in self.json:
             return
-        if parent is None:
-            parent = self
         cycle = self.json["final"]["cycle"]
         residues = self.json["final"]["residues"]
         waters = self.json["final"]["waters"]
@@ -89,11 +76,9 @@ class modelcraft_report(Report):
         table.addData(title="R<sub>Work</sub>", data=[rwork])
         table.addData(title="R<sub>Free</sub>", data=[rfree])
 
-    def add_message(self, jobStatus, parent=None):
+    def add_message(self, jobStatus, parent):
         if "final" not in self.json:
             return
-        if parent is None:
-            parent = self
         cycle = self.json["final"]["cycle"]
         rfree = self.json["final"]["r_free"]
         if jobStatus in ["Running", "Running remotely"]:
@@ -113,11 +98,9 @@ class modelcraft_report(Report):
             message += " the model is approaching completion."
         parent.append(f"<p>{message}</p>")
 
-    def add_graph(self, parent=None):
+    def add_graph(self, parent):
         if len(self.json.get("cycles", [])) == 0:
             return
-        if parent is None:
-            parent = self
         cycles = []
         residues = []
         rfrees = []
