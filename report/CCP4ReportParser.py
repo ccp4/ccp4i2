@@ -693,6 +693,8 @@ def getChildObject(child,xmlnode,jobInfo={},report=None):
           obj = Title( child, xmlnode, jobInfo ) 
         elif child.tag == XRTNS+"jobdetails":
           obj = JobDetails( child, xmlnode, jobInfo ) 
+        elif child.tag == XRTNS+"logfiles":
+          obj = JobLogFiles( child, xmlnode, jobInfo ) 
         elif child.tag == XRTNS+"picture":
           obj = Picture(  child, xmlnode, jobInfo ) 
         elif child.tag == XRTNS+"launch":
@@ -1298,7 +1300,7 @@ class Report( Container ):
 
     def standardisePythonReport(self):
         self.children.insert(0,Title(jobInfo = self.jobInfo))
-        for cls in (InputData,OutputData,JobDetails):
+        for cls in (InputData,OutputData,JobDetails,JobLogFiles):
             add = True
             for child in self.children:
                 if isinstance(child,cls):
@@ -3703,8 +3705,51 @@ class JobDetails(ReportClass):
         tab.addData(title=key2,data=[str(self.jobInfo[key1])])
     tab.transpose=True
 
+    return fold.as_etree()
+
+  def makeRow(self,key,value):
+    tr = etree.Element('tr')
+    th = etree.Element('th')
+    th.text = str(key)
+    tr.append(th)
+    td = etree.Element('td')
+    td.text = str(value)
+    tr.append(td)
+    return tr
+
+class JobLogFiles(ReportClass):
+  def __init__(self, xrtnode=None, xmlnode=None, jobInfo = {},**kw):
+    super().__init__()
+    self.id = kw.get('id',None)
+    self.class_ = kw.get('class_',None)
+    self.jobInfo = {}
+    self.jobInfo.update(jobInfo)
+
+  def getI2Version(self):
+    # try getting i2 version from the diagnostic.xml file
+    diagfile = os.path.normpath(os.path.join(self.jobInfo['fileroot'],'diagnostic.xml'))
+    #print 'JobDetails.getI2Version diagfile',diagfile
+    if os.path.exists(diagfile):
+      from core import CCP4File
+      x = CCP4File.CI2XmlHeader()
+      x.loadFromXml(diagfile)
+      return str(x.ccp4iVersion)
+    else:
+      return 'Unknown'
+
+  def as_data_etree(self):
+    import time
+    root = super().as_data_etree()
+    root.set('creationtime', time.strftime('%H:%M %d-%b-%Y',time.localtime(self.jobInfo['creationtime'])))
+    root.set('finishtime', time.strftime('%H:%M %d-%b-%Y',time.localtime(self.jobInfo['finishtime'])))
+    root.set('status', self.jobInfo.get('status', 'Unknown'))
+    return root
+
+  def as_etree(self):
+
     logFold = Fold(label='Log files',brief='Logs')
-    fold.append(logFold)
+    tab = logFold.addTable()
+    tab.internalId='data_LogFiles'
 
     jobId = self.jobInfo["jobid"]
     jobDirectory = PROJECTSMANAGER().makeFileName(jobId=jobId,mode='ROOT')
@@ -3736,8 +3781,7 @@ class JobDetails(ReportClass):
                     logPre = fileFold.addPre()
                     logPre.text = t
 
-    return fold.as_etree()
-
+    return logFold.as_etree()
 
   def makeRow(self,key,value):
     tr = etree.Element('tr')
