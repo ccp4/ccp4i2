@@ -188,18 +188,21 @@ class servalcat_report(Report):
         noteDiv = parent.addDiv(style="margin-bottom:0;")
         note = ""
         if len(xmlnode.findall('.//cycle[last()]/data/summary/Rwork')) > 0 or \
-                    len(xmlnode.findall('.//cycle[last()]/data/summary/R')) > 0:
-            note = "R = &#931; | <i>F</i><sub>obs</sub> &#8722; <i>F</i><sub>calc</sub> | / &#931; <i>F</i><sub>obs</sub><br />" + \
-                "CC<sub><i>F</i></sub> = (⟨<i>F</i><sub>obs</sub> <i>F</i><sub>calc</sub>⟩ &#8722; ⟨<i>F</i><sub>obs</sub>⟩⟨<i>F</i><sub>calc</sub>⟩ / " + \
-                "&#8730; (⟨<i>F</i><sub>obs</sub><sup>2</sup>⟩ &#8722; ⟨<i>F</i><sub>obs</sub>⟩<sup>2</sup>) &#8730; (⟨<i>F</i><sub>calc</sub><sup>2</sup>⟩ &#8722; ⟨<i>F</i><sub>calc</sub>⟩<sup>2</sup>)<br />" + \
-                "⟨CC<sub><i>F</i></sub>⟩ = &#931; <i>N<sub>i</sub></i> CC<sub><i>F,i</i></sub> / &#931; <i>N<sub>i</sub></i> &#160;&#160; where <i>N<sub>i</sub></i> and CC<sub><i>F,i</i></sub> are the number of reflections and the correlation in a resolution bin."
+                len(xmlnode.findall('.//cycle[last()]/data/summary/R')) > 0:
+            note = "⟨CC<sub><i>F</i></sub>⟩ is the correlation coefficient between calculated and observed amplitudes averaged over resolution shells."
+            # note = "R = &#931; | <i>F</i><sub>obs</sub> &#8722; <i>F</i><sub>calc</sub> | / &#931; <i>F</i><sub>obs</sub><br />" + \
+            #     "CC<sub><i>F</i></sub> = (⟨<i>F</i><sub>obs</sub> <i>F</i><sub>calc</sub>⟩ &#8722; ⟨<i>F</i><sub>obs</sub>⟩⟨<i>F</i><sub>calc</sub>⟩ / " + \
+            #     "&#8730; (⟨<i>F</i><sub>obs</sub><sup>2</sup>⟩ &#8722; ⟨<i>F</i><sub>obs</sub>⟩<sup>2</sup>) &#8730; (⟨<i>F</i><sub>calc</sub><sup>2</sup>⟩ &#8722; ⟨<i>F</i><sub>calc</sub>⟩<sup>2</sup>)<br />" + \
+            #     "⟨CC<sub><i>F</i></sub>⟩ = &#931; <i>N<sub>i</sub></i> CC<sub><i>F,i</i></sub> / &#931; <i>N<sub>i</sub></i> &#160;&#160; where <i>N<sub>i</sub></i> and CC<sub><i>F,i</i></sub> are the number of reflections and the correlation in a resolution bin."
         elif len(xmlnode.findall('.//cycle[last()]/data/summary/R1work')) > 0 or \
-                    len(xmlnode.findall('.//cycle[last()]/data/summary/R1')) > 0:
-            note = "R1 = &#931; | &#8730;<i>I</i><sub>obs</sub> &#8722; <i>F</i><sub>calc</sub> | / &#931; &#8730;<i>I</i><sub>obs</sub> &#160;&#160; " + \
-                "where <i>I</i><sub>obs</sub>/&#963;(<i>I</i><sub>obs</sub>) >= 2<br />" + \
-                "CC<sub><i>I</i></sub> = (⟨<i>I</i><sub>obs</sub> <i>I</i><sub>calc</sub>⟩ &#8722; ⟨<i>I</i><sub>obs</sub>⟩⟨<i>I</i><sub>calc</sub>⟩ / " + \
-                "&#8730; (⟨<i>I</i><sub>obs</sub><sup>2</sup>⟩ &#8722; ⟨<i>I</i><sub>obs</sub>⟩<sup>2</sup>) &#8730; (⟨<i>I</i><sub>calc</sub><sup>2</sup>⟩ &#8722; ⟨<i>I</i><sub>calc</sub>⟩<sup>2</sup>)<br />" + \
-                "⟨CC<sub><i>I</i></sub>⟩ = &#931; <i>N<sub>i</sub></i> CC<sub><i>I,i</i></sub> / &#931; <i>N<sub>i</sub></i> &#160;&#160; where <i>N<sub>i</sub></i> and CC<sub><i>I,i</i></sub> are the number of reflections and the correlation in a resolution bin."
+                len(xmlnode.findall('.//cycle[last()]/data/summary/R1')) > 0:
+            note = "R1 is the R-value calculated from the square root of intensities where <i>I</i>/&#963;(<i>I</i>) > 2.<br />"
+            note += "⟨CC<sub><i>I</i></sub>⟩ is the correlation coefficient between calculated and observed intensities averaged over resolution shells."
+            # note = "R1 = &#931; | &#8730;<i>I</i><sub>obs</sub> &#8722; <i>F</i><sub>calc</sub> | / &#931; &#8730;<i>I</i><sub>obs</sub> &#160;&#160; " + \
+            #     "where <i>I</i><sub>obs</sub>/&#963;(<i>I</i><sub>obs</sub>) >= 2<br />" + \
+            #     "CC<sub><i>I</i></sub> = (⟨<i>I</i><sub>obs</sub> <i>I</i><sub>calc</sub>⟩ &#8722; ⟨<i>I</i><sub>obs</sub>⟩⟨<i>I</i><sub>calc</sub>⟩ / " + \
+            #     "&#8730; (⟨<i>I</i><sub>obs</sub><sup>2</sup>⟩ &#8722; ⟨<i>I</i><sub>obs</sub>⟩<sup>2</sup>) &#8730; (⟨<i>I</i><sub>calc</sub><sup>2</sup>⟩ &#8722; ⟨<i>I</i><sub>calc</sub>⟩<sup>2</sup>)<br />" + \
+            #     "⟨CC<sub><i>I</i></sub>⟩ = &#931; <i>N<sub>i</sub></i> CC<sub><i>I,i</i></sub> / &#931; <i>N<sub>i</sub></i> &#160;&#160; where <i>N<sub>i</sub></i> and CC<sub><i>I,i</i></sub> are the number of reflections and the correlation in a resolution bin."
         noteDiv.append(note)
 
     def getCycleData(self, xmlnode=None):
