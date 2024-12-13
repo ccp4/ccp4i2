@@ -297,6 +297,8 @@ class servalcat_pipe_report(Report):
             coordADPAbsMinReported = float(xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordADPAbsMinReported")[0].text)
         else:
             coordADPAbsMinReported = 0
+        coordDevValues = []
+        ADPDevValues = []
         if len(self.xmlnode.findall(".//COORD_ADP_DEV/CSV")) > 0:
             csv_string = self.xmlnode.findall(".//COORD_ADP_DEV/CSV")[0].text
             csvStringIO = io.StringIO(csv_string)
@@ -313,7 +315,7 @@ class servalcat_pipe_report(Report):
         if len(xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordDevMean")) > 0:
             coordDevDiv.append("Average deviation of atom coordinates: " + \
                 xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordDevMean")[0].text + " A.")
-        if coordDevAtoms:
+        if coordDevValues:
             coordDevDiv.append("Deviations of atom coordinates<br />higher than " + \
                 str(coordDevMinReported) + " A:")
             coordDevTable = coordDevDiv.addTable (transpose=False, downloadable=False, id='coordDev_table' )
@@ -327,7 +329,7 @@ class servalcat_pipe_report(Report):
         if len(xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/ADPAbsDevMean")) > 0:
             ADPDevDiv.append("Average absolute value of deviation of B-values: " + \
                 xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/ADPAbsDevMean")[0].text + " A<sup>2</sup>.")
-        if ADPDevAtoms:
+        if ADPDevValues:
             ADPDevDiv.append("Deviations of B-values with an<br />absolute value higher than " + \
                 str(coordADPAbsMinReported) + " A<sup>2</sup>:")
             ADPDevTable = ADPDevDiv.addTable ( transpose=False, downloadable=False, id='ADPDev_table' )
