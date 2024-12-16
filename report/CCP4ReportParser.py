@@ -33,6 +33,7 @@ import xml.etree.ElementTree as etree
 from lxml import html as lxml_html
 
 from core.CCP4ErrorHandling import *
+from core.CCP4Modules import PROJECTSMANAGER
 
 XRTNS = "{http://www.ccp4.ac.uk/xrt}"
 CCP4NS = "http://www.ccp4.ac.uk/ccp4ns"
@@ -692,6 +693,8 @@ def getChildObject(child,xmlnode,jobInfo={},report=None):
           obj = Title( child, xmlnode, jobInfo ) 
         elif child.tag == XRTNS+"jobdetails":
           obj = JobDetails( child, xmlnode, jobInfo ) 
+        elif child.tag == XRTNS+"logfiles":
+          obj = JobLogFiles( child, xmlnode, jobInfo ) 
         elif child.tag == XRTNS+"picture":
           obj = Picture(  child, xmlnode, jobInfo ) 
         elif child.tag == XRTNS+"launch":
@@ -975,6 +978,9 @@ class Container(ReportClass):
 
   def addDownload(self,xrtnode=None,xmlnode=None,jobInfo=None,**kw):
       return self.addObjectOfClass(Download, xrtnode, xmlnode, jobInfo, **kw)
+
+  def addCopyToClipboard(self,xrtnode=None,xmlnode=None,jobInfo=None,text="",label="",**kw):
+      return self.addObjectOfClass(CopyToClipboard, text=text,label=label, **kw)
 
   def addResults(self,xrtnode=None,xmlnode=None,jobInfo=None,**kw):
       return self.addObjectOfClass(Results, xrtnode, xmlnode, jobInfo, **kw)
@@ -1294,7 +1300,7 @@ class Report( Container ):
 
     def standardisePythonReport(self):
         self.children.insert(0,Title(jobInfo = self.jobInfo))
-        for cls in (InputData,OutputData,JobDetails):
+        for cls in (InputData,OutputData,JobDetails,JobLogFiles):
             add = True
             for child in self.children:
                 if isinstance(child,cls):
@@ -3463,7 +3469,6 @@ SceneDataFile
       """
 
       if True and "project" in params and "relPath" in params and "baseName" in params:
-          from core.CCP4Modules import PROJECTSMANAGER
 
           projectDir = PROJECTSMANAGER().db().getProjectInfo(projectId=params['project'],mode='projectdirectory')
           filePath = os.path.join(projectDir,params['relPath'],params['baseName'])
@@ -3699,8 +3704,84 @@ class JobDetails(ReportClass):
       if key1 in self.jobInfo:
         tab.addData(title=key2,data=[str(self.jobInfo[key1])])
     tab.transpose=True
+
     return fold.as_etree()
 
+  def makeRow(self,key,value):
+    tr = etree.Element('tr')
+    th = etree.Element('th')
+    th.text = str(key)
+    tr.append(th)
+    td = etree.Element('td')
+    td.text = str(value)
+    tr.append(td)
+    return tr
+
+class JobLogFiles(ReportClass):
+  def __init__(self, xrtnode=None, xmlnode=None, jobInfo = {},**kw):
+    super().__init__()
+    self.id = kw.get('id',None)
+    self.class_ = kw.get('class_',None)
+    self.jobInfo = {}
+    self.jobInfo.update(jobInfo)
+
+  def getI2Version(self):
+    # try getting i2 version from the diagnostic.xml file
+    diagfile = os.path.normpath(os.path.join(self.jobInfo['fileroot'],'diagnostic.xml'))
+    #print 'JobDetails.getI2Version diagfile',diagfile
+    if os.path.exists(diagfile):
+      from core import CCP4File
+      x = CCP4File.CI2XmlHeader()
+      x.loadFromXml(diagfile)
+      return str(x.ccp4iVersion)
+    else:
+      return 'Unknown'
+
+  def as_data_etree(self):
+    import time
+    root = super().as_data_etree()
+    root.set('creationtime', time.strftime('%H:%M %d-%b-%Y',time.localtime(self.jobInfo['creationtime'])))
+    root.set('finishtime', time.strftime('%H:%M %d-%b-%Y',time.localtime(self.jobInfo['finishtime'])))
+    root.set('status', self.jobInfo.get('status', 'Unknown'))
+    return root
+
+  def as_etree(self):
+
+    logFold = Fold(label='Log files',brief='Logs')
+    tab = logFold.addTable()
+    tab.internalId='data_LogFiles'
+
+    jobId = self.jobInfo["jobid"]
+    jobDirectory = PROJECTSMANAGER().makeFileName(jobId=jobId,mode='ROOT')
+
+    allText = ""
+    for root, subFolders, files in os.walk(jobDirectory):
+        for fn in files:
+            if (fn.endswith(".log") or fn.endswith(".txt")) and os.path.exists(os.path.join(root,fn)):
+                fileName = os.path.join(root,fn)
+                if os.path.exists(fileName):
+                    allText += fileName + "\n"
+                    with open(fileName) as f:
+                        t = f.read()
+                        allText += t + "\n\n"
+
+    download = logFold.addCopyToClipboard(text=allText,label="Copy all to clipboard")
+
+    for root, subFolders, files in os.walk(jobDirectory):
+        for fn in files:
+            if (fn.endswith(".log") or fn.endswith(".txt")) and os.path.exists(os.path.join(root,fn)):
+                fileName = os.path.join(root,fn)
+                if os.path.exists(fileName):
+                    fileFold = Fold(label=fileName,brief=os.path.basename(fileName))
+                    logFold.append(fileFold)
+                    t = ""
+                    with open(fileName) as f:
+                        t = f.read()
+                    download = fileFold.addCopyToClipboard(text=t,label="Copy "+os.path.basename(fileName)+" to clipboard")
+                    logPre = fileFold.addPre()
+                    logPre.text = t
+
+    return logFold.as_etree()
 
   def makeRow(self,key,value):
     tr = etree.Element('tr')
@@ -3816,6 +3897,28 @@ class Launch:
     root.append(obj)
 
     return root
+
+class CopyToClipboard:
+  def __init__(self,text="",label="Copy to clipboard",**kw):
+    self.text=text
+    self.label=label
+
+  def as_etree(self):
+    import json
+
+    obj = etree.Element('button')
+
+    obj.set('style','line-height: 14pt; box-sizing: border-box;')
+    obj.text = self.label
+    obj.set('title',"CopyToClipboard")
+
+    n = 4096
+    split_text = [escapeI2Quotify(self.text[i:i+n]) for i in range(0, len(self.text), n)]
+
+    obj.set('onclick','navigator.clipboard.writeText('+"+".join(split_text)+')')
+
+    return obj
+
 
 class Download:
   
