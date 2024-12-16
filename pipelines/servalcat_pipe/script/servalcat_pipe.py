@@ -658,55 +658,6 @@ class servalcat_pipe(CPluginScript):
         cootPlugin.container.inputData.FPHIIN.set(self.firstServalcat.container.outputData.FPHIOUT)
         return cootPlugin
 
-    def mapVerdictSuggestionsToi2Params(self,suggestedParameters):
-
-        newSuggestions = {}
-
-        for k,v in suggestedParameters.items():
-            if k=="NCYC":
-                newSuggestions["NCYCLES"] = v
-            elif k=="JELLY_DMAX":
-                newSuggestions["JELLY_DIST"] = v
-            elif k=="JELLY_SIGMA":
-                newSuggestions["JELLY_SIGMA"] = v
-            elif k=="WAUTO_VAL":
-                newSuggestions["WEIGHT"] = v
-            elif k=="TLS_CYCLES":
-                newSuggestions["NTLSCYCLES"] = v
-            elif k=="BFAC":
-                newSuggestions["B_REFINEMENT_MODE"] = v
-            elif k=="VDW_VAL":
-                #newSuggestions["VDWRESTRAINTS"] = v #FIXME - This option does not currently exist in i2.
-                pass
-            elif k=="JELLY":
-                if v.lower() == "yes":
-                    newSuggestions["USE_JELLY"] = "True"
-                else:
-                    newSuggestions["USE_JELLY"] = "False"
-            elif k=="TLS":
-                if v.lower() == "auto":
-                    newSuggestions["TLSMODE"] = "AUTO"
-            elif k=="NCSR":
-                if v.lower() == "yes":
-                    newSuggestions["USE_NCS"] = "True"
-                else:
-                    newSuggestions["USE_NCS"] = "False"
-            elif k=="RESET_B":
-                if v.lower() == "yes":
-                    newSuggestions["BFACSETUSE"] = "True" #According to Oleg, we should not get here currently (14/09/2021).
-                else:
-                    newSuggestions["BFACSETUSE"] = "False"
-            elif k=="WAUTO_YES":
-                if v.lower() == "yes":
-                    newSuggestions["WEIGHT_OPT"] = "AUTO"
-                else:
-                    newSuggestions["WEIGHT_OPT"] = "MANUAL"
-            elif k=="MKHYDR":
-                if v.lower() == "all":
-                    newSuggestions["HYDR_ALL"] = "ALL"
-                    newSuggestions["HYDR_USE"] = "True"
-
-        return newSuggestions
 
     def checkFinishStatus( self,statusDict,failedErrCode,outputFile = None,noFileErrCode= None):
         if len(statusDict)>0 and statusDict['finishStatus'] == CPluginScript.FAILED:
