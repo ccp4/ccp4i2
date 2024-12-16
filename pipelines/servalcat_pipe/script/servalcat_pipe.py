@@ -375,6 +375,7 @@ class servalcat_pipe(CPluginScript):
     
 
     def adp_analysis(self, modelPath, iqrFactor=2.0):
+        print("Running ADP analysis...")
         adp_dict = {}
         adp_per_resi = {}
         adp_dict["All"] = []
@@ -518,19 +519,15 @@ class servalcat_pipe(CPluginScript):
             outlier_atom = etree.SubElement(outlier_elem, "atom")
             outlier_atom.text = str(outlier["atom"])
 
-        aFile = open(self.pipelinexmlfile, 'r')
-        oldXml = etree.fromstring(aFile.read())
-        aFile.close()
-        oldXml.append(adp_root)
-        aFile = open(self.pipelinexmlfile + '_tmp', 'w')
-        CCP4Utils.writeXML(aFile,etree.tostring(oldXml, pretty_print=True))
-        aFile.close()
-        shutil.move(self.pipelinexmlfile + '_tmp', self.pipelinexmlfile)
+        self.xmlroot.append(adp_root)
+        self.saveXml()
+        print("ADP analysis done.")
 
 
     def coord_adp_dev_analysis(self, model1Path, model2Path):
         import io
         import pandas
+        print("Monitoring of changes/shifts of coordinated and ADPs...")
         try:
             coordDevMinReported = self.container.monitor.MIN_COORDDEV
             ADPAbsDevMinReported = self.container.monitor.MIN_ADPDEV
@@ -565,16 +562,11 @@ class servalcat_pipe(CPluginScript):
             # xmlText += "\n<CSV><![CDATA[\n" + csv_string + "\n]]></CSV>"
             xmlText += "\n</COORD_ADP_DEV>"
             xmlTree = etree.fromstring(xmlText)
-            aFile = open(self.pipelinexmlfile, 'r')
-            oldXml = etree.fromstring(aFile.read())
-            aFile.close()
-            oldXml.append(xmlTree)
-            aFile = open(self.pipelinexmlfile + '_tmp', 'w')
-            CCP4Utils.writeXML(aFile, etree.tostring(oldXml, pretty_print=True))
-            aFile.close()
-            shutil.move(self.pipelinexmlfile + '_tmp', self.pipelinexmlfile)
+            self.xmlroot.append(xmlTree)
+            self.saveXml()
+            print("Monitoring of changes/shifts of coordinates and ADPs...")
         except Exception as e:
-            sys.stderr.write("Monitoring of the changes in coordinates and ADPs was not successful: " + str(e) + "\n")
+            sys.stderr.write("ERROR: Monitoring of changes/shifts of coordinates and ADPs was not successful: " + str(e) + "\n")
 
     @QtCore.Slot(dict)
     def firstServalcatFinished(self, statusDict):
