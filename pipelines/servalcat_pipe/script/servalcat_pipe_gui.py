@@ -518,8 +518,8 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'label', 'Atoms with a B-value lower than <i>the first quartile - factor * interquartile_range</i><br />or higher than <i>the third quartile + factor * interquartile_range</i> to be reported. Factor:',
                        'stretch', 'widget', 'ADP_IQR_FACTOR' ], toggle = ['RUN_ADP_ANALYSIS', 'open', [ True ] ] )
     self.createLine( [ 'widget', 'RUN_COORDADPDEV_ANALYSIS', 'label', 'Run analysis of changes in coordinates and ADPs' ] )
-    self.createLine( [ 'label', 'Minimum deviation of atom coordinates to be reported:', 'stretch', 'widget', 'monitor.MIN_COORDDEV' ], toggle = ['RUN_COORDADPDEV_ANALYSIS', 'open', [ True ] ] )
-    self.createLine( [ 'label', 'Minimum deviation of B-values to be reported:', 'stretch', 'widget', 'monitor.MIN_ADPDEV' ], toggle = ['RUN_COORDADPDEV_ANALYSIS', 'open', [ True ] ] )
+    self.createLine( [ 'label', 'Minimum shift of atom coordinates to be reported:', 'stretch', 'widget', 'monitor.MIN_COORDDEV' ], toggle = ['RUN_COORDADPDEV_ANALYSIS', 'open', [ True ] ] )
+    self.createLine( [ 'label', 'Minimum shift of B-values to be reported:', 'stretch', 'widget', 'monitor.MIN_ADPDEV' ], toggle = ['RUN_COORDADPDEV_ANALYSIS', 'open', [ True ] ] )
     self.closeSubFrame()
     return
 

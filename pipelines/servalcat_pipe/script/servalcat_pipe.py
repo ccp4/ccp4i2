@@ -23,12 +23,9 @@ from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core import CCP4Utils
 from . import monitor_differences
-from wrappers.servalcat.script.json2xml import json2xml
 import os, sys, shutil
 import gemmi
 import numpy
-import json
-import statistics
 from operator import itemgetter
 
 
@@ -537,8 +534,10 @@ class servalcat_pipe(CPluginScript):
         try:
             coordDevMinReported = self.container.monitor.MIN_COORDDEV
             ADPAbsDevMinReported = self.container.monitor.MIN_ADPDEV
+            csvFileName = "report_coord_adp_dev.csv"
+            csvFilePath = str(os.path.join(self.getWorkDirectory(), csvFileName))
             csv_string = monitor_differences.main(
-                file1=model1Path, file2=model2Path, output=None,
+                file1=model1Path, file2=model2Path, output=csvFilePath,
                 minCoordDev=float(coordDevMinReported), minADPDev=float(ADPAbsDevMinReported))
             # Load
             csvStringIO = io.StringIO(csv_string)
@@ -561,9 +560,10 @@ class servalcat_pipe(CPluginScript):
             xmlText += str(round(ADPAbsDevMinReported, 2))
             xmlText += "</coordADPAbsMinReported>"
             xmlText += "\n</STATISTICS>"
-            xmlText += "\n<CSV><![CDATA[\n" + csv_string + "\n]]></CSV>"
+            if os.path.exists(csvFilePath):
+                xmlText += "\n<CSV_FILE>" + csvFileName + "</CSV_FILE>"
+            # xmlText += "\n<CSV><![CDATA[\n" + csv_string + "\n]]></CSV>"
             xmlText += "\n</COORD_ADP_DEV>"
-            print(xmlText)
             xmlTree = etree.fromstring(xmlText)
             aFile = open(self.pipelinexmlfile, 'r')
             oldXml = etree.fromstring(aFile.read())

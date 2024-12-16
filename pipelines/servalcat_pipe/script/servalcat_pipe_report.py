@@ -281,13 +281,12 @@ class servalcat_pipe_report(Report):
 
 
     def addCoordADPDev(self, parent=None, xmlnode=None):
-        import io
         import pandas
         if len(self.xmlnode.findall(".//COORD_ADP_DEV")) == 0:
             return
         if parent is None: parent = self
         if xmlnode is None: xmlnode = self.xmlnode
-        devFold = parent.addFold(label="Changes in atom coordinates and ADPs", brief='Deviations')
+        devFold = parent.addFold(label="Changes in coordinates and ADPs after refinement", brief='Deviations')
         coordDevDiv = devFold.addDiv(style='font-size:110%;float:left;box-sizing:border-box;margin-right:1em')
         if len(xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordDevMinReported")) > 0:
             coordDevMinReported = float(xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordDevMinReported")[0].text)
@@ -299,45 +298,46 @@ class servalcat_pipe_report(Report):
             coordADPAbsMinReported = 0
         coordDevValues = []
         ADPDevValues = []
-        if len(self.xmlnode.findall(".//COORD_ADP_DEV/CSV")) > 0:
-            csv_string = self.xmlnode.findall(".//COORD_ADP_DEV/CSV")[0].text
-            csvStringIO = io.StringIO(csv_string)
-            df = pandas.read_csv(csvStringIO, sep=",", header=0)
-            df_coordDev = df[df["CoordDev"] > coordDevMinReported][["AtomAddress", "CoordDev"]]
-            df_coordDev = df_coordDev.sort_values(by="CoordDev", ascending=False)
-            coordDevAtoms = list(df_coordDev["AtomAddress"])
-            coordDevValues = list(df_coordDev["CoordDev"])
-            df_ADPDev = df[abs(df["ADPDev"]) > coordADPAbsMinReported][["AtomAddress", "ADPDev"]]
-            df_ADPDev = df_ADPDev.loc[df_ADPDev["ADPDev"].abs().sort_values(ascending=False).index]
-            ADPDevAtoms = list(df_ADPDev["AtomAddress"])
-            ADPDevValues = list(df_ADPDev["ADPDev"])
+        if len(self.xmlnode.findall(".//COORD_ADP_DEV/CSV_FILE")) > 0:
+            csvFilePath = os.path.normpath(
+                os.path.join(self.jobInfo["fileroot"], self.xmlnode.findall(".//COORD_ADP_DEV/CSV_FILE")[0].text))
+            if os.path.exists(csvFilePath):
+                df = pandas.read_csv(csvFilePath, sep=",", header=0)
+                df_coordDev = df[df["CoordDev"] > coordDevMinReported][["AtomAddress", "CoordDev"]]
+                df_coordDev = df_coordDev.sort_values(by="CoordDev", ascending=False)
+                coordDevAtoms = list(df_coordDev["AtomAddress"])
+                coordDevValues = list(df_coordDev["CoordDev"])
+                df_ADPDev = df[abs(df["ADPDev"]) > coordADPAbsMinReported][["AtomAddress", "ADPDev"]]
+                df_ADPDev = df_ADPDev.loc[df_ADPDev["ADPDev"].abs().sort_values(ascending=False).index]
+                ADPDevAtoms = list(df_ADPDev["AtomAddress"])
+                ADPDevValues = list(df_ADPDev["ADPDev"])
         # Coords
         if len(xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordDevMean")) > 0:
-            coordDevDiv.append("Average deviation of atom coordinates: " + \
-                xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordDevMean")[0].text + " A.")
+            coordDevDiv.append("Average atom coordinate shift: " + \
+                xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordDevMean")[0].text + " &#8491;.")
         if coordDevValues:
-            coordDevDiv.append("Deviations of atom coordinates<br />higher than " + \
-                str(coordDevMinReported) + " A:")
+            coordDevDiv.append("Atoms with a coordinate shift<br />higher than " + \
+                str(coordDevMinReported) + " &#8491;:")
             coordDevTable = coordDevDiv.addTable (transpose=False, downloadable=False, id='coordDev_table' )
             coordDevTable.addData ( title = "Atom", data=coordDevAtoms )
-            coordDevTable.addData ( title = "Deviation of coordinates (&Aring;)", data=coordDevValues )
+            coordDevTable.addData ( title = "Coordinate shift (&Aring;)", data=coordDevValues )
         else:
-            coordDevDiv.append("No deviations of atom coordinates<br />higher than " + \
-                str(coordDevMinReported) + " A.")
+            coordDevDiv.append("No atom coordinate shift<br />higher than " + \
+                str(coordDevMinReported) + " &#8491;.")
         # ADPs
         ADPDevDiv = devFold.addDiv(style='font-size:110%;float:left;box-sizing:border-box')
         if len(xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/ADPAbsDevMean")) > 0:
-            ADPDevDiv.append("Average absolute value of deviation of B-values: " + \
-                xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/ADPAbsDevMean")[0].text + " A<sup>2</sup>.")
+            ADPDevDiv.append("Average absolute value of B-value shift: " + \
+                xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/ADPAbsDevMean")[0].text + " &#8491;<sup>2</sup>.")
         if ADPDevValues:
-            ADPDevDiv.append("Deviations of B-values with an<br />absolute value higher than " + \
-                str(coordADPAbsMinReported) + " A<sup>2</sup>:")
+            ADPDevDiv.append("Atoms with an absolute value of B-value shift<br />higher than " + \
+                str(coordADPAbsMinReported) + " &#8491;<sup>2</sup>:")
             ADPDevTable = ADPDevDiv.addTable ( transpose=False, downloadable=False, id='ADPDev_table' )
             ADPDevTable.addData ( title = "Atom", data=ADPDevAtoms )
-            ADPDevTable.addData ( title = "Deviation of B-values (&Aring;<sup>2</sup>)", data=ADPDevValues )
+            ADPDevTable.addData ( title = "B-value shift (&Aring;<sup>2</sup>)", data=ADPDevValues )
         else:
-            ADPDevDiv.append("No deviations of B-values with<br />absolute value higher than " + \
-                str(coordADPAbsMinReported) + " A<sup>2</sup>.")
+            ADPDevDiv.append("No B-value shift with an<br />absolute value higher than " + \
+                str(coordADPAbsMinReported) + " &#8491;<sup>2</sup>.")
         clearingDiv = devFold.addDiv(style="clear:both;")
 
 

@@ -2,17 +2,16 @@
 ''' monitor_refinement_differences.py is written to analyze differences
 between refinement input and output.
 
-Usage: python3 monitor_refinement_differences.py file1.mmcif file2.mmcif output_file
+Usage: python3 monitor_refinement_differences.py file1.mmcif file2.mmcif output.csv
 
-The report is written into JSON file and CSV file if an output file name is given.
+The report is written into CSV file if an output file name is given.
 '''
 
 __author__ = "Petr Kolenko, Martin Maly"
 __license__ = "Creative Commons Attribution 4.0 International License"
 __email__ = "kolenpe1@cvut.cz"
-__version__ = "0.4"
+__version__ = "0.5"
 import sys
-import json
 from math import sqrt
 import gemmi
 import csv
@@ -61,10 +60,11 @@ def search(lookup1, lookup2, output, minCoordDev, minADPDev):
                 del lookup2[j]
                 break
     # JSON
-    if output:
-        with open(output + ".json", "w") as file:
-            data_json = json.dumps(data, indent=4)
-            file.writelines(data_json)
+    # import json
+    # if output:
+    #     with open(output + ".json", "w") as file:
+    #         data_json = json.dumps(data, indent=4)
+    #         file.writelines(data_json)
     # CSV
     csv_io = io.StringIO()
     fieldnames = ["AtomAddress", "CoordDev", "ADPDev"]
@@ -74,7 +74,7 @@ def search(lookup1, lookup2, output, minCoordDev, minADPDev):
         writer.writerow(entry)
     csv_string = csv_io.getvalue()
     if output:
-        with open(output + ".csv", "w") as file:
+        with open(output, "w") as file:
             file.write(csv_string)
     return csv_string
 
@@ -98,7 +98,7 @@ if __name__ == "__main__":
     # check for command line integrity
     if len(argv) < 2 or len(argv) >= 6:
         print("Usage: python3 monitor_refinement_differences.py" 
-            +" <file1> <file2> [output - optional] [minimal coordination deviation] [minimal ADP deviation]")
+            +" <file1> <file2> [output.csv] [minimal_coordination_shift] [minimal_ADP_shift]")
         sys.exit(1)
     
     # Assigns the arguments
