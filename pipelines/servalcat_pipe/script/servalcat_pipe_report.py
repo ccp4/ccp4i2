@@ -137,23 +137,24 @@ class servalcat_pipe_report(Report):
             parent = self
         try:
             validateReport = None
-            validateReportNode = self.xmlnode.findall(".//Validation")[0]
-            if validateReportNode is not None:
-                validateReport = validate_protein_report.validate_protein_report(xmlnode=validateReportNode, jobStatus='nooutput', jobInfo=self.jobInfo)
-
-                try:
-                    if len(validateReportNode.findall ( ".//Iris" )) > 0:
-                        if validateReportNode.findall ( ".//Iris" )[0].text != "":
-                            irisFold = parent.addFold ( label="Iris validation report", initiallyOpen=False, brief='Iris' )
-                            irisdiv = irisFold.addDiv(style="clear:both; margin-top:30px; width:800px;")
-                            validateReport.add_iris_panel(parent=irisFold)
-                except:
-                    self.addText("Warning - Iris report failed")
+            if len(self.xmlnode.findall(".//Validation")) > 0:
+                validateReportNode = self.xmlnode.findall(".//Validation")[0]
+                if validateReportNode is not None:
+                    validateReport = validate_protein_report.validate_protein_report(xmlnode=validateReportNode, jobStatus='nooutput', jobInfo=self.jobInfo)
+                    try:
+                        if len(validateReportNode.findall ( ".//Iris" )) > 0:
+                            if validateReportNode.findall ( ".//Iris" )[0].text != "":
+                                irisFold = parent.addFold ( label="Iris validation report", initiallyOpen=False, brief='Iris' )
+                                irisdiv = irisFold.addDiv(style="clear:both; margin-top:30px; width:800px;")
+                                validateReport.add_iris_panel(parent=irisFold)
+                    except:
+                        self.addText("Warning - Iris validation report failed")
 
             if len(self.xmlnode.findall(".//ADP_ANALYSIS")) > 0:
                 adpFold = parent.addFold(label='ADP analysis', initiallyOpen=False, brief='ADP')
                 self.addAdpAnalysis(adpFold=adpFold)
 
+            if validateReport is not None:
                 try:
                     if len(validateReportNode.findall ( ".//Molprobity" )) > 0:
                         if validateReportNode.findall ( ".//Molprobity" )[0].text != "":
@@ -169,7 +170,7 @@ class servalcat_pipe_report(Report):
                             validateReport.add_ramachandran(parent=ramachandranFold)
                 except:
                     self.addText("Warning - Ramachandran plot generation failed")           
-                
+
         except:
             traceback.print_exc()
         clearingDiv = self.addDiv(style="clear:both;")
