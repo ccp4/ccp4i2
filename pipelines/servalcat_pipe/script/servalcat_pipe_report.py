@@ -207,7 +207,7 @@ class servalcat_pipe_report(Report):
             if chain_name == "All":
                 continue  # and i does not increase
             graph_per_resi.addData(title="residue_number", select="chain[@name='" + chain_name + "']/per_resi/data/resi")
-            graph_per_resi.addData(title="B-values(main-chain)", select="chain[@name='" + chain_name + "']/per_resi/data/adp")
+            graph_per_resi.addData(title="B-values", select="chain[@name='" + chain_name + "']/per_resi/data/adp")
             graph_per_resi.addData(title="B-value(side-chain) ", select="chain[@name='" + chain_name + "']/per_resi/data/adp_sidechain")
             plotADP = graph_per_resi.addPlotObject()
             plotADP.append('title', "chain " + chain_name)
