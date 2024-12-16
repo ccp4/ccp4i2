@@ -177,6 +177,9 @@ class servalcat_pipe_report(Report):
 
 
     def addAdpAnalysis(self, adpFold=None):
+        if len(self.xmlnode.findall(".//ADP_ANALYSIS")) == 0:
+            return
+        import pandas
         if adpFold is None:
             adpFold = self.addFold(label='ADP analysis', initiallyOpen=False, brief='ADP')
 
@@ -194,40 +197,42 @@ class servalcat_pipe_report(Report):
         adpTable.addData ( title = "Mean", select="*/mean" )
         adpTable.addData ( title = "Std. dev.", select="*/std" )
 
-        headerDiv = adpFold.addDiv(style='font-size:110%;font-weight:bold;')
-        headerDiv.append("Average B-values per residue number for individual chains")
-
-        graph_per_resi = adpFold.addFlotGraph(
-            title="B values for individual residues",
-            select=".//ADP_ANALYSIS/chains",
-            style="height:330px; width:585px; border:0px; padding:10px; padding-left:15px; margin-right:15px;")
-        i = 0
-        for chain in self.xmlnode.findall(".//ADP_ANALYSIS/chains/chain"):
-            chain_name = chain.get('name')
-            if chain_name == "All":
-                continue  # and i does not increase
-            graph_per_resi.addData(title="residue_number", select="chain[@name='" + chain_name + "']/per_resi/data/resi")
-            graph_per_resi.addData(title="B-values(main-chain)", select="chain[@name='" + chain_name + "']/per_resi/data/adp")
-            graph_per_resi.addData(title="B-value(side-chain) ", select="chain[@name='" + chain_name + "']/per_resi/data/adp_sidechain")
-            plotADP = graph_per_resi.addPlotObject()
-            plotADP.append('title', "chain " + chain_name)
-            plotADP.append('plottype', 'xy')
-            plotADP.append('xlabel', 'residue number')
-            plotADP.append('ylabel', 'B-value (A^2)')
-            plotADP.append('legendposition', x=1, y=0)  # right bottom corner
-            plotLine = plotADP.append('plotline', xcol=1 + i * 3, ycol=2 + i * 3)
-            plotLine.append('symbolsize', '1')
-            plotLine.append('linestyle', '.')
-            plotLine.append('colour', 'blue')
-            plotLine = plotADP.append('plotline', xcol=1 + i * 3, ycol=3 + i * 3)
-            plotLine.append('symbolsize', '1')
-            plotLine.append('linestyle', '.')
-            plotLine.append('colour', 'red')
-            i = i + 1
+        if len(self.xmlnode.findall(".//ADP_ANALYSIS/per_resi/CSV_FILE")) > 0:
+            csvFilePath = os.path.normpath(
+                os.path.join(self.jobInfo["fileroot"], self.xmlnode.findall(".//ADP_ANALYSIS/per_resi/CSV_FILE")[0].text))
+            if os.path.exists(csvFilePath):
+                headerDiv = adpFold.addDiv(style='font-size:110%;font-weight:bold;')
+                headerDiv.append("Average B-values per residue number for individual chains")
+                df = pandas.read_csv(csvFilePath, sep=",", header=0)
+                chains = df["chain"].dropna().unique().tolist()
+                graph_per_resi = adpFold.addFlotGraph(
+                    title="B values for individual residues",
+                    select=".//ADP_ANALYSIS/chains",
+                    style="height:330px; width:585px; border:0px; padding:10px; padding-left:15px; margin-right:15px;")
+                for i, chain in enumerate(chains):
+                    resi_list = df[df["chain"] == chain]["resi"].tolist()
+                    adp_list = df[df["chain"] == chain]["adp"].tolist()
+                    adp_sidechain_list = df[df["chain"] == chain]["adp_sidechain"].tolist()
+                    graph_per_resi.addData(title="residue_number", data=resi_list)
+                    graph_per_resi.addData(title="B-values(backbone_if_applicable)", data=adp_list)
+                    graph_per_resi.addData(title="B-value(side-chain) ", data=adp_sidechain_list)
+                    plotADP = graph_per_resi.addPlotObject()
+                    plotADP.append('title', "chain " + chain)
+                    plotADP.append('plottype', 'xy')
+                    plotADP.append('xlabel', 'residue number')
+                    plotADP.append('ylabel', 'B-value (A^2)')
+                    plotADP.append('legendposition', x=1, y=0)  # right bottom corner
+                    plotLine = plotADP.append('plotline', xcol=1 + i * 3, ycol=2 + i * 3)
+                    plotLine.append('symbolsize', '1')
+                    plotLine.append('linestyle', '.')
+                    plotLine.append('colour', 'blue')
+                    plotLine = plotADP.append('plotline', xcol=1 + i * 3, ycol=3 + i * 3)
+                    plotLine.append('symbolsize', '1')
+                    plotLine.append('linestyle', '.')
+                    plotLine.append('colour', 'red')
 
         headerDiv = adpFold.addDiv(style='font-size:110%;font-weight:bold;')
         headerDiv.append("B-value histogram for all and individual chains")
-
         ch_graph = adpFold.addFlotGraph ( title="B-value histograms", select=".//ADP_ANALYSIS/chains", style="height:330px; width:585px; border:0px; padding:10px; padding-left:15px; margin-right:15px;" )
         for i, chain in enumerate(self.xmlnode.findall(".//ADP_ANALYSIS/chains/chain")):
             chain_name = chain.get('name')
@@ -282,9 +287,9 @@ class servalcat_pipe_report(Report):
 
 
     def addCoordADPDev(self, parent=None, xmlnode=None):
-        import pandas
         if len(self.xmlnode.findall(".//COORD_ADP_DEV")) == 0:
             return
+        import pandas
         if parent is None: parent = self
         if xmlnode is None: xmlnode = self.xmlnode
         devFold = parent.addFold(label="Changes in coordinates and ADPs after refinement", brief='Deviations')
@@ -306,12 +311,12 @@ class servalcat_pipe_report(Report):
                 df = pandas.read_csv(csvFilePath, sep=",", header=0)
                 df_coordDev = df[df["CoordDev"] > coordDevMinReported][["AtomAddress", "CoordDev"]]
                 df_coordDev = df_coordDev.sort_values(by="CoordDev", ascending=False)
-                coordDevAtoms = list(df_coordDev["AtomAddress"])
-                coordDevValues = list(df_coordDev["CoordDev"])
+                coordDevAtoms = df_coordDev["AtomAddress"].tolist()
+                coordDevValues = df_coordDev["CoordDev"].tolist()
                 df_ADPDev = df[abs(df["ADPDev"]) > coordADPAbsMinReported][["AtomAddress", "ADPDev"]]
                 df_ADPDev = df_ADPDev.loc[df_ADPDev["ADPDev"].abs().sort_values(ascending=False).index]
-                ADPDevAtoms = list(df_ADPDev["AtomAddress"])
-                ADPDevValues = list(df_ADPDev["ADPDev"])
+                ADPDevAtoms = df_ADPDev["AtomAddress"].tolist()
+                ADPDevValues = df_ADPDev["ADPDev"].tolist()
         # Coords
         if len(xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/coordDevMean")) > 0:
             coordDevDiv.append("Average atom coordinate shift: " + \

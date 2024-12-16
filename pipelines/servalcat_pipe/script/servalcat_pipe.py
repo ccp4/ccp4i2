@@ -376,6 +376,7 @@ class servalcat_pipe(CPluginScript):
 
     def adp_analysis(self, modelPath, iqrFactor=2.0):
         print("Running ADP analysis...")
+        import csv
         adp_dict = {}
         adp_per_resi = {}
         adp_dict["All"] = []
@@ -385,7 +386,8 @@ class servalcat_pipe(CPluginScript):
                 polymer = chain.get_polymer()
                 ptype = polymer.check_polymer_type()
                 adp_dict[chain.name] = []
-                adp_per_resi[chain.name] = [[],[],[]]  # residue.seqid.num; mean ADP in backbone; mean ADP in side chain
+                #                            residue.seqid.num; mean ADP (in backbone for proteins); mean ADP in side chain
+                adp_per_resi[chain.name] = {"resi": [], "adp": [], "adp_sidechain": []}
                 for residue in chain:
                     adp_this_resi = []
                     adp_this_resi_sidechain = []
@@ -397,25 +399,28 @@ class servalcat_pipe(CPluginScript):
                                 adp_atom = atom.b_iso
                             adp_dict["All"].append(adp_atom)
                             adp_dict[chain.name].append(adp_atom)
-                            if ptype in [gemmi.PolymerType.PeptideL, gemmi.PolymerType.PeptideD] and \
+                            if residue.entity_type == gemmi.EntityType.Polymer and \
+                                    ptype in [gemmi.PolymerType.PeptideL, gemmi.PolymerType.PeptideD] and \
                                     atom.name not in ["CA", "C", "O", "N", "OXT"]:
                                 adp_this_resi_sidechain.append(adp_atom)
                             else:
                                 adp_this_resi.append(adp_atom)
                     try:
-                        adp_per_resi[chain.name][0].append(residue.seqid.num)  # ignoring insertion code, sorry
+                        if residue.seqid.num in adp_per_resi[chain.name]["resi"]:
+                            continue   # ignoring insertion codes, sorry
+                        adp_per_resi[chain.name]["resi"].append(residue.seqid.num)
                         if adp_this_resi:
-                            adp_per_resi[chain.name][1].append(numpy.mean(adp_this_resi))
+                            adp_per_resi[chain.name]["adp"].append(numpy.mean(adp_this_resi))
                         else:
-                            adp_per_resi[chain.name][1].append(None)
+                            adp_per_resi[chain.name]["adp"].append(None)
                         if adp_this_resi_sidechain:
-                            adp_per_resi[chain.name][2].append(numpy.mean(adp_this_resi_sidechain))
+                            adp_per_resi[chain.name]["adp_sidechain"].append(numpy.mean(adp_this_resi_sidechain))
                         else:
-                            adp_per_resi[chain.name][2].append(None)
+                            adp_per_resi[chain.name]["adp_sidechain"].append(None)
                     except:
                         pass
 
-        # Find ADP values which are too small or large - outliers
+        # Find ADP values which are too small or large
         q1 = numpy.quantile(adp_dict["All"], 0.25)
         q3 = numpy.quantile(adp_dict["All"], 0.75)
         iqr = q3 - q1
@@ -441,7 +446,13 @@ class servalcat_pipe(CPluginScript):
         adp_low = sorted(adp_low, key=itemgetter('adp'))
         adp_high = sorted(adp_high, key=itemgetter('adp'), reverse=True)
 
-        # Write the analysis in XML
+        # Write the analysis in XML and CSV
+        csvFileName = "adp_analysis.csv"
+        csvFilePath = str(os.path.join(self.getWorkDirectory(), csvFileName))
+        with open(csvFilePath, "a+", newline='') as csvfile:
+            fieldnames = ["chain", "resi", "adp", "adp_sidechain"]
+            writer = csv.writer(csvfile, quoting=csv.QUOTE_NONNUMERIC)
+            writer.writerow(fieldnames)
         adp_root = etree.Element('ADP_ANALYSIS')
         chains_root = etree.SubElement(adp_root, "chains")
         for ch, values in adp_dict.items():
@@ -481,21 +492,25 @@ class servalcat_pipe(CPluginScript):
                 bin_count.text = str(hist[i])
 
             if ch != "All":
-                chain_per_resi = etree.SubElement(chain, "per_resi")
-                for i in range(len(adp_per_resi[str(ch)][0])):
-                    adp_per_resi_elem = etree.SubElement(chain_per_resi, "data")
-                    adp_per_resi_resi = etree.SubElement(adp_per_resi_elem, 'resi')
-                    adp_per_resi_resi.text = str(adp_per_resi[str(ch)][0][i])
-                    adp_per_resi_adp = etree.SubElement(adp_per_resi_elem, 'adp')
-                    if adp_per_resi[str(ch)][1][i]:
-                        adp_per_resi_adp.text = "{:.2f}".format(adp_per_resi[str(ch)][1][i])
-                    else:
-                        adp_per_resi_adp.text = "-"
-                    adp_per_resi_adp_sidechain = etree.SubElement(adp_per_resi_elem, 'adp_sidechain')
-                    if adp_per_resi[str(ch)][2][i]:
-                        adp_per_resi_adp_sidechain.text = "{:.2f}".format(adp_per_resi[str(ch)][2][i])
-                    else:
-                        adp_per_resi_adp_sidechain.text = "-"
+                with open(csvFilePath, "a+", newline='') as csvfile:
+                    writer = csv.writer(csvfile, quoting=csv.QUOTE_NONNUMERIC)
+                    for i in range(len(adp_per_resi[str(ch)]["resi"])):
+                        if adp_per_resi[str(ch)]["adp"][i]:
+                            adp_per_resi_adp_round = round(adp_per_resi[str(ch)]["adp"][i], 2)
+                        else:
+                            adp_per_resi_adp_round = "-"
+                        if adp_per_resi[str(ch)]["adp_sidechain"][i]:
+                            adp_per_resi_adp_sidechain_round = round(adp_per_resi[str(ch)]["adp_sidechain"][i], 2)
+                        else:
+                            adp_per_resi_adp_sidechain_round = "-"
+                        writer.writerow([ch,
+                                         adp_per_resi[str(ch)]["resi"][i],
+                                         adp_per_resi_adp_round,
+                                         adp_per_resi_adp_sidechain_round])
+        if os.path.exists(csvFilePath):
+            per_resi_element = etree.SubElement(adp_root, "per_resi")
+            per_resi_csv_element = etree.SubElement(per_resi_element, "CSV_FILE")
+            per_resi_csv_element.text = str(csvFileName)
 
         outliers_root = etree.SubElement(adp_root, "outliers")
         outliers_adp_limit_low = etree.SubElement(outliers_root, "adp_limit_low")
