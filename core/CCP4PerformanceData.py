@@ -31,7 +31,7 @@ from core.CCP4ErrorHandling import *
 def performanceIndicatorClasses():
   # This is used by CCP4DbApi.getJobPerformance (and perhaps other methods) to get the
   # appropriate classes from  XData table
-  return "('CPerformanceIndicator','CRefinementPerformance','CModelBuildPerformance','CDataReductionPerformance','CDataReductionCCPerformance','CTestObsConversionsPerformance','CExpPhasPerformance','CPhaseErrorPerformance','CAtomCountPerformance','CPairefPerformance')"
+  return "('CPerformanceIndicator','CRefinementPerformance','CServalcatPerformance','CModelBuildPerformance','CDataReductionPerformance','CDataReductionCCPerformance','CTestObsConversionsPerformance','CExpPhasPerformance','CPhaseErrorPerformance','CAtomCountPerformance','CPairefPerformance')"
 
 #  ***************  new performance classes also need the keytype to be registered with the database **************************
 #   See the definition of KEYTYPELIST in dbapi/CCP4DbApi.py
@@ -143,6 +143,80 @@ class CRefinementPerformance(CPerformanceIndicator):
     return CPerformanceIndicator.assertSame(self,other,[['RFactor',0.01,-1]],diagnostic=diagnostic)
 
 
+class CServalcatPerformance(CPerformanceIndicator):
+  CONTENTS_ORDER = ['RFactor', 'RFree', 'R', 'R1Factor', 'R1Free', 'R1', 'FSCaverage', 'annotation']
+  CONTENTS = { 'RFactor' : { 'class' : CCP4Data.CFloat, 'qualifiers' : { 'min' : 0.0 } },
+               'RFree' : { 'class' : CCP4Data.CFloat, 'qualifiers' : { 'min' : 0.0 } },
+               'R' : { 'class' : CCP4Data.CFloat, 'qualifiers' : { 'min' : 0.0 } },
+               'R1Factor' : { 'class' : CCP4Data.CFloat, 'qualifiers' : { 'min' : 0.0 } },
+               'R1Free' : { 'class' : CCP4Data.CFloat, 'qualifiers' : { 'min' : 0.0 } },
+               'R1' : { 'class' : CCP4Data.CFloat, 'qualifiers' : { 'min' : 0.0 } },
+               'CCFwork_avg' : { 'class' : CCP4Data.CFloat, 'qualifiers' : { 'min' : -1.0 } },
+               'CCFfree_avg' : { 'class' : CCP4Data.CFloat, 'qualifiers' : { 'min' : -1.0 } },
+               'CCF_avg' : { 'class' : CCP4Data.CFloat, 'qualifiers' : { 'min' : -1.0 } },
+               'CCIwork_avg' : { 'class' : CCP4Data.CFloat, 'qualifiers' : { 'min' : -1.0 } },
+               'CCIfree_avg' : { 'class' : CCP4Data.CFloat, 'qualifiers' : { 'min' : -1.0 } },
+               'CCI_avg' : { 'class' : CCP4Data.CFloat, 'qualifiers' : { 'min' : -1.0 } },
+               'FSCaverage' : { 'class' : CCP4Data.CFloat, 'qualifiers' : { 'min' : -1.0 } },
+               'annotation' :  { 'class' : CCP4Data.CString } }
+
+  def __str__(self):
+    text = ''
+    if self.__dict__['_value']['RFactor'].__dict__['_value'] is not None:
+      text = text + 'Rwork=' + format(self.__dict__['_value']['RFactor'], '.4f')+' '
+    if self.__dict__['_value']['RFree'].__dict__['_value'] is not None:
+        text = text + 'Rfree=' + format(self.__dict__['_value']['RFree'], '.4f')+' '
+    if self.__dict__['_value']['R'].__dict__['_value'] is not None:
+      text = text + 'R=' + format(self.__dict__['_value']['R'], '.4f')+' '
+    if self.__dict__['_value']['R1Factor'].__dict__['_value'] is not None:
+      text = text + 'R1work=' + format(self.__dict__['_value']['R1Factor'], '.4f')+' '
+    if self.__dict__['_value']['R1Free'].__dict__['_value'] is not None:
+        text = text + 'R1free=' + format(self.__dict__['_value']['R1Free'], '.4f')+' '
+    if self.__dict__['_value']['R1'].__dict__['_value'] is not None:
+      text = text + 'R1=' + format(self.__dict__['_value']['R1'], '.4f')+' '
+    if self.__dict__['_value']['CCFwork_avg'].__dict__['_value'] is not None:
+      text = text + '⟨CCFwork⟩=' + format(self.__dict__['_value']['CCFwork_avg'], '.4f')+' '
+    if self.__dict__['_value']['CCFfree_avg'].__dict__['_value'] is not None:
+      text = text + '⟨CCFfree⟩=' + format(self.__dict__['_value']['CCFfree_avg'], '.4f')+' '
+    if self.__dict__['_value']['CCF_avg'].__dict__['_value'] is not None:
+      text = text + '⟨CCF⟩=' + format(self.__dict__['_value']['CCF_avg'], '.4f')+' '
+    if self.__dict__['_value']['CCIwork_avg'].__dict__['_value'] is not None:
+      text = text + '⟨CCIwork⟩=' + format(self.__dict__['_value']['CCIwork_avg'], '.4f')+' '
+    if self.__dict__['_value']['CCIfree_avg'].__dict__['_value'] is not None:
+      text = text + '⟨CCIfree⟩=' + format(self.__dict__['_value']['CCIfree_avg'], '.4f')+' '
+    if self.__dict__['_value']['CCI_avg'].__dict__['_value'] is not None:
+      text = text + '⟨CCI⟩=' + format(self.__dict__['_value']['CCI_avg'], '.4f')+' '
+    if self.__dict__['_value']['FSCaverage'].__dict__['_value'] is not None:
+      text = text + '⟨FSCmodel⟩=' + format(self.__dict__['_value']['FSCaverage'], '.4f')+' '
+    return text
+
+  def saveToDb(self):
+    print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+    print(CServalcatPerformance.saveToDb)
+    #Return a list of files, string representation of xml, dict of key,value pairs
+    #The dict keys must map to those defined in CCP4DbApi.
+    ret = {}
+    if self.RFactor.isSet(): ret['RFactor'] = self.RFactor.__float__()
+    if self.RFree.isSet(): ret['RFree'] = self.RFree.__float__()
+    if self.R.isSet(): ret['R'] = self.R.__float__()
+    if self.R1Factor.isSet(): ret['R1Factor'] = self.R1Factor.__float__()
+    if self.R1Free.isSet(): ret['R1Free'] = self.R1Free.__float__()
+    if self.R1.isSet(): ret['R1'] = self.R1.__float__()
+    if self.CCFwork_avg.isSet(): ret['CCFwork_avg'] = self.CCFwork_avg.__float__()
+    if self.CCFfree_avg.isSet(): ret['CCFfree_avg'] = self.CCFfree_avg.__float__()
+    if self.CCF_avg.isSet(): ret['CCF_avg'] = self.CCF_avg.__float__()
+    if self.CCIwork_avg.isSet(): ret['CCIwork_avg'] = self.CCIwork_avg.__float__()
+    if self.CCIfree_avg.isSet(): ret['CCIfree_avg'] = self.CCIfree_avg.__float__()
+    if self.CCI_avg.isSet(): ret['CCI_avg'] = self.CCI_avg.__float__()
+    if self.FSCaverage.isSet(): ret['FSCaverage'] = self.FSCaverage.__float__()
+    print(ret)
+    print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+    return [],None,ret
+
+  def assertSame(self,other,diagnostic=False):
+    return CPerformanceIndicator.assertSame(self,other,[['RFactor',0.01,-1]],diagnostic=diagnostic)
+
+
 class CPairefPerformance(CPerformanceIndicator):
   CONTENTS_ORDER = ['cutoff']
   CONTENTS = { 'cutoff' : { 'class' : CCP4Data.CFloat, 'qualifiers' : { 'min' : 0.0 } } }
@@ -165,7 +239,7 @@ class CPairefPerformance(CPerformanceIndicator):
     return [],None,ret
 
   def assertSame(self,other,diagnostic=False):
-    return CPerformanceIndicator.assertSame(self,other,[['cutoff',0.01,-1]],diagnostic=diagnostic)
+    return CPerformanceIndicator.assertSame(self,other,[['cutoff',0.0001,-1]],diagnostic=diagnostic)
 
 class CModelBuildPerformance(CPerformanceIndicator):
   CONTENTS_ORDER = ['RFactor','completeness','annotation']
