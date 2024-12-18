@@ -18,7 +18,7 @@ class buster(CPluginScript):
     TASKVERSION = 1.0                 # plugin version
     COMTEMPLATE = None                # The program com file template
     COMTEMPLATEFILE = None            # Name of file containing com file template
-    WHATNEXT = ['buster', 'prosmart_refmac', 'buccaneer_build_refine_mr', 'modelcraft']
+    WHATNEXT = ['buster', 'prosmart_refmac', 'modelcraft']
     PERFORMANCECLASS = 'CRefinementPerformance'
     ASYNCHRONOUS = False
     MAINTAINER = 'kyle.stevenson@stfc.ac.uk'

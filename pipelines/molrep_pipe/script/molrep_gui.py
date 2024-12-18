@@ -35,7 +35,7 @@ def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None)
     if jobStatus == 'Unsatisfactory':
         returnList = ['molrep_pipe', 'phaser_pipeline']
     else:
-        returnList = ['buccaneer_build_refine_mr', 'modelcraft', 'prosmart_refmac', 'coot_rebuild']
+        returnList = ['modelcraft', 'prosmart_refmac', 'coot_rebuild']
     return returnList
 
 class Cmolrep_pipe(CCP4TaskWidget.CTaskWidget):

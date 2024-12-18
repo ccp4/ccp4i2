@@ -31,7 +31,7 @@ class molrep_pipe(CPluginScript):
     TASKNAME = 'molrep_pipe'
     MAINTAINER = 'liz.potterton@york.ac.uk'
     PERFORMANCECLASS = 'CRefinementPerformance'
-    WHATNEXT = ['prosmart_refmac','buccaneer_build_refine_mr','coot_rebuild','modelcraft']
+    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
     ASYNCHRONOUS = True     # controls dynamic refmac table and graph only
     TIMEOUT_PERIOD = 240
     MAXNJOBS = 4

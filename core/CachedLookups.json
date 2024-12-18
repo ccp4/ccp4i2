@@ -1696,17 +1696,6 @@
                 "modes": []
             }
         },
-        "tortoize": {
-            "0.0.0": {
-                "MAINTAINER": "Nobody",
-                "class": null,
-                "clsModule": "wrappers.tortoize.script.tortoize_report",
-                "clsName": "tortoize_report",
-                "modes": [
-                    "Running"
-                ]
-            }
-        },
         "validate_protein": {
             "0.0.0": {
                 "MAINTAINER": "Nobody",
@@ -3078,7 +3067,7 @@
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "paul.bond@york.ac.uk",
-                "TASKTITLE": "ModelCraft",
+                "TASKTITLE": "AutoBuild with ModelCraft, Buccaneer and Nautilus",
                 "class": "wrappers.modelcraft.script.modelcraftmodelcraft",
                 "clsModule": "wrappers.modelcraft.script.modelcraft",
                 "clsName": "modelcraft",
@@ -3926,19 +3915,6 @@
                 "subTasks": []
             }
         },
-        "tortoize": {
-            "null": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "stuart.mcnicholas@york.ac.uk",
-                "TASKTITLE": null,
-                "class": null,
-                "clsModule": "wrappers.tortoize.script.tortoize",
-                "clsName": "tortoize",
-                "internal": false,
-                "subTasks": []
-            }
-        },
         "unique": {
             "0.1": {
                 "DESCRIPTION": null,
@@ -4140,7 +4116,6 @@
         "AUSPEX": "qticons/AUSPEX.png",
         "AcedrgLink": "qticons/ccp4.png",
         "AlternativeImportXIA2": "qticons/AlternativeImportXIA2.png",
-        "Lidia": "qticons/ccp4.png",
         "LidiaAcedrg": "qticons/LidiaAcedrg.png",
         "LidiaAcedrgNew": "qticons/LidiaAcedrgNew.png",
         "MakeLink": "qticons/MakeLink.png",
@@ -4161,8 +4136,6 @@
         "TestObsConversions": "qticons/TestObsConversions.png",
         "ZZPipelineNameZZ": "qticons/ccp4.png",
         "ZZPluginNameZZ": "qticons/ccp4.png",
-        "acedrg": "qticons/ccp4.png",
-        "acedrgNew": "qticons/ccp4.png",
         "acorn": "qticons/acorn.png",
         "add_fractional_coords": "qticons/add_fractional_coords.png",
         "adding_stats_to_mmcif_i2": "qticons/adding_stats_to_mmcif_i2.png",
@@ -4170,11 +4143,9 @@
         "alpha_fold": "qticons/alpha_fold.png",
         "arcimboldo": "qticons/arcimboldo.png",
         "arp_warp_classic": "qticons/arp_warp_classic.png",
-        "baverage": "qticons/ccp4.png",
         "bigpipes": "qticons/ccp4.png",
         "bioinformatics": "qticons/bioinformatics.png",
         "buccaneer_build_refine_mr": "qticons/buccaneer_build_refine_mr.png",
-        "buccaneer_mr": "qticons/ccp4.png",
         "buster": "qticons/buster.png",
         "ccp4mg_edit_model": "qticons/ccp4mg_edit_model.png",
         "ccp4mg_edit_nomrbump": "qticons/ccp4mg_edit_nomrbump.png",
@@ -4185,7 +4156,6 @@
         "clustalw": "qticons/clustalw.png",
         "cmapcoeff": "qticons/cmapcoeff.png",
         "comit": "qticons/ccp4.png",
-        "convert2mtz": "qticons/convert2mtz.png",
         "coordinate_selector": "qticons/coordinate_selector.png",
         "coot_find_waters": "qticons/coot_find_waters.png",
         "coot_fit_residues": "qticons/ccp4.png",
@@ -4195,10 +4165,8 @@
         "coot_script_lines": "qticons/coot_script_lines.png",
         "coot_stepped_refine": "qticons/ccp4.png",
         "cpatterson": "qticons/cpatterson.png",
-        "cphasematch": "qticons/cphasematch.png",
         "crank2": "qticons/crank2.png",
         "crank2_comb_phdmmb": "qticons/ccp4.png",
-        "crank2_createfree": "qticons/ccp4.png",
         "crank2_dmfull": "qticons/ccp4.png",
         "crank2_faest": "qticons/ccp4.png",
         "crank2_handdet": "qticons/ccp4.png",
@@ -4213,9 +4181,6 @@
         "data_entry": "qticons/data_entry.png",
         "data_processing": "qticons/data_processing.png",
         "data_reduction": "qticons/data_reduction.png",
-        "demo": "qticons/ccp4.png",
-        "demo_copycell": "qticons/ccp4.png",
-        "demo_multi_mtzdump": "qticons/ccp4.png",
         "density_calculator": "qticons/density_calculator.png",
         "density_modification": "qticons/density_modification.png",
         "developer_tools": "qticons/developer_tools.png",
@@ -4229,7 +4194,6 @@
         "export": "qticons/export.png",
         "expt_data_utility": "qticons/expt_data_utility.png",
         "expt_phasing": "qticons/expt_phasing.png",
-        "fft": "qticons/ccp4.png",
         "findmyseq": "qticons/findmyseq.png",
         "freerflag": "qticons/freerflag.png",
         "gesamt": "qticons/gesamt.png",
@@ -4240,7 +4204,6 @@
         "import_mosflm": "qticons/import_mosflm.png",
         "import_serial": "qticons/ccp4.png",
         "import_serial_pipe": "qticons/ccp4.png",
-        "libcheck": "qticons/ccp4.png",
         "ligands": "qticons/ligands.png",
         "lorestr_i2": "qticons/lorestr_i2.png",
         "matthews": "qticons/matthews.png",
@@ -4258,16 +4221,11 @@
         "mrbump_basic": "qticons/mrbump_basic.png",
         "mrbump_model_prep": "qticons/ccp4.png",
         "mrparse": "qticons/mrparse.png",
-        "mrparse_simple": "qticons/ccp4.png",
-        "mtzdump": "qticons/ccp4.png",
-        "mtzheader": "qticons/ccp4.png",
         "mtzutils": "qticons/ccp4.png",
         "nautilus_build_refine": "qticons/nautilus_build_refine.png",
         "pairef": "qticons/pairef.png",
         "parrot": "qticons/parrot.png",
-        "pdb_extract_wrapper": "qticons/ccp4.png",
         "pdb_redo_api": "qticons/pdb_redo_api.png",
-        "pdbset": "qticons/ccp4.png",
         "pdbset_ui": "qticons/ccp4.png",
         "pdbview_edit": "qticons/pdbview_edit.png",
         "phaser_EP": "qticons/phaser_EP.png",
@@ -4275,9 +4233,7 @@
         "phaser_EP_LLG": "qticons/phaser_EP_LLG.png",
         "phaser_MR_AUTO": "qticons/phaser_MR_AUTO.png",
         "phaser_MR_RNP": "pipelines/phaser_pipeline/wrappers/phaser_MR_RNP/script/phaser_MR_RNP.png",
-        "phaser_analysis": "qticons/ccp4.png",
         "phaser_ensembler": "qticons/phaser_ensembler.png",
-        "phaser_mr": "qticons/ccp4.png",
         "phaser_phil": "qticons/ccp4.png",
         "phaser_pipeline": "qticons/phaser_pipeline.png",
         "phaser_rnp_pipeline": "qticons/phaser_rnp_pipeline.png",
@@ -4292,13 +4248,10 @@
         "pyphaser_mr": "qticons/ccp4.png",
         "qtpisa": "qticons/qtpisa.png",
         "refinement": "qticons/refinement.png",
-        "refmac": "qticons/ccp4.png",
         "reindex_minimtz": "qticons/ccp4.png",
         "reindex_processed_data": "qticons/ccp4.png",
         "scaleit": "qticons/scaleit.png",
-        "scalepack2mtz": "qticons/ccp4.png",
         "sculptor": "qticons/sculptor.png",
-        "servalcat_xtal": "qticons/ccp4.png",
         "servalcat_xtal_pipe": "qticons/ccp4.png",
         "sheetbend": "qticons/ccp4.png",
         "shelx": "qticons/shelx.png",
@@ -4307,13 +4260,10 @@
         "splitMtz": "qticons/splitMtz.png",
         "tableone": "qticons/tableone.png",
         "test": "qticons/ccp4.png",
-        "tortoize": "qticons/ccp4.png",
-        "uniqueify": "qticons/ccp4.png",
         "validate_protein": "qticons/validate_protein.png",
         "validation": "qticons/validation.png",
         "workflow": "qticons/ccp4.png",
         "wrappers": "qticons/ccp4.png",
-        "x2mtz": "qticons/ccp4.png",
         "xia2_dials": "qticons/xia2_dials.png",
         "xia2_multiplex": "qticons/xia2_multiplex.png",
         "xia2_ssx_reduce": "qticons/xia2_ssx_reduce.png",
@@ -5793,7 +5743,7 @@
                 "class": "wrappers.modelcraft.script.modelcraft_guimodelcraft_gui",
                 "clsModule": "wrappers.modelcraft.script.modelcraft_gui",
                 "clsName": "modelcraft_gui",
-                "shortTitle": "Autobuild with ModelCraft, Buccaneer and Nautilus",
+                "shortTitle": "ModelCraft",
                 "taskName": "modelcraft",
                 "taskVersion": 0.1
             }
@@ -6425,20 +6375,6 @@
                 "clsName": "CTasktableone",
                 "shortTitle": "Table One",
                 "taskName": "tableone",
-                "taskVersion": 0.0
-            }
-        },
-        "tortoize": {
-            "0.0.0": {
-                "DESCRIPTION": "Tortoize structure validation",
-                "MAINTAINER": "Nobody",
-                "RANK": 1,
-                "TASKTITLE": "Tortoize structure validation",
-                "class": null,
-                "clsModule": "wrappers.tortoize.script.tortoize_gui",
-                "clsName": "Ctortoize",
-                "shortTitle": "Tortoize",
-                "taskName": "tortoize",
                 "taskVersion": 0.0
             }
         },

@@ -23,6 +23,7 @@ from qtgui.CCP4TaskWidget import CTaskWidget
 class modelcraft_gui(CTaskWidget):
     TASKMODULE = "model_building"
     TASKTITLE = "Autobuild with ModelCraft, Buccaneer and Nautilus"
+    SHORTTASKTITLE = "ModelCraft"
     TASKNAME = "modelcraft"
     TASKVERSION = 0.1
     DESCRIPTION = "Automated model building of protein, nucleic acid and water"
@@ -45,6 +46,12 @@ class modelcraft_gui(CTaskWidget):
         xyzin_widget = self.getWidget("XYZIN")
         xyzin_widget.setUndefinedAllowedBehaviour(not use_model)
         xyzin_widget.validate()
+
+    @QtCore.Slot()
+    def basic_changed(self):
+        basic = bool(self.container.controlParameters.BASIC)
+        self.container.controlParameters.CYCLES.set(5 if basic else 25)
+        self.container.controlParameters.STOP_CYCLES.set(2 if basic else 4)
 
     def drawContents(self):
         self.openFolder(folderFunction="inputData")
@@ -83,32 +90,17 @@ class modelcraft_gui(CTaskWidget):
         self.createLine(["subtitle", "Asymmetric unit contents"])
         self.openSubFrame(frame=True)
         self.createLine(["widget", "ASUIN"])
-        self.createLine(
-            [
-                "widget",
-                "SELENOMET",
-                "label",
-                "Build methionine (MET) as selenomethionine (MSE)",
-            ]
-        )
         self.closeSubFrame()
 
         self.createLine(["subtitle", "Starting model"])
         self.openSubFrame(frame=True)
         self.createLine(["widget", "XYZIN"])
         self.getWidget("XYZIN").showAtomSelection()
-        self.createLine(
-            [
-                "widget",
-                "SHEETBEND",
-                "label",
-                "Use Sheetbend for preliminary low-resolution refinement of the input model",
-            ],
-        )
         self.closeSubFrame()
 
         self.createLine(["subtitle", "Options"])
         self.openSubFrame(frame=True)
+        self.createLine(["widget", "BASIC", "label", "Run a quicker basic pipeline"])
         self.createLine(["label", "Run for", "widget", "CYCLES", "label", "cycles"])
         self.createLine(
             [
@@ -122,10 +114,58 @@ class modelcraft_gui(CTaskWidget):
                 "cycles",
             ]
         )
-        self.createLine(["widget", "BASIC", "label", "Run a quicker basic pipeline"])
+        self.createLine(
+            [
+                "widget",
+                "SELENOMET",
+                "label",
+                "Build selenomethionine (MSE) instead of methionine (MET)",
+            ]
+        )
         self.createLine(["widget", "TWINNED", "label", "Use twinned refinement"])
+        self.closeSubFrame()
+
+        self.createLine(["subtitle", "Optional pipeline steps"])
+        self.openSubFrame(frame=True)
+        self.createLine(["advice", "Uncheck to disable the following optional steps:"])
+        self.createLine(
+            [
+                "widget",
+                "SHEETBEND",
+                "label",
+                "Preliminary low-resolution refinement with Sheetbend",
+            ]
+        )
+        self.createLine(
+            ["widget", "PRUNING", "label", "Residue and chain pruning"],
+            toggle=["BASIC", "open", [False]],
+        )
+        self.createLine(
+            ["widget", "PARROT", "label", "Classical density modification with Parrot"]
+        )
+        self.createLine(
+            [
+                "widget",
+                "DUMMY_ATOMS",
+                "label",
+                "Phase improvement through addition and refinement of dummy atoms",
+            ],
+            toggle=["BASIC", "open", [False]],
+        )
+        self.createLine(
+            ["widget", "WATERS", "label", "Addition of waters"],
+            toggle=["BASIC", "open", [False]],
+        )
+        self.createLine(
+            ["widget", "SIDE_CHAIN_FIXING", "label", "Final side-chain fixing"],
+            toggle=["BASIC", "open", [False]],
+        )
         self.closeSubFrame()
 
         USE_MODEL_PHASES = self.container.controlParameters.USE_MODEL_PHASES
         USE_MODEL_PHASES.dataChanged.connect(self.update_requirements)
         self.update_requirements()
+
+        BASIC = self.container.controlParameters.BASIC
+        BASIC.dataChanged.connect(self.basic_changed)
+        self.basic_changed()
