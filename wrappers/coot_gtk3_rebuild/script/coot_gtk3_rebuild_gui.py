@@ -15,7 +15,7 @@ class Ccoot_gtk3_rebuild(CTaskWidget):
   TASKNAME = 'coot_gtk3_rebuild'
   TASKVERSION = 0.1
   TASKMODULE='model_building'
-  TASKTITLE='Manual model building - COOT Gtk3'
+  TASKTITLE='Model building - COOT Gtk3'
   SHORTTASKTITLE='COOT-Gtk3'
   DESCRIPTION='Interactive building (Gtk3 Coot)'
 
