@@ -8,9 +8,8 @@ from core import CCP4XtalData
 from lxml import etree
 import math
 from core import CCP4Modules,CCP4Utils
-from . import atomMatching, cifToMolBlock, mol2svg
+from . import atomMatching, cifToMolBlock
 import platform
-from rdkit.Chem.Draw import rdMolDraw2D
 from rdkit import Chem
 
 class acedrgNew(CPluginScript):
@@ -345,12 +344,18 @@ class acedrgNew(CPluginScript):
         # Get 2D picture of structure from the RDKit mol and place in report
         svgNode = etree.SubElement(self.xmlroot,'SVGNode')
         try:
+            from . import mol2svg
             svgText = bytes(mol2svg.svgFromMol(referenceMolToDraw),"utf-8")
             svgMolNode = etree.fromstring(svgText)
         except Exception as e:
-            print("ERROR: Drawing SVG picture of molecule was not successful.")
-            print(e)
-            svgMolNode = etree.fromstring("<svg></svg>")
+            try:
+                from wrappers.Lidia.script import MOLSVG
+                mdlMolecule = MOLSVG.MDLMolecule(self.container.outputData.MOLOUT.fullPath.__str__())
+                svgMolNode = mdlMolecule.svgXML(size=(300,300))
+            except Exception as e:
+                print("ERROR: Drawing SVG picture of molecule was not successful.")
+                print(e)
+                svgMolNode = etree.fromstring("<svg></svg>")
         svgNode.append(svgMolNode)
 
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
