@@ -540,20 +540,15 @@ class servalcat_pipe(CPluginScript):
 
 
     def coord_adp_dev_analysis(self, model1Path, model2Path):
-        import io
-        import pandas
         print("Monitoring of changes/shifts of coordinated and ADPs...")
         try:
             coordDevMinReported = self.container.monitor.MIN_COORDDEV
             ADPAbsDevMinReported = self.container.monitor.MIN_ADPDEV
             csvFileName = "report_coord_adp_dev.csv"
             csvFilePath = str(os.path.join(self.getWorkDirectory(), csvFileName))
-            csv_string = monitor_differences.main(
+            df = monitor_differences.main(
                 file1=model1Path, file2=model2Path, output=csvFilePath,
                 minCoordDev=float(coordDevMinReported), minADPDev=float(ADPAbsDevMinReported))
-            # Load
-            csvStringIO = io.StringIO(csv_string)
-            df = pandas.read_csv(csvStringIO, sep=",", header=0)
             coordDevMean = df["CoordDev"].mean()
             ADPAbsDevMean = df["ADPDev"].mean()
             # Save csv in program.xml
