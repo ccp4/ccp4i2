@@ -548,7 +548,7 @@ class servalcat_pipe(CPluginScript):
             csvFilePath = str(os.path.join(self.getWorkDirectory(), csvFileName))
             df = monitor_differences.main(
                 file1=model1Path, file2=model2Path, output=csvFilePath,
-                minCoordDev=float(coordDevMinReported), minADPDev=float(ADPAbsDevMinReported))
+                minCoordDev=float(coordDevMinReported), minAdpDev=float(ADPAbsDevMinReported))
             coordDevMean = df["CoordDev"].mean()
             ADPAbsDevMean = df["ADPDev"].mean()
             # Save csv in program.xml
