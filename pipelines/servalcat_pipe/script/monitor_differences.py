@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-''' monitor_refinement_differences.py is written to analyze differences
+''' monitor_differences.py is written to analyze differences
 between refinement input and output.
 
-Usage: python3 monitor_refinement_differences.py file1.mmcif file2.mmcif output.csv
+Usage: python3 monitor_differences.py file1.mmcif file2.mmcif output.csv
 
 The report is written into CSV file if an output file name is given.
 '''
@@ -11,11 +11,12 @@ __author__ = "Petr Kolenko, Martin Maly"
 __license__ = "Creative Commons Attribution 4.0 International License"
 __email__ = "kolenpe1@cvut.cz"
 __version__ = "0.5"
-import sys
-from math import sqrt
-import gemmi
+
+from argparse import ArgumentParser
 import csv
 import io
+from math import sqrt
+import gemmi
 
 
 def calculate_shift(pos1, pos2):
@@ -94,35 +95,12 @@ def main(file1, file2, output=None, minCoordDev=0, minADPDev=0):
 
 
 if __name__ == "__main__":
-    argv = sys.argv[1:]
-    # check for command line integrity
-    if len(argv) < 2 or len(argv) >= 6:
-        print("Usage: python3 monitor_refinement_differences.py" 
-            +" <file1> <file2> [output.csv] [minimal_coordination_shift] [minimal_ADP_shift]")
-        sys.exit(1)
-    
-    # Assigns the arguments
-    file1 = argv[0]
-    file2 = argv[1]
+    parser = ArgumentParser()
+    parser.add_argument("file1")
+    parser.add_argument("file2")
+    parser.add_argument("output", nargs="?")
+    parser.add_argument("--minCoordDev", type=float, default=0)
+    parser.add_argument("--minADPDev", type=float, default=0)
+    args = parser.parse_args()
 
-    # Check if the optional argument is provided
-    if len(argv) >= 3:
-        output = argv[2]
-    else:
-        output = None
-
-    if len(argv) >= 4:
-        try:
-            minCoordDev = float(argv[3])
-        except:
-            minCoordDev = 0
-    else:
-        minCoordDev = 0
-    if len(argv) >= 5:
-        try:
-            minADPDev = float(argv[4])
-        except:
-            minADPDev = 0
-    else:
-        minADPDev = 0
-    main(file1, file2, output=output, minCoordDev=minCoordDev, minADPDev=minADPDev)
+    main(args.file1, args.file2, args.output, args.minCoordDev, args.minADPDev)
