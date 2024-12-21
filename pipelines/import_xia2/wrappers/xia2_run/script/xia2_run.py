@@ -142,7 +142,7 @@ class xia2_run(CCP4PluginScript.CPluginScript):
         outputDataObject.annotation='Exptl data as anomalous intensities'
         self.container.outputData.IANOM.contentFlag = 1
         self.container.outputData.IANOM.subType = 1
-        im = re.sub('\+','-',ip)
+        im = re.sub(r'\+','-',ip)
         #MN change: because internally, we assume labels of Iplus Iminus etc for this contentFlag and data type, and we have to notify system that this is what we have used
         relabelColumnFromList += (ip+','+'SIG'+ip+','+im+','+'SIG'+im)
         relabelColumnToList += 'Iplus,SIGIplus,Iminus,SIGIminus'
@@ -163,7 +163,7 @@ class xia2_run(CCP4PluginScript.CPluginScript):
         outputDataObject.annotation = 'Exptl data as anomalous SFs'
         self.container.outputData.FANOM.contentFlag = 2
         self.container.outputData.FANOM.subType = 1
-        fm = re.sub('\+','-',fp)
+        fm = re.sub(r'\+','-',fp)
         #MN change: because internally, we assume labels of Fplus Fminus etc for this contentFlag and data type, and we have to notify system that this is what representation we have used
         relabelColumnFromList += (fp+','+'SIG'+fp+','+fm+','+'SIG'+fm+',')
         relabelColumnToList += 'Fplus,SIGFplus,Fminus,SIGFminus,'

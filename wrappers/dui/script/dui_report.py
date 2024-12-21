@@ -25,7 +25,7 @@ class dui_report(Report):
         # Make sure we select the right directory for the dui_output folder
         if self.jobInfo['inputfiles']:
             annot = self.jobInfo['inputfiles'][0]['annotation'] # Assumes only one input file.
-            reresult = re.search('\(([^\)]*)', annot)
+            reresult = re.search(r'\(([^\)]*)', annot)
             job_dloc = reresult.group(1)
             useDialsDir = os.path.join(os.path.split(os.path.normpath(self.jobInfo['fileroot']))[0],
                                        job_dloc, "dui_files")

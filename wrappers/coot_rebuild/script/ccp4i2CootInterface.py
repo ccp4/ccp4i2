@@ -275,8 +275,8 @@ class ccp4i2CootInterface():
 
     def centreOn(self, chain='A', residue='1', iMol=0):
         import re
-        literals = re.findall ( '\D' , str(residue) )
-        number   = int ( re.findall ( '\d+', str(residue) )[0] )
+        literals = re.findall ( r'\D' , str(residue) )
+        number   = int ( re.findall ( r'\d+', str(residue) )[0] )
 
         if len ( literals ) > 0 :
             literal = literals[0]

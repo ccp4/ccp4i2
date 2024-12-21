@@ -206,7 +206,7 @@ class CFileDialog(QtWidgets.QDialog):
                 filterText = filterText + ff + ';;'
             else:
                 try:
-                    m = re.match('(.*)\((.*)\)', ff)
+                    m = re.match(r'(.*)\((.*)\)', ff)
                     lab,exTxt = m.groups()
                     lab = lab + '('
                     exList = exTxt.split()

@@ -355,7 +355,7 @@ class CReindexOperator(CCP4Data.CData):
             op = self.__dict__['_value'][key].__str__().strip()
             if len(op) < 1:
                 err.append(self.__class__, 203, name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
-            s = re.search('[^0-9,\,,\-,\+,\/,h,k,l]', op)
+            s = re.search(r'[^0-9,\,,\-,\+,\/,h,k,l]', op)
             if s is not None:
                 err.append(self.__class__, 202, name=self.objectPath())
         return err
@@ -1000,9 +1000,15 @@ class CMtzDataFile(CCP4File.CDataFile):
         except:
             report.append(self.__class__, 312, other.__str__(), name=self.objectPath(False))
             return report
-        for item in ['cell', 'spaceGroup']:
-            if self.fileContent.__getattr__(item) != other.fileContent.__getattr__(item):
-                report.append(self.__class__, 401,item + ' : ' + str( self.fileContent.__getattr__(item) ) + ' : ' + str(other.fileContent.__getattr__(item)), stack=False, name=self.objectPath(False) )
+        sg1 = self.fileContent.__getattr__("spaceGroup")
+        sg2 = other.fileContent.__getattr__("spaceGroup")
+        if sg1 != sg2:
+            report.append(self.__class__, 401, f"spaceGroup : {sg1} : {sg2}", stack=False, name=self.objectPath(False) )
+        cell1 = self.fileContent.__getattr__("cell")
+        cell2 = other.fileContent.__getattr__("cell")
+        for attr in ['a', 'b', 'c', 'alpha', 'beta', 'gamma']:
+            if not math.isclose(cell1[item], cell2[item], abs_tol=0.001):
+                report.append(self.__class__, 401, f"cell {cell1} : {cell2}", stack=False, name=self.objectPath(False) )
         for item in ['low', 'high']:
             if self.fileContent.resolutionRange.__getattr__(item) != other.fileContent.resolutionRange.__getattr__(item):
                 lerrStr = item + ' : ' + str(self.fileContent.resolutionRange.__getattr__(item)) + ' : ' \

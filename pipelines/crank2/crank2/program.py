@@ -57,7 +57,7 @@ class program(object):
     self.process = parent_process
     self.rundir=None
     if self.name:
-      self.runname=re.sub('\W+', '', self.name)
+      self.runname=re.sub(r'\W+', '', self.name)
     else:
       self.runname="prog"
     self.inp = inout.input_output(is_output=False,parent=self)

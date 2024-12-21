@@ -155,7 +155,7 @@ class CI2Runner(object):
         providedColumnNames = mtzin.column_labels()
         if inputColumnPath.startswith('/'): inputColumnPath = inputColumnPath[1:]
         if len(inputColumnPath.split('/')) not in [1,3]: raise Exception("smartSplitMTZ Exception:", "Invalid input columnPath")
-        selectedColumns = re.sub('[\[\] ]','',inputColumnPath.split('/')[-1]).split(',')
+        selectedColumns = re.sub(r'[\[\] ]','',inputColumnPath.split('/')[-1]).split(',')
         outputColumns = [mtzin.column_with_label(label) for label in ['H', 'K', 'L']]
         typeSignature = ''
         for columnLabel in selectedColumns:
@@ -271,7 +271,7 @@ class CI2Runner(object):
         #print("EtoM [{}] [{}]".format(entityToModify, valueItem))
         if isinstance(entityToModify,(CCP4File.CDataFile,)) and isinstance(valueItem, (str,)):
             #Here if setting a CDataFile with a string look to see if using fileUse
-            searchGroup = re.match('(?P<propertyName>[^=]*)\=(?P<propertyValue>.*)', valueItem)
+            searchGroup = re.match(r'(?P<propertyName>[^=]*)\=(?P<propertyValue>.*)', valueItem)
             if searchGroup is not None:
                 print(searchGroup.group('propertyName'), searchGroup.group('propertyValue'))
             print('setting CDataFile with string...setting fullpath')
@@ -294,7 +294,7 @@ class CI2Runner(object):
     def fileUse(self, projectName, propertyValue):
         jobNumber, jobParamName = propertyValue.split(".")
         #See if jobParamName includes an array-like index
-        arrayGroup = re.match('(?P<jobParamName>.*)\[(?P<arrayIndexStr>[0-9]+)\]', jobParamName)
+        arrayGroup = re.match(r'(?P<jobParamName>.*)\[(?P<arrayIndexStr>[0-9]+)\]', jobParamName)
         paramToFind = jobParamName
         oneToTake = 0
         if arrayGroup is not None:
@@ -588,7 +588,7 @@ class CI2Runner(object):
                                     raise err
                             #Now deal with subElement=subValue examples
                             elif "=" in valueItem:
-                                valueItemGroup = re.match('(?P<propertyName>[^=]*)\=(?P<propertyValue>.*)', valueItem)
+                                valueItemGroup = re.match(r'(?P<propertyName>[^=]*)\=(?P<propertyValue>.*)', valueItem)
                                 propertyName = valueItemGroup.group('propertyName')
                                 propertyValue = valueItemGroup.group('propertyValue')
                                 
@@ -597,7 +597,7 @@ class CI2Runner(object):
                                 parentProperty = None
                                 for iPathElement, propertyPathElement in enumerate(propertyPathElements):
                                     #Look to see if there is an index in the propertyPathELement
-                                    pathElementGroup = re.match('(?P<arrayName>[^=]*)\[(?P<arrayIndex>.*)\]', propertyPathElement)
+                                    pathElementGroup = re.match(r'(?P<arrayName>[^=]*)\[(?P<arrayIndex>.*)\]', propertyPathElement)
                                     if pathElementGroup is None:
                                         deconvolutedPathElement = propertyPathElement
                                         deconvolutedIndex = 0

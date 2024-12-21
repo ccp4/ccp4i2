@@ -173,12 +173,8 @@ class CConfig:
     def loadVersion(self):
         # Do not use CCP4File here - config not set - broken without Qt 
         from core import CCP4Utils
-        text = CCP4Utils.readFile(os.path.join(CCP4Utils.getCCP4I2Dir(), 'core', 'version.params.xml'))
-        tree = etree.fromstring(text)
-        self.ccp4iVersion = tree.xpath('/ccp4i2/ccp4i2_header/ccp4iVersion')[0].text
+        self.ccp4iVersion = CCP4Utils.getProgramVersion('ccp4i2')
         print('ccp4i2 version', self.ccp4iVersion)
-        revision = CCP4Utils.getProgramVersion('ccp4i2',mode='revision')
-        print('ccp4i2 source revision', revision)
 
     def set(self, key='', value=''):
         if ['qt', 'developer', 'graphical'].count(key) and [True, False].count(value):
@@ -223,7 +219,7 @@ def PATH(exe, firstOnly = True):
             return []
     for path in CConfig.insts.searchPath[exe][platform]:
         # Test for envvar that glob does not seem to handle
-        m = re.match('\$([^/]*)(.*)',path)
+        m = re.match(r'\$([^/]*)(.*)',path)
         if m is not None:
             env,relpath = m.groups()
             if env in os.environ:

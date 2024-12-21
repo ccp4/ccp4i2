@@ -853,11 +853,11 @@ class CTaskManager:
     def searchXrtFile(self, name='', version=None, jobStatus=None):
         for path in self.searchPath():
             if jobStatus == 'Running':
-                fileName = os.path.join(re.sub('\*', name, path), name + '.running.xrt')
+                fileName = os.path.join(re.sub(r'\*', name, path), name + '.running.xrt')
                 if os.path.exists(fileName):
                     return fileName
             else:
-                fileName = os.path.join(re.sub('\*', name, path), name + '.xrt')
+                fileName = os.path.join(re.sub(r'\*', name, path), name + '.xrt')
                 if os.path.exists(fileName):
                     return fileName
         return None

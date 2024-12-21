@@ -1549,11 +1549,7 @@ class CMainWindow(QtWidgets.QMainWindow):
             self.aboutDialog.layout().addWidget(topWidget)
             version = CCP4Utils.getProgramVersion('ccp4i2')
             date = CCP4Utils.getProgramVersion('ccp4i2',mode='date')
-            revision = CCP4Utils.getProgramVersion('ccp4i2',mode='revision')
-            if len(revision)>0:
-                label = QtWidgets.QLabel('Version '+version+' (revision '+revision+') built on '+date+"\n"+'User interface to CCP4 Program Suite version '+ CCP4Utils.getProgramVersion('ccp4'),self)
-            else:
-                label = QtWidgets.QLabel('Version '+version+' built on '+date+"\n"+'User interface to CCP4 Program Suite version '+ CCP4Utils.getProgramVersion('ccp4'),self)
+            label = QtWidgets.QLabel('Version '+version+' built on '+date+"\n"+'User interface to CCP4 Program Suite version '+ CCP4Utils.getProgramVersion('ccp4'),self)
             label.setStyleSheet("QLabel { font-size: 14px; font-style: italic; font-weight: bold; }")
             topRightWidget.layout().addWidget(label)
             label = QtWidgets.QLabel(self)
@@ -2225,7 +2221,7 @@ class CBrowserWindow(CMainWindow):
     @QtCore.Slot()
     def searchEdited(self):
 #FIXME PYQT - potential hairiness
-        text =  re.sub('\s+',' ',self.editSplitter.searchEdit.text())
+        text =  re.sub(r'\s+',' ',self.editSplitter.searchEdit.text())
         #print 'QWebBrowser.searchEdited', text
         self.loadPage(QtCore.QUrl(self.searchEngineString + str(text)))
 

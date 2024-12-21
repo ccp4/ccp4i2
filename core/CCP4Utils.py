@@ -636,23 +636,6 @@ def getProgramVersion(programName, mode='version'):
             return versionHeader.ccp4iVersion.__str__()
         elif mode == 'date':
             return versionHeader.creationTime.date()
-        elif mode == 'revision':
-            text = readFile(os.path.join(getCCP4I2Dir(), 'core', 'version.params.xml'))
-            tree = etree.fromstring(text)
-            if os.path.exists(os.path.join(getCCP4I2Dir(),".bzr","branch","last-revision")):
-                try:
-                    bzrrevf = open(os.path.join(getCCP4I2Dir(),".bzr","branch","last-revision"))
-                    bzrrevt = bzrrevf.read()
-                    bzrrevf.close()
-                    return bzrrevt.split(" ")[0]
-                except:
-                    pass #Read from version.params.xml
-            #Aaargh, pluginVersion is a CVersion in CI2XmlHeader, but does not adhere to CVersion rules...
-            try:
-                plugVer = tree.xpath('/ccp4i2/ccp4i2_header/pluginVersion')[0].text
-                return plugVer
-            except:
-                return ""
     elif programName == 'ccp4':
         CCP4Modules.PROCESSMANAGER().startProcess('fft', ['-i'], logFile=logFile)
         text = readFile(logFile)
@@ -691,10 +674,10 @@ def searchVersion(text, programName=None):
         if m1 is not None:
             text = m1.groups()[1]
         print('CCP4Utils.getProgramVersion m1', m1.groups())
-    m2 = re.search('(.*)(V|v)ersion([ :\.]*)([0123456789.]*)',text)
+    m2 = re.search(r'(.*)(V|v)ersion([ :\.]*)([0123456789.]*)',text)
     if m2 is not None and len(m2.groups()[3]) > 0:
         return m2.groups()[3]
-    m2 = re.search('(.*)(V|v)er([ :\.]*)([0123456789.]*)',text)
+    m2 = re.search(r'(.*)(V|v)er([ :\.]*)([0123456789.]*)',text)
     if m2 is not None and len(m2.groups()[3]) > 0:
         return m2.groups()[3]
     m2 = re.search('(.*)([V|v])([0123456789.]*)',text)

@@ -240,7 +240,7 @@ class molrep_den(CPluginScript):
            with open(fileName) as istream:
              content = istream.read()
 
-           content = re.sub('\n#MOLECULE\s+[0-9]+\s*', '\n', content)
+           content = re.sub(r'\n#MOLECULE\s+[0-9]+\s*', '\n', content)
            with open(str(out.XYZOUT.fullPath), 'w') as ostream:
              ostream.write(content)
 

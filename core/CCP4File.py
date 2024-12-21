@@ -269,7 +269,7 @@ class CFilePath(CCP4Data.CString):
             return v
         charMode = self.qualifiers('allowedCharactersMode')
         if charMode > 0:
-            invalidChars = re.findall('[^a-zA-Z0-9/_.: \-+' + self.qualifiers('allowedCharacters') + ']', arg)
+            invalidChars = re.findall(r'[^a-zA-Z0-9/_.: \-+' + self.qualifiers('allowedCharacters') + ']', arg)
             if len(invalidChars) > 0:
                 if [CFilePath.ALLOWED_CHARACTERS_WARN,CFilePath.ALLOWED_CHARACTERS_FIX].count(charMode):
                     v.append(self.__class__, 102, invalidChars.__repr__().lstrip('[').rstrip(']'), stack=False, name=self.objectPath(), label=self.qualifiers('guiLabel'))
@@ -281,7 +281,7 @@ class CFilePath(CCP4Data.CString):
         # NOT FULLY IMPLEMENTED
         # ??? Is the str.translate() function useful here
         # Replace an unallowed char with underscore
-        return re.sub('[^a-zA-Z0-9/_.: \-' + self.qualifiers('allowedCharacters') + ']', '_', arg)
+        return re.sub(r'[^a-zA-Z0-9/_.: \-' + self.qualifiers('allowedCharacters') + ']', '_', arg)
 
     def abspath(self):
         if self._value is None:
