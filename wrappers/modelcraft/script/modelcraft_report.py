@@ -50,8 +50,8 @@ class modelcraft_report(Report):
 
     def add_picture(self, parent=None):
         parent = parent or self
-        self.addDiv(style="clear:both;")
-        pictureFold = self.addFold(label="Picture", initiallyOpen=True, brief="Picture")
+        parent.addDiv(style="clear:both;")
+        pictureFold = parent.addFold(label="Picture", initiallyOpen=True, brief="Picture")
         baseScenePath = Path(__file__).resolve().parent / "modelcraft_1.scene.xml"
         pictureFold.addPicture(
             label="Autobuilt structure", sceneFile=str(baseScenePath), id="autobuild_1"
