@@ -48,7 +48,8 @@ class modelcraft_report(Report):
             self.add_picture()
             self.addDiv(style="clear:both;")
 
-    def add_picture(self):
+    def add_picture(self, parent=None):
+        parent = parent or self
         self.addDiv(style="clear:both;")
         pictureFold = self.addFold(label="Picture", initiallyOpen=True, brief="Picture")
         baseScenePath = Path(__file__).resolve().parent / "modelcraft_1.scene.xml"
@@ -56,14 +57,16 @@ class modelcraft_report(Report):
             label="Autobuilt structure", sceneFile=str(baseScenePath), id="autobuild_1"
         )
 
-    def add_running_job(self, parent):
+    def add_running_job(self, parent=None):
+        parent = parent or self
         subjob = self.json.get("running_job")
         if subjob:
             parent.append(f"<p>The sub-job that is currently running is: {subjob}</p>")
 
-    def add_table(self, parent):
+    def add_table(self, parent=None):
         if "final" not in self.json:
             return
+        parent = parent or self
         cycle = self.json["final"]["cycle"]
         residues = self.json["final"]["residues"]
         waters = self.json["final"]["waters"]
@@ -76,9 +79,10 @@ class modelcraft_report(Report):
         table.addData(title="R<sub>Work</sub>", data=[rwork])
         table.addData(title="R<sub>Free</sub>", data=[rfree])
 
-    def add_message(self, jobStatus, parent):
+    def add_message(self, jobStatus, parent=None):
         if "final" not in self.json:
             return
+        parent = parent or self
         cycle = self.json["final"]["cycle"]
         rfree = self.json["final"]["r_free"]
         if jobStatus in ["Running", "Running remotely"]:
@@ -98,9 +102,10 @@ class modelcraft_report(Report):
             message += " the model is approaching completion."
         parent.append(f"<p>{message}</p>")
 
-    def add_graph(self, parent):
+    def add_graph(self, parent=None):
         if len(self.json.get("cycles", [])) == 0:
             return
+        parent = parent or self
         cycles = []
         residues = []
         rfrees = []
