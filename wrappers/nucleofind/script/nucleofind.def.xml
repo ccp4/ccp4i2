@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <creationTime>16:17 20/Jul/12</creationTime>
+        <userId>jordandialpuri</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId/>
+        <project></project>
+        <pluginName>nucleofind</pluginName>
+        <pluginVersion></pluginVersion>
+        <pluginTitle>Predict Nucleic Acid Features</pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="nucleofind">
+
+        <container id="inputData">
+            <content id="FWT_PHWT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <requiredSubType>1</requiredSubType>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <allowUndefined>False</allowUndefined>
+                </qualifiers>
+            </content>
+        </container>
+
+        <container id="outputData">
+
+            <content id="PHOSPHATEOUT">
+                <className>CMapDataFile</className>
+            </content>
+            <content id="SUGAROUT">
+                <className>CMapDataFile</className>
+            </content>
+            <content id="BASEOUT">
+                <className>CMapDataFile</className>
+            </content>
+        </container>
+
+
+        <container id="controlParameters">
+
+            <content id="SYMMETRY">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+
+            <content id="OVERLAP">
+                <className>CInt</className>
+                <qualifiers>
+                    <default>16</default>
+                </qualifiers>
+            </content>
+
+            <content id="GPU">
+                <className>CBoolean</className>
+            </content>
+
+
+        </container>
+
+    </ccp4i2_body>
+</ccp4:ccp4i2>
