@@ -29,7 +29,7 @@ class NucleoFindGUI(CCP4TaskWidget.CTaskWidget):
   TASKVERSION = 0.3
   TASKMODULE='model_building'
   TASKTITLE='Predict nucleic acid positions - NucleoFind'
-  DESCRIPTION=''
+  DESCRIPTION='Use NucleoFind to predict the positions of nucleic acid phosphates, sugars and base in an electron density map.'
   SHORTTASKTITLE='NucleoFind'
 
   def __init__(self,parent):
