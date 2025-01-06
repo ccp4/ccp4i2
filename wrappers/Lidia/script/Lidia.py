@@ -28,16 +28,20 @@ class lidia(CPluginScript):
     def startProcess(self, command, **kw):
         viewer = 'lidia'
         argList = []
+        lidiaPath = _lidiaPath()
         if not sys.platform.startswith("win"):
             viewer = '/bin/sh'
-            argList = [_lidiaPath()]
+            argList = [lidiaPath[0]]
             if self.container.inputData.MOLIN.isSet():
                 argList.append(str(self.container.inputData.MOLIN))
+        envEdit=[['PWD', os.path.normpath(self.getWorkDirectory())]]
+        if lidiaPath[1]:
+            envEdit.append(["PYTHONHOME",lidiaPath[1]])
         CCP4Modules.LAUNCHER().launch(
             viewer=viewer,
             argList=argList,
             callBack=self.handleFinished,
-            envEdit=[['PWD', os.path.normpath(self.getWorkDirectory())]],
+            envEdit=envEdit,
             logFile=self.makeFileName('LOG')
         )
         return CPluginScript.SUCCEEDED
@@ -99,7 +103,10 @@ def _lidiaPath() -> str:
     if hasattr(CCP4Modules.PREFERENCES(), 'COOT_EXECUTABLE'):
         path = Path(str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE))
         if path.is_file():
-            return str(path.resolve().parent / "lidia")
+            return (str(path.resolve().parent / "lidia"),None)
     if lidiaPath := CCP4Utils.which('lidia'):
-        return str(Path(lidiaPath).resolve())
-    return str(Path(os.environ["CCP4"]).resolve() / "coot_py2/bin/lidia")
+        return (str(Path(lidiaPath).resolve()),None)
+    if sys.platform == "linux":# Seems that lidia does not run without PYTHONPATH being set on Linux
+        return (str(Path(os.environ["CCP4"]).resolve() / "coot_py2/bin/lidia"),str(Path(os.environ["CCP4"]).resolve() / "coot_py2/"))
+    else:
+        return (str(Path(os.environ["CCP4"]).resolve() / "coot_py2/bin/lidia"),None)
