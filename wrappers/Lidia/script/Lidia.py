@@ -97,7 +97,7 @@ class lidia(CPluginScript):
 
 def _lidiaPath() -> str:
     if hasattr(CCP4Modules.PREFERENCES(), 'COOT_EXECUTABLE'):
-        path = Path(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)
+        path = Path(str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE))
         if path.is_file():
             return str(path.resolve().parent / "lidia")
     if lidiaPath := CCP4Utils.which('lidia'):
