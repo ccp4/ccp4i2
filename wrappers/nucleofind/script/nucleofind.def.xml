@@ -61,6 +61,13 @@
                 <className>CBoolean</className>
             </content>
 
+            <content id="THREADS">
+                <className>CInt</className>
+                <qualifiers>
+                    <default>16</default>
+                </qualifiers>
+            </content>
+
 
         </container>
 

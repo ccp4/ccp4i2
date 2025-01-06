@@ -26,7 +26,7 @@ class NucleoFindGUI(CCP4TaskWidget.CTaskWidget):
 
 # Subclass CTaskWidget to give specific task window
   TASKNAME = 'nucleofind'
-  TASKVERSION = 0.3
+  TASKVERSION = 0.1
   TASKMODULE='model_building'
   TASKTITLE='Predict nucleic acid positions - NucleoFind'
   DESCRIPTION='Use NucleoFind to predict the positions of nucleic acid phosphates, sugars and base in an electron density map.'
@@ -38,10 +38,6 @@ class NucleoFindGUI(CCP4TaskWidget.CTaskWidget):
   def drawContents(self):
 
     self.setProgramHelpFile('nucleofind')
-
-
-# the input data tab starts here
-
     folder = self.openFolder(folderFunction='inputData',title='Input Data')
 
     self.createLine( [ 'subtitle', 'Input map', ""] )
@@ -55,15 +51,6 @@ class NucleoFindGUI(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ "label", "Predict over entire unit cell", "widget", "SYMMETRY"])
     self.createLine( [ "label", "Overlap predicted boxes by ", "widget", "OVERLAP", "label", "grid points"])
     self.createLine( [ "label", "Use GPU Acceleration", "widget", "GPU"])
+    self.createLine( [ "label", "Use", "widget", "THREADS", "label", "CPU threads"])
     
     self.closeSubFrame()
-
-
-  @QtCore.Slot()
-  def updateRequirements ( self ) :
-    if self.container.controlParameters.NEW_SUGAR :
-        self.container.controlParameters.CODEIN.setQualifier ( 'allowUndefined', False )
-        self.container.controlParameters.CODEIN.validate()
-    else :
-        self.container.controlParameters.CODEIN.setQualifier ( 'allowUndefined', True )
-        self.container.controlParameters.CODEIN.validate()
