@@ -1,7 +1,3 @@
-from __future__ import print_function
-
-from PySide2 import QtCore
-
 """
      CCP4CustomTaskManager.py: CCP4 GUI Project
      Copyright (C) 2013 STFC
@@ -25,14 +21,19 @@ from PySide2 import QtCore
      Liz Potterton July 2013 - create and manage custom tasks
 """
 
+import copy
 import os
 import re
-from core import CCP4Data
-from core import CCP4Container
-from core import CCP4File
-from core import CCP4CustomManager
-from core import CCP4DataManager
-from core.CCP4ErrorHandling import *
+
+from PySide2 import QtCore
+
+from . import CCP4Container
+from . import CCP4CustomManager
+from . import CCP4Data
+from . import CCP4DataManager
+from . import CCP4File
+from . import CCP4XtalData
+from .CCP4ErrorHandling import *
 
 
 class CCustomTaskManager(CCP4CustomManager.CCustomManager):
@@ -51,7 +52,7 @@ class CCustomTaskManager(CCP4CustomManager.CCustomManager):
         CCP4CustomManager.CCustomManager.__init__(self, parent, 'task')
 
     def createCustomTask(self, name=None, title=None, container=None, overwrite=False):
-        from core import CCP4XtalData
+
         err = CErrorReport()
         self.createDirectory(name=name, overwrite=overwrite)
         container.header.pluginName = name
@@ -60,7 +61,6 @@ class CCustomTaskManager(CCP4CustomManager.CCustomManager):
         #print 'CCustomTaskManager.createCustomTask', name, title, taskFile, container.paramList
         container.saveDataToXml(fileName=taskFile)
         if title is None:
-            import copy
             title = copy.deepcopy(name)
         paramsContainer = CCP4Container.CContainer()
         header = paramsContainer.addHeader()
