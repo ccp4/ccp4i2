@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4Annotation.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -22,14 +20,22 @@ from __future__ import print_function
 """
    Liz Potterton Aug 2010 - Generic annotation object
 """
+
 import os
+import platform
 import re
+import shutil
 import time
 import types
-from core import CCP4Data
-from core.CCP4Data import CBaseData
-from core import CCP4Utils
-from core.CCP4ErrorHandling import *
+import unittest
+
+from PySide2 import QtCore, QtGui
+
+from . import CCP4Data, CCP4Utils, CCP4TaskManager
+from .CCP4Data import CBaseData
+from .CCP4ErrorHandling import *
+from .CCP4File import CDataFile
+
 
 class CTime(CCP4Data.CInt):
     '''The time. Uses Python time module'''
@@ -81,7 +87,6 @@ class CTime(CCP4Data.CInt):
                 raise e
 
     def getQDateTime(self):
-        from PySide2 import QtCore
         q = QtCore.QDateTime()
         if self.__dict__['_value'] is not None:
             q.setTime_t(int(self.__dict__['_value']))
@@ -128,7 +133,6 @@ class CUserAddress(CCP4Data.CData):
                   'toolTip' : 'User id as me@myplace.ac.uk and machine name'}
 
     def setCurrent(self):
-        import platform
         self._value['userId'].setCurrentUser()
         self._value['platformNode'].set(platform.node())
 
@@ -228,7 +232,6 @@ class CFont(CCP4Data.CData):
                                           'menuText' : ['light', 'normal', 'demi-bold', 'bold', 'black']}}}
 
     def getQFont(self):
-        from PySide2 import QtGui, QtWidgets
         italic = (self.style == QtGui.QFont.StyleItalic)
         f = QtGui.QFont(str(self.family),int(self.pointSize),int(self.weight),italic)
         #print 'CFont.getQFont', f, str(f.family()),f.pointSize()
@@ -326,7 +329,6 @@ class CBibReferenceGroup(CCP4Data.CData):
                    102 : { 'description' : 'Error copying file'}}
 
     def loadFromMedline(self, fileNameList=[], taskName=None, version=None):
-        from core import CCP4TaskManager
         if len(fileNameList) == 0 and taskName is not None:
             self.__dict__['fileNameList'] = CCP4TaskManager.TASKMANAGER().searchReferenceFile(taskName,version=version)
             if len(fileNameList) == 0:
@@ -349,7 +351,6 @@ class CBibReferenceGroup(CCP4Data.CData):
             self.__dict__['_value']['references'][0].selected = True
 
     def export(self, cformat, fileName):
-        import shutil
         err = CErrorReport()
         #print 'CBibReferenceGroup.export',cformat,fileName
         if os.path.splitext(fileName)[1] == '':
@@ -436,7 +437,6 @@ class CMetaDataTagList(CCP4Data.CList):
 
 
 class CServerGroup(CCP4Data.CData):
-    from core.CCP4File import CDataFile
     '''One or more compute servers used in "remote" running'''
     CONTENTS = {'name' : {'class' : CCP4Data.CString},
                 'mechanism' : {'class' : CCP4Data.CString , 'qualifiers' :
@@ -544,7 +544,6 @@ class CDateRange(CCP4Data.CData):
 
 
 #===========================================================================================================
-import unittest
 
 def TESTSUITE():
     suite = unittest.defaultTestLoader.loadTestsFromTestCase(testAnnotation)
