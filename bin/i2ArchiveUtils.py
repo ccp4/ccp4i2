@@ -1,19 +1,24 @@
-from __future__ import print_function
-import sys
-
-if sys.version_info >= (3,0):
-    import urllib.request, urllib.parse
-else:
-    import urllib
-    import urllib2
-
+import argparse
+import getpass
+import http.cookiejar
+import io
 import itertools
+import json
 import mimetools
 import mimetypes
-try:
-    from cStringIO import StringIO
-except ImportError:
-    from io import StringIO
+import os
+import re
+import sys
+import tempfile
+import unicodedata
+import urllib.parse
+import urllib.request
+
+from lxml import etree
+
+import CCP4Utils
+from ..core import CCP4NonGuiProjectUtils
+from ..utils.startup import setupEnvironment, setupPythonpath, startProjectsManager
 
 class MultiPartForm(object):
     """Accumulate the data to be used when posting a form."""
@@ -87,10 +92,7 @@ class DjangoMultiPartForm(MultiPartForm):
         
     def get_request(self):
         # Build the request
-        if sys.version_info >= (3,0):
-            request = urllib.request.Request(self.baseURL)
-        else:
-            request = urllib2.Request(self.baseURL)
+        request = urllib.request.Request(self.baseURL)
         request.add_header('User-agent', 'PyMOTW (http://www.doughellmann.com/PyMOTW/)')
         body = str(self)
         request.add_header('Content-type', self.get_content_type())
@@ -123,7 +125,6 @@ class DjangoSession (object):
         return handler
 
     def cookieHandler(self):
-        import http.cookiejar
         self.cookies = http.cookiejar.LWPCookieJar()
         handler = urllib.request.HTTPCookieProcessor(self.cookies)
         return handler
@@ -139,26 +140,17 @@ class DjangoSession (object):
         return self.openRequest(url)
 
     def postURLWithValues(self, url, values):
-        if sys.version_info >= (3,0):
-            data = urllib.parse.urlencode(values)
-        else:
-            data = urllib.urlencode(values)
+        data = urllib.parse.urlencode(values)
         req = urllib.request.Request(url, data)
         response = self.openURL(req)
         return response
 
     def getURLWithValues(self, url, values):
         print('url',url)
-        if sys.version_info >= (3,0):
-            url_values = urllib.parse.urlencode(values)
-        else:
-            url_values = urllib.urlencode(values)
+        url_values = urllib.parse.urlencode(values)
         full_url = url + '?' + url_values
         print('full_url',full_url)
-        if sys.version_info >= (3,0):
-           req = urllib.request.Request(full_url)
-        else:
-           req = urllib2.Request(url, data)
+        req = urllib.request.Request(full_url)
         response = self.openURL(req)
         return response
 
@@ -167,9 +159,8 @@ class DjangoSession (object):
         responseHTML=response.read()
         formURL = response.geturl()
         #Here check that this looks like a properly crafted login form
-        from lxml import etree
         parser = etree.HTMLParser()
-        responseAsEtree = etree.parse(StringIO(responseHTML), parser)
+        responseAsEtree = etree.parse(io.StringIO(responseHTML), parser)
         if len(responseAsEtree.xpath("//input[@name='username']")) == 0:
             raise Exception("No username field in login page retrieved from ", response.geturl())
         if len(responseAsEtree.xpath("//input[@name='password']")) == 0:
@@ -193,11 +184,7 @@ class CCP4i2DjangoSession(DjangoSession):
         self.pm = self.myStartProjectsManager()
 
     def myStartProjectsManager(self):
-        import os
-        import CCP4Utils
         CCP4I2_TOP = CCP4Utils.getCCP4I2Dir()
-        sys.path.append(os.path.join(CCP4I2_TOP,'utils'))
-        from startup import setupEnvironment, setupPythonpath, startProjectsManager
         setupEnvironment(path=CCP4I2_TOP)
         setupPythonpath(top=CCP4I2_TOP,mode='qtgui')
         pm = startProjectsManager()
@@ -216,7 +203,6 @@ class CCP4i2DjangoSession(DjangoSession):
             Normalizes string, converts to lowercase, removes non-alpha characters,
             and converts spaces to hyphens.
             """
-        import unicodedata, re
         value = unicodedata.normalize('NFKD', value.decode('unicode-escape')).encode('ascii', 'ignore')
         value = str(re.sub(r'[^\w\s-]', '', value).strip().lower())
         result = re.sub(r'[-\s]+', '-', value)
@@ -224,13 +210,11 @@ class CCP4i2DjangoSession(DjangoSession):
 
     def pushProject(self,projectName):
         projectId = self.projectIdForName(projectName=projectName, strict=False)
-        from core import CCP4NonGuiProjectUtils
         
         projectList = self.pm.db().listProjects()
         projectNameList = [projectTuple[1] for projectTuple in projectList if projectId in projectTuple[0]]
         projectName = self.slugify(projectNameList[-1])
         
-        import tempfile
         tmpArchive = tempfile.NamedTemporaryFile(suffix='.ccp4_project.zip',delete=False)
         tmpArchive.close()
         fullPath=tmpArchive.name
@@ -238,7 +222,6 @@ class CCP4i2DjangoSession(DjangoSession):
         
         form = self.multiPartForm(self.baseURL+'/importProject')
 
-        import os
         with open(fullPath,"r") as fileHandle:
             form.add_file('file', os.path.split(fullPath)[1], fileHandle)
         
@@ -250,7 +233,6 @@ class CCP4i2DjangoSession(DjangoSession):
         
         form = self.multiPartForm(self.baseURL+'/importProject')
 
-        import os
         with open(zipName,"r") as fileHandle:
             form.add_file('file', os.path.split(zipName)[1], fileHandle)
         
@@ -260,7 +242,6 @@ class CCP4i2DjangoSession(DjangoSession):
 
     def fetchProject(self, projectName):
         response = self.getURLWithValues(self.baseURL+"/ProjectZipForProjName/"+projectName,{})
-        import tempfile
         tmpArchive = tempfile.NamedTemporaryFile(suffix='.ccp4_project.zip',delete=False)
         print(tmpArchive.name)
         CHUNK = 16 * 1024
@@ -270,7 +251,6 @@ class CCP4i2DjangoSession(DjangoSession):
             tmpArchive.write(chunk)
         tmpArchive.close()
         pm = self.myStartProjectsManager()
-        from core import CCP4NonGuiProjectUtils
         importer = CCP4NonGuiProjectUtils.CCP4NonGuiProjectUtils(tmpArchive.name)
         pm.db().commit()
         pm.db().close()
@@ -279,13 +259,11 @@ class CCP4i2DjangoSession(DjangoSession):
     def queryDb(self, command, values=None):
         print('command',command,'values',values)
         response = self.getURLWithValues(self.baseURL+'?'+command, values)
-        import json
         return json.loads(response.read())
 
 if __name__ == '__main__':
     def exerciseGet():
         response = djangoSession.getURLWithValues(sys.argv[1]+"?listProjects",{})
-        import json
         print(json.loads(response.read()))
 
     def exerciseCreateProject(projectName):
@@ -310,12 +288,10 @@ if __name__ == '__main__':
     mode='Push'
     
     #First check for old syntax: a list contaiing password etc
-    import sys, getopt
     dashedArgs = [arg for arg in sys.argv[1:] if arg.startswith('-')]
     if len(sys.argv) == 5 and len(dashedArgs) == 4:
         parameterNamespace = Namespace(server=sys.argv[1], username=sys.argv[2], password=sys.argv[3],depositProject=[sys.argv[4]],fetchProject=[],depositZip=[])
     else:
-        import argparse
         parser = argparse.ArgumentParser(description='Interact with CCP4i2 Archive.')
         parser.add_argument('-s','--server',help='URL of server e.g. http://myserver.local:8080/ManageCCP4i2Archive')
         parser.add_argument('-u','--username','--user',help='username of CCP4i2Archive e.g. djangouser. Defaults to login of current session')
@@ -327,7 +303,6 @@ if __name__ == '__main__':
         parameterNamespace = parser.parse_args()
 
     print(parameterNamespace)
-    import getpass
     if parameterNamespace.username is None: parameterNamespace.username = getpass.getuser()
     if parameterNamespace.password is None: parameterNamespace.password = getpass.getpass()
     ccp4i2DjangoSession = CCP4i2DjangoSession(parameterNamespace.server, parameterNamespace.username, parameterNamespace.password)

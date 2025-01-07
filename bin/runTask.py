@@ -1,11 +1,15 @@
-from __future__ import print_function
-
-
-import os
-import sys
 import argparse
 import functools
+import os
+import sys
+
 from PySide2 import QtCore
+
+from ..core import CCP4Config
+from ..core import CCP4File
+from ..core import CCP4Modules
+from ..core import CCP4PluginScript
+
 
 def getCCP4I2Dir(up=1):
     target = os.path.join(os.path.realpath(sys.argv[0]),"..")
@@ -22,7 +26,6 @@ def getCCP4I2Dir(up=1):
 @QtCore.Slot('CRunPlugin')
 def quitThread(thread):
     print('quitThread',thread); sys.stdout.flush()
-    from core import CCP4Modules
     CCP4Modules.QTAPPLICATION(graphical=False).quit()
     sys.exit()
 
@@ -46,7 +49,6 @@ if __name__ == '__main__':
     else:
         setupPythonpath(mode='qtcore')
     # Use the specified config file or dbFile
-    from core import CCP4Config
     if args.configFile is not None:
         config = CCP4Config.CONFIG(args.configFile)
         print('Running plugin using config file:', args.configFile)
@@ -60,7 +62,6 @@ if __name__ == '__main__':
     # Get name of plugin and whether it is asynchronous
     sXmlIn = str(args.xmlIn)
     if os.path.splitext(sXmlIn)[1] == '.xml':
-        from core import CCP4File
         comFilePath = sXmlIn
         compressedFile = None
         xmlHeader = CCP4File.CI2XmlHeader()
@@ -69,8 +70,6 @@ if __name__ == '__main__':
     else:
         comFilePath = None
         compressedFile = sXmlIn
-    from core import CCP4PluginScript
-    from core import CCP4Modules
     if 0:
         print('Run non-asynchronous task',xmlHeader.pluginName)
         runPlugin = CCP4PluginScript.CRunPlugin(None, top_path, comFilePath=comFilePath, compressedFile=compressedFile, dbXmlFile=args.dbXmlFile)

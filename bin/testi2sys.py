@@ -1,9 +1,21 @@
-from __future__ import print_function
-
-
-import os,sys,time
+import argparse
 import functools
+import glob
+import os
+import sys
+import time
+
 from lxml import etree
+
+from ..core import CCP4Config
+from ..core import CCP4DataManager
+from ..core import CCP4Modules
+from ..core import CCP4ProjectBasedTesting
+from ..core import CCP4Update
+from ..core import CCP4Utils
+from ..qtcore import CCP4Export
+from ..utils import startup
+
 
 def getCCP4I2Dir(up=1):
     target = os.path.join(os.path.realpath(sys.argv[0]),"..")
@@ -21,12 +33,10 @@ def quitThread(thread):
     print('quitThread',thread); sys.stdout.flush()
     #thread.quit()
     #thread.wait()
-    from core import CCP4Modules
     CCP4Modules.QTAPPLICATION(graphical=False).quit()
     sys.exit()
 
 def updateI2():
-    from core import CCP4Update
     version = 'Unknown - update failed'
     try:
         u =CCP4Update.CUpdateForTestSys()
@@ -55,7 +65,6 @@ def onTestRunnerComplete(logXmlPath, logXmlRoot, app):
 
 if __name__ == '__main__':
 
-    import sys,os
     # Redirect stderr to stdout
     sys.stderr = sys.stdout
     # print 'testi2sys sys.argv',sys.argv
@@ -68,7 +77,6 @@ if __name__ == '__main__':
     else:
         setupPythonpath(mode='qtcore')
     setupPluginsPath()
-    import argparse
     parser = argparse.ArgumentParser(description='Run CCP4i2 test project')
     parser.add_argument('-u', '--update',action='store_true', default=False)
     parser.add_argument('-x', '--xmlOut',action='store_true', default=False)
@@ -91,7 +99,6 @@ if __name__ == '__main__':
     selectedJobs = pns.jobs
     update = pns.update
 
-    from core import CCP4ProjectBasedTesting
     kw = {}
     for name,defn in CCP4ProjectBasedTesting.MODES.items():
         kw[name] = getattr(pns, name)
@@ -104,7 +111,6 @@ if __name__ == '__main__':
     else:
         version = 'Unknown - no bzr update'
 
-    from core import CCP4Utils
     source = CCP4Utils.getCCP4I2Dir()
     t = time.localtime()
     startTime = time.strftime('%y-%m-%d-%H-%M',t)
@@ -118,8 +124,6 @@ if __name__ == '__main__':
         print("ERROR: compressed project file not found: "+compressedProjectFile)
         sys.exit()
     elif os.path.isdir(compressedProjectFile):
-        import glob
-        from qtcore import CCP4Export
         compressedProjectFileList = glob.glob(os.path.join(compressedProjectFile,"*."+CCP4Export.COMPRESSED_SUFFIX))
         if len(compressedProjectFileList)<1:
             print("ERROR: no compressed project files found in directory: "+compressedProjectFile)
@@ -133,7 +137,6 @@ if __name__ == '__main__':
 
 
     # Use the specified config file or dbFile
-    from core import CCP4Config
     if configFile is not None:
         config = CCP4Config.CONFIG(configFile)
         print('Running tests using config file:',configFile)
@@ -166,8 +169,6 @@ if __name__ == '__main__':
 
     #sys.argv =  [sys.argv[0]]
 
-    from core import CCP4Modules
-    from utils import startup
     app = CCP4Modules.QTAPPLICATION(graphical=graphical)
     pm = startup.startProjectsManager(dbFileName=dbFile,loadDiagnostic=False)
     pm.startCheckForFinishedJobs()
@@ -176,7 +177,6 @@ if __name__ == '__main__':
     #jc.setConfigFile(configFile)
     if dbFile is not None: jc.setDbFile(dbFile)
     pm.doCheckForFinishedJobs.connect(pm.checkForFinishedJobs)
-    from core import CCP4DataManager
     CCP4DataManager.DATAMANAGER().buildClassLookup()
 
     print('Test results will be saved to: '+os.path.join(outputDirectory,'test-'+startTime+'.log')+' and database '+dbFile)

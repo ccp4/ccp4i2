@@ -1,8 +1,9 @@
-from __future__ import print_function
+import os
+import sys
 
-
-import os,sys
 from lxml import etree
+
+from ..report import CCP4ReportGenerator, CCP4ReportParser
 
 def getCCP4I2Dir(up=1):
     target = os.path.join(os.path.realpath(sys.argv[0]),"..")
@@ -23,7 +24,6 @@ if __name__ == '__main__':
     exec(compile(open(os.path.join(top_path,'utils','startup.py')).read(), os.path.join(top_path,'utils','startup.py'), 'exec'))
     setupEnvironment()
     setupPythonpath(top=top_path,mode='qtcore')
-    from report import CCP4ReportGenerator,CCP4ReportParser
 
     argList = sys.argv[1:]
     print('argList',argList,len(argList))

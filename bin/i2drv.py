@@ -1,7 +1,6 @@
-from __future__ import print_function
-
-import sys
 import os
+import subprocess
+import sys
 
 def getCCP4MG_DIR():
     return 'C:\Program Files (x86)\CCP4MG'
@@ -51,7 +50,6 @@ if __name__ == '__main__':
     setup_environment()
     ccp4i2 = getCCP4I2_DIR()
     mainpy = os.path.join("bin","browser.py")
-    import subprocess
     args = ["python",mainpy]
     for sysarg in sys.argv[1:]:
         args.append(sysarg)

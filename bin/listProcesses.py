@@ -1,7 +1,8 @@
-from __future__ import print_function
-
-
-import os,sys,time
+import getpass
+import os
+import psutil
+import sys
+import time
 
 def getCCP4I2Dir(up=1):
     target = os.path.join(os.path.realpath(sys.argv[0]),"..")
@@ -22,7 +23,6 @@ def getUserId():
     name = os.environ.get('USERNAME',None)
     if name is not None:
         return name
-    import getpass
     name = getpass.getuser()
     if name is not None:
         return name
@@ -34,7 +34,6 @@ def getUserId():
 
 if __name__ == '__main__':
 
-    import psutil
     containsList = ['ccp4']
 
     def contains(exe,containsList):

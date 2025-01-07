@@ -1,8 +1,7 @@
-from __future__ import print_function
+import os
+import sys
 
-
-import os,sys
-from PySide2 import QtCore
+from ..core.CCP4Modules import QTAPPLICATION
 
 def getCCP4I2Dir(up=1):
     target = os.path.join(os.path.realpath(sys.argv[0]),"..")
@@ -26,7 +25,6 @@ if __name__ == '__main__':
     setupEnvironment()
     setupPythonpath(top=top_path,mode='qtgui')
     setupGuiPluginsPath(top=top_path)
-    from core.CCP4Modules import QTAPPLICATION
     app = QTAPPLICATION(graphical=True)
 
     defEd = startDefEd()

@@ -1,9 +1,14 @@
-from __future__ import print_function
+import argparse
+from datetime import datetime
+import getpass
+import os
+import sys
+import time
 
-import sys, os
+from ..core import CCP4TaskManager
+from ..core import CCP4Modules
 
 def checkForPythonNameClash(nameRoot):
-    from core import CCP4Modules
     taskManager=CCP4Modules.TASKMANAGER()
     nameClash = True
     
@@ -36,8 +41,6 @@ if __name__ == "__main__":
     exec(compile(open(os.path.join(CCP4I2_TOP,'utils','startup.py')).read(), os.path.join(CCP4I2_TOP,'utils','startup.py'), 'exec'))
     setupEnvironment(path=CCP4I2_TOP)
     setupPythonpath(top=CCP4I2_TOP,mode='qtgui')
-    import argparse
-    from core import CCP4TaskManager
     destinations = CCP4TaskManager.MODULE_ORDER
     parser = argparse.ArgumentParser(description='Initiate CCP4i2 plugin from boiler plate')
     parser.add_argument('-n','--name', required=True, help='name of the plugin...this will end up as a class name and so should have no spaces')
@@ -52,15 +55,12 @@ if __name__ == "__main__":
     parser.add_argument('-f','--firstPlugin', type=str, default='firstPlugin', help='For pipeline code, optionally provide name of first plugin to be called')
     parameterNamespace = parser.parse_args()
     
-    import getpass
     user = getpass.getuser()
     nameRoot = parameterNamespace.name
     shortTitle = " ".join(parameterNamespace.shortTitle)
     longTitle = " ".join(parameterNamespace.longTitle)
     description = " ".join(parameterNamespace.description)
     
-    from datetime import datetime
-    import time
     timestampString=datetime.fromtimestamp(time.time()).isoformat()
     
     if parameterNamespace.user is not None: user = parameterNamespace.user

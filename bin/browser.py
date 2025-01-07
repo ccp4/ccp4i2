@@ -1,27 +1,17 @@
-from __future__ import print_function
-
-
-import os
-import sys
-#from PyQt4 import sip
-#sip.setapi('QString', 2)
-#sip.setapi('QVariant', 2)
-import cProfile
-import pstats
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
-
 import atexit
+import cProfile
+import faulthandler
+import io
+import os
+import pstats
+import sys
 import time
 
-try:
-    # Required for CCP4MG 2.8.0 onwards
-    # Sets sys.path so that import of mg modules will work from here onwards.
-    import ccp4mg
-except:
-    pass
+import ccp4mg  # Sets sys.path so that import of mg modules will work from here onwards.
+from PySide2 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets
+
+from ..core.CCP4Modules import QTAPPLICATION
+from ..utils.startup import setupEnvironment, setupPythonpath, setupGuiPluginsPath, startBrowser
 
 def getCCP4I2Dir(up=1):
     target = os.path.join(os.path.realpath(sys.argv[0]), "..")
@@ -37,24 +27,20 @@ def getCCP4I2Dir(up=1):
 
 if __name__ == '__main__':
     if False:  # Added to help with debugging segfaults.
-        import faulthandler; faulthandler.enable()
+        faulthandler.enable()
     #sip.setdestroyonexit(False)
     top_path = getCCP4I2Dir()
     print('Running CCP4i2 browser from: ' + top_path)
     print('Python ' + sys.version)
     try:
-        from PySide2 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets
         print('Qt version', QtCore.qVersion())
     except:
         print('Failed finding Qt verion')
     print(' ')
     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)
-    sys.path.append(os.path.join(top_path, 'utils'))
-    from startup import setupEnvironment, setupPythonpath, setupGuiPluginsPath, startBrowser
     setupEnvironment()
     setupPythonpath(top=top_path, mode='qtgui')
     setupGuiPluginsPath(top=top_path)
-    from core.CCP4Modules import QTAPPLICATION
     app = QTAPPLICATION(graphical=True)
     QtWebEngineWidgets.QWebEngineProfile.defaultProfile().clearHttpCache()
     splash = None
@@ -97,7 +83,7 @@ if __name__ == '__main__':
         #-----------------------------------------------------------------------
         def printStats():
             pr.disable()
-            s = StringIO()
+            s = io.StringIO()
             sortby = 'cumulative'
             ps = pstats.Stats(pr, stream=s).sort_stats(sortby).reverse_order()
             ps.print_stats()
