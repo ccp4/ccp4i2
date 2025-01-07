@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4PerformanceData.py: CCP4 GUI Project
      Copyright (C) 2014 STFC
@@ -18,15 +16,15 @@ es may be
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Mar 2014 - performance indicators
 """
 
-from core import CCP4Data,CCP4XtalData
 from PySide2 import QtCore
-from core.CCP4ErrorHandling import *
+
+from . import CCP4Data, CCP4ModelData, CCP4XtalData
+from .CCP4ErrorHandling import *
+
 
 def performanceIndicatorClasses():
   # This is used by CCP4DbApi.getJobPerformance (and perhaps other methods) to get the
@@ -281,7 +279,6 @@ class CAtomCountPerformance(CPerformanceIndicator):
 
   def setFromPdbDataFile(self,fileName):
     if  isinstance(fileName,str):
-      from core import CCP4ModelData
       fileName = CCP4ModelData.CPdbDataFile(fileName)
     try:
       fileName.loadFile()
