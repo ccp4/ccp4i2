@@ -1,22 +1,12 @@
-from __future__ import print_function
-
-
-import os, sys
+import argparse
 import compileall
-import subprocess
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
-
+import io
+import os
 import shutil
+import subprocess
+import sys
 
-try:
-  import bzrlib
-  bzrlib_exists = True
-
-except ImportError:
-  bzrlib_exists = False
+import bzrlib
 
 
 class BazaarContext(list):
@@ -31,7 +21,7 @@ class BazaarContext(list):
         cls.verbose = value
 
     def __init__(self):
-        self.ostream = StringIO()
+        self.ostream = io.StringIO()
 
     def __enter__(self):
         sys.stderr = sys.stdout = self.ostream
@@ -218,7 +208,6 @@ class CUpdateUser(object):
     @classmethod
     def _init_starting(cls):
         cls._command = sys.argv.pop()
-        import argparse
         parser = argparse.ArgumentParser(
            prog=cls._command,
            description=' '.join((
@@ -282,7 +271,5 @@ class CUpdateUser(object):
 
 if __name__ == '__main__':
 
-    if bzrlib_exists:
-        CUpdateUser.initialise()
-        CUpdateUser()._bzr_run(updating=True)
-
+    CUpdateUser.initialise()
+    CUpdateUser()._bzr_run(updating=True)
