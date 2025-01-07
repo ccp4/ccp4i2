@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4ProjectBasedTesting.py: CCP4 GUI Project
      Copyright (C) 2014 STFC
@@ -17,27 +15,30 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Jan 2014 - Test ccp4i2 by rerunning projects and comparing output
 """
+
 import os
 import sys
 import copy
 import shutil
 import time
-from utils import startup
-from dbapi import CCP4DbApi
-from dbapi import CCP4DbUtils
-from core import CCP4Container
-from core import CCP4TaskManager
-from core import CCP4Utils
-import ccp4mg  # Ensure mmdb/hklfile etc available in testing
+
 from PySide2 import QtCore
 from lxml import etree
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import PROJECTSMANAGER,JOBCONTROLLER,QTAPPLICATION,PROCESSMANAGER
+
+from . import CCP4Container
+from . import CCP4PluginScript
+from . import CCP4TaskManager
+from . import CCP4Utils
+from ..dbapi import CCP4DbApi
+from ..dbapi import CCP4DbUtils
+from ..qtcore import CCP4Export
+from ..utils import startup
+from .CCP4ErrorHandling import *
+from .CCP4Modules import PROJECTSMANAGER, JOBCONTROLLER, QTAPPLICATION, PROCESSMANAGER
+
 
 DIAGNOSTIC = False
 MODES = {'runMode' : {'default' : 3 , 'allowed' : {0 : 'no testing' , 1 : 'run jobs', 2: 'run tests', 3: 'run jobs and tests'}},
@@ -245,7 +246,6 @@ class CProjectBasedTesting(QtCore.QObject):
           QTAPPLICATION().doCheckForFinishedJobs.emit()
 
     def unpackProject(self, compressedFile):
-        from qtcore import CCP4Export
         # Extract database xml file from compressedFile
         try:
             xmlFile = PROJECTSMANAGER().extractDatabaseXml(compressedFile)
@@ -366,7 +366,6 @@ class CProjectBasedTesting(QtCore.QObject):
                 testContainer.loadDataFromXml(fileName=PROJECTSMANAGER().db()._makeJobFileName(jobId=testJobId, mode='PARAMS'))
                 report.extend(sourcePlugin.assertSame(testContainer, diagnostic=DIAGNOSTIC))
             else:
-                from core import CCP4PluginScript
                 report.append(CErrorReport(CCP4PluginScript.CPluginScript, 312, details='For taskname:' + taskName))
         if self.verbosity == 0:
             minSeverity = SEVERITY_ERROR
@@ -410,7 +409,6 @@ class CProjectBasedTesting(QtCore.QObject):
                         
 
     def finishProject(self):
-        from qtcore import CCP4Export
         #print 'finishProject',self.resetBaseline,self.testProjectDir,getattr(self,'lastCompressedFile',None)
         if (not self.resetBaseline) or (self.testProjectDir is None) or (getattr(self, 'lastCompressedFile', None) is None):
             return
