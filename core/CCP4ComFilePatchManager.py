@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4ComFilePatchManager.py: CCP4 GUI Project
      Copyright (C) 2013 STFC
@@ -23,15 +21,19 @@ from __future__ import print_function
      Liz Potterton July 2013 - create and manage com file patches
 """
 
+import os
+
+from googlecode import diff_match_patch_py3
 from PySide2 import QtCore
 
-import os
-from core import CCP4Modules
-from core import CCP4Data
-from core import CCP4Container
-from core import CCP4File
-from core import CCP4CustomManager
-from core.CCP4ErrorHandling import *
+from . import CCP4Container
+from . import CCP4CustomManager
+from . import CCP4Data
+from . import CCP4File
+from . import CCP4Modules
+from . import CCP4TaskManager
+from . import CCP4Utils
+from .CCP4ErrorHandling import *
 
 
 class CComFilePatchManager(CCP4CustomManager.CCustomManager):
@@ -73,12 +75,7 @@ class CComFilePatchManager(CCP4CustomManager.CCustomManager):
 
     def createPatch(self, name, title, taskNameList, projectId, jobId, text1, text2, useControlParams=False, overwrite=False):
         patchDir = self.createDirectory(name, overwrite=overwrite)
-        if sys.version_info > (3,0):
-            from googlecode import diff_match_patch_py3
-            dmp =  diff_match_patch_py3.diff_match_patch()
-        else:
-            from googlecode import diff_match_patch
-            dmp =  diff_match_patch.diff_match_patch()
+        dmp =  diff_match_patch_py3.diff_match_patch()
         try:
             diffs = dmp.diff_main(text1, text2)
             patches = dmp.patch_make(text1, diffs)
@@ -95,7 +92,6 @@ class CComFilePatchManager(CCP4CustomManager.CCustomManager):
         if useControlParams:
             if jobId is None:
                 raise CException(self.__class__, 206)
-            from core import CCP4TaskManager
             jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=jobId, mode=['taskname', 'taskversion'])
             defFile = CCP4TaskManager.TASKMANAGER().lookupDefFile(name=jobInfo['taskname'], version=jobInfo['taskversion'])
             taskContainer = CCP4Container.CContainer()
@@ -117,12 +113,7 @@ class CComFilePatchManager(CCP4CustomManager.CCustomManager):
     def applyPatches(self,name,text):
         container = CPatchDefinition(parent=self, name=name)
         container.loadDataFromXml(fileName=self.getCustomFile(name, mustExist=True))
-        if sys.version_info > (3,0):
-            from googlecode import diff_match_patch_py3
-            dmp =  diff_match_patch_py3.diff_match_patch()
-        else:
-            from googlecode import diff_match_patch
-            dmp =  diff_match_patch.diff_match_patch()
+        dmp =  diff_match_patch_py3.diff_match_patch()
         try:
             diffs = dmp.diff_main(str(container.text1),str(container.text2))
             patches = dmp.patch_make(str(container.text1),diffs)
@@ -144,7 +135,6 @@ class CComFilePatchManager(CCP4CustomManager.CCustomManager):
         except:
             return ''
         if os.path.exists(comFilePath):
-            from core import CCP4Utils
             text = CCP4Utils.readFile(comFilePath)
             return text
         else:
@@ -155,7 +145,6 @@ class CComFilePatchManager(CCP4CustomManager.CCustomManager):
         container = CPatchDefinition(parent=self, name=name)
         container.loadDataFromXml(fileName=fileName, check=False, loadHeader=True)
         # Now need to load the contents of the 'controlParameters' container
-        from core import CCP4TaskManager
         defFile = CCP4TaskManager.TASKMANAGER().lookupDefFile(name=container.taskNameList[-1].__str__())
         f = CCP4File.CI2XmlDataFile(fullPath=defFile)
         f.loadFile()
@@ -167,7 +156,6 @@ class CComFilePatchManager(CCP4CustomManager.CCustomManager):
         return container.controlParameters
 
     def getTitle(self, name, withTaskName=True):
-        from core import CCP4TaskManager
         fileName = self.getCustomFile(name)
         if fileName is None:
             return name
