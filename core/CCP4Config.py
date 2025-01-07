@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4Config.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -23,15 +21,18 @@ from __future__ import print_function
    Liz Potterton Sept 2010 - Separate CCP4Config out from core.CCP4Modules
 """
 
-import os
-import sys
-import re
 import glob
+import os
+import re
+import sys
+
 from lxml import etree
+
+from . import CCP4File, CCP4Utils
+
 
 def DEFCONFIG():
     if  CConfig.insts is None:
-        from core import CCP4Utils
         CConfig(os.path.join(CCP4Utils.getDotDirectory(),'configs','ccp4i2_config.params.xml'))
     return CConfig.insts
 
@@ -51,7 +52,6 @@ class CConfig:
     insts = None
 
     def __init__(self, filename=None, mode='ccp4i2', **kw):
-        from core import CCP4Utils
         if CConfig.insts is None:
             CConfig.insts = self
         self._xmlMode = 'lxml'
@@ -86,7 +86,6 @@ class CConfig:
 
     def loadDataFromXml(self, fileName):
         errList = []
-        from core import CCP4Utils
         text = CCP4Utils.readFile(fileName)
         #print 'CConfig.load text', fileName, text
         root = parse_from_unicode(text)
@@ -140,7 +139,6 @@ class CConfig:
             print(' ')
 
     def saveDataToXml(self, fileName):
-        from core import CCP4File
         root = etree.Element('configs')
         for tag in ['developer', 'graphical', 'qt', 'dbMode', 'dbFile', 'dbUser', 'maxRunningProcesses']:
             ele = etree.Element(tag)
@@ -172,7 +170,6 @@ class CConfig:
 
     def loadVersion(self):
         # Do not use CCP4File here - config not set - broken without Qt 
-        from core import CCP4Utils
         self.ccp4iVersion = CCP4Utils.getProgramVersion('ccp4i2')
         print('ccp4i2 version', self.ccp4iVersion)
 
