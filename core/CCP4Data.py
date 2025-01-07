@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4Data.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -23,18 +21,25 @@ from __future__ import print_function
    Liz Potterton Aug 2010 - 'Generic' CCP4Data classes
 """
 
-import sys
 import re
-import types
-import time
-import traceback
+import string
+import sys
+import unittest
+import xml.etree.ElementTree as etree_xml
 
+from lxml import etree
 from PySide2 import QtCore
 
-from core.CCP4ErrorHandling import *
-from core.CCP4Config import QT, XMLPARSER
-from core.CCP4QtObject import CObject
-from lxml import etree
+from . import CCP4Container
+from . import CCP4DataManager
+from . import CCP4File
+from . import CCP4Modules
+from . import CCP4Utils
+from .CCP4Config import QT
+from .CCP4ErrorHandling import *
+from .CCP4File import CDataFile
+from .CCP4QtObject import CObject
+
 
 def isQualifier(cls, name=None):
     while issubclass(cls, CData):
@@ -373,7 +378,6 @@ class CDataQualifiers:
             elif qualifierType is dict:
                 qualifiers[name] = self.eTreeToDict(ele)
             elif qualifierType is type:
-                from core import CCP4DataManager
                 cls = CCP4DataManager.DATAMANAGER().getClass(value)
                 if cls is None:
                     rv.append(self.__class__, 13, 'Qualifier: ' + name, name=self.objectPath())
@@ -529,8 +533,6 @@ class CData(CObject, CDataQualifiers):
                 print("Fail")
 
     def objectPath(self, ifContainer=True):
-        if not ifContainer:
-            from core import CCP4Container
         obj = self
         path = ''
         sep = ''
@@ -857,7 +859,6 @@ class CData(CObject, CDataQualifiers):
         if useLXML:
             element = etree.Element(name)
         else:
-            import xml.etree.ElementTree as etree_xml
             element = etree_xml.Element(name)
         for key in self.dataOrder():
             if not excludeUnset or self._value[key].isSet(allSet=False):
@@ -884,7 +885,6 @@ class CData(CObject, CDataQualifiers):
 
     def saveDataToXml(self, fileName=None):
         errorReport = CErrorReport()
-        from core import CCP4File
         f = CCP4File.CI2XmlDataFile(fullPath=fileName)
         if getattr(self, 'header', None) is not None:
             f.header.set(self.header)
@@ -916,7 +916,6 @@ class CData(CObject, CDataQualifiers):
         return self.saveToDb()
 
     def parentContainer(self):
-        from core import CCP4Container
         try:
             obj = self
             while isinstance(obj, CData):
@@ -1123,7 +1122,6 @@ class CBaseData(CData):
         if useLXML:
             element = etree.Element(str(name))
         else:
-            import xml.etree.ElementTree as etree_xml
             element = etree_xml.Element(str(name))
         if hasattr(self.__str__(),"decode"):
             text = self.__str__().decode('ISO-8859-1')
@@ -1148,7 +1146,6 @@ class CBaseData(CData):
         return rv
 
     def getPersistent(self):
-        from CCP4Persistent import CPersistentBaseData   # KJS : Check this is in there ok !
         p = CPersistentBaseData(name=str(self.objectName()), className = self.__class__.__name__,
                                 version = self.version, value = self.get())
         return p
@@ -1513,19 +1510,16 @@ class CString(CBaseData):
         if self.qualifiers('onlyEnumerators') and len(self.qualifiers('enumerators')) > 0 and self.qualifiers('enumerators').count(arg) < 1:
             validityObj.append(self.__class__, 103, name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
         if self.qualifiers('allowedCharsCode') > 0:
-            from core import CCP4Utils
             if str(arg) != CCP4Utils.safeOneWord(str(arg)):
                 validityObj.append(self.__class__, 104, details=str(arg), name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
         return validityObj
 
     def fix(self,arg):
         if self.qualifiers('allowedCharsCode') > 0:
-            from core import CCP4Utils
             return CCP4Utils.safeOneWord(str(arg))
 
     def reWhiteSpacePattern(self):
         if CString.RE_PATTERN_WHITESPACE is None:
-            import string
             pat = ''
             for item in string.whitespace:
                 pat = pat + repr(item)[1:-1] + '|'
@@ -2293,7 +2287,6 @@ class CCollection(CData):
                     itemDef['qualifiers'] = {}
                 itemDef['qualifiers'][key[8:]] = val
         if itemDef.get('className',None) is not None:
-            from core import CCP4DataManager
             itemDef['class'] = CCP4DataManager.DATAMANAGER().getClass(itemDef['className'])
         CData.__init__(self, qualifiers=qualis, parent=parent, name=name, build=False)
         self.setSubItem(itemDef)
@@ -2561,7 +2554,6 @@ class CDict(CCollection):
         if useLXML:
             element = etree.Element(name)
         else:
-            import xml.etree.ElementTree as etree_xml
             element = etree_xml.Element(name)
         for key in self.dataOrder():
             if useLXML:
@@ -2754,7 +2746,6 @@ class CList(CCollection):
         if useLXML:
             element = etree.Element(name)
         else:
-            import xml.etree.ElementTree as etree_xml
             element = etree_xml.Element(name)
         if len(self.__dict__['_value']) == 0:
             #This seems to be necessary to get empty list written out properly
@@ -3155,7 +3146,6 @@ class COutputFileList(CList):
         if useLXML:
             element = etree.Element(name)
         else:
-            import xml.etree.ElementTree as etree_xml
             element = etree_xml.Element(name)
         if len(self.__dict__['_value']) == 0:
             #This seems to be necessary to get empty list written out properly
@@ -3274,7 +3264,6 @@ class CPatchSelection(CData):
 
     def fix(self,arg={}):
         if arg.get('taskName',None) is not None:
-            from core import CCP4Modules
             self.__dict__['patchsForTask'] = CCP4Modules.COMFILEPATCHMANAGER().patchForTaskName(taskName=arg['taskName'])
             if arg.get('patch',None) not in self.getPatchList():
                 arg['patch'] = None
@@ -3309,7 +3298,6 @@ class CI2DataType(CString):
             self.makeMenuText()
 
     def makeMenuText(self):
-        from core import CCP4DataManager
         menu = []
         for name in CI2DataType.QUALIFIERS['enumerators']:
             cls = CCP4DataManager.DATAMANAGER().getClass(className=name)
@@ -3320,7 +3308,6 @@ class CI2DataType(CString):
         CI2DataType.QUALIFIERS['menuText'] = menu
 
     def validate(self,arg):
-        from core import CCP4DataManager
         cls = CCP4DataManager.DATAMANAGER().getClass(className=arg)
         if cls is None:
             return None
@@ -3328,8 +3315,6 @@ class CI2DataType(CString):
             return arg
 
     def isCDataFile(self):
-        from core import CCP4DataManager
-        from core import CCP4File
         cls = CCP4DataManager.DATAMANAGER().getClass(className=self.__dict__['_value'])
         if cls is not None and issubclass(cls, CCP4File.CDataFile):
             return True
@@ -3337,12 +3322,10 @@ class CI2DataType(CString):
             return False
 
     def getMenu(self):
-        from core import CCP4DataManager
         menu = []
         for className in self.qualifiers('enumerators'):
             cls = CCP4DataManager.DATAMANAGER().getClass(className=className)
             if cls is not None:
-                from core import CCP4File
                 if issubclass(cls,CCP4File.CDataFile):
                     label = cls.QUALIFIERS.get('mimeTypeDescription')
                 else:
@@ -3352,7 +3335,6 @@ class CI2DataType(CString):
 
 
 #===========================================================================================================
-import unittest
 def TESTSUITE():
     suite = unittest.defaultTestLoader.loadTestsFromTestCase(testCListAppend)
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testCListAssorted))
@@ -3481,7 +3463,6 @@ class testQObject(unittest.TestCase):
     def setUp(self):
         self.bleeped = False
         if QT():
-            from PySide2 import QtCore
             self.app = QtCore.QCoreApplication(sys.argv)
             self.master = QtCore.QObject(self.app)
 
@@ -3492,7 +3473,6 @@ class testQObject(unittest.TestCase):
 
     def test1(self):
         if QT():
-            from PySide2 import QtCore
             f = CFloat(parent=self.master)
             f.dataChanged.connect(self.bleep)
             f.set(12.0)
@@ -3524,7 +3504,6 @@ class testDict(unittest.TestCase):
         self.assertEqual(e[0]['code'],102,'Setting incorrect dict item does not give correct error code 102')
 
     def test4(self):
-        from core.CCP4File import CDataFile
         d = CDict(subItemClass=CDataFile)
         d.PDBIN = { 'project' : 'FOO' , 'baseName' : 'bar.pdb' }
         d.PDBINX = '/foo/bar_x.pdb'
