@@ -1,16 +1,14 @@
-from __future__ import print_function
-
-import os
-import sys
 import glob
-import time
+import os
 import shutil
+import sys
 import threading
+import time
 
 from PySide2 import QtCore
 
-from core import CCP4Config
-from core import CCP4Utils
+from . import CCP4Config
+from . import CCP4Utils
 
 class CPrintHandler:
     insts = None
