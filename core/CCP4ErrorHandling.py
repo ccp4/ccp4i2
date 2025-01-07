@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4ErrorHandling.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -22,6 +20,22 @@ from __future__ import print_function
 """
    Liz Potterton Aug 2010 - Exception class and definitions of severity
 """
+import sys
+import time
+import traceback
+import unittest
+
+from lxml import etree
+from PySide2 import QtGui, QtWidgets
+
+from . import CCP4Config
+from . import CCP4Data
+from . import CCP4DataManager
+from . import CCP4TaskManager
+from . import CCP4PluginScript
+from ..qtgui import CCP4MessageBox
+
+
 SEVERITY_OK = 0
 SEVERITY_UNDEFINED = 1
 SEVERITY_WARNING = 2
@@ -32,11 +46,6 @@ SEVERITY_TEXT = ['OK', 'WARNING DATA UNDEFINED', 'WARNING', 'ERROR DATA UNDEFINE
 
 STACK_LIMIT = 5
 
-import sys
-import time
-import traceback
-from core import CCP4Config
-# from core import CCP4Data  # - KJS : Causes issues. Circular dependency with globals.
 
 def formatExceptionInfo(maxTBlevel=5):
     cla, exc, trbk = sys.exc_info()
@@ -64,7 +73,6 @@ class CErrorReport():
             report['stack'] = self.getStack(exc_info=exc_info)
         self._reports.append(report)
         try:
-            from core import CCP4Data         # KJS : Did this work before without this ?
             severity = CCP4Data.errorCodeSeverity(report['class'], report['code'])
             if severity == SEVERITY_CRITICAL:
                 print(self.report())
@@ -113,7 +121,6 @@ class CErrorReport():
                 item['name'] = name
 
     def maxSeverity(self):
-        from core import CCP4Data
         maxSev = 0
         for report in self._reports:
             severity = -1
@@ -144,7 +151,6 @@ class CErrorReport():
         return self.report()
 
     def description(self, report=None, inclName=True, user=False):
-        from core import CCP4Data
         if report is None:
             report = self._reports[0]
         if 'description' in report and report['description'] is not None:
@@ -261,9 +267,7 @@ class CErrorReport():
             message = message + '\n'
         if CCP4Config.GRAPHICAL() and parent is not None:
             print('CException.warningMessage GRAPHICAL', CCP4Config.GRAPHICAL())
-            #from PySide2 import QtGui, QtWidgets
             #QtWidgets.QMessageBox.warning(None, windowTitle, message + self.report())
-            from qtgui import CCP4MessageBox
             m = CCP4MessageBox.CMessageBox(parent, title=windowTitle, message=message,
                                            details=self.report(ifStack=ifStack, minSeverity=minSeverity), jobId=jobId)
             m.show()
@@ -273,17 +277,12 @@ class CErrorReport():
 
     '''
     def getEtree(self):
-        from core import CCP4Config
-        if CCP4Config.XMLPARSER() == 'lxml':
-           from lxml import etree
         element = etree.Element('report')
         element.text = self.report()
         return element
     '''
 
     def getEtree(self):
-        if CCP4Config.XMLPARSER() == 'lxml':
-            from lxml import etree
         element = etree.Element('errorReportList')
         for item in self._reports:
             try:
@@ -324,12 +323,8 @@ class CErrorReport():
         return element
 
     def setEtree(self, element=None, checkValidity=True):
-        from core import CCP4DataManager
-        from core import CCP4TaskManager
         DM = CCP4DataManager.DATAMANAGER()
         TM = CCP4TaskManager.TASKMANAGER()
-        if CCP4Config.XMLPARSER() == 'lxml':
-            from lxml import etree
         body = element.find('ccp4i2_body')
         if body is None:
             body = element
@@ -341,7 +336,6 @@ class CErrorReport():
                     if name == 'className':
                         clsName = str(e.text)
                         if clsName == 'CPluginScript':
-                            from core import CCP4PluginScript
                             report['class'] = CCP4PluginScript.CPluginScript
                         else:
                             report['class'] = DM.getClass(clsName)
@@ -396,7 +390,6 @@ class CException(CErrorReport, Exception):
 
 
 #===========================================================================================
-import unittest
 def TESTSUITE():
     suite = unittest.defaultTestLoader.loadTestsFromTestCase(testError)
     return suite
@@ -408,9 +401,6 @@ def testModule():
 class testError(unittest.TestCase):
 
     def test1(self):
-        if CCP4Config.XMLPARSER() == 'lxml':
-            from lxml import etree
-        from core import CCP4Data
         e = CException(CCP4Data.CData, 1, 'foo')
         tree = e.getEtree()
         #text = etree.tostring(tree, pretty_print=True, xml_declaration=True)
