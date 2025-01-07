@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4ProcessManager: CCP4I2 CCP4 GUI Project
      Copyright (C) 2011 University of York
@@ -17,23 +15,24 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
-"""
+
   Sept 2011 Liz Potterton - rewrite using Python subprocess or Qt QProcess
 """
+
 import os
 import re
-import sys
-import types
-import functools
 import subprocess
+import sys
 import threading
-from core.CCP4ErrorHandling import *
-from core import CCP4Modules
-from core import CCP4Config
+import unittest
 
-#NOQ - remove
 from PySide2 import QtCore
+
+from . import CCP4Modules
+from . import CCP4Config
+from . import CCP4Utils
+from .CCP4ErrorHandling import *
+
 
 def PopenInThread(pid, callArgList, callDict, onExit=None):
     """
@@ -94,7 +93,6 @@ class CProcessManager(QtCore.QObject):
 
     def processEnvironment(self):
         if self._processEnvironment is None:
-            from core import CCP4Utils
             if 'darwin' in sys.platform:
                 pathVar = 'DYLD_FALLBACK_LIBRARY_PATH'
             elif 'linux' in sys.platform:
@@ -164,7 +162,6 @@ class CProcessManager(QtCore.QObject):
                      inputText=None, handler=[], resetEnv=True, readyReadStandardOutputHandler=None, **kw):
 #------------------------------------------------------------------------
         #Use Python subprocess module or QProcess
-        from core import CCP4Utils
         #print 'PROCESSMANAGER.startProcess',command,args 
         ifAsync = kw.get('ifAsync', self.ifAsync)
         timeout = kw.get('timeout', self.timeout)
@@ -581,11 +578,9 @@ def which(program, mode=os.F_OK | os.X_OK, path=None):
 
 #===========================================================================================
 # Python shell test:
-# import CCP4ProcessManager; p = CCP4ProcessManager.CProcessManager(); p.startProcess(command='mtzdump',argList=['HKLIN','/Users/lizp/Desktop/test_data/rnase25_phases.mtz'],inputText='HEADER\nGO\n')
-import unittest
+# p = CCP4ProcessManager.CProcessManager(); p.startProcess(command='mtzdump',argList=['HKLIN','/Users/lizp/Desktop/test_data/rnase25_phases.mtz'],inputText='HEADER\nGO\n')
 
 def comTest1():
-    from core import CCP4Utils
     pdbFile = os.path.join(CCP4Utils.getCCP4I2Dir(), 'test', 'data', '1df7.pdb')
     pdbOut = CCP4Utils.makeTmpFile(name='testProcessManager_test1')
     return CCP4Modules.PROCESSMANAGER().startProcess(command='pdbset', args=['XYZIN', pdbFile, 'XYZOUT', pdbOut],
@@ -613,7 +608,6 @@ class testProcessManager(unittest.TestCase):
 #    self.setUp()
 # *
     def setUp(self):
-        from core import CCP4Utils
         if not hasattr(self, 'isUnitTest'):
             self.isUnitTest = True
         self.pdbFile = os.path.join(CCP4Utils.getCCP4I2Dir(), 'test', 'data', '1df7.pdb')
@@ -624,7 +618,6 @@ class testProcessManager(unittest.TestCase):
         CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
 
     def evalCRYST(self, pdbFile=None):
-        from core import CCP4Utils
         text = CCP4Utils.readFile(pdbFile)
         for line in text.split('\n'):
             if line[0:6] == 'CRYST1':
@@ -648,7 +641,6 @@ class testProcessManager(unittest.TestCase):
 
     def test1(self):
         # This ine should run OK
-        from core import CCP4Utils
         self.pdbOut = CCP4Utils.makeTmpFile(name='testProcessManager_test1')
         print('test1 pdbOut', self.pdbOut)
         if self.isUnitTest:
@@ -669,7 +661,6 @@ class testProcessManager(unittest.TestCase):
 
     def test2(self):
         # Input file does not exist
-        from core import CCP4Utils
         self.pdbOut = CCP4Utils.makeTmpFile(name='testProcessManager_test1')
         if self.isUnitTest:
             handler = None
@@ -691,7 +682,6 @@ class testProcessManager(unittest.TestCase):
 
     def test3(self):
         # Calling a non-existant executable
-        from core import CCP4Utils
         self.pdbOut =  CCP4Utils.makeTmpFile(name='testProcessManager_test3')
         if self.isUnitTest:
             handler = None
@@ -704,7 +694,6 @@ class testProcessManager(unittest.TestCase):
 
     def test4(self):
         # Bad input (CELL incomplete) - expect process to return with error code
-        from core import CCP4Utils
         self.pdbOut = CCP4Utils.makeTmpFile(name='testProcessManager_test3')
         if self.isUnitTest:
             handler = None
@@ -716,7 +705,6 @@ class testProcessManager(unittest.TestCase):
             self.review4(processID)
 
 """
-import subprocess, threading
 
 class Command(object):
     def __init__(self, cmd):
