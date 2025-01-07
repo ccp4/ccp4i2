@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4Modules.py: CCP4 GUI Project
      Copyright (C) 2009-2010 University of York
@@ -17,18 +15,39 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Jan 2010 - 
 """
+
 import sys
-from core.CCP4Config import GRAPHICAL
-TIMING=False
 import time
 
+from . import CCP4ComFilePatchManager
+from . import CCP4CustomTaskManager
+from . import CCP4ImportedJobManager
+from . import CCP4Preferences
+from . import CCP4PrintHandler
+from . import CCP4ProcessManager
+from . import CCP4ProjectsManager
+from . import CCP4TaskManager
+from . import CCP4WorkflowManager
+from ..qtcore import CCP4CustomMimeTypes
+from ..qtcore import CCP4DbThread
+from ..qtcore import CCP4HTTPServerThread
+from ..qtcore import CCP4JobController
+from ..qtcore import CCP4Launcher
+from ..qtgui import CCP4AbstractViewer
+from ..qtgui import CCP4DemoData
+from ..qtgui import CCP4JobControlGui
+from ..qtgui import CCP4WebBrowser
+from ..qtgui import CCP4Widgets
+from ..utils import QApp
+from .CCP4Config import GRAPHICAL
+
+
+TIMING=False
+
 def QTAPPLICATION(graphical=None):
-    from utils import QApp
     # NB can not use QApplication.instance() as it returns the QApplication object
     # rather than CApplication. Suppose could reimplement CApplication.instance() but
     # would just do the same as this function.
@@ -44,10 +63,8 @@ def QTAPPLICATION(graphical=None):
 
 
 def PROJECTSMANAGER():
-    from core import CCP4ProjectsManager
     if CCP4ProjectsManager.CProjectsManager.insts is None:
         #print 'CCP4Modules.PROJECTSMANAGER setting new'
-        #import traceback
         #traceback.print_stack()
         if TIMING:t1=time.time()
         CCP4ProjectsManager.CProjectsManager.insts= CCP4ProjectsManager.CProjectsManager()
@@ -57,7 +74,6 @@ def PROJECTSMANAGER():
     return CCP4ProjectsManager.CProjectsManager.insts
 
 def PROCESSMANAGER():
-    from core import CCP4ProcessManager
     if CCP4ProcessManager.CProcessManager.insts is None:
         if TIMING:t1=time.time()
         t = CCP4ProcessManager.CProcessManager()
@@ -67,7 +83,6 @@ def PROCESSMANAGER():
     return CCP4ProcessManager.CProcessManager.insts
 
 def LAUNCHER():
-    from qtcore import CCP4Launcher
     if CCP4Launcher.CLauncher.insts is None:
         parent = QTAPPLICATION()
         if TIMING:t1=time.time()
@@ -80,7 +95,6 @@ def LAUNCHER():
 # Modules below here are graphical
 
 def PIXMAPMANAGER():
-    from qtgui import CCP4Widgets
     if CCP4Widgets.CPixmapManager.insts is None:
         if TIMING:t1=time.time()
         t = CCP4Widgets.CPixmapManager()
@@ -90,7 +104,6 @@ def PIXMAPMANAGER():
     return CCP4Widgets.CPixmapManager.insts
 
 def WEBBROWSER(index = -1,new=False,mini=False):
-    from qtgui import CCP4WebBrowser
     if new or (len(CCP4WebBrowser.CBrowserWindow.Instances)==0 and index<0):
         if TIMING:t1=time.time()
         t = CCP4WebBrowser.CBrowserWindow(welcome=False)
@@ -115,7 +128,6 @@ def WEBBROWSER(index = -1,new=False,mini=False):
         return None
 
 def DUMMYMAINWINDOW():
-    from core import CCP4WebBrowser
     if CCP4WebBrowser.CBrowserWindow.Dummy is None:
         CCP4WebBrowser.CBrowserWindow.Dummy = CCP4WebBrowser.CBrowserWindow()
         CCP4WebBrowser.CBrowserWindow.Dummy.hide()  # KJS: Looks like there is no hide present. Check to see if this is used anywhere.
@@ -126,7 +138,6 @@ def DUMMYMAINWINDOW():
     return CCP4WebBrowser.CBrowserWindow.Dummy
 
 def JOBCONTROLLER():
-    from qtcore import CCP4JobController
     if not CCP4JobController.CJobController.insts:
         if TIMING: t1=time.time()
         t=CCP4JobController.CJobController()
@@ -137,7 +148,6 @@ def JOBCONTROLLER():
 
 def MIMETYPESHANDLER():
 #FIXME
-    from qtcore import CCP4CustomMimeTypes
     if not CCP4CustomMimeTypes.CCustomMimeTypes.insts:
         if TIMING: t1=time.time()
         t = CCP4CustomMimeTypes.CCustomMimeTypes()
@@ -147,7 +157,6 @@ def MIMETYPESHANDLER():
     return CCP4CustomMimeTypes.CCustomMimeTypes.insts
 
 def TASKMANAGER():
-    from core import CCP4TaskManager
     if CCP4TaskManager.CTaskManager.insts is None:
         if TIMING: t1=time.time()
         CCP4TaskManager.CTaskManager.insts = CCP4TaskManager.CTaskManager()
@@ -157,7 +166,6 @@ def TASKMANAGER():
     return CCP4TaskManager.CTaskManager.insts
 
 def WORKFLOWMANAGER():
-    from core import CCP4WorkflowManager
     if CCP4WorkflowManager.CWorkflowManager.insts is None:
         if TIMING: t1=time.time()
         CCP4WorkflowManager.CWorkflowManager.insts = CCP4WorkflowManager.CWorkflowManager()
@@ -167,7 +175,6 @@ def WORKFLOWMANAGER():
     return CCP4WorkflowManager.CWorkflowManager.insts
 
 def COMFILEPATCHMANAGER():
-    from core import CCP4ComFilePatchManager
     if CCP4ComFilePatchManager.CComFilePatchManager.insts is None:
         if TIMING: t1=time.time()
         CCP4ComFilePatchManager.CComFilePatchManager.insts = CCP4ComFilePatchManager.CComFilePatchManager()
@@ -177,7 +184,6 @@ def COMFILEPATCHMANAGER():
     return CCP4ComFilePatchManager.CComFilePatchManager.insts
 
 def CUSTOMTASKMANAGER():
-    from core import CCP4CustomTaskManager
     if CCP4CustomTaskManager.CCustomTaskManager.insts is None:
         if TIMING: t1=time.time()
         CCP4CustomTaskManager.CCustomTaskManager.insts = CCP4CustomTaskManager.CCustomTaskManager()
@@ -187,7 +193,6 @@ def CUSTOMTASKMANAGER():
     return CCP4CustomTaskManager.CCustomTaskManager.insts
 
 def IMPORTEDJOBMANAGER():
-    from core import CCP4ImportedJobManager
     if CCP4ImportedJobManager.CImportedJobManager.insts is None:
         if TIMING: t1=time.time()
         CCP4ImportedJobManager.CImportedJobManager.insts = CCP4ImportedJobManager.CImportedJobManager()
@@ -197,7 +202,6 @@ def IMPORTEDJOBMANAGER():
     return CCP4ImportedJobManager.CImportedJobManager.insts
 
 def PREFERENCES():
-    from core import CCP4Preferences
     if CCP4Preferences.CPreferences.insts is None:
         if TIMING: t1=time.time()
         p = CCP4Preferences.CPreferences()
@@ -208,7 +212,6 @@ def PREFERENCES():
 
   
 def PRINTHANDLER():
-    from core import CCP4PrintHandler
     if CCP4PrintHandler.CPrintHandler.insts is None:
         if TIMING: t1=time.time()
         obj = CCP4PrintHandler.CPrintHandler()
@@ -218,7 +221,6 @@ def PRINTHANDLER():
     return CCP4PrintHandler.CPrintHandler.insts
 
 def HTTPSERVER(fileName=None):
-    from qtcore import CCP4HTTPServerThread
     if CCP4HTTPServerThread.CHTTPServerThread.insts is None:
         if TIMING: t1=time.time()
         obj = CCP4HTTPServerThread.CHTTPServerThread(fileName=fileName)
@@ -228,7 +230,6 @@ def HTTPSERVER(fileName=None):
     return CCP4HTTPServerThread.CHTTPServerThread.insts
 
 def DBSERVER(fileName=None):
-    from qtcore import CCP4DbThread
     if CCP4DbThread.CDbThread.insts is None:
         if TIMING: t1=time.time()
         obj = CCP4DbThread.CDbThread(fileName)
@@ -239,7 +240,6 @@ def DBSERVER(fileName=None):
     return CCP4DbThread.CDbThread.insts
 
 def FILEWATCHER():
-    from qtgui import CCP4AbstractViewer
     if CCP4AbstractViewer.CFileWatchTimer.insts is None:
         if TIMING: t1=time.time()
         CCP4AbstractViewer.CFileWatchTimer.insts =  CCP4AbstractViewer.CFileWatchTimer()
@@ -249,7 +249,6 @@ def FILEWATCHER():
     return CCP4AbstractViewer.CFileWatchTimer.insts
 
 def DEMODATAMANAGER():
-    from qtgui import CCP4DemoData
     if CCP4DemoData.CDemoData.insts is None:
         if TIMING: t1=time.time()
         CCP4DemoData.CDemoData.insts =  CCP4DemoData.CDemoData()
@@ -259,7 +258,6 @@ def DEMODATAMANAGER():
     return CCP4DemoData.CDemoData.insts
 
 def JOBCONTROLLERGUI():
-    from qtgui import CCP4JobControlGui
     if CCP4JobControlGui.CServerParamsDialog.insts is None:
         if TIMING: t1=time.time()
         CCP4JobControlGui.CServerParamsDialog.insts = CCP4JobControlGui.CServerParamsDialog()
@@ -269,7 +267,6 @@ def JOBCONTROLLERGUI():
     return  CCP4JobControlGui.CServerParamsDialog.insts
 
 def SERVERSETUP():
-    from qtcore import CCP4JobController
     if CCP4JobController.CServerSetup.insts is None:
         if TIMING: t1=time.time()
         p = CCP4JobController.CServerSetup()
