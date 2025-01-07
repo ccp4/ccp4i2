@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 """
      CCP4JobServer.py: CCP4 GUI Project
      Copyright (C) 2016 STFC
@@ -23,10 +20,25 @@ from __future__ import print_function
 """
    Liz Potterton Apr 2016 - Separate 'remote' server code out from CCP4JobController
 """
+
+import functools
+import inspect
 import os
 import re
+import socket
+import subprocess
+
+from lxml import etree
+import paramiko
 from PySide2 import QtCore
-from core.CCP4ErrorHandling import *
+import UtilityThread
+
+from . import CCP4File
+from . import CCP4Utils
+from . import CCP4Modules
+from ..dbapi import CCP4DbApi
+from .CCP4ErrorHandling import *
+
 
 PARAMIKO_PORT=22
 
@@ -129,7 +141,6 @@ class CServerParams:
     '''
 
     def getEtree(self):
-        from lxml import etree
         ele = etree.Element('serverParams')
         ele.set('jobId', str(self.jobId))
         for key in CServerParams.SAVELIST:
@@ -146,7 +157,6 @@ class CServerParams:
         self.setDbParams()
 
     def setDbParams(self):
-        from core import CCP4Modules
         jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(self.jobId, ['jobnumber', 'projectid', 'projectname'])
         self.jobNumber = jobInfo['jobnumber']
         self.projectId = jobInfo['projectid']
@@ -183,8 +193,6 @@ class CJobServer(QtCore.QObject):
                    365 : {'description' : 'Failed killing remote process - no information on the remote process'}}
 
     def __init__(self):
-        from core import CCP4Utils
-        import paramiko
         self._diagnostic = False
         self._serverParams = {}
         self.runInSSHThreads = []
@@ -223,8 +231,6 @@ class CJobServer(QtCore.QObject):
             return None
 
     def saveParams(self, fileName=None):
-        from lxml import etree
-        from core import CCP4File
         if fileName is None:
             fileName = self.defaultParamsFileName()
         fileObj = CCP4File.CI2XmlDataFile(fileName)
@@ -236,11 +242,9 @@ class CJobServer(QtCore.QObject):
         fileObj.saveFile(bodyEtree)
 
     def defaultParamsFileName(self):
-        from core import CCP4Utils
         return os.path.join(CCP4Utils.getDotDirectory(), 'status', 'jobServer.params.xml')
 
     def restoreFromDb(self):
-        from core import CCP4Modules
         jobInfoList = CCP4Modules.PROJECTSMANAGER().db().getServerJobs()
         #print 'restoreFromDb',jobInfoList
         for jobInfo in jobInfoList:
@@ -267,7 +271,6 @@ class CJobServer(QtCore.QObject):
             sP.pollReport = 1
 
     def loadParams(self, fileName=None):
-        from core import CCP4File
         if fileName is None:
             fileName = self.defaultParamsFileName()
         if not os.path.exists(fileName):
@@ -286,7 +289,6 @@ class CJobServer(QtCore.QObject):
                 self.setPollStatus(sP)
 
     def createServerParams(self, jobId, params):
-        from core import CCP4Utils
         self._serverParams[jobId] = params
         self._serverParams[jobId].jobId = jobId
         jobInfo = self.db.getJobInfo(jobId=jobId, mode=['jobnumber', 'projectid'])
@@ -308,7 +310,6 @@ class CJobServer(QtCore.QObject):
                 self.db.updateServerJob(jobId, key, value)
 
     def getServerParam(self, jobId, key):
-        from core import CCP4Modules
         if jobId not in self._serverParams:
             return None
         rv = getattr(self._serverParams[jobId], key, None)
@@ -369,8 +370,6 @@ class CJobServer(QtCore.QObject):
         return requirePass
 
     def getPKey(self,jobId):
-        import paramiko
-        from core import CCP4Utils
         sP = self.serverParams(jobId)
         if sys.platform != "win32":
             keyFilename = re.sub(r'\$HOME', CCP4Utils.getHOME(), sP.keyFilename)
@@ -384,7 +383,6 @@ class CJobServer(QtCore.QObject):
         return pkey
 
     def pollQsubStat(self, mode='finished'):
-        import subprocess
         procCheck = subprocess.Popen(["qstat", "-xml"], stdout=subprocess.PIPE, universal_newlines=True, stderr=subprocess.STDOUT)
         outCheck,errCheck = procCheck.communicate()
         if self._diagnostic:
@@ -405,7 +403,6 @@ class CJobServer(QtCore.QObject):
         self.setServerParam(jobId, 'pollReport', 0)
 
     def parseQsubStat(self, returnString, mode='finished'):
-        from lxml import etree
         parser = etree.XMLParser()
         tree = etree.fromstring(returnString, parser)
         if mode == 'finished':
@@ -430,8 +427,6 @@ class CJobServer(QtCore.QObject):
             return None
 
     def transportFiles(self, jobId, copyList=[], mode='put', finishHandler=None, failSignal=True, diagnostic=True):
-        import functools
-        import UtilityThread
         sP = self.serverParams(jobId)
         #print  'transport files',mode,copyList
         if getattr(sP, 'sshThreadTransport', None) is not None:
@@ -449,7 +444,6 @@ class CJobServer(QtCore.QObject):
         return True
 
     def _transportFiles(self, jobId, copyList=[], mode='put', failSignal=True, diagnostic=True):
-        import paramiko
         sP = self.serverParams(jobId)
         try:
             if len(sP.machine.split(":")) > 1:
@@ -515,7 +509,6 @@ class CJobServer(QtCore.QObject):
         self.deleteServerParam(jobId,'sshThreadTransport')
 
     def openSSHConnection(self, jobId, machine, username, password, keyFilename=None, timeout=None, maxTries=2, emitFail=True):
-        import paramiko,socket
         client = paramiko.SSHClient()
         client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         connected= False
@@ -573,8 +566,6 @@ class CJobServer(QtCore.QObject):
             return client
 
     def testRemoteFiles(self, jobId=None, machine=None, username=None, password=None, keyFilename=None, remoteFileList=[], timeout=None, maxTries=2):
-        import UtilityThread
-        import functools
         if self.getServerParam(jobId, 'sshThreadRemoteFiles') is not None:
             return
         sP = self.serverParams(jobId)
@@ -624,7 +615,6 @@ class CJobServer(QtCore.QObject):
         pass
 
     def runInQsub(self, jobId, remoteSh, optionsFile=None, mechanism='qsub_local'):
-        import subprocess
         path,name = os.path.split(remoteSh)
         name = name[0:-9]
         stdout = os.path.join(path, name + 'qsub_stdout.txt')
@@ -664,7 +654,6 @@ class CJobServer(QtCore.QObject):
             self.setServerParam(jobId, 'pollReport', 1)
 
     def runInSlurm(self, jobId, remoteSh, optionsFile=None, mechanism='slurm_remote'):
-        import subprocess
         path,name = os.path.split(remoteSh)
         name = name[0:-9]
         stdout = os.path.join(path, name + 'slurm_stdout.txt')
@@ -722,9 +711,6 @@ class CJobServer(QtCore.QObject):
             print('handleRemoteSbatchStart', self.serverParams(jobId).serverProcessId)
 
     def sendSSHCommand(self, jobId, comLine, finishHandler=None, retHandler=None, emitFail=True):
-        import functools
-        import UtilityThread
-        from core import CCP4Utils
         if self._diagnostic:
             print('Remote server command:', comLine)
         sP = self.serverParams(jobId)
@@ -737,7 +723,6 @@ class CJobServer(QtCore.QObject):
         #print 'runInSSH DONE'
 
     def _sendSSHCommand(self, jobId, comLine, emitFail=True, retHandler=None):
-        from core import CCP4Utils
         sP = self.serverParams(jobId)
         if sP.keyFilename is not None and len(sP.keyFilename) > 0:
             if sP.keyFilename.count('HOME'):
@@ -887,7 +872,6 @@ class CJobServer(QtCore.QObject):
         self.remoteJobMessage.emit(jobId, 'Squeue status on ' + sP.machine, out, sP.machine)
 
     def getPidFileContent(self, jobId):
-        from core import CCP4Utils
         sP = self.serverParams(jobId)
         if sP.mechanism == 'ssh':
             self.transportFiles(jobId,[[self.pidFile(jobId, local=True), self.pidFile(jobId)]], 'get', finishHandler=self.getPidFileContent2, failSignal=False)
@@ -897,7 +881,6 @@ class CJobServer(QtCore.QObject):
     @QtCore.Slot(str)
     def getPidFileContent2(self,jobId):
         self._transportFilesFinished(jobId)
-        from core import CCP4Utils
         ret = CCP4Utils.readFile(self.pidFile(jobId, local=True))
         try:
             ret= int(ret.strip())
@@ -934,8 +917,6 @@ class CJobServer(QtCore.QObject):
                 print("Error killing job\n"+str(exc_type)+"\n"+str(exc_value))
                 raise CException(self.__class__,361)
             else:
-                from dbapi import CCP4DbApi
-                from core import CCP4Modules
                 self.deleteServerParams(jobId)
                 CCP4Modules.PROJECTSMANAGER().db().updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_FAILED)
         elif sP.mechanism in ['qsub_remote']:
@@ -957,16 +938,12 @@ class CJobServer(QtCore.QObject):
                 print("Error killing job\n"+str(exc_type)+"\n"+str(exc_value))
                 raise CException(self.__class__,361)
             else:
-                from dbapi import CCP4DbApi
-                from core import CCP4Modules
                 self.deleteServerParams(jobId)
                 CCP4Modules.PROJECTSMANAGER().db().updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_FAILED)
         elif sP.mechanism in ['slurm_remote']:
             self.sendSSHCommand(jobId, comLine='scancel ' + sP.serverProcessId, retHandler=self.handleRemoteDel)
 
     def handleRemoteDel(self, jobId, out, err):
-        from dbapi import CCP4DbApi
-        from core import CCP4Modules
         if self._diagnostic:
             print('handleRemoteQsubDel', jobId, out, err)
         self.deleteServerParams(jobId)
@@ -987,7 +964,6 @@ class CJobServer(QtCore.QObject):
             self.customHandler(jobid).killJob(jobId)
 
     def runLocalTest(self, jobId, remoteSh):
-        from core import CCP4Modules
         CCP4Modules.PROCESSMANAGER().startProcess('sh', [remoteSh], handler=[self.localTestFinished, {'jobId':jobId}], ifAsync=True)
 
     def localTestFinished(self, pid, jobId=None):
@@ -1057,8 +1033,6 @@ class CJobServer(QtCore.QObject):
                     print('ERROR execing custom server interface startup code:', startupFile)
                     print(e)
                     return None
-            import inspect
-            from core import CCP4Utils
             sys.path.append(os.path.split(customCodeFile)[0])
             module, err = CCP4Utils.importFileModule(customCodeFile)
             if err is not None:
@@ -1080,7 +1054,6 @@ class CJobServer(QtCore.QObject):
             return self._customHandler[customCodeFile]
 
     def listRemoteProcesses(self):
-        import functools
         runningJobs = self.getJobsToPollFinish(pollFinish=[0, 1])
         jobsByMachine = {}
         for jobId in runningJobs:
