@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4TaskManager.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -17,25 +15,39 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Sept 2010 - Class to keep track of all CCP4Tasks
 """
+
+import glob
+import importlib
+import inspect
+import json
 import os
+import pkgutil
 import re
 import sys
 import time
-import inspect
-import glob
-import json
-import importlib
+import traceback
+import unittest
+
 from lxml import etree
-from core.CCP4Config import GRAPHICAL, DEVELOPER
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import WEBBROWSER, PROJECTSMANAGER, WORKFLOWMANAGER, CUSTOMTASKMANAGER
-from dbapi import CCP4DbApi
-from core import CCP4Utils
+
+from . import CCP4File
+from . import CCP4PerformanceData
+from . import CCP4PluginScript
+from . import CCP4Utils
+from ..dbapi import CCP4DbApi
+from ..qtgui import CCP4I1Projects
+from ..qtgui import CCP4TaskViewer
+from ..qtgui import CCP4TaskWidget
+from ..report import CCP4ReportParser
+from .CCP4Config import GRAPHICAL, DEVELOPER
+from .CCP4ErrorHandling import *
+from .CCP4Modules import PREFERENCES
+from .CCP4Modules import WEBBROWSER, PROJECTSMANAGER, WORKFLOWMANAGER, CUSTOMTASKMANAGER
+
+
 
 # To see the timings for loading modules set TIMING=True
 TIMING = False
@@ -209,7 +221,6 @@ class CTaskManager:
                                 print ("---------------------")
                                 """
                                 if GRAPHICAL():
-                                    from PySide2 import QtWidgets
                                     QtWidgets.QMessageBox.warning(None, "Problem Loading CachedLookups JSON", tmpM)
                                 """
                             #Don't bother to load class, but set it to "None", obliging it to be loaded when needed
@@ -239,26 +250,18 @@ class CTaskManager:
             raise
 
     def explore_package(self, module_name, module_name_list):
-        import pkgutil
         loader = pkgutil.get_loader(module_name)
-        if sys.version_info > (3,0):
-            fname = os.path.dirname(loader.get_filename())
-        else:
-            fname = loader.filename
+        fname = os.path.dirname(loader.get_filename())
         for sub_module in pkgutil.walk_packages([fname], prefix=module_name+"."):
             _, sub_module_name, _ = sub_module
             module_name_list.append(sub_module_name)
 
     def buildLookupFromScratch(self):
         print("#CCP4TaskManager.buildLookupFromScratch")
-        from core import CCP4PluginScript
-        from report import CCP4ReportParser
-        from core import CCP4PerformanceData
         graphical = GRAPHICAL()
         myErrorReport = CErrorReport()
         loadTarget = [[self._searchPath, True]]
         if graphical:
-            from qtgui import CCP4TaskWidget
             loadTarget.insert(0, [self._guiSearchPath, False])
         # Get the performance data classes
         clsList = inspect.getmembers(CCP4PerformanceData, inspect.isclass)
@@ -451,7 +454,6 @@ class CTaskManager:
         return myErrorReport
 
     def loadCustomisation(self):
-        from core import CCP4File
         err = CErrorReport()
         customFile = os.path.join(CCP4Utils.getCCP4I2Dir(), 'custom_code', 'task_customisation.xml')
         if not os.path.exists(customFile):
@@ -563,11 +565,6 @@ class CTaskManager:
             return None
 
     def getReportClass(self, name='', version=None, jobStatus=None, doReload=False):
-        if sys.version_info >= (3,4):
-            from importlib import reload
-        else:
-            from imp import reload
-        import report.CCP4ReportParser
         data = self.getReportData(name, version)
         if jobStatus == 'Running remotely':
             jobStatus = 'Running'
@@ -579,10 +576,10 @@ class CTaskManager:
                 if cls is None:
                     return None
                 module = __import__(cls.__module__)
-                module = reload(module)
+                module = importlib.reload(module)
                 clsList = inspect.getmembers(module, inspect.isclass)
                 for className, cls1 in clsList:
-                    if issubclass(cls1, report.CCP4ReportParser.Report) and getattr(cls1, 'TASKNAME') == name and getattr(cls1, 'TASKVERSION') == data['version']:
+                    if issubclass(cls1, CCP4ReportParser.Report) and getattr(cls1, 'TASKNAME') == name and getattr(cls1, 'TASKVERSION') == data['version']:
                         self.reportLookup[name][data['version']]['class'] = cls1
                         print('Reloading task report module for', className)
                         return cls1
@@ -604,7 +601,6 @@ class CTaskManager:
         try:
             importedModule = importlib.import_module(moduleName)
         except:
-            import traceback
             traceback.print_exc()
             importedModule = None
             
@@ -612,7 +608,6 @@ class CTaskManager:
         correspondingClass = getattr(importedModule,className,None)
         data['class'] = correspondingClass
         #print '#CTaskManager lazy Load of class', data['class'].__name__
-        #import traceback
         #traceback.print_stack(limit=3)
         return correspondingClass
 
@@ -646,7 +641,6 @@ class CTaskManager:
     def getClass(self, name='', version=None):
         data = self.getTaskData(name, version)
         #print 'TASKMANAGER.getClass getTaskData',name,data
-        #import traceback
         #traceback.print_stack()
         if len(data) == 0:
             data = self.getScriptData(name, version)
@@ -747,7 +741,6 @@ class CTaskManager:
         return self.lazyLoadClassForDict(performanceClassDict)
 
     def taskTree(self, shortTitles=False):
-        from core.CCP4Modules import PREFERENCES
         # Return list of [module_name,taskList]
         tree = []
         for module in MODULE_ORDER:
@@ -783,7 +776,6 @@ class CTaskManager:
 
 
     def openDataFile(self, fileName='', editableData=True):    # This only appears to be used in CCP4ProjectWidgetDemo
-        from core import CCP4File
         h = CCP4File.CI2XmlHeader()
         h.loadFromXml(fileName)
         taskName = str(h.pluginName)
@@ -792,7 +784,6 @@ class CTaskManager:
             widget.loadData(fileName)
 
     def openTask(self, taskName, version=None, projectId=None, editableData=True):
-        from qtgui import CCP4TaskViewer
         if not GRAPHICAL():
             raise CException(self.__class__, 104, 'task name: ' + taskName)
         defFile = self.lookupDefFile(taskName, version=version)
@@ -987,8 +978,6 @@ class CTaskManager:
         return ()
 
     def whatNext(self,taskName,jobId=None):
-      import os,re
-      from core import CCP4Utils
       fileName = os.path.join(CCP4Utils.getCCP4I2Dir(),'docs','whatnext',taskName+'.html')
       if not os.path.exists(fileName): return []
 
@@ -1129,7 +1118,6 @@ class CTaskManager:
         return self.i1TaskLookup.get(taskName, taskName)
 
     def loadI1TaskTitles(self, fileName=None):
-        from qtgui import CCP4I1Projects
         if fileName is None:
             fileName = os.path.join(CCP4Utils.getCCP4Dir(), 'share', 'ccp4i', 'etc', 'modules.def')
         metaData, params, err = CCP4I1Projects.readI1DefFile(fileName)
@@ -1150,7 +1138,6 @@ class CMakeDocsIndex():
         pass
 
     def run(self):
-        from report import CCP4ReportParser
         # List of documented tasks
         try:
             dList = glob.glob(os.path.join(CCP4Utils.getCCP4I2Dir(), 'docs', 'sphinx', 'build', 'html', 'tasks', '*'))
@@ -1222,7 +1209,6 @@ class CMakeDocsIndex():
             return CErrorReport(self.__class__, 101, details=os.path.join(sph_pth, 'tasks', 'index.html'))
         return CErrorReport()
 
-import unittest
 
 def TESTSUITE():
     suite = unittest.defaultTestLoader.loadTestsFromTestCase(testBuildLookups)
