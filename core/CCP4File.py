@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 """
      CCP4File.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -24,22 +21,37 @@ from __future__ import print_function
    Liz Potterton Aug 2010 - File handling classes
 """
 
+import getpass
+import hashlib
+import io
 import os
 import re
+import shutil
 import sys
-import types
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
+import tempfile
+import traceback
+import unittest
+import xml.etree.ElementTree as ET
 
+from googlecode import diff_match_patch_py3
+from lxml import etree
 from PySide2 import QtCore
 
-from core import CCP4Data
-from core import CCP4Config
-from core.CCP4Modules import MIMETYPESHANDLER, PROJECTSMANAGER
-from core.CCP4ErrorHandling import *
-from report.CCP4ReportParser import CCP4NS
+from . import CCP4Annotation
+from . import CCP4Config
+from . import CCP4Container
+from . import CCP4Data
+from . import CCP4DataManager
+from . import CCP4ModelData
+from . import CCP4PluginScript
+from . import CCP4TaskManager
+from . import CCP4Update
+from . import CCP4Utils
+from ..dbapi import CCP4DbApi
+from ..report.CCP4ReportParser import CCP4NS
+from .CCP4ErrorHandling import *
+from .CCP4Modules import PROJECTSMANAGER
+
 
 # Version number of form n.m or n.m.i
 class CVersion(CCP4Data.CString):
@@ -86,7 +98,6 @@ class CVersion(CCP4Data.CString):
             #MN Change...This uses CCP4Update module to get_revno....importing CCP4Update
             #is not safe, and in some circumstances does not work, so I have put it within the try except
             #clause
-            from core import CCP4Update
             rev = CCP4Update.get_revno()
         except:
             rev = 0
@@ -153,7 +164,6 @@ class CProjectName(CCP4Data.CString):
 
     def directory(self):
         if self.__dict__['_value'] == 'workDirectory':
-            from core import CCP4PluginScript
             obj = self
             while isinstance(obj,CCP4Data.CData):
                 obj = obj.parent()
@@ -213,7 +223,6 @@ class CProjectId(CCP4Data.CUUID):
         #print 'CProjectId.directory', self._value,PROJECTSMANAGER().getProjectDirectory(projectId=str(self._value))
         if self.__dict__['_value'] == 'workDirectory':
             print("CProjectId.directory IS workDirectory")
-            from core import CCP4PluginScript
             obj = self
             while isinstance(obj, CCP4Data.CData):
                 obj = obj.parent()
@@ -324,7 +333,6 @@ class CFilePath(CCP4Data.CString):
         if other is None or self._value is None:
             return False
         else:
-            from core import CCP4Utils
             return CCP4Utils.samefile(self._value, other)
 
     def pathsplit(self):
@@ -507,7 +515,6 @@ class CDataFile(CCP4Data.CData):
             path = ''
         elif projectId == 'workDirectory':
             #print 'CDataFile.makeFullPath project IS workDirectory'
-            from core import CCP4PluginScript
             obj = self
             while isinstance(obj,CCP4Data.CData):
                 obj = obj.parent()
@@ -600,7 +607,6 @@ class CDataFile(CCP4Data.CData):
 
     def guiLabel(self, useAnnotation=True, useObjectName=True):
         #print 'CDataFile.guiLabel', self.objectName(), self, self.annotation, self.dbFileId
-        from core import CCP4TaskManager
         if self.isSet():
             if useAnnotation and self.__dict__['_value']['annotation'].isSet():
                 return self.__dict__['_value']['annotation'].__str__()
@@ -753,7 +759,6 @@ class CDataFile(CCP4Data.CData):
         className = self.qualifiers('fileContentClassName')
         if className is None:
             raise CException(self.__class__, 104, name=self.objectPath())
-        from core import CCP4DataManager
         cls = CCP4DataManager.DATAMANAGER().getClass(className)
         if cls is None:
             raise CException(self.__class__, 105, 'Contents class name:' + str(className), name=self.objectPath())
@@ -823,7 +828,6 @@ class CDataFile(CCP4Data.CData):
                 return None
         if not os.path.exists(filePath):
             return None
-        import hashlib
         md5 = hashlib.md5()
         with open(filePath,'rb') as f:
             for chunk in iter(lambda: f.read(blockSize), b''):
@@ -834,7 +838,6 @@ class CDataFile(CCP4Data.CData):
             return md5.digest()
 
     def assertSame(self, arg, testPath=False, testChecksum=True, testSize=False, testDiff=False, diagnostic=False, fileName=None):
-        from core import CCP4Utils
         if isinstance(arg, self.__class__):
             other = arg.__str__()
         else:
@@ -890,12 +893,7 @@ class CDataFile(CCP4Data.CData):
                 report.append(self.__class__, 309, name=name, details='by ' + str(int(100*diff)) + '% : ' + str(self) + ' : ' + str(other))
         if testDiff:
             # Unsophisicated diff
-            if sys.version_info > (3,0):
-                from googlecode import diff_match_patch_py3
-                dmp =  diff_match_patch_py3.diff_match_patch()
-            else:
-                from googlecode import diff_match_patch
-                dmp =  diff_match_patch.diff_match_patch()
+            dmp =  diff_match_patch_py3.diff_match_patch()
             diffs = dmp.diff_main(CCP4Utils.readFile(fileName), CCP4Utils.readFile(other))
             #print 'CDataFile.assertSame diffs', diffs
             if len(diffs) > 1:
@@ -933,7 +931,6 @@ class CDataFile(CCP4Data.CData):
         return filename
 
     def importFile(self, jobId=None, sourceFileName=None, ext=None, annotation=None, validatedFile=None, jobNumber=None):
-        import shutil
         if sourceFileName is None:
             sourceFileName = self.__str__()
         if ext is None:
@@ -959,13 +956,11 @@ class CDataFile(CCP4Data.CData):
         self.__dict__['sourceFileName'] = sourceFileName
 
     def isDosFile(self):
-        from core import CCP4Utils
         text = CCP4Utils.readFile(self.__str__())
         isDFile = (text.find('\r\n') >= 0)
         return isDFile
 
     def resetLineEnd(self, outputFilename=None, toDos=False):
-        from core import CCP4Utils
         text = CCP4Utils.readFile(self.__str__())
         isDos = text.find('\r\n') >= 0
         if isDos == toDos:
@@ -975,7 +970,6 @@ class CDataFile(CCP4Data.CData):
             else:
                 return self.__str__()
         if outputFilename is None:
-            import tempfile
             outputFilename = tempfile.mktemp(suffix='.txt')
         if toDos:
             textOut = re.sub(r'\n', '\r\n', text)
@@ -999,7 +993,6 @@ class CFileFunction(CCP4Data.CString):
 
 class CI2XmlHeader(CCP4Data.CData):
     '''Container for header info from XML file'''
-    from core import CCP4Annotation
 
     CONTENTS = {'function' : {'class' : CFileFunction}, 'userId' : {'class' : CCP4Annotation.CUserId},
                 'hostName' : {'class' : CCP4Annotation.CHostName}, 'creationTime' : {'class' : CCP4Annotation.CTime},
@@ -1029,7 +1022,6 @@ class CI2XmlHeader(CCP4Data.CData):
             self.OS = 'Windows'
 
     def loadFromXml(self, fileName=None, checkValidity=True):
-        from core import CCP4Utils
         if fileName is None:
             raise CException(self.__class__, 101, name = self.objectPath())
         if not os.path.exists(fileName):
@@ -1126,8 +1118,6 @@ class CXmlDataFile(CDataFile):
                    1013 : {'description' : 'Error creating I2XMlDataFile file'}}
 
     def loadFile(self, printout=False):
-        if CCP4Config.XMLPARSER() == 'lxml':
-            from lxml import etree
         if not self.fullPath.exists():
             raise CException(self.__class__, 1010, 'Filename: ' + str(self.fullPath), name=self.objectPath())
         else:
@@ -1145,11 +1135,8 @@ class CXmlDataFile(CDataFile):
 
 
     def getEtreeRoot(self,fileName=None,useLXML=True):
-        from core import CCP4Utils
         if fileName is None:
             fileName = self.fullPath.get()
-        if CCP4Config.XMLPARSER() == 'lxml':
-            from lxml import etree
         try:
             tree = CCP4Utils.openFileToEtree(fileName,useLXML=useLXML)
         except etree.LxmlError as e:
@@ -1168,14 +1155,10 @@ class CXmlDataFile(CDataFile):
     '''
 
     def saveFile(self, bodyEtree=None):
-        from core import CCP4Utils
-        if CCP4Config.XMLPARSER() == 'lxml':
-            from lxml import etree
         fileName = self.fullPath.get()
         if bodyEtree is None:
             pass
         elif not isinstance(bodyEtree, etree._Element):
-            import traceback
             traceback.print_stack()
             raise CException(self.__class__, 1006, fileName, name=self.objectPath())
         if CCP4Config.DEVELOPER():
@@ -1215,8 +1198,6 @@ class CXmlDataFile(CDataFile):
             c.header.userId.setCurrentUser()
         if not c.header.creationTime.isSet():
             c.header.creationTime.setCurrentTime()
-        if CCP4Config.XMLPARSER() == 'lxml':
-            from lxml import etree
         body = etree.Element(CI2XmlDataFile.BODY_TAG)
         body.append(self.getEtreeRoot(myFileName))
         c.saveFile(bodyEtree=body)
@@ -1255,15 +1236,10 @@ class CI2XmlDataFile(CXmlDataFile):
             fileName = self.fullPath.get()
         root = self.getEtreeRoot(fileName)
         if printout:
-            if CCP4Config.XMLPARSER() == 'lxml':
-                from lxml import etree
-                print(etree.tostring(root, pretty_print=True))
+            print(etree.tostring(root, pretty_print=True))
         return self.loadHeader(root)
 
     def getEtreeRoot(self, fileName=None,useLXML=True):
-        from core import CCP4Utils
-        if CCP4Config.XMLPARSER() == 'lxml':
-            from lxml import etree
         if fileName is None:
             fileName = self.fullPath.get()
         #print 'getEtreeRoot fileName', fileName, type(fileName)
@@ -1297,7 +1273,6 @@ class CI2XmlDataFile(CXmlDataFile):
             err.extend(self.__dict__['_value']['header'].setEtree(header_etree))
             #except:
             #  print 'Error loading header'
-            #  from lxml import etree
             #  print etree.tostring(header_etree,pretty_print=True)
         return err
 
@@ -1313,13 +1288,10 @@ class CI2XmlDataFile(CXmlDataFile):
         return body_etree
 
     def saveFile(self, bodyEtree=None,useLXML=True):
-        from core import CCP4Utils
         if CCP4Config.XMLPARSER() == 'lxml' and useLXML:
-            from lxml import etree
             testType = etree._Element
         else:
-            import xml.etree.ElementTree as etree
-            testType = etree.Element
+            testType = ET.Element
         fileName = self.getFullPath()
         if bodyEtree is None:
             pass
@@ -1328,7 +1300,7 @@ class CI2XmlDataFile(CXmlDataFile):
         else:
             if bodyEtree.tag != CI2XmlDataFile.BODY_TAG:
                 bodyEtree.tag = CI2XmlDataFile.BODY_TAG
-        doc = etree.parse(StringIO( '<ccp4:ccp4i2 xmlns:ccp4="' + CCP4NS + '"></ccp4:ccp4i2>'))
+        doc = etree.parse(io.StringIO( '<ccp4:ccp4i2 xmlns:ccp4="' + CCP4NS + '"></ccp4:ccp4i2>'))
         root = doc.getroot()
         headerEtree = self.__dict__['_value']['header'].getEtree(useLXML=useLXML)
         headerEtree.tag = CI2XmlDataFile.HEADER_TAG
@@ -1360,7 +1332,6 @@ class CI2XmlDataFile(CXmlDataFile):
                     raise CException(self.__module__, 1008, fileName)
 
 def compareXmlFiles(xmlFile1, xmlFile2):
-    from core import CCP4Utils
     tree1 = CCP4Utils.openFileToEtree(xmlFile1)
     tree2 = CCP4Utils.openFileToEtree(xmlFile2)
     return compareEtreeNodes(tree1, tree2)
@@ -1441,8 +1412,6 @@ def xmlFileHeader(fileName):
     return h
 
 def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=None, taskName=None, suggestedParams=None):
-    import getpass
-    from core import CCP4ModelData, CCP4TaskManager, CCP4Utils
     xFile = CI2XmlDataFile(sourceFile)
     if current:
         xFile.header.setCurrent()
@@ -1461,7 +1430,6 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
             elif len(body.xpath("inputData/AWA_SEQIN")) > 0:
                 oldTag = "AWA_SEQIN"
             #OK, old task had a SEQIN
-            from lxml import etree
             print("--------------------------------------------------")
             print("OK, old task had a ",oldTag)
             print("Now I need to know the def.xml for",taskName)
@@ -1598,7 +1566,6 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
             if len(asu_inps) > 0:
                 print(asu_inps)
                 if taskFrame is not None:
-                    from core import CCP4Container
                     asuJob = taskFrame.openTask(taskName='ProvideAsuContents')
                     container = CCP4Container.CContainer(parent=taskFrame, definitionFile=CCP4TaskManager.TASKMANAGER().lookupDefFile('ProvideAsuContents'), guiAdmin=True)
                     #This needs to contain list of stuff when list input!
@@ -1660,7 +1627,6 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
                     #print etree.tostring(body.xpath("inputData/"+newTag)[0])
 
     if suggestedParams is not None:
-        from lxml import etree
         print("cloneI2XmlFile verdict suggestions")
         ctlParams =  body.xpath("controlParameters")
         if len(ctlParams)>0:
@@ -1674,7 +1640,6 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
                         newEl = etree.SubElement(ctlParams[0],suggestion.tag)
                         newEl.text = suggestion.text
             except:
-                import traceback
                 print("Some problem with cloning with verdict suggestions...."); sys.stdout.flush()
                 exc_type, exc_value, exc_tb = sys.exc_info()[:3]
                 sys.stderr.write(str(exc_type) + '\n')
@@ -1717,14 +1682,11 @@ class CExportedFile(CCP4Data.CData):
 
     def __init__(self,value=[], qualifiers={}, parent=None, name=None):
         CCP4Data.CData. __init__(self, value, parent=parent, qualifiers=qualifiers, name=name)
-        #import traceback
         #print 'CExportedFile.__init__'
         #traceback.print_stack()
 
     def getTextItem(self):
         # This needs to tally with CExportedFileCombo.load
-        from core import CCP4TaskManager
-        from dbapi import CCP4DbApi
         if self.exportId.isSet():
             exFile = PROJECTSMANAGER().db().getExportFileInfo(exportId=CCP4DbApi.UUIDTYPE(self.__dict__['_value']['exportId']),mode='label')
             if len(exFile) > 0:
@@ -1783,7 +1745,6 @@ class CExePathList(CCP4Data.CList):
 
 
 #===========================================================================================================
-import unittest
 def TESTSUITE():
     suite = unittest.defaultTestLoader.loadTestsFromTestCase(testProject)
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testFilePath))
@@ -1816,8 +1777,6 @@ class testProject(unittest.TestCase):
           self.fail('No exception in setting bad CProjectName')
 
     def testCProjectName3(self):
-        import shutil
-        from core.CCP4Utils import getHOME
         PROJECTSMANAGER().createProject('DUMMY_CCP4I2_TEST',os.path.join(getHOME(),'DUMMY_CCP4I2_TEST'))
         shutil.rmtree(os.path.join(getHOME(),'DUMMY_CCP4I2_TEST'))
 
@@ -1940,8 +1899,6 @@ class testI2XmlDataFile(unittest.TestCase):
     def test3(self):
         c = CI2XmlDataFile(projectName='CCP4I2_TEST',baseName='testXmlDataFile.xml')
         if c.fullPath.exists() : os.remove(c.fullPath.get())
-        from core import CCP4Config
-        if CCP4Config.XMLPARSER() == 'lxml': from lxml import etree
         ele = etree.Element(CI2XmlDataFile.BODY_TAG)
         c.saveFile(bodyEtree=ele)
         self.assertTrue(os.path.exists(c.fullPath.get()),'No file written by saveFile')
