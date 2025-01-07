@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4Object.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
