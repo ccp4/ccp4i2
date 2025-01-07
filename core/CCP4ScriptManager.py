@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4ScriptManager.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -17,15 +15,23 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Oct 2010 - Class to keep track of all CCP4Scripts
 """
+
+import glob
+import inspect
 import os
 import re
-import glob
-from core.CCP4ErrorHandling import *
+
+from ..qtgui.CCP4TaskWidget import CTaskWidget
+from .CCP4ErrorHandling import *
+from .CCP4Utils import getCCP4I2Dir
+from .CCP4Utils import globSearchPath
+from .CCP4Utils import importFileModule
+from .CCP4Utils import readFile
+from .CCP4Utils import saveFile
+
 
 def SCRIPTMANAGER():
     if CScriptManager.insts is None:
@@ -51,7 +57,6 @@ class CScriptManager:
     insts = None
 
     def __init__(self):
-        from core.CCP4Utils import getCCP4I2Dir
         self._searchPath = [os.path.join(getCCP4I2Dir(),'wrappers'),os.path.join(getCCP4I2Dir(),'pipelines')]
         plines = glob.glob(os.path.join(getCCP4I2Dir(),'pipelines','*','wrappers'))
         for item in plines:
@@ -69,9 +74,6 @@ class CScriptManager:
             self._searchPath.append(path)
 
     def buildClsLoookup(self):
-        import inspect
-        from core.CCP4Utils import globSearchPath,importFileModule
-        from qtgui.CCP4TaskWidget import CTaskWidget
         myErrorReport = CErrorReport()
         pyFileList = globSearchPath(self.searchPath(), '*/*.py')
         #print 'pyFileList',pyFileList
@@ -106,7 +108,6 @@ class CScriptManager:
 
 
     def makeWrapperPlugin(self, targetDir=None, pipeline=None, name=None, template='simple_wrapper', license='No license'):
-        from core.CCP4Utils import getCCP4I2Dir, saveFile
         print('SCRIPTMANAGER.makeWrapperPlugin', name, pipeline, template, license)
         report = CErrorReport()
         if name is None:
@@ -143,7 +144,6 @@ class CScriptManager:
         return newPluginDir, report
 
     def makeWrapperScript(self, template='simple_wrapper', license=None, name=''):
-        from core.CCP4Utils import getCCP4I2Dir, readFile
         if license is not None:
             licenseFile = os.path.join(getCCP4I2Dir(), 'data', 'plugin_templates', 'license_templates', license)
             licenseText = readFile(licenseFile)
@@ -163,7 +163,6 @@ class CScriptManager:
 
 
     def listOfPipelines(self):
-        from core.CCP4Utils import getCCP4I2Dir
         dirList = glob.glob(os.path.join(getCCP4I2Dir(), 'pipelines', '*'))
         pipelineList = []
         for d in dirList:
@@ -171,7 +170,6 @@ class CScriptManager:
         return pipelineList
 
     def listOfPluginTemplates(self):
-        from core.CCP4Utils import getCCP4I2Dir
         fileList = glob.glob(os.path.join(getCCP4I2Dir(), 'data', 'plugin_templates', '*'))
         templateList = []
         for f in fileList:
@@ -180,7 +178,6 @@ class CScriptManager:
         return templateList
 
     def listOfPluginLicenses(self):
-        from core.CCP4Utils import getCCP4I2Dir
         fileList = glob.glob(os.path.join(getCCP4I2Dir(), 'data', 'plugin_templates', 'license_templates', '*'))
         licenseList = []
         for f in fileList:
@@ -188,7 +185,6 @@ class CScriptManager:
         return licenseList
 
     def makePipeline(self, name=None, targetDir=None):
-        from core.CCP4Utils import getCCP4I2Dir
         if name is None:
             raise CException(self.__class__, 111)
         if targetDir is None:
