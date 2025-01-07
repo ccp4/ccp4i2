@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4ImportedJobManager.py: CCP4 GUI Project
      Copyright (C) 2013 STFC
@@ -23,14 +21,17 @@ from __future__ import print_function
      Liz Potterton Sept 2013 - report job performed outside ccp4i2
 """
 
+import copy
 import os
 import re
-from core import CCP4Data
-from core import CCP4Container
-from core import CCP4File
-from core import CCP4CustomManager
-from core import CCP4DataManager
-from core.CCP4ErrorHandling import *
+
+from . import CCP4Container
+from . import CCP4CustomManager
+from . import CCP4Data
+from . import CCP4DataManager
+from . import CCP4File
+from . import CCP4XtalData
+from .CCP4ErrorHandling import *
 
 
 class CImportedJobManager(CCP4CustomManager.CCustomManager):
@@ -45,7 +46,6 @@ class CImportedJobManager(CCP4CustomManager.CCustomManager):
         CCP4CustomManager.CCustomManager.__init__(self, parent, 'importedjobs')
 
     def createImportedJob(self, name=None, title=None, container=None, overwrite=False):
-        from core import CCP4XtalData
         err = CErrorReport()
         self.createDirectory(name = name, overwrite=overwrite)
         container.header.pluginName = name
@@ -54,7 +54,6 @@ class CImportedJobManager(CCP4CustomManager.CCustomManager):
         #print 'CCustomTaskManager.createCustomTask',name,title,taskFile,container.paramList
         container.saveDataToXml(fileName=taskFile)
         if title is None:
-            import copy
             title = copy.deepcopy(name)
         paramsContainer = CCP4Container.CContainer()
         header = paramsContainer.addHeader()
