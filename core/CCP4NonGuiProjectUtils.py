@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 """
      CCP4NonGuiProjectUtils.py: CCP4 GUI Project
      Copyright (C) 2015 University of Newcastle
@@ -17,9 +14,7 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Martin Noble Jul 2015
      
      Create a class to allow for programatic (non gui) import of a .ccp4_project.zip 
@@ -28,10 +23,17 @@ from __future__ import print_function
      
      Initially offers one call
 """
-from core.CCP4Modules import PROJECTSMANAGER
-from core.CCP4ErrorHandling import CException, SEVERITY_WARNING
+
+import os
+
 from PySide2 import QtCore
-from core import CCP4Utils
+
+from . import CCP4Utils
+from ..dbapi import CCP4DbApi
+from ..qtcore import CCP4Export
+from .CCP4ErrorHandling import CException, SEVERITY_WARNING
+from .CCP4Modules import PROJECTSMANAGER
+
 
 DIAGNOSTIC=True
 
@@ -42,7 +44,6 @@ class CCP4NonGuiProjectUtils(QtCore.QObject):
         self.importCompressedArchive(compressedArchive)
     
   def importCompressedArchive(self, compressedArchive=None):
-    import os
     if not os.path.isfile(compressedArchive): return
 
     try:
@@ -55,7 +56,6 @@ class CCP4NonGuiProjectUtils(QtCore.QObject):
       return
 
     try:
-      from dbapi import CCP4DbApi
       self.dbImport = CCP4DbApi.CDbXml(db=PROJECTSMANAGER().db(),xmlFile=xmlFile)
       #self.dbImport.setDiagnostic(True)
       importProjectInfo = self.dbImport.loadProjectInfo()  
@@ -71,7 +71,6 @@ class CCP4NonGuiProjectUtils(QtCore.QObject):
 
     if projectInfo is None:
       print('Is a new project',self.dbImport.projectId)
-      import os
       dirNameRoot = os.path.normpath(os.path.join(CCP4Utils.getProjectDirectory(),self.dbImport.projectName))
       dirName = dirNameRoot
       incrementCounter = 0
@@ -85,7 +84,6 @@ class CCP4NonGuiProjectUtils(QtCore.QObject):
       self.importProject(compressedArchive, projectInfo['projectdirectory'], existingProject=self.dbImport.projectId)
 
   def importProject(self,compressedArchive,dirName,existingProject=None):
-    import os
     if DIAGNOSTIC: print('CProjectManagerDialog.importProject',compressedArchive,dirName,existingProject)
     # Load the database.xml into temporary tables in db
     self.dbImport.projectDirectory = dirName
@@ -122,7 +120,6 @@ class CCP4NonGuiProjectUtils(QtCore.QObject):
         return
 
     print('Unpacking project files to '+dirName)
-    from qtcore import CCP4Export
     # Unpack project files from the tar file (possibly in separate thread) 
     # Pass import thread dbImport to enable query database and flagging loaded jobs/files
     if DIAGNOSTIC: print('CProjectManagerDialog.importProject creating import thread')
