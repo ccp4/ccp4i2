@@ -1,12 +1,13 @@
-from __future__ import print_function
-
-
 # This file should only be used in the script $CCP4/bin/ccp4i2-update
 # Currently it is source in several palces in order to call get_revno
 
-import os, sys
-from core.CCP4Bazaar import CUpdateUser
-from core.CCP4Bazaar import bzrlib_exists
+import os
+import sys
+
+from . import CCP4Utils
+from .CCP4Bazaar import CUpdateUser
+from .CCP4Bazaar import bzrlib_exists
+
 
 class CUpdate(CUpdateUser):
 
@@ -64,7 +65,6 @@ class CUpdateForTestSys(CUpdate):
   @classmethod
   def initialise(cls):
     CUpdate.initialise()
-    from core import CCP4Utils
     cls._command =CCP4Utils.getCCP4I2Dir()     
 
 if bzrlib_exists:
