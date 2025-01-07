@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4ComTemplate.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -24,12 +22,17 @@ from __future__ import print_function
 """
 import os
 import re
-from core.CCP4ErrorHandling import *
-from core.CCP4Config import QT,XMLPARSER
+import unittest
+
+from . import CCP4Container, CCP4File, CCP4Utils
+from .CCP4Config import QT
+from .CCP4ErrorHandling import *
+from .CCP4Utils import getCCP4I2Dir, interpretPath
+
 if QT():
-    from core.CCP4QtObject import CObject
+    from .CCP4QtObject import CObject
 else:
-    from core.CCP4Object import CObject
+    from .CCP4Object import CObject
 
 class CComTemplateElement(CObject):
 
@@ -276,12 +279,10 @@ class CComTemplate(CComTemplateElement):
             self.parseTemplate(template)
 
     def loadTemplateFromFile(self, fileName):
-        from core import CCP4Utils
         template = ''
         if not os.path.exists(fileName):
             raise CException(self.__class__, 101, fileName)
         if os.path.splitext(fileName)[1] == '.xml':
-            from core import CCP4File
             xFile = CCP4File.CI2XmlDataFile(fileName)
             header = xFile.loadFile()
             # !!  Should we be checking plugin/version etc.
@@ -499,7 +500,6 @@ class CComTemplateCase(CComTemplateElement):
         errorReport.extend(err)
         if value is NotImplemented:
             return '', errorReport
-        import types
         i = -1
         for item in self.contents:
             i = i + 1
@@ -534,7 +534,6 @@ class CComTemplateAt(CComTemplateElement):
         self.fileName = None
     
     def setParameters(self, line):
-        from core.CCP4Utils import interpretPath
         self.fileName = interpretPath(line[2:].strip())
         return CErrorReport()
     
@@ -720,7 +719,6 @@ class CComTemplateMtzLabel(CComTemplateElement):
         return text,errorReport
 
 #===========================================================================================
-import unittest
 def TESTSUITE():
     suite = unittest.defaultTestLoader.loadTestsFromTestCase(testComTemplate)
     #suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testQObject))
@@ -734,8 +732,6 @@ def testModule():
 class testComTemplate(unittest.TestCase):
 
     def makeContainer(self):    
-        from core import CCP4Container
-        from core.CCP4Utils import getCCP4I2Dir
         c = CCP4Container.CContainer()
         c.loadContentsFromXml(os.path.join(getCCP4I2Dir(),'test','data','test_com_template_1.def.xml'))
         c.loadDataFromXml(os.path.join(getCCP4I2Dir(),'test','data','test_com_template_1.params.xml'))
