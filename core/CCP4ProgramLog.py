@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4ProgramLog.py: CCP4 GUI Project
      Copyright (C) 2011 University of York
@@ -17,21 +15,18 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Aug 2011 - Separate ProgramLog from ErrorHandling
 """
+
 import sys
 import time
 import traceback
 
-from core.CCP4Config import QT
-if QT():
-    from core.CCP4QtObject import CObject
-else:
-    from core.CCP4Object import CObject
-from core.CCP4ErrorHandling import *
+from PySide2 import QtWidgets
+
+from .CCP4ErrorHandling import *
+from .CCP4QtObject import CObject
 
 
 class CProgramLog(CErrorReport, CObject):
@@ -69,6 +64,5 @@ def showTrace(messageBox=False, title="Crash report"):
         err = err + '    ' + str(s[3]) + '\n'
     print(err)
     if messageBox and GRAPHICAL():
-        from PySide2 import QtGui, QtWidgets
         QtWidgets.QMessageBox.critical(self, title, title + ":\n"+str(exc_type) + '\n' + str(exc_value) + '\n' + err)
 
