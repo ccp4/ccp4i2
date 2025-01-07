@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4PluginScript.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -17,11 +15,9 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-'''
    Liz Potterton - May 2010 - plugin script base class
-'''
+"""
 
     # All classes are subclassed from CObject which is sub-class of QtCore.QObject that supports
     # signal-slot mechanism or a CCP4 minimal alternative
@@ -31,17 +27,32 @@ import re
 import sys
 import glob
 import copy
-import types
+import traceback as traceback_module
 import shutil
 import functools
-from core.CCP4Config import QT, XMLPARSER, DEVELOPER, PATH
-if QT():
-    from PySide2 import QtCore
-    from core.CCP4QtObject import CObject
-else:
-    from core.CCP4Object import CObject
-from core.CCP4ErrorHandling import *
-from core import CCP4Modules
+import unittest
+
+from lxml import etree
+from PySide2 import QtCore, QtWidgets
+
+from . import CCP4ComTemplate
+from . import CCP4Container
+from . import CCP4Data
+from . import CCP4File
+from . import CCP4ModelData
+from . import CCP4Modules
+from . import CCP4PerformanceData
+from . import CCP4ProjectsManager
+from . import CCP4TaskManager
+from . import CCP4Utils
+from . import CCP4XtalData
+from ..dbapi import CCP4DbApi
+from ..qtcore import CCP4Export
+from ..utils import dictionaryAccumulator
+from ..utils import startup
+from .CCP4ErrorHandling import *
+from .CCP4QtObject import CObject
+
 
 class CPluginScript(CObject):
 
@@ -205,7 +216,6 @@ class CPluginScript(CObject):
         self._command = command
 
     def modifyCootBat(self, cootBat):
-        from core import CCP4Utils
         if not os.path.splitext(cootBat)[1] == '.bat' or not os.path.exists(cootBat):
             return None
         text = CCP4Utils.readFile(cootBat)
@@ -268,7 +278,6 @@ class CPluginScript(CObject):
             else:
                 return self._workDirectory
         else:
-            from core import CCP4Utils
             tmpDir = CCP4Utils.getTestTmpDir()
             jobDirList = glob.glob(os.path.join(tmpDir, 'CCP4_JOBS', 'job_*'))
             num = 0
@@ -345,7 +354,6 @@ class CPluginScript(CObject):
         return self._programVersions
 
     def setProgramVersion(self, searchString=None):
-        from core import CCP4Utils
         if searchString is None and self.TASKCOMMAND is not None:
             searchString = self.TASKCOMMAND
         if self._myProgramVersion is None and searchString is not None:
@@ -492,7 +500,6 @@ class CPluginScript(CObject):
 
     def makeContainer(self):
         # Make a skeleton container
-        from core import CCP4Container
         self.container = CCP4Container.CContainer(parent=self)
         for item in ['inputData', 'controlParameters', 'outputData']:
             subContainer = CCP4Container.CContainer(name=item)
@@ -500,11 +507,9 @@ class CPluginScript(CObject):
         self.container.addHeader()
 
     def loadContentsFromXml(self, name=None, version=None):
-        from core import CCP4Container
         myErrorReport = CException()
         #try:
         if 1:
-            from core import CCP4TaskManager
             defFile = CCP4TaskManager.TASKMANAGER().lookupDefFile(name=name, version=version)
         #except:
         #  defFile = None
@@ -536,9 +541,6 @@ class CPluginScript(CObject):
 
     def getProjectDefaultParameters(self, taskName=None, paramsList=[], version=None):
         #Create a container with parameters for taskName and remove all not in paramsList
-        from core import CCP4TaskManager
-        from core import CCP4Container
-        from core import CCP4File
         myErrorReport = CException()
         # Load a full definition of the task to container
         defContainer = CCP4Container.CContainer()
@@ -638,7 +640,6 @@ class CPluginScript(CObject):
           Ensure that where output data is a file name
           there is a sensible name - or create one
         '''
-        from core import CCP4File
         myErrorReport = CErrorReport()
         if container is None:
             container = self.container
@@ -687,8 +688,6 @@ class CPluginScript(CObject):
         '''
         Add a text string or a list of text strings to the command script
         '''
-        from core import CCP4Data
-        from core import CCP4Utils
         myErrorReport = CErrorReport()
         if clear:
             self.commandScript = []
@@ -741,7 +740,6 @@ class CPluginScript(CObject):
 
     def appendCommandLine(self, wordList=[], clear=False):
         ''' Add a text string or a list of text strings to the command line '''
-        from core import CCP4Data
         myErrorReport = CErrorReport()
         if clear:
             self.clearCommandLine()
@@ -789,7 +787,6 @@ class CPluginScript(CObject):
 
     def writeCommandFile(self, qualifier=None):
         ''' Convert the list of lines from self.commandScript to a command file '''
-        from core import CCP4Utils
         if len(self._makeHklinInput) > 1:
             for idx in range(len(self._makeHklinInput) - 1, -1, -1):
                 self.commandScript.insert(0, self._makeHklinInput[idx] + '\n')
@@ -949,11 +946,9 @@ class CPluginScript(CObject):
     def makeCommandAndScript(self, container=None):
         ''' Convert the parameters into program command line and script
         If COMTEMPLATE is set then try using the template to create command file '''
-        from core import CCP4ComTemplate
         if container is None:
             container = self.container
         if self.COMTEMPLATEFILE != None:
-            from core.CCP4Utils import interpretFile      # KJS : hmmmmm . I can't find interpretFile anywhere.
             fileName = interpretFile(self.COMTEMPLATEFILE)   # Ok, this looks broken. COMTEMPxxFILE seems not to be used anywhere.
             if not os.path.exists(fileName):                  # & this looks like it will crash if it is.
                 self.appendErrorReport(14, fileName)
@@ -1032,8 +1027,7 @@ class CPluginScript(CObject):
         #print 'CPluginScript.reportStatus',self.objectName(),finishStatus,updateDb,self._dbHandler
         if traceback:
             print('\n*Traceback from CPluginScript.reportStatus after error in a script*\n')
-            import traceback
-            traceback.print_exc()
+            traceback_module.print_exc()
             print('\n')
         #,updateDb,self._dbHandler,self._dbJobId,self.container.guiAdmin.dataOrder()
         #if self.container is not None: self.saveParams(finishStatus=finishStatus)
@@ -1060,7 +1054,6 @@ class CPluginScript(CObject):
         return finishStatus
 
     def setOutputFileContentFlags(self):
-        from core import CCP4File
         keyList = self.container.outputData.dataOrder()
         for key in keyList:
             obj0 = self.container.outputData.__getattr__(key)
@@ -1108,7 +1101,6 @@ class CPluginScript(CObject):
             return CPluginScript.SUCCEEDED, exitStatus, exitCode
 
     def mergeLogFiles(self):
-        from core import CCP4Utils
         logFile = self.makeFileName('LOG')
         if os.path.exists(logFile):
             if len(self._makeHklinInput) > 1:
@@ -1141,7 +1133,6 @@ class CPluginScript(CObject):
                 return False
 
     def logFileText(self):
-        from core import CCP4Utils
         logFile = self.makeFileName('LOG')
         try:
             logText = CCP4Utils.readFile(logFile)
@@ -1198,7 +1189,6 @@ class CPluginScript(CObject):
             plugin = CPluginScript(parent=self, name=name, workDirectory=workDir, dummy=True)
             #print 'makePluginObject dummy',plugin
         else:
-            from core import CCP4TaskManager
             cls = CCP4TaskManager.TASKMANAGER().getPluginScriptClass(pluginName)
             #print 'makePluginObject cls',pluginName,type(pluginName),cls,name,workDir
             if cls is None:
@@ -1250,7 +1240,6 @@ class CPluginScript(CObject):
                                             dbOutputData=self.getDbOutputData)
 
     def saveParams(self, finishStatus=None):
-        from core import CCP4Utils
         fileName = self.makeFileName('PARAMS')
         if os.path.exists(fileName):
             backup = CCP4Utils.backupFile(fileName, delete=True)
@@ -1293,7 +1282,6 @@ class CPluginScript(CObject):
 
     def convertInputMiniMtzs(self):
         #Do any of the input miniMTZs need content conversion?
-        from core import CCP4XtalData
         ret = {}
         for key in self.container.inputData.dataOrder():
             obj = self.container.inputData.get(key)
@@ -1539,7 +1527,6 @@ class CPluginScript(CObject):
         return
 
     def joinMtz(self, outfile, infiles):
-        from core import CCP4Utils
         error = CErrorReport()
         logFile = self.makeFileName('LOG', qualifier='mtzjoin')
         if sys.platform == 'win32':
@@ -1583,7 +1570,6 @@ class CPluginScript(CObject):
         if(len(infiles)==1):
             outfile.set(infiles[0])
             return CPluginScript.SUCCEEDED, None
-        from core import CCP4Utils
         error = CErrorReport()
         
         outfile_string = outfile.fullPath.__str__()
@@ -1592,7 +1578,6 @@ class CPluginScript(CObject):
             for dict in infiles:
                input_cif_list.append(dict.fullPath.__str__())
 
-            from ccp4i2.utils import dictionaryAccumulator
             dictionaryAccumulator.accumulate(input_cif_list,outfile_string)
             
             if not os.path.exists(outfile_string):
@@ -1680,7 +1665,6 @@ class CPluginScript(CObject):
         return error
 
     def splitHkloutList(self, miniMtzsOut=[], programColumnNames=[], outputBaseName=[], outputContentFlags=[], infileList=[], logFile=None):
-        from core import CCP4File
         error = CErrorReport()
         fileTypeLabels = []
         guiLabels = []
@@ -1726,7 +1710,6 @@ class CPluginScript(CObject):
 
     def splitMtz(self, infile, outfiles, logFile=None):
         print('CPluginScript.splitMtz', infile, outfiles)
-        from core import CCP4Utils
         if logFile is None:
             logFile = self.makeFileName('LOG', qualifier='mtzsplit')
         bin = os.path.join(CCP4Utils.getOSDir(), 'bin', 'cmtzsplit')
@@ -1765,7 +1748,6 @@ class CPluginScript(CObject):
             return CPluginScript.FAILED
 
     def timedCallback(self, timeout=60.0, handler=None, singleShot=True):
-        from PySide2 import QtCore
         t = QtCore.QTimer(self)
         t.setSingleShot(singleShot)
         t.setInterval(int(timeout*1000.0))
@@ -1779,7 +1761,6 @@ class CPluginScript(CObject):
 
     def removeTimedCallback(self, timerId):
         #print 'CPLuginScript.removeTimedCallback'
-        from PySide2 import QtCore
         timerList = self.findChildren(QtCore.QTimer)
         for timer in timerList:
             if timer.timerId() == timerId:
@@ -1791,7 +1772,6 @@ class CPluginScript(CObject):
 
     @QtCore.Slot()
     def cleanupTimer(self):
-        from PySide2 import QtCore
         timerList = self.findChildren(QtCore.QTimer)
         for timer in timerList:
             if not timer.isActive():
@@ -1799,7 +1779,6 @@ class CPluginScript(CObject):
                 timer.deleteLater()
 
     def fileWatcher(self):
-        from PySide2 import QtCore
         if (not hasattr(self, "fileSystemWatcher")) or self.fileSystemWatcher is None:
             self.fileSystemWatcher = QtCore.QFileSystemWatcher(parent=self)
             if CCP4Modules.PREFERENCES().FILESYSTEMWATCHERPOLLER:
@@ -1866,7 +1845,6 @@ class CPluginScript(CObject):
 
     def displayEditor(self):
         #print 'displayEditor',self.commandScript
-        from PySide2 import QtGui, QtWidgets, QtCore
         if self.mainWindow is None:
             self.mainWindow = QtWidgets.QDialog()
             self.mainWindow.setModal(True)
@@ -1938,7 +1916,6 @@ class CPluginScript(CObject):
 
     def mergeDictToProjectLib(self, fileName=None, overwrite=False):
         #print 'CPluginScript.mergeDictToProjectLib',fileName
-        from core import CCP4ModelData
         libFile = CCP4ModelData.CDictDataFile()
         #print 'CPluginScript.mergeDictToProjectLib',libFile,fileName
         libFile.setFullPath(libFile.defaultProjectDict(projectId=self.projectId()))
@@ -1949,7 +1926,6 @@ class CPluginScript(CObject):
 
 
     def assertSame(self, otherContainer, diagnostic=False):
-        from core import CCP4PerformanceData
         # Compare result of an instance of this task with another instance of the same task
         report = CErrorReport()
         # Loop over the objects that would be saved to database and create error report of all objects
@@ -1981,7 +1957,6 @@ class CPluginScript(CObject):
         return report
 
     def createWarningsXML(self, logfiles=[]):
-        from lxml import etree
         """
         This is an example which works well with refmac logfiles containing ATTENTION,WARNING,ERROR. 
         And at time of writing it is only called from derived prosmart_refmac plugin.
@@ -2038,7 +2013,6 @@ class CDatabaseHandler:
         self.subJobList = []
 
     def openDb(self):
-        from dbapi import CCP4DbApi
         #print 'CDatabaseHandler.openDb CCP4DbApi.CDbApi.insts',CCP4DbApi.CDbApi.insts
         try:
             if CCP4DbApi.CDbApi.insts is None:
@@ -2063,7 +2037,6 @@ class CDatabaseHandler:
                 return True
 
     def createJob(self, taskName, parentJobId=None, jobNumber=None, status='Running', jobTitle=None):
-        from dbapi import CCP4DbApi
         if status in CCP4DbApi.JOB_STATUS_TEXT:
             stat = CCP4DbApi.JOB_STATUS_TEXT.index(status)
         else:
@@ -2074,7 +2047,6 @@ class CDatabaseHandler:
         return jobId
 
     def updateJobStatus(self, jobId=None, status=None, finishStatus=None, container=None, dbOutputData=None):
-        from dbapi import CCP4DbApi
         if status is None and finishStatus is not None:
             if isinstance(finishStatus, dict):
                 finishStatus = finishStatus.get('finishStatus')
@@ -2105,7 +2077,6 @@ class CDatabaseHandler:
             print(e)
 
     def recordInputFilesToDb(self, jobId=None, container=None):
-        from dbapi import CCP4DbApi
         # Delete any previous recorded fileUses
         self.db.deleteFileUses(jobId=jobId)
         e = self.db.gleanJobFiles(jobId=jobId, container=container, roleList=[CCP4DbApi.FILE_ROLE_IN])
@@ -2119,7 +2090,6 @@ class CInternalPlugin(CPluginScript):
     ERROR_CODES = {101 : { 'description' : 'No jobId or projectId provided to internal plugin'}}
 
     def __init__(self, parent=None, jobId=None, projectId=None, jobTitle=None, **kw):
-        from dbapi import CCP4DbApi
         db = CCP4Modules.PROJECTSMANAGER().db()
         if jobId is None:
             if projectId is None:
@@ -2167,7 +2137,6 @@ class CRunPlugin(CObject):
         elif comFilePath is not None:
             self.masterWorkDir = os.path.split(comFilePath)[0]
         else:
-            #import tempfile
             #self.masterWorkDir = tempfile.mkdtemp(suffix='.ccp4i2_temp')
             # Need a definitely path name for remote running to find the program.xml
             # remove '_setup.ccp4db.zip' from compressed file name
@@ -2182,7 +2151,6 @@ class CRunPlugin(CObject):
         self.db = None
 
     def unCompressFile(self):
-        from qtcore import CCP4Export
         self.importThread = CCP4Export.ImportProjectThread(self, projectDir=os.path.join(self.masterWorkDir, 'project'), compressedFile=self.compressedFile)
         self.importThread.run()
         if len(self.importThread.errReport) > 0:
@@ -2200,8 +2168,6 @@ class CRunPlugin(CObject):
         # This code is currently unused and would only be used if running a job remotely
         # in which case we need a temporary db
         # BEWARE should only ever have one CDbXml at a time as it creates temporary tables
-        from utils import startup
-        from dbapi import CCP4DbApi
         dotDir = os.path.join(self.masterWorkDir, 'dotCCP4I2')
         if os.path.exists(dotDir):
             shutil.rmtree(dotDir)
@@ -2231,15 +2197,12 @@ class CRunPlugin(CObject):
         #print 'CRunPlugin.setupDatabase',self.db
         if self.db is not None:
             return
-        from utils import startup
         pm = startup.startProjectsManager()
         #print 'CRunPlugin.setupDatabase pm',pm,pm.db()
         self.db = pm.db()
         self.db.setDiagnostic(False)
 
     def compressJobData(self, jobNumber=None):
-        from qtcore import CCP4Export
-        from PySide2 import QtCore
         path,base= os.path.split(self.compressedFile)
         splitBase = base.split('.')
         if splitBase[0][-6:] == '_setup':
@@ -2274,7 +2237,6 @@ class CRunPlugin(CObject):
         self.emitFinishedSignal(0)
 
     def setupCom(self):
-        from core import CCP4File
         # Slight kludge -- assume control file is in the work directory
         #print 'CRunPlugin.setupComAndLog',self.comFilePath
         self.workDirectory = os.path.split(self.comFilePath)[0]
@@ -2283,8 +2245,6 @@ class CRunPlugin(CObject):
         #print 'CRunPlugin.setupComAndLog self.comFile.header',self.comFile.header
 
     def setupLog(self, fileName=None):
-        from core import CCP4File
-        from core import CCP4Utils
         if fileName is None:
             fileName = os.path.join(self.workDirectory, 'diagnostic.xml')
         CCP4Utils.backupFile(fileName, delete=True)
@@ -2297,7 +2257,6 @@ class CRunPlugin(CObject):
         self.logFile.header.function.set('LOG')
 
     def run(self, ifTrapErrors=True):
-        from core import CCP4TaskManager
         self.plugin = None
         self._dbHandler = None
         self.jobNumber = None
@@ -2405,7 +2364,6 @@ class CRunPlugin(CObject):
         # Early error means we never created a plugin so need to report error
         maxSeverity = self.errorReport.maxSeverity()
         #print 'CRunPlugin.run maxSeverity',maxSeverity
-        from dbapi import CCP4DbApi
         status = CCP4DbApi.JOB_STATUS_FAILED
         #print self.errorReport.report()
         #print 'CRunPlugin.run maxSeverity',maxSeverity,'status',status
@@ -2452,7 +2410,6 @@ class CRunPlugin(CObject):
         # Save file as flag to remote polling mechanism that job completed
         # only write this after all other big files written
         #print 'writeFinishedFlagFile',filename
-        from core import CCP4Utils
         # beware ccp4db.zip files are all in a tmp directory so need to distinguish project/job
         if filename.count('ccp4db'):
             filename = os.path.join(os.path.split(filename)[0], os.path.split(filename)[1][0:-17] + '.FINISHED')
@@ -2463,7 +2420,6 @@ class CRunPlugin(CObject):
         self.emitFinishSignal(0)
 
     def makeLog(self):
-        from lxml import etree
         progTree = etree.Element('programVersions')
         try:
             progVersions = self.plugin.getProgramVersions()
@@ -2498,7 +2454,6 @@ class CRunPlugin(CObject):
             pass
         if self._dbHandler is None:
             return
-        from core import CCP4ProjectsManager
         purger = CCP4ProjectsManager.CPurgeProject(projectId=self._dbHandler.projectId, db=self._dbHandler.db)
         if hasattr(self,'projectDirectory'):
             purger.projectInfo['projectdirectory'] = self.projectDirectory
@@ -2517,18 +2472,15 @@ class CRunPlugin(CObject):
 #===========================================================================================
 # NB Need to run wrapper/mtzdump pipelines/demo_copycell tests to test running process
 
-import unittest
 
 class testCPluginScript(unittest.TestCase):
 
     def setUp(self):
-        from core import CCP4File
         self.app = CCP4Modules.QTAPPLICATION()
         self.script = CPluginScript(name='test_CPluginScript', parent=self.app, workDirectory='/foo/bar')
         self.hklin = CCP4File.CDataFile(project='CCP4I2_TOP', relPath='test/data', baseName='1df7.pdb')
 
     def test1(self):
-        from core import CCP4Utils
         self.script.appendCommandLine(['HKLIN', str(self.hklin)])
         self.script.appendCommandLine(['test', 1])
         filePath = os.path.join(CCP4Utils.getCCP4I2Dir(), 'test', 'data', '1df7.pdb')
@@ -2536,7 +2488,6 @@ class testCPluginScript(unittest.TestCase):
         self.assertEqual(self.script.commandLine,['HKLIN', filePath, 'test', '1'], 'Error in appendCommandLine')
 
     def test2(self):
-        from core import CCP4Utils
         filePath = os.path.join(CCP4Utils.getCCP4I2Dir(), 'test', 'data', '1df7.pdb')
         comFile = self.script.makeFileName('COM')
         comText = '''TEST 1
