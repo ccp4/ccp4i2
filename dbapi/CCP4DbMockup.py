@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4DbMackup.py: CCP4 GUI Project
      Copyright (C) 2012 STFC
@@ -17,13 +15,15 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton June 2012 - create and benchmark mock database
 """
 
-from dbapi import CCP4DbApi,CCP4ModelData,CCP4XtalData
+import os
+
+from . import CCP4DbApi
+from ..core import CCP4ModelData, CCP4XtalData
+
 
 class BuildDb:
 
@@ -135,7 +135,6 @@ class BuildDb:
       
 
 def makeDb():
-  import os
   try:
     os.remove('/Users/lizp/Desktop/mockDb.sqlite')
     os.remove('/Users/lizp/Desktop/mockDb.xml')
