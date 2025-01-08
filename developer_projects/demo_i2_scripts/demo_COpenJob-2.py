@@ -1,10 +1,16 @@
-from __future__ import print_function
+import sys
+import os
+import shutil
+
+from ...core import CCP4Modules
+from ...core.CCP4DataManager import DATAMANAGER
+from ...dbapi import CCP4DbUtils
+from ...utils.startup import setupEnvironment, setupPythonpath, startProjectsManager, startJobController
+
 
 # Run with 
 # CCP4I2_TOP=$CCP4/share/ccp4i2 $CCP4/share/ccp4i2/bin/pyi2 pathto/demo_i2_scripts/demo_COpenJob-2.py
 
-import sys,os,shutil
-from PyQt4 import QtCore
 
 def bootI2(dbDir):
   # Bootstrap ccp4i2 environment - mimics the gui side but without actual graphics
@@ -15,10 +21,8 @@ def bootI2(dbDir):
   
   ccp4i2_top = os.environ['CCP4I2_TOP']
   sys.path.append(os.path.join(ccp4i2_top,'utils'))
-  from startup import setupEnvironment,setupPythonpath,startProjectsManager,startJobController
   setupEnvironment()
   setupPythonpath(top=ccp4i2_top,mode='qtcore')
-  from core import CCP4Modules 
   app = CCP4Modules.QTAPPLICATION(graphical=False)
   pm = startProjectsManager(dbFileName=dbFile)
   pm.startCheckForFinishedJobs()
@@ -26,14 +30,12 @@ def bootI2(dbDir):
   jc.setDiagnostic(True)
   if dbFile is not None: jc.setDbFile(dbFile)
   pm.doCheckForFinishedJobs.connect(pm.checkForFinishedJobs)
-  from core.CCP4DataManager import DATAMANAGER
   DATAMANAGER().buildClassLookup()
   return app
 
 class Runner:
   def __init__(self,projectName,projectPath,sourceList):
     # Create a project
-    from core import CCP4Modules
     if os.path.exists(projectPath): shutil.rmtree(projectPath)
     self.projectId =  CCP4Modules.PROJECTSMANAGER().createProject(projectName='myproject',projectPath=projectPath)
     print('projectId',self.projectId)
@@ -41,7 +43,6 @@ class Runner:
     self.jobIndex = -1
 
   def run(self):
-    from core import CCP4Modules
     CCP4Modules.PROJECTSMANAGER().db().jobFinished.connect(runner.handleJobFinished)
     self.runJob()
 
@@ -54,7 +55,6 @@ class Runner:
       self.runJob()
 
   def runJob(self):
-    from dbapi import CCP4DbUtils
     self.jobIndex = self.jobIndex + 1
     # Create instance of COpenJob which will create/run a job for us
     self.jobHandler = CCP4DbUtils.COpenJob(projectId=self.projectId)
