@@ -1,7 +1,9 @@
-from __future__ import print_function
+import os
+import unittest
 
+from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Utils import getCCP4I2Dir
 
-from core.CCP4PluginScript import CPluginScript
 
 class refmac_wrk( CPluginScript ) :
 
@@ -17,8 +19,6 @@ class refmac_wrk( CPluginScript ) :
       par = self.container.controlParameters
       out = self.container.outputData
 
-      from core import CCP4Utils
-      import os
 #     self.path_wrk = str( self.getWorkDirectory() )
 #     self.path_scr = os.path.join( self.path_wrk, 'scratch' )
 #     os.mkdir( self.path_scr )
@@ -437,8 +437,6 @@ class refmac_wrk( CPluginScript ) :
       return 0
 
 # -----------------------------------------------------------------------------------
-import unittest
-
 class testRefmac( unittest.TestCase ) :
 
 #  def setUp( self ) :
@@ -473,10 +471,6 @@ class testRefmac( unittest.TestCase ) :
       self._pattern( 9 )
 
    def _pattern( self, no ) :
-
-      from core.CCP4Utils import getCCP4I2Dir
-      import os
-
       xmlInput = os.path.join( getCCP4I2Dir(), 'wrappers', 'refmac_wrk', 'test_data', 'test'+str(no)+'.params.xml' )
       self.wrapper = refmac_wrk( name='job' )
       self.wrapper.container.loadDataFromXml( xmlInput )
