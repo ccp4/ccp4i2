@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4Dbutils.py: CCP4 GUI Project
      Copyright (C) 2011 University of York
@@ -17,26 +15,31 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Mar 2011 - utilities for working with CCP4DbApi
 """
 
-import os
 import copy
-import shutil
-import glob
 import functools
+import glob
+import os
+import shutil
 
-from PySide2 import QtCore
 from lxml import etree
+from PySide2 import QtCore
 
-from core import CCP4Data
-from dbapi import CCP4DbApi
-from core.CCP4Config import *
-from core.CCP4Modules import PROJECTSMANAGER, TASKMANAGER, JOBCONTROLLER, WORKFLOWMANAGER
-from core.CCP4ErrorHandling import *
+from . import CCP4DbApi
+from ..core import CCP4Annotation
+from ..core import CCP4Container
+from ..core import CCP4Data
+from ..core import CCP4File
+from ..core import CCP4Modules
+from ..core import CCP4TaskManager
+from ..core import CCP4Utils
+from ..core.CCP4Config import *
+from ..core.CCP4ErrorHandling import *
+from ..core.CCP4Modules import PROJECTSMANAGER, TASKMANAGER, JOBCONTROLLER, WORKFLOWMANAGER
+
 
 class COpenJob(QtCore.QObject):
 
@@ -233,7 +236,6 @@ class COpenJob(QtCore.QObject):
         return rv
 
     def copyInputFiles(self,container, sourceProjectDir):
-        from core import CCP4File
         errorReport = CErrorReport()
         for key in container.dataOrder():
             obj0 = container.__getattr__(key)
@@ -278,7 +280,6 @@ class COpenJob(QtCore.QObject):
                         PROJECTSMANAGER().db().createFile(jobId=self.jobId,projectId=self.projectId,fileObject=fileObj,sourceFileName=fileInfo.get('sourcefilename',None))
 
     def setInputByContextJob(self,contextJobId=None):
-        from core import CCP4File
         #Loop over inputData files to pull best file of type from database
         db = PROJECTSMANAGER().db()
         for key in self.__dict__['container'].inputData.dataOrder():
@@ -313,7 +314,6 @@ class COpenJob(QtCore.QObject):
                                                     'subType' :fileInfo['filesubtype'] } )
 
     def createContainer(self, taskName=None, taskVersion=None):
-        from core import CCP4Container
         defFile = TASKMANAGER().lookupDefFile(taskName,taskVersion)
         if defFile is None:
             return CErrorReport(self.__class__,104,str(taskName)+' '+str(taskVersion))
@@ -385,7 +385,6 @@ class COpenJob(QtCore.QObject):
         else:
             jobDir = PROJECTSMANAGER().jobDirectory(jobId=self.jobId,create=False)
             if jobDir is not None:
-                from core import CCP4Utils
                 CCP4Utils.saveFile( os.path.join(jobDir,'INTERRUPT'),'Signal to interrupt job')
         return CErrorReport()
 
@@ -401,7 +400,6 @@ class COpenJob(QtCore.QObject):
         return CErrorReport()
 
     def saveParams(self, fileName=None):
-        from core import CCP4File
         if self.__dict__['jobId'] is None:
             return CErrorReport(self.__class__,102)
         if self.__dict__['container'] is None:
@@ -446,8 +444,6 @@ class CCP4SimpleDatabase(CCP4Data.CData):
                    102 : {'description' : 'Error initialising database'},}
 
     def __init__(self): # KJS : This is badly broken. Suspect it's never actually used. 
-        from core import CCP4Utils
-        from core import CCP4Annotation
         userId = CCP4Annotation.CUserAddress()
         userId.setCurrent()
         userName = str(userId.userId)
@@ -508,7 +504,6 @@ class CProjectDirToDb:
         self.saveEtree(xmlFile)
 
     def createEtree(self,projectDirectory):
-        from core import CCP4Utils
         root = etree.Element('root')
         ele =  etree.Element('projectname')
         ele.text = self.projectName
@@ -525,7 +520,6 @@ class CProjectDirToDb:
         return root
 
     def saveEtree(self,fileName):
-        from core import CCP4File
         f = CCP4File.CI2XmlDataFile(fullPath=fileName)
         f.header.setCurrent()
         f.header.function.set('PROJECTDATABASE')
@@ -538,7 +532,6 @@ class CProjectDirToDb:
 
     def globJobs(self,dir,parentJobNumber=None,parentJobId=None):
         print('Loading from:',dir,'parentJob:',parentJobNumber,parentJobId)
-        from core import CCP4Container,CCP4File,CCP4TaskManager
         jobDirList = glob.glob(os.path.join(dir,'job_*'))
         jobDirList.sort(cmp=functools.cmp_to_key(compareJobNumber))
         #print 'CProjectDirToDb.globJobs sorted',jobDirList
@@ -584,7 +577,6 @@ class CProjectDirToDb:
         return paramsFile
 
     def getJobTree(self, header, container, parentJobId=None):
-        from core import CCP4File
         job = etree.Element('job')
         for item,name  in [['jobId', 'jobid'], ['jobNumber', 'jobnumber'], ['pluginName', 'taskname'],
                            ['creationTime', 'creationtime'], ['creationTime', 'finishtime']]:
@@ -685,7 +677,6 @@ class CMakeProjectDbXml(QtCore.QThread):
         return len(jobDirList)
 
     def saveXmlFile(self, xmlFile=None):
-        from core import CCP4File
         if xmlFile is None:
             xmlFile = self.projectDir+'.ccp4db.xml'
         body = etree.Element('ccp4i2_body')
@@ -733,7 +724,6 @@ class CMakeProjectDbXml(QtCore.QThread):
         backup = None
         if jobNumber.count('.') == 0 and os.path.exists(os.path.join(jobDirectory,'job.ccp4db.xml')):
             try:
-                from core import CCP4File
                 backupObj = CCP4File.CI2XmlDataFile(os.path.join(jobDirectory,'job.ccp4db.xml'))
                 backup = backupObj.getBodyEtree()
             except:
@@ -782,7 +772,6 @@ class CMakeProjectDbXml(QtCore.QThread):
 
     def loadJobParams(self,jobId=None,jobDirectory=None,container=None,backup=None):
         #This closely parallels CDbApi.gleanJobFiles()
-        from core import CCP4File
         for subcontainer,file_role in [[container.inputData,CCP4DbApi.FILE_ROLE_IN],[container.outputData,CCP4DbApi.FILE_ROLE_OUT]]:
             keyList = subcontainer.dataOrder()
             print('loadJobParams keyList',repr(subcontainer),keyList)
@@ -974,13 +963,11 @@ class CMakeProjectDbXml(QtCore.QThread):
         ele.set('projectname',self.projectName)
         ele.set('projectdirectory',self.projectDir)
         ele.set('lastjobnumber',str(self.lastJobNumber))
-        from core import CCP4Utils
         userId = CCP4Utils.getUserId()
         if userId is not None: ele.set('username',userId)
         return ele
 
     def loadContainer(self,fileName):
-        from core import CCP4Container,CCP4File,CCP4TaskManager
         header = CCP4File.CI2XmlHeader()
         header.loadFromXml(fileName)
         #print 'CMakeProjectDbXml.loadContainer',header
@@ -1013,7 +1000,6 @@ class CJobDbBackup:
     # Backup file in job directory
 
     def __init__(self,jobId=None,jobNumber=None,taskName=None,jobDirectory=None,projectName=None,fileName=None,projectId=None):
-        from core import CCP4File
         self.jobId = jobId
         self._diagnostic = False
         if fileName is not None:
@@ -1254,7 +1240,6 @@ def testModule():
 class testMakeProjectDbXml(unittest.TestCase):
 
     def setUp(self):
-        from core import CCP4Utils,CCP4Modules
         self.TESTDBFILE = os.path.join(CCP4Utils.getTestTmpDir(),'CCP4DbApi.testsqlite.db')
         if os.path.exists(self.TESTDBFILE): os.remove(self.TESTDBFILE)
         # Create a temporary database (only used for getFileTypeId)
@@ -1271,8 +1256,6 @@ class testMakeProjectDbXml(unittest.TestCase):
 class testJobDbBackup(unittest.TestCase):
 
     def setUp(self):
-        from core import CCP4Utils
-        from dbapi import CCP4DbApi
         self.TESTDBFILE = os.path.join(CCP4Utils.getTestTmpDir(),'CCP4DbApi.testsqlite.db')
         self.db = CCP4DbApi.CDbApi(mode='sqlite',userName='me',userPassword='foo',fileName=self.TESTDBFILE)
         print('testJobDbBackup.setUp..')
