@@ -1,12 +1,22 @@
-from __future__ import print_function
+import functools
+import glob
+import os
+import shutil
+import time
 
-import os,shutil
-from dbapi import CCP4DbApi,CCP4DbUtils
-from core import CCP4File
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import PROJECTSMANAGER,TASKMANAGER,QTAPPLICATION,JOBCONTROLLER
-from core.CCP4QtObject import CObject
 from PySide2 import QtCore
+
+from . import CCP4DbApi
+from . import CCP4DbUtils
+from ..core import CCP4Config
+from ..core import CCP4File
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import *
+from ..core.CCP4Modules import PROJECTSMANAGER, QTAPPLICATION, JOBCONTROLLER
+from ..core.CCP4QtObject import CObject
+from ..qtcore import CCP4Export
+from ..utils import startup
+
 
 # Kick of from pyi2 prompt with something like..
 # import CCP4TestDb; t = CCP4TestDb.CTestDb(); t.createProject('simple1')
@@ -28,7 +38,6 @@ class CTestDb(CObject):
     self.projectIds = {}
     self.createProjectName = None
 
-    from utils import startup
     startup.startJobController()
     PROJECTSMANAGER().startCheckForFinishedJobs()    
     
@@ -48,7 +57,6 @@ class CTestDb(CObject):
         os.makedirs(masterDir)
         self.masterDir = masterDir
 
-    from core import CCP4Config
     for mode in ['1','2','3','4','5'][0:nDabases]:
       os.mkdir(self.projectsDir(mode))
       self.dbApi.openDb(self.sqliteFile(mode),createDb=True)      
@@ -93,7 +101,6 @@ class CTestDb(CObject):
  
 
   def runJobs(self,projectName=None,scriptName=None):
-    import glob,CCP4Utils
     self.jobObjList = []
     self.paramsFileList = glob.glob(os.path.join(CCP4Utils.getCCP4I2Dir(),'test','test_projects',scriptName,'*_input_params.xml'))
     if len(self.paramsFileList)==0:
@@ -154,7 +161,6 @@ class CTestDb(CObject):
     inputFilesList,inputFileIdList,fromJobIdList,errReport =  PROJECTSMANAGER().getJobInputFiles(projectDir=projectInfo['projectdirectory'],jobIdList=jobIdList,useDb=True)
     print('CTestDb.exportProject inputFilesList,fromJobIdList',inputFilesList,fromJobIdList)
     
-    import time,os
     dbxml = os.path.join( projectInfo['projectdirectory'],'CCP4_TMP','DATABASE'+str(int(time.time()))+'.db.xml')
     
     # exportProjectXml returns list of TOP-LEVEL jobNumbers for the export
@@ -167,9 +173,7 @@ class CTestDb(CObject):
         directoriesList = []
     else:
         directoriesList = ['CCP4_IMPORTED_FILES','CCP4_PROJECT_FILES']
-    from qtcore import CCP4Export
     self.exportThread = CCP4Export.ExportProjectThread(self,projectDir=projectInfo['projectdirectory'],dbxml=dbxml,target=compressedFile,jobList=jobNumberList,inputFilesList=inputFilesList,directoriesList=directoriesList)
-    import functools
     self.exportThread.finished.connect(functools.partial(self.exportProjectFinished,projectId,compressedFile))
     self.exportThread.start()
 
@@ -179,7 +183,6 @@ class CTestDb(CObject):
     self.exportProjectFinishedSignal.emit(projectId,compressedFile)
 
   def importProject(self,compressedFile,newProjectDir=None):
-    from dbapi import CCP4DbApi
     xmlFile = PROJECTSMANAGER().extractDatabaseXml(compressedFile)
     dbImport = CCP4DbApi.CDbXml(db=self.dbApi,xmlFile=xmlFile,diagnostic=False)
     importProjectInfo = dbImport.loadProjectInfo()
@@ -212,7 +215,6 @@ class CTestDb(CObject):
     # Flag imported files to be imported (there is no checking yet that they exist)
     dbImport.setExclImportedFiles()
 
-    from qtcore import CCP4Export   
     # Unpack project files from the tar file (possibly in separate thread) 
     # Pass import thread dbImport to enable query database and flagging loaded jobs/files
     self.importThread = CCP4Export.ImportProjectThread(self,projectDir=dirName,compressedFile=compressedFile,
@@ -252,7 +254,6 @@ class CTestDb(CObject):
       return
     diffs = CCP4File.compareEtreeNodes(node1,node2)
     if diffFile is not None:
-      from core import CCP4Utils
       CCP4Utils.saveFile(fileName=diffFile,text=diffs.report(),overwrite=1)
     for d in diffs:
       print(d)
@@ -260,7 +261,6 @@ class CTestDb(CObject):
   @QtCore.Slot(str,list)
   def test1Export(self,projectId,jobIdList=None):
     print('Exporting from ',self.currentDb,'projectId:',projectId)
-    from qtcore import CCP4Export
     self.exportProjectFinished.connect(self.test1Import)
     compressedFile = os.path.join(self.masterDir,'db1_export.'+CCP4Export.COMPRESSED_SUFFIX)
     try:
