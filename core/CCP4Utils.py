@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 """
      CCP4Utils.py: CCP4 GUI Project
      Copyright (C) 2001-2008 University of York, CCLRC
@@ -19,39 +16,40 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Jan 2010 - Copied from ccp4mg python/ui/utils.py and converted to Qt
 """
 
 import os
 import sys
 import re
-import types
-import pickle
 import time
 import glob
 import copy
 import shutil
 import tarfile
+import traceback
+import socket
+import getpass
+import tempfile
+import unittest
+import xml.etree.ElementTree as etree_xml
+
+import shiboken2
+from googlecode import diff_match_patch_py3
 from lxml import etree
-from core.CCP4Config import DEVELOPER
-from core.CCP4ErrorHandling import *
+from PySide2 import QtCore
+import win32file
+
+from . import CCP4Data
+from . import CCP4File
+from . import CCP4Modules
+from .CCP4Config import DEVELOPER
+from .CCP4ErrorHandling import *
+
 
 def writeXML(f,t):
-    if sys.version_info > (3,0):
-        f.write(t.decode("utf-8"))
-    else:
-        try:
-            f.write(t)
-        except:
-            exc_type, exc_value,exc_tb = sys.exc_info()[:3]
-            sys.stderr.write(str(exc_type)+'\n')
-            sys.stderr.write(str(exc_value)+'\n')
-            import traceback
-            traceback.print_tb(exc_tb)
-            sys.stdout.flush()
+    f.write(t.decode("utf-8"))
             
 
 class CUtils:
@@ -254,7 +252,6 @@ def parse_from_unicode(unicode_str,useLXML=True):
         s = unicode_str.encode('utf-8')
         return etree.fromstring(s, parser=utf8_parser)
     else:
-        import xml.etree.ElementTree as etree_xml
         return etree_xml.fromstring(unicode_str)
 
 def openFileToEtree(fileName=None, printout=False,useLXML=True):
@@ -289,7 +286,6 @@ def openFileToEtree(fileName=None, printout=False,useLXML=True):
 
 def getHostName():
     # From http://stackoverflow.com/questions/4271740/how-can-i-use-python-to-get-the-system-name
-    import socket
     if socket.gethostname().find('.') >= 0:
         name = socket.gethostname()
     else:
@@ -309,7 +305,6 @@ def getUserId():
     name = os.environ.get('USERNAME', None)
     if name is not None:
         return name
-    import getpass
     name = getpass.getuser()
     if name is not None:
         return name
@@ -366,7 +361,6 @@ def getHOME():
 def getTMP():
     # Return a temp directory
     #return os.path.join(getDotDirectory(),'tmp')
-    import tempfile
     return tempfile.gettempdir()
 
 def getTestTmpDir():
@@ -581,7 +575,6 @@ def globSearchPath(searchPath=[], cfile='*'):
 
 def importFileModule(pyFile, report=False):
     try:
-        import sys, os
         extraPath = os.path.split(pyFile)[0]
         sys.path.insert(0, extraPath)
         moduleName = os.path.splitext(os.path.basename(pyFile))[0]
@@ -624,12 +617,10 @@ def readTarGzip(fileName, destination=None):
 def getProgramVersion(programName, mode='version'):
     # Run CCP4 program with -i to get either explicit version info
     # or version as part of the program banner header which appears before program fails
-    from core import CCP4Modules
     bin = copy.deepcopy(programName)
     programName = programName.lower()
     logFile = makeTmpFile(extension='log')
     if programName == 'ccp4i2':
-        from core import CCP4File
         versionHeader = CCP4File.CI2XmlHeader()
         versionHeader.loadFromXml(os.path.join(getCCP4I2Dir(), 'core', 'version.params.xml'))
         if mode == 'version':
@@ -647,7 +638,6 @@ def getProgramVersion(programName, mode='version'):
     elif programName == 'python':
         return sys.version.split()[0]
     elif programName == 'qt':
-        from PySide2 import QtCore
         return QtCore.qVersion()
     elif programName == 'arp_warp':
         # Need to get the it exit
@@ -703,12 +693,10 @@ def listReMatch(lst,reExp):
     return locs, matches
 
 def isAlive(qobj):
-    import shiboken2
     return shiboken2.isValid(qobj)
 
 # Slightly modified from http://timgolden.me.uk/python/win32_how_do_i/see_if_two_files_are_the_same_file.html
 def get_read_handle(filename):
-    import win32file
     if os.path.isdir(filename):
         dwFlagsAndAttributes = win32file.FILE_FLAG_BACKUP_SEMANTICS
     else:
@@ -723,7 +711,6 @@ def get_read_handle(filename):
         None)
 
 def get_unique_id(hFile):
-    import win32file
     (attributes, created_at, accessed_at, written_at, volume, file_hi, file_lo, n_links, index_hi, index_lo) = win32file.GetFileInformationByHandle (hFile)
     return volume, index_hi, index_lo
 
@@ -860,12 +847,7 @@ def which(program, mode=os.F_OK | os.X_OK, path=None):
 def nonWhiteDifferences(file1, file2):
     retDiffs = []
     retCount = []
-    if sys.version_info > (3,0):
-        from googlecode import diff_match_patch_py3
-        dmp =  diff_match_patch_py3.diff_match_patch()
-    else:
-        from googlecode import diff_match_patch
-        dmp =  diff_match_patch.diff_match_patch()
+    dmp =  diff_match_patch_py3.diff_match_patch()
     
     text1= readFile(file1)
     text2 = readFile(file2)
@@ -888,7 +870,6 @@ def nonWhiteDifferences(file1, file2):
     return retDiffs
 
 #===================================================================================================
-import unittest
 def TESTSUITE():
     suite = unittest.defaultTestLoader.loadTestsFromTestCase(testEtreeTools)
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testFileOpen))
@@ -908,7 +889,6 @@ class testEtreeTools(unittest.TestCase):
  
     def test2(self):
         fileName = os.path.join(getTestTmpDir(),'CCP4Utils_test.def.xml')
-        from core import CCP4Data
         x = CCP4Data.CFloat(42,default=0)
         ele = x.getEtree()
         saveEtreeToFile(tree=ele,fileName=fileName)
