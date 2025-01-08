@@ -1,8 +1,11 @@
-from __future__ import print_function
-
-from report.CCP4ReportParser import *
+import os
 import sys
+
 from lxml import etree
+
+from ...core import CCP4Utils
+from ...report.CCP4ReportParser import *
+
 
 class refmac_martin_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -164,8 +167,7 @@ class refmac_martin_report(Report):
             outlierFold.append('<span style="font-size:110%">Residues failing one or more outlier test are flagged below with corresponding Z-score </span>')
             #identify a unique list of amino acids flagged by Refmac, and their associated set of deviations, flagged by the most deviant score observed
             naughtyBits = {}
-            from sets import Set
-            criteriaThatFail = Set()
+            criteriaThatFail = set()
             for outlierDictNode in outliersByCriteriaNodes[0]:
                 outliers = outlierDictNode.xpath('Outlier')
                 criteriaThatFail.add(outlierDictNode.tag)
@@ -276,7 +278,6 @@ class refmac_martin_report(Report):
         if xmlnode is None: xmlnode = self.xmlnode
         if jobInfo is None: jobInfo = self.jobInfo
         
-        from lxml import etree
         #I *do not know* why This is needed
         clearingDiv = parent.addDiv(style="clear:both;")
         
@@ -284,9 +285,7 @@ class refmac_martin_report(Report):
         pictureGallery = pictureFold.addObjectGallery(style='float:left;',height='450px', tableWidth='260px', contentWidth='450px')
         clearingDiv = parent.addDiv(style="clear:both;")
         jobDirectory = jobInfo['fileroot']
-        from core import CCP4Utils
         ccp4i2_root = CCP4Utils.getCCP4I2Dir()
-        import os
         baseScenePath = os.path.join(ccp4i2_root,'pipelines','prosmart_refmac','script','prosmart_refmac_1.scene.xml')
         monomerNodes = xmlnode.xpath('//RefmacWeight[1]/REFMAC/ModelComposition/Monomer')
         
@@ -394,7 +393,6 @@ class refmac_martin_report(Report):
         return table1
 
 def test(xmlFile=None,jobId=None,reportFile=None):
-    import sys,os
     print(xmlFile)
     try:
         text = open( xmlFile ).read()
@@ -407,5 +405,4 @@ def test(xmlFile=None,jobId=None,reportFile=None):
     r.as_html_file(reportFile)
 
 if __name__ == "__main__":
-    import sys
     refmac_martin_report(xmlFile=sys.argv[1],jobId=sys.argv[2])
