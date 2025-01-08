@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
     refmac.py: CCP4 GUI Project
     Copyright (C) 2010 University of York
@@ -19,9 +17,22 @@ from __future__ import print_function
     GNU Lesser General Public License for more details.
     """
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
+import os
+import sys
+import unittest
+
 from lxml import etree
+from pimple import MGQTmatplotlib
+import smartie
+
+from ...core import CCP4ErrorHandling
+from ...core import CCP4Utils
+from ...core import CCP4XtalData
+from ...core.CCP4ModelData import CPdbData
+from ...core.CCP4Modules import PROCESSMANAGER
+from ...core.CCP4PluginScript import CPluginScript
+from ...core.CCP4Utils import getCCP4I2Dir
+
 
 class refmac_martin(CPluginScript):
     
@@ -40,7 +51,6 @@ class refmac_martin(CPluginScript):
                     }
 
     def processInputFiles(self):
-        from core import CCP4XtalData
         error = None
         self.hklin = None
         dataObjects = []
@@ -55,7 +65,6 @@ class refmac_martin(CPluginScript):
             dataObjects += ['ABCD']
         
         #Apply coordinate selection if set
-        import os
         self.inputCoordPath = os.path.normpath(self.container.inputData.XYZIN.fullPath.__str__())
         if self.container.inputData.XYZIN.isSelectionSet():
             self.inputCoordPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'selected.pdb'))
@@ -72,7 +81,6 @@ class refmac_martin(CPluginScript):
     
     def processOutputFiles(self):
         #First up check for exit status of the program
-        from core.CCP4Modules import PROCESSMANAGER
         exitStatus = 0
         exitCode=0
         try:
@@ -91,12 +99,10 @@ class refmac_martin(CPluginScript):
             self.appendErrorReport(201,'Exit code: Unable to recover exitCode')
             return CPluginScript.FAILED
         if exitCode != 0:
-            from lxml import etree
             self.appendErrorReport(201,'Exit code: '+str(exitCode))
             return CPluginScript.FAILED
 
         #Now check if LIBOUT has been created
-        import os
         if os.path.isfile(str(self.container.outputData.LIBOUT.fullPath)):
             if self.container.controlParameters.MAKE_NEW_LIGAND_EXIT.isSet():
                 if self.container.controlParameters.MAKE_NEW_LIGAND_EXIT:
@@ -105,9 +111,6 @@ class refmac_martin(CPluginScript):
             else:
                 self.appendErrorReport(203,'Continuing')
 
-        from core import CCP4XtalData
-        from core import CCP4File
-        import os
         
         # Need to set the expected content flag  for phases data
         self.container.outputData.XYZOUT.annotation = 'Model from refinement'
@@ -130,7 +133,6 @@ class refmac_martin(CPluginScript):
             return CPluginScript.FAILED
         
         #Use Refmacs XMLOUT as the basis for output XML.  If not existent (probably due to failure), then create a new one
-        from core import CCP4Utils
         rxml = None
         try:
             rxml = CCP4Utils.openFileToEtree(str(self.container.outputData.XMLOUT.fullPath))
@@ -159,9 +161,7 @@ class refmac_martin(CPluginScript):
                     self.container.outputData.FINALRMSANGLE = float(node.text)
     
         #Perform analysis of output coordinate file composition
-        from lxml import etree
         if os.path.isfile(str(self.container.outputData.XYZOUT.fullPath)):
-            from core.CCP4ModelData import CPdbData
             aCPdbData = CPdbData()
             aCPdbData.loadFile(self.container.outputData.XYZOUT.fullPath)
             modelCompositionNode = etree.SubElement(rxml,'ModelComposition')
@@ -196,7 +196,6 @@ class refmac_martin(CPluginScript):
 
         linesRead = open(self.makeFileName('LOG')).readlines()
 
-        from lxml import etree
         lastCycleComplete = False
         parsingAlignment = False
         parsingOutliers = False
@@ -345,8 +344,7 @@ class refmac_martin(CPluginScript):
                         outlierNode.set(key,outlier[key])
 
     def listOfTransgressingSegments(self, outliersByCriteria):
-        from sets import Set
-        badResidueSet = Set()
+        badResidueSet = set()
         for key in list(outliersByCriteria.keys()):
             outlierDict = outliersByCriteria[key]
             outliers = outlierDict['Outliers']
@@ -369,13 +367,8 @@ class refmac_martin(CPluginScript):
             
             
     def scrapeSmartieGraphs(self, smartieNode):
-        import sys, os
-        from core import CCP4Utils
         smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
         sys.path.append(smartiePath)
-        import smartie
-        
-        from lxml import etree
         
         logfile = smartie.parselog(self.makeFileName('LOG'))
         for smartieTable in logfile.tables():
@@ -385,14 +378,12 @@ class refmac_martin(CPluginScript):
         return
     
     def xmlForSmartieTable(self, table, parent):
-        from pimple import MGQTmatplotlib
         tableetree = MGQTmatplotlib.CCP4LogToEtree(table.rawtable())
         parent.append(tableetree)
         return tableetree
 
 
     def makeCommandAndScript(self):
-        import os
         self.hklout = os.path.join(self.workDirectory,"hklout.mtz")
         # make refmac command script
         self.appendCommandLine(['XYZIN',self.inputCoordPath])
@@ -460,7 +451,6 @@ class refmac_martin(CPluginScript):
             labin = "LABIN FP=F SIGFP=SIGF"
 
         if self.container.inputData.ABCD.isSet():
-            from core import CCP4XtalData
             if  self.container.inputData.ABCD.contentFlag == CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL:
                 labin += " HLA=HLA HLB=HLB HLC=HLC HLD=HLD"
             else:
@@ -475,7 +465,6 @@ class refmac_martin(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def logToXML(self, refmacInProgressElement):
-        from lxml import etree
         nTLSCycles = 0
         nCGMATCycles = 0
         nCycles = 0
@@ -541,14 +530,10 @@ class refmac_martin(CPluginScript):
                 rmsBondsElement.text = ""
 
 #=============================================================================================
-import unittest
 class testRefmac(unittest.TestCase):
     
     def test1(self):
         # Test creation of log file using ../test_data/test1.params.xml input
-        from core.CCP4Utils import getCCP4I2Dir
-        from core import CCP4Utils
-        import os
         workDirectory = CCP4Utils.getTestTmpDir()
         logFile = os.path.join(workDirectory,'refmac_martin_test1.log')
         # Delete any existing log file
