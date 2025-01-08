@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
     CCP4DbApi.py: CCP4 GUI Project
      Copyright (C) 2011 University of York
@@ -16,31 +14,44 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Initially based on code from by George Pelios at Diamond - version from 15 July 2010
    Liz Potterton Mar 2011 - Imported into CCP4i2 and radically rewritten
 """
 
-import sqlite3
+from collections.abc import Callable
+import copy
+import functools
+import hashlib
 import os
 import re
-import types
+import shutil
+import sqlite3
 import sys
+import tempfile
+import time
 import traceback
-import copy
-if sys.version_info >= (3,7):
-    from collections.abc import Callable
-else:
-    from collections import Callable
+import unittest
+import uuid
 
+from lxml import etree
 from PySide2 import QtCore, QtSql
 
-from core import CCP4Config
-from core.CCP4ErrorHandling import *
-import collections
-from core.CCP4QtObject import CObject
+from . import CCP4DbUtils
+from ..core import CCP4Config
+from ..core import CCP4Container
+from ..core import CCP4Data
+from ..core import CCP4DataManager
+from ..core import CCP4File
+from ..core import CCP4ModelData
+from ..core import CCP4Modules
+from ..core import CCP4PerformanceData
+from ..core import CCP4TaskManager
+from ..core import CCP4Utils
+from ..core import CCP4XtalData
+from ..core.CCP4ErrorHandling import *
+from ..core.CCP4QtObject import CObject
+
 
 def isAlive(qobj):
   return True
@@ -375,7 +386,6 @@ class CDbApi(CObject):
         if CDbApi.insts is None:
             CDbApi.insts = self
         if mode is None or fileName is None:
-            from core import CCP4Config
             mode = CCP4Config.DBMODE()
             fileName = CCP4Config.DBFILE()
             if userName is None: userName =  CCP4Config.DBUSER()
@@ -383,17 +393,14 @@ class CDbApi(CObject):
         print('Current schema version:', self._schemaVersion)
         if fileName is  None:
             if mode in ['sqlite','qt_sqlite']:
-                from core import CCP4Utils
                 fileName = os.path.join(CCP4Utils.getDotDirectory(),'db','database.sqlite')
         if mode in ['qt_sqlite']:
             # Ensure there is a QApplication - otherwise database drivers don't load
-            from core import CCP4Modules
             try:
                 qApp = CCP4Modules.QTAPPLICATION()
             except:
                 raise CException(self.__class__,154)
         if userName is None:
-            from core import CCP4Utils
             userName = CCP4Utils.getUserId()
         self._projectList = []
         self._dbMode = mode
@@ -495,20 +502,17 @@ class CDbApi(CObject):
 
 
     def iAmUserAgent(self):
-        #from core.CCP4Config import VERSION
         #return 'CCP4i2 '+str(VERSION())
         return 1  # ccp4i2
 
     def loadSchema(self,fileName=None):
         if fileName is  None:
-            from core import CCP4Utils
             fileName = os.path.join(CCP4Utils.getCCP4I2Dir(),'dbapi','database_schema.sql')
         print('Loading database schema from:', fileName, 'Version:', self._schemaVersion)
         self.read(fileName=fileName)
         print('Finished loading database schema.')
 
     def getSchemaVersion(self, fileName=None):
-        from core import CCP4Utils
         if fileName is  None:
             fileName = os.path.join(CCP4Utils.getCCP4I2Dir(), 'dbapi', 'database_schema.sql')
         text = CCP4Utils.readFile(fileName)
@@ -927,7 +931,6 @@ class CDbApi(CObject):
         uid = self.uniqueId(table='Users',identifier='UserID')
         dbid = self.uniqueId(table='Databases',identifier='DatabaseID')
         try:
-          from core import CCP4Utils
           hostName = CCP4Utils.getHostName()
         except:
           hostName=None
@@ -950,7 +953,6 @@ class CDbApi(CObject):
 
     def commit(self):
       if self._diagnostic:
-        import traceback
         print('Commit from',traceback.extract_stack(limit=2)[-2][2])
 
       if self._conn is None:
@@ -982,7 +984,6 @@ class CDbApi(CObject):
 
 
     def read(self,fileName):
-      from core import CCP4Utils
       #print 'CDbApi.read',fileName
       try:
         text = CCP4Utils.readFile(fileName)
@@ -1032,8 +1033,6 @@ class CDbApi(CObject):
             print('with database mode',self._dbMode)
 
     def backupDBInternal(self,f2):
-        import tempfile
-        import shutil
 
         con = self.connection()
         sql = "".join([s+"\n" for s in con.iterdump()])
@@ -1202,7 +1201,6 @@ class CDbApi(CObject):
                 pyRow.append(toType[ii](row[ii]))
               except:
                 print('ERROR in CCP4DbApi.fetchAll2PyList',row,toType,ii)
-                import traceback
                 traceback.print_stack(limit=5)
                 pyRow.append(None)
           pyList.append(pyRow)
@@ -1241,7 +1239,6 @@ class CDbApi(CObject):
 
 
     def setupBackupJobToXml(self):
-      import functools
       self.jobCreated.connect(functools.partial(self.backupJobToXml,'jobCreated'))
       self.jobUpdated.connect(functools.partial(self.backupJobToXml,'jobUpdated'))
       self.importFileCreated.connect(functools.partial(self.backupJobToXml,'importFileCreated'))
@@ -1252,7 +1249,6 @@ class CDbApi(CObject):
 
     @QtCore.Slot(str,dict)
     def backupJobToXml(self,signal,args):
-      from dbapi import CCP4DbUtils
       #print 'CDbApi.backupJobToXml',signal,args
       if signal == 'jobUpdated':
         if not args['key'] in ['preceedingjob','title','evaluation']: return
@@ -1289,7 +1285,6 @@ class CDbApi(CObject):
 
     def uniqueId(self,table,identifier):
       #print 'uniqueId',table,identifier
-      import uuid
       return uuid.uuid1().hex
 
     def integerId(self,table,identifier):
@@ -1333,7 +1328,6 @@ class CDbApi(CObject):
         return None
       else:
         '''
-        import hashlib
         m = hashlib.md5()
         m.update(userPassword.encode())
         userPasswordhexdigest=m.hexdigest()
@@ -1463,7 +1457,6 @@ class CDbApi(CObject):
 
     def matchProjectDirectory(self,directory=None,testAliases=False):
       '''Is there a  project with this directory already in the database'''
-      from core import CCP4Utils
       if directory is None: return None,None,None
       self.execute('SELECT ProjectID, ProjectName, ProjectDirectory FROM Projects')
       dirList = self.fetchAll2PyList([UUIDTYPE,str,str])
@@ -2210,7 +2203,6 @@ TaskTitle TEXT );''')
       return ret
 
     def getTablesEtree(self,projectId=None,after=None,status=None,jobList=None,inputFileList=None,inputFileFromJobList=None):
-      from lxml import etree
 
       #print 'getTablesEtree',jobList,inputFileList,inputFileFromJobList
 
@@ -2430,7 +2422,6 @@ TaskTitle TEXT );''')
       return root,jobNumberList,errReport
 
     def tableEtree(self,itemName,attributeList,table):
-      from lxml import etree
       tableEle = etree.Element(itemName+'Table')
       for row in table:
         ele = etree.Element(itemName)
@@ -2443,7 +2434,6 @@ TaskTitle TEXT );''')
 
 
     def getProjectEtree(self,projectId):
-      from lxml import etree
       errReport = CErrorReport()
       root = etree.Element('project')
       info = self.getProjectInfo(projectId)
@@ -2473,7 +2463,6 @@ TaskTitle TEXT );''')
 
 
     def getJobEtree(self,jobId=None,jobInfo={}):
-      from lxml import etree
       errReport = CErrorReport()
 
       if len(jobInfo) == 0:
@@ -2527,7 +2516,6 @@ TaskTitle TEXT );''')
       return root,errReport
 
     def getJobOutputHtmlEtree(self,jobId=None,projectId=None):
-      from lxml import etree
       root = etree.Element('div')
       root.set('id','result_data')
       outputFileIds = self.getJobFiles(jobId=jobId)
@@ -2540,7 +2528,6 @@ TaskTitle TEXT );''')
     def getFileEtree(self,fileId,fileInfo={},role=FILE_ROLE_OUT,projectId=None):
       # !!!! Does not include jobId !! Assume this is only used in heirarchical representation below jobs
       # Create xml compatible with CDataFile xml
-      from lxml import etree
       err = CErrorReport()
       if len(fileInfo) == 0: fileInfo = self.getFileInfo(fileId,mode= [ 'filename','relpath','annotation','fileclass','importid','filecontent','filesubtype'])
       #print 'getFileEtree fileInfo',fileInfo
@@ -2599,7 +2586,6 @@ TaskTitle TEXT );''')
       # Create xml compatible with CDataFile xml
       if projectId is None:
         print('NEED projectId in getFileHtmlEtree')
-      from lxml import etree
       if len(fileInfo) == 0: fileInfo = self.getFileInfo(fileId,mode= [ 'filename','relpath','annotation','fileclass'])
       # Aiming for something like..
       # <object type="x-ccp4-widget/CPdbDataFile" id="result_file_pdb" width="600" height="30">
@@ -2636,7 +2622,6 @@ TaskTitle TEXT );''')
       return root
 
     def getXDataEtree(self,xDataId,xDataInfo={}):
-      from lxml import etree
       if len(xDataInfo)==0: xDataInfo = self.getXDataInfo(xDataId)
       if len(xDataInfo)==0:
         #print 'getXDataEtree no data',xDataId
@@ -2647,7 +2632,6 @@ TaskTitle TEXT );''')
 
 
     def exportProjectXml(self,projectId=None,fileName=None,recordExport=False,after=None,status=None,jobList=None,inputFileList=None,inputFileFromJobList=None):
-      from core import CCP4File
       print('exportProjectXml',projectId,fileName)
       errReport = CErrorReport()
       try:
@@ -3168,21 +3152,17 @@ TaskTitle TEXT );''')
         return ret
 
     def getJobPerformanceClass(self,jobId=None,taskName=None):
-      from core import CCP4PerformanceData
       selcom = 'SELECT XDataClass,XDataXml FROM XData WHERE JobId=? AND XDataClass in '+CCP4PerformanceData.performanceIndicatorClasses()
       self.execute(selcom,(jobId,))
       rv = self.fetchAll2PyList([str,str])
       if len(rv)>0:
         try:
-          from lxml import etree
-          from core import CCP4DataManager
           obj = CCP4DataManager.DATAMANAGER().getClass(rv[0][0])()
           obj.setEtree(etree.fromstring(rv[0][1]))
           return obj
         except Exception as e:
           print(e)
       else:
-        from core import CCP4TaskManager
         cls = CCP4TaskManager.TASKMANAGER().getPerformanceClass(taskName)
         if cls is None: return None
         perfDict = self.getJobPerformance(jobId=jobId)
@@ -3327,8 +3307,6 @@ TaskTitle TEXT );''')
 
       """
       if 'performanceclass' in itemList:
-        from core import CCP4PerformanceData,CCP4DataManager
-        from lxml import etree
         DM = CCP4DataManager.DATAMANAGER()
         self.execute('SELECT JobId,XDataClass,XDataXml FROM XData WHERE JobId IN (SELECT JobId FROM Jobs WHERE ProjectId=?) AND XDataClass IN '+CCP4PerformanceData.performanceIndicatorClasses(),(projectId,))
         perfList = self.fetchAll2PyList([UUIDTYPE,str,str])
@@ -3399,7 +3377,6 @@ TaskTitle TEXT );''')
     def jobInfoDict(self,itemList,jobValue,extras=[],performanceDict={}):
       # Utility to convert job info to Python dict and nicer forms
       #print 'CDbApi.jobInfoDict',itemList,jobValue
-      from core import CCP4Annotation,CCP4TaskManager
       ii = -1
       ret = {}
       for item in itemList:
@@ -3649,7 +3626,6 @@ TaskTitle TEXT );''')
         return 0
 
     def getParamsContainer(self,jobId):
-      from core import CCP4Container,CCP4Modules
       paramsFile = self._makeJobFileName(jobId=jobId,mode='PARAMS')
       #print 'CDbApi.getParamsContainer',paramsFile
       if not os.path.exists(paramsFile): raise CException(self.__class__,170,paramsFile)
@@ -3674,7 +3650,6 @@ TaskTitle TEXT );''')
     def gleanJobFiles(self,jobId=None,container=None,projectId=None,dbOutputData=None,roleList=[FILE_ROLE_IN,FILE_ROLE_OUT],unSetMissingFiles=False):
 
       errorReport = CErrorReport()
-      from core import CCP4Data,CCP4File
       if container is None:
         container = self.getParamsContainer(jobId=jobId)
 
@@ -3848,7 +3823,6 @@ TaskTitle TEXT );''')
                'STDERR' : 'stderr.txt' }
 
 
-      import os
       path = os.path.join(self.jobDirectory(jobId=jobId),defFiles.get(mode,'unknown.unk'))
       #print 'CDbApi._makeJobFileName',mode,path
       return path
@@ -3875,7 +3849,6 @@ TaskTitle TEXT );''')
       if checksum is None and sourceFileName is not None and os.path.exists(sourceFileName):
         try:
           blockSize = 256*128
-          import hashlib
           md5 = hashlib.md5()
           with open(sourceFileName,'rb') as f:
             for chunk in iter(lambda: f.read(blockSize), b''):
@@ -4129,7 +4102,6 @@ TaskTitle TEXT );''')
         #print 'createFile jobdir',fileObject,os.path.split(fileObject.fullPath.__str__())[0],self.jobDirectory(jobId=jobId)
 
         if sys.platform[0:3] != 'win' and fileObject is not None and sourceFileName is None and sourceFileId is None:
-          from core import CCP4Utils
           try:
             isSame = CCP4Utils.samefile ( os.path.normpath(os.path.split(fileObject.fullPath.__str__())[0]),
                                                  self.jobDirectory(jobId=jobId) )
@@ -4337,7 +4309,6 @@ TaskTitle TEXT );''')
       self.execute(selcom,(fileId,))
       rv = self.fetchAll2PyList(typeConv)
       if len(rv) != 1:
-        #import traceback
         #traceback.print_stack(limit=7)
         raise CException(self.__class__,180,str(fileId))
       else:
@@ -5025,7 +4996,6 @@ TaskTitle TEXT );''')
 
     def currentTime(self):
       '''Return machine time as a float'''
-      import time
       return time.time()
 
     def resetProjectTags(self,projectId=None,tagIdList=[]):
@@ -5262,7 +5232,6 @@ TaskTitle TEXT );''')
       return ret
 
     def jobDirectory(self,jobId=None,jobNumber=None,projectId=None,projectDirectory=None):
-      import os
 
       if jobNumber is None or (projectId is None and projectDirectory is None):
         jobInfo = self.getJobInfo(jobId=jobId,mode=['projectid','jobnumber'])
@@ -5754,14 +5723,12 @@ class CDbXml(QtCore.QObject):
       self._diagnostic = mode
 
   def loadFile(self):
-    from core import CCP4File
     f = CCP4File.CI2XmlDataFile(fullPath=self.xmlFile)
     f.loadFile()
     root = f.getEtreeRoot().xpath('./ccp4i2_body')[0]
     return root
 
   def headerInfo(self,load=False):
-    from core import CCP4File
     f = CCP4File.CI2XmlDataFile(fullPath=self.xmlFile)
     f.loadFile()
     f.loadHeader()
@@ -5847,7 +5814,6 @@ class CDbXml(QtCore.QObject):
 
 
   def loadJob(self,root,parentJobId=None):
-    import time
     try:
       jobId = UUIDTYPE(root.findtext('jobid'))
       jobNumber = root.findtext('jobnumber')
@@ -5905,7 +5871,6 @@ class CDbXml(QtCore.QObject):
 
 
   def createFile(self,root=None,jobId=None):
-    from core import CCP4File
     fileClass = str(root.tag)
     try:
       fileTypeId = FILETYPES_CLASS.index(fileClass)
@@ -6000,7 +5965,6 @@ class CDbXml(QtCore.QObject):
 
   def loadJobsFromTable(self,commitPolicy=None):
     if commitPolicy is None: commitPolicy = CDbXml.COMMIT_POLICY_NO_ERRORS
-    from lxml import etree
     root = self.loadFile()
     if root is None:
       self.errReport.append(self.__class__,1,str(self.xmlFile))
@@ -6018,7 +5982,6 @@ class CDbXml(QtCore.QObject):
 
   def loadTable(self,commitPolicy=None,newJobNumber=None,selectJobIdList=None,updateJobStatus=False):
     if commitPolicy is None: commitPolicy = CDbXml.COMMIT_POLICY_NO_ERRORS
-    from lxml import etree
     self.loadedJobs = {}
     root = self.loadFile()
     if root is None:
@@ -6321,7 +6284,6 @@ class CDbXml(QtCore.QObject):
     # Create temporary tables - beware may exist from previous run
     # Should have a mechanism to block two processes trying to do this at once!
     if fileName is  None:
-        from core import CCP4Utils
         fileName = os.path.join(CCP4Utils.getCCP4I2Dir(),'dbapi','temp_database_schema.sql')
     #print 'Loading temp database schema from:',fileName
     self.db.read(fileName=fileName)
@@ -6331,7 +6293,6 @@ class CDbXml(QtCore.QObject):
 
   def loadTempTable(self,commitPolicy=None,resetProjectId=None):
     if commitPolicy is None: commitPolicy = CDbXml.COMMIT_POLICY_NO_ERRORS
-    from lxml import etree
     self.loadedJobs = {}
     root = self.loadFile()
     if root is None:
@@ -7058,8 +7019,6 @@ class CDatabaseDef:
 
 
 #=========================================================================================================
-import unittest
-from core import CCP4Utils
 
 def TESTSUITE():
   suite = unittest.defaultTestLoader.loadTestsFromTestCase(testSqliteDb)
@@ -7069,10 +7028,8 @@ def TESTSUITE():
 
 def testModule():
 
-  from core import CCP4File
   CCP4File.CDataFile.BLOCK_LOAD_FILES = True
 
-  from core import CCP4Utils
   if os.path.exists(testQtDb.TESTDBFILE): os.remove(testQtDb.TESTDBFILE)
   if os.path.exists(testSqliteDb.TESTDBFILE): os.remove(testSqliteDb.TESTDBFILE)
   for testDir in [testDb.TESTDBDIR]:
@@ -7107,7 +7064,6 @@ def testModule():
       fileName = os.path.join(jobsDir,'job_5','XYZOUT.pdb')
       CCP4Utils.saveFile(fileName=fileName,text='Dummy file')
 
-  from core import CCP4Modules
   pm = CCP4Modules.PROJECTSMANAGER()
 
   suite = TESTSUITE()
@@ -7189,7 +7145,6 @@ class testDb(unittest.TestCase):
 
 
   def test2Aliases(self):
-     from core import CCP4Utils
      self.db.setDirectoryAlias('CCP4I2_TOP',CCP4Utils.getCCP4I2Dir())
      self.db.setDirectoryAlias('HOME',CCP4Utils.getHOME())
      self.db.commit()
@@ -7205,7 +7160,6 @@ class testDb(unittest.TestCase):
     pid = self.db.getProjectId('myproject')
     print('test3Jobs pid',pid)
     self.db.listProjects(True)
-    from core import CCP4ModelData,CCP4XtalData
 
     # Two jobs loading contents and exptal data
     jid1 =  self.db.createJob(pid,'contents',status=JOB_STATUS_FINISHED)
@@ -7283,13 +7237,10 @@ class testDb(unittest.TestCase):
     self.db.commit()
     """
     # make config file with reference to test database file
-    from core import CCP4Modules,CCP4Config,CCP4Utils
     config = CCP4Config.CConfig()
     config.set('dbMode',self.mode)
     config.set('dbFile',self.TESTDBFILE)
     config.set('dbUser','me')
-    import os
-    from core import CCP4Utils
 
     configFile = os.path.join(CCP4Utils.getTestTmpDir(),'CCP4DbApi_test_config.data.xml')
     print 'test4Task configFile',configFile
@@ -7304,7 +7255,6 @@ class testDb(unittest.TestCase):
     self.db.updateJobStatus(jobId=jid,status=JOB_STATUS_QUEUED)
     self.db.commit()
 
-    import time
     time.sleep(30)
     status = self.db.getJobInfo(jid,'status')
     print 'test4Task status',status
@@ -7315,11 +7265,7 @@ class testDb(unittest.TestCase):
   def test5glean(self):
     # This will e jobNumber=5
     pid = self.db.getProjectId('myproject')
-    import os
-    from core import CCP4Utils
     jid7 =  self.db.createJob(projectId=pid,taskName='pdbset',jobTitle='test5glean')
-    import shutil
-    from core import CCP4Modules
     shutil.copyfile(os.path.join(CCP4Utils.getCCP4I2Dir(),'test','data','test_dbapi.params.xml'),CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=jid7,mode='PARAMS'))
     self.db.updateJobStatus(jid7,status='Finished')
     #self.db.setDiagnostic(True)
@@ -7339,11 +7285,7 @@ class testDb(unittest.TestCase):
 
   def test6glean(self):
     pid = self.db.getProjectId('myproject')
-    import os
-    from core import CCP4Utils
     pf =  os.path.join(CCP4Utils.getCCP4I2Dir(),'test','data','test_dbapi_2.params.xml')
-    import shutil
-    from core import CCP4Modules
     jid8 =  self.db.createJob(pid,'newProject',jobTitle='test6glean')
     shutil.copyfile(os.path.join(CCP4Utils.getCCP4I2Dir(),'test','data','test_dbapi_2.params.xml'),CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=jid8,mode='PARAMS'))
 
@@ -7354,7 +7296,6 @@ class testDb(unittest.TestCase):
     containsSe = self.db.getXDataByJobContext(contextJobId=jid8,dataClass='CContainsSeMet',projectId=pid)
     #print 'CCP4DbApi.test6glean containsSe',containsSe
 
-    import os
     fileName=os.path.join(CCP4Utils.getTestTmpDir(),'export_db.xml')
     if os.path.exists(fileName): os.remove(fileName)
     self.db.exportProjectXml(projectId=pid,fileName=fileName)
@@ -7393,7 +7334,6 @@ class testSqliteDb(testDb):
 
     self.db = CDbApi(mode='sqlite',userName='me',userPassword='foo',fileName=testSqliteDb.TESTDBFILE)
     self.mode = 'sqlite'
-    from core import CCP4Modules
     CCP4Modules.PROJECTSMANAGER().setDatabase(self.db)
 
 class testQtDb(testDb):
@@ -7403,5 +7343,4 @@ class testQtDb(testDb):
   def setUp(self):
     self.db = CDbApi(mode='qt_sqlite',fileName=testQtDb.TESTDBFILE,userName='me',userPassword='foo')
     self.mode = 'qt_sqlite'
-    from core import CCP4Modules
     CCP4Modules.PROJECTSMANAGER().setDatabase(self.db)
