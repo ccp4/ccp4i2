@@ -1,7 +1,10 @@
-from __future__ import print_function
-
+import os
 import unittest
-from dbapi.CCP4DbApi import *
+
+from .CCP4DbApi import *
+from ..core.CCP4Utils import getTestTmpDir, getCCP4I2Dir
+from ..core.CCP4Annotation import CUserId
+
 
 def TESTSUITE():
   suite = unittest.defaultTestLoader.loadTestsFromTestCase(testDbConnect)
@@ -14,11 +17,7 @@ def testModule():
 
 class testDbConnect(unittest.TestCase):
 
-  def test1(self):
-    from core.CCP4Utils import getTestTmpDir,getCCP4I2Dir
-    import os
-    from CCP4Annotation import CUserId
-    
+  def test1(self):    
     fileName = os.path.join(getTestTmpDir(),'sqlite.db')
     if os.path.exists(fileName): os.remove(fileName)
     
