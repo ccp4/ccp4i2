@@ -333,7 +333,7 @@ class servalcat_pipe_report(Report):
         # ADPs
         ADPDevDiv = devFold.addDiv(style='font-size:110%;float:left;box-sizing:border-box')
         if len(xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/ADPAbsDevMean")) > 0:
-            ADPDevDiv.append("Average absolute value of B-value shift: " + \
+            ADPDevDiv.append("Average B-value shift: " + \
                 xmlnode.findall(".//COORD_ADP_DEV/STATISTICS/ADPAbsDevMean")[0].text + " &#8491;<sup>2</sup>.")
         if ADPDevValues:
             ADPDevDiv.append("Atoms with an absolute value of B-value shift<br />higher than " + \
