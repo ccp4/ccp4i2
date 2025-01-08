@@ -1,7 +1,14 @@
-from __future__ import print_function
+import os
+import shutil
+import unittest
 
+from lxml import etree
 
-from core.CCP4PluginScript import CPluginScript
+from ...core import CCP4Utils
+from ...core.CCP4File import CDataFile
+from ...core.CCP4Modules import PROCESSMANAGER
+from ...core.CCP4Modules import QTAPPLICATION
+from ...core.CCP4PluginScript import CPluginScript
 
 
 class prosmart_martin(CPluginScript):
@@ -17,16 +24,11 @@ class prosmart_martin(CPluginScript):
         CPluginScript. __init__(self,parent=parent,name=name)
         '''
     def processInputFiles(self):
-        import os
-        import shutil
         self.tempFile = os.path.join(self.workDirectory,'XYZIN_temp.pdb')
         shutil.copyfile(self.container.inputData.XYZIN.__str__(), self.tempFile)
         return CPluginScript.SUCCEEDED
     
     def processOutputFiles(self):
-        import os
-        from core.CCP4File import CDataFile
-
         directory,fileName = os.path.split(self.tempFile)
         fileRoot,ext = os.path.splitext(fileName)
         restraintFilePath = os.path.join(self.workDirectory.__str__(), fileRoot + '.txt')
@@ -36,24 +38,20 @@ class prosmart_martin(CPluginScript):
         
         xmlPath = self.makeFileName('PROGRAMXML')
         try:
-            from core import CCP4Utils
             xmlRoot= CCP4Utils.openFileToEtree(xmlPath)
         except:
             xmlRoot = etree.Element('PROSMART')
-        from lxml import etree
         htmlNode = etree.SubElement(xmlRoot,'htmlPath')
         htmlNode.text = 'ProSMART_Results.html'
         with open(xmlPath,'w') as xmlFile:
             xmlFile.write(etree.tostring(xmlRoot,pretty_print=True))
         
-        #import os, shutil
         #try:
         #    restraintSrcPath = #os.path.join(self.workDirectory.__str__(),'Output_Files','Restraints',str(self.container.inputData.MODEL))
         #restraintDestPath = self.container.outputData.RESTRAINTS.__str__()
         #   shutil.copyfile(restraintSrcPath, restraintDestPath)
         #except:
         #    pass
-        #from core import CCP4XtalData
         #self.container.outputData.RESTRAINTS = CDataFile
         #self.container.outputData.RESTRAINTS.annotation = 'Generated restraints'
         return CPluginScript.SUCCEEDED
@@ -69,23 +67,18 @@ class prosmart_martin(CPluginScript):
 # PLUGIN TESTS
 # See Python documentation on unittest module
 
-import unittest
-
 class testprosmart_martin(unittest.TestCase):
     
     def setUp(self):
         # make all background jobs wait for completion
         # this is essential for unittest to work
-        from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
         self.app = QTAPPLICATION()
         PROCESSMANAGER().setWaitForFinished(10000)
     
     def tearDown(self):
-        from core.CCP4Modules import PROCESSMANAGER
         PROCESSMANAGER().setWaitForFinished(-1)
     
     def test_1(self):
-        from core.CCP4Modules import QTAPPLICATION
         wrapper = prosmart_martin(parent=QTAPPLICATION(),name='prosmart_martin_test1')
         wrapper.container.loadDataFromXml()
 
