@@ -1,7 +1,3 @@
-from __future__ import print_function
-
-from PySide2 import QtCore
-
 """
      CCP4WorkflowManager.py: CCP4 GUI Project
      Copyright (C) 2013 STFC
@@ -19,22 +15,25 @@ from PySide2 import QtCore
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton July 2013 - create and manage workflows
 """
 
-import os
-import re
+import copy
 import glob
-from core import CCP4Modules
-from core import CCP4Data
-from core import CCP4Container
-from core import CCP4File
-from core import CCP4CustomManager
+import os
+
+from PySide2 import QtCore
+
+from . import CCP4Container
+from . import CCP4CustomManager
+from . import CCP4Data
+from . import CCP4File
+from . import CCP4Modules
+from ..dbapi import CCP4DbApi
 from .CCP4ErrorHandling import *
 from .CCP4TaskManager import TASKMANAGER
+
 
 class CWorkflowManager(CCP4CustomManager.CCustomManager):
 
@@ -68,7 +67,6 @@ class CWorkflowManager(CCP4CustomManager.CCustomManager):
 
     def createWorkflow(self, projectId=None, jobList=[], name=None, title=None, overwrite=False):
         #print 'CWorkflowMananger.createWorkflow',projectId,jobList,name,overwrite,title
-        from dbapi import CCP4DbApi
         workflowDir = self.createDirectory(name, overwrite=overwrite)
         db = CCP4Modules.PROJECTSMANAGER().db()
         projectDir = CCP4Modules.PROJECTSMANAGER().getProjectDirectory(projectId=projectId)
@@ -161,7 +159,6 @@ class CWorkflowManager(CCP4CustomManager.CCustomManager):
         return CErrorReport()
 
     def uniqueKey(self, keyIn, container):
-        import copy
         nn = 0
         key = copy.deepcopy(keyIn)
         while 1:  # KJS : Potential infinite loop if things wrong ?
