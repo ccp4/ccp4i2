@@ -1006,8 +1006,8 @@ class CMtzDataFile(CCP4File.CDataFile):
             report.append(self.__class__, 401, f"spaceGroup : {sg1} : {sg2}", stack=False, name=self.objectPath(False) )
         cell1 = self.fileContent.__getattr__("cell")
         cell2 = other.fileContent.__getattr__("cell")
-        for attr in ['a', 'b', 'c', 'alpha', 'beta', 'gamma']:
-            if not math.isclose(cell1[item], cell2[item], abs_tol=0.001):
+        for item in ['a', 'b', 'c', 'alpha', 'beta', 'gamma']:
+            if not math.isclose(cell1.__getattr__(item), cell2.__getattr__(item), abs_tol=0.001):
                 report.append(self.__class__, 401, f"cell {cell1} : {cell2}", stack=False, name=self.objectPath(False) )
         for item in ['low', 'high']:
             if self.fileContent.resolutionRange.__getattr__(item) != other.fileContent.resolutionRange.__getattr__(item):
