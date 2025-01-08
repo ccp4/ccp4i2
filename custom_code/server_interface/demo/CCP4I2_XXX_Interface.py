@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 class CCP4I2_XXX_Interface:
 
   SHOW_USER_PARAMS = [ 'username' , 'password' ]
