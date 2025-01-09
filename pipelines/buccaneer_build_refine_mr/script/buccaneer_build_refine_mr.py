@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
     buccaneer_build_refine_mr.py: CCP4 GUI Project
     Copyright (C) 2010 University of York
@@ -19,17 +17,22 @@ from __future__ import print_function
     GNU Lesser General Public License for more details.
 """
 
+from copy import deepcopy
 import inspect
-import sys
-import time
 import os
 import shutil
+import unittest
+
 from lxml import etree
-from copy import deepcopy
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core import CCP4ModelData
-from core import CCP4ProjectsManager
+
+from ....core import CCP4ModelData
+from ....core import CCP4ProjectsManager
+from ....core import CCP4Utils
+from ....core.CCP4Modules import PROCESSMANAGER
+from ....core.CCP4Modules import QTAPPLICATION
+from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Utils import getCCP4I2Dir
+
 
 class buccaneer_build_refine_mr(CPluginScript):
 
@@ -509,24 +512,17 @@ class buccaneer_build_refine_mr(CPluginScript):
 
 # ===== Unit testing ===========================================================
 
-import unittest
-
 class test_buccaneer_build_refine_mr(unittest.TestCase):
 
     def setUp(self):
         # make all background jobs wait for completion
-        from core.CCP4Modules import QTAPPLICATION, PROCESSMANAGER
         self.app = QTAPPLICATION()
         PROCESSMANAGER().setWaitForFinished(10000)
 
     def tearDown(self):
-        from core.CCP4Modules import PROCESSMANAGER
         PROCESSMANAGER().setWaitForFinished(-1)
 
     def test_1(self):
-        from core.CCP4Modules import QTAPPLICATION
-        from core.CCP4Utils import getCCP4I2Dir
-
         # Run the pipeline
         wrapper = buccaneer_build_refine_mr(parent=QTAPPLICATION(), name='buccaneer_build_refine_mr')
         wrapper.container.loadDataFromXml(os.path.join(getCCP4I2Dir(), 'pipelines', 'buccaneer_build_refine_mr', 'test_data', 'test_1.params.xml'))
