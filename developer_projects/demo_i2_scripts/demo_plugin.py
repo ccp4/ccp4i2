@@ -1,7 +1,11 @@
-from __future__ import print_function
+import os
+import shutil
+import sys
 
+from ...core.CCP4Modules import QTAPPLICATION
+from ...utils.startup import setupEnvironment, setupPythonpath
+from ...wrappers.refmac_i2.script import refmac_i2
 
-import sys,os,shutil
 
 #Run with ..
 #> export CCP4I2_TOP=/Users/lizp/Desktop/dev/ccp4i2-devel
@@ -21,12 +25,9 @@ sourceDirectory = os.path.join(ccp4i2_top,'developer_projects','demo_i2_scripts'
 workDirectory = '/Users/lizp/Desktop/demo_plugin'
 
 # Bootstrap i2 environment - NO DATABASE
-sys.path.append(os.path.join(ccp4i2_top,'utils'))
-from startup import setupEnvironment,setupPythonpath
 setupEnvironment()
 setupPythonpath(top=ccp4i2_top,mode='qtcore')
 if doAsync:
-  from core.CCP4Modules import QTAPPLICATION
   app = QTAPPLICATION(graphical=False)
 
 #Need to make the workDirectory
@@ -34,9 +35,7 @@ if os.path.exists(workDirectory): shutil.rmtree(workDirectory)
 os.mkdir(workDirectory)
 
 # Create a plugin object
-import refmac_i2
 if doAsync:
-  from PyQt4 import QtCore
   wrapper = refmac_i2.refmac_i2(parent=QTAPPLICATION(),name='test_test',workDirectory=workDirectory)
   wrapper.finished.connect(handleFinish)
 else:
@@ -49,7 +48,6 @@ else:
 # input to i2 wrappers.  Create an instance of CMtzDataFile with name of monster mtz
 # then use the runMtzSplit() method
 '''
-from core import CCP4XtalData
 m = CCP4XtalData.CMtzDataFile(os.path.join(sourceDirectory,'monster.mtz')
 m.runMtzSplit(['FNAT,SIGFNAT','FreeR_flag'],[os.path.join(workDirectory,'F_SIGF.mtz'),os.path.join(workDirectory,'FREERFLAG.mtz')])
 '''
