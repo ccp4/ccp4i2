@@ -1,25 +1,19 @@
-from __future__ import print_function
-
 """
     tasks/aimless_pipe/CTaskaimless_pipe.py: CCP4 GUI Project
     Copyright (C) 2012 STFC
-    """
 
-"""
 Martyn Winn August 2012 - aimless_pipe gui
 Phil Evans 2014
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
+from PySide2 import QtCore, QtWidgets
 
-# to determine the sub-type of XDS files 
-from pipelines.aimless_pipe.script.xdstype import *
+from ....pipelines.import_merged.script.dybuttons import *
+from ....pipelines.import_merged.script.mmcifconvert import *
+from ....pipelines.import_merged.script.mmcifutils import *
+from ....qtgui import CCP4TaskWidget
+from .xdstype import *
 
-from  pipelines.import_merged.script.mmcifutils import *
-from  pipelines.import_merged.script.mmcifconvert import *
-from  pipelines.import_merged.script.dybuttons import *
 
 class CTaskaimless_pipe(CCP4TaskWidget.CTaskWidget):
     
@@ -538,8 +532,6 @@ class CTaskaimless_pipe(CCP4TaskWidget.CTaskWidget):
     '''
     # -------------------------------------------------------------
     def getInputBatches( self ) :
-        import ccp4mg
-        import hklfile
         input_batches = ""
         for i in range(len(self.container.inputData.UNMERGEDFILES)):
             reflection_list = hklfile.ReflectionList()
