@@ -29,7 +29,6 @@ dbFile = os.path.join(dbDir,'db.sqlite')
 
 # Bootstrap ccp4i2 environment - mimics the gui side but without actual graphics
 # Note this sets the specified database file
-sys.path.append(os.path.join(ccp4i2_top,'utils'))
 setupEnvironment()
 setupPythonpath(top=ccp4i2_top,mode='qtcore')
 app = QTAPPLICATION(graphical=False)
