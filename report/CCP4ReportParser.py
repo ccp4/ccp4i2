@@ -2318,7 +2318,7 @@ class Table(BaseTable):
   def as_data_etree(self):
     root = super().as_data_etree()
     root.set('transpose', 'True' if self.transpose else 'False')
-    for child in self.data_as_etree().findall('//table'):
+    for child in self.data_as_etree().findall('.//table'):
       root.append(child)
     return root
 
