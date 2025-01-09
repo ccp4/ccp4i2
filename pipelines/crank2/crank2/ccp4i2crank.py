@@ -1,11 +1,14 @@
-from __future__ import with_statement
+import os
+import shutil
+import sys
+
 from future.utils import raise_
-import os,sys,copy,shutil
-import common,manager,parse
+
+from . import common, parse
+from ....core import CCP4PluginScript, CCP4ErrorHandling, CCP4XtalData
 
 
 def CallCrankFromCCP4i2(ccp4i2crank, xmlfile=None, inpfile=None, defaults=False, rvapi_style=None):
-  from core import CCP4PluginScript, CCP4ErrorHandling
   # we need to return to the original cwd when leaving otherwise i2 gets confused
   cwd_saved = os.getcwd()
   os.chdir(ccp4i2crank.workDirectory)
@@ -80,7 +83,6 @@ def RegisterSubOutputAsMain(i2crank,crank,i2subjob,outd_name):
     if outd_name not in('PERFORMANCE',):
       filepath=OutFilesDirMatch(str(i2_subjob_obj),crank)
       if filepath:
-        from core import CCP4ErrorHandling
         try:
           getattr(i2crank.container.outputData, outd_name).setFullPath(filepath)
           getattr(i2crank.container.outputData, outd_name).annotation.set( i2_subjob_obj.annotation )
@@ -88,7 +90,6 @@ def RegisterSubOutputAsMain(i2crank,crank,i2subjob,outd_name):
           getattr(i2crank.container.outputData, outd_name).set(filepath)
 
 def RegisterProcessToCCP4i2(ccp4i2crank, process):
-  from core import CCP4PluginScript, CCP4ErrorHandling, CCP4XtalData
   sys.stdout = stdout_save
   subjob = ccp4i2crank.makePluginObject(pluginName='crank2_'+process.nick, pluginTitle=process.short_name[0].upper()+process.short_name[1:])
   if subjob is None:
@@ -170,7 +171,6 @@ annotations = { 'FPHOUT_HAND2':    '"Best" density - other hand (not chosen)', \
               }
 
 def RegisterOutputToCCP4i2(process,error,nosuccess=False):
-  from core import CCP4PluginScript, CCP4ErrorHandling, CCP4XtalData
   sys.stdout = stdout_save
   i2job=process.ccp4i2job
   if error:
