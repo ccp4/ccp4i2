@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4SelectionTree.py: 
      Copyright (C) 2001-2008 University of York, CCLRC
@@ -19,17 +17,20 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      March 2012 Liz Potterton Copied from CCP4mg model_selection.py
 """
 
-import re,string,types
-from core.CCP4ErrorHandling import *
+import re
+
 import ccp4mg
-import mmdb2 as mmdb
-import mmut
+import mmdb2 as mmdb  # needs import ccp4mg
+import mmut  # needs import ccp4mg
+
+from .. import model
+from .. import utils
+from ..core.CCP4ErrorHandling import *
+
 
 #-------------------------------------------------------------------
 #-------------------------------------------------------------------
@@ -594,7 +595,6 @@ class Cselect_tree:
           else:
             return [rv[0],'Error interpreting command ' + self.mol.selection_commands[kw[1][0]] + ': ' + rv[1]]
         except:
-           #import sys
            #print 'ModelAnalysis.interpret',sys.exc_info()
            return [1,'Error interpreting command ' + self.mol.selection_commands[kw[1][0]]]
 
@@ -754,10 +754,6 @@ class Cselect_tree:
 #------------------------------------------------------------------------
   def apply_operators( self, sel_ops ):
 #------------------------------------------------------------------------
-    import model
-    import re
-    import string
-    import utils
     selHnd=self.mol.molHnd.NewSelection()
     skey = mmdb.SKEY_NEW
     for op in sel_ops:
