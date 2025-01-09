@@ -1000,19 +1000,19 @@ class CMtzDataFile(CCP4File.CDataFile):
         except:
             report.append(self.__class__, 312, other.__str__(), name=self.objectPath(False))
             return report
-        sg1 = self.fileContent.__getattr__("spaceGroup")
-        sg2 = other.fileContent.__getattr__("spaceGroup")
+        sg1 = self.fileContent.spaceGroup
+        sg2 = other.fileContent.spaceGroup
         if sg1 != sg2:
             report.append(self.__class__, 401, f"spaceGroup : {sg1} : {sg2}", stack=False, name=self.objectPath(False) )
-        cell1 = self.fileContent.__getattr__("cell")
-        cell2 = other.fileContent.__getattr__("cell")
+        cell1 = self.fileContent.cell
+        cell2 = other.fileContent.cell
         for attr in ['a', 'b', 'c', 'alpha', 'beta', 'gamma']:
-            if not math.isclose(cell1[item], cell2[item], abs_tol=0.001):
+            if not math.isclose(getattr(cell1, attr), getattr(cell2, attr), abs_tol=0.001):
                 report.append(self.__class__, 401, f"cell {cell1} : {cell2}", stack=False, name=self.objectPath(False) )
-        for item in ['low', 'high']:
-            if self.fileContent.resolutionRange.__getattr__(item) != other.fileContent.resolutionRange.__getattr__(item):
-                lerrStr = item + ' : ' + str(self.fileContent.resolutionRange.__getattr__(item)) + ' : ' \
-                                       + str(other.fileContent.resolutionRange.__getattr__(item))
+        for attr in ['low', 'high']:
+            if getattr(self.fileContent.resolutionRange, attr) != getattr(other.fileContent.resolutionRange, attr):
+                lerrStr = attr + ' : ' + str(getattr(self.fileContent.resolutionRange, attr)) + ' : ' \
+                                       + str(getattr(other.fileContent.resolutionRange, attr))
                 report.append(self.__class__, 401, lerrStr, stack=False, name=self.objectPath(False))
         ok = 0
         if len(self.fileContent.datasets) != len(other.fileContent.datasets):
