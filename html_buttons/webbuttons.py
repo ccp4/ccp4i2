@@ -1,9 +1,9 @@
-from __future__ import print_function
-import sys, os
 import functools
-
+import os
+import sys
 
 from PySide2 import QtWidgets, QtCore, QtWebEngineWidgets, QtWebChannel
+
 
 class CCP4WebToolBarButtonBridge(QtCore.QObject):
 
