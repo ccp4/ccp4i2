@@ -1000,19 +1000,19 @@ class CMtzDataFile(CCP4File.CDataFile):
         except:
             report.append(self.__class__, 312, other.__str__(), name=self.objectPath(False))
             return report
-        sg1 = self.fileContent.__getattr__("spaceGroup")
-        sg2 = other.fileContent.__getattr__("spaceGroup")
+        sg1 = getattr(self.fileContent, "spaceGroup")
+        sg2 = getattr(other.fileContent, "spaceGroup")
         if sg1 != sg2:
             report.append(self.__class__, 401, f"spaceGroup : {sg1} : {sg2}", stack=False, name=self.objectPath(False) )
-        cell1 = self.fileContent.__getattr__("cell")
-        cell2 = other.fileContent.__getattr__("cell")
-        for item in ['a', 'b', 'c', 'alpha', 'beta', 'gamma']:
-            if not math.isclose(cell1.__getattr__(item), cell2.__getattr__(item), abs_tol=0.001):
+        cell1 = getattr(self.fileContent, "cell")
+        cell2 = getattr(other.fileContent, "cell")
+        for attr in ['a', 'b', 'c', 'alpha', 'beta', 'gamma']:
+            if not math.isclose(getattr(cell1, attr), getattr(cell2, attr), abs_tol=0.001):
                 report.append(self.__class__, 401, f"cell {cell1} : {cell2}", stack=False, name=self.objectPath(False) )
-        for item in ['low', 'high']:
-            if self.fileContent.resolutionRange.__getattr__(item) != other.fileContent.resolutionRange.__getattr__(item):
-                lerrStr = item + ' : ' + str(self.fileContent.resolutionRange.__getattr__(item)) + ' : ' \
-                                       + str(other.fileContent.resolutionRange.__getattr__(item))
+        for attr in ['low', 'high']:
+            if getattr(self.fileContent.resolutionRange, attr) != getattr(other.fileContent.resolutionRange, attr):
+                lerrStr = attr + ' : ' + str(getattr(self.fileContent.resolutionRange, attr)) + ' : ' \
+                                       + str(getattr(other.fileContent.resolutionRange, attr))
                 report.append(self.__class__, 401, lerrStr, stack=False, name=self.objectPath(False))
         ok = 0
         if len(self.fileContent.datasets) != len(other.fileContent.datasets):
