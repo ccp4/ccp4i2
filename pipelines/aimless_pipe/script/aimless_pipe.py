@@ -1,20 +1,28 @@
-from __future__ import print_function
-
 """
      aimless_pipe.py: CCP4 GUI Project
      Copyright (C) 2012 STFC
 """
 
-import sys
+import fileinput
+import glob
 import os
-from PySide2 import QtCore
-from core.CCP4PluginScript import CPluginScript
-from lxml import etree as lxml_etree
-from pipelines.aimless_pipe.script.aimless_pipe_utils import *
-from  pipelines.aimless_pipe.script.aimless_cifstats import *
+import shutil
+import sys
+import traceback
+import unittest
 
-from core import CCP4Utils
-from core.CCP4Data import CString
+from PySide2 import QtCore
+from lxml import etree as lxml_etree
+
+from ....core import CCP4Modules
+from ....core import CCP4Utils
+from ....core import CCP4XtalData
+from ....core.CCP4Data import CString
+from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4XtalData import CUnmergedDataContent
+from .aimless_cifstats import *
+from .aimless_pipe_utils import *
+
 
 class aimless_pipe(CPluginScript):
 
@@ -243,7 +251,6 @@ class aimless_pipe(CPluginScript):
             self.fatalError = [202, 'Aimless failed', status]
             self.process_finish(CPluginScript.FAILED)
             self.reportStatus(status)
-            import traceback
             traceback.print_exc()
             return
 
@@ -331,7 +338,6 @@ class aimless_pipe(CPluginScript):
       self.ndatasets_processed = 0
       self.ndatasets_failed = 0
 
-      import shutil
       # Copy any unmerged files to main directory
       nunmerged = len(self.aimless.container.outputData.MTZUNMERGEDOUT)
       #print "Nunmerged",nunmerged
@@ -343,7 +349,6 @@ class aimless_pipe(CPluginScript):
           fname = os.path.split(str(unmergedfile))[1]
 
           # File content to get datasetName
-          from core.CCP4XtalData import CUnmergedDataContent
           unmergedcontent = CUnmergedDataContent()
           unmergedcontent.loadFile(unmergedfile.fullPath)
           dname = str(unmergedcontent.datasetName)
@@ -380,7 +385,6 @@ class aimless_pipe(CPluginScript):
         filePath = os.path.join(self.workDirectory,'HKLOUT_'+str(self.ndatasets_processed)+'-observed_data.mtz')
         self.ctruncateOutputDataObject = hkloutList[-1]
         hkloutList[-1].setFullPath(filePath)
-        from core import CCP4XtalData
         hkloutList[-1].contentFlag = CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR
         try:
           name =  os.path.splitext(os.path.split(self.container.inputData.UNMERGEDFILES[len(hkloutList)-1].file.__str__())[1])[0]
@@ -456,8 +460,6 @@ class aimless_pipe(CPluginScript):
 
     #  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     def process_finish(self,status):
-      import os,shutil
-
       print("process_finish", status)
       xmlout = str( self.makeFileName( 'PROGRAMXML' ) )
       xmlroot = lxml_etree.Element("AIMLESS_PIPE")
@@ -586,7 +588,6 @@ class aimless_pipe(CPluginScript):
           if os.path.isfile(fulllog):
               #print("Appending log ",log)
               files.append(fulllog)
-      import fileinput
       outfile = os.path.join(self.workDirectory,'log.txt')
       fout = open(outfile, 'w')
       for line in fileinput.input(files):
@@ -646,7 +647,6 @@ class aimless_pipe(CPluginScript):
         # the PURGE mechanism
         print("*cleanup*")
         try:
-            import glob
             wd = self.workDirectory
             filelist = glob.glob(wd+"/*/*.xmgr")
             for fn in filelist:
@@ -937,7 +937,6 @@ class aimless_pipe(CPluginScript):
               print('Cells not compatible', status)
               return status, freerReportXML
 
-      from wrappers.freerflag.script import freerflag
       freerReportXML = None
       self.freerflag = self.makePluginObject('freerflag')
       self.freerflag.container.inputData.F_SIGF = self.container.outputData.HKLOUT[0]
@@ -997,10 +996,6 @@ class aimless_pipe(CPluginScript):
 # ----------------------------------------------------------------------
 # Function to return list of names of exportable MTZ(s)
 def exportJobFile(jobId=None,mode=None):
-    import os
-    from core import CCP4Modules
-    from core import CCP4XtalData
-
     jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
     exportFile = os.path.join(jobDir,'exportMtz.mtz')
     if os.path.exists(exportFile): return exportFile
@@ -1034,8 +1029,6 @@ def exportJobFileMenu(jobId=None):
                                                 
 # ---------------------------------------------------------------------
 '''
-import clipper
-import math
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # NOT USED # #
@@ -1157,25 +1150,18 @@ class SameCell:
 # PLUGIN TESTS
 # See Python documentation on unittest module
 
-import unittest
-
 class testaimless_pipe(unittest.TestCase):
 
    def setUp(self):
-    from core import CCP4Modules
     self.app = CCP4Modules.QTAPPLICATION()
     # make all background jobs wait for completion
     # this is essential for unittest to work
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    from core import CCP4Modules
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
 
    def test_1(self):
-     from core import CCP4Modules
-     import os
-
      workDirectory = os.path.join(CCP4Utils.getTestTmpDir(),'test1')
      if not os.path.exists(workDirectory): os.mkdir(workDirectory)
 
