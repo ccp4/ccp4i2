@@ -1,10 +1,15 @@
-from __future__ import print_function
-
 # Run with 
 # CCP4I2_TOP=$CCP4/share/ccp4i2 $CCP4/share/ccp4i2/bin/pyi2 pathto/demo_i2_scripts/demo_COpenJob.py
 
-import sys,os,shutil
-from PyQt4 import QtCore
+import sys
+import os
+import shutil
+
+from ...core.CCP4DataManager import DATAMANAGER
+from ...core.CCP4Modules import QTAPPLICATION, PROJECTSMANAGER
+from ...dbapi import CCP4DbUtils
+from ...utils.startup import setupEnvironment, setupPythonpath, startProjectsManager, startJobController
+
 
 def handleJobFinished(args):
   print('handleJobFinished',args)
@@ -25,10 +30,8 @@ dbFile = os.path.join(dbDir,'db.sqlite')
 # Bootstrap ccp4i2 environment - mimics the gui side but without actual graphics
 # Note this sets the specified database file
 sys.path.append(os.path.join(ccp4i2_top,'utils'))
-from startup import setupEnvironment,setupPythonpath,startProjectsManager,startJobController
 setupEnvironment()
 setupPythonpath(top=ccp4i2_top,mode='qtcore')
-from core.CCP4Modules import QTAPPLICATION,PROJECTSMANAGER
 app = QTAPPLICATION(graphical=False)
 pm = startProjectsManager(dbFileName=dbFile)
 pm.startCheckForFinishedJobs()
@@ -38,10 +41,7 @@ if dbFile is not None: jc.setDbFile(dbFile)
 #PROJECTSMANAGER().startCheckForFinishedJobs()
 pm.doCheckForFinishedJobs.connect(pm.checkForFinishedJobs)
 PROJECTSMANAGER().db().jobFinished.connect(handleJobFinished)
-from core.CCP4DataManager import DATAMANAGER
 DATAMANAGER().buildClassLookup()
-from dbapi import CCP4DbUtils
-from dbapi import CCP4DbApi
 
 # Create a project
 projectId =  PROJECTSMANAGER().createProject(projectName='myproject',projectPath=projectDirectory)
