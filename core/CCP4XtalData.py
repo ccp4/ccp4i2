@@ -35,7 +35,6 @@ import unittest
 
 import ccp4mg
 import clipper
-from googlecode import diff_match_patch_py3
 import hklfile  # needs ccp4mg
 from lxml import etree
 from PySide2 import QtCore
@@ -51,6 +50,7 @@ from . import CCP4Utils
 from .CCP4Config import QT
 from .CCP4ErrorHandling import *
 from .CCP4Utils import safeFloat
+from ..googlecode import diff_match_patch_py3
 from ..wrappers.chltofom.script import chltofom
 from ..wrappers.ctruncate.script import ctruncate
 
