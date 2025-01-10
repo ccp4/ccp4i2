@@ -15,19 +15,23 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton July 2013 - create and manage customisation
 """
 
-import os
 import glob
+import os
+import shutil
+import tarfile
+import tempfile
+
 from PySide2 import QtCore
-from core import CCP4Modules
-from core import CCP4File
-from core.CCP4QtObject import CObject
-from core.CCP4ErrorHandling import *
+
+from . import CCP4File
+from . import CCP4Modules
+from . import CCP4Utils
+from .CCP4ErrorHandling import *
+from .CCP4QtObject import CObject
 
 
 class CCustomManager(CObject):
@@ -58,7 +62,6 @@ class CCustomManager(CObject):
             self.mode = None
 
     def getList(self):
-        from core import CCP4Utils
         dirList = glob.glob(os.path.join(CCP4Utils.getDotDirectory(), 'custom', self.mode + 's','*'))
         #print 'CCustomManager.getList',self.mode,os.path.join(CCP4Utils.getDotDirectory(),'custom',self.mode+'s','*'),dirList
         titleList = []
@@ -89,7 +92,6 @@ class CCustomManager(CObject):
             return name
 
     def getDirectory(self, name=None):
-        from core import CCP4Utils
         if name is None:
             return os.path.join(CCP4Utils.getDotDirectory(), 'custom', self.mode + 's')
         else:
@@ -99,7 +101,6 @@ class CCustomManager(CObject):
         newDir = self.getDirectory(name=name)
         if overwrite and os.path.exists(newDir):
             try:
-                import shutil
                 shutil.rmtree(newDir)
             except:
                 raise CException(self.__class__, 104, newDir)
@@ -122,7 +123,6 @@ class CCustomManager(CObject):
 
     def delete(self,name):
         dr = self.getDirectory(name)
-        import shutil
         try:
             shutil.rmtree(dr)
         except:
@@ -133,7 +133,6 @@ class CCustomManager(CObject):
 
     def export(self, name, fileName):
         try:
-            import tarfile
             tf = tarfile.open(fileName, mode='w:gz')
         except:
             err = CErrorReport(self.__class__, 105, fileName)
@@ -148,7 +147,6 @@ class CCustomManager(CObject):
         return CErrorReport()
 
     def clone(self, original, new, title=None):
-        import shutil
         diry = self.getDirectory(original)
         #print 'CCustomisationGui.clone',original,new,title,diry
         try:
@@ -172,7 +170,6 @@ class CCustomManager(CObject):
         return
 
     def testImport(self, fileName):
-        import tempfile
         tmpDir = tempfile.mkdtemp()
         self.uncompress(fileName, tmpDir)
         globList = glob.glob(os.path.join(tmpDir,'*'))
@@ -189,14 +186,12 @@ class CCustomManager(CObject):
 
     def import_(self, fileName, name, overwrite=False, rename=None):
         if overwrite:
-            import shutil
             try:
                 shutil.rmtree(self.getDirectory(name))
             except:
                 raise CException(self.__class__, 111)
 
     def uncompress(self, fileName, targetDir, rename=None):
-        import tarfile
         try:
             tf = tarfile.open(fileName, mode='r:gz')
         except:
