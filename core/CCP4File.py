@@ -15,9 +15,7 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Aug 2010 - File handling classes
 """
 
@@ -33,7 +31,6 @@ import traceback
 import unittest
 import xml.etree.ElementTree as ET
 
-from googlecode import diff_match_patch_py3
 from lxml import etree
 from PySide2 import QtCore
 
@@ -48,6 +45,7 @@ from . import CCP4TaskManager
 from . import CCP4Update
 from . import CCP4Utils
 from ..dbapi import CCP4DbApi
+from ..googlecode import diff_match_patch_py3
 from ..report.CCP4ReportParser import CCP4NS
 from .CCP4ErrorHandling import *
 from .CCP4Modules import PROJECTSMANAGER
