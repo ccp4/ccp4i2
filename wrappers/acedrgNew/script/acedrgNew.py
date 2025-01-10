@@ -9,6 +9,7 @@ from lxml import etree
 import math
 from core import CCP4Modules,CCP4Utils
 from . import atomMatching, cifToMolBlock, mol2svg
+from .setDativeBonds import set_dative_bonds
 import platform
 from rdkit.Chem.Draw import rdMolDraw2D
 from rdkit import Chem
@@ -92,7 +93,6 @@ class acedrgNew(CPluginScript):
 
         if self.container.inputData.MOLORSMILES.__str__() == 'DICT' or try_mmCIF == True:
             self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))
-            print(self.originalMolFilePath)
             try:
                 if self.container.inputData.DICTIN2.isSet():
                     molBlock = cifToMolBlock.cifFileToMolBlock(self.container.inputData.DICTIN2.__str__())
@@ -100,8 +100,6 @@ class acedrgNew(CPluginScript):
                     molBlock = cifToMolBlock.cifFileToMolBlock(self.container.inputData.PDBMMCIFIN.__str__())
                 else:
                     pass #  should not happen
-                print("molBlock:")
-                print(molBlock)
                 with open(self.originalMolFilePath,'w') as molinFile:
                     molinFile.write(molBlock)
             except:
@@ -114,8 +112,14 @@ class acedrgNew(CPluginScript):
         try:
             if self.container.inputData.MOL2IN.isSet():
                 mol = Chem.MolFromMol2File(self.originalMolFilePath)
+                if not mol:
+                    mol = Chem.MolFromMol2File(self.originalMolFilePath, sanitize=False)
+                    mol = set_dative_bonds(mol)
             else:
                 mol = Chem.MolFromMolFile(self.originalMolFilePath)
+                if not mol:
+                    mol = Chem.MolFromMolFile(self.originalMolFilePath, sanitize=False)
+                    mol = set_dative_bonds(mol)
             for iAtom in range(mol.GetNumAtoms()):
                 atom = mol.GetAtomWithIdx(iAtom)
                 atom.ClearProp('molAtomMapNumber')
@@ -307,16 +311,26 @@ class acedrgNew(CPluginScript):
         # chirality information
         referenceMol = None
         referenceMolToDraw = None
+        doSanitize = True
         if self.container.inputData.MOL2IN.isSet():
             referenceMol = Chem.MolFromMol2File(self.originalMolFilePath)
             referenceMolToDraw = Chem.MolFromMol2File(self.originalMolFilePath)
+            if not referenceMol:
+                referenceMol = Chem.RemoveHs(Chem.MolFromMol2File(self.originalMolFilePath, sanitize=False), sanitize=False)
+                referenceMolToDraw = Chem.RemoveHs(Chem.MolFromMol2File(self.originalMolFilePath, sanitize=False), sanitize=False)
+                doSanitize = False
         else:
             referenceMol = Chem.MolFromMolFile(self.originalMolFilePath)
             referenceMolToDraw = Chem.MolFromMolFile(self.originalMolFilePath)
+            if not referenceMol:
+                referenceMol = Chem.RemoveHs(Chem.MolFromMolFile(self.originalMolFilePath, sanitize=False), sanitize=False)
+                referenceMolToDraw = Chem.RemoveHs(Chem.MolFromMolFile(self.originalMolFilePath, sanitize=False), sanitize=False)
+                doSanitize = False
 
         try:
-            Chem.SanitizeMol(referenceMol)
-            Chem.Kekulize(referenceMol)
+            if doSanitize:
+                Chem.SanitizeMol(referenceMol)
+                Chem.Kekulize(referenceMol)
             molToWrite = referenceMol
             # Output a MOL file
             molBlock = Chem.MolToMolBlock(molToWrite)
