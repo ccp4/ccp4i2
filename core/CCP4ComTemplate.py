@@ -15,24 +15,19 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Nov 2010 - Handle template files that generate program command files
 """
+
 import os
 import re
 import unittest
 
 from . import CCP4Container, CCP4File, CCP4Utils
-from .CCP4Config import QT
 from .CCP4ErrorHandling import *
+from .CCP4QtObject import CObject
 from .CCP4Utils import getCCP4I2Dir, interpretPath
 
-if QT():
-    from .CCP4QtObject import CObject
-else:
-    from .CCP4Object import CObject
 
 class CComTemplateElement(CObject):
 
