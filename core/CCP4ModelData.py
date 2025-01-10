@@ -42,7 +42,6 @@ import Bio.SeqRecord
 import Bio.SeqUtils
 import ccp4mg
 import iotbx
-import libcheck
 from lxml import etree
 import mmdb2 as mmdb
 import mmut
@@ -59,6 +58,7 @@ from . import CCP4Utils
 from ..model import CCP4SelectionTree
 from ..qtgui import CCP4FileBrowser
 from ..qtgui import CCP4StyleSheet
+from ..wrappers.libcheck.script import libcheck
 from .CCP4ErrorHandling import *
 
 
