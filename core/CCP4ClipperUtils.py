@@ -32,20 +32,20 @@
 
     """
 
+from lxml import etree
+import ccp4mg
 import clipper
+import mmdb2
+
 
 def read_pdb ( pdbin = "undefined" ) :
-
     log_string = "\n\t--------- clipper-python snippet: read_pdb ---------\n\n"
     log_string += "\tpdbin: %s\n\n" % pdbin
 
-    from lxml import etree
     xml_root = etree.Element('read_pdb')
 
     f = clipper.MMDBfile()
     try:
-        import ccp4mg
-        import mmdb2
         f.SetFlag(mmdb2.MMDBF_IgnoreBlankLines| mmdb2.MMDBF_IgnoreDuplSeqNum | mmdb2.MMDBF_IgnoreNonCoorPDBErrors | mmdb2.MMDBF_IgnoreRemarks)
     except:
         pass
