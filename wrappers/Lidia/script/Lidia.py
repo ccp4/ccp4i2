@@ -14,7 +14,6 @@ class lidia(CPluginScript):
     TASKTITLE = 'Lidia'  # A short title for gui menu
     DESCRIPTION = 'Sketch a ligand'
     TASKNAME = 'Lidia'  # Task name - should be same as class name
-    TASKCOMMAND = 'lidia'
     TASKCOMMAND = 'lidia.bat' if platform.system() == "Windows" else 'lidia'  # The command to run the executable
     TASKVERSION = 0.0  # Version of this plugin
     ASYNCHRONOUS = True
