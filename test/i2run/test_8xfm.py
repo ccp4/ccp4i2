@@ -258,6 +258,7 @@ def test_servalcat_pipe(mmcif, mtz):
     "Test that servalcat can handle long ligand names in mmCIF"
     args = ["servalcat_pipe"]
     args += ["--XYZIN", mmcif]
+    args += ["--DATA_METHOD", "xtal"]
     args += ["--HKLIN", f"fullPath={mtz}", "columnLabels=/*/*/[FP,SIGFP]"]
     args += ["--FREERFLAG", f"fullPath={mtz}", "columnLabels=/*/*/[FreeR_flag]"]
     args += ["--NCYCLES", "2"]
