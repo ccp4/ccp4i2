@@ -6,5 +6,6 @@
 - Remove reference to 'manual' model building
 - Fix to report XML parsing
 - Fix to MTZ cell comparison
+- Fix running Lidia on Linux/Mac
 
 ## [2.1.0] - 2024-12-13
