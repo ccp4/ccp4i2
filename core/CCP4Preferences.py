@@ -15,15 +15,19 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
+
+    Liz Potterton - create class to maintain GUIPreferences - Sept 2011
 """
 
-'''
-    Liz Potterton - create class to maintain GUIPreferences - Sept 2011
-'''
 import os
 import shutil
+
 from PySide2 import QtCore
-from core import CCP4Container
+
+from . import CCP4Container
+from . import CCP4Modules
+from . import CCP4Utils
+
 
 class CPreferences(CCP4Container.CContainer):
 
@@ -32,7 +36,6 @@ class CPreferences(CCP4Container.CContainer):
     insts = None
 
     def __init__(self):
-        from core import CCP4Modules
         CCP4Container.CContainer.__init__(self)
         CPreferences.insts = self
         defFile = CCP4Modules.TASKMANAGER().searchDefFile('guipreferences')
@@ -45,7 +48,6 @@ class CPreferences(CCP4Container.CContainer):
             self.loadDataFromXml(prefFile)
 
     def preferencesFile(self):
-        from core import CCP4Utils
         return  os.path.join(CCP4Utils.getDotDirectory(), 'configs', 'guipreferences.params.xml')
 
     def save(self):
