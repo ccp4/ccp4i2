@@ -15,8 +15,29 @@ classifiers = [
     "Private :: Do Not Upload",
 ]
 dependencies = [
+    "biopython",
+    "bzrlib",
+    "ccp4mg",
+    "clipper",
     "future",
     "gemmi",
+    "hklfile",
+    "iotbx",
+    "lxml",
+    "matplotlib",
+    "mmdb2",
+    "mmut",
+    "msilib",
+    "numpy",
+    "paramiko",
+    "pygl_coord",
+    "pyrvapi",
+    "PyQt4",
+    "PySide2",
+    "pywin32",
+    "scipy",
+    "shiboken2",
+    "UtilityThread",
 ]
 requires-python = ">=3.9"
 
