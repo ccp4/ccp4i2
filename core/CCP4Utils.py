@@ -20,30 +20,29 @@
    Liz Potterton Jan 2010 - Copied from ccp4mg python/ui/utils.py and converted to Qt
 """
 
-import os
-import sys
-import re
-import time
-import glob
 import copy
-import shutil
-import tarfile
-import traceback
-import socket
 import getpass
+import glob
+import os
+import re
+import shutil
+import socket
+import sys
+import tarfile
 import tempfile
+import time
 import unittest
 import xml.etree.ElementTree as etree_xml
 
-import shiboken2
-from googlecode import diff_match_patch_py3
 from lxml import etree
 from PySide2 import QtCore
+import shiboken2
 import win32file
 
 from . import CCP4Data
 from . import CCP4File
 from . import CCP4Modules
+from ..googlecode import diff_match_patch_py3
 from .CCP4Config import DEVELOPER
 from .CCP4ErrorHandling import *
 
