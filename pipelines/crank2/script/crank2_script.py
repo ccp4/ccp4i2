@@ -1,5 +1,3 @@
-from __future__ import print_function
-from future.utils import raise_
 """
      crank2.py: CCP4 GUI Project
      Copyright (C) 2010 University of York, Leiden University
@@ -19,15 +17,19 @@ from future.utils import raise_
      GNU Lesser General Public License for more details.
 """
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling, CCP4Utils, CCP4XtalData
-from core import CCP4Modules
-from pipelines.crank2.script import crank2_basepipe
+import os
+import sys
+import traceback
 
-import sys,os,shutil
+from future.utils import raise_
+
+from ....core import CCP4Modules, CCP4Utils, CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+from ....pipelines.crank2.script import crank2_basepipe
+from ..crank2 import ccp4i2crank, common
+
 
 crank2_path=os.path.join(CCP4Utils.getCCP4I2Dir(),'pipelines','crank2','crank2')
-sys.path.append( crank2_path )
 
 class crank2(CPluginScript):
 
@@ -461,7 +463,6 @@ class crank2(CPluginScript):
         self.rvapi_converter=True
       elif os.path.isfile(i2natfile):
         os.remove(i2natfile)
-      import ccp4i2crank,common,traceback
       try:
         crank2 = ccp4i2crank.CallCrankFromCCP4i2(self, inpfile=inpfile, defaults=defaults, rvapi_style=rvapi_style)
         if not defaults and self.has_cont_attr(ctrl,"CLEANUP") and bool(ctrl.CLEANUP):
