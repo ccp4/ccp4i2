@@ -15,24 +15,22 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Aug 2010 - Exception class and definitions of severity
 """
+
 import sys
 import time
 import traceback
 import unittest
 
 from lxml import etree
-from PySide2 import QtGui, QtWidgets
 
 from . import CCP4Config
 from . import CCP4Data
 from . import CCP4DataManager
-from . import CCP4TaskManager
 from . import CCP4PluginScript
+from . import CCP4TaskManager
 from ..qtgui import CCP4MessageBox
 
 
