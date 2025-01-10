@@ -1,8 +1,16 @@
 #!/usr/bin/python
-import os,sys,re,shutil
-from process import process, crvapi
-import common,inout
+
 import multiprocessing
+import os
+import shutil
+
+import gemmi
+import numpy as np
+
+from .. import common, crvapi, inout
+from ..process import process
+
+
 par=common.parameter
 
 class dmfull(process):
@@ -160,7 +168,6 @@ class dmfull(process):
           if hasattr(self,'ccp4i2job'):  i2job,self.ccp4i2job=self.ccp4i2job,None
           logfh,parent=self.logfilehandle,self.parent_process
           self.logfilehandle,self.parent_process=None,None
-        #import multiprocessing
         manager = multiprocessing.Manager()
         queue = manager.Queue()
         dm_hand,self.dmf=[],[]
@@ -552,7 +559,6 @@ class dmfull(process):
 
   def AdjustResol(self,o1,o2):
     # adjusts resolution of mtz from o1 to that of o2
-    import gemmi,numpy as np
     mtz = gemmi.read_mtz_file(o1.GetFileName('mtz'))
     mtz_resol = gemmi.read_mtz_file(o2.GetFileName('mtz'))
     all_data = np.array(mtz, copy=False)

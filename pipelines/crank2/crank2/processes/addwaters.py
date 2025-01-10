@@ -1,7 +1,11 @@
 #!/usr/bin/python
-import os,sys,string
-from process import process
-import common
+
+import os
+import string
+
+from .. import common
+from ..process import process
+
 
 class addwaters(process):
   name="adding waters into electron density map"

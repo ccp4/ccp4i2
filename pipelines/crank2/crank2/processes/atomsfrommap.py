@@ -1,7 +1,15 @@
 #!/usr/bin/python
-import os,sys,re
-from process import process
-import common,data
+
+import os
+import sys
+import re
+
+import gemmi
+
+from .. import common, data
+from ..process import process
+
+
 par=common.parameter
 
 class atomsfrommap(process):
@@ -104,7 +112,6 @@ class atomsfrommap(process):
           disu=True
       deleted_list=[0,0,0]
       try:
-        import gemmi
         struct=gemmi.read_structure(self.out.Get('model').GetFileName())
         struct_inp=gemmi.read_structure(inp_pdb_obj.GetFileName())
         for ch1 in struct[0]:

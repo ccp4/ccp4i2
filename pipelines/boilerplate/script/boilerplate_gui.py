@@ -16,7 +16,7 @@
     GNU Lesser General Public License for more details.
     """
 
-from qtgui.CCP4TaskWidget import CTaskWidget
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
 #-------------------------------------------------------------------
 class ZZPipelineNameZZ_gui(CTaskWidget):

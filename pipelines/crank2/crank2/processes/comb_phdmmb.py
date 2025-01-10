@@ -1,8 +1,16 @@
 #!/usr/bin/python
-import os,sys,re,shutil,copy
-from process import process, crvapi
-from program import program
-import common, inout
+
+import copy
+import multiprocessing
+import os
+import shutil
+import sys
+
+from .. import common, inout
+from ..process import process, crvapi
+from ..program import program
+
+
 par=common.parameter
 
 class comb_phdmmb(process):
@@ -367,7 +375,6 @@ class comb_phdmmb(process):
       self.PrintActualLogGraph(update='endparal') # rewrites the graph for paral
     else:
       windata=self.save_reset() # windows cannot spawn instances with non-picklable attributes
-      import multiprocessing
       manager = multiprocessing.Manager()
       queue, queue2 = manager.Queue(), manager.Queue()
       comb_hand,self.cmb_hand=[],[]

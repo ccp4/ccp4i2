@@ -1,7 +1,11 @@
 #!/usr/bin/python
-import os,sys
-from process import process
-import common
+
+import os
+
+import gemmi
+
+from .. import common
+from ..process import process
 
 
 class convert(process):
@@ -40,25 +44,10 @@ class convert(process):
     mtz_ip=self.inp.Get('fsigf',filetype='mtz',col='i',typ='plus')
     mtz_im=self.inp.Get('fsigf',filetype='mtz',col='i',typ='minus')
     if newtyp in ('hkl','sca') and not self.GetProg().GetKey('SCAL') and mtz_ip and mtz_im and not 'amplitudes' in self.opts:
-      try:
-        import gemmi
-      except ImportError: # may occasionally fail if the values are so large that even sftools reports just stars
-        sftools=self.AddProg('sftools')
-        sftools.SetKey("read", ['"'+mtz_ip.GetFileName('mtz')+'"', 'col', "\"{0}\"".format(mtz_ip.GetLabel('i'))])
-        sftools.SetKey("checkhkl")
-        sftools.Run()
-        maxp = sftools.GetStat('max', mtz_ip.GetLabel('i')[:12])
-        minp = sftools.GetStat('min', mtz_ip.GetLabel('i')[:12])
-        sftools.SetKey("read", ['"'+mtz_im.GetFileName('mtz')+'"', 'col', "\"{0}\"".format(mtz_im.GetLabel('i'))])
-        sftools.SetKey("checkhkl")
-        sftools.Run()
-        scal = 99999./max(maxp,abs(minp),sftools.GetStat('max', mtz_im.GetLabel('i')[:12]),abs(sftools.GetStat('min', mtz_im.GetLabel('i')[:12])))
-        self.programs.remove(sftools)
-      else:
-        mtz = gemmi.read_mtz_file(mtz_ip.GetFileName('mtz'))
-        ip=mtz.column_with_label(mtz_ip.GetLabel('i'))
-        im=mtz.column_with_label(mtz_im.GetLabel('i'))
-        scal = 99999./max(ip.max_value,abs(ip.min_value),im.max_value,abs(im.min_value))
+      mtz = gemmi.read_mtz_file(mtz_ip.GetFileName('mtz'))
+      ip=mtz.column_with_label(mtz_ip.GetLabel('i'))
+      im=mtz.column_with_label(mtz_im.GetLabel('i'))
+      scal = 99999./max(ip.max_value,abs(ip.min_value),im.max_value,abs(im.min_value))
       self.GetProg().SetKey('SCAL', scal)
   RegisterConv(setup, ConvertMTZ2Various, ['mtz'], ['hkl','sca','phs'])
 

@@ -1,4 +1,3 @@
-from __future__ import print_function
 """
      CTaskCrank2.py
      Copyright (C) 2011 University of York, Leiden University
@@ -18,14 +17,24 @@ from __future__ import print_function
      GNU Lesser General Public License for more details.
 """
 
-import os
 import functools
+import os
 import traceback
+
+from PySide2 import QtGui, QtWidgets, QtCore
+
+from core import CCP4Container
+from core import CCP4Utils
+from core import CCP4ErrorHandling
+from core import CCP4File
+from core import CCP4Modules
+from core import CCP4XtalData
+from core.CCP4Modules import PROJECTSMANAGER
+from core.CCP4PluginScript import CPluginScript
 from qtgui import CCP4TaskWidget
 from qtgui import CCP4Widgets
-from core import CCP4Utils
 from . import crank2_basepipe
-from PySide2 import QtGui, QtWidgets, QtCore
+
 
 class CTaskCrank2(CCP4TaskWidget.CTaskWidget):
   TASKNAME = 'crank2'

@@ -22,9 +22,13 @@
      Jon Agirre 2014 - Add new MR options, revise the gui and simplify it
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
+import multiprocessing
+import os
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from ....qtgui import CCP4TaskWidget
+from ....qtgui import CCP4Widgets
 
 
 def whatNext(jobId,childTaskName,childJobNumber,projectName):
@@ -215,7 +219,6 @@ class CTaskbuccaneer_build_refine_mr(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'widget','BUCCANEER_FIX_POSITION','label','Build the new model in the same place as the input model' ] )
     self.createLine( [ 'label','Residue name for unsequenced residues','widget','BUCCANEER_NEW_RESIDUE_NAME' ] )
   
-    import multiprocessing, os
     self.getContainer().controlParameters.BUCCANEER_JOBS = int ( os.getenv ( 'OMP_NUM_THREADS', multiprocessing.cpu_count() ) )
     self.createLine( [ 'tooltip',  'The default value shows the detected number of cores', 'label', 'Use up to', 'widget', 'BUCCANEER_JOBS', 'label', 'CPU cores whenever possible' ] ) 
     self.createLine( [ 'widget','BUCCANEER_CLEANUP','label','Clean up intermediate map files as job progresses' ] )

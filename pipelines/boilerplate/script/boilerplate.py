@@ -17,7 +17,13 @@
     """
 
 import os
-from core.CCP4PluginScript import CPluginScript
+import shutil
+
+from lxml import etree
+
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class ZZPipelineNameZZ(CPluginScript):
     TASKNAME = 'ZZPipelineNameZZ'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -49,7 +55,6 @@ class ZZPipelineNameZZ(CPluginScript):
             #Uncomment the following lines if you want to run plugins asynchronously
             '''
             ZZFirstPluginNameZZPlugin.doAsync = True
-            import functools
             self.connectSignal(ZZFirstPluginNameZZPlugin,'finished',
                                functools.partial(self.pluginFinished,ZZFirstPluginNameZZPlugin))
             self.ZZFirstPluginNameZZPlugins.append(ZZFirstPluginNameZZPlugin)
@@ -67,9 +72,6 @@ class ZZPipelineNameZZ(CPluginScript):
             
     def processOutputFiles(self):
         #Create (dummy) PROGRAMXML
-        from lxml import etree
-        from core import CCP4Utils
-        import sys, os, shutil
         pipelineXMLStructure = etree.Element("ZZPipelineNameZZ")
         
         for iPlugin, ZZFirstPluginNameZZPlugin in enumerate(self.ZZFirstPluginNameZZPlugins):
