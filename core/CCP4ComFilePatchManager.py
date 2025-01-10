@@ -15,15 +15,12 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton July 2013 - create and manage com file patches
 """
 
 import os
 
-from googlecode import diff_match_patch_py3
 from PySide2 import QtCore
 
 from . import CCP4Container
@@ -33,6 +30,7 @@ from . import CCP4File
 from . import CCP4Modules
 from . import CCP4TaskManager
 from . import CCP4Utils
+from ..googlecode import diff_match_patch_py3
 from .CCP4ErrorHandling import *
 
 
