@@ -1,6 +1,4 @@
-from report.CCP4ReportParser import *
-import sys
-from lxml import etree
+from ...report.CCP4ReportParser import *
 
 class prosmart_martin_report(Report):
     # Specify which gui task and/or pluginscript this applies to
