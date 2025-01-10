@@ -26,6 +26,7 @@ import functools
 import getopt
 import glob
 import math
+import msilib
 import os
 import sys
 import tempfile
@@ -46,7 +47,6 @@ from scipy import optimize
 import matplotlib
 import matplotlib.gridspec as gridspec
 import matplotlib.transforms as mtransforms
-import msilib
 import numpy
 
 
