@@ -1,53 +1,48 @@
-from __future__ import print_function
-
-
-from core.CCP4PluginScript import CPluginScript
+import glob
+import os
+from pathlib import Path
+import platform
+import sys
 from PySide2 import QtCore
-import os,glob,re,time,sys
-from core import CCP4XtalData
 from lxml import etree
-import math
+from core.CCP4PluginScript import CPluginScript
 from core import CCP4Modules
 from core import CCP4Utils
-import platform
 
 class lidia(CPluginScript):
-    TASKMODULE = 'wrappers'                               # Where this plugin will appear on the gui
-    TASKTITLE = 'Lidia'     # A short title for gui menu
+    TASKMODULE = 'wrappers'  # Where this plugin will appear on the gui
+    TASKTITLE = 'Lidia'  # A short title for gui menu
     DESCRIPTION = 'Sketch a ligand'
-    TASKNAME = 'Lidia'                                  # Task name - should be same as class name
-    TASKCOMMAND = 'lidia'                                     # The command to run the executable
-    if platform.system() == 'Windows': TASKCOMMAND = 'lidia.bat'
-    TASKVERSION= 0.0                                     # Version of this plugin
+    TASKNAME = 'Lidia'  # Task name - should be same as class name
+    TASKCOMMAND = 'lidia.bat' if platform.system() == "Windows" else 'lidia'  # The command to run the executable
+    TASKVERSION = 0.0  # Version of this plugin
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 9999999.9
-    #WHATNEXT = ['coot_rebuild','parrot','buccaneer_build_refine_mr']
-    RUNEXTERNALPROCESS=False
+    RUNEXTERNALPROCESS = False
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
 
     ERROR_CODES = {200 : {'description' : 'Failed to add item to mol list'},
                    201 : {'description' : 'Failed to setFullPath'},}
     
     def startProcess(self, command, **kw):
-        cootExeDir = None
-        if hasattr(CCP4Modules.PREFERENCES(),'COOT_EXECUTABLE'):
-            if os.path.isfile(str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)):
-                cootExeDir = str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)
-        if cootExeDir is None:
-            cootExeDir = CCP4Utils.which('coot')
-        cootDir = os.path.normpath(os.path.dirname(os.path.dirname(cootExeDir)))
-        envEdit = [['COOT_PREFIX',cootDir]]
-        COOT_DATA_DIR =os.path.normpath(os.path.join(cootDir,'share','coot'))
-        envEdit.append(['COOT_DATA_DIR',COOT_DATA_DIR])
-        envEdit.append(['PWD',os.path.normpath(self.getWorkDirectory())])
-        if sys.platform.startswith('linux'):
-            envEdit.append(['PATH',os.path.join(os.environ["CCP4"],"libexec")])
+        viewer = 'lidia'
         argList = []
-        if self.container.inputData.MOLIN.isSet():
-            argList.append(self.container.inputData.MOLIN.__str__())
-### quick fix for 8.0.006, lidia from external coot will not work
-        envEdit = [['PWD',os.path.normpath(self.getWorkDirectory())]]
-        CCP4Modules.LAUNCHER().launch(viewer='lidia', argList = argList, callBack = self.handleFinished, envEdit=envEdit,logFile = self.makeFileName('LOG'))
+        lidiaPath = _lidiaPath()
+        if not sys.platform.startswith("win"):
+            viewer = '/bin/sh'
+            argList = [lidiaPath[0]]
+            if self.container.inputData.MOLIN.isSet():
+                argList.append(str(self.container.inputData.MOLIN))
+        envEdit=[['PWD', os.path.normpath(self.getWorkDirectory())]]
+        if lidiaPath[1]:
+            envEdit.append(["PYTHONHOME",lidiaPath[1]])
+        CCP4Modules.LAUNCHER().launch(
+            viewer=viewer,
+            argList=argList,
+            callBack=self.handleFinished,
+            envEdit=envEdit,
+            logFile=self.makeFileName('LOG')
+        )
         return CPluginScript.SUCCEEDED
 
     @QtCore.Slot()
@@ -82,7 +77,6 @@ class lidia(CPluginScript):
     
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
             q = etree.tostring(rootNode,encoding='utf-8',pretty_print=True)
-#           programXML.write(q.decode("utf-8"))
             CCP4Utils.writeXML(programXML,q)
         
         self.reportStatus(CPluginScript.SUCCEEDED)
@@ -104,4 +98,14 @@ class lidia(CPluginScript):
         return mdlMolecule.svgXML(size=(300,300))
 
 
-
+def _lidiaPath() -> str:
+    if hasattr(CCP4Modules.PREFERENCES(), 'COOT_EXECUTABLE'):
+        path = Path(str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE))
+        if path.is_file():
+            return (str(path.resolve().parent / "lidia"),None)
+    if lidiaPath := CCP4Utils.which('lidia'):
+        return (str(Path(lidiaPath).resolve()),None)
+    if sys.platform == "linux":# Seems that lidia does not run without PYTHONPATH being set on Linux
+        return (str(Path(os.environ["CCP4"]).resolve() / "coot_py2/bin/lidia"),str(Path(os.environ["CCP4"]).resolve() / "coot_py2/"))
+    else:
+        return (str(Path(os.environ["CCP4"]).resolve() / "coot_py2/bin/lidia"),None)
