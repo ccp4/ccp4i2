@@ -1,14 +1,16 @@
-from __future__ import with_statement
-import os,sys,copy,re
-from xml.etree import ElementTree as ET
-import subprocess,threading,time
 from distutils import spawn
-import common,data,inout
-if sys.version_info[0]==2:
-  from Queue import Queue  
-else:
-  from queue import Queue
+from queue import Queue
+import collections
+import copy
+import os
+import re
+import subprocess
+import sys
+import threading
+import time
+import xml.etree.ElementTree as ET
 
+from . import common, data, inout
 
 
 class program(object):
@@ -437,7 +439,6 @@ class program(object):
       f = open(logfile,"r")
       from_str = f.read()
     if param:
-      import collections
       if common.is_string(param) or not isinstance(param, collections.Iterable):
         param = [param,]
       if param_escape:
@@ -1009,10 +1010,7 @@ class program(object):
     startupinfo=None
     if os.name == 'nt':
       startupinfo = subprocess.STARTUPINFO()
-      if sys.version_info == (2, 7):
-        startupinfo.dwFlags |= subprocess._subprocess.STARTF_USESHOWWINDOW
-      else:
-        startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+      startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
     # interactive output - use with care
     # runs the program in a separate thread, allowing to process its output simultanously
     # the output lines are passed one by one to the Interact_output method of the program
