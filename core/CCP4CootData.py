@@ -17,9 +17,9 @@
      GNU Lesser General Public License for more details.
 """
 
-from core import CCP4Data
-from core import CCP4File
-from core import CCP4ErrorHandling
+from . import CCP4Data
+from . import CCP4File
+
 
 class CCootHistoryDataFile(CCP4File.CDataFile):
 
