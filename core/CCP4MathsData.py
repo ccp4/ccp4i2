@@ -15,22 +15,16 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Feb 2011 - CData subclasses for basic maths/geometry
 """
 
+import math
+import unittest
 
-from core import CCP4Data
-from core.CCP4ErrorHandling import *
-from core.CCP4Config import QT, XMLPARSER
-if QT():
-    from core.CCP4QtObject import CObject
-else:
-    from core.CCP4Object import CObject
-if XMLPARSER() == 'lxml':
-    from lxml import etree
+from . import CCP4Data
+from .CCP4ErrorHandling import *
+
 
 class CXyz(CCP4Data.CData):
 
@@ -152,14 +146,12 @@ class CAngle(CCP4Data.CFloat):
     '''An angle'''
 
     def getRadians(self):
-        import math
         if self._value is None:
             return 0.0
         else:
             return self._value * (math.pi/180.0)
 
     def setRadians(self,value):
-        import math
         if value is None:
             self.set(value)
         else:
@@ -200,7 +192,6 @@ class CMatrix33(CCP4Data.CData):
 
 
 #===========================================================================================================
-import unittest
 def TESTSUITE():
     suite = unittest.defaultTestLoader.loadTestsFromTestCase(testXyz)
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testXyzBox))
