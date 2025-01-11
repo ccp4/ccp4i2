@@ -1,7 +1,8 @@
 #!/usr/bin/python
-import os,sys
-from program import program
-import common
+
+from .. import common
+from ..program import program
+
 
 class seqwt(program):
   name="SEQWT"
@@ -17,4 +18,3 @@ class seqwt(program):
       self.SetArg('sequence',seq.GetFileName())
     else:
       common.Error('Sequence in neither pir nor seq inputted to {0}'.format(self.name))
-

@@ -1,7 +1,8 @@
 #!/usr/bin/python
-import os,sys
-from program import program
-import common
+
+from .. import common
+from ..program import program
+
 
 class convert2mtz(program):
   name="CONVERT2MTZ"

@@ -1,7 +1,8 @@
 #!/usr/bin/python
-import os,sys,copy
-from program import program
-import common
+
+from .. import common
+from ..program import program
+
 
 class peakmax(program):
   name="PEAKMAX"

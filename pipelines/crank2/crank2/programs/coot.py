@@ -1,7 +1,9 @@
 #!/usr/bin/python
-import os,sys
-from program import program
-import common
+
+import os
+
+from ..program import program
+
 
 class coot(program):
   name="COOT"

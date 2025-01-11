@@ -1,7 +1,10 @@
 #!/usr/bin/python
-import os,sys,copy
-from program import program
-import common
+
+import copy
+
+from .. import common
+from ..program import program
+
 
 class pdbmerge(program):
   name="PDB_MERGE"

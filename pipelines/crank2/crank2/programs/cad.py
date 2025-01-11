@@ -1,7 +1,7 @@
 #!/usr/bin/python
-import os,sys
-from program import program
-import common
+
+from ..program import program
+
 
 class cad(program):
   name="CAD"

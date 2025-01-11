@@ -1,7 +1,7 @@
 #!/usr/bin/python
-import os,sys
-from program import program
-import common
+
+from .. import common
+from ..program import program
 
 class f2mtz(program):
   name="F2MTZ"

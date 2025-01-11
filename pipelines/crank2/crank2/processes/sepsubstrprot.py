@@ -1,7 +1,10 @@
 #!/usr/bin/python
-import os,sys,re,string
-from process import process
-import common
+
+import re
+import string
+
+from .. import common
+from ..process import process
 
 
 class sepsubstrprot(process):

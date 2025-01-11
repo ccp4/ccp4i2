@@ -1,7 +1,10 @@
 #!/usr/bin/python
-import os,sys
-from program import program
-import common
+
+import sys
+
+from .. import common
+from ..program import program
+
 
 class mtzMADmod(program):
   name="mtzMADmod"
