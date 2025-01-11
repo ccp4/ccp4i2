@@ -1,10 +1,10 @@
-import os
 import json
+import os
 import shutil
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4XtalData
-from core import CCP4ErrorHandling
+from ......core import CCP4ErrorHandling
+from ......core import CCP4XtalData
+from ......core.CCP4PluginScript import CPluginScript
 
 
 class mrparse_simple(CPluginScript):

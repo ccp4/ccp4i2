@@ -1,7 +1,3 @@
-from __future__ import print_function
-
-from PySide2 import QtCore
-
 """
      tasks/molrep_mr/Cmolrep_mr.py: CCP4 GUI Project
      Copyright (C) 2011 University of York
@@ -19,15 +15,13 @@ from PySide2 import QtCore
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Stuart McNicholas 2020-2021 adapted from Andrey Lebedev September 2011 - molrep_mr gui
 """
 
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
+from PySide2 import QtCore
 
+from qtgui import CCP4TaskWidget
 
 
 class Cdr_mr_modelbuild_pipeline(CCP4TaskWidget.CTaskWidget):

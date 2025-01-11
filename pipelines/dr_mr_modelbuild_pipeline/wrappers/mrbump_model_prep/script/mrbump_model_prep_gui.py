@@ -17,8 +17,8 @@
      GNU Lesser General Public License for more details.
 """
 
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
+from ......qtgui import CCP4TaskWidget
+
 
 class Cmrbump_model_prep(CCP4TaskWidget.CTaskWidget):
   TASKNAME = 'mrbump_model_prep'

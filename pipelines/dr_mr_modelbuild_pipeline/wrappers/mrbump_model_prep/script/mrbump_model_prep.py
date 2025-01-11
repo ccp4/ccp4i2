@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
     mrbump_model_prep.py: CCP4 GUI Project
      Copyright (C) 2020 STFC
@@ -19,14 +17,19 @@ from __future__ import print_function
      GNU Lesser General Public License for more details.
 """
 
-import sys, os, shutil, copy
-import json
 from collections import OrderedDict
+import json
+import os
+import sys
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core import CCP4ErrorHandling
 from lxml import etree
+from mrbump.output import modelout
+
+from ......core import CCP4ErrorHandling
+from ......core import CCP4Utils
+from ......core import CCP4XtalData
+from ......core.CCP4PluginScript import CPluginScript
+
 
 class mrbump_model_prep(CPluginScript):
 
@@ -42,7 +45,6 @@ class mrbump_model_prep(CPluginScript):
 
         MRBUMPFIELDS = ['chainSource', 'coverage', 'eLLG', 'evalue', 'experiment', 'mgName', 'modelName', 'modelPDBfile', 'rank', 'resolution', 'score', 'seqID', 'source', 'sourceChainID', 'tarEnd', 'tarGroupEnd', 'tarGroupStart', 'tarStart', 'type']
 
-        from mrbump.output import modelout
         mjson=modelout.Json()
         modelsJsonFile=os.path.join(logDir, "models.json")
         if os.path.isfile(modelsJsonFile):
@@ -70,8 +72,6 @@ class mrbump_model_prep(CPluginScript):
                  CCP4Utils.writeXML(ostream,etree.tostring(xmlroot,pretty_print=True))
 
     def findOutputFileFromLog(self,logDir):
-
-        from mrbump.output import modelout
         mjson=modelout.Json()
         modelsJsonFile=os.path.join(logDir, "models.json")
         if os.path.isfile(modelsJsonFile):
@@ -92,7 +92,6 @@ class mrbump_model_prep(CPluginScript):
                  sys.write("Error: Can't find MrBUMP models json file:\n %s\n" % modelsJsonFile)
 
     def processInputFiles(self):
-        from core import CCP4XtalData
         error = None
         self.hklin = None
         dataObjects = []
@@ -113,9 +112,6 @@ class mrbump_model_prep(CPluginScript):
 
       inp = self.container.inputData
       out = self.container.outputData
-
-      from core import CCP4Utils
-      import os
 
       keyin = "GESMAX 1\n" 
       keyin += "PICKLE False\n" 

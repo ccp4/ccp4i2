@@ -1,13 +1,11 @@
-import sys
 import math
+import sys
 
 from lxml import etree
-
 import gemmi
-from  pipelines.import_merged.script.mmcifutils import *
-from  pipelines.import_merged.script.importutils import *
-#from mmcifutils import *
-#from importutils import *
+
+from .importutils import *
+from .mmcifutils import *
 
 
 class GetColumn():

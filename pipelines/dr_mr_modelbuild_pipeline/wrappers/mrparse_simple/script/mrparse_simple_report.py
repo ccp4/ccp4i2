@@ -1,5 +1,6 @@
 
-from report.CCP4ReportParser import *
+from ......report.CCP4ReportParser import *
+
 
 class mrparse_simple_report(Report):
 

@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
     import_merged.py: CCP4 GUI Project
      Copyright (C) 2015 STFC
@@ -20,18 +18,22 @@ from __future__ import print_function
 """
 
 import sys
-import os,shutil
-from PySide2 import QtCore
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core.CCP4ErrorHandling import *
-from lxml import etree
-from pipelines.aimless_pipe.script.aimless_pipe_utils import *
+import os
 
-from  pipelines.import_merged.script.mmcifutils import *
-from  pipelines.import_merged.script.mmcifconvert import *
-from  pipelines.import_merged.script.importutils import *
-from  pipelines.import_merged.script.mtzimport import *
+from lxml import etree
+from PySide2 import QtCore
+
+from ....core import CCP4Modules
+from ....core import CCP4Utils
+from ....core import CCP4XtalData
+from ....core.CCP4ErrorHandling import *
+from ....core.CCP4PluginScript import CPluginScript
+from ....pipelines.aimless_pipe.script.aimless_pipe_utils import *
+from .importutils import *
+from .mmcifconvert import *
+from .mmcifutils import *
+from .mtzimport import *
+
 
 class import_merged(CPluginScript):
 
@@ -366,7 +368,6 @@ class import_merged(CPluginScript):
     def nearlyDone(self,status):
       print('import_merged.nearlyDone')
       self.container.outputData.OBSOUT.setContentFlag(reset=True)
-      import shutil
       try:
           # XML data: We have
           #   a) self.importXML etree element report on the import step
@@ -674,9 +675,6 @@ def exportJobFile(jobId=None,mode=None):
     #  If amplitudes F, then return Fs + FreeR
     #     don't use ctruncate output which has intensities derived from F^2
     #     which would mean truncate applied twice
-    import os
-    from core import CCP4Modules
-    from core import CCP4XtalData
 
     print("\nexportJobFile")
     jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)

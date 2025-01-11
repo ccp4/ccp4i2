@@ -1,12 +1,10 @@
-import sys
-import gemmi
-
 import math
-import numpy
+import time
+
+import gemmi
 
 
 # -------------------------------------------------------------
-import time
 class MyTimer():
     def __init__(self):
         self.t1 = time.perf_counter()

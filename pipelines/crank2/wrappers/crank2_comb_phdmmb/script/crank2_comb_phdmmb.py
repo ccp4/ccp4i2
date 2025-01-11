@@ -17,7 +17,8 @@
      GNU Lesser General Public License for more details.
 """
 
-from pipelines.crank2.script import crank2_script
+from ....script import crank2_script
+
 
 class crank2_comb_phdmmb(crank2_script.crank2):
 

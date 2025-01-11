@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
     dr_mr_modelbuild.py: CCP4 GUI Project
      Copyright (C) 2020 STFC
@@ -17,34 +15,29 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
 TODO
 
 * If 2 enantiomers don't bother with second one if first one gives R < 30%.
 
 """
 
-import sys, os, shutil, copy
+import copy
 import json
+import os
+import shutil
+import sys
 
-try:
-    from PySide2.QtCore import Slot
-except:
-    from PyQt4.QtCore import pyqtSlot as Slot
-
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core.CCP4ErrorHandling import *
 from lxml import etree
-
-try:
-    import ccp4mg
-    import mmdb2 as mmdb
-except:
-    print('FAILED CCP4ModelData imported ccp4mg')
+from PySide2.QtCore import Slot
+import ccp4mg
+import mmdb2 as mmdb
 import mmut
+
+from ....core import CCP4Utils
+from ....core.CCP4ErrorHandling import *
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class dr_mr_modelbuild_pipeline(CPluginScript):
 

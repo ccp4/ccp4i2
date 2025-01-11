@@ -17,7 +17,8 @@
      GNU Lesser General Public License for more details.
 """
 
-from pipelines.crank2.script import CTaskCrank2
+from ....script import CTaskCrank2
+
 
 class CTaskCrank2faest(CTaskCrank2.CTaskCrank2):
   TASKNAME = 'crank2_faest'

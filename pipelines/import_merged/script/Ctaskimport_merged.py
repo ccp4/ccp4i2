@@ -1,18 +1,12 @@
-from __future__ import print_function
-
-from qtgui.CCP4TaskWidget import CTaskWidget
-from PySide2 import QtCore,QtGui, QtWidgets
-from core import CCP4XtalData
-from qtgui import CCP4XtalWidgets
-from core.CCP4ErrorHandling import *
-
-import math
-import functools
-
 import gemmi
+from PySide2 import QtCore, QtWidgets
 
-from  pipelines.import_merged.script.mmcifutils import *
-from  pipelines.import_merged.script.dybuttons import *
+from ....core.CCP4ErrorHandling import *
+from ....qtgui import CCP4XtalWidgets
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+from .dybuttons import *
+from .mmcifutils import *
+
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

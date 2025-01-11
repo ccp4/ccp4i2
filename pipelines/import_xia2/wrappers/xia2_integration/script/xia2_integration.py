@@ -1,11 +1,14 @@
-from __future__ import print_function
 """
      xia2_integration.py: CCP4 GUI Project
      Copyright (C) 2013 STFC
 """
 
-import os,shutil,glob
-from core import CCP4PluginScript
+import glob
+import os
+import shutil
+
+from ......core import CCP4PluginScript
+
 
 class xia2_integration(CCP4PluginScript.CPluginScript):
 
