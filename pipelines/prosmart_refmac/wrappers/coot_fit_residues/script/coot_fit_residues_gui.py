@@ -2,12 +2,10 @@
      tasks/coot_fit_residues
      Copyright (C) 2011 STFC
      Author: Martyn Winn
-
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from ......qtgui.CCP4TaskWidget import CTaskWidget
 
-from qtgui.CCP4TaskWidget import CTaskWidget
 
 #-------------------------------------------------------------------
 class Ccoot_fit_residues(CTaskWidget):
@@ -21,11 +19,9 @@ class Ccoot_fit_residues(CTaskWidget):
 
   def drawContents(self):
 
-      
     self.setProgramHelpFile('coot_fit_residues')
                         
     self.openFolder(folderFunction='inputData')
 
     self.createLine( [ 'tip', 'input structure', 'widget', 'XYZIN' ] )
     self.createLine( [ 'tip', 'input 2mFo-DFc coefficient', 'widget', 'FPHIIN' ] )
- 

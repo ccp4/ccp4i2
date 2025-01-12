@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
     molrep_pipe.py: CCP4 GUI Project
      Copyright (C) 2015 STFC
@@ -19,12 +17,17 @@ from __future__ import print_function
      GNU Lesser General Public License for more details.
 """
 
-import os, shutil
-from PySide2 import QtCore
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core.CCP4ErrorHandling import *
+import os
+import shutil
+import subprocess as SP
+
 from lxml import etree
+from PySide2 import QtCore
+
+from ....core import CCP4Utils
+from ....core.CCP4ErrorHandling import *
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class molrep_pipe(CPluginScript):
 
@@ -163,7 +166,6 @@ class molrep_pipe(CPluginScript):
       self.run2()
 
     def reindex(self, mtzin, mtzout):
-      import subprocess as SP
       cmd = ('reindex', 'hklin', mtzin, 'hklout', mtzout)
       stdi = 'symm \'%s\'\nend\n' %self.newspacegroup
       sp = SP.Popen(cmd, stdin=SP.PIPE)
@@ -236,7 +238,6 @@ class molrep_pipe(CPluginScript):
       self.sheetbendPlugin.process()
 
     def harvestFile(self, pluginOutputItem, pipelineOutputItem):
-      import shutil
       try:
         shutil.copyfile(str(pluginOutputItem.fullPath), str(pipelineOutputItem.fullPath))
         pipelineOutputItem.annotation = pluginOutputItem.annotation

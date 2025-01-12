@@ -16,10 +16,13 @@
     GNU Lesser General Public License for more details.
     """
 
-import os, shutil
+import shutil
+
 from lxml import etree
-from core import CCP4Utils
-from core.CCP4PluginScript import CPluginScript
+
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class nautilus_build_refine(CPluginScript):
 

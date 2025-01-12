@@ -1,14 +1,18 @@
-from __future__ import print_function
-
-from core.CCP4PluginScript import CPluginScript
+import datetime
 import os
-import sys
 import pickle
-from core import CCP4ErrorHandling
-from core import CCP4Modules
-from pipelines.phaser_pipeline.wrappers.phaser_MR.script import phaser_MR
+import sys
+
 from lxml import etree
-from core import CCP4Utils
+import phaser
+
+from ......core import CCP4ErrorHandling
+from ......core import CCP4Modules
+from ......core import CCP4Utils
+from ......core import CCP4XtalData
+from ......core.CCP4PluginScript import CPluginScript
+from ......pipelines.phaser_pipeline.wrappers.phaser_MR.script import phaser_MR
+
 
 class MRAUTOCallbackObject(phaser_MR.CallbackObject):
     def __init__(self, xmlroot=None, xmlResponders = [],workDirectory=None):
@@ -47,7 +51,6 @@ class MRAUTOCallbackObject(phaser_MR.CallbackObject):
 
     # Here I override notifyResponders so as to notify reponders maximally once per 5 seconds.
     def notifyResponders(self):
-        import datetime
         if not hasattr(self,'lastNotification'):
             self.lastNotification = datetime.datetime.now()
         datetimeNow = datetime.datetime.now()
@@ -84,7 +87,6 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
         self.callbackObject = MRAUTOCallbackObject(self.xmlroot, [self.flushXML], self.workDirectory)
 
     def runMR_DAT(self, outputObject):
-        import phaser
         inputObject = phaser.InputMR_DAT()
         self.inputObject = inputObject
         inputObject.setHKLI(str(self.hklin))
@@ -113,7 +115,6 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
         return resultObject
     
     def startProcess(self, command, **kw):
-        import phaser
         outputObject = phaser.Output()
         outputObject.setPhenixCallback(self.callbackObject)
 
@@ -184,7 +185,6 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
         return CPluginScript.SUCCEEDED
 
     def processInputFiles(self):
-        from core import CCP4XtalData
         # Changed Mtz merging to included phases. Due to issues with makeHkln() (column names), I used cad to manually merge files.
         cnMtz = ['F_SIGF']
         if self.container.inputData.F_OR_I.isSet() and self.container.inputData.F_OR_I.__str__() == 'I':
@@ -213,7 +213,6 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
     # process one or more output files
     # also writes the XML file, previously done by postProcess()
     def processOutputFiles(self):
-        import phaser
         resultObject = self.resultObject
         num_sol = len(resultObject.getPdbFiles())
         for i in range(1,num_sol+1):
@@ -234,7 +233,6 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
                 self.appendErrorReport(201,hklout)
                 return CPluginScript.FAILED
 
-        from core import CCP4XtalData
         self.splitHkloutList(miniMtzsOut=['MAPOUT','DIFMAPOUT','PHASEOUT'],programColumnNames=['FWT,PHWT','DELFWT,PHDELWT','PHIC,FOM'],outputBaseName=['MAPOUT','DIFMAPOUT','PHASEOUT'],outputContentFlags=[1,1,CCP4XtalData.CPhsDataFile.CONTENT_FLAG_PHIFOM],infileList=self.container.outputData.HKLOUT)
 
         for indx in range(len(self.container.outputData.MAPOUT)):
@@ -248,24 +246,14 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
 
         solutions = resultObject.getDotSol()
         if len(solutions) > 0:
-            if sys.version_info > (3,0):
-                picklePath = str(self.container.outputData.SOLOUT.fullPath)
-                with open(picklePath,'wb') as pickleFile:
-                    try:
-                        pickle.dump(solutions, pickleFile)
-                    except:
-                        raise
-                        print('Unable to Pickle solutions')
-                    self.container.outputData.SOLOUT.annotation.set('Solutions from Phaser')
-            else:
-                picklePath = str(self.container.outputData.SOLOUT.fullPath)
-                with open(picklePath,'w') as pickleFile:
-                    try:
-                        pickle.dump(solutions, pickleFile)
-                    except:
-                        raise
-                        print('Unable to Pickle solutions')
-                    self.container.outputData.SOLOUT.annotation.set('Solutions from Phaser')
+            picklePath = str(self.container.outputData.SOLOUT.fullPath)
+            with open(picklePath,'wb') as pickleFile:
+                try:
+                    pickle.dump(solutions, pickleFile)
+                except:
+                    raise
+                    print('Unable to Pickle solutions')
+                self.container.outputData.SOLOUT.annotation.set('Solutions from Phaser')
 
         #Remove warnings and replace with ones parsed from the resultObject
         if len(self.xmlroot.xpath('PhaserWarnings')) > 0:
@@ -300,7 +288,6 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
 
 
     def analyseResults(self, results):
-        import phaser      
         solutionsNode = etree.SubElement(self.xmlroot,'PhaserMrSolutions')
         
         if not results.foundSolutions():
@@ -366,7 +353,6 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
         return newNode
 
     def flushXML(self, xml):
-        from lxml import etree
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
         with open(tmpFilename,'w') as tmpFile:
             xmlText = etree.tostring(xml, pretty_print=True)

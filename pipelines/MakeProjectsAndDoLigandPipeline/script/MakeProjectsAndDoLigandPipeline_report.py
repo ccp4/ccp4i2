@@ -16,11 +16,16 @@
     GNU Lesser General Public License for more details.
     """
 
-from report.CCP4ReportParser import Report
-import sys
-#from lxml import etree
+import os
 import xml.etree.ElementTree as etree
-from core import CCP4Utils
+
+from rdkit import Chem
+from rdkit.Chem import AllChem
+
+from ....core import CCP4Utils
+from ....report.CCP4ReportParser import Report
+from ....wrappers.acedrg.script import acedrg
+
 
 class MakeProjectsAndDoLigandPipeline_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -38,11 +43,6 @@ class MakeProjectsAndDoLigandPipeline_report(Report):
             textDiv.addText(text=self.xmlnode.findall(".//Message/text()")[-1],style="font-size:150%;")
         clearingDiv = self.addDiv(style="clear:both;")
         if len(self.xmlnode.findall(".//ProjectName")) > 0:
-            from rdkit import Chem
-            from rdkit.Chem.Draw import MolDraw2DSVG
-            from rdkit.Chem import AllChem
-            from rdkit.Chem import Draw
-            import os
             newFold = parent.addFold(label="Result summaries", initiallyOpen=True)
             
             #Create a list of svg file names
@@ -52,7 +52,6 @@ class MakeProjectsAndDoLigandPipeline_report(Report):
                     projectName = datasetNode.findall("ProjectName/text()")[-1]
                     smilesString = datasetNode.findall("SMILES/text()")[-1]
                     svgFilename = os.path.join(self.jobInfo['fileroot'], projectName+".svg")
-                    from wrappers.acedrg.script import acedrg
                     mol = Chem.MolFromSmiles(smilesString)
                     confId2D = AllChem.Compute2DCoords(mol)
                     svgStructure = acedrg.svgFromMol(mol)

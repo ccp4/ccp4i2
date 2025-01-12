@@ -1,15 +1,16 @@
 """
     tasks/coot_script_lines
-    """
+"""
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide2 import QtCore
 
-from qtgui.CCP4TaskWidget import CTaskWidget
+from ......qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class Ccoot_script_lines(CTaskWidget):
-    #-------------------------------------------------------------------
-    
+#-------------------------------------------------------------------
+
     # Subclass CTaskWidget to give specific task window
     TASKNAME = 'coot_script_lines'
     TASKVERSION = 0.1

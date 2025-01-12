@@ -1,10 +1,11 @@
-from core import CCP4Modules
+import re
 
-from report.CCP4ReportParser import *
-from core import CCP4ErrorHandling
 from docx import Document
 from iotbx import mtz
-import re
+
+from ....core import CCP4Modules
+from ....report.CCP4ReportParser import Report
+
 
 class tableone_report(Report):
 

@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 """
      tasks/molrep_mr/Cmolrep_mr.py: CCP4 GUI Project
      Copyright (C) 2011 University of York
@@ -18,19 +15,15 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Andrey Lebedev September 2011 - molrep_mr gui
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
+from ....core import CCP4Modules
+from ....qtgui import CCP4TaskWidget
 
 
 def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None):
-    from core import CCP4Modules
     jobStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId,'status')
     if jobStatus == 'Unsatisfactory':
         returnList = ['molrep_pipe', 'phaser_pipeline']

@@ -1,17 +1,15 @@
-from __future__ import print_function
-
-import sys
 import os
-import time
-import sqlite3
-from PyQt4 import QtCore
 import queue
-if sys.version_info >= (3,0):
-    import urllib.parse
-else:
-    import urlparse
 import signal
-from dbapi.CCP4DbApi import CDbApi
+import sqlite3
+import sys
+import time
+import urllib.parse
+
+from PyQt4 import QtCore
+
+from ..dbapi.CCP4DbApi import CDbApi
+
 
 class CLiteDbThread(QtCore.QThread):
     insts = None

@@ -1,9 +1,14 @@
-from __future__ import print_function
+import unittest
 
+from lxml import etree
 from PySide2 import QtCore
-from core.CCP4PluginScript import CPluginScript
 
-  
+from ....core import CCP4Utils
+from ....core.CCP4Modules import PROCESSMANAGER
+from ....core.CCP4Modules import QTAPPLICATION
+from ....core.CCP4PluginScript import CPluginScript
+
+
 class pisapipe(CPluginScript):
 
     TASKMODULE = 'test'                              # Where this plugin will appear on the gui
@@ -39,8 +44,6 @@ class pisapipe(CPluginScript):
         status = statusDict['finishStatus']
         print('pisa_xmlFinished', status)
         if status == CPluginScript.FAILED: self.reportStatus(status)
-        from core import CCP4Utils
-        from lxml import etree
         self.xmlroot = etree.Element('pisapipe')
         xmlOfTask = CCP4Utils.openFileToEtree(self.xmlTask.makeFileName('PROGRAMXML'))
         self.xmlroot.append(xmlOfTask)
@@ -52,23 +55,18 @@ class pisapipe(CPluginScript):
 # PLUGIN TESTS
 # See Python documentation on unittest module
 
-import unittest
-
 class testpisa(unittest.TestCase):
 
    def setUp(self):
     # make all background jobs wait for completion
     # this is essential for unittest to work
-    from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
     self.app = QTAPPLICATION()
     PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    from core.CCP4Modules import PROCESSMANAGER
     PROCESSMANAGER().setWaitForFinished(-1)
 
    def test_1(self):
-     from core.CCP4Modules import QTAPPLICATION
      wrapper = pisapipe(parent=QTAPPLICATION(),name='pisa_test1')
      wrapper.container.loadDataFromXml()
      

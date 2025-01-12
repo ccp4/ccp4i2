@@ -1,4 +1,3 @@
-from __future__ import print_function
 """
     pipelines/phaser_pipeline/wrappers/phaser_MR/script/phaser_MR_gui.py
     Copyright (C) 2014 Newcastle University
@@ -6,8 +5,9 @@ from __future__ import print_function
     
     """
 
-from qtgui.CCP4TaskWidget import CTaskWidget
 from PySide2 import QtCore
+
+from ......qtgui.CCP4TaskWidget import CTaskWidget
 
 
 #-------------------------------------------------------------------

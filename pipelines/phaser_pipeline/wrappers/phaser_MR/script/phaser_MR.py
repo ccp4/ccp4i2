@@ -1,11 +1,15 @@
-from __future__ import print_function
-
-from core.CCP4PluginScript import CPluginScript
 import os
 import re
-from core import CCP4Data
+import pickle
 
 from lxml import etree
+import phaser_ext
+
+from ......core import CCP4Data
+from ......core.CCP4PluginScript import CPluginScript
+from ......pimple import MGQTmatplotlib
+
+
 class CallbackObject(object):
     def __init__(self, xmlroot=None, xmlResponders = []):
         super(CallbackObject,self).__init__()
@@ -44,7 +48,6 @@ class CallbackObject(object):
     def loggraph(self, arg1, arg2):
         #print '\n**loggraph called',arg1
         try:
-            from pimple import MGQTmatplotlib
             tableelement = MGQTmatplotlib.CCP4LogToEtree(arg2)
             self.xmlroot.append(tableelement)
         except:
@@ -218,9 +221,7 @@ class phaser_MR(CPluginScript):
             try: 
                 if inp.RFILEIN.isSet() and len(inp.USINGSOLELEMENTS) > 0:
                     with open(str(self.container.inputData.RFILEIN.fullPath),'r') as rf_file:
-                        import pickle
                         loadrf = pickle.load(rf_file)
-                        import phaser_ext
                         filteredSolutionsObject = phaser_ext.mr_solution()
                         for solutionString in inp.USINGSOLELEMENTS:
                             iSol = int(solutionString.split(":")[0].strip())
@@ -234,9 +235,7 @@ class phaser_MR(CPluginScript):
                 #Solutions for elements of the Ensemblelist provided by the user
                 if inp.SOLIN.isSet() and len(inp.USINGSOLELEMENTS) > 0:
                     with open(str(self.container.inputData.SOLIN.fullPath),'r') as file:
-                        import pickle
                         solutionsObject = pickle.load(file)
-                        import phaser_ext
                         filteredSolutionsObject = phaser_ext.mr_solution()
                         for solutionString in inp.USINGSOLELEMENTS:
                             iSol = int(solutionString.split(":")[0].strip())

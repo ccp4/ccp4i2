@@ -1,4 +1,3 @@
-from __future__ import print_function
 """
     MakeLink.py: CCP4 GUI Project
     
@@ -18,7 +17,15 @@ from __future__ import print_function
     """
 
 import os
-from core.CCP4PluginScript import CPluginScript
+import shutil
+
+from gemmi import cif
+from lxml import etree
+import gemmi
+
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class MakeLink(CPluginScript):
     TASKNAME = 'MakeLink'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -178,7 +185,6 @@ class MakeLink(CPluginScript):
        print('')
        print("Getting link bond value from dictionary...")
        try:
-          from gemmi import cif
           link_dict = cif.read_file(cif_file_path)
           block = link_dict.find_block("link_list")
           if block:
@@ -273,8 +279,6 @@ class MakeLink(CPluginScript):
        print("Applying links to model...")
        print("Using detection threshold: "+str(threshold)+" Angstroms")
        try:
-         import gemmi
-         
          def create_link(conn_list,a1,a2,linkid,ASU):
            con = gemmi.Connection()
            ctr = 1
@@ -439,9 +443,6 @@ class MakeLink(CPluginScript):
             
     def processOutputFiles(self):
         #Create (dummy) PROGRAMXML
-        from lxml import etree
-        from core import CCP4Utils
-        import sys, os, shutil
         pipelineXMLStructure = etree.Element("MakeLink")
         
         for iPlugin, AcedrgLinkPlugin in enumerate(self.AcedrgLinkPlugins):

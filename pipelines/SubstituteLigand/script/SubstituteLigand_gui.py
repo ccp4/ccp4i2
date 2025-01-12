@@ -1,15 +1,14 @@
 """
     pipelines/SubstituteLigand/SubstituteLigand_gui.py: CCP4 GUI Project
     Copyright (C) 2015 Newcastle University
-    """
 
-"""
     Maritn Noble
-    """
+"""
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui.CCP4TaskWidget import CTaskWidget
-from qtgui import CCP4Widgets
+from PySide2 import QtCore
+
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 class SubstituteLigand_gui(CTaskWidget):
     

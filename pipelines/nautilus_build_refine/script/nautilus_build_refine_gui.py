@@ -17,7 +17,9 @@
     """
 
 from PySide2 import QtCore
-from qtgui.CCP4TaskWidget import CTaskWidget
+
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class nautilus_build_refine_gui(CTaskWidget):

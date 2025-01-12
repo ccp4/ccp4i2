@@ -16,12 +16,20 @@
     GNU Lesser General Public License for more details.
     """
 
-from __future__ import print_function
-
+from datetime import datetime
 import os
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core import CCP4Utils
+import shutil
+import sys
+
+from lxml import etree
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4TaskManager
+from ....core import CCP4Utils
+from ....core.CCP4Modules import PROJECTSMANAGER, JOBCONTROLLER
+from ....core.CCP4PluginScript import CDatabaseHandler
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class MakeProjectsAndDoLigandPipeline(CPluginScript):
     TASKNAME = 'MakeProjectsAndDoLigandPipeline'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -51,7 +59,6 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
 
     def __init__(self, *args, **kws):
         super(MakeProjectsAndDoLigandPipeline, self).__init__(*args, **kws)
-        from lxml import etree
         self.xmlroot = etree.Element("MakeProjectsAndDoLigandPipeline")
         etree.SubElement(self.xmlroot,"Message").text = "Starting processing"
         etree.SubElement(self.xmlroot,"Warnings").text = "No warnings"
@@ -64,13 +71,6 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
 
     #The startProcess method is where you build in the pipeline logic
     def startProcess(self, command, **kws):
-        from core.CCP4Modules import PROJECTSMANAGER, JOBCONTROLLER
-        from dbapi import CCP4DbApi
-        import sys, os
-        import functools
-        from datetime import datetime
-        from lxml import etree
-        from PySide2 import QtCore
         pm = PROJECTSMANAGER()
         
         for iLigand, projectName in enumerate(self.container.inputData.PROJECTNAME_LIST):
@@ -139,7 +139,6 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
                 continue
 
             #Create a dbHandler for the plugin
-            from core.CCP4PluginScript import CDatabaseHandler
             try:
                 dbHandler = CDatabaseHandler(projectId= projectId,jobNumber = jobNumber, projectName=projectNameStr)
                 # Db is already running so _dbHandler should pick up that one
@@ -164,7 +163,6 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
             name = projectNameStr+'_'+str(jobNumber)
 
             #Retrieve plugin
-            from core import CCP4TaskManager
             cls = CCP4TaskManager.TASKMANAGER().getPluginScriptClass(pluginName)
             if cls is None:
                 self.appendErrorReport(206, pluginName)
@@ -210,7 +208,6 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
             plugin.saveParams()
             paramsFileName = plugin.makeFileName('PARAMS')
             inputParamsFileName = plugin.makeFileName('JOB_INPUT')
-            import shutil
             shutil.copyfile(paramsFileName, inputParamsFileName)
             print('From to',paramsFileName, inputParamsFileName)
 
@@ -242,7 +239,6 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
     #This method will be called as each plugin completes
     def pluginFinished(self, jobId):
         print("Have heard from ", jobId)
-        from lxml import etree
         whichPlugin = self.pluginsStarted[jobId]
         self.runningJobs.remove(jobId)
         datasetElement = self.datasetElements[jobId]
@@ -278,6 +274,5 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def dumpXml(self):
-        from lxml import etree
         with open(self.makeFileName("PROGRAMXML"),"w") as programXmlFile:
             CCP4Utils.writeXML(programXmlFile,etree.tostring(self.xmlroot))

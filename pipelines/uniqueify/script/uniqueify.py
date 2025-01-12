@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      uniqueify.py: CCP4 GUI Project
      Copyright (C) 2011 STFC
@@ -7,10 +5,16 @@ from __future__ import print_function
 
      This is modelled on the old unix script
 """
-import os,shutil
+
+import os
+import shutil
+import unittest
+
 from PySide2 import QtCore
 
-from core.CCP4PluginScript import CPluginScript
+from ....core import CCP4Modules, CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class uniqueify(CPluginScript):
 
@@ -187,25 +191,18 @@ class uniqueify(CPluginScript):
 # PLUGIN TESTS
 # See Python documentation on unittest module
 
-import unittest
-
 class testuniqueify(unittest.TestCase):
 
    def setUp(self):
-    from core import CCP4Modules
     self.app = CCP4Modules.QTAPPLICATION()
     # make all background jobs wait for completion
     # this is essential for unittest to work
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    from core import CCP4Modules
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
 
    def test_1(self):
-     from core import CCP4Modules, CCP4Utils
-     import os
-
      workDirectory = CCP4Utils.getTestTmpDir()
      # this needs to agree with name attribute below
      logFile = os.path.join(workDirectory,'uniqueify_test1.log')

@@ -1,9 +1,8 @@
-from __future__ import print_function
-
 #!/usr/bin/env python
 ##!/usr/local/Python-3.1.1/python
 
 import sys
+
 
 if __name__ == '__main__':
     file=sys.argv[1]

@@ -6,9 +6,13 @@
     """
 
 import pickle
-from qtgui.CCP4TaskWidget import CTaskWidget
+
 from PySide2 import QtCore
-from pipelines.phaser_pipeline.wrappers.phaser_MR.script import phaser_MR
+
+from ......core import CCP4ModelData, CCP4XtalData
+from ......pipelines.phaser_pipeline.wrappers.phaser_MR.script import phaser_MR
+from ......qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class phaser_MR_AUTO_gui(CTaskWidget):
@@ -131,7 +135,6 @@ class phaser_MR_AUTO_gui(CTaskWidget):
             elements.remove(elements[-1])
         if self.container.inputData.SOLIN.isSet():
             with open(str(self.container.inputData.SOLIN.fullPath),'r') as file:
-                import phaser
                 resultObject = pickle.load(file)
                 for solution in resultObject:
                     label = str(len(elements)) + ': '
@@ -160,7 +163,6 @@ class phaser_MR_AUTO_gui(CTaskWidget):
             elements.remove(elements[-1])
         if self.container.inputData.RFILEIN.isSet():
             with open(str(self.container.inputData.RFILEIN.fullPath),'r') as file:
-                import phaser
                 resultObject = pickle.load(file)
                 for solution in resultObject:
                     for rlist in solution.RLIST:
@@ -205,7 +207,6 @@ class phaser_MR_AUTO_gui(CTaskWidget):
         #Here override logic of whether this is a valid task to allow for CSeqDataFile from the
         #CASUComponentList being required ONLY IF COMP_BY has the value "ASU"
         invalidElements = CTaskWidget.isValid(self)
-        from core import CCP4ModelData, CCP4XtalData
         widgLib = {"COMP_BY":"Not set yet"}
         self.getParams(widgLib)
         if not self.container.inputData.COMP_BY == "ASU":

@@ -1,20 +1,21 @@
-from __future__ import print_function
-
-import sys
-import os
-import signal
-import http.server
 from http.server import SimpleHTTPRequestHandler
-from PyQt4 import QtCore
-import queue
-
 from socketserver import ThreadingMixIn
+import http.server
+import os
+import queue
+import signal
+import sys
+
+from PyQt4 import QtCore
+
+from . import CLiteDbThread
+
+
 class MultiThreadedHTTPServer(ThreadingMixIn, http.server.HTTPServer):
     #Let there be peace !
     def log_message(*argv, **kw):
         pass
 
-import CLiteDbThread
 
 class CLiteHTTPThread(QtCore.QThread):
     insts= None

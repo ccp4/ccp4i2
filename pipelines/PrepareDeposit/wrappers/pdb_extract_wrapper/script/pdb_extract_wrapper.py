@@ -1,14 +1,12 @@
-from __future__ import print_function
+import os
 
-
-from core.CCP4PluginScript import CPluginScript
-from PySide2 import QtCore
-import os,glob,re,time,sys
-from core import CCP4XtalData
 from lxml import etree
-import math
-from core import CCP4Modules
-from core import CCP4Utils
+from PySide2 import QtCore
+
+from ......core import CCP4Modules
+from ......core import CCP4Utils
+from ......core.CCP4PluginScript import CPluginScript
+
 
 class pdb_extract_wrapper(CPluginScript):
     TASKMODULE = 'wrappers'                               # Where this plugin will appear on the gui

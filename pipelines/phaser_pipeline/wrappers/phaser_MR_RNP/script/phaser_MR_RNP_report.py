@@ -1,5 +1,5 @@
-from report.CCP4ReportParser import *
-import sys
+from ......report.CCP4ReportParser import *
+
 
 class phaser_MR_RNP_report(Report):
     # Specify which gui task and/or pluginscript this applies to

@@ -1,15 +1,13 @@
-from __future__ import print_function
-
 """
     PrepareDeposit_gui.py
     Copyright (C) 2015 Newcastle University
     Author: Martin Noble
-    
-    """
+"""
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide2 import QtCore
 
-from qtgui.CCP4TaskWidget import CTaskWidget
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class PrepareDeposit_gui(CTaskWidget):

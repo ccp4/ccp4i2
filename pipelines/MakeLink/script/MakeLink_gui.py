@@ -16,11 +16,14 @@
     GNU Lesser General Public License for more details.
     """
 
-from qtgui.CCP4TaskWidget import CTaskWidget
-from PySide2 import QtCore
-import sys, os
-from core import CCP4Utils
+import os
+
 import gemmi
+from PySide2 import QtCore
+
+from ....core import CCP4Utils
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class MakeLink_gui(CTaskWidget):

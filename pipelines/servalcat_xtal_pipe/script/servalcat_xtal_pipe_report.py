@@ -1,13 +1,14 @@
-from __future__ import print_function
 
-import sys
-#from lxml import etree
-from xml.etree import ElementTree as ET
-from report.CCP4ReportParser import *
-
-from wrappers.servalcat_xtal.script import servalcat_xtal_report
-from wrappers.validate_protein.script import validate_protein_report
 import base64
+import os
+import sys
+from xml.etree import ElementTree as ET
+
+from lxml.html.clean import Cleaner
+
+from ....report.CCP4ReportParser import *
+from ....wrappers.servalcat_xtal.script import servalcat_xtal_report
+from ....wrappers.validate_protein.script import validate_protein_report
 
 
 class servalcat_xtal_pipe_report(Report):
@@ -286,8 +287,6 @@ class servalcat_xtal_pipe_report(Report):
 
         verdictNodes = xmlnode.findall('.//Verdict')
         if len(verdictNodes)>0:
-            from lxml.html.clean import Cleaner
-            
             cleaner = Cleaner(page_structure=True,
                    meta=True,
                    embedded=True,
@@ -520,7 +519,6 @@ class servalcat_xtal_pipe_report(Report):
             refmacReport.addSummary(parent = parent)
 
 def test(xmlFile=None,jobId=None,reportFile=None):
-    import sys,os
     try:
         text = open( xmlFile ).read()
         xmlnode = ET.fromstring( text, PARSER() )
@@ -532,5 +530,4 @@ def test(xmlFile=None,jobId=None,reportFile=None):
     r.as_html_file(reportFile)
 
 if __name__ == "__main__":
-    import sys
     servalcat_xtal_pipe_report(xmlFile=sys.argv[1],jobId=sys.argv[2])

@@ -17,8 +17,7 @@
      GNU Lesser General Public License for more details.
 """
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
+from ......core.CCP4PluginScript import CPluginScript
 
 
 class reindex_minimtz(CPluginScript):
@@ -35,7 +34,6 @@ class reindex_minimtz(CPluginScript):
       return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
-      from core import CCP4XtalData
       # Need to set the expected content flag  for phases data
       self.container.outputData.HKLOUT.annotation = 'Reindexed reflections'
 
@@ -47,7 +45,6 @@ class reindex_minimtz(CPluginScript):
       return CPluginScript.SUCCEEDED
     
     def makeCommandAndScript(self):
-      import os
       # make refmac command script   
       self.appendCommandLine(['HKLIN',self.container.inputData.HKLIN])
       self.appendCommandLine(['HKLOUT',self.container.outputData.HKLOUT])
@@ -59,4 +56,3 @@ class reindex_minimtz(CPluginScript):
       self.appendCommandScript('END')
       
       return CPluginScript.SUCCEEDED
-

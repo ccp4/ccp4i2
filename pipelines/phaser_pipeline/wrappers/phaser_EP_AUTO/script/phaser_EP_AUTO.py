@@ -1,12 +1,15 @@
-from __future__ import print_function
+import os
 
-from core.CCP4PluginScript import CPluginScript
-import sys, os
-from core import CCP4ErrorHandling
-from core import CCP4Modules
-from pipelines.phaser_pipeline.wrappers.phaser_MR.script import phaser_MR
 from lxml import etree
-from core import CCP4Utils
+import phaser
+
+from ......core import CCP4ErrorHandling
+from ......core import CCP4Modules
+from ......core import CCP4Utils
+from ......core import CCP4XtalData
+from ......core.CCP4PluginScript import CPluginScript
+from ......pipelines.phaser_pipeline.wrappers.phaser_MR.script import phaser_MR
+
 
 class EPAUTOCallbackObject(phaser_MR.CallbackObject):
     def __init__(self, xmlroot=None, xmlResponders = [],workDirectory=None):
@@ -66,8 +69,6 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
         self.callbackObject = EPAUTOCallbackObject(self.xmlroot, [self.flushXML])
     
     def startProcess(self, command, **kw):
-        
-        import phaser
         outputObject = phaser.Output()
         outputObject.setPhenixCallback(self.callbackObject)
 
@@ -166,7 +167,6 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
         return CPluginScript.SUCCEEDED
 
     def processInputFiles(self):
-        from core import CCP4XtalData
         self.hklin,error = self.makeHklin([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FPAIR]])
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             for report in error._reports:
@@ -181,8 +181,6 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
         return newNode
 
     def flushXML(self, xml):
-        from lxml import etree
-        import os
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
         with open(tmpFilename,'w') as tmpFile:
             CCP4Utils.writeXML(tmpFile,etree.tostring(xml, pretty_print=True))
@@ -190,10 +188,7 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
 
 
     def processOutputFiles(self):
-        import os,shutil
         resultObject = self.resultObject
-
-        from core import CCP4XtalData
 
         for hand in ['','.hand']:
             possibleCoords = os.path.join(self.getWorkDirectory(),'PHASER.1'+hand+'.pdb')

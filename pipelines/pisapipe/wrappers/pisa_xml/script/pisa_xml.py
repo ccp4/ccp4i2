@@ -1,11 +1,13 @@
 
-from core.CCP4PluginScript import CPluginScript
-from lxml import etree
 import os
-from core import CCP4Modules
-from core import CCP4Utils
 
+from lxml import etree
 from PySide2 import QtCore
+
+from ......core.CCP4PluginScript import CPluginScript
+from ......core import CCP4Modules
+from ......core import CCP4Utils
+
 
 class pisa_xml(CPluginScript):
 

@@ -1,15 +1,17 @@
-from __future__ import print_function
+"""create phaser_MR_AUTO.def.xml from PHIL parameters"""
 # Based on create_def_xml.py for xia2 written by David Waterman
 
-"""create phaser_MR_AUTO.def.xml from PHIL parameters"""
-import os, sys
+import os
+import io
 import re
+
+from iotbx.phil import parse
 from lxml import etree
-ccp4i2_dir = os.path.join(os.environ['CCP4'], 'share', 'ccp4i2')
-sys.path.append(ccp4i2_dir)
-from utils.phil_handlers import Phil2Etree
-from utils.phil_handlers import PhilTaskCreator
 import phaser
+
+from ......utils.phil_handlers import Phil2Etree
+from ......utils.phil_handlers import PhilTaskCreator
+
 
 class PhaserPhil2Etree(Phil2Etree):
   
@@ -37,7 +39,6 @@ class PhaserPhil2Etree(Phil2Etree):
       return False
   
   def make_keyword(self, phil_path):
-    import re
     if 'general' in phil_path:
       return '_'.join(kw.upper()[:4] for kw in re.split('[._]',phil_path.replace('phaser.keywords.general.','')))
     else:
@@ -167,9 +168,6 @@ class PhaserPhil2Etree(Phil2Etree):
 class PhaserKeywordsCreator(PhilTaskCreator):
   
   def __init__(self, phaser_phil, defaults_file, debug=False):
-
-    # import PHIL scope
-    from iotbx.phil import parse
     self.defaults_file =  defaults_file
     self.phaser_phil = phaser_phil
     defaults_phil = parse(file_name=self.defaults_file)
@@ -325,12 +323,7 @@ class PhaserKeywordsCreator(PhilTaskCreator):
     # Write out prettified version
     out_file = self.fmt_dic['PLUGINNAME'] + '.def.xml'
     parser = etree.XMLParser(remove_blank_text=True)
-    if sys.version_info >= (3,0):
-        import io
-        tree = etree.parse(io.StringIO(etree.tostring(task_xml).decode("utf-8")), parser)
-    else:
-        import StringIO
-        tree = etree.parse(StringIO.StringIO(etree.tostring(task_xml)), parser)
+    tree = etree.parse(io.StringIO(etree.tostring(task_xml).decode("utf-8")), parser)
     try:
       with open(out_file, 'wb') as f:
         print('Writing def.xml to %s' % out_file)

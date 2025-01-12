@@ -1,5 +1,5 @@
-from report.CCP4ReportParser import Report
-import sys
+from ......report.CCP4ReportParser import Report
+
 
 class phaser_EP_LLG_report(Report):
     # Specify which gui task and/or pluginscript this applies to

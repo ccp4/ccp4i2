@@ -1,11 +1,10 @@
-from __future__ import print_function
+import os
+import shutil
 
-from core.CCP4PluginScript import CPluginScript
-import sys, os
-from core import CCP4ErrorHandling
-from core import CCP4Modules
 from lxml import etree
-from core import CCP4Utils
+
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
 
 
 class phaser_EP(CPluginScript):
@@ -157,7 +156,6 @@ class phaser_EP(CPluginScript):
         pipelineOutputItem = pipelineOutputList[-1]
         pipelineOutputItem.fullPath = os.path.join(self.workDirectory,os.path.basename(str(pluginOutputItem.fullPath)))
         try:
-            import shutil
             shutil.copyfile(str(pluginOutputItem.fullPath), str(pipelineOutputItem.fullPath))
             if annotation is None:
                 pipelineOutputItem.annotation = pluginOutputItem.annotation

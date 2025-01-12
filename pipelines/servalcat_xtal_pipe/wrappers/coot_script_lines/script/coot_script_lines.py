@@ -1,11 +1,14 @@
-from __future__ import print_function
+import glob
+import os
+import shutil
+import unittest
+import xml.etree.ElementTree as ET
 
-#from lxml import etree
-from xml.etree import ElementTree as ET
+from ......core import CCP4Utils
+from ......core.CCP4Modules import PROCESSMANAGER
+from ......core.CCP4Modules import QTAPPLICATION
+from ......core.CCP4PluginScript import CPluginScript
 
-from core.CCP4PluginScript import CPluginScript
-from PySide2 import QtCore
-from core import CCP4Utils
 
 class coot_script_lines(CPluginScript):
     
@@ -24,8 +27,6 @@ class coot_script_lines(CPluginScript):
         '''
     
     def makeCommandAndScript(self):
-        import os
-        
         self.dropDir = os.path.join(self.workDirectory,'COOT_FILE_DROP')
         if not os.path.exists(self.dropDir):
             try:
@@ -90,7 +91,6 @@ class coot_script_lines(CPluginScript):
     def processOutputFiles(self):
         print('#coot_script_lines.processOutputFiles')
         #First up check for exit status of the program
-        from core.CCP4Modules import PROCESSMANAGER
         exitStatus = 0
         try:
             exitStatus = PROCESSMANAGER().getJobData(pid=self.getProcessId(), attribute='exitStatus')
@@ -103,7 +103,6 @@ class coot_script_lines(CPluginScript):
 
         iPDBOut = 0
         try:
-            import os, glob, shutil
             outList = glob.glob(os.path.join(self.dropDir,'*.pdb'))
             xyzoutList = self.container.outputData.XYZOUT
             print(outList)
@@ -119,7 +118,6 @@ class coot_script_lines(CPluginScript):
             return CPluginScript.FAILED
 
         try:
-            import os, glob, shutil
             outList = glob.glob(os.path.join(self.dropDir,'*.cif'))
             xyzoutList = self.container.outputData.XYZOUT
             print(outList)
@@ -151,7 +149,6 @@ class coot_script_lines(CPluginScript):
             return CPluginScript.FAILED
 
         # Create a trivial xml output file
-        from core import CCP4File
         self.xmlroot = ET.Element('coot_script_lines')
         e = ET.Element('number_output_pdbs')
         e.text = str(iPDBOut)
@@ -214,23 +211,18 @@ class coot_script_lines(CPluginScript):
 # PLUGIN TESTS
 # See Python documentation on unittest module
 
-import unittest
-
 class testcoot_script_lines(unittest.TestCase):
     
     def setUp(self):
         # make all background jobs wait for completion
         # this is essential for unittest to work
-        from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
         self.app = QTAPPLICATION()
         PROCESSMANAGER().setWaitForFinished(10000)
     
     def tearDown(self):
-        from core.CCP4Modules import PROCESSMANAGER
         PROCESSMANAGER().setWaitForFinished(-1)
     
     def test_1(self):
-        from core.CCP4Modules import QTAPPLICATION
         wrapper = coot_script_lines(parent=QTAPPLICATION(),name='coot_script_lines_test1')
         wrapper.container.loadDataFromXml()
 

@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
     refmac.py: CCP4 GUI Project
     Copyright (C) 2010 University of York
@@ -17,10 +15,13 @@ from __future__ import print_function
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    """
+"""
+
+import shutil
+
 from PySide2 import QtCore
-from core.CCP4PluginScript import CPluginScript
-import core.CCP4ErrorHandling
+
+from ......core.CCP4PluginScript import CPluginScript
 
 
 class reindex_processed_data(CPluginScript):
@@ -39,7 +40,6 @@ class reindex_processed_data(CPluginScript):
         return CPluginScript.SUCCEEDED
     
     def processOutputFiles(self):
-        from core import CCP4XtalData
         # Need to set the expected content flag  for phases data
         self.container.outputData.HKLOUT.annotation = 'Reindexed reflections'
         
@@ -70,7 +70,6 @@ class reindex_processed_data(CPluginScript):
     
     @QtCore.Slot(dict)
     def reindexObsFinished(self, jobStatus):
-        import os, shutil
         if jobStatus['finishStatus'] != CPluginScript.SUCCEEDED:
             self.reportStatus(CPluginScript.FAILED)
         try:
@@ -94,7 +93,6 @@ class reindex_processed_data(CPluginScript):
 
     @QtCore.Slot(dict)
     def reindexFreerFinished(self, jobStatus):
-        import os, shutil
         if jobStatus['finishStatus'] != CPluginScript.SUCCEEDED:
             self.reportStatus(CPluginScript.FAILED)
         try:
@@ -105,7 +103,6 @@ class reindex_processed_data(CPluginScript):
             self.reportStatus(CPluginScript.FAILED)
         self.container.outputData.FREEROUT.annotation = "Reindexed FREE-R Set (%s)"%(str(self.container.controlParameters.NEWSPACEGROUP))
         
-        from core import CCP4XtalData
         xmlout = str( self.makeFileName( 'PROGRAMXML' ) )
         xmlfile = open( xmlout, "w" )
         xmlfile.write( '<?xml version="1.0" encoding="ASCII" standalone="yes"?>\n<ReindexMiniMTZResult/>')

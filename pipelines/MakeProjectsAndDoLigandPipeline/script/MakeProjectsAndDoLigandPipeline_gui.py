@@ -16,11 +16,13 @@
     GNU Lesser General Public License for more details.
     """
 
-from __future__ import print_function
+import fnmatch
+import os
 
-from PySide2 import QtCore
+from PySide2 import QtCore, QtWidgets
 
-from qtgui.CCP4TaskWidget import CTaskWidget
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class MakeProjectsAndDoLigandPipeline_gui(CTaskWidget):
@@ -40,7 +42,6 @@ class MakeProjectsAndDoLigandPipeline_gui(CTaskWidget):
         CTaskWidget.__init__(self,parent)
 
     def drawContents(self):
-        from PySide2 import QtGui, QtWidgets,QtCore
         self.openFolder(folderFunction='inputData',followFrom=False)
 
         self.createLine(['subtitle','Root directory'])
@@ -124,8 +125,6 @@ class MakeProjectsAndDoLigandPipeline_gui(CTaskWidget):
 
     @QtCore.Slot()
     def rootDirChanged(self):
-        import fnmatch
-        import os
         matches = []
         rootLength = len(self.container.inputData.ROOT_DIRECTORY.__str__())
         for root, dirnames, filenames in os.walk(self.container.inputData.ROOT_DIRECTORY.__str__()):
@@ -166,7 +165,6 @@ class MakeProjectsAndDoLigandPipeline_gui(CTaskWidget):
 
         self.editor.repaint()
 
-from PySide2 import QtCore, QtGui, QtWidgets
 #------------------------------------------------------------------------------------------------------
 #------------------------------------------------------------------------------------------------------
 #------------------------------------------------------------------------------------------------------
@@ -211,7 +209,6 @@ class StartTableModel(QtCore.QAbstractTableModel):
             else:
                 text = "Undefined"
         elif index.column() == 2:
-            import os
             if index.row() < len(self.forGui.container.inputData.PATH_LIST):
                 text = self.forGui.container.inputData.PATH_LIST[index.row()].__str__()
                 if role == QtCore.Qt.DisplayRole:

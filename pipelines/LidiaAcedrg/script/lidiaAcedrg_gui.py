@@ -5,9 +5,8 @@
     
     """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
-from qtgui.CCP4TaskWidget import CTaskWidget
 
 #-------------------------------------------------------------------
 class lidiaAcedrg_gui(CTaskWidget):

@@ -1,4 +1,3 @@
-from __future__ import print_function
 """
     MakeLink_report.py: CCP4 GUI Project
     
@@ -17,11 +16,12 @@ from __future__ import print_function
     GNU Lesser General Public License for more details.
     """
 
-from report.CCP4ReportParser import Report
-import sys
-#from lxml import etree
+import os
 import xml.etree.ElementTree as etree
-from core import CCP4Utils
+
+from ....core import CCP4Utils
+from ....report.CCP4ReportParser import Report
+
 
 class MakeLink_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -69,7 +69,6 @@ class MakeLink_report(Report):
 
     def picture(self,parent=None) :
       ccp4i2_root = CCP4Utils.getCCP4I2Dir()
-      import os
       
       baseScenePath = os.path.join(ccp4i2_root,'pipelines','MakeLink','script','MakeLink.scene.xml')
 

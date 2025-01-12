@@ -1,12 +1,13 @@
-from __future__ import print_function
-
-from core.CCP4PluginScript import CPluginScript
-import sys, os
+import sys
+import os
 import pickle
-from core import CCP4ErrorHandling
-from core import CCP4Modules
-from pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script import phaser_MR_AUTO
+
 from lxml import etree
+import phaser
+
+from ......core.CCP4PluginScript import CPluginScript
+from ......pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script import phaser_MR_AUTO
+
 
 class phaser_MR_FRF(phaser_MR_AUTO.phaser_MR_AUTO):
 
@@ -23,7 +24,6 @@ class phaser_MR_FRF(phaser_MR_AUTO.phaser_MR_AUTO):
     ERROR_CODES = { 201 : { 'description' : 'Failed to find file' },}
 
     def startProcess(self, command, **kw):
-        import phaser
         outputObject = phaser.Output()
         outputObject.setPhenixCallback(self.callbackObject)
 

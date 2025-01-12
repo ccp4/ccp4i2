@@ -17,7 +17,7 @@
      GNU Lesser General Public License for more details.
 """
 
-from pipelines.crank2.script import crank2_script
+from ...crank2.script import crank2_script
 
 class shelx(crank2_script.crank2):
 
@@ -27,4 +27,3 @@ class shelx(crank2_script.crank2):
   TASKNAME                                  = 'shelx'
   TASKCOMMAND                               = ''
   TASKVERSION                               = 0.01
-

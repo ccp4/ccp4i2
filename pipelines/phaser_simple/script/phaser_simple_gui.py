@@ -2,12 +2,12 @@
     pipelines/phaser_simple/phaser_simple_gui.py
     Copyright (C) 2016 Newcastle University
     Author: Martin Noble
-    
-    """
+"""
 
-from qtgui.CCP4TaskWidget import CTaskWidget
 from PySide2 import QtCore
-from pipelines.phaser_pipeline.script import phaser_pipeline_gui
+
+from ...phaser_pipeline.script import phaser_pipeline_gui
+
 
 #-------------------------------------------------------------------
 class phaser_simple_gui(phaser_pipeline_gui.phaser_pipeline_gui):

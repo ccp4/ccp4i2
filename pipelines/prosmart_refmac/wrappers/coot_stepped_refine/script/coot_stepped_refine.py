@@ -1,8 +1,14 @@
-from __future__ import print_function
+import os
+import unittest
 
 from lxml import etree
 
-from core.CCP4PluginScript import CPluginScript
+from ......core import CCP4File
+from ......core import CCP4Utils
+from ......core.CCP4Modules import PROCESSMANAGER
+from ......core.CCP4Modules import QTAPPLICATION
+from ......core.CCP4PluginScript import CPluginScript
+
 
 class coot_stepped_refine(CPluginScript):
     
@@ -22,13 +28,11 @@ class coot_stepped_refine(CPluginScript):
       self.xmlLength = 0
       # watch the log file
       logFilename = self.makeFileName('LOG')
-      from core import CCP4Utils
       CCP4Utils.saveFile(logFilename,'')
       self.watchFile(logFilename,self.handleLogChanged)
 
     
     def makeCommandAndScript(self):
-        import os
         cootScriptPath = os.path.join(self.workDirectory,'script.py')
         self.appendCommandLine(['--no-state-script','--no-graphics','--python','--pdb',self.container.inputData.XYZIN.fullPath,'--script',cootScriptPath])
         
@@ -91,7 +95,6 @@ class coot_stepped_refine(CPluginScript):
         graphColumnElement = etree.SubElement(graphElement,"Column", label='FinalBonds', positionInList=str(2))
 
         if iRow%20 == 0 or inHandleFinish:
-            from core import CCP4File
             f = CCP4File.CXmlDataFile(fullPath=self.makeFileName('PROGRAMXML'))
             newXml = etree.tostring(self.xmlroot,pretty_print=True)
         
@@ -102,8 +105,6 @@ class coot_stepped_refine(CPluginScript):
  
     
     def processOutputFiles(self):
-       from core.CCP4PluginScript import CPluginScript
-       import os
        status = CPluginScript.FAILED
        if os.path.exists(self.container.outputData.XYZOUT.__str__()): status = CPluginScript.SUCCEEDED
        self.container.outputData.XYZOUT.subType = 1
@@ -115,23 +116,18 @@ class coot_stepped_refine(CPluginScript):
 # PLUGIN TESTS
 # See Python documentation on unittest module
 
-import unittest
-
 class test_coot_stepped_refine(unittest.TestCase):
     
     def setUp(self):
         # make all background jobs wait for completion
         # this is essential for unittest to work
-        from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
         self.app = QTAPPLICATION()
         PROCESSMANAGER().setWaitForFinished(10000)
     
     def tearDown(self):
-        from core.CCP4Modules import PROCESSMANAGER
         PROCESSMANAGER().setWaitForFinished(-1)
     
     def test_1(self):
-        from core.CCP4Modules import QTAPPLICATION
         wrapper = coot_stepped_refine(parent=QTAPPLICATION(),name='coot_stepped_refine_test1')
         wrapper.container.loadDataFromXml()
 

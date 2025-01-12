@@ -2,16 +2,12 @@
      tasks/coot_stepped_refine
      Copyright (C) 2011 STFC
      Author: Martyn Winn
-
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from ......qtgui.CCP4TaskWidget import CTaskWidget
 
-from qtgui.CCP4TaskWidget import CTaskWidget
 
-#-------------------------------------------------------------------
 class Ccoot_stepped_refine(CTaskWidget):
-#-------------------------------------------------------------------
 
 # Subclass CTaskWidget to give specific task window
   TASKNAME = 'coot_stepped_refine'
@@ -21,9 +17,8 @@ class Ccoot_stepped_refine(CTaskWidget):
 
   def drawContents(self):
 
-      
     self.setProgramHelpFile('coot_stepped_refine')
-                        
+
     self.openFolder(folderFunction='inputData')
 
     self.createLine( [ 'tip', 'input structure', 'widget', 'XYZIN' ] )
@@ -31,5 +26,3 @@ class Ccoot_stepped_refine(CTaskWidget):
 
     self.openFolder(folderFunction='controlParameters',title='Options')
     self.createLine( [ 'label', 'Use Ramachandran restraints: ', 'tip', 'encourage Ramachandran compliance', 'stretch', 'widget', 'USERAMA' ] )
-
-

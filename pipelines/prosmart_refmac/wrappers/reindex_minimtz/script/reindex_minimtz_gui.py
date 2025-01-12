@@ -1,4 +1,3 @@
-
 """
      tasks/reindex_minimtz/Creindex_minimtz.py: CCP4 GUI Project
      Copyright (C) 2012 STFC
@@ -16,15 +15,11 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
 Maritn Noble messed around with this
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
+from ......qtgui import CCP4TaskWidget
 
 
 class Creindex_minimtz(CCP4TaskWidget.CTaskWidget):

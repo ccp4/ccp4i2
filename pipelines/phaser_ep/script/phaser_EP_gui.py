@@ -1,7 +1,7 @@
-from __future__ import print_function
-from qtgui.CCP4TaskWidget import CTaskWidget
 from PySide2 import QtCore
-from pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script import phaser_EP_AUTO_gui
+
+from ....core import CCP4ErrorHandling
+from ....pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script import phaser_EP_AUTO_gui
 
 
 #-------------------------------------------------------------------
@@ -82,7 +82,6 @@ class phaser_EP_gui(phaser_EP_AUTO_gui.phaser_EP_AUTO_gui):
         self.validate()
 
     def taskValidity(self):
-        from core import CCP4ErrorHandling
         rv = CCP4ErrorHandling.CErrorReport()
         # Check the space group is same in both input Mini-MTZ files 
         if self.container.controlParameters.RUNBUCCANEER:

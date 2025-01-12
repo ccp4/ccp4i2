@@ -1,5 +1,5 @@
-import sys
-from report.CCP4ReportParser import *
+from ......report.CCP4ReportParser import Report
+
 
 class coot_stepped_refine_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -69,4 +69,3 @@ class coot_stepped_refine_report(Report):
                 ycol = labelsToGraphIcolDict[yLabel]
                 plotLine = plotObject.append('plotline',xcol=xcol,ycol=ycol)
                 plotLine.append('colour',colour)
-

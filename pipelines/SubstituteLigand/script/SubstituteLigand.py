@@ -1,11 +1,14 @@
-from __future__ import print_function
-
-from PySide2 import QtCore
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from lxml import etree
 import os
 import shutil
+
+from lxml import etree
+from PySide2 import QtCore
+
+from ....core.CCP4PluginScript import CPluginScript
+from ....core import CCP4Utils
+from ....core.CCP4ModelData import CPdbData
+from ....core.CCP4ModelData import CPdbDataFile
+
 
 class SubstituteLigand(CPluginScript):
     TASKNAME = 'SubstituteLigand'            # Task name - should be same as class name
@@ -40,7 +43,6 @@ class SubstituteLigand(CPluginScript):
         # Chop out the chunk of file we want to use
         selAtomsFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'selected_atoms.pdb'))
         self.container.inputData.XYZIN.getSelectedAtomsPdbFile(selAtomsFilePath)
-        from core.CCP4ModelData import CPdbDataFile
         self.selAtomsFile = CPdbDataFile(selAtomsFilePath)
         
         if self.container.controlParameters.LIGANDAS.__str__() == 'DICT':
@@ -259,7 +261,6 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))'''
         #Substitute the composition section of REFMAC output to include new monomers
         #Perform analysis of output coordinate file composition
         if os.path.isfile(str(self.container.outputData.XYZOUT.fullPath)):
-            from core.CCP4ModelData import CPdbData
             aCPdbData = CPdbData()
             aCPdbData.loadFile(self.container.outputData.XYZOUT.fullPath)
             #print 'aCPdbData',aCPdbData
@@ -296,7 +297,6 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))'''
             CCP4Utils.writeXML(xmlfile,etree.tostring(self.xmlroot,pretty_print=True))
 
     def checkFinishStatus( self, statusDict,failedErrCode,outputFile = None,noFileErrCode= None):
-        import os
         if len(statusDict)>0 and statusDict['finishStatus'] == CPluginScript.FAILED:
             self.appendErrorReport(failedErrCode)
             self.reportStatus(statusDict['finishStatus'])

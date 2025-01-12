@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
     servalcat_xtal_pipe.py: CCP4 GUI Project
     Copyright (C) 2024 University of Southampton, MRC LMB Cambridge
@@ -17,16 +15,34 @@ from __future__ import print_function
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    """
+"""
+
+import functools
+import math
+import os
+import shutil
+import sys
+import traceback
+import unittest
 
 from lxml import etree
-#from xml.etree import ElementTree as ET
+from mmtbx.command_line import molprobity
 from PySide2 import QtCore
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core import CCP4Utils
-import os, sys, shutil, re
-import base64
+from rdkit import Chem
+import ccp4mg
+import clipper
+import mmdb2
+
+from . import prosmart_refmac_verdict
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Modules
+from ....core import CCP4ProjectsManager
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Utils import getCCP4I2Dir
+from ....dbapi.CCP4DbApi import FILE_ROLE_OUT
+from ....wrappers.acedrg.script import acedrg
+
 
 class servalcat_xtal_pipe(CPluginScript):
 
@@ -262,12 +278,9 @@ class servalcat_xtal_pipe(CPluginScript):
         print("AAA1")
         if statusDict['finishStatus'] == CPluginScript.UNSATISFACTORY:
             print("AAA1.UNSATISFACTORY")
-            import os
             if os.path.isfile(self.firstServalcat.container.outputData.LIBOUT.__str__()):
-                from wrappers.acedrg.script import acedrg
                 try:
                     rdkitMol = acedrg.molFromDict(self.firstServalcat.container.outputData.LIBOUT.__str__())
-                    from rdkit import Chem
                     molRemovedHs = Chem.RemoveHs(rdkitMol)
                     svgXml = acedrg.svgFromMol(molRemovedHs)
                     self.xmlroot.append(svgXml)
@@ -306,7 +319,6 @@ class servalcat_xtal_pipe(CPluginScript):
         self.handleXmlChanged(self.firstServalcat.makeFileName(format='PROGRAMXML'))
 
         print("AAA10")
-        import os
         if statusDict['finishStatus'] == CPluginScript.FAILED:
             # This gets done in the firstServalcat.reportStatus() - Liz
             self.fileSystemWatcher = None
@@ -452,7 +464,6 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
 
     @QtCore.Slot(dict)
     def cootFinished(self, statusDict={}):
-        import functools
         # Check coot status and start servalcat
         if len(self.cootPlugin.container.outputData.XYZOUT) == 0:
             self.appendErrorReport(205,'Coot failed to produce an output file')
@@ -498,7 +509,6 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
     def postCootRefmacFinished(self, servalcatJob, statusDict={}):
         self.handleXmlChanged2(servalcatJob.makeFileName(format='PROGRAMXML'))
 
-        import os
         self.fileSystemWatcher = None
         if statusDict['finishStatus'] == CPluginScript.FAILED:
             #This gets done in the firstServalcat.reportStatus() - Liz
@@ -519,7 +529,6 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
         self.finishUp(servalcatJob)
 
     def finishUp(self, servalcatJob):
-        from core import CCP4ProjectsManager
         print('into servalcat_xtal_pipe.finishUp')
         for attr in self.container.outputData.dataOrder():
             print('servalcat_xtal_pipe.finishUp attr',attr)
@@ -538,7 +547,6 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                     pass
 
         print('servalcat_xtal_pipe.finishUp 1')
-        from core import CCP4XtalData
         # Apply database annotations
         self.container.outputData.XYZOUT.annotation.set('Model from refinement (PDB format)')
         self.container.outputData.CIFFILE.annotation.set('Model from refinement (mmCIF format)')
@@ -605,14 +613,11 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                  #MN: First order attempt at providing molprobity analysis
                  try:
                      print("Attempting molprobity run after refinement...")
-                     from mmtbx.command_line import molprobity
                      coordPath = self.container.outputData.XYZOUT.fullPath.__str__()
                      fileRoot, fileExt = os.path.splitext(coordPath)
                      sanitizedCoordPath = fileRoot + "+asPDB.pdb"
 
                      #Use mmdb to do some sanitization
-                     import ccp4mg
-                     import mmdb2
                      mmdb2.InitMatType()
                      m = mmdb2.Manager()
 
@@ -753,7 +758,6 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                       xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Molprobity")[0])
                    self.saveXml()
                    try:
-                       from . import prosmart_refmac_verdict
                        programxml = self.makeFileName('PROGRAMXML')                  #"/Users/stuart/CCP4I2_PROJECTS/5_7_2021/CCP4_JOBS/job_19/program.xml"
                        pdbfile = self.container.outputData.XYZOUT.fullPath.__str__() #"/Users/stuart/CCP4I2_PROJECTS/5_7_2021/CCP4_JOBS/job_19/19_5_7_2021_xyzout_prosmart_refmac.pdb"
                        if hasattr(self,"servalcatPostCootPlugin"):
@@ -792,7 +796,6 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
 
                        self.saveXml()
                    except:
-                       import traceback
                        print("Some problem with verdict...."); sys.stdout.flush()
                        exc_type, exc_value, exc_tb = sys.exc_info()[:3]
                        sys.stderr.write(str(exc_type) + '\n')
@@ -800,7 +803,6 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
                        traceback.print_tb(exc_tb)
                 self.saveXml()
              except Exception as err:
-                import traceback
                 traceback.print_exc()
                 print("...Failed validation run after refinement", err)
 
@@ -817,7 +819,6 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
         self.reportStatus(CPluginScript.SUCCEEDED)
 
     def tryVariousRefmacWeightsAround(self, weight):
-        import math
         print('Generating jobs with weights around ', weight)
         #make an array to hold the child-jobs
         refmacJobs = []
@@ -856,14 +857,9 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
         if  status == CPluginScript.FAILED:
             self.reportStatus(status)
             return
-        import sys
         # callback is passed the jobId (=Non
         # if not in ccp4i2-db context) and processId that
         # can serve at identifier for subProcess
-        import sys
-        import time
-        from copy import deepcopy
-
         #print 'demo_multi_mtzdump.handleDone',ret
 
         rtask = self.jobsInTrain[str(pid)]
@@ -915,7 +911,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
         xmlcyc.append (rstats[0])"""
 
     def handleTimeout(self):
-        import sys;sys.stdout.flush()
+        sys.stdout.flush()
 
         for rtask in self.jobsInTrain:
             print('TERMINATING', rtask.processId,sys.stdout.flush())
@@ -928,7 +924,6 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
         self.reportStatus(CPluginScript.FAILED)
 
 def coefficientsToMap(coefficientsPath, mapPath=None, overSample=1.0):
-    import clipper
     mtz_file = clipper.CCP4MTZfile()
     hkl_info = clipper.HKL_info()
     mtz_file.open_read (str(coefficientsPath))
@@ -958,11 +953,6 @@ def coefficientsToMap(coefficientsPath, mapPath=None, overSample=1.0):
 
 # Function called from gui to support exporting MTZ files
 def exportJobFile(jobId=None,mode=None,fileInfo={}):
-    import os
-    from core import CCP4Modules
-    from dbapi.CCP4DbApi import CDbApi
-    from dbapi.CCP4DbApi import FILE_ROLE_OUT
-
     theDb = CCP4Modules.PROJECTSMANAGER().db()
     if mode == 'complete_mtz':
         #print 'refmac.exportJobFile',mode
@@ -1001,13 +991,10 @@ def exportJobFileMenu(jobId=None):
             ]
 
 #============================================================================================
-import unittest
 class testRefmac(unittest.TestCase):
 
     def test1(self):
         # Test creation of log file using ../test_data/test1.params.xml input
-        from core.CCP4Utils import getCCP4I2Dir
-        import os
         workDirectory = CCP4Utils.getTestTmpDir()
         logFile = os.path.join(workDirectory,'prosmart_refmac_test1.log')
         # Delete any existing log file

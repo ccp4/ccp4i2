@@ -1,6 +1,5 @@
-import sys
-from lxml import etree
-from report.CCP4ReportParser import *
+from ......report.CCP4ReportParser import Report
+
 
 class reindex_processed_data_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -10,4 +9,3 @@ class reindex_processed_data_report(Report):
     
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):
         Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo,**kw)
-

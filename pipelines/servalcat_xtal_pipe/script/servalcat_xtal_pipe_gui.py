@@ -1,7 +1,3 @@
-from __future__ import print_function
-
-#from lxml import etree
-
 """
     servalcat_xtal_pipe_gui.py: CCP4 GUI Project
     Copyright (C) 2024 University of Southampton, MRC LMB Cambridge
@@ -19,23 +15,24 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Andrey Lebedev September 2011 - refmac_martin gui
      Liz Potterton Aug 2012 - convert for MTZ ADO's demo
      Liz Potterton Oct 2012 - Moved mini-MTZ version to refmac_martin
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
-from core.CCP4PluginScript import CPluginScript
+import traceback
+
+from PySide2 import QtCore, QtWidgets
+from PySide2.QtWidgets import QMessageBox
+import mmdb2 as mmdb
+
+from core import CCP4Modules
 from core import CCP4XtalData
+from qtgui import CCP4TaskWidget
+
 
 def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None):
-    import os
-    from core import CCP4Modules, CCP4Utils, CCP4File, CCP4Container, CCP4Data, CCP4PluginScript
     jobStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId,'status')
     if jobStatus == 'Unsatisfactory':
         returnList = ['LidiaAcedrg', 'servalcat_xtal_pipe']
@@ -73,7 +70,6 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
 
   def ToggleTLSModeOn(self):
     if str(self.container.controlParameters.TLSMODE) != 'NONE':
-        from core import CCP4Modules
         CurrentStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(self._jobId,'status')
         if CurrentStatus == "Pending":
             self.container.controlParameters.BFACSETUSE = True
@@ -82,7 +78,6 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
 
   def ToggleTLSModeOff(self):
     if str(self.container.controlParameters.TLSMODE) == 'NONE':
-        from core import CCP4Modules
         CurrentStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(self._jobId,'status')
         if CurrentStatus == "Pending":
             self.container.controlParameters.BFACSETUSE = False
@@ -820,7 +815,6 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
      chain_list = {}
      if self.container.inputData.XYZIN.isSet():
          model_path = self.container.inputData.XYZIN.fullPath.__str__()
-         import mmdb2 as mmdb
          molHnd = mmdb.Manager()
          molHnd.SetFlag(mmdb.MMDBF_IgnoreRemarks)
          molHnd.SetFlag(mmdb.MMDBF_IgnoreBlankLines)
@@ -876,7 +870,6 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
   def isValid(self):
       invalidElements = super(Cservalcat_xtal_pipe, self).isValid()
       #Check whether invocation is from runTask
-      import traceback
       functionNames = [a[2] for a in traceback.extract_stack()]
 
       if self.container.inputData.HKLIN.isSet() and  self.container.inputData.XYZIN.isSet() and self.container.inputData.XYZIN.fileContent.mmdbManager and hasattr(self.container.inputData.XYZIN.fileContent.mmdbManager,"GetCell"):
@@ -891,7 +884,6 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
           if str(self.container.inputData.XYZIN.fileContent.mmdbManager.GetSpaceGroup()) != str(self.container.inputData.HKLIN.fileContent.spaceGroup): sgMismatch = True
           if cellMismatch or sgMismatch:
               if functionNames[-2] == 'runTask':
-                  from PySide2.QtWidgets import QMessageBox
                   msg = QMessageBox()
                   msg.setIcon(QMessageBox.Question)
                   msg.setText("Warning")
@@ -911,8 +903,6 @@ class Cservalcat_xtal_pipe(CCP4TaskWidget.CTaskWidget):
 
       if functionNames[-2] == 'runTask':
           if not self.container.inputData.FREERFLAG.isSet():
-            from PySide2.QtWidgets import QMessageBox
-            #from PyQt4.QtCore import *
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Question)
 

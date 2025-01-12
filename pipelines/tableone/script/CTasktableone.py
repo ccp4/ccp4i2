@@ -4,7 +4,8 @@
 #
 #=======================================================================================
 
-from qtgui import CCP4TaskWidget
+from ....qtgui import CCP4TaskWidget
+
 
 class CTasktableone(CCP4TaskWidget.CTaskWidget):
 
@@ -15,10 +16,8 @@ class CTasktableone(CCP4TaskWidget.CTaskWidget):
     SHORTTASKTITLE = 'Table One'
     DESCRIPTION = 'Generate Table One for publications.'
 
-
     def __init__(self, parent):
         CCP4TaskWidget.CTaskWidget.__init__(self, parent)
-
 
     def drawContents(self):
         self.setProgramHelpFile('tableone')

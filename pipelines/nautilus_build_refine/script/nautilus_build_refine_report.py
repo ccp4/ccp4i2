@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
     nautilus_build_refine_report.py: CCP4 GUI Project
     
@@ -18,8 +16,10 @@ from __future__ import print_function
     GNU Lesser General Public License for more details.
     """
 
-from report.CCP4ReportParser import Report
 import sys
+
+from ....report.CCP4ReportParser import Report
+
 
 class nautilus_build_refine_report(Report):
     # Specify which gui task and/or pluginscript this applies to

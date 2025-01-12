@@ -1,15 +1,12 @@
-from __future__ import print_function
+import os
+import shutil
 
-
-from core.CCP4PluginScript import CPluginScript
-from PySide2 import QtCore
-import os,glob,re,time,sys,shutil
-from core import CCP4XtalData
 from lxml import etree
-import math
-from core import CCP4Modules
-from core import CCP4Utils
-from core import CCP4ErrorHandling
+
+from ....core import CCP4ModelData
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class PrepareDeposit(CPluginScript):
     TASKNAME = 'PrepareDeposit'
@@ -34,7 +31,6 @@ class PrepareDeposit(CPluginScript):
         
         #Do sequence alignments if needed
         if self.container.inputData.PROVIDESEQUENCES:
-          from core import CCP4ModelData
           chainMatch = CCP4ModelData.CChainMatch(self.container.inputData.XYZIN,self.container.inputData.ASUIN)
           self.xmlroot.append(chainMatch.reportXmlAlignments())
         
@@ -141,8 +137,7 @@ class PrepareDeposit(CPluginScript):
         if rv is not CPluginScript.SUCCEEDED:
             self.reportStatus(rv)
         """
-        
-        import shutil
+
         if self.container.inputData.OUTPUTTYPE.__str__() == "DATABASE":
             structureCifPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'Coordinates.cif'))
             reflectionCifPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'Reflections.cif'))
@@ -163,7 +158,6 @@ class PrepareDeposit(CPluginScript):
     def flushXML(self, xml=None):
         if xml is None:
             if hasattr(self,'xmlroot'): xml=self.xmlroot
-        import os
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
         with open(tmpFilename,'w') as tmpFile:
             CCP4Utils.writeXML(tmpFile,etree.tostring(xml, pretty_print=True))

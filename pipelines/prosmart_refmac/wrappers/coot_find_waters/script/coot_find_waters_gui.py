@@ -2,9 +2,8 @@
      tasks/coot_find_waters
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from ......qtgui.CCP4TaskWidget import CTaskWidget
 
-from qtgui.CCP4TaskWidget import CTaskWidget
 
 #-------------------------------------------------------------------
 class Ccoot_find_waters(CTaskWidget):
@@ -19,9 +18,8 @@ class Ccoot_find_waters(CTaskWidget):
 
   def drawContents(self):
 
-      
     self.setProgramHelpFile('coot_find_waters')
-                        
+
     self.openFolder(folderFunction='inputData')
 
     self.createLine( [ 'tip', 'input structure', 'widget', 'XYZIN' ] )

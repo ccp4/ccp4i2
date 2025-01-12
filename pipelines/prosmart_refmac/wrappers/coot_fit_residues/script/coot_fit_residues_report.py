@@ -1,5 +1,5 @@
-import sys
-from report.CCP4ReportParser import *
+from report.CCP4ReportParser import Report
+
 
 class coot_fit_residues_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -21,4 +21,3 @@ class coot_fit_residues_report(Report):
         plot.append('xintegral','true')
         for coordinate, colour in [(2,'blue'),(3,'green')]:
             plotLine = plot.append('plotline',xcol=1,ycol=coordinate,colour=colour)
-
