@@ -1,12 +1,12 @@
-import sys
 import functools
+import sys
 
 from PyQt4 import sip
 from PyQt4 import QtCore, QtGui
 
-import icon_rc
-from jiffyQt import TaskList, TreeModel
-import SimpleTaskManager
+from . import SimpleTaskManager
+from .jiffyQt import TaskList
+
 
 class TaskListProxyModel(QtGui.QSortFilterProxyModel):
         def __init__(self,parent=None):

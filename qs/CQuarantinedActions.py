@@ -1,9 +1,10 @@
-from __future__ import print_function
-
-import sys
 import multiprocessing
-import os
+import sys
 import traceback
+
+from ..core import CCP4ProjectsManager
+from ..report import CCP4ReportGenerator
+from ..utils.startup import startProjectsManager
 
 
 def QuarantinedProcessing_decorate(func):
@@ -18,14 +19,12 @@ def QuarantinedProcessing_decorate(func):
             resultQueue.put("FailedProcess")
     return func_wrapper
 
+
 @QuarantinedProcessing_decorate
 def remakeReport(resultQueue, jobId, jobStatus, dbFileName):
     print(jobId, jobStatus, dbFileName)
     if jobId is not None:
-        from core import CCP4ProjectsManager
-        from utils.startup import startProjectsManager
         pm = startProjectsManager(dbFileName=dbFileName)
-        from report import CCP4ReportGenerator
         generator = CCP4ReportGenerator.CReportGenerator(jobId=jobId, jobStatus=jobStatus)
         if jobStatus == 'Failed':
             reportFile = generator.makeFailedReportFile(redo=True)
@@ -40,6 +39,7 @@ def remakeReport(resultQueue, jobId, jobStatus, dbFileName):
         pm.db().close()
         CCP4ProjectsManager.CProjectsManager.insts = None
         return "Completed"
+
 
 if __name__ == "__main__":
     print('sys.argv', sys.argv)

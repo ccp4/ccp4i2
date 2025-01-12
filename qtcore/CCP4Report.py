@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4Report.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -21,13 +19,23 @@ from __future__ import print_function
 
 ##@package CCP4Report (QtCore) Data types for tables,graphs etc found in reports
 
-from PySide2 import QtCore
+import array
+import copy
 import os
+import sys
+import tempfile
+import unittest
+
 from lxml import etree
-from core.CCP4ErrorHandling import *
-from core.CCP4DataManager import DATAMANAGER
-from core.CCP4Data import CData
-from report.CCP4ReportParser import CCP4NS
+from PySide2 import QtCore
+
+from ..core import CCP4File
+from ..core import CCP4Utils
+from ..core.CCP4Data import CData
+from ..core.CCP4DataManager import DATAMANAGER
+from ..core.CCP4ErrorHandling import *
+from ..report.CCP4ReportParser import CCP4NS
+
 
 NSMAP = { 'ccp4' : CCP4NS }
 
@@ -74,7 +82,6 @@ class CReportTable(QtCore.QAbstractTableModel):
     # Read first row and determine data type (int or float)
     # Add approariately typed array to self.columns list
     if len(eleList)> self.nColumns:
-      import array
       self.columns = []
       self.columnTypes = []
       for ic in range(0,self.nColumns):
@@ -178,7 +185,6 @@ class CReport(QtCore.QObject):
     if not os.path.exists(self.filename):
       raise CException(self.__class__,101,self.filename)
     try:
-      from core import CCP4Utils
       root = CCP4Utils.openFileToEtree(self.filename)
       #root = tree.getroot()
       #print 'CReport.loadFromXmlFile',root
@@ -222,7 +228,6 @@ class CReport(QtCore.QObject):
       raise CException(self.__class__,104,filename)
     #print 'CReport.saveXMLFile',filename,text
     try:
-      from core import CCP4Utils
       CCP4Utils.saveFile(self,fileName=filename,text=text)
     except:
       raise CException(self.__class__,105,filename)
@@ -233,7 +238,6 @@ class CReport(QtCore.QObject):
     return ''
 
   def extractBaseHref(self,root):
-    import sys
     self.baseHref = None
     self.resetBaseHref= None
     if sys.platform[0:3] == 'win': return
@@ -242,7 +246,6 @@ class CReport(QtCore.QObject):
     if len(eleList)>0 and eleList[0].get('href') is not None:
       self.baseHref = QtCore.QUrl(eleList[0].get('href')).toLocalFile().__str__()
       if self.baseHref is None: return
-      from core import CCP4Utils
       localBasePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'docs')
       try:
         ifSame = CCP4Utils.samefile(self.baseHref,localBasePath)
@@ -251,7 +254,6 @@ class CReport(QtCore.QObject):
       #print 'extractBaseHref samepath', localBasePath,ifSame
     if not ifSame and self.baseHref is not None and self.baseHref.count('ccp4i2')>0:
       eleList[0].set('href','file://'+localBasePath+'/')
-      import tempfile
       path,base0 = os.path.split(self.filename)
       path,dir0 = os.path.split(path)
       self.resetBaseHref = os.path.join(tempfile.gettempdir(),dir0+'_'+base0)
@@ -260,7 +262,6 @@ class CReport(QtCore.QObject):
       #print 'extractBaseHref',self.resetBaseHref
 
   def extractCCP4Data(self,root):
-    import copy
     #for element in root.iterdescendants(): print element.tag
     body = root.find('body')
     if body is not None:
@@ -387,7 +388,6 @@ class CReport(QtCore.QObject):
       return None
 
 #========================================================================================   
-import unittest
 def TESTSUITE():
   suite = unittest.defaultTestLoader.loadTestsFromTestCase(testReport)
   return suite
@@ -399,7 +399,6 @@ def testModule():
 class testReport(unittest.TestCase):
 
   def test1(self):
-    from core import CCP4File
     testFile = CCP4File.CDataFile(project='CCP4I2_TOP',relPath='test/data',baseName='test_report.html')
     r = CReport()
     r.loadFromXmlFile(str(testFile))

@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4PluginThread.py: CCP4 GUI Project
      Copyright (C) 2013 STFC
@@ -17,14 +15,15 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
+
+   Liz Potterton -Jan 2013 - A thread to run plugins
 """
 
-'''
-   Liz Potterton -Jan 2013 - A thread to run plugins
-'''
-    
-from core import CCP4PluginScript
 from PySide2 import QtCore
+
+from ..core import CCP4Modules
+from ..core import CCP4PluginScript
+
 
 class CRunPluginThread(QtCore.QThread):
 
@@ -35,7 +34,7 @@ class CRunPluginThread(QtCore.QThread):
         self.runPlugin = CCP4PluginScript.CRunPlugin(parent=self,ccp4i2Path=ccp4i2Path,comFilePath=comFilePath)
         self.runPlugin.finished.connect(self.handleFinishSignal)
 
-    def run(self):   
+    def run(self):
         self.runPlugin.run()
         self.exec_()
 
@@ -44,7 +43,6 @@ class CRunPluginThread(QtCore.QThread):
         self.finished.emit()
 
     def checkIfFinished(self):
-        from core import CCP4Modules
         if len(CCP4Modules.PROCESSMANAGER().activeProcesses())>0:
             print('checkIfFinished',len(CCP4Modules.PROCESSMANAGER().activeProcesses()))
         else:

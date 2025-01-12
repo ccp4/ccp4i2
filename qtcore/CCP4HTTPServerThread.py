@@ -1,24 +1,26 @@
-from __future__ import print_function
+from http.server import HTTPServer
+from http.server import SimpleHTTPRequestHandler
+from socketserver import ThreadingMixIn
+import glob
+import http.client
+import json
+import mimetypes
+import os
+import queue
+import re
 
-import sys,os
-if sys.version_info >= (3,0):
-    import http.server
-    from http.server import SimpleHTTPRequestHandler
-else:
-    import BaseHTTPServer
-    from SimpleHTTPServer import SimpleHTTPRequestHandler
-    
 from PySide2 import QtCore
-from core import CCP4Modules
+import mrparse
+import dials
+
+from ..core import CCP4Modules
+from ..core import CCP4Utils
+from ..core.CCP4Modules import HTTPSERVER
+from ..dbapi import CCP4DbApi
+from ..qtcore.CCP4DbThread import CDbThread
+
 
 DEFAULT_PORT = 43434
-
-if sys.version_info >= (3,0):
-    from socketserver import ThreadingMixIn
-    from http.server import HTTPServer
-else:
-    from SocketServer import ThreadingMixIn
-    from BaseHTTPServer import HTTPServer
 
 class MultiThreadedHTTPServer(ThreadingMixIn, HTTPServer):
     pass
@@ -37,17 +39,9 @@ def makeServer(port):
         return httpd
 
 def testServer(port):
-      if sys.version_info >= (3,0):
-          import http.client
-      else:
-          import httplib
-
       ret = True
       try:
-        if sys.version_info >= (3,0):
-            h = http.client.HTTPConnection('127.0.0.1',port,timeout=3)
-        else:
-            h = httplib.HTTPConnection('127.0.0.1',port,timeout=3)
+        h = http.client.HTTPConnection('127.0.0.1',port,timeout=3)
         h.connect()
       except:
         ret=False
@@ -98,7 +92,6 @@ class CHTTPServerThread(QtCore.QThread):
            self.httpd.serve_forever()
       return
 
-from dbapi import CCP4DbApi
 
 class CHTTPRequestHandler(SimpleHTTPRequestHandler):
     def end_headers (self):
@@ -125,8 +118,6 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
     
     """
     def do_POST(self):
-        import cgi
-        import re
         form = cgi.FieldStorage(fp=self.rfile, headers=self.headers, \
             environ={'REQUEST_METHOD':'POST', 'CONTENT_TYPE':self.headers['Content-Type'], })
         upfile = form['upfile']
@@ -162,12 +153,10 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
         #print('CHTTPRequestHandler.do_GET',self.path)
         if "site-packages/dials/static" in self.path:
-            import dials
             f = self.path
             #This mangling is done to help with imported projects which might have links to different file locations
             newPath = os.path.join(os.path.dirname(dials.__file__),f[f.find("site-packages/dials/static"):][len("site-packages/dials")+1:])
             try:
-                import mimetypes
                 fileType = mimetypes.guess_type(newPath.split("?")[0])[0]
                 self.returnFileAsData(contentType=fileType, fullPath=newPath.split("?")[0])
                 return
@@ -175,12 +164,10 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                 self.send_response(404)
                 return
         if "site-packages/mrparse/html" in self.path:
-            import mrparse
             f = self.path
             #This mangling is done to help with imported projects which might have links to different file locations
             newPath = os.path.join(os.path.dirname(mrparse.__file__),f[f.find("site-packages/mrparse/html"):][len("site-packages/mrparse")+1:])
             try:
-                import mimetypes
                 fileType = mimetypes.guess_type(newPath.split("?")[0])[0]
                 self.returnFileAsData(contentType=fileType, fullPath=newPath.split("?")[0])
                 return
@@ -191,16 +178,10 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
             #serve files normally
             SimpleHTTPRequestHandler.do_GET(self)
         else:
-            from core.CCP4Modules import HTTPSERVER
             dbQueue = HTTPSERVER().dbThread.queue
             
             #Create my own Queue for reading response
-            if sys.version_info >= (3,0):
-                import queue
-                dbRequest = {'responseQueue':queue.Queue()}
-            else:
-                import Queue
-                dbRequest = {'responseQueue':Queue.Queue()}
+            dbRequest = {'responseQueue':queue.Queue()}
 
             newPath = None
             if self.path.startswith("/database/projectId/"):
@@ -271,7 +252,6 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                 if len(splitToken) == 1: tokensDict[splitToken[0]] = True
                 else: tokensDict[splitToken[0]] = '='.join(splitToken[1:])
             print(tokensDict)
-            import json
             
             if len(tokens) == 1:
                 docTemplate = '''
@@ -305,7 +285,6 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                     <body></body>
                     </html>
                     '''
-                import re
                 docString1 = re.sub('__serverName__',str(self.server.server_name),docTemplate)
                 docString = re.sub('__serverPort__', str(self.server.server_port),docString1)
                 self.returnData('text/html', docString)
@@ -313,7 +292,6 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                 #db.close()
                 return
             
-            from qtcore.CCP4DbThread import CDbThread
             if tokens[1] in CDbThread.databaseCalls:
                 dbRequest['path'] = self.path
                 dbQueue.put(dbRequest)
@@ -384,7 +362,6 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                         fullPath = filePath
                     else:
                         fullPath = os.path.join(jobDirectory,filePath)
-                    import mimetypes
                     fileType = mimetypes.guess_type(fullPath)[0]
                     #Here apply patches where content type is explicitly known
                     if filePath == 'report.html': fileType = 'application/xhtml+xml'
@@ -394,9 +371,6 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                     return
                         
                 elif iconType is not None:
-                    from core import CCP4Utils
-                    import glob
-                    from dbapi import CCP4DbApi
                     itype = 0
                     try:
                         itype = CCP4DbApi.FILETYPES_TEXT.index(iconType)
@@ -405,7 +379,6 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                     pattern = os.path.join(CCP4Utils.getCCP4I2Dir(), 'qticons','')+CCP4DbApi.FILETYPES_CLASS[itype]+'.*'
                     possibleFiles = glob.glob(pattern)
                     if len(possibleFiles) > 0:
-                        import mimetypes
                         fullPath = possibleFiles[0]
                         fileType = mimetypes.guess_type(fullPath)[0]
                         self.returnFileAsDownload(contentType=fileType, fullPath=fullPath)

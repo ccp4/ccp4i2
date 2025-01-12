@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4CustomMimeTypes.py: CCP4 GUI Project
      Copyright (C) 2001-2008 University of York, CCLRC
@@ -18,17 +16,25 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton Jan 2010 - Create CCP4MimeTypes. Copy MGAbstractViewer and subclasses from MG project
 """
+
 ## @package CCP4CustomMimeTypes (QtWebKit) Manager for file MIME types - access via CCP4Modules.MIMETYPESHANDLER()
+
 import os
-from core.CCP4Config import GRAPHICAL
-from core.CCP4ErrorHandling import *
-from PySide2 import QtCore
-from core import CCP4Utils
+
+from PySide2 import QtCore, QtGui
+import gemmi
+
+from ..core import CCP4File
+from ..core import CCP4Utils
+from ..core.CCP4Config import GRAPHICAL
+from ..core.CCP4ErrorHandling import *
+from ..qtgui import CCP4FileSystemView
+from ..qtgui import CCP4ImageViewer
+from ..qtgui import CCP4TextViewer
+
 
 #-------------------------------------------------------------------------------------
 
@@ -36,39 +42,21 @@ from core import CCP4Utils
 # further.  We really just want to know whether to use our viewer class
 # or the Qt DesktpServices class to handle display
 
-if GRAPHICAL():
-    from PySide2 import QtGui
 
-if False:
-    from PyQt4 import QtWebKit, QtGui
-
-    class CMimeType(QtWebKit.QWebPluginFactory.MimeType):
-        def __init__(self):
-            QtWebKit.QWebPluginFactory.MimeType.__init__(self)
-            self.viewer = ''                   # our viewer class - subclass of CAbstractViewer
-            self.useDesktopServices = 0        # use QtDesktopServices to display
-            self.useWebBrowser = 0             # use CWebBrowser to display
-            self.icon = ''                     # icon from ccp4i2/qticons
-            self.fixedWidthFont = False        # display with fixed width font
-            self.fileValidity = None           # method to test file validity - returns CErrorReport
-            self.contentLabel = None           # terminal part of basename indicating file content
-            self.className = None              # name (without initial C) of the CDataFile subclass
-
-else:
-    class CMimeType:
-        def __init__(self):
-            self.name = ''
-            self.description = ''
-            self.fileExtensions = []
-            self.viewers = []
-            self.viewer = ''                   # our viewer class - subclass of CAbstractViewer
-            self.useDesktopServices = 0        # use QtDesktopServices to display
-            self.useWebBrowser = 0             # use CWebBrowser to display
-            self.icon = ''                     # icon from ccp4i2/qticons
-            self.fixedWidthFont = False        # display with fixed width font
-            self.fileValidity = None           # method to test file validity - returns CErrorReport
-            self.contentLabel = None           # terminal part of basename indicating file content
-            self.className = None              # name (without initial C) of the CDataFile subclass
+class CMimeType:
+    def __init__(self):
+        self.name = ''
+        self.description = ''
+        self.fileExtensions = []
+        self.viewers = []
+        self.viewer = ''                   # our viewer class - subclass of CAbstractViewer
+        self.useDesktopServices = 0        # use QtDesktopServices to display
+        self.useWebBrowser = 0             # use CWebBrowser to display
+        self.icon = ''                     # icon from ccp4i2/qticons
+        self.fixedWidthFont = False        # display with fixed width font
+        self.fileValidity = None           # method to test file validity - returns CErrorReport
+        self.contentLabel = None           # terminal part of basename indicating file content
+        self.className = None              # name (without initial C) of the CDataFile subclass
 
 #--------------------------------------------------------------------------------------
 
@@ -97,11 +85,6 @@ class CCustomMimeTypes(QtCore.QObject):
         self.knownEntFiles = {}
 
     def setupStandards(self):
-        if GRAPHICAL():
-            from qtgui import CCP4TextViewer
-            from qtgui import CCP4FileSystemView
-            from qtgui import CCP4ImageViewer
-
         mimeType = CMimeType()
         mimeType.name = "text/html"
         mimeType.description = "Hypertext markup language"
@@ -613,7 +596,6 @@ class CCustomMimeTypes(QtCore.QObject):
                 ext2 = os.path.splitext(os.path.splitext(str(fileName))[0])[1]
                 if ext2: ext2 = ext2[1:]+'.'+ext
             elif ext == 'mtz':
-                from core import CCP4File
                 base = os.path.split(root)[1]
                 if base.count(CCP4File.CDataFile.SEPARATOR):
                     contentLabel = base.split(CCP4File.CDataFile.SEPARATOR)[-1]
@@ -684,8 +666,6 @@ class CCustomMimeTypes(QtCore.QObject):
         return formatList
 
     def disambiguateCif(self,fileName):
-
-        import gemmi
         try:
             tryPdb = gemmi.read_structure(fileName)
             if len(tryPdb) > 0:
@@ -739,7 +719,6 @@ class CCustomMimeTypes(QtCore.QObject):
     def getIconsForFileFilters(self):
         # Used by file browser to set icons
         filters = {}
-        from core import CCP4Utils
         path = os.path.join(CCP4Utils.getCCP4I2Dir(),'qticons')
         for key, mimetype in list(self.mimeTypes.items()):
             if mimetype.icon is not None:

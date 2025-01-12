@@ -1,7 +1,6 @@
-from __future__ import print_function
-
 import sys
 import sqlite3
+
 
 def readFiles(f,projId):
 
@@ -18,6 +17,7 @@ def readFiles(f,projId):
     print("----------------------------")
     return files
 
+
 if __name__ == "__main__":
     f = sys.argv[1]
     files = readFiles(f,'8cb7c294c25711e4803360f81db2874e')
@@ -25,4 +25,3 @@ if __name__ == "__main__":
     print(len(files))
     for f in files:
         print(f)
-

@@ -1,12 +1,16 @@
-from __future__ import print_function
-
-
 import os
+import shutil
 import sys
+import tarfile
+import tempfile
+import zipfile
 
 from PySide2 import QtCore
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import PROJECTSMANAGER
+
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import *
+from ..core.CCP4Modules import PROJECTSMANAGER
+
 
 COMPRESSED_SUFFIX = 'ccp4_project.zip'
 COMPRESSION_MODE = 'zip'
@@ -58,7 +62,6 @@ class ExportProjectThread(QtCore.QThread):
 
     def tarCompressProject(self):
         try:
-            import tarfile
             tf = tarfile.open(self.target,mode='w:gz')
         except:
             err = CErrorReport(self.__class__, 175, fileName)  # KJS : fileName ? Looks like an issue here.
@@ -112,10 +115,8 @@ class ExportProjectThread(QtCore.QThread):
         return CErrorReport()
   
     def zipCompressProject(self):
-        from core import CCP4Utils
         # zipfile does not recurse over directory so use CCP4Utils.zipDirectory()
         try:
-            import zipfile
             zip = zipfile.ZipFile(self.target, mode='w', allowZip64=ALLOWZIP64)
         except:
             return CErrorReport(self.__class__, 180, self.target)
@@ -246,7 +247,6 @@ class ImportProjectThread(QtCore.QObject):
         # has the limitation that it will only run in one thread
         # Only if we have a dbImport use the tarfile.extractall() argument members to call the
         # copyThisFile() function that accesses  dbImport.importThisFile()
-        import tarfile
         try:
             tf = tarfile.open(compressedFile, mode='r:gz')
         except:
@@ -351,7 +351,6 @@ class ImportProjectThread(QtCore.QObject):
         # has the limitation that it will only run in one thread
         # Only if we have a dbImport use the zipfile.extractall() argeument members to call the
         # copyThisFile() function that accesses  dbImport.importThisFile()
-        import zipfile
         try:
             zip = zipfile.ZipFile(compressedFile,mode='r',allowZip64=ALLOWZIP64)
         except:
@@ -372,7 +371,6 @@ class ImportProjectThread(QtCore.QObject):
                         zip.extract(zinfo,targetDir)
                     else:
                         if tmpDir is None:
-                            import tempfile,shutil
                             tmpDir = tempfile.mkdtemp()
                             print('Extracting files to temp directory:',tmpDir)
                         zip.extract(zinfo,tmpDir)
@@ -403,7 +401,6 @@ class ImportProjectThread(QtCore.QObject):
             self.errReport.append(self.__class__,193,str(compressedFile))
 
     def extractProjectDirFromTar(self,compressedFile,targetDir,mode='CCP4_IMPORTED_FILES',selectedFiles=None):
-        import tarfile
         try:
             tf = tarfile.open(compressedFile,mode='r:gz')
         except:
@@ -430,7 +427,6 @@ class ImportProjectThread(QtCore.QObject):
         tf.close()
     
     def extractProjectDirFromZip(self,compressedFile,targetDir,mode='CCP4_IMPORTED_FILES',selectedFiles=None):
-        import zipfile
         try:
             zip = zipfile.ZipFile(compressedFile,mode='r',allowZip64=ALLOWZIP64)
         except:

@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 '''
 This is an incomplete example of a CInt class. This class should have the functionality of the standard Python int
 and of the ccp4 CData class. The key functionality of CData is data validation and read/write to formats such as XML.
@@ -20,8 +18,12 @@ This example uses qualifiers to set parameters such as default values and valida
 some customisation of the class without requiring writing Python code to subclass. A data type can be defined
 as the data class and the qualifiers. These data type definitions could be in an 'external' file.
 '''
-import types,copy
+
+import copy
+import re
+
 from lxml import etree
+
 
 SEVERITY_OK = 0
 SEVERITY_UNDEFINED = 1
@@ -210,7 +212,6 @@ class CData():
         raise AttributeError(name)
 
     def splitName(self,name):
-      import re
       s = re.match(r'(.*?)_(.*)',name)
       if s is None:
         return [name,None]

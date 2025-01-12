@@ -1,21 +1,28 @@
-from __future__ import print_function
-
-import sys
-import os
-import functools
 import datetime
-import time
-import collections
+import functools
+import multiprocessing
+import os
 import queue
 import re
-from lxml import etree
+import subprocess
+import sys
+import threading
+import time
 
-import sqlite3
-from PyQt4 import QtGui, QtCore, QtWebKit
 from lxml import etree
+from PyQt4 import QtCore, QtGui, QtWebKit
 
-import SimpleTaskManager
-import CLiteOneOffs
+from . import CLiteHTTPThread
+from . import CLiteOneOffs
+from . import CQuarantinedActions
+from . import SimpleTaskManager
+from ..core import CCP4Config
+from ..core.CCP4Modules import PROJECTSMANAGER
+from ..core.CCP4Utils import getDotDirectory
+from ..dbapi.CCP4DbUtils import COpenJob
+from ..utils import QApp
+from ..utils.startup import startProjectsManager
+
 
 def pretty(d, indent=0):
    for key, value in d.items():
@@ -441,11 +448,9 @@ class SimpleDBBrowser(QtGui.QMainWindow):
         print(taskName)
         projectId = self.projIds[self.selectedProjectName]
 
-        from core.CCP4Modules import PROJECTSMANAGER
         pm = PROJECTSMANAGER()
         print(pm.db())
 
-        from dbapi.CCP4DbUtils import COpenJob
         cOpenJob = COpenJob(projectId=projectId)
         cOpenJob.createJob(taskName=taskName)
         #THis should trigger a "jobCreated signal" from the CDbApi
@@ -495,19 +500,6 @@ class SimpleDBBrowser(QtGui.QMainWindow):
             taskName = self.taskList.model().data(idx,QtCore.Qt.UserRole + 2)
             self.stack.setCurrentWidget(self.taskWidget)
             self.taskWidget.setText(taskName)
-            """
-            from ccp4i2.qtgui.CCP4ProjectViewer import CTaskInputFrame
-            win = QtGui.QWidget()
-            win2 = CTaskInputFrame(win)
-            win2.createTaskWidget(taskName)
-            """
-
-            """
-            #Let's not even bother with this, let's just ude def.xml"
-            from ccp4i2.wrappers.ccp4mg_general.script import ccp4mg_general_gui
-            win = ccp4mg_general_gui.Cccp4mg_general()
-            win.draw()
-            """
 
             print(taskName)
             xmlfn = SimpleTaskManager.get_def_xml_for_task(taskName)
@@ -814,21 +806,16 @@ class SimpleDBBrowser(QtGui.QMainWindow):
         if not os.path.exists(report_file):
             concurrencyMethod = "Threading"
             if concurrencyMethod ==  "Subprocess":
-                import subprocess
                 thisDir = os.path.dirname(os.path.dirname(os.path.abspath(SimpleTaskManager.__file__)))
                 cQuarantinedActionsPath = os.path.join(thisDir, "qs", "CQuarantinedActions.py")
                 print(thisDir, cQuarantinedActionsPath)
                 a=subprocess.call(['ccp4-python', cQuarantinedActionsPath, 'remakeReport', jobId, 'Finished', CLiteOneOffs.cLiteDbThread().dbfile])
             elif concurrencyMethod == "Threading":
-                import threading
-                import CQuarantinedActions
                 bubblyQueue = queue.Queue()
                 self.reportThread=threading.Thread(target=CQuarantinedActions.remakeReport, args=(bubblyQueue, jobId, 'Finished', CLiteOneOffs.cLiteDbThread().dbfile, ))
                 self.reportThread.start()
                 print(bubblyQueue.get(True, 10))
             elif concurrencyMethod == "Multiprocess":
-                import multiprocessing
-                import CQuarantinedActions
                 bubblyQueue = multiprocessing.Queue()
                 a=multiprocessing.Process(target=CQuarantinedActions.remakeReport, args=(bubblyQueue, jobId, 'Finished', CLiteOneOffs.cLiteDbThread().dbfile, ))
                 a.start()
@@ -1033,19 +1020,15 @@ def patchedReport(reportPath, jobId=None, files=[], jobs=[]):
 class QSSupervisorApp(QtGui.QApplication):
     def __init__(self, *argv, **kw):
         t1 = time.time()
-        import icon_rc
 
         modArgs = list(argv[0])
         if len(modArgs) < 2:
-            from core import CCP4Config
-            from core.CCP4Utils import getDotDirectory
             fileName = CCP4Config.DBFILE()
             if fileName is None:
                 fileName = os.path.join(getDotDirectory(), 'db', 'database.sqlite')
             print(fileName)
             modArgs.append(fileName)
 
-        from utils.startup import startProjectsManager
         pm = startProjectsManager(dbFileName=modArgs[1])
 
         super(QSSupervisorApp, self).__init__([modArgs], **kw)
@@ -1066,7 +1049,6 @@ class QSSupervisorApp(QtGui.QApplication):
         self.responseQueue = queue.Queue()
         cLiteDbThread = CLiteOneOffs.cLiteDbThread(parent=self, dbFile=modArgs[1])
 
-        import CLiteHTTPThread
         thisDir = os.path.split(os.path.abspath(__file__))[0]
         parentDir = os.path.split(thisDir)[0]
         reportFilesPath = os.path.join(parentDir,"docs")
@@ -1111,18 +1093,12 @@ class QSSupervisorApp(QtGui.QApplication):
         CLiteOneOffs.cLiteHTTPThread().shutdown()
         print("About to quit")
 
-if __name__ == "__main__":
-    #Here we use this file location to identify the appropriate i2 root
-    parentDir = os.path.split(os.path.abspath(__file__))[0]
-    grandParentDir = os.path.split(parentDir)[0]
-    sys.path.insert(1, grandParentDir)
-    from utils import startup
 
+if __name__ == "__main__":
     # Proper rendering of svg files requires this environment variable to be set
     os.environ['QT_PLUGIN_PATH'] = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(QtCore.__file__))))),'qt4','plugins')
     print(os.environ['QT_PLUGIN_PATH'])
 
     qsSupervisorApp = QSSupervisorApp(sys.argv)
-    from utils import QApp
     QApp.MYAPPLICATION = qsSupervisorApp
     sys.exit(qsSupervisorApp.exec_())

@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4JobController.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -17,27 +15,35 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton May 2010 - Non-graphical controller for running scripts
    Liz Potterton May 2011 - Rewrite to use CCP4DbApi to RDMS database and separate jobs as processes
 """
 
+import copy
 import os
-import sys
 import re
 import shutil
-import copy
-import functools
+import signal
 import subprocess
+import sys
 import traceback
+import unittest
 
 from PySide2 import QtCore
-from core import CCP4Utils
-from core import CCP4Container
-from core import CCP4JobServer
-from core.CCP4ErrorHandling import *
+import psutil
+
+from ..core import CCP4Container
+from ..core import CCP4File, CCP4Annotation
+from ..core import CCP4JobServer
+from ..core import CCP4Modules
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import *
+from ..dbapi import CCP4DbApi
+from ..qtcore import CCP4Export
+from ..qtcore import CCP4HTTPServerThread
+from ..qtgui import CCP4ProjectViewer
+
 
 class CServerSetup(CCP4Container.CContainer):
 
@@ -49,7 +55,6 @@ class CServerSetup(CCP4Container.CContainer):
         CCP4Container.CContainer.__init__(self,name='SERVER_SETUP')
         CServerSetup.insts = self
         self.__dict__['source'] = None
-        from core import CCP4Modules
         defFile = CCP4Modules.TASKMANAGER().searchDefFile('serverSetup')
         self.loadContentsFromXml(defFile)
         self.load(source=source)
@@ -59,7 +64,6 @@ class CServerSetup(CCP4Container.CContainer):
         if os.path.exists(prefFile):
             # Beware if params file has >1 serverGroup we need to add the 2+ groups to the
             # the container as they are not in the def file 
-            from core import CCP4File, CCP4Annotation
             fObj = CCP4File.CI2XmlDataFile(prefFile)
             for sGEle in fObj.getBodyEtree():
                 if self.get(str(sGEle.tag)) is None:
@@ -121,7 +125,6 @@ class CJobController(CCP4JobServer.CJobServer):
                    115 : {'description' : 'Error in handling remote job'}}
 
     def __init__(self,parent=None,db=None):
-        from core import CCP4Modules
         CCP4JobServer.CJobServer.__init__(self)
         if parent is None:
             parent = CCP4Modules.QTAPPLICATION()
@@ -359,7 +362,6 @@ class CJobController(CCP4JobServer.CJobServer):
     def watchJob(self, jobId=None, mode=True):
         if mode:
             if jobId not in self._watchedJobs:
-                from core import CCP4Modules
                 status = self.db.getJobInfo(jobId=jobId, mode='status')
                 if not status in ['Queued', 'Running']:
                     raise CException(self.__class__, 111, 'Job id' + str(jobId))
@@ -393,9 +395,6 @@ class CJobController(CCP4JobServer.CJobServer):
         return argList
 
     def runTask(self, jobId=None, wait=None):
-        from core import CCP4Modules
-        from qtcore import CCP4HTTPServerThread
-        from dbapi import CCP4DbApi
         #print 'CJobController.runTask pythonExecutable',CCP4Utils.pythonExecutable()
         controlFile = self.db._makeJobFileName(jobId=jobId, mode='JOB_INPUT')
         argList = self.getArgList(controlFile)
@@ -541,8 +540,6 @@ echo "PID=$pid"
     def runOnServer(self,jobId=None):
         '''Run ssh or qsub (SGE) or sbatch (Slurm) with or without shared file system
           always use a temporary db on remote machine to avoid sqlite/NFS issues'''
-        from dbapi import CCP4DbApi
-        from core import CCP4Modules
         self.db.updateJobStatus(jobId=jobId,status=CCP4DbApi.JOB_STATUS_REMOTE)
         sP = self.serverParams(jobId)
         #print 'runOnServer',sP.machine,sP.mechanism,sP.username
@@ -594,7 +591,6 @@ echo "PID=$pid"
                     return
             else:
                 #  copy tarball and remote.sh to local tmp for local test
-                import shutil
                 for localFile,remoteFile in [[local_sh,sP.remoteSh],[str(sP.local_tarball),remote_tarball]]:
                     try:
                         shutil.copyfile(localFile,remoteFile)
@@ -616,7 +612,6 @@ echo "PID=$pid"
         sP = self.serverParams(jobId)
         if sP is None: return
         self._transportFilesFinished(jobId)
-        from dbapi import CCP4DbApi
         # Use paramiko to get ssh connection - beware failing and not resetting job status
         if sP.mechanism in [ 'ssh_shared', 'ssh' ]:
             try:
@@ -678,7 +673,6 @@ echo "PID=$pid"
         self.handleFail(jobId,exception)
 
     def handleFail(self,jobId=None,exception=None):
-        from dbapi import CCP4DbApi
         if jobId is None:
             return
         self.db.updateJobStatus(jobId=jobId,status=CCP4DbApi.JOB_STATUS_PENDING)
@@ -699,9 +693,7 @@ echo "PID=$pid"
         #if (exitStatus == QtCore.QProcess.CrashExit or status > 0) and jobId is not None:
         #SJM 15/1/2019 - removed the QProcess.CrashExit test as it seems to be random and cause unneccessary problems with bucref.
         if (exitCode > 0) and jobId is not None:
-            from dbapi import CCP4DbApi
             self.db.updateJobStatus(jobId,CCP4DbApi.JOB_STATUS_FAILED)
-        #from dbapi import CCP4DbUtils
         #CCP4DbUtils.makeJobBackup(jobId=jobId,db=self.db)
 
     def killJobProcess(self,jobId):
@@ -713,7 +705,6 @@ echo "PID=$pid"
         pid = self.db.getJobInfo(jobId,'processId')
         #print 'CJobController.killJobProcess',jobId,pid
         if pid is not None:
-            import signal
             try:
                 self.killChildProcesses(pid)
             except Exception as e:
@@ -735,7 +726,6 @@ echo "PID=$pid"
                     os.kill(pid,signal.SIGINT)
                 except Exception as e:
                     err.append(self.__class__,112,details=str(e))
-            from dbapi import CCP4DbApi
             #print 'to updateJobStatus',jobId,type(jobId)
             self.db.updateJobStatus(jobId,CCP4DbApi.JOB_STATUS_FAILED)
         else:
@@ -745,8 +735,6 @@ echo "PID=$pid"
         return err
 
     def killChildProcesses(self,parent_pid):
-        import signal
-        import psutil
         # BEWARE this is picking up some other psutil!!!
         # See https://github.com/giampaolo/psutil
         # http://stackoverflow.com/questions/3332043/obtaining-pid-of-child-process
@@ -778,8 +766,6 @@ echo "PID=$pid"
         CCP4JobServer.CJobServer.Exit(self)
 
     def loadRemoteRun(self,jobId=None,compressedFile=None,xmlDbFile=None):
-        from dbapi import CCP4DbApi
-        from core import CCP4Modules
         #print 'loadRemoteRun',jobId,compressedFile,xmlDbFile
         # Extract database xmlfile
         if compressedFile is not None:
@@ -824,7 +810,6 @@ echo "PID=$pid"
         # Extract job files from the compressed file
         if compressedFile is not None:
             projectDir =  CCP4Modules.PROJECTSMANAGER().db().getProjectInfo(projectId=projectId,mode='projectdirectory')
-            from qtcore import CCP4Export
             # Despit the name this is not a separate thread!
             importThread = CCP4Export.ImportProjectThread(self,projectDir=projectDir,compressedFile=compressedFile)
             importThread.extractJobs(importThread.compressedFile,importThread.projectDir,dbImport=dbImport)
@@ -846,7 +831,6 @@ echo "PID=$pid"
         CCP4Modules.PROJECTSMANAGER().backupDB()
 
     def updateReports(self):
-        from qtgui import CCP4ProjectViewer
         currentlyOpenJobs = CCP4ProjectViewer.currentlyOpenJobs()
         #print 'updateReports',self.getJobsToPollReport(),'currentlyOpenJobs',currentlyOpenJobs
         
@@ -883,7 +867,6 @@ echo "PID=$pid"
                     pass
 
     def listLocalProcesses(self,containsList = []):
-        import psutil
 
         def contains(exe,containsList):
             if exe is None: return False
@@ -916,7 +899,6 @@ echo "PID=$pid"
 
 
 #===========================================================================================================
-import unittest
 
 class testController(unittest.TestCase):
 
@@ -924,7 +906,6 @@ class testController(unittest.TestCase):
         self.controller = CJobController()
 
     def testRunFreerflag(self):
-        from core import CCP4Container
         controlFile = os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','freerflag','test_data','test1.data.xml')
         stdoutFile = os.path.join(CCP4Utils.getTestTmpDir(),'CJobController_test.stdout')
         c = CCP4Container.CContainer()

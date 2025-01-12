@@ -1,5 +1,6 @@
 import os
 
+
 MODULE_ORDER = ['data_entry', 'data_processing', 'data_reduction', 'expt_phasing', 'bioinformatics',
                 'molecular_replacement', 'density_modification', 'model_building', 'refinement', 'ligands',
                 'validation', 'export', 'expt_data_utility', 'model_data_utility', 'developer_tools',

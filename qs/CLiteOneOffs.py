@@ -1,9 +1,10 @@
-from __future__ import print_function
-
 import queue
 
+from .CLiteDbThread import CLiteDbThread
+from .CLiteHTTPThread import CLiteHTTPThread
+
+
 def cLiteDbThread(*argv, **kw):
-    from CLiteDbThread import CLiteDbThread
     if CLiteDbThread.insts is None:
         hasStartedQueue = queue.Queue()
         kw['hasStartedQueue'] = hasStartedQueue
@@ -12,8 +13,8 @@ def cLiteDbThread(*argv, **kw):
         print(hasStartedQueue.get(True, 10))
     return CLiteDbThread.insts
 
+
 def cLiteHTTPThread(*argv, **kw):
-    from CLiteHTTPThread import CLiteHTTPThread
     if CLiteHTTPThread.insts is None:
         hasStartedQueue = queue.Queue()
         kw['hasStartedQueue'] = hasStartedQueue
@@ -21,4 +22,3 @@ def cLiteHTTPThread(*argv, **kw):
         newCLiteHTTPThread.start()
         print(hasStartedQueue.get(True, 10))
     return CLiteHTTPThread.insts
-

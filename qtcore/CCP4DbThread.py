@@ -1,7 +1,10 @@
-from __future__ import print_function
-import sys
+import queue
 
 from PySide2 import QtCore
+
+from ..utils.startup import startDb
+
+
 class CDbThread(QtCore.QThread):
     insts = None
     databaseCalls = [
@@ -18,15 +21,8 @@ class CDbThread(QtCore.QThread):
     ]
     def __init__(self, fileName=None, *arg, **kw):
         super().__init__(*arg, **kw)
-        #super().__init__(self)
-        from utils.startup import startDb
         self.db = startDb(fileName=fileName)
-        if sys.version_info >= (3,0):
-            import queue
-            self.queue = queue.Queue()
-        else:
-            import Queue
-            self.queue = Queue.Queue()
+        self.queue = queue.Queue()
         self.setObjectName('DbServer')
         CDbThread.insts = self
 
