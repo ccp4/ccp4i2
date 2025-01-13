@@ -1769,7 +1769,7 @@ class CDataFileView(CComplexLineWidget):
               testAction = QtWidgets.QAction("Browse for demo data",browserButton);
               @QtCore.Slot(bool)
               def handleOpenTrigger():
-                  self.openBrowser(os.path.join(os.environ["CCP4"],"share/ccp4i2/demo_data"))
+                  self.openBrowser(os.path.join(os.environ['CCP4I2_TOP'],"demo_data"))
               testAction.triggered.connect(handleOpenTrigger)
               menu.addAction(testAction);
               browserButton.setMenu(menu);
