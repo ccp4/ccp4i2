@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 """
      qtgui/CCP4AnnotationWidgets.py: CCP4 Gui Project
      Copyright (C) 2016 STFC
@@ -19,11 +16,13 @@ from __future__ import print_function
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
 """
-from PySide2 import QtCore,QtGui, QtWidgets
-from core.CCP4Modules import *
-from core.CCP4ErrorHandling import *
-from core import CCP4Annotation
-from qtgui import CCP4Widgets
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from ..core import CCP4Annotation
+from ..core.CCP4ErrorHandling import *
+from ..core.CCP4Modules import *
+from ..qtgui import CCP4Widgets
 
 
 class CAnnotationView(CCP4Widgets.CComplexLineWidget):
@@ -175,7 +174,6 @@ class CMetaDataTagView(CCP4Widgets.CComplexLineWidget):
         #print 'CMetaDataTagView.handleReturn',self.widgets['tag'].currentText()
         # addEnumerator() creates new tag if necessary and return index of the tag
         idx = self.model.addEnumerator(str(self.widgets['tag'].currentText()))
-        from qtgui import CCP4I1Projects
         #print 'CMetaDataTagView.handleReturn',CCP4I1Projects.CI1PREFERENCES().tagList
         #print 'CMetaDataTagView.handleReturn idx',idx
         if idx >= 0:

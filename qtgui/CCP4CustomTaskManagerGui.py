@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4CustomTaskManagerGui.py: CCP4 GUI Project
      Copyright (C) 2013 STFC
@@ -17,19 +15,22 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton July 2013 - create and manage custom tasks
 """
 
+import copy
+import functools
 import os
-from PySide2 import QtGui, QtWidgets,QtCore
-from core import CCP4Data,CCP4Container
-from qtgui import CCP4CustomisationGui,CCP4Widgets
-from core import CCP4CustomTaskManager
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import CUSTOMTASKMANAGER,WEBBROWSER,PROJECTSMANAGER
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from ..core import CCP4CustomTaskManager
+from ..core import CCP4Data
+from ..core.CCP4ErrorHandling import *
+from ..core.CCP4Modules import CUSTOMTASKMANAGER, WEBBROWSER
+from ..qtgui import CCP4CustomisationGui, CCP4Widgets
+
 
 def openGui():
   if CCustomTaskManagerGui.insts is None:
@@ -120,7 +121,6 @@ class CCustomTaskParamView(CCP4Widgets.CComplexLineWidget):
 
   MODEL_CLASS =CCP4CustomTaskManager.CCustomTaskParam
   def __init__(self,parent=None,model=None,qualifiers={}):
-    import functools
     qualis = {}
     qualis.update(qualifiers)
     qualis['vboxLayout'] = True
@@ -312,7 +312,6 @@ class CMiniMtzRequiredContentWidget(CCP4Widgets.CViewWidget):
   def setMode(self,mode):
     #print 'CMiniMtzRequiredContentWidget.setMode',mode,self.mode
     if mode == self.mode: return
-    import copy
     self.mode = copy.deepcopy(mode)
     if self.mode == 'CObsDataFile':
       self.layout().setCurrentIndex(1)
@@ -517,7 +516,6 @@ class CCreateCustomTaskDialog(QtWidgets.QDialog):
        msgBox.setText('There is already a custom task directory called '+self.model.name.__str__())
        b = msgBox.addButton(QtWidgets.QMessageBox.Cancel)
        b = msgBox.addButton('Overwrite',QtWidgets.QMessageBox.ApplyRole)
-       import functools
        b.clicked.connect(functools.partial(self.createCustomTask,True))
        msgBox.exec_()
     else:        

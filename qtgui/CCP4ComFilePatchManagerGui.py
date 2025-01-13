@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4ComFilePatchManagerGui.py: CCP4 GUI Project
      Copyright (C) 2013 STFC
@@ -17,18 +15,23 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton July 2013 - create and manage com file patches
 """
 
+import functools
 import os
-from PySide2 import QtGui, QtWidgets,QtCore
-from core import CCP4Data,CCP4Container
-from qtgui import CCP4CustomisationGui
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import COMFILEPATCHMANAGER,WEBBROWSER,PROJECTSMANAGER
+import re
+
+from PySide2 import QtCore, QtWidgets
+
+from ..core import CCP4ComFilePatchManager
+from ..core import CCP4TaskManager
+from ..core.CCP4ErrorHandling import *
+from ..core.CCP4Modules import COMFILEPATCHMANAGER, PROJECTSMANAGER, WEBBROWSER
+from ..qtgui import CCP4CustomisationGui
+from ..qtgui import CCP4Widgets
+
 
 def openGui():
   if CComFilePatchManagerGui.insts is None:
@@ -40,7 +43,6 @@ def openGui():
 class CComFilePatchManagerGui(CCP4CustomisationGui.CCustomisationGui):
 
   insts = None
-
 
   def __init__(self,parent=None):
     CCP4CustomisationGui.CCustomisationGui.__init__(self,parent=parent,mode='comfilepatch',title='Task Parameter and Patches Manager')
@@ -67,7 +69,6 @@ class CCreatePatchDialog(QtWidgets.QDialog):
   created = QtCore.Signal(str)
 
   def __init__(self,parent=None,new=True):
-    from qtgui import CCP4Widgets
     QtWidgets.QDialog.__init__(self,parent)
     self.setWindowTitle('Set custom task parameters')
     self.selectedJob = None
@@ -201,7 +202,6 @@ class CCreatePatchDialog(QtWidgets.QDialog):
       QtWidgets.QMessageBox.warning(self,'Task parameters','Please provide a unique name for task parameters')
       return
 
-    import re
     name0 = re.sub('[^a-zA-Z0-9_-]','_',name)
     if name0 != name:
       self.nameLineEdit.setText(name0)
@@ -212,7 +212,6 @@ class CCreatePatchDialog(QtWidgets.QDialog):
 
     diry = COMFILEPATCHMANAGER().getDirectory(name=name)
     if os.path.exists(diry):
-      import functools
       msgBox = QtWidgets.QMessageBox()
       msgBox.setWindowTitle('Create task parameter')
       msgBox.setText('There is already a task parameter directory called\n'+os.path.split(diry)[1])
@@ -261,7 +260,6 @@ class CCreatePatchDialog(QtWidgets.QDialog):
     self.created.emit(name)
 
   def patchContainer(self,name):
-    from core import CCP4ComFilePatchManager
     container = CCP4ComFilePatchManager.CPatchDefinition(parent=self,name=name)
     fileName=COMFILEPATCHMANAGER().getCustomFile(name=name)
     #print 'patchContainer fileName',fileName
@@ -299,7 +297,6 @@ class CCreatePatchDialog(QtWidgets.QDialog):
         self.jobsLabel.setText('Unknown')
     if getattr(self,'taskLabel') is not None:
       label = 'Apply patch to tasks: '
-      from core import CCP4TaskManager
       for taskName in container.taskNameList:
         title = CCP4TaskManager.TASKMANAGER().getTitle(taskName=taskName)
         label = label + title + ' '

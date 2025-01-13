@@ -14,17 +14,20 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Sept 2014 - View and export bibliography
 """
 
 import functools
-from PySide2 import QtGui, QtWidgets,QtCore
-from core.CCP4ErrorHandling import *
-from core import CCP4Annotation, CCP4Modules
-from qtgui import CCP4Widgets
+import glob
+import os
+
+from PySide2 import QtCore, QtWidgets
+
+from ..core import CCP4Annotation, CCP4Modules
+from ..core.CCP4ErrorHandling import *
+from ..qtgui import CCP4FileBrowser, CCP4Widgets
+
 
 class CBibReferenceView(CCP4Widgets.CComplexLineWidget):
   MODEL_CLASS = CCP4Annotation.CBibReference
@@ -139,7 +142,6 @@ class CBibReferenceGroupView(CCP4Widgets.CComplexLineWidget):
     #for i in range(self.referencesLayout.count()):
     #  if self.referencesLayout.itemAt(i).widget().widgets['selection'].isChecked():
     if self.fileBrowser is None:
-      from qtgui import CCP4FileBrowser
       self.fileBrowser = CCP4FileBrowser.CFileDialog(parent=self,
                                       title='Export bibliography',
                                       filters = ['.'+format+'.txt'],
@@ -168,7 +170,6 @@ class CBibliographyViewer(QtWidgets.QMainWindow):
     
 
   def setReferences(self,jobId=None,taskNameList=[]):
-    import os,glob
     pm = CCP4Modules.PROJECTSMANAGER()
     if jobId is not None:
       taskBiblio = glob.glob(os.path.join(pm.jobDirectory(jobId=jobId),'*.medline.txt'))

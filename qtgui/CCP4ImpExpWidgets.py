@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4DbApi.py: CCP4 GUI Project
      Copyright (C) 2012 STFC
@@ -21,14 +19,17 @@ from __future__ import print_function
 
 # May 2012 Tools to handle import/export of files
 
-from PySide2 import QtCore,QtGui, QtWidgets
-from qtgui import CCP4Widgets
-from core import CCP4File,CCP4Annotation,CCP4Data
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import PROJECTSMANAGER,TASKMANAGER,PREFERENCES
-from core.CCP4DataManager import DATAMANAGER
-
 import os
+
+from PySide2 import QtCore, QtWidgets
+
+from ..core import CCP4Annotation, CCP4Data, CCP4File
+from ..core.CCP4DataManager import DATAMANAGER
+from ..core.CCP4ErrorHandling import *
+from ..core.CCP4Modules import PREFERENCES, PROJECTSMANAGER, TASKMANAGER
+from ..qtgui import CCP4ProjectViewer
+from ..qtgui import CCP4Widgets
+
 
 class CExportedFileCombo(CCP4Widgets.CComplexLineWidget):
   
@@ -243,8 +244,7 @@ class CManageImportFiles(QtWidgets.QDialog):
     #followOnJobs = PROJECTSMANAGER().db().getFollowOnJobs(jobId=jobId)
     jobTree = PROJECTSMANAGER().db().getFollowOnJobs(jobId=jobId)
     delJobId,importFiles,followOnJobs = jobTree
-    
-    from qtgui import CCP4ProjectViewer
+
     self.deleteJobGui = CCP4ProjectViewer.CDeleteJobGui(self,projectId=self.projectId,jobIdList=[jobId],jobTreeList=[jobTree], 
                                            label='Delete jobs that use imported file:'+fileName,deleteImportFiles=True)
     self.deleteJobGui.show()

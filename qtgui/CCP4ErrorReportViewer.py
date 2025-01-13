@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 """
      CCP4ErrorReportViewer.py: CCP4 GUI Project
      Copyright (C) 2011 University of York
@@ -18,21 +15,24 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Jan 2011 - List program error log
 """
 
 ##@package CCP4ProjectWidget View a project
+
 import os
-import time
 import tempfile
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4AbstractViewer
-from qtgui import CCP4TextViewer
-#from CCP4ErrorHandling import *
-from core.CCP4ProgramLog import *
+import time
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from ..core import CCP4Modules
+from ..core import CCP4Utils
+from ..core.CCP4ProgramLog import *
+from ..dbapi import CCP4DbUtils
+from ..qtgui import CCP4TextViewer
+from ..qtgui import CCP4Widgets
 
 
 class CErrorReportSelection(QtWidgets.QFrame):
@@ -126,7 +126,6 @@ class CErrorReportViewer(CCP4TextViewer.CTextViewer):
 
 class CSendJobError(QtWidgets.QDialog):
     def __init__(self, parent=None, projectId=None, projectName=None):
-        from qtgui import CCP4Widgets
         QtWidgets.QDialog.__init__(self, parent=parent)
         self.projectId = projectId
         self.projectName = projectName
@@ -167,9 +166,6 @@ class CSendJobError(QtWidgets.QDialog):
 
     @QtCore.Slot()
     def applySend(self):
-        from core import CCP4Utils
-        from dbapi import CCP4DbUtils
-        from core import CCP4Modules
         print('applySend')
         comments = self.comments.toPlainText().__str__()
         sendee = self.sendee.currentText().__str__()
@@ -204,8 +200,6 @@ class CPrintLogViewer(CCP4TextViewer.CTextViewer):
         self.setFont(style='fixed_width')
 
     def openThread(self, thread = 'main_thread'):
-        from core import CCP4Modules
-        from core import CCP4Utils
         versionText = CCP4Utils.versionLogHeader()
         ph = CCP4Modules.PRINTHANDLER()
         text = ph.getContent(thread)

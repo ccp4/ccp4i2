@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      qtgui/guiUtils.py: CCP4 Gui Project
      Copyright (C) 2001-2008 University of York, CCLRC
@@ -19,18 +17,17 @@ from __future__ import print_function
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
 """
-
 ##@package CCP4GuiUtils (QtGui) Assorted Gui utilities
+
+from collections.abc import Callable
+import functools
 import os
 import types
-import functools
-import sys
-if sys.version_info >= (3,7):
-    from collections.abc import Callable
-else:
-    from collections import Callable
-from PySide2 import QtGui, QtWidgets,QtCore,QtSvg
-from qtgui import CCP4Widgets
+
+from PySide2 import QtCore, QtGui, QtSvg, QtWidgets
+
+from ..qtgui import CCP4Widgets
+
 
 LOADED_PIXMAPS = {}
 ICON_EXTENSIONS= ['.svg','.png']

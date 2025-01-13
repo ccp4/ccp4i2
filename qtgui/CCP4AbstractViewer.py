@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4AbstractViewer.py: CCP4 GUI Project
      Copyright (C) 2009-2010 University of York
@@ -17,17 +15,23 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton Jan 2010 - Create CCP4AbstractViewer
 """
 
 ## @package CCP4AbstractViewer (QtGui) Base for file viewers in CCP4WebBrowser
+
 import os
-from PySide2 import QtGui, QtWidgets,QtCore
-from core import CCP4Modules
-from core.CCP4ErrorHandling import *
+import sys
+import time
+
+from PySide2 import QtCore, QtWidgets
+
+from ..core import CCP4Modules
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import *
+from ..qtcore import CCP4CustomMimeTypes
+
 
 def handleFileChanged(fileName):
     fileName = str(fileName)
@@ -100,7 +104,6 @@ class CAbstractViewer(QtWidgets.QScrollArea):
             return ''
 
     def watchFile(self,modTime=180.0):
-        import time
         if self.fileName is None: return
         # Only watch files last modified in last three minutes
         if time.time() - os.path.getmtime(self.fileName) > modTime: return
@@ -161,7 +164,6 @@ class CAbstractViewer(QtWidgets.QScrollArea):
 #FIXME
         return None
         #print 'getFileExt',self.__class__
-        from qtcore import CCP4CustomMimeTypes
         mimeHandler = CCP4CustomMimeTypes.MimeTypesHandler()
         
         mimetype = mimeHandler.getMimeTypeForViewer(self.__class__)
@@ -175,7 +177,6 @@ class CAbstractViewer(QtWidgets.QScrollArea):
 #-------------------------------------------------------------------
     def getLabel(self):
 #-------------------------------------------------------------------
-        from qtcore import CCP4CustomMimeTypes
         mimeHandler = CCP4CustomMimeTypes.MimeTypesHandler()
             
         mimetype = mimeHandler.getMimeTypeForViewer(self.__class__)
@@ -217,19 +218,16 @@ class CFileWatchTimer(QtCore.QObject):
 
     @QtCore.Slot()
     def Exit(self):
-        import sys
         self.timer.stop()
         sys.__stdout__.write('CFileWatcher.Exit blockExit'+str(self.blockExit)+'\n');sys.__stdout__.flush()
 
     def addPath(self,fileName):
-        from core import CCP4Utils
         for item in list(self.files.keys()):
             if CCP4Utils.samefile(fileName,item,default=False): return False
         self.files[fileName] = os.path.getmtime(fileName)
         return True
 
     def removePath(self,fileName):
-        from core import CCP4Utils
         if fileName in self.files:
             del self.files[fileName]
             return True

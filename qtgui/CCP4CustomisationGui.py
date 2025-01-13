@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4CustomisationGui.py: CCP4 GUI Project
      Copyright (C) 2013 STFC
@@ -17,17 +15,17 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton July 2013 - create and manage customisations
 """
 
-import os
-from PySide2 import QtGui, QtWidgets,QtCore
-from core import CCP4Data,CCP4Container
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import WEBBROWSER,PROJECTSMANAGER,DUMMYMAINWINDOW
+import functools
+
+from PySide2 import QtCore, QtWidgets
+
+from ..core.CCP4ErrorHandling import *
+from ..core.CCP4Modules import DUMMYMAINWINDOW, WEBBROWSER
+from ..qtgui import CCP4FileBrowser
 
 
 class CCustomisationGui(QtWidgets.QDialog):
@@ -124,8 +122,6 @@ class CCustomisationGui(QtWidgets.QDialog):
   def handleExport(self):
     selected = self.customListView.selectedItem()
     if selected is None: return
-    from qtgui import CCP4FileBrowser
-    import functools
     self.browser = CCP4FileBrowser.CFileDialog(self,
            title='Save '+self.mode+' to compressed file',
            filters= ['CCP4 '+self.mode+' (*.ccp4_'+self.mode+'.tar.gz)'],
@@ -145,7 +141,6 @@ class CCustomisationGui(QtWidgets.QDialog):
       
   @QtCore.Slot()
   def handleImport(self):
-    from qtgui import CCP4FileBrowser
     self.browser = CCP4FileBrowser.CFileDialog(self,
            title='Import '+self.mode+' compressed file',
            filters= ['CCP4 compressed '+self.mode+' (*.ccp4_'+self.mode+'.tar.gz)'],

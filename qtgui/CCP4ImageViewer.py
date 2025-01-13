@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4ImageViewer.py: CCP4 GUI Project
      Copyright (C) 2009-2010 University of York
@@ -17,16 +15,18 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton Jan 2010 - Create CCP4AbstractViewer
 """
-
 ##@package CCP4ImageViewer  (QtGui) Web browser widget for image files
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4AbstractViewer
-from core.CCP4ErrorHandling import *
+
+import os
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from ..core.CCP4ErrorHandling import *
+from ..qtgui import CCP4AbstractViewer
+
 
 #-------------------------------------------------------------------
 #-------------------------------------------------------------------
@@ -85,7 +85,6 @@ class CImageViewer(CCP4AbstractViewer.CAbstractViewer):
 #-------------------------------------------------------------------
   def open(self,fileName):
 #-------------------------------------------------------------------
-      import os
       try:
         self.pixmap = QtGui.QPixmap(fileName)
       except:
@@ -183,7 +182,6 @@ class CAnimationViewer(CCP4AbstractViewer.CAbstractViewer):
 #-------------------------------------------------------------------
   def open(self,fileName):
 #-------------------------------------------------------------------
-    import os
     try:
       self.movie = QtGui.QMovie(fileName,'',self)
     except:

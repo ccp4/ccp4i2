@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4databaseDef.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -17,15 +15,11 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton May 2010: created
-"""
 
-##@package CCP4DatabaseDef  Python representation of old ccp4i database.def files
+@package CCP4DatabaseDef  Python representation of old ccp4i database.def files
 
-"""
 Example use:
   t = CDatabaseDef('..../database.def')
   for iJob in range(1,t.nJobs):
@@ -33,6 +27,9 @@ Example use:
       print 'taskname',t.jobs[iJob]['TASKNAME']
 
 """
+
+import re
+
 
 class CDatabaseDef:
   def __init__(self,filename):
@@ -106,7 +103,6 @@ class CDatabaseDef:
       return  headerArray,typeArray,dataArray
 
   def splitDefLine(self,line=''):
-    import re
     m = re.search(r'(.*)\"(.*)\"(.*)',line)
     if not m:
       return line.split()
@@ -126,7 +122,6 @@ class CDatabaseDef:
     This is a space-separated list
     If the file name includes spaces then the name is enclosed in curly brace
     '''
-    import re
     rv = []
     while len(line)>0:
       m = re.search(r'(.*?)\{(.*?)\}(.*)',line)

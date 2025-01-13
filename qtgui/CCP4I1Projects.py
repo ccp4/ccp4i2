@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 """
      CCP4I1Projects.py: CCP4 GUI Project
      Copyright (C) 2016   STFC
@@ -18,27 +15,39 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Jan 2016 - Classes for importing and displaying CCP4i projects
-"""
 
-"""
 To interpret i1 project def files we need to access
   ccp4i/etc/modules.def
   ccp4i/tasks/*.def
 """
 
-import os,re,time,sys,traceback,copy,functools
-from core import CCP4Utils
-from qtgui import CCP4ProjectWidget, CCP4WebBrowser, CCP4WebView, CCP4TextViewer
-from core import CCP4File
-from core.CCP4Modules import *
-from core.CCP4TaskManager import TASKMANAGER
-from core.CCP4ErrorHandling import *
-from PySide2 import QtCore,QtGui, QtWidgets
+import copy
+import functools
+import os
+import re
+import shutil
+import sys
+import time
+
 from lxml import etree
+from PySide2 import QtCore, QtGui, QtWidgets
+import shiboken2
+
+from ..core import CCP4Annotation,CCP4DataManager
+from ..core import CCP4File
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import *
+from ..core.CCP4Modules import *
+from ..core.CCP4TaskManager import TASKMANAGER
+from ..qtgui import CCP4FileBrowser
+from ..qtgui import CCP4ProjectManagerGui
+from ..qtgui import CCP4ProjectWidget
+from ..qtgui import CCP4TaskWidget
+from ..qtgui import CCP4TextViewer
+from ..qtgui import CCP4WebBrowser
+from ..qtgui import CCP4WebView
 
 
 # CI1ProjectManager -> CI1Project -> CI1Job ->CI1File is hierarchy of
@@ -53,7 +62,6 @@ def CI1PREFERENCES():
   return CI1Preferences.insts
 
 def isAlive(qobj):
-    import shiboken2
     return shiboken2.isValid(qobj)
 
 
@@ -187,7 +195,6 @@ class CI1TreeItemFolder(CCP4ProjectWidget.CTreeItemFolder):
     return ele
     
   def mimeData(self):
-    from lxml import etree
     root = etree.Element('name')
     root.text = self.name
     encodedData = QtCore.QByteArray()
@@ -465,7 +472,6 @@ class CI1TreeItemProject(CCP4ProjectWidget.CTreeItemProject):
 
   def mimeData(self):
     #print 'CI1TreeItemProject.mimeData'
-    from lxml import etree
     root = etree.Element('name')
     root.text = self.getProjectName()
     encodedData = QtCore.QByteArray()
@@ -1230,7 +1236,6 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
     self.rightFrame.layout().addWidget(self.qtrButton)
 
     # left/right splitter
-    from qtgui import CCP4TaskWidget
     self.splitterSizes = [400,CCP4TaskWidget.WIDTH+CCP4TaskWidget.PADDING_ALLOWANCE]
     mainWidget = QtWidgets.QSplitter(self)
     mainWidget.setOrientation(QtCore.Qt.Horizontal)
@@ -1336,7 +1341,6 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
       return
     elif logFile == 'CURRENTLOG':
       if self.currentLogFile is None: return
-      import copy
       logFile = copy.deepcopy(self.currentLogFile)
     if os.path.splitext(logFile)[1] == '.html':
         logFile = os.path.splitext(logFile)[0]
@@ -1378,7 +1382,6 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
 
   @QtCore.Slot(str)
   def findProjectDir(self,projectId):
-    from qtgui import CCP4FileBrowser
     self.findProjectDialog = CCP4FileBrowser.CFileDialog(self,fileMode=QtWidgets.QFileDialog.Directory,
       title='Find project directory for '+projectId)
     self.findProjectDialog.selectFile.connect(functools.partial(self.updateProjectDir,projectId))
@@ -1410,7 +1413,6 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
     pObj = self.model().getProject(projectId)
 
     err = CErrorReport()
-    import shutil
     
     importDir = os.path.join(pObj.directory,'IMPORTED_FILES')
     if not os.path.exists(importDir):
@@ -1493,7 +1495,6 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
   @QtCore.Slot(str)
   def annotateProject(self,projectId):
     #print 'annotateProject',projectId
-    from core import CCP4Annotation,CCP4DataManager
     pObj = self.model().getProject(projectId)
     if pObj is None: return
     if getattr(self,'annotateWindow',None) is None:
@@ -1547,7 +1548,6 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
     else:
       reqNewName = True
 
-    from qtgui import CCP4ProjectManagerGui
     if CCP4ProjectManagerGui.CNewProjectGui.insts is None:
       CCP4ProjectManagerGui.CNewProjectGui.insts = CCP4ProjectManagerGui.CNewProjectGui()
       CCP4ProjectManagerGui.CNewProjectGui.insts.projectCreated.connect(functools.partial(self.associateI2Project,projectId))
@@ -1559,7 +1559,6 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
   @QtCore.Slot(str)
   def handleAssociateI2Project(self,i1ProjectName):
     print('handleAssociateI2Project',i1ProjectName)
-    from qtgui import CCP4ProjectManagerGui
     self.associateDialog = QtWidgets.QDialog(self)
     self.associateDialog.setLayout(QtWidgets.QVBoxLayout())
     self.associateDialog.layout().addWidget(QtWidgets.QLabel('Choose CCP4i2 project to associate with project '+i1ProjectName,self.associateDialog))
@@ -1623,7 +1622,6 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
     return self.actionDefinitions.get(name,dict(text=name))
 
   def loadDb(self,overwriteProject=None):
-    from qtgui import CCP4FileBrowser
     dialog = CCP4FileBrowser.CFileDialog(self,
            title='Load old CCP4 project(s) from directories.def or database.def',
            filters= [ 'Old CCP4 directory.def or database.def (*.def)' ],

@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      qtgui/CCP4FileBrowser.py: CCP4 Gui Project
      Copyright (C) 2001-2008 University of York, CCLRC
@@ -12,29 +10,36 @@ from __future__ import print_function
      You should have received a copy of the modified GNU Lesser General 
      Public License along with this library.  If not, copies may be 
      downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
+
      This program is distributed in the hope that it will be useful,
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
-'''
+
 Liz Potterton Mar 10 - Copied from ccp4mg/qtgui/MGWidgets.py
 Liz Potterton Apr 12 - Rewrite from basics to fix the failure of select by double clicking
-'''
+"""
 
 ##@package CCP4FileBrowser (QtGui) File browser - based on QtFileDialog but aware of ccp4 projects
 
+import datetime
+import functools
 import os
 import re
+import shutil
 import sys
-import types
-import functools
+import tempfile
+import urllib.error
+import urllib.parse
+import urllib.request
+
+from PySide2 import QtCore, QtWidgets
 import requests
-import datetime
-from PySide2 import QtGui, QtWidgets,QtCore
-from core import CCP4Modules
-from core import CCP4File
+
+from ..core import CCP4File
+from ..core import CCP4Modules
+from ..core import CCP4Utils
+
 
 class GenericWorker(QtCore.QObject):
 
@@ -410,7 +415,6 @@ class CFileDialog1(QtWidgets.QWidget):
         self.downloadFrame.show()
 
     def downloadFileName(self, urlname, code=None, rename=None):
-        from core import CCP4Utils
         if self.projectId is None:
             tmpDir = CCP4Utils.getTMP()
         else:
@@ -516,7 +520,6 @@ class CFileDialog1(QtWidgets.QWidget):
     @QtCore.Slot(str,str,str,str)
     def handleDownloadFinished(self,code,mode,targetFile,tempFile):
         #print('handleDownloadFinished',code,mode,targetFile,tempFile)
-        import shutil
         shutil.copyfile(tempFile,targetFile)
         self.downloader = None
         self.downloadThread = None
@@ -567,22 +570,6 @@ class IconProvider(QtWidgets.QFileIconProvider):
                 if icon is not None:
                     return icon
         return QtWidgets.QFileIconProvider.icon(self, fileInfo)
-
-    '''
-    def icon(self,info):
-        #print 'IconProvider.icon',info.filePath(),self._filters
-        try:
-            if info and hasattr(info,'filePath'):
-                for k in self._filters:
-                    for f in self._filters[k]:
-                        if str(info.filePath()).endswith(f):
-                            if not self._icon_cache.has_key(k):
-                                self._icon_cache[k] = QtGui.QIcon(k)
-                            return self._icon_cache[k]
-        except:
-            pass
-        return QtWidgets.QFileIconProvider.icon(self,info)
-    '''
 
 
 class ProxyModel(QtCore.QSortFilterProxyModel):
@@ -664,11 +651,6 @@ class CDownloader(QtCore.QObject):
         self.interrupt_dl = False
 
     def download(self, url=None):
-        if sys.version_info >= (3,0):
-            import urllib.request, urllib.error, urllib.parse
-        else:
-            import urllib2
-        import tempfile
         if not url:
             self.Error.emit('No file to download' )
             self.ProgressChanged.emit(0)
@@ -681,18 +663,7 @@ class CDownloader(QtCore.QObject):
             if opener:
                 dl = opener.open(url)
             else:
-                if False and str(url).startswith("https://"): #I get certificate problems with https and ccp4-python
-                    import ssl
-                    context = ssl._create_unverified_context()
-                    if sys.version_info >= (3,0):
-                        dl = urllib.request.urlopen(url, context=context)
-                    else:
-                        dl = urllib2.urlopen(url, context=context)
-                else:
-                    if sys.version_info >= (3,0):
-                        dl = urllib.request.urlopen(url)
-                    else:
-                        dl = urllib2.urlopen(url)
+                dl = urllib.request.urlopen(url)
         except:
             exc_type, exc_value, exc_tb = sys.exc_info()[:3]
             sys.stderr.write(str(exc_type) + '\n')
@@ -702,36 +673,20 @@ class CDownloader(QtCore.QObject):
         try:
             info = dl.info()
             contentLength = -1
-            if sys.version_info > (3,0):
-                for h in info.items():
-                    if h[0].lower() == "content-length":
-                        try:
-                            cl = h[1]
-                            contentLength = int(cl)
-                            self.ProgressBarRangeChanged.emit(0, 100)
-                        except:
-                            self.ProgressBarRangeChanged.emit(0, 0)
-                            self.ProgressChanged.emit(0)
-                            contentLength = -1
-                        break
-            else:
-                for h in info.headers:
-                    if h.find('Content-Length:') > -1:
-                        cl = h.split(':')[1].strip()
-                        try:
-                            contentLength = int(cl)
-                            self.ProgressBarRangeChanged.emit( 0, 100)
-                        except:
-                            self.ProgressBarRangeChanged.emit(0, 0)
-                            self.ProgressChanged.emit(0)
-                            contentLength = -1
-                        break
+            for h in info.items():
+                if h[0].lower() == "content-length":
+                    try:
+                        cl = h[1]
+                        contentLength = int(cl)
+                        self.ProgressBarRangeChanged.emit(0, 100)
+                    except:
+                        self.ProgressBarRangeChanged.emit(0, 0)
+                        self.ProgressChanged.emit(0)
+                        contentLength = -1
+                    break
             readBytes = 0
 #FIXME - Bytes might be fine with Python2 too.
-            if sys.version_info > (3,0):
-                cbuffer = b""
-            else:
-                cbuffer = ""
+            cbuffer = b""
             CHUNKSIZE = 2097152
             read = dl.read(CHUNKSIZE)
             while len(read) > 0 and not self.interrupt_dl:
@@ -756,36 +711,7 @@ class CDownloader(QtCore.QObject):
             self.interrupt_dl = False
             print("CCP4FileBrowser.CDownloader Error getting", url)
             raise
-            exc_type, exc_value = sys.exc_info()[:2]
-            print(exc_type)
-            print(exc_value)
-            os.close(self.localFile[0])
-            self.Error.emit('Error getting file' + str(exc_value))
-            self.ProgressChanged.emit(0)
+
 
 def setup_proxies():
     return None
-    if sys.version_info >= (3,0):
-        import urllib.request, urllib.error, urllib.parse
-    else:
-        import urllib2
-    from global_definitions import PM
-    proxy_uri = PM('download_preferences').get('http_proxy')
-    user = PM('download_preferences').get('http_user')
-    passwd =  PM('download_preferences').get('http_password')
-    if proxy_uri == "":
-        return None
-    if sys.version_info >= (3,0):
-        proxy = urllib.request.ProxyHandler({'http': proxy_uri})
-        proxy_auth_handler = urllib.request.HTTPBasicAuthHandler()
-    else:
-        proxy = urllib2.ProxyHandler({'http': proxy_uri})
-        proxy_auth_handler = urllib2.HTTPBasicAuthHandler()
-    # No idea if this is correct
-    if user != "":
-        proxy_auth_handler.add_password(None, uri=proxy_uri, user=user, passwd=passwd)
-    if sys.version_info >= (3,0):
-        opener = urllib.request.build_opener(proxy, proxy_auth_handler)
-    else:
-        opener = urllib2.build_opener(proxy, proxy_auth_handler)
-    return opener

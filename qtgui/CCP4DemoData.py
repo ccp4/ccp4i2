@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4DemoData.py: CCP4 GUI Project
      Copyright (C) 2015STFC
@@ -16,21 +14,29 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Sept 2015 - Create, download demo data
 """
 
-import sys
-import os
+import ftplib
+import functools
 import glob
-import time
+import os
 import shutil
-from PySide2 import QtGui, QtWidgets,QtCore
-from core.CCP4ErrorHandling import *
-from core import CCP4Utils
-from core import CCP4Modules
+import tempfile
+import time
+import urllib.error
+import urllib.parse
+import urllib.request
+import zipfile
+
+from lxml import etree
+from PySide2 import QtCore, QtWidgets
+
+from ..core import CCP4Modules
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import *
+
 
 class CDemoData:
 
@@ -67,7 +73,6 @@ class CDemoData:
         return self.testDatasets
 
     def saveTestDatasets(self):
-        from lxml import etree
         if self.testDatasets is None: self.loadTestDatasets()
         fileName = os.path.join(CCP4Utils.getCCP4I2Dir(),'demo_data','datasets_list.xml')
         #print 'saveTestDatasets',len(self.testDatasets)
@@ -199,7 +204,6 @@ A template INFO.txt file has been added - please edit in details of the demo.\n\
             QtWidgets.QMessageBox.warning(parentWidget,'Compress demo data','Data not saved - some files missing:\n\n'+warningText)
             return
         try:
-            import zipfile
             zip = zipfile.ZipFile(dirPath+'.ccp4i2_demo.zip',mode='w')
             CCP4Utils.zipDirectory(zip,dirPath,rootRelPath=os.path.split(dirPath)[0])
             zip.close()
@@ -224,8 +228,6 @@ class CDownloadDemoDataDialog(QtWidgets.QDialog):
                     110 : {'description' : 'Failed reading URL'}}
 
     def __init__(self,parent):
-        import functools
-        from qtgui import CCP4Widgets
         self.path = ''
         self.makeTargetList()
         self.zipList = []
@@ -310,14 +312,13 @@ class CDownloadDemoDataDialog(QtWidgets.QDialog):
         self.targetList.append(['My CCP4i2 area',target,True])
 
     def handleFtpSearch(self):
-        from ftplib import FTP
         self.host = str(self.source.currentText())
         self.path = ''
         if self.host.count('/'): self.host,self.path = self.host.split('/',1)
         if len(self.path)>0 and not self.path.endswith('/'): self.path = self.path + '/'
         self.path = self.path + '*.ccp4i2_demo.zip'
         #print 'CDownloadDemoData.handleSearch',self.host,self.path
-        self.ftp = FTP(self.host)   # connect to host, default port
+        self.ftp = ftplib.FTP(self.host)   # connect to host, default port
         self.ftp.login()               # user anonymous, passwd anonymous@
         self.retrlines = []
         self.ftp.retrlines('NLST '+self.path,self.handleRetrlines)
@@ -328,25 +329,14 @@ class CDownloadDemoDataDialog(QtWidgets.QDialog):
 
     @QtCore.Slot()
     def handleHtmlSearch(self):
-        if sys.version_info >= (3,0):
-            import urllib.request, urllib.error, urllib.parse
-        else:
-            import urllib2
-        from lxml import etree
         self.path = str(self.source.currentText())
         try:
-            if sys.version_info >= (3,0):
-                urlpath =urllib.request.urlopen(self.path)
-            else:
-                urlpath =urllib2.urlopen(self.path)
+            urlpath =urllib.request.urlopen(self.path)
         except Exception as e0:
             if not self.path.startswith('http'):
                 self.path = 'http://'+self.path
                 try:
-                    if sys.version_info >= (3,0):
-                        urlpath =urllib.request.urlopen(self.path)
-                    else:
-                        urlpath =urllib2.urlopen(self.path)
+                    urlpath =urllib.request.urlopen(self.path)
                 except Exception as e1:
                     raise CException(self.__class__,110,str(e0))
                 else:
@@ -382,20 +372,13 @@ class CDownloadDemoDataDialog(QtWidgets.QDialog):
 
     @QtCore.Slot()
     def handleDownload(self):
-        if sys.version_info >= (3,0):
-            import urllib.parse
-        else:
-            import urlparse
         downloadList = []
         err = CErrorReport()
         ii = -1
         for w in self.frame.findChildren(QtWidgets.QCheckBox):
             ii = ii + 1
             if w.isChecked() and not 'DOWNLOADED' in str(w.text()):
-                if sys.version_info >= (3,0):
-                    downloadList.append([w,urllib.parse.urljoin(os.path.split(self.path)[0]+'/',self.zipList[ii][0])])
-                else:
-                    downloadList.append([w,urlparse.urljoin(os.path.split(self.path)[0]+'/',self.zipList[ii][0])])
+                downloadList.append([w,urllib.parse.urljoin(os.path.split(self.path)[0]+'/',self.zipList[ii][0])])
         #print 'handleDownload',self.path,downloadList
         if len(downloadList)==0:
             QtWidgets.QMessageBox.information(self,'Download demo data','No demo sets selected for download')
@@ -420,12 +403,6 @@ class CDownloadDemoDataDialog(QtWidgets.QDialog):
             self.close()
 
     def downloadFile(self,url,target=None,replace=False):
-        if sys.version_info >= (3,0):
-            import urllib.request, urllib.error, urllib.parse
-        else:
-            import urllib2
-        import tempfile
-        import zipfile
         tmpFile =tempfile.mktemp(suffix='ccp4i2_demo.zip')
         demoDir =   os.path.normpath(os.path.join(target,os.path.splitext(url.split('/')[-1])[0]))
         print('Downloading demo data from',url,'to',tmpFile,'unpack to',demoDir)
@@ -439,10 +416,7 @@ class CDownloadDemoDataDialog(QtWidgets.QDialog):
                 return
         #url = 'http://www.ysbl.york.ac.uk/~eap5/foo.ccp4i2_demo.zip'
         try:
-            if sys.version_info >= (3,0):
-                req = urllib.request.urlopen(url)
-            else:
-                req = urllib2.urlopen(url)
+            req = urllib.request.urlopen(url)
             fp = open(tmpFile,'wb')
             shutil.copyfileobj(req, fp)
             req.close()

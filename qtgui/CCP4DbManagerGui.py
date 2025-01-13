@@ -15,14 +15,13 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton Sep 2014 - Tools to manage database
 """
 
-from PySide2 import QtGui,QtWidgets,QtCore
-  
+from PySide2 import QtCore, QtGui, QtWidgets
+
+
 class CChallengeUnknownUser(QtWidgets.QDialog):
     # This class is being used to create a pop-up (in the initialiser) as part of a db user/passwd system
     # I've changed this to make it a bit easier for users, & less misleading, should they ever encounter a db username mix-up.

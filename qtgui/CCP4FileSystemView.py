@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4FileSystemView.py: CCP4 GUI Project
      Copyright (C) 20011 University of York
@@ -17,15 +15,16 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton June 2011 - Viewer for file system based on QDirModel
 """
 ##@package CCP4WebView (QtWebKit) Web browser 'plugin' to view web pages
-from PySide2 import QtGui, QtWidgets,QtCore
-from core.CCP4ErrorHandling import *
-from qtgui import CCP4AbstractViewer
+
+from PySide2 import QtCore, QtWidgets
+
+from ..core.CCP4ErrorHandling import *
+from ..qtgui import CCP4AbstractViewer
+from ..qtgui import CCP4WebBrowser
 
 
 class CFileSystemView(CCP4AbstractViewer.CAbstractViewer):
@@ -56,7 +55,6 @@ class CFileSystemView(CCP4AbstractViewer.CAbstractViewer):
   def showFileFromView(self,modelIndex):
     filePath = self.model.filePath(modelIndex)
     #print 'CCP4FileSystemView.showFileFromView',filePath
-    from qtgui import CCP4WebBrowser
     CCP4WebBrowser.OPENFILE(filePath)
 
   def title(self):

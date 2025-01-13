@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4DefEd.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -17,11 +15,33 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Oct 2010 Create widget to edit def.xml files
 """
+
+import functools
+import os
+import re
+import shutil
+import sys
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from ..core import CCP4Container
+from ..core import CCP4Data
+from ..core import CCP4Modules
+from ..core import CCP4Utils
+from ..core.CCP4Config import VERSION
+from ..core.CCP4Container import CContainer
+from ..core.CCP4Data import baseClassList
+from ..core.CCP4Data import CString
+from ..core.CCP4DataManager import DATAMANAGER
+from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ScriptManager import SCRIPTMANAGER
+from ..core.CCP4XtalData import CColumnType
+from ..core.CCP4XtalData import CProgramColumnGroup
+from ..qtgui import CCP4GuiUtils
+from ..qtgui import CCP4Widgets
 
 
 HELPTEXT = { 'Introduction' : """<html>
@@ -80,14 +100,6 @@ Optionally add short title that will be used in the GUI.</p>
 
 CONTAINER_NAMES = ['inputData','controlParameters','outputData','guiControls']
 
-import os
-from PySide2 import QtGui, QtWidgets, QtCore
-from core.CCP4ErrorHandling import *
-from core.CCP4Config import DEVELOPER
-from core.CCP4DataManager import DATAMANAGER
-from qtgui import CCP4Widgets
-from core import CCP4Data
-     
 
 class CDefEd(QtWidgets.QMainWindow):
 
@@ -113,7 +125,6 @@ class CDefEd(QtWidgets.QMainWindow):
   def __init__(self,parent=None):
     if not parent:
       try:
-        from core import CCP4Modules
         parent = CCP4Modules.MAINWINDOW()
       except:
         pass
@@ -140,7 +151,6 @@ class CDefEd(QtWidgets.QMainWindow):
 
     self.contextMenu = QtWidgets.QMenu(self)
     
-    import functools
     for menuName,menuTitle in [['File','&File'],['Tools','&Tools']]:
       m = self.menuBar().addMenu(menuTitle)
       m.setObjectName(menuName)
@@ -163,7 +173,6 @@ class CDefEd(QtWidgets.QMainWindow):
 
 
     # Create buttons
-    import functools
     self.appendContainerButton = CCP4Widgets.CPushButton(self,text='Append container')
     self.buttonLayout.addWidget(self.appendContainerButton)
     self.connect(self.appendContainerButton,QtCore.SIGNAL('clicked()'),functools.partial(self.handleNewContainer,True))
@@ -197,7 +206,6 @@ class CDefEd(QtWidgets.QMainWindow):
     frame.layout().setSpacing(CDefEd.MARGIN)
     self.classInfoToolBar = QtWidgets.QToolBar('Class Information',self)
     self.classInfoToolBar.setMaximumSize(9999,25)
-    from qtgui import CCP4GuiUtils
     CCP4GuiUtils.populateToolBar(self,toolBarWidget=self.classInfoToolBar,definition=['back','forward'])
     frame.layout().addWidget(self.classInfoToolBar)
 
@@ -220,13 +228,11 @@ class CDefEd(QtWidgets.QMainWindow):
     self.show()
     
     if self.container is None:
-      from core import CCP4Container
       self.container = CCP4Container.CContainer(name='NEWCONTAINER')
 
     QtCore.QTimer.singleShot(0,self.handleCommandLine)
 
   def handleCommandLine(self):
-    import sys
     if len(sys.argv)>1: self.loadDefFile(sys.argv[1])
 
 
@@ -236,7 +242,6 @@ class CDefEd(QtWidgets.QMainWindow):
       pass
     else:
       widget.clear()
-      from qtgui import CCP4GuiUtils
       CCP4GuiUtils.populateMenu(self,widget,self.menuDefinitions[menuName],default_icon='')
 
   def initialiseActionDefinitions(self):
@@ -342,7 +347,6 @@ class CDefEd(QtWidgets.QMainWindow):
     return self.actionDefinitions.get(name,dict(text=name))
 
   def updateContextMenu(self,mode=None,event=None):
-    import functools
     if event is None or mode is None: return
     self.contextMenu.clear()
     a = self.contextMenu.addAction('Help: '+mode)
@@ -366,7 +370,6 @@ class CDefEd(QtWidgets.QMainWindow):
       for indx in range(self.contentsTree.topLevelItemCount()):
         t = self.treeToText( self.contentsTree.topLevelItem(indx) ,0)
         text = text + t
-    from core import CCP4Utils
     CCP4Utils.saveFile(fileName=fileName,text=text)
 
   def treeToText(self,parent,level):
@@ -388,7 +391,6 @@ class CDefEd(QtWidgets.QMainWindow):
         
   
   def loadDefFile(self,fileName):
-    from core.CCP4Container import CContainer
     self.container = CContainer(parent=self)
     #Expect loadContentsFromXml to return the error but put in try/except
     # just in case
@@ -429,7 +431,6 @@ class CDefEd(QtWidgets.QMainWindow):
     self.edited = False
 
   def handleSaveFile(self):
-    import shutil
     if self.loadedFileName is None: return
     if os.path.exists(self.loadedFileName):
       bak = 1
@@ -454,7 +455,6 @@ class CDefEd(QtWidgets.QMainWindow):
     self.edited = False
  
   def handleSaveAsFile(self):
-    from core import CCP4Utils
     if not self.edited:
       QtWidgets.QMessageBox.warning(self,'No data to save','No changes to data to save')
       return
@@ -486,7 +486,6 @@ class CDefEd(QtWidgets.QMainWindow):
     h.creationTime.setCurrentTime()
     h.userId.setCurrentUser()
     h.pluginName = pluginName
-    from core.CCP4Config import VERSION
     h.ccp4iVersion = VERSION()
     
 
@@ -510,7 +509,6 @@ class CDefEd(QtWidgets.QMainWindow):
     self.initialiseHeader(pluginName=basename)
     # Recreate headerDialog every time so the call to saveDef2 uses the right fileName
     self.headerDialog = CHeaderDialog(self,model=self.container.header)
-    import functools
     self.connect(self.headerDialog,QtCore.SIGNAL('closed'),functools.partial(self.saveDef2,fileName))
     done = self.headerDialog.show()
     
@@ -528,8 +526,6 @@ class CDefEd(QtWidgets.QMainWindow):
     self.loadedFileName = fileName
 
   def handleSelectionChanged(self):
-    from  CCP4Container import CContainer
-    from core.CCP4XtalData import CProgramColumnGroup
     current = self.contentsTree.selectedItem()
     #print 'handleSelectionChanged',current
     dataObj = self.dataObjectFromTreeWidgetItem(current)
@@ -574,8 +570,6 @@ class CDefEd(QtWidgets.QMainWindow):
     self.drawContentTreeItem(currentItem,dataObject)
 
   def drawContentTreeItem(self,item,dataObject):
-    import types
-    from core import CCP4XtalData
     item.setText(0,str(dataObject.objectName()))
     item.setText(1,dataObject.__class__.__name__)
 
@@ -623,7 +617,6 @@ class CDefEd(QtWidgets.QMainWindow):
   
 
   def insertPositionInContainer(self):
-    from core.CCP4Container import CContainer
     # Figure out which container and which afterObject
     dataObject = self.currentDataObject()
     if dataObject is None:
@@ -658,9 +651,6 @@ class CDefEd(QtWidgets.QMainWindow):
     return newName
   
   def handleNew(self):
-    from core.CCP4Container import CContainer
-    from core.CCP4Data import CString
-    
     container,afterObject = self.insertPositionInContainer()   
     # unique name
     newName = self.newName('NONAME')
@@ -693,7 +683,6 @@ class CDefEd(QtWidgets.QMainWindow):
     
     
   def handleNewContainer(self,append=False):
-    from core.CCP4Container import CContainer
     if append:
       container = self.container
       afterObject = None
@@ -1100,7 +1089,6 @@ class CContentsTree(QtWidgets.QTreeWidget):
     QtWidgets.QTreeWidget.clear(self)
 
   def loadContainer(self,container=None,parent=None):
-    from core import CCP4Container
     e = CErrorReport()
     for name in container.dataOrder():
       defn = container.contents(name)
@@ -1121,8 +1109,6 @@ class CContentsTree(QtWidgets.QTreeWidget):
     return e
 
   def makeTreeWidgetItem(self,name,defn):
-    from core import CCP4Container,CCP4Data
-    import types
     item = None
     if defn['class'] == CCP4Container.CContainer:
       item = QtWidgets.QTreeWidgetItem([name],1001)
@@ -1377,7 +1363,6 @@ class CDefEditor(QtWidgets.QFrame):
     self.rightFrame.layout().setSpacing(CDefEd.MARGIN)
     self.rightFrame.layout().setContentsMargins(CDefEd.MARGIN,CDefEd.MARGIN,CDefEd.MARGIN,CDefEd.MARGIN)
     
-    import functools
     self.connect(self.nameEditor,QtCore.SIGNAL('editingFinished()'),functools.partial(self.emit,QtCore.SIGNAL('nameChanged')))
     self.connect(self.nameCombo,QtCore.SIGNAL('editTextChanged()'),functools.partial(self.emit,QtCore.SIGNAL('nameChanged')))
     self.connect(self.nameCombo,QtCore.SIGNAL('currentIndexChanged(int)'),functools.partial(self.emit,QtCore.SIGNAL('nameChanged')))
@@ -1407,7 +1392,6 @@ class CDefEditor(QtWidgets.QFrame):
 
   def drawQualifiers(self,cls):
     # Not using CCP4Widgets 'cos want to keep the standard context menu with paste function
-    import types,functools
     try:
       obj = cls()
       qDefs = obj.qualifiersDefinition()
@@ -1523,7 +1507,6 @@ class CDefEditor(QtWidgets.QFrame):
     self.setDefaultQualifiers()
 
   def set(self,dataObj=None):
-    from core.CCP4XtalData import CProgramColumnGroup
     if dataObj is None or not isinstance(dataObj,CCP4Data.CData): return
     self.nameEditor.setText(str(dataObj.objectName()))
     if isinstance(dataObj,CCP4Data.CCollection):
@@ -1575,7 +1558,6 @@ class CDefEditor(QtWidgets.QFrame):
 
   def setColumnGroupWidget(self,currentObject):
     #print 'deEditor.setColumnGroupWidget',currentObject.objectName(),type(currentObject)
-    from core.CCP4XtalData import CProgramColumnGroup
     if currentObject is None or not isinstance(currentObject,CProgramColumnGroup):
       self.columnGroupWidget.setVisible(False)
       self.columnGroupWidget.blockSignals(True)
@@ -1667,8 +1649,6 @@ class CCollectionFrame(QtWidgets.QFrame):
     
     self.layout().addWidget(self.stack)
    
-    import functools
-
     self.connect(self.classCombo,QtCore.SIGNAL('currentIndexChanged(int)'),self.updateStack)
     self.connect(self.dictDefault,QtCore.SIGNAL('editingFinished()'),functools.partial(self.emit,QtCore.SIGNAL('qualifierEdited'),'default'))
     self.connect(self.listDefault,QtCore.SIGNAL('editingFinished()'),functools.partial(self.emit,QtCore.SIGNAL('qualifierEdited'),'default'))
@@ -1799,7 +1779,6 @@ class CClassInfo(QtGui.QTextDocument):
 
     
   def setClassName(self,clsName):
-    from core.CCP4DataManager import DATAMANAGER
     cls = DATAMANAGER().getClass(clsName)
     if cls is not None:
       self._className=clsName
@@ -1807,14 +1786,12 @@ class CClassInfo(QtGui.QTextDocument):
       self.setHtml(self.getInfo())
 
   def getClass(self):
-    from core.CCP4DataManager import DATAMANAGER
     return DATAMANAGER().getClass(self._className)
    
 
   def getClassPathText(self):
     cls = self.getClass()
     if cls is None: return ''
-    from core.CCP4Data import baseClassList
     baseClassList = baseClassList(cls)
     text = ''
     for clsItem in baseClassList:
@@ -1824,7 +1801,6 @@ class CClassInfo(QtGui.QTextDocument):
     return text[0:-4]
 
   def getContentsText(self):
-    from core import CCP4Data
     cls = self.getClass()
     if cls is None: return ''
     text = '<h4>Contents of class:</h4>\n'
@@ -1858,7 +1834,6 @@ class CClassInfo(QtGui.QTextDocument):
     return text
 
   def getQualifiersInfo(self):
-    import types,re
     cls = self.getClass()
     if cls is None: return ''
     try:
@@ -1939,8 +1914,6 @@ class CProgramColumnGroupQualifierView(QtWidgets.QFrame):
 
   def __init__(self,parent=None):
     QtWidgets.QFrame.__init__(self,parent=None)
-    from core.CCP4XtalData import CColumnType
-    import functools
     self.setLayout(QtWidgets.QGridLayout())
     maxColumns=5
     iCol = -1
@@ -1996,8 +1969,6 @@ class CProgramColumnGroupQualifierView(QtWidgets.QFrame):
     return colGroupItemList
 
   def set(self,colGroupItemList=[]):
-    import types
-    from core.CCP4XtalData import CColumnType
     self.clear()
     iRow = 0
     columnTypes = CColumnType.QUALIFIERS['enumerators']
@@ -2027,7 +1998,6 @@ class CMakeWrapperPlugin(QtWidgets.QDialog):
 
   def __init__(self,parent=None):
     QtWidgets.QDialog.__init__(self,parent)
-    from core.CCP4ScriptManager import SCRIPTMANAGER
 
     self.setModal(True)
     self.setWindowTitle('Create Plugin')
@@ -2075,7 +2045,6 @@ class CMakeWrapperPlugin(QtWidgets.QDialog):
     self.layout().addWidget(buttonBox)
 
   def makeWrapper(self):
-    from core.CCP4ScriptManager import SCRIPTMANAGER
     name = str(self.name.text()).strip()
     pipeline = str(self.pipeline.currentText())
     if pipeline == 'Wrappers' : pipeline = None
@@ -2105,7 +2074,6 @@ class CMakePipeline(QtWidgets.QDialog):
 
   def __init__(self,parent=None):
     QtWidgets.QDialog.__init__(self,parent)
-    from core.CCP4ScriptManager import SCRIPTMANAGER
 
     self.setModal(True)
     self.setWindowTitle('Create Pipeline')
@@ -2130,7 +2098,6 @@ class CMakePipeline(QtWidgets.QDialog):
 
 
   def makePipeline(self):
-    from core.CCP4ScriptManager import SCRIPTMANAGER
     name = str(self.name.text()).strip()
     
     if len(name)==0:    

@@ -15,13 +15,9 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-'''
 Liz Potterton Mar 14 - Browse projects and files
-'''
 
-'''
 This module provides a dialog box to select a file of a given fileType from any project.
 It is normally used from CDataFileView.
 It reimplements QTreeView and QAbstractItemModel and uses the same CTreeItem classes (to support
@@ -30,12 +26,12 @@ It displays only the project heirarchy and a list of the files in the project (i
 The files are only loaded into the tree widget when the user opens a project folder
 There is no special handling of the current project so theer is a possiblity of selecting a file
 in the current project.
-'''
+"""
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from core import CCP4Modules
-from qtgui import CCP4ProjectWidget
+from PySide2 import QtCore, QtWidgets
 
+from ..core import CCP4Modules
+from ..qtgui import CCP4ProjectWidget
 
 
 class CDatabaseBrowser(QtWidgets.QDialog):
