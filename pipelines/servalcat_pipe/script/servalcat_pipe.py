@@ -376,168 +376,172 @@ class servalcat_pipe(CPluginScript):
 
     def adp_analysis(self, modelPath, iqrFactor=2.0):
         print("Running ADP analysis...")
-        import csv
-        adp_dict = {}
-        adp_per_resi = {}
-        adp_dict["All"] = []
-        st = gemmi.read_structure(modelPath)
-        for model in st:
-            for chain in model:
-                polymer = chain.get_polymer()
-                ptype = polymer.check_polymer_type()
-                adp_dict[chain.name] = []
-                #                            residue.seqid.num; mean ADP (in backbone for proteins); mean ADP in side chain
-                adp_per_resi[chain.name] = {"resi": [], "adp": [], "adp_sidechain": []}
-                for residue in chain:
-                    adp_this_resi = []
-                    adp_this_resi_sidechain = []
-                    for atom in residue:
-                        if not atom.is_hydrogen() and atom.occ > 0:
-                            if atom.aniso.nonzero():
-                                adp_atom = gemmi.calculate_b_est(atom)
+        try:
+            import csv
+            adp_dict = {}
+            adp_per_resi = {}
+            adp_dict["All"] = []
+            cif_block = gemmi.cif.read(modelPath)[0]
+            st = gemmi.make_structure_from_block(cif_block)
+            # st = gemmi.read_structure(modelPath)
+            for model in st:
+                for chain in model:
+                    polymer = chain.get_polymer()
+                    ptype = polymer.check_polymer_type()
+                    adp_dict[chain.name] = []
+                    #                            residue.seqid.num; mean ADP (in backbone for proteins); mean ADP in side chain
+                    adp_per_resi[chain.name] = {"resi": [], "adp": [], "adp_sidechain": []}
+                    for residue in chain:
+                        adp_this_resi = []
+                        adp_this_resi_sidechain = []
+                        for atom in residue:
+                            if not atom.is_hydrogen() and atom.occ > 0:
+                                if atom.aniso.nonzero():
+                                    adp_atom = gemmi.calculate_b_est(atom)
+                                else:
+                                    adp_atom = atom.b_iso
+                                adp_dict["All"].append(adp_atom)
+                                adp_dict[chain.name].append(adp_atom)
+                                if residue.entity_type == gemmi.EntityType.Polymer and \
+                                        ptype in [gemmi.PolymerType.PeptideL, gemmi.PolymerType.PeptideD] and \
+                                        atom.name not in ["CA", "C", "O", "N", "OXT"]:
+                                    adp_this_resi_sidechain.append(adp_atom)
+                                else:
+                                    adp_this_resi.append(adp_atom)
+                        try:
+                            if residue.seqid.num in adp_per_resi[chain.name]["resi"]:
+                                continue   # ignoring insertion codes, sorry
+                            adp_per_resi[chain.name]["resi"].append(residue.seqid.num)
+                            if adp_this_resi:
+                                adp_per_resi[chain.name]["adp"].append(numpy.mean(adp_this_resi))
                             else:
-                                adp_atom = atom.b_iso
-                            adp_dict["All"].append(adp_atom)
-                            adp_dict[chain.name].append(adp_atom)
-                            if residue.entity_type == gemmi.EntityType.Polymer and \
-                                    ptype in [gemmi.PolymerType.PeptideL, gemmi.PolymerType.PeptideD] and \
-                                    atom.name not in ["CA", "C", "O", "N", "OXT"]:
-                                adp_this_resi_sidechain.append(adp_atom)
+                                adp_per_resi[chain.name]["adp"].append(None)
+                            if adp_this_resi_sidechain:
+                                adp_per_resi[chain.name]["adp_sidechain"].append(numpy.mean(adp_this_resi_sidechain))
                             else:
-                                adp_this_resi.append(adp_atom)
-                    try:
-                        if residue.seqid.num in adp_per_resi[chain.name]["resi"]:
-                            continue   # ignoring insertion codes, sorry
-                        adp_per_resi[chain.name]["resi"].append(residue.seqid.num)
-                        if adp_this_resi:
-                            adp_per_resi[chain.name]["adp"].append(numpy.mean(adp_this_resi))
-                        else:
-                            adp_per_resi[chain.name]["adp"].append(None)
-                        if adp_this_resi_sidechain:
-                            adp_per_resi[chain.name]["adp_sidechain"].append(numpy.mean(adp_this_resi_sidechain))
-                        else:
-                            adp_per_resi[chain.name]["adp_sidechain"].append(None)
-                    except:
-                        pass
+                                adp_per_resi[chain.name]["adp_sidechain"].append(None)
+                        except:
+                            pass
 
-        # Find ADP values which are too small or large
-        q1 = numpy.quantile(adp_dict["All"], 0.25)
-        q3 = numpy.quantile(adp_dict["All"], 0.75)
-        iqr = q3 - q1
-        adp_limit_low = q1 - iqrFactor * iqr
-        adp_limit_high = q3 + iqrFactor * iqr
-        adp_low = []
-        adp_high = []
-        for model in st:
-            for chain in model:
-                for residue in chain:
-                    for atom in residue:
-                        if atom.element != gemmi.Element('H') and atom.occ > 0:
-                            if atom.aniso.nonzero():
-                                adp_atom = gemmi.calculate_b_est(atom)
+            # Find ADP values which are too small or large
+            q1 = numpy.quantile(adp_dict["All"], 0.25)
+            q3 = numpy.quantile(adp_dict["All"], 0.75)
+            iqr = q3 - q1
+            adp_limit_low = q1 - iqrFactor * iqr
+            adp_limit_high = q3 + iqrFactor * iqr
+            adp_low = []
+            adp_high = []
+            for model in st:
+                for chain in model:
+                    for residue in chain:
+                        for atom in residue:
+                            if atom.element != gemmi.Element('H') and atom.occ > 0:
+                                if atom.aniso.nonzero():
+                                    adp_atom = gemmi.calculate_b_est(atom)
+                                else:
+                                    adp_atom = atom.b_iso
+                                if adp_atom < adp_limit_low:
+                                    adp_low.append({"atom": str(model.get_cra(atom)),
+                                                    "adp": adp_atom})
+                                elif adp_atom > adp_limit_high:
+                                    adp_high.append({"atom": str(model.get_cra(atom)),
+                                                    "adp": adp_atom})
+            adp_low = sorted(adp_low, key=itemgetter('adp'))
+            adp_high = sorted(adp_high, key=itemgetter('adp'), reverse=True)
+
+            # Write the analysis in XML and CSV
+            csvFileName = "adp_analysis.csv"
+            csvFilePath = str(os.path.join(self.getWorkDirectory(), csvFileName))
+            with open(csvFilePath, "a+", newline='') as csvfile:
+                fieldnames = ["chain", "resi", "adp", "adp_sidechain"]
+                writer = csv.writer(csvfile, quoting=csv.QUOTE_NONNUMERIC)
+                writer.writerow(fieldnames)
+            adp_root = etree.Element('ADP_ANALYSIS')
+            chains_root = etree.SubElement(adp_root, "chains")
+            for ch, values in adp_dict.items():
+                chain = etree.SubElement(chains_root, "chain")
+                chain_name = etree.SubElement(chain, "name")
+                chain_name.text = str(ch)
+                chain.set("name", str(ch))
+                chain_min = etree.SubElement(chain, "min")
+                chain_min.text = "{:.2f}".format(min(values))
+                chain_max = etree.SubElement(chain, "max")
+                chain_max.text = "{:.2f}".format(max(values))
+                chain_med_val = numpy.median(values)
+                chain_mad_val = numpy.median(numpy.absolute(values - chain_med_val))
+                chain_med = etree.SubElement(chain, "med")
+                chain_med.text = "{:.2f}".format(chain_med_val)
+                chain_mad = etree.SubElement(chain, "mad")
+                chain_mad.text = "{:.2f}".format(chain_mad_val)
+                chain_q1 = etree.SubElement(chain, "q1")
+                chain_q1.text = "{:.2f}".format(numpy.quantile(values, 0.25))
+                chain_q3 = etree.SubElement(chain, "q3")
+                chain_q3.text = "{:.2f}".format(numpy.quantile(values, 0.75))
+                chain_mean_val = numpy.mean(values)
+                chain_std_val = numpy.std(values)
+                chain_mean = etree.SubElement(chain, "mean")
+                chain_mean.text = "{:.2f}".format(chain_mean_val)
+                chain_std = etree.SubElement(chain, "std")
+                chain_std.text = "{:.2f}".format(chain_std_val)
+
+                hist, bin_edges = numpy.histogram(values, bins="auto")
+                bin_edges = numpy.delete(bin_edges, -1)
+                chain_histogram = etree.SubElement(chain, 'histogram')
+                for i in range(len(bin_edges)):
+                    bin_elem = etree.SubElement(chain_histogram, 'bin')
+                    bin_adp = etree.SubElement(bin_elem, 'adp')
+                    bin_adp.text = "{:.2f}".format(bin_edges[i])
+                    bin_count = etree.SubElement(bin_elem, 'count')
+                    bin_count.text = str(hist[i])
+
+                if ch != "All":
+                    with open(csvFilePath, "a+", newline='') as csvfile:
+                        writer = csv.writer(csvfile, quoting=csv.QUOTE_NONNUMERIC)
+                        for i in range(len(adp_per_resi[str(ch)]["resi"])):
+                            if adp_per_resi[str(ch)]["adp"][i]:
+                                adp_per_resi_adp_round = round(adp_per_resi[str(ch)]["adp"][i], 2)
                             else:
-                                adp_atom = atom.b_iso
-                            if adp_atom < adp_limit_low:
-                                adp_low.append({"atom": str(model.get_cra(atom)),
-                                                "adp": adp_atom})
-                            elif adp_atom > adp_limit_high:
-                                adp_high.append({"atom": str(model.get_cra(atom)),
-                                                 "adp": adp_atom})
-        adp_low = sorted(adp_low, key=itemgetter('adp'))
-        adp_high = sorted(adp_high, key=itemgetter('adp'), reverse=True)
+                                adp_per_resi_adp_round = "-"
+                            if adp_per_resi[str(ch)]["adp_sidechain"][i]:
+                                adp_per_resi_adp_sidechain_round = round(adp_per_resi[str(ch)]["adp_sidechain"][i], 2)
+                            else:
+                                adp_per_resi_adp_sidechain_round = "-"
+                            writer.writerow([ch,
+                                            adp_per_resi[str(ch)]["resi"][i],
+                                            adp_per_resi_adp_round,
+                                            adp_per_resi_adp_sidechain_round])
+            if os.path.exists(csvFilePath):
+                per_resi_element = etree.SubElement(adp_root, "per_resi")
+                per_resi_csv_element = etree.SubElement(per_resi_element, "CSV_FILE")
+                per_resi_csv_element.text = str(csvFileName)
 
-        # Write the analysis in XML and CSV
-        csvFileName = "adp_analysis.csv"
-        csvFilePath = str(os.path.join(self.getWorkDirectory(), csvFileName))
-        with open(csvFilePath, "a+", newline='') as csvfile:
-            fieldnames = ["chain", "resi", "adp", "adp_sidechain"]
-            writer = csv.writer(csvfile, quoting=csv.QUOTE_NONNUMERIC)
-            writer.writerow(fieldnames)
-        adp_root = etree.Element('ADP_ANALYSIS')
-        chains_root = etree.SubElement(adp_root, "chains")
-        for ch, values in adp_dict.items():
-            chain = etree.SubElement(chains_root, "chain")
-            chain_name = etree.SubElement(chain, "name")
-            chain_name.text = str(ch)
-            chain.set("name", str(ch))
-            chain_min = etree.SubElement(chain, "min")
-            chain_min.text = "{:.2f}".format(min(values))
-            chain_max = etree.SubElement(chain, "max")
-            chain_max.text = "{:.2f}".format(max(values))
-            chain_med_val = numpy.median(values)
-            chain_mad_val = numpy.median(numpy.absolute(values - chain_med_val))
-            chain_med = etree.SubElement(chain, "med")
-            chain_med.text = "{:.2f}".format(chain_med_val)
-            chain_mad = etree.SubElement(chain, "mad")
-            chain_mad.text = "{:.2f}".format(chain_mad_val)
-            chain_q1 = etree.SubElement(chain, "q1")
-            chain_q1.text = "{:.2f}".format(numpy.quantile(values, 0.25))
-            chain_q3 = etree.SubElement(chain, "q3")
-            chain_q3.text = "{:.2f}".format(numpy.quantile(values, 0.75))
-            chain_mean_val = numpy.mean(values)
-            chain_std_val = numpy.std(values)
-            chain_mean = etree.SubElement(chain, "mean")
-            chain_mean.text = "{:.2f}".format(chain_mean_val)
-            chain_std = etree.SubElement(chain, "std")
-            chain_std.text = "{:.2f}".format(chain_std_val)
+            outliers_root = etree.SubElement(adp_root, "outliers")
+            outliers_adp_limit_low = etree.SubElement(outliers_root, "adp_limit_low")
+            outliers_adp_limit_low.text = "{:.2f}".format(adp_limit_low)
+            outliers_adp_limit_high = etree.SubElement(outliers_root, "adp_limit_high")
+            outliers_adp_limit_high.text = "{:.2f}".format(adp_limit_high)
+            outliers_adp_iqr_factor = etree.SubElement(outliers_root, "iqr_factor")
+            outliers_adp_iqr_factor.text = "{:.2f}".format(iqrFactor)
+            outliers_low = etree.SubElement(outliers_root, "low")
+            for outlier in adp_low:
+                outlier_elem = etree.SubElement(outliers_low, "data")
+                outlier_adp = etree.SubElement(outlier_elem, "adp")
+                outlier_adp.text = "{:.2f}".format(outlier["adp"])
+                outlier_atom = etree.SubElement(outlier_elem, "atom")
+                outlier_atom.text = str(outlier["atom"])
+            outliers_high = etree.SubElement(outliers_root, "high")
+            for outlier in adp_high:
+                outlier_elem = etree.SubElement(outliers_high, "data")
+                outlier_adp = etree.SubElement(outlier_elem, "adp")
+                outlier_adp.text = "{:.2f}".format(outlier["adp"])
+                outlier_atom = etree.SubElement(outlier_elem, "atom")
+                outlier_atom.text = str(outlier["atom"])
 
-            hist, bin_edges = numpy.histogram(values, bins="auto")
-            bin_edges = numpy.delete(bin_edges, -1)
-            chain_histogram = etree.SubElement(chain, 'histogram')
-            for i in range(len(bin_edges)):
-                bin_elem = etree.SubElement(chain_histogram, 'bin')
-                bin_adp = etree.SubElement(bin_elem, 'adp')
-                bin_adp.text = "{:.2f}".format(bin_edges[i])
-                bin_count = etree.SubElement(bin_elem, 'count')
-                bin_count.text = str(hist[i])
-
-            if ch != "All":
-                with open(csvFilePath, "a+", newline='') as csvfile:
-                    writer = csv.writer(csvfile, quoting=csv.QUOTE_NONNUMERIC)
-                    for i in range(len(adp_per_resi[str(ch)]["resi"])):
-                        if adp_per_resi[str(ch)]["adp"][i]:
-                            adp_per_resi_adp_round = round(adp_per_resi[str(ch)]["adp"][i], 2)
-                        else:
-                            adp_per_resi_adp_round = "-"
-                        if adp_per_resi[str(ch)]["adp_sidechain"][i]:
-                            adp_per_resi_adp_sidechain_round = round(adp_per_resi[str(ch)]["adp_sidechain"][i], 2)
-                        else:
-                            adp_per_resi_adp_sidechain_round = "-"
-                        writer.writerow([ch,
-                                         adp_per_resi[str(ch)]["resi"][i],
-                                         adp_per_resi_adp_round,
-                                         adp_per_resi_adp_sidechain_round])
-        if os.path.exists(csvFilePath):
-            per_resi_element = etree.SubElement(adp_root, "per_resi")
-            per_resi_csv_element = etree.SubElement(per_resi_element, "CSV_FILE")
-            per_resi_csv_element.text = str(csvFileName)
-
-        outliers_root = etree.SubElement(adp_root, "outliers")
-        outliers_adp_limit_low = etree.SubElement(outliers_root, "adp_limit_low")
-        outliers_adp_limit_low.text = "{:.2f}".format(adp_limit_low)
-        outliers_adp_limit_high = etree.SubElement(outliers_root, "adp_limit_high")
-        outliers_adp_limit_high.text = "{:.2f}".format(adp_limit_high)
-        outliers_adp_iqr_factor = etree.SubElement(outliers_root, "iqr_factor")
-        outliers_adp_iqr_factor.text = "{:.2f}".format(iqrFactor)
-        outliers_low = etree.SubElement(outliers_root, "low")
-        for outlier in adp_low:
-            outlier_elem = etree.SubElement(outliers_low, "data")
-            outlier_adp = etree.SubElement(outlier_elem, "adp")
-            outlier_adp.text = "{:.2f}".format(outlier["adp"])
-            outlier_atom = etree.SubElement(outlier_elem, "atom")
-            outlier_atom.text = str(outlier["atom"])
-        outliers_high = etree.SubElement(outliers_root, "high")
-        for outlier in adp_high:
-            outlier_elem = etree.SubElement(outliers_high, "data")
-            outlier_adp = etree.SubElement(outlier_elem, "adp")
-            outlier_adp.text = "{:.2f}".format(outlier["adp"])
-            outlier_atom = etree.SubElement(outlier_elem, "atom")
-            outlier_atom.text = str(outlier["atom"])
-
-        self.xmlroot.append(adp_root)
-        self.saveXml()
-        print("ADP analysis done.")
-
+            self.xmlroot.append(adp_root)
+            self.saveXml()
+            print("ADP analysis done.")
+        except Exception as e:
+            sys.stderr.write("ERROR: ADP analysis as not successful: " + str(e) + "\n")
 
     def coord_adp_dev_analysis(self, model1Path, model2Path):
         print("Monitoring of changes/shifts of coordinated and ADPs...")
