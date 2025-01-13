@@ -9,6 +9,7 @@ from subprocess import call
 from tempfile import NamedTemporaryFile
 from urllib.request import urlretrieve
 import xml.etree.ElementTree as ET
+
 import gemmi
 import pytest
 

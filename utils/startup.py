@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      utils/startup.py.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -17,21 +15,39 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
+
+    Liz Potterton Feb 2010 - Some minimal functionality to bootstrap program startup
 """
 
-'''
-    Liz Potterton Feb 2010 - Some minimal functionality to bootstrap program startup
-'''
-
-
-import os
-import sys
-import glob
-import shutil
 import atexit
-import time
+import glob
+import os
+import shutil
+import sqlite3
+import string
+import sys
 import tempfile
-from PySide2 import QtCore, QtGui, QtWidgets
+import time
+
+from lxml import etree
+from PySide2 import QtWidgets
+
+from ..core import CCP4Config
+from ..core import CCP4ErrorHandling
+from ..core import CCP4Modules
+from ..core import CCP4PrintHandler
+from ..core import CCP4ProjectsManager
+from ..core import CCP4Utils
+from ..dbapi import CCP4DbApi
+from ..qtcore import CCP4HTTPServerThread
+from ..qtgui import CCP4BackupDBBrowser
+from ..qtgui import CCP4DbManagerGui
+from ..qtgui import CCP4DefEd
+from ..qtgui import CCP4StyleSheet
+from ..qtgui import CCP4WebBrowser
+from ..qtgui.CCP4TipsOfTheDay import CTipsOfTheDay
+from .QApp import CGuiApplication
+
 
 class DatabaseFailException(Exception):
     pass
@@ -95,8 +111,6 @@ def testForCCP4Environment():
         return True
 
 def startGraphics():
-    from core import CCP4Config
-    from .QApp import CGuiApplication # KJS : does this need to go in here (is fn used ?)
     app = CGuiApplication(sys.argv)
     CCP4Config.CONFIG().set('graphical', True)
     CCP4Config.CONFIG().set('qt', True)
@@ -104,7 +118,6 @@ def startGraphics():
 
 def setQtWidgetStyle():
     return
-    from core import CCP4Modules
     try:
         factory = QtWidgets.QStyleFactory()
         preferences = CCP4Modules.PREFERENCES()
@@ -116,8 +129,6 @@ def setQtWidgetStyle():
         print(e)
 
 def createMissingDATABASEdbXML():
-    from lxml import etree
-    from core import CCP4Modules, CCP4Utils
     proj_dir_list0=CCP4Modules.PROJECTSMANAGER().db().getProjectDirectoryList()
 
     for proj in proj_dir_list0:
@@ -192,9 +203,6 @@ def createMissingDATABASEdbXML():
                        sys.exit()
 
 def startBrowser(args, app=None, splash=None):
-    from core import CCP4Modules
-    from qtgui import CCP4WebBrowser
-    from qtgui import CCP4StyleSheet, CCP4WebView
     # KJS: Removed the linux check. Unclear why it's in here.
     # if sys.platform == "linux2": win = QtWidgets.QWidget(); splash.finish(win); splash.show()
     config = loadConfig()
@@ -247,7 +255,6 @@ def startBrowser(args, app=None, splash=None):
     #setQtWidgetStyle()
     createMissingDATABASEdbXML()
     def pushLocalDB():
-        from core import CCP4Config, CCP4Utils
         try:
             print()
         except ValueError:
@@ -291,7 +298,6 @@ def startBrowser(args, app=None, splash=None):
     #----------------------------------------------------------------------
     def closeHTTPServer(parent=None):
         # Called on exit to find and close all CHTTPServerThread threads
-        from qtcore import CCP4HTTPServerThread
         if CCP4HTTPServerThread.CHTTPServerThread.insts is not None:
             CCP4HTTPServerThread.CHTTPServerThread.insts.quitServer()   # KJS : Should be ok.
     #----------------------------------------------------------------------
@@ -309,20 +315,16 @@ def startBrowser(args, app=None, splash=None):
         splash.close()
     showTipsOfTheDay = CCP4Modules.PREFERENCES().SHOW_TIPS_OF_THE_DAY
     if showTipsOfTheDay:
-        from qtgui.CCP4TipsOfTheDay import CTipsOfTheDay
         tipsOfTheDay = CTipsOfTheDay()
         tipsOfTheDay.exec_()
 
 def startDefEd():
-    from core import CCP4Config
-    from qtgui import CCP4DefEd
     pars = CCP4Config.CConfig(qt=True, graphical=True, developer=True)
     defEd = CCP4DefEd.CDefEd()
     defEd.raise_()
     return defEd
 
 def startJobController():
-    from core import CCP4Modules
     print('Starting Job Controller')
     jc = CCP4Modules.JOBCONTROLLER()
     jc.startTimer()
@@ -332,7 +334,6 @@ def startJobController():
  
 
 def copyDB(origFileName,f2):
-    import sqlite3
     print(origFileName,f2)
     con = sqlite3.connect(origFileName,5.0,1, check_same_thread = False)
     sql = "".join([s+"\n" for s in con.iterdump()])
@@ -365,10 +366,6 @@ def copyDB(origFileName,f2):
     con.close()
 
 def startProjectsManager(dbFileName=None, checkForFinishedJobs=False, useLocalDBFile=None, **kw):
-    from core import CCP4Config
-    from core import CCP4Utils
-    from core import CCP4Modules,CCP4ProjectsManager, CCP4Utils
-    import string
     print(dbFileName)
     print(useLocalDBFile)
     if CCP4ProjectsManager.CProjectsManager.insts is not None:
@@ -419,7 +416,6 @@ def startProjectsManager(dbFileName=None, checkForFinishedJobs=False, useLocalDB
             print("Failed to open database file!!!!!!!!")
             if dbFileName is None and CCP4Config.DBFILE() is None:
                 #This is manual backup
-                from qtgui import CCP4BackupDBBrowser
                 dbOrigName = os.path.join(CCP4Utils.getDotDirectory(), 'db', 'database.sqlite')
                 win = CCP4BackupDBBrowser.CBackupDBBrowser()
                 win.setDBDirectory(os.path.join(CCP4Utils.getDotDirectory(), 'db'))
@@ -457,10 +453,6 @@ def startProjectsManager(dbFileName=None, checkForFinishedJobs=False, useLocalDB
         return pm
 
 def startDb(parent=None, fileName=None, mode='sqlite', userName=None, userPassword=None,**kw):
-    from core import CCP4Utils
-    from core import CCP4ErrorHandling
-    from dbapi import CCP4DbApi
-    from qtgui import CCP4DbManagerGui
     try:
         db = CCP4DbApi.CDbApi(parent=parent, fileName=fileName, mode=mode, createDb=True, userName=userName,
                               userPassword=userPassword, loadDiagnostic=kw.get('loadDiagnostic',True))
@@ -517,14 +509,11 @@ def startDb(parent=None, fileName=None, mode='sqlite', userName=None, userPasswo
     return db
 
 def loadConfig():
-    from core import CCP4Config, CCP4Utils
     config = CCP4Config.CONFIG(os.path.join(CCP4Utils.getDotDirectory(), 'configs', 'ccp4i2_config.params.xml'))
     return config
 
 
 def  startHTTPServer(parent=None, port=None, **kw):
-    from qtcore import CCP4HTTPServerThread
-    from core import CCP4Utils
     if port is None:
         port = CCP4HTTPServerThread.DEFAULT_PORT
     diry = os.path.join(CCP4Utils.getCCP4I2Dir(), 'docs')
@@ -537,7 +526,6 @@ def  startHTTPServer(parent=None, port=None, **kw):
     return
 
 def startPrintHandler(app):
-    from core import CCP4PrintHandler
     printHandler = CCP4PrintHandler.CPrintHandler(parent=app)
     try:
         printHandler.cleanupLogs()

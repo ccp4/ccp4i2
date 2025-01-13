@@ -1,5 +1,18 @@
-from __future__ import print_function
+"""
+smartie: CCP4 logfile parsing functions
 
+The smartie module provides a set of classes and methods for parsing
+logfiles from CCP4i and CCP4 programs. The central class is the 'logfile',
+which provides a basic DOM-like description of a logfile and its
+contents. Other classes provide descriptions of smaller chunks of logfile
+features (programs, tables, keytext data and CCP4i informational messages).
+
+The name 'smartie' reflects the module's origins as the intended driver
+for a 'smart logfile browser'.
+
+Some additional documentation material is also available in the file
+smartie_overview.html.
+"""
 #     smartie.py: CCP4 logfile parsing classes and functions
 #     Copyright (C) 2006-2007 Peter Briggs, Wanjuan Yang, CCLRC 
 #
@@ -14,32 +27,20 @@ from __future__ import print_function
 #
 #########################################################################
 
-"""smartie: CCP4 logfile parsing functions
-
-The smartie module provides a set of classes and methods for parsing
-logfiles from CCP4i and CCP4 programs. The central class is the 'logfile',
-which provides a basic DOM-like description of a logfile and its
-contents. Other classes provide descriptions of smaller chunks of logfile
-features (programs, tables, keytext data and CCP4i informational messages).
-
-The name 'smartie' reflects the module's origins as the intended driver
-for a 'smart logfile browser'.
-
-Some additional documentation material is also available in the file
-smartie_overview.html."""
-
-__cvs_id__ = "$Id: smartie.py,v 1.7 2012/07/05 20:30:36 rmk65 Exp $"
-__version__ = "0.0.15"
-
 #######################################################################
 # Import modules that this module depends on
 #######################################################################
-import sys
-import os
-import re
+
 import copy
 import linecache
+import os
+import re
+import sys
 import time
+
+
+__cvs_id__ = "$Id: smartie.py,v 1.7 2012/07/05 20:30:36 rmk65 Exp $"
+__version__ = "0.0.15"
 
 #######################################################################
 # Class definitions

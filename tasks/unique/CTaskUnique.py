@@ -2,10 +2,10 @@
      tasks/unique/CTaskUnique.py
      Copyright (C) 2011 STFC
      Author: Martyn Winn
-
 """
 
-from qtgui.CCP4TaskWidget import CTaskWidget
+from ...qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class CTaskUnique(CTaskWidget):

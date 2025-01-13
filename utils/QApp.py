@@ -1,7 +1,5 @@
-from __future__ import print_function
+from PySide2 import QtCore, QtWidgets
 
-from PySide2 import QtCore,QtGui, QtWidgets
-import os
 
 MYAPPLICATION = None
 
@@ -11,16 +9,6 @@ class CApplication(QtCore.QCoreApplication):
 
     def __init__(self,args):
         QtCore.QCoreApplication.__init__(self,args)
-        """
-        if os.path.exists(os.path.join(os.environ["CCP4"],"lib","qt4","plugins")):
-            self.addLibraryPath(os.path.join(os.environ["CCP4"],"lib","qt4","plugins"))
-        elif os.path.exists(os.path.join(os.environ["CCP4"],"plugins")):
-            self.addLibraryPath(os.path.join(os.environ["CCP4"],"plugins"))
-        elif os.path.exists(os.path.join(os.environ["CCP4"],"QtPlugins")):
-            self.addLibraryPath(os.path.join(os.environ["CCP4"],"QtPlugins"))
-        elif os.path.exists(os.path.join(os.environ["CCP4MG"],"QtPlugins")):
-            self.addLibraryPath(os.path.join(os.environ["CCP4MG"],"QtPlugins"))
-        """
 
         def mainWindow(self):
             return None
@@ -37,17 +25,6 @@ class CGuiApplication(QtWidgets.QApplication):
     def __init__(self,args):
         #print 'CGuiApplication.__init__',self
         QtWidgets.QApplication.__init__(self,args)
-        """
-        if os.path.exists(os.path.join(os.environ["CCP4"],"lib","qt4","plugins")):
-            self.addLibraryPath(os.path.join(os.environ["CCP4"],"lib","qt4","plugins"))
-        elif os.path.exists(os.path.join(os.environ["CCP4"],"plugins")):
-            self.addLibraryPath(os.path.join(os.environ["CCP4"],"plugins"))
-        elif os.path.exists(os.path.join(os.environ["CCP4"],"QtPlugins")):
-            self.addLibraryPath(os.path.join(os.environ["CCP4"],"QtPlugins"))
-        elif os.path.exists(os.path.join(os.environ["CCP4MG"],"QtPlugins")):
-            self.addLibraryPath(os.path.join(os.environ["CCP4MG"],"QtPlugins"))
-        """
-        #import CCP4StyleSheet
         #CCP4StyleSheet.setStyleSheet(self)
 
     def objectPath(self):

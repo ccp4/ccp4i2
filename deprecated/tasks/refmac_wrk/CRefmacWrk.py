@@ -1,5 +1,5 @@
-
 from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 class CRefmacWrk(CTaskWidget):
 

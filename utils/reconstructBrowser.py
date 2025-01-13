@@ -1,19 +1,17 @@
-from __future__ import print_function
-import sys
-import os
+from os.path import expanduser
 import glob
-import tempfile
+import os
 import shutil
 import sqlite3
+import sys
+import tempfile
 
-from os.path import expanduser
+from lxml import etree
+from PySide2 import QtCore, QtWidgets
 
-from PySide2 import QtCore, QtGui, QtWidgets
+from . import importDir
+from . import reconstructDBFromXML
 
-import reconstructDBFromXML
-if __name__ == "__main__":
-    sys.path.append(os.path.join(os.path.dirname(__file__),".."))
-import importDir
 
 class ReconstructBrowserDialog(QtWidgets.QDialog):
 
@@ -90,8 +88,6 @@ class ReconstructBrowserDialog(QtWidgets.QDialog):
         addButton.clicked.connect(self.addDirectory)
 
 if __name__ == "__main__":
-    from lxml import etree
-
     app = QtWidgets.QApplication(sys.argv)
     win = ReconstructBrowserDialog()
     win.setWindowTitle("Select project directories to reconstruct from")
@@ -128,10 +124,7 @@ if __name__ == "__main__":
                 continue
             if len(project_tree.xpath("//ccp4i2_body/jobTable/job")) == 0:
                 continue
-            if sys.version_info < (3,0):
-                outl = etree.tostring(project_tree,pretty_print=True)
-            else:
-                outl = etree.tostring(project_tree,pretty_print=True).decode()
+            outl = etree.tostring(project_tree,pretty_print=True).decode()
             dbxmlout = os.path.join(str(d),"DATABASE.db.xml")
             with open(dbxmlout,"w+") as outfd:
                 outfd.write(outl)

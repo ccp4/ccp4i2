@@ -1,16 +1,13 @@
-from __future__ import print_function
+import argparse
+import shutil
+import sqlite3
 import sys
 import tempfile
-import shutil
-import os
-import sqlite3
-import argparse
 
 from lxml import etree
 
-if __name__ == "__main__":
-    sys.path.append(os.path.join(os.path.dirname(__file__),".."))
-import importDir
+from . import importDir
+
 
 utf8_parser = etree.XMLParser(encoding='utf-8')
 

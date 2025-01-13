@@ -10,9 +10,11 @@
 #
 ###########################################
 
-import sys
 import argparse
+import sys
+
 from gemmi import cif
+
 
 PRINT_CONTENT_TO_COUT = False
 CREATE_NEW_CIF = True

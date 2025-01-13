@@ -15,24 +15,14 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton Feb 2013 - Create basic import xia2 gui
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
- 
+from ...qtgui import CCP4TaskWidget
 
-#-------------------------------------------------------------------
-#-------------------------------------------------------------------
-#-------------------------------------------------------------------
+
 class CTaskimport_xia2(CCP4TaskWidget.CTaskWidget):
-#-------------------------------------------------------------------
-#-------------------------------------------------------------------
-#-------------------------------------------------------------------
 
 # Subclass CTaskWidget to give specific task window
   TASKNAME = 'import_xia2'

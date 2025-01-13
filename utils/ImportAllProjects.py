@@ -1,12 +1,3 @@
-import sys
-import os
-import functools
-import glob
-import tempfile
-import shutil
-import sqlite3
-import argparse
-
 """
 This program constructs a CCP4I2 database from a set of ZIP files in a folder.
 It can be used in two ways:
@@ -17,15 +8,25 @@ It can be used in two ways:
         python3 ImportAllProjects.py input_folder_containing_zip_files output_folder_where_project_files_will_go [-a|--append] [-d|--dbFile=outputdbname]
 """
 
-from PySide2 import QtCore
+import argparse
+import glob
+import os
+import shutil
+import sqlite3
+import sys
+import tempfile
+
+from ..core import CCP4Config
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import SEVERITY_WARNING
+from ..core.CCP4Modules import PROJECTSMANAGER
+from ..dbapi import CCP4DbApi
+from ..qtcore import CCP4Export
+from . import startup
+from .QApp import CGuiApplication
+
 
 def ImportZipFile(compressedFile,destDirName):
-
-    from core.CCP4Modules import PROJECTSMANAGER,JOBCONTROLLER
-    from core.CCP4ErrorHandling import SEVERITY_WARNING
-    from dbapi import CCP4DbApi
-    from qtcore import CCP4Export
-
     try:
       xmlFile = PROJECTSMANAGER().extractDatabaseXml(compressedFile)
     except CException as e:
@@ -117,11 +118,6 @@ def ImportZipFile(compressedFile,destDirName):
       print("Project '"+dbImport.projectName+"' already exists")
 
 def ImportAll(zipDir,dbFile,destDirName,appendDB):
-
-    from core import CCP4Config
-    from utils.QApp import CGuiApplication
-    from utils import startup
-
     try:
         os.mkdir(destDirName)
     except FileExistsError as e:
@@ -219,8 +215,6 @@ def ImportAll(zipDir,dbFile,destDirName,appendDB):
 
 if __name__ == "__main__":
 
-    sys.path.append(os.path.join(os.path.dirname(__file__),".."))
-
     parser = argparse.ArgumentParser( prog='ImportAllProjects')
     parser.add_argument('inputfolder',help="Folder containing input zip files")
     parser.add_argument('outputfolder',help="Output folder where project files will go. e.g. $HOME/CCP4I2_PROJECTS")
@@ -232,7 +226,6 @@ if __name__ == "__main__":
     print(args.append)
     print(args.dbFile)
 
-    from core import CCP4Utils
     destDirName = CCP4Utils.getProjectDirectory()
 
     if len(sys.argv)>2:

@@ -1,15 +1,18 @@
-from __future__ import print_function
-import sys
-import os
-import time
-import zipfile
-import sqlite3
+import argparse
 import functools
+import os
+import sys
+import time
 
 from PySide2 import QtCore
 
-if __name__ == "__main__":
-    sys.path.append(os.path.join(os.path.dirname(__file__),".."))
+from ..core import CCP4Config
+from ..core import CCP4Modules
+from ..core import CCP4Utils
+from ..dbapi import CCP4DbApi
+from ..qtcore import CCP4Export
+from .QApp import CGuiApplication
+
 
 class CompressClass(QtCore.QObject):
 
@@ -17,8 +20,6 @@ class CompressClass(QtCore.QObject):
 
     def __init__(self,parent=None,projectId=None,after=None,jobList=None,excludeI2files=False,fileName=None,projectName=None):
         QtCore.QObject.__init__(self,parent)
-        from core import CCP4Modules
-        from qtcore import CCP4Export
         print('compressProject',after,jobList,excludeI2files,fileName)
 
         projectInfo =  CCP4Modules.PROJECTSMANAGER().db().getProjectInfo(projectName=projectName)
@@ -61,23 +62,14 @@ class CompressClass(QtCore.QObject):
         self.exportThread.start()
 
 def startDb(parent=None, fileName=None, mode='sqlite', userName=None, userPassword=None,**kw):
-    from core import CCP4Utils
-    from core import CCP4ErrorHandling
-    from dbapi import CCP4DbApi
-    from qtgui import CCP4DbManagerGui
     db = CCP4DbApi.CDbApi(parent=parent, fileName=fileName, mode=mode, createDb=True, userName=userName, userPassword=userPassword, loadDiagnostic=kw.get('loadDiagnostic',True))
     return db
 
 if __name__ == "__main__":
 
-    import argparse
-    from core import CCP4Config
-    from utils.QApp import CGuiApplication # KJS : does this need to go in here (is fn used ?)
     app = CGuiApplication(sys.argv)
     CCP4Config.CONFIG().set('graphical', False)
     CCP4Config.CONFIG().set('qt', True)
-    from core import CCP4Modules
-    from core import CCP4Utils
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--dbFile', help='User-specified database filename')

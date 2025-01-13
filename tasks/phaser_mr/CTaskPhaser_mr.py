@@ -1,14 +1,12 @@
-from __future__ import print_function
-
 """
      tasks/phaser_mr/CTaskPhaser_mr.py
      Copyright (C) 2011 STFC
      Author: Martyn Winn
-
 """
 
-from qtgui.CCP4TaskWidget import CTaskWidget
-from PySide2 import QtCore
+from ...core import CCP4ModelData, CCP4XtalData
+from ...qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class CTaskPhaser_mr(CTaskWidget):
@@ -127,7 +125,6 @@ class CTaskPhaser_mr(CTaskWidget):
       #Here override logic of whether this is a valid task to allow for CSeqDataFile from the
       #CASUComponentList being required ONLY IF COMP_BY has the value "ASU"
       invalidElements = CTaskWidget.isValid(self)
-      from core import CCP4ModelData, CCP4XtalData
       widgLib = {"COMP_BY":"Not set yet"}
       self.getParams(widgLib)
       if widgLib["COMP_BY"] != "ASU":

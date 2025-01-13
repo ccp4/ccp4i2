@@ -1,7 +1,9 @@
-from __future__ import print_function
+import os
+import shutil
+import subprocess
+import sys
+import tempfile
 
-
-import os, sys, tempfile, shutil, subprocess
 
 # ------------------------------------------------------------------------------
 
@@ -103,10 +105,6 @@ def from_command_line(log_file_in):
    log_dir_path, log_file_name = os.path.split(log_file_path)
    log_root_name = os.path.splitext(log_file_name)[0]
    log_root_parts = log_root_name.split("_")
-
-   if sys.version_info < (2,5):
-      print("Required Python 2.5 or higher. Exiting.")
-      sys.exit(1)
 
    ccp4path = os.getenv("CCP4")
    if not ccp4path:
