@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4WebPluginFactory.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -17,17 +15,15 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton Jan 2010 - Simple demo CCP4WebPluginFactory and a test plugin
 """
 
-import sys,os, functools
-from PySide2 import QtWebEngine, QtWebEngineWidgets, QtGui, QtWidgets, QtCore
-from core.CCP4ErrorHandling import *
-from core.CCP4Config import DEVELOPER
-from qtgui import CCP4ReportWidgets
+import os
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from ..core.CCP4ErrorHandling import *
 
 
 ##@package CCP4WebPluginFactory  (QtWebKit) Demo of webkit plgin widgets

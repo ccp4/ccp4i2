@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4StyleSheet.py: CCP4 GUI Project
      Copyright (C) 2011 University of York
@@ -17,18 +15,18 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton Dec 2011 - Simple Qt Style Sheet
 """
 
 import os
 import sys
-from core import CCP4Modules, CCP4Utils
 
 from PySide2.QtGui import QPalette
-from PySide2.QtWidgets import QLabel,QApplication
+from PySide2.QtWidgets import QLabel
+
+from ..core import CCP4Modules, CCP4Utils
+
 
 HIGHLIGHTCOLOUR = '#87C8D5'
 LOWLIGHTCOLOUR ='#C1D8E0'

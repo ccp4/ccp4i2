@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 """
      CCP4TextViewer.py: CCP4 GUI Project
      Copyright (C) 2009-2010 University of York
@@ -18,16 +15,24 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton Jan 2010 - Create CCP4AbstractViewer
 """
+
 ##@package CCP4TextViewer (QtGui) Web browser plugin to view text files and coordinate files
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4AbstractViewer
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import MIMETYPESHANDLER,QTAPPLICATION,PREFERENCES
+
+import os
+import sys
+import traceback
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import *
+from ..core.CCP4Modules import MIMETYPESHANDLER, PREFERENCES
+from . import CCP4AbstractViewer
+from . import CCP4Widgets
+
 
 class CTextBrowser(QtWidgets.QPlainTextEdit):
 
@@ -215,7 +220,6 @@ class CTextViewer(CCP4AbstractViewer.CAbstractViewer):
 #-------------------------------------------------------------------
   def open(self,fileName=None,lineLimit=None,**kw):
 #-------------------------------------------------------------------     
-      import os
       try:
         f = open(fileName,'r')
       except:
@@ -331,7 +335,6 @@ class CTextViewer(CCP4AbstractViewer.CAbstractViewer):
   def Save(self,fileName):
 #-------------------------------------------------------------------
     #print 'mgTextViewer.Save',self,self.filename,filename
-    from core import CCP4Utils
     CCP4Utils.saveFile(fileName,str(self.document.toPlainText()))
 
 #-------------------------------------------------------------------
@@ -444,7 +447,6 @@ class CMtzHeaderViewer(CTextViewer):
 
   def open(self,fileName=None,**kw):
     self.loadText('Awaiting nicer MTZ dump for '+fileName)
-    import os
     self.fileName = os.path.abspath(fileName)
     self.setObjectName(os.path.split(fileName)[-1])
 
@@ -458,7 +460,6 @@ class CScriptViewerLogger(QtCore.QObject):
     QtCore.QObject.__init__(self,parent)
     self.log = []
   def write(self, data):
-    #import sys
     #print>>sys.__stdout__, 'logging',data
     self.newLines.emit([data])
     self.log.append(data)
@@ -467,7 +468,6 @@ class CScriptViewerLogger(QtCore.QObject):
 class CScriptViewer(CTextViewer):
 
   def __init__(self,parent,fileName=None):
-    from qtgui import CCP4Widgets
     CTextViewer.__init__(self,parent)
     self.layout().insertWidget(0,CCP4Widgets.CItalicLabel('Enter script:'))
     self.viewer.setReadOnly(False)
@@ -487,7 +487,6 @@ class CScriptViewer(CTextViewer):
     script = self.viewer.toPlainText().__str__()
     #print '*****CScriptViewer.run',script
     if len(script)>0:
-      import sys,traceback
       logger = CScriptViewerLogger(self)
       logger.newLines.connect(self.appendStdoutViewer)
       sys.stdout = logger

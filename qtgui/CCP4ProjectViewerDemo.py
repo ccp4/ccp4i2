@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 """
      CCP4ProjectViewerDemo.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -18,30 +15,21 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Feb 2010 - Copied from earlier review.py used for Developers meeting demo
 """
 
 ##@package CCP4ProjectViewer (QtGui) Browser plugin for Project View demo                           
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4AbstractViewer,CCP4ProjectWidget
+
+import os
+
+from PySide2 import QtCore, QtWidgets
+
+from ..qtgui import CCP4AbstractViewer, CCP4ProjectWidget
 
 
-
-#------------------------------------------------------------------------------------------------------
 def mimeType():
-#------------------------------------------------------------------------------------------------------
-#FIXME
-      return None
-      from qtcore import CCP4CustomMimeTypes            
-      mimeType = CCP4CustomMimeTypes.CMimeType()
-      mimeType.name = "application/ccp4-project"
-      mimeType.description = "Review CCP4 project"
-      mimeType.fileExtensions = ['CCP4project','ccp4_project']
-      mimeType.viewers = [CProjectViewerDemo]
-      return mimeType
+  return None
 
 class CCProjectViewerLayout( QtWidgets.QVBoxLayout):
   def __init__(self):
@@ -53,13 +41,7 @@ class CCProjectViewerLayout( QtWidgets.QVBoxLayout):
     print('CCProjectViewerLayout.maximumSize', width,height)
     return QtCore.QSize(width,height)
 
-#------------------------------------------------------------------------------------------------------
-#------------------------------------------------------------------------------------------------------
-#------------------------------------------------------------------------------------------------------
 class CProjectViewerDemo(CCP4AbstractViewer.CAbstractViewer):
-#------------------------------------------------------------------------------------------------------
-#------------------------------------------------------------------------------------------------------
-#------------------------------------------------------------------------------------------------------
 
   MARGIN = 2
   
@@ -67,11 +49,7 @@ class CProjectViewerDemo(CCP4AbstractViewer.CAbstractViewer):
       CCP4AbstractViewer.CAbstractViewer.__init__(self,parent)
       self.projectWidget = None
 
-
-#------------------------------------------------------------------------------------------------------
   def open(self,filename=''):
-#------------------------------------------------------------------------------------------------------
-    import os
     self.filename = filename
     self.setObjectName(os.path.splitext(os.path.basename(filename))[-1])
     layout = QtWidgets.QVBoxLayout()
@@ -86,10 +64,7 @@ class CProjectViewerDemo(CCP4AbstractViewer.CAbstractViewer):
     self.setLayout(layout)
     self.show()
 
-
-#------------------------------------------------------------------------------------------------------
   def Size(self):
-#------------------------------------------------------------------------------------------------------
     width,height = self.projectWidget.Size()
     '''
     Qt 4.6 will do this
@@ -102,4 +77,3 @@ class CProjectViewerDemo(CCP4AbstractViewer.CAbstractViewer):
     height = height +  4* CProjectViewerDemo.MARGIN
     #print 'CProjectViewer.Size',width,height
     return QtCore.QSize(width,height)
-

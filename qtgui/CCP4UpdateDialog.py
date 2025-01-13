@@ -1,10 +1,11 @@
-from __future__ import print_function
-
-
-import os, sys, time
+import os
 import subprocess
-from PySide2 import QtGui, QtWidgets, QtCore
-from core.CCP4Bazaar import CUpdateUser
+import sys
+
+from PySide2 import QtCore, QtWidgets
+
+from ..core.CCP4Bazaar import CUpdateUser
+
 
 class CUpdateThread(QtCore.QThread, CUpdateUser):
 

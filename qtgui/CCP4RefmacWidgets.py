@@ -1,8 +1,8 @@
+from PySide2 import QtWidgets
 
-from PySide2 import QtGui, QtWidgets
-from PySide2 import QtCore
-from qtgui import CCP4Widgets
-from core import CCP4RefmacData
+from . import CCP4Widgets
+from ..core import CCP4RefmacData
+
 
 # -----------------------------------------------------------------------------------
 
@@ -85,4 +85,3 @@ class CRefmacAnomalousAtomView(CCP4Widgets.CComplexLineWidget):
       line.addWidget(self.widgets['Fpp'])
 
       self.setModel(model)
-

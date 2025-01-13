@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4WorkflowManagerGui.py: CCP4 GUI Project
      Copyright (C) 2013 STFC
@@ -17,21 +15,23 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton July 2013 - create and manage workflows
 """
 
+import functools
 import os
 import re
-import functools
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from core import CCP4Container
-from qtgui import CCP4CustomisationGui
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import WORKFLOWMANAGER,WEBBROWSER,PROJECTSMANAGER
+from PySide2 import QtCore, QtWidgets
+
+from . import CCP4CustomisationGui
+from . import CCP4Widgets
+from ..core import CCP4Container
+from ..core import CCP4WorkflowManager
+from ..core.CCP4ErrorHandling import *
+from ..core.CCP4Modules import PROJECTSMANAGER, WEBBROWSER, WORKFLOWMANAGER
+
 
 def openWorkflowManagerGui():
     if CWorkflowManagerGui.insts is None:
@@ -86,7 +86,6 @@ class CCreateWorkflowDialog(QtWidgets.QDialog):
     ERROR_CODES = {201 : {'description' : 'Unkown error saving workflow'}}
 
     def __init__(self, parent=None):
-        from qtgui import CCP4Widgets
         QtWidgets.QDialog.__init__(self, parent)
         self.setWindowTitle('Create a workflow')
         self.setLayout(QtWidgets.QVBoxLayout())
@@ -208,7 +207,6 @@ class CWorkflowEditDialog(QtWidgets.QDialog):
         self.setWindowTitle('Edit workflow: '+name)
         self.name = name
         directory = WORKFLOWMANAGER().getDirectory(self.name)
-        from core import CCP4WorkflowManager
         self.workflowDef = CCP4WorkflowManager.CWorkflowDefinition(self,name=self.name)
         fileName = WORKFLOWMANAGER().getCustomFile(self.name)
         #print 'CWorkflowEditDialog workflowDef',self.name,self.workflowDef.header.pluginName,fileName
@@ -280,7 +278,6 @@ class CWorkflowEditDialog(QtWidgets.QDialog):
                 le.setText(outFile.annotation.__str__())
 
     def updateModelFromView(self):
-        from core import CCP4WorkflowManager
         self.jobDefs['job_0'].header.pluginTitle.set(str(self.titleWidget.text()))
         for inputWidget in self.inputWidgets:
             label = str(inputWidget.label.text()).strip()

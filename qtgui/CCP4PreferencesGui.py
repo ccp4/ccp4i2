@@ -15,12 +15,15 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
+
+    Liz Potterton - create class to maintain GUIPreferences - Sept 2011
 """
 
-'''
-    Liz Potterton - create class to maintain GUIPreferences - Sept 2011
-'''
-from PySide2 import QtCore,QtGui, QtWidgets
+from PySide2 import QtCore, QtWidgets
+
+from ..core import CCP4Modules
+from ..core import CCP4Preferences
+from ..qtgui import CCP4ProjectViewer, CCP4StyleSheet, CCP4WebView
 
 
 class CPreferencesWindow(QtWidgets.QDialog):
@@ -28,8 +31,6 @@ class CPreferencesWindow(QtWidgets.QDialog):
   def __init__(self,parent):
     QtWidgets.QDialog.__init__(self,parent)
     self.setLayout(QtWidgets.QVBoxLayout())
-
-    from core import CCP4Modules
 
     #print 'CPreferencesWindow.__init__',CCP4Modules.QTAPPLICATION().
    
@@ -71,8 +72,6 @@ class CPreferencesWindow(QtWidgets.QDialog):
 
   @QtCore.Slot()
   def doApply(self):
-    from core import CCP4Preferences,CCP4Modules
-    from qtgui import CCP4ProjectManagerGui
     CCP4Preferences.CPreferences.insts.save()
     try:
       CCP4Preferences.CPreferences.insts.EXEPATHLIST.setupExeLookup()
@@ -84,7 +83,6 @@ class CPreferencesWindow(QtWidgets.QDialog):
     except:
       CCP4Modules.QTAPPLICATION().setNamedStyle(CCP4Preferences.CPreferences.insts.WINDOWS_STLYE)
     
-    from qtgui import CCP4StyleSheet,CCP4WebView,CCP4ProjectViewer
     CCP4StyleSheet.setStyleSheet()
     CCP4WebView.setGlobalSettings()
 

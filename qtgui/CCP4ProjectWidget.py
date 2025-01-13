@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 """
      CCP4ProjectWidget.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -17,23 +14,46 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton April 2011 - list database
 """
 
 ##@package CCP4ProjectWidget View a project
-                            
-from PySide2 import QtGui, QtWidgets,QtCore,QtSvg
-from core.CCP4Modules import WEBBROWSER,PROJECTSMANAGER,MIMETYPESHANDLER,QTAPPLICATION,LAUNCHER,PREFERENCES
-from core.CCP4TaskManager import TASKMANAGER
-from core.CCP4ErrorHandling import *
-from dbapi import CCP4DbApi
-from qtgui import CCP4StyleSheet
-from core import CCP4Utils, CCP4File
-import os,sys, time, datetime
+
+import copy
+import datetime
 import functools
+import os
+import shutil
+import sys
+import time
+
+from lxml import etree
+from PySide2 import QtCore, QtGui, QtSvg, QtWidgets
+
+from . import CCP4AnnotationWidgets
+from . import CCP4FileBrowser
+from . import CCP4StyleSheet
+from . import CCP4WebBrowser
+from ..core import CCP4Annotation
+from ..core import CCP4Container
+from ..core import CCP4DataManager
+from ..core import CCP4File
+from ..core import CCP4Modules
+from ..core import CCP4TaskManager
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import *
+from ..core.CCP4Modules import LAUNCHER
+from ..core.CCP4Modules import MIMETYPESHANDLER
+from ..core.CCP4Modules import PREFERENCES
+from ..core.CCP4Modules import PROJECTSMANAGER
+from ..core.CCP4Modules import QTAPPLICATION
+from ..core.CCP4Modules import WEBBROWSER
+from ..core.CCP4TaskManager import TASKMANAGER
+from ..dbapi import CCP4DbApi
+from ..dbapi import CCP4DbUtils
+from ..report import CCP4ReportGenerator
+
 
 _PROJECTMODEL = {}
 _BROWSERMODE = 0
@@ -433,7 +453,6 @@ class CTreeItemFile(CTreeItem):
     return True
 
   def mimeData(self):
-    from lxml import etree
     urlList = []
     mimeType = CCP4DbApi.FILETYPES_CLASS[self.fileType]
     root,err = PROJECTSMANAGER().db().getFileEtree(fileId=self.fileId)
@@ -872,7 +891,6 @@ class CTreeItemJob(CTreeItem):
   
   def __init__(self,parent=None,info={}):
     CTreeItem.__init__(self,parent=parent)
-    #import traceback
     #print 'CTreeItemJob',info.get('jobnumber',None),info.get('taskname',None)
     #traceback.print_stack()
     #print '\n\n'
@@ -938,13 +956,11 @@ class CTreeItemJob(CTreeItem):
       self.name = self.jobNumber +' '+ TASKMANAGER().getShortTitle( self.taskName )
     try:
       PROJECTSMANAGER().db().updateJob(self.jobId,key='jobtitle',value=jobTitle)
-      from dbapi import CCP4DbUtils
       CCP4DbUtils.makeJobBackup(jobId=self.jobId)
     except:
       print('ERROR in editing job name')
       
   def setName(self,jobTitle=None):
-    #import traceback
     #traceback.print_stack(limit=5)
     if jobTitle is not None and len(jobTitle)>0:
       self.name = self.jobNumber +' '+ jobTitle
@@ -1246,7 +1262,6 @@ class CTreeItemJob(CTreeItem):
     return False
 
   def mimeData(self):
-    from lxml import etree
     urlList = []
     mimeType = 'FollowFromJob'
     root = etree.Element('jobId')
@@ -1751,7 +1766,6 @@ class CProjectView(QtWidgets.QTreeView):
   def changeEvent(self,e):
       #FIXME - *THIS* is the cause of my performance woes. I have to not react to every change event, just last one. Hmm ...
       print("changeEvent")
-      import traceback
       traceback.print_stack()
       return QtWidgets.QTreeView.changeEvent(self,e)
 
@@ -2201,7 +2215,6 @@ class CProjectWidget(QtWidgets.QFrame):
     
   @QtCore.Slot('QMouseEvent')
   def showJobListPopup(self,event):
-    from core.CCP4TaskManager import TASKMANAGER
     modelIndex,node,column = self.projectView.nodeFromEvent(event)
     #print 'showJobListPopup',node.getName(),column
     position = QtCore.QPoint(event.globalX(),event.globalY())
@@ -2415,7 +2428,6 @@ class CProjectWidget(QtWidgets.QFrame):
 
   @QtCore.Slot(str,str,str,str)
   def showHistory(self,jobId,fileType,role=None,selection=None):
-    import copy
     #print 'showHistory',jobId,fileType,role,selection
     jobNum = PROJECTSMANAGER().db().getJobInfo(jobId,mode='jobnumber')
     self.historyLeafList = []
@@ -2499,7 +2511,6 @@ class CProjectWidget(QtWidgets.QFrame):
     #print 'handleEvaluationPopup',evaluation,jobId
     try:
       PROJECTSMANAGER().db().updateJob(jobId,key='evaluation',value=evaluation)
-      from dbapi import CCP4DbUtils
       CCP4DbUtils.makeJobBackup(jobId=jobId)
     except:
       print('ERROR in handleEvaluationPopup')
@@ -2530,7 +2541,6 @@ class CProjectWidget(QtWidgets.QFrame):
     elif action == 'Copy parameters':
       # Set 'taskParameters' data on the application clipboard
       # to enable it to be pasted elsewhere
-      from lxml import etree
       root = etree.Element('taskParameters')
       jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId,mode=['taskname','jobnumber','projectname','projectid'])
       for name,value in [[ 'jobId' , jobId],['taskName',jobInfo['taskname']],['jobNumber',jobInfo['jobnumber']],['projectName',jobInfo['projectname']],['projectId',jobInfo['projectid']]]:
@@ -2543,7 +2553,6 @@ class CProjectWidget(QtWidgets.QFrame):
       mimeData.setData('taskParameters_'+jobInfo['taskname'],data)
       QTAPPLICATION().clipboard().setMimeData(mimeData)
     elif action == 'Edit label':
-      #from qtgui import CCP4Widgets
       #d = CCP4Widgets.CEditFileLabel(parent=self,jobId=jobId)
       #d.move(position-QtCore.QPoint(20,20))
       #print 'handleJobListPopup modelIndex',modelIndex.row(),modelIndex.column()
@@ -2570,7 +2579,6 @@ class CProjectWidget(QtWidgets.QFrame):
         WEBBROWSER().openFile(reportFile,toFront=True)
       else:
         try:
-          from report import CCP4ReportGenerator
           jobNumber =  PROJECTSMANAGER().db().getJobInfo(jobId=jobId,mode='jobnumber')
           generator = CCP4ReportGenerator.CReportGenerator(jobId=jobId,jobStatus='Finished',jobNumber=jobNumber)
           reportFile, newPageOrNewData = generator.makeReportFile()
@@ -2584,7 +2592,6 @@ class CProjectWidget(QtWidgets.QFrame):
     elif action == 'Diagnostic':
       #diagFile = PROJECTSMANAGER().makeFileName(jobId,'DIAGNOSTIC')
       jobInfo =  PROJECTSMANAGER().db().getJobInfo(jobId=jobId,mode=['jobnumber','status'])
-      from report import CCP4ReportGenerator
       generator = CCP4ReportGenerator.CReportGenerator(jobId=jobId,jobStatus=jobInfo['status'],jobNumber=jobInfo['jobnumber'])
       reportFile = generator.makeFailedReportFile(redo=False)
       WEBBROWSER().openFile(reportFile,toFront=True)
@@ -2615,7 +2622,6 @@ class CProjectWidget(QtWidgets.QFrame):
             #self.projectView.edit(modelIndex)
             self.projectView.edit(self.projectView.model().mapFromSource(modelIndex))
             #fileLabel = self.projectView.model().fileLabel(modelIndex=modelIndex,maxLength=None)
-            #from qtgui import CCP4Widgets
             #d = CCP4Widgets.CEditFileLabel(parent=self,fileId=fileId)
             #d.move(position-QtCore.QPoint(20,20))
           
@@ -2628,7 +2634,6 @@ class CProjectWidget(QtWidgets.QFrame):
             else:
               title = 'Export all experimental data associated with job '+str(fileInfo['jobnumber'])
             #print 'file_export',fileType,filters,defaultSuffix
-            from qtgui import CCP4FileBrowser
             fileBrowser = CCP4FileBrowser.CFileDialog(parent=self,
                                       title=title,
                                      filters = [filters],
@@ -2647,7 +2652,6 @@ class CProjectWidget(QtWidgets.QFrame):
 
 
   def launchViewer(self,filePath):
-    from core import CCP4Modules
     format = MIMETYPESHANDLER().formatFromFileExt(fileName=filePath)
     viewerList = MIMETYPESHANDLER().getViewers(format)
     #print 'CProjectWidget.launchViewer',filePath,format,viewerList
@@ -2656,11 +2660,9 @@ class CProjectWidget(QtWidgets.QFrame):
     elif isinstance(viewerList[0],str):
       CCP4Modules.LAUNCHER().openInViewer(viewer=viewerList[0],fileName=filePath,projectId=self.projectView.model().sourceModel()._projectId,guiParent=self)
     else:
-      from qtgui import CCP4WebBrowser
       CCP4WebBrowser.OPENFILE(filePath,toFront=True)
 
   def showDatabaseEntry(self,jobId=None,fileId=None):
-    import copy
     win = QtWidgets.QDialog(self)
     win.setWindowTitle('Database entry')
     win.setLayout(QtWidgets.QVBoxLayout())
@@ -2721,7 +2723,6 @@ class CProjectWidget(QtWidgets.QFrame):
           exportFileName = os.path.splitext(exportFileName)[0] +  os.path.splitext(myFileName)[1]
       if fileId is None:
         myFileName = os.path.join(PROJECTSMANAGER().db().jobDirectory(jobId=jobId),'hklout.mtz')
-      import shutil
       try:
         shutil.copyfile(myFileName,exportFileName)
       except:
@@ -2730,12 +2731,9 @@ class CProjectWidget(QtWidgets.QFrame):
       else:
         PROJECTSMANAGER().db().createExportFile(fileId=fileId,exportFilename=exportFileName)
         fileInfo = PROJECTSMANAGER().db().getFileInfo(fileId=fileId,mode=['jobid','projectname'])
-        from dbapi import CCP4DbUtils
         CCP4DbUtils.makeJobBackup(jobId=fileInfo['jobid'],projectName=fileInfo['projectname'])
     elif jobId is not None:
       # Use the mergeMtz plugin to merge all input and output data objects
-      from core import CCP4TaskManager
-      from dbapi import CCP4DbApi
       taskObj = CCP4TaskManager.TASKMANAGER().getPluginScriptClass('mergeMtz')(self)
       #print 'CProjectWidget.exportData taskObj',taskObj
       taskObj.container.outputData.HKLOUT.setFullPath(exportFileName)
@@ -2939,7 +2937,6 @@ class CProjectDirModel(QtWidgets.QFileSystemModel):
     return typesList
 
   def projectRootIndex(self):
-    import os
     return self.index(os.path.join(str(self.rootPath()),'CCP4_JOBS'),0)
 
   def jobNumberToModelIndex(self,jobNumber):
@@ -2961,7 +2958,6 @@ class CProjectDirModel(QtWidgets.QFileSystemModel):
     mimeType = MIMETYPESHANDLER().formatFromFileExt(fileName=path)
     if mimeType is None: return None
       
-    from core import CCP4File
     fileObj = CCP4File.CDataFile(fullPath=path)
     dragText = fileObj.xmlText(pretty_print=False)
     print 'mimeData dragText',mimeType,dragText
@@ -3020,8 +3016,7 @@ class CProjectDirView(QtWidgets.QTreeView):
     fileId,jobId = PROJECTSMANAGER().db().matchFileName(fileName=fileName)
     #print 'CProjectDirView.startDrag fileName',fileName,fileId
     if fileId is None: return
- 
-    from lxml import etree   
+
     mimeType = PROJECTSMANAGER().db().getFileInfo(fileId=fileId,mode='fileclass')
     root,err = PROJECTSMANAGER().db().getFileEtree(fileId=fileId)
     dragText = etree.tostring(root)
@@ -3296,8 +3291,6 @@ class CJobSearchWidget(QtWidgets.QFrame):
   MARGIN = 1
 
   def __init__(self,parent=None,projectName=''):
-    from core import CCP4Annotation
-    from qtgui import CCP4AnnotationWidgets
     QtWidgets.QFrame.__init__(self,parent=parent)
     self.setLayout(QtWidgets.QVBoxLayout())
     self.layout().setMargin(CJobSearchWidget.MARGIN)
@@ -3393,8 +3386,6 @@ class CJobSearchWidget(QtWidgets.QFrame):
     line.addWidget(QtWidgets.QLabel('Enter name or use browser to select imported file',self))
     frame.layout().addLayout(line)
     line = QtWidgets.QHBoxLayout()
-    from core import CCP4File
-    from core import CCP4DataManager
     self.importedFileObj = CCP4File.CDataFile(parent=self)
     self.importedFileWidget = CCP4DataManager.DATAMANAGER().widget(model=self.importedFileObj,parentWidget=self)
     line.addWidget(self.importedFileWidget)
@@ -3712,13 +3703,11 @@ class CJobSearchDialog(QtWidgets.QDialog):
     defFile = TASKMANAGER().lookupDefFile(taskName)
     if defFile is None: defFile = TASKMANAGER().searchDefFile(taskName)
     if defFile is None: return None
-    from core import CCP4Container
     container = CCP4Container.CContainer()
     container.loadContentsFromXml(defFile)
     return container
 
   def loadParamFile(self,fileName):
-    from core import CCP4File
     xmlFile = CCP4File.CI2XmlDataFile(fullPath=fileName)
     body = xmlFile.getBodyEtree()
     return body

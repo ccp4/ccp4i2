@@ -1,11 +1,3 @@
-from __future__ import print_function
-
-import sys
-import functools
-import textwrap
-
-from PySide2 import QtCore, QtGui, QtWidgets
-
 """
 This is a simple implementation of an edit for a sequence data model (name,no of copies, description, sequence).
 
@@ -18,6 +10,16 @@ The view button brings up a text view of the sequence with editing turned off. Y
 There are Save/Don't save button.
 
 """
+
+import functools
+import random
+import string
+import sys
+import textwrap
+
+from PySide2 import QtCore, QtGui, QtWidgets
+import sip
+
 
 class SequenceModel(QtCore.QAbstractTableModel):
 
@@ -567,7 +569,6 @@ class SequenceTableDialog(QtWidgets.QDialog):
         layout.setContentsMargins(0,0,0,0)
 
 if __name__ == "__main__":
-    import sip
     sip.setdestroyonexit(False)
 
     app = QtWidgets.QApplication(sys.argv)
@@ -580,8 +581,6 @@ if __name__ == "__main__":
     win.setModel(model)
 
     def addRandomSequence():
-        import random
-        import string
         name = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(10))
         copies = random.randint(1,20)
         desc = "This sequence is "+''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(10))

@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4ReportExternalManagerGui.py: CCP4 GUI Project
      Copyright (C) 2013 STFC
@@ -17,19 +15,21 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton July 2013 - report jobs run external to ccp4i2
 """
 
-import os, functools
-from PySide2 import QtGui, QtWidgets,QtCore
-from core import CCP4Data,CCP4Container
-from qtgui import CCP4CustomisationGui,CCP4Widgets
-from core import CCP4ImportedJobManager
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import IMPORTEDJOBMANAGER,WEBBROWSER,PROJECTSMANAGER
+import functools
+import os
+
+from PySide2 import QtCore, QtWidgets
+
+from ..core import CCP4DataManager
+from ..core import CCP4ImportedJobManager
+from ..core.CCP4ErrorHandling import *
+from ..core.CCP4Modules import IMPORTEDJOBMANAGER, WEBBROWSER
+from ..qtgui import CCP4CustomisationGui, CCP4Widgets
+
 
 def openGui():
   if CImportedJobManagerGui.insts is None:
@@ -96,7 +96,6 @@ class CImportedJobDataView(CCP4Widgets.CComplexLineWidget):
 
   @QtCore.Slot()
   def handleDataTypeChanged(self):
-    from core import CCP4DataManager
     dataType = self.model.dataType.__str__()
     cls = CCP4DataManager.DATAMANAGER().getClass(dataType)
     if cls is None: return

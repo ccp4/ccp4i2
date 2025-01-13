@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      qtgui/CCP4ReportWidgets.py: CCP4 Gui Project
      Copyright (C) 2010 University of York
@@ -17,12 +15,25 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
-'''
+
      Liz Potterton Mar 2010 - Prototype viewer for data expected to be in reports
-'''
-from PySide2 import QtGui, QtWidgets,QtCore
-from core.CCP4ErrorHandling import *
+"""
+
+import functools
+import os
+import shutil
+import time
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from . import CCP4FileBrowser
+from . import CCP4GuiUtils
+from . import CCP4ProjectViewer
+from ..core import CCP4Modules
+from ..core import CCP4TaskManager
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import *
+
 
 ##@package CCP4ReportWidgets (QtGui) QtWebKit plugins for CCP4 Reports
 ICONBUTTONSIZE=24
@@ -65,8 +76,6 @@ class CLauncherButton(QtWidgets.QPushButton):
     self.setText(kw.get('label','launch'))
     iconName = kw.get('icon')
     if iconName is not None:
-      import os
-      from core import CCP4Utils
       icon_path = os.path.join(CCP4Utils.getCCP4I2Dir(),'qticons',iconName)
       self.setIcon(QtGui.QIcon(icon_path))
     toolTip = kw.get('tooltip')
@@ -78,14 +87,12 @@ class CLauncherButton(QtWidgets.QPushButton):
   def handleClick(self,checked):
     #print 'CLauncherButton.handleClick',self.argList
     # Beware the unintended double click
-    import time,os
     if self.lastClickTime is None:
       self.lastClickTime = time.time()
     else:
       dif = time.time() - self.lastClickTime
       self.lastClickTime = time.time()
       if dif < 1.0: return
-    from core import CCP4Modules
     if self.argList.get('exe') == 'CCP4mg':
       if self.argList.get('sceneFile',None) is not None:
         sceneFile = os.path.join(CCP4Modules.PROJECTSMANAGER().jobDirectory(self.argList.get('jobId')),os.path.split(self.argList['sceneFile'])[-1])
@@ -172,8 +179,6 @@ class CDownloadButton(QtWidgets.QPushButton):
 
   def handleClick(self,checked):
     # Beware the unintended double click
-    import time,os
-    from core import CCP4Modules
     if self.lastClickTime is None:
       self.lastClickTime = time.time()
     else:
@@ -199,7 +204,6 @@ class CLaunchTaskButton(QtWidgets.QPushButton):
   def handleClick(self):
     #print 'CTaskButton.handleClick',self.parent(),self.argList,self.lastClickTime
     # Beware the unintended double click
-    import time
     if self.lastClickTime is None:
       self.lastClickTime = time.time()
     else:
@@ -210,7 +214,6 @@ class CLaunchTaskButton(QtWidgets.QPushButton):
     jobId = jobInfo.get('jobId',None)
     if jobId is None: return
     #print 'CTaskButton.handleClick jobId',jobId
-    from qtgui import CCP4ProjectViewer
     viewer = CCP4ProjectViewer.PROJECTVIEWER(projectId=jobInfo['projectId'],open=True)
     if viewer is not None:
       viewer.openTask(taskName=self.taskName,followJobId=jobId)
@@ -291,11 +294,9 @@ class CReferenceIcon(CDisplayObjectIcon):
     CDisplayObjectIcon.__init__(self,parent,dataEtree=dataEtree,**kw)
     #print 'CReferenceIcon',kw
     self.taskName = kw.get('taskName',None)
-    from qtgui import CCP4GuiUtils
     icon =CCP4GuiUtils.createIcon(name='book')
     self.setIcon(icon)
     #action = self.iconMenu.addAction('View')
-    import functools
     for sele in ['all','preferred']:
       subMenu = QtWidgets.QMenu('Download '+sele+' references',self)
       subMenu.triggered.connect(functools.partial(self.handleDownloadMenu,sele))
@@ -309,15 +310,11 @@ class CReferenceIcon(CDisplayObjectIcon):
   def handleMenu(self,action):
     label = str(action.text())
     if label == 'Help':
-      import os
-      from core import CCP4Utils,CCP4Modules
       CCP4Modules.WEBBROWSER().openFile(os.path.join(CCP4Utils.getCCP4I2Dir(),'docs','general','references.html'))
 
   @QtCore.Slot(str,'QAction')
   def handleDownloadMenu(self,selection,action):
     if self.fileBrowser is not None: return
-    import functools
-    from core import CCP4TaskManager
     label = str(action.text())
     #print 'CReferenceIcon.handleMenu',label
     format = None
@@ -329,7 +326,6 @@ class CReferenceIcon(CDisplayObjectIcon):
       fileNameList = CCP4TaskManager.TASKMANAGER().searchReferenceFile(self.taskName,cformat=format,drillDown=True)
       if len(fileNameList)==0: return
       title = CCP4TaskManager.TASKMANAGER().getTitle(self.taskName)
-      from qtgui import CCP4FileBrowser
       fileBrowser = CCP4FileBrowser.CFileDialog(parent=self,
            title='Save '+selection+' bibliographic references for '+title,
            filters= ['Reference file (*.'+format+'.txt)'],
@@ -342,13 +338,11 @@ class CReferenceIcon(CDisplayObjectIcon):
   @QtCore.Slot(str,str,str,str)
   def downloadReferences(self,selection,format,sourceFile,targetFile):
     if selection == 'all':
-      import shutil  
       try:
         shutil.copyfile(sourceFile,targetFile)
       except:
         QtWidgets.QMessageBox.warning(self,'Downloading references file','Failed to copy reference file to '+str(targetFile))
     elif selection == 'preferred':
-      from core import CCP4Utils
       text = CCP4Utils.readFile(sourceFile)
       if format == 'medline':
         firstRef = '\nPMID- ' + text.split('\nPMID- ')[1]

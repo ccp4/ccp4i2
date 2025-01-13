@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 """
      CCP4MessageBox.py: CCP4 GUI Project
      Copyright (C) 2012 STFC
@@ -18,15 +15,25 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Feb 2012 -wrap QMessageBox
 """
 
 ##@package CCP4ProjectWidget View a project
-                            
-from PySide2 import QtGui, QtWidgets,QtCore
+
+import os
+import shutil
+import sys
+import traceback
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from ..core import CCP4File
+from ..core import CCP4Modules
+from ..core import CCP4Utils
+from ..dbapi import CCP4DbApi
+from ..dbapi import CCP4DbUtils
+
 
 class CMessageBox(QtWidgets.QDialog):
 
@@ -43,7 +50,6 @@ class CMessageBox(QtWidgets.QDialog):
     if openJob is not None and openJob.jobId is not None:
       self.openJob = openJob
     elif jobId is not None:
-      from dbapi import CCP4DbUtils
       self.openJob = CCP4DbUtils.COpenJob(jobId=jobId)
     else:
       self.openJob = None
@@ -65,7 +71,6 @@ class CMessageBox(QtWidgets.QDialog):
     self.layout().addWidget(buttons)
 
     if exception is not None:
-      import sys,traceback
       try:
         stack =  traceback.format_exc()
       except:
@@ -113,9 +118,6 @@ class CMessageBox(QtWidgets.QDialog):
     
   @QtCore.Slot()
   def send(self):
-    import os,sys,shutil
-    from core import CCP4Modules
-    from dbapi import CCP4DbApi
     selectedAdr = None
     selectedDev = self.devWidget.currentText().__str__()
     for dev,adr in  CMessageBox.DEVELOPERS:
@@ -148,7 +150,6 @@ class CMessageBox(QtWidgets.QDialog):
     else:
       zipFile = None
     # Get version / os info
-    from core import CCP4File,CCP4Utils
     version = CCP4File.CI2XmlHeader()
     version.loadFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'core','version.params.xml'))
     print('version',version)

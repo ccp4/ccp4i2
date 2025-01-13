@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      qtgui/CCP4XtalWidgets.py: CCP4 Gui Project
      Copyright (C) 2010 University of York
@@ -20,15 +18,21 @@ from __future__ import print_function
 
 ##@package CCP4XtalWidgets (QtGui) Collection of widgets for crystallographic data types
 
-import os
 import functools
+import os
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from core import CCP4XtalData
-from qtgui import  CCP4Widgets
-from core.CCP4Utils import safeFloat
-from core.CCP4ErrorHandling import *
-from core import CCP4Modules
+from lxml import etree
+from PySide2 import QtCore, QtWidgets
+
+from . import CCP4FileBrowser
+from . import CCP4TaskWidget
+from . import CCP4Widgets
+from ..core import CCP4DataManager
+from ..core import CCP4ModelData
+from ..core import CCP4Modules
+from ..core import CCP4Utils
+from ..core import CCP4XtalData
+from ..core.CCP4ErrorHandling import *
 
 
 class CSpaceGroupsAbstractItemModel(QtCore.QAbstractItemModel):
@@ -222,7 +226,6 @@ class CSpaceGroupCellView(CCP4Widgets.CComplexLineWidget):
     def handleLoadButton(self):
         #print 'CSpaceGroupCellView.handleLoadButton'
         filterText = [ 'Coordinate file (*.pdb *.cif *.ent)' ,'Experimental data file (*.mtz *.cif *.ent)']
-        from qtgui import CCP4FileBrowser
         self.fileBrowser = CCP4FileBrowser.CFileDialog(self, title='Select experimental data file or coordinate file',
                                                        filters = filterText, defaultFileName='')
         self.fileBrowser.setStyleSheet("")
@@ -235,7 +238,6 @@ class CSpaceGroupCellView(CCP4Widgets.CComplexLineWidget):
         ext = os.path.splitext(fileName)[1]
         self.model.blockSignals(True)
         if ext == '.pdb':
-            from core import CCP4ModelData
             obj = CCP4ModelData.CPdbDataFile(fileName)
             #print 'CSpaceGroupCellView.loadFromFile',obj.fileContent.mmdbManager.GetCell(),obj.fileContent.mmdbManager.GetSpaceGroup()
             self.model.unSet()
@@ -267,7 +269,6 @@ class CSpaceGroupCellView(CCP4Widgets.CComplexLineWidget):
                 'FreeRDataFile', 'MapCoeffsDataFile', 'PdbDataFile']
 
     def acceptDropData(self, textData):
-        from lxml import etree
         tree = etree.fromstring(textData)
         try:
             path = os.path.join(tree.xpath('//relPath')[0].text.__str__(), tree.xpath('//baseName')[0].text.__str__())
@@ -736,7 +737,6 @@ class CAsuComponentView(CCP4Widgets.CComplexLineWidget):
                 self.widgets[item].connectUpdateViewFromModel(True)
 
     def acceptDropData(self,textData):
-        from lxml import etree
         tree = etree.fromstring(textData)
         #print 'CAsuComponentView.acceptDropData',textData,tree.tag
         self.widgets['seqFile'].connectUpdateViewFromModel(False)
@@ -1022,7 +1022,6 @@ class CImportUnmergedView(CCP4Widgets.CComplexLineWidget):
         if self.model.file.isSet():
             tree = self.model.file.getEtree()
             tree.tag = 'UnmergedDataFile'
-            from lxml import etree
             text = etree.tostring(tree,pretty_print=False)
             return text
         else:
@@ -1032,7 +1031,6 @@ class CImportUnmergedView(CCP4Widgets.CComplexLineWidget):
         return 'UnmergedDataFile'
 
     def acceptDropData(self,textData):
-        from lxml import etree
         #print 'CImportUnmergedView.acceptDropData',textData
         tree = etree.fromstring(textData)
         self.connectUpdateViewFromModel(False)
@@ -1330,7 +1328,6 @@ class CMergeMiniMtzView(CCP4Widgets.CComplexLineWidget):
     @QtCore.Slot('QMimeData')
     def acceptDropData(self,textData):
         #print 'CMergeMiniMtzView.acceptDropData',textData
-        from lxml import etree
         tree = etree.fromstring(textData)
         tree.tag = self.dragType()
         #print 'CMergeMiniMtzView.acceptDropData',textData,tree.tag
@@ -1514,7 +1511,6 @@ class CReindexOperatorView(CCP4Widgets.CComplexLineWidget):
                 self.setModel(model)
 
     def help(self):
-        from core import CCP4Utils
         page = os.path.join(CCP4Utils.getCCP4Dir(),'html','reindexing.html')
         if not os.path.exists(page):
             page = os.path.join(CCP4Utils.getCCP4Dir(),'docs','reindexing.html')
@@ -1637,8 +1633,6 @@ class CSelectColumnsWidget(QtWidgets.QDialog):
     ERROR_CODES = {300 : {'description' : 'There is no data of required type in MTZ file'}}
 
     def __init__(self,parent=None,model=None,applyNow=False,filename=None):
-        from qtgui import CCP4TaskWidget
-        from core import CCP4DataManager
         QtWidgets.QDialog.__init__(self,parent)
         self.model = model
         baseName = str(self.model.baseName)

@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4JobControlGui.py: CCP4 GUI Project
      Copyright (C) 2016STFC
@@ -16,27 +14,27 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton april 2016 - Gui for remote running
 """
 
-import os
-import glob
-import time
+from collections.abc import Callable
 import functools
-import sys
-if sys.version_info >= (3,7):
-    from collections.abc import Callable
-else:
-    from collections import Callable
-from PySide2 import QtGui, QtWidgets,QtCore
-from core.CCP4ErrorHandling import *
-from core import CCP4Modules
-from core import CCP4Annotation
-from qtgui import CCP4Widgets
-from core import CCP4JobServer
+import os
+import time
+
+from PySide2 import QtCore, QtWidgets
+import UtilityThread
+
+from . import CCP4Widgets
+from ..core import CCP4Annotation
+from ..core import CCP4File
+from ..core import CCP4JobServer
+from ..core import CCP4Modules
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import *
+from ..dbapi import CCP4DbApi
+
 
 class CServerParamsDialog(QtWidgets.QDialog):
     insts = None
@@ -211,7 +209,6 @@ class CServerParamsDialog(QtWidgets.QDialog):
           if param == 'machine':
             self.widgets[param] = QtWidgets.QComboBox(self)
           elif param == 'queueOptionsFile':
-            from core import CCP4File
             self.queueOptionsFile = CCP4File.CDataFile(parent=self)
             self.widgets[param] = CCP4Widgets.CDataFileView(self,model=self.queueOptionsFile)
           else:
@@ -702,7 +699,6 @@ class CServerSetupWindow(QtWidgets.QDialog):
 
     #FIXME - This signal does not exist?
     #CCP4Modules.JOBCONTROLLER().testMessageSignal.connect(self.updateTestReport)
-    import UtilityThread
     if not hasattr(self,'testThreads'): self.testThreads = {}
     self.testThreads[indx] = UtilityThread.UtilityThread(functools.partial(self.runTests,indx))
     self.testThreads[indx].finished.connect(functools.partial(self.cancelTests,indx))
@@ -771,7 +767,6 @@ class CServerSetupWindow(QtWidgets.QDialog):
       self.container.save(source)
       #QtWidgets.QDialog.close(self)
       self.setAltSourceButton()
-      from core import CCP4Modules
       CCP4Modules.JOBCONTROLLER().resetServersEnabled()
 
   @QtCore.Slot()
@@ -888,12 +883,10 @@ class CListProcesses(QtWidgets.QDialog):
     #self.tableWidget.setRowCount(0)
     self.treeWidget.setHeaderLabels(self.COLUMNHEADERS)
     # load local info
-    import time
     now = time.time()
     procDict = CCP4Modules.JOBCONTROLLER().listLocalProcesses(containsList=['ccp4'])
     #print 'CListProcesses.load',procDict
     runningJobs = CCP4Modules.PROJECTSMANAGER().db().getRunningJobs()
-    from core import CCP4Utils
     self.drawTree(CCP4Utils.getHostName(),now,procDict,runningJobs)
     
     CCP4Modules.JOBCONTROLLER().listRemoteProcesses()
@@ -980,7 +973,6 @@ class CListProcesses(QtWidgets.QDialog):
     
   @QtCore.Slot()
   def killJob(self):
-    from dbapi import CCP4DbApi
     jobId = self.treeWidget.selectedItems()[0].data(0,QtCore.Qt.UserRole).__str__()
     print('CListProcesses.killJob',jobId)
     err = CCP4Modules.JOBCONTROLLER().killJobProcess(jobId=jobId)
@@ -990,7 +982,6 @@ class CListProcesses(QtWidgets.QDialog):
 
   @QtCore.Slot(bool)
   def markFinished(self,failed=True):
-    from dbapi import CCP4DbApi
     jobId = self.treeWidget.selectedItems()[0].data(0,QtCore.Qt.UserRole).__str__()
     if failed:
       CCP4Modules.PROJECTSMANAGER().db().updateJobStatus(jobId,CCP4DbApi.JOB_STATUS_FAILED)

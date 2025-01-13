@@ -2,9 +2,10 @@ import os
 import random
 import glob
 
-from PySide2 import QtGui, QtWidgets, QtCore, QtWebEngine, QtWebEngineWidgets
+from PySide2 import QtCore, QtGui, QtWebEngineWidgets, QtWidgets
 
-from core import CCP4Utils, CCP4Modules
+from ..core import CCP4Utils, CCP4Modules
+
 
 class CTipsOfTheDay(QtWidgets.QDialog):
 

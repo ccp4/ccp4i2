@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4WebView.py: CCP4 GUI Project
      Copyright (C) 2009-2010 University of York
@@ -17,21 +15,32 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
-"""
+
      Liz Potterton Jan 2010 - Copied from CCP4mg
 """
+
 ##@package CCP4WebView (QtWebKit) Web browser 'plugin' to view web pages
+
 import os
 import re
 import traceback
 
-from PySide2 import QtGui, QtWidgets, QtCore, QtWebEngine, QtWebEngineWidgets
-from core.CCP4ErrorHandling import *
-from core import CCP4Modules, CCP4Config
+from lxml import etree
+from PySide2 import QtCore, QtGui, QtWebEngineWidgets, QtWidgets
+import shiboken2
+
+from ..core import CCP4Config
+from ..core import CCP4Modules
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import *
+from ..dbapi import CCP4DbUtils
+from ..pimple import MGQTmatplotlib
+from ..qtcore import CCP4CustomMimeTypes
+from ..qtcore import CCP4Report
+from ..report import CCP4ReportGenerator
+
 
 def isAlive(qobj):
-    import shiboken2
     return shiboken2.isValid(qobj)
 
 def setGlobalSettings():
@@ -176,7 +185,6 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
         #Create Qt web plugin factory
         """
         try:
-            from qtgui import CCP4WebPluginFactory
             factory = CCP4WebPluginFactory.CWebPluginFactory(self)
             self.page().setPluginFactory(factory)
         except CException as e:
@@ -268,7 +276,6 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
             webElement = hitTestResult.element()
         if len(alt_words) >= 2 and alt_words[0] == 'x-ccp4-widget/CDataFileView':
             if not self.customContextMenu:
-                from qtgui import CCP4GuiUtils
                 self.customContextMenu = QtWidgets.QMenu(self)
                 CCP4GuiUtils.populateMenu(self, self.customContextMenu,['copy', 'view', 'help'], default_icon='')
             self.customContextMenu.popup(event.globalPos())
@@ -329,16 +336,13 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
 
     def getFileExt(self):
         return None
-        from qtcore import CCP4CustomMimeTypes
         return CCP4CustomMimeTypes.MimeTypesHandler().getMimeTypeInfo(name='text/html', info='fileExtensions')
 
     def getLabel(self):
         return None
-        from qtcore import CCP4CustomMimeTypes
         return CCP4CustomMimeTypes.MimeTypesHandler().getMimeTypeInfo(name='text/html', info='description')
 
     def Save(self,fileName):
-        from core import CCP4Utils
         CCP4Utils.saveFile(fileName, str(self.mgpage.currentFrame().toHtml()))
 
     def title(self):
@@ -391,7 +395,6 @@ for (var i=0; i<imgElements.length;i++) {
         print('CWebView loading text from', self.fileName)
 
     def editHTTPPort(self, fileName, port=None):
-        from core import CCP4Utils
         if len(fileName) < 0:
             return
         try:
@@ -429,7 +432,6 @@ for (var i=0; i<imgElements.length;i++) {
             ext=ext[1:]
         if html_exts.count(ext) and os.path.exists(self.fileName):
             self.lastModTime = os.path.getmtime(self.fileName)
-            from qtcore import CCP4Report
             self.report = CCP4Report.CReport()
             try:
                 self.report.loadFromXmlFile(self.fileName)
@@ -466,7 +468,6 @@ for (var i=0; i<imgElements.length;i++) {
         #print 'setLoggraphFont',CCP4Modules.PREFERENCES().REPORT_FONT_SIZE-2, font
         fontSel = {'family' : 'Lucida Sans Unicode', 'size' : int(CCP4Modules.PREFERENCES().REPORT_FONT_SIZE - 2)}
         fontSel.update(font)
-        from pimple import MGQTmatplotlib
         loggraphList = self.findChildren(MGQTmatplotlib.LogGraph)
         for loggraph in loggraphList:
             loggraph. applyPreferences(titleFontSel=fontSel, axesFontSel=fontSel, axesLabelFontSel=fontSel, legendFontSel=fontSel)
@@ -488,8 +489,6 @@ class CSubJobReport(QtCore.QObject):
             print('ERROR in load sub-job report - CSubJobReport.load did not receive jobId')
             return
         jobId = int(idText[5:])
-        from dbapi import CCP4DbUtils
-        from report import CCP4ReportGenerator
         openJob = CCP4DbUtils.COpenJob(jobId=jobId)
         generator = CCP4ReportGenerator.CReportGenerator(jobId=openJob.jobId,jobStatus=openJob.status)
         if CCP4Config.DEVELOPER():
@@ -506,8 +505,6 @@ class CSubJobReport(QtCore.QObject):
             err = self.merge(reportFile,idText)
 
     def merge(self,reportFile,idText):
-        from lxml import etree
-        from core import CCP4Utils
         '''
         parentTree = etree.parse(parentFile)
         print 'mergeIntoParent jobId',self.jobId

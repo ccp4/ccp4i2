@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      qtgui/CCP4ModelWidgets.py: CCP4 Gui Project
      Copyright (C) 2010 University of York
@@ -21,17 +19,31 @@ from __future__ import print_function
 
 ##@package CCP4ModelWidgets (QtGui) Collection of widgets for model data types
 
-import os
-import sys
-import re
 import functools
-from PySide2 import QtGui, QtWidgets,QtCore
-from core import CCP4ModelData
-from core import CCP4Modules,CCP4Utils
-from core.CCP4ErrorHandling import *
-from qtgui import CCP4Widgets
-from qtgui import CCP4SequenceList
-from qtgui import CCP4RefmacMultiAtomSelection
+import os
+import re
+
+from Bio import SeqIO
+from Bio.Seq import Seq
+from Bio.SeqRecord import SeqRecord
+from lxml import etree
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from . import CCP4FileBrowser
+from . import CCP4ProjectViewer
+from . import CCP4RefmacMultiAtomSelection
+from . import CCP4SequenceList
+from . import CCP4TextViewer
+from . import CCP4Widgets
+from . import CCP4XtalWidgets
+from ..core import CCP4ModelData
+from ..core import CCP4Modules
+from ..core import CCP4Utils
+from ..core import CCP4XtalData
+from ..core.CCP4ErrorHandling import *
+from ..dbapi import CCP4DbUtils
+from .CCP4Widgets import CViewWidget
+
 
 class CResidueRangeView(CCP4Widgets.CComplexLineWidget):
 
@@ -418,7 +430,7 @@ class CSeqDataFileView(CCP4Widgets.CDataFileView):
       self.updateViewFromModel()
       return
     else:
-      #print 'CSeqDataFileView.handleIdChooser',record; import sys; sys.stdout.flush()
+      #print 'CSeqDataFileView.handleIdChooser',record; sys.stdout.flush()
       if len(recordList) == 1:
           self.model.fileContent.loadExternalFile(self.model.__str__(),self.model.__dict__['format'],record=recordList[0])
           self.doImportFile()
@@ -473,7 +485,6 @@ class CDictDataFileView(CCP4Widgets.CDataFileView):
     
   @QtCore.Slot()
   def handleMerge(self):
-    from qtgui import CCP4FileBrowser
     self.mergeFileBrowser = CCP4FileBrowser.CFileDialog(parent=self,title='Select dictionary file to merge into project dictionary',
           defaultSuffix=CCP4Modules.MIMETYPESHANDLER().getMimeTypeInfo(name='application/refmac-dictionary',info='fileExtensions'),
                                  fileMode=QtWidgets.QFileDialog.ExistingFiles,saveButtonText='Merge these files')
@@ -621,7 +632,6 @@ class CPdbEnsembleItemView(CCP4Widgets.CComplexLineWidget):
               print("disconnect fail")
   
     if model is None or isinstance(model,self.MODEL_CLASS):
-      from qtgui.CCP4Widgets import CViewWidget
       CViewWidget.setModel(self,model)
       
       if model is not None:
@@ -1246,7 +1256,6 @@ class CAtomSelectionView(CCP4Widgets.CComplexLineWidget):
 
   def updateViewFromModel(self):
     #print 'CAtomSelectionView.updateViewFromModel'
-    #import traceback
     #traceback.print_stack(limit=10)
     self.widgets['text'].blockSignals(True)
     self.widgets['text'].setText(self.model.__str__())
@@ -1275,7 +1284,6 @@ class CAtomSelectionView(CCP4Widgets.CComplexLineWidget):
   @QtCore.Slot(str)
   def applySelection(self,text=None):
     #print 'CSelectionLine.applySelection',text
-    #import traceback
     #traceback.print_stack(limit=5)
     if text is None: text = self.widgets['text'].text()
     if isinstance(self.model.parent(),CCP4ModelData.CPdbDataFile):
@@ -1353,7 +1361,6 @@ class CDictDataView(CCP4Widgets.CViewWidget):
       #self.dictDataFile.set(self.dictDataFile.defaultProjectDict(projectId=projectId))
       self.dictDataFile.loadFile()
       self.model = self.dictDataFile.fileContent
-      from qtgui import CCP4ProjectViewer
       CCP4ProjectViewer.FILEWATCHER().addJobPath(os.path.split( os.path.split(str(self.dictDataFile))[0])[1],self.dictDataFile.__str__())
       CCP4ProjectViewer.FILEWATCHER().fileChanged.connect(self.handleFileChanged)
     else:
@@ -1417,9 +1424,7 @@ class CDictDataView(CCP4Widgets.CViewWidget):
     if idd is not None:
       self.showWidget.findText(subString='data_comp_'+idd)
 
-
   def handleMerge(self):
-    from qtgui import CCP4FileBrowser
     self.mergeFileBrowser = CCP4FileBrowser.CFileDialog(parent=self,title='Select geometry file to merge into project geometry file',
           defaultSuffix=CCP4Modules.MIMETYPESHANDLER().getMimeTypeInfo(name='application/refmac-dictionary',info='fileExtensions'),
           filters = ['Geometry file for refinement(*.cif)'], fileMode=QtWidgets.QFileDialog.ExistingFiles,saveButtonText='Merge these files')
@@ -2158,7 +2163,6 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
         if textData.count('application/CCP4-seq'):
           self.handleBrowserOpenFile(textData.split(' ')[0])
         else:
-          from lxml import etree
           tree = etree.fromstring(textData)
           if tree.tag == 'SeqDataFile':
             fileName = os.path.join(tree.xpath('./relPath')[0].text,tree.xpath('./baseName')[0].text)
@@ -2190,8 +2194,6 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
             self.importDialog.show()
 
             #Need a CMtzDataFileView for Matthews calc...
-            from core import CCP4XtalData
-            from qtgui import CCP4XtalWidgets
             scl = CCP4Widgets.CLabel(self)
             scl.setText("<b>Solvent content analysis</b>")
             self.hklFile = CCP4XtalData.CMtzDataFile(parent=self.importAsuContentView.model)
@@ -2269,7 +2271,6 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
         #print 'CAsuDataFileView.doImport jobCombo',self.jobCombo.count()
         if self.importAsuContent.validity(self.importAsuContent.get()).maxSeverity() <= SEVERITY_WARNING:
             self.importDialog.hide()
-            from dbapi import CCP4DbUtils
             openJob = CCP4DbUtils.COpenJob(projectId=self.parentTaskWidget().projectId())
             openJob.createJob(taskName='ProvideAsuContents')
             print(openJob.container)
@@ -2336,7 +2337,6 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
     def openViewer(self, mode):
         if not self.model.exists():
             return
-        from qtgui import CCP4TextViewer
         text = ''
         for seqObj in self.model.fileContent.seqList:
             text += str(seqObj.nCopies) + ' copies of ' + str(seqObj.name) + '\n'
@@ -2464,20 +2464,11 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
         CCP4Modules.WEBBROWSER().loadWebPage(helpFileName='model_data')
 
     def exportSeq(self):
-        from qtgui import CCP4FileBrowser
         filters = ["FASTA format (*.fasta *.fa *.ffn *.ffa *.fna *.frn)","EMBL format (*.embl)"]
         self.exportBrowser = CCP4FileBrowser.CFileDialog(self, title='Save selected sequences to file',
                                                          filters=filters, fileMode=QtWidgets.QFileDialog.AnyFile)
         self.exportBrowser.selectFile.connect(self.doExportSeq)
         self.exportBrowser.show()
-
-    def getBioPyVersion(self):
-        from Bio import __version__ as bioversion
-        try:
-            version=float(bioversion)
-            return version
-        except:
-            return None
 
     @QtCore.Slot(str)
     def doExportSeq(self, fileName):
@@ -2495,26 +2486,9 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
             else:
                 theFilter = "fasta"
                 fileName += ".fasta"
-        from Bio import SeqIO
-        from Bio.Seq import Seq
-        from Bio.SeqRecord import SeqRecord
-        bioversion=getBioPyVersion()
-        if bioversion is not None:
-            if bioversion < 1.79:
-                from Bio.Alphabet import generic_protein
-                from Bio.Alphabet import generic_nucleotide
         seqs = []
         for seqObj in self.model.fileContent.seqList:
-            if bioversion is not None:
-                if bioversion < 1.79:
-                    seqs.append(SeqRecord(Seq(str(seqObj.sequence), generic_protein), name=str(seqObj.description), 
-                                  id=str(seqObj.name), description=str(seqObj.description)))
-                else:
-                    seqs.append(SeqRecord(Seq(str(seqObj.sequence), id="prot", annotations={"molecule_type": "protein"}), name=str(seqObj.description), 
-                                  id=str(seqObj.name), description=str(seqObj.description)))
-            else:
-                seqs.append(SeqRecord(Seq(str(seqObj.sequence), id="prot", annotations={"molecule_type": "protein"}), name=str(seqObj.description), 
-                                  id=str(seqObj.name), description=str(seqObj.description)))
+              seqs.append(SeqRecord(Seq(str(seqObj.sequence), id="prot", annotations={"molecule_type": "protein"}), name=str(seqObj.description), 
+                                id=str(seqObj.name), description=str(seqObj.description)))
         with open(fileName,'w+') as outputFileHandle:
             SeqIO.write(seqs,outputFileHandle, theFilter)
-    

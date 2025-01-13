@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 """
      CCP4ProjectWidget.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -18,16 +15,21 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Feb 2010 - Copied from earlier review.py used for Developers meeting demo
 """
 
 ##@package CCP4ProjectWidget (QtGui) The demo project view widget
-                            
-from PySide2 import QtGui, QtWidgets,QtCore
-from core.CCP4Modules import WEBBROWSER
+
+import functools
+import os
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from ..core.CCP4Modules import QTAPPLICATION
+from ..core.CCP4TaskManager import TASKMANAGER
+from ..core.CCP4Utils import getCCP4I2Dir
+
 
 FONT_SIZE = 14
 
@@ -189,7 +191,6 @@ class CProjectWidgetDemo(QtWidgets.QFrame):
 #------------------------------------------------------------------------------------------------------
     if id != 104: return
     self.loadDummy(1)
-    import functools
     QtCore.QTimer.singleShot(1000, functools.partial(self.loadDummy,2))
     QtCore.QTimer.singleShot(3000, functools.partial(self.loadDummy,3))
     QtCore.QTimer.singleShot(8000, functools.partial(self.loadDummy,4))
@@ -233,10 +234,7 @@ class CProjectWidgetDemo(QtWidgets.QFrame):
     #print 'CProjectReview.handleShow',idx
     if idx == 104:
       #self.openCCP4i('XVNTGE')
-      from core.CCP4Utils import getCCP4I2Dir
-      import os
       filename=os.path.join(getCCP4I2Dir(),'test','data','test_job_104.data.xml')
-      from core.CCP4TaskManager import TASKMANAGER
       TASKMANAGER().openDataFile(fileName=filename,editableData=False)
     elif idx == 401:
       self.openMG('/Users/lizp/I2/demo/dUTPase.pdb')
@@ -460,7 +458,6 @@ class JobDelegate(QtWidgets.QItemDelegate):
   def createEditor(self,parent, option, index):
 #------------------------------------------------------------------------------------------------------
     #print 'JobDelegate.createEditor',parent, option, index,index.column()
-    import functools
     if index.column() == COLUMN_ORDER.index('priority'):
       spinbox = QtWidgets.QDoubleSpinBox(parent)
       spinbox.setRange(0.0,1.0)
@@ -503,7 +500,6 @@ class JobDelegate(QtWidgets.QItemDelegate):
 
 
 if __name__ == "__main__":
-    from core.CCP4Modules import QTAPPLICATION
     app = QTAPPLICATION()
     window = QtWidgets.QDialog()
     window.setWindowTitle('CCP4 Project: Coseners')

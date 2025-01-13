@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      qtgui/CProcessManagerWidget.py: CCP4 GUI Project
      Copyright (C) 2001-2008 University of York, CCLRC
@@ -18,16 +16,17 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
     May 2010 Liz Potterton - copied from graphical part of ccp4mg/qtgui/JobControl.py
 """
 ##@package CCP4ProcessManagerWidget (QtGui) Placeholder for manager of running processes
 
-from PySide2 import QtCore,QtGui, QtWidgets
-from core.CCP4Modules import *
-from core import CCP4ProcessManager
+import os
+
+from PySide2 import QtCore, QtWidgets
+
+from ..core.CCP4Modules import *
+
 
 class CProcessManagerWidget(QtWidgets.QWidget):
 
@@ -53,7 +52,6 @@ class CProcessManagerWidget(QtWidgets.QWidget):
 #--------------------------------------------------------------------
   def openReview(self):
 #--------------------------------------------------------------------
-    import MGSimpleDialog
     if not self.reviewWindow:
       self.reviewWindow = jobReviewGui(MAINWINDOW())
       self.reviewWindow.showSignal.connect(self.showStatus)
@@ -161,7 +159,6 @@ class jobReviewGui(QtWidgets.QDialog):
     #self.selectJob.setDefaultFont(QtGui.QFont('Courier',12))
     font = self.selectJob.viewOptions().font
     font.setFamily('Courier')
-    import guiUtils
     self.selectJob.currentRowChanged.connect(self.showSignal.emit)
     frame_layout.addWidget(self.selectJob)
     self.select_frame.setLayout(frame_layout)
@@ -200,7 +197,6 @@ class jobReviewGui(QtWidgets.QDialog):
     cancel_button = dialog_buttons.addButton('Close',QtWidgets.QDialogButtonBox.RejectRole)
     #self.showButton = dialog_buttons.addButton('Show job details',QtWidgets.QDialogButtonBox.ApplyRole)
     cancel_button.clicked.connect(self.close)
-    #import guiUtils
     layout.addWidget(dialog_buttons)
 
     
@@ -231,7 +227,6 @@ class jobReviewGui(QtWidgets.QDialog):
     self.error_frame.setTitle('Output from job number '+str(root)+' '+name)
     self.error.setText(error)
     log_text = ''
-    import os
     if logfile:
       self.log_frame.setTitle('Log file: '+logfile)
       if not os.path.exists(logfile):
