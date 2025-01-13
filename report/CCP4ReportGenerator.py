@@ -1,20 +1,25 @@
-from __future__ import print_function
-
-
-#==============================================================================================
-
-import os
-import sys
 import functools
-
-#from lxml import etree
+import glob
+import os
+import re
 import xml.etree.ElementTree as etree
 
 from PySide2 import QtCore
-from core.CCP4ErrorHandling import *
-from dbapi import CCP4DbApi
-from core.CCP4Modules import PREFERENCES
-from core import CCP4Utils
+
+from . import CCP4ReportParser
+from ..core import CCP4Data
+from ..core import CCP4ErrorHandling
+from ..core import CCP4File
+from ..core import CCP4Modules
+from ..core import CCP4PluginScript
+from ..core import CCP4TaskManager
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import *
+from ..core.CCP4Modules import PREFERENCES
+from ..dbapi import CCP4DbApi
+from ..qtcore.CCP4HTTPServerThread import CHTTPServerThread
+from .CCP4ReportParser import Report
+
 
 class CReportGenerator(QtCore.QObject):
 
@@ -36,7 +41,6 @@ class CReportGenerator(QtCore.QObject):
   insts = []
   def __init__(self,jobId,jobStatus='Finished',**kw):
     QtCore.QObject.__init__(self)
-    from dbapi import CCP4DbApi
     self.jobId = CCP4DbApi.UUIDTYPE(jobId)
     if jobStatus=='To delete':
       self.jobStatus = 'Finished'
@@ -60,7 +64,6 @@ class CReportGenerator(QtCore.QObject):
       self.jobInfo = None
       
   def getReportClass(self,doReload=False):
-    from core import CCP4TaskManager,CCP4Modules
     #print 'getReportClass',self.jobId
     taskName = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=self.jobId,mode='taskname')
     cls = CCP4TaskManager.TASKMANAGER().getReportClass(taskName,jobStatus=self.jobStatus,doReload=doReload)
@@ -68,7 +71,6 @@ class CReportGenerator(QtCore.QObject):
     return taskName,cls,xrtFile
 
   def getCustomFailedReport(self):
-    from core import CCP4Modules, CCP4File, CCP4PluginScript
     reportName = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='DIAGNOSTIC')
     #print 'getCustomFailedReport',reportName
     if not os.path.exists(reportName): return None
@@ -87,7 +89,6 @@ class CReportGenerator(QtCore.QObject):
 
   def htmlBase(self):
     #MN this will avoid starting up a server thread if one is not running
-    from qtcore.CCP4HTTPServerThread import CHTTPServerThread
     port=43434
     if CHTTPServerThread.insts is not None:
         port = CHTTPServerThread.insts.port
@@ -96,9 +97,6 @@ class CReportGenerator(QtCore.QObject):
     return 'http://127.0.0.1:'+str(port)+'/report_files'
 
   def getOutputXml(self):
-    from core import CCP4Modules
-    from report import CCP4ReportParser
-    import os
     outputXml = None
     outputXmlFile = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='PROGRAMXML')
     #print  'CReportGenerator.makeReportFile outputXmlFile',outputXmlFile,os.path.exists(outputXmlFile)
@@ -111,10 +109,7 @@ class CReportGenerator(QtCore.QObject):
     try:
         with open(outputXmlFile,'r') as inputFile:
             text = inputFile.read()
-            if sys.version_info > (3,0):
-                outputXml = etree.fromstring( text.encode('utf-8'))
-            else:
-                outputXml = etree.fromstring( text,CCP4ReportParser.PARSER() )
+            outputXml = etree.fromstring( text.encode('utf-8'))
     except Exception as e:
         #print('Error in getOutputXml',e)
         outputXmlFile =  os.path.join(os.path.split(outputXmlFile)[0],'XMLOUT.xml')
@@ -138,10 +133,6 @@ class CReportGenerator(QtCore.QObject):
   def makeReportFile(self,redo=False,doReload=False,useGeneric=False,makePictures=True):
       
       #MN changed so as to return a tuple reportFile (a path) and newPageOrNewData: the latter has value "NEWPAGE" if a brand new report page is created and needs to be uploaded, or "NEWDATA" if an existing report.html needs only to be updated with new data for graphs, tables etc.
-    from core import CCP4Modules
-    import os
-    from core import CCP4ErrorHandling
-    from report import CCP4ReportParser
     
     newPageOrNewData = "NEWPAGE"
    
@@ -222,7 +213,7 @@ class CReportGenerator(QtCore.QObject):
     
     """
     if self.report.containsPictures():
-      from core import CCP4Config
+
       try:
         self.mgProcess = self.runMg(pictureQueue=self.report.pictureQueue ,callBack=lambda exitCode,exitStatus: self.handleMgFinished(self.jobId,self.report.pictureQueue[1:],exitCode,exitStatus))
       except:
@@ -233,7 +224,6 @@ class CReportGenerator(QtCore.QObject):
     return self.reportFile, newPageOrNewData
 
   def makePleaseWaitReport(self,jobRunning=True):
-    from report import CCP4ReportParser
     if self.jobInfo is None:
       self.jobInfo = getReportJobInfo(self.jobId)
     doc = CCP4ReportParser.htmlDoc()
@@ -251,9 +241,6 @@ class CReportGenerator(QtCore.QObject):
     return self.reportFile
 
   def makeFailedReportFile(self,redo=False):
-    import glob
-    from report import CCP4ReportParser
-    from core import CCP4Modules
     if self.jobStatus != 'Failed':
       self.reportFile = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='DIAGNOSTIC_REPORT')
       title = 'Diagnostic'
@@ -378,15 +365,11 @@ class CReportGenerator(QtCore.QObject):
         return 1
       else:
         return -1
-    if sys.version_info > (3,0):
-        fullFileList = sorted(fullFileList, key=functools.cmp_to_key(sortFiles) )
-    else:
-        fullFileList = sorted(fullFileList, cmp = sortFiles )
+    fullFileList = sorted(fullFileList, key=functools.cmp_to_key(sortFiles) )
     return fullFileList
 
 
   def extractJobId(self,path):
-    from core import CCP4Modules
     num = ''
     continu = True
     while continu:
@@ -406,7 +389,6 @@ class CReportGenerator(QtCore.QObject):
 
       
   def getErrorReport(self,fileName):
-    from core import CCP4File
     f = CCP4File.CI2XmlDataFile(fullPath=fileName)
     body = f.getEtreeRoot().find('ccp4i2_body')
     report = CErrorReport()
@@ -461,8 +443,6 @@ class CReportGenerator(QtCore.QObject):
 
   def runMg(self,pictureQueue=[],callBack=None):
     #print 'CReportGenerator.runMg pictureQueue',pictureQueue
-    from core import CCP4Modules,CCP4Config
-    import os,re
     mgExe = CCP4Modules.LAUNCHER().getExecutable('CCP4MG')
     if mgExe is None:
       print('ERROR no CCP4mg executable found')
@@ -480,7 +460,6 @@ class CReportGenerator(QtCore.QObject):
     argList.append('-RO')
     argList.append(re.sub(': ',':',str(options)))
 
-    from core import CCP4Modules
     process = CCP4Modules.LAUNCHER().launch(viewer='ccp4mg',argList=argList,callBack=callBack)
     return process
               
@@ -502,14 +481,10 @@ def getReportJobInfo(jobId=None,projectName=None,jobNumber=None):
     """
     print("getReportJobInfo")
     print(jobId,projectName,jobNumber)
-    import traceback
     traceback.print_stack()
     """
   
-    from core import CCP4Modules,CCP4TaskManager,CCP4Data
-    from dbapi import CCP4DbApi
     db = CCP4Modules.PROJECTSMANAGER().db()
-
 
     if projectName is None:
         projectNameInfo = db.getJobInfo(jobId=jobId)
@@ -577,8 +552,6 @@ def getReportJobInfo(jobId=None,projectName=None,jobNumber=None):
     
     return jobInfo
 
-
-from report.CCP4ReportParser import Report
 
 class CFreeRErrorReport(Report):
 

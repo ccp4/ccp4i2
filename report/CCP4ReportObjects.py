@@ -15,17 +15,16 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Aug 2011 -Kludged report objects
 """
-from core import CCP4Data
-from core.CCP4ErrorHandling import *
+
 import types
 
+from ..core import CCP4Data
+from ..core.CCP4ErrorHandling import *
 
-    
+
 class CReportAnnotation(CCP4Data.CData):
   """Annotation text"""
 

@@ -1,8 +1,3 @@
-from __future__ import print_function
-
-import sys
-
-
 '''
 Version history:
 5 Mar 2018, AL:
@@ -16,10 +11,14 @@ Version history:
   (no changes to crank2 code were required)
 '''
 
-import os, re
-#from lxml import etree as ET
+import os
+import re
+import sys
+import traceback
 import xml.etree.ElementTree as ET
-from report.CCP4ReportParser import Report,CCP4NS,PARSER
+
+from .CCP4ReportParser import CCP4NS, Report
+
 
 class RvapiReport(Report):
   MAINTAINER    = 'andrey.lebedev@stfc.ac.uk'
@@ -62,7 +61,6 @@ class RvapiReport(Report):
       exc_type, exc_value,exc_tb = sys.exc_info()[:3]
       sys.stderr.write(str(exc_type)+'\n')
       sys.stderr.write(str(exc_value)+'\n')
-      import traceback
       traceback.print_tb(exc_tb)
     
       return
