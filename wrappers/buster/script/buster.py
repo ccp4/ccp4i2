@@ -185,10 +185,10 @@ class buster(CPluginScript):
         self.appendCommandLine("-p")
         self.appendCommandLine(str(self.pdbin))
         self.appendCommandLine("-m")
+        self.appendCommandLine(str(self.hklin))
         if self.dictin:
             self.appendCommandLine("-l")
             self.appendCommandLine(str(self.dictin))
-        self.appendCommandLine(str(self.outfilec))
         self.appendCommandLine("-nbig")
         self.appendCommandLine(str(self.container.inputParameters.NBCYCLES))
         self.appendCommandLine("-nsmall")
@@ -197,7 +197,7 @@ class buster(CPluginScript):
             self.appendCommandLine("-autoncs")
         if self.container.inputParameters.RBR:
             self.appendCommandLine("-RB")
-        if self.container.inputParameters.AUTO_NCS:
+        if self.container.inputParameters.TLS:
             self.appendCommandLine("-TLS")
         # Water treatment
         wtrt = str(self.container.inputParameters.WAT)
