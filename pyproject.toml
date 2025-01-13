@@ -62,6 +62,7 @@ requires-python = ">=3.9"
 
 [project.urls]
 Source = "https://github.com/ccp4/ccp4i2"
+Issues = "https://github.com/ccp4/ccp4i2/issues"
 
 [tool.setuptools.dynamic]
 version = { attr = "ccp4i2.__version__" }
