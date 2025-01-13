@@ -2287,16 +2287,16 @@ class CDataFileView(CComplexLineWidget):
 
         self.browser.setDownloadMode(modeList=downloadModes,projectId=projectId)
 
-        demo_data_dir = os.path.normpath(os.path.join(os.environ['CCP4I2_TOP'],"demo_data"))
-        urls = self.browser.widget.fileDialog.sidebarUrls()
-        url_paths = []
+      demo_data_dir = os.path.normpath(os.path.join(os.environ['CCP4I2_TOP'],"demo_data"))
+      urls = self.browser.widget.fileDialog.sidebarUrls()
+      url_paths = []
 
-        for url in urls:
-            py_path = url.path()
-            url_paths.append(os.path.normpath(py_path))
-        if not demo_data_dir in url_paths:
-            urls.append(QtCore.QUrl.fromLocalFile(demo_data_dir))
-            self.browser.widget.fileDialog.setSidebarUrls(urls)
+      for url in urls:
+          py_path = url.path()
+          url_paths.append(os.path.normpath(py_path))
+      if not demo_data_dir in url_paths:
+          urls.append(QtCore.QUrl.fromLocalFile(demo_data_dir))
+          self.browser.widget.fileDialog.setSidebarUrls(urls)
     else:
       if len(self.model.qualifiers('fileExtensions'))>0:
         defaultSuffix= self.model.qualifiers('fileExtensions')[0]
