@@ -263,8 +263,12 @@ def test_servalcat_pipe(mmcif, mtz):
     args += ["--FREERFLAG", f"fullPath={mtz}", "columnLabels=/*/*/[FreeR_flag]"]
     args += ["--NCYCLES", "2"]
     args += ["--F_SIGF_OR_I_SIGI", "F_SIGF"]
+    args += ["--VALIDATE_IRIS", "False"]
+    args += ["--VALIDATE_BAVERAGE", "False"]
+    args += ["--VALIDATE_RAMACHANDRAN", "False"]
+    args += ["--VALIDATE_MOLPROBITY", "False"]
+    args += ["--RUN_ADP_ANALYSIS", "False"]
     i2run(args, "CIFFILE.pdb")
-
 
 def test_sheetbend(mmcif, mtz):
     "Test that sheetbend can handle long ligand names in mmCIF"
