@@ -1,4 +1,3 @@
-from __future__ import print_function
 """
     adding_stats_to_mmcif_i2_gui.py: CCP4 GUI Project
     
@@ -15,19 +14,17 @@ from __future__ import print_function
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    """
+"""
 
-from qtgui.CCP4TaskWidget import CTaskWidget
-from PySide2 import QtGui, QtWidgets
-from PySide2 import QtCore
 import os
-from dbapi import CCP4DbApi
-import functools
-from core.CCP4Modules import PROJECTSMANAGER
-from core.CCP4ErrorHandling import CException
 import xml.etree.ElementTree as ET
 
-# -------------------------------------------------------------------
+from PySide2 import QtCore
+from PySide2.QtWidgets import QMessageBox
+
+from ....core.CCP4ErrorHandling import CException
+from ....core.CCP4Modules import PROJECTSMANAGER
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
 
 class adding_stats_to_mmcif_i2_gui(CTaskWidget):
@@ -115,7 +112,6 @@ class adding_stats_to_mmcif_i2_gui(CTaskWidget):
             self.container.inputData.DICT_LIST.remove(
                 self.container.inputData.DICT_LIST[-1])
 
-        from report.CCP4ReportGenerator import getReportJobInfo
         # print getReportJobInfo(jobId=jobId)
 
         paramsContainer = PROJECTSMANAGER().db().getParamsContainer(jobId=jobId)
@@ -210,7 +206,6 @@ class adding_stats_to_mmcif_i2_gui(CTaskWidget):
             if jobInfo["status"] == 'Finished' and jobInfo["taskname"] == "prosmart_refmac":
                 self.updateFromRefmacJob(creatingJob)
             elif jobInfo["taskname"] != "prosmart_refmac":
-                #from PyQt4.QtCore import *
                 self.warn("Wrong coordinate source warning",
                           "Coordinates to be deposited should be the output of a prosmart_refmac job",
                           "For deposition, the input coordinates have to be output from a standard CCP4i2 refinement job.  Please run such a job and retry deposition using the output")
@@ -241,7 +236,6 @@ class adding_stats_to_mmcif_i2_gui(CTaskWidget):
         self.updateViewFromModel()
 
     def warn(self, windowTitle, informativeText, detailedText):
-        from PySide2.QtWidgets import QMessageBox
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Warning)
         msg.setText(windowTitle)

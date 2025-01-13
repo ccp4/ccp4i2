@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 #=======================================================================================
 #
 #    acorn.py : acorn(CPluginScript)
@@ -12,14 +10,18 @@ from __future__ import print_function
 #
 #=======================================================================================
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core import CCP4ErrorHandling, CCP4XtalData
-from core import CCP4Modules
-import time
 from io import *
-import os, sys, string, traceback
+import os
+import sys
+import traceback
+
+from lxml import etree
 import clipper
+
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+from ....smartie import smartie
+
 
 class acorn(CPluginScript):
     
@@ -158,15 +160,10 @@ class acorn(CPluginScript):
         #   ex3   = CCP4Modules.PROCESSMANAGER().getJobData( pid3,'exitCode' )
         
         # Parse the output text file to create an xml file which can then be parsed by the report to make html .......
-        from lxml import etree
         rootNode = etree.Element("acorn")
         xmlRI = etree.SubElement(rootNode,"RunInfo")
         
         # Use the ccp4 Smartie Class to parse the ascii log file from Acorn.
-        smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
-        sys.path.append(smartiePath)
-        import smartie
-        
         aclfile = self.makeFileName('LOG')
         smfile  = smartie.parselog(aclfile)
         

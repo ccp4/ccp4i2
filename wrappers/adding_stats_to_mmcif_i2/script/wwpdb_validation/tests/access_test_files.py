@@ -1,5 +1,6 @@
 import os
 
+
 class TestFiles:
 
     def __init__(self):
@@ -18,5 +19,3 @@ class TestFiles:
 
     def pdb1cbs(self):
         self.xml = os.path.join(self.test_data, "1cbs_validation.xml")
-
-

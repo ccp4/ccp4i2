@@ -1,16 +1,22 @@
-from __future__ import print_function
-
-
-from core.CCP4PluginScript import CPluginScript
-from PySide2 import QtCore
-import os,glob,re,time,sys
-from core import CCP4XtalData
-from lxml import etree
-import math
-from core import CCP4Modules,CCP4Utils
-from . import atomMatching, cifToMolBlock
+import os
 import platform
+import re
+import shutil
+import sys
+
+from lxml import etree
 from rdkit import Chem
+from rdkit.Chem import AllChem
+import ccp4srs
+import gemmi
+
+from . import atomMatching, cifToMolBlock
+from . import mol2svg
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+from ...Lidia.script import MOLSVG
+from .MyCIFDigestor import MyCIFFile
+
 
 class acedrgNew(CPluginScript):
     TASKMODULE = 'wrappers'                               # Where this plugin will appear on the gui
@@ -32,8 +38,6 @@ class acedrgNew(CPluginScript):
         self.smileStrCode = None
 
     def processInputFiles(self):
-        from rdkit import Chem
-        from rdkit.Chem import AllChem
         try_mmCIF = False
         self.originalMolFilePath = None
         if self.container.inputData.MOLIN.isSet():
@@ -75,7 +79,6 @@ class acedrgNew(CPluginScript):
                 return CPluginScript.FAILED
 
         elif self.container.inputData.MOLORSMILES.__str__() == 'PDBMMCIF':
-            import gemmi
             try:
                 if gemmi.read_structure(self.container.inputData.PDBMMCIFIN.__str__()).input_format == gemmi.CoorFormat.Pdb:
                     self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))
@@ -118,7 +121,6 @@ class acedrgNew(CPluginScript):
             for iAtom in range(mol.GetNumAtoms()):
                 atom = mol.GetAtomWithIdx(iAtom)
                 atom.ClearProp('molAtomMapNumber')
-            from rdkit.Chem import AllChem
             AllChem.Compute2DCoords(mol)
             smilesNode.text = Chem.MolToSmiles(mol, isomericSmiles=True)
         except:
@@ -206,7 +208,6 @@ class acedrgNew(CPluginScript):
         retMatches = {}
         if os.path.isfile(pdbFilePath):
             try:
-                import ccp4srs
                 dummy = ccp4srs.Graph()
                 print("Atom name matching available ...")
                 if self.container.inputData.ATOMMATCHOPTION.__str__() == 'MONLIBCODE':
@@ -268,7 +269,6 @@ class acedrgNew(CPluginScript):
         #Here code to extract cif data into XML for representation as table
         if os.path.isfile(cifFilePath):
             try:
-                from .MyCIFDigestor import MyCIFFile
                 myCIFFile = MyCIFFile(filePath=cifFilePath)
                 geometryNode = etree.SubElement(self.xmlroot,'Geometry')
                 propertiesOfCategories = {'_chem_comp_bond':['atom_id_1','atom_id_2','value_dist','value_dist_esd','type'],
@@ -300,8 +300,6 @@ class acedrgNew(CPluginScript):
             
         # AND THIS IS WHERE I START TRASHING STUFF ......
 
-        from rdkit import Chem
-
         # Generate another RDKIT mol directly from the mol or smiles: this one *will* hopefully have proper
         # chirality information
         referenceMol = None
@@ -325,7 +323,6 @@ class acedrgNew(CPluginScript):
             print("-----------------------")
             print("Written",self.container.outputData.MOLOUT.fullPath.__str__())
         except:
-            import shutil
             molToWrite = referenceMol
             exc_type, exc_value = sys.exc_info()[:2]
             print("Failed writing MOL file")
@@ -344,12 +341,10 @@ class acedrgNew(CPluginScript):
         # Get 2D picture of structure from the RDKit mol and place in report
         svgNode = etree.SubElement(self.xmlroot,'SVGNode')
         try:
-            from . import mol2svg
             svgText = bytes(mol2svg.svgFromMol(referenceMolToDraw),"utf-8")
             svgMolNode = etree.fromstring(svgText)
         except Exception as e:
             try:
-                from wrappers.Lidia.script import MOLSVG
                 mdlMolecule = MOLSVG.MDLMolecule(self.container.outputData.MOLOUT.fullPath.__str__())
                 svgMolNode = mdlMolecule.svgXML(size=(300,300))
             except Exception as e:

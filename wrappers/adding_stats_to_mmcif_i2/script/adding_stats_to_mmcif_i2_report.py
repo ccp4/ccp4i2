@@ -16,12 +16,15 @@
     GNU Lesser General Public License for more details.
     """
 
-from report.CCP4ReportParser import Report
+from decimal import Decimal
 import os
 import sys
 import xml.etree.ElementTree as etree
-from wrappers.refmac_i2.script import refmac_report
-from wrappers.aimless.script.aimless_report import aimless_report
+
+from ....report.CCP4ReportParser import Report
+from ....wrappers.refmac_i2.script import refmac_report
+from ....wrappers.aimless.script.aimless_report import aimless_report
+
 
 class adding_stats_to_mmcif_i2_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -155,7 +158,6 @@ class adding_stats_to_mmcif_i2_report(Report):
         return rv
 
     def makeValidationSvg(self, sliders, filename):
-        from decimal import Decimal
         filtered_sliders = [i for i in sliders if i['value'] is not None]
         no_sliders = len(filtered_sliders)
         # print filtered_sliders

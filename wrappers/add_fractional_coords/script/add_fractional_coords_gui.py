@@ -16,8 +16,7 @@
     GNU Lesser General Public License for more details.
 """
 
-from PySide2 import QtCore
-from qtgui.CCP4TaskWidget import CTaskWidget
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
 
 class add_fractional_coords_gui(CTaskWidget):

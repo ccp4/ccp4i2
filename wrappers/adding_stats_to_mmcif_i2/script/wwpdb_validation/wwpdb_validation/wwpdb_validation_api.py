@@ -1,11 +1,13 @@
-from onedep import __apiUrl__
-from onedep.api.Validate import Validate
-import time
-import os
 import argparse
 import logging
+import os
 import shutil
 import tempfile
+import time
+
+from onedep import __apiUrl__
+from onedep.api.Validate import Validate
+
 
 logger = logging.getLogger()
 FORMAT = "%(filename)s - %(funcName)s - %(message)s"

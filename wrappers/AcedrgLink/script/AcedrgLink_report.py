@@ -14,10 +14,10 @@
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    """
+"""
 
-from report.CCP4ReportParser import Report
-import sys
+from ....report.CCP4ReportParser import Report
+
 
 class AcedrgLink_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -25,7 +25,7 @@ class AcedrgLink_report(Report):
     RUNNING = False
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):
         Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo, jobStatus=jobStatus, **kw)
-        clearingDiv = self.addDiv(style="clear:both;")
+        self.addDiv(style="clear:both;")
         self.addDefaultReport(self)
         
     def addDefaultReport(self, parent=None):

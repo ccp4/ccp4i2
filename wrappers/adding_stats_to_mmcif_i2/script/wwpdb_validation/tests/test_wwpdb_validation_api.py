@@ -1,11 +1,11 @@
-import unittest
-from .access_test_files import TestFiles
-import tempfile
 import logging
 import os
 import shutil
+import tempfile
+import unittest
 
-import wrappers.adding_stats_to_mmcif_i2.script.wwpdb_validation.wwpdb_validation.wwpdb_validation_api as wwpdb_validation_api
+from ..wwpdb_validation import wwpdb_validation_api
+from .access_test_files import TestFiles
 
 
 logger = logging.getLogger()
