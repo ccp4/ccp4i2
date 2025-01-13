@@ -267,7 +267,6 @@ def test_servalcat_pipe(mmcif, mtz):
     args += ["--VALIDATE_BAVERAGE", "False"]
     args += ["--VALIDATE_RAMACHANDRAN", "False"]
     args += ["--VALIDATE_MOLPROBITY", "False"]
-    args += ["--RUN_ADP_ANALYSIS", "False"]
     i2run(args, "CIFFILE.pdb")
 
 def test_sheetbend(mmcif, mtz):
