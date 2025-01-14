@@ -1,13 +1,10 @@
-from __future__ import print_function
-
 """
      cif2mtz.py: CCP4 GUI Project
      Copyright (C) 2012 STFC
 """
 
-import os
-from core.CCP4PluginScript import CPluginScript
-from wrappers.x2mtz.script import x2mtz
+from ...x2mtz.script import x2mtz
+
 
 class cif2mtz(x2mtz.x2mtz):
 

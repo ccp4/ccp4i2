@@ -1,10 +1,13 @@
-from __future__ import print_function
+import os
+import unittest
+
+from ....core import CCP4PluginScript
+from ....core import CCP4Utils
+from ....core import CCP4XtalData
+from ....core.CCP4Modules import PROCESSMANAGER
+from ....core.CCP4Modules import QTAPPLICATION
 
 
-from core import CCP4PluginScript
-from core import CCP4XtalData
-
-  
 class chltofom(CCP4PluginScript.CPluginScript):
 
 
@@ -26,7 +29,6 @@ class chltofom(CCP4PluginScript.CPluginScript):
         self.appendCommandLine ( ['-colin-hl', '/*/*/[HLA,HLB,HLC,HLD]' ])
         self.appendCommandLine ( ['-colout','/*/*/[PHI,FOM]' ])
       if self.container.controlParameters.OUTPUTMINIMTZ:
-          from core import CCP4Utils
           self.tmpHklout = CCP4Utils.makeTmpFile(extension='mtz')
           self.appendCommandLine( [ '-mtzout',self.tmpHklout] )
       else:
@@ -36,7 +38,6 @@ class chltofom(CCP4PluginScript.CPluginScript):
     def processOutputFiles(self):
       #print 'chltofom.processOutputFiles',self.container.controlParameters.OUTPUTMINIMTZ,self.__dict__.get('tmpHklout','NONE')
       if self.container.controlParameters.OUTPUTMINIMTZ:
-        import os
         logFile = os.path.splitext(self.tmpHklout)[0]+'.log'
 
         if self.container.inputData.HKLIN.annotation.isSet():
@@ -64,25 +65,17 @@ class chltofom(CCP4PluginScript.CPluginScript):
 # PLUGIN TESTS
 # See Python documentation on unittest module
 
-import unittest
-
 class testchltofom(unittest.TestCase):
 
    def setUp(self):
     # make all background jobs wait for completion
     # this is essential for unittest to work
-    from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
     self.app = QTAPPLICATION()
 
    def tearDown(self):
-    from core.CCP4Modules import PROCESSMANAGER
     PROCESSMANAGER().setWaitForFinished(-1)
 
    def test_1(self):
-     from core.CCP4Modules import QTAPPLICATION
-     from core import CCP4Utils
-     import os
-
      workDirectory = CCP4Utils.getTestTmpDir()
      logFile = os.path.join(workDirectory,'chltofom_test1.log')
      # Delete any existing log file

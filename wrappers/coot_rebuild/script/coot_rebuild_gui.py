@@ -2,10 +2,11 @@
      coot_rebuild task widget
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+import os
 
-from qtgui.CCP4TaskWidget import CTaskWidget
-from core import CCP4Modules
+from ....core import CCP4Modules
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class Ccoot_rebuild(CTaskWidget):
@@ -42,9 +43,7 @@ class Ccoot_rebuild(CTaskWidget):
     self.createLine( [ 'widget', 'DICT' ] )
     self.createLine( [ 'widget', 'COOTSCRIPTFILE' ] )
 
-  
   def isValid(self):
-    import os
     #print 'Ccoot_rebuild.isValid'
     if self.getWidget('followFrom') is None: return
     followJobId = self.getWidget('followFrom').currentJobId()
@@ -54,4 +53,3 @@ class Ccoot_rebuild(CTaskWidget):
       if os.path.exists(stateFile):
         self.container.inputData.COOTSTATEFILE.setFullPath(stateFile)
     return CTaskWidget.isValid(self)
-  

@@ -1,4 +1,5 @@
-from report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
+
 
 class chltofom_report(Report):
     TASKNAME = 'chltofom'

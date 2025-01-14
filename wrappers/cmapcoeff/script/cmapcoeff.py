@@ -20,10 +20,12 @@
 import os
 import unittest
 import xml.etree.ElementTree as ET
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core import CCP4Utils
-from core import CCP4XtalData
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Utils
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class cmapcoeff(CPluginScript):
 

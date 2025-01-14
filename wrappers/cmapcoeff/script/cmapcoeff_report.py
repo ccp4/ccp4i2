@@ -1,5 +1,7 @@
-from report.CCP4ReportParser import *
 import sys
+
+from ....report.CCP4ReportParser import Report
+
 
 class cmapcoeff_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -9,9 +11,7 @@ class cmapcoeff_report(Report):
         Report.__init__(self,xmlnode=xmlnode,jobInfo=jobInfo,**kw)
 
         #if jobStatus is None or jobStatus.lower() is 'nooutput': return
-     
-        import os
-        
+
         results = self.addResults()
         results.append ( 'Please find below the output files. If you want to do a peak search, you can select <i>Manual model rebuilding</i>. ' ) 
 #        results.append ( '<h3>Map statistics:</h3>' )
@@ -25,7 +25,6 @@ class cmapcoeff_report(Report):
 #        results.append ( '&#160; &#160; &#160; &#160; Range: min =' + self.xmlnode.xpath ( "//Cfft/Min" )[0].text +
 #                ' &#160; &#160; &#160; &#160; max =' + self.xmlnode.xpath ( "//Cfft/Max" )[0].text )
 
-if __name__ == "__main__":
-    import sys
-    cmapcoeff_report(xmlFile=sys.argv[1],jobId=sys.argv[2])
 
+if __name__ == "__main__":
+    cmapcoeff_report(xmlFile=sys.argv[1],jobId=sys.argv[2])

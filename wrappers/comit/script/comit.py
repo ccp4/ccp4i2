@@ -14,11 +14,17 @@
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    """
+"""
 
 import os
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
+
+from lxml import etree
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Utils
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class comit(CPluginScript):
     TASKNAME = 'comit'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -31,10 +37,8 @@ class comit(CPluginScript):
         super(comit, self).__init__(*args, **kws)
 
     def processInputFiles(self):
-        from core import CCP4XtalData
         colgrps = [ ['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN], 'F_PHI_IN' ] 
         self.hklin, columns, error = self.makeHklin0( colgrps )
-        from core import CCP4ErrorHandling
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
@@ -44,7 +48,6 @@ class comit(CPluginScript):
         out = self.container.outputData
         con = self.container.controlParameters
 
-        import os
         self.hklout = os.path.join(self.workDirectory,"hklout.mtz")
 
         self.appendCommandLine([ '-stdin' ])
@@ -63,14 +66,11 @@ class comit(CPluginScript):
         infile = os.path.join(self.workDirectory,'hklout.mtz')
         error = self.splitHklout( ['F_PHI_OUT'],['i2.F_phi.F,i2.F_phi.phi'], infile=infile )
         self.container.outputData.F_PHI_OUT.subType = 1
-        from core import CCP4ErrorHandling
         if error.maxSeverity ( ) > CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
 
         #Create (dummy) PROGRAMXML, which basically contains only the log text of the job
         #without this, a report will not be generated
-        from lxml import etree
-        import sys
         with open(self.makeFileName("PROGRAMXML"),"w") as programXMLFile:
             xmlStructure = etree.Element("i2comit")
             logText = etree.SubElement(xmlStructure,"LogText")

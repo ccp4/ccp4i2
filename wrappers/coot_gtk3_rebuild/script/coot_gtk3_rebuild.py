@@ -1,14 +1,12 @@
-from __future__ import print_function
-
-from core import CCP4PluginScript
 
 import os
 import glob
-import shutil
-from PySide2 import QtCore
-from core import CCP4Modules
-from core import CCP4Utils
+
 from lxml import etree
+
+from ....core import CCP4PluginScript
+from ....core import CCP4Utils
+
 
 class coot_gtk3_rebuild(CCP4PluginScript.CPluginScript):
     # class coot_gtk3_rebuild(CInternalPlugin):

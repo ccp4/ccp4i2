@@ -2,10 +2,11 @@
      coot_gtk3_rebuild task widget
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+import os
 
-from qtgui.CCP4TaskWidget import CTaskWidget
-from core import CCP4Modules
+from ....core import CCP4Modules
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class Ccoot_gtk3_rebuild(CTaskWidget):
@@ -44,7 +45,6 @@ class Ccoot_gtk3_rebuild(CTaskWidget):
 
   
   def isValid(self):
-    import os
     #print 'Ccoot_rebuild.isValid'
     if self.getWidget('followFrom') is None: return
     followJobId = self.getWidget('followFrom').currentJobId()

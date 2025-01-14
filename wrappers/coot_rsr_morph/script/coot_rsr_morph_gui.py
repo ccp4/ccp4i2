@@ -2,9 +2,8 @@
      tasks/coot_rsr_morph
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
-from qtgui.CCP4TaskWidget import CTaskWidget
 
 #-------------------------------------------------------------------
 class Ccoot_rsr_morph(CTaskWidget):
@@ -34,4 +33,3 @@ class Ccoot_rsr_morph(CTaskWidget):
     self.createLine( [ 'label', 'GM alpha', 'widget', 'GM_ALPHA' ] )
     self.createLine( [ 'label', 'Blur B-factor', 'widget', 'BLUR_B_FACTOR' ] )
     self.closeSubFrame()
-

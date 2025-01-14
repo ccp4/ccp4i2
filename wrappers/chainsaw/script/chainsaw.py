@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      chainsaw.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -20,7 +18,12 @@ from __future__ import print_function
 """
 
 import os
-from core.CCP4PluginScript import CPluginScript
+import shutil
+import unittest
+
+from ....core.CCP4PluginScript import CPluginScript
+from ....core import CCP4Modules, CCP4Utils
+
 
 class chainsaw(CPluginScript):
 
@@ -72,13 +75,11 @@ class chainsaw(CPluginScript):
           self.container.inputData.ALIGNIN.convertFormat(formt,self.inputAlignmentFileName,reorder='reverse')
         else:
           # Forcing the file extension to chainsaw requirement
-          import shutil
           shutil.copyfile(self.container.inputData.ALIGNIN.__str__(), self.inputAlignmentFileName)
           return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
       if self.cryst1card is not None:
-          import os
           tmpFilename = str(self.container.outputData.XYZOUT.fullPath)+'_tmp'
           os.rename(str(self.container.outputData.XYZOUT.fullPath), tmpFilename)
           with open(tmpFilename,'r') as inputFile:
@@ -120,25 +121,18 @@ class chainsaw(CPluginScript):
 # PLUGIN TESTS
 # See Python documentation on unittest module
 
-import unittest
-
 class testchainsaw(unittest.TestCase):
 
    def setUp(self):
-    from core import CCP4Modules
     self.app = CCP4Modules.QTAPPLICATION()
     # make all background jobs wait for completion
     # this is essential for unittest to work
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    from core import CCP4Modules
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
 
    def test_1(self):
-     from core import CCP4Modules, CCP4Utils
-     import os
-
      workDirectory = CCP4Utils.getTestTmpDir()
      # this needs to agree with name attribute below
      logFile = os.path.join(workDirectory,'chainsaw_test1.log')
