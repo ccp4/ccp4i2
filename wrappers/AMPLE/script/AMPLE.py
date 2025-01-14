@@ -16,18 +16,18 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Lesser General Public License for more details.
 """
 
-from lxml import etree
 import os
 import shutil
 
-# CCP4 imports
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-
-# AMPLE imports
 from ample.constants import AMPLE_PKL
 from ample.util import mrbump_util
 from ample.util.ample_util import I2DIR
+from lxml import etree
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+
 
 #AMPLE_ROOT_NODE = 'AMPLE'
 AMPLE_LOG_NODE = 'LogText'
@@ -72,7 +72,6 @@ class AMPLE(CPluginScript):
         #                       the input data objects
         #                       3) A CCP4 Error object
         '''
-        from core import CCP4XtalData
         # No idea why we need the 'AMPLE_F_SIGF' bit...
         self.hklin, self.columns, error = self.makeHklin0(
             [['AMPLE_F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])

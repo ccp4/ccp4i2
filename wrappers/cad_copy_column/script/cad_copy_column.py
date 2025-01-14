@@ -1,11 +1,15 @@
-from __future__ import print_function
-
 """
      cad_copy_column.py: CCP4 GUI Project
      Copyright (C) 2011 STFC
 """
 
-from core.CCP4PluginScript import CPluginScript
+import os
+import unittest
+
+from ....core import CCP4Modules
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class cad_copy_column(CPluginScript):
 
@@ -44,25 +48,18 @@ class cad_copy_column(CPluginScript):
 # PLUGIN TESTS
 # See Python documentation on unittest module
 
-import unittest
-
 class testcad_copy_column(unittest.TestCase):
 
    def setUp(self):
-    from core import CCP4Modules
     self.app = CCP4Modules.QTAPPLICATION()
     # make all background jobs wait for completion
     # this is essential for unittest to work
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    from core import CCP4Modules
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
 
    def test_1(self):
-     import os
-     from core import CCP4Modules, CCP4Utils
-
      workDirectory = CCP4Utils.getTestTmpDir()
      logFile = os.path.join(workDirectory,'cad_copy_column_test1.log')
      # Delete any existing log file

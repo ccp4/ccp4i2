@@ -1,8 +1,12 @@
-from __future__ import print_function
+import os
+import unittest
+
+from ....core import CCP4Modules, CCP4Utils
+from ....core.CCP4Modules import PROCESSMANAGER
+from ....core.CCP4Modules import QTAPPLICATION
+from ....core.CCP4PluginScript import CPluginScript
 
 
-from core.CCP4PluginScript import CPluginScript
-  
 class baverage(CPluginScript):
 
     TASKMODULE = 'wrappers'  # Where this plugin will appear on the gui
@@ -35,25 +39,18 @@ class baverage(CPluginScript):
 # PLUGIN TESTS
 # See Python documentation on unittest module
 
-import unittest
-
 class testbaverage(unittest.TestCase):
 
    def setUp(self):
     # make all background jobs wait for completion
     # this is essential for unittest to work
-    from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
     self.app = QTAPPLICATION()
     PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    from core.CCP4Modules import PROCESSMANAGER
     PROCESSMANAGER().setWaitForFinished(-1)
 
    def test_1(self):
-     from core import CCP4Modules, CCP4Utils
-     import os
-
      workDirectory = os.path.join(CCP4Utils.getTestTmpDir(),'test1')
      if not os.path.exists(workDirectory): os.mkdir(workDirectory)
 

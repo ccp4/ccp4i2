@@ -14,10 +14,10 @@
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    """
+"""
 
-import os
-from core.CCP4PluginScript import CPluginScript
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class ZZPluginNameZZ(CPluginScript):
     TASKNAME = 'ZZPluginNameZZ'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -47,13 +47,11 @@ class ZZPluginNameZZ(CPluginScript):
         #                       2) a list of strings, each of which contains a comma-separated list of column labels output from
         #                       the input data objects
         #                       3) A CCP4 Error object        
-        from core import CCP4XtalData
         self.hklin, self.columns, error = self.makeHklin0([
             ['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]
         ])
         self.columnsAsArray = self.columns.split(",")
         
-        from core import CCP4ErrorHandling
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
         '''
@@ -85,7 +83,6 @@ class ZZPluginNameZZ(CPluginScript):
         columnsToTake = ['FWT,PHWT','DELFWT,PHDELWT']
         infile = os.path.join(self.workDirectory,'final.mtz')
         error = self.splitHklout(outputFilesToMake, columnsToTake, infile=infile)
-        from core import CCP4ErrorHandling
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
         '''
@@ -93,8 +90,6 @@ class ZZPluginNameZZ(CPluginScript):
         #Create (dummy) PROGRAMXML, which basically contains only the log text of the job
         #without this, a report will not be generated
         '''
-        from lxml import etree
-        import sys
         with open(self.makeFileName("PROGRAMXML"),"w") as programXMLFile:
             xmlStructure = etree.Element("i2Dimple")
             logText = etree.SubElement(xmlStructure,"LogText")

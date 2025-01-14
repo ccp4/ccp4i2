@@ -2,12 +2,14 @@
     arcimboldo_gui.py
     Copyright (C) 2015 The University of York
     Author: Jon Agirre
-
 """
 
 import os
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui.CCP4TaskWidget import CTaskWidget
+
+from PySide2 import QtCore
+
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 class arcimboldo_gui(CTaskWidget):
 

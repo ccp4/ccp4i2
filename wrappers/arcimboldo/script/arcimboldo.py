@@ -20,15 +20,18 @@
 ## @package arcimboldo
 # This script runs all three versions of arcimboldo
 
-#!/usr/bin/env ccp4-python
+from distutils.dir_util import copy_tree
+import os
+import unittest
+
 from lxml import etree
 
-import os, subprocess, sys, time, json, re
-from distutils.dir_util import copy_tree
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4XtalData
-from core import CCP4Utils
-from core import CCP4Modules
+from ....core.CCP4PluginScript import CPluginScript
+from ....core import CCP4XtalData
+from ....core import CCP4Utils
+from ....core import CCP4Modules
+from ....core.CCP4Utils import getCCP4I2Dir
+
 
 ccp4_home = os.environ.get ( "CCP4", "not_set" )
 
@@ -238,9 +241,6 @@ class arcimboldo(CPluginScript):
 #=================================test suite=========================================================
 #=====================================================================================================
 
-import unittest
-from core.CCP4Utils import getCCP4I2Dir,getTMP
-
 # unit testing asynchronous processes potential tricky but QProcess has option to wait for finished
  
 class test_arcimboldo ( unittest.TestCase ) :
@@ -252,7 +252,6 @@ class test_arcimboldo ( unittest.TestCase ) :
       PROCESSMANAGER().setWaitForFinished(-1)
 
     def test_arcimboldo(self):
-      import os
       inputData =  CScriptDataContainer(name='test_arcimboldo_test',containerType='inputData',initialise=test_arcimboldo.INPUTDATA)
       outputData =  CScriptDataContainer(name='test_arcimboldo_test',containerType='outputData',initialise=test_arcimboldo.OUTPUTDATA)
       try:

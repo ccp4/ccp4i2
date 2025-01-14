@@ -1,9 +1,10 @@
+import os
+import sys
 
 from PySide2 import QtCore
-from qtgui import CCP4TaskWidget
-import os, sys, re, subprocess
-from Bio.SeqUtils.ProtParam import ProteinAnalysis
-from Bio import SeqIO
+
+from ....qtgui import CCP4TaskWidget
+
 
 class CTaskArpWarpClassic(CCP4TaskWidget.CTaskWidget):
 

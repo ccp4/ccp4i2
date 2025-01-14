@@ -2,10 +2,8 @@
      ccp4mg_edit_model task widget
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
-from qtgui.CCP4TaskWidget import CTaskWidget
-from core import CCP4Modules
 
 #-------------------------------------------------------------------
 class Cccp4mg_edit_model(CTaskWidget):
@@ -54,7 +52,6 @@ class Cccp4mg_edit_model(CTaskWidget):
     return str(self.container.inputData.REDUNDANCYLEVEL) == '100'
  
   def isValid(self):
-    import os
     #print 'Ccoot_rebuild.isValid'
     if self.getWidget('followFrom') is None: return
     followJobId = self.getWidget('followFrom').currentJobId()

@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      buccaneer.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -20,8 +18,10 @@ from __future__ import print_function
 """
 
 import os
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
+
+from ....core.CCP4PluginScript import CPluginScript
+from ....core import CCP4ErrorHandling
+from ....core import CCP4XtalData
 
 
 class buccaneer_mr(CPluginScript):
@@ -39,7 +39,6 @@ class buccaneer_mr(CPluginScript):
 
 
     def processInputFiles(self):
-      from core import CCP4XtalData
       #print 'taskMakeHklin F_SIGF',self.container.inputData.F_SIGF,type(self.container.inputData.F_SIGF),self.container.inputData.F_SIGF.contentFlag
       if self.container.inputData.FWT_PHWT_IN.isSet():
         if self.container.inputData.FREERFLAG.isSet():
@@ -86,8 +85,6 @@ class buccaneer_mr(CPluginScript):
       return CPluginScript.SUCCEEDED
 
     def makeCommandAndScript(self):
-      from core import CCP4XtalData
-   
       self.appendCommandLine(['-stdin'])
 
       # INPUT DATA
