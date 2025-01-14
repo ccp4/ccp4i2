@@ -134,10 +134,7 @@ class CBaseWidget:
                     path = url.toLocalFile()
                     mimeTypeList = MIMETYPESHANDLER().classListFromFileName(path)
                     for mimeType in mimeTypeList:
-                        if sys.version_info > (3,0):
-                            fileList.append([path, mimeType])
-                        else:
-                            fileList.append([path, mimeType.encode('ascii', 'ignore')])
+                        fileList.append([path, mimeType])
         return fileList
 
     def makeDragEtree(self, path, mimeType):
@@ -1772,7 +1769,7 @@ class CDataFileView(CComplexLineWidget):
               testAction = QtWidgets.QAction("Browse for demo data",browserButton);
               @QtCore.Slot(bool)
               def handleOpenTrigger():
-                  self.openBrowser(os.path.join(os.environ["CCP4"],"share/ccp4i2/demo_data"))
+                  self.openBrowser(os.path.join(os.environ['CCP4I2_TOP'],"demo_data"))
               testAction.triggered.connect(handleOpenTrigger)
               menu.addAction(testAction);
               browserButton.setMenu(menu);
@@ -2290,22 +2287,16 @@ class CDataFileView(CComplexLineWidget):
 
         self.browser.setDownloadMode(modeList=downloadModes,projectId=projectId)
 
-        if sys.version_info > (3,0):
-            demo_data_dir = os.path.normpath(os.path.join(os.environ["CCP4"],"share/ccp4i2/demo_data"))
-        else:
-            demo_data_dir = unicode(os.path.normpath(os.path.join(os.environ["CCP4"],"share/ccp4i2/demo_data")))
-        urls = self.browser.widget.fileDialog.sidebarUrls()
-        url_paths = []
+      demo_data_dir = os.path.normpath(os.path.join(os.environ['CCP4I2_TOP'],"demo_data"))
+      urls = self.browser.widget.fileDialog.sidebarUrls()
+      url_paths = []
 
-        for url in urls:
-            if sys.version_info > (3,0):
-                py_path = url.path()
-            else:
-                py_path = unicode(url.path())
-            url_paths.append(os.path.normpath(py_path))
-        if not demo_data_dir in url_paths:
-            urls.append(QtCore.QUrl.fromLocalFile(demo_data_dir))
-            self.browser.widget.fileDialog.setSidebarUrls(urls)
+      for url in urls:
+          py_path = url.path()
+          url_paths.append(os.path.normpath(py_path))
+      if not demo_data_dir in url_paths:
+          urls.append(QtCore.QUrl.fromLocalFile(demo_data_dir))
+          self.browser.widget.fileDialog.setSidebarUrls(urls)
     else:
       if len(self.model.qualifiers('fileExtensions'))>0:
         defaultSuffix= self.model.qualifiers('fileExtensions')[0]
@@ -2470,10 +2461,7 @@ class CDataFileView(CComplexLineWidget):
   def loadFileFromDb(self,fileId,annotation=None):
     '''Update model based on db fileId from eith the combo box or the database search tool'''
     #print 'CDataFileView.loadFileFromDb',fileId
-    if sys.version_info >= (3,0) and type(fileId) == bytes:
-        fileId = fileId.decode()
-    else:
-        fileId = str(fileId)
+    fileId = fileId.decode()
     if fileId is None:
       self.model.unSet()
     else:
