@@ -254,6 +254,21 @@ def test_prosmart_refmac(mmcif, mtz):
     i2run(args, "CIFFILE.pdb")
 
 
+def test_servalcat_pipe(mmcif, mtz):
+    "Test that servalcat can handle long ligand names in mmCIF"
+    args = ["servalcat_pipe"]
+    args += ["--XYZIN", mmcif]
+    args += ["--DATA_METHOD", "xtal"]
+    args += ["--HKLIN", f"fullPath={mtz}", "columnLabels=/*/*/[FP,SIGFP]"]
+    args += ["--FREERFLAG", f"fullPath={mtz}", "columnLabels=/*/*/[FreeR_flag]"]
+    args += ["--NCYCLES", "2"]
+    args += ["--F_SIGF_OR_I_SIGI", "F_SIGF"]
+    args += ["--VALIDATE_IRIS", "False"]
+    args += ["--VALIDATE_BAVERAGE", "False"]
+    args += ["--VALIDATE_RAMACHANDRAN", "False"]
+    args += ["--VALIDATE_MOLPROBITY", "False"]
+    i2run(args, "CIFFILE.pdb")
+
 def test_sheetbend(mmcif, mtz):
     "Test that sheetbend can handle long ligand names in mmCIF"
     args = ["sheetbend"]

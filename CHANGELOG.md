@@ -1,5 +1,11 @@
 # CCP4i2 Changelog
 
+## [2.2.0] - 2025-01-14
+
+- New Servalcat refinement task
+- Fixes to Buster arguments
+- Fixed demo data path
+
 ## [2.1.1] - 2025-01-10
 
 - Add log files, etc. to reports

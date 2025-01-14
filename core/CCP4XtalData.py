@@ -664,11 +664,11 @@ class CAltSpaceGroupList(CCP4Data.CList):
 class CMapDataFile(CCP4File.CDataFile):
     '''A CCP4 Map file'''
     QUALIFIERS = {'mimeTypeName' : 'application/CCP4-map',
-                  'mimeTypeDescription' : 'CCP4 Electron density map',
-                  'fileExtensions' : ['map'],
+                  'mimeTypeDescription' : 'Map',
+                  'fileExtensions' : ['map', 'mrc'],
                   'fileContentClassName' : None,
-                  'guiLabel' : 'Electron Density Map',
-                  'toolTip' : 'A map in CCP4 format',
+                  'guiLabel' : 'Map',
+                  'toolTip' : 'A map in CCP4/MRC format',
                   'helpFile' : 'data_files#map_files' }
 
 class CGenericReflDataFile(CCP4File.CDataFile):

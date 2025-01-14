@@ -920,6 +920,11 @@
             "clsModule": "core.CCP4ModelData",
             "clsName": "CSequenceString"
         },
+        "CServalcatPerformance": {
+            "class": "core.CCP4PerformanceDataCServalcatPerformance",
+            "clsModule": "core.CCP4PerformanceData",
+            "clsName": "CServalcatPerformance"
+        },
         "CServerGroup": {
             "class": "core.CCP4AnnotationCServerGroup",
             "clsModule": "core.CCP4Annotation",
@@ -1280,6 +1285,7 @@
         "csequencealignment": "CSequenceAlignment",
         "csequencemeta": "CSequenceMeta",
         "csequencestring": "CSequenceString",
+        "cservalcatperformance": "CServalcatPerformance",
         "cservergroup": "CServerGroup",
         "cshelxfadatafile": "CShelxFADataFile",
         "cshelxlabel": "CShelxLabel",
@@ -1403,9 +1409,9 @@
             "clsName": "CCustomTaskParamListView"
         },
         "CData": {
-            "class": "qtgui.CCP4ModelWidgetsCEnsembleView",
-            "clsModule": "qtgui.CCP4ModelWidgets",
-            "clsName": "CEnsembleView"
+            "class": "qtgui.CCP4CustomTaskManagerGuiCMiniMtzRequiredContentWidget",
+            "clsModule": "qtgui.CCP4CustomTaskManagerGui",
+            "clsName": "CMiniMtzRequiredContentWidget"
         },
         "CDataFile": {
             "class": "qtgui.CCP4WidgetsCDataFileView",

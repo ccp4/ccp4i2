@@ -272,8 +272,8 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.fileExtensions = ['mtz','cif']
         mimeType.contentLabel = 'map_coefficients'
         mimeType.viewers =['viewhkl']
-        mimeType.icon = 'MapDataFile'
-        mimeType.className = 'MapDataFile'
+        mimeType.icon = 'MapCoeffsDataFile'
+        mimeType.className = 'MapCoeffsDataFile'
         self.mimeTypes["application/CCP4-mtz-map"] = mimeType
 
         mimeType = CMimeType()
@@ -335,8 +335,8 @@ class CCustomMimeTypes(QtCore.QObject):
 
         mimeType = CMimeType()
         mimeType.name = "application/CCP4-map"
-        mimeType.description = "Electron density map"
-        mimeType.fileExtensions = ['map']
+        mimeType.description = "Density map"
+        mimeType.fileExtensions = ['map','mrc']
         mimeType.viewers = ['coot','ccp4mg']
         mimeType.icon = 'MapDataFile'
         mimeType.className = 'MapDataFile'

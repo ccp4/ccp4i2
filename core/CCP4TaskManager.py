@@ -71,7 +71,7 @@ MODULE_DEFAULTS = {'molecular_replacement' : ['mrbump_basic', 'phaser_simple', '
                    'data_processing'       : ['xia2_dials', 'xia2_xds', 'imosflm'] ,
                    'expt_phasing'          : ['crank2', 'shelx', 'phaser_EP_AUTO'],
                    'alpha_fold'            : ['ccp4mg_edit_model','mrparse','editbfac'],
-                   'refinement'            : ['prosmart_refmac'],
+                   'refinement'            : ['servalcat_pipe', 'prosmart_refmac'],
                    'bioinformatics'        : ['ccp4mg_edit_model' , 'ccp4mg_edit_nomrbump', 'chainsaw', 'sculptor','phaser_ensembler','clustalw'],
                    'bigpipes'              : ['SubstituteLigand','dr_mr_modelbuild_pipeline'],
                    'model_building'        : ['modelcraft', 'coot_rebuild','coot_script_lines', 'coot_find_waters','arp_warp_classic','shelxeMR','buccaneer_build_refine_mr','nautilus_build_refine','dr_mr_modelbuild_pipeline'],
