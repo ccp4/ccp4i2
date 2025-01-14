@@ -1,8 +1,10 @@
-
-from core.CCP4PluginScript import CPluginScript
-from PySide2 import QtCore
-import os,re,time,sys
+import glob
+import os
 import platform
+import shutil
+
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class imosflm(CPluginScript):
     TASKMODULE = 'data_processing'                        # Where this plugin will appear on the gui
@@ -24,7 +26,6 @@ class imosflm(CPluginScript):
 
         
     def processOutputFiles(self):
-        import glob, shutil
         fileList1 = glob.glob(os.path.join(str(self.getWorkDirectory()), "*.mos"))
         fileList2 = glob.glob(os.path.join(str(self.getWorkDirectory()), "*.sav"))
         outputXMLs = self.container.outputData.MOSFLMXMLOUT

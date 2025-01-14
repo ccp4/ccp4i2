@@ -19,10 +19,11 @@
 import json
 import os
 import shutil
-from core.CCP4ErrorHandling import SEVERITY_WARNING
-from core.CCP4ModelData import CPdbDataFile
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4XtalData import CMapCoeffsDataFile, CObsDataFile, CPhsDataFile
+
+from ....core.CCP4ErrorHandling import SEVERITY_WARNING
+from ....core.CCP4ModelData import CPdbDataFile
+from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4XtalData import CMapCoeffsDataFile, CObsDataFile, CPhsDataFile
 
 
 class modelcraft(CPluginScript):

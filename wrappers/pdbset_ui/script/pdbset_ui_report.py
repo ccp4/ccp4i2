@@ -1,6 +1,7 @@
-from report.CCP4ReportParser import *
-import sys
 import base64
+
+from ....report.CCP4ReportParser import Report
+
 
 class pdbset_ui_report(Report):
     # Specify which gui task and/or pluginscript this applies to

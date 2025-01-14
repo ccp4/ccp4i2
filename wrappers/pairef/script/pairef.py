@@ -1,15 +1,11 @@
 import os
-import re
-import shutil
-import subprocess
-import glob
+
 from lxml import etree
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4XtalData
-from core import CCP4ErrorHandling
-from core import CCP4Utils
-from core import CCP4Modules
+from ....core import CCP4ErrorHandling
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class pairef(CPluginScript):
     TASKMODULE = 'refinement'         # Gui menu location

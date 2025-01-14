@@ -1,4 +1,5 @@
-from qtgui import CCP4TaskWidget
+from ....qtgui import CCP4TaskWidget
+
 
 class CTaskpairef(CCP4TaskWidget.CTaskWidget):
 

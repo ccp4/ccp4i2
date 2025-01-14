@@ -1,4 +1,3 @@
-from __future__ import print_function
 #=======================================================================================
 #
 #    shelxeMR.py : phaserSingleMR(CPluginScript)
@@ -12,11 +11,13 @@ from __future__ import print_function
 #=======================================================================================
 
 import os
-import sys
-from lxml import etree
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4XtalData
-from core import CCP4ErrorHandling
+import xml.etree.ElementTree as ET
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+from ....smartie import smartie
+from ....smartie.qtrgeneric import CLReader, LogConverter
 
 
 class phaser_singleMR(CPluginScript):
@@ -153,13 +154,6 @@ class phaser_singleMR(CPluginScript):
 
     def parseLogfile(self):
         logfile = self.makeFileName('LOG')
-        # Load ccp4 smartie and qtr code
-        from core import CCP4Utils
-        smpth = os.path.join(CCP4Utils.getCCP4Dir(), 'share', 'smartie')
-        sys.path.append(smpth)
-        import smartie
-        import qtrgeneric
-        from qtrgeneric import CLReader, LogConverter
         # Use ccp4 automated output. Note this is replacing I2's internal xml file handling.
         infi = CLReader({'REP_XML': 'program.xml', 'REP_XRT': 'program.xrt', 'LOGFILE': logfile})
         smin = smartie.parselog(logfile)
@@ -167,7 +161,5 @@ class phaser_singleMR(CPluginScript):
         lconv.convert(smin, infi)
         lconv.xmltree.write(os.path.join(self.getWorkDirectory(), infi.xml))
         xrto = open(os.path.join(self.getWorkDirectory(), infi.xrt), "w")
-        from xml.etree import ElementTree as ET
         xrto.write((ET.tostring(lconv.xrttree.getroot()).decode()).replace("ns0", "xrt"))
         xrto.close()
-        return

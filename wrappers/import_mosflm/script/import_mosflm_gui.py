@@ -1,11 +1,10 @@
 """
     wrappers/import_mosflm/script/import_mosflm_gui.py
     Martin Noble
-    """
+"""
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
+from ....qtgui import CCP4TaskWidget
+
 
 class CTaskImportMosflm(CCP4TaskWidget.CTaskWidget):
     
@@ -20,7 +19,6 @@ class CTaskImportMosflm(CCP4TaskWidget.CTaskWidget):
     def __init__(self,parent):
         CCP4TaskWidget.CTaskWidget.__init__(self,parent)
     
-    
     def drawContents(self):
         
         self.setProgramHelpFile('import_mosflm')
@@ -29,4 +27,3 @@ class CTaskImportMosflm(CCP4TaskWidget.CTaskWidget):
         
         self.createLine( ['widget', 'MOSFLMXML'] )
         self.createLine( ['widget', 'UNMERGEDMTZ'] )
-

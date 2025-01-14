@@ -1,4 +1,3 @@
-from __future__ import print_function
 """
      pyphaser_mr.py: CCP4 GUI Project
      Copyright (C) 2011 STFC
@@ -9,10 +8,15 @@ from __future__ import print_function
      correctly, e.g. as in the phaser.python dispatcher
 """
 
-import sys
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core import CCP4Modules
+import os
+
+import phaser
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Modules
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class pyphaser_mr(CPluginScript):
 
@@ -35,7 +39,6 @@ class pyphaser_mr(CPluginScript):
          self.reportStatus(CPluginScript.FAILED)
          return
 
-       import phaser
        inputData = self.container.inputData
 
        inp = phaser.InputMR_DAT()
@@ -135,7 +138,6 @@ class pyphaser_mr(CPluginScript):
            inp.setPEAK_ROTA_CUTO(float(self.container.controlParameters.PEAKS_ROT_CUTOFF))
 
        # Set root to correct working directory
-       import os
        if self.container.controlParameters.ROOT.isSet():
            inp.setROOT(os.path.join(self.getWorkDirectory(),str(self.container.controlParameters.ROOT)))
        else:
@@ -183,8 +185,6 @@ class pyphaser_mr(CPluginScript):
        self.xmlfile.flush()
 
     def processInputFiles(self):
-      from core import CCP4XtalData
-
       self.hklin,error = self.makeHklin([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
       if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
         for report in error._reports:
@@ -197,9 +197,6 @@ class pyphaser_mr(CPluginScript):
     # process one or more output files
     # also writes the XML file, previously done by postProcess()
     def processOutputFiles(self):
-
-      import os,shutil
-
       if self.container.controlParameters.NUM_SOL_OUT.isSet():
         num_sol = self.container.controlParameters.NUM_SOL_OUT.isSet()
       else:
@@ -297,4 +294,3 @@ class pyphaser_mr(CPluginScript):
       #print dir(self.results.getDotSol()[0])
 
       return CPluginScript.SUCCEEDED
-

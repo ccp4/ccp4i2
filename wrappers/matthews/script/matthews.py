@@ -1,12 +1,14 @@
-from PySide2 import QtGui, QtWidgets,QtCore
-
-from qtgui.CCP4TaskWidget import CTaskWidget
-from core.CCP4ErrorHandling import *
 import functools
 
-#-------------------------------------------------------------------
+from PySide2 import QtCore, QtWidgets
+
+from ....core import CCP4Modules
+from ....core.CCP4ErrorHandling import *
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+from ....report import CCP4ReportParser
+
+
 class matthews_gui(CTaskWidget):
-#-------------------------------------------------------------------
     
     # Subclass CTaskWidget to give specific task window
     TASKNAME = 'matthews'
@@ -151,9 +153,6 @@ class matthews_gui(CTaskWidget):
         self.resultWidget.setHtml(text)
         self.resultWidget.setReadOnly(True)
 
-
-        from report import CCP4ReportParser
-        from core import CCP4Modules
         report = CCP4ReportParser.Report()
        
         # Fixed CCP4ReportParser so this should actually work now
@@ -169,5 +168,3 @@ class matthews_gui(CTaskWidget):
         tab.addData(title='Matthews',data=matt)
         tab.addData(title='prob(Matthews)',data=prob)
         report.as_html_file(fileName=CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self.jobId(),mode='REPORT'))
-
-

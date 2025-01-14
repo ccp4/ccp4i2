@@ -1,4 +1,3 @@
-
 """
      tasks/molrep_mr/Cmolrep_mr.py: CCP4 GUI Project
      Copyright (C) 2011 University of York
@@ -16,15 +15,12 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Andrey Lebedev September 2011 - molrep_mr gui
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
+from ....qtgui import CCP4TaskWidget
+
 
 def whatNext(jobId=None):
   return [ ]

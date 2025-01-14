@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      privateer.py: CCP4 GUI Project
      Copyright (C) 2014-2019 University of York
@@ -19,9 +17,14 @@ from __future__ import print_function
      GNU Lesser General Public License for more details.
 """
 
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4Modules import PROCESSMANAGER
-from core import CCP4ErrorHandling
+import os
+import unittest
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Utils
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Utils import getCCP4I2Dir
 
 
 class privateer(CPluginScript):
@@ -33,7 +36,6 @@ class privateer(CPluginScript):
     MAINTAINER = 'jon.agirre@york.ac.uk'
 
     def processInputFiles(self):
-      from core import CCP4XtalData
       #print 'taskMakeHklin F_SIGF',self.container.inputData.F_SIGF,type(self.container.inputData.F_SIGF),self.container.inputData.F_SIGF.contentFlag
       self.hklin,error = self.makeHklin ( [ ['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN ] ] )
       if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING: return CPluginScript.FAILED
@@ -43,7 +45,6 @@ class privateer(CPluginScript):
     def processOutputFiles(self):
 
         print(self.WHATNEXT)
-        import os
         out = self.container.outputData
         self.path_wrk = str( self.getWorkDirectory() )
 
@@ -81,8 +82,6 @@ class privateer(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def makeCommandAndScript(self):
-      import os
-      from core import CCP4XtalData
 
       self.appendCommandLine(['-stdin'])
 
@@ -148,14 +147,10 @@ class privateer(CPluginScript):
 
 
 #=============================================================================================
-import unittest
 class testPrivateer(unittest.TestCase):
 
   def test1(self):
     # Test creation of log file using ../test_data/test1.params.xml input
-    from core.CCP4Utils import getCCP4I2Dir
-    from core import CCP4Utils
-    import os
     workDirectory = CCP4Utils.getTestTmpDir()
     logFile = os.path.join(workDirectory,'privateer_test1.log')
     # Delete any existing log file

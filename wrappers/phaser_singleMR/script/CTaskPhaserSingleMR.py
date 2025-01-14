@@ -9,8 +9,8 @@
 #
 #=======================================================================================
 
-from qtgui import CCP4TaskWidget
-from PySide2 import QtCore
+from ....qtgui import CCP4TaskWidget
+
 
 class CTaskPhaserSingleMR(CCP4TaskWidget.CTaskWidget):
 

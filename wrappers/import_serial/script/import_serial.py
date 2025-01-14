@@ -1,16 +1,8 @@
 import os
-import re
-import shutil
-import subprocess
-import glob
-import json
-from lxml import etree
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4XtalData
-from core import CCP4ErrorHandling
-from core import CCP4Utils
-from core import CCP4Modules
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class import_serial(CPluginScript):
     TASKMODULE = 'data_entry'         # GIU menu location

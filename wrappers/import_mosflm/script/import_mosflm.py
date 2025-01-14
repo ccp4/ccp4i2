@@ -1,7 +1,11 @@
+import shutil
+import unittest
 
-from core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Modules import PROCESSMANAGER
+from ....core.CCP4Modules import QTAPPLICATION
+from ....core.CCP4PluginScript import CPluginScript
 
-  
+
 class import_mosflm(CPluginScript):
 
     TASKNAME = 'import_mosflm'                                  # Task name - should be same as class name
@@ -23,7 +27,6 @@ class import_mosflm(CPluginScript):
         
         self.checkOutputData()
         
-        import shutil
         programXMLPath = self.makeFileName('PROGRAMXML')
         shutil.copyfile(self.container.inputData.MOSFLMXML.fullPath.__str__(), programXMLPath)
         self.reportStatus(CPluginScript.SUCCEEDED)
@@ -32,26 +35,20 @@ class import_mosflm(CPluginScript):
 # PLUGIN TESTS
 # See Python documentation on unittest module
 
-import unittest
-
 class testimport_mosflm(unittest.TestCase):
 
    def setUp(self):
     # make all background jobs wait for completion
     # this is essential for unittest to work
-    from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
     self.app = QTAPPLICATION()
     PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    from core.CCP4Modules import PROCESSMANAGER
     PROCESSMANAGER().setWaitForFinished(-1)
 
    def test_1(self):
-     from core.CCP4Modules import QTAPPLICATION
      wrapper = import_mosflm(parent=QTAPPLICATION(),name='import_mosflm_test1')
      wrapper.container.loadDataFromXml()
-     
 
 def TESTSUITE():
   suite = unittest.TestLoader().loadTestsFromTestCase(testimport_mosflm)

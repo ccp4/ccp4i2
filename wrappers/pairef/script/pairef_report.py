@@ -1,6 +1,9 @@
 import os
+import pathlib
+import sys
 
-from report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
+
 
 class pairef_report(Report):
 
@@ -38,7 +41,6 @@ class pairef_report(Report):
                 pairefrFolder.append('<a href="{0}">Open Results</a>'.format(pairef_url))
             else:
                 if sys.platform == "win32":
-                    import pathlib
                     pairef_html = pathlib.Path(pairef_html).as_uri()
                 pairefrFolder.append('<a href="{0}">Open Results</a>'.format(pairef_html))
         else:

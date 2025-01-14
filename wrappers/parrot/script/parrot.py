@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      parrot.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -20,11 +18,15 @@ from __future__ import print_function
 """
 
 import os
-import sys
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core import CCP4ErrorHandling
-from core import CCP4XtalData
+
+from lxml import etree
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Utils
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+from ....pimple import MGQTmatplotlib
+from ....smartie import smartie
 
 
 class parrot(CPluginScript):
@@ -73,7 +75,6 @@ class parrot(CPluginScript):
       self.container.outputData.FPHIOUT.annotation = self.jobNumberString() + ' Map coefficients from density modification'
       
       # extend XML output
-      from lxml import etree
       rootNode = etree.Element("ParrotResult")
       with open(self.xmlout,'r') as xmlFile:
         rootNode = etree.fromstring(xmlFile.read())
@@ -94,12 +95,6 @@ class parrot(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def scrapeSmartieGraphs(self, smartieNode):
-        smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
-        sys.path.append(smartiePath)
-        import smartie
-        
-        from lxml import etree
-        
         logfile = smartie.parselog(self.makeFileName('LOG'))
         for smartieTable in logfile.tables():
             if smartieTable.ngraphs() > 0:
@@ -107,7 +102,6 @@ class parrot(CPluginScript):
         return
 
     def xmlForSmartieTable(self, table, parent):
-        from pimple import MGQTmatplotlib
         tableetree = MGQTmatplotlib.CCP4LogToEtree(table.rawtable())
         parent.append(tableetree)
         return tableetree
@@ -173,9 +167,6 @@ class parrot(CPluginScript):
 # Function to return list of names of exportable MTZ(s)
 '''
 def exportJobFile(jobId=None,mode=None):
-    import os
-    from core import CCP4Modules
-    from core import CCP4XtalData
 
     # Devise name for the merged file and check if it has already been created
     jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)

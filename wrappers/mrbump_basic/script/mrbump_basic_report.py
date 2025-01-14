@@ -1,4 +1,11 @@
-from report.CCP4ReportParser import *
+import json
+import os
+import sys
+
+from mrbump.initialisation import MRBUMP_master
+
+from ....report.CCP4ReportParser import Report
+
 
 class mrbump_basic_report(Report):
   # Specify which gui task and/or pluginscript this applies to
@@ -8,10 +15,7 @@ class mrbump_basic_report(Report):
 
   def __init__(self,xmlnode=None,jobInfo={},**kw):
     Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo,cssVersion=self.CSS_VERSION,**kw)
-  
-    from core import CCP4Utils
-    import os
-    
+
     results = self.addResults()
     results.append( 'MrBUMP is a pipeline to trial many search models in molecular replacement. \
                      It will find and prepare possible search models based on a sequence alignment \
@@ -90,11 +94,9 @@ class mrbump_basic_report(Report):
         tableFoldreferences = results.addFold(label='references', initiallyOpen=True)
         tableFoldreferences.append('The following programs were used in this run:') 
         
-        import json
         with open(os.path.join(jobDirectory, "search_mrbump_1", "logs", "programs.json")) as json_file:
             programsUsed = json.load(json_file)
 
-        from mrbump.initialisation import MRBUMP_master
         references=MRBUMP_master.References()
         for program in programsUsed:
             rprog=references.getReference(program)
@@ -104,7 +106,4 @@ class mrbump_basic_report(Report):
     self.addTaskReferences()
 
 if __name__ == "__main__":
-  import sys
   mrbump_basic_report(xmlFile=sys.argv[1],jobId=sys.argv[2])
-
-

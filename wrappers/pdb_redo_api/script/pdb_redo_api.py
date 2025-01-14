@@ -1,20 +1,18 @@
-from __future__ import print_function
-
-import sys
-import os
-import zipfile
-import shutil
 import json
+import os
+import shutil
+import sys
+import zipfile
 
 from lxml import etree
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core.CCP4XtalData import CMapCoeffsDataFile, CObsDataFile, CPhsDataFile
-from core.CCP4ErrorHandling import SEVERITY_WARNING
-from core import CCP4Modules
-
 from . import test_api
+from ....core import CCP4Modules
+from ....core import CCP4Utils
+from ....core.CCP4ErrorHandling import SEVERITY_WARNING
+from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4XtalData import CObsDataFile
+
 
 class pdb_redo_api(CPluginScript):
 

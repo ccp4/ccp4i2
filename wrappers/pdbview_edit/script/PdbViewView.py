@@ -1,20 +1,15 @@
-from __future__ import print_function
-
 import sys
 
-from PySide2 import QtCore, QtGui, QtWidgets
-
-import ccp4mg
+from Foundation import NSBundle
+from PySide2 import QtCore, QtWidgets
 import PdbView
+
 
 if __name__ == "__main__":
 
-  from sys import platform
-
   # Check if we're on OS X, first.
-  if platform == 'darwin':
+  if sys.platform == 'darwin':
       try:
-          from Foundation import NSBundle
           bundle = NSBundle.mainBundle()
           if bundle:
               info = bundle.localizedInfoDictionary() or bundle.infoDictionary()

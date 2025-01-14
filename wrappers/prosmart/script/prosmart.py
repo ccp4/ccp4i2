@@ -1,13 +1,18 @@
-from __future__ import print_function
-
 """
     prosmart.py: CCP4 GUI Project
     Copyright (C) 2013
 """
 
+import glob
 import os
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4ErrorHandling import *
+import shutil
+import unittest
+
+from ....core import CCP4Modules
+from ....core import CCP4Utils
+from ....core.CCP4ErrorHandling import *
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class prosmart(CPluginScript):
     
@@ -25,8 +30,6 @@ class prosmart(CPluginScript):
    
 
     def processInputFiles(self):
-        import os
-        import shutil
         # Use temp input filename from which prosmart takes output restraints filename
         self.tempFile = os.path.splitext(str(self.container.outputData.RESTRAINTS))[0]+'_TARGET.pdb'
         print('prosmart tempFile',self.tempFile)
@@ -311,8 +314,6 @@ class prosmart(CPluginScript):
               self.appendCommandLine(keys)
 
     def processOutputFiles(self):
-        import os,glob,shutil
-
         try:
           #Remove potentially confusing tempFile
           os.remove(self.tempFile)
@@ -331,7 +332,6 @@ class prosmart(CPluginScript):
         
         #htmlFilePath = os.path.join(self.workDirectory.__str__(),'ProSMART_Results.html')
         '''xmlPath = self.makeFileName('PROGRAMXML')
-        from lxml import etree
         xmlRoot = etree.Element('PROSMART')
         xmlString = etree.tostring(xmlRoot,pretty_print=True)
         xmlFile=open( xmlPath,'w')
@@ -353,25 +353,18 @@ class prosmart(CPluginScript):
 # PLUGIN TESTS
 # See Python documentation on unittest module
 
-import unittest
-
 class testprosmart(unittest.TestCase):
     
     def setUp(self):
-        from core import CCP4Modules
         self.app = CCP4Modules.QTAPPLICATION()
         # make all background jobs wait for completion
         # this is essential for unittest to work
         CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
     
     def tearDown(self):
-        from core import CCP4Modules
         CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
     
     def test_1(self):
-        from core import CCP4Modules, CCP4Utils
-        import os
-        
         workDirectory = CCP4Utils.getTestTmpDir()
         # this needs to agree with name attribute below
         logFile = os.path.join(workDirectory,'prosmart_test1.log')
@@ -388,9 +381,6 @@ class testprosmart(unittest.TestCase):
     #self.assertTrue(os.path.exists(logFile),'No log file found')
     
     def test_2(self):
-        from core import CCP4Modules, CCP4Utils
-        import os
-        
         workDirectory = CCP4Utils.getTestTmpDir()
         # this needs to agree with name attribute below
         logFile = os.path.join(workDirectory,'prosmart_test2.log')

@@ -14,11 +14,10 @@
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    """
+"""
 
-from report.CCP4ReportParser import Report
-import sys
-from wrappers.validate_protein.script import validate_protein_report
+from ....report.CCP4ReportParser import Report
+from ...validate_protein.script import validate_protein_report
 
 
 class lorestr_i2_report(Report):
@@ -44,8 +43,6 @@ class lorestr_i2_report(Report):
     def addRunningProgress(self, parent=None):
         if parent is None: parent=self
         self.addDefaultReport(self)
-
-
 
     def addDefaultReport(self, parent=None):
         if parent is None: parent=self
@@ -329,10 +326,5 @@ class lorestr_i2_report(Report):
                      self.addText("Warning - MolProbity analysis failed")
             except:
                pass
-
-
-
-
-
 
 # End Best Protocol

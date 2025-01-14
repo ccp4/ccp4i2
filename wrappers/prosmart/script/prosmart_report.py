@@ -1,6 +1,8 @@
-from report.CCP4ReportParser import *
-from core import CCP4Modules
-import sys,os
+import os
+
+from ....core import CCP4Modules
+from ....report.CCP4ReportParser import *
+
 
 class prosmart_report(Report):
     TASKNAME='prosmart'
@@ -53,5 +55,3 @@ class prosmart_report(Report):
             self.append('<iframe style="{1}" src="{0}"></iframe>'.format(pdbredourl,iframe_style))
 
         self.addDiv(style="clear:both;")
-        
-

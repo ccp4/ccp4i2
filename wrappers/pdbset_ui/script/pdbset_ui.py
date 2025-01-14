@@ -1,11 +1,10 @@
-from __future__ import print_function
+import base64
 
-import os
-import tempfile
+from lxml import etree
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-import pathlib
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class pdbset_ui(CPluginScript):
 
@@ -18,7 +17,6 @@ class pdbset_ui(CPluginScript):
     COMTEMPLATE = None
 
     def makeCommandAndScript(self):
-
       inp = self.container.inputData
       out = self.container.outputData
 
@@ -47,9 +45,6 @@ class pdbset_ui(CPluginScript):
       return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
-        from lxml import etree
-        import sys
-        import base64
         with open(self.makeFileName("PROGRAMXML"),"w") as programXMLFile:
             xmlStructure = etree.Element("pdbset_ui")
             logText = etree.SubElement(xmlStructure,"LogText")
@@ -58,4 +53,3 @@ class pdbset_ui(CPluginScript):
             CCP4Utils.writeXML(programXMLFile,etree.tostring(xmlStructure))
 
         return CPluginScript.SUCCEEDED
-      

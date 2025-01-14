@@ -1,7 +1,12 @@
-from __future__ import print_function
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4Modules import PROCESSMANAGER
-from core import CCP4ErrorHandling
+import multiprocessing
+import os
+import unittest
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Utils import getCCP4I2Dir
+
 
 class mrbump_basic(CPluginScript):
 
@@ -13,7 +18,6 @@ class mrbump_basic(CPluginScript):
     MAINTAINER = 'ronan.keegan@stfc.ac.uk'
 
     def processInputFiles(self):
-        from core import CCP4XtalData
         error = None
         self.hklin = None
         dataObjects = []
@@ -36,11 +40,7 @@ class mrbump_basic(CPluginScript):
       gui = self.container.guiParameters
       out = self.container.outputData
 
-      from core import CCP4Utils
-      import os
-
       # Set the max number of processors
-      import multiprocessing
       MAXPROC=multiprocessing.cpu_count()  
 
       keyin = "MAPROGRAM clustalw2\n" 
@@ -225,7 +225,6 @@ class mrbump_basic(CPluginScript):
 
 #    """
 #    def postProcess( self, processId=-1, data={} ) :
-#      import os
 #      out = self.container.outputData
 #      xmlout = str( self.makeFileName( 'PROGRAMXML' ) )
 #      self.reportStatus(0)
@@ -235,8 +234,6 @@ class mrbump_basic(CPluginScript):
     # process one or more output files
     # also writes the XML file, previously done by postProcess()
     def processOutputFiles(self):
-        import os,shutil
-
         xyzout = os.path.join(self.getWorkDirectory(), "output_mrbump_1.pdb")
         if os.path.exists(xyzout):
             self.container.outputData.XYZOUT=xyzout
@@ -247,10 +244,6 @@ class mrbump_basic(CPluginScript):
         if os.path.exists(hklout):
             self.container.outputData.HKLOUT=hklout
 
-        from core import CCP4XtalData
-        from core import CCP4File
-        import os
-        
         # Need to set the expected content flag  for phases data
         self.container.outputData.XYZOUT.annotation = 'Model from MrBump refinement'
         self.container.outputData.FPHIOUT.annotation = 'Weighted map from MrBump refinement'
@@ -282,7 +275,6 @@ class mrbump_basic(CPluginScript):
         return CPluginScript.SUCCEEDED
 
 #------------------------------------------------------------------------------------
-import unittest
 
 class testmrbump_basic( unittest.TestCase ) :
 
@@ -291,10 +283,6 @@ class testmrbump_basic( unittest.TestCase ) :
 #- def test2( self ) :
 
    def test1( self ) :
-
-      from core.CCP4Utils import getCCP4I2Dir
-      import os
-
       xmlInput = os.path.join( getCCP4I2Dir(), 'wrappers', 'mrbump_basic', 'test_data', 'test1'+'.params.xml' )
       self.wrapper = mrbump_basic( name='job' )
       self.wrapper.container.loadDataFromXml( xmlInput )
@@ -306,12 +294,9 @@ class testmrbump_basic( unittest.TestCase ) :
          print(self.wrapper.errorReport.report())
 
 def TESTSUITE() :
-
    suite = unittest.TestLoader().loadTestsFromTestCase( testmrbump_basic )
    return suite
 
 def testModule() :
-
    suite = TESTSUITE()
    unittest.TextTestRunner( verbosity=2 ).run( suite )
-

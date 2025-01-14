@@ -1,5 +1,6 @@
 
-from report.CCP4RvapiParser import RvapiReport
+from ....report.CCP4RvapiParser import RvapiReport
+
 
 class morda_i2_report(RvapiReport):
   TASKNAME = 'morda_i2'
@@ -9,4 +10,3 @@ class morda_i2_report(RvapiReport):
 
   RVAPI_MERGE_TABS = False
   RVAPI_STD_HEADER = False
-

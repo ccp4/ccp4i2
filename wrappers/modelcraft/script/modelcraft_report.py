@@ -16,10 +16,11 @@
     GNU Lesser General Public License for more details.
 """
 
-from cProfile import run
 import json
 import os
-from report.CCP4ReportParser import Report
+
+from ....core import CCP4Utils
+from ....report.CCP4ReportParser import Report
 
 
 class modelcraft_report(Report):
@@ -59,9 +60,7 @@ class modelcraft_report(Report):
         pictureGallery = pictureFold.addObjectGallery(style='float:left;',height='550px', tableWidth='260px', contentWidth='450px')
         clearingDiv = parent.addDiv(style="clear:both;")
         jobDirectory = jobInfo['fileroot']
-        from core import CCP4Utils
         ccp4i2_root = CCP4Utils.getCCP4I2Dir()
-        import os
         baseScenePath = os.path.join(ccp4i2_root,'wrappers','modelcraft','script','modelcraft_1.scene.xml')
         parent.addPicture(label="Autobuilt structure",sceneFile=baseScenePath,id='autobuild_1')
 

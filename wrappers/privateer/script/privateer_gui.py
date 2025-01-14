@@ -15,18 +15,17 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Jon Agirre         2014 - Started development
      Jon Agirre         2016 - Revamped for 7.0 release
      Jon Agirre         2019 - New version to support MKIV functionality
      Haroldas Bagdonas  2021 - New version Privateer MKIV with new functionality.
-
 """
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
+
+from PySide2 import QtCore
+
+from ....qtgui import CCP4TaskWidget
+
 
 class privateer_gui(CCP4TaskWidget.CTaskWidget):
 

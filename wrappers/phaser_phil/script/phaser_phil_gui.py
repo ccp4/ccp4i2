@@ -16,8 +16,9 @@
     GNU Lesser General Public License for more details.
     """
 
-from qtgui.CCP4TaskWidget import CTaskWidget
-from core import CCP4Container
+from ....core import CCP4Container
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class phaser_phil_gui(CTaskWidget):

@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
     nautilus.py: CCP4 GUI Project
     
@@ -16,12 +14,13 @@ from __future__ import print_function
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    """
+"""
 
 import os
-from core import CCP4XtalData
-from core import CCP4ErrorHandling
-from core.CCP4PluginScript import CPluginScript
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
 
 
 class nautilus(CPluginScript):

@@ -1,4 +1,3 @@
-
 """
      molrep_mr.py: CCP4 GUI Project
      Copyright (C) 2011 STFC
@@ -18,10 +17,16 @@
      GNU Lesser General Public License for more details.
 """
 
+import os
 import re
-import shutil
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4ErrorHandling import *
+
+from lxml import etree
+
+from ....core import CCP4Utils
+from ....core import CCP4XtalData
+from ....core.CCP4ErrorHandling import *
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class molrep_mr(CPluginScript):
 
@@ -41,10 +46,8 @@ class molrep_mr(CPluginScript):
 
 
     def processInputFiles(self):
-      import os
       # Ensure the obs data is in form of F_SIGF
       if self.container.guiParameters.PERFORM != 'den':
-        from core import CCP4XtalData
         # Using CObsDataFile.convert() did not work for input of anomalous Is (as from aimless)
         self.F_SIGF_hklin,errReport = self.makeHklin([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
         #self.F_SIGF_hklin,errReport = self.container.inputData.F_SIGF.convert(targetContent=CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN)
@@ -87,8 +90,6 @@ class molrep_mr(CPluginScript):
       par = self.container.controlParameters
       gui = self.container.guiParameters
 
-      from core import CCP4Utils
-      import os
       self.path_wrk = str( self.getWorkDirectory() )
       self.path_scr = os.path.join( self.path_wrk, 'scratch' )
       if not os.path.exists(self.path_scr): os.mkdir( self.path_scr )
@@ -241,8 +242,6 @@ class molrep_mr(CPluginScript):
       return 0
 
     def processOutputFiles( self ) :
-
-      import os
       out = self.container.outputData
       gui = self.container.guiParameters
       par = self.container.controlParameters
@@ -289,13 +288,9 @@ class molrep_mr(CPluginScript):
       
       return CPluginScript.SUCCEEDED
 
-
-
     def saveProgramXml ( self, docFileName, programXmlFileName ) :
-      from core import CCP4Utils
       titles = []
       status = 0
-      from lxml import etree
       results = etree.Element('MolrepResult')
       tf = etree.Element('MR_TF')
       results.append(tf)
@@ -377,10 +372,8 @@ class molrep_mr(CPluginScript):
         results.append(eLaue)
           
       CCP4Utils.saveEtreeToFile(results,programXmlFileName)
-                
 
     def extractLaueDataFromLog(self):
-      from core import CCP4Utils
       try:
         text = CCP4Utils.readFile(self.makeFileName('LOG'))
       except:

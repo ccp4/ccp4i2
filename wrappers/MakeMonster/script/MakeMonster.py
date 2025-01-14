@@ -1,7 +1,8 @@
 
-from core.CCP4PluginScript import CPluginScript
-from PySide2 import QtCore
-import os,re,time,sys
+import os
+
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class MakeMonster(CPluginScript):
     

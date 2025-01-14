@@ -1,4 +1,3 @@
-from __future__ import print_function
 """
     lorestr_i2.py: CCP4 GUI Project
     
@@ -15,20 +14,21 @@ from __future__ import print_function
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    """
+"""
 
 import os
 import shutil
+import xml.etree.ElementTree as ET
 
-from core.CCP4PluginScript import CPluginScript
 from lxml import etree
-import core.CCP4Utils
-import core.CCP4ErrorHandling
-from core.CCP4ErrorHandling import *
-from core import CCP4Modules
-from lxml import etree
-from xml.etree import ElementTree as ET
-from core import CCP4Utils
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Modules
+from ....core import CCP4Utils
+from ....core import CCP4XtalData
+from ....core.CCP4ErrorHandling import *
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class lorestr_i2(CPluginScript):
     TASKNAME = 'lorestr_i2'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -47,7 +47,6 @@ class lorestr_i2(CPluginScript):
         super(lorestr_i2, self).__init__(*args, **kws)
         self._readyReadStandardOutputHandler = self.handleReadyReadStandardOutput
         self.xmlroot = etree.Element('lorestr_i2')
-#        from refmacLogScraper import logScraper
 #        self.logScraper = logScraper(xmlroot=self.xmlroot, flushXML=self.flushXML)
         self.xmlLength = 0
 
@@ -64,13 +63,11 @@ class lorestr_i2(CPluginScript):
         #                       2) a list of strings, each of which contains a comma-separated list of column labels output from
         #                       the input data objects
         #                       3) A CCP4 Error object        
-        import CCP4XtalData
         self.hklin, self.columns, error = self.makeHklin0([
             ['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]
         ])
         self.columnsAsArray = self.columns.split(",")
         
-        import CCP4ErrorHandling
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
         '''
@@ -84,7 +81,6 @@ class lorestr_i2(CPluginScript):
         self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.selectedCoordinatesPath)
         '''
 
-        from core import CCP4XtalData
         error = None
         self.hklin = None
         dataObjects = []
@@ -97,7 +93,6 @@ class lorestr_i2(CPluginScript):
         dataObjects += [['F_SIGF',obsType]] # ,obsType
 
         #Apply coordinate selection if set
-        import os
         self.inputCoordPath = os.path.normpath(self.container.inputData.XYZIN.fullPath.__str__())
         if self.container.inputData.XYZIN.isSelectionSet():
             self.inputCoordPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'selected.pdb'))
@@ -107,8 +102,6 @@ class lorestr_i2(CPluginScript):
         if self.container.inputData.FREERFLAG.isSet():
             dataObjects += ['FREERFLAG']
         self.hklin,error = self.makeHklin(dataObjects)
-
-        from core import CCP4ErrorHandling
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
         else:
@@ -141,12 +134,10 @@ class lorestr_i2(CPluginScript):
             self.xmlLength = len(newXml)
             with open (self.makeFileName('PROGRAMXML')+'_tmp','w') as programXmlFile:
                 programXmlFile.write(newXml)
-            import shutil
             shutil.move(self.makeFileName('PROGRAMXML')+'_tmp', self.makeFileName('PROGRAMXML'))
 
 
     def makeCommandAndScript(self, **kw):
-        import os
         self.hklout = os.path.join(self.workDirectory,"hklout.mtz")
 
 # ccp4-python -m lorestr.main
@@ -319,8 +310,6 @@ class lorestr_i2(CPluginScript):
 
 # End of CCP4i2 validation
 
-
-        from core import CCP4ErrorHandling
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
 

@@ -1,15 +1,14 @@
-from __future__ import print_function
-
 """
     wrappers/ProvideSequence/script/ProvideSequence_gui.py
     Martin Noble
-    """
+"""
 
-from PySide2 import QtGui, QtWidgets,QtCore,QtWebEngine, QtWebEngineWidgets
-from qtgui.CCP4TaskWidget import CTaskWidget
-from qtgui import CCP4Widgets
-import os
 import functools
+
+from PySide2 import QtCore, QtWebEngineWidgets
+
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 class CTaskProvideAsuContents(CTaskWidget):
     

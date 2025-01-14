@@ -1,5 +1,5 @@
-from __future__ import print_function
-from report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import *
+
 
 class pyphaser_mr_report(Report):
   # Specify which gui task and/or pluginscript this applies to
@@ -71,5 +71,3 @@ class pyphaser_mr_report(Report):
     l.append('colour','green')
 
     pic = parent.addPicture(label="Final structure",sceneFile="$CCP4I2/wrappers/pyphaser_mr/script/pyphaser_mr_1.scene.xml")
-
-        

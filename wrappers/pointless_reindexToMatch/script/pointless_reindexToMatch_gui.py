@@ -1,13 +1,14 @@
-from __future__ import print_function
 """
     pipelines/pohaser_pipeline/wrappers/pointless_reindexToMatch/script/pointless_reindexToMatch_gui.py
     Copyright (C) 2014 Newcastle University
     Author: Martin Noble
-    
-    """
+"""
 
-from qtgui.CCP4TaskWidget import CTaskWidget
 from PySide2 import QtCore
+
+from ....core import CCP4ErrorHandling
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class pointless_reindexToMatch_gui(CTaskWidget):
@@ -137,7 +138,6 @@ class pointless_reindexToMatch_gui(CTaskWidget):
     # from dummy job example
     def taskValidity(self):
         # based on dummy job example
-        from core import CCP4ErrorHandling
         rv = CCP4ErrorHandling.CErrorReport()
         if str(self.container.controlParameters.REFERENCE) == 'SPECIFY':
             # for explicit reindex, must define either Spacegroup or Reindex or both

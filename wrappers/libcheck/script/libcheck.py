@@ -1,7 +1,14 @@
 
-from core.CCP4PluginScript import CPluginScript
+import copy
+import os
+import unittest
 
-  
+from ....core import CCP4Utils
+from ....core.CCP4Modules import PROCESSMANAGER
+from ....core.CCP4Modules import QTAPPLICATION
+from ....core.CCP4PluginScript import CPluginScript
+
+
 class libcheck(CPluginScript):
 
     TASKMODULE = 'test'                               # Where this plugin will appear on the gui
@@ -17,7 +24,6 @@ class libcheck(CPluginScript):
         return self.mergeProcess()
 
     def mergeProcess(self):
-      import os,copy
       errorFiles = []; copies = 0
       lastLib = self.container.inputData.DICTLIB.__str__()
       for indx in range(len(self.container.inputData.MERGELIST)):
@@ -37,7 +43,6 @@ class libcheck(CPluginScript):
           errorFiles.append(mergeFile.__str__())
      
       if copies>0 and os.path.exists(lastLib):
-        from core import CCP4Utils
         CCP4Utils.backupFile(self.container.inputData.DICTLIB.__str__(),delete=True)
         #print 'libcheck.process lastLib',lastLib,os.path.exists(lastLib),self.container.inputData.DICTLIB.__str__()
         os.rename(lastLib,self.container.inputData.DICTLIB.__str__())
@@ -49,23 +54,18 @@ class libcheck(CPluginScript):
 # PLUGIN TESTS
 # See Python documentation on unittest module
 
-import unittest
-
 class testlibcheck(unittest.TestCase):
 
    def setUp(self):
     # make all background jobs wait for completion
     # this is essential for unittest to work
-    from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
     self.app = QTAPPLICATION()
     PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    from core.CCP4Modules import PROCESSMANAGER
     PROCESSMANAGER().setWaitForFinished(-1)
 
    def test_1(self):
-     from core.CCP4Modules import QTAPPLICATION
      wrapper = libcheck(parent=QTAPPLICATION(),name='libcheck_test1')
      wrapper.container.loadDataFromXml()
      

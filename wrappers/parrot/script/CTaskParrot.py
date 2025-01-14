@@ -15,15 +15,13 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton Aug 2012 = Parrot gui
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
+from ....core import CCP4ErrorHandling
+from ....qtgui import CCP4TaskWidget
+
 
 class CTaskParrot(CCP4TaskWidget.CTaskWidget):
 
@@ -44,8 +42,7 @@ class CTaskParrot(CCP4TaskWidget.CTaskWidget):
   def drawContents(self):
 
     self.setProgramHelpFile('parrot')
-    
-                        
+
     folder = self.openFolder(folderFunction='inputData',title='Input Data')
     
     self.createLine(  [ 'subtitle', 'Select experimental data', 'Observed structure factors and initial phasing (e.g. from experimental phasing or molecular replacement) are required' ] )
@@ -107,5 +104,4 @@ class CTaskParrot(CCP4TaskWidget.CTaskWidget):
     if inp.XYZIN_HA.isSet() and inp.XYZIN_MODE != 'ha': inp.XYZIN_HA.unSet()
     if inp.XYZIN_MR.isSet() and inp.XYZIN_MODE != 'mr': inp.XYZIN_MR.unSet()
 
-    from core import CCP4ErrorHandling
     return CCP4ErrorHandling.CErrorReport()

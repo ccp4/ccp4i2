@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      pdbset.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -19,8 +17,14 @@ from __future__ import print_function
      GNU Lesser General Public License for more details.
 """
 
-from core.CCP4PluginScript import CPluginScript
-     
+import os
+import unittest
+
+from ....core.CCP4Modules import PROCESSMANAGER
+from ....core.CCP4Modules import QTAPPLICATION
+from ....core.CCP4PluginScript import CPluginScript
+
+
 class pdbset(CPluginScript):
 
     TASKMODULE = 'demo'
@@ -33,30 +37,19 @@ class pdbset(CPluginScript):
     COMTEMPLATE = '''1 CELL $CELL.a $CELL.b $CELL.c $CELL.alpha $CELL.beta $CELL.gamma
 1 END'''
 
-
-
-
-     
-#====================================================================================================
-
-import unittest
+#===================================================================================================
 
 class testPdbset(unittest.TestCase):
 
    def setUp(self):
     # make all background jobs wait for completion
-    from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
     self.app = QTAPPLICATION()
     PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    from core.CCP4Modules import PROCESSMANAGER
     PROCESSMANAGER().setWaitForFinished(-1)
 
    def testPdbset(self):
-     from core.CCP4Modules import QTAPPLICATION
-     import os
-
      wrapper = pdbset(parent=QTAPPLICATION(),name='pdbset')
      
      wrapper.container.inputData.XYZIN.set(project='CCP4I2_TOP',relPath='wrappers/pdbset/test_data',baseName='1df7.pdb')

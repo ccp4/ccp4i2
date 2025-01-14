@@ -1,11 +1,13 @@
-
-from report.CCP4ReportParser import *
-from core import CCP4Utils
-import numpy
 import os
 import shutil
-
+import sys
 import xml.etree.ElementTree as etree
+
+import numpy
+
+from ....core import CCP4Utils
+from ....report.CCP4ReportParser import *
+
 
 class privateer_report(Report):
   # Specify which gui task and/or pluginscript this applies to
@@ -431,5 +433,4 @@ class privateer_report(Report):
 #        return s
 
 if __name__ == "__main__":
-  import sys
   privateer_report(xmlFile=sys.argv[1],jobId=sys.argv[2])

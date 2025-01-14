@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      mtzdump.scripts.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -21,8 +19,13 @@ from __future__ import print_function
      etc
 """
 
-from core.CCP4PluginScript import CPluginScript
-     
+import unittest
+
+from ....core.CCP4Modules import PROCESSMANAGER
+from ....core.CCP4Modules import QTAPPLICATION
+from ....core.CCP4PluginScript import CPluginScript
+
+
 class mtzdump(CPluginScript):
 
     TASKMODULE = 'test'
@@ -112,24 +115,19 @@ class mtzdump(CPluginScript):
 #=================================test suite=========================================================
 #=====================================================================================================
 
-import unittest
-
 # unit testing asynchronous processes potential tricky but QProcess has option to wait for finished
  
 class testMtzdump(unittest.TestCase):
   
   def setUp(self):
     # make all background jobs wait for completion
-    from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
     self.app = QTAPPLICATION()
     PROCESSMANAGER().setWaitForFinished(10000)
 
   def tearDown(self):
-    from core.CCP4Modules import PROCESSMANAGER
     PROCESSMANAGER().setWaitForFinished(-1)
 
   def testMtzdump(self):
-    from core.CCP4Modules import QTAPPLICATION
     self.wrapper = mtzdump(parent=QTAPPLICATION(),name='test_mtzdump')
     self.wrapper.container.inputData.HKLIN.set({'project':'CCP4I2_TOP','baseName':'gere_nat.mtz','relPath':'test/data'})
     pid = self.wrapper.process()

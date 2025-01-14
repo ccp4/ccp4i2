@@ -17,7 +17,8 @@
 """
 
 from PySide2 import QtCore
-from qtgui.CCP4TaskWidget import CTaskWidget
+
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
 
 class modelcraft_gui(CTaskWidget):

@@ -14,10 +14,12 @@
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    """
+"""
 
 import os
-from core.CCP4PluginScript import CPluginScript
+
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class Platonyzer(CPluginScript):
     TASKNAME = 'Platonyzer'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -58,7 +60,6 @@ class Platonyzer(CPluginScript):
         columnsToTake = ['FWT,PHWT','DELFWT,PHDELWT']
         infile = os.path.join(self.workDirectory,'final.mtz')
         error = self.splitHklout(outputFilesToMake, columnsToTake, infile=infile)
-        from core import CCP4ErrorHandling
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
         '''
@@ -66,8 +67,6 @@ class Platonyzer(CPluginScript):
         #Create (dummy) PROGRAMXML, which basically contains only the log text of the job
         #without this, a report will not be generated
         '''
-        from lxml import etree
-        import sys
         with open(self.makeFileName("PROGRAMXML"),"w") as programXMLFile:
             xmlStructure = etree.Element("i2Dimple")
             logText = etree.SubElement(xmlStructure,"LogText")

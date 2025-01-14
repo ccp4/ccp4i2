@@ -14,17 +14,19 @@
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-
 """
 
-import os, sys
-from qtgui.CCP4TaskWidget import CTaskWidget
-from core.CCP4ErrorHandling import CErrorReport
+import os
+import sys
+
 try:
     from morda import version as mrd_version
-
 except:
     mrd_version = None
+
+from ....core.CCP4ErrorHandling import CErrorReport
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 class morda_i2_gui(CTaskWidget):
 

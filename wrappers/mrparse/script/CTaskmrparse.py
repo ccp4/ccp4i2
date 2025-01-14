@@ -1,4 +1,7 @@
-from qtgui import CCP4TaskWidget
+import multiprocessing
+
+from ....qtgui import CCP4TaskWidget
+
 
 class CTaskmrparse(CCP4TaskWidget.CTaskWidget):
 
@@ -14,7 +17,6 @@ class CTaskmrparse(CCP4TaskWidget.CTaskWidget):
         CCP4TaskWidget.CTaskWidget.__init__(self,parent)
 
     def drawContents(self):
-        import multiprocessing
         MAXPROC=multiprocessing.cpu_count()  
 
         self.openFolder(folderFunction='inputData', title='Input Data')

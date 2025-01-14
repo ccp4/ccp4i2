@@ -1,13 +1,19 @@
+from pathlib import Path
 import glob
 import os
-from pathlib import Path
 import platform
 import sys
-from PySide2 import QtCore
+
 from lxml import etree
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Modules
-from core import CCP4Utils
+from PySide2 import QtCore
+from rdkit import Chem
+import acedrg
+
+from . import MOLSVG
+from ....core import CCP4Modules
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class lidia(CPluginScript):
     TASKMODULE = 'wrappers'  # Where this plugin will appear on the gui
@@ -83,17 +89,14 @@ class lidia(CPluginScript):
 
     def svgForMolFile(self, molFilePath):
         try:
-            from rdkit import Chem
             mol = Chem.MolFromMolFile(molFilePath)
             Chem.SanitizeMol(mol)
             Chem.Kekulize(mol)
-            import acedrg
             return acedrg.svgFromMol(mol)
         except:
             return self.mySvgForMolFile(molFilePath)
 
     def mySvgForMolFile(self, molFilePath):
-        from . import MOLSVG
         mdlMolecule = MOLSVG.MDLMolecule(molFilePath)
         return mdlMolecule.svgXML(size=(300,300))
 

@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 # Normally would use findall (http://www.w3schools.com/findall/) to access the program output but
 # I've added some convenience functions (haspath(),ifselect(),select() etc) to tidy up the Python code
 # So here if the program output has a TwinWarning append some text to the report.  append() parses
@@ -7,15 +5,11 @@ from __future__ import print_function
 # object automatically and appends that.
 #
 
+import sys
 
-import os,sys
-try:
-  from report.CCP4ReportParser import *
-except:
-  exec(compile(open(os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc')).read(), os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc'), 'exec'))
-  from report.CCP4ReportParser import *
+from ....pipelines.aimless_pipe.script.aimless_pipe_utils import *
+from ....report.CCP4ReportParser import *
 
-from pipelines.aimless_pipe.script.aimless_pipe_utils import *
 
 # - - - - - - - - - - - - - - - - -
 class pointless_report(Report):

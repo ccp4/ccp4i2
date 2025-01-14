@@ -1,16 +1,11 @@
-from __future__ import print_function
-
-import sys
-import os
-import glob
-import tempfile
 import functools
+import glob
+import os
+import sys
 
-from PySide2 import QtCore, QtGui, QtWidgets
-
-import ccp4mg
-import mmdb2
+from PySide2 import QtCore, QtWidgets
 import PdbView
+
 
 #workDirectory = "XXXXX_WORK_DIR_XXXXX"
 

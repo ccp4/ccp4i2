@@ -1,6 +1,9 @@
-from qtgui import CCP4TaskWidget
-import sys
 import os
+import sys
+
+from iotbx import file_reader
+
+from ....qtgui import CCP4TaskWidget
 
 
 class CTaskimport_serial(CCP4TaskWidget.CTaskWidget):
@@ -25,13 +28,11 @@ class CTaskimport_serial(CCP4TaskWidget.CTaskWidget):
     def __init__(self,parent):
         CCP4TaskWidget.CTaskWidget.__init__(self,parent)
 
-
     #@QtCore.Slot()
     #def updateFromCifFile(self):
     #    #print 'CTaskCif2mtz.updateFromCifFile',self.container.inputData.HKLIN.fileContent
     #    self.container.inputData.SPACEGROUPCELL.cell.set(self.container.inputData.HKLIN.fileContent.cell)
     #    self.container.inputData.SPACEGROUPCELL.spaceGroup.set(self.container.inputData.HKLIN.fileContent.spaceGroup)
-
 
     def drawContents(self):
         #self.setProgramHelpFile('cif2mtz')
@@ -114,7 +115,6 @@ class CTaskimport_serial(CCP4TaskWidget.CTaskWidget):
 
 
     def get_cs_reference(self, filename):
-        from iotbx import file_reader
         file = file_reader.any_file(filename)
         if file.file_type == "hkl" or file.file_type == "pdb":
             try:

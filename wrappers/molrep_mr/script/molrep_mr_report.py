@@ -1,4 +1,7 @@
-from report.CCP4ReportParser import *
+import sys
+
+from ....report.CCP4ReportParser import Report
+
 
 class molrep_mr_report(Report):
   # Specify which gui task and/or pluginscript this applies to
@@ -50,5 +53,4 @@ class molrep_mr_report(Report):
     self.addTaskReferences()
     
 if __name__ == "__main__":
-  import sys
   molrep_mr_report(xmlFile=sys.argv[1],jobId=sys.argv[2])

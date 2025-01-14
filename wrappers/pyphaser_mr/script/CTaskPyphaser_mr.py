@@ -2,15 +2,12 @@
      tasks/pyphaser_mr/CTaskPyphaser_mr.py
      Copyright (C) 2011 STFC
      Author: Martyn Winn
-
 """
 
-from qtgui.CCP4TaskWidget import CTaskWidget
-from PySide2 import QtCore
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
-#-------------------------------------------------------------------
+
 class CTaskPyphaser_mr(CTaskWidget):
-#-------------------------------------------------------------------
 
 # Subclass CTaskWidget to give specific task window
   TASKNAME = 'pyphaser_mr'

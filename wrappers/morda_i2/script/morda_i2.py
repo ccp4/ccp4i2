@@ -14,13 +14,16 @@
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-
 """
 
-import os, sys, shutil, re
-from core import CCP4PluginScript
-from core import CCP4ErrorHandling
-from core import CCP4XtalData
+import os
+import shutil
+import sys
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4PluginScript
+from ....core import CCP4XtalData
+
 
 class morda_i2(CCP4PluginScript.CPluginScript):
     TASKNAME = 'morda_i2'

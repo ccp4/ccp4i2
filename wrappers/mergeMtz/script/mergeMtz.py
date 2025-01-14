@@ -1,7 +1,8 @@
+import re
 
-from core.CCP4PluginScript import CPluginScript
+from ....core.CCP4PluginScript import CPluginScript
 
-  
+
 class mergeMtz(CPluginScript):
 
     TASKTITLE = 'Merge experimental data objects to MTZ'     # A short title for gui menu
@@ -9,11 +10,9 @@ class mergeMtz(CPluginScript):
     RUNEXTERNALPROCESS = False                                  # There is not external process
     MAINTAINER = 'liz.potterton@york.ac.uk'
 
-
     def startProcess(self,command,**kw):
       # Reimplement the method that normally starts an external process to do the processing by
       # calling the CPluginScript.joinMtz() method 
-      import re
       inFiles = []
       for miniMtz in self.container.inputData.MINIMTZINLIST:
         if miniMtz.fileName.isSet() and miniMtz.fileName.exists():
@@ -34,6 +33,3 @@ class mergeMtz(CPluginScript):
       #print 'mergeMtz.process inFiles',inFiles
       rv = self.joinMtz(self.container.outputData.HKLOUT.fullPath.__str__(),inFiles)
       return rv
-
-      
-     

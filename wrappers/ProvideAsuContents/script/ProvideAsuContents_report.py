@@ -1,10 +1,9 @@
-from __future__ import print_function
-
-from report.CCP4ReportParser import *
-from core import CCP4ModelData, CCP4Modules
-from report import CCP4ReportParser
-import sys,os
+import os
 import xml.etree.ElementTree as etree
+
+from ....core import CCP4ModelData, CCP4Modules
+from ....report.CCP4ReportParser import *
+
 
 class ProvideAsuContents_report(Report):
     TASKNAME = 'ProvideAsuContents'
@@ -53,10 +52,7 @@ class ProvideAsuContents_report(Report):
               #A new job
               with open(outputXmlFile,'r') as inputFile:
                   text = inputFile.read()
-                  if sys.version_info > (3,0):
-                      outputXml = etree.fromstring( text.encode('utf-8'))
-                  else:
-                      outputXml = etree.fromstring( text )
+                  outputXml = etree.fromstring( text.encode('utf-8'))
                   matthewsAnalysis = outputXml.findall( ".//matthewsCompositions" )
                   if len(matthewsAnalysis) > 0 and len(matthewsAnalysis[0])>0:
                       text = ''

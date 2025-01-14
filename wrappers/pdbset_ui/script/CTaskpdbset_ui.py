@@ -1,8 +1,5 @@
+from ....qtgui import CCP4TaskWidget
 
-
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
 
 class CTaskPDBSetUI(CCP4TaskWidget.CTaskWidget):
 

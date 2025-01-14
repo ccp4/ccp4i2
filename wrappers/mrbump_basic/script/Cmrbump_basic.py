@@ -1,8 +1,8 @@
-from __future__ import print_function
-#from PyQt4 import QtGui,QtCore
-from PySide2 import QtGui,QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
+import multiprocessing
+
+from ....qtgui import CCP4TaskWidget
+from ....qtgui.CCP4ModelWidgets import CPdbDataFileView
+
 
 def whatNext(jobId=None):
   return [ 'buccaneer_build_refine_mr' ]
@@ -33,8 +33,6 @@ class Cmrbump_basic(CCP4TaskWidget.CTaskWidget):
     return
 
   def drawContents(self):
-
-    import multiprocessing
     MAXPROC=multiprocessing.cpu_count()  
  
     indent = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
@@ -102,7 +100,6 @@ class Cmrbump_basic(CCP4TaskWidget.CTaskWidget):
     self.openSubFrame(frame=[True], toggle = ['LOCAL', 'open', [ True ] ] )
     #self.createLine( ['subtitle','Local files'] )
     self.createLine ( [ 'tip','Input model from which subset will be selected', 'widget','XYZIN_LIST' ] )
-    from qtgui.CCP4ModelWidgets import CPdbDataFileView
     for pdbDataFileView in self.findChildren(CPdbDataFileView):
         pdbDataFileView.showAtomSelection()
     self.createLine( [ 'label','Only use locally provided search models (no sequence search)','widget', 'LOCALONLY' ] )

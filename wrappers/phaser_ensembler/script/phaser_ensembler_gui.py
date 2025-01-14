@@ -1,4 +1,6 @@
-from qtgui.CCP4TaskWidget import CTaskWidget
+from ....qtgui.CCP4ModelWidgets import CPdbDataFileView
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class phaser_ensembler_gui(CTaskWidget):
@@ -24,7 +26,6 @@ class phaser_ensembler_gui(CTaskWidget):
         self.createLine( ['subtitle', 'Coordinates' ])
         self.openSubFrame(frame=True)
         self.createLine ( [ 'widget', 'XYZIN_LIST' ] )
-        from qtgui.CCP4ModelWidgets import CPdbDataFileView
         for pdbDataFileView in self.findChildren(CPdbDataFileView):
             pdbDataFileView.showAtomSelection()
         self.closeSubFrame()
