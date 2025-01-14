@@ -18,8 +18,11 @@
 """
 
 from lxml import etree
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
+
+from ....core import CCP4Utils
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class cpatterson(CPluginScript):
 
@@ -31,7 +34,6 @@ class cpatterson(CPluginScript):
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 
     def processInputFiles ( self ):
-        from core import CCP4XtalData
         self.hklin,error = self.makeHklin([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
 
     def makeCommandAndScript(self):

@@ -1,11 +1,16 @@
-from __future__ import print_function
-
+import csv
+import os
+import pathlib
 import re
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-import pathlib
-import csv
+from ccp4mg import mmut
+from ccp4mg import pygl_coord
+from lxml import etree
+
+from ....core import CCP4Utils
+from ....core.CCP4MathsData import CTransformation
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class gesamt(CPluginScript):
 
@@ -21,8 +26,6 @@ class gesamt(CPluginScript):
       inp = self.container.inputData
       par = self.container.controlParameters
       out = self.container.outputData
-
-      import os
 
       self.csvout = os.path.join(self.getWorkDirectory(),"csv.out")
 
@@ -99,12 +102,10 @@ class gesamt(CPluginScript):
         nResValue = None
         transformationMatrix = []
         
-        from lxml import etree
         xmlRoot = etree.Element('Gesamt')
         perResidueNode = None
         iRes = 0
 
-        import os
         out = self.container.outputData
         if hasattr(self,"tmpOut") and os.path.isfile(self.tmpOut):
           os.rename ( self.tmpOut,str(out.XYZOUT.fullPath) )
@@ -162,7 +163,6 @@ class gesamt(CPluginScript):
 
     
         if eulerValues is not None and translationValues is not None and rmsValue is not None and qValue is not None and nResValue is not None:
-            from core.CCP4MathsData import CTransformation
             self.container.outputData.TRANSFORMATION = CTransformation()
             self.container.outputData.TRANSFORMATION.alpha.set(eulerValues[0])
             self.container.outputData.TRANSFORMATION.beta.set(eulerValues[1])
@@ -197,8 +197,6 @@ class gesamt(CPluginScript):
             if perResidueNode is not None: transformationNode.append(perResidueNode)
         
             if len(transformationMatrix) == 12:
-                from ccp4mg import mmut
-                from ccp4mg import pygl_coord
                 inp = self.container.inputData
                 xyzin_query_file = str( inp.XYZIN_QUERY.fullPath )
                 molHnd = mmut.CMMANManager()

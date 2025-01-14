@@ -1,6 +1,8 @@
-from core import CCP4Modules
 from PySide2 import QtCore
-from qtgui import CCP4TaskWidget
+
+from ....core import CCP4Modules
+from ....qtgui import CCP4TaskWidget
+
 
 class CTaskDials_image(CCP4TaskWidget.CTaskWidget):
 
@@ -39,4 +41,3 @@ class CTaskDials_image(CCP4TaskWidget.CTaskWidget):
                 self.container.inputData.PICKLE_IN.unSet()
         else:
             self.container.inputData.PICKLE_IN.unSet()
-

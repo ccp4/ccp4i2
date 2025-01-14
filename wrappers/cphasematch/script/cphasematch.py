@@ -16,7 +16,15 @@
      GNU Lesser General Public License for more details.
 """
 
-from core.CCP4PluginScript import CPluginScript
+import os
+
+from lxml import etree
+
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+from ....pimple import MGQTmatplotlib
+from ....smartie import smartie
+
 
 class cphasematch(CPluginScript):
 
@@ -28,7 +36,6 @@ class cphasematch(CPluginScript):
     TASKVERSION= 0.0
 
     def processInputFiles ( self ):
-        from core import CCP4XtalData
         inp = self.container.inputData
         colgrps = [ ['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN],
                     'ABCD1', 'ABCD2' ] 
@@ -39,7 +46,6 @@ class cphasematch(CPluginScript):
         inp = self.container.inputData
         out = self.container.outputData
 
-        import os
         self.hklout = os.path.join(self.workDirectory,"hklout.mtz")
 
         self.appendCommandLine([ '-stdin' ])
@@ -61,8 +67,6 @@ class cphasematch(CPluginScript):
 
 
     def processOutputFiles(self):
-        from lxml import etree
-
         error = self.splitHklout( [ 'ABCDOUT' ], [ 'i2.ABCD.A,i2.ABCD.B,i2.ABCD.C,i2.ABCD.D' ] )
         self.container.outputData.ABCDOUT.annotation = 'shifted ABCD'
 
@@ -96,18 +100,9 @@ class cphasematch(CPluginScript):
 
 
     def scrapeSmartieGraphs(self, smartieNode):
-        import sys, os
-        from core import CCP4Utils
-        from pimple import MGQTmatplotlib        
-        from lxml import etree
-        smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
-        sys.path.append(smartiePath)
-        import smartie
-
         logfile = smartie.parselog(self.makeFileName('LOG'))
         for smartieTable in logfile.tables():
             if smartieTable.ngraphs() > 0:
                 tableetree = MGQTmatplotlib.CCP4LogToEtree(smartieTable.rawtable())
                 smartieNode.append(tableetree)
         return
-

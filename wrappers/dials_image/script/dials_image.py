@@ -1,4 +1,5 @@
-from core.CCP4PluginScript import CPluginScript
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class dials_image(CPluginScript):
 
@@ -31,4 +32,3 @@ class dials_image(CPluginScript):
         if self.container.inputData.PICKLE_IN.isSet():
             inputPickle = self.container.inputData.PICKLE_IN.fullPath.__str__()
             self.appendCommandLine(inputPickle)
-

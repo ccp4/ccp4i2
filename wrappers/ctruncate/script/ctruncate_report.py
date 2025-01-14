@@ -1,7 +1,11 @@
 
 
-import os,sys,math
-from report.CCP4ReportParser import *
+import math
+import os
+import sys
+
+from ....report.CCP4ReportParser import *
+
 
 class ctruncate_report(Report):
     TASKNAME='ctruncate'

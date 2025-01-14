@@ -17,10 +17,12 @@
 """
 
 import os
+
 import gemmi
-from core.CCP4ErrorHandling import SEVERITY_WARNING
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4XtalData import CMapCoeffsDataFile
+
+from ....core.CCP4ErrorHandling import SEVERITY_WARNING
+from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4XtalData import CMapCoeffsDataFile
 
 
 class density_calculator(CPluginScript):

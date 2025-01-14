@@ -1,12 +1,18 @@
-from __future__ import print_function
-
 """
      ctruncate.py: CCP4 GUI Project
      Copyright (C) 2012 STFC
 """
 
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4ErrorHandling import *
+import os
+import unittest
+
+from ....core import CCP4Modules
+from ....core import CCP4Utils
+from ....core import CCP4XtalData
+from ....core.CCP4ErrorHandling import *
+from ....core.CCP4PluginScript import CPluginScript
+
+
 class ctruncate(CPluginScript):
 
     TASKMODULE = 'expt_data_utility'      # Where this plugin will appear on the gui
@@ -52,7 +58,6 @@ class ctruncate(CPluginScript):
          self.appendCommandLine(['-seqin',inp.SEQIN.fullPath])
       #print 'ctruncate.makeCommandAndScript OUTPUTMINIMTZ',self.container.controlParameters.OUTPUTMINIMTZ,type(self.container.controlParameters.OUTPUTMINIMTZ)
       #if self.container.controlParameters.OUTPUTMINIMTZ:
-        #import os
         #self.tmpHklout = os.path.join(self.workDirectory,'ctruncate_output.mtz')
         #self.appendCommandLine(['-hklout',self.tmpHklout])
        # else:
@@ -96,7 +101,6 @@ class ctruncate(CPluginScript):
       return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
-      import os,shutil
       #print 'ctruncate.processOutputFiles',self.container.controlParameters.OUTPUTMINIMTZ,self.container.controlParameters.OUTPUTMINIMTZCONTENTFLAG
       #print 'ctruncate.processOutputFiles HKLOUT',self.container.outputData.HKLOUT.__str__(),os.path.exists(self.container.outputData.HKLOUT.__str__())
               
@@ -113,7 +117,6 @@ class ctruncate(CPluginScript):
           
         logFile = os.path.join(self.workDirectory,'cmtzsplit.log')
         # ***** Check ctruncate column names
-        from core import CCP4XtalData
         if outputContent == 4:
           # MN Kludge here..*FIXME*.looks to me like the column labels output by ctruncate for Fmean, SIGFmean
           # depend on the type of data it started with (ISIGI, vs ISIGIanom)
@@ -185,26 +188,18 @@ class ctruncate(CPluginScript):
 # PLUGIN TESTS
 # See Python documentation on unittest module
 
-import unittest
-
 class testctruncate(unittest.TestCase):
 
    def setUp(self):
-    from core import CCP4Modules
     self.app = CCP4Modules.QTAPPLICATION()
     # make all background jobs wait for completion
     # this is essential for unittest to work
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    from core import CCP4Modules
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
 
    def test_1(self):
-     from core import CCP4Modules
-     from core import CCP4Utils
-     import os
-
      workDirectory = os.path.join(CCP4Utils.getTestTmpDir(),'test1')
      if not os.path.exists(workDirectory): os.mkdir(workDirectory)
 

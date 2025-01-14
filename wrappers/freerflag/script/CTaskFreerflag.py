@@ -2,10 +2,12 @@
      tasks/freerflag/CTaskFreerflag.py
      Copyright (C) 2011 STFC
      Author: Martyn Winn
-
 """
+
 from PySide2 import QtCore
-from qtgui.CCP4TaskWidget import CTaskWidget
+
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 class CTaskFreerflag(CTaskWidget):
 

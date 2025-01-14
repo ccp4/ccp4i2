@@ -17,7 +17,8 @@
 """
 
 from PySide2 import QtCore, QtWidgets
-from qtgui.CCP4TaskWidget import CTaskWidget
+
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
 
 class density_calculator_gui(CTaskWidget):

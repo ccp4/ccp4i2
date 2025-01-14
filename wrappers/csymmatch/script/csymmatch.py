@@ -1,9 +1,13 @@
-from __future__ import print_function
-
-
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
+import os
 import pathlib
+import unittest
+
+from lxml import etree
+
+from ....core import CCP4Modules
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class csymmatch(CPluginScript):
 
@@ -16,12 +20,10 @@ class csymmatch(CPluginScript):
     MAINTAINER = 'liz.potterton@york.ac.uk'
 
     def makeCommandAndScript(self):
-
       inp = self.container.inputData
       par = self.container.controlParameters
       out = self.container.outputData
 
-      import os
       if inp.XYZIN_QUERY.isSelectionSet():
         xyzin_query_file = os.path.join(self.getWorkDirectory(),'XYZIN_QUERY_sel.pdb')
         self.container.inputData.XYZIN_QUERY.loadFile()
@@ -54,7 +56,6 @@ class csymmatch(CPluginScript):
     def processOutputFiles(self):
         logName = self.makeFileName('LOG')
         
-        from lxml import etree
         xmlRoot = etree.Element('Csymmatch')
         segmentNode = None
         with open (logName,'r') as logFile:
@@ -90,26 +91,19 @@ class csymmatch(CPluginScript):
 
         return CPluginScript.SUCCEEDED
 #---------------------------------------------
-import unittest
 
 class testcsymmatch( unittest.TestCase ) :
 
    def setUp(self):
-    from core import CCP4Modules
     self.app = CCP4Modules.QTAPPLICATION()
     # make all background jobs wait for completion
     # this is essential for unittest to work
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    from core import CCP4Modules
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
 
    def test1( self ) :
-
-      from core import CCP4Modules
-      import os
-
       workDirectory = CCP4Utils.getTestTmpDir()
       xmlInput = os.path.join( CCP4Utils.getCCP4I2Dir(), 'wrappers', 'csymmatch', 'test_data', 'test1'+'.params.xml' )
       self.wrapper = csymmatch(parent=CCP4Modules.QTAPPLICATION(), name='csymmatch_test1',workDirectory=workDirectory)

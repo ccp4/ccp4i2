@@ -1,12 +1,7 @@
-import os
 import sys
-from lxml import etree
 
-try:
-  from report.CCP4ReportParser import *
-except:
-  exec(compile(open(os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc')).read(), os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc'), 'exec'))
-  from report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
+
 
 # - - - - - - - - - - - - - - - - -
 class freerflag_report(Report):
@@ -85,4 +80,3 @@ if __name__ == "__main__":
     tree= report.as_etree()
     #  print etree.tostring(tree,pretty_print=True)
     report.as_html_file(fileName='./test-freer.html')
-

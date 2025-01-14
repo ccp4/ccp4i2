@@ -1,4 +1,3 @@
-from __future__ import print_function
 """
      tasks/edstats/CTaskEdstats.py: CCP4 GUI Project
      Copyright (C) 2014 University of York
@@ -16,16 +15,15 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Jon Agirre         2014 - Started development
-
 """
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
-import multiprocessing
+
+from PySide2 import QtCore
+
+from ....core import CCP4ErrorHandling
+from ....qtgui import CCP4TaskWidget
+
 
 class CTaskEdstats(CCP4TaskWidget.CTaskWidget):
 
@@ -42,7 +40,6 @@ class CTaskEdstats(CCP4TaskWidget.CTaskWidget):
                     201 : { 'description' : 'Density map and difference density map cell dimensions do not match' },}
 
   def taskValidity(self):
-      from core import CCP4ErrorHandling
       rv = CCP4ErrorHandling.CErrorReport()
       if self.container.inputData.FPHIIN1.isSet():
           if self.container.inputData.XYZIN.isSet():

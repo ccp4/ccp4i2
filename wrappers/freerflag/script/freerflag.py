@@ -1,17 +1,18 @@
-from __future__ import print_function
-
 """
      freerflag.py: CCP4 GUI Project
      Copyright (C) 2011 STFC
 """
 
 import os
-import gemmi
-from lxml import etree
+import unittest
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core import CCP4Utils
+from lxml import etree
+import gemmi
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Modules
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
 
 
 class freerflag(CPluginScript):
@@ -109,7 +110,6 @@ class freerflag(CPluginScript):
 
     # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
     def makeCommandAndScript(self):
-      import os
       self.hklout = os.path.join(self.workDirectory,"hklout.mtz")
 
       self.appendCommandLine(['HKLIN', self.hklin])
@@ -222,25 +222,18 @@ class freerflag(CPluginScript):
 # PLUGIN TESTS
 # See Python documentation on unittest module
 
-import unittest
-
 class testfreerflag(unittest.TestCase):
 
    def setUp(self):
-    from core import CCP4Modules
     self.app = CCP4Modules.QTAPPLICATION()
     # make all background jobs wait for completion
     # this is essential for unittest to work
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    from core import CCP4Modules
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
 
    def test_1(self):
-     from core import CCP4Modules
-     import os
-
      workDirectory = CCP4Utils.getTestTmpDir()
      # this needs to agree with name attribute below
      logFile = os.path.join(workDirectory,'test1_freerflag.log')
@@ -256,9 +249,6 @@ class testfreerflag(unittest.TestCase):
      if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
 
    def test_2(self):
-     from core import CCP4Modules
-     import os
-
      workDirectory = CCP4Utils.getTestTmpDir()
      # this needs to agree with name attribute below
      logFile = os.path.join(workDirectory,'test2_freerflag.log')

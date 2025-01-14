@@ -1,9 +1,8 @@
+from PySide2 import QtWidgets
 
+from ....qtgui import CCP4TaskWidget
+from ....qtgui import CCP4Widgets
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
-import qtgui
 
 class CTaskGesamt(CCP4TaskWidget.CTaskWidget):
 
@@ -37,7 +36,7 @@ class CTaskGesamt(CCP4TaskWidget.CTaskWidget):
     #List widgets are odd. I cannot get them to behave properly - just making white.
     childer = listWidget.findChildren(QtWidgets.QWidget)
     for child in childer:
-        if type(child) is qtgui.CCP4Widgets.CListViewListWidget:
+        if type(child) is CCP4Widgets.CListViewListWidget:
             child.setStyleSheet("QFrame { background-color:white}")
 
     self.closeSubFrame()

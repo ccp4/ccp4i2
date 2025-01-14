@@ -1,5 +1,7 @@
+import os
 
-from report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
+
 
 class findmyseq_report(Report):
 

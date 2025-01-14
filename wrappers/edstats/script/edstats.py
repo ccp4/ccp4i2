@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      edstats.py: CCP4 GUI Project
      Copyright (C) 2014 University of York
@@ -17,19 +15,20 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Jon Agirre         2014 - Started development
      Jon Agirre         2018 - Improved interface, updated to latest binary
-
 """
 
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4Modules import PROCESSMANAGER
-from core import CCP4ErrorHandling
-from core.CCP4ClipperUtils import is_aminoacid
-from core import CCP4Utils
+import os
+import unittest
+
+from lxml import etree
+
+from ....core import CCP4Utils
+from ....core.CCP4ClipperUtils import is_aminoacid
+from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Utils import getCCP4I2Dir
 
 
 class edstats(CPluginScript):
@@ -45,8 +44,6 @@ class edstats(CPluginScript):
     MAINTAINER = 'jon.agirre@york.ac.uk'
 
     def processInputFiles(self):
-      from core import CCP4XtalData
-
       self.cfftPlugin1 = self.makeCfftPlugin1 ( )
       error = self.cfftPlugin1.process ( )
       if error == CPluginScript.FAILED:
@@ -69,8 +66,6 @@ class edstats(CPluginScript):
       return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
-
-        import os
         out = self.container.outputData
         self.path_wrk = str( self.getWorkDirectory() )
 
@@ -80,7 +75,6 @@ class edstats(CPluginScript):
             out.COOTSCRIPTOUT.set ( fileName3 )
             out.COOTSCRIPTOUT.annotation.set ( 'guided tour on the reported issues' )
 
-        from lxml import etree
         xmlRoot = etree.Element('Edstats')
         segmentNode = None
 
@@ -342,9 +336,6 @@ class edstats(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def makeCommandAndScript(self):
-      import os
-      from core import CCP4XtalData
-
       self.path_wrk = str( self.getWorkDirectory() )
       edstatsOut = os.path.join ( self.path_wrk, 'edstats.out' )
 
@@ -393,13 +384,11 @@ class edstats(CPluginScript):
         return cfftPlugin2
 
 #=============================================================================================
-import unittest
+
 class testEdstats(unittest.TestCase):
 
     def test1(self):
       # Test creation of log file using ../test_data/test1.params.xml input
-      from core.CCP4Utils import getCCP4I2Dir
-      import os
       workDirectory = CCP4Utils.getTestTmpDir()
       logFile = os.path.join(workDirectory,'edstats_test1.log')
       # Delete any existing log file

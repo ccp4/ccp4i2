@@ -1,5 +1,5 @@
+from ....report.CCP4ReportParser import Report
 
-from report.CCP4ReportParser import *
 
 class dials_image_report(Report):
 

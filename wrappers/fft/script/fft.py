@@ -17,9 +17,15 @@
      GNU Lesser General Public License for more details.
 """
 
-from core.CCP4PluginScript import CPluginScript
+import os
+import unittest
+
 from lxml import etree
-from core import CCP4Utils
+
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Utils import getCCP4I2Dir
+
 
 class fft(CPluginScript):
 
@@ -107,9 +113,6 @@ class fft(CPluginScript):
 #=================================test suite=========================================================
 #=====================================================================================================
 
-import unittest
-from core.CCP4Utils import getCCP4I2Dir,getTMP
-
 # unit testing asynchronous processes potential tricky but QProcess has option to wait for finished
  
 class testFft(unittest.TestCase):
@@ -123,7 +126,6 @@ class testFft(unittest.TestCase):
 
 
   def testFft(self):
-    import os
     inputData =  CScriptDataContainer(name='fft_test',containerType='inputData',initialise=fft.INPUTDATA)
     outputData =  CScriptDataContainer(name='fft_test',containerType='outputData',initialise=fft.OUTPUTDATA)
     try:

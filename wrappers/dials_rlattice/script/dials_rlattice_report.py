@@ -1,5 +1,6 @@
 
-from report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
+
 
 class dials_rlattice_report(Report):
 

@@ -1,6 +1,6 @@
 
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
+from ....qtgui import CCP4TaskWidget
+
 
 class editbfac_gui(CCP4TaskWidget.CTaskWidget):
 
