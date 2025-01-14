@@ -1,13 +1,15 @@
 {
     "flake8.args": [
-        "--ignore=E126,E128,E131,E231,E225,E251,E501,E701"
+        "--ignore=E111,E117,E126,E128,E131,E201,E202,E211,E225,E231,E251,E261,E501,E701,W293"
     ],
     "pylint.args": [
+        "--disable=bad-indentation",
         "--disable=invalid-name",
         "--disable=line-too-long",
         "--disable=missing-class-docstring",
         "--disable=missing-function-docstring",
         "--disable=missing-module-docstring",
         "--disable=multiple-statements",
+        "--disable=trailing-whitespace",
     ]
 }
