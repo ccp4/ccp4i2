@@ -1,16 +1,10 @@
-import os, sys
-import lxml
+import sys
+
 from lxml import etree
 
-from pathlib import Path
+from ....pimple import MGQTmatplotlib
+from ....smartie import smartie
 
-CCP4I2_ROOT = os.environ.get("CCP4I2_ROOT",
-                             str(Path(lxml.__file__).parents[1] / "ccp4i2"))
-sys.path.append(str(CCP4I2_ROOT))
-
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core import CCP4Utils
 
 class makeGraphs:
     def __init__(self, logfilename):
@@ -24,22 +18,14 @@ class makeGraphs:
 
     # - - - - - - - - -  - - - - - - - - -  - - - - - - - - - 
     def scrapeSmartieGraphs(self, smartieNode):
-        from core import CCP4Utils
-        smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
-        sys.path.append(smartiePath)
-        import smartie
-        
         logfile = smartie.parselog(self.logfilename)
         for smartieTable in logfile.tables():
             if smartieTable.ngraphs() > 0:
                 tableelement = \
                           self.xmlForSmartieTable(smartieTable, smartieNode)
-        
-        return
-    
+
     # - - - - - - - - -  - - - - - - - - -  - - - - - - - - - 
     def xmlForSmartieTable(self, table, parent):
-        from pimple import MGQTmatplotlib
         tableetree = MGQTmatplotlib.CCP4LogToEtree(table.rawtable())
         parent.append(tableetree)
         return tableetree

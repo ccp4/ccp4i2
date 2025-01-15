@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      sculptor.py: CCP4 GUI Project
      Copyright (C) 2011 STFC
@@ -8,7 +6,15 @@ from __future__ import print_function
      Wrapper to phaser.sculptor
 """
 
-from core.CCP4PluginScript import CPluginScript
+import glob
+import os
+import shutil
+
+from lxml import etree
+
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class sculptor(CPluginScript):
 
@@ -75,7 +81,6 @@ class sculptor(CPluginScript):
       return 0
 
     def processInputFiles(self):
-        import shutil,os
         if self.container.inputData.ALIGNMENTORSEQUENCEIN.__str__() == 'ALIGNMENT':
           self.inputAlignmentFileName = os.path.join(self.workDirectory,'alignIn.aln')
           formt,identifiers = self.container.inputData.ALIGNIN.identifyFile()
@@ -94,9 +99,6 @@ class sculptor(CPluginScript):
 
     def processOutputFiles(self):
         # Import PDB files that have been output
-
-        import os, glob, shutil
-        from core import CCP4Utils
         globPath = os.path.normpath(os.path.join(self.workDirectory,'_*.pdb'))
         outList = glob.glob(globPath)
         xyzoutList = self.container.outputData.XYZOUT
@@ -121,8 +123,6 @@ class sculptor(CPluginScript):
             xyzoutList[-1].subType = 2
 
         # Create a trivial xml output file
-        from core import CCP4Utils
-        from lxml import etree
         root = etree.Element('sculptor')
         e = etree.Element('number_output_files')
         e.text = str(len(xyzoutList))

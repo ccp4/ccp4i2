@@ -14,9 +14,10 @@
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    """
+"""
 
-from qtgui.CCP4TaskWidget import CTaskWidget
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class sheetbend_gui(CTaskWidget):

@@ -1,9 +1,12 @@
-from __future__ import print_function
-
-from report.CCP4ReportParser import *
+import os
 import sys
-from xml.etree import ElementTree as ET
+import xml.etree.ElementTree as ET
+
 from numpy import sign
+
+from ....core import CCP4Utils
+from ....report.CCP4ReportParser import *
+from ...acedrgNew.script.MyCIFDigestor import MyCIFFile
 
 
 def isnumber(n):
@@ -1337,9 +1340,7 @@ class servalcat_xtal_report(Report):
         pictureGallery = pictureFold.addObjectGallery(style='float:left;',height='550px', tableWidth='260px', contentWidth='450px')
         clearingDiv = parent.addDiv(style="clear:both;")
         jobDirectory = jobInfo['fileroot']
-        from core import CCP4Utils
         ccp4i2_root = CCP4Utils.getCCP4I2Dir()
-        import os
         baseScenePath = os.path.join(ccp4i2_root,'pipelines','prosmart_refmac','script','prosmart_refmac_1.scene.xml')
         monomerNodes = xmlnode.findall('.//ModelComposition[last()]/Monomer')
         
@@ -1364,7 +1365,6 @@ class servalcat_xtal_report(Report):
             try:
                 dictPath = self.jobInfo['filenames'][dictObjectName]
                 if dictPath is not None and dictPath != "":
-                    from wrappers.acedrgNew.script.MyCIFDigestor import MyCIFFile
                     myCIFFile = MyCIFFile(filePath=dictPath)
                     #Find and act on list of residues in the dictionary provided
                     for compListBlock  in [block for block in myCIFFile.blocks if block.category == 'data_comp_list']:
@@ -1441,7 +1441,6 @@ class servalcat_xtal_report(Report):
         try:
             dictPath = self.jobInfo['filenames'][dictObjectName]
             if dictPath is not None and dictPath != "":
-                from wrappers.acedrgNew.script.MyCIFDigestor import MyCIFFile
                 myCIFFile = MyCIFFile(filePath=dictPath)
                 #Find and act on list of residues in the dictionary provided
                 for compListBlock  in [block for block in myCIFFile.blocks if block.category == 'data_comp_list']:
@@ -1705,7 +1704,6 @@ class servalcat_xtal_report(Report):
         return table1
 
 def test(xmlFile=None,jobId=None,reportFile=None):
-    import sys,os
     print(xmlFile)
     try:
         text = open( xmlFile ).read()
@@ -1718,5 +1716,4 @@ def test(xmlFile=None,jobId=None,reportFile=None):
     r.as_html_file(reportFile)
 
 if __name__ == "__main__":
-    import sys
     servalcat_xtal_report(xmlFile=sys.argv[1],jobId=sys.argv[2])

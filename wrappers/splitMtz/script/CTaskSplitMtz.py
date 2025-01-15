@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      tasks/splitMtz/CTaskSplitMtz.py: CCP4 GUI Project
      Copyright (C) 2012 STFC
@@ -17,17 +15,19 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton August 2012 - gui for mtz split
 """
 
 import functools
-from PySide2 import QtGui, QtWidgets,QtCore
-from core.CCP4ErrorHandling import *
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
+
+from PySide2 import QtCore, QtWidgets
+
+from ....core import CCP4XtalData
+from ....core.CCP4ErrorHandling import *
+from ....qtgui import CCP4TaskWidget
+from ....qtgui import CCP4Widgets
+
 
 class CTaskSplitMtz(CCP4TaskWidget.CTaskWidget):
 
@@ -87,7 +87,6 @@ class CTaskSplitMtz(CCP4TaskWidget.CTaskWidget):
 
   @QtCore.Slot(str,str)
   def drawSelectColumns(self,dataType,contentFlag):
-    from core import CCP4XtalData
     for iR in (0,1):
       for iC in (0,1):
         layoutItem = self.selectFrame.layout().itemAtPosition(iR,iC)

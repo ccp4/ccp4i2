@@ -9,7 +9,8 @@
 #
 #=======================================================================================
 
-from qtgui import CCP4TaskWidget
+from ....qtgui import CCP4TaskWidget
+
 
 class CTaskShelxeMR(CCP4TaskWidget.CTaskWidget):
 

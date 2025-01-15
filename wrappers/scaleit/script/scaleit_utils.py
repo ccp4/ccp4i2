@@ -1,8 +1,5 @@
-from PySide2 import QtCore
-from qtgui.CCP4TaskWidget import CTaskWidget
-
-from pipelines.aimless_pipe.script.aimless_pipe_utils import CellCheck, CellFormat, colourText
-from pipelines.import_merged.script.dybuttons import MyMessageBox
+from ....pipelines.aimless_pipe.script.aimless_pipe_utils import CellCheck, CellFormat, colourText
+from ....pipelines.import_merged.script.dybuttons import MyMessageBox
 
 
 class DatalistCheck:

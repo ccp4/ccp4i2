@@ -14,12 +14,17 @@
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    """
+"""
 
 import os
-from core.CCP4PluginScript import CPluginScript
-from lxml import etree
 import pathlib
+
+from lxml import etree
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class sheetbend(CPluginScript):
     TASKNAME = 'sheetbend'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -35,11 +40,9 @@ class sheetbend(CPluginScript):
         super(sheetbend, self).__init__(*args, **kws)
 
     def processInputFiles(self):
-        from core import CCP4XtalData
         colgrps = [ ['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN] ]
         if self.container.inputData.FREERFLAG.isSet(): colgrps.append( 'FREERFLAG' )
         self.hklin, columns, error = self.makeHklin0( colgrps )
-        from core import CCP4ErrorHandling
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
         #Preprocess coordinates to extract a subset

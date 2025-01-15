@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
     refmac.py: CCP4 GUI Project
     Copyright (C) 2010 University of York
@@ -17,14 +15,27 @@ from __future__ import print_function
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    """
-from PySide2 import QtCore
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core.CCP4ErrorHandling import *
-from core import CCP4Modules
-from lxml import etree
+"""
+
+import os
 import pathlib
+import re
+import shutil
+
+from lxml import etree
+from PySide2 import QtCore
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Modules
+from ....core import CCP4Utils
+from ....core import CCP4XtalData
+from ....core.CCP4ErrorHandling import *
+from ....core.CCP4Modules import PROCESSMANAGER
+from ....core.CCP4PluginScript import CPluginScript
+from ....pimple import MGQTmatplotlib
+from ....smartie import smartie
+from .refmacLogScraper import logScraper
+
 
 class refmac_i2(CPluginScript):
     
@@ -47,7 +58,6 @@ class refmac_i2(CPluginScript):
         super(refmac_i2, self).__init__(*args, **kwargs)
         self._readyReadStandardOutputHandler = self.handleReadyReadStandardOutput
         self.xmlroot = etree.Element('REFMAC')
-        from .refmacLogScraper import logScraper
         self.logScraper = logScraper(xmlroot=self.xmlroot, flushXML=self.flushXML)
         self.xmlLength = 0
 
@@ -58,30 +68,19 @@ class refmac_i2(CPluginScript):
         pid = self.getProcessId()
         qprocess = CCP4Modules.PROCESSMANAGER().getJobData(pid,attribute='qprocess')
         availableStdout = qprocess.readAllStandardOutput()
-        if sys.version_info > (3,0):
-            self.logFileHandle.write(availableStdout.data().decode("utf-8"))
-        else:
-            self.logFileHandle.write(availableStdout)
+        self.logFileHandle.write(availableStdout.data().decode("utf-8"))
         self.logFileHandle.flush()
-        if sys.version_info > (3,0):
-            self.logScraper.processLogChunk(availableStdout.data().decode("utf-8"))
-        else:
-            self.logScraper.processLogChunk(str(availableStdout))
+        self.logScraper.processLogChunk(availableStdout.data().decode("utf-8"))
     
     def flushXML(self):
         newXml = etree.tostring(self.xmlroot,pretty_print=True)
         if len(newXml)>self.xmlLength:
             self.xmlLength = len(newXml)
             with open (self.makeFileName('PROGRAMXML')+'_tmp','w') as programXmlFile:
-                if sys.version_info > (3,0):
-                    programXmlFile.write(newXml.decode("utf-8"))
-                else:
-                    programXmlFile.write(newXml)
-            import shutil
+                programXmlFile.write(newXml.decode("utf-8"))
             shutil.move(self.makeFileName('PROGRAMXML')+'_tmp', self.makeFileName('PROGRAMXML'))
 
     def processInputFiles(self):
-        from core import CCP4XtalData
         error = None
         self.hklin = None
         dataObjects = []
@@ -90,7 +89,6 @@ class refmac_i2(CPluginScript):
         
         obsTypeRoot = 'CONTENT_FLAG_F'
         if self.container.controlParameters.USE_TWIN and self.container.inputData.F_SIGF.isSet():
-            from core import CCP4XtalData
             if self.container.inputData.F_SIGF.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR:
                 obsTypeRoot = 'CONTENT_FLAG_I'
             elif self.container.inputData.F_SIGF.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN:
@@ -108,7 +106,6 @@ class refmac_i2(CPluginScript):
             dataObjects += ['ABCD']
         
         #Apply coordinate selection if set
-        import os
         self.inputCoordPath = os.path.normpath(self.container.inputData.XYZIN.fullPath.__str__())
         if self.container.inputData.XYZIN.isSelectionSet():
             self.inputCoordPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'selected.pdb'))
@@ -146,7 +143,6 @@ class refmac_i2(CPluginScript):
             self.logScraper.scrapeFile( self.makeFileName('LOG') )
         
         #First up check for exit status of the program
-        from core.CCP4Modules import PROCESSMANAGER
         exitStatus = 0
         exitCode=0
         try:
@@ -166,18 +162,15 @@ class refmac_i2(CPluginScript):
             self.appendErrorReport(201,'Exit code: Unable to recover exitCode')
             return CPluginScript.FAILED
         if exitCode != 0:
-            import os
             try:
                 logFileText = open(self.makeFileName('LOG')).read()
                 if 'Your coordinate file has a ligand which has either minimum or no description in the library' in logFileText and self.container.controlParameters.MAKE_NEW_LIGAND_EXIT.isSet() and self.container.controlParameters.MAKE_NEW_LIGAND_EXIT:
                     self.appendErrorReport(201,'You did not supply a full ligand geometry file: either make and supply one (Make Ligand task), or set the appropriate flag in the advanced options')
-                    import re
                     #Example line: * Plotfile: /tmp/martin/refmac5_temp1.64630_new_TM7.ps
                     plotFiles = re.findall(r'^.*\* Plotfile:.*$',logFileText,re.MULTILINE)
                     print(plotFiles)
                     for plotFile in plotFiles:
                         psfileName = plotFile.split()[-1]
-                        import shutil
                         shutil.copyfile(psfileName, self.container.outputData.PSOUT.__str__())
                         self.container.outputData.PSOUT.annotation.set(psfileName+' from REFMAC')
                     return CPluginScript.UNSATISFACTORY
@@ -187,10 +180,6 @@ class refmac_i2(CPluginScript):
                 self.appendErrorReport(201,'Exit code: '+str(exitCode))
             return CPluginScript.FAILED
 
-        from core import CCP4XtalData
-        from core import CCP4File
-        import os
-        
         # Need to set the expected content flag  for phases data
 
         outputCifPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'XYZOUT.mmcif'))
@@ -219,9 +208,7 @@ class refmac_i2(CPluginScript):
         if self.container.controlParameters.USEANOMALOUS:
             outputFiles += ['ANOMFPHIOUT']
             outputColumns += ['FAN,PHAN']
-        
-        from core import CCP4XtalData
-        import os
+
         hkloutFile=CCP4XtalData.CMtzDataFile(os.path.join(self.getWorkDirectory(), "hklout.mtz"))
         hkloutFile.loadFile()
         columnLabelsInFile = [column.columnLabel.__str__() for column in hkloutFile.fileContent.listOfColumns]
@@ -236,7 +223,6 @@ class refmac_i2(CPluginScript):
             return CPluginScript.FAILED
 
         #Use Refmacs XMLOUT as the basis for output XML.  If not existent (probably due to failure), then create a new one
-        from core import CCP4Utils
         rxml = None
         try:
             rxml = CCP4Utils.openFileToEtree(os.path.normpath(os.path.join(self.getWorkDirectory(),'XMLOUT.xml')))
@@ -310,29 +296,17 @@ class refmac_i2(CPluginScript):
             
             
     def scrapeSmartieGraphs(self, smartieNode):
-        import sys, os
-        from core import CCP4Utils
-        smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
-        sys.path.append(smartiePath)
-        import smartie
-        
         logfile = smartie.parselog(self.makeFileName('LOG'))
         for smartieTable in logfile.tables():
             if smartieTable.ngraphs() > 0:
                 tableelement = self.xmlForSmartieTable(smartieTable, smartieNode)
-        
-        return
-    
+
     def xmlForSmartieTable(self, table, parent):
-        from pimple import MGQTmatplotlib
         tableetree = MGQTmatplotlib.CCP4LogToEtree(table.rawtable())
         parent.append(tableetree)
         return tableetree
 
-
     def makeCommandAndScript(self):
-        import os
-        from core import CCP4Utils
         self.hklout = os.path.join(self.workDirectory,"hklout.mtz")
         # make refmac command script
         self.appendCommandLine(['XYZIN',self.inputCoordPath])
@@ -642,7 +616,6 @@ class refmac_i2(CPluginScript):
         labin = "LABIN FP=F SIGFP=SIGF"
         if self.container.controlParameters.USE_TWIN:
             if self.container.inputData.F_SIGF.isSet():
-                from core import CCP4XtalData
                 if self.container.inputData.F_SIGF.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN or self.container.inputData.F_SIGF.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR:
                     labin = "LABIN IP=I SIGIP=SIGI"
         else:
@@ -663,7 +636,6 @@ class refmac_i2(CPluginScript):
 #                labin = "LABIN FP=F SIGFP=SIGF"
 
         if self.container.inputData.ABCD.isSet():
-            from core import CCP4XtalData
             if  self.container.inputData.ABCD.contentFlag == CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL:
                 labin += " HLA=HLA HLB=HLB HLC=HLC HLD=HLD"
             else:

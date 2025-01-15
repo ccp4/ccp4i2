@@ -1,7 +1,9 @@
-import os
 import json
-from report.CCP4ReportParser import *
-from core import CCP4Utils
+import os
+import sys
+
+from ....report.CCP4ReportParser import Report
+
 
 class slicendice_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -59,7 +61,4 @@ class slicendice_report(Report):
         self.addTaskReferences()
 
 if __name__ == "__main__":
-  import sys
   mrbump_basic_report(xmlFile=sys.argv[1],jobId=sys.argv[2])
-
-

@@ -1,4 +1,21 @@
-from __future__ import print_function
+"""
+     shelxeMR.py: CCP4 GUI Project
+     Copyright (C) 2015 STFC
+
+     This library is free software: you can redistribute it and/or
+     modify it under the terms of the GNU Lesser General Public License
+     version 3, modified in accordance with the provisions of the 
+     license to address the requirements of UK law.
+ 
+     You should have received a copy of the modified GNU Lesser General 
+     Public License along with this library.  If not, copies may be 
+     downloaded from http://www.ccp4.ac.uk/ccp4license.php
+ 
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU Lesser General Public License for more details.
+"""
 #=======================================================================================
 #
 #    shelxeMR.py : shelxeMR(CPluginScript)
@@ -14,15 +31,19 @@ from __future__ import print_function
 from io import *
 import os
 import re
-import sys
 import shutil
+import sys
+
 from lxml import etree
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core import CCP4ErrorHandling
-from core import CCP4XtalData
-from core import CCP4Modules
-from core.CCP4ErrorHandling import CErrorReport, CException
+from mrbump.file_info import MTZ_parse
+from mrbump.parsers.parse_shelxe import ShelxeLogParser
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Modules
+from ....core import CCP4Utils
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class shelxeMR(CPluginScript):
 
@@ -102,7 +123,6 @@ class shelxeMR(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def parseLogfile(self):
-        from mrbump.parsers.parse_shelxe import ShelxeLogParser
         # Parse the shelxe logfile
         rootNode = etree.Element("shelxeMR")
         sxlog = ShelxeLogParser(self.makeFileName('LOG'))
@@ -148,7 +168,6 @@ class shelxeMR(CPluginScript):
 ##================================ Local functions used in data run =========================================
     # Generate .hkl file from .mtz reflection file.
     def genHKL(self):
-        from mrbump.file_info import MTZ_parse
         # Define the binary file (with path), as well as the mtz2various logfile
         binf = os.path.normpath(os.path.join( CCP4Utils.getCCP4Dir().__str__(), 'bin', 'mtz2various' ))
         # input & output file (same name as model+.hkl). Also logfile name.
@@ -253,22 +272,3 @@ class shelxeMR(CPluginScript):
         stat3 = CCP4Modules.PROCESSMANAGER().getJobData(pid3)
         exCd3 = CCP4Modules.PROCESSMANAGER().getJobData(pid3, 'exitCode')
         return CPluginScript.SUCCEEDED
-        
-"""
-     shelxeMR.py: CCP4 GUI Project
-     Copyright (C) 2015 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""

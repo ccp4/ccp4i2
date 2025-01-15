@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
     servalcat_xtal.py: CCP4 GUI Project
     Copyright (C) 2024 MRC-LBM, University of Southampton
@@ -17,18 +15,28 @@ from __future__ import print_function
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    """
-from PySide2 import QtCore
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core.CCP4ErrorHandling import *
-from core import CCP4Modules, CCP4XtalData, CCP4Utils
-# from lxml import etree
-from xml.etree import ElementTree as ET
-import pathlib
-import os
+"""
+
 import json
+import os
+import pathlib
 import shutil
+import sys
+import traceback
+import xml.etree.ElementTree as ET
+
+from PySide2 import QtCore
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Modules
+from ....core import CCP4Utils
+from ....core import CCP4XtalData
+from ....core.CCP4ErrorHandling import *
+from ....core.CCP4Modules import PROCESSMANAGER
+from ....core.CCP4PluginScript import CPluginScript
+from ....pimple import MGQTmatplotlib
+from ....smartie import smartie
+
 
 class servalcat_xtal(CPluginScript):
     
@@ -53,7 +61,6 @@ class servalcat_xtal(CPluginScript):
         self._readyReadStandardOutputHandler = self.handleReadyReadStandardOutput
         self.xmlroot = ET.Element('SERVALCAT')
         self.xmlLength = 0
-        #from .refmacLogScraper import logScraper
         #self.logScraper = logScraper(xmlroot=self.xmlroot, flushXML=self.flushXML)
 
     @QtCore.Slot()
@@ -158,7 +165,6 @@ class servalcat_xtal(CPluginScript):
         #    dataObjects += ['ABCD']
         
         #Apply coordinate selection if set
-        import os
         self.inputCoordPath = os.path.normpath(self.container.inputData.XYZIN.fullPath.__str__())
         if self.container.inputData.XYZIN.isSelectionSet():
             self.inputCoordPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'selected.pdb'))
@@ -203,7 +209,6 @@ class servalcat_xtal(CPluginScript):
             # self.logScraper.scrapeFile( self.makeFileName('LOG') ) MM
         
         # First up check for exit status of the program
-        from core.CCP4Modules import PROCESSMANAGER
         exitStatus = 0
         exitCode = 0
         try:
@@ -223,18 +228,15 @@ class servalcat_xtal(CPluginScript):
             self.appendErrorReport(201, 'Exit code: Unable to recover exitCode')
             return CPluginScript.FAILED
         if exitCode != 0:
-            import os
             try:
                 logFileText = open(self.makeFileName('LOG')).read()
                 # if 'Your coordinate file has a ligand which has either minimum or no description in the library' in logFileText and self.container.controlParameters.MAKE_NEW_LIGAND_EXIT.isSet() and self.container.controlParameters.MAKE_NEW_LIGAND_EXIT:
                 #     self.appendErrorReport(201,'You did not supply a full ligand geometry file: either make and supply one (Make Ligand task), or set the appropriate flag in the advanced options')
-                #     import re
                 #     #Example line: * Plotfile: /tmp/martin/refmac5_temp1.64630_new_TM7.ps
                 #     plotFiles = re.findall(r'^.*\* Plotfile:.*$',logFileText,re.MULTILINE)
                 #     print(plotFiles)
                 #     for plotFile in plotFiles:
                 #         psfileName = plotFile.split()[-1]
-                #         import shutil
                 #         shutil.copyfile(psfileName, self.container.outputData.PSOUT.__str__())
                 #         self.container.outputData.PSOUT.annotation.set(psfileName+' from REFMAC')
                 #     return CPluginScript.UNSATISFACTORY
@@ -244,10 +246,6 @@ class servalcat_xtal(CPluginScript):
                 self.appendErrorReport(201, 'Exit code: '+ str(exitCode))
             return CPluginScript.FAILED
 
-        from core import CCP4XtalData
-        from core import CCP4File
-        import os
-        
         # Need to set the expected content flag  for phases data
 
         self.outputCifPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined.mmcif'))
@@ -280,8 +278,6 @@ class servalcat_xtal(CPluginScript):
             outputFiles += ['ANOMFPHIOUT']
             outputColumns += ['FAN,PHAN']"""
         
-        from core import CCP4XtalData
-        import os
         #hkloutFile=CCP4XtalData.CMtzDataFile(os.path.join(self.getWorkDirectory(), "hklout.mtz"))
         hkloutFilePath = str(os.path.join(self.getWorkDirectory(), "refined.mtz"))
         #hkloutFile=CCP4XtalData.CMtzDataFile(os.path.join(self.getWorkDirectory(), "refined.mtz"))
@@ -299,7 +295,6 @@ class servalcat_xtal(CPluginScript):
             return CPluginScript.FAILED
 
         #Use Refmacs XMLOUT as the basis for output XML.  If not existent (probably due to failure), then create a new one
-        # from core import CCP4Utils
         # rxml = None
         #try:
         #    rxml = CCP4Utils.openFileToEtree(os.path.normpath(os.path.join(self.getWorkDirectory(),'XMLOUT.xml')))
@@ -428,21 +423,12 @@ class servalcat_xtal(CPluginScript):
             
             
     def scrapeSmartieGraphs(self, smartieNode):
-        import sys, os
-        from core import CCP4Utils
-        smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
-        sys.path.append(smartiePath)
-        import smartie
-        
         logfile = smartie.parselog(self.makeFileName('LOG'))
         for smartieTable in logfile.tables():
             if smartieTable.ngraphs() > 0:
                 tableelement = self.xmlForSmartieTable(smartieTable, smartieNode)
-        
-        return
-    
+
     def xmlForSmartieTable(self, table, parent):
-        from pimple import MGQTmatplotlib
         tableetree = MGQTmatplotlib.CCP4LogToEtree(table.rawtable())
         parent.append(tableetree)
         return tableetree
@@ -593,7 +579,6 @@ class servalcat_xtal(CPluginScript):
             if self.container.inputData.SERVALCAT_KEYWORD_FILE.isSet():
                 shutil.copy2(str(self.container.inputData.SERVALCAT_KEYWORD_FILE.fullPath), keywordFilePath)
                 if self.container.inputData.PROSMART_PROTEIN_RESTRAINTS.isSet() or self.container.inputData.PROSMART_NUCLEICACID_RESTRAINTS.isSet():
-                    import re
                     # Remove END if was in the input keyword file
                     linesToDelete = []
                     with open(keywordFilePath, "r") as keywordFile:
@@ -685,7 +670,6 @@ class servalcat_xtal(CPluginScript):
                 # Write program.xml_tmp and move it to program.xml
                 self.flushXml()
             except Exception:
-                import traceback
                 print(traceback.format_exc())
 
     def flushXml(self):  # assumes self.xmlroot and self.xmlLength are well set
@@ -698,8 +682,6 @@ class servalcat_xtal(CPluginScript):
             shutil.move(self.makeFileName('PROGRAMXML')+'_tmp', self.makeFileName('PROGRAMXML'))
 
     def mmaakeCommandAndScript_refmac_ToDelete(self):
-        import os
-        from core import CCP4Utils
         self.hklout = os.path.join(self.workDirectory,"hklout.mtz")
         # make refmac command script
         self.appendCommandLine(['XYZIN',self.inputCoordPath])
@@ -1009,7 +991,6 @@ class servalcat_xtal(CPluginScript):
         labin = "LABIN FP=F SIGFP=SIGF"
         if self.container.controlParameters.USE_TWIN:
             if self.container.inputData.HKLIN.isSet():
-                from core import CCP4XtalData
                 if self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN or self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR:
                     labin = "LABIN IP=I SIGIP=SIGI"
         else:
@@ -1030,7 +1011,6 @@ class servalcat_xtal(CPluginScript):
 #                labin = "LABIN FP=F SIGFP=SIGF"
 
         if self.container.inputData.ABCD.isSet():
-            from core import CCP4XtalData
             if  self.container.inputData.ABCD.contentFlag == CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL:
                 labin += " HLA=HLA HLB=HLB HLC=HLC HLD=HLD"
             else:

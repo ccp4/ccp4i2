@@ -14,11 +14,12 @@
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    """
+"""
 
-from __future__ import print_function
-from report.CCP4ReportParser import Report
 import sys
+
+from ....report.CCP4ReportParser import Report
+
 
 class sheetbend_report(Report):
     # Specify which gui task and/or pluginscript this applies to

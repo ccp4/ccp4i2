@@ -2,14 +2,10 @@
      qtpisa task widget
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
-from qtgui.CCP4TaskWidget import CTaskWidget
-from core import CCP4Modules
 
-#-------------------------------------------------------------------
 class Cqtpisa(CTaskWidget):
-#-------------------------------------------------------------------
 
 # Subclass CTaskWidget to give specific task window
   TASKNAME = 'qtpisa'
@@ -28,10 +24,8 @@ class Cqtpisa(CTaskWidget):
     self.createLine( [ 'widget', 'XYZIN' ] )
  
   def isValid(self):
-    import os
     #print 'Ccoot_rebuild.isValid'
     if self.getWidget('followFrom') is None: return
     followJobId = self.getWidget('followFrom').currentJobId()
     #print 'Ccoot_rebuild.isValid followFrom',followJobId
     return CTaskWidget.isValid(self)
-  

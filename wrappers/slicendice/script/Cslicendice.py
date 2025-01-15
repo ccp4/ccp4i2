@@ -1,8 +1,7 @@
-from __future__ import print_function
-#from PyQt4 import QtGui,QtCore
-from PySide2 import QtGui,QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
+import multiprocessing
+
+from ....qtgui import CCP4TaskWidget
+
 
 def whatNext(jobId=None):
   return [ 'buccaneer_build_refine_mr' ]
@@ -33,8 +32,6 @@ class Cslicendice(CCP4TaskWidget.CTaskWidget):
     return
 
   def drawContents(self):
-
-    import multiprocessing
     MAXPROC=multiprocessing.cpu_count()  
  
     indent = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'

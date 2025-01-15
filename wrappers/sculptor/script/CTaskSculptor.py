@@ -5,12 +5,15 @@
 
 """
 
-from qtgui.CCP4TaskWidget import CTaskWidget
+import os
+
 from PySide2 import QtCore
 
-#-------------------------------------------------------------------
+from ....core.CCP4ModelData import CPdbData
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
+
 class CTaskSculptor(CTaskWidget):
-#-------------------------------------------------------------------
 
 # Subclass CTaskWidget to give specific task window
   TASKNAME = 'sculptor'
@@ -76,7 +79,6 @@ class CTaskSculptor(CTaskWidget):
   @QtCore.Slot()
   def alignmentChanged(self):
       # Keep in sync with similar method in CTaskChainsaw
-      import os
       idList = []
       enumerators = []
       if self.container.inputData.ALIGNIN.exists():
@@ -89,9 +91,7 @@ class CTaskSculptor(CTaskWidget):
 
   @QtCore.Slot()
   def xyzinChanged(self):
-      import os
       if self.container.inputData.XYZIN.isSet() and os.path.isfile(self.container.inputData.XYZIN.__str__()):
-        from core.CCP4ModelData import CPdbData
         aCPdbData = CPdbData()
         aCPdbData.loadFile(self.container.inputData.XYZIN.fullPath)
         enumerators = []
@@ -119,4 +119,3 @@ class CTaskSculptor(CTaskWidget):
 
     self.getWidget('ALIGNIN').validate()
     self.getWidget('SEQUENCEIN').validate()
-
