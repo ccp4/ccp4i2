@@ -2,6 +2,7 @@ import os
 import subprocess
 import sys
 
+
 def getCCP4MG_DIR():
     return 'C:\Program Files (x86)\CCP4MG'
 
@@ -11,11 +12,6 @@ def getCCP4I2_DIR():
     targetdir = os.path.normpath(os.path.dirname(abstarget))
     return targetdir
 
-def setup_pythonpath():
-    CCP4I2 = getCCP4I2_DIR()
-    sys.path.append(CCP4I2)
-    sys.path.append(os.path.join(CCP4I2,"lib"))
-
 def setup_environment():
     ROOT = getCCP4I2_DIR()
     PYTHONHOME=os.path.join(ROOT,"pythondist")
@@ -23,7 +19,6 @@ def setup_environment():
     path_sep = ';'
 
     DYLD_FALLBACK_LIBRARY_PATH=ROOT + path_sep + os.path.join(ROOT,"lib")
-
 
     os.environ["DYLD_FALLBACK_LIBRARY_PATH"] = DYLD_FALLBACK_LIBRARY_PATH
     os.environ["LD_LIBRARY_PATH"] = DYLD_FALLBACK_LIBRARY_PATH

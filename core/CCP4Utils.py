@@ -577,7 +577,6 @@ def importFileModule(pyFile, report=False):
         extraPath = os.path.split(pyFile)[0]
         sys.path.insert(0, extraPath)
         moduleName = os.path.splitext(os.path.basename(pyFile))[0]
-        #print 'importFileModule moduleName', moduleName
         module = __import__(moduleName)
         sys.path.remove(extraPath)
         return module, None

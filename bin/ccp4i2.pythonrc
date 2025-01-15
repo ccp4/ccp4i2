@@ -22,8 +22,6 @@ if "CCP4I2_TEST" in os.environ:
 
 exec(compile(open(os.path.join(CCP4I2_TOP,'utils','startup.py'), "rb").read(), os.path.join(CCP4I2_TOP,'utils','startup.py'), 'exec'))
 setupEnvironment(path=CCP4I2_TOP)
-setupPythonpath(top=CCP4I2_TOP,mode='qtgui')
-#setupPluginsPath(CCP4I2_TOP)
 
 # CCP4Modules contains functions to access key parameters and modules
 from core import CCP4Config
@@ -37,7 +35,3 @@ myQTAPPLICATION = QTAPPLICATION()
 pm = startProjectsManager()
 print( 'Using CCP4i2 from '+os.path.abspath(getCCP4I2Dir()))
 if not testForCCP4Environment(): print('BEWARE: CCP4 environment not set')
-
-
-
-

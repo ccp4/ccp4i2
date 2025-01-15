@@ -42,12 +42,7 @@ if __name__ == '__main__':
     top_path = getCCP4I2Dir()
     print('runTask Script raw Input Arguments', sys.argv)
     print("runTask Script top_path(CCPI2dir) and __file__ variables", top_path, __file__)
-    exec(compile(open(os.path.join(top_path, 'utils', 'startup.py')).read(), os.path.join(top_path, 'utils', 'startup.py'), 'exec'))  # This seems to be a hack to expose setupPythonpath() ?
     graphical = False
-    if graphical:
-        setupPythonpath(mode='qtgui')
-    else:
-        setupPythonpath(mode='qtcore')
     # Use the specified config file or dbFile
     if args.configFile is not None:
         config = CCP4Config.CONFIG(args.configFile)

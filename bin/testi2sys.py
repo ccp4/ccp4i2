@@ -71,12 +71,6 @@ if __name__ == '__main__':
     top_path = getCCP4I2Dir()
     exec(compile(open(os.path.join(top_path,'utils','startup.py')).read(), os.path.join(top_path,'utils','startup.py'), 'exec'))
     graphical = False
-    
-    if graphical:
-        setupPythonpath(mode='qtgui')
-    else:
-        setupPythonpath(mode='qtcore')
-    setupPluginsPath()
     parser = argparse.ArgumentParser(description='Run CCP4i2 test project')
     parser.add_argument('-u', '--update',action='store_true', default=False)
     parser.add_argument('-x', '--xmlOut',action='store_true', default=False)
@@ -194,5 +188,3 @@ if __name__ == '__main__':
     testRunner.runTests()
     #print 'testi2sys from testRunner.runTests()'
     sys.exit(app.exec_())
-
-

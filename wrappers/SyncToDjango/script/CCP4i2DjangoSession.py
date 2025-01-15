@@ -15,7 +15,7 @@ import cookielib
 
 from ....core import CCP4NonGuiProjectUtils
 from ....core import CCP4Utils
-from ....utils.startup import setupEnvironment, setupPythonpath, startProjectsManager
+from ....utils.startup import setupEnvironment, startProjectsManager
 
 
 class MultiPartForm(object):
@@ -208,7 +208,6 @@ class CCP4i2DjangoSession(DjangoSession):
     def myStartProjectsManager(self):
         CCP4I2_TOP = CCP4Utils.getCCP4I2Dir()
         setupEnvironment(path=CCP4I2_TOP)
-        setupPythonpath(top=CCP4I2_TOP,mode='qtgui')
         pm = startProjectsManager()
         return pm
     

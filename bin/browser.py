@@ -7,11 +7,10 @@ import pstats
 import sys
 import time
 
-import ccp4mg  # Sets sys.path so that import of mg modules will work from here onwards.
 from PySide2 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets
 
 from ..core.CCP4Modules import QTAPPLICATION
-from ..utils.startup import setupEnvironment, setupPythonpath, setupGuiPluginsPath, startBrowser
+from ..utils.startup import setupEnvironment, startBrowser
 
 def getCCP4I2Dir(up=1):
     target = os.path.join(os.path.realpath(sys.argv[0]), "..")
@@ -39,8 +38,6 @@ if __name__ == '__main__':
     print(' ')
     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)
     setupEnvironment()
-    setupPythonpath(top=top_path, mode='qtgui')
-    setupGuiPluginsPath(top=top_path)
     app = QTAPPLICATION(graphical=True)
     QtWebEngineWidgets.QWebEngineProfile.defaultProfile().clearHttpCache()
     splash = None
@@ -94,4 +91,3 @@ if __name__ == '__main__':
     else:
         startBrowser(sys.argv[1:], app=app, splash=splash)
         sys.exit(app.exec_())
-

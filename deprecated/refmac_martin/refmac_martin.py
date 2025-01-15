@@ -364,24 +364,17 @@ class refmac_martin(CPluginScript):
             else:
                 badStretch["lastResidue"] = orderedBadResidue[1]
         return badStretches
-            
-            
+
     def scrapeSmartieGraphs(self, smartieNode):
-        smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
-        sys.path.append(smartiePath)
-        
         logfile = smartie.parselog(self.makeFileName('LOG'))
         for smartieTable in logfile.tables():
             if smartieTable.ngraphs() > 0:
                 tableelement = self.xmlForSmartieTable(smartieTable, smartieNode)
-        
-        return
-    
+
     def xmlForSmartieTable(self, table, parent):
         tableetree = MGQTmatplotlib.CCP4LogToEtree(table.rawtable())
         parent.append(tableetree)
         return tableetree
-
 
     def makeCommandAndScript(self):
         self.hklout = os.path.join(self.workDirectory,"hklout.mtz")

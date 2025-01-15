@@ -8,7 +8,7 @@ import shutil
 from ...core.CCP4DataManager import DATAMANAGER
 from ...core.CCP4Modules import QTAPPLICATION, PROJECTSMANAGER
 from ...dbapi import CCP4DbUtils
-from ...utils.startup import setupEnvironment, setupPythonpath, startProjectsManager, startJobController
+from ...utils.startup import setupEnvironment, startProjectsManager, startJobController
 
 
 def handleJobFinished(args):
@@ -16,7 +16,6 @@ def handleJobFinished(args):
   sys.exit()
 
 # Hard code ccp4i2 source and a directory containing data
-ccp4i2_top = os.environ['CCP4I2_TOP']
 sourceDirectory = '/Users/lizp/Desktop/demo_i2_scripts'
 
 # Specify a project directory and database file - and make sure they don't exist
@@ -30,7 +29,6 @@ dbFile = os.path.join(dbDir,'db.sqlite')
 # Bootstrap ccp4i2 environment - mimics the gui side but without actual graphics
 # Note this sets the specified database file
 setupEnvironment()
-setupPythonpath(top=ccp4i2_top,mode='qtcore')
 app = QTAPPLICATION(graphical=False)
 pm = startProjectsManager(dbFileName=dbFile)
 pm.startCheckForFinishedJobs()

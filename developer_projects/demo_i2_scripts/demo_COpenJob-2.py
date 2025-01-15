@@ -1,11 +1,11 @@
-import sys
 import os
 import shutil
+import sys
 
 from ...core import CCP4Modules
 from ...core.CCP4DataManager import DATAMANAGER
 from ...dbapi import CCP4DbUtils
-from ...utils.startup import setupEnvironment, setupPythonpath, startProjectsManager, startJobController
+from ...utils.startup import setupEnvironment, startProjectsManager, startJobController
 
 
 # Run with 
@@ -18,11 +18,7 @@ def bootI2(dbDir):
   if os.path.exists(dbDir):  shutil.rmtree(dbDir)
   os.mkdir(dbDir)
   dbFile = os.path.join(dbDir,'db.sqlite')
-  
-  ccp4i2_top = os.environ['CCP4I2_TOP']
-  sys.path.append(os.path.join(ccp4i2_top,'utils'))
   setupEnvironment()
-  setupPythonpath(top=ccp4i2_top,mode='qtcore')
   app = CCP4Modules.QTAPPLICATION(graphical=False)
   pm = startProjectsManager(dbFileName=dbFile)
   pm.startCheckForFinishedJobs()

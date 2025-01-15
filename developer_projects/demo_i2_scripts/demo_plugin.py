@@ -3,7 +3,7 @@ import shutil
 import sys
 
 from ...core.CCP4Modules import QTAPPLICATION
-from ...utils.startup import setupEnvironment, setupPythonpath
+from ...utils.startup import setupEnvironment
 from ...wrappers.refmac_i2.script import refmac_i2
 
 
@@ -26,7 +26,6 @@ workDirectory = '/Users/lizp/Desktop/demo_plugin'
 
 # Bootstrap i2 environment - NO DATABASE
 setupEnvironment()
-setupPythonpath(top=ccp4i2_top,mode='qtcore')
 if doAsync:
   app = QTAPPLICATION(graphical=False)
 

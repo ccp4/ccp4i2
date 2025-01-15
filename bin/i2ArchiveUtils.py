@@ -16,9 +16,10 @@ import urllib.request
 
 from lxml import etree
 
-import CCP4Utils
 from ..core import CCP4NonGuiProjectUtils
-from ..utils.startup import setupEnvironment, setupPythonpath, startProjectsManager
+from ..core import CCP4Utils
+from ..utils.startup import setupEnvironment, startProjectsManager
+
 
 class MultiPartForm(object):
     """Accumulate the data to be used when posting a form."""
@@ -186,7 +187,6 @@ class CCP4i2DjangoSession(DjangoSession):
     def myStartProjectsManager(self):
         CCP4I2_TOP = CCP4Utils.getCCP4I2Dir()
         setupEnvironment(path=CCP4I2_TOP)
-        setupPythonpath(top=CCP4I2_TOP,mode='qtgui')
         pm = startProjectsManager()
         return pm
     
@@ -334,6 +334,3 @@ if __name__ == '__main__':
     #exerciseGet()
     ccp4i2DjangoSession.pushProject(sys.argv[4])
 '''
-
-
-

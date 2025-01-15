@@ -4476,8 +4476,6 @@ class BaublesHtml:
     text = lxml_html.tostring(self.fileNode,method='html')
     CCP4Utils.saveFile(fileName,text)
 
-    #Beware testing may need
-    #sys.path.append('/Users/lizp/Desktop/dev/ccp4i2-devel/utils'); startHTTPServer()
 
 """
 $TABLE :table name:

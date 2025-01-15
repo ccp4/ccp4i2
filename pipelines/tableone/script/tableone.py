@@ -6,7 +6,6 @@ import sys
 from iotbx import mtz
 from lxml import etree
 from mmtbx.command_line import molprobity
-import ccp4mg
 import clipper
 import mmdb2
 
@@ -35,8 +34,6 @@ class tableone(CPluginScript):
 
     def process(self):
         CPluginScript.process(self)
-        valpro_pth1 = os.path.join(CCP4Utils.getCCP4Dir(), 'share', 'ccp4i2', 'wrappers', 'validate_protein', 'script')
-        sys.path.append(valpro_pth1)
         # Be careful with this. validate_protein may well change, best to co-ordinate this.
         vprotein = validate_protein.validate_protein()
         l1, x1 = vprotein.b_averages(str(self.container.inputData.XYZIN))

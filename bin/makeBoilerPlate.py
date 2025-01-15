@@ -40,7 +40,6 @@ if __name__ == "__main__":
     CCP4I2_TOP= os.path.abspath(os.environ["CCP4I2"])
     exec(compile(open(os.path.join(CCP4I2_TOP,'utils','startup.py')).read(), os.path.join(CCP4I2_TOP,'utils','startup.py'), 'exec'))
     setupEnvironment(path=CCP4I2_TOP)
-    setupPythonpath(top=CCP4I2_TOP,mode='qtgui')
     destinations = CCP4TaskManager.MODULE_ORDER
     parser = argparse.ArgumentParser(description='Initiate CCP4i2 plugin from boiler plate')
     parser.add_argument('-n','--name', required=True, help='name of the plugin...this will end up as a class name and so should have no spaces')
@@ -100,4 +99,3 @@ if __name__ == "__main__":
     pluginRoot = os.path.split(pluginRoot)[0]
     with open(os.path.join(pluginRoot,"__init__.py"),"w") as pluginFile:
         pluginFile.write("")
-

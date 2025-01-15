@@ -23,8 +23,6 @@ if __name__ == '__main__':
     print(' ')
     exec(compile(open(os.path.join(top_path,'utils','startup.py')).read(), os.path.join(top_path,'utils','startup.py'), 'exec'))
     setupEnvironment()
-    setupPythonpath(top=top_path,mode='qtgui')
-    setupGuiPluginsPath(top=top_path)
     app = QTAPPLICATION(graphical=True)
 
     defEd = startDefEd()

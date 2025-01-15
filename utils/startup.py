@@ -73,35 +73,6 @@ def setupEnvironment(path=''):
         path = getCCP4I2Dir()
     os.environ["CCP4I2_TOP"] = path
 
-def setupPythonpath(top='', mode='qtgui'):
-    top = getCCP4I2Dir()
-    sys.path.insert(0, top)
-    return
-
-def setupGuiPluginsPath(top=''):
-    # Add all ccp4i2/tasks/* directories to search path
-    if not top:
-        top = getCCP4I2Dir()
-    pluginsSearchPath = [os.path.join(top, "tasks")]
-    pluginDirs = []
-    for searchPath in pluginsSearchPath:
-        pluginDirs.extend(glob.glob(os.path.join(searchPath, '*')))
-    for pD in pluginDirs:
-        sys.path.append(pD)
-
-def setupPluginsPath(top=''):
-    # Add all ccp4i2/wrappers/* and ccp4i2/plugins/* directories to search path
-    if not top:
-        top = getCCP4I2Dir()
-    pluginsSearchPath = [os.path.join(top, 'wrappers'), os.path.join(top, 'pipelines')]
-    plineWraps = glob.glob(os.path.join(top, 'pipelines', '*', 'wrappers'))
-    pluginsSearchPath.extend(plineWraps)
-    pluginDirs = []
-    for searchPath in pluginsSearchPath:
-        pluginDirs.extend(glob.glob(os.path.join(searchPath, '*')))
-    for pD in pluginDirs:
-        sys.path.append(os.path.join(pD, 'script'))
-
 def testForCCP4Environment():
     ccp4_env = os.environ.get('CCP4', 'NOT SET')
     print('Using CCP4 from: ', ccp4_env)
