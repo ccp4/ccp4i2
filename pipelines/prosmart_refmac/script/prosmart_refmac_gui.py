@@ -350,8 +350,9 @@ class Cprosmart_refmac(CCP4TaskWidget.CTaskWidget):
     
     self.createLine( [ 'subtitle', 'Weights'] )
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOff,['REFINEMENT_MODE']])
-    auto_weight = self.createLine( [ 'label', 'Weight restaints versus experimental data using', 'widget', 'WEIGHT_OPT', 'label', 'weight'] )
-    self.createLine( [ 'label', ':', 'widget', 'WEIGHT' ], toggleFunction=[self.ToggleWeightAuto, ['WEIGHT_OPT']], appendLine=auto_weight )
+    auto_weight = self.createLine( [ 'label', 'Weigh the experimental data using', 'widget', 'WEIGHT_OPT', 'label', 'weight'] )
+    self.createLine( [ 'label', 'of', 'widget', 'WEIGHT' ], toggleFunction=[self.ToggleWeightAuto, ['WEIGHT_OPT']], appendLine=auto_weight )
+    self.createLine( [ 'label', 'versus the restraints' ], appendLine=auto_weight )
     self.closeSubFrame()
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOn,['REFINEMENT_MODE']])
     self.createLine( [ 'label', '<i>Not available in Rigid Body mode.</i>' ] )
