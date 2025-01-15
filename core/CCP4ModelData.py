@@ -319,10 +319,7 @@ class CBioPythonSeqInterface:
             output = output + '>' + text + '\n'
         # Write to temporary file
         f1 = tempfile.mkstemp()
-        if sys.version_info > (3,0):
-            os.write(f1[0], output.encode("utf-8"))
-        else:
-            os.write(f1[0], output)
+        os.write(f1[0], output.encode("utf-8"))
         os.close(f1[0])
         err, data = self.bioLoadSeqFile(f1[1], 'pir')
         #print 'fixPirFile',f1[1],err,data
@@ -352,10 +349,7 @@ class CBioPythonSeqInterface:
         output = '>' + os.path.splitext(os.path.basename(fileName))[0] + '\n' + text
         # Write to temporary file
         f1 = tempfile.mkstemp()
-        if sys.version_info > (3,0):
-            os.write(f1[0], output.encode("utf-8"))
-        else:
-            os.write(f1[0], output)
+        os.write(f1[0], output.encode("utf-8"))
         os.close(f1[0])
         err,data = self.bioLoadSeqFile(f1[1], 'fasta')
         #print 'fixFastaFile',f1[1],err,data
@@ -2503,10 +2497,7 @@ class CPdbDataFile(CCP4File.CDataFile):
             for obj, fileObj in [[self, f1], [other, f2]]:
                 text = CCP4Utils.readFile(obj.__str__())
                 if text[0:6] == 'HEADER':
-                    if sys.version_info > (3,0):
-                        os.write(fileObj[0], text.split('\n', 1)[1].encode("utf-8"))
-                    else:
-                        os.write(fileObj[0], text.split('\n', 1)[1])
+                    os.write(fileObj[0], text.split('\n', 1)[1].encode("utf-8"))
                 else:
                     retest = False
                 os.close(fileObj[0])

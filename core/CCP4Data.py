@@ -2087,12 +2087,11 @@ def varToUUID(var):
     if isinstance(ret, str):
         ret = ret.encode('ascii', 'ignore')
     if not isinstance(ret, str):
-        if sys.version_info > (3,0):
-            if type(ret) == bytes:
-                try:
-                    return ret.decode()
-                except:
-                    pass
+        if type(ret) == bytes:
+            try:
+                return ret.decode()
+            except:
+                pass
         print('CCP4Data.varToUUID', ret, type(ret))
     return ret
 

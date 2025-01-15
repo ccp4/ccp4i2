@@ -21,7 +21,6 @@ import json
 import os
 import pathlib
 import shutil
-import sys
 import traceback
 import xml.etree.ElementTree as ET
 
@@ -70,16 +69,10 @@ class servalcat_xtal(CPluginScript):
         pid = self.getProcessId()
         qprocess = CCP4Modules.PROCESSMANAGER().getJobData(pid,attribute='qprocess')
         availableStdout = qprocess.readAllStandardOutput()
-        if sys.version_info > (3,0):
-            self.logFileHandle.write(availableStdout.data().decode("utf-8"))
-        else:
-            self.logFileHandle.write(availableStdout)
+        self.logFileHandle.write(availableStdout.data().decode("utf-8"))
         self.logFileHandle.flush()
         # MM
-        #if sys.version_info > (3,0):
-        #    self.logScraper.processLogChunk(availableStdout.data().decode("utf-8"))
-        #else:
-        #    self.logScraper.processLogChunk(str(availableStdout))
+        # self.logScraper.processLogChunk(availableStdout.data().decode("utf-8"))
 
     def json2xml(self, json_obj, tag_name=None, tag_name_subroot="subroot"):
     # https://gist.github.com/bewestphal/0d2f884b3327f31b86122b5f6a38b3e2
@@ -1036,5 +1029,3 @@ class servalcat_xtal(CPluginScript):
     def setProgramVersion(self):
       print('refmac.getProgramVersion')
       return CPluginScript.setProgramVersion(self,'Refmac_5')
-
-

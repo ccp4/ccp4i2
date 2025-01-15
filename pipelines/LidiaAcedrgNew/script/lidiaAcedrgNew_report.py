@@ -1,5 +1,4 @@
 import os
-import sys
 import xml.etree.ElementTree as etree
 
 from ....core import CCP4Utils
@@ -90,10 +89,6 @@ class lidiaAcedrgNew_report(Report):
                         """
                     
                     with open(scenePath,'w') as specializedScene:
-                        if sys.version_info > (3,0):
-                            specializedScene.write(etree.tostring(rootNode).decode())
-                        else:
-                            specializedScene.write(etree.tostring(rootNode))
+                        specializedScene.write(etree.tostring(rootNode).decode())
                     pic = pictureGallery.addPicture(label=os.path.split(pdbPath.__str__())[1],title=os.path.split(pdbPath.__str__())[1],sceneFile=scenePath)
         return
-    

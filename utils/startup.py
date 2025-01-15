@@ -20,7 +20,6 @@
 """
 
 import atexit
-import glob
 import os
 import shutil
 import sqlite3
@@ -370,10 +369,7 @@ def startProjectsManager(dbFileName=None, checkForFinishedJobs=False, useLocalDB
 
             db = startDb(pm, mode='sqlite', fileName=dbFileName,**kw)
 
-            if sys.version_info > (3,6):
-                isAscii = db._fileName.isascii()
-            else:
-                isAscii = all(ord(char) < 128 for char in db._fileName)
+            isAscii = db._fileName.isascii()
             hasSpace = True in [c in db._fileName for c in string.whitespace]
 
             if not isAscii or hasSpace:

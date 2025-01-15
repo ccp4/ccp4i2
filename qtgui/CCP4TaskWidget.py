@@ -1021,17 +1021,12 @@ class CTaskWidget(QtWidgets.QFrame):
         and converts spaces to hyphens.
         """
         value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore')
-        if sys.version_info >= (3,0):
-            try:
-                value = value.decode()
-            except:
-                pass
-            value = str(re.sub(r'[^\w\s-]', '', value).strip().lower())
-            value = str(re.sub(r'[-\s]+', '-', value))
-        else:
-            value = unicode(re.sub(r'[^\w\s-]', '', value).strip().lower())
-            value = unicode(re.sub(r'[-\s]+', '-', value))
-        
+        try:
+            value = value.decode()
+        except:
+            pass
+        value = str(re.sub(r'[^\w\s-]', '', value).strip().lower())
+        value = str(re.sub(r'[-\s]+', '-', value))
         return value
     
     def patchOutputFilePaths(self, jobInfo, fileName, projectDirectory=None):
@@ -1040,10 +1035,7 @@ class CTaskWidget(QtWidgets.QFrame):
         for objectName in dataList:
             dobj = self.container.outputData.find(objectName)
             partPath = os.path.join(jobInfo['jobnumber']+"_"+jobInfo['projectname']+"_"+objectName+"_"+jobInfo['taskname'])
-            if sys.version_info >= (3,0):
-                partPath = str(self.slugify(str(partPath)))
-            else:
-                partPath = str(self.slugify(unicode(partPath)))
+            partPath = str(self.slugify(str(partPath)))
             if isinstance(dobj,CCP4File.CDataFile):
                 if isinstance(dobj,CCP4ModelData.CPdbDataFile) and dobj.contentFlag.isSet() and int(dobj.contentFlag) == 2:
                     fullPath = os.path.join(jobDirectory, partPath+"." + dobj.fileExtensions()[1])

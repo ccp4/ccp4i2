@@ -68,14 +68,9 @@ class CLiteDbThread(QtCore.QThread):
         return response
 
     def handleRequest(self, requestPath):
-        if sys.version_info >= (3,0):
-            parsed = urllib.parse.urlparse(requestPath)
-            if parsed.path in self.databaseCalls:
-                response = (self.databaseCalls[parsed.path])(urllib.parse.parse_qs(parsed.query))
-        else:
-            parsed = urlparse.urlparse(requestPath)
-            if parsed.path in self.databaseCalls:
-                response = (self.databaseCalls[parsed.path])(urlparse.parse_qs(parsed.query))
+        parsed = urllib.parse.urlparse(requestPath)
+        if parsed.path in self.databaseCalls:
+            response = (self.databaseCalls[parsed.path])(urllib.parse.parse_qs(parsed.query))
         return response
 
     def getProjectsAndJobs(self, requestDict):

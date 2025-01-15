@@ -159,10 +159,7 @@ class ComboDelegate(QtWidgets.QStyledItemDelegate):
         return cb
 
     def setEditorData(self,editor, index):
-        if sys.version_info > (3,0):
-            currentText = index.data(QtCore.Qt.EditRole)
-        else:
-            currentText = str(index.data(QtCore.Qt.EditRole))
+        currentText = index.data(QtCore.Qt.EditRole)
         cbIndex = editor.findText(currentText)
         if (cbIndex >= 0):
            editor.setCurrentIndex(cbIndex)

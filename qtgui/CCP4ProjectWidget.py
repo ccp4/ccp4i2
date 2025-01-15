@@ -2465,10 +2465,7 @@ class CProjectWidget(QtWidgets.QFrame):
       jobsTree = PROJECTSMANAGER().db().getSucceedingJobs(jobId,fileType=fileType)
       sortSuceedingJobs(jobsTree,preceedingJobList)
       # historyLeafList is list of list of jobs to each final 'leaf' job
-      if sys.version_info > (3,0):
-        self.historyLeafList = sorted(tmpLeafList,key=functools.cmp_to_key(compareHistoryLeaf))
-      else:
-        self.historyLeafList = sorted(tmpLeafList,cmp=compareHistoryLeaf)
+      self.historyLeafList = sorted(tmpLeafList,key=functools.cmp_to_key(compareHistoryLeaf))
       #print 'showHistory leafList',self.historyLeafList
       if len(self.historyLeafList)<=1:
         self.historyGui.set('History of job '+str(jobNum)+' '+self.historyFileTypeText(fileType))

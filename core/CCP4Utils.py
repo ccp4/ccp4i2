@@ -633,8 +633,6 @@ def getProgramVersion(programName, mode='version'):
             return None
         text = m1.groups()[1].strip()
         return text
-    elif programName == 'python':
-        return sys.version.split()[0]
     elif programName == 'qt':
         return QtCore.qVersion()
     elif programName == 'arp_warp':

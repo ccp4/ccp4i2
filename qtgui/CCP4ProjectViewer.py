@@ -1477,10 +1477,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
             fh.close()
         logfile = tempfile.NamedTemporaryFile(suffix='.txt',delete=False)
         logFileName = logfile.name
-        if sys.version_info > (3,0):
-            logfile.write(bytes(text,"UTF-8"))
-        else:
-            logfile.write(text)
+        logfile.write(bytes(text,"UTF-8"))
         logfile.close()
         LAUNCHER().launch('logview',[logFileName])
 

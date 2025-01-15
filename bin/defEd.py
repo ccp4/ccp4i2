@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
     top_path = getCCP4I2Dir()
     print('Running CCP4i2 browser from: '+top_path)
-    print('Python '+sys.version)
+    print('Python', sys.version)
     print(' ')
     exec(compile(open(os.path.join(top_path,'utils','startup.py')).read(), os.path.join(top_path,'utils','startup.py'), 'exec'))
     setupEnvironment()

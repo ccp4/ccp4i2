@@ -107,10 +107,7 @@ class ccp4mg_edit_nomrbump(CPluginScript):
                 #an issue with the existence of files
                 pass
 
-        if sys.version_info > (3,0):
-            status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True).decode("utf-8")
-        else:
-            status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True)
+        status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True).decode("utf-8")
 
         print("Writing",self.mgStatusPath)
         print(status_xml)
@@ -118,7 +115,6 @@ class ccp4mg_edit_nomrbump(CPluginScript):
         with open(self.mgStatusPath, 'wb') as xmlFile:
              xmlFile.write(bytes(status_xml,"utf-8"))
 
-        
         clArgs = [ '-norestore',self.mgStatusPath ]
 
         origInterface_fname = os.path.join(CCP4Utils.getCCP4I2Dir(),"wrappers","ccp4mg_edit_nomrbump","script","ccp4i2CCP4MGInterfaceNoMRBUMP.py")
@@ -212,4 +208,3 @@ class ccp4mg_edit_nomrbump(CPluginScript):
         else: warningsNode = warningsNodes[0]
         warningNode = etree.SubElement(warningsNode,'Warning')
         warningNode.text = text
-

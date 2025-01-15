@@ -24,10 +24,7 @@ class MyRefmacReport(refmac_report):
         summaryFold = parent.addFold(label='Summary of refinement', brief='Summary', initiallyOpen=True)
         uuid._uuid_generate_time = None
         uuid._uuid_generate_random = None
-        if sys.version_info >= (3,0):
-            uuid_str = uuid.uuid4().hex
-        else:
-            uuid_str = uuid.uuid4().get_hex()
+        uuid_str = uuid.uuid4().hex
         
         self.addScrollableDownloadableTable1(parent=summaryFold,internalId=uuid_str)
         self.addProgressGraph(parent=summaryFold)
