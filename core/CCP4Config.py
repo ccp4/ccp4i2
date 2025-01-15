@@ -57,7 +57,6 @@ class CConfig:
         self._xmlMode = 'lxml'
         self.developer = True
         self.graphical = False
-        self.qt = True
         self.jobControllerMode = 'server'
         self.dbFile = None
         self.dbMode ='sqlite'
@@ -259,15 +258,9 @@ def GRAPHICAL():
         CConfig()
     return CConfig.insts.graphical
 
-def QT():
+def XMLPARSER():
     # Beware this loads config params file with dependencies
     # on CCP4Data which may not yet be properly loaded
-    if not CConfig.insts:
-        CConfig()
-    return CConfig.insts.qt
-
-def XMLPARSER():
-    # Ditto comments in QT()
     if  not CConfig.insts:
         CConfig()
     return CConfig.insts.xmlMode()

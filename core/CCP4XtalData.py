@@ -33,7 +33,6 @@ import shutil
 import tempfile
 import unittest
 
-import ccp4mg
 import clipper
 import hklfile  # needs ccp4mg
 from lxml import etree
@@ -47,7 +46,6 @@ from . import CCP4ModelData
 from . import CCP4Modules
 from . import CCP4PluginScript
 from . import CCP4Utils
-from .CCP4Config import QT
 from .CCP4ErrorHandling import *
 from .CCP4Utils import safeFloat
 from ..googlecode import diff_match_patch_py3
@@ -3723,8 +3721,7 @@ def testModule():
 class testAssorted(unittest.TestCase):
 
     def setUp(self):
-        if QT():
-            self.app = CCP4Modules.QTAPPLICATION()
+        self.app = CCP4Modules.QTAPPLICATION()
         self.mummy = CCP4Container.CContainer()
 
     def testMtzColumn(self):
@@ -3748,11 +3745,8 @@ class testMtz(unittest.TestCase):
         self.testDataDir = os.path.normpath(os.path.join(CCP4Utils.getCCP4I2Dir(),'test','data'))
         # make all background jobs wait for completion
         CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
-        if QT():
-            self.app = CCP4Modules.QTAPPLICATION()
-            self.mummy = QtCore.QObject(self.app)
-        else:
-            self.mummy = None
+        self.app = CCP4Modules.QTAPPLICATION()
+        self.mummy = QtCore.QObject(self.app)
 
     def tearDown(self):
         CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)

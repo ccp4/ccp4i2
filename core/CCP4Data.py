@@ -35,7 +35,6 @@ from . import CCP4DataManager
 from . import CCP4File
 from . import CCP4Modules
 from . import CCP4Utils
-from .CCP4Config import QT
 from .CCP4ErrorHandling import *
 from .CCP4File import CDataFile
 from .CCP4QtObject import CObject
@@ -3461,9 +3460,8 @@ class testQObject(unittest.TestCase):
 #class testQObject():
     def setUp(self):
         self.bleeped = False
-        if QT():
-            self.app = QtCore.QCoreApplication(sys.argv)
-            self.master = QtCore.QObject(self.app)
+        self.app = QtCore.QCoreApplication(sys.argv)
+        self.master = QtCore.QObject(self.app)
 
     @QtCore.Slot()
     def bleep(self):
@@ -3471,13 +3469,10 @@ class testQObject(unittest.TestCase):
         self.bleeped = True
 
     def test1(self):
-        if QT():
-            f = CFloat(parent=self.master)
-            f.dataChanged.connect(self.bleep)
-            f.set(12.0)
-            self.assertTrue(self.bleeped,'dataChanged signal not connected')
-        else:
-            return
+        f = CFloat(parent=self.master)
+        f.dataChanged.connect(self.bleep)
+        f.set(12.0)
+        self.assertTrue(self.bleeped,'dataChanged signal not connected')
 
 class testDict(unittest.TestCase):
     def test1(self):
