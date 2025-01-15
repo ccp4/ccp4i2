@@ -83,7 +83,7 @@ JOB_EVALUATION_TEXT = ['Unknown','Best','Good','Rejected']
 USER_AGENT_TEXT = ['Unknown','CCP4i2','CCP4mg','Coot']
 FILETYPES_TEXT = ['Unknown', 'application/CCP4-seq', 'chemical/x-pdb', 'MultiPDB', 'application/CCP4-mtz', 'application/CCP4-unmerged-mtz',
                   'application/CCP4-unmerged-experimental', 'application/CCP4-map', 'application/refmac-dictionary', 'application/refmac-TLS',
-                  'application/CCP4-mtz-freerflag', 'application/CCP4-mtz-observed', 'application/CCP4-mtz-phases', 'application/CCP4-mtz-map', '',
+                  'application/CCP4-mtz-freerflag', 'application/CCP4-mtz-observed', 'application/CCP4-mtz-phases', 'application/CCP4-mtz-map', 'Dummy',
                   'application/CCP4-seqalign', 'application/CCP4-mtz-mini', 'application/coot-script', 'application/refmac-external-restraints',
                   'application/CCP4-scene', 'application/CCP4-shelx-FA', 'application/phaser-sol', 'chemical/x-mdl-molfile',
                   'application/iMosflm-xml', 'application/CCP4-image', 'application/CCP4-generic-reflections', 'application/HHPred-alignments',
