@@ -1286,7 +1286,7 @@ class CI2XmlDataFile(CXmlDataFile):
         return body_etree
 
     def saveFile(self, bodyEtree=None,useLXML=True):
-        if CCP4Config.XMLPARSER() == 'lxml' and useLXML:
+        if useLXML:
             testType = etree._Element
         else:
             testType = ET.Element

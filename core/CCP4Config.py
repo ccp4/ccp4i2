@@ -54,7 +54,6 @@ class CConfig:
     def __init__(self, filename=None, mode='ccp4i2', **kw):
         if CConfig.insts is None:
             CConfig.insts = self
-        self._xmlMode = 'lxml'
         self.developer = True
         self.graphical = False
         self.jobControllerMode = 'server'
@@ -180,20 +179,6 @@ class CConfig:
         elif key in ['dbFile', 'dbUser']:
             setattr(self, key, value)
 
-    def setXmlMode(self):
-        try:
-            self._xmlMode = 'lxml'
-        except:
-            try:
-                self._xmlMode = 'elementtree'
-            except:
-                self._xmlMode = ''
-
-    def xmlMode(self):
-        if self._xmlMode is None:
-            self.setXmlMode()
-        return self._xmlMode
-
 #==============================================FUNCTIONS
 
 def PATH(exe, firstOnly = True):
@@ -257,13 +242,6 @@ def GRAPHICAL():
     if not CConfig.insts:
         CConfig()
     return CConfig.insts.graphical
-
-def XMLPARSER():
-    # Beware this loads config params file with dependencies
-    # on CCP4Data which may not yet be properly loaded
-    if  not CConfig.insts:
-        CConfig()
-    return CConfig.insts.xmlMode()
 
 def DBMODE():
     if  not CConfig.insts:
