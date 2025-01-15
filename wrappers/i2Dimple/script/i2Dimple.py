@@ -23,7 +23,6 @@ import platform
 import subprocess
 
 from lxml import etree
-import ccp4mg
 import mmdb2 as mmdb
 
 from ....core import CCP4ErrorHandling

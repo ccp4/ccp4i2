@@ -3,7 +3,6 @@ import os
 import re
 import sys
 
-import ccp4mg
 import ccp4srs
 import mmdb2
 

@@ -9,7 +9,6 @@
      set in ccp4i2/utils/setup.sh
 """
 
-import ccp4mg
 import hklfile
 
 from ....core.CCP4PluginScript import CPluginScript
@@ -72,4 +71,3 @@ class mtzheader(CPluginScript):
 
        # Needed!
        self.reportStatus(CPluginScript.SUCCEEDED)
-

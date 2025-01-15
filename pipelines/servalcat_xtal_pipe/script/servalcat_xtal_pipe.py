@@ -29,7 +29,6 @@ from lxml import etree
 from mmtbx.command_line import molprobity
 from PySide2 import QtCore
 from rdkit import Chem
-import ccp4mg
 import clipper
 import mmdb2
 

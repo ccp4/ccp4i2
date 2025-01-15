@@ -1,7 +1,6 @@
 import collections
 import sys
 
-import ccp4mg
 import ccp4srs
 import mmdb2
 

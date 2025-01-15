@@ -23,9 +23,8 @@
 
 import re
 
-import ccp4mg
-import mmdb2 as mmdb  # needs import ccp4mg
-import mmut  # needs import ccp4mg
+import mmdb2 as mmdb
+import mmut
 
 from .. import model
 from .. import utils

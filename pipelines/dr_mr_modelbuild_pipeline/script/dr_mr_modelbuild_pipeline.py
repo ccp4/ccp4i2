@@ -30,9 +30,6 @@ import sys
 
 from lxml import etree
 from PySide2.QtCore import Slot
-import ccp4mg
-import mmdb2 as mmdb
-import mmut
 
 from ....core import CCP4Utils
 from ....core.CCP4ErrorHandling import *

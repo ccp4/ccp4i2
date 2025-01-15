@@ -9,7 +9,6 @@ from lxml import etree
 from phmmerReport import PhmmerReportNoGui
 from PySide2 import QtCore
 from stat import S_ISREG, ST_CTIME, ST_MODE
-import ccp4mg
 
 from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript

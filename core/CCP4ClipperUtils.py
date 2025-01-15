@@ -15,9 +15,7 @@
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    """
 
-"""
     Jon Agirre Oct 2015 - created the file and started developing little
                           crystallographic utilities with clipper-python
 
@@ -29,11 +27,9 @@
         * plain text log string (not a file)
         * XML tree in the form of a etree.Element
         * output files (path) if any
-
-    """
+"""
 
 from lxml import etree
-import ccp4mg
 import clipper
 import mmdb2
 
@@ -63,7 +59,6 @@ def read_pdb ( pdbin = "undefined" ) :
     return log_string, xml_root, mmol
 
 
-
 def is_aminoacid ( residue_name = "None" ) :
     residue_names={ 'UNK', 'ALA', 'GLY', 'VAL', 'LEU', 'ILE', 'PRO', 'PHE', 'TYR', 'TRP', 'SER', 'THR', 'CYS', 'MET', 'ASN', 'GLN', 'LYS', 'ARG', 'HIS', 'ASP', 'GLU' }
 
@@ -74,7 +69,6 @@ def is_aminoacid ( residue_name = "None" ) :
         return True
     else:
         return False
-
 
 
 def is_mainchain ( atom_name = "None" ) :

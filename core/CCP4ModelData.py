@@ -40,7 +40,6 @@ import Bio.Seq
 import Bio.SeqIO
 import Bio.SeqRecord
 import Bio.SeqUtils
-import ccp4mg
 import iotbx
 from lxml import etree
 import mmdb2 as mmdb
