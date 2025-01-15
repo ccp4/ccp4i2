@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
     demo_copycell.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -19,8 +17,16 @@ from __future__ import print_function
      GNU Lesser General Public License for more details.
 """
 
+import os
+import unittest
+
 from PySide2 import QtCore
-from core.CCP4PluginScript import CPluginScript
+
+from ....core.CCP4Modules import PROCESSMANAGER
+from ....core.CCP4Modules import QTAPPLICATION
+from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Utils import getCCP4I2Dir
+
 
 class demo_copycell(CPluginScript):
 
@@ -59,28 +65,20 @@ class demo_copycell(CPluginScript):
       self.pdbset.container.outputData.XYZOUT.set(self.container.outputData.XYZOUT)
       self.connectSignal(self.pdbset,'finished',self.postProcessWrapper)
       self.pdbset.process()
-      
-      
+
 #=======================================================================================================
-import unittest
 
 class test_demo_copycell(unittest.TestCase):
   
   def setUp(self):
     # make all background jobs wait for completion
-    from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
     self.app = QTAPPLICATION()
     PROCESSMANAGER().setWaitForFinished(10000)
 
   def tearDown(self):
-    from core.CCP4Modules import PROCESSMANAGER
     PROCESSMANAGER().setWaitForFinished(-1)
 
   def test_1(self):
-    from core.CCP4Modules import QTAPPLICATION
-    import os
-    from core.CCP4Utils import getCCP4I2Dir
-
     # Run the pipeline
     wrapper = demo_copycell(parent=QTAPPLICATION(),name='demo_copycell')
     wrapper.container.loadDataFromXml(os.path.join(getCCP4I2Dir(),'pipelines','demo_copycell','test_data','test_1.params.xml'))

@@ -1,11 +1,14 @@
-from __future__ import print_function
-from core.CCP4PluginScript import CPluginScript
-from PySide2 import QtCore
-import os,re,time,sys
-from core import CCP4XtalData
+import datetime
+import glob
+import os
+import shutil
+
 from lxml import etree
-import math
-from core import CCP4Modules,CCP4Utils
+
+from ....core import CCP4Modules, CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4XtalData import CObsDataFile
+
 
 class ShelxCDEBase(CPluginScript):
     
@@ -155,7 +158,6 @@ class ShelxCDEBase(CPluginScript):
             datasets = {'RIPA':inp.RIPA,'NAT':inp.NAT}
         
         for datasetName in datasets:
-            from core.CCP4XtalData import CObsDataFile
             if datasets[datasetName].isSet():
                 self.makeHklin([datasetName])
                 mtzFilepath = os.path.join(self.getWorkDirectory(),'hklin.mtz')
@@ -256,7 +258,6 @@ class ShelxCDEBase(CPluginScript):
         elif self.container.controlParameters.MODE.__str__() == 'RIPAS':
             datasetNames = ['RIPA','NAT']
 
-        from core.CCP4XtalData import CObsDataFile
         inp = self.container.inputData
         for datasetName in datasetNames:
             dataset = getattr(inp,datasetName)
@@ -338,7 +339,6 @@ class ShelxCDEBase(CPluginScript):
                     e2TableLine = 0
 
     def handleShelxeLogChanged(self, logFilename):
-        import datetime
         timeNow = datetime.datetime.now()
         if not hasattr(self,"lastScrapeTime"): self.lastScrapeTime = timeNow
         deltaTime = timeNow - self.lastScrapeTime
@@ -348,7 +348,6 @@ class ShelxCDEBase(CPluginScript):
             self.lastScrapeTime = timeNow
     
     def handleShelxdLogChanged(self, logFilename):
-        import datetime
         timeNow = datetime.datetime.now()
         if not hasattr(self,"lastScrapeTime"): self.lastScrapeTime = timeNow
         deltaTime = timeNow - self.lastScrapeTime
@@ -658,7 +657,6 @@ OUTPUT frac
 
         """
         # This code (with the alternate definition of coord above) is better way to create PDB file
-        from core import CCP4ModelData
         pdb = CCP4ModelData.CPdbData()
         cellString, spaceGroupNumber, extantFile = self.cellString()
         pdb.makeOneResPdb(atomDefList=coords,cell=extantFile.fileContent.cell,spaceGroup=extantFile.fileContent.spaceGroup,fileName=outputPDBPath)
@@ -697,7 +695,6 @@ OUTPUT pdb
 
     def txtOutputFiles(self):
         # Add '.txt' extension to files so will display correctly in i2 and desktop tools
-        import glob,shutil
         # also : pha phs hat from shelxe
         for ext in [ '*.lst', '*.res', '*.ins', '*.frac' ]:
           fileList = glob.glob(os.path.join(self.getWorkDirectory(),ext))

@@ -1,7 +1,10 @@
-from core.CCP4PluginScript import CPluginScript
-from lxml import etree
 import os
-from wrappers.ShelxCDE.script import ShelxCDEBase
+
+from lxml import etree
+
+from ....core.CCP4PluginScript import CPluginScript
+from . import ShelxCDEBase
+
 
 class ShelxCD(ShelxCDEBase.ShelxCDEBase):
     TASKMODULE = 'test'                               # Where this plugin will appear on the gui

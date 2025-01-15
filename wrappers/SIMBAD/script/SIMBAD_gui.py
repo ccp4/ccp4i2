@@ -14,11 +14,11 @@
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    """
+"""
 
-from qtgui.CCP4TaskWidget import CTaskWidget
-#from phil2etree import debug_console # David's handy debug console
 from multiprocessing import cpu_count
+
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
 
 class SIMBAD_gui(CTaskWidget):

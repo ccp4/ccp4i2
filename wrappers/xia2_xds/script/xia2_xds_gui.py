@@ -5,14 +5,11 @@
 #  Acknowledgements: based on code by Graeme Winter and Martin Noble.
 #
 
-from PySide2 import QtGui, QtWidgets, QtCore
+from PySide2 import QtCore
 
-from qtgui.CCP4TaskWidget import CTaskWidget
-from core import CCP4Container
-from core import CCP4Utils
-from core import CCP4Modules
-
-from wrappers.xia2_dials.script import xia2_dials_gui
+from ....core import CCP4Modules
+from ....core import CCP4Utils
+from ...xia2_dials.script import xia2_dials_gui
 
 
 class xia2_xds_gui(xia2_dials_gui.xia2_dials_gui):

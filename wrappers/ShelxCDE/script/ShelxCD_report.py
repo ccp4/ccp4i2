@@ -1,7 +1,5 @@
-from report.CCP4ReportParser import *
-import sys
-import math
-from wrappers.ShelxCDE.script.ShelxCDEBaseReport import ShelxCDEBaseReport
+from .ShelxCDEBaseReport import ShelxCDEBaseReport
+
 
 class ShelxCD_report(ShelxCDEBaseReport):
     # Specify which gui task and/or pluginscript this applies to

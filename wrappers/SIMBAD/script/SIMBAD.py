@@ -14,17 +14,18 @@
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    """
+"""
 
-from lxml import etree
 import os
-import shutil
 import platform
+import shutil
 
-# CCP4 imports
-from core.CCP4PluginScript import CPluginScript
 from simbad.util import SIMBAD_DIRNAME
 from simbad.util.simbad_results import SimbadResults
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
 
 
 class SIMBAD(CPluginScript):
@@ -59,8 +60,6 @@ class SIMBAD(CPluginScript):
         #                       the input data objects
         #                       3) A CCP4 Error object
         """
-        from core import CCP4XtalData
-        from core import CCP4ErrorHandling
         self.hklin, error = self.makeHklin([['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
 
         if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
@@ -125,7 +124,6 @@ class SIMBAD(CPluginScript):
         columnsToTake = ['FWT,PHWT','DELFWT,PHDELWT']
         infile = os.path.join(self.workDirectory,'final.mtz')
         error = self.splitHklout(outputFilesToMake, columnsToTake, infile=infile)
-        import CCP4ErrorHandling
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
         '''

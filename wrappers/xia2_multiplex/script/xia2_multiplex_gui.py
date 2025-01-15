@@ -5,9 +5,10 @@
 #
 
 from PySide2 import QtCore, QtWidgets
-from qtgui.CCP4TaskWidget import CTaskWidget
-from core import CCP4Container
-import qtgui
+
+from .... import qtgui
+from ....core import CCP4Container
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 from .find_integrated import find_integrated
 
 

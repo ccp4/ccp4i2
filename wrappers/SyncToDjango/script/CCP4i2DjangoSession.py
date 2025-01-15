@@ -1,11 +1,22 @@
-from __future__ import print_function
-
-import itertools
-import email.generator
-import mimetypes
-from io import StringIO
-import urllib.request, urllib.parse
 from html.parser import HTMLParser
+from io import StringIO
+import email.generator
+import itertools
+import json
+import mimetypes
+import os
+import re
+import tempfile
+import unicodedata
+import urllib.parse
+import urllib.request
+
+import cookielib
+
+from ....core import CCP4NonGuiProjectUtils
+from ....core import CCP4Utils
+from ....utils.startup import setupEnvironment, setupPythonpath, startProjectsManager
+
 
 class MultiPartForm(object):
     """Accumulate the data to be used when posting a form."""
@@ -112,7 +123,6 @@ class DjangoSession (object):
         return handler
 
     def cookieHandler(self):
-        import cookielib
         self.cookies = cookielib.LWPCookieJar()
         handler = urllib.request.HTTPCookieProcessor(self.cookies)
         return handler
@@ -196,11 +206,7 @@ class CCP4i2DjangoSession(DjangoSession):
         return self._pm
 
     def myStartProjectsManager(self):
-        import os
-        import CCP4Utils
         CCP4I2_TOP = CCP4Utils.getCCP4I2Dir()
-        sys.path.append(os.path.join(CCP4I2_TOP,'utils'))
-        from startup import setupEnvironment, setupPythonpath, startProjectsManager
         setupEnvironment(path=CCP4I2_TOP)
         setupPythonpath(top=CCP4I2_TOP,mode='qtgui')
         pm = startProjectsManager()
@@ -219,7 +225,6 @@ class CCP4i2DjangoSession(DjangoSession):
             Normalizes string, converts to lowercase, removes non-alpha characters,
             and converts spaces to hyphens.
             """
-        import unicodedata, re
         value = unicodedata.normalize('NFKD', value.decode('unicode-escape')).encode('ascii', 'ignore')
         value = unicode(re.sub(r'[^\w\s-]', '', value).strip().lower())
         result = re.sub(r'[-\s]+', '-', value)
@@ -230,8 +235,6 @@ class CCP4i2DjangoSession(DjangoSession):
         self.pushProjectWithId(projectId)
         
     def pushProjectWithId(self, projectId, jobList=None):
-        from core import CCP4NonGuiProjectUtils
-        
         projectList = self.projectsManager().db().listProjects()
         projectNameList = [projectTuple[1] for projectTuple in projectList if projectId in projectTuple[0]]
         projectName = self.slugify(projectNameList[-1])
@@ -245,12 +248,10 @@ class CCP4i2DjangoSession(DjangoSession):
             form.add_file('file', str(projectName+".ccp4_project.zip"), zippedStringIO)
         
         else:
-            import tempfile
             with tempfile.NamedTemporaryFile(suffix='.ccp4_project.zip',delete=False) as tmpArchive:
                 self.projectsManager().compressProject(projectId,after=None,jobList=jobList, excludeI2files=False,fileName=tmpArchive,blocking=True)
                 form = self.multiPartForm(self.baseURL+'/importProject')
                 tmpArchive.flush()
-                import os
                 os.fsync(tmpArchive.fileno())
                 tmpArchive.seek(0)
                 form.add_file('file', str(projectName+".ccp4_project.zip"), tmpArchive)
@@ -261,7 +262,6 @@ class CCP4i2DjangoSession(DjangoSession):
 
     def pushZip(self,zipName):
         form = self.multiPartForm(self.baseURL+'/importProject')
-        import os
         with open(zipName,"r") as fileHandle:
             form.add_file('file', os.path.split(zipName)[1], fileHandle)
         
@@ -272,7 +272,6 @@ class CCP4i2DjangoSession(DjangoSession):
     def fetchRemoteProjects(self):
         response = self.getURLWithValues(self.baseURL+"?listProjects",{})
         responseText = response.read()
-        import json
         remoteProjects = json.loads(responseText)
         return remoteProjects
 
@@ -284,7 +283,6 @@ class CCP4i2DjangoSession(DjangoSession):
 
     def fetchProjectWithId(self, projectId, jobList=None):
         response = self.getURLWithValues(self.baseURL+"/ProjectZipForProjectId/"+projectId,{"jobList":jobList})
-        import tempfile
         tmpArchive = tempfile.NamedTemporaryFile(suffix='.ccp4_project.zip',delete=False)
         print(tmpArchive.name)
         CHUNK = 16 * 1024
@@ -293,14 +291,12 @@ class CCP4i2DjangoSession(DjangoSession):
             if not chunk: break
             tmpArchive.write(chunk)
         tmpArchive.close()
-        from core import CCP4NonGuiProjectUtils
         importer = CCP4NonGuiProjectUtils.CCP4NonGuiProjectUtils(tmpArchive.name)
         self.projectsManager().db().commit()
         return tmpArchive.name
 
     def lastRefmacExportForProjectId(self, projectId):
         response = self.getURLWithValues(self.baseURL+"/LastRefmacExportForProjectId/"+projectId,{})
-        import tempfile
         tmpArchive = tempfile.NamedTemporaryFile(suffix='.zip',delete=False)
         print(tmpArchive.name)
         CHUNK = 16 * 1024
@@ -313,7 +309,6 @@ class CCP4i2DjangoSession(DjangoSession):
 
     def lastLigandPipelineExportForProjectId(self, projectId):
         response = self.getURLWithValues(self.baseURL+"/LastLigandPipelineExportForProjectId/"+projectId,{})
-        import tempfile
         tmpArchive = tempfile.NamedTemporaryFile(suffix='.zip',delete=False)
         print(tmpArchive.name)
         CHUNK = 16 * 1024
@@ -357,7 +352,6 @@ class CCP4i2DjangoSession(DjangoSession):
         #Retrieve remote job List
         response = self.getURLWithValues(self.baseURL+"?getProjectJobListInfo",{"projectId":str(projectId),"topLevelOnly":"False"})
         responseText = response.read()
-        import json
         remoteProjectJobList = json.loads(responseText)
         remoteProjectJobIds = [jobInfo['jobid'] for jobInfo in remoteProjectJobList]
         
@@ -370,5 +364,3 @@ class CCP4i2DjangoSession(DjangoSession):
         #print "jobIdsMissingFromLocal",jobIdsMissingFromLocal
         if len(jobIdsMissingFromRemote)>0: self.pushProjectWithId(projectId, jobList=jobIdsMissingFromRemote)
         if len(jobIdsMissingFromLocal)>0: self.fetchProjectWithId(projectId, jobList=jobIdsMissingFromLocal)
-
-

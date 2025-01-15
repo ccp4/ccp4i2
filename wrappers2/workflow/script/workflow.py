@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 """
      workflow.py: CCP4 GUI Project
      Copyright (C) 2013 STFC
@@ -19,14 +16,18 @@ from __future__ import print_function
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
 """
-import os,shutil,time
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4WorkflowManager,CCP4Modules
-from core.CCP4ErrorHandling import *
-from core import CCP4Data
+import os
+import shutil
+import traceback
 
 from PySide2 import QtCore
+
+from ....core import CCP4Data
+from ....core import CCP4WorkflowManager,CCP4Modules
+from ....core.CCP4ErrorHandling import *
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class workflow(CPluginScript):
 
@@ -124,12 +125,10 @@ class workflow(CPluginScript):
 
   @QtCore.Slot(dict)
   def handleJobFinished(self,statusDict):
-    #import time
     #print 'handleJobFinished',self.currentJobIndex,statusDict,time.time()
     finishedJobId = statusDict.get('jobId',None)
     if finishedJobId != self.subJobs[self.currentJobKey].getJobId():
       #print 'workflow.handleJobFinished ignoring finished signal from a CPluginScript that is not the last task'
-      import traceback
       traceback.print_stack()
       return
     if statusDict['finishStatus']  == CPluginScript.FAILED: self.finish(CPluginScript.FAILED)
@@ -164,5 +163,3 @@ class workflow(CPluginScript):
   def finish(self,status):
     #print 'workflow.finish',status
     self.reportStatus(status) 
-    
-

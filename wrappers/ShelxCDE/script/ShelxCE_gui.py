@@ -2,16 +2,13 @@
     ShelxCD_gui.py
     Copyright (C) 2014 Newcastle University
     Author: Martin Noble
-    
-    """
+"""
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from ....core import CCP4Modules, CCP4Utils
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
-from qtgui.CCP4TaskWidget import CTaskWidget
 
-#-------------------------------------------------------------------
 class ShelxCE_gui(CTaskWidget):
-    #-------------------------------------------------------------------
     
     # Subclass CTaskWidget to give specific task window
     TASKMODULE = 'test'                               # Where this plugin will appear on the gui
@@ -27,8 +24,7 @@ class ShelxCE_gui(CTaskWidget):
     
     def drawContents(self):
         self.openFolder(folderFunction='inputData')
-        
-        from core import CCP4Utils,CCP4Modules
+
         if not (hasattr(CCP4Modules.PREFERENCES(),'SHELXDIR')) and CCP4Utils.which('shelxc') is None:
             if (not CCP4Modules.PREFERENCES().SHELXDIR.exists()) and CCP4Utils.which('shelxc') is None:
               self.createLine ( [ 'warning','The Shelx programs have not been found. They are not part of CCP4 but you can get them from\nhttp://shelx.uni-ac.gwdg.de/SHELX/download.php\nIf you already have them make sure they are on the search path\nOR specify where they are in the Preferences window - under Other Software.' ])
@@ -107,4 +103,3 @@ class ShelxCE_gui(CTaskWidget):
                 if not require.isSet() and not require in invalidElements:
                     invalidElements.append(require)
         return invalidElements
-

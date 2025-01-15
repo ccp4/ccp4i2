@@ -16,7 +16,7 @@
     GNU Lesser General Public License for more details.
 '''
 
-from qtgui.CCP4TaskWidget import CTaskWidget
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
 
 class zanuda_gui(CTaskWidget):
@@ -57,4 +57,3 @@ class zanuda_gui(CTaskWidget):
             ]
         )
         self.closeSubFrame()
-

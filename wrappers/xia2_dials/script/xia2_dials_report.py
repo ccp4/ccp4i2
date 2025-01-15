@@ -5,10 +5,12 @@
 #  Acknowledgements: based on code by Graeme Winter and Martin Noble.
 #
 
-import os
-from report.CCP4ReportParser import Report
+from collections import namedtuple
 import json
+import os
 import re
+
+from ....report.CCP4ReportParser import Report
 
 
 class xia2_dials_report(Report):
@@ -92,8 +94,6 @@ class xia2_dials_report(Report):
         names = []
         spaceGroups = []
         cells = []
-
-        from collections import namedtuple
 
         Stat = namedtuple("Stat", ["key", "title", "fmt", "values"])
         statistics = [

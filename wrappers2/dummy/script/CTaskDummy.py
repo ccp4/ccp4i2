@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      tasks/dummy.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -17,19 +15,18 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton Jan 2010 - Create demo.py prototype
 """
 
 from PySide2 import QtCore
 
-from qtgui.CCP4TaskWidget import CTaskWidget
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Modules
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
-#-------------------------------------------------------------------
+
 class CTaskDummy(CTaskWidget):
-#-------------------------------------------------------------------
 
 # Subclass CTaskWidget to give specific task window
   TASKNAME = 'dummy'
@@ -201,13 +198,11 @@ class CTaskDummy(CTaskWidget):
       # Can not assume that the gesamt widget is still there - must instead query the database for output file
       # Use CDbApi.getJobFilesInfo() which returns a list of dicts containing description of files output by the job
       # The best way to set the file object ot a new value is by setDbFileId()
-      from core import CCP4Modules
       gesamtFileList = CCP4Modules.PROJECTSMANAGER().db().getJobFilesInfo(jobId=jobId,jobParamName='XYZOUT')
       #print 'CTaskDummy.handleLaunchedJob ',gesamtFileList
       if len(gesamtFileList)>0:
         self.getWidget('XYZIN').model.setDbFileId(gesamtFileList[0]['fileId'])
-        
-      
+
   @QtCore.Slot()
   def handlePDBIN_COMPULSARY(self):
     # set the qualifiers of PDBIN dependent on the value of PDBIN_COMPULSARY
@@ -216,9 +211,7 @@ class CTaskDummy(CTaskWidget):
     self.container.inputData.PDBIN.setQualifiers({ 'allowUndefined' : (not mode) } )
     self.getWidget('PDBIN').validate()
 
-
   def taskValidity(self):
-    from core import CCP4ErrorHandling
     rv = CCP4ErrorHandling.CErrorReport()
     # Check the space group is same in MTZ and PDB
     if self.container.inputData.PDBIN.exists():

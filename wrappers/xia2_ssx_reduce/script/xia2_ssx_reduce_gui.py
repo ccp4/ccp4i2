@@ -4,15 +4,16 @@
 #  Author: Martin Maly, David Waterman
 #
 
-from PySide2 import QtCore, QtWidgets
-from qtgui.CCP4TaskWidget import CTaskWidget
-from core import CCP4Container
-import qtgui
-from .find_expt_refl import find_expt_refl
-from dxtbx.serialize import load
-from cctbx import uctbx
-from scitbx.array_family import flex
 import os
+
+from cctbx import uctbx
+from dxtbx.serialize import load
+from PySide2 import QtCore, QtWidgets
+from scitbx.array_family import flex
+
+from .... import qtgui
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+from .find_expt_refl import find_expt_refl
 
 
 class FindIntegratedWorker(QtCore.QObject):

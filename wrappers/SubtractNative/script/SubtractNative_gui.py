@@ -14,13 +14,12 @@
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    """
+"""
 
-from qtgui.CCP4TaskWidget import CTaskWidget
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
-#-------------------------------------------------------------------
+
 class SubtractNative_gui(CTaskWidget):
-    #-------------------------------------------------------------------
 
     # Subclass CTaskWidget to give specific task window
     TASKNAME = 'SubtractNative' # this has to match the pluginName given in the corresponding .def.xml
@@ -44,4 +43,3 @@ class SubtractNative_gui(CTaskWidget):
         self.getWidget('XYZIN').showAtomSelection()
         self.createLine ( [ 'tip','Fractionof FC to subtract','widget','FRACTION' ] )
         self.closeSubFrame()
-        

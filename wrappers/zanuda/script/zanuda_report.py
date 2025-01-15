@@ -16,11 +16,11 @@
     GNU Lesser General Public License for more details.
 '''
 
-from cProfile import run
-import json
 import os
 import re
-from report.CCP4ReportParser import Report
+
+from ....report.CCP4ReportParser import Report
+
 
 class zanuda_report(Report):
     TASKNAME = 'zanuda'
@@ -73,4 +73,3 @@ class zanuda_report(Report):
                             table.addData(title='R-work (RB)', data=rrz[4])
                             table.addData(title='R-work', data=rrz[5])
                             table.addData(title='R-free', data=rrz[6])
-

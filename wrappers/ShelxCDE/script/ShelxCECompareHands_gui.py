@@ -1,24 +1,21 @@
-from __future__ import print_function
 """
     ShelxECompareHands_gui.py
     Copyright (C) 2015 Newcastle University
     Author: Martin Noble
-    
-    """
+"""
 
-from PySide2 import QtGui, QtWidgets,QtCore
+import os
 
 from . import ShelxCE_gui
+from ....core import CCP4Container
+from ....core import CCP4Data
+from ....core import CCP4File
+from ....core import CCP4ModelData
+from ....core import CCP4Modules
+
 
 def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None):
-    import os
-    from lxml import etree
-    from core import CCP4Modules
-    from core import CCP4Utils
-    from core import CCP4File
-    from core import CCP4Container
-    from core import CCP4Data
-    from core import CCP4ModelData
+
     returnList = ['coot_rebuild','parrot',['buccaneer_build_refine_mr','$CCP4I2/pipelines/bucref_mr/script/bucref_after_experimental.params.xml']]
     try:
         jobDirectory = CCP4Modules.PROJECTSMANAGER().db().jobDirectory(jobId=jobId)
@@ -57,9 +54,7 @@ def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None)
     return returnList
 
 
-#-------------------------------------------------------------------
 class ShelxCECompareHands_gui(ShelxCE_gui.ShelxCE_gui):
-    #-------------------------------------------------------------------
     
     # Subclass CTaskWidget to give specific task window
     TASKMODULE = 'test'                               # Where this plugin will appear on the gui
@@ -78,4 +73,3 @@ class ShelxCECompareHands_gui(ShelxCE_gui.ShelxCE_gui):
         self.openSubFrame( frame=[True] )
         self.autoGenerate(container=self.container.keywords,selection={'includeParameters' : ['h','z','sX','aN','n','q','mN']})
         self.closeSubFrame()
-

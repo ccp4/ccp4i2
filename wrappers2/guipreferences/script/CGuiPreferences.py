@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      tasks/guipreferences.py: CCP4 GUI Project
      Copyright (C) 2011 University of York
@@ -17,19 +15,18 @@ from __future__ import print_function
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton Sept 2011 - Create a task window for GUI preferences
 """
-import sys
-from PySide2 import QtGui, QtWidgets,QtCore
 
-from qtgui.CCP4TaskWidget import CTaskWidget
+from PySide2 import QtWidgets
 
-#-------------------------------------------------------------------
+from ....core import CCP4Modules
+from ....core.CCP4Config import DEVELOPER
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
+
 class CGuiPreferences(CTaskWidget):
-#-------------------------------------------------------------------
 
 # Subclass CTaskWidget to give specific task window
   TASKNAME = 'guipreferences'
@@ -39,10 +36,6 @@ class CGuiPreferences(CTaskWidget):
 
 
   def drawContents(self):
-    
-    from core import CCP4Modules
-    from core.CCP4Config import DEVELOPER
-
     self.container.WINDOWS_STYLE.setQualifier('enumerators',CCP4Modules.QTAPPLICATION().getStyleKeys())
 
     self.openFolder(title='Task interface')
@@ -158,4 +151,3 @@ class CGuiPreferences(CTaskWidget):
     self.createLine( [ 'label' , 'Invalid/missing data uses ',
                        'widget', 'INVALID_FRAME_MODE',
                        'label' , 'style' ], toggle = ['INVALID_FRAME_MODE', 'open', [ 2 ] ]  )
-

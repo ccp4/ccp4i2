@@ -1,6 +1,4 @@
-import shutil
-
-from report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import *
 
 
 class validate_protein_report(Report):

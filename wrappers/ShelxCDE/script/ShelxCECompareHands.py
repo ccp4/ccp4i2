@@ -1,11 +1,16 @@
-from __future__ import print_function
-from PySide2 import QtCore
-from core.CCP4PluginScript import CPluginScript
-from lxml import etree
-import os
-from wrappers.ShelxCDE.script import ShelxCE
+import datetime
 import functools
-from core import CCP4Utils
+import shutil
+import sys
+import tempfile
+
+from lxml import etree
+from PySide2 import QtCore
+
+from . import ShelxCE
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class ShelxCECompareHands(ShelxCE.ShelxCE):
     TASKNAME = 'ShelxCECompareHands'                     # Task name - should be same as class name
@@ -86,37 +91,28 @@ class ShelxCECompareHands(ShelxCE.ShelxCE):
     def subjobXMLChanged(self, nodeName, changedFile):
             with open(changedFile,'r') as changedXML:
                 newText = changedXML.read()
-            if True:
-                from lxml import etree
-                changedRoot = etree.fromstring(newText)
-                #Remove old copies of XML
-                oldNodes = self.xmlroot.xpath(nodeName)
-                for oldNode in oldNodes:
-                    oldNode.getparent().remove(oldNode)
-                newNode = etree.SubElement(self.xmlroot,nodeName)
-                newNode.append(changedRoot)
-                import datetime
-                timeNow = datetime.datetime.now()
-                if not hasattr(self,"lastFlushTime"): self.lastFlushTime = timeNow
-                deltaTime = timeNow - self.lastFlushTime
-                if deltaTime.seconds > 0 or deltaTime.days > 0:
-                    self.lastFlushTime = timeNow
-                    self.flushXML()
-            else:
-                print('Failed to copyXML across')
+            changedRoot = etree.fromstring(newText)
+            #Remove old copies of XML
+            oldNodes = self.xmlroot.xpath(nodeName)
+            for oldNode in oldNodes:
+                oldNode.getparent().remove(oldNode)
+            newNode = etree.SubElement(self.xmlroot,nodeName)
+            newNode.append(changedRoot)
+            timeNow = datetime.datetime.now()
+            if not hasattr(self,"lastFlushTime"): self.lastFlushTime = timeNow
+            deltaTime = timeNow - self.lastFlushTime
+            if deltaTime.seconds > 0 or deltaTime.days > 0:
+                self.lastFlushTime = timeNow
+                self.flushXML()
 
     def flushXML(self):
-        import tempfile
-        import sys
         try:
-            from lxml import etree
             xmlPath = self.makeFileName('PROGRAMXML')
             tfile = tempfile.NamedTemporaryFile()
             xmlTmpPath = tfile.name
             tfile.close()
             with open(xmlTmpPath,'w') as tmpFile:
                 CCP4Utils.writeXML(tmpFile,etree.tostring(self.xmlroot, pretty_print=True))
-            import shutil
             shutil.move(xmlTmpPath, xmlPath)
             
         except BaseException as e:
@@ -125,7 +121,6 @@ class ShelxCECompareHands(ShelxCE.ShelxCE):
             print("########################################")
 
     def harvestFile(self, pluginOutputItem, pipelineOutputItem):
-        import shutil
         try:
             shutil.copyfile(str(pluginOutputItem.fullPath), str(pipelineOutputItem.fullPath))
             pipelineOutputItem.annotation = pluginOutputItem.annotation
@@ -136,7 +131,6 @@ class ShelxCECompareHands(ShelxCE.ShelxCE):
             self.reportStatus(CPluginScript.FAILED)
 
     def checkFinishStatus( self, statusDict,failedErrCode,outputFile = None,noFileErrCode= None):
-        import os
         if len(statusDict)>0 and statusDict['finishStatus'] == CPluginScript.FAILED:
             self.appendErrorReport(failedErrCode)
             self.reportStatus(statusDict['finishStatus'])
@@ -145,4 +139,3 @@ class ShelxCECompareHands(ShelxCE.ShelxCE):
         except:
             self.appendErrorReport(noFileErrCode,'Expected file: '+str(outputFile))
             self.reportStatus(CPluginScript.FAILED)
-

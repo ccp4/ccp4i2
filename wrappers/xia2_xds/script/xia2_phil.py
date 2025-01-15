@@ -4,6 +4,7 @@
 
 from iotbx.phil import parse
 
+
 master_phil = parse(
     """
 general

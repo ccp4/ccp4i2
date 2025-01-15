@@ -1,10 +1,13 @@
-from __future__ import print_function
-import gtk
-from core import CCP4Modules
-from core import CCP4Utils
-from wrappers.SyncToDjango.script import CCP4i2DjangoSession
+import json
 import os
-from xml.etree import ElementTree as ET
+import xml.etree.ElementTree as ET
+import zipfile
+
+import gtk
+
+from . import CCP4i2DjangoSession
+from ....core import CCP4Utils
+
 
 class DjangoInteractionWidget:
 
@@ -92,7 +95,6 @@ class DjangoInteractionWidget:
         self.djangoSession = CCP4i2DjangoSession.CCP4i2DjangoSession(self.serverURL, username, password)
         response = self.djangoSession.getURLWithValues(self.serverURL+"?listProjects",{})
         responseText = response.read()
-        import json
         self.projectList = json.loads(responseText)
         
         # create a TreeStore with one string column to use as the model
@@ -166,7 +168,6 @@ class DjangoInteractionWidget:
         elif refmacOrLigandPipeline=="REFMAC":
             archiveName = self.djangoSession.lastRefmacExportForProjectId(projectId)
         currentDirectory = os.path.realpath(os.getcwd())
-        import zipfile
         try:
             zip_ref = zipfile.ZipFile(archiveName, 'r')
             zip_ref.extractall(currentDirectory)

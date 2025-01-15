@@ -18,10 +18,11 @@
 
 import os
 import re
-from core.CCP4ErrorHandling import SEVERITY_WARNING
-from core.CCP4ModelData import CPdbDataFile
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4XtalData import CMapCoeffsDataFile, CObsDataFile, CPhsDataFile
+
+from ....core.CCP4ErrorHandling import SEVERITY_WARNING
+from ....core.CCP4ModelData import CPdbDataFile
+from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4XtalData import CMapCoeffsDataFile, CObsDataFile
 
 
 class zanuda(CPluginScript):
@@ -97,4 +98,3 @@ class zanuda(CPluginScript):
                 outputData.PERFORMANCE.RFactor.set(rr[-1][-2])
                 outputData.PERFORMANCE.RFree.set(rr[-1][-1])
         return CPluginScript.SUCCEEDED
-

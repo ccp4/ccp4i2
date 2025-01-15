@@ -21,36 +21,24 @@
 # This package computes various metrics used in validation and deposition,
 # for example average B-factors by chain, ligands, etc. and Ramachandran statistics.
 
-import os
-import sys
-import time
-import shutil
 from math import pi
+import os
+import shutil
 import traceback
-
-# Ignore NumPy warnings
-import warnings
-warnings.filterwarnings('ignore')
-
-import numpy as np
-from lxml import etree
-
-try:
-    from core import CCP4Utils, CCP4XtalData
-    from core.CCP4PluginScript import CPluginScript
-except ImportError:
-    if 'CCP4' not in os.environ:
-        sys.exit('Error: CCP4 environment variable must be set')
-    sys.path.append(os.path.join(os.environ['CCP4'], 'share', 'ccp4i2'))
-    try:
-        from core import CCP4Utils
-        from core.CCP4PluginScript import CPluginScript
-    except ImportError:
-        sys.exit('Error: Failed to import CCP4 core modules')
 
 from iris_validation.graphics import Panel
 from iris_validation.metrics import metrics_model_series_from_files
+from lxml import etree
 import iris_validation
+import numpy as np
+import warnings
+
+from ....core import CCP4Utils, CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+
+
+# Ignore NumPy warnings
+warnings.filterwarnings('ignore')
 
 class validate_protein(CPluginScript):
     TASKNAME = 'validate_protein'

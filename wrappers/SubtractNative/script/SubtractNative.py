@@ -1,4 +1,3 @@
-from __future__ import print_function
 """
     SubtractNative.py: CCP4 GUI Project
     
@@ -15,10 +14,14 @@ from __future__ import print_function
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    """
+"""
 
-import os
-from core.CCP4PluginScript import CPluginScript
+import clipper
+import mmdb2 as mmdb
+import mmut
+
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class SubtractNative(CPluginScript):
     TASKNAME = 'SubtractNative'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -44,7 +47,6 @@ class SubtractNative(CPluginScript):
     
     def startProcess(self, command, **kw):
         print(1)
-        import clipper
         print(2)
         mtz_file = clipper.CCP4MTZfile()
         print(3)
@@ -71,8 +73,6 @@ class SubtractNative(CPluginScript):
         mmol=clipper.MiniMol()
         f.import_minimol (mmol)
         print(mmol)
-        import ccp4mg
-        import mmdb2 as mmdb
         UsingMMDB=False
         if UsingMMDB:
             manager = mmdb.Manager()
@@ -81,7 +81,6 @@ class SubtractNative(CPluginScript):
             manager.SelectAtoms( hndl, 0, 0, mmdb.SKEY_NEW );
             print(8)
             selAtoms = mmdb.newPPCAtom()
-            import mmut
             nSelAtoms = mmut.intp()
             print(nSelAtoms.value())
             print(9)
@@ -192,4 +191,3 @@ class SubtractNative(CPluginScript):
         with open(str(self.makeFileName('PROGRAMXML')),"w") as xmlFile:
             xmlFile.write('<SubtractNative></SubtractNative>')
         return CPluginScript.SUCCEEDED
-

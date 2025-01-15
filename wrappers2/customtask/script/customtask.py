@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 """
     customtaskw.py: CCP4 GUI Project
      Copyright (C) 2013 STFC
@@ -19,12 +16,15 @@ from __future__ import print_function
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
 """
-import os,shutil,glob
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4CustomTaskManager
-from core import CCP4Modules
-from core import CCP4Utils
+import glob
+import os
+import shutil
+
+from ....core import CCP4CustomTaskManager
+from ....core import CCP4Modules
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
 
 
 class customtask(CPluginScript):
@@ -83,7 +83,6 @@ class customtask(CPluginScript):
     self.command = comLineWords[0]
     self.appendCommandLine(comLineWords[1:])
 
-
     for comFile in customDef.comFileList:
       if comFile.text.isSet():
         #print 'customtask.process making comFile',comFile.name
@@ -136,8 +135,7 @@ class customtask(CPluginScript):
         columnList.append(col)
       print('CustomTask splitting output MTZ',monsterName,nameList,columnList)
       self.splitHklout(miniMtzsOut=nameList,programColumnNames=columnList,infile=monsterFileName,logFile=None)
-    
-    
+
     status = CPluginScript.SUCCEEDED
     self.reportStatus(status) 
     return status

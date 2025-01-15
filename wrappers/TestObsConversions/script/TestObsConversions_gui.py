@@ -1,12 +1,12 @@
 """
     wrappers/TestObsConversions/script/TestObsConversions_gui.py
     Martin Noble
-    """
+"""
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui.CCP4TaskWidget import CTaskWidget
-from qtgui import CCP4Widgets
-import os
+from PySide2 import QtCore
+
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 class TestObsConversions_gui(CTaskWidget):
     

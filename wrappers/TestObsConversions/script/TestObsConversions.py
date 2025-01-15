@@ -15,14 +15,17 @@
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    """
+"""
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core.CCP4ErrorHandling import *
-from core import CCP4Modules
-from core import CCP4Utils
+import os
+
 from lxml import etree
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Utils
+from ....core.CCP4ErrorHandling import *
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class TestObsConversions(CPluginScript):
     TASKTITLE = 'TestObsConversions'
@@ -67,7 +70,6 @@ class TestObsConversions(CPluginScript):
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             self.appendErrorReport(201, inputType + " conversion to type number " + str(self.container.controlParameters.INPUT_REPRESENTATION))
             return CPluginScript.FAILED
-        import os
         intermediateFilePath = os.path.join(self.getWorkDirectory(),'intermediate.mtz')
         os.rename(self.hklin, intermediateFilePath)
 
@@ -92,7 +94,6 @@ class TestObsConversions(CPluginScript):
             self.appendErrorReport(202, 'F_SIGF_INTERMEDIATE' + " conversion to type number " + str(self.container.controlParameters.OUTPUT_REPRESENTATION))
             return CPluginScript.FAILED
 
-        from core.CCP4XtalData import CObsDataFile
         outputFiles = ['F_SIGF_FINAL']
         outputColumns = [columns]
         error = self.splitHklout(outputFiles,outputColumns,infile=self.hklin)
@@ -115,5 +116,3 @@ class TestObsConversions(CPluginScript):
         pathNode.text = str(getattr(self.container.outputData,inputType))
 
         return CPluginScript.SUCCEEDED
-
-

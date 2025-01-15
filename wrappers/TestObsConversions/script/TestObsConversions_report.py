@@ -1,5 +1,5 @@
-from report.CCP4ReportParser import *
-import sys
+from ....report.CCP4ReportParser import Report
+
 
 class TestObsConversions_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -16,4 +16,3 @@ class TestObsConversions_report(Report):
         table = parent.addTable(title='Analysis of files', select ='.//TestObsConversions/File')
         for property in ('Role','ContentFlag','Columns','Path'):
             table.addData(title=property,select=property)
-        
