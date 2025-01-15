@@ -8,18 +8,20 @@
         <ccp4iVersion>0.0.1</ccp4iVersion>
         <jobId/>
         <project></project>
-        <pluginName>servalcat_xtal_pipe</pluginName>
+        <pluginName>servalcat_pipe</pluginName>
         <pluginVersion></pluginVersion>
         <jobNumber></jobNumber>
     </ccp4i2_header>
-    <ccp4i2_body id="servalcat_xtal_pipe">
+    <ccp4i2_body id="servalcat_pipe">
+
         <file>
             <CI2XmlDataFile>
                 <project>CCP4I2_TOP</project>
-                <relPath>wrappers/servalcat_xtal/script</relPath>
-                <baseName>servalcat_xtal.def.xml</baseName>
+                <relPath>wrappers/servalcat/script</relPath>
+                <baseName>servalcat.def.xml</baseName>
             </CI2XmlDataFile>
         </file>
+
         <container id="inputData">
            <content id="AMINOACID_CHAINS">
               <className>CList</className>
@@ -34,21 +36,82 @@
               </qualifiers>
            </content>
         </container>
-        <container id="prosmartProtein">
-            <!--<content id="REFERENCE_MODEL">
+
+        <container id="outputData">
+           <content id="METALCOORD_XYZ">
               <className>CPdbDataFile</className>
+           </content>
+           <content id="METALCOORD_RESTRAINTS">
+              <className>CRefmacRestraintsDataFile</className>
+           </content>
+        </container>
+
+        <container id="metalCoordWrapper">
+            <file><!-- controlParameters container will be used -->
+                <CI2XmlDataFile>
+                    <project>CCP4I2_TOP</project>
+                    <relPath>wrappers/metalCoord/script</relPath>
+                    <baseName>metalCoord.def.xml</baseName>-->
+                </CI2XmlDataFile>
+            </file>
+        </container>
+
+        <container id="metalCoordPipeline">
+            <content id="RUN_METALCOORD">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>False</default>
+               </qualifiers>
+            </content>
+           <content id="LIGAND_CODES_AVAILABLE">
+              <className>CList</className>
               <qualifiers>
-                 <saveToDb>True</saveToDb>
+                 <allowUndefined>True</allowUndefined>
+              </qualifiers>
+           </content>
+           <content id="LIGAND_CODES_SELECTED">
+              <className>CList</className>
+              <qualifiers>
+                 <allowUndefined>True</allowUndefined>
+              </qualifiers>
+           </content>
+            <content id="LINKS">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>UPDATE,KEEP,NOTTOUCH</enumerators>
+                    <menuText>update: delete and add again from scratch,update: keep existing and add new,keep as they are</menuText>
+                    <default>UPDATE</default>
+                    <guiLabel>Link records to metal sites in the atomic model:</guiLabel>
+                </qualifiers>
+            </content>
+            <content id="TOGGLE_ADVANCED">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>False</default>
+               </qualifiers>
+            </content>
+            <content id="GENERATE_OR_USE">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>GENERATE,USE</enumerators>
+                    <menuText>generate new restraints,use a keyword file with restraints generated previously</menuText>
+                    <default>GENERATE</default>
+                    <guiLabel>Generate new restraints or use a keyword file with restraints generated previously</guiLabel>
+                </qualifiers>
+            </content>
+           <content id="METALCOORD_RESTRAINTS">
+              <className>CRefmacRestraintsDataFile</className>
+              <qualifiers>
                  <mustExist>True</mustExist>
                  <allowUndefined>True</allowUndefined>
-                 <fromPreviousJob>False</fromPreviousJob>
-                 <guiLabel>Reference model</guiLabel>
-                 <requiredSubType>2,1,0</requiredSubType>
-                 <default>
-                    <subType>2</subType>
-                 </default>
+                 <ifAtomSelection>False</ifAtomSelection>
               </qualifiers>
-            </content>-->
+           </content>
+        </container>
+
+        <container id="prosmartProtein">
             <content id="REFERENCE_MODELS">
                <className>CList</className>
                <qualifiers>
@@ -107,22 +170,11 @@
                   <toolTip>Minimum sequence identity between reference and target chains.</toolTip>
                </qualifiers>
             </content>
-            <!--<content id="WEIGHT">
-               <className>CFloat</className>
-               <qualifiers>
-                  <allowUndefined>True</allowUndefined>
-                  <charWidth>4</charWidth>-->
-                  <!--<default>10.0</default>--><!--
-                  <min>0.0</min>
-                  <toolTip>Controls the influence of external restraints during refinement (default: 1.0).</toolTip>
-               </qualifiers>
-            </content>-->
            <content id="SGMN">
               <className>CFloat</className>
               <qualifiers>
                  <allowUndefined>True</allowUndefined>
                  <charWidth>4</charWidth>
-                 <!--<default>10.0</default>-->
                  <min>0.0</min>
                  <toolTip>Minimum sigma to be used for external restraints.</toolTip>
               </qualifiers>
@@ -132,7 +184,6 @@
               <qualifiers>
                  <allowUndefined>True</allowUndefined>
                  <charWidth>4</charWidth>
-                 <!--<default>10.0</default>-->
                  <min>0.0</min>
                  <toolTip>Maximum sigma to be used for external restraints.</toolTip>
               </qualifiers>
@@ -142,8 +193,6 @@
                <qualifiers>
                   <allowUndefined>True</allowUndefined>
                   <charWidth>4</charWidth>
-                  <!--<default>0.02</default>-->
-                  <!--<min>0.0</min>-->
                   <toolTip>Alpha parameter - controls robustness to outliers, with lower values resulting in outliers having less of an effect (default: 1.0). E.g. 2.0 corresponds to Least Squares, and -2.0 corresponds to the Geman-McClure loss function.</toolTip>
                </qualifiers>
             </content>
@@ -195,7 +244,7 @@
             <content id="TOGGLE_BFAC">
                <className>CBoolean</className>
                <qualifiers>
-                  <default>False</default><!--<default>True</default>-->
+                  <default>False</default>
                </qualifiers>
             </content>
             <content id="BFAC">
@@ -231,6 +280,7 @@
                </qualifiers>
             </content>
         </container>
+
         <container id="prosmartNucleicAcid">
            <content id="REFERENCE_MODELS">
               <className>CList</className>
@@ -295,7 +345,6 @@
               <qualifiers>
                  <allowUndefined>True</allowUndefined>
                  <charWidth>4</charWidth>
-                 <!--<default>10.0</default>-->
                  <min>0.0</min>
                  <toolTip>Controls the influence of external restraints during refinement (default: 1.0).</toolTip>
               </qualifiers>
@@ -305,7 +354,6 @@
               <qualifiers>
                  <allowUndefined>True</allowUndefined>
                  <charWidth>4</charWidth>
-                 <!--<default>10.0</default>-->
                  <min>0.0</min>
                  <toolTip>Minimum sigma to be used for external restraints.</toolTip>
               </qualifiers>
@@ -315,7 +363,6 @@
               <qualifiers>
                  <allowUndefined>True</allowUndefined>
                  <charWidth>4</charWidth>
-                 <!--<default>10.0</default>-->
                  <min>0.0</min>
                  <toolTip>Maximum sigma to be used for external restraints.</toolTip>
               </qualifiers>
@@ -325,8 +372,6 @@
               <qualifiers>
                  <allowUndefined>True</allowUndefined>
                  <charWidth>4</charWidth>
-                 <!--<default>0.02</default>-->
-                 <!--<min>0.0</min>-->
                  <toolTip>Alpha parameter - controls robustness to outliers, with lower values resulting in outliers having less of an effect (default: 1.0). E.g. 2.0 corresponds to Least Squares, and -2.0 corresponds to the Geman-McClure loss function.</toolTip>
               </qualifiers>
            </content>
@@ -414,6 +459,7 @@
               </qualifiers>
            </content>
         </container>
+
         <container id="libg">
            <content id="MODE">
               <className>CString</className>
@@ -459,6 +505,7 @@
               </qualifiers>
            </content>
         </container>
+
         <container id="platonyzer">
             <content id="TOGGLE">
                 <className>CBoolean</className>
@@ -483,35 +530,58 @@
                 </qualifiers>
             </content>
         </container>
+        <container id="monitor">
+            <content id="RUN_COORDADPDEV_ANALYSIS">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>True</default>
+               </qualifiers>
+            </content>
+           <content id="MIN_COORDDEV">
+              <className>CFloat</className>
+              <qualifiers>
+                 <guiLabel>Minimum deviation of atom coordinates to be reported</guiLabel>
+                 <default>1</default>
+              </qualifiers>
+           </content>
+           <content id="MIN_ADPDEV">
+              <className>CFloat</className>
+              <qualifiers>
+                 <guiLabel>Minimum deviation of ADPs to be reported</guiLabel>
+                 <default>10</default>
+              </qualifiers>
+           </content>
+        </container>
+
         <container id="controlParameters">
-            <content id="OPTIMISE_WEIGHT">
+            <content id="OPTIMISE_WEIGHT"><!-- not used -->
                 <className>CBoolean</className>
                 <qualifiers>
                     <default>False</default>
                 </qualifiers>
             </content>
-            <content id="REFMAC_CLEANUP">
+            <content id="REFMAC_CLEANUP"><!-- not used -->
                 <className>CBoolean</className>
                 <qualifiers>
-                  <default>False</default><!--<default>True</default>-->
+                  <default>False</default>
                 </qualifiers>
             </content>
             <content id="VALIDATE_IRIS">
                <className>CBoolean</className>
                <qualifiers>
-                  <default>False</default>
+                  <default>True</default>
                </qualifiers>
             </content>
             <content id="VALIDATE_BAVERAGE">
                <className>CBoolean</className>
                <qualifiers>
-                  <default>False</default><!--<default>True</default>-->
+                  <default>False</default>
                </qualifiers>
             </content>
             <content id="VALIDATE_RAMACHANDRAN">
                <className>CBoolean</className>
                <qualifiers>
-                  <default>False</default><!--<default>True</default>-->
+                  <default>True</default>
                </qualifiers>
             </content>
             <content id="VALIDATE_MOLPROBITY">
@@ -520,7 +590,20 @@
                   <default>True</default>
                </qualifiers>
             </content>
-            <content id="RUN_MOLPROBITY">
+            <content id="RUN_ADP_ANALYSIS">
+               <className>CBoolean</className>
+               <qualifiers>
+                  <default>True</default>
+               </qualifiers>
+            </content>
+           <content id="ADP_IQR_FACTOR">
+              <className>CFloat</className>
+              <qualifiers>
+                 <guiLabel>Atoms with a B-value lower than the first quartile - factor * interquartile_range or higher than the third quartile + factor * interquartile_range to be reported</guiLabel>
+                 <default>2</default>
+              </qualifiers>
+           </content>
+            <content id="RUN_MOLPROBITY"><!-- not used -->
                <className>CBoolean</className>
                <qualifiers>
                   <default>False</default>

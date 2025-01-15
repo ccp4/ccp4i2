@@ -190,6 +190,7 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
         defaultSettings.setFontFamily(QtWebEngineWidgets.QWebEngineSettings.StandardFont, standardFont.family())
         if CCP4Modules.PREFERENCES().DISABLE_WEBGL:
             defaultSettings.setAttribute(QtWebEngineWidgets.QWebEngineSettings.WebGLEnabled,False)
+        defaultSettings.setAttribute(QtWebEngineWidgets.QWebEngineSettings.JavascriptCanAccessClipboard, True)
 
     @staticmethod
     def updateInstances(qobj):

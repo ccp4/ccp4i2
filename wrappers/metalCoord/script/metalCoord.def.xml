@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <userId>martinmaly</userId>
+    <creationTime>16:00 16/Oct/24</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <pluginName>metalCoord</pluginName>
+    <pluginTitle>metalCoord: restraints for metal atoms and ions</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="metalCoord">
+
+    <container id="inputData">
+       <content id="LIGAND_CODE">
+          <className>CString</className>
+          <qualifiers>
+             <guiLabel>Monomer code</guiLabel>
+             <mustExist>True</mustExist>
+             <allowUndefined>True</allowUndefined>
+             <minLength>1</minLength>
+             <maxLength>5</maxLength>
+          </qualifiers>
+       </content>
+      <content id="XYZIN">
+         <className>CPdbDataFile</className>
+         <qualifiers>
+            <mustExist>True</mustExist>
+            <allowUndefined>False</allowUndefined>
+            <fromPreviousJob>True</fromPreviousJob>
+         </qualifiers>
+      </content>
+    </container>
+
+    <container id="outputData">
+      <content id="RESTRAINTS">
+        <className>CRefmacRestraintsDataFile</className>
+        <qualifiers>
+        </qualifiers>
+      </content>
+      <content id="JSON">
+        <className>CDataFile</className>
+        <qualifiers>
+        </qualifiers>
+      </content>
+    </container>
+
+    <container id="controlParameters">
+    <!--
+  -l LIGAND CODE, - -ligand LIGAND CODE
+                        Ligand code.
+  -p PDB CODE|PDB FILE, - -pdb PDB CODE|PDB FILE
+                        PDB code or pdb file.
+  -o OUTPUT JSON FILE, - -output OUTPUT JSON FILE
+                        Output json file.
+  -d DISTANCE THRESHOLD, - -dist DISTANCE THRESHOLD
+                        Distance threshold.
+  -t PROCRUSTES DISTANCE THRESHOLD, - -threshold PROCRUSTES DISTANCE THRESHOLD
+                        Procrustes distance threshold.
+  -m MINIMUM SAMPLE SIZE, - -min_size MINIMUM SAMPLE SIZE
+                        Minimum sample size for statistics.
+  - -ideal-angles        Provide only ideal angles
+  -s, - -simple          Simple distance based filtering
+  - -save                Save COD files used in statistics
+  - -use-pdb             Use COD structures based on pdb coordinates
+  -c MAXIMUM COORDINATION NUMBER, - -coordination MAXIMUM COORDINATION NUMBER
+                        Maximum coordination number.
+-->
+      <content id="MAXIMUM_COORDINATION_NUMBER">
+        <className>CInt</className>
+        <qualifiers>
+           <guiLabel>Maximum coordination number</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="MINIMUM_SAMPLE_SIZE">
+        <className>CInt</className>
+        <qualifiers>
+           <guiLabel>Minimum sample size for statistics</guiLabel>
+           <toolTip>Default: 30</toolTip>
+        </qualifiers>
+      </content>
+      <content id="DISTANCE_THRESHOLD">
+        <className>CFloat</className>
+        <qualifiers>
+           <guiLabel>Distance threshold to select atoms</guiLabel>
+           <toolTip>A threshold to select atoms is (r1 + r2)*(1 + d) where r1 and r2 are covalent radii. Range: 0-1. Default: 0.5</toolTip>
+           <min>0</min>
+           <max>1</max>
+        </qualifiers>
+      </content>
+      <content id="PROCRUSTES_DISTANCE_THRESHOLD">
+        <className>CFloat</className>
+        <qualifiers>
+           <guiLabel>Procrustes distance threshold</guiLabel>
+           <toolTip>Range: 0-1. Default: 0.3</toolTip>
+           <min>0</min>
+           <max>1</max>
+        </qualifiers>
+      </content>
+      <content id="IDEAL_ANGLES">
+         <className>CBoolean</className>
+         <qualifiers>
+            <default>False</default>
+            <guiLabel>Provide only ideal angles</guiLabel>
+         </qualifiers>
+      </content>
+      <content id="SIMPLE">
+         <className>CBoolean</className>
+         <qualifiers>
+            <default>False</default>
+            <guiLabel>Simple distance based filtering</guiLabel>
+         </qualifiers>
+      </content>
+      <content id="USE_PDB">
+         <className>CBoolean</className>
+         <qualifiers>
+            <default>False</default>
+            <guiLabel>Use COD structures based on PDB/mmCIF coordinates</guiLabel>
+         </qualifiers>
+      </content>
+
+      <!-- json2restraints.py -->
+      <!-- def main(jsonPaths, stPath=None, outputPrefix="restraints", jsonEquivalentsPath=None, keep_links=False):
+                    list       string       string                     string                    bool               -->
+      <content id="SAVE_PDBMMCIF">
+         <!-- if True,  stPath will be provided   -->
+         <!-- if False, stPath will not be provided so no PDB and mmCIF file will be created at the output -->
+         <className>CBoolean</className>
+         <qualifiers>
+            <default>True</default>
+         </qualifiers>
+      </content>
+      <content id="KEEP_LINKS">
+         <className>CBoolean</className>
+         <qualifiers>
+            <default>False</default>
+         </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>

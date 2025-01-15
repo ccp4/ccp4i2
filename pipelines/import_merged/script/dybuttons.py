@@ -2,9 +2,8 @@ from __future__ import print_function
 
 # Some classes to help handle dynamic GUI buttons
 
-from PySide2 import QtCore,QtGui, QtWidgets
+from PySide2 import QtCore, QtWidgets
 
-import math
 import functools
 # -------------------------------------------------------------
 class ChoiceButtons(QtWidgets.QWidget):
@@ -45,12 +44,13 @@ class ChoiceButtons(QtWidgets.QWidget):
     def __init__(self,parent=None):
         QtWidgets.QWidget.__init__(self, parent)
         self.selected = ""
+        self.selectedList = []
         layout = QtWidgets.QVBoxLayout()
         self.setLayout(layout)
         layout.setSpacing(0)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    def setChoices(self, title, choices, tags=None, notes=None, subtitle=None):
+    def setChoices(self, title, choices, tags=None, notes=None, subtitle=None, exclusiveChoice=True):
         # title       heading for the pane (bold)
         # choices     list of button names
         # tags        list of labels for button names, displayed on same line
@@ -64,6 +64,7 @@ class ChoiceButtons(QtWidgets.QWidget):
             if (len(notes) == 0 or (len(notes) == 1 and notes[0] == '')):
                 notes_ = None
 
+        self.selectedList = []
         layout = self.layout()
         self.clearLayout(layout)
 
@@ -83,10 +84,18 @@ class ChoiceButtons(QtWidgets.QWidget):
             label = QtWidgets.QLabel('>> ')
             linelayout.addWidget(label)
             c = str(choices[i])  # the choice
-            button = QtWidgets.QRadioButton(str(c))
+            if exclusiveChoice:
+                button = QtWidgets.QRadioButton(str(c))
+            else:
+                button = QtWidgets.QCheckBox(str(c))
+                button.setChecked(True)
+                self.selectedList.append(str(c))
             button.setMinimumWidth(80)
             linelayout.addWidget(button)
-            button.clicked.connect(functools.partial(self.setSelected, c))
+            if exclusiveChoice:
+                button.clicked.connect(functools.partial(self.setSelected, c))
+            else:
+                button.clicked.connect(self.setSelectedList)
             button.clicked.connect(functools.partial(self.clickedSignal.emit, c))
             linelayout.setStretch(1,5)
             if tags_[i] != '':
@@ -98,7 +107,7 @@ class ChoiceButtons(QtWidgets.QWidget):
             layout.addLayout(linelayout)
 
             # additional info if present
-            if notes_ is not None or len(notes_) < i+1:
+            if notes_:
                 if notes_[i] != '':
                     s = "    "+str(notes_[i])
                     layout.addWidget(QtWidgets.QLabel(s))
@@ -107,6 +116,15 @@ class ChoiceButtons(QtWidgets.QWidget):
     @QtCore.Slot(str)
     def setSelected(self,s):
         self.selected = s
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # @QtCore.Slot(str)
+    def setSelectedList(self, state):
+        # print(state, self.sender().text())
+        if self.sender().text() not in self.selectedList and state == True:
+            self.selectedList.append(self.sender().text())
+        elif self.sender().text() in self.selectedList and state == False:
+            self.selectedList.remove(self.sender().text())
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def clearLayout(self, layout):
