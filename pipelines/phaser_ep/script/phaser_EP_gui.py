@@ -15,7 +15,7 @@ class phaser_EP_gui(phaser_EP_AUTO_gui.phaser_EP_AUTO_gui):
     DESCRIPTION = '''Complete a heavy atom model and calculate phases'''
     ERROR_CODES = {200:{'description':'FreeR not set'}}
     RANK=1
-    WHATNEXT=['buccaneer_build_refine_mr','modelcraft']
+    WHATNEXT=['modelcraft']
 
     def __init__(self,*args,**kws):
         super(phaser_EP_gui,self).__init__(*args, **kws)

@@ -20,7 +20,7 @@ class buster(CPluginScript):
     TASKVERSION = 1.0                 # plugin version
     COMTEMPLATE = None                # The program com file template
     COMTEMPLATEFILE = None            # Name of file containing com file template
-    WHATNEXT = ['buster', 'prosmart_refmac', 'buccaneer_build_refine_mr', 'modelcraft']
+    WHATNEXT = ['buster', 'prosmart_refmac', 'modelcraft']
     PERFORMANCECLASS = 'CRefinementPerformance'
     ASYNCHRONOUS = False
     MAINTAINER = 'kyle.stevenson@stfc.ac.uk'
@@ -187,10 +187,10 @@ class buster(CPluginScript):
         self.appendCommandLine("-p")
         self.appendCommandLine(str(self.pdbin))
         self.appendCommandLine("-m")
+        self.appendCommandLine(str(self.hklin))
         if self.dictin:
             self.appendCommandLine("-l")
             self.appendCommandLine(str(self.dictin))
-        self.appendCommandLine(str(self.outfilec))
         self.appendCommandLine("-nbig")
         self.appendCommandLine(str(self.container.inputParameters.NBCYCLES))
         self.appendCommandLine("-nsmall")
@@ -199,7 +199,7 @@ class buster(CPluginScript):
             self.appendCommandLine("-autoncs")
         if self.container.inputParameters.RBR:
             self.appendCommandLine("-RB")
-        if self.container.inputParameters.AUTO_NCS:
+        if self.container.inputParameters.TLS:
             self.appendCommandLine("-TLS")
         # Water treatment
         wtrt = str(self.container.inputParameters.WAT)
