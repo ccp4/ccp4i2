@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+      <function>DEF</function>
+      <comment></comment>
+      <creationTime>Current</creationTime>
+      <userId>MartinMaly</userId>
+      <ccp4iVersion>0.0.1</ccp4iVersion>
+      <jobId/>
+      <project></project>
+      <pluginName>import_serial</pluginName>
+      <pluginVersion></pluginVersion>
+      <pluginTitle>Import Serial Data</pluginTitle>
+      <jobNumber></jobNumber>
+  </ccp4i2_header>
+  <ccp4i2_body id="import_serial">
+    <container id="inputData">
+        <content id="HKLIN">
+            <className>CGenericReflDataFile</className>
+            <qualifiers>
+                <guiLabel>Merged data file (I)</guiLabel>
+                <mustExist>True</mustExist>
+                <allowUndefined>False</allowUndefined>
+                <fromPreviousJob>False</fromPreviousJob>
+                <toolTip>Intensities from CrystFEL</toolTip>
+            </qualifiers>
+        </content>
+        <content id="HKLIN1">
+            <className>CDataFile</className>
+            <qualifiers>
+                <guiLabel>Merged half data set (I)</guiLabel>
+                <mustExist>False</mustExist>
+                <allowUndefined>True</allowUndefined>
+                <fromPreviousJob>False</fromPreviousJob>
+                <toolTip>Intensities from CrystFEL - merged half data set</toolTip>
+            </qualifiers>
+        </content>
+        <content id="HKLIN2">
+            <className>CDataFile</className>
+            <qualifiers>
+                <guiLabel>Merged half data set (I)</guiLabel>
+                <mustExist>False</mustExist>
+                <allowUndefined>True</allowUndefined>
+                <fromPreviousJob>False</fromPreviousJob>
+                <toolTip>Intensities from CrystFEL - merged half data set</toolTip>
+            </qualifiers>
+        </content>
+       <content id="SYMMETRY_SOURCE">
+          <className>CString</className>
+           <qualifiers>
+               <onlyEnumerators>True</onlyEnumerators>
+               <menuText>reference file, CrystFEL cell file, or calculate from CrystFEL stream file, or enter manually</menuText>
+               <enumerators>reference,cellfile,streamfile,manual</enumerators>
+               <default>reference</default>
+               <toolTip>Specify symmetry: space group and unit cell parameters</toolTip>
+           </qualifiers>
+       </content>
+        <content id="CELLFILE">
+            <className>CDataFile</className>
+            <qualifiers>
+                <guiLabel>Cell file from CrystFEL</guiLabel>
+                <mustExist>False</mustExist>
+                <allowUndefined>True</allowUndefined>
+                <fromPreviousJob>True</fromPreviousJob>
+                <toolTip>Cell file from CrystFEL</toolTip>
+            </qualifiers>
+        </content>
+        <content id="STREAMFILE">
+            <className>CDataFile</className>
+            <qualifiers>
+                <guiLabel>Stream file from CrystFEL</guiLabel>
+                <mustExist>False</mustExist>
+                <allowUndefined>True</allowUndefined>
+                <fromPreviousJob>True</fromPreviousJob>
+                <toolTip>Stream file from CrystFEL</toolTip>
+            </qualifiers>
+        </content>
+        <content id="REFERENCEFILE">
+            <className>CDataFile</className>
+            <qualifiers>
+                <guiLabel>Reference structure or data</guiLabel>
+                <mustExist>False</mustExist>
+                <allowUndefined>True</allowUndefined>
+                <fromPreviousJob>True</fromPreviousJob>
+                <toolTip>Reference PDB, mmCIF or MTZ file</toolTip>
+            </qualifiers>
+        </content>
+    </container>
+    <container id="outputData">
+      <content id="HKLOUT">
+        <className>CObsDataFile</className>
+        <qualifiers/>
+      </content>
+    </container>
+    <container id="inputParameters">
+          <content id="SPACEGROUP">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Space group</guiLabel>
+              <toolTip>Provide a target space group</toolTip>
+              <mustExist>False</mustExist>
+              <allowUndefined>True</allowUndefined>
+              <guiDefinition/>
+            </qualifiers>
+          </content>
+          <content id="CELL">
+            <className>CString</className>
+            <qualifiers>
+              <guiLabel>Unit cell</guiLabel>
+              <toolTip>Provide a target unit cell</toolTip>
+              <mustExist>False</mustExist>
+              <allowUndefined>True</allowUndefined>
+            </qualifiers>
+          </content>
+          <!--<container id="resolution">
+            <qualifiers>
+              <guiLabel>Resolution</guiLabel>
+              <guiDefinition/>
+            </qualifiers>-->
+            <content id="D_MAX">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Low resolution cutoff</guiLabel>
+                <toolTip>Low resolution cutoff.</toolTip>
+                <guiDefinition/>
+                <default>None</default>
+                <min>0.0</min>
+              </qualifiers>
+            </content>
+            <content id="D_MIN">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>High resolution cutoff</guiLabel>
+                <toolTip>High resolution cutoff.</toolTip>
+                <guiDefinition/>
+                <default>None</default>
+                <min>0.0</min>
+              </qualifiers>
+            </content>
+            <content id="N_BINS">
+              <className>CInt</className>
+              <qualifiers>
+                <guiLabel>Number of resolution bins</guiLabel>
+                <toolTip>Number of resolution bins.</toolTip>
+                <guiDefinition/>
+                <default>10</default>
+                <min>1</min>
+              </qualifiers>
+            </content>
+            <content id="WAVELENGTH">
+              <className>CFloat</className>
+              <qualifiers>
+                <guiLabel>Wavelength</guiLabel>
+                <toolTip>Wavelength in A.</toolTip>
+                <guiDefinition/>
+                <default>None</default>
+                <min>0.0</min>
+              </qualifiers>
+            </content>
+      <!--</container>-->
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>
