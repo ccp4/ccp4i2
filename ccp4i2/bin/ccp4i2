@@ -78,4 +78,3 @@ browser=${CCP4I2}/bin/browser.py
 launcher=${CCP4}/libexec/ccp4i2
 test -x ${launcher} || launcher=${CCP4}/bin/ccp4-python
 exec ${launcher} ${browser}
-

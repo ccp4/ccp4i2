@@ -21,7 +21,6 @@ export LIBTBX_BUILD=$CCP4/lib/py2/cctbx
 # Special case when Windows Python is called from MSYS/MinGW shell is handled
 # near to "python.exe" below (";" must be used as a separator in that case).
 export PYTHONPATH="$CCP4/lib/python2.7/site-packages:$CCP4/lib/py2:$CCP4/lib/py2/site-packages:$LIBTBX_BUILD/../site-packages/phaser:$LIBTBX_BUILD/../site-packages/tntbx:$LIBTBX_BUILD/../site-packages:$LIBTBX_BUILD/../site-packages/cctbx_project:$LIBTBX_BUILD/../site-packages/cctbx_project/boost_adaptbx:$LIBTBX_BUILD/../site-packages/cctbx_project/libtbx/pythonpath:$LIBTBX_BUILD/lib:$CCP4/share/python:$CCP4I2"
-#echo $PYTHONPATH
 
 # MSYS translates most of paths automatically, but it needs help here
 if [ "$(uname)" = MINGW32_NT-6.1 ]; then
