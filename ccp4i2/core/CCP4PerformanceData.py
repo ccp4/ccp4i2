@@ -23,7 +23,7 @@ es may be
 from PySide2 import QtCore
 
 from . import CCP4Data, CCP4ModelData, CCP4XtalData
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CErrorReport, SEVERITY_OK, SEVERITY_WARNING
 
 
 def performanceIndicatorClasses():

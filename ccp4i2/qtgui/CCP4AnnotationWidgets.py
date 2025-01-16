@@ -20,7 +20,6 @@
 from PySide2 import QtCore, QtGui, QtWidgets
 
 from ..core import CCP4Annotation
-from ..core.CCP4ErrorHandling import *
 from ..core.CCP4Modules import *
 from ..qtgui import CCP4Widgets
 

@@ -27,6 +27,7 @@ import os
 import re
 import socket
 import subprocess
+import sys
 
 from lxml import etree
 import paramiko
@@ -37,7 +38,7 @@ from . import CCP4File
 from . import CCP4Utils
 from . import CCP4Modules
 from ..dbapi import CCP4DbApi
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CException
 
 
 PARAMIKO_PORT=22
@@ -949,7 +950,6 @@ class CJobServer(QtCore.QObject):
         self.deleteServerParams(jobId)
         CCP4Modules.PROJECTSMANAGER().db().updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_FAILED)
 
-          
     def killRemoteJob(self, jobId):
         sP = self.serverParams(jobId)
         if sP is None:

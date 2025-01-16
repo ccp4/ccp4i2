@@ -27,10 +27,11 @@ import os
 from PySide2 import QtCore, QtGui
 import gemmi
 
+from ..core import CCP4ErrorHandling
 from ..core import CCP4File
 from ..core import CCP4Utils
 from ..core.CCP4Config import GRAPHICAL
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import SEVERITY_WARNING
 from ..qtgui import CCP4FileSystemView
 from ..qtgui import CCP4ImageViewer
 from ..qtgui import CCP4TextViewer

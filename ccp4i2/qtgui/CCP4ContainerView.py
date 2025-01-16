@@ -26,15 +26,13 @@ from ..core import CCP4Data
 from ..core import CCP4DataManager
 from ..core import CCP4File
 from ..core.CCP4Config import DEVELOPER
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
 from ..core.CCP4Modules import PROJECTSMANAGER
 from ..qtgui import CCP4TaskWidget
 from ..qtgui import CCP4Widgets
 
 
-#-----------------------------------------------------------------
 class CContainerView(QtWidgets.QFrame):
-#-----------------------------------------------------------------
 
   WIDTH = 600
 

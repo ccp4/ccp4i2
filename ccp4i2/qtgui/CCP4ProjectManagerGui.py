@@ -47,7 +47,7 @@ from ..core import CCP4ProjectBasedTesting
 from ..core import CCP4ProjectsManager
 from ..core import CCP4Utils
 from ..core.CCP4Config import DEVELOPER
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CException, SEVERITY_ERROR, SEVERITY_WARNING
 from ..core.CCP4Modules import MIMETYPESHANDLER, PROJECTSMANAGER, WEBBROWSER
 from ..dbapi import CCP4DbApi
 from ..dbapi import CCP4DbUtils

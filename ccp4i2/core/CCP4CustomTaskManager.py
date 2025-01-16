@@ -33,7 +33,7 @@ from . import CCP4Data
 from . import CCP4DataManager
 from . import CCP4File
 from . import CCP4XtalData
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CErrorReport
 
 
 class CCustomTaskManager(CCP4CustomManager.CCustomManager):

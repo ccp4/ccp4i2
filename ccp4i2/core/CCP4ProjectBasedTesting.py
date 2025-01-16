@@ -25,8 +25,8 @@ import copy
 import shutil
 import time
 
-from PySide2 import QtCore
 from lxml import etree
+from PySide2 import QtCore
 
 from . import CCP4Container
 from . import CCP4PluginScript
@@ -36,7 +36,7 @@ from ..dbapi import CCP4DbApi
 from ..dbapi import CCP4DbUtils
 from ..qtcore import CCP4Export
 from ..utils import startup
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CException, CErrorReport, SEVERITY_ERROR, SEVERITY_OK, SEVERITY_WARNING
 from .CCP4Modules import PROJECTSMANAGER, JOBCONTROLLER, QTAPPLICATION, PROCESSMANAGER
 
 

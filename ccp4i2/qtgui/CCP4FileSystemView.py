@@ -22,7 +22,6 @@
 
 from PySide2 import QtCore, QtWidgets
 
-from ..core.CCP4ErrorHandling import *
 from ..qtgui import CCP4AbstractViewer
 from ..qtgui import CCP4WebBrowser
 

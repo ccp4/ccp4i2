@@ -31,7 +31,7 @@ from . import CCP4Data
 from . import CCP4File
 from . import CCP4Modules
 from ..dbapi import CCP4DbApi
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CErrorReport, CException
 from .CCP4TaskManager import TASKMANAGER
 
 

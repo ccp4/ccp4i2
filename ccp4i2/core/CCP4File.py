@@ -27,6 +27,7 @@ import re
 import shutil
 import sys
 import tempfile
+import time
 import traceback
 import unittest
 import xml.etree.ElementTree as ET
@@ -48,7 +49,7 @@ from .. import __version__
 from ..dbapi import CCP4DbApi
 from ..googlecode import diff_match_patch_py3
 from ..report.CCP4ReportParser import CCP4NS
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CErrorReport, CException, SEVERITY_OK, SEVERITY_WARNING
 from .CCP4Modules import PROJECTSMANAGER
 
 

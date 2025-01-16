@@ -33,7 +33,7 @@ from ..core import CCP4File
 from ..core import CCP4Utils
 from ..core.CCP4Data import CData
 from ..core.CCP4DataManager import DATAMANAGER
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CException
 from ..report.CCP4ReportParser import CCP4NS
 
 

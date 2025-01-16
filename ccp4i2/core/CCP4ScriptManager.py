@@ -25,7 +25,7 @@ import os
 import re
 
 from ..qtgui.CCP4TaskWidget import CTaskWidget
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CErrorReport, CException
 from .CCP4Utils import getCCP4I2Dir
 from .CCP4Utils import globSearchPath
 from .CCP4Utils import importFileModule

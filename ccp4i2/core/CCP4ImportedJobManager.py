@@ -15,9 +15,7 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
      Liz Potterton Sept 2013 - report job performed outside ccp4i2
 """
 
@@ -31,7 +29,7 @@ from . import CCP4Data
 from . import CCP4DataManager
 from . import CCP4File
 from . import CCP4XtalData
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CErrorReport
 
 
 class CImportedJobManager(CCP4CustomManager.CCustomManager):

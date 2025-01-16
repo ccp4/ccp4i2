@@ -43,10 +43,9 @@ from ..qtgui import CCP4TaskViewer
 from ..qtgui import CCP4TaskWidget
 from ..report import CCP4ReportParser
 from .CCP4Config import GRAPHICAL, DEVELOPER
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
 from .CCP4Modules import PREFERENCES
 from .CCP4Modules import WEBBROWSER, PROJECTSMANAGER, WORKFLOWMANAGER, CUSTOMTASKMANAGER
-
 
 
 # To see the timings for loading modules set TIMING=True

@@ -58,7 +58,7 @@ from ..model import CCP4SelectionTree
 from ..qtgui import CCP4FileBrowser
 from ..qtgui import CCP4StyleSheet
 from ..wrappers.libcheck.script import libcheck
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CErrorReport, CException, SEVERITY_UNDEFINED, SEVERITY_WARNING
 
 
 BIOPYTHON = True

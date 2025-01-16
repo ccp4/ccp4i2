@@ -32,7 +32,7 @@ from ..core import CCP4File
 from ..core import CCP4JobServer
 from ..core import CCP4Modules
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CException
 from ..dbapi import CCP4DbApi
 
 

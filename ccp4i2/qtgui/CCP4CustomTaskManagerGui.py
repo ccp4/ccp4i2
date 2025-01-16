@@ -27,7 +27,7 @@ from PySide2 import QtCore, QtGui, QtWidgets
 
 from ..core import CCP4CustomTaskManager
 from ..core import CCP4Data
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import SEVERITY_WARNING
 from ..core.CCP4Modules import CUSTOMTASKMANAGER, WEBBROWSER
 from ..qtgui import CCP4CustomisationGui, CCP4Widgets
 

@@ -33,7 +33,7 @@ from PySide2 import QtCore, QtGui
 
 from . import CCP4Data, CCP4Utils, CCP4TaskManager
 from .CCP4Data import CBaseData
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CErrorReport, CException
 from .CCP4File import CDataFile
 
 

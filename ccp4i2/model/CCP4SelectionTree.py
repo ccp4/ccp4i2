@@ -28,7 +28,7 @@ import mmut
 
 from .. import model
 from .. import utils
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CException
 
 
 #-------------------------------------------------------------------

@@ -38,7 +38,7 @@ from ..core import CCP4File, CCP4Annotation
 from ..core import CCP4JobServer
 from ..core import CCP4Modules
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
 from ..dbapi import CCP4DbApi
 from ..qtcore import CCP4Export
 from ..qtcore import CCP4HTTPServerThread

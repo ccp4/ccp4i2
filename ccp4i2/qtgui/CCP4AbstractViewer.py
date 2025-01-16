@@ -29,7 +29,7 @@ from PySide2 import QtCore, QtWidgets
 
 from ..core import CCP4Modules
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import SEVERITY_ERROR
 from ..qtcore import CCP4CustomMimeTypes
 
 

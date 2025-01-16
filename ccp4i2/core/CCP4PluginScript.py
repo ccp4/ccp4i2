@@ -50,7 +50,7 @@ from ..dbapi import CCP4DbApi
 from ..qtcore import CCP4Export
 from ..utils import dictionaryAccumulator
 from ..utils import startup
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
 from .CCP4QtObject import CObject
 
 

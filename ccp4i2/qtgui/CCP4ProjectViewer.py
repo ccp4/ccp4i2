@@ -61,7 +61,7 @@ from ..core import CCP4I2Runner
 from ..core import CCP4ProjectsManager
 from ..core import CCP4Utils
 from ..core.CCP4Config import DEVELOPER
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
 from ..core.CCP4Modules import JOBCONTROLLER, JOBCONTROLLERGUI
 from ..core.CCP4Modules import LAUNCHER, MIMETYPESHANDLER, PREFERENCES
 from ..core.CCP4Modules import QTAPPLICATION, PROJECTSMANAGER, WEBBROWSER

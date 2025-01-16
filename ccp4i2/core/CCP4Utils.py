@@ -44,12 +44,12 @@ from . import CCP4Modules
 from .. import __version__
 from ..googlecode import diff_match_patch_py3
 from .CCP4Config import DEVELOPER
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CException
 
 
 def writeXML(f,t):
     f.write(t.decode("utf-8"))
-            
+
 
 class CUtils:
 
@@ -725,20 +725,6 @@ def zipDirectory(czip, sourceDirectory, rootRelPath=None):
                     arcname = os.path.join(os.path.relpath(root,rootRelPath ), cfile)
                     czip.write(filename, arcname)
 
-def findCootPath():
-    # This is the default install path for ccp4 6.4.0
-    # Except windows release does not include coot and this is default install for coot
-    if path is not None and os.path.exists(path):   # KJS : Well this isn't right. Not used anywhere either.
-        return path
-    if sys.platform == 'win32':
-        path = os.path.normpath(os.path.join('C:','WinCoot','runwincoot'))
-    elif sys.platform == 'darwin':
-        path = os.path.normpath(os.path.join(os.environ['CCP4'],'coot'))
-    else:
-        path = os.path.normpath(os.path.join(os.environ['CCP4'], 'bin', 'coot'))
-    if os.path.exists(path):
-        return path
-    return None
 
 def getCCP4Exe(program):
     if sys.platform == 'win32':
@@ -750,7 +736,7 @@ def getCCP4Exe(program):
         ccp4bin = os.path.join(getCCP4Dir(), 'bin', exe)
     return ccp4bin
 
-        
+
 def which(program, mode=os.F_OK | os.X_OK, path=None):
     '''
     From shutil.which in python 3.3 back ported for local use here in 2.7

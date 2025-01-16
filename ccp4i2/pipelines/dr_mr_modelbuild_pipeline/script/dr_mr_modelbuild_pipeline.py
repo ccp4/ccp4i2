@@ -32,7 +32,7 @@ from lxml import etree
 from PySide2.QtCore import Slot
 
 from ....core import CCP4Utils
-from ....core.CCP4ErrorHandling import *
+from ....core.CCP4ErrorHandling import CException
 from ....core.CCP4PluginScript import CPluginScript
 
 

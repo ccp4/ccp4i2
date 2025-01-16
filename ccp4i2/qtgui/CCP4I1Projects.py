@@ -38,7 +38,7 @@ import shiboken2
 from ..core import CCP4Annotation,CCP4DataManager
 from ..core import CCP4File
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_OK, SEVERITY_WARNING
 from ..core.CCP4Modules import *
 from ..core.CCP4TaskManager import TASKMANAGER
 from ..qtgui import CCP4FileBrowser

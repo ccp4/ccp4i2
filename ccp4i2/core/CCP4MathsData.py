@@ -23,7 +23,7 @@ import math
 import unittest
 
 from . import CCP4Data
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CErrorReport, CException
 
 
 class CXyz(CCP4Data.CData):

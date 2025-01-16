@@ -36,7 +36,7 @@ from . import CCP4Utils
 from . import CCP4XtalData
 from .CCP4Config import DEVELOPER
 from .CCP4DataManager import DATAMANAGER
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CErrorReport, CException, SEVERITY_ERROR, SEVERITY_WARNING
 
 
 class CContainer(CCP4Data.CData):

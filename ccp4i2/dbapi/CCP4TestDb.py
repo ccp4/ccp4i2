@@ -11,7 +11,7 @@ from . import CCP4DbUtils
 from ..core import CCP4Config
 from ..core import CCP4File
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import SEVERITY_WARNING
 from ..core.CCP4Modules import PROJECTSMANAGER, QTAPPLICATION, JOBCONTROLLER
 from ..core.CCP4QtObject import CObject
 from ..qtcore import CCP4Export

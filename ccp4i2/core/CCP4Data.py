@@ -15,9 +15,7 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Aug 2010 - 'Generic' CCP4Data classes
 """
 
@@ -35,7 +33,13 @@ from . import CCP4DataManager
 from . import CCP4File
 from . import CCP4Modules
 from . import CCP4Utils
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CErrorReport
+from .CCP4ErrorHandling import CException
+from .CCP4ErrorHandling import SEVERITY_ERROR
+from .CCP4ErrorHandling import SEVERITY_OK
+from .CCP4ErrorHandling import SEVERITY_UNDEFINED
+from .CCP4ErrorHandling import SEVERITY_UNDEFINED_ERROR
+from .CCP4ErrorHandling import SEVERITY_WARNING
 from .CCP4File import CDataFile
 from .CCP4QtObject import CObject
 
@@ -3332,7 +3336,7 @@ class CI2DataType(CString):
         return menu
 
 
-#===========================================================================================================
+# ===========================================================================================================
 def TESTSUITE():
     suite = unittest.defaultTestLoader.loadTestsFromTestCase(testCListAppend)
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testCListAssorted))

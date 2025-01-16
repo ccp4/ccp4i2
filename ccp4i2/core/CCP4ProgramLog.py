@@ -25,7 +25,7 @@ import traceback
 
 from PySide2 import QtWidgets
 
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CErrorReport
 from .CCP4QtObject import CObject
 
 

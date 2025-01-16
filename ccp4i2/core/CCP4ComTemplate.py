@@ -24,7 +24,7 @@ import re
 import unittest
 
 from . import CCP4Container, CCP4File, CCP4Utils
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
 from .CCP4QtObject import CObject
 from .CCP4Utils import getCCP4I2Dir, interpretPath
 

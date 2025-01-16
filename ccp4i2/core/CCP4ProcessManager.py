@@ -24,6 +24,7 @@ import re
 import subprocess
 import sys
 import threading
+import time
 import unittest
 
 from PySide2 import QtCore
@@ -31,7 +32,7 @@ from PySide2 import QtCore
 from . import CCP4Modules
 from . import CCP4Config
 from . import CCP4Utils
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
 
 
 def PopenInThread(pid, callArgList, callDict, onExit=None):

@@ -36,7 +36,7 @@ from ..core.CCP4Container import CContainer
 from ..core.CCP4Data import baseClassList
 from ..core.CCP4Data import CString
 from ..core.CCP4DataManager import DATAMANAGER
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CErrorReport, CException
 from ..core.CCP4ScriptManager import SCRIPTMANAGER
 from ..core.CCP4XtalData import CColumnType
 from ..core.CCP4XtalData import CProgramColumnGroup

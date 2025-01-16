@@ -35,7 +35,7 @@ from PySide2 import QtCore, QtWidgets
 
 from ..core import CCP4Modules
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CErrorReport, CException
 
 
 class CDemoData:

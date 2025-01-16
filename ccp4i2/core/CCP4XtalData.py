@@ -34,7 +34,7 @@ import tempfile
 import unittest
 
 import clipper
-import hklfile  # needs ccp4mg
+import hklfile
 from lxml import etree
 from PySide2 import QtCore
 
@@ -46,7 +46,7 @@ from . import CCP4ModelData
 from . import CCP4Modules
 from . import CCP4PluginScript
 from . import CCP4Utils
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CErrorReport, CException, SEVERITY_ERROR, SEVERITY_UNDEFINED, SEVERITY_WARNING
 from .CCP4Utils import safeFloat
 from ..googlecode import diff_match_patch_py3
 from ..wrappers.chltofom.script import chltofom

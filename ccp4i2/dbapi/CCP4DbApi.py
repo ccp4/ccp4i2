@@ -49,7 +49,7 @@ from ..core import CCP4PerformanceData
 from ..core import CCP4TaskManager
 from ..core import CCP4Utils
 from ..core import CCP4XtalData
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_CRITICAL, SEVERITY_OK, SEVERITY_WARNING
 from ..core.CCP4QtObject import CObject
 
 

@@ -23,7 +23,7 @@ import functools
 
 from PySide2 import QtCore, QtWidgets
 
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CException, SEVERITY_WARNING
 from ..core.CCP4Modules import DUMMYMAINWINDOW, WEBBROWSER
 from ..qtgui import CCP4FileBrowser
 

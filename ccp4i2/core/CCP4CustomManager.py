@@ -30,7 +30,7 @@ from PySide2 import QtCore
 from . import CCP4File
 from . import CCP4Modules
 from . import CCP4Utils
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CErrorReport, CException
 from .CCP4QtObject import CObject
 
 

@@ -40,7 +40,7 @@ from ..core import CCP4ModelData
 from ..core import CCP4Modules
 from ..core import CCP4Utils
 from ..core import CCP4XtalData
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CException, SEVERITY_WARNING
 from ..dbapi import CCP4DbUtils
 from .CCP4Widgets import CViewWidget
 
@@ -205,7 +205,6 @@ class CSeqDataFileView(CCP4Widgets.CDataFileView):
       )
     else:
       return CCP4Widgets.CDataFileView.getActionDef(self,name)
-
 
   def showEditor(self,visible=None):
     if visible is None: visible = not self.widgets['sequence'].isVisible()

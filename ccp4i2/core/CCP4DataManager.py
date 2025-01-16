@@ -15,9 +15,7 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Aug 2010 - Class to keep track of all CCP4Data and CCP4Widget classes
 """
 
@@ -42,7 +40,7 @@ from ..qtgui import CCP4DefEd
 from ..qtgui import CCP4Widgets
 from .CCP4Config import DEVELOPER, GRAPHICAL
 from .CCP4Data import CFloat
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CErrorReport, CException
 from .CCP4Modules import QTAPPLICATION
 
 

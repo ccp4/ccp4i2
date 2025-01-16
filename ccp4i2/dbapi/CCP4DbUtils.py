@@ -24,6 +24,8 @@ import functools
 import glob
 import os
 import shutil
+import time
+import unittest
 
 from lxml import etree
 from PySide2 import QtCore
@@ -38,7 +40,7 @@ from ..core import CCP4Modules
 from ..core import CCP4TaskManager
 from ..core import CCP4Utils
 from ..core.CCP4Config import *
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
 from ..core.CCP4Modules import PROJECTSMANAGER, TASKMANAGER, JOBCONTROLLER, WORKFLOWMANAGER
 
 

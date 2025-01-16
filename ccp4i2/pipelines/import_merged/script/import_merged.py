@@ -26,7 +26,6 @@ from PySide2 import QtCore
 from ....core import CCP4Modules
 from ....core import CCP4Utils
 from ....core import CCP4XtalData
-from ....core.CCP4ErrorHandling import *
 from ....core.CCP4PluginScript import CPluginScript
 from ....pipelines.aimless_pipe.script.aimless_pipe_utils import *
 from .importutils import *

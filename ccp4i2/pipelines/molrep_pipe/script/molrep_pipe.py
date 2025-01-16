@@ -25,7 +25,6 @@ from lxml import etree
 from PySide2 import QtCore
 
 from ....core import CCP4Utils
-from ....core.CCP4ErrorHandling import *
 from ....core.CCP4PluginScript import CPluginScript
 
 

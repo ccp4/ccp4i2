@@ -31,7 +31,7 @@ from . import CCP4Modules
 from . import CCP4TaskManager
 from . import CCP4Utils
 from ..googlecode import diff_match_patch_py3
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CErrorReport, CException
 
 
 class CComFilePatchManager(CCP4CustomManager.CCustomManager):

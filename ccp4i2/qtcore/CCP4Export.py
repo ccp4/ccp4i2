@@ -8,7 +8,7 @@ import zipfile
 from PySide2 import QtCore
 
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
 from ..core.CCP4Modules import PROJECTSMANAGER
 
 

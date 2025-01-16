@@ -25,7 +25,7 @@ import os
 from PySide2 import QtCore, QtWidgets
 
 from ..core import CCP4Annotation, CCP4Modules
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import SEVERITY_WARNING
 from ..qtgui import CCP4FileBrowser, CCP4Widgets
 
 

@@ -54,7 +54,7 @@ from ..qtcore import CCP4Export
 from ..qtgui import CCP4ProjectViewer
 from ..report import CCP4ReportGenerator
 from ..wrappers.AlternativeImportXIA2.script import AlternativeImportXIA2
-from .CCP4ErrorHandling import *
+from .CCP4ErrorHandling import CErrorReport, CException, SEVERITY_ERROR, SEVERITY_OK, SEVERITY_WARNING
 from .CCP4File import CI2XmlDataFile
 from .CCP4Modules import PROJECTSMANAGER
 from .CCP4QtObject import CObject

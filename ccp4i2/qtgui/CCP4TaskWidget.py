@@ -873,12 +873,6 @@ class CTaskWidget(QtWidgets.QFrame):
                 return CErrorReport()
         except:
             pass
-        '''
-        path = CCP4Utils.findCootPath()
-        if path is not None:
-          CCP4Modules.PREFERENCES().COOT_EXECUTABLE.set(fullPath=path)
-          return CErrorReport()
-        '''
         self.cootFixDialog = CCP4FileBrowser.CFileDialog(self, 'Find Coot Path', filters=[' (*)'], projectCombo=False)
         label = QtWidgets.QLabel("""Sorry - failed to find Coot. Please enter the Coot executable and then 'Run' again.\nBeware you are probably using a CCP4 nightly build that does not include Coot.\nThe Coot executable can also be set in Preferences.""",self)
         label.setStyleSheet("QLabel { font-weight: bold;  border: 2px solid} ")
