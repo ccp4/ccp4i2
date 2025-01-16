@@ -56,6 +56,7 @@ from . import CCP4TextViewer
 from . import CCP4UpdateDialog
 from . import CCP4WebToolBarButtons
 from . import CCP4WebView
+from .. import __version__, __version_date__
 from ..core import CCP4ComFilePatchManagerGui
 from ..core import CCP4Config
 from ..core import CCP4ConfigGui
@@ -1522,9 +1523,9 @@ class CMainWindow(QtWidgets.QMainWindow):
             topRightWidget.layout().addWidget(label)
             topWidget.layout().addWidget(topRightWidget)
             self.aboutDialog.layout().addWidget(topWidget)
-            version = CCP4Utils.getProgramVersion('ccp4i2')
-            date = CCP4Utils.getProgramVersion('ccp4i2',mode='date')
-            label = QtWidgets.QLabel('Version '+version+' built on '+date+"\n"+'User interface to CCP4 Program Suite version '+ CCP4Utils.getProgramVersion('ccp4'),self)
+            version = __version__
+            date = __version_date__
+            label = QtWidgets.QLabel('Version '+version+' built on '+date+"\n"+'User interface to CCP4 Program Suite version '+ CCP4Utils.getCcp4Version(),self)
             label.setStyleSheet("QLabel { font-size: 14px; font-style: italic; font-weight: bold; }")
             topRightWidget.layout().addWidget(label)
             label = QtWidgets.QLabel(self)

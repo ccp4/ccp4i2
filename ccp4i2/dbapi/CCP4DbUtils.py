@@ -29,6 +29,7 @@ from lxml import etree
 from PySide2 import QtCore
 
 from . import CCP4DbApi
+from .. import __version__
 from ..core import CCP4Annotation
 from ..core import CCP4Container
 from ..core import CCP4Data
@@ -469,8 +470,8 @@ class CCP4SimpleDatabase(CCP4Data.CData):
             # Add current user to user table
             self.UIdb.createUser(userName,institution)
             # Add ccp4i2 and ccp4mg to user agents
-            self.UIdb.createNewUserAgent('ccp4i2',VERSION(),'CCP4i2 GUI')
-            self.UIdb.createNewUserAgent('ccp4mg','','CCP4mg')
+            self.UIdb.createNewUserAgent('ccp4i2', __version__, 'CCP4i2 GUI')
+            self.UIdb.createNewUserAgent('ccp4mg', '', 'CCP4mg')
         else:
             try:
                 self.UIdb = UIdb(filename =self.fileName ,hostname='localhost',user=userName)

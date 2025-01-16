@@ -44,6 +44,7 @@ from . import CCP4PluginScript
 from . import CCP4TaskManager
 from . import CCP4Update
 from . import CCP4Utils
+from .. import __version__
 from ..dbapi import CCP4DbApi
 from ..googlecode import diff_match_patch_py3
 from ..report.CCP4ReportParser import CCP4NS
@@ -103,7 +104,7 @@ class CVersion(CCP4Data.CString):
             self.__dict__['_value'] = 'alpha_rev_' + str(rev)
         else:
             try:
-                self.__dict__['_value'] = CCP4Config.VERSION()
+                self.__dict__['_value'] = __version__
             except:
                 self.__dict__['_value'] = 'Unknown'
 
@@ -1583,7 +1584,7 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
                     f.header.projectName.set(projectName)
                     f.header.userId.set(getpass.getuser())
                     f.header.pluginName = 'ProvideAsuContents'
-                    f.header.ccp4iVersion.set(CCP4Config.VERSION())
+                    f.header.ccp4iVersion.set(__version__)
                     if sys.platform == 'darwin':
                         f.header.OS.set('MacOSX')
                     elif sys.platform[0:5] == 'linux':

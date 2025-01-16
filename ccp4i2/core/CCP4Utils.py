@@ -40,8 +40,8 @@ import shiboken2
 import win32file
 
 from . import CCP4Data
-from . import CCP4File
 from . import CCP4Modules
+from .. import __version__
 from ..googlecode import diff_match_patch_py3
 from .CCP4Config import DEVELOPER
 from .CCP4ErrorHandling import *
@@ -612,46 +612,17 @@ def readTarGzip(fileName, destination=None):
     tarObj.close()
     return next
 
-def getProgramVersion(programName, mode='version'):
+def getCcp4Version():
     # Run CCP4 program with -i to get either explicit version info
     # or version as part of the program banner header which appears before program fails
-    bin = copy.deepcopy(programName)
-    programName = programName.lower()
     logFile = makeTmpFile(extension='log')
-    if programName == 'ccp4i2':
-        versionHeader = CCP4File.CI2XmlHeader()
-        versionHeader.loadFromXml(os.path.join(getCCP4I2Dir(), 'core', 'version.params.xml'))
-        if mode == 'version':
-            return versionHeader.ccp4iVersion.__str__()
-        elif mode == 'date':
-            return versionHeader.creationTime.date()
-    elif programName == 'ccp4':
-        CCP4Modules.PROCESSMANAGER().startProcess('fft', ['-i'], logFile=logFile)
-        text = readFile(logFile)
-        m1 = re.search('(.*)patch level(.*)', text)
-        if m1 is None:
-            return None
-        text = m1.groups()[1].strip()
-        return text
-    elif programName == 'qt':
-        return QtCore.qVersion()
-    elif programName == 'arp_warp':
-        # Need to get the it exit
+    CCP4Modules.PROCESSMANAGER().startProcess('fft', ['-i'], logFile=logFile)
+    text = readFile(logFile)
+    m1 = re.search('(.*)patch level(.*)', text)
+    if m1 is None:
         return None
-    elif programName.startswith('phenix'):
-        testArgList = [['--version'],['-version']]
-    else:
-        testArgList = [['-i'],['--version'],['-version']]
-    for argList in testArgList:
-        CCP4Modules.PROCESSMANAGER().startProcess(bin, argList, logFile=logFile)
-        #print 'CCP4Utils.getProgramVersion programName',programName,logFile
-        text = readFile(logFile)
-        if argList == ['-i']:
-            ret = searchVersion(text, programName)
-        else:
-            ret = searchVersion(text)
-        if ret is not None:
-            return ret
+    text = m1.groups()[1].strip()
+    return text
 
 def searchVersion(text, programName=None):
     if programName is not None:
@@ -672,11 +643,12 @@ def searchVersion(text, programName=None):
     return None
 
 def versionLogHeader():
-    text = 'CCP4i2 version: ' + getProgramVersion('ccp4i2') + '\n' + \
-            'Running CCP4 version: ' + getProgramVersion('ccp4') + '\n' + \
-            'Using Python version: ' + sys.version + '\n' + \
-            'Using Qt version: ' + getProgramVersion('qt') + '\n'
-    return text
+    return (
+        f"CCP4i2 version: {__version__}\n"
+        f"Running CCP4 version: {getCcp4Version()}\n"
+        f"Using Python version: {sys.version}\n"
+        f"Using Qt version: {QtCore.qVersion()}\n"
+    )
 
 def listReMatch(lst,reExp):
     # search list of strings with reg expression and return hit string and index

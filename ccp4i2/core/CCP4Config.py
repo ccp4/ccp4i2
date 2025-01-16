@@ -15,9 +15,7 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Sept 2010 - Separate CCP4Config out from core.CCP4Modules
 """
 
@@ -29,6 +27,7 @@ import sys
 from lxml import etree
 
 from . import CCP4File, CCP4Utils
+from .. import __version__
 
 
 def DEFCONFIG():
@@ -63,7 +62,7 @@ class CConfig:
         self.maxRunningProcesses = 4
         # search paths for external programs - convention: program name is lower case
         self.searchPath = {}
-        self.loadVersion()
+        print('ccp4i2 version', __version__)
         # Load local installation config file
         localFile = os.path.join(CCP4Utils.getCCP4I2Dir(), 'local_setup','ccp4i2_config.params.xml')
         if os.path.exists(localFile):
@@ -166,11 +165,6 @@ class CConfig:
         f.header.pluginTitle = 'CCP4i2 Configuration'
         f.saveFile(root)
 
-    def loadVersion(self):
-        # Do not use CCP4File here - config not set - broken without Qt 
-        self.ccp4iVersion = CCP4Utils.getProgramVersion('ccp4i2')
-        print('ccp4i2 version', self.ccp4iVersion)
-
     def set(self, key='', value=''):
         if ['qt', 'developer', 'graphical'].count(key) and [True, False].count(value):
             setattr(self, key, value)
@@ -187,7 +181,7 @@ def PATH(exe, firstOnly = True):
     exe = exe.lower()
     if sys.platform in ['win32']:
         platform = 'windows'
-    elif  sys.platform in ['darwin']:
+    elif sys.platform in ['darwin']:
         platform = 'macosx'
     else:
         platform = 'linux'
@@ -232,11 +226,6 @@ def DEVELOPER():
     if not CConfig.insts:
         CConfig()
     return CConfig.insts.developer
-
-def VERSION():
-    if not CConfig.insts:
-        CConfig()
-    return CConfig.insts.ccp4iVersion
 
 def GRAPHICAL():
     if not CConfig.insts:

@@ -15,11 +15,10 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Aug 2010 - Generic container for CCP4Data objects
 """
+
 import inspect
 import os
 import re
@@ -715,24 +714,6 @@ class CContainer(CCP4Data.CData):
             return self.__dict__['header']
         else:
             return None
-
-    def getHeaderEtree(self,jobId=None, project=None, function='PARAMS'):
-        # Return an eTree for a data file header
-        # This method could be member of CTaskViewer
-        header = CCP4File.CI2XmlHeader(parent=self, name='header')
-        if 'header' in self.__dict__:
-            header.set(self.__dict__['header'])
-        else:
-            header.pluginName = self.objectName()
-        header.function.set(function)
-        header.userId.setCurrentUser()
-        header.creationTime.setCurrentTime()
-        header.ccp4iVersion.set(CCP4Config.VERSION().ccp4iVersion)
-        if jobId is not None:
-            header.jobId = jobId
-        if project is not None:
-            header.project = project
-        return header.getEtree()
 
     def nonexistantFiles(self):
         #Return a list of files that mustExist but do not!    

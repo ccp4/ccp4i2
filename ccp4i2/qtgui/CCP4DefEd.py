@@ -27,11 +27,11 @@ import sys
 
 from PySide2 import QtCore, QtGui, QtWidgets
 
+from .. import __version__
 from ..core import CCP4Container
 from ..core import CCP4Data
 from ..core import CCP4Modules
 from ..core import CCP4Utils
-from ..core.CCP4Config import VERSION
 from ..core.CCP4Container import CContainer
 from ..core.CCP4Data import baseClassList
 from ..core.CCP4Data import CString
@@ -486,8 +486,7 @@ class CDefEd(QtWidgets.QMainWindow):
     h.creationTime.setCurrentTime()
     h.userId.setCurrentUser()
     h.pluginName = pluginName
-    h.ccp4iVersion = VERSION()
-    
+    h.ccp4iVersion = __version__
 
   def saveDef(self,fileName):
     #print 'CDefEd.saveData',fileName

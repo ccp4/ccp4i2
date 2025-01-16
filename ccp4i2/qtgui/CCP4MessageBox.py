@@ -28,9 +28,8 @@ import traceback
 
 from PySide2 import QtCore, QtGui, QtWidgets
 
-from ..core import CCP4File
+from .. import __version__, __version_date__
 from ..core import CCP4Modules
-from ..core import CCP4Utils
 from ..dbapi import CCP4DbApi
 from ..dbapi import CCP4DbUtils
 
@@ -40,7 +39,6 @@ class CMessageBox(QtWidgets.QDialog):
   DEVELOPERS = [ [ 'Liz' , 'liz.potterton@york.ac.uk' ],
                  ['Andrey' , 'andrey.lebedev@stfc.ac.uk'] ,
                  [ 'Stuart', 'stuart.mcnicholas@york.ac.uk'] ]
-
 
   def __init__(self,parent=None,title=None,message='',exception=None,details=None,jobId=None,openJob=None):
     QtWidgets.QDialog.__init__(self,parent)
@@ -150,13 +148,12 @@ class CMessageBox(QtWidgets.QDialog):
     else:
       zipFile = None
     # Get version / os info
-    version = CCP4File.CI2XmlHeader()
-    version.loadFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'core','version.params.xml'))
-    print('version',version)
-    versionText = 'CCP4i2 version: ' + str(version.ccp4iVersion) + '\n' + \
-                  'SVN version:  ' +  str(version.pluginVersion) + '\n' + \
-                  'Creation date: ' + str(version.creationTime) + '\n' + \
-                  'Platform: ' + sys.platform +  '\n'
+    versionText = (
+      f"CCP4i2 version: {__version__}\n"
+      f"Creation date: {__version_date__}\n"
+      f"Platform: {sys.platform}\n"
+    )
+    print(versionText)
     # Stick it all in a mailto
     message = 'mailto:'+selectedAdr+'?subject=CCP4i2 Problem&body= \n' + versionText + '\n' + \
               self.message + '\n' + self.details + '\n'
@@ -165,9 +162,7 @@ class CMessageBox(QtWidgets.QDialog):
     rv =  QtGui.QDesktopServices.openUrl( QtCore.QUrl(message) )
     self.reportDialog.close()
     self.close()
-    
 
-    
   @QtCore.Slot()
   def toggleDetails(self):
     if str(self.showButton.text())[0:4] == 'Show':
@@ -180,5 +175,3 @@ class CMessageBox(QtWidgets.QDialog):
       self.textWidget.setReadOnly(False)
       self.textWidget.setPlainText(self.message)
       self.textWidget.setReadOnly(True)
-
-  

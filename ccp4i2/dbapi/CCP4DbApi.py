@@ -511,11 +511,6 @@ class CDbApi(CObject):
         self.fetchAll2PyList(self, toType=[int, str])
         # ?? What about the JOB_STATUS_UNKNOWN etc.
 
-
-    def iAmUserAgent(self):
-        #return 'CCP4i2 '+str(VERSION())
-        return 1  # ccp4i2
-
     def loadSchema(self,fileName=None):
         if fileName is  None:
             fileName = os.path.join(CCP4Utils.getCCP4I2Dir(),'dbapi','database_schema.sql')
@@ -2888,16 +2883,14 @@ TaskTitle TEXT );''')
 
       #print 'CDbApi.createJob jobTitle',jobTitle
 
-
       permission = self.getProjectPermission(projectId)
       if permission < PRIVILEGE_WRITE:
         raise CException(self.__class__,112,str(projectId))
 
-
       if jobNumber is None:
         jobNumber = self.nextJobNumber(projectId,childOf=parentJobId)
       time = self.currentTime()
-      if userAgent is None: userAgent = self.iAmUserAgent()
+      if userAgent is None: userAgent = 1 # ccp4i2
       if userName is not None:
         userId = self.getUserId(userName)
       else:
