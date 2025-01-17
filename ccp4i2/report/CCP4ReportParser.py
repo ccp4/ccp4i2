@@ -37,7 +37,6 @@ import traceback
 import uuid
 import xml.etree.ElementTree as etree
 
-from bs4 import BeautifulSoup # No bs4 in ccp4 so this will not work
 from lxml import etree as lxml_etree
 from lxml import html as lxml_html
 from PySide2 import QtCore, QtGui
@@ -1318,17 +1317,9 @@ class Report( Container ):
             report.append(jobEle)
         return report
 
-    def as_html_file(self,fileName,pretty_print=True,htmlBase=None,cssVersion=None):
+    def as_html_file(self,fileName,htmlBase=None,cssVersion=None):
         text = self.as_html(htmlBase=htmlBase,cssVersion=cssVersion)
-        if pretty_print:
-            try:
-                soup=BeautifulSoup(text)
-                prettyHTML=soup.prettify()
-                CCP4Utils.saveFile(fileName=fileName,text=prettyHTML)
-            except:
-                CCP4Utils.saveFile(fileName=fileName,text=text)
-        else:
-            CCP4Utils.saveFile(fileName=fileName,text=text)
+        CCP4Utils.saveFile(fileName=fileName,text=text)
 
     def as_html(self, htmlBase=None,cssVersion=None):
 
