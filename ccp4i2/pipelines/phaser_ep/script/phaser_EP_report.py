@@ -3,7 +3,7 @@ import xml.etree.ElementTree as etree
 
 from ....pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mr_report import bucref_report
 from ....pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script.phaser_EP_AUTO_report import phaser_EP_AUTO_report
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
 from ....wrappers.parrot.script.parrot_report import parrot_report
 from ....wrappers.ShelxCDE.script.ShelxCD_report import ShelxCD_report
 

@@ -35,11 +35,13 @@ from lxml import etree
 from PySide2 import QtCore, QtGui, QtWidgets
 import shiboken2
 
-from ..core import CCP4Annotation,CCP4DataManager
+from ..core import CCP4Annotation
+from ..core import CCP4DataManager
 from ..core import CCP4File
+from ..core import CCP4Modules
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_OK, SEVERITY_WARNING
-from ..core.CCP4Modules import *
+from ..core.CCP4Modules import LAUNCHER, PREFERENCES, PROJECTSMANAGER, QTAPPLICATION, WEBBROWSER
 from ..core.CCP4TaskManager import TASKMANAGER
 from ..qtgui import CCP4FileBrowser
 from ..qtgui import CCP4ProjectManagerGui
@@ -896,21 +898,17 @@ class CI1ProjectView(QtWidgets.QTreeView):
     #print 'calling QTreeView.mousePressEvent'
     QtWidgets.QTreeView.mousePressEvent(self,event)
 
-
   def nodeFromEvent(self,event):
     modelIndex = self.indexAt(QtCore.QPoint(event.x(),event.y()))
     col = self.model().COLUMNS[modelIndex.column()]
     return modelIndex,self.model().nodeFromIndex(modelIndex),col
 
-    return [None,None,None,indx]
-  
   def selectRow(self,modelIndex=None):
     #print 'CProjectView.selectRow',modelIndex.row()
     sel = QtCore.QItemSelection( modelIndex.sibling(modelIndex.row(),0) , modelIndex.sibling(modelIndex.row(),2) )
     self.selectionModel().select(sel,QtCore.QItemSelectionModel.ClearAndSelect)
     #print 'CProjectView.selectRow DONE'
 
-  
   def startDrag(self,dropActions=None,modelIndex=None):
     #print 'CI1ProjectView.startDrag'
     if modelIndex is None:

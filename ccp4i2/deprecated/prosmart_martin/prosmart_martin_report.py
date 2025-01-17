@@ -1,4 +1,5 @@
-from ...report.CCP4ReportParser import *
+from ...report.CCP4ReportParser import Report
+
 
 class prosmart_martin_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -6,4 +7,4 @@ class prosmart_martin_report(Report):
     RUNNING = False
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):
         Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo,**kw)
-        frameset = self.append('<iframe src="ProSMART_Results.html" style="width:760px;"/>')
+        self.append('<iframe src="ProSMART_Results.html" style="width:760px;"/>')

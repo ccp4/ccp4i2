@@ -2,7 +2,7 @@ import sys
 
 from numpy import sign
 
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
 
 
 def isnumber(n):

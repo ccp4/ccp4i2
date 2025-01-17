@@ -12,7 +12,6 @@ import sys
 
 from lxml import etree
 
-from ..core.CCP4ErrorHandling import *
 from ..core.CCP4Modules import PROJECTSMANAGER
 from ..dbapi import CCP4DbApi
 

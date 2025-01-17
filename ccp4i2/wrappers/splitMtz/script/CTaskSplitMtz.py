@@ -24,7 +24,7 @@ import functools
 from PySide2 import QtCore, QtWidgets
 
 from ....core import CCP4XtalData
-from ....core.CCP4ErrorHandling import *
+from ....core.CCP4ErrorHandling import CErrorReport
 from ....qtgui import CCP4TaskWidget
 from ....qtgui import CCP4Widgets
 

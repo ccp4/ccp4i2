@@ -1,6 +1,6 @@
 import math
 
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
 
 
 class ShelxCDEBaseReport(Report):

@@ -2,7 +2,7 @@ import os
 import xml.etree.ElementTree as etree
 
 from ....core import CCP4Utils
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
 from ....wrappers.acedrgNew.script.acedrgNew_report import acedrgNew_report
 
 

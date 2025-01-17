@@ -1,7 +1,6 @@
-import os
 import sys
 
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
 from ....pipelines.aimless_pipe.script.aimless_pipe_utils import *
 
 

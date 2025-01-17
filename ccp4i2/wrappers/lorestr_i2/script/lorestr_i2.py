@@ -26,7 +26,6 @@ from ....core import CCP4ErrorHandling
 from ....core import CCP4Modules
 from ....core import CCP4Utils
 from ....core import CCP4XtalData
-from ....core.CCP4ErrorHandling import *
 from ....core.CCP4PluginScript import CPluginScript
 
 

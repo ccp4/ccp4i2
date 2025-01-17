@@ -9,7 +9,7 @@ import xml.etree.ElementTree as ET
 
 from . import json2restraints
 from ....core import CCP4Utils
-from ....core.CCP4ErrorHandling import *
+from ....core.CCP4ErrorHandling import SEVERITY_WARNING
 from ....core.CCP4PluginScript import CPluginScript
 from ...servalcat.script.json2xml import json2xml
 

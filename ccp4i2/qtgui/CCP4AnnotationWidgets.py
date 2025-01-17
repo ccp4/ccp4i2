@@ -20,7 +20,6 @@
 from PySide2 import QtCore, QtGui, QtWidgets
 
 from ..core import CCP4Annotation
-from ..core.CCP4Modules import *
 from ..qtgui import CCP4Widgets
 
 
@@ -138,56 +137,6 @@ class CTimeView(CCP4Widgets.CViewWidget):
         self.connectUpdateViewFromModel(False)
         self.model.QDateTime = self.widget.dateTime()
         self.connectUpdateViewFromModel(True)
-
-
-class CMetaDataTagView(CCP4Widgets.CComplexLineWidget):
-    MODEL_CLASS = CCP4Annotation.CMetaDataTag
-
-    def __init__(self,parent=None,model=None,qualifiers={}):
-        CCP4Widgets.CComplexLineWidget.__init__(self,parent=parent,qualifiers=qualifiers)
-        self.widgets['tag'] = CCP4Widgets.CComboBox(self)
-        self.layout().addWidget(self.widgets['tag'])
-        self.setModel(model)
-
-    def setModel(self,model):
-        #print 'CMetaDataTagView.setModel',model
-        #try:
-        #  print 'CMetaDataTagView.setModel',model.parent().__dict__['_value'],repr(model)
-        #except:
-        #  pass
-        # These only need connecting on first call to setModel() - if this is a list editor then
-        # likely to be called multiple times
-        if self.model is not None:
-            self.model.enumeratorsUpdated.disconnect(self.updateCombo)
-        if self.model is None and model is not None:
-            self.widgets['tag'].dataChanged.connect(self.updateTag)
-            self.widgets['tag'].returnPressed.connect(self.handleReturn)
-            self.widgets['tag'].focusOut.connect(self.handleReturn)
-        CComplexLineWidget.setModel(self,model)   # KJS : Another one...
-        if self.model is not None:
-            self.updateCombo()
-            self.model.enumeratorsUpdated.connect(self.updateCombo)
-
-    @QtCore.Slot()
-    def handleReturn(self):
-        #print 'CMetaDataTagView.handleReturn',self.widgets['tag'].currentText()
-        # addEnumerator() creates new tag if necessary and return index of the tag
-        idx = self.model.addEnumerator(str(self.widgets['tag'].currentText()))
-        #print 'CMetaDataTagView.handleReturn',CCP4I1Projects.CI1PREFERENCES().tagList
-        #print 'CMetaDataTagView.handleReturn idx',idx
-        if idx >= 0:
-            self.updateCombo()
-            self.widgets['tag'].setCurrentIndex(idx)
-        self.updateTag()
-
-    @QtCore.Slot()
-    def updateTag(self):
-        #print 'updateTag ',self.widgets['tag'].getValue()
-        self.model.tag.set( self.widgets['tag'].getValue(),checkValidity=False)
-
-    @QtCore.Slot()
-    def updateCombo(self):
-        self.widgets['tag'].populate(self.model.getEnumerators())
 
 
 class CMetaDataTagListView(CCP4Widgets.CListView):

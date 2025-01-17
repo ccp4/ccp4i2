@@ -1,4 +1,4 @@
-from ....report.CCP4ReportParser import * 
+from ....report.CCP4ReportParser import Report
 from ....wrappers.csymmatch.script.csymmatch_report import csymmatch_report
 from ....wrappers.refmac_i2.script.refmac_report import refmac_report
 from ....wrappers.sheetbend.script.sheetbend_report import sheetbend_report

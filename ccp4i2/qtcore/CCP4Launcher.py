@@ -146,7 +146,6 @@ class CLauncher(QtCore.QObject):
                     if altpath is not None: return altpath
                 return path
             if CCP4Utils.which(viewer) is not None: return viewer
-            #path = CCP4Config.PATH(viewer)
             if guiParent is not None:
                 return self.queryExecutable(viewer=viewer,guiParent=guiParent)
         elif  viewer == 'lidia':
@@ -158,7 +157,6 @@ class CLauncher(QtCore.QObject):
                     if altpath is not None: return altpath
                 return path
             if CCP4Utils.which(viewer) is not None: return viewer
-            #path = CCP4Config.PATH(viewer)
             if guiParent is not None:
                 return self.queryExecutable(viewer=viewer,guiParent=guiParent)
         return path

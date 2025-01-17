@@ -123,11 +123,6 @@ class CDefEd(QtWidgets.QMainWindow):
 
 
   def __init__(self,parent=None):
-    if not parent:
-      try:
-        parent = CCP4Modules.MAINWINDOW()
-      except:
-        pass
     QtWidgets.QMainWindow.__init__(self,parent)
     self.setWindowTitle('CCP4i2 defEd - DEF file editor')
     if not CDefEd.insts: CDefEd.insts = self

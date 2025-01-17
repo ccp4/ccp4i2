@@ -4,7 +4,7 @@ import sys
 from lxml import etree
 
 from ...core import CCP4Utils
-from ...report.CCP4ReportParser import *
+from ...report.CCP4ReportParser import PARSER, Report
 
 
 class refmac_martin_report(Report):

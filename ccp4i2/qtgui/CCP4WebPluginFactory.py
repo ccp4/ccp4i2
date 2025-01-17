@@ -23,7 +23,6 @@ import os
 
 from PySide2 import QtCore, QtGui, QtWidgets
 
-from ..core.CCP4ErrorHandling import *
 
 
 ##@package CCP4WebPluginFactory  (QtWebKit) Demo of webkit plgin widgets

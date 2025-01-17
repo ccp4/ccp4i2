@@ -1,10 +1,11 @@
 import os
 import sys
+import traceback
 import xml.etree.ElementTree as etree
 
 from lxml.html.clean import Cleaner
 
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import PARSER, Report
 from ....wrappers.refmac_i2.script import refmac_report
 from ....wrappers.validate_protein.script import validate_protein_report
 

@@ -8,7 +8,6 @@ from lxml import etree
 
 from ....core import CCP4ErrorHandling
 from ....core import CCP4XtalData
-from ....core.CCP4ErrorHandling import *
 from ....core.CCP4PluginScript import CPluginScript
 from ....core.CCP4Utils import getCCP4I2Dir
 

@@ -49,7 +49,7 @@ from ..core import CCP4DataManager
 from ..core import CCP4File
 from ..core import CCP4TaskManager
 from ..core import CCP4XtalData
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CException, SEVERITY_UNDEFINED_ERROR, SEVERITY_WARNING
 from ..core.CCP4Modules import PROJECTSMANAGER, PIXMAPMANAGER, QTAPPLICATION, TASKMANAGER, LAUNCHER
 from ..core.CCP4Modules import WEBBROWSER, PREFERENCES, MIMETYPESHANDLER, COMFILEPATCHMANAGER
 from ..dbapi import CCP4DbApi

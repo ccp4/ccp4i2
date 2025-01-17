@@ -1,7 +1,7 @@
 import os
 
 from ....core import CCP4Modules
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
 
 
 class prosmart_report(Report):

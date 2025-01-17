@@ -19,10 +19,7 @@
    Liz Potterton Sept 2010 - Separate CCP4Config out from core.CCP4Modules
 """
 
-import glob
 import os
-import re
-import sys
 
 from lxml import etree
 
@@ -174,47 +171,6 @@ class CConfig:
             setattr(self, key, value)
 
 #==============================================FUNCTIONS
-
-def PATH(exe, firstOnly = True):
-    if not CConfig.insts:
-        CConfig()
-    exe = exe.lower()
-    if sys.platform in ['win32']:
-        platform = 'windows'
-    elif sys.platform in ['darwin']:
-        platform = 'macosx'
-    else:
-        platform = 'linux'
-    #print 'CConfig.PATH',exe,platform,CConfig.insts.searchPath
-    if not hasattr(CConfig.insts,'searchPath') or exe not in CConfig.insts.searchPath or \
-                         platform not in CConfig.insts.searchPath[exe]:
-        if firstOnly:
-            return None
-        else:
-            return []
-    for path in CConfig.insts.searchPath[exe][platform]:
-        # Test for envvar that glob does not seem to handle
-        m = re.match(r'\$([^/]*)(.*)',path)
-        if m is not None:
-            env,relpath = m.groups()
-            if env in os.environ:
-                exeList = glob.glob(os.path.join(os.environ[env], relpath))
-        else:
-            exeList = glob.glob(path)
-        #print 'CConfig.PATH',path,m,exeList
-        if len(exeList) == 1:
-            return exeList[0]
-        elif len(exeList) > 1:
-            # Sort to reverse data order (ie most recent first)
-            exeList.sort(cmpFileData)   # : KJS This doesn't look it will work.... (no cmpFileData !)
-            if firstOnly:               # : KJS Looks like this file is never used, barring some commented out lines
-                return exeList[0]
-            else:
-                return exeList
-    if firstOnly:
-        return None
-    else:
-        return []
 
 def cmpFileDate(file1, file2):
     if os.path.getmtime(file1) > os.path.getmtime(file1):

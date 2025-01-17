@@ -1,6 +1,6 @@
 import re
 
-from ......report.CCP4ReportParser import *
+from ......report.CCP4ReportParser import Report
 
 
 class phaser_MR_FTF_report(Report):

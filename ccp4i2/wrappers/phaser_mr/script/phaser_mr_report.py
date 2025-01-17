@@ -2,7 +2,7 @@ import copy
 import string
 import xml.etree.ElementTree as etree
 
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
 
 
 class pimpleGraph():

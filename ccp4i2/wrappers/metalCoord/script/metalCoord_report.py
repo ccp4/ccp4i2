@@ -2,7 +2,7 @@ import os
 import xml.etree.ElementTree as ET
 
 from ....core import CCP4Modules
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
 
 
 class metalCoord_report(Report):

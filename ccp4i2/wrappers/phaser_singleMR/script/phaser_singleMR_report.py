@@ -1,6 +1,7 @@
+import os
 import xml.etree.ElementTree as etree
 
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
 
 
 class phaser_singleMR_report(Report):

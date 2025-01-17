@@ -50,7 +50,7 @@ from ..core import CCP4File
 from ..core import CCP4Modules
 from ..core import CCP4TaskManager
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_OK, SEVERITY_WARNING
 from ..core.CCP4Modules import PROJECTSMANAGER
 
 

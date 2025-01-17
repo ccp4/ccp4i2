@@ -28,11 +28,9 @@
 #
 #=======================================================================================
 
-from io import *
 import os
 import re
 import shutil
-import sys
 
 from lxml import etree
 from mrbump.file_info import MTZ_parse

@@ -9,7 +9,6 @@ import os
 
 from lxml import etree
 
-from ....core.CCP4ErrorHandling import *
 from ....core.CCP4PluginScript import CPluginScript
 from ...xia2_dials.script import xia2_dials
 

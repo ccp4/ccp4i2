@@ -21,6 +21,7 @@ import json
 import os
 import pathlib
 import shutil
+import sys
 import traceback
 import xml.etree.ElementTree as ET
 
@@ -30,7 +31,6 @@ from ....core import CCP4ErrorHandling
 from ....core import CCP4Modules
 from ....core import CCP4Utils
 from ....core import CCP4XtalData
-from ....core.CCP4ErrorHandling import *
 from ....core.CCP4Modules import PROCESSMANAGER
 from ....core.CCP4PluginScript import CPluginScript
 from .json2xml import json2xml

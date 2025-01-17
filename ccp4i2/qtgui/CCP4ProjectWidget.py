@@ -42,7 +42,7 @@ from ..core import CCP4File
 from ..core import CCP4Modules
 from ..core import CCP4TaskManager
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CErrorReport, CException
 from ..core.CCP4Modules import LAUNCHER
 from ..core.CCP4Modules import MIMETYPESHANDLER
 from ..core.CCP4Modules import PREFERENCES

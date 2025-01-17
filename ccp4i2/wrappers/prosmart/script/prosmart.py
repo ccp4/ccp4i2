@@ -10,7 +10,7 @@ import unittest
 
 from ....core import CCP4Modules
 from ....core import CCP4Utils
-from ....core.CCP4ErrorHandling import *
+from ....core.CCP4ErrorHandling import SEVERITY_WARNING
 from ....core.CCP4PluginScript import CPluginScript
 
 
@@ -27,7 +27,6 @@ class prosmart(CPluginScript):
                     203 : { 'description' : 'Unable to successfully construct reference model list' },
                     204 : { 'description' : 'Unable to successfully construct target chain list' }
                     }
-   
 
     def processInputFiles(self):
         # Use temp input filename from which prosmart takes output restraints filename

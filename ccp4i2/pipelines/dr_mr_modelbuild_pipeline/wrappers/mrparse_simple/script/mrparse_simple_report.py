@@ -1,5 +1,6 @@
+import os
 
-from ......report.CCP4ReportParser import *
+from ......report.CCP4ReportParser import Report
 
 
 class mrparse_simple_report(Report):
@@ -16,7 +17,6 @@ class mrparse_simple_report(Report):
         if self.jobStatus is not None and not self.jobStatus.lower().count('running'):
             self.outputXml = False
         self.defaultReport()
-        return
 
     def defaultReport(self, parent=None):
         if parent is None:
@@ -44,4 +44,3 @@ class mrparse_simple_report(Report):
         ResultsI2Folder.append('<br></br>')
         #ResultsI2Folder.append('<a href="{0}">Open Results</a>'.format(mrparseurl))
         ResultsI2Folder.append('<a href="{0}">Open Results</a>'.format(mrparse_rep))
-        return

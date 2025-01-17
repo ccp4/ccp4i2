@@ -22,6 +22,7 @@
 import functools
 import os
 import re
+import sys
 
 from PySide2 import QtCore, QtWidgets
 
@@ -29,7 +30,7 @@ from . import CCP4CustomisationGui
 from . import CCP4Widgets
 from ..core import CCP4Container
 from ..core import CCP4WorkflowManager
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CException, SEVERITY_WARNING
 from ..core.CCP4Modules import PROJECTSMANAGER, WEBBROWSER, WORKFLOWMANAGER
 
 

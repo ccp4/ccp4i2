@@ -1,4 +1,4 @@
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
 from ..wrappers.pisa_xml.script.pisa_xml_report import pisa_xml_report
 
 

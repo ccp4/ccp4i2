@@ -69,7 +69,7 @@ from ..core import CCP4Utils
 from ..core import CCP4WorkflowManagerGui
 from ..core.CCP4Bazaar import bzrlib_exists
 from ..core.CCP4DataManager import DATAMANAGER
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
 from ..core.CCP4Modules import TASKMANAGER, PIXMAPMANAGER
 from ..qtcore import CCP4UpdateManager
 from .CCP4TipsOfTheDay import CTipsOfTheDay

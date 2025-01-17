@@ -23,7 +23,6 @@ from lxml import etree
 
 from ....core import CCP4ErrorHandling
 from ....core import CCP4Utils
-from ....core.CCP4ErrorHandling import *
 from ....core.CCP4PluginScript import CPluginScript
 
 

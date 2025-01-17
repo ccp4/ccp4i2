@@ -6,7 +6,7 @@ import xml.etree.ElementTree as etree
 import numpy
 
 from ....core import CCP4Utils
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
 
 
 class privateer_report(Report):

@@ -3,7 +3,7 @@ import sys
 import xml.etree.ElementTree as etree
 
 from ....core import CCP4Utils
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import PARSER, Report
 from ...acedrgNew.script.MyCIFDigestor import MyCIFFile
 
 

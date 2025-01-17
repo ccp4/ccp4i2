@@ -1,7 +1,6 @@
 import os
 import unittest
 
-from .CCP4DbApi import *
 from ..core.CCP4Utils import getTestTmpDir, getCCP4I2Dir
 from ..core.CCP4Annotation import CUserId
 

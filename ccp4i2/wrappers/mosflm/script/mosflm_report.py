@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as etree
 
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
 from ...import_mosflm.script import import_mosflm_report
 
 

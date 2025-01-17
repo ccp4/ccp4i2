@@ -3,7 +3,7 @@ import os
 import xml.etree.ElementTree as etree
 
 from ....core.CCP4Modules import PREFERENCES
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
 
 
 def parse_from_unicode(unicode_str):

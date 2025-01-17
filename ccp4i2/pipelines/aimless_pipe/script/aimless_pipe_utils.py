@@ -3,7 +3,7 @@ import xml.etree.ElementTree as ET
 
 from lxml import etree
 
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import GenericElement
 
 
 # - - - - - - - - - - - - - - - - -

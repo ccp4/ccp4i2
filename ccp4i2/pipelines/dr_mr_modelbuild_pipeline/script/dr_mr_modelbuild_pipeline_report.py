@@ -1,12 +1,13 @@
 import copy
 import json
+import os
 import sys
 import uuid
 
 from ....pipelines.aimless_pipe.script import aimless_pipe_report
 from ....pipelines.aimless_pipe.script.aimless_pipe_utils import *
 from ....pipelines.buccaneer_build_refine_mr.script import buccaneer_build_refine_mr_report
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
 from ....wrappers.aimless.script import aimless_report
 from ....wrappers.ctruncate.script import ctruncate_report
 from ....wrappers.modelcraft.script import modelcraft_report

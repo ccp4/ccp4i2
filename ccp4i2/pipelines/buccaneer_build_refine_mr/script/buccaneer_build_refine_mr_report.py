@@ -1,6 +1,7 @@
 import os
+import sys
 
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report, SEVERITY_WARNING
 
 
 class bucref_report(Report):

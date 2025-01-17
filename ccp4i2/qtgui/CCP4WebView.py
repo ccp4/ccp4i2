@@ -23,6 +23,7 @@
 
 import os
 import re
+import sys
 import traceback
 
 from lxml import etree
@@ -32,7 +33,7 @@ import shiboken2
 from ..core import CCP4Config
 from ..core import CCP4Modules
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CException, SEVERITY_WARNING
 from ..dbapi import CCP4DbUtils
 from ..pimple import MGQTmatplotlib
 from ..qtcore import CCP4CustomMimeTypes

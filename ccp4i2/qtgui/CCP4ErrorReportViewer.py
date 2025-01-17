@@ -29,7 +29,7 @@ from PySide2 import QtCore, QtGui, QtWidgets
 
 from ..core import CCP4Modules
 from ..core import CCP4Utils
-from ..core.CCP4ProgramLog import *
+from ..core.CCP4ErrorHandling import SEVERITY_ERROR, SEVERITY_OK
 from ..dbapi import CCP4DbUtils
 from ..qtgui import CCP4TextViewer
 from ..qtgui import CCP4Widgets

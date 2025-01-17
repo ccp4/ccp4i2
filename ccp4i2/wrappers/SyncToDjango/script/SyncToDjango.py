@@ -8,7 +8,6 @@ from PySide2 import QtCore, QtWidgets
 
 from . import CCP4i2DjangoSession
 from ....core import CCP4Modules
-from ....core.CCP4ErrorHandling import *
 from ....core.CCP4Modules import PREFERENCES
 from ....core.CCP4Modules import PROJECTSMANAGER
 from ....qtgui.CCP4ProjectManagerGui import openProject

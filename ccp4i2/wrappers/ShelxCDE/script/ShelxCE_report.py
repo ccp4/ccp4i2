@@ -1,5 +1,4 @@
 from . import ShelxCDEBaseReport
-from ....report.CCP4ReportParser import *
 
 
 class ShelxCE_report(ShelxCDEBaseReport.ShelxCDEBaseReport):

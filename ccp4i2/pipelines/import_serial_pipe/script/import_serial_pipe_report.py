@@ -1,4 +1,4 @@
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
 
 
 class import_serial_pipe_report(Report):

@@ -32,7 +32,7 @@ from . import CCP4ProjectViewer
 from ..core import CCP4Modules
 from ..core import CCP4TaskManager
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4Exceptions import CException
 
 
 ##@package CCP4ReportWidgets (QtGui) QtWebKit plugins for CCP4 Reports

@@ -1,4 +1,5 @@
-from ....report.CCP4ReportParser import *
+from ....core.CCP4ErrorHandling import SEVERITY_WARNING
+from ....report.CCP4ReportParser import Report
 
 
 class pyphaser_mr_report(Report):

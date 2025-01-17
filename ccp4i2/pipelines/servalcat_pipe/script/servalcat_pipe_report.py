@@ -1,11 +1,13 @@
+import os
 import sys
+import traceback
 import xml.etree.ElementTree as ET
 
 import pandas
 
 from ....wrappers.servalcat.script import servalcat_report
 from ....wrappers.validate_protein.script import validate_protein_report
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
 
 
 class servalcat_pipe_report(Report):

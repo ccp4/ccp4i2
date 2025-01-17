@@ -22,7 +22,6 @@
 import types
 
 from ..core import CCP4Data
-from ..core.CCP4ErrorHandling import *
 
 
 class CReportAnnotation(CCP4Data.CData):

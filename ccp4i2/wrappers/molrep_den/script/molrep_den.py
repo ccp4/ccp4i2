@@ -24,7 +24,7 @@ from lxml import etree
 
 from ....core import CCP4Utils
 from ....core import CCP4XtalData
-from ....core.CCP4ErrorHandling import *
+from ....core.CCP4ErrorHandling import SEVERITY_WARNING
 from ....core.CCP4PluginScript import CPluginScript
 
 

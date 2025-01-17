@@ -44,8 +44,8 @@ from ..core import CCP4TaskManager
 from ..core.CCP4Config import DEVELOPER
 from ..core.CCP4Container import CContainer
 from ..core.CCP4DataManager import DATAMANAGER
-from ..core.CCP4ErrorHandling import *
-from ..core.CCP4Modules import *
+from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
+from ..core.CCP4Modules import COMFILEPATCHMANAGER, PROJECTSMANAGER, TASKMANAGER, WEBBROWSER
 from ..core.CCP4Modules import QTAPPLICATION
 
 

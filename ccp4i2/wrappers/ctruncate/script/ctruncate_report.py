@@ -4,7 +4,7 @@ import math
 import os
 import sys
 
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import GenericElement, Report
 
 
 class ctruncate_report(Report):

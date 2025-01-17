@@ -28,7 +28,7 @@ import traceback
 from PySide2 import QtCore, QtGui, QtWidgets
 
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import *
+from ..core.CCP4ErrorHandling import CException, SEVERITY_ERROR
 from ..core.CCP4Modules import MIMETYPESHANDLER, PREFERENCES
 from . import CCP4AbstractViewer
 from . import CCP4Widgets

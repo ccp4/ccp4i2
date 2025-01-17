@@ -1,6 +1,6 @@
 import sys
+import xml.etree.ElementTree as etree
 
-from ....report.CCP4ReportParser import *
 from ...pointless.script.pointless_report import pointless_report
 
 

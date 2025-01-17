@@ -18,7 +18,6 @@ import gemmi
 
 from ....core import CCP4Container
 from ....core import CCP4XtalData
-from ....core.CCP4ErrorHandling import *
 from ....core.CCP4Modules import PROCESSMANAGER
 from ....core.CCP4PluginScript import CPluginScript
 

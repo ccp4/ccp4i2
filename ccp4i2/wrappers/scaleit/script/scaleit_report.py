@@ -1,7 +1,7 @@
 import sys
 import xml.etree.ElementTree as etree
 
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
 
 
 class scaleit_report(Report):

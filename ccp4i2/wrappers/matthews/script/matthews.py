@@ -3,7 +3,6 @@ import functools
 from PySide2 import QtCore, QtWidgets
 
 from ....core import CCP4Modules
-from ....core.CCP4ErrorHandling import *
 from ....qtgui.CCP4TaskWidget import CTaskWidget
 from ....report import CCP4ReportParser
 

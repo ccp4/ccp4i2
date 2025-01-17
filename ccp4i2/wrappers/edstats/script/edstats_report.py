@@ -7,7 +7,7 @@ import sys
 import xml.etree.ElementTree as etree
 
 from ....core.CCP4ClipperUtils import is_aminoacid
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
 
 
 class edstats_report(Report):

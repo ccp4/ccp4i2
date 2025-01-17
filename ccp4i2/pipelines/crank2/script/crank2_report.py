@@ -1,9 +1,10 @@
 import functools
 import io
 import os
+import xml.etree.ElementTree as etree
 
 from ....report import CCP4RvapiParser
-from ....report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Container, Report
 
 
 dummy_report =  '<html>\n<head>\n<title>Running Crank2</title>\n</head>\n'

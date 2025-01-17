@@ -1,4 +1,6 @@
-from ....report.CCP4ReportParser import *
+import sys
+
+from ....report.CCP4ReportParser import Report
 
 
 class validate_protein_report(Report):
