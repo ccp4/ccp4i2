@@ -12,6 +12,7 @@ from PySide2 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets
 from ..core.CCP4Modules import QTAPPLICATION
 from ..utils.startup import setupEnvironment, startBrowser
 
+
 def getCCP4I2Dir(up=1):
     target = os.path.join(os.path.realpath(sys.argv[0]), "..")
     abstarget = os.path.abspath(target)
@@ -24,7 +25,8 @@ def getCCP4I2Dir(up=1):
         up = up - 1
     return abstarget
 
-if __name__ == '__main__':
+
+def main():
     if False:  # Added to help with debugging segfaults.
         faulthandler.enable()
     #sip.setdestroyonexit(False)
@@ -91,3 +93,7 @@ if __name__ == '__main__':
     else:
         startBrowser(sys.argv[1:], app=app, splash=splash)
         sys.exit(app.exec_())
+
+
+if __name__ == "__main__":
+    main()
