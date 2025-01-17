@@ -9,7 +9,7 @@
      set in ccp4i2/utils/setup.sh
 """
 
-import hklfile
+from ccp4mg import hklfile
 
 from ....core.CCP4PluginScript import CPluginScript
 

@@ -31,6 +31,8 @@ import sys
 import tempfile
 import unittest
 
+from ccp4mg import mmut, pygl_coord
+from ccp4mg.qtgui import UtilityThread
 from lxml import etree
 from PySide2 import QtCore, QtGui
 import Bio
@@ -43,9 +45,6 @@ import Bio.SeqRecord
 import Bio.SeqUtils
 import ccp4mg.mmdb2 as mmdb
 import iotbx
-import mmut
-import pygl_coord
-import UtilityThread
 
 from . import CCP4Container
 from . import CCP4Data

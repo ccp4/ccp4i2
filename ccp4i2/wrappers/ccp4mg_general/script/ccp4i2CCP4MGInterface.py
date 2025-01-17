@@ -4,18 +4,12 @@ import glob
 import os
 import shutil
 
-from global_definitions import get_dispobj
+from ccp4mg import mmdb2 as mmdb, mmut, point_funcs, pygl_coord, sequence_util
+from ccp4mg.python.ui import global_definitions, MolLabel
+from ccp4mg.python.ui.global_definitions import get_dispobj
+from ccp4mg.qtgui import displayTableObjects, MGApplication
+from ccp4mg.qtgui.plugins.Sequence import SequenceViewer
 from PySide2 import QtCore, QtGui, QtWidgets
-import ccp4mg.mmdb2 as mmdb
-import displayTableObjects
-import global_definitions
-import MGApplication
-import mmut
-import MolLabel
-import point_funcs
-import pygl_coord
-import sequence_util
-import SequenceViewer
 
 
 def InstallSaveToi2MenuItem(workDirectory):

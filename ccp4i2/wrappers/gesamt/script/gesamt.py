@@ -3,8 +3,7 @@ import os
 import pathlib
 import re
 
-from ccp4mg import mmut
-from ccp4mg import pygl_coord
+from ccp4mg import mmut, pygl_coord
 from lxml import etree
 
 from ....core import CCP4Utils

@@ -23,8 +23,8 @@ import functools
 import os
 import time
 
+from ccp4mg.qtgui import UtilityThread
 from PySide2 import QtCore, QtWidgets
-import UtilityThread
 
 from . import CCP4Widgets
 from ..core import CCP4Annotation

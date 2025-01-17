@@ -15,9 +15,7 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Apr 2016 - Separate 'remote' server code out from CCP4JobController
 """
 
@@ -29,10 +27,10 @@ import socket
 import subprocess
 import sys
 
+from ccp4mg.qtgui import UtilityThread
 from lxml import etree
-import paramiko
 from PySide2 import QtCore
-import UtilityThread
+import paramiko
 
 from . import CCP4File
 from . import CCP4Utils

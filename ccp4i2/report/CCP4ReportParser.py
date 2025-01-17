@@ -41,7 +41,6 @@ from bs4 import BeautifulSoup # No bs4 in ccp4 so this will not work
 from lxml import etree as lxml_etree
 from lxml import html as lxml_html
 from PySide2 import QtCore, QtGui
-import CCP4MakeMgPicture
 import clipper
 
 from . import CCP4ReportGenerator
@@ -1230,7 +1229,6 @@ class Report( Container ):
             if self.standardise and str(xrtnode.tag) == 'report':
                 xrtnode = self.standardiseXrtReport(xrtnode)
             Container.interpretXrt(self,xrtnode=xrtnode)
-        #self._makeMgPicture = None
 
     def getJobFolder(self):
         return self.jobInfo.get('fileroot')
@@ -1278,19 +1276,9 @@ class Report( Container ):
         return xrtnode
 
     def containsPictures(self):
-        #print 'Report.containsPictures',self._makeMgPicture
-        #if self._makeMgPicture is None or len(self._makeMgPicture.pictureQueue)==0:
         if self.pictureQueue is None:
             self.pictureQueue = self.getPictures()
-        if len(self.pictureQueue) == 0:
-            return False
-        else:
-            return True
-
-    def makeMgPicture(self):
-        if self._makeMgPicture is None:
-            self._makeMgPicture = CCP4MakeMgPicture.CMakeMgPicture(jobInfo=self.jobInfo)
-        return self._makeMgPicture
+        return len(self.pictureQueue) > 0
 
     def standardisePythonReport(self):
         self.children.insert(0,Title(jobInfo = self.jobInfo))
