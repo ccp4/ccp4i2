@@ -20,7 +20,6 @@
    Liz Potterton Jan 2010 - Copied from ccp4mg python/ui/utils.py and converted to Qt
 """
 
-import copy
 import getpass
 import glob
 import os
@@ -37,7 +36,6 @@ import xml.etree.ElementTree as etree_xml
 from lxml import etree
 from PySide2 import QtCore
 import shiboken2
-import win32file
 
 from . import CCP4Data
 from . import CCP4Modules
@@ -663,47 +661,8 @@ def listReMatch(lst,reExp):
 def isAlive(qobj):
     return shiboken2.isValid(qobj)
 
-# Slightly modified from http://timgolden.me.uk/python/win32_how_do_i/see_if_two_files_are_the_same_file.html
-def get_read_handle(filename):
-    if os.path.isdir(filename):
-        dwFlagsAndAttributes = win32file.FILE_FLAG_BACKUP_SEMANTICS
-    else:
-        dwFlagsAndAttributes = 0
-    return win32file.CreateFile (
-        filename,
-        win32file.GENERIC_READ,
-        win32file.FILE_SHARE_READ,
-        None,
-        win32file.OPEN_EXISTING,
-        dwFlagsAndAttributes,
-        None)
-
-def get_unique_id(hFile):
-    (attributes, created_at, accessed_at, written_at, volume, file_hi, file_lo, n_links, index_hi, index_lo) = win32file.GetFileInformationByHandle (hFile)
-    return volume, index_hi, index_lo
-
-def files_are_equal (filename1, filename2, default=False):
-    try:
-        hFile1 = get_read_handle (filename1)
-    except:
-        return default
-    try:
-        hFile2 = get_read_handle (filename2)
-    except:
-        return default
-    try:
-        are_equal = (get_unique_id (hFile1) == get_unique_id (hFile2))
-        hFile2.Close ()
-        hFile1.Close ()
-    except:
-        return default
-    return are_equal
-
-def samefile(f1, f2, default=False):
-    if sys.platform != 'win32':
-        return os.path.samefile(f1,f2)
-    else:
-        return files_are_equal(f1,f2,default=default)
+def samefile(f1, f2):
+    return os.path.samefile(f1,f2)
 
 def zipDirectory(czip, sourceDirectory, rootRelPath=None):
     if rootRelPath is None:
