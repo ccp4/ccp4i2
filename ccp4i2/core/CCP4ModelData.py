@@ -30,7 +30,6 @@ import shutil
 import sys
 import tempfile
 import unittest
-import version
 
 import Bio
 import Bio.Align
@@ -2217,19 +2216,9 @@ class CPdbDataComposition:
 
     def analyseResTypes(self, molHnd, selModel=1):
         new_swig_mmdb = True
-        try:
-            ccp4mg_version_tup = tuple([int(x) for x in version.ccp4mg_version.split('.')])
-        except:
-            ccp4mg_version_tup = (2, 7, 0)
-        if ccp4mg_version_tup >= (2, 8, 0):
-            nChainsp = mmut.intp()
-            chainTable = mmut.GetChainTable(molHnd, selModel, nChainsp)
-            self.nChains = nChainsp.value()
-        else:
-            chainTable = mmdb.newPPCChain()
-            nChains = mmdb.intp()
-            molHnd.GetChainTable(selModel, chainTable, nChains)
-            self.nChains = nChains.value()
+        nChainsp = mmut.intp()
+        chainTable = mmut.GetChainTable(molHnd, selModel, nChainsp)
+        self.nChains = nChainsp.value()
         hydHnd = molHnd.NewSelection()
         hydSel = mmdb.newPPCAtom()
         resHnd = molHnd.NewSelection()
@@ -2247,11 +2236,7 @@ class CPdbDataComposition:
         self.nAtoms = 0
         self.nAtoms = molHnd.GetNumberOfAtoms()
         for n in range(0, self.nChains):
-            if ccp4mg_version_tup >= (2, 8, 0):
-                #print 'analyseResTypes',
-                pc = mmdb.getPCChain(chainTable, n)
-            else:
-                pc = mmdb.CChainPtr(mmdb.getPCChain(chainTable, n))
+            pc = mmdb.getPCChain(chainTable, n)
             chainID = pc.GetChainID()
             self.chains.append(chainID)
             nres = pc.GetNumberOfResidues()
