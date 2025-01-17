@@ -25,12 +25,12 @@ import sys
 import traceback
 import unittest
 
+from ccp4mg import mmdb2
 from lxml import etree
 from mmtbx.command_line import molprobity
 from PySide2 import QtCore
 from rdkit import Chem
 import clipper
-import mmdb2
 
 from . import prosmart_refmac_verdict
 from ....core import CCP4ErrorHandling

@@ -16,8 +16,8 @@
     GNU Lesser General Public License for more details.
 """
 
+import ccp4mg.mmdb2 as mmdb
 import clipper
-import mmdb2 as mmdb
 import mmut
 
 from ....core.CCP4PluginScript import CPluginScript

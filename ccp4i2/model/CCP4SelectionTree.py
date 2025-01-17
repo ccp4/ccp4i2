@@ -23,7 +23,7 @@
 
 import re
 
-import mmdb2 as mmdb
+import ccp4mg.mmdb2 as mmdb
 import mmut
 
 from .. import model

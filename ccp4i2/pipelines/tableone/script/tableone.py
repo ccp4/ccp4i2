@@ -1,13 +1,12 @@
 import math
 import os
 import re
-import sys
 
+from ccp4mg import mmdb2
 from iotbx import mtz
 from lxml import etree
 from mmtbx.command_line import molprobity
 import clipper
-import mmdb2
 
 from ....core.CCP4PluginScript import CPluginScript
 from ....core import CCP4Utils

@@ -29,9 +29,9 @@
         * output files (path) if any
 """
 
+from ccp4mg import mmdb2
 from lxml import etree
 import clipper
-import mmdb2
 
 
 def read_pdb ( pdbin = "undefined" ) :

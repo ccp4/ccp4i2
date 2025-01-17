@@ -31,6 +31,8 @@ import sys
 import tempfile
 import unittest
 
+from lxml import etree
+from PySide2 import QtCore, QtGui
 import Bio
 import Bio.Align
 import Bio.AlignIO
@@ -39,12 +41,10 @@ import Bio.Seq
 import Bio.SeqIO
 import Bio.SeqRecord
 import Bio.SeqUtils
+import ccp4mg.mmdb2 as mmdb
 import iotbx
-from lxml import etree
-import mmdb2 as mmdb
 import mmut
 import pygl_coord
-from PySide2 import QtCore, QtGui
 import UtilityThread
 
 from . import CCP4Container

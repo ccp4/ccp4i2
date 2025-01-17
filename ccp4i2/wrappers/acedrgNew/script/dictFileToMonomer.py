@@ -1,8 +1,8 @@
 import collections
 import sys
 
+from ccp4mg import mmdb2
 import ccp4srs
-import mmdb2
 
 
 def dictFileToMonomer(dictFileName):

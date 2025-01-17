@@ -6,10 +6,10 @@ import shutil
 
 from global_definitions import get_dispobj
 from PySide2 import QtCore, QtGui, QtWidgets
+import ccp4mg.mmdb2 as mmdb
 import displayTableObjects
 import global_definitions
 import MGApplication
-import mmdb2 as mmdb
 import mmut
 import MolLabel
 import point_funcs

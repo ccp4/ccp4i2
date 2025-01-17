@@ -3,8 +3,8 @@ import os
 import re
 import sys
 
+from ccp4mg import mmdb2
 import ccp4srs
-import mmdb2
 
 from .dictFileToMonomer import dictFileToMonomer
 
