@@ -3,9 +3,10 @@ import sys
 
 from lxml import etree
 import gemmi
+import numpy
 
-from .importutils import *
-from .mmcifutils import *
+from .importutils import addXMLelement, ReflectionDataTypes
+from .mmcifutils import CifBlockInfo, printBlockInfo
 
 
 class GetColumn():

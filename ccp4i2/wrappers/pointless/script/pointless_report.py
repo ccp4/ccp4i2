@@ -8,7 +8,7 @@
 import sys
 
 from ....core.CCP4ErrorHandling import SEVERITY_WARNING
-from ....pipelines.aimless_pipe.script.aimless_pipe_utils import *
+from ....pipelines.aimless_pipe.script.aimless_pipe_utils import colourText, displayFile, formatRange, html_linebreak
 from ....report.CCP4ReportParser import Report
 
 

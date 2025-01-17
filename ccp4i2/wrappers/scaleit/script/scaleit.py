@@ -10,7 +10,7 @@ from lxml import etree
 from ....core import CCP4XtalData
 from ....core.CCP4ErrorHandling import CErrorReport
 from ....core.CCP4PluginScript import CPluginScript
-from .scaleit_logscraper import *
+from .scaleit_logscraper import addElement, scaleitLogScraper
 from .scaleit_utils import DatalistCheck
 
 

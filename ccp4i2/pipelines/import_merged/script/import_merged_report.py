@@ -1,7 +1,7 @@
 import os
 import sys
 
-from ....pipelines.aimless_pipe.script.aimless_pipe_utils import *
+from ....pipelines.aimless_pipe.script.aimless_pipe_utils import colourText, html_linebreak
 from ....report.CCP4ReportParser import Report
 from ....wrappers.aimless.script import aimless_report
 from ....wrappers.ctruncate.script import ctruncate_report

@@ -1,7 +1,14 @@
 import sys
 
 from ....report.CCP4ReportParser import Report
-from ....pipelines.aimless_pipe.script.aimless_pipe_utils import *
+from ....pipelines.aimless_pipe.script.aimless_pipe_utils import (
+    colourText,
+    displayFile,
+    html_linebreak,
+    median,
+    SDcorrectionData,
+    selectGraphs,
+)
 
 
 # - - - - - - - - - - - - - - - - -
@@ -2082,7 +2089,7 @@ class aimless_report(Report):
       
   # - - - - - - - - - - - - - - - - -
   # - - - - - - - - - - - - - - - - -
-        
+
 ############################################################################
 if __name__ == "__main__":
 

@@ -6,13 +6,13 @@ Martyn Winn August 2012 - aimless_pipe gui
 Phil Evans 2014
 """
 
+import gemmi
 from PySide2 import QtCore, QtWidgets
 
-from ....pipelines.import_merged.script.dybuttons import *
-from ....pipelines.import_merged.script.mmcifconvert import *
-from ....pipelines.import_merged.script.mmcifutils import *
+from ....pipelines.import_merged.script.dybuttons import ChoiceButtons
+from ....pipelines.import_merged.script.mmcifutils import CifBlockInfo
 from ....qtgui import CCP4TaskWidget
-from .xdstype import *
+from .xdstype import Xdstype
 
 
 class CTaskaimless_pipe(CCP4TaskWidget.CTaskWidget):

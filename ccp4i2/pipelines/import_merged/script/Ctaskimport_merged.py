@@ -4,8 +4,8 @@ from PySide2 import QtCore, QtWidgets
 from ....core.CCP4ErrorHandling import CErrorReport, SEVERITY_WARNING
 from ....qtgui import CCP4XtalWidgets
 from ....qtgui.CCP4TaskWidget import CTaskWidget
-from .dybuttons import *
-from .mmcifutils import *
+from .dybuttons import ChoiceButtons, MyMessageBox
+from .mmcifutils import CifBlockInfo
 
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

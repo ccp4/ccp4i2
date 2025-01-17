@@ -5,7 +5,7 @@ from ....wrappers.aimless.script import aimless_report
 from ....wrappers.ctruncate.script import ctruncate_report
 from ....wrappers.phaser_analysis.script import phaser_analysis_report
 from ....wrappers.pointless.script import pointless_report
-from .aimless_pipe_utils import *
+from .aimless_pipe_utils import colourText, displayFileList
 
 
 class aimless_pipe_report(Report):

@@ -27,11 +27,9 @@ from ....core import CCP4Modules
 from ....core import CCP4Utils
 from ....core import CCP4XtalData
 from ....core.CCP4PluginScript import CPluginScript
-from ....pipelines.aimless_pipe.script.aimless_pipe_utils import *
-from .importutils import *
-from .mmcifconvert import *
-from .mmcifutils import *
-from .mtzimport import *
+from ....pipelines.aimless_pipe.script.aimless_pipe_utils import CellCheck
+from .mmcifconvert import ConvertCIF
+from .mtzimport import ImportMTZ
 
 
 class import_merged(CPluginScript):

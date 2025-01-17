@@ -2,7 +2,7 @@ from lxml import etree
 import gemmi
 import numpy
 
-from .importutils import *
+from .importutils import addXMLelement, ReflectionDataTypes
 
 
 class ImportMTZ():

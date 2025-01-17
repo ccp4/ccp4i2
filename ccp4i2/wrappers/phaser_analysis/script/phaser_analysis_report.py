@@ -3,7 +3,7 @@
 import sys
 
 from ....report.CCP4ReportParser import Report
-from .phaser_analysis_utils import *
+from .phaser_analysis_utils import Tabledata
 
 
 ######################################################################

@@ -20,8 +20,8 @@ from ....core import CCP4XtalData
 from ....core.CCP4Data import CString
 from ....core.CCP4PluginScript import CPluginScript
 from ....core.CCP4XtalData import CUnmergedDataContent
-from .aimless_cifstats import *
-from .aimless_pipe_utils import *
+from .aimless_cifstats import CifStatsExtractFromXML
+from .aimless_pipe_utils import CellCheck
 
 
 class aimless_pipe(CPluginScript):
