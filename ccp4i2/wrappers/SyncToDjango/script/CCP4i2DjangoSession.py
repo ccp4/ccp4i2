@@ -1,3 +1,4 @@
+from http.cookiejar import LWPCookieJar
 from html.parser import HTMLParser
 from io import StringIO
 import email.generator
@@ -10,8 +11,6 @@ import tempfile
 import unicodedata
 import urllib.parse
 import urllib.request
-
-import cookielib
 
 from ....core import CCP4NonGuiProjectUtils
 from ....core import CCP4Utils
@@ -123,7 +122,7 @@ class DjangoSession (object):
         return handler
 
     def cookieHandler(self):
-        self.cookies = cookielib.LWPCookieJar()
+        self.cookies = LWPCookieJar()
         handler = urllib.request.HTTPCookieProcessor(self.cookies)
         return handler
     
