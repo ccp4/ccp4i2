@@ -137,7 +137,6 @@ class CGuiPreferences(CTaskWidget):
     self.openFolder(title='Advanced')
     self.createLine( ['label' ,'The following polling option may be necessary to enable report real time updates on networked systems' ])
     self.createLine( ['widget','FILESYSTEMWATCHERPOLLER','label','Use file system watcher polling mechanism (restart gui)'])
-    self.createLine( ['widget','BZR_DOWNLOAD','label','Enable update of CCP4i2 from code repository (NOT normally recommended!)'])
     self.createLine( ['widget','DBLOCAL_QUIT_RUNNING','label','Allow quitting of ccp4i2 when jobs are running in "Local database mode" (NOT normally recommended!)'])
     self.createLine( ['advice','Deleting temporary files' ])
     self.createLine( ['widget','RETAIN_DIAGNOSTIC_FILES','label','Retain diagnostic files after job run'])

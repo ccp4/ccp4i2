@@ -53,7 +53,6 @@ from . import CCP4PreferencesGui
 from . import CCP4ProjectManagerGui
 from . import CCP4ProjectViewer
 from . import CCP4TextViewer
-from . import CCP4UpdateDialog
 from . import CCP4WebToolBarButtons
 from . import CCP4WebView
 from .. import __version__, __version_date__
@@ -67,7 +66,6 @@ from ..core import CCP4TaskManager
 from ..core import CCP4Update
 from ..core import CCP4Utils
 from ..core import CCP4WorkflowManagerGui
-from ..core.CCP4Bazaar import bzrlib_exists
 from ..core.CCP4DataManager import DATAMANAGER
 from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
 from ..core.CCP4Modules import TASKMANAGER, PIXMAPMANAGER
@@ -522,8 +520,6 @@ class CMenuBar(QtWidgets.QMenuBar):
             self.menuDefinitions['Help'] = ['help_about', 'demo_data_info', 'help_quickstart', 'help_quickexpert', 'help_youtube',
                                         'task_docs', 'cloud_docs', 'help_ccp4i2',
                                         'tips_of_the_day']
-        if bzrlib_exists:
-            self.menuDefinitions['Utilities'][-1].insert(1, 'update_gui')
         # Beware need to define the 'quit' in File menu at startup for the slot to exitBrowser() to work
         # This is likely a mac-specific thing since the quit gets move to application menu
         CCP4GuiUtils.populateMenu(self.parent(), self.menuWidget('Edit'), self.menuDefinition('Edit'), default_icon='')
@@ -895,7 +891,6 @@ class CMainWindow(QtWidgets.QMainWindow):
         QtWidgets.QMainWindow.__init__(self,parent)
         self.setAttribute(QtCore.Qt.WA_DeleteOnClose)
         self.setWindowIcon(mainWindowIcon())
-        # Remove access to bzr as Andrey claims it causes access to repository that is acting badly possibly due to loading
         try:
             self.version = CCP4Update.get_ccp4_str() + ' '
         except:
@@ -1033,8 +1028,6 @@ class CMainWindow(QtWidgets.QMainWindow):
                                                     slot = self.openSendReport,enabled = self.isProjectViewer)
         self.actionDefinitions['update_core'] = dict(text = "Manage CCP4 updates", tip = "Examine, apply or remove CCP4 updates",
                                                      slot = self.um.manage, enabled = self.um.is_unlocked)
-        self.actionDefinitions['update_gui'] = dict(text = "Update CCP4I2", tip = "Fast track update for CCP4 interface",
-                                                    slot = self.openUpdate, enabled = CCP4Modules.PREFERENCES().guiUpdateEnabled)
         self.actionDefinitions['import_task'] = dict(text = "Import task code", tip = "Load new task from compressed file",
                                                      slot = self.openImportTask, enabled = 1)
         self.actionDefinitions['export_task'] = dict(text = "Export task", tip = "Save task to compressed file",
@@ -2423,16 +2416,13 @@ class CBrowserWindow(CMainWindow):
         widget = CCP4ErrorReportViewer.CSendJobError(self, projectId=self.getProject())
         widget.show()
 
-    def openUpdate(self):
-        widget = CCP4UpdateDialog.CUpdateDialog(self)
-        widget.show()
-
     def handleProjectMenuExport(self):
         pass
 
     def openManageImportFiles(self):
         pass
-    
+
+
 class CFindFrame(QtWidgets.QWidget):
 
     findNext = QtCore.Signal()

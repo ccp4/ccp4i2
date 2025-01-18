@@ -11,7 +11,6 @@ from ..core import CCP4Config
 from ..core import CCP4DataManager
 from ..core import CCP4Modules
 from ..core import CCP4ProjectBasedTesting
-from ..core import CCP4Update
 from ..core import CCP4Utils
 from ..qtcore import CCP4Export
 from ..utils import startup
@@ -35,21 +34,6 @@ def quitThread(thread):
     #thread.wait()
     CCP4Modules.QTAPPLICATION(graphical=False).quit()
     sys.exit()
-
-def updateI2():
-    version = 'Unknown - update failed'
-    try:
-        u =CCP4Update.CUpdateForTestSys()
-        u.initialise()
-        version = str(u._original)+' - update failed'
-        u._bzr_run(True)
-        version = str(u._current)
-        print('Current version: ',u._current)
-    except Exception as e:
-        print('ERROR updating CCP4 from bzr')
-        print(e)
-
-    return version
 
 def onTestRunnerComplete(logXmlPath, logXmlRoot, app):
     threads = app.findChildren(QtCore.QThread)
@@ -100,10 +84,6 @@ if __name__ == '__main__':
     # truncating sys.argv to stop the annoying error messages about 'usage'
     # but need to leave something for the CBazaar.initialise to pop()
     del sys.argv[2:]
-    if update:
-        version = updateI2()
-    else:
-        version = 'Unknown - no bzr update'
 
     source = CCP4Utils.getCCP4I2Dir()
     t = time.localtime()
@@ -175,7 +155,7 @@ if __name__ == '__main__':
 
     print('Test results will be saved to: '+os.path.join(outputDirectory,'test-'+startTime+'.log')+' and database '+dbFile)
     log = CCP4ProjectBasedTesting.Logger(os.path.join(outputDirectory,'test-'+startTime+'.log'))
-    log.write('Running CCP4i2 from: '+str(source)+'   Repository version: '+str(version)+'\n')
+    log.write('Running CCP4i2 from: '+str(source)+'\n')
     log.write('Started: '+startTime0+'\n\n\n')
     if pns.xmlOut:
         logXmlPath = os.path.join(outputDirectory,'test-'+startTime+'.xml')

@@ -56,6 +56,3 @@ class CPreferences(CCP4Container.CContainer):
             shutil.copyfile(prefFile, prefFile + '.bak')
         self.saveDataToXml(prefFile)
         self.preferencesSaved.emit()
-
-    def guiUpdateEnabled(self):
-        return bool(self.get('BZR_DOWNLOAD'))

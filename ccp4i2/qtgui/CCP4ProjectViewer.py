@@ -49,7 +49,6 @@ from . import CCP4ProjectManagerGui
 from . import CCP4ProjectWidget
 from . import CCP4TaskWidget
 from . import CCP4TextViewer
-from . import CCP4UpdateDialog
 from . import CCP4WebBrowser
 from . import CCP4WebToolBarButtons
 from . import CCP4WebView
@@ -1905,11 +1904,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         widget = CCP4ErrorReportViewer.CSendJobError(self, projectId=self.taskFrame.openJob.projectId, projectName=self.taskFrame.openJob.projectName)
         widget.show()
 
-    def openUpdate(self):
-        '''Open the update manager'''
-        widget = CCP4UpdateDialog.CUpdateDialog(self)
-        widget.show()
-    
     @QtCore.Slot(list,bool)
     def deleteJob(self, jobIdList, deleteImportFiles=True):
         '''Delete one or more jobs'''
@@ -4813,11 +4807,6 @@ class CTaskMainWindow(CCP4WebBrowser.CMainWindow):
     def handleProjectMenuExport(self):
         pass
 
-    def openUpdate(self):
-        '''Open the update manager'''
-        widget = CCP4UpdateDialog.CUpdateDialog(self)
-        widget.show()
-    
     def openSendReport(self):
         '''Open window to send developer error report'''
         widget = CCP4ErrorReportViewer.CSendJobError(self, projectId=self.taskFrame.openJob.projectId, projectName=self.taskFrame.openJob.projectName)

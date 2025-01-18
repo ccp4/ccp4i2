@@ -1724,8 +1724,6 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
     pass
   def openSendReport(self):
     pass
-  def openUpdate(self):
-    pass
   @staticmethod
   @QtCore.Slot()
   def updateInstances(qobj):
