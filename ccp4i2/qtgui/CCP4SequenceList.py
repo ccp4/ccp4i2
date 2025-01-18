@@ -18,7 +18,6 @@ import sys
 import textwrap
 
 from PySide2 import QtCore, QtGui, QtWidgets
-import sip
 
 
 class SequenceModel(QtCore.QAbstractTableModel):
@@ -566,8 +565,6 @@ class SequenceTableDialog(QtWidgets.QDialog):
         layout.setContentsMargins(0,0,0,0)
 
 if __name__ == "__main__":
-    sip.setdestroyonexit(False)
-
     app = QtWidgets.QApplication(sys.argv)
 
     win = SequenceTable()

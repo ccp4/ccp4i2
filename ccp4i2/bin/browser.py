@@ -29,7 +29,6 @@ def getCCP4I2Dir(up=1):
 def main():
     if False:  # Added to help with debugging segfaults.
         faulthandler.enable()
-    #sip.setdestroyonexit(False)
     top_path = getCCP4I2Dir()
     print('Running CCP4i2 browser from:', top_path)
     print('Python', sys.version)

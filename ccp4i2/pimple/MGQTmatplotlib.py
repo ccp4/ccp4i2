@@ -41,7 +41,6 @@ from matplotlib.figure import Figure
 from matplotlib.font_manager import FontProperties
 from matplotlib.ticker import FuncFormatter, ScalarFormatter
 from pylab import cm
-from PyQt4 import sip
 from scipy import optimize
 import matplotlib
 import matplotlib.gridspec as gridspec
@@ -3935,11 +3934,9 @@ if __name__ == "__main__":
         def drawLineSelector():
             child = selectorWidget.layout().takeAt(0)
             while child:
-                if child:
-                    if hasattr(child,"widget") and child.widget() is not None:
-                        sip.delete(child.widget())
-                    sip.delete(child)
-                    child = selectorWidget.layout().takeAt(0)
+                if hasattr(child, "widget") and child.widget() is not None:
+                    child.widget().deleteLater()
+                child = selectorWidget.layout().takeAt(0)
 
             if win.graph and win.graph.currentWidget() and win.graph.currentWidget().currentWidget():
                 currentGraph = win.graph.currentWidget().currentWidget()
