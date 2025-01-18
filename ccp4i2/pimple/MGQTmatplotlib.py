@@ -26,7 +26,6 @@ import functools
 import getopt
 import glob
 import math
-import msilib
 import os
 import sys
 import tempfile
@@ -722,13 +721,9 @@ class LogGraph(QtWidgets.QWidget):
         for hist in self.histograms:
             if len(hist)>1:
                 if not hasattr(hist['patches'][0],"ccp4_uuid"):
-                    if sys.platform != 'win32':
-                        uuid._uuid_generate_time = None
-                        uuid._uuid_generate_random = None
-                        uuid_str = uuid.uuid4().hex
-                    else:
-                        uuid_str = msilib.gen_uuid().strip('{').strip('}').replace('-','')
-                    hist['patches'][0].ccp4_uuid = uuid_str
+                    uuid._uuid_generate_time = None
+                    uuid._uuid_generate_random = None
+                    hist['patches'][0].ccp4_uuid = uuid.uuid4().hex
                 widget = QtWidgets.QWidget()
                 widgetLayout = QtWidgets.QGridLayout()
                 widget.setLayout(widgetLayout)
@@ -768,11 +763,7 @@ class LogGraph(QtWidgets.QWidget):
         for l in lines:
             if l.get_label() is not None and not l.get_label().endswith('_matplotlib_line_of_best_fit'):
                 if not hasattr(l,"ccp4_uuid"):
-                    if sys.platform != 'win32':
-                        uuid_str = uuid.uuid4().hex
-                    else:
-                        uuid_str = msilib.gen_uuid().strip('{').strip('}').replace('-','')
-                    l.ccp4_uuid = uuid_str
+                    l.ccp4_uuid = uuid.uuid4().hex
                 widget = QtWidgets.QWidget()
                 widgetLayout = QtWidgets.QGridLayout()
                 widget.setLayout(widgetLayout)
@@ -3206,11 +3197,7 @@ class QtMatplotlibCanvas(FigureCanvas):
         for l in axis[0].get_lines():
             if not hasattr(l,"ignore"):
                 if not hasattr(l,"ccp4_uuid"):
-                    if sys.platform != 'win32':
-                        uuid_str = uuid.uuid4().hex
-                    else:
-                        uuid_str = msilib.gen_uuid().strip('{').strip('}').replace('-','')
-                    l.ccp4_uuid = uuid_str
+                    l.ccp4_uuid = uuid.uuid4().hex
                 for theAxis in axis[1:]:
                     for l2t in theAxis.get_lines():
                         if hasattr(l2t,"ccp4_uuid") and l2t.ccp4_uuid == l.ccp4_uuid:
