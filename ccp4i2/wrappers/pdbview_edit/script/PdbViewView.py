@@ -1,6 +1,5 @@
 import sys
 
-from Foundation import NSBundle
 from PySide2 import QtCore, QtWidgets
 import PdbView
 
@@ -10,6 +9,7 @@ if __name__ == "__main__":
   # Check if we're on OS X, first.
   if sys.platform == 'darwin':
       try:
+          from Foundation import NSBundle
           bundle = NSBundle.mainBundle()
           if bundle:
               info = bundle.localizedInfoDictionary() or bundle.infoDictionary()
