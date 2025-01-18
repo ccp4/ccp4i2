@@ -16,54 +16,25 @@ classifiers = [
 ]
 dependencies = [
     "biopython",
+    "dials",
     "django",
+    "dxtbx",
     "gemmi",
     "lxml",
     "matplotlib",
     "numpy",
+    "onedep_api",
+    "paramiko",
+    "psutil",
     "PySide2",
     "pytest",
+    "python-dateutil",
+    "python-docx",
+    "rdkit",
     "requests",
     "scipy",
-    # "acedrg",
-    # "adding_stats_to_mmcif",
-    # "ample",
-    # "ccp4mg",
-    # "ccp4srs",
-    # "clipper",
-    # "cookielib",
-    # "coot_gui_api",
-    # "coot_gui",
-    # "coot",
-    # "dateutil",
-    # "dials",
-    # "docx",
-    # "dxtbx",
-    # "Foundation",
-    # "future",
-    # "gi",
-    # "gtk",
-    # "iotbx",
-    # "mmtbx",
-    # "mrbump",
-    # "mrparse",
-    # "msilib",
-    # "onedep",
-    # "paramiko",
-    # "PdbView",
-    # "phaser_ext",
-    # "phaser",
-    # "phmmerReport",
-    # "psutil",
-    # "pycofe",
-    # "PyQt4",
-    # "pyrvapi",
-    # "rdkit",
-    # "shiboken2",
-    # "simbad",
-    # "sip",
-    # "stat",
-    # "xia2",
+    "shiboken2",
+    "xia2",
 ]
 requires-python = ">=3.9"
 
@@ -79,3 +50,27 @@ version = { attr = "ccp4i2.__version__" }
 
 [tool.setuptools.package-data]
 ccp4i2 = ["*"]
+
+# Non-PyPI dependencies in CCP4:
+# - acedrg
+# - adding_stats_to_mmcif
+# - ample
+# - ccp4mg
+# - ccp4srs
+# - clipper
+# - iotbx
+# - mmtbx
+# - mrbump
+# - mrparse
+# - phaser
+# - phaser_ext
+# - pyrvapi
+# - simbad
+
+# Missing dependencies:
+# - gtk
+# - PdbView
+# - phmmerReport
+# - pycofe
+# - PyQt4
+# - sip
