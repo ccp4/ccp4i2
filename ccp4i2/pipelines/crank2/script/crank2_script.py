@@ -21,8 +21,6 @@ import os
 import sys
 import traceback
 
-from future.utils import raise_
-
 from ....core import CCP4Modules, CCP4Utils, CCP4XtalData
 from ....core.CCP4PluginScript import CPluginScript
 from ....pipelines.crank2.script import crank2_basepipe
@@ -480,14 +478,14 @@ class crank2(CPluginScript):
         try:
           self.reportStatus(CPluginScript.UNSATISFACTORY)
         except RuntimeError:
-          raise_(e,None,sys.exc_info()[2])
+          raise e
       except Exception as e:
         err = str(e) +'\n\n'+str(traceback.format_exc())
         self.appendErrorReport(0, err)
         try:
           self.reportStatus(CPluginScript.FAILED)
         except RuntimeError:
-          raise_(e,None,sys.exc_info()[2])
+          raise e
     else:
       return 0
 
