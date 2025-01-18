@@ -21,4 +21,11 @@
         "--disable=multiple-statements",
         "--disable=trailing-whitespace",
     ],
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/*.egg-info": true,
+        "**/*.pyc": true,
+    }
 }
