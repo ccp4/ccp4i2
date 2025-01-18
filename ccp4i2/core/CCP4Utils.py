@@ -38,11 +38,11 @@ from PySide2 import QtCore
 import shiboken2
 
 from . import CCP4Data
-from . import CCP4Modules
 from .. import __version__
 from ..googlecode import diff_match_patch_py3
 from .CCP4Config import DEVELOPER
 from .CCP4ErrorHandling import CException
+from .CCP4Version import CCP4_VERSION
 
 
 def writeXML(f,t):
@@ -610,18 +610,6 @@ def readTarGzip(fileName, destination=None):
     tarObj.close()
     return next
 
-def getCcp4Version():
-    # Run CCP4 program with -i to get either explicit version info
-    # or version as part of the program banner header which appears before program fails
-    logFile = makeTmpFile(extension='log')
-    CCP4Modules.PROCESSMANAGER().startProcess('fft', ['-i'], logFile=logFile)
-    text = readFile(logFile)
-    m1 = re.search('(.*)patch level(.*)', text)
-    if m1 is None:
-        return None
-    text = m1.groups()[1].strip()
-    return text
-
 def searchVersion(text, programName=None):
     if programName is not None:
         #Split text at program name - for CCP4 progs expect the version on same line
@@ -643,7 +631,7 @@ def searchVersion(text, programName=None):
 def versionLogHeader():
     return (
         f"CCP4i2 version: {__version__}\n"
-        f"Running CCP4 version: {getCcp4Version()}\n"
+        f"Running CCP4 version: {CCP4_VERSION}\n"
         f"Using Python version: {sys.version}\n"
         f"Using Qt version: {QtCore.qVersion()}\n"
     )

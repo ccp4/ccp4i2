@@ -43,7 +43,6 @@ from . import CCP4DataManager
 from . import CCP4ModelData
 from . import CCP4PluginScript
 from . import CCP4TaskManager
-from . import CCP4Update
 from . import CCP4Utils
 from .. import __version__
 from ..dbapi import CCP4DbApi
@@ -94,20 +93,7 @@ class CVersion(CCP4Data.CString):
         return validityObj
 
     def setCurrent(self):
-        try:
-            #MN Change...This uses CCP4Update module to get_revno....importing CCP4Update
-            #is not safe, and in some circumstances does not work, so I have put it within the try except
-            #clause
-            rev = CCP4Update.get_revno()
-        except:
-            rev = 0
-        if rev > 0:
-            self.__dict__['_value'] = 'alpha_rev_' + str(rev)
-        else:
-            try:
-                self.__dict__['_value'] = __version__
-            except:
-                self.__dict__['_value'] = 'Unknown'
+        self.__dict__['_value'] = __version__
 
 
 class CProjectName(CCP4Data.CString):

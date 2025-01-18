@@ -63,12 +63,12 @@ from ..core import CCP4File
 from ..core import CCP4Modules
 from ..core import CCP4ProjectBasedTesting
 from ..core import CCP4TaskManager
-from ..core import CCP4Update
 from ..core import CCP4Utils
 from ..core import CCP4WorkflowManagerGui
 from ..core.CCP4DataManager import DATAMANAGER
 from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
 from ..core.CCP4Modules import TASKMANAGER, PIXMAPMANAGER
+from ..core.CCP4Version import CCP4_VERSION
 from ..qtcore import CCP4UpdateManager
 from .CCP4TipsOfTheDay import CTipsOfTheDay
 
@@ -891,10 +891,7 @@ class CMainWindow(QtWidgets.QMainWindow):
         QtWidgets.QMainWindow.__init__(self,parent)
         self.setAttribute(QtCore.Qt.WA_DeleteOnClose)
         self.setWindowIcon(mainWindowIcon())
-        try:
-            self.version = CCP4Update.get_ccp4_str() + ' '
-        except:
-            self.version = 'DEVELOPMENT CCP4i2'
+        self.version = f"CCP4-{CCP4_VERSION}"
         self.preferenceWindow=None
         self.configWindow=None
         self.fileDialog = None
@@ -1518,7 +1515,7 @@ class CMainWindow(QtWidgets.QMainWindow):
             self.aboutDialog.layout().addWidget(topWidget)
             version = __version__
             date = __version_date__
-            label = QtWidgets.QLabel('Version '+version+' built on '+date+"\n"+'User interface to CCP4 Program Suite version '+ CCP4Utils.getCcp4Version(),self)
+            label = QtWidgets.QLabel('Version '+version+' built on '+date+"\n"+'User interface to CCP4 Program Suite version '+ CCP4_VERSION,self)
             label.setStyleSheet("QLabel { font-size: 14px; font-style: italic; font-weight: bold; }")
             topRightWidget.layout().addWidget(label)
             label = QtWidgets.QLabel(self)
