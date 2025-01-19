@@ -4,7 +4,7 @@ import os
 import sys
 
 from PySide2 import QtCore, QtWidgets
-import PdbView
+from ccp4mg import PdbView  # Needs to be after PySide2 import
 
 
 #workDirectory = "XXXXX_WORK_DIR_XXXXX"
