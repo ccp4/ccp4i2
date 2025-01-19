@@ -6,8 +6,8 @@ import shutil
 import sys
 import time
 
+from ccp4mg.qtgui.plugins.Sequence.phmmerReport import PhmmerReportNoGui
 from lxml import etree
-from phmmerReport import PhmmerReportNoGui
 from PySide2 import QtCore
 
 from ....core import CCP4Utils
