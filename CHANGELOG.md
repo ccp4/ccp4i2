@@ -1,5 +1,12 @@
 # CCP4i2 Changelog
 
+## [2.2.1] - 2025-01-20
+
+- Updated ModelCraft control parameters
+- Refinement weighting text change
+- Fix missing Dummy DbApi entry for ARP/wARP
+- Disabling cryo-EM SPA refinement
+
 ## [2.2.0] - 2025-01-14
 
 - New Servalcat refinement task
