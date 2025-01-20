@@ -191,7 +191,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.closeSubFrame()
     if self.isEditable():
        self.container.inputData.XYZIN.dataChanged.connect( self.modelChanged)
-    self.createLine( [ 'label', 'Experimental data type:', 'widget', 'DATA_METHOD' ])
+    # self.createLine( [ 'label', 'Experimental data type:', 'widget', 'DATA_METHOD' ])
     self.openSubFrame(toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ] )
     self.createLine( [ 'widget', '-browseDb', True, 'HKLIN' ] )
     self.container.inputData.HKLIN.dataChanged.connect( self.hklinChanged )
