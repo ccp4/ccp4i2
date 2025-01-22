@@ -314,8 +314,9 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
   def drawRestraints( self ):
     self.createLine( [ 'subtitle', 'Weights'] )
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOff,['REFINEMENT_MODE']])
-    auto_weight = self.createLine( [ 'label', 'Weight restraints versus experimental data using', 'widget', 'WEIGHT_OPT', 'label', 'weight'] )
-    self.createLine( [ 'label', ':', 'widget', 'WEIGHT' ], toggle = ['WEIGHT_OPT', 'open', [ 'MANUAL' ] ], appendLine=auto_weight )
+    auto_weight = self.createLine( [ 'label', 'Weigh the experimental data using', 'widget', 'WEIGHT_OPT', 'label', 'weight'] )
+    self.createLine( [ 'label', 'of', 'widget', 'WEIGHT' ], toggle = ['WEIGHT_OPT', 'open', [ 'MANUAL' ] ], appendLine=auto_weight )
+    self.createLine( [ 'label', 'versus the restraints' ], appendLine=auto_weight )
     self.createLine( [ 'widget', 'WEIGHT_NO_ADJUST', 'label', 'Do not adjust weight during refinement'], toggle = ['WEIGHT_OPT', 'open', [ 'AUTO' ] ] )
     self.createLine( ['label', 'Bond RMSZ range for weight adjustment:', 'stretch',
                       'widget', 'WEIGHT_TARGET_BOND_RMSZ_RANGE_MIN',
