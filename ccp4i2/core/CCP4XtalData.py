@@ -34,7 +34,7 @@ import tempfile
 import unittest
 
 import clipper
-import hklfile
+from ccp4mg import hklfile
 from lxml import etree
 from PySide2 import QtCore
 
