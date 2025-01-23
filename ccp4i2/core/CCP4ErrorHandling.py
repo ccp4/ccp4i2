@@ -320,7 +320,7 @@ class CErrorReport():
                 traceback.print_exc()
         return element
 
-    def setEtree(self, element=None, checkValidity=True):
+    def setEtree(self, element=None):
         DM = CCP4DataManager.DATAMANAGER()
         TM = CCP4TaskManager.TASKMANAGER()
         body = element.find('ccp4i2_body')
@@ -340,25 +340,9 @@ class CErrorReport():
                             if report['class'] is None:
                                 report['class'] = TM.getClass(clsName)
                     elif name == 'code':
-                        try:
-                            report['code'] = int(e.text)
-                        except:
-                            report['code'] = 0
-                    elif name == 'stack':
-                        try:
-                            report['stack'] = str(e.text)
-                        except:
-                            report['stack'] = ''
-                    elif name == 'details':
-                        try:
-                            report['details'] = str(e.text)
-                        except:
-                            report['details'] = None
-                    elif name == 'description':
-                        try:
-                            report['description'] = str(e.text)
-                        except:
-                            pass
+                        report['code'] = int(e.text) if e.text and e.text.isdecimal() else 0
+                    elif name in {'stack', 'details', 'description'}:
+                        report[name] = str(e.text)
                     elif name == 'severity':
                         if SEVERITY_TEXT.count(str(e.text)):
                             report['severity'] = SEVERITY_TEXT.index(str(e.text))
