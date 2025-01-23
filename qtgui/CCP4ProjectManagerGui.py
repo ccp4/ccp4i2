@@ -1920,10 +1920,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     #  err.warningMessage(title,'Error getting project jobs from database',parent=self)
     #print 'compressProject',jobList
 
-    if jobList is not None:
-        directoriesList = []
-    else:
-        directoriesList = ['CCP4_IMPORTED_FILES','CCP4_PROJECT_FILES']
+    directoriesList = ['CCP4_IMPORTED_FILES','CCP4_PROJECT_FILES']
     from qtcore import CCP4Export
     self.exportThread = CCP4Export.ExportProjectThread(self,projectDir=projectInfo['projectdirectory'],dbxml=dbxml,target=fileName,jobList=jobNumberList,inputFilesList=inputFilesList,directoriesList=directoriesList,)
     self.exportThread.savingJobData.connect(self.updateSavingJobData)
