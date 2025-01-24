@@ -40,7 +40,7 @@ from ..qtgui import CCP4DefEd
 from ..qtgui import CCP4Widgets
 from .CCP4Config import DEVELOPER, GRAPHICAL
 from .CCP4Data import CFloat
-from .CCP4ErrorHandling import CErrorReport, CException
+from .CCP4ErrorHandling import CException
 from .CCP4Modules import QTAPPLICATION
 
 
@@ -78,9 +78,7 @@ class CDataManager:
         self._searchPath = [os.path.join(CCP4Utils.getCCP4I2Dir(), 'core')]
         if GRAPHICAL():
             self._searchPath.extend([os.path.join(CCP4Utils.getCCP4I2Dir(), 'qtgui')])
-        rv = self.buildClassLookup()
-        if len(rv) > 0:
-            print(rv.report())
+        self.buildClassLookup()
 
     def searchPath(self):
         return self._searchPath
@@ -103,14 +101,12 @@ class CDataManager:
 
     def buildClassLookup(self):
         try:
-            myErrorReport = CErrorReport()
             cacheDir = os.path.split(__file__)[0]
             cacheFilePath = os.path.join(cacheDir,"CDataManagerCache.json")
             with open(cacheFilePath,"r") as cacheFile:
                 jsonText = cacheFile.read()
                 compositeDict = json.loads(jsonText)
                 for key in compositeDict:
-                    #print ('Processing lookup', key)
                     lookup = compositeDict.get(key)
                     if key != "toUpper":
                         for lookupKey in lookup:
@@ -118,7 +114,6 @@ class CDataManager:
                     setattr(self, key, lookup)
                     # Check for issues (duplicates in clsLookup)
                     chkset = set()
-                    #chkset.add("CMtzColumn") # add deliberate error
                     if key == "clsLookup":
                         for key in lookup:
                             lookup_cont = lookup[key]
@@ -133,51 +128,29 @@ class CDataManager:
                                 if GRAPHICAL():
                                     QtGui.QMessageBox.warning(None, "Problem Loading CachedLookups JSON", tmpM,
                                                                     "Developer Action Recommended")
-                            #print ("KEY:", key, "  CONT:", lookup[key])
-                    #print (lookup)
-            return myErrorReport
         except:
             print('Falling back to building CDataManager lookups from scratch')
-            return self.buildClassLookupFromScratch()
+            self.buildClassLookupFromScratch()
 
     def buildClassLookupFromScratch(self):
-        
-        myErrorReport = CErrorReport()
-        
-        #print dir(core)
-        #print dir(qtgui)
         modules = inspect.getmembers(core, inspect.ismodule)
         if GRAPHICAL():
             graphModules = inspect.getmembers(qtgui, inspect.ismodule)
             modules = (modules+graphModules)
-        #print "CDataManager.buildClassLookupFromScratch modules:"
-        #for module in modules:
-        #    print module
-        '''
-        for moduleName, module in modules:
-            clsList = inspect.getmembers(module, inspect.isclass)
-            '''
         coreDirSearch = os.path.join(CCP4Utils.getCCP4I2Dir(), 'core', '*.py')
-        #print "#CDataManager.buildClassLookup",coreDirSearch
         coreFiles = glob.glob(coreDirSearch)
-        #print "#CDataManager.buildClassLookup",coreFiles
         coreModules = []
         for coreFile in coreFiles:
             filename, fileextension = os.path.splitext(coreFile)
             fileroot = os.path.basename(filename)
             coreModules.append("core."+fileroot)
-        #print coreModules
-        
         qtguiDirSearch = os.path.join(CCP4Utils.getCCP4I2Dir(), 'qtgui', '*.py')
-        #print "#CDataManager.buildClassLookup",qtguiDirSearch
         qtguiFiles = glob.glob(qtguiDirSearch)
-        #print "#CDataManager.buildClassLookup",qtguiFiles
         qtguiModules = []
         for qtguiFile in qtguiFiles:
             filename, fileextension = os.path.splitext(qtguiFile)
             fileroot = os.path.basename(filename)
             qtguiModules.append("qtgui."+fileroot)
-        #print qtguiModules
         
         allModules = coreModules + qtguiModules
         
@@ -208,9 +181,8 @@ class CDataManager:
         
         compositeDict = {'viewLookup':self.viewLookup, 'widgetLookup':self.widgetLookup, 'clsLookup':self.clsLookup,'toUpper':self.toUpper}
         cacheDir = os.path.split(__file__)[0]
-        #print "CacheDir is", cacheDir
         cacheFilePath = os.path.join(cacheDir,"CDataManagerCache.json")
-        #print "cacheFilePath is",cacheFilePath
+
         class MyEncoder(json.JSONEncoder):
             def default(self,obj):
                 #print "#CTaskManager.MyEncoder Handling case of",obj
@@ -219,13 +191,11 @@ class CDataManager:
                 except:
                     return "UnSerializable Object"
         with open(cacheFilePath,"w") as cacheFile:
-            #print "file open"
             try:
                 jsonText = json.dumps(compositeDict, indent=4, sort_keys=True, separators=(',', ': '), cls=MyEncoder)
                 cacheFile.write(jsonText)
             except Exception as e:
                 print(e)
-        return myErrorReport
 
     def printLookup(self):
         classNameList = list(self.clsLookup.keys())
@@ -234,27 +204,23 @@ class CDataManager:
             print("{0:20} {1:30} {2:30}".format(item, self.clsLookup[item], self.viewLookup.get(self.clsLookup[item], 'No widget')))
 
     def getClass(self, className=''):
-        #print "#CDataManager.getClass", className
         if className in self.clsLookup:
             if self.clsLookup[className].get('class',None) is None:
                 module = importlib.import_module(self.clsLookup[className]['clsModule'])
                 clsName = self.clsLookup[className]['clsName']
                 self.clsLookup[className]['class'] = getattr(module, clsName)
-            #print "#CDataManager.getClass", className, self.clsLookup[className]['class']
             return self.clsLookup[className]['class']
         elif className in self.toUpper:
             if self.clsLookup[self.toUpper[className]].get('class',None) is None:
                 module = importlib.import_module(self.clsLookup[self.toUpper[className]]['clsModule'])
                 clsName = self.clsLookup[self.toUpper[className]]['clsName']
                 self.clsLookup[self.toUpper[className]]['class'] = getattr(module, clsName)
-            #print "#CDataManager.getClass", className, self.clsLookup[self.toUpper[className]]['class']
             return self.clsLookup[self.toUpper[className]]['class']
         elif className in self.widgetLookup:
             if self.widgetLookup[className].get('class',None) is None:
                 module = importlib.import_module(self.widgetLookup[className]['clsModule'])
                 clsName = self.widgetLookup[className]['clsName']
                 self.widgetLookup[className]['class'] = getattr(module, clsName)
-            #print "#CDataManager.getClass", className, self.widgetLookup[className]['class']
             return self.widgetLookup[className]['class']
         else:
             return None
@@ -266,9 +232,7 @@ class CDataManager:
             except:
                 pass
         modelClassName = modelClass.__name__
-        #raise CException(self.__class__, 102)
         widgetClassDict = self.viewLookup.get(modelClassName, None)
-        #print 'getWidgetClass',name,modelClass,widgetClass
         if widgetClassDict is not None:
             if widgetClassDict.get('class',None) is None:
                 module = importlib.import_module(widgetClassDict['clsModule'])
@@ -328,7 +292,6 @@ class CDataManager:
         return widget
 
     def buildQStandardItemModel(self, parent=None, mode=None):
-        myErrorReport = CErrorReport()
         model = QtGui.QStandardItemModel(parent)
         root = model.invisibleRootItem()
         if mode == 'repgen':
@@ -340,7 +303,6 @@ class CDataManager:
                 module, err = CCP4Utils.importFileModule(pyFile)
                 moduleItem = None
                 if module is None:
-                    myErrorReport.append(self.__class__, 107, pyFile, stack=False, details=str(err))
                 clsList = inspect.getmembers(module, inspect.isclass)
                 for name,cls in clsList:
                     if issubclass(cls, CCP4Data.CData) and not ['CData', 'CBaseData', 'CCollection', 'CList', 'CDict', 'CContainer'].count(name):
@@ -356,13 +318,11 @@ class CDataManager:
     def makeHtmlClassListing(self):
         text = {}
         indexText = ''
-        myErrorReport = CErrorReport()   # KJS : seems to have been missing
         pyFileList = CCP4Utils.globSearchPath(self.searchPath(), '*.py')
         for pyFile in pyFileList:
             if os.path.split(pyFile)[1] not in self.EXCLUDE_FILES:
                 module, err = CCP4Utils.importFileModule(pyFile)
                 if module is None:
-                    myErrorReport.append(self.__class__, 107, pyFile, stack=False, details=str(err))
                 moduleName = os.path.splitext(os.path.basename(pyFile))[0]
                 text = '<html>\n'
                 clsList = inspect.getmembers(module, inspect.isclass)
@@ -436,4 +396,3 @@ class testDataManager(unittest.TestCase):
             self.assertTrue(isinstance(widget,CCP4Widgets.CFloatView),'Failed to create CFloatView widget')
         else:
             self.fail('Can not test CCP4DataMananger in non-graphical mode')
-
