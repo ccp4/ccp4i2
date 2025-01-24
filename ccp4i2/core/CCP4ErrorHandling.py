@@ -4,11 +4,11 @@
 
      This library is free software: you can redistribute it and/or
      modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
+     version 3, modified in accordance with the provisions of the
      license to address the requirements of UK law.
  
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
+     You should have received a copy of the modified GNU Lesser General
+     Public License along with this library.  If not, copies may be
      downloaded from http://www.ccp4.ac.uk/ccp4license.php
  
      This program is distributed in the hope that it will be useful,
@@ -19,7 +19,6 @@
    Liz Potterton Aug 2010 - Exception class and definitions of severity
 """
 
-import sys
 import time
 import traceback
 import unittest
@@ -64,7 +63,7 @@ class CErrorReport():
         except:
             pass
 
-    def extend(self, other=None, label=None, recordTime=False, stack=True):
+    def extend(self, other=None, recordTime=False, stack=True):
         if other is None or len(other) == 0 or not hasattr(other,"_reports"):
             return
         for item in other._reports:
@@ -81,7 +80,6 @@ class CErrorReport():
     def count(self, cls=None, code=None):
         n = 0
         for report in self._reports:
-            #print 'CErrorReport.count',cls,report['class']
             if (cls is None or report['class'] == cls) and (code is None or report['code'] == code):
                 n = n + 1
         return n
@@ -91,15 +89,14 @@ class CErrorReport():
             report['details'] = report['details'] + details
 
     def setName(self, name=''):
-        for indx in range(len(self._reports)):
-            self._reports[indx]['name'] = name
+        for report in self._reports:
+            report['name'] = name
 
     def maxSeverity(self):
         maxSev = 0
         for report in self._reports:
             severity = -1
             try:
-                code = report['code']
                 if issubclass(report['class'], CCP4Data.CData):
                     severity = CCP4Data.errorCodeSeverity(report['class'], report['code'])
                 elif  report['code'] in report['class'].ERROR_CODES:
@@ -150,19 +147,15 @@ class CErrorReport():
                         break
         if inclName:
             if user and report.get('label', None) is not None and report['label'] is not NotImplemented:
-                #print 'CErrorReport description', report['label'], '*', desc
-                desc = str(report['label']) + ': ' +  desc 
-                #desc = report['class'].QUALIFIERS['guiLabel'] + ': ' + desc 
+                desc = str(report['label']) + ': ' + desc
             elif 'name' in report and report['name'] is not None:
-                desc = str(report['name']) + ': ' +  str(desc)
+                desc = str(report['name']) + ': ' + str(desc)
         return desc, severity
 
     def report(self, user=False, ifStack=True, mode=0, minSeverity=SEVERITY_UNDEFINED):
         text = ''
-        #print 'CErrorReport.report len',len(self._reports)
         if len(self._reports) > 0:
             for report in self._reports:
-                #print 'CErrorReport.report', report['class'],report['code'], user
                 desc, severity = self.description(report, inclName=True, user=user)
                 if severity == SEVERITY_CRITICAL:
                     text = text + "\nCRITICAL ERROR PLEASE REPORT TO CCP4:"
@@ -172,9 +165,6 @@ class CErrorReport():
                     except:
                         className = str(report['class'])
                     name = str(report.get('name', ''))
-                    #if user:
-                    #  text = text + "\n{3}\n{0} : {2}".format(className, SEVERITY_TEXT[severity], report['code'], desc)
-                    #else:
                     if mode == 0:
                         text = text + "\n{0:20} -{1}- {2}:{3} {4}".format(name, SEVERITY_TEXT[severity], className, report['code'], desc)
                     elif mode == 1:
@@ -193,7 +183,6 @@ class CErrorReport():
                                 text = text + " " + desc
                             else:
                                 text = text + "\n" + desc
-                        #print 'report', className, name, '*', text, '*', desc, mode, user
                     if 'details' in report and report['details'] is not None and len(str(report['details'])) > 0 and report['details'] != 'None':
                         if mode == 1:
                             text = text + ' ' + str(report['details'])
@@ -211,27 +200,11 @@ class CErrorReport():
             return ''
 
     def getStack(self, exc_info=None):
-        formatted_stack = []
-        if exc_info is not None:
-            try:
-                formatted_stack = traceback.format_exception(exc_info[0], exc_info[1], exc_info[2])
-            except:
-                pass
-        else:
-            try:
-                # Try getting a traceback from sys.exc_info()
-                stack = traceback.format_stack(sys.exc_info()[2])
-            except:
-                pass
-            # Just try getting a traceback from here
-            if len(formatted_stack) == 0:
-                try:
-                    formatted_stack = traceback.format_stack()[0:-2]
-                except:
-                    pass
-        if len(formatted_stack) > 0:
-            return formatted_stack
-        else:
+        if exc_info is None:
+            return traceback.format_stack()[0:-2] or None
+        try:
+            return traceback.format_exception(exc_info[0], exc_info[1], exc_info[2])
+        except:
             return None
 
     def warningMessage(self, windowTitle='', message='', jobId=None, parent=None, ifStack=True, minSeverity=SEVERITY_UNDEFINED):
@@ -239,11 +212,9 @@ class CErrorReport():
             message = message + '\n'
         if CCP4Config.GRAPHICAL() and parent is not None:
             print('CException.warningMessage GRAPHICAL', CCP4Config.GRAPHICAL())
-            #QtWidgets.QMessageBox.warning(None, windowTitle, message + self.report())
             m = CCP4MessageBox.CMessageBox(parent, title=windowTitle, message=message,
                                            details=self.report(ifStack=ifStack, minSeverity=minSeverity), jobId=jobId)
             m.show()
-            #print 'CErrorReport.warningMessage', m
         else:
             print(self.report(ifStack=ifStack, minSeverity=minSeverity))
 
@@ -275,7 +246,6 @@ class CErrorReport():
                     ele.append(e)
                 if item.get('stack',None) is not None:
                     e = etree.Element('stack')
-                    #print 'CErrorReport.getEtree stack',item['stack'],type(item['stack']),type(item['stack'][0])
                     text = ''
                     for line in item['stack']:
                         text = text + line
@@ -290,9 +260,7 @@ class CErrorReport():
     def setEtree(self, element=None):
         DM = CCP4DataManager.DATAMANAGER()
         TM = CCP4TaskManager.TASKMANAGER()
-        body = element.find('ccp4i2_body')
-        if body is None:
-            body = element
+        body = element.find('ccp4i2_body') or element
         for ele in body:
             if str(ele.tag) == 'errorReport':
                 report = {}
@@ -328,13 +296,11 @@ class CErrorReport():
 
 
 class CException(CErrorReport, Exception):
-    def __init__(self, cls=None, code=0, details='', name=None, recordTime=False, stack=True, report=None, exc_info=None):
+    def __init__(self, cls=None, code=0, details='', name=None, label=None, stack=True, exc_info=None):
         CErrorReport.__init__(self)
         Exception.__init__(self)
         if cls is not None:
-            self.append(cls, code, details, name, recordTime, stack, exc_info)
-        if report is not None:
-            self.extend(report)
+            self.append(cls, code, details, name, label, False, stack, exc_info)
 
 
 #===========================================================================================
