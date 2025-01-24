@@ -625,7 +625,7 @@ class CData(CObject, CDataQualifiers):
                 else:
                     print('ERROR unable to test because item not built',key)
                     testValidity = CException(self.__class__, 24, name=self.objectPath(),label=self.qualifiers('guiLabel'), stack=False)
-                validityObj.extend(testValidity, label=key)
+                validityObj.extend(testValidity)
         return validityObj
 
     def isSet(self, allowUndefined=False, allowDefault=True, allSet=True):
