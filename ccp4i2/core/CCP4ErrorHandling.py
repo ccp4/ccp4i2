@@ -42,8 +42,6 @@ SEVERITY_ERROR = 4
 SEVERITY_CRITICAL = 5
 SEVERITY_TEXT = ['OK', 'WARNING DATA UNDEFINED', 'WARNING', 'ERROR DATA UNDEFINED', 'ERROR', 'CRITICAL']
 
-STACK_LIMIT = 5
-
 
 def formatExceptionInfo(maxTBlevel=5):
     cla, exc, trbk = sys.exc_info()
@@ -247,14 +245,12 @@ class CErrorReport():
                 stack = traceback.format_stack(sys.exc_info()[2])
             except:
                 pass
-                 
             # Just try getting a traceback from here
             if len(formatted_stack) == 0:
                 try:
                     formatted_stack = traceback.format_stack()[0:-2]
                 except:
                     pass
-        #print 'getStack',formatted_stack,len(formatted_stack)
         if len(formatted_stack) > 0:
             return formatted_stack
         else:
@@ -272,13 +268,6 @@ class CErrorReport():
             #print 'CErrorReport.warningMessage', m
         else:
             print(self.report(ifStack=ifStack, minSeverity=minSeverity))
-
-    '''
-    def getEtree(self):
-        element = etree.Element('report')
-        element.text = self.report()
-        return element
-    '''
 
     def getEtree(self):
         element = etree.Element('errorReportList')
@@ -370,7 +359,6 @@ class CException(CErrorReport, Exception):
             self.extend(report)
 
 
-
 #===========================================================================================
 def TESTSUITE():
     suite = unittest.defaultTestLoader.loadTestsFromTestCase(testError)
@@ -385,9 +373,6 @@ class testError(unittest.TestCase):
     def test1(self):
         e = CException(CCP4Data.CData, 1, 'foo')
         tree = e.getEtree()
-        #text = etree.tostring(tree, pretty_print=True, xml_declaration=True)
-        #print text
         f = CException()
         f.setEtree(tree)
         self.assertEqual(f[0]['code'],1,'Error save/restore CException to etree = wrong code')
-

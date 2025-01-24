@@ -296,10 +296,6 @@ class CNewProjectGui(QtWidgets.QDialog):
 
     self.descriptionWidget.save(projectId)
 
-    '''
-    if self.xtalContents.isChecked() and pView is not None:
-      pView.openTask(taskName='newProject')
-    '''
     self.projectCreated.emit(projectId)
     CCP4Modules.PROJECTSMANAGER().backupDBXML()
     pView = openProject(projectId)

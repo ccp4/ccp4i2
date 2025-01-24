@@ -39,13 +39,11 @@ from . import CCP4PluginScript
 from . import CCP4Utils
 from ..dbapi import CCP4DbApi
 from ..qtgui import CCP4I1Projects
-from ..qtgui import CCP4TaskViewer
 from ..qtgui import CCP4TaskWidget
 from ..report import CCP4ReportParser
 from .CCP4Config import GRAPHICAL, DEVELOPER
-from .CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
-from .CCP4Modules import PREFERENCES
-from .CCP4Modules import WEBBROWSER, PROJECTSMANAGER, WORKFLOWMANAGER, CUSTOMTASKMANAGER
+from .CCP4ErrorHandling import CErrorReport, SEVERITY_WARNING
+from .CCP4Modules import CUSTOMTASKMANAGER, PREFERENCES, PROJECTSMANAGER, WORKFLOWMANAGER
 
 
 # To see the timings for loading modules set TIMING=True
@@ -762,70 +760,7 @@ class CTaskManager:
                     else:
                         taskList.extend(self.moduleLookup[module])
                     tree.append([module, MODULE_TITLES.get(module, module), taskList])
-        #print 'TASKMANAGER.taskTree',tree
-        '''
-          workflows = WORKFLOWMANAGER().getList()
-          if len(workflows)>0:
-            tree.append(['workflows','Workflows',workflows])
-          customtasks =CUSTOMTASKMANAGER().getList()
-          if len(customtasks)>0:
-            tree.append(['customTasks','Custom tasks',customtasks])
-        '''
         return tree
-
-
-    def openDataFile(self, fileName='', editableData=True):    # This only appears to be used in CCP4ProjectWidgetDemo
-        h = CCP4File.CI2XmlHeader()
-        h.loadFromXml(fileName)
-        taskName = str(h.pluginName)
-        widget = self.openTask(taskName, editableData=editableData)
-        if widget is not None:
-            widget.loadData(fileName)
-
-    def openTask(self, taskName, version=None, projectId=None, editableData=True):
-        if not GRAPHICAL():
-            raise CException(self.__class__, 104, 'task name: ' + taskName)
-        defFile = self.lookupDefFile(taskName, version=version)
-        if defFile is None: # KJS : Changed. cf lookup & search.
-            defFile = self.searchDefFile(taskName, version=version)
-            if defFile is None:
-                e = CException(self.__class__, 101, 'task name: ' + taskName)
-                e.warningMessage(windowTitle='Task menu')
-        cls = self.getClass(taskName)
-        if cls is not None:
-            taskTitle= getattr(cls,'TASKTITLE', taskName)
-        else:
-            taskTitle = taskName
-        widget = CCP4TaskViewer.CTaskViewer(parent=WEBBROWSER(), project=projectId)
-        if DEVELOPER():
-            widget.open(fileName=defFile, taskName=taskName, taskTitle=taskTitle, editableData=editableData)
-        else:
-            try:
-                widget.open(fileName=defFile, taskName=taskName, taskTitle=taskTitle, editableData=editableData)
-            except CException as e:
-                e.warningMessage(windowTitle='Task menu')
-                return None
-            except:
-                e = CException(self.__class__, 102, 'task name: ' + taskName)
-                e.warningMessage(windowTitle='Task menu')
-                return None
-        if DEVELOPER():
-            widget.setObjectName(taskName)
-            WEBBROWSER().newTab(widget, taskName)
-            widget.show()
-        else:
-            try:
-                widget.setObjectName(taskName)
-                WEBBROWSER().newTab(widget, taskName)
-                widget.show()
-            except CException as e:
-                e.warningMessage(windowTitle='Task menu')
-                return None
-            except:
-                e = CException(self.__class__, 103, 'task name: ' + taskName)
-                e.warningMessage(windowTitle='Task menu')
-                return None
-        return widget
 
     def searchDefFile(self, name=None, version=None):
         if name is None:
