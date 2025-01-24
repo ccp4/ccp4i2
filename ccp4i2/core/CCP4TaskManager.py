@@ -99,9 +99,8 @@ def TASKMANAGER():
         CTaskManager.insts = CTaskManager()
     return CTaskManager.insts
 
-def LISTTASKS(ifPrint=True):
+def LISTTASKS():
     tm = TASKMANAGER()
-    tm.buildLookup()
     text = '\n\nThe current menu\n\n'
     tree = tm.taskTree()
     for moduleName,moduleTitle,taskList in tree:
@@ -112,8 +111,6 @@ def LISTTASKS(ifPrint=True):
             else:
                 text += "                  {0:30} {1:50}\n".format(taskName, "None")
     text += tm.printLookup()
-    if ifPrint:
-        print(text)
     return text
 
 class CTaskManager:
@@ -637,8 +634,6 @@ class CTaskManager:
 
     def getClass(self, name='', version=None):
         data = self.getTaskData(name, version)
-        #print 'TASKMANAGER.getClass getTaskData',name,data
-        #traceback.print_stack()
         if len(data) == 0:
             data = self.getScriptData(name, version)
         return self.lazyLoadClassForDict(data)

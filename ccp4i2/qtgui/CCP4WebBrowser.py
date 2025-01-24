@@ -1415,7 +1415,7 @@ class CMainWindow(QtWidgets.QMainWindow):
                 rv.warningMessage(parent=self,windowTitle=self.windowTitle(),message='Error recreating task documentation index page')
 
     def listTasks(self):
-        text = CCP4TaskManager.LISTTASKS(ifPrint=False)
+        text = CCP4TaskManager.LISTTASKS()
         fileName = tempfile.mktemp(suffix='.txt')
         CCP4Utils.saveFile(fileName,text)
         widget = CCP4Modules.WEBBROWSER().openFile(fileName)
