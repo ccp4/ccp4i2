@@ -2293,8 +2293,6 @@ class CRunPlugin(CObject):
             self.errorReport.append(self.__class__, 11, details=str(e), stack=False)
             self.reportFailedInitialisation()
             return
-        #print 'CRunPlugin.run self.comFile.header',self.comFile.header
-        reportStack = True
         self.pluginName = str(self.comFile.header.pluginName)
         projectName= str(self.comFile.header.projectName)
         projectId= str(self.comFile.header.projectId)
@@ -2325,7 +2323,7 @@ class CRunPlugin(CObject):
             self.plugin = cls(parent=self, name=name, workDirectory=self.workDirectory, taskName=self.pluginName)
             #print 'CPluginScript.run plugin from TASKMANAGER',self.plugin
         except CException as e:
-            self.errorReport.extend(e, stack=reportStack)
+            self.errorReport.extend(e, stack=True)
             self.reportFailedInitialisation()
             return
         except Exception as e:
@@ -2347,10 +2345,9 @@ class CRunPlugin(CObject):
         try:
             self.plugin.setDbData(handler=self._dbHandler, projectId=projectId, projectName=projectName, jobId=self._dbHandler.masterJobId, jobNumber=self.jobNumber)
         except:
-            self.errorReport.append(self.__class__, 4, self.pluginName, stack=reportStack)
+            self.errorReport.append(self.__class__, 4, self.pluginName, stack=True)
         try:
-            #print 'CRunPlugin.run process',self.pluginName,self._dbHandler.masterJobId
-            ret = self.plugin.process()
+            self.plugin.process()
         except CException as e:
             self.errorReport.extend(e)
             self.plugin.reportStatus(CPluginScript.FAILED)
