@@ -73,11 +73,16 @@ class validate_protein(CPluginScript):
                                                              hklin='F_SIGF_1')
         if self.container.inputData.XYZIN_2.isSet(): # Previous dataset for comparison, if set
             self.previous_model_path = str(self.container.inputData.XYZIN_2)
+        else:  # Just a dirty workaround to prevent iris crashing
+            if self.latest_model_path:
+                self.previous_model_path = self.latest_model_path
         if self.container.inputData.F_SIGF_2.isSet():
             self.previous_reflections_path, _ = self.makeHklin([['F_SIGF_2',
                                                                CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]], 
                                                                hklin='F_SIGF_2')
-            
+        else:  # Just a dirty workaround to prevent iris crashing
+            if self.latest_reflections_path:
+                self.previous_reflections_path = self.latest_reflections_path
         log_string += _print_and_return('\n\n######### Calculating metrics using Iris #########\n')
 
         try:
