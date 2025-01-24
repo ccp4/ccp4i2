@@ -1445,7 +1445,7 @@ class CMainWindow(QtWidgets.QMainWindow):
         try:
             CCP4Utils.zipDirectory(zip,dirPath,rootRelPath=CCP4Utils.getCCP4I2Dir())
         except:
-            err = CException(self.__class__, 202, 'Saving', dirPath, 'to', zipPath)
+            err = CException(self.__class__, 202, f'Saving {dirPath} to {zipPath}')
             err.warningMessage(parent=self,windowTitle='Error creating compressed task file',message='Saving'+str(dirPath))
             return
         try:
