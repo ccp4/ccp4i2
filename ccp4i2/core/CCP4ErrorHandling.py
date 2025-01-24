@@ -43,17 +43,6 @@ SEVERITY_CRITICAL = 5
 SEVERITY_TEXT = ['OK', 'WARNING DATA UNDEFINED', 'WARNING', 'ERROR DATA UNDEFINED', 'ERROR', 'CRITICAL']
 
 
-def formatExceptionInfo(maxTBlevel=5):
-    cla, exc, trbk = sys.exc_info()
-    excName = cla.__name__
-    try:
-        excArgs = exc.__dict__["args"]
-    except KeyError:
-        excArgs = "<no args>"
-    excTb = traceback.format_tb(trbk, maxTBlevel)
-    return (excName, excArgs, excTb)
-
-
 class CErrorReport():
     '''Holds list of errors and warnings'''
     def __init__(self, cls=None, code=0, details=None, name=None, label=None, recordTime=False, stack=True, exc_info=None):
@@ -79,7 +68,6 @@ class CErrorReport():
         if other is None or len(other) == 0 or not hasattr(other,"_reports"):
             return
         for item in other._reports:
-            #if label is not None: item['name'] = label + '_' + item['name']
             if recordTime and item.get('time', None) is None:
                 item['time'] = time.mktime(time.localtime())
             if stack and item.get('stack', None) is None :
@@ -105,16 +93,6 @@ class CErrorReport():
     def setName(self, name=''):
         for indx in range(len(self._reports)):
             self._reports[indx]['name'] = name
-
-    def prependName(self, name=''):
-        #print 'prependName',name,self._reports
-        for item in self._reports:
-            if item['name'] is None:
-                item['name'] = name
-            if len(item['name']) > 0 and not name == item['name']:
-                item['name'] = name + '_' + item['name']
-            else:
-                item['name'] = name
 
     def maxSeverity(self):
         maxSev = 0
