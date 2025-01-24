@@ -833,7 +833,6 @@ class comb_phdmmb(process):
     setattr(self,'rv_res_paral'+hand,[]), setattr(self,'rv_fr_paral'+hand,[])
     setattr(self,'rv_fom_paral'+hand,[]), setattr(self,'rv_R_paral'+hand,[]), setattr(self,'rv_Rfree_paral'+hand,[])
     for i in range(self.GetParam('num_parallel')):
-      #self.rv_res_paral.append( self.rv_plotmb.PlotLine(["x"],["residues paral. "+str(i)], color='#{0:02X}{1:02X}{2:02X}'.format(min(75+6*(i+3),255),min(178+6*(i+3),255),min(197+6*(i+3),255))) )
       getattr(self,'rv_res_paral'+hand).append( self.rv_plotmb.PlotLine(["x"],["residues "+str(i),""], color='#{0:02X}{1:02X}{2:02X}'.format(min(75+6*(i+3),255),min(178+6*(i+3),255),min(197+6*(i+3),255))) )
       getattr(self,'rv_fom_paral'+hand).append( self.rv_plotref.PlotLine(["x"],["FOM "+str(i)], color='#{0:02X}{1:02X}{2:02X}'.format(min(75+6*(i+3),255),min(178+6*(i+3),255),min(197+6*(i+3),255))) )
     for i in range(self.GetParam('num_parallel')):
