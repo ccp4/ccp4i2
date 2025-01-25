@@ -302,7 +302,6 @@ class CDataManager:
             if os.path.split(pyFile)[1] not in self.EXCLUDE_FILES:
                 module, err = CCP4Utils.importFileModule(pyFile)
                 moduleItem = None
-                if module is None:
                 clsList = inspect.getmembers(module, inspect.isclass)
                 for name,cls in clsList:
                     if issubclass(cls, CCP4Data.CData) and not ['CData', 'CBaseData', 'CCollection', 'CList', 'CDict', 'CContainer'].count(name):
@@ -322,7 +321,6 @@ class CDataManager:
         for pyFile in pyFileList:
             if os.path.split(pyFile)[1] not in self.EXCLUDE_FILES:
                 module, err = CCP4Utils.importFileModule(pyFile)
-                if module is None:
                 moduleName = os.path.splitext(os.path.basename(pyFile))[0]
                 text = '<html>\n'
                 clsList = inspect.getmembers(module, inspect.isclass)
