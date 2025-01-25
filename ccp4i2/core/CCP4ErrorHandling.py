@@ -196,8 +196,7 @@ class CErrorReport():
                         for line in report['stack']:
                             text = text + line
             return text[1:]
-        else:
-            return ''
+        return ''
 
     def getStack(self, exc_info=None):
         if exc_info is None:

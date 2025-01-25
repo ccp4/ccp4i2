@@ -15,9 +15,7 @@
      but WITHOUT ANY WARRANTY; without even the implied warranty of
      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See theShostna
      GNU Lesser General Public License for more details.
-"""
 
-"""
    Liz Potterton Aug 2010 - Generic annotation object
 """
 

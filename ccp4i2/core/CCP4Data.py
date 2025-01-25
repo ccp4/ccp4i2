@@ -3498,7 +3498,6 @@ class testDict(unittest.TestCase):
     def test3(self):
         d = CDict(subItem = { 'class' : CIntRange, 'qualifiers' : { 'compare' : -1, 'start' : {'min':0}}})
         e = d.set( { 'foo' : { 'start' : 10, 'end' : 20}} )
-        #print 'testDict.test2',e.report()
         self.assertEqual(e[0]['code'],102,'Setting incorrect dict item does not give correct error code 102')
 
     def test4(self):
