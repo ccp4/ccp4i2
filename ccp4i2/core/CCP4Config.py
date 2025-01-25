@@ -27,34 +27,30 @@ from . import CCP4File, CCP4Utils
 from .. import __version__
 
 
-def DEFCONFIG():
-    if  CConfig.insts is None:
-        CConfig(os.path.join(CCP4Utils.getDotDirectory(),'configs','ccp4i2_config.params.xml'))
+def CONFIG(fileName=None):
+    if CConfig.insts is None:
+        CConfig(fileName)
     return CConfig.insts
 
-def CONFIG(fileName=None, mode='ccp4i2'):
-    if CConfig.insts is None:
-        CConfig(fileName, mode=mode)
-    return CConfig.insts
 
 utf8_parser = etree.XMLParser(encoding='utf-8')
+
 
 def parse_from_unicode(unicode_str):
     s = unicode_str.encode('utf-8')
     return etree.fromstring(s, parser=utf8_parser)
 
+
 class CConfig:
     '''This class should be instantiated when process (browser,jobcontroller) is started'''
     insts = None
 
-    def __init__(self, filename=None, mode='ccp4i2', **kw):
+    def __init__(self, filename=None, **kw):
         if CConfig.insts is None:
             CConfig.insts = self
         self.developer = True
         self.graphical = False
-        self.jobControllerMode = 'server'
         self.dbFile = None
-        self.dbMode ='sqlite'
         self.dbUser = None
         self.maxRunningProcesses = 4
         # search paths for external programs - convention: program name is lower case
@@ -65,18 +61,15 @@ class CConfig:
         if os.path.exists(localFile):
             self.loadDataFromXml(localFile)
         # Load users config file
-        if filename is None and mode is not None:
-            filename = os.path.join(CCP4Utils.getDotDirectory(), 'configs', mode + '_config.params.xml')
-        if filename is not None:
-            if os.path.exists(filename):
-                self.loadDataFromXml(filename)
-            else:
-                self.saveDataToXml(filename)
-        if len(kw) > 0:
-            for key, value in list(kw.items()):
-                if hasattr(self, key):
-                    setattr(self, key, value)
-        #print 'CConfig.init', self.searchPath
+        if filename is None:
+            filename = os.path.join(CCP4Utils.getDotDirectory(), 'configs', 'ccp4i2_config.params.xml')
+        if os.path.exists(filename):
+            self.loadDataFromXml(str(filename))
+        else:
+            self.saveDataToXml(str(filename))
+        for key, value in list(kw.items()):
+            if hasattr(self, key):
+                setattr(self, key, value)
 
     def loadDataFromXml(self, fileName):
         errList = []
@@ -93,11 +86,6 @@ class CConfig:
                     setattr(self, tag, True)
                 elif value.lower() == 'false':
                     setattr(self, tag, False)
-                else:
-                    errList.append(tag)
-            elif tag == 'dbMode':
-                if value in ['sqlite', 'qt_sqlite']:
-                    self.dbMode = value
                 else:
                     errList.append(tag)
             elif tag in ['dbFile', 'dbUser']:
@@ -134,7 +122,7 @@ class CConfig:
 
     def saveDataToXml(self, fileName):
         root = etree.Element('configs')
-        for tag in ['developer', 'graphical', 'qt', 'dbMode', 'dbFile', 'dbUser', 'maxRunningProcesses']:
+        for tag in ['developer', 'graphical', 'qt', 'dbFile', 'dbUser', 'maxRunningProcesses']:
             ele = etree.Element(tag)
             ele.text = str(getattr(self, tag))
             root.append(ele)
@@ -165,19 +153,11 @@ class CConfig:
     def set(self, key='', value=''):
         if ['qt', 'developer', 'graphical'].count(key) and [True, False].count(value):
             setattr(self, key, value)
-        elif key == 'dbMode' and value in ['sqlite']:
-            setattr(self, key, value)
         elif key in ['dbFile', 'dbUser']:
             setattr(self, key, value)
 
 #==============================================FUNCTIONS
 
-def cmpFileDate(file1, file2):
-    if os.path.getmtime(file1) > os.path.getmtime(file1):
-        return 1
-    else:
-        return -1
-  
 def DEVELOPER():
     if not CConfig.insts:
         CConfig()
@@ -188,11 +168,6 @@ def GRAPHICAL():
         CConfig()
     return CConfig.insts.graphical
 
-def DBMODE():
-    if  not CConfig.insts:
-        CConfig()
-    return CConfig.insts.dbMode
-
 def DBFILE():
     if  not CConfig.insts:
         CConfig()
@@ -201,4 +176,4 @@ def DBFILE():
 def DBUSER():
     if  not CConfig.insts:
         CConfig()
-    return CConfig.insts.dbUser 
+    return CConfig.insts.dbUser

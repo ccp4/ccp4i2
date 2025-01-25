@@ -2019,8 +2019,6 @@ class CDatabaseHandler:
                 self.db = CCP4DbApi.CDbApi()
             else:
                 self.db = CCP4DbApi.CDbApi.insts
-            #db = CCP4DbApi.CDbApi(fileName=CCP4DbApi.testQtDb.TESTDBFILE)
-            #self.projectId = self.db.getProjectId(projectName=self.projectName)
         except Exception as e:
             print('Error opening database in CDatabaseHandler.openDb')
             print(e)

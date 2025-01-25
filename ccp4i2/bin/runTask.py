@@ -33,7 +33,7 @@ def quitThread(thread):
 
 if __name__ == '__main__':
     sys.stderr = sys.stdout     # Redirect stderr to stdout
-    parser = argparse.ArgumentParser()     # KJS : Switch to argparse.
+    parser = argparse.ArgumentParser()
     parser.add_argument("xmlIn", help="Default Input File")
     parser.add_argument("-dbxml", "--dbXmlFile", help="Read in a i2 database xml file")
     parser.add_argument("-c", "--configFile", help="Read in an i2 Configuration file")

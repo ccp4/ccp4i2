@@ -397,7 +397,7 @@ class CDbApi(CObject):
         if CDbApi.insts is None:
             CDbApi.insts = self
         if mode is None or fileName is None:
-            mode = CCP4Config.DBMODE()
+            mode = "sqlite"
             fileName = CCP4Config.DBFILE()
             if userName is None: userName =  CCP4Config.DBUSER()
         self._schemaVersion = self.getSchemaVersion()
@@ -7239,31 +7239,6 @@ class testDb(unittest.TestCase):
     pid = self.db.getProjectId('myproject')
     jid = self.db.createJob(pid,'pdbset')
     self.db.commit()
-    """
-    # make config file with reference to test database file
-    config = CCP4Config.CConfig()
-    config.set('dbMode',self.mode)
-    config.set('dbFile',self.TESTDBFILE)
-    config.set('dbUser','me')
-
-    configFile = os.path.join(CCP4Utils.getTestTmpDir(),'CCP4DbApi_test_config.data.xml')
-    print 'test4Task configFile',configFile
-    config.saveDataToXml(configFile)
-    # Set the configFile in JOBCONTROLLER so it is part of arguments to subprocess
-    JC = CCP4Modules.JOBCONTROLLER()
-    JC.setConfigFile(configFile)
-    JC.startTimer()
-
-    controlFile= os.path.join(CCP4Utils.getCCP4I2Dir(),'test','data','test_dbapi.params.xml')
-    self.db.updateJobControlFile(jobId=jid,controlFile=controlFile)
-    self.db.updateJobStatus(jobId=jid,status=JOB_STATUS_QUEUED)
-    self.db.commit()
-
-    time.sleep(30)
-    status = self.db.getJobInfo(jid,'status')
-    print 'test4Task status',status
-    self.assertEqual(status,'Finished','Failed to run task and update database')
-    """
 
 
   def test5glean(self):
