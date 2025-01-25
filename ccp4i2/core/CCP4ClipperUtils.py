@@ -29,53 +29,10 @@
         * output files (path) if any
 """
 
-from ccp4mg import mmdb2
-from lxml import etree
-import clipper
 
-
-def read_pdb ( pdbin = "undefined" ) :
-    log_string = "\n\t--------- clipper-python snippet: read_pdb ---------\n\n"
-    log_string += "\tpdbin: %s\n\n" % pdbin
-
-    xml_root = etree.Element('read_pdb')
-
-    f = clipper.MMDBfile()
-    try:
-        f.SetFlag(mmdb2.MMDBF_IgnoreBlankLines| mmdb2.MMDBF_IgnoreDuplSeqNum | mmdb2.MMDBF_IgnoreNonCoorPDBErrors | mmdb2.MMDBF_IgnoreRemarks)
-    except:
-        pass
-    f.read_file ( pdbin )
-
-    log_string += "\tFile opened and read\n"
-
-    mmol = clipper.MiniMol ()
-    f.import_minimol ( mmol )
-
-    log_string += "\tMiniMol imported\n"
-
-    log_string += "\n\t---------------------------------------------------\n\n"
-
-    return log_string, xml_root, mmol
-
-
-def is_aminoacid ( residue_name = "None" ) :
-    residue_names={ 'UNK', 'ALA', 'GLY', 'VAL', 'LEU', 'ILE', 'PRO', 'PHE', 'TYR', 'TRP', 'SER', 'THR', 'CYS', 'MET', 'ASN', 'GLN', 'LYS', 'ARG', 'HIS', 'ASP', 'GLU' }
-
-    if residue_name == "None" :
-        return False
-
-    if residue_name in residue_names :
-        return True
-    else:
-        return False
-
-
-def is_mainchain ( atom_name = "None" ) :
-
-    atom_names = { 'C', 'O', 'CA', 'N', 'C  A', 'O  A', 'CA A', 'N  A' }
-
-    if atom_name in atom_names :
-        return True
-    else :
-        return False
+def is_aminoacid(residue_name):
+    return residue_name in {
+        'UNK', 'ALA', 'GLY', 'VAL', 'LEU', 'ILE', 'PRO',
+        'PHE', 'TYR', 'TRP', 'SER', 'THR', 'CYS', 'MET',
+        'ASN', 'GLN', 'LYS', 'ARG', 'HIS', 'ASP', 'GLU',
+    }
