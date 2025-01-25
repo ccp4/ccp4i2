@@ -13,6 +13,7 @@
     ],
     "pylint.args": [
         "--disable=bad-indentation",
+        "--disable=bare-except",
         "--disable=invalid-name",
         "--disable=line-too-long",
         "--disable=missing-class-docstring",
