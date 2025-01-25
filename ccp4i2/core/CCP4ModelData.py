@@ -51,6 +51,7 @@ from . import CCP4Data
 from . import CCP4File
 from . import CCP4Modules
 from . import CCP4PluginScript
+from . import CCP4Residues
 from . import CCP4Utils
 from ..model import CCP4SelectionTree
 from ..qtgui import CCP4FileBrowser
@@ -88,36 +89,6 @@ DVSGTVCLSALPPEATDTLNLIASDGPFPYSQDGVVFQNRESVLPTQSYGYYHEYTVITPGARTRGTRRIICGE
 ATQEDYYTGDHYATFSLIDQTC*
     """
 
-
-def MODELINFO(*keys):
-    # Extract data from selection_protocols.py - this is a kludge
-    if not CModelInfo.insts:
-        CModelInfo()
-    return CModelInfo.insts.info(keys)
-
-class CModelInfo:
-    insts = None
-
-    def __init__(self):
-        CModelInfo.insts = self
-        globalVar = {}
-        localVar = {}
-        fileName = os.path.join(CCP4Utils.getCCP4I2Dir(), 'data', 'model_description', 'selection_protocols.py')
-        exec(compile(open(fileName).read(), fileName, 'exec'),globalVar,localVar)
-        self.testDict = localVar
-
-    def info(self, keys=[]):
-        if keys[0] in self.testDict:
-            subD = self.testDict[keys[0]]
-        else:
-            return None
-        for key in keys[1:]:
-            if key in subD:
-                subD = subD[key]
-            else:
-                subD = None
-            break
-        return subD
 
 class CBioPythonSeqInterface:
     '''Interface to BioPython'''
@@ -2098,10 +2069,10 @@ class CPdbData(CCP4File.CDataFileContent):
 
     def loadSequences(self, molHnd):
         self.__dict__['_sequences'] = collections.OrderedDict()
-        amino_acid_code = MODELINFO('amino_acid_code')
-        solventList = MODELINFO('solvent', 'ORDER')
-        soluteList = MODELINFO('solute', 'ORDER')
-        nucleic_acid_code = MODELINFO('nucleic_acid_code')
+        amino_acid_code = CCP4Residues.amino_acid_code
+        solventList = CCP4Residues.solvent
+        soluteList = CCP4Residues.solute
+        nucleic_acid_code = CCP4Residues.nucleic_acid_code
         for chainId in self.composition.peptides:
             self.__dict__['_sequences'][chainId] = ''
             peptideChain = molHnd.GetChain(1, chainId)
@@ -2207,11 +2178,8 @@ class CPdbDataComposition:
         return elements
 
     def resTypeSelCommand(self, resType):
-        resList =  MODELINFO(resType, 'ORDER')
-        com = resList[0]
-        for item in resList[1:]:
-            com = com + ',' + item
-        return com
+        resList = getattr(CCP4Residues, resType, [])
+        return ",".join(resList)
 
     def analyseResTypes(self, molHnd, selModel=1):
         new_swig_mmdb = True
