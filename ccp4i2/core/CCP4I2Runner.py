@@ -716,7 +716,7 @@ class CI2Runner(object):
         print("Returning...")
         return
 
-if __name__ == "__main__":
+def main():
     print("##################################################")
     print("##################################################")
     print("RUNNING NEW CCP4I2Runner")
@@ -750,3 +750,7 @@ if __name__ == "__main__":
         traceback.print_exc()
         
     sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
