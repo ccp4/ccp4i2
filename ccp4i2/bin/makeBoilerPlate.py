@@ -1,4 +1,4 @@
-import argparse
+from argparse import ArgumentParser
 from datetime import datetime
 import getpass
 import os
@@ -7,25 +7,25 @@ import time
 
 from ..core import CCP4TaskManager
 from ..core import CCP4Modules
+from ..utils.startup import setupEnvironment
+
 
 def checkForPythonNameClash(nameRoot):
-    taskManager=CCP4Modules.TASKMANAGER()
-    nameClash = True
-    
+    CCP4Modules.TASKMANAGER()
     scriptClass = nameRoot
     guiClass = nameRoot+"_gui"
     reportClass = nameRoot +"_report"
-    
     for className in [scriptClass, guiClass, reportClass]:
         print("Trying to import ",className,"...")
         try:
-            importedModule = __import__(className)
+            __import__(className)
             print("Proposed class name clashes with something else in the namespace (i.e. import "+className+" already succeeds)")
             return True
         except:
             print("... No clash for className "+className)
     print("Proposed class "+nameRoot+" does not clash with anything in the ccp4i2 python namespace")
     return False
+
 
 def makeScriptDirectory(wrapperScriptDirectory):
     try:
@@ -35,13 +35,12 @@ def makeScriptDirectory(wrapperScriptDirectory):
         print("makeScriptDirectory generated error ", err)
         return 1
 
-if __name__ == "__main__":
-    
+
+def main():
     CCP4I2_TOP= os.path.abspath(os.environ["CCP4I2"])
-    exec(compile(open(os.path.join(CCP4I2_TOP,'utils','startup.py')).read(), os.path.join(CCP4I2_TOP,'utils','startup.py'), 'exec'))
     setupEnvironment(path=CCP4I2_TOP)
     destinations = CCP4TaskManager.MODULE_ORDER
-    parser = argparse.ArgumentParser(description='Initiate CCP4i2 plugin from boiler plate')
+    parser = ArgumentParser(description='Initiate CCP4i2 plugin from boiler plate')
     parser.add_argument('-n','--name', required=True, help='name of the plugin...this will end up as a class name and so should have no spaces')
     parser.add_argument('-m','--maintainer',required=False, default="person@server.com",help='e-mail address of user to register as the maintainer of this plugin')
     parser.add_argument('-u','--user', required=False, help='user to be credited with initiating the def.xml of this task')
@@ -61,9 +60,8 @@ if __name__ == "__main__":
     description = " ".join(parameterNamespace.description)
     
     timestampString=datetime.fromtimestamp(time.time()).isoformat()
-    
-    if parameterNamespace.user is not None: user = parameterNamespace.user
 
+    if parameterNamespace.user is not None: user = parameterNamespace.user
 
     nameClashed = checkForPythonNameClash(nameRoot)
     if nameClashed and not parameterNamespace.overwrite: sys.exit(1)
@@ -99,3 +97,7 @@ if __name__ == "__main__":
     pluginRoot = os.path.split(pluginRoot)[0]
     with open(os.path.join(pluginRoot,"__init__.py"),"w") as pluginFile:
         pluginFile.write("")
+
+
+if __name__ == "__main__":
+    main()

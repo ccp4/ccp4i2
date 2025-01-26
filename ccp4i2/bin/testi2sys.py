@@ -6,23 +6,22 @@ import sys
 import time
 
 from lxml import etree
+from PySide2 import QtCore
 
 from ..core import CCP4Config
 from ..core import CCP4DataManager
 from ..core import CCP4Modules
 from ..core import CCP4ProjectBasedTesting
 from ..core import CCP4Utils
-from ..core.CCP4Utils import getCCP4I2Dir
 from ..qtcore import CCP4Export
 from ..utils import startup
 
 
 def quitThread(thread):
-    print('quitThread',thread); sys.stdout.flush()
-    #thread.quit()
-    #thread.wait()
+    print('quitThread',thread, flush=True)
     CCP4Modules.QTAPPLICATION(graphical=False).quit()
     sys.exit()
+
 
 def onTestRunnerComplete(logXmlPath, logXmlRoot, app):
     threads = app.findChildren(QtCore.QThread)
@@ -36,16 +35,13 @@ def onTestRunnerComplete(logXmlPath, logXmlRoot, app):
             f.write(etree.tostring(logXmlTree,pretty_print=True))
     sys.exit()
 
-if __name__ == '__main__':
 
+def main():
     # Redirect stderr to stdout
     sys.stderr = sys.stdout
     # print 'testi2sys sys.argv',sys.argv
-    top_path = getCCP4I2Dir()
-    exec(compile(open(os.path.join(top_path,'utils','startup.py')).read(), os.path.join(top_path,'utils','startup.py'), 'exec'))
     graphical = False
     parser = argparse.ArgumentParser(description='Run CCP4i2 test project')
-    parser.add_argument('-u', '--update',action='store_true', default=False)
     parser.add_argument('-x', '--xmlOut',action='store_true', default=False)
     parser.add_argument('-c', '--configFile',help='Path to config file', default=None)
     parser.add_argument('-o', '--outputDirectory',help='Path to directory where job test will be unpacked and run', default=None)
@@ -64,10 +60,9 @@ if __name__ == '__main__':
     compressedProjectFile = pns.project
     outputDirectory = pns.outputDirectory
     selectedJobs = pns.jobs
-    update = pns.update
 
     kw = {}
-    for name,defn in CCP4ProjectBasedTesting.MODES.items():
+    for name in CCP4ProjectBasedTesting.MODES:
         kw[name] = getattr(pns, name)
 
     # truncating sys.argv to stop the annoying error messages about 'usage'
@@ -97,14 +92,12 @@ if __name__ == '__main__':
         print("ERROR: compressed project file recognised as file or directory: "+compressedProjectFile)
         sys.exit()
 
-
-
     # Use the specified config file or dbFile
     if configFile is not None:
         config = CCP4Config.CONFIG(configFile)
         print('Running tests using config file:',configFile)
     else:
-        config = loadConfig()
+        config = startup.loadConfig()
     config.set('graphical',graphical)
 
     if outputDirectory is None:
@@ -157,3 +150,7 @@ if __name__ == '__main__':
     testRunner.runTests()
     #print 'testi2sys from testRunner.runTests()'
     sys.exit(app.exec_())
+
+
+if __name__ == '__main__':
+    main()
