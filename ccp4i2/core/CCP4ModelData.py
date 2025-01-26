@@ -52,8 +52,8 @@ from . import CCP4File
 from . import CCP4Modules
 from . import CCP4PluginScript
 from . import CCP4Residues
+from . import CCP4SelectionTree
 from . import CCP4Utils
-from ..model import CCP4SelectionTree
 from ..qtgui import CCP4FileBrowser
 from ..qtgui import CCP4StyleSheet
 from ..wrappers.libcheck.script import libcheck

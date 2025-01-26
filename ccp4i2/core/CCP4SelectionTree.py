@@ -25,7 +25,7 @@ import re
 
 from ccp4mg import mmdb2 as mmdb
 
-from ..core.CCP4ErrorHandling import CException
+from .CCP4ErrorHandling import CException
 
 
 class SelectionParser:
