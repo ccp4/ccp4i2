@@ -455,16 +455,6 @@ def pythonExecutable():
 def getCCP4I2Dir():
     return str(pathlib.Path(__file__).resolve().parent.parent)
 
-def getOSDir():
-    if sys.platform == 'darwin':
-        return os.path.join(getCCP4I2Dir(), 'MacOSX')
-    elif sys.platform[0:5] == 'linux':
-        return os.path.join(getCCP4I2Dir(), 'Linux')
-    elif sys.platform[0:3] == 'win':
-        return os.path.normpath(os.path.join(getCCP4I2Dir(), 'Windows'))
-    else:
-        return ''
-
 def getCCP4Dir():
     try:
         target = os.path.normpath(os.environ.get('CCP4', None))
@@ -642,17 +632,6 @@ def zipDirectory(czip, sourceDirectory, rootRelPath=None):
                 if os.path.isfile(filename): # regular files only
                     arcname = os.path.join(os.path.relpath(root,rootRelPath ), cfile)
                     czip.write(filename, arcname)
-
-
-def getCCP4Exe(program):
-    if sys.platform == 'win32':
-        exe = program + '.exe'
-    else:
-        exe = program
-    ccp4bin = os.path.join( getOSDir(), 'bin', exe)
-    if not os.path.exists(bin):
-        ccp4bin = os.path.join(getCCP4Dir(), 'bin', exe)
-    return ccp4bin
 
 
 def which(program, mode=os.F_OK | os.X_OK, path=None):

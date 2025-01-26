@@ -1000,12 +1000,6 @@ class CI2XmlHeader(CCP4Data.CData):
         self.creationTime.setCurrentTime()
         self.hostName.setCurrentHost()
         self.ccp4iVersion.setCurrent()
-        if sys.platform == 'darwin':
-            self.OS = 'MacOSX'
-        elif sys.platform[0:5] == 'linux':
-            self.OS = 'Linux'
-        elif sys.platform[0:3] == 'win':
-            self.OS = 'Windows'
 
     def loadFromXml(self, fileName=None, checkValidity=True):
         if fileName is None:
@@ -1574,9 +1568,9 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
                     f.header.ccp4iVersion.set(__version__)
                     if sys.platform == 'darwin':
                         f.header.OS.set('MacOSX')
-                    elif sys.platform[0:5] == 'linux':
+                    if sys.platform.startswith('linux'):
                         f.header.OS.set('Linux')
-                    elif sys.platform[0:3] == 'win':
+                    if sys.platform.startswith('win'):
                         f.header.OS.set('Windows')
                     f.header.jobNumber.set(str(asuJob.info["jobnumber"]))
                     print("SETTING JOB NUMBER IN HEADER TO",asuJob.info["jobnumber"])

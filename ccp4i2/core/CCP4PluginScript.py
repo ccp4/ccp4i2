@@ -1527,15 +1527,8 @@ class CPluginScript(CObject):
         return
 
     def joinMtz(self, outfile, infiles):
-        error = CErrorReport()
         logFile = self.makeFileName('LOG', qualifier='mtzjoin')
-        if sys.platform == 'win32':
-            exe = 'cmtzjoin.exe'
-        else:
-            exe = 'cmtzjoin'
-        bin = os.path.join(CCP4Utils.getOSDir(), 'bin', exe)
-        if not os.path.exists(bin):
-            bin = os.path.join(CCP4Utils.getCCP4Dir(), 'bin', exe)
+        bin = shutil.which('cmtzjoin')
         arglist = ['-mtzout', outfile]
         try:
             if len(infiles[0]) == 2:
@@ -1586,14 +1579,8 @@ class CPluginScript(CObject):
         except:
            print("Unable to use dictionaryAccumulator.py to merge dictionaries... will try libcheck instead...")
            print("Warning - the output dictionary from libcheck may not be self-consistent and thus may result in unexpected behaviour downstream.")
-        
-           if sys.platform == 'win32':
-               exe = 'libcheck.exe'
-           else:
-               exe = 'libcheck'
-           bin = os.path.join( CCP4Utils.getOSDir(), 'bin', exe )
-           if not os.path.exists(bin):
-               bin = os.path.join( CCP4Utils.getCCP4Dir(), 'bin', exe )
+
+           bin = shutil.which('libcheck')
            outfile_string = outfile.fullPath.__str__()
            try:
                idx = 0
@@ -1712,9 +1699,7 @@ class CPluginScript(CObject):
         print('CPluginScript.splitMtz', infile, outfiles)
         if logFile is None:
             logFile = self.makeFileName('LOG', qualifier='mtzsplit')
-        bin = os.path.join(CCP4Utils.getOSDir(), 'bin', 'cmtzsplit')
-        if not os.path.exists(bin):
-            bin = os.path.join(CCP4Utils.getCCP4Dir(), 'bin', 'cmtzsplit')
+        bin = shutil.which('cmtzsplit')
         arglist = ['-mtzin', infile]
         try:
             for outfile in outfiles:

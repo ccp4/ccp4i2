@@ -897,9 +897,7 @@ class CMtzDataFile(CCP4File.CDataFile):
         kw.update(keywords)
         kw.update(args)
         error = CErrorReport()
-        cbin = os.path.normpath(os.path.join( CCP4Utils.getOSDir(), 'bin', 'mtz2various' ))
-        if not os.path.exists(cbin):
-            cbin =  os.path.normpath(os.path.join( CCP4Utils.getCCP4Dir(), 'bin', 'mtz2various' ))
+        cbin = shutil.which('mtz2various')
         if hklin is None:
             hklin=self.__str__()
         arglist = ['HKLIN', hklin, 'HKLOUT', hklout]
@@ -928,7 +926,7 @@ class CMtzDataFile(CCP4File.CDataFile):
     def runMtzjoin(self, outfile, infiles):
         error = CErrorReport()
         logFile = os.path.normpath(os.path.splitext(outfile)[0] + '_cmtzjoin.log')
-        cbin = CCP4Utils.getCCP4Exe('cmtzjoin')
+        cbin = shutil.which('cmtzjoin')
         arglist = ['-mtzout', outfile]
         try:
             for name,cols in infiles:
@@ -1076,9 +1074,7 @@ class CMtzDataFile(CCP4File.CDataFile):
         ret = CErrorReport()
         if logFile is None:
             logFile = CCP4Utils.makeTmpFile(cdir=False)
-        cbin = os.path.join(CCP4Utils.getOSDir(), 'bin', 'cmtzsplit')
-        if not os.path.exists(cbin):
-            cbin = os.path.join(CCP4Utils.getCCP4Dir(), 'bin', 'cmtzsplit')
+        cbin = shutil.which('cmtzsplit')
         arglist = ['-mtzin', str(self)]
         for ii in range(min(len(colinList), len(outfiles))):
             try:
@@ -2928,9 +2924,7 @@ class CMiniMtzDataFile(CMtzDataFile):
             return errorReport
         # Run cmtzsplit
         logFile =  os.path.normpath(os.path.join(jobDirectory, self.objectName() + '_mtzsplit.log'))
-        cbin = os.path.normpath(os.path.join(CCP4Utils.getOSDir(), 'bin', 'cmtzsplit'))
-        if not os.path.exists(cbin):
-            cbin = os.path.normpath(os.path.join(CCP4Utils.getCCP4Dir(), 'bin', 'cmtzsplit'))
+        cbin = shutil.which('cmtzsplit')
         arglist = ['-mtzin', self.__str__()]
         arglist.extend(['-mtzout', filename])
         arglist.extend(['-colin', colin,'-colout', colout])
@@ -3281,9 +3275,7 @@ class CObsDataFile(CMiniMtzDataFile):
     def convertObsMtz( self, infile=None, outfile=[], parentPlugin=None ):
         # Expect to use this to convert Fpairs to Fmean
         error = CErrorReport()
-        cbin = os.path.normpath(os.path.join(CCP4Utils.getOSDir(), 'bin', 'cmtzsplit'))
-        if not os.path.exists(cbin):
-            cbin =  os.path.normpath(os.path.join(CCP4Utils.getCCP4Dir(), 'bin', 'cmtzsplit'))
+        cbin = shutil.which('cmtzsplit')
         arglist = ['-mtzin', infile]
         if len(outfile) == 2:
             name, colin = outfile

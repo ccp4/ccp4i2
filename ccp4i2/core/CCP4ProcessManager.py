@@ -168,15 +168,9 @@ class CProcessManager(QtCore.QObject):
         timeout = kw.get('timeout', self.timeout)
         if ifAsync:
             useQProcess = True
+            print(f'Running process {command} asyncronously using QProcess')
         else:
             useQProcess = False
-        if ifAsync:
-            print('Running process ' + str(command) + ' asyncronously using QProcess')
-        # Use exe in i2 bin directory if it exists
-        i2Exe = os.path.join(CCP4Utils.getOSDir(), 'bin', command)
-        if os.path.exists(i2Exe):
-            #print 'Running version of ' + command + ' shipped with CCP4i2: ' + i2Exe
-            command = i2Exe
         argList = []
         cmd = None
         if interpreter is not None:
