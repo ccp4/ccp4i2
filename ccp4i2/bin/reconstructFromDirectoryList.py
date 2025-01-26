@@ -7,12 +7,11 @@ import tempfile
 
 from lxml import etree
 
-from . import importDir
-from . import reconstructDBFromXML
+from ..utils import importDir
+from ..utils import reconstructDBFromXML
 
 
-if __name__ == "__main__":
-
+def main():
     parser = argparse.ArgumentParser(usage="A script to convert a list of projectdirectories in a file to CCP4I2 format project exprot files (.ccp4_export)")
     parser.add_argument('--inputFileName', help='Filename listing input projects',required=True)
     parser.add_argument('--dbFile', help='Output database filename',required=True)
@@ -82,4 +81,3 @@ if __name__ == "__main__":
         print("Saved backup database to",fileName)
         print("############################################################")
         conbak.close()
-

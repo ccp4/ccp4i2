@@ -9,7 +9,7 @@ from ..core import CCP4Config
 from ..core import CCP4Modules
 from ..dbapi import CCP4DbApi
 from ..qtcore import CCP4Export
-from .QApp import CGuiApplication
+from ..utils.QApp import CGuiApplication
 
 
 class CompressClass(QtCore.QObject):
@@ -59,11 +59,13 @@ class CompressClass(QtCore.QObject):
     def run(self):
         self.exportThread.start()
 
+
 def startDb(parent=None, fileName=None, mode='sqlite', userName=None, userPassword=None,**kw):
     db = CCP4DbApi.CDbApi(parent=parent, fileName=fileName, mode=mode, createDb=True, userName=userName, userPassword=userPassword, loadDiagnostic=kw.get('loadDiagnostic',True))
     return db
 
-if __name__ == "__main__":
+
+def main():
 
     app = CGuiApplication(sys.argv)
     CCP4Config.CONFIG().set('graphical', False)

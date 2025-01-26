@@ -61,12 +61,13 @@ class CompressClass(QtCore.QObject):
     def run(self):
         self.exportThread.start()
 
+
 def startDb(parent=None, fileName=None, mode='sqlite', userName=None, userPassword=None,**kw):
     db = CCP4DbApi.CDbApi(parent=parent, fileName=fileName, mode=mode, createDb=True, userName=userName, userPassword=userPassword, loadDiagnostic=kw.get('loadDiagnostic',True))
     return db
 
-if __name__ == "__main__":
 
+def main():
     app = CGuiApplication(sys.argv)
     CCP4Config.CONFIG().set('graphical', False)
     CCP4Config.CONFIG().set('qt', True)

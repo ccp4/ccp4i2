@@ -9,8 +9,8 @@ import tempfile
 from lxml import etree
 from PySide2 import QtCore, QtWidgets
 
-from . import importDir
-from . import reconstructDBFromXML
+from ..utils import importDir
+from ..utils import reconstructDBFromXML
 
 
 class ReconstructBrowserDialog(QtWidgets.QDialog):
@@ -87,7 +87,8 @@ class ReconstructBrowserDialog(QtWidgets.QDialog):
         okButton.clicked.connect(self.accept)
         addButton.clicked.connect(self.addDirectory)
 
-if __name__ == "__main__":
+
+def main():
     app = QtWidgets.QApplication(sys.argv)
     win = ReconstructBrowserDialog()
     win.setWindowTitle("Select project directories to reconstruct from")
@@ -159,4 +160,3 @@ if __name__ == "__main__":
         print("Saved backup database to",fileName)
         print("############################################################")
         conbak.close()
-

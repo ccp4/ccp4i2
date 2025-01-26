@@ -6,14 +6,16 @@ import tempfile
 
 from lxml import etree
 
-from . import importDir
+from ..utils import importDir
 
 
 utf8_parser = etree.XMLParser(encoding='utf-8')
 
+
 def parse_from_unicode(unicode_str):
     s = unicode_str.encode('utf-8')
     return etree.fromstring(s, parser=utf8_parser)
+
 
 def reconstruct(inputFileName,fileName):
     with open(inputFileName, 'r') as infile: 
@@ -76,8 +78,7 @@ def reconstruct(inputFileName,fileName):
         print("Saved backup database to",fileName)
         print("############################################################")
 
-if __name__ == "__main__":
-
+def main():
     parser = argparse.ArgumentParser(usage="A script to convert a list of projectdirectories in a file to CCP4I2 format project exprot files (.ccp4_export)")
     parser.add_argument('--inputFileName', help='Filename listing input projects',required=True)
     parser.add_argument('--dbFile', help='Output database filename',required=True)
@@ -89,5 +90,4 @@ if __name__ == "__main__":
         #argparse should stop us ever getting here...
         print(parser.usage)
         sys.exit()
-
     reconstruct(inputFileName,fileName)

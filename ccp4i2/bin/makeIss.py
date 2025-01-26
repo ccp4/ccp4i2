@@ -71,9 +71,10 @@ def search(root,path,output):
 
   return output
 
-output = HEAD
-output = search(ROOT,None,output)
-output = output + FOOT
-f = open(os.path.join(ROOT,'inno_i2.iss'),'w')
-f.write(output)
-f.close()
+def main():
+  output = HEAD
+  output = search(ROOT,None,output)
+  output = output + FOOT
+  f = open(os.path.join(ROOT,'inno_i2.iss'),'w')
+  f.write(output)
+  f.close()
