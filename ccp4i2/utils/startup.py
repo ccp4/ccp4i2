@@ -41,7 +41,6 @@ from ..dbapi import CCP4DbApi
 from ..qtcore import CCP4HTTPServerThread
 from ..qtgui import CCP4BackupDBBrowser
 from ..qtgui import CCP4DbManagerGui
-from ..qtgui import CCP4DefEd
 from ..qtgui import CCP4StyleSheet
 from ..qtgui import CCP4WebBrowser
 from ..qtgui.CCP4TipsOfTheDay import CTipsOfTheDay
@@ -260,11 +259,6 @@ def startBrowser(args, app=None, splash=None):
         tipsOfTheDay = CTipsOfTheDay()
         tipsOfTheDay.exec_()
 
-def startDefEd():
-    pars = CCP4Config.CConfig(qt=True, graphical=True, developer=True)
-    defEd = CCP4DefEd.CDefEd()
-    defEd.raise_()
-    return defEd
 
 def startJobController():
     print('Starting Job Controller')
