@@ -66,7 +66,3 @@ def main():
         runPlugin.finished.connect(functools.partial(quitThread, runPlugin))
         runPlugin.run()
         sys.exit(app.exec_())
-
-
-if __name__ == '__main__':
-    main()

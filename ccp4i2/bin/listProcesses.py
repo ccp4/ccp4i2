@@ -20,7 +20,7 @@ def getUserId():
         return None
 
 
-if __name__ == '__main__':
+def main():
 
     containsList = ['ccp4']
 

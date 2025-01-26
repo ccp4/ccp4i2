@@ -50,7 +50,3 @@ def main():
     f = open(outputFile,'w')
     f.write(text)
     f.close()
-
-
-if __name__ == '__main__':
-    main()

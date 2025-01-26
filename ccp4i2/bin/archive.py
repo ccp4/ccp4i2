@@ -261,32 +261,8 @@ class CCP4i2DjangoSession(DjangoSession):
         response = self.getURLWithValues(self.baseURL+'?'+command, values)
         return json.loads(response.read())
 
-if __name__ == '__main__':
-    def exerciseGet():
-        response = djangoSession.getURLWithValues(sys.argv[1]+"?listProjects",{})
-        print(json.loads(response.read()))
 
-    def exerciseCreateProject(projectName):
-        form = djangoSession.multiPartForm(sys.argv[1]+'/createProject')
-        form.add_field('title',projectName)
-        print(form.__str__())
-        
-        request = form.get_request()
-        print()
-        print('OUTGOING DATA:')
-        print(request.get_data())
-
-        response = djangoSession.openRequest(request)
-        print()
-        print('SERVER RESPONSE:')
-        print(response.read())
-    
-    baseURL = None
-    username=None
-    password=None
-    projectName=None
-    mode='Push'
-    
+def main():
     #First check for old syntax: a list contaiing password etc
     dashedArgs = [arg for arg in sys.argv[1:] if arg.startswith('-')]
     if len(sys.argv) == 5 and len(dashedArgs) == 4:
@@ -325,12 +301,3 @@ if __name__ == '__main__':
             for valuePair in tokens[1:]:
                 values[valuePair.split('=')[0]] = valuePair.split('=')[1] 
             print(ccp4i2DjangoSession.queryDb(command,values))
-
-'''
-    ccp4i2DjangoSession = CCP4i2DjangoSession(sys.argv[1],sys.argv[2],sys.argv[3])
-
-
-    #exerciseCreateProject('AAAnEmptyProject')
-    #exerciseGet()
-    ccp4i2DjangoSession.pushProject(sys.argv[4])
-'''

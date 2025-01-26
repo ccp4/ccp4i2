@@ -80,7 +80,3 @@ def main():
     else:
         startBrowser(sys.argv[1:], app=app, splash=splash)
         sys.exit(app.exec_())
-
-
-if __name__ == "__main__":
-    main()

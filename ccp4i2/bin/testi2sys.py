@@ -150,7 +150,3 @@ def main():
     testRunner.runTests()
     #print 'testi2sys from testRunner.runTests()'
     sys.exit(app.exec_())
-
-
-if __name__ == '__main__':
-    main()

@@ -97,7 +97,3 @@ def main():
     pluginRoot = os.path.split(pluginRoot)[0]
     with open(os.path.join(pluginRoot,"__init__.py"),"w") as pluginFile:
         pluginFile.write("")
-
-
-if __name__ == "__main__":
-    main()

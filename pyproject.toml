@@ -40,8 +40,16 @@ requires-python = ">=3.9"
 
 [project.scripts]
 ccp4i2 = "ccp4i2.__main__:main"
-ccp4i2-build-caches = "ccp4i2.bin.buildCaches:main"
+i2archive = "ccp4i2.bin.i2ArchiveUtils:main"
+i2buildCaches = "ccp4i2.bin.buildCaches:main"
+i2defEd = "ccp4i2.bin.defEd:main"
+i2listProcesses = "ccp4i2.bin.listProcesses:main"
+i2makeBoilerPlate = "ccp4i2.bin.makeBoilerPlate:main"
+i2makeReport = "ccp4i2.bin.makeReport:main"
+i2reconstructDB = "ccp4i2.utils/reconstructBrowser:main"
 i2run = "ccp4i2.core.CCP4I2Runner:main"
+i2runTask = "ccp4i2.bin.runTask:main"
+i2testSys = "ccp4i2.bin.testi2sys:main"
 
 [project.urls]
 Source = "https://github.com/ccp4/ccp4i2"
