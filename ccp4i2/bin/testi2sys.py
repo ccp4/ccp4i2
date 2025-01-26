@@ -12,21 +12,10 @@ from ..core import CCP4DataManager
 from ..core import CCP4Modules
 from ..core import CCP4ProjectBasedTesting
 from ..core import CCP4Utils
+from ..core.CCP4Utils import getCCP4I2Dir
 from ..qtcore import CCP4Export
 from ..utils import startup
 
-
-def getCCP4I2Dir(up=1):
-    target = os.path.join(os.path.realpath(sys.argv[0]),"..")
-    abstarget = os.path.abspath(target)
-    splittarget = abstarget.split()
-    if splittarget.count('ccp4i2'):
-        splittarget.reverse()
-        up = splittarget.index('ccp4i2')
-    while up>0:
-        abstarget = os.path.dirname(abstarget)
-        up = up -1
-    return abstarget
 
 def quitThread(thread):
     print('quitThread',thread); sys.stdout.flush()

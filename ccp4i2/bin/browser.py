@@ -10,20 +10,8 @@ import time
 from PySide2 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets
 
 from ..core.CCP4Modules import QTAPPLICATION
+from ..core.CCP4Utils import getCCP4I2Dir
 from ..utils.startup import setupEnvironment, startBrowser
-
-
-def getCCP4I2Dir(up=1):
-    target = os.path.join(os.path.realpath(sys.argv[0]), "..")
-    abstarget = os.path.abspath(target)
-    splittarget = abstarget.split()
-    if splittarget.count('ccp4i2'):
-        splittarget.reverse()
-        up = splittarget.index('ccp4i2')
-    while up > 0:
-        abstarget = os.path.dirname(abstarget)
-        up = up - 1
-    return abstarget
 
 
 def main():

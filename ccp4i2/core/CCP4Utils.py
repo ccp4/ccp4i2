@@ -23,6 +23,7 @@
 import getpass
 import glob
 import os
+import pathlib
 import re
 import shutil
 import socket
@@ -450,36 +451,9 @@ def pythonExecutable():
         return os.path.join(os.environ['PYTHONHOME'], 'bin', 'python')
     else:
         return "python"
-    '''
-    if sys.platform == 'darwin':
-        return os.path.join(getCCP4I2Dir(),'bin','Python')
-    else:
-        return os.path.join(os.environ['CCP4MG'],'pythondist','bin','python')
-    '''
 
-'''  
-def getCCP4I2Dir(up=1):
-  target = os.environ.get('CCP4I2_TOP',None)
-  #print 'CCP4Utils.getCCP4I2Dir environ',target
-  if target is not None:
-    return os.path.abspath(target)
-  else:
-    target = os.path.join(os.path.abspath(sys.argv[0]),"..")
-    abstarget = os.path.abspath(target)
-    splittarget = abstarget.split('/')
-    if splittarget.count('ccp4i2'):
-      splittarget.reverse()
-      up = splittarget.index('ccp4i2')
-    while up>0:
-      abstarget = os.path.dirname(abstarget)
-      up = up -1
-    #print 'CCP4Utils.getCCP4I2Dir Environment variable CCP4I2_TOP not defined - trying ',abstarget
-    return abstarget
-''' 
-
-def getCCP4I2Dir(**kw):
-    f = os.path.normpath(__import__('core.CCP4Utils').__file__)
-    return os.path.split(os.path.split(f)[0])[0]
+def getCCP4I2Dir():
+    return str(pathlib.Path(__file__).resolve().parent.parent)
 
 def getOSDir():
     if sys.platform == 'darwin':
@@ -490,9 +464,6 @@ def getOSDir():
         return os.path.normpath(os.path.join(getCCP4I2Dir(), 'Windows'))
     else:
         return ''
-
-def getTestSysDir():
-    return os.path.join(getCCP4I2Dir(), 'testsysdefs')
 
 def getCCP4Dir():
     try:

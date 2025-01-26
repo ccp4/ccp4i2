@@ -51,25 +51,10 @@ from .QApp import CGuiApplication
 class DatabaseFailException(Exception):
     pass
 
-def getCCP4I2Dir(up=1):
-    target = os.environ.get('CCP4I2_TOP', None)
-    if target is not None:
-        return os.path.abspath(target)
-    else:
-        target = os.path.join(os.path.abspath(sys.argv[0]), "..")
-        abstarget = os.path.abspath(target)
-        splittarget = abstarget.split('/')
-        if splittarget.count('ccp4i2'):
-            splittarget.reverse()
-            up = splittarget.index('ccp4i2')
-        while up > 0:
-            abstarget = os.path.dirname(abstarget)
-            up = up - 1
-        return abstarget
 
 def setupEnvironment(path=''):
     if not path:
-        path = getCCP4I2Dir()
+        path = CCP4Utils.getCCP4I2Dir()
     os.environ["CCP4I2_TOP"] = path
 
 def testForCCP4Environment():
@@ -85,18 +70,6 @@ def startGraphics():
     CCP4Config.CONFIG().set('graphical', True)
     CCP4Config.CONFIG().set('qt', True)
     return app
-
-def setQtWidgetStyle():
-    return
-    try:
-        factory = QtWidgets.QStyleFactory()
-        preferences = CCP4Modules.PREFERENCES()
-        stylePref = CCP4Modules.PREFERENCES().WINDOWS_STYLE.__str__()
-        style = factory.create(stylePref)
-        CCP4Modules.QTAPPLICATION().setStyle(style)
-    except Exception as e:
-        print('ERROR setting window style..')
-        print(e)
 
 def createMissingDATABASEdbXML():
     proj_dir_list0=CCP4Modules.PROJECTSMANAGER().db().getProjectDirectoryList()
@@ -222,7 +195,6 @@ def startBrowser(args, app=None, splash=None):
         job_cont.setDbFile(kw['dbFileName'])
     launcher = CCP4Modules.LAUNCHER()
     #print 'startup.startBrowser app',app
-    #setQtWidgetStyle()
     createMissingDATABASEdbXML()
     def pushLocalDB():
         try:
@@ -505,4 +477,3 @@ def startPrintHandler(app):
     sys.stderr = printHandler
     app.aboutToQuit.connect(printHandler.exit)
     # Output version info to the print log
-

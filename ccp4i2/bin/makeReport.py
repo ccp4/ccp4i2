@@ -3,22 +3,11 @@ import sys
 
 from lxml import etree
 
+from ..core.CCP4Utils import getCCP4I2Dir
 from ..report import CCP4ReportGenerator, CCP4ReportParser
 
-def getCCP4I2Dir(up=1):
-    target = os.path.join(os.path.realpath(sys.argv[0]),"..")
-    abstarget = os.path.abspath(target)
-    splittarget = abstarget.split()
-    if splittarget.count('ccp4i2'):
-        splittarget.reverse()
-        up = splittarget.index('ccp4i2')
-    while up>0:
-        abstarget = os.path.dirname(abstarget)
-        up = up -1
-    return abstarget
 
-if __name__ == '__main__':
-
+def main():
     top_path = getCCP4I2Dir()
     print('Running CCP4i2 makeReport from: '+top_path)
     exec(compile(open(os.path.join(top_path,'utils','startup.py')).read(), os.path.join(top_path,'utils','startup.py'), 'exec'))
@@ -65,3 +54,7 @@ if __name__ == '__main__':
     f = open(outputFile,'w')
     f.write(text)
     f.close()
+
+
+if __name__ == '__main__':
+    main()

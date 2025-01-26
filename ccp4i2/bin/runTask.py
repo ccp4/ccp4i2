@@ -9,19 +9,8 @@ from ..core import CCP4Config
 from ..core import CCP4File
 from ..core import CCP4Modules
 from ..core import CCP4PluginScript
+from ..core.CCP4Utils import getCCP4I2Dir
 
-
-def getCCP4I2Dir(up=1):
-    target = os.path.join(os.path.realpath(sys.argv[0]),"..")
-    abstarget = os.path.abspath(target)
-    splittarget = abstarget.split()
-    if splittarget.count('ccp4i2'):
-        splittarget.reverse()
-        up = splittarget.index('ccp4i2')
-    while up>0:
-        abstarget = os.path.dirname(abstarget)
-        up = up -1
-    return abstarget
 
 @QtCore.Slot('CRunPlugin')
 def quitThread(thread):
@@ -29,9 +18,8 @@ def quitThread(thread):
     CCP4Modules.QTAPPLICATION(graphical=False).quit()
     sys.exit()
 
-#--------------------------------------------------------------------------
 
-if __name__ == '__main__':
+def main():
     sys.stderr = sys.stdout     # Redirect stderr to stdout
     parser = argparse.ArgumentParser()
     parser.add_argument("xmlIn", help="Default Input File")
@@ -78,3 +66,7 @@ if __name__ == '__main__':
         runPlugin.finished.connect(functools.partial(quitThread, runPlugin))
         runPlugin.run()
         sys.exit(app.exec_())
+
+
+if __name__ == '__main__':
+    main()

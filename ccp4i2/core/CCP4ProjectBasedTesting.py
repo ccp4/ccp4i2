@@ -522,8 +522,7 @@ class BuildTestSuite:
         return self.errorReport
 
     def addTest(self, jobNumber, programName):
-        sourceDir = os.path.join(CCP4Utils.getTestSysDir(), 'import', programName)
-        #print 'BuildTestSuite.addTest', sourceDir
+        sourceDir = os.path.join(CCP4Utils.getCCP4I2Dir(), 'testsysdefs', 'import', programName)
         if not os.path.exists(sourceDir):
             return
         targetDir = os.path.join(self.unittestDir, 'import', programName)
