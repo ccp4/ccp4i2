@@ -33,7 +33,6 @@ import time
 
 from lxml import etree
 from PySide2 import QtCore, QtGui, QtWidgets
-import shiboken2
 
 from ..core import CCP4Annotation
 from ..core import CCP4DataManager
@@ -62,9 +61,6 @@ def CI1PREFERENCES():
   if CI1Preferences.insts is None:
       p = CI1Preferences()
   return CI1Preferences.insts
-
-def isAlive(qobj):
-    return shiboken2.isValid(qobj)
 
 
 def splitDefLine(line):
@@ -1729,7 +1725,7 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
   def updateInstances(qobj):
     l = []
     for w in CI1ProjectViewer.Instances:
-      if isAlive(w): l.append(w)   
+      if CCP4Utils.isAlive(w): l.append(w)
     CI1ProjectViewer.Instances = l
 
 # Put preferences in a class - could be subclassed from CContainer if

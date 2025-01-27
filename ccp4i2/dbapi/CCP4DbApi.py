@@ -53,10 +53,6 @@ from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_CRITICAL
 from ..core.CCP4QtObject import CObject
 
 
-def isAlive(qobj):
-  return True
-
-
 USE_PERFORMANCE_CLASSES = True
 
 UUIDTYPE = str
@@ -5697,7 +5693,7 @@ class CDbXml(QtCore.QObject):
 
   @staticmethod
   def updateInstances():
-    CDbXml.Instances = set([obj for obj in CDbXml.Instances if isAlive(obj)])
+    CDbXml.Instances = set([obj for obj in CDbXml.Instances])
     print('CDbXml.updateInstances',CDbXml.Instances)
 
 

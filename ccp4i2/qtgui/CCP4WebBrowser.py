@@ -39,7 +39,6 @@ import zipfile
 
 from lxml import etree
 from PySide2 import QtCore, QtGui, QtWebEngineWidgets, QtWidgets
-import shiboken2
 
 from . import CCP4CustomTaskManagerGui
 from . import CCP4ErrorReportViewer
@@ -852,8 +851,6 @@ class CToolBar(QtWidgets.QToolBar):
         menu.addAction(custAct);
         menu.exec_(e.globalPos());
 
-def isAlive(qobj):
-    return shiboken2.isValid(qobj)
 
 def mainWindowIcon():
     if CMainWindow._MAINWINDOWICON is None:
@@ -1718,7 +1715,7 @@ class CBrowserWindow(CMainWindow):
     @QtCore.Slot()
     @staticmethod
     def updateInstances(qobj):
-        CBrowserWindow.Instances = set([window for window in CBrowserWindow.Instances if isAlive(window)])
+        CBrowserWindow.Instances = set([window for window in CBrowserWindow.Instances if CCP4Utils.isAlive(window)])
         print('webbrowser.updateInstances',CBrowserWindow.Instances)
 
     def closeEvent(self,e):

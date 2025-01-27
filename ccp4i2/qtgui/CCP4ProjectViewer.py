@@ -35,7 +35,6 @@ from lxml import etree
 from PySide2 import QtCore, QtGui, QtWebChannel, QtWebEngineWidgets, QtWidgets
 import clipper
 import gemmi
-import shiboken2
 
 from . import CCP4BibliographyViewer
 from . import CCP4ContainerView
@@ -79,8 +78,6 @@ KJS_DEVINTER_ON = False
 DEFAULT_WINDOW_SIZE = (1400, 800)
 ALWAYS_SHOW_SERVER_BUTTON = False
 
-def isAlive(qobj):
-    return shiboken2.isValid(qobj)
 
 def PROJECTVIEWER(projectId=None, open=False):
     for pv in CProjectViewer.Instances:
@@ -1338,7 +1335,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
             print('ERROR CProjectView.init opening jobId,taskName', jobId, taskName)
 
     def openDictionary(self, state):
-        if self._dictionaryWidget is None or (not isAlive(self._dictionaryWidget)):
+        if self._dictionaryWidget is None or (not CCP4Utils.isAlive(self._dictionaryWidget)):
             self._dictionaryWidget = CCP4ModelWidgets.CDictDataDialog(parent=self, projectId=self.getProject())
         self._dictionaryWidget.show()
         self._dictionaryWidget.raise_()
@@ -1355,7 +1352,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
     def updateInstances(qobj):
         l = []
         for w in CProjectViewer.Instances:
-            if isAlive(w):
+            if CCP4Utils.isAlive(w):
                 l.append(w)
         CProjectViewer.Instances = l
 
@@ -2521,7 +2518,7 @@ class CChooseTaskFrame(QtWidgets.QFrame):
     @QtCore.Slot()
     def invalidateTaskTree(self):
         self.taskTreeLoaded = False
-        if isAlive(self) and self.isVisible():
+        if CCP4Utils.isAlive(self) and self.isVisible():
             self.loadTaskTree()
     
     def loadTaskTree(self):

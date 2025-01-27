@@ -28,7 +28,6 @@ import traceback
 
 from lxml import etree
 from PySide2 import QtCore, QtGui, QtWebEngineWidgets, QtWidgets
-import shiboken2
 
 from ..core import CCP4Config
 from ..core import CCP4Modules
@@ -41,9 +40,6 @@ from ..qtcore import CCP4Report
 from ..report import CCP4ReportGenerator
 
 
-def isAlive(qobj):
-    return shiboken2.isValid(qobj)
-
 def setGlobalSettings():
     """
     webSettings = QtWebKit.QWebSettings.globalSettings()
@@ -54,7 +50,7 @@ def setGlobalSettings():
     webSettings.setAttribute(QtWebKit.QWebSettings.DeveloperExtrasEnabled, True)
     """
     for window in CWebView.Instances:
-        if isAlive(window):
+        if CCP4Utils.isAlive(window):
             window.setLoggraphFont()
 
 class CWebPage(QtWebEngineWidgets.QWebEnginePage):
@@ -203,7 +199,7 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
 
     @staticmethod
     def updateInstances(qobj):
-        CWebView.Instances = set([window for window in CWebView.Instances if isAlive(window)])
+        CWebView.Instances = set([window for window in CWebView.Instances if CCP4Utils.isAlive(window)])
 
     def objectPath(self):
         return '' if self.mgpage is None else str(self.mgpage.objectName())
