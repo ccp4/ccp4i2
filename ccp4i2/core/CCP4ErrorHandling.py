@@ -21,7 +21,7 @@
 
 from enum import Enum
 from inspect import isclass
-import time
+from time import localtime, mktime
 import traceback
 import unittest
 
@@ -36,24 +36,40 @@ from ..qtgui import CCP4MessageBox
 
 
 class Severity(Enum):
-    OK = 0, 'OK'
-    UNDEFINED = 1, 'WARNING DATA UNDEFINED'
-    WARNING = 2, 'WARNING'
-    UNDEFINED_ERROR = 3, 'ERROR DATA UNDEFINED'
-    ERROR = 4, 'ERROR'
-    CRITICAL = 5, 'CRITICAL'
-
-    def __lt__(self, other):
-        if hasattr(other, "value"):
-            return self.value < other.value
-        return self.value < int(other)
+    OK = 0, "OK"
+    UNDEFINED = 1, "WARNING DATA UNDEFINED"
+    WARNING = 2, "WARNING"
+    UNDEFINED_ERROR = 3, "ERROR DATA UNDEFINED"
+    ERROR = 4, "ERROR"
+    CRITICAL = 5, "CRITICAL"
 
     def __str__(self):
         return self.value[1]
 
+    def __gt__(self, other):
+        if self.__class__ == other.__class__:
+            return self.value > other.value
+        return self.value[0] > other
+
     @classmethod
     def __getitem__(cls, text: str):
-        return {severity.value[1]: severity for severity in cls}[text]
+        return {s.value[1]: s for s in cls}[text]
+
+
+class CError:
+    def __init__(
+        self,
+        class_: object = None,
+        code: int = 0,
+        name: str = None,
+        label: str = None,
+        details: str = None,
+        description: str = None,
+        severity: Severity = None,
+        time: float = None,
+        stack: list[str] = None,
+    ):
+        pass
 
 
 class CErrorReport():
@@ -66,7 +82,7 @@ class CErrorReport():
     def append(self, cls=None, code=0, details=None, name=None, label=None, recordTime=False, stack=True, exc_info=None):
         report = {'class' : cls, 'name' : name, 'label' : label, 'code' : code, 'details' : details}
         if recordTime:
-            report['time'] = time.mktime(time.localtime())
+            report['time'] = mktime(localtime())
         if stack:
             report['stack'] = getStack(exc_info)
         self._reports.append(report)
@@ -79,7 +95,7 @@ class CErrorReport():
             return
         for item in other._reports:
             if recordTime and item.get('time', None) is None:
-                item['time'] = time.mktime(time.localtime())
+                item['time'] = mktime(localtime())
             if stack and item.get('stack', None) is None :
                 item['stack'] = getStack()
         self._reports.extend(other._reports)
@@ -277,10 +293,8 @@ class CErrorReport():
 
 class CException(CErrorReport, Exception):
     def __init__(self, cls=None, code=0, details='', name=None, label=None, stack=True, exc_info=None):
-        CErrorReport.__init__(self)
+        CErrorReport.__init__(self, cls, code, details, name, label, stack=stack, exc_info=exc_info)
         Exception.__init__(self)
-        if cls is not None:
-            self.append(cls, code, details, name, label, False, stack, exc_info)
 
 
 def getStack(exc_info=None):
