@@ -773,24 +773,20 @@ class CContainer(CCP4Data.CData):
 
     def find(self, name=None):
         # Find an item in this or any child container
-        if name in self.__dict__['_value']:
-            return self.__dict__['_value'].get(name)
-        else:
-            splitName = name.split('.')
-            if len(splitName)>1:
-                if splitName[0] in self.__dict__['_value'] and isinstance(self.__dict__['_value'][splitName[0]], CContainer):
-                    newName = splitName[1]
-                    for item in splitName[2:]:
-                        newName = newName + '.' + item
-                    return self.__dict__['_value'][splitName[0]].find(newName)
-                return None
-            else:
-                for obj in self.__dict__['_value'].values():
-                    if isinstance(obj,CContainer):
-                        rv = obj.find(name)
-                        if rv is not None:
-                            return rv
-                return None
+        values = self.__dict__["_value"]
+        if name in values:
+            return values.get(name)
+        split = name.split(".", maxsplit=1)
+        if len(split) > 1:
+            if split[0] in values and isinstance(values[split[0]], CContainer):
+                return values[split[0]].find(split[1])
+            return None
+        for obj in values.values():
+            if isinstance(obj, CContainer):
+                rv = obj.find(name)
+                if rv is not None:
+                    return rv
+        return None
 
     def copyData(self, otherContainer=None, dataList=None):
         report = CErrorReport()

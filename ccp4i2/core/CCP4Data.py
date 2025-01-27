@@ -73,29 +73,9 @@ def sortArguments(cls, args, aliases=[]):
         elif key == 'build':
             pass
         else:
-            objname,newkey=splitName(key)
-            if newkey is None:
-                unknowns[key] = value
-            else:
-                ####THIS WILL NOT WORK FOR RUN_TIME DEFINED CONTENTS EG CProgramColumnGroup
-                subClsDefn = cls.CONTENTS.get(objname, None)
-                if subClsDefn is None:
-                    unknowns[key] = value
-                else:
-                    subCls = subClsDefn.get('class', None)
-                    vs,qs,us = sortArguments(subCls, {newkey : value})
-                    if len(vs) > 0:
-                        values[key] = value
-                    if len(qs) > 0:
-                        if objname not in qualifiers:
-                            qualifiers[objname] = {}
-                        qualifiers[objname][newkey] = value
-                    if len(us) > 0:
-                        unknowns[key] = value
+            unknowns[key] = value
     return [values,qualifiers,unknowns]
 
-def splitName(name):   # KJS : This fn. needs to be fixed or removed from the code-base.
-    return [name, None]
 
 def errorCode(cls, code):  # KJS : Revise ... this setup creates circ. dependency between data & error logging.
     while issubclass(cls, CData):
@@ -166,14 +146,6 @@ class CDataQualifiers:
                 obj = self._value.get(key, None)
                 if obj is not None:
                     obj.setQualifiers(qualifiers=value)
-            else:
-                objname, newkey=splitName(key)
-                if newkey is not None:
-                    obj = self._value.get(objname, None)
-                    if obj is None:
-                        print('error interpreting qualifier:', key,'unknown object:', objname)  #, qlist[0] # KJS : There is no qlist !
-                    else:
-                        obj.setQualifier(newkey, value)
         # New set default value after validating it
         if 'default' in qualis and qualis['default'] is not NotImplemented and qualis['default'] is not None:
             default = self.coerce(qualis['default'])
@@ -229,11 +201,7 @@ class CDataQualifiers:
                         return cls.QUALIFIERS[name]
                     else:
                         cls = cls.__bases__[0]
-                objname,newname = splitName(name)
-                if newname is not None and objname in self._value:
-                    return self._value[objname].qualifiers(newname, custom=custom, default=default)
-                else:
-                    return NotImplemented
+                return NotImplemented
             else:
                 return NotImplemented
         ret = {}
@@ -264,14 +232,10 @@ class CDataQualifiers:
                     return cls.QUALIFIERS_DEFINITION[name]
                 else:
                     cls = cls.__bases__[0]
-            objname, newname = splitName(name)
-            if newname is not None and objname in self._value:
-                return self._value[objname].qualifiersDefinition(newname)
+            if self.__dict__.get('_subItemObject', None) is not None:
+                return self.__dict__['_subItemObject'].qualifiersDefinition(name)
             else:
-                if self.__dict__.get('_subItemObject', None) is not None:
-                    return self.__dict__['_subItemObject'].qualifiersDefinition(name)
-                else:
-                    return {}
+                return {}
 
     def qualifiersOrder(self):
         order = []
@@ -761,23 +725,11 @@ class CData(CObject, CDataQualifiers):
         ''' Copy data without validity check '''
         rv = CErrorReport()
         for key, val in list(value.items()):
-            objname, newkey = splitName(key)
-            if newkey is not None:
-                obj = self._value.get(objname, None)
-                if obj is None:
-                    print('error interpreting value:', key, 'unknown object:', objname)
-                else:
-                    print('CData.copyValue newkey', obj, newkey,val)
-                    try:
-                        obj.set(value={newkey : val})
-                    except CException as e:
-                        rv.extend(e)
-            else:
-                if key in self.contents():
-                    try:
-                        self.__dict__['_value'][key].set(val)
-                    except CException as e:
-                        rv.extend(e)
+            if key in self.contents():
+                try:
+                    self.__dict__['_value'][key].set(val)
+                except CException as e:
+                    rv.extend(e)
         return rv
 
     # Reimplement in sub-class if require something updating after
@@ -789,21 +741,7 @@ class CData(CObject, CDataQualifiers):
     def get(self, name=None, default=None):
         # If input name is set then return item of that name
         if name is not None:
-            if name in self.__dict__['_value']:
-                return self.__dict__['_value'].get(name)
-            else:
-                objname, newname = splitName(name)
-                if newname is None:
-                    return default
-                elif objname in self._value:
-                    return self._value[objname].get(newname)
-                #Try possibility that first item in name is actually reference to self
-                elif objname == str(self.objectName()):
-                    objname,newname = splitName(newname)
-                    if newname is None:
-                        return default
-                    elif objname in self._value:
-                        return self._value[objname].get(newname)
+            return self.__dict__['_value'].get(name, default)
         # return 'flattened' dict of all data
         ret = {}
         for key in self.dataOrder():
