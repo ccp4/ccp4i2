@@ -204,12 +204,6 @@ class CAnnotationList(CCP4Data.CList):
         else:
             CCP4Data.CList.append(self,arg)
 
-'''
-class CUsersList(CCP4Data.CList):
-    SUBITEM = { 'class' : CUserId }
-    QUALIFIERS = { 'default' : [CUserId('liz')] }
-    pass
-'''
 
 class CFont(CCP4Data.CData):
     '''Simplified Qt font options'''
@@ -253,34 +247,15 @@ class CAuthor(CCP4Data.CString):
 class CBibReference(CCP4Data.CData):
     '''Bibliographic reference'''
     CONTENTS_ORDER = ['pmid', 'title', 'authorList', 'source', 'url' , 'selected']
-    CONTENTS = {'pmid' : {'class' : CCP4Data.CInt}, 'title' : {'class' : CCP4Data.CString},
-                'authorList' : {'class' : CCP4Data.CList, 'subItem' :{'class' : CAuthor}},
-                'source' : {'class' : CCP4Data.CString}, 'url' : {'class' : CCP4Data.CString},
-                'selected' : {'class' : CCP4Data.CBoolean}}
+    CONTENTS = {
+        "pmid": {"class": CCP4Data.CInt},
+        "title": {"class": CCP4Data.CString},
+        "authorList": {"class": CCP4Data.CList, "subItem": {"class": CAuthor}},
+        "source": {"class": CCP4Data.CString},
+        "url": {"class": CCP4Data.CString},
+        "selected": {"class": CCP4Data.CBoolean},
+    }
     ERROR_CODES = {101 : {'description' : 'Failed to load Medline data'}}
-    '''
-    def loadFromMedline(self,text):
-        #print 'loadFromMedline',text
-        import re
-        m = re.search(r'TI  -(.*)\n[A-Z]',text,re.DOTALL)
-        if m is not None:
-          self.title = m.groups()[0].strip()
-        else:
-          return CErrorReport(self.__class__,101)
-        m = re.search(r'SO  -(.*)',text)
-        if m is not None:
-          self.source = m.groups()[0].strip()
-        else:
-          return CErrorReport(self.__class__,101)
-        m = re.findall(r'AU  -(.*)',text)
-        for item in m:
-          self.authorList.addItem()
-          self.authorList[-1].set(item.strip())
-        m = re.search(r'URL -(.*)',text)
-        if m is not None: self.url = m.groups()[0].strip()
-        return CErrorReport()
-        #print 'CBibReferenceGroup.loadFromMedline',self.get()
-    '''
 
     def loadFromMedline(self,text):
         lineList = text.split('\n')
@@ -288,7 +263,7 @@ class CBibReference(CCP4Data.CData):
         while idx < len(lineList):
             if lineList[idx][0:5] == 'TI  -':
                 self.title.set(lineList[idx][5:])
-                while not '-' in lineList[idx+1][0:5]:
+                while '-' not in lineList[idx+1][0:5]:
                     idx += 1
                     self.title.set(str(self.title) + lineList[idx][5:])
             elif lineList[idx][0:5] == 'SO  -':
@@ -300,9 +275,7 @@ class CBibReference(CCP4Data.CData):
             elif lineList[idx][0:5] == 'URL -':
                 self.url.set(lineList[idx][5:])
             idx += 1
-        if not self.source.isSet() and not self.url.isSet():
-            return CErrorReport(self.__class__, 101)
-        return CErrorReport()
+        return self.source.isSet() or self.url.isSet()
 
     def get0(self):
         authorText = ''
@@ -317,14 +290,16 @@ class CBibReference(CCP4Data.CData):
 
 class CBibReferenceGroup(CCP4Data.CData):
     '''Set of bibliographic references for a task'''
-    CONTENTS_ORDER = ['taskName', 'version', 'title', 'references']
-    CONTENTS = {'taskName' : {'class' : CCP4Data.CString},
-                'version' : {'class' : CCP4Data.CString},
-                'title' : {'class' : CCP4Data.CString},
-                'references' : {'class' : CCP4Data.CList , 'subItem' : { 'class' : CBibReference}}}
-    ERROR_CODES = {100 : { 'description' : 'Failed attempting to load MedLine file - file not found'},
-                   101 : { 'description' : 'Failed attempting to find references file'},
-                   102 : { 'description' : 'Error copying file'}}
+    CONTENTS_ORDER = ["taskName", "version", "title", "references"]
+    CONTENTS = {
+        "taskName": {"class": CCP4Data.CString},
+        "version": {"class": CCP4Data.CString},
+        "title": {"class": CCP4Data.CString},
+        "references": {"class": CCP4Data.CList, "subItem": {"class": CBibReference}},
+    }
+    ERROR_CODES = {
+        102: {"description": "Error copying file"},
+    }
 
     def loadFromMedline(self, fileNameList=[], taskName=None, version=None):
         if len(fileNameList) == 0 and taskName is not None:
@@ -333,7 +308,6 @@ class CBibReferenceGroup(CCP4Data.CData):
                 self.__dict__['fileNameList'] = CCP4TaskManager.TASKMANAGER().searchReferenceFile(taskName,version=version,drillDown=True)
         else:
             self.__dict__['fileNameList'] = fileNameList
-        #print 'CBibReferenceGroup.loadFromMedline',fileNameList
         self.__dict__['_value']['taskName'].set(taskName)
         self.__dict__['_value']['version'].set(version)
         self.__dict__['_value']['title'].set('References for '+CCP4TaskManager.TASKMANAGER().getTitle(taskName,version=version))
@@ -343,20 +317,15 @@ class CBibReferenceGroup(CCP4Data.CData):
             for text in textList:
                 self.__dict__['_value']['references'].addItem()
                 rv = self.__dict__['_value']['references'][-1].loadFromMedline(text)
-                if len(rv)>0:
+                if not rv:
                     del self.__dict__['_value']['references'][-1]
         if len(self.__dict__['_value']['references'])>0:
             self.__dict__['_value']['references'][0].selected = True
 
     def export(self, cformat, fileName):
         err = CErrorReport()
-        #print 'CBibReferenceGroup.export',cformat,fileName
         if os.path.splitext(fileName)[1] == '':
             fileName = fileName +'.' + cformat + '.txt'
-        #fileNameList = CCP4TaskManager.TASKMANAGER().searchReferenceFile(name=self.taskName.get(),version=self.version.get(),cformat=format)
-        #if len(fileNameList)==0:
-        #  err.append(self.__class__,101,details='For taskname: '+str(self.taskName)+' version: '+str(self.version)+' cformat: '+str(format))
-        #else:
         if cformat == 'bibtex':
             source = re.sub(r'\.medline','.bibtex',self.__dict__['fileNameList'][0])
         else:
@@ -541,7 +510,7 @@ class CDateRange(CCP4Data.CData):
         return start,end
 
 
-#===========================================================================================================
+# ===========================================================================================================
 
 def TESTSUITE():
     suite = unittest.defaultTestLoader.loadTestsFromTestCase(testAnnotation)
