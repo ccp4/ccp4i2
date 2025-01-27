@@ -76,32 +76,6 @@ def sortArguments(cls, args, aliases=[]):
             unknowns[key] = value
     return [values,qualifiers,unknowns]
 
-
-def errorCode(cls, code):  # KJS : Revise ... this setup creates circ. dependency between data & error logging.
-    while issubclass(cls, CData):
-        if hasattr(cls, 'ERROR_CODES') and code in cls.ERROR_CODES:
-            return cls.ERROR_CODES[code]
-        cls = cls.__bases__[0]   # KJS : Revise... fail on multi-inhr.
-    return {}
-
-def errorCodeSeverity(cls, code):    # KJS - Revise
-    err = errorCode(cls, code)
-    if len(err) == 0:
-        return -1
-    elif 'severity' in err:
-        return err['severity']
-    else:
-        return SEVERITY_ERROR # KJS : These globals need a repair job.
-
-def errorCodeDescription(cls, code): # KJS : Needs revision.
-    err = errorCode(cls, code)
-    if len(err) == 0:
-        return -1
-    elif 'description' in err:
-        return err['description']
-    else:
-        return ''
-
 def baseClassList(cls):
     clsList = [cls]
     baseCls = clsList[-1].__bases__[0]

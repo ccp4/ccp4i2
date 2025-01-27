@@ -19,6 +19,7 @@
    Liz Potterton Aug 2010 - Exception class and definitions of severity
 """
 
+from inspect import isclass
 import time
 import traceback
 import unittest
@@ -33,6 +34,7 @@ from . import CCP4TaskManager
 from ..qtgui import CCP4MessageBox
 
 
+# KJS : These globals need a repair job.
 SEVERITY_OK = 0
 SEVERITY_UNDEFINED = 1
 SEVERITY_WARNING = 2
@@ -54,14 +56,11 @@ class CErrorReport():
         if recordTime:
             report['time'] = time.mktime(time.localtime())
         if stack:
-            report['stack'] = self.getStack(exc_info=exc_info)
+            report['stack'] = getStack(exc_info)
         self._reports.append(report)
-        try:
-            severity = CCP4Data.errorCodeSeverity(report['class'], report['code'])
-            if severity == SEVERITY_CRITICAL:
-                print(self.report())
-        except:
-            pass
+        severity = errorCodeSeverity(cls, code)
+        if severity == SEVERITY_CRITICAL:
+            print(self.report())
 
     def extend(self, other=None, recordTime=False, stack=True):
         if other is None or len(other) == 0 or not hasattr(other,"_reports"):
@@ -70,7 +69,7 @@ class CErrorReport():
             if recordTime and item.get('time', None) is None:
                 item['time'] = time.mktime(time.localtime())
             if stack and item.get('stack', None) is None :
-                item['stack'] = self.getStack()
+                item['stack'] = getStack()
         self._reports.extend(other._reports)
 
     def appendPythonException(self, cls=None, exception=None):
@@ -86,7 +85,7 @@ class CErrorReport():
 
     def appendDetails(self, details=''):
         for report in self._reports:
-            report['details'] = report['details'] + details
+            report['details'] += details
 
     def setName(self, name=''):
         for report in self._reports:
@@ -95,21 +94,10 @@ class CErrorReport():
     def maxSeverity(self):
         maxSev = 0
         for report in self._reports:
-            severity = -1
-            try:
-                if issubclass(report['class'], CCP4Data.CData):
-                    severity = CCP4Data.errorCodeSeverity(report['class'], report['code'])
-                elif  report['code'] in report['class'].ERROR_CODES:
-                    severity = report['class'].ERROR_CODES[report['code']].get('severity', SEVERITY_ERROR)
-                else:
-                    for baseClass in report['class'].__bases__:
-                        if 'ERROR_CODES' in baseClass.__dict__ and report['code'] in baseClass.ERROR_CODES:
-                            severity = baseClass.ERROR_CODES[report['code']].get('severity', SEVERITY_ERROR)
-                if severity < 0:
-                    print('ERROR in CErrorHandling - error code not found', report['code'], report['class'])
-                maxSev = max(maxSev, severity)
-            except:
-                print('maxSeverity error', report)
+            severity = errorCodeSeverity(report['class'], report['code'])
+            if severity < 0:
+                print('ERROR in CErrorHandling - error code not found', report['code'], report['class'])
+            maxSev = max(maxSev, severity)
         return maxSev
 
     def __len__(self):
@@ -121,42 +109,32 @@ class CErrorReport():
     def __str__(self):
         return self.report()
 
-    def description(self, report=None, inclName=True, user=False):
+    def description(self, report=None, user=False):
         if report is None:
             report = self._reports[0]
         if 'description' in report and report['description'] is not None:
             desc = report['description']
             severity = report.get('severity', SEVERITY_ERROR)
         elif issubclass(report['class'], CCP4Data.CData):
-            severity = CCP4Data.errorCodeSeverity(report['class'], report['code'])
-            desc = CCP4Data.errorCodeDescription(report['class'], report['code'])
+            severity = errorCodeSeverity(report['class'], report['code'])
+            desc = errorCodeDescription(report['class'], report['code'])
+        elif report['code'] == -2:
+            severity = SEVERITY_ERROR
+            desc = 'Python error'
         else:
-            if report['code'] == -2:
-                severity = 4
-                desc = 'Python error'
-            elif report['code'] in report['class'].ERROR_CODES:
-                severity = report['class'].ERROR_CODES[report['code']].get('severity',SEVERITY_ERROR)
-                desc = report['class'].ERROR_CODES[report['code']].get('description','NO DESCRIPTION')
-            else:
-                severity = 4
-                desc = 'No description available'
-                for baseClass in report['class'].__bases__:
-                    if 'ERROR_CODES' in baseClass.__dict__ and report['code'] in baseClass.ERROR_CODES:
-                        severity = baseClass.ERROR_CODES[report['code']].get('severity',SEVERITY_ERROR)
-                        desc = baseClass.ERROR_CODES[report['code']].get('description','NO DESCRIPTION')
-                        break
-        if inclName:
-            if user and report.get('label', None) is not None and report['label'] is not NotImplemented:
-                desc = str(report['label']) + ': ' + desc
-            elif 'name' in report and report['name'] is not None:
-                desc = str(report['name']) + ': ' + str(desc)
+            severity = errorCodeSeverity(report['class'], report['code'], SEVERITY_ERROR)
+            desc = errorCodeDescription(report['class'], report['code'], 'No description available')
+        if user and report.get('label', None) is not None and report['label'] is not NotImplemented:
+            desc = str(report['label']) + ': ' + desc
+        elif 'name' in report and report['name'] is not None:
+            desc = str(report['name']) + ': ' + str(desc)
         return desc, severity
 
     def report(self, user=False, ifStack=True, mode=0, minSeverity=SEVERITY_UNDEFINED):
         text = ''
         if len(self._reports) > 0:
             for report in self._reports:
-                desc, severity = self.description(report, inclName=True, user=user)
+                desc, severity = self.description(report, user=user)
                 if severity == SEVERITY_CRITICAL:
                     text = text + "\nCRITICAL ERROR PLEASE REPORT TO CCP4:"
                 if severity >= minSeverity:
@@ -197,14 +175,6 @@ class CErrorReport():
                             text = text + line
             return text[1:]
         return ''
-
-    def getStack(self, exc_info=None):
-        if exc_info is None:
-            return traceback.format_stack()[0:-2] or None
-        try:
-            return traceback.format_exception(exc_info[0], exc_info[1], exc_info[2])
-        except:
-            return None
 
     def warningMessage(self, windowTitle='', message='', jobId=None, parent=None, ifStack=True, minSeverity=SEVERITY_UNDEFINED):
         if len(message) > 0 and message[-1] !='\n':
@@ -300,6 +270,31 @@ class CException(CErrorReport, Exception):
         Exception.__init__(self)
         if cls is not None:
             self.append(cls, code, details, name, label, False, stack, exc_info)
+
+
+def getStack(exc_info=None):
+    if exc_info is None:
+        return traceback.format_stack()[0:-2] or None
+    try:
+        return traceback.format_exception(exc_info[0], exc_info[1], exc_info[2])
+    except:
+        return None
+
+
+def errorCodeSeverity(class_, code, default=-1):  # KJS - Revise
+    if isclass(class_):
+        for cls in class_.__mro__:
+            if hasattr(cls, 'ERROR_CODES') and code in cls.ERROR_CODES:
+                return cls.ERROR_CODES[code].get('severity', SEVERITY_ERROR)
+    return default
+
+
+def errorCodeDescription(class_, code, default=-1):  # KJS : Needs revision.
+    if isclass(class_):
+        for cls in class_.__mro__:
+            if hasattr(cls, 'ERROR_CODES') and code in cls.ERROR_CODES:
+                return cls.ERROR_CODES[code].get('description', 'NO DESCRIPTION')
+    return default
 
 
 #===========================================================================================
