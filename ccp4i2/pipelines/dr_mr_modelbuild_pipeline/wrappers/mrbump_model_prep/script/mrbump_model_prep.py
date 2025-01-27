@@ -100,7 +100,7 @@ class mrbump_model_prep(CPluginScript):
         if self.container.inputData.FREERFLAG.isSet():
             dataObjects += ['FREERFLAG']
         self.hklin,error = self.makeHklin(dataObjects)
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         else:
             return CPluginScript.SUCCEEDED

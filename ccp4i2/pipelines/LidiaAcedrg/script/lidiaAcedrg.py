@@ -16,7 +16,7 @@ class lidiaAcedrg(CPluginScript):
     TIMEOUT_PERIOD = 9999999.9
     WHATNEXT = ['coot_rebuild']
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
-    ERROR_CODES = { 201 : {'description' : 'Expected output file not made', 'severity':CCP4ErrorHandling.SEVERITY_WARNING },}
+    ERROR_CODES = { 201 : {'description' : 'Expected output file not made', 'severity':CCP4ErrorHandling.Severity.WARNING },}
 
     def process(self):
         

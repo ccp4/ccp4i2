@@ -28,7 +28,7 @@ import traceback
 from PySide2 import QtCore, QtGui, QtWidgets
 
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import CException, SEVERITY_ERROR
+from ..core.CCP4ErrorHandling import CException, Severity
 from ..core.CCP4Modules import MIMETYPESHANDLER, PREFERENCES
 from . import CCP4AbstractViewer
 from . import CCP4Widgets
@@ -77,7 +77,7 @@ class CTextViewer(CCP4AbstractViewer.CAbstractViewer):
 
   ERROR_CODES = {}
   ERROR_CODES.update(CCP4AbstractViewer.CAbstractViewer.ERROR_CODES)
-  ERROR_CODES.update( { 101 : { 'severity' : SEVERITY_ERROR,
+  ERROR_CODES.update( { 101 : { 'severity' : Severity.ERROR,
                                 'description' : 'Error loading text into document' }
                         } )
 

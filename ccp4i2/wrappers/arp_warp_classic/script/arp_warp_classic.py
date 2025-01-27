@@ -100,7 +100,7 @@ class arp_warp_classic(CPluginScript):
         self.script.append(('phaselabin', 'PHIB=AWA_PHREF_PHI FOM=AWA_PHREF_FOM'))
 
       self.hklin, columns, error = self.makeHklin0(cols)
-      if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+      if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
         return CPluginScript.FAILED
 
 
@@ -243,7 +243,7 @@ class arp_warp_classic(CPluginScript):
       outputColumns = ['FWT,PHWT','DELFWT,PHDELWT']
       error = self.splitHklout(outputFiles, outputColumns, infile=hklawa)
 
-      if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+      if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
         return CPluginScript.FAILED
 
       try:

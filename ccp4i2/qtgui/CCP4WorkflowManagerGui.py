@@ -30,7 +30,7 @@ from . import CCP4CustomisationGui
 from . import CCP4Widgets
 from ..core import CCP4Container
 from ..core import CCP4WorkflowManager
-from ..core.CCP4ErrorHandling import CException, SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import CException, Severity
 from ..core.CCP4Modules import PROJECTSMANAGER, WEBBROWSER, WORKFLOWMANAGER
 
 
@@ -187,7 +187,7 @@ class CCreateWorkflowDialog(QtWidgets.QDialog):
             err = CException(self.__class__,201,exc_info=sys.exc_info())
             err.warningMessage('Create workflow', 'Error saving workflow', parent=self)
             return
-        if err.maxSeverity()>SEVERITY_WARNING:
+        if err.maxSeverity()>Severity.WARNING:
             err.warningMessage('Create workflow', 'Error saving workflow', parent=self)
             return
         self.workflowCreated.emit(name)

@@ -39,7 +39,7 @@ from ..core import CCP4DataManager
 from ..core import CCP4File
 from ..core import CCP4Modules
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_OK, SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
 from ..core.CCP4Modules import LAUNCHER, PREFERENCES, PROJECTSMANAGER, QTAPPLICATION, WEBBROWSER
 from ..core.CCP4TaskManager import TASKMANAGER
 from ..qtgui import CCP4FileBrowser
@@ -294,7 +294,7 @@ class CI1TreeItemProject(CCP4ProjectWidget.CTreeItemProject):
     dbFile = os.path.normpath(os.path.join(self.directory,'CCP4_DATABASE','database.def'))
     print('Loading database file:',dbFile)
     metaData,params,err = readI1DefFile(dbFile)
-    if err.maxSeverity()>SEVERITY_WARNING:
+    if err.maxSeverity()>Severity.WARNING:
       print(err.report())
       return err
     if params.get('NJOBS',None) is None:
@@ -637,7 +637,7 @@ class CI1ProjectModel(QtCore.QAbstractItemModel):
   def loadDirectoriesDefFile(self,fileName=None):
     err = CErrorReport()
     metaData,params,err = readI1DefFile(fileName)
-    if err.maxSeverity()>SEVERITY_WARNING or 'N_PROJECTS' not in params:
+    if err.maxSeverity()>Severity.WARNING or 'N_PROJECTS' not in params:
       return CErrorReport(self.__class__,101,details = fileName,stack=False)
     nProjects = CCP4Utils.safeInt(params.get('N_PROJECTS')[1])
     for nP in range(1,nProjects+1):
@@ -1149,14 +1149,14 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
                   102 : { 'description' : 'Failed to find/open old CCP4 def file' },
                   103 : { 'description' : 'Failed loading task titles from modules definition file' },
                   104 : { 'description' : 'Unknown failure loading project database file' },
-                  105 : { 'severity' : SEVERITY_WARNING, 'description' : 'Project with this name already loaded - will overwrite' },
-                  106 : { 'severity' : SEVERITY_WARNING, 'description' : 'Project directory does not exist' },
+                  105 : { 'severity' : Severity.WARNING, 'description' : 'Project with this name already loaded - will overwrite' },
+                  106 : { 'severity' : Severity.WARNING, 'description' : 'Project directory does not exist' },
                   107 : { 'description' : 'Folder with this name already exists' },
-                  110 : { 'severity' : SEVERITY_WARNING, 'description' : 'Failed loading subsiduary task def file' },
-                  111 : { 'severity' : SEVERITY_WARNING, 'description' : 'Failed parsing line of def file' },
-                  112 : { 'severity' : SEVERITY_WARNING, 'description' : 'Failed loading CCP4 task def file to extract type info' },
+                  110 : { 'severity' : Severity.WARNING, 'description' : 'Failed loading subsiduary task def file' },
+                  111 : { 'severity' : Severity.WARNING, 'description' : 'Failed parsing line of def file' },
+                  112 : { 'severity' : Severity.WARNING, 'description' : 'Failed loading CCP4 task def file to extract type info' },
                   121 : { 'description' : 'Input file not found' },
-                  122 : { 'severity' : SEVERITY_OK, 'description' : 'Copied' }
+                  122 : { 'severity' : Severity.OK, 'description' : 'Copied' }
                   }
   def __init__(self,parent=None,fileName=None):
     CCP4WebBrowser.CMainWindow.__init__(self,parent)
@@ -1394,7 +1394,7 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
     self.model().getProject(projectId).setDirectory(directory)
     err = self.model().getProject(projectId).editDatabaseDef(resetDir=True)
     err.append(self.model().editDirectoriesDefFile(projectDbIndex=self.model().getProject(projectId).refDbIndex,directory=directory))
-    if err.maxSeverity()>SEVERITY_WARNING:
+    if err.maxSeverity()>Severity.WARNING:
       mess = QtWidgets.QMessageBox.warning(self,'Find project directory for '+projectId,"Failed saving changed project directory to old CCP4 files")
     return
 
@@ -1421,7 +1421,7 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
     
     dbFile = os.path.normpath(os.path.join(pObj.directory,'CCP4_DATABASE','database.def'))
     metaData,params,err = readI1DefFile(dbFile)
-    if err.maxSeverity()>SEVERITY_WARNING or params.get('NJOBS',None) is None:
+    if err.maxSeverity()>Severity.WARNING or params.get('NJOBS',None) is None:
       return
 
     sourceLookup = {}
@@ -1474,7 +1474,7 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
 
     if len(movedFiles)>0:
       err0 = pObj.editDatabaseDef(movedFiles=movedFiles)
-      if err0.maxSeverity()>SEVERITY_WARNING:
+      if err0.maxSeverity()>Severity.WARNING:
         err0.warningMessage('Collect input files','There was an error saving the new filenames to the old CCP4 database',parent=self)
 
     self.reloadProject(projectId)

@@ -75,7 +75,7 @@ class AMPLE(CPluginScript):
         # No idea why we need the 'AMPLE_F_SIGF' bit...
         self.hklin, self.columns, error = self.makeHklin0(
             [['AMPLE_F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
-        if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         if self.hklin is None: return CPluginScript.FAILED
 

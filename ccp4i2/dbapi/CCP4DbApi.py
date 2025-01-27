@@ -49,7 +49,7 @@ from ..core import CCP4PerformanceData
 from ..core import CCP4TaskManager
 from ..core import CCP4Utils
 from ..core import CCP4XtalData
-from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_CRITICAL, SEVERITY_OK, SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
 from ..core.CCP4QtObject import CObject
 
 
@@ -230,7 +230,7 @@ class CDbApi(CObject):
     ERROR_CODES = {101 : { 'description' : 'Error connecting to database' },
                    102 : { 'description' : 'Error creating database cursor' },
                    103 : { 'description' : 'Database commit called when there is no open connection' },
-                   104 : { 'description' : 'Error in database commit', 'severity' : SEVERITY_CRITICAL },
+                   104 : { 'description' : 'Error in database commit', 'severity' : Severity.CRITICAL },
                    105 : { 'description' : 'Error reading SQL file' },
                    106 : { 'description' : 'Attempting operation for which do not have pivilege' },
                    107 : { 'description' : 'User name known but no longer has access privilege' },
@@ -266,8 +266,8 @@ class CDbApi(CObject):
                    141 : { 'description' : 'Failed to create Qt database connection' },
                    142 : { 'description' : 'Failed to connect to database file' },
                    143 : { 'description' : 'Created database connection not valid' },
-                   150 : { 'description' : 'Error executing database query'  , 'severity' : SEVERITY_CRITICAL},
-                   151 : { 'description' : 'Error commiting database query' , 'severity' : SEVERITY_CRITICAL},
+                   150 : { 'description' : 'Error executing database query'  , 'severity' : Severity.CRITICAL},
+                   151 : { 'description' : 'Error commiting database query' , 'severity' : Severity.CRITICAL},
                    152 : { 'description' : 'Error opening connection to database for command' },
                    153 : { 'description' : 'Error creating database transaction for command' },
                    154 : { 'description' : 'Error creating database using Qt interface - failed to start Qt application' },
@@ -284,13 +284,13 @@ class CDbApi(CObject):
                    170 : { 'description' : 'Job params file not found' },
                    171 : { 'description' : 'Error gleaning file info for job - error creating file record' },
                    172 : { 'description' : 'Error gleaning file info for job - error creating fileUse record' },
-                   173 : { 'severity': SEVERITY_WARNING, 'description' : 'Possible job output file does not exist' },
+                   173 : { 'severity': Severity.WARNING, 'description' : 'Possible job output file does not exist' },
                    174 : { 'description' : 'Calling getProjectInfo with no valid project' },
                    175 : { 'description' : 'Attempting to set preceedingJobId with inappropriate jobId' },
                    180 : { 'description' : 'Calling getFileInfo with invalid fileId' },
                    190 : { 'description' : 'Attempting to set invalid data in a job record' },
                    200 : { 'description' : 'Error executing database command' },
-                   201 : { 'severity': SEVERITY_WARNING, 'description' : 'Invalid key name in updateProject' },
+                   201 : { 'severity': Severity.WARNING, 'description' : 'Invalid key name in updateProject' },
                    202 : { 'description' : 'Invalid value data type in updateProject' },
                    203 : { 'description' : 'In updateProject setting parent project is already child of this project' },
                    211 : { 'description' : 'Error attempting to convert project data to XML' },
@@ -5654,19 +5654,19 @@ class CDbXml(QtCore.QObject):
                   4 : { 'description' : 'Error importing job - job with same number already exists in project' },
                   5 : { 'description' : 'Error retreiving jobid/jobnumber/taskname data for job' },
                   6 : { 'description' : 'Error importing job - job with same jobId already exists in project' },
-                  7 : { 'description' : 'Error importing ImportFile record - FileId not found in database','severity' : SEVERITY_WARNING  },
-                  8 : { 'description' : 'Error importing ExportFile record - FileId not found in database','severity' : SEVERITY_WARNING  },
-                  9 : { 'description' : 'Warning importing job - new job number assigned to avoid clash', 'severity' : SEVERITY_WARNING},
+                  7 : { 'description' : 'Error importing ImportFile record - FileId not found in database','severity' : Severity.WARNING  },
+                  8 : { 'description' : 'Error importing ExportFile record - FileId not found in database','severity' : Severity.WARNING  },
+                  9 : { 'description' : 'Warning importing job - new job number assigned to avoid clash', 'severity' : Severity.WARNING},
 
-                 10 : { 'description' : 'Warning - attempting to import job already in database','severity' : SEVERITY_WARNING },
+                 10 : { 'description' : 'Warning - attempting to import job already in database','severity' : Severity.WARNING },
                 100 : { 'description' : 'No project data found in the database file' },
                 101 : { 'description' : 'Unknown error creating project in database' },
-                102 : { 'description' : 'Project successfully imported into database', 'severity' : SEVERITY_OK },
-                103 : { 'description' : 'Project import to database is NOT commited','severity' : SEVERITY_WARNING },
+                102 : { 'description' : 'Project successfully imported into database', 'severity' : Severity.OK },
+                103 : { 'description' : 'Project import to database is NOT commited','severity' : Severity.WARNING },
                 104 : { 'description' : ' ' },
                 105 : { 'description' : ' ' },
                 106 : { 'description' : ' ' },
-                200 : { 'description' : 'Expected table not found in import file', 'severity' : SEVERITY_WARNING },
+                200 : { 'description' : 'Expected table not found in import file', 'severity' : Severity.WARNING },
                 201 : { 'description' : 'Loading file failed to find mapping for jobId ' },
                 202 : { 'description' : 'Loading file failed to find mapping for importId ' },
                 203 : { 'description' : 'Loading file failed to find mapping for fileId ' },
@@ -5676,7 +5676,7 @@ class CDbXml(QtCore.QObject):
                 211 : { 'description' : 'Error entering file data to database' },
                 212 : { 'description' : 'Error interpreting data - wrong datatype' },
                 213 : { 'description' : 'Error inserting row into database' },
-                214 : { 'description' : 'Error inserting comment with unrecognised UserId', 'severity' : SEVERITY_WARNING },
+                214 : { 'description' : 'Error inserting comment with unrecognised UserId', 'severity' : Severity.WARNING },
                 215 : { 'description' : 'Error inserting comment with unrecognised JobId' },
                 216 : { 'description' : 'Error inserting file with unrecognised JobId' },
                 217 : { 'description' : 'Error inserting fileUse with unrecognised JobId' },
@@ -5973,7 +5973,7 @@ class CDbXml(QtCore.QObject):
 
     if commitPolicy == CDbXml.COMMIT_POLICY_NO_COMMIT:
       return False
-    elif commitPolicy == CDbXml.COMMIT_POLICY_NO_ERRORS and  self.errReport.maxSeverity()>SEVERITY_WARNING:
+    elif commitPolicy == CDbXml.COMMIT_POLICY_NO_ERRORS and  self.errReport.maxSeverity()>Severity.WARNING:
       return False
     else:
       self.db.commit()
@@ -6268,7 +6268,7 @@ class CDbXml(QtCore.QObject):
     self.db.setDiagnostic(False)
     if commitPolicy == CDbXml.COMMIT_POLICY_NO_COMMIT:
       return False
-    elif commitPolicy == CDbXml.COMMIT_POLICY_NO_ERRORS and  self.errReport.maxSeverity()>SEVERITY_WARNING:
+    elif commitPolicy == CDbXml.COMMIT_POLICY_NO_ERRORS and  self.errReport.maxSeverity()>Severity.WARNING:
       return False
     else:
       self.db.commit()
@@ -6530,7 +6530,7 @@ class CDbXml(QtCore.QObject):
     self.db.setDiagnostic(False)
     if commitPolicy == CDbXml.COMMIT_POLICY_NO_COMMIT:
       return False
-    elif commitPolicy == CDbXml.COMMIT_POLICY_NO_ERRORS and  self.errReport.maxSeverity()>SEVERITY_WARNING:
+    elif commitPolicy == CDbXml.COMMIT_POLICY_NO_ERRORS and  self.errReport.maxSeverity()>Severity.WARNING:
       return False
     else:
       self.db.commit()

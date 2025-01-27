@@ -48,7 +48,7 @@ from .. import __version__
 from ..dbapi import CCP4DbApi
 from ..googlecode import diff_match_patch_py3
 from ..report.CCP4ReportParser import CCP4NS
-from .CCP4ErrorHandling import CErrorReport, CException, SEVERITY_OK, SEVERITY_WARNING
+from .CCP4ErrorHandling import CErrorReport, CException, Severity
 from .CCP4Modules import PROJECTSMANAGER
 
 
@@ -112,11 +112,11 @@ class CProjectName(CCP4Data.CString):
     ERROR_CODES = {101 : {'description' : 'Invalid project name'},
                    102 : {'description' : 'Project does not have directory set'},
                    103 : {'description' : 'Project directory does not exist'},
-                   104 : {'severity' : SEVERITY_WARNING,
+                   104 : {'severity' : Severity.WARNING,
                           'description' : 'Warning - Project name is a directory alias'},
-                   105 : {'severity' : SEVERITY_WARNING,
+                   105 : {'severity' : Severity.WARNING,
                           'description' : 'Warning - Project does not have directory set'},
-                   106 : {'severity' : SEVERITY_WARNING,
+                   106 : {'severity' : Severity.WARNING,
                           'description' : 'Warning - Project directory does not exist'}}
 
     def validity(self, arg):
@@ -175,9 +175,9 @@ class CProjectId(CCP4Data.CUUID):
     ERROR_CODES = {201 : {'description' : 'Unrecognised projectId'},
                    202 : {'description' : 'Project does not have directory set'},
                    203 : {'description' : 'Project directory does not exist'},
-                   205 : {'severity' : SEVERITY_WARNING,
+                   205 : {'severity' : Severity.WARNING,
                           'description' : 'Warning - Project does not have directory set'},
-                   206 : {'severity' : SEVERITY_WARNING,
+                   206 : {'severity' : Severity.WARNING,
                           'description' : 'Warning - Project directory does not exist'}}
 
     def validity(self, arg):
@@ -239,7 +239,7 @@ class CFilePath(CCP4Data.CString):
                                                        'description' : 'Handling of violation of allowed characters'},
                              'default' : {'type' : str, 'description' : 'Default file path'}}
     ERROR_CODES = {101 : {'description' : 'Invalid characters in file name'},
-                   102 : {'severity' : SEVERITY_WARNING, 'description' : 'Invalid characters in file name'}}
+                   102 : {'severity' : Severity.WARNING, 'description' : 'Invalid characters in file name'}}
 
     def coerce(self, arg):
         # Convert \ to / as Python and Qt work with that internally
@@ -421,13 +421,13 @@ class CDataFile(CCP4Data.CData):
                    103 : {'description' : 'Attempting to set file content with inappropriate data'},
                    104 : {'description' : 'There is no file content class specified for this type of file'},
                    105 : {'description' : 'The file content class specified for this type of file can not be found'},
-                   300 : {'description' : 'Passed' , 'severity' : SEVERITY_OK},
-                   305 : {'description' : 'Neither original nor test file exists', 'severity' : SEVERITY_OK},
+                   300 : {'description' : 'Passed' , 'severity' : Severity.OK},
+                   305 : {'description' : 'Neither original nor test file exists', 'severity' : Severity.OK},
                    306 : {'description' : 'Original file does not exists'},
                    307 : {'description' : 'Test file does not exist '},
                    308 : {'description' : 'Files failed checksum comparison'},
                    309 : {'description' : 'Files failed size comparison'},
-                   310 : {'description' : 'No comparison testing implemented for this file type', 'severity' : SEVERITY_WARNING},
+                   310 : {'description' : 'No comparison testing implemented for this file type', 'severity' : Severity.WARNING},
                    311 : {'description' : 'Failed loading original file for comparison'},
                    312 : {'description' : 'Failed loading test file for comparison'},
                    313 : {'description' : 'Files failed simple text diff comparison'},
@@ -1197,7 +1197,7 @@ class CI2XmlDataFile(CXmlDataFile):
     QUALIFIERS_ORDER = [ 'autoLoadHeader']
     QUALIFIERS_DEFINITION = {'autoLoadHeader' : { 'type' : bool}}
     ERROR_CODES = {1003 : {'description' : 'XML does not have <ccp4i2> root node'},
-                   1004 : {'severity' : SEVERITY_WARNING, 'description' : 'XML does not have <ccp4i2_header> section'},
+                   1004 : {'severity' : Severity.WARNING, 'description' : 'XML does not have <ccp4i2_header> section'},
                    1005 : {'description' : 'XML does not have <ccp4i2_body> section'}}
 
     def __init__(self, value={}, qualifiers={}, parent=None, name=None, fullPath=None, keywords={}, **kw):

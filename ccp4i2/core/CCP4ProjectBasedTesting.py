@@ -36,7 +36,7 @@ from ..dbapi import CCP4DbApi
 from ..dbapi import CCP4DbUtils
 from ..qtcore import CCP4Export
 from ..utils import startup
-from .CCP4ErrorHandling import CException, CErrorReport, SEVERITY_ERROR, SEVERITY_OK, SEVERITY_WARNING
+from .CCP4ErrorHandling import CException, CErrorReport, Severity
 from .CCP4Modules import PROJECTSMANAGER, JOBCONTROLLER, QTAPPLICATION, PROCESSMANAGER
 
 
@@ -334,7 +334,7 @@ class CProjectBasedTesting(QtCore.QObject):
         self.reportJobStatus(testJobId)
         self.listPluginErrorReport(testJobId)
         severity = self.runJobTest(sourceJobId, testJobId)
-        if self.testSubJobs == 2 or (self.testSubJobs == 1 and severity >= SEVERITY_WARNING):
+        if self.testSubJobs == 2 or (self.testSubJobs == 1 and severity >= Severity.WARNING):
             self.runSubJobTests(sourceJobId, testJobId)
 
     def runSubJobTests(self, sourceJobId, testJobId, testSubJobs=False):
@@ -368,9 +368,9 @@ class CProjectBasedTesting(QtCore.QObject):
             else:
                 report.append(CErrorReport(CCP4PluginScript.CPluginScript, 312, details='For taskname:' + taskName))
         if self.verbosity == 0:
-            minSeverity = SEVERITY_ERROR
+            minSeverity = Severity.ERROR
         else:
-            minSeverity=SEVERITY_OK
+            minSeverity=Severity.OK
         self.log.write(report.report(ifStack=False, mode=1, minSeverity=minSeverity))
         self.log.write('\n')
         if hasattr(self, 'currentJobNode'):
@@ -401,11 +401,11 @@ class CProjectBasedTesting(QtCore.QObject):
         else:
             #print 'listPluginErrorReport', PROJECTSMANAGER().makeFileName(jobId=jobId, mode='DIAGNOSTIC'), len(report)
             if len(report) > 0:
-                self.log.write(report.report(ifStack=True, mode=0, minSeverity=SEVERITY_WARNING))
+                self.log.write(report.report(ifStack=True, mode=0, minSeverity=Severity.WARNING))
                 if hasattr(self, 'currentJobNode'):
-                    etree.SubElement(self.currentJobNode,'Warnings').text = report.report(ifStack=True, mode=0, minSeverity=SEVERITY_WARNING)
-                    if report.maxSeverity() >= SEVERITY_ERROR:
-                        etree.SubElement(self.currentJobNode,'Errors').text = report.report(ifStack=True, mode=0, minSeverity=SEVERITY_ERROR)
+                    etree.SubElement(self.currentJobNode,'Warnings').text = report.report(ifStack=True, mode=0, minSeverity=Severity.WARNING)
+                    if report.maxSeverity() >= Severity.ERROR:
+                        etree.SubElement(self.currentJobNode,'Errors').text = report.report(ifStack=True, mode=0, minSeverity=Severity.ERROR)
                         
 
     def finishProject(self):
@@ -493,7 +493,7 @@ class BuildTestSuite:
 
     ERROR_CODES = {210 : {'description' : 'Cannot create test suite - not all jobs are successfully completed'},
                    211 : {'description' : 'Cannot create test suite - failed creating sub-directory in project directory'},
-                   212 : {'description' : 'Overwriting existing job in test directory', 'severity' : SEVERITY_WARNING},
+                   212 : {'description' : 'Overwriting existing job in test directory', 'severity' : Severity.WARNING},
                    213 : {'description' : 'Failed to create job directory in test directory'}}
 
     def __init__(self, projectId):

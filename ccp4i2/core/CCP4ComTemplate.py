@@ -24,7 +24,7 @@ import re
 import unittest
 
 from . import CCP4Container, CCP4File, CCP4Utils
-from .CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
+from .CCP4ErrorHandling import CErrorReport, CException, Severity
 from .CCP4QtObject import CObject
 from .CCP4Utils import getCCP4I2Dir, interpretPath
 
@@ -653,7 +653,7 @@ class CComTemplateLine(CComTemplateElement):
 class CComTemplateMtzLabel(CComTemplateElement):
 
     ERROR_CODES = {101 : {'description' : 'Pair of words in LABELLINE are not label and value'},
-                   102 : {'severity' : SEVERITY_WARNING, 'description' : 'No value for LABELLINE parameter'}}
+                   102 : {'severity' : Severity.WARNING, 'description' : 'No value for LABELLINE parameter'}}
     ERROR_CODES.update(CComTemplateElement.ERROR_CODES)
 
     def __init__(self, parent=None, diagnostic=False, line=''):

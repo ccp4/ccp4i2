@@ -19,6 +19,7 @@
    Liz Potterton Aug 2010 - Exception class and definitions of severity
 """
 
+from enum import Enum
 from inspect import isclass
 import time
 import traceback
@@ -34,14 +35,25 @@ from . import CCP4TaskManager
 from ..qtgui import CCP4MessageBox
 
 
-# KJS : These globals need a repair job.
-SEVERITY_OK = 0
-SEVERITY_UNDEFINED = 1
-SEVERITY_WARNING = 2
-SEVERITY_UNDEFINED_ERROR = 3
-SEVERITY_ERROR = 4
-SEVERITY_CRITICAL = 5
-SEVERITY_TEXT = ['OK', 'WARNING DATA UNDEFINED', 'WARNING', 'ERROR DATA UNDEFINED', 'ERROR', 'CRITICAL']
+class Severity(Enum):
+    OK = 0, 'OK'
+    UNDEFINED = 1, 'WARNING DATA UNDEFINED'
+    WARNING = 2, 'WARNING'
+    UNDEFINED_ERROR = 3, 'ERROR DATA UNDEFINED'
+    ERROR = 4, 'ERROR'
+    CRITICAL = 5, 'CRITICAL'
+
+    def __lt__(self, other):
+        if hasattr(other, "value"):
+            return self.value < other.value
+        return self.value < int(other)
+
+    def __str__(self):
+        return self.value[1]
+
+    @classmethod
+    def __getitem__(cls, text: str):
+        return {severity.value[1]: severity for severity in cls}[text]
 
 
 class CErrorReport():
@@ -59,7 +71,7 @@ class CErrorReport():
             report['stack'] = getStack(exc_info)
         self._reports.append(report)
         severity = errorCodeSeverity(cls, code)
-        if severity == SEVERITY_CRITICAL:
+        if severity == Severity.CRITICAL:
             print(self.report())
 
     def extend(self, other=None, recordTime=False, stack=True):
@@ -114,15 +126,15 @@ class CErrorReport():
             report = self._reports[0]
         if 'description' in report and report['description'] is not None:
             desc = report['description']
-            severity = report.get('severity', SEVERITY_ERROR)
+            severity = report.get('severity', Severity.ERROR)
         elif issubclass(report['class'], CCP4Data.CData):
             severity = errorCodeSeverity(report['class'], report['code'])
             desc = errorCodeDescription(report['class'], report['code'])
         elif report['code'] == -2:
-            severity = SEVERITY_ERROR
+            severity = Severity.ERROR
             desc = 'Python error'
         else:
-            severity = errorCodeSeverity(report['class'], report['code'], SEVERITY_ERROR)
+            severity = errorCodeSeverity(report['class'], report['code'], Severity.ERROR)
             desc = errorCodeDescription(report['class'], report['code'], 'No description available')
         if user and report.get('label', None) is not None and report['label'] is not NotImplemented:
             desc = str(report['label']) + ': ' + desc
@@ -130,12 +142,12 @@ class CErrorReport():
             desc = str(report['name']) + ': ' + str(desc)
         return desc, severity
 
-    def report(self, user=False, ifStack=True, mode=0, minSeverity=SEVERITY_UNDEFINED):
+    def report(self, user=False, ifStack=True, mode=0, minSeverity=Severity.UNDEFINED):
         text = ''
         if len(self._reports) > 0:
             for report in self._reports:
                 desc, severity = self.description(report, user=user)
-                if severity == SEVERITY_CRITICAL:
+                if severity == Severity.CRITICAL:
                     text = text + "\nCRITICAL ERROR PLEASE REPORT TO CCP4:"
                 if severity >= minSeverity:
                     try:
@@ -144,12 +156,12 @@ class CErrorReport():
                         className = str(report['class'])
                     name = str(report.get('name', ''))
                     if mode == 0:
-                        text = text + "\n{0:20} -{1}- {2}:{3} {4}".format(name, SEVERITY_TEXT[severity], className, report['code'], desc)
+                        text = text + "\n{0:20} -{1}- {2}:{3} {4}".format(name, severity, className, report['code'], desc)
                     elif mode == 1:
-                        text = text + "\n {0:20} -{1}- \n{2}:{3} {4}".format(name, SEVERITY_TEXT[severity], className, report['code'], desc)
+                        text = text + "\n {0:20} -{1}- \n{2}:{3} {4}".format(name, severity, className, report['code'], desc)
                     else:
                         if user:
-                            if severity == SEVERITY_WARNING:
+                            if severity == Severity.WARNING:
                                 text = text + "\nWarning: " + desc
                             else:
                                 if (len(text)+len(desc)) < 60:
@@ -176,7 +188,7 @@ class CErrorReport():
             return text[1:]
         return ''
 
-    def warningMessage(self, windowTitle='', message='', jobId=None, parent=None, ifStack=True, minSeverity=SEVERITY_UNDEFINED):
+    def warningMessage(self, windowTitle='', message='', jobId=None, parent=None, ifStack=True, minSeverity=Severity.UNDEFINED):
         if len(message) > 0 and message[-1] !='\n':
             message = message + '\n'
         if CCP4Config.GRAPHICAL() and parent is not None:
@@ -203,7 +215,7 @@ class CErrorReport():
                 e.text = desc
                 ele.append(e)
                 e = etree.Element('severity')
-                e.text = SEVERITY_TEXT[severity]
+                e.text = str(severity)
                 ele.append(e)
                 if item['details'] is not None:
                     e = etree.Element('details')
@@ -248,8 +260,7 @@ class CErrorReport():
                     elif name in {'stack', 'details', 'description'}:
                         report[name] = str(e.text)
                     elif name == 'severity':
-                        if SEVERITY_TEXT.count(str(e.text)):
-                            report['severity'] = SEVERITY_TEXT.index(str(e.text))
+                        report['severity'] = Severity[str(e.text)]
                 self._reports.append(report)
 
     def classesInReport(self):
@@ -285,7 +296,7 @@ def errorCodeSeverity(class_, code, default=-1):  # KJS - Revise
     if isclass(class_):
         for cls in class_.__mro__:
             if hasattr(cls, 'ERROR_CODES') and code in cls.ERROR_CODES:
-                return cls.ERROR_CODES[code].get('severity', SEVERITY_ERROR)
+                return cls.ERROR_CODES[code].get('severity', Severity.ERROR)
     return default
 
 

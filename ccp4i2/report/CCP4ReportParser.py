@@ -48,7 +48,7 @@ from ..core import CCP4File
 from ..core import CCP4Modules
 from ..core import CCP4TaskManager
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_OK, SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
 from ..core.CCP4Modules import PROJECTSMANAGER
 
 
@@ -867,7 +867,7 @@ class ReportClass(object):
 # Container class - base class for reports and folds
 class Container(ReportClass):
   tag = 'container'
-  ERROR_CODES = { 1 : { 'severity': SEVERITY_WARNING, 'description' : 'Failed to interpret xrt node tag' },
+  ERROR_CODES = { 1 : { 'severity': Severity.WARNING, 'description' : 'Failed to interpret xrt node tag' },
                   2 : { 'description' : 'Can not create IfContainer instance without xrtnode argument (it should not be used in Python mode)' },
                   3 : { 'description' : 'Can not create Loop instance without xrtnode argument (it should not be used in Python mode)' },
                   4 : { 'description' : 'Unable to create RTF file - unable to import PyQt4' }
@@ -1181,7 +1181,7 @@ class Report( Container ):
     USEPROGRAMXML = True
     SEPARATEDATA=False
     elementCount = 1
-    ERROR_CODES = {0 : { 'severity' : SEVERITY_OK, 'description' : 'OK' },
+    ERROR_CODES = {0 : { 'severity' : Severity.OK, 'description' : 'OK' },
                    101 : {'description' : 'Import xrt file does not exist'},
                    102 : {'description' : 'Failed to read import xrt file'},
                    103 : {'description' : 'Failed to find insert xrt element in program file'},
@@ -3287,7 +3287,7 @@ def parse_from_unicode(unicode_str):
 
 class Plot(GenericElement):
 
-  ERROR_CODES = { 101 : { 'severity': SEVERITY_WARNING , 'description' : 'Failed loading Plot schema' },
+  ERROR_CODES = { 101 : { 'severity': Severity.WARNING , 'description' : 'Failed loading Plot schema' },
                   102 : {  'description' : 'Failed validation' },
                   }
 

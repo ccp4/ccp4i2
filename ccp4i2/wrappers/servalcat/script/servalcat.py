@@ -48,7 +48,7 @@ class servalcat(CPluginScript):
         
     ERROR_CODES = { 201 : {'description' : 'Refmac returned with non zero status' },
                     202:  {'description': 'New library created but strictly required' },
-                    203:  {'description': 'New library created', 'severity':CCP4ErrorHandling.SEVERITY_WARNING},
+                    203:  {'description': 'New library created', 'severity':CCP4ErrorHandling.Severity.WARNING},
                     204:  {'description': 'Program completed without generating XMLOUT.' },
                     }
     
@@ -128,7 +128,7 @@ class servalcat(CPluginScript):
             if self.container.inputData.FREERFLAG.isSet():
                 dataObjects += ['FREERFLAG']
             self.hklin,error = self.makeHklin(dataObjects)
-            if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+            if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
                 return CPluginScript.FAILED
 
             return CPluginScript.SUCCEEDED
@@ -203,7 +203,7 @@ class servalcat(CPluginScript):
         # Split out data objects that have been generated. Do this after applying the annotation, and flagging
         # above, since splitHklout needs to know contentFlags
         error = self.splitHklout(outputFiles, outputColumns, hkloutFilePath)
-        if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
 
         if str(self.container.controlParameters.DATA_METHOD) == 'spa':

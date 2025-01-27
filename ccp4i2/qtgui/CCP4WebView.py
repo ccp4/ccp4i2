@@ -32,7 +32,7 @@ from PySide2 import QtCore, QtGui, QtWebEngineWidgets, QtWidgets
 from ..core import CCP4Config
 from ..core import CCP4Modules
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import CException, SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import CException, Severity
 from ..dbapi import CCP4DbUtils
 from ..pimple import MGQTmatplotlib
 from ..qtcore import CCP4CustomMimeTypes
@@ -493,7 +493,7 @@ class CSubJobReport(QtCore.QObject):
         try:
             reportFile, newPageOrNewData = generator.makeReportFile()
         except CException as e:
-            if reportErr and e.maxSeverity()>SEVERITY_WARNING:
+            if reportErr and e.maxSeverity()>Severity.WARNING:
                 e.warningMessage()
         except Exception as e:
             if reportErr:

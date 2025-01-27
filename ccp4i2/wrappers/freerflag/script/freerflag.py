@@ -53,7 +53,7 @@ class freerflag(CPluginScript):
             # ignoreErrorCodes to say makeHklin can ignore cmtzjoin gives exitCode 101 for incomplete freerflag
             self.hklin,error = self.makeHklin(['F_SIGF','FREERFLAG'],ignoreErrorCodes=[36])
             print('freerflag.processInputFiles',self.hklin,error)
-            if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+            if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
                 return CPluginScript.FAILED
             else:
                 # Optional global cutoff
@@ -182,7 +182,7 @@ class freerflag(CPluginScript):
       else:          
           error = self.splitHklout(['FREEROUT'],['FreeR_flag'])
 
-      if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+      if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
         return CPluginScript.FAILED
      
       # Annotation cf aimless_pipe

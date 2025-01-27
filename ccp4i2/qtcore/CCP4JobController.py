@@ -38,7 +38,7 @@ from ..core import CCP4File, CCP4Annotation
 from ..core import CCP4JobServer
 from ..core import CCP4Modules
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
 from ..dbapi import CCP4DbApi
 from ..qtcore import CCP4Export
 from ..qtcore import CCP4HTTPServerThread
@@ -730,7 +730,7 @@ echo "PID=$pid"
             self.db.updateJobStatus(jobId,CCP4DbApi.JOB_STATUS_FAILED)
         else:
             err.append(self.__class__,113)
-        if err.maxSeverity()>SEVERITY_WARNING:
+        if err.maxSeverity()>Severity.WARNING:
             print('Error killing job process',err.report())
         return err
 

@@ -32,7 +32,7 @@ from ..core import CCP4ModelData
 from ..core import CCP4Modules
 from ..core import CCP4Utils
 from ..core import CCP4XtalData
-from ..core.CCP4ErrorHandling import CException, SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import CException, Severity
 
 
 class CSpaceGroupsAbstractItemModel(QtCore.QAbstractItemModel):
@@ -1158,14 +1158,14 @@ class CMiniMtzDataFileView(CMtzDataFileView):
         self.model.blockSignals(False)
         if self.model.getExt() in ['.cif','.ent']:
             err = self.model.importFromCif(jobId=self.parentTaskWidget().jobId())
-            if err.maxSeverity()>SEVERITY_WARNING:
+            if err.maxSeverity()>Severity.WARNING:
                 err.warningMessage('Importing experimental data','Failed loading cif format file',parent=self)
                 self.model.unSet()
                 return
         errors = self.model.validColumns()
         #print 'CMiniMtzDataFileView.handleBrowserOpenFile',errors.report()
         #print 'CMiniMtzDataFileView.handleBrowserOpenFile sourceFileAnnotation',self.model.__dict__.get('sourceFileAnnotation','')
-        if errors.maxSeverity()>SEVERITY_WARNING:
+        if errors.maxSeverity()>Severity.WARNING:
             #print errors.report()
             if errors.count(cls=self.model.__class__,code=206)>0:
                 QtWidgets.QMessageBox.warning(self,'Error in selected MTZ file','This file contains unmerged data - use Data Reduction task to import it')
@@ -1213,12 +1213,12 @@ class CMiniMtzDataFileView(CMtzDataFileView):
         error = self.model.splitMtz(jobId=jobId,projectId=projectId,contentFlag=selectedColumns[0],i2Labels=selectedColumns[1],columnLabels=selectedColumns[3])
         #print 'CMiniMtzDataFileView.handleDialogApply',error
         self.model.dataChanged.emit()
-        if error.maxSeverity()==SEVERITY_WARNING and error[0]['code']==212:
+        if error.maxSeverity()==Severity.WARNING and error[0]['code']==212:
             mess = QtWidgets.QMessageBox.warning(self,self.windowTitle(),'This data is already imported as\n'+error[0]['details'])
             self.loadJobCombo()
             self.updateJobCombo()
             self.validate()
-        elif error.maxSeverity()>=SEVERITY_WARNING:
+        elif error.maxSeverity()>=Severity.WARNING:
             if error[0]['code']==211:
                 mess = QtWidgets.QMessageBox.warning(self,self.windowTitle(),'No column data selected')
             else:

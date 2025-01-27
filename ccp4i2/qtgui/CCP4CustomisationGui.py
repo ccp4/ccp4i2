@@ -23,7 +23,7 @@ import functools
 
 from PySide2 import QtCore, QtWidgets
 
-from ..core.CCP4ErrorHandling import CException, SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import CException, Severity
 from ..core.CCP4Modules import DUMMYMAINWINDOW, WEBBROWSER
 from ..qtgui import CCP4FileBrowser
 
@@ -136,7 +136,7 @@ class CCustomisationGui(QtWidgets.QDialog):
     self.browser.deleteLater()
     del self.browser
     err = self.manager().export(selected,fileName)
-    if err.maxSeverity()>SEVERITY_WARNING:
+    if err.maxSeverity()>Severity.WARNING:
       err.warningMessage('Export '+self.mode,'Error creating compressed file',parent=self)
       
   @QtCore.Slot()

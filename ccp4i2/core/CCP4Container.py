@@ -37,7 +37,7 @@ from . import CCP4Utils
 from . import CCP4XtalData
 from .CCP4Config import DEVELOPER
 from .CCP4DataManager import DATAMANAGER
-from .CCP4ErrorHandling import CErrorReport, CException, SEVERITY_ERROR, SEVERITY_WARNING
+from .CCP4ErrorHandling import CErrorReport, CException, Severity
 
 
 class CContainer(CCP4Data.CData):
@@ -49,7 +49,7 @@ class CContainer(CCP4Data.CData):
                    106 : {'description' : 'Error loading container definition'},
                    107 : {'description' : 'XML file does not have correct function defined in the header'},
                    108 : {'description' : 'XML undefined error interpreting sub-container'},
-                   109 : {'description' : 'Error attempting to access unknown attribute','severity' : SEVERITY_WARNING },
+                   109 : {'description' : 'Error attempting to access unknown attribute','severity' : Severity.WARNING },
                    110 : {'description' : 'Error creating sub-container'},
                    111 : {'description' : 'XML file does not have expected pluginName defined in the header'},
                    113 : {'description' : 'Attempting to add object that is not a CData'},
@@ -78,9 +78,9 @@ class CContainer(CCP4Data.CData):
                    136 : {'description' : 'Error inserting object in container data order'},
                    137 : {'description' : 'Unknown error restoring data from database'},
                    138 : {'description' : 'Attempting to copy from otherContainer which is not a CContainer'},
-                   139 : {'severity' : SEVERITY_WARNING, 'description' : 'Attempting to copy data which is not in this container'},
-                   140 : {'severity' : SEVERITY_WARNING, 'description' : 'Attempting to copy data which is not in the other container'},
-                   141 : {'severity' : SEVERITY_WARNING, 'description' : 'Unknown error copying data'},
+                   139 : {'severity' : Severity.WARNING, 'description' : 'Attempting to copy data which is not in this container'},
+                   140 : {'severity' : Severity.WARNING, 'description' : 'Attempting to copy data which is not in the other container'},
+                   141 : {'severity' : Severity.WARNING, 'description' : 'Unknown error copying data'},
                    142 : {'description' : 'Unrecognised class name in file'},
                    143 : {'description' : 'Item in file does not have an id'},
                    144 : {'description' : 'Item id in file is not unique'},
@@ -117,7 +117,7 @@ class CContainer(CCP4Data.CData):
             report.extend(self.loadContentsFromXml(definitionFile, guiAdmin=guiAdmin))
         # Throw exception if any of these data loading methods
         # return error
-        if  report.maxSeverity() >= SEVERITY_ERROR:
+        if  report.maxSeverity() >= Severity.ERROR:
             myException = CException()
             myException.extend(report)
             raise myException

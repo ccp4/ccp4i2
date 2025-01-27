@@ -20,7 +20,7 @@ import json
 import os
 import shutil
 
-from ....core.CCP4ErrorHandling import SEVERITY_WARNING
+from ....core.CCP4ErrorHandling import Severity
 from ....core.CCP4ModelData import CPdbDataFile
 from ....core.CCP4PluginScript import CPluginScript
 from ....core.CCP4XtalData import CMapCoeffsDataFile, CObsDataFile, CPhsDataFile
@@ -54,7 +54,7 @@ class modelcraft(CPluginScript):
         if not params.USE_MODEL_PHASES:
             miniMtzs.append(["PHASES", CPhsDataFile.CONTENT_FLAG_HL])
         self.hklin, self.columns, error = self.makeHklin0(miniMtzs)
-        if error.maxSeverity() > SEVERITY_WARNING:
+        if error.maxSeverity() > Severity.WARNING:
             return CPluginScript.FAILED
         self.seqin = os.path.join(self.getWorkDirectory(), "contents.json")
         self.writeContentsJson()
@@ -146,7 +146,7 @@ class modelcraft(CPluginScript):
         files = ["FPHIOUT", "DIFFPHIOUT", "ABCDOUT"]
         columns = ["FWT,PHWT", "DELFWT,PHDELWT", "HLACOMB,HLBCOMB,HLCCOMB,HLDCOMB"]
         error = self.splitHklout(files, columns, modelcraft_mtz)
-        if error.maxSeverity() > SEVERITY_WARNING:
+        if error.maxSeverity() > Severity.WARNING:
             return CPluginScript.FAILED
         with open(modelcraft_json) as stream:
             result = json.load(stream)

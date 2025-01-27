@@ -67,7 +67,7 @@ class lorestr_i2(CPluginScript):
         ])
         self.columnsAsArray = self.columns.split(",")
         
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         '''
         
@@ -101,7 +101,7 @@ class lorestr_i2(CPluginScript):
         if self.container.inputData.FREERFLAG.isSet():
             dataObjects += ['FREERFLAG']
         self.hklin,error = self.makeHklin(dataObjects)
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         else:
             return CPluginScript.SUCCEEDED
@@ -309,7 +309,7 @@ class lorestr_i2(CPluginScript):
 
 # End of CCP4i2 validation
 
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
 
         return CPluginScript.SUCCEEDED

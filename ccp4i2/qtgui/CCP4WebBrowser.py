@@ -65,7 +65,7 @@ from ..core import CCP4TaskManager
 from ..core import CCP4Utils
 from ..core import CCP4WorkflowManagerGui
 from ..core.CCP4DataManager import DATAMANAGER
-from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
 from ..core.CCP4Modules import TASKMANAGER, PIXMAPMANAGER
 from ..core.CCP4Version import CCP4_VERSION
 from ..qtcore import CCP4UpdateManager
@@ -1386,7 +1386,7 @@ class CMainWindow(QtWidgets.QMainWindow):
         elif mode == 'make_test_suite':
             testBuilder = CCP4ProjectBasedTesting.BuildTestSuite(projectId=self.getProject())  
             rv = testBuilder.run()
-            if rv.maxSeverity() > SEVERITY_WARNING:
+            if rv.maxSeverity() > Severity.WARNING:
                 rv.warningMessage(parent=self,windowTitle=self.windowTitle(),message='Error converting project to test suite')
             else:
                 builder = CCP4ProjectBasedTesting.BuildTestSuite(projectId=self.getProject())
@@ -1408,7 +1408,7 @@ class CMainWindow(QtWidgets.QMainWindow):
                     self.testSuiteDialog.raise_()
         elif mode == 'auto_task_docs':
             rv = CCP4TaskManager.CMakeDocsIndex().run()
-            if rv.maxSeverity() > SEVERITY_WARNING:
+            if rv.maxSeverity() > Severity.WARNING:
                 rv.warningMessage(parent=self,windowTitle=self.windowTitle(),message='Error recreating task documentation index page')
 
     def listTasks(self):

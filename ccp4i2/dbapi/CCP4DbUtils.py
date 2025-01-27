@@ -39,7 +39,7 @@ from ..core import CCP4File
 from ..core import CCP4Modules
 from ..core import CCP4TaskManager
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
 from ..core.CCP4Modules import PROJECTSMANAGER, TASKMANAGER, JOBCONTROLLER, WORKFLOWMANAGER
 
 
@@ -215,7 +215,7 @@ class COpenJob(QtCore.QObject):
         if taskName is None and cloneJobId is not None:
             pass
         rv = self.createContainer(taskName=taskName,taskVersion=taskVersion)
-        if rv.maxSeverity()>SEVERITY_WARNING:
+        if rv.maxSeverity()>Severity.WARNING:
             return rv
         if self.__dict__['jobId'] is None:
             jobId, pName, jNumber = PROJECTSMANAGER().newJob(taskName=taskName,projectId=self.projectId,jobNumber=jobNumber)
@@ -331,7 +331,7 @@ class COpenJob(QtCore.QObject):
         if self.__dict__['info'].get('taskname',None) is None:
             return CErrorReport(self.__class__,120)
         rv = self.createContainer(taskName=self.__dict__['info']['taskname'],taskVersion=self.__dict__['info'].get('taskversion',None))
-        if rv.maxSeverity()>SEVERITY_WARNING:
+        if rv.maxSeverity()>Severity.WARNING:
             return rv
         rv = self.loadParams()
         return rv
@@ -346,7 +346,7 @@ class COpenJob(QtCore.QObject):
         ifImportFile,errors = PROJECTSMANAGER().importFiles(jobId=self.jobId,container=self.container)
         #print 'COpenJob.runJob',ifImportFile,errors
         rv = self.saveParams()
-        if rv.maxSeverity()>SEVERITY_WARNING: return rv
+        if rv.maxSeverity()>Severity.WARNING: return rv
         #Record input files in database
         PROJECTSMANAGER().db().gleanJobFiles(jobId=self.__dict__['jobId'],container=self.__dict__['container'],
                                              projectId=self.__dict__['_projectId'],roleList=[CCP4DbApi.FILE_ROLE_IN])
@@ -623,16 +623,16 @@ class CMakeProjectDbXml(QtCore.QThread):
 
     jobLoaded = QtCore.Signal(int)
 
-    ERROR_CODES = {101 : { 'severity' : SEVERITY_WARNING,'description' : 'Error interpreting jobnumber from directory' },
-                   102 : { 'severity' : SEVERITY_WARNING,'description' : 'Unknown error attempting to find task info for job' },
-                   103 : { 'severity' : SEVERITY_WARNING,'description' : 'Error loading def.xml data file for job' },
-                   104 : { 'severity' : SEVERITY_WARNING, 'description' : 'File specified in def file does not exist' },
-                   105 : { 'severity' : SEVERITY_WARNING, 'description' : 'File specified in def file does not have dbFileId' },
-                   106 : { 'severity' : SEVERITY_WARNING,'description' : 'Can not find file type id for file' },
-                   107 : { 'severity' : SEVERITY_WARNING,'description' : 'Error interpreting xdata' },
-                   108 : { 'severity' : SEVERITY_WARNING,'description' : 'Error loading job.ccp4db.xml for job number' },
-                   109 : { 'severity' : SEVERITY_WARNING,'description' : 'No params.xml or input_params.xml file in job directory' },
-                   110 : { 'severity' : SEVERITY_WARNING, 'description' : 'Failed to find import info in job backup file for file' },
+    ERROR_CODES = {101 : { 'severity' : Severity.WARNING,'description' : 'Error interpreting jobnumber from directory' },
+                   102 : { 'severity' : Severity.WARNING,'description' : 'Unknown error attempting to find task info for job' },
+                   103 : { 'severity' : Severity.WARNING,'description' : 'Error loading def.xml data file for job' },
+                   104 : { 'severity' : Severity.WARNING, 'description' : 'File specified in def file does not exist' },
+                   105 : { 'severity' : Severity.WARNING, 'description' : 'File specified in def file does not have dbFileId' },
+                   106 : { 'severity' : Severity.WARNING,'description' : 'Can not find file type id for file' },
+                   107 : { 'severity' : Severity.WARNING,'description' : 'Error interpreting xdata' },
+                   108 : { 'severity' : Severity.WARNING,'description' : 'Error loading job.ccp4db.xml for job number' },
+                   109 : { 'severity' : Severity.WARNING,'description' : 'No params.xml or input_params.xml file in job directory' },
+                   110 : { 'severity' : Severity.WARNING, 'description' : 'Failed to find import info in job backup file for file' },
                    111 : { 'description' : '' }}
 
     def __init__(self,db=None,projectDir=None,projectName=None):
@@ -987,7 +987,7 @@ class CMakeProjectDbXml(QtCore.QThread):
         #print 'CMakeProjectDbXml.loadContainer',defFile
         err = container.loadContentsFromXml(defFile,guiAdmin=True)
         self.errReport.extend(err)
-        if err.maxSeverity()>SEVERITY_WARNING: return None
+        if err.maxSeverity()>Severity.WARNING: return None
         try:
             container.loadDataFromXml(fileName=fileName,guiAdmin=True)
         except CException as e:

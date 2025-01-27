@@ -43,7 +43,7 @@ class sheetbend(CPluginScript):
         colgrps = [ ['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN] ]
         if self.container.inputData.FREERFLAG.isSet(): colgrps.append( 'FREERFLAG' )
         self.hklin, columns, error = self.makeHklin0( colgrps )
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         #Preprocess coordinates to extract a subset
         self.selectedCoordinatesPath = os.path.join(self.getWorkDirectory(), "selected_xyzin.pdb")

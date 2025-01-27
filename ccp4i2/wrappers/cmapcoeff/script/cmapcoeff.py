@@ -113,7 +113,7 @@ class cmapcoeff(CPluginScript):
 
         error = self.splitHklout ( [ 'FPHIOUT' ],[ 'i2.F_phi.F,i2.F_phi.phi' ] )
 
-        if error.maxSeverity ( ) > CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity ( ) > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
 
         if self.container.controlParameters.MAPTYPE == "anom" :

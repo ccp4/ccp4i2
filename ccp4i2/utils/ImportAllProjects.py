@@ -18,7 +18,7 @@ import tempfile
 
 from ..core import CCP4Config
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import Severity
 from ..core.CCP4Modules import PROJECTSMANAGER
 from ..dbapi import CCP4DbApi
 from ..qtcore import CCP4Export
@@ -53,13 +53,13 @@ def ImportZipFile(compressedFile,destDirName):
 
     if projectInfo is None:
       ret = dbImport.createProject(projectDirectory=dirName)
-      if ret.maxSeverity()>SEVERITY_WARNING:
+      if ret.maxSeverity()>Severity.WARNING:
           print('Error creating project',dbImport.projectName,'in database')
           return
       dbImport.createTempTables()
       dbImport.loadTempTable()
       dbImport.setExclImportedFiles()
-      if dbImport.errReport.maxSeverity()>SEVERITY_WARNING:
+      if dbImport.errReport.maxSeverity()>Severity.WARNING:
           print('Error report from the import process..')
           print(dbImport.errReport.report())
       if not os.path.exists(dirName):
@@ -87,7 +87,7 @@ def ImportZipFile(compressedFile,destDirName):
           else:
             print('ImportAllProjects stats', key,value)
 
-      if errReport.maxSeverity()>SEVERITY_WARNING:
+      if errReport.maxSeverity()>Severity.WARNING:
         dbImport.removeTempTables()
         text = 'ERRORS UNPACKING DATA FILES\n'
         for err in errReport: text = text + err['details'] + '\n'

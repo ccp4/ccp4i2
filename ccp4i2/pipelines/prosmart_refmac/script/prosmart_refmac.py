@@ -289,7 +289,7 @@ class prosmart_refmac(CPluginScript):
                 CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot,pretty_print=True))
             self.reportStatus(CPluginScript.UNSATISFACTORY)
 
-        elif self.firstRefmac.errorReport.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        elif self.firstRefmac.errorReport.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             print("AAA1.MAXSEVERITY")
             #This gets done in thefirstRefmac.reportStatus() - Liz
             #self.extendErrorReport(self.firstRefmac.errorReport)

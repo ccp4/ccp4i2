@@ -9,7 +9,7 @@ import xml.etree.ElementTree as ET
 
 from . import json2restraints
 from ....core import CCP4Utils
-from ....core.CCP4ErrorHandling import SEVERITY_WARNING
+from ....core.CCP4ErrorHandling import Severity
 from ....core.CCP4PluginScript import CPluginScript
 from ...servalcat.script.json2xml import json2xml
 
@@ -23,7 +23,7 @@ class metalCoord(CPluginScript):
     MAINTAINER = 'martin.maly@soton.ac.uk'
 
     ERROR_CODES = { 201 : { 'description' : 'No output JSON file from metalCoord' },
-                    202 : { 'description' : 'Log file does not report successful job completion' , 'severity' : SEVERITY_WARNING },
+                    202 : { 'description' : 'Log file does not report successful job completion' , 'severity' : Severity.WARNING },
                     }
 
 

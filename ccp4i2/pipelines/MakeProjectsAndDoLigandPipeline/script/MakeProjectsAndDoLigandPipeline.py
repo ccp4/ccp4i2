@@ -35,18 +35,18 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
     TASKNAME = 'MakeProjectsAndDoLigandPipeline'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
     TASKVERSION= 0.1               # Version of this plugin
     MAINTAINER = 'martin.noble@ncl.ac.uk'
-    ERROR_CODES = {201 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to create project' },
-        202 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to create job' },
-        203 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to determine job number' },
-        204 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to generate dbHandler' },
-        205 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to create job directory' },
-        206 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to retrieve plugin' },
-        207 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to instantiate plugin' },
-        208 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to attach db data to plugin' },
-        209 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to launch subprocess' },
-        210 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to reparent project' },
-        211 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to open and /or parse XML' },
-        212 : {'severity':CCP4ErrorHandling.SEVERITY_ERROR, 'description' : 'Failed to determine projectId or Directory of presumed existing project' },
+    ERROR_CODES = {201 : {'severity':CCP4ErrorHandling.Severity.WARNING, 'description' : 'Failed to create project' },
+        202 : {'severity':CCP4ErrorHandling.Severity.WARNING, 'description' : 'Failed to create job' },
+        203 : {'severity':CCP4ErrorHandling.Severity.WARNING, 'description' : 'Failed to determine job number' },
+        204 : {'severity':CCP4ErrorHandling.Severity.WARNING, 'description' : 'Failed to generate dbHandler' },
+        205 : {'severity':CCP4ErrorHandling.Severity.WARNING, 'description' : 'Failed to create job directory' },
+        206 : {'severity':CCP4ErrorHandling.Severity.WARNING, 'description' : 'Failed to retrieve plugin' },
+        207 : {'severity':CCP4ErrorHandling.Severity.WARNING, 'description' : 'Failed to instantiate plugin' },
+        208 : {'severity':CCP4ErrorHandling.Severity.WARNING, 'description' : 'Failed to attach db data to plugin' },
+        209 : {'severity':CCP4ErrorHandling.Severity.WARNING, 'description' : 'Failed to launch subprocess' },
+        210 : {'severity':CCP4ErrorHandling.Severity.WARNING, 'description' : 'Failed to reparent project' },
+        211 : {'severity':CCP4ErrorHandling.Severity.WARNING, 'description' : 'Failed to open and /or parse XML' },
+        212 : {'severity':CCP4ErrorHandling.Severity.ERROR, 'description' : 'Failed to determine projectId or Directory of presumed existing project' },
                     }
     PURGESEARCHLIST = [ [ 'hklin.mtz' , 0 ],
                         ['log_mtzjoin.txt', 0]

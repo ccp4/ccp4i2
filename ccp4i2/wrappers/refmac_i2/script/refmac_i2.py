@@ -49,7 +49,7 @@ class refmac_i2(CPluginScript):
         
     ERROR_CODES = { 201 : {'description' : 'Refmac returned with non zero status' },
                     202:  {'description': 'New library created but strictly required' },
-                    203:  {'description': 'New library created', 'severity':CCP4ErrorHandling.SEVERITY_WARNING},
+                    203:  {'description': 'New library created', 'severity':CCP4ErrorHandling.Severity.WARNING},
                     204:  {'description': 'Program completed without generating XMLOUT.' },
                     }
     
@@ -121,7 +121,7 @@ class refmac_i2(CPluginScript):
         if self.container.inputData.FREERFLAG.isSet():
             dataObjects += ['FREERFLAG']
         self.hklin,error = self.makeHklin(dataObjects)
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         else:
             return CPluginScript.SUCCEEDED
@@ -218,7 +218,7 @@ class refmac_i2(CPluginScript):
             outputColumns += ['DELFAN,PHDELAN']
 
         error = self.splitHklout(outputFiles,outputColumns)
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
 
         #Use Refmacs XMLOUT as the basis for output XML.  If not existent (probably due to failure), then create a new one

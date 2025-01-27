@@ -32,7 +32,7 @@ class mrparse(CPluginScript):
         self.seqin = self.container.inputData.SEQIN
         if self.container.inputData.F_SIGF.isSet():
             self.hklin, error = self.makeHklin([['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
-            if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+            if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
                 return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 

@@ -7,7 +7,7 @@
 
 import sys
 
-from ....core.CCP4ErrorHandling import SEVERITY_WARNING
+from ....core.CCP4ErrorHandling import Severity
 from ....pipelines.aimless_pipe.script.aimless_pipe_utils import colourText, displayFile, formatRange, html_linebreak
 from ....report.CCP4ReportParser import Report
 
@@ -24,7 +24,7 @@ class pointless_report(Report):
     except:
       self.fileroot = None
 
-    if self.errorReport().maxSeverity()>SEVERITY_WARNING:
+    if self.errorReport().maxSeverity()>Severity.WARNING:
       print('FAILED instantiating Pointless report generator')
       self.errorReport().report()
       return

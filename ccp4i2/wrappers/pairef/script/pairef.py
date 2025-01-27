@@ -20,7 +20,7 @@ class pairef(CPluginScript):
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
     
     ERROR_CODES = { 101 : {'description' : 'Blank for now, may need this ',
-                           'severity':CCP4ErrorHandling.SEVERITY_ERROR } }
+                           'severity':CCP4ErrorHandling.Severity.ERROR } }
 
     def __init__(self, *args, **kwargs):
         self.seqin = None
@@ -50,7 +50,7 @@ class pairef(CPluginScript):
         if self.container.inputData.FREERFLAG.isSet():
             cols1.append(['FREERFLAG', None])
         self.hklin, __, errorb = self.makeHklInput(cols1, extendOutputColnames=True, useInputColnames=True)
-        if errorb.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        if errorb.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 
@@ -141,7 +141,7 @@ class pairef(CPluginScript):
         #outFiles = ['FPHIOUT', 'DIFFPHIOUT', 'ABCDOUT']
         #outCols =  ['2FOFCWT,PH2FOFCWT', 'FOFCWT,PHFOFCWT', 'HLA,HLB,HLC,HLD']
         #rep = self.splitHklout(miniMtzsOut=outFiles, programColumnNames=outCols, infile=mtzfile_bus)
-        #if rep.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        #if rep.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
         #    return CPluginScript.FAILED
         # Extract what is needed from the report.
         #plfilep = self.makeFileName('LOG')

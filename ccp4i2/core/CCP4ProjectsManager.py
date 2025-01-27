@@ -54,7 +54,7 @@ from ..qtcore import CCP4Export
 from ..qtgui import CCP4ProjectViewer
 from ..report import CCP4ReportGenerator
 from ..wrappers.AlternativeImportXIA2.script import AlternativeImportXIA2
-from .CCP4ErrorHandling import CErrorReport, CException, SEVERITY_ERROR, SEVERITY_OK, SEVERITY_WARNING
+from .CCP4ErrorHandling import CErrorReport, CException, Severity
 from .CCP4File import CI2XmlDataFile
 from .CCP4Modules import PROJECTSMANAGER
 from .CCP4QtObject import CObject
@@ -77,18 +77,18 @@ class CProjectsManager(CObject):
 
     insts = None
     CHECKINTERVAL = 1000
-    ERROR_CODES = {101 : {'severity' : SEVERITY_ERROR, 'description' : 'Failed creating CCP4I2_TEST project in'},
-                   102 : {'severity' : SEVERITY_ERROR, 'description' : 'CProjectsManager.addProject project of that name exists'},
-                   103 : {'severity' : SEVERITY_ERROR, 'description' : 'CProjectsManager.addProject imput project wrong type'},
-                   104 : {'severity' : SEVERITY_ERROR,'description' : 'Creating project, no name given for project'},
-                   105 : {'severity' : SEVERITY_ERROR,'description' : 'CProjectsManager.createProject Error creating project'},
-                   106 : {'severity' : SEVERITY_ERROR,'description' : 'CProjectsManager.createProject Error setting project directory'},
-                   107 : {'severity' : SEVERITY_ERROR,'description' : 'CProjectsManager.createProject Error making project directory'},
-                   108 : {'severity' : SEVERITY_ERROR,'description' : 'CProjectsManager.openDirectoriesDef  No HOME/USERPROFILE directory'},
-                   109 : {'severity' : SEVERITY_ERROR,'description' : 'CProjectsManager.deleteProject no project of that name'},
-                   110 : {'severity' : SEVERITY_ERROR,'description' : 'CProjectsManager.openDirectoriesDef Error opening directories.def file'},
-                   111 : {'severity' : SEVERITY_ERROR,'description' : 'CProjectsManager.write_ccp4i_directories No HOME/USERPROFILE directory, Error saving directories.def '},
-                   112 : {'severity' : SEVERITY_ERROR,'description' : 'Attempting to create project in directory that is used by another project.'},
+    ERROR_CODES = {101 : {'severity' : Severity.ERROR, 'description' : 'Failed creating CCP4I2_TEST project in'},
+                   102 : {'severity' : Severity.ERROR, 'description' : 'CProjectsManager.addProject project of that name exists'},
+                   103 : {'severity' : Severity.ERROR, 'description' : 'CProjectsManager.addProject imput project wrong type'},
+                   104 : {'severity' : Severity.ERROR,'description' : 'Creating project, no name given for project'},
+                   105 : {'severity' : Severity.ERROR,'description' : 'CProjectsManager.createProject Error creating project'},
+                   106 : {'severity' : Severity.ERROR,'description' : 'CProjectsManager.createProject Error setting project directory'},
+                   107 : {'severity' : Severity.ERROR,'description' : 'CProjectsManager.createProject Error making project directory'},
+                   108 : {'severity' : Severity.ERROR,'description' : 'CProjectsManager.openDirectoriesDef  No HOME/USERPROFILE directory'},
+                   109 : {'severity' : Severity.ERROR,'description' : 'CProjectsManager.deleteProject no project of that name'},
+                   110 : {'severity' : Severity.ERROR,'description' : 'CProjectsManager.openDirectoriesDef Error opening directories.def file'},
+                   111 : {'severity' : Severity.ERROR,'description' : 'CProjectsManager.write_ccp4i_directories No HOME/USERPROFILE directory, Error saving directories.def '},
+                   112 : {'severity' : Severity.ERROR,'description' : 'Attempting to create project in directory that is used by another project.'},
                    113 : {'description' : 'No directory name provided for making directory'},
                    114 : {'description' : 'Error creating directory'},
                    115 : {'description' : 'Error creating sub-directory in project directory'},
@@ -120,9 +120,9 @@ class CProjectsManager(CObject):
                    180 : {'description' : 'Error reading input_params.xml file to find list of input files to job'},
                    181 : {'description' : 'Error extracting an input file path from input_params.xml'},
                    182 : {'description' : 'Input file for job does not exist'},
-                   200 : {'severity' : SEVERITY_OK,'description' : 'Successfully deleted project directory'},
+                   200 : {'severity' : Severity.OK,'description' : 'Successfully deleted project directory'},
                    201 : {'description' : 'Error attempting to delete project directory'},
-                   202 : {'severity' : SEVERITY_OK,'description' : 'Successfully deleted project from database'},
+                   202 : {'severity' : Severity.OK,'description' : 'Successfully deleted project from database'},
                    203 : {'description' : 'Error attempting to delete project from database'},
                    204 : {'description' : 'No projectId provided for delete project from database'},
                    210 : {'description' : 'Failed to delete temporary file created in exporting MTZ'}}
@@ -1299,7 +1299,7 @@ class CProjectsManager(CObject):
         # exportProjectXml returns list of TOP-LEVEL jobNumbers for the export
         jobNumberList, errReport = self.db().exportProjectXml(projectId, fileName=dbxml, recordExport=True, status='exportable', after=after, jobList=jobList, inputFileList=inputFileIdList, inputFileFromJobList=fromJobIdList)
         #print 'CProjectManagerDialog.compressProject jobNumberList',jobNumberList,
-        if errReport.maxSeverity() > SEVERITY_WARNING:
+        if errReport.maxSeverity() > Severity.WARNING:
             errReport.warningMessage('Export project','Error creating XML database file', parent=self)
             return
         if jobList is not None:
@@ -1315,7 +1315,7 @@ class CProjectsManager(CObject):
 
     @QtCore.Slot(str,str,'QWidget')
     def doneSavingJobData(self, projectName, fileName, parentWidget):
-        if self.exportThread.errorReport.maxSeverity() > SEVERITY_WARNING:
+        if self.exportThread.errorReport.maxSeverity() > Severity.WARNING:
             self.exportThread.errorReport.warningMessage('Saving job data', 'Error saving data files for export to\n' + str(fileName), parent=parentWidget)
         self.exportThread.deleteLater()
         self.exportThread = None
@@ -1702,7 +1702,7 @@ class CPurgeProject(CObject):
                 else:
                     func()
             except CException as e:
-                if e.maxSeverity() > SEVERITY_WARNING:
+                if e.maxSeverity() > Severity.WARNING:
                     pass
                     #e.warningMessage(windowTitle=self.parent().windowTitle(),message='Failed creating job report',parent=self)
         return True

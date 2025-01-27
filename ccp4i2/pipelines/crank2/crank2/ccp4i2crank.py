@@ -209,7 +209,7 @@ def RegisterOutputToCCP4i2(process,error,nosuccess=False):
               error = i2job.splitHklout([outd_name,], [out_obj.GetLabel('ph')+','+out_obj.GetLabel('fom'),], infile=filepath)
           else:
             error = i2job.splitHklout([outd_name,], [out_obj.GetLabel('f')+','+out_obj.GetLabel('ph'),], infile=filepath)
-          if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+          if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             i2job.reportStatus(CCP4PluginScript.CPluginScript.FAILED)
       elif outd_name.startswith('F_SIGF'):
         out_obj=None

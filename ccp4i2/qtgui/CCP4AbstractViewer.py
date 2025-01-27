@@ -29,7 +29,7 @@ from PySide2 import QtCore, QtWidgets
 
 from ..core import CCP4Modules
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import SEVERITY_ERROR
+from ..core.CCP4ErrorHandling import Severity
 from ..qtcore import CCP4CustomMimeTypes
 
 
@@ -54,9 +54,9 @@ class CAbstractViewer(QtWidgets.QScrollArea):
 #-------------------------------------------------------------------
     MENUTEXT = 'Viewer'
     FILEWATCHER = None
-    ERROR_CODES = {1 : {'severity' : SEVERITY_ERROR, 'description' : 'Failed opening file'},
-                   2 : {'severity' : SEVERITY_ERROR, 'description' : 'Failed reading file'},
-                   3 : {'severity' : SEVERITY_ERROR, 'description' : 'No file name or file does not exist'},}
+    ERROR_CODES = {1 : {'severity' : Severity.ERROR, 'description' : 'Failed opening file'},
+                   2 : {'severity' : Severity.ERROR, 'description' : 'Failed reading file'},
+                   3 : {'severity' : Severity.ERROR, 'description' : 'No file name or file does not exist'},}
 # Subclassed to display various file types in the CCP4WebBrowser
 #-------------------------------------------------------------------
     def __init__(self,parent=None,fileName=None):

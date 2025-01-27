@@ -23,7 +23,7 @@ class findmyseq(CPluginScript):
     
     ERROR_CODES = { 101 : {'description' : 'Blank ' \
                            'In case needed (Prob not needed here)', 
-                           'severity':CCP4ErrorHandling.SEVERITY_ERROR } }
+                           'severity':CCP4ErrorHandling.Severity.ERROR } }
 
     def __init__(self, *args, **kwargs):
         self.outjfile = None

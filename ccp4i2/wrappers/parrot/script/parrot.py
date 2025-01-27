@@ -48,7 +48,7 @@ class parrot(CPluginScript):
       if self.container.inputData.FREERFLAG.isSet(): cols.append('FREERFLAG')
       if self.container.inputData.F_PHI.isSet(): cols.append('F_PHI')
       self.hklin, __, error = self.makeHklInput(cols)
-      if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING: return CPluginScript.FAILED
+      if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING: return CPluginScript.FAILED
 
       self.refHklin = None
       conPars = self.container.controlParameters
@@ -56,7 +56,7 @@ class parrot(CPluginScript):
          conPars.F_SIGF_REF.exists() and conPars.ABCD_REF.exists() and conPars.XYZIN_REF.exists():
         self.refHklin, __, error = self.makeHklInput([['F_SIGF_REF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN],'ABCD_REF'],
                                                      extendOutputColnames=False, useInputColnames=False)
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
           self.refHklin = None
 
       self.seqin = os.path.join(self.workDirectory,'seqin.fasta')
@@ -89,7 +89,7 @@ class parrot(CPluginScript):
 
       # error checking
       error = self.splitHklout(['FPHIOUT','ABCDOUT'],['parrot.F_phi.F,parrot.F_phi.phi','parrot.ABCD.A,parrot.ABCD.B,parrot.ABCD.C,parrot.ABCD.D'])
-      if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+      if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
         return CPluginScript.FAILED
       else:
         return CPluginScript.SUCCEEDED

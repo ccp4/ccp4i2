@@ -174,7 +174,7 @@ class phaser_mr(CPluginScript):
       self.watchFile(self.makeFileName('LOG'), self.handleLogChanged)
       
       self.hklin,error = self.makeHklin([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
-      if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+      if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
         return CPluginScript.FAILED
       else:      
         return CPluginScript.SUCCEEDED

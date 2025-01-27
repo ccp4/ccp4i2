@@ -59,7 +59,7 @@ from ..core import CCP4I2Runner
 from ..core import CCP4ProjectsManager
 from ..core import CCP4Utils
 from ..core.CCP4Config import DEVELOPER
-from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
 from ..core.CCP4Modules import JOBCONTROLLER, JOBCONTROLLERGUI
 from ..core.CCP4Modules import LAUNCHER, MIMETYPESHANDLER, PREFERENCES
 from ..core.CCP4Modules import QTAPPLICATION, PROJECTSMANAGER, WEBBROWSER
@@ -1023,7 +1023,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
             infoList = [projectName, projectName]
             pObj = CCP4I1Projects.CI1TreeItemProject(self.i1Widget.model().rootItem, infoList=infoList, directory=projectDir)
             err=pObj.loadDatabase()
-            if err.maxSeverity() > SEVERITY_WARNING:
+            if err.maxSeverity() > Severity.WARNING:
                 err.warningMessage('CCP4i project', 'Error loading old CCP4 project data', parent=self)
             else:
                 self.i1Widget.model().beginResetModel()
@@ -1104,7 +1104,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
     def reloadI1Project(self):
         self.i1Widget.model().beginResetModel()
         err = self.i1Widget.model().rootItem.loadDatabase()
-        if err.maxSeverity() > SEVERITY_WARNING:
+        if err.maxSeverity() > Severity.WARNING:
             err.warningMessage('CCP4i project', 'Error loading old CCP4 project data', parent=self)
         self.i1Widget.model().endResetModel()
 
@@ -3825,13 +3825,13 @@ CCP4I2 3D View
                     try:
                         reportFile, newPageOrNewData = self.generator.makeReportFile()
                     except CException as e:
-                        if  e.maxSeverity()>SEVERITY_WARNING:
+                        if  e.maxSeverity()>Severity.WARNING:
                             e.warningMessage(windowTitle=self.parent().windowTitle(),message='Failed creating job report',parent=self)
                     except Exception as e:
                         QtWidgets.QMessageBox.warning(self,self.parent().windowTitle(),'Unknown error creating report file for job number '+str(openJob.jobNumber))
                     if os.path.exists(reportFile):
                         err = self.generator.mergeIntoParent(parentFile=self._reportFile)
-                        if err.maxSeverity() <= SEVERITY_WARNING:
+                        if err.maxSeverity() <= Severity.WARNING:
                             self.webView.reload()
                 return
         print('CReportView.handleNavigationRequest 4',url); sys.stdout.flush()
@@ -3890,7 +3890,7 @@ CCP4I2 3D View
                             reportFile, newPageOrNewData = self.generator.makeReportFile(redo=redo,doReload=doReload,useGeneric=(logFile is None))
                     except CException as e:
                         # Dont report lack for report definition file
-                        if reportErr and e.maxSeverity()>SEVERITY_WARNING and e.code != 3:
+                        if reportErr and e.maxSeverity()>Severity.WARNING and e.code != 3:
                             e.warningMessage(windowTitle=self.parent().windowTitle(),message='Failed creating job report',parent=self)
                         reportFile = None
                     except Exception as e:
@@ -4302,7 +4302,7 @@ class CTaskInputFrame(QtWidgets.QFrame):
             fromJobIdList.append(item['jobid'])
             fromJobNumberList.append(item['jobnumber'])
         jobNumberList,errReport = PROJECTSMANAGER().db().exportProjectXml(projectId,fileName=dbxml,jobList=[jobId],inputFileList=inputFileIdList,inputFileFromJobList=fromJobIdList)
-        if errReport.maxSeverity()>SEVERITY_WARNING:
+        if errReport.maxSeverity()>Severity.WARNING:
             errReport.warningMessage("title",'Error creating XML database file',parent=self)
             return False
         if mechanism in ['ssh_shared','qsub_local','qsub_shared']:

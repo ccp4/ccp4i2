@@ -186,7 +186,7 @@ class pyphaser_mr(CPluginScript):
 
     def processInputFiles(self):
       self.hklin,error = self.makeHklin([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
-      if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+      if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
         for report in error._reports:
           if report['code'] == 32:
             report['details'] = 'Observed data has no F/SIGF columns, required by Phaser. Check file import.'

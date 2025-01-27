@@ -31,7 +31,7 @@ from PySide2 import QtCore
 from . import CCP4Utils
 from ..dbapi import CCP4DbApi
 from ..qtcore import CCP4Export
-from .CCP4ErrorHandling import CException, SEVERITY_WARNING
+from .CCP4ErrorHandling import CException, Severity
 from .CCP4Modules import PROJECTSMANAGER
 
 
@@ -89,7 +89,7 @@ class CCP4NonGuiProjectUtils(QtCore.QObject):
     self.dbImport.projectDirectory = dirName
     if existingProject is None:
       ret = self.dbImport.createProject()
-      if ret.maxSeverity()>SEVERITY_WARNING:
+      if ret.maxSeverity()>Severity.WARNING:
         print(ret.report())
         print('Error creating project in database')
         return
@@ -106,7 +106,7 @@ class CCP4NonGuiProjectUtils(QtCore.QObject):
 
     if DIAGNOSTIC: print('CProjectManagerDialog.importProject setting Temp Tables',self.dbImport.errReport.report())
     
-    if self.dbImport.errReport.maxSeverity()>SEVERITY_WARNING:
+    if self.dbImport.errReport.maxSeverity()>Severity.WARNING:
       if DIAGNOSTIC: print('Error report from the import process..')
       if DIAGNOSTIC: print(self.dbImport.errReport.report())
       print('Error loading data from project export file')
@@ -141,7 +141,7 @@ class CCP4NonGuiProjectUtils(QtCore.QObject):
               print('Job_'+str(item[4]),item[2])
         else:
           print('CProjectManagerDialog.importProject stats', key,value)
-    if errReport.maxSeverity()>SEVERITY_WARNING:
+    if errReport.maxSeverity()>Severity.WARNING:
       self.dbImport.removeTempTables()
       text = 'ERRORS UNPACKING DATA FILES\n'
       for err in errReport: text = text + err['details'] + '\n'

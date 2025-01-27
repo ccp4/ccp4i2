@@ -48,7 +48,7 @@ class nautilus(CPluginScript):
             print('FREERFLAG is not set, so joining the rest of the data objects')
             self.hklin,columns,error = self.makeHklin0([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN], 'ABCD', 'FWT_PHWT_IN' ])
 
-          if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+          if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             print('ERROR creating input HKLIN with FWT_PHWT_IN')
             print(error.report())
             return CPluginScript.FAILED
@@ -60,7 +60,7 @@ class nautilus(CPluginScript):
             print('FREERFLAG is not set, so joining the rest of the data objects')
             self.hklin,columns,error = self.makeHklin0([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN],'ABCD' ])
           
-          if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+          if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             print('ERROR creating input HKLIN')
             print(error.report())
             return CPluginScript.FAILED

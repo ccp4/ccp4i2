@@ -27,7 +27,7 @@ from PySide2 import QtCore, QtGui, QtWidgets
 
 from ..core import CCP4CustomTaskManager
 from ..core import CCP4Data
-from ..core.CCP4ErrorHandling import SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import Severity
 from ..core.CCP4Modules import CUSTOMTASKMANAGER, WEBBROWSER
 from ..qtgui import CCP4CustomisationGui, CCP4Widgets
 
@@ -483,7 +483,7 @@ class CCreateCustomTaskDialog(QtWidgets.QDialog):
     if not self.model.name.isSet():
        QtWidgets.QMessageBox.warning(self,'Create Custom Task','Custom task name must be entered')
        return
-    if self.model.name.validity(self.model.name.__str__()).maxSeverity() > SEVERITY_WARNING:
+    if self.model.name.validity(self.model.name.__str__()).maxSeverity() > Severity.WARNING:
       QtWidgets.QMessageBox.warning(self,'Create Custom Task','Custom task name must be single word')
       return
     if not self.model.comLine.isSet():
@@ -534,7 +534,7 @@ class CCreateCustomTaskDialog(QtWidgets.QDialog):
        QtWidgets.QMessageBox.warning(self,'Create Custom Task',"Error saving custom task\n"+str(e))
        return
     ''' 
-    if err.maxSeverity()>SEVERITY_WARNING:
+    if err.maxSeverity()>Severity.WARNING:
       err.warningMessage('Create custom task','Error saving custom task',parent=self)
       return
     

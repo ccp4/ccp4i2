@@ -24,7 +24,7 @@ from lxml import etree
 
 from ....core import CCP4Utils
 from ....core import CCP4XtalData
-from ....core.CCP4ErrorHandling import SEVERITY_WARNING
+from ....core.CCP4ErrorHandling import Severity
 from ....core.CCP4PluginScript import CPluginScript
 
 
@@ -36,9 +36,9 @@ class molrep_den(CPluginScript):
     TASKMODULE = 'test'
     MAINTAINER = 'andrey.lebedev@stfc.ac.uk'
 
-    ERROR_CODES = {101 : { 'severity': SEVERITY_WARNING, 'description' : 'Failed extracting tables from molrep.doc' },
-                   102 : { 'severity': SEVERITY_WARNING, 'description' : 'Failed writing tables to program.xml' },
-                   103 : { 'severity': SEVERITY_WARNING, 'description' : 'No tables extracted from molrep.doc' },
+    ERROR_CODES = {101 : { 'severity': Severity.WARNING, 'description' : 'Failed extracting tables from molrep.doc' },
+                   102 : { 'severity': Severity.WARNING, 'description' : 'Failed writing tables to program.xml' },
+                   103 : { 'severity': Severity.WARNING, 'description' : 'No tables extracted from molrep.doc' },
                    104 : { 'description' : 'No output coordinate file from Molrep' },
                    105 : { 'description' : 'No output log file from Molrep' },
                    106 : { 'description' : 'Error parsing log file from Molrep' }}

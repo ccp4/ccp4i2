@@ -29,7 +29,7 @@ from PySide2 import QtCore, QtGui, QtWidgets
 
 from ..core import CCP4Modules
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import SEVERITY_ERROR, SEVERITY_OK
+from ..core.CCP4ErrorHandling import Severity
 from ..dbapi import CCP4DbUtils
 from ..qtgui import CCP4TextViewer
 from ..qtgui import CCP4Widgets
@@ -106,10 +106,10 @@ class CErrorReportViewer(CCP4TextViewer.CTextViewer):
                 timeText = ''
             if hasattr(report['class'],'ERROR_CODES'):
                 description = report['class'].ERROR_CODES[report['code']].get('description',' ')
-                severity = report['class'].ERROR_CODES[report['code']].get('severity',SEVERITY_ERROR)
-                if severity == SEVERITY_OK:
+                severity = report['class'].ERROR_CODES[report['code']].get('severity',Severity.ERROR)
+                if severity == Severity.OK:
                     severityColour = '00FF00'
-                elif severity == SEVERITY_ERROR:
+                elif severity == Severity.ERROR:
                     severityColour = 'FF0000'
                 else:
                     severityColour = 'FFC000'

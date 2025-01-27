@@ -60,7 +60,7 @@ class Platonyzer(CPluginScript):
         columnsToTake = ['FWT,PHWT','DELFWT,PHDELWT']
         infile = os.path.join(self.workDirectory,'final.mtz')
         error = self.splitHklout(outputFilesToMake, columnsToTake, infile=infile)
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         '''
         

@@ -49,7 +49,7 @@ from ..core import CCP4DataManager
 from ..core import CCP4File
 from ..core import CCP4TaskManager
 from ..core import CCP4XtalData
-from ..core.CCP4ErrorHandling import CException, SEVERITY_UNDEFINED_ERROR, SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import CException, Severity
 from ..core.CCP4Modules import PROJECTSMANAGER, PIXMAPMANAGER, QTAPPLICATION, TASKMANAGER, LAUNCHER
 from ..core.CCP4Modules import WEBBROWSER, PREFERENCES, MIMETYPESHANDLER, COMFILEPATCHMANAGER
 from ..dbapi import CCP4DbApi
@@ -1198,21 +1198,21 @@ class CViewWidget(QtWidgets.QFrame, CBaseWidget):
             v = self.model.validity(self.model.get())
             update = False
             #print 'CViewWidget.validate maxSeverity', v.maxSeverity(), v.report(ifStack=False,mode=2)
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 if self.isValid is None or self.isValid:
                     update = True
                 self.setProperty("isValid", False)
                 self.setProperty("hasWarning", False)
                 self.isValid = False
-                self.validityMessage = v.report(ifStack=False, user=True, mode=2, minSeverity=SEVERITY_UNDEFINED_ERROR)
-            elif v.maxSeverity()==SEVERITY_WARNING:
+                self.validityMessage = v.report(ifStack=False, user=True, mode=2, minSeverity=Severity.UNDEFINED_ERROR)
+            elif v.maxSeverity()==Severity.WARNING:
                 # For warning message do not highlight widget but do set the warning text
                 if self.isValid is None or not self.isValid:
                     update = True
                 self.setProperty("isValid", True)
                 self.setProperty("hasWarning", True)
                 self.isValid = True
-                self.validityMessage = v.report(ifStack=False, user=True, mode=2, minSeverity=SEVERITY_UNDEFINED_ERROR)
+                self.validityMessage = v.report(ifStack=False, user=True, mode=2, minSeverity=Severity.UNDEFINED_ERROR)
             else:
                 if self.isValid is None or not self.isValid: update = True
                 self.setProperty("isValid",True)
@@ -3239,7 +3239,7 @@ class CListView(CComplexLineWidget):
   def setValidity(self,row,isValid=None):
     if isValid is None:
       validity = self.model[row].validity(self.model[row].get())
-      if validity.maxSeverity()>SEVERITY_WARNING:
+      if validity.maxSeverity()>Severity.WARNING:
         isValid = False
       else:
         isValid = True
@@ -3259,7 +3259,7 @@ class CListView(CComplexLineWidget):
     validity = self.model.validity(self.model.__dict__['_value'])
     previous = self.listWidget.property('isValid')
     #print 'CListView.setValidity',previous,validity.maxSeverity()
-    if validity.maxSeverity()>SEVERITY_WARNING:
+    if validity.maxSeverity()>Severity.WARNING:
       self.listWidget.setProperty('isValid',False)
     else:
       self.listWidget.setProperty('isValid',True)
@@ -3984,7 +3984,7 @@ class CTreeView(CComplexLineWidget):
     return
     if isValid is None:
       validity = self.model[row].validity(self.model[row].get())
-      if validity.maxSeverity()>SEVERITY_WARNING:
+      if validity.maxSeverity()>Severity.WARNING:
         isValid = False
       else:
         isValid = True

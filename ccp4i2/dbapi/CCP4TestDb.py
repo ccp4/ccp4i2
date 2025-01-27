@@ -11,7 +11,7 @@ from . import CCP4DbUtils
 from ..core import CCP4Config
 from ..core import CCP4File
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import Severity
 from ..core.CCP4Modules import PROJECTSMANAGER, QTAPPLICATION, JOBCONTROLLER
 from ..core.CCP4QtObject import CObject
 from ..qtcore import CCP4Export
@@ -166,7 +166,7 @@ class CTestDb(CObject):
     # exportProjectXml returns list of TOP-LEVEL jobNumbers for the export
     jobNumberList,errReport = PROJECTSMANAGER().db().exportProjectXml(projectId,fileName=dbxml,recordExport=True,status='exportable',jobList=jobIdList,inputFileList=inputFileIdList,inputFileFromJobList=fromJobIdList)
     #print 'CTestDb.exportProject jobNumberList',jobNumberList
-    if errReport.maxSeverity()>SEVERITY_WARNING:
+    if errReport.maxSeverity()>Severity.WARNING:
       print('ERROR in exportProjectXml\n',errReport.report())
 
     if jobIdList is not None:
@@ -228,7 +228,7 @@ class CTestDb(CObject):
     stats = dbImport.importStats()
     for key,value in list(stats.items()):
       print('importProject stats', key,value)
-    if errReport.maxSeverity()>SEVERITY_WARNING:
+    if errReport.maxSeverity()>Severity.WARNING:
       dbImport.removeTempTables()
       text = 'ERRORS UNPACKING DATA FILES\n'
       for err in errReport: text = text + err['details'] + '\n'
@@ -249,7 +249,7 @@ class CTestDb(CObject):
     node1,jobNumberList1,errReport1  = self.dbApi.getTablesEtree(projectId=projectId)
     self.setDatabase('2')  
     node2,jobNumberList2,errReport2  = self.dbApi.getTablesEtree(projectId=projectId)
-    if errReport1.maxSeverity()>SEVERITY_WARNING or errReport2.maxSeverity()>SEVERITY_WARNING:
+    if errReport1.maxSeverity()>Severity.WARNING or errReport2.maxSeverity()>Severity.WARNING:
       print('ERRORS convering Db to Etree\ndb1\n'+errReport1.report()+'\ndb2\n'+errReport2.report())
       return
     diffs = CCP4File.compareEtreeNodes(node1,node2)

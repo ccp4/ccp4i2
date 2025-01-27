@@ -23,7 +23,7 @@ es may be
 from PySide2 import QtCore
 
 from . import CCP4Data, CCP4ModelData, CCP4XtalData
-from .CCP4ErrorHandling import CErrorReport, SEVERITY_OK, SEVERITY_WARNING
+from .CCP4ErrorHandling import CErrorReport, Severity
 
 
 def performanceIndicatorClasses():
@@ -40,12 +40,12 @@ class CPerformanceIndicator(CCP4Data.CData):
   CONTENTS_ORDER = ['value','annotation']
   CONTENTS = { 'value' : { 'class' : CCP4Data.CFloat, 'qualifiers' : { 'min' : 0.0 } },
                'annotation' :  { 'class' : CCP4Data.CString } }
-  ERROR_CODES = { 300 : { 'description' : 'Passed', 'severity': SEVERITY_OK },
+  ERROR_CODES = { 300 : { 'description' : 'Passed', 'severity': Severity.OK },
                   301 : { 'description' : 'Data value not set' },
                   302 : { 'description' : 'Performance indicator value difference greater than tolereance' },
                   303 : { 'description' : 'Performance indicator value different' },
-                  304 : { 'description' : 'Performance indicator value difference greater than tolereance - but improved', 'severity' : SEVERITY_WARNING },
-                  305 : { 'description' : 'Performance indicator not used', 'severity' : SEVERITY_OK }
+                  304 : { 'description' : 'Performance indicator value difference greater than tolereance - but improved', 'severity' : Severity.WARNING },
+                  305 : { 'description' : 'Performance indicator not used', 'severity' : Severity.OK }
                   }
   
   def saveToDb(self):

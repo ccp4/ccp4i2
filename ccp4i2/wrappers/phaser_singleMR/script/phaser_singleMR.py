@@ -58,7 +58,7 @@ class phaser_singleMR(CPluginScript):
         # Need to join up the previous i2-only mini-mtz's to get back the prior mtz file ...
         self.seqin = os.path.join(self.workDirectory, 'input_seq.fasta')
         self.container.inputData.ASUFILE.writeFasta(self.seqin)
-        if error1.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        if error1.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 

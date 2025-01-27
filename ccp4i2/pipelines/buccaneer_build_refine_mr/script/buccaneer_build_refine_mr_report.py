@@ -1,7 +1,8 @@
 import os
 import sys
 
-from ....report.CCP4ReportParser import Report, SEVERITY_WARNING
+from ccp4i2.core.CCP4ErrorHandling import Severity
+from ccp4i2.report.CCP4ReportParser import Report
 
 
 class bucref_report(Report):
@@ -13,7 +14,7 @@ class bucref_report(Report):
   CSS_VERSION = '0.1.0'
   def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,taskVersion=None,**kw):
     Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo,cssVersion=self.CSS_VERSION,**kw)
-    if self.errorReport().maxSeverity()>SEVERITY_WARNING:
+    if self.errorReport().maxSeverity()>Severity.WARNING:
       print('FAILED instantiating buccaneer_build_refine_mr report generator')
       self.errorReport().report()
       return

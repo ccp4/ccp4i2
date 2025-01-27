@@ -25,7 +25,7 @@ import os
 
 from PySide2 import QtCore, QtGui, QtWidgets
 
-from ..core.CCP4ErrorHandling import CException, SEVERITY_ERROR
+from ..core.CCP4ErrorHandling import CException, Severity
 from ..qtgui import CCP4AbstractViewer
 
 
@@ -33,7 +33,7 @@ class CImageViewer(CCP4AbstractViewer.CAbstractViewer):
 
   ERROR_CODES = {}
   ERROR_CODES.update(CCP4AbstractViewer.CAbstractViewer.ERROR_CODES)
-  ERROR_CODES.update( { 101 : { 'severity' : SEVERITY_ERROR,
+  ERROR_CODES.update( { 101 : { 'severity' : Severity.ERROR,
                                 'description' : 'Image file apparently zero size' }
                          } )
 
@@ -127,7 +127,7 @@ class CAnimationViewer(CCP4AbstractViewer.CAbstractViewer):
 # Beware does NOT display mp4 etc. movies
   ERROR_CODES = {}
   ERROR_CODES.update(CCP4AbstractViewer.CAbstractViewer.ERROR_CODES)
-  ERROR_CODES.update( { 101 : { 'severity' : SEVERITY_ERROR,
+  ERROR_CODES.update( { 101 : { 'severity' : Severity.ERROR,
                                 'description' : 'Apparently invalid movie file' }
                          } )
 

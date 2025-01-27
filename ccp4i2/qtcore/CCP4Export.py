@@ -8,7 +8,7 @@ import zipfile
 from PySide2 import QtCore
 
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
 from ..core.CCP4Modules import PROJECTSMANAGER
 
 
@@ -203,10 +203,10 @@ class ImportProjectThread(QtCore.QObject):
     ERROR_CODES = {170 : {'description' : 'Importing files unfinished or failed'},
                    176 : {'description' : 'Error opening project tar compressed file'},
                    177 : {'description' : 'Error reading job files from project tar compressed file'},
-                   178 : {'severity' : SEVERITY_WARNING, 'description' : 'Error reading from project tar compressed file'},
+                   178 : {'severity' : Severity.WARNING, 'description' : 'Error reading from project tar compressed file'},
                    190 : {'description' : 'Error opening project zip compressed file'},
                    191 : {'description' : 'Error reading job files from project zip compressed file'},
-                   192 : {'severity' : SEVERITY_WARNING, 'description' : 'Error reading from project zip compressed file'},
+                   192 : {'severity' : Severity.WARNING, 'description' : 'Error reading from project zip compressed file'},
                    191 : {'description' : 'Error reading compressed file - file extension unrecognised (expects tar.gz or zip)'}}
 
     def __init__(self,parent=None, projectDir=None, compressedFile=None, dbImport=None, diagnostic=False):

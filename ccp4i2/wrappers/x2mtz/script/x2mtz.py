@@ -24,7 +24,7 @@ automatically
 from lxml import etree
 
 from ....core import CCP4Utils
-from ....core.CCP4ErrorHandling import SEVERITY_WARNING
+from ....core.CCP4ErrorHandling import Severity
 from ....core.CCP4PluginScript import CPluginScript
 
 
@@ -122,7 +122,7 @@ class x2mtz(CPluginScript):
           CCP4Utils.writeXML(outputXML,etree.tostring(self.x2mtzXML,pretty_print=True))
 
       #print( 'x2mtz splitHklout err',err)
-      if err.maxSeverity()>SEVERITY_WARNING:
+      if err.maxSeverity()>Severity.WARNING:
         print('ERROR in splitHklout')
         print(err.report())
         return CPluginScript.FAILED

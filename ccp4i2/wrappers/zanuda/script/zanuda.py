@@ -19,7 +19,7 @@
 import os
 import re
 
-from ....core.CCP4ErrorHandling import SEVERITY_WARNING
+from ....core.CCP4ErrorHandling import Severity
 from ....core.CCP4ModelData import CPdbDataFile
 from ....core.CCP4PluginScript import CPluginScript
 from ....core.CCP4XtalData import CMapCoeffsDataFile, CObsDataFile
@@ -48,7 +48,7 @@ class zanuda(CPluginScript):
             ["FREERFLAG", None],
         ]
         self.hklin, self.columns, error = self.makeHklin0(miniMtzs)
-        if error.maxSeverity() > SEVERITY_WARNING:
+        if error.maxSeverity() > Severity.WARNING:
             return CPluginScript.FAILED
         self.model = os.path.join(self.getWorkDirectory(), "model.xyz")
         self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.model)
@@ -85,7 +85,7 @@ class zanuda(CPluginScript):
         files = ["FPHIOUT", "DIFFPHIOUT"]
         columns = ["FWT,PHWT", "DELFWT,PHDELWT"]
         error = self.splitHklout(files, columns, zanuda_mtz)
-        if error.maxSeverity() > SEVERITY_WARNING:
+        if error.maxSeverity() > Severity.WARNING:
             return CPluginScript.FAILED
         log = os.path.join(self.getWorkDirectory(), 'log.txt')
         if os.path.isfile(log):

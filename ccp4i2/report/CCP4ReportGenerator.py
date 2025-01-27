@@ -14,7 +14,7 @@ from ..core import CCP4Modules
 from ..core import CCP4PluginScript
 from ..core import CCP4TaskManager
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
 from ..core.CCP4Modules import PREFERENCES
 from ..dbapi import CCP4DbApi
 from ..qtcore.CCP4HTTPServerThread import CHTTPServerThread
@@ -26,9 +26,9 @@ class CReportGenerator(QtCore.QObject):
   FinishedPictures = QtCore.Signal(str)
 
   ERROR_CODES = { 1 : { 'description' : 'Report definition file not found',
-                        'severity' : SEVERITY_WARNING },
+                        'severity' : Severity.WARNING },
                   2 : { 'description' : 'Task data file not found',
-                        'severity' : SEVERITY_WARNING },
+                        'severity' : Severity.WARNING },
                   3 : { 'description' : 'Error loading report definition file' },
                   4 : { 'description' : 'Error loading task data file' },
                   5 : { 'description' : 'Failed to find insert point for sub-job report in parent jobs report file' },

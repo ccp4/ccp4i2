@@ -26,7 +26,7 @@ from ..core import CCP4Data
 from ..core import CCP4DataManager
 from ..core import CCP4File
 from ..core.CCP4Config import DEVELOPER
-from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
 from ..core.CCP4Modules import PROJECTSMANAGER
 from ..qtgui import CCP4TaskWidget
 from ..qtgui import CCP4Widgets
@@ -41,7 +41,7 @@ class CContainerView(QtWidgets.QFrame):
                    'controlParameters' : 'Control parameters' }
 
   ERROR_CODES = { 101 : { 'description' : 'Attempting to set invalid container'  },
-                  102 : { 'severity' : SEVERITY_WARNING,
+                  102 : { 'severity' : Severity.WARNING,
                         'description' : 'Attempting to set container without data order information'},
                   103 : { 'description' : 'Unrecognised error attempting to create widget for:' },
                   104 : { 'description' : 'Error attempting to update widget from model for:' },

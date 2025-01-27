@@ -10,7 +10,7 @@ class freerflag_report(Report):
     
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):
       Report.__init__(self,xmlnode=xmlnode,jobInfo=jobInfo,**kw)
-      if self.errorReport().maxSeverity()>SEVERITY_WARNING:
+      if self.errorReport().maxSeverity()>Severity.WARNING:
         print('FAILED instantiating FreeRflag report generator')
         self.errorReport().report()
         return

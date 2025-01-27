@@ -39,7 +39,7 @@ class comit(CPluginScript):
     def processInputFiles(self):
         colgrps = [ ['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN], 'F_PHI_IN' ] 
         self.hklin, columns, error = self.makeHklin0( colgrps )
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 
@@ -66,7 +66,7 @@ class comit(CPluginScript):
         infile = os.path.join(self.workDirectory,'hklout.mtz')
         error = self.splitHklout( ['F_PHI_OUT'],['i2.F_phi.F,i2.F_phi.phi'], infile=infile )
         self.container.outputData.F_PHI_OUT.subType = 1
-        if error.maxSeverity ( ) > CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity ( ) > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
 
         #Create (dummy) PROGRAMXML, which basically contains only the log text of the job

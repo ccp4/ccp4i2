@@ -1,4 +1,4 @@
-from ....core.CCP4ErrorHandling import SEVERITY_WARNING
+from ....core.CCP4ErrorHandling import Severity
 from ....report.CCP4ReportParser import Report
 
 
@@ -9,7 +9,7 @@ class pyphaser_mr_report(Report):
   RUNNING = True
   def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):
     Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo,**kw)
-    if self.errorReport().maxSeverity()>SEVERITY_WARNING:
+    if self.errorReport().maxSeverity()>Severity.WARNING:
       print('FAILED instantiating pyphaser_mr report generator')
       self.errorReport().report()
       return

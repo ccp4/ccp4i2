@@ -38,7 +38,7 @@ class slicendice(CPluginScript):
         if self.container.inputData.FREERFLAG.isSet():
             dataObjects += ['FREERFLAG']
         self.hklin,error = self.makeHklin(dataObjects)
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         else:
             return CPluginScript.SUCCEEDED
@@ -153,7 +153,7 @@ class slicendice(CPluginScript):
         #    outputFiles+=['ABCDOUT']
         #    outputColumns+=['HLACOMB,HLBCOMB,HLCCOMB,HLDCOMB']
         error = self.splitHklout(outputFiles,outputColumns,infile=hklout)
-        if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
 
         #Set performance indicators

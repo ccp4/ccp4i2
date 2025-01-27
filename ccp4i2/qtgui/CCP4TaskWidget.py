@@ -44,7 +44,7 @@ from ..core import CCP4TaskManager
 from ..core.CCP4Config import DEVELOPER
 from ..core.CCP4Container import CContainer
 from ..core.CCP4DataManager import DATAMANAGER
-from ..core.CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
 from ..core.CCP4Modules import COMFILEPATCHMANAGER, PROJECTSMANAGER, TASKMANAGER, WEBBROWSER
 from ..core.CCP4Modules import QTAPPLICATION
 
@@ -1693,7 +1693,7 @@ class CTabFrame(QtWidgets.QFrame):
         allSet = True
         for key, obj in list(self.dataObjects.items()):
             #print 'CTabFrame.updateStatus testing',key,obj.validity().report()
-            if obj.validity(obj.get()).maxSeverity() > SEVERITY_WARNING:
+            if obj.validity(obj.get()).maxSeverity() > Severity.WARNING:
                 allSet = False
                 break
         if allSet:

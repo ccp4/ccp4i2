@@ -54,7 +54,7 @@ class i2Dimple(CPluginScript):
         if self.container.inputData.FREERFLAG.isSet():
             inputs += [ ['FREERFLAG', 1] ]
         self.hklin,self.columns,error = self.makeHklin0(inputs)
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         #makeHklin0 takes as arguments a list of sublists
         #Each sublist comprises 1) An input DATA object identifier as specified ni the inputData container of .de.f.xml
@@ -106,7 +106,7 @@ class i2Dimple(CPluginScript):
         outputColumns = ['FWT,PHWT','DELFWT,PHDELWT']
         infile = os.path.join(self.workDirectory,'final.mtz')
         error = self.splitHklout(outputFiles,outputColumns,infile=infile)
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
                 
         #Create (dummy) PROGRAMXML

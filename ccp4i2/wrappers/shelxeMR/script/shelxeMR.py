@@ -87,7 +87,7 @@ class shelxeMR(CPluginScript):
         if self.container.inputData.FREERFLAG.isSet():
             cols.append('FREERFLAG')
         self.hklin, columns, error = self.makeHklInput(cols, extendOutputColnames=True, useInputColnames=True)
-        if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         # Rename the .pdb file to .pda
         pdb_fullpath = self.container.inputData.XYZIN.fullPath.__str__()
@@ -112,7 +112,7 @@ class shelxeMR(CPluginScript):
         outputFiles = ['FPHIOUT']
         outputColumns = ['FWT,PHWT']
         error = self.splitHklout(outputFiles, outputColumns, os.path.join(self.getWorkDirectory(), 'sftools_out.mtz'))
-        if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 

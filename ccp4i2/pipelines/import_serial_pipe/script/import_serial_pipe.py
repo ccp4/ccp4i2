@@ -19,7 +19,7 @@ class import_serial_pipe(CPluginScript):
     #                     [ 'HKLOUT.mtz' , 5 ]
     #                   ]
     # ERROR_CODES = { 101 : {'description' : 'Blank for now, may need this ',
-    #                        'severity':CCP4ErrorHandling.SEVERITY_ERROR } }
+    #                        'severity':CCP4ErrorHandling.Severity.ERROR } }
 
     def __init__(self, *args, **kwargs):
         # self.seqin = None

@@ -37,7 +37,7 @@ class morda_i2(CCP4PluginScript.CPluginScript):
     def processInputFiles(self):
         content_flag = CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN
         self.hklin, error = self.makeHklin([['F_SIGF', content_flag], 'FREERFLAG'])
-        if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return self.FAILED
 
         assert self.container.inputData.ASUIN.isSet()
@@ -81,7 +81,7 @@ class morda_i2(CCP4PluginScript.CPluginScript):
             grp1 = ['FPHIOUT', 'DIFFPHIOUT']
             grp2 = ['FWT,PHWT', 'DELFWT,PHDELWT']
             error = self.splitHklout(grp1, grp2, infile=hklout)
-            if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+            if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
                 return self.FAILED
 
             try:

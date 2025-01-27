@@ -9,7 +9,7 @@ from lxml import etree
 from . import test_api
 from ....core import CCP4Modules
 from ....core import CCP4Utils
-from ....core.CCP4ErrorHandling import SEVERITY_WARNING
+from ....core.CCP4ErrorHandling import Severity
 from ....core.CCP4PluginScript import CPluginScript
 from ....core.CCP4XtalData import CObsDataFile
 
@@ -108,7 +108,7 @@ class pdb_redo_api(CPluginScript):
             ["FREERFLAG", None],
         ]
         self.hklin, self.columns, error = self.makeHklin0(miniMtzs)
-        if error.maxSeverity() > SEVERITY_WARNING:
+        if error.maxSeverity() > Severity.WARNING:
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 

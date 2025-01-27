@@ -57,7 +57,7 @@ from . import CCP4Utils
 from ..qtgui import CCP4FileBrowser
 from ..qtgui import CCP4StyleSheet
 from ..wrappers.libcheck.script import libcheck
-from .CCP4ErrorHandling import CErrorReport, CException, SEVERITY_UNDEFINED, SEVERITY_WARNING
+from .CCP4ErrorHandling import CErrorReport, CException, Severity
 
 
 BIOPYTHON = True
@@ -98,7 +98,7 @@ class CBioPythonSeqInterface:
                    405 : {'description' : 'Error reading identifiers from multi-record file'},
                    406 : {'description' : 'Error opening file'},
                    407 : {'description' : "The 'PIR' file did not have the correct format"},
-                   408 : {'severity' : SEVERITY_WARNING, 'description' : "The 'PIR' file format was corrected"},
+                   408 : {'severity' : Severity.WARNING, 'description' : "The 'PIR' file format was corrected"},
                    409 : {'description' : "Error opening file to write"},
                    410 : {'description' : "Error attempting to write out sequence file"},
                    411 : {'description' : "Error attempting to create a temporary sequence file"},
@@ -174,7 +174,7 @@ class CBioPythonSeqInterface:
                     err,rv = self.bioLoadSeqFile(filename, testOrder[n], record=record)
                     if diagnostic:
                         print('CBioPythonSeqInterface.loadExternalFile', testOrder[n], err, rv)
-                    if err.maxSeverity() <= SEVERITY_WARNING:
+                    if err.maxSeverity() <= Severity.WARNING:
                         break
                     if n == 0 and format == 'pir':
                         fixedPirFile,err0,rv0 = self.fixPirFile(filename)
@@ -291,7 +291,7 @@ class CBioPythonSeqInterface:
         os.close(f1[0])
         err, data = self.bioLoadSeqFile(f1[1], 'pir')
         #print 'fixPirFile',f1[1],err,data
-        if err.maxSeverity() <= SEVERITY_WARNING:
+        if err.maxSeverity() <= Severity.WARNING:
             if importedFile is not None:
                 shutil.move(f1[1], importedFile)
                 return importedFile, err, data
@@ -321,7 +321,7 @@ class CBioPythonSeqInterface:
         os.close(f1[0])
         err,data = self.bioLoadSeqFile(f1[1], 'fasta')
         #print 'fixFastaFile',f1[1],err,data
-        if err.maxSeverity() <= SEVERITY_WARNING:
+        if err.maxSeverity() <= Severity.WARNING:
             if importedFile is not None:
                 shutil.move(f1[1], importedFile)
                 return importedFile, err, data
@@ -497,7 +497,7 @@ class CSequence(CCP4Data.CData, CBioPythonSeqInterface):
     Do we need to support alternative residues
     What about nucleic/polysach?
     '''
-    ERROR_CODES = {201 : {'description' : 'Sequence undefined', 'severity' : SEVERITY_UNDEFINED},
+    ERROR_CODES = {201 : {'description' : 'Sequence undefined', 'severity' : Severity.UNDEFINED},
                    202 : {'description' : 'error reading from file'},
                    203 : {'description' : 'Comparing sequences: Sequence item different'},
                    204 : {'description' : 'Comparing sequences: One item set - the other is unset'}}
@@ -715,7 +715,7 @@ class CDictData(CCP4Data.CData):
 
     ERROR_CODES = {101 : {'description' : 'Error opening MMCIF format file'},
                    102 : {'description' : 'Error merging data - monomer already in geometry file'},
-                   103 : {'severity' : SEVERITY_WARNING, 'description' : 'Warning merging data - overwriting geometry for monomer with same id'},
+                   103 : {'severity' : Severity.WARNING, 'description' : 'Warning merging data - overwriting geometry for monomer with same id'},
                    104 : {'description' : 'Error reading geometry cif file - does not contain expected data'},
                    105 : {'description' : 'Unknown error reading geometry file'},
                    106 : {'description' : '_chem_comp section not found in geometry file'},
@@ -770,7 +770,7 @@ class CDictData(CCP4Data.CData):
                 if loop.GetString('id', n) != 0:
                     chemComp = self.__dict__['_value']['monomerList'].addItem()
                     err.extend(chemComp.load(loop=loop, loopIndex=n))
-            if err.maxSeverity() > SEVERITY_WARNING:
+            if err.maxSeverity() > Severity.WARNING:
                 raise err
         #print 'CDictData.loadFile', self.monomerList
         self.dataChanged.emit()
@@ -794,7 +794,7 @@ class CDictData(CCP4Data.CData):
         except Exception as e:
             err.append(self.__class__, 105, exc_info=sys.exc_info())
         #print 'CDictData.mergeFile', err.report()
-        if err.maxSeverity() > SEVERITY_WARNING:
+        if err.maxSeverity() > Severity.WARNING:
             return err
         err.extend(self.merge(dictData=dictObj.fileContent, overwrite=overwrite))
         return err
@@ -1016,7 +1016,7 @@ class CSeqDataFile(CCP4File.CDataFile):
     def validity(self, arg):
         v = CCP4File.CDataFile.validity(self, arg)
         '''
-        if v.maxSeverity() in [SEVERITY_UNDEFINED,SEVERITY_UNDEFINED_ERROR]:
+        if v.maxSeverity() in [Severity.UNDEFINED,Severity.UNDEFINED_ERROR]:
           if arg.has_key('fileContent') and arg['fileContent'] is not None:
             v = arg['fileContent'].validity(arg['fileContent'].get())
             #print 'CSeqDataFile.validity content',content.get(),v
@@ -1128,7 +1128,7 @@ class CSeqDataFile(CCP4File.CDataFile):
                 except:
                     err = CErrorReport(self.__class__, 'Error attempting to read as: ' + testOrder[n])
                 print('identifyFile', err, 'rv=', rv)
-                if err.maxSeverity() <= SEVERITY_WARNING:
+                if err.maxSeverity() <= Severity.WARNING:
                     if testOrder[n] == 'fasta':
                         #Beware biopython allows a 'noformat' file as fasta
                         format0 = self.fileContent.simpleFormatTest(filename)
@@ -1151,7 +1151,7 @@ class CSeqDataFile(CCP4File.CDataFile):
                             err,rv = self.bioGetSeqIdentifiers(tmpFile, testOrder[n])
                         except:
                             err = CErrorReport(self.__class__, 'Error attempting to read as: ' + testOrder[n])
-                        if err.maxSeverity() <= SEVERITY_WARNING:
+                        if err.maxSeverity() <= Severity.WARNING:
                             formt = testOrder[n]
                         else:
                             n = n + 1
@@ -1387,7 +1387,7 @@ class CSeqAlignDataFile(CCP4File.CDataFile):
                 except Exception as e:
                     err = CErrorReport(self.__class__, 206, details='Attempting to read as format:' + testOrder[n] + '\n' + str(e), stack=False)
                     #print 'bioGetSeqIdentifiers', testOrder[n], str(err)
-                if err.maxSeverity() <= SEVERITY_WARNING:
+                if err.maxSeverity() <= Severity.WARNING:
                     formt = testOrder[n]
                 else:
                     allErrors.extend(err)
@@ -1494,7 +1494,7 @@ class CSeqAlignDataFile(CCP4File.CDataFile):
 
     def validity(self, arg):
         v = CCP4File.CDataFile.validity(self, arg)
-        if v.maxSeverity() > SEVERITY_WARNING:
+        if v.maxSeverity() > Severity.WARNING:
             return v
         reqNSeq = self.qualifiers('requiredSequences')
         #print 'CSeqAlignDataFile.validity',reqNSeq,type(reqNSeq)
@@ -1502,7 +1502,7 @@ class CSeqAlignDataFile(CCP4File.CDataFile):
             return v
         err, idList = self.bioGetSeqIdentifiers()
         #print 'CSeqAlignDataFile.validity',err.maxSeverity(),idList
-        if err.maxSeverity() > SEVERITY_WARNING:
+        if err.maxSeverity() > Severity.WARNING:
             v.extend(err)
             return v
         if not len(idList) in reqNSeq:
@@ -1645,7 +1645,7 @@ class CBlastData(CCP4File.CDataFileContent):
     CONTENTS = {'queryId' : {'class' : CCP4Data.CString },
                 'alignmentList' : {'class' : CCP4Data.CList, 'subItem' : {'class' : CBlastItem}}}
     ERROR_CODES = {201 : {'description' : 'Failed reading blast file'},
-                   202 : {'description' : 'Blast file contains results of more than one query - only the first is read', 'severity' : SEVERITY_WARNING},
+                   202 : {'description' : 'Blast file contains results of more than one query - only the first is read', 'severity' : Severity.WARNING},
                    203 : {'description' : 'Failed parsing Blast file'}}
 
     def loadFile(self, fileName=None):
@@ -2358,9 +2358,9 @@ class CPdbDataFile(CCP4File.CDataFile):
     QUALIFIERS_DEFINITION = {'ifAtomSelection' : {'type' :bool,
                                                   'description' : 'Atom selection option enabled'}}
     ERROR_CODES = {401 : {'description' : 'Failed running coord_format to fix coordinate file - is it a PDB file?'},
-                   402 : {'severity' : SEVERITY_WARNING, 'description' : 'Badly formated PDB file fixed'},
-                   403 : {'severity' : SEVERITY_WARNING,'description' : 'Fixed by removing text'},
-                   404 : {'severity' : SEVERITY_WARNING,'description' : 'Fixed by adding text'},
+                   402 : {'severity' : Severity.WARNING, 'description' : 'Badly formated PDB file fixed'},
+                   403 : {'severity' : Severity.WARNING,'description' : 'Fixed by removing text'},
+                   404 : {'severity' : Severity.WARNING,'description' : 'Fixed by adding text'},
                    405 : {'description' : 'There are no ATOM or HETATM lines in the PDB file'},
                    410 : {'description' : 'No file loaded - can not convert coordinate file format'},
                    411 : {'description' : 'Failed loading file - can not convert coordinate file format'},
@@ -2865,9 +2865,9 @@ class CResidueRangeList(CCP4Data.CList):
     SUBITEM = {'class' : CResidueRange}
 
 class CSequenceString(CCP4Data.CString):
-    ERROR_CODES = {401 : {'description' : 'Non-alphabet character removed from sequence', 'severity' : SEVERITY_WARNING},
+    ERROR_CODES = {401 : {'description' : 'Non-alphabet character removed from sequence', 'severity' : Severity.WARNING},
                    402 : {'description' : 'Invalid characters (BJOXZ) in sequence'},
-                   403 : {'description' : 'Sequence undefined', 'severity' : SEVERITY_WARNING}}
+                   403 : {'description' : 'Sequence undefined', 'severity' : Severity.WARNING}}
     pass
 
     # This is used by CAsuContentSeqView.validate() to test validity of sequence
@@ -3037,7 +3037,7 @@ class CAsuContentSeqList(CCP4Data.CList):
           seqFile.fileContent.loadExternalFile(str(seqFile),seqFile.__dict__['format'],record=record)
           #self.model.source = self.seqFile.__str__()
         cleanSeq,err = self[0].cleanupSequence(seqFile.fileContent.sequence)
-        if err.maxSeverity()>SEVERITY_WARNING:
+        if err.maxSeverity()>Severity.WARNING:
           raise err
         self.model.sequence.set(cleanSeq)
         try:
@@ -3063,7 +3063,7 @@ class CAsuContentSeqList(CCP4Data.CList):
             for record in recordList:
                 fileObject.fileContent.loadExternalFile(fileObject.__str__(), fileObject.__dict__['format'], record=record)
                 rv =self.matchingSequence(str(fileObject.fileContent.sequence), str(fileObject.fileContent.name))
-                if rv.maxSeverity() <= SEVERITY_WARNING: 
+                if rv.maxSeverity() <= Severity.WARNING: 
                     self.addItem()
                     self[-1].name.set(self[-1].name.fix(str(fileObject.fileContent.name)))
                     self[-1].description.set(fileObject.fileContent.description)
@@ -3077,7 +3077,7 @@ class CAsuContentSeqList(CCP4Data.CList):
             for record in recordList:
                 chainId = list(fileObject.fileContent.sequences.keys())[record]
                 rv =self.matchingSequence(fileObject.fileContent.sequences[chainId], chainId)
-                if rv.maxSeverity() <= SEVERITY_WARNING:
+                if rv.maxSeverity() <= Severity.WARNING:
                     self.addItem()
                     #print 'CAsuContentSeqList.extendSeqList chainId',chainId
                     self[-1].name.set(chainId)
@@ -3128,7 +3128,7 @@ class CAsuContent(CCP4File.CDataFileContent):
             return
         xmlFileObject = CCP4File.CI2XmlDataFile(fileName)
         err = xmlFileObject.loadHeader()
-        if err.maxSeverity() > SEVERITY_WARNING:
+        if err.maxSeverity() > Severity.WARNING:
             raise CErrorReport(self.__class__, 101, str(fileName), name=self.objectPath())
         if xmlFileObject.header.function != 'ASUCONTENT':
             raise CErrorReport(self.__class__, 102, str(fileName), name=self.objectPath())

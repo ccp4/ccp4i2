@@ -48,7 +48,7 @@ class buccaneer_mr(CPluginScript):
           print('FREERFLAG is not set, so joining the rest of the data objects')
           self.hklin,columns,error = self.makeHklInput([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN], 'ABCD', 'FWT_PHWT_IN' ])
 
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
           print('ERROR creating input HKLIN with FWT_PHWT_IN')
           print(error.report())
           return CPluginScript.FAILED
@@ -60,7 +60,7 @@ class buccaneer_mr(CPluginScript):
           print('FREERFLAG is not set, so joining the rest of the data objects')
           self.hklin,columns,error = self.makeHklInput([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN],'ABCD' ])
         
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
           print('ERROR creating input HKLIN')
           print(error.report())
           return CPluginScript.FAILED
@@ -73,7 +73,7 @@ class buccaneer_mr(CPluginScript):
       if conPars.F_SIGF_REF.isSet() and conPars.ABCD_REF.isSet() and conPars.XYZIN_REF.isSet() and \
          conPars.F_SIGF_REF.exists() and conPars.ABCD_REF.exists() and conPars.XYZIN_REF.exists():
         self.refHklin,error = self.makeHklin([['F_SIGF_REF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN],'ABCD_REF'])
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
           self.refHklin = None
       return CPluginScript.SUCCEEDED
 

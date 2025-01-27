@@ -50,7 +50,7 @@ from ..dbapi import CCP4DbApi
 from ..qtcore import CCP4Export
 from ..utils import dictionaryAccumulator
 from ..utils import startup
-from .CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
+from .CCP4ErrorHandling import CErrorReport, CException, Severity
 from .CCP4QtObject import CObject
 
 
@@ -79,21 +79,21 @@ class CPluginScript(CObject):
                    12 : {'description' : 'Attempting to set invalid waitForFinish'},
                    13 : {'description' : 'Wrapper class has not reimplemented MakeCommandAndScript() method'},
                    14 : {'description' : 'Can not find specified command template'},
-                   15 : {'severity' : SEVERITY_WARNING, 'description' : 'No command line defined in MakeCommandAndScript()'},
+                   15 : {'severity' : Severity.WARNING, 'description' : 'No command line defined in MakeCommandAndScript()'},
                    16 : {'description' : 'Script file does not exist'},
-                   17 : {'severity' : SEVERITY_WARNING, 'description' : 'Error attempting to set output file name'},
+                   17 : {'severity' : Severity.WARNING, 'description' : 'Error attempting to set output file name'},
                    18 : {'description' : 'Failed importing plugin module'},
                    19 : {'description' : 'Failed instantiating plugin object'},
-                   20 : {'severity' : SEVERITY_WARNING, 'description' : 'Failed finding output data to check'},
-                   21 : {'severity' : SEVERITY_WARNING, 'description' : 'Failed to register new job with database'},
+                   20 : {'severity' : Severity.WARNING, 'description' : 'Failed finding output data to check'},
+                   21 : {'severity' : Severity.WARNING, 'description' : 'Failed to register new job with database'},
                    22 : {'description' : 'Failed to pass database info to new job'},
                    23 : {'description' : 'Error saving outputData file'},
                    24 : {'description' : 'Failed to create job sub-directory'},
-                   25 : {'severity' : SEVERITY_WARNING,'description' : 'External process return code'},
-                   26 : {'severity' : SEVERITY_WARNING,'description' : 'Error saving status to param file'},
+                   25 : {'severity' : Severity.WARNING,'description' : 'External process return code'},
+                   26 : {'severity' : Severity.WARNING,'description' : 'Error saving status to param file'},
                    27 : {'description' : 'Error interpreting output data for split MTZ'},
                    28 : {'description' : 'Error interpreting input data for join MTZ'},
-                   30 : {'severity' : SEVERITY_WARNING,'description' : 'Warning converting miniMTZ to HKLIN - data not set'},
+                   30 : {'severity' : Severity.WARNING,'description' : 'Warning converting miniMTZ to HKLIN - data not set'},
                    31 : {'description' : 'Error converting miniMTZ to HKLIN - data name not recognised'},
                    32 : {'description' : 'Error converting miniMTZ to HKLIN - failed running mtzjoin'},
                    33 : {'description' : 'Error converting HKLOUT to miniMTZ - data name not recognised'},
@@ -110,12 +110,12 @@ class CPluginScript(CObject):
                    46 : {'description' : 'Error in finish handler'},
                    47 : {'description' : 'Error in checking external process after completion'},
                    48 : {'description' : 'Error in the plugin script startProcess'},
-                   49 : {'severity' : SEVERITY_WARNING,'description' : 'Error reading sub-process log file'},
-                   50 : {'severity' : SEVERITY_WARNING,'description' : 'Failure while looking for project defaults file'},
-                   51 : {'severity' : SEVERITY_WARNING,'description' : 'Failure loading project defaults file'},
+                   49 : {'severity' : Severity.WARNING,'description' : 'Error reading sub-process log file'},
+                   50 : {'severity' : Severity.WARNING,'description' : 'Failure while looking for project defaults file'},
+                   51 : {'severity' : Severity.WARNING,'description' : 'Failure loading project defaults file'},
                    52 : {'description' : 'Failure creating project defaults file - no definition for parameter'},
-                   53 : {'severity' : SEVERITY_WARNING,'description' : 'Warning creating project defaults file - parameter already in file'},
-                   54 : {'severity' : SEVERITY_WARNING,'description' : 'Warning creating project defaults file - failed reading existing file'},
+                   53 : {'severity' : Severity.WARNING,'description' : 'Warning creating project defaults file - parameter already in file'},
+                   54 : {'severity' : Severity.WARNING,'description' : 'Warning creating project defaults file - failed reading existing file'},
                    55 : {'description' : 'Error inserting information on hklin content into log file'},
                    56 : {'description' : 'External process exited with exit code != 0'},
                    57 : {'description' : 'Failed to find the command to run this program.' \
@@ -1355,7 +1355,7 @@ class CPluginScript(CObject):
                         #print 'makeHklin from convert',filePath,convertError.report()
                         #print 'makeHklin0 using '+str(filePath)+' converted by ctruncate from '+str(obj)
                         error.extend(convertError)
-                        if error.maxSeverity() <= SEVERITY_WARNING:
+                        if error.maxSeverity() <= Severity.WARNING:
                             colin,colout = self.makeColinColout(mtzName, obj, targetContent)
                             infiles.append([filePath, colin, colout])
                             allColout = allColout + colout + ','
@@ -1437,7 +1437,7 @@ class CPluginScript(CObject):
                         #print 'makeHklin from convert',filePath,convertError.report()
                         print('makeHklin using ' + str(filePath) + ' converted by ctruncate from ' + str(obj))
                         error.extend(convertError)
-                        if error.maxSeverity() <= SEVERITY_WARNING:
+                        if error.maxSeverity() <= Severity.WARNING:
                             infiles.append([filePath, obj.columnNames(ifString=True, content=targetContent)])
                     elif conversion == 'mtzjoin':
                         #print 'Converting data from',obj.__str__(),'to',obj.columnNames(ifString=True,content=targetContent),' using cmtzjoin'
@@ -1504,7 +1504,7 @@ class CPluginScript(CObject):
                 filePath = None
                 filePath, convertError = rv
                 error.extend(convertError)
-                if error.maxSeverity() <= SEVERITY_WARNING:
+                if error.maxSeverity() <= Severity.WARNING:
                     colin, ext_outputCol = self.makeColinColout(mtzName, obj, targetContent)
                     colout = obj.columnNames(ifString=True, content=targetContent)
                     infile = filePath
@@ -2202,7 +2202,7 @@ class CRunPlugin(CObject):
         try:
             finalDbXml = os.path.join(self.masterWorkDir, 'DATABASE_final.db.xml')
             jobNumberList, errReport = self.db.exportProjectXml(self.dbXml.projectId, fileName=finalDbXml)
-            if errReport.maxSeverity() > SEVERITY_WARNING:
+            if errReport.maxSeverity() > Severity.WARNING:
                 print('ERROR in exporting project database to xml\n', errReport.report())
             self.exportThread = CCP4Export.ExportProjectThread(self, projectDir=self.dbXml.projectDirectory, dbxml=finalDbXml, target=outFile, jobList=[jobNumber], directoriesList=[])
             self.exportThread.finished.connect(self.compressJobData1)
@@ -2264,7 +2264,7 @@ class CRunPlugin(CObject):
                 self.setupDatabase(self.ccp4i2Path)
             except Exception as e:
                 self.errorReport.append(self.__class__, 10, details=str(e), stack=False)
-        if self.errorReport.maxSeverity() > SEVERITY_WARNING:
+        if self.errorReport.maxSeverity() > Severity.WARNING:
             self.setupLog(fileName=os.path.splitext(self.compressedFile)[0] + '.diagnostic.xml')
             self.reportFailedInitialisation()
             return
@@ -2378,7 +2378,7 @@ class CRunPlugin(CObject):
         elif self.dbXmlFile is not None:
             finalDbXml = os.path.join(os.path.split(self.dbXmlFile)[0], 'DATABASE_final.db.xml')
             jobNumberList, errReport = self.db.exportProjectXml(self.dbXml.projectId, fileName=finalDbXml)
-            if errReport.maxSeverity() > SEVERITY_WARNING:
+            if errReport.maxSeverity() > Severity.WARNING:
                 print(errReport.report())
             self.writeFinishedFlagFile(self.dbXmlFile)
             self.emitFinishSignal(0)

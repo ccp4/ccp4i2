@@ -33,13 +33,7 @@ from . import CCP4DataManager
 from . import CCP4File
 from . import CCP4Modules
 from . import CCP4Utils
-from .CCP4ErrorHandling import CErrorReport
-from .CCP4ErrorHandling import CException
-from .CCP4ErrorHandling import SEVERITY_ERROR
-from .CCP4ErrorHandling import SEVERITY_OK
-from .CCP4ErrorHandling import SEVERITY_UNDEFINED
-from .CCP4ErrorHandling import SEVERITY_UNDEFINED_ERROR
-from .CCP4ErrorHandling import SEVERITY_WARNING
+from .CCP4ErrorHandling import CErrorReport, CException, Severity
 from .CCP4File import CDataFile
 from .CCP4QtObject import CObject
 
@@ -125,7 +119,7 @@ class CDataQualifiers:
             default = self.coerce(qualis['default'])
             if validateDefault:
                 v = self.validity(default)
-                if v.maxSeverity() > SEVERITY_WARNING:
+                if v.maxSeverity() > Severity.WARNING:
                     e = CException(CData, 6, name=self.objectPath(), details='setting default: ' + str(default))
                     e.extend(v)
                     raise e
@@ -374,23 +368,23 @@ class CData(CObject, CDataQualifiers):
     CONTENTS = {}
     CONTENTS_ORDER = []
     PROPERTIES = {}
-    ERROR_CODES = {0 : {'severity' : SEVERITY_OK, 'description' : 'OK'},
-                   1 : {'severity' : SEVERITY_UNDEFINED, 'description' : 'Data has undefined value'},
-                   2 : {'severity' : SEVERITY_UNDEFINED_ERROR, 'description' : 'Data has undefined value'},
-                   3 : {'severity' : SEVERITY_WARNING, 'description' : 'Missing data'},
+    ERROR_CODES = {0 : {'severity' : Severity.OK, 'description' : 'OK'},
+                   1 : {'severity' : Severity.UNDEFINED, 'description' : 'Data has undefined value'},
+                   2 : {'severity' : Severity.UNDEFINED_ERROR, 'description' : 'Data has undefined value'},
+                   3 : {'severity' : Severity.WARNING, 'description' : 'Missing data'},
                    4 : {'description' : 'Missing data'},
                    5 : {'description' : 'Attempting to set data of wrong type'},
                    6 : {'description' : 'Default value does not satisfy validity check'},
-                   7 : {'severity' : SEVERITY_WARNING, 'description' : 'Unrecognised qualifier in data input'},
-                   8 : {'severity' : SEVERITY_WARNING, 'description' : 'Attempting to get inaccessible attribute:'},
+                   7 : {'severity' : Severity.WARNING, 'description' : 'Unrecognised qualifier in data input'},
+                   8 : {'severity' : Severity.WARNING, 'description' : 'Attempting to get inaccessible attribute:'},
                    9 : {'description' : 'Failed to get property'},
-                   10 : {'severity' : SEVERITY_WARNING, 'description' : 'Attempting to set inaccessible attribute:'},
+                   10 : {'severity' : Severity.WARNING, 'description' : 'Attempting to set inaccessible attribute:'},
                    11 : {'description' : 'Failed to set property:'},
                    12 : {'description' : 'Undetermined error setting value from XML'},
                    13 : {'description' : 'Unrecognised class name in qualifier'},
-                   14 : {'severity' : SEVERITY_WARNING, 'description' : 'No object name when saving qualifiers to XML'},
+                   14 : {'severity' : Severity.WARNING, 'description' : 'No object name when saving qualifiers to XML'},
                    15 : {'description' : 'Error saving qualifier to XML'},
-                   16 : {'severity' : SEVERITY_WARNING, 'description' : 'Unrecognised item in XML data file'},
+                   16 : {'severity' : Severity.WARNING, 'description' : 'Unrecognised item in XML data file'},
                    17 : {'description' : 'Attempting to set unrecognised qualifier'},
                    18 : {'description' : 'Attempting to set qualifier with wrong type'},
                    19 : {'description' : 'Attempting to set qualifier with wrong list item type'},
@@ -398,10 +392,10 @@ class CData(CObject, CDataQualifiers):
                    21 : {'description' : 'Unknown error setting qualifiers from Xml file'},
                    22 : {'description' : 'Unknown error testing validity'},
                    23 : {'description' : 'Error saving data object to XML'},
-                   24 : {'description' : 'Unable to test validity of default','severity' : SEVERITY_WARNING},
-                   300 : {'description' : 'Compared objects are the same','severity' : SEVERITY_OK},
-                   315 : {'description' : 'Both compared objects are null','severity' : SEVERITY_OK},
-                   301 : {'description' : 'Unable to compare this class of data','severity' : SEVERITY_WARNING},
+                   24 : {'description' : 'Unable to test validity of default','severity' : Severity.WARNING},
+                   300 : {'description' : 'Compared objects are the same','severity' : Severity.OK},
+                   315 : {'description' : 'Both compared objects are null','severity' : Severity.OK},
+                   301 : {'description' : 'Unable to compare this class of data','severity' : Severity.WARNING},
                    302 : {'description' : 'Other data has null value'},
                    303 : {'description' : 'My data has null value'},
                    304 : {'description' : 'Data has different values'}}
@@ -690,7 +684,7 @@ class CData(CObject, CDataQualifiers):
             if len(kw) > 0:
                 valueIn.update(kw)
             validityObj = self.copyValue(self.coerce(valueIn))
-            if validityObj.maxSeverity() < SEVERITY_ERROR:
+            if validityObj.maxSeverity() < Severity.ERROR:
                 validityObj = self.validity(self._value)
             # Validity check failed - restore original
         self.updateData()
@@ -930,7 +924,7 @@ class CBaseData(CData):
         value=self.coerce(value)
         if checkValidity:
             v = self.validity(value)
-            if v.maxSeverity() < SEVERITY_ERROR:
+            if v.maxSeverity() < Severity.ERROR:
                 if self.__dict__['_value'] != value:
                     self.__dict__['_value'] = value
                     self.updateData()
@@ -2569,7 +2563,7 @@ class CList(CCollection):
                     break
                 err = self.__dict__['_value'][indx].validity(arg[indx])
                 myException.extend(err)
-        if myException.maxSeverity() > SEVERITY_WARNING:
+        if myException.maxSeverity() > Severity.WARNING:
             return myException
         nUnset = self.removeUnsetItems(ifApply=False)
         listMinLength = self.qualifiers('listMinLength')
@@ -2605,7 +2599,7 @@ class CList(CCollection):
         value = self.coerce(value)
         if validate:
             v = self.validity(value)
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 raise v
         self.__dict__['_value'] = []
         for item in value:
@@ -2765,7 +2759,7 @@ class CList(CCollection):
             # the following causes too many issues from other incomplete list items which is
             # a likely condition in the gui
             v = self.validity(self._value)
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 self.__dict__['_value'].insert(arg, save)
                 myException = CException()
                 myException.extend(v)
@@ -2824,7 +2818,7 @@ class CList(CCollection):
         rv = self.__dict__['_value'].__setitem__(indx, obj)
         if validate:
             v = self.validity(self._value)
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 self._value[indx].set(save)
                 raise v
         self.updateData()
@@ -2840,7 +2834,7 @@ class CList(CCollection):
         rv = self.__dict__['_value'].__setslice__(indx1, indx2, valin)
         if validate:
             v = self.validity(self._value)
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 for ii in range(len(save)):
                     idx = indx1 + ii
                     self.__dict__['_value'][idx].set(save[ii])
@@ -2871,7 +2865,7 @@ class CList(CCollection):
             rv = self.__dict__['_value'].append(arg)
         if validate:
             v = self.validity(self.__dict__['_value'])
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 del self.__dict__['_value'][-1]
                 raise v
         self.__dict__['_value'][-1].dataChanged.connect(self.dataChanged.emit)
@@ -2912,7 +2906,7 @@ class CList(CCollection):
         rv = self.__dict__['_value'].extend(newList)
         if validate:
             v = self.validity(self._value)
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 del self.__dict__['_value'][oldLength:-1]
                 raise v
         self.updateData()
@@ -2937,7 +2931,7 @@ class CList(CCollection):
         rv = self.__dict__['_value'].insert(indx, obj)
         if validate:
             v = self.validity(self._value)
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 del self.__dict__['_value'][indx]
                 raise v
         obj.dataChanged.connect(self.dataChanged.emit)
@@ -2953,7 +2947,7 @@ class CList(CCollection):
         rv = self._value.pop(arg)
         if validate:
             v = self.validity(self._value)
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 self.__dict__['_value'].insert(arg,save)
                 raise v
         self.itemDeleted.emit(arg)
@@ -2967,7 +2961,7 @@ class CList(CCollection):
         rv = self.__dict__['_value'].remove(arg)
         if validate:
             v = self.validity(self._value)
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 self.__dict__['_value'].insert(indx, arg)
                 raise v
         self.itemDeleted.emit(indx)
@@ -2978,7 +2972,7 @@ class CList(CCollection):
         rv = self.__dict__['_value'].reverse()
         if validate:
             v = self.validity(self._value)
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 self.__dict__['_value'].reverse()
                 raise v
         self.updateData()
@@ -2990,7 +2984,7 @@ class CList(CCollection):
             save.append(item)
         rv = self.__dict__['_value'].sort(ccmp, key, reverse)
         v = self.validity(self._value)
-        if v.maxSeverity() > SEVERITY_WARNING:
+        if v.maxSeverity() > Severity.WARNING:
             self.__dict__['_value'] = []
             for item in save:
                 self.__dict__['_value'].append(item)

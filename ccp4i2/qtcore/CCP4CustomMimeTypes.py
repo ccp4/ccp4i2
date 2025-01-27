@@ -31,7 +31,7 @@ from ..core import CCP4ErrorHandling
 from ..core import CCP4File
 from ..core import CCP4Utils
 from ..core.CCP4Config import GRAPHICAL
-from ..core.CCP4ErrorHandling import SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import Severity
 from ..qtgui import CCP4FileSystemView
 from ..qtgui import CCP4ImageViewer
 from ..qtgui import CCP4TextViewer
@@ -67,12 +67,12 @@ class CCustomMimeTypes(QtCore.QObject):
     ICONS = {}
     ERROR_CODES = {
           101 : {'description' : 'File format not recognised'},
-          102 : {'severity' : SEVERITY_WARNING, 'description' : 'No validity test method for format'},
+          102 : {'severity' : Severity.WARNING, 'description' : 'No validity test method for format'},
           103 : {'description' : 'File does not exist'},
-          104 : {'severity' : SEVERITY_WARNING, 'description' : 'UNKNOWN ERROR running validity test'},
-          105 : {'severity' : SEVERITY_WARNING, 'description' : 'File has inappropriate extension'},
+          104 : {'severity' : Severity.WARNING, 'description' : 'UNKNOWN ERROR running validity test'},
+          105 : {'severity' : Severity.WARNING, 'description' : 'File has inappropriate extension'},
           106 : {'description' : 'File is not this format'},
-          107 : {'severity' : SEVERITY_WARNING, 'description' : 'File not strictly valid but may be usable'}}
+          107 : {'severity' : Severity.WARNING, 'description' : 'File not strictly valid but may be usable'}}
 
     def __init__(self):
         QtCore.QObject.__init__(self)

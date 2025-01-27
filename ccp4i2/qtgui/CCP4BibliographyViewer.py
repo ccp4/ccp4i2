@@ -25,7 +25,7 @@ import os
 from PySide2 import QtCore, QtWidgets
 
 from ..core import CCP4Annotation, CCP4Modules
-from ..core.CCP4ErrorHandling import SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import Severity
 from ..qtgui import CCP4FileBrowser, CCP4Widgets
 
 
@@ -153,7 +153,7 @@ class CBibReferenceGroupView(CCP4Widgets.CComplexLineWidget):
   @QtCore.Slot(str,str)
   def export(self,format,fileName):
     err = self.model.export(cformat=format,fileName=fileName)
-    if err.maxSeverity()>SEVERITY_WARNING:
+    if err.maxSeverity()>Severity.WARNING:
       err.warningMessage(parent=self,windowTitle='Error attempting to export bibliography')
     
 

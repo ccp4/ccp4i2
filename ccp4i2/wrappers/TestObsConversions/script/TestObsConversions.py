@@ -66,7 +66,7 @@ class TestObsConversions(CPluginScript):
         pathNode.text = str(getattr(self.container.inputData,inputType))
         
         self.hklin,error = self.makeHklin([[inputType, int(self.container.controlParameters.INPUT_REPRESENTATION)]])
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             self.appendErrorReport(201, inputType + " conversion to type number " + str(self.container.controlParameters.INPUT_REPRESENTATION))
             return CPluginScript.FAILED
         intermediateFilePath = os.path.join(self.getWorkDirectory(),'intermediate.mtz')
@@ -89,14 +89,14 @@ class TestObsConversions(CPluginScript):
         pathNode.text = str(getattr(self.container.inputData,inputType))
 
         self.hklin,columns,error = self.makeHklin0([['F_SIGF_INTERMEDIATE', int(self.container.controlParameters.OUTPUT_REPRESENTATION)]])
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             self.appendErrorReport(202, 'F_SIGF_INTERMEDIATE' + " conversion to type number " + str(self.container.controlParameters.OUTPUT_REPRESENTATION))
             return CPluginScript.FAILED
 
         outputFiles = ['F_SIGF_FINAL']
         outputColumns = [columns]
         error = self.splitHklout(outputFiles,outputColumns,infile=self.hklin)
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         self.container.outputData.F_SIGF_FINAL.setContentFlag(reset=True)
         

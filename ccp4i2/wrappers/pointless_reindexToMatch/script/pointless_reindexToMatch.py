@@ -203,7 +203,7 @@ print "PRM postProcessCheck"
 
 
         error = self.splitHklout(outputFilesList,outputColumnsList,infile = reindexedFilename)
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             self.appendErrorReport(202,'Pointless_reindexToMatch: error in splitting file')
             return CPluginScript.FAILED
         else:

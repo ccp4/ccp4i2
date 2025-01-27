@@ -186,7 +186,7 @@ except Exception as err:
                 self.getWorkDirectory(), 'mergedForMakingCif.mtz')
             self.hklin, self.columns, error = self.makeHklin0(miniMtzsIn=[['F_SIGF', int(self.container.inputData.F_SIGF.contentFlag)], [
                                                               'F_SIGF', refmacContentFlag], ['FREERFLAG', 0], ['FPHIOUT', 1], ['DIFFPHIOUT', 1]], hklin='mergedForMakingCif', ignoreErrorCodes=[])
-            if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+            if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
                 self.reportStatus(CPluginScript.FAILED)
 
         # Now convert refmac input to mmcif

@@ -38,7 +38,7 @@ class privateer(CPluginScript):
     def processInputFiles(self):
       #print 'taskMakeHklin F_SIGF',self.container.inputData.F_SIGF,type(self.container.inputData.F_SIGF),self.container.inputData.F_SIGF.contentFlag
       self.hklin,error = self.makeHklin ( [ ['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN ] ] )
-      if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING: return CPluginScript.FAILED
+      if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING: return CPluginScript.FAILED
 
       return CPluginScript.SUCCEEDED
 

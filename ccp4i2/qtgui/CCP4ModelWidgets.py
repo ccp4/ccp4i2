@@ -40,7 +40,7 @@ from ..core import CCP4ModelData
 from ..core import CCP4Modules
 from ..core import CCP4Utils
 from ..core import CCP4XtalData
-from ..core.CCP4ErrorHandling import CException, SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import CException, Severity
 from ..dbapi import CCP4DbUtils
 from .CCP4Widgets import CViewWidget
 
@@ -260,7 +260,7 @@ class CSeqDataFileView(CCP4Widgets.CDataFileView):
           fileContent.loadFile(str(self.model),format=self.model.__dict__['format'])
           err = self.model.fileContent.assertSame(fileContent)
           #print 'CSeqDataFileView.saveSequence',self.model.fileContent,fileContent,err.report()
-          if err.maxSeverity()>SEVERITY_WARNING:
+          if err.maxSeverity()>Severity.WARNING:
             mess = QtWidgets.QMessageBox(self)
             mess.setWindowTitle('Sequence file')
             mess.setText('Save sequence or reference data to a new file')
@@ -284,7 +284,7 @@ class CSeqDataFileView(CCP4Widgets.CDataFileView):
     if self.editable:
       try:
         sequenceIsValid =  self.widgets['sequence'].validate(isValid=isValid,reportMessage=reportMessage)
-        if self.model.qualifiers('allowUndefined') and sequenceIsValid.maxSeverity()<SEVERITY_WARNING:
+        if self.model.qualifiers('allowUndefined') and sequenceIsValid.maxSeverity()<Severity.WARNING:
           #Allow the sequence to be undefined if the sequence file is allowed to be undefined
           isValid = dataFileIsValid
         else:
@@ -329,7 +329,7 @@ class CSeqDataFileView(CCP4Widgets.CDataFileView):
          win.layout().insertWidget(1,label)
          win.show()
          return
-       elif self.model.fileContent.__dict__['loadWarning'].maxSeverity()>SEVERITY_WARNING:
+       elif self.model.fileContent.__dict__['loadWarning'].maxSeverity()>Severity.WARNING:
          self.model.fileContent.__dict__['loadWarning'].warningMessage(windowTitle='Importing sequence file',parent=self,message='Failed importing sequence file')
          self.model.unSet()
          self.updateViewFromModel()
@@ -503,7 +503,7 @@ class CDictDataFileView(CCP4Widgets.CDataFileView):
     for fileName in selectedFiles:
       err = self.model.fileContent.mergeFile(fileName=fileName,overwrite=True)
       #print 'CDictDataFileView.mergeFiles',err.report(),err.maxSeverity()
-      if err.maxSeverity()>SEVERITY_WARNING:
+      if err.maxSeverity()>Severity.WARNING:
         err.warningMessage(windowTitle='Error merging Refmac dictionaries',parent=self,message='Error attempting to merge Refmac dictionaries')
       return
 
@@ -735,7 +735,7 @@ class CEnsembleLabelView(CCP4Widgets.CComplexLineWidget):
       else:
         v = self.model.number.validity(self.model.number.get())
         v.extend(self.model.label.validity(self.model.label.get()))
-        isValid = (v.maxSeverity()<=SEVERITY_WARNING)
+        isValid = (v.maxSeverity()<=Severity.WARNING)
     
     CCP4Widgets.CComplexLineWidget.validate(self,isValid=isValid,reportMessage=reportMessage)
 
@@ -1139,7 +1139,7 @@ class CPdbDataFileView(CCP4Widgets.CDataFileView):
     CCP4Widgets.CDataFileView.handleBrowserOpenFile(self,filename,downloadInfo,**kw)
     err = self.model.importFile(jobId=self.parentTaskWidget().jobId(),jobNumber=self.parentTaskWidget().jobNumber())
     if err is not None and len(err)>0:
-      if err.maxSeverity()>SEVERITY_WARNING:
+      if err.maxSeverity()>Severity.WARNING:
         message = 'File failed validation test'
         err.warningMessage(windowTitle='Importing coordinate file',parent=self,message=message)
         self.model.unSet()
@@ -1440,7 +1440,7 @@ class CDictDataView(CCP4Widgets.CViewWidget):
     for fileName in selectedFiles:
       err = self.model.mergeFile(fileName=fileName,overwrite=True)
       #print 'CDictDataFileView.mergeFiles',err.report(),err.maxSeverity()
-      if err.maxSeverity()>SEVERITY_WARNING:
+      if err.maxSeverity()>Severity.WARNING:
         err.warningMessage(windowTitle='Error merging geometry files',parent=self,message='Error attempting to merge geometry files')
       return
 
@@ -1450,7 +1450,7 @@ class CDictDataView(CCP4Widgets.CViewWidget):
     #print 'CDictDataView.handleDelete',idd
     if idd is None: return
     err = self.model.delete(idd)
-    if err.maxSeverity()>SEVERITY_WARNING:
+    if err.maxSeverity()>Severity.WARNING:
       err.warningMessage(windowTitle='Error deleting item in geometry file',parent=self,message='Error attempting to edit geometry file')
     return
 
@@ -2205,7 +2205,7 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
             self.importDialog.layout().addWidget(resultWidget)
             resultWidget.setHtml("<p>Solvent content analysis will appear here when there is a valid sequence list and reflection file above.</p></body></html>")
             def runMatthews():
-                 if (self.importAsuContent.validity(self.importAsuContent.get()).maxSeverity() <= SEVERITY_WARNING) and self.hklFile.isSet() and len(self.importAsuContent) > 0:
+                 if (self.importAsuContent.validity(self.importAsuContent.get()).maxSeverity() <= Severity.WARNING) and self.hklFile.isSet() and len(self.importAsuContent) > 0:
                      totWeight = 0.0
                      text = "<table><tr><th style=\"text-align:left\">Name</th><th>Number of copies</th><th>Molecular weight</th></tr>"
                      for seqObj in self.importAsuContent:
@@ -2268,7 +2268,7 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
     def doImport(self):
         #print 'CAsuDataFileView.doImport validate',self.importAsuContent,self.importAsuContent.validity(self.importAsuContent.get())
         #print 'CAsuDataFileView.doImport jobCombo',self.jobCombo.count()
-        if self.importAsuContent.validity(self.importAsuContent.get()).maxSeverity() <= SEVERITY_WARNING:
+        if self.importAsuContent.validity(self.importAsuContent.get()).maxSeverity() <= Severity.WARNING:
             self.importDialog.hide()
             openJob = CCP4DbUtils.COpenJob(projectId=self.parentTaskWidget().projectId())
             openJob.createJob(taskName='ProvideAsuContents')
@@ -2288,7 +2288,7 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
             if self.hklFile.isSet():
                 openJob.container.inputData.HKLIN.set(self.hklFile)
             err = openJob.runJob()
-            if err.maxSeverity() > SEVERITY_WARNING:
+            if err.maxSeverity() > Severity.WARNING:
                 err.warningMessage(windowTitle='Importing sequence file to AU contents',parent=self,message='Failed creating AU content file')
                 return
             self.resetJobCombo = openJob.jobNumber

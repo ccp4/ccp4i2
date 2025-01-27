@@ -20,7 +20,7 @@ import os
 
 import gemmi
 
-from ....core.CCP4ErrorHandling import SEVERITY_WARNING
+from ....core.CCP4ErrorHandling import Severity
 from ....core.CCP4PluginScript import CPluginScript
 from ....core.CCP4XtalData import CMapCoeffsDataFile
 
@@ -101,7 +101,7 @@ class density_calculator(CPluginScript):
         files = ["FPHIOUT"]
         columns = ["FC,PHIC"]
         error = self.splitHklout(files, columns, hklout)
-        if error.maxSeverity() > SEVERITY_WARNING:
+        if error.maxSeverity() > Severity.WARNING:
             return CPluginScript.FAILED
 
         return CPluginScript.SUCCEEDED

@@ -27,7 +27,7 @@ class buster(CPluginScript):
     
     ERROR_CODES = { 101 : {'description' : 'Failed to initialise BUSTER, do you have BUSTER installed & the i2 preferences setup ' \
                            'to point to the correct BUSTER installation folder (or have run the setup script for BUSTER) ?', 
-                           'severity':CCP4ErrorHandling.SEVERITY_ERROR } }
+                           'severity':CCP4ErrorHandling.Severity.ERROR } }
 
     def __init__(self, *args, **kwargs):
         self.seqin = None
@@ -98,7 +98,7 @@ class buster(CPluginScript):
         extCde = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
         if not(status == 0 and os.path.exists(self.outfilec)):
             return CPluginScript.FAILED
-        if errorb.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        if errorb.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 
@@ -125,7 +125,7 @@ class buster(CPluginScript):
         outFiles = ['FPHIOUT', 'DIFFPHIOUT', 'ABCDOUT']
         outCols =  ['2FOFCWT,PH2FOFCWT', 'FOFCWT,PHFOFCWT', 'HLA,HLB,HLC,HLD']
         rep = self.splitHklout(miniMtzsOut=outFiles, programColumnNames=outCols, infile=mtzfile_bus)
-        if rep.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        if rep.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         # Extract what is needed for the i2 Buster report.
         blfilep = self.makeFileName('LOG')

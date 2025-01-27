@@ -16,7 +16,7 @@ class import_serial(CPluginScript):
     ASYNCHRONOUS = False
     MAINTAINER = 'martin.maly@soton.ac.uk'
     # ERROR_CODES = { 101 : {'description' : 'Blank for now, may need this ',
-    #                        'severity':CCP4ErrorHandling.SEVERITY_ERROR } }
+    #                        'severity':CCP4ErrorHandling.Severity.ERROR } }
 
     def __init__(self, *args, **kwargs):
         print("import_serial: init")

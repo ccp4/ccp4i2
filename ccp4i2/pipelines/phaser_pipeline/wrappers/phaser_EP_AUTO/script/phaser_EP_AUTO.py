@@ -168,7 +168,7 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
 
     def processInputFiles(self):
         self.hklin,error = self.makeHklin([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FPAIR]])
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             for report in error._reports:
                 if report['code'] == 32:
                     report['details'] = 'F+ and F- cannot be derived from data. Check file import.'

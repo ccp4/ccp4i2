@@ -10,7 +10,7 @@ import unittest
 
 from ....core import CCP4Modules
 from ....core import CCP4Utils
-from ....core.CCP4ErrorHandling import SEVERITY_WARNING
+from ....core.CCP4ErrorHandling import Severity
 from ....core.CCP4PluginScript import CPluginScript
 
 
@@ -23,7 +23,7 @@ class prosmart(CPluginScript):
     MAINTAINER = 'nicholls@mrc-lmb.cam.ac.uk'
 
     ERROR_CODES = { 201 : { 'description' : 'No output restraint file from Prosmart' },
-                    202 : { 'description' : 'Log file does not report successful job completion' , 'severity' : SEVERITY_WARNING },
+                    202 : { 'description' : 'Log file does not report successful job completion' , 'severity' : Severity.WARNING },
                     203 : { 'description' : 'Unable to successfully construct reference model list' },
                     204 : { 'description' : 'Unable to successfully construct target chain list' }
                     }

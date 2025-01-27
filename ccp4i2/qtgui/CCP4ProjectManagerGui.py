@@ -47,7 +47,7 @@ from ..core import CCP4ProjectBasedTesting
 from ..core import CCP4ProjectsManager
 from ..core import CCP4Utils
 from ..core.CCP4Config import DEVELOPER
-from ..core.CCP4ErrorHandling import CException, SEVERITY_ERROR, SEVERITY_WARNING
+from ..core.CCP4ErrorHandling import CException, Severity
 from ..core.CCP4Modules import MIMETYPESHANDLER, PROJECTSMANAGER, WEBBROWSER
 from ..dbapi import CCP4DbApi
 from ..dbapi import CCP4DbUtils
@@ -1890,7 +1890,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     # exportProjectXml returns list of TOP-LEVEL jobNumbers for the export
     jobNumberList,errReport = PROJECTSMANAGER().db().exportProjectXml(projectId,fileName=dbxml,recordExport=True,status='exportable',after=after,jobList=jobList,inputFileList=inputFileIdList,inputFileFromJobList=fromJobIdList)
     #print 'CProjectManagerDialog.compressProject jobNumberList',jobNumberList
-    if errReport.maxSeverity()>SEVERITY_WARNING:
+    if errReport.maxSeverity()>Severity.WARNING:
         self.statusWidget.clearMessage()
         errReport.warningMessage('Export project','Error creating XML database file',parent=self)
         return
@@ -1939,7 +1939,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
 
   @QtCore.Slot(str,str)
   def doneSavingJobData(self,projectName,filename):
-    if self.exportThread.errorReport.maxSeverity()>SEVERITY_WARNING:
+    if self.exportThread.errorReport.maxSeverity()>Severity.WARNING:
       self.exportThread.errorReport.warningMessage('Saving job data','Error saving data files for export',parent=self)
     else:
       self.statusWidget.hideProgress()
@@ -2125,7 +2125,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
       ret = self.dbImport.createProject()
       if DIAGNOSTIC:
           print('dbImport.createProject()',ret.report())
-      if ret.maxSeverity()>SEVERITY_WARNING:
+      if ret.maxSeverity()>Severity.WARNING:
         print(ret.report())
         ret.warningMessage(parent=self,windowTitle='Error creating project in database',ifStack=False)
         return
@@ -2145,7 +2145,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
 
     if DIAGNOSTIC: print('CProjectManagerDialog.importProject setting Temp Tables',self.dbImport.errReport.report())
 
-    if self.dbImport.errReport.maxSeverity()>SEVERITY_WARNING:
+    if self.dbImport.errReport.maxSeverity()>Severity.WARNING:
       if DIAGNOSTIC: print('Error report from the import process..')
       if DIAGNOSTIC: print(self.dbImport.errReport.report())
       self.dbImport.errReport.warningMessage(parent=self,windowTitle='Error loading data from project export file',ifStack=False)
@@ -2181,7 +2181,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
               print('Job_'+str(item[4]),item[2])
         else:
           print('CProjectManagerDialog.importProject stats', key,value)
-    if errReport.maxSeverity()>SEVERITY_WARNING:
+    if errReport.maxSeverity()>Severity.WARNING:
       self.dbImport.removeTempTables()
       text = 'ERRORS UNPACKING DATA FILES\n'
       for err in errReport: text = text + err['details'] + '\n'
@@ -2256,7 +2256,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     self.deleteDialog.close()
     if projectId is None: return
     e = PROJECTSMANAGER().deleteProject(projectId=projectId,deleteDirectory=deleteDirectory)
-    if e.maxSeverity()>SEVERITY_WARNING:
+    if e.maxSeverity()>Severity.WARNING:
        e.warningMessage('Deleting project',parent=self)
     CCP4Modules.PROJECTSMANAGER().backupDBXML()
 
@@ -2457,9 +2457,9 @@ class CProjectManagerDialog(QtWidgets.QDialog):
 
     errReport = self.makeDbXml.loadProject()
 
-    if errReport.maxSeverity()>SEVERITY_WARNING:
+    if errReport.maxSeverity()>Severity.WARNING:
       errReport.warningMessage(parent=self,windowTitle='Error recovering project directory',
-                               message='Some errors are reported',ifStack=False,minSeverity=SEVERITY_ERROR)
+                               message='Some errors are reported',ifStack=False,minSeverity=Severity.ERROR)
       return
 
     xmlFile = self.makeDbXml.saveXmlFile()
@@ -2511,7 +2511,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     self.dbImport.createTempTables()
     self.dbImport.loadTempTable()
 
-    if self.dbImport.errReport.maxSeverity()>SEVERITY_WARNING:
+    if self.dbImport.errReport.maxSeverity()>Severity.WARNING:
       print('Error report from the import process..')
       self.dbImport.errReport.warningMessage(windowTitle='Project manager- importing XML',
                                 message='Failed importing database from XML file',ifStack=False,parent=self)

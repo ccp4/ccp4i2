@@ -9,7 +9,7 @@ import unittest
 from ....core import CCP4Modules
 from ....core import CCP4Utils
 from ....core import CCP4XtalData
-from ....core.CCP4ErrorHandling import SEVERITY_WARNING
+from ....core.CCP4ErrorHandling import Severity
 from ....core.CCP4PluginScript import CPluginScript
 
 
@@ -28,7 +28,7 @@ class ctruncate(CPluginScript):
     COMTEMPLATE = None
     MAINTAINER = 'charles.ballard@stfc.ac.uk'
 
-    ERROR_CODES = { 201 : { 'severity' : SEVERITY_WARNING , 'description' : 'Error creating XML output' } }
+    ERROR_CODES = { 201 : { 'severity' : Severity.WARNING , 'description' : 'Error creating XML output' } }
 
 
     def makeCommandAndScript(self):

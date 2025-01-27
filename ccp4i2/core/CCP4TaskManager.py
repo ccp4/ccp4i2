@@ -42,7 +42,7 @@ from ..qtgui import CCP4I1Projects
 from ..qtgui import CCP4TaskWidget
 from ..report import CCP4ReportParser
 from .CCP4Config import GRAPHICAL, DEVELOPER
-from .CCP4ErrorHandling import CErrorReport, SEVERITY_WARNING
+from .CCP4ErrorHandling import CErrorReport, Severity
 from .CCP4Modules import CUSTOMTASKMANAGER, PREFERENCES, PROJECTSMANAGER, WORKFLOWMANAGER
 
 
@@ -1050,7 +1050,7 @@ class CTaskManager:
         if fileName is None:
             fileName = os.path.join(CCP4Utils.getCCP4Dir(), 'share', 'ccp4i', 'etc', 'modules.def')
         metaData, params, err = CCP4I1Projects.readI1DefFile(fileName)
-        if err.maxSeverity() > SEVERITY_WARNING or 'TASK_NAME' not in params:
+        if err.maxSeverity() > Severity.WARNING or 'TASK_NAME' not in params:
             return CErrorReport(self.__class__, 103, details=fileName, stack=False)
         self.i1TaskLookup = {}
         for nT in range(len(params['TASK_NAME'][1])):

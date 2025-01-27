@@ -32,7 +32,7 @@ from PySide2 import QtCore
 from . import CCP4Modules
 from . import CCP4Config
 from . import CCP4Utils
-from .CCP4ErrorHandling import CErrorReport, CException, SEVERITY_WARNING
+from .CCP4ErrorHandling import CErrorReport, CException, Severity
 
 
 def PopenInThread(pid, callArgList, callDict, onExit=None):
@@ -61,12 +61,12 @@ class CProcessManager(QtCore.QObject):
     USEQPROCESS = True
     ERROR_CODES = {101 : {'description' : 'Error creating temporary command file'},
                    102 : {'description' : 'Process input file does not exist'},
-                   103 : {'severity' : SEVERITY_WARNING, 'description' : 'Exisiting log file has been deleted'},
+                   103 : {'severity' : Severity.WARNING, 'description' : 'Exisiting log file has been deleted'},
                    104 : {'description' : 'Error opening input file'},
                    105 : {'description' : 'Error opening log file'},
                    106 : {'description' : 'Error starting sub-process'},
                    107 : {'description' : 'Can not run process - no executable with name'},
-                   108 : {'severity' : SEVERITY_WARNING, 'description' : 'Creating temporary log file for sub-process'},
+                   108 : {'severity' : Severity.WARNING, 'description' : 'Creating temporary log file for sub-process'},
                    109 : {'description' : 'Error opening stderr file'},
                    110 : {'description' : 'Error handling finished sub-process'},
                    111 : {'description' : 'Error calling handler after finished sub-process'}}
