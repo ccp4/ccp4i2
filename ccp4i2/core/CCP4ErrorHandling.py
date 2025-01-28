@@ -29,9 +29,6 @@ from lxml import etree
 
 from . import CCP4Config
 from . import CCP4Data
-from . import CCP4DataManager
-from . import CCP4PluginScript
-from . import CCP4TaskManager
 from ..qtgui import CCP4MessageBox
 
 
@@ -56,20 +53,50 @@ class Severity(Enum):
         return {s.value[1]: s for s in cls}[text]
 
 
-class CError:
-    def __init__(
-        self,
-        class_: object = None,
-        code: int = 0,
-        name: str = None,
-        label: str = None,
-        details: str = None,
-        description: str = None,
-        severity: Severity = None,
-        time: float = None,
-        stack: list[str] = None,
-    ):
-        pass
+def getStack(exc_info=None):
+    if exc_info is None:
+        return traceback.format_stack()[0:-2] or None
+    try:
+        return traceback.format_exception(exc_info[0], exc_info[1], exc_info[2])
+    except:
+        return None
+
+
+def getReport(
+    cls: object = None,
+    className: str = None,
+    code: int = 0,
+    name: str = None,
+    label=None,
+    details: str = None,
+    description: str = None,
+    severity: Severity = None,
+    time: float = None,
+    stack: list[str] = None,
+):
+    report = {
+        'className': className or getattr(cls, "__name__", str(cls)),
+        'code': code,
+        'name': name,
+        'label': label,
+        'details': details,
+        'description': description or 'No description available',
+        'severity': severity or Severity.ERROR,
+        'time': time,
+        'stack': stack,
+    }
+    if isclass(cls):
+        for class_ in cls.__mro__:
+            if hasattr(class_, 'ERROR_CODES') and code in class_.ERROR_CODES:
+                error = class_.ERROR_CODES[code]
+                if description is None and 'description' in error:
+                    report['description'] = error['description']
+                if severity is None and 'severity' in error:
+                    report['severity'] = error['severity']
+                break
+            else:
+                print('ERROR in CErrorHandling - error code not found', code, cls)
+    return report
 
 
 class CErrorReport():
@@ -80,14 +107,17 @@ class CErrorReport():
             self.append(cls=cls, code=code, details=details, name=name, label=label, recordTime=recordTime, stack=stack, exc_info=exc_info)
 
     def append(self, cls=None, code=0, details=None, name=None, label=None, recordTime=False, stack=True, exc_info=None):
-        report = {'class' : cls, 'name' : name, 'label' : label, 'code' : code, 'details' : details}
-        if recordTime:
-            report['time'] = mktime(localtime())
-        if stack:
-            report['stack'] = getStack(exc_info)
+        report = getReport(
+            cls=cls,
+            code=code,
+            details=details,
+            name=name,
+            label=label,
+            time=mktime(localtime()) if recordTime else None,
+            stack=getStack(exc_info) if stack else None,
+        )
         self._reports.append(report)
-        severity = errorCodeSeverity(cls, code)
-        if severity == Severity.CRITICAL:
+        if report['severity'] == Severity.CRITICAL:
             print(self.report())
 
     def extend(self, other=None, recordTime=False, stack=True):
@@ -96,18 +126,19 @@ class CErrorReport():
         for item in other._reports:
             if recordTime and item.get('time', None) is None:
                 item['time'] = mktime(localtime())
-            if stack and item.get('stack', None) is None :
+            if stack and item.get('stack', None) is None:
                 item['stack'] = getStack()
         self._reports.extend(other._reports)
 
     def appendPythonException(self, cls=None, exception=None):
-        details = str(exception)
-        self._reports.append({'class' : cls, 'name' : 'Python error', 'code' : -2, 'details' : details})
+        report = getReport(cls=cls, name='Python error', code=-2, details=str(exception))
+        self._reports.append(report)
 
     def count(self, cls=None, code=None):
+        className = getattr(cls, "__name__", str(cls))
         n = 0
         for report in self._reports:
-            if (cls is None or report['class'] == cls) and (code is None or report['code'] == code):
+            if (cls is None or report['className'] == className) and (code is None or report['code'] == code):
                 n = n + 1
         return n
 
@@ -120,18 +151,12 @@ class CErrorReport():
             report['name'] = name
 
     def maxSeverity(self):
-        maxSev = 0
-        for report in self._reports:
-            severity = errorCodeSeverity(report['class'], report['code'])
-            if severity < 0:
-                print('ERROR in CErrorHandling - error code not found', report['code'], report['class'])
-            maxSev = max(maxSev, severity)
-        return maxSev
+        return max(r['severity'] for r in self._reports)
 
     def __len__(self):
         return len(self._reports)
 
-    def __getitem__(self, arg):
+    def __getitem__(self, arg: int):
         return self._reports[arg]
 
     def __str__(self):
@@ -140,75 +165,51 @@ class CErrorReport():
     def description(self, report=None, user=False):
         if report is None:
             report = self._reports[0]
-        if 'description' in report and report['description'] is not None:
-            desc = report['description']
-            severity = report.get('severity', Severity.ERROR)
-        elif issubclass(report['class'], CCP4Data.CData):
-            severity = errorCodeSeverity(report['class'], report['code'])
-            desc = errorCodeDescription(report['class'], report['code'])
-        elif report['code'] == -2:
-            severity = Severity.ERROR
-            desc = 'Python error'
-        else:
-            severity = errorCodeSeverity(report['class'], report['code'], Severity.ERROR)
-            desc = errorCodeDescription(report['class'], report['code'], 'No description available')
+        desc = report['description']
         if user and report.get('label', None) is not None and report['label'] is not NotImplemented:
             desc = str(report['label']) + ': ' + desc
         elif 'name' in report and report['name'] is not None:
             desc = str(report['name']) + ': ' + str(desc)
-        return desc, severity
+        return desc, report['severity']
 
     def report(self, user=False, ifStack=True, mode=0, minSeverity=Severity.UNDEFINED):
         text = ''
-        if len(self._reports) > 0:
-            for report in self._reports:
-                desc, severity = self.description(report, user=user)
-                if severity == Severity.CRITICAL:
-                    text = text + "\nCRITICAL ERROR PLEASE REPORT TO CCP4:"
-                if severity >= minSeverity:
-                    try:
-                        className = report['class'].__name__
-                    except:
-                        className = str(report['class'])
-                    name = str(report.get('name', ''))
-                    if mode == 0:
-                        text = text + "\n{0:20} -{1}- {2}:{3} {4}".format(name, severity, className, report['code'], desc)
-                    elif mode == 1:
-                        text = text + "\n {0:20} -{1}- \n{2}:{3} {4}".format(name, severity, className, report['code'], desc)
+        for report in self._reports:
+            desc, severity = self.description(report, user=user)
+            className = report['className']
+            code = report['code']
+            if severity == Severity.CRITICAL:
+                text = text + "\nCRITICAL ERROR PLEASE REPORT TO CCP4:"
+            if severity >= minSeverity:
+                name = str(report['name'])
+                if mode == 0:
+                    text += f"\n{name:20} -{severity}- {className}:{code} {desc}"
+                elif mode == 1:
+                    text += f"\n{name:20} -{severity}- \n{className}:{code} {desc}"
+                else:
+                    if user and severity == Severity.WARNING:
+                        text += f"\nWarning: {desc}"
+                    if (len(text) + len(desc)) < 60:
+                        text += f" {desc}"
                     else:
-                        if user:
-                            if severity == Severity.WARNING:
-                                text = text + "\nWarning: " + desc
-                            else:
-                                if (len(text)+len(desc)) < 60:
-                                    text = text + " " + desc
-                                else:
-                                    text = text + "\n" + desc
-                        else:
-                            if (len(text)+len(desc)) < 60:
-                                text = text + " " + desc
-                            else:
-                                text = text + "\n" + desc
-                    if 'details' in report and report['details'] is not None and len(str(report['details'])) > 0 and report['details'] != 'None':
-                        if mode == 1:
-                            text = text + ' ' + str(report['details'])
-                        else:
-                            if (len(text) + len(str(report['details']))) < 60:
-                                text = text + ' ' + str(report['details']) + '\n'
-                            else:
-                                text = text + '\n' + str(report['details']) + '\n'
-                    if ifStack and report.get('stack', None) is not None:
-                        text = text + '\n'
-                        for line in report['stack']:
-                            text = text + line
-            return text[1:]
-        return ''
+                        text += f"\n{desc}"
+                details = str(report['details'])
+                if len(details) > 0 and details != 'None':
+                    if mode == 1:
+                        text += f' {details}'
+                    elif (len(text) + len(details)) < 60:
+                        text += f' {details}\n'
+                    else:
+                        text += f'\n{details}\n'
+                if ifStack and report['stack'] is not None:
+                    text += '\n'
+                    text += ''.join(report['stack'])
+        return text[1:]
 
     def warningMessage(self, windowTitle='', message='', jobId=None, parent=None, ifStack=True, minSeverity=Severity.UNDEFINED):
         if len(message) > 0 and message[-1] !='\n':
             message = message + '\n'
         if CCP4Config.GRAPHICAL() and parent is not None:
-            print('CException.warningMessage GRAPHICAL', CCP4Config.GRAPHICAL())
             m = CCP4MessageBox.CMessageBox(parent, title=windowTitle, message=message,
                                            details=self.report(ifStack=ifStack, minSeverity=minSeverity), jobId=jobId)
             m.show()
@@ -218,108 +219,55 @@ class CErrorReport():
     def getEtree(self):
         element = etree.Element('errorReportList')
         for item in self._reports:
-            try:
-                ele = etree.Element('errorReport')
-                e = etree.Element('className')
-                e.text = item['class'].__name__
+            ele = etree.Element('errorReport')
+            e = etree.Element('className')
+            e.text = item['className']
+            ele.append(e)
+            e = etree.Element('code')
+            e.text = str(item['code'])
+            ele.append(e)
+            e = etree.Element('description')
+            desc, severity = self.description(item)
+            e.text = desc
+            ele.append(e)
+            e = etree.Element('severity')
+            e.text = str(severity)
+            ele.append(e)
+            if item['details'] is not None:
+                e = etree.Element('details')
+                e.text = str(item['details'])
                 ele.append(e)
-                e = etree.Element('code')
-                e.text = str(item['code'])
+            if item['time'] is not None:
+                e = etree.Element('time')
+                e.text = str(item['time'])
                 ele.append(e)
-                e = etree.Element('description')
-                desc,severity = self.description(item)
-                e.text = desc
+            if item['stack'] is not None:
+                e = etree.Element('stack')
+                e.text = ''.join(item['stack'])
                 ele.append(e)
-                e = etree.Element('severity')
-                e.text = str(severity)
-                ele.append(e)
-                if item['details'] is not None:
-                    e = etree.Element('details')
-                    e.text = str(item['details'])
-                    ele.append(e)
-                if item.get('time',None) is not None:
-                    e = etree.Element('time')
-                    e.text = str(item['time'])
-                    ele.append(e)
-                if item.get('stack',None) is not None:
-                    e = etree.Element('stack')
-                    text = ''
-                    for line in item['stack']:
-                        text = text + line
-                    e.text = text
-                    ele.append(e)
-                element.append(ele)
-            except Exception as e:
-                print('CErrorReport.getEtree error', e)
-                traceback.print_exc()
+            element.append(ele)
         return element
 
     def setEtree(self, element=None):
-        DM = CCP4DataManager.DATAMANAGER()
-        TM = CCP4TaskManager.TASKMANAGER()
         body = element.find('ccp4i2_body') or element
         for ele in body:
             if str(ele.tag) == 'errorReport':
                 report = {}
                 for e in ele.iterchildren():
                     name = str(e.tag)
-                    if name == 'className':
-                        clsName = str(e.text)
-                        if clsName == 'CPluginScript':
-                            report['class'] = CCP4PluginScript.CPluginScript
-                        else:
-                            report['class'] = DM.getClass(clsName)
-                            if report['class'] is None:
-                                report['class'] = TM.getClass(clsName)
-                    elif name == 'code':
+                    if name == 'code':
                         report['code'] = int(e.text) if e.text and e.text.isdecimal() else 0
-                    elif name in {'stack', 'details', 'description'}:
-                        report[name] = str(e.text)
                     elif name == 'severity':
                         report['severity'] = Severity[str(e.text)]
+                    elif name in {'className', 'stack', 'details', 'description'}:
+                        report[name] = str(e.text)
                 self._reports.append(report)
-
-    def classesInReport(self):
-        classList = []
-        for report in self._reports:
-            if report['class'] is not None and classList.count(report['class']) == 0:
-                classList.append(report['class'])
-        classNameList = []
-        for item in classList:
-            classNameList.append(item.__name__)
-        classNameList.sort()
-        return classNameList
 
 
 class CException(CErrorReport, Exception):
     def __init__(self, cls=None, code=0, details='', name=None, label=None, stack=True, exc_info=None):
         CErrorReport.__init__(self, cls, code, details, name, label, stack=stack, exc_info=exc_info)
         Exception.__init__(self)
-
-
-def getStack(exc_info=None):
-    if exc_info is None:
-        return traceback.format_stack()[0:-2] or None
-    try:
-        return traceback.format_exception(exc_info[0], exc_info[1], exc_info[2])
-    except:
-        return None
-
-
-def errorCodeSeverity(class_, code, default=-1):  # KJS - Revise
-    if isclass(class_):
-        for cls in class_.__mro__:
-            if hasattr(cls, 'ERROR_CODES') and code in cls.ERROR_CODES:
-                return cls.ERROR_CODES[code].get('severity', Severity.ERROR)
-    return default
-
-
-def errorCodeDescription(class_, code, default=-1):  # KJS : Needs revision.
-    if isclass(class_):
-        for cls in class_.__mro__:
-            if hasattr(cls, 'ERROR_CODES') and code in cls.ERROR_CODES:
-                return cls.ERROR_CODES[code].get('description', 'NO DESCRIPTION')
-    return default
 
 
 #===========================================================================================
