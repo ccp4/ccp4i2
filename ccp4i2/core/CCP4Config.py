@@ -81,7 +81,7 @@ class CConfig:
             tag = element.tag
             value = element.text
             #print 'CConfig.loadDataFromXml', tag, value, type(tag), type(value)
-            if tag in ['developer', 'graphical', 'qt']:
+            if tag in ['developer', 'graphical']:
                 if value.lower() == 'true':
                     setattr(self, tag, True)
                 elif value.lower() == 'false':
@@ -122,7 +122,7 @@ class CConfig:
 
     def saveDataToXml(self, fileName):
         root = etree.Element('configs')
-        for tag in ['developer', 'graphical', 'qt', 'dbFile', 'dbUser', 'maxRunningProcesses']:
+        for tag in ['developer', 'graphical', 'dbFile', 'dbUser', 'maxRunningProcesses']:
             ele = etree.Element(tag)
             ele.text = str(getattr(self, tag))
             root.append(ele)
