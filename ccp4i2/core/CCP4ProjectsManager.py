@@ -550,73 +550,6 @@ class CProjectsManager(CObject):
             print('PROJECTSMANAGER restore errrors:\n', errorReport.report())
         return errorReport
 
-    '''
-    def saveTaskToDb(self,taskName=None,saveData=None,controlFile=None,projectId=None):
-        # This saves the task gui parameters to a params.xml file and regisiters this as a job with the db
-        # taskName is name of task
-        # saveData is method that writes a control parameters to given file name (CTaskViewer.saveData)
-
-        jobId,projectName,jobNumber = self.newJob(taskName=taskName,projectId=projectId)
-        e = None
-        if controlFile is None:
-          try:
-            controlFile = self.makeFileName(jobId=jobId,mode='PARAMS')
-            print 'TaskViewer.saveTask',controlFile
-            saveData(fileName=controlFile,projectName=projectName,jobNumber=jobNumber)
-            controlFile = self.makeFileName(jobId=jobId,mode='JOB_INPUT')
-            saveData(fileName=controlFile,projectName=projectName,jobNumber=jobNumber)
-          except CErrorReport as e:
-            e.append(self.__class__,118)
-          except:
-            e = CErrorReport()
-            e.append(self.__class__,118)
-
-        if e is not None:
-          e.warningMessage()
-          return
-
-        self.updateJobStatus(jobId=jobId,status=CCP4DbApi.JOB_STATUS_FINISHED)
-    '''
-
-    '''
-      def runTask(self,jobId=None,taskName=None,saveData=None,controlFile=None,projectId=None):
-        # taskName is name of task
-        # saveData is method that writes a control parameters to given file name (CTaskViewer.saveData)
-
-        if jobId is None:
-          # Need to create new job in database
-          jobId,projectName,jobNumber = self.newJob(taskName=taskName,projectId=projectId)
-          jobInfo = { 'taskname' : taskName,
-                      'projectname' : projectName,
-                      'jobnumber' : jobNumber }
-        else:
-          jobInfo =  self._db.getJobInfo(jobId=jobId,mode=['taskname','jobnumber','projectname'])
-          taskName = jobInfo['taskname']
-          projectName = jobInfo['projectname']
-          jobNumber = jobInfo['jobnumber']
-
-        e = None
-        if controlFile is None:
-          #try:
-            controlFile = self.makeFileName(jobId=jobId,mode='JOB_INPUT',jobInfo=jobInfo)
-            print 'TaskViewer.runTask',controlFile
-        if saveData is not None:
-            saveData(fileName=controlFile,projectName=projectName,jobNumber=jobNumber)
-          #except CErrorReport as e:
-          #  e.append(self.__class__,118)
-          #except:
-          #  e = CErrorReport()
-          #  e.append(self.__class__,118)
-
-        if e is not None:
-          e.warningMessage()
-          return
-
-        # Update control file path in db and set status to queue the job
-        #self.updateJobControlFile(jobId=jobId,controlFile=controlFile)
-        self.updateJobStatus(jobId=jobId,status=CCP4DbApi.JOB_STATUS_QUEUED)
-    '''
-
     def newJob(self, taskName=None, jobTitle=None, projectId=None, jobNumber=None):
         #if jobTitle is None:
         #  jobTitle = CCP4TaskManager.TASKMANAGER().getTitle(taskName)
@@ -694,16 +627,6 @@ class CProjectsManager(CObject):
                     if os.path.exists(os.path.join(copyJobDir, name)):
                         shutil.move(os.path.join(copyJobDir, name), os.path.join(jobDir, name))
                         break
-                '''
-                if parFile is not None:
-                  fileObj = CCP4File.CI2XmlDataFile(fullPath=os.path.join(copyJobDir,name))
-                  fileObj.header.comment = 'Original '+fileObj.header.pluginName.__str__()+' task deleted but imported files saved'
-                  fileObj.header.pluginName = 'import_files'
-                  fileObj.header.pluginVersion.unSet()
-                  bodyEtree = fileObj.getBodyEtree()
-                  fileObj.setFullPath(os.path.join(jobDir,'params.xml'))
-                  fileObj.saveFile(bodyEtree=bodyEtree)
-                '''
                 try:
                     shutil.rmtree(copyJobDir)
                 except:
@@ -903,13 +826,6 @@ class CProjectsManager(CObject):
                 dobj = container.outputData.find(objectName)
                 #print 'setOutputData get',objectName,dobj.get(),dobj.isSet()
                 if isinstance(dobj,CCP4File.CDataFile) and (force or not dobj.isSet()):
-                    '''
-                    nameFromFileKey = dobj.qualifiers('nameFromFileKey')
-                    if nameFromFileKey is not None and container.find(nameFromFileKey) is not None:
-                        sourceObj =  container.find(nameFromFileKey)
-                        baseName = jobName + os.path.splitext(sourceObj.baseName.get())[0]
-                    else:
-                  '''
                     dobj.setOutputPath(jobName=jobName, projectId=projectId, relPath=relPath)
             except:
                 myErrorReport.append(self.__class__, 152, objectName)
@@ -1883,28 +1799,3 @@ class testManager(unittest.TestCase):
             self.assertEqual(e[0]['code'] , 117, 'Wrong error code (not 117) creating project with same dir')
         except:
             self.fail('Failed with unknown reason attempting to create project with same dir')
-
-
-    '''
-    def test3(self):
-         self.pm.deleteProject('myproject')
-         p = self.pm.getProject('myproject')
-         self.assertTrue(p is None,'Error removing project')
-
-    def test4(self):
-        pname,relpath,pid = self.pm.interpretDirectory( os.path.join(self.testDir,'myproject') )
-        self.assertEqual(pname,'myproject','interpretDirectory did not find correct project')
-        self.assertEqual(relpath,'','interpretDirectory returns incorrect relPath')
-
-    def test5(self):
-        proj_list,alias_list = self.pm.getProjectsList()
-        self.assertEqual(proj_list,['anotherproject','myproject'],'getProjectsList returns wrong project list')
-        self.assertEqual(alias_list,['CCP4I2_TOP'],'getProjectsList returns wrong directories list')
-
-    def test6(self):
-        fileName = os.path.join(self.testDir,'projects.xml')
-        self.pm.save(fileName)
-        pm = CProjectsManager(name='TESTPROJECTMANAGER')
-        pm.restore(fileName)
-        self.assertEqual(len(pm.projects),2,'Failed in save/restore projects')
-    '''
