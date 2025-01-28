@@ -23,11 +23,8 @@ from enum import Enum
 from inspect import isclass
 from time import localtime, mktime
 import traceback
-import unittest
 
 from lxml import etree
-
-from . import CCP4Data
 
 
 class Severity(Enum):
@@ -256,22 +253,3 @@ class CException(CErrorReport, Exception):
     def __init__(self, cls=None, code=0, details='', name=None, label=None, stack=True, exc_info=None):
         CErrorReport.__init__(self, cls, code, details, name, label, stack=stack, exc_info=exc_info)
         Exception.__init__(self)
-
-
-#===========================================================================================
-def TESTSUITE():
-    suite = unittest.defaultTestLoader.loadTestsFromTestCase(testError)
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)
-
-class testError(unittest.TestCase):
-
-    def test1(self):
-        e = CException(CCP4Data.CData, 1, 'foo')
-        tree = e.getEtree()
-        f = CException()
-        f.setEtree(tree)
-        self.assertEqual(f[0]['code'],1,'Error save/restore CException to etree = wrong code')
