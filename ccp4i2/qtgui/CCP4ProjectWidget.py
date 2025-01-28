@@ -50,6 +50,7 @@ from ..core.CCP4Modules import PROJECTSMANAGER
 from ..core.CCP4Modules import QTAPPLICATION
 from ..core.CCP4Modules import WEBBROWSER
 from ..core.CCP4TaskManager import TASKMANAGER
+from ..core.CCP4WarningMessage import warningMessage
 from ..dbapi import CCP4DbApi
 from ..dbapi import CCP4DbUtils
 from ..report import CCP4ReportGenerator
@@ -2724,7 +2725,7 @@ class CProjectWidget(QtWidgets.QFrame):
         shutil.copyfile(myFileName,exportFileName)
       except:
         e = CException(self.__class__,100,'From: '+str(myFileName)+' to: '+str(exportFileName))
-        e.warningMessage('Copying file',parent=self)
+        warningMessage(e, 'Copying file',parent=self)
       else:
         PROJECTSMANAGER().db().createExportFile(fileId=fileId,exportFilename=exportFileName)
         fileInfo = PROJECTSMANAGER().db().getFileInfo(fileId=fileId,mode=['jobid','projectname'])
@@ -3562,7 +3563,7 @@ class CJobSearchDialog(QtWidgets.QDialog):
       try:
         jobList = PROJECTSMANAGER().db().projectJobSearch(self.parent().projectId,searchParams=searchParams)
       except CException as e:
-        e.warningMessage('Searching database',parent=self)
+        warningMessage(e, 'Searching database',parent=self)
         return
       except Exception as e:
         print(e)

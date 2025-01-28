@@ -30,7 +30,6 @@ from PySide2 import QtCore, QtGui, QtWidgets
 from .. import __version__
 from ..core import CCP4Container
 from ..core import CCP4Data
-from ..core import CCP4Modules
 from ..core import CCP4Utils
 from ..core.CCP4Container import CContainer
 from ..core.CCP4Data import baseClassList
@@ -38,6 +37,7 @@ from ..core.CCP4Data import CString
 from ..core.CCP4DataManager import DATAMANAGER
 from ..core.CCP4ErrorHandling import CErrorReport, CException
 from ..core.CCP4ScriptManager import SCRIPTMANAGER
+from ..core.CCP4WarningMessage import warningMessage
 from ..core.CCP4XtalData import CColumnType
 from ..core.CCP4XtalData import CProgramColumnGroup
 from ..qtgui import CCP4GuiUtils
@@ -399,11 +399,11 @@ class CDefEd(QtWidgets.QMainWindow):
     '''
 
     if len(e)>0: 
-      e.warningMessage()
+      warningMessage(e)
 
     e = self.contentsTree.populate(container=self.container)
     if len(e)>0:
-      e.warningMessage('Error drawing contents tree for def file')
+      warningMessage(e, 'Error drawing contents tree for def file')
     self.initialiseSave()
     if self.contentsTree.firstDataItem is None:
       self.defEditor.unSet()
@@ -437,16 +437,16 @@ class CDefEd(QtWidgets.QMainWindow):
         shutil.copyfile(self.loadedFileName,bakFile)
       except:
         e = CException(self.__class__,111,bakFile)
-        e.warningMessage()
+        warningMessage(e)
 
     #print 'CDefEd.handleSaveFile',self.loadedFileName
     try:
       self.container.saveContentsToXml(self.loadedFileName)
     except CException as e:
-      e.warningMessage()
+      warningMessage(e)
     except Exception as e:
       e = CException(self.__class__,112,self.loadedFileName)
-      e.warningMessage()
+      warningMessage(e)
     self.edited = False
  
   def handleSaveAsFile(self):
@@ -491,7 +491,7 @@ class CDefEd(QtWidgets.QMainWindow):
       fileName = str(fileName[0])
     if self.container is None:
       e = CException(self.__class__,103,fileName)
-      e.warningMessage()
+      warningMessage(e)
       return
     
     if str(self.container.objectName()) == 'NEWCONTAINER':
@@ -507,15 +507,7 @@ class CDefEd(QtWidgets.QMainWindow):
     done = self.headerDialog.show()
     
   def saveDef2(self,fileName):
-    #try:
     self.container.saveContentsToXml(fileName)
-    #except CException as e:
-    #  e.warningMessage()
-    #except Exception as e:
-    #  e = CException(self.__class__,112,self.loadedFileName)
-    #  e.warningMessage()
-      
-      
     self.edited = False
     self.loadedFileName = fileName
 
@@ -630,7 +622,7 @@ class CDefEd(QtWidgets.QMainWindow):
       if container is None or not isinstance(container,CContainer):
         # Very odd!
         e = CException(self.__class__,107)
-        e.warningMessage()
+        warningMessage(e)
         return
       afterObject = str(dataObject.objectName())
     #print 'handleNew',repr(container),repr(afterObject)
@@ -654,18 +646,18 @@ class CDefEd(QtWidgets.QMainWindow):
       newObject = CString(name=newName,parent=container)
     except:
       e = CException(self.__class__,108)
-      e.warningMessage()
+      warningMessage(e)
       return
     #print 'newObject',repr(newObject)
     # Add object to container
     try:
       container.addObject(newObject,name=newName,afterObject=afterObject)
     except CException as e:
-      e.warningMessage()
+      warningMessage(e)
       return
     except:
       e = CException(self.__class__,109,str(container.objectName()))
-      e.warningMessage()
+      warningMessage(e)
       return
 
     # Add to contentsTree
@@ -691,18 +683,18 @@ class CDefEd(QtWidgets.QMainWindow):
       newObject = CContainer(name=newName,parent=container)
     except:
       e = CException(self.__class__,108)
-      e.warningMessage()
+      warningMessage(e)
       return
     #print 'newObject',repr(newObject)
     # Add object to container
     try:
       container.addObject(newObject,name=newName,afterObject=afterObject)
     except CException as e:
-      e.warningMessage()
+      warningMessage(e)
       return
     except:
       e = CException(self.__class__,109,str(container.objectName()))
-      e.warningMessage()
+      warningMessage(e)
       return
 
     # Add to contentsTree
@@ -849,19 +841,19 @@ class CDefEd(QtWidgets.QMainWindow):
             subObj.setQualifier(qualifierName,value)
           
           except CException as e:
-            e.warningMessage()
+            warningMessage(e)
           except:
             e = CException(self.__class__,104,qualifierName)
-            e.warningMessage()
+            warningMessage(e)
           
       else:
         try:
           dataObject.setQualifier(qualifierName,value)        
         except CException as e:
-          e.warningMessage()
+          warningMessage(e)
         except:
           e = CException(self.__class__,104,qualifierName)
-          e.warningMessage()
+          warningMessage(e)
       
       self.redrawCurrentItem()
       self.edited= True
@@ -872,16 +864,7 @@ class CDefEd(QtWidgets.QMainWindow):
     dataObject = self.currentDataObject()
     #print 'handleCollectionQualifierEdited dataObject',repr(dataObject)
     if dataObject is not None:
-      #try:
-      if 1:
-        dataObject.setQualifier(qualifierName,value)
-      '''
-      except CException as e:
-        e.warningMessage()
-      except:
-        e = CException(self.__class__,104,qualifierName)
-        e.warningMessage()
-      '''
+      dataObject.setQualifier(qualifierName,value)
       self.redrawCurrentItem()
       self.edited= True
 
@@ -916,7 +899,7 @@ class CDefEd(QtWidgets.QMainWindow):
     dataObject = self.currentDataObject()
     if dataObject is None:
       e = CException(self.__class__,110)
-      e.warningMessage()
+      warningMessage(e)
       return
     #print 'handleListStateChanged', state,isinstance(dataObject,CList)
     if isinstance(dataObject,CCP4Data.CCollection):
@@ -939,7 +922,7 @@ class CDefEd(QtWidgets.QMainWindow):
         newObject = DATAMANAGER().getClass(className)(name=name)
       except:
         e = CException(self.__class__,105,className)
-        e.warningMessage()
+        warningMessage(e)
         return
       if isinstance(oldObject,CCP4Data.CCollection) and oldObject.subItemClassName() == className:
         try:
@@ -985,7 +968,7 @@ class CDefEd(QtWidgets.QMainWindow):
     except CException as e:
       if not self.nameClashWarned.count(newName):
         self.nameClashWarned.append(newName)
-        e.warningMessage()
+        warningMessage(e)
 
     # Beware until the content tree is updated to reflect new name
     # there is descrepancy between gui and container and dataObjectFromTreeWidgetItem and
@@ -1392,7 +1375,7 @@ class CDefEditor(QtWidgets.QFrame):
       qOrder = obj.qualifiersOrder()
     except:
       e = CException(self.__class__,101,cls.__name__)
-      e.warningMessage()
+      warningMessage(e)
       return
     
     self.deleteQualiferWidget()
@@ -1452,7 +1435,7 @@ class CDefEditor(QtWidgets.QFrame):
       except:
         e.append(self.__class__,102,quali)
 
-    if len(e)>0: e.warningMessage()
+    if len(e)>0: warningMessage(e)
 
   def setDefaultQualifiers(self):
     cls = DATAMANAGER().getClass(self.currentClassName)
@@ -1487,7 +1470,7 @@ class CDefEditor(QtWidgets.QFrame):
       except:
          e.append(self.__class__,103,key)
          
-    if len(e)>0: e.warningMessage()
+    if len(e)>0: warningMessage(e)
 
         
   def changeDataClass(self,clsName):
@@ -1836,8 +1819,6 @@ class CClassInfo(QtGui.QTextDocument):
       qOrder = obj.qualifiersOrder()
       qValues = obj.qualifiers()
     except:
-      #e = CException(self.__class__,101,cls.__name__)
-      #e.warningMessage()
       print('Can not get qualifiers info for class')
       return ''
     text = '<h4>Qualifiers for class:</h4>\n<table>\n'
@@ -2054,12 +2035,12 @@ class CMakeWrapperPlugin(QtWidgets.QDialog):
     try:
       wrapperDir,report = SCRIPTMANAGER().makeWrapperPlugin(name=name,pipeline=pipeline,template=template,license=license)
     except CException as e:
-      e.warningMessage()
+      warningMessage(e)
     except:
        QtWidgets.QMessageBox.warning(self,'Undefined error','Undefined error trying to create wrapper directory')
     else:
       if len(report)>0:
-        report.warningMessage()
+        warningMessage(report)
       elif wrapperDir is not None:
         QtWidgets.QMessageBox.information(self,'New wrapper plugin','New wrapper plugin created in directory '+wrapperDir)
 
@@ -2102,7 +2083,7 @@ class CMakePipeline(QtWidgets.QDialog):
     try:
       pipelineDir = SCRIPTMANAGER().makePipeline(name=name)
     except CException as e:
-      e.warningMessage()
+      warningMessage(e)
     #except:
     #   QtWidgets.QMessageBox.warning(self,'Undefined error','Undefined error trying to create pipeline directory')
 

@@ -41,6 +41,7 @@ from ..core import CCP4Modules
 from ..core import CCP4Utils
 from ..core import CCP4XtalData
 from ..core.CCP4ErrorHandling import CException, Severity
+from ..core.CCP4WarningMessage import warningMessage
 from ..dbapi import CCP4DbUtils
 from .CCP4Widgets import CViewWidget
 
@@ -330,7 +331,8 @@ class CSeqDataFileView(CCP4Widgets.CDataFileView):
          win.show()
          return
        elif self.model.fileContent.__dict__['loadWarning'].maxSeverity()>Severity.WARNING:
-         self.model.fileContent.__dict__['loadWarning'].warningMessage(windowTitle='Importing sequence file',parent=self,message='Failed importing sequence file')
+         warning = self.model.fileContent.__dict__['loadWarning']
+         warningMessage(warning, windowTitle='Importing sequence file',parent=self,message='Failed importing sequence file')
          self.model.unSet()
          self.updateViewFromModel()
          return
@@ -449,90 +451,7 @@ class CSeqDataFileView(CCP4Widgets.CDataFileView):
       textList.append( text[0:-1]+')' )    
     return textList
 
-'''
-This reimplemetation of CDataFileView provides tools for user to merge Refmac dictionary files
-It is no longer presented on the gui but the issues are handled in the appropriate scripts
-eg.CPluginScript.mergeDictToProjectLib() is used.
 
-class CDictDataFileView(CCP4Widgets.CDataFileView):
-  MODEL_CLASS = CCP4ModelData.CDictDataFile
-  PROJECT_FILE_LABEL = 'Ideal ligand geometry file for project'
-
-  def __init__(self,parent=None,model=None,qualifiers={},**kw):
-    qualis = {}
-    qualis.update(qualifiers)
-    qualis.update(kw)
-    CCP4Widgets.CDataFileView.__init__(self,parent=parent,model=model,qualifiers=qualis)
-    
-
-  def getActionDef(self,name):
-    if name == 'manage_dict':
-      return dict (
-        text = self.tr("View/edit dictionary"),
-        tip = self.tr('View/edit the currently selected dictionary'),
-        slot = self.manageProjectDictionary
-      )
-    else:
-      return CCP4Widgets.CDataFileView.getActionDef(self,name)
-
-  def manageProjectDictionary(self):
-    if not hasattr(self,'dictManager'):     
-      #self.dictManager = CDictDataDialog(model=self.model.fileContent)
-      self.dictManager = CDictDataDialog(parent=self.parentTaskWidget(),projectId=self.parentTaskWidget().projectId())
-    self.dictManager.show()
-    self.dictManager.raise_()
-    
-  @QtCore.Slot()
-  def handleMerge(self):
-    self.mergeFileBrowser = CCP4FileBrowser.CFileDialog(parent=self,title='Select dictionary file to merge into project dictionary',
-          defaultSuffix=CCP4Modules.MIMETYPESHANDLER().getMimeTypeInfo(name='application/refmac-dictionary',info='fileExtensions'),
-                                 fileMode=QtWidgets.QFileDialog.ExistingFiles,saveButtonText='Merge these files')
-    self.mergeFileBrowser.show()
-    self.mergeFileBrowser.selectFiles.connect(self.mergeFiles)
-
-  def mergeFiles(self,selectedFiles=[]):   
-    # 'CDictDataFileView.mergeFiles',selectedFiles
-    if hasattr(self,'mergeFileBrowser'):
-      self.mergeFileBrowser.close()
-      self.mergeFileBrowser.deleteLater()
-    
-    workDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(
-        jobId=self.parentTaskWidget().jobId(),projectId=self.parentTaskWidget().projectId())
-    newFile,err = self.model.mergeInDictFiles(dictFileList=selectedFiles,parentWorkDirectory=workDirectory)
-    
-    for fileName in selectedFiles:
-      err = self.model.fileContent.mergeFile(fileName=fileName,overwrite=True)
-      #print 'CDictDataFileView.mergeFiles',err.report(),err.maxSeverity()
-      if err.maxSeverity()>Severity.WARNING:
-        err.warningMessage(windowTitle='Error merging Refmac dictionaries',parent=self,message='Error attempting to merge Refmac dictionaries')
-      return
-
-  """
-  def loadJobCombo(self):
-    CCP4Widgets.CDataFileView.loadJobCombo(self)
-    if self.jobCombo.findText(CDictDataFileView.PROJECT_FILE_LABEL)<0:
-      # Call the defaultProjectDict even though result is not used it will ensure that
-      # a file exists (by creting emptly file if necessary)
-      if  self.model is None: return
-      dictFile = self.model.defaultProjectDict(projectId=self.parentTaskWidget().projectId())
-      self.jobCombo.insertItem(1,CDictDataFileView.PROJECT_FILE_LABEL)
-      self.jobCombo.setCurrentIndex(1)
-  """
-
-  def handleFollowFrom(self,contextJobId,projectId):
-    self.jobCombo.setCurrentIndex(1)
-
-  def handleJobComboChange(self,indx=None):
-    self.connectUpdateViewFromModel(False)
-    if indx is None: indx = 0
-    if str(self.jobCombo.itemText(indx)) == CDictDataFileView.PROJECT_FILE_LABEL:
-      self.model.set(self.model.defaultProjectDict(projectId=self.parentTaskWidget().projectId()))
-      self.model.annotation = CDictDataFileView.PROJECT_FILE_LABEL
-    else:
-      CCP4Widgets.CDataFileView.handleJobComboChange(self,indx0=indx)
-    
-'''
-      
 class CMonomerView(CCP4Widgets.CComplexLineWidget):
 
   MODEL_CLASS = CCP4ModelData.CMonomer
@@ -1141,11 +1060,10 @@ class CPdbDataFileView(CCP4Widgets.CDataFileView):
     if err is not None and len(err)>0:
       if err.maxSeverity()>Severity.WARNING:
         message = 'File failed validation test'
-        err.warningMessage(windowTitle='Importing coordinate file',parent=self,message=message)
+        warningMessage(err, windowTitle='Importing coordinate file',parent=self,message=message)
         self.model.unSet()
     self.updateViewFromModel()
     self.validate()
-    
 
 
 class CPdbContentsViewer(QtWidgets.QDialog):
@@ -1441,7 +1359,7 @@ class CDictDataView(CCP4Widgets.CViewWidget):
       err = self.model.mergeFile(fileName=fileName,overwrite=True)
       #print 'CDictDataFileView.mergeFiles',err.report(),err.maxSeverity()
       if err.maxSeverity()>Severity.WARNING:
-        err.warningMessage(windowTitle='Error merging geometry files',parent=self,message='Error attempting to merge geometry files')
+        warningMessage(err, windowTitle='Error merging geometry files',parent=self,message='Error attempting to merge geometry files')
       return
 
   @QtCore.Slot()
@@ -1451,7 +1369,7 @@ class CDictDataView(CCP4Widgets.CViewWidget):
     if idd is None: return
     err = self.model.delete(idd)
     if err.maxSeverity()>Severity.WARNING:
-      err.warningMessage(windowTitle='Error deleting item in geometry file',parent=self,message='Error attempting to edit geometry file')
+      warningMessage(err, windowTitle='Error deleting item in geometry file',parent=self,message='Error attempting to edit geometry file')
     return
 
 
@@ -2289,7 +2207,7 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
                 openJob.container.inputData.HKLIN.set(self.hklFile)
             err = openJob.runJob()
             if err.maxSeverity() > Severity.WARNING:
-                err.warningMessage(windowTitle='Importing sequence file to AU contents',parent=self,message='Failed creating AU content file')
+                warningMessage(err, windowTitle='Importing sequence file to AU contents',parent=self,message='Failed creating AU content file')
                 return
             self.resetJobCombo = openJob.jobNumber
             print("End of doImport", openJob.container, openJob.container)

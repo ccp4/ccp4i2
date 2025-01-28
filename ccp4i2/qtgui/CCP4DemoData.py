@@ -36,6 +36,7 @@ from PySide2 import QtCore, QtWidgets
 from ..core import CCP4Modules
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CErrorReport, CException
+from ..core.CCP4WarningMessage import warningMessage
 
 
 class CDemoData:
@@ -398,7 +399,7 @@ class CDownloadDemoDataDialog(QtWidgets.QDialog):
         self.testDatasets = None
         self.saveTestDatasets()
         if len(err) > 0:
-            err.warningMessage('Download demo data','Error downloaing demo data',parent=self)
+            warningMessage(err, 'Download demo data','Error downloaing demo data',parent=self)
         else:
             self.close()
 

@@ -25,6 +25,7 @@ from PySide2 import QtCore, QtWidgets
 
 from ..core.CCP4ErrorHandling import CException, Severity
 from ..core.CCP4Modules import DUMMYMAINWINDOW, WEBBROWSER
+from ..core.CCP4WarningMessage import warningMessage
 from ..qtgui import CCP4FileBrowser
 
 
@@ -108,7 +109,7 @@ class CCustomisationGui(QtWidgets.QDialog):
     try:
       self.manager().clone(original,new)
     except CException as e:
-      e.warningMessage('Clone '+self.mode,'Error cloning '+original,parent=self)
+      warningMessage(e, 'Clone '+self.mode,'Error cloning '+original,parent=self)
       return
     self.handleEdit(new)
   
@@ -137,7 +138,7 @@ class CCustomisationGui(QtWidgets.QDialog):
     del self.browser
     err = self.manager().export(selected,fileName)
     if err.maxSeverity()>Severity.WARNING:
-      err.warningMessage('Export '+self.mode,'Error creating compressed file',parent=self)
+      warningMessage(err, 'Export '+self.mode,'Error creating compressed file',parent=self)
       
   @QtCore.Slot()
   def handleImport(self):
@@ -159,7 +160,7 @@ class CCustomisationGui(QtWidgets.QDialog):
       self.manager().testImport(fileName)
     except CException as e:
       if e.count(code=110) == 0:
-        e.warningMessage('Error opening compressed '+self.mode+' file',parent=self)
+        warningMessage(e, 'Error opening compressed '+self.mode+' file',parent=self)
       else:
         name = e[0]['details']
         self.importQuery = CCustomImportDialog(self,name,fileName)
@@ -169,7 +170,7 @@ class CCustomisationGui(QtWidgets.QDialog):
       try:
         self.manager().uncompress(fileName,self.manager().getDirectory())
       except CException as e:
-        e.warningMessage('Error importing '+self.mode,'Failed to write to '+self.mode+' directory',parent=self)
+        warningMessage(e, 'Error importing '+self.mode,'Failed to write to '+self.mode+' directory',parent=self)
 
   @QtCore.Slot(str,str,bool,bool)
   def handleImport2(self,name,fileName,overwrite,rename):

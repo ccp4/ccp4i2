@@ -52,6 +52,7 @@ from ..core import CCP4XtalData
 from ..core.CCP4ErrorHandling import CException, Severity
 from ..core.CCP4Modules import PROJECTSMANAGER, PIXMAPMANAGER, QTAPPLICATION, TASKMANAGER, LAUNCHER
 from ..core.CCP4Modules import WEBBROWSER, PREFERENCES, MIMETYPESHANDLER, COMFILEPATCHMANAGER
+from ..core.CCP4WarningMessage import warningMessage
 from ..dbapi import CCP4DbApi
 from ..dbapi import CCP4DbUtils
 
@@ -1986,7 +1987,7 @@ class CDataFileView(CComplexLineWidget):
       shutil.copyfile(myFileName,exportFileName)
     except:
       e = CException(self.__class__,100,'From: '+str(myFileName)+' to: '+str(exportFileName),name=self.modelObjectPath())
-      e.warningMessage('Copying file',parent=self)
+      warningMessage(e, 'Copying file',parent=self)
     else:
       PROJECTSMANAGER().db().createExportFile(fileId=fileId,exportFilename=exportFileName)
       fileInfo = PROJECTSMANAGER().db().getFileInfo(fileId=fileId,mode=['jobid','projectname'])
@@ -2345,7 +2346,7 @@ class CDataFileView(CComplexLineWidget):
       if isinstance(self.model,CCP4XtalData.CMiniMtzDataFile):
         pass
       else:
-        e.warningMessage('Attempting to select file',parent=self)
+        warningMessage(e, 'Attempting to select file',parent=self)
     #print 'CDataFileView.handleBrowserOpenFile fullPath',self.model.fullPath
     if updateView: self.updateViewFromModel()
     if validate: self.validate()
@@ -3922,7 +3923,7 @@ class CTreeView(CComplexLineWidget):
       if e.count(code=107):
          QtWidgets.QMessageBox.warning(self,self.windowTitle(),'Can not delete item\nList must contain at least one item')
       else:
-        e.warningMessage(message='Error attempting to delete item',windowTitle='Error editing',parent=self)
+        warningMessage(e, message='Error attempting to delete item',windowTitle='Error editing',parent=self)
       self.abstractModel.endRemoveRows()
       if editorModel is not None: self.editorStack.widget(editorIndex).setModel(editorModel)
     except Exception as e:

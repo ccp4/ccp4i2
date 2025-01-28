@@ -32,6 +32,7 @@ from ..core import CCP4Container
 from ..core import CCP4WorkflowManager
 from ..core.CCP4ErrorHandling import CException, Severity
 from ..core.CCP4Modules import PROJECTSMANAGER, WEBBROWSER, WORKFLOWMANAGER
+from ..core.CCP4WarningMessage import warningMessage
 
 
 def openWorkflowManagerGui():
@@ -71,11 +72,11 @@ class CWorkflowManagerGui(CCP4CustomisationGui.CCustomisationGui):
         try:
             editor = CWorkflowEditDialog(self, name=selected)
         except CException as e:
-            e.warningMessage('Create workflow', 'Error opening workflow editor.\nPossibly a file is corrupted.\n' + self.manager().getDirectory(selected), parent=self)
+            warningMessage(e, 'Create workflow', 'Error opening workflow editor.\nPossibly a file is corrupted.\n' + self.manager().getDirectory(selected), parent=self)
             return
         except Exception as e:
             e = CException(self.__class__, 202, exc_info=sys.exc_info())
-            e.warningMessage('Create workflow', 'Error opening workflow editor.\nPossibly a file is corrupted.\n' + self.manager().getDirectory(selected), parent=self)
+            warningMessage(e, 'Create workflow', 'Error opening workflow editor.\nPossibly a file is corrupted.\n' + self.manager().getDirectory(selected), parent=self)
             return
         editor.show()
 
@@ -181,14 +182,14 @@ class CCreateWorkflowDialog(QtWidgets.QDialog):
         try:
             err = WORKFLOWMANAGER().createWorkflow(projectId=projectId, jobList=jobList, name=name, overwrite=overwrite, title=title)
         except CException as err:
-            err.warningMessage('Create workflow', 'Error saving workflow', parent=self)
+            warningMessage(err, 'Create workflow', 'Error saving workflow', parent=self)
             return
         except Exception as e:
             err = CException(self.__class__,201,exc_info=sys.exc_info())
-            err.warningMessage('Create workflow', 'Error saving workflow', parent=self)
+            warningMessage(err, 'Create workflow', 'Error saving workflow', parent=self)
             return
         if err.maxSeverity()>Severity.WARNING:
-            err.warningMessage('Create workflow', 'Error saving workflow', parent=self)
+            warningMessage(err, 'Create workflow', 'Error saving workflow', parent=self)
             return
         self.workflowCreated.emit(name)
 

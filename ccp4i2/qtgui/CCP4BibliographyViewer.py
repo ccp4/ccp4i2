@@ -26,6 +26,7 @@ from PySide2 import QtCore, QtWidgets
 
 from ..core import CCP4Annotation, CCP4Modules
 from ..core.CCP4ErrorHandling import Severity
+from ..core.CCP4WarningMessage import warningMessage
 from ..qtgui import CCP4FileBrowser, CCP4Widgets
 
 
@@ -154,7 +155,7 @@ class CBibReferenceGroupView(CCP4Widgets.CComplexLineWidget):
   def export(self,format,fileName):
     err = self.model.export(cformat=format,fileName=fileName)
     if err.maxSeverity()>Severity.WARNING:
-      err.warningMessage(parent=self,windowTitle='Error attempting to export bibliography')
+      warningMessage(err, parent=self,windowTitle='Error attempting to export bibliography')
     
 
 class CBibliographyViewer(QtWidgets.QMainWindow):

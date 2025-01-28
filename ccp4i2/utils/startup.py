@@ -37,6 +37,7 @@ from ..core import CCP4Modules
 from ..core import CCP4PrintHandler
 from ..core import CCP4ProjectsManager
 from ..core import CCP4Utils
+from ..core.CCP4WarningMessage import warningMessage
 from ..dbapi import CCP4DbApi
 from ..qtcore import CCP4HTTPServerThread
 from ..qtgui import CCP4BackupDBBrowser
@@ -419,11 +420,11 @@ def startDb(parent=None, fileName=None, mode='sqlite', userName=None, userPasswo
                         try:
                             db.updateUser(ownerName, newUserName=currentUserName)
                         except CCP4ErrorHandling.CException as e:
-                            e.warningMessage(parent=parent)
+                            warningMessage(e, parent=parent)
                     return db
         if kw.get('graphical', True):
             try:
-                e.warningMessage(parent=parent)
+                warningMessage(e, parent=parent)
             except:
                 pass
             print(e.report())

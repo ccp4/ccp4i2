@@ -27,9 +27,7 @@ import unittest
 
 from lxml import etree
 
-from . import CCP4Config
 from . import CCP4Data
-from ..qtgui.CCP4MessageBox import CMessageBox
 
 
 class Severity(Enum):
@@ -205,15 +203,6 @@ class CErrorReport():
                     text += '\n'
                     text += ''.join(report['stack'])
         return text[1:]
-
-    def warningMessage(self, windowTitle='', message='', jobId=None, parent=None, ifStack=True, minSeverity=Severity.UNDEFINED):
-        if len(message) > 0:
-            message = message.rstrip() + '\n'
-        report = self.report(ifStack=ifStack, minSeverity=minSeverity)
-        if CCP4Config.GRAPHICAL() and parent is not None:
-            CMessageBox(parent, windowTitle, message, details=report, jobId=jobId).show()
-        else:
-            print(report)
 
     def getEtree(self):
         element = etree.Element('errorReportList')

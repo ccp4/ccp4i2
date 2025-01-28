@@ -42,6 +42,7 @@ from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
 from ..core.CCP4Modules import LAUNCHER, PREFERENCES, PROJECTSMANAGER, QTAPPLICATION, WEBBROWSER
 from ..core.CCP4TaskManager import TASKMANAGER
+from ..core.CCP4WarningMessage import warningMessage
 from ..qtgui import CCP4FileBrowser
 from ..qtgui import CCP4ProjectManagerGui
 from ..qtgui import CCP4ProjectWidget
@@ -1276,7 +1277,8 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
     message = 'Errors loading old CCP4i projects:\n'
     for proj,dir in self._projectWidget.projectView.model().loadErrorProjects:
       message += '{:30} {:100}\n'.format(proj,dir)
-    self._projectWidget.projectView.model().loadErrorReport.warningMessage(parent=self,windowTitle=self.windowTitle(),message=message)
+    errorReport = self._projectWidget.projectView.model().loadErrorReport
+    warningMessage(errorReport, parent=self,windowTitle=self.windowTitle(),message=message)
 
   def showHelp(self):
     WEBBROWSER().loadWebPage(helpFileName='CCP4i1Projects.html',newTab=True)
@@ -1475,7 +1477,7 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
     if len(movedFiles)>0:
       err0 = pObj.editDatabaseDef(movedFiles=movedFiles)
       if err0.maxSeverity()>Severity.WARNING:
-        err0.warningMessage('Collect input files','There was an error saving the new filenames to the old CCP4 database',parent=self)
+        warningMessage(err0, 'Collect input files','There was an error saving the new filenames to the old CCP4 database',parent=self)
 
     self.reloadProject(projectId)
     
@@ -1664,7 +1666,7 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
     try:
       self.model().addFolder(name)
     except CException as e:
-      e.warningMessage(parent=self,windowTitle=self.windowTitle(),message='Failed to create new folder')
+      warningMessage(e, parent=self,windowTitle=self.windowTitle(),message='Failed to create new folder')
 
   @QtCore.Slot(str)
   def copyFile(self,fileName):

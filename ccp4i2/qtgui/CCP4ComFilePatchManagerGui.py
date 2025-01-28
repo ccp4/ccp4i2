@@ -29,6 +29,7 @@ from ..core import CCP4ComFilePatchManager
 from ..core import CCP4TaskManager
 from ..core.CCP4ErrorHandling import Severity
 from ..core.CCP4Modules import COMFILEPATCHMANAGER, PROJECTSMANAGER, WEBBROWSER
+from ..core.CCP4WarningMessage import warningMessage
 from ..qtgui import CCP4CustomisationGui
 from ..qtgui import CCP4Widgets
 
@@ -255,7 +256,7 @@ class CCreatePatchDialog(QtWidgets.QDialog):
     print('createPatch title',title)
     err = COMFILEPATCHMANAGER().createPatch(name,title,taskNameList,self.selectedProject,self.selectedJob,self.originalText,text2,useControlParams,overwrite=True)
     if err.maxSeverity()>Severity.WARNING:
-      err.warningMessage('Create command file patch','Error saving patch',parent=self)
+      warningMessage(err, 'Create command file patch','Error saving patch',parent=self)
       return
     self.created.emit(name)
 

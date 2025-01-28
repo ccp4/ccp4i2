@@ -33,6 +33,7 @@ from ..core import CCP4Config
 from ..core import CCP4Modules
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CException, Severity
+from ..core.CCP4WarningMessage import warningMessage
 from ..dbapi import CCP4DbUtils
 from ..pimple import MGQTmatplotlib
 from ..qtcore import CCP4CustomMimeTypes
@@ -434,7 +435,7 @@ for (var i=0; i<imgElements.length;i++) {
                 self.report.loadFromXmlFile(self.fileName)
                 #print 'CWebView.extractCCP4Data: Loaded CCP4 data:',self.report.containsCCP4Data()
             except CException as e:
-                if reportErrors: e.warningMessage(windowTitle=self.windowTitle())
+                if reportErrors: warningMessage(e, windowTitle=self.windowTitle())
         else:
             self.fileName = ''
             self.lastModTime = None
@@ -494,7 +495,7 @@ class CSubJobReport(QtCore.QObject):
             reportFile, newPageOrNewData = generator.makeReportFile()
         except CException as e:
             if reportErr and e.maxSeverity()>Severity.WARNING:
-                e.warningMessage()
+                warningMessage(e)
         except Exception as e:
             if reportErr:
                 QtWidgets.QMessageBox.warning(self,self.parent().windowTitle(),'Unknown error creating report file for job number '+str(openJob.jobNumber))

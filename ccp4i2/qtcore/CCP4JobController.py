@@ -771,13 +771,6 @@ echo "PID=$pid"
         if compressedFile is not None:
             #try:
             xmlDbFile = CCP4Modules.PROJECTSMANAGER().extractDatabaseXml(compressedFile)
-            '''
-            except CException as e:
-              e.warningMessage('Reload exported job','Failed extracting database XML file from compressed file')
-              return False
-            except Exception as e:
-              print 'Failed unpacking compressed file',str(e)
-            '''
         else:
             xmlDbFile = os.path.join(os.path.split(xmlDbFile)[0],'DATABASE_final.db.xml')
     

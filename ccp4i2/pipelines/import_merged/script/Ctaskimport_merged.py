@@ -2,6 +2,7 @@ import gemmi
 from PySide2 import QtCore, QtWidgets
 
 from ....core.CCP4ErrorHandling import CErrorReport, Severity
+from ....core.CCP4WarningMessage import warningMessage
 from ....qtgui import CCP4XtalWidgets
 from ....qtgui.CCP4TaskWidget import CTaskWidget
 from .dybuttons import ChoiceButtons, MyMessageBox
@@ -343,7 +344,7 @@ class CTaskimport_merged(CTaskWidget):
       if error[0]['code']==211:
         mess = QtWidgets.QMessageBox.warning(self,self.windowTitle(),'No column data selected')
       else:
-        error.warningMessage(windowTitle='Splitting MTZ: '+sourceFileName,jobId=jobId,parent=self)
+        warningMessage(error, windowTitle='Splitting MTZ: '+sourceFileName,jobId=jobId,parent=self)
       self.container.inputData.HKLIN.unSet()
       
     else:

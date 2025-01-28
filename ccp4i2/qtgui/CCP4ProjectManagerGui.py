@@ -49,6 +49,7 @@ from ..core import CCP4Utils
 from ..core.CCP4Config import DEVELOPER
 from ..core.CCP4ErrorHandling import CException, Severity
 from ..core.CCP4Modules import MIMETYPESHANDLER, PROJECTSMANAGER, WEBBROWSER
+from ..core.CCP4WarningMessage import warningMessage
 from ..dbapi import CCP4DbApi
 from ..dbapi import CCP4DbUtils
 from ..qtcore import CCP4Export
@@ -288,7 +289,7 @@ class CNewProjectGui(QtWidgets.QDialog):
       try:
         projectId = PROJECTSMANAGER().createProject(projectName=name0,projectPath=directory)
       except CException as e:
-        e.warningMessage(parent=self)
+        warningMessage(e, parent=self)
         return
       except:
         QtWidgets.QMessageBox.warning(self,'Error creating project','Unknown error creating project')
@@ -1748,7 +1749,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     try:
       PROJECTSMANAGER().db().updateProject(projectId,'projectname',name)
     except CException as e:
-      e.warningMessage(parent=self,windowTitle=self.windowTitle(),message='Error changing project name')
+      warningMessage(e, parent=self,windowTitle=self.windowTitle(),message='Error changing project name')
 
 
   @QtCore.Slot()
@@ -1865,7 +1866,8 @@ class CProjectManagerDialog(QtWidgets.QDialog):
 
   def export(self,projectId,fileName):
     jobNumberList,errReport = PROJECTSMANAGER().db().exportProjectXml(projectId,fileName)
-    if len(errReport)>0: errReport.warningMessage(parent=self,windowTitle='Errors exporting project',message='Some errors in exporting project to file:\n'+fileName)
+    if len(errReport)>0:
+       warningMessage(errReport, parent=self,windowTitle='Errors exporting project',message='Some errors in exporting project to file:\n'+fileName)
 
 
   @QtCore.Slot(str,float,list,list,str)
@@ -1892,15 +1894,8 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     #print 'CProjectManagerDialog.compressProject jobNumberList',jobNumberList
     if errReport.maxSeverity()>Severity.WARNING:
         self.statusWidget.clearMessage()
-        errReport.warningMessage('Export project','Error creating XML database file',parent=self)
+        warningMessage(errReport, 'Export project','Error creating XML database file',parent=self)
         return
-
-
-    #except:
-    #  jobList = []
-    #  err = CErrorReport(self.__class__,171)
-    #  err.warningMessage(title,'Error getting project jobs from database',parent=self)
-    #print 'compressProject',jobList
 
     directoriesList = ['CCP4_IMPORTED_FILES','CCP4_PROJECT_FILES']
     self.exportThread = CCP4Export.ExportProjectThread(self,projectDir=projectInfo['projectdirectory'],dbxml=dbxml,target=fileName,jobList=jobNumberList,inputFilesList=inputFilesList,directoriesList=directoriesList,)
@@ -1909,14 +1904,6 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     self.exportThread.finished.connect(functools.partial(self.doneSavingJobData,projectInfo['projectname'],fileName))
     self.startSavingJobDataSignal.emit()
     self.exportThread.start()
-
-    '''
-    compressedFile,errReport = PROJECTSMANAGER().compressProject(projectId,fileName,after=after)
-    if compressedFile is None:
-      errReport.warningMessage('Exporting database','Error creating export compressed file')
-    else:
-      QtWidgets.QMessageBox.information(self,'Exporting project','Project saved as'+compressedFile)
-    '''
 
   @QtCore.Slot(int)
   def progressSavingJobData(self,numberOfJobs):
@@ -1939,8 +1926,9 @@ class CProjectManagerDialog(QtWidgets.QDialog):
 
   @QtCore.Slot(str,str)
   def doneSavingJobData(self,projectName,filename):
-    if self.exportThread.errorReport.maxSeverity()>Severity.WARNING:
-      self.exportThread.errorReport.warningMessage('Saving job data','Error saving data files for export',parent=self)
+    report = self.exportThread.errorReport
+    if report.maxSeverity()>Severity.WARNING:
+      warningMessage(report, 'Saving job data','Error saving data files for export',parent=self)
     else:
       self.statusWidget.hideProgress()
       self.statusWidget.showMessage('Project '+str(projectName)+' saved to: '+str(filename))
@@ -2047,7 +2035,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     try:
       xmlFile = PROJECTSMANAGER().extractDatabaseXml(compressedFile)
     except CException as e:
-      e.warningMessage('Import project','Failed extracting database XML file from compressed file',parent=self)
+      warningMessage(e, 'Import project','Failed extracting database XML file from compressed file',parent=self)
       self.statusWidget.clear()
     except Exception as e:
       QtWidgets.QMessageBox.warning(self,'Import project','Error extracting database xml file from '+str(compressedFile))
@@ -2127,7 +2115,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
           print('dbImport.createProject()',ret.report())
       if ret.maxSeverity()>Severity.WARNING:
         print(ret.report())
-        ret.warningMessage(parent=self,windowTitle='Error creating project in database',ifStack=False)
+        warningMessage(ret, parent=self,windowTitle='Error creating project in database',ifStack=False)
         return
 
 
@@ -2148,7 +2136,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     if self.dbImport.errReport.maxSeverity()>Severity.WARNING:
       if DIAGNOSTIC: print('Error report from the import process..')
       if DIAGNOSTIC: print(self.dbImport.errReport.report())
-      self.dbImport.errReport.warningMessage(parent=self,windowTitle='Error loading data from project export file',ifStack=False)
+      warningMessage(self.dbImport.errReport, parent=self,windowTitle='Error loading data from project export file',ifStack=False)
 
     # Make project directory if necessary
     if not os.path.exists(dirName):
@@ -2257,7 +2245,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     if projectId is None: return
     e = PROJECTSMANAGER().deleteProject(projectId=projectId,deleteDirectory=deleteDirectory)
     if e.maxSeverity()>Severity.WARNING:
-       e.warningMessage('Deleting project',parent=self)
+       warningMessage(e, 'Deleting project',parent=self)
     CCP4Modules.PROJECTSMANAGER().backupDBXML()
 
   @QtCore.Slot()
@@ -2369,7 +2357,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     try:
       PROJECTSMANAGER().db().updateProject(self.moveProjectId,key='projectdirectory',value=newDir)
     except CException as e:
-      e.warningMessage(windowTitle='Error updating database',parent=self)
+      warningMessage(e, windowTitle='Error updating database',parent=self)
       return
     except Exception as e:
       QtWidgets.QMessageBox.warning(self,'Error updating database',str(e))
@@ -2458,13 +2446,13 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     errReport = self.makeDbXml.loadProject()
 
     if errReport.maxSeverity()>Severity.WARNING:
-      errReport.warningMessage(parent=self,windowTitle='Error recovering project directory',
+      warningMessage(errReport, parent=self,windowTitle='Error recovering project directory',
                                message='Some errors are reported',ifStack=False,minSeverity=Severity.ERROR)
       return
 
     xmlFile = self.makeDbXml.saveXmlFile()
     if len(errReport)>0:
-       errReport.warningMessage(parent=self,windowTitle='Project database information recovered',
+       warningMessage(errReport, parent=self,windowTitle='Project database information recovered',
          message='The project database information has been recovered and saved to '+xmlFile+ \
         '\nThere are some warnings which can probably be ignored.\nTo seee click Show Details' ,ifStack=False)
 
@@ -2513,7 +2501,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
 
     if self.dbImport.errReport.maxSeverity()>Severity.WARNING:
       print('Error report from the import process..')
-      self.dbImport.errReport.warningMessage(windowTitle='Project manager- importing XML',
+      warningMessage(self.dbImport.errReport, windowTitle='Project manager- importing XML',
                                 message='Failed importing database from XML file',ifStack=False,parent=self)
     else:
       self.dbImport.setAllToImport()
@@ -2618,7 +2606,7 @@ class CProjectDescription(QtWidgets.QFrame):
     try:
       tagId = PROJECTSMANAGER().db().newTag(self.projectId,text=text)
     except CException as e:
-      e.warningMessage('Save project tag','Failed saving new project tag',self)
+      warningMessage(e, 'Save project tag','Failed saving new project tag',self)
       return
     except Exception as e:
       print('Failed creating tag',e)

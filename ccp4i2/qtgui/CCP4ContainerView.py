@@ -28,6 +28,7 @@ from ..core import CCP4File
 from ..core.CCP4Config import DEVELOPER
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
 from ..core.CCP4Modules import PROJECTSMANAGER
+from ..core.CCP4WarningMessage import warningMessage
 from ..qtgui import CCP4TaskWidget
 from ..qtgui import CCP4Widgets
 
@@ -268,7 +269,7 @@ class CContainerView(QtWidgets.QFrame):
     container = self.container()
     if container is None:
       e = CException(self.__class__,105,fileName)
-      e.warningMessage()
+      warningMessage(e)
       return
 
     f = CCP4File.CI2XmlDataFile(fullPath=fileName)

@@ -58,9 +58,8 @@ from .CCP4ErrorHandling import CErrorReport, CException, Severity
 from .CCP4File import CI2XmlDataFile
 from .CCP4Modules import PROJECTSMANAGER
 from .CCP4QtObject import CObject
-from .CCP4Utils import getCCP4I2Dir
-from .CCP4Utils import getDotDirectory
-from .CCP4Utils import getHOME
+from .CCP4Utils import getCCP4I2Dir, getDotDirectory, getHOME
+from .CCP4WarningMessage import warningMessage
 
 
 
@@ -1216,7 +1215,7 @@ class CProjectsManager(CObject):
         jobNumberList, errReport = self.db().exportProjectXml(projectId, fileName=dbxml, recordExport=True, status='exportable', after=after, jobList=jobList, inputFileList=inputFileIdList, inputFileFromJobList=fromJobIdList)
         #print 'CProjectManagerDialog.compressProject jobNumberList',jobNumberList,
         if errReport.maxSeverity() > Severity.WARNING:
-            errReport.warningMessage('Export project','Error creating XML database file', parent=self)
+            warningMessage(errReport, 'Export project','Error creating XML database file', parent=self)
             return
         if jobList is not None:
             directoriesList = []
@@ -1232,7 +1231,7 @@ class CProjectsManager(CObject):
     @QtCore.Slot(str,str,'QWidget')
     def doneSavingJobData(self, projectName, fileName, parentWidget):
         if self.exportThread.errorReport.maxSeverity() > Severity.WARNING:
-            self.exportThread.errorReport.warningMessage('Saving job data', 'Error saving data files for export to\n' + str(fileName), parent=parentWidget)
+            warningMessage(self.exportThread.errorReport, 'Saving job data', 'Error saving data files for export to\n' + str(fileName), parent=parentWidget)
         self.exportThread.deleteLater()
         self.exportThread = None
 
@@ -1620,7 +1619,6 @@ class CPurgeProject(CObject):
             except CException as e:
                 if e.maxSeverity() > Severity.WARNING:
                     pass
-                    #e.warningMessage(windowTitle=self.parent().windowTitle(),message='Failed creating job report',parent=self)
         return True
 
     @QtCore.Slot(str,str,str,str,bool,str,str,list,str,bool)

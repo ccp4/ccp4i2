@@ -68,6 +68,7 @@ from ..core.CCP4DataManager import DATAMANAGER
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
 from ..core.CCP4Modules import TASKMANAGER, PIXMAPMANAGER
 from ..core.CCP4Version import CCP4_VERSION
+from ..core.CCP4WarningMessage import warningMessage
 from ..qtcore import CCP4UpdateManager
 from .CCP4TipsOfTheDay import CTipsOfTheDay
 
@@ -1259,7 +1260,7 @@ class CMainWindow(QtWidgets.QMainWindow):
             try:
                 projectId = CCP4Modules.PROJECTSMANAGER().createProject(projectName=name,projectPath=directory)
             except CException as e:
-                e.warningMessage()
+                warningMessage(e)
                 return
             except:
                 QtWidgets.QMessageBox.warning(self, 'Error creating project', 'Unknown error creating project')
@@ -1387,13 +1388,13 @@ class CMainWindow(QtWidgets.QMainWindow):
             testBuilder = CCP4ProjectBasedTesting.BuildTestSuite(projectId=self.getProject())  
             rv = testBuilder.run()
             if rv.maxSeverity() > Severity.WARNING:
-                rv.warningMessage(parent=self,windowTitle=self.windowTitle(),message='Error converting project to test suite')
+                warningMessage(rv, parent=self,windowTitle=self.windowTitle(),message='Error converting project to test suite')
             else:
                 builder = CCP4ProjectBasedTesting.BuildTestSuite(projectId=self.getProject())
                 try:
                     err = builder.run()
                 except:
-                    err.warningMessage()
+                    warningMessage(err)
                 else:
                     projDir = CCP4Modules.PROJECTSMANAGER().db().getProjectDirectory(projectId=self.getProject())
                     self.testSuiteDialog = QtWidgets.QDialog(self)
@@ -1409,7 +1410,7 @@ class CMainWindow(QtWidgets.QMainWindow):
         elif mode == 'auto_task_docs':
             rv = CCP4TaskManager.CMakeDocsIndex().run()
             if rv.maxSeverity() > Severity.WARNING:
-                rv.warningMessage(parent=self,windowTitle=self.windowTitle(),message='Error recreating task documentation index page')
+                warningMessage(rv, parent=self,windowTitle=self.windowTitle(),message='Error recreating task documentation index page')
 
     def listTasks(self):
         text = CCP4TaskManager.LISTTASKS()
@@ -1424,7 +1425,7 @@ class CMainWindow(QtWidgets.QMainWindow):
             return
         if not os.path.relpath(dirPath,CCP4Utils.getCCP4I2Dir()).startswith('pipelines'):
             err = CException(self.__class__,209,dirPath)
-            err.warningMessage(parent=self,windowTitle='Error creating compressed task file',message='Selected directory is not a pipeline in the currently running cccp4i2')
+            warningMessage(err, parent=self,windowTitle='Error creating compressed task file',message='Selected directory is not a pipeline in the currently running cccp4i2')
             return
         zipPath = dirPath + '.ccp4i2task.zip'
         if os.path.exists(zipPath):
@@ -1437,20 +1438,18 @@ class CMainWindow(QtWidgets.QMainWindow):
             zip = zipfile.ZipFile(zipPath, mode='w')
         except:
             err = CException(self.__class__, 201, zipPath)
-            err.warningMessage(parent=self,windowTitle='Error creating compressed task file',message='Creating'+str(zipPath))
+            warningMessage(err, parent=self,windowTitle='Error creating compressed task file',message='Creating'+str(zipPath))
             return
         try:
             CCP4Utils.zipDirectory(zip,dirPath,rootRelPath=CCP4Utils.getCCP4I2Dir())
         except:
             err = CException(self.__class__, 202, f'Saving {dirPath} to {zipPath}')
-            err.warningMessage(parent=self,windowTitle='Error creating compressed task file',message='Saving'+str(dirPath))
+            warningMessage(err, parent=self,windowTitle='Error creating compressed task file',message='Saving'+str(dirPath))
             return
         try:
             zip.close()
         except:
             return CErrorReport(self.__class__,203,zipPath)
-            err.warningMessage(parent=self,windowTitle='Error creating compressed task file',message='Closing'+str(zipPath))
-            return # ? Extra return here.
         info = QtWidgets.QMessageBox.information(self,'Saved compressed task file','Task saved to'+str(zipPath))
 
     def openImportTask(self):
@@ -1460,7 +1459,7 @@ class CMainWindow(QtWidgets.QMainWindow):
             zip = zipfile.ZipFile(filePath,mode='r')
         except:
             err = CException(self.__class__,204,filePath)
-            err.warningMessage(parent=self,windowTitle='Error reading compressed task file',message='Reading '+str(filePath))
+            warningMessage(err, parent=self,windowTitle='Error reading compressed task file',message='Reading '+str(filePath))
             return
         targetPath = CCP4Utils.getCCP4I2Dir()
         err= CException()
@@ -1485,7 +1484,7 @@ class CMainWindow(QtWidgets.QMainWindow):
                     err.append(self.__class__,205,filePath)
         zip.close()
         if len(err) > 0:
-            err.warningMessage(parent=self,windowTitle='Error reading compressed task file',message='Extracting from '+str(filePath)+' to '+str(targetPath))
+            warningMessage(err, parent=self,windowTitle='Error reading compressed task file',message='Extracting from '+str(filePath)+' to '+str(targetPath))
             return
         info = QtWidgets.QMessageBox.information(self,'New task installed','New '+ zinfo.filename+ ' task installed - Please restart CCP4i2')
 
@@ -2003,7 +2002,7 @@ class CBrowserWindow(CMainWindow):
                     rv = widget.open(fileName=fileName)
                 except CException as e:
                     widget.close()
-                    e.warningMessage(windowTitle=self.windowTitle())
+                    warningMessage(e, windowTitle=self.windowTitle())
                 except:
                     widget.close()
                     QtWidgets.QMessageBox.warning(None,self.windowTitle(),'Attempting to display file '+os.path.split(fileName)[-1]+'\n as '+format+' failed.\n')
@@ -2112,7 +2111,7 @@ class CBrowserWindow(CMainWindow):
                 #print 'loadPage file',target
         if not url.isValid():
             err = CException(self.__class__, 100, url.path().toAscii())
-            err.warningMessage()
+            warningMessage(err)
             return
             #print "CWebBrowser.loadPage trying", url.path(), target
         if self.tab().count() > 0:

@@ -29,6 +29,7 @@ from ..core import CCP4CustomTaskManager
 from ..core import CCP4Data
 from ..core.CCP4ErrorHandling import Severity
 from ..core.CCP4Modules import CUSTOMTASKMANAGER, WEBBROWSER
+from ..core.CCP4WarningMessage import warningMessage
 from ..qtgui import CCP4CustomisationGui, CCP4Widgets
 
 
@@ -535,7 +536,7 @@ class CCreateCustomTaskDialog(QtWidgets.QDialog):
        return
     ''' 
     if err.maxSeverity()>Severity.WARNING:
-      err.warningMessage('Create custom task','Error saving custom task',parent=self)
+      warningMessage(err, 'Create custom task','Error saving custom task',parent=self)
       return
     
     self.customTaskCreated.emit(self.model.name.__str__())

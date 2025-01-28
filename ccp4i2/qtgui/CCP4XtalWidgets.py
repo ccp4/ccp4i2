@@ -33,6 +33,7 @@ from ..core import CCP4Modules
 from ..core import CCP4Utils
 from ..core import CCP4XtalData
 from ..core.CCP4ErrorHandling import CException, Severity
+from ..core.CCP4WarningMessage import warningMessage
 
 
 class CSpaceGroupsAbstractItemModel(QtCore.QAbstractItemModel):
@@ -1159,7 +1160,7 @@ class CMiniMtzDataFileView(CMtzDataFileView):
         if self.model.getExt() in ['.cif','.ent']:
             err = self.model.importFromCif(jobId=self.parentTaskWidget().jobId())
             if err.maxSeverity()>Severity.WARNING:
-                err.warningMessage('Importing experimental data','Failed loading cif format file',parent=self)
+                warningMessage(err, 'Importing experimental data','Failed loading cif format file',parent=self)
                 self.model.unSet()
                 return
         errors = self.model.validColumns()
@@ -1222,7 +1223,7 @@ class CMiniMtzDataFileView(CMtzDataFileView):
             if error[0]['code']==211:
                 mess = QtWidgets.QMessageBox.warning(self,self.windowTitle(),'No column data selected')
             else:
-                error.warningMessage(windowTitle='Splitting MTZ: '+sourceFileName,jobId=jobId,parent=self)
+                warningMessage(error, windowTitle='Splitting MTZ: '+sourceFileName,jobId=jobId,parent=self)
             self.model.unSet()
             self.updateJobCombo()
             self.validate()

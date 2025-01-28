@@ -65,6 +65,7 @@ from ..core.CCP4Modules import LAUNCHER, MIMETYPESHANDLER, PREFERENCES
 from ..core.CCP4Modules import QTAPPLICATION, PROJECTSMANAGER, WEBBROWSER
 from ..core.CCP4Modules import WORKFLOWMANAGER, CUSTOMTASKMANAGER
 from ..core.CCP4TaskManager import TASKMANAGER
+from ..core.CCP4WarningMessage import warningMessage
 from ..dbapi import CCP4DbApi
 from ..dbapi import CCP4DbUtils
 from ..dbapi.CCP4DbUtils import COpenJob
@@ -1024,7 +1025,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
             pObj = CCP4I1Projects.CI1TreeItemProject(self.i1Widget.model().rootItem, infoList=infoList, directory=projectDir)
             err=pObj.loadDatabase()
             if err.maxSeverity() > Severity.WARNING:
-                err.warningMessage('CCP4i project', 'Error loading old CCP4 project data', parent=self)
+                warningMessage(err, 'CCP4i project', 'Error loading old CCP4 project data', parent=self)
             else:
                 self.i1Widget.model().beginResetModel()
                 self.i1Widget.model().rootItem = pObj
@@ -1105,7 +1106,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         self.i1Widget.model().beginResetModel()
         err = self.i1Widget.model().rootItem.loadDatabase()
         if err.maxSeverity() > Severity.WARNING:
-            err.warningMessage('CCP4i project', 'Error loading old CCP4 project data', parent=self)
+            warningMessage(err, 'CCP4i project', 'Error loading old CCP4 project data', parent=self)
         self.i1Widget.model().endResetModel()
 
     @QtCore.Slot(str)
@@ -1325,7 +1326,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         try:
             self.taskFrame.outputFrame.showOutput(redo=True, doReload=True)
         except CException as e:
-            e.warningMessage('Creating report','Error creating report', parent=self)
+            warningMessage(e, 'Creating report','Error creating report', parent=self)
 
     def openTask(self, taskName=None, jobId=None, followJobId=None):
         try:
@@ -1423,7 +1424,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                 try:
                     openJob = self.taskFrame.openTask(jobId=jobId)
                 except CException as e:
-                    e.warningMessage('Opening new job','Failed opening job', parent=self)
+                    warningMessage(e, 'Opening new job','Failed opening job', parent=self)
                 self.showTaskChooser(False)
                 self.deleteSpawnedTaskWindows(jobId)
             elif  jobId == str(self.taskFrame.openJob.jobId) and self.rightStack.currentIndex() == 1:
@@ -1658,7 +1659,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         try:
             openJob =  self.taskFrame.openTask(taskName=clonedJobInfo['taskname'], cloneJobId=oldJobId, suggestedParams=suggestedParams)
         except CException as e:
-            e.warningMessage('Opening new job', 'Failed opening ' + str(clonedJobInfo['taskname']) + ' job', parent=self)
+            warningMessage(e, 'Opening new job', 'Failed opening ' + str(clonedJobInfo['taskname']) + ' job', parent=self)
         if openJob is not None:
             self.setSelectedJob(jobId=openJob.jobId)
             self.showTaskChooser(False)
@@ -1677,7 +1678,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                     self.deleteJob(jobIdList=[jobId])
                 except CException as e:
                     err.extend(e)
-                    err.warningMessage('Deleting job', 'Failed deleting job', parent=self)
+                    warningMessage(err, 'Deleting job', 'Failed deleting job', parent=self)
             else:
                 PROJECTSMANAGER().db().updateJobStatus(jobId, CCP4DbApi.JOB_STATUS_FAILED)
         else:
@@ -1843,7 +1844,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                 widget = CTaskInputFrame(self)
                 widget.createTaskWidget(openJob.taskname, projectId=openJob.projectid, jobId=jobId, container=container, taskEditable=taskEditable)
             except CException as e:
-                e.warningMessage(parent=self)
+                warningMessage(e, parent=self)
                 return None
             except Exception as e:
                 QtWidgets.QMessageBox.warning(self, 'Error in creating task input','Unknown error creating task input widget for job number '+str(openJob.jobnumber)+str(e))
@@ -1851,14 +1852,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
             if 1:
                 widget = CReportView(self)
                 widget.showOutput(openJob=openJob)
-            '''
-            except CException as e:
-                e.warningMessage(parent=self)
-                return None
-            except Exception as e:
-                CMessageBox(self,message='Unknown error creating report file for job number '+str(openJob.jobnumber),exception=e,openJob=openJob)
-                return
-            '''
         elif mode == 'status':
             widget = CJobStatusWidget(self)
             widget.setJob(openJob)
@@ -1911,7 +1904,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         try:
             jobTreeList = PROJECTSMANAGER().db().getMultiFollowOnJobs(jobIdList=jobIdList, traceImportFiles=deleteImportFiles)
         except CException as e:
-            e.warningMessage(parent=self, windowTitle=self.windowTitle(), message='Error attempting to find jobs dependent on output files')
+            warningMessage(e, parent=self, windowTitle=self.windowTitle(), message='Error attempting to find jobs dependent on output files')
             return
         xtrJobIdList = []
         for  jobTree in jobTreeList:
@@ -1935,7 +1928,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                     PROJECTSMANAGER().deleteJob(jobId=delJobId, importFiles=importFiles, projectId=self.taskFrame.openJob.projectId,
                                                 deleteImportFiles=deleteImportFiles)
                 except CException as e:
-                    e.warningMessage(parent=self, windowTitle=self.windowTitle(), message='Error attempting to delete job')
+                    warningMessage(e, parent=self, windowTitle=self.windowTitle(), message='Error attempting to delete job')
                     return
                 except Exception as e:
                     QtWidgets.QMessageBox.warning(self, self.windowTitle(), 'Unrecognised error deleting job\n'+str(e))
@@ -3695,7 +3688,7 @@ CCP4I2 3D View
         shutil.copyfile(myFileName,exportFileName)
       except:
         e = CException(CCP4Widgets.CDataFileView,100,'From: '+str(myFileName)+' to: '+str(exportFileName),name=self.modelObjectPath())
-        e.warningMessage('Copying file',parent=self)
+        warningMessage(e, 'Copying file',parent=self)
       else:
         PROJECTSMANAGER().db().createExportFile(fileId=fileId,exportFilename=exportFileName)
         fileInfo = PROJECTSMANAGER().db().getFileInfo(fileId=fileId,mode=['jobid','projectname'])
@@ -3826,7 +3819,7 @@ CCP4I2 3D View
                         reportFile, newPageOrNewData = self.generator.makeReportFile()
                     except CException as e:
                         if  e.maxSeverity()>Severity.WARNING:
-                            e.warningMessage(windowTitle=self.parent().windowTitle(),message='Failed creating job report',parent=self)
+                            warningMessage(e, windowTitle=self.parent().windowTitle(),message='Failed creating job report',parent=self)
                     except Exception as e:
                         QtWidgets.QMessageBox.warning(self,self.parent().windowTitle(),'Unknown error creating report file for job number '+str(openJob.jobNumber))
                     if os.path.exists(reportFile):
@@ -3891,7 +3884,7 @@ CCP4I2 3D View
                     except CException as e:
                         # Dont report lack for report definition file
                         if reportErr and e.maxSeverity()>Severity.WARNING and e.code != 3:
-                            e.warningMessage(windowTitle=self.parent().windowTitle(),message='Failed creating job report',parent=self)
+                            warningMessage(e, windowTitle=self.parent().windowTitle(),message='Failed creating job report',parent=self)
                         reportFile = None
                     except Exception as e:
                         if reportErr:
@@ -4099,7 +4092,7 @@ class CTaskInputFrame(QtWidgets.QFrame):
                 try:
                     taskWidget = taskWidgetClass(self)
                 except CException as e:
-                    e.warningMessage('Error opening task window: '+str(taskName),parent=self)
+                    warningMessage(e, 'Error opening task window: '+str(taskName),parent=self)
                     raise e
                 except Exception as e:
                     mess = QtWidgets.QMessageBox.warning(self,'Error opening task window: '+str(taskName),str(e))
@@ -4150,7 +4143,7 @@ class CTaskInputFrame(QtWidgets.QFrame):
         # The method to fix any issues in user input
         rv = self.taskWidget.fix()
         if len(rv) > 0:
-            rv.warningMessage(parent=self, windowTitle='Running task', message='Error in input data')
+            warningMessage(rv, parent=self, windowTitle='Running task', message='Error in input data')
             return
         # Check validity
         invalidList = self.taskWidget.isValid()
@@ -4235,7 +4228,7 @@ class CTaskInputFrame(QtWidgets.QFrame):
                                                           taskName=self.taskWidget.taskName())
                     except Exception as e:
                         err = CException(self.__class__,101,taskName,str(e))
-                        err.warningMessage('Running internaltask','Failed running task',parent=self)
+                        warningMessage(err, 'Running internaltask','Failed running task',parent=self)
             else:
                 PROJECTSMANAGER().updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_QUEUED)
         self.redrawTaskWidget()
@@ -4303,7 +4296,7 @@ class CTaskInputFrame(QtWidgets.QFrame):
             fromJobNumberList.append(item['jobnumber'])
         jobNumberList,errReport = PROJECTSMANAGER().db().exportProjectXml(projectId,fileName=dbxml,jobList=[jobId],inputFileList=inputFileIdList,inputFileFromJobList=fromJobIdList)
         if errReport.maxSeverity()>Severity.WARNING:
-            errReport.warningMessage("title",'Error creating XML database file',parent=self)
+            warningMessage(errReport, "title",'Error creating XML database file',parent=self)
             return False
         if mechanism in ['ssh_shared','qsub_local','qsub_shared']:
             self.runRemotely1(jobId,projectId)
@@ -4568,7 +4561,7 @@ class CTaskFrame(QtWidgets.QFrame):
                 reportFile = self.outputFrame.showOutput(self.openJob, reportErr=False)
             except CException as e:
                 print(e)
-                e.warningMessage(self.window().windowTitle(), 'Error creating job report', parent=self)
+                warningMessage(e, self.window().windowTitle(), 'Error creating job report', parent=self)
             except Exception as e:
                 print(e)
                 CMessageBox(self,message='Error creating report for job number '+str(self.openJob.jobnumber),exception=e,openJob=self.openJob)
@@ -4649,7 +4642,7 @@ class CTaskFrame(QtWidgets.QFrame):
                     taskName = str(header.pluginName)
                 elif taskName != str(header.pluginName):
                     err = CException(self.__class__,102,'Suggested: '+str(taskName)+' File: '+str(paramsFile)+' Contains: '+str(header.pluginName))
-                    err.warningMessage('Error loading params file','Error loading params file for job id: '+jobId,parent=self)
+                    warningMessage(err, 'Error loading params file','Error loading params file for job id: '+jobId,parent=self)
                     return None
             else:
                 paramsFile = None
@@ -4763,10 +4756,10 @@ class CTaskFrame(QtWidgets.QFrame):
             else:
                 self.inputFrame.closeTaskWidget()
         except CException as e:
-            e.warningMessage(self.windowTitle(),'Error drawing task widget',parent=self)
+            warningMessage(e, self.windowTitle(),'Error drawing task widget',parent=self)
         except Exception as e:
             err = CErrorReport(self.__class__,999,details=str(e),exc_info=sys.exc_info())
-            err.warningMessage(self.windowTitle(),'Unknown error drawing task widget\n\n'+str(e),parent=self)
+            warningMessage(err, self.windowTitle(),'Unknown error drawing task widget\n\n'+str(e),parent=self)
         else:
             t3 = time.time()
             self.openJob = openJob
