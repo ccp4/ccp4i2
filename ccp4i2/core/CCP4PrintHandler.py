@@ -51,8 +51,7 @@ class CPrintHandler:
     def write(self, value):
         f = self.getFileObject()
         f.write(str(value))
-        if CCP4Config.CConfig.insts.developer:      # KJS : There seems to be a problem here.
-            #sys.__stdout__.write(str(threading.currentThread())+value)
+        if CCP4Config.DEVELOPER():
             sys.__stdout__.write(str(value))
 
     @QtCore.Slot()
