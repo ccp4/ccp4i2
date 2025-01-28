@@ -110,14 +110,14 @@ class Cprosmart_refmac(CCP4TaskWidget.CTaskWidget):
       return False
     if str(self.container.controlParameters.HYDR_ALL) == "ALL":
       return False
-    return self.container.controlParameters.HD_FRACTION
+    return True
 
   def ToggleNeutronModeHD_ALL(self):
     if not self.container.controlParameters.HYDR_USE:
       return False
     if str(self.container.controlParameters.HYDR_ALL) == "YES":
       return False
-    return self.container.controlParameters.HD_FRACTION
+    return True
 
   def ToggleH_REFINE(self):
     if not self.container.controlParameters.HYDR_USE:
@@ -568,8 +568,8 @@ class Cprosmart_refmac(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'label', 'for', 'widget', 'HD_FRACTION_TYPE' ], toggleFunction=[self.ToggleNeutronModeHD,['HYDR_USE','HD_FRACTION']], appendLine=use_hd)
 
     
-    self.createLine( [ 'label', indent, 'label', 'Initialise H/D fractions', 'widget', 'HD_INIT' ], toggleFunction=[self.ToggleNeutronModeHD_YES,['HYDR_USE','HYDR_ALL','HD_FRACTION']])
-    self.createLine( [ 'label', indent, 'label', 'Initialise H/D fractions', 'widget', 'HD_INIT_HALL' ], toggleFunction=[self.ToggleNeutronModeHD_ALL,['HYDR_USE','HYDR_ALL','HD_FRACTION']])
+    self.createLine( [ 'label', indent, 'label', 'Initialise H/D fractions', 'widget', 'HD_INIT' ], toggleFunction=[self.ToggleNeutronModeHD_YES,['HYDR_USE','HYDR_ALL']])
+    self.createLine( [ 'label', indent, 'label', 'Initialise H/D fractions', 'widget', 'HD_INIT_HALL' ], toggleFunction=[self.ToggleNeutronModeHD_ALL,['HYDR_USE','HYDR_ALL']])
     
     
     self.closeSubFrame()
