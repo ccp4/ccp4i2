@@ -25,7 +25,21 @@ import re
 from . import CCP4File, CCP4Utils
 from .CCP4ErrorHandling import CErrorReport, CException, Severity
 from .CCP4QtObject import CObject
-from .CCP4Utils import interpretPath
+
+
+def interpretPath(path='', currentDir=None):
+    path = path.strip()
+    while m := re.search(r'(.*?)\$(.*?)(\/|$)(.*)', path):
+        groups = m.groups()
+        path = groups[0] + os.environ.get(groups[1], '') + groups[2] + groups[3]
+    if currentDir is not None and path[0] == '.':
+        if currentDir[-1] == '/' and path[0] == '/':
+            path = currentDir[0:-1] + path
+        elif currentDir[-1] != '/' and path[0] != '/':
+            path = currentDir + '/' + path
+        else:
+            path = currentDir + path
+    return os.path.abspath(path)
 
 
 class CComTemplateElement(CObject):

@@ -462,24 +462,6 @@ def getCCP4Dir():
         target = ''
     return target
 
-def interpretPath(path='', currentDir=None):
-    path = path.strip()
-    # print 'interpretPath',path
-    m = re.search(r'(.*?)\$(.*?)(\/|$)(.*)', path)
-    while m is not None:
-        #print 'interpretPath m',m.groups()
-        reGroups = m.groups()
-        envPath = os.environ.get(reGroups[1], '')
-        path = reGroups[0] + os.environ.get(reGroups[1], '') + reGroups[2] + reGroups[3]
-        m = re.search(r'(.*?)\$(.*?)(\/|$)(.*)', path)
-    if currentDir is not None and path[0] == '.':
-        if currentDir[-1] == '/' and path[0] == '/':
-            path = currentDir[0:-1] + path
-        elif currentDir[-1] != '/' and path[0] != '/':
-            path = currentDir + '/' + path
-        else:
-            path = currentDir + path
-    return os.path.abspath(path)
 
 def getDotDirectory():
     home = os.environ.get('CCP4_LOCAL_DOTDIR', None)
