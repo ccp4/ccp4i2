@@ -113,19 +113,6 @@ class CSymmetryManager:
                            ['I 21 21 21', 'I 2 2 2', 1023],
                            ['P 1 21 1', 'P 1 2 1', 'P 1 1 2', 'P 1 1 21']]
 
-    def convertLaue(self):
-        out = []
-        for lG in self.laueGroups:
-            out.append([])
-            for sG in lG:
-                if self.ccp4NumberList.count(sG):
-                    out[-1].append(self.hmSpaceGroupList[self.ccp4NumberList.index(sG)])
-                    if out[-1][-1] == '' :
-                        out[-1][-1] = sG
-                else:
-                    out[-1].append( sG)
-        print(out)
-
     def loadSymLib(self, fileName=None):
         if fileName is None:
             path = CCP4Utils.getCCP4Dir()
@@ -253,15 +240,6 @@ class CSymmetryManager:
         if len(hits) > 0:
             return (7 + code, hits)
         return (2 + code, spaceGroup)
-
-    def spaceGroupCompleter(self,spaceGroup=None):
-        up = spaceGroup.upper().strip()
-        hits = []
-        for system, groups in list(self.chiralSpaceGroups.items()):
-            for gp in groups:
-                if re.match(spaceGroup, gp):
-                    hits.append(gp)
-        return hits
 
     def ccp4toHm(self,num):
         if self.ccp4NumberList.count(num):
@@ -1250,23 +1228,6 @@ class CUnmergedDataFile(CCP4File.CDataFile):
         self.baseName.setQualifier('allowedCharacters', '*?')
         self.relPath.setQualifier('allowedCharacters', '*?')
 
-    def isWildCard(self):
-        if self.baseName.isSet() and (str(self.baseName).count('*') + str(self.baseName).count('?')) > 0:
-            return True
-        else:
-            return False
-
-    def globFiles(self):
-        allFiles = glob.glob(self.fullPath().__str__())
-        return allFiles
-
-    def fileFormat(self):
-        if not self.baseName.isSet():
-            return None
-        base, ext = os.path.splitext( self.baseName.__str__())
-        if ext == '.mtz':
-            return 'mtz'
-
 
 class CUnmergedDataFileList(CCP4Data.CList):
     SUBITEM = {'class' : CUnmergedDataFile}
@@ -1295,22 +1256,6 @@ class CImportUnmerged(CCP4Data.CData):
             keys.append('wavelength')
         return self.itemValidity(args, keys=keys)
 
-    def aimlessExcludeBatch(self):
-        #Return a string of 'EXCLUDE BATCH ..' lines
-        if not self.__dict__['_value']['excludeSelection'].isSet():
-            return ''
-        ret = ''
-        batchList = self.excludeSelection.removeWhiteSpace(str(self.__dict__['_value']['excludeSelection'])).split(",")
-        listout = ''
-        for batch in batchList:
-            if "-" in batch:
-                ret +=  "EXCLUDE BATCH %s\n" % batch.replace("-", " TO ")
-            else:
-                listout += " " + batch
-        if len(listout) > 0:
-            ret +=  "EXCLUDE BATCH %s\n" % listout
-        return ret
-
     def loadDatasetName(self,signal=True):
         disallowed =  ['dummy', 'new', 'none']
         self.file.loadFile()
@@ -1338,15 +1283,6 @@ class CImportUnmerged(CCP4Data.CData):
 class CImportUnmergedList(CCP4Data.CList):
     QUALIFIERS = {'listMinLength' : 1}
     SUBITEM = {'class' : CImportUnmerged}
-
-    def getCrystalList(self):
-        xtalList = []
-        for item in self.__dict__['_value']:
-            if item.crystalName.isSet():
-                xtal = item.crystalName.__str__()
-                if xtalList.count(xtal) == 0:
-                    xtalList.append(xtal)
-        return xtalList
 
     def saveToDb(self):
         fileObjList = []
@@ -1628,15 +1564,6 @@ class CMtzData(CCP4File.CDataFileContent):
                 if columnTypes.count(column.columnType):
                     listOfColumns.append(column)
             return listOfColumns
-
-    def getColumnType(self, guiLabel=''):
-        if guiLabel is None:
-            return ''
-        columnLabel = guiLabel.split('/')[-1]
-        for column in self.__dict__['_value']['listOfColumns']:
-            if column.colmnLabel == columnLabel:
-                return column.columnType
-        return ''
 
     def getPartnerColumn(self, firstColumn='', columnGroupItem=None):
         # NB returns a CMtzColumn
@@ -2684,9 +2611,6 @@ class CFormFactor(CCP4Data.CData):
         err = CErrorReport()
         return err
 
-    def guiValue(self):
-        return self.__dict__['_value']['Fp'].__str__() + ','+self.__dict__['_value']['Fpp'].__str__()
-
     # Do we need lookup/calculate values if not provided?
 
 
@@ -2879,10 +2803,6 @@ class CMiniMtzDataFile(CMtzDataFile):
             for cls in clsList:
                 self.__dict__['columnGroupList'].append(cls(parent=self.parent(),name=self.objectName()+'_COLUMNS',qualifiers={'mtzFileKey': self.objectName()}))
         return self.__dict__['columnGroupList']
-
-    def defaultName(self,jobId=None):
-        jobDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId = jobId)
-        return  os.path.normpath(os.path.join(jobDirectory, self.objectName() + CCP4File.CDataFile.SEPARATOR + self.qualifiers('fileLabel') + '.mtz'))
 
     def set(self,value={},**kw):
         CCP4File.CDataFile.set(*[self,value], **kw)
@@ -3272,38 +3192,6 @@ class CObsDataFile(CMiniMtzDataFile):
             return None, error
         else:
             return targetFile, error
-
-    def convertObsMtz( self, infile=None, outfile=[], parentPlugin=None ):
-        # Expect to use this to convert Fpairs to Fmean
-        error = CErrorReport()
-        cbin = shutil.which('cmtzsplit')
-        arglist = ['-mtzin', infile]
-        if len(outfile) == 2:
-            name, colin = outfile
-            colout = ''
-        else:
-            name, colin, colout = outfile
-        if parentPlugin is not None:
-            logFile = os.path.normpath(os.path.join(self.parentPlugin.workDirectory, self.objectName() + '_splitMtz.log'))
-        else:
-            logFile = os.path.normpath(os.path.join(os.path.split(name)[0], self.objectName() + '_splitMtz.log'))
-        arglist.append('-mtzout')
-        arglist.append(name)
-        arglist.append('-colin')
-        arglist.append(colin)
-        arglist.append('-colout')
-        if len(colout) > 0:
-            arglist.append(colout)
-        else:
-            arglist.append(colin)
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
-        if status == 0 and os.path.exists(outfile[0]):
-            return outfile[0],error
-        else:
-            error.append(self, 302, self.__str__())
-            return None, error
 
 
 class CPhsDataFile(CMiniMtzDataFile):

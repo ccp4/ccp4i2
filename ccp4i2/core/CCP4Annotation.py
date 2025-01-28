@@ -229,15 +229,6 @@ class CFont(CCP4Data.CData):
         #print 'CFont.getQFont', f, str(f.family()),f.pointSize()
         return f
 
-    def setQFont(self,font=None):
-        if font is None:
-            return
-        self.family = str(font.family())
-        self.style = font.style()
-        self.pointSize = font.pointSize()
-        self.weight = font.weight()
-        self.dataChanged.emit()
-
 
 class CAuthor(CCP4Data.CString):
     '''Placeholder for bibliographic author'''
@@ -370,13 +361,6 @@ class CMetaDataTag(CCP4Data.CData):
             return self.tag.__str__()
         else:
             return '--'
-
-    def getEnumerators(self):
-        func = self.qualifiers('enumeratorsFunction')
-        if func is None:
-            return []
-        else:
-            return func()
 
     def addEnumerator(self, tag):
         if tag is None or len(tag)==0: return -1

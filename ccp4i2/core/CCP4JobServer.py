@@ -794,32 +794,6 @@ class CJobServer(QtCore.QObject):
                 self.setServerParam(jobId, 'serverProcessId', int(line[4:]))
                 break
 
-    def checkRemoteStatus(self, jobId):
-        sP = self.serverParams(jobId)
-        if sP is None:
-            return
-        if sP.mechanism in ['qsub_remote', 'qsub_shared']:
-            self.checkRemoteQsubStatus(jobId)
-            return True
-        elif sP.mechanism in ['slurm_remote']:
-            self.checkRemoteSlurmStatus(jobId)
-            return True
-        elif sP.mechanism in ['qsub_local']:
-            self.checkLocalQsubStatus(jobId)
-            return True
-        elif sP.mechanism in ['ssh', 'ssh_shared']:
-            self.checkSSHJobStatus(jobId)
-            return True
-
-    def checkSSHJobStatus(self,jobId):
-        sP = self.serverParams(jobId)
-        if sP.serverProcessId is None:
-            self.getPidFileContent(jobId)
-        else:
-            #comLine = 'pgrep -P '+str(sP.serverProcessId)+';ps -fu '+sP.username
-            comLine = 'ps -fu ' + sP.username
-            self.sendSSHCommand(jobId, comLine=comLine, retHandler=self.handleRemoteSSHStatus, emitFail=False)
-
     def handleRemoteSSHStatus(self, jobId, out, err):
         if self._diagnostic:
             print('handleRemoteSSHStatus', jobId, out, err)
@@ -838,22 +812,6 @@ class CJobServer(QtCore.QObject):
             raise CException(self.__class__, 362)
         else:
             self.handleRemoteQsubStatus(jobId, out, err)
-
-    def checkRemoteQsubStatus(self, jobId):
-        sP = self.serverParams(jobId)
-        if sP is None:
-            return False
-        comline = 'qstat'
-        if sP.sge_root is not None:
-            comLine = 'SGE_ROOT=' + str(sP.sge_root) + ' ' + comline
-        self.sendSSHCommand(jobId, comLine=comLine, retHandler=self.handleRemoteQsubStatus, emitFail=False)
-
-    def checkRemoteSlurmStatus(self, jobId):
-        sP = self.serverParams(jobId)
-        if sP is None:
-            return False
-        comline = 'squeue -h -o "%A" --job ' + str(jobId)
-        self.sendSSHCommand(jobId, comLine=comLine, retHandler=self.handleRemoteSlurmStatus, emitFail=False)
 
     def handleRemoteQsubStatus(self, jobId, out, err):
         # VU: It seems this function is not used at all.

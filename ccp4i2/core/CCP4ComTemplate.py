@@ -312,15 +312,6 @@ class CComTemplate(CComTemplateElement):
             errorReport.extend(err)
         return text,errorReport
 
-    def makeComLine(self, container=None):
-        wordList = []
-        errorReport = CErrorReport()
-        for item in self.contents:
-            itemText, err = item.makeComScript(container=container)
-            wordList.append(itemText.split())
-            errorReport.extend(err)
-        return wordList, errorReport
-
 
 class CComTemplateIf(CComTemplateElement):
 

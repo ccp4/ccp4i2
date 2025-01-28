@@ -369,25 +369,6 @@ class CBioPythonSeqInterface:
         if format in HHPREDFORMATLIST:
             err.append(CBioPythonSeqInterface, self.__class__, 414, stack=False)
             return err, {}
-        '''
-        if format in BLASTFORMATLIST:
-          titleList = []
-          queryList = []
-          sbjctList = []
-          blast_parser = NCBIStandalone.BlastParser()
-          blast_record = blast_parser.parse(f)
-          for alignment in blast_record.alignments:
-            for hsp in alignment.hsps:
-              titleList.append(alignment.__str__().split('\n')[0])
-              queryList.append(hsp.query)
-              sbjctList.append(hsp.sbjct)
-        '''
-        """
-        if len(seq_records)>0:
-          print 'sequence record dir',dir(seq_records[0])
-          for item in ['annotations', 'dbxrefs', 'description', 'features', 'format', 'id', 'letter_annotations', 'lower', 'name', 'reverse_complement', 'seq', 'upper']:
-            print item,seq_records[0].__getattribute__(item)
-        """
         if fout is not None:
             try:
                 nRecOut = Bio.SeqIO.write(seq_records[record], fout, saveFormat)
@@ -412,13 +393,6 @@ class CSequenceMeta(CCP4Data.CData):
                    403 : {'description' : 'No project id provided to determine uniprot xml filename'},
                    404 : {'description' : 'Reading uniprot xml file failed'}}
 
-    def getUniprotUrl(self):
-        if not self.uniprotId.isSet():
-            return None
-        else:
-            code = str(self.uniprotId)
-            return "http://www.uniprot.org/uniprot/" + str(self.uniprotId)
-
     def getUniprotXml(self, projectId=None):
         if projectId is None:
             raise CErrorReport(self.__class__, 403)
@@ -432,22 +406,6 @@ class CSequenceMeta(CCP4Data.CData):
                 tmpDir = CCP4Utils.getTMP()
         targetFile = os.path.join(tmpDir, 'uniprot_' + str(self.uniprotId) + '.xml')
         return targetFile
-
-    def downloadUniprotXml(self, projectId):
-        #can test download with something like:
-        #s = CSequenceMeta(uniprotId='P12345'); s.loadFromUniprotXml(projectId='efaebd47a70a11e493bf9cf387d93af8')
-        if not self.uniprotId.isSet():
-            raise CErrorReport(self.__class__, 401)
-        mode = 'uniprotXml'
-        code = str(self.uniprotId)
-        urlname = "http://www.uniprot.org/uniprot/" + code + ".xml"
-        targetFile = self.getUniprotXml(projectId=projectId)
-        if 'downloader' not in self.__dict__:
-            self.__dict__['downloader'] =  CCP4FileBrowser.CDownloader()
-        self.__dict__['downloader'].Finished.connect(functools.partial(self.handleDownloadFinished,code,mode,targetFile))
-        self.__dict__['downloader'].Error.connect(functools.partial(self.handleDownloadError,code))
-        self.__dict__['downloadThread'] = UtilityThread.UtilityThread(functools.partial(self.__dict__['downloader'].download, urlname))
-        self.__dict__['downloadThread'].start()
 
     @QtCore.Slot(str,str,str,str)
     def handleDownloadFinished(self, code, mode, targetFile, tmpFile):
@@ -730,14 +688,6 @@ class CDictData(CCP4Data.CData):
         if rc !=0:
             raise CException(self.__class__, 101, 'Code: ' + str(rc) + ' file: ' + str(fileName), name=self.objectPath())
         return cifFile
-
-    def getCompData(self, id):
-        cifFile = self.openCifFile(self.parent().__str__())
-        dataBlock = cifFile.GetCIFData('comp_' + id)
-        return dataBlock
-
-    def getCompDataText(self, id=None):
-        return None
 
     def monomerIdList(self):
         idList = []
@@ -1841,22 +1791,6 @@ class CPdbData(CCP4File.CDataFileContent):
         else:
             if not self.__dict__['_composition'].chains.count(chainId):
                 raise CException (self.__class__, 104, chainId, name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
-        '''
-        if firstRes is None and lastRes is None:
-          selCom = '/'+str(selModel)+'/'+chainId
-        elif lastRes is None:
-          selCom = chainId + '/' + str(firstRes)
-        else:
-          selCom = chainId + '/' + str(firstRes) + '-' + str(lastRes)
-        print 'validRangeSelection selCom',selCom
-          
-        resHnd = self.__dict__['_molHnd'].NewSelection()
-        resSel = mmdb.newPPCResidue()
-        self.__dict__['_molHnd'].Select(resHnd,mmdb.STYPE_RESIDUE,selCom,mmdb.SKEY_NEW)
-        nSel = self.__dict__['_molHnd'].GetSelIndex(resHnd,resSel)
-        self.__dict__['_molHnd'].DeleteSelection(resHnd)
-        print 'validRangeSelection nSel',nSel
-        '''
         if chainId is None or len(chainId.strip()) == 0:
             chainId ='*'
         else:
@@ -1878,52 +1812,6 @@ class CPdbData(CCP4File.CDataFileContent):
         if nSel == 0:
             raise CException(self.__class__, 105, selCom, name=self.objectPath())   # KJS : Need to fix (no selCom)
         return nSel
-
-    def splitAtomId(self, atomId='', splitRes=False, resRange=False):
-        model = ''
-        chain = ''
-        res = ''
-        res2 = ''
-        atom = ''
-        aid = ''
-        atomId = atomId.strip()
-        if atomId:
-            aid = atomId.split('/')
-            if len(aid) <= 1:
-                # there are no separators
-                atom = atomId
-            else:
-                # If atomId begins with a slash and model number then expect
-                # first item (before first slash) to be the blank
-                # If this is not so then insert a model number 
-                if aid[0] and len(aid) < 5:
-                    aid.insert(0, '')
-                    aid.insert(1, '1')
-                if len(aid) >= 2:
-                    model = aid[1]
-                if len(aid) >= 3:
-                    chain = aid[2]
-                if len(aid) >= 5:
-                    atom = aid[4].split('[')[0]
-                    # mmdb GetAtomID returns the altLoc after the element type
-                    if len(aid[4].split(']'))>1:
-                        atom = atom + aid[4].split(']')[1]
-                if len(aid) >= 4:
-                    if aid[3].count('-'):
-                        res, res2 = aid[3].split('-')[0:2]
-                    else:
-                        if splitRes:
-                            res = aid[3].split('(')[0].split('.')
-                            if len(res)==1:
-                                res.append('')
-                            return [model, chain, res[0], res[1], atom]
-                        else:
-                            res = aid[3]
-        #print 'splitAtomID',atomId,aid,[model,chain,res,res2,atom]
-        if resRange:
-            return [model, chain, res, res2, atom]
-        else:
-            return [model, chain, res, atom]
 
     def interpretSelection(self, command, fileName=None):
         try:
@@ -2404,17 +2292,6 @@ class CPdbDataFile(CCP4File.CDataFile):
                 return False
             except (ValueError, RuntimeError):
                 raise CException(self.__class__, 414, self.__str__())
-    
-    def isPDB(self):
-        try: 
-            gemmi.cif.read(self.fullPath.__str__())
-            return False
-        except (ValueError, RuntimeError):
-            try:
-                gemmi.read_structure(self.fullPath.__str__())
-                return True
-            except (ValueError, RuntimeError):
-                raise CException(self.__class__, 414, self.__str__())
 
     def getSelectedAtomsPdbFile(self, fileName=None):
         if not self.isSelectionSet():
@@ -2464,9 +2341,6 @@ class CPdbDataFile(CCP4File.CDataFile):
                 return report
         except:
             return report
-
-    def fixFile(self, xyzout=None, jobId=None, overwrite=False): # unused. KJS
-        self.runCoord_format(xyzout=xyzout, jobId=jobId, overwrite=overwrite)
 
     def runCoord_format(self, xyzout=None, outputFormat=None, jobId=None, overwrite=False):
         if xyzout is None:
@@ -2870,21 +2744,6 @@ class CSequenceString(CCP4Data.CString):
                    403 : {'description' : 'Sequence undefined', 'severity' : Severity.WARNING}}
     pass
 
-    # This is used by CAsuContentSeqView.validate() to test validity of sequence
-    # but we don't want its strict criteria blocking setting the model object value
-    # in CAsuContentSeqView.updateModelFromView()
-    def validity0(self, arg):
-        err = CErrorReport()
-        if arg is None or len(arg.strip()) == 0:
-            err.append(self.__class__, 403)
-            return err
-        seq1 = re.sub(r'[BJOXZ]', '', arg)
-        #print 'CSequenceString.validity',seq1
-        #print 'CSequenceString.validity',len(seq1),len(arg)
-        if len(seq1) < len(arg):
-            err.append(self.__class__, 402)
-        return err
-
 
 class CAsuContentSeq(CCP4Data.CData):
     CONTENTS = {'sequence' : { 'class' : CSequenceString , 'qualifiers' : { 'allowUndefined' : False, 'minLength' : 1 } },
@@ -3021,38 +2880,6 @@ class CAsuContentSeqList(CCP4Data.CList):
                 return rv
         return rv
 
-    '''
-    def loadSequenceFile(self,record=0,fileId=None):
-        fileAnnotation = None
-        if fileId is not None:
-          fileName = CCP4Modules.PROJECTSMANAGER().db().getFullPath(fileId=fileId)
-          fileAnnotation = CCP4Modules.PROJECTSMANAGER().db().getFileInfo(fileId=fileId,mode='annotation')
-          #print 'CAsuContentSeqList.loadSequenceFile fileAnnotation',fileAnnotation
-          seqFile = CCP4ModelData.CSeqDataFile(parent=self)
-          seqFile.setFullPath(fileName)
-          seqFile.__dict__['format'] = 'internal'
-          seqFile.fileContent.loadInternalFile(str(self.seqFile))
-        else:
-          #print 'CAsuContentSeqList.loadSequenceFile to loadExternalFile',seqFile
-          seqFile.fileContent.loadExternalFile(str(seqFile),seqFile.__dict__['format'],record=record)
-          #self.model.source = self.seqFile.__str__()
-        cleanSeq,err = self[0].cleanupSequence(seqFile.fileContent.sequence)
-        if err.maxSeverity()>Severity.WARNING:
-          raise err
-        self.model.sequence.set(cleanSeq)
-        try:
-          self.model.name.set(self.model.name.fix(self.seqFile.fileContent.name))
-        except:
-          pass
-        if not self.model.name.isSet():
-          if fileAnnotation is not None:
-            self.model.name.set(self.model.name.fix(fileAnnotation))
-          else:
-            self.model.name.set(os.path.split(os.path.splitext(self.seqFile.__str__())[0])[1])
-        self.model.description.set(self.seqFile.fileContent.description)
-        self.extendSeqList(self.seqFile,recordList[1:])
-    '''
-
     def extendSeqList(self, fileObject, recordList=[]):
         '''
         Reading sequence file into CAsuContentSeqView user seelcts multiple sequences
@@ -3145,13 +2972,6 @@ class CAsuContent(CCP4File.CDataFileContent):
             if item in jobDetails and jobDetails[item] is not None:
                 xmlFileObject.header.get(item).set(jobDetails[item])
         xmlFileObject.saveFile(self.getEtree())
-
-    def getChainNames(self):
-        chainNamesList = []
-        for item in self.seqList:
-            chainNamesList.append(str(item.name))
-        return chainNamesList
-
 
     def molecularWeight(self):
         return self.seqList.molecularWeight()
@@ -3374,70 +3194,6 @@ class CChainMatch:
             elif isinstance(model, CAsuDataFile):
                 setattr(self, chain, model.fileContent.seqList)
 
-    def score2(self):
-        # Attempts to take into account the number of copies expected for sequence (model2)
-        # setup the score 'matrix'
-        # http://stackoverflow.com/questions/6667201/how-to-define-two-dimensional-array-in-python
-        nCh1 = nCh2 = 0
-        nCh1 = len(self.chains1)
-        for seqObj in self.chains2:
-            nCh2 += max(1, int(seqObj.nCopies))
-        # A matrix of scores - this has multiple elements if chain has multiple copies
-        score = [[0]*nCh2 for i in range(nCh1)]
-        # A matrix with same elements as score matrix providing indexing back to the chains
-        chIndex = [[None]*nCh2 for i in range(nCh1)]
-        print('CChainMatch nCh', nCh1, nCh2, score)
-        # Get score for all chains in chains1 v. all chains in chains2
-        # Where the chain has multiple copies make multiple row/column
-        n1 = 0
-        chIndx1 = 0
-        for c1 in self.chains1:
-            n2 = 0
-            chIndx2 = 0
-            for c2 in self.chains2:
-                align = CPairwiseAlignment(str(c1.sequence), str(c2.sequence))
-                ret = align.align()
-                #print 'n1, n2, ret[2], ret[4]', n1, n2, ret[2], ret[4]
-                if ret is not None:
-                    print('CChainMatch ret', ret)
-                    print('CChainMatch', n1, n2, score)
-                    score[n1][n2] = float(ret[2])/float(ret[4])
-                    chIndex[n1][n2] = [chIndx1,chIndx2]
-                    print('score', n1, n2, score[n1][n2])
-                for i2 in range(int(c2.nCopies) - 1):
-                    #print 'Copying n2 score', n1, n2
-                    n2 += 1
-                    score[n1][n2] = score[n1][n2 - 1]
-                    chIndex[n1][n2] = [chIndx1,chIndx2]
-                n2 += 1
-                chIndx2 += 1
-            n1 += 1
-            chIndx1 += 1
-        #for i1 in range(nCh1): print 'CChainMatch.match', score[i1]
-        #for i1 in range(nCh1): print 'CChainMatch.match', chIndex[i1]
-        matchList = []
-        maxMatch = min(nCh1, nCh2)
-        while len(matchList) < maxMatch:
-            bestValue = 0.0
-            bestPair = [-1, -1]
-            for n1 in range(nCh1):
-                for n2 in range(nCh2):
-                    if score[n1][n2] > bestValue:
-                        bestValue = copy.deepcopy(score[n1][n2])
-                        bestPair = [n1, n2]
-            #print 'bestValue',bestValue,bestPair
-            if bestValue > 0.0:
-                # add best matched pair of chains to list and 'blank' them out of the score matrix
-                matchList.append(chIndex[bestPair[0]][bestPair[1]])
-                for i2 in range(nCh2):
-                    score[bestPair[0]][i2] = -1.0
-                for i1 in range(nCh1):
-                    score[i1][bestPair[1]] = -1.0
-            else:
-                break
-        print('matchList', matchList)
-        return matchList
-
     def score(self):
         # setup the score 'matrix'
         # http://stackoverflow.com/questions/6667201/how-to-define-two-dimensional-array-in-python
@@ -3475,15 +3231,6 @@ class CChainMatch:
                 matchList.append((n1, bestIndx))
         print('matchList', matchList)
         return matchList
-
-    def bestAlignments(self):
-        matchList = self.score()
-        for chIndx1, chIndx2 in matchList:
-            #print 'chIndx1,chIndx2',chIndx1,chIndx2
-            #print 'matching',self.chains1[chIndx1].name,self.chains2[chIndx2].name
-            align = CPairwiseAlignment(str(self.chains1[chIndx1].sequence), str(self.chains2[chIndx2].sequence))
-            ret = align.align()
-            print(ret)
 
     def reportXmlAlignments(self):
         matchList = self.score()

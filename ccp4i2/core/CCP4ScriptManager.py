@@ -73,27 +73,6 @@ class CScriptManager:
         if not self._searchPath.count(path):
             self._searchPath.append(path)
 
-    def buildClsLoookup(self):
-        myErrorReport = CErrorReport()
-        pyFileList = globSearchPath(self.searchPath(), '*/*.py')
-        #print 'pyFileList',pyFileList
-        for pyFile in pyFileList:
-            module,err = importFileModule(pyFile)
-            if err is not None:
-                myErrorReport.append(self.__class__, 999, stack=False, details=str(err))
-                break
-            #print 'module',module
-            clsList = inspect.getmembers(module, inspect.isclass)
-            for className, cls in clsList:
-                if issubclass(cls,CTaskWidget):
-                    # The taskName used for internal reference is the name of directory
-                    # containing CTask*.py and *.def.xml files
-                    taskName =  os.path.split(os.path.split(pyFile)[0])[1]
-                    taskModule = getattr(cls, 'TASKMODULE', 'test')
-                    self.clsLookup[taskName] = cls
-                    if taskModule not in self.moduleLookup: self.moduleLookup[taskModule] = []
-                    self.moduleLookup[taskModule].append(taskName)
-
     def printLookup(self):
         classNameList = list(self.clsLookup.keys())
         classNameList.sort()

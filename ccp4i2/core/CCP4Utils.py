@@ -72,35 +72,6 @@ def safeOneWord(value):
     one_word_name = re.sub('[^a-zA-Z0-9_-]', '_', value)
     return one_word_name
 
-def newLineFormat(fileName):
-    f = openFile(fileName)
-    line = f.readline()
-    f.close()
-    if line.endswith('\r\n'):
-        return 'windows'
-    else:
-        return 'unix'
-
-def dos2unix(fileName, fileOut=None):
-    txt = readFile(fileName)
-    txtout = re.sub(r'\r\n', '\n', txt)
-    if fileOut is None:
-        fSplit = os.path.splitext(fileName)
-        if sys.platform.startswith('darwin'):
-            fileOut = fSplit[0] + '_macosx' + fSplit[1]
-        else:
-            fileOut = fSplit[0] + '_linux' + fSplit[1]
-    saveFile(fileOut, txtout)
-    return fileOut
-
-def unix2dos(fileName, fileOut=None):
-    txt = readFile(fileName)
-    txtout = re.sub(r'\n', '\r\n', txt)
-    if fileOut is None:
-        fSplit = os.path.splitext(fileName)
-        fileOut = fSplit[0] + '_windows' + fSplit[1]
-    saveFile(fileOut, txtout)
-    return fileOut
 
 #-----------------------------------------------------------------
 def readFile(fileName=None, limit=None):
@@ -270,33 +241,6 @@ def getUserId():
 #--------------------------------------------------------------------
 def getHOME():
 #--------------------------------------------------------------------
-    '''
-    print "HOME", os.environ.get('HOME')
-    print "HOMEDRIVE", os.environ.get('HOMEDRIVE')
-    print "HOMEPATH",  os.environ.get('HOMEPATH')
-    print "USERPROFILE", os.environ.get('USERPROFILE')
-
-    # Expect HOME defined in LINUX and use it if exists in windows
-    #homedir = os.environ.get('HOME')
-    #if homedir and homedir != '' and os.path.exists(homedir):
-    #  return homedir
-    if sys.platform == 'win32':
-        # Try using HOMEDRIVE & HOMEPATH
-        if os.environ.get('HOMEDRIVE'):
-          if  os.environ.get('HOMEPATH'):
-            homedir = os.path.join(os.environ.get('HOMEDRIVE'), os.environ.get('HOMEPATH'))
-          else:
-            homedir = os.environ.get('HOMEDRIVE')
-        else:
-          # Last ditch effort - use USERPROFILE
-          homedir = os.environ.get('USERPROFILE')
-        if homedir and os.path.exists(homedir):
-          print "get_HOME",homedir
-          return homedir
-    
-    # Arghh - no HOME
-    return ""
-    '''
     homedir = os.environ.get('CCP4_LOCAL_HOME', None)
     if homedir is not None:
         return homedir
@@ -447,10 +391,6 @@ def getDotDirectory():
                 os.mkdir(path)
             except:
                 print("ERROR creating subdirectories in ",ccp4i2)
-    #target =  os.path.join(ccp4i2 ,'configs', 'ccp4i2_config.params.xml')
-    #if not os.path.exists(target):
-    #  source = os.path.join(getCCP4I2Dir(),'data','config_templates','ccp4i2_config.params.xml')
-    #  shutil.copyfile(source,target)
     return ccp4i2
 
 def getProjectDirectory():
@@ -534,16 +474,6 @@ def versionLogHeader():
         f"Using Python version: {sys.version}\n"
         f"Using Qt version: {QtCore.qVersion()}\n"
     )
-
-def listReMatch(lst,reExp):
-    # search list of strings with reg expression and return hit string and index
-    # More genius code brought to you by
-    # http://stackoverflow.com/questions/23229675/search-list-of-string-with-wildcard-and-return-matches-indexes-python
-    regex=re.compile(reExp)
-    locs, matches = list(zip(*[(idx, string) for idx, string in enumerate(lst) if re.match(regex, string)]))
-    #print 'listSearch matches', matches
-    #print 'listSearch locs', locs
-    return locs, matches
 
 def isAlive(qobj):
     return shiboken2.isValid(qobj)

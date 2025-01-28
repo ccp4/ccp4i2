@@ -270,11 +270,6 @@ class CDataQualifiers:
                 root[-1].text = str(value)
         return root, error
 
-    def qualifiersXmlText(self, pretty_print=True, xml_declaration=False):
-        tree, error = self.qualifiersEtree()
-        text = etree.tostring(tree, pretty_print=pretty_print, xml_declaration=xml_declaration)
-        return text
-
     def setQualifiersEtree(self, element):
         rv = CErrorReport()
         qualifiers = {}
@@ -595,18 +590,8 @@ class CData(CObject, CDataQualifiers):
                     return propFget(self)
                 except Exception as e:
                     raise AttributeError("%r object has no attribute %r" % (self.__class__.__name__, name))
-                    """
-                    raise CException(CData, 9, details=name + '\n' + str(e), exc_info=sys.exc_info())
-                    print('Inaccessible attribute',name,str(e))
-                    traceback.print_stack(limit=5)
-                    """
             else:
                 raise AttributeError("%r object has no attribute %r" % (self.__class__.__name__, name))
-                """
-                raise CException(CData, 8, name)
-                print('Inaccessible attribute', name, str(e))
-                traceback.print_stack(limit=5)
-                """
 
     def __setattr__(self, name, value):
         if '_dataOrder' in self.__dict__ and name in self.dataOrder():
@@ -642,19 +627,6 @@ class CData(CObject, CDataQualifiers):
             else:
                 items.append('')
         return items
-
-    def orderedDictText(self):
-        # return  dict of all data
-        ret = '{'
-        for key in self.dataOrder():
-            #Everything in self._value should be a CData..
-            value = self.__dict__['_value'][key].__str__()
-            ret = ret + "'" + key + "':" + value + ","
-        if ret[-1] == ',':
-            ret = ret[0:-1] + '}'
-        else:
-            ret = ret + '}'
-        return ret
 
     def xmlText(self, pretty_print=True, xml_declaration=False):
         tree = self.getEtree()
@@ -1053,16 +1025,6 @@ class CBaseData(CData):
         except:
             rv.append(self.__class__, 12, element.tag, name=self.objectPath())
         return rv
-
-    def getPersistent(self):
-        p = CPersistentBaseData(name=str(self.objectName()), className = self.__class__.__name__,
-                                version = self.version, value = self.get())
-        return p
-
-    def setPersistent(self, p):
-        # Should be checking version !!!
-        self.setObjectName(p.name)
-        self.set(p.value)
 
     def dataOrder(self):
         return []
@@ -1475,17 +1437,8 @@ class CString(CBaseData):
     def Center(self, arg1, arg2=' '):
         return self.set(self._value.center(arg1, arg2))
 
-    def Expandtabs(self, size=8):
-        return self.set(self._value.expandtabs(size))
-
-    def Ljust(self, width, fillChar=' '):
-        return self.set(self._value.ljust(width, fillChar))
-
     def Lower(self):
         return self.set(self._value.lower())
-
-    def Lstrip(self, subString=None):
-        return self.set(self._value.lstrip(subString))
 
     def Join(self, arg):
         other = self.getValue(arg)
@@ -1494,17 +1447,8 @@ class CString(CBaseData):
     def Replace(self, arg1, arg2):
         return self.set(self._value.replace(arg1, arg2))
 
-    def Rjust(self, width, fillChar=' '):
-        return self.set(value=self._value.rjust(width, fillChar))
-
-    def Rstrip(self, arg=None):
-        return self.set(self._value.rstrip(arg))
-
     def Strip(self, arg=None):
         return self.set(self._value.strip(arg))
-
-    def Swapcase(self):
-        return self.set(self._value.swapcase())
 
     def Title(self):
         return self.set(self._value.title())
@@ -1512,9 +1456,6 @@ class CString(CBaseData):
     # translate
     def Upper(self):
         return self.set(self._value.upper())
-
-    def Zfill(self, width):
-        return self.set(self._value.zfill(width))
 
     def __add__(self, arg):
         other = self.getValue(arg)
@@ -2734,20 +2675,6 @@ class CList(CCollection):
     def __contains__(self, arg):
         return self._value.__contains__(arg)
 
-    def containsValue(self, arg):
-        arg = self.getValue(arg)
-        if len(self._value) == 0:
-            return False
-        if hasattr(self._value[0], '__eq__'):
-            for item in self._value:
-                if item.__eq__(arg):
-                    return True
-        elif hasattr(self._value[0], '__cmp__'):
-            for item in self._value:
-                if item.__cmp__(arg) == 0:
-                    return True
-        return False
-
     # __delattr__
     def __delitem__(self, arg, validate=False):
         if self.qualifiers('listMinLength') is not NotImplemented and len(self._value) - 1 < self.qualifiers('listMinLength'):
@@ -2876,22 +2803,6 @@ class CList(CCollection):
     def count(self, arg):
         return self.__dict__['_value'].count(arg)
 
-    # Count the number of items in list with the same value
-    def countValue(self, arg):
-        arg = self.getValue(arg)
-        if len(self._value) == 0:
-            return 0
-        rv = 0
-        if hasattr(self._value[0], '__eq__'):
-            for item in self._value:
-                if item.__eq__(arg):
-                    rv = rv + 1
-        elif hasattr(self._value[0], '__cmp__'):
-            for item in self._value:
-                if item.__cmp__(arg) == 0:
-                    rv = rv + 1
-        return rv
-
     def extend(self, arg, validate=False):
         if not isinstance(arg, (CList, list)):
             raise CException(self.__class__, 106, name=self.objectPath())
@@ -2915,14 +2826,6 @@ class CList(CCollection):
 
     def index(self,arg):
         return self.__dict__['_value'].index(arg)
-
-    def indexValue(self,arg):
-        ii = -1
-        for item in self.__dict__['_value']:
-            ii = ii + 1
-            if item.__cmp__(arg) == 0:
-                return ii
-        return -1
 
     def insert(self, indx, arg, validate=False):
         if self.qualifiers('listMaxLength') is not NotImplemented and len(self._value) + 1 > self.qualifiers('listMaxLength'):

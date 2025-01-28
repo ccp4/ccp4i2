@@ -1037,10 +1037,6 @@ class CTaskManager:
         else:
             return None
 
-    def viewSelection(self, taskName, jobId=None):
-        #Does task need to define what files are displayed in graphics
-        pass
-
     def getI1TaskTitle(self, taskName):
         if self.i1TaskLookup is None:
             self.loadI1TaskTitles()

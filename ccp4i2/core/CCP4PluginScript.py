@@ -209,9 +209,6 @@ class CPluginScript(CObject):
         n2 = int(d2.split('_')[-1])
         return n1-n2
 
-    def setInterpreter(self,interpreter):
-        self._interpreter = interpreter
-
     def setCommand(self,command):
         self._command = command
 
@@ -539,70 +536,6 @@ class CPluginScript(CObject):
         else:
             return paramsFileList[-1]
 
-    def getProjectDefaultParameters(self, taskName=None, paramsList=[], version=None):
-        #Create a container with parameters for taskName and remove all not in paramsList
-        myErrorReport = CException()
-        # Load a full definition of the task to container
-        defContainer = CCP4Container.CContainer()
-        defFile = CCP4TaskManager.TASKMANAGER().lookupDefFile(name=taskName, version=version)
-        myErrorReport.extend(defContainer.loadContentsFromXml(defFile))
-        # If a default params file exists load it - otherwise create empty newContainer
-        newContainer = CCP4Container.CContainer()
-        newContainer.addParamsSubContainers()
-        newContainer.addHeader()
-        newContainer.header.setCurrent()
-        newContainer.header.function.set('PARAMS')
-        newContainer.header.pluginName = taskName
-        newContainer.header.pluginVersion=version
-        newContainer.header.projectId = self._dbProjectId
-        # Set header jobId to this job
-        newContainer.header.jobId = self._dbJobId
-        newContainer.header.jobNumber = self._dbJobNumber
-        # For any pre-existing defaults file - first check through and create list
-        # of parameters in file - then load it all
-        paramsFile = self.getProjectDefaultFile(taskName=taskName)
-        oldParamsList = []
-        if paramsFile is not None:
-            try:
-                f = CCP4File.CI2XmlDataFile(fullPath=paramsFile)
-            except:
-                myErrorReport.append(self.__class__, 54, paramsFile)
-            else:
-                body = f.getBodyEtree()
-                for cEle in body.iterchildren():
-                    for pEle in cEle.iterchildren():
-                        oldParamsList.append(pEle.tag)
-            print('Creating project default parameters - loading old defaults for', oldParamsList)
-            oldContainer = CCP4Container.CContainer()
-            oldContainer.loadDataFromXml(paramsFile)
-        for subContainerName in ['inputData', 'controlParameters', 'outputData']:
-            # Copy any objects in the oldContainer that are in the oldParamsList
-            # Beware oldContainer is loaded with all the objects but we only want limited number
-            if len(oldParamsList) > 0:
-                c = oldContainer.get(subContainerName)
-                if c is not None:
-                    for  param in oldParamsList:
-                        obj = c.get(param)
-                        if obj is not None:
-                            newContainer.get(subContainerName).addObject(obj, name=param)
-            # Add the params from input paramsList
-            c = defContainer.get(subContainerName)
-            if c is not None:
-                for param in paramsList:
-                    obj = c.get(param)
-                    if obj is not None:
-                        newObj = newContainer.get(subContainerName).get(param)
-                        if newObj is None:
-                            newContainer.get(subContainerName).addObject(obj, name=param)
-                        else:
-                            myErrorReport.append(self.__class__, 53, param)
-        return newContainer, myErrorReport
-
-    def saveProjectDefaultParameters(self,container=None):
-        paramsFile = self.getProjectDefaultFile(taskName=str(container.header.pluginName), next=True)
-        print('Saving project default parameters for', str(container.header.pluginName), 'in', paramsFile)
-        return container.saveDataToXml(paramsFile)
-
     def loadProjectDefaults(self):
         err= CErrorReport()
         try:
@@ -665,16 +598,6 @@ class CPluginScript(CObject):
                         #print 'CCP4PluginScript.checkOutputData get',objectName,
                         #print dobj.isSet()
                         if isinstance(dobj,CCP4File.CDataFile) and not dobj.isSet():
-                            '''
-                            nameFromFileKey = dobj.qualifiers('nameFromFileKey')
-                            if nameFromFileKey is not None:
-                              sourceObj =  container.find(nameFromFileKey)
-                              if sourceObj is not None:
-                                baseName = os.path.splitext(sourceObj.baseName.get())[0] + str(self.objectName()) + \
-                                     '.' + dobj.fileExtensions()[0]
-                                dobj.setFullPath(os.path.join(self.getWorkDirectory(),baseName))
-                            else:
-                            '''
                             fullPath = os.path.join(self.getWorkDirectory(),jobName + objectName + '.' + dobj.fileExtensions()[0])
                             #print 'CPluginScript.checkOutputData path',objectName,self.getWorkDirectory(),dobj.fileExtensions(),
                             #print fullPath
@@ -764,9 +687,6 @@ class CPluginScript(CObject):
             self.extendErrorReport(myErrorReport)
         #print 'CPluginScript.appendCommandLine',self.commandLine
         return myErrorReport
-
-    def printCommandLine(self):
-        print(self.commandLine)
 
     def applyComFilePatches(self):
         patchSele = self.container.guiAdmin.find('patchSelection')
@@ -1878,26 +1798,6 @@ class CPluginScript(CObject):
         if self._dbHandler is None:
             return
         self._dbHandler.recordInputFilesToDb(jobId=self._dbJobId, container=self.container)
-
-    '''
-    def addLabinCommand(self):
-      # This does not work  - just copied some code here to save it
-
-      signature = inputData.F_SIGF.fileContent.columnSignature()
-      fileLabels = inputData.F_SIGF.fileContent.columnNames()
-      allowedSignatures = inputData.F_SIGF.qualifiers('correctColumns')
-      labinLabels = [['I+','SIGI+','I-','SIGI-'],['F+','SIGF+','F-','SIGF-'],['I','SIGI'],['F','SIGF']]
-      print 'phaser_mr.makeCommandAndScript',signature
-      if signature not in allowedSignatures:
-        self.appendErrorReport(210,'Input MTZ file does not contain correct column types',str(signature))
-        return CPluginScript.FAILED
-      idx = allowedSignatures.index(signature)
-      labin = 'LABIN'
-      for ii in range(len(signature)):
-        labin = labin + ' ' + labinLabels[idx][ii] + '=' + fileLabels[ii]
-      print 'phaser_mr.makeCommandAndScript',idx,labin
-      self.appendCommandScript(labin)
-    '''
 
     def mergeDictToProjectLib(self, fileName=None, overwrite=False):
         #print 'CPluginScript.mergeDictToProjectLib',fileName

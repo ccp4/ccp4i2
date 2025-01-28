@@ -259,14 +259,6 @@ class CI2Runner(object):
 
         return taskDefXML
 
-    def defXMLForTaskName(self, taskName):
-        cachedData = {}
-        with open(os.path.join(os.path.split(__file__)[0], "DefXMLCache.json"),"r") as cacheFile:
-            cachedData = json.loads(cacheFile.read())
-        relPath = cachedData[taskName]
-        fullPath = os.path.join(os.environ['CCP4'], relPath[1:])
-        return self.recursivelyBuildXML(fullPath)
-    
     def setEntityValue(self, entityToModify, valueItem):
         #print("EtoM [{}] [{}]".format(entityToModify, valueItem))
         if isinstance(entityToModify,(CCP4File.CDataFile,)) and isinstance(valueItem, (str,)):

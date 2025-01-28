@@ -239,10 +239,6 @@ class CProjectsManager(CObject):
             defaultProject = self.createProject(projectName, projectPath)
         return defaultProject
 
-    def addAlias(self, aliasName=None, aliasDirectory=None, context='CURRENT'):
-        #self.directories[ aliasName] = aliasDirectory
-        self._db.setDirectoryAlias(alias=aliasName, aliasDirectory=aliasDirectory)
-
     def projectStatus(self,projectName=None):
         try:
             pid = self._db.getProjectId(projectName=projectName)
@@ -394,9 +390,6 @@ class CProjectsManager(CObject):
             except:
                 pDir = None
         return pDir
-
-    def projectIdFromPath(self, path):
-        return None
 
     def projectNameStatus(self, projectName):
         proj_list = self._db.listProjectNames()

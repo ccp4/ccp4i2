@@ -43,65 +43,6 @@ class CImportedJobManager(CCP4CustomManager.CCustomManager):
     def __init__(self, parent=None):
         CCP4CustomManager.CCustomManager.__init__(self, parent, 'importedjobs')
 
-    def createImportedJob(self, name=None, title=None, container=None, overwrite=False):
-        err = CErrorReport()
-        self.createDirectory(name = name, overwrite=overwrite)
-        container.header.pluginName = name
-        container.header.pluginTitle = title
-        taskFile = self.getCustomFile(name=name, mustExist=False)
-        #print 'CCustomTaskManager.createCustomTask',name,title,taskFile,container.paramList
-        container.saveDataToXml(fileName=taskFile)
-        if title is None:
-            title = copy.deepcopy(name)
-        paramsContainer = CCP4Container.CContainer()
-        header = paramsContainer.addHeader()
-        header.setCurrent()
-        header.function.set('DEF')
-        header.pluginName.set(name)
-        header.pluginTitle.set(title)
-        paramsContainer.addParamsSubContainers()
-        mergedMtzs = self.getMergedMtzs(container.paramList)
-        for parDef in container.paramList:
-            if parDef.function.__str__() in ['input', 'output', 'control parameter'] and \
-                    not (parDef.function.__str__() == 'input' and parDef.name.__str__() in mergedMtzs):
-                cls = CCP4DataManager.DATAMANAGER().getClass(parDef.dataType.__str__())
-                if cls is None:
-                    err.append(self.__class__, 201, parDef.dataType.__str__() + ' for ' + parDef.name.__str__())
-                else:
-                    #try:
-                    if 1:
-                        qualifiers = {'allowUndefined' : not(parDef.obligatory.__bool__()),
-                                      'saveToDb' : parDef.saveDataToDb.__bool__()}
-                        if issubclass(cls,CCP4File.CDataFile):
-                            qualifiers['fromPreviousJob'] = True
-                        if parDef.dataType.__str__() in ['CObsDataFile','CPhsDataFile'] and False in parDef.requiredContentType.get():
-                            requiredContentType = parDef.requiredContentType.get()
-                            if parDef.dataType.__str__() == 'CObsDataFile':
-                                flagList = [CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR, CCP4XtalData.CObsDataFile.CONTENT_FLAG_FPAIR,
-                                            CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN, CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]
-                            else:
-                                flagList = [CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL, CCP4XtalData.CPhsDataFile.CONTENT_FLAG_PHIFOM]
-                            qualifiers['requiredContentFlag'] = []
-                            for indx in range(len(flagList)):
-                                if requiredContentType[indx]:
-                                    qualifiers['requiredContentFlag'].append(flagList[indx])
-                        #print 'CCustomTaskManager.createCustomTask',parDef.name.__str__(),qualifiers
-                        obj = cls(name=parDef.name.__str__(), qualifiers = qualifiers )
-                    #except Exception as e:
-                    #  err.append(self.__class__, 202, parDef.name.__str__() + ' ' + str(e))
-                    #else:
-                        if parDef.function == 'input' :
-                            paramsContainer.inputData.addObject(obj, name=parDef.name.__str__())
-                        elif parDef.function == 'output' :
-                            paramsContainer.outputData.addObject(obj, name=parDef.name.__str__())
-                        elif parDef.function == 'control parameter' :
-                            paramsContainer.controlParameters.addObject(obj, name=parDef.name.__str__())
-        defFile = os.path.join(self.getDirectory(name=name), name + '.def.xml')
-        #print 'CCustomTaskManager.createCustomTask defFile', defFile
-        err.extend(paramsContainer.saveContentsToXml(fileName=self.getDefFile(name, False), header=header))
-        self.listChanged.emit()
-        return err
-
     def getMergedMtzs(self, paramList, function=None):
         mergedMtzs = {}
         for parDef in paramList:

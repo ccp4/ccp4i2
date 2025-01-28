@@ -117,10 +117,6 @@ class CCustomManager(CObject):
         else:
             return None
 
-    
-    def openManagerDialog(self):
-        self.openCreateDialog()
-
     def delete(self,name):
         dr = self.getDirectory(name)
         try:

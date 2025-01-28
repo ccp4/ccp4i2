@@ -321,12 +321,6 @@ class CFilePath(CCP4Data.CString):
         else:
             return CCP4Utils.samefile(self._value, other)
 
-    def pathsplit(self):
-        if self._value is None:
-            return []
-        else:
-            return os.path.split(self._value)
-
     def splitext(self):
         return os.path.splitext(self._value)
 
@@ -941,29 +935,6 @@ class CDataFile(CCP4Data.CData):
         # - the original file is copied to CCP4_IMPORTED_FILES when user has confirmed the selection by clicking 'Run'
         self.__dict__['sourceFileName'] = sourceFileName
 
-    def isDosFile(self):
-        text = CCP4Utils.readFile(self.__str__())
-        isDFile = (text.find('\r\n') >= 0)
-        return isDFile
-
-    def resetLineEnd(self, outputFilename=None, toDos=False):
-        text = CCP4Utils.readFile(self.__str__())
-        isDos = text.find('\r\n') >= 0
-        if isDos == toDos:
-            if outputFilename is not None:
-                CCP4Utils.saveFile(text=text, fileName=outputFilename)
-                return outputFilename
-            else:
-                return self.__str__()
-        if outputFilename is None:
-            outputFilename = tempfile.mktemp(suffix='.txt')
-        if toDos:
-            textOut = re.sub(r'\n', '\r\n', text)
-        else:
-            textOut = re.sub(r'\r\n', '\n', text)
-        CCP4Utils.saveFile(fileName=outputFilename, text=textOut)
-        return outputFilename
-
 
 # The header info in a file
 class CFileFunction(CCP4Data.CString):
@@ -1311,10 +1282,6 @@ class CI2XmlDataFile(CXmlDataFile):
                 except:
                     raise CException(self.__module__, 1008, fileName)
 
-def compareXmlFiles(xmlFile1, xmlFile2):
-    tree1 = CCP4Utils.openFileToEtree(xmlFile1)
-    tree2 = CCP4Utils.openFileToEtree(xmlFile2)
-    return compareEtreeNodes(tree1, tree2)
 
 def compareEtreeNodes(node1, node2):
     errList = []
@@ -1363,12 +1330,7 @@ def getNodePath(node, key=None):
     if key is not None:
         name = name + '.' + key
     return name
-    '''
-      path.append(getUniqueNodeLabel(node))
-      for p in node.iterancestors():
-        path.insert(0,getUniqueNodeLabel(p))
-      return path
-    '''
+
 
 def getUniqueNodeLabel(node):
     name = re.sub('{http://www.ccp4.ac.uk/ccp4ns}', '', str(node.tag))
@@ -1377,9 +1339,6 @@ def getUniqueNodeLabel(node):
         name = name + ':' + node.get(item)
     return name
 
-def printCompareEtreeNodesErrors(errList, xmlFile1=None, xmlFile2=None):
-    for path, errType, value1, value2 in errList:
-        print('{:15}{}'.format(errType, path))
 
 def xmlFileHeader(fileName):
     h = CI2XmlHeader()

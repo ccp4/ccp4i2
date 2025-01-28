@@ -126,19 +126,6 @@ class CProcessManager(QtCore.QObject):
             self.ifAsync = False
             self.timeout = timeout
 
-#------------------------------------------------------------------------------
-    def formatted_job(self, root):
-#------------------------------------------------------------------------------
-        number = (str(root) + '    ')[0:4]
-        text = number + '  '
-        if self.processInfo[root]['finishTime']:
-            if self.processInfo[root]['status']:
-                text = text + '  FAILED   ' + time.asctime(time.localtime(self.processInfo[root]['finishTime']))
-            else:
-                text = text + '  FINISHED ' + time.asctime(time.localtime(self.processInfo[root]['finishTime']))
-        else:
-            text = text + '  STARTED  ' + time.asctime(time.localtime(self.processInfo[root]['startTime']))
-        return text
 
 ## Start an external process
 # @param interpreter string optional name of interpreter (only 'python' supported)
@@ -567,12 +554,6 @@ def which(program, mode=os.F_OK | os.X_OK, path=None):
 #===========================================================================================
 # Python shell test:
 # p = CCP4ProcessManager.CProcessManager(); p.startProcess(command='mtzdump',argList=['HKLIN','/Users/lizp/Desktop/test_data/rnase25_phases.mtz'],inputText='HEADER\nGO\n')
-
-def comTest1():
-    pdbFile = os.path.join(CCP4Utils.getCCP4I2Dir(), 'test', 'data', '1df7.pdb')
-    pdbOut = CCP4Utils.makeTmpFile(name='testProcessManager_test1')
-    return CCP4Modules.PROCESSMANAGER().startProcess(command='pdbset', args=['XYZIN', pdbFile, 'XYZOUT', pdbOut],
-                                                     inputText='CELL 50.0 50.0 70.0 90.0 90.0 90.0\nEND\n',)
 
 def TESTSUITE():
     suite = unittest.defaultTestLoader.loadTestsFromTestCase(testProcessManager)
