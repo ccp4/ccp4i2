@@ -308,14 +308,18 @@ class CI1TreeItemProject(CCP4ProjectWidget.CTreeItemProject):
       if params['TASKNAME'][1][nJ] is None:
         pass
       else:
-        lastTime = max(lastTime,CCP4Utils.safeFloat(params['DATE'][1][nJ],0))
+        try:
+          finishtime = float(params['DATE'][1][nJ])
+        except (TypeError, ValueError):
+          finishtime = None
+        lastTime = max(lastTime, finishtime or 0)
         info = { 'jobid' : str(nJ),
              'jobnumber' : str(nJ),
              'taskname' : params['TASKNAME'][1][nJ],
              'jobtitle' : params['TITLE'][1][nJ],
              'evaluation' : 'Unknown',
              'status' :  CI1TreeItemJob.STATUSCONV.get(params['STATUS'][1][nJ],'Pending'),
-             'finishtime' : CCP4Utils.safeFloat(params['DATE'][1][nJ]),
+             'finishtime' : finishtime,
              'parentjobid' : None
              }
         jItem = CI1TreeItemJob(self,info=info)
@@ -640,7 +644,7 @@ class CI1ProjectModel(QtCore.QAbstractItemModel):
     metaData,params,err = readI1DefFile(fileName)
     if err.maxSeverity()>Severity.WARNING or 'N_PROJECTS' not in params:
       return CErrorReport(self.__class__,101,details = fileName,stack=False)
-    nProjects = CCP4Utils.safeInt(params.get('N_PROJECTS')[1])
+    nProjects = int(params.get('N_PROJECTS')[1])
     for nP in range(1,nProjects+1):
       pObj = self.getProject(params['PROJECT_ALIAS'][1][nP])
       #print 'loadDirectoriesDefFile',params['PROJECT_ALIAS'][1][nP],pObj

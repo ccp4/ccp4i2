@@ -65,50 +65,6 @@ class CUtils:
                    111 : {'description' :'Error reading limited number of lines from file'}}
     pass
 
-##Convert input string to int
-#@param value Input string
-#@param default Optional default value
-
-def safeInt(value, default=None):
-    if isinstance(value,str):
-        value = value.strip()
-    if not value:
-        return default
-    try:
-        i = int(value)
-    except:
-        i = default
-    return i
-
-##Convert input string to float
-#@param value Input string
-#@param default Optional default value
-
-def safeFloat(value, default=None):
-    if isinstance(value,str):
-        value = value.strip()
-    if not value:
-        return default
-    try:
-        i = float(value)
-    except:
-        i = default
-    return i
-
-##Convert input string to Boolean
-#@param value Input string
-#@param default Optional default value
-
-def safeBoolean(value, default=None):
-    if isinstance(value,str):
-        value = value.strip()
-    if not value:
-        return default
-    try:
-        i = bool(int(value))
-    except:
-        i = default
-    return i
 
 def safeOneWord(value):
     # Replace spaces and any 'odd' characters with underscore

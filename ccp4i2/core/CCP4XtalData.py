@@ -47,7 +47,6 @@ from . import CCP4Modules
 from . import CCP4PluginScript
 from . import CCP4Utils
 from .CCP4ErrorHandling import CErrorReport, CException, Severity
-from .CCP4Utils import safeFloat
 from ..googlecode import diff_match_patch_py3
 from ..wrappers.chltofom.script import chltofom
 from ..wrappers.ctruncate.script import ctruncate
@@ -62,6 +61,13 @@ def SYMMETRYMANAGER():
         except CException as e:
             pass
     return CSymmetryManager.insts
+
+
+def safeFloat(value):
+    try:
+        return float(value)
+    except ValueError:
+        return None
 
 
 class CSymmetryManager:
@@ -780,7 +786,6 @@ class CMmcifReflData(CCP4File.CMmcifData):
         cell = {'a':None, 'b':None, 'c':None, 'alpha':None, 'beta':None, 'gamma':None}
         wavelength = None
         pyStrSpaceGroupName = ''
-        iSpaceGroupNumber = -1
         haveFreeRColumn = False
         haveFobsColumn = False
         haveFpmObsColumn = False
@@ -788,8 +793,6 @@ class CMmcifReflData(CCP4File.CMmcifData):
         haveIpmObsColumn = False
         for j, pyStrLine in enumerate(mmcifLines):
             try:
-                if "_symmetry.Int_Tables_number" in pyStrLine:
-                    iSpaceGroupNumber = int(pyStrLine.split()[1])
                 if "_symmetry.space_group_name_H-M" in pyStrLine:
                     pyStrSpaceGroupName = pyStrLine[pyStrLine.index("_symmetry.space_group_name_H-M")+31:]
                     pyStrSpaceGroupName = pyStrSpaceGroupName.strip().strip('"').strip("'").strip()
@@ -1564,7 +1567,6 @@ class CMtzData(CCP4File.CDataFileContent):
         column_name_list = []
         column_type_list = []
         pyStrSpaceGroupName = ''
-        iSpaceGroupNumber = -1
         lowerResolutionLimit = None
         upperResolutionLimit = None
         for j, pyStrLine in enumerate(pyListLogLines):
@@ -1572,7 +1574,6 @@ class CMtzData(CCP4File.CDataFileContent):
                 cell = list(map(safeFloat, pyListLogLines[j + 5].split()))
             if " * Space group = " in pyStrLine:
                 pyStrSpaceGroupName = pyStrLine.split("'")[1].strip()
-                iSpaceGroupNumber = int(pyStrLine.replace("(", " ").replace(")", " ").split()[-1])
             if "*  Resolution Range" in pyStrLine:
                 lowerResolutionLimit = float(((pyListLogLines[j + 2].split("(")[1]).split())[0])
                 upperResolutionLimit = float(((pyListLogLines[j + 2].split("(")[1]).split())[2])
