@@ -69,7 +69,6 @@ def main():
 
     app = CGuiApplication(sys.argv)
     CCP4Config.CONFIG().set('graphical', False)
-    CCP4Config.CONFIG().set('qt', True)
 
     pm = CCP4Modules.PROJECTSMANAGER()
     db = startDb(pm, mode='sqlite')

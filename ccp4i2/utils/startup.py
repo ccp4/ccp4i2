@@ -68,7 +68,6 @@ def testForCCP4Environment():
 def startGraphics():
     app = CGuiApplication(sys.argv)
     CCP4Config.CONFIG().set('graphical', True)
-    CCP4Config.CONFIG().set('qt', True)
     return app
 
 def createMissingDATABASEdbXML():

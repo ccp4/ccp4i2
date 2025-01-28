@@ -13,7 +13,7 @@ def main():
     print(' ')
     setupEnvironment()
     app = QTAPPLICATION(graphical=True)
-    CConfig(qt=True, graphical=True, developer=True)
+    CConfig(graphical=True, developer=True)
     defEd = CDefEd()
     defEd.raise_()
     sys.exit(app.exec_())

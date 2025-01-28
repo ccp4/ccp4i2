@@ -128,7 +128,6 @@ def ImportAll(zipDir,dbFile,destDirName,appendDB):
 
     app = CGuiApplication(sys.argv)
     CCP4Config.CONFIG().set('graphical', False)
-    CCP4Config.CONFIG().set('qt', True)
 
     zipFiles = glob.glob(os.path.join(zipDir,"*.zip"))
     

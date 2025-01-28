@@ -70,7 +70,6 @@ def startDb(parent=None, fileName=None, mode='sqlite', userName=None, userPasswo
 def main():
     app = CGuiApplication(sys.argv)
     CCP4Config.CONFIG().set('graphical', False)
-    CCP4Config.CONFIG().set('qt', True)
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--dbFile', help='User-specified database filename')
