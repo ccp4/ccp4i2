@@ -29,99 +29,9 @@ from PySide2 import QtCore, QtGui, QtWidgets
 
 from ..core import CCP4Modules
 from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import Severity
 from ..dbapi import CCP4DbUtils
 from ..qtgui import CCP4TextViewer
 from ..qtgui import CCP4Widgets
-
-
-class CErrorReportSelection(QtWidgets.QFrame):
-
-    def __init__(self,parent):
-        QtWidgets.QFrame.__init__(self,parent)
-        self.setLayout(QtWidgets.QHBoxLayout())
-        self.layout().addWidget(QtWidgets.QLabel('Select reports from class:'))
-        self.classCombo = QtWidgets.QComboBox(self)
-        self.layout().addWidget(self.classCombo)
-        self.layout().addWidget(QtWidgets.QLabel('after'))
-        self.startTime = QtWidgets.QDateTimeEdit(self)
-        self.layout().addWidget(self.startTime)
-        self.layout().addWidget(QtWidgets.QLabel('and before'))
-        self.endTime = QtWidgets.QDateTimeEdit(self)
-        self.layout().addWidget(self.endTime)
-
-    def loadClassCombo(self,model=None):
-        if model is None:
-            return
-        self.classCombo.clear()
-        for item in model.classesInReport():
-            self.classCombo.addItem(item)
-
-    def initialiseTime(self,model=None):
-        if model is None:
-            return
-        timeRange = model.getTimeRange()
-        #print 'CErrorReportSelection.initialiseTime',timeRange
-        start = QtCore.QDateTime()
-        start.setTime_t(int(timeRange[0]))
-        start.addMSecs(int((timeRange[0]-int(timeRange[0]))*1000))
-        self.startTime.setDateTime(start)
-        self.startTime.setMinimumDateTime(start)
-        local = time.localtime()
-        midnight = QtCore.QDateTime(QtCore.QDate(local.tm_year, local.tm_mon,local.tm_mday), QtCore.QTime(23, 59, 0))
-        self.endTime.setDateTime(midnight)
-        self.endTime.setMinimumDateTime(start)
-
-class CErrorReportViewer(CCP4TextViewer.CTextViewer):
-
-    TIME_FORMAT = '%H:%M:%S'
-
-    def __init__(self,parent):
-        CCP4TextViewer.CTextViewer.__init__(self, parent)
-        self.setFont(style='fixed_width')
-        self._model = None
-        self.lastErrorIndex = -1
-
-    def setModel(self,model=None):
-        #print 'CErrorReportViewer.setModel',model,type(model)
-        self._model = model
-
-    def open(self,filename=None):
-        self.loadText()
-        self.fileName = None
-        self.lastModTime= None
-
-    def clear(self):
-        self.viewer.clear()
-
-    def loadText(self,start=0):
-        text = ''
-        indx = -1
-        for indx in range(start, len(self._model)):
-            report = self._model[indx]
-            #print 'CErrorReportViewer.loadText',report
-            if 'time' in report:
-                timeText = time.strftime(CErrorReportViewer.TIME_FORMAT,time.localtime(report['time']))
-            else:
-                timeText = ''
-            if hasattr(report['class'],'ERROR_CODES'):
-                description = report['class'].ERROR_CODES[report['code']].get('description',' ')
-                severity = report['class'].ERROR_CODES[report['code']].get('severity',Severity.ERROR)
-                if severity == Severity.OK:
-                    severityColour = '00FF00'
-                elif severity == Severity.ERROR:
-                    severityColour = 'FF0000'
-                else:
-                    severityColour = 'FFC000'
-                line = '''{0!s:12} {1:20} <font color=#{5:6}>{2:3}</font> {3:60} {4:}'''.format(timeText,report['class'].__name__, 
-                                                                                                report['code'], description, report['details'],
-                                                                                                severityColour)
-                text = text + line + '<br>'
-        self.viewer.append(text)
-        self.lastErrorIndex = indx
-
-    def update(self):
-        self.loadText(start=self.lastErrorIndex + 1)
 
 
 class CSendJobError(QtWidgets.QDialog):
@@ -204,4 +114,3 @@ class CPrintLogViewer(CCP4TextViewer.CTextViewer):
         ph = CCP4Modules.PRINTHANDLER()
         text = ph.getContent(thread)
         self.viewer.append(versionText + text)
-
