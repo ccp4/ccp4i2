@@ -29,7 +29,7 @@ from lxml import etree
 
 from . import CCP4Config
 from . import CCP4Data
-from ..qtgui import CCP4MessageBox
+from ..qtgui.CCP4MessageBox import CMessageBox
 
 
 class Severity(Enum):
@@ -94,8 +94,8 @@ def getReport(
                 if severity is None and 'severity' in error:
                     report['severity'] = error['severity']
                 break
-            else:
-                print('ERROR in CErrorHandling - error code not found', code, cls)
+        else:
+            print('ERROR in CErrorHandling - error code not found', code, cls)
     return report
 
 
@@ -207,14 +207,13 @@ class CErrorReport():
         return text[1:]
 
     def warningMessage(self, windowTitle='', message='', jobId=None, parent=None, ifStack=True, minSeverity=Severity.UNDEFINED):
-        if len(message) > 0 and message[-1] !='\n':
-            message = message + '\n'
+        if len(message) > 0:
+            message = message.rstrip() + '\n'
+        report = self.report(ifStack=ifStack, minSeverity=minSeverity)
         if CCP4Config.GRAPHICAL() and parent is not None:
-            m = CCP4MessageBox.CMessageBox(parent, title=windowTitle, message=message,
-                                           details=self.report(ifStack=ifStack, minSeverity=minSeverity), jobId=jobId)
-            m.show()
+            CMessageBox(parent, windowTitle, message, details=report, jobId=jobId).show()
         else:
-            print(self.report(ifStack=ifStack, minSeverity=minSeverity))
+            print(report)
 
     def getEtree(self):
         element = etree.Element('errorReportList')
