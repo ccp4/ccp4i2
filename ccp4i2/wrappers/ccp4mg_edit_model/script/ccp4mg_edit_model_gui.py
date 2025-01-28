@@ -48,9 +48,6 @@ class Cccp4mg_edit_model(CTaskWidget):
     self.createLine( [ 'widget', '-browseDb', True, 'HHPREDIN', 'tip', 'HHPred results' ] )# ,toggle=['PASTEORREAD','open',['HHPREDIN']])
     self.createLine( [ 'widget', '-browseDb', True, 'PDBLOCAL', 'tip', 'Local PDB mirror' ] )# ,toggle=['PASTEORREAD','open',['HHPREDIN']])
 
-  def ToggleSPDB(self):
-    return str(self.container.inputData.REDUNDANCYLEVEL) == '100'
- 
   def isValid(self):
     #print 'Ccoot_rebuild.isValid'
     if self.getWidget('followFrom') is None: return

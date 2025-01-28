@@ -92,10 +92,6 @@ class CIFReflectionData:
         self.freerfile = freerfile
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    def setNoDataOut(self):
-        # Set flag for FreeR output only
-        self.dataout = False
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def gettype(self, typelist):
         # Loop possible types in order of priority
         # Return first one found in file

@@ -38,21 +38,6 @@ def checkState(inp):
     else:
         return QtCore.Qt.Unchecked
 
-def fromCheckState(inp):
-    if inp == QtCore.Qt.Unchecked:
-        return 0
-    else:
-        return 1
-
-#----------------------------------------------------------------------
-def fromMenu(text,menu_list,alias_list):
-#----------------------------------------------------------------------
-    # return the short alias for a given long menu text
-    if menu_list.count(text):
-        return alias_list[menu_list.index(text)]
-    else:
-        return text
-
 
 #----------------------------------------------------------------------
 def createAction(name='',parent=None,definition={},icon_path='',default_icon=''):
@@ -154,17 +139,6 @@ def createIcon(name=None,adef={},icon_path='',default_icon='unknown'):
     else:
         return None
 
-def loadSvgWithSize(fileName,width,height):
-    svg = QtSvg.QSvgRenderer()
-    svg.load(fileName)
-    pixmap = QtGui.QImage(width,height,QtGui.QImage.Format_ARGB32)
-    pixmap.fill(QtGui.QColor(0, 0, 0, 0))
-    painter = QtGui.QPainter(pixmap)
-    painter.setRenderHints(QtGui.QPainter.Antialiasing);
-    svg.render(painter)
-    painter.end()
-    #pixmap = pixmap.scaledToHeight(height,QtCore.Qt.SmoothTransformation)
-    return QtGui.QPixmap.fromImage(pixmap)
 
 def loadSvg(fileName):
     ICONSIZE = 24
@@ -176,14 +150,6 @@ def loadSvg(fileName):
     svg.render(painter)
     painter.end()
     return pixmap
-
-#----------------------------------------------------------------------
-def clearMenu(menu=None):
-#----------------------------------------------------------------------
-    submenus = menu.findChildren(QtWidgets.QMenu)
-    menu.clear()
-    for sm in submenus:
-        sm.clear()
 
 #----------------------------------------------------------------------
 def populateMenu(parent=None,menuWidget=None,definition=[],
@@ -356,14 +322,6 @@ def setWidgetValue(widget,value):
         widget.setValue(int(value))
     elif isinstance(widget,CCP4Widgets.CDataFileView):
         widget.setDataFile(value)
-    '''
-    elif isinstance(widget,mgSelectionCombo):
-      widget.setText(value)
-    elif isinstance(widget,mgColourCombo):
-      widget.set_colour(value)
-    elif isinstance(widget,mgAtomPicker):
-      widget.setSelection(atomName=value)
-    '''
 
 #-------------------------------------------------------------------
 def getWidgetValue(widget=None,default='',baseType='text'):
@@ -394,30 +352,4 @@ def getWidgetValue(widget=None,default='',baseType='text'):
         value = int(widget.value())
     elif isinstance(widget,CCP4Widgets.CDataFileView):
         value = widget.getDataFile()
-    '''
-    elif isinstance(widget,mgSelectionCombo):
-        value = str(widget.text())
-    elif isinstance(widget,mgColourCombo):
-        value = str(widget.get_colour())
-    elif isinstance(widget,mgAtomPicker):
-        value = str(widget.selection())
-    '''
     return value
-
-def getWidgetSignal(widget=None,default='clicked()'):
-    signal = default
-    if isinstance(widget,QtWidgets.QComboBox):
-        signal = 'currentIndexChanged(int)'
-    elif isinstance(widget,QtWidgets.QLabel):
-        signal = 'linkActivated(const QString)'
-    elif isinstance(widget,QtWidgets.QLineEdit):
-        signal = 'editingFinished()'
-    elif isinstance(widget,QtWidgets.QAbstractButton):
-        signal = 'clicked(bool)'
-    elif isinstance(widget,QtWidgets.QDoubleSpinBox):
-        signal = 'valueChanged(double)'
-    elif isinstance(widget,QtWidgets.QSpinBox):
-        signal = 'valueChanged(int)'
-    return signal
-
-

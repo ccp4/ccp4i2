@@ -753,70 +753,6 @@ def applySelect(xrtnode,xmlnode,jobInfo={}):
     applySelect(child,xmlnode,jobInfo)
   return xrtnode
 
-def saveToFile(tree,fileName):
-    text = etree.tostring(tree, xml_declaration=True)
-    f = open(fileName,'w')
-    f.write(text)
-    f.close()
-
-def findallEval( srcexpr, xmlnode ):
-  """Evaluate a python expression containing findall elements deliminated by {}. The findall expressions are evaluated and return strings which are substituted into the expression. The expression is evaluated and the result returned."""
-  tgtexpr = ""
-  for i in range(srcexpr.count('{')):
-    i0 = srcexpr.find('{')
-    if i0 < 0: break
-    i1 = srcexpr.find('}',i0)
-    if i1 < 0: break
-    tgtexpr += srcexpr[:i0]
-    xp = srcexpr[i0+1:i1]
-    nodes = xmlnode.findall( xp )
-    tgtexpr += '"""'
-    for node in nodes:
-      tgtexpr += node.text
-    tgtexpr += '"""'
-    srcexpr = srcexpr[i1+1:]
-  tgtexpr += srcexpr
-  return eval( tgtexpr )
-
-
-"""
-class SearchableElement(etree.ElementBase):
-   def select(self,path):
-     l = self.findall(path)
-     if len(l)>0:
-       if '@' in path:
-         return l[0]
-       else:
-         return l[0].text
-     else:
-       return ''
-   def ifselect(self,path,default=False):
-     l = self.findall(path)
-     if len(l)>0:
-       return toBoolean(l[0].text)
-     else:
-       return default
-   def haspath(self,path):
-     l = self.findall(path)
-     if len(l)>0:
-       return True
-     else:
-       return False
-   def findall0(self,path):
-     l = self.findall(path)
-     if len(l)>0:
-       return l[0]
-     else:
-       None
-   def findall1(self,path):
-     l = self.findall(path)
-     if len(l)>0:
-       return l[0]
-     else:
-       return PARSER().makeelement("dummy")
-"""
-
-     
 
 def PARSER():
   I2XmlParser.insts = etree.XMLParser(encoding='utf-8')
@@ -961,9 +897,6 @@ class Container(ReportClass):
   def addGraphLineChooser(self,xrtnode=None,xmlnode=None,jobInfo=None,**kw):
       return self.addObjectOfClass(GraphLineChooser, xrtnode, xmlnode, jobInfo, **kw)
 
-  def addPictureGroup(self,xrtnode=None,xmlnode=None,jobInfo=None,**kw):
-      return self.addObjectOfClass(PictureGroup, xrtnode, xmlnode, jobInfo, **kw)
-
   def addDiv(self,xrtnode=None,xmlnode=None,jobInfo=None,**kw):
       return self.addObjectOfClass(Div, xrtnode, xmlnode, jobInfo, **kw)
 
@@ -972,12 +905,6 @@ class Container(ReportClass):
 
   def addPicture(self,xrtnode=None,xmlnode=None,jobInfo=None,**kw):
       return self.addObjectOfClass(Picture, xrtnode, xmlnode, jobInfo, **kw)
-
-  def addTitle(self,xrtnode=None,xmlnode=None,jobInfo=None,**kw):
-      return self.addObjectOfClass(Title, xrtnode, xmlnode, jobInfo, **kw)
-
-  def addLaunch(self,xrtnode=None,xmlnode=None,jobInfo=None,**kw):
-      return self.addObjectOfClass(Launch, xrtnode, xmlnode, jobInfo, **kw)
 
   def addDownload(self,xrtnode=None,xmlnode=None,jobInfo=None,**kw):
       return self.addObjectOfClass(Download, xrtnode, xmlnode, jobInfo, **kw)
@@ -1444,24 +1371,6 @@ class Report( Container ):
                         fileName = os.path.normpath(os.path.join(directory,obj.data_url()))
                         #print 'Report.makeXMLFiles fileName',fileName
                         self.errReport.extend(obj.data_as_xml(fileName=fileName))
-
-    def clearXMLFiles(self,directory=None):
-        if directory is None: directory = os.getcwd()
-        for ofClass in [Table, FlotGraph, Progress, Pre]:
-            objList = findChildren(self, ofClass)
-            for obj in objList:
-                if getattr(obj,'outputXml',False):
-                    fileName = os.path.normpath(os.path.join(directory,obj.data_url()))
-                    os.remove(fileName)
-                    #print 'Report.makeXMLFiles fileName',fileName
-
-    def addReference(self,xrtnode=None,xmlnode=None,jobInfo=None,**kw):
-        if xmlnode is None: xmlnode = self.xmlnode
-        if jobInfo is None: jobInfo = self.jobInfo
-        if not hasattr(self,'referenceList'): self.referenceList = [ ReferenceGroup() ]
-        obj = Reference(xrtnode=xrtnode, xmlnode = xmlnode, jobInfo = jobInfo, **kw)
-        self.referenceList[-1].append(obj)
-        return obj
 
     def addTaskReferences(self,taskName=None,drillDown=True):
         if taskName is None: taskName = self.TASKNAME
@@ -3865,47 +3774,7 @@ class Download:
         obj.set('onclick','window.buttonBridge.clicked('+a+')')
 
     return obj
-  
-class LaunchTask:
-  
-  counter = 0
-  def __init__(self,xrtnode=None,xmlnode=None,jobInfo={},**kw):
-    Launch.counter += 1
-    self.id = kw.get('id',None)
-    #self.internalId = 'launcher_'+str(jobInfo.get('jobid','xxx'))+'_'+str(Launch.counter)
-    self.jobId = jobInfo.get('jobid',None)
-    if xrtnode is not None:
-      self.taskName = xrtnode.get('taskName',None)
-      self.label = xrtnode.get('label',None)
-      self.ccp4_data_id = xrtnode.get('ccp4_data_id',ccp4_data_id)
-    
-    self.taskName = kw.get('taskName',self.taskName)
-    self.label = kw.get('label',self.label)
-    self.ccp4_data_id = kw.get('ccp4_data_id',self.ccp4_data_id)
 
-  def as_etree(self):
-
-    #root =etree.Element('root')
-    obj = etree.Element('object')
-    obj.set('class','qt_launch_task')
-    obj.set('type','x-ccp4-widget/CLaunchTaskButton')
-    if self.id is not None: obj.set('id',self.id)
-    #root.append(obj)
-
-    for key in ['label','taskName','ccp4_data_id']:
-      if getattr(self,key,None ) is not None:
-        p = etree.Element('param')
-        p.set('name',key)
-        p.set('value',getattr(self,key))
-        obj.append(p)
-    
-    if self.jobId is not None:
-      p = etree.Element('param')
-      p.set('name','jobId')
-      p.set('value',str(self.jobId))
-      obj.append(p)
-  
-    return obj
 
 class Picture:
 
@@ -4362,125 +4231,6 @@ class ReferenceGroup(Container):
       if m is not None: ref.articleLink = m.groups()[0].strip()
       if ref.source is not None: self.append(ref)
     #print 'ReferenceGroup.loadFromMedLine',ref
-
-
-
-class BaublesHtml:
-
-  ERROR_CODES = { 1 : { 'description' : 'Failed to find Baubles html file' }
-                }
-
-  def __init__(self,fileName):
-    if not os.path.exists(fileName):
-      raise CErrorReport(self.__class__,1,fileName)
-
-    self.fileNode = lxml_html.parse(fileName)
-
-  def convert(self,fileName):
-    #self.extendHead()
-    self.replaceApplets()
-    self.saveFile(fileName)
-
-
-  def extendHead(self,base=None,jsFileList=['xreport.js']):
-    if base is None: base = htmlBase()
-    head = self.fileNode.findall("/html/head[1]")
-
-    for jsFile in jsFileList:
-      script = etree.Element('script')
-      script.set('src',base+'/'+jsFile)
-      head.insert(0,script)
-
-  def replaceApplets(self):
-    appletDivList = self.fileNode.findall("//div[@class='applet']")
-    #print 'appletDivList',appletDivList
-
-    for appletDiv in appletDivList:
-      parent = appletDiv.getparent()
-      indx = parent.index(appletDiv)
-      tableName,graphTitleList,graphTypeList,graphColumnsList,columnNameList,columnDataList = self.parseLoggraph(appletDiv)
-      graphObj = FlotGraph(title=tableName)
-      for n in range(0,min(len(columnNameList),len(columnDataList))):
-        graphObj.addData(title=columnNameList[n],data=columnDataList[n])
-      for n in range(0,len(graphTitleList)):
-        plotObj = Plot(title=graphTitleList[n],description=graphTitleList[n])
-        graphObj.plots.append(plotObj)
-        for i in range(1,len(graphColumnsList[n])):
-          plotObj.append('plotline',text=columnNameList[graphColumnsList[n][i]], xcol=str(graphColumnsList[n][0]), ycol=str(graphColumnsList[n][i]))
-      
-      parent.insert(indx,graphObj.as_etree())
-      parent.remove(appletDiv)
-
-  def parseLoggraph(self,appletDiv):
-    graphTitleList = []
-    graphTypeList = []
-    graphColumnsList = []
-    tableList = appletDiv.findall(".//param[@name='table']")
-    #print 'parseLoggraph',appletDiv,tableList
-    if len(tableList)>0:
-      splitList = tableList[0].get('value').split('$$')
-      dum,tabText,graphText = splitList.pop(0).split('$')
-      tableName = tabText.split(':')[1].strip()
-      graphSplit = graphText.split(':')
-      #print 'parseLoggraph',graphSplit
-      for nn in range(0,len(graphSplit)/4):
-        graphTitleList.append(graphSplit[(nn*4)+1])
-        graphTypeList.append(graphSplit[(nn*4)+2])
-        columnText = graphSplit[(nn*4)+3].split(',')
-        graphColumnsList.append([])
-        for item in columnText:
-          try:
-            graphColumnsList[-1].append(int(item))
-          except:
-            print('Error interpreting columns for graph',graphTitleList[-1])
-      #print 'parseLoggraph',graphTitleList,graphTypeList,graphColumnsList
-      columnNameList = splitList.pop(0).split()
-      #print 'parseLoggraph columnNameList',columnNameList
-      columnDataList = []
-      nColumns = len(splitList[1].split(os.linesep)[1].split())
-      for n in range(0,nColumns): columnDataList.append([])
-      for row in splitList[1].split(os.linesep):
-        dataTextList = row.split()
-        if len(dataTextList)>0:
-          for ii in range(0,min(len(dataTextList),nColumns)):
-            try:
-              columnDataList[ii].append(float(dataTextList[ii]))
-            except:
-              columnDataList[ii].append(None)
-          
-      #print 'parseLoggraph',columnDataList
-      return tableName,graphTitleList,graphTypeList,graphColumnsList,columnNameList,columnDataList
-
-  def saveFile(self,fileName):
-    text = lxml_html.tostring(self.fileNode,method='html')
-    CCP4Utils.saveFile(fileName,text)
-
-
-"""
-$TABLE :table name:
-$GRAPHS :graph1 name:graphtype:column_list: :graph2 name:graphtype:column_list:
-        :graph 3 ...: ... $$
-column1_name column2_name ... $$ any_characters $$ numbers $$
-
-where:
-
-table name, graphN name
-    are arbitrary strings (without newline) 
-columnN_name
-    are arbitrary strings without tab, space, newline 
-graphtype
-    is 
-A[UTO]
-    for fully automatic scaling (e.g. ... :A:1,2,4,5:) 
-N[OUGHT]
-    for automatic y coordinate scaling, where y lowest limit is 0 (e.g. ... :N:1,2,4,5:) 
-XMIN|XMAXxYMIN|YMAX
-    for user defined scaling where XMIN ... are axis limits (e.g. ... :0|100x-1|1:1,2,4,5:) 
-any_characters
-    are treated as a comment. They can be eventually used as a human oriented table header 
-numbers
-    represents the table itself. (See parsing algorithm below) 
-"""
 
 
 #========================================================================================

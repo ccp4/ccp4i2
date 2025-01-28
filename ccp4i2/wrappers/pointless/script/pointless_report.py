@@ -410,13 +410,7 @@ class pointless_report(Report):
           message = '<div style="color:'+colour+';font-size:130%">'+message+'</div>'
         parent.append(message)
         parent.append("<br/>")
-      
-  # - - - - - - - - - - - - - - - - -
-  def isTwinWarning(self):
-    if len(self.xmlnode.findall('TwinWarning'))>0:
-      return True
-    return False
-      
+
   # - - - - - - - - - - - - - - - - -
   def Errors(self,parent=None, colour=True):
     fail = False

@@ -2106,26 +2106,6 @@ class LogGraph(QtWidgets.QWidget):
                 array = numpy.array(array2)
                 return array
 
-    def addTableFromEtreeAndSetVisible(self,table):
-        oldCount = self.table_combo.count()
-        self.data_combo.blockSignals(True)
-        graphs = []
-        graph = self.addTableFromEtree(table)
-        graphs.append(graph)
-        self.table_combo.setCurrentIndex(oldCount)
-        self.data_combo.setCurrentIndex(0)
-        self.graph.setCurrentIndex(oldCount)
-        self.graph.currentWidget().setCurrentIndex(0)
-        self.setCurrentData(0)
-        self.table_combo.blockSignals(False)
-        self.data_combo.blockSignals(False)
-        return graphs
-
-    def addTableFromDataIslandDivs(self,tree=None):
-            print("addTableFromEtree"); sys.stdout.flush()
-            print("addTableFromEtree",tree); sys.stdout.flush()
-            print(etree.tostring(t,pretty_print=True))
-
     def addTableFromEtree(self,tree=None):
         t = tree
         ttitle = t.attrib.get('title','').strip()
@@ -3781,46 +3761,6 @@ def CCP4LogToEtree(b):
         bigtree.append(tree)
     return bigtree
 
-def CCP4LogToXML(b):
-    splits = b[b.find("$TABLE"):].split("$TABLE")
-    newsplits = []
-    gs = []
-
-    status_xml = ""
-    header ="""<?xml version="1.0" encoding="UTF-8" ?>\n"""
-    status_xml += header
-    
-    NSMAP = {'xsi':"http://www.w3.org/2001/XMLSchema-instance"}
-    NS = NSMAP['xsi']
-    location_attribute = '{%s}noNamespaceSchemaLocation' % NS
-    bigtree = etree.Element("CCP4ApplicationOutput",nsmap = NSMAP,attrib={location_attribute: 'http://www.ysbl.york.ac.uk/~mcnicholas/schema/CCP4ApplicationOutput.xsd'})
-    for ns in splits[1:]:
-        ns = "$TABLE"+ns
-        newsplits.append(ns)
-        table = CCP4Table(ns)
-        tree = table.toEtree()
-        bigtree.append(tree)
-
-    status_xml += etree.tostring(bigtree,encoding='utf-8', pretty_print=True)
-    return status_xml
-
-def CCP4LogFileNameToXML(f):
-    if f.endswith('.log') or f.endswith('.txt'):
-        fo = open(f)
-        b = fo.read()
-        fo.close()
-        return CCP4LogToXML(b)
-    else:
-        return CCP4LogToXML("")
-
-def CCP4LogFileNameToEtree(f):
-    if f.endswith('.log') or f.endswith('.txt'):
-        fo = open(f)
-        b = fo.read()
-        fo.close()
-        return CCP4LogToEtree(b)
-    else:
-        return CCP4LogToEtree("")
 
 if __name__ == "__main__":
     if "-quit" in sys.argv:
@@ -3833,19 +3773,6 @@ if __name__ == "__main__":
     else:
         #app.addLibraryPath(os.path.join(os.environ['CCP4MG'],"QtPlugins"))
         app.addLibraryPath(os.path.join(os.path.dirname(__file__),'..',"QtPlugins"))
-
-    """
-    t = 0
-    timer = QtCore.QTimer()
-    win = QtMatplotlibWidget()
-
-    def addRandomPoint():
-        global t, timer, win
-        t = t + 1
-        v = random.randint(1,20)
-        print t*timer.interval()/1000., v
-        win.addPoint((t,v))
-    """
 
     @QtCore.Slot(dict)
     def regionTest(vals):

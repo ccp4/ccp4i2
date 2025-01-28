@@ -528,28 +528,6 @@ class CTaskaimless_pipe(CCP4TaskWidget.CTaskWidget):
 
         print("**returning")
         return (not anyunknowncell)
-
-    '''
-    # -------------------------------------------------------------
-    def getInputBatches( self ) :
-        input_batches = ""
-        for i in range(len(self.container.inputData.UNMERGEDFILES)):
-            reflection_list = hklfile.ReflectionList()
-            reflection_list.init(str(self.container.inputData.UNMERGEDFILES[i].file.fullPath))
-            #            print(self.container.inputData.UNMERGEDFILES[i].file.fullPath)
-            input_batches += reflection_list.formatBatchNumberlist()
-            #print(reflection_list.formatBatchNumberlist())
-            input_batches += ", "
-        
-        #print(dir(self.input_batches_label))
-        if self.input_batches_label is not None:
-            self.input_batches_label.setText(input_batches)
-        
-        if self.container.controlParameters.EXCLUDE_BATCH:
-            return True
-        else:
-            return False
-    '''
  
     # -------------------------------------------------------------
     def scaleProtocol(self):
@@ -875,10 +853,6 @@ class CTaskaimless_pipe(CCP4TaskWidget.CTaskWidget):
     @QtCore.Slot()
     def handleTie_bzero_sd(self):
         self.container.controlParameters.TIE_BZERO.set(True)
-
-    # -------------------------------------------------------------
-    def handleAutocutoff(self):
-        self.container.controlParameters.AUTOCUTOFF.set(True)
 
     # -------------------------------------------------------------
     def openHKLIN_REF( self ) :

@@ -551,9 +551,6 @@ class IconProvider(QtWidgets.QFileIconProvider):
         self._filters = {}
         self._icon_cache = {}
 
-    def setIconForFilter(self, icon, cfilter):
-        self._filters[icon] = cfilter
-
     def setIconsForFilters(self, filters):
         self._filters = filters
 

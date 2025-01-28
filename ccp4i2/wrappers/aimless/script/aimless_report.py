@@ -2042,18 +2042,6 @@ class aimless_report(Report):
       return sdcd
 
     # - - - - - - - - - - - - - - - - -
-    def displaySDcorrectionParameters(self,parent=None):
-      ''' call SDcorrectionParameters first to extract values '''
-      if len(self.sdcorrparams) == 0: return
-      sdheader = "Parameters for improvement of sd(I) estimates: "
-      sdheader += "sd'(I) = SdFac * Sqrt[sd(I)^2 + SdB I + (SdAdd I)^2]\n"
-      sdheader += SDcorrectionData.header((len(self.sdcorrparams)>1))
-      parent.append(html_linebreak(sdheader))
-      
-      for sdc in self.sdcorrparams:
-        parent.append(html_linebreak(sdc.as_string()))
-
-    # - - - - - - - - - - - - - - - - -
     def displayISa(self):
       """ ISa values """
       s = ""

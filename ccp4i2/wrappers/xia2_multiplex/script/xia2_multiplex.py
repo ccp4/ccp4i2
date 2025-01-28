@@ -107,30 +107,6 @@ class Cxia2_multiplex(CPluginScript):
 
         return CPluginScript.SUCCEEDED
 
-    def extract_integrated_dials_files(self, datafiles_dir):
-
-        results = []
-
-        # Start by looking for DIALS files from a xia2/dials run
-        experiments = glob.glob(os.path.join(datafiles_dir, "*.expt"))
-        reflections = glob.glob(os.path.join(datafiles_dir, "*.refl"))
-
-        # Exclude scaled files and sort
-        experiments = sorted(e for e in experiments if not e.endswith("_scaled.expt"))
-        reflections = sorted(e for e in reflections if not e.endswith("_scaled.refl"))
-
-        for expt, refl in zip(experiments, reflections):
-            results.append((expt, refl))
-
-        if results:
-            return results
-
-        # If there are no DIALS files, then import integrated MTZ to DIALS files
-        self._disable_geometry_refinement = False
-        # XXX TODO
-
-        return results
-
     @staticmethod
     def _extract_data_from_json(json_txt):
         """Get basic data from a xia2.multiplex.json text"""

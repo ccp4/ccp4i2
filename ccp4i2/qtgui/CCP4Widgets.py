@@ -345,17 +345,6 @@ class CPixmapManager:
         else:
             return None
 
-class CIntValidator(QtGui.QIntValidator):
-    '''Reimplementation of Qt validator'''
-
-    def __init__(self, bottom=None, top=None, parent=None):
-        QtGui.QIntValidator.__init__(self, bottom, top, parent)
-
-    def validate(self, input, pos):
-        if len(input) == 0:
-            return (QtGui.QValidator.Acceptable, pos)
-        return QtGui.QIntValidator.validate(self, input, pos)
-
 
 class CDoubleValidator(QtGui.QDoubleValidator):
     '''Reimplementation of Qt validator'''
@@ -832,12 +821,6 @@ class CRadioButtonGroup(QtWidgets.QButtonGroup, CBaseWidget):
         QtWidgets.QButtonGroup.addButton(self,but,self.lastButtonId)
         return but
 
-    def removeRadioButton(self, value=None):
-        for but in self.buttons():
-            if str(but.objectName()) == value:
-                QtWidgets.QButtonGroup.removeButton(self, but)
-                return
-
     def setValue(self, value=None):
         #print 'CRadioButtonGroup.setValue',value,self.buttons()
         value = str(value)
@@ -862,18 +845,6 @@ class CRadioButtonGroup(QtWidgets.QButtonGroup, CBaseWidget):
 
     def setToolTip(self,tip):
         for but in self.buttons(): but.setToolTip(tip)
-
-
-class CBooleanRadioButtonGroup(CRadioButtonGroup):
-
-    def __init__(self,parent=None,qualifiers={},**kw):
-        qualis = {}
-        qualis.update(qualifiers)
-        qualis.update(kw)
-        CRadioButtonGroup.__init__(self,parent=parent,qualifiers=qualis)
-        menuText = qualis.get('menuText',[NotImplemented,NotImplemented])
-        self.addRadioButton(True,menuText[0])
-        self.addRadioButton(False,menuText[1])
 
 
 class CFolder(QtWidgets.QFrame):
@@ -2529,9 +2500,6 @@ class CDataFileView(CComplexLineWidget):
     self.jobCombo.setCurrentIndex(resetIndex)
     self.jobCombo.blockSignals(False)
 
-  def showEditAnnotation(self):
-    pass
-
   def openInfo(self,label=None,sourceFileAnnotation=''):
     '''Open the file info window for user to enter provenance of newly imported file'''
     #print 'CDataFileView.openInfo',self.model,self.model.exists(),self.model.getSourceFileName()
@@ -3710,11 +3678,6 @@ class CTreeView(CComplexLineWidget):
       self.listWidget.insert.connect(self.addLine)
       self.listWidget.delete.connect(self.deleteLine)
       self.listWidget.leftMouseRelease.connect(self.handleRowChange)
-
-  def resetAbstractModel(self):
-    self.abstractModel = CTreeViewAbstractItemModel(self,self.model)
-    self.abstractModel.setHeaderData(self.columnHeaders)
-    self.listWidget.setModel(self.abstractModel)
 
   def setModel(self,value):
     self.model = value
@@ -4900,24 +4863,6 @@ class CSearchPathView(CComplexLineWidget):
     line.addWidget(self.widgets['path'])
     self.layout().addLayout(line)
 
-class CFramelessWarning(QtWidgets.QDialog):
-  def __init__(self,parent=None,message=None,position=None):
-    QtWidgets.QDialog.__init__(self,parent=parent)
-    #print 'CFramelessWarning',message
-    self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.Dialog)
-    self.setFocusPolicy(QtCore.Qt.NoFocus)
-    self.setLayout(QtWidgets.QGridLayout())
-    self.layout().setSpacing(3)
-    self.layout().setContentsMargins(3,3,3,3)
-    self.label = QtWidgets.QLabel(self)
-    self.layout().addWidget(self.label,1,0)
-    self.label.setText(message)
-    self.setGeometry(position.x(),position.y(),150,10)
-    self.show()
-    self.timer = QtCore.QTimer()
-    self.timer.setSingleShot(True)
-    self.timer.timeout.connect(self.close)
-    self.timer.start(3000)
 
 class CJobSelectionCombo(QtWidgets.QComboBox):
   def __init__(self,parent,projectId=None,ifOneJob=False):
@@ -5309,36 +5254,3 @@ class CTasksModel(QtCore.QAbstractItemModel):
     if parentItem == self.rootItem:
       return QtCore.QModelIndex()
     return self.createIndex(parentItem.row(), 0, parentItem)
-
-class CTreeComboBox(QtWidgets.QComboBox):
-  # Represent a tree in a combobox?
-  #from  http://qt.shoutwiki.com/wiki/Implementing_QTreeView_in_QComboBox_using_Qt-_Part_2
-
-  def __init__(self,parent):
-    QtWidgets.QComboBox.__init__(self,parent)
-    self.skipNextHide = False
-    self.setView(QtWidgets.QTreeView(self))
-    self.view().viewport().installEventFilter(self)
-    QtWidgets.QComboBox.resize(self,200,30)
-
-
-  def eventFilter(self,object,event):
-    if event.type() == QtCore.QEvent.MouseButtonPress and object == self.view().viewport():
-        mouseEvent = QtGui.QMouseEvent(event)
-        index = self.view().indexAt(mouseEvent.pos())
-        #print 'eventFilter',self.view().visualRect(index).contains(mouseEvent.pos())
-        if  not self.view().visualRect(index).contains(mouseEvent.pos()):
-           self.skipNextHide = True
-    return False
-
-  def showPopup(self):
-    #self.setRootModelIndex(self.model().rootItem.index())
-    QtWidgets.QComboBox.showPopup(self)
-
-  def hidePopup(self):
-    self.setRootModelIndex(self.view().currentIndex().parent())
-    self.setCurrentIndex(self.view().currentIndex().row())
-    if self.skipNextHide:
-      self.skipNextHide = False
-    else:
-      QtWidgets.QComboBox.hidePopup(self)

@@ -30,16 +30,6 @@ class logScraper(object):
                          ]
         self._currentBlockHandler = None
 
-    def scrapeTest(self):
-        logFile = getLog()
-        self.scrapeBuffer(logFile)
-        
-    def scrapeBuffer(self, logFile):
-        lines = logFile.split("\n")
-        for line in lines:
-            self.processLine(line)
-        #print etree.tostring(self.xmlroot,pretty_print=True)
-
     def scrapeFile(self, fileName):
         self._oldFlushXML = self.flushXML
         self.flushXML = self._noOp

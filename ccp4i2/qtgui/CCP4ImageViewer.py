@@ -109,12 +109,6 @@ class CImageViewer(CCP4AbstractViewer.CAbstractViewer):
   def isScaleable(self):
     return 1
 
-  def openScale(self):
-    self.scaleFrame.show()
-
-  def closeScale(self):
-    self.scaleFrame.hide()
-
   def scale(self,value):
     print('ImageViewer.scale',value)
     if not self.pixmap or not self.fileName: return

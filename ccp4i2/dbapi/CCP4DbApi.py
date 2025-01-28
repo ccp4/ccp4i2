@@ -469,43 +469,8 @@ class CDbApi(CObject):
             for item in KEYTYPELIST[fmax:]:
                 self.execute(' INSERT INTO KeyTypes (KeyTypeID,KeyTypeName,KeyTypeDescription) VALUES (?,?,?)',item)
 
-    def loadFileAssociationTypes(self):
-        self.execute('SELECT MAX(FileAssociationTypeID) FROM FileAssociationTypes')
-        fmaxList = self.fetchAll2Py(int)
-        if fmaxList[0] is None:
-            fmax = 0
-        else:
-            fmax = fmaxList[0] + 1
-        #print 'loadFileTypes',fmaxList,fmax
-        if fmax<len(FILEASSOCIATIONTYPELIST):
-            print('Loading new file association type into database',FILEASSOCIATIONTYPELIST[fmax:])
-            for item in FILEASSOCIATIONTYPELIST[fmax:]:
-                self.execute(' INSERT INTO FileAssociationTypes (FileAssociationTypeID,FileAssociationTypeName,FileAssociationTypeDescription) VALUES (?,?,?)', item)
-        self.execute('SELECT MAX(FileAssociationRoleID) FROM FileAssociationRoles')
-        fmaxList = self.fetchAll2Py(int)
-        if fmaxList[0] is None:
-            fmax = 0
-        else:
-            fmax = fmaxList[0] + 1
-        #print 'loadFileTypes',fmaxList,fmax
-        if fmax<len(FILEASSOCIATIONROLELIST):
-            print('Loading new file association roles into database',FILEASSOCIATIONROLELIST[fmax:])
-            for item in FILEASSOCIATIONROLELIST[fmax:]:
-                self.execute(' INSERT INTO FileAssociationRoles (FileAssociationRoleID,FileAssociationRoleName,FileAssociationRoleDescription,FileAssociationTypeID) VALUES (?,?,?,?)',item)
-
-    def setPreference(self,key=None,value=None):
-        if key in self._preferences:
-            self._preferences[key] = value
-        else:
-            pass
-
     def bleep(self,args):
         print('DbApi.bleep', args)
-
-    def cacheTextLabels(self):
-        self.execute("SELECT StatusID,StatusText FROM JobStatus ORDER BY StatusID")
-        self.fetchAll2PyList(self, toType=[int, str])
-        # ?? What about the JOB_STATUS_UNKNOWN etc.
 
     def loadSchema(self,fileName=None):
         if fileName is  None:
@@ -1289,24 +1254,6 @@ class CDbApi(CObject):
       #print 'uniqueId',table,identifier
       return uuid.uuid1().hex
 
-    def integerId(self,table,identifier):
-      self.execute('SELECT LastID FROM LastUniqueIds WHERE TableName=?',(table,))
-      rv = self.fetchAll2Py(int)
-      if len(rv) == 1:
-        newValue = rv[0] + 1
-        self.execute('UPDATE LastUniqueIds SET LastID=? WHERE TableName=?',(newValue,table,))
-        return newValue
-      else:
-        args = (identifier,table)
-        self.execute('SELECT '+identifier+' FROM '+table+' ORDER BY '+identifier)
-        l = self.fetchAll2Py(toType=int)
-        if len(l)==0:
-          newValue = 1
-        else:
-          newValue = l[-1]+1
-        self.execute('INSERT INTO LastUniqueIds (TableName,LastID) VALUES (?,?)',(table,newValue))
-        return newValue
-
     def createUser(self, userName, userPassword=None, userRole=USER_ROLE_USER):
         if not self._userRole in [USER_ROLE_MANAGER, USER_ROLE_OWNER]:
             raise CException(self.__class__, 106, 'You are ' + self._userName + ' calling createUser')
@@ -1891,38 +1838,7 @@ TaskTitle TEXT );''')
       return rv
 
     def getProjectPermission(self,projectId=None,userName=None,projectName=None,jobId=None):
-
       return 4
-
-      if projectName is None and projectId is None and jobId is not None:
-        projectId = self.getJobInfo(jobId,'projectid')
-
-      # Is it cached?
-      if projectName is not None:
-        permission = self._projectPermissions.get(userName,{}).get(projectName,None)
-      else:
-        permission = self._projectPermissions.get(userName,{}).get(projectId,None)
-      if permission is not None: return permission
-
-      # Retrieve from database
-      if projectId is None:
-        if projectName is not None:
-          projectId = self.getProjectId(projectName)
-      if userName is None: userName = self._userName
-      userId = self.getUserId(userName)
-      #print 'getProjectPermission userName,userId',userName,userId,type(userId),'projectId',projectId,type(projectId)
-      arg = (UUIDTYPE(projectId),userId)
-      self.execute('SELECT PrivilegeID FROM ProjectsUsersPermissions  WHERE ProjectID = ? AND UserID = ?',arg)
-      rv = self.fetchAll2Py(int)
-      if len(rv)==0:
-        raise CException(self.__class__,108,'For '+str(projectId)+':'+str(userName))
-      else:
-        if userName not in self._projectPermissions: self._projectPermissions[userName] = {}
-        if projectName is not None:
-          self._projectPermissions[userName][projectName] = rv[0]
-        else:
-          self._projectPermissions[userName][projectId] = rv[0]
-        return rv[0]
 
     def getProjectJobFileName(self,projectId=None,fileName=None,jobNumber="1",subJobNumber=""):
         if subJobNumber != "":
@@ -1999,10 +1915,6 @@ TaskTitle TEXT );''')
       self.execute('SELECT ProjectID,ProjectDirectory,ProjectName FROM Projects WHERE LastCleanupTime IS NULL OR LastAccess > LastCleanupTime - ?',(period,))
       retList = self.fetchAll2PyList([UUIDTYPE,str,str])
       return retList
-
-    def lastProjectCleanup(self):
-      self.execute('SELECT MAX (LastCleanupTime) FROM Projects')
-      return self.db.fetchAll2Py(float)[0]
 
     def getProjectFollowFromJobId(self,projectId=None):
       if projectId in self._followFromJob:
@@ -2099,22 +2011,6 @@ TaskTitle TEXT );''')
 
       return rv[0][0],rv[0][1],self.getProjectPermission(projectId=rv[0][1],userName=userName)
 
-    def setProjectPrivileges(self,userNameList=[],projectNameList=[],privilege=PRIVILEGE_READ):
-      '''Enable another user access to projects'''
-      pass
-
-    def closeProject(self,projectName):
-      '''Prevent any further entries - remove all privileges'''
-      pass
-
-    def copyProject(self,projectName):
-      '''Copy project to in-memory db and return'''
-      pass
-
-    def archiveProject(self,projectName):
-      '''Make XML copy? and delete'''
-      pass
-
     def exportJobSelectionCommand(self,projectId=None,after=None,status=None,jobList=None):
       if jobList is not None:
         # Expand jobList to include child jobs
@@ -2154,25 +2050,6 @@ TaskTitle TEXT );''')
           jobSelectCom = jobSelectCom[0:-1] +')'
       jobSelectCom = jobSelectCom + ' ORDER BY Jobs.CreationTime'
       return jobSelectCom,jobSelectArgs
-
-    def getJobsByTime(self,projectId=None,before=None,after=None,mode='JobID',topLevel=False,status=None,jobList=None):
-      jobSelectCom,jobSelectArgs = self.exportJobSelectionCommand(projectId=projectId,after=after,status=status,jobList=jobList)
-      com = 'SELECT '+mode+' FROM Jobs ' +  re.sub(r'Jobs\.','',jobSelectCom)
-
-      if topLevel: com = com + ' AND parentJobId IS NULL'
-      #self.setDiagnostic(True)
-      self.execute(com,jobSelectArgs)
-      #self.setDiagnostic(False)
-      return self.fetchAll2Py(UUIDTYPE)
-
-
-    def getUnfinishedExportJobs(self,projectId=None,after=None,status=None,jobList=None):
-      status = [JOB_STATUS_PENDING,JOB_STATUS_INTERRUPTED]
-      jobSelectCom,jobSelectArgs = self.exportJobSelectionCommand(projectId=projectId,after=after,status=status,jobList=jobList)
-      com = 'SELECT JobId FROM Jobs ' + re.sub(r'Jobs\.','',jobSelectCom)
-      self.execute(com,jobSelectArgs)
-      jobList = self.fetchAll2Py(UUIDTYPE)
-      return jobList
 
     def getFilesUsedInJobList(self,jobList=None):
       # Utility to aid exporting a limited number of job and ensuring that we get the input files
@@ -2514,18 +2391,7 @@ TaskTitle TEXT );''')
           xDataItem = self.getXDataEtree(xDataId)
           if xDataItem is not None: dataBranch.append(xDataItem)
         root.append(dataBranch)
-
       return root,errReport
-
-    def getJobOutputHtmlEtree(self,jobId=None,projectId=None):
-      root = etree.Element('div')
-      root.set('id','result_data')
-      outputFileIds = self.getJobFiles(jobId=jobId)
-      for fileId in outputFileIds:
-        root.append(self.getFileHtmlEtree(fileId,projectId=projectId))
-
-      return root
-
 
     def getFileEtree(self,fileId,fileInfo={},role=FILE_ROLE_OUT,projectId=None):
       # !!!! Does not include jobId !! Assume this is only used in heirarchical representation below jobs
@@ -2539,15 +2405,7 @@ TaskTitle TEXT );''')
           item = etree.Element(xmlTag)
           item.text = str(fileInfo[itemName])
           root.append(item)
-      '''
-      if  fileInfo['projectid'] is None:
-        projectname = 'FULLPATH'
-      else:
-        projectname = self.getProjectInfo(fileInfo['projectid'],'projectname')
-      item = etree.Element('project')
-      item.text = str(projectname)
-      root.append(item)
-      '''
+
       item = etree.Element('dbFileId')
       item.text = str(fileId)
       root.append(item)
@@ -2698,9 +2556,6 @@ TaskTitle TEXT );''')
       #self.setDiagnostic(False)
       self.commit()
       self.projectUpdated.emit({'projectId':projectId,'key':key,'value':value})
-
-    def updateProjectOwner(self,userName):
-      pass
 
     def deleteProject(self,projectId=None,deleteChildren=False):
       '''Delete project and all jobs & permissions'''
@@ -3305,20 +3160,6 @@ TaskTitle TEXT );''')
       #print 'getProjectJobListInfo rv',rv
       if maxJobs is not None and len(rv)>maxJobs: rv = rv[0:maxJobs]
 
-      """
-      if 'performanceclass' in itemList:
-        DM = CCP4DataManager.DATAMANAGER()
-        self.execute('SELECT JobId,XDataClass,XDataXml FROM XData WHERE JobId IN (SELECT JobId FROM Jobs WHERE ProjectId=?) AND XDataClass IN '+CCP4PerformanceData.performanceIndicatorClasses(),(projectId,))
-        perfList = self.fetchAll2PyList([UUIDTYPE,str,str])
-        perfDict = {}
-        for jid,cls,data in perfList:
-          try:
-            perfDict[jid] = DM.getClass(cls)()
-            perfDict[jid].setEtree(etree.fromstring(data))
-          except:
-            print 'Error in CDbApi.getProjectJobListInfo creating Performace Indicator data object'
-        """
-
 
       perfDict = {}
       if 'performance' in itemList or 'performanceclass' in itemList:
@@ -3381,12 +3222,6 @@ TaskTitle TEXT );''')
       ret = {}
       for item in itemList:
         ii = ii + 1
-        # Skip converting time/data format - leave it to gui preferences
-        #if item in ['creationtime','finishtime']:
-        #  if jobValue[ii] is None:
-        #    ret[item] = None
-        #  else:
-        #    ret[item] = str(CCP4Annotation.CTime(value=jobValue[ii]))
         if item == 'status':
           try:
             ret[item] = JOB_STATUS_TEXT[jobValue[ii]]
@@ -3583,30 +3418,6 @@ TaskTitle TEXT );''')
       self.execute(com,args)
       return self.fetchAll2Py(UUIDTYPE)
 
-    '''
-    def getJobsByStatus(self,status=JOB_STATUS_QUEUED,projectId=None):
-      if projectId is None:
-        self.execute('SELECT JobID FROM Jobs WHERE status = ? ORDER BY CreationTime',(status,))
-        return self.fetchAll2Py(UUIDTYPE)
-      else:
-        self.execute('SELECT JobID FROM Jobs WHERE status = ? AND ProjectId=? ORDER BY CreationTime',(status,projectId))
-        return self.fetchAll2Py(UUIDTYPE)
-    '''
-
-    def createFileType(self,fileTypeName,fileTypeDescription=None):
-      try:
-        self.getFileTypeId(fileTypeName)
-      except:
-        pass
-      else:
-        # Already id for this fileTypeName - bad
-        raise CException(self.__class__,165,fileTypeName)
-
-      uniqueID = self.integerId(table='FileTypes',identifier='FileTypeID')
-
-      self.execute("INSERT INTO FileTypes (FileTypeID,FileTypeName,fileTypeDescription) VALUES( ?,?,?)",
-                   (uniqueID,fileTypeName,fileTypeDescription ) )
-      self.commit()
 
     def getFileTypeId(self,fileTypeName=None,mimeType=None):
       if fileTypeName is not None:
@@ -3659,13 +3470,6 @@ TaskTitle TEXT );''')
       #print 'Database loading file data for job',jobId,projectId,projectName,dbOutputData,roleList
       preceedingJobs = []
 
-      #if container.header.pluginTitle.isSet():
-        #print 'gleanJobFiles update jobtitle',container.header.pluginTitle.__str__()
-      #  jInfo = self.getJobInfo(jobId,'jobtitle')
-      #  if jInfo is not None and jInfo != "":
-      #    print 'CDbApi.gleanJobFiles jobtitle already set to',jInfo,'not updating'
-      #  else:
-      #    self.updateJob(jobId=jobId,key='jobtitle',value=container.header.pluginTitle.__str__())
       if container.header.pluginVersion.isSet():
         self.updateJob(jobId=jobId,key='taskversion',value=container.header.pluginVersion.__str__())
 
@@ -3760,14 +3564,6 @@ TaskTitle TEXT );''')
                     errorReport.extend(e,stack=False)
                   except Exception as e:
                     errorReport.append(self.__class__,172,str(e),stack=False)
-                  '''
-                  try:
-                    self.createFileUse(jobId=jobId,fileId=fileId,role=file_role)
-                  except CException as e:
-                    errorReport.extend(e)
-                  except Exception as e:
-                    errorReport.append(self.__class__,172,str(e))
-                  '''
 
                 else:
                   # File already in in db so add a FileUse record
@@ -5053,11 +4849,6 @@ TaskTitle TEXT );''')
       #print 'projectTagExists',ret
       return len(ret)>0
 
-    def deleteProjectTag(self,projectId=None,tagId=None):
-       self.execute("DELETE FROM ProjectTags WHERE ProjectID = ? AND TagId = ?",(projectId,tagId))
-       self.commit()
-       self.projectTagsChanged.emit(projectId)
-
     def createTag(self,text,parentTagId=None):
       self.execute("SELECT tagId FROM Tags WHERE text = ?",[text,])
       ret = self.fetchAll2Py(UUIDTYPE)
@@ -5154,10 +4945,6 @@ TaskTitle TEXT );''')
         args = (directory,alias)
         self.execute("UPDATE DirectoryAliases SET Directory= ? WHERE DirectoryAlias= ?",args)
       self.commit()
-
-    def deleteDirectoryAlias(self,alias):
-      # TBD
-      pass
 
     def getAliasDirectory(self,alias=None):
       if alias is None:
@@ -5338,23 +5125,6 @@ TaskTitle TEXT );''')
 
       return []
 
-
-
-    def getJobXData(self,jobId=None,role=FILE_ROLE_OUT,mode='xdataid'):
-      outputList = []
-
-      if role == FILE_ROLE_OUT:
-        # Search the Files table for output files
-        args = [jobId,]
-        seleList = 'JobID = ?'
-
-        if mode == 'xdataid':
-          self.execute('SELECT xdataid FROM XData WHERE '+seleList,args)
-          outputList = self.fetchAll2Py(UUIDTYPE)
-
-          return outputList
-      return []
-
     def getKeyTypeId(self,keyTypeName):
       u = (keyTypeName,)
       self.execute('SELECT KeyTypeID FROM KeyTypes WHERE KeyTypeName = ?',u)
@@ -5377,21 +5147,6 @@ TaskTitle TEXT );''')
         #print 'createJobKeyValues args',args
         self.execute("INSERT INTO JobKeyValues (JobId,KeyTypeId,Value) VALUES (?,?,?)",args)
       self.commit()
-
-    def updateJobKeyValue(self,jobId=None,keyTypeId=None,keyTypeName=None,value=None):
-      if keyTypeId is None and keyTypeName is not None:
-        keyTypeId = self.getKeyTypeId(keyTypeName)
-      if isinstance(value,str):
-        self.db.execute("UPDATE JobKeyCharValues SET Value = ? WHERE JobID = ? AND KeyTypeId = ?",(value,jobId,keyTypeId))
-      else:
-        self.db.execute("UPDATE JobKeyValues SET Value = ? WHERE JobID = ? AND KeyTypeId = ?",(float(value),jobId,keyTypeId))
-      self.commit()
-
-    def deleteJobKeyValue(self,jobId=None,keyTypeId=None,keyTypeName=None):
-      if keyTypeId is None and keyTypeName is not None:
-        keyTypeId = self.getKeyTypeId(keyTypeName)
-      self.db.execute('DELETE FROM JobKeyValues WHERE JobId = ? AND KeyTypeId = ?',(jobId,keyTypeId,))
-      self.db.execute('DELETE FROM JobKeyCharValues WHERE JobId = ? AND KeyTypeId = ?',(jobId,keyTypeId,))
 
     def getFileAssociationTypeId(self,fileAssociationTypeName):
       u = (fileAssociationTypeName,)
@@ -5416,20 +5171,6 @@ TaskTitle TEXT );''')
           self.createFileAssociationMember(self,fileAssociationId=pid,fileId=fileItem[0],roleId=fileItem[1],commit=False)
       self.commit()
       return pid
-
-    def deleteFileAssociation(self,fileAssociationId):
-      self.db.execute('DELETE FROM FileAssociations WHERE FileAssociationId = ?',(fileAssociationId,))
-      self.db.execute('DELETE FROM FileAssociationMembers WHERE FileAssociationId = ?',(fileAssociationId,))
-      self.commit()
-
-    def addFileAssociationMember(self,fileAssociationId=None,fileId=None,roleId=0,commit=True):
-      self.execute("INSERT INTO FileAssociationMembers (FileID,FileAssociationID,RoleId) VALUES (?,?,?)",
-                   (fileId,fileAssociationId,roleId) )
-      if commit: self.commit()
-
-    def removeFileAssociationMember(self, fileAssociationId=None,fileId=None,commit=True):
-      self.db.execute('DELETE FROM FileAssociationMembers WHERE FileId = ? AND FileAssociationId = ?',(fileId,fileAssociationId))
-      if commit: self.commit()
 
     def getFileAssociationInfo(self,fileAssociationId=None,fileId=None,typeId=None,roleId=None):
 
@@ -5914,12 +5655,6 @@ class CDbXml(QtCore.QObject):
     self.execute("DELETE FROM FileUses WHERE FileID = ?",(fileId,))
     self.fileDeleted.emit(fileId)
 
-  #def createFileUse(self,root=None,jobId=None):    # KJS : This function is a mess. Need to revise later.
-  #  args = [fileId,jobId,role,]
-  #  if self._diagnostic: print 'CDbApi.createFileUse',args
-  #  self.execute("INSERT INTO FileUses (FileID,JobID,RoleID) VALUES (?,?,?)",args)
-  #  self.commit()
-
   def makeAllSql(self):
     self.sql = {}
     self.makeSql('Jobs',self.db.JOBITEMS)
@@ -5961,23 +5696,6 @@ class CDbXml(QtCore.QObject):
       com = com + ','+item
       val = val + ',?'
     self.sql[tableName] = com + ")  VALUES ("+val+")"
-
-
-  def loadJobsFromTable(self,commitPolicy=None):
-    if commitPolicy is None: commitPolicy = CDbXml.COMMIT_POLICY_NO_ERRORS
-    root = self.loadFile()
-    if root is None:
-      self.errReport.append(self.__class__,1,str(self.xmlFile))
-      return False
-    #print 'loadTable root',root.tag
-
-    if commitPolicy == CDbXml.COMMIT_POLICY_NO_COMMIT:
-      return False
-    elif commitPolicy == CDbXml.COMMIT_POLICY_NO_ERRORS and  self.errReport.maxSeverity()>Severity.WARNING:
-      return False
-    else:
-      self.db.commit()
-      return True
 
 
   def loadTable(self,commitPolicy=None,newJobNumber=None,selectJobIdList=None,updateJobStatus=False):
@@ -6734,13 +6452,6 @@ class CDbXml(QtCore.QObject):
       for column in ['jobnumber','finishtime','status','evaluation','jobtitle']:
         self.db.execute('UPDATE Jobs SET '+column+'=? WHERE JobId =?',(row[self.db.JOBITEMS.index(column)],row[0]))
 
-    '''
-    if self.stats.get('importMax',None) is not None:
-      lastJobNumber = str(int(self.stats['importMax']) + self.stats['incrJobNumber'])
-      print 'importTempTables lastJobNumber',lastJobNumber
-      self.db.execute('Update Projects SET LastJobNumber=? WHERE ProjectId=?',(lastJobNumber,self.projectId))
-    else:
-    '''
     self.db.resetLastJobNumber(self.projectId,commit=False)
     self.db.commit()
     self.db.execute('PRAGMA foreign_keys = ON')
@@ -6867,155 +6578,6 @@ class CDbXml(QtCore.QObject):
           rv.append(None)
           self.errReport.append(self.__class__,212,'Data type:'+str(att)+' is: '+str(val))
     return rv
-
-
-class CDatabaseDef:
-  def __init__(self,fileName):
-    self.headerArray = {}
-    self.dataArray = {}
-    self.project_name =''
-    self.project_dir = ''
-    self.jobs = {}
-    self.headerArray,typeArray,self.dataArray = self.read(fileName)
-    #print 'dataArray',self.dataArray
-
-    # Get project name and dir from header
-    #if self.headerArray.has_key('PROJECT'):
-    if 'PROJECT' in self.headerArray:
-      self.project_name = self.headerArray['PROJECT'][0]
-      if len(self.headerArray['PROJECT'])>1:
-        self.project_dir = self.headerArray['PROJECT'][1]
-    #print ('Read project',self.project_name,self.project_dir)
-
-    self.nJobs = int(self.dataArray.get('NJOBS',0))
-
-    self.jobs = self.extractJobs(self.dataArray)
-
-  def read (self,fileName='',headerOnly=0):
-      '''
-      Read the def file into dicts for header, types and data
-      A database.def should not have any type information
-      This is left in the code in case want to reuse elsewhere
-      '''
-      headerArray = {}
-      typeArray = {}
-      dataArray = {}
-      try:
-        f = open(fileName)
-      except:
-        print(('ERROR opening',fileName))
-        return headerArray,typeArray,dataArray
-      if not f:
-        print(('ERROR opening',fileName))
-        return headerArray,typeArray,dataArray
-      try:
-        content = f.readlines()
-        f.close()
-      except:
-        print(('ERROR reading ',fileName))
-        return headerArray,typeArray,dataArray
-
-
-      for line in content:
-        words = self.splitDefLine(line)
-        #print 'CCP4Data.parseDefFile',words
-        if len(words)>=2:
-          if words[0] == '#CCP4I' and len(words)>=3:
-            #print 'header',words
-            headerArray[words[1]] = words[2:]
-          elif words[0][0] == '#':
-            pass
-          elif not headerOnly:
-           if len(words)>2:
-             if  words[1][0]=='_':
-               typeArray[words[0]] = words[1][1:]
-             else:
-               typeArray[words[0]] = words[1]
-             idata = 2
-           else:
-             idata = 1
-           if words[idata].strip('"')=='':
-             dataArray[words[0]] = ''
-           else:
-             dataArray[words[0]]=words[idata]
-
-      return  headerArray,typeArray,dataArray
-
-  def splitDefLine(self,line=''):
-    m = re.search(r'(.*)\"(.*)\"(.*)',line)
-    if not m:
-      return line.split()
-    else:
-      a,b,c = m.groups()
-      a = a.strip()
-      c = c.strip()
-      rv = []
-      if a:rv.extend(a.split())
-      rv.append(b)
-      if c: rv.append(c.split())
-      return rv
-
-  def splitDefList(self,line=''):
-    '''
-    Parse the INPUT_FILE and OUTPUT_FILE from database.def
-    This is a space-separated list
-    If the file name includes spaces then the name is enclosed in curly brace
-    '''
-    rv = []
-    while len(line)>0:
-      m = re.search(r'(.*?)\{(.*?)\}(.*)',line)
-      if not m:
-        rv.extend(line.split())
-        line = ''
-      else:
-        a,b,c = m.groups()
-        #print 'splitDefList',a,'*',b,'*',c
-        a = a.strip()
-        c = c.strip()
-        if a:rv.extend(a.split())
-        rv.append(b)
-        line = c.strip()
-        #print 'new line',line
-    return rv
-
-
-  def extractJobs(self,dataArray):
-
-    jobs = {}
-
-    for key,value in list(dataArray.items()):
-      try:
-        if key.count(',') == 1:
-          dataType,jobId = key.split(',')
-          try:
-            jobId = int(jobId)
-          except:
-            jobId = -1
-          if jobId>0:
-            # Initialise the data for one job
-            if not jobId in jobs:
-              jobs[jobId] = { 'STATUS' : '',
-                              'DATE' : 0,
-                              'LOGFILE' : '',
-                              'TASKNAME' : '',
-                              'TITLE' : '',
-                              'INPUT_FILES' : [],
-                              'INPUT_FILES_DIR' : [],
-                              'OUTPUT_FILES' : [],
-                              'OUTPUT_FILES_DIR' : []   }
-            # Check that the dataType is one of the recognised properties for a job
-            if dataType in jobs[jobId]:
-              if ['INPUT_FILES','OUTPUT_FILES'].count(dataType):
-                jobs[jobId][dataType] = self.splitDefList(value)
-              elif ['INPUT_FILES_DIR','OUTPUT_FILES_DIR'].count(dataType):
-                jobs[jobId][dataType] = value.split(' ')
-              else:
-                jobs[jobId][dataType] = value
-      except:
-         print(('ERROR interpreting ',key))
-
-    return jobs
-
 
 
 #=========================================================================================================
@@ -7284,22 +6846,7 @@ class testDb(unittest.TestCase):
     commentList = self.db.getComments(jobId=jid3)
     #print 'test7comment commentList',commentList
     self.assertEqual('Well whatever really',commentList[0][3],'Error creating and retrieving comment')
-  '''
-  def test8ImportProject(self):
-    projectXml = '/Users/lizp/Desktop/t4b.ccp4i2db.xml'
-    projectDirectory = '/Users/lizp/Desktop/t4'
-    dbImport = CDbXml(db=self.db,projectDirectory=projectDirectory)
-    err = dbImport.load(projectXml)
-    print 'test8ImportProject errorReport',err
 
-
-  def test9ImportProject(self):
-    projectXml = '/Users/lizp/Desktop/t4b.ccp4i2db.xml'
-    projectDirectory = '/Users/lizp/Desktop/t4'
-    dbImport = CDbXml(db=self.db,projectDirectory=projectDirectory)
-    err = dbImport.loadTable(projectXml)
-    print 'test9ImportProject errorReport',err
-  '''
 
 class testSqliteDb(testDb):
 

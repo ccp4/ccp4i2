@@ -313,20 +313,6 @@ class CTreeItemProject(CTreeItem):
     elif role == QtCore.Qt.UserRole:
       if column == 0:
         return self.projectId
-      '''
-      elif role == QtCore.Qt.BackgroundRole:
-        if self.highlight:
-          return QtGui.QBrush(QtGui.QColor(CCP4StyleSheet.HIGHLIGHTCOLOUR))
-        
-        elif CProjectModel.CONTRAST_MODE == 1 and self.top:
-          return QtGui.QBrush(QtGui.QColor(CCP4StyleSheet.LOWLIGHTCOLOUR))
-                             
-      elif role == QtCore.Qt.FontRole and CProjectModel.CONTRAST_MODE == 2:
-        if self.top:
-          return CTreeItemJob.boldFont
-        else:
-          return CTreeItemJob.italicFont
-      '''
 
 #FIXME PYQT - or maybe None? This used to return QVariant.
     return None
@@ -1486,9 +1472,6 @@ class CProjectModel(QtCore.QAbstractItemModel):
         rv = self.getJobTreeItem(jobId,item)
         if rv is not None: return rv
     return None
-        
-  def currentProjectId(self):
-    return self._projectId
 
   @QtCore.Slot(dict)
   def createJob(self,args):
@@ -1722,17 +1705,6 @@ class CProjectModel(QtCore.QAbstractItemModel):
     self.redraw()
     #print 'from updateFollowFrom'
 
-  def updateHighlight(self,jobId=None):
-    for jid,highlight in [ [ self.highlightJob,False ] , [ jobId , True ] ]:
-      if jid is not None:
-        index = self.modelIndexFromJob(jobId=jid)
-        if index is not None:
-          node = self.nodeFromIndex(index)
-          node.set('highlight',highlight)
-          self.dataChanged.emit(index,index)
-    self.highlightJob = jobId
-    self.redraw()
-    
   def fileLabel(self,modelIndex=None,maxLength=None):
     node = self.nodeFromIndex(modelIndex)
     if node is None: return ''
@@ -1763,16 +1735,6 @@ class CProjectView(QtWidgets.QTreeView):
   jobClicked = QtCore.Signal('QModelIndex')
   fileClicked = QtCore.Signal('QModelIndex')
 
-  """
-  def changeEvent(self,e):
-      #FIXME - *THIS* is the cause of my performance woes. I have to not react to every change event, just last one. Hmm ...
-      print("changeEvent")
-      traceback.print_stack()
-      return QtWidgets.QTreeView.changeEvent(self,e)
-
-      if e.type() == QtCore.QEvent.StyleChange or QtCore.QEvent.FontChange:
-          self.resizeColumnToContents(0)
-  """
 
   def __init__(self,parent=None):
     QtWidgets.QTreeView.__init__(self,parent)
@@ -2820,23 +2782,6 @@ class CFileIconProvider(QtWidgets.QFileIconProvider):
 
   def icon(self,fileInfo):
     return QtGui.QIcon()
-    #print 'CFileIconProvider.icon',fileInfo
-    if isinstance(fileInfo,QtCore.QFileInfo):
-      suffix = str(fileInfo.completeSuffix())
-      #print 'CFileIconProvider',suffix
-      if suffix == 'mtz':
-        content = fileInfo.baseName().__str__().split(CCP4File.CDataFile.SEPARATOR)[-1]
-        #print 'CFileIconProvider content',content
-        mimeType=MIMETYPESHANDLER().formatFromFileExt(ext=suffix,contentLabel=content)
-      else:
-        mimeType=MIMETYPESHANDLER().formatFromFileExt(ext=suffix)
-      #print 'CFileIconProvider.icon',suffix,mimeType
-      if mimeType is not None:
-        icon = MIMETYPESHANDLER().icon(mimeType)
-        if icon is not None:
-          #print 'CFileIconProvider providing',icon
-          return icon
-    return QtGui.QIcon()
     
   
     
@@ -2924,10 +2869,6 @@ class CProjectDirModel(QtWidgets.QFileSystemModel):
     #print 'CProjectDirModel.data',retStr,taskName
     return retStr+' '+taskName
 
-    
-  def supportedDragActions(self):
-    return QtCore.Qt.CopyAction
-
   def mimeTypes(self):
     typesList = []
     for item in list(MIMETYPESHANDLER().mimeTypes.keys()): typesList.append(item)
@@ -2948,27 +2889,6 @@ class CProjectDirModel(QtWidgets.QFileSystemModel):
     else:
       return QtCore.QModelIndex()
 
-  '''
-  def mimeData(self,modelIndexList):
-    modelIndex = modelIndexList[0]
-    qFileInfo = self.fileInfo(modelIndex)
-    path = str(qFileInfo.absoluteFilePath())
-    mimeType = MIMETYPESHANDLER().formatFromFileExt(fileName=path)
-    if mimeType is None: return None
-      
-    fileObj = CCP4File.CDataFile(fullPath=path)
-    dragText = fileObj.xmlText(pretty_print=False)
-    print 'mimeData dragText',mimeType,dragText
-    
-    encodedData = QtCore.QByteArray()
-    encodedData.append(dragText)
-    mime = QtCore.QMimeData()
-    # With mime type as text the data can be dropped on desktop
-    # but the type of the data is lost
-    #mimeData.setData('text/plain',data)
-    mime.setData(mimeType,encodedData)
-    return mime
-  '''
 
 class CProjectDirView(QtWidgets.QTreeView):
   
@@ -3045,48 +2965,7 @@ class CProjectDirView(QtWidgets.QTreeView):
 
     #print 'CProjectDirView.startDrag exec_'
     drag.exec_(QtCore.Qt.CopyAction)
-      
-    
-    
-class CEvaluationDelegate(QtWidgets.QItemDelegate):
 
-  def __init__(self,parent=None):
-    QtWidgets.QItemDelegate. __init__(self,parent)
-    
-
-  def createEditor(self,parent,option,modelIndex):
-    cacheIndex = self.parent().model().cacheFromModelIndex(modelIndex)
-    if 'evaluation' in self.parent().model()._dataCache[cacheIndex]:
-      iconCombo = QtWidgets.QComboBox(parent)
-      iconCombo.setEditable(False)
-      for item in CCP4DbApi.JOB_EVALUATION_TEXT:
-        iconCombo.addItem(jobIcon(item),item)
-      iconCombo.show()
-      return iconCombo
-    else:
-      return None
-    
-  def setEditorData(self,editor,modelIndex):
-    cacheIndex = self.parent().model().cacheFromModelIndex(modelIndex)
-    data = self.parent().model()._dataCache[cacheIndex]['evaluation']
-    #print 'CEvaluationDelegate.setEditorData',data
-    editor.setCurrentIndex(CCP4DbApi.JOB_EVALUATION_TEXT.index(data))
-
-  def setModelData(self,editor,model,modelIndex):
-    evaluation = str(editor.currentText())
-    cacheIndex = self.parent().model().cacheFromModelIndex(modelIndex)
-    self.parent().model()._dataCache[cacheIndex]['evaluation'] = evaluation
-    jobid = self.parent().model()._dataCache[cacheIndex]['jobid']
-    try:
-      PROJECTSMANAGER().db().updateJob(jobid,key='evaluation',value=evaluation)
-    except:
-      pass
-
-  def updateEditorGeometry(self,editor,option,modelIndex):
-    r = option.rect
-    r.setHeight(editor.geometry().height())
-    r.setWidth(editor.geometry().width())
-    editor.setGeometry(r)
 
 class CJobEditLineEdit(QtWidgets.QLineEdit):
 
@@ -3163,52 +3042,6 @@ class CJobEditDelegate(QtWidgets.QStyledItemDelegate):
     rightShift = 25 + node.isJob()*25
     pos=view.mapToGlobal(view.visualRect(modelIndex).topLeft())
     editor.move(pos+QtCore.QPoint(rightShift,20))
-
-
-    
-class CFollowFromDelegate(QtWidgets.QItemDelegate):
-
-  def __init__(self,parent=None):
-    QtWidgets.QItemDelegate. __init__(self,parent)
-    
-
-  def createEditor(self,parent,option,modelIndex):
-    cacheIndex = self.parent().model().cacheFromModelIndex(modelIndex)
-    if 'status' in self.parent().model()._dataCache[cacheIndex]:
-      iconCombo = QtWidgets.QComboBox(parent)
-      iconCombo.setEditable(False)
-      for text,icon in [['Unused','greendot'],['Current','greenarrowsup']]:
-        iconCombo.addItem(jobIcon(icon),text)
-      iconCombo.show()
-      return iconCombo
-    else:
-      return None
-    
-  def setEditorData(self,editor,modelIndex):
-    cacheIndex = self.parent().model().cacheFromModelIndex(modelIndex)
-    if self.parent().model()._followFromCacheId == cacheIndex:
-      editor.setCurrentIndex(1)
-    else:
-      editor.setCurrentIndex(0)
-
-  def setModelData(self,editor,model,modelIndex):
-    status = str(editor.currentText())
-    cacheIndex = self.parent().model().cacheFromModelIndex(modelIndex)
-    if status == 'Current':
-      if cacheIndex == self.parent().model()._followFromCacheId:
-        return
-      else:
-        jobid = self.parent().model()._dataCache[cacheIndex]['jobid']
-        try:
-          PROJECTSMANAGER().db().setProjectFollowFromJobId(self.parent().model()._projectId,jobid)
-        except:
-          print('Error setting db setProjectFollowFromJobId')
-
-  def updateEditorGeometry(self,editor,option,modelIndex):
-    r = option.rect
-    r.setHeight(editor.geometry().height())
-    r.setWidth(editor.geometry().width())
-    editor.setGeometry(r)
 
 
 class CHistoryGui(QtWidgets.QFrame):

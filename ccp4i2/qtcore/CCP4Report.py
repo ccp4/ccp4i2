@@ -130,14 +130,9 @@ class CReportTable(QtCore.QAbstractTableModel):
     if self.columnTypes[idx.column()] != 'text':
       if role == QtCore.Qt.DisplayRole:
         return self.columns[idx.column()][idx.row()]
-
-#FIXME PYQT - or maybe None? This used to return QVariant.
+    #FIXME PYQT - or maybe None? This used to return QVariant.
     return None
 
-  def columnDataType(self,column=-1):
-    if column>=0 and column<len(self.columnTypes):
-      return self.columnTypes(ic)
-      
   def headerData(self,section,orientation=QtCore.Qt.Horizontal,role=QtCore.Qt.DisplayRole):
     if role==QtCore.Qt.DisplayRole:
       if orientation == QtCore.Qt.Horizontal:
@@ -145,18 +140,13 @@ class CReportTable(QtCore.QAbstractTableModel):
           #print 'headerData',section,self.columnLabels[section]
           v = self.columnLabels[section]
           return v
-#FIXME PYQT - or maybe None? This used to return QVariant.
+      #FIXME PYQT - or maybe None? This used to return QVariant.
       return None
 
   def qualifiers(self):
     return {}
 
 
-class CPlotDirectives(CData):
-
-  pass  
-    
-    
 class CReport(QtCore.QObject):
 
   ERROR_CODES =  { 101 : {'description' : 'Report XML file does not found' },
@@ -220,18 +210,6 @@ class CReport(QtCore.QObject):
     except:
       raise CException(self.__class__,103)
     return text
-  
-  def saveToXmlFile(self,root,filename):
-    try:
-      text = etree.tostring(root,pretty_print=True)
-    except:
-      raise CException(self.__class__,104,filename)
-    #print 'CReport.saveXMLFile',filename,text
-    try:
-      CCP4Utils.saveFile(self,fileName=filename,text=text)
-    except:
-      raise CException(self.__class__,105,filename)
-    
 
   def tostring(self,root):
     if root is not None: return etree.tostring(root)

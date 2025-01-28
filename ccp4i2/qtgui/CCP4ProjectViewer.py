@@ -88,20 +88,6 @@ def PROJECTVIEWER(projectId=None, open=False):
         return pv
     return None
 
-def getMenuIconOld(parent,name,size):
-    # Deprecated as it was loading the same icons multiple times.
-    pixFile = TASKMANAGER().searchIconFile(name)
-    fileName, fileExtension = os.path.splitext(pixFile)
-    icon=None
-    if fileExtension.lower() == ".svg":
-        try:
-            icon = QtGui.QIcon(pixFile)
-        except:
-            print('Unable to load SVG task icon')
-            icon=None
-    if icon is None:
-        icon = QtGui.QIcon(pixFile)
-    return icon
 
 staticIconMap = {}
 def getMenuIcon(parent, name, size=None):
@@ -172,31 +158,6 @@ class HTMLDelegate(QtWidgets.QStyledItemDelegate):
 
     def setCompact(self,comapct):
         self._compact = comapct
-
-    def editorEvent(self, event, model, option, index):
-        self.showHelpButton = False
-        self.showHelpClose = False
-        self.showHelpIndex = None
-        if hasattr(event,"pos"):
-            self.lastTextPos = event.pos()
-        if event.type() not in [QtCore.QEvent.Leave, QtCore.QEvent.MouseMove, QtCore.QEvent.MouseButtonRelease] or not (option.state & QtWidgets.QStyle.State_Enabled):
-            return False
-        options = QtWidgets.QStyleOptionViewItem(option)
-        style = QtWidgets.QApplication.style() if options.widget is None else options.widget.style()
-        textRect = style.subElementRect(QtWidgets.QStyle.SE_ItemViewItemText, options)
-
-        if options.rect.width() - self.lastTextPos.x() > -15 and options.rect.width() - self.lastTextPos.x() < 35 and abs((self.lastTextPos.y()-textRect.top())-options.rect.height()/2)<15:
-            self.showHelpButton = True
-            self.showHelpIndex = index
-        if options.rect.width() - self.lastTextPos.x() > -5 and options.rect.width() - self.lastTextPos.x() < 25 and abs((self.lastTextPos.y()-textRect.top())-options.rect.height()/2)<15:
-            if event.type() == QtCore.QEvent.MouseButtonRelease:
-                helpAvailable = index.model().mapToSource(index).internalPointer().helpAvailable()
-                if helpAvailable:
-                    self.helpClicked.emit(index)
-                return True
-            self.showHelpClose = True
-
-        return True
 
     def paint(self, painter, option, index):
 
@@ -352,9 +313,6 @@ class TreeItem(QtGui.QStandardItem):
     def setDate(self,date):
         self._date = date
 
-    def setNumber(self,number):
-        self._number = number
-
     def parentItem(self):
         return self.m_parentItem
 
@@ -502,35 +460,6 @@ class TreeModel(QtCore.QAbstractItemModel):
         else:
             return QtCore.QModelIndex()
 
-class JobListTreeModel(TreeModel):
-    def __init__(self,data,parent=None):
-        TreeModel.__init__(self,parent)
-
-        self.rootItem = JobTreeItem("Root")
-        self.setupModelData(data,self.rootItem)
-
-    def setupModelData(self,lines,parent):
-        lines = [x for x in lines if len(x)>0]
-        
-        jobTreeItems = []
-        for l in lines:
-            jobTreeItems.append(JobTreeItem(l, None))
-            jobTreeItems[-1].setDate(l[2])
-            jobTreeItems[-1].setNumber(l[0])
-            jobTreeItems[-1].setName(l[1])
-        
-        for job in jobTreeItems:
-            childJobs = [candidate for candidate in jobTreeItems if candidate.m_itemData[4] == job.m_itemData[3]]
-            for childJob in childJobs:
-                childJob.m_parentItem = job
-                job.appendChild(childJob)
-        
-        unrootedJobs = [job for job in jobTreeItems if job.m_parentItem is None]
-        for job in unrootedJobs:
-            job.m_parentItem = parent
-            parent.appendChild(job)
-        
-        return
 
 class CTaskListProxyModel(QtCore.QSortFilterProxyModel):
         def __init__(self,parent=None):
@@ -1334,12 +1263,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
             self.setSelectedJob(jobId=openJob.jobId)
         except:
             print('ERROR CProjectView.init opening jobId,taskName', jobId, taskName)
-
-    def openDictionary(self, state):
-        if self._dictionaryWidget is None or (not CCP4Utils.isAlive(self._dictionaryWidget)):
-            self._dictionaryWidget = CCP4ModelWidgets.CDictDataDialog(parent=self, projectId=self.getProject())
-        self._dictionaryWidget.show()
-        self._dictionaryWidget.raise_()
 
     def setSelectedJob(self,jobId):
         self._projectWidget.selectJob(jobId)
@@ -2224,20 +2147,6 @@ class CTaskButtons(QtWidgets.QButtonGroup):
                 self.button('view').setEnabled(jobStatus in ['Finished', 'Interrupted', 'To delete'])
                 self.button('clone').setEnabled(True)
 
-    def setNextMenu(self,jobId=None, taskName=None):
-        nextList = TASKMANAGER().whatNext(taskName, jobId)
-        menu = self.button('next').menu()
-        menu.clear()
-        for item in nextList:
-            action = menu.addAction(item[1])
-            if item[2] is not None:
-                action.setData(item[0] + ' ' + item[2])
-            else:
-                action.setData(item[0])
-        menu.addSeparator()
-        action=menu.addAction(CTaskButtons.MOREINFO)
-        action.setData(taskName)
-
 
 class CJobStatusWidget(QtWidgets.QFrame):
 
@@ -2624,72 +2533,6 @@ class CChooseTaskFrame(QtWidgets.QFrame):
         self.epButton.clicked.connect(expandIfFiltered)
 
 
-class CTaskTreeModuleWidget(QtWidgets.QFrame):
-
-    def __init__(self,moduleName,iconName=None):
-        QtWidgets.QFrame.__init__(self)
-        self.setObjectName('taskTreeModule')
-        self.setLayout(QtWidgets.QHBoxLayout())
-        MARGIN = 2 #was 1
-        self.layout().setContentsMargins(MARGIN, MARGIN, MARGIN, MARGIN)
-        self.layout().setSpacing(MARGIN)
-        icon = getMenuIcon(self, iconName, 24) 
-        icon.setObjectName('icon')
-        self.layout().addWidget(icon)
-        label = QtWidgets.QLabel(moduleName, self)
-        label.setObjectName('title')
-        self.layout().insertSpacing(1, 4)
-        self.layout().addWidget(label, 1, QtCore.Qt.AlignVCenter)
-        self.layout().addStretch(5)
-
-
-class CTaskTreeItemWidget(QtWidgets.QFrame):
-
-    def __init__(self, taskName, compact=False):
-        MARGIN = 4 # was 2
-        QtWidgets.QFrame.__init__(self)
-        self.setObjectName('taskTreeItem')
-        layout = QtWidgets.QHBoxLayout()
-        layout.setSpacing(MARGIN)
-        layout.setContentsMargins(MARGIN, MARGIN, MARGIN, MARGIN)
-        self.setLayout(layout)
-        rank = TASKMANAGER().getTaskAttribute(taskName, 'RANK')
-        qticonsDir = os.path.join(CCP4Utils.getCCP4I2Dir(), 'qticons')
-        if compact:
-            size = 24
-        else:
-            self.setFrameStyle(QtWidgets.QFrame.NoFrame) # was QFrame.StyledPanel
-            size = 48
-            if rank == 1:
-                self.setObjectName('taskpipe')
-            else :
-                self.setObjectName('tasktool')
-        icon = getMenuIcon(self, taskName, size)
-        icon.setObjectName('icon')
-        self.layout().addWidget(icon)
-        self.layout().insertSpacing(1, 6) # this is new, provides space between icon and text
-        label = QtWidgets.QLabel(TASKMANAGER().getTitle(taskName), self)
-        if rank == 2:
-            label.setObjectName('title2')
-        else:
-            label.setObjectName('title')
-        if compact:
-            self.layout().addWidget(label)
-        else:
-            vBox = QtWidgets.QVBoxLayout()
-            self.layout().addLayout(vBox)
-            vBox.addWidget(label, 0, QtCore.Qt.AlignBottom)
-            desc = TASKMANAGER().getTaskAttribute(taskName, 'DESCRIPTION')
-            label = QtWidgets.QLabel(str(desc))
-            if rank == 2:
-                label.setObjectName('description2')
-            else:
-                label.setObjectName('description')
-            vBox.addWidget(label, 0, QtCore.Qt.AlignTop)
-            self.layout().addStretch(5)
-            #if rank == 2: self.layout().insertSpacing ( 0, 48 )
-
-
 class CTaskTree(QtWidgets.QTreeView):
 
     taskChanged = QtCore.Signal('QModelIndex','QModelIndex')
@@ -2712,12 +2555,6 @@ class CTaskTree(QtWidgets.QTreeView):
             #It is extremely bad that Qt ever lets this happen.
             #Keyboard scrolling with items of different height trigger this problem which took me *ages* to fix.
             self.scrollTo(current,QtWidgets.QAbstractItemView.PositionAtBottom)
-
-    def supportedDropActions(self):
-        return QtCore.Qt.CopyAction
-
-    def dropMimeData(self, parent, index, data, action):
-        return True
 
     def mimeTypes(self):
         typesList = []
@@ -2758,36 +2595,6 @@ class CTaskTree(QtWidgets.QTreeView):
     def resizeEvent(self,event):
         self.sizeChangedSignal.emit(self.size())
         QtWidgets.QTreeView.resizeEvent(self,event)
-
-class CTaskWidgetItem(QtWidgets.QTreeWidgetItem):
-
-    def __init__(self, parent, taskName):
-        self.taskName = taskName
-        self.title = TASKMANAGER().getTitle(taskName)
-        QtWidgets.QTreeWidgetItem.__init__(self, parent)
-
-    def flags(self):
-        return QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsDropEnabled
-
-    def data(self, ic, role):
-        if ic == 0:
-            if role == QtCore.Qt.FontRole:
-                italicFont = QtGui.QFont()
-                italicFont.setItalic(True)
-                return italicFont
-            if role == QtCore.Qt.DisplayRole:
-                return self.title
-            if role == QtCore.Qt.ToolTipRole:
-                desc = TASKMANAGER().getTaskAttribute(self.taskName, 'DESCRIPTION')
-                #print 'CTaskWidgetItem.data',self.taskName,desc
-                if desc is not None:
-                    return desc
-                else:
-                    return self.taskName
-            if role == 101:
-                return self.taskName
-#FIXME PYQT - or maybe None? This used to return QVariant.
-        return None
 
 
 def FILEWATCHER():
@@ -2927,9 +2734,6 @@ class CFileSystemWatcher(QtCore.QFileSystemWatcher):
                 self.jobPaths[jobId].remove(path)
                 QtCore.QFileSystemWatcher.removePath(self,path)
                 return
-    
-    def listJobs(self):
-        print(self.jobPaths)
 
     def triggerJobsByUpdateInterval(self):
         for jobId,value in list(self.jobsByUpdateInterval.items()):
@@ -4357,12 +4161,7 @@ class CTaskInputFrame(QtWidgets.QFrame):
         taskEditable = self.taskWidget.folderAttributes.attribute('editable')
         # ? followJobId copied in container ?
         taskWidget = self.createTaskWidget(taskName,projectId=projectId,jobId=jobId,container=container,taskEditable=taskEditable)
-    
-    def parentProjectViewer(self):
-        p = self.parent()
-        while not isinstance(p,CProjectViewer):
-            p = p.parent()
-        return p
+
 
 class CTaskTitleBarLayout(QtWidgets.QHBoxLayout):
 
@@ -5016,5 +4815,3 @@ class CJobTree(QtWidgets.QTreeWidget):
                 item.setIcon(0,self.icon)
             for childJob in childJobTree:
                 self.load(childJob,treeParentId=item,jobsToDeleteWithSelectedFiles=jobsToDeleteWithSelectedFiles)
-
-

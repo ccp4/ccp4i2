@@ -51,9 +51,6 @@ class NamedSocket(socket.socket):
     def setActive(self,Active):
         self._isActive = Active
 
-    def getActive(self):
-        return self._isActive
-
     def setName(self,name):
         self._myName = name
 
@@ -426,13 +423,6 @@ class CLauncher(QtCore.QObject):
                 dobj = openJob.container.inputData.XYZIN_LIST
                 dobj.addItem()
                 dobj[-1].setFullPath(fileName)
-        openJob.runJob()
-
-    def runLidiaJob(self, projectId=None, contextJobId=None, fileName=None):
-        if projectId is None:
-            projectId = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(contextJobId, 'projectid')
-        openJob = CCP4DbUtils.COpenJob(projectId=projectId)
-        openJob.createJob(taskName='Lidia', contextJobId=contextJobId)
         openJob.runJob()
 
     def cootComLine(self,fileName=None,jobId=None):

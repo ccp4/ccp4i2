@@ -426,11 +426,5 @@ class privateer_report(Report):
     self.addTaskReferences()
 
 
-#    def unescape(s):
-#        s = s.replace("&lt;", "<")
-#        s = s.replace("&gt;", ">")
-#        s = s.replace("&amp;", "&")
-#        return s
-
 if __name__ == "__main__":
   privateer_report(xmlFile=sys.argv[1],jobId=sys.argv[2])

@@ -512,23 +512,6 @@ class RvapiReport(Report):
     e1.text = sep_var
     e1.tail = '\n'
 
-  def write_data_fileso(self, e0, data_absfmt, data_relfmt):
-    e1 = e0.find('file_content') # Original variant.
-    if e1 is None:
-      for e1 in e0:
-        self.write_data_files(e1, data_absfmt, data_relfmt)
-
-    else:
-      assert len(e1) == 1
-      id1 = e0.get('id')
-      data_absfile = data_absfmt %id1
-      data_relfile = data_relfmt %id1
-      ET.ElementTree(e1).write(data_absfile)  # This line is causing trouble. Changed e1[0] to e1.
-      e0.remove(e1)
-      del e1
-      e0.set('data_path', data_relfile)
-      e0.set('data_abspath', data_absfile)
-
   def write_data_files(self, e0, data_absfmt, data_relfmt):
     feles = e0.findall('.//file_content') # re-write of previous function.
     for ele in feles:

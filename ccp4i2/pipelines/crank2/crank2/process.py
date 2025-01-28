@@ -361,9 +361,6 @@ class process(object):
     else:
       return False
 
-  def IsTrueOrNoneVirtPar(self,par):
-    return self.IsTrueOrNoneParam(par)
-
   # is param not defined or None or True?  (usually used to test whether program defaults should be redefined - if False then orig.prog.def. are forced)
   def IsTrueOrNoneParam(self,par):
     if par not in self.param or self.GetParam(par) is True or self.GetParam(par) is None:

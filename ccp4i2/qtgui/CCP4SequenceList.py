@@ -22,12 +22,6 @@ from PySide2 import QtCore, QtGui, QtWidgets
 
 class SequenceModel(QtCore.QAbstractTableModel):
 
-    def canDropMimeData(self, data, action, row, column, parent):
-        return True
-
-    def dropMimeData(self, data, action, row, column, parent):
-        return True
-
     def setEditable(self,val):
         self.beginResetModel()
         self._editable = val
@@ -529,40 +523,6 @@ class SequenceTable(QtWidgets.QWidget):
             self.table.model().removeRows(self.table.selectionModel().selectedRows())
             self.minusButton.setEnabled(False)
 
-class SequenceTableDialog(QtWidgets.QDialog):
-
-    loadFromSeqFileSignal = QtCore.Signal()
-    loadFromCoorFileSignal = QtCore.Signal()
-    loadFromTextSignal = QtCore.Signal()
-    loadDataSignal = QtCore.Signal(tuple)
-    urlsDroppedSignal = QtCore.Signal(list)
-    textDroppedSignal = QtCore.Signal(str)
-
-    def keyPressEvent(self,e):
-#FIXME - Never get here ... Lack of focus?
-        print(e.key())
-        if e.key()==QtCore.Qt.Key_Escape:
-            self.reject()
-
-    def __init__(self,parent=None):
-        QtWidgets.QDialog.__init__(self,parent)
-        st = SequenceTable(self)
-        layout = QtWidgets.QVBoxLayout(self)
-        self.setLayout(layout)
-        layout.addWidget(st)
-        st.loadFromSeqFileSignal.connect(self.loadFromSeqFileSignal.emit)
-        st.loadFromCoorFileSignal.connect(self.loadFromCoorFileSignal.emit)
-        st.loadFromTextSignal.connect(self.loadFromTextSignal.emit)
-        st.loadDataSignal.connect(self.loadDataSignal.emit)
-        st.urlsDroppedSignal.connect(self.urlsDroppedSignal.emit)
-        st.textDroppedSignal.connect(self.textDroppedSignal.emit)
-        dbb = QtWidgets.QDialogButtonBox()
-        layout.addWidget(dbb)
-        closeButton = dbb.addButton(QtWidgets.QDialogButtonBox.Save)
-        discardButton = dbb.addButton(QtWidgets.QDialogButtonBox.Discard)
-        closeButton.clicked.connect(self.accept)
-        discardButton.clicked.connect(self.reject)
-        layout.setContentsMargins(0,0,0,0)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)

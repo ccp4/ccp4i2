@@ -91,10 +91,6 @@ class CResidueRangeView(CCP4Widgets.CComplexLineWidget):
     def getMenuDef(self):
       return ['clear','copy','paste','help']
 
-class CSequenceEdit:
-  def __init__(self,parent=None,model=None):
-    pass
-      
 
 class CSequenceView(CCP4Widgets.CComplexLineWidget):
 
@@ -489,23 +485,6 @@ class CMonomerView(CCP4Widgets.CComplexLineWidget):
     self.layout().addWidget(self.widgets['smiles'],1,4)
 
 
-    '''
-    toolTip = self.model.qualifiers('toolTip')
-    if toolTip is NotImplemented:
-      toolTip = ''
-    else:
-      toolTip = toolTip
-    
-      
-    for item in self.model.CONTENTS_ORDER:
-      widget = self.widgets[item]
-      tT = self.model.getDataObjects(item).qualifiers('toolTip')
-      if tT is NotImplemented: tT = ''
-      widget.setToolTip(toolTip+tT)
-      if self.editable:
-        widget.editSignal.connect(self.updateModelFromView)
-        widget.acceptDropDataSignal.connect(self.acceptDropData)
-    '''
 
 class CPdbEnsembleItemView(CCP4Widgets.CComplexLineWidget):
   MODEL_CLASS = CCP4ModelData.CPdbEnsembleItem
@@ -595,20 +574,7 @@ class CPdbEnsembleItemView(CCP4Widgets.CComplexLineWidget):
     cEnsembleLabelView = self.parent().findChildren(CEnsembleLabelView)[0]
     self.parent().parent().updateViewFromModel(**kw)
     cEnsembleLabelView.validate()
-  
-  '''
-  def getMenuDef(self):
-    return self.widgets['structure'].getMenuDef()
 
-  def getActionDef(self,name):
-    return self.widgets['structure'].getActionDef(name)
-
-  def showAtomSelection(self):
-    self.widgets['structure'].showAtomSelection()
-
-  def viewContents(self):
-    self.widgets['structure'].viewContents()
-  '''
 
 class CEnsembleView(CCP4Widgets.CComplexLineWidget):
   def __init__(self,parent=None,model=None,qualifiers={}):
@@ -1408,9 +1374,6 @@ class CDictDataList(QtWidgets.QTreeWidget):
     else:
       self.model().removeRow(modInxList[0].row())
 
-  def handleMonomerAdded(self,id):
-    pass
-      
   def currentSelection(self):
     indices = self.selectionModel().selectedRows()
     if len(indices) == 0:

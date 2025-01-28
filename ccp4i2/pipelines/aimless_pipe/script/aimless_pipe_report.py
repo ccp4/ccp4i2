@@ -727,10 +727,6 @@ class aimless_pipe_report(Report):
     self.pointlessreport.Errors(spacegroupDiv)   #  report any fatal errors
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  def addPointlessReport(self):
-    self.pointlessreport.MainMessages(self)
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   def addCtruncateReports(self, parent=None):
     ndatasets = len(self.ctruncatereports)
     for ctruncatereport in self.ctruncatereports:
@@ -1022,11 +1018,6 @@ class datasetIndex:
       self.ctruncateidx[self.dnameindex[dname]] = i
       i += 1
     #print("ctruncateidx", self.ctruncateidx)
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  def ctruncateIndex(self, aimlessidx):
-    # Returns index for ctruncate given the Aimless index
-    return self.ctruncateidx[aimlessidx]
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   def indexPhaser(self, phaserxmlnodelist):

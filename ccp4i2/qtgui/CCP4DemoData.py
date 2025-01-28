@@ -312,22 +312,6 @@ class CDownloadDemoDataDialog(QtWidgets.QDialog):
         if not os.path.exists(target): os.mkdir(target)
         self.targetList.append(['My CCP4i2 area',target,True])
 
-    def handleFtpSearch(self):
-        self.host = str(self.source.currentText())
-        self.path = ''
-        if self.host.count('/'): self.host,self.path = self.host.split('/',1)
-        if len(self.path)>0 and not self.path.endswith('/'): self.path = self.path + '/'
-        self.path = self.path + '*.ccp4i2_demo.zip'
-        #print 'CDownloadDemoData.handleSearch',self.host,self.path
-        self.ftp = ftplib.FTP(self.host)   # connect to host, default port
-        self.ftp.login()               # user anonymous, passwd anonymous@
-        self.retrlines = []
-        self.ftp.retrlines('NLST '+self.path,self.handleRetrlines)
-        #print 'CDownloadDemoData handleSearch retrlines',self.retrlines
-
-    def handleRetrlines(self,line):
-        self.retrlines.append(line)
-
     @QtCore.Slot()
     def handleHtmlSearch(self):
         self.path = str(self.source.currentText())

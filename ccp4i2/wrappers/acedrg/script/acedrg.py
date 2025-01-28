@@ -296,22 +296,6 @@ def svgFromMol(mol):
         mdlMolecule = MOLSVG.MDLMolecule(molBlock=molBlock)
         return mdlMolecule.svgXML(size=(350,350))
 
-def svgFromPDB(pdbFilePath):
-    mol = Chem.rdmolfiles.MolFromPDBFile(pdbFilePath)
-    Chem.Kekulize(mol)
-    return svgFromRdkitMol(mol)
-    
-def svgFromRdkitMol(mol):
-    myCanvas = spingCanvas.Canvas(size=(300,300),name='MyCanvas',imageType='svg')
-    myDrawing = rdkit.Chem.Draw.MolDrawing(canvas=myCanvas)
-    
-    drawingOptions = DrawingOptions()
-    drawingOptions.noCarbonSymbols=True
-    drawingOptions.includeAtomNumbers=False
-    myDrawing.AddMol(mol, drawingOptions=drawingOptions)
-    svg = myCanvas.canvas.text().replace('svg:','')
-    return etree.fromstring(svg)
-
 
 def molFromDict(cifFilePath):
     mmcif_dict = MMCIF2Dict ( cifFilePath)

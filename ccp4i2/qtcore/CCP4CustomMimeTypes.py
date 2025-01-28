@@ -415,24 +415,6 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.icon = 'db_file'
         self.mimeTypes["application/CCP4-compressed-db"] = mimeType
 
-        '''
-        mimeType = CMimeType()
-        mimeType.name = "application/CCP4-task-data"
-        mimeType.description = "Task parameters file"
-        mimeType.fileExtensions = ['params.xml','input_params.xml']
-        mimeType.viewers = []
-        mimeType.icon = 'task_file'
-        self.mimeTypes["application/CCP4-task-data"] = mimeType
-
-        mimeType = CMimeType()
-        mimeType.name = "application/CCP4-task-def"
-        mimeType.description = "Task definition file"
-        mimeType.fileExtensions = ['def.xml','def']
-        mimeType.viewers = []
-        mimeType.icon = 'task_file'
-        self.mimeTypes["application/CCP4-task-def"] = mimeType
-        '''
-
         mimeType = CMimeType()
         mimeType.name = "application/CCP4-I2-command"
         mimeType.description = "Kludge to get i2 command done"
@@ -533,16 +515,6 @@ class CCustomMimeTypes(QtCore.QObject):
         else:
             return 1
 
-    def removeMimeType(self,name=''):
-        if name in self.mimeTypes:
-            del self.mimeTypes[name]
-            return 0
-        else:
-            return 1
-
-    def getMimeTypes(self):
-        return list(self.mimeTypes.keys())
-
     def getMimeTypeInfo(self,name='',info='',singleExtension=False):
         if name not in self.mimeTypes:
             return ''
@@ -564,19 +536,8 @@ class CCustomMimeTypes(QtCore.QObject):
             else:
                 return result
 
-    def getCustomMimeExtensions(self):
-        ext_list = []
-        for key, mime_type in list(self.mimeTypes.items()):
-            ext_list.extend(mime_type.fileExtensions)
-        return ext_list
-
     def isSupportedFormat(self, cformat):
         return cformat in self.mimeTypes
-
-    def classFromFileName(self,fileName=''):
-        mimeType = self.formatFromFileExt(fileName=fileName)
-        if mimeType is None: return None
-        return self.mimeTypes[mimeType].className
 
     def classListFromFileName(self,fileName=''):
         mimeTypeList = self.formatListFromFileExt(fileName=fileName)

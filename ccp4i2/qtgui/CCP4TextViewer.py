@@ -54,10 +54,6 @@ class CTextBrowser(QtWidgets.QPlainTextEdit):
   def mouseReleaseEvent(self,event):    
     self.mouseRelease.emit(event.globalPos())
     event.accept()
-    
-  def mouseDoubleClickEvent(self,event):    
-    self.mouseDoubleClick.emit(event.globalPos())
-    event.accept()
 
 
 #-------------------------------------------------------------------
@@ -204,11 +200,6 @@ class CTextViewer(CCP4AbstractViewer.CAbstractViewer):
         found = True
     if found: self.viewer.ensureCursorVisible()
     return found
-
-#-------------------------------------------------------------------
-  def highlightText(self):
-#-------------------------------------------------------------------
-    pass
 
   def goToTop(self):
     # This did not work
@@ -433,23 +424,6 @@ class CCoordsViewer(CTextViewer):
       output = '<html>\n' + output + '\n<html>i\n'
       return [0,output]
 '''
-
-
-#-------------------------------------------------------------------
-class CMtzHeaderViewer(CTextViewer):
-#-------------------------------------------------------------------
-
-  MENUTEXT='Display as text'
-
-  def __init__(self,parent,fileName=''):
-    CTextViewer.__init__(self,parent)
-    if fileName: self.open(fileName)
-
-  def open(self,fileName=None,**kw):
-    self.loadText('Awaiting nicer MTZ dump for '+fileName)
-    self.fileName = os.path.abspath(fileName)
-    self.setObjectName(os.path.split(fileName)[-1])
-
 
 
 class CScriptViewerLogger(QtCore.QObject):

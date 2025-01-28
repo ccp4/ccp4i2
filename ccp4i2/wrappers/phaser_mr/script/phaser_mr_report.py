@@ -44,32 +44,6 @@ class pimpleGraph():
     
     def dataRow(self,row):
         return self.data[row]
-    
-    def appendPimpleGraph(self, otherPimpleGraph = None):
-        if otherPimpleGraph is None: return
-        self.headers += otherPimpleGraph.headers
-        self.headersNode.text = string.join(self.headers,self.separator)
-        originalNRows = self.nRows()
-        originalNColumns = self.nColumns()
-        finalNRows = max(originalNRows, otherPimpleGraph.nRows())
-        for row in range(finalNRows):
-            if row>=originalNRows:
-                self.data.append([])
-                self.data[-1] += (['-' for i in range(originalNColumns)])
-            if row>=otherPimpleGraph.nRows():
-                self.data[row] += (['-' for i in range(otherPimpleGraph.nColumns())])
-            else:
-                self.data[row] += otherPimpleGraph.dataRow(row)
-        self.dataNode.text = self.dataAsText()
-        for plot in otherPimpleGraph.xmlnode.findall('./plot'):
-            copiedPlot = copy.deepcopy(plot)
-            for plotline in copiedPlot.findall('plotline'):
-                intXcol = int(plotline.get('xcol'))
-                plotline.set('xcol',str(intXcol+originalNColumns))
-                intYcol = int(plotline.get('ycol'))
-                plotline.set('ycol',str(intYcol+originalNColumns))
-            self.xmlnode.append(copiedPlot)
-        return
 
     def columnWithHeader(self,header):
         if not header in self.headers: return None

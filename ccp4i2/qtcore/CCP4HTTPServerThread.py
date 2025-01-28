@@ -98,55 +98,6 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
         self.send_header('Cross-Origin-Opener-Policy', 'same-origin')
         self.send_header('Cross-Origin-Embedder-Policy', 'require-corp')
         SimpleHTTPRequestHandler.end_headers(self)
-        
-    def log_message(self,format,*args):
-      # More programming by stackoverflow...
-      # http://stackoverflow.com/questions/10651052/how-to-quiet-simplehttpserver/10651257#10651257
-      # The base class code
-      '''
-      sys.stderr.write("%s - - [%s] %s\n" %
-                     (self.address_string(),
-                      self.log_date_time_string(),
-                      format%args))
-      '''
-                    
-      f = CCP4Modules.PRINTHANDLER().getFileObject(thread='HTTPServer',name='HTTPServer')
-      f.write("%s - - [%s] %s\n" %
-                     (self.address_string(),
-                      self.log_date_time_string(),
-                      format%args))
-    
-    """
-    def do_POST(self):
-        form = cgi.FieldStorage(fp=self.rfile, headers=self.headers, \
-            environ={'REQUEST_METHOD':'POST', 'CONTENT_TYPE':self.headers['Content-Type'], })
-        upfile = form['upfile']
-        project = form['project']
-
-        # extract basename of input filename, remove non-alphanumeric characters
-        if '\\' in upfile.filename:
-            filename = upfile.filename.split('\\')[-1]
-        else:
-            filename = upfile.filename.split('/')[-1]
-        filename = re.sub('[ \t]','-', filename)
-        filename = re.sub('[^a-zA-Z0-9_.:-]','', filename)
-
-        data = ''
-        while True:
-            chunk = upfile.file.read(8192)
-            if len(chunk) == 0:
-                break
-            else:
-                data += chunk
-        self.send_response(200)
-        self.end_headers()
-
-        CHTTPServerThread.insts.emit(QtCore.SIGNAL('insertFileInDBRequest'),(os.path.basename(upfile.filename),data,project.value))
-
-        self.wfile.write('<html><head><title>Upload</title></head><body>\
-            <h1>Requested uploaded</h1><br>From: %s<br>To project:%s</body></html>' % \
-            (upfile.filename, project.value) )
-    """
 
     #Here I am going to do some hackery to allow the HTTP server to return information about the
     #database
@@ -423,4 +374,3 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                 self.wfile.write(bytes(data,"utf-8"))
             else:
                 self.wfile.write(data)
-

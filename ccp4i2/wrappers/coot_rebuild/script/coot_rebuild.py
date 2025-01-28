@@ -357,12 +357,6 @@ file_to_preferences('template_key_bindings.py')
         else:
           return CPluginScript.MARK_TO_DELETE
 
-    def clearCootWorkingDir(self):
-        # Remove the working directory state and history files
-        zeroFileList = glob.glob(os.path.normpath(os.path.join(self.projectDirectory(),'CCP4_COOT','0-coot*')))
-        for filn in zeroFileList:
-            os.remove(filn)
-
     def copyStateFile(self):
         newText = ''
         text = CCP4Utils.readFile(self.container.inputData.COOTSTATEFILE.fullPath.__str__())

@@ -36,61 +36,6 @@ from ..core.CCP4ErrorHandling import CException, Severity
 from ..core.CCP4WarningMessage import warningMessage
 
 
-class CSpaceGroupsAbstractItemModel(QtCore.QAbstractItemModel):
-
-    def __init__(self,parent):
-        QtCore.QAbstractItemModel.__init__(self,parent)
-        chiralSpaceGroups= CCP4XtalData.SYMMETRYMANAGER().chiralSpaceGroups
-        crystalSystems = CCP4XtalData.SYMMETRYMANAGER().crystalSystems
-        model = []
-        for key in crystalSystems:
-            model.append((key,chiralSpaceGroups[key]))
-        self.rootItem = CTreeItem(self,'root',model)
-
-    def columnCount(self,parent):
-        return 1
-
-    def childCount(self):
-        return self.rootItem.childCount()
-
-    def rowCount(self,index):
-        if not index.isValid():
-            return self.childCount()
-        else:
-            return index.internalPointer().childCount()
-
-    def child(self,row):
-        return self.rootItem.child(row)
-
-    def data(self, index, role):
-        if not index.isValid():
-            return None
-        item = index.internalPointer()
-        #return item.data(index.column(),role)
-        return item.data(role)
-
-    def index(self, row, column, parent):
-        if row < 0 or column < 0 or row >= self.rowCount(parent) or column >= self.columnCount(parent):
-            return QtCore.QModelIndex()
-        if not parent.isValid():
-            parentItem = self.rootItem
-        else:
-            parentItem = parent.internalPointer()
-        childItem = parentItem.child(row)
-        if childItem:
-            return self.createIndex(row, column, childItem)
-        else:
-            return QtCore.QModelIndex()
-
-    def parent(self,index):
-        if not index.isValid():
-            return QtCore.QModelIndex()
-        childItem = index.internalPointer()
-        parentItem = childItem.parent
-        if parentItem == self.rootItem:
-            return QtCore.QModelIndex()
-        return self.createIndex(parentItem.row(), 0, parentItem)
-
 class CSpaceGroupTreeView(QtWidgets.QTreeView):
 
     def mousePressEvent(self, event):
@@ -104,19 +49,6 @@ class CSpaceGroupTreeView(QtWidgets.QTreeView):
                 self.parent().parent().blockClose = True
                 event.accept()
                 return
-
-class CSpaceGroupCombo(QtWidgets.QComboBox):
-
-    def __init__(self,parent):
-        QtWidgets.QComboBox.__init__(self, parent)
-        self.blockClose = False
-
-    def hidePopup(self):
-        #print 'CSpaceGroupCombo.hidePopup'
-        if self.blockClose:
-            self.blockClose = False
-            return
-        QtWidgets.QComboBox.hidePopup(self)
 
 
 class CSpaceGroupView(CCP4Widgets.CComplexLineWidget):
@@ -436,17 +368,6 @@ class  CProgramColumnGroupCombo(QtWidgets.QComboBox):
 
     def beep(self):
         print('CProgramColumnGroupCombo.beep', self.currentIndex(), self.view().selectionModel().currentIndex().row())
-
-    def currentColumnGroupIndices(self):
-        modelIndex = self.view().selectionModel().currentIndex()
-        if modelIndex.isValid():
-            data = modelIndex.internalPointer().data(QtCore.Qt.UserRole)
-            if data is None:
-                return -1, -1
-            val = data.__str__().split('.')
-            return int(val[0]), int(val[1])
-        else:
-            return -1,-1
 
     def setCurrentColumnGroup(self,dataset,columnGroupText):
         #print 'CProgramColumnGroupCombo.setCurrentColumnGroup',dataset,columnGroupText

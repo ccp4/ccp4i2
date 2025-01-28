@@ -166,13 +166,6 @@ class COpenJob(QtCore.QObject):
                     ' projectName: ' + str(self.__dict__['_projectName']) + ' info: ' + str(self.__dict__['info'])
         return retstring
 
-    def updateInfo(self):
-        if self.jobId is not None:
-            self.__dict__['info'] = PROJECTSMANAGER().db().getJobInfo(jobId=self.jobId, mode=COpenJob.MODE)
-        if self.__dict__['info']['taskname'] is not None:
-            self.__dict__['isWorkflow'] = (WORKFLOWMANAGER().getDefFile(self.__dict__['info']['taskname']) is not None)
-        self.__dict__['childjobtaskname'] = []
-
     @QtCore.Slot(dict)
     def handleJobStatusUpdated(self, args):
         #print 'CopenJob.handleJobStatusUpdated',args,self.__dict__['jobId']   # KJS . Check here.
@@ -426,9 +419,6 @@ class COpenJob(QtCore.QObject):
         f.saveFile(bodyEtree=bodyEtree)
         return CErrorReport()
 
-    def setFollowFromJob(self,jobId):
-        pass
-
     def childOpenJob(self,index):
         if self.__dict__['info']['childjobs'] is not None:
             if index < 0:
@@ -438,46 +428,6 @@ class COpenJob(QtCore.QObject):
         else:
             return None
 
-
-class CCP4SimpleDatabase(CCP4Data.CData):
-
-    ERROR_CODES = {100 : {'description' : 'Failed to connect to database file'},
-                   101 : {'description' : 'Failed to connect to new database file'},
-                   102 : {'description' : 'Error initialising database'},}
-
-    def __init__(self): # KJS : This is badly broken. Suspect it's never actually used. 
-        userId = CCP4Annotation.CUserAddress()
-        userId.setCurrent()
-        userName = str(userId.userId)
-        institution = str(userId.platformNode)
-        self.fileName = os.path.join(CCP4Utils.getDotDirectory(),'db','sqlite.db')
-        if not os.path.exists(self.fileName):
-            # Need to create with appropriate schema
-            try:
-                self.UIdb = UIdb(filename =self.fileName ,hostname='localhost',user=userName)
-                cur = self.UIdb.establishConnection()
-            except:
-                raise CException(self.__class__,101,self.fileName)
-            try:
-                schema = os.path.join(CCP4Utils.getCCP4I2Dir(),'dbapi','database_schema.sql')
-                self.UIdb.readFile(schema)
-            except:
-                pass
-            try:
-                self.UIdb = UIdb(filename =self.fileName ,hostname='localhost',user=userName)
-                cur = self.UIdb.establishConnection()
-            except:
-                raise CException(self.__class__,101,self.fileName)
-            # Add current user to user table
-            self.UIdb.createUser(userName,institution)
-            # Add ccp4i2 and ccp4mg to user agents
-            self.UIdb.createNewUserAgent('ccp4i2', __version__, 'CCP4i2 GUI')
-            self.UIdb.createNewUserAgent('ccp4mg', '', 'CCP4mg')
-        else:
-            try:
-                self.UIdb = UIdb(filename =self.fileName ,hostname='localhost',user=userName)
-            except:
-                raise CException(self.__class__,101,self.fileName)
 
 # Sorting function
 def compareJobNumber(jobA,jobB):
@@ -1220,13 +1170,6 @@ def makeJobBackup(jobId=None,projectName=None,db=None):
     backup.scrapeFromDb(db=db)
     backup.save()
 
-def makeProjectDbXml(projectDir,xmlFile=None):
-    makeDb = CMakeProjectDbXml(PROJECTSMANAGER().db())
-    makeDb.loadProject()   # KJS. Again takes *no* argument. Either loadProject is broken or this is a typo. 
-    if xmlFile is None:
-        xmlFile = projectDir+'.ccp4db.xml'
-    makeDb.saveXmlFile(xmlFile= xmlFile)
-    return xmlFile
 
 #=========================================================================================================================
 def TESTSUITE():

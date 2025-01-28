@@ -67,11 +67,3 @@ class CChallengeUnknownUser(QtWidgets.QDialog):
 
     def getReset(self):
         return False #self.resetName.isChecked()
-
-class CDbManagerDialog(QtWidgets.QDialog):
-
-    def __init__(self,parent=None):
-        QtWidgets.QDialog.__init__(self,parent)
-        self.setWindowTitle('Database manager')
-        layout = QtWidgets.QVBoxLayout()
-        self.setLayout(layout)

@@ -694,10 +694,6 @@ class javaloggraph:
         elif self.__archive == "JLogView.jar":
             self.__code="JLogView_.LGApplet.class"
 
-    def setCodebase(self,codebase):
-        """Explicitly set the codebase for the applet"""
-        self.__codebase = codebase;
-
     def codebase(self):
         """Return the value of the codebase for the applet."""
         return self.__codebase

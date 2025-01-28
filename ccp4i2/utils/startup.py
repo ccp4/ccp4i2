@@ -65,10 +65,6 @@ def testForCCP4Environment():
     else:
         return True
 
-def startGraphics():
-    app = CGuiApplication(sys.argv)
-    CCP4Config.CONFIG().set('graphical', True)
-    return app
 
 def createMissingDATABASEdbXML():
     proj_dir_list0=CCP4Modules.PROJECTSMANAGER().db().getProjectDirectoryList()

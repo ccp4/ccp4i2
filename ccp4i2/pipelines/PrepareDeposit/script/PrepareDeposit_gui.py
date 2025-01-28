@@ -54,9 +54,6 @@ class PrepareDeposit_gui(CTaskWidget):
         self.createLine(['advice','which can be uploaded to the deposition service'])
         self.createLine(['widget','-jobCombo',False,'OUTPUT_DIRECTORY'])
         self.closeSubFrame()
-    
-    def showMolin(self):
-        return self.container.inputData.PROVIDEMOL and not self.container.inputData.MOLSMILESORSKETCH != 'SMILES'
 
     @QtCore.Slot()
     def affectsReflectionContentFlag(self):

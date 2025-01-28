@@ -59,15 +59,6 @@ class Cprosmart_refmac(CCP4TaskWidget.CTaskWidget):
   def ToggleWeightAuto(self):
     return str(self.container.controlParameters.WEIGHT_OPT) == 'MANUAL'
 
-  #def ToggleTLS(self):
-  #return self.container.inputData.TLSIN.isSet()
-  #def ToggleTLSNot(self):
-  #return not self.container.inputData.TLSIN.isSet()
-  #def ToggleTLSUsed(self):
-  #return self.container.inputData.TLSIN.isSet() or self.container.controlParameters.AUTOTLS
-  #def ToggleTLSNotUsed(self):
-  #return not self.container.inputData.TLSIN.isSet() and not self.container.controlParameters.AUTOTLS
-
   def ToggleTLSModeOn(self):
     if str(self.container.controlParameters.TLSMODE) != 'NONE':
         CurrentStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(self._jobId,'status')
@@ -608,39 +599,9 @@ class Cprosmart_refmac(CCP4TaskWidget.CTaskWidget):
        self.container.controlParameters.USEANOMALOUS = True
        return True
 
-  #def anomalousMapUsed(self):
-  #  if not self.container.inputData.F_SIGF.isSet(): return False
-  #  if not self.container.controlParameters.USEANOMALOUSFOR.isSet(): return False
-  #  if str(self.container.controlParameters.USEANOMALOUSFOR) == 'NOTHING': return False
-  #  return True
-
-#def anomalousMapIgnored(self):
-#   if self.anomalousAvailable():
-#      if self.container.controlParameters.USEANOMALOUSFOR.isSet():
-#         if str(self.container.controlParameters.USEANOMALOUSFOR) == 'NOTHING': return True
-#   return False
-
-
   @QtCore.Slot()
   def F_SIGFChanged(self):
     self.getWavelength()
-  #self.setTwinMode()
-
-  #def setTwinMode(self):
-  #  if self.container.inputData.F_SIGF.isSet():
-  #     columnLabelsInFile = [column.columnLabel.__str__() for column in self.container.inputData.F_SIGF.fileContent.listOfColumns]
-  #     if not 'I' in columnLabelsInFile and not 'Iplus' in columnLabelsInFile:
-  #         self.container.controlParameters.TWIN_TYPE.setQualifiers({'enumerators':['F'],'menuText':['SF Amplitudes (F)']})
-  #         self.container.controlParameters.TWIN_TYPE.set('F')
-  #     else:
-  #         self.container.controlParameters.TWIN_TYPE.setQualifiers({'enumerators':['I','F'],'menuText':['Intensities (I)','SF Amplitudes (F)']})
-  #         self.container.controlParameters.TWIN_TYPE.set('I')
-  #     try:
-  #         self.getWidget('TWIN_TYPE').populateComboBox(self.container.controlParameters.TWIN_TYPE)
-  #         self.getWidget('TWIN_TYPE').updateViewFromModel()
-  #     except:
-  #         pass
-  #     self.validate()
   
   @QtCore.Slot()
   def ExperimentChanged(self):
@@ -765,19 +726,6 @@ class Cprosmart_refmac(CCP4TaskWidget.CTaskWidget):
                   chain_list["other"].append(chain.GetChainID())
          #print "Model content: "+str(chain_list)
      return chain_list
-
-#      from iotbx.pdb import hierarchy
-#      pdb_in = hierarchy.input(file_name=self.container.inputData.XYZIN.fullPath.__str__())
-#      for chain in pdb_in.hierarchy.only_model().chains():
-#         if chain.is_protein():
-#            print "protein: "+chain.id
-#         elif chain.is_na():
-#            print "dna/rna: "+chain.id
-#         else:
-#            print "neither: "+chain.id
-
-  #def MergeDictionaries(self):
-  #   print 'Dictionaries are not merged here - its now done when the job is executed...'
 
   def getWavelength(self):
     if self.container.inputData.F_SIGF.isSet():

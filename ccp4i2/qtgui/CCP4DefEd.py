@@ -784,22 +784,11 @@ class CDefEd(QtWidgets.QMainWindow):
     self.nAutoSaved = 0
     self.autoSavedStatus = []
     self.autoSavedPosition = -1
-  
 
   def autoSave(self):
     self.nAutoSaved = self.nAutoSaved + 1
     self.autoSavedStatus.append(self.getSaveStatus())
     self.autoSavedPosition = len(self.autoSavedStatus)-1
-
-  def autoRestore(self,increment=0):
-    if increment<=0:
-      new=max(0,self.autoSavedPosition+increment)
-    else:
-      new = min(len(self.autoSavedStatus)-1,self.autoSavedPosition+increment)
-
-    if new != self.autoSavedPosition:
-      self.autoSavedPosition = new
-      self.updateStatus(status=self.autoSavedStatus[self.autoSavedPosition])
 
   def getSaveStatus(self):
     current = self.currentDataObject()
@@ -1687,7 +1676,6 @@ class CCollectionFrame(QtWidgets.QFrame):
       self.compare.setCurrentIndex(2)
     self.listDefault.setText(str(qualis.get('default')))
     self.dictDefault.setText('')
-    
 
   def setDict(self,dataObj):
     self.classCombo.setCurrentIndex(2)
@@ -1697,10 +1685,6 @@ class CCollectionFrame(QtWidgets.QFrame):
     self.compare.setCurrentIndex(0)
     self.listDefault.setText('')
     self.dictDefault.setText(str(qualis.get('default')))
-  
-  def setTable(self,dataObj):
-    self.classCombo.setCurrentIndex(3)
-    
 
   def getQualifiers(self):
     qualis = {}

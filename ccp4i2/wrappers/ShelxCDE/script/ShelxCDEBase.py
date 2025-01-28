@@ -640,59 +640,6 @@ OUTPUT frac
 
         return CPluginScript.SUCCEEDED
 
-    def resToPDB(self, inputResPath, outputPDBPath):
-        elements = []
-        coords = []
-        with open(inputResPath,'r') as inputRes:
-            lines = [line.strip() for line in inputRes.readlines()]
-            for line in lines:
-                tokens = line.split()
-                if len(tokens) > 0 and tokens[0] == 'SFAC':
-                    elements = [token.upper() for token in tokens[1:]]
-                elif len(tokens) == 7:
-                    coordElement = elements[int(tokens[1])-1]
-                    coord = {'Element':coordElement,'X':float(tokens[2]),'Y':float(tokens[3]),'Z':float(tokens[4]),'OCC':float(tokens[5]),'B':float(tokens[6])}
-                    #coord = {'element':coordElement,'xFrac':float(tokens[2]),'yFrac':float(tokens[3]),'zFrac':float(tokens[4]),'occupancy':float(tokens[5]),'tempFactor':float(tokens[6])}
-                    coords.append(coord)
-
-        """
-        # This code (with the alternate definition of coord above) is better way to create PDB file
-        pdb = CCP4ModelData.CPdbData()
-        cellString, spaceGroupNumber, extantFile = self.cellString()
-        pdb.makeOneResPdb(atomDefList=coords,cell=extantFile.fileContent.cell,spaceGroup=extantFile.fileContent.spaceGroup,fileName=outputPDBPath)
-        """
-        
-        outputFracPath = outputPDBPath+'.ha'
-        with open(outputFracPath,'w') as outputHA:
-            cellString, spaceGroupNumber, extantFile = self.cellString()
-            outputHA.write(cellString)
-            iCoord = 1
-            for coord in coords:
-                element = [ element for element in ShelxCDEBase.PeriodicTable if element['Symbol'].upper() == coord['Element']][0]
-                #I confess I don't understand negative occupancies here
-                outputHA.write ('ATOM %s %10.5f %10.5f %10.5f %10.5f %10.5f\n'%(element['Symbol'], coord['X'], coord['Y'], coord['Z'], coord['OCC'], coord['B']*100.))
-
-        bin =  os.path.normpath(os.path.join( 'coordconv' ))
-        logFile =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'coordconv_2.log'))
-        arglist = ['XYZIN',outputFracPath,'XYZOUT',outputPDBPath]
-        
-        inputText = '''INPUT HA
-OUTPUT pdb
-'''
-        inputText += self.cellString()[0]
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
-
-        if status != 0 or not os.path.exists(outputPDBPath):
-            self.appendErrorReport(201,str(bin)+' '+str(arglist)+' '+str(inputText)+' '+str(outputFracPath))
-            return CPluginScript.FAILED
-        
-
-        return CPluginScript.SUCCEEDED
-
-
-
     def txtOutputFiles(self):
         # Add '.txt' extension to files so will display correctly in i2 and desktop tools
         # also : pha phs hat from shelxe

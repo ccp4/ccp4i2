@@ -777,36 +777,6 @@ class CServerSetupWindow(QtWidgets.QDialog):
   def help(self):
     CCP4Modules.WEBBROWSER().loadWebPage(helpFileName='servers.html',newTab=True)
 
-    
-class CRemoteStatus(QtWidgets.QDialog):
-  def __init__(self,parent):
-    QtWidgets.QDialog.__init__(self,parent)
-    self.setModal(False)
-    self.setLayout(QtWidgets.QVBoxLayout())
-    self.advice = QtWidgets.QLabel(self)
-    self.layout().addWidget(self.advice)
-    self.jobList = QtWidgets.QListWidget(self)   
-    self.layout().addWidget(self.jobList )
-    butLayout = QtWidgets.QHBoxLayout()
-    for label,connect in [['Close',self.close]]:
-      but = QtWidgets.QPushButton(label,self)
-      but.clicked.connect(connect)
-      butLayout.addWidget(but)
-    self.layout().addLayout(butLayout)
-    
-  def load(self,text='',title=None,advice=None):
-    if title is not None:
-      self.setWindowTitle(title)
-    else:
-      self.setWindowTitle('')
-    if advice is not None:
-      self.advice.setText(advice)
-    else:
-      self.advice.setText('')
-    self.jobList.clear()
-    lineList = text.split('\n')
-    for line in lineList: self.jobList.addItem(line)
-
 
 class CPasswordEntry(QtWidgets.QDialog):
 

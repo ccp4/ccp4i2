@@ -269,14 +269,6 @@ class CNewProjectGui(QtWidgets.QDialog):
         QtWidgets.QMessageBox.warning(self,'Directory does not exist','The parent directory for the project directory does not exist: ' +parentDir )
         return
 
-
-
-      '''
-      rv = QtWidgets.QMessageBox.question(self,'Make new directory','Make a new directory for the project',
-                            QtWidgets.QMessageBox.Ok|QtWidgets.QMessageBox.Cancel)
-      if rv == QtWidgets.QMessageBox.Cancel: return
-      '''
-
       try:
         os.mkdir(directory)
       except:
@@ -351,16 +343,6 @@ class CExportOptionsDialog(QtWidgets.QDialog):
     line.addSpacing(20)
     line.addWidget(self.selectionWidget)
     self.layout().addLayout(line)
-
-
-    #if DEVELOPER():
-    if False:
-      line = QtWidgets.QHBoxLayout()
-      self.excludeI2files = QtWidgets.QCheckBox(self)
-      self.excludeI2files.setChecked(True)
-      line.addWidget(self.excludeI2files)
-      line.addWidget(QtWidgets.QLabel('Exclude demo data files from CCP4I2 distribution',self))
-      self.layout().addLayout(line)
 
     line = QtWidgets.QHBoxLayout()
     buttonBox = QtWidgets.QDialogButtonBox(self)
@@ -977,11 +959,6 @@ class CProjectsTreeView(QtWidgets.QTreeView):
         mimeData.setData('project',encodedData)
         return mimeData
 
-    def dragLeaveEvent(self,event):
-        self.dropSite = None
-        event.accept()
-        self.repaint()
-
     def dragEnterEvent(self,event):
         if event.mimeData().hasFormat('project'):
             event.accept()
@@ -1346,18 +1323,6 @@ class CProjectsTreeWidget(QtWidgets.QTreeWidget):
     projectId = CCP4Data.varToUUID(item.data(0,QtCore.Qt.UserRole))
     return  projectId
 
-  '''
-  def mimeTypes(self):
-    return ['project']
-
-  def supportedDropActions(self):
-    print 'supportedDropActions'
-    return QtCore.Qt.MoveAction
-
-  def dropMimeData(self,parent,index,data,action):
-    print 'CProjectsTreeWidget.dropMimeData',parent,index,data,action
-    return True
-  '''
 
 class CProjectsStatusBar(QtWidgets.QStatusBar):
   def __init__(self,parent):
@@ -2210,9 +2175,6 @@ class CProjectManagerDialog(QtWidgets.QDialog):
   def doneImportProgress(self):
     pass
 
-  def repairProject(self):
-    pass
-
   @QtCore.Slot()
   def handleDeleteProject(self):
     projectId=self.projectsView.selectedProjectId()
@@ -2460,20 +2422,6 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     self.importXmlDatabase(xmlFile,projectDir=projectDir)
     self.statusWidget.clear()
     self.statusWidget.removeProgress()
-
-  def handleImportXmlDatabase(self):
-    self.browser = CCP4FileBrowser.CFileDialog(self,
-           title='Recover database from the project directory',
-           filters= ['CCP4 Database XML (*.ccp4db.xml)'],
-           defaultSuffix= 'xml',
-           fileMode=QtWidgets.QFileDialog.ExistingFile  )                   
-    self.browser.selectFile.connect(self.handleRecoverDirSelected)
-    self.browser.show()
-
-  @QtCore.Slot(str)
-  def handleRecoverDirSelected(self,xmlFile):
-    self.browser.hide()
-    self.importXmlDatabase(xmlFile)
 
   def importXmlDatabase(self,xmlFile,projectDir=None):
     self.dbImport = CCP4DbApi.CDbXml(db=PROJECTSMANAGER().db(),xmlFile=xmlFile)
@@ -2835,285 +2783,3 @@ class CProjectDescriptionDialog(QtWidgets.QDialog):
     ret = self.widget.save()
     self.close()
     self.deleteLater()
-
-class CSearchProjectWidget(QtWidgets.QFrame):
-  def __init__(self,parent):
-    QtWidgets.QFrame.__init__(self,parent)
-    self.setFrameShape(QtWidgets.QFrame.Box)
-    self.setLineWidth(2)
-    self.setLayout(QtWidgets.QVBoxLayout())
-    self.layout().setSpacing(2)
-    self.layout().setContentsMargins(2,2,2,2)
-    self.widgets = {}
-    self.model = {}
-
-    line = QtWidgets.QHBoxLayout()
-    line.addWidget(QtWidgets.QLabel('Highlight  ',self))
-    for item,label in [['name','name'],['annotation','description or'],['tags','tag']]:
-      self.widgets[item] = QtWidgets.QCheckBox(label,self)
-      self.widgets[item].setChecked(True)
-      line.addWidget(self.widgets[item])
-    self.widgets['textSearchMode'] = QtWidgets.QComboBox(self)
-    self.widgets['textSearchMode'].setEditable(False)
-    for lab in [ 'is','starts with','contains']:
-      self.widgets['textSearchMode'].addItem(lab)
-    self.widgets['textSearchMode'].setCurrentIndex(2)
-    line.addWidget(self.widgets['textSearchMode'])
-    self.widgets['text'] = CTagLineEdit(self)
-    line.addWidget(self.widgets['text'])
-    self.widgets['tagCombo'] =  QtWidgets.QComboBox(self)
-    self.widgets['tagCombo'].setEditable(False)
-    self.widgets['tagCombo'].currentIndexChanged[int].connect(self.handleTagCombo)
-    self.loadTagCombo()
-    line.addWidget(self.widgets['tagCombo'])
-
-    self.simpleButtons = QtWidgets.QFrame(self)
-    line.addWidget(self.simpleButtons)
-    self.simpleButtons.setLayout(QtWidgets.QHBoxLayout())
-    self.simpleButtons.layout().setSpacing(0)
-    self.simpleButtons.layout().setContentsMargins(0,0,0,0)
-    for text,icon,toolTip,action in [
-         [ 'Search',None , 'Highlight matching projects', self.doSearch ],
-         [ None ,'undo' , 'Unset highlighted projects', self.clear ],
-         [ None ,'help', 'Show help pages' , self.showHelp] ,
-         [ None ,'search-plus' , 'Show advanced search tools' ,functools.partial(self.toggleAdvanced,True) ] ]:
-      but = QtWidgets.QToolButton(self)
-      if text is not None:
-        but.setText(text)
-        but.setMinimumHeight(but.iconSize().height())
-      else:
-        icon =CCP4GuiUtils.createIcon(name=icon)    
-        but.setIcon(icon)
-      but.setToolTip(toolTip)
-      but.clicked.connect(action)
-      self.simpleButtons.layout().addWidget(but)
-
-    self.layout().addLayout(line)
-    self.widgets['text'].enterKeyPress.connect(self.doSearch)
-
-    PROJECTSMANAGER().db().tagCreated.connect(self.loadTagCombo)
-    PROJECTSMANAGER().db().tagUpdated.connect(self.loadTagCombo)
-    PROJECTSMANAGER().db().tagDeleted.connect(self.loadTagCombo)
-
-    self.adFrame = None
-
-  @QtCore.Slot()
-  def loadTagCombo(self):
-    self.widgets['tagCombo'].clear()
-    self.widgets['tagCombo'].addItem('Tag..',0)
-    for tagId,parentId,text in PROJECTSMANAGER().db().getTagList():
-      self.widgets['tagCombo'].addItem(text,tagId)
-
-  @QtCore.Slot(int)
-  def handleTagCombo(self,indx):
-    if indx==0: return
-    self.widgets['text'].setText(self.widgets['tagCombo'].currentText())
-
-  def drawAdvancedFrame(self):
-    self.adFrame = QtWidgets.QFrame(self)
-    self.adFrame.setLayout(QtWidgets.QVBoxLayout())
-    self.adFrame.layout().setSpacing(1)
-    self.adFrame.layout().setContentsMargins(1,1,1,1)
-    self.adFrame.hide()
-    self.layout().addWidget(self.adFrame)
-
-    line = QtWidgets.QHBoxLayout()
-    line.setSpacing(1)
-    '''
-    Taken out alternative date search modes - just use active mode
-    line.addWidget(QtWidgets.QLabel('and was',self))
-    self.widgets['dateMode'] = QtWidgets.QButtonGroup(self)
-    for item,bid in [['active',1],['created',2],['last accessed',3]]:
-      but = QtWidgets.QRadioButton(item,self)
-      line.addWidget(but)
-      self.widgets['dateMode'].addButton(but,bid)
-    self.widgets['dateMode'].button(1).setChecked(True)
-    '''
-    self.widgets['useDate'] = QtWidgets.QCheckBox('Project active',self)
-    self.widgets['useDate'].setChecked(False)
-    line.addWidget(self.widgets['useDate'])   
-    self.model['dateRange']=CCP4Annotation.CDateRange(parent=self)
-    self.widgets['dateRange'] = CCP4AnnotationWidgets.CDateRangeView(parent=self,model=self.model['dateRange'])
-    self.widgets['dateRange'].layout().takeAt(0).widget().deleteLater()
-    self.widgets['dateRange'].setStyleSheet("QFrame { border : 0px };")
-    line.addWidget(self.widgets['dateRange'])
-    line.addStretch(2)
-    self.adFrame.layout().addLayout(line)
-
-    line = QtWidgets.QHBoxLayout()
-    line.addWidget(QtWidgets.QLabel('and is a sub-project of',self))
-    self.widgets['drop'] = QtWidgets.QToolButton(self)
-    self.widgets['drop'].setIcon(QtGui.QIcon(CCP4Widgets.PIXMAPMANAGER().getPixmap('project')))
-    line.addWidget(self.widgets['drop'])   
-    self.widgets['parent'] = QtWidgets.QComboBox(self)
-    self.widgets['parent'].setEditable(False)
-    line.addWidget(self.widgets['parent'])
-    line.setStretch(2,2)
-    self.adFrame.layout().addLayout(line)
-
-    line = QtWidgets.QHBoxLayout()
-    line.addWidget(QtWidgets.QLabel('and uses',self))
-    self.modeButtonGroup = QtWidgets.QButtonGroup(self)
-    self.modeButtonGroup.setExclusive(True)
-    butId = 0
-    #for item in ['task and control parameters or','imported file or','directory']:
-    for item in ['imported file or','directory']:
-      but = QtWidgets.QRadioButton(item,self)
-      butId += 1
-      self.modeButtonGroup.addButton(but,butId)
-      line.addWidget(but)
-    line.addStretch(2)
-    self.modeButtonGroup.button(1).setChecked(True)
-    self.modeButtonGroup.buttonClicked[int].connect(self.handleModeChange)
-    self.adFrame.layout().addLayout(line)
-
-    self.modeStack = QtWidgets.QStackedLayout()
-    self.adFrame.layout().addLayout(self.modeStack)
-
-    frame = QtWidgets.QFrame(self)
-    frame.setLayout(QtWidgets.QVBoxLayout())
-    frame.layout().setSpacing(2)
-    frame.layout().setContentsMargins(2,2,2,2)
-    line = QtWidgets.QHBoxLayout()
-    line.addWidget(QtWidgets.QLabel('Task'))
-
-    '''
-    #self.widgets['taskName'] = QtWidgets.QTreeView(self)
-    self.widgets['taskName'] =CCP4Widgets.CTreeComboBox(self)
-    self.taskMenu = CCP4Widgets.CTasksModel(self)
-    self.widgets['taskName'].setModel(self.taskMenu)    
-    line.addWidget(self.widgets['taskName'])
-    frame.layout().addLayout(line)
-    self.modeStack.addWidget(frame)
-    '''
-
-    frame = QtWidgets.QFrame(self)
-    frame.setLayout(QtWidgets.QVBoxLayout())
-    frame.layout().setSpacing(2)
-    frame.layout().setContentsMargins(2,2,2,2)
-    line = QtWidgets.QHBoxLayout()
-    self.model['importedFile'] = CCP4File.CDataFile(parent=self)
-    self.widgets['importedFile'] = CCP4Widgets.CDataFileView(self,model=self.model['importedFile'],
-                qualifiers= { 'jobCombo':False, 'autoInfoOnFileImport':False, 'browseDb' : False } )
-    self.widgets['importedFile'].layout().takeAt(0).widget().deleteLater()
-    line.addWidget(QtWidgets.QLabel('File imported into project'))
-    line.addWidget( self.widgets['importedFile'])
-    line.setStretchFactor(self.widgets['importedFile'],2)
-    frame.layout().addLayout(line)
-    self.modeStack.addWidget(frame)
-
-    frame = QtWidgets.QFrame(self)
-    frame.setLayout(QtWidgets.QVBoxLayout())
-    frame.layout().setSpacing(2)
-    frame.layout().setContentsMargins(2,2,2,2)
-    line = QtWidgets.QHBoxLayout()
-    self.model['projectDir'] = CCP4File.CDataFile(parent=self,qualifiers={'isDirectory':True, 'mustExist' : True })
-    self.widgets['projectDir'] = CCP4Widgets.CDataFileView(self,model=self.model['projectDir'],
-                qualifiers= { 'jobCombo':False, 'autoInfoOnFileImport':False, 'browseDb' : False } )
-    self.widgets['projectDir'].layout().takeAt(0).widget().deleteLater()
-    line.addWidget(QtWidgets.QLabel('Uses project directory'))
-    line.addWidget( self.widgets['projectDir'])
-    line.setStretchFactor(self.widgets['projectDir'],2)
-    frame.layout().addLayout(line)
-    self.modeStack.addWidget(frame)
-
-    line =QtWidgets.QHBoxLayout()
-    line.addStretch(0.5)
-    for icon,label,action in [ ['search','Search',self.doSearch],
-                          ['help','Help',self.showHelp],
-                          ['undo','Clear',self.clear],
-                          ['search-plus','Close',functools.partial(self.toggleAdvanced,False)] ]:
-      icon =CCP4GuiUtils.createIcon(name=icon)
-      but = QtWidgets.QPushButton(icon,label,self)
-      but.clicked.connect(action)
-      line.addWidget(but)
-      line.addStretch(0.1)
-    line.addStretch(0.5)
-    self.adFrame.layout().addLayout(line)
-
-    self.load()
-
-  @QtCore.Slot(bool)
-  def toggleAdvanced(self,advanced=None):
-    #print 'toggleAdvanced',advanced,self.height()
-    if not advanced:
-      self.adFrame.hide()
-      self.simpleButtons.show()
-    else:
-      # Save the heigth of the basic frame to reset when closing advanced
-      if self.adFrame is None: self.drawAdvancedFrame()
-      self.adFrame.show()
-      self.simpleButtons.hide()
-
-  @QtCore.Slot(int)
-  def handleModeChange(self,mode):
-    self.modeStack.setCurrentIndex(mode-1)
-
-  @QtCore.Slot()
-  def doSearch(self):
-    params = self.get()
-    retList = PROJECTSMANAGER().db().projectSearch(searchParams=params)
-    #print 'CSearchProjectDialog.handleApply',retList
-    pidList = []
-    for pid,name in retList: pidList.append(pid)
-    self.parent().projectsView.setHighlights(None,pidList)
-
-  def clear(self):
-    self.parent().projectsView.setHighlights(None,[])
-
-  @QtCore.Slot(str)
-  def showHelp(self,target=None):
-    WEBBROWSER().loadWebPage(helpFileName='searchTools',target=target)
-
-  def load(self):
-    info = PROJECTSMANAGER().db().getProjectSearchInfo()
-    #print 'load',info
-    self.widgets['parent'].setEditable(True)
-    self.widgets['parent'].clear()
-    self.widgets['parent'].addItem('Not set',-1)
-    for pid,name in info['parentProjects']:
-      self.widgets['parent'].addItem(name,pid)
-    self.widgets['parent'].setEditable(False)
-
-
-  def get(self):
-    ret = {}
-    nSearch = 0
-    for name in [ 'name','annotation','tags']:
-      ret[name] = self.widgets[name].isChecked()
-      if ret[name]: nSearch+=1
-
-    ret['textSearchMode'] = self.widgets['textSearchMode'].currentIndex()
-
-    if nSearch>0:
-      ret['searchText'] = str(self.widgets['text'].text()).strip()
-      if len(ret['searchText']) ==0: ret['searchText'] = None
-    else:
-      ret['searchText'] = None
-
-    '''
-    ret['dateMode'] = ['active','created','lastAccessed'][self.widgets['dateMode'].checkedId()-1]
-    '''
-    if self.adFrame is not None and self.adFrame.isVisible(): 
-      ret['dateMode'] = 'active'
-      ret['useDate'] = self.widgets['useDate'].isChecked()
-
-      self.widgets['dateRange'].updateModelFromView()
-      ret['minTime'],ret['maxTime'] = self.model['dateRange'].epochRange()
-
-      if self.widgets['parent'].currentIndex() == 0:
-        ret['parent'] = None
-      else:
-        ret['parent'] = str(self.widgets['parent'].itemData(self.widgets['parent'].currentIndex()))
-
-      if self.modeButtonGroup.checkedId() == 1:
-        self.widgets['importedFile'].updateModelFromView()
-        if self.model['importedFile'].isSet():
-          ret['importedFile'] = str(self.model['importedFile'])
-      elif self.modeButtonGroup.checkedId() == 2:
-        self.widgets['projectDir'].updateModelFromView()
-        if self.model['projectDir'].isSet():
-          ret['projectDir'] = str(self.model['projectDir'])
-
-    #print 'CSearchProjectWidget.get',ret
-    return ret

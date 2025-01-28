@@ -227,10 +227,6 @@ class CCP4i2DjangoSession(DjangoSession):
         value = unicode(re.sub(r'[^\w\s-]', '', value).strip().lower())
         result = re.sub(r'[-\s]+', '-', value)
         return result
-
-    def pushProjectWithName(self,projectName):
-        projectId = self.projectIdForName(projectName=projectName, strict=False)
-        self.pushProjectWithId(projectId)
         
     def pushProjectWithId(self, projectId, jobList=None):
         projectList = self.projectsManager().db().listProjects()
@@ -272,12 +268,6 @@ class CCP4i2DjangoSession(DjangoSession):
         responseText = response.read()
         remoteProjects = json.loads(responseText)
         return remoteProjects
-
-    def fetchProjectWithName(self, projectName, jobList=None):
-        remoteProjects = self.fetchRemoteProjects()
-        matchingProjects = [project for project in remoteProjects if project[1] == projectName]
-        if len(matchingProjects) == 1:
-            self.fetchProjectWithId(matchingProjects[0][0], jobList=jobList)
 
     def fetchProjectWithId(self, projectId, jobList=None):
         response = self.getURLWithValues(self.baseURL+"/ProjectZipForProjectId/"+projectId,{"jobList":jobList})

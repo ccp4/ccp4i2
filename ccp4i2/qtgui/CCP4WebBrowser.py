@@ -674,32 +674,8 @@ class CMenuBar(QtWidgets.QMenuBar):
                 widget.addAction("dum")
         return widget
 
-    def removeMenu(self, menuName=''):
-        # Save current menus, clear and add all menus again
-        currentMenuList = []
-        found = False
-        currentMenuWidgets = self.findChildren(QtWidgets.QMenu)
-        for w in currentMenuWidgets:
-            name = str(w.objectName())
-            if name == menuName:
-                found = True
-            else:
-                currentMenuList.append([str(w.objectName()), str(w.title())])
-        if found:
-            self.clear()
-            for menuName, menuTitle in currentMenuList:
-                self.addMenu(menuName, menuTitle)
-
-    def setMenuTitle(self, menuName='', menuTitle=''):
-        widget = self.menuWidget(menuName)
-        if widget is not None:
-            widget.setTitle(menuTitle)
-
     def menuDefinition(self, menuName=''):
         return self.menuDefinitions.get(menuName,[])
-
-    def setMenuDefinition(self, menuName='', definition=[]):
-        self.menuDefinitions[menuName] = definition
 
     def appendToMenu(self, menuName='', menuItem=''):
         # menuItem should be the name of an action or 'sep' (separator)
@@ -1746,14 +1722,6 @@ class CBrowserWindow(CMainWindow):
             for tab in tabs:
                 tab.cornerWidget().setText('Close tab')
 
-    def positionOver(self,widget):
-        geom = widget.geometry()
-        globalPos = widget.mapToGlobal(QtCore.QPoint(geom.x(),geom.y()))
-        self.move(globalPos)
-    
-    def downloadTestData(self,**kw):
-        pass
-    
     def drawFindTool(self):
         self.findFrame = CFindFrame(self)
         self.findDock = QtWidgets.QDockWidget('Find',self)
@@ -1798,12 +1766,6 @@ class CBrowserWindow(CMainWindow):
             return None
         return self.stack.currentWidget()
 
-    def contextTab(self,context):
-        for indx in range(self.stack.count()):
-            if str(self.stack.widget(indx).objectName()) == context:
-                return self.stack.widget(indx)
-        return None
-
     def setTab(self,context):
         tab = self.stack.currentWidget()
         if tab is not None and str(tab.objectName()) == context:
@@ -1839,16 +1801,6 @@ class CBrowserWindow(CMainWindow):
                 self.editSplitter.addressEdit.setText(title)
         self.tab().repaint()
         return idx
-
-    def handleTabCornerWidget(self,clickBool = None):
-        if self.mini:
-            self.setMini(False)
-
-    def tabWidgets(self):
-        widgets = []
-        for idx in range(0,self.tab().count()):
-            widgets.append(self.tab().widget(idx))
-        return widgets
 
 #-------------------------------------------------------------------
     def setTabIndex(self, index=-1, fileName=''):
@@ -2277,33 +2229,6 @@ class CBrowserWindow(CMainWindow):
             return w.isSearchable()
         else:
             return False
-#-------------------------------------------------------------------
-    def widgetIsScaleable(self):
-#-------------------------------------------------------------------
-        w = self.currentWidget()
-        if w is not None:
-            return w.isScaleable()
-        else:
-            return None
-
-#-------------------------------------------------------------------
-    def isCurrentWidget(self, mode='text'):
-#-------------------------------------------------------------------
-        widget = self.currentWidget()
-        if widget is None:
-            return 0
-        if mode=='text':
-            if isinstance(widget, CCP4TextViewer.CTextViewer):
-                return 1
-            else:
-                return 0
-        if mode=='image':
-            if isinstance(widget, CCP4ImageViewer.CImageViewer):
-                return 1
-            else:
-                return 0
-        else:
-            return 0
 
 #-------------------------------------------------------------------
     def handlePrint(self):

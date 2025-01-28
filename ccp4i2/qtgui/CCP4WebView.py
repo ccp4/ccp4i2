@@ -76,12 +76,6 @@ class CWebPage(QtWebEngineWidgets.QWebEnginePage):
         CCP4Modules.QTAPPLICATION().processEvents(QtCore.QEventLoop.AllEvents, 42)
         return False
 
-    def javaScriptConsoleMessage(self, level, message, lineNumber, sourceID):
-        return
-        print(" ############ JAVASCRIPT MESSAGE ########### ")
-        print("lineNumber: ", lineNumber, " sourceID: ", sourceID, " message: ", message, " level",level)
-        print(" ########################################### ")
-
     def acceptNavigationRequest(self, url, navType, isMainFrame):
         print ('CWebPage.acceptNavigationRequest',url)
         # if CCP4Modules.PREFERENCES().EXTERNAL_FILES_IN_EXTERNAL_BROWSER and not request.url().isLocalFile():
@@ -373,24 +367,6 @@ for (var i=0; i<imgElements.length;i++) {
    var imgPath = imgElement.getAttribute('src');
    var d=new Date();
    $(imgElement).attr('src',imgPath+'?'+d.getTime());}''')
-
-    """
-    def reload(self):
-        self.resetScroll = self.page().mainFrame().scrollBarValue(QtCore.Qt.Vertical)
-        block = self._blockLoading
-        self._blockLoading = False
-        #if self.report is None or self.report.resetBaseHref is None:
-        #  QtWebEngineWidgets.QWebEngineView.reload(self)
-        #else:
-        #  QtWebEngineWidgets.QWebEngineView.load(self,QtCore.QUrl.fromLocalFile(+self.report.resetBaseHref))
-        self.load(self.url())
-        self._blockLoading = block
-    """
-
-    def loadHtmlText(self):
-        # http://stackoverflow.com/questions/2727080/how-to-get-qwebkit-to-display-image
-        # answer from badcat that security feature does not allow local disk baseRef in setHtml
-        print('CWebView loading text from', self.fileName)
 
     def editHTTPPort(self, fileName, port=None):
         if len(fileName) < 0:

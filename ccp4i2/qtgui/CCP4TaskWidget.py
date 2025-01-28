@@ -636,9 +636,6 @@ class CTaskWidget(QtWidgets.QFrame):
     def isEditor(self):
         return self.EDITOR
 
-    def autoPopulateInput(self):
-        return self.AUTOPOPULATEINPUT
-      
     def getParams(self, paramValues={}):
         for key, value in list(paramValues.items()):
             widget = self.getWidget(key)
@@ -665,9 +662,6 @@ class CTaskWidget(QtWidgets.QFrame):
 
     def setProgramHelpFile(self, helpFile):
         self.programHelpFile = helpFile
-
-    def setHelpFile(self, helpFile):
-        self.helpFile = helpFile
 
     @QtCore.Slot(str,str,str,int,int)
     def populateContextMenu(self, name, helpFile, helpTarget, globalX, globalY):
@@ -1332,9 +1326,6 @@ class CTaskFolder(CCP4Widgets.CFolder):
         self.setTitleColour(CCP4StyleSheet.LOWLIGHTCOLOUR)
         if self.titleBar is not None:
             self.titleBar.setMaximumHeight(30)
-
-    def setupUpdateStatus(self, *args):
-        pass
 
 
 #---------------------------------------------------------------------
