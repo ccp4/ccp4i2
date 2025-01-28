@@ -83,7 +83,6 @@ class CProcessManager(QtCore.QObject):
         self.ifAsync = False
         self.timeout = 999999
         self._processEnvironment = None
-        self._maxRunningProcesses = CCP4Config.CONFIG().maxRunningProcesses
         self.runningProcesses = []
         self.pendingProcesses = []
 
@@ -117,12 +116,6 @@ class CProcessManager(QtCore.QObject):
             #print 'CProcessManager.processEnvironment newPath', newPath
             self._processEnvironment.insert(pathVar, newPath)
         return self._processEnvironment
-
-    def setMaxRunningprocesses(self, maxproc):
-        self._maxRunningProcesses = maxproc
-
-    def maxRunningProcesses(self):
-        return self._maxRunningProcesses
 
 #------------------------------------------------------------------------------
     def setWaitForFinished(self, timeout=-1):
@@ -296,7 +289,7 @@ class CProcessManager(QtCore.QObject):
         else:
             # Use QProcess
             #print('before startQProcess', len(self.runningProcesses))
-            if len(self.runningProcesses) < self._maxRunningProcesses:
+            if len(self.runningProcesses) < CCP4Config.CONFIG().maxRunningProcesses:
                 self.startQProcess(pid)
             else:
                 self.pendingProcesses.append(pid)
