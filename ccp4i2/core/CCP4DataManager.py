@@ -25,7 +25,6 @@ import inspect
 import json
 import os
 import re
-import unittest
 
 from PySide2 import QtGui, QtWidgets
 
@@ -38,7 +37,6 @@ from ..qtgui import CCP4DefEd
 from ..qtgui import CCP4Widgets
 from ..utils.QApp import QTAPPLICATION
 from .CCP4Config import DEVELOPER, GRAPHICAL
-from .CCP4Data import CFloat
 from .CCP4ErrorHandling import CException
 
 
@@ -340,49 +338,3 @@ class CDataManager:
         allText = re.sub('INSERT_DATE', str(t), allText)
         CCP4Utils.saveFile(fileName=os.path.join(CCP4Utils.getCCP4I2Dir(), 'docs', 'developers', 'modules', 'index.html'), text=allText)
         return
-
-#=======================================================================================================
-
-# Weird - this is failing with Qt error message - can not create widget when no GUI
-# But works OK when do same thing manually 
-
-'''
-def TESTSUITE():
-  suite = unittest.defaultTestLoader.loadTestsFromTestCase(testDataManager)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)
-
-'''
-
-
-class testDataManager(unittest.TestCase):
-
-    def setUp(self):
-        '''
-        if GRAPHICAL():
-          self.app = QTAPPLICATION()
-          print 'testDataManager.setUp',GRAPHICAL(),type(self.app)
-          self.dialog = QtWidgets.QDialog()
-        '''
-        self.testData = CFloat()
-        self.manager = DATAMANAGER()
-
-    def test1(self):
-        if GRAPHICAL():
-            app = QTAPPLICATION()
-            widgetClass = self.manager.getWidgetClass(self.testData)
-            self.assertEqual(widgetClass, CCP4Widgets.CFloatView, 'Failed to return correct widget class')
-        else:
-            self.fail('Can not test CCP4DataMananger in non-graphical mode')
-
-    def test2(self):
-        if GRAPHICAL():
-            app = QTAPPLICATION()
-            dialog = QtWidgets.QDialog()
-            widget = self.manager.widget(model=self.testData,parentWidget=dialog)
-            self.assertTrue(isinstance(widget,CCP4Widgets.CFloatView),'Failed to create CFloatView widget')
-        else:
-            self.fail('Can not test CCP4DataMananger in non-graphical mode')

@@ -9,7 +9,6 @@ import os
 import shutil
 import sys
 import traceback
-import unittest
 
 from PySide2 import QtCore
 from lxml import etree as lxml_etree
@@ -18,10 +17,8 @@ from ....core import CCP4Utils
 from ....core import CCP4XtalData
 from ....core.CCP4Data import CString
 from ....core.CCP4PluginScript import CPluginScript
-from ....core.CCP4ProcessManager import PROCESSMANAGER
 from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from ....core.CCP4XtalData import CUnmergedDataContent
-from ....utils.QApp import QTAPPLICATION
 from .aimless_cifstats import CifStatsExtractFromXML
 from .aimless_pipe_utils import CellCheck
 
@@ -1028,39 +1025,3 @@ def exportJobFileMenu(jobId=None):
     # Return a list of items to appear on the 'Export' menu - each has three subitems:
     # [ unique identifier - will be mode argument to exportJobFile() , menu item , mime type (see CCP4CustomMimeTypes module) ]
     return [ [ 'complete_mtz' ,'MTZ file' , 'application/CCP4-mtz' ] ]
-
- 
-#======================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-class testaimless_pipe(unittest.TestCase):
-
-   def setUp(self):
-    self.app = QTAPPLICATION()
-    # make all background jobs wait for completion
-    # this is essential for unittest to work
-    PROCESSMANAGER().setWaitForFinished(10000)
-
-   def tearDown(self):
-    PROCESSMANAGER().setWaitForFinished(-1)
-
-   def test_1(self):
-     workDirectory = os.path.join(CCP4Utils.getTestTmpDir(),'test1')
-     if not os.path.exists(workDirectory): os.mkdir(workDirectory)
-
-     self.wrapper = aimless_pipe(parent=QTAPPLICATION(),name='test1',workDirectory=workDirectory)
-     self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'pipelines','aimless_pipe','test_data','test1.data.xml'))
-
-     self.wrapper.setWaitForFinished(1000000)
-     pid = self.wrapper.process()
-     self.wrapper.setWaitForFinished(-1)
-     if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(testaimless_pipe)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)

@@ -25,14 +25,14 @@ import re
 import shutil
 import time
 import types
-import unittest
 
 from PySide2 import QtCore, QtGui
 
-from . import CCP4Data, CCP4Utils, CCP4TaskManager
+from . import CCP4Data, CCP4Utils
 from .CCP4Data import CBaseData
 from .CCP4ErrorHandling import CErrorReport, CException
 from .CCP4File import CDataFile
+from .CCP4TaskManager import TASKMANAGER
 
 
 class CTime(CCP4Data.CInt):
@@ -294,14 +294,14 @@ class CBibReferenceGroup(CCP4Data.CData):
 
     def loadFromMedline(self, fileNameList=[], taskName=None, version=None):
         if len(fileNameList) == 0 and taskName is not None:
-            self.__dict__['fileNameList'] = CCP4TaskManager.TASKMANAGER().searchReferenceFile(taskName,version=version)
+            self.__dict__['fileNameList'] = TASKMANAGER().searchReferenceFile(taskName,version=version)
             if len(fileNameList) == 0:
-                self.__dict__['fileNameList'] = CCP4TaskManager.TASKMANAGER().searchReferenceFile(taskName,version=version,drillDown=True)
+                self.__dict__['fileNameList'] = TASKMANAGER().searchReferenceFile(taskName,version=version,drillDown=True)
         else:
             self.__dict__['fileNameList'] = fileNameList
         self.__dict__['_value']['taskName'].set(taskName)
         self.__dict__['_value']['version'].set(version)
-        self.__dict__['_value']['title'].set('References for '+CCP4TaskManager.TASKMANAGER().getTitle(taskName,version=version))
+        self.__dict__['_value']['title'].set('References for '+TASKMANAGER().getTitle(taskName,version=version))
         for fileName in self.__dict__['fileNameList']:
             text = CCP4Utils.readFile(fileName=fileName)
             textList = text.split('\nPMID- ')
@@ -492,38 +492,3 @@ class CDateRange(CCP4Data.CData):
             start = self.epochTime(self.dateString(addYear=-nY,addMonth=-nM,addDay=-nD))
         #print 'epochRange',start,end,time.strftime("%Y %B %d",time.localtime(end))
         return start,end
-
-
-# ===========================================================================================================
-
-def TESTSUITE():
-    suite = unittest.defaultTestLoader.loadTestsFromTestCase(testAnnotation)
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)
-
-class testAnnotation(unittest.TestCase):
-
-    def test1(self):
-        a = CAnnotation('Try this text')
-        self.assertEqual(a.text,'Try this text','Failed setting CAnnotation text')
-        self.assertEqual(a.author,CCP4Utils.getUserId(),'Failed setting CAnnotation author')
-        if a.time < int(time.time())-10 or a.time > int(time.time()):
-            self.fail('Failed setting CAnnotation time')
-
-    def test2(self):
-        a = CAnnotation(text='Try this text')
-        t = CTime()
-        t.setCurrentTime()
-        d = a.time-t
-        self.assertEqual(d.__class__, CTime, 'Time difference not a CTime object')
-        self.assertEqual(0 <= d < 10, True, 'Time difference notin expected range')
-
-    def test3(self):
-        annoList = CAnnotationList()
-        annoList.append('Test this string')
-        annoList.append(CAnnotation('Test another string'))
-        self.assertEqual(len(annoList),2,'Annotation list wrong length')
-        self.assertEqual(annoList[1].text,'Test another string','Annotation wrong text')

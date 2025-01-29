@@ -1,8 +1,8 @@
 import os
 import unittest
 
-from ..core.CCP4Utils import getTestTmpDir, getCCP4I2Dir
-from ..core.CCP4Annotation import CUserId
+from ccp4i2.core.CCP4Utils import getTestTmpDir, getCCP4I2Dir
+from ccp4i2.core.CCP4Annotation import CUserId
 
 
 def TESTSUITE():
@@ -32,14 +32,14 @@ class testDbConnect(unittest.TestCase):
     print('Attempting to read schema',schemaFile)
     objUIdb.readFile(schemaFile)
 
-    #cur.execute("SELECT UserName FROM Users WHERE UserName = '" + username + "'")                
-    cur.execute("SELECT UserName FROM Users")                
+    #cur.execute("SELECT UserName FROM Users WHERE UserName = '" + username + "'")
+    cur.execute("SELECT UserName FROM Users")
     for eachUser in cur.fetchall():
       print('Initial users:'+eachUser)
 
     cur.createUser('lizp','ysbl')
 
-    cur.execute("SELECT UserName FROM Users")                
+    cur.execute("SELECT UserName FROM Users")
     for eachUser in cur.fetchall():
       print('Added users:'+eachUser)
 

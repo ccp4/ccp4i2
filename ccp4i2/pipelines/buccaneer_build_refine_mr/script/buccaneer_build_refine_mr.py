@@ -21,17 +21,13 @@ from copy import deepcopy
 import inspect
 import os
 import shutil
-import unittest
 
 from lxml import etree
 
 from ....core import CCP4ModelData
 from ....core import CCP4ProjectsManager
 from ....core import CCP4Utils
-from ....core.CCP4ProcessManager import PROCESSMANAGER
 from ....core.CCP4PluginScript import CPluginScript
-from ....core.CCP4Utils import getCCP4I2Dir
-from ....utils.QApp import QTAPPLICATION
 
 
 class buccaneer_build_refine_mr(CPluginScript):
@@ -509,39 +505,3 @@ class buccaneer_build_refine_mr(CPluginScript):
         for plugin in self.processedPlugins[self.cycle - 2]:
             cleanup = CCP4ProjectsManager.CPurgeProject(plugin._dbProjectId)
             cleanup.purgeJob(plugin.jobId, context="extended_intermediate", reportMode="skip")
-
-# ===== Unit testing ===========================================================
-
-class test_buccaneer_build_refine_mr(unittest.TestCase):
-
-    def setUp(self):
-        # make all background jobs wait for completion
-        self.app = QTAPPLICATION()
-        PROCESSMANAGER().setWaitForFinished(10000)
-
-    def tearDown(self):
-        PROCESSMANAGER().setWaitForFinished(-1)
-
-    def test_1(self):
-        # Run the pipeline
-        wrapper = buccaneer_build_refine_mr(parent=QTAPPLICATION(), name='buccaneer_build_refine_mr')
-        wrapper.container.loadDataFromXml(os.path.join(getCCP4I2Dir(), 'pipelines', 'buccaneer_build_refine_mr', 'test_data', 'test_1.params.xml'))
-        # Ensure no output file exists already
-        xyzout = wrapper.container.outputData.XYZOUT.fullPath.get()
-        if xyzout is not None and os.path.exists(xyzout):
-            os.remove(xyzout)
-        xmlout = wrapper.makeFileName('PROGRAMXML')
-        if xmlout is not None and os.path.exists(xmlout):
-            os.remove(xmlout)
-        wrapper.process()
-
-        # test if output file created
-        self.assertEqual(os.path.exists(xyzout), 1, 'Failed to create copied pdb file '+xyzout)
-
-def TESTSUITE():
-    suite = unittest.TestLoader().loadTestsFromTestCase(test_buccaneer_build_refine_mr)
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)
