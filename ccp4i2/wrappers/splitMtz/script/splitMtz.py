@@ -3,9 +3,9 @@ import sys
 import unittest
 
 from ....core import CCP4XtalData
-from ....core.CCP4Modules import PROCESSMANAGER
-from ....core.CCP4Modules import QTAPPLICATION
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4ProcessManager import PROCESSMANAGER
+from ....utils.QApp import QTAPPLICATION
 
 
 class splitMtz(CPluginScript):

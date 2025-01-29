@@ -27,11 +27,10 @@ from . import crank2_basepipe
 from ....core import CCP4Container
 from ....core import CCP4ErrorHandling
 from ....core import CCP4File
-from ....core import CCP4Modules
 from ....core import CCP4Utils
 from ....core import CCP4XtalData
-from ....core.CCP4Modules import PROJECTSMANAGER
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from ....qtgui import CCP4TaskWidget
 from ....qtgui import CCP4Widgets
 
@@ -868,7 +867,7 @@ class CTaskCrank2(CCP4TaskWidget.CTaskWidget):
       print("Starting generating defaults.")
       self.ConnectDefaultGenTrig(disconnect=True)
       try:
-        workDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(self.jobId(),subDir='TMP')
+        workDir = PROJECTSMANAGER().jobDirectory(self.jobId(),subDir='TMP')
       except:
         workDir = None
       try:
@@ -1040,7 +1039,7 @@ def PrepCont(cont,name='crank2'):
 
 def whatNext(jobId,childTaskName,childJobNumber,projectName):
   whatnext = []
-  cont = CCP4Modules.PROJECTSMANAGER().getJobParams(jobId)
+  cont = PROJECTSMANAGER().getJobParams(jobId)
   if cont.outputData.XYZOUT.isSet():
     whatnext.extend(['coot_rebuild','prosmart_refmac'])
   if cont.outputData.FPHOUT_HL.isSet():
@@ -1049,7 +1048,7 @@ def whatNext(jobId,childTaskName,childJobNumber,projectName):
     if not cont.outputData.XYZOUT.isSet():
       whatnext.extend(['parrot'])
   if str(cont.inputData.EXPTYPE)!='MAD' or not cont.outputData.XYZOUT.isSet():
-    jobdir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId)
+    jobdir = PROJECTSMANAGER().jobDirectory(jobId)
     xml_new, xml_sh = os.path.join(jobdir,'i2_crank2_next.xml'), os.path.join(jobdir,'i2_shelx_next.xml')
     if cont.outputData.XYZOUT_SUB_RES.isSet() and cont.outputData.XYZOUT_SUBSTR.isSet():
       cont_sh=PrepCont(cont,'shelx')
@@ -1058,7 +1057,7 @@ def whatNext(jobId,childTaskName,childJobNumber,projectName):
       cont_sh.inputData.START_PIPELINE.set('phdmmb')
       cont_sh.saveDataToXml(fileName=xml_sh)
       whatnext.append(['shelx',xml_sh])
-    cont_new=PrepCont( CCP4Modules.PROJECTSMANAGER().getJobParams(jobId) )
+    cont_new=PrepCont( PROJECTSMANAGER().getJobParams(jobId) )
     cont_new.controlParameters.USE_COMB.set(True)
     if cont.outputData.F_SIGFanom_OUT.isSet():
       cont_new.inputData.F_SIGFanom.set( cont.outputData.F_SIGFanom_OUT )
@@ -1085,7 +1084,7 @@ def whatNext(jobId,childTaskName,childJobNumber,projectName):
 def exportMtzColumnLabels(jobId=None,paramNameList=None,sourceInfoList=[]):
   colLabels = { 'FPHOUT_HL':'FPHOUT_HL', 'FPHOUT_DIFF':'FPHOUT_DIFF', 'FPHOUT_2FOFC':'FPHOUT_2FOFC', 'FPHOUT_DIFFANOM':'FPHOUT_DIFFANOM' }
   #print 'CTaskCrank2.exportMtzColumnLabel',jobId,paramNameList,sourceInfoList
-  paramsFile = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId = jobId,mode='PARAMS')
+  paramsFile = PROJECTSMANAGER().makeFileName(jobId = jobId,mode='PARAMS')
   #print 'CTaskCrank2.exportMtzColumnLabel paramsFile',paramsFile
   c = CCP4Container.CContainer()
   c.loadDataFromXml(paramsFile)

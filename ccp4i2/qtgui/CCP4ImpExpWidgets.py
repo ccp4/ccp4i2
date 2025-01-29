@@ -25,7 +25,9 @@ from PySide2 import QtCore, QtWidgets
 
 from ..core import CCP4Annotation, CCP4Data, CCP4File
 from ..core.CCP4DataManager import DATAMANAGER
-from ..core.CCP4Modules import PREFERENCES, PROJECTSMANAGER, TASKMANAGER
+from ..core.CCP4Preferences import PREFERENCES
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+from ..core.CCP4TaskManager import TASKMANAGER
 from ..qtgui import CCP4ProjectViewer
 from ..qtgui import CCP4Widgets
 

@@ -23,10 +23,10 @@ import os
 from lxml import etree
 from PySide2 import QtCore
 
-from ....core import CCP4Modules
 from ....core import CCP4Utils
 from ....core import CCP4XtalData
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from ....pipelines.aimless_pipe.script.aimless_pipe_utils import CellCheck
 from .mmcifconvert import ConvertCIF
 from .mtzimport import ImportMTZ
@@ -674,11 +674,11 @@ def exportJobFile(jobId=None,mode=None):
     #     which would mean truncate applied twice
 
     print("\nexportJobFile")
-    jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
+    jobDir = PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
     exportFile = os.path.join(jobDir,'exportMtz.mtz')
     if os.path.exists(exportFile): return exportFile
 
-    db = CCP4Modules.PROJECTSMANAGER().db()
+    db = PROJECTSMANAGER().db()
     #print("DB:", db.getJobFilesInfo(jobId=jobId))
     info = db.getJobFilesInfo(jobId=jobId,jobParamName='OBSOUT')
     obsfileContent = info[0]['fileContent']
@@ -691,27 +691,27 @@ def exportJobFile(jobId=None,mode=None):
     truncateOut = None
     if isIntensity:
         # Use truncate output
-        childJobs = CCP4Modules.PROJECTSMANAGER().db().getChildJobs(jobId=jobId,details=True)
+        childJobs = PROJECTSMANAGER().db().getChildJobs(jobId=jobId,details=True)
         #print('import_merged.exportMtz',childJobs)
         for jobNo,subJobId,taskName  in childJobs:
             if taskName == 'aimless_pipe':
-                aimlessChildJobs = CCP4Modules.PROJECTSMANAGER().db().getChildJobs(jobId=subJobId,details=True)
+                aimlessChildJobs = PROJECTSMANAGER().db().getChildJobs(jobId=subJobId,details=True)
                 print('import_merged.exportMtz aimlessChildJobs',aimlessChildJobs)
                 for jobNo0,subJobId0,taskName0  in aimlessChildJobs:
                     if taskName0 == 'ctruncate':
-                        truncateOut = os.path.join( CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=subJobId0,create=False),'HKLOUT.mtz')
+                        truncateOut = os.path.join( PROJECTSMANAGER().jobDirectory(jobId=subJobId0,create=False),'HKLOUT.mtz')
                         if not os.path.exists(truncateOut): truncateOut = None
         obsOut = truncateOut
     else:
         # Amplitudes F, use original processed file
-        obsOut = os.path.join( CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False), obsfilename)
+        obsOut = os.path.join( PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False), obsfilename)
 
 
     #print("now FreeR")
     info = db.getJobFilesInfo(jobId=jobId,jobParamName='FREEOUT')
     freerfilename = info[0]['fileName']
     freerflagOut = None
-    freerflagOut = os.path.join( CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False),freerfilename)
+    freerflagOut = os.path.join( PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False),freerfilename)
     if not os.path.exists(freerflagOut): freerflagOut = None
     #if truncateOut is None: return None
     #if freerflagOut is None: return truncateOut

@@ -14,12 +14,14 @@ import unittest
 from PySide2 import QtCore
 from lxml import etree as lxml_etree
 
-from ....core import CCP4Modules
 from ....core import CCP4Utils
 from ....core import CCP4XtalData
 from ....core.CCP4Data import CString
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4ProcessManager import PROCESSMANAGER
+from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from ....core.CCP4XtalData import CUnmergedDataContent
+from ....utils.QApp import QTAPPLICATION
 from .aimless_cifstats import CifStatsExtractFromXML
 from .aimless_pipe_utils import CellCheck
 
@@ -996,20 +998,20 @@ class aimless_pipe(CPluginScript):
 # ----------------------------------------------------------------------
 # Function to return list of names of exportable MTZ(s)
 def exportJobFile(jobId=None,mode=None):
-    jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
+    jobDir = PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
     exportFile = os.path.join(jobDir,'exportMtz.mtz')
     if os.path.exists(exportFile): return exportFile
 
-    childJobs = CCP4Modules.PROJECTSMANAGER().db().getChildJobs(jobId=jobId,details=True)
+    childJobs = PROJECTSMANAGER().db().getChildJobs(jobId=jobId,details=True)
     #print 'aimless.exportMtz',childJobs
     truncateOut = None
     freerflagOut = None
     for jobNo,subJobId,taskName  in childJobs:
       if taskName == 'ctruncate':
-        truncateOut = os.path.join( CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=subJobId,create=False),'HKLOUT.mtz')
+        truncateOut = os.path.join( PROJECTSMANAGER().jobDirectory(jobId=subJobId,create=False),'HKLOUT.mtz')
         if not os.path.exists(truncateOut): truncateOut = None
       elif taskName == 'freerflag':
-        freerflagOut = os.path.join( CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False),'FREERFLAG.mtz')
+        freerflagOut = os.path.join( PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False),'FREERFLAG.mtz')
         if not os.path.exists(freerflagOut): freerflagOut = None
     if truncateOut is None: return None
     if freerflagOut is None: return truncateOut
@@ -1035,19 +1037,19 @@ def exportJobFileMenu(jobId=None):
 class testaimless_pipe(unittest.TestCase):
 
    def setUp(self):
-    self.app = CCP4Modules.QTAPPLICATION()
+    self.app = QTAPPLICATION()
     # make all background jobs wait for completion
     # this is essential for unittest to work
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
+    PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
+    PROCESSMANAGER().setWaitForFinished(-1)
 
    def test_1(self):
      workDirectory = os.path.join(CCP4Utils.getTestTmpDir(),'test1')
      if not os.path.exists(workDirectory): os.mkdir(workDirectory)
 
-     self.wrapper = aimless_pipe(parent=CCP4Modules.QTAPPLICATION(),name='test1',workDirectory=workDirectory)
+     self.wrapper = aimless_pipe(parent=QTAPPLICATION(),name='test1',workDirectory=workDirectory)
      self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'pipelines','aimless_pipe','test_data','test1.data.xml'))
 
      self.wrapper.setWaitForFinished(1000000)

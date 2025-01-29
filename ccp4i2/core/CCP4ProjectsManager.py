@@ -41,7 +41,6 @@ from PySide2 import QtCore
 
 from . import CCP4Container
 from . import CCP4File
-from . import CCP4Modules
 from . import CCP4PluginScript
 from . import CCP4TaskManager
 from . import CCP4Utils
@@ -51,16 +50,23 @@ from ..dbapi import CCP4DbUtils
 from ..pipelines.aimless_pipe.script import aimless_pipe
 from ..pipelines.import_merged.script import import_merged
 from ..qtcore import CCP4Export
+from ..qtcore.CCP4JobController import JOBCONTROLLER
 from ..qtgui import CCP4ProjectViewer
+from ..qtgui.CCP4DemoData import DEMODATAMANAGER
 from ..report import CCP4ReportGenerator
 from ..wrappers.AlternativeImportXIA2.script import AlternativeImportXIA2
 from .CCP4ErrorHandling import CErrorReport, CException, Severity
 from .CCP4File import CI2XmlDataFile
-from .CCP4Modules import PROJECTSMANAGER
+from .CCP4Preferences import PREFERENCES
 from .CCP4QtObject import CObject
 from .CCP4Utils import getCCP4I2Dir, getDotDirectory, getHOME
 from .CCP4WarningMessage import warningMessage
 
+
+def PROJECTSMANAGER():
+    if CProjectsManager.insts is None:
+        CProjectsManager.insts = CProjectsManager()
+    return CProjectsManager.insts
 
 
 #----------------------------------------------------------------------
@@ -210,7 +216,7 @@ class CProjectsManager(CObject):
             os.remove(b)
 
     def backupDBXML(self):
-        proj_dir_list0=CCP4Modules.PROJECTSMANAGER().db().getProjectDirectoryList()
+        proj_dir_list0=PROJECTSMANAGER().db().getProjectDirectoryList()
         root = etree.Element("ProjectRoots")
         for projectInfo in proj_dir_list0:
             projectRoot = etree.Element("project")
@@ -590,7 +596,7 @@ class CProjectsManager(CObject):
             print('PROJECTMANAGER.deleteJob job does not exist', jobId)
             return
         if status in (CCP4DbApi.JOB_STATUS_RUNNING, CCP4DbApi.JOB_STATUS_REMOTE):
-            err = CCP4Modules.JOBCONTROLLER().killJobProcess(jobId=jobId)
+            err = JOBCONTROLLER().killJobProcess(jobId=jobId)
             if len(err) > 0:
                 raise err
         jobDir = self.jobDirectory(jobId=jobId)
@@ -683,10 +689,10 @@ class CProjectsManager(CObject):
 
     @QtCore.Slot(dict)
     def handleJobToDelete(self, args={}):
-        if not bool(CCP4Modules.PREFERENCES().DELETE_INTERACTIVE_JOBS):
+        if not bool(PREFERENCES().DELETE_INTERACTIVE_JOBS):
             self.db().updateJobStatus(jobId=args.get('jobId'), status=CCP4DbApi.JOB_STATUS_FINISHED)
             return
-        if bool(CCP4Modules.PREFERENCES().SHOW_DELETE_INTERACTIVE_JOBS):
+        if bool(PREFERENCES().SHOW_DELETE_INTERACTIVE_JOBS):
             jobInfo = self.db().getJobInfo(args.get('jobId'), ['taskname', 'projectid', 'jobnumber'])
             pV = CCP4ProjectViewer.PROJECTVIEWER(jobInfo['projectid'])
             print('handleJobToDelete', pV, jobInfo)
@@ -1126,7 +1132,7 @@ class CProjectsManager(CObject):
         fileIdList = []
         fromJobIdList = []
         if useDb:
-            demoDataDirList = CCP4Modules.DEMODATAMANAGER().getTestDatasets()
+            demoDataDirList = DEMODATAMANAGER().getTestDatasets()
             demoData = []
             for f1, f2 in demoDataDirList:
                 demoData.append(f1)
@@ -1456,7 +1462,7 @@ class CPurgeProject(CObject):
         CObject.__init__(self)
         self.error = CErrorReport()
         if db is None:
-            self.db = CCP4Modules.PROJECTSMANAGER().db()
+            self.db = PROJECTSMANAGER().db()
         else:
             self.db = db
         self.projectId = projectId

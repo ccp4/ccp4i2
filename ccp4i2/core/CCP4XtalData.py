@@ -23,7 +23,6 @@
 ## @package CCP4XtalData (QtCore) Data objects for CCP4 crystallographic data
 
 import copy
-import glob
 import errno
 import math
 import os
@@ -43,13 +42,15 @@ from . import CCP4Data
 from . import CCP4DataManager
 from . import CCP4File
 from . import CCP4ModelData
-from . import CCP4Modules
 from . import CCP4PluginScript
 from . import CCP4Utils
-from .CCP4ErrorHandling import CErrorReport, CException, Severity
 from ..googlecode import diff_match_patch_py3
+from ..utils.QApp import QTAPPLICATION
 from ..wrappers.chltofom.script import chltofom
 from ..wrappers.ctruncate.script import ctruncate
+from .CCP4ErrorHandling import CErrorReport, CException, Severity
+from .CCP4ProcessManager import PROCESSMANAGER
+from .CCP4ProjectsManager import PROJECTSMANAGER
 
 
 def SYMMETRYMANAGER():
@@ -58,7 +59,7 @@ def SYMMETRYMANAGER():
         CSymmetryManager.insts = CSymmetryManager()
         try:
             CSymmetryManager.insts.loadSymLib()
-        except CException as e:
+        except CException:
             pass
     return CSymmetryManager.insts
 
@@ -895,9 +896,9 @@ class CMtzDataFile(CCP4File.CDataFile):
         inputFile = os.path.normpath(os.path.splitext(hklout)[0] + '_mtz2various.com')
         CCP4Utils.saveFile(inputFile,comText)
         logFile = os.path.normpath(os.path.splitext(hklout)[0] + '_mtz2various.log')
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile, inputFile=inputFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
+        pid = PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile, inputFile=inputFile)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid, 'exitCode')
         if status == 0 and os.path.exists(hklout):
             return hklout, error
         else:
@@ -918,9 +919,9 @@ class CMtzDataFile(CCP4File.CDataFile):
                     arglist.append(cols)
         except:
             error.append(self.__class__, 152, str(name) + ' ' + str(cols))
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
+        pid = PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid, 'exitCode')
         if status not in [0, 101] or not os.path.exists(outfile):
             error.append(self.__class__, 153, logFile)
             outfile = None
@@ -958,9 +959,9 @@ class CMtzDataFile(CCP4File.CDataFile):
         inputFile = os.path.normpath(os.path.splitext(hklout)[0] + '_cad.com')
         CCP4Utils.saveFile(inputFile, comText)
         logFile =  os.path.normpath(os.path.splitext(hklout)[0] + '_cad.log')
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile, inputFile=inputFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+        pid = PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile, inputFile=inputFile)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
         if status == 0 and os.path.exists(hklout):
             return hklout, error
         else:
@@ -1083,9 +1084,9 @@ class CMtzDataFile(CCP4File.CDataFile):
                                 break
             except:
                 ret.append(self.__class__, 407, name + ' ' + colin)
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
+        pid = PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid, 'exitCode')
         if status == 0:
             for outfile in outfiles:
                 if not os.path.exists(outfile[0]):
@@ -1463,7 +1464,7 @@ class CMtzData(CCP4File.CDataFileContent):
             except:
                 raise CException(self.__class__, 102, inputFile, name=self.objectPath())
             logFile = self.logFileName()
-            pid = CCP4Modules.PROCESSMANAGER().startProcess(command='mtzdump', args=['HKLIN', self.__dict__['lastLoadedFile']],
+            pid = PROCESSMANAGER().startProcess(command='mtzdump', args=['HKLIN', self.__dict__['lastLoadedFile']],
                                                             inputFile = inputFile, logFile = logFile, waitForFinished=1000)
             try:
                 self.scrapeMtzdumpLog(pid)
@@ -1889,7 +1890,7 @@ class CMtzData(CCP4File.CDataFileContent):
         if polymerMode != "":
             comText =  comText + '\nMODE ' + polymerMode
         argList = ['XMLFILE' , f1[1]]
-        pid = CCP4Modules.PROCESSMANAGER().startProcess('matthews_coef', argList, logFile=f2[1], inputText=comText)
+        pid = PROCESSMANAGER().startProcess('matthews_coef', argList, logFile=f2[1], inputText=comText)
         if not os.path.exists(f1[1]):
             raise CException(self.__class__,411,str(seqDataFile))
         # Get results from xml file
@@ -2811,7 +2812,7 @@ class CMiniMtzDataFile(CMtzDataFile):
     def splitMtz(self,jobId=None,projectId=None,contentFlag=None,i2Labels=[],columnLabels=[]):
         errorReport = CErrorReport()
         # Set name for new split file and if it already exists remove previous refernce from db
-        jobDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId)
+        jobDirectory = PROJECTSMANAGER().jobDirectory(jobId=jobId)
         filename = self.importFileName(jobDirectory=jobDirectory)
         #Set up the colin/colout
         colin = ','.join(columnLabels)
@@ -2832,7 +2833,7 @@ class CMiniMtzDataFile(CMtzDataFile):
         else:
             fileType = None
         #Have we done the same import before?
-        dbFileId, importId, checksum, dbAnnotation = CCP4Modules.PROJECTSMANAGER().alreadyImportedId(sourceFileName=self.__str__(),
+        dbFileId, importId, checksum, dbAnnotation = PROJECTSMANAGER().alreadyImportedId(sourceFileName=self.__str__(),
                                                                                                      projectId=projectId,
                                                                                                      contentFlag=contentFlag,
                                                                                                      sourceFileReference=colin,
@@ -2849,9 +2850,9 @@ class CMiniMtzDataFile(CMtzDataFile):
         arglist = ['-mtzin', self.__str__()]
         arglist.extend(['-mtzout', filename])
         arglist.extend(['-colin', colin,'-colout', colout])
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
+        pid = PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid, 'exitCode')
         if status != 0:
             errorReport.append(self.__class__, 210, 'Exit status:' + str(status), name=self.objectPath())
             return errorReport
@@ -2891,7 +2892,7 @@ class CMiniMtzDataFile(CMtzDataFile):
             return None
         # Try is info in Db
         if self.dbFileId.isSet() and not reset:
-            flag = CCP4Modules.PROJECTSMANAGER().db().getFileInfo(fileId=str(self.dbFileId), mode='filecontent')
+            flag = PROJECTSMANAGER().db().getFileInfo(fileId=str(self.dbFileId), mode='filecontent')
             if flag is not None:
                 self.__dict__['_value']['contentFlag'].set(flag)
                 return flag
@@ -2915,7 +2916,7 @@ class CMiniMtzDataFile(CMtzDataFile):
         errorReport = CErrorReport()
         # Set name for new split file and if it already exists remove previous reference from db
         if jobId is not None:
-            jobDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId)
+            jobDirectory = PROJECTSMANAGER().jobDirectory(jobId=jobId)
         else:
             jobDirectory = CCP4Utils.makeTmpFile(cdir=True)
         # Run cif2mtz
@@ -2924,9 +2925,9 @@ class CMiniMtzDataFile(CMtzDataFile):
         hklout = os.path.normpath(os.path.join(jobDirectory,self.stripedName()+'.mtz'))
         arglist = ['hklin', self.__str__(), 'hklout', hklout]
         inputText = '''END\n'''
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile, inputText=inputText)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+        pid = PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile, inputText=inputText)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
         if status != 0:
             errorReport.append(self.__class__, 225, 'Exit status:'+str(status), name=self.objectPath())
             return errorReport
@@ -3141,9 +3142,9 @@ class CObsDataFile(CMiniMtzDataFile):
         inputText += colTypeSigOut + "\n"
         inputText += "WRITE " + targetFile + " COL " + colOut + " " + colSigOut + "\n"
         inputText += "STOP\n"
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(cbin, argList, inputText=inputText, logFile=logFile, cwd=myDir)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+        pid = PROCESSMANAGER().startProcess(cbin, argList, inputText=inputText, logFile=logFile, cwd=myDir)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
         if status != 0 or not os.path.exists(targetFile):
             error.append(self.__class__, 303, str(targetFile), name=self.objectName())
             return None, error
@@ -3461,7 +3462,7 @@ class CMergeMiniMtz(CCP4Data.CData):
             self.__dict__['_value']['columnTag'].unSet()
             return
         else:
-            fileInfo = CCP4Modules.PROJECTSMANAGER().db().getFileInfo(fileId = self.__dict__['_value']['fileName'].dbFileId.__str__(),
+            fileInfo = PROJECTSMANAGER().db().getFileInfo(fileId = self.__dict__['_value']['fileName'].dbFileId.__str__(),
                                                                       mode=['jobnumber','jobparamname','taskname'])
             if fileInfo['taskname'] is not None:
                 self.__dict__['_value']['columnTag'].set(fileInfo['jobnumber'] + '_' + fileInfo['taskname'][0:20])
@@ -3602,7 +3603,7 @@ def testModule():
 class testAssorted(unittest.TestCase):
 
     def setUp(self):
-        self.app = CCP4Modules.QTAPPLICATION()
+        self.app = QTAPPLICATION()
         self.mummy = CCP4Container.CContainer()
 
     def testMtzColumn(self):
@@ -3625,12 +3626,12 @@ class testMtz(unittest.TestCase):
     def setUp(self):
         self.testDataDir = os.path.normpath(os.path.join(CCP4Utils.getCCP4I2Dir(),'test','data'))
         # make all background jobs wait for completion
-        CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
-        self.app = CCP4Modules.QTAPPLICATION()
+        PROCESSMANAGER().setWaitForFinished(10000)
+        self.app = QTAPPLICATION()
         self.mummy = QtCore.QObject(self.app)
 
     def tearDown(self):
-        CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
+        PROCESSMANAGER().setWaitForFinished(-1)
 
     def test_1(self):
         self.mtz = CMtzDataFile( os.path.normpath(os.path.join(self.testDataDir,'gere_nat.mtz'),parent=self.mummy))
@@ -3747,7 +3748,7 @@ class testSpaceGroup(unittest.TestCase):
 class testCObsDataFile(unittest.TestCase):
     def setUp(self):
         self.testDataDir =  os.path.normpath(os.path.join(CCP4Utils.getCCP4I2Dir(),'test','data'))
-        self.app = CCP4Modules.QTAPPLICATION()
+        self.app = QTAPPLICATION()
         self.mummy = QtCore.QObject(self.app)
 
     def test1(self):
@@ -3763,7 +3764,7 @@ class testCObsDataFile(unittest.TestCase):
 class testCPhsDataFile(unittest.TestCase):
     def setUp(self):
         self.testDataDir =  os.path.normpath(os.path.join(CCP4Utils.getCCP4I2Dir(),'test','data'))
-        self.app = CCP4Modules.QTAPPLICATION()
+        self.app = QTAPPLICATION()
         self.mummy = QtCore.QObject(self.app)
 
     def test1(self):

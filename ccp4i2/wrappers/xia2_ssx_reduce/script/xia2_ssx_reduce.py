@@ -18,8 +18,8 @@ import gemmi
 
 from ....core import CCP4Container
 from ....core import CCP4XtalData
-from ....core.CCP4Modules import PROCESSMANAGER
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4ProcessManager import PROCESSMANAGER
 
 
 class Cxia2_ssx_reduce(CPluginScript):

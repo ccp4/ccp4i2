@@ -21,9 +21,9 @@
 
 from PySide2 import QtWidgets
 
-from ....core import CCP4Modules
 from ....core.CCP4Config import DEVELOPER
 from ....qtgui.CCP4TaskWidget import CTaskWidget
+from ....utils.QApp import QTAPPLICATION
 
 
 class CGuiPreferences(CTaskWidget):
@@ -36,7 +36,7 @@ class CGuiPreferences(CTaskWidget):
 
 
   def drawContents(self):
-    self.container.WINDOWS_STYLE.setQualifier('enumerators',CCP4Modules.QTAPPLICATION().getStyleKeys())
+    self.container.WINDOWS_STYLE.setQualifier('enumerators',QTAPPLICATION().getStyleKeys())
 
     self.openFolder(title='Task interface')
 

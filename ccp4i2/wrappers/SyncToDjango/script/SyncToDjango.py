@@ -7,9 +7,9 @@ import zipfile
 from PySide2 import QtCore, QtWidgets
 
 from . import CCP4i2DjangoSession
-from ....core import CCP4Modules
-from ....core.CCP4Modules import PREFERENCES
-from ....core.CCP4Modules import PROJECTSMANAGER
+from ....core.CCP4JobServer import SERVERSETUP
+from ....core.CCP4Preferences import PREFERENCES
+from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from ....qtgui.CCP4ProjectManagerGui import openProject
 from ....qtgui.CCP4TaskWidget import CTaskWidget
 from .TreeModel import TreeNode, TreeModel
@@ -30,7 +30,7 @@ class SyncToDjango(CTaskWidget):
     
     def drawContents(self):
         self.openFolder(folderFunction='inputData',followFrom=False)
-        container = CCP4Modules.SERVERSETUP()
+        container = SERVERSETUP()
         container.load()
         serversEtree = container.getEtree(excludeUnset=True)
         allServerNames = serversEtree.xpath("//CHostname/text()")

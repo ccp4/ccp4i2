@@ -28,11 +28,11 @@ import xml.etree.ElementTree as ET
 from PySide2 import QtCore
 
 from ....core import CCP4ErrorHandling
-from ....core import CCP4Modules
 from ....core import CCP4Utils
 from ....core import CCP4XtalData
-from ....core.CCP4Modules import PROCESSMANAGER
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4ProcessManager import PROCESSMANAGER
+from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from .json2xml import json2xml
 
 
@@ -63,7 +63,7 @@ class servalcat(CPluginScript):
         if not hasattr(self,'logFileHandle'): self.logFileHandle = open(self.makeFileName('LOG'),'w')
         if not hasattr(self,'logFileBuffer'): self.logFileBuffer = ''
         pid = self.getProcessId()
-        qprocess = CCP4Modules.PROCESSMANAGER().getJobData(pid,attribute='qprocess')
+        qprocess = PROCESSMANAGER().getJobData(pid,attribute='qprocess')
         availableStdout = qprocess.readAllStandardOutput()
         if sys.version_info > (3,0):
             self.logFileHandle.write(availableStdout.data().decode("utf-8"))
@@ -136,11 +136,11 @@ class servalcat(CPluginScript):
     def processOutputFiles(self):
         if hasattr(self,'logFileHandle'):
             self.logFileHandle.write("JOB TITLE SECTION\n")
-            jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=self.jobId)
+            jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=self.jobId)
             if "jobtitle" in jobInfo and jobInfo["jobtitle"]:
                 self.logFileHandle.write(str(jobInfo["jobtitle"])+"\n")
             while "parentjobid" in jobInfo and jobInfo["parentjobid"]:
-                jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=jobInfo["parentjobid"])
+                jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=jobInfo["parentjobid"])
                 if "jobtitle" in jobInfo and jobInfo["jobtitle"]:
                     self.logFileHandle.write(str(jobInfo["jobtitle"])+"\n")
             self.logFileHandle.close()

@@ -4,7 +4,7 @@
 
 import os
 
-from ....core import CCP4Modules
+from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from ....qtgui.CCP4TaskWidget import CTaskWidget
 
 
@@ -49,7 +49,7 @@ class Ccoot_rebuild(CTaskWidget):
     followJobId = self.getWidget('followFrom').currentJobId()
     #print 'Ccoot_rebuild.isValid followFrom',followJobId
     if followJobId  is not None:
-      stateFile = os.path.join( CCP4Modules.PROJECTSMANAGER().db().jobDirectory(jobId=followJobId),'COOT_FILE_DROP','0-coot.state.scm')
+      stateFile = os.path.join( PROJECTSMANAGER().db().jobDirectory(jobId=followJobId),'COOT_FILE_DROP','0-coot.state.scm')
       if os.path.exists(stateFile):
         self.container.inputData.COOTSTATEFILE.setFullPath(stateFile)
     return CTaskWidget.isValid(self)

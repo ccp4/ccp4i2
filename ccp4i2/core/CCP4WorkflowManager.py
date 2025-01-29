@@ -29,10 +29,16 @@ from . import CCP4Container
 from . import CCP4CustomManager
 from . import CCP4Data
 from . import CCP4File
-from . import CCP4Modules
 from ..dbapi import CCP4DbApi
 from .CCP4ErrorHandling import CErrorReport, CException
+from .CCP4ProjectsManager import PROJECTSMANAGER
 from .CCP4TaskManager import TASKMANAGER
+
+
+def WORKFLOWMANAGER():
+    if CWorkflowManager.insts is None:
+        CWorkflowManager.insts = CWorkflowManager()
+    return CWorkflowManager.insts
 
 
 class CWorkflowManager(CCP4CustomManager.CCustomManager):
@@ -68,8 +74,8 @@ class CWorkflowManager(CCP4CustomManager.CCustomManager):
     def createWorkflow(self, projectId=None, jobList=[], name=None, title=None, overwrite=False):
         #print 'CWorkflowMananger.createWorkflow',projectId,jobList,name,overwrite,title
         workflowDir = self.createDirectory(name, overwrite=overwrite)
-        db = CCP4Modules.PROJECTSMANAGER().db()
-        projectDir = CCP4Modules.PROJECTSMANAGER().getProjectDirectory(projectId=projectId)
+        db = PROJECTSMANAGER().db()
+        projectDir = PROJECTSMANAGER().getProjectDirectory(projectId=projectId)
         jobZeroInputParams = CCP4Container.CContainer(parent=self, name='inputData')
         jobZeroOutputParams = CCP4Container.CContainer(parent=self, name='outputData')
         workflowParams = CWorkflowDefinition(name=name)

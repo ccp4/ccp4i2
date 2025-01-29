@@ -36,13 +36,29 @@ import psutil
 from ..core import CCP4Container
 from ..core import CCP4File, CCP4Annotation
 from ..core import CCP4JobServer
-from ..core import CCP4Modules
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+from ..core.CCP4TaskManager import TASKMANAGER
 from ..dbapi import CCP4DbApi
 from ..qtcore import CCP4Export
 from ..qtcore import CCP4HTTPServerThread
+from ..qtcore.CCP4HTTPServerThread import HTTPSERVER
 from ..qtgui import CCP4ProjectViewer
+from ..utils.QApp import QTAPPLICATION
+
+
+
+def JOBCONTROLLER():
+    if not CJobController.insts:
+        CJobController()
+    return CJobController.insts
+
+
+def SERVERSETUP():
+    if CServerSetup.insts is None:
+        CServerSetup()
+    return CServerSetup.insts
 
 
 class CServerSetup(CCP4Container.CContainer):
@@ -55,7 +71,7 @@ class CServerSetup(CCP4Container.CContainer):
         CCP4Container.CContainer.__init__(self,name='SERVER_SETUP')
         CServerSetup.insts = self
         self.__dict__['source'] = None
-        defFile = CCP4Modules.TASKMANAGER().searchDefFile('serverSetup')
+        defFile = TASKMANAGER().searchDefFile('serverSetup')
         self.loadContentsFromXml(defFile)
         self.load(source=source)
 
@@ -127,9 +143,9 @@ class CJobController(CCP4JobServer.CJobServer):
     def __init__(self,parent=None,db=None):
         CCP4JobServer.CJobServer.__init__(self)
         if parent is None:
-            parent = CCP4Modules.QTAPPLICATION()
+            parent = QTAPPLICATION()
         if db is None:
-            db = CCP4Modules.PROJECTSMANAGER().db()
+            db = PROJECTSMANAGER().db()
         QtCore.QObject.__init__(self,parent)
         if CJobController.insts is None:
             CJobController.insts = self
@@ -365,7 +381,7 @@ class CJobController(CCP4JobServer.CJobServer):
                 status = self.db.getJobInfo(jobId=jobId, mode='status')
                 if not status in ['Queued', 'Running']:
                     raise CException(self.__class__, 111, 'Job id' + str(jobId))
-                logFile = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=jobId, mode='LOG')
+                logFile = PROJECTSMANAGER().makeFileName(jobId=jobId, mode='LOG')
                 size = self.getFileSize(logFile)
                 self._watchedJobs[jobId] = {'logFile' : logFile, 'size' : size}
         else:
@@ -398,7 +414,7 @@ class CJobController(CCP4JobServer.CJobServer):
         #print 'CJobController.runTask pythonExecutable',CCP4Utils.pythonExecutable()
         controlFile = self.db._makeJobFileName(jobId=jobId, mode='JOB_INPUT')
         argList = self.getArgList(controlFile)
-        db = CCP4Modules.PROJECTSMANAGER().db()
+        db = PROJECTSMANAGER().db()
         taskname = db.getJobInfo(jobId=jobId)['taskname']
         if self._diagnostic:
             print('JOBCONTROLLER starting job:', argList , taskname)
@@ -413,7 +429,7 @@ class CJobController(CCP4JobServer.CJobServer):
         #-projectid and
         #-projectname
         try:
-            httpServerPort = CCP4Modules.HTTPSERVER(fileName=self._dbFile).port
+            httpServerPort = HTTPSERVER(fileName=self._dbFile).port
         except:
             httpServerPort = CCP4HTTPServerThread.DEFAULT_PORT
         my_env = os.environ.copy()
@@ -458,7 +474,7 @@ class CJobController(CCP4JobServer.CJobServer):
             for editItem in [('CCP4I2_HTTP_PORT', str(httpServerPort)), ('CCP4I2_PROJECT_ID', jobInfo['projectid']), ('CCP4I2_PROJECT_NAME', jobInfo['projectname'])]:
                 processEnvironment.insert(editItem[0],editItem[1])
             # Fudge for MRBUMP task on OS X, because of rosetta requiring cctbx to set DYLD_LIBRARY_PATH.
-            dbtn = CCP4Modules.PROJECTSMANAGER().db()
+            dbtn = PROJECTSMANAGER().db()
             jobInfoTN = dbtn.getJobInfo(jobId=jobId,mode=['taskname'])
             if jobInfoTN == "mrbump_basic" and sys.platform == "darwin":
                 if 'CCP4' in os.environ:
@@ -770,27 +786,27 @@ echo "PID=$pid"
         # Extract database xmlfile
         if compressedFile is not None:
             #try:
-            xmlDbFile = CCP4Modules.PROJECTSMANAGER().extractDatabaseXml(compressedFile)
+            xmlDbFile = PROJECTSMANAGER().extractDatabaseXml(compressedFile)
         else:
             xmlDbFile = os.path.join(os.path.split(xmlDbFile)[0],'DATABASE_final.db.xml')
     
         if not os.path.exists(xmlDbFile):
             try:
-                CCP4Modules.PROJECTSMANAGER().updateJobStatus(jobId,CCP4DbApi.JOB_STATUS_FAILED)
+                PROJECTSMANAGER().updateJobStatus(jobId,CCP4DbApi.JOB_STATUS_FAILED)
             except:
                 print('Failed updating remote job status for:',jobId,'Probably deleted job')
                 pass
             return False
 
         try:
-            projectId = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=jobId,mode='projectid')
+            projectId = PROJECTSMANAGER().db().getJobInfo(jobId=jobId,mode='projectid')
         except Exception as e:
             projectId = None
             print('Error in loadRemoteRun',jobId,compressedFile)
             print(e)
             return
         # Read dbxml file into  a CDbXml and check that it is for this project
-        dbImport = CCP4DbApi.CDbXml(db=CCP4Modules.PROJECTSMANAGER().db(),xmlFile=xmlDbFile)
+        dbImport = CCP4DbApi.CDbXml(db=PROJECTSMANAGER().db(),xmlFile=xmlDbFile)
         importProjectInfo = dbImport.loadProjectInfo()
         if projectId is not None and dbImport.projectId != projectId:
             return
@@ -802,7 +818,7 @@ echo "PID=$pid"
 
         # Extract job files from the compressed file
         if compressedFile is not None:
-            projectDir =  CCP4Modules.PROJECTSMANAGER().db().getProjectInfo(projectId=projectId,mode='projectdirectory')
+            projectDir =  PROJECTSMANAGER().db().getProjectInfo(projectId=projectId,mode='projectdirectory')
             # Despit the name this is not a separate thread!
             importThread = CCP4Export.ImportProjectThread(self,projectDir=projectDir,compressedFile=compressedFile)
             importThread.extractJobs(importThread.compressedFile,importThread.projectDir,dbImport=dbImport)
@@ -821,7 +837,7 @@ echo "PID=$pid"
         dbImport.db.projectReset.emit({'projectId':dbImport.projectId})
         status = dbImport.db.getJobInfo(jobId,'status')
         dbImport.db.jobFinished.emit({'jobId':jobId,'projectId':dbImport.projectId,'status':status})
-        CCP4Modules.PROJECTSMANAGER().backupDB()
+        PROJECTSMANAGER().backupDB()
 
     def updateReports(self):
         currentlyOpenJobs = CCP4ProjectViewer.currentlyOpenJobs()

@@ -23,10 +23,10 @@ import traceback
 
 from PySide2 import QtCore
 
-from ....core import CCP4Data
-from ....core import CCP4WorkflowManager,CCP4Modules
+from ....core import CCP4Data, CCP4WorkflowManager
 from ....core.CCP4ErrorHandling import Severity
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 
 
 class workflow(CPluginScript):
@@ -96,7 +96,7 @@ class workflow(CPluginScript):
       err = self.subJobs[self.currentJobKey].container.loadDataFromXml(paramsFile)
       if err.maxSeverity()>Severity.WARNING: self.extendErrorReport(err)
                                                      
-    CCP4Modules.PROJECTSMANAGER().setOutputFileNames(container=self.subJobs[self.currentJobKey].container,projectId=self.projectId(),jobNumber=self.subJobs[self.currentJobKey].getJobNumber())
+    PROJECTSMANAGER().setOutputFileNames(container=self.subJobs[self.currentJobKey].container,projectId=self.projectId(),jobNumber=self.subJobs[self.currentJobKey].getJobNumber())
     #print 'workflow.runNextJob subJobs',self.currentJobKey,jobDef.taskName.__str__(),self.subJobs[self.currentJobKey] 
     inputData = self.subJobs[self.currentJobKey].container.inputData
     for inpDef in jobDef.input:                                             

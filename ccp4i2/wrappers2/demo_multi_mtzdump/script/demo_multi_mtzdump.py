@@ -28,9 +28,10 @@ import unittest
 
 from PySide2 import QtCore
 
-from ....core.CCP4Modules import PROCESSMANAGER, QTAPPLICATION
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4ProcessManager import PROCESSMANAGER
 from ....core.CCP4Utils import getCCP4I2Dir
+from ....utils.QApp import QTAPPLICATION
 
 
 class demo_multi_mtzdump(CPluginScript):

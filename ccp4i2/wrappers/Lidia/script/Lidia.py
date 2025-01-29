@@ -10,9 +10,10 @@ from rdkit import Chem
 import acedrg
 
 from . import MOLSVG
-from ....core import CCP4Modules
 from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Preferences import PREFERENCES
+from ....qtcore.CCP4Launcher import LAUNCHER
 
 
 class lidia(CPluginScript):
@@ -42,7 +43,7 @@ class lidia(CPluginScript):
         envEdit=[['PWD', os.path.normpath(self.getWorkDirectory())]]
         if lidiaPath[1]:
             envEdit.append(["PYTHONHOME",lidiaPath[1]])
-        CCP4Modules.LAUNCHER().launch(
+        LAUNCHER().launch(
             viewer=viewer,
             argList=argList,
             callBack=self.handleFinished,
@@ -102,8 +103,8 @@ class lidia(CPluginScript):
 
 
 def _lidiaPath() -> str:
-    if hasattr(CCP4Modules.PREFERENCES(), 'COOT_EXECUTABLE'):
-        path = Path(str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE))
+    if hasattr(PREFERENCES(), 'COOT_EXECUTABLE'):
+        path = Path(str(PREFERENCES().COOT_EXECUTABLE))
         if path.is_file():
             return (str(path.resolve().parent / "lidia"),None)
     if lidiaPath := CCP4Utils.which('lidia'):

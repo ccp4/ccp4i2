@@ -25,8 +25,9 @@ import os
 from PySide2 import QtCore, QtWidgets
 
 from ..core import CCP4Container, CCP4WorkflowManager
-from ..core.CCP4Modules import PROJECTSMANAGER, WORKFLOWMANAGER
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..core.CCP4TaskManager import TASKMANAGER
+from ..core.CCP4WorkflowManager import WORKFLOWMANAGER
 from ..qtgui import CCP4ProjectViewer
 from ..qtgui import CCP4TaskWidget
 

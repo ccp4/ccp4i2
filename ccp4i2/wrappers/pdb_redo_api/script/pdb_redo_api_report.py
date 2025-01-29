@@ -1,6 +1,7 @@
+import os
 import shutil
 
-from ....core import CCP4Modules
+from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from ....report.CCP4ReportParser import Report
 
 
@@ -20,7 +21,7 @@ class pdb_redo_api_report(Report):
 
         #FIXME - Need to copy test-page.html into job directory.
 
-            jobDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId = jobId)
+            jobDirectory = PROJECTSMANAGER().jobDirectory(jobId = jobId)
             shutil.copyfile(os.path.join(os.path.dirname(__file__),"test-page.html"),os.path.join(jobDirectory,self.xmlnode.findall('PDB_REDO_RESULTS_DIR')[0].text,"test-page.html"))
 
             pdbredourl = (

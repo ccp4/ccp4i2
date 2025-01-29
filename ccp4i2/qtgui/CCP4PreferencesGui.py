@@ -21,9 +21,11 @@
 
 from PySide2 import QtCore, QtWidgets
 
-from ..core import CCP4Modules
 from ..core import CCP4Preferences
+from ..core.CCP4Preferences import PREFERENCES
+from ..core.CCP4TaskManager import TASKMANAGER
 from ..qtgui import CCP4ProjectViewer, CCP4StyleSheet, CCP4WebView
+from ..utils.QApp import QTAPPLICATION
 
 
 class CPreferencesWindow(QtWidgets.QDialog):
@@ -32,11 +34,9 @@ class CPreferencesWindow(QtWidgets.QDialog):
     QtWidgets.QDialog.__init__(self,parent)
     self.setLayout(QtWidgets.QVBoxLayout())
 
-    #print 'CPreferencesWindow.__init__',CCP4Modules.QTAPPLICATION().
-   
-    widgetClass = CCP4Modules.TASKMANAGER().getTaskWidgetClass('guipreferences')
+    widgetClass = TASKMANAGER().getTaskWidgetClass('guipreferences')
     widget = widgetClass(self,layoutMode='TAB')
-    prefContainer = CCP4Modules.PREFERENCES()
+    prefContainer = PREFERENCES()
     widget.setContainer(prefContainer)
     widget.draw()
     self.layout().addWidget(widget)
@@ -79,9 +79,9 @@ class CPreferencesWindow(QtWidgets.QDialog):
       pass
 
     try:
-      CCP4Modules.QTAPPLICATION().setNamedStyle(CCP4Preferences.CPreferences.insts.WINDOWS_STYLE)
+      QTAPPLICATION().setNamedStyle(CCP4Preferences.CPreferences.insts.WINDOWS_STYLE)
     except:
-      CCP4Modules.QTAPPLICATION().setNamedStyle(CCP4Preferences.CPreferences.insts.WINDOWS_STLYE)
+      QTAPPLICATION().setNamedStyle(CCP4Preferences.CPreferences.insts.WINDOWS_STLYE)
     
     CCP4StyleSheet.setStyleSheet()
     CCP4WebView.setGlobalSettings()
@@ -93,7 +93,7 @@ class CPreferencesWindow(QtWidgets.QDialog):
       except:
         pass
 
-    CCP4Modules.QTAPPLICATION().prefsChanged.emit()
+    QTAPPLICATION().prefsChanged.emit()
 
   def close(self):
     self.doApply()

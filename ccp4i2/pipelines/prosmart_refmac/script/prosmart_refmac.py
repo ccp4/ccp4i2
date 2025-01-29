@@ -34,11 +34,11 @@ import clipper
 
 from . import prosmart_refmac_verdict
 from ....core import CCP4ErrorHandling
-from ....core import CCP4Modules
 from ....core import CCP4ProjectsManager
 from ....core import CCP4Utils
 from ....core import CCP4XtalData
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from ....core.CCP4Utils import getCCP4I2Dir
 from ....dbapi.CCP4DbApi import FILE_ROLE_OUT
 from ....wrappers.acedrg.script import acedrg
@@ -875,18 +875,18 @@ def coefficientsToMap(coefficientsPath, mapPath=None, overSample=1.0):
 
 # Function called from gui to support exporting MTZ files
 def exportJobFile(jobId=None,mode=None,fileInfo={}):
-    theDb = CCP4Modules.PROJECTSMANAGER().db()
+    theDb = PROJECTSMANAGER().db()
     if mode == 'complete_mtz':
         #print 'refmac.exportJobFile',mode
         childJobs = theDb.getChildJobs(jobId=jobId,details=True)
         #print 'exportJobFile childJobs',childJobs
         if childJobs[-1][2] == 'refmac':
-          jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=childJobs[-1][1],create=False)
+          jobDir = PROJECTSMANAGER().jobDirectory(jobId=childJobs[-1][1],create=False)
           if os.path.exists(os.path.join(jobDir,'hklout.mtz')):
              return  os.path.join(jobDir,'hklout.mtz')
         elif childJobs[-1][2] == 'validate_protein':
           if childJobs[-2][2] == 'refmac':
-             jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=childJobs[-2][1],create=False)
+             jobDir = PROJECTSMANAGER().jobDirectory(jobId=childJobs[-2][1],create=False)
              if os.path.exists(os.path.join(jobDir,'hklout.mtz')):
                 return  os.path.join(jobDir,'hklout.mtz')
 

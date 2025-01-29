@@ -12,7 +12,7 @@ import sys
 
 from lxml import etree
 
-from ..core.CCP4Modules import PROJECTSMANAGER
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..dbapi import CCP4DbApi
 
 

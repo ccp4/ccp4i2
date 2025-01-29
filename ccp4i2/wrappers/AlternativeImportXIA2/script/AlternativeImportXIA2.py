@@ -5,14 +5,14 @@ import unittest
 
 from lxml import etree
 
-from ....core import CCP4Modules
 from ....core import CCP4Utils
 from ....core import CCP4XtalData
-from ....core.CCP4Modules import PROCESSMANAGER
-from ....core.CCP4Modules import QTAPPLICATION
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4ProcessManager import PROCESSMANAGER
+from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from ....pimple import MGQTmatplotlib
 from ....smartie import smartie
+from ....utils.QApp import QTAPPLICATION
 
 
 class AlternativeImportXIA2(CPluginScript):
@@ -177,7 +177,7 @@ def exportJobFile(jobId=None,mode=None,fileInfo={}):
         else:
           return None
       else:
-        jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
+        jobDir = PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
         allMtzs = glob.glob(os.path.join(jobDir,'*_all.mtz'))
         #print 'AlternativeImportXIA2.exportJobFile',jobDir,allMtzs
         if len(allMtzs)>0:

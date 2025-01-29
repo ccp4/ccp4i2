@@ -39,14 +39,17 @@ from ..core import CCP4Container
 from ..core import CCP4Data
 from ..core import CCP4File
 from ..core import CCP4ModelData
-from ..core import CCP4Modules
 from ..core import CCP4TaskManager
+from ..core.CCP4ComFilePatchManager import COMFILEPATCHMANAGER
 from ..core.CCP4Config import DEVELOPER
 from ..core.CCP4Container import CContainer
 from ..core.CCP4DataManager import DATAMANAGER
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
-from ..core.CCP4Modules import COMFILEPATCHMANAGER, PROJECTSMANAGER, TASKMANAGER, WEBBROWSER
-from ..core.CCP4Modules import QTAPPLICATION
+from ..core.CCP4Preferences import PREFERENCES
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+from ..core.CCP4TaskManager import TASKMANAGER
+from ..qtgui.CCP4WebBrowser import WEBBROWSER
+from ..utils.QApp import QTAPPLICATION
 
 
 MARGIN = 1
@@ -369,7 +372,7 @@ class CTaskWidgetDrawMethods:
         text = str(self.jobTitleWidget.text())
         print('CTaskWidgetDrawMethods.saveTitle', jobId,text)
         try:
-            CCP4Modules.PROJECTSMANAGER().db().updateJob(jobId=jobId, key='jobTitle', value=text)
+            PROJECTSMANAGER().db().updateJob(jobId=jobId, key='jobTitle', value=text)
         except:
             pass
 
@@ -402,7 +405,7 @@ class CTaskWidget(QtWidgets.QFrame):
         if layoutMode is not None and layoutMode in ['TAB', 'FOLDER']:
             self.layoutMode = layoutMode
         else:
-            self.layoutMode = str(CCP4Modules.PREFERENCES().TASK_WINDOW_LAYOUT)
+            self.layoutMode = str(PREFERENCES().TASK_WINDOW_LAYOUT)
         # Project is projectName as this is used by the CDataFileView most frequently
         self._projectId = projectId
         self._jobId = jobId
@@ -860,7 +863,7 @@ class CTaskWidget(QtWidgets.QFrame):
         return rv
 
     def cootFix(self):
-        path = str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)
+        path = str(PREFERENCES().COOT_EXECUTABLE)
         #print 'CTaskWidget.cootFix',path
         try:
             if  path is not None and os.path.exists(path):
@@ -882,8 +885,8 @@ class CTaskWidget(QtWidgets.QFrame):
         self.cootFixDialog.hide()
         self.cootFixDialog.deleteLater()
         if filePath is not None and os.path.exists(filePath):
-            CCP4Modules.PREFERENCES().COOT_EXECUTABLE.set(filePath)
-            CCP4Modules.PREFERENCES().save()
+            PREFERENCES().COOT_EXECUTABLE.set(filePath)
+            PREFERENCES().save()
         else:
             pass
 
@@ -1072,11 +1075,11 @@ class CTaskWidget(QtWidgets.QFrame):
             if self.paramsFileName is not None:
                 fileName= self.paramsFileName
             else:
-                fileName = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self._jobId, mode='JOB_INPUT')
+                fileName = PROJECTSMANAGER().makeFileName(jobId=self._jobId, mode='JOB_INPUT')
         jobInfo = {}
         if self._jobId is not None:
             try:
-                jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=self._jobId, mode=['taskname', 'jobnumber', 'projectname', 'status', 'projectid'])
+                jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=self._jobId, mode=['taskname', 'jobnumber', 'projectname', 'status', 'projectid'])
             except:
                 pass
         f = CCP4File.CI2XmlDataFile(fullPath=fileName)
@@ -1098,7 +1101,7 @@ class CTaskWidget(QtWidgets.QFrame):
                 
         #MN set output file paths here, where project, and jobNumber are all known
         #MNDoing a single lookup of projectDirectory can speed up the patching of file names later
-        projectDirectory=CCP4Modules.PROJECTSMANAGER().db().getProjectDirectory(jobInfo['projectid'])
+        projectDirectory=PROJECTSMANAGER().db().getProjectDirectory(jobInfo['projectid'])
         self.patchOutputFilePaths(jobInfo, fileName, projectDirectory=projectDirectory)
         
         bodyEtree = self.container.getEtree()

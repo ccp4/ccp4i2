@@ -9,7 +9,7 @@ from PySide2 import QtCore
 
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
-from ..core.CCP4Modules import PROJECTSMANAGER
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 
 
 COMPRESSED_SUFFIX = 'ccp4_project.zip'

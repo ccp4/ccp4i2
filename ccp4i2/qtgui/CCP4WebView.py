@@ -30,22 +30,24 @@ from lxml import etree
 from PySide2 import QtCore, QtGui, QtWebEngineWidgets, QtWidgets
 
 from ..core import CCP4Config
-from ..core import CCP4Modules
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CException, Severity
+from ..core.CCP4Preferences import PREFERENCES
 from ..core.CCP4WarningMessage import warningMessage
 from ..dbapi import CCP4DbUtils
 from ..pimple import MGQTmatplotlib
 from ..qtcore import CCP4CustomMimeTypes
 from ..qtcore import CCP4Report
+from ..qtcore.CCP4HTTPServerThread import HTTPSERVER
 from ..report import CCP4ReportGenerator
+from ..utils.QApp import QTAPPLICATION
 
 
 def setGlobalSettings():
     """
     webSettings = QtWebKit.QWebSettings.globalSettings()
     #print 'setGlobalSetting webSettings',webSettings,key,value
-    preferences = CCP4Modules.PREFERENCES()
+    preferences = PREFERENCES()
     webSettings.setFontSize(QtWebKit.QWebSettings.DefaultFontSize, preferences.REPORT_FONT_SIZE)
     webSettings.setFontSize(QtWebKit.QWebSettings.DefaultFixedFontSize, preferences.REPORT_FONT_SIZE)
     webSettings.setAttribute(QtWebKit.QWebSettings.DeveloperExtrasEnabled, True)
@@ -73,12 +75,12 @@ class CWebPage(QtWebEngineWidgets.QWebEnginePage):
         print('CWebPage.shouldInterruptJavaScript called')
         traceback.print_stack()
         #QApplication::processEvents(QEventLoop::AllEvents, 42)
-        CCP4Modules.QTAPPLICATION().processEvents(QtCore.QEventLoop.AllEvents, 42)
+        QTAPPLICATION().processEvents(QtCore.QEventLoop.AllEvents, 42)
         return False
 
     def acceptNavigationRequest(self, url, navType, isMainFrame):
         print ('CWebPage.acceptNavigationRequest',url)
-        # if CCP4Modules.PREFERENCES().EXTERNAL_FILES_IN_EXTERNAL_BROWSER and not request.url().isLocalFile():
+        # if PREFERENCES().EXTERNAL_FILES_IN_EXTERNAL_BROWSER and not request.url().isLocalFile():
         isXiaReport = (re.search('xia2.html', url.path()) is not None) or (re.search('xia2.html', url.query()) is not None)
         isPairefRep = (re.search('PAIREF_project.html', url.path()) is not None) or (re.search('PAIREF_project.html', url.query()) is not None)
         isArcimboldoReport = (re.search('arcimboldo.html', url.path()) is not None) or (re.search('arcimboldo.html', url.query()) is not None)
@@ -89,7 +91,7 @@ class CWebPage(QtWebEngineWidgets.QWebEnginePage):
         if url.path() == "/database/" and url.host() == "127.0.0.1" and url.query().find("fileName=report.html") > -1:
             isReportFile = True
         isIntfReport = isXiaReport or isDuiReport
-        if (CCP4Modules.PREFERENCES().EXTERNAL_FILES_IN_EXTERNAL_BROWSER and not url.isLocalFile() and not isReportFile and not isPairefRep and not isMRParseRe) or  isDocx or isIntfReport:
+        if (PREFERENCES().EXTERNAL_FILES_IN_EXTERNAL_BROWSER and not url.isLocalFile() and not isReportFile and not isPairefRep and not isMRParseRe) or  isDocx or isIntfReport:
             # if not (url.path() == "/database/" and url.host() == "127.0.0.1"):
             #     url = QtCore.QUrl(url.path()) # Removing this seems to sort out the link problem.
             #print("OPEN ", url, url.path(),isMRParseRe)
@@ -100,8 +102,8 @@ class CWebPage(QtWebEngineWidgets.QWebEnginePage):
         # path = url.path() # Redundant line of code.
 #FIXME
         """
-        format = CCP4Modules.MIMETYPESHANDLER().formatFromFileExt(path)
-        if format and not CCP4Modules.MIMETYPESHANDLER().useWebBrowser(format):
+        format = MIMETYPESHANDLER().formatFromFileExt(path)
+        if format and not MIMETYPESHANDLER().useWebBrowser(format):
             self.CustomMimeTypeRequested.emit(url)
             return False    # CCP4WebBrowser is not taking responsibility.
         """
@@ -119,9 +121,9 @@ class CWebPage(QtWebEngineWidgets.QWebEnginePage):
     def clickOn(self,pos):
         # send a mouse click event to the web page # print 'CWebpage.clickOn', pos.x(),pos.y()
         event = QtGui.QMouseEvent(QtCore.QEvent.MouseButtonPress, pos, QtCore.Qt.LeftButton, QtCore.Qt.LeftButton, QtCore.Qt.NoModifier)
-        CCP4Modules.QTAPPLICATION().sendEvent(self, event)
+        QTAPPLICATION().sendEvent(self, event)
         event = QtGui.QMouseEvent(QtCore.QEvent.MouseButtonRelease, pos, QtCore.Qt.LeftButton, QtCore.Qt.LeftButton, QtCore.Qt.NoModifier)
-        CCP4Modules.QTAPPLICATION().sendEvent(self, event)
+        QTAPPLICATION().sendEvent(self, event)
 
 
 class CWebView(QtWebEngineWidgets.QWebEngineView):
@@ -188,7 +190,7 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
         defaultSettings = QtWebEngineWidgets.QWebEngineSettings.globalSettings()
         standardFont = fontDataBase.font("Courier","",14)
         defaultSettings.setFontFamily(QtWebEngineWidgets.QWebEngineSettings.StandardFont, standardFont.family())
-        if CCP4Modules.PREFERENCES().DISABLE_WEBGL:
+        if PREFERENCES().DISABLE_WEBGL:
             defaultSettings.setAttribute(QtWebEngineWidgets.QWebEngineSettings.WebGLEnabled,False)
         defaultSettings.setAttribute(QtWebEngineWidgets.QWebEngineSettings.JavascriptCanAccessClipboard, True)
 
@@ -297,7 +299,7 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
             pass
 
     def copyHighlighted(self):
-        CCP4Modules.QTAPPLICATION().clipboard().setText(self.selectedText())
+        QTAPPLICATION().clipboard().setText(self.selectedText())
 
     def handleUnsupportedContent(self, qnr):
         #print 'handleUnsupportedContent',qnr,qnr.url(),'scheme',str(qnr.url().scheme()),'path',str(qnr.url().path())
@@ -376,7 +378,7 @@ for (var i=0; i<imgElements.length;i++) {
         except:
             return False
         if port is None: 
-            port = CCP4Modules.HTTPSERVER().port
+            port = HTTPSERVER().port
         changed = False
         #print 'CWebView.editHTTPPort',re.search('../../report_files',text)
         if re.search('../../report_files', text) is not None:
@@ -397,7 +399,7 @@ for (var i=0; i<imgElements.length;i++) {
         return changed
 
     def extractCCP4Data(self, url, reportErrors=False):
-        #html_exts = CCP4Modules.MIMETYPESHANDLER().getMimeTypeInfo('text/html','fileExtensions')
+        #html_exts = MIMETYPESHANDLER().getMimeTypeInfo('text/html','fileExtensions')
         html_exts = ['html','htm']
         self.report = None
         self.fileName = os.path.normpath(str(url.toLocalFile()))
@@ -439,8 +441,8 @@ for (var i=0; i<imgElements.length;i++) {
         pass
 
     def setLoggraphFont(self, font={}):
-        #print 'setLoggraphFont',CCP4Modules.PREFERENCES().REPORT_FONT_SIZE-2, font
-        fontSel = {'family' : 'Lucida Sans Unicode', 'size' : int(CCP4Modules.PREFERENCES().REPORT_FONT_SIZE - 2)}
+        #print 'setLoggraphFont',PREFERENCES().REPORT_FONT_SIZE-2, font
+        fontSel = {'family' : 'Lucida Sans Unicode', 'size' : int(PREFERENCES().REPORT_FONT_SIZE - 2)}
         fontSel.update(font)
         loggraphList = self.findChildren(MGQTmatplotlib.LogGraph)
         for loggraph in loggraphList:

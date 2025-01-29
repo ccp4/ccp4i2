@@ -23,36 +23,25 @@ import os
 import re
 import subprocess
 import sys
-import threading
 import time
 import unittest
 
 from PySide2 import QtCore
 
-from . import CCP4Modules
 from . import CCP4Config
 from . import CCP4Utils
+from ..utils.QApp import QTAPPLICATION
 from .CCP4ErrorHandling import CErrorReport, CException, Severity
+from .CCP4Preferences import PREFERENCES
+from .CCP4ProcessManager import PROCESSMANAGER
+from .CCP4ProjectsManager import PROJECTSMANAGER
+from .CCP4TaskManager import TASKMANAGER
 
 
-def PopenInThread(pid, callArgList, callDict, onExit=None):
-    """
-    Runs the given args in a subprocess.Popen, and then calls the function
-    onExit when the subprocess completes.
-    onExit is a callable object, and popenArgs is a list/tuple of args that 
-    would give to subprocess.Popen.
-    """
-    #--------------------------------------------------------------
-    def runInThread(pid, callArgList, callDict, onExit=None ):
-        #print 'runInThread',pid
-        rv = subprocess.call(*[callArgList], **callDict)
-        onExit(pid, rv)
-        return 
-    #--------------------------------------------------------------
-    thread = threading.Thread(target=runInThread, args=(pid, callArgList, callDict, onExit))
-    thread.start()
-    # returns immediately after the thread starts
-    return thread
+def PROCESSMANAGER():
+    if CProcessManager.insts is None:
+        CProcessManager()
+    return CProcessManager.insts
 
 
 #NOQ class CProcessManager():
@@ -74,10 +63,11 @@ class CProcessManager(QtCore.QObject):
     def __init__(self, parent=None):
         #NOQ -- remove following lines
         if parent is None:
-            parent = CCP4Modules.QTAPPLICATION()
+            parent = QTAPPLICATION()
         QtCore.QObject.__init__(self, parent)
         #NOQ -- remove above lines
-        if not CProcessManager.insts: CProcessManager.insts = self
+        if not CProcessManager.insts:
+            CProcessManager.insts = self
         self.lastProcessId = 0
         self.processInfo = {}
         self.ifAsync = False
@@ -301,7 +291,7 @@ class CProcessManager(QtCore.QObject):
             pwdDir = self.processInfo[pid]['cwd']
         if self.processInfo[pid]['command'].count('coot'):
             if not pwdDir is not None and self.processInfo[pid]['projectId'] is not None:
-                pwdDir = os.path.join(CCP4Modules.PROJECTSMANAGER().getProjectDirectory(projectId=self.processInfo[pid]['projectId']), 'CCP4_COOT')
+                pwdDir = os.path.join(PROJECTSMANAGER().getProjectDirectory(projectId=self.processInfo[pid]['projectId']), 'CCP4_COOT')
                 if not os.path.exists(pwdDir):
                     try:
                         os.mkdir(pwdDir)
@@ -323,7 +313,7 @@ class CProcessManager(QtCore.QObject):
             p.setWorkingDirectory(pwdDir)
 
     def setCootWindowsEnvironment(self, p):
-        cootDir = str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)
+        cootDir = str(PREFERENCES().COOT_EXECUTABLE)
         COOT_GUILE_PREFIX = re.sub(r"\\\\",r"/", cootDir)
         #print 'setCootWindowsEnvironment', cootDir, COOT_GUILE_PREFIX
         coot_locations = {'COOT_PREFIX' : cootDir, 'COOT_GUILE_PREFIX' : COOT_GUILE_PREFIX, 'COOT_HOME': cootDir,
@@ -408,12 +398,6 @@ class CProcessManager(QtCore.QObject):
             print('runHandler Error', e)
             self.processInfo[pid]['errorReport'].appendPythonException(self.__class__, str(e))
 
-    def PopenInThreadExit(self, pid, rv):
-        #print 'PopenInThreadExit',pid,rv
-        #self.processInfo[pid]['finishTime'] = time.time()
-        self.handleFinish(pid, rv, 0)
-        #self.runHandler(pid)
-
     @QtCore.Slot(str,int,int)
     def handleFinish(self, pid, exitCode=0, exitStatus=0):
         print('Process finished:', pid, 'exit code:', exitCode, 'exit status:', exitStatus,'time:', time.strftime('%H:%M:%S %d/%b/%Y', time.localtime(time.time())))
@@ -422,20 +406,20 @@ class CProcessManager(QtCore.QObject):
         self.processInfo[pid]['exitCode'] = exitCode
         if "logFile" in self.processInfo[pid] and self.processInfo[pid]["logFile"]:
             if "jobId" in self.processInfo[pid] and self.processInfo[pid]["jobId"]:
-                jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=self.processInfo[pid]["jobId"])
+                jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=self.processInfo[pid]["jobId"])
                 try:
                     logFileHandle = open(self.processInfo[pid]["logFile"],'a')
                     logFileHandle.write("JOB TITLE SECTION (PROCESSMANAGER)\n")
                     if "jobtitle" in jobInfo and jobInfo["jobtitle"]:
                         logFileHandle.write(str(jobInfo["jobtitle"])+"\n")
                     else:
-                        logFileHandle.write(str(CCP4Modules.TASKMANAGER().getShortTitle(jobInfo['taskname']))+"\n")
+                        logFileHandle.write(str(TASKMANAGER().getShortTitle(jobInfo['taskname']))+"\n")
                     while "parentjobid" in jobInfo and jobInfo["parentjobid"]:
-                        jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=jobInfo["parentjobid"])
+                        jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=jobInfo["parentjobid"])
                         if "jobtitle" in jobInfo and jobInfo["jobtitle"]:
                             logFileHandle.write(str(jobInfo["jobtitle"])+"\n")
                         else:
-                            logFileHandle.write(str(CCP4Modules.TASKMANAGER().getShortTitle(jobInfo['taskname']))+"\n")
+                            logFileHandle.write(str(TASKMANAGER().getShortTitle(jobInfo['taskname']))+"\n")
                     logFileHandle.close()
                 except:
                     print("Could not append job title info to log file."); sys.stdout.flush()
@@ -581,10 +565,10 @@ class testProcessManager(unittest.TestCase):
             self.isUnitTest = True
         self.pdbFile = os.path.join(CCP4Utils.getCCP4I2Dir(), 'test', 'data', '1df7.pdb')
         if self.isUnitTest:
-            CCP4Modules.PROCESSMANAGER().setWaitForFinished(1000)
+            PROCESSMANAGER().setWaitForFinished(1000)
 
     def tearDown(self):
-        CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
+        PROCESSMANAGER().setWaitForFinished(-1)
 
     def evalCRYST(self, pdbFile=None):
         text = CCP4Utils.readFile(pdbFile)
@@ -601,8 +585,8 @@ class testProcessManager(unittest.TestCase):
 
     def printReview(self, processID):
         print(' ')
-        print('processID exitStatus', processID, CCP4Modules.PROCESSMANAGER().getJobData(processID, 'exitStatus'))
-        print('Error:', CCP4Modules.PROCESSMANAGER().getJobData(processID, 'processError'))
+        print('processID exitStatus', processID, PROCESSMANAGER().getJobData(processID, 'exitStatus'))
+        print('Error:', PROCESSMANAGER().getJobData(processID, 'processError'))
         print('Is PDB file created:', self.pdbOut, str(os.path.exists(self.pdbOut)))
         if os.path.exists(self.pdbOut):
             print('Output PDB contains correct data',str(self.evalCRYST(self.pdbOut)))
@@ -616,7 +600,7 @@ class testProcessManager(unittest.TestCase):
             handler = None
         else:
             handler = [self.review1, {}]
-        processID = CCP4Modules.PROCESSMANAGER().startProcess(command='pdbset', args=['XYZIN', self.pdbFile, 'XYZOUT', self.pdbOut],
+        processID = PROCESSMANAGER().startProcess(command='pdbset', args=['XYZIN', self.pdbFile, 'XYZOUT', self.pdbOut],
                                                               inputText='CELL 50.0 50.0 70.0 90.0 90.0 90.0\nEND\n', handler=handler)
         if self.isUnitTest:
             self.review1(processID)
@@ -635,15 +619,15 @@ class testProcessManager(unittest.TestCase):
             handler = None
         else:
             handler = [self.review2, {}]
-        processID = CCP4Modules.PROCESSMANAGER().startProcess(command='pdbset', args=['XYZIN', 'foobar', 'XYZOUT', self.pdbOut],
+        processID = PROCESSMANAGER().startProcess(command='pdbset', args=['XYZIN', 'foobar', 'XYZOUT', self.pdbOut],
                                   inputText='CELL 50.0 50.0 70.0 90.0 90.0 90.0\nEND\n', handler=handler)
         if self.isUnitTest:
             self.review2(processID)
 
     def review2(self,processID=None):
         if self.isUnitTest:
-            exitCode = CCP4Modules.PROCESSMANAGER().getJobData(processID, 'exitStatus')
-            error = CCP4Modules.PROCESSMANAGER().getJobData(processID, 'processError')
+            exitCode = PROCESSMANAGER().getJobData(processID, 'exitStatus')
+            error = PROCESSMANAGER().getJobData(processID, 'processError')
             self.assertEqual(exitCode, 1, 'Wrong exit code when bad input filename')
             self.assertEqual(error.count('No such file or directory'), 1, 'Wrong error message when bad input filename')
         else:
@@ -656,7 +640,7 @@ class testProcessManager(unittest.TestCase):
             handler = None
         else:
             handler = [self.review2,{}]
-        processID = CCP4Modules.PROCESSMANAGER().startProcess(command='pdbset-no', args=['XYZIN', 'foobar', 'XYZOUT', self.pdbOut],
+        processID = PROCESSMANAGER().startProcess(command='pdbset-no', args=['XYZIN', 'foobar', 'XYZOUT', self.pdbOut],
                                                               inputText='CELL 50.0 50.0 70.0 90.0 90.0 90.0\nEND\n', handler=handler)
         if self.isUnitTest:
             self.review3(processID)
@@ -668,7 +652,7 @@ class testProcessManager(unittest.TestCase):
             handler = None
         else:
             handler = [self.review2, {}]
-        processID = CCP4Modules.PROCESSMANAGER().startProcess(command='pdbset', args=['XYZIN','foobar','XYZOUT',self.pdbOut],
+        processID = PROCESSMANAGER().startProcess(command='pdbset', args=['XYZIN','foobar','XYZOUT',self.pdbOut],
                                                               inputText='CELL 50.0 \nEND\n', handler=handler)
         if self.isUnitTest:
             self.review4(processID)

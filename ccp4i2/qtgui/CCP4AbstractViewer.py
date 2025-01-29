@@ -27,17 +27,24 @@ import time
 
 from PySide2 import QtCore, QtWidgets
 
-from ..core import CCP4Modules
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import Severity
 from ..qtcore import CCP4CustomMimeTypes
+from ..qtgui.CCP4WebBrowser import WEBBROWSER
+from ..utils.QApp import QTAPPLICATION
+
+
+def FILEWATCHER():
+    if CFileWatchTimer.insts is None:
+        CFileWatchTimer.insts =  CFileWatchTimer()
+    return CFileWatchTimer.insts
 
 
 def handleFileChanged(fileName):
     fileName = str(fileName)
     #print 'CCP4AbstractViewer.handleFileChanged',fileName
     indx = 0
-    browser = CCP4Modules.WEBBROWSER(indx)
+    browser = WEBBROWSER(indx)
     while browser is not None:
         tab = browser.fileOpenInTab(fileName)
         #print 'CCP4AbstractViewer.handleFileChanged tab',tab
@@ -46,7 +53,7 @@ def handleFileChanged(fileName):
             browser.tab().widget(tab).reload()
             return
         indx = indx + 1
-        browser = CCP4Modules.WEBBROWSER(indx)
+        browser = WEBBROWSER(indx)
 
 
 #-------------------------------------------------------------------
@@ -107,13 +114,13 @@ class CAbstractViewer(QtWidgets.QScrollArea):
         if self.fileName is None: return
         # Only watch files last modified in last three minutes
         if time.time() - os.path.getmtime(self.fileName) > modTime: return
-        CCP4Modules.FILEWATCHER().addPath(self.fileName)
+        FILEWATCHER().addPath(self.fileName)
 
     def close(self):
         if self.fileName is None: return
         #print 'CAbstractViewer.close removing watch',self.fileName
         try:
-            CCP4Modules.FILEWATCHER().removePath(self.fileName)
+            FILEWATCHER().removePath(self.fileName)
         except:
             pass
   
@@ -205,7 +212,7 @@ class CFileWatchTimer(QtCore.QObject):
     insts = None
 
     def __init__(self,interval=2000):
-        parent = CCP4Modules.QTAPPLICATION()
+        parent = QTAPPLICATION()
         QtCore.QObject.__init__(self,parent)
         parent.aboutToQuit.connect(self.Exit)
         self.files = {}

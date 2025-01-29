@@ -32,7 +32,7 @@ from . import CCP4Utils
 from ..dbapi import CCP4DbApi
 from ..qtcore import CCP4Export
 from .CCP4ErrorHandling import CException, Severity
-from .CCP4Modules import PROJECTSMANAGER
+from .CCP4ProjectsManager import PROJECTSMANAGER
 
 
 DIAGNOSTIC=True

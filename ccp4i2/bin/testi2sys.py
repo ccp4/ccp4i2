@@ -10,16 +10,16 @@ from PySide2 import QtCore
 
 from ..core import CCP4Config
 from ..core import CCP4DataManager
-from ..core import CCP4Modules
 from ..core import CCP4ProjectBasedTesting
 from ..core import CCP4Utils
 from ..qtcore import CCP4Export
 from ..utils import startup
+from ..utils.QApp import QTAPPLICATION
 
 
 def quitThread(thread):
     print('quitThread',thread, flush=True)
-    CCP4Modules.QTAPPLICATION(graphical=False).quit()
+    QTAPPLICATION(graphical=False).quit()
     sys.exit()
 
 
@@ -125,7 +125,7 @@ def main():
 
     #sys.argv =  [sys.argv[0]]
 
-    app = CCP4Modules.QTAPPLICATION(graphical=graphical)
+    app = QTAPPLICATION(graphical=graphical)
     pm = startup.startProjectsManager(dbFileName=dbFile,loadDiagnostic=False)
     pm.startCheckForFinishedJobs()
     jc = startup.startJobController()

@@ -27,11 +27,17 @@ from . import CCP4Container
 from . import CCP4CustomManager
 from . import CCP4Data
 from . import CCP4File
-from . import CCP4Modules
 from . import CCP4TaskManager
 from . import CCP4Utils
 from ..googlecode import diff_match_patch_py3
 from .CCP4ErrorHandling import CErrorReport, CException
+from .CCP4ProjectsManager import PROJECTSMANAGER
+
+
+def COMFILEPATCHMANAGER():
+    if CComFilePatchManager.insts is None:
+        CComFilePatchManager.insts = CComFilePatchManager()
+    return CComFilePatchManager.insts
 
 
 class CComFilePatchManager(CCP4CustomManager.CCustomManager):
@@ -90,11 +96,11 @@ class CComFilePatchManager(CCP4CustomManager.CCustomManager):
         if useControlParams:
             if jobId is None:
                 raise CException(self.__class__, 206)
-            jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=jobId, mode=['taskname', 'taskversion'])
+            jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=jobId, mode=['taskname', 'taskversion'])
             defFile = CCP4TaskManager.TASKMANAGER().lookupDefFile(name=jobInfo['taskname'], version=jobInfo['taskversion'])
             taskContainer = CCP4Container.CContainer()
             taskContainer.loadContentsFromXml(defFile)
-            paramsFile = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=jobId, mode='JOB_INPUT')
+            paramsFile = PROJECTSMANAGER().makeFileName(jobId=jobId, mode='JOB_INPUT')
             #print 'CComFilePatchManager.createPatch paramsFile',paramsFile
             if not os.path.exists(paramsFile):
                 raise CException(self.__class__, 205, paramsFile)
@@ -128,7 +134,7 @@ class CComFilePatchManager(CCP4CustomManager.CCustomManager):
         if jobId is None:
             return ''
         try:
-            jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId)
+            jobDir = PROJECTSMANAGER().jobDirectory(jobId=jobId)
             comFilePath = os.path.join(jobDir, 'com.txt')
         except:
             return ''

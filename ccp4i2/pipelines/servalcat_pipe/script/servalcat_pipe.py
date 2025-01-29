@@ -17,6 +17,7 @@
     GNU Lesser General Public License for more details.
 """
 
+from operator import itemgetter
 import csv
 import functools
 import os
@@ -31,11 +32,10 @@ import numpy
 
 from . import monitor_differences
 from ....core import CCP4ErrorHandling
-from ....core import CCP4Modules
 from ....core import CCP4ProjectsManager
 from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
-from ....operator import itemgetter
+from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from ....wrappers.metalCoord.script import json2restraints
 
 
@@ -844,16 +844,16 @@ def coefficientsToMap(coefficientsPath, mapPath=None, overSample=1.0):
 
 # Function called from gui to support exporting MTZ files
 def exportJobFile(jobId=None,mode=None,fileInfo={}):
-    theDb = CCP4Modules.PROJECTSMANAGER().db()
+    theDb = PROJECTSMANAGER().db()
     if mode == 'complete_mtz':
         childJobs = theDb.getChildJobs(jobId=jobId,details=True)
         if childJobs[-1][2] == 'servalcat':
-          jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=childJobs[-1][1],create=False)
+          jobDir = PROJECTSMANAGER().jobDirectory(jobId=childJobs[-1][1],create=False)
           if os.path.exists(os.path.join(jobDir,'refined.mtz')):
              return  os.path.join(jobDir,'refined.mtz')
         elif childJobs[-1][2] == 'validate_protein':
           if childJobs[-2][2] == 'servalcat':
-             jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=childJobs[-2][1],create=False)
+             jobDir = PROJECTSMANAGER().jobDirectory(jobId=childJobs[-2][1],create=False)
              if os.path.exists(os.path.join(jobDir,'refined.mtz')):
                 return  os.path.join(jobDir,'refined.mtz')
 

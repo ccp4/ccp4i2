@@ -44,13 +44,14 @@ from ..core import CCP4Data
 from ..core import CCP4DataManager
 from ..core import CCP4File
 from ..core import CCP4ModelData
-from ..core import CCP4Modules
 from ..core import CCP4PerformanceData
 from ..core import CCP4TaskManager
 from ..core import CCP4Utils
 from ..core import CCP4XtalData
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..core.CCP4QtObject import CObject
+from ..utils.QApp import QTAPPLICATION
 
 
 USE_PERFORMANCE_CLASSES = True
@@ -404,7 +405,7 @@ class CDbApi(CObject):
         if mode in ['qt_sqlite']:
             # Ensure there is a QApplication - otherwise database drivers don't load
             try:
-                qApp = CCP4Modules.QTAPPLICATION()
+                qApp = QTAPPLICATION()
             except:
                 raise CException(self.__class__,154)
         if userName is None:
@@ -3448,7 +3449,7 @@ TaskTitle TEXT );''')
           else:
               container = CCP4Container.CContainer(parent=self.parent)
       else:
-          container = CCP4Container.CContainer(parent=CCP4Modules.QTAPPLICATION())
+          container = CCP4Container.CContainer(parent=QTAPPLICATION())
       container.loadDataFromXml(paramsFile)
       return container
 
@@ -6626,7 +6627,7 @@ def testModule():
       fileName = os.path.join(jobsDir,'job_5','XYZOUT.pdb')
       CCP4Utils.saveFile(fileName=fileName,text='Dummy file')
 
-  pm = CCP4Modules.PROJECTSMANAGER()
+  pm = PROJECTSMANAGER()
 
   suite = TESTSUITE()
   unittest.TextTestRunner(verbosity=2).run(suite)
@@ -6803,10 +6804,10 @@ class testDb(unittest.TestCase):
     # This will e jobNumber=5
     pid = self.db.getProjectId('myproject')
     jid7 =  self.db.createJob(projectId=pid,taskName='pdbset',jobTitle='test5glean')
-    shutil.copyfile(os.path.join(CCP4Utils.getCCP4I2Dir(),'test','data','test_dbapi.params.xml'),CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=jid7,mode='PARAMS'))
+    shutil.copyfile(os.path.join(CCP4Utils.getCCP4I2Dir(),'test','data','test_dbapi.params.xml'),PROJECTSMANAGER().makeFileName(jobId=jid7,mode='PARAMS'))
     self.db.updateJobStatus(jid7,status='Finished')
     #self.db.setDiagnostic(True)
-    #print 'test5glean jid7',jid7,CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=jid7,mode='PARAMS')
+    #print 'test5glean jid7',jid7,PROJECTSMANAGER().makeFileName(jobId=jid7,mode='PARAMS')
     rv = self.db.gleanJobFiles(jobId=jid7)
     #print 'from gleanJobFiles',rv.report()
 
@@ -6824,9 +6825,9 @@ class testDb(unittest.TestCase):
     pid = self.db.getProjectId('myproject')
     pf =  os.path.join(CCP4Utils.getCCP4I2Dir(),'test','data','test_dbapi_2.params.xml')
     jid8 =  self.db.createJob(pid,'newProject',jobTitle='test6glean')
-    shutil.copyfile(os.path.join(CCP4Utils.getCCP4I2Dir(),'test','data','test_dbapi_2.params.xml'),CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=jid8,mode='PARAMS'))
+    shutil.copyfile(os.path.join(CCP4Utils.getCCP4I2Dir(),'test','data','test_dbapi_2.params.xml'),PROJECTSMANAGER().makeFileName(jobId=jid8,mode='PARAMS'))
 
-    CCP4Modules.PROJECTSMANAGER().importFiles(jobId=jid8)
+    PROJECTSMANAGER().importFiles(jobId=jid8)
     self.db.updateJobStatus(jid8,status='Finished')
     rv = self.db.gleanJobFiles(jobId=jid8)
 
@@ -6856,7 +6857,7 @@ class testSqliteDb(testDb):
 
     self.db = CDbApi(mode='sqlite',userName='me',userPassword='foo',fileName=testSqliteDb.TESTDBFILE)
     self.mode = 'sqlite'
-    CCP4Modules.PROJECTSMANAGER().setDatabase(self.db)
+    PROJECTSMANAGER().setDatabase(self.db)
 
 class testQtDb(testDb):
 
@@ -6865,4 +6866,4 @@ class testQtDb(testDb):
   def setUp(self):
     self.db = CDbApi(mode='qt_sqlite',fileName=testQtDb.TESTDBFILE,userName='me',userPassword='foo')
     self.mode = 'qt_sqlite'
-    CCP4Modules.PROJECTSMANAGER().setDatabase(self.db)
+    PROJECTSMANAGER().setDatabase(self.db)

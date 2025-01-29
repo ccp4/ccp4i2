@@ -23,10 +23,10 @@ import xml.etree.ElementTree as ET
 from lxml import etree
 
 from ....core import CCP4ErrorHandling
-from ....core import CCP4Modules
 from ....core import CCP4Utils
 from ....core import CCP4XtalData
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4ProcessManager import PROCESSMANAGER
 
 
 class lorestr_i2(CPluginScript):
@@ -113,7 +113,7 @@ class lorestr_i2(CPluginScript):
         if not hasattr(self,'logFileHandle'): self.logFileHandle = open(self.makeFileName('LOG'),'w')
         if not hasattr(self,'logFileBuffer'): self.logFileBuffer = ''
         pid = self.getProcessId()
-        qprocess = CCP4Modules.PROCESSMANAGER().getJobData(pid,attribute='qprocess')
+        qprocess = PROCESSMANAGER().getJobData(pid,attribute='qprocess')
         availableStdout = qprocess.readAllStandardOutput()
         self.logFileHandle.write(availableStdout)
         self.logFileHandle.flush()

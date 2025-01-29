@@ -20,7 +20,7 @@
      Liz Potterton Jan 2010 - Create CCP4MimeTypes. Copy MGAbstractViewer and subclasses from MG project
 """
 
-## @package CCP4CustomMimeTypes (QtWebKit) Manager for file MIME types - access via CCP4Modules.MIMETYPESHANDLER()
+## @package CCP4CustomMimeTypes (QtWebKit) Manager for file MIME types - access via MIMETYPESHANDLER()
 
 import os
 
@@ -35,6 +35,12 @@ from ..core.CCP4ErrorHandling import Severity
 from ..qtgui import CCP4FileSystemView
 from ..qtgui import CCP4ImageViewer
 from ..qtgui import CCP4TextViewer
+
+
+def MIMETYPESHANDLER():
+    if not CCustomMimeTypes.insts:
+        CCustomMimeTypes()
+    return CCustomMimeTypes.insts
 
 
 #-------------------------------------------------------------------------------------

@@ -31,8 +31,8 @@ from PySide2 import QtCore
 from . import CCP4Container
 from . import CCP4DataManager
 from . import CCP4File
-from . import CCP4Modules
 from . import CCP4Utils
+from .CCP4ComFilePatchManager import COMFILEPATCHMANAGER
 from .CCP4ErrorHandling import CErrorReport, CException, Severity
 from .CCP4File import CDataFile
 from .CCP4QtObject import CObject
@@ -3075,7 +3075,7 @@ class CPatchSelection(CData):
 
     def fix(self,arg={}):
         if arg.get('taskName',None) is not None:
-            self.__dict__['patchsForTask'] = CCP4Modules.COMFILEPATCHMANAGER().patchForTaskName(taskName=arg['taskName'])
+            self.__dict__['patchsForTask'] = COMFILEPATCHMANAGER().patchForTaskName(taskName=arg['taskName'])
             if arg.get('patch',None) not in self.getPatchList():
                 arg['patch'] = None
         return arg

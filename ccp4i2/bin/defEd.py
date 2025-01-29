@@ -1,9 +1,9 @@
 import sys
 
 from ..core.CCP4Config import CConfig
-from ..core.CCP4Modules import QTAPPLICATION
 from ..core.CCP4Utils import getCCP4I2Dir
 from ..qtgui.CCP4DefEd import CDefEd
+from ..utils.QApp import QTAPPLICATION
 from ..utils.startup import setupEnvironment
 
 

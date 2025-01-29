@@ -3,14 +3,14 @@
     Martin Noble
 """
 
-import re
 import os
+import re
 
 from PySide2 import QtCore
 import gemmi
 
-from ....core import CCP4Modules
 from ....core.CCP4ModelData import CPdbData
+from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from ....qtgui.CCP4TaskWidget import CTaskWidget
 
 
@@ -59,7 +59,7 @@ PASTERYOURSEQUENCEINHERE"""
 #I am changing this 'unSet' to occur only if job is 'Pending'. This might still be unnecessary but better, I think.
         try:
             jobId = self.jobId()
-            status = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId,'status')
+            status = PROJECTSMANAGER().db().getJobInfo(jobId,'status')
             if status == "Pending":
                 self.container.inputData.SEQIN.unSet()
         except:

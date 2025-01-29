@@ -10,14 +10,15 @@ from . import CCP4ReportParser
 from ..core import CCP4Data
 from ..core import CCP4ErrorHandling
 from ..core import CCP4File
-from ..core import CCP4Modules
 from ..core import CCP4PluginScript
 from ..core import CCP4TaskManager
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
-from ..core.CCP4Modules import PREFERENCES
+from ..core.CCP4Preferences import PREFERENCES
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..dbapi import CCP4DbApi
 from ..qtcore.CCP4HTTPServerThread import CHTTPServerThread
+from ..qtcore.CCP4Launcher import LAUNCHER
 from .CCP4ReportParser import Report
 
 
@@ -65,13 +66,13 @@ class CReportGenerator(QtCore.QObject):
       
   def getReportClass(self,doReload=False):
     #print 'getReportClass',self.jobId
-    taskName = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=self.jobId,mode='taskname')
+    taskName = PROJECTSMANAGER().db().getJobInfo(jobId=self.jobId,mode='taskname')
     cls = CCP4TaskManager.TASKMANAGER().getReportClass(taskName,jobStatus=self.jobStatus,doReload=doReload)
     xrtFile = CCP4TaskManager.TASKMANAGER().searchXrtFile(taskName,jobStatus=self.jobStatus)
     return taskName,cls,xrtFile
 
   def getCustomFailedReport(self):
-    reportName = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='DIAGNOSTIC')
+    reportName = PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='DIAGNOSTIC')
     #print 'getCustomFailedReport',reportName
     if not os.path.exists(reportName): return None
     try:
@@ -92,13 +93,13 @@ class CReportGenerator(QtCore.QObject):
     port=43434
     if CHTTPServerThread.insts is not None:
         port = CHTTPServerThread.insts.port
-    #print 'makeReportFile HTTPSERVER',CCP4Modules.HTTPSERVER()
+    #print 'makeReportFile HTTPSERVER',HTTPSERVER()
     #print 'makeReportFile port',port
     return 'http://127.0.0.1:'+str(port)+'/report_files'
 
   def getOutputXml(self):
     outputXml = None
-    outputXmlFile = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='PROGRAMXML')
+    outputXmlFile = PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='PROGRAMXML')
     #print  'CReportGenerator.makeReportFile outputXmlFile',outputXmlFile,os.path.exists(outputXmlFile)
     #MN: Try to make this all a bit more atomic since programxl file might come and go
     # Liz improved error trapping - Nov 15
@@ -118,7 +119,7 @@ class CReportGenerator(QtCore.QObject):
               text = inputFile.read()
               outputXml = etree.fromstring( text,CCP4ReportParser.PARSER() )
         except Exception as e :
-            outputXmlFile = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='RVAPIXML')
+            outputXmlFile = PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='RVAPIXML')
             try:
              with open(outputXmlFile,'r') as inputFile:
                  text = inputFile.read()
@@ -144,7 +145,7 @@ class CReportGenerator(QtCore.QObject):
       else:
         raise CCP4ErrorHandling.CException(self.__class__,10,taskName,stack=False)  
 
-    self.reportFile = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='REPORT')
+    self.reportFile = PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='REPORT')
     if self.jobStatus in [ 'Running', 'Running remotely'] :
       # Always redo a report for a running job
       fSplit = os.path.splitext(self.reportFile)
@@ -170,12 +171,12 @@ class CReportGenerator(QtCore.QObject):
       self.jobInfo = getReportJobInfo(self.jobId)
 
 
-    projectId = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=self.jobId,mode='projectid')
+    projectId = PROJECTSMANAGER().db().getJobInfo(jobId=self.jobId,mode='projectid')
     if cls is not None:
       self.report = cls(xmlnode=outputXml,jobInfo=self.jobInfo, standardise=( self.jobStatus not in [ 'Running','Running remotely']), jobStatus = self.jobStatus , jobNumber=self.jobNumber, projectId =  projectId)
       #print 'CReportGenerator report',report
       self.report.as_html_file(fileName=self.reportFile,htmlBase=self.htmlBase())
-      #rtfFile = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='TABLE_RTF')
+      #rtfFile = PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='TABLE_RTF')
       #report.graph_data_as_rtf(fileName=rtfFile)
     elif useGeneric:
       self.report = CCP4ReportParser.GenericReport(xmlnode=outputXml,jobInfo=self.jobInfo, standardise=( self.jobStatus not in [ 'Running','Running remotely']), jobStatus = self.jobStatus , jobNumber=self.jobNumber, taskName = taskName, projectId =  projectId )
@@ -192,12 +193,12 @@ class CReportGenerator(QtCore.QObject):
       
     #print 'makeReportFile',self.report.containsPictures(),self.report.pictureQueue
     if self.jobStatus not in [ 'Running','Running remotely'] :
-      self.tableDirectory = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='TABLES_DIR')
+      self.tableDirectory = PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='TABLES_DIR')
       if not os.path.exists(self.tableDirectory): os.mkdir(self.tableDirectory)
       self.report.makeCSVFiles(directory=self.tableDirectory)
 
-    jobDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=self.jobId)
-    xmlTableDirectory = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='XML_TABLES_DIR')
+    jobDirectory = PROJECTSMANAGER().jobDirectory(jobId=self.jobId)
+    xmlTableDirectory = PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='XML_TABLES_DIR')
     if not os.path.exists(xmlTableDirectory): os.mkdir(xmlTableDirectory)
     
     #Here enquire of the report object whether it thinks a new page or a refrsh of the
@@ -242,11 +243,11 @@ class CReportGenerator(QtCore.QObject):
 
   def makeFailedReportFile(self,redo=False):
     if self.jobStatus != 'Failed':
-      self.reportFile = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='DIAGNOSTIC_REPORT')
+      self.reportFile = PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='DIAGNOSTIC_REPORT')
       title = 'Diagnostic'
     else:
       title = 'Error Report'
-      self.reportFile = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='REPORT')
+      self.reportFile = PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='REPORT')
 
     reportClass = self.getCustomFailedReport()
     #print 'makeFailedReportFile getCustomFailedReport',reportClass
@@ -278,12 +279,12 @@ class CReportGenerator(QtCore.QObject):
     report.insert(0,'<h3 class="error_report">'+title+' for Job '+str(self.jobInfo['jobnumber'])+': '+ self.jobInfo['tasktitle']+'</h3>')
     
     # If there diagnostic output - display it
-    reportFile = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='DIAGNOSTIC')
+    reportFile = PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='DIAGNOSTIC')
     if os.path.exists(reportFile):
       t = report.addPre(style='color:red')
       t.text = self.getErrorReport(reportFile)
 
-    logFile = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='LOG')
+    logFile = PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='LOG')
     if os.path.exists(logFile):
       fold = CCP4ReportParser.Fold()
       fold.label =  'Log file'
@@ -302,7 +303,7 @@ class CReportGenerator(QtCore.QObject):
     for std,title,target in (('STDERR','Error output from job','errors'),
                       ('STDOUT','Terminal output from job','terminal'),
                       ('DIAGNOSTIC','Diagnostic from script','diagnostic')):
-      filePath = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode=std)
+      filePath = PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode=std)
       #print 'makeFailedReportFile',fileName,os.path.exists(fileName)
       if os.path.exists(filePath):
         fold = CCP4ReportParser.Fold()       
@@ -328,7 +329,7 @@ class CReportGenerator(QtCore.QObject):
         fold = CCP4ReportParser.Fold()
         subJobNum,subJobId = self.extractJobId(filePath)
         if subJobId is not None:
-          taskName = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=subJobId,mode='taskname')
+          taskName = PROJECTSMANAGER().db().getJobInfo(jobId=subJobId,mode='taskname')
         else:
           taskName = ''
         fold.label =  filePath.replace(top,'')[1:]  + ' from ' + subJobNum + ' ' +  taskName  
@@ -383,8 +384,8 @@ class CReportGenerator(QtCore.QObject):
     if len(num)==0:
       return None
     else:
-      projectId = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=self.jobId,mode='projectid')
-      subJobId = CCP4Modules.PROJECTSMANAGER().db().getJobId(projectId=projectId,jobNumber=num[0:-1])
+      projectId = PROJECTSMANAGER().db().getJobInfo(jobId=self.jobId,mode='projectid')
+      subJobId = PROJECTSMANAGER().db().getJobId(projectId=projectId,jobNumber=num[0:-1])
       return num[0:-1],subJobId
 
       
@@ -443,7 +444,7 @@ class CReportGenerator(QtCore.QObject):
 
   def runMg(self,pictureQueue=[],callBack=None):
     #print 'CReportGenerator.runMg pictureQueue',pictureQueue
-    mgExe = CCP4Modules.LAUNCHER().getExecutable('CCP4MG')
+    mgExe = LAUNCHER().getExecutable('CCP4MG')
     if mgExe is None:
       print('ERROR no CCP4mg executable found')
       raise CException(self.__class__,103,stack=False) 
@@ -460,7 +461,7 @@ class CReportGenerator(QtCore.QObject):
     argList.append('-RO')
     argList.append(re.sub(': ',':',str(options)))
 
-    process = CCP4Modules.LAUNCHER().launch(viewer='ccp4mg',argList=argList,callBack=callBack)
+    process = LAUNCHER().launch(viewer='ccp4mg',argList=argList,callBack=callBack)
     return process
               
 
@@ -484,7 +485,7 @@ def getReportJobInfo(jobId=None,projectName=None,jobNumber=None):
     traceback.print_stack()
     """
   
-    db = CCP4Modules.PROJECTSMANAGER().db()
+    db = PROJECTSMANAGER().db()
 
     if projectName is None:
         projectNameInfo = db.getJobInfo(jobId=jobId)
@@ -498,7 +499,7 @@ def getReportJobInfo(jobId=None,projectName=None,jobNumber=None):
     # print 'CReportGenerator getJobInfo',jobInfo
     jobInfo['jobid'] = jobId
     jobInfo['tasktitle'] = CCP4TaskManager.TASKMANAGER().getTitle(jobInfo['taskname'])
-    jobInfo['fileroot'] = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=jobId,mode='ROOT')
+    jobInfo['fileroot'] = PROJECTSMANAGER().makeFileName(jobId=jobId,mode='ROOT')
     importedfiles = db.getJobImportFiles(jobId=jobId)
     # Returned list JobId,FileID,ImportId,FileTypeId,Filename,Annotation
     jobInfo['importedfiles'] = []

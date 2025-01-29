@@ -31,8 +31,10 @@ from . import CCP4Widgets
 from ..core import CCP4Container
 from ..core import CCP4WorkflowManager
 from ..core.CCP4ErrorHandling import CException, Severity
-from ..core.CCP4Modules import PROJECTSMANAGER, WEBBROWSER, WORKFLOWMANAGER
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..core.CCP4WarningMessage import warningMessage
+from ..core.CCP4WorkflowManager import WORKFLOWMANAGER
+from ..qtgui.CCP4WebBrowser import WEBBROWSER
 
 
 def openWorkflowManagerGui():

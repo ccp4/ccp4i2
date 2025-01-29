@@ -30,14 +30,14 @@ from PySide2 import QtCore, QtWidgets
 from PySide2.QtWidgets import QMessageBox
 import ccp4mg.mmdb2 as mmdb
 
-from ....core import CCP4Modules
 from ....core import CCP4XtalData
+from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from ....qtgui import CCP4TaskWidget
 from ...import_merged.script.dybuttons import ChoiceButtons
 
 
 def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None):
-    jobStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId,'status')
+    jobStatus = PROJECTSMANAGER().db().getJobInfo(jobId,'status')
     if jobStatus == 'Unsatisfactory':
         returnList = ['LidiaAcedrg', 'servalcat_pipe']
     else:
@@ -66,7 +66,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
 
   def ToggleTLSModeOn(self):
     if str(self.container.controlParameters.TLSMODE) != 'NONE':
-        CurrentStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(self._jobId,'status')
+        CurrentStatus = PROJECTSMANAGER().db().getJobInfo(self._jobId,'status')
         if CurrentStatus == "Pending":
             self.container.controlParameters.BFACSETUSE = True
         return True
@@ -74,7 +74,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
 
   def ToggleTLSModeOff(self):
     if str(self.container.controlParameters.TLSMODE) == 'NONE':
-        CurrentStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(self._jobId,'status')
+        CurrentStatus = PROJECTSMANAGER().db().getJobInfo(self._jobId,'status')
         if CurrentStatus == "Pending":
             self.container.controlParameters.BFACSETUSE = False
         return True

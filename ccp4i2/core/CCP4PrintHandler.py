@@ -10,6 +10,13 @@ from PySide2 import QtCore
 from . import CCP4Config
 from . import CCP4Utils
 
+
+def PRINTHANDLER():
+    if CPrintHandler.insts is None:
+        CPrintHandler()
+    return CPrintHandler.insts
+
+
 class CPrintHandler:
     insts = None
 

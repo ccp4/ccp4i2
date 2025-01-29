@@ -1,7 +1,28 @@
+import sys
+
 from PySide2 import QtCore, QtWidgets
+
+from ..core.CCP4Config import GRAPHICAL
 
 
 MYAPPLICATION = None
+
+
+def QTAPPLICATION(graphical=None):
+    global MYAPPLICATION
+    # NB can not use QApplication.instance() as it returns the QApplication object
+    # rather than CApplication. Suppose could reimplement CApplication.instance() but
+    # would just do the same as this function.
+    if graphical is None:
+        graphical = GRAPHICAL()
+    if MYAPPLICATION is None:
+        #print 'Starting Qt, graphical mode:',graphical
+        if graphical:
+            MYAPPLICATION = CGuiApplication(sys.argv)
+        else:
+            MYAPPLICATION = CApplication(sys.argv)
+    return MYAPPLICATION
+
 
 class CApplication(QtCore.QCoreApplication):
 

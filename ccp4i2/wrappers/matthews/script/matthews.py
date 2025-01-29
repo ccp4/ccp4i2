@@ -2,7 +2,7 @@ import functools
 
 from PySide2 import QtCore, QtWidgets
 
-from ....core import CCP4Modules
+from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from ....qtgui.CCP4TaskWidget import CTaskWidget
 from ....report import CCP4ReportParser
 
@@ -166,4 +166,4 @@ class matthews_gui(CTaskWidget):
         tab.addData(title='%solvent',data=solv)
         tab.addData(title='Matthews',data=matt)
         tab.addData(title='prob(Matthews)',data=prob)
-        report.as_html_file(fileName=CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self.jobId(),mode='REPORT'))
+        report.as_html_file(fileName=PROJECTSMANAGER().makeFileName(jobId=self.jobId(),mode='REPORT'))

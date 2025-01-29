@@ -27,10 +27,11 @@ from PySide2 import QtCore, QtGui, QtWidgets
 
 from ..core import CCP4CustomTaskManager
 from ..core import CCP4Data
+from ..core.CCP4CustomTaskManager import CUSTOMTASKMANAGER
 from ..core.CCP4ErrorHandling import Severity
-from ..core.CCP4Modules import CUSTOMTASKMANAGER, WEBBROWSER
 from ..core.CCP4WarningMessage import warningMessage
 from ..qtgui import CCP4CustomisationGui, CCP4Widgets
+from ..qtgui.CCP4WebBrowser import WEBBROWSER
 
 
 def openGui():

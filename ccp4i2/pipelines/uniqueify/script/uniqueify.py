@@ -12,8 +12,10 @@ import unittest
 
 from PySide2 import QtCore
 
-from ....core import CCP4Modules, CCP4Utils
+from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4ProcessManager import PROCESSMANAGER
+from ....utils.QApp import QTAPPLICATION
 
 
 class uniqueify(CPluginScript):
@@ -194,13 +196,13 @@ class uniqueify(CPluginScript):
 class testuniqueify(unittest.TestCase):
 
    def setUp(self):
-    self.app = CCP4Modules.QTAPPLICATION()
+    self.app = QTAPPLICATION()
     # make all background jobs wait for completion
     # this is essential for unittest to work
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
+    PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
+    PROCESSMANAGER().setWaitForFinished(-1)
 
    def test_1(self):
      workDirectory = CCP4Utils.getTestTmpDir()
@@ -209,7 +211,7 @@ class testuniqueify(unittest.TestCase):
      # Delete any existing log file
      if os.path.exists(logFile): os.remove(logFile)
 
-     self.wrapper = uniqueify(parent=CCP4Modules.QTAPPLICATION(),name='uniqueify_test1',workDirectory=workDirectory)
+     self.wrapper = uniqueify(parent=QTAPPLICATION(),name='uniqueify_test1',workDirectory=workDirectory)
      self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'pipelines','uniqueify','test_data','test1.data.xml'))
 
      self.wrapper.setWaitForFinished(1000000)

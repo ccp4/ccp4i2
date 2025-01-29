@@ -7,8 +7,8 @@
 
 from PySide2 import QtCore
 
-from ....core import CCP4Modules
 from ....core import CCP4Utils
+from ....core.CCP4Preferences import PREFERENCES
 from ...xia2_dials.script import xia2_dials_gui
 
 
@@ -29,7 +29,7 @@ class xia2_xds_gui(xia2_dials_gui.xia2_dials_gui):
         # Try to find dependencies
         failed = []
         for cmd in ["xds", "xscale"]:
-            tst = CCP4Modules.PREFERENCES().EXEPATHLIST.getExecutable(cmd)
+            tst = PREFERENCES().EXEPATHLIST.getExecutable(cmd)
             if CCP4Utils.which(tst) is None:
                 failed.append(cmd)
 

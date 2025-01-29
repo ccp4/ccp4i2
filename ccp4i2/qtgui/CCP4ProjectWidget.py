@@ -39,21 +39,20 @@ from ..core import CCP4Annotation
 from ..core import CCP4Container
 from ..core import CCP4DataManager
 from ..core import CCP4File
-from ..core import CCP4Modules
 from ..core import CCP4TaskManager
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CErrorReport, CException
-from ..core.CCP4Modules import LAUNCHER
-from ..core.CCP4Modules import MIMETYPESHANDLER
-from ..core.CCP4Modules import PREFERENCES
-from ..core.CCP4Modules import PROJECTSMANAGER
-from ..core.CCP4Modules import QTAPPLICATION
-from ..core.CCP4Modules import WEBBROWSER
+from ..core.CCP4Preferences import PREFERENCES
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..core.CCP4TaskManager import TASKMANAGER
 from ..core.CCP4WarningMessage import warningMessage
 from ..dbapi import CCP4DbApi
 from ..dbapi import CCP4DbUtils
+from ..qtcore.CCP4CustomMimeTypes import MIMETYPESHANDLER
+from ..qtcore.CCP4Launcher import LAUNCHER
+from ..qtgui.CCP4WebBrowser import WEBBROWSER
 from ..report import CCP4ReportGenerator
+from ..utils.QApp import QTAPPLICATION
 
 
 _PROJECTMODEL = {}
@@ -2616,9 +2615,9 @@ class CProjectWidget(QtWidgets.QFrame):
     viewerList = MIMETYPESHANDLER().getViewers(format)
     #print 'CProjectWidget.launchViewer',filePath,format,viewerList
     if len(viewerList)<=0:
-      CCP4Modules.WEBBROWSER().openFile(filePath,toFront=True)
+      WEBBROWSER().openFile(filePath,toFront=True)
     elif isinstance(viewerList[0],str):
-      CCP4Modules.LAUNCHER().openInViewer(viewer=viewerList[0],fileName=filePath,projectId=self.projectView.model().sourceModel()._projectId,guiParent=self)
+      LAUNCHER().openInViewer(viewer=viewerList[0],fileName=filePath,projectId=self.projectView.model().sourceModel()._projectId,guiParent=self)
     else:
       CCP4WebBrowser.OPENFILE(filePath,toFront=True)
 

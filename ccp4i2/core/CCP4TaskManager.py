@@ -42,12 +42,13 @@ from ..qtgui import CCP4I1Projects
 from ..qtgui import CCP4TaskWidget
 from ..report import CCP4ReportParser
 from .CCP4Config import GRAPHICAL, DEVELOPER
+from .CCP4CustomTaskManager import CUSTOMTASKMANAGER
 from .CCP4ErrorHandling import CErrorReport, Severity
-from .CCP4Modules import CUSTOMTASKMANAGER, PREFERENCES, PROJECTSMANAGER, WORKFLOWMANAGER
+from .CCP4Preferences import PREFERENCES
+from .CCP4ProjectsManager import PROJECTSMANAGER
+from .CCP4WorkflowManager import WORKFLOWMANAGER
 
 
-# To see the timings for loading modules set TIMING=True
-TIMING = False
 MODULE_ORDER = ['data_entry', 'data_processing', 'data_reduction', 'bigpipes', 'alpha_fold', 'expt_phasing', 'bioinformatics',
                 'molecular_replacement', 'density_modification', 'model_building', 'refinement', 'ligands',
                 'validation', 'export', 'expt_data_utility', 'model_data_utility', 'developer_tools',
@@ -170,8 +171,6 @@ class CTaskManager:
         thisDir = os.path.split(__file__)[0]
         jsonPath = os.path.join(thisDir, "CachedLookups.json")
         try:
-            if TIMING:
-                t1 = time.time()
             with open(jsonPath,"r") as jsonFile:
                 jsonText = jsonFile.read()
                 compositeDict = json.loads(jsonText)
@@ -213,32 +212,11 @@ class CTaskManager:
                                             tmpM += "    " + str(x[1]) + "\n"
                                 #print (clsNam, chkset)
                                 print ("---------------------")
-                                """
-                                if GRAPHICAL():
-                                    QtWidgets.QMessageBox.warning(None, "Problem Loading CachedLookups JSON", tmpM)
-                                """
                             #Don't bother to load class, but set it to "None", obliging it to be loaded when needed
                             versionDict["class"] = None
-                            #Following coad would force load classes at this point
-                            '''
-                            moduleName = versionDict["clsModule"]
-                            importedModule = ""
-                            if moduleName not in sys.modules:
-                                try:
-                                    importedModule = importlib.import_module(moduleName)
-                                except:
-                                    print "Unable to import module ",moduleName
-                            else:
-                                importedModule = sys.modules[moduleName]
-                            className = versionDict["clsName"]
-                            versionDict["class"] = getattr(importedModule, className, None)
-                            '''
                 #Set the class to none on the performance classses, so as to force lazy load
                 for taskName, performanceClassDict in self.taskPerformanceClassLookup.items():
                     performanceClassDict["class"] = None
-            if TIMING:
-                t2 = time.time()
-                print("Time to load cache", t2 - t1)
             return CErrorReport()
         except:
             raise
@@ -262,12 +240,8 @@ class CTaskManager:
         for className,cls in clsList:
             if issubclass(cls, CCP4PerformanceData.CPerformanceIndicator) and not cls == CCP4PerformanceData.CPerformanceIndicator:
                 self.performanceClassLookup[className] = {"class":cls, "clsName":cls.__name__, "clsModule":cls.__module__}
-        if TIMING:
-            t3 = time.time()
         moduleLookup = {'wrappers' : []}
         guiedTasks = []
-        if TIMING:
-            t6 = time.time()
         #Toplevel
         module_name_list = []
         self.explore_package("wrappers", module_name_list)
@@ -275,9 +249,6 @@ class CTaskManager:
         self.explore_package("pipelines", module_name_list)
         module_name_list = [module_name for module_name in
                             module_name_list if "crank2.crank2" not in module_name and 'PdbView' not in module_name]
-        if TIMING:
-            t7 = time.time()
-            print("Time for explore_package = ",t7-t6)
 
         for module_name in module_name_list:
             pyFile = None
@@ -294,8 +265,6 @@ class CTaskManager:
             if pyFile is not None:
                 pyFile = mymodule.__file__
                 if True:
-                    if TIMING:
-                        t1 = time.time()
                     clsList = inspect.getmembers(mymodule, inspect.isclass)
                     for className, cls in clsList:
                         if graphical and issubclass(cls, CCP4TaskWidget.CTaskWidget) and not cls == CCP4TaskWidget.CTaskWidget:
@@ -383,13 +352,6 @@ class CTaskManager:
                                     self.reportLookup[taskName][taskVersion]['modes'].append('Failed')
                             except:
                                 pass
-                if TIMING:
-                    t2 = time.time()
-                    if(t2-t1) > 0.1:
-                        print("Time to load", pyFile, t2-t1)
-        if TIMING:
-            t4 = time.time()
-            print("Time to load all", t4-t3)
         # Sort the task order according to MODULE_DEFAULTS - allow a wrapper to be
         # included if it is listed in the MODULE_DEFAULTS
         for module,taskList in list(moduleLookup.items()):
@@ -405,9 +367,6 @@ class CTaskManager:
                         self.moduleLookup[module].append(item)
             else:
                 self.moduleLookup[module].extend(taskList)
-        if TIMING:
-            t5 = time.time()
-            print("Time to do rest", t5-t4)
         #---------------------------------------------------------------
         class MyEncoder(json.JSONEncoder):
             def default(self, obj):
@@ -442,9 +401,6 @@ class CTaskManager:
         jsonPath = os.path.join(thisDir, "CachedLookups.json")
         with open(jsonPath,"w") as jsonFile:
             jsonFile.write(jsonBlob)
-        if TIMING:
-            t8 = time.time()
-            print("Time to encode and write json", t8-t5)
         return myErrorReport
 
     def loadCustomisation(self):
@@ -901,29 +857,6 @@ class CTaskManager:
                 return defFile
         defFile = CUSTOMTASKMANAGER().getDefFile(name)
         return defFile
-    '''
-    def whatNext(self,taskName,jobId=None):
-      else:
-        return ()
-
-    def whatNext(self,taskName,jobId=None):
-      fileName = os.path.join(CCP4Utils.getCCP4I2Dir(),'docs','whatnext',taskName+'.html')
-      if not os.path.exists(fileName): return []
-
-      text = CCP4Utils.readFile(fileName)
-      x = re.compile(r"(.*)<!--TASKNAMES(.*)-->(.*)",re.DOTALL)
-      s = x.match(text)
-      #print 'TASKMANAGER.whatNext groups',s.groups()
-      if s is None: return []
-      lineList = s.groups()[1].split()
-      taskList = []
-      for line in lineList:
-       nameList = line.split(',')
-       for name in nameList:
-         taskList.append((name,self.getTitle(name)))
-      print 'TASKMANAGER.whatNext taskList',taskList
-      return taskList
-    '''
 
     def exportJobFiles(self, taskName=None, jobId=None, mode='menu'):
         data = self.getScriptData(taskName)

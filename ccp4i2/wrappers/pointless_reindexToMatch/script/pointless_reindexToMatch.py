@@ -121,8 +121,8 @@ class pointless_reindexToMatch(CPluginScript):
         '''
 print "PRM postProcessCheck"
         processId = self.getProcessId()
-        exitStatus = CCP4Modules.PROCESSMANAGER().getJobData(processId,'exitStatus')
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(processId,'exitCode')
+        exitStatus = PROCESSMANAGER().getJobData(processId,'exitStatus')
+        exitCode = PROCESSMANAGER().getJobData(processId,'exitCode')
         print "exitStatus", exitStatus
         print "exitCode", exitCode
         print "postProcessCheck success"

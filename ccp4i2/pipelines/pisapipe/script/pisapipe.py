@@ -4,9 +4,9 @@ from lxml import etree
 from PySide2 import QtCore
 
 from ....core import CCP4Utils
-from ....core.CCP4Modules import PROCESSMANAGER
-from ....core.CCP4Modules import QTAPPLICATION
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4ProcessManager import PROCESSMANAGER
+from ....utils.QApp import QTAPPLICATION
 
 
 class pisapipe(CPluginScript):

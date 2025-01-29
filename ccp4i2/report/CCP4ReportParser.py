@@ -38,18 +38,18 @@ import uuid
 import xml.etree.ElementTree as etree
 
 from lxml import etree as lxml_etree
-from lxml import html as lxml_html
 from PySide2 import QtCore, QtGui
 import clipper
 
 from . import CCP4ReportGenerator
 from ..core import CCP4ErrorHandling
 from ..core import CCP4File
-from ..core import CCP4Modules
 from ..core import CCP4TaskManager
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
-from ..core.CCP4Modules import PROJECTSMANAGER
+from ..core.CCP4Preferences import PREFERENCES
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+from ..qtcore.CCP4HTTPServerThread import HTTPSERVER
 
 
 XRTNS = "{http://www.ccp4.ac.uk/xrt}"
@@ -166,7 +166,7 @@ def escapeI2Quotify(itemparams):
 def htmlBase():
   # This is a bad i2 dependence which we are trying to avoid in the Reportparser
   # Needed to support use of images for Reference icon etc
-  port = CCP4Modules.HTTPSERVER().port
+  port = HTTPSERVER().port
   if port is None: port = 43434
   htmlBase = 'http://127.0.0.1:'+str(port)+'/report_files/'+CURRENT_CSS_VERSION
   return htmlBase
@@ -2552,7 +2552,7 @@ class DrawnDiv(Container):
         rootDiv = etree.Element('div')
         rootDiv.set('style',self.style)
         try:
-          preferences = CCP4Modules.PREFERENCES()
+          preferences = PREFERENCES()
           rootDiv.set('data-app-font-size',str(preferences.GUI_FONT_SIZE)+'px')
         except:
           pass

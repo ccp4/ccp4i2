@@ -6,12 +6,11 @@ import sys
 import time
 
 from ..core import CCP4TaskManager
-from ..core import CCP4Modules
 from ..utils.startup import setupEnvironment
 
 
 def checkForPythonNameClash(nameRoot):
-    CCP4Modules.TASKMANAGER()
+    CCP4TaskManager.TASKMANAGER()
     scriptClass = nameRoot
     guiClass = nameRoot+"_gui"
     reportClass = nameRoot +"_report"

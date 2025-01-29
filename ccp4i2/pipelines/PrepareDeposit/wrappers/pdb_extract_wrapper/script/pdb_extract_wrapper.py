@@ -3,9 +3,9 @@ import os
 from lxml import etree
 from PySide2 import QtCore
 
-from ......core import CCP4Modules
 from ......core import CCP4Utils
 from ......core.CCP4PluginScript import CPluginScript
+from ......qtcore.CCP4Launcher import LAUNCHER
 
 
 class pdb_extract_wrapper(CPluginScript):
@@ -38,14 +38,14 @@ class pdb_extract_wrapper(CPluginScript):
             argList = ['-r','refmac5','-ipdb',self.container.inputData.XYZIN.__str__(),'-iENT',self.container.inputData.ENTRYDATAIN.__str__()]
             print('Arglist',argList)
             print('envEdit',envEdit)
-            p = CCP4Modules.LAUNCHER().launch(viewer='pdb_extract', argList = argList, callBack = self.handleFinished, envEdit=envEdit,logFile = self.makeFileName('LOG'))
+            p = LAUNCHER().launch(viewer='pdb_extract', argList = argList, callBack = self.handleFinished, envEdit=envEdit,logFile = self.makeFileName('LOG'))
             p.waitForFinished(-1)
         else:
             #MN: Note the nasty kludge of using "-SOL" to force an inpfile name to be generated to work round what looks to me to be a bug in pdb_extract v3.22 code
             argList = ['-PDB',self.container.inputData.XYZIN.__str__(),'-SOL',os.path.join(self.getWorkDirectory(),'intermediateFile.pdb')]
             print('Arglist',argList)
             print('envEdit',envEdit)
-            p = CCP4Modules.LAUNCHER().launch(viewer='extract', argList = argList, callBack = self.handleFinished, envEdit=envEdit,logFile = self.makeFileName('LOG'))
+            p = LAUNCHER().launch(viewer='extract', argList = argList, callBack = self.handleFinished, envEdit=envEdit,logFile = self.makeFileName('LOG'))
             p.waitForFinished(-1)
         return CPluginScript.SUCCEEDED
 

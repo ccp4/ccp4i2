@@ -7,15 +7,15 @@ from PySide2 import QtCore
 
 from ..core import CCP4Config
 from ..core import CCP4File
-from ..core import CCP4Modules
 from ..core import CCP4PluginScript
 from ..core.CCP4Utils import getCCP4I2Dir
+from ..utils.QApp import QTAPPLICATION
 
 
 @QtCore.Slot('CRunPlugin')
 def quitThread(thread):
     print('quitThread',thread); sys.stdout.flush()
-    CCP4Modules.QTAPPLICATION(graphical=False).quit()
+    QTAPPLICATION(graphical=False).quit()
     sys.exit()
 
 
@@ -60,7 +60,7 @@ def main():
     else:
         #print 'Run ASYNCHRONOUS task',xmlHeader.pluginName
         print('Running QApplication to support asyncronous sub-processes')
-        app = CCP4Modules.QTAPPLICATION(graphical=graphical)
+        app = QTAPPLICATION(graphical=graphical)
         runPlugin = CCP4PluginScript.CRunPlugin(app, top_path, comFilePath=comFilePath, compressedFile=compressedFile, dbXmlFile=args.dbXmlFile)
         app.aboutToQuit.connect(functools.partial(quitThread, runPlugin))
         runPlugin.finished.connect(functools.partial(quitThread, runPlugin))

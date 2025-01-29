@@ -18,11 +18,12 @@
 """
 
 import os
-import sys
 import traceback
 
-from ....core import CCP4Modules, CCP4Utils, CCP4XtalData
+from ....core import CCP4Utils, CCP4XtalData
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Preferences import PREFERENCES
+from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from ....pipelines.crank2.script import crank2_basepipe
 from ..crank2 import ccp4i2crank, common
 
@@ -223,8 +224,8 @@ class crank2(CPluginScript):
       crank_lines.append("createfree {} fraction::{}".format(no_out_next, inp.FREE_RATIO*0.01))
 
     self.i2_shelxdir = None
-    if hasattr(CCP4Modules.PREFERENCES(),'SHELXDIR') and CCP4Modules.PREFERENCES().SHELXDIR:
-      self.i2_shelxdir = str(CCP4Modules.PREFERENCES().SHELXDIR)
+    if hasattr(PREFERENCES(),'SHELXDIR') and PREFERENCES().SHELXDIR:
+      self.i2_shelxdir = str(PREFERENCES().SHELXDIR)
 
     if basepipe.ToggleDetection() or (basepipe.ToggleShelxCDE() and (inp.XYZIN_SUB.isSet() or inp.XYZIN_SUB_RES.isSet())):
       faest = "faest"
@@ -495,7 +496,7 @@ class crank2(CPluginScript):
     protected = [ os.path.realpath(str(getattr(c.outputData,f))) for c in all_cont for f in c.outputData._dataOrder if str(getattr(c.outputData,f)) ]
     protected += [ os.path.realpath(str(getattr(c.inputData,f))) for c in all_cont for f in c.inputData._dataOrder if str(getattr(c.inputData,f)) ]
     count_removed=0
-    for root,dirs,files in os.walk( CCP4Modules.PROJECTSMANAGER().jobDirectory(self.jobId) ):
+    for root,dirs,files in os.walk( PROJECTSMANAGER().jobDirectory(self.jobId) ):
       for f in files:
         if f.lower().endswith('.mtz') and os.path.realpath(os.path.join(root,f)) not in protected:
           os.remove( os.path.join(root,f) )

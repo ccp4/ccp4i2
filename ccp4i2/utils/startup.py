@@ -33,19 +33,23 @@ from PySide2 import QtWidgets
 
 from ..core import CCP4Config
 from ..core import CCP4ErrorHandling
-from ..core import CCP4Modules
 from ..core import CCP4PrintHandler
 from ..core import CCP4ProjectsManager
 from ..core import CCP4Utils
+from ..core.CCP4Preferences import PREFERENCES
+from ..core.CCP4PrintHandler import PRINTHANDLER
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..core.CCP4WarningMessage import warningMessage
 from ..dbapi import CCP4DbApi
 from ..qtcore import CCP4HTTPServerThread
+from ..qtcore.CCP4JobController import JOBCONTROLLER
+from ..qtcore.CCP4Launcher import LAUNCHER
 from ..qtgui import CCP4BackupDBBrowser
 from ..qtgui import CCP4DbManagerGui
 from ..qtgui import CCP4StyleSheet
 from ..qtgui import CCP4WebBrowser
 from ..qtgui.CCP4TipsOfTheDay import CTipsOfTheDay
-from .QApp import CGuiApplication
+from ..utils.QApp import QTAPPLICATION
 
 
 class DatabaseFailException(Exception):
@@ -67,7 +71,7 @@ def testForCCP4Environment():
 
 
 def createMissingDATABASEdbXML():
-    proj_dir_list0=CCP4Modules.PROJECTSMANAGER().db().getProjectDirectoryList()
+    proj_dir_list0=PROJECTSMANAGER().db().getProjectDirectoryList()
 
     for proj in proj_dir_list0:
         updateDBXML = False
@@ -97,7 +101,7 @@ def createMissingDATABASEdbXML():
                             break
         if updateDBXML:
             print("Rebuilding DATABASE.db.xml for project",d)
-            CCP4Modules.PROJECTSMANAGER().db().exportProjectXml(projectid,fileName=dbxml)
+            PROJECTSMANAGER().db().exportProjectXml(projectid,fileName=dbxml)
 
 #TODO At this point we should probably be checking that proj_dir_list0 is consistent 
 #     with projectList-backup.xml
@@ -111,7 +115,7 @@ def createMissingDATABASEdbXML():
     if len(proj_dir_list0) > 0 and not os.path.exists(dbListBackupName):
         print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
         print("Project directory list does not exist, creating")
-        CCP4Modules.PROJECTSMANAGER().backupDBXML()
+        PROJECTSMANAGER().backupDBXML()
         print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
 
     elif os.path.exists(dbListBackupName):
@@ -131,7 +135,7 @@ def createMissingDATABASEdbXML():
                 if setXML.issubset(setDB):
                     print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
                     print("Project directory list is not up to date, recreating")
-                    CCP4Modules.PROJECTSMANAGER().backupDBXML()
+                    PROJECTSMANAGER().backupDBXML()
                     print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
                 else:
                    dirListStr =  "<br/>".join([str(x) for x in (setXML - setDB)])
@@ -180,7 +184,7 @@ def startBrowser(args, app=None, splash=None):
                 kw['userName'] = args[ii]
         ii += 1
     if app is None:
-        app = CCP4Modules.QTAPPLICATION()
+        app = QTAPPLICATION()
     startPrintHandler(app)
     #CCP4WebBrowser.setupWebkit()
     proj_man = startProjectsManager(**kw)
@@ -188,7 +192,7 @@ def startBrowser(args, app=None, splash=None):
     job_cont = startJobController()
     if kw.get('dbFileName',None) is not None:
         job_cont.setDbFile(kw['dbFileName'])
-    launcher = CCP4Modules.LAUNCHER()
+    launcher = LAUNCHER()
     #print 'startup.startBrowser app',app
     createMissingDATABASEdbXML()
     def pushLocalDB():
@@ -202,7 +206,7 @@ def startBrowser(args, app=None, splash=None):
             origFileName = CCP4Config.DBFILE()
             if origFileName is None:
                 origFileName = os.path.join(CCP4Utils.getDotDirectory(), 'db', 'database.sqlite')
-            pm = CCP4Modules.PROJECTSMANAGER()
+            pm = PROJECTSMANAGER()
             tFile = tempfile.NamedTemporaryFile(delete=False)
             tFileName = tFile.name
             tFile.close()
@@ -230,7 +234,7 @@ def startBrowser(args, app=None, splash=None):
             print("No need to push back local db file.")
     #----------------------------------------------------------------------
     def backupListOfProjects():
-        CCP4Modules.PROJECTSMANAGER().backupDBXML()
+        PROJECTSMANAGER().backupDBXML()
  
     #----------------------------------------------------------------------
     def closeHTTPServer(parent=None):
@@ -240,7 +244,7 @@ def startBrowser(args, app=None, splash=None):
     #----------------------------------------------------------------------
     proj_man.doCheckForFinishedJobs.connect(proj_man.checkForFinishedJobs)
     # the aboutToQuit() signal does not work atexit is too late to save status - 
-    for func in (backupListOfProjects, pushLocalDB, proj_man.Exit, job_cont.Exit, launcher.Exit, closeHTTPServer, CCP4Modules.PRINTHANDLER().exit):
+    for func in (backupListOfProjects, pushLocalDB, proj_man.Exit, job_cont.Exit, launcher.Exit, closeHTTPServer, PRINTHANDLER().exit):
         atexit.register(func)
     # KJS : Moved the style & font changes to make up some time. Should be fine.
     CCP4StyleSheet.setStyleSheet()
@@ -250,7 +254,7 @@ def startBrowser(args, app=None, splash=None):
     CCP4WebBrowser.applyCommandLine(args)
     if hasattr(splash, "close"):
         splash.close()
-    showTipsOfTheDay = CCP4Modules.PREFERENCES().SHOW_TIPS_OF_THE_DAY
+    showTipsOfTheDay = PREFERENCES().SHOW_TIPS_OF_THE_DAY
     if showTipsOfTheDay:
         tipsOfTheDay = CTipsOfTheDay()
         tipsOfTheDay.exec_()
@@ -258,7 +262,7 @@ def startBrowser(args, app=None, splash=None):
 
 def startJobController():
     print('Starting Job Controller')
-    jc = CCP4Modules.JOBCONTROLLER()
+    jc = JOBCONTROLLER()
     jc.startTimer()
     print('Starting Job Controller - DONE')
     jc.restoreRunningJobs()
@@ -307,7 +311,7 @@ def startProjectsManager(dbFileName=None, checkForFinishedJobs=False, useLocalDB
         print('Starting Project Manager')
         if dbFileName is not None:
             print('Using database file: ', dbFileName)
-        pm = CCP4Modules.PROJECTSMANAGER()
+        pm = PROJECTSMANAGER()
         try:
             if dbFileName is not None and useLocalDBFile is not None and dbFileName == useLocalDBFile:
                 origFileName = CCP4Config.DBFILE()

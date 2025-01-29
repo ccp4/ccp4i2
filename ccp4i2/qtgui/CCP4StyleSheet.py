@@ -25,7 +25,9 @@ import sys
 from PySide2.QtGui import QPalette
 from PySide2.QtWidgets import QLabel
 
-from ..core import CCP4Modules, CCP4Utils
+from ..core import CCP4Utils
+from ..core.CCP4Preferences import PREFERENCES
+from ..utils.QApp import QTAPPLICATION
 
 
 HIGHLIGHTCOLOUR = '#87C8D5'
@@ -36,7 +38,7 @@ RUNCOLOUR = '#FFD777'
 
 def setStyleSheet(app=None):
     if app is None:
-        app = CCP4Modules.QTAPPLICATION()
+        app = QTAPPLICATION()
 
 
     label = QLabel("Am I in the dark?")
@@ -48,7 +50,7 @@ def setStyleSheet(app=None):
     print("isDarkMode?",isDarkMode)
     print("########################################")
         
-    preferences = CCP4Modules.PREFERENCES()
+    preferences = PREFERENCES()
     #print 'setStyleSheet',preferences.INVALID_FRAME_WIDTH,preferences.INVALID_FRAME_COLOUR
     qticonsDir = os.path.join(CCP4Utils.getCCP4I2Dir(),'qticons').replace(os.path.sep,'/')
     # paddingAllowance is subtracted from complex widget width so they can be accomodated in the (notionally) 600px width

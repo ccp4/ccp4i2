@@ -13,9 +13,9 @@ import os
 import phaser
 
 from ....core import CCP4ErrorHandling
-from ....core import CCP4Modules
 from ....core import CCP4XtalData
 from ....core.CCP4PluginScript import CPluginScript
+from ....utils.QApp import QTAPPLICATION
 
 
 class pyphaser_mr(CPluginScript):
@@ -50,7 +50,7 @@ class pyphaser_mr(CPluginScript):
        self.initialResults = phaser.runMR_DAT(inp)
        self.xmlfile = None
        self.outputInitialXml()
-       CCP4Modules.QTAPPLICATION().sendPostedEvents()
+       QTAPPLICATION().sendPostedEvents()
 
        if self.container.controlParameters.MODE == "MR_AUTO":
           inp = phaser.InputMR_AUTO()

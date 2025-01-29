@@ -18,7 +18,6 @@
    Liz Potterton Sept 2015 - Create, download demo data
 """
 
-import ftplib
 import functools
 import glob
 import os
@@ -33,10 +32,16 @@ import zipfile
 from lxml import etree
 from PySide2 import QtCore, QtWidgets
 
-from ..core import CCP4Modules
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CErrorReport, CException
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..core.CCP4WarningMessage import warningMessage
+
+
+def DEMODATAMANAGER():
+    if CDemoData.insts is None:
+        CDemoData.insts =  CDemoData()
+    return CDemoData.insts
 
 
 class CDemoData:
@@ -101,7 +106,7 @@ class CDemoData:
     def copyDemoDataToProject(self,parentWidget=None,projectId=None,dataset=None):
         source = os.path.join(CCP4Utils.getCCP4I2Dir(),'demo_data',dataset)
         if not os.path.exists(source): source = os.path.join(CCP4Utils.getDotDirectory(),'demo_data',dataset)
-        dest = os.path.join(CCP4Modules.PROJECTSMANAGER().db().getProjectInfo(projectId=projectId,mode='projectdirectory'),dataset)
+        dest = os.path.join(PROJECTSMANAGER().db().getProjectInfo(projectId=projectId,mode='projectdirectory'),dataset)
         if os.path.exists(dest):
             QtWidgets.QMessageBox.information(parentWidget,'Download demo data','Test data was already copied to the project directory '+dest)
             return
@@ -379,7 +384,7 @@ class CDownloadDemoDataDialog(QtWidgets.QDialog):
             else:
                 w.setText(str(w.text())+' DOWNLOADED')
                 w.repaint()
-        CCP4Modules.DEMODATAMANAGER().makeDemoDataInfo()
+        DEMODATAMANAGER().makeDemoDataInfo()
         self.testDatasets = None
         self.saveTestDatasets()
         if len(err) > 0:

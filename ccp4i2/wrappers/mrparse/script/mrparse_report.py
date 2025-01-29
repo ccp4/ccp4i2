@@ -2,7 +2,7 @@
 import os
 import xml.etree.ElementTree as etree
 
-from ....core.CCP4Modules import PREFERENCES
+from ....core.CCP4Preferences import PREFERENCES
 from ....report.CCP4ReportParser import Report
 
 

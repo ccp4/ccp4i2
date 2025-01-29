@@ -2,7 +2,7 @@ import os
 import shutil
 import sys
 
-from ...core.CCP4Modules import QTAPPLICATION
+from ...utils.QApp import QTAPPLICATION
 from ...utils.startup import setupEnvironment
 from ...wrappers.refmac_i2.script import refmac_i2
 

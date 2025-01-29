@@ -28,10 +28,10 @@ import tempfile
 from PySide2 import QtCore
 
 from . import CCP4File
-from . import CCP4Modules
 from . import CCP4Utils
 from .CCP4ErrorHandling import CErrorReport, CException
 from .CCP4QtObject import CObject
+from ..utils.QApp import QTAPPLICATION
 
 
 class CCustomManager(CObject):
@@ -54,7 +54,7 @@ class CCustomManager(CObject):
 
     def __init__(self, parent=None, mode=None):
         if parent is None:
-            parent = CCP4Modules.QTAPPLICATION()
+            parent = QTAPPLICATION()
         CObject.__init__(self,parent)
         if mode is not None:
             self.mode = str(mode)

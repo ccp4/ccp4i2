@@ -13,14 +13,22 @@ from PySide2 import QtCore
 import mrparse
 import dials
 
-from ..core import CCP4Modules
 from ..core import CCP4Utils
-from ..core.CCP4Modules import HTTPSERVER
+from ..core.CCP4PrintHandler import PRINTHANDLER
 from ..dbapi import CCP4DbApi
 from ..qtcore.CCP4DbThread import CDbThread
+from ..qtcore.CCP4DbThread import DBSERVER
+from ..utils.QApp import QTAPPLICATION
 
 
 DEFAULT_PORT = 43434
+
+
+def HTTPSERVER(fileName=None):
+    if CHTTPServerThread.insts is None:
+        CHTTPServerThread(fileName=fileName)
+    return CHTTPServerThread.insts
+
 
 class MultiThreadedHTTPServer(ThreadingMixIn, HTTPServer):
     pass
@@ -57,7 +65,7 @@ class CHTTPServerThread(QtCore.QThread):
     insts = None
 
     def __init__(self,parent=None,parentDir=None,port=None,fileName=None):
-      if parent is None: parent = CCP4Modules.QTAPPLICATION()
+      if parent is None: parent = QTAPPLICATION()
       QtCore.QThread.__init__(self,parent)
       self.setObjectName('HTTPServer')
       CHTTPServerThread.insts = self
@@ -67,7 +75,7 @@ class CHTTPServerThread(QtCore.QThread):
       else:
         self.defaultPort = '43434'
       self.parentDir = parentDir
-      self.dbThread = CCP4Modules.DBSERVER(fileName)
+      self.dbThread = DBSERVER(fileName)
       
     def quitServer(self):
       self.dbThread.queue.put("ShutdownSignal")
@@ -85,7 +93,7 @@ class CHTTPServerThread(QtCore.QThread):
       
       if self.httpd is not None:
            sa = self.httpd.socket.getsockname()
-           f = CCP4Modules.PRINTHANDLER().getFileObject(thread='HTTPServer',name='HTTPServer')
+           f = PRINTHANDLER().getFileObject(thread='HTTPServer',name='HTTPServer')
            f.write( "CCP4i2 starting HTTP server on "+str( sa[0])+ " port "+str(sa[1])+'\n' )
            print("CCP4i2 starting HTTP server on "+str( sa[0])+ " port "+str(sa[1])+'\n')
            self.port = sa[1]

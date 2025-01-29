@@ -37,12 +37,17 @@ from . import CCP4TextViewer
 from . import CCP4Widgets
 from . import CCP4XtalWidgets
 from ..core import CCP4ModelData
-from ..core import CCP4Modules
 from ..core import CCP4Utils
 from ..core import CCP4XtalData
 from ..core.CCP4ErrorHandling import CException, Severity
+from ..core.CCP4Preferences import PREFERENCES
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..core.CCP4WarningMessage import warningMessage
 from ..dbapi import CCP4DbUtils
+from ..qtcore.CCP4CustomMimeTypes import MIMETYPESHANDLER
+from ..qtgui.CCP4WebBrowser import WEBBROWSER
+from ..qtgui.CCP4Widgets import PIXMAPMANAGER
+from ..utils.QApp import QTAPPLICATION
 from .CCP4Widgets import CViewWidget
 
 
@@ -393,7 +398,7 @@ class CSeqDataFileView(CCP4Widgets.CDataFileView):
       self.model.annotation = anno
       #self.model.blockSignals(False)
       self.updateViewFromModel()
-      if CCP4Modules.PREFERENCES().AUTO_INFO_ON_FILE_IMPORT and not self.model.dbFileId.isSet():        
+      if PREFERENCES().AUTO_INFO_ON_FILE_IMPORT and not self.model.dbFileId.isSet():        
           self.openInfo(label=self.model.qualifiers('guiLabel').lower(),sourceFileAnnotation=self.model.__dict__.get('sourceFileAnnotation',''))
 
   def acceptFixedPir(self,but):
@@ -718,7 +723,7 @@ class CPdbDataFileView(CCP4Widgets.CDataFileView):
 
   def openViewer(self,mode):
     if mode == 'view_text':
-      CCP4Modules.WEBBROWSER().openFile(fileName=self.model.__str__(),toFront=True)
+      WEBBROWSER().openFile(fileName=self.model.__str__(),toFront=True)
     else:
       CCP4Widgets.CDataFileView.openViewer(self,mode)
 
@@ -1126,7 +1131,7 @@ class CAtomSelectionView(CCP4Widgets.CComplexLineWidget):
 
   @QtCore.Slot()
   def showHelp(self):
-    CCP4Modules.WEBBROWSER().loadWebPage(helpFileName='general/atom_selection.html')
+    WEBBROWSER().loadWebPage(helpFileName='general/atom_selection.html')
 
 
   def setValue(self,value={}):
@@ -1214,12 +1219,12 @@ class CAtomSelectionView(CCP4Widgets.CComplexLineWidget):
 class CDictDataDialog(QtWidgets.QDialog):
   def __init__(self,parent=None,model=None,projectId=None):
     if parent is None:
-      parent = CCP4Modules.QTAPPLICATION()
+      parent = QTAPPLICATION()
     QtWidgets.QDialog. __init__(self,parent)
     self.setLayout(QtWidgets.QHBoxLayout())
     self.setModal(False)
     if projectId is not None:
-      pName = ' for '+CCP4Modules.PROJECTSMANAGER().db().getProjectInfo(projectId=projectId,mode='projectname')
+      pName = ' for '+PROJECTSMANAGER().db().getProjectInfo(projectId=projectId,mode='projectname')
     else:
       pName=''
     self.setWindowTitle('Manage project dictionary'+pName)
@@ -1231,7 +1236,7 @@ class CDictDataDialog(QtWidgets.QDialog):
   def closeEvent(self,event):
     #print 'CDictDataDialog.closeEvent',self.frame.showWidget
     if self.frame.showWidget is not  None and CCP4Utils.isAlive(self.frame.showWidget):
-      CCP4Modules.WEBBROWSER().tab().deleteTabWidget(widget=self.frame.showWidget)
+      WEBBROWSER().tab().deleteTabWidget(widget=self.frame.showWidget)
     event.accept()
 
 class CDictDataView(CCP4Widgets.CViewWidget):
@@ -1300,7 +1305,7 @@ class CDictDataView(CCP4Widgets.CViewWidget):
     #print 'CDictDataView.handleShow',idd,self.model,self.model.parent()
     if self.showWidget is not None: print('alive?',CCP4Utils.isAlive(self.showWidget))
     if self.showWidget is None or (not CCP4Utils.isAlive(self.showWidget)):
-      self.showWidget = CCP4Modules.WEBBROWSER().openFile(self.model.parent().__str__())
+      self.showWidget = WEBBROWSER().openFile(self.model.parent().__str__())
     else:
       self.showWidget.browserWindow().show()
       self.showWidget.browserWindow().raise_()
@@ -1309,7 +1314,7 @@ class CDictDataView(CCP4Widgets.CViewWidget):
 
   def handleMerge(self):
     self.mergeFileBrowser = CCP4FileBrowser.CFileDialog(parent=self,title='Select geometry file to merge into project geometry file',
-          defaultSuffix=CCP4Modules.MIMETYPESHANDLER().getMimeTypeInfo(name='application/refmac-dictionary',info='fileExtensions'),
+          defaultSuffix=MIMETYPESHANDLER().getMimeTypeInfo(name='application/refmac-dictionary',info='fileExtensions'),
           filters = ['Geometry file for refinement(*.cif)'], fileMode=QtWidgets.QFileDialog.ExistingFiles,saveButtonText='Merge these files')
     self.mergeFileBrowser.show()
     self.mergeFileBrowser.selectFiles.connect(self.mergeFiles)
@@ -1669,8 +1674,8 @@ class CAsuContentSeqListView(CCP4Widgets.CViewWidget):
     def actOnTextDropped(self,text):
 #
         try:
-            fileInfo = CCP4Modules.PROJECTSMANAGER().db().getFileInfo(text,mode=['projectid','relpath','filename','annotation','filesubtype','filecontent','filetype'])
-            projectDir = CCP4Modules.PROJECTSMANAGER().db().getProjectInfo(projectId=fileInfo['projectid'],mode='projectdirectory')
+            fileInfo = PROJECTSMANAGER().db().getFileInfo(text,mode=['projectid','relpath','filename','annotation','filesubtype','filecontent','filetype'])
+            projectDir = PROJECTSMANAGER().db().getProjectInfo(projectId=fileInfo['projectid'],mode='projectdirectory')
             filePath = os.path.join(projectDir,fileInfo['relpath'],fileInfo['filename'])
             url = QtCore.QUrl.fromLocalFile(filePath)
             self.actOnUrlsDropped([url])
@@ -1951,8 +1956,8 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
         self.infoline = None
         if self.editable:
             #FIXME - Need to provide an API to hide this.
-            self.icona = QtGui.QIcon(CCP4Modules.PIXMAPMANAGER().getPixmap("list_add_grey"))
-            self.iconm = QtGui.QIcon(CCP4Modules.PIXMAPMANAGER().getPixmap("list_delete_grey"))
+            self.icona = QtGui.QIcon(PIXMAPMANAGER().getPixmap("list_add_grey"))
+            self.iconm = QtGui.QIcon(PIXMAPMANAGER().getPixmap("list_delete_grey"))
             self.buttonAS = QtWidgets.QToolButton(self)
             self.buttonAS.setIcon(self.icona)
             self.buttonAS.setMaximumHeight(16)
@@ -2154,7 +2159,7 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
             openJob = CCP4DbUtils.COpenJob(projectId=self.parentTaskWidget().projectId())
             openJob.createJob(taskName='ProvideAsuContents')
             print(openJob.container)
-            jobId = CCP4Modules.PROJECTSMANAGER().db().getJobId(projectId=self.parentTaskWidget().projectId(),jobNumber=openJob.jobNumber)
+            jobId = PROJECTSMANAGER().db().getJobId(projectId=self.parentTaskWidget().projectId(),jobNumber=openJob.jobNumber)
             openJob.container.inputData.ASU_CONTENT.set(self.importAsuContent)
             if self.infoline:
                 ntxt = str(self.infoline)
@@ -2176,7 +2181,7 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
             print("End of doImport", openJob.container, openJob.container)
             if self.infoline:
                 print(ntxt, openJob.container.guiAdmin)
-                CCP4Modules.PROJECTSMANAGER().db().updateJob(jobId=jobId, key='jobTitle', value=ntxt)
+                PROJECTSMANAGER().db().updateJob(jobId=jobId, key='jobTitle', value=ntxt)
 
     def handleJobFinished(self, args):
         # After the CDataFileView.handleJobFinished() has updated the jobCombo make sure the new asu file is selected in it
@@ -2341,7 +2346,7 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
         self.selectionGroup.blockSignals(False)
 
     def showHelp(self):
-        CCP4Modules.WEBBROWSER().loadWebPage(helpFileName='model_data')
+        WEBBROWSER().loadWebPage(helpFileName='model_data')
 
     def exportSeq(self):
         filters = ["FASTA format (*.fasta *.fa *.ffn *.ffa *.fna *.frn)","EMBL format (*.embl)"]
@@ -2359,7 +2364,7 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
                 theFilter = "embl"
             else:
                 theFilter = "fasta"
-        elif not CCP4Modules.PREFERENCES().NATIVEFILEBROWSER:
+        elif not PREFERENCES().NATIVEFILEBROWSER:
             if str(self.exportBrowser.widget.fileDialog.selectedFilter()).startswith("EMBL"):
                 theFilter = "embl"
                 fileName += ".embl"

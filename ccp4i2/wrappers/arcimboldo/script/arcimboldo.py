@@ -26,10 +26,11 @@ import unittest
 
 from lxml import etree
 
-from ....core.CCP4PluginScript import CPluginScript
-from ....core import CCP4XtalData
 from ....core import CCP4Utils
-from ....core import CCP4Modules
+from ....core import CCP4XtalData
+from ....core.CCP4ErrorHandling import CException
+from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4ProcessManager import PROCESSMANAGER
 from ....core.CCP4Utils import getCCP4I2Dir
 
 
@@ -48,8 +49,8 @@ class arcimboldo(CPluginScript):
     def genHKL(self, hklin):
         binf = os.path.normpath(os.path.join( CCP4Utils.getCCP4Dir().__str__(), 'bin', 'mtz2hkl' ))
         arglist = ['-f', hklin.__str__()]
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(binf, arglist)
-        return CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
+        pid = PROCESSMANAGER().startProcess(binf, arglist)
+        return PROCESSMANAGER().getJobData(pid, 'exitCode')
 
     def generateBor (self, hklin, columns):
         inputData = self.container.inputData

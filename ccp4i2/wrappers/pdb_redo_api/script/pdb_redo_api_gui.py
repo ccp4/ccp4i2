@@ -1,4 +1,4 @@
-from ....core import CCP4Modules
+from ....core.CCP4Preferences import PREFERENCES
 from ....qtgui import CCP4TaskWidget
 
 
@@ -20,7 +20,7 @@ class CTaskPDB_REDO(CCP4TaskWidget.CTaskWidget):
     
     folder = self.openFolder(folderFunction='inputData',title='Input Data',followFrom=False)
 
-    if not CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_SECRET or not CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_ID or not CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_ID:
+    if not PREFERENCES().PDB_REDO_TOKEN_SECRET or not PREFERENCES().PDB_REDO_TOKEN_ID or not PREFERENCES().PDB_REDO_TOKEN_ID:
         self.createLine( [ 'subtitle', '<span style="color:red;">You do not have valid PDB-REDO token/secret set. Please set these using:<br/> <em>Utilities -> System administration tools -> Configure login tokens for PDB-REDO.<br/><br/>You can obtain a token/secret pair from https://services.pdb-redo.eu/</em></span>' ] )
 
     self.createLine( [ 'subtitle', 'Main Input data' ] )
@@ -61,10 +61,10 @@ class CTaskPDB_REDO(CCP4TaskWidget.CTaskWidget):
     self.closeSubFrame()
  
   def isValid(self):
-    if not CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_SECRET or not CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_ID or not CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_ID:
+    if not PREFERENCES().PDB_REDO_TOKEN_SECRET or not PREFERENCES().PDB_REDO_TOKEN_ID or not PREFERENCES().PDB_REDO_TOKEN_ID:
 
         invalidElements = super(CTaskPDB_REDO, self).isValid()
-        invalidElements.append(CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_SECRET)
+        invalidElements.append(PREFERENCES().PDB_REDO_TOKEN_SECRET)
 
         return invalidElements
         

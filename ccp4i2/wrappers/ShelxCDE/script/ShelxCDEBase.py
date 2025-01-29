@@ -5,8 +5,9 @@ import shutil
 
 from lxml import etree
 
-from ....core import CCP4Modules, CCP4Utils
+from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4ProcessManager import PROCESSMANAGER
 from ....core.CCP4XtalData import CObsDataFile
 
 
@@ -181,9 +182,9 @@ class ShelxCDEBase(CPluginScript):
         name,colin = outfile
         logFile =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'mtz2sca.log'))
         arglist = ['-p',colin[0],'-P',colin[1],'-m',colin[2],'-M',colin[3],infile,name]
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin,arglist,logFile=logFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+        pid = PROCESSMANAGER().startProcess(bin,arglist,logFile=logFile)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
         if status == 0 and os.path.exists(outfile[0]):
             return CPluginScript.SUCCEEDED
         else:
@@ -197,9 +198,9 @@ class ShelxCDEBase(CPluginScript):
         arglist = ['hklin',infile,'hklout',name]
         inputText = 'output SHELX\n'
         inputText += ('LABIN ' + ' '.join(colin) + '\n')
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin,arglist,inputText=inputText, logFile=logFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+        pid = PROCESSMANAGER().startProcess(bin,arglist,inputText=inputText, logFile=logFile)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
         if status == 0 and os.path.exists(outfile[0]):
             return CPluginScript.SUCCEEDED
         else:
@@ -281,9 +282,9 @@ class ShelxCDEBase(CPluginScript):
         except:
             print('#ShelxCDEBase runShelxc: NTRY unset or not relevant')
 
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+        pid = PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
 
         if status == 0 and os.path.exists(os.path.join(self.getWorkDirectory(),'result_fa.hkl')):
             return CPluginScript.SUCCEEDED
@@ -380,9 +381,9 @@ class ShelxCDEBase(CPluginScript):
         inputText = '''INPUT pdb
 OUTPUT frac
 '''
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+        pid = PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
 
         if status != 0 or not os.path.exists(fracFilePath):
             self.appendErrorReport(201,str(bin)+' '+str(arglist)+' '+str(inputText)+' '+str(fracFilePath))
@@ -478,9 +479,9 @@ OUTPUT frac
 
         inputText += 'SYMMETRY %s\n'%spgrName
 
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+        pid = PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
 
         if status != 0 or not os.path.exists(tmpMtzFilePath):
             self.appendErrorReport(203,str(bin)+' '+str(arglist)+' '+str(inputText)+' '+str(logFile))
@@ -500,9 +501,9 @@ OUTPUT frac
         inputText += "WRITE "+mapFilePath+" COL 4 3\n"
         inputText += "STOP\n"
 
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+        pid = PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
 
         if status != 0 or not os.path.exists(mapFilePath):
             self.appendErrorReport(205,str(bin)+' '+str(arglist)+' '+str(inputText)+' '+str(logFile))
@@ -520,9 +521,9 @@ OUTPUT frac
             inputText += "WRITE "+phsOutFilePath+" COL 3 2\n"
             inputText += "STOP\n"
 
-            pid = CCP4Modules.PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
-            status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-            exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+            pid = PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
+            status = PROCESSMANAGER().getJobData(pid)
+            exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
 
             if status != 0 or not os.path.exists(phsOutFilePath):
                 self.appendErrorReport(206,str(bin)+' '+str(arglist)+' '+str(inputText)+' '+str(logFile))
@@ -630,9 +631,9 @@ OUTPUT frac
         inputText = 'SYMOP '+inversion_operation+'\n'
         inputText += 'symcommit\n'
         
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+        pid = PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
 
         if status != 0 or not os.path.exists(outputPDBPath):
             self.appendErrorReport(201,str(bin)+' '+str(arglist)+' '+str(inputText)+' '+str(inputPDBPath))

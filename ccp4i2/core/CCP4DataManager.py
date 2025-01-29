@@ -25,34 +25,26 @@ import inspect
 import json
 import os
 import re
-import time
 import unittest
 
 from PySide2 import QtGui, QtWidgets
 
 from . import CCP4Annotation
 from . import CCP4Data
-from . import CCP4Modules
 from . import CCP4Utils
 from .. import core
 from .. import qtgui
 from ..qtgui import CCP4DefEd
 from ..qtgui import CCP4Widgets
+from ..utils.QApp import QTAPPLICATION
 from .CCP4Config import DEVELOPER, GRAPHICAL
 from .CCP4Data import CFloat
 from .CCP4ErrorHandling import CException
-from .CCP4Modules import QTAPPLICATION
 
 
-TIMING=True
 def DATAMANAGER():
     if CDataManager.insts is None:
-        if TIMING:
-            t1 = time.time()
         CDataManager.insts = CDataManager()
-        if TIMING:
-            t2 = time.time()
-            print("Starting ",CDataManager.insts.__class__, t2-t1)
     return CDataManager.insts
 
 class CDataManager:
@@ -328,7 +320,7 @@ class CDataManager:
                 for name, cls in clsList:
                     if issubclass(cls,CCP4Data.CData) and not name in self.EXCLUDE_CLASSES:
                         nClass = nClass + 1
-                        info = CCP4DefEd.CClassInfo(name, CCP4Modules.QTAPPLICATION())
+                        info = CCP4DefEd.CClassInfo(name, QTAPPLICATION())
                         text = text + info.getInfo(html=False)
                 text = text + '</html>\n'
                 if nClass > 0:

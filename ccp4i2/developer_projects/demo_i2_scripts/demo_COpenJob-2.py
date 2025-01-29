@@ -2,9 +2,10 @@ import os
 import shutil
 import sys
 
-from ...core import CCP4Modules
 from ...core.CCP4DataManager import DATAMANAGER
+from ...core.CCP4ProjectsManager import PROJECTSMANAGER
 from ...dbapi import CCP4DbUtils
+from ...utils.QApp import QTAPPLICATION
 from ...utils.startup import setupEnvironment, startProjectsManager, startJobController
 
 
@@ -19,7 +20,7 @@ def bootI2(dbDir):
   os.mkdir(dbDir)
   dbFile = os.path.join(dbDir,'db.sqlite')
   setupEnvironment()
-  app = CCP4Modules.QTAPPLICATION(graphical=False)
+  app = QTAPPLICATION(graphical=False)
   pm = startProjectsManager(dbFileName=dbFile)
   pm.startCheckForFinishedJobs()
   jc = startJobController()
@@ -33,13 +34,13 @@ class Runner:
   def __init__(self,projectName,projectPath,sourceList):
     # Create a project
     if os.path.exists(projectPath): shutil.rmtree(projectPath)
-    self.projectId =  CCP4Modules.PROJECTSMANAGER().createProject(projectName='myproject',projectPath=projectPath)
+    self.projectId =  PROJECTSMANAGER().createProject(projectName='myproject',projectPath=projectPath)
     print('projectId',self.projectId)
     self.sourceList = sourceList
     self.jobIndex = -1
 
   def run(self):
-    CCP4Modules.PROJECTSMANAGER().db().jobFinished.connect(runner.handleJobFinished)
+    PROJECTSMANAGER().db().jobFinished.connect(runner.handleJobFinished)
     self.runJob()
 
   def handleJobFinished(self,args):

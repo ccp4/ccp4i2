@@ -40,7 +40,6 @@ from . import CCP4Container
 from . import CCP4Data
 from . import CCP4File
 from . import CCP4ModelData
-from . import CCP4Modules
 from . import CCP4PerformanceData
 from . import CCP4ProjectsManager
 from . import CCP4TaskManager
@@ -50,7 +49,12 @@ from ..dbapi import CCP4DbApi
 from ..qtcore import CCP4Export
 from ..utils import dictionaryAccumulator
 from ..utils import startup
+from ..utils.QApp import QTAPPLICATION
+from .CCP4ComFilePatchManager import COMFILEPATCHMANAGER
 from .CCP4ErrorHandling import CErrorReport, CException, Severity
+from .CCP4Preferences import PREFERENCES
+from .CCP4ProcessManager import PROCESSMANAGER
+from .CCP4ProjectsManager import PROJECTSMANAGER
 from .CCP4QtObject import CObject
 
 
@@ -233,10 +237,7 @@ class CPluginScript(CObject):
         if exeName is None:
             return None
         if exeName == 'coot':
-            #if sys.platform == 'win32':
-            #  exePath = os.path.join(str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE),'bin','coot-real.exe')
-            #else:
-            exePath = str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)
+            exePath = str(PREFERENCES().COOT_EXECUTABLE)
             if sys.platform == 'win32':
                 altpath = self.modifyCootBat(exePath)
                 if altpath is not None and os.path.exists(altpath):
@@ -245,7 +246,7 @@ class CPluginScript(CObject):
             if exePath is not None and not os.path.exists(exePath):
                 exePath = None
         elif exeName == 'ccp4mg':
-            exePath = str(CCP4Modules.PREFERENCES().CCP4MG_EXECUTABLE)
+            exePath = str(PREFERENCES().CCP4MG_EXECUTABLE)
             if exePath is None or not  os.path.exists(exePath):
                 exePath = os.path.join(os.environ['CCP4'], 'bin', 'ccp4mg')
                 if not os.path.exists(exePath):
@@ -253,13 +254,13 @@ class CPluginScript(CObject):
                         exePath = os.path.join(os.environ["CCP4"], "bin", "ccp4mg.bat")
         elif exeName[0:5] == 'shelx':
             exePath = None
-            #print 'CPluginScript.getCommand SHELXDIR',CCP4Modules.PREFERENCES().SHELXDIR
-            if hasattr(CCP4Modules.PREFERENCES(),'SHELXDIR') and CCP4Modules.PREFERENCES().SHELXDIR.exists():
-                exePath = os.path.join(str(CCP4Modules.PREFERENCES().SHELXDIR), exeName)
+            #print 'CPluginScript.getCommand SHELXDIR',PREFERENCES().SHELXDIR
+            if hasattr(PREFERENCES(),'SHELXDIR') and PREFERENCES().SHELXDIR.exists():
+                exePath = os.path.join(str(PREFERENCES().SHELXDIR), exeName)
                 if not os.path.exists(exePath): exePath = None
             #print 'CPluginScript.getCommand handling shelx exePath=',exePath
         else:
-            exePath = CCP4Modules.PREFERENCES().EXEPATHLIST.getExecutable(exeName)
+            exePath = PREFERENCES().EXEPATHLIST.getExecutable(exeName)
             #print 'CPluginScript.getCommand for',exeName,'using executable defined in preferences',exePath
         if exePath is None:
             return exeName
@@ -461,7 +462,7 @@ class CPluginScript(CObject):
         #print 'CPluginScript.appendErrorReport',cls,'code',code
         try:
             jobId = str(self._dbJobId)
-            jobDirectory = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=jobId,mode='ROOT')
+            jobDirectory = PROJECTSMANAGER().makeFileName(jobId=jobId,mode='ROOT')
             logfiles = []
             for root, subFolders, files in os.walk(jobDirectory):
                 for fn in files:
@@ -697,7 +698,7 @@ class CPluginScript(CObject):
         for line in self.commandScript:
             script = script + line
         try:
-            script, results = CCP4Modules.COMFILEPATCHMANAGER().applyPatches(str(patchSele.patch), script)
+            script, results = COMFILEPATCHMANAGER().applyPatches(str(patchSele.patch), script)
             #print 'CPluginScript.applyComFilePatches',script,results
         except CException as e:
             self._errorReport.extend(e)
@@ -829,7 +830,7 @@ class CPluginScript(CObject):
             readyReadStandardOutputHandler = None
             if hasattr(self, '_readyReadStandardOutputHandler'):
                 readyReadStandardOutputHandler = self._readyReadStandardOutputHandler
-            self._runningProcessId = CCP4Modules.PROCESSMANAGER().startProcess(command=command, interpreter=self._interpreter, args=self.commandLine, inputFile=inputFile, logFile=logFile,
+            self._runningProcessId = PROCESSMANAGER().startProcess(command=command, interpreter=self._interpreter, args=self.commandLine, inputFile=inputFile, logFile=logFile,
                                                                                ifAsync=self._ifAsync, timeout=self._timeout, jobId=self._dbJobId, jobNumber=self._dbJobNumber,
                                                                                projectId=self._dbProjectId, handler=handler, cwd=cwd, readyReadStandardOutputHandler=readyReadStandardOutputHandler)
             #print 'CPluginScript.startProcess',self._runningProcessId; sys.stdout.flush()
@@ -997,12 +998,12 @@ class CPluginScript(CObject):
         if processId is None or processId < 0:
             self.appendErrorReport(10)
             return CPluginScript.FAILED, None, None
-        exitStatus = CCP4Modules.PROCESSMANAGER().getJobData(processId, 'exitStatus')
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(processId, 'exitCode')
+        exitStatus = PROCESSMANAGER().getJobData(processId, 'exitStatus')
+        exitCode = PROCESSMANAGER().getJobData(processId, 'exitCode')
         #print 'postProcessCheck exitStatus',exitCode,exitStatus,type(exitCode),type(exitStatus)
         if exitStatus != 0:
-            message = 'Process: ' + CCP4Modules.PROCESSMANAGER().getJobData(processId, 'command')
-            if not CCP4Modules.PROCESSMANAGER().USEQPROCESS:
+            message = 'Process: ' + PROCESSMANAGER().getJobData(processId, 'command')
+            if not PROCESSMANAGER().USEQPROCESS:
                 try:
                     message = message + '\nError: ' + os.strerror(exitCode)
                 except:
@@ -1014,7 +1015,7 @@ class CPluginScript(CObject):
                 self.appendErrorReport(9, message, stack=False)
             return CPluginScript.FAILED, exitStatus, exitCode
         elif exitCode != 0:
-            message = 'Process: ' + CCP4Modules.PROCESSMANAGER().getJobData(processId, 'command')
+            message = 'Process: ' + PROCESSMANAGER().getJobData(processId, 'command')
             self.appendErrorReport(56, message, stack=False)
             return CPluginScript.FAILED, exitStatus, exitCode
         else:
@@ -1150,7 +1151,7 @@ class CPluginScript(CObject):
         #print 'CPluginScript.terminate childPluginList',childPluginList
         for obj in childPluginList:
             obj.terminate()
-        CCP4Modules.PROCESSMANAGER().terminateProcess(self._runningProcessId)
+        PROCESSMANAGER().terminateProcess(self._runningProcessId)
         self.reportStatus(CPluginScript.FAILED)
 
     def updateJobStatus(self, status=None, finishStatus=None):
@@ -1464,9 +1465,9 @@ class CPluginScript(CObject):
         except:
             self.appendErrorReport(28, str(infiles))
         #print 'joinMtz arglist',arglist
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin, arglist, logFile=logFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
+        pid = PROCESSMANAGER().startProcess(bin, arglist, logFile=logFile)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid, 'exitCode')
         #print 'CpluginScript.joinMtz',status,exitCode
         # MN Kludge because 101 errors are being generated unneccessarily by cmtzjoin when observations extend over
         # *all* reflections but FREER flags exclude systematic absences
@@ -1518,9 +1519,9 @@ class CPluginScript(CObject):
                      comFileText = '_N'+'\n'+'_FILE_L '+outfile_old+'\n'+'_FILE_L2 '+dictfile.fullPath.__str__()+'\n'+'_FILE_O '+outfile_string+'\n'+'_END'+'\n'
                      #print comFileText
                      logFile = self.makeFileName('LOG', qualifier='libcheck_'+str(idx))
-                     pid = CCP4Modules.PROCESSMANAGER().startProcess(bin, inputText=comFileText, logFile=logFile)
-                     status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-                     exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
+                     pid = PROCESSMANAGER().startProcess(bin, inputText=comFileText, logFile=logFile)
+                     status = PROCESSMANAGER().getJobData(pid)
+                     exitCode = PROCESSMANAGER().getJobData(pid, 'exitCode')
                      outfile_string = os.path.join(self.workDirectory, 'merged_dictionary_tmp'+str(idx)+'.lib')
                      if status in [0, 101] and os.path.exists(outfile_string):
                         continue
@@ -1640,9 +1641,9 @@ class CPluginScript(CObject):
         except:
             self.appendErrorReport(27, str(outfiles))
         #print 'CPluginScript.splitMtz',bin,arglist
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin, arglist, logFile=logFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
+        pid = PROCESSMANAGER().startProcess(bin, arglist, logFile=logFile)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid, 'exitCode')
         #print 'splitMtz',status,exitCode
         if status == CPluginScript.SUCCEEDED:
             for outfile in outfiles:
@@ -1686,7 +1687,7 @@ class CPluginScript(CObject):
     def fileWatcher(self):
         if (not hasattr(self, "fileSystemWatcher")) or self.fileSystemWatcher is None:
             self.fileSystemWatcher = QtCore.QFileSystemWatcher(parent=self)
-            if CCP4Modules.PREFERENCES().FILESYSTEMWATCHERPOLLER:
+            if PREFERENCES().FILESYSTEMWATCHERPOLLER:
                 self.fileSystemWatcher.setObjectName("_qt_autotest_force_engine_poller")
             self.fileSystemWatcher.fileChanged.connect(self.filterAndDispatchFileUpdates)
             self.fileSystemWatcher.directoryChanged.connect(self.dispatchDirectoryUpdates)
@@ -1973,7 +1974,7 @@ class CInternalPlugin(CPluginScript):
     ERROR_CODES = {101 : { 'description' : 'No jobId or projectId provided to internal plugin'}}
 
     def __init__(self, parent=None, jobId=None, projectId=None, jobTitle=None, **kw):
-        db = CCP4Modules.PROJECTSMANAGER().db()
+        db = PROJECTSMANAGER().db()
         if jobId is None:
             if projectId is None:
                 raise CException(self.__class__, 101)
@@ -2096,7 +2097,7 @@ class CRunPlugin(CObject):
             outFile = outFile + '.' + item
         print('Saving job to:',outFile)
         try:
-            CCP4Modules.PROJECTSMANAGER().cleanupJob(jobDirectory=os.path.join(self.dbXml.projectDirectory, 'CCP4_JOBS','job_' + str(jobNumber)))
+            PROJECTSMANAGER().cleanupJob(jobDirectory=os.path.join(self.dbXml.projectDirectory, 'CCP4_JOBS','job_' + str(jobNumber)))
         except Exception as e:
             print('ERROR cleaning up job directory before compressing\n' + str(e))
         try:
@@ -2259,10 +2260,10 @@ class CRunPlugin(CObject):
     @QtCore.Slot(int)
     def postRun(self, status):
         # We have called _dbHandler.updateJobStatus() in plugin.reportStatus() so we are done
-        #print 'CRunPlugin.postRun',status,'dbXmlFile',self.dbXmlFile,CCP4Modules.PREFERENCES().RETAIN_DIAGNOSTIC_FILES
+        #print 'CRunPlugin.postRun',status,'dbXmlFile',self.dbXmlFile,PREFERENCES().RETAIN_DIAGNOSTIC_FILES
         if self.plugin:
             self.errorReport.extend(self.plugin.errorReport, stack=True)
-        if not CCP4Modules.PREFERENCES().RETAIN_DIAGNOSTIC_FILES:
+        if not PREFERENCES().RETAIN_DIAGNOSTIC_FILES:
             if self.compressedFile is not None:
                 self.cleanup(status=status, context='script_finish_remote')
             elif status == CPluginScript.FAILED:
@@ -2356,7 +2357,7 @@ class CRunPlugin(CObject):
 class testCPluginScript(unittest.TestCase):
 
     def setUp(self):
-        self.app = CCP4Modules.QTAPPLICATION()
+        self.app = QTAPPLICATION()
         self.script = CPluginScript(name='test_CPluginScript', parent=self.app, workDirectory='/foo/bar')
         self.hklin = CCP4File.CDataFile(project='CCP4I2_TOP', relPath='test/data', baseName='1df7.pdb')
 

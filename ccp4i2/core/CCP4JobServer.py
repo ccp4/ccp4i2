@@ -34,9 +34,11 @@ import paramiko
 
 from . import CCP4File
 from . import CCP4Utils
-from . import CCP4Modules
 from ..dbapi import CCP4DbApi
+from ..qtcore.CCP4JobController import SERVERSETUP
 from .CCP4ErrorHandling import CException
+from .CCP4ProcessManager import PROCESSMANAGER
+from .CCP4ProjectsManager import PROJECTSMANAGER
 
 
 PARAMIKO_PORT=22
@@ -156,11 +158,11 @@ class CServerParams:
         self.setDbParams()
 
     def setDbParams(self):
-        jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(self.jobId, ['jobnumber', 'projectid', 'projectname'])
+        jobInfo = PROJECTSMANAGER().db().getJobInfo(self.jobId, ['jobnumber', 'projectid', 'projectname'])
         self.jobNumber = jobInfo['jobnumber']
         self.projectId = jobInfo['projectid']
         self.projectName = jobInfo['projectname']
-        self.projectDirectory = CCP4Modules.PROJECTSMANAGER().db().getProjectInfo(self.projectId, 'projectdirectory')
+        self.projectDirectory = PROJECTSMANAGER().db().getProjectInfo(self.projectId, 'projectdirectory')
 
 
 class CJobServer(QtCore.QObject):
@@ -244,7 +246,7 @@ class CJobServer(QtCore.QObject):
         return os.path.join(CCP4Utils.getDotDirectory(), 'status', 'jobServer.params.xml')
 
     def restoreFromDb(self):
-        jobInfoList = CCP4Modules.PROJECTSMANAGER().db().getServerJobs()
+        jobInfoList = PROJECTSMANAGER().db().getServerJobs()
         #print 'restoreFromDb',jobInfoList
         for jobInfo in jobInfoList:
             sP = self._serverParams[jobInfo[0]] = CServerParams()
@@ -322,7 +324,7 @@ class CJobServer(QtCore.QObject):
             if serverGroup is None:
                 return None
             if getattr(self, 'setupContainer', None) is None:
-                self.setupContainer = CCP4Modules.SERVERSETUP()
+                self.setupContainer = SERVERSETUP()
                 self.setupContainer.load()
             for dataObjName in self.setupContainer.dataOrder():
                 if self.setupContainer.get(dataObjName).name == serverGroup:
@@ -875,7 +877,7 @@ class CJobServer(QtCore.QObject):
                 raise CException(self.__class__,361)
             else:
                 self.deleteServerParams(jobId)
-                CCP4Modules.PROJECTSMANAGER().db().updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_FAILED)
+                PROJECTSMANAGER().db().updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_FAILED)
         elif sP.mechanism in ['qsub_remote']:
             comline = 'qdel ' + sP.serverProcessId
             self.sendSSHCommand(jobId, comLine='qdel ' + sP.serverProcessId, retHandler=self.handleRemoteDel)
@@ -896,7 +898,7 @@ class CJobServer(QtCore.QObject):
                 raise CException(self.__class__,361)
             else:
                 self.deleteServerParams(jobId)
-                CCP4Modules.PROJECTSMANAGER().db().updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_FAILED)
+                PROJECTSMANAGER().db().updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_FAILED)
         elif sP.mechanism in ['slurm_remote']:
             self.sendSSHCommand(jobId, comLine='scancel ' + sP.serverProcessId, retHandler=self.handleRemoteDel)
 
@@ -904,7 +906,7 @@ class CJobServer(QtCore.QObject):
         if self._diagnostic:
             print('handleRemoteQsubDel', jobId, out, err)
         self.deleteServerParams(jobId)
-        CCP4Modules.PROJECTSMANAGER().db().updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_FAILED)
+        PROJECTSMANAGER().db().updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_FAILED)
 
     def killRemoteJob(self, jobId):
         sP = self.serverParams(jobId)
@@ -920,7 +922,7 @@ class CJobServer(QtCore.QObject):
             self.customHandler(jobid).killJob(jobId)
 
     def runLocalTest(self, jobId, remoteSh):
-        CCP4Modules.PROCESSMANAGER().startProcess('sh', [remoteSh], handler=[self.localTestFinished, {'jobId':jobId}], ifAsync=True)
+        PROCESSMANAGER().startProcess('sh', [remoteSh], handler=[self.localTestFinished, {'jobId':jobId}], ifAsync=True)
 
     def localTestFinished(self, pid, jobId=None):
         #print 'localTestFinished',pid,args

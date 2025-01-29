@@ -23,7 +23,7 @@ from PySide2 import QtCore
 from PySide2.QtWidgets import QMessageBox
 
 from ....core.CCP4ErrorHandling import CException
-from ....core.CCP4Modules import PROJECTSMANAGER
+from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from ....qtgui.CCP4TaskWidget import CTaskWidget
 
 

@@ -28,10 +28,10 @@ from lxml import etree
 from ....core import CCP4ModelData
 from ....core import CCP4ProjectsManager
 from ....core import CCP4Utils
-from ....core.CCP4Modules import PROCESSMANAGER
-from ....core.CCP4Modules import QTAPPLICATION
+from ....core.CCP4ProcessManager import PROCESSMANAGER
 from ....core.CCP4PluginScript import CPluginScript
 from ....core.CCP4Utils import getCCP4I2Dir
+from ....utils.QApp import QTAPPLICATION
 
 
 class buccaneer_build_refine_mr(CPluginScript):

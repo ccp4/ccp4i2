@@ -24,9 +24,9 @@ import functools
 from PySide2 import QtCore, QtWidgets
 
 from ..core.CCP4ErrorHandling import CException, Severity
-from ..core.CCP4Modules import DUMMYMAINWINDOW, WEBBROWSER
 from ..core.CCP4WarningMessage import warningMessage
 from ..qtgui import CCP4FileBrowser
+from ..qtgui.CCP4WebBrowser import DUMMYMAINWINDOW, WEBBROWSER
 
 
 class CCustomisationGui(QtWidgets.QDialog):

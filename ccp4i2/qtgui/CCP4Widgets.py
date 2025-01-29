@@ -49,12 +49,19 @@ from ..core import CCP4DataManager
 from ..core import CCP4File
 from ..core import CCP4TaskManager
 from ..core import CCP4XtalData
+from ..core.CCP4ComFilePatchManager import COMFILEPATCHMANAGER
 from ..core.CCP4ErrorHandling import CException, Severity
-from ..core.CCP4Modules import PROJECTSMANAGER, PIXMAPMANAGER, QTAPPLICATION, TASKMANAGER, LAUNCHER
-from ..core.CCP4Modules import WEBBROWSER, PREFERENCES, MIMETYPESHANDLER, COMFILEPATCHMANAGER
+from ..core.CCP4Preferences import PREFERENCES
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+from ..core.CCP4TaskManager import TASKMANAGER
 from ..core.CCP4WarningMessage import warningMessage
 from ..dbapi import CCP4DbApi
 from ..dbapi import CCP4DbUtils
+from ..qtcore.CCP4CustomMimeTypes import MIMETYPESHANDLER
+from ..qtcore.CCP4Launcher import LAUNCHER
+from ..qtgui.CCP4WebBrowser import WEBBROWSER
+from ..qtgui.CCP4Widgets import PIXMAPMANAGER
+from ..utils.QApp import QTAPPLICATION
 
 
 # Jon Agirre - 1 Feb 2019: Increased DRAGICONSIZE from 16 to 20
@@ -63,6 +70,13 @@ ICONBUTTONSIZE=24
 DRAGICONSIZE=20
 CONTRASTCOLOUR = '#9BFFFF'
 ERRORCOLOUR = '#FF0000'
+
+
+def PIXMAPMANAGER():
+    if CPixmapManager.insts is None:
+        CPixmapManager()
+    return CPixmapManager.insts
+
 
 class MyProxyStyle(QtWidgets.QCommonStyle):
     def __init__(self):

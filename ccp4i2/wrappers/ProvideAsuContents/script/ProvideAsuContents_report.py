@@ -1,7 +1,8 @@
 import os
 import xml.etree.ElementTree as etree
 
-from ....core import CCP4ModelData, CCP4Modules
+from ....core import CCP4ModelData
+from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from ....report.CCP4ReportParser import Report
 
 
@@ -46,7 +47,7 @@ class ProvideAsuContents_report(Report):
 #I can support old jobs without program.xml and new ones with.
       if hasattr(self,"jobInfo") and self.jobInfo and "jobid" in self.jobInfo:
 
-          outputXmlFile = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self.jobInfo["jobid"],mode='PROGRAMXML')
+          outputXmlFile = PROJECTSMANAGER().makeFileName(jobId=self.jobInfo["jobid"],mode='PROGRAMXML')
 
           if os.path.exists(outputXmlFile):
               #A new job

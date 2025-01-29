@@ -3,15 +3,14 @@ import unittest
 
 from Bio import AlignIO, SeqIO
 from Bio.Align import MultipleSeqAlignment
-from Bio.Alphabet import IUPAC
 from Bio.Blast import NCBIStandalone
 from Bio.Seq import IUPACData as IUPAC
 from lxml import etree
 
-from ....core.CCP4PluginScript import CPluginScript
 from ....core import CCP4Utils
-from ....core.CCP4Modules import PROCESSMANAGER
-from ....core.CCP4Modules import QTAPPLICATION
+from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4ProcessManager import PROCESSMANAGER
+from ....utils.QApp import QTAPPLICATION
 
 
 class ProvideAlignment(CPluginScript):

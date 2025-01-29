@@ -7,10 +7,10 @@ import zipfile
 from lxml import etree
 
 from . import test_api
-from ....core import CCP4Modules
 from ....core import CCP4Utils
 from ....core.CCP4ErrorHandling import Severity
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Preferences import PREFERENCES
 from ....core.CCP4XtalData import CObsDataFile
 
 
@@ -33,8 +33,8 @@ class pdb_redo_api(CPluginScript):
         xyzin = str( inp.XYZIN.fullPath )
         print(self.hklin, xyzin)
 
-        token_id = str(CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_ID)
-        token_secret = str(CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_SECRET)
+        token_id = str(PREFERENCES().PDB_REDO_TOKEN_ID)
+        token_secret = str(PREFERENCES().PDB_REDO_TOKEN_SECRET)
 
         sequence=None
         restraints=None
@@ -113,8 +113,8 @@ class pdb_redo_api(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
-        token_id = str(CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_ID)
-        token_secret = str(CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_SECRET)
+        token_id = str(PREFERENCES().PDB_REDO_TOKEN_ID)
+        token_secret = str(PREFERENCES().PDB_REDO_TOKEN_SECRET)
 
         print("Extracting from zip"); sys.stdout.flush()
         output_zip = os.path.join(self.getWorkDirectory(),"pdb_redo_results.zip")

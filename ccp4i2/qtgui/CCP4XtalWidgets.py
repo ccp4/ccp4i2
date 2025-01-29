@@ -29,11 +29,13 @@ from . import CCP4TaskWidget
 from . import CCP4Widgets
 from ..core import CCP4DataManager
 from ..core import CCP4ModelData
-from ..core import CCP4Modules
 from ..core import CCP4Utils
 from ..core import CCP4XtalData
 from ..core.CCP4ErrorHandling import CException, Severity
+from ..core.CCP4Preferences import PREFERENCES
 from ..core.CCP4WarningMessage import warningMessage
+from ..qtcore.CCP4Launcher import LAUNCHER
+from ..qtgui.CCP4WebBrowser import WEBBROWSER
 
 
 class CSpaceGroupTreeView(QtWidgets.QTreeView):
@@ -935,9 +937,9 @@ class CImportUnmergedView(CCP4Widgets.CComplexLineWidget):
         if ext is None:
             return
         if ext == '.mtz' or mode == 'view_ViewHKL':
-            CCP4Modules.LAUNCHER().openInViewer('viewHKL',fileName=self.model.file.__str__())
+            LAUNCHER().openInViewer('viewHKL',fileName=self.model.file.__str__())
         else:
-            CCP4Modules.WEBBROWSER().openFile(self.model.file.__str__(),format='text/plain',toFront=True)
+            WEBBROWSER().openFile(self.model.file.__str__(),format='text/plain',toFront=True)
 
     # Just drag the file name
     def dragData(self):
@@ -1116,7 +1118,7 @@ class CMiniMtzDataFileView(CMtzDataFileView):
             # Selected file has correct complement of columns but needs to be imported to same
             # target filename as used by self.model.splitMtz()
             self.model.importFile(jobId=self.parentTaskWidget().jobId(),jobNumber=self.parentTaskWidget().jobNumber())
-            if CCP4Modules.PREFERENCES().AUTO_INFO_ON_FILE_IMPORT and not self.model.dbFileId.isSet():
+            if PREFERENCES().AUTO_INFO_ON_FILE_IMPORT and not self.model.dbFileId.isSet():
                 # If this is a downloaded file then it will have some provenance info in
                 # self.model.sourceFileAnnotation put there by CDataFileView.handleBrowserOpenFile()
                 self.openInfo(label=self.model.qualifiers('guiLabel').lower(),sourceFileAnnotation=self.model.__dict__.get('sourceFileAnnotation',''))
@@ -1152,7 +1154,7 @@ class CMiniMtzDataFileView(CMtzDataFileView):
             self.loadJobCombo()
             self.updateJobCombo()
             self.validate()
-            if CCP4Modules.PREFERENCES().AUTO_INFO_ON_FILE_IMPORT:
+            if PREFERENCES().AUTO_INFO_ON_FILE_IMPORT:
                 #print 'CMiniMtzDaaFile.handleDialogApply sourceFileReference',self.model.__dict__.get('sourceFileReference','')
                 # If this is a downloaded file then it will have some provenance info in
                 # self.model.sourceFileAnnotation put there by CDataFileView.handleBrowserOpenFile()
@@ -1438,7 +1440,7 @@ class CReindexOperatorView(CCP4Widgets.CComplexLineWidget):
             page = os.path.join(CCP4Utils.getCCP4Dir(),'docs','reindexing.html')
         #print 'CReindexOperatorView.help',page,os.path.exists(page)
         if os.path.exists(page):
-            CCP4Modules.WEBBROWSER().loadWebPage(fileName=page)
+            WEBBROWSER().loadWebPage(fileName=page)
 
 
 class CColumnGroupListView(CCP4Widgets.CComplexLineWidget):
@@ -1714,5 +1716,5 @@ class CSelectColumnsWidget(QtWidgets.QDialog):
 
     @QtCore.Slot()
     def handleHelp(self):
-        CCP4Modules.WEBBROWSER().loadWebPage(helpFileName='data_files')
+        WEBBROWSER().loadWebPage(helpFileName='data_files')
 

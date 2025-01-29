@@ -4,9 +4,10 @@ import unittest
 
 from lxml import etree
 
-from ....core import CCP4Modules
 from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4ProcessManager import PROCESSMANAGER
+from ....utils.QApp import QTAPPLICATION
 
 
 class csymmatch(CPluginScript):
@@ -95,18 +96,18 @@ class csymmatch(CPluginScript):
 class testcsymmatch( unittest.TestCase ) :
 
    def setUp(self):
-    self.app = CCP4Modules.QTAPPLICATION()
+    self.app = QTAPPLICATION()
     # make all background jobs wait for completion
     # this is essential for unittest to work
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
+    PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
+    PROCESSMANAGER().setWaitForFinished(-1)
 
    def test1( self ) :
       workDirectory = CCP4Utils.getTestTmpDir()
       xmlInput = os.path.join( CCP4Utils.getCCP4I2Dir(), 'wrappers', 'csymmatch', 'test_data', 'test1'+'.params.xml' )
-      self.wrapper = csymmatch(parent=CCP4Modules.QTAPPLICATION(), name='csymmatch_test1',workDirectory=workDirectory)
+      self.wrapper = csymmatch(parent=QTAPPLICATION(), name='csymmatch_test1',workDirectory=workDirectory)
       self.wrapper.container.loadDataFromXml( xmlInput )
 
       self.wrapper.setWaitForFinished( 1000000 )

@@ -37,12 +37,13 @@ from PySide2 import QtCore, QtGui, QtWidgets
 from ..core import CCP4Annotation
 from ..core import CCP4DataManager
 from ..core import CCP4File
-from ..core import CCP4Modules
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
-from ..core.CCP4Modules import LAUNCHER, PREFERENCES, PROJECTSMANAGER, QTAPPLICATION, WEBBROWSER
+from ..core.CCP4Preferences import PREFERENCES
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..core.CCP4TaskManager import TASKMANAGER
 from ..core.CCP4WarningMessage import warningMessage
+from ..qtcore.CCP4Launcher import LAUNCHER
 from ..qtgui import CCP4FileBrowser
 from ..qtgui import CCP4ProjectManagerGui
 from ..qtgui import CCP4ProjectWidget
@@ -50,6 +51,8 @@ from ..qtgui import CCP4TaskWidget
 from ..qtgui import CCP4TextViewer
 from ..qtgui import CCP4WebBrowser
 from ..qtgui import CCP4WebView
+from ..qtgui.CCP4WebBrowser import WEBBROWSER
+from ..utils.QApp import QTAPPLICATION
 
 
 # CI1ProjectManager -> CI1Project -> CI1Job ->CI1File is hierarchy of
@@ -1542,7 +1545,7 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
   @QtCore.Slot(str)
   def makeI2Project(self,projectId):
     try:
-      pid = CCP4Modules.PROJECTSMANAGER().db().getProjectId(projectName=projectId)
+      pid = PROJECTSMANAGER().db().getProjectId(projectName=projectId)
     except:
       reqNewName = False
     else:

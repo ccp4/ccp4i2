@@ -6,7 +6,7 @@ import time
 from PySide2 import QtCore
 
 from ..core import CCP4Config
-from ..core import CCP4Modules
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..dbapi import CCP4DbApi
 from ..qtcore import CCP4Export
 from ..utils.QApp import CGuiApplication
@@ -20,11 +20,11 @@ class CompressClass(QtCore.QObject):
         QtCore.QObject.__init__(self,parent)
         print('compressProject',after,jobList,excludeI2files,fileName)
 
-        projectInfo =  CCP4Modules.PROJECTSMANAGER().db().getProjectInfo(projectName=projectName)
+        projectInfo =  PROJECTSMANAGER().db().getProjectInfo(projectName=projectName)
         projectId = projectInfo['projectid']
 
         # If there is a limited set of jobs then find the input jobs that are not output by jobs on that list
-        inputFilesList,inputFileIdList,fromJobList,errReport =  CCP4Modules.PROJECTSMANAGER().getJobInputFiles(projectDir=projectInfo['projectdirectory'],jobIdList=jobList,useDb=True,excludeI2files=excludeI2files)
+        inputFilesList,inputFileIdList,fromJobList,errReport =  PROJECTSMANAGER().getJobInputFiles(projectDir=projectInfo['projectdirectory'],jobIdList=jobList,useDb=True,excludeI2files=excludeI2files)
         fromJobIdList = []
         fromJobNumberList = []
         for item in fromJobList:
@@ -33,7 +33,7 @@ class CompressClass(QtCore.QObject):
           
         dbxml = os.path.join( projectInfo['projectdirectory'],'CCP4_TMP','DATABASE'+str(int(time.time()))+'.db.xml')
         print('Creating XML database:'+dbxml)
-        jobNumberList,errReport = CCP4Modules.PROJECTSMANAGER().db().exportProjectXml(projectId,fileName=dbxml,recordExport=True,status='exportable',after=after,jobList=jobList,inputFileList=inputFileIdList,inputFileFromJobList=fromJobIdList)
+        jobNumberList,errReport = PROJECTSMANAGER().db().exportProjectXml(projectId,fileName=dbxml,recordExport=True,status='exportable',after=after,jobList=jobList,inputFileList=inputFileIdList,inputFileFromJobList=fromJobIdList)
 
         if jobList is not None:
             directoriesList = []
@@ -70,11 +70,11 @@ def main():
     app = CGuiApplication(sys.argv)
     CCP4Config.CONFIG().set('graphical', False)
 
-    pm = CCP4Modules.PROJECTSMANAGER()
+    pm = PROJECTSMANAGER()
     db = startDb(pm, mode='sqlite')
     pm.setDatabase(db)
 
-    #projects = CCP4Modules.PROJECTSMANAGER().db().getProjectDirectoryList()
+    #projects = PROJECTSMANAGER().db().getProjectDirectoryList()
     projects = sys.argv[1].split(",")
 
     @QtCore.Slot(dict)

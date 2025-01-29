@@ -6,23 +6,22 @@
 
 import os
 
-from PySide2 import QtWidgets
-
 from ....core import CCP4Container
 from ....core import CCP4Data
 from ....core import CCP4File
-from ....core import CCP4Modules
 from ....core import CCP4Utils
+from ....core.CCP4Preferences import PREFERENCES
+from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from ....qtgui.CCP4TaskWidget import CTaskWidget
 
 
 def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None):
     try:
-        jobDirectory = CCP4Modules.PROJECTSMANAGER().db().jobDirectory(jobId=jobId)
+        jobDirectory = PROJECTSMANAGER().db().jobDirectory(jobId=jobId)
         returnList = []
         
         for taskName in ['ShelxCE','ShelxCECompareHands']:
-            cont = CCP4Modules.PROJECTSMANAGER().getJobParams(jobId)
+            cont = PROJECTSMANAGER().getJobParams(jobId)
             fileRoot = 'Subsequent'+taskName+'.params.xml'
             paramsPath = os.path.normpath(os.path.join(jobDirectory,fileRoot))
             if not os.path.isfile(paramsPath):
@@ -39,7 +38,7 @@ def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None)
             returnList.append([taskName, paramsPath])
     
         if cont.controlParameters.MODE.__str__() == 'SAD':
-            cont = CCP4Modules.PROJECTSMANAGER().getJobParams(jobId)
+            cont = PROJECTSMANAGER().getJobParams(jobId)
             taskName='phaser_EP_AUTO'
             fileRoot = 'Subsequent'+taskName+'.params.xml'
             paramsPath = os.path.normpath(os.path.join(jobDirectory,fileRoot))
@@ -86,8 +85,8 @@ class ShelxCD_gui(CTaskWidget):
         
         self.openFolder(folderFunction='inputData')
 
-        if (not hasattr(CCP4Modules.PREFERENCES(),'SHELXDIR')) and CCP4Utils.which('shelxc') is None:
-            if (not CCP4Modules.PREFERENCES().SHELXDIR.exists()) and CCP4Utils.which('shelxc') is None:
+        if (not hasattr(PREFERENCES(),'SHELXDIR')) and CCP4Utils.which('shelxc') is None:
+            if (not PREFERENCES().SHELXDIR.exists()) and CCP4Utils.which('shelxc') is None:
               self.createLine ( [ 'warning','The Shelx programs have not been found. They are not part of CCP4 but you can get them from\nhttp://shelx.uni-ac.gwdg.de/SHELX/download.php\nIf you already have them make sure they are on the search path\nOR specify where they are in the Preferences window - under Other Software.' ])
         
         self.createLine ( [ 'label','Experiment type','stretch','tip','What sort of data  are available for finding heavy atoms','widget','MODE' ] )

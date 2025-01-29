@@ -5,6 +5,13 @@ from PySide2 import QtCore
 from ..utils.startup import startDb
 
 
+def DBSERVER(fileName=None):
+    if CDbThread.insts is None:
+        obj = CDbThread(fileName)
+        obj.start()
+    return CDbThread.insts
+
+
 class CDbThread(QtCore.QThread):
     insts = None
     databaseCalls = [

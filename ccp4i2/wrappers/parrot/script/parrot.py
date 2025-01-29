@@ -169,18 +169,18 @@ class parrot(CPluginScript):
 def exportJobFile(jobId=None,mode=None):
 
     # Devise name for the merged file and check if it has already been created
-    jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
+    jobDir = PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
     exportFile = os.path.join(jobDir,'exportMtz.mtz')
     if os.path.exists(exportFile): return exportFile
 
     # Get the source reflection data either from aimless or an imported file
     # getSourceReflectionFile() returns a dict with elements: fileName, source, jobNumber
-    reflnInfo = CCP4Modules.PROJECTSMANAGER().getSourceReflectionFile(jobId = jobId, jobParamName='F_SIGF')
+    reflnInfo = PROJECTSMANAGER().getSourceReflectionFile(jobId = jobId, jobParamName='F_SIGF')
     print 'parrot.exportJobFile getSourceReflectionFile',reflnInfo
     if reflnInfo['fileName'] is None: return None
 
     # Query database for filenames and job info for the input and ouptput phase objects
-    db = CCP4Modules.PROJECTSMANAGER().db()
+    db = PROJECTSMANAGER().db()
     abcdInfo = db.getJobFilesInfo(jobId=jobId,jobParamName='ABCD',input=True)
     jN2 = abcdInfo[0]['jobnumber']+'_'+abcdInfo[0]['taskname']
     abcdOutInfo = db.getJobFilesInfo(jobId=jobId,jobParamName='ABCDOUT')

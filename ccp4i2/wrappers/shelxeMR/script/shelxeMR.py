@@ -37,10 +37,11 @@ from mrbump.file_info import MTZ_parse
 from mrbump.parsers.parse_shelxe import ShelxeLogParser
 
 from ....core import CCP4ErrorHandling
-from ....core import CCP4Modules
 from ....core import CCP4Utils
 from ....core import CCP4XtalData
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4ProcessManager import PROCESSMANAGER
+from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 
 
 class shelxeMR(CPluginScript):
@@ -66,7 +67,7 @@ class shelxeMR(CPluginScript):
     # Override functions that are needed for run
     def process(self):
         if not self.filecaught:
-            jobDirectory = CCP4Modules.PROJECTSMANAGER().db().jobDirectory(jobId=self.jobId)
+            jobDirectory = PROJECTSMANAGER().db().jobDirectory(jobId=self.jobId)
             self.watchDirectory(jobDirectory, handler=self.handleDirectoryChanged)
         CPluginScript.process(self)
 
@@ -176,9 +177,9 @@ class shelxeMR(CPluginScript):
         inputText += ('output SHELX\n')
         inputText += ('FSQUARED')
         # Fire the hkl conversion up.
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(binf, arglist, inputText=inputText, logFile=logFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
+        pid = PROCESSMANAGER().startProcess(binf, arglist, inputText=inputText, logFile=logFile)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid, 'exitCode')
         if status == 0 and os.path.exists(outfile[0]):
             return CPluginScript.SUCCEEDED
         else:
@@ -254,13 +255,13 @@ class shelxeMR(CPluginScript):
         logFile1 =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'f2mtzCh.log'))
         logFile2 =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'cad.log'))
         logFile3 =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'sftools.log'))
-        pid1 = CCP4Modules.PROCESSMANAGER().startProcess(binf2m, arglist1, inputText=inputText1, logFile=logFile1)
-        stat1 = CCP4Modules.PROCESSMANAGER().getJobData(pid1)
-        exCd1 = CCP4Modules.PROCESSMANAGER().getJobData(pid1, 'exitCode')
-        pid2 = CCP4Modules.PROCESSMANAGER().startProcess( bincad, arglist2, inputText=inputText2, logFile=logFile2)
-        stat2 = CCP4Modules.PROCESSMANAGER().getJobData(pid2)
-        exCd2 = CCP4Modules.PROCESSMANAGER().getJobData(pid2, 'exitCode')
-        pid3 = CCP4Modules.PROCESSMANAGER().startProcess(binsft, arglist3, inputText=inputText3, logFile=logFile3)
-        stat3 = CCP4Modules.PROCESSMANAGER().getJobData(pid3)
-        exCd3 = CCP4Modules.PROCESSMANAGER().getJobData(pid3, 'exitCode')
+        pid1 = PROCESSMANAGER().startProcess(binf2m, arglist1, inputText=inputText1, logFile=logFile1)
+        stat1 = PROCESSMANAGER().getJobData(pid1)
+        exCd1 = PROCESSMANAGER().getJobData(pid1, 'exitCode')
+        pid2 = PROCESSMANAGER().startProcess( bincad, arglist2, inputText=inputText2, logFile=logFile2)
+        stat2 = PROCESSMANAGER().getJobData(pid2)
+        exCd2 = PROCESSMANAGER().getJobData(pid2, 'exitCode')
+        pid3 = PROCESSMANAGER().startProcess(binsft, arglist3, inputText=inputText3, logFile=logFile3)
+        stat3 = PROCESSMANAGER().getJobData(pid3)
+        exCd3 = PROCESSMANAGER().getJobData(pid3, 'exitCode')
         return CPluginScript.SUCCEEDED

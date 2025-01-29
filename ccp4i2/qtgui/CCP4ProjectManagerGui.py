@@ -32,23 +32,22 @@ import time
 
 from PySide2 import QtCore, QtGui, QtWidgets
 
-from . import CCP4AnnotationWidgets
 from . import CCP4FileBrowser
 from . import CCP4GuiUtils
 from . import CCP4ProjectViewer
 from . import CCP4ProjectWidget
 from . import CCP4Widgets
-from ..core import CCP4Annotation
 from ..core import CCP4Data
 from ..core import CCP4DataManager
 from ..core import CCP4File
-from ..core import CCP4Modules
 from ..core import CCP4ProjectBasedTesting
 from ..core import CCP4ProjectsManager
 from ..core import CCP4Utils
 from ..core.CCP4Config import DEVELOPER
 from ..core.CCP4ErrorHandling import CException, Severity
-from ..core.CCP4Modules import MIMETYPESHANDLER, PROJECTSMANAGER, WEBBROWSER
+from ..qtcore.CCP4CustomMimeTypes import MIMETYPESHANDLER
+from ..qtgui.CCP4WebBrowser import WEBBROWSER
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..core.CCP4WarningMessage import warningMessage
 from ..dbapi import CCP4DbApi
 from ..dbapi import CCP4DbUtils
@@ -187,7 +186,7 @@ class CNewProjectGui(QtWidgets.QDialog):
 
   @QtCore.Slot()
   def help(self):
-    CCP4Modules.WEBBROWSER().loadWebPage(helpFileName='general/tutorial' , target='projects')
+    WEBBROWSER().loadWebPage(helpFileName='general/tutorial' , target='projects')
 
   def clear(self):
     self.name.unSet()
@@ -290,7 +289,7 @@ class CNewProjectGui(QtWidgets.QDialog):
     self.descriptionWidget.save(projectId)
 
     self.projectCreated.emit(projectId)
-    CCP4Modules.PROJECTSMANAGER().backupDBXML()
+    PROJECTSMANAGER().backupDBXML()
     pView = openProject(projectId)
 
     #print 'CNewProjectGui.addProject to close'
@@ -2160,7 +2159,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     if stats.get('incrJobNumber',0) > 0:
         text = text +'\nImporting jobs '+str(stats['importMin'])+' to '+str(stats['importMax'])+' have been renumbered\n'+str(int(stats['importMin'])+int(stats['incrJobNumber']))+' to '+str(int(stats['importMax'])+int(stats['incrJobNumber'])) +' to avoid clash with existing jobs'
     if len(text)>0:  QtWidgets.QMessageBox.information(self,'Import complete',text)
-    CCP4Modules.PROJECTSMANAGER().backupDBXML()
+    PROJECTSMANAGER().backupDBXML()
     projectId = copy.deepcopy(self.dbImport.projectId)
     openProject(projectId=projectId)
 
@@ -2208,7 +2207,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     e = PROJECTSMANAGER().deleteProject(projectId=projectId,deleteDirectory=deleteDirectory)
     if e.maxSeverity()>Severity.WARNING:
        warningMessage(e, 'Deleting project',parent=self)
-    CCP4Modules.PROJECTSMANAGER().backupDBXML()
+    PROJECTSMANAGER().backupDBXML()
 
   @QtCore.Slot()
   def handleMoveProject(self):

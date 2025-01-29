@@ -49,7 +49,7 @@ from ..dbapi import CCP4DbApi
 from ..googlecode import diff_match_patch_py3
 from ..report.CCP4ReportParser import CCP4NS
 from .CCP4ErrorHandling import CErrorReport, CException, Severity
-from .CCP4Modules import PROJECTSMANAGER
+from .CCP4ProjectsManager import PROJECTSMANAGER
 
 
 # Version number of form n.m or n.m.i

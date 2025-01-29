@@ -19,17 +19,20 @@
      Liz Potterton Sept 2013 - report job performed outside ccp4i2
 """
 
-import copy
 import os
 import re
 
 from . import CCP4Container
 from . import CCP4CustomManager
 from . import CCP4Data
-from . import CCP4DataManager
 from . import CCP4File
-from . import CCP4XtalData
 from .CCP4ErrorHandling import CErrorReport
+
+
+def IMPORTEDJOBMANAGER():
+    if CImportedJobManager.insts is None:
+        CImportedJobManager.insts = CImportedJobManager()
+    return CImportedJobManager.insts
 
 
 class CImportedJobManager(CCP4CustomManager.CCustomManager):

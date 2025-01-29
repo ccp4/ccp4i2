@@ -36,6 +36,12 @@ from . import CCP4XtalData
 from .CCP4ErrorHandling import CErrorReport
 
 
+def CUSTOMTASKMANAGER():
+    if CCustomTaskManager.insts is None:
+        CCustomTaskManager.insts = CCustomTaskManager()
+    return CCustomTaskManager.insts
+
+
 class CCustomTaskManager(CCP4CustomManager.CCustomManager):
 
     ERROR_CODES = {}

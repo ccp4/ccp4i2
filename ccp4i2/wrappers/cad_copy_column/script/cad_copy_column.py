@@ -6,9 +6,10 @@
 import os
 import unittest
 
-from ....core import CCP4Modules
 from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4ProcessManager import PROCESSMANAGER
+from ....utils.QApp import QTAPPLICATION
 
 
 class cad_copy_column(CPluginScript):
@@ -51,13 +52,13 @@ class cad_copy_column(CPluginScript):
 class testcad_copy_column(unittest.TestCase):
 
    def setUp(self):
-    self.app = CCP4Modules.QTAPPLICATION()
+    self.app = QTAPPLICATION()
     # make all background jobs wait for completion
     # this is essential for unittest to work
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
+    PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
+    PROCESSMANAGER().setWaitForFinished(-1)
 
    def test_1(self):
      workDirectory = CCP4Utils.getTestTmpDir()
@@ -65,7 +66,7 @@ class testcad_copy_column(unittest.TestCase):
      # Delete any existing log file
      if os.path.exists(logFile): os.remove(logFile)
 
-     self.wrapper = cad_copy_column(parent=CCP4Modules.QTAPPLICATION(),name='cad_copy_column_test1',workDirectory=workDirectory)
+     self.wrapper = cad_copy_column(parent=QTAPPLICATION(),name='cad_copy_column_test1',workDirectory=workDirectory)
      self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','cad_copy_column','test_data','test1.data.xml'))
 
      self.wrapper.setWaitForFinished(1000000)

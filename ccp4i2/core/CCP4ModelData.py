@@ -21,7 +21,6 @@
 
 import collections
 import copy
-import functools
 import gemmi
 import io
 import os
@@ -32,7 +31,6 @@ import tempfile
 import unittest
 
 from ccp4mg import mmut, pygl_coord
-from ccp4mg.qtgui import UtilityThread
 from lxml import etree
 from PySide2 import QtCore, QtGui
 import Bio
@@ -49,15 +47,15 @@ import iotbx
 from . import CCP4Container
 from . import CCP4Data
 from . import CCP4File
-from . import CCP4Modules
 from . import CCP4PluginScript
 from . import CCP4Residues
 from . import CCP4SelectionTree
 from . import CCP4Utils
-from ..qtgui import CCP4FileBrowser
 from ..qtgui import CCP4StyleSheet
 from ..wrappers.libcheck.script import libcheck
 from .CCP4ErrorHandling import CErrorReport, CException, Severity
+from .CCP4ProcessManager import PROCESSMANAGER
+from .CCP4ProjectsManager import PROJECTSMANAGER
 
 
 BIOPYTHON = True
@@ -398,7 +396,7 @@ class CSequenceMeta(CCP4Data.CData):
             raise CErrorReport(self.__class__, 403)
         if not self.uniprotId.isSet():
             raise CErrorReport(self.__class__, 401)
-        tmpDir = os.path.join(CCP4Modules.PROJECTSMANAGER().getProjectDirectory(projectId=projectId),'CCP4_DOWNLOADED_FILES')
+        tmpDir = os.path.join(PROJECTSMANAGER().getProjectDirectory(projectId=projectId),'CCP4_DOWNLOADED_FILES')
         if not os.path.exists(tmpDir):
             try:
                 os.mkdir(tmpDir)
@@ -837,7 +835,7 @@ class CDictDataFile(CCP4File.CDataFile):
                    205 : {'description' : 'Error attempting to merge geometry files - failed to run libcheck'}}
   
     def defaultProjectDict(self, projectId=None, projectName=None, create=True):
-        projectDir = CCP4Modules.PROJECTSMANAGER().getProjectDirectory(projectId=projectId, projectName=projectName)
+        projectDir = PROJECTSMANAGER().getProjectDirectory(projectId=projectId, projectName=projectName)
         if projectDir is None:
             return None
         projectFilesDir = os.path.join(projectDir, 'CCP4_PROJECT_FILES')
@@ -2346,7 +2344,7 @@ class CPdbDataFile(CCP4File.CDataFile):
         if xyzout is None:
             xyzout = self.importFileName(jobId=jobId)
         if jobId is not None:
-            jobDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId)
+            jobDirectory = PROJECTSMANAGER().jobDirectory(jobId=jobId)
             logFile = os.path.normpath(os.path.join(jobDirectory, self.objectName() + '_coord_format.log'))
         else:
             logFile = None
@@ -2356,9 +2354,9 @@ class CPdbDataFile(CCP4File.CDataFile):
             com = 'OUTPUT ' + outputFormat + '''\nFIXBLANK\nEND\n'''
         else:
             com = '''FIXBLANK\nEND\n'''
-        pid = CCP4Modules.PROCESSMANAGER().startProcess('coord_format', arglist, inputText=com, logFile=logFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
+        pid = PROCESSMANAGER().startProcess('coord_format', arglist, inputText=com, logFile=logFile)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid, 'exitCode')
         if status != 0:
             return CErrorReport(self.__class__, 401, 'Exit status:' + str(status), name=self.objectPath(), stack=False)
         diffs = CCP4Utils.nonWhiteDifferences(self.__str__(), xyzout)

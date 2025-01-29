@@ -25,8 +25,14 @@ import shutil
 from PySide2 import QtCore
 
 from . import CCP4Container
-from . import CCP4Modules
+from . import CCP4TaskManager
 from . import CCP4Utils
+
+
+def PREFERENCES():
+    if CPreferences.insts is None:
+        CPreferences()
+    return CPreferences.insts
 
 
 class CPreferences(CCP4Container.CContainer):
@@ -38,7 +44,7 @@ class CPreferences(CCP4Container.CContainer):
     def __init__(self):
         CCP4Container.CContainer.__init__(self)
         CPreferences.insts = self
-        defFile = CCP4Modules.TASKMANAGER().searchDefFile('guipreferences')
+        defFile = CCP4TaskManager.TASKMANAGER().searchDefFile('guipreferences')
         self.loadContentsFromXml(defFile)
         self.load()
 

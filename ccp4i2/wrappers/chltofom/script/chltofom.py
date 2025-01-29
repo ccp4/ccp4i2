@@ -4,8 +4,8 @@ import unittest
 from ....core import CCP4PluginScript
 from ....core import CCP4Utils
 from ....core import CCP4XtalData
-from ....core.CCP4Modules import PROCESSMANAGER
-from ....core.CCP4Modules import QTAPPLICATION
+from ....core.CCP4ProcessManager import PROCESSMANAGER
+from ....utils.QApp import QTAPPLICATION
 
 
 class chltofom(CCP4PluginScript.CPluginScript):

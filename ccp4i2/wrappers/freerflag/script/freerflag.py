@@ -10,9 +10,10 @@ from lxml import etree
 import gemmi
 
 from ....core import CCP4ErrorHandling
-from ....core import CCP4Modules
 from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4ProcessManager import PROCESSMANAGER
+from ....utils.QApp import QTAPPLICATION
 
 
 class freerflag(CPluginScript):
@@ -225,13 +226,13 @@ class freerflag(CPluginScript):
 class testfreerflag(unittest.TestCase):
 
    def setUp(self):
-    self.app = CCP4Modules.QTAPPLICATION()
+    self.app = QTAPPLICATION()
     # make all background jobs wait for completion
     # this is essential for unittest to work
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
+    PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
+    PROCESSMANAGER().setWaitForFinished(-1)
 
    def test_1(self):
      workDirectory = CCP4Utils.getTestTmpDir()
@@ -240,7 +241,7 @@ class testfreerflag(unittest.TestCase):
      # Delete any existing log file
      if os.path.exists(logFile): os.remove(logFile)
 
-     self.wrapper = freerflag(parent=CCP4Modules.QTAPPLICATION(),name='test1',workDirectory=workDirectory)
+     self.wrapper = freerflag(parent=QTAPPLICATION(),name='test1',workDirectory=workDirectory)
      self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','freerflag','test_data','test1.data.xml'))
 
      self.wrapper.setWaitForFinished(1000000)
@@ -255,7 +256,7 @@ class testfreerflag(unittest.TestCase):
      # Delete any existing log file
      if os.path.exists(logFile): os.remove(logFile)
 
-     self.wrapper = freerflag(parent=CCP4Modules.QTAPPLICATION(),name='test2',workDirectory=workDirectory)
+     self.wrapper = freerflag(parent=QTAPPLICATION(),name='test2',workDirectory=workDirectory)
      self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','freerflag','test_data','test2.data.xml'))
 
      self.wrapper.setWaitForFinished(1000000)

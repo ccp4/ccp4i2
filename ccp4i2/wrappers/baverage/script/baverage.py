@@ -1,10 +1,10 @@
 import os
 import unittest
 
-from ....core import CCP4Modules, CCP4Utils
-from ....core.CCP4Modules import PROCESSMANAGER
-from ....core.CCP4Modules import QTAPPLICATION
+from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4ProcessManager import PROCESSMANAGER
+from ....utils.QApp import QTAPPLICATION
 
 
 class baverage(CPluginScript):
@@ -54,7 +54,7 @@ class testbaverage(unittest.TestCase):
      workDirectory = os.path.join(CCP4Utils.getTestTmpDir(),'test1')
      if not os.path.exists(workDirectory): os.mkdir(workDirectory)
 
-     self.wrapper = baverage(parent=CCP4Modules.QTAPPLICATION(),name='baverage_test1',workDirectory=workDirectory)
+     self.wrapper = baverage(parent=QTAPPLICATION(),name='baverage_test1',workDirectory=workDirectory)
      self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','baverage','test_data','test1.data.xml'))
 
      self.wrapper.setWaitForFinished(1000000)

@@ -21,17 +21,17 @@
 
 ##@package CCP4TextViewer (QtGui) Web browser plugin to view text files and coordinate files
 
-import os
 import sys
 import traceback
 
 from PySide2 import QtCore, QtGui, QtWidgets
 
-from ..core import CCP4Utils
-from ..core.CCP4ErrorHandling import CException, Severity
-from ..core.CCP4Modules import MIMETYPESHANDLER, PREFERENCES
 from . import CCP4AbstractViewer
 from . import CCP4Widgets
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import CException, Severity
+from ..core.CCP4Preferences import PREFERENCES
+from ..qtcore.CCP4CustomMimeTypes import MIMETYPESHANDLER
 
 
 class CTextBrowser(QtWidgets.QPlainTextEdit):

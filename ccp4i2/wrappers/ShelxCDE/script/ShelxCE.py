@@ -3,7 +3,7 @@ import os
 from lxml import etree
 
 from . import ShelxCDEBase
-from ....core import CCP4Modules
+from ....core.CCP4ProcessManager import PROCESSMANAGER
 from ....core.CCP4PluginScript import CPluginScript
 
 
@@ -56,8 +56,8 @@ class ShelxCE(ShelxCDEBase.ShelxCDEBase):
     def processOutputFiles(self):
         print('#shelxcd processOutputFiles')
         processId = self.getProcessId()
-        exitStatus = CCP4Modules.PROCESSMANAGER().getJobData(processId,'exitStatus')
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(processId,'exitCode')
+        exitStatus = PROCESSMANAGER().getJobData(processId,'exitStatus')
+        exitCode = PROCESSMANAGER().getJobData(processId,'exitCode')
         if exitStatus != CPluginScript.SUCCEEDED:
             print('ShelxCE ended with non success status')
             self.appendErrorReport(210)

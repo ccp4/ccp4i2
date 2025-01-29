@@ -22,7 +22,7 @@
 from PySide2 import QtCore
 
 from ....core import CCP4ErrorHandling
-from ....core import CCP4Modules
+from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from ....qtgui.CCP4TaskWidget import CTaskWidget
 
 
@@ -198,7 +198,7 @@ class CTaskDummy(CTaskWidget):
       # Can not assume that the gesamt widget is still there - must instead query the database for output file
       # Use CDbApi.getJobFilesInfo() which returns a list of dicts containing description of files output by the job
       # The best way to set the file object ot a new value is by setDbFileId()
-      gesamtFileList = CCP4Modules.PROJECTSMANAGER().db().getJobFilesInfo(jobId=jobId,jobParamName='XYZOUT')
+      gesamtFileList = PROJECTSMANAGER().db().getJobFilesInfo(jobId=jobId,jobParamName='XYZOUT')
       #print 'CTaskDummy.handleLaunchedJob ',gesamtFileList
       if len(gesamtFileList)>0:
         self.getWidget('XYZIN').model.setDbFileId(gesamtFileList[0]['fileId'])

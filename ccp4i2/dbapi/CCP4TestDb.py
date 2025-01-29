@@ -12,10 +12,12 @@ from ..core import CCP4Config
 from ..core import CCP4File
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import Severity
-from ..core.CCP4Modules import PROJECTSMANAGER, QTAPPLICATION, JOBCONTROLLER
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..core.CCP4QtObject import CObject
 from ..qtcore import CCP4Export
+from ..qtcore.CCP4JobController import JOBCONTROLLER
 from ..utils import startup
+from ..utils.QApp import QTAPPLICATION
 
 
 # Kick of from pyi2 prompt with something like..

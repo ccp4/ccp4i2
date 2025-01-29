@@ -6,9 +6,9 @@ import unittest
 from lxml import etree
 
 from ......core import CCP4Utils
-from ......core.CCP4Modules import PROCESSMANAGER
-from ......core.CCP4Modules import QTAPPLICATION
 from ......core.CCP4PluginScript import CPluginScript
+from ......core.CCP4ProcessManager import PROCESSMANAGER
+from ......utils.QApp import QTAPPLICATION
 
 
 class coot_script_lines(CPluginScript):

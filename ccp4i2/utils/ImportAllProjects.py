@@ -16,13 +16,13 @@ import sqlite3
 import sys
 import tempfile
 
+from . import startup
 from ..core import CCP4Config
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import Severity
-from ..core.CCP4Modules import PROJECTSMANAGER
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..dbapi import CCP4DbApi
 from ..qtcore import CCP4Export
-from . import startup
 from .QApp import CGuiApplication
 
 
@@ -112,7 +112,7 @@ def ImportZipFile(compressedFile,destDirName):
 
       print('Import complete',text)
 
-      #CCP4Modules.PROJECTSMANAGER().backupDBXML()
+      #PROJECTSMANAGER().backupDBXML()
 
     else:
       print("Project '"+dbImport.projectName+"' already exists")

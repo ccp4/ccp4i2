@@ -43,7 +43,6 @@ from . import CCP4FileBrowser
 from . import CCP4I1Projects
 from . import CCP4ImpExpWidgets
 from . import CCP4JobControlGui
-from . import CCP4ModelWidgets
 from . import CCP4ProjectManagerGui
 from . import CCP4ProjectWidget
 from . import CCP4TaskWidget
@@ -59,19 +58,25 @@ from ..core import CCP4I2Runner
 from ..core import CCP4ProjectsManager
 from ..core import CCP4Utils
 from ..core.CCP4Config import DEVELOPER
+from ..core.CCP4CustomTaskManager import CUSTOMTASKMANAGER
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
-from ..core.CCP4Modules import JOBCONTROLLER, JOBCONTROLLERGUI
-from ..core.CCP4Modules import LAUNCHER, MIMETYPESHANDLER, PREFERENCES
-from ..core.CCP4Modules import QTAPPLICATION, PROJECTSMANAGER, WEBBROWSER
-from ..core.CCP4Modules import WORKFLOWMANAGER, CUSTOMTASKMANAGER
+from ..core.CCP4Preferences import PREFERENCES
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..core.CCP4TaskManager import TASKMANAGER
 from ..core.CCP4WarningMessage import warningMessage
+from ..core.CCP4WorkflowManager import WORKFLOWMANAGER
 from ..dbapi import CCP4DbApi
 from ..dbapi import CCP4DbUtils
 from ..dbapi.CCP4DbUtils import COpenJob
 from ..qtcore import CCP4Export
+from ..qtcore.CCP4CustomMimeTypes import MIMETYPESHANDLER
+from ..qtcore.CCP4JobController import JOBCONTROLLER
+from ..qtcore.CCP4Launcher import LAUNCHER
+from ..qtgui.CCP4JobControlGui import JOBCONTROLLERGUI
+from ..qtgui.CCP4WebBrowser import WEBBROWSER
 from ..report import CCP4ReportGenerator
 from ..report.CCP4ReportParser import WEBGLSOURCES, MTZToB64Map
+from ..utils.QApp import QTAPPLICATION
 from .CCP4MessageBox import CMessageBox
 
 

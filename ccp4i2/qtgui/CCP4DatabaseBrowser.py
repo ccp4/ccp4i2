@@ -30,7 +30,7 @@ in the current project.
 
 from PySide2 import QtCore, QtWidgets
 
-from ..core import CCP4Modules
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..qtgui import CCP4ProjectWidget
 
 
@@ -137,7 +137,7 @@ class CDatabaseBrowserModel(QtCore.QAbstractItemModel):
     if not self.canFetchMore(parent): return
     parentNode = parent.internalPointer()
     projectId = parentNode.getProjectId()
-    fileList = CCP4Modules.PROJECTSMANAGER().db().getProjectFiles(projectId=projectId,
+    fileList = PROJECTSMANAGER().db().getProjectFiles(projectId=projectId,
                                                            fileType=self.fileType,topLevelOnly=True)
     #print 'CDatabaseBrowserModel.fetchMore fileList',fileList
     parentNode.clearFiles()
@@ -150,7 +150,7 @@ class CDatabaseBrowserModel(QtCore.QAbstractItemModel):
   def loadModel(self):
     # Get list of projects in reverse alphabetic order so can run through the list in reverse
     # (so can delete project from list once it is in the tree)
-    projectList = CCP4Modules.PROJECTSMANAGER().db().getProjectDirectoryList(order='DESC')
+    projectList = PROJECTSMANAGER().db().getProjectDirectoryList(order='DESC')
     #print 'CDatabaseBrowserModel.loadModel projectList',projectList
     # This is a list of projects with [projectId,projectName,projectDir,parentProjectId] for each project
     lookup = {}

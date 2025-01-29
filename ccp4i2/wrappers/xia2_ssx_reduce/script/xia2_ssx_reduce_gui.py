@@ -55,7 +55,7 @@ class xia2_ssx_reduce_gui(CTaskWidget):
         #     if self.getWidget('followFrom') is None: return
         #     followJobId = self.getWidget('followFrom').currentJobId()
         #     if followJobId is not None:
-        #         container_follow = CCP4Modules.PROJECTSMANAGER().getJobParams(jobId=followJobId)
+        #         container_follow = PROJECTSMANAGER().getJobParams(jobId=followJobId)
         return CTaskWidget.isValid(self)
 
 

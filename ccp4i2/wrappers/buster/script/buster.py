@@ -6,10 +6,11 @@ import subprocess
 from lxml import etree
 
 from ....core import CCP4ErrorHandling
-from ....core import CCP4Modules
 from ....core import CCP4Utils
 from ....core import CCP4XtalData
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Preferences import PREFERENCES
+from ....core.CCP4ProcessManager import PROCESSMANAGER
 
 
 class buster(CPluginScript):
@@ -40,8 +41,8 @@ class buster(CPluginScript):
         bpres_act = shutil.which('refine')
         if bpres_act:
             goodtogo = True
-        elif CCP4Modules.PREFERENCES().BUSTERDIR.exists():
-            scriplo = os.path.join(CCP4Modules.PREFERENCES().BUSTERDIR.__str__(), 'setup.sh')
+        elif PREFERENCES().BUSTERDIR.exists():
+            scriplo = os.path.join(PREFERENCES().BUSTERDIR.__str__(), 'setup.sh')
             print(scriplo)
             self.source_script(scriplo)
             goodtogo = True
@@ -93,9 +94,9 @@ class buster(CPluginScript):
             inputText = "LABIN FILE 1 E1=F_SIGF_F E2=F_SIGF_SIGF E3=FREERFLAG_FREER\n"
             inputText += ("LABOUT FILE 1 E1=F_SIGF_F E2=F_SIGF_SIGF E3=FREER")
         # Fire the hkl conversion up.
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(binc, arglist, inputText=inputText, logFile=self.logfc)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        extCde = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
+        pid = PROCESSMANAGER().startProcess(binc, arglist, inputText=inputText, logFile=self.logfc)
+        status = PROCESSMANAGER().getJobData(pid)
+        extCde = PROCESSMANAGER().getJobData(pid, 'exitCode')
         if not(status == 0 and os.path.exists(self.outfilec)):
             return CPluginScript.FAILED
         if errorb.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:

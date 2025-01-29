@@ -6,8 +6,9 @@ import os
 import shutil
 
 from ...core.CCP4DataManager import DATAMANAGER
-from ...core.CCP4Modules import QTAPPLICATION, PROJECTSMANAGER
+from ...core.CCP4ProjectsManager import PROJECTSMANAGER
 from ...dbapi import CCP4DbUtils
+from ...utils.QApp import QTAPPLICATION
 from ...utils.startup import setupEnvironment, startProjectsManager, startJobController
 
 

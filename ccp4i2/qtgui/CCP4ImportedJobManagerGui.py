@@ -26,8 +26,9 @@ from PySide2 import QtCore, QtWidgets
 
 from ..core import CCP4DataManager
 from ..core import CCP4ImportedJobManager
-from ..core.CCP4Modules import IMPORTEDJOBMANAGER, WEBBROWSER
+from ..core.CCP4ImportedJobManager import IMPORTEDJOBMANAGER
 from ..qtgui import CCP4CustomisationGui, CCP4Widgets
+from ..qtgui.CCP4WebBrowser import WEBBROWSER
 
 
 def openGui():

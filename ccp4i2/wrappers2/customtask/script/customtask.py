@@ -22,8 +22,8 @@ import os
 import shutil
 
 from ....core import CCP4CustomTaskManager
-from ....core import CCP4Modules
 from ....core import CCP4Utils
+from ....core.CCP4CustomTaskManager import CUSTOMTASKMANAGER
 from ....core.CCP4PluginScript import CPluginScript
 
 
@@ -38,7 +38,7 @@ class customtask(CPluginScript):
                   }
 
   def process(self):
-    manager = CCP4Modules.CUSTOMTASKMANAGER()
+    manager = CUSTOMTASKMANAGER()
     customDef = CCP4CustomTaskManager.CCustomTaskDefinition(self,name=self.TASKNAME)
     customDef.loadDataFromXml(fileName=manager.getCustomFile(name=self.TASKNAME))
     #print 'customtask.process container',customDef

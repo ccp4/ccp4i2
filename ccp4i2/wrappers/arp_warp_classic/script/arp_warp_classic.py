@@ -5,10 +5,10 @@ import subprocess
 import sys
 
 from ....core import CCP4ErrorHandling
-from ....core import CCP4Modules
 from ....core import CCP4Utils
 from ....core import CCP4XtalData
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Preferences import PREFERENCES
 
 
 class arp_warp_classic(CPluginScript):
@@ -258,7 +258,7 @@ class arp_warp_classic(CPluginScript):
         pass
 
       try:
-        if not CCP4Modules.PREFERENCES().RETAIN_DIAGNOSTIC_FILES:
+        if not PREFERENCES().RETAIN_DIAGNOSTIC_FILES:
           shutil.rmtree(os.path.join(self.workDirectory, 'PSP'))
 
       except:

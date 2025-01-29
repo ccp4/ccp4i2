@@ -32,15 +32,16 @@ from PySide2 import QtCore
 
 from . import CCP4DbApi
 from .. import __version__
-from ..core import CCP4Annotation
 from ..core import CCP4Container
 from ..core import CCP4Data
 from ..core import CCP4File
-from ..core import CCP4Modules
 from ..core import CCP4TaskManager
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
-from ..core.CCP4Modules import PROJECTSMANAGER, TASKMANAGER, JOBCONTROLLER, WORKFLOWMANAGER
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+from ..core.CCP4TaskManager import TASKMANAGER
+from ..core.CCP4WorkflowManager import WORKFLOWMANAGER
+from ..qtcore.CCP4JobController import JOBCONTROLLER
 
 
 class COpenJob(QtCore.QObject):
@@ -1190,7 +1191,7 @@ class testMakeProjectDbXml(unittest.TestCase):
         # Create a temporary database (only used for getFileTypeId)
         self.db = CCP4DbApi.CDbApi(mode='sqlite',userName='me',userPassword='foo',fileName=self.TESTDBFILE)
         self.mode = 'sqlite'
-        CCP4Modules.PROJECTSMANAGER().setDatabase(self.db)
+        PROJECTSMANAGER().setDatabase(self.db)
         self.makeDb = CMakeProjectDbXml(db=self.db)
 
     def test1(self):

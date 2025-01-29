@@ -24,8 +24,9 @@ import os
 
 from PySide2 import QtCore, QtWidgets
 
-from ..core import CCP4Annotation, CCP4Modules
+from ..core import CCP4Annotation
 from ..core.CCP4ErrorHandling import Severity
+from ..core.CCP4TaskManager import TASKMANAGER
 from ..core.CCP4WarningMessage import warningMessage
 from ..qtgui import CCP4FileBrowser, CCP4Widgets
 
@@ -171,7 +172,7 @@ class CBibliographyViewer(QtWidgets.QMainWindow):
     
 
   def setReferences(self,jobId=None,taskNameList=[]):
-    pm = CCP4Modules.PROJECTSMANAGER()
+    pm = PROJECTSMANAGER()
     if jobId is not None:
       taskBiblio = glob.glob(os.path.join(pm.jobDirectory(jobId=jobId),'*.medline.txt'))
       if len(taskBiblio)>0:
@@ -181,7 +182,7 @@ class CBibliographyViewer(QtWidgets.QMainWindow):
         self.referenceGroupViews.append(CBibReferenceGroupView(self))
         self.referenceGroupViews[-1].setModel(self.referenceGroups[-1])
         self.frame.layout().addWidget(self.referenceGroupViews[-1])
-        self.setWindowTitle('Bibliography for '+CCP4Modules.TASKMANAGER().getTitle(taskName))
+        self.setWindowTitle('Bibliography for '+TASKMANAGER().getTitle(taskName))
         return
   
     if len(taskNameList) == 0: taskNameList.append(pm.db().getJobInfo(jobId=jobId,mode='taskname') )
@@ -193,5 +194,5 @@ class CBibliographyViewer(QtWidgets.QMainWindow):
       #print 'setReferences referenceGroups',self.referenceGroups[-1]
       self.referenceGroupViews[-1].setModel(self.referenceGroups[-1])
       self.frame.layout().addWidget(self.referenceGroupViews[-1])
-    self.setWindowTitle('Bibliography for '+CCP4Modules.TASKMANAGER().getTitle(taskNameList[0]))
+    self.setWindowTitle('Bibliography for '+TASKMANAGER().getTitle(taskNameList[0]))
     self.frame.show()

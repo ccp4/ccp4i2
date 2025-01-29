@@ -27,8 +27,9 @@ import time
 
 from PySide2 import QtCore, QtGui, QtWidgets
 
-from ..core import CCP4Modules
 from ..core import CCP4Utils
+from ..core.CCP4PrintHandler import PRINTHANDLER
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..dbapi import CCP4DbUtils
 from ..qtgui import CCP4TextViewer
 from ..qtgui import CCP4Widgets
@@ -90,7 +91,7 @@ class CSendJobError(QtWidgets.QDialog):
         if sendLog or sendData:
             copyJobDir = CCP4DbUtils.CCopyJobDirectories(projectId=self.projectId, jobIdList=jobList, targetDir=tarDir, copyData=sendData)
             copyJobDir.copy()
-        projectTmpDir = os.path.join(CCP4Modules.PROJECTSMANAGER().getProjectDirectory(projectId=self.projectId), 'CCP4_TMP')
+        projectTmpDir = os.path.join(PROJECTSMANAGER().getProjectDirectory(projectId=self.projectId), 'CCP4_TMP')
         if not os.path.exists(projectTmpDir):
             os.mkdir(projectTmpDir)
         tarFile = os.path.join(projectTmpDir, dirName + '.tar.gz')
@@ -111,6 +112,6 @@ class CPrintLogViewer(CCP4TextViewer.CTextViewer):
 
     def openThread(self, thread = 'main_thread'):
         versionText = CCP4Utils.versionLogHeader()
-        ph = CCP4Modules.PRINTHANDLER()
+        ph = PRINTHANDLER()
         text = ph.getContent(thread)
         self.viewer.append(versionText + text)

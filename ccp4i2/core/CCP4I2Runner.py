@@ -15,12 +15,12 @@ from PySide2 import QtCore
 from . import CCP4Data
 from . import CCP4File
 from . import CCP4ModelData
-from . import CCP4Modules
 from . import CCP4ProjectsManager
 from . import CCP4TaskManager
 from . import CCP4XtalData
 from ..dbapi import CCP4DbApi
 from ..dbapi import CCP4DbUtils
+from ..qtcore.CCP4JobController import JOBCONTROLLER
 from ..utils import startup
 from .CCP4ErrorHandling import CException
 from .CCP4TaskManager import CTaskManager
@@ -682,7 +682,7 @@ class CI2Runner(object):
                               roleList=[CCP4DbApi.FILE_ROLE_IN])
         rv = cOpenJob.saveParams()
 
-        jc=CCP4Modules.JOBCONTROLLER()
+        jc=JOBCONTROLLER()
         jc.setDiagnostic(True)
         jc.setDbFile(self.pm.db()._fileName)
         lastJobFinishCheckTime = time.time()

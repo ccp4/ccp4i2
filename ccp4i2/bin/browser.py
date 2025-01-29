@@ -9,8 +9,8 @@ import time
 
 from PySide2 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets
 
-from ..core.CCP4Modules import QTAPPLICATION
 from ..core.CCP4Utils import getCCP4I2Dir
+from ..utils.QApp import QTAPPLICATION
 from ..utils.startup import setupEnvironment, startBrowser
 
 

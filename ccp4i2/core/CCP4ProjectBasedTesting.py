@@ -35,9 +35,12 @@ from . import CCP4Utils
 from ..dbapi import CCP4DbApi
 from ..dbapi import CCP4DbUtils
 from ..qtcore import CCP4Export
+from ..qtcore.CCP4JobController import JOBCONTROLLER
 from ..utils import startup
+from ..utils.QApp import QTAPPLICATION
 from .CCP4ErrorHandling import CException, CErrorReport, Severity
-from .CCP4Modules import PROJECTSMANAGER, JOBCONTROLLER, QTAPPLICATION, PROCESSMANAGER
+from .CCP4ProcessManager import PROCESSMANAGER
+from .CCP4ProjectsManager import PROJECTSMANAGER
 
 
 DIAGNOSTIC = False

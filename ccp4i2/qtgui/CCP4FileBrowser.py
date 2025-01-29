@@ -37,8 +37,11 @@ from PySide2 import QtCore, QtWidgets
 import requests
 
 from ..core import CCP4File
-from ..core import CCP4Modules
 from ..core import CCP4Utils
+from ..core.CCP4Preferences import PREFERENCES
+from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+from ..qtcore.CCP4CustomMimeTypes import MIMETYPESHANDLER
+from ..qtgui.CCP4WebBrowser import WEBBROWSER
 
 
 class GenericWorker(QtCore.QObject):
@@ -70,7 +73,7 @@ class CFileDialog(QtWidgets.QDialog):
     def __init__(self, parent=None, title='Open file', filters=[], defaultSuffix=None, defaultFileName='',
                  fileMode=QtWidgets.QFileDialog.ExistingFile, fileLabel=None, **kw):
         QtWidgets.QDialog.__init__(self, parent)
-        if CCP4Modules.PREFERENCES().NATIVEFILEBROWSER:
+        if PREFERENCES().NATIVEFILEBROWSER:
             self.input = {'title' : title, 'filters' : filters, 'defaultSuffix':defaultSuffix,
                           'defaultFileName' : defaultFileName, 'fileMode' : fileMode,
                           'fileLabel' : fileLabel, 'kw' : kw}
@@ -170,7 +173,7 @@ class CFileDialog(QtWidgets.QDialog):
         return self.widget.fileDialog.isVisible()
 
     def show(self):
-        if CCP4Modules.PREFERENCES().NATIVEFILEBROWSER:
+        if PREFERENCES().NATIVEFILEBROWSER:
             # OpenFileName with double extension messing up see: https://bugreports.qt.io/browse/QTBUG-44227
             filterText, secondExt = self.makeFilterText(self.input['filters'], truncateExt=(self.input['fileMode'] == QtWidgets.QFileDialog.AnyFile))
             if self.input['fileMode'] == QtWidgets.QFileDialog.ExistingFile:
@@ -308,7 +311,7 @@ class CFileDialog1(QtWidgets.QWidget):
         self.ccp4i_combo = None
 
     def drawProjectCombo(self):
-        ccp4_dirs, ccp4_aliases = CCP4Modules.PROJECTSMANAGER().getProjectsList()
+        ccp4_dirs, ccp4_aliases = PROJECTSMANAGER().getProjectsList()
         #print 'CFileDialog.__init__', ccp4_dirs,ccp4_aliases
         #if len(ccp4_dirs) > 0 or len(ccp4_aliases) > 0:
         layout0 = QtWidgets.QHBoxLayout()
@@ -324,20 +327,20 @@ class CFileDialog1(QtWidgets.QWidget):
         layout0.addStretch()
         self.layout().addLayout(layout0)
         self.projectCombo.currentIndexChanged[str].connect(self.projectComboChanged)
-        CCP4Modules.PROJECTSMANAGER().projectsListChanged.connect(self.loadProjectCombo)
+        PROJECTSMANAGER().projectsListChanged.connect(self.loadProjectCombo)
 
     @QtCore.Slot()
     def loadProjectCombo(self):
         self.projectCombo.clear()
         self.projectCombo.addItem('Full path..')
-        ccp4_dirs, ccp4_aliases = CCP4Modules.PROJECTSMANAGER().getProjectsList()
+        ccp4_dirs, ccp4_aliases = PROJECTSMANAGER().getProjectsList()
         for project in ccp4_dirs:
             self.projectCombo.addItem(project)
     
     @QtCore.Slot(str)
     def projectComboChanged(self, alias):
         #print('projectComboChanged',alias)
-        path = CCP4Modules.PROJECTSMANAGER().getProjectDirectory(projectName=str(alias))
+        path = PROJECTSMANAGER().getProjectDirectory(projectName=str(alias))
         if path is not None:
             self.fileDialog.setDirectory(str(path))
 
@@ -418,7 +421,7 @@ class CFileDialog1(QtWidgets.QWidget):
         if self.projectId is None:
             tmpDir = CCP4Utils.getTMP()
         else:
-            tmpDir = os.path.join(CCP4Modules.PROJECTSMANAGER().getProjectDirectory(projectId=self.projectId),'CCP4_DOWNLOADED_FILES')
+            tmpDir = os.path.join(PROJECTSMANAGER().getProjectDirectory(projectId=self.projectId),'CCP4_DOWNLOADED_FILES')
             if not os.path.exists(tmpDir):
                 try:
                     os.mkdir(tmpDir)
@@ -542,7 +545,7 @@ class CFileDialog1(QtWidgets.QWidget):
     @QtCore.Slot()
     def viewWebSite(self):
         mode = self.downloadCombo.itemData(self.downloadCombo.currentIndex()).__str__()
-        CCP4Modules.WEBBROWSER().loadPage(QtCore.QUrl('http://' + self.DOWNLOAD_DEFINITIONS[mode]['page']), newTab=True)
+        WEBBROWSER().loadPage(QtCore.QUrl('http://' + self.DOWNLOAD_DEFINITIONS[mode]['page']), newTab=True)
 
 
 class IconProvider(QtWidgets.QFileIconProvider):
@@ -559,11 +562,11 @@ class IconProvider(QtWidgets.QFileIconProvider):
             suffix = str(fileInfo.completeSuffix())
             if suffix == 'mtz':
                 content = fileInfo.baseName().__str__().split(CCP4File.CDataFile.SEPARATOR)[-1]
-                mimeType=CCP4Modules.MIMETYPESHANDLER().formatFromFileExt(ext=suffix, contentLabel=content)
+                mimeType=MIMETYPESHANDLER().formatFromFileExt(ext=suffix, contentLabel=content)
             else:
-                mimeType=CCP4Modules.MIMETYPESHANDLER().formatFromFileExt(ext=suffix)
+                mimeType=MIMETYPESHANDLER().formatFromFileExt(ext=suffix)
             if mimeType is not None:
-                icon = CCP4Modules.MIMETYPESHANDLER().icon(mimeType)
+                icon = MIMETYPESHANDLER().icon(mimeType)
                 if icon is not None:
                     return icon
         return QtWidgets.QFileIconProvider.icon(self, fileInfo)
@@ -597,7 +600,7 @@ class CFileDialog0(QtWidgets.QFileDialog):
         QtWidgets.QFileDialog.__init__(self, parent)
         self.setSizeGripEnabled(0)
         iconProvider = IconProvider()
-        #iconProvider.setIconsForFilters(CCP4Modules.MIMETYPESHANDLER().getIconsForFileFilters())
+        #iconProvider.setIconsForFilters(MIMETYPESHANDLER().getIconsForFileFilters())
         self.setIconProvider(iconProvider)
         self.cleanupSidebar()
 
