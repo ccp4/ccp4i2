@@ -533,6 +533,8 @@ class refmac_i2(CPluginScript):
                     self.appendCommandScript("HYDROGEN DFRACTION INIT")
                  elif self.container.controlParameters.HD_INIT_HALL.__str__() == 'MIXTURE':
                     self.appendCommandScript("HYDROGEN DFRACTION INIT REFINEABLE 1 UNREFINEABLE 0")
+              elif self.container.controlParameters.HD_INIT_NOHDREF:
+                 self.appendCommandScript("HYDROGEN DFRACTION INIT")
 
         if self.container.controlParameters.RES_CUSTOM:
             if self.container.controlParameters.RES_MIN.isSet() and self.container.controlParameters.RES_MAX.isSet():
