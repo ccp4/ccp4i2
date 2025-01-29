@@ -553,25 +553,24 @@ class Cprosmart_refmac(CCP4TaskWidget.CTaskWidget):
         self.container.controlParameters.SCATTERING_FACTORS.dataChanged.connect( self.ExperimentChanged)
     self.createLine( [ 'label', indent+indent+'Form factor calculation:', 'widget', 'SCATTERING_ELECTRON' ], toggleFunction=[self.ToggleElectronDiffraction, ['SCATTERING_FACTORS']], appendLine=scattering_factors )
     #self.createLine( [ 'label', indent+'<i>(see Parameterisation tab for H/D fraction refinement)</i>' ], toggleFunction=[self.ToggleNeutronModeOn, ['SCATTERING_FACTORS']], appendLine=scattering_factors )
-    
+
     self.createLine( [ 'subtitle', 'Neutron refinement options'], toggleFunction=[self.ToggleNeutronModeOn,['SCATTERING_FACTORS']] )
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleNeutronModeOn,['SCATTERING_FACTORS']] )
-    
+
     self.createLine( [ 'widget', 'HYDR_USE', 'label', 'Use hydrogens during refinement'], toggle = ['HYDR_USE', 'open', [ False ] ])
     self.createLine( [ 'widget', 'HYDR_USE', 'label', 'Use hydrogens during refinement', 'widget', 'HYDR_ALL'], toggle = ['HYDR_USE', 'open', [ True ] ] )
-    
-    use_h = self.createLine( [ 'widget', 'H_REFINE', 'label', 'Refine hydrogen positions' ], toggle = ['HYDR_USE', 'open', [ True ] ] )
-    self.createLine( [ 'label', 'for', 'widget', 'H_REFINE_SELECT' ], toggleFunction=[self.ToggleH_REFINE,['HYDR_USE','H_REFINE']], appendLine=use_h)
-    self.createLine( [ 'widget', 'H_TORSION', 'label', 'Use hydrogen torsion angle restraints' ], toggle = ['HYDR_USE', 'open', [ True ] ] )
-    
+
     use_hd = self.createLine( [ 'widget', 'HD_FRACTION', 'label', 'Refine hydrogen/deuterium fractions' ], toggle = ['HYDR_USE', 'open', [ True ] ] )
     self.createLine( [ 'label', 'for', 'widget', 'HD_FRACTION_TYPE' ], toggleFunction=[self.ToggleNeutronModeHD,['HYDR_USE','HD_FRACTION']], appendLine=use_hd)
 
-    
     self.createLine( [ 'label', indent, 'label', 'Initialise H/D fractions', 'widget', 'HD_INIT' ], toggleFunction=[self.ToggleNeutronModeHD_YES,['HYDR_USE','HYDR_ALL']])
     self.createLine( [ 'label', indent, 'label', 'Initialise H/D fractions', 'widget', 'HD_INIT_HALL' ], toggleFunction=[self.ToggleNeutronModeHD_ALL,['HYDR_USE','HYDR_ALL']])
-    
-    
+    self.createLine( [ 'label', indent + indent + '<i>If you do not want to initialise H/D fractions, use hydrogens only if present in file.</i>' ], toggleFunction=[self.ToggleNeutronModeHD_ALL,['HYDR_USE','HYDR_ALL']])
+
+    use_h = self.createLine( [ 'widget', 'H_REFINE', 'label', 'Refine hydrogen positions' ], toggle = ['HYDR_USE', 'open', [ True ] ] )
+    self.createLine( [ 'label', 'for', 'widget', 'H_REFINE_SELECT' ], toggleFunction=[self.ToggleH_REFINE,['HYDR_USE','H_REFINE']], appendLine=use_h)
+    self.createLine( [ 'widget', 'H_TORSION', 'label', 'Use hydrogen torsion angle restraints' ], toggle = ['HYDR_USE', 'open', [ True ] ] )
+
     self.closeSubFrame()
 
     custom_res = self.createLine( [ 'widget', 'RES_CUSTOM', 'label', 'Use custom resolution limits' ] )
