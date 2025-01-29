@@ -575,7 +575,7 @@ class Cprosmart_refmac(CCP4TaskWidget.CTaskWidget):
     self.closeSubFrame()
 
     custom_res = self.createLine( [ 'widget', 'RES_CUSTOM', 'label', 'Use custom resolution limits' ] )
-    self.createLine( [ 'label', indent+indent+'min:', 'widget', 'RES_MIN', 'label', ' max:', 'widget', 'RES_MAX' ], toggle = ['RES_CUSTOM', 'open', [ True ] ], appendLine=custom_res )
+    self.createLine( [ 'label', indent+indent+'low (d<sub>max</sub>):', 'widget', 'RES_MIN', 'label', ' high (d<sub>min</sub>):', 'widget', 'RES_MAX' ], toggle = ['RES_CUSTOM', 'open', [ True ] ], appendLine=custom_res )
 
     reset_bfac = self.createLine( [ 'widget', 'BFACSETUSE', 'label', 'Reset all B-factors at start' ])
     self.createLine( [ 'label', '&nbsp;to fixed value:', 'widget', 'BFACSET' ], toggle = ['BFACSETUSE', 'open', [ True ] ], appendLine=reset_bfac )
