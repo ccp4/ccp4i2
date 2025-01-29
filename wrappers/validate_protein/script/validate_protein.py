@@ -61,28 +61,21 @@ class validate_protein(CPluginScript):
         log_string = ''
         self.xml_root = etree.Element('Validate_geometry_CCP4i2')
 
-        self.latest_model_path = self.previous_model_path = self.latest_reflections_path = self.previous_reflections_path = None
-
         print ("Using Iris installation: " + iris_validation.__file__.replace(f"/__init__.py", ""))
 
-        if self.container.inputData.XYZIN_1.isSet(): # Latest dataset first
-            self.latest_model_path = str(self.container.inputData.XYZIN_1)
-        if self.container.inputData.F_SIGF_1.isSet():
-            self.latest_reflections_path, _ = self.makeHklin([['F_SIGF_1',
+        self.latest_model_path = str(self.container.inputData.XYZIN_1)
+        self.latest_reflections_path, _ = self.makeHklin([['F_SIGF_1',
                                                              CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]], 
                                                              hklin='F_SIGF_1')
-        if self.container.inputData.XYZIN_2.isSet(): # Previous dataset for comparison, if set
+        
+        if self.container.controlParameters.TWO_DATASETS :
             self.previous_model_path = str(self.container.inputData.XYZIN_2)
-        else:  # Just a dirty workaround to prevent iris crashing
-            if self.latest_model_path:
-                self.previous_model_path = self.latest_model_path
-        if self.container.inputData.F_SIGF_2.isSet():
             self.previous_reflections_path, _ = self.makeHklin([['F_SIGF_2',
                                                                CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]], 
                                                                hklin='F_SIGF_2')
-        else:  # Just a dirty workaround to prevent iris crashing
-            if self.latest_reflections_path:
-                self.previous_reflections_path = self.latest_reflections_path
+            log_string += _print_and_return('\n\nCalculating metrics for two datasets...\n\n')
+        else :
+            log_string += _print_and_return('\n\nCalculating metrics for one dataset...\n\n')
         log_string += _print_and_return('\n\n######### Calculating metrics using Iris #########\n')
 
         try:
@@ -143,32 +136,40 @@ class validate_protein(CPluginScript):
     def calculate_iris_metrics(self):
         log_string = ''
         xml_root = etree.Element('Model_info')
-
-        print("PATHS\n",self.latest_model_path, self.previous_model_path,self.latest_reflections_path, self.previous_reflections_path)
-        self.model_series = metrics_model_series_from_files(model_paths=(self.latest_model_path, self.previous_model_path),
-                                                            reflections_paths=(self.latest_reflections_path, self.previous_reflections_path),
-                                                            sequence_paths=(None, None),
-                                                            distpred_paths=(None, None),
-                                                            model_json_paths=(None, None),
-                                                            run_covariance=False,
-                                                            calculate_rama_z=self.container.controlParameters.DO_TORTOIZE,
-                                                            run_molprobity=self.container.controlParameters.DO_MOLPROBITY,
-                                                            multiprocessing=False)
-        self.latest_model = self.model_series.metrics_models[-1]
-        etree.SubElement(xml_root, 'Chain_count').text = str(self.latest_model.chain_count)
-        print ("Number of models returned: {}".format(len(self.model_series.metrics_models)))
-        return log_string, xml_root
-
+        if self.container.controlParameters.TWO_DATASETS :
+            print("PATHS\n",self.latest_model_path, self.previous_model_path,self.latest_reflections_path, self.previous_reflections_path)
+            self.model_series = metrics_model_series_from_files(model_paths=(self.latest_model_path, self.previous_model_path),
+                                                                reflections_paths=(self.latest_reflections_path, self.previous_reflections_path),
+                                                                sequence_paths=(None,),
+                                                                distpred_paths=(None,),
+                                                                model_json_paths=(None,),
+                                                                run_covariance=False,
+                                                                calculate_rama_z=self.container.controlParameters.DO_TORTOIZE,
+                                                                run_molprobity=self.container.controlParameters.DO_MOLPROBITY,
+                                                                multiprocessing=False)
+            self.latest_model = self.model_series.metrics_models[-1]
+            etree.SubElement(xml_root, 'Chain_count').text = str(self.latest_model.chain_count)
+            return log_string, xml_root
+        else :
+            print("PATHS\n",self.latest_model_path, self.latest_reflections_path )
+            self.model_series = metrics_model_series_from_files(model_paths=(self.latest_model_path,),
+                                                                reflections_paths=(self.latest_reflections_path,),
+                                                                sequence_paths=(None,),
+                                                                distpred_paths=(None,),
+                                                                model_json_paths=(None,),
+                                                                run_covariance=False,
+                                                                calculate_rama_z=self.container.controlParameters.DO_TORTOIZE,
+                                                                run_molprobity=self.container.controlParameters.DO_MOLPROBITY,
+                                                                multiprocessing=False)
+            self.latest_model = self.model_series.metrics_models[-1]
+            etree.SubElement(xml_root, 'Chain_count').text = str(self.latest_model.chain_count)
+            return log_string, xml_root
 
     def generate_iris_report(self):
         log_string = ''
         xml_root = etree.Element('Iris')
         model_series_data = self.model_series.get_raw_data()
-        panel = Panel(model_series_data, 
-                      custom_labels={'Latest': self.container.inputData.NAME_1, 
-                                     'Previous': self.container.inputData.NAME_2
-                                    }
-                     )
+        panel = Panel(model_series_data)
         panel.dwg.attribs['style'] += ' margin-top: -20px;'
         panel_string = panel.dwg.tostring()
         etree.SubElement(xml_root, 'Panel_svg').text = panel_string
