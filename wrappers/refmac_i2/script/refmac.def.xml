@@ -168,6 +168,15 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                     <saveToDb>True</saveToDb>
                 </qualifiers>
             </content>
+            <content id="CIFFILEDEP">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default>
+                        <contentFlag>2</contentFlag>
+                    </default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
             <content id="FPHIOUT">
                 <className>CMapCoeffsDataFile</className>
                 <qualifiers>

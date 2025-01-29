@@ -494,6 +494,7 @@ class prosmart_refmac(CPluginScript):
         # Apply database annotations
         self.container.outputData.XYZOUT.annotation.set('Model from refinement (PDB format)')
         self.container.outputData.CIFFILE.annotation.set('Model from refinement (mmCIF format)')
+        self.container.outputData.CIFFILEDEP.annotation.set('Model from refinement (mmCIF format for deposition)')
         self.container.outputData.FPHIOUT.annotation = 'Weighted map from refinement'
         self.container.outputData.FPHIOUT.subType = 1
         self.container.outputData.DIFFPHIOUT.annotation = 'Weighted difference map from refinement'

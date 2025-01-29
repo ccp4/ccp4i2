@@ -207,6 +207,12 @@ class refmac_i2(CPluginScript):
         self.container.outputData.ANOMFPHIOUT.annotation = 'Anomalous map coefficients'
         self.container.outputData.DIFANOMFPHIOUT.annotation = 'Difference anomalous map coefficients (LLG map)'
 
+        if str(self.container.controlParameters.SCATTERING_FACTORS) == "NEUTRON":
+            outputCifDepPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'XYZOUT_hd_expand.mmcif'))
+            if os.path.isfile(outputCifDepPath):
+                self.container.outputData.CIFFILEDEP.setFullPath(outputCifDepPath)
+                self.container.outputData.CIFFILEDEP.annotation = 'MMCIF Model from refinement (for deposition)'
+
         # Split out data objects that have been generated. Do this after applying the annotation, and flagging
         # above, since splitHklout needs to know the ABCDOUT contentFlag
         
