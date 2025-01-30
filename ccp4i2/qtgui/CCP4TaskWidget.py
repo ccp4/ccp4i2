@@ -39,7 +39,6 @@ from ..core import CCP4File
 from ..core import CCP4ModelData
 from ..core import CCP4TaskManager
 from ..core.CCP4ComFilePatchManager import COMFILEPATCHMANAGER
-from ..core.CCP4Config import 
 from ..core.CCP4DataManager import DATAMANAGER
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
 from ..core.CCP4Preferences import PREFERENCES
