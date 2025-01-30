@@ -56,9 +56,6 @@ USER_NOVICE = 0
 USER_REGULAR = 1
 USER_EXPERT = 2
 
-def whatNext(self, jobId=None, childJobs=[], childTaskName=None):
-    return []
-
 
 class CFolderAttributes:
 
