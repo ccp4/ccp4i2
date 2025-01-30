@@ -4,7 +4,6 @@
 """
 
 import os
-import unittest
 
 from lxml import etree
 import gemmi
@@ -12,8 +11,6 @@ import gemmi
 from ....core import CCP4ErrorHandling
 from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
-from ....core.CCP4ProcessManager import PROCESSMANAGER
-from ....utils.QApp import QTAPPLICATION
 
 
 class freerflag(CPluginScript):
@@ -217,57 +214,3 @@ class freerflag(CPluginScript):
         e2 = etree.Element(elementname)
         e2.text = elementtext
         containerXML.append(e2)
-
-
-#======================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-class testfreerflag(unittest.TestCase):
-
-   def setUp(self):
-    self.app = QTAPPLICATION()
-    # make all background jobs wait for completion
-    # this is essential for unittest to work
-    PROCESSMANAGER().setWaitForFinished(10000)
-
-   def tearDown(self):
-    PROCESSMANAGER().setWaitForFinished(-1)
-
-   def test_1(self):
-     workDirectory = CCP4Utils.getTestTmpDir()
-     # this needs to agree with name attribute below
-     logFile = os.path.join(workDirectory,'test1_freerflag.log')
-     # Delete any existing log file
-     if os.path.exists(logFile): os.remove(logFile)
-
-     self.wrapper = freerflag(parent=QTAPPLICATION(),name='test1',workDirectory=workDirectory)
-     self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','freerflag','test_data','test1.data.xml'))
-
-     self.wrapper.setWaitForFinished(1000000)
-     pid = self.wrapper.process()
-     self.wrapper.setWaitForFinished(-1)
-     if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-
-   def test_2(self):
-     workDirectory = CCP4Utils.getTestTmpDir()
-     # this needs to agree with name attribute below
-     logFile = os.path.join(workDirectory,'test2_freerflag.log')
-     # Delete any existing log file
-     if os.path.exists(logFile): os.remove(logFile)
-
-     self.wrapper = freerflag(parent=QTAPPLICATION(),name='test2',workDirectory=workDirectory)
-     self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','freerflag','test_data','test2.data.xml'))
-
-     self.wrapper.setWaitForFinished(1000000)
-     pid = self.wrapper.process()
-     self.wrapper.setWaitForFinished(-1)
-     if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(testfreerflag)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)

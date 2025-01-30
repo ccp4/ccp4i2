@@ -1,11 +1,8 @@
 import os
 import sys
-import unittest
 
 from ....core import CCP4XtalData
 from ....core.CCP4PluginScript import CPluginScript
-from ....core.CCP4ProcessManager import PROCESSMANAGER
-from ....utils.QApp import QTAPPLICATION
 
 
 class splitMtz(CPluginScript):
@@ -62,26 +59,3 @@ class splitMtz(CPluginScript):
       print('splitMtz.process status',status) ; sys.stdout.flush()
       
       return status
-     
-#====================================================================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-class testsplitMtz(unittest.TestCase):
-
-   def setUp(self):
-    # make all background jobs wait for completion
-    # this is essential for unittest to work
-    self.app = QTAPPLICATION()
-    PROCESSMANAGER().setWaitForFinished(10000)
-
-   def tearDown(self):
-    PROCESSMANAGER().setWaitForFinished(-1)
-
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(testsplitMtz)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)

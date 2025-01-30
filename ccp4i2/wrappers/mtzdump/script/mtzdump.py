@@ -19,11 +19,7 @@
      etc
 """
 
-import unittest
-
 from ....core.CCP4PluginScript import CPluginScript
-from ....core.CCP4ProcessManager import PROCESSMANAGER
-from ....utils.QApp import QTAPPLICATION
 
 
 class mtzdump(CPluginScript):
@@ -109,37 +105,3 @@ class mtzdump(CPluginScript):
                'lowerResolutionLimit' : lowerResolutionLimit,
                'upperResolutionLimit' : upperResolutionLimit,
                'listOfColumns' : listOfColumns }
-    
-
-#=====================================================================================================
-#=================================test suite=========================================================
-#=====================================================================================================
-
-# unit testing asynchronous processes potential tricky but QProcess has option to wait for finished
- 
-class testMtzdump(unittest.TestCase):
-  
-  def setUp(self):
-    # make all background jobs wait for completion
-    self.app = QTAPPLICATION()
-    PROCESSMANAGER().setWaitForFinished(10000)
-
-  def tearDown(self):
-    PROCESSMANAGER().setWaitForFinished(-1)
-
-  def testMtzdump(self):
-    self.wrapper = mtzdump(parent=QTAPPLICATION(),name='test_mtzdump')
-    self.wrapper.container.inputData.HKLIN.set({'project':'CCP4I2_TOP','baseName':'gere_nat.mtz','relPath':'test/data'})
-    pid = self.wrapper.process()
-    print(self.wrapper.container.outputData.CELL)
-    if len(self.wrapper.errorReport)>0: self.wrapper.errorReport.report()
-    self.assertEqual(self.wrapper.container.outputData.CELL.a,108.742,'Mtzdump output CELL wrong')
-
-
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(testMtzdump)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)

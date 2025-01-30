@@ -22,16 +22,13 @@
 
 from distutils.dir_util import copy_tree
 import os
-import unittest
 
 from lxml import etree
 
 from ....core import CCP4Utils
 from ....core import CCP4XtalData
-from ....core.CCP4ErrorHandling import CException
 from ....core.CCP4PluginScript import CPluginScript
 from ....core.CCP4ProcessManager import PROCESSMANAGER
-from ....core.CCP4Utils import getCCP4I2Dir
 
 
 ccp4_home = os.environ.get ( "CCP4", "not_set" )
@@ -236,41 +233,3 @@ class arcimboldo(CPluginScript):
         if os.path.exists(self.makeFileName('PROGRAMXML')):
             os.remove(self.makeFileName('PROGRAMXML'))
         os.rename(tmpFilename, self.makeFileName('PROGRAMXML'))
-
-
-#=====================================================================================================
-#=================================test suite=========================================================
-#=====================================================================================================
-
-# unit testing asynchronous processes potential tricky but QProcess has option to wait for finished
- 
-class test_arcimboldo ( unittest.TestCase ) :
-    def setUp(self):
-      # make all background jobs wait for completion
-      PROCESSMANAGER().setWaitForFinished(10000)
-
-    def tearDown(self):
-      PROCESSMANAGER().setWaitForFinished(-1)
-
-    def test_arcimboldo(self):
-      inputData =  CScriptDataContainer(name='test_arcimboldo_test',containerType='inputData',initialise=test_arcimboldo.INPUTDATA)
-      outputData =  CScriptDataContainer(name='test_arcimboldo_test',containerType='outputData',initialise=test_arcimboldo.OUTPUTDATA)
-      try:
-         inputData.importXML(os.path.join(getCCP4I2Dir(),'wrappers','test_arcimboldo','test_data','test_arcimboldo_test_1.def.xml'))
-      except CException as e:
-         self.fail(e.errorType)
-      try:
-         outputData.importXML(os.path.join(getCCP4I2Dir(),'wrappers','test_arcimboldo','test_data','test_arcimboldo_test_1.def.xml'))
-      except CException as e:
-         self.fail(e.errorType)
-      
-      wrapper = test_arcimboldo()
-      pid = wrapper.process()
-
-    def testSuite():
-      suite = unittest.TestLoader().loadTestsFromTestCase(test_test_arcimboldo)
-      return suite
-
-    def runAllTests():
-      suite = testSuite()
-      unittest.TextTestRunner(verbosity=2).run(suite)

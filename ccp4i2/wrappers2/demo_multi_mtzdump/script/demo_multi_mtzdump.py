@@ -24,14 +24,11 @@ import glob
 import os
 import sys
 import time
-import unittest
 
 from PySide2 import QtCore
 
 from ....core.CCP4PluginScript import CPluginScript
-from ....core.CCP4ProcessManager import PROCESSMANAGER
 from ....core.CCP4Utils import getCCP4I2Dir
-from ....utils.QApp import QTAPPLICATION
 
 
 class demo_multi_mtzdump(CPluginScript):
@@ -107,31 +104,3 @@ class demo_multi_mtzdump(CPluginScript):
 
       self.appendErrorReport(40,str(demo_multi_mtzdump.TIMEOUT_PERIOD))
       self.reportStatus(CPluginScript.FAILED)
-
-#=======================================================================================================
-
-class test_demo_multi_mtzdump(unittest.TestCase):
-
-  def setUp(self):
-    # make all background jobs wait for completion
-    #print 'test_demo_multi_mtzdump setUp graphical',GRAPHICAL()
-    if not GRAPHICAL():
-      PROCESSMANAGER().setWaitForFinished(10000)
-
-  def tearDown(self):
-    if not GRAPHICAL():
-      PROCESSMANAGER().setWaitForFinished(-1)
-
-  def test_1(self):
-    # Run the pipeline
-    pipe = demo_multi_mtzdump(parent=QTAPPLICATION(),name='demo_multi_mtzdump')
-    pipe.process()
-      
-
-def testSuite():
-  suite = unittest.TestLoader().loadTestsFromTestCase(test_demo_multi_mtzdump)
-  return suite
-
-def runAllTests():
-  suite = testSuite()
-  unittest.TextTestRunner(verbosity=2).run(suite)

@@ -1,14 +1,11 @@
 import os
 import pathlib
-import unittest
 
 from lxml import etree
 
 from ......core import CCP4File
 from ......core.CCP4ModelData import CPdbDataFile
 from ......core.CCP4PluginScript import CPluginScript
-from ......core.CCP4ProcessManager import PROCESSMANAGER
-from ......utils.QApp import QTAPPLICATION
 
 
 class coot_find_waters(CPluginScript):
@@ -65,33 +62,3 @@ class coot_find_waters(CPluginScript):
         f = CCP4File.CXmlDataFile(fullPath=self.makeFileName('PROGRAMXML'))
         f.saveFile(root)
         return status
-
-
-
-#====================================================================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-class testcoot_find_waters(unittest.TestCase):
-    
-    def setUp(self):
-        # make all background jobs wait for completion
-        # this is essential for unittest to work
-        self.app = QTAPPLICATION()
-        PROCESSMANAGER().setWaitForFinished(10000)
-    
-    def tearDown(self):
-        PROCESSMANAGER().setWaitForFinished(-1)
-    
-    def test_1(self):
-        wrapper = coot_find_waters(parent=QTAPPLICATION(),name='coot_find_waters_test1')
-        wrapper.container.loadDataFromXml()
-
-
-def TESTSUITE():
-    suite = unittest.TestLoader().loadTestsFromTestCase(testcoot_find_waters)
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)

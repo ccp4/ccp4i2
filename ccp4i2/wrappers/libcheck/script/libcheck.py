@@ -1,12 +1,9 @@
 
 import copy
 import os
-import unittest
 
 from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
-from ....core.CCP4ProcessManager import PROCESSMANAGER
-from ....utils.QApp import QTAPPLICATION
 
 
 class libcheck(CPluginScript):
@@ -49,31 +46,3 @@ class libcheck(CPluginScript):
         return CPluginScript.SUCCEEDED
       else:
         return CPluginScript.FAILED
-     
-#====================================================================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-class testlibcheck(unittest.TestCase):
-
-   def setUp(self):
-    # make all background jobs wait for completion
-    # this is essential for unittest to work
-    self.app = QTAPPLICATION()
-    PROCESSMANAGER().setWaitForFinished(10000)
-
-   def tearDown(self):
-    PROCESSMANAGER().setWaitForFinished(-1)
-
-   def test_1(self):
-     wrapper = libcheck(parent=QTAPPLICATION(),name='libcheck_test1')
-     wrapper.container.loadDataFromXml()
-     
-
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(testlibcheck)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)

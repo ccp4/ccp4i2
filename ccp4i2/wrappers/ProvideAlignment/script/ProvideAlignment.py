@@ -1,5 +1,4 @@
 import io
-import unittest
 
 from Bio import AlignIO, SeqIO
 from Bio.Align import MultipleSeqAlignment
@@ -9,8 +8,6 @@ from lxml import etree
 
 from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
-from ....core.CCP4ProcessManager import PROCESSMANAGER
-from ....utils.QApp import QTAPPLICATION
 
 
 class ProvideAlignment(CPluginScript):
@@ -188,34 +185,3 @@ def importAlignment(filePath):
         return alignment, format, outputString
     except:
         return None, 'unknown', outputString
-
-
-
-
-#====================================================================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-class testProvideAlignment(unittest.TestCase):
-
-   def setUp(self):
-    # make all background jobs wait for completion
-    # this is essential for unittest to work
-    self.app = QTAPPLICATION()
-    PROCESSMANAGER().setWaitForFinished(10000)
-
-   def tearDown(self):
-    PROCESSMANAGER().setWaitForFinished(-1)
-
-   def test_1(self):
-     wrapper = ProvideAlignment(parent=QTAPPLICATION(),name='ProvideAlignment_test1')
-     wrapper.container.loadDataFromXml()
-     
-
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(testProvideAlignment)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)

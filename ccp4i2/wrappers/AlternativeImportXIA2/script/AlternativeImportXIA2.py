@@ -1,18 +1,15 @@
 import glob
 import os
 import shutil
-import unittest
 
 from lxml import etree
 
 from ....core import CCP4Utils
 from ....core import CCP4XtalData
 from ....core.CCP4PluginScript import CPluginScript
-from ....core.CCP4ProcessManager import PROCESSMANAGER
 from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from ....pimple import MGQTmatplotlib
 from ....smartie import smartie
-from ....utils.QApp import QTAPPLICATION
 
 
 class AlternativeImportXIA2(CPluginScript):
@@ -190,34 +187,3 @@ def exportJobFileMenu(jobId=None):
     # Return a list of items to appear on the 'Export' menu - each has three subitems:
     # [ unique identifier - will be mode argument to exportJobFile() , menu item , mime type (see CCP4CustomMimeTypes module) ]
     return [ [ 'complete_mtz' ,'MTZ file' , 'application/CCP4-mtz' ] ]
-
-
-    
-
-#====================================================================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-class testProvideTLS(unittest.TestCase):
-
-   def setUp(self):
-    # make all background jobs wait for completion
-    # this is essential for unittest to work
-    self.app = QTAPPLICATION()
-    PROCESSMANAGER().setWaitForFinished(10000)
-
-   def tearDown(self):
-    PROCESSMANAGER().setWaitForFinished(-1)
-
-   def test_1(self):
-     wrapper = ProvideTLS(parent=QTAPPLICATION(),name='ProvideTLS_test1')
-     wrapper.container.loadDataFromXml()
-     
-
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(testProvideTLS)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)

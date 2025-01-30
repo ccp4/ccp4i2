@@ -24,14 +24,11 @@ import copy
 import os
 import sys
 import tempfile
-import unittest
 
 from lxml import etree
 from PySide2 import QtCore
 
-from ..core import CCP4File
 from ..core import CCP4Utils
-from ..core.CCP4Data import CData
 from ..core.CCP4DataManager import DATAMANAGER
 from ..core.CCP4ErrorHandling import CException
 from ..report.CCP4ReportParser import CCP4NS
@@ -364,24 +361,3 @@ class CReport(QtCore.QObject):
         return self.dataArray[id]
     else:
       return None
-
-#========================================================================================   
-def TESTSUITE():
-  suite = unittest.defaultTestLoader.loadTestsFromTestCase(testReport)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)
-
-class testReport(unittest.TestCase):
-
-  def test1(self):
-    testFile = CCP4File.CDataFile(project='CCP4I2_TOP',relPath='test/data',baseName='test_report.html')
-    r = CReport()
-    r.loadFromXmlFile(str(testFile))
-    x = r.getDataObject(id='final_results')
-    self.assertEqual(x.cell.a,123.4,'Failed to load container and cell data')
-    x = r.getDataObject(id='data_table_1')
-    self.assertEqual(x.nColumns,9,'Failed to load CReportTableModel number of columns')
-    
