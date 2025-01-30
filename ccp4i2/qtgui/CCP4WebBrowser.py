@@ -1966,27 +1966,21 @@ class CBrowserWindow(CMainWindow):
                 # This is a keyword for the launcher
                 LAUNCHER().openInViewer(viewer=widgetClass,fileName=fileName)
                 return None
-            if CCP4Config.DEVELOPER():
+            try:
                 widget = widgetClass(self)
-            else:
-                try:
-                    widget = widgetClass(self)
-                except:
-                    QtWidgets.QMessageBox.warning(None,self.windowTitle(),'Error opening display for file type: '+format)
-                    return None
+            except:
+                QtWidgets.QMessageBox.warning(None,self.windowTitle(),'Error opening display for file type: '+format)
+                return None
             #print 'CWebBrowser.openFile',widget
-            if CCP4Config.DEVELOPER():
+            try:
                 rv = widget.open(fileName=fileName)
-            else:
-                try:
-                    rv = widget.open(fileName=fileName)
-                except CException as e:
-                    widget.close()
-                    warningMessage(e, windowTitle=self.windowTitle())
-                except:
-                    widget.close()
-                    QtWidgets.QMessageBox.warning(None,self.windowTitle(),'Attempting to display file '+os.path.split(fileName)[-1]+'\n as '+format+' failed.\n')
-                    return None
+            except CException as e:
+                widget.close()
+                warningMessage(e, windowTitle=self.windowTitle())
+            except:
+                widget.close()
+                QtWidgets.QMessageBox.warning(None,self.windowTitle(),'Attempting to display file '+os.path.split(fileName)[-1]+'\n as '+format+' failed.\n')
+                return None
             if title is None:
                 title = widget.title()
             self.newTab(widget,title,url=QtCore.QUrl.fromLocalFile(fileName),toolTip=fileName)

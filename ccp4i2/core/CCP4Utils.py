@@ -39,7 +39,6 @@ import shiboken2
 
 from .. import __version__
 from ..googlecode import diff_match_patch_py3
-from .CCP4Config import DEVELOPER
 from .CCP4ErrorHandling import CException
 from .CCP4Version import CCP4_VERSION
 
@@ -154,19 +153,14 @@ def saveFile(fileName=None, text=None, text_list=[], overwrite=0):
 def saveEtreeToFile(tree=None, fileName=None):
     if tree is None:
         raise CException(CUtils, 101, fileName)
-    if DEVELOPER():  ##  KJS ** This is the cause of the coupling to CCP4Config.
-        # No error trapping - we just want it to crash so we have to fix it!
+    try:
         text = etree.tostring(tree, pretty_print=True, xml_declaration=True)
+    except:
+        raise CException(CUtils, 102, fileName)
+    try:
         saveFile(fileName=fileName, text=text, overwrite=1)
-    else:
-        try:
-            text = etree.tostring(tree, pretty_print=True, xml_declaration=True)
-        except:
-            raise CException(CUtils, 102, fileName)
-        try:
-            saveFile(fileName=fileName, text=text, overwrite=1)
-        except:
-            raise CException(CUtils, 103, fileName)
+    except:
+        raise CException(CUtils, 103, fileName)
 
 utf8_parser = etree.XMLParser(encoding='utf-8')
 
@@ -190,22 +184,7 @@ def openFileToEtree(fileName=None, printout=False,useLXML=True):
         if printout:
             print(etree.tostring(tree, pretty_print=True))
         return tree
-    '''
-    if DEVELOPER():
-        tree = etree.parse(fileName)
-    else:
-        try:
-          tree = etree.parse(fileName)
-        except:
-          raise CException(CUtils,104,filename)
-      try:
-        root = tree.getroot()
-    except:
-        raise CException(CUtils,105,filename)
-    if printout: print etree.tostring(root,pretty_print=True)
 
-    return root
-    '''
 
 def getHostName():
     # From http://stackoverflow.com/questions/4271740/how-can-i-use-python-to-get-the-system-name

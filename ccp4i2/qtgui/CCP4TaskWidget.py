@@ -39,7 +39,7 @@ from ..core import CCP4File
 from ..core import CCP4ModelData
 from ..core import CCP4TaskManager
 from ..core.CCP4ComFilePatchManager import COMFILEPATCHMANAGER
-from ..core.CCP4Config import DEVELOPER
+from ..core.CCP4Config import 
 from ..core.CCP4DataManager import DATAMANAGER
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
 from ..core.CCP4Preferences import PREFERENCES
@@ -1449,16 +1449,13 @@ class CTaskLine(QtWidgets.QFrame):
                     qualifiers.update(model.qualifiers())
                     qualifiers.update(widgetQualifiers)
                     #print 'widgetQualifiers',definition[pDef],model.qualifiers(),widgetQualifiers
-                    if DEVELOPER():
+                    try:
                         widget = DATAMANAGER().widget(model=model, parentWidget=self.parent(), qualifiers=widgetQualifiers, name=definition[pDef])
-                    else:
-                        try:
-                            widget = DATAMANAGER().widget(model=model, parentWidget=self.parent(), qualifiers=widgetQualifiers, name=definition[pDef])
-                        except CException as e:
-                            e.appendDetails(definition[pDef])
-                            myException.extend(e)
-                        except:
-                            myException.append(self.__class__, 103, definition[pDef])
+                    except CException as e:
+                        e.appendDetails(definition[pDef])
+                        myException.extend(e)
+                    except:
+                        myException.append(self.__class__, 103, definition[pDef])
                     #print 'CTaskLine widget',definition[pDef],widget,widget.STRETCH
                     #widget = dataContainer.widget(name=par,parentWidget=self,widgetQualifiers=widgetQualifiers)
                     if widget is not None:

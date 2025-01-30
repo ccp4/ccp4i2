@@ -25,7 +25,6 @@ from ..core import CCP4Container
 from ..core import CCP4Data
 from ..core import CCP4DataManager
 from ..core import CCP4File
-from ..core.CCP4Config import DEVELOPER
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
 from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..core.CCP4WarningMessage import warningMessage
@@ -165,15 +164,12 @@ class CContainerView(QtWidgets.QFrame):
         if not self.folderAttributes.attribute(attribute='editable',folderFunction=model.objectName()):
           qualifiers['editable']=False
         qualifiers.update(model.qualifiers())
-        if DEVELOPER():
-           widget = CCP4DataManager.DATAMANAGER().widget(model=model,parentWidget=self,name=name,qualifiers=qualifiers)
-        else:
-          try:
-            widget = CCP4DataManager.DATAMANAGER().widget(model=model,parentWidget=self,name=name,qualifiers=qualifiers)
-          except CException as e:
-            myException.extend(e)
-          except:
-            myException.append(self.__class__,103,'Data object: '+name)
+        try:
+          widget = CCP4DataManager.DATAMANAGER().widget(model=model,parentWidget=self,name=name,qualifiers=qualifiers)
+        except CException as e:
+          myException.extend(e)
+        except:
+          myException.append(self.__class__,103,'Data object: '+name)
         
         #print 'CContainerViewer.draw',name,model.__class__,widget,qualifiers
         if widget is not None:

@@ -724,37 +724,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                             else:
                                 val = getattr(PREFERENCES(), mapping)
                             #replaces:
-                            '''
-                            if mapping == "SHOW_TASK_MENU_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_TASK_MENU_TOOLBUTTON
-                            elif mapping == "SHOW_JOB_SEARCH_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_JOB_SEARCH_TOOLBUTTON
-                            elif mapping == "SHOW_EXPORT_PROJECT_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_EXPORT_PROJECT_TOOLBUTTON
-                            elif mapping == "SHOW_RUN_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_RUN_TOOLBUTTON
-                            elif mapping == "SHOW_RUN_REMOTE_TOOLBUTTON":
-                                if ALWAYS_SHOW_SERVER_BUTTON or JOBCONTROLLER().serversEnabled():
-                                   val = PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON
-                                else:
-                                   val = False
-                            elif mapping == "SHOW_CLONE_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_CLONE_TOOLBUTTON
-                            elif mapping == "SHOW_TASK_HELP_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_TASK_HELP_TOOLBUTTON
-                            elif mapping == "SHOW_REFERENCES_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_REFERENCES_TOOLBUTTON
-                            elif mapping == "SHOW_EXPORT_MTZ_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_EXPORT_MTZ_TOOLBUTTON
-                            elif mapping == "SHOW_VIEW_COOT_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_VIEW_COOT_TOOLBUTTON
-                            elif mapping == "SHOW_VIEW_CCP4MG_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_VIEW_CCP4MG_TOOLBUTTON
-                            elif mapping == "SHOW_SHOW_LOG_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_SHOW_LOG_TOOLBUTTON
-                            elif mapping == "NEW_PROJECT_TOOLBUTTON":
-                                val = PREFERENCES().NEW_PROJECT_TOOLBUTTON
-                            '''
                             if val:
                                 item.setCheckState(QtCore.Qt.Checked)
 
@@ -773,35 +742,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                     #MN Trying to make code more compact/readable
                     getattr(PREFERENCES(), mapping).set(val)
                     #Replacing
-                    '''
-                    if mapping == "SHOW_TASK_MENU_TOOLBUTTON":
-                        PREFERENCES().SHOW_TASK_MENU_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_JOB_SEARCH_TOOLBUTTON":
-                        PREFERENCES().SHOW_JOB_SEARCH_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_EXPORT_PROJECT_TOOLBUTTON":
-                        PREFERENCES().SHOW_EXPORT_PROJECT_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_RUN_TOOLBUTTON":
-                        PREFERENCES().SHOW_RUN_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_RUN_REMOTE_TOOLBUTTON":
-                        PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_CLONE_TOOLBUTTON":
-                        PREFERENCES().SHOW_CLONE_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_TASK_HELP_TOOLBUTTON":
-                        PREFERENCES().SHOW_TASK_HELP_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_REFERENCES_TOOLBUTTON":
-                        PREFERENCES().SHOW_REFERENCES_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_EXPORT_MTZ_TOOLBUTTON":
-                        PREFERENCES().SHOW_EXPORT_MTZ_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_VIEW_COOT_TOOLBUTTON":
-                        PREFERENCES().SHOW_VIEW_COOT_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_VIEW_CCP4MG_TOOLBUTTON":
-                        PREFERENCES().SHOW_VIEW_CCP4MG_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_SHOW_LOG_TOOLBUTTON":
-                        PREFERENCES().SHOW_SHOW_LOG_TOOLBUTTON.set(val)
-                    elif mapping == "NEW_PROJECT_TOOLBUTTON":
-                        PREFERENCES().NEW_PROJECT_TOOLBUTTON.set(val)
-                    '''
-                    
                 listWidget.itemChanged.connect(setItemVisibilities)
                 prefWidget.exec_()
 
@@ -827,38 +767,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                                val = False
                         else:
                             val = getattr(PREFERENCES(), mapping)
-                        #Replaces:
-                        '''
-                        if mapping == "SHOW_TASK_MENU_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_TASK_MENU_TOOLBUTTON
-                        elif mapping == "SHOW_JOB_SEARCH_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_JOB_SEARCH_TOOLBUTTON
-                        elif mapping == "SHOW_EXPORT_PROJECT_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_EXPORT_PROJECT_TOOLBUTTON
-                        elif mapping == "SHOW_RUN_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_RUN_TOOLBUTTON
-                        elif mapping == "SHOW_RUN_REMOTE_TOOLBUTTON":
-                            if ALWAYS_SHOW_SERVER_BUTTON or JOBCONTROLLER().serversEnabled():
-                               val = PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON
-                            else:
-                               val = False
-                        elif mapping == "SHOW_CLONE_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_CLONE_TOOLBUTTON
-                        elif mapping == "SHOW_TASK_HELP_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_TASK_HELP_TOOLBUTTON
-                        elif mapping == "SHOW_REFERENCES_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_REFERENCES_TOOLBUTTON
-                        elif mapping == "SHOW_EXPORT_MTZ_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_EXPORT_MTZ_TOOLBUTTON
-                        elif mapping == "SHOW_VIEW_COOT_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_VIEW_COOT_TOOLBUTTON
-                        elif mapping == "SHOW_VIEW_CCP4MG_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_VIEW_CCP4MG_TOOLBUTTON
-                        elif mapping == "SHOW_SHOW_LOG_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_SHOW_LOG_TOOLBUTTON
-                        elif mapping == "NEW_PROJECT_TOOLBUTTON":
-                            val = PREFERENCES().NEW_PROJECT_TOOLBUTTON
-                        '''
                         self.webviewToolBar.setButtonVisible(str(name),val)
 
                     else:
@@ -3895,17 +3803,14 @@ class CTaskInputFrame(QtWidgets.QFrame):
         # Create task widget
         taskWidgetClass = TASKMANAGER().getTaskWidgetClass(taskName)
         if taskWidgetClass is not None:
-            if DEVELOPER():
+            try:
                 taskWidget = taskWidgetClass(self)
-            else:
-                try:
-                    taskWidget = taskWidgetClass(self)
-                except CException as e:
-                    warningMessage(e, 'Error opening task window: '+str(taskName),parent=self)
-                    raise e
-                except Exception as e:
-                    mess = QtWidgets.QMessageBox.warning(self,'Error opening task window: '+str(taskName),str(e))
-                    raise CException(self.__class__,101,taskName)
+            except CException as e:
+                warningMessage(e, 'Error opening task window: '+str(taskName),parent=self)
+                raise e
+            except Exception as e:
+                mess = QtWidgets.QMessageBox.warning(self,'Error opening task window: '+str(taskName),str(e))
+                raise CException(self.__class__,101,taskName)
             taskWidget.folderAttributes.setAttribute(attribute='editable',folderFunction='all',value=taskEditable)
             taskWidget.setContainer(container)
         else:
@@ -4028,16 +3933,12 @@ class CTaskInputFrame(QtWidgets.QFrame):
                 self.runRemotely(jobId,projectId)
                 return
             elif TASKMANAGER().isInternalPlugin(taskName):
-                if DEVELOPER():
+                try:
                     PROJECTSMANAGER().runInternalTask(jobId=self.taskWidget.jobId(), projectId=self.taskWidget.projectId(),
-                                                      taskName=self.taskWidget.taskName())
-                else:
-                    try:
-                        PROJECTSMANAGER().runInternalTask(jobId=self.taskWidget.jobId(), projectId=self.taskWidget.projectId(),
-                                                          taskName=self.taskWidget.taskName())
-                    except Exception as e:
-                        err = CException(self.__class__,101,taskName,str(e))
-                        warningMessage(err, 'Running internaltask','Failed running task',parent=self)
+                                                        taskName=self.taskWidget.taskName())
+                except Exception as e:
+                    err = CException(self.__class__,101,taskName,str(e))
+                    warningMessage(err, 'Running internaltask','Failed running task',parent=self)
             else:
                 PROJECTSMANAGER().updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_QUEUED)
         self.redrawTaskWidget()

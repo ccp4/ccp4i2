@@ -27,10 +27,9 @@ from lxml import etree
 
 from . import CCP4Data
 from . import CCP4File
-from . import CCP4TaskManager
-from .CCP4Config import DEVELOPER
 from .CCP4DataManager import DATAMANAGER
 from .CCP4ErrorHandling import CErrorReport, CException, Severity
+from .CCP4TaskManager import TASKMANAGER
 
 
 class CContainer(CCP4Data.CData):
@@ -250,7 +249,7 @@ class CContainer(CCP4Data.CData):
             pluginName = str(f.header.pluginName)
             pluginVersion = str(f.header.pluginVersion)
             try:
-                defFile = CCP4TaskManager.TASKMANAGER().lookupDefFile(pluginName, pluginVersion)
+                defFile = TASKMANAGER().lookupDefFile(pluginName, pluginVersion)
             except:
                 raise CException(self.__class__, 150, pluginName, name=self.objectPath())
             #print 'CContainer.loadDataFromXml loading contents from defFile',defFile
@@ -381,18 +380,15 @@ class CContainer(CCP4Data.CData):
                         obj = CContainer(parent=self,name=name)
                     except:
                         myException.append(self.__class__,110,name=self.objectPath())
-                if  obj is not None:
-                    if DEVELOPER():
+                if obj is not None:
+                    try:
                         obj.loadContentsFromEtree(ele,overwrite=myOverwrite)
-                    else:
-                        try:
-                            obj.loadContentsFromEtree(ele,overwrite=myOverwrite)
-                        except  CException as e:
-                            myException.extend(e)
-                            obj = None
-                        except:
-                            myException.append(self.__class__, 108, 'Tag: ' + name, name=self.objectPath())
-                            obj = None
+                    except  CException as e:
+                        myException.extend(e)
+                        obj = None
+                    except:
+                        myException.append(self.__class__, 108, 'Tag: ' + name, name=self.objectPath())
+                        obj = None
             elif ele.tag == 'header':
                 if readHeader:
                     try:
@@ -526,27 +522,18 @@ class CContainer(CCP4Data.CData):
             return rv, None
         else:
             buildInInit = True
-            if DEVELOPER():
+            try:
                 if len(subContents) == 0:
                     obj = cls(parent=self, name=name)
                 elif CCP4Data.isCollectionClass(cls):
                     buildInInit = False
-                    obj = cls(parent=self, name=name, subItem=subContents.get('subItem', {}) ,build=False)
+                    obj = cls(parent=self, name=name, subItem=subContents.get('subItem', {}), build=False)
                 else:
                     obj = cls(parent=self, name=name, contents=subContents)
-            else:
-                try:
-                    if len(subContents) == 0:
-                        obj = cls(parent=self, name=name, build=False)
-                    elif CCP4Data.isCollectionClass(cls):
-                        buildInInit = False
-                        obj = cls(parent=self, name=name, subItem=subContents.get('subItem', {}), build=False)
-                    else:
-                        obj = cls(parent=self, name=name, contents=subContents)
-                except CException as e:
-                    rv.extend(e)
-                except:
-                    rv.append(self.__class__, 104, 'Class: ' + className + ' specified for: ' + name, name=self.objectPath())
+            except CException as e:
+                rv.extend(e)
+            except:
+                rv.append(self.__class__, 104, 'Class: ' + className + ' specified for: ' + name, name=self.objectPath())
             #print 'makeDataObjectFromEtree',name,type(obj),qEle
             if obj is not None:
                 if qEle is not None:

@@ -29,7 +29,6 @@ import traceback
 from lxml import etree
 from PySide2 import QtCore, QtGui, QtWebEngineWidgets, QtWidgets
 
-from ..core import CCP4Config
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CException, Severity
 from ..core.CCP4Preferences import PREFERENCES
@@ -467,8 +466,6 @@ class CSubJobReport(QtCore.QObject):
         jobId = int(idText[5:])
         openJob = CCP4DbUtils.COpenJob(jobId=jobId)
         generator = CCP4ReportGenerator.CReportGenerator(jobId=openJob.jobId,jobStatus=openJob.status)
-        if CCP4Config.DEVELOPER():
-            reportFile, newPageOrNewData = generator.makeReportFile()
         try:
             reportFile, newPageOrNewData = generator.makeReportFile()
         except CException as e:

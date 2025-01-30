@@ -33,7 +33,6 @@ from lxml import etree
 from PySide2 import QtCore
 
 from . import CCP4Annotation
-from . import CCP4Config
 from . import CCP4Container
 from . import CCP4Data
 from . import CCP4DataManager
@@ -1109,18 +1108,14 @@ class CXmlDataFile(CDataFile):
         elif not isinstance(bodyEtree, etree._Element):
             traceback.print_stack()
             raise CException(self.__class__, 1006, fileName, name=self.objectPath())
-        if CCP4Config.DEVELOPER():
-            text = etree.tostring(bodyEtree, pretty_print=True, xml_declaration=True)
+        try:
+            text = etree.tostring(bodyEtree, pretty_print=True, xml_declaration=True) # KJS - Code is broken here. Fix in.
+        except:
+            raise CException(self.__module__, 1007, fileName)
+        try:
             CCP4Utils.saveFile(fileName=fileName, text=text, overwrite=1)
-        else:
-            try:
-                text = etree.tostring(bodyEtree, pretty_print=True, xml_declaration=True) # KJS - Code is broken here. Fix in.
-            except:
-                raise CException(self.__module__, 1007, fileName)
-            try:
-                CCP4Utils.saveFile(fileName=fileName, text=text, overwrite=1)
-            except:
-                raise CException(self.__module__, 1008, fileName)
+        except:
+            raise CException(self.__module__, 1008, fileName)
 
     def makeI2XmlDataFile(self, fileName=None, overWrite=False, header=None, **kw):
         if not self.fullPath.exists():
@@ -1257,27 +1252,20 @@ class CI2XmlDataFile(CXmlDataFile):
             if len(root.findall('./' + CI2XmlDataFile.BODY_TAG)) > 0:
                 root.remove(root.findall('./' + CI2XmlDataFile.BODY_TAG))
             root.append(bodyEtree)
-        if CCP4Config.DEVELOPER():
-            if useLXML:
+        if useLXML:
+            try:
                 text = etree.tostring(doc, pretty_print=True, xml_declaration=True)
-                CCP4Utils.saveFile(fileName=fileName, text=text,overwrite=1)
-            else:
-                doc.write(os.path.normpath(str(fileName)), encoding = "ASCII", xml_declaration = True)  
+            except:
+                raise CException(self.__module__, 1007, fileName)
+            try:
+                CCP4Utils.saveFile(fileName=fileName, text=text, overwrite=1)
+            except:
+                raise CException(self.__module__, 1008, fileName)
         else:
-            if useLXML:
-                try:
-                    text = etree.tostring(doc, pretty_print=True, xml_declaration=True)
-                except:
-                    raise CException(self.__module__, 1007, fileName)
-                try:
-                    CCP4Utils.saveFile(fileName=fileName, text=text, overwrite=1)
-                except:
-                    raise CException(self.__module__, 1008, fileName)
-            else:
-                try:
-                    doc.write(os.path.normpath(str(fileName)), encoding = "ASCII", xml_declaration = True)  
-                except:
-                    raise CException(self.__module__, 1008, fileName)
+            try:
+                doc.write(os.path.normpath(str(fileName)), encoding = "ASCII", xml_declaration = True)  
+            except:
+                raise CException(self.__module__, 1008, fileName)
 
 
 def compareEtreeNodes(node1, node2):

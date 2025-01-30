@@ -36,7 +36,7 @@ from .. import qtgui
 from ..qtgui import CCP4DefEd
 from ..qtgui import CCP4Widgets
 from ..utils.QApp import QTAPPLICATION
-from .CCP4Config import DEVELOPER, GRAPHICAL
+from .CCP4Config import GRAPHICAL
 from .CCP4ErrorHandling import CException
 
 
@@ -270,15 +270,12 @@ class CDataManager:
             qualis.update(qualifiers)
         except:
             raise CException(self.__class__, 106)
-        if DEVELOPER():
+        try:
             widget = widgetClass(parent=parentWidget, model=model, qualifiers=qualis)
-        else:
-            try:
-                widget = widgetClass(parent=parentWidget, model=model, qualifiers=qualis)
-            except CException as e:
-                raise e
-            except:
-                raise CException(self.__class__, 108, stack=False)
+        except CException as e:
+            raise e
+        except:
+            raise CException(self.__class__, 108, stack=False)
         return widget
 
     def buildQStandardItemModel(self, parent=None, mode=None):

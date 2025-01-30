@@ -192,7 +192,6 @@ def InstallSaveToi2MenuItem(workDirectory):
                     self.sequenceView.itemDelegate().setColumnMapping(mappings[i],i)
                     #print "Set",i,len(mappings[i])
                   self.resetModelandView(checkStates)
-                  #if not global_definitions.DEVELOPER(): return
 
                   self.updateUDDs()
                   self.applySelectionsFromDispobjs()

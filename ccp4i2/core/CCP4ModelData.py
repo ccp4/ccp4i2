@@ -45,12 +45,10 @@ import iotbx
 
 from . import CCP4Data
 from . import CCP4File
-from . import CCP4PluginScript
 from . import CCP4Residues
 from . import CCP4SelectionTree
 from . import CCP4Utils
 from ..qtgui import CCP4StyleSheet
-from ..wrappers.libcheck.script import libcheck
 from .CCP4ErrorHandling import CErrorReport, CException, Severity
 from .CCP4ProcessManager import PROCESSMANAGER
 from .CCP4ProjectsManager import PROJECTSMANAGER
@@ -854,49 +852,6 @@ class CDictDataFile(CCP4File.CDataFile):
         else:
             return CCP4File.CDataFile.saveToDb(self)
 
-    def mergeInDictFiles(self, dictFileList=[], parentWorkDirectory=None):
-        #print 'CDictDataFile.mergeInDictFiles', dictFileList, parentWorkDirectory
-        err = CErrorReport()
-        try:
-            wrapper = libcheck.libcheck(self)
-        except:
-            err.append(self.__class__, 201, name=self.objectName())
-            return None, err
-        try:
-            indx = 1
-            myDir = os.path.join(parentWorkDirectory, 'libcheck_' + str(indx))
-            while os.path.exists(myDir):
-                indx += 1
-                myDir = os.path.join(parentWorkDirectory, 'libcheck_' + str(indx))
-            os.mkdir(myDir)
-            wrapper.workDirectory = myDir
-        except:
-            err.append(self.__class__, 202, name=self.objectPath())
-            return None, err
-        try:
-            wrapper.container.controlParameters.RUN_MODE = 'MERGE'
-            wrapper.container.inputData.DICTLIB.setFullPath(self.__str__())
-            for dictFile in dictFileList:
-                if isinstance(dictFile, CCP4File.CDataFile):
-                    dictFile=dictFile.fullPath.__str__()
-                wrapper.container.inputData.MERGELIST.append(dictFile)
-        except:
-            err.append(self.__class__, 203, name=self.objectPath())
-            return None, err
-        try:
-            status = wrapper.process()
-            if status != CCP4PluginScript.CPluginScript.SUCCEEDED:
-                err.append(self.__class__, 204, name=self.objectPath())
-                return None, err
-            else:
-                return self.__str__(), err
-        except CException as e:
-            err.append(e)
-            return None,err
-        except Exception as e:
-            print(e)
-            err.append(self.__class__, 205, name=self.objectPath())
-            return self.__str__(),err
 
 class CTLSDataFile(CCP4File.CDataFile):
     '''A refmac TLS file'''

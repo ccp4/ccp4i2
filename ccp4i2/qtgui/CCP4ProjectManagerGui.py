@@ -274,17 +274,14 @@ class CNewProjectGui(QtWidgets.QDialog):
          QtWidgets.QMessageBox.warning(self,'Error making directory','Error making directory: '+directory)
          return
 
-    if DEVELOPER():
+    try:
       projectId = PROJECTSMANAGER().createProject(projectName=name0,projectPath=directory)
-    else:
-      try:
-        projectId = PROJECTSMANAGER().createProject(projectName=name0,projectPath=directory)
-      except CException as e:
-        warningMessage(e, parent=self)
-        return
-      except:
-        QtWidgets.QMessageBox.warning(self,'Error creating project','Unknown error creating project')
-        return
+    except CException as e:
+      warningMessage(e, parent=self)
+      return
+    except:
+      QtWidgets.QMessageBox.warning(self,'Error creating project','Unknown error creating project')
+      return
 
     self.descriptionWidget.save(projectId)
 
@@ -1807,11 +1804,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
         mess = QtWidgets.QMessageBox.warning(self,'Export project',errText)
         return
 
-    #if DEVELOPER():
-    if False:
-      excludeI2files = self.exportOptionsWidget.excludeI2files.isChecked()
-    else:
-      excludeI2files = False
+    excludeI2files = False
 
     #print 'handleExport2',after,jobList
     self.exportOptionsWidget.close()
