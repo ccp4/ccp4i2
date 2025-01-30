@@ -523,18 +523,19 @@ class refmac_i2(CPluginScript):
                     self.appendCommandScript("HYDROGEN DFRACTION ALL")
                  elif self.container.controlParameters.HD_FRACTION_TYPE.__str__() == 'POLAR':
                     self.appendCommandScript("HYDROGEN DFRACTION POLAR")
-              if str(self.container.controlParameters.HYDR_ALL) == 'YES':
-                 if self.container.controlParameters.HD_INIT.__str__() == 'DEUTERIUM':
+                 if str(self.container.controlParameters.HYDR_ALL) == 'YES':
+                    if self.container.controlParameters.HD_INIT.__str__() == 'DEUTERIUM':
+                       self.appendCommandScript("HYDROGEN DFRACTION INIT")
+                    elif self.container.controlParameters.HD_INIT.__str__() == 'MIXTURE':
+                       self.appendCommandScript("HYDROGEN DFRACTION INIT REFINEABLE 1 UNREFINEABLE 0")
+                 elif str(self.container.controlParameters.HYDR_ALL) == 'ALL':
+                    if self.container.controlParameters.HD_INIT_HALL.__str__() == 'DEUTERIUM':
+                       self.appendCommandScript("HYDROGEN DFRACTION INIT")
+                    elif self.container.controlParameters.HD_INIT_HALL.__str__() == 'MIXTURE':
+                       self.appendCommandScript("HYDROGEN DFRACTION INIT REFINEABLE 1 UNREFINEABLE 0")
+              else:  # not self.container.controlParameters.HD_FRACTION:
+                 if self.container.controlParameters.HD_INIT_NOHDREF:
                     self.appendCommandScript("HYDROGEN DFRACTION INIT")
-                 elif self.container.controlParameters.HD_INIT.__str__() == 'MIXTURE':
-                    self.appendCommandScript("HYDROGEN DFRACTION INIT REFINEABLE 1 UNREFINEABLE 0")
-              elif str(self.container.controlParameters.HYDR_ALL) == 'ALL':
-                 if self.container.controlParameters.HD_INIT_HALL.__str__() == 'DEUTERIUM':
-                    self.appendCommandScript("HYDROGEN DFRACTION INIT")
-                 elif self.container.controlParameters.HD_INIT_HALL.__str__() == 'MIXTURE':
-                    self.appendCommandScript("HYDROGEN DFRACTION INIT REFINEABLE 1 UNREFINEABLE 0")
-              elif self.container.controlParameters.HD_INIT_NOHDREF:
-                 self.appendCommandScript("HYDROGEN DFRACTION INIT")
 
         if self.container.controlParameters.RES_CUSTOM:
             if self.container.controlParameters.RES_MIN.isSet() and self.container.controlParameters.RES_MAX.isSet():
