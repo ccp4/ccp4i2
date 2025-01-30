@@ -24,18 +24,14 @@ import importlib
 import inspect
 import json
 import os
-import re
 
 from PySide2 import QtGui, QtWidgets
 
-from . import CCP4Annotation
 from . import CCP4Data
 from . import CCP4Utils
 from .. import core
 from .. import qtgui
-from ..qtgui import CCP4DefEd
 from ..qtgui import CCP4Widgets
-from ..utils.QApp import QTAPPLICATION
 from .CCP4Config import GRAPHICAL
 from .CCP4ErrorHandling import CException
 
@@ -300,38 +296,3 @@ class CDataManager:
                             clsItem.setToolTip(cls.__doc__)
                         moduleItem.appendRow(clsItem)
         return model
-
-    def makeHtmlClassListing(self):
-        text = {}
-        indexText = ''
-        pyFileList = CCP4Utils.globSearchPath(self.searchPath(), '*.py')
-        for pyFile in pyFileList:
-            if os.path.split(pyFile)[1] not in self.EXCLUDE_FILES:
-                module, err = CCP4Utils.importFileModule(pyFile)
-                moduleName = os.path.splitext(os.path.basename(pyFile))[0]
-                text = '<html>\n'
-                clsList = inspect.getmembers(module, inspect.isclass)
-                nClass = 0
-                for name, cls in clsList:
-                    if issubclass(cls,CCP4Data.CData) and not name in self.EXCLUDE_CLASSES:
-                        nClass = nClass + 1
-                        info = CCP4DefEd.CClassInfo(name, QTAPPLICATION())
-                        text = text + info.getInfo(html=False)
-                text = text + '</html>\n'
-                if nClass > 0:
-                    fileName = os.path.join(CCP4Utils.getCCP4I2Dir(), 'docs', 'developers', 'modules', moduleName + '.html')
-                    CCP4Utils.saveFile(fileName=fileName, text=text)
-                    indexText = indexText + '<h4>' + moduleName + '</h4>\n'
-                    for name,cls in clsList:
-                        if issubclass(cls, CCP4Data.CData) and not name in self.EXCLUDE_CLASSES:
-                            doc = cls.__doc__
-                            if doc is None:
-                                doc = ''
-                            indexText = indexText + '<a href="./' + moduleName + '.html#' + name + '">' + name + '</a> ' + doc+ '<br/>\n'
-        index0Text = CCP4Utils.readFile(fileName= os.path.join(CCP4Utils.getCCP4I2Dir(),'docs','developers','modules', 'index0.html'))
-        allText = re.sub('INSERT_CLASS_LINKS_HERE', indexText, index0Text)
-        t = CCP4Annotation.CTime()
-        t.setCurrentTime()
-        allText = re.sub('INSERT_DATE', str(t), allText)
-        CCP4Utils.saveFile(fileName=os.path.join(CCP4Utils.getCCP4I2Dir(), 'docs', 'developers', 'modules', 'index.html'), text=allText)
-        return
