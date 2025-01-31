@@ -1,5 +1,11 @@
 # CCP4i2 Changelog
 
+## [2.2.2] - 2025-01-31
+
+- Fix to widgets loading a data file from the database
+- Fix to export imported files and project files with a job selection
+- Comparing models before and after refinement by Servalcat in Iris
+
 ## [2.2.1] - 2025-01-20
 
 - Updated ModelCraft control parameters
