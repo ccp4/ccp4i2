@@ -5,65 +5,49 @@ from PySide2 import QtCore, QtWidgets
 from ..core.CCP4Config import GRAPHICAL
 
 
-MYAPPLICATION = None
+_QTAPPLICATION = None
 
 
 def QTAPPLICATION(graphical=None):
-    global MYAPPLICATION
-    # NB can not use QApplication.instance() as it returns the QApplication object
-    # rather than CApplication. Suppose could reimplement CApplication.instance() but
-    # would just do the same as this function.
-    if graphical is None:
-        graphical = GRAPHICAL()
-    if MYAPPLICATION is None:
-        #print 'Starting Qt, graphical mode:',graphical
+    global _QTAPPLICATION
+    if _QTAPPLICATION is None:
+        if graphical is None:
+            graphical = GRAPHICAL()
         if graphical:
-            MYAPPLICATION = CGuiApplication(sys.argv)
+            _QTAPPLICATION = CGuiApplication(sys.argv)
         else:
-            MYAPPLICATION = CApplication(sys.argv)
-    return MYAPPLICATION
+            _QTAPPLICATION = CApplication(sys.argv)
+    return _QTAPPLICATION
 
 
 class CApplication(QtCore.QCoreApplication):
 
     doCheckForFinishedJobs = QtCore.Signal()
 
-    def __init__(self,args):
-        QtCore.QCoreApplication.__init__(self,args)
-
-        def mainWindow(self):
-            return None
-      
-        def objectPath(self):
-            return ''
+    def __init__(self, args):
+        super().__init__(self, args)
 
 
 class CGuiApplication(QtWidgets.QApplication):
 
     doCheckForFinishedJobs = QtCore.Signal()
-
     prefsChanged = QtCore.Signal()
-    def __init__(self,args):
-        #print 'CGuiApplication.__init__',self
-        QtWidgets.QApplication.__init__(self,args)
-        #CCP4StyleSheet.setStyleSheet(self)
+
+    def __init__(self, args):
+        super().__init__(self, args)
 
     def objectPath(self):
         return ''
 
-    def setNamedStyle(self,styleName):
-        print('CGuiApplication.setStyle',styleName)
+    def setNamedStyle(self, styleName):
+        print('CGuiApplication.setStyle', styleName)
         factory = QtWidgets.QStyleFactory()
         self.setStyle(factory.create(str(styleName)))
 
     def getStyleKeys(self):
         factory = QtWidgets.QStyleFactory()
-        keyList = list(factory.keys())
-        print('getStyleKeys',type(keyList),keyList)
-        pyKeyList = []
-        for item in keyList: pyKeyList.append(str(item))
-        return pyKeyList
+        return map(str, factory.keys())
 
     def screenSize(self):
         rect = self.desktop().screenGeometry()
-        return rect.width(),rect.height()
+        return rect.width(), rect.height()
