@@ -30,7 +30,6 @@ from lxml import etree
 from PySide2 import QtCore
 
 from . import CCP4DbApi
-from .. import __version__
 from ..core import CCP4Container
 from ..core import CCP4Data
 from ..core import CCP4File
