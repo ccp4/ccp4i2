@@ -17,13 +17,12 @@ import sys
 import tempfile
 
 from . import startup
-from ..core import CCP4Config
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import Severity
 from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..dbapi import CCP4DbApi
 from ..qtcore import CCP4Export
-from .QApp import CGuiApplication
+from .QApp import QTAPPLICATION
 
 
 def ImportZipFile(compressedFile,destDirName):
@@ -126,8 +125,7 @@ def ImportAll(zipDir,dbFile,destDirName,appendDB):
         print(error)
         return
 
-    app = CGuiApplication(sys.argv)
-    CCP4Config.CONFIG().set('graphical', False)
+    QTAPPLICATION(graphical=False)
 
     zipFiles = glob.glob(os.path.join(zipDir,"*.zip"))
     

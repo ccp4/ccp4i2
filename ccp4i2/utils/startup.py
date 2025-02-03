@@ -147,9 +147,7 @@ def createMissingDATABASEdbXML():
 def startBrowser(args, app=None, splash=None):
     # KJS: Removed the linux check. Unclear why it's in here.
     # if sys.platform == "linux2": win = QtWidgets.QWidget(); splash.finish(win); splash.show()
-    config = loadConfig()
-    config.set('graphical', True)
-    config.set('qt', True)
+    CCP4Config.CONFIG(graphical=True)
     kw = {'graphical' : True}
     ii = 0
     while ii < len(args):
@@ -285,17 +283,6 @@ def copyDB(origFileName,f2):
         print("Fail cur.executescript(sql) in startup copyDB")# ,com KJS. Not sure what this was meant to print.
         conbak.close()
         raise
-    """p = re.compile(";[\r\n]+")
-    sql_commands = p.split(sql)
-    for com in sql_commands:
-        if com == "COMMIT":
-            continue
-        try:
-            cur.execute(com)
-        except:
-            print("Fail",com)
-            conbak.close()
-            raise"""
     conbak.commit()
     print("Saved backup database to",f2)
     conbak.close()
@@ -440,10 +427,6 @@ def startDb(parent=None, fileName=None, mode='sqlite', userName=None, userPasswo
         raise DatabaseFailException
 
     return db
-
-def loadConfig():
-    config = CCP4Config.CONFIG(os.path.join(CCP4Utils.getDotDirectory(), 'configs', 'ccp4i2_config.params.xml'))
-    return config
 
 
 def  startHTTPServer(parent=None, port=None, **kw):

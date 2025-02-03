@@ -530,8 +530,6 @@ class CMenuBar(QtWidgets.QMenuBar):
                                     ['Utilities', '&Utilities'],['Help', 'Help/Tutorials']]:
             print("Adding menu",menuName, menuTitle)
             self.addMenu(menuName, menuTitle)
-        #self.menuDefinitions['File'] = ['open_tab','open_browser', 'open', 'sep','close_window', 'quit']
-        #self.menuDefinitions['Edit'] = ['find','preferences','ccp4i2_config']
 
 #It is a bit cheeky inserting help_about here, but we know that OS X will intercept this and stick in Application Menu.
 #And the 'Edit' menu does not seem to be redrawn (at present!). I guess a special '_dummy' menu as MG does it would allow

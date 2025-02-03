@@ -6,12 +6,11 @@ import time
 
 from PySide2 import QtCore
 
-from ..core import CCP4Config
 from ..core import CCP4Utils
 from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..dbapi import CCP4DbApi
 from ..qtcore import CCP4Export
-from .QApp import CGuiApplication
+from .QApp import QTAPPLICATION
 
 
 class CompressClass(QtCore.QObject):
@@ -68,8 +67,7 @@ def startDb(parent=None, fileName=None, mode='sqlite', userName=None, userPasswo
 
 
 def main():
-    app = CGuiApplication(sys.argv)
-    CCP4Config.CONFIG().set('graphical', False)
+    app = QTAPPLICATION(graphical=False)
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--dbFile', help='User-specified database filename')

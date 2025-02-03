@@ -40,7 +40,6 @@ class CGuiApplication(QtWidgets.QApplication):
         return ''
 
     def setNamedStyle(self, styleName):
-        print('CGuiApplication.setStyle', styleName)
         factory = QtWidgets.QStyleFactory()
         self.setStyle(factory.create(str(styleName)))
 

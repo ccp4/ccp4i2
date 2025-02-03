@@ -27,9 +27,9 @@ import time
 
 from PySide2 import QtCore
 
-from . import CCP4Config
 from . import CCP4Utils
 from ..utils.QApp import QTAPPLICATION
+from .CCP4Config import CONFIG
 from .CCP4ErrorHandling import CErrorReport, CException, Severity
 from .CCP4Preferences import PREFERENCES
 from .CCP4ProjectsManager import PROJECTSMANAGER
@@ -191,23 +191,6 @@ class CProcessManager(QtCore.QObject):
             self.processInfo[pid]['readyReadStandardOutputHandler'] = readyReadStandardOutputHandler
             self.processInfo[pid]['logFile'] = None
             useQProcess = True
-        """
-        try:
-          argsOut = '['
-          if len(argList)>1:
-            for item in argList[1:]: argsOut = argsOut + '"'+item+'",'
-            argsOut = argsOut[0:-1]
-          argsOut = argsOut + ']'
-          textOut = 'PROCESSMANAGER().startProcess("'+cmd+'", '+argsOut
-          if inputFile is not None:textOut = textOut +', "' + inputFile+'"'
-          if logFile is not None: textOut = textOut +', "'+logFile+'"'
-          textOut = textOut +')'
-          print textOut
-          sys.stdout.flush()
-        except:
-          print 'Error printing PROCESSMANAGER().startProcess() command'
-          print 'argList',argList
-        """
         try:
             textOut = cmd
             for item in argList[1:]:
@@ -264,7 +247,7 @@ class CProcessManager(QtCore.QObject):
         else:
             # Use QProcess
             #print('before startQProcess', len(self.runningProcesses))
-            if len(self.runningProcesses) < CCP4Config.CONFIG().maxRunningProcesses:
+            if len(self.runningProcesses) < CONFIG().maxRunningProcesses:
                 self.startQProcess(pid)
             else:
                 self.pendingProcesses.append(pid)
@@ -340,11 +323,6 @@ class CProcessManager(QtCore.QObject):
         else:
             p.insert('PATH', os.path.join(cootDir,'bin') + ';' + os.path.join(cootDir, 'lib'))
         return p
-        """
-              if not exist "%CLIBD_MON%" (
-          echo no $CLIBD_MON found setting COOT_REFMAC_LIB_DIR
-          set COOT_REFMAC_LIB_DIR=%COOT_SHARE%\coot\lib
-        """
 
     @QtCore.Slot(str,str)
     def printFinished(self, code, stat):

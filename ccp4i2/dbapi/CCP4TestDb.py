@@ -8,9 +8,9 @@ from PySide2 import QtCore
 
 from . import CCP4DbApi
 from . import CCP4DbUtils
-from ..core import CCP4Config
 from ..core import CCP4File
 from ..core import CCP4Utils
+from ..core.CCP4Config import CONFIG
 from ..core.CCP4ErrorHandling import Severity
 from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..core.CCP4QtObject import CObject
@@ -62,7 +62,7 @@ class CTestDb(CObject):
     for mode in ['1','2','3','4','5'][0:nDabases]:
       os.mkdir(self.projectsDir(mode))
       self.dbApi.openDb(self.sqliteFile(mode),createDb=True)      
-      config = CCP4Config.CConfig(dbFile=self.sqliteFile(mode))
+      config = CONFIG(dbFile=self.sqliteFile(mode))
       config.saveDataToXml(self.configFile(mode))
 
   def sqliteFile(self,mode):

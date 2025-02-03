@@ -142,7 +142,7 @@ class CServerParamsDialog(QtWidgets.QDialog):
         self.labels = { }
         QtWidgets.QDialog.__init__(self,parent)
         try:
-          self.loadConfig()
+          self.container = SERVERSETUP()
         except:
           print('Failed loading server config file from CCP4I2/local_setup/servers_config.params.xml')
         
@@ -290,11 +290,6 @@ See under Utilities -> System administrator tools''')
           self.labels['password'].setText('Your key file password')
           self.widgets['password'].setToolTip('Your key file password')
 
-        
-      
-    def loadConfig(self):
-      self.container = SERVERSETUP()
-          
     @QtCore.Slot()
     def accept(self):
         QtWidgets.QDialog.accept(self)

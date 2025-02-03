@@ -5,9 +5,9 @@ import sys
 
 from PySide2 import QtCore
 
-from ..core import CCP4Config
 from ..core import CCP4File
 from ..core import CCP4PluginScript
+from ..core.CCP4Config import CONFIG
 from ..core.CCP4Utils import getCCP4I2Dir
 from ..utils.QApp import QTAPPLICATION
 
@@ -30,15 +30,10 @@ def main():
     top_path = getCCP4I2Dir()
     print('runTask Script raw Input Arguments', sys.argv)
     print("runTask Script top_path(CCPI2dir) and __file__ variables", top_path, __file__)
-    graphical = False
     # Use the specified config file or dbFile
     if args.configFile is not None:
-        config = CCP4Config.CONFIG(args.configFile)
         print('Running plugin using config file:', args.configFile)
-    else:
-        print("what is going on ? loadConfig")
-        config = loadConfig()
-    config.set('graphical', graphical)
+    config = CONFIG(args.configFile, graphical=False)
     if args.dbFile is not None and os.path.exists(args.dbFile):
         print('Running plugin using database file:', args.dbFile)
         config.set('dbFile', args.dbFile)
@@ -60,7 +55,7 @@ def main():
     else:
         #print 'Run ASYNCHRONOUS task',xmlHeader.pluginName
         print('Running QApplication to support asyncronous sub-processes')
-        app = QTAPPLICATION(graphical=graphical)
+        app = QTAPPLICATION(graphical=False)
         runPlugin = CCP4PluginScript.CRunPlugin(app, top_path, comFilePath=comFilePath, compressedFile=compressedFile, dbXmlFile=args.dbXmlFile)
         app.aboutToQuit.connect(functools.partial(quitThread, runPlugin))
         runPlugin.finished.connect(functools.partial(quitThread, runPlugin))

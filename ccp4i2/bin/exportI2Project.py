@@ -5,11 +5,10 @@ import time
 
 from PySide2 import QtCore
 
-from ..core import CCP4Config
 from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..dbapi import CCP4DbApi
 from ..qtcore import CCP4Export
-from ..utils.QApp import CGuiApplication
+from ..utils.QApp import QTAPPLICATION
 
 
 class CompressClass(QtCore.QObject):
@@ -66,15 +65,12 @@ def startDb(parent=None, fileName=None, mode='sqlite', userName=None, userPasswo
 
 
 def main():
-
-    app = CGuiApplication(sys.argv)
-    CCP4Config.CONFIG().set('graphical', False)
+    app = QTAPPLICATION(graphical=False)
 
     pm = PROJECTSMANAGER()
     db = startDb(pm, mode='sqlite')
     pm.setDatabase(db)
 
-    #projects = PROJECTSMANAGER().db().getProjectDirectoryList()
     projects = sys.argv[1].split(",")
 
     @QtCore.Slot(dict)

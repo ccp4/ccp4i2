@@ -27,9 +27,9 @@ from . import CCP4File, CCP4Utils
 from .. import __version__
 
 
-def CONFIG(fileName=None):
+def CONFIG(fileName=None, **kw):
     if CConfig.insts is None:
-        CConfig(fileName)
+        CConfig(fileName, **kw)
     return CConfig.insts
 
 

@@ -8,10 +8,10 @@ import time
 from lxml import etree
 from PySide2 import QtCore
 
-from ..core import CCP4Config
 from ..core import CCP4DataManager
 from ..core import CCP4ProjectBasedTesting
 from ..core import CCP4Utils
+from ..core.CCP4Config import CONFIG
 from ..qtcore import CCP4Export
 from ..utils import startup
 from ..utils.QApp import QTAPPLICATION
@@ -40,7 +40,6 @@ def main():
     # Redirect stderr to stdout
     sys.stderr = sys.stdout
     # print 'testi2sys sys.argv',sys.argv
-    graphical = False
     parser = argparse.ArgumentParser(description='Run CCP4i2 test project')
     parser.add_argument('-x', '--xmlOut',action='store_true', default=False)
     parser.add_argument('-c', '--configFile',help='Path to config file', default=None)
@@ -94,11 +93,8 @@ def main():
 
     # Use the specified config file or dbFile
     if configFile is not None:
-        config = CCP4Config.CONFIG(configFile)
-        print('Running tests using config file:',configFile)
-    else:
-        config = startup.loadConfig()
-    config.set('graphical',graphical)
+        print('Running tests using config file:', configFile)
+    config = CONFIG(configFile, graphical=False)
 
     if outputDirectory is None:
         outputDirectory = os.getcwd()
@@ -125,7 +121,7 @@ def main():
 
     #sys.argv =  [sys.argv[0]]
 
-    app = QTAPPLICATION(graphical=graphical)
+    app = QTAPPLICATION(graphical=False)
     pm = startup.startProjectsManager(dbFileName=dbFile,loadDiagnostic=False)
     pm.startCheckForFinishedJobs()
     jc = startup.startJobController()
