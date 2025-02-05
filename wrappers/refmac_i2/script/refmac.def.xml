@@ -483,17 +483,13 @@ hydrogens are only to be used if already present in the input coordinate file.</
               <default>POLAR</default>
             </qualifiers>
           </content>
-          <content id="HD_INIT">
-            <className>CString</className>
+          <content id="HD_INIT_TOGGLE">
+            <className>CBoolean</className>
             <qualifiers>
-              <onlyEnumerators>True</onlyEnumerators>
-              <enumerators>NO,DEUTERIUM,MIXTURE</enumerators>
-              <menuText>No - assumes H/D fraction has been refined before,All to D - for perdeuterated crystals,To D for exchangable atoms; H for others - for H/D exchange experiments</menuText>
-              <default>NO</default>
-              <toolTip>If H/D fractions have not already been refined then initialisation is required. If they have already been refined then they should not require reinitialisation.</toolTip>
+             <default>True</default>
             </qualifiers>
           </content>
-          <content id="HD_INIT_HALL">
+          <content id="HD_INIT">
             <className>CString</className>
             <qualifiers>
               <onlyEnumerators>True</onlyEnumerators>
@@ -510,7 +506,6 @@ hydrogens are only to be used if already present in the input coordinate file.</
               <toolTip>Initialise H/D fractions: all to D - for perdeuterated crystals</toolTip>
             </qualifiers>
           </content>
-          
           <content id="USE_NCS">
             <className>CBoolean</className>
             <qualifiers>

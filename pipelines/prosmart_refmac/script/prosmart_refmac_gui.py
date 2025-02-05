@@ -560,16 +560,17 @@ class Cprosmart_refmac(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'widget', 'HYDR_USE', 'label', 'Use hydrogens during refinement'], toggle = ['HYDR_USE', 'open', [ False ] ])
     self.createLine( [ 'widget', 'HYDR_USE', 'label', 'Use hydrogens during refinement', 'widget', 'HYDR_ALL'], toggle = ['HYDR_USE', 'open', [ True ] ] )
 
+   
+    use_init = self.createLine([ 'widget', 'HD_INIT_TOGGLE', 'label', 'Initialise hydrogen/deuterium fractions' ], toggle = ['HYDR_USE', 'open', [ True ] ] )
+    self.createLine( [ 'label', '', 'widget', 'HD_INIT' ], toggle = ['HD_INIT_TOGGLE', 'open', [ True ] ], appendLine=use_init)
+    
     use_hd = self.createLine( [ 'widget', 'HD_FRACTION', 'label', 'Refine hydrogen/deuterium fractions' ], toggle = ['HYDR_USE', 'open', [ True ] ] )
     self.createLine( [ 'label', 'for', 'widget', 'HD_FRACTION_TYPE' ], toggleFunction=[self.ToggleNeutronModeHD,['HYDR_USE','HD_FRACTION']], appendLine=use_hd)
 
-    self.createLine( [ 'label', indent, 'label', 'Initialise H/D fractions', 'widget', 'HD_INIT' ], toggleFunction=[self.ToggleNeutronModeHD_YES,['HYDR_USE','HYDR_ALL','HD_FRACTION']])
-    self.createLine( [ 'label', indent, 'label', 'Initialise H/D fractions', 'widget', 'HD_INIT_HALL' ], toggleFunction=[self.ToggleNeutronModeHD_ALL,['HYDR_USE','HYDR_ALL','HD_FRACTION']])
-    self.createLine( [ 'label', indent + indent + '<i>If you do not want to initialise H/D fractions, use hydrogens only if present in file.</i>' ], toggleFunction=[self.ToggleNeutronModeHD_ALL,['HYDR_USE','HYDR_ALL','HD_FRACTION']])
-    self.createLine( [ 'widget', 'HD_INIT_NOHDREF', 'label', 'Initialise H/D fractions: all to D - for perdeuterated crystals' ], toggle = ['HD_FRACTION', 'open', [ False ] ])
 
     use_h = self.createLine( [ 'widget', 'H_REFINE', 'label', 'Refine hydrogen positions' ], toggle = ['HYDR_USE', 'open', [ True ] ] )
     self.createLine( [ 'label', 'for', 'widget', 'H_REFINE_SELECT' ], toggleFunction=[self.ToggleH_REFINE,['HYDR_USE','H_REFINE']], appendLine=use_h)
+    
     self.createLine( [ 'widget', 'H_TORSION', 'label', 'Use hydrogen torsion angle restraints' ], toggle = ['HYDR_USE', 'open', [ True ] ] )
 
     self.closeSubFrame()
