@@ -186,77 +186,59 @@ class validate_protein_report(Report):
         graph_div = parent.addDiv(style='float:left; margin-left:50px;')
         rama_graph = graph_div.addFlotGraph(title='Ramachandran Plot', select='.//Ramachandran', style='height:500px; width:500px; border:0px; float:left; padding:10px; padding-left:15px;')
 
-        if len(self.xmlnode.findall('.//Ramachandran/Favoured/Residue'))>0:
-            data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Favoured/Residue') if ("type" in x.attrib and x.attrib["type"] == "PRO")]]
-            if len(data)>0: rama_graph.addData(title='PRO_favoured_phi', data=data)
+        data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Favoured/Residue') if ("type" in x.attrib and x.attrib["type"] == "PRO")]]
+        rama_graph.addData(title='PRO_favoured_phi', data=data)
 
-        if len(self.xmlnode.findall('.//Ramachandran/Favoured/Residue'))>0:
-            data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Favoured/Residue') if ("type" in x.attrib and x.attrib["type"] == "PRO")]]
-            if len(data)>0: rama_graph.addData(title='PRO_favoured_psi', data=data)
+        data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Favoured/Residue') if ("type" in x.attrib and x.attrib["type"] == "PRO")]]
+        rama_graph.addData(title='PRO_favoured_psi', data=data)
 
-        if len(self.xmlnode.findall('.//Ramachandran/Allowed/Residue'))>0:
-            data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Allowed/Residue') if ("type" in x.attrib and x.attrib["type"] == "PRO")]]
-            if len(data)>0: rama_graph.addData(title='PRO_Allowed_phi' , data=data)
+        data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Allowed/Residue') if ("type" in x.attrib and x.attrib["type"] == "PRO")]]
+        rama_graph.addData(title='PRO_Allowed_phi' , data=data)
 
-        if len(self.xmlnode.findall('.//Ramachandran/Allowed/Residue'))>0:
-            data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Allowed/Residue') if ("type" in x.attrib and x.attrib["type"] == "PRO")]]
-            if len(data)>0: rama_graph.addData(title='PRO_Allowed_psi' , data=data)
+        data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Allowed/Residue') if ("type" in x.attrib and x.attrib["type"] == "PRO")]]
+        rama_graph.addData(title='PRO_Allowed_psi' , data=data)
 
-        if len(self.xmlnode.findall('.//Ramachandran/Outliers/Residue'))>0:
-            data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Outliers/Residue') if ("type" in x.attrib and x.attrib["type"] == "PRO")]]
-            if len(data)>0: rama_graph.addData(title='PRO_Outliers_phi', data=data)
+        data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Outliers/Residue') if ("type" in x.attrib and x.attrib["type"] == "PRO")]]
+        rama_graph.addData(title='PRO_Outliers_phi', data=data)
 
-        if len(self.xmlnode.findall('.//Ramachandran/Outliers/Residue'))>0:
-            data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Outliers/Residue') if ("type" in x.attrib and x.attrib["type"] == "PRO")]]
-            if len(data)>0: rama_graph.addData(title='PRO_Outliers_psi', data=data)
+        data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Outliers/Residue') if ("type" in x.attrib and x.attrib["type"] == "PRO")]]
+        rama_graph.addData(title='PRO_Outliers_psi', data=data)
 
-        if len(self.xmlnode.findall('.//Ramachandran/Favoured/Residue'))>0:
-            data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Favoured/Residue') if ("type" in x.attrib and x.attrib["type"] == "GLY")]]
-            if len(data)>0: rama_graph.addData(title='GLY_favoured_phi', data=data)
+        data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Favoured/Residue') if ("type" in x.attrib and x.attrib["type"] == "GLY")]]
+        rama_graph.addData(title='GLY_favoured_phi', data=data)
 
-        if len(self.xmlnode.findall('.//Ramachandran/Favoured/Residue'))>0:
-            data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Favoured/Residue') if ("type" in x.attrib and x.attrib["type"] == "GLY")]]
-            if len(data)>0: rama_graph.addData(title='GLY_favoured_psi', data=data)
+        data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Favoured/Residue') if ("type" in x.attrib and x.attrib["type"] == "GLY")]]
+        rama_graph.addData(title='GLY_favoured_psi', data=data)
 
-        if len(self.xmlnode.findall('.//Ramachandran/Allowed/Residue'))>0:
-            data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Allowed/Residue') if ("type" in x.attrib and x.attrib["type"] == "GLY")]]
-            if len(data)>0: rama_graph.addData(title='GLY_Allowed_phi' , data=data)
+        data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Allowed/Residue') if ("type" in x.attrib and x.attrib["type"] == "GLY")]]
+        rama_graph.addData(title='GLY_Allowed_phi' , data=data)
 
-        if len(self.xmlnode.findall('.//Ramachandran/Allowed/Residue'))>0:
-            data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Allowed/Residue') if ("type" in x.attrib and x.attrib["type"] == "GLY")]]
-            if len(data)>0: rama_graph.addData(title='GLY_Allowed_psi' , data=data)
+        data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Allowed/Residue') if ("type" in x.attrib and x.attrib["type"] == "GLY")]]
+        rama_graph.addData(title='GLY_Allowed_psi' , data=data)
 
-        if len(self.xmlnode.findall('.//Ramachandran/Outliers/Residue'))>0:
-            data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Outliers/Residue') if ("type" in x.attrib and x.attrib["type"] == "GLY")]]
-            if len(data)>0: rama_graph.addData(title='GLY_Outliers_phi', data=data)
+        data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Outliers/Residue') if ("type" in x.attrib and x.attrib["type"] == "GLY")]]
+        rama_graph.addData(title='GLY_Outliers_phi', data=data)
 
-        if len(self.xmlnode.findall('.//Ramachandran/Outliers/Residue'))>0:
-            data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Outliers/Residue') if ("type" in x.attrib and x.attrib["type"] == "GLY")]]
-            if len(data)>0: rama_graph.addData(title='GLY_Outliers_psi', data=data)
+        data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Outliers/Residue') if ("type" in x.attrib and x.attrib["type"] == "GLY")]]
+        rama_graph.addData(title='GLY_Outliers_psi', data=data)
 
-        if len(self.xmlnode.findall('.//Ramachandran/Favoured/Residue'))>0:
-            data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Favoured/Residue') if ("type" in x.attrib and (x.attrib["type"] == "PRO" or x.attrib["type"] == "GLY"))]]
-            if len(data)>0: rama_graph.addData(title='RST_favoured_phi', data=data)
+        data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Favoured/Residue') if ("type" in x.attrib and (x.attrib["type"] != "PRO" and x.attrib["type"] != "GLY"))]]
+        rama_graph.addData(title='RST_favoured_phi', data=data)
 
-        if len(self.xmlnode.findall('.//Ramachandran/Favoured/Residue'))>0:
-            data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Favoured/Residue') if ("type" in x.attrib and (x.attrib["type"] == "PRO" or x.attrib["type"] == "GLY"))]]
-            if len(data)>0: rama_graph.addData(title='RST_favoured_psi', data=data)
+        data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Favoured/Residue') if ("type" in x.attrib and (x.attrib["type"] != "PRO" and x.attrib["type"] != "GLY"))]]
+        rama_graph.addData(title='RST_favoured_psi', data=data)
 
-        if len(self.xmlnode.findall('.//Ramachandran/Allowed/Residue'))>0:
-            data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Allowed/Residue') if ("type" in x.attrib and (x.attrib["type"] == "PRO" or x.attrib["type"] == "GLY"))]]
-            if len(data)>0: rama_graph.addData(title='RST_Allowed_phi' , data=data)
+        data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Allowed/Residue') if ("type" in x.attrib and (x.attrib["type"] != "PRO" and x.attrib["type"] != "GLY"))]]
+        rama_graph.addData(title='RST_Allowed_phi' , data=data)
 
-        if len(self.xmlnode.findall('.//Ramachandran/Allowed/Residue'))>0:
-            data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Allowed/Residue') if ("type" in x.attrib and (x.attrib["type"] == "PRO" or x.attrib["type"] == "GLY"))]]
-            if len(data)>0: rama_graph.addData(title='RST_Allowed_psi' , data=data)
+        data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Allowed/Residue') if ("type" in x.attrib and (x.attrib["type"] != "PRO" and x.attrib["type"] != "GLY"))]]
+        rama_graph.addData(title='RST_Allowed_psi' , data=data)
 
-        if len(self.xmlnode.findall('.//Ramachandran/Outliers/Residue'))>0:
-            data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Outliers/Residue') if ("type" in x.attrib and (x.attrib["type"] == "PRO" or x.attrib["type"] == "GLY"))]]
-            if len(data)>0: rama_graph.addData(title='RST_Outliers_phi', data=data)
+        data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Outliers/Residue') if ("type" in x.attrib and (x.attrib["type"] != "PRO" and x.attrib["type"] != "GLY"))]]
+        rama_graph.addData(title='RST_Outliers_phi', data=data)
 
-        if len(self.xmlnode.findall('.//Ramachandran/Outliers/Residue'))>0:
-            data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Outliers/Residue') if ("type" in x.attrib and (x.attrib["type"] == "PRO" or x.attrib["type"] == "GLY"))]]
-            if len(data)>0: rama_graph.addData(title='RST_Outliers_psi', data=data)
+        data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Outliers/Residue') if ("type" in x.attrib and (x.attrib["type"] != "PRO" and x.attrib["type"] != "GLY"))]]
+        rama_graph.addData(title='RST_Outliers_psi', data=data)
 
         # Add rest graph
         p = rama_graph.addPlotObject()
