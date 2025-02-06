@@ -1,5 +1,16 @@
 # CCP4i2 Changelog
 
+## [2.2.3] - 2025-02-05
+
+- Ramachandran plot fixes
+
+## [2.2.2] - 2025-01-31
+
+- Fix to widgets loading a data file from the database
+- Fix to export imported files and project files with a job selection
+- Comparing models before and after refinement by Servalcat in Iris
+- Updates for gemmi 0.7
+
 ## [2.2.1] - 2025-01-20
 
 - Updated ModelCraft control parameters

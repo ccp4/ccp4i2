@@ -80,16 +80,16 @@ class coordinate_selector(CPluginScript):
         st.setup_entities()
 
         for mod in st:
-            modEle = etree.SubElement(modelCompositionNode,"Model",id=mod.name)
+            modEle = etree.SubElement(modelCompositionNode,"Model",id=str(mod.num))
 
         for model in st:
             for chain in model:
                 for residue in chain:
                     if residue.entity_type == gemmi.EntityType.NonPolymer:
                         if len(residue) == 1 and residue[0].element.is_metal:
-                            lig = etree.SubElement(modelCompositionNode,"Metal",id="/"+model.name+"/"+chain.name+"/"+str(residue.seqid)+"("+residue.name+")")
+                            lig = etree.SubElement(modelCompositionNode,"Metal",id="/"+str(model.num)+"/"+chain.name+"/"+str(residue.seqid)+"("+residue.name+")")
                         else:
-                            lig = etree.SubElement(modelCompositionNode,"Ligand",id="/"+model.name+"/"+chain.name+"/"+str(residue.seqid)+"("+residue.name+")")
+                            lig = etree.SubElement(modelCompositionNode,"Ligand",id="/"+str(model.num)+"/"+chain.name+"/"+str(residue.seqid)+"("+residue.name+")")
 
         model = st[0]
 
