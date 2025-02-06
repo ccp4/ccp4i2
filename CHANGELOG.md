@@ -1,5 +1,9 @@
 # CCP4i2 Changelog
 
+## [2.2.3] - 2025-02-05
+
+- Ramachandran plot fixes
+
 ## [2.2.2] - 2025-01-31
 
 - Fix to widgets loading a data file from the database
