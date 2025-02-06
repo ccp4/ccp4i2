@@ -255,10 +255,13 @@ class validate_protein_report(Report):
             table_outliers.addData(title='Name',  data=[ x.attrib["type"] for x in self.xmlnode.findall('.//Ramachandran/Outliers/Residue') if "type" in x.attrib])
             table_outliers.addData(title='Residue',    data=[ x.attrib["seqnum"] for x in self.xmlnode.findall('.//Ramachandran/Outliers/Residue') if "seqnum" in x.attrib])
 
-        text ='<b>%s</b> residues have been analysed.<br/><br/>' % n_residues
-        text +='In <b><font color=\'green\'>favoured</font></b> regions: <b>%s (%0.2f%%)</b><br/>' % (n_favoured, 100 * n_favoured / n_residues)
-        text +='In <b><font color=\'orange\'>allowed</font></b> regions: <b>%s (%0.2f%%)</b><br/>' % (n_allowed, 100 * n_allowed / n_residues)
-        text +='In <b><font color=\'red\'>high-energy</font></b> backbone conformations (outliers): <b>%s (%0.2f%%)</b>' % (n_outliers, 100 * n_outliers / n_residues)
+        if n_residues == 0:
+            text = 'No residues have been analysed.<br/><br/>'
+        else :
+            text ='<b>%s</b> residues have been analysed.<br/><br/>' % n_residues
+            text +='In <b><font color=\'green\'>favoured</font></b> regions: <b>%s (%0.2f%%)</b><br/>' % (n_favoured, 100 * n_favoured / n_residues)
+            text +='In <b><font color=\'orange\'>allowed</font></b> regions: <b>%s (%0.2f%%)</b><br/>' % (n_allowed, 100 * n_allowed / n_residues)
+            text +='In <b><font color=\'red\'>high-energy</font></b> backbone conformations (outliers): <b>%s (%0.2f%%)</b>' % (n_outliers, 100 * n_outliers / n_residues)
         tab_div.append(text)
 
         section_div.addDiv(style='clear:both;')

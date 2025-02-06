@@ -64,9 +64,12 @@ class validate_protein(CPluginScript):
         print ("Using Iris installation: " + iris_validation.__file__.replace(f"/__init__.py", ""))
 
         self.latest_model_path = str(self.container.inputData.XYZIN_1)
-        self.latest_reflections_path, _ = self.makeHklin([['F_SIGF_1',
+        if self.container.inputData.F_SIGF_1.isSet() :
+            self.latest_reflections_path, _ = self.makeHklin([['F_SIGF_1',
                                                              CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]], 
                                                              hklin='F_SIGF_1')
+        else: 
+            self.latest_reflections_path = None
         
         if self.container.controlParameters.TWO_DATASETS :
             self.previous_model_path = str(self.container.inputData.XYZIN_2)
