@@ -11,6 +11,7 @@ from PySide2 import QtGui, QtWidgets,QtCore
 import os
 from qtgui.CCP4TaskWidget import CTaskWidget
 import gemmi
+gemmi.set_leak_warnings(False)
 
 #-------------------------------------------------------------------
 class lidiaAcedrgNew_gui(CTaskWidget):

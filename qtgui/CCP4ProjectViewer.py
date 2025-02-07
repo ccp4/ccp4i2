@@ -3149,6 +3149,7 @@ class CReportView(QtWidgets.QStackedWidget):
                     LAUNCHER().openInViewer(viewer=args['action'][5:],fileName=filePath,projectId=fileInfo['projectid'],guiParent=self.parent())
             elif 'action' in args and args['action'] == "quick_view":
                 import gemmi
+                gemmi.set_leak_warnings(False)
                 fileInfo = PROJECTSMANAGER().db().getFileInfo(args.get('dbFileId',None),mode=['projectid','relpath','filename','annotation','filesubtype','filecontent','filetype'])
                 projectDir = PROJECTSMANAGER().db().getProjectInfo(projectId=fileInfo['projectid'],mode='projectdirectory')
                 filePath = os.path.join(projectDir,fileInfo['relpath'],fileInfo['filename'])

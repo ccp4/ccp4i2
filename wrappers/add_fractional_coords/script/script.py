@@ -1,6 +1,7 @@
 import argparse
 import os
 import gemmi
+gemmi.set_leak_warnings(False)
 import pytest
 
 

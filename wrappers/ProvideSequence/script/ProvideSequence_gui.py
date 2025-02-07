@@ -80,6 +80,7 @@ PASTERYOURSEQUENCEINHERE"""
 
     def sequencesFromSEQRES(self,fn):
         import gemmi
+        gemmi.set_leak_warnings(False)
         seqs = {}
         st = gemmi.read_structure(fn)
         st.setup_entities()

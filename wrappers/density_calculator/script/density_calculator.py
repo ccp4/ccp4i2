@@ -18,6 +18,7 @@
 
 import os
 import gemmi
+gemmi.set_leak_warnings(False)
 from core.CCP4ErrorHandling import SEVERITY_WARNING
 from core.CCP4PluginScript import CPluginScript
 from core.CCP4XtalData import CMapCoeffsDataFile

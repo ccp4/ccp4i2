@@ -73,6 +73,7 @@ class dm(process):
     # the existing mapseg implementation passes mask as F,PH which include missing refs for better precision.  Removing them from the output here.
     if self.GetParam('map_segmentation'):
       import gemmi,numpy as np
+      gemmi.set_leak_warnings(False)
       out_obj=self.out.Get('mapcoef',typ='densmod')
       mtz = gemmi.read_mtz_file(out_obj.GetFileName('mtz'))
       fsfinp = self.inp.Get('fsigf',typ='average',col='sigf')

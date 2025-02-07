@@ -14,6 +14,7 @@ __version__ = "0.5"
 
 from argparse import ArgumentParser
 import gemmi
+gemmi.set_leak_warnings(False)
 import pandas as pd
 
 

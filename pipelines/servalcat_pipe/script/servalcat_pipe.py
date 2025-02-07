@@ -25,6 +25,7 @@ from core import CCP4Utils
 from . import monitor_differences
 import os, sys, shutil
 import gemmi
+gemmi.set_leak_warnings(False)
 import numpy
 from operator import itemgetter
 

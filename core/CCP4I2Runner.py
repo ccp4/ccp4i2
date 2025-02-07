@@ -22,9 +22,11 @@ from core import CCP4Modules
 from lxml import etree
 #import clipper
 import gemmi
+gemmi.set_leak_warnings(False)
 import numpy
 import re
 from core.CCP4ErrorHandling import CException
+
 
 class CI2Runner(object):
     def __init__(self, cmdLineArgs, theParser=None):
