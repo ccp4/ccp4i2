@@ -39,7 +39,7 @@ def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None)
     if jobStatus == 'Unsatisfactory':
         returnList = ['LidiaAcedrg', 'servalcat_pipe']
     else:
-        returnList = ['servalcat_pipe', 'coot_rebuild', 'moorhen_rebuild', 'modelcraft']
+        returnList = ['servalcat_pipe', 'coot_rebuild', 'moorhen_rebuild', 'modelcraft', 'coot4pe_rebuild']
     return returnList
 
 class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):

@@ -114,6 +114,7 @@
             "nautilus_build_refine",
             "dr_mr_modelbuild_pipeline",
             "ccp4mg_general",
+            "coot4pe_rebuild",
             "coot_gtk3_rebuild"
         ],
         "model_data_utility": [
@@ -734,6 +735,15 @@
                 "class": "wrappers.coordinate_selector.script.coordinate_selector_reportcoordinate_selector_report",
                 "clsModule": "wrappers.coordinate_selector.script.coordinate_selector_report",
                 "clsName": "coordinate_selector_report",
+                "modes": []
+            }
+        },
+        "coot4pe_rebuild": {
+            "0.0.0": {
+                "MAINTAINER": "Nobody",
+                "class": "wrappers.coot4pe_rebuild.script.coot4pe_rebuild_reportcoot4pe_rebuild_report",
+                "clsModule": "wrappers.coot4pe_rebuild.script.coot4pe_rebuild_report",
+                "clsName": "coot4pe_rebuild_report",
                 "modes": []
             }
         },
@@ -2451,6 +2461,19 @@
                 "class": "wrappers.coordinate_selector.script.coordinate_selectorcoordinate_selector",
                 "clsModule": "wrappers.coordinate_selector.script.coordinate_selector",
                 "clsName": "coordinate_selector",
+                "internal": false,
+                "subTasks": []
+            }
+        },
+        "coot4pe_rebuild": {
+            "0.0": {
+                "DESCRIPTION": null,
+                "INTERRUPTLABEL": null,
+                "MAINTAINER": "martin.noble@newcastle.ac.uk",
+                "TASKTITLE": "Rebuild model with Coot 1",
+                "class": "wrappers.coot4pe_rebuild.script.coot4pe_rebuildcoot4pe_rebuild",
+                "clsModule": "wrappers.coot4pe_rebuild.script.coot4pe_rebuild",
+                "clsName": "coot4pe_rebuild",
                 "internal": false,
                 "subTasks": []
             }
@@ -4187,6 +4210,7 @@
         "cmapcoeff": "qticons/cmapcoeff.png",
         "comit": "qticons/ccp4.png",
         "coordinate_selector": "qticons/coordinate_selector.png",
+        "coot4pe_rebuild": "qticons/ccp4.png",
         "coot_find_waters": "qticons/coot_find_waters.png",
         "coot_fit_residues": "qticons/ccp4.png",
         "coot_gtk3_rebuild": "qticons/ccp4.png",
@@ -5173,6 +5197,20 @@
                 "clsName": "coordinate_selector_gui",
                 "shortTitle": "Import coordinates",
                 "taskName": "coordinate_selector",
+                "taskVersion": 0.1
+            }
+        },
+        "coot4pe_rebuild": {
+            "0.0.0": {
+                "DESCRIPTION": "Interactive building (Coot 1)",
+                "MAINTAINER": "Nobody",
+                "RANK": null,
+                "TASKTITLE": "Model building - COOT",
+                "class": "wrappers.coot4pe_rebuild.script.coot4pe_rebuild_guiCcoot4pe_rebuild",
+                "clsModule": "wrappers.coot4pe_rebuild.script.coot4pe_rebuild_gui",
+                "clsName": "Ccoot4pe_rebuild",
+                "shortTitle": "COOT1",
+                "taskName": "coot4pe_rebuild",
                 "taskVersion": 0.1
             }
         },
