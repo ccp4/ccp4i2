@@ -2,6 +2,7 @@
 from report.CCP4ReportParser import *
 from core.CCP4Modules import PREFERENCES
 import os
+import re
 
 import xml.etree.ElementTree as etree
 
@@ -10,6 +11,35 @@ def parse_from_unicode(unicode_str):
     s = unicode_str.encode('utf-8')
     return etree.fromstring(s, parser=utf8_parser)
 
+def change_i2_mrparse_paths(lines):
+    """
+    This changes the urls for css,js,svg to root of i2 server. These files have to
+    be served by i2 on Windows it seems because of stricter browser security.
+    """
+    svg = ["MrParse-logo-tight.svg"]
+    js = ["vue.min.js","lodash.min.js","jquery.js","feature-viewer.bundle.js","mrparse_vue.js","https://d3js.org/d3.v5.min.js"]
+    css = ["bootstrap.css","style.css","index.css"]
+
+    lsnew = []
+    for l in lines:
+        if "const mrparse_html_dir" in l:
+            l2 = l[:l.find("=")] + '= "http://127.0.0.1:43434/report_files/0.1.0/mrparse/html";\n'
+            lsnew.append(l2)
+        elif any(elem in l for elem in svg):
+            find = re.compile(r'src="[^"]*"')
+            p = "http://127.0.0.1:43434/report_files/0.1.0/mrparse/html/static/" + os.path.basename(find.search(l).group()[4:].strip('"'))
+            lsnew.append(find.sub('src="'+p+'"',l))
+        elif any(elem in l for elem in js):
+            find = re.compile(r'src="[^"]*"')
+            p = "http://127.0.0.1:43434/report_files/0.1.0/mrparse/html/" + os.path.basename(find.search(l).group()[4:].strip('"'))
+            lsnew.append(find.sub('src="'+p+'"',l))
+        elif any(elem in l for elem in css):
+            find = re.compile(r'href="[^"]*"')
+            p = "http://127.0.0.1:43434/report_files/0.1.0/mrparse/html/" + os.path.basename(find.search(l).group()[5:].strip('"'))
+            lsnew.append(find.sub('href="'+p+'"',l))
+        else:
+            lsnew.append(l)
+    return lsnew
 class mrparse_report(Report):
 
     TASKNAME = 'mrparse'
@@ -37,11 +67,23 @@ class mrparse_report(Report):
         mrep=open(mrparse_rep, "r")
         mreplines=mrep.readlines()
         mrep.close()
-        mrparse_rep_i2 = os.path.join(basepath, "mrparse_0", 'mrparse_i2.html')
-        mrepi2=open(mrparse_rep_i2, "w")
+        mrparse_rep_i2_tmp = os.path.join(basepath, "mrparse_0", 'mrparse_i2-tmp.html')
+        mrepi2_tmp=open(mrparse_rep_i2_tmp, "w")
         for line in mreplines:
-            mrepi2.write(line.replace("homologs" + os.sep, (os.path.join(basepath, "mrparse_0", 'homologs') + os.sep)).replace("models" + os.sep, (os.path.join(basepath, "mrparse_0", 'models') + os.sep)))
-        mrepi2.close()
+            mrepi2_tmp.write(line.replace("homologs" + os.sep, (os.path.join(basepath, "mrparse_0", 'homologs') + os.sep)).replace("models" + os.sep, (os.path.join(basepath, "mrparse_0", 'models') + os.sep)))
+        mrepi2_tmp.close()
+
+        mrparse_rep_i2 = os.path.join(basepath, "mrparse_0", 'mrparse_i2.html')
+        with open(mrparse_rep_i2_tmp) as f:
+            lines = f.readlines()
+            if sys.platform == "win32":
+                lsnew = change_i2_mrparse_paths(lines)
+            else:
+                lsnew = lines
+            with open(mrparse_rep_i2 ,"w+") as fout:
+                for l in lsnew:
+                    fout.write(l)
+                fout.write("\n")
 
         if os.path.exists(mrparse_rep):
             projectid = self.jobInfo.get("projectid", None)
