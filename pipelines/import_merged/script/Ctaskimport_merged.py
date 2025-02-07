@@ -10,6 +10,7 @@ import math
 import functools
 
 import gemmi
+gemmi.set_leak_warnings(False)
 
 from  pipelines.import_merged.script.mmcifutils import *
 from  pipelines.import_merged.script.dybuttons import *

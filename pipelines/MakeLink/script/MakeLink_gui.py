@@ -21,6 +21,7 @@ from PySide2 import QtCore
 import sys, os
 from core import CCP4Utils
 import gemmi
+gemmi.set_leak_warnings(False)
 
 #-------------------------------------------------------------------
 class MakeLink_gui(CTaskWidget):

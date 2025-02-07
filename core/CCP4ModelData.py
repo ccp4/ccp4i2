@@ -30,6 +30,7 @@ import types
 import shutil
 import functools
 import gemmi
+gemmi.set_leak_warnings(False)
 
 try:
     from StringIO import StringIO
@@ -60,6 +61,7 @@ try:
 except:
     print('FAILED CCP4ModelData imported Bio.SeqIO')
     BIOPYTHON = False
+
 
 EXTLIST = {'txt' : 'fasta', 'fasta':'fasta', 'fa' :'fasta',
            'fsa' : 'fasta', 'faa' : 'fasta', 'seq' : 'fasta',

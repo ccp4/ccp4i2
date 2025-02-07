@@ -553,6 +553,7 @@ class dmfull(process):
   def AdjustResol(self,o1,o2):
     # adjusts resolution of mtz from o1 to that of o2
     import gemmi,numpy as np
+    gemmi.set_leak_warnings(False)
     mtz = gemmi.read_mtz_file(o1.GetFileName('mtz'))
     mtz_resol = gemmi.read_mtz_file(o2.GetFileName('mtz'))
     all_data = np.array(mtz, copy=False)

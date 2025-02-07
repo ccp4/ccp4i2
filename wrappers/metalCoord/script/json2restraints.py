@@ -32,6 +32,7 @@ ccp4-python json2restraints.py -h
 import json
 try:
     import gemmi
+    gemmi.set_leak_warnings(False)
 except:
     import sys
     raise SystemExit("ERROR: module GEMMI not found.\n")

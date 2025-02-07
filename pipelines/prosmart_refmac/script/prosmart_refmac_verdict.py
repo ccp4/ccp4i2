@@ -5,6 +5,7 @@ import sys,os
 from lxml import etree
 
 import gemmi
+gemmi.set_leak_warnings(False)
 
 sys.path.append(os.path.join(os.environ["CCP4"],"share","jscofe"))
 from pycofe.verdicts import verdict_refmac

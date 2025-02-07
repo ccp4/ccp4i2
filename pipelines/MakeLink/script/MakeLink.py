@@ -274,6 +274,7 @@ class MakeLink(CPluginScript):
        print("Using detection threshold: "+str(threshold)+" Angstroms")
        try:
          import gemmi
+         gemmi.set_leak_warnings(False)
          
          def create_link(conn_list,a1,a2,linkid,ASU):
            con = gemmi.Connection()

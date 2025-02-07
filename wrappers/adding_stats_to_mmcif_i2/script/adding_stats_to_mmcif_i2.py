@@ -23,6 +23,7 @@ import shutil
 import time
 from core.CCP4PluginScript import CPluginScript
 import gemmi
+gemmi.set_leak_warnings(False)
 import numpy as np
 import pandas
 from core import CCP4ModelData

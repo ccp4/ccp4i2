@@ -1,6 +1,7 @@
 import sys
 import tempfile
 import gemmi
+gemmi.set_leak_warnings(False)
 from rdkit import Chem
 from rdkit.Chem import AllChem
 from .setDativeBonds import set_dative_bonds

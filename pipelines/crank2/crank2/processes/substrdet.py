@@ -475,6 +475,7 @@ class substrdet(process):
           (self.GetParam('optimize_sol') is None and self.score_adj*100<self.GetParam('threshold_weak')) else False
         if not ref_all_sol and self.GetParam('optimize_sol') is None: # be careful with solutions with many special pos.
           import gemmi
+          gemmi.set_leak_warnings(False)
           struct=gemmi.read_structure(self.prog.out.Get('model').GetFileName())
           spec_pos=[struct.cell.is_special_position(s.atom.pos) for s in struct[0].all() if s.atom.occ>=0.3]
           if spec_pos and sum(spec_pos)/len(spec_pos)>0.35:
