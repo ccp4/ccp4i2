@@ -341,7 +341,7 @@ class servalcat_pipe(CPluginScript):
             self.validate.container.inputData.NAME_1.set("Refined")
             self.validate.container.inputData.NAME_2.set("Input")
             if self.container.controlParameters.SCATTERING_FACTORS.isSet():
-                if self.container.controlParameters.SCATTERING_FACTORS.__str__() == 'NEUTRON':
+                if self.container.controlParameters.SCATTERING_FACTORS.__str__() in {'NEUTRON', 'ELECTRON'}:
                     self.validate.container.inputData.F_SIGF_1.set(None)
                     self.validate.container.inputData.F_SIGF_2.set(None)
                 else:

@@ -649,7 +649,7 @@ class prosmart_refmac(CPluginScript):
                 self.validate.container.inputData.XYZIN_1.set(self.container.outputData.XYZOUT)
                 self.validate.container.inputData.XYZIN_2.set(self.container.inputData.XYZIN)
                 if self.container.controlParameters.SCATTERING_FACTORS.isSet():
-                   if self.container.controlParameters.SCATTERING_FACTORS.__str__() == 'NEUTRON':
+                   if self.container.controlParameters.SCATTERING_FACTORS.__str__() in {'NEUTRON', 'ELECTRON'}:
                       self.validate.container.inputData.F_SIGF_1.set(None)
                       self.validate.container.inputData.F_SIGF_2.set(None)
                    else:
