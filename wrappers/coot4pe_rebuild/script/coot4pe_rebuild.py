@@ -11,7 +11,7 @@ class coot4pe_rebuild(CPluginScript):
     TASKMODULE = 'model_building'                               # Where this plugin will appear on the gui
     TASKTITLE = 'Rebuild model with Coot 1'     # A short title for gui menu
     TASKNAME = 'coot4pe_rebuild'                                  # Task name - should be same as class name
-    TASKCOMMAND = '/opt/ccp4/ccp4-9/libexec/coot-1'      # The command to run the executable
+    TASKCOMMAND = 'coot-1'      # The command to run the executable
     TASKVERSION= 0.0                                     # Version of this plugin
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 9999999.9
