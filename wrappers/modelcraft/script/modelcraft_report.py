@@ -49,16 +49,20 @@ class modelcraft_report(Report):
             self.addDiv(style="clear:both;")
 
     def add_picture(self, parent=None):
-        if parent is None: parent = self
+        if parent is None:
+            parent = self
         parent.addDiv(style="clear:both;")
-        pictureFold = parent.addFold(label="Picture", initiallyOpen=True, brief="Picture")
+        pictureFold = parent.addFold(
+            label="Picture", initiallyOpen=True, brief="Picture"
+        )
         baseScenePath = Path(__file__).resolve().parent / "modelcraft_1.scene.xml"
         pictureFold.addPicture(
             label="Autobuilt structure", sceneFile=str(baseScenePath), id="autobuild_1"
         )
 
     def add_running_job(self, parent=None):
-        if parent is None: parent = self
+        if parent is None:
+            parent = self
         subjob = self.json.get("running_job")
         if subjob:
             parent.append(f"<p>The sub-job that is currently running is: {subjob}</p>")
@@ -66,7 +70,8 @@ class modelcraft_report(Report):
     def add_table(self, parent=None):
         if "final" not in self.json:
             return
-        if parent is None: parent = self
+        if parent is None:
+            parent = self
         cycle = self.json["final"]["cycle"]
         residues = self.json["final"]["residues"]
         waters = self.json["final"]["waters"]
@@ -82,7 +87,8 @@ class modelcraft_report(Report):
     def add_message(self, jobStatus, parent=None):
         if "final" not in self.json:
             return
-        if parent is None: parent = self
+        if parent is None:
+            parent = self
         cycle = self.json["final"]["cycle"]
         rfree = self.json["final"]["r_free"]
         if jobStatus in ["Running", "Running remotely"]:
@@ -105,7 +111,8 @@ class modelcraft_report(Report):
     def add_graph(self, parent=None):
         if len(self.json.get("cycles", [])) == 0:
             return
-        if parent is None: parent = self
+        if parent is None:
+            parent = self
         cycles = []
         residues = []
         rfrees = []
