@@ -1,5 +1,11 @@
 # CCP4i2 Changelog
 
+## [2.2.3] - 2025-02-07
+
+- Fix Ramachandran plot
+- Fix for broken ASU contents
+- Fix embedded ModelCraft report
+
 ## [2.2.2] - 2025-01-31
 
 - Fix to widgets loading a data file from the database
