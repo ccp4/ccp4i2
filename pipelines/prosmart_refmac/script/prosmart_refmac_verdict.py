@@ -21,7 +21,7 @@ def getJSCOFERefmac5Verdict(programxml=None,pdbfile=None,refmaclog=None):
     waterlen = 0
 
     for mod in st:
-        model = {'model':int(mod.name)}
+        model = {'model': mod.num}
         chains = []
         for chain in mod:
             if len(chain) > 0 and chain[0].entity_type == gemmi.EntityType.Polymer:

@@ -186,164 +186,59 @@ class validate_protein_report(Report):
         graph_div = parent.addDiv(style='float:left; margin-left:50px;')
         rama_graph = graph_div.addFlotGraph(title='Ramachandran Plot', select='.//Ramachandran', style='height:500px; width:500px; border:0px; float:left; padding:10px; padding-left:15px;')
 
-        if len(self.xmlnode.findall('.//Ramachandran/Favoured/Residue'))>0:
-            data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Favoured/Residue') if ("type" in x.attrib and x.attrib["type"] == "PRO")]]
-            if len(data)>0: rama_graph.addData(title='PRO_favoured_phi', data=data)
+        for resName, resCheck in [
+            ("PRO", lambda x: x.attrib.get("type") == "PRO"),
+            ("GLY", lambda x: x.attrib.get("type") == "GLY"),
+            ("RST", lambda x: x.attrib.get("type") not in {"PRO", "GLY"}),
+        ]:
+            for section in ["Favoured", "Allowed", "Outliers"]:
+                for angle in ["Phi", "Psi"]:
+                    title = f"{resName}_{section}_{angle}"
+                    xmlPath = f".//Ramachandran/{section}/Residue"
+                    data = [
+                        float(x.findall(angle)[0].text.strip())
+                        for x in self.xmlnode.findall(xmlPath)
+                        if resCheck(x)
+                    ]
+                    rama_graph.addData(title=title, data=data)
 
-        if len(self.xmlnode.findall('.//Ramachandran/Favoured/Residue'))>0:
-            data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Favoured/Residue') if ("type" in x.attrib and x.attrib["type"] == "PRO")]]
-            if len(data)>0: rama_graph.addData(title='PRO_favoured_psi', data=data)
-
-        if len(self.xmlnode.findall('.//Ramachandran/Allowed/Residue'))>0:
-            data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Allowed/Residue') if ("type" in x.attrib and x.attrib["type"] == "PRO")]]
-            if len(data)>0: rama_graph.addData(title='PRO_Allowed_phi' , data=data)
-
-        if len(self.xmlnode.findall('.//Ramachandran/Allowed/Residue'))>0:
-            data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Allowed/Residue') if ("type" in x.attrib and x.attrib["type"] == "PRO")]]
-            if len(data)>0: rama_graph.addData(title='PRO_Allowed_psi' , data=data)
-
-        if len(self.xmlnode.findall('.//Ramachandran/Outliers/Residue'))>0:
-            data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Outliers/Residue') if ("type" in x.attrib and x.attrib["type"] == "PRO")]]
-            if len(data)>0: rama_graph.addData(title='PRO_Outliers_phi', data=data)
-
-        if len(self.xmlnode.findall('.//Ramachandran/Outliers/Residue'))>0:
-            data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Outliers/Residue') if ("type" in x.attrib and x.attrib["type"] == "PRO")]]
-            if len(data)>0: rama_graph.addData(title='PRO_Outliers_psi', data=data)
-
-        if len(self.xmlnode.findall('.//Ramachandran/Favoured/Residue'))>0:
-            data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Favoured/Residue') if ("type" in x.attrib and x.attrib["type"] == "GLY")]]
-            if len(data)>0: rama_graph.addData(title='GLY_favoured_phi', data=data)
-
-        if len(self.xmlnode.findall('.//Ramachandran/Favoured/Residue'))>0:
-            data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Favoured/Residue') if ("type" in x.attrib and x.attrib["type"] == "GLY")]]
-            if len(data)>0: rama_graph.addData(title='GLY_favoured_psi', data=data)
-
-        if len(self.xmlnode.findall('.//Ramachandran/Allowed/Residue'))>0:
-            data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Allowed/Residue') if ("type" in x.attrib and x.attrib["type"] == "GLY")]]
-            if len(data)>0: rama_graph.addData(title='GLY_Allowed_phi' , data=data)
-
-        if len(self.xmlnode.findall('.//Ramachandran/Allowed/Residue'))>0:
-            data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Allowed/Residue') if ("type" in x.attrib and x.attrib["type"] == "GLY")]]
-            if len(data)>0: rama_graph.addData(title='GLY_Allowed_psi' , data=data)
-
-        if len(self.xmlnode.findall('.//Ramachandran/Outliers/Residue'))>0:
-            data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Outliers/Residue') if ("type" in x.attrib and x.attrib["type"] == "GLY")]]
-            if len(data)>0: rama_graph.addData(title='GLY_Outliers_phi', data=data)
-
-        if len(self.xmlnode.findall('.//Ramachandran/Outliers/Residue'))>0:
-            data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Outliers/Residue') if ("type" in x.attrib and x.attrib["type"] == "GLY")]]
-            if len(data)>0: rama_graph.addData(title='GLY_Outliers_psi', data=data)
-
-        if len(self.xmlnode.findall('.//Ramachandran/Favoured/Residue'))>0:
-            data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Favoured/Residue') if ("type" in x.attrib and (x.attrib["type"] == "PRO" or x.attrib["type"] == "GLY"))]]
-            if len(data)>0: rama_graph.addData(title='RST_favoured_phi', data=data)
-
-        if len(self.xmlnode.findall('.//Ramachandran/Favoured/Residue'))>0:
-            data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Favoured/Residue') if ("type" in x.attrib and (x.attrib["type"] == "PRO" or x.attrib["type"] == "GLY"))]]
-            if len(data)>0: rama_graph.addData(title='RST_favoured_psi', data=data)
-
-        if len(self.xmlnode.findall('.//Ramachandran/Allowed/Residue'))>0:
-            data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Allowed/Residue') if ("type" in x.attrib and (x.attrib["type"] == "PRO" or x.attrib["type"] == "GLY"))]]
-            if len(data)>0: rama_graph.addData(title='RST_Allowed_phi' , data=data)
-
-        if len(self.xmlnode.findall('.//Ramachandran/Allowed/Residue'))>0:
-            data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Allowed/Residue') if ("type" in x.attrib and (x.attrib["type"] == "PRO" or x.attrib["type"] == "GLY"))]]
-            if len(data)>0: rama_graph.addData(title='RST_Allowed_psi' , data=data)
-
-        if len(self.xmlnode.findall('.//Ramachandran/Outliers/Residue'))>0:
-            data = [float(x.findall("Phi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Outliers/Residue') if ("type" in x.attrib and (x.attrib["type"] == "PRO" or x.attrib["type"] == "GLY"))]]
-            if len(data)>0: rama_graph.addData(title='RST_Outliers_phi', data=data)
-
-        if len(self.xmlnode.findall('.//Ramachandran/Outliers/Residue'))>0:
-            data = [float(x.findall("Psi")[0].text.strip()) for x in [ x for x in self.xmlnode.findall('.//Ramachandran/Outliers/Residue') if ("type" in x.attrib and (x.attrib["type"] == "PRO" or x.attrib["type"] == "GLY"))]]
-            if len(data)>0: rama_graph.addData(title='RST_Outliers_psi', data=data)
-
-        # Add rest graph
-        p = rama_graph.addPlotObject()
-        p.append('description', 'This graph shows the dihedral Phi and Psi angles for all residues, coloured according to Ramachandran\'s criterion. Source: Richardsons\' Top 500 structures.')
-        p.append ('background').text = background_RST
-        p.append('title', 'Ramachandran plot [Non-Pro/Gly]')
-        p.append('plottype', 'xy')
-        p.append('showlegend', 'false')
-        p.append('xintegral', 'true')
-        p.append('yintegral', 'true')
-        p.append('xlabel', 'Phi')
-        p.append('ylabel', 'Psi')
-        p.append('xrange', min=-180.0, max=180.0)
-        p.append('yrange', min=-180.0, max=180.0)
-        l = p.append('plotline', xcol=13, ycol=14)
-        l.append('colour', 'green')
-        l.append('linestyle', '.')
-        l.append('symbolsize', '1')
-        l.append('symbol', '.')
-        l = p.append('plotline', xcol=15, ycol=16)
-        l.append('colour', 'orange')
-        l.append('linestyle', '.')
-        l.append('symbolsize', '3')
-        l.append('symbol', 'o')
-        l = p.append('plotline', xcol=17, ycol=18)
-        l.append('colour', 'red')
-        l.append('linestyle', '.')
-        l.append('symbolsize', '10')
-        l.append('symbol', 'x')
-
-        # Add Proline graph
-        p = rama_graph.addPlotObject()
-        p.append('description', 'This graph shows the dihedral Phi and Psi angles for all residues, coloured according to Ramachandran\'s criterion. Source: Richardsons\' Top 500 structures.')
-        p.append('background').text = background_PRO
-        p.append('title', 'Ramachandran plot [Proline]')
-        p.append('plottype', 'xy')
-        p.append('showlegend', 'false')
-        p.append('xintegral', 'true')
-        p.append('yintegral', 'true')
-        p.append('xlabel', 'Phi')
-        p.append('ylabel', 'Psi')
-        p.append('xrange', min=-180.0, max=180.0)
-        p.append('yrange', min=-180.0, max=180.0)
-        l = p.append('plotline', xcol=1, ycol=2)
-        l.append('colour', 'green')
-        l.append('linestyle', '.')
-        l.append('symbolsize', '1')
-        l.append('symbol', '.')
-        l = p.append('plotline', xcol=3, ycol=4)
-        l.append('colour', 'orange')
-        l.append('linestyle', '.')
-        l.append('symbolsize', '3')
-        l.append('symbol', 'o')
-        l = p.append('plotline', xcol=5, ycol=6)
-        l.append('colour', 'red')
-        l.append('linestyle', '.')
-        l.append('symbolsize', '10')
-        l.append('symbol', 'x')
-
-        # Add Glycine graph
-        p = rama_graph.addPlotObject()
-        p.append('description', 'This graph shows the dihedral Phi and Psi angles for all residues, coloured according to Ramachandran\'s criterion. Source: Richardsons\' Top 500 structures.')
-        p.append('background').text = background_GLY
-        p.append('title', 'Ramachandran plot [Glycine]')
-        p.append('plottype', 'xy')
-        p.append('showlegend', 'false')
-        p.append('xintegral', 'true')
-        p.append('yintegral', 'true')
-        p.append('xlabel', 'Phi')
-        p.append('ylabel', 'Psi')
-        p.append('xrange', min=-180.0, max=180.0)
-        p.append('yrange', min=-180.0, max=180.0)
-        l = p.append('plotline', xcol=7, ycol=8)
-        l.append('colour', 'green')
-        l.append('linestyle', '.')
-        l.append('symbolsize', '1')
-        l.append('symbol', '.')
-        l = p.append('plotline', xcol=9, ycol=10)
-        l.append('colour', 'orange')
-        l.append('linestyle', '.')
-        l.append('symbolsize', '3')
-        l.append('symbol', 'o')
-        l = p.append('plotline', xcol=11, ycol=12)
-        l.append('colour', 'red')
-        l.append('linestyle', '.')
-        l.append('symbolsize', '10')
-        l.append('symbol', 'x')
+        for title, colStart, background in [
+            ("Non-Pro/Gly", 13, background_RST),
+            ("Proline", 1, background_PRO),
+            ("Glycine", 7, background_GLY),
+        ]:
+            p = rama_graph.addPlotObject()
+            description = (
+                "This graph shows the dihedral Phi and Psi angles for all residues, "
+                "coloured according to Ramachandran's criterion. "
+                "Source: Richardsons' Top 500 structures."
+            )
+            p.append('description', description)
+            p.append('background').text = background
+            p.append('title', f'Ramachandran plot [{title}]')
+            p.append('plottype', 'xy')
+            p.append('showlegend', 'false')
+            p.append('xintegral', 'true')
+            p.append('yintegral', 'true')
+            p.append('xlabel', 'Phi')
+            p.append('ylabel', 'Psi')
+            p.append('xrange', min=-180.0, max=180.0)
+            p.append('yrange', min=-180.0, max=180.0)
+            l = p.append('plotline', xcol=colStart+0, ycol=colStart+1)
+            l.append('colour', 'green')
+            l.append('linestyle', '.')
+            l.append('symbolsize', '1')
+            l.append('symbol', '.')
+            l = p.append('plotline', xcol=colStart+2, ycol=colStart+3)
+            l.append('colour', 'orange')
+            l.append('linestyle', '.')
+            l.append('symbolsize', '3')
+            l.append('symbol', 'o')
+            l = p.append('plotline', xcol=colStart+4, ycol=colStart+5)
+            l.append('colour', 'red')
+            l.append('linestyle', '.')
+            l.append('symbolsize', '10')
+            l.append('symbol', 'x')
 
         n_residues = int(self.xmlnode.findall('.//Ramachandran/Totals/Residues')[0].text)
         n_favoured = int(self.xmlnode.findall('.//Ramachandran/Totals/Favoured')[0].text)

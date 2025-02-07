@@ -2461,8 +2461,8 @@ class CDataFileView(CComplexLineWidget):
   def loadFileFromDb(self,fileId,annotation=None):
     '''Update model based on db fileId from eith the combo box or the database search tool'''
     #print 'CDataFileView.loadFileFromDb',fileId
-    fileId = fileId.decode()
-    if fileId is None:
+    fileId = fileId.decode() if type(fileId) == bytes else str(fileId)
+    if fileId is None:  # PB: Can't be hit as None will become 'None' due to conversion above
       self.model.unSet()
     else:
       fileInfo = 'UNSET'
