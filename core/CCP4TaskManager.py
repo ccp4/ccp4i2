@@ -74,7 +74,7 @@ MODULE_DEFAULTS = {'molecular_replacement' : ['mrbump_basic', 'phaser_simple', '
                    'refinement'            : ['servalcat_pipe', 'prosmart_refmac'],
                    'bioinformatics'        : ['ccp4mg_edit_model' , 'ccp4mg_edit_nomrbump', 'chainsaw', 'sculptor','phaser_ensembler','clustalw'],
                    'bigpipes'              : ['SubstituteLigand','dr_mr_modelbuild_pipeline'],
-                   'model_building'        : ['modelcraft', 'coot_rebuild','coot_script_lines', 'coot_find_waters','arp_warp_classic','shelxeMR','buccaneer_build_refine_mr','nautilus_build_refine','dr_mr_modelbuild_pipeline'],
+                   'model_building'        : ['modelcraft', 'coot_rebuild','coot_script_lines', 'coot_find_waters','arp_warp_classic','shelxeMR','dr_mr_modelbuild_pipeline'],
                    'validation'            : ['validate_protein', 'edstats', 'privateer', 'qtpisa'],
                    'export'                : ['PrepareDeposit'],
                    'expt_data_utility'     : ['pointless_reindexToMatch', 'phaser_EP_LLG', 'cmapcoeff', 'chltofom', 'cphasematch', 'ctruncate', 'splitMtz', 'scaleit'],
