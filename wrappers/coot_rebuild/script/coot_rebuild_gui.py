@@ -19,7 +19,7 @@ class Ccoot_rebuild(CTaskWidget):
   SHORTTASKTITLE='COOT'
   DESCRIPTION='Interactive building (Coot)'
 
-  WHATNEXT = ['prosmart_refmac','coot_rebuild', 'buccaneer_build_refine_mr' ]
+  WHATNEXT = ['prosmart_refmac','coot_rebuild', 'modelcraft' ]
 
   def drawContents(self):
     

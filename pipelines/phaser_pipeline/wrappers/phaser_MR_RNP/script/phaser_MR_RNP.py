@@ -16,7 +16,7 @@ class phaser_MR_RNP(phaser_MR_AUTO.phaser_MR_AUTO):
     COMTEMPLATEFILE = None                               # Name of file containing com file template
     ASYNCHRONOUS = False
     RUNEXTERNALPROCESS=False
-    WHATNEXT = ['prosmart_refmac','buccaneer_build_refine_mr','coot_rebuild']
+    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
 
     ERROR_CODES = { 201 : { 'description' : 'Failed to find file' },}
 

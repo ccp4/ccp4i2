@@ -33,7 +33,7 @@ class refmac_i2(CPluginScript):
     TASKNAME = 'refmac'
     TASKCOMMAND = 'refmacat'
     TASKVERSION= 0.0
-    WHATNEXT = ['prosmart_refmac','buccaneer_build_refine_mr']
+    WHATNEXT = ['prosmart_refmac','modelcraft']
     ASYNCHRONOUS = False
     PERFORMANCECLASS = 'CRefinementPerformance'
         
