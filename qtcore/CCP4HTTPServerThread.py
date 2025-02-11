@@ -3,31 +3,20 @@ from __future__ import print_function
 import sys,os
 import re
 
-if sys.version_info >= (3,0):
-    import http.server
-    from http.server import SimpleHTTPRequestHandler
-else:
-    import BaseHTTPServer
-    from SimpleHTTPServer import SimpleHTTPRequestHandler
+import http.server
+from http.server import SimpleHTTPRequestHandler
     
 from PySide2 import QtCore
 from core import CCP4Modules
 
 DEFAULT_PORT = 43434
 
-if sys.version_info >= (3,0):
-    from socketserver import ThreadingMixIn
-    from http.server import HTTPServer
-else:
-    from SocketServer import ThreadingMixIn
-    from BaseHTTPServer import HTTPServer
-
-class MultiThreadedHTTPServer(ThreadingMixIn, HTTPServer):
-    pass
+from http.server import HTTPServer
+from http.server import ThreadingHTTPServer
 
 def makeServer(port):
       HandlerClass = CHTTPRequestHandler
-      ServerClass  = MultiThreadedHTTPServer
+      ServerClass  = ThreadingHTTPServer
       Protocol     = "HTTP/1.0"
       server_address = ('127.0.0.1',port )
       HandlerClass.protocol_version = Protocol
@@ -37,28 +26,6 @@ def makeServer(port):
         return None
       else:
         return httpd
-
-def testServer(port):
-      if sys.version_info >= (3,0):
-          import http.client
-      else:
-          import httplib
-
-      ret = True
-      try:
-        if sys.version_info >= (3,0):
-            h = http.client.HTTPConnection('127.0.0.1',port,timeout=3)
-        else:
-            h = httplib.HTTPConnection('127.0.0.1',port,timeout=3)
-        h.connect()
-      except:
-        ret=False
-      print('testServer',port,h,ret)
-      try:
-        h.close()
-      except:
-        pass
-      return ret
 
 class CHTTPServerThread(QtCore.QThread):
 
@@ -118,50 +85,16 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                       self.log_date_time_string(),
                       format%args))
       '''
-                    
       f = CCP4Modules.PRINTHANDLER().getFileObject(thread='HTTPServer',name='HTTPServer')
       f.write("%s - - [%s] %s\n" %
                      (self.address_string(),
                       self.log_date_time_string(),
                       format%args))
     
-    """
-    def do_POST(self):
-        import cgi
-        form = cgi.FieldStorage(fp=self.rfile, headers=self.headers, \
-            environ={'REQUEST_METHOD':'POST', 'CONTENT_TYPE':self.headers['Content-Type'], })
-        upfile = form['upfile']
-        project = form['project']
-
-        # extract basename of input filename, remove non-alphanumeric characters
-        if '\\' in upfile.filename:
-            filename = upfile.filename.split('\\')[-1]
-        else:
-            filename = upfile.filename.split('/')[-1]
-        filename = re.sub('[ \t]','-', filename)
-        filename = re.sub('[^a-zA-Z0-9_.:-]','', filename)
-
-        data = ''
-        while True:
-            chunk = upfile.file.read(8192)
-            if len(chunk) == 0:
-                break
-            else:
-                data += chunk
-        self.send_response(200)
-        self.end_headers()
-
-        CHTTPServerThread.insts.emit(QtCore.SIGNAL('insertFileInDBRequest'),(os.path.basename(upfile.filename),data,project.value))
-
-        self.wfile.write('<html><head><title>Upload</title></head><body>\
-            <h1>Requested uploaded</h1><br>From: %s<br>To project:%s</body></html>' % \
-            (upfile.filename, project.value) )
-    """
-
     #Here I am going to do some hackery to allow the HTTP server to return information about the
     #database
     def do_GET(self):
-        #print('CHTTPRequestHandler.do_GET',self.path)
+        print('CHTTPRequestHandler.do_GET',self.path)
         if "/database/projectid/" in self.path and "/jobnumber/" in self.path and "/file/" in self.path:
             #print("Hello!!!!")
             u = self.path
@@ -179,6 +112,7 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
         return self.do_GET_main(self.path)
 
     def do_GET_main(self,self_path):
+        print("do_GET_main",self_path)
         if "site-packages/dials/static" in self_path:
             import dials
             f = self_path
@@ -382,7 +316,6 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                     elif isJson:
                         self.returnData('application/json',response)
                     else:
-                        print("else .....")
                         self.returnData('application/javascript',json.dumps(response))
                     dbRequest['responseQueue'].task_done()
                     return
@@ -487,4 +420,3 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                 self.wfile.write(bytes(data,"utf-8"))
             else:
                 self.wfile.write(data)
-
