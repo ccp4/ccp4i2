@@ -94,7 +94,7 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
     #Here I am going to do some hackery to allow the HTTP server to return information about the
     #database
     def do_GET(self):
-        print('CHTTPRequestHandler.do_GET',self.path)
+        #print('CHTTPRequestHandler.do_GET',self.path)
         if "/database/projectid/" in self.path and "/jobnumber/" in self.path and "/file/" in self.path:
             #print("Hello!!!!")
             u = self.path
@@ -112,7 +112,7 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
         return self.do_GET_main(self.path)
 
     def do_GET_main(self,self_path):
-        print("do_GET_main",self_path)
+        #print("do_GET_main",self_path)
         if "site-packages/dials/static" in self_path:
             import dials
             f = self_path
