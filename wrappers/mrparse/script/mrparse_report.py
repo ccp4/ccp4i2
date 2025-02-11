@@ -30,20 +30,20 @@ def change_i2_mrparse_paths(lines,projectid,jobNumber):
     mr_parse_dir = None
     for l in lines:
         if "const mrparse_html_dir" in l:
-            l2 = l[:l.find("=")] + '= ' + '"'+to_i2_url("mrprase_html/mrparse/html",projectid,jobNumber) + '";\n'
+            l2 = l[:l.find("=")] + '= ' + '"'+to_i2_url("mrparse_html/mrparse/html",projectid,jobNumber) + '";\n'
             lsnew.append(l2)
             mr_parse_dir = l[l.find("=")+1:].strip().strip(';').strip('"')
         elif any(elem in l for elem in svg):
             find = re.compile(r'src="[^"]*"')
-            p = to_i2_url("mrprase_html/mrparse/html/static/" + os.path.basename(find.search(l).group()[4:].strip('"')),projectid,jobNumber)
+            p = to_i2_url("mrparse_html/mrparse/html/static/" + os.path.basename(find.search(l).group()[4:].strip('"')),projectid,jobNumber)
             lsnew.append(find.sub('src="'+p+'"',l))
         elif any(elem in l for elem in js):
             find = re.compile(r'src="[^"]*"')
-            p = to_i2_url("mrprase_html/mrparse/html/" + os.path.basename(find.search(l).group()[4:].strip('"')),projectid,jobNumber)
+            p = to_i2_url("mrparse_html/mrparse/html/" + os.path.basename(find.search(l).group()[4:].strip('"')),projectid,jobNumber)
             lsnew.append(find.sub('src="'+p+'"',l))
         elif any(elem in l for elem in css):
             find = re.compile(r'href="[^"]*"')
-            p = to_i2_url("mrprase_html/mrparse/html/" + os.path.basename(find.search(l).group()[5:].strip('"')),projectid,jobNumber)
+            p = to_i2_url("mrparse_html/mrparse/html/" + os.path.basename(find.search(l).group()[5:].strip('"')),projectid,jobNumber)
             lsnew.append(find.sub('href="'+p+'"',l))
         elif any(elem in l for elem in third_party_js):
             find = re.compile(r'src="[^"]*"')
@@ -94,9 +94,9 @@ class mrparse_report(Report):
         mrparse_rep_i2 = os.path.join(basepath, "mrparse_0", 'mrparse_i2.html')
         with open(mrparse_rep_i2_tmp) as f:
             lines = f.readlines()
-            if True or sys.platform == "win32":
+            if sys.platform == "win32":
                 lsnew,mrparse_html_dir = change_i2_mrparse_paths(lines,projectid,jobNumber)
-                job_mrparse_html_dir = os.path.join(basepath,"mrprase_html","mrparse","html")
+                job_mrparse_html_dir = os.path.join(basepath,"mrparse_html","mrparse","html")
                 os.makedirs(job_mrparse_html_dir,exist_ok=True)
                 shutil.copytree(mrparse_html_dir,job_mrparse_html_dir,dirs_exist_ok=True)
             else:
