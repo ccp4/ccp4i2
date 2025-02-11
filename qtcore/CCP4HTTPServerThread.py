@@ -209,7 +209,7 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                             dbRequest['responseQueue'].task_done()
                             return
                         elif newPath.lower().endswith(".html") or newPath.lower().endswith(".htm"):
-                            fileType = 'text/html'
+                            fileType = 'text/html; charset=UTF-8'
                             self.returnFileAsData(contentType=fileType, fullPath=newPath)
                         elif newPath.lower().endswith(".css"):
                             fileType = 'text/css'
@@ -261,7 +261,7 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                     '''
                 docString1 = re.sub('__serverName__',str(self.server.server_name),docTemplate)
                 docString = re.sub('__serverPort__', str(self.server.server_port),docString1)
-                self.returnData('text/html', docString)
+                self.returnData('text/html; charset=UTF-8', docString)
 #SJM 18/07/2018 - Commented out this, no other reference to db anywhere...
                 #db.close()
                 return
@@ -306,7 +306,7 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                         self.returnData('image/svg+xml',response)
                     elif hasattr(response,"startswith") and (response.strip().startswith('<!DOCTYPE html') or response.strip().startswith('<HTML') or response.strip().startswith('<html')):
                         #Hopefully this is html
-                        self.returnData('text/html',response)
+                        self.returnData('text/html; charset=UTF-8',response)
                     elif isLog:
                         self.returnData('text/plain',response)
                     elif isCss:
