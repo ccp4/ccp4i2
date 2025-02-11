@@ -19,7 +19,7 @@ class phaser_mr(CPluginScript):
     TASKNAME = 'phaser_mr'   # Task name - should be same as class name
     TASKVERSION= 0.1               # Version of this plugin
     TASKCOMMAND = 'phaser'   # The command to run the executable
-    WHATNEXT = ['prosmart_refmac','buccaneer_build_refine','coot_rebuild']
+    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
 
     # used by the base class makeCommandAndScript()
     COMLINETEMPLATE = None 
