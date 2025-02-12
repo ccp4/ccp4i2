@@ -1955,12 +1955,8 @@ TaskTitle TEXT );''')
     def getProjectJobFile(self,projectId=None,fileName=None,jobNumber="1",subJobNumber=""):
         fname = self.getProjectJobFileName(projectId,fileName,jobNumber,subJobNumber)
         d = fname
-        if fname.endswith(".png"):
-            with open(fname,"rb") as f:
-               d = f.read()
-        else:
-            with open(fname) as f:
-               d = f.read()
+        with open(fname,"rb") as f:
+            d = f.read()
         return d
 
     def getProjectDirectory(self,projectId=None,projectName=None,jobId=None):
