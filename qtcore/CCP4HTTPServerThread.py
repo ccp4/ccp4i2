@@ -1,31 +1,27 @@
-from __future__ import print_function
-
-import sys,os
-import re
-
-import http.server
 from http.server import SimpleHTTPRequestHandler
-    
+from http.server import ThreadingHTTPServer
+import mimetypes
+import os
+import re
+import sys
+
 from PySide2 import QtCore
+import dials
+import mrparse
+
 from core import CCP4Modules
+
 
 DEFAULT_PORT = 43434
 
-from http.server import HTTPServer
-from http.server import ThreadingHTTPServer
 
 def makeServer(port):
-      HandlerClass = CHTTPRequestHandler
-      ServerClass  = ThreadingHTTPServer
-      Protocol     = "HTTP/1.0"
-      server_address = ('127.0.0.1',port )
-      HandlerClass.protocol_version = Protocol
+      CHTTPRequestHandler.protocol_version = "HTTP/1.0"
       try:
-        httpd = ServerClass(server_address, HandlerClass)
+        return ThreadingHTTPServer(('127.0.0.1', port), CHTTPRequestHandler)
       except:
         return None
-      else:
-        return httpd
+
 
 class CHTTPServerThread(QtCore.QThread):
 
@@ -38,7 +34,7 @@ class CHTTPServerThread(QtCore.QThread):
       CHTTPServerThread.insts = self
       self.port = None
       if port is not None:
-        self.defaultPort = port
+          self.defaultPort = port
       else:
         self.defaultPort = '43434'
       self.parentDir = parentDir
@@ -67,7 +63,6 @@ class CHTTPServerThread(QtCore.QThread):
            self.httpd.serve_forever()
       return
 
-from dbapi import CCP4DbApi
 
 class CHTTPRequestHandler(SimpleHTTPRequestHandler):
     def end_headers (self):
@@ -90,55 +85,49 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                      (self.address_string(),
                       self.log_date_time_string(),
                       format%args))
-    
+
     #Here I am going to do some hackery to allow the HTTP server to return information about the
     #database
     def do_GET(self):
         #print('CHTTPRequestHandler.do_GET',self.path)
-        if "/database/projectid/" in self.path and "/jobnumber/" in self.path and "/file/" in self.path:
-            #print("Hello!!!!")
-            u = self.path
-            projidfind = re.compile(r'/projectid/[a-z0-9\-]*/')
-            jobnumberfind = re.compile(r'/jobnumber/[0-9\.]*/')
-            filefind = re.compile(r'/file/.*')
-            if projidfind.search(u) is not None and jobnumberfind.search(u) is not None and filefind.search(u) is not None:
-                theProjectId = projidfind.search(u).group()[11:].rstrip('/')
-                theJobNumber = jobnumberfind.search(u).group()[11:].rstrip('/')
-                theFile = filefind.search(u).group()[6:]
-                #print("Found",theProjectId,theJobNumber,theFile)
-                old_url =  "/database/?getProjectJobFile?projectId="+theProjectId+"?fileName="+theFile+"?jobNumber="+theJobNumber
-                #print("Old style url",old_url)
-                return self.do_GET_main(old_url)
+        if (
+            self.path.startswith('/database')
+            and (projectIdMatch := re.search(r'/projectid/([^/]+)', self.path))
+            and (jobNumberMatch := re.search(r'/jobnumber/([^/]+)', self.path))
+            and (fileMatch := re.search(r'/file/([^/]+)', self.path))
+        ):
+            oldUrl = (
+                "/database/?getProjectJobFile"
+                f"?projectId={projectIdMatch.group(1)}"
+                f"?fileName={fileMatch.group(1)}"
+                f"?jobNumber={jobNumberMatch.group(1)}"
+            )
+            #print("Old style url",oldUrl)
+            return self.do_GET_main(oldUrl)
         return self.do_GET_main(self.path)
 
     def do_GET_main(self,self_path):
         #print("do_GET_main",self_path)
         if "site-packages/dials/static" in self_path:
-            import dials
-            f = self_path
             #This mangling is done to help with imported projects which might have links to different file locations
-            newPath = os.path.join(os.path.dirname(dials.__file__),f[f.find("site-packages/dials/static"):][len("site-packages/dials")+1:])
+            end = self_path[self_path.find("site-packages/dials/static"):][len("site-packages/dials/"):]
+            newPath = os.path.join(os.path.dirname(dials.__file__), end)
             try:
-                import mimetypes
                 fileType = mimetypes.guess_type(newPath.split("?")[0])[0]
                 self.returnFileAsData(contentType=fileType, fullPath=newPath.split("?")[0])
-                return
             except:
                 self.send_response(404)
-                return
+            return
         if "site-packages/mrparse/html" in self_path:
-            import mrparse
-            f = self_path
             #This mangling is done to help with imported projects which might have links to different file locations
-            newPath = os.path.join(os.path.dirname(mrparse.__file__),f[f.find("site-packages/mrparse/html"):][len("site-packages/mrparse")+1:])
+            end = self_path[self_path.find("site-packages/mrparse/html"):][len("site-packages/mrparse/"):]
+            newPath = os.path.join(os.path.dirname(mrparse.__file__), end)
             try:
-                import mimetypes
                 fileType = mimetypes.guess_type(newPath.split("?")[0])[0]
                 self.returnFileAsData(contentType=fileType, fullPath=newPath.split("?")[0])
-                return
             except:
                 self.send_response(404)
-                return
+            return
         if not self_path.startswith('/database'):
             #serve files normally
             #print("Normal service")
@@ -354,7 +343,6 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                         fullPath = filePath
                     else:
                         fullPath = os.path.join(jobDirectory,filePath)
-                    import mimetypes
                     fileType = mimetypes.guess_type(fullPath)[0]
                     #Here apply patches where content type is explicitly known
                     if filePath == 'report.html': fileType = 'application/xhtml+xml'
@@ -375,7 +363,6 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                     pattern = os.path.join(CCP4Utils.getCCP4I2Dir(), 'qticons','')+CCP4DbApi.FILETYPES_CLASS[itype]+'.*'
                     possibleFiles = glob.glob(pattern)
                     if len(possibleFiles) > 0:
-                        import mimetypes
                         fullPath = possibleFiles[0]
                         fileType = mimetypes.guess_type(fullPath)[0]
                         self.returnFileAsDownload(contentType=fileType, fullPath=fullPath)

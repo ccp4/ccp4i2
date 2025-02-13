@@ -1954,10 +1954,8 @@ TaskTitle TEXT );''')
 
     def getProjectJobFile(self,projectId=None,fileName=None,jobNumber="1",subJobNumber=""):
         fname = self.getProjectJobFileName(projectId,fileName,jobNumber,subJobNumber)
-        d = fname
         with open(fname,"rb") as f:
-            d = f.read()
-        return d
+            return f.read()
 
     def getProjectDirectory(self,projectId=None,projectName=None,jobId=None):
 
