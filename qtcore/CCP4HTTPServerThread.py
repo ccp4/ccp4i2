@@ -34,7 +34,7 @@ class CHTTPServerThread(QtCore.QThread):
       CHTTPServerThread.insts = self
       self.port = None
       if port is not None:
-          self.defaultPort = port
+        self.defaultPort = port
       else:
         self.defaultPort = '43434'
       self.parentDir = parentDir
@@ -91,7 +91,7 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
         #print('CHTTPRequestHandler.do_GET',self.path)
         if (
-            self.path.startswith('/database')
+            '/database/projectid/' in self.path
             and (projectIdMatch := re.search(r'/projectid/([^/]+)', self.path))
             and (jobNumberMatch := re.search(r'/jobnumber/([^/]+)', self.path))
             and (fileMatch := re.search(r'/file/([^/]+)', self.path))
@@ -108,20 +108,22 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
 
     def do_GET_main(self,self_path):
         #print("do_GET_main",self_path)
-        if "site-packages/dials/static" in self_path:
+        if (i := self_path.find("site-packages/dials/static")) > -1:
             #This mangling is done to help with imported projects which might have links to different file locations
-            end = self_path[self_path.find("site-packages/dials/static"):][len("site-packages/dials/"):]
-            newPath = os.path.join(os.path.dirname(dials.__file__), end)
+            subPath = self_path[i:].removeprefix("site-packages/dials/")
+            # Leads to a mixture of path separators on Windows
+            newPath = os.path.join(os.path.dirname(dials.__file__), subPath)
             try:
                 fileType = mimetypes.guess_type(newPath.split("?")[0])[0]
                 self.returnFileAsData(contentType=fileType, fullPath=newPath.split("?")[0])
             except:
                 self.send_response(404)
             return
-        if "site-packages/mrparse/html" in self_path:
+        if (i := self_path.find("site-packages/mrparse/html")) > -1:
             #This mangling is done to help with imported projects which might have links to different file locations
-            end = self_path[self_path.find("site-packages/mrparse/html"):][len("site-packages/mrparse/"):]
-            newPath = os.path.join(os.path.dirname(mrparse.__file__), end)
+            subPath = self_path[i:].removeprefix("site-packages/mrparse/")
+            # Leads to a mixture of path separators on Windows
+            newPath = os.path.join(os.path.dirname(mrparse.__file__), subPath)
             try:
                 fileType = mimetypes.guess_type(newPath.split("?")[0])[0]
                 self.returnFileAsData(contentType=fileType, fullPath=newPath.split("?")[0])
