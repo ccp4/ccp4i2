@@ -1,6 +1,6 @@
 """
      tasks/coot_stepped_refine
-     Copyright (C) 2011 STFC
+
      Author: Martyn Winn
 """
 

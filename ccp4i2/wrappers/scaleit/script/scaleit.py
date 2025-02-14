@@ -1,6 +1,6 @@
 """
      scaleit.py: CCP4 GUI Projecta
-     Copyright (C) 2011 STFC
+
 """
 
 import os

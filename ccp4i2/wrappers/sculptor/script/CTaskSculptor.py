@@ -1,6 +1,6 @@
 """
      tasks/sculptor/CTaskSculptor.py
-     Copyright (C) 2011 STFC
+
      Author: Martyn Winn
 
 """

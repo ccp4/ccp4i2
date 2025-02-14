@@ -1,6 +1,6 @@
 """
     mergeMtz_gui.py
-    Copyright (C) 2015 SFTC
+
 """
 
 from ....qtgui.CCP4TaskWidget import CTaskWidget

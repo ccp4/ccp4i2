@@ -1,6 +1,6 @@
 """
      tasks/prosmart/CTaskProsmart.py
-     Copyright (C) 2011 STFC
+
      Author: Martyn Winn
 """
 

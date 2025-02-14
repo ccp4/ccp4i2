@@ -1,6 +1,6 @@
 """
     tasks/aimless_pipe/CTaskaimless_pipe.py: CCP4 GUI Project
-    Copyright (C) 2012 STFC
+
 
 Martyn Winn August 2012 - aimless_pipe gui
 Phil Evans 2014

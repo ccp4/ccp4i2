@@ -1,5 +1,5 @@
 #
-#  Copyright (C) 2016 STFC Rutherford Appleton Laboratory, UK.
+#
 #
 #  Author: David Waterman
 #  Acknowledgements: based on ideas and code by Nat Echols and Martin Noble.

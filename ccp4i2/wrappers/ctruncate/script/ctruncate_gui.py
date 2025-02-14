@@ -1,6 +1,5 @@
 """
     ctruncate_gui.py
-    Copyright (C) 2015STFC
     Author: Liz POtterton
 """
 

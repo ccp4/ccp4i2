@@ -1,6 +1,6 @@
 """
      tasks/pyphaser_mr/CTaskPyphaser_mr.py
-     Copyright (C) 2011 STFC
+
      Author: Martyn Winn
 """
 

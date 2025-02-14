@@ -1,7 +1,7 @@
 """
      unique.py: CCP4 GUI Project
      Author: Martyn Winn
-     Copyright (C) 2011 STFC
+
 """
 
 from ....core.CCP4PluginScript import CPluginScript

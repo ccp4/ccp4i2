@@ -1,6 +1,6 @@
 """
      tasks/freerflag/CTaskFreerflag.py
-     Copyright (C) 2011 STFC
+
      Author: Martyn Winn
 """
 

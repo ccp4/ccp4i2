@@ -1,6 +1,6 @@
 """
      pyphaser_mr.py: CCP4 GUI Project
-     Copyright (C) 2011 STFC
+
      Author: Martyn Winn
 
      This wrapper uses python bindings to Phaser.

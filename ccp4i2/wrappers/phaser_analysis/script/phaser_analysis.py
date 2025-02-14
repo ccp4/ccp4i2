@@ -1,6 +1,6 @@
 """
     phaser_analysis.py: CCP4 GUI Project
-    Copyright (C) 2012 STFC
+
 
 Run Phaser to analyse merged data, mainly to get the plot of
  average information content per reflection as a function of resolution,

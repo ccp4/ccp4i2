@@ -1,6 +1,6 @@
 """
      ctruncate.py: CCP4 GUI Project
-     Copyright (C) 2012 STFC
+
 """
 
 import os

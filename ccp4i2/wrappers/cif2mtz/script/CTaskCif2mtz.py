@@ -1,6 +1,6 @@
 """
      tasks/cif2mtz/CTaskCif2mtz.py
-     Copyright (C) 2011 STFC
+
      Author: Martyn Winn
 """
 

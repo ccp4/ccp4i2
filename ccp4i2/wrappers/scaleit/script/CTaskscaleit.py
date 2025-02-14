@@ -1,6 +1,6 @@
 """
      tasks/scaleit/CTaskscaleit.py
-     Copyright (C) 2011 STFC
+
      Author: Phil Evans
 """
 

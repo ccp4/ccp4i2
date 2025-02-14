@@ -1,6 +1,6 @@
 """
      mtzutils.py: CCP4 GUI Project
-     Copyright (C) 2011 STFC
+
      Author: Martyn Winn
 """
 

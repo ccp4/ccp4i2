@@ -1,6 +1,6 @@
 """
      freerflag.py: CCP4 GUI Project
-     Copyright (C) 2011 STFC
+
 """
 
 import os

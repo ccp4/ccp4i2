@@ -1,6 +1,6 @@
 """
      cad_copy_column.py: CCP4 GUI Project
-     Copyright (C) 2011 STFC
+
 """
 
 from ....core.CCP4PluginScript import CPluginScript

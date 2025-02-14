@@ -1,6 +1,6 @@
 """
      cif2mtz.py: CCP4 GUI Project
-     Copyright (C) 2012 STFC
+
 """
 
 from ...x2mtz.script import x2mtz

@@ -1,6 +1,6 @@
 """
      xia2_ctruncate.py: CCP4 GUI Project
-     Copyright (C) 2013 STFC
+
 """
 
 import glob

@@ -1,6 +1,6 @@
 """
      pointless.py: CCP4 GUI Project
-     Copyright (C) 2012 STFC
+
 """
 
 from ....core.CCP4PluginScript import CPluginScript

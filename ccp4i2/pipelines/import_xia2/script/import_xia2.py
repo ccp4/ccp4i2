@@ -1,6 +1,6 @@
 """
      import_xia2.py: CCP4 GUI Project
-     Copyright (C) 2013 STFC
+
 """
 
 import glob
