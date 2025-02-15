@@ -1,8 +1,6 @@
-from http.server import HTTPServer
 from http.server import SimpleHTTPRequestHandler
-from socketserver import ThreadingMixIn
+from http.server import ThreadingHTTPServer
 import glob
-import http.client
 import json
 import mimetypes
 import os
@@ -10,8 +8,8 @@ import queue
 import re
 
 from PySide2 import QtCore
-import mrparse
 import dials
+import mrparse
 
 from ..core import CCP4Utils
 from ..core.CCP4PrintHandler import PRINTHANDLER
@@ -30,75 +28,53 @@ def HTTPSERVER(fileName=None):
     return CHTTPServerThread.insts
 
 
-class MultiThreadedHTTPServer(ThreadingMixIn, HTTPServer):
-    pass
-
-def makeServer(port):
-      HandlerClass = CHTTPRequestHandler
-      ServerClass  = MultiThreadedHTTPServer
-      Protocol     = "HTTP/1.0"
-      server_address = ('127.0.0.1',port )
-      HandlerClass.protocol_version = Protocol
+def makeServer(port: int):
+      CHTTPRequestHandler.protocol_version = "HTTP/1.0"
       try:
-        httpd = ServerClass(server_address, HandlerClass)
+        return ThreadingHTTPServer(('127.0.0.1', port), CHTTPRequestHandler)
       except:
         return None
-      else:
-        return httpd
 
-def testServer(port):
-      ret = True
-      try:
-        h = http.client.HTTPConnection('127.0.0.1',port,timeout=3)
-        h.connect()
-      except:
-        ret=False
-      print('testServer',port,h,ret)
-      try:
-        h.close()
-      except:
-        pass
-      return ret
 
 class CHTTPServerThread(QtCore.QThread):
 
     insts = None
 
-    def __init__(self,parent=None,parentDir=None,port=None,fileName=None):
-      if parent is None: parent = QTAPPLICATION()
-      QtCore.QThread.__init__(self,parent)
-      self.setObjectName('HTTPServer')
-      CHTTPServerThread.insts = self
-      self.port = None
-      if port is not None:
-        self.defaultPort = port
-      else:
-        self.defaultPort = '43434'
-      self.parentDir = parentDir
-      self.dbThread = DBSERVER(fileName)
+    def __init__(self, parent=None, parentDir=None, fileName=None):
+        if parent is None:
+            parent = QTAPPLICATION()
+        QtCore.QThread.__init__(self, parent)
+        self.setObjectName('HTTPServer')
+        CHTTPServerThread.insts = self
+        self.port = None
+        self.parentDir = parentDir
+        self.dbThread = DBSERVER(fileName)
       
     def quitServer(self):
-      self.dbThread.queue.put("ShutdownSignal")
-      #sys.__stdout__.write('Try to shut down server cleanly\n');sys.__stdout__.flush()
-      if hasattr(self,"httpd"): self.httpd.shutdown()
+        self.dbThread.queue.put("ShutdownSignal")
+        # sys.__stdout__.write('Try to shut down server cleanly\n')
+        # sys.__stdout__.flush()
+        if hasattr(self, "httpd"):
+            self.httpd.shutdown()
 
     def run(self):
-
       # Code from http://www.linuxjournal.com/content/tech-tip-really-simple-http-server-python
       # Using this short script so that it will only serve localhost
 
-      if self.parentDir is not None: os.chdir(self.parentDir)
-      self.httpd =  makeServer(self.defaultPort)  
-      if self.httpd is None: self.httpd = makeServer(0)
-      
+      if self.parentDir is not None:
+          os.chdir(self.parentDir)
+      self.httpd = makeServer(DEFAULT_PORT)
+      if self.httpd is None:
+          self.httpd = makeServer(0)
+
       if self.httpd is not None:
            sa = self.httpd.socket.getsockname()
-           f = PRINTHANDLER().getFileObject(thread='HTTPServer',name='HTTPServer')
-           f.write( "CCP4i2 starting HTTP server on "+str( sa[0])+ " port "+str(sa[1])+'\n' )
-           print("CCP4i2 starting HTTP server on "+str( sa[0])+ " port "+str(sa[1])+'\n')
+           message = f"CCP4i2 starting HTTP server on {sa[0]} port {sa[1]}\n"
+           f = PRINTHANDLER().getFileObject(thread='HTTPServer', name='HTTPServer')
+           f.write(message)
+           print(message)
            self.port = sa[1]
            self.httpd.serve_forever()
-      return
 
 
 class CHTTPRequestHandler(SimpleHTTPRequestHandler):
@@ -111,34 +87,34 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
     #database
     def do_GET(self):
         #print('CHTTPRequestHandler.do_GET',self.path)
-        if "site-packages/dials/static" in self.path:
-            f = self.path
-            #This mangling is done to help with imported projects which might have links to different file locations
-            newPath = os.path.join(os.path.dirname(dials.__file__),f[f.find("site-packages/dials/static"):][len("site-packages/dials")+1:])
+        if (i := self.path.find("site-packages/dials/static")) > -1:
+            # This mangling is done to help with imported projects
+            # which might have links to different file locations
+            subPath = self.path[i:].removeprefix("site-packages/dials/")
+            newPath = os.path.join(os.path.dirname(dials.__file__), subPath)
             try:
                 fileType = mimetypes.guess_type(newPath.split("?")[0])[0]
                 self.returnFileAsData(contentType=fileType, fullPath=newPath.split("?")[0])
-                return
             except:
                 self.send_response(404)
-                return
-        if "site-packages/mrparse/html" in self.path:
-            f = self.path
-            #This mangling is done to help with imported projects which might have links to different file locations
-            newPath = os.path.join(os.path.dirname(mrparse.__file__),f[f.find("site-packages/mrparse/html"):][len("site-packages/mrparse")+1:])
+            return
+        if (i := self.path.find("site-packages/mrparse/html")) > -1:
+            # This mangling is done to help with imported projects
+            # which might have links to different file locations
+            subPath = self.path[i:].removeprefix("site-packages/mrparse/")
+            newPath = os.path.join(os.path.dirname(mrparse.__file__), subPath)
             try:
                 fileType = mimetypes.guess_type(newPath.split("?")[0])[0]
                 self.returnFileAsData(contentType=fileType, fullPath=newPath.split("?")[0])
-                return
             except:
                 self.send_response(404)
-                return
+            return
         if not self.path.startswith('/database'):
             #serve files normally
             SimpleHTTPRequestHandler.do_GET(self)
         else:
             dbQueue = HTTPSERVER().dbThread.queue
-            
+
             #Create my own Queue for reading response
             dbRequest = {'responseQueue':queue.Queue()}
 
@@ -211,7 +187,7 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                 if len(splitToken) == 1: tokensDict[splitToken[0]] = True
                 else: tokensDict[splitToken[0]] = '='.join(splitToken[1:])
             print(tokensDict)
-            
+
             if len(tokens) == 1:
                 docTemplate = '''
                     <!DOCTYPE html>
@@ -247,10 +223,10 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                 docString1 = re.sub('__serverName__',str(self.server.server_name),docTemplate)
                 docString = re.sub('__serverPort__', str(self.server.server_port),docString1)
                 self.returnData('text/html', docString)
-#SJM 18/07/2018 - Commented out this, no other reference to db anywhere...
-                #db.close()
+                # SJM 18/07/2018 - Commented out this, no other reference to db anywhere...
+                # db.close()
                 return
-            
+
             if tokens[1] in CDbThread.databaseCalls:
                 dbRequest['path'] = self.path
                 dbQueue.put(dbRequest)

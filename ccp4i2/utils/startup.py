@@ -417,17 +417,12 @@ def startDb(parent=None, fileName=None, mode='sqlite', userName=None, userPasswo
     return db
 
 
-def  startHTTPServer(parent=None, port=None, **kw):
-    if port is None:
-        port = CCP4HTTPServerThread.DEFAULT_PORT
+def startHTTPServer(parent=None, **kw):
     diry = os.path.join(CCP4Utils.getCCP4I2Dir(), 'docs')
-    try:
-        fileName = kw['dbFileName']
-    except:
-        fileName = None
-    t = CCP4HTTPServerThread.CHTTPServerThread(parent=parent, parentDir=diry, port=port, fileName=fileName)
+    fileName = kw.get('dbFileName')
+    t = CCP4HTTPServerThread.CHTTPServerThread(parent=parent, parentDir=diry, fileName=fileName)
     t.start()
-    return
+
 
 def startPrintHandler(app):
     printHandler = CCP4PrintHandler.CPrintHandler(parent=app)
@@ -437,7 +432,7 @@ def startPrintHandler(app):
         print('ERROR cleaning up print logs')
         print(e)
     # Do a getFileObject() here to ensure the filename is main_thread
-    f = printHandler.getFileObject(thread=None, name='main_thread')
+    printHandler.getFileObject(thread=None, name='main_thread')
     sys.stdout = printHandler
     sys.stderr = printHandler
     app.aboutToQuit.connect(printHandler.exit)
