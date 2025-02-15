@@ -15,13 +15,11 @@ import time
 import xml.etree.ElementTree as etree_xml
 
 from lxml import etree
-from PySide2 import QtCore
 import shiboken2
 
-from .. import __version__, I2_TOP
+from .. import I2_TOP
 from ..googlecode import diff_match_patch_py3
 from .CCP4ErrorHandling import CException
-from .CCP4Version import CCP4_VERSION
 
 
 def writeXML(f,t):
@@ -141,12 +139,11 @@ def saveEtreeToFile(tree=None, fileName=None):
 utf8_parser = etree.XMLParser(encoding='utf-8')
 
 
-def parse_from_unicode(unicode_str,useLXML=True):
+def parse_from_unicode(unicode_str, useLXML=True):
     if useLXML:
         s = unicode_str.encode('utf-8')
         return etree.fromstring(s, parser=utf8_parser)
-    else:
-        return etree_xml.fromstring(unicode_str)
+    return etree_xml.fromstring(unicode_str)
 
 
 def openFileToEtree(fileName=None, printout=False,useLXML=True):
@@ -384,28 +381,11 @@ def writeTarGzip(directory=None, tarFile=None):
         tarFile = directory + '.tar.gz'
     try:
         tarObj = tarfile.open(tarFile,'w:gz')
-        #tarObj.add(directory,arcname=os.path.split(directory)[1],exclude=excludeFromTarGzip)
         tarObj.add(directory,arcname=os.path.split(directory)[1])
         tarObj.close()
     except:
         return None
     return tarFile
-
-
-def excludeFromTarGzip(fileName):
-    #print 'excludeFromTarGzip',fileName
-    return False
-
-
-def readTarGzip(fileName, destination=None):
-    if destination is None:
-        destination = os.path.split(fileName)[0]
-    tarObj = tarfile.open(fileName)
-    next = tarObj.next().name
-    print('CCP4Utils.  readTarGzip next',next)
-    tarObj.extractall(path=destination)
-    tarObj.close()
-    return next
 
 
 def searchVersion(text, programName=None):
@@ -427,21 +407,8 @@ def searchVersion(text, programName=None):
     return None
 
 
-def versionLogHeader():
-    return (
-        f"CCP4i2 version: {__version__}\n"
-        f"Running CCP4 version: {CCP4_VERSION}\n"
-        f"Using Python version: {sys.version}\n"
-        f"Using Qt version: {QtCore.qVersion()}\n"
-    )
-
-
 def isAlive(qobj):
     return shiboken2.isValid(qobj)
-
-
-def samefile(f1, f2):
-    return os.path.samefile(f1,f2)
 
 
 def zipDirectory(czip, sourceDirectory, rootRelPath=None):

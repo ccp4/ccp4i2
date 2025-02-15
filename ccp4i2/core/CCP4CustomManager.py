@@ -1,10 +1,5 @@
 """
-     CCP4CustomManager.py: CCP4 GUI Project
-
-
-
-
-     Liz Potterton July 2013 - create and manage customisation
+Liz Potterton July 2013 - create and manage customisation
 """
 
 import glob
@@ -192,5 +187,3 @@ class CCustomManager(CObject):
         #print 'uncompress done', os.path.samefile(targetDir,self.getDirectory())
         if os.path.samefile(targetDir,self.getDirectory()):
             self.listChanged.emit()
-
-

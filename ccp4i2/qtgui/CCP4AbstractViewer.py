@@ -218,7 +218,7 @@ class CFileWatchTimer(QtCore.QObject):
 
     def addPath(self,fileName):
         for item in list(self.files.keys()):
-            if CCP4Utils.samefile(fileName,item,default=False): return False
+            if os.path.samefile(fileName,item,default=False): return False
         self.files[fileName] = os.path.getmtime(fileName)
         return True
 
@@ -227,7 +227,7 @@ class CFileWatchTimer(QtCore.QObject):
             del self.files[fileName]
             return True
         for item in list(self.files.keys()):
-            if CCP4Utils.samefile(item,fileName,default=False):
+            if os.path.samefile(item,fileName,default=False):
                 del self.files[item]
                 return True
         return False

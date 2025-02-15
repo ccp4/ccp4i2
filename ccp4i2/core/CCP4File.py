@@ -303,7 +303,7 @@ class CFilePath(CCP4Data.CString):
         if other is None or self._value is None:
             return False
         else:
-            return CCP4Utils.samefile(self._value, other)
+            return os.path.samefile(self._value, other)
 
     def splitext(self):
         return os.path.splitext(self._value)

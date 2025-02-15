@@ -211,7 +211,7 @@ class CReport(QtCore.QObject):
       if self.baseHref is None: return
       localBasePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'docs')
       try:
-        ifSame = CCP4Utils.samefile(self.baseHref,localBasePath)
+        ifSame = os.path.samefile(self.baseHref,localBasePath)
       except:
         ifSame = False
       #print 'extractBaseHref samepath', localBasePath,ifSame

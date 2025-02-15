@@ -1,23 +1,22 @@
 """
-     CCP4ErrorReportViewer.py: CCP4 GUI Project
-     Copyright (C) 2011 University of York
-
-
-
-   Liz Potterton Jan 2011 - List program error log
+Copyright (C) 2011 University of York
+Liz Potterton Jan 2011 - List program error log
 """
 
 ##@package CCP4ProjectWidget View a project
 
 import os
+import sys
 import tempfile
 import time
 
 from PySide2 import QtCore, QtGui, QtWidgets
 
+from .. import __version__
 from ..core import CCP4Utils
 from ..core.CCP4PrintHandler import PRINTHANDLER
 from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+from ..core.CCP4Version import CCP4_VERSION
 from ..dbapi import CCP4DbUtils
 from ..qtgui import CCP4TextViewer
 from ..qtgui import CCP4Widgets
@@ -66,8 +65,8 @@ class CSendJobError(QtWidgets.QDialog):
     @QtCore.Slot()
     def applySend(self):
         print('applySend')
-        comments = self.comments.toPlainText().__str__()
-        sendee = self.sendee.currentText().__str__()
+        comments = str(self.comments.toPlainText())
+        sendee = str(self.sendee.currentText())
         sendLog = self.sendLog.isChecked()
         sendData = self.sendData.isChecked()
         jobList = self.jobListWidget.selectedJobs()
@@ -83,14 +82,15 @@ class CSendJobError(QtWidgets.QDialog):
         if not os.path.exists(projectTmpDir):
             os.mkdir(projectTmpDir)
         tarFile = os.path.join(projectTmpDir, dirName + '.tar.gz')
-        rv = CCP4Utils.writeTarGzip(tarDir, tarFile=tarFile)
+        CCP4Utils.writeTarGzip(tarDir, tarFile=tarFile)
         message = 'mailto:' + sendee + '?subject=CCP4i2 Job Error Report&body= \n' + comments + '\n'
         if tarFile is not None:
             message = message + '\n\nPLEASE ATTACH FILE CONTAINING JOB DIAGNOSTIC:  ' + str(tarFile)
             if not sendData:
                 message = message + '\nThe compressed file does not contain any data files but will contain the names of data files.'
-        rv =  QtGui.QDesktopServices.openUrl(QtCore.QUrl(message))
+        QtGui.QDesktopServices.openUrl(QtCore.QUrl(message))
         self.close()
+
 
 class CPrintLogViewer(CCP4TextViewer.CTextViewer):
 
@@ -99,7 +99,12 @@ class CPrintLogViewer(CCP4TextViewer.CTextViewer):
         self.setFont(style='fixed_width')
 
     def openThread(self, thread = 'main_thread'):
-        versionText = CCP4Utils.versionLogHeader()
+        versionText = (
+            f"CCP4i2 version: {__version__}\n"
+            f"Running CCP4 version: {CCP4_VERSION}\n"
+            f"Using Python version: {sys.version}\n"
+            f"Using Qt version: {QtCore.qVersion()}\n"
+        )
         ph = PRINTHANDLER()
         text = ph.getContent(thread)
         self.viewer.append(versionText + text)

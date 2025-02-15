@@ -78,7 +78,7 @@ class CProcessManager(QtCore.QObject):
             newPath = ''
             for item in pathList:
                 try:
-                    if not CCP4Utils.samefile(item, libDir):
+                    if not os.path.samefile(item, libDir):
                         newPath = newPath + item + ':'
                     else:
                         print('processEnvironment removing', item, 'from', pathVar)

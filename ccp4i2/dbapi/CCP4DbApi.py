@@ -3867,7 +3867,7 @@ TaskTitle TEXT );''')
 
         if sys.platform[0:3] != 'win' and fileObject is not None and sourceFileName is None and sourceFileId is None:
           try:
-            isSame = CCP4Utils.samefile ( os.path.normpath(os.path.split(fileObject.fullPath.__str__())[0]),
+            isSame = os.path.samefile ( os.path.normpath(os.path.split(fileObject.fullPath.__str__())[0]),
                                                  self.jobDirectory(jobId=jobId) )
           except:
             raise CException(self.__class__,128,fileObject.fullPath.__str__()+' '+self.jobDirectory(jobId=jobId),stack=False)

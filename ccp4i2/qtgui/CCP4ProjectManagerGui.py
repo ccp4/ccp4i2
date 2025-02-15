@@ -226,10 +226,10 @@ class CNewProjectGui(QtWidgets.QDialog):
       if os.path.isfile(directory):
         QtWidgets.QMessageBox.warning(self,'Create project','Selected directory is a file')
         return
-      elif CCP4Utils.samefile(directory,CCP4Utils.getHOME()):
+      elif os.path.samefile(directory,CCP4Utils.getHOME()):
         QtWidgets.QMessageBox.warning(self,'Create project','Selected directory is users home area')
         return
-      elif CCP4Utils.samefile(directory,CCP4Utils.getProjectDirectory()):
+      elif os.path.samefile(directory,CCP4Utils.getProjectDirectory()):
         QtWidgets.QMessageBox.warning(self,'Create project','Selected directory is the CCP4 master project directory')
         return
 

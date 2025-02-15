@@ -105,7 +105,7 @@ class import_merged(CPluginScript):
             self.x2mtz.container.outputData.FREEOUT.set(self.container.outputData.FREEOUT)
         self.x2mtz.checkOutputData()
         ret = self.x2mtz.processOutputFiles()  # runs cmtzsplit
-        if sys.platform != 'win32': # CCP4Utils.samefile() doesn't work (r1728)
+        if sys.platform != 'win32':
           self.x2mtz.reportStatus(ret)
         self.container.outputData.OBSOUT.set(self.x2mtz.container.outputData.OBSOUT)
         if self.importXML is not None:
