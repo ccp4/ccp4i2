@@ -13,7 +13,6 @@ import urllib.parse
 import urllib.request
 
 from ....core import CCP4NonGuiProjectUtils
-from ....core import CCP4Utils
 from ....utils.startup import setupEnvironment, startProjectsManager
 
 
@@ -201,15 +200,11 @@ class CCP4i2DjangoSession(DjangoSession):
         self._pm = kws.get('projectsManager', None)
 
     def projectsManager(self):
-        if self._pm is None: self._pm = self.myStartProjectsManager()
+        if self._pm is None:
+            setupEnvironment()
+            self._pm = startProjectsManager()
         return self._pm
 
-    def myStartProjectsManager(self):
-        CCP4I2_TOP = CCP4Utils.getCCP4I2Dir()
-        setupEnvironment(path=CCP4I2_TOP)
-        pm = startProjectsManager()
-        return pm
-    
     def projectIdForName(self, projectName=None, strict=False):
         try:
             if strict: projectIdList = [projectTuple[0] for projectTuple in self.projectsManager().db().listProjects() if projectName == projectTuple[1]]

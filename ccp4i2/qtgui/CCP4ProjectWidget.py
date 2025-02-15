@@ -1,8 +1,5 @@
 """
-     CCP4ProjectWidget.py: CCP4 GUI Project
-
-
-   Liz Potterton April 2011 - list database
+Liz Potterton April 2011 - list database
 """
 
 ##@package CCP4ProjectWidget View a project
@@ -22,12 +19,12 @@ from . import CCP4AnnotationWidgets
 from . import CCP4FileBrowser
 from . import CCP4StyleSheet
 from . import CCP4WebBrowser
+from .. import I2_TOP
 from ..core import CCP4Annotation
 from ..core import CCP4Container
 from ..core import CCP4DataManager
 from ..core import CCP4File
 from ..core import CCP4TaskManager
-from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CErrorReport, CException
 from ..core.CCP4Preferences import PREFERENCES
 from ..core.CCP4ProjectsManager import PROJECTSMANAGER
@@ -65,7 +62,7 @@ def loadSvg(fileName,size=24):
 
 def jobIcon(style='job'):
     if style not in _JOBICON:
-      fileName = os.path.normpath(os.path.join(CCP4Utils.getCCP4I2Dir(),'qticons',style))
+      fileName = str(I2_TOP, 'qticons', style)
       if os.path.exists(fileName+'.png'):
         _JOBICON[style] = QtGui.QIcon(QtGui.QPixmap(fileName+'.png'))
         #print 'jobIcon',fileName+'.png'
@@ -79,7 +76,7 @@ def jobIcon(style='job'):
         movie.start()
         _JOBICON[style] = label
       else:
-        fileName = os.path.normpath(os.path.join(CCP4Utils.getCCP4I2Dir(),'qticons','evaluations',style))
+        fileName = str(I2_TOP, 'qticons', 'evaluations', style)
         if os.path.exists(fileName+'.png'):
           _JOBICON[style] = QtGui.QIcon(QtGui.QPixmap(fileName+'.png'))
         elif os.path.exists(fileName+'.svg'):
@@ -473,8 +470,7 @@ class JobListHTMLDelegate(QtWidgets.QStyledItemDelegate):
     def __init__(self,parent=None):
         QtWidgets.QStyledItemDelegate. __init__(self,parent)
         self.editorWidget = None
-        qticonsDir = os.path.join(CCP4Utils.getCCP4I2Dir(),'qticons')
-        self.donePix = QtGui.QPixmap(os.path.join(qticonsDir,"job.png") )
+        self.donePix = QtGui.QPixmap(str(I2_TOP / 'qticons' / "job.png"))
 
     def createEditor(self,parent,option,modelIndex):
         #if self.parent().model().data(modelIndex,QtCore.Qt.DisplayRole):
@@ -846,20 +842,20 @@ class CTreeItemJob(CTreeItem):
   DATE_FORMAT = '%a %d %b %y'
   TODAY = None
   THISYEAR = None
-  qticonsDir = os.path.join(CCP4Utils.getCCP4I2Dir(),'qticons')
-  DONE_PIX = os.path.join(qticonsDir,"green-tick.png")
-  PENDING_PIX = os.path.join(qticonsDir,"undone.png")
-  BEST_PIX = os.path.join(qticonsDir,"evaluations","Best.png")
-  GOOD_PIX = os.path.join(qticonsDir,"evaluations","Good.png")
-  REJEJECTED_PIX = os.path.join(qticonsDir,"evaluations","Rejected.png")
-  FAILED_PIX = os.path.join(qticonsDir,"red-cross.png")
-  BLANK_PIX = os.path.join(qticonsDir,"blank.png")
-  RUNNING_PIX = os.path.join(qticonsDir,"running.png")
-  RUNNING_DARK_PIX = os.path.join(qticonsDir,"running_dark.png")
-  FOLDER_PIX = os.path.join(qticonsDir,"file_manager2.png")
-  TO_DELETE_PIX = os.path.join(qticonsDir,"dustbin.png")
-  PAUSE_PIX = os.path.join(qticonsDir,"pause.png")
-  UNKNOWN_PIX = os.path.join(qticonsDir,"question.png")
+  qticonsDir = I2_TOP / 'qticons'
+  DONE_PIX = str(qticonsDir / "green-tick.png")
+  PENDING_PIX = str(qticonsDir / "undone.png")
+  BEST_PIX = str(qticonsDir / "evaluations" / "Best.png")
+  GOOD_PIX = str(qticonsDir / "evaluations" / "Good.png")
+  REJEJECTED_PIX = str(qticonsDir / "evaluations" / "Rejected.png")
+  FAILED_PIX = str(qticonsDir / "red-cross.png")
+  BLANK_PIX = str(qticonsDir / "blank.png")
+  RUNNING_PIX = str(qticonsDir / "running.png")
+  RUNNING_DARK_PIX = str(qticonsDir / "running_dark.png")
+  FOLDER_PIX = str(qticonsDir / "file_manager2.png")
+  TO_DELETE_PIX = str(qticonsDir / "dustbin.png")
+  PAUSE_PIX = str(qticonsDir / "pause.png")
+  UNKNOWN_PIX = str(qticonsDir / "question.png")
   IMG_HEIGHT_STR = "XXXX_IMG_HEIGHT_XXXX"
   
   def __init__(self,parent=None,info={}):
@@ -1993,9 +1989,9 @@ class CProjectWidget(QtWidgets.QFrame):
     #layout.setSizeConstraint(QtWidgets.QLayout.SetMinAndMaxSize)
     self.setLayout(layout)
 
-    iconDir = os.path.join(os.environ['CCP4I2_TOP'],'qticons')
-    upArrow = QtGui.QIcon(os.path.join(iconDir,"up.png"))
-    downArrow = QtGui.QIcon(os.path.join(iconDir,"down.png"))
+    iconDir = I2_TOP / 'qticons'
+    upArrow = QtGui.QIcon(str(iconDir /"up.png"))
+    downArrow = QtGui.QIcon(str(iconDir /"down.png"))
     self.taskSearchBox = QtWidgets.QLineEdit()
 
     searchLayout = QtWidgets.QHBoxLayout()

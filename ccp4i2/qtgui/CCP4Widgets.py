@@ -1,10 +1,3 @@
-"""
-     qtgui/CCP4Widgets.py: CCP4 Gui Project
-
-
-
-"""
-
 ##@package CCP4Widgets (QtGui) Collection of widgets for simple data types
 
 import functools
@@ -30,7 +23,7 @@ from . import CCP4RefmacMultiAtomSelection
 from . import CCP4SequenceList
 from . import CCP4TaskWidget
 from . import CCP4WebBrowser
-from . import CCP4Widgets
+from .. import I2_TOP
 from ..core import CCP4Container
 from ..core import CCP4Data
 from ..core import CCP4DataManager
@@ -48,7 +41,6 @@ from ..dbapi import CCP4DbUtils
 from ..qtcore.CCP4CustomMimeTypes import MIMETYPESHANDLER
 from ..qtcore.CCP4Launcher import LAUNCHER
 from ..qtgui.CCP4WebBrowser import WEBBROWSER
-from ..qtgui.CCP4Widgets import PIXMAPMANAGER
 from ..utils.QApp import QTAPPLICATION
 
 
@@ -282,7 +274,7 @@ class CPixmapManager:
 
     def loadCache(self, dir='', subDirectories = ['']):
         if not dir:
-            dir = os.path.join(os.environ['CCP4I2_TOP'], 'qticons')
+            dir = str(I2_TOP / 'qticons')
         try:
             with open(os.path.join(dir, "CachedPixmapPaths.json"), "r") as pixmapCacheFile:
                 self.cachedFilenames=json.loads(pixmapCacheFile.read())
@@ -291,7 +283,7 @@ class CPixmapManager:
 
     def buildCacheFromScratch(self, dir='', subDirectories = []):
         if not dir:
-            dir = os.path.join(os.environ['CCP4I2_TOP'], 'qticons')
+            dir = str(I2_TOP, 'qticons')
             subDirectories = ['']
         self.cachedFilenames = {}
         for subd in subDirectories:
@@ -309,8 +301,7 @@ class CPixmapManager:
 
     def loadPixmaps(self, dir='', width=32, height=0):
         if not dir:
-            dir = os.path.join(os.environ['CCP4I2_TOP'], 'qticons')
-            subDirectories = ['']
+            dir = str(I2_TOP, 'qticons')
         self.pixmaps = {}
         if height<=0:
             height = width
@@ -332,7 +323,7 @@ class CPixmapManager:
         return pixmap
 
     def getPixmap(self,name):
-        dir = os.path.join(os.environ['CCP4I2_TOP'], 'qticons')
+        dir = str(I2_TOP, 'qticons')
         #print 'getPixmap',name,self.pixmaps.has_key(name)
         if name in self.cachedFilenames:
             filename = self.cachedFilenames[name]
@@ -1750,7 +1741,7 @@ class CDataFileView(CComplexLineWidget):
               testAction = QtWidgets.QAction("Browse for demo data",browserButton);
               @QtCore.Slot(bool)
               def handleOpenTrigger():
-                  self.openBrowser(os.path.join(os.environ['CCP4I2_TOP'],"demo_data"))
+                  self.openBrowser(str(I2_TOP / "demo_data"))
               testAction.triggered.connect(handleOpenTrigger)
               menu.addAction(testAction);
               browserButton.setMenu(menu);
@@ -1967,7 +1958,7 @@ class CDataFileView(CComplexLineWidget):
       CCP4DbUtils.makeJobBackup(jobId=fileInfo['jobid'],projectName=fileInfo['projectname'])
 
   def handleEditLabel(self):
-    d = CCP4Widgets.CEditFileLabel(parent=self,fileId=self.model.dbFileId.__str__(),fileLabel=self.jobLabel.getValue())
+    CEditFileLabel(parent=self,fileId=self.model.dbFileId.__str__(),fileLabel=self.jobLabel.getValue())
 
   @QtCore.Slot(dict)
   def handleDbFileUpdated(self,args):
@@ -2261,7 +2252,7 @@ class CDataFileView(CComplexLineWidget):
 
         self.browser.setDownloadMode(modeList=downloadModes,projectId=projectId)
 
-      demo_data_dir = os.path.normpath(os.path.join(os.environ['CCP4I2_TOP'],"demo_data"))
+      demo_data_dir = str(I2_TOP / "demo_data")
       urls = self.browser.widget.fileDialog.sidebarUrls()
       url_paths = []
 

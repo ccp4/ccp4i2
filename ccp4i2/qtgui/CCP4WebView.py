@@ -1,10 +1,5 @@
 """
-     CCP4WebView.py: CCP4 GUI Project
-
-
-
-
-     Liz Potterton Jan 2010 - Copied from CCP4mg
+Liz Potterton Jan 2010 - Copied from CCP4mg
 """
 
 ##@package CCP4WebView (QtWebKit) Web browser 'plugin' to view web pages
@@ -31,17 +26,10 @@ from ..utils.QApp import QTAPPLICATION
 
 
 def setGlobalSettings():
-    """
-    webSettings = QtWebKit.QWebSettings.globalSettings()
-    #print 'setGlobalSetting webSettings',webSettings,key,value
-    preferences = PREFERENCES()
-    webSettings.setFontSize(QtWebKit.QWebSettings.DefaultFontSize, preferences.REPORT_FONT_SIZE)
-    webSettings.setFontSize(QtWebKit.QWebSettings.DefaultFixedFontSize, preferences.REPORT_FONT_SIZE)
-    webSettings.setAttribute(QtWebKit.QWebSettings.DeveloperExtrasEnabled, True)
-    """
     for window in CWebView.Instances:
         if CCP4Utils.isAlive(window):
             window.setLoggraphFont()
+
 
 class CWebPage(QtWebEngineWidgets.QWebEnginePage):
 
@@ -50,10 +38,6 @@ class CWebPage(QtWebEngineWidgets.QWebEnginePage):
 
     def __init__(self, parent=None):
         QtWebEngineWidgets.QWebEnginePage.__init__(self, parent)
-        #self.setLinkDelegationPolicy(QtWebEngineWidgets.QWebEnginePage.DelegateAllLinks)
-        #self.setForwardUnsupportedContent(True)
-        #self.settings().setAttribute(QtWebKit.QWebSettings.JavascriptEnabled ,1)
-        #self.settings().setAttribute(QtWebKit.QWebSettings.PluginsEnabled ,1)
 
     def shouldInterruptJavaScript(self):
         # Reimplemented to prevent accasianally seen message box (by Phil) when creating DR reports
@@ -61,7 +45,6 @@ class CWebPage(QtWebEngineWidgets.QWebEnginePage):
         #http://stackoverflow.com/questions/9284511/reimplement-the-shouldinterruptjavascript-in-qt-c
         print('CWebPage.shouldInterruptJavaScript called')
         traceback.print_stack()
-        #QApplication::processEvents(QEventLoop::AllEvents, 42)
         QTAPPLICATION().processEvents(QtCore.QEventLoop.AllEvents, 42)
         return False
 
@@ -86,20 +69,7 @@ class CWebPage(QtWebEngineWidgets.QWebEnginePage):
             if not rv:
                 QtWidgets.QMessageBox.warning(None, 'Display url', 'Attempting to display external URL using non-CCP4i2 web browser failed')
             return False
-        # path = url.path() # Redundant line of code.
-#FIXME
-        """
-        format = MIMETYPESHANDLER().formatFromFileExt(path)
-        if format and not MIMETYPESHANDLER().useWebBrowser(format):
-            self.CustomMimeTypeRequested.emit(url)
-            return False    # CCP4WebBrowser is not taking responsibility.
-        """
-#FIXME _ Bummer, this is called before entering load function in WebEngine. Thus, _blockLoading is always True
-        """
-        if self.parent().blockLoading():
-            self.NavigationRequest.emit(url)
-            return False
-        """
+
         # This is broken if setHtml() has been used to set the page text and give
         # a local base href - the base href is returned by request.url()
         #self.view().extractCCP4Data(request.url())
@@ -164,15 +134,6 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
         self.setTarget('')
         #self.mgpage.unsupportedContent.connect(self.handleUnsupportedContent)
         #Create Qt web plugin factory
-        """
-        try:
-            factory = CCP4WebPluginFactory.CWebPluginFactory(self)
-            self.page().setPluginFactory(factory)
-        except CException as e:
-            print('CCP4WebView Error creating web plugin factory')
-        except Exception as e:
-            print('CCP4WebView Error creating web plugin factory')
-        """
         fontDataBase = QtGui.QFontDatabase()
         defaultSettings = QtWebEngineWidgets.QWebEngineSettings.globalSettings()
         standardFont = fontDataBase.font("Courier","",14)
@@ -240,30 +201,6 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
             self.resetScroll = None
 
     def contextMenuEvent(self, event):
-        """
-        #print 'CWebView.contextMenuEvent', event.pos().x(), event.pos().y()
-        hitTestResult = None
-        alt_words = []
-        frame = self.page().frameAt(event.pos())
-        if frame:
-            hitTestResult = frame.hitTestContent(event.pos())
-        #print 'CWebView.contextMenuEvent',frame,hitTestResult
-        #print 'CWebView.contextMenuEvent hitTestResult alt text',str(hitTestResult.alternateText())
-        alt_text = hitTestResult.alternateText()
-        if len(alt_text)>0:
-            alt_words = (str(alt_text)).split()
-        #print 'CWebView.contextMenuEvent alt text',alt_words
-        if hitTestResult:
-            webElement = hitTestResult.element()
-        if len(alt_words) >= 2 and alt_words[0] == 'x-ccp4-widget/CDataFileView':
-            if not self.customContextMenu:
-                self.customContextMenu = QtWidgets.QMenu(self)
-                CCP4GuiUtils.populateMenu(self, self.customContextMenu,['copy', 'view', 'help'], default_icon='')
-            self.customContextMenu.popup(event.globalPos())
-            event.accept()
-        else:
-            QtWebEngineWidgets.QWebEngineView.contextMenuEvent(self, event)
-        """
         menu = QtWidgets.QMenu(self)
         reloadAct = menu.addAction("Reload")
         reloadAct.triggered.connect(self.reload)
@@ -317,11 +254,9 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
 
     def getFileExt(self):
         return None
-        return CCP4CustomMimeTypes.MimeTypesHandler().getMimeTypeInfo(name='text/html', info='fileExtensions')
 
     def getLabel(self):
         return None
-        return CCP4CustomMimeTypes.MimeTypesHandler().getMimeTypeInfo(name='text/html', info='description')
 
     def Save(self,fileName):
         CCP4Utils.saveFile(fileName, str(self.mgpage.currentFrame().toHtml()))
@@ -439,6 +374,7 @@ for (var i=0; i<imgElements.length;i++) {
         print('CWebView.emitDownloadRequest', jobId, dataName)
         self.csvDownloadRequest.emit(jobId, dataName)
 
+
 class CSubJobReport(QtCore.QObject):
 
     def __init__(self,parent):
@@ -466,20 +402,6 @@ class CSubJobReport(QtCore.QObject):
             err = self.merge(reportFile,idText)
 
     def merge(self,reportFile,idText):
-        '''
-        parentTree = etree.parse(parentFile)
-        print 'mergeIntoParent jobId',self.jobId
-        # Find the span-link created by CCP4ReportParser.foldLinkLine
-        path = 'body/div[@class="sub-job-list"]/span[@class="folder_link"]/a[@id="jobId'+str(self.jobId)+'"]'
-        aEle = parentTree.xpath(path)
-        print 'mergeIntoParent aEle',aEle
-        if len(aEle) == 0: return CErrorReport(self.__class__,5,parentFile)
-        aEle = aEle[0]
-        label = aEle.text
-        print 'mergeIntoParent',label
-        insertEle = aEle.xpath('../..')[0]
-        insertIndex = insertEle.index(aEle.xpath('..')[0])
-        '''
         #myTree =  etree.parse(reportFile)
         myTree = CCP4Utils.openFileToEtree(reportFile)
         # Load the ccp4_data while we have the file as xml
@@ -497,4 +419,3 @@ class CSubJobReport(QtCore.QObject):
             ele.setStyleProperty('display','block')
             text = self.parent().page().currentFrame().toHtml().__str__()
             CCP4Utils.saveFile(self.parent().fileName+'.tmp',text,overwrite=True)
-

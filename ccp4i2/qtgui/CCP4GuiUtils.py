@@ -1,10 +1,3 @@
-"""
-     qtgui/guiUtils.py: CCP4 Gui Project
-
-
-
-
-"""
 ##@package CCP4GuiUtils (QtGui) Assorted Gui utilities
 
 from collections.abc import Callable
@@ -20,16 +13,8 @@ from ..qtgui import CCP4Widgets
 LOADED_PIXMAPS = {}
 ICON_EXTENSIONS= ['.svg','.png']
 
-def checkState(inp):
-    if inp:
-        return QtCore.Qt.Checked
-    else:
-        return QtCore.Qt.Unchecked
 
-
-#----------------------------------------------------------------------
 def createAction(name='',parent=None,definition={},icon_path='',default_icon=''):
-#----------------------------------------------------------------------
     if definition:
         adef = definition
     else:
@@ -86,7 +71,7 @@ def createAction(name='',parent=None,definition={},icon_path='',default_icon='')
         signal = adef['signal']
     else:
         signal = 'triggered()'
-#FIXME!!!
+    # FIXME!!!
     if adef.get('slot',''):
         if isinstance(adef['slot'],list) and len(adef['slot'])>1:
             a.triggered.connect(functools.partial(adef['slot'][0],adef['slot'][1]))
@@ -94,9 +79,8 @@ def createAction(name='',parent=None,definition={},icon_path='',default_icon='')
             a.triggered.connect(adef['slot'])
     return a
 
-#----------------------------------------------------------------------
+
 def createIcon(name=None,adef={},icon_path='',default_icon='unknown'):
-#----------------------------------------------------------------------
     #print 'guiUtils.createIcon',name
     if 'icon' in adef and adef['icon']:
         icon_name =  str(adef['icon'])
@@ -105,9 +89,8 @@ def createIcon(name=None,adef={},icon_path='',default_icon='unknown'):
     else:
         icon_name = 'unknown'
     if not icon_path:
-        for item in ['CCP4I2_TOP']:
-            if item in os.environ:
-                icon_path = os.path.join(os.path.abspath(os.environ[item]),'qticons')
+        if 'CCP4I2_TOP' in os.environ:
+            icon_path = os.path.join(os.path.abspath(os.environ['CCP4I2_TOP']),'qticons')
     #print 'guiUtils.createIcon',icon_path,icon_name
     for ext in ICON_EXTENSIONS:
         filename = os.path.join(icon_path,icon_name+ext)
@@ -120,10 +103,9 @@ def createIcon(name=None,adef={},icon_path='',default_icon='unknown'):
             ico =  QtGui.QIcon(pix)
             return ico
     if default_icon:
-        for item in ['CCP4I2_TOP']:
-            if item in os.environ:
-                file = os.path.join(os.path.abspath(os.environ[item]),'qticons',default_icon+'.png')
-                return QtGui.QIcon(file)
+        if 'CCP4I2_TOP' in os.environ:
+            file = os.path.join(os.path.abspath(os.environ['CCP4I2_TOP']),'qticons',default_icon+'.png')
+            return QtGui.QIcon(file)
     else:
         return None
 
@@ -139,13 +121,12 @@ def loadSvg(fileName):
     painter.end()
     return pixmap
 
-#----------------------------------------------------------------------
+
 def populateMenu(parent=None,menuWidget=None,definition=[],
                  getActionDef=None,default_icon='',info={}):
-#----------------------------------------------------------------------
     #print "populateMenu",definition
     #menuWidget.hovered.connect(handleMenuHover)
-#FIXME!!!
+    #FIXME!!!
     if not definition:
         menuWidget.addAction(createAction('dummy',parent,{ 'text' : '  --  '} ,default_icon=default_icon))
     elif not isinstance(definition,list):
@@ -204,15 +185,15 @@ def populateMenu(parent=None,menuWidget=None,definition=[],
                 if a:
                     menuWidget.addAction(a)
 
+
 def handleMenuHover(action):
     tip = action.toolTip()
     if not tip: return
     QtWidgets.QToolTip.showText(QtGui.QCursor.pos(),tip)
 
-#----------------------------------------------------------------------
+
 def populateToolBar(parent=None,toolBarWidget=None,definition=[],
                  getActionDef=None,default_icon='',info={}):
-#----------------------------------------------------------------------
     #print 'populateToolBar',definition
     if not definition:
         toolBarWidget.addAction(createAction('dummy',parent,{ 'text' : '  --  '} ,default_icon=default_icon))
@@ -258,9 +239,8 @@ def populateToolBar(parent=None,toolBarWidget=None,definition=[],
                 if a:
                     toolBarWidget.addAction(a)
 
-#-------------------------------------------------------------------
+
 def loadPixmap(name='',group='actions',icon_path='',width=32,height=0):
-#-------------------------------------------------------------------
     if not height: height = width
     size_key = str(width)+'_'+str(height)
     if not (name in LOADED_PIXMAPS and size_key in LOADED_PIXMAPS[name]):
@@ -281,16 +261,13 @@ def loadPixmap(name='',group='actions',icon_path='',width=32,height=0):
         LOADED_PIXMAPS[name][size_key] = QtGui.QPixmap(file).scaled(width,height)
     return LOADED_PIXMAPS[name][size_key]
 
-#-------------------------------------------------------------------
+
 def loadResource(self,url='',mode=QtGui.QTextDocument.StyleSheetResource):
-#-------------------------------------------------------------------
     qu = QtCore.QUrl(url)
     self.style = self.textBrowser.loadResource(mode, qu)
 
 
-#-------------------------------------------------------------------
 def setWidgetValue(widget,value):
-#-------------------------------------------------------------------
     #print 'setWidgetValue',widget,value
     if isinstance(widget,QtWidgets.QComboBox):
         ic = widget.findText(value)
@@ -311,9 +288,8 @@ def setWidgetValue(widget,value):
     elif isinstance(widget,CCP4Widgets.CDataFileView):
         widget.setDataFile(value)
 
-#-------------------------------------------------------------------
+
 def getWidgetValue(widget=None,default='',baseType='text'):
-#-------------------------------------------------------------------
     value = default
     if isinstance(widget,QtWidgets.QComboBox):
         #value = str(widget.itemData(widget.currentIndex()))

@@ -9,7 +9,7 @@ import time
 
 from PySide2 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets
 
-from ..core.CCP4Utils import getCCP4I2Dir
+from .. import I2_TOP
 from ..utils.QApp import QTAPPLICATION
 from ..utils.startup import setupEnvironment, startBrowser
 
@@ -17,8 +17,7 @@ from ..utils.startup import setupEnvironment, startBrowser
 def main():
     if False:  # Added to help with debugging segfaults.
         faulthandler.enable()
-    top_path = getCCP4I2Dir()
-    print('Running CCP4i2 browser from:', top_path)
+    print('Running CCP4i2 browser from:', I2_TOP)
     print('Python', sys.version)
     try:
         print('Qt version', QtCore.qVersion())

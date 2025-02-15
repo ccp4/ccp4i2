@@ -124,19 +124,6 @@ class testDataFile(unittest.TestCase):
         self.assertTrue(f.samefile(os.path.join(bindir,'browser')),'Failed CDataFile.samefile(Python string)')
         self.assertTrue(f.samefile(h),'Failed CDataFile.samefile(CFilePath)')
 
-    """
-      def testDataFile5(self):
-        try:
-          f = CDataFile(project='rubbish',baseName='whatever')
-        except CException as e:
-          self.assertEqual(len(e),1,'Unexpected exception length in setting CDataFile with bad project')
-          self.assertEqual(e[0]['code'],104,'Unexpected exception in setting CDataFile with bad project')
-        except:
-          self.fail('Unexpected exception in setting CDataFile with bad project')
-        else:
-          self.fail('No exception in setting CDataFile with bad project')
-    """
-
 
 class testI2XmlDataFile(unittest.TestCase):
 

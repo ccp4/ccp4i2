@@ -959,8 +959,6 @@ class ctruncate_report(Report):
 
 ############################################################################
 if __name__ == "__main__":
-
-  #execfile(os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc'))
   report = ctruncate_report(xmlFile = sys.argv[1] )
   tree= report.as_etree()
   report.as_html_file(fileName='./test-ctruncate.html')

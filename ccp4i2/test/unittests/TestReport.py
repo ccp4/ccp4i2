@@ -16,4 +16,3 @@ class testReport(unittest.TestCase):
     self.assertEqual(x.cell.a,123.4,'Failed to load container and cell data')
     x = r.getDataObject(id='data_table_1')
     self.assertEqual(x.nColumns,9,'Failed to load CReportTableModel number of columns')
-    

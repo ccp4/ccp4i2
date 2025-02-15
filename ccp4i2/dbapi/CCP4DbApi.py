@@ -1404,26 +1404,10 @@ class CDbApi(CObject):
         else:
           if relPath == '.':
             return ProjectID,ProjectName,None
-          elif relPath[0:2] != '..':
-            nSubDir = CCP4Utils.splitPath(relPath)
-            if nSubDir<bestResult[3]:
-              bestResult = ProjectID,ProjectName,relPath, nSubDir
-
-      '''
-      if testAliases:
-        #for name,path in self.directories.items():
-        self.execute('SELECT DirectoryAlias, Directory FROM DirectoryAliases')
-        dirList = self.fetchAll2PyList([str,str])
-        for name,path in dirList:
-          relPath = os.path.relpath(dirIn,str(path))
-          if relPath == '.':
-            return None,name
-          elif relPath[0:2] != '..':
-            nSubDir = CCP4Utils.splitPath(relPath)
-            if nSubDir<bestResult[3]:
-            bestResult = None,name,relPath,nSubDir
-      '''
-
+          if relPath[0:2] != '..':
+            nSubDir = None
+            if nSubDir < bestResult[3]:
+              bestResult = ProjectID, ProjectName, relPath, nSubDir
       return bestResult[0:3]
 
 

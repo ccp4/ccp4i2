@@ -1,11 +1,6 @@
 """
-     CCP4ProjectManagerGui.py: CCP4 GUI Project
-
-
-
-
-     Liz Potterton Feb 2010 - Create CCP4ProjectManager mostly as placeholder
-     Liz Potterton May 2010 - Rename CCP4ProjectManagerGui 
+Liz Potterton Feb 2010 - Create CCP4ProjectManager mostly as placeholder
+Liz Potterton May 2010 - Rename CCP4ProjectManagerGui 
 """
 
 ##@package CCP4ProjectManagerGui (QtGui) Project handling tools for web browser (currently just a Project menu)
@@ -26,6 +21,7 @@ from . import CCP4GuiUtils
 from . import CCP4ProjectViewer
 from . import CCP4ProjectWidget
 from . import CCP4Widgets
+from .. import I2_TOP
 from ..core import CCP4Data
 from ..core import CCP4DataManager
 from ..core import CCP4File
@@ -34,13 +30,13 @@ from ..core import CCP4ProjectsManager
 from ..core import CCP4Utils
 from ..core.CCP4Config import DEVELOPER
 from ..core.CCP4ErrorHandling import CException, Severity
-from ..qtcore.CCP4CustomMimeTypes import MIMETYPESHANDLER
-from ..qtgui.CCP4WebBrowser import WEBBROWSER
 from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..core.CCP4WarningMessage import warningMessage
 from ..dbapi import CCP4DbApi
 from ..dbapi import CCP4DbUtils
 from ..qtcore import CCP4Export
+from ..qtcore.CCP4CustomMimeTypes import MIMETYPESHANDLER
+from ..qtgui.CCP4WebBrowser import WEBBROWSER
 from ..utils import ExportAllProjects
 
 
@@ -1537,9 +1533,8 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     advButton = QtWidgets.QPushButton()
     if sys.platform == "darwin":
         advButton.setIconSize(QtCore.QSize(12,12))
-    iconDir = os.path.join(os.environ['CCP4I2_TOP'],'qticons')
-    upArrow = QtGui.QIcon(os.path.join(iconDir,"up.png"))
-    downArrow = QtGui.QIcon(os.path.join(iconDir,"down.png"))
+    upArrow = QtGui.QIcon(str(I2_TOP / 'qticons' / "up.png"))
+    downArrow = QtGui.QIcon(str(I2_TOP / 'qticons' / "down.png"))
     advButton.setIcon(downArrow)
     searchFilterWidget.layout().addWidget(advButton)
     searchFilterWidget.layout().setContentsMargins(0,0,0,0)

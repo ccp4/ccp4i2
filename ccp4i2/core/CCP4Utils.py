@@ -1,17 +1,10 @@
 """
-     CCP4Utils.py: CCP4 GUI Project
-
-
-
-
-
-   Liz Potterton Jan 2010 - Copied from ccp4mg python/ui/utils.py and converted to Qt
+Liz Potterton Jan 2010 - Copied from ccp4mg python/ui/utils.py and converted to Qt
 """
 
 import getpass
 import glob
 import os
-import pathlib
 import re
 import shutil
 import socket
@@ -25,7 +18,7 @@ from lxml import etree
 from PySide2 import QtCore
 import shiboken2
 
-from .. import __version__
+from .. import __version__, I2_TOP
 from ..googlecode import diff_match_patch_py3
 from .CCP4ErrorHandling import CException
 from .CCP4Version import CCP4_VERSION
@@ -36,7 +29,6 @@ def writeXML(f,t):
 
 
 class CUtils:
-
     ERROR_CODES = {101 : {'description' :'Input is not etree element for output to' },
                    102 : {'description' :'Failed creating XML text' },
                    103 : {'description' :'Failed writing file'},
@@ -48,7 +40,6 @@ class CUtils:
                    109 : {'description' :'Error reading file'},
                    110 : {'description' :'Error opening file'},
                    111 : {'description' :'Error reading limited number of lines from file'}}
-    pass
 
 
 def safeOneWord(value):
@@ -58,9 +49,7 @@ def safeOneWord(value):
     return one_word_name
 
 
-#-----------------------------------------------------------------
 def readFile(fileName=None, limit=None):
-#-----------------------------------------------------------------
     fileName = os.path.normpath(fileName)
     try:
         f = open(fileName,'r')
@@ -81,9 +70,7 @@ def readFile(fileName=None, limit=None):
     return text
 
 
-#-----------------------------------------------------------------
 def openFile(fileName=None, mode='r', overwrite=1):
-#-----------------------------------------------------------------
     fileName = os.path.normpath(fileName)
     if mode == 'w' and os.path.exists(fileName):
         if overwrite == 1:
@@ -102,9 +89,8 @@ def openFile(fileName=None, mode='r', overwrite=1):
         raise CException(CUtils, 110, str(fileName) + " mode:" + str(mode) + " overwrite:" + str(overwrite) + " exists:" + str(os.path.exists(fileName)))
     return f
 
-#-----------------------------------------------------------------
+
 def saveFile(fileName=None, text=None, text_list=[], overwrite=0):
-#-----------------------------------------------------------------
     # If fileName is a CFilePath or CDataFile this will fix it
     fileName = os.path.normpath(str(fileName))
     if os.path.exists(fileName):
@@ -138,6 +124,7 @@ def saveFile(fileName=None, text=None, text_list=[], overwrite=0):
     except:
         raise CException(CUtils, 107, fileName)
 
+
 def saveEtreeToFile(tree=None, fileName=None):
     if tree is None:
         raise CException(CUtils, 101, fileName)
@@ -150,7 +137,9 @@ def saveEtreeToFile(tree=None, fileName=None):
     except:
         raise CException(CUtils, 103, fileName)
 
+
 utf8_parser = etree.XMLParser(encoding='utf-8')
+
 
 def parse_from_unicode(unicode_str,useLXML=True):
     if useLXML:
@@ -158,6 +147,7 @@ def parse_from_unicode(unicode_str,useLXML=True):
         return etree.fromstring(s, parser=utf8_parser)
     else:
         return etree_xml.fromstring(unicode_str)
+
 
 def openFileToEtree(fileName=None, printout=False,useLXML=True):
     # Use this as etree.parse() seg faults on some Linux
@@ -188,6 +178,7 @@ def getHostName():
                 name = socket.gethostbyaddr('127.0.0.1')[0]
     return name
 
+
 def getUserId():
     name = os.environ.get('LOGNAME', None)
     if name is not None:
@@ -203,9 +194,8 @@ def getUserId():
     except:
         return None
 
-#--------------------------------------------------------------------
+
 def getHOME():
-#--------------------------------------------------------------------
     homedir = os.environ.get('CCP4_LOCAL_HOME', None)
     if homedir is not None:
         return homedir
@@ -221,10 +211,12 @@ def getHOME():
     else:
         return ''
 
+
 def getTMP():
     # Return a temp directory
     #return os.path.join(getDotDirectory(),'tmp')
     return tempfile.gettempdir()
+
 
 def getTestTmpDir():
     tmp = os.environ.get('CCP4I2_TEST', None)
@@ -241,6 +233,7 @@ def getTestTmpDir():
         if not os.path.exists(os.path.join(tmp, subDir)):
             os.mkdir(os.path.join(tmp, subDir))
     return tmp
+
 
 def makeTmpFile(name='tmp', extension='tmp', mode=None, cdir=False):
     dotExtension = ''
@@ -262,6 +255,7 @@ def makeTmpFile(name='tmp', extension='tmp', mode=None, cdir=False):
         return (fd, fileName)
     else:
         return fileName
+
 
 def backupFile(fileName=None, delete=False):
     fileName = os.path.normpath(fileName)
@@ -299,33 +293,26 @@ def backupFile(fileName=None, delete=False):
         shutil.move(fileName, newName)
     return newName
 
-def splitPath(path):
-    pathList= []
-    while len(path) > 0:
-        path,tail = os.path.split(path)
-        pathList.append(tail)
-    pathList.reverse()
-    return 
 
 def pythonExecutable():
     print('into CCP4Utils.pythonExecutable')
     # There is also os.path.join(os.environ["CCP4"],"libexec","ccp4i2")
     if os.path.exists(os.path.join(os.environ["CCP4"], "bin", "ccp4-python")):
         return os.path.join(os.environ["CCP4"], "bin", "ccp4-python")
-    elif 'PYTHONHOME' in os.environ:
+    if 'PYTHONHOME' in os.environ:
         return os.path.join(os.environ['PYTHONHOME'], 'bin', 'python')
-    else:
-        return "python"
+    return "python"
+
 
 def getCCP4I2Dir():
-    return str(pathlib.Path(__file__).resolve().parent.parent)
+    return str(I2_TOP)
+
 
 def getCCP4Dir():
     try:
-        target = os.path.normpath(os.environ.get('CCP4', None))
+        return os.path.normpath(os.environ.get('CCP4', None))
     except:
-        target = ''
-    return target
+        return ''
 
 
 def getDotDirectory():
@@ -358,6 +345,7 @@ def getDotDirectory():
                 print("ERROR creating subdirectories in ",ccp4i2)
     return ccp4i2
 
+
 def getProjectDirectory():
     ccp4i2 =  os.path.join(getHOME(),'CCP4I2_PROJECTS')
     if not os.path.exists(ccp4i2):
@@ -368,11 +356,13 @@ def getProjectDirectory():
             return None
     return ccp4i2
 
+
 def globSearchPath(searchPath=[], cfile='*'):
     fileList = []
     for path in searchPath:
         fileList.extend(glob.glob(os.path.join(path, cfile)))
     return fileList
+
 
 def importFileModule(pyFile, report=False):
     try:
@@ -388,6 +378,7 @@ def importFileModule(pyFile, report=False):
         module = None
         return module, str(e)
 
+
 def writeTarGzip(directory=None, tarFile=None):
     if tarFile is None:
         tarFile = directory + '.tar.gz'
@@ -400,9 +391,11 @@ def writeTarGzip(directory=None, tarFile=None):
         return None
     return tarFile
 
+
 def excludeFromTarGzip(fileName):
     #print 'excludeFromTarGzip',fileName
     return False
+
 
 def readTarGzip(fileName, destination=None):
     if destination is None:
@@ -413,6 +406,7 @@ def readTarGzip(fileName, destination=None):
     tarObj.extractall(path=destination)
     tarObj.close()
     return next
+
 
 def searchVersion(text, programName=None):
     if programName is not None:
@@ -432,6 +426,7 @@ def searchVersion(text, programName=None):
         return m2.groups()[2]
     return None
 
+
 def versionLogHeader():
     return (
         f"CCP4i2 version: {__version__}\n"
@@ -440,11 +435,14 @@ def versionLogHeader():
         f"Using Qt version: {QtCore.qVersion()}\n"
     )
 
+
 def isAlive(qobj):
     return shiboken2.isValid(qobj)
 
+
 def samefile(f1, f2):
     return os.path.samefile(f1,f2)
+
 
 def zipDirectory(czip, sourceDirectory, rootRelPath=None):
     if rootRelPath is None:
@@ -527,6 +525,7 @@ def which(program, mode=os.F_OK | os.X_OK, path=None):
                 if _access_check(name, mode):
                     return name
     return None
+
 
 def nonWhiteDifferences(file1, file2):
     retDiffs = []

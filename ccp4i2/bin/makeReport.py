@@ -2,14 +2,13 @@ import sys
 
 from lxml import etree
 
-from ..core.CCP4Utils import getCCP4I2Dir
+from .. import I2_TOP
 from ..report import CCP4ReportGenerator, CCP4ReportParser
 from ..utils.startup import setupEnvironment, startProjectsManager
 
 
 def main():
-    top_path = getCCP4I2Dir()
-    print('Running CCP4i2 makeReport from: '+top_path)
+    print('Running CCP4i2 makeReport from:', I2_TOP)
     setupEnvironment()
 
     argList = sys.argv[1:]

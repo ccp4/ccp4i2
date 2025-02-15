@@ -215,7 +215,6 @@ class CProjectsManager(CObject):
         print("Backed up list of projects to",dbListBackupName)
 
     def initialiseDirectories(self):
-        #self.directories['CCP4I2_TOP'] = getCCP4I2Dir()
         self._db.setDirectoryAlias('CCP4I2_TOP', getCCP4I2Dir())
 
     def Exit(self):

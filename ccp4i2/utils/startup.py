@@ -1,10 +1,5 @@
 """
-     utils/startup.py.py: CCP4 GUI Project
-
-
-
-
-    Liz Potterton Feb 2010 - Some minimal functionality to bootstrap program startup
+Liz Potterton Feb 2010 - Some minimal functionality to bootstrap program startup
 """
 
 import atexit
@@ -19,6 +14,7 @@ import time
 from lxml import etree
 from PySide2 import QtWidgets
 
+from .. import I2_TOP
 from ..core import CCP4Config
 from ..core import CCP4ErrorHandling
 from ..core import CCP4PrintHandler
@@ -45,17 +41,7 @@ class DatabaseFailException(Exception):
 
 
 def setupEnvironment(path=''):
-    if not path:
-        path = CCP4Utils.getCCP4I2Dir()
-    os.environ["CCP4I2_TOP"] = path
-
-def testForCCP4Environment():
-    ccp4_env = os.environ.get('CCP4', 'NOT SET')
-    print('Using CCP4 from: ', ccp4_env)
-    if ccp4_env == 'NOT SET':
-        return False
-    else:
-        return True
+    os.environ["CCP4I2_TOP"] = path or str(I2_TOP)
 
 
 def createMissingDATABASEdbXML():
@@ -131,6 +117,7 @@ def createMissingDATABASEdbXML():
                    res = QtWidgets.QMessageBox.warning(None,"Database file / Project list backup","Backup project list file "+dbListBackupName+" is inconsistent with database contents. This might be a serious problem.<br/><br/>The following project directories contained in "+dbListBackupName+" do not correspond to anything in the database:<br/><br/>"+dirListStr+"<br/><br/>If you think all is well, then click 'OK', otherwise click 'Abort' and investigate the problem.<br/><br/>Do not click 'OK' if you are not sure what is wrong.",QtWidgets.QMessageBox.Ok|QtWidgets.QMessageBox.Abort)
                    if res == QtWidgets.QMessageBox.Abort:
                        sys.exit()
+
 
 def startBrowser(args, app=None, splash=None):
     # KJS: Removed the linux check. Unclear why it's in here.
@@ -234,8 +221,7 @@ def startBrowser(args, app=None, splash=None):
         atexit.register(func)
     # KJS : Moved the style & font changes to make up some time. Should be fine.
     CCP4StyleSheet.setStyleSheet()
-    #CCP4WebView.setGlobalSettings()
-    startHTTPServer(parent=app,**kw)
+    startHTTPServer(parent=app, fileName=kw.get('dbFileName'))
     CCP4WebBrowser.restoreStatus()
     CCP4WebBrowser.applyCommandLine(args)
     if hasattr(splash, "close"):
@@ -275,6 +261,7 @@ def copyDB(origFileName,f2):
     print("Saved backup database to",f2)
     conbak.close()
     con.close()
+
 
 def startProjectsManager(dbFileName=None, checkForFinishedJobs=False, useLocalDBFile=None, **kw):
     print(dbFileName)
@@ -360,6 +347,7 @@ def startProjectsManager(dbFileName=None, checkForFinishedJobs=False, useLocalDB
         print('Starting Project Manager - DONE')
         return pm
 
+
 def startDb(parent=None, fileName=None, mode='sqlite', userName=None, userPassword=None,**kw):
     try:
         db = CCP4DbApi.CDbApi(parent=parent, fileName=fileName, mode=mode, createDb=True, userName=userName,
@@ -417,9 +405,8 @@ def startDb(parent=None, fileName=None, mode='sqlite', userName=None, userPasswo
     return db
 
 
-def startHTTPServer(parent=None, **kw):
-    diry = os.path.join(CCP4Utils.getCCP4I2Dir(), 'docs')
-    fileName = kw.get('dbFileName')
+def startHTTPServer(parent, fileName):
+    diry = str(I2_TOP / 'docs')
     t = CCP4HTTPServerThread.CHTTPServerThread(parent=parent, parentDir=diry, fileName=fileName)
     t.start()
 

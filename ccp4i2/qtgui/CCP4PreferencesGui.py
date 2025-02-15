@@ -1,10 +1,6 @@
 """
-     qtgui/CCP4Peferences.py: CCP4 Gui Project
-     Copyright (C) 2011 University of York
-
-
-
-    Liz Potterton - create class to maintain GUIPreferences - Sept 2011
+Copyright (C) 2011 University of York
+Liz Potterton - create class to maintain GUIPreferences - Sept 2011
 """
 
 from PySide2 import QtCore, QtWidgets
@@ -28,8 +24,6 @@ class CPreferencesWindow(QtWidgets.QDialog):
     widget.setContainer(prefContainer)
     widget.draw()
     self.layout().addWidget(widget)
-    #except:
-    #  pass
     self.buttons = QtWidgets.QDialogButtonBox(self)
     but = self.buttons.addButton(QtWidgets.QDialogButtonBox.Apply)
     but.clicked.connect(self.doApply)
@@ -43,7 +37,7 @@ class CPreferencesWindow(QtWidgets.QDialog):
 
     paddingAllowance = 24
     maxWidth = 1600
-#Remove the hardwired layout mostly for the Prefs GUI.
+    # Remove the hardwired layout mostly for the Prefs GUI.
     ss = '''
                          QLabel#errorMessage  { color : red; max-width: ''' + str(maxWidth-paddingAllowance) + '''px; }
                          CComplexLineWidget  {  max-width: ''' + str(maxWidth-paddingAllowance) + '''px; }
@@ -54,7 +48,6 @@ class CPreferencesWindow(QtWidgets.QDialog):
                          CProjectViewer  {  max-width: '''+str(maxWidth)+ '''px;  min-width: 60px }
                          CReportView {  max-width: '''+ str(maxWidth)+'''px;  min-width: 60px }
                          QScrollArea#messageScrollArea  {  max-width: ''' + str(maxWidth-paddingAllowance) + '''; min-width: 60px }
-
     '''
     self.setStyleSheet(ss)
 
@@ -70,7 +63,7 @@ class CPreferencesWindow(QtWidgets.QDialog):
       QTAPPLICATION().setNamedStyle(CCP4Preferences.CPreferences.insts.WINDOWS_STYLE)
     except:
       QTAPPLICATION().setNamedStyle(CCP4Preferences.CPreferences.insts.WINDOWS_STLYE)
-    
+
     CCP4StyleSheet.setStyleSheet()
     CCP4WebView.setGlobalSettings()
 
@@ -86,4 +79,3 @@ class CPreferencesWindow(QtWidgets.QDialog):
   def close(self):
     self.doApply()
     QtWidgets.QDialog.close(self)
-

@@ -1002,8 +1002,6 @@ class pointless_report(Report):
 
 ############################################################################
 if __name__ == "__main__":
-#  report = PointlessReport(xmlFile = os.path.join(os.environ['CCP4I2_TOP'],'test','report_test','gam_1.xml' ))
-
   report = pointless_report(xmlFile = sys.argv[1] )
   tree= report.as_etree()
   #  print etree.tostring(tree,pretty_print=True)

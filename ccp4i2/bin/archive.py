@@ -171,25 +171,23 @@ class DjangoSession (object):
         #Now post to this url, using the provided csrftoken and our stored credentials
         values = {'username':self.username,'password':self.password,'csrfmiddlewaretoken':self.cookieLookup['csrftoken'],next:self.baseURL}
         secondResponse = self.postURLWithValues(formURL, values)
-        html = secondResponse.read()
-        #print html
+        secondResponse.read()
 
     def multiPartForm(self, baseURL):
         form = DjangoMultiPartForm(baseURL)
         form.add_field('csrfmiddlewaretoken',self.cookieLookup['csrftoken'])
         return form
 
+
 class CCP4i2DjangoSession(DjangoSession):
     def __init__(self, *args, **kws):
-        super(CCP4i2DjangoSession, self).__init__(*args, **kws)
+        super().__init__(*args, **kws)
         self.pm = self.myStartProjectsManager()
 
     def myStartProjectsManager(self):
-        CCP4I2_TOP = CCP4Utils.getCCP4I2Dir()
-        setupEnvironment(path=CCP4I2_TOP)
-        pm = startProjectsManager()
-        return pm
-    
+        setupEnvironment()
+        return startProjectsManager()
+
     def projectIdForName(self, projectName=None, strict=False):
         try:
             if strict: projectIdList = [projectTuple[0] for projectTuple in self.pm.db().listProjects() if projectName == projectTuple[1]]
@@ -197,7 +195,7 @@ class CCP4i2DjangoSession(DjangoSession):
             return projectIdList[0]
         except:
             return None
-    
+
     def slugify(self, value):
         """
             Normalizes string, converts to lowercase, removes non-alpha characters,
@@ -247,11 +245,12 @@ class CCP4i2DjangoSession(DjangoSession):
         CHUNK = 16 * 1024
         while True:
             chunk = response.read(CHUNK)
-            if not chunk: break
+            if not chunk:
+                break
             tmpArchive.write(chunk)
         tmpArchive.close()
         pm = self.myStartProjectsManager()
-        importer = CCP4NonGuiProjectUtils.CCP4NonGuiProjectUtils(tmpArchive.name)
+        CCP4NonGuiProjectUtils.CCP4NonGuiProjectUtils(tmpArchive.name)
         pm.db().commit()
         pm.db().close()
         return tmpArchive.name

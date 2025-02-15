@@ -217,8 +217,7 @@ class CI2Runner(object):
         superclassDefXMLNodes = taskBodyNode.findall('file')
         
         for superclassDefXMLNode in superclassDefXMLNodes:
-            #assert(superclassDefXMLNode.findall('project')[0].text == 'CCP4I2_TOP')
-            #Windows fix needed here
+            # Windows fix needed here
             fullPath = os.path.join(os.path.dirname(__file__),"..",
                                     superclassDefXMLNode.findall('CI2XmlDataFile/relPath')[0].text,
                                     superclassDefXMLNode.findall('CI2XmlDataFile/baseName')[0].text)
