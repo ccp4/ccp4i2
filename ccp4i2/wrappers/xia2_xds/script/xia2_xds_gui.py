@@ -1,13 +1,10 @@
-#
-#
-#
 #  Author: David Waterman
 #  Acknowledgements: based on code by Graeme Winter and Martin Noble.
-#
+
+import shutil
 
 from PySide2 import QtCore
 
-from ....core import CCP4Utils
 from ....core.CCP4Preferences import PREFERENCES
 from ...xia2_dials.script import xia2_dials_gui
 
@@ -30,7 +27,7 @@ class xia2_xds_gui(xia2_dials_gui.xia2_dials_gui):
         failed = []
         for cmd in ["xds", "xscale"]:
             tst = PREFERENCES().EXEPATHLIST.getExecutable(cmd)
-            if CCP4Utils.which(tst) is None:
+            if shutil.which(tst) is None:
                 failed.append(cmd)
 
         if len(failed) > 0:

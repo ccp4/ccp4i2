@@ -1,15 +1,14 @@
 """
-    ShelxCD_gui.py
-    Copyright (C) 2014 Newcastle University
-    Author: Martin Noble
+Copyright (C) 2014 Newcastle University
+Author: Martin Noble
 """
 
 import os
+import shutil
 
 from ....core import CCP4Container
 from ....core import CCP4Data
 from ....core import CCP4File
-from ....core import CCP4Utils
 from ....core.CCP4Preferences import PREFERENCES
 from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from ....qtgui.CCP4TaskWidget import CTaskWidget
@@ -85,8 +84,8 @@ class ShelxCD_gui(CTaskWidget):
         
         self.openFolder(folderFunction='inputData')
 
-        if (not hasattr(PREFERENCES(),'SHELXDIR')) and CCP4Utils.which('shelxc') is None:
-            if (not PREFERENCES().SHELXDIR.exists()) and CCP4Utils.which('shelxc') is None:
+        if (not hasattr(PREFERENCES(),'SHELXDIR')) and shutil.which('shelxc') is None:
+            if (not PREFERENCES().SHELXDIR.exists()) and shutil.which('shelxc') is None:
               self.createLine ( [ 'warning','The Shelx programs have not been found. They are not part of CCP4 but you can get them from\nhttp://shelx.uni-ac.gwdg.de/SHELX/download.php\nIf you already have them make sure they are on the search path\nOR specify where they are in the Preferences window - under Other Software.' ])
         
         self.createLine ( [ 'label','Experiment type','stretch','tip','What sort of data  are available for finding heavy atoms','widget','MODE' ] )
@@ -167,4 +166,3 @@ class ShelxCD_gui(CTaskWidget):
                     invalidElements.append(require)
         
         return invalidElements
-

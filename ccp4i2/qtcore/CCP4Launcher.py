@@ -1,17 +1,14 @@
 """
-     CCP4Launcher.py: CCP4 GUI Project
-     Copyright (C) 2011 University of York
-
-
-
-   Liz Potterton June 2011 - Class to launch other viewers
+Copyright (C) 2011 University of York
+Liz Potterton June 2011 - Class to launch other viewers
 """
 
+import functools
 import os
 import re
-import sys
+import shutil
 import socket
-import functools
+import sys
 
 from PySide2 import QtCore, QtGui, QtWidgets
 
@@ -114,9 +111,9 @@ class CLauncher(QtCore.QObject):
             path = str(PREFERENCES().CCP4MG_EXECUTABLE)
             if  path is not None and os.path.isfile(path) and os.access(path, os.X_OK):
                 return path
-            if CCP4Utils.which(viewer) is not None:
+            if shutil.which(viewer) is not None:
                 if sys.platform[0:3] == 'win':
-                    whichExe = CCP4Utils.which(viewer)
+                    whichExe = shutil.which(viewer)
                     if not viewer.lower().endswith(".bat") and whichExe.lower().endswith(".bat"):
                         viewer = whichExe
                 return viewer
@@ -137,7 +134,7 @@ class CLauncher(QtCore.QObject):
                     altpath = self.modifyCootBat()
                     if altpath is not None: return altpath
                 return path
-            if CCP4Utils.which(viewer) is not None: return viewer
+            if shutil.which(viewer) is not None: return viewer
             if guiParent is not None:
                 return self.queryExecutable(viewer=viewer,guiParent=guiParent)
         elif  viewer == 'lidia':
@@ -148,7 +145,7 @@ class CLauncher(QtCore.QObject):
                     altpath = self.modifyLidiaBat()
                     if altpath is not None: return altpath
                 return path
-            if CCP4Utils.which(viewer) is not None: return viewer
+            if shutil.which(viewer) is not None: return viewer
             if guiParent is not None:
                 return self.queryExecutable(viewer=viewer,guiParent=guiParent)
         return path
@@ -194,7 +191,7 @@ class CLauncher(QtCore.QObject):
         else:
             exe = self.getExecutable(viewer,guiParent=guiParent)
         if sys.platform[0:3] == "win" and viewer in ("ccp4mg", "lidia"):
-            whichExe = CCP4Utils.which(exe)
+            whichExe = shutil.which(exe)
             if not exe.lower().endswith(".bat") and whichExe.lower().endswith(".bat"):
                 exe = whichExe
         if exe is None:
@@ -236,39 +233,6 @@ class CLauncher(QtCore.QObject):
             p.start(exe,qArgList)
         return p
 
-    '''
-    # This version attempts to open viewer and then send commands through sockets
-    # mg does not allow socket input
-    def openInViewer(self,viewer=None,fileName=None,jobId=None):
-      print 'CLauncher.openInViewer',viewer,fileName,jobId
-      if fileName is not None:
-        comLine = self.makeCommand(viewer=viewer,command='openFile',data=fileName)
-      elif jobId is not None:
-        # This will open just one file - need to talk to Stuart
-        fileList = PROJECTSMANAGER().db().getJobFiles(jobId=jobId,mode='fullPath')
-        if len(fileList)>0:
-          comLine = self.makeCommand(viewer=viewer,command='openFile',data=fileList[0])
-      #print 'CLauncher.openInViewer command',str(comLine)
-      if comLine is None:
-        print 'Can not create launcher command for:',viewer,fileName,jobId
-        return
-
-      if self.sockets.has_key(viewer):
-        try:
-          self.sockets[viewer].sendall(comLine)
-        except:
-          # Send failed - assume the socket broken and try resetting
-          self.sockets[viewer].close()
-          del self.sockets[viewer]
-
-      if not self.sockets.has_key(viewer):
-        if not self.hostPorts.has_key(viewer):
-          print 'Do not know hostname,port for viewer:',viewer
-          return
-        hostname= self.hostPorts[viewer]['hostname']
-        port = self.hostPorts[viewer]['port']
-        self.openSocket(hostname,port,viewer,comLine)
-    '''
     def modifyCootBat(self):
         cootBat = PREFERENCES().COOT_EXECUTABLE.__str__()
         if not os.path.splitext(cootBat)[1] == '.bat' or not os.path.exists(cootBat):
@@ -335,7 +299,7 @@ class CLauncher(QtCore.QObject):
                 if os.path.isfile(str(PREFERENCES().COOT_EXECUTABLE)):
                     cootExeDir = str(PREFERENCES().COOT_EXECUTABLE)
             if cootExeDir is None:
-                cootExeDir = CCP4Utils.which('coot')
+                cootExeDir = shutil.which('coot')
             cootDir = os.path.normpath(os.path.dirname(os.path.dirname(cootExeDir)))
             envEdit = [['COOT_PREFIX', cootDir]]
             COOT_DATA_DIR = os.path.normpath(os.path.join(cootDir, 'share', 'coot'))

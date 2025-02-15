@@ -2,6 +2,7 @@ from pathlib import Path
 import glob
 import os
 import platform
+import shutil
 import sys
 
 from lxml import etree
@@ -107,9 +108,8 @@ def _lidiaPath() -> str:
         path = Path(str(PREFERENCES().COOT_EXECUTABLE))
         if path.is_file():
             return (str(path.resolve().parent / "lidia"),None)
-    if lidiaPath := CCP4Utils.which('lidia'):
+    if lidiaPath := shutil.which('lidia'):
         return (str(Path(lidiaPath).resolve()),None)
     if sys.platform == "linux":# Seems that lidia does not run without PYTHONPATH being set on Linux
         return (str(Path(os.environ["CCP4"]).resolve() / "coot_py2/bin/lidia"),str(Path(os.environ["CCP4"]).resolve() / "coot_py2/"))
-    else:
-        return (str(Path(os.environ["CCP4"]).resolve() / "coot_py2/bin/lidia"),None)
+    return (str(Path(os.environ["CCP4"]).resolve() / "coot_py2/bin/lidia"),None)
