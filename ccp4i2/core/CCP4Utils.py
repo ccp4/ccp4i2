@@ -469,23 +469,21 @@ def nonWhiteDifferences(file1, file2):
     retDiffs = []
     retCount = []
     dmp =  diff_match_patch_py3.diff_match_patch()
-    
+
     text1= readFile(file1)
     text2 = readFile(file2)
-    text1 = re.sub(r' +\n','\n',text1)
-    text2 = re.sub(r' +\n','\n',text2)
-    diffs = dmp.diff_main(text1,text2)
-    #dmp.diff_cleanupSemantic(diffs)
-    for n in range(len(diffs)):
-        if diffs[n][0] != 0 and len(diffs[n][1].strip())>0 :
-            d = [ diffs[n][0],diffs[n][1] ]
+    text1 = re.sub(r' +\n','\n', text1)
+    text2 = re.sub(r' +\n','\n', text2)
+    diffs = dmp.diff_main(text1, text2)
+    for diff in diffs:
+        if diff[0] != 0 and len(diff[1].strip()) > 0:
+            d = [diff[0], diff[1]]
             if retDiffs.count(d):
                 idx = retDiffs.index(d)
                 retCount[idx] += 1
             else:
                 retDiffs.append(d)
                 retCount.append(1)
-    for n in range(len(retDiffs)):
-        retDiffs[n].append(retCount[n])
-    #print 'nonWhiteDifferences',retDiffs
+    for n, retDiff in enumerate(retDiffs):
+        retDiff.append(retCount[n])
     return retDiffs
