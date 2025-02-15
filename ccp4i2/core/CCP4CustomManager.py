@@ -39,26 +39,17 @@ class CCustomManager(CObject):
         if parent is None:
             parent = QTAPPLICATION()
         CObject.__init__(self,parent)
-        if mode is not None:
-            self.mode = str(mode)
-        else:
-            self.mode = None
+        self.mode = None if mode is None else str(mode)
 
     def getList(self):
         dirList = glob.glob(os.path.join(CCP4Utils.getDotDirectory(), 'custom', self.mode + 's','*'))
         #print 'CCustomManager.getList',self.mode,os.path.join(CCP4Utils.getDotDirectory(),'custom',self.mode+'s','*'),dirList
-        titleList = []
-        for dr in dirList:
-            titleList.append(os.path.split(dr)[1])
-        return titleList
+        return [os.path.split(dr)[1] for dr in dirList]
 
     def getTitleList(self):
         # Return a list of (name,title)
         nameList = self.getList()
-        titleList = []
-        for name in nameList:
-            titleList.append((name,self.getTitle(name)))
-        return titleList
+        return [(name, self.getTitle(name)) for name in nameList]
 
     def getTitle(self, name):
         fileName = self.getCustomFile(name)
@@ -70,15 +61,13 @@ class CCustomManager(CObject):
         header = CCP4File.CI2XmlHeader(parent=self)
         header.loadFromXml(fileName)
         if header.pluginTitle.isSet():
-            return header.pluginTitle.__str__()
-        else:
-            return name
+            return str(header.pluginTitle)
+        return name
 
     def getDirectory(self, name=None):
         if name is None:
             return os.path.join(CCP4Utils.getDotDirectory(), 'custom', self.mode + 's')
-        else:
-            return os.path.join(CCP4Utils.getDotDirectory(), 'custom', self.mode + 's',str(name))
+        return os.path.join(CCP4Utils.getDotDirectory(), 'custom', self.mode + 's',str(name))
 
     def createDirectory(self, name, overwrite=False):
         newDir = self.getDirectory(name=name)
@@ -97,8 +86,7 @@ class CCustomManager(CObject):
         fileName = os.path.join(self.getDirectory(name=name), self.mode + '.xml')
         if (not mustExist) or os.path.exists(fileName):
             return fileName
-        else:
-            return None
+        return None
 
     def delete(self,name):
         dr = self.getDirectory(name)
@@ -106,9 +94,8 @@ class CCustomManager(CObject):
             shutil.rmtree(dr)
         except:
             return 1
-        else:
-            self.listChanged.emit()
-            return 0
+        self.listChanged.emit()
+        return 0
 
     def export(self, name, fileName):
         try:
@@ -146,7 +133,6 @@ class CCustomManager(CObject):
         except:
             raise CException(self.__class__, 114, fileName)
         self.listChanged.emit()
-        return
 
     def testImport(self, fileName):
         tmpDir = tempfile.mkdtemp()
@@ -162,13 +148,6 @@ class CCustomManager(CObject):
         if name in customList:
             raise CException(self.__class__, 110, name)
         return name
-
-    def import_(self, fileName, name, overwrite=False, rename=None):
-        if overwrite:
-            try:
-                shutil.rmtree(self.getDirectory(name))
-            except:
-                raise CException(self.__class__, 111)
 
     def uncompress(self, fileName, targetDir, rename=None):
         try:
