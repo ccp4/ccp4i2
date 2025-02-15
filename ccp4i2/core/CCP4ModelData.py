@@ -2281,30 +2281,16 @@ class CPdbDataFile(CCP4File.CDataFile):
         except:
             return report
 
-    def runCoord_format(self, xyzout=None, outputFormat=None, jobId=None, overwrite=False):
-        if xyzout is None:
-            xyzout = self.importFileName(jobId=jobId)
-        if jobId is not None:
-            jobDirectory = PROJECTSMANAGER().jobDirectory(jobId=jobId)
-            logFile = os.path.normpath(os.path.join(jobDirectory, self.objectName() + '_coord_format.log'))
-        else:
-            logFile = None
-        arglist = ['xyzin', self.__str__()]
-        arglist.extend(['xyzout', xyzout])
-        if outputFormat is not None:
-            com = 'OUTPUT ' + outputFormat + '''\nFIXBLANK\nEND\n'''
-        else:
-            com = '''FIXBLANK\nEND\n'''
-        pid = PROCESSMANAGER().startProcess('coord_format', arglist, inputText=com, logFile=logFile)
+    def runCoord_format(self, xyzout):
+        arglist = ['xyzin', str(self), 'xyzout', xyzout]
+        com = '''FIXBLANK\nEND\n'''
+        pid = PROCESSMANAGER().startProcess('coord_format', arglist, inputText=com, logFile=None)
         status = PROCESSMANAGER().getJobData(pid)
-        exitCode = PROCESSMANAGER().getJobData(pid, 'exitCode')
+        PROCESSMANAGER().getJobData(pid, 'exitCode')
         if status != 0:
             return CErrorReport(self.__class__, 401, 'Exit status:' + str(status), name=self.objectPath(), stack=False)
-        diffs = CCP4Utils.nonWhiteDifferences(self.__str__(), xyzout)
+        diffs = CCP4Utils.nonWhiteDifferences(str(self), xyzout)
         if len(diffs) > 0:
-            if overwrite:
-                os.remove(xyzin)    # KJS : Something wrong here, can't see xyzin anywhere...
-                os.rename(xyzout, xyzin)
             ret =  CErrorReport(self.__class__, 402, xyzout, name=self.objectPath(), stack=False)
             for diff in diffs:
                 if diff[0] < 0:
@@ -2312,8 +2298,7 @@ class CPdbDataFile(CCP4File.CDataFile):
                 else:
                     ret.append(self.__class__, 404, diff[1], stack=False)
             return ret
-        else:
-            return CErrorReport()
+        return CErrorReport()
 
     def importFile(self, jobId=None, sourceFileName=None, ext=None, annotation=None, jobNumber=None):
         if sourceFileName is None:
