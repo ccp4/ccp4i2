@@ -1,18 +1,9 @@
-"""
-     CCP4Config.py: CCP4 GUI Project
-
-
-
-
-   Liz Potterton Sept 2010 - Separate CCP4Config out from core.CCP4Modules
-"""
-
 import os
 
 from lxml import etree
 
 from . import CCP4File, CCP4Utils
-from .. import __version__
+from .. import __version__, I2_TOP
 
 
 def CONFIG(fileName=None, **kw):
@@ -45,8 +36,8 @@ class CConfig:
         self.searchPath = {}
         print('ccp4i2 version', __version__)
         # Load local installation config file
-        localFile = os.path.join(CCP4Utils.getCCP4I2Dir(), 'local_setup','ccp4i2_config.params.xml')
-        if os.path.exists(localFile):
+        localFile = I2_TOP / 'local_setup' / 'ccp4i2_config.params.xml'
+        if localFile.exists():
             self.loadDataFromXml(localFile)
         # Load users config file
         if filename is None:
