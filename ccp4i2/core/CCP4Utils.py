@@ -307,16 +307,14 @@ def getCCP4I2Dir():
 
 def getCCP4Dir():
     try:
-        return os.path.normpath(os.environ.get('CCP4', None))
+        return os.path.normpath(os.environ.get('CCP4'))
     except:
         return ''
 
 
 def getDotDirectory():
-    home = os.environ.get('CCP4_LOCAL_DOTDIR', None)
-    if home is None:
-        home = getHOME()
-    ccp4i2 = os.path.join (home,'.CCP4I2')
+    home = os.environ.get('CCP4_LOCAL_DOTDIR', default=getHOME())
+    ccp4i2 = os.path.join(home, '.CCP4I2')
     if not os.path.exists(ccp4i2) and sys.platform == 'win32':
         ccp4i2 = os.path.normpath(os.path.join(home, 'CCP4I2'))
     if not os.path.exists(ccp4i2):
@@ -328,18 +326,18 @@ def getDotDirectory():
     # Make sure that we also have the subdirectories
     for subd in ['status', 'logs', 'configs', 'db', 'tmp', 'custom', 'demo_data', 'i1supplement']:
         path = os.path.join(ccp4i2, subd)
-        if  not os.path.exists(path):
+        if not os.path.exists(path):
             try:
                 os.mkdir(path)
             except:
-                print("ERROR creating subdirectories in ", ccp4i2)
+                print("ERROR creating subdirectories in", ccp4i2)
     for subd in ['workflows', 'comfilepatchs', 'importedjobs', 'tasks']:
         path = os.path.join(ccp4i2, 'custom', subd)
         if  not os.path.exists(path):
             try:
                 os.mkdir(path)
             except:
-                print("ERROR creating subdirectories in ",ccp4i2)
+                print("ERROR creating subdirectories in ", ccp4i2)
     return ccp4i2
 
 
