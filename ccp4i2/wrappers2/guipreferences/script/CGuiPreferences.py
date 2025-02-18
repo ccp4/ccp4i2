@@ -1,15 +1,11 @@
 """
-     tasks/guipreferences.py: CCP4 GUI Project
-     Copyright (C) 2011 University of York
-
-
-
-     Liz Potterton Sept 2011 - Create a task window for GUI preferences
+Copyright (C) 2011 University of York
+Liz Potterton Sept 2011 - Create a task window for GUI preferences
 """
 
 from PySide2 import QtWidgets
 
-from ....core.CCP4Config import DEVELOPER
+from ....core.CCP4Config import CONFIG
 from ....qtgui.CCP4TaskWidget import CTaskWidget
 from ....utils.QApp import QTAPPLICATION
 
@@ -29,7 +25,7 @@ class CGuiPreferences(CTaskWidget):
     self.openFolder(title='Task interface')
 
 
-    if DEVELOPER():
+    if CONFIG().developer:
         self.createLine( [ 'label' , 'Use windows style', 'widget' , 'WINDOWS_STYLE'] )
 
     self.createLine( [ 'label' , 'Use font size',

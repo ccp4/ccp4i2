@@ -1,10 +1,5 @@
 """
-     CCP4ProjectViewer.py: CCP4 GUI Project
-
-
-
-
-   Liz Potterton June 2011 - Project document in a QtMainWindow
+Liz Potterton June 2011 - Project document in a QtMainWindow
 """
 
 ##@package CCP4ProjectViewer (QtGui)   Project document in a QtMainWindow
@@ -46,7 +41,7 @@ from ..core import CCP4File
 from ..core import CCP4I2Runner
 from ..core import CCP4ProjectsManager
 from ..core import CCP4Utils
-from ..core.CCP4Config import DEVELOPER
+from ..core.CCP4Config import CONFIG
 from ..core.CCP4CustomTaskManager import CUSTOMTASKMANAGER
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
 from ..core.CCP4Preferences import PREFERENCES
@@ -759,7 +754,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                         self.webviewToolBar.setButtonVisible(str(name),val)
 
                     else:
-                        if DEVELOPER(): print(name,"not in mapping")
+                        if CONFIG().developer: print(name,"not in mapping")
             
             @QtCore.Slot(list)
             def handleButtonListUpdated(buttonList):
@@ -3578,7 +3573,7 @@ CCP4I2 3D View
                 else:
                     self.generator.setJobStatus(openJob.status)
                 # Comment out to ensure errors are trapped
-                if DEVELOPER():
+                if CONFIG().developer:
                     reportFile, newPageOrNewData = self.generator.makeReportFile(redo=redo,doReload=doReload,useGeneric=(logFile is None))
                 else:
                     try:

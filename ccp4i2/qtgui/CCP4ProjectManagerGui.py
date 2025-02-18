@@ -28,7 +28,7 @@ from ..core import CCP4File
 from ..core import CCP4ProjectBasedTesting
 from ..core import CCP4ProjectsManager
 from ..core import CCP4Utils
-from ..core.CCP4Config import DEVELOPER
+from ..core.CCP4Config import CONFIG
 from ..core.CCP4ErrorHandling import CException, Severity
 from ..core.CCP4ProjectsManager import PROJECTSMANAGER
 from ..core.CCP4WarningMessage import warningMessage
@@ -1478,7 +1478,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     cleanupButton.setAutoDefault(False)
     exportButton.setAutoDefault(False)
 
-    if DEVELOPER():
+    if CONFIG().developer:
         rerunButton = self.buttonFrame.addButton('Rerun test project',QtWidgets.QDialogButtonBox.ActionRole)
         rerunButton.setEnabled(False)
         rerunButton.clicked.connect(self.handleRerun)
@@ -1497,7 +1497,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
         moveButton.setEnabled(enab)
         deleteButton.setEnabled(enab)
         exportButton.setEnabled(enab)
-        if DEVELOPER():
+        if CONFIG().developer:
             rerunButton.setEnabled(enab)
         openButton.setDefault(True)
 

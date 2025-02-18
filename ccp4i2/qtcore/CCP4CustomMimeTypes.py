@@ -1,11 +1,5 @@
 """
-     CCP4CustomMimeTypes.py: CCP4 GUI Project
-
-
-
-
-
-     Liz Potterton Jan 2010 - Create CCP4MimeTypes. Copy MGAbstractViewer and subclasses from MG project
+Liz Potterton Jan 2010 - Create CCP4MimeTypes. Copy MGAbstractViewer and subclasses from MG project
 """
 
 ## @package CCP4CustomMimeTypes (QtWebKit) Manager for file MIME types - access via MIMETYPESHANDLER()
@@ -18,7 +12,7 @@ import gemmi
 from ..core import CCP4ErrorHandling
 from ..core import CCP4File
 from ..core import CCP4Utils
-from ..core.CCP4Config import GRAPHICAL
+from ..core.CCP4Config import CONFIG
 from ..core.CCP4ErrorHandling import Severity
 from ..qtgui import CCP4FileSystemView
 from ..qtgui import CCP4ImageViewer
@@ -89,7 +83,7 @@ class CCustomMimeTypes(QtCore.QObject):
         self.mimeTypes["text/html"] = mimeType
 
         mimeType = CMimeType()
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4FileSystemView.CFileSystemView]
         mimeType.name = "dir"
         mimeType.description = "Directory"
@@ -98,7 +92,7 @@ class CCustomMimeTypes(QtCore.QObject):
         self.mimeTypes["dir"] = mimeType
 
         mimeType = CMimeType()
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.name = "text/plain"
         mimeType.description = "Standard plain text"
@@ -123,7 +117,7 @@ class CCustomMimeTypes(QtCore.QObject):
         self.mimeTypes[mimeType.name] = mimeType
 
         mimeType = CMimeType()
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.name = "application/coot-script"
         mimeType.icon = 'CootHistoryDataFile'
@@ -136,7 +130,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "chemical/x-pdb"
         mimeType.description = "Model coordinates"
         mimeType.fileExtensions = ['pdb','cif','ent']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CCoordsViewer]
         mimeType.icon = 'PdbDataFile'
         mimeType.fixedWidthFont = True
@@ -147,14 +141,14 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "chemical/x-pdb-ensemble"
         mimeType.description = "Ensemble of model coordinates"
         mimeType.fileExtensions = ['pdb','cif','ent']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CCoordsViewer]
         mimeType.icon = 'EnsemblePdbDataFile'
         mimeType.fixedWidthFont = True
         mimeType.className = 'EnsemblePdbDataFile'
         self.mimeTypes["chemical/x-pdb-ensemble"] = mimeType
 
-        if GRAPHICAL():
+        if CONFIG().graphical:
             image_formats_c = QtGui.QImageReader.supportedImageFormats()
             image_formats = []
             for im in image_formats_c:
@@ -268,7 +262,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "application/CCP4-shelx-FA"
         mimeType.description = "Shelx FA"
         mimeType.fileExtensions = ['hkl']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.icon = ''
         mimeType.className = 'ShelxFADataFile'
@@ -306,7 +300,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "chemical/x-cif"
         mimeType.description = 'mmCif reflection data'
         mimeType.fileExtensions = ['cif','mmcif']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.fixedWidthFont = True
         self.mimeTypes["chemical/x-cif"] = mimeType
@@ -324,7 +318,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "application/CCP4-seq"
         mimeType.description = "Sequence file"
         mimeType.fileExtensions = ['pir','seq','fas','fsa','fa','fasta']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.icon = 'SeqDataFile'
         mimeType.className = 'SeqDataFile'
@@ -335,7 +329,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = 'application/CCP4-asu-content'
         mimeType.description = "Asu content file"
         mimeType.fileExtensions = ['asu.xml']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.icon = 'AsuDataFile'
         mimeType.className = 'AsuDataFile'
@@ -346,7 +340,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "application/CCP4-seqalign"
         mimeType.description = "Sequence alignment file"
         mimeType.fileExtensions = ['fas','fasta','pir','aln','msf','phy','bla']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.icon = 'SeqAlignDataFile'
         mimeType.className = 'SeqAlignDataFile'
@@ -357,7 +351,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "application/refmac-dictionary"
         mimeType.description = "Dictionary file"
         mimeType.fileExtensions = ['cif','dict']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.icon = 'DictDataFile'
         mimeType.className = 'DictDataFile'
@@ -368,7 +362,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.description = "External restraints file"
         mimeType.fileExtensions = ['txt']
         mimeType.fixedWidthFont = True
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.icon = 'RestraintsFile'
         self.mimeTypes["application/refmac-external-restraints"] = mimeType
@@ -378,7 +372,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.description = "Refmac5 keyword file"
         mimeType.fileExtensions = ['txt']
         mimeType.fixedWidthFont = True
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.icon = 'RefmacKeywordFile'
         mimeType.className = 'CRefmacKeywordFile'
@@ -388,7 +382,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "text/xml"
         mimeType.description = "XML parameters file"
         mimeType.fileExtensions = ['xml']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.icon = 'task_file'
         self.mimeTypes["text/xml"] = mimeType
@@ -397,7 +391,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "application/CCP4-com"
         mimeType.description = "Program command file"
         mimeType.fileExtensions = ['com']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.icon = 'task_file'
         self.mimeTypes["application/CCP4-com"] = mimeType
@@ -462,7 +456,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "application/HHPred-alignments"
         mimeType.description = "HHPred sequence search results"
         mimeType.fileExtensions = ['hhr']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.className = 'HhpredDataFile'
         self.mimeTypes["application/Hhpred-alignments"] = mimeType
@@ -471,7 +465,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "application/Blast-alignments"
         mimeType.description = "Blast sequence search results"
         mimeType.fileExtensions = ['bla']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.className = 'BlastDataFile'
         self.mimeTypes["application/Blast-alignments"] = mimeType

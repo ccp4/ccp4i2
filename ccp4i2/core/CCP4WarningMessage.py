@@ -1,5 +1,5 @@
 from ..qtgui.CCP4MessageBox import CMessageBox
-from .CCP4Config import GRAPHICAL
+from .CCP4Config import CONFIG
 from .CCP4ErrorHandling import CErrorReport, Severity
 
 
@@ -15,7 +15,7 @@ def warningMessage(
     if len(message) > 0:
         message = message.rstrip() + "\n"
     report = errorReport.report(ifStack=ifStack, minSeverity=minSeverity)
-    if GRAPHICAL() and parent is not None:
+    if CONFIG().graphical and parent is not None:
         CMessageBox(parent, windowTitle, message, details=report, jobId=jobId).show()
     else:
         print(report)

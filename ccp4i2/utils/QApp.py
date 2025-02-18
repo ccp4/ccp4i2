@@ -2,7 +2,7 @@ import sys
 
 from PySide2 import QtCore, QtWidgets
 
-from ..core.CCP4Config import GRAPHICAL
+from ..core.CCP4Config import CONFIG
 
 
 _QTAPPLICATION = None
@@ -12,7 +12,7 @@ def QTAPPLICATION(graphical=None):
     global _QTAPPLICATION
     if _QTAPPLICATION is None:
         if graphical is None:
-            graphical = GRAPHICAL()
+            graphical = CONFIG().graphical
         if graphical:
             _QTAPPLICATION = CGuiApplication(sys.argv)
         else:

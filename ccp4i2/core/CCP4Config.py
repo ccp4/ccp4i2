@@ -1,6 +1,5 @@
 import os
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from . import CCP4File, CCP4Utils
 from .. import __version__, I2_TOP
@@ -10,14 +9,6 @@ def CONFIG(fileName=None, **kw):
     if CConfig.insts is None:
         CConfig(fileName, **kw)
     return CConfig.insts
-
-
-utf8_parser = etree.XMLParser(encoding='utf-8')
-
-
-def parse_from_unicode(unicode_str):
-    s = unicode_str.encode('utf-8')
-    return etree.fromstring(s, parser=utf8_parser)
 
 
 class CConfig:
@@ -52,14 +43,11 @@ class CConfig:
 
     def loadDataFromXml(self, fileName):
         errList = []
-        text = CCP4Utils.readFile(fileName)
-        #print 'CConfig.load text', fileName, text
-        root = parse_from_unicode(text)
+        root = ET.parse(fileName).getroot()
         body = root.find('ccp4i2_body')
         for element in body.iter():
             tag = element.tag
             value = element.text
-            #print 'CConfig.loadDataFromXml', tag, value, type(tag), type(value)
             if tag in ['developer', 'graphical']:
                 if value.lower() == 'true':
                     setattr(self, tag, True)
@@ -100,22 +88,22 @@ class CConfig:
             print(' ')
 
     def saveDataToXml(self, fileName):
-        root = etree.Element('configs')
+        root = ET.Element('configs')
         for tag in ['developer', 'graphical', 'dbFile', 'dbUser', 'maxRunningProcesses']:
-            ele = etree.Element(tag)
+            ele = ET.Element(tag)
             ele.text = str(getattr(self, tag))
             root.append(ele)
-        ele = etree.Element('searchPath')
+        ele = ET.Element('searchPath')
         root.append(ele)
         #print 'CConfig.saveDataToXml',self.searchPath.keys()
         for exe in list(self.searchPath.keys()):
-            exeEle = etree.Element(exe)
+            exeEle = ET.Element(exe)
             ele.append(exeEle)
             for platform in list(self.searchPath[exe].keys()):
-                platformEle = etree.Element(platform)
+                platformEle = ET.Element(platform)
                 exeEle.append(platformEle)
                 for item in self.searchPath[exe][platform]:
-                    pathEle = etree.Element('path')
+                    pathEle = ET.Element('path')
                     pathEle.text = item
                     platformEle.append(pathEle)
         # Initialise CI2XmlDataFile thisway to avoid calling PROJECTSMANAGER().db to
@@ -130,29 +118,7 @@ class CConfig:
         f.saveFile(root)
 
     def set(self, key='', value=''):
-        if ['qt', 'developer', 'graphical'].count(key) and [True, False].count(value):
+        if key in {'developer', 'graphical'} and isinstance(value, bool):
             setattr(self, key, value)
         elif key in ['dbFile', 'dbUser']:
             setattr(self, key, value)
-
-#==============================================FUNCTIONS
-
-def DEVELOPER():
-    if not CConfig.insts:
-        CConfig()
-    return CConfig.insts.developer
-
-def GRAPHICAL():
-    if not CConfig.insts:
-        CConfig()
-    return CConfig.insts.graphical
-
-def DBFILE():
-    if  not CConfig.insts:
-        CConfig()
-    return CConfig.insts.dbFile
-
-def DBUSER():
-    if  not CConfig.insts:
-        CConfig()
-    return CConfig.insts.dbUser

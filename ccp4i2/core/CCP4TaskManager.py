@@ -1,10 +1,5 @@
 """
-     CCP4TaskManager.py: CCP4 GUI Project
-
-
-
-
-   Liz Potterton Sept 2010 - Class to keep track of all CCP4Tasks
+Liz Potterton Sept 2010 - Class to keep track of all CCP4Tasks
 """
 
 import glob
@@ -28,7 +23,7 @@ from ..dbapi import CCP4DbApi
 from ..qtgui import CCP4I1Projects
 from ..qtgui import CCP4TaskWidget
 from ..report import CCP4ReportParser
-from .CCP4Config import GRAPHICAL, DEVELOPER
+from .CCP4Config import CONFIG
 from .CCP4CustomTaskManager import CUSTOMTASKMANAGER
 from .CCP4ErrorHandling import CErrorReport, Severity
 from .CCP4Preferences import PREFERENCES
@@ -217,7 +212,7 @@ class CTaskManager:
 
     def buildLookupFromScratch(self):
         print("#CCP4TaskManager.buildLookupFromScratch")
-        graphical = GRAPHICAL()
+        graphical = CONFIG().graphical
         myErrorReport = CErrorReport()
         loadTarget = [[self._searchPath, True]]
         if graphical:
@@ -783,7 +778,7 @@ class CTaskManager:
                 if len(pixFileList) > 0:
                     self.timeFindingIcons += (time.time() - t1)
                     return pixFileList[0]
-        if DEVELOPER(): print("Icon not found", name)
+        if CONFIG().developer: print("Icon not found", name)
         self.timeFindingIcons += (time.time() - t1)
         return os.path.join(CCP4Utils.getCCP4I2Dir(), 'qticons', 'ccp4.png')
 

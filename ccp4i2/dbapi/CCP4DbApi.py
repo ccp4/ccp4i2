@@ -1,9 +1,8 @@
 """
-    CCP4DbApi.py: CCP4 GUI Project
-    Copyright (C) 2011 University of York
+Copyright (C) 2011 University of York
 
-   Initially based on code from by George Pelios at Diamond - version from 15 July 2010
-   Liz Potterton Mar 2011 - Imported into CCP4i2 and radically rewritten
+Initially based on code from by George Pelios at Diamond - version from 15 July 2010
+Liz Potterton Mar 2011 - Imported into CCP4i2 and radically rewritten
 """
 
 from collections.abc import Callable
@@ -24,7 +23,6 @@ from lxml import etree
 from PySide2 import QtCore, QtSql
 
 from . import CCP4DbUtils
-from ..core import CCP4Config
 from ..core import CCP4Container
 from ..core import CCP4Data
 from ..core import CCP4DataManager
@@ -32,6 +30,7 @@ from ..core import CCP4File
 from ..core import CCP4PerformanceData
 from ..core import CCP4TaskManager
 from ..core import CCP4Utils
+from ..core.CCP4Config import CONFIG
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
 from ..core.CCP4QtObject import CObject
 from ..utils.QApp import QTAPPLICATION
@@ -378,8 +377,8 @@ class CDbApi(CObject):
             CDbApi.insts = self
         if mode is None or fileName is None:
             mode = "sqlite"
-            fileName = CCP4Config.DBFILE()
-            if userName is None: userName =  CCP4Config.DBUSER()
+            fileName = CONFIG().dbFile
+            if userName is None: userName = CONFIG().dbUser
         self._schemaVersion = self.getSchemaVersion()
         print('Current schema version:', self._schemaVersion)
         if fileName is  None:

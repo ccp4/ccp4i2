@@ -3,12 +3,11 @@ class test_demo_multi_mtzdump(unittest.TestCase):
 
   def setUp(self):
     # make all background jobs wait for completion
-    #print 'test_demo_multi_mtzdump setUp graphical',GRAPHICAL()
-    if not GRAPHICAL():
+    if not CONFIG().graphical:
       PROCESSMANAGER().setWaitForFinished(10000)
 
   def tearDown(self):
-    if not GRAPHICAL():
+    if not CONFIG().graphical:
       PROCESSMANAGER().setWaitForFinished(-1)
 
   def test_1(self):

@@ -7,8 +7,8 @@ import time
 
 from PySide2 import QtCore
 
-from . import CCP4Config
 from . import CCP4Utils
+from .CCP4Config import CONFIG
 
 
 def PRINTHANDLER():
@@ -58,7 +58,7 @@ class CPrintHandler:
     def write(self, value):
         f = self.getFileObject()
         f.write(str(value))
-        if CCP4Config.DEVELOPER():
+        if CONFIG().developer:
             sys.__stdout__.write(str(value))
 
     @QtCore.Slot()

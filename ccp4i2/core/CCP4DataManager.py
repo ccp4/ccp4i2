@@ -1,10 +1,5 @@
 """
-     CCP4DataManager.py: CCP4 GUI Project
-
-
-
-
-   Liz Potterton Aug 2010 - Class to keep track of all CCP4Data and CCP4Widget classes
+Liz Potterton Aug 2010 - Class to keep track of all CCP4Data and CCP4Widget classes
 """
 
 import glob
@@ -20,7 +15,7 @@ from . import CCP4Utils
 from .. import core
 from .. import qtgui
 from ..qtgui import CCP4Widgets
-from .CCP4Config import GRAPHICAL
+from .CCP4Config import CONFIG
 from .CCP4ErrorHandling import CException
 
 
@@ -50,7 +45,7 @@ class CDataManager:
         self.viewLookup= {}
         self.toUpper = {}
         self._searchPath = [os.path.join(CCP4Utils.getCCP4I2Dir(), 'core')]
-        if GRAPHICAL():
+        if CONFIG().graphical:
             self._searchPath.extend([os.path.join(CCP4Utils.getCCP4I2Dir(), 'qtgui')])
         self.buildClassLookup()
 
@@ -68,10 +63,7 @@ class CDataManager:
             self._searchPath.append(path)
 
     def customClasses(self):
-        if GRAPHICAL():
-            return []
-        else:
-            return []
+        return []
 
     def buildClassLookup(self):
         try:
@@ -99,7 +91,7 @@ class CDataManager:
                                 tmpM = "Potentially serious duplication problem flagged.\n" + \
                                        "    " +clsNam + "\n"
                                 tmpM += "Recommend using grep to look for duplication in code"
-                                if GRAPHICAL():
+                                if CONFIG().graphical:
                                     QtGui.QMessageBox.warning(None, "Problem Loading CachedLookups JSON", tmpM,
                                                                     "Developer Action Recommended")
         except:
@@ -108,7 +100,7 @@ class CDataManager:
 
     def buildClassLookupFromScratch(self):
         modules = inspect.getmembers(core, inspect.ismodule)
-        if GRAPHICAL():
+        if CONFIG().graphical:
             graphModules = inspect.getmembers(qtgui, inspect.ismodule)
             modules = (modules+graphModules)
         coreDirSearch = os.path.join(CCP4Utils.getCCP4I2Dir(), 'core', '*.py')
@@ -136,7 +128,7 @@ class CDataManager:
                 if issubclass(cls, CCP4Data.CData):
                     self.clsLookup[name] = {'class':cls,'clsModule':cls.__module__,'clsName':cls.__name__}
                     self.toUpper[name.lower()] = name
-            if GRAPHICAL():
+            if CONFIG().graphical:
                 for name,cls in clsList:
                     if issubclass(cls, CCP4Widgets.CViewWidget):
                         self.widgetLookup[name] = {'class':cls,'clsModule':cls.__module__,'clsName':cls.__name__}
@@ -236,7 +228,7 @@ class CDataManager:
         return widgetClass
 
     def widget(self, model=None, parentWidget=None, qualifiers={}, name='', modelClass=None):
-        if not GRAPHICAL():
+        if not CONFIG().graphical:
             return None
         widgetClass = self.getWidgetClass(model=model, modelClass=modelClass, name=name)
         if parentWidget is None:

@@ -15,11 +15,11 @@ from lxml import etree
 from PySide2 import QtWidgets
 
 from .. import I2_TOP
-from ..core import CCP4Config
 from ..core import CCP4ErrorHandling
 from ..core import CCP4PrintHandler
 from ..core import CCP4ProjectsManager
 from ..core import CCP4Utils
+from ..core.CCP4Config import CONFIG
 from ..core.CCP4Preferences import PREFERENCES
 from ..core.CCP4PrintHandler import PRINTHANDLER
 from ..core.CCP4ProjectsManager import PROJECTSMANAGER
@@ -122,7 +122,7 @@ def createMissingDATABASEdbXML():
 def startBrowser(args, app=None, splash=None):
     # KJS: Removed the linux check. Unclear why it's in here.
     # if sys.platform == "linux2": win = QtWidgets.QWidget(); splash.finish(win); splash.show()
-    CCP4Config.CONFIG(graphical=True)
+    CONFIG(graphical=True)
     kw = {'graphical' : True}
     ii = 0
     while ii < len(args):
@@ -176,7 +176,7 @@ def startBrowser(args, app=None, splash=None):
             print("Restoring stdout")
         if 'dbFileName' in kw and 'useLocalDBFile' in kw and kw['dbFileName'] is not None and kw['useLocalDBFile'] is not None and kw['dbFileName'] == kw['useLocalDBFile']:
             print("Need to push back temporary database file ......")
-            origFileName = CCP4Config.DBFILE()
+            origFileName = CONFIG().dbFile
             if origFileName is None:
                 origFileName = os.path.join(CCP4Utils.getDotDirectory(), 'db', 'database.sqlite')
             pm = PROJECTSMANAGER()
@@ -276,7 +276,7 @@ def startProjectsManager(dbFileName=None, checkForFinishedJobs=False, useLocalDB
         pm = PROJECTSMANAGER()
         try:
             if dbFileName is not None and useLocalDBFile is not None and dbFileName == useLocalDBFile:
-                origFileName = CCP4Config.DBFILE()
+                origFileName = CONFIG().dbFile
                 if origFileName is None:
                     origFileName = os.path.join(CCP4Utils.getDotDirectory(), 'db', 'database.sqlite')
                 if os.path.exists(origFileName):
@@ -292,7 +292,7 @@ def startProjectsManager(dbFileName=None, checkForFinishedJobs=False, useLocalDB
             if nullHome:
                 message = "CCP4i2 can not determine your home directory's name correctly. This is probably because your username contains special (non-ASCII) characters. CCP4i2 and other CCP4 programs are unlikely to work correctly in these circumstances. Please try creating a new user without such characters for running CCP4i2. <br/><br><b>Any errors after this are likely caused by this problem.</b>"
                 print(message)
-                if CCP4Config.GRAPHICAL():
+                if CONFIG().graphical:
                     QtWidgets.QMessageBox.warning(None,"Filename warning",message)
 
             db = startDb(pm, mode='sqlite', fileName=dbFileName,**kw)
@@ -303,13 +303,13 @@ def startProjectsManager(dbFileName=None, checkForFinishedJobs=False, useLocalDB
             if not isAscii or hasSpace:
                 message = 'The database filename:\n\n'+db._fileName+'\n\ncontains characters that mean ccp4i2, or other CCP4\nprogram is unlikely to work. If your UserName contains spaces or special characters and you run into problems, please try creating a new user without such characters for running CCP4i2.'
                 print(message)
-                if CCP4Config.GRAPHICAL():
+                if CONFIG().graphical:
                     QtWidgets.QMessageBox.warning(None,"Filename warning",message)
 
             pm.setDatabase(db)
         except DatabaseFailException:
             print("Failed to open database file!!!!!!!!")
-            if dbFileName is None and CCP4Config.DBFILE() is None:
+            if dbFileName is None and CONFIG().dbFile is None:
                 #This is manual backup
                 dbOrigName = os.path.join(CCP4Utils.getDotDirectory(), 'db', 'database.sqlite')
                 win = CCP4BackupDBBrowser.CBackupDBBrowser()
@@ -337,8 +337,8 @@ def startProjectsManager(dbFileName=None, checkForFinishedJobs=False, useLocalDB
                 print(dbFileName,"corrupted")
                 sys.exit()
             else:
-                res = QtWidgets.QMessageBox.warning(None,"Database file corrupted?","The specified database file "+CCP4Config.DBFILE()+" is corrupted or not a valid CCP4i2 database. As specifying the dbFile parameter in the config file is non-standard behaviour, automatic fixing of the problem is not possible. You must specify a valid CCP4i2 database file in this parameter or seek expert assistance.")
-                print(CCP4Config.DBFILE(),"corrupted")
+                res = QtWidgets.QMessageBox.warning(None,"Database file corrupted?","The specified database file "+CONFIG().dbFile+" is corrupted or not a valid CCP4i2 database. As specifying the dbFile parameter in the config file is non-standard behaviour, automatic fixing of the problem is not possible. You must specify a valid CCP4i2 database file in this parameter or seek expert assistance.")
+                print(CONFIG().dbFile,"corrupted")
                 sys.exit()
         except SystemExit:
             raise
