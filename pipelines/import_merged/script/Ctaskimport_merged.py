@@ -79,23 +79,25 @@ class CTaskimport_merged(CTaskWidget):
     self.colTitle = "MTZ column selection: "
     colLabel =  'Unspecified'
     self.columnAdviceMTZ   = 'reselect input file to change'
-    self.columnAdviceMMCIF = '  reselect cif reflection block to change'
+    self.columnAdviceMMCIF = ' reselect cif reflection block to change content selection'
 
     advlabel = ''
+    clabel = ''
+    
     self.container.guiParameters.HKLIN_HAS_COLUMNS.set(False)
     if self.container.inputData.HKLIN_FORMAT == 'MTZ':
-      self.colTitle =  ' MTZ columns: '
       self.container.guiParameters.HKLIN_HAS_COLUMNS.set(True)
-      colLabel = str(self.container.inputData.HKLIN_OBS_COLUMNS)
+      cLabel =  ' MTZ columns: ' + str(self.container.inputData.HKLIN_OBS_COLUMNS)
       advlabel = self.columnAdviceMTZ
       
     elif self.container.inputData.HKLIN_FORMAT == 'MMCIF':
       self.colTitle =  ' MMCIF content type: '
       self.container.guiParameters.HKLIN_HAS_COLUMNS.set(True)
-      colLabel = str(self.container.inputData.MMCIF_SELECTED_CONTENT)
+      content = str(self.container.inputData.MMCIF_SELECTED_CONTENT)
+      block = str(self.container.inputData.MMCIF_SELECTED_BLOCK)
+      clabel =  ' MMCIF Block: ' + block + ', content type: ' + content
       advlabel = self.columnAdviceMMCIF
       
-    clabel = self.colTitle + colLabel
     colLine = self.createLine( ['label','Selected data: ',
                                 'label', clabel,
                                 'advice', advlabel],
@@ -221,6 +223,10 @@ class CTaskimport_merged(CTaskWidget):
   def updateFromFile(self,force=True):
     # Explicit call to CGenericREflnDataFile.getFileContent() otherwise CData properties code gets it wrong
     print("\n** updateFromFile HKLIN ",self.container.inputData.HKLIN.fileContent)
+    if not self.container.inputData.HKLIN.isSet():
+      print("HKLIN unset")
+      return
+
     #print("IDRR", self.container.inputData.RESOLUTION_RANGE)
     self.unSetAll()
 
@@ -409,8 +415,7 @@ class CTaskimport_merged(CTaskWidget):
         self.container.inputData.HKLIN_OBS_CONTENT_FLAG = contentFlag
         self.container.inputData.HKLIN_OBS_COLUMNS = columns[0:-1]
         self.container.guiParameters.HKLIN_HAS_COLUMNS.set(True)
-        self.colTitle =  ' MTZ columns: '
-        colLabel = self.colTitle + str(self.container.inputData.HKLIN_OBS_COLUMNS)
+        colLabel = ' MTZ columns: ' + str(self.container.inputData.HKLIN_OBS_COLUMNS)
         self.selectedColumnLabels.setText(colLabel)
         self.selectedColumnAdvice.setText(self.columnAdviceMTZ)
         #print 'handleSelColDialogApply',mtzModel.fileContent.datasets,mtzModel.fileContent.crystalNames
@@ -841,7 +846,7 @@ class CTaskimport_merged(CTaskWidget):
     #print("<< ", self.container.inputData.MMCIF_SELECTED_CONTENT)
     #print("<<** ", type(self.container.inputData.MMCIF_SELECTED_CONTENT))
     #print("<*** ", len(self.container.inputData.MMCIF_SELECTED_CONTENT))
-    
+   
     self.selectedContent = None
 
     contents = self.infoList()
@@ -864,9 +869,9 @@ class CTaskimport_merged(CTaskWidget):
     if ntypefound == 1:
       self.selectedContent = ctypefound
       self.setMMCIFcontentColumns()
-      self.colTitle =  ' MMCIF content type: '
-      colLabel = self.colTitle + self.selectedContent
-      self.selectedColumnLabels.setText(colLabel)
+      block = str(self.container.inputData.MMCIF_SELECTED_BLOCK)
+      clabel =  ' MMCIF Block: ' + block + ', content type: ' + self.selectedContent
+      self.selectedColumnLabels.setText(clabel)
       self.selectedColumnAdvice.setText(' sole available option')
       return
   
@@ -891,11 +896,11 @@ class CTaskimport_merged(CTaskWidget):
       self.selectedContent = "Unspecified"
       
     self.setMMCIFcontentColumns()
-    colLabel = self.colTitle + self.selectedContent
-
-    self.selectedColumnLabels.setText(colLabel)
+    block = str(self.container.inputData.MMCIF_SELECTED_BLOCK)
+    clabel =  ' MMCIF Block: ' + block + ', content type: ' + self.selectedContent
+    self.selectedColumnLabels.setText(clabel)
     self.selectedColumnAdvice.setText(self.columnAdviceMMCIF)
-    
+
     selbox.deleteLater()
   # -------------------------------------------------------------
   def setMMCIFcontentColumns(self):
@@ -964,7 +969,10 @@ class CTaskimport_merged(CTaskWidget):
       if nblocks == 1:
         # Only one block, call content selection
         self.cifColumnSelect()
+      else:
+        self.cifColumnSelect()   ### TESTING
 
+        
   # -------------------------------------------------------------
   def checkForStarAniso(self):
     # current check loop for _software.name == STARANISO in 1st block
