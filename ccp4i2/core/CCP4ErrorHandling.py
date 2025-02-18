@@ -1,16 +1,12 @@
 """
-     CCP4ErrorHandling.py: CCP4 GUI Project
-
-
-   Liz Potterton Aug 2010 - Exception class and definitions of severity
+Liz Potterton Aug 2010 - Exception class and definitions of severity
 """
 
 from enum import Enum
 from inspect import isclass
 from time import localtime, mktime
 import traceback
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 
 class Severity(Enum):
@@ -188,32 +184,32 @@ class CErrorReport():
         return text[1:]
 
     def getEtree(self):
-        element = etree.Element('errorReportList')
+        element = ET.Element('errorReportList')
         for item in self._reports:
-            ele = etree.Element('errorReport')
-            e = etree.Element('className')
+            ele = ET.Element('errorReport')
+            e = ET.Element('className')
             e.text = item['className']
             ele.append(e)
-            e = etree.Element('code')
+            e = ET.Element('code')
             e.text = str(item['code'])
             ele.append(e)
-            e = etree.Element('description')
+            e = ET.Element('description')
             desc, severity = self.description(item)
             e.text = desc
             ele.append(e)
-            e = etree.Element('severity')
+            e = ET.Element('severity')
             e.text = str(severity)
             ele.append(e)
             if item['details'] is not None:
-                e = etree.Element('details')
+                e = ET.Element('details')
                 e.text = str(item['details'])
                 ele.append(e)
             if item['time'] is not None:
-                e = etree.Element('time')
+                e = ET.Element('time')
                 e.text = str(item['time'])
                 ele.append(e)
             if item['stack'] is not None:
-                e = etree.Element('stack')
+                e = ET.Element('stack')
                 e.text = ''.join(item['stack'])
                 ele.append(e)
             element.append(ele)
