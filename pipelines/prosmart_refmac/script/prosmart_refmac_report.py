@@ -141,7 +141,18 @@ class prosmart_refmac_report(Report):
 
             try:
                validateReport = None
-               validateReportNode = xmlnode.findall(".//Validation")[0]
+               validateReportNode = None
+
+               if len(xmlnode.findall(".//Validation"))>0:
+                   validateReportNode = xmlnode.findall(".//Validation")[0]
+                   if len(xmlnode.findall(".//Validation/Success"))>0:
+                       validatetSuccessNode = xmlnode.findall(".//Validation/Success")[0]
+                       if validatetSuccessNode.text != "SUCCESS":
+                           self.append('<span style="color:red">Validation status: '+validatetSuccessNode.text+'</span><br/>')
+                           self.append('<span style="color:red">Calculating or saving validation information was unsuccessful</span><br/>')
+               else:
+                       self.append('<span style="color:orange">No validation information found</span>')
+
                if validateReportNode is not None:
                   validateReport = validate_protein_report.validate_protein_report(xmlnode=validateReportNode, jobStatus='nooutput', jobInfo=self.jobInfo)
 
@@ -152,39 +163,47 @@ class prosmart_refmac_report(Report):
                         irisdiv = irisFold.addDiv(style="clear:both; margin-top:30px; width:800px;")
                         validateReport.add_iris_panel(parent=irisFold)
                   except:
-                     self.addText("Warning - Iris report failed")
-                        
+                     self.addText(text="Warning - Iris report failed")
+
                   try:
                      if len(validateReportNode.findall ( ".//B_averages" ))>0 :
                         baverageFold = self.addFold ( label="B-factor analysis", initiallyOpen=False )
                         validateReport.b_factor_tables(parent=baverageFold)
                         validateReport.b_factor_graph(parent=baverageFold)
                   except:
-                     self.addText("Warning - B-factor analysis failed")
+                     self.addText(text="Warning - B-factor analysis failed")
 
                   try:
                      if len(validateReportNode.findall ( ".//B_factors" ))>0 and validateReportNode.findall ( ".//B_factors" )[0].text != "" :
                         baverageFold = self.addFold ( label="B-factor analysis", initiallyOpen=False )
                         validateReport.add_b_factors(parent=baverageFold)
                   except:
-                     self.addText("Warning - B-factor analysis failed")
+                     self.addText(text="Warning - B-factor analysis failed")
 
                   try:
                      if len(validateReportNode.findall ( ".//Molprobity" ))>0 and validateReportNode.findall ( ".//Molprobity" )[0].text != "" :
                         molprobityFold = self.addFold ( label="MolProbity analysis", initiallyOpen=False )
                         validateReport.add_molprobity(parent=molprobityFold)
                   except:
-                     self.addText("Warning - MolProbity analysis failed")
+                     self.addText(text="Warning - MolProbity analysis failed")
 
                   try:
                      if len(validateReportNode.findall ( ".//Ramachandran" ))>0 and validateReportNode.findall ( ".//Ramachandran" )[0].text != "" :
                         ramachandranFold = self.addFold ( label="Ramachandran plots", initiallyOpen=False )
                         validateReport.add_ramachandran(parent=ramachandranFold)
                   except:
-                     self.addText("Warning - Ramachandran plot generation failed")           
-                  
+                     self.addText(text="Warning - Ramachandran plot generation failed")
+
             except:
-               traceback.print_exc()
+               self.append('<span style="color:orange">Problem drawing validation results</span>')
+               exc_type, exc_value,exc_tb = sys.exc_info()[:3]
+               exc_format = traceback.format_exception(exc_type, exc_value, exc_tb)
+               exc_text = ""
+               for f in exc_format:
+                   print(f)
+                   exc_text += f
+               self.addPre(text = exc_text,style="color:orange;")
+
             clearingDiv = self.addDiv(style="clear:both;")
 
             try:
@@ -237,7 +256,7 @@ class prosmart_refmac_report(Report):
         verdictNodes = xmlnode.findall('.//Verdict')
         if len(verdictNodes)>0:
             from lxml.html.clean import Cleaner
-            
+
             cleaner = Cleaner(page_structure=True,
                    meta=True,
                    embedded=True,
@@ -256,7 +275,7 @@ class prosmart_refmac_report(Report):
                    safe_attrs=frozenset(['src','color', 'href', 'title', 'class', 'name', 'id']),
                    remove_tags=('span', 'font', 'div','br')
                    )
-            
+
             verdictFold = self.addFold(label='Verdict', initiallyOpen=True,brief='Verdict')
 
             topDiv = verdictFold.addDiv(style='border:0px solid blue; width:700px; overflow:auto;')
@@ -284,7 +303,7 @@ class prosmart_refmac_report(Report):
             tableText += "<tr><td>Ramachandran outliers:</td><td>"+verdictNodes[0].findall("ramaOutliers")[0].text+" %</td></tr>\n"
             tableText += "</table>\n"
             bottomLineDiv.append(tableText)
-            
+
             verdict_suggestion_values = {}
             verdict_suggestion_values["NCYCLES"] = "Number of cycles:"
             verdict_suggestion_values["NTLSCYCLES"] = "Number of TLS cycles:"
@@ -300,7 +319,7 @@ class prosmart_refmac_report(Report):
             verdict_suggestion_opt["BFACSETUSE"] = {"True":"Reset atomic B-factors.","False":"Do not reset atomic B-factors."}
             verdict_suggestion_opt["WEIGHT_OPT"] = {"AUTO":"Use automatic geometry weight optimisation."}
             verdict_suggestion_opt["HYDR_USE"] = {"True":"Generate and use riding hydrogens.","False":"Do not use riding hydrogens."}
-            
+
             if len(verdictNodes[0].findall("suggestedParameters")[0]) > 0:
                 suggestedDiv = verdictFold.addDiv(style='border:0px solid black; width:700px; overflow:auto;')
                 suggestedDiv.append("<p>It is suggested that you rerun with the following suggested parameters:</p>")
