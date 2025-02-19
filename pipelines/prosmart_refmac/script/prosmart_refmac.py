@@ -648,13 +648,12 @@ class prosmart_refmac(CPluginScript):
                 self.validate = self.makePluginObject('validate_protein')
                 self.validate.container.inputData.XYZIN_1.set(self.container.outputData.XYZOUT)
                 self.validate.container.inputData.XYZIN_2.set(self.container.inputData.XYZIN)
-                if self.container.controlParameters.SCATTERING_FACTORS.isSet():
-                   if self.container.controlParameters.SCATTERING_FACTORS.__str__() in {'NEUTRON', 'ELECTRON'}:
-                      self.validate.container.inputData.F_SIGF_1.set(None)
-                      self.validate.container.inputData.F_SIGF_2.set(None)
-                   else:
-                      self.validate.container.inputData.F_SIGF_1.set(self.container.inputData.F_SIGF)
-                      self.validate.container.inputData.F_SIGF_2.set(self.container.inputData.F_SIGF)
+                if str(self.container.controlParameters.SCATTERING_FACTORS) == "XRAY":
+                    self.validate.container.inputData.F_SIGF_1.set(self.container.inputData.F_SIGF)
+                    self.validate.container.inputData.F_SIGF_2.set(self.container.inputData.F_SIGF)
+                else:
+                    self.validate.container.inputData.F_SIGF_1.set(None)
+                    self.validate.container.inputData.F_SIGF_2.set(None)
                 self.validate.container.inputData.NAME_1 = "Refined"
                 self.validate.container.inputData.NAME_2 = "Input"
                 #MN...Using "="" to set this is an odd thing and breaks under some circumstances.

@@ -340,13 +340,12 @@ class servalcat_pipe(CPluginScript):
             self.validate.container.inputData.XYZIN_2.set(self.container.inputData.XYZIN)
             self.validate.container.inputData.NAME_1.set("Refined")
             self.validate.container.inputData.NAME_2.set("Input")
-            if self.container.controlParameters.SCATTERING_FACTORS.isSet():
-                if self.container.controlParameters.SCATTERING_FACTORS.__str__() in {'NEUTRON', 'ELECTRON'}:
-                    self.validate.container.inputData.F_SIGF_1.set(None)
-                    self.validate.container.inputData.F_SIGF_2.set(None)
-                else:
-                    self.validate.container.inputData.F_SIGF_1.set(self.container.inputData.HKLIN)
-                    self.validate.container.inputData.F_SIGF_2.set(self.container.inputData.HKLIN)
+            if str(self.container.controlParameters.SCATTERING_FACTORS) == "XRAY":
+                self.validate.container.inputData.F_SIGF_1.set(self.container.inputData.HKLIN)
+                self.validate.container.inputData.F_SIGF_2.set(self.container.inputData.HKLIN)
+            else:
+                self.validate.container.inputData.F_SIGF_1.set(None)
+                self.validate.container.inputData.F_SIGF_2.set(None)
 
             self.validate.container.controlParameters.DO_IRIS.set(validate_iris)
             self.validate.container.controlParameters.DO_BFACT.set(validate_baverage)
