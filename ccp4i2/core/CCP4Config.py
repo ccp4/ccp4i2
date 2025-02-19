@@ -1,7 +1,7 @@
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
-from .. import __version__, I2_TOP
+from .. import __version__
 from .CCP4Utils import getDotDirectory
 
 
@@ -22,12 +22,9 @@ class CConfig:
         self.graphical = False
         self.maxRunningProcesses = 4
 
-        fileName = "ccp4i2_config.params.xml"
-        localFile = I2_TOP / "local_setup" / fileName
-        if localFile.exists():
-            self._loadDataFromXml(localFile)
         if filePath is None:
-            filePath = Path(getDotDirectory()).resolve() / "configs" / fileName
+            dotDir = Path(getDotDirectory()).resolve()
+            filePath = dotDir / "configs" / "ccp4i2_config.params.xml"
         else:
             filePath = Path(filePath).resolve()
         if filePath.exists():
