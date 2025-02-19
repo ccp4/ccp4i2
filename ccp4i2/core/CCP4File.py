@@ -9,13 +9,11 @@
 
 import getpass
 import hashlib
-import io
 import os
 import re
 import shutil
 import sys
 import traceback
-import xml.etree.ElementTree as ET
 
 from lxml import etree
 from PySide2 import QtCore
@@ -327,22 +325,6 @@ class CFilePath(CCP4Data.CString):
             return CFilePath(other)
         else:
             return CFilePath(os.path.normpath(os.path.join(other, self._value)))
-
-    """
-    def __cmp__(self,arg):
-        other =  self.getValue(arg)
-        if self._value is None or other is None:
-          if self._value is not None:
-            return -1
-          elif other is not None:
-            return 1
-          else:
-            return 0
-        else:
-          #MN 'str' and 'unicode' types do not have __cmp__, but equality can be tested using ==
-          if isinstance(self._value,basestring) and isinstance(other,basestring): return self._value == other
-          return self._value.__cmp__(other)
-    """
 
     def __str__(self):
         if self._value is None:
@@ -1061,8 +1043,8 @@ class CXmlDataFile(CDataFile):
         if printout:
             print(etree.tostring(root, pretty_print=True)) # KJS - problem here. etree not defined. Fix in.
         return root
-        
-        
+
+
     def assertSame(self, arg, testPath=False, testChecksum=True, testSize=False, testDiff=False, diagnostic=False, fileName=None):
         #MN Now here we have an issue that assertSame on an XML file is fraught with difficulties, and an identical checkSum is probably far too stringent.  I'm gonna suggest that we should remove testChecksum for now, with a view to putting in a more intelligent comparison later
         report = CDataFile.assertSame(self, arg, testPath, False, testSize, testDiff, diagnostic, fileName)
@@ -1080,15 +1062,6 @@ class CXmlDataFile(CDataFile):
             raise CException(self.__class__, 1001, fileName + ' : ' + str(e), name=self.objectPath())
         return tree
 
-    '''
-    Think this is now redundant as openFileToEtree does it
-    try:
-      root = tree.getroot()
-    except Exception as e:
-      raise CException(self.__class__,1002,fileName+' : '+str(e))
-    return root
-    '''
-
     def saveFile(self, bodyEtree=None):
         fileName = self.fullPath.get()
         if bodyEtree is None:
@@ -1105,33 +1078,6 @@ class CXmlDataFile(CDataFile):
         except:
             raise CException(self.__module__, 1008, fileName)
 
-    def makeI2XmlDataFile(self, fileName=None, overWrite=False, header=None, **kw):
-        if not self.fullPath.exists():
-            raise CException(self.__class__, 1010, 'Filename: ' + str(self.fullPath), name=self.objectPath())
-        else:
-            myFileName = self.fullPath.get()
-        if fileName is None and not overWrite:
-            raise CException(self.__class__, 1011, name=self.objectPath())
-        if fileName is None:
-            fileName = str(self.getFullPath())
-        if isinstance(fileName,(CDataFile, CFilePath)):
-            fileName = str(fileName)
-        try:
-            c = CI2XmlDataFile(fileName)
-        except:
-            raise CException(self.__class__, 1012, fileName, name=self.objectPath())
-        if header is not None:
-            c.header.set(header)
-        # Expect kw to be header data
-        if len(kw) > 0:
-            c.header.set(kw)
-        if not c.header.userId.isSet():
-            c.header.userId.setCurrentUser()
-        if not c.header.creationTime.isSet():
-            c.header.creationTime.setCurrentTime()
-        body = etree.Element(CI2XmlDataFile.BODY_TAG)
-        body.append(self.getEtreeRoot(myFileName))
-        c.saveFile(bodyEtree=body)
 
 class CEBIValidationXMLDataFile(CXmlDataFile):
     '''An XLM file returned from the EBI validation server '''
