@@ -643,7 +643,9 @@ class prosmart_refmac(CPluginScript):
            if hasattr(self.container.controlParameters,"VALIDATE_MOLPROBITY"):
               validate_molprobity = self.container.controlParameters.VALIDATE_MOLPROBITY
 
-           if validate_baverage or validate_molprobity or validate_ramachandran :
+           if validate_baverage or validate_molprobity or validate_ramachandran or validate_iris:
+             xml_validation = etree.SubElement(self.xmlroot,"Validation")
+             xml_validation_status = etree.SubElement(xml_validation,"Success")
              try:
                 self.validate = self.makePluginObject('validate_protein')
                 self.validate.container.inputData.XYZIN_1.set(self.container.outputData.XYZOUT)
@@ -675,7 +677,6 @@ class prosmart_refmac(CPluginScript):
 
                 validateXMLPath = self.validate.makeFileName('PROGRAMXML')
                 validateXML = CCP4Utils.openFileToEtree(validateXMLPath)
-                xml_validation = etree.SubElement(self.xmlroot,"Validation")
                 if len(validateXML.xpath("//Validate_geometry_CCP4i2/Model_info"))>0:
                    xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Model_info")[0]) 
                 if self.validate.container.controlParameters.DO_IRIS:
@@ -739,8 +740,11 @@ class prosmart_refmac(CPluginScript):
                        sys.stderr.write(str(exc_type) + '\n')
                        sys.stderr.write(str(exc_value) + '\n')
                        traceback.print_tb(exc_tb)
+                xml_validation_status.text = "SUCCESS"
                 self.saveXml()
              except Exception as err:
+                xml_validation_status.text = "FAILURE"
+                self.saveXml()
                 import traceback
                 traceback.print_exc()
                 print("...Failed validation run after refinement", err)
