@@ -494,6 +494,7 @@ class prosmart_refmac(CPluginScript):
         # Apply database annotations
         self.container.outputData.XYZOUT.annotation.set('Model from refinement (PDB format)')
         self.container.outputData.CIFFILE.annotation.set('Model from refinement (mmCIF format)')
+        self.container.outputData.CIFFILEDEP.annotation.set('Model from refinement (mmCIF format for deposition)')
         self.container.outputData.FPHIOUT.annotation = 'Weighted map from refinement'
         self.container.outputData.FPHIOUT.subType = 1
         self.container.outputData.DIFFPHIOUT.annotation = 'Weighted difference map from refinement'
@@ -647,10 +648,14 @@ class prosmart_refmac(CPluginScript):
              xml_validation_status = etree.SubElement(xml_validation,"Success")
              try:
                 self.validate = self.makePluginObject('validate_protein')
-                self.validate.container.inputData.XYZIN_1 = self.container.outputData.XYZOUT
-                self.validate.container.inputData.F_SIGF_1 = self.container.inputData.F_SIGF
-                self.validate.container.inputData.XYZIN_2 = self.container.outputData.XYZOUT
-                self.validate.container.inputData.F_SIGF_2 = self.container.inputData.F_SIGF
+                self.validate.container.inputData.XYZIN_1.set(self.container.outputData.XYZOUT)
+                self.validate.container.inputData.XYZIN_2.set(self.container.inputData.XYZIN)
+                if str(self.container.controlParameters.SCATTERING_FACTORS) == "XRAY":
+                    self.validate.container.inputData.F_SIGF_1.set(self.container.inputData.F_SIGF)
+                    self.validate.container.inputData.F_SIGF_2.set(self.container.inputData.F_SIGF)
+                else:
+                    self.validate.container.inputData.F_SIGF_1.set(None)
+                    self.validate.container.inputData.F_SIGF_2.set(None)
                 self.validate.container.inputData.NAME_1 = "Refined"
                 self.validate.container.inputData.NAME_2 = "Input"
                 #MN...Using "="" to set this is an odd thing and breaks under some circumstances.
