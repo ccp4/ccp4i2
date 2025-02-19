@@ -5,7 +5,7 @@ from .. import __version__, I2_TOP
 from .CCP4Utils import getDotDirectory
 
 
-def CONFIG(filePath: str = None, developer: bool = True, graphical: bool = False):
+def CONFIG(filePath: str = None, developer: bool = None, graphical: bool = None):
     if CConfig.insts is None:
         CConfig.insts = CConfig(filePath, developer, graphical)
     return CConfig.insts
@@ -18,8 +18,8 @@ class CConfig:
         print("ccp4i2 version", __version__)
         self.dbFile = None
         self.dbUser = None
-        self.developer = developer
-        self.graphical = graphical
+        self.developer = True
+        self.graphical = False
         self.maxRunningProcesses = 4
 
         fileName = "ccp4i2_config.params.xml"
@@ -34,6 +34,10 @@ class CConfig:
             self._loadDataFromXml(filePath)
         else:
             self._saveDataToXml(filePath)
+        if developer is not None:
+            self.developer = developer
+        if graphical is not None:
+            self.graphical = graphical
 
     def _loadDataFromXml(self, filePath: Path):
         root = ET.parse(filePath).getroot()
