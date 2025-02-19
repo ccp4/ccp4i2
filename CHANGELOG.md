@@ -3,6 +3,7 @@
 ## [2.2.4] - 2025-02-19
 
 - Fixed window maximising on Windows
+- ModelCraft used by default in the DR/MR/MB pipeline
 
 ## [2.2.3] - 2025-02-07
 
