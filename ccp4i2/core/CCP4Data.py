@@ -1,11 +1,4 @@
-"""
-     CCP4Data.py: CCP4 GUI Project
-
-
-
-
-   Liz Potterton Aug 2010 - 'Generic' CCP4Data classes
-"""
+"'Generic' CCP4Data classes"
 
 import re
 import string

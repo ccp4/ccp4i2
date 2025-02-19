@@ -1,7 +1,3 @@
-"""
-Liz Potterton Jan 2010 - Copied from ccp4mg python/ui/utils.py and converted to Qt
-"""
-
 import getpass
 import glob
 import os

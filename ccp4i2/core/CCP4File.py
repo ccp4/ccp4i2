@@ -1,11 +1,4 @@
-"""
-     CCP4File.py: CCP4 GUI Project
-
-
-
-
-   Liz Potterton Aug 2010 - File handling classes
-"""
+"File handling classes"
 
 import getpass
 import hashlib

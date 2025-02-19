@@ -1,11 +1,4 @@
-"""
-     CCP4ComFilePatchManager.py: CCP4 GUI Project
-
-
-
-
-     Liz Potterton July 2013 - create and manage com file patches
-"""
+"Create and manage com file patches"
 
 import os
 

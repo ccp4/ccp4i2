@@ -1,11 +1,4 @@
-"""
-     CCP4ComTemplate.py: CCP4 GUI Project
-
-
-
-
-   Liz Potterton Nov 2010 - Handle template files that generate program command files
-"""
+"Handle template files that generate program command files"
 
 import os
 import re

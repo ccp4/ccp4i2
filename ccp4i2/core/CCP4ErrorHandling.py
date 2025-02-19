@@ -1,6 +1,4 @@
-"""
-Liz Potterton Aug 2010 - Exception class and definitions of severity
-"""
+"Exception class and definitions of severity"
 
 from enum import Enum
 from inspect import isclass

@@ -1,9 +1,4 @@
-"""
-     CCP4Annotation.py: CCP4 GUI Project
-
-
-   Liz Potterton Aug 2010 - Generic annotation object
-"""
+"Generic annotation object"
 
 import os
 import platform
