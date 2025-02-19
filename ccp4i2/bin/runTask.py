@@ -36,7 +36,7 @@ def main():
     config = CONFIG(args.configFile, graphical=False)
     if args.dbFile is not None and os.path.exists(args.dbFile):
         print('Running plugin using database file:', args.dbFile)
-        config.set('dbFile', args.dbFile)
+        config.dbFile = args.dbFile
     # Get name of plugin and whether it is asynchronous
     sXmlIn = str(args.xmlIn)
     if os.path.splitext(sXmlIn)[1] == '.xml':

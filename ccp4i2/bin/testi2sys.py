@@ -115,9 +115,7 @@ def main():
         print("ERROR: database file exists:",dbFile)
         sys.exit()
 
-    config.set('dbFile',dbFile)
-    #configFile = os.path.join(outputDirectory,'config-'+startTime+'.xml')
-    #config.saveDataToXml(configFile)
+    config.dbFile = dbFile
 
     #sys.argv =  [sys.argv[0]]
 
