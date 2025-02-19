@@ -4,6 +4,7 @@
 
 - Fixed window maximising on Windows
 - ModelCraft used by default in the DR/MR/MB pipeline
+- Warning in the Refmac pipeline when validation fails
 
 ## [2.2.3] - 2025-02-07
 
