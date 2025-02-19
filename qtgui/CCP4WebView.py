@@ -223,6 +223,8 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
                 nonReport = True
         if self.url().scheme() == "file" and os.path.basename(self.url().path()) != "report.html" and os.path.basename(self.url().path()) != "report_tmp.html":
             nonReport = True
+        if self.url().scheme() == "http" and "/database/projectid/" in self.url().path() and "/jobnumber/" in self.url().path() and "/file/" in self.url().path() and os.path.basename(self.url().path()) != "blank.html" and os.path.basename(self.url().path()) != "report.html" and os.path.basename(self.url().path()) != "report_tmp.html":
+            nonReport = True
         if nonReport:
             if self.history().canGoBack():
                 print("########################################")
