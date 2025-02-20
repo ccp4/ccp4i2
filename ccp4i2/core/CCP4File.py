@@ -785,7 +785,7 @@ class CDataFile(CCP4Data.CData):
         # if have create temp file with changed end-of-line
         if fileName is None:
             fileName=self.__str__()
-        name = self.objectPath(False)
+        name = self.objectPath()
         if not self.isSet():
             if len(other) == 0:
                 return CErrorReport(self.__class__, 315, name=name)
@@ -836,7 +836,7 @@ class CDataFile(CCP4Data.CData):
             diffs = dmp.diff_main(CCP4Utils.readFile(fileName), CCP4Utils.readFile(other))
             #print 'CDataFile.assertSame diffs', diffs
             if len(diffs) > 1:
-                report.append(self.__class__, 313, name=self.objectPath(), details=str(self) + ' : ' + str(other))
+                report.append(self.__class__, 313, name=name, details=str(self) + ' : ' + str(other))
         if len(report) == 0:
             report.append(self.__class__, 300, name=name)
         return report

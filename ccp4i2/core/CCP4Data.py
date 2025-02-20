@@ -7,7 +7,6 @@ import xml.etree.ElementTree as etree_xml
 from lxml import etree
 from PySide2 import QtCore
 
-from . import CCP4Container
 from . import CCP4DataManager
 from . import CCP4File
 from . import CCP4Utils
@@ -438,13 +437,12 @@ class CData(CObject, CDataQualifiers):
                 self.__dict__['_value'][key].dataChanged.connect(self.dataChanged.emit)
             except:
                 raise
-                print("Fail")
 
-    def objectPath(self, ifContainer=True):
+    def objectPath(self):
         obj = self
         path = ''
         sep = ''
-        while obj is not None and isinstance(obj, CData) and (ifContainer or not isinstance(obj, CCP4Container.CContainer)):
+        while obj is not None and isinstance(obj, CData):
             name = obj.objectName()
             if isinstance(obj.parent(),CList) and name != 'subItemObject':
                 try:
@@ -454,7 +452,7 @@ class CData(CObject, CDataQualifiers):
                 path = '[' + indx + ']' + sep + path
                 sep = ''
             else:
-                path = obj.objectName() + sep + path
+                path = name + sep + path
                 sep = '.'
             obj = obj.parent()
         return path

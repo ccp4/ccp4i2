@@ -1809,21 +1809,21 @@ class CPluginScript(CObject):
             obj1 = otherContainer.outputData.__getattr__(key)
             objList1, xmlText1, keyValues1 = obj1.testComparisonData()
             if len(objList0) != len(objList1):
-                apndtxt = str(obj0.objectPath(False)) + ' : ' + str(objList0)+' : ' + str(objList1)
+                apndtxt = str(obj0.objectPath()) + ' : ' + str(objList0)+' : ' + str(objList1)
                 report.append(CPluginScript, 310, apndtxt, name=self.objectName())
             for i in range(min(len(objList0), len(objList1))):
                 try:
                     result = objList0[i].assertSame(objList1[i])
                 except:
                     print('Error attempting to test', objList0[i], type(objList0[i]), type(objList1[i]))
-                    report.append(CPluginScript, 311, name=objList0[i].objectPath(False))
+                    report.append(CPluginScript, 311, name=objList0[i].objectPath())
                 else:
                     report.extend(result)
             if isinstance(obj0, CCP4PerformanceData.CPerformanceIndicator):
                 try:
                     result = obj0.assertSame(obj1, diagnostic=diagnostic)
                 except:
-                    report.append(CPluginScript, 311, name=objList0[i].objectPath(False))
+                    report.append(CPluginScript, 311, name=objList0[i].objectPath())
                 else:
                     report.extend(result)
         return report

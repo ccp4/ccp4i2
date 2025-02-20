@@ -2270,12 +2270,12 @@ class CPdbDataFile(CCP4File.CDataFile):
                 os.close(fileObj[0])
             if retest:
                 # Beware need to set object name to get it printed out in report
-                obj1 = CPdbDataFile(name=self.objectPath(False), fullPath=f1[1])
+                obj1 = CPdbDataFile(fullPath=f1[1], name=self.objectPath())
                 obj2 = CPdbDataFile(fullPath=f2[1])
                 otherSum = obj2.checksum()
                 selfSum = obj1.checksum()
                 if otherSum != selfSum:
-                    report.append(self.__class__, 308, name=self.objectPath(False), details=str(self) + ' : ' + str(other))
+                    report.append(self.__class__, 308, name=self.objectPath(), details=str(self) + ' : ' + str(other))
             else:
                 return report
         except:

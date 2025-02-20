@@ -960,27 +960,27 @@ class CMtzDataFile(CCP4File.CDataFile):
         try:
             self.loadFile()
         except:
-            report.append(self.__class__, 311, self.__str__(), name=self.objectPath(False))
+            report.append(self.__class__, 311, self.__str__(), name=self.objectPath())
             return report
         try:
             other.loadFile()
         except:
-            report.append(self.__class__, 312, other.__str__(), name=self.objectPath(False))
+            report.append(self.__class__, 312, other.__str__(), name=self.objectPath())
             return report
         sg1 = self.fileContent.spaceGroup
         sg2 = other.fileContent.spaceGroup
         if sg1 != sg2:
-            report.append(self.__class__, 401, f"spaceGroup : {sg1} : {sg2}", stack=False, name=self.objectPath(False) )
+            report.append(self.__class__, 401, f"spaceGroup : {sg1} : {sg2}", stack=False, name=self.objectPath() )
         cell1 = self.fileContent.cell
         cell2 = other.fileContent.cell
         for attr in ['a', 'b', 'c', 'alpha', 'beta', 'gamma']:
             if not math.isclose(getattr(cell1, attr), getattr(cell2, attr), abs_tol=0.001):
-                report.append(self.__class__, 401, f"cell {cell1} : {cell2}", stack=False, name=self.objectPath(False) )
+                report.append(self.__class__, 401, f"cell {cell1} : {cell2}", stack=False, name=self.objectPath() )
         for attr in ['low', 'high']:
             if getattr(self.fileContent.resolutionRange, attr) != getattr(other.fileContent.resolutionRange, attr):
                 lerrStr = attr + ' : ' + str(getattr(self.fileContent.resolutionRange, attr)) + ' : ' \
                                        + str(getattr(other.fileContent.resolutionRange, attr))
-                report.append(self.__class__, 401, lerrStr, stack=False, name=self.objectPath(False))
+                report.append(self.__class__, 401, lerrStr, stack=False, name=self.objectPath())
         ok = 0
         if len(self.fileContent.datasets) != len(other.fileContent.datasets):
             ok = 2
@@ -996,21 +996,21 @@ class CMtzDataFile(CCP4File.CDataFile):
                         ok = 2
         if ok == 2:
             lerrStr = 'datasets ' + ' : ' + str( self.fileContent.datasets ) + ' : ' + str(other.fileContent.datasets)
-            report.append(self.__class__, 401, lerrStr, stack=False, name=self.objectPath(False) )
+            report.append(self.__class__, 401, lerrStr, stack=False, name=self.objectPath() )
         elif ok == 1:
             lerrStr = 'datasets ' + ' : ' + str( self.fileContent.datasets ) + ' : ' + str(other.fileContent.datasets)
-            report.append(self.__class__, 406, lerrStr, stack=False, name=self.objectPath(False) )
+            report.append(self.__class__, 406, lerrStr, stack=False, name=self.objectPath() )
         if len(self.fileContent.listOfColumns) != len(other.fileContent.listOfColumns):
-            report.append(self.__class__, 402, stack=False, name=self.objectPath(False))
+            report.append(self.__class__, 402, stack=False, name=self.objectPath())
         # Test the number of reflections
         myRefnList = self.hklfileReflectionList()
         otherRefnList = other.hklfileReflectionList()
         if myRefnList is None or otherRefnList is None:
-            report.append(self.__class__, 403, stack=False, name=self.objectPath(False))
+            report.append(self.__class__, 403, stack=False, name=self.objectPath())
         else:
             if myRefnList.NumberReflections() != otherRefnList.NumberReflections():
                 lerrStr = str(myRefnList.NumberReflections() )+' : '+str (otherRefnList.NumberReflections() )
-                report.append(self.__class__, 404, lerrStr, stack=False , name=self.objectPath(False))
+                report.append(self.__class__, 404, lerrStr, stack=False , name=self.objectPath())
             else:
                 myRefnList.ReadData()
                 otherRefnList.ReadData()
@@ -1020,11 +1020,11 @@ class CMtzDataFile(CCP4File.CDataFile):
                     if diagnostic:
                         print('Reflection data mean values for ',self.fileContent.listOfColumns[icol].columnLabel,' mine:',myStats[icol].Mean(),'other:',otherStats[icol].Mean())
                     if not abs(otherStats[icol].Mean() - myStats[icol].Mean()) < max(abs(otherStats[icol].Mean()/100.0), 0.0001):
-                        report.append(self.__class__, 405, str(self.fileContent.listOfColumns[icol].columnLabel) + ' ' +  str( myStats[icol].Mean())+ ' : ' + str(otherStats[icol].Mean()), name=self.objectPath(False) )
+                        report.append(self.__class__, 405, str(self.fileContent.listOfColumns[icol].columnLabel) + ' ' +  str( myStats[icol].Mean())+ ' : ' + str(otherStats[icol].Mean()), name=self.objectPath() )
         if diagnostic:
             print('CMtzDataFile.assertSame NumberReflections', myRefnList.NumberReflections(), otherRefnList.NumberReflections())
         if len(report) == 0:
-            report.append(self.__class__, 300, name=self.objectPath(False), stack=False)
+            report.append(self.__class__, 300, name=self.objectPath(), stack=False)
         #print 'CMtzDataFile.assertSame done',report.report()
         return report
 
