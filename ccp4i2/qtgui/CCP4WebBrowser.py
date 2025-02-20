@@ -1311,12 +1311,6 @@ class CMainWindow(QtWidgets.QMainWindow):
         else:
             return False
 
-    def isConfigOpen(self):
-        if self.configWindow is not None and self.configWindow.isVisible():
-            return True
-        else:
-            return False
-
     def openFileDialog(self):
         filter_list = []
         mimeTypeHandler = MIMETYPESHANDLER()

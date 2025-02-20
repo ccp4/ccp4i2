@@ -802,12 +802,6 @@ class CJobServer(QtCore.QObject):
         self.remoteJobMessage.emit(jobId, 'QSub status on ' + sP.machine, out, sP.machine)
         #print('handleRemoteQsubStatus: '+out)
 
-    def handleRemoteSlurmStatus(self, jobId, out, err):
-        sP = self.serverParams(jobId)
-        if str(jobId) not in out:
-            out = 'The job is not in queue (implies it has finished or failed).'
-        self.remoteJobMessage.emit(jobId, 'Squeue status on ' + sP.machine, out, sP.machine)
-
     def getPidFileContent(self, jobId):
         sP = self.serverParams(jobId)
         if sP.mechanism == 'ssh':

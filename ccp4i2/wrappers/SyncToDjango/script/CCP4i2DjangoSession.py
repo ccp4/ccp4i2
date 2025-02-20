@@ -191,9 +191,6 @@ class MyParser(HTMLParser):
                     if att[1] == 'username': self.nameInputElements.add(att[1])
                     if att[1] == 'password': self.passwordInputElements.add(att[1])
 
-    def handle_starttag(self, tag, attrs):
-        self.handle_startendtag(tag, attrs)
-
 class CCP4i2DjangoSession(DjangoSession):
     def __init__(self, *args, **kws):
         super(CCP4i2DjangoSession, self).__init__(*args, **kws)

@@ -2354,18 +2354,6 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     widget = WEBBROWSER().openFile(logFile)
     self.projectBasedTest.reportUpdated.connect(WEBBROWSER().reloadFile)
 
-
-  def handleRecover(self):
-    # Attempt to recreate database from the contents of the project directory - no longer working
-    ret = QtWidgets.QMessageBox.question(self,'Recover project',"This will attempt to restore a project to the database\n from the information in the project directory.\nAn intermediary file called my_project_dir.ccp4db.xml will be created and read automatically.\nThis file could also be edited and read with the 'Import project XML' tool.",QtWidgets.QMessageBox.Ok|QtWidgets.QMessageBox.Cancel)
-    if ret == QtWidgets.QMessageBox.Cancel: return
-
-    self.browser = CCP4FileBrowser.CFileDialog(self,
-           title='Recover database from the project directory',
-           fileMode=QtWidgets.QFileDialog.Directory  )
-    self.browser.selectFile.connect(self.recoverProject)
-    self.browser.show()
-
   def recoverProject(self,projectDir):
     #print 'recoverProject',projectDir
     if not os.path.exists(projectDir) or not os.path.isdir(projectDir):
