@@ -1,19 +1,13 @@
-from __future__ import print_function
-
-from qtgui.CCP4TaskWidget import CTaskWidget
-from PySide2 import QtCore,QtGui, QtWidgets
-from core import CCP4XtalData
-from qtgui import CCP4XtalWidgets
 from core.CCP4ErrorHandling import *
-
-import math
-import functools
+from qtgui import CCP4XtalWidgets
+from qtgui.CCP4TaskWidget import CTaskWidget
 
 import gemmi
+from PySide2 import QtCore, QtWidgets
 
 from  pipelines.import_merged.script.mmcifutils import *
 from  pipelines.import_merged.script.dybuttons import *
-from  pipelines.import_merged.script.importutils import *
+from  pipelines.import_merged.script.importutils import ReflectionDataTypes
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -36,16 +30,12 @@ class CTaskimport_merged(CTaskWidget):
   # -------------------------------------------------------------
   def __init__(self,parent):
     CTaskWidget.__init__(self,parent)
-    
-    # Possible content types, in order of priority
-    self.contenttypes = ReflectionDataTypes().DATA_PRIORITY
-    ###self.contenttypes = ['I+- anomalous', 'F+- anomalous', 'Imean', 'Fmean']
 
   # -------------------------------------------------------------
   def drawContents(self):
     print("Ctaskimport_merged.py drawContents")
     self.container.guiParameters.HKLIN_HAS_COLUMNS.set(False)
-    
+
     if self.container.inputData.SPACEGROUPCELL.isSet():
       #print("SPACEGROUPCELL set")
       #   SPACEGROUPCELL object exists in old cloned jobs only
@@ -55,7 +45,7 @@ class CTaskimport_merged(CTaskWidget):
       self.container.inputData.SPACEGROUP.set\
           (self.container.inputData.SPACEGROUPCELL.spaceGroup)
       self.container.inputData.SPACEGROUPCELL.unSet()
-    
+
     self.openFolder(folderFunction='inputData',followFrom=False)
 
     self.createLine ( [ 'subtitle','Select a merged data file' ] )
@@ -76,22 +66,18 @@ class CTaskimport_merged(CTaskWidget):
 
     self.createLine (['label',''])
     # Selected columns
-    self.colTitle = "MTZ column selection: "
-    colLabel =  'Unspecified'
     self.columnAdviceMTZ   = 'reselect input file to change'
     self.columnAdviceMMCIF = ' reselect cif reflection block to change content selection'
 
     advlabel = ''
     clabel = ''
-    
+
     self.container.guiParameters.HKLIN_HAS_COLUMNS.set(False)
     if self.container.inputData.HKLIN_FORMAT == 'MTZ':
       self.container.guiParameters.HKLIN_HAS_COLUMNS.set(True)
-      cLabel =  ' MTZ columns: ' + str(self.container.inputData.HKLIN_OBS_COLUMNS)
       advlabel = self.columnAdviceMTZ
-      
+
     elif self.container.inputData.HKLIN_FORMAT == 'MMCIF':
-      self.colTitle =  ' MMCIF content type: '
       self.container.guiParameters.HKLIN_HAS_COLUMNS.set(True)
       content = str(self.container.inputData.MMCIF_SELECTED_CONTENT)
       block = str(self.container.inputData.MMCIF_SELECTED_BLOCK)
@@ -649,20 +635,17 @@ class CTaskimport_merged(CTaskWidget):
   # -------------------------------------------------------------
   def setColumnNames(self, columnlist):
       # columnlist is a dictionary of columns names indexed by content
-      
-      # Possible content types, in order of priority
-      #  contenttypes = ['I+- anomalous', 'F+- anomalous', 'Imean', 'Fmean']
       columnlists = []
       for clist in columnlist:
           collist = None
-          for ctype in self.contenttypes:
+          for ctype in ReflectionDataTypes.DATA_PRIORITY:
               if ctype in clist:
                   collist = clist[ctype]
                   fclmns = self.formatColumnlist(collist)
                   columnlists.append(fclmns)
                   break
-
       self.container.guiParameters.MMCIF_BLOCK_COLUMNS.set(columnlists)
+
   # -------------------------------------------------------------
   def formatColumnNames(self, columnlist):
       # columnlist is a dictionary of columns names indexed by content
@@ -851,11 +834,11 @@ class CTaskimport_merged(CTaskWidget):
 
     contents = self.infoList()
     #print("contents", contents)
-    #print("Ctypes", self.contenttypes)
+    #print("Ctypes", ReflectionDataTypes.DATA_PRIORITY)
     ntypefound = 0
     ctypefound = None
     choices = []
-    for ctype in self.contenttypes:
+    for ctype in ReflectionDataTypes.DATA_PRIORITY:
       if ctype in contents:
         # Possible type found, in order of priority
         ntypefound += 1
