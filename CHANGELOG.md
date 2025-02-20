@@ -1,5 +1,13 @@
 # CCP4i2 Changelog
 
+## [2.2.4] - 2025-02-19
+
+- Fixed window maximising on Windows
+- ModelCraft used by default in the DR/MR/MB pipeline
+- Warning in the Refmac pipeline when validation fails
+- Updated neutron refinement options
+- Refmac/Servcalcat pipelines only providing X-ray data to validation
+
 ## [2.2.3] - 2025-02-07
 
 - Fix Ramachandran plot
