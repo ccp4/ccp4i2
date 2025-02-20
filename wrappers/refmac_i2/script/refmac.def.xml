@@ -168,6 +168,15 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                     <saveToDb>True</saveToDb>
                 </qualifiers>
             </content>
+            <content id="CIFFILEDEP">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default>
+                        <contentFlag>2</contentFlag>
+                    </default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
             <content id="FPHIOUT">
                 <className>CMapCoeffsDataFile</className>
                 <qualifiers>
@@ -474,17 +483,13 @@ hydrogens are only to be used if already present in the input coordinate file.</
               <default>POLAR</default>
             </qualifiers>
           </content>
-          <content id="HD_INIT">
-            <className>CString</className>
+          <content id="HD_INIT_TOGGLE">
+            <className>CBoolean</className>
             <qualifiers>
-              <onlyEnumerators>True</onlyEnumerators>
-              <enumerators>NO,DEUTERIUM,MIXTURE</enumerators>
-              <menuText>No - assumes H/D fraction has been refined before,All to D - for perdeuterated crystals,To D for exchangable atoms; H for others - for H/D exchange experiments</menuText>
-              <default>NO</default>
-              <toolTip>If H/D fractions have not already been refined then initialisation is required. If they have already been refined then they should not require reinitialisation.</toolTip>
+             <default>True</default>
             </qualifiers>
           </content>
-          <content id="HD_INIT_HALL">
+          <content id="HD_INIT">
             <className>CString</className>
             <qualifiers>
               <onlyEnumerators>True</onlyEnumerators>
@@ -494,7 +499,6 @@ hydrogens are only to be used if already present in the input coordinate file.</
               <toolTip>If H/D fractions have not already been refined then initialisation is required.</toolTip>
             </qualifiers>
           </content>
-          
           <content id="USE_NCS">
             <className>CBoolean</className>
             <qualifiers>

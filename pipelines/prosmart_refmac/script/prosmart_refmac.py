@@ -494,6 +494,7 @@ class prosmart_refmac(CPluginScript):
         # Apply database annotations
         self.container.outputData.XYZOUT.annotation.set('Model from refinement (PDB format)')
         self.container.outputData.CIFFILE.annotation.set('Model from refinement (mmCIF format)')
+        self.container.outputData.CIFFILEDEP.annotation.set('Model from refinement (mmCIF format for deposition)')
         self.container.outputData.FPHIOUT.annotation = 'Weighted map from refinement'
         self.container.outputData.FPHIOUT.subType = 1
         self.container.outputData.DIFFPHIOUT.annotation = 'Weighted difference map from refinement'
@@ -642,13 +643,19 @@ class prosmart_refmac(CPluginScript):
            if hasattr(self.container.controlParameters,"VALIDATE_MOLPROBITY"):
               validate_molprobity = self.container.controlParameters.VALIDATE_MOLPROBITY
 
-           if validate_baverage or validate_molprobity or validate_ramachandran :
+           if validate_baverage or validate_molprobity or validate_ramachandran or validate_iris:
+             xml_validation = etree.SubElement(self.xmlroot,"Validation")
+             xml_validation_status = etree.SubElement(xml_validation,"Success")
              try:
                 self.validate = self.makePluginObject('validate_protein')
-                self.validate.container.inputData.XYZIN_1 = self.container.outputData.XYZOUT
-                self.validate.container.inputData.F_SIGF_1 = self.container.inputData.F_SIGF
-                self.validate.container.inputData.XYZIN_2 = self.container.outputData.XYZOUT
-                self.validate.container.inputData.F_SIGF_2 = self.container.inputData.F_SIGF
+                self.validate.container.inputData.XYZIN_1.set(self.container.outputData.XYZOUT)
+                self.validate.container.inputData.XYZIN_2.set(self.container.inputData.XYZIN)
+                if str(self.container.controlParameters.SCATTERING_FACTORS) == "XRAY":
+                    self.validate.container.inputData.F_SIGF_1.set(self.container.inputData.F_SIGF)
+                    self.validate.container.inputData.F_SIGF_2.set(self.container.inputData.F_SIGF)
+                else:
+                    self.validate.container.inputData.F_SIGF_1.set(None)
+                    self.validate.container.inputData.F_SIGF_2.set(None)
                 self.validate.container.inputData.NAME_1 = "Refined"
                 self.validate.container.inputData.NAME_2 = "Input"
                 #MN...Using "="" to set this is an odd thing and breaks under some circumstances.
@@ -670,7 +677,6 @@ class prosmart_refmac(CPluginScript):
 
                 validateXMLPath = self.validate.makeFileName('PROGRAMXML')
                 validateXML = CCP4Utils.openFileToEtree(validateXMLPath)
-                xml_validation = etree.SubElement(self.xmlroot,"Validation")
                 if len(validateXML.xpath("//Validate_geometry_CCP4i2/Model_info"))>0:
                    xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Model_info")[0]) 
                 if self.validate.container.controlParameters.DO_IRIS:
@@ -734,8 +740,11 @@ class prosmart_refmac(CPluginScript):
                        sys.stderr.write(str(exc_type) + '\n')
                        sys.stderr.write(str(exc_value) + '\n')
                        traceback.print_tb(exc_tb)
+                xml_validation_status.text = "SUCCESS"
                 self.saveXml()
              except Exception as err:
+                xml_validation_status.text = "FAILURE"
+                self.saveXml()
                 import traceback
                 traceback.print_exc()
                 print("...Failed validation run after refinement", err)
