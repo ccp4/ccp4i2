@@ -13,6 +13,8 @@ import xml.etree.ElementTree as ET
 import gemmi
 import pytest
 
+from ccp4i2 import I2_TOP
+
 
 # Utilty functions and fixtures
 
@@ -50,24 +52,10 @@ def fixture_fasta():
     "Download 8xfm.fasta to a temporary file and return the path"
     yield from pdbefile("entry/pdb/8xfm/fasta", "_8xfm.fasta")
 
-
 def i2_path() -> Path:
-    "Find the CCP4I2 installation"
     if "CCP4I2" in environ:
         return Path(environ["CCP4I2"])
-    if "CCP4" in environ:
-        ccp4 = Path(environ["CCP4"])
-        for subdir in (
-            "Frameworks/Python.framework/Versions/Current/lib/python3.7",
-            "Frameworks/Python.framework/Versions/Current/lib/python3.9",
-            "lib/python3.7",
-            "lib/python3.9",
-            "lib",
-        ):
-            path = ccp4 / subdir / "site-packages/ccp4i2"
-            if path.exists():
-                return path
-    raise RuntimeError("CCP4I2 installation not found")
+    return I2_TOP
 
 
 def has_residue_name(structure: gemmi.Structure, residue_name: str) -> bool:
