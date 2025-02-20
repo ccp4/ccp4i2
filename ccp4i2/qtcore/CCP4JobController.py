@@ -1,12 +1,4 @@
-"""
-     CCP4JobController.py: CCP4 GUI Project
-
-
-
-
-   Liz Potterton May 2010 - Non-graphical controller for running scripts
-   Liz Potterton May 2011 - Rewrite to use CCP4DbApi to RDMS database and separate jobs as processes
-"""
+"Non-graphical controller for running scripts"
 
 import copy
 import os
@@ -20,13 +12,10 @@ import traceback
 from PySide2 import QtCore
 import psutil
 
-from ..core import CCP4Container
-from ..core import CCP4File, CCP4Annotation
 from ..core import CCP4JobServer
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
 from ..core.CCP4ProjectsManager import PROJECTSMANAGER
-from ..core.CCP4TaskManager import TASKMANAGER
 from ..dbapi import CCP4DbApi
 from ..qtcore import CCP4Export
 from ..qtcore import CCP4HTTPServerThread
@@ -35,68 +24,10 @@ from ..qtgui import CCP4ProjectViewer
 from ..utils.QApp import QTAPPLICATION
 
 
-
 def JOBCONTROLLER():
     if not CJobController.insts:
         CJobController()
     return CJobController.insts
-
-
-def SERVERSETUP():
-    if CServerSetup.insts is None:
-        CServerSetup()
-    return CServerSetup.insts
-
-
-class CServerSetup(CCP4Container.CContainer):
-
-    serverSetupSaved = QtCore.Signal()
-
-    insts = None
-    
-    def __init__(self,source=None):
-        CCP4Container.CContainer.__init__(self,name='SERVER_SETUP')
-        CServerSetup.insts = self
-        self.__dict__['source'] = None
-        defFile = TASKMANAGER().searchDefFile('serverSetup')
-        self.loadContentsFromXml(defFile)
-        self.load(source=source)
-
-    def load(self,source=None):
-        prefFile,source = self.preferencesFile(source=source)
-        if os.path.exists(prefFile):
-            # Beware if params file has >1 serverGroup we need to add the 2+ groups to the
-            # the container as they are not in the def file 
-            fObj = CCP4File.CI2XmlDataFile(prefFile)
-            for sGEle in fObj.getBodyEtree():
-                if self.get(str(sGEle.tag)) is None:
-                    self.setContents( { str(sGEle.tag) : { 'class' :CCP4Annotation.CServerGroup }} )
-            self.loadDataFromXml(prefFile)
-            self.__dict__['source'] = source
-
-    def writeAccess(self,source):
-        dir = os.path.split(self.preferencesFile(source)[0])[0]
-        return os.access(dir , os.W_OK | os.X_OK)
-
-    def preferencesFile(self,source=None):
-        if source is None or source == 'user':
-            filename = str(os.path.join(CCP4Utils.getDotDirectory(),'configs','serverSetup.params.xml'))
-            if os.path.exists(filename) or source == 'user':
-                return filename,'user'
-        filename = str(os.path.join(CCP4Utils.getCCP4I2Dir(),'local_setup','serverSetup.params.xml'))
-        return filename,'installation'
-
-    def save(self,source=None):
-        prefFile,source = self.preferencesFile(source=source)
-        if os.path.exists(prefFile):
-            shutil.copyfile(prefFile,prefFile+'.bak')
-        #print 'CServerSetup.save',prefFile
-        self.saveDataToXml(fileName=prefFile)
-        self.__dict__['source'] = source
-        try:
-            self.serverSetupSaved.emit()
-        except:
-            pass
 
 
 class CJobController(CCP4JobServer.CJobServer):

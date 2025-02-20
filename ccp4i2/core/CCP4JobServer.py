@@ -1,12 +1,3 @@
-"""
-     CCP4JobServer.py: CCP4 GUI Project
-
-
-
-
-   Liz Potterton Apr 2016 - Separate 'remote' server code out from CCP4JobController
-"""
-
 import functools
 import inspect
 import os
@@ -23,10 +14,10 @@ import paramiko
 from . import CCP4File
 from . import CCP4Utils
 from ..dbapi import CCP4DbApi
-from ..qtcore.CCP4JobController import SERVERSETUP
 from .CCP4ErrorHandling import CException
 from .CCP4ProcessManager import PROCESSMANAGER
 from .CCP4ProjectsManager import PROJECTSMANAGER
+from .CCP4ServerSetup import SERVERSETUP
 
 
 PARAMIKO_PORT=22
@@ -317,7 +308,6 @@ class CJobServer(QtCore.QObject):
             for dataObjName in self.setupContainer.dataOrder():
                 if self.setupContainer.get(dataObjName).name == serverGroup:
                     value = self.setupContainer.get(dataObjName).get(key)
-                    #print 'getServerParam from SERVERSETUP',key,dataObjName,value
                     setattr(self._serverParams[jobId], key, value)
                     return value
         return None

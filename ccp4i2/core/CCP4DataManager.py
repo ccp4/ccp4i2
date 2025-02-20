@@ -1,6 +1,4 @@
-"""
-Liz Potterton Aug 2010 - Class to keep track of all CCP4Data and CCP4Widget classes
-"""
+"Class to keep track of all CCP4Data and CCP4Widget classes"
 
 import glob
 import importlib
@@ -23,6 +21,7 @@ def DATAMANAGER():
     if CDataManager.insts is None:
         CDataManager.insts = CDataManager()
     return CDataManager.insts
+
 
 class CDataManager:
 

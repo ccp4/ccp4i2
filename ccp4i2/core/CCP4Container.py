@@ -1,9 +1,4 @@
-"""
-     CCP4Container.py: CCP4 GUI Project
-
-
-   Liz Potterton Aug 2010 - Generic container for CCP4Data objects
-"""
+"Generic container for CCP4Data objects"
 
 import inspect
 import re

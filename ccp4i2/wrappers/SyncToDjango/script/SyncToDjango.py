@@ -7,7 +7,7 @@ import zipfile
 from PySide2 import QtCore, QtWidgets
 
 from . import CCP4i2DjangoSession
-from ....core.CCP4JobServer import SERVERSETUP
+from ....core.CCP4ServerSetup import SERVERSETUP
 from ....core.CCP4Preferences import PREFERENCES
 from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 from ....qtgui.CCP4ProjectManagerGui import openProject

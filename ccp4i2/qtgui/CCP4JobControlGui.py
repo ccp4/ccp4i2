@@ -1,9 +1,3 @@
-"""
-     CCP4JobControlGui.py: CCP4 GUI Project
-
-   Liz Potterton april 2016 - Gui for remote running
-"""
-
 from collections.abc import Callable
 import functools
 import os
@@ -19,9 +13,10 @@ from ..core import CCP4JobServer
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CException
 from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+from ..core.CCP4ServerSetup import SERVERSETUP
 from ..core.CCP4TaskManager import TASKMANAGER
 from ..dbapi import CCP4DbApi
-from ..qtcore.CCP4JobController import JOBCONTROLLER, SERVERSETUP
+from ..qtcore.CCP4JobController import JOBCONTROLLER
 from ..qtgui.CCP4WebBrowser import WEBBROWSER
 
 
@@ -546,7 +541,6 @@ class CServerSetupWindow(QtWidgets.QDialog):
     self.layout().addLayout(line)
 
   def makeAllWidgets(self):
-    #print 'makeAllWidgets',self.container,self.container._value,self.getNServerGroups()
     n = 1
     while self.container.get('SERVERGROUP'+str(n)) is not None:
       self.makeWidget(n)
@@ -564,12 +558,6 @@ class CServerSetupWindow(QtWidgets.QDialog):
     self.widgets['SERVERGROUP'+str(n)].setMinimumWidth(550)
     self.widgets['SERVERGROUP'+str(n)].deleteButton.clicked.connect(functools.partial(self.handleDelete,n))
     self.widgets['SERVERGROUP'+str(n)].testButton.clicked.connect(functools.partial(self.handleTest,n))
-    #self.layout().addWidget(self.widgets['SERVERGROUP'+str(n)])
-    '''
-    self.widgets['SERVERGROUP'+str(n)].updateViewFromModel()
-    self.widgets['SERVERGROUP'+str(n)].widgets['serverList'].updateViewFromModel()
-    self.widgets['SERVERGROUP'+str(n)].widgets['serverList'].handleRowChange(0,force=True)
-    '''
 
     self.contentLayout.addWidget(self.widgets['SERVERGROUP'+str(n)])
 
@@ -581,7 +569,7 @@ class CServerSetupWindow(QtWidgets.QDialog):
     if self.container.source is not None:
       self.sourceLabel.setText('Server setup loaded from '+str(self.container.source))
       altSource =  ['user','installation'][1 -  ['user','installation'].index( self.container.source )]
-      if os.path.exists(self.container.preferencesFile(altSource)[0]):
+      if self.container.preferencesFile(altSource)[0].exists():
         self.altSourceBut.setText('Load '+altSource+' setup')
         self.altSourceBut.setEnabled(True)
         return
@@ -740,22 +728,17 @@ class CServerSetupWindow(QtWidgets.QDialog):
 
   @QtCore.Slot(str)
   def doApply(self,source):
-    #print 'CServerSetupWindow.doApply', self.widgets['SERVERGROUP1'].widgets['serverList'].listWidget.count()
     invalidList = []
     for key in list(self.widgets.keys()):
       self.widgets[key].updateModelFromView()
-      #print 'CServerSetupWindow.doApply',key,self.widgets[key].widgets['mechanism'].currentIndex(),self.container.get(key).mechanism
       self.widgets[key].validate()
       if self.widgets[key].isValid is not None and not self.widgets[key].isValid:
         invalidList.append(key)
 
-    #print 'CServerSetupWindow.doApply invalidList',invalidList
-    
     if len(invalidList)>0:
       QtWidgets.QMessageBox.warning(self,'Server setup','Invalid data - not saved')
     else:
       self.container.save(source)
-      #QtWidgets.QDialog.close(self)
       self.setAltSourceButton()
       JOBCONTROLLER().resetServersEnabled()
 

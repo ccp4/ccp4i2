@@ -1,11 +1,4 @@
-"""
-     core/CCP4Peferences.py: CCP4 Gui Project
-     Copyright (C) 2011 University of York
-
-
-
-    Liz Potterton - create class to maintain GUIPreferences - Sept 2011
-"""
+"Class to maintain GUIPreferences"
 
 import os
 import shutil
