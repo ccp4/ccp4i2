@@ -1,11 +1,4 @@
-"""
-     CCP4Object.py: CCP4 GUI Project
-
-
-
-
-   Liz Potterton Aug 2010 -Wrapper fQtCore.or QtCore.QObject complementing CCP4Object
-"""
+"Wrapper fQtCore.or QtCore.QObject complementing CCP4Object"
 
 from PySide2 import QtCore
 
