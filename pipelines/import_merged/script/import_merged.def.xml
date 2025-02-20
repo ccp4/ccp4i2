@@ -98,6 +98,10 @@
       <content id="MMCIF_SELECTED_COLUMNS">
         <className>CString</className>
       </content>
+      <content id="MMCIF_SELECTED_CONTENT">
+        <className>CString</className>
+        <default>"None"</default>
+      </content>
       <content id="HASFREER">
         <className>CBoolean</className>
         <qualifiers>
@@ -201,6 +205,12 @@
     <container id="guiParameters">
       <content id="HKLINISMTZ">
         <className>CBoolean</className>
+      </content>
+      <content id="HKLIN_HAS_COLUMNS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+        </qualifiers>
       </content>
       <content id="SHOW_MMCIF_BLOCKS">
         <className>CBoolean</className>

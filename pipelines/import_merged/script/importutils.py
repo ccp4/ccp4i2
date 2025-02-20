@@ -52,6 +52,12 @@ class ReflectionDataTypes():
         3: 'Imean',
         4: 'Fmean'}
 
+    TYPE_LABELS = {
+        'I+- anomalous': "Anomalous pairs of intensities",
+        'F+- anomalous': "Anomalous pairs of amplitudes",
+        'Imean': "Mean intensities",
+        'Fmean': "Mean amplitudes"}
+
     # Order of preference for data types
     DATA_PRIORITY = ['I+- anomalous', 'Imean', 'F+- anomalous', 'Fmean']
 

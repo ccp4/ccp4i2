@@ -1,9 +1,25 @@
+// Flake-8 error codes:
+// E1: Indentation
+// E2: Whitespace
+// E302: expected 2 blank lines, found 1
+// E501: line too long
+// E701: multiple statements on one line (colon)
+// E722: do not use bare 'except'
+// W293: blank line contains whitespace
 {
     "cmake.configureOnOpen": false,
+    "flake8.args": [
+        "--ignore=E1,E2,E302,E501,E701,E722,W293"
+    ],
     "pylint.args": [
-        "--argument-naming-style=camelCase",
-        "--function-naming-style=camelCase",
-        "--method-naming-style=camelCase",
-        "--variable-naming-style=camelCase",
+        "--disable=bad-indentation",
+        "--disable=bare-except",
+        "--disable=invalid-name",
+        "--disable=line-too-long",
+        "--disable=missing-class-docstring",
+        "--disable=missing-function-docstring",
+        "--disable=missing-module-docstring",
+        "--disable=multiple-statements",
+        "--disable=trailing-whitespace",
     ]
 }

@@ -2,11 +2,13 @@ from __future__ import print_function
 
 # Some classes to help handle dynamic GUI buttons
 
-from PySide2 import QtCore, QtWidgets
+from PySide2 import QtCore,QtGui, QtWidgets
 
+import math
 import functools
 # -------------------------------------------------------------
-class ChoiceButtons(QtWidgets.QWidget):
+####class ChoiceButtons(QtWidgets.QWidget):
+class ChoiceButtons(QtWidgets.QDialog):
 #
 # A class to handle a variable number of choice buttons, with annotations
 # Buttons will be displayed vertically, with their name and a label
@@ -36,33 +38,40 @@ class ChoiceButtons(QtWidgets.QWidget):
 #    # Optional list of further annotations for each button
 #    notes = [note1, note2, note3, ...]  # same number as choices
 #    # set up display
-#    self.buttonobject.setChoices(title, buttons, labels, notes)
+#    self.buttonobject.setChoices(title, buttons, labels, notes, subtitle)
 #
 
     clickedSignal = QtCore.Signal(str)
+    applySignal = QtCore.Signal()
+    cancelSignal = QtCore.Signal()
 
     def __init__(self,parent=None):
-        QtWidgets.QWidget.__init__(self, parent)
+        ###QtWidgets.QWidget.__init__(self, parent)
+        QtWidgets.QDialog.__init__(self, parent)
         self.selected = ""
         self.selectedList = []
         layout = QtWidgets.QVBoxLayout()
         self.setLayout(layout)
         layout.setSpacing(0)
-
+        self.mylayout = layout
+        
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def setChoices(self, title, choices, tags=None, notes=None, subtitle=None, exclusiveChoice=True):
         # title       heading for the pane (bold)
         # choices     list of button names
         # tags        list of labels for button names, displayed on same line
         # notes       more information about the button, next line(s)
+        # subtitle    additional title
 
         tags_ = ['' for i in range(len(choices))]
-        if tags_ is not None and (len(choices) == len(tags)):
+        if tags is not None and (len(choices) == len(tags)):
             tags_ = tags
         notes_ = notes       # could be None
         if notes is not None:
             if (len(notes) == 0 or (len(notes) == 1 and notes[0] == '')):
                 notes_ = None
+        #print("setChoices", choices, "\n", tags_)
+        self.numberOfChoices = len(choices)
 
         self.selectedList = []
         layout = self.layout()
@@ -73,22 +82,26 @@ class ChoiceButtons(QtWidgets.QWidget):
             layout.addWidget(QtWidgets.QLabel("<b>"+title+"</b>"))
         if subtitle is not None and len(subtitle) > 0:
             # Header title
-            layout.addWidget(QtWidgets.QLabel("<i>"+subtitle+"</i>"))
-        
+            st = QtWidgets.QLabel("<i>"+subtitle+"</i>")
+            st.setIndent(10)
+            layout.addWidget(st)
+
+        layout.addWidget(QtWidgets.QLabel(" "))
 
         # draw each choice + labels etc
         for i in range(len(choices)):
             # choice + tag on same line
             linelayout = QtWidgets.QHBoxLayout()
-            linelayout.setSpacing(0)
+            linelayout.setSpacing(10)
             label = QtWidgets.QLabel('>> ')
             linelayout.addWidget(label)
             c = str(choices[i])  # the choice
             if exclusiveChoice:
                 button = QtWidgets.QRadioButton(str(c))
+                if i == 0: button.setChecked(True)  # mark 1st as default
             else:
                 button = QtWidgets.QCheckBox(str(c))
-                button.setChecked(True)
+                button.setChecked(True)  # all checked
                 self.selectedList.append(str(c))
             button.setMinimumWidth(80)
             linelayout.addWidget(button)
@@ -97,7 +110,7 @@ class ChoiceButtons(QtWidgets.QWidget):
             else:
                 button.clicked.connect(self.setSelectedList)
             button.clicked.connect(functools.partial(self.clickedSignal.emit, c))
-            linelayout.setStretch(1,5)
+            linelayout.setStretch(1,20)
             if tags_[i] != '':
                 s = str(tags_[i])
                 label = QtWidgets.QLabel(s)
@@ -107,14 +120,18 @@ class ChoiceButtons(QtWidgets.QWidget):
             layout.addLayout(linelayout)
 
             # additional info if present
-            if notes_:
+            #print("Notes", notes)
+            if notes_ is not None:
                 if notes_[i] != '':
                     s = "    "+str(notes_[i])
                     layout.addWidget(QtWidgets.QLabel(s))
 
+        self.mylayout = layout
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     @QtCore.Slot(str)
     def setSelected(self,s):
+        #print("DYB setSelected", s)
         self.selected = s
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -138,8 +155,12 @@ class ChoiceButtons(QtWidgets.QWidget):
                     self.clearLayout(child.layout())
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    def getLayout(self):
+        return self.layout()
+    
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def addOtherText(self, header, textlist):
-        # List of text strings to be dispaly below buttons
+        # List of text strings to be displayed below buttons
         layout = self.layout()
         layout.addWidget(QtWidgets.QLabel('<br/>'))
         if header is not None:
@@ -152,6 +173,63 @@ class ChoiceButtons(QtWidgets.QWidget):
             label.setStyleSheet("color:SteelBlue;")
             layout.addWidget(label)
             
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    def addActionButtons(self):
+        buttonLine = QtWidgets.QHBoxLayout()
+        buttonLine.addStretch(.5)
+        buttonBox = QtWidgets.QDialogButtonBox(self)
+        button = buttonBox.addButton(QtWidgets.QDialogButtonBox.Apply)
+        button.clicked.connect(self.applySignal.emit)
+        button = buttonBox.addButton(QtWidgets.QDialogButtonBox.Cancel)
+        button.clicked.connect(self.cancelSignal.emit)
+        buttonLine.addWidget(buttonBox)
+        buttonLine.addStretch(.5)
+        self.layout().addWidget(QtWidgets.QLabel(" "))
+        self.layout().addLayout(buttonLine)
+
+#-------------------------------------------------------------------
+class selectBox():
+    # Use dybuttons
+    def __init__(self, title, choices, tags=None, notes=None, subtitle=None):
+        self.selected = choices[0]
+        self.cb = ChoiceButtons()
+        self.cb.setChoices(title, choices, tags, notes, subtitle)
+        self.cb.clickedSignal.connect(self. buttonClicked)
+        self.cb.show()
+        self.cb.addActionButtons()
+
+        self.cb.applySignal.connect(self.handleApply)
+        self.cb.cancelSignal.connect(self.handleCancel)
+        
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    def buttonClicked(self):
+        self.selected = self.cb.selected
+        print("Selected:", self.selected)
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    def getSelected(self):
+        return self.selected
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    def handleApply(self):
+        print("handleApply", self.selected)
+        self.cb.hide()
+        
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    def handleCancel(self):
+        self.selected = 'Cancelled'
+        print("handleCancel")
+        self.cb.hide()
+    
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    def execit(self):
+        self.cb.exec_()
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    def deleteLater(self):
+        self.cb.clearLayout(self.cb.getLayout())
+        self.cb.deleteLater()
+
 #-------------------------------------------------------------------
 class MyMessageBox:
     # A simple warning message box
