@@ -774,17 +774,6 @@ class CData(CObject, CDataQualifiers):
     def testComparisonData(self):
         return self.saveToDb()
 
-    def parentContainer(self):
-        try:
-            obj = self
-            while isinstance(obj, CData):
-                obj = obj.parent()
-                if isinstance(obj, CCP4Container.CContainer):
-                    return obj
-            return None
-        except:
-            return None
-
     def assertSame(self, arg=None):
         return CErrorReport(self.__class__, 301, name=self.objectPath(), details=str(self) + ' : ' + str(arg))
 

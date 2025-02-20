@@ -2019,7 +2019,7 @@ class CDataFileView(CComplexLineWidget):
       return
 
     if self.role is None:
-      container = self.model.parentContainer()
+      container = parentContainer(self.model)
       if container is not None and container.objectName() == 'outputData':
         self.role = 'output'
       else:
@@ -2201,7 +2201,7 @@ class CDataFileView(CComplexLineWidget):
     ifInput = self.model.qualifiers('mustExist')
     try:
       if not ifInput:
-        ifInput = (str(self.model.parentContainer().objectName()) == 'inputData')
+        ifInput = (str(parentContainer(self.model).objectName()) == 'inputData')
     except:
       pass
     if PREFERENCES().NATIVEFILEBROWSER:
@@ -2220,7 +2220,7 @@ class CDataFileView(CComplexLineWidget):
       return
     try:
       if not ifInput:
-        ifInput = (str(self.model.parentContainer().objectName()) == 'inputData')
+        ifInput = (str(parentContainer(self.model).objectName()) == 'inputData')
     except:
       pass
     #print 'CDataFileView.openBrowser',self.model.parent().objectName(),ifInput, self.model.qualifiers('isDirectory'),self.model.qualifiers('mustExist')
@@ -5244,3 +5244,15 @@ class CTasksModel(QtCore.QAbstractItemModel):
     if parentItem == self.rootItem:
       return QtCore.QModelIndex()
     return self.createIndex(parentItem.row(), 0, parentItem)
+
+
+def parentContainer(data: CCP4Data.CData):
+    try:
+        obj = data
+        while isinstance(obj, CCP4Data.CData):
+            obj = obj.parent()
+            if isinstance(obj, CCP4Container.CContainer):
+                return obj
+        return None
+    except:
+        return None
