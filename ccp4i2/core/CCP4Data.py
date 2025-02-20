@@ -7,10 +7,10 @@ import xml.etree.ElementTree as etree_xml
 from lxml import etree
 from PySide2 import QtCore
 
-from . import CCP4DataManager
 from . import CCP4File
 from . import CCP4Utils
 from .CCP4ComFilePatchManager import COMFILEPATCHMANAGER
+from .CCP4DataManager import DATAMANAGER
 from .CCP4ErrorHandling import CErrorReport, CException, Severity
 from .CCP4QtObject import CObject
 
@@ -285,7 +285,7 @@ class CDataQualifiers:
             elif qualifierType is dict:
                 qualifiers[name] = self.eTreeToDict(ele)
             elif qualifierType is type:
-                cls = CCP4DataManager.DATAMANAGER().getClass(value)
+                cls = DATAMANAGER().getClass(value)
                 if cls is None:
                     rv.append(self.__class__, 13, 'Qualifier: ' + name, name=self.objectPath())
                 else:
@@ -2101,7 +2101,7 @@ class CCollection(CData):
                     itemDef['qualifiers'] = {}
                 itemDef['qualifiers'][key[8:]] = val
         if itemDef.get('className',None) is not None:
-            itemDef['class'] = CCP4DataManager.DATAMANAGER().getClass(itemDef['className'])
+            itemDef['class'] = DATAMANAGER().getClass(itemDef['className'])
         CData.__init__(self, qualifiers=qualis, parent=parent, name=name, build=False)
         self.setSubItem(itemDef)
         # Reparent the _subItemObject - could not make it child of self until after
@@ -3076,7 +3076,7 @@ class CI2DataType(CString):
     def makeMenuText(self):
         menu = []
         for name in CI2DataType.QUALIFIERS['enumerators']:
-            cls = CCP4DataManager.DATAMANAGER().getClass(className=name)
+            cls = DATAMANAGER().getClass(className=name)
             if cls is None or cls.QUALIFIERS.get('guiLabel', NotImplemented) is NotImplemented:
                 menu.append(name)
             else:
@@ -3084,23 +3084,16 @@ class CI2DataType(CString):
         CI2DataType.QUALIFIERS['menuText'] = menu
 
     def validate(self,arg):
-        cls = CCP4DataManager.DATAMANAGER().getClass(className=arg)
+        cls = DATAMANAGER().getClass(className=arg)
         if cls is None:
             return None
         else:
             return arg
 
-    def isCDataFile(self):
-        cls = CCP4DataManager.DATAMANAGER().getClass(className=self.__dict__['_value'])
-        if cls is not None and issubclass(cls, CCP4File.CDataFile):
-            return True
-        else:
-            return False
-
     def getMenu(self):
         menu = []
         for className in self.qualifiers('enumerators'):
-            cls = CCP4DataManager.DATAMANAGER().getClass(className=className)
+            cls = DATAMANAGER().getClass(className=className)
             if cls is not None:
                 if issubclass(cls,CCP4File.CDataFile):
                     label = cls.QUALIFIERS.get('mimeTypeDescription')
