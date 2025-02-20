@@ -1,11 +1,7 @@
-"""
-Copyright (C) 2011 University of York
-Liz Potterton - create class to maintain GUIPreferences - Sept 2011
-"""
+"Class to maintain GUIPreferences"
 
 from PySide2 import QtCore, QtWidgets
 
-from ..core import CCP4Preferences
 from ..core.CCP4Preferences import PREFERENCES
 from ..core.CCP4TaskManager import TASKMANAGER
 from ..qtgui import CCP4ProjectViewer, CCP4StyleSheet, CCP4WebView
@@ -53,23 +49,23 @@ class CPreferencesWindow(QtWidgets.QDialog):
 
   @QtCore.Slot()
   def doApply(self):
-    CCP4Preferences.CPreferences.insts.save()
+    PREFERENCES().save()
     try:
-      CCP4Preferences.CPreferences.insts.EXEPATHLIST.setupExeLookup()
+      PREFERENCES().EXEPATHLIST.setupExeLookup()
     except:
       pass
 
     try:
-      QTAPPLICATION().setNamedStyle(CCP4Preferences.CPreferences.insts.WINDOWS_STYLE)
+      QTAPPLICATION().setNamedStyle(PREFERENCES().WINDOWS_STYLE)
     except:
-      QTAPPLICATION().setNamedStyle(CCP4Preferences.CPreferences.insts.WINDOWS_STLYE)
+      QTAPPLICATION().setNamedStyle(PREFERENCES().WINDOWS_STLYE)
 
     CCP4StyleSheet.setStyleSheet()
     CCP4WebView.setGlobalSettings()
 
     for pV in CCP4ProjectViewer.CProjectViewer.Instances:
       try:
-        pV.toolBar('project').setToolButtonStyle(int(CCP4Preferences.CPreferences.insts.TOOLBARBUTTONSSTYLE))
+        pV.toolBar('project').setToolButtonStyle(int(PREFERENCES().TOOLBARBUTTONSSTYLE))
         pV.resizeColumnToContents(0)
       except:
         pass

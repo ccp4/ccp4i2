@@ -23,23 +23,23 @@ class CPreferences(CCP4Container.CContainer):
     insts = None
 
     def __init__(self):
-        CCP4Container.CContainer.__init__(self)
+        super().__init__()
         CPreferences.insts = self
         defFile = CCP4TaskManager.TASKMANAGER().searchDefFile('guipreferences')
         self.loadContentsFromXml(defFile)
         self.load()
 
     def load(self):
-        prefFile = self.preferencesFile()
+        prefFile = self._preferencesFile()
         if os.path.exists(prefFile):
             self.loadDataFromXml(prefFile)
 
-    def preferencesFile(self):
-        return  os.path.join(CCP4Utils.getDotDirectory(), 'configs', 'guipreferences.params.xml')
-
     def save(self):
-        prefFile = self.preferencesFile()
+        prefFile = self._preferencesFile()
         if os.path.exists(prefFile):
             shutil.copyfile(prefFile, prefFile + '.bak')
         self.saveDataToXml(prefFile)
         self.preferencesSaved.emit()
+
+    def _preferencesFile(self):
+        return  os.path.join(CCP4Utils.getDotDirectory(), 'configs', 'guipreferences.params.xml')
