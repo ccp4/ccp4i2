@@ -1,6 +1,6 @@
 # CCP4i2 Changelog
 
-## [2.2.4] - 2025-02-19
+## [2.2.4] - 2025-02-24
 
 - Fixed window maximising on Windows
 - ModelCraft used by default in the DR/MR/MB pipeline
@@ -9,6 +9,7 @@
 - Refmac/Servcalcat pipelines only providing X-ray data to validation
 - Observation type selection from CIF files in the import merged task
 - Hiding nanobind leak warnings from Gemmi 0.7
+- Changing Buccaneer to ModelCraft in the Phaser EP task
 
 ## [2.2.3] - 2025-02-07
 
