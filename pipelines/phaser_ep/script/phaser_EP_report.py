@@ -111,7 +111,7 @@ class phaser_EP_report(Report):
             buccaneer_inverted_hand.addDiv(style="clear:both;")
 
         for hand in ["original", "inverted"]:
-            if (node := self.xmlnode.find(f".//{hand}/ModelCraft")):
+            if (node := self.xmlnode.find(f".//{hand}/ModelCraft")) is not None:
                 div = self.addDiv(style="width: 100%; border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
                 fold = div.addFold(label=f"Model building: {hand} hand", initiallyOpen=False)
                 report = modelcraft_report(jobInfo={"fileroot": ""})  # Empty so it doesn't load yet
