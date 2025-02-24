@@ -101,7 +101,6 @@ class Cdr_mr_modelbuild_pipeline(CCP4TaskWidget.CTaskWidget):
     self.createLine(['widget', 'RUNACORN', 'label', 'Run phase refinement with acorn before model building'])
     self.createLine(['label', 'Run', 'widget', 'REFMAC_NCYC', 'label', 'cycles of restrained refinement after MR'])
     self.createLine(['label', 'Run', 'widget', 'BUCC_NCYC', 'label', 'model building pipeline iterations'])
-    self.createLine(['label', 'Use', 'widget', 'BUCCANEER_OR_MODELCRAFT', 'label', 'model building pipleline (Buccaneer or Modelcraft)'])
     self.closeSubFrame()
 
     self.createLine( [ 'subtitle', 'Ligand geometry' ])
@@ -118,6 +117,15 @@ class Cdr_mr_modelbuild_pipeline(CCP4TaskWidget.CTaskWidget):
 
     self.openSubFrame(frame=True,toggle=['LIGANDAS','open',['SMILES']])
     self.createLine ( [ 'widget', '-guiMode', 'multiLine', 'SMILESIN' ] )
+    self.closeSubFrame()
+
+    advanced_folder = self.openFolder(folderFunction='inputData',title='Advanced options', drawFolder=self.drawAdvanced)
+
+  def drawAdvanced(self):
+    self.openSubFrame()
+    self.createLine( [ 'subtitle', 'Advanced model building pipeline options' ] )
+    self.createLine( ['label', 'Use', 'widget', 'BUCCANEER_OR_MODELCRAFT', 'label', 'model building pipleline (Buccaneer or Modelcraft)'] )
+    self.createLine( [ 'advice', 'The modelcraft pipeline is now the default option and recommended in most cases'] )
     self.closeSubFrame()
 
   @QtCore.Slot()
