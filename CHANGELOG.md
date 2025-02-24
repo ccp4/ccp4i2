@@ -7,6 +7,7 @@
 - Warning in the Refmac pipeline when validation fails
 - Updated neutron refinement options
 - Refmac/Servcalcat pipelines only providing X-ray data to validation
+- Observation type selection from CIF files in the import merged task
 
 ## [2.2.3] - 2025-02-07
 
