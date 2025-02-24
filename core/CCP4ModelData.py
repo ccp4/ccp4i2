@@ -30,7 +30,6 @@ import types
 import shutil
 import functools
 import gemmi
-gemmi.set_leak_warnings(False)
 
 try:
     from StringIO import StringIO

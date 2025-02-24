@@ -30,7 +30,6 @@ from pipelines.import_merged.script.dybuttons import ChoiceButtons
 import os
 import shutil
 import gemmi
-gemmi.set_leak_warnings(False)
 
 
 def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None):

@@ -105,7 +105,6 @@ class atomsfrommap(process):
       deleted_list=[0,0,0]
       try:
         import gemmi
-        gemmi.set_leak_warnings(False)
         struct=gemmi.read_structure(self.out.Get('model').GetFileName())
         struct_inp=gemmi.read_structure(inp_pdb_obj.GetFileName())
         for ch1 in struct[0]:

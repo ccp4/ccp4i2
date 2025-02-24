@@ -42,7 +42,6 @@ class convert(process):
     if newtyp in ('hkl','sca') and not self.GetProg().GetKey('SCAL') and mtz_ip and mtz_im and not 'amplitudes' in self.opts:
       try:
         import gemmi
-        gemmi.set_leak_warnings(False)
       except ImportError: # may occasionally fail if the values are so large that even sftools reports just stars
         sftools=self.AddProg('sftools')
         sftools.SetKey("read", ['"'+mtz_ip.GetFileName('mtz')+'"', 'col', "\"{0}\"".format(mtz_ip.GetLabel('i'))])

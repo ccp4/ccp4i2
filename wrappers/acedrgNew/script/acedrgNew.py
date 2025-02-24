@@ -76,7 +76,6 @@ class acedrgNew(CPluginScript):
 
         elif self.container.inputData.MOLORSMILES.__str__() == 'PDBMMCIF':
             import gemmi
-            gemmi.set_leak_warnings(False)
             try:
                 if gemmi.read_structure(self.container.inputData.PDBMMCIFIN.__str__()).input_format == gemmi.CoorFormat.Pdb:
                     self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))

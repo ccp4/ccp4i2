@@ -58,7 +58,6 @@ class coordinate_selector(CPluginScript):
         
     def processOutputFiles(self):
         import gemmi
-        gemmi.set_leak_warnings(False)
 
         if self.container.controlParameters.OVERRIDE_SUBTYPE.isSet():
             self.container.outputData.XYZOUT.subType = int(self.container.controlParameters.OVERRIDE_SUBTYPE)

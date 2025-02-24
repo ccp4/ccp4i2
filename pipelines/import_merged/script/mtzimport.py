@@ -2,7 +2,6 @@ import sys
 import math
 import numpy
 import gemmi
-gemmi.set_leak_warnings(False)
 
 from lxml import etree
 

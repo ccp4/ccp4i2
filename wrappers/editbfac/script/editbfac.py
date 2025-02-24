@@ -6,7 +6,6 @@ import networkx
 from lxml import etree
 
 import gemmi
-gemmi.set_leak_warnings(False)
 import iotbx.phil
 from iotbx.data_manager import DataManager
 from mmtbx import process_predicted_model

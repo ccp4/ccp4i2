@@ -10,7 +10,6 @@ from tempfile import NamedTemporaryFile
 from urllib.request import urlretrieve
 import xml.etree.ElementTree as ET
 import gemmi
-gemmi.set_leak_warnings(False)
 import pytest
 
 

@@ -7,7 +7,6 @@ from __future__ import print_function
 
 import os
 import gemmi
-gemmi.set_leak_warnings(False)
 from lxml import etree
 
 from core.CCP4PluginScript import CPluginScript

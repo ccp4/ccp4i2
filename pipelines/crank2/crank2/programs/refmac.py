@@ -124,7 +124,6 @@ class refmac(program):
           numat=0
           try:
             import gemmi
-            gemmi.set_leak_warnings(False)
             struct=gemmi.read_structure(self.inp.Get('model',typ='substr').GetFileName())
             for s in struct[0].all():
               numat+=1

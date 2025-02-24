@@ -15,7 +15,6 @@ import json
 from math import sqrt
 from dxtbx.model.experiment_list import ExperimentList
 import gemmi
-gemmi.set_leak_warnings(False)
 import glob
 from pathlib import Path
 import shutil

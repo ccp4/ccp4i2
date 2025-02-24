@@ -1,6 +1,5 @@
 import sys
 import gemmi
-gemmi.set_leak_warnings(False)
 
 import math
 import numpy

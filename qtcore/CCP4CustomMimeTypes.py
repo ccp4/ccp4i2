@@ -686,7 +686,6 @@ class CCustomMimeTypes(QtCore.QObject):
     def disambiguateCif(self,fileName):
 
         import gemmi
-        gemmi.set_leak_warnings(False)
         try:
             tryPdb = gemmi.read_structure(fileName)
             if len(tryPdb) > 0:
