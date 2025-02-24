@@ -115,6 +115,7 @@ class CIFReflectionData:
             if labtype in self.labeltypes:
                 foundtypes.append(labtype)
         return foundtypes
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def gettypesinfile(self, typelist):
         # Return all relevant types found in file
@@ -125,14 +126,17 @@ class CIFReflectionData:
         return foundtypes
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    def simpleMTZwrite(self, haveFreeR=True, resorange=None):
+    def simpleMTZwrite(self, cifdatatype, haveFreeR=True, resorange=None ):
         # use CifToMtz to just create MTZ file of data
         #  either just the data itself (Is or Fs) if haveFreeR is False
         #    else both data and FreeR
         # hkl will NOT be reduced to the standard CCP4 asymmetric unit
         #  other data are unchanged
 
-        self.mtzdatatype = None
+        print(">> simpleMTZwrite, mtztype", cifdatatype)
+        #print(ReflectionDataTypes.REFLECTION_DATA[cifdatatype])
+
+        self.cifdatatype = cifdatatype
         freerspecs = None
 
         if haveFreeR:
@@ -148,10 +152,9 @@ class CIFReflectionData:
         if self.dataout:
             # I or F data
             #  Check for all types
-            #types = self.gettypes(ReflectionDataTypes.DATA_PRIORITY)
-            self.mtzdatatype = self.gettype(ReflectionDataTypes.DATA_PRIORITY)
-            spec_lines = ReflectionDataTypes.REFLECTION_DATA[self.mtzdatatype]
+            spec_lines = ReflectionDataTypes.REFLECTION_DATA[cifdatatype]
             if spec_lines is None: return False
+            #print("cifdatatype", cifdatatype,",  spec_lines", spec_lines)
             conv = gemmi.CifToMtz()
             conv.spec_lines = spec_lines
             mtz = conv.convert_block_to_mtz(self.rblock)
@@ -182,7 +185,7 @@ class CIFReflectionData:
         self.storeColumnNames(spec_lines, freerspecs)
         reducemessage = self.makereducemessage(False)
         nreduced = 0
-        self.addtoXML(self.mtzdatatype, len(self.hkl_list),
+        self.addtoXML(cifdatatype, len(self.hkl_list),
                       'ciftomtz convert', reducemessage,
                       haveFreeR, nreduced, resorange)
 
@@ -222,11 +225,13 @@ class CIFReflectionData:
             return True
         return False
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    def anomMTZwritedata(self, reducehkl=True, haveFreeR=True, resorange=None):
+    def anomMTZwritedata(self, cifdatatype,
+                         reducehkl=True, haveFreeR=True, resorange=None):
         # disentangle anomalous data with I/F +- on different lines
         # This type of file seems to have I/F +- on successive lines,
         #  but we can't rely on that
         #
+        #  cifdatatype 
         #  reducehkl=True to reduce to standard CCP4 asu
         #  haveFreeR=True to write FreeR file as well as data
         #
@@ -235,22 +240,20 @@ class CIFReflectionData:
         # self.labelsets, self.labeltypes
         # print("anomMTZwritedata")
 
-        self.mtzdatatype = None
         if self.dataout:
             # Normal data
-            # Loop possible types in order of priority
-            foundtype = self.gettype(ReflectionDataTypes.DATA_PRIORITY)
-            i = ReflectionDataTypes.DATA_PRIORITY.index(foundtype)
+            i = ReflectionDataTypes.DATA_PRIORITY.index(cifdatatype)
             #  Equivalent anomalous type
-            self.mtzdatatype = ReflectionDataTypes.DATA_PRIORITY[i-1]
+            anomcifdatatype = ReflectionDataTypes.DATA_PRIORITY[i-1]
+            self.cifdatatype = anomcifdatatype
 
-            if 'anomalous' in foundtype:
+            if 'anomalous' in cifdatatype:
                 print("Explicit anomalous not allowed for anomMTZwrite")
                 return False
 
-            # foundtype will be Imean or Fmeen, or FreeR
-            # each spec contains "ciflabel MTZlable MTZtype 1"
-            cifspecs = ReflectionDataTypes.REFLECTION_DATA[foundtype]
+            # cifdatatype will be Imean or Fmean, or FreeR
+            # each spec contains "ciflabel MTZlabel MTZtype 1"
+            cifspecs = ReflectionDataTypes.REFLECTION_DATA[cifdatatype]
             if len(cifspecs) != 2:
                 print("Wrong specs", cifspecs)
                 return False
@@ -289,7 +292,7 @@ class CIFReflectionData:
         nrefunique = self.cifblockinfo.nrefunique()
         if self.dataout:
             # Now for the main cif data
-            mtzspecs = ReflectionDataTypes.REFLECTION_DATA[self.mtzdatatype]
+            mtzspecs = ReflectionDataTypes.REFLECTION_DATA[self.cifdatatype]
             ncolumns = len(mtzspecs) + 3
             data = numpy.zeros((nrefunique, ncolumns), dtype=numpy.float)
             dataline0 = [math.nan]*ncolumns  # Missing items set to NaN
@@ -390,14 +393,15 @@ class CIFReflectionData:
                   len(freerdata))
 
         reducemessage = self.makereducemessage(reducehkl)
-        self.addtoXML(self.mtzdatatype, juniq,
+        self.addtoXML(self.cifdatatype, juniq,
                       'combine anomalous lines',
                       reducemessage, haveFreeR, nreduced, resorange)
 
         return True
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    def nonstandardMTZwritedata(self, reducehkl=True, haveFreeR=True,
+    def nonstandardMTZwritedata(self, cifdatatype,
+                                reducehkl=True, haveFreeR=True,
                                 freeRmissing=False, resorange=None):
         # Write MTZ from cif,
         #  reducing hkl to standard CCP4 asu if reducehkl True
@@ -407,17 +411,17 @@ class CIFReflectionData:
         # self.rblock, self.hkl_list, self.cifblockinfo,
         # self.labelsets, self.labeltypes
 
+        print(">>> nonstandardMTZwritedata", cifdatatype)
+        self.cifdatatype = cifdatatype
         mtzspecs = None
         nref = len(self.hkl_list)
 
-        self.mtzdatatype = None
         if self.dataout:
-            self.mtzdatatype = self.gettype(ReflectionDataTypes.DATA_PRIORITY)
             anomalous = False
-            if 'anomalous' in self.mtzdatatype:
+            if 'anomalous' in cifdatatype:
                 anomalous = True
 
-            mtzspecs = ReflectionDataTypes.REFLECTION_DATA[self.mtzdatatype]
+            mtzspecs = ReflectionDataTypes.REFLECTION_DATA[cifdatatype]
 
             ciftags = [cs.split()[0] for cs in mtzspecs]
             ndatacols = len(ciftags)
@@ -585,7 +589,7 @@ class CIFReflectionData:
         message = 'non-standard asymmetric unit'
         if freeRmissing:
             message = "missing FreeR values"
-        self.addtoXML(self.mtzdatatype, juniq, message,
+        self.addtoXML(cifdatatype, juniq, message,
                       reducemessage, haveFreeR, nreduced, resorange)
         return True
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -744,16 +748,16 @@ class CIFReflectionData:
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def contentFlag(self):
-        contentflag = ReflectionDataTypes.CONTENT_FLAGS[self.mtzdatatype]
+        contentflag = ReflectionDataTypes.CONTENT_FLAGS[self.cifdatatype]
         return contentflag
 
 # * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 class ConvertCIF():
-    def __init__(self, inputfilename, blockname,
+    def __init__(self, inputfilename, blockname, cifdatatype,
                  outfile, freerfile,
                  reducehkl=True, resorange=None):
 
-        print("ConvertCIF")
+        print("ConvertCIF", cifdatatype)
         mmcif = gemmi.cif.read(inputfilename)
 
         rblocks = gemmi.as_refln_blocks(mmcif)
@@ -785,6 +789,14 @@ class ConvertCIF():
         # Do we have a FreeR column?  (status or pdbx_r_free_flag)
         haveFreeR = blkinfo.haveFreeR()
 
+        # Data types for cif and mtz names
+        if cifdatatype is None:
+            # type with highest priority
+            self.cifdatatype = str(self.gettype(ReflectionDataTypes.DATA_PRIORITY))
+        else:
+            self.cifdatatype = cifdatatype     # specified type
+        #print("** s.cifd", self.cifdatatype)
+            
         # Cases:
         #  1. just one asymmetric unit present
         #   a) hkl in "standard" CCP4 asu
@@ -801,8 +813,9 @@ class ConvertCIF():
         self.status = False
         if blkinfo.allowsimplewrite(reducehkl):
             print("simple write")
-            # Now the main data
-            self.status = refdata.simpleMTZwrite(haveFreeR, resorange)  # write data
+            # Now write the main data
+            self.status = refdata.simpleMTZwrite(self.cifdatatype,
+                                                 haveFreeR, resorange)
         else:
             # Other cases need special treatment
             if not blkinfo.ismerged():
@@ -811,15 +824,17 @@ class ConvertCIF():
             elif blkinfo.allowanomalouswrite():
                 print("anom pairs")
                 # Data with anomalous pairs on different lines
-                self.status = refdata.anomMTZwritedata(reducehkl,
+                self.status = refdata.anomMTZwritedata(self.cifdatatype,
+                                                       reducehkl,
                                                        haveFreeR, resorange)
             else:
                 if (not blkinfo.standardasu()) or blkinfo.rfreeFlagmissing():
                     print("Non-standard asu or rfreeFlagmissing")
                     # Data in non-standard asu, reduce hkl
                     self.status = \
-                       refdata.nonstandardMTZwritedata(reducehkl, haveFreeR,
-                                       blkinfo.rfreeFlagmissing(), resorange)
+                       refdata.nonstandardMTZwritedata(self.cifdatatype,
+                                        reducehkl, haveFreeR,
+                                        blkinfo.rfreeFlagmissing(), resorange)
                 else:
                     # Shouldn't happen
                     print("Shouldn't happen: standard asu and more than one asu")

@@ -122,7 +122,6 @@ def setStyleSheet(app=None):
                          CTextEdit {  max-width: ''' + str(screenWidth-paddingAllowance) + '''px; min-width: 400px }
                          CStackedWidget {  max-width: ''' + str(screenWidth-paddingAllowance) + '''px; min-width: 400px }
                          QFrame#taskLine {  max-width: ''' + str(screenWidth-paddingAllowance) + '''px; }
-                         CProjectViewer  {  max-width: '''+str(screenWidth-50)+ '''px;  min-width: 400px }
                          CReportView {  max-width: '''+ str(screenWidth-50)+'''px;  min-width: 600px }
                          QLabel#jobListLabelRed  { color : red; }
                          QScrollArea#messageScrollArea  { max-width: ''' + str(screenWidth-paddingAllowance) + '''px; min-width: 600px }
