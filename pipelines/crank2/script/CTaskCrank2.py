@@ -1047,7 +1047,7 @@ def whatNext(jobId,childTaskName,childJobNumber,projectName):
   if cont.outputData.XYZOUT.isSet():
     whatnext.extend(['coot_rebuild','prosmart_refmac'])
   if cont.outputData.FPHOUT_HL.isSet():
-    whatnext.append('modelcraft')
+    whatnext.append(['modelcraft','$CCP4I2/wrappers/modelcraft/script/experimental.params.xml'])
     whatnext.append('arp_warp_classic')
     if not cont.outputData.XYZOUT.isSet():
       whatnext.extend(['parrot'])
