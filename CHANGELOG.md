@@ -8,6 +8,7 @@
 - Updated neutron refinement options
 - Refmac/Servcalcat pipelines only providing X-ray data to validation
 - Observation type selection from CIF files in the import merged task
+- Hiding nanobind leak warnings from Gemmi 0.7
 
 ## [2.2.3] - 2025-02-07
 

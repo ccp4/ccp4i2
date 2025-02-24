@@ -801,7 +801,6 @@ class CTaskimport_merged(CTaskWidget):
       if self.container.inputData.HKLIN_FORMAT == 'MMCIF':
           # make self.mmcif & .rblocks
           self.openMmcifFile()
-      gemmi.set_leak_warnings(False)
           
   # -------------------------------------------------------------
   def infoList(self):
