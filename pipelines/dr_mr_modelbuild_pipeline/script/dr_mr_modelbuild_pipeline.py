@@ -584,7 +584,10 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
             self.buccaneer2.container.inputData.FREERFLAG.set(self.reindexJob.container.outputData.FREERFLAG_OUT)
             buccaneer = self.buccaneer2
             if self.container.inputData.RUNACORN:
-                buccaneer.container.inputData.ABCD.set(self.acorn2.container.outputData.PHSOUT)
+                if USE_BUCCANEER:
+                    buccaneer.container.inputData.ABCD.set(self.acorn2.container.outputData.PHSOUT)
+                else:
+                    buccaneer.container.inputData.PHASES.set(self.acorn2.container.outputData.PHSOUT)
         else:
             self.buccaneer = self.makePluginObject(buccPlugName)
             self.buccaneer.container.inputData.ASUIN.set(self.container.inputData.ASUIN)
@@ -603,7 +606,10 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
                 self.buccaneer.container.inputData.FREERFLAG.set(self.container.inputData.FREER_IN)
             buccaneer = self.buccaneer
             if self.container.inputData.RUNACORN:
-                buccaneer.container.inputData.ABCD.set(self.acorn.container.outputData.PHSOUT)
+                if USE_BUCCANEER:
+                    buccaneer.container.inputData.ABCD.set(self.acorn.container.outputData.PHSOUT)
+                else:
+                    buccaneer.container.inputData.PHASES.set(self.acorn.container.outputData.PHSOUT)
 
         if(USE_BUCCANEER):
             buccaneer.container.controlParameters.USE_SHIFTFIELD.set(self.container.inputData.RUNSHEETBEND) 
