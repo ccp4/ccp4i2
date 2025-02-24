@@ -61,7 +61,6 @@ except:
     print('FAILED CCP4ModelData imported Bio.SeqIO')
     BIOPYTHON = False
 
-
 EXTLIST = {'txt' : 'fasta', 'fasta':'fasta', 'fa' :'fasta',
            'fsa' : 'fasta', 'faa' : 'fasta', 'seq' : 'fasta',
            'pir':'pir', 'xml':'seqxml', 'embl':'embl',

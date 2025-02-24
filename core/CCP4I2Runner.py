@@ -26,7 +26,6 @@ import numpy
 import re
 from core.CCP4ErrorHandling import CException
 
-
 class CI2Runner(object):
     def __init__(self, cmdLineArgs, theParser=None):
         super(CI2Runner, self).__init__()
