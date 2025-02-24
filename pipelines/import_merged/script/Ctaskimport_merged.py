@@ -221,19 +221,25 @@ class CTaskimport_merged(CTaskWidget):
   # -------------------------------------------------------------
   @QtCore.Slot(bool)
   def updateFromFile(self,force=True):
+    import traceback
+    traceback.print_stack()
+
     # Explicit call to CGenericREflnDataFile.getFileContent() otherwise CData properties code gets it wrong
+    self.unSetAll()
+    fc = self.container.inputData.HKLIN.getFileContent()
     print("\n** updateFromFile HKLIN ",self.container.inputData.HKLIN.fileContent)
+
     if not self.container.inputData.HKLIN.isSet():
       print("HKLIN unset")
       return
 
     #print("IDRR", self.container.inputData.RESOLUTION_RANGE)
-    self.unSetAll()
+    #self.unSetAll()
 
     self.container.inputData.HKLIN.loadFile()
     # What is the format?
     fformat = self.container.inputData.HKLIN.getFormat()
-    #print("Input file format", fformat)
+    print("Input file format", fformat)
     self.container.guiParameters.HKLINISMTZ = (fformat == 'mtz')  # MTZ
     if fformat == 'mtz':
         self.container.inputData.HKLIN_FORMAT.set('MTZ')
@@ -268,8 +274,6 @@ class CTaskimport_merged(CTaskWidget):
             return
         # Open button, continue to try
        
-    #print("*self.container.inputData.HKLIN_FORMAT",
-    #     self.container.inputData.HKLIN_FORMAT)
     if self.container.inputData.HKLIN_FORMAT == 'MMCIF':
       if not self.openMmcifFile():
         return   # fail
@@ -369,7 +373,7 @@ class CTaskimport_merged(CTaskWidget):
   @QtCore.Slot()
   def handleSelColDialogApply(self):
     contentFlag,i2Names,dataset,colLabels = self.selColDialog.getSelection()
-    print('handleSelColDialogApply getSelection',contentFlag,i2Names,dataset,colLabels)
+    #print('handleSelColDialogApply getSelection',contentFlag,i2Names,dataset,colLabels)
     try:
       self.selColDialog.hide()
     except:
@@ -473,8 +477,8 @@ class CTaskimport_merged(CTaskWidget):
   # -------------------------------------------------------------
   def toggleSkip2(self):
     #  Leave FreeR unchanged
-   # print('>> toggleSkip2 FRF', self.container.inputData.FREERFLAG.isSet(),
-   #       "HF", self.container.inputData.HASFREER)
+    # print('>> toggleSkip2 FRF', self.container.inputData.FREERFLAG.isSet(),
+    #       "HF", self.container.inputData.HASFREER)
     if self.container.inputData.FREERFLAG.isSet():
       return False
     if not self.container.inputData.HASFREER:
@@ -687,6 +691,7 @@ class CTaskimport_merged(CTaskWidget):
   # -------------------------------------------------------------
   def extractMmcifInfo(self, blockname=None):
       print("**extractMmcifInfo", blockname)
+
       '''
       We want to set:
       self.container.inputData.UNITCELL
@@ -922,7 +927,7 @@ class CTaskimport_merged(CTaskWidget):
   @QtCore.Slot(str)
   def cifblockClicked(self):
       s = self.cifbuttons.selected
-      print("Clicked", s)
+      #print("Clicked", s)
       self.selectedBlock = s
       self.extractMmcifInfo(s)
       self.container.inputData.MMCIF_SELECTED_CONTENT.unSet()
@@ -935,7 +940,7 @@ class CTaskimport_merged(CTaskWidget):
       if self.container.guiParameters.MMCIF_BLOCK_INFO:
           infolist = self.strlist(self.container.guiParameters.MMCIF_BLOCK_INFO)
           # Edit infolist
-          #   (this would be easier if I hadn't lumped different things together)
+           #   (this would be easier if I hadn't lumped different things together)
           for i, info in enumerate(infolist):
             info = 'Column content type: '+info
             if not 'FreeR' in info:
@@ -966,12 +971,11 @@ class CTaskimport_merged(CTaskWidget):
 
       self.container.guiParameters.HKLIN_HAS_COLUMNS.set(True)
           
-      if nblocks == 1:
-        # Only one block, call content selection
-        self.cifColumnSelect()
-      else:
-        self.cifColumnSelect()   ### TESTING
-
+      #if nblocks == 1:
+      # Only one block, call content selection
+      # self.cifColumnSelect()
+      #else:
+      self.cifColumnSelect()   # always
         
   # -------------------------------------------------------------
   def checkForStarAniso(self):
