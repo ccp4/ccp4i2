@@ -5,7 +5,7 @@ from qtgui import CCP4TaskWidget
 from qtgui import CCP4Widgets
 
 def whatNext(jobId=None):
-  return [ 'buccaneer_build_refine_mr' ]
+  return [ 'modelcraft' ]
 
 
 class Cmrbump_basic(CCP4TaskWidget.CTaskWidget):
@@ -16,7 +16,7 @@ class Cmrbump_basic(CCP4TaskWidget.CTaskWidget):
   TASKTITLE='Automated structure solution - MrBUMP'
   DESCRIPTION='Run a quick MrBUMP job with streamlined settings'
   RANK=1
-  WHATNEXT = ['prosmart_refmac','buccaneer_build_refine_mr','coot_rebuild']
+  WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
 
   def __init__(self,parent):
     CCP4TaskWidget.CTaskWidget.__init__(self,parent)

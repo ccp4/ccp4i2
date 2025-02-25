@@ -34,7 +34,7 @@ class CTaskParrot(CCP4TaskWidget.CTaskWidget):
   TASKTITLE='Density modification - PARROT'
   SHORTTASKTITLE='PARROT'
   DESCRIPTION='Modify the electron density (Parrot)'
-  WHATNEXT = [ 'coot_rebuild',['buccaneer_build_refine_mr','$CCP4I2/pipelines/bucref_mr/script/bucref_after_experimental.params.xml'] ]
+  WHATNEXT = [ 'coot_rebuild',['modelcraft','$CCP4I2/wrappers/modelcraft/script/experimental.params.xml']]
   MGDISPLAYFILES = ['FPHIOUT']
   EXPORTMTZPARAMS = ['F_SIGF','ABCD','ABCDOUT']
   

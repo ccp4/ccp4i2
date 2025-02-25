@@ -21,8 +21,6 @@ class acedrg(CPluginScript):
     ASYNCHRONOUS = False
     TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
-    #WHATNEXT = ['coot_rebuild','parrot','buccaneer_build_refine_mr']
-    #RUNEXTERNALPROCESS=False
 
     ERROR_CODES = {  200 : { 'description' : 'Failed to add item to mol list' },201 : { 'description' : 'Failed to setFullPath' }, 202 : { 'description' : 'Failed to dump XMML' }, 203 : { 'description' : 'Failed to make RDKit Mol from DICT' },}
     

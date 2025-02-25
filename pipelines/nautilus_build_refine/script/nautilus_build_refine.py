@@ -23,7 +23,7 @@ from core.CCP4PluginScript import CPluginScript
 
 class nautilus_build_refine(CPluginScript):
 
-    TASKMODULE="model_building"
+    TASKMODULE="deprecated"
     TASKTITLE = 'Autobuild RNA/DNA (Nautilus pipeline)'
     SHORTTASKTITLE='NAUTILUS'
     TASKNAME = 'nautilus_build_refine'

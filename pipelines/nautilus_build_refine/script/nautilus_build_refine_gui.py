@@ -26,7 +26,7 @@ class nautilus_build_refine_gui(CTaskWidget):
     # Subclass CTaskWidget to give specific task window
     TASKNAME = 'nautilus_build_refine'
     TASKVERSION = 0.1
-    TASKMODULE = [ 'model_building' ]
+    TASKMODULE = [ 'deprecated' ]
     SHORTTASKTITLE='Autobuild RNA - NAUTILUS'
     TASKTITLE='Autobuild RNA/DNA (Nautilus pipeline)'
     DESCRIPTION = 'Iterations of model building (Nautilus) and refinement (Refmac5)'
