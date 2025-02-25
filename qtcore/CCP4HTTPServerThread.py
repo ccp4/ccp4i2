@@ -1,62 +1,27 @@
-from __future__ import print_function
+from http.server import SimpleHTTPRequestHandler
+from http.server import ThreadingHTTPServer
+import mimetypes
+import os
+import re
+import sys
 
-import sys,os
-if sys.version_info >= (3,0):
-    import http.server
-    from http.server import SimpleHTTPRequestHandler
-else:
-    import BaseHTTPServer
-    from SimpleHTTPServer import SimpleHTTPRequestHandler
-    
 from PySide2 import QtCore
+import dials
+import mrparse
+
 from core import CCP4Modules
+
 
 DEFAULT_PORT = 43434
 
-if sys.version_info >= (3,0):
-    from socketserver import ThreadingMixIn
-    from http.server import HTTPServer
-else:
-    from SocketServer import ThreadingMixIn
-    from BaseHTTPServer import HTTPServer
-
-class MultiThreadedHTTPServer(ThreadingMixIn, HTTPServer):
-    pass
 
 def makeServer(port):
-      HandlerClass = CHTTPRequestHandler
-      ServerClass  = MultiThreadedHTTPServer
-      Protocol     = "HTTP/1.0"
-      server_address = ('127.0.0.1',port )
-      HandlerClass.protocol_version = Protocol
+      CHTTPRequestHandler.protocol_version = "HTTP/1.0"
       try:
-        httpd = ServerClass(server_address, HandlerClass)
+        return ThreadingHTTPServer(('127.0.0.1', port), CHTTPRequestHandler)
       except:
         return None
-      else:
-        return httpd
 
-def testServer(port):
-      if sys.version_info >= (3,0):
-          import http.client
-      else:
-          import httplib
-
-      ret = True
-      try:
-        if sys.version_info >= (3,0):
-            h = http.client.HTTPConnection('127.0.0.1',port,timeout=3)
-        else:
-            h = httplib.HTTPConnection('127.0.0.1',port,timeout=3)
-        h.connect()
-      except:
-        ret=False
-      print('testServer',port,h,ret)
-      try:
-        h.close()
-      except:
-        pass
-      return ret
 
 class CHTTPServerThread(QtCore.QThread):
 
@@ -98,7 +63,6 @@ class CHTTPServerThread(QtCore.QThread):
            self.httpd.serve_forever()
       return
 
-from dbapi import CCP4DbApi
 
 class CHTTPRequestHandler(SimpleHTTPRequestHandler):
     def end_headers (self):
@@ -116,79 +80,59 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                       self.log_date_time_string(),
                       format%args))
       '''
-                    
       f = CCP4Modules.PRINTHANDLER().getFileObject(thread='HTTPServer',name='HTTPServer')
       f.write("%s - - [%s] %s\n" %
                      (self.address_string(),
                       self.log_date_time_string(),
                       format%args))
-    
-    """
-    def do_POST(self):
-        import cgi
-        import re
-        form = cgi.FieldStorage(fp=self.rfile, headers=self.headers, \
-            environ={'REQUEST_METHOD':'POST', 'CONTENT_TYPE':self.headers['Content-Type'], })
-        upfile = form['upfile']
-        project = form['project']
-
-        # extract basename of input filename, remove non-alphanumeric characters
-        if '\\' in upfile.filename:
-            filename = upfile.filename.split('\\')[-1]
-        else:
-            filename = upfile.filename.split('/')[-1]
-        filename = re.sub('[ \t]','-', filename)
-        filename = re.sub('[^a-zA-Z0-9_.:-]','', filename)
-
-        data = ''
-        while True:
-            chunk = upfile.file.read(8192)
-            if len(chunk) == 0:
-                break
-            else:
-                data += chunk
-        self.send_response(200)
-        self.end_headers()
-
-        CHTTPServerThread.insts.emit(QtCore.SIGNAL('insertFileInDBRequest'),(os.path.basename(upfile.filename),data,project.value))
-
-        self.wfile.write('<html><head><title>Upload</title></head><body>\
-            <h1>Requested uploaded</h1><br>From: %s<br>To project:%s</body></html>' % \
-            (upfile.filename, project.value) )
-    """
 
     #Here I am going to do some hackery to allow the HTTP server to return information about the
     #database
     def do_GET(self):
         #print('CHTTPRequestHandler.do_GET',self.path)
-        if "site-packages/dials/static" in self.path:
-            import dials
-            f = self.path
+        if (
+            '/database/projectid/' in self.path
+            and (projectIdMatch := re.search(r'/projectid/([^/]+)', self.path))
+            and (jobNumberMatch := re.search(r'/jobnumber/([^/]+)', self.path))
+            and (fileMatch := re.search(r'/file/(.+)/?', self.path))
+        ):
+            oldUrl = (
+                "/database/?getProjectJobFile"
+                f"?projectId={projectIdMatch.group(1)}"
+                f"?fileName={fileMatch.group(1)}"
+                f"?jobNumber={jobNumberMatch.group(1)}"
+            )
+            #print("Old style url",oldUrl)
+            return self.do_GET_main(oldUrl)
+        return self.do_GET_main(self.path)
+
+    def do_GET_main(self,self_path):
+        #print("do_GET_main",self_path)
+        if (i := self_path.find("site-packages/dials/static")) > -1:
             #This mangling is done to help with imported projects which might have links to different file locations
-            newPath = os.path.join(os.path.dirname(dials.__file__),f[f.find("site-packages/dials/static"):][len("site-packages/dials")+1:])
+            subPath = self_path[i:].removeprefix("site-packages/dials/")
+            # Leads to a mixture of path separators on Windows
+            newPath = os.path.join(os.path.dirname(dials.__file__), subPath)
             try:
-                import mimetypes
                 fileType = mimetypes.guess_type(newPath.split("?")[0])[0]
                 self.returnFileAsData(contentType=fileType, fullPath=newPath.split("?")[0])
-                return
             except:
                 self.send_response(404)
-                return
-        if "site-packages/mrparse/html" in self.path:
-            import mrparse
-            f = self.path
+            return
+        if (i := self_path.find("site-packages/mrparse/html")) > -1:
             #This mangling is done to help with imported projects which might have links to different file locations
-            newPath = os.path.join(os.path.dirname(mrparse.__file__),f[f.find("site-packages/mrparse/html"):][len("site-packages/mrparse")+1:])
+            subPath = self_path[i:].removeprefix("site-packages/mrparse/")
+            # Leads to a mixture of path separators on Windows
+            newPath = os.path.join(os.path.dirname(mrparse.__file__), subPath)
             try:
-                import mimetypes
                 fileType = mimetypes.guess_type(newPath.split("?")[0])[0]
                 self.returnFileAsData(contentType=fileType, fullPath=newPath.split("?")[0])
-                return
             except:
                 self.send_response(404)
-                return
-        if not self.path.startswith('/database'):
+            return
+        if not self_path.startswith('/database'):
             #serve files normally
+            #print("Normal service")
             SimpleHTTPRequestHandler.do_GET(self)
         else:
             from core.CCP4Modules import HTTPSERVER
@@ -203,9 +147,9 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                 dbRequest = {'responseQueue':Queue.Queue()}
 
             newPath = None
-            if self.path.startswith("/database/projectId/"):
+            if self_path.startswith("/database/projectId/"):
                 if("Referer" in self.headers):
-                    a = self.path
+                    a = self_path
                     projectId = a[len("/database/projectId/"):a.find("/jobNumber")]
                     jobNumber = a[a.find("/jobNumber")+len("/jobNumber/"):a.find("/fileName")]
                     fileName = a[a.find("/fileName")+len("/fileName/"):]
@@ -218,15 +162,16 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                     response = dbRequest['responseQueue'].get(True, 10)
                     newPath = response
 
-            elif self.path.startswith("/database/") and not self.path.startswith("/database/?"):
+            elif self_path.startswith("/database/") and not self_path.startswith("/database/?"):
                 if("Referer" in self.headers):
                     refTokens = self.headers["Referer"].split('?')
                     if refTokens[1] == "getProjectJobFile":
                         dbRequest['path'] = self.headers["Referer"].replace("getProjectJobFile","getProjectJobFileName")
                         dbQueue.put(dbRequest)
                         response = dbRequest['responseQueue'].get(True, 10)
-                        newPath = os.path.join(os.path.dirname(response),self.path.replace("/database/",""))
+                        newPath = os.path.join(os.path.dirname(response),self_path.replace("/database/",""))
 
+            #print("newPath",newPath)
             if newPath:
                         fileType = 'text/plain'
                         if newPath.lower().endswith(".pdb") or newPath.lower().endswith(".ent"):
@@ -255,7 +200,7 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                             dbRequest['responseQueue'].task_done()
                             return
                         elif newPath.lower().endswith(".html") or newPath.lower().endswith(".htm"):
-                            fileType = 'text/html'
+                            fileType = 'text/html; charset=UTF-8'
                             self.returnFileAsData(contentType=fileType, fullPath=newPath)
                         elif newPath.lower().endswith(".css"):
                             fileType = 'text/css'
@@ -264,13 +209,13 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                         dbRequest['responseQueue'].task_done()
                         return
 
-            tokens = self.path.split('?')
+            tokens = self_path.split('?')
             tokensDict = {}
             for token in tokens:
                 splitToken = token.strip().split('=')
                 if len(splitToken) == 1: tokensDict[splitToken[0]] = True
                 else: tokensDict[splitToken[0]] = '='.join(splitToken[1:])
-            print(tokensDict)
+            #print(tokensDict)
             import json
             
             if len(tokens) == 1:
@@ -305,22 +250,25 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                     <body></body>
                     </html>
                     '''
-                import re
                 docString1 = re.sub('__serverName__',str(self.server.server_name),docTemplate)
                 docString = re.sub('__serverPort__', str(self.server.server_port),docString1)
-                self.returnData('text/html', docString)
+                self.returnData('text/html; charset=UTF-8', docString)
 #SJM 18/07/2018 - Commented out this, no other reference to db anywhere...
                 #db.close()
                 return
             
             from qtcore.CCP4DbThread import CDbThread
             if tokens[1] in CDbThread.databaseCalls:
-                dbRequest['path'] = self.path
+                dbRequest['path'] = self_path
                 dbQueue.put(dbRequest)
                 response = dbRequest['responseQueue'].get(True, 10)
                 isLog = False
                 isPng = False
                 isSvg = False
+                isCss = False
+                isJs = False
+                isJson = False
+                theFileName = ""
                 for q in tokens[1:]:
                     if q.startswith("fileName="):
                         if q.split("=")[1] != "report.html" and q.split("=")[1] !=  "report_tmp.html":
@@ -331,22 +279,35 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                                 isPng = True
                             if theFileName.endswith(".svg") or theFileName.endswith(".SVG"):
                                 isSvg = True
+                            if theFileName.endswith(".js") or theFileName.endswith(".JS"):
+                                isJs = True
+                            if theFileName.endswith(".json") or theFileName.endswith(".JSON"):
+                                isJson = True
+                            if theFileName.endswith(".css") or theFileName.endswith(".CSS"):
+                                isCss = True
                 if response is None:
                     self.send_response(404)
                     dbRequest['responseQueue'].task_done()
                     return
                 else:
+                    #print("Doing something!!!!!!!!",theFileName,isPng,isSvg,isLog,isCss,isJs,isJson)
                     if isPng:
                         self.returnData('image/png',response,isBinary=True)
                     elif isSvg:
-                        self.returnData('image/svg+xml',response)
-                    elif hasattr(response,"startswith") and (response.strip().startswith('<!DOCTYPE html') or response.strip().startswith('<HTML') or response.strip().startswith('<html')):
+                        self.returnData('image/svg+xml',response,isBinary=True)
+                    elif hasattr(response,"startswith") and (response.strip().startswith(b'<!DOCTYPE html') or response.strip().startswith(b'<HTML') or response.strip().startswith(b'<html')):
                         #Hopefully this is html
-                        self.returnData('text/html',response)
+                        self.returnData('text/html; charset=UTF-8',response,isBinary=True)
                     elif isLog:
-                        self.returnData('text/plain',response)
+                        self.returnData('text/plain',response,isBinary=True)
+                    elif isCss:
+                        self.returnData('text/css',response,isBinary=True)
+                    elif isJs:
+                        self.returnData('text/javascript',response,isBinary=True)
+                    elif isJson:
+                        self.returnData('application/json',response,isBinary=True)
                     else:
-                        self.returnData('application/javascript',json.dumps(response))
+                        self.returnData('application/javascript',json.dumps(response),isBinary=True)
                     dbRequest['responseQueue'].task_done()
                     return
     
@@ -384,7 +345,6 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                         fullPath = filePath
                     else:
                         fullPath = os.path.join(jobDirectory,filePath)
-                    import mimetypes
                     fileType = mimetypes.guess_type(fullPath)[0]
                     #Here apply patches where content type is explicitly known
                     if filePath == 'report.html': fileType = 'application/xhtml+xml'
@@ -405,7 +365,6 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                     pattern = os.path.join(CCP4Utils.getCCP4I2Dir(), 'qticons','')+CCP4DbApi.FILETYPES_CLASS[itype]+'.*'
                     possibleFiles = glob.glob(pattern)
                     if len(possibleFiles) > 0:
-                        import mimetypes
                         fullPath = possibleFiles[0]
                         fileType = mimetypes.guess_type(fullPath)[0]
                         self.returnFileAsDownload(contentType=fileType, fullPath=fullPath)
@@ -450,4 +409,3 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                 self.wfile.write(bytes(data,"utf-8"))
             else:
                 self.wfile.write(data)
-
