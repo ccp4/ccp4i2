@@ -19,7 +19,7 @@ class CTaskShelxeMR(CCP4TaskWidget.CTaskWidget):
     TASKTITLE = 'Model building from Molecular Replacement solution using Shelxe'
     SHORTTASKTITLE = "SHELXE-MR"
     DESCRIPTION = 'Use Shelxe to attempt to improve (or verify) a solution from Molecular Replacement'
-    WHATNEXT = ['coot_rebuild', 'prosmart_refmac', 'buccaneer_build_refine_mr', 'arp_warp_classic']
+    WHATNEXT = ['coot_rebuild', 'prosmart_refmac', 'modelcraft', 'arp_warp_classic']
     MGDISPLAYFILES = ['FPHIOUT']
 
     def __init__(self,parent):

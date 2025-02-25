@@ -13,7 +13,7 @@ class ShelxCE(ShelxCDEBase.ShelxCDEBase):
     TASKVERSION= 0.0                                     # Version of this plugin
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 9999999.9
-    WHATNEXT = ['coot_rebuild','parrot',['buccaneer_build_refine_mr','$CCP4I2/pipelines/bucref_mr/script/bucref_after_experimental.params.xml']]
+    WHATNEXT = ['coot_rebuild','parrot',['modelcraft','$CCP4I2/wrappers/modelcraft/script/experimental.params.xml']]
     PERFORMANCECLASS = 'CExpPhasPerformance'
     ERROR_CODES = {  300 : { 'description' : 'No overall FOM found' },}
     

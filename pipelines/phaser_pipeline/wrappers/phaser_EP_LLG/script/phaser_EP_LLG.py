@@ -15,7 +15,7 @@ class phaser_EP_LLG(phaser_EP_AUTO.phaser_EP_AUTO):
     COMTEMPLATEFILE = None                               # Name of file containing com file template
     ASYNCHRONOUS = False
     RUNEXTERNALPROCESS=False
-    WHATNEXT = ['coot_rebuild',['buccaneer_build_refine_mr','$CCP4I2/pipelines/buccaneer_build_refine_mr/script/bucref_after_experimental.params.xml']]
+    WHATNEXT = ['coot_rebuild',['modelcraft','$CCP4I2/wrappers/modelcraft/script/experimental.params.xml']]
 
     ERROR_CODES = { 201 : { 'description' : 'Failed to find file' }, 202 : { 'description' : 'Failed to interpret searches from Ensemble list' },}
     requiredDefaultList = ['PART_VARI', 'PART_DEVI', 'LLGM']

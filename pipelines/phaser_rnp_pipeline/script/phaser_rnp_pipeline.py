@@ -17,7 +17,7 @@ class phaser_rnp_pipeline(phaser_pipeline.phaser_pipeline):
     ASYNCHRONOUS = False
     
     ERROR_CODES = {  200 : { 'description' : 'Phaser exited with error statut' }, 202 : { 'description' : 'Failed in harvest operation' }, 203 : { 'description' : 'Columns not present' }, 204 : { 'description' : 'Failed in plugin:',205 : { 'description' : 'Failed in pointless reindex operation' }, }, }
-    WHATNEXT = ['prosmart_refmac','buccaneer_build_refine_mr','coot_rebuild']
+    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
     
 
     '''

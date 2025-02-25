@@ -1,10 +1,6 @@
-from __future__ import print_function
-
-from core.CCP4PluginScript import CPluginScript
-import sys, os
-from core import CCP4ErrorHandling
-from core import CCP4Modules
+import os
 from lxml import etree
+from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
 
 
@@ -23,12 +19,12 @@ class phaser_EP(CPluginScript):
         if self.container.inputData.PARTIALMODELORMAP == 'SEARCH':
             rv = self.run_shelx()
             if rv == CPluginScript.SUCCEEDED:
-                self.updateXml(self.shelxPlugin.makeFileName('PROGRAMXML'),'ShelxCD')
+                self.updateXmlFromFile(self.shelxPlugin.makeFileName('PROGRAMXML'),'ShelxCD')
         elif self.container.inputData.PARTIALMODELORMAP in ['MODEL', 'MAP']:
             self.container.keywords.HAND.set('off')
         rv = self.run_phaser()
         if rv == CPluginScript.SUCCEEDED:
-            self.updateXml(self.phaserPlugin.makeFileName('PROGRAMXML'),'PhaserEpResults')
+            self.updateXmlFromFile(self.phaserPlugin.makeFileName('PROGRAMXML'),'PhaserEpResults')
             pipelineOutputs = self.container.outputData
             pluginOutputs=self.phaserPlugin.container.outputData
             hands = [0, 1] if self.container.keywords.HAND == 'both' else [0]
@@ -42,7 +38,7 @@ class phaser_EP(CPluginScript):
                 self.parrotPluginOriginalHand = self.makeParrotPlugin(hand='original')
                 parrot_original = self.parrotPluginOriginalHand.process()
                 if parrot_original == CPluginScript.SUCCEEDED:
-                    self.updateXml(self.parrotPluginOriginalHand.makeFileName('PROGRAMXML'),'ParrotResult', hand='original')
+                    self.updateXmlFromFile(self.parrotPluginOriginalHand.makeFileName('PROGRAMXML'),'ParrotResult', hand='original')
                     self.copyPluginOutput(self.parrotPluginOriginalHand.container.outputData.ABCDOUT, pipelineOutputs.ABCDOUT, annotation='Phases from density modification - original hand')
                     self.copyPluginOutput(self.parrotPluginOriginalHand.container.outputData.FPHIOUT, pipelineOutputs.FPHIOUT, annotation='Map coefficients from density modification - original hand')
             if self.container.keywords.HAND in ['both', 'on']:
@@ -52,25 +48,26 @@ class phaser_EP(CPluginScript):
                     self.parrotPluginInvertedHand = self.makeParrotPlugin(hand='inverted', inverted_only=True)
                 parrot_inverted = self.parrotPluginInvertedHand.process()
                 if parrot_inverted == CPluginScript.SUCCEEDED:
-                    self.updateXml(self.parrotPluginInvertedHand.makeFileName('PROGRAMXML'),'ParrotResult', hand='inverted')
+                    self.updateXmlFromFile(self.parrotPluginInvertedHand.makeFileName('PROGRAMXML'),'ParrotResult', hand='inverted')
                     self.copyPluginOutput(self.parrotPluginInvertedHand.container.outputData.ABCDOUT, pipelineOutputs.ABCDOUT, annotation='Phases from density modification - reversed hand')
                     self.copyPluginOutput(self.parrotPluginInvertedHand.container.outputData.FPHIOUT, pipelineOutputs.FPHIOUT, annotation='Map coefficients from density modification - reversed hand')
 
         if self.container.controlParameters.RUNBUCCANEER:
             if self.container.keywords.HAND in ['both', 'off']:
-                self.buccaneerPluginOriginalHand = self.makeBuccaneerPlugin(hand='original')
-                buccaneer_original = self.buccaneerPluginOriginalHand.process()
-                if buccaneer_original == CPluginScript.SUCCEEDED:
-                    self.updateXml(self.buccaneerPluginOriginalHand.makeFileName('PROGRAMXML'),'BuccaneerBuildRefineResult', hand='original')
-                    self.copyPluginOutput(self.buccaneerPluginOriginalHand.container.outputData.XYZOUT, pipelineOutputs.XYZOUT, annotation='Model built by Autobuild protein - original hand')
+                modelCraftOriginal = self.makeModelCraftPlugin(hand='original')
+                if modelCraftOriginal.process() == CPluginScript.SUCCEEDED:
+                    element = etree.Element("ModelCraft")
+                    element.text = modelCraftOriginal.getWorkDirectory()
+                    self.updateXml(element, 'ModelCraft', hand='original')
+                    self.copyPluginOutput(modelCraftOriginal.container.outputData.XYZOUT, pipelineOutputs.XYZOUT, annotation='Autobuilt model - original hand')
             if self.container.keywords.HAND in ['both', 'on']:
-                self.buccaneerPluginInvertedHand = self.makeBuccaneerPlugin(hand='inverted')
-                buccaneer_inverted = self.buccaneerPluginInvertedHand.process()
-                if buccaneer_inverted == CPluginScript.SUCCEEDED:
-                    self.updateXml(self.buccaneerPluginInvertedHand.makeFileName('PROGRAMXML'),'BuccaneerBuildRefineResult', hand='inverted')
-                    self.copyPluginOutput(self.buccaneerPluginInvertedHand.container.outputData.XYZOUT, pipelineOutputs.XYZOUT, annotation='Model built by Autobuild protein - reversed hand')
+                modelCraftInverted = self.makeModelCraftPlugin(hand='inverted')
+                if modelCraftInverted.process() == CPluginScript.SUCCEEDED:
+                    element = etree.Element("ModelCraft")
+                    element.text = modelCraftInverted.getWorkDirectory()
+                    self.updateXml(element, 'ModelCraft', hand='inverted')
+                    self.copyPluginOutput(modelCraftInverted.container.outputData.XYZOUT, pipelineOutputs.XYZOUT, annotation='Autobuilt model - reversed hand')
         self.reportStatus(CPluginScript.SUCCEEDED)
-
 
     def run_shelx(self):
         self.shelxPlugin = self.makePluginObject('ShelxCD')
@@ -120,32 +117,34 @@ class phaser_EP(CPluginScript):
         self.parrotPlugin.doAsync = False
         return self.parrotPlugin
 
-    def makeBuccaneerPlugin(self, hand):
-        self.buccaneerPlugin =  self.makePluginObject('buccaneer_build_refine_mr')
-        self.buccaneerPlugin.container.inputData.F_SIGF.set(self.container.inputData.F_SIGF)
-        self.buccaneerPlugin.container.inputData.FREERFLAG.set(self.container.inputData.FREERFLAG)
-        self.buccaneerPlugin.container.inputData.ASUIN.set(self.container.inputData.ASUFILE)
-        self.buccaneerPlugin.container.controlParameters.BUCCANEER_PHSIN_TYPE.set('experimental')
-        self.buccaneerPlugin.container.controlParameters.ITERATIONS.set(self.container.controlParameters.BUCCANEER_ITERATIONS)
-
+    def makeModelCraftPlugin(self, hand):
+        plugin = self.makePluginObject('modelcraft')
+        plugin.container.inputData.F_SIGF.set(self.container.inputData.F_SIGF)
+        plugin.container.inputData.FREERFLAG.set(self.container.inputData.FREERFLAG)
+        plugin.container.inputData.ASUIN.set(self.container.inputData.ASUFILE)
         if hand == 'original':
-            self.buccaneerPlugin.container.inputData.ABCD.set(self.parrotPluginOriginalHand.container.outputData.ABCDOUT)
+            plugin.container.inputData.PHASES.set(self.parrotPluginOriginalHand.container.outputData.ABCDOUT)
         elif hand == 'inverted':
-            self.buccaneerPlugin.container.inputData.ABCD.set(self.parrotPluginInvertedHand.container.outputData.ABCDOUT)
-        self.buccaneerPlugin.doAsync = False
-        return self.buccaneerPlugin
+            plugin.container.inputData.PHASES.set(self.parrotPluginInvertedHand.container.outputData.ABCDOUT)
+        plugin.container.controlParameters.BASIC.set(True)
+        plugin.container.controlParameters.USE_MODEL_PHASES.set(False)
+        plugin.container.controlParameters.CYCLES.set(self.container.controlParameters.BUCCANEER_ITERATIONS)
+        plugin.container.controlParameters.STOP_CYCLES.set(2)
+        return plugin
 
-    def updateXml(self, xmlFilename, element, hand=None):
-        if hand == None:
+    def updateXmlFromFile(self, xmlFilename, element, hand=None):
+        newXML = CCP4Utils.openFileToEtree(xmlFilename)
+        self.updateXml(newXML, element, hand)
+
+    def updateXml(self, newXML, element, hand=None):
+        if hand is None:
             for oldNode in self.xmlroot.xpath(element):
                 self.xmlroot.remove(oldNode)
-            newXML = CCP4Utils.openFileToEtree(xmlFilename)
             self.xmlroot.append(newXML)
         else:
             if len(self.xmlroot.xpath('//{}/{}'.format(hand,element))) > 0:
                 self.xmlroot.remove(self.xmlroot.xpath('//{}/{}'.format(hand,element))[0])
             hand_node = etree.SubElement(self.xmlroot, hand)
-            newXML = CCP4Utils.openFileToEtree(xmlFilename)
             hand_node.append(newXML)
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
         with open(tmpFilename,'w') as xmlfile:
@@ -161,7 +160,7 @@ class phaser_EP(CPluginScript):
             shutil.copyfile(str(pluginOutputItem.fullPath), str(pipelineOutputItem.fullPath))
             if annotation is None:
                 pipelineOutputItem.annotation = pluginOutputItem.annotation
-            else: 
+            else:
                 pipelineOutputItem.annotation = annotation
             pipelineOutputItem.contentFlag = pluginOutputItem.contentFlag
             pipelineOutputItem.subType = pluginOutputItem.subType

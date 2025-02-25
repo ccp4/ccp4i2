@@ -1,12 +1,8 @@
-from __future__ import print_function
-from qtgui.CCP4TaskWidget import CTaskWidget
 from PySide2 import QtCore
 from pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script import phaser_EP_AUTO_gui
 
 
-#-------------------------------------------------------------------
 class phaser_EP_gui(phaser_EP_AUTO_gui.phaser_EP_AUTO_gui):
-    #-------------------------------------------------------------------
     # Subclass CTaskWidget to give specific task window
     TASKNAME = 'phaser_EP'
     TASKVERSION = 0.1

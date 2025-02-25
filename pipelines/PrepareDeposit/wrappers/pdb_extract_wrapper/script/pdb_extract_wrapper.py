@@ -19,7 +19,6 @@ class pdb_extract_wrapper(CPluginScript):
     TASKVERSION= 0.0                                     # Version of this plugin
     ASYNCHRONOUS = False
     TIMEOUT_PERIOD = 9999999.9
-    #WHATNEXT = ['coot_rebuild','parrot','buccaneer_build_refine_mr']
     RUNEXTERNALPROCESS=False
 
     ERROR_CODES = {  200 : { 'description' : 'Failed to add item to mol list' },201 : { 'description' : 'Failed to setFullPath' },}

@@ -68,7 +68,7 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
     ASYNCHRONOUS = False
     RUNEXTERNALPROCESS=False
     INTERRUPTABLE=True
-    WHATNEXT = ['prosmart_refmac','buccaneer_build_refine_mr','coot_rebuild']
+    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
 
     ERROR_CODES = { 201 : { 'description' : 'Failed to find file' }, 202 : { 'description' : 'Failed to interpret searches from Ensemble list' },}
 

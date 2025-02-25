@@ -33,7 +33,7 @@ from core import CCP4ProjectsManager
 
 class buccaneer_build_refine_mr(CPluginScript):
 
-    TASKMODULE = 'model_building'
+    TASKMODULE = 'deprecated'
     TASKTITLE = 'Autobuild protein (Buccaneer pipeline)'
     TASKNAME = 'buccaneer_build_refine_mr'
     TASKVERSION = 202003271051
