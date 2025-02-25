@@ -208,9 +208,6 @@ class CTaskimport_merged(CTaskWidget):
   # -------------------------------------------------------------
   @QtCore.Slot(bool)
   def updateFromFile(self,force=True):
-    import traceback
-    traceback.print_stack()
-
     # Explicit call to CGenericREflnDataFile.getFileContent() otherwise CData properties code gets it wrong
     self.unSetAll()
     fc = self.container.inputData.HKLIN.getFileContent()
