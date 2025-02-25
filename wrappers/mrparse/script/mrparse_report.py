@@ -24,7 +24,6 @@ def change_i2_mrparse_paths(lines,projectid,jobNumber):
     svg = ["MrParse-logo-tight.svg"]
     js = ["vue.min.js","lodash.min.js","jquery.js","feature-viewer.bundle.js","mrparse_vue.js"]
     css = ["bootstrap.css","style.css","index.css"]
-    third_party_js = []
     d3_js = "https://d3js.org/d3.v5.min.js"
     d3_js_cdn = "https://cdn.jsdelivr.net/npm/d3@5"
 
@@ -47,10 +46,6 @@ def change_i2_mrparse_paths(lines,projectid,jobNumber):
             find = re.compile(r'href="[^"]*"')
             p = to_i2_url("mrparse_html/mrparse/html/" + os.path.basename(find.search(l).group()[5:].strip('"')),projectid,jobNumber)
             lsnew.append(find.sub('href="'+p+'"',l))
-        elif any(elem in l for elem in third_party_js):
-            find = re.compile(r'src="[^"]*"')
-            p = "http://127.0.0.1:43434/report_files/0.1.0/mrparse/html/" + os.path.basename(find.search(l).group()[4:].strip('"'))
-            lsnew.append(find.sub('src="'+p+'"',l))
         elif d3_js in l:
             lsnew.append(l.replace(d3_js,d3_js_cdn))
         else:
