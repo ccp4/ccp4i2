@@ -94,7 +94,7 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
             '/database/projectid/' in self.path
             and (projectIdMatch := re.search(r'/projectid/([^/]+)', self.path))
             and (jobNumberMatch := re.search(r'/jobnumber/([^/]+)', self.path))
-            and (fileMatch := re.search(r'/file/([^/]+)', self.path))
+            and (fileMatch := re.search(r'/file/(.+)/?', self.path))
         ):
             oldUrl = (
                 "/database/?getProjectJobFile"
