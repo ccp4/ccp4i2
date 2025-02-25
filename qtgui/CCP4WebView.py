@@ -255,7 +255,7 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
             #self.load(myurl)
         self.IconReady.emit((icon, self))
         self.subJobReport = CSubJobReport(self)
-        #FIXME - More QWebChannel stuff?
+#FIXME - More QWebChannel stuff?
         #self.page().currentFrame().addToJavaScriptWindowObject('SubJobReport', self.subJobReport)
         self.setLoggraphFont()
         if self.resetScroll is not None:
@@ -307,7 +307,7 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
             return dict(text=self.tr("View"), tip=self.tr('View data'), slot=self.dummyHandler)
 
     def dummyHandler(self):
-        pass
+            pass
 
     def copyHighlighted(self):
         CCP4Modules.QTAPPLICATION().clipboard().setText(self.selectedText())
@@ -318,10 +318,10 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
 
     def isPrintable(self):
         return 1
-
+  
     def isSaveable(self):
         return 1
-
+  
     def isSearchable(self):
         return 1
 
