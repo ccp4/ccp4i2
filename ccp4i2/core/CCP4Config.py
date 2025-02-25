@@ -1,8 +1,13 @@
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
+import gemmi
+
 from .. import __version__
 from .CCP4Utils import getDotDirectory
+
+
+gemmi.set_leak_warnings(False)
 
 
 def CONFIG(filePath: str = None, developer: bool = None, graphical: bool = None):

@@ -15,7 +15,6 @@ from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 
 
 def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None):
-
     returnList = ['coot_rebuild','parrot',['buccaneer_build_refine_mr','$CCP4I2/pipelines/bucref_mr/script/bucref_after_experimental.params.xml']]
     try:
         jobDirectory = PROJECTSMANAGER().db().jobDirectory(jobId=jobId)

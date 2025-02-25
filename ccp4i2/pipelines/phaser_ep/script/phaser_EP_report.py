@@ -1,5 +1,10 @@
 import copy
+import json
+import os
 import xml.etree.ElementTree as etree
+from report.CCP4ReportParser import Report
+from wrappers.modelcraft.script.modelcraft_report import modelcraft_report
+
 
 from ....pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mr_report import bucref_report
 from ....pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script.phaser_EP_AUTO_report import phaser_EP_AUTO_report
@@ -36,7 +41,8 @@ class phaser_EP_report(Report):
 
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):
         Report.__init__(self,xmlnode=xmlnode,jobInfo=jobInfo,**kw)
-        if jobStatus == None or jobStatus.lower() =='nooutput': return
+        if jobStatus is None or jobStatus.lower() =='nooutput':
+            return
         self.drawContent(jobStatus, self)
 
     def drawContent(self, jobStatus=None, parent=None):
@@ -45,9 +51,7 @@ class phaser_EP_report(Report):
             shelxNode = self.xmlnode.findall('ShelxCD')[0]
             shelx_report = ShelxCD_report (xmlnode=shelxNode, jobStatus='nooutput')
             self.addDiv(style='clear:both;')
-            datasetNodes = shelxNode.findall('.//Dataset')
             if len(shelxNode.findall('.//Shelxd'))>0:
-                shelXDNode = shelxNode.findall('.//Shelxd')[0]
                 shelx_report.shelXCReport(self, initiallyOpen=True )
             else:
                 shelx_report.shelXCReport(self, initiallyOpen=False )
@@ -106,3 +110,20 @@ class phaser_EP_report(Report):
             buccaneer_inverted_report.table1(parent=buccaneer_inverted_hand)
             buccaneer_inverted_report.completenessGraph(buccaneer_inverted_hand, 450, 300)
             buccaneer_inverted_hand.addDiv(style="clear:both;")
+
+        for hand in ["original", "inverted"]:
+            if (node := self.xmlnode.find(f".//{hand}/ModelCraft")) is not None:
+                div = self.addDiv(style="width: 100%; border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+                fold = div.addFold(label=f"Model building: {hand} hand", initiallyOpen=False)
+                report = modelcraft_report(jobInfo={"fileroot": ""})  # Empty so it doesn't load yet
+                if jobStatus in ["Running", "Running remotely"]:
+                    fold.append("<p><b>The job is currently running.</b></p>")
+                json_path = os.path.join(node.text, "modelcraft", "modelcraft.json")
+                if os.path.exists(json_path):
+                    with open(json_path, encoding="utf-8") as stream:
+                        report.json = json.load(stream)
+                    report.add_running_job(parent=fold)
+                    report.add_table(parent=fold)
+                    report.add_message(jobStatus, parent=fold)
+                    report.add_graph(parent=fold)
+                fold.addDiv(style="clear:both;")

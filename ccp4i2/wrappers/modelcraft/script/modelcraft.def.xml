@@ -2,7 +2,6 @@
 <ccp4i2>
     <ccp4i2_header>
         <function>DEF</function>
-        <pluginTitle>Autobuild with ModelCraft, Buccaneer and Nautilus</pluginTitle>
         <pluginName>modelcraft</pluginName>
         <userId>paul.bond@york.ac.uk</userId>
     </ccp4i2_header>
@@ -28,6 +27,7 @@
                 <qualifiers>
                     <allowUndefined>True</allowUndefined>
                     <sameCrystalAs>F_SIGF</sameCrystalAs>
+                    <fromPreviousJob>True</fromPreviousJob>
                 </qualifiers>
             </content>
             <content id="ASUIN">

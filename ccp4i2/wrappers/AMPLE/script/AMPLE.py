@@ -1,7 +1,3 @@
-"""
-AMPLE.py: CCP4 GUI Project
-"""
-
 import os
 import shutil
 
@@ -31,7 +27,7 @@ class AMPLE(CPluginScript):
             'description': 'Something not very good has happened.'
         },
     }
-    WHATNEXT = ['prosmart_refmac', 'buccaneer_build_refine', 'coot_rebuild']
+    WHATNEXT = ['prosmart_refmac', 'modelcraft', 'coot_rebuild']
     #     PURGESEARCHLIST = [ [ 'hklin.mtz' , 0 ],
     #                        ['log_mtzjoin.txt', 0]
     #                        ]
