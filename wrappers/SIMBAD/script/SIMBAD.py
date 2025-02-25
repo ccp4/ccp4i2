@@ -32,7 +32,7 @@ class SIMBAD(CPluginScript):
     TASKVERSION = 0.1               # Version of this plugin
     MAINTAINER = 'hlasimpk@liv.ac.uk'
     ERROR_CODES = {1: {'description' : 'Something not very good has happened.'}}
-    WHATNEXT = ['prosmart_refmac', 'buccaneer_build_refine', 'coot_rebuild']
+    WHATNEXT = ['prosmart_refmac', 'modelcraft', 'coot_rebuild']
 #     PURGESEARCHLIST = [ [ 'hklin.mtz' , 0 ],
 #                        ['log_mtzjoin.txt', 0]
 #                        ]

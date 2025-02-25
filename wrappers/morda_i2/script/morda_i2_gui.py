@@ -35,7 +35,7 @@ class morda_i2_gui(CTaskWidget):
     TASKTITLE = 'Automated molecular replacement - MORDA'
     DESCRIPTION = 'Molecular Replacement with Domains and Assemblies'
     MGDISPLAYFILES = ['XYZOUT', 'FPHIOUT', 'DIFFPHIOUT']
-    WHATNEXT = ['prosmart_refmac', 'shelxeMR', 'buccaneer_build_refine_mr', 'coot_rebuild']
+    WHATNEXT = ['prosmart_refmac', 'shelxeMR', 'modelcraft', 'coot_rebuild']
     AUTOPOPULATEINPUT = True
     PROGRAMHELP = ['morda']
     RANK=1

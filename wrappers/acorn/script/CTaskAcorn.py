@@ -25,7 +25,7 @@ class CTaskAcorn(CCP4TaskWidget.CTaskWidget):
     
     DESCRIPTION     = "Un-biased improvement of initial phases for high resolution data (1.5 Angstoms and better)"
     ERROR_CODES = {  200 : { 'description' : 'Space group of reflection and phases file does not match' } } 
-    WHATNEXT = ['coot_rebuild','prosmart_refmac','buccaneer_build_refine_mr'] 
+    WHATNEXT = ['coot_rebuild','prosmart_refmac','modelcraft'] 
     MGDISPLAYFILES  = ['FPHIOUT']
 
 

@@ -30,7 +30,7 @@ class sheetbend_gui(CTaskWidget):
     TASKTITLE='Fast preliminary refinement of atomic model coordinates or temperature factors, including at low resolution'
     DESCRIPTION = '''Fast preliminary refinement of atomic model using the program sheetbend'''
     MGDISPLAYFILES = ['XYZIN']
-    WHATNEXT = ['prosmart_refmac','coot_rebuild', 'buccaneer_build_refine_mr' ]
+    WHATNEXT = ['prosmart_refmac','coot_rebuild', 'modelcraft' ]
 
     def __init__(self,parent):
         CTaskWidget.__init__(self,parent)
