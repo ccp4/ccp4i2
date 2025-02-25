@@ -111,6 +111,7 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
             return
         if not self.path.startswith('/database'):
             #serve files normally
+            #print("Normal service")
             SimpleHTTPRequestHandler.do_GET(self)
         else:
             dbQueue = HTTPSERVER().dbThread.queue
@@ -119,9 +120,9 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
             dbRequest = {'responseQueue':queue.Queue()}
 
             newPath = None
-            if self.path.startswith("/database/projectId/"):
+            if self_path.startswith("/database/projectId/"):
                 if("Referer" in self.headers):
-                    a = self.path
+                    a = self_path
                     projectId = a[len("/database/projectId/"):a.find("/jobNumber")]
                     jobNumber = a[a.find("/jobNumber")+len("/jobNumber/"):a.find("/fileName")]
                     fileName = a[a.find("/fileName")+len("/fileName/"):]
@@ -134,15 +135,16 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                     response = dbRequest['responseQueue'].get(True, 10)
                     newPath = response
 
-            elif self.path.startswith("/database/") and not self.path.startswith("/database/?"):
+            elif self_path.startswith("/database/") and not self_path.startswith("/database/?"):
                 if("Referer" in self.headers):
                     refTokens = self.headers["Referer"].split('?')
                     if refTokens[1] == "getProjectJobFile":
                         dbRequest['path'] = self.headers["Referer"].replace("getProjectJobFile","getProjectJobFileName")
                         dbQueue.put(dbRequest)
                         response = dbRequest['responseQueue'].get(True, 10)
-                        newPath = os.path.join(os.path.dirname(response),self.path.replace("/database/",""))
+                        newPath = os.path.join(os.path.dirname(response),self_path.replace("/database/",""))
 
+            #print("newPath",newPath)
             if newPath:
                         fileType = 'text/plain'
                         if newPath.lower().endswith(".pdb") or newPath.lower().endswith(".ent"):
@@ -171,7 +173,7 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                             dbRequest['responseQueue'].task_done()
                             return
                         elif newPath.lower().endswith(".html") or newPath.lower().endswith(".htm"):
-                            fileType = 'text/html'
+                            fileType = 'text/html; charset=UTF-8'
                             self.returnFileAsData(contentType=fileType, fullPath=newPath)
                         elif newPath.lower().endswith(".css"):
                             fileType = 'text/css'
@@ -180,7 +182,7 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                         dbRequest['responseQueue'].task_done()
                         return
 
-            tokens = self.path.split('?')
+            tokens = self_path.split('?')
             tokensDict = {}
             for token in tokens:
                 splitToken = token.strip().split('=')
@@ -228,12 +230,16 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                 return
 
             if tokens[1] in CDbThread.databaseCalls:
-                dbRequest['path'] = self.path
+                dbRequest['path'] = self_path
                 dbQueue.put(dbRequest)
                 response = dbRequest['responseQueue'].get(True, 10)
                 isLog = False
                 isPng = False
                 isSvg = False
+                isCss = False
+                isJs = False
+                isJson = False
+                theFileName = ""
                 for q in tokens[1:]:
                     if q.startswith("fileName="):
                         if q.split("=")[1] != "report.html" and q.split("=")[1] !=  "report_tmp.html":
@@ -244,22 +250,35 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                                 isPng = True
                             if theFileName.endswith(".svg") or theFileName.endswith(".SVG"):
                                 isSvg = True
+                            if theFileName.endswith(".js") or theFileName.endswith(".JS"):
+                                isJs = True
+                            if theFileName.endswith(".json") or theFileName.endswith(".JSON"):
+                                isJson = True
+                            if theFileName.endswith(".css") or theFileName.endswith(".CSS"):
+                                isCss = True
                 if response is None:
                     self.send_response(404)
                     dbRequest['responseQueue'].task_done()
                     return
                 else:
+                    #print("Doing something!!!!!!!!",theFileName,isPng,isSvg,isLog,isCss,isJs,isJson)
                     if isPng:
                         self.returnData('image/png',response,isBinary=True)
                     elif isSvg:
-                        self.returnData('image/svg+xml',response)
-                    elif hasattr(response,"startswith") and (response.strip().startswith('<!DOCTYPE html') or response.strip().startswith('<HTML') or response.strip().startswith('<html')):
+                        self.returnData('image/svg+xml',response,isBinary=True)
+                    elif hasattr(response,"startswith") and (response.strip().startswith(b'<!DOCTYPE html') or response.strip().startswith(b'<HTML') or response.strip().startswith(b'<html')):
                         #Hopefully this is html
-                        self.returnData('text/html',response)
+                        self.returnData('text/html; charset=UTF-8',response,isBinary=True)
                     elif isLog:
-                        self.returnData('text/plain',response)
+                        self.returnData('text/plain',response,isBinary=True)
+                    elif isCss:
+                        self.returnData('text/css',response,isBinary=True)
+                    elif isJs:
+                        self.returnData('text/javascript',response,isBinary=True)
+                    elif isJson:
+                        self.returnData('application/json',response,isBinary=True)
                     else:
-                        self.returnData('application/javascript',json.dumps(response))
+                        self.returnData('application/javascript',json.dumps(response),isBinary=True)
                     dbRequest['responseQueue'].task_done()
                     return
     
