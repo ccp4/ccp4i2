@@ -219,11 +219,21 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
                 if q.split("=")[1] != "report.html" and q.split("=")[1] !=  "report_tmp.html":
                     nonReport = True
 
+        baseName = os.path.basename(self.url().path())
         if self.url().path().startswith("/database/projectId"):
-                nonReport = True
-        if self.url().scheme() == "file" and os.path.basename(self.url().path()) != "report.html" and os.path.basename(self.url().path()) != "report_tmp.html":
             nonReport = True
-        if self.url().scheme() == "http" and "/database/projectid/" in self.url().path() and "/jobnumber/" in self.url().path() and "/file/" in self.url().path() and os.path.basename(self.url().path()) != "blank.html" and os.path.basename(self.url().path()) != "report.html" and os.path.basename(self.url().path()) != "report_tmp.html":
+        if (
+            self.url().scheme() == "file"
+            and baseName not in {"report.html", "report_tmp.html"}
+        ):
+            nonReport = True
+        if (
+            self.url().scheme() == "http"
+            and "/database/projectid/" in self.url().path()
+            and "/jobnumber/" in self.url().path()
+            and "/file/" in self.url().path()
+            and baseName not in {"blank.html", "report.html", "report_tmp.html"}
+        ):
             nonReport = True
         if nonReport:
             if self.history().canGoBack():
@@ -245,7 +255,7 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
             #self.load(myurl)
         self.IconReady.emit((icon, self))
         self.subJobReport = CSubJobReport(self)
-#FIXME - More QWebChannel stuff?
+        #FIXME - More QWebChannel stuff?
         #self.page().currentFrame().addToJavaScriptWindowObject('SubJobReport', self.subJobReport)
         self.setLoggraphFont()
         if self.resetScroll is not None:
@@ -297,7 +307,7 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
             return dict(text=self.tr("View"), tip=self.tr('View data'), slot=self.dummyHandler)
 
     def dummyHandler(self):
-            pass
+        pass
 
     def copyHighlighted(self):
         CCP4Modules.QTAPPLICATION().clipboard().setText(self.selectedText())
@@ -308,10 +318,10 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
 
     def isPrintable(self):
         return 1
-  
+
     def isSaveable(self):
         return 1
-  
+
     def isSearchable(self):
         return 1
 
