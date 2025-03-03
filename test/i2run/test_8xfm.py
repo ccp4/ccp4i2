@@ -80,9 +80,13 @@ def fixture_sfcif():
 @pytest.fixture(name="mtz", scope="module")
 def fixture_mtz(sfcif):
     "Convert the structure factor CIF to MTZ format and return the path"
-    with NamedTemporaryFile(suffix="_8xfm.mtz") as tmp_file:
-        call(["gemmi", "cif2mtz", sfcif, tmp_file.name])
-        yield tmp_file.name
+    temp = NamedTemporaryFile(suffix="_8xfm.mtz", delete=False)
+    temp.close()
+    call(["gemmi", "cif2mtz", sfcif, temp.name])
+    try:
+        yield temp.name
+    finally:
+        Path(temp.name).unlink(missing_ok=True)
 
 
 @pytest.fixture(name="fasta", scope="module")
