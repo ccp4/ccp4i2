@@ -18,6 +18,7 @@ requires-python = ">=3.9"
 
 [project.scripts]
 ccp4i2 = "ccp4i2.__main__:main"
+i2run = "ccp4i2.core.CCP4I2Runner:main"
 
 [project.urls]
 Source = "https://github.com/ccp4/ccp4i2"
