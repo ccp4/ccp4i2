@@ -1,18 +1,8 @@
-from __future__ import print_function
-
-
 import os
 import sys
-#from PyQt4 import sip
-#sip.setapi('QString', 2)
-#sip.setapi('QVariant', 2)
 import cProfile
 import pstats
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
-
+import io
 import atexit
 import time
 
@@ -22,6 +12,9 @@ try:
     import ccp4mg
 except:
     pass
+
+from .. import I2_TOP
+
 
 def getCCP4I2Dir(up=1):
     target = os.path.join(os.path.realpath(sys.argv[0]), "..")
@@ -35,13 +28,12 @@ def getCCP4I2Dir(up=1):
         up = up - 1
     return abstarget
 
-if __name__ == '__main__':
+
+def main():
     if False:  # Added to help with debugging segfaults.
         import faulthandler; faulthandler.enable()
-    #sip.setdestroyonexit(False)
-    top_path = getCCP4I2Dir()
-    print('Running CCP4i2 browser from: ' + top_path)
-    print('Python ' + sys.version)
+    print('Running CCP4i2 browser from:', I2_TOP)
+    print('Python', sys.version)
     try:
         from PySide2 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets
         print('Qt version', QtCore.qVersion())
@@ -49,11 +41,11 @@ if __name__ == '__main__':
         print('Failed finding Qt verion')
     print(' ')
     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)
-    sys.path.append(os.path.join(top_path, 'utils'))
+    sys.path.append(os.path.join(I2_TOP, 'utils'))
     from startup import setupEnvironment, setupPythonpath, setupGuiPluginsPath, startBrowser
     setupEnvironment()
-    setupPythonpath(top=top_path, mode='qtgui')
-    setupGuiPluginsPath(top=top_path)
+    setupPythonpath(top=I2_TOP, mode='qtgui')
+    setupGuiPluginsPath(top=I2_TOP)
     from core.CCP4Modules import QTAPPLICATION
     app = QTAPPLICATION(graphical=True)
     QtWebEngineWidgets.QWebEngineProfile.defaultProfile().clearHttpCache()
@@ -97,7 +89,7 @@ if __name__ == '__main__':
         #-----------------------------------------------------------------------
         def printStats():
             pr.disable()
-            s = StringIO()
+            s = io.StringIO()
             sortby = 'cumulative'
             ps = pstats.Stats(pr, stream=s).sort_stats(sortby).reverse_order()
             ps.print_stats()
@@ -109,3 +101,6 @@ if __name__ == '__main__':
         startBrowser(sys.argv[1:], app=app, splash=splash)
         sys.exit(app.exec_())
 
+
+if __name__ == '__main__':
+    main()
