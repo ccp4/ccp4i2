@@ -24,4 +24,4 @@ Issues = "https://github.com/ccp4/ccp4i2/issues"
 version = { attr = "ccp4i2.__version__" }
 
 [tool.setuptools.package-data]
-ccp4i2 = ["*"]
+ccp4i2 = ["**/*"]
