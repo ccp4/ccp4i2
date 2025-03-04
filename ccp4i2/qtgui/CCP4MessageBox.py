@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 """
      CCP4MessageBox.py: CCP4 GUI Project
      Copyright (C) 2012 STFC
@@ -27,6 +24,8 @@ from __future__ import print_function
 ##@package CCP4ProjectWidget View a project
                             
 from PySide2 import QtGui, QtWidgets,QtCore
+from .. import __version__, __version_date__
+
 
 class CMessageBox(QtWidgets.QDialog):
 
@@ -148,14 +147,12 @@ class CMessageBox(QtWidgets.QDialog):
     else:
       zipFile = None
     # Get version / os info
-    from core import CCP4File,CCP4Utils
-    version = CCP4File.CI2XmlHeader()
-    version.loadFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'core','version.params.xml'))
-    print('version',version)
-    versionText = 'CCP4i2 version: ' + str(version.ccp4iVersion) + '\n' + \
-                  'SVN version:  ' +  str(version.pluginVersion) + '\n' + \
-                  'Creation date: ' + str(version.creationTime) + '\n' + \
-                  'Platform: ' + sys.platform +  '\n'
+    versionText = (
+      f"CCP4i2 version: {__version__}\n"
+      f"Creation date: {__version_date__}\n"
+      f"Platform: {sys.platform}\n"
+    )
+    print(versionText)
     # Stick it all in a mailto
     message = 'mailto:'+selectedAdr+'?subject=CCP4i2 Problem&body= \n' + versionText + '\n' + \
               self.message + '\n' + self.details + '\n'

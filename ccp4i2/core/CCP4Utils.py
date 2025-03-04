@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 """
      CCP4Utils.py: CCP4 GUI Project
      Copyright (C) 2001-2008 University of York, CCLRC
@@ -38,6 +35,8 @@ import tarfile
 from lxml import etree
 from core.CCP4Config import DEVELOPER
 from core.CCP4ErrorHandling import *
+from .. import __version__, __version_date__
+
 
 def writeXML(f,t):
     if sys.version_info > (3,0):
@@ -629,13 +628,10 @@ def getProgramVersion(programName, mode='version'):
     programName = programName.lower()
     logFile = makeTmpFile(extension='log')
     if programName == 'ccp4i2':
-        from core import CCP4File
-        versionHeader = CCP4File.CI2XmlHeader()
-        versionHeader.loadFromXml(os.path.join(getCCP4I2Dir(), 'core', 'version.params.xml'))
         if mode == 'version':
-            return versionHeader.ccp4iVersion.__str__()
+            return __version__
         elif mode == 'date':
-            return versionHeader.creationTime.date()
+            return __version_date__
     elif programName == 'ccp4':
         CCP4Modules.PROCESSMANAGER().startProcess('fft', ['-i'], logFile=logFile)
         text = readFile(logFile)
