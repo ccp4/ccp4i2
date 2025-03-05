@@ -1,6 +1,7 @@
 from os import environ
 from pathlib import Path
 from core.CCP4PluginScript import CPluginScript
+from core.CCP4ModelData import CPdbDataFile
 
 
 class coot1(CPluginScript):
@@ -46,4 +47,19 @@ class coot1(CPluginScript):
             stream.write("\n".join(script))
         self.appendCommandLine(["--script", scriptPath])
 
+        return CPluginScript.SUCCEEDED
+
+    def processOutputFiles(self):
+        xyzout = self.container.outputData.XYZOUT
+        workDir = Path(self.getWorkDirectory())
+        xyzoutNum = 1
+        for pattern, contentFlag in [
+            ("*.pdb", CPdbDataFile.CONTENT_FLAG_PDB),
+            ("*.cif", CPdbDataFile.CONTENT_FLAG_MMCIF),
+        ]:
+            for path in workDir.glob(pattern):
+                xyzout[xyzoutNum].setFullPath(path)
+                xyzout[xyzoutNum].annotation.set(f"Coot model {xyzoutNum}")
+                xyzout[xyzoutNum].subType.set(CPdbDataFile.SUBTYPE_MODEL)
+                xyzout[xyzoutNum].contentFlag.set(contentFlag)
         return CPluginScript.SUCCEEDED
