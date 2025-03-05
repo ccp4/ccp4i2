@@ -65,6 +65,10 @@
             "acorn",
             "parrot"
         ],
+        "deprecated": [
+            "buccaneer_build_refine_mr",
+            "nautilus_build_refine"
+        ],
         "developer_tools": [
             "MakeMonster",
             "SyncToDjango",
@@ -110,10 +114,9 @@
             "coot_find_waters",
             "arp_warp_classic",
             "shelxeMR",
-            "buccaneer_build_refine_mr",
-            "nautilus_build_refine",
             "dr_mr_modelbuild_pipeline",
             "ccp4mg_general",
+            "coot1",
             "coot_gtk3_rebuild"
         ],
         "model_data_utility": [
@@ -734,6 +737,15 @@
                 "class": "wrappers.coordinate_selector.script.coordinate_selector_reportcoordinate_selector_report",
                 "clsModule": "wrappers.coordinate_selector.script.coordinate_selector_report",
                 "clsName": "coordinate_selector_report",
+                "modes": []
+            }
+        },
+        "coot1": {
+            "0.0.0": {
+                "MAINTAINER": "Nobody",
+                "class": "wrappers.coot1.script.coot1_reportcoot1_report",
+                "clsModule": "wrappers.coot1.script.coot1_report",
+                "clsName": "coot1_report",
                 "modes": []
             }
         },
@@ -2260,19 +2272,6 @@
                 "subTasks": []
             }
         },
-        "buccaneer_build_refine_mr": {
-            "202003271051": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "paul.bond@york.ac.uk",
-                "TASKTITLE": "Autobuild protein (Buccaneer pipeline)",
-                "class": "pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mrbuccaneer_build_refine_mr",
-                "clsModule": "pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mr",
-                "clsName": "buccaneer_build_refine_mr",
-                "internal": false,
-                "subTasks": []
-            }
-        },
         "buccaneer_mr": {
             "0.0": {
                 "DESCRIPTION": null,
@@ -2451,6 +2450,19 @@
                 "class": "wrappers.coordinate_selector.script.coordinate_selectorcoordinate_selector",
                 "clsModule": "wrappers.coordinate_selector.script.coordinate_selector",
                 "clsName": "coordinate_selector",
+                "internal": false,
+                "subTasks": []
+            }
+        },
+        "coot1": {
+            "0.0": {
+                "DESCRIPTION": null,
+                "INTERRUPTLABEL": null,
+                "MAINTAINER": "martin.noble@newcastle.ac.uk",
+                "TASKTITLE": "Coot 1",
+                "class": "wrappers.coot1.script.coot1coot1",
+                "clsModule": "wrappers.coot1.script.coot1",
+                "clsName": "coot1",
                 "internal": false,
                 "subTasks": []
             }
@@ -3283,19 +3295,6 @@
                 "class": "wrappers.nautilus.script.nautilusnautilus",
                 "clsModule": "wrappers.nautilus.script.nautilus",
                 "clsName": "nautilus",
-                "internal": false,
-                "subTasks": []
-            }
-        },
-        "nautilus_build_refine": {
-            "0.1": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "kevin.cowtan@york.ac.uk",
-                "TASKTITLE": "Autobuild RNA/DNA (Nautilus pipeline)",
-                "class": "pipelines.nautilus_build_refine.script.nautilus_build_refinenautilus_build_refine",
-                "clsModule": "pipelines.nautilus_build_refine.script.nautilus_build_refine",
-                "clsName": "nautilus_build_refine",
                 "internal": false,
                 "subTasks": []
             }
@@ -4187,6 +4186,7 @@
         "cmapcoeff": "qticons/cmapcoeff.png",
         "comit": "qticons/ccp4.png",
         "coordinate_selector": "qticons/coordinate_selector.png",
+        "coot1": "qticons/ccp4.png",
         "coot_find_waters": "qticons/coot_find_waters.png",
         "coot_fit_residues": "qticons/ccp4.png",
         "coot_gtk3_rebuild": "qticons/ccp4.png",
@@ -5173,6 +5173,20 @@
                 "clsName": "coordinate_selector_gui",
                 "shortTitle": "Import coordinates",
                 "taskName": "coordinate_selector",
+                "taskVersion": 0.1
+            }
+        },
+        "coot1": {
+            "0.0.0": {
+                "DESCRIPTION": "Interactive building (Coot)",
+                "MAINTAINER": "Nobody",
+                "RANK": null,
+                "TASKTITLE": "Coot 1",
+                "class": "wrappers.coot1.script.coot1_guiCcoot1",
+                "clsModule": "wrappers.coot1.script.coot1_gui",
+                "clsName": "Ccoot1",
+                "shortTitle": "COOT1",
+                "taskName": "coot1",
                 "taskVersion": 0.1
             }
         },

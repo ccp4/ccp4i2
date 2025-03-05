@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <projectName></projectName>
+        <userId>martin</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId></jobId>
+        <pluginName>coot1</pluginName>
+        <pluginVersion></pluginVersion>
+        <projectId></projectId>
+        <creationTime>09:40 23/Dec/12</creationTime>
+        <pluginTitle></pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="coot1">
+        <container id="inputData">
+            <content id="USEKEYBINDINGS">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <toolTip>Use Bernhard and Pauls preferred key bindings</toolTip>
+                    <default>True</default>
+                </qualifiers>
+                </content>
+            <content id="XYZIN_LIST">
+                <className>CList</className>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
+                </qualifiers>
+                <subItem>
+                    <className>CPdbDataFile</className>
+                    <qualifiers>
+                        <mustExist>True</mustExist>
+                        <allowUndefined>False</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="FPHIIN_LIST">
+                <className>CList</className>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
+                </qualifiers>
+                <subItem>
+                    <className>CMapCoeffsDataFile</className>
+                    <qualifiers>
+                        <requiredSubType>1</requiredSubType>
+                        <allowUndefined>False</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="DELFPHIIN_LIST">
+                <className>CList</className>
+                <qualifiers>
+                </qualifiers>
+                <subItem>
+                    <className>CMapCoeffsDataFile</className>
+                    <qualifiers>
+                        <requiredSubType>2</requiredSubType>
+                        <allowUndefined>False</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="DELFPHIINANOM_LIST">
+                <className>CList</className>
+                <qualifiers>
+                </qualifiers>
+                <subItem>
+                    <className>CMapCoeffsDataFile</className>
+                    <qualifiers>
+                        <requiredSubType>3</requiredSubType>
+                        <allowUndefined>True</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="DICT">
+                <className>CDictDataFile</className>
+                <qualifiers>
+                    <mimeTypeName>application/refmac-dictionary</mimeTypeName>
+                    <mimeTypeDescription>Ligand geometry file</mimeTypeDescription>
+                    <toolTip>Ideal ligand geometry for refinement</toolTip>
+                    <label>Ligand geometry</label>
+                    <fileExtensions>cif</fileExtensions>
+                    <saveToDb>True</saveToDb>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="COOTSTATEFILE">
+                <className>CCootHistoryDataFile</className>
+                <qualifiers>
+                    <saveToDb>False</saveToDb>
+                </qualifiers>
+            </content>
+            <content id="COOTSCRIPTFILE">
+                <className>CCootHistoryDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="XYZOUT">
+                <className>COutputFileList</className>
+                <subItem>
+                    <className>CPdbDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+            <content id="DICTOUT">
+                <className>COutputFileList</className>
+                <subItem>
+                    <className>CDictDataFile</className>
+                    <qualifiers>
+                        <saveToDb>True</saveToDb>
+                    </qualifiers>
+                </subItem>
+            </content>
+            
+        </container>
+    </ccp4i2_body>
+</ccp4:ccp4i2>
