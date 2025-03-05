@@ -52,14 +52,14 @@ class coot1(CPluginScript):
     def processOutputFiles(self):
         xyzout = self.container.outputData.XYZOUT
         workDir = Path(self.getWorkDirectory())
-        xyzoutNum = 1
         for pattern, contentFlag in [
             ("*.cif", CPdbDataFile.CONTENT_FLAG_MMCIF),
             ("*.pdb", CPdbDataFile.CONTENT_FLAG_PDB),
         ]:
             for path in workDir.glob(pattern):
-                xyzout[xyzoutNum].setFullPath(path)
-                xyzout[xyzoutNum].annotation.set(f"Coot output {path.name}")
-                xyzout[xyzoutNum].subType.set(CPdbDataFile.SUBTYPE_MODEL)
-                xyzout[xyzoutNum].contentFlag.set(contentFlag)
+                xyzout.append(xyzout.makeItem())
+                xyzout[-1].setFullPath(path)
+                xyzout[-1].annotation.set(f"Coot output {path.name}")
+                xyzout[-1].subType.set(CPdbDataFile.SUBTYPE_MODEL)
+                xyzout[-1].contentFlag.set(contentFlag)
         return CPluginScript.SUCCEEDED
