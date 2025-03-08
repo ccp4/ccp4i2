@@ -93,5 +93,6 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
   install(FILES ${CMAKE_SOURCE_DIR}/Linux/ccp4i2.png DESTINATION .)
 endif()
 
+install(FILES ${CMAKE_SOURCE_DIR}/__init__.py DESTINATION ${Python_SITELIB}/ccp4i2)
 install(FILES ${CMAKE_SOURCE_DIR}/VERSION DESTINATION ${Python_SITELIB}/ccp4i2)
 
