@@ -2,7 +2,6 @@
 
 from contextlib import contextmanager
 from email.message import EmailMessage
-from os import environ
 from os.path import basename
 from pathlib import Path
 from random import choice
@@ -16,6 +15,8 @@ import xml.etree.ElementTree as ET
 from requests import get, Response
 import gemmi
 import pytest
+
+from ...core import CCP4I2Runner
 
 
 # Utility functions and fixtures
@@ -95,25 +96,6 @@ def fixture_fasta():
     yield from pdbefile("entry/pdb/8xfm/fasta")
 
 
-def i2_path() -> Path:
-    "Find the CCP4I2 installation"
-    if "CCP4I2" in environ:
-        return Path(environ["CCP4I2"])
-    if "CCP4" in environ:
-        ccp4 = Path(environ["CCP4"])
-        for subdir in (
-            "Frameworks/Python.framework/Versions/Current/lib/python3.7",
-            "Frameworks/Python.framework/Versions/Current/lib/python3.9",
-            "lib/python3.7",
-            "lib/python3.9",
-            "lib",
-        ):
-            path = ccp4 / subdir / "site-packages/ccp4i2"
-            if path.exists():
-                return path
-    raise RuntimeError("CCP4I2 installation not found")
-
-
 def has_residue_name(structure: gemmi.Structure, residue_name: str) -> bool:
     "Determine if any residue in the structure has a specific residue"
     for model in structure:
@@ -128,12 +110,11 @@ def i2run(args, outputFilename="XYZOUT.cif"):
     "Run a task with i2run and check the output"
     chars = ascii_letters + digits
     tmp_name = "tmp_" + "".join(choice(chars) for _ in range(10))
-    i2run_path = str(i2_path() / "bin" / "i2run")
-    command = [i2run_path] + args
-    command += ["--projectName", tmp_name]
-    command += ["--projectPath", tmp_name]
-    command += ["--dbFile", f"{tmp_name}.sqlite"]
-    call(command)
+    args = ["i2run"] + args
+    args += ["--projectName", tmp_name]
+    args += ["--projectPath", tmp_name]
+    args += ["--dbFile", f"{tmp_name}.sqlite"]
+    CCP4I2Runner.main(args)
     directory: Path = Path(tmp_name, "CCP4_JOBS", "job_1")
     xml_path = str(directory / "diagnostic.xml")
     out_path = str(directory / outputFilename)
@@ -141,10 +122,12 @@ def i2run(args, outputFilename="XYZOUT.cif"):
     structure = gemmi.read_structure(out_path, format=gemmi.CoorFormat.Mmcif)
     assert has_residue_name(structure, "A1LU6")
     rmtree(tmp_name, ignore_errors=True)
-    Path(f"{tmp_name}.sqlite").unlink(missing_ok=True)
-    Path(f"{tmp_name}.sqlite-shm").unlink(missing_ok=True)
-    Path(f"{tmp_name}.sqlite-wal").unlink(missing_ok=True)
-
+    for extension in ("sqlite", "sqlite-shm", "sqlite-wal"):
+        try:
+            Path(f"{tmp_name}.{extension}").unlink(missing_ok=True)
+        except PermissionError:
+            # The files are still open and can't be removed on Windows
+            pass
 
 # Tests
 
