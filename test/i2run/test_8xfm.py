@@ -8,6 +8,7 @@ from random import choice
 from shutil import rmtree
 from string import ascii_letters, digits
 from subprocess import call
+from multiprocessing import Process
 from tempfile import NamedTemporaryFile
 from urllib.parse import urlparse, unquote
 import xml.etree.ElementTree as ET
@@ -114,7 +115,9 @@ def i2run(args, outputFilename="XYZOUT.cif"):
     args += ["--projectName", tmp_name]
     args += ["--projectPath", tmp_name]
     args += ["--dbFile", f"{tmp_name}.sqlite"]
-    CCP4I2Runner.main(args)
+    process = Process(target=CCP4I2Runner.main, args=(args,))
+    process.start()
+    process.join()
     directory: Path = Path(tmp_name, "CCP4_JOBS", "job_1")
     xml_path = str(directory / "diagnostic.xml")
     out_path = str(directory / outputFilename)
@@ -123,11 +126,8 @@ def i2run(args, outputFilename="XYZOUT.cif"):
     assert has_residue_name(structure, "A1LU6")
     rmtree(tmp_name, ignore_errors=True)
     for extension in ("sqlite", "sqlite-shm", "sqlite-wal"):
-        try:
-            Path(f"{tmp_name}.{extension}").unlink(missing_ok=True)
-        except PermissionError:
-            # The files are still open and can't be removed on Windows
-            pass
+        Path(f"{tmp_name}.{extension}").unlink(missing_ok=True)
+
 
 # Tests
 
