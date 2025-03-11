@@ -29,9 +29,50 @@ def getCCP4I2Dir(up=1):
     return abstarget
 
 
+def findLibTbxPath():
+    for subdir in (
+        "Frameworks/Python.framework/Versions/Current/lib/python3.9/site-packages/ccp4i2",
+        "lib/python3.9/cctbx",
+        "lib/cctbx",
+        "lib/python3.9/site-packages/cctbx",
+    ):
+        path = I2_TOP / subdir
+        if path.exists():
+            return str(path)
+    import sysconfig
+    return sysconfig.get_path("purelib")
+
+
+def environmentShellReplacement():
+    print("CCP4", os.environ["CCP4"])
+    # TODO: What $CCP4/bin/ccp4.setup-sh does
+    os.environ["CCP4I2"] = str(I2_TOP)
+    os.environ["CCP4I2_TOP"] = str(I2_TOP)
+    os.environ["PYTHONSTARTUP"] = str(I2_TOP / "bin" / "ccp4i2.pythonrc")
+    # TODO: What $CCP4/bin/ccp4.setup-sh does - again
+    os.environ["LIBTBX_BUILD"] = findLibTbxPath()
+    # TODO: Does setting PYTHONPATH within a python script do anything?
+    # export PYTHONPATH="$LIBTBX_BUILD/../site-packages/phaser:$LIBTBX_BUILD/../site-packages/tntbx:$LIBTBX_BUILD/../site-packages:$LIBTBX_BUILD/../site-packages/cctbx_project:$LIBTBX_BUILD/../site-packages/cctbx_project/boost_adaptbx:$LIBTBX_BUILD/../site-packages/cctbx_project/libtbx/pythonpath:$LIBTBX_BUILD/lib:$LIBTBX_BUILD/../dxtbx/src:$LIBTBX_BUILD/../site-packages/dxtbx/src:$CCP4/share/python"
+    # # MSYS translates most of paths automatically, but it needs help here
+    # if [ "$(uname)" = MINGW32_NT-6.1 ]; then
+    # CCP4="$(cd "$CCP4" && pwd -W)"
+    # export PYTHONPATH="$LIBTBX_BUILD/../site-packages/phaser;$LIBTBX_BUILD/../site-packages/tntbx;$LIBTBX_BUILD/../site-packages;$LIBTBX_BUILD/../site-packages/cctbx_project;$LIBTBX_BUILD/../site-packages/cctbx_project/boost_adaptbx;$LIBTBX_BUILD/../site-packages/cctbx_project/libtbx/pythonpath;$LIBTBX_BUILD/lib;$CCP4/share/python"
+    # fi
+    os.environ["LC_ALL"] = "C"
+    os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = os.path.join(os.environ["CCP4"], "QtPlugins")
+    # if [ x`uname` = x"Linux" ]; then
+    #     DIR_QT_LIBRARY_DATA=${CCP4}/resources
+    #     export DIR_QT_LIBRARY_DATA
+    #     export QTWEBENGINE_DISABLE_SANDBOX=1
+    # fi
+    os.environ["BOOST_ADAPTBX_FPE_DEFAULT"] = "1"
+    os.environ["LD_LIBRARY_PATH"] = os.path.join(os.environ["CCP4"], "lib")
+
+
 def main():
     if False:  # Added to help with debugging segfaults.
         import faulthandler; faulthandler.enable()
+    environmentShellReplacement()
     print('Running CCP4i2 browser from:', I2_TOP)
     print('Python', sys.version)
     try:
