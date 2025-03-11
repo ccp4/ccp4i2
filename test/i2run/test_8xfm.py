@@ -1,72 +1,100 @@
 "Testing that tasks are capable of using long ligand names in mmCIF using 8xfm"
 
-from os import environ
+from contextlib import contextmanager
+from email.message import EmailMessage
+from os.path import basename
 from pathlib import Path
 from random import choice
 from shutil import rmtree
 from string import ascii_letters, digits
 from subprocess import call
+from multiprocessing import Process
 from tempfile import NamedTemporaryFile
-from urllib.request import urlretrieve
+from urllib.parse import urlparse, unquote
 import xml.etree.ElementTree as ET
+
+from requests import get, Response
 import gemmi
 import pytest
 
+from ...core import CCP4I2Runner
 
-# Utilty functions and fixtures
+
+# Utility functions and fixtures
 
 
-def pdbefile(endpoint: str, suffix: str):
+def valid_filename_from_response(response: Response):
+    """
+    Extracts a valid filename from the response headers or URL.
+    Ensures that the filename is safe to use by stripping whitespace,
+    replacing spaces with underscores, and removing any characters
+    that are not alphanumeric, dash, underscore or dot.
+    """
+    message = EmailMessage()
+    for header, value in response.headers.items():
+        message[header] = value
+    url_name = unquote(basename(urlparse(response.url).path))
+    name = message.get_filename() or url_name
+    name = name.strip().replace(" ", "_")
+    name = "".join(c for c in name if c.isalnum() or c in "-_.")
+    return name
+
+
+@contextmanager
+def download(url: str):
+    """
+    Downloads a file from the given URL and saves it to a temporary file.
+    Yields a pathlib.Path object to the temporary file.
+    Use in a with statement to ensure the file is deleted afterwards.
+    """
+    response = get(url, allow_redirects=True, stream=True, timeout=30)
+    response.raise_for_status()
+    suffix = f"_{valid_filename_from_response(response)}"
+    with NamedTemporaryFile(suffix=suffix, delete=False) as temp:
+        for chunk in response.iter_content(chunk_size=1_000_000):
+            temp.write(chunk)
+    path = Path(temp.name).resolve()
+    try:
+        yield path
+    finally:
+        path.unlink(missing_ok=True)
+
+
+def pdbefile(endpoint: str):
     "Download a file from PDBe to a temporary file and return the path"
     server = "https://www.ebi.ac.uk/pdbe"
-    with NamedTemporaryFile(suffix=suffix) as tmp_file:
-        urlretrieve(f"{server}/{endpoint}", tmp_file.name)
-        yield tmp_file.name
+    with download(f"{server}/{endpoint}") as path:
+        yield str(path)
 
 
 @pytest.fixture(name="mmcif", scope="module")
 def fixture_mmcif():
     "Download 8xfm.cif to a temporary file and return the path"
-    yield from pdbefile("entry-files/download/8xfm.cif", "_8xfm.cif")
+    yield from pdbefile("entry-files/download/8xfm.cif")
 
 
 @pytest.fixture(name="sfcif", scope="module")
 def fixture_sfcif():
     "Download r8xfmsf.ent to a temporary file and return the path"
-    yield from pdbefile("entry-files/download/r8xfmsf.ent", "_r8xfmsf.ent")
+    yield from pdbefile("entry-files/download/r8xfmsf.ent")
 
 
 @pytest.fixture(name="mtz", scope="module")
 def fixture_mtz(sfcif):
     "Convert the structure factor CIF to MTZ format and return the path"
-    with NamedTemporaryFile(suffix="_8xfm.mtz") as tmp_file:
-        call(["gemmi", "cif2mtz", sfcif, tmp_file.name])
-        yield tmp_file.name
+    temp = NamedTemporaryFile(suffix="_8xfm.mtz", delete=False)
+    temp.close()
+    call(["gemmi", "cif2mtz", sfcif, temp.name])
+    try:
+        yield temp.name
+    finally:
+        Path(temp.name).unlink(missing_ok=True)
 
 
 @pytest.fixture(name="fasta", scope="module")
 def fixture_fasta():
     "Download 8xfm.fasta to a temporary file and return the path"
-    yield from pdbefile("entry/pdb/8xfm/fasta", "_8xfm.fasta")
-
-
-def i2_path() -> Path:
-    "Find the CCP4I2 installation"
-    if "CCP4I2" in environ:
-        return Path(environ["CCP4I2"])
-    if "CCP4" in environ:
-        ccp4 = Path(environ["CCP4"])
-        for subdir in (
-            "Frameworks/Python.framework/Versions/Current/lib/python3.7",
-            "Frameworks/Python.framework/Versions/Current/lib/python3.9",
-            "lib/python3.7",
-            "lib/python3.9",
-            "lib",
-        ):
-            path = ccp4 / subdir / "site-packages/ccp4i2"
-            if path.exists():
-                return path
-    raise RuntimeError("CCP4I2 installation not found")
+    yield from pdbefile("entry/pdb/8xfm/fasta")
 
 
 def has_residue_name(structure: gemmi.Structure, residue_name: str) -> bool:
@@ -83,12 +111,13 @@ def i2run(args, outputFilename="XYZOUT.cif"):
     "Run a task with i2run and check the output"
     chars = ascii_letters + digits
     tmp_name = "tmp_" + "".join(choice(chars) for _ in range(10))
-    i2run_path = str(i2_path() / "bin" / "i2run")
-    command = [i2run_path] + args
-    command += ["--projectName", tmp_name]
-    command += ["--projectPath", tmp_name]
-    command += ["--dbFile", f"{tmp_name}.sqlite"]
-    call(command)
+    args = ["i2run"] + args
+    args += ["--projectName", tmp_name]
+    args += ["--projectPath", tmp_name]
+    args += ["--dbFile", f"{tmp_name}.sqlite"]
+    process = Process(target=CCP4I2Runner.main, args=(args,))
+    process.start()
+    process.join()
     directory: Path = Path(tmp_name, "CCP4_JOBS", "job_1")
     xml_path = str(directory / "diagnostic.xml")
     out_path = str(directory / outputFilename)
@@ -96,9 +125,8 @@ def i2run(args, outputFilename="XYZOUT.cif"):
     structure = gemmi.read_structure(out_path, format=gemmi.CoorFormat.Mmcif)
     assert has_residue_name(structure, "A1LU6")
     rmtree(tmp_name, ignore_errors=True)
-    Path(f"{tmp_name}.sqlite").unlink(missing_ok=True)
-    Path(f"{tmp_name}.sqlite-shm").unlink(missing_ok=True)
-    Path(f"{tmp_name}.sqlite-wal").unlink(missing_ok=True)
+    for extension in ("sqlite", "sqlite-shm", "sqlite-wal"):
+        Path(f"{tmp_name}.{extension}").unlink(missing_ok=True)
 
 
 # Tests
