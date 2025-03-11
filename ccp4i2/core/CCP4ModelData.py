@@ -2059,7 +2059,7 @@ class CPdbData(CCP4File.CDataFileContent):
             import mmdb2 as mmdb
         except:
             print('FAILED CCP4ModelData imported ccp4mg')
-        from model import CCP4SelectionTree
+        from core import CCP4SelectionTree
         import mmut
         try:
             toks = CCP4SelectionTree.SelectionParser().tokenise(command)
