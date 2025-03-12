@@ -16,6 +16,16 @@ def getCCP4I2Dir(up=1):
         up = up -1
     return abstarget
 
+
+def startDefEd():
+    from core import CCP4Config
+    from qtgui import CCP4DefEd
+    pars = CCP4Config.CConfig(qt=True, graphical=True, developer=True)
+    defEd = CCP4DefEd.CDefEd()
+    defEd.raise_()
+    return defEd
+
+
 if __name__ == '__main__':
 
     top_path = getCCP4I2Dir()
@@ -24,8 +34,7 @@ if __name__ == '__main__':
     print(' ')
     exec(compile(open(os.path.join(top_path,'utils','startup.py')).read(), os.path.join(top_path,'utils','startup.py'), 'exec'))
     setupEnvironment()
-    setupPythonpath(top=top_path,mode='qtgui')
-    setupGuiPluginsPath(top=top_path)
+    setupPythonpath()
     from core.CCP4Modules import QTAPPLICATION
     app = QTAPPLICATION(graphical=True)
 

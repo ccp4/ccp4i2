@@ -1,119 +1,34 @@
-from __future__ import print_function
-
 """
-     utils/startup.py.py: CCP4 GUI Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Liz Potterton Feb 2010 - Some minimal functionality to bootstrap program startup
 """
 
-'''
-    Liz Potterton Feb 2010 - Some minimal functionality to bootstrap program startup
-'''
-
-
-import os
-import sys
-import glob
-import shutil
 import atexit
-import time
+import os
+import shutil
+import sys
 import tempfile
-from PySide2 import QtCore, QtGui, QtWidgets
+import time
+
+from PySide2 import QtWidgets
+
+from ccp4i2 import I2_TOP
+
 
 class DatabaseFailException(Exception):
     pass
 
-def getCCP4I2Dir(up=1):
-    target = os.environ.get('CCP4I2_TOP', None)
-    if target is not None:
-        return os.path.abspath(target)
-    else:
-        target = os.path.join(os.path.abspath(sys.argv[0]), "..")
-        abstarget = os.path.abspath(target)
-        splittarget = abstarget.split('/')
-        if splittarget.count('ccp4i2'):
-            splittarget.reverse()
-            up = splittarget.index('ccp4i2')
-        while up > 0:
-            abstarget = os.path.dirname(abstarget)
-            up = up - 1
-        return abstarget
+
+def getCCP4I2Dir():
+    return str(I2_TOP)
+
 
 def setupEnvironment(path=''):
-    if not path:
-        path = getCCP4I2Dir()
-    os.environ["CCP4I2_TOP"] = path
+    os.environ["CCP4I2_TOP"] = path or getCCP4I2Dir()
 
-def setupPythonpath(top='', mode='qtgui'):
-    top = getCCP4I2Dir()
-    sys.path.insert(0, top)
-    return
 
-def setupGuiPluginsPath(top=''):
-    # Add all ccp4i2/tasks/* directories to search path
-    if not top:
-        top = getCCP4I2Dir()
-    pluginsSearchPath = [os.path.join(top, "tasks")]
-    pluginDirs = []
-    for searchPath in pluginsSearchPath:
-        pluginDirs.extend(glob.glob(os.path.join(searchPath, '*')))
-    for pD in pluginDirs:
-        sys.path.append(pD)
+def setupPythonpath():
+    sys.path.insert(0, getCCP4I2Dir())
 
-def setupPluginsPath(top=''):
-    # Add all ccp4i2/wrappers/* and ccp4i2/plugins/* directories to search path
-    if not top:
-        top = getCCP4I2Dir()
-    pluginsSearchPath = [os.path.join(top, 'wrappers'), os.path.join(top, 'pipelines')]
-    plineWraps = glob.glob(os.path.join(top, 'pipelines', '*', 'wrappers'))
-    pluginsSearchPath.extend(plineWraps)
-    pluginDirs = []
-    for searchPath in pluginsSearchPath:
-        pluginDirs.extend(glob.glob(os.path.join(searchPath, '*')))
-    for pD in pluginDirs:
-        sys.path.append(os.path.join(pD, 'script'))
-
-def testForCCP4Environment():
-    ccp4_env = os.environ.get('CCP4', 'NOT SET')
-    print('Using CCP4 from: ', ccp4_env)
-    if ccp4_env == 'NOT SET':
-        return False
-    else:
-        return True
-
-def startGraphics():
-    from core import CCP4Config
-    from .QApp import CGuiApplication # KJS : does this need to go in here (is fn used ?)
-    app = CGuiApplication(sys.argv)
-    CCP4Config.CONFIG().set('graphical', True)
-    CCP4Config.CONFIG().set('qt', True)
-    return app
-
-def setQtWidgetStyle():
-    return
-    from core import CCP4Modules
-    try:
-        factory = QtWidgets.QStyleFactory()
-        preferences = CCP4Modules.PREFERENCES()
-        stylePref = CCP4Modules.PREFERENCES().WINDOWS_STYLE.__str__()
-        style = factory.create(stylePref)
-        CCP4Modules.QTAPPLICATION().setStyle(style)
-    except Exception as e:
-        print('ERROR setting window style..')
-        print(e)
 
 def createMissingDATABASEdbXML():
     from lxml import etree
@@ -191,6 +106,7 @@ def createMissingDATABASEdbXML():
                    if res == QtWidgets.QMessageBox.Abort:
                        sys.exit()
 
+
 def startBrowser(args, app=None, splash=None):
     from core import CCP4Modules
     from qtgui import CCP4WebBrowser
@@ -244,7 +160,6 @@ def startBrowser(args, app=None, splash=None):
         job_cont.setDbFile(kw['dbFileName'])
     launcher = CCP4Modules.LAUNCHER()
     #print 'startup.startBrowser app',app
-    #setQtWidgetStyle()
     createMissingDATABASEdbXML()
     def pushLocalDB():
         from core import CCP4Config, CCP4Utils
@@ -313,13 +228,6 @@ def startBrowser(args, app=None, splash=None):
         tipsOfTheDay = CTipsOfTheDay()
         tipsOfTheDay.exec_()
 
-def startDefEd():
-    from core import CCP4Config
-    from qtgui import CCP4DefEd
-    pars = CCP4Config.CConfig(qt=True, graphical=True, developer=True)
-    defEd = CCP4DefEd.CDefEd()
-    defEd.raise_()
-    return defEd
 
 def startJobController():
     from core import CCP4Modules
@@ -363,6 +271,7 @@ def copyDB(origFileName,f2):
     print("Saved backup database to",f2)
     conbak.close()
     con.close()
+
 
 def startProjectsManager(dbFileName=None, checkForFinishedJobs=False, useLocalDBFile=None, **kw):
     from core import CCP4Config
@@ -456,6 +365,7 @@ def startProjectsManager(dbFileName=None, checkForFinishedJobs=False, useLocalDB
         print('Starting Project Manager - DONE')
         return pm
 
+
 def startDb(parent=None, fileName=None, mode='sqlite', userName=None, userPassword=None,**kw):
     from core import CCP4Utils
     from core import CCP4ErrorHandling
@@ -516,6 +426,7 @@ def startDb(parent=None, fileName=None, mode='sqlite', userName=None, userPasswo
 
     return db
 
+
 def loadConfig():
     from core import CCP4Config, CCP4Utils
     config = CCP4Config.CONFIG(os.path.join(CCP4Utils.getDotDirectory(), 'configs', 'ccp4i2_config.params.xml'))
@@ -536,6 +447,7 @@ def  startHTTPServer(parent=None, port=None, **kw):
     t.start()
     return
 
+
 def startPrintHandler(app):
     from core import CCP4PrintHandler
     printHandler = CCP4PrintHandler.CPrintHandler(parent=app)
@@ -550,4 +462,3 @@ def startPrintHandler(app):
     sys.stderr = printHandler
     app.aboutToQuit.connect(printHandler.exit)
     # Output version info to the print log
-

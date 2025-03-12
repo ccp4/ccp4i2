@@ -35,7 +35,7 @@ if __name__ == "__main__":
     CCP4I2_TOP= os.path.abspath(os.environ["CCP4I2"])
     exec(compile(open(os.path.join(CCP4I2_TOP,'utils','startup.py')).read(), os.path.join(CCP4I2_TOP,'utils','startup.py'), 'exec'))
     setupEnvironment(path=CCP4I2_TOP)
-    setupPythonpath(top=CCP4I2_TOP,mode='qtgui')
+    setupPythonpath()
     import argparse
     from core import CCP4TaskManager
     destinations = CCP4TaskManager.MODULE_ORDER

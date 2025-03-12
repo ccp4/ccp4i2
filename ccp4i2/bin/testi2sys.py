@@ -53,6 +53,20 @@ def onTestRunnerComplete(logXmlPath, logXmlRoot, app):
             f.write(etree.tostring(logXmlTree,pretty_print=True))
     sys.exit()
 
+def setupPluginsPath(top=''):
+    # Add all ccp4i2/wrappers/* and ccp4i2/plugins/* directories to search path
+    if not top:
+        top = getCCP4I2Dir()
+    pluginsSearchPath = [os.path.join(top, 'wrappers'), os.path.join(top, 'pipelines')]
+    plineWraps = glob.glob(os.path.join(top, 'pipelines', '*', 'wrappers'))
+    pluginsSearchPath.extend(plineWraps)
+    pluginDirs = []
+    for searchPath in pluginsSearchPath:
+        pluginDirs.extend(glob.glob(os.path.join(searchPath, '*')))
+    for pD in pluginDirs:
+        sys.path.append(os.path.join(pD, 'script'))
+
+
 if __name__ == '__main__':
 
     import sys,os
@@ -62,11 +76,7 @@ if __name__ == '__main__':
     top_path = getCCP4I2Dir()
     exec(compile(open(os.path.join(top_path,'utils','startup.py')).read(), os.path.join(top_path,'utils','startup.py'), 'exec'))
     graphical = False
-    
-    if graphical:
-        setupPythonpath(mode='qtgui')
-    else:
-        setupPythonpath(mode='qtcore')
+    setupPythonpath()
     setupPluginsPath()
     import argparse
     parser = argparse.ArgumentParser(description='Run CCP4i2 test project')

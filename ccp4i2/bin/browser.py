@@ -37,10 +37,9 @@ def main():
     setEnvironmentVariablesThatUsedToBeInBash()
     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)
     sys.path.append(os.path.join(I2_TOP, 'utils'))
-    from startup import setupEnvironment, setupPythonpath, setupGuiPluginsPath, startBrowser
+    from startup import setupEnvironment, setupPythonpath, startBrowser
     setupEnvironment()
-    setupPythonpath(top=I2_TOP, mode='qtgui')
-    setupGuiPluginsPath(top=I2_TOP)
+    setupPythonpath()
     from core.CCP4Modules import QTAPPLICATION
     app = QTAPPLICATION(graphical=True)
     QtWebEngineWidgets.QWebEngineProfile.defaultProfile().clearHttpCache()

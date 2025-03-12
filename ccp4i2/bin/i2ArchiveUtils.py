@@ -199,7 +199,7 @@ class CCP4i2DjangoSession(DjangoSession):
         sys.path.append(os.path.join(CCP4I2_TOP,'utils'))
         from startup import setupEnvironment, setupPythonpath, startProjectsManager
         setupEnvironment(path=CCP4I2_TOP)
-        setupPythonpath(top=CCP4I2_TOP,mode='qtgui')
+        setupPythonpath()
         pm = startProjectsManager()
         return pm
     
