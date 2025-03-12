@@ -1,19 +1,9 @@
-from __future__ import print_function
+import getpass
+import os
+import time
 
+import psutil
 
-import os,sys,time
-
-def getCCP4I2Dir(up=1):
-    target = os.path.join(os.path.realpath(sys.argv[0]),"..")
-    abstarget = os.path.abspath(target)
-    splittarget = abstarget.split()
-    if splittarget.count('ccp4i2'):
-        splittarget.reverse()
-        up = splittarget.index('ccp4i2')
-    while up>0:
-        abstarget = os.path.dirname(abstarget)
-        up = up -1
-    return abstarget
 
 def getUserId():
     name = os.environ.get('LOGNAME',None)
@@ -22,7 +12,6 @@ def getUserId():
     name = os.environ.get('USERNAME',None)
     if name is not None:
         return name
-    import getpass
     name = getpass.getuser()
     if name is not None:
         return name
@@ -32,9 +21,8 @@ def getUserId():
         return None
 
 
-if __name__ == '__main__':
+def main():
 
-    import psutil
     containsList = ['ccp4']
 
     def contains(exe,containsList):
@@ -68,5 +56,3 @@ if __name__ == '__main__':
                 pInfoDict[pinfo['pid']] = pinfo
     print('processes=',pInfoDict)
     print('atTime='+time.time())
-
-
