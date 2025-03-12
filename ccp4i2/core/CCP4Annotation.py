@@ -1,35 +1,20 @@
-from __future__ import print_function
-
 """
-     CCP4Annotation.py: CCP4 GUI Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See theShostna
-     GNU Lesser General Public License for more details.
+Liz Potterton Aug 2010 - Generic annotation object
 """
 
-"""
-   Liz Potterton Aug 2010 - Generic annotation object
-"""
 import os
+import platform
 import re
+import shutil
 import time
 import types
-from core import CCP4Data
-from core.CCP4Data import CBaseData
-from core import CCP4Utils
-from core.CCP4ErrorHandling import *
+
+from PySide2 import QtCore, QtGui
+
+from . import CCP4Data, CCP4Utils
+from .CCP4Data import CBaseData
+from .CCP4ErrorHandling import CErrorReport, CException
+
 
 class CTime(CCP4Data.CInt):
     '''The time. Uses Python time module'''
@@ -81,7 +66,6 @@ class CTime(CCP4Data.CInt):
                 raise e
 
     def getQDateTime(self):
-        from PySide2 import QtCore
         q = QtCore.QDateTime()
         if self.__dict__['_value'] is not None:
             q.setTime_t(int(self.__dict__['_value']))
@@ -128,7 +112,6 @@ class CUserAddress(CCP4Data.CData):
                   'toolTip' : 'User id as me@myplace.ac.uk and machine name'}
 
     def setCurrent(self):
-        import platform
         self._value['userId'].setCurrentUser()
         self._value['platformNode'].set(platform.node())
 
@@ -202,12 +185,6 @@ class CAnnotationList(CCP4Data.CList):
         else:
             CCP4Data.CList.append(self,arg)
 
-'''
-class CUsersList(CCP4Data.CList):
-    SUBITEM = { 'class' : CUserId }
-    QUALIFIERS = { 'default' : [CUserId('liz')] }
-    pass
-'''
 
 class CFont(CCP4Data.CData):
     '''Simplified Qt font options'''
@@ -228,20 +205,10 @@ class CFont(CCP4Data.CData):
                                           'menuText' : ['light', 'normal', 'demi-bold', 'bold', 'black']}}}
 
     def getQFont(self):
-        from PySide2 import QtGui, QtWidgets
         italic = (self.style == QtGui.QFont.StyleItalic)
         f = QtGui.QFont(str(self.family),int(self.pointSize),int(self.weight),italic)
         #print 'CFont.getQFont', f, str(f.family()),f.pointSize()
         return f
-
-    def setQFont(self,font=None):
-        if font is None:
-            return
-        self.family = str(font.family())
-        self.style = font.style()
-        self.pointSize = font.pointSize()
-        self.weight = font.weight()
-        self.dataChanged.emit()
 
 
 class CAuthor(CCP4Data.CString):
@@ -252,34 +219,15 @@ class CAuthor(CCP4Data.CString):
 class CBibReference(CCP4Data.CData):
     '''Bibliographic reference'''
     CONTENTS_ORDER = ['pmid', 'title', 'authorList', 'source', 'url' , 'selected']
-    CONTENTS = {'pmid' : {'class' : CCP4Data.CInt}, 'title' : {'class' : CCP4Data.CString},
-                'authorList' : {'class' : CCP4Data.CList, 'subItem' :{'class' : CAuthor}},
-                'source' : {'class' : CCP4Data.CString}, 'url' : {'class' : CCP4Data.CString},
-                'selected' : {'class' : CCP4Data.CBoolean}}
+    CONTENTS = {
+        "pmid": {"class": CCP4Data.CInt},
+        "title": {"class": CCP4Data.CString},
+        "authorList": {"class": CCP4Data.CList, "subItem": {"class": CAuthor}},
+        "source": {"class": CCP4Data.CString},
+        "url": {"class": CCP4Data.CString},
+        "selected": {"class": CCP4Data.CBoolean},
+    }
     ERROR_CODES = {101 : {'description' : 'Failed to load Medline data'}}
-    '''
-    def loadFromMedline(self,text):
-        #print 'loadFromMedline',text
-        import re
-        m = re.search(r'TI  -(.*)\n[A-Z]',text,re.DOTALL)
-        if m is not None:
-          self.title = m.groups()[0].strip()
-        else:
-          return CErrorReport(self.__class__,101)
-        m = re.search(r'SO  -(.*)',text)
-        if m is not None:
-          self.source = m.groups()[0].strip()
-        else:
-          return CErrorReport(self.__class__,101)
-        m = re.findall(r'AU  -(.*)',text)
-        for item in m:
-          self.authorList.addItem()
-          self.authorList[-1].set(item.strip())
-        m = re.search(r'URL -(.*)',text)
-        if m is not None: self.url = m.groups()[0].strip()
-        return CErrorReport()
-        #print 'CBibReferenceGroup.loadFromMedline',self.get()
-    '''
 
     def loadFromMedline(self,text):
         lineList = text.split('\n')
@@ -287,7 +235,7 @@ class CBibReference(CCP4Data.CData):
         while idx < len(lineList):
             if lineList[idx][0:5] == 'TI  -':
                 self.title.set(lineList[idx][5:])
-                while not '-' in lineList[idx+1][0:5]:
+                while '-' not in lineList[idx+1][0:5]:
                     idx += 1
                     self.title.set(str(self.title) + lineList[idx][5:])
             elif lineList[idx][0:5] == 'SO  -':
@@ -299,9 +247,7 @@ class CBibReference(CCP4Data.CData):
             elif lineList[idx][0:5] == 'URL -':
                 self.url.set(lineList[idx][5:])
             idx += 1
-        if not self.source.isSet() and not self.url.isSet():
-            return CErrorReport(self.__class__, 101)
-        return CErrorReport()
+        return self.source.isSet() or self.url.isSet()
 
     def get0(self):
         authorText = ''
@@ -316,48 +262,43 @@ class CBibReference(CCP4Data.CData):
 
 class CBibReferenceGroup(CCP4Data.CData):
     '''Set of bibliographic references for a task'''
-    CONTENTS_ORDER = ['taskName', 'version', 'title', 'references']
-    CONTENTS = {'taskName' : {'class' : CCP4Data.CString},
-                'version' : {'class' : CCP4Data.CString},
-                'title' : {'class' : CCP4Data.CString},
-                'references' : {'class' : CCP4Data.CList , 'subItem' : { 'class' : CBibReference}}}
-    ERROR_CODES = {100 : { 'description' : 'Failed attempting to load MedLine file - file not found'},
-                   101 : { 'description' : 'Failed attempting to find references file'},
-                   102 : { 'description' : 'Error copying file'}}
+    CONTENTS_ORDER = ["taskName", "version", "title", "references"]
+    CONTENTS = {
+        "taskName": {"class": CCP4Data.CString},
+        "version": {"class": CCP4Data.CString},
+        "title": {"class": CCP4Data.CString},
+        "references": {"class": CCP4Data.CList, "subItem": {"class": CBibReference}},
+    }
+    ERROR_CODES = {
+        102: {"description": "Error copying file"},
+    }
 
     def loadFromMedline(self, fileNameList=[], taskName=None, version=None):
-        from core import CCP4TaskManager
+        from .CCP4TaskManager import TASKMANAGER
         if len(fileNameList) == 0 and taskName is not None:
-            self.__dict__['fileNameList'] = CCP4TaskManager.TASKMANAGER().searchReferenceFile(taskName,version=version)
+            self.__dict__['fileNameList'] = TASKMANAGER().searchReferenceFile(taskName,version=version)
             if len(fileNameList) == 0:
-                self.__dict__['fileNameList'] = CCP4TaskManager.TASKMANAGER().searchReferenceFile(taskName,version=version,drillDown=True)
+                self.__dict__['fileNameList'] = TASKMANAGER().searchReferenceFile(taskName,version=version,drillDown=True)
         else:
             self.__dict__['fileNameList'] = fileNameList
-        #print 'CBibReferenceGroup.loadFromMedline',fileNameList
         self.__dict__['_value']['taskName'].set(taskName)
         self.__dict__['_value']['version'].set(version)
-        self.__dict__['_value']['title'].set('References for '+CCP4TaskManager.TASKMANAGER().getTitle(taskName,version=version))
+        self.__dict__['_value']['title'].set('References for '+TASKMANAGER().getTitle(taskName,version=version))
         for fileName in self.__dict__['fileNameList']:
             text = CCP4Utils.readFile(fileName=fileName)
             textList = text.split('\nPMID- ')
             for text in textList:
                 self.__dict__['_value']['references'].addItem()
                 rv = self.__dict__['_value']['references'][-1].loadFromMedline(text)
-                if len(rv)>0:
+                if not rv:
                     del self.__dict__['_value']['references'][-1]
         if len(self.__dict__['_value']['references'])>0:
             self.__dict__['_value']['references'][0].selected = True
 
     def export(self, cformat, fileName):
-        import shutil
         err = CErrorReport()
-        #print 'CBibReferenceGroup.export',cformat,fileName
         if os.path.splitext(fileName)[1] == '':
             fileName = fileName +'.' + cformat + '.txt'
-        #fileNameList = CCP4TaskManager.TASKMANAGER().searchReferenceFile(name=self.taskName.get(),version=self.version.get(),cformat=format)
-        #if len(fileNameList)==0:
-        #  err.append(self.__class__,101,details='For taskname: '+str(self.taskName)+' version: '+str(self.version)+' cformat: '+str(format))
-        #else:
         if cformat == 'bibtex':
             source = re.sub(r'\.medline','.bibtex',self.__dict__['fileNameList'][0])
         else:
@@ -403,13 +344,6 @@ class CMetaDataTag(CCP4Data.CData):
         else:
             return '--'
 
-    def getEnumerators(self):
-        func = self.qualifiers('enumeratorsFunction')
-        if func is None:
-            return []
-        else:
-            return func()
-
     def addEnumerator(self, tag):
         if tag is None or len(tag)==0: return -1
         if tag in self.qualifiers('enumeratorsFunction')(): return -1
@@ -436,7 +370,7 @@ class CMetaDataTagList(CCP4Data.CList):
 
 
 class CServerGroup(CCP4Data.CData):
-    from core.CCP4File import CDataFile
+    from ..core.CCP4File import CDataFile
     '''One or more compute servers used in "remote" running'''
     CONTENTS = {'name' : {'class' : CCP4Data.CString},
                 'mechanism' : {'class' : CCP4Data.CString , 'qualifiers' :
@@ -541,39 +475,3 @@ class CDateRange(CCP4Data.CData):
             start = self.epochTime(self.dateString(addYear=-nY,addMonth=-nM,addDay=-nD))
         #print 'epochRange',start,end,time.strftime("%Y %B %d",time.localtime(end))
         return start,end
-
-
-#===========================================================================================================
-import unittest
-
-def TESTSUITE():
-    suite = unittest.defaultTestLoader.loadTestsFromTestCase(testAnnotation)
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)
-
-class testAnnotation(unittest.TestCase):
-
-    def test1(self):
-        a = CAnnotation('Try this text')
-        self.assertEqual(a.text,'Try this text','Failed setting CAnnotation text')
-        self.assertEqual(a.author,CCP4Utils.getUserId(),'Failed setting CAnnotation author')
-        if a.time < int(time.time())-10 or a.time > int(time.time()):
-            self.fail('Failed setting CAnnotation time')
-
-    def test2(self):
-        a = CAnnotation(text='Try this text')
-        t = CTime()
-        t.setCurrentTime()
-        d = a.time-t
-        self.assertEqual(d.__class__, CTime, 'Time difference not a CTime object')
-        self.assertEqual(0 <= d < 10, True, 'Time difference notin expected range')
-
-    def test3(self):
-        annoList = CAnnotationList()
-        annoList.append('Test this string')
-        annoList.append(CAnnotation('Test another string'))
-        self.assertEqual(len(annoList),2,'Annotation list wrong length')
-        self.assertEqual(annoList[1].text,'Test another string','Annotation wrong text')
