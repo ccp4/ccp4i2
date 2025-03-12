@@ -1,27 +1,5 @@
-from __future__ import print_function
-
 """
      CCP4WebBrowser.py: CCP4 GUI Project
-     Copyright (C) 2001-2008 University of York, CCLRC
-     Copyright (C) 2009-2010 University of York
-     Copyright (C) 2011-2014 Science & Technology Facilities Council
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-"""
    Liz Potterton Jan 2010 - Copied from MGWebBrowser with changes to make stand-alone and to enable
                             Qt plugins and custom mime types
                  Feb 2010 - Make menus/toolbars customisable, add CCP4ProjectManger as placeholder
@@ -29,18 +7,17 @@ from __future__ import print_function
 
 ##@package CCP4WebBrowser (QtWebKit) The web browser framework
 
+from collections.abc import Callable
+import functools
+import glob
 import os
+import re
 import sys
 import time
-import glob
-import re
+
 from lxml import etree
-if sys.version_info >= (3,7):
-    from collections.abc import Callable
-else:
-    from collections import Callable
-import functools
-from PySide2 import QtWebEngine, QtWebEngineWidgets, QtGui, QtWidgets, QtCore
+from PySide2 import QtCore, QtGui, QtWebEngineWidgets, QtWidgets
+
 from qtgui import CCP4WebView
 from core import CCP4Modules
 from core.CCP4ErrorHandling import *
@@ -1031,8 +1008,6 @@ class CMainWindow(QtWidgets.QMainWindow):
                                                     slot = self.openSendReport,enabled = self.isProjectViewer)
         self.actionDefinitions['update_core'] = dict(text = "Manage CCP4 updates", tip = "Examine, apply or remove CCP4 updates",
                                                      slot = self.um.manage, enabled = self.um.is_unlocked)
-        self.actionDefinitions['update_gui'] = dict(text = "Update CCP4I2", tip = "Fast track update for CCP4 interface",
-                                                    slot = self.openUpdate, enabled = CCP4Modules.PREFERENCES().guiUpdateEnabled)
         self.actionDefinitions['import_task'] = dict(text = "Import task code", tip = "Load new task from compressed file",
                                                      slot = self.openImportTask, enabled = 1)
         self.actionDefinitions['export_task'] = dict(text = "Export task", tip = "Save task to compressed file",
@@ -2461,17 +2436,13 @@ class CBrowserWindow(CMainWindow):
         widget = CCP4ErrorReportViewer.CSendJobError(self, projectId=self.getProject())
         widget.show()
 
-    def openUpdate(self):
-        from qtgui import CCP4UpdateDialog
-        widget = CCP4UpdateDialog.CUpdateDialog(self)
-        widget.show()
-
     def handleProjectMenuExport(self):
         pass
 
     def openManageImportFiles(self):
         pass
-    
+
+
 class CFindFrame(QtWidgets.QWidget):
 
     findNext = QtCore.Signal()

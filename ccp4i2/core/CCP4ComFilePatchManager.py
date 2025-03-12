@@ -1,37 +1,24 @@
-from __future__ import print_function
-
 """
-     CCP4ComFilePatchManager.py: CCP4 GUI Project
-     Copyright (C) 2013 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2013 STFC
+Liz Potterton July 2013 - create and manage com file patches
 """
 
-"""
-     Liz Potterton July 2013 - create and manage com file patches
-"""
+import os
 
 from PySide2 import QtCore
 
-import os
-from core import CCP4Modules
-from core import CCP4Data
-from core import CCP4Container
-from core import CCP4File
-from core import CCP4CustomManager
-from core.CCP4ErrorHandling import *
+from . import CCP4Container
+from . import CCP4CustomManager
+from . import CCP4Data
+from . import CCP4File
+from ..googlecode import diff_match_patch_py3
+from .CCP4ErrorHandling import CErrorReport, CException
+
+
+def COMFILEPATCHMANAGER():
+    if CComFilePatchManager.insts is None:
+        CComFilePatchManager.insts = CComFilePatchManager()
+    return CComFilePatchManager.insts
 
 
 class CComFilePatchManager(CCP4CustomManager.CCustomManager):
@@ -73,12 +60,7 @@ class CComFilePatchManager(CCP4CustomManager.CCustomManager):
 
     def createPatch(self, name, title, taskNameList, projectId, jobId, text1, text2, useControlParams=False, overwrite=False):
         patchDir = self.createDirectory(name, overwrite=overwrite)
-        if sys.version_info > (3,0):
-            from googlecode import diff_match_patch_py3
-            dmp =  diff_match_patch_py3.diff_match_patch()
-        else:
-            from googlecode import diff_match_patch
-            dmp =  diff_match_patch.diff_match_patch()
+        dmp =  diff_match_patch_py3.diff_match_patch()
         try:
             diffs = dmp.diff_main(text1, text2)
             patches = dmp.patch_make(text1, diffs)
@@ -117,12 +99,7 @@ class CComFilePatchManager(CCP4CustomManager.CCustomManager):
     def applyPatches(self,name,text):
         container = CPatchDefinition(parent=self, name=name)
         container.loadDataFromXml(fileName=self.getCustomFile(name, mustExist=True))
-        if sys.version_info > (3,0):
-            from googlecode import diff_match_patch_py3
-            dmp =  diff_match_patch_py3.diff_match_patch()
-        else:
-            from googlecode import diff_match_patch
-            dmp =  diff_match_patch.diff_match_patch()
+        dmp =  diff_match_patch_py3.diff_match_patch()
         try:
             diffs = dmp.diff_main(str(container.text1),str(container.text2))
             patches = dmp.patch_make(str(container.text1),diffs)
@@ -144,7 +121,7 @@ class CComFilePatchManager(CCP4CustomManager.CCustomManager):
         except:
             return ''
         if os.path.exists(comFilePath):
-            from core import CCP4Utils
+            from . import CCP4Utils
             text = CCP4Utils.readFile(comFilePath)
             return text
         else:
@@ -155,7 +132,7 @@ class CComFilePatchManager(CCP4CustomManager.CCustomManager):
         container = CPatchDefinition(parent=self, name=name)
         container.loadDataFromXml(fileName=fileName, check=False, loadHeader=True)
         # Now need to load the contents of the 'controlParameters' container
-        from core import CCP4TaskManager
+        from . import CCP4TaskManager
         defFile = CCP4TaskManager.TASKMANAGER().lookupDefFile(name=container.taskNameList[-1].__str__())
         f = CCP4File.CI2XmlDataFile(fullPath=defFile)
         f.loadFile()
@@ -167,7 +144,7 @@ class CComFilePatchManager(CCP4CustomManager.CCustomManager):
         return container.controlParameters
 
     def getTitle(self, name, withTaskName=True):
-        from core import CCP4TaskManager
+        from . import CCP4TaskManager
         fileName = self.getCustomFile(name)
         if fileName is None:
             return name
