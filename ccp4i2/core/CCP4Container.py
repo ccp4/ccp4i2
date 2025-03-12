@@ -1,34 +1,16 @@
-from __future__ import print_function
-
 """
-     CCP4Container.py: CCP4 GUI Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Liz Potterton Aug 2010 - Generic container for CCP4Data objects
 """
 
-"""
-   Liz Potterton Aug 2010 - Generic container for CCP4Data objects
-"""
-import os
+import inspect
 import re
-import types
-from core import CCP4Data
-from core.CCP4ErrorHandling import *
-from core.CCP4DataManager import DATAMANAGER
-from core.CCP4Config import DEVELOPER,XMLPARSER
+import sys
+
+from lxml import etree
+
+from . import CCP4Data
+from .CCP4DataManager import DATAMANAGER
+from .CCP4ErrorHandling import CErrorReport, CException, Severity
 
 
 class CContainer(CCP4Data.CData):
@@ -40,7 +22,7 @@ class CContainer(CCP4Data.CData):
                    106 : {'description' : 'Error loading container definition'},
                    107 : {'description' : 'XML file does not have correct function defined in the header'},
                    108 : {'description' : 'XML undefined error interpreting sub-container'},
-                   109 : {'description' : 'Error attempting to access unknown attribute','severity' : SEVERITY_WARNING },
+                   109 : {'description' : 'Error attempting to access unknown attribute','severity' : Severity.WARNING },
                    110 : {'description' : 'Error creating sub-container'},
                    111 : {'description' : 'XML file does not have expected pluginName defined in the header'},
                    113 : {'description' : 'Attempting to add object that is not a CData'},
@@ -69,9 +51,9 @@ class CContainer(CCP4Data.CData):
                    136 : {'description' : 'Error inserting object in container data order'},
                    137 : {'description' : 'Unknown error restoring data from database'},
                    138 : {'description' : 'Attempting to copy from otherContainer which is not a CContainer'},
-                   139 : {'severity' : SEVERITY_WARNING, 'description' : 'Attempting to copy data which is not in this container'},
-                   140 : {'severity' : SEVERITY_WARNING, 'description' : 'Attempting to copy data which is not in the other container'},
-                   141 : {'severity' : SEVERITY_WARNING, 'description' : 'Unknown error copying data'},
+                   139 : {'severity' : Severity.WARNING, 'description' : 'Attempting to copy data which is not in this container'},
+                   140 : {'severity' : Severity.WARNING, 'description' : 'Attempting to copy data which is not in the other container'},
+                   141 : {'severity' : Severity.WARNING, 'description' : 'Unknown error copying data'},
                    142 : {'description' : 'Unrecognised class name in file'},
                    143 : {'description' : 'Item in file does not have an id'},
                    144 : {'description' : 'Item id in file is not unique'},
@@ -108,7 +90,7 @@ class CContainer(CCP4Data.CData):
             report.extend(self.loadContentsFromXml(definitionFile, guiAdmin=guiAdmin))
         # Throw exception if any of these data loading methods
         # return error
-        if  report.maxSeverity() >= SEVERITY_ERROR:
+        if  report.maxSeverity() >= Severity.ERROR:
             myException = CException()
             myException.extend(report)
             raise myException
@@ -192,7 +174,7 @@ class CContainer(CCP4Data.CData):
                     print('ERROR in CContainer.update for key', key)
 
     def loadContentsFromXml(self, fileName=None, guiAdmin=False):
-        from core import CCP4File
+        from . import CCP4File
         f = CCP4File.CI2XmlDataFile(fullPath=fileName)
         f.loadFile()
         #print 'CContainer.loadContentsFromXml', f.header.function, fileName
@@ -206,7 +188,6 @@ class CContainer(CCP4Data.CData):
         if f.header.pluginName is not None:
             self.setObjectName(str(f.header.pluginName))
         errorReport = self.loadContentsFromEtree(element=f.getBodyEtree())
-        from lxml import etree
         #print 'CContainer.loadContentsFromXml after loadContentsFromEtree',self.objectName()
         if guiAdmin:
             self.addGuiAdminContents()
@@ -220,19 +201,20 @@ class CContainer(CCP4Data.CData):
         err = CErrorReport()
         if self.__dict__['_dataOrder'].count('guiAdmin'):
             return err
-        from core import CCP4DataManager
+        from .CCP4DataManager import DATAMANAGER
         container = CContainer(name='guiAdmin')
-        for id, className,qualifiers in [['followFrom', 'CFollowFromJob', {'guiLabel' : 'Follow from'}],
-                                         ['jobTitle', 'CJobTitle', {'default' : '', 'guiLabel' : 'Job title'}],
-                                         ['jobStatus', 'CJobStatus', {}], ['patchSelection', 'CPatchSelection', {}]]:
-            cls = CCP4DataManager.DATAMANAGER().getClass(className)
+        for key, className, qualifiers in [
+            ['followFrom', 'CFollowFromJob', {'guiLabel' : 'Follow from'}],
+            ['jobTitle', 'CJobTitle', {'default' : '', 'guiLabel' : 'Job title'}],
+            ['jobStatus', 'CJobStatus', {}], ['patchSelection', 'CPatchSelection', {}]
+        ]:
+            cls = DATAMANAGER().getClass(className)
             if cls is not None:
                 try:
-                    obj = cls(parent=container, name=id, qualifiers=qualifiers)
-                    #print 'CContainer.addGuiAdminContents', id, obj
+                    obj = cls(parent=container, name=key, qualifiers=qualifiers)
                     container.addObject(obj)
                 except:
-                    err.append(self.__class__, 161, id, name=self.objectPath())
+                    err.append(self.__class__, 161, key, name=self.objectPath())
         try:
             self.addObject(object=container, name='guiAdmin')
         except:
@@ -240,8 +222,8 @@ class CContainer(CCP4Data.CData):
         return err
 
     def loadDataFromXml(self, fileName=None, guiAdmin=False, check=True, function='PARAMS', loadHeader=False):
-        from core import CCP4File
-        from core import CCP4TaskManager
+        from . import CCP4File
+        from .CCP4TaskManager import TASKMANAGER
         f = CCP4File.CI2XmlDataFile(fullPath=fileName)
         #f.loadFile()
         #print 'CContainer.loadDataFromXml',fileName,f.header.function,self.pluginName()
@@ -252,7 +234,7 @@ class CContainer(CCP4Data.CData):
             pluginName = str(f.header.pluginName)
             pluginVersion = str(f.header.pluginVersion)
             try:
-                defFile = CCP4TaskManager.TASKMANAGER().lookupDefFile(pluginName, pluginVersion)
+                defFile = TASKMANAGER().lookupDefFile(pluginName, pluginVersion)
             except:
                 raise CException(self.__class__, 150, pluginName, name=self.objectPath())
             #print 'CContainer.loadDataFromXml loading contents from defFile',defFile
@@ -271,7 +253,7 @@ class CContainer(CCP4Data.CData):
         return errorReport
 
     def saveContentsToXml(self, fileName=None, header=None):
-        from core import CCP4File
+        from . import CCP4File
         f = CCP4File.CI2XmlDataFile(fullPath=fileName)
         if header is not None:
             f.header.set(header)
@@ -279,7 +261,6 @@ class CContainer(CCP4Data.CData):
             f.header.set(self.header)
         f.header.setCurrent()
         bodyEtree, errorReport = self.saveContentsToEtree()
-        #print 'CContainer.saveContentsToXml', fileName, errorReport.report()
         try:
             f.saveFile(bodyEtree=bodyEtree)
         except CException as e:
@@ -297,7 +278,7 @@ class CContainer(CCP4Data.CData):
     def saveDataToXml(self, fileName=None, subContainer=None, function='PARAMS'):
         '''Save the data to xml PARAMS file with option to save just one
         specified subContainer (used for interruptStatus)'''
-        from core import CCP4File
+        from . import CCP4File
         errorReport = CErrorReport()
         f = CCP4File.CI2XmlDataFile(fullPath=fileName)
         if self.header is not None:
@@ -308,7 +289,6 @@ class CContainer(CCP4Data.CData):
         if subContainer is not None:
             subConList = bodyEtree.xpath('./' + subContainer)
             if len(subConList) > 0:
-                #from lxml import etree
                 #bodyEtree = etree.Element('dummy')
                 #bodyEtree.append(subConList[0])
                 bodyEtree = subConList[0]
@@ -342,14 +322,14 @@ class CContainer(CCP4Data.CData):
                         obj = cls(parent=self, name=name)
                     except CException as e:
                         myException.extend(e)
-                    except Exception as e:
+                    except Exception:
                         myException.append(self.__class__, 104, name, name=self.objectPath())
                     if obj is not None:
                         try:
                             self.addObject(object=obj)
                         except CException as e:
                             myException.extend(e)
-                        except Exception as e:
+                        except Exception:
                             myException.append(self.__class__, 116, name, name=self.objectPath())
                         rv = self._value[name].setEtree(ele)
                         if len(rv) > 0:
@@ -387,23 +367,20 @@ class CContainer(CCP4Data.CData):
                         obj = CContainer(parent=self,name=name)
                     except:
                         myException.append(self.__class__,110,name=self.objectPath())
-                if  obj is not None:
-                    if DEVELOPER():
+                if obj is not None:
+                    try:
                         obj.loadContentsFromEtree(ele,overwrite=myOverwrite)
-                    else:
-                        try:
-                            obj.loadContentsFromEtree(ele,overwrite=myOverwrite)
-                        except  CException as e:
-                            myException.extend(e)
-                            obj = None
-                        except:
-                            myException.append(self.__class__, 108, 'Tag: ' + name, name=self.objectPath())
-                            obj = None
+                    except  CException as e:
+                        myException.extend(e)
+                        obj = None
+                    except:
+                        myException.append(self.__class__, 108, 'Tag: ' + name, name=self.objectPath())
+                        obj = None
             elif ele.tag == 'header':
                 if readHeader:
                     try:
                         if not hasattr(self.__dict__,'header'):
-                            from core import CCP4File
+                            from . import CCP4File
                             self.__dict__['header']=CCP4File.CI2XmlHeader(parent=self, name='header')
                         self.__dict__['header'].setEtree(ele)
                         #print 'CContainer.loadContentsFromEtree header',self.__dict__['header'],self.__dict__['header'].pluginName
@@ -420,7 +397,7 @@ class CContainer(CCP4Data.CData):
                 if fileNameEle is None:
                     myException.append(self.__class__, 147, name=self.objectPath())
                 else:
-                    from core import CCP4File
+                    from . import CCP4File
                     fileObj = CCP4File.CI2XmlDataFile()
                     err = fileObj.setEtree(fileNameEle)
                     if len(err) > 0:
@@ -445,15 +422,9 @@ class CContainer(CCP4Data.CData):
                     self.replaceObject(object=obj, name=obj.objectName())
                 else:
                     self.addObject(object=obj)
-        # Not sure if we treat this as exception or return
-        #if len(myException)>0: raise myException
-        #print 'CContainer.loadContentsFromEtree myException',len(myException),myException.report()
-        #print self.__dict__, myException
         return myException
 
     def saveContentsToEtree(self):
-        if XMLPARSER() == 'lxml':
-            from lxml import etree
         errors = CErrorReport()
         # Create element
         element = etree.Element('container')
@@ -535,32 +506,23 @@ class CContainer(CCP4Data.CData):
             return rv,None
         else:
             cls = DATAMANAGER().getClass(className)
-        if cls == None:
+        if cls is None:
             rv.append(self.__class__, 103, 'Class: ' + className + ' specified for: ' + str(name), name=self.objectPath())
             return rv, None
         else:
             buildInInit = True
-            if DEVELOPER():
+            try:
                 if len(subContents) == 0:
                     obj = cls(parent=self, name=name)
                 elif CCP4Data.isCollectionClass(cls):
                     buildInInit = False
-                    obj = cls(parent=self, name=name, subItem=subContents.get('subItem', {}) ,build=False)
+                    obj = cls(parent=self, name=name, subItem=subContents.get('subItem', {}), build=False)
                 else:
                     obj = cls(parent=self, name=name, contents=subContents)
-            else:
-                try:
-                    if len(subContents) == 0:
-                        obj = cls(parent=self, name=name, build=False)
-                    elif CCP4Data.isCollectionClass(cls):
-                        buildInInit = False
-                        obj = cls(parent=self, name=name, subItem=subContents.get('subItem', {}), build=False)
-                    else:
-                        obj = cls(parent=self, name=name, contents=subContents)
-                except CException as e:
-                    rv.extend(e)
-                except:
-                    rv.append(self.__class__, 104, 'Class: ' + className + ' specified for: ' + name, name=self.objectPath())
+            except CException as e:
+                rv.extend(e)
+            except:
+                rv.append(self.__class__, 104, 'Class: ' + className + ' specified for: ' + name, name=self.objectPath())
             #print 'makeDataObjectFromEtree',name,type(obj),qEle
             if obj is not None:
                 if qEle is not None:
@@ -587,7 +549,6 @@ class CContainer(CCP4Data.CData):
         rv.extend(e)
         #print 'subContentsFromEtree', contents
         return rv,contents
-
 
     def addContent(self, name=None, cls=None, qualifiers={}, subItem={}, value=None):
         # Add an item of content that is defined in Python code
@@ -624,7 +585,6 @@ class CContainer(CCP4Data.CData):
 
     def addObject(self, object=None, name=None, reparent=True, afterObject=None):
         #print 'CContainer.addObject',name, object.__class__,object.objectName()
-        import inspect
         derivesFromCData = CCP4Data.CData.__name__ in [candidate.__name__ for candidate in inspect.getmro(type(object))[1:]]
         if object is None or not derivesFromCData:#isinstance(object, CCP4Data.CData):
             print("Object is",object, type(object))
@@ -660,7 +620,6 @@ class CContainer(CCP4Data.CData):
     def replaceObject(self, object=None, name=None, reparent=True):
         if name is None or name not in self.__dict__['CONTENTS']:
             raise CException(self.__class__, 117, 'Object name: ' + str(name), name=self.objectPath())
-        import inspect
         derivesFromCData = CCP4Data.CData.__name__ in [candidate.__name__ for candidate in inspect.getmro(type(object))[1:]]
         if object is None or not derivesFromCData:#isinstance(object, CCP4Data.CData):
             print("Object is",object, type(object))
@@ -711,7 +670,7 @@ class CContainer(CCP4Data.CData):
     def addHeader(self):
         #print 'CContainer.addHeader',repr(self), self.__dict__.has_key('header'),
         if 'header' not in self.__dict__:
-            from core import CCP4File
+            from . import CCP4File
             self.__dict__['header'] = CCP4File.CI2XmlHeader(parent=self)
         #print repr(self.__dict__['header']),self.__dict__['header']
         return self.__dict__['header']
@@ -722,29 +681,9 @@ class CContainer(CCP4Data.CData):
         else:
             return None
 
-    def getHeaderEtree(self,jobId=None, project=None, function='PARAMS'):
-        # Return an eTree for a data file header
-        # This method could be member of CTaskViewer
-        from core import CCP4File
-        header = CCP4File.CI2XmlHeader(parent=self, name='header')
-        if 'header' in self.__dict__:
-            header.set(self.__dict__['header'])
-        else:
-            header.pluginName = self.objectName()
-        header.function.set(function)
-        header.userId.setCurrentUser()
-        header.creationTime.setCurrentTime()
-        header.ccp4iVersion.set(CCP4Config.VERSION().ccp4iVersion)
-        if jobId is not None:
-            header.jobId = jobId
-        if project is not None:
-            header.project = project
-        return header.getEtree()
-
     def nonexistantFiles(self):
-        #Return a list of files that mustExist but do not!    
-        from core import CCP4File
-        import inspect
+        #Return a list of files that mustExist but do not!
+        from . import CCP4File
         nonexistantList = []
         for key,obj0 in list(self.__dict__['_value'].items()):
             objList, xmlText, keyValues = obj0.saveToDb()
@@ -760,7 +699,7 @@ class CContainer(CCP4Data.CData):
         return nonexistantList
 
     def inputFilesFileIds(self):
-        from core import CCP4File
+        from . import CCP4File
         ret= {}
         for key,obj0 in list(self.__dict__['_value'].items()):
             objList, xmlText, keyValues = obj0.saveToDb()
@@ -778,9 +717,9 @@ class CContainer(CCP4Data.CData):
             instance = getattr(self, key)
             if isinstance(instance, CContainer):
                 err.extend(instance.validity())
-            else:            
+            else:
                 err.extend(instance.validity(instance.get()))
-        return err  
+        return err
 
     def firstDataObject(self):
         #Return the first data (not container) object -
@@ -806,24 +745,20 @@ class CContainer(CCP4Data.CData):
 
     def find(self, name=None):
         # Find an item in this or any child container
-        if name in self.__dict__['_value']:
-            return self.__dict__['_value'].get(name)
-        else:
-            splitName = name.split('.')
-            if len(splitName)>1:
-                if splitName[0] in self.__dict__['_value'] and isinstance(self.__dict__['_value'][splitName[0]], CContainer):
-                    newName = splitName[1]
-                    for item in splitName[2:]:
-                        newName = newName + '.' + item
-                    return self.__dict__['_value'][splitName[0]].find(newName)
-                return None
-            else:
-                for key, obj in list(self.__dict__['_value'].items()):
-                    if isinstance(obj,CContainer):
-                        rv = obj.find(name)
-                        if rv is not None:
-                            return rv
-                return None
+        values = self.__dict__["_value"]
+        if name in values:
+            return values.get(name)
+        split = name.split(".", maxsplit=1)
+        if len(split) > 1:
+            if split[0] in values and isinstance(values[split[0]], CContainer):
+                return values[split[0]].find(split[1])
+            return None
+        for obj in values.values():
+            if isinstance(obj, CContainer):
+                rv = obj.find(name)
+                if rv is not None:
+                    return rv
+        return None
 
     def copyData(self, otherContainer=None, dataList=None):
         report = CErrorReport()
@@ -854,7 +789,7 @@ class CContainer(CCP4Data.CData):
                     myData.set(otherData)
                 except CException as e:
                     report.extend(e)
-                except Exception as e:
+                except Exception:
                     report.append(self.__class__, 141, details=name)
         return report
 
@@ -898,7 +833,7 @@ class CContainer(CCP4Data.CData):
                                         dataObj.set(commandLine[indx])
                                     except CException as e:
                                         errorReport.extend(e)
-                                    except Exception as e:
+                                    except Exception:
                                         errorReport.append(self.__class__, 145, dataObj.objectName(), name=self.objectPath())
                                 else:
                                     errorReport.append(self.__class__, 146, commandLine[indx], name=self.objectPath())
@@ -914,138 +849,8 @@ class CContainer(CCP4Data.CData):
                                         dataObj.set(dataDict)
                                     except CException as e:
                                         errorReport.extend(e)
-                                    except Exception as e:
+                                    except Exception:
                                         errorReport.append(self.__class__, 145, dataObj.objectName(), name=self.objectPath())
                                 else:
                                     errorReport.append(self.__class__, 146, commandLine[indx], name=self.objectPath())
         return errorReport
-
-
-#===============================================================================================
-import unittest
-
-class testCContainer(unittest.TestCase):
-
-    #Removing broken tests
-    def broken_test1(self):
-        from core import CCP4Utils
-        self.summat = CContainer(definitionFile=os.path.join(CCP4Utils.getCCP4I2Dir(),'test/data/summat.contents.xml'))
-        #print summat.name,summat.CONTENTS
-        self.assertEqual(self.summat.header.pluginName,'Summat','Wrong header.pluginName')
-        #print 'summat.CONTENTS',self.summat.CONTENTS.keys()
-        self.assertEqual(len(list(self.summat.CONTENTS.keys())),4,'Wrong content length')
-        self.assertEqual(self.summat.CONTENTS['range']['class'],CCP4Data.CIntRange,'range parameter has wrong class')
-        #print "summat.CONTENTS['range']['qualifiers']",self.summat.CONTENTS['range']['qualifiers']
-        self.assertEqual(self.summat.CONTENTS['range']['qualifiers']['compare'],1,'range has wrong qualifiers')
-        #print 'summat.gubbins.startValue',self.summat.gubbins.startValue
-        self.assertEqual(self.summat.gubbins.startValue,12.0,'sub-container CFloat wrong initial value')
-
-    def broken_test2(self):
-        contents = {'nCycles': {'class': CCP4Data.CInt, 'qualifiers': { 'default' : None, 'max': 20, 'allowUndefined': True, 'min': 1}}, 'cutoff': {'class': CCP4Data.CInt, 'qualifiers': { 'default' :3,'max': 100, 'min': 1}}, 'range': {'class': CCP4Data.CIntRange, 'qualifiers': { 'start' : { 'default' : 0 } ,  'end' : { 'default' : 10 } , 'compare': 1 }}}
-        self.summat = CContainer(name='Summat',contents=contents)
-        #self.summat.range.set(start=10,end=20)
-        self.summat.range.start.set(10)
-        self.summat.range.end.set(20)
-        self.assertEqual(self.summat.get('range'), {'start':10,'end':20},'Failed setting range parameter')
-    
-    def broken_test3(self):
-        from core import CCP4Utils
-        defFile = os.path.join(CCP4Utils.getCCP4I2Dir(),'tasks','demo','demo.def.xml')
-        demo =  CContainer(definitionFile=defFile)
-        self.assertEqual(demo.controlParameters.QUICKNDIRTY,'quick','Loading demo.def.xml does not give correct value for controlParameters.QUICKNDIRTY')
-      
-  
-    def broken_test4(self):
-        from core import CCP4XtalData
-        c = CContainer()
-        c.addObject(CCP4XtalData.CMtzDataFile(name='MTZIN'))
-        c.addObject(CCP4Data.CFloatRange(name='RESOLUTION_RANGE',qualifiers = {'compare':-1,'start' :{'min':0.0,'default':999.9},'end':{'min':0.0,'default':0.0}}))
-        c.MTZIN.fullPath = '/foo/bar/wotsit.tmp'
-        c.RESOLUTION_RANGE.start=67.9
-        c.RESOLUTION_RANGE.end = 2.1
-        self.assertEqual(c.RESOLUTION_RANGE.start.qualifiers('min'),0.0,'Error adding CFloatRange to CContainer - wrong qualifier')
-        self.assertEqual(c.RESOLUTION_RANGE.end,2.1,'Error adding  CFloatRange to CContainer - wrong value')
-        self.assertEqual(c.MTZIN.baseName,'wotsit.tmp','Error adding CMtzDataFile to CContainer')
-        c.deleteObject('MTZIN')
-        self.assertEqual(len(c),1,'Error deleteing object from CContainer')
-
-    def test5(self):
-        from core import CCP4XtalData
-        c = CContainer()
-        c.addContent(name='MTZIN',cls=CCP4XtalData.CMtzDataFile)
-        c.addContent(name='RESOLUTION_RANGE',cls='CFloatRange',qualifiers={'compare':-1,'start' : { 'min':0.0,'default': 1.0}, 'end': {'min':0.0,'default':0.0}})
-        self.assertEqual(c.RESOLUTION_RANGE.start.qualifiers('min'),0.0,'Error adding CFloatRange to CContainer - wrong qualifier')
-
-    '''
-    def test6(self):
-        from core import CCP4Utils
-        defFile = os.path.join(CCP4Utils.getCCP4I2Dir(),'tasks','demo','demo.def.xml')
-        demo =  CContainer(definitionFile=defFile)
-        p = demo.getPersistent()
-        other = CContainer()
-        e = other.setPersistent(p)
-        self.assertEqual(other.controlParameters.QUICKNDIRTY,'quick','Loading demo.def.xml does not give correct value for controlParameters.QUICKNDIRTY')
-    '''
-
-    def broken_test7(self):
-        from core import CCP4Utils
-        defFile = os.path.join(CCP4Utils.getCCP4I2Dir(),'tasks','demo','demo.def.xml')
-        demo =  CContainer(definitionFile=defFile)
-        #print 'CContainer.test7',demo.inputData.dataOrder()
-        demo.inputData.PDBIN = os.path.join(CCP4Utils.getCCP4I2Dir(),'test','data','1df7.pdb')
-        #print 'CContainer.test7', demo.inputData.PDBIN
-        demo.controlParameters.CHOOSEONE = 5
-        demo.controlParameters.CHOOSEOTHER = 2
-        other = CContainer(definitionFile=defFile)
-        rv = other.copyData(demo,['PDBIN','CHOOSEONE','CHOOSEOTHER','FOO'])
-        #print 'CContainer.test7',rv,other.inputData.PDBIN
-        self.assertEqual(other.inputData.PDBIN.baseName,'1df7.pdb','Copying between containers failed to give correct filename')
-        self.assertEqual(other.controlParameters.CHOOSEONE,5,'Copying between containers failed to give correct value for CHOOSEONE')
-        self.assertEqual(len(rv),1,'Copying between containers failed to give correct length error report')
-        self.assertEqual(rv[0]['code'],139,'Copying between containers failed to give correct error report code')
-
-    def test8(self):
-        from core import CCP4XtalData
-        from core import CCP4ModelData 
-        c = CContainer()
-        i = CContainer(name='inputData')
-        i.addContent(name='HKLIN',cls=CCP4XtalData.CMtzDataFile)
-        i.addContent(name='XYZIN',cls=CCP4ModelData.CPdbDataFile)
-        c.addObject(i)
-        err = c.parseCommandLine(['HKLIN','/mydir/myfile.mtz','XYZIN','/mydir/myotherfile.pdb'])
-        #print 'parseCommandLine err',err.report()
-        self.assertEqual(len(err),0,'Parsing command line returns an error')
-        self.assertEqual(str(c.inputData.XYZIN.fullPath),'/mydir/myotherfile.pdb','Parsing command line XYZIN misset')
-
-    def test9(self):
-        from core import CCP4MathsData
-        from core import CCP4ModelData
-        c = CContainer()
-        c.addContent(name='XYZIN',cls=CCP4ModelData.CPdbDataFile)
-        c.addContent(name='COORD',cls = CCP4MathsData.CXyz)
-        err = c.parseCommandLine(['-p', '/mydir/myotherfile.pdb', '-x', '1.0', '2.0', '3.0'],
-                                 [['-p' , 'XYZIN'], ['-x' , 'COORD', ['x', 'y', 'z']]])
-        #print 'test9 err',err.report()
-        self.assertEqual(len(err), 0, 'Parsing command line returns an error')
-        self.assertEqual(str(c.XYZIN.fullPath), '/mydir/myotherfile.pdb', 'Parsing command line XYZIN misset')
-        self.assertEqual(c.COORD.z, 3.0, 'Parsing command line COORDS.z missed')
-
-    def broken_test10(self):
-        from core import CCP4Utils
-        defFile = os.path.join(CCP4Utils.getCCP4I2Dir(), 'test', 'data', 'summat_1.def.xml')
-        c = CContainer(definitionFile=defFile)
-        self.assertEqual(c.PDBIN.baseName.isSet(), False, 'Weirdness in loading from second def file')
-
-    def broken_test11(self):
-        from core import CCP4Utils
-        c = CContainer()
-        c.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(), 'pipelines', 'demo_copycell', 'test_data', 'test_1.params.xml'))
-        self.assertTrue(c.inputData.HKLIN.isSet(), 'Error using loadDataFromXml with auto load of def file')
-    
-def TESTSUITE():
-    suite = unittest.defaultTestLoader.loadTestsFromTestCase(testCContainer)
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)

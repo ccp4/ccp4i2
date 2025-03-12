@@ -48,6 +48,13 @@ else:
 
 from core.CCP4ErrorHandling import *
 
+
+def PROJECTSMANAGER():
+    if CProjectsManager.insts is None:
+        CProjectsManager.insts = CProjectsManager()
+    return CProjectsManager.insts
+
+
 #----------------------------------------------------------------------
 class CProjectsManager(CObject):
 #----------------------------------------------------------------------

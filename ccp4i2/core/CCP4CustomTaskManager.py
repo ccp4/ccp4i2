@@ -1,38 +1,25 @@
-from __future__ import print_function
+"""
+Liz Potterton July 2013 - create and manage custom tasks
+"""
+
+import copy
+import os
+import re
 
 from PySide2 import QtCore
 
-"""
-     CCP4CustomTaskManager.py: CCP4 GUI Project
-     Copyright (C) 2013 STFC
+from . import CCP4Container
+from . import CCP4CustomManager
+from . import CCP4Data
+from . import CCP4File
+from .CCP4DataManager import DATAMANAGER
+from .CCP4ErrorHandling import CErrorReport
 
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
 
-"""
-     Liz Potterton July 2013 - create and manage custom tasks
-"""
-
-import os
-import re
-from core import CCP4Data
-from core import CCP4Container
-from core import CCP4File
-from core import CCP4CustomManager
-from core import CCP4DataManager
-from core.CCP4ErrorHandling import *
+def CUSTOMTASKMANAGER():
+    if CCustomTaskManager.insts is None:
+        CCustomTaskManager.insts = CCustomTaskManager()
+    return CCustomTaskManager.insts
 
 
 class CCustomTaskManager(CCP4CustomManager.CCustomManager):
@@ -51,7 +38,7 @@ class CCustomTaskManager(CCP4CustomManager.CCustomManager):
         CCP4CustomManager.CCustomManager.__init__(self, parent, 'task')
 
     def createCustomTask(self, name=None, title=None, container=None, overwrite=False):
-        from core import CCP4XtalData
+        from . import CCP4XtalData
         err = CErrorReport()
         self.createDirectory(name=name, overwrite=overwrite)
         container.header.pluginName = name
@@ -60,7 +47,6 @@ class CCustomTaskManager(CCP4CustomManager.CCustomManager):
         #print 'CCustomTaskManager.createCustomTask', name, title, taskFile, container.paramList
         container.saveDataToXml(fileName=taskFile)
         if title is None:
-            import copy
             title = copy.deepcopy(name)
         paramsContainer = CCP4Container.CContainer()
         header = paramsContainer.addHeader()
@@ -73,7 +59,7 @@ class CCustomTaskManager(CCP4CustomManager.CCustomManager):
         for parDef in container.paramList:
             if parDef.function.__str__() in ['input', 'output', 'control parameter'] and \
                     not (parDef.function.__str__() == 'input' and parDef.name.__str__() in mergedMtzs):
-                cls = CCP4DataManager.DATAMANAGER().getClass(parDef.dataType.__str__())
+                cls = DATAMANAGER().getClass(parDef.dataType.__str__())
                 if cls is None:
                     err.append(self.__class__, 201, parDef.dataType.__str__() + ' for ' + parDef.name.__str__())
                 else:
@@ -196,19 +182,6 @@ class CCustomTaskDefinition(CCP4Container.CContainer):
         self.addObject(CCustomTaskParamList(parent=self, name='paramList'))
         self.paramList.addItem()
 
-    '''
-    def setEtree(self,element,checkValidity=True):
-        CCP4Container.CContainer.setEtree(self,element,checkValidity=checkValidity)
-        print 'CCustomTaskDefinition.setEtree',
-        self.name.set(self.header.pluginName.__str__())
-        self.title.set(self.header.pluginTitle.__str__())
-        
-    def getEtree(self,element):
-        self.header.pluginName.set(self.name.__str__())
-        self.header.pluginTitle.set(self.title.__str__())
-        return CCP4Container.CContainer.getEtree(self)
-    '''
-
 
 class CCustomTaskFileFunction(CCP4Data.CString):
     QUALIFIERS = {'enumerators' : ['unknown', 'input' , 'output', 'control parameter', 'log']}
@@ -244,7 +217,9 @@ class CCustomTaskParam(CCP4Data.CData):
         #print 'CCustomTaskParam.handleDataTypeChange',self.__dict__['_value']['dataType'] ,self.__dict__['_value']['requiredContentType']
 
     def getTableTextItems(self):
-        if self.__dict__['_value']['dataType'].isCDataFile():
+        dataType = self.__dict__['_value']['dataType']
+        dataTypeCls = DATAMANAGER().getClass(className=dataType.__dict__['_value'])
+        if dataTypeCls is not None and issubclass(dataTypeCls, CCP4File.CDataFile):
             fileFunction = self.__dict__['_value']['function'].__str__()
         else:
             fileFunction = '_'
@@ -258,8 +233,8 @@ class CCustomTaskParam(CCP4Data.CData):
             save = 'no'
         contentType = ''
         n = 0
-        if self.__dict__['_value']['dataType'] in ['CObsDataFile', 'CPhsDataFile']:
-            if  self.__dict__['_value']['dataType'] == 'CObsDataFile':
+        if dataType in ['CObsDataFile', 'CPhsDataFile']:
+            if dataType == 'CObsDataFile':
                 dataTypeList = ['I+/-', 'F+/-', 'Imean', 'Fmean']
             else:
                 dataTypeList = ['HL coeffs', 'Phi/FOM']
@@ -270,7 +245,7 @@ class CCustomTaskParam(CCP4Data.CData):
             if n == len(dataTypeList):
                 contentType = ''
         return [str(self.__dict__['_value']['name']), str(self.__dict__['_value']['label']),
-                str(self.__dict__['_value']['dataType']), fileFunction, oblig, save,
+                str(dataType), fileFunction, oblig, save,
                 self.__dict__['_value']['mergeTo'].__str__(),
                 self.__dict__['_value']['outputFilePath'].__str__(), contentType,
                 self.__dict__['_value']['splitColumns'].__str__()]

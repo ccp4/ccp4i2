@@ -1,25 +1,6 @@
-"""
-     CCP4CootData.py: CCP4 GUI Project
-     Copyright (C) 2013 STFC
+from . import CCP4Data
+from . import CCP4File
 
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-from core import CCP4Data
-from core import CCP4File
-from core import CCP4ErrorHandling
 
 class CCootHistoryDataFile(CCP4File.CDataFile):
 
@@ -39,5 +20,3 @@ class CCootHistoryDataFile(CCP4File.CDataFile):
         #MN Now here we have an issue that assertSame on an Coot Hstory file is fraught with difficulties, and an identical checkSum is probably far too stringent.  I'm gonna suggest that we should remove testChecksum for now, with a view to putting in a more intelligent comparison later
         report = CCP4File.CDataFile.assertSame(self, arg, testPath, False, testSize, testDiff, diagnostic, fileName)
         return report
-
-

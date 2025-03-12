@@ -11,6 +11,7 @@ from . import CCP4Container
 from . import CCP4CustomManager
 from . import CCP4Data
 from . import CCP4File
+from . import CCP4Utils
 from ..googlecode import diff_match_patch_py3
 from .CCP4ErrorHandling import CErrorReport, CException
 
@@ -77,12 +78,13 @@ class CComFilePatchManager(CCP4CustomManager.CCustomManager):
         if useControlParams:
             if jobId is None:
                 raise CException(self.__class__, 206)
-            from core import CCP4TaskManager
-            jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=jobId, mode=['taskname', 'taskversion'])
+            from . import CCP4TaskManager
+            from .CCP4ProjectsManager import PROJECTSMANAGER
+            jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=jobId, mode=['taskname', 'taskversion'])
             defFile = CCP4TaskManager.TASKMANAGER().lookupDefFile(name=jobInfo['taskname'], version=jobInfo['taskversion'])
             taskContainer = CCP4Container.CContainer()
             taskContainer.loadContentsFromXml(defFile)
-            paramsFile = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=jobId, mode='JOB_INPUT')
+            paramsFile = PROJECTSMANAGER().makeFileName(jobId=jobId, mode='JOB_INPUT')
             #print 'CComFilePatchManager.createPatch paramsFile',paramsFile
             if not os.path.exists(paramsFile):
                 raise CException(self.__class__, 205, paramsFile)
@@ -116,12 +118,12 @@ class CComFilePatchManager(CCP4CustomManager.CCustomManager):
         if jobId is None:
             return ''
         try:
-            jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId)
+            from .CCP4ProjectsManager import PROJECTSMANAGER
+            jobDir = PROJECTSMANAGER().jobDirectory(jobId=jobId)
             comFilePath = os.path.join(jobDir, 'com.txt')
         except:
             return ''
         if os.path.exists(comFilePath):
-            from . import CCP4Utils
             text = CCP4Utils.readFile(comFilePath)
             return text
         else:

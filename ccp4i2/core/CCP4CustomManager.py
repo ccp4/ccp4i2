@@ -1,33 +1,20 @@
 """
-     CCP4CustomManager.py: CCP4 GUI Project
-     Copyright (C) 2013 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Liz Potterton July 2013 - create and manage customisation
 """
 
-"""
-     Liz Potterton July 2013 - create and manage customisation
-"""
-
-import os
 import glob
+import os
+import shutil
+import tarfile
+import tempfile
+
 from PySide2 import QtCore
-from core import CCP4Modules
-from core import CCP4File
-from core.CCP4QtObject import CObject
-from core.CCP4ErrorHandling import *
+
+from . import CCP4File
+from . import CCP4Utils
+from .CCP4ErrorHandling import CErrorReport, CException
+from .CCP4QtObject import CObject
+from ..utils.QApp import QTAPPLICATION
 
 
 class CCustomManager(CObject):
@@ -50,29 +37,19 @@ class CCustomManager(CObject):
 
     def __init__(self, parent=None, mode=None):
         if parent is None:
-            parent = CCP4Modules.QTAPPLICATION()
+            parent = QTAPPLICATION()
         CObject.__init__(self,parent)
-        if mode is not None:
-            self.mode = str(mode)
-        else:
-            self.mode = None
+        self.mode = None if mode is None else str(mode)
 
     def getList(self):
-        from core import CCP4Utils
         dirList = glob.glob(os.path.join(CCP4Utils.getDotDirectory(), 'custom', self.mode + 's','*'))
         #print 'CCustomManager.getList',self.mode,os.path.join(CCP4Utils.getDotDirectory(),'custom',self.mode+'s','*'),dirList
-        titleList = []
-        for dr in dirList:
-            titleList.append(os.path.split(dr)[1])
-        return titleList
+        return [os.path.split(dr)[1] for dr in dirList]
 
     def getTitleList(self):
         # Return a list of (name,title)
         nameList = self.getList()
-        titleList = []
-        for name in nameList:
-            titleList.append((name,self.getTitle(name)))
-        return titleList
+        return [(name, self.getTitle(name)) for name in nameList]
 
     def getTitle(self, name):
         fileName = self.getCustomFile(name)
@@ -84,22 +61,18 @@ class CCustomManager(CObject):
         header = CCP4File.CI2XmlHeader(parent=self)
         header.loadFromXml(fileName)
         if header.pluginTitle.isSet():
-            return header.pluginTitle.__str__()
-        else:
-            return name
+            return str(header.pluginTitle)
+        return name
 
     def getDirectory(self, name=None):
-        from core import CCP4Utils
         if name is None:
             return os.path.join(CCP4Utils.getDotDirectory(), 'custom', self.mode + 's')
-        else:
-            return os.path.join(CCP4Utils.getDotDirectory(), 'custom', self.mode + 's',str(name))
+        return os.path.join(CCP4Utils.getDotDirectory(), 'custom', self.mode + 's',str(name))
 
     def createDirectory(self, name, overwrite=False):
         newDir = self.getDirectory(name=name)
         if overwrite and os.path.exists(newDir):
             try:
-                import shutil
                 shutil.rmtree(newDir)
             except:
                 raise CException(self.__class__, 104, newDir)
@@ -113,27 +86,19 @@ class CCustomManager(CObject):
         fileName = os.path.join(self.getDirectory(name=name), self.mode + '.xml')
         if (not mustExist) or os.path.exists(fileName):
             return fileName
-        else:
-            return None
-
-    
-    def openManagerDialog(self):
-        self.openCreateDialog()
+        return None
 
     def delete(self,name):
         dr = self.getDirectory(name)
-        import shutil
         try:
             shutil.rmtree(dr)
         except:
             return 1
-        else:
-            self.listChanged.emit()
-            return 0
+        self.listChanged.emit()
+        return 0
 
     def export(self, name, fileName):
         try:
-            import tarfile
             tf = tarfile.open(fileName, mode='w:gz')
         except:
             err = CErrorReport(self.__class__, 105, fileName)
@@ -148,7 +113,6 @@ class CCustomManager(CObject):
         return CErrorReport()
 
     def clone(self, original, new, title=None):
-        import shutil
         diry = self.getDirectory(original)
         #print 'CCustomisationGui.clone',original,new,title,diry
         try:
@@ -169,10 +133,8 @@ class CCustomManager(CObject):
         except:
             raise CException(self.__class__, 114, fileName)
         self.listChanged.emit()
-        return
 
     def testImport(self, fileName):
-        import tempfile
         tmpDir = tempfile.mkdtemp()
         self.uncompress(fileName, tmpDir)
         globList = glob.glob(os.path.join(tmpDir,'*'))
@@ -187,16 +149,7 @@ class CCustomManager(CObject):
             raise CException(self.__class__, 110, name)
         return name
 
-    def import_(self, fileName, name, overwrite=False, rename=None):
-        if overwrite:
-            import shutil
-            try:
-                shutil.rmtree(self.getDirectory(name))
-            except:
-                raise CException(self.__class__, 111)
-
     def uncompress(self, fileName, targetDir, rename=None):
-        import tarfile
         try:
             tf = tarfile.open(fileName, mode='r:gz')
         except:
@@ -213,5 +166,3 @@ class CCustomManager(CObject):
         #print 'uncompress done', os.path.samefile(targetDir,self.getDirectory())
         if os.path.samefile(targetDir,self.getDirectory()):
             self.listChanged.emit()
-
-

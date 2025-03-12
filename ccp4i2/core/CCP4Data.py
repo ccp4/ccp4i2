@@ -1,40 +1,18 @@
-from __future__ import print_function
-
 """
-     CCP4Data.py: CCP4 GUI Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Liz Potterton Aug 2010 - 'Generic' CCP4Data classes
 """
 
-"""
-   Liz Potterton Aug 2010 - 'Generic' CCP4Data classes
-"""
-
-import sys
 import re
-import types
-import time
-import traceback
+import string
+import xml.etree.ElementTree as etree_xml
 
+from lxml import etree
 from PySide2 import QtCore
 
-from core.CCP4ErrorHandling import *
-from core.CCP4Config import QT, XMLPARSER
-from core.CCP4QtObject import CObject
-from lxml import etree
+from . import CCP4Utils
+from .CCP4ErrorHandling import CErrorReport, CException, Severity
+from .CCP4QtObject import CObject
+
 
 def isQualifier(cls, name=None):
     while issubclass(cls, CData):
@@ -65,54 +43,8 @@ def sortArguments(cls, args, aliases=[]):
         elif key == 'build':
             pass
         else:
-            objname,newkey=splitName(key)
-            if newkey is None:
-                unknowns[key] = value
-            else:
-                ####THIS WILL NOT WORK FOR RUN_TIME DEFINED CONTENTS EG CProgramColumnGroup
-                subClsDefn = cls.CONTENTS.get(objname, None)
-                if subClsDefn is None:
-                    unknowns[key] = value
-                else:
-                    subCls = subClsDefn.get('class', None)
-                    vs,qs,us = sortArguments(subCls, {newkey : value})
-                    if len(vs) > 0:
-                        values[key] = value
-                    if len(qs) > 0:
-                        if objname not in qualifiers:
-                            qualifiers[objname] = {}
-                        qualifiers[objname][newkey] = value
-                    if len(us) > 0:
-                        unknowns[key] = value
+            unknowns[key] = value
     return [values,qualifiers,unknowns]
-
-def splitName(name):   # KJS : This fn. needs to be fixed or removed from the code-base.
-    return [name, None]
-
-def errorCode(cls, code):  # KJS : Revise ... this setup creates circ. dependency between data & error logging.
-    while issubclass(cls, CData):
-        if hasattr(cls, 'ERROR_CODES') and code in cls.ERROR_CODES:
-            return cls.ERROR_CODES[code]
-        cls = cls.__bases__[0]   # KJS : Revise... fail on multi-inhr.
-    return {}
-
-def errorCodeSeverity(cls, code):    # KJS - Revise
-    err = errorCode(cls, code)
-    if len(err) == 0:
-        return -1
-    elif 'severity' in err:
-        return err['severity']
-    else:
-        return SEVERITY_ERROR # KJS : These globals need a repair job.
-
-def errorCodeDescription(cls, code): # KJS : Needs revision.
-    err = errorCode(cls, code)
-    if len(err) == 0:
-        return -1
-    elif 'description' in err:
-        return err['description']
-    else:
-        return ''
 
 def baseClassList(cls):
     clsList = [cls]
@@ -158,20 +90,12 @@ class CDataQualifiers:
                 obj = self._value.get(key, None)
                 if obj is not None:
                     obj.setQualifiers(qualifiers=value)
-            else:
-                objname, newkey=splitName(key)
-                if newkey is not None:
-                    obj = self._value.get(objname, None)
-                    if obj is None:
-                        print('error interpreting qualifier:', key,'unknown object:', objname)  #, qlist[0] # KJS : There is no qlist !
-                    else:
-                        obj.setQualifier(newkey, value)
         # New set default value after validating it
         if 'default' in qualis and qualis['default'] is not NotImplemented and qualis['default'] is not None:
             default = self.coerce(qualis['default'])
             if validateDefault:
                 v = self.validity(default)
-                if v.maxSeverity() > SEVERITY_WARNING:
+                if v.maxSeverity() > Severity.WARNING:
                     e = CException(CData, 6, name=self.objectPath(), details='setting default: ' + str(default))
                     e.extend(v)
                     raise e
@@ -221,11 +145,7 @@ class CDataQualifiers:
                         return cls.QUALIFIERS[name]
                     else:
                         cls = cls.__bases__[0]
-                objname,newname = splitName(name)
-                if newname is not None and objname in self._value:
-                    return self._value[objname].qualifiers(newname, custom=custom, default=default)
-                else:
-                    return NotImplemented
+                return NotImplemented
             else:
                 return NotImplemented
         ret = {}
@@ -256,14 +176,10 @@ class CDataQualifiers:
                     return cls.QUALIFIERS_DEFINITION[name]
                 else:
                     cls = cls.__bases__[0]
-            objname, newname = splitName(name)
-            if newname is not None and objname in self._value:
-                return self._value[objname].qualifiersDefinition(newname)
+            if self.__dict__.get('_subItemObject', None) is not None:
+                return self.__dict__['_subItemObject'].qualifiersDefinition(name)
             else:
-                if self.__dict__.get('_subItemObject', None) is not None:
-                    return self.__dict__['_subItemObject'].qualifiersDefinition(name)
-                else:
-                    return {}
+                return {}
 
     def qualifiersOrder(self):
         order = []
@@ -330,11 +246,6 @@ class CDataQualifiers:
                 root[-1].text = str(value)
         return root, error
 
-    def qualifiersXmlText(self, pretty_print=True, xml_declaration=False):
-        tree, error = self.qualifiersEtree()
-        text = etree.tostring(tree, pretty_print=pretty_print, xml_declaration=xml_declaration)
-        return text
-
     def setQualifiersEtree(self, element):
         rv = CErrorReport()
         qualifiers = {}
@@ -373,8 +284,8 @@ class CDataQualifiers:
             elif qualifierType is dict:
                 qualifiers[name] = self.eTreeToDict(ele)
             elif qualifierType is type:
-                from core import CCP4DataManager
-                cls = CCP4DataManager.DATAMANAGER().getClass(value)
+                from .CCP4DataManager import DATAMANAGER
+                cls = DATAMANAGER().getClass(value)
                 if cls is None:
                     rv.append(self.__class__, 13, 'Qualifier: ' + name, name=self.objectPath())
                 else:
@@ -429,23 +340,23 @@ class CData(CObject, CDataQualifiers):
     CONTENTS = {}
     CONTENTS_ORDER = []
     PROPERTIES = {}
-    ERROR_CODES = {0 : {'severity' : SEVERITY_OK, 'description' : 'OK'},
-                   1 : {'severity' : SEVERITY_UNDEFINED, 'description' : 'Data has undefined value'},
-                   2 : {'severity' : SEVERITY_UNDEFINED_ERROR, 'description' : 'Data has undefined value'},
-                   3 : {'severity' : SEVERITY_WARNING, 'description' : 'Missing data'},
+    ERROR_CODES = {0 : {'severity' : Severity.OK, 'description' : 'OK'},
+                   1 : {'severity' : Severity.UNDEFINED, 'description' : 'Data has undefined value'},
+                   2 : {'severity' : Severity.UNDEFINED_ERROR, 'description' : 'Data has undefined value'},
+                   3 : {'severity' : Severity.WARNING, 'description' : 'Missing data'},
                    4 : {'description' : 'Missing data'},
                    5 : {'description' : 'Attempting to set data of wrong type'},
                    6 : {'description' : 'Default value does not satisfy validity check'},
-                   7 : {'severity' : SEVERITY_WARNING, 'description' : 'Unrecognised qualifier in data input'},
-                   8 : {'severity' : SEVERITY_WARNING, 'description' : 'Attempting to get inaccessible attribute:'},
+                   7 : {'severity' : Severity.WARNING, 'description' : 'Unrecognised qualifier in data input'},
+                   8 : {'severity' : Severity.WARNING, 'description' : 'Attempting to get inaccessible attribute:'},
                    9 : {'description' : 'Failed to get property'},
-                   10 : {'severity' : SEVERITY_WARNING, 'description' : 'Attempting to set inaccessible attribute:'},
+                   10 : {'severity' : Severity.WARNING, 'description' : 'Attempting to set inaccessible attribute:'},
                    11 : {'description' : 'Failed to set property:'},
                    12 : {'description' : 'Undetermined error setting value from XML'},
                    13 : {'description' : 'Unrecognised class name in qualifier'},
-                   14 : {'severity' : SEVERITY_WARNING, 'description' : 'No object name when saving qualifiers to XML'},
+                   14 : {'severity' : Severity.WARNING, 'description' : 'No object name when saving qualifiers to XML'},
                    15 : {'description' : 'Error saving qualifier to XML'},
-                   16 : {'severity' : SEVERITY_WARNING, 'description' : 'Unrecognised item in XML data file'},
+                   16 : {'severity' : Severity.WARNING, 'description' : 'Unrecognised item in XML data file'},
                    17 : {'description' : 'Attempting to set unrecognised qualifier'},
                    18 : {'description' : 'Attempting to set qualifier with wrong type'},
                    19 : {'description' : 'Attempting to set qualifier with wrong list item type'},
@@ -453,10 +364,10 @@ class CData(CObject, CDataQualifiers):
                    21 : {'description' : 'Unknown error setting qualifiers from Xml file'},
                    22 : {'description' : 'Unknown error testing validity'},
                    23 : {'description' : 'Error saving data object to XML'},
-                   24 : {'description' : 'Unable to test validity of default','severity' : SEVERITY_WARNING},
-                   300 : {'description' : 'Compared objects are the same','severity' : SEVERITY_OK},
-                   315 : {'description' : 'Both compared objects are null','severity' : SEVERITY_OK},
-                   301 : {'description' : 'Unable to compare this class of data','severity' : SEVERITY_WARNING},
+                   24 : {'description' : 'Unable to test validity of default','severity' : Severity.WARNING},
+                   300 : {'description' : 'Compared objects are the same','severity' : Severity.OK},
+                   315 : {'description' : 'Both compared objects are null','severity' : Severity.OK},
+                   301 : {'description' : 'Unable to compare this class of data','severity' : Severity.WARNING},
                    302 : {'description' : 'Other data has null value'},
                    303 : {'description' : 'My data has null value'},
                    304 : {'description' : 'Data has different values'}}
@@ -526,15 +437,12 @@ class CData(CObject, CDataQualifiers):
                 self.__dict__['_value'][key].dataChanged.connect(self.dataChanged.emit)
             except:
                 raise
-                print("Fail")
 
-    def objectPath(self, ifContainer=True):
-        if not ifContainer:
-            from core import CCP4Container
+    def objectPath(self):
         obj = self
         path = ''
         sep = ''
-        while obj is not None and isinstance(obj, CData) and (ifContainer or not isinstance(obj, CCP4Container.CContainer)):
+        while obj is not None and isinstance(obj, CData):
             name = obj.objectName()
             if isinstance(obj.parent(),CList) and name != 'subItemObject':
                 try:
@@ -544,7 +452,7 @@ class CData(CObject, CDataQualifiers):
                 path = '[' + indx + ']' + sep + path
                 sep = ''
             else:
-                path = obj.objectName() + sep + path
+                path = name + sep + path
                 sep = '.'
             obj = obj.parent()
         return path
@@ -620,7 +528,7 @@ class CData(CObject, CDataQualifiers):
                 else:
                     print('ERROR unable to test because item not built',key)
                     testValidity = CException(self.__class__, 24, name=self.objectPath(),label=self.qualifiers('guiLabel'), stack=False)
-                validityObj.extend(testValidity, label=key)
+                validityObj.extend(testValidity)
         return validityObj
 
     def isSet(self, allowUndefined=False, allowDefault=True, allSet=True):
@@ -658,18 +566,8 @@ class CData(CObject, CDataQualifiers):
                     return propFget(self)
                 except Exception as e:
                     raise AttributeError("%r object has no attribute %r" % (self.__class__.__name__, name))
-                    """
-                    raise CException(CData, 9, details=name + '\n' + str(e), exc_info=sys.exc_info())
-                    print('Inaccessible attribute',name,str(e))
-                    traceback.print_stack(limit=5)
-                    """
             else:
                 raise AttributeError("%r object has no attribute %r" % (self.__class__.__name__, name))
-                """
-                raise CException(CData, 8, name)
-                print('Inaccessible attribute', name, str(e))
-                traceback.print_stack(limit=5)
-                """
 
     def __setattr__(self, name, value):
         if '_dataOrder' in self.__dict__ and name in self.dataOrder():
@@ -706,19 +604,6 @@ class CData(CObject, CDataQualifiers):
                 items.append('')
         return items
 
-    def orderedDictText(self):
-        # return  dict of all data
-        ret = '{'
-        for key in self.dataOrder():
-            #Everything in self._value should be a CData..
-            value = self.__dict__['_value'][key].__str__()
-            ret = ret + "'" + key + "':" + value + ","
-        if ret[-1] == ',':
-            ret = ret[0:-1] + '}'
-        else:
-            ret = ret + '}'
-        return ret
-
     def xmlText(self, pretty_print=True, xml_declaration=False):
         tree = self.getEtree()
         text = etree.tostring(tree, pretty_print=pretty_print, xml_declaration=xml_declaration)
@@ -747,7 +632,7 @@ class CData(CObject, CDataQualifiers):
             if len(kw) > 0:
                 valueIn.update(kw)
             validityObj = self.copyValue(self.coerce(valueIn))
-            if validityObj.maxSeverity() < SEVERITY_ERROR:
+            if validityObj.maxSeverity() < Severity.ERROR:
                 validityObj = self.validity(self._value)
             # Validity check failed - restore original
         self.updateData()
@@ -756,23 +641,11 @@ class CData(CObject, CDataQualifiers):
         ''' Copy data without validity check '''
         rv = CErrorReport()
         for key, val in list(value.items()):
-            objname, newkey = splitName(key)
-            if newkey is not None:
-                obj = self._value.get(objname, None)
-                if obj is None:
-                    print('error interpreting value:', key, 'unknown object:', objname)
-                else:
-                    print('CData.copyValue newkey', obj, newkey,val)
-                    try:
-                        obj.set(value={newkey : val})
-                    except CException as e:
-                        rv.extend(e)
-            else:
-                if key in self.contents():
-                    try:
-                        self.__dict__['_value'][key].set(val)
-                    except CException as e:
-                        rv.extend(e)
+            if key in self.contents():
+                try:
+                    self.__dict__['_value'][key].set(val)
+                except CException as e:
+                    rv.extend(e)
         return rv
 
     # Reimplement in sub-class if require something updating after
@@ -784,21 +657,7 @@ class CData(CObject, CDataQualifiers):
     def get(self, name=None, default=None):
         # If input name is set then return item of that name
         if name is not None:
-            if name in self.__dict__['_value']:
-                return self.__dict__['_value'].get(name)
-            else:
-                objname, newname = splitName(name)
-                if newname is None:
-                    return default
-                elif objname in self._value:
-                    return self._value[objname].get(newname)
-                #Try possibility that first item in name is actually reference to self
-                elif objname == str(self.objectName()):
-                    objname,newname = splitName(newname)
-                    if newname is None:
-                        return default
-                    elif objname in self._value:
-                        return self._value[objname].get(newname)
+            return self.__dict__['_value'].get(name, default)
         # return 'flattened' dict of all data
         ret = {}
         for key in self.dataOrder():
@@ -857,7 +716,6 @@ class CData(CObject, CDataQualifiers):
         if useLXML:
             element = etree.Element(name)
         else:
-            import xml.etree.ElementTree as etree_xml
             element = etree_xml.Element(name)
         for key in self.dataOrder():
             if not excludeUnset or self._value[key].isSet(allSet=False):
@@ -884,7 +742,7 @@ class CData(CObject, CDataQualifiers):
 
     def saveDataToXml(self, fileName=None):
         errorReport = CErrorReport()
-        from core import CCP4File
+        from . import CCP4File
         f = CCP4File.CI2XmlDataFile(fullPath=fileName)
         if getattr(self, 'header', None) is not None:
             f.header.set(self.header)
@@ -914,18 +772,6 @@ class CData(CObject, CDataQualifiers):
 
     def testComparisonData(self):
         return self.saveToDb()
-
-    def parentContainer(self):
-        from core import CCP4Container
-        try:
-            obj = self
-            while isinstance(obj, CData):
-                obj = obj.parent()
-                if isinstance(obj, CCP4Container.CContainer):
-                    return obj
-            return None
-        except:
-            return None
 
     def assertSame(self, arg=None):
         return CErrorReport(self.__class__, 301, name=self.objectPath(), details=str(self) + ' : ' + str(arg))
@@ -1016,7 +862,7 @@ class CBaseData(CData):
         value=self.coerce(value)
         if checkValidity:
             v = self.validity(value)
-            if v.maxSeverity() < SEVERITY_ERROR:
+            if v.maxSeverity() < Severity.ERROR:
                 if self.__dict__['_value'] != value:
                     self.__dict__['_value'] = value
                     self.updateData()
@@ -1123,7 +969,6 @@ class CBaseData(CData):
         if useLXML:
             element = etree.Element(str(name))
         else:
-            import xml.etree.ElementTree as etree_xml
             element = etree_xml.Element(str(name))
         if hasattr(self.__str__(),"decode"):
             text = self.__str__().decode('ISO-8859-1')
@@ -1146,17 +991,6 @@ class CBaseData(CData):
         except:
             rv.append(self.__class__, 12, element.tag, name=self.objectPath())
         return rv
-
-    def getPersistent(self):
-        from CCP4Persistent import CPersistentBaseData   # KJS : Check this is in there ok !
-        p = CPersistentBaseData(name=str(self.objectName()), className = self.__class__.__name__,
-                                version = self.version, value = self.get())
-        return p
-
-    def setPersistent(self, p):
-        # Should be checking version !!!
-        self.setObjectName(p.name)
-        self.set(p.value)
 
     def dataOrder(self):
         return []
@@ -1513,19 +1347,16 @@ class CString(CBaseData):
         if self.qualifiers('onlyEnumerators') and len(self.qualifiers('enumerators')) > 0 and self.qualifiers('enumerators').count(arg) < 1:
             validityObj.append(self.__class__, 103, name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
         if self.qualifiers('allowedCharsCode') > 0:
-            from core import CCP4Utils
             if str(arg) != CCP4Utils.safeOneWord(str(arg)):
                 validityObj.append(self.__class__, 104, details=str(arg), name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
         return validityObj
 
     def fix(self,arg):
         if self.qualifiers('allowedCharsCode') > 0:
-            from core import CCP4Utils
             return CCP4Utils.safeOneWord(str(arg))
 
     def reWhiteSpacePattern(self):
         if CString.RE_PATTERN_WHITESPACE is None:
-            import string
             pat = ''
             for item in string.whitespace:
                 pat = pat + repr(item)[1:-1] + '|'
@@ -1572,17 +1403,8 @@ class CString(CBaseData):
     def Center(self, arg1, arg2=' '):
         return self.set(self._value.center(arg1, arg2))
 
-    def Expandtabs(self, size=8):
-        return self.set(self._value.expandtabs(size))
-
-    def Ljust(self, width, fillChar=' '):
-        return self.set(self._value.ljust(width, fillChar))
-
     def Lower(self):
         return self.set(self._value.lower())
-
-    def Lstrip(self, subString=None):
-        return self.set(self._value.lstrip(subString))
 
     def Join(self, arg):
         other = self.getValue(arg)
@@ -1591,17 +1413,8 @@ class CString(CBaseData):
     def Replace(self, arg1, arg2):
         return self.set(self._value.replace(arg1, arg2))
 
-    def Rjust(self, width, fillChar=' '):
-        return self.set(value=self._value.rjust(width, fillChar))
-
-    def Rstrip(self, arg=None):
-        return self.set(self._value.rstrip(arg))
-
     def Strip(self, arg=None):
         return self.set(self._value.strip(arg))
-
-    def Swapcase(self):
-        return self.set(self._value.swapcase())
 
     def Title(self):
         return self.set(self._value.title())
@@ -1609,9 +1422,6 @@ class CString(CBaseData):
     # translate
     def Upper(self):
         return self.set(self._value.upper())
-
-    def Zfill(self, width):
-        return self.set(self._value.zfill(width))
 
     def __add__(self, arg):
         other = self.getValue(arg)
@@ -2093,12 +1903,11 @@ def varToUUID(var):
     if isinstance(ret, str):
         ret = ret.encode('ascii', 'ignore')
     if not isinstance(ret, str):
-        if sys.version_info > (3,0):
-            if type(ret) == bytes:
-                try:
-                    return ret.decode()
-                except:
-                    pass
+        if type(ret) == bytes:
+            try:
+                return ret.decode()
+            except:
+                pass
         print('CCP4Data.varToUUID', ret, type(ret))
     return ret
 
@@ -2293,8 +2102,8 @@ class CCollection(CData):
                     itemDef['qualifiers'] = {}
                 itemDef['qualifiers'][key[8:]] = val
         if itemDef.get('className',None) is not None:
-            from core import CCP4DataManager
-            itemDef['class'] = CCP4DataManager.DATAMANAGER().getClass(itemDef['className'])
+            from .CCP4DataManager import DATAMANAGER
+            itemDef['class'] = DATAMANAGER().getClass(itemDef['className'])
         CData.__init__(self, qualifiers=qualis, parent=parent, name=name, build=False)
         self.setSubItem(itemDef)
         # Reparent the _subItemObject - could not make it child of self until after
@@ -2561,7 +2370,6 @@ class CDict(CCollection):
         if useLXML:
             element = etree.Element(name)
         else:
-            import xml.etree.ElementTree as etree_xml
             element = etree_xml.Element(name)
         for key in self.dataOrder():
             if useLXML:
@@ -2663,7 +2471,7 @@ class CList(CCollection):
                     break
                 err = self.__dict__['_value'][indx].validity(arg[indx])
                 myException.extend(err)
-        if myException.maxSeverity() > SEVERITY_WARNING:
+        if myException.maxSeverity() > Severity.WARNING:
             return myException
         nUnset = self.removeUnsetItems(ifApply=False)
         listMinLength = self.qualifiers('listMinLength')
@@ -2699,7 +2507,7 @@ class CList(CCollection):
         value = self.coerce(value)
         if validate:
             v = self.validity(value)
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 raise v
         self.__dict__['_value'] = []
         for item in value:
@@ -2754,7 +2562,6 @@ class CList(CCollection):
         if useLXML:
             element = etree.Element(name)
         else:
-            import xml.etree.ElementTree as etree_xml
             element = etree_xml.Element(name)
         if len(self.__dict__['_value']) == 0:
             #This seems to be necessary to get empty list written out properly
@@ -2835,20 +2642,6 @@ class CList(CCollection):
     def __contains__(self, arg):
         return self._value.__contains__(arg)
 
-    def containsValue(self, arg):
-        arg = self.getValue(arg)
-        if len(self._value) == 0:
-            return False
-        if hasattr(self._value[0], '__eq__'):
-            for item in self._value:
-                if item.__eq__(arg):
-                    return True
-        elif hasattr(self._value[0], '__cmp__'):
-            for item in self._value:
-                if item.__cmp__(arg) == 0:
-                    return True
-        return False
-
     # __delattr__
     def __delitem__(self, arg, validate=False):
         if self.qualifiers('listMinLength') is not NotImplemented and len(self._value) - 1 < self.qualifiers('listMinLength'):
@@ -2860,7 +2653,7 @@ class CList(CCollection):
             # the following causes too many issues from other incomplete list items which is
             # a likely condition in the gui
             v = self.validity(self._value)
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 self.__dict__['_value'].insert(arg, save)
                 myException = CException()
                 myException.extend(v)
@@ -2919,7 +2712,7 @@ class CList(CCollection):
         rv = self.__dict__['_value'].__setitem__(indx, obj)
         if validate:
             v = self.validity(self._value)
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 self._value[indx].set(save)
                 raise v
         self.updateData()
@@ -2935,7 +2728,7 @@ class CList(CCollection):
         rv = self.__dict__['_value'].__setslice__(indx1, indx2, valin)
         if validate:
             v = self.validity(self._value)
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 for ii in range(len(save)):
                     idx = indx1 + ii
                     self.__dict__['_value'][idx].set(save[ii])
@@ -2966,7 +2759,7 @@ class CList(CCollection):
             rv = self.__dict__['_value'].append(arg)
         if validate:
             v = self.validity(self.__dict__['_value'])
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 del self.__dict__['_value'][-1]
                 raise v
         self.__dict__['_value'][-1].dataChanged.connect(self.dataChanged.emit)
@@ -2976,22 +2769,6 @@ class CList(CCollection):
     # This will count number of times the exact same object is in list..
     def count(self, arg):
         return self.__dict__['_value'].count(arg)
-
-    # Count the number of items in list with the same value
-    def countValue(self, arg):
-        arg = self.getValue(arg)
-        if len(self._value) == 0:
-            return 0
-        rv = 0
-        if hasattr(self._value[0], '__eq__'):
-            for item in self._value:
-                if item.__eq__(arg):
-                    rv = rv + 1
-        elif hasattr(self._value[0], '__cmp__'):
-            for item in self._value:
-                if item.__cmp__(arg) == 0:
-                    rv = rv + 1
-        return rv
 
     def extend(self, arg, validate=False):
         if not isinstance(arg, (CList, list)):
@@ -3007,7 +2784,7 @@ class CList(CCollection):
         rv = self.__dict__['_value'].extend(newList)
         if validate:
             v = self.validity(self._value)
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 del self.__dict__['_value'][oldLength:-1]
                 raise v
         self.updateData()
@@ -3017,14 +2794,6 @@ class CList(CCollection):
     def index(self,arg):
         return self.__dict__['_value'].index(arg)
 
-    def indexValue(self,arg):
-        ii = -1
-        for item in self.__dict__['_value']:
-            ii = ii + 1
-            if item.__cmp__(arg) == 0:
-                return ii
-        return -1
-
     def insert(self, indx, arg, validate=False):
         if self.qualifiers('listMaxLength') is not NotImplemented and len(self._value) + 1 > self.qualifiers('listMaxLength'):
             raise CException(self.__class__, 108, name=self.objectPath())
@@ -3032,7 +2801,7 @@ class CList(CCollection):
         rv = self.__dict__['_value'].insert(indx, obj)
         if validate:
             v = self.validity(self._value)
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 del self.__dict__['_value'][indx]
                 raise v
         obj.dataChanged.connect(self.dataChanged.emit)
@@ -3048,7 +2817,7 @@ class CList(CCollection):
         rv = self._value.pop(arg)
         if validate:
             v = self.validity(self._value)
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 self.__dict__['_value'].insert(arg,save)
                 raise v
         self.itemDeleted.emit(arg)
@@ -3062,7 +2831,7 @@ class CList(CCollection):
         rv = self.__dict__['_value'].remove(arg)
         if validate:
             v = self.validity(self._value)
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 self.__dict__['_value'].insert(indx, arg)
                 raise v
         self.itemDeleted.emit(indx)
@@ -3073,7 +2842,7 @@ class CList(CCollection):
         rv = self.__dict__['_value'].reverse()
         if validate:
             v = self.validity(self._value)
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 self.__dict__['_value'].reverse()
                 raise v
         self.updateData()
@@ -3085,7 +2854,7 @@ class CList(CCollection):
             save.append(item)
         rv = self.__dict__['_value'].sort(ccmp, key, reverse)
         v = self.validity(self._value)
-        if v.maxSeverity() > SEVERITY_WARNING:
+        if v.maxSeverity() > Severity.WARNING:
             self.__dict__['_value'] = []
             for item in save:
                 self.__dict__['_value'].append(item)
@@ -3155,7 +2924,6 @@ class COutputFileList(CList):
         if useLXML:
             element = etree.Element(name)
         else:
-            import xml.etree.ElementTree as etree_xml
             element = etree_xml.Element(name)
         if len(self.__dict__['_value']) == 0:
             #This seems to be necessary to get empty list written out properly
@@ -3274,8 +3042,8 @@ class CPatchSelection(CData):
 
     def fix(self,arg={}):
         if arg.get('taskName',None) is not None:
-            from core import CCP4Modules
-            self.__dict__['patchsForTask'] = CCP4Modules.COMFILEPATCHMANAGER().patchForTaskName(taskName=arg['taskName'])
+            from .CCP4ComFilePatchManager import COMFILEPATCHMANAGER
+            self.__dict__['patchsForTask'] = COMFILEPATCHMANAGER().patchForTaskName(taskName=arg['taskName'])
             if arg.get('patch',None) not in self.getPatchList():
                 arg['patch'] = None
         return arg
@@ -3309,10 +3077,10 @@ class CI2DataType(CString):
             self.makeMenuText()
 
     def makeMenuText(self):
-        from core import CCP4DataManager
+        from .CCP4DataManager import DATAMANAGER
         menu = []
         for name in CI2DataType.QUALIFIERS['enumerators']:
-            cls = CCP4DataManager.DATAMANAGER().getClass(className=name)
+            cls = DATAMANAGER().getClass(className=name)
             if cls is None or cls.QUALIFIERS.get('guiLabel', NotImplemented) is NotImplemented:
                 menu.append(name)
             else:
@@ -3320,213 +3088,23 @@ class CI2DataType(CString):
         CI2DataType.QUALIFIERS['menuText'] = menu
 
     def validate(self,arg):
-        from core import CCP4DataManager
-        cls = CCP4DataManager.DATAMANAGER().getClass(className=arg)
+        from .CCP4DataManager import DATAMANAGER
+        cls = DATAMANAGER().getClass(className=arg)
         if cls is None:
             return None
         else:
             return arg
 
-    def isCDataFile(self):
-        from core import CCP4DataManager
-        from core import CCP4File
-        cls = CCP4DataManager.DATAMANAGER().getClass(className=self.__dict__['_value'])
-        if cls is not None and issubclass(cls, CCP4File.CDataFile):
-            return True
-        else:
-            return False
-
     def getMenu(self):
-        from core import CCP4DataManager
+        from .CCP4DataManager import DATAMANAGER
         menu = []
         for className in self.qualifiers('enumerators'):
-            cls = CCP4DataManager.DATAMANAGER().getClass(className=className)
+            cls = DATAMANAGER().getClass(className=className)
             if cls is not None:
-                from core import CCP4File
+                from . import CCP4File
                 if issubclass(cls,CCP4File.CDataFile):
                     label = cls.QUALIFIERS.get('mimeTypeDescription')
                 else:
                     label = cls.QUALIFIERS.get('guiLabel')
                 menu.append(className,label)
         return menu
-
-
-#===========================================================================================================
-import unittest
-def TESTSUITE():
-    suite = unittest.defaultTestLoader.loadTestsFromTestCase(testCListAppend)
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testCListAssorted))
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testQObject))
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testDict))
-    # suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testTable))  # KJS : This is broken
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)
-
-class testCListAppend(unittest.TestCase):
-    def setUp(self):
-        self.l = CList([2,3,4],listMinLength=3,listCompare=1, subItem= {'class' : CInt, 'qualifiers' : {'default':0,'min':0}})
-
-    def testAppend0(self):
-        self.l.append(5)
-        self.assertEqual(self.l.get(),[2,3,4,5])
-
-    def testAppend1(self):
-        self.l.append(CInt(5))
-        self.assertEqual(self.l.get(),[2,3,4,5])
-
-    def testAppend2(self):
-        # Switch off the validity checks to allow an 'uninitialised' CInt to append
-        self.l.setQualifiers(min=NotImplemented,listCompare= NotImplemented)
-        print('testAppend2 qualifiers',self.l.qualifiers(),self.l.subItemQualifiers())
-        self.l.append(CInt(default=0))
-        self.assertEqual(self.l.get(),[2,3,4,0])
-
-    def testAppend3(self):
-        # Should not append value < min
-        # Expect CInt 101
-        #self.failUnlessRaises(CException,self.l.append,-1)
-        try:
-            self.l.append(-1)
-        except CException as e:
-            self.assertEqual(len(e),1,'Unexpected exception length in CList.append that should fail item quailfier test')
-            self.assertEqual(e[0]['code'],101,'Unexpected exception in CList.append that should fail item qualifier test')
-        else:
-            self.fail('No exception in CList.append that should fail item quailfier test')
-
-    def testAppend4(self):
-        # Should not append value < last item in list
-        #self.failUnlessRaises(CException,self.l.append,3)
-        try:
-            self.l.append(3)
-        except CException as e:
-            self.assertEqual(len(e),1,'Unexpected exception length in CList.append that should fail comparison test')
-            self.assertEqual(e[0]['code'],103,'Unexpected exception in CList.append that should fail comparison test')
-        else:
-            self.fail('No exception in CList.append that should fail comparison test')
-
-class testCListAssorted(unittest.TestCase):
-    def setUp(self):
-        self.l = CList(subItemClass=CIntRange,listMaxLength=4)
-
-    def testList1(self):
-        self.l.set({'start' : 2, 'end':6})
-        self.l.append({'start' : 12, 'end':16})
-        self.assertEqual(self.l.get(),[{'start' : 2, 'end':6},{'start' : 12, 'end':16}])
-        self.assertEqual(self.l[1],{'start' : 12, 'end':16})
-
-    def testList2(self):
-        self.l.set({'start' : 2, 'end':6})
-        n =  CList({'start' : 12, 'end':16},subItemClass=CIntRange,listMaxLength=4)
-        m = self.l + n
-        self.assertEqual(m.get(),[{'start' : 2, 'end':6},{'start' : 12, 'end':16}])
-
-    def testList3(self):
-        self.l.set({'start' : 2, 'end':6})
-        self.l.insert(0,{'start' : 12, 'end':16})
-        self.l.reverse()
-        self.assertEqual(self.l.get(),[{'start' : 2, 'end':6},{'start' : 12, 'end':16}])
-
-    def testList4(self):
-        self.l.set({'start' : 2, 'end':6})
-        m =  [  CIntRange(start=4,end=14),CIntRange(start=5,end=15)]
-        n = [CIntRange(start=6,end=16),CIntRange(start=7,end=17)]
-        self.l.extend(m)
-        self.assertEqual(self.l.get(),[{'start' : 2, 'end':6},{'start' : 4, 'end':14},{'start' : 5, 'end':15}])
-        try:
-            self.l.extend(m)
-        except CException as e:
-            self.assertEqual(len(e),1,'Unexpected exception length in CList.extend')
-            self.assertEqual(e[0]['code'],108,'Unexpected exception in CList.extend')
-        else:
-            self.fail('No exception in CList.extend that should fail')
-        self.l.remove({'start' : 4, 'end':14})
-        self.assertEqual(self.l[1].end,15,'Fail after CList.remove')
-
-    def testList5(self):
-        testXML = '''<CList>
-  <CIntRange>
-    <start>2</start>
-    <end>6</end>
-  </CIntRange>
-  <CIntRange>
-    <start>4</start>
-    <end>14</end>
-  </CIntRange>
-  <CIntRange>
-    <start>5</start>
-    <end>15</end>
-  </CIntRange>
-</CList>
-'''
-        self.l.set([{'start' : 2, 'end':6},{'start' : 4, 'end':14},{'start' : 5, 'end':15}])
-        element = self.l.getEtree()
-        text = etree.tostring(element,pretty_print=True)
-        #print text
-        self.assertEqual(text,testXML,'Failed writing XML comparison')
-        m = CList(subItemClass=CIntRange,listMaxLength=4)
-        m.setEtree(element)
-        self.assertEqual(self.l.get(),m.get(),'Failed write/read XML etree')
-
-    def testList6(self):
-        self.l.set({'start' : 2, 'end':6})
-        j = CList(subItemClass=CIntRange,listMaxLength=4)
-        j.append({'start' : 4, 'end':8})
-        self.assertEqual(len(j),1,'With two lists - second list wrong length')
-
-class testQObject(unittest.TestCase):
-#class testQObject():
-    def setUp(self):
-        self.bleeped = False
-        if QT():
-            from PySide2 import QtCore
-            self.app = QtCore.QCoreApplication(sys.argv)
-            self.master = QtCore.QObject(self.app)
-
-    @QtCore.Slot()
-    def bleep(self):
-        print('BLEEP!!!')
-        self.bleeped = True
-
-    def test1(self):
-        if QT():
-            from PySide2 import QtCore
-            f = CFloat(parent=self.master)
-            f.dataChanged.connect(self.bleep)
-            f.set(12.0)
-            self.assertTrue(self.bleeped,'dataChanged signal not connected')
-        else:
-            return
-
-class testDict(unittest.TestCase):
-    def test1(self):
-        d = CDict(subItem={'class' : CIntRange, 'qualifiers' : {'compare' : -1, 'start' : {'min':0}}})
-        e = d.set({'foo' : {'start' : 10, 'end' : 5}})
-        #print 'd.foo',d.foo
-        #print 'error',e
-        self.assertEqual(d.foo.start, 10, 'Failed to set CDict')
-
-    def test2(self):
-        d = CDict(subItem = {'class' : CIntRange, 'qualifiers' : {'compare' : -1, 'start' : {'min':0}}})
-        e = d.set({'foo' : {'start' : -10, 'end' : -20}})
-        print('testDict.test2',d,e)
-        if len(e) > 0:
-            self.assertEqual(e[0]['code'],101,'Setting incorrect dict item does not give correct error code 101')
-        else:
-            self.fail('Setting incorrect dict item does not give error')
-
-    def test3(self):
-        d = CDict(subItem = { 'class' : CIntRange, 'qualifiers' : { 'compare' : -1, 'start' : {'min':0}}})
-        e = d.set( { 'foo' : { 'start' : 10, 'end' : 20}} )
-        #print 'testDict.test2',e.report()
-        self.assertEqual(e[0]['code'],102,'Setting incorrect dict item does not give correct error code 102')
-
-    def test4(self):
-        from core.CCP4File import CDataFile
-        d = CDict(subItemClass=CDataFile)
-        d.PDBIN = { 'project' : 'FOO' , 'baseName' : 'bar.pdb' }
-        d.PDBINX = '/foo/bar_x.pdb'
-        self.assertEqual(d.dataOrder(),['PDBIN','PDBINX'],'Failed creating Dict using __setattr__')
-        self.assertEqual(str(d.PDBINX),'/foo/bar_x.pdb','Failed creating Dict using __setattr__ - 2')

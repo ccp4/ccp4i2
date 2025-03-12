@@ -1,25 +1,3 @@
-from __future__ import print_function
-
-
-"""
-     CCP4File.py: CCP4 GUI Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
 """
    Liz Potterton Aug 2010 - File handling classes
 """
@@ -27,19 +5,15 @@ from __future__ import print_function
 import os
 import re
 import sys
-import types
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
 
 from PySide2 import QtCore
 
-from core import CCP4Data
-from core import CCP4Config
-from core.CCP4Modules import MIMETYPESHANDLER, PROJECTSMANAGER
-from core.CCP4ErrorHandling import *
+from . import CCP4Data
+from . import CCP4Config
+from .CCP4Modules import PROJECTSMANAGER
+from .CCP4ErrorHandling import CErrorReport, CException, Severity
 from report.CCP4ReportParser import CCP4NS
+
 
 # Version number of form n.m or n.m.i
 class CVersion(CCP4Data.CString):
@@ -115,11 +89,11 @@ class CProjectName(CCP4Data.CString):
     ERROR_CODES = {101 : {'description' : 'Invalid project name'},
                    102 : {'description' : 'Project does not have directory set'},
                    103 : {'description' : 'Project directory does not exist'},
-                   104 : {'severity' : SEVERITY_WARNING,
+                   104 : {'severity' : Severity.WARNING,
                           'description' : 'Warning - Project name is a directory alias'},
-                   105 : {'severity' : SEVERITY_WARNING,
+                   105 : {'severity' : Severity.WARNING,
                           'description' : 'Warning - Project does not have directory set'},
-                   106 : {'severity' : SEVERITY_WARNING,
+                   106 : {'severity' : Severity.WARNING,
                           'description' : 'Warning - Project directory does not exist'}}
 
     def validity(self, arg):
@@ -179,9 +153,9 @@ class CProjectId(CCP4Data.CUUID):
     ERROR_CODES = {201 : {'description' : 'Unrecognised projectId'},
                    202 : {'description' : 'Project does not have directory set'},
                    203 : {'description' : 'Project directory does not exist'},
-                   205 : {'severity' : SEVERITY_WARNING,
+                   205 : {'severity' : Severity.WARNING,
                           'description' : 'Warning - Project does not have directory set'},
-                   206 : {'severity' : SEVERITY_WARNING,
+                   206 : {'severity' : Severity.WARNING,
                           'description' : 'Warning - Project directory does not exist'}}
 
     def validity(self, arg):
@@ -244,7 +218,7 @@ class CFilePath(CCP4Data.CString):
                                                        'description' : 'Handling of violation of allowed characters'},
                              'default' : {'type' : str, 'description' : 'Default file path'}}
     ERROR_CODES = {101 : {'description' : 'Invalid characters in file name'},
-                   102 : {'severity' : SEVERITY_WARNING, 'description' : 'Invalid characters in file name'}}
+                   102 : {'severity' : Severity.WARNING, 'description' : 'Invalid characters in file name'}}
 
     def coerce(self, arg):
         # Convert \ to / as Python and Qt work with that internally
@@ -356,22 +330,6 @@ class CFilePath(CCP4Data.CString):
         else:
             return CFilePath(os.path.normpath(os.path.join(other, self._value)))
 
-    """
-    def __cmp__(self,arg):
-        other =  self.getValue(arg)
-        if self._value is None or other is None:
-          if self._value is not None:
-            return -1
-          elif other is not None:
-            return 1
-          else:
-            return 0
-        else:
-          #MN 'str' and 'unicode' types do not have __cmp__, but equality can be tested using ==
-          if isinstance(self._value,basestring) and isinstance(other,basestring): return self._value == other
-          return self._value.__cmp__(other)
-    """
-
     def __str__(self):
         if self._value is None:
             return ''
@@ -427,13 +385,13 @@ class CDataFile(CCP4Data.CData):
                    103 : {'description' : 'Attempting to set file content with inappropriate data'},
                    104 : {'description' : 'There is no file content class specified for this type of file'},
                    105 : {'description' : 'The file content class specified for this type of file can not be found'},
-                   300 : {'description' : 'Passed' , 'severity' : SEVERITY_OK},
-                   305 : {'description' : 'Neither original nor test file exists', 'severity' : SEVERITY_OK},
+                   300 : {'description' : 'Passed' , 'severity' : Severity.OK},
+                   305 : {'description' : 'Neither original nor test file exists', 'severity' : Severity.OK},
                    306 : {'description' : 'Original file does not exists'},
                    307 : {'description' : 'Test file does not exist '},
                    308 : {'description' : 'Files failed checksum comparison'},
                    309 : {'description' : 'Files failed size comparison'},
-                   310 : {'description' : 'No comparison testing implemented for this file type', 'severity' : SEVERITY_WARNING},
+                   310 : {'description' : 'No comparison testing implemented for this file type', 'severity' : Severity.WARNING},
                    311 : {'description' : 'Failed loading original file for comparison'},
                    312 : {'description' : 'Failed loading test file for comparison'},
                    313 : {'description' : 'Files failed simple text diff comparison'},
@@ -1236,7 +1194,7 @@ class CI2XmlDataFile(CXmlDataFile):
     QUALIFIERS_ORDER = [ 'autoLoadHeader']
     QUALIFIERS_DEFINITION = {'autoLoadHeader' : { 'type' : bool}}
     ERROR_CODES = {1003 : {'description' : 'XML does not have <ccp4i2> root node'},
-                   1004 : {'severity' : SEVERITY_WARNING, 'description' : 'XML does not have <ccp4i2_header> section'},
+                   1004 : {'severity' : Severity.WARNING, 'description' : 'XML does not have <ccp4i2_header> section'},
                    1005 : {'description' : 'XML does not have <ccp4i2_body> section'}}
 
     def __init__(self, value={}, qualifiers={}, parent=None, name=None, fullPath=None, keywords={}, **kw):
@@ -1780,189 +1738,3 @@ class CExePathList(CCP4Data.CList):
         if self.__dict__['exeLookup'] is None:
             self.setupExeLookup()
         return self.__dict__['exeLookup'].get(name, name)
-
-
-#===========================================================================================================
-import unittest
-def TESTSUITE():
-    suite = unittest.defaultTestLoader.loadTestsFromTestCase(testProject)
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testFilePath))
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testDataFile))
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testI2XmlDataFile))
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testXmlDataFile))
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)
-
-class testProject(unittest.TestCase):
-
-    def testCProjectName1(self):
-        p = CProjectName()
-        p.set('CCP4I2_TEST')
-        self.assertEqual(p,'CCP4I2_TEST','Failed to set good project name')
-    """
-    def testCProjectName2(self):
-        p = CProjectName()
-        try:
-          p.set('rubbish')
-        except CException as e:
-          self.assertEqual(len(e),1,'Unexpected exception length in setting bad CProjectName')
-          self.assertEqual(e[0]['code'],104,'Unexpected exception in setting bad CProjectName')
-        except:
-          self.fail('Unexpected exception in setting bad CProjectName')
-        else:
-          self.fail('No exception in setting bad CProjectName')
-
-    def testCProjectName3(self):
-        import shutil
-        from core.CCP4Utils import getHOME
-        PROJECTSMANAGER().createProject('DUMMY_CCP4I2_TEST',os.path.join(getHOME(),'DUMMY_CCP4I2_TEST'))
-        shutil.rmtree(os.path.join(getHOME(),'DUMMY_CCP4I2_TEST'))
-
-        p = CProjectName()
-        try:
-          p.set('DUMMY_CCP4I2_TEST')
-        except CException as e:
-          self.assertEqual(len(e),1,'Unexpected exception length in setting project with nonexistant directory')
-          self.assertEqual(e[0]['code'],106,'Unexpected exception in setting project with nonexistant directory')
-        except:
-          self.fail('Unexpected exception in setting bad project with nonexistant directory')
-        else:
-          self.fail('No exception in setting project with nonexistant directory')
-        PROJECTSMANAGER().deleteProject('DUMMY_CCP4I2_TEST')
-    """
-
-class testFilePath(unittest.TestCase):
-
-    def testFilePath1(self):
-        f = CFilePath('foo/bar/fo_ehue.tmp')
-        self.assertEqual(f, 'foo/bar/fo_ehue.tmp', 'Error setting CFilePath')
-
-    def testFilePath2(self):
-        try:
-            f = CFilePath('foo/bar/fo_e*ue.tmp', allowedCharactersMode=CFilePath.ALLOWED_CHARACTERS_FAIL)
-        except CException as e:
-            self.assertEqual(len(e), 1, 'Unexpected exception length in setting bad CFilePath')
-            self.assertEqual(e[0]['code'], 101, 'Unexpected exception in setting project bad CFilePath')
-        except:
-            self.fail('Unexpected exception in setting bad CFilePath')
-        else:
-            self.fail('No exception in setting bad CFilePath')
-
-    def testFilePath3(self):
-        try:
-            f = CFilePath()
-            f.set(f.fix('foo/bar/fo_e*ue.tmp'))
-        except:
-            self.fail('Unexpected exception in fixing bad CFilePath')
-        self.assertEqual(f, 'foo/bar/fo_e_ue.tmp', 'Error setting CFilePath')
-
-class testDataFile(unittest.TestCase):
-
-    def setUp(self):
-        PROJECTSMANAGER().makeDefaultProject('CCP4I2_TEST')
-
-    def testDataFile0(self):
-        f = CDataFile()
-        self.assertEqual(f.baseName.get(), None,'Initialising CDataFile does not have baseName as None')
-        self.assertEqual(f.fullPath.get(), None,'Initialising CDataFile does not have fullPath as None')
-
-    def testDataFile1(self):
-        f = CDataFile(projectName='CCP4I2_TEST', relPath='foo/bar', baseName='myfile.txt')
-        #print 'testDataFile1',f.fullPath,f.relPath,f.project.directory()
-        #print 'testDataFile1',PROJECTSMANAGER().getProjectDirectory(projectName='CCP4I2_TEST')
-        #print 'testDataFile1',PROJECTSMANAGER().db().listProjects(toTerm=True)
-        self.assertEqual(f.fullPath,os.path.join(PROJECTSMANAGER().getProjectDirectory(projectName='CCP4I2_TEST'),'foo/bar/myfile.txt'))
-
-    def testDataFile2(self):
-        f = CDataFile(mustExist=True)
-        projectId=PROJECTSMANAGER().db().getProjectId(projectName = 'CCP4I2_TEST')
-        try:
-            f.set(projectId=projectId,relPath = 'foo/bar',baseName = 'myfile.txt')
-        except CException as e:
-            self.assertEqual(len(e),1,'Unexpected exception length in setting non-existant CDataFile')
-            self.assertEqual(e[0]['code'],101,'Unexpected exception in setting non-existant CDataFile')
-        except:
-            self.fail('Unexpected exception in setting non-existant CDataFile')
-        else:
-            self.fail('No exception in setting non-existant CDataFile')
-
-    def testDataFile3(self):
-        f = CDataFile()
-        f.fullPath = os.path.join(PROJECTSMANAGER().getProjectDirectory(projectName='CCP4I2_TEST'),'foo/bar/myfile.txt')
-        projectName = PROJECTSMANAGER().db().getProjectInfo(str(f.project),'projectName')
-        self.assertEqual(projectName,'CCP4I2_TEST','CDataFile setting full path gives wrong project')
-        self.assertEqual(f.relPath,'foo/bar','CDataFile setting full path gives wrong relPath')
-        self.assertEqual(f.baseName,'myfile.txt','CDataFile setting full path gives wrong baseName')
-
-    def testDataFile4(self):
-        f = CDataFile(fullPath = os.path.join(PROJECTSMANAGER().getProjectDirectory(projectName='CCP4I2_TEST'),'foo/bar/myfile.txt'))
-        projectName = PROJECTSMANAGER().db().getProjectInfo(str(f.project),'projectName')
-        self.assertEqual(projectName,'CCP4I2_TEST','CDataFile setting full path gives wrong project')
-        self.assertEqual(f.relPath,'foo/bar','CDataFile setting full path gives wrong relPath')
-        self.assertEqual(f.baseName,'myfile.txt','CDataFile setting full path gives wrong baseName')
-
-    def testDataFile5(self):
-        bindir = os.path.join(os.environ['CCP4I2_TOP'],'bin')
-        f = CDataFile(relPath=bindir,baseName='browser')
-        #print 'testDataFile5',bindir,f.fullPath
-        h = CFilePath(os.path.join(bindir,'browser'))
-        self.assertTrue(f.samefile(os.path.join(bindir,'browser')),'Failed CDataFile.samefile(Python string)')
-        self.assertTrue(f.samefile(h),'Failed CDataFile.samefile(CFilePath)')
-
-    """
-      def testDataFile5(self):
-        try:
-          f = CDataFile(project='rubbish',baseName='whatever')
-        except CException as e:
-          self.assertEqual(len(e),1,'Unexpected exception length in setting CDataFile with bad project')
-          self.assertEqual(e[0]['code'],104,'Unexpected exception in setting CDataFile with bad project')
-        except:
-          self.fail('Unexpected exception in setting CDataFile with bad project')
-        else:
-          self.fail('No exception in setting CDataFile with bad project')
-    """
-
-
-class testI2XmlDataFile(unittest.TestCase):
-
-    def test1(self):
-        c = CI2XmlDataFile( projectName='CCP4I2_TOP',relPath='test/data',baseName='pdbset.def.xml')
-        self.assertEqual(c.header.pluginTitle,'PDBSet','Error loading header of I2XmlDataFile')
-
-    def test2(self):
-        c = CI2XmlDataFile(projectName='CCP4I2_TOP',relPath='test/data',baseName='pdbset.def.xml')
-        e = c.getBodyEtree()
-        self.assertEqual(str(e.find('container').get('id')),'inputData','Error in getBodyEtree')
-
-    def test3(self):
-        c = CI2XmlDataFile(projectName='CCP4I2_TEST',baseName='testXmlDataFile.xml')
-        if c.fullPath.exists() : os.remove(c.fullPath.get())
-        from core import CCP4Config
-        if CCP4Config.XMLPARSER() == 'lxml': from lxml import etree
-        ele = etree.Element(CI2XmlDataFile.BODY_TAG)
-        c.saveFile(bodyEtree=ele)
-        self.assertTrue(os.path.exists(c.fullPath.get()),'No file written by saveFile')
-
-
-class testXmlDataFile(unittest.TestCase):
-
-    def test1(self):
-        c = CXmlDataFile(projectName='CCP4I2_TOP',relPath='test/data',baseName='refmac_as2m1_n.xml')
-        e = c.loadFile()
-        self.assertEqual(e.tag,'REFMAC','Failed to load refmac xml to CXmlDataFile')
-
-        f = CDataFile(projectName='CCP4I2_TEST',baseName='refmac_as2m1_n.refmac.xml')
-        if f.fullPath.exists():  os.remove(str(f.fullPath))
-        d = c.makeI2XmlDataFile(fileName=f,function='REFMAC',pluginVersion='5.1.1')
-        self.assertTrue( f.fullPath.exists(),'Failed to create I2 version of refmac xml file')
-
-
-def testTiming():
-    f = CDataFile()
-    start = time.perf_counter()
-    for n in range(0,1000):
-        v = f.validity('/foo')
-        print('testTiming',time.perf_counter()-start)
