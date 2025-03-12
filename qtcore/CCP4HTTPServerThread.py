@@ -295,8 +295,9 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                         self.returnData('image/png', response)
                     elif isSvg:
                         self.returnData('image/svg+xml', response)
-                    elif hasattr(response,"startswith") and (response.strip().startswith(b'<!DOCTYPE html') or response.strip().startswith(b'<HTML') or response.strip().startswith(b'<html')):
-                        #Hopefully this is html
+                    elif isinstance(response, str) and response.strip().startswith(('<!DOCTYPE html', '<HTML', '<html')):
+                        self.returnData('text/html; charset=UTF-8', response)
+                    elif isinstance(response, bytes) and response.strip().startswith((b'<!DOCTYPE html', b'<HTML', b'<html')):
                         self.returnData('text/html; charset=UTF-8', response)
                     elif isLog:
                         self.returnData('text/plain', response)
