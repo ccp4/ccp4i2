@@ -406,6 +406,6 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
             self.send_header('Content-type',contentType)
             self.end_headers()
             if isinstance(data, str):
-                self.wfile.write(bytes(data, "utf-8"))
+                self.wfile.write(data.encode())
             else:
                 self.wfile.write(data)
