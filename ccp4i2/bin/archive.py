@@ -1,19 +1,13 @@
-from __future__ import print_function
-import sys
-
-if sys.version_info >= (3,0):
-    import urllib.request, urllib.parse
-else:
-    import urllib
-    import urllib2
-
+import io
 import itertools
 import mimetools
 import mimetypes
-try:
-    from cStringIO import StringIO
-except ImportError:
-    from io import StringIO
+import sys
+import urllib.parse
+import urllib.request
+
+from lxml import etree
+
 
 class MultiPartForm(object):
     """Accumulate the data to be used when posting a form."""
@@ -87,16 +81,14 @@ class DjangoMultiPartForm(MultiPartForm):
         
     def get_request(self):
         # Build the request
-        if sys.version_info >= (3,0):
-            request = urllib.request.Request(self.baseURL)
-        else:
-            request = urllib2.Request(self.baseURL)
+        request = urllib.request.Request(self.baseURL)
         request.add_header('User-agent', 'PyMOTW (http://www.doughellmann.com/PyMOTW/)')
         body = str(self)
         request.add_header('Content-type', self.get_content_type())
         request.add_header('Content-length', len(body))
         request.add_data(body)
         return request
+
 
 class DjangoSession (object):
     def __init__(self, *args, **kws):
@@ -139,26 +131,17 @@ class DjangoSession (object):
         return self.openRequest(url)
 
     def postURLWithValues(self, url, values):
-        if sys.version_info >= (3,0):
-            data = urllib.parse.urlencode(values)
-        else:
-            data = urllib.urlencode(values)
+        data = urllib.parse.urlencode(values)
         req = urllib.request.Request(url, data)
         response = self.openURL(req)
         return response
 
     def getURLWithValues(self, url, values):
         print('url',url)
-        if sys.version_info >= (3,0):
-            url_values = urllib.parse.urlencode(values)
-        else:
-            url_values = urllib.urlencode(values)
+        url_values = urllib.parse.urlencode(values)
         full_url = url + '?' + url_values
         print('full_url',full_url)
-        if sys.version_info >= (3,0):
-           req = urllib.request.Request(full_url)
-        else:
-           req = urllib2.Request(url, data)
+        req = urllib.request.Request(full_url)
         response = self.openURL(req)
         return response
 
@@ -167,9 +150,8 @@ class DjangoSession (object):
         responseHTML=response.read()
         formURL = response.geturl()
         #Here check that this looks like a properly crafted login form
-        from lxml import etree
         parser = etree.HTMLParser()
-        responseAsEtree = etree.parse(StringIO(responseHTML), parser)
+        responseAsEtree = etree.parse(io.StringIO(responseHTML), parser)
         if len(responseAsEtree.xpath("//input[@name='username']")) == 0:
             raise Exception("No username field in login page retrieved from ", response.geturl())
         if len(responseAsEtree.xpath("//input[@name='password']")) == 0:
@@ -186,6 +168,7 @@ class DjangoSession (object):
         form = DjangoMultiPartForm(baseURL)
         form.add_field('csrfmiddlewaretoken',self.cookieLookup['csrftoken'])
         return form
+
 
 class CCP4i2DjangoSession(DjangoSession):
     def __init__(self, *args, **kws):
@@ -350,15 +333,3 @@ if __name__ == '__main__':
             for valuePair in tokens[1:]:
                 values[valuePair.split('=')[0]] = valuePair.split('=')[1] 
             print(ccp4i2DjangoSession.queryDb(command,values))
-
-'''
-    ccp4i2DjangoSession = CCP4i2DjangoSession(sys.argv[1],sys.argv[2],sys.argv[3])
-
-
-    #exerciseCreateProject('AAAnEmptyProject')
-    #exerciseGet()
-    ccp4i2DjangoSession.pushProject(sys.argv[4])
-'''
-
-
-
