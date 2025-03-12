@@ -1,6 +1,6 @@
 # CCP4i2 Changelog
 
-## [2.2.4] - 2025-03-04
+## [2.2.4] - 2025-02-25
 
 - Fixed window maximising on Windows
 - ModelCraft used by default in the DR/MR/MB pipeline
@@ -11,7 +11,6 @@
 - Hiding nanobind leak warnings from Gemmi 0.7
 - Changing Buccaneer to ModelCraft in the Phaser EP task
 - Fixed MrParse report on Windows
-- Packaging using pyproject.toml
 
 ## [2.2.3] - 2025-02-07
 
