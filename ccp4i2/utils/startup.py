@@ -23,7 +23,15 @@ def getCCP4I2Dir():
 
 
 def setupEnvironment(path=''):
+    os.environ["BOOST_ADAPTBX_FPE_DEFAULT"] = "1"
     os.environ["CCP4I2_TOP"] = path or getCCP4I2Dir()
+    os.environ["CCP4I2"] = os.environ["CCP4I2_TOP"]
+    os.environ["LC_ALL"] = "C"
+    os.environ["LD_LIBRARY_PATH"] = os.path.join(os.environ["CCP4"], "lib")
+    os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = os.path.join(os.environ["CCP4"], "QtPlugins")
+    if sys.platform.startswith("linux"):
+        os.environ["DIR_QT_LIBRARY_DATA"] = os.path.join(os.environ["CCP4"], "resources")
+        os.environ["QTWEBENGINE_DISABLE_SANDBOX"] = "1"
 
 
 def setupPythonpath():

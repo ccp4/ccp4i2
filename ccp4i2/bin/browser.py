@@ -1,5 +1,6 @@
 import atexit
 import cProfile
+import faulthandler
 import io
 import os
 import pstats
@@ -12,20 +13,8 @@ import ccp4mg # Sets sys.path so import of MG modules will work from here onward
 from .. import I2_TOP
 
 
-def setEnvironmentVariablesThatUsedToBeInBash():
-    os.environ["BOOST_ADAPTBX_FPE_DEFAULT"] = "1"
-    os.environ["CCP4I2_TOP"] = str(I2_TOP)
-    os.environ["CCP4I2"] = str(I2_TOP)
-    os.environ["LC_ALL"] = "C"
-    os.environ["LD_LIBRARY_PATH"] = os.path.join(os.environ["CCP4"], "lib")
-    os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = os.path.join(os.environ["CCP4"], "QtPlugins")
-    if sys.platform.startswith("linux"):
-        os.environ["DIR_QT_LIBRARY_DATA"] = os.path.join(os.environ["CCP4"], "resources")
-        os.environ["QTWEBENGINE_DISABLE_SANDBOX"] = "1"
-
-
 def main():
-    # import faulthandler; faulthandler.enable()  # Help with debugging segfaults
+    # faulthandler.enable()  # Help with debugging segfaults
     print("CCP4", os.environ["CCP4"])
     print('Running CCP4i2 browser from:', I2_TOP)
     print('Python', sys.version)
@@ -34,13 +23,10 @@ def main():
     except:
         print('Failed finding Qt verion')
     print(' ')
-    setEnvironmentVariablesThatUsedToBeInBash()
+    from ..utils.startup import setupEnvironment, startBrowser
+    from ..core.CCP4Modules import QTAPPLICATION
     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)
-    sys.path.append(os.path.join(I2_TOP, 'utils'))
-    from startup import setupEnvironment, setupPythonpath, startBrowser
     setupEnvironment()
-    setupPythonpath()
-    from core.CCP4Modules import QTAPPLICATION
     app = QTAPPLICATION(graphical=True)
     QtWebEngineWidgets.QWebEngineProfile.defaultProfile().clearHttpCache()
     splash = None
