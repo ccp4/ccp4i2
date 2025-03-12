@@ -35,7 +35,7 @@ import tarfile
 from lxml import etree
 from core.CCP4Config import DEVELOPER
 from core.CCP4ErrorHandling import *
-from .. import __version__, __version_date__
+from ccp4i2 import __version__, __version_date__
 
 
 def writeXML(f,t):

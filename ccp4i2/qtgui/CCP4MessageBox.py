@@ -24,7 +24,7 @@
 ##@package CCP4ProjectWidget View a project
                             
 from PySide2 import QtGui, QtWidgets,QtCore
-from .. import __version__, __version_date__
+from ccp4i2 import __version__, __version_date__
 
 
 class CMessageBox(QtWidgets.QDialog):
