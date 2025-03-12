@@ -18,7 +18,6 @@ def setEnvironmentVariablesThatUsedToBeInBash():
     os.environ["CCP4I2"] = str(I2_TOP)
     os.environ["LC_ALL"] = "C"
     os.environ["LD_LIBRARY_PATH"] = os.path.join(os.environ["CCP4"], "lib")
-    os.environ["PYTHONSTARTUP"] = str(I2_TOP / "bin" / "ccp4i2.pythonrc")
     os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = os.path.join(os.environ["CCP4"], "QtPlugins")
     if sys.platform.startswith("linux"):
         os.environ["DIR_QT_LIBRARY_DATA"] = os.path.join(os.environ["CCP4"], "resources")
