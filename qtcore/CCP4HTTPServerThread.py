@@ -292,22 +292,23 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                 else:
                     #print("Doing something!!!!!!!!",theFileName,isPng,isSvg,isLog,isCss,isJs,isJson)
                     if isPng:
-                        self.returnData('image/png',response,isBinary=True)
+                        self.returnData('image/png', response)
                     elif isSvg:
-                        self.returnData('image/svg+xml',response,isBinary=True)
-                    elif hasattr(response,"startswith") and (response.strip().startswith(b'<!DOCTYPE html') or response.strip().startswith(b'<HTML') or response.strip().startswith(b'<html')):
-                        #Hopefully this is html
-                        self.returnData('text/html; charset=UTF-8',response,isBinary=True)
+                        self.returnData('image/svg+xml', response)
+                    elif isinstance(response, str) and response.strip().startswith(('<!DOCTYPE html', '<HTML', '<html')):
+                        self.returnData('text/html; charset=UTF-8', response)
+                    elif isinstance(response, bytes) and response.strip().startswith((b'<!DOCTYPE html', b'<HTML', b'<html')):
+                        self.returnData('text/html; charset=UTF-8', response)
                     elif isLog:
-                        self.returnData('text/plain',response,isBinary=True)
+                        self.returnData('text/plain', response)
                     elif isCss:
-                        self.returnData('text/css',response,isBinary=True)
+                        self.returnData('text/css', response)
                     elif isJs:
-                        self.returnData('text/javascript',response,isBinary=True)
+                        self.returnData('text/javascript', response)
                     elif isJson:
-                        self.returnData('application/json',response,isBinary=True)
+                        self.returnData('application/json', response)
                     else:
-                        self.returnData('application/javascript',json.dumps(response),isBinary=True)
+                        self.returnData('application/javascript',json.dumps(response))
                     dbRequest['responseQueue'].task_done()
                     return
     
@@ -394,18 +395,18 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
         if isBinary:
             with open(fullPath, 'rb') as content_file:
                 content = content_file.read()
-                self.returnData(contentType, content, isBinary=True)
+                self.returnData(contentType, content)
         else:
             with open(fullPath, 'r') as content_file:
                 content = content_file.read()
                 self.returnData(contentType, content)
 
-    def returnData(self, contentType=None, data=None, isBinary=False):
+    def returnData(self, contentType=None, data=None):
         if contentType is not None and data is not None:
             self.send_response(200)
             self.send_header('Content-type',contentType)
             self.end_headers()
-            if not isBinary:
-                self.wfile.write(bytes(data,"utf-8"))
+            if isinstance(data, str):
+                self.wfile.write(data.encode())
             else:
                 self.wfile.write(data)
