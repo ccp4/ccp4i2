@@ -4,7 +4,6 @@ import http.cookiejar
 import io
 import itertools
 import json
-import mimetools
 import mimetypes
 import os
 import re
@@ -15,6 +14,7 @@ import urllib.parse
 import urllib.request
 
 from lxml import etree
+import mimetools
 
 from ..core import CCP4NonGuiProjectUtils
 from ..core import CCP4Utils

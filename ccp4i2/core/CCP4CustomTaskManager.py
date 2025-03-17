@@ -37,7 +37,6 @@ class CCustomTaskManager(CCP4CustomManager.CCustomManager):
         CCP4CustomManager.CCustomManager.__init__(self, parent, 'task')
 
     def createCustomTask(self, name=None, title=None, container=None, overwrite=False):
-
         err = CErrorReport()
         self.createDirectory(name=name, overwrite=overwrite)
         container.header.pluginName = name

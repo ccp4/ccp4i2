@@ -15,8 +15,8 @@ from ..utils.startup import setupEnvironment, startBrowser
 
 
 def main():
-    if False:  # Added to help with debugging segfaults.
-        faulthandler.enable()
+    # faulthandler.enable()  # Help with debugging segfaults
+    print("CCP4", os.environ["CCP4"])
     print('Running CCP4i2 browser from:', I2_TOP)
     print('Python', sys.version)
     try:

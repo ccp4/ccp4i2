@@ -1,7 +1,8 @@
 import getpass
 import os
-import psutil
 import time
+
+import psutil
 
 
 def getUserId():

@@ -27,5 +27,3 @@ class CCootHistoryDataFile(CCP4File.CDataFile):
         #MN Now here we have an issue that assertSame on an Coot Hstory file is fraught with difficulties, and an identical checkSum is probably far too stringent.  I'm gonna suggest that we should remove testChecksum for now, with a view to putting in a more intelligent comparison later
         report = CCP4File.CDataFile.assertSame(self, arg, testPath, False, testSize, testDiff, diagnostic, fileName)
         return report
-
-

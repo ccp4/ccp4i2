@@ -707,14 +707,14 @@ class CI2Runner(object):
         print("Returning...")
         return
 
-def main():
+def main(args=None):
     print("##################################################")
     print("##################################################")
     print("RUNNING NEW CCP4I2Runner")
     print("##################################################")
     print("##################################################")
     try:
-        theRunner = CI2Runner(sys.argv)
+        theRunner = CI2Runner(args or sys.argv)
         theRunner.run()
 #Quit any web server threads
         app = QtCore.QCoreApplication.instance()
@@ -735,12 +735,10 @@ def main():
             print("EXITING FROM NEW CCP4I2Runner")
             print("##################################################")
             print("##################################################")
-        sys.exit(0)
     except Exception as err:
         print("Failed with exception ", err)
         traceback.print_exc()
-        
-    sys.exit(1)
+        sys.exit(1)
 
 
 if __name__ == "__main__":
