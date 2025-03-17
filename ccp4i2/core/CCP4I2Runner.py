@@ -1,30 +1,25 @@
-from __future__ import print_function
-
 import argparse
-import sys
 import os
-import traceback
-import time
-import xml.etree.ElementTree as ET
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from core import CCP4TaskManager
-from core import CCP4Config
-from core import CCP4File
-from core import CCP4Data
-from core import CCP4ModelData
-from core import CCP4XtalData
-if sys.platform == "win32":
-    import ccp4mg
-    import hklfile
-else:
-    from ccp4mg import hklfile
-from core import CCP4Modules
-from lxml import etree
-#import clipper
-import gemmi
-import numpy
 import re
-from core.CCP4ErrorHandling import CException
+import sys
+import tempfile
+import time
+import traceback
+import xml.etree.ElementTree as ET
+
+import gemmi
+from lxml import etree
+import numpy
+from PySide2 import QtCore
+
+from . import CCP4Data
+from . import CCP4File
+from . import CCP4ModelData
+from . import CCP4TaskManager
+from . import CCP4XtalData
+from ..qtcore.CCP4JobController import JOBCONTROLLER
+from .CCP4ErrorHandling import CException
+
 
 class CI2Runner(object):
     def __init__(self, cmdLineArgs, theParser=None):
@@ -217,8 +212,7 @@ class CI2Runner(object):
         superclassDefXMLNodes = taskBodyNode.findall('file')
         
         for superclassDefXMLNode in superclassDefXMLNodes:
-            #assert(superclassDefXMLNode.findall('project')[0].text == 'CCP4I2_TOP')
-            #Windows fix needed here
+            # Windows fix needed here
             fullPath = os.path.join(os.path.dirname(__file__),"..",
                                     superclassDefXMLNode.findall('CI2XmlDataFile/relPath')[0].text,
                                     superclassDefXMLNode.findall('CI2XmlDataFile/baseName')[0].text)
@@ -259,14 +253,6 @@ class CI2Runner(object):
 
         return taskDefXML
 
-    def defXMLForTaskName(self, taskName):
-        cachedData = {}
-        with open(os.path.join(os.path.split(__file__)[0], "DefXMLCache.json"),"r") as cacheFile:
-            cachedData = json.loads(cacheFile.read())
-        relPath = cachedData[taskName]
-        fullPath = os.path.join(os.environ['CCP4'], relPath[1:])
-        return self.recursivelyBuildXML(fullPath)
-    
     def setEntityValue(self, entityToModify, valueItem):
         #print("EtoM [{}] [{}]".format(entityToModify, valueItem))
         if isinstance(entityToModify,(CCP4File.CDataFile,)) and isinstance(valueItem, (str,)):
@@ -331,7 +317,6 @@ class CI2Runner(object):
         #print("cAsuDataFile full Path is ", cAsuDataFile.fullPath)
         if cAsuDataFile.fullPath is None or len(cAsuDataFile.fullPath) == 0:
             #print("fullPath is None")
-            import tempfile
             tempASUFile = tempfile.NamedTemporaryFile(delete=True, suffix=".asucontent.xml")
             tempASUFile.close()
             
@@ -389,7 +374,6 @@ class CI2Runner(object):
         defXmlPath = self.taskManager.searchDefFile(taskName)
         if defXmlPath is None:
             raise Exception('No defXML discovered for task with name {}'.format(taskName))
-        from core import CCP4File
         defXml = self.recursivelyBuildXML(defXmlPath)
         parent_map = dict((c, p) for p in defXml.iter() for c in p)
         
@@ -453,8 +437,7 @@ class CI2Runner(object):
         for elem, path in etree_iter_path(self.defXml.getroot()):
             pathMap[elem] = path
         
-        sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-        from core.CCP4TaskManager import CTaskManager
+        from .CCP4TaskManager import CTaskManager
         theClass = CTaskManager().getPluginScriptClass(kwargs['taskName'])
         if not os.path.isdir(kwargs['jobDirectory']):
             print("Job directory {} does not exist".format(kwargs['jobDirectory']))
@@ -463,8 +446,8 @@ class CI2Runner(object):
             theWrapper = theClass(workDirectory=kwargs['jobDirectory'])
             jobDirectory = kwargs['jobDirectory']
         else:
-            from core import CCP4ProjectsManager
-            from utils import startup
+            from . import CCP4ProjectsManager
+            from ..utils import startup
             CCP4ProjectsManager.CProjectsManager.insts = None
             
             self.pm = startup.startProjectsManager(dbFileName=kwargs.get('dbFile',None))
@@ -483,7 +466,7 @@ class CI2Runner(object):
             print('projectData', projectData)
             projectName = projectData['projectname']
             projectId = projectData['projectid']
-            from dbapi import CCP4DbUtils
+            from ..dbapi import CCP4DbUtils
             theWrapper = CCP4DbUtils.COpenJob(projectId=projectData['projectid'])
             theWrapper.createJob(taskName = kwargs['taskName'])
             jobDirectory = theWrapper.jobDir
@@ -687,19 +670,18 @@ class CI2Runner(object):
         print(rv.report(ifStack=False))
 
     def runWithDb(self, cOpenJob):
-        from PySide2 import QtCore
         rv = cOpenJob.saveParams()
     
         cOpenJob.openJob()
         ifImportFile, errors = self.pm.importFiles(jobId=cOpenJob.jobId, container=cOpenJob.container)
         #print(ifImportFile, errors)
         #Record input files in database
-        from dbapi import CCP4DbApi
+        from ..dbapi import CCP4DbApi
         self.pm.db().gleanJobFiles(jobId=cOpenJob.jobId,container=cOpenJob.container,
                               roleList=[CCP4DbApi.FILE_ROLE_IN])
         rv = cOpenJob.saveParams()
 
-        jc=CCP4Modules.JOBCONTROLLER()
+        jc=JOBCONTROLLER()
         jc.setDiagnostic(True)
         jc.setDbFile(self.pm.db()._fileName)
         lastJobFinishCheckTime = time.time()
@@ -735,7 +717,6 @@ def main(args=None):
         theRunner = CI2Runner(args or sys.argv)
         theRunner.run()
 #Quit any web server threads
-        from PySide2 import QtCore
         app = QtCore.QCoreApplication.instance()
         if app:
             threads = app.findChildren(QtCore.QThread)

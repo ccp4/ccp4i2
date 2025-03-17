@@ -1,58 +1,30 @@
-from __future__ import print_function
+"""
+Copyright (C) 2011 University of York
+Sept 2011 Liz Potterton - rewrite using Python subprocess or Qt QProcess
+"""
 
-"""
-     CCP4ProcessManager: CCP4I2 CCP4 GUI Project
-     Copyright (C) 2011 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-"""
-  Sept 2011 Liz Potterton - rewrite using Python subprocess or Qt QProcess
-"""
 import os
 import re
-import sys
-import types
-import functools
+import shutil
 import subprocess
-import threading
-from core.CCP4ErrorHandling import *
-from core import CCP4Modules
-from core import CCP4Config
+import sys
+import time
 
-#NOQ - remove
 from PySide2 import QtCore
 
-def PopenInThread(pid, callArgList, callDict, onExit=None):
-    """
-    Runs the given args in a subprocess.Popen, and then calls the function
-    onExit when the subprocess completes.
-    onExit is a callable object, and popenArgs is a list/tuple of args that 
-    would give to subprocess.Popen.
-    """
-    #--------------------------------------------------------------
-    def runInThread(pid, callArgList, callDict, onExit=None ):
-        #print 'runInThread',pid
-        rv = subprocess.call(*[callArgList], **callDict)
-        onExit(pid, rv)
-        return 
-    #--------------------------------------------------------------
-    thread = threading.Thread(target=runInThread, args=(pid, callArgList, callDict, onExit))
-    thread.start()
-    # returns immediately after the thread starts
-    return thread
+from . import CCP4Utils
+from ..utils.QApp import QTAPPLICATION
+from .CCP4Config import CONFIG
+from .CCP4ErrorHandling import CErrorReport, CException, Severity
+from .CCP4Preferences import PREFERENCES
+from .CCP4ProjectsManager import PROJECTSMANAGER
+from .CCP4TaskManager import TASKMANAGER
+
+
+def PROCESSMANAGER():
+    if CProcessManager.insts is None:
+        CProcessManager()
+    return CProcessManager.insts
 
 
 #NOQ class CProcessManager():
@@ -61,12 +33,12 @@ class CProcessManager(QtCore.QObject):
     USEQPROCESS = True
     ERROR_CODES = {101 : {'description' : 'Error creating temporary command file'},
                    102 : {'description' : 'Process input file does not exist'},
-                   103 : {'severity' : SEVERITY_WARNING, 'description' : 'Exisiting log file has been deleted'},
+                   103 : {'severity' : Severity.WARNING, 'description' : 'Exisiting log file has been deleted'},
                    104 : {'description' : 'Error opening input file'},
                    105 : {'description' : 'Error opening log file'},
                    106 : {'description' : 'Error starting sub-process'},
                    107 : {'description' : 'Can not run process - no executable with name'},
-                   108 : {'severity' : SEVERITY_WARNING, 'description' : 'Creating temporary log file for sub-process'},
+                   108 : {'severity' : Severity.WARNING, 'description' : 'Creating temporary log file for sub-process'},
                    109 : {'description' : 'Error opening stderr file'},
                    110 : {'description' : 'Error handling finished sub-process'},
                    111 : {'description' : 'Error calling handler after finished sub-process'}}
@@ -74,16 +46,16 @@ class CProcessManager(QtCore.QObject):
     def __init__(self, parent=None):
         #NOQ -- remove following lines
         if parent is None:
-            parent = CCP4Modules.QTAPPLICATION()
+            parent = QTAPPLICATION()
         QtCore.QObject.__init__(self, parent)
         #NOQ -- remove above lines
-        if not CProcessManager.insts: CProcessManager.insts = self
+        if not CProcessManager.insts:
+            CProcessManager.insts = self
         self.lastProcessId = 0
         self.processInfo = {}
         self.ifAsync = False
         self.timeout = 999999
         self._processEnvironment = None
-        self._maxRunningProcesses = CCP4Config.CONFIG().maxRunningProcesses
         self.runningProcesses = []
         self.pendingProcesses = []
 
@@ -94,7 +66,6 @@ class CProcessManager(QtCore.QObject):
 
     def processEnvironment(self):
         if self._processEnvironment is None:
-            from core import CCP4Utils
             if 'darwin' in sys.platform:
                 pathVar = 'DYLD_FALLBACK_LIBRARY_PATH'
             elif 'linux' in sys.platform:
@@ -107,7 +78,7 @@ class CProcessManager(QtCore.QObject):
             newPath = ''
             for item in pathList:
                 try:
-                    if not CCP4Utils.samefile(item, libDir):
+                    if not os.path.samefile(item, libDir):
                         newPath = newPath + item + ':'
                     else:
                         print('processEnvironment removing', item, 'from', pathVar)
@@ -119,12 +90,6 @@ class CProcessManager(QtCore.QObject):
             self._processEnvironment.insert(pathVar, newPath)
         return self._processEnvironment
 
-    def setMaxRunningprocesses(self, maxproc):
-        self._maxRunningProcesses = maxproc
-
-    def maxRunningProcesses(self):
-        return self._maxRunningProcesses
-
 #------------------------------------------------------------------------------
     def setWaitForFinished(self, timeout=-1):
 #------------------------------------------------------------------------------
@@ -134,19 +99,6 @@ class CProcessManager(QtCore.QObject):
             self.ifAsync = False
             self.timeout = timeout
 
-#------------------------------------------------------------------------------
-    def formatted_job(self, root):
-#------------------------------------------------------------------------------
-        number = (str(root) + '    ')[0:4]
-        text = number + '  '
-        if self.processInfo[root]['finishTime']:
-            if self.processInfo[root]['status']:
-                text = text + '  FAILED   ' + time.asctime(time.localtime(self.processInfo[root]['finishTime']))
-            else:
-                text = text + '  FINISHED ' + time.asctime(time.localtime(self.processInfo[root]['finishTime']))
-        else:
-            text = text + '  STARTED  ' + time.asctime(time.localtime(self.processInfo[root]['startTime']))
-        return text
 
 ## Start an external process
 # @param interpreter string optional name of interpreter (only 'python' supported)
@@ -164,21 +116,14 @@ class CProcessManager(QtCore.QObject):
                      inputText=None, handler=[], resetEnv=True, readyReadStandardOutputHandler=None, **kw):
 #------------------------------------------------------------------------
         #Use Python subprocess module or QProcess
-        from core import CCP4Utils
         #print 'PROCESSMANAGER.startProcess',command,args 
         ifAsync = kw.get('ifAsync', self.ifAsync)
         timeout = kw.get('timeout', self.timeout)
         if ifAsync:
             useQProcess = True
+            print(f'Running process {command} asyncronously using QProcess')
         else:
             useQProcess = False
-        if ifAsync:
-            print('Running process ' + str(command) + ' asyncronously using QProcess')
-        # Use exe in i2 bin directory if it exists
-        i2Exe = os.path.join(CCP4Utils.getOSDir(), 'bin', command)
-        if os.path.exists(i2Exe):
-            #print 'Running version of ' + command + ' shipped with CCP4i2: ' + i2Exe
-            command = i2Exe
         argList = []
         cmd = None
         if interpreter is not None:
@@ -188,7 +133,7 @@ class CProcessManager(QtCore.QObject):
         else:
             argList = [command]
             if useQProcess and 'win32' in sys.platform:
-                cmd = which(command)
+                cmd = shutil.which(command)
             else:
                 cmd = command
         if isinstance(args,list):
@@ -231,23 +176,6 @@ class CProcessManager(QtCore.QObject):
             self.processInfo[pid]['readyReadStandardOutputHandler'] = readyReadStandardOutputHandler
             self.processInfo[pid]['logFile'] = None
             useQProcess = True
-        """
-        try:
-          argsOut = '['
-          if len(argList)>1:
-            for item in argList[1:]: argsOut = argsOut + '"'+item+'",'
-            argsOut = argsOut[0:-1]
-          argsOut = argsOut + ']'
-          textOut = 'PROCESSMANAGER().startProcess("'+cmd+'", '+argsOut
-          if inputFile is not None:textOut = textOut +', "' + inputFile+'"'
-          if logFile is not None: textOut = textOut +', "'+logFile+'"'
-          textOut = textOut +')'
-          print textOut
-          sys.stdout.flush()
-        except:
-          print 'Error printing PROCESSMANAGER().startProcess() command'
-          print 'argList',argList
-        """
         try:
             textOut = cmd
             for item in argList[1:]:
@@ -304,7 +232,7 @@ class CProcessManager(QtCore.QObject):
         else:
             # Use QProcess
             #print('before startQProcess', len(self.runningProcesses))
-            if len(self.runningProcesses) < self._maxRunningProcesses:
+            if len(self.runningProcesses) < CONFIG().maxRunningProcesses:
                 self.startQProcess(pid)
             else:
                 self.pendingProcesses.append(pid)
@@ -329,7 +257,7 @@ class CProcessManager(QtCore.QObject):
             pwdDir = self.processInfo[pid]['cwd']
         if self.processInfo[pid]['command'].count('coot'):
             if not pwdDir is not None and self.processInfo[pid]['projectId'] is not None:
-                pwdDir = os.path.join(CCP4Modules.PROJECTSMANAGER().getProjectDirectory(projectId=self.processInfo[pid]['projectId']), 'CCP4_COOT')
+                pwdDir = os.path.join(PROJECTSMANAGER().getProjectDirectory(projectId=self.processInfo[pid]['projectId']), 'CCP4_COOT')
                 if not os.path.exists(pwdDir):
                     try:
                         os.mkdir(pwdDir)
@@ -351,7 +279,7 @@ class CProcessManager(QtCore.QObject):
             p.setWorkingDirectory(pwdDir)
 
     def setCootWindowsEnvironment(self, p):
-        cootDir = str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)
+        cootDir = str(PREFERENCES().COOT_EXECUTABLE)
         COOT_GUILE_PREFIX = re.sub(r"\\\\",r"/", cootDir)
         #print 'setCootWindowsEnvironment', cootDir, COOT_GUILE_PREFIX
         coot_locations = {'COOT_PREFIX' : cootDir, 'COOT_GUILE_PREFIX' : COOT_GUILE_PREFIX, 'COOT_HOME': cootDir,
@@ -380,11 +308,6 @@ class CProcessManager(QtCore.QObject):
         else:
             p.insert('PATH', os.path.join(cootDir,'bin') + ';' + os.path.join(cootDir, 'lib'))
         return p
-        """
-              if not exist "%CLIBD_MON%" (
-          echo no $CLIBD_MON found setting COOT_REFMAC_LIB_DIR
-          set COOT_REFMAC_LIB_DIR=%COOT_SHARE%\coot\lib
-        """
 
     @QtCore.Slot(str,str)
     def printFinished(self, code, stat):
@@ -436,12 +359,6 @@ class CProcessManager(QtCore.QObject):
             print('runHandler Error', e)
             self.processInfo[pid]['errorReport'].appendPythonException(self.__class__, str(e))
 
-    def PopenInThreadExit(self, pid, rv):
-        #print 'PopenInThreadExit',pid,rv
-        #self.processInfo[pid]['finishTime'] = time.time()
-        self.handleFinish(pid, rv, 0)
-        #self.runHandler(pid)
-
     @QtCore.Slot(str,int,int)
     def handleFinish(self, pid, exitCode=0, exitStatus=0):
         print('Process finished:', pid, 'exit code:', exitCode, 'exit status:', exitStatus,'time:', time.strftime('%H:%M:%S %d/%b/%Y', time.localtime(time.time())))
@@ -450,20 +367,20 @@ class CProcessManager(QtCore.QObject):
         self.processInfo[pid]['exitCode'] = exitCode
         if "logFile" in self.processInfo[pid] and self.processInfo[pid]["logFile"]:
             if "jobId" in self.processInfo[pid] and self.processInfo[pid]["jobId"]:
-                jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=self.processInfo[pid]["jobId"])
+                jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=self.processInfo[pid]["jobId"])
                 try:
                     logFileHandle = open(self.processInfo[pid]["logFile"],'a')
                     logFileHandle.write("JOB TITLE SECTION (PROCESSMANAGER)\n")
                     if "jobtitle" in jobInfo and jobInfo["jobtitle"]:
                         logFileHandle.write(str(jobInfo["jobtitle"])+"\n")
                     else:
-                        logFileHandle.write(str(CCP4Modules.TASKMANAGER().getShortTitle(jobInfo['taskname']))+"\n")
+                        logFileHandle.write(str(TASKMANAGER().getShortTitle(jobInfo['taskname']))+"\n")
                     while "parentjobid" in jobInfo and jobInfo["parentjobid"]:
-                        jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=jobInfo["parentjobid"])
+                        jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=jobInfo["parentjobid"])
                         if "jobtitle" in jobInfo and jobInfo["jobtitle"]:
                             logFileHandle.write(str(jobInfo["jobtitle"])+"\n")
                         else:
-                            logFileHandle.write(str(CCP4Modules.TASKMANAGER().getShortTitle(jobInfo['taskname']))+"\n")
+                            logFileHandle.write(str(TASKMANAGER().getShortTitle(jobInfo['taskname']))+"\n")
                     logFileHandle.close()
                 except:
                     print("Could not append job title info to log file."); sys.stdout.flush()
@@ -516,231 +433,3 @@ class CProcessManager(QtCore.QObject):
             return 0
         else:
             return 2
-
-
-def which(program, mode=os.F_OK | os.X_OK, path=None):
-    '''
-    From shutil.which in python 3.3 back ported for local use here in 2.7
-    via Tom Burnley and the CCP4EM GUI.
-    Given a command, mode, and a PATH string, return the path which
-    conforms to the given mode on the PATH, or None if there is no such
-    file.
-    `mode` defaults to os.F_OK | os.X_OK. `path` defaults to the result
-    of os.environ.get("PATH"), or can be overridden with a custom search
-    path.
-    '''
-    # Check ccpem settings for specified bins.  E.g. if bin is set via alias
-    # it will not be located via which function.
-    cmd = program
-    # Check that a given file can be accessed with the correct mode.
-    # Additionally check that `file` is not a directory, as on Windows
-    # directories pass the os.access check.
-    def _access_check(fn, mode):
-        return (os.path.exists(fn) and os.access(fn, mode)
-                and not os.path.isdir(fn))
-    # If we're given a path with a directory part, look it up directly rather
-    # than referring to PATH directories. This includes checking relative to the
-    # current directory, e.g. ./script
-    if os.path.dirname(cmd):
-        if _access_check(cmd, mode):
-            return cmd
-        return None
-    if path is None:
-        path = os.environ.get("PATH", os.defpath)
-    if not path:
-        return None
-    path = path.split(os.pathsep)
-    if sys.platform == "win32":
-        # The current directory takes precedence on Windows.
-        if not os.curdir in path:
-            path.insert(0, os.curdir)
-        # PATHEXT is necessary to check on Windows.
-        pathext = os.environ.get("PATHEXT", "").split(os.pathsep)
-        # See if the given file matches any of the expected path extensions.
-        # This will allow us to short circuit when given "python.exe".
-        # If it does match, only test that one, otherwise we have to try
-        # others.
-        if any([cmd.lower().endswith(ext.lower()) for ext in pathext]):
-            files = [cmd]
-        else:
-            files = [cmd + ext for ext in pathext]
-    else:
-        # On other platforms you don't have things like PATHEXT to tell you
-        # what file suffixes are executable, so just pass on cmd as-is.
-        files = [cmd]
-    seen = set()
-    for cdir in path:
-        normdir = os.path.normcase(cdir)
-        if not normdir in seen:
-            seen.add(normdir)
-            for thefile in files:
-                name = os.path.join(cdir, thefile)
-                if _access_check(name, mode):
-                    return name
-    return None
-
-#===========================================================================================
-# Python shell test:
-# import CCP4ProcessManager; p = CCP4ProcessManager.CProcessManager(); p.startProcess(command='mtzdump',argList=['HKLIN','/Users/lizp/Desktop/test_data/rnase25_phases.mtz'],inputText='HEADER\nGO\n')
-import unittest
-
-def comTest1():
-    from core import CCP4Utils
-    pdbFile = os.path.join(CCP4Utils.getCCP4I2Dir(), 'test', 'data', '1df7.pdb')
-    pdbOut = CCP4Utils.makeTmpFile(name='testProcessManager_test1')
-    return CCP4Modules.PROCESSMANAGER().startProcess(command='pdbset', args=['XYZIN', pdbFile, 'XYZOUT', pdbOut],
-                                                     inputText='CELL 50.0 50.0 70.0 90.0 90.0 90.0\nEND\n',)
-
-def TESTSUITE():
-    suite = unittest.defaultTestLoader.loadTestsFromTestCase(testProcessManager)
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)
-  
-
-# This test class can run without unittest framework - so the PROCESSMANAGER
-# can work 'naturally' without the waitForFinish
-
-
-#*  unittest
-class testProcessManager(unittest.TestCase):
-#* hand testing
-#class testProcessManager():
-#  def __init__(self):
-#    self.isUnitTest=False
-#    self.setUp()
-# *
-    def setUp(self):
-        from core import CCP4Utils
-        if not hasattr(self, 'isUnitTest'):
-            self.isUnitTest = True
-        self.pdbFile = os.path.join(CCP4Utils.getCCP4I2Dir(), 'test', 'data', '1df7.pdb')
-        if self.isUnitTest:
-            CCP4Modules.PROCESSMANAGER().setWaitForFinished(1000)
-
-    def tearDown(self):
-        CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
-
-    def evalCRYST(self, pdbFile=None):
-        from core import CCP4Utils
-        text = CCP4Utils.readFile(pdbFile)
-        for line in text.split('\n'):
-            if line[0:6] == 'CRYST1':
-                words = line.split()
-                cryst = []
-                for i in range(1, 6):
-                    cryst.append(float(words[i]))
-                #print 'cryst',cryst
-                if 49.999 < cryst[0] < 50.001:
-                    return True
-        return False
-
-    def printReview(self, processID):
-        print(' ')
-        print('processID exitStatus', processID, CCP4Modules.PROCESSMANAGER().getJobData(processID, 'exitStatus'))
-        print('Error:', CCP4Modules.PROCESSMANAGER().getJobData(processID, 'processError'))
-        print('Is PDB file created:', self.pdbOut, str(os.path.exists(self.pdbOut)))
-        if os.path.exists(self.pdbOut):
-            print('Output PDB contains correct data',str(self.evalCRYST(self.pdbOut)))
-        print(' ')
-
-    def test1(self):
-        # This ine should run OK
-        from core import CCP4Utils
-        self.pdbOut = CCP4Utils.makeTmpFile(name='testProcessManager_test1')
-        print('test1 pdbOut', self.pdbOut)
-        if self.isUnitTest:
-            handler = None
-        else:
-            handler = [self.review1, {}]
-        processID = CCP4Modules.PROCESSMANAGER().startProcess(command='pdbset', args=['XYZIN', self.pdbFile, 'XYZOUT', self.pdbOut],
-                                                              inputText='CELL 50.0 50.0 70.0 90.0 90.0 90.0\nEND\n', handler=handler)
-        if self.isUnitTest:
-            self.review1(processID)
-
-    def review1(self, processID=None):
-        if self.isUnitTest:
-            self.assertTrue(os.path.exists(self.pdbOut), 'No output PDB file created')
-            self.assertTrue(self.evalCRYST(self.pdbOut), 'Output PDB file does not contain correct data')
-        else:
-            self.printReview(processID)
-
-    def test2(self):
-        # Input file does not exist
-        from core import CCP4Utils
-        self.pdbOut = CCP4Utils.makeTmpFile(name='testProcessManager_test1')
-        if self.isUnitTest:
-            handler = None
-        else:
-            handler = [self.review2, {}]
-        processID = CCP4Modules.PROCESSMANAGER().startProcess(command='pdbset', args=['XYZIN', 'foobar', 'XYZOUT', self.pdbOut],
-                                  inputText='CELL 50.0 50.0 70.0 90.0 90.0 90.0\nEND\n', handler=handler)
-        if self.isUnitTest:
-            self.review2(processID)
-
-    def review2(self,processID=None):
-        if self.isUnitTest:
-            exitCode = CCP4Modules.PROCESSMANAGER().getJobData(processID, 'exitStatus')
-            error = CCP4Modules.PROCESSMANAGER().getJobData(processID, 'processError')
-            self.assertEqual(exitCode, 1, 'Wrong exit code when bad input filename')
-            self.assertEqual(error.count('No such file or directory'), 1, 'Wrong error message when bad input filename')
-        else:
-            self.printReview(processID)
-
-    def test3(self):
-        # Calling a non-existant executable
-        from core import CCP4Utils
-        self.pdbOut =  CCP4Utils.makeTmpFile(name='testProcessManager_test3')
-        if self.isUnitTest:
-            handler = None
-        else:
-            handler = [self.review2,{}]
-        processID = CCP4Modules.PROCESSMANAGER().startProcess(command='pdbset-no', args=['XYZIN', 'foobar', 'XYZOUT', self.pdbOut],
-                                                              inputText='CELL 50.0 50.0 70.0 90.0 90.0 90.0\nEND\n', handler=handler)
-        if self.isUnitTest:
-            self.review3(processID)
-
-    def test4(self):
-        # Bad input (CELL incomplete) - expect process to return with error code
-        from core import CCP4Utils
-        self.pdbOut = CCP4Utils.makeTmpFile(name='testProcessManager_test3')
-        if self.isUnitTest:
-            handler = None
-        else:
-            handler = [self.review2, {}]
-        processID = CCP4Modules.PROCESSMANAGER().startProcess(command='pdbset', args=['XYZIN','foobar','XYZOUT',self.pdbOut],
-                                                              inputText='CELL 50.0 \nEND\n', handler=handler)
-        if self.isUnitTest:
-            self.review4(processID)
-
-"""
-import subprocess, threading
-
-class Command(object):
-    def __init__(self, cmd):
-        self.cmd = cmd
-        self.process = None
-
-    def run(self, timeout):
-        def target():
-            print 'Thread started'
-            self.process = subprocess.Popen(self.cmd, shell=True)
-            self.process.communicate()
-            print 'Thread finished'
-
-        thread = threading.Thread(target=target)
-        thread.start()
-
-        thread.join(timeout)
-        if thread.is_alive():
-            print 'Terminating process'
-            self.process.terminate()
-            thread.join()
-        print self.process.returncode
-
-command = Command("echo 'Process started'; sleep 2; echo 'Process finished'")
-command.run(timeout=3)
-command.run(timeout=1)
-"""

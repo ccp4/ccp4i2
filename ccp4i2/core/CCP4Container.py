@@ -201,7 +201,6 @@ class CContainer(CCP4Data.CData):
         err = CErrorReport()
         if self.__dict__['_dataOrder'].count('guiAdmin'):
             return err
-        from .CCP4DataManager import DATAMANAGER
         container = CContainer(name='guiAdmin')
         for key, className, qualifiers in [
             ['followFrom', 'CFollowFromJob', {'guiLabel' : 'Follow from'}],
