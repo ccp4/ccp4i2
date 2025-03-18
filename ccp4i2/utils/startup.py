@@ -11,7 +11,7 @@ import time
 
 from PySide2 import QtWidgets
 
-from ccp4i2 import I2_TOP
+from .. import I2_TOP
 
 
 class DatabaseFailException(Exception):

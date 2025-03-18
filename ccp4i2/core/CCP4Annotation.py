@@ -370,7 +370,7 @@ class CMetaDataTagList(CCP4Data.CList):
 
 
 class CServerGroup(CCP4Data.CData):
-    from ..core.CCP4File import CDataFile
+    from .CCP4File import CDataFile
     '''One or more compute servers used in "remote" running'''
     CONTENTS = {'name' : {'class' : CCP4Data.CString},
                 'mechanism' : {'class' : CCP4Data.CString , 'qualifiers' :

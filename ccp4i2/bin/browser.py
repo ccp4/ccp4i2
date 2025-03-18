@@ -11,6 +11,8 @@ from PySide2 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets
 import ccp4mg # Sets sys.path so import of MG modules will work from here onwards
 
 from .. import I2_TOP
+from ..utils.QApp import QTAPPLICATION
+from ..utils.startup import setupEnvironment, startBrowser
 
 
 def main():
@@ -23,8 +25,6 @@ def main():
     except:
         print('Failed finding Qt verion')
     print(' ')
-    from ..utils.startup import setupEnvironment, startBrowser
-    from ..core.CCP4Modules import QTAPPLICATION
     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)
     setupEnvironment()
     app = QTAPPLICATION(graphical=True)

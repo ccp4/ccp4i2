@@ -1,66 +1,41 @@
-from __future__ import print_function
-
 """
-     CCP4ModelData.py: CCP4 GUI Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2010 University of York
+Liz Potterton Nov 2010 -  CCP4Data sub-classes relating to xtallographic model
 """
 
-"""
-   Liz Potterton Nov 2010 -  CCP4Data sub-classes relating to xtallographic model
-"""
-
+import collections
+import copy
+import io
 import os
 import re
-import sys
-import types
 import shutil
-import functools
+import sys
+import tempfile
+
+from ccp4mg import mmut, pygl_coord
+from lxml import etree
+from PySide2 import QtCore, QtGui
+import Bio
+import Bio.Align
+import Bio.AlignIO
+import Bio.SearchIO
+import Bio.Seq
+import Bio.SeqIO
+import Bio.SeqRecord
+import Bio.SeqUtils
+import ccp4mg.mmdb2 as mmdb
 import gemmi
+import iotbx
 
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
-
-from core.CCP4ErrorHandling import *
-from core.CCP4Config import QT,XMLPARSER,GRAPHICAL
-if QT():
-    from core.CCP4QtObject import CObject
-else:
-    from core.CCP4Object import CObject
-if GRAPHICAL():
-    from PySide2 import QtCore,QtGui, QtWidgets
-else:
-    from PySide2 import QtCore
-if XMLPARSER() == 'lxml':
-    from lxml import etree
-
-from core import CCP4Data
-from core import CCP4File
-from core import CCP4MathsData
+from . import CCP4Data
+from . import CCP4File
+from . import CCP4Residues
+from . import CCP4SelectionTree
+from . import CCP4Utils
+from .CCP4ErrorHandling import CErrorReport, CException, Severity
 
 
-try:
-    import Bio.SeqIO, Bio.AlignIO, Bio.Align
-    BIOPYTHON = True
-except:
-    print('FAILED CCP4ModelData imported Bio.SeqIO')
-    BIOPYTHON = False
-
+BIOPYTHON = True
 EXTLIST = {'txt' : 'fasta', 'fasta':'fasta', 'fa' :'fasta',
            'fsa' : 'fasta', 'faa' : 'fasta', 'seq' : 'fasta',
            'pir':'pir', 'xml':'seqxml', 'embl':'embl',
@@ -90,37 +65,6 @@ ATQEDYYTGDHYATFSLIDQTC*
     """
 
 
-def MODELINFO(*keys):
-    # Extract data from selection_protocols.py - this is a kludge
-    if not CModelInfo.insts:
-        CModelInfo()
-    return CModelInfo.insts.info(keys)
-
-class CModelInfo:
-    insts = None
-
-    def __init__(self):
-        from core import CCP4Utils
-        CModelInfo.insts = self
-        globalVar = {}
-        localVar = {}
-        fileName = os.path.join(CCP4Utils.getCCP4I2Dir(), 'data', 'model_description', 'selection_protocols.py')
-        exec(compile(open(fileName).read(), fileName, 'exec'),globalVar,localVar)
-        self.testDict = localVar
-
-    def info(self, keys=[]):
-        if keys[0] in self.testDict:
-            subD = self.testDict[keys[0]]
-        else:
-            return None
-        for key in keys[1:]:
-            if key in subD:
-                subD = subD[key]
-            else:
-                subD = None
-            break
-        return subD
-
 class CBioPythonSeqInterface:
     '''Interface to BioPython'''
     ERROR_CODES = {401 : {'description' : 'Attempting to load from non-existent file'},
@@ -129,7 +73,7 @@ class CBioPythonSeqInterface:
                    405 : {'description' : 'Error reading identifiers from multi-record file'},
                    406 : {'description' : 'Error opening file'},
                    407 : {'description' : "The 'PIR' file did not have the correct format"},
-                   408 : {'severity' : SEVERITY_WARNING, 'description' : "The 'PIR' file format was corrected"},
+                   408 : {'severity' : Severity.WARNING, 'description' : "The 'PIR' file format was corrected"},
                    409 : {'description' : "Error opening file to write"},
                    410 : {'description' : "Error attempting to write out sequence file"},
                    411 : {'description' : "Error attempting to create a temporary sequence file"},
@@ -141,7 +85,6 @@ class CBioPythonSeqInterface:
         pass
 
     def simpleFormatTest(self, filename):
-        from core import CCP4Utils
         formt = 'unknown'
         text = CCP4Utils.readFile(str(filename))
         segments = text.split('>')
@@ -171,11 +114,9 @@ class CBioPythonSeqInterface:
 
     def loadExternalFile(self,filename=None, format=None, record=0, diagnostic=False):
         #print 'CBioPythonSeqInterface.loadExternalFile filename', filename, format, record
-        from core import CCP4Utils
         filename = str(filename)
         if not os.path.exists(filename):
             return
-        #import traceback
         #traceback.print_stack(limit=10)
         # Unset now so if file reading fails at least we dont have misleading data
         for item in self.CONTENTS_ORDER:
@@ -208,7 +149,7 @@ class CBioPythonSeqInterface:
                     err,rv = self.bioLoadSeqFile(filename, testOrder[n], record=record)
                     if diagnostic:
                         print('CBioPythonSeqInterface.loadExternalFile', testOrder[n], err, rv)
-                    if err.maxSeverity() <= SEVERITY_WARNING:
+                    if err.maxSeverity() <= Severity.WARNING:
                         break
                     if n == 0 and format == 'pir':
                         fixedPirFile,err0,rv0 = self.fixPirFile(filename)
@@ -300,8 +241,6 @@ class CBioPythonSeqInterface:
             self.dataChanged.emit()
 
     def fixPirFile(self, fileName, importedFile=None):
-        import tempfile
-        from core import CCP4Utils
         try:
             text = CCP4Utils.readFile(str(fileName))
         except:
@@ -323,14 +262,11 @@ class CBioPythonSeqInterface:
             output = output + '>' + text + '\n'
         # Write to temporary file
         f1 = tempfile.mkstemp()
-        if sys.version_info > (3,0):
-            os.write(f1[0], output.encode("utf-8"))
-        else:
-            os.write(f1[0], output)
+        os.write(f1[0], output.encode("utf-8"))
         os.close(f1[0])
         err, data = self.bioLoadSeqFile(f1[1], 'pir')
         #print 'fixPirFile',f1[1],err,data
-        if err.maxSeverity() <= SEVERITY_WARNING:
+        if err.maxSeverity() <= Severity.WARNING:
             if importedFile is not None:
                 shutil.move(f1[1], importedFile)
                 return importedFile, err, data
@@ -341,8 +277,6 @@ class CBioPythonSeqInterface:
 
     def fixFastaFile(self, fileName, importedFile=None):
         # Attempting to fix a 'seq' file containing only sequence & no formatting
-        import tempfile
-        from core import CCP4Utils
         try:
             text = CCP4Utils.readFile(str(fileName))
         except:
@@ -358,14 +292,11 @@ class CBioPythonSeqInterface:
         output = '>' + os.path.splitext(os.path.basename(fileName))[0] + '\n' + text
         # Write to temporary file
         f1 = tempfile.mkstemp()
-        if sys.version_info > (3,0):
-            os.write(f1[0], output.encode("utf-8"))
-        else:
-            os.write(f1[0], output)
+        os.write(f1[0], output.encode("utf-8"))
         os.close(f1[0])
         err,data = self.bioLoadSeqFile(f1[1], 'fasta')
         #print 'fixFastaFile',f1[1],err,data
-        if err.maxSeverity() <= SEVERITY_WARNING:
+        if err.maxSeverity() <= Severity.WARNING:
             if importedFile is not None:
                 shutil.move(f1[1], importedFile)
                 return importedFile, err, data
@@ -387,7 +318,6 @@ class CBioPythonSeqInterface:
         if saveFormat is not None and saveFormat in SEQFORMATLIST:
             if saveFilename is None:
                 try:
-                    import tempfile
                     fout, saveFilename = tempfile.mkstemp()
                 except:
                     err.append(CBioPythonSeqInterface, 411, stack=False)
@@ -414,26 +344,6 @@ class CBioPythonSeqInterface:
         if format in HHPREDFORMATLIST:
             err.append(CBioPythonSeqInterface, self.__class__, 414, stack=False)
             return err, {}
-        '''
-        if format in BLASTFORMATLIST:
-          from Bio.Blast import NCBIStandalone
-          titleList = []
-          queryList = []
-          sbjctList = []
-          blast_parser = NCBIStandalone.BlastParser()
-          blast_record = blast_parser.parse(f)
-          for alignment in blast_record.alignments:
-            for hsp in alignment.hsps:
-              titleList.append(alignment.__str__().split('\n')[0])
-              queryList.append(hsp.query)
-              sbjctList.append(hsp.sbjct)
-        '''
-        """
-        if len(seq_records)>0:
-          print 'sequence record dir',dir(seq_records[0])
-          for item in ['annotations', 'dbxrefs', 'description', 'features', 'format', 'id', 'letter_annotations', 'lower', 'name', 'reverse_complement', 'seq', 'upper']:
-            print item,seq_records[0].__getattribute__(item)
-        """
         if fout is not None:
             try:
                 nRecOut = Bio.SeqIO.write(seq_records[record], fout, saveFormat)
@@ -458,47 +368,20 @@ class CSequenceMeta(CCP4Data.CData):
                    403 : {'description' : 'No project id provided to determine uniprot xml filename'},
                    404 : {'description' : 'Reading uniprot xml file failed'}}
 
-    def getUniprotUrl(self):
-        if not self.uniprotId.isSet():
-            return None
-        else:
-            code = str(self.uniprotId)
-            return "http://www.uniprot.org/uniprot/" + str(self.uniprotId)
-
     def getUniprotXml(self, projectId=None):
-        from core import CCP4Modules
+        from .CCP4ProjectsManager import PROJECTSMANAGER
         if projectId is None:
             raise CErrorReport(self.__class__, 403)
         if not self.uniprotId.isSet():
             raise CErrorReport(self.__class__, 401)
-        tmpDir = os.path.join(CCP4Modules.PROJECTSMANAGER().getProjectDirectory(projectId=projectId),'CCP4_DOWNLOADED_FILES')
+        tmpDir = os.path.join(PROJECTSMANAGER().getProjectDirectory(projectId=projectId),'CCP4_DOWNLOADED_FILES')
         if not os.path.exists(tmpDir):
             try:
                 os.mkdir(tmpDir)
             except:
-                from core import CCP4Utils
                 tmpDir = CCP4Utils.getTMP()
         targetFile = os.path.join(tmpDir, 'uniprot_' + str(self.uniprotId) + '.xml')
         return targetFile
-
-    def downloadUniprotXml(self, projectId):
-        #can test download with something like:
-        #from core.CCP4ModelData import *; s = CSequenceMeta(uniprotId='P12345'); s.loadFromUniprotXml(projectId='efaebd47a70a11e493bf9cf387d93af8')
-        from qtgui import CCP4FileBrowser
-        import ccp4mg
-        import UtilityThread
-        if not self.uniprotId.isSet():
-            raise CErrorReport(self.__class__, 401)
-        mode = 'uniprotXml'
-        code = str(self.uniprotId)
-        urlname = "http://www.uniprot.org/uniprot/" + code + ".xml"
-        targetFile = self.getUniprotXml(projectId=projectId)
-        if 'downloader' not in self.__dict__:
-            self.__dict__['downloader'] =  CCP4FileBrowser.CDownloader()
-        self.__dict__['downloader'].Finished.connect(functools.partial(self.handleDownloadFinished,code,mode,targetFile))
-        self.__dict__['downloader'].Error.connect(functools.partial(self.handleDownloadError,code))
-        self.__dict__['downloadThread'] = UtilityThread.UtilityThread(functools.partial(self.__dict__['downloader'].download, urlname))
-        self.__dict__['downloadThread'].start()
 
     @QtCore.Slot(str,str,str,str)
     def handleDownloadFinished(self, code, mode, targetFile, tmpFile):
@@ -511,8 +394,6 @@ class CSequenceMeta(CCP4Data.CData):
         print('handleDownloadError', code)
 
     def loadFromUniprotXml(self, fileName=None, projectId=None):
-        from lxml import etree
-        from core import CCP4Utils
         if fileName is None:
             fileName = self.getUniprotXml(projectId=projectId)
         if fileName is None or not os.path.exists(fileName):
@@ -550,7 +431,7 @@ class CSequence(CCP4Data.CData, CBioPythonSeqInterface):
     Do we need to support alternative residues
     What about nucleic/polysach?
     '''
-    ERROR_CODES = {201 : {'description' : 'Sequence undefined', 'severity' : SEVERITY_UNDEFINED},
+    ERROR_CODES = {201 : {'description' : 'Sequence undefined', 'severity' : Severity.UNDEFINED},
                    202 : {'description' : 'error reading from file'},
                    203 : {'description' : 'Comparing sequences: Sequence item different'},
                    204 : {'description' : 'Comparing sequences: One item set - the other is unset'}}
@@ -577,7 +458,6 @@ class CSequence(CCP4Data.CData, CBioPythonSeqInterface):
     CONTENTS_ORDER = ['identifier', 'name', 'description', 'referenceDb', 'reference', 'moleculeType', 'sequence']
 
     def saveFile(self, fileName=None):
-        from core import CCP4Utils
         '''
         if self.reference.isSet():
           ref = self.reference.__str__().strip()
@@ -591,7 +471,6 @@ class CSequence(CCP4Data.CData, CBioPythonSeqInterface):
 
     def loadFile(self, fileName, format='unknown'):
         #print 'CSequence.loadFile',fileName,format
-        #import traceback
         #traceback.print_stack(limit=5)
         if format == 'internal':
             self.loadInternalFile(fileName)
@@ -618,7 +497,6 @@ class CSequence(CCP4Data.CData, CBioPythonSeqInterface):
 
     def loadInternalFile(self, fileName):
         self.unSet()
-        from core import CCP4Utils
         try:
             text = CCP4Utils.readFile(fileName=fileName)
         except Exception as e:
@@ -644,10 +522,9 @@ class CSequence(CCP4Data.CData, CBioPythonSeqInterface):
         if mode == 'molecularWeight':
             if not self.__dict__['_value']['sequence'].isSet():
                 return 0
-            from Bio.SeqUtils.ProtParam import ProteinAnalysis
             # Beware BioPython not robust to bad sequences
             seq = re.sub('[^GALMFWKQESPVICYHRNDT]', '', str(self.__dict__['_value']['sequence']))
-            pa = ProteinAnalysis(seq)
+            pa = Bio.SeqUtils.ProtParam.ProteinAnalysis(seq)
             print('CSequence.getAnalysis', str(self.__dict__['_value']['sequence']))
             print('CSequence.getAnalysis', pa.molecular_weight())
             return pa.molecular_weight()
@@ -740,11 +617,6 @@ class CChemComp(CCP4Data.CData):
             return CException()
 
     def writeToLoop(self, loop):
-        try:
-            import ccp4mg
-            import mmdb2 as mmdb
-        except:
-            print('FAILED CCP4ModelData imported ccp4mg')
         errCount = 0
         indx = loop.GetLoopLength()
         for key in ['id', 'three_letter_code', 'name', 'group']:
@@ -777,18 +649,13 @@ class CDictData(CCP4Data.CData):
 
     ERROR_CODES = {101 : {'description' : 'Error opening MMCIF format file'},
                    102 : {'description' : 'Error merging data - monomer already in geometry file'},
-                   103 : {'severity' : SEVERITY_WARNING, 'description' : 'Warning merging data - overwriting geometry for monomer with same id'},
+                   103 : {'severity' : Severity.WARNING, 'description' : 'Warning merging data - overwriting geometry for monomer with same id'},
                    104 : {'description' : 'Error reading geometry cif file - does not contain expected data'},
                    105 : {'description' : 'Unknown error reading geometry file'},
                    106 : {'description' : '_chem_comp section not found in geometry file'},
                    110 : {'description' : 'Attemting to delete unrecognised chem_comp.id'}}
 
     def openCifFile(self, fileName=None):
-        try:
-            import ccp4mg
-            import mmdb2 as mmdb
-        except:
-            print('FAILED CCP4ModelData imported ccp4mg')
         print('#CDictData.openCifFile fileName', fileName)
         cifFile = mmdb.File()
         print('#CDictData.openCifFile cifFile', cifFile)
@@ -797,14 +664,6 @@ class CDictData(CCP4Data.CData):
         if rc !=0:
             raise CException(self.__class__, 101, 'Code: ' + str(rc) + ' file: ' + str(fileName), name=self.objectPath())
         return cifFile
-
-    def getCompData(self, id):
-        cifFile = self.openCifFile(self.parent().__str__())
-        dataBlock = cifFile.GetCIFData('comp_' + id)
-        return dataBlock
-
-    def getCompDataText(self, id=None):
-        return None
 
     def monomerIdList(self):
         idList = []
@@ -837,7 +696,7 @@ class CDictData(CCP4Data.CData):
                 if loop.GetString('id', n) != 0:
                     chemComp = self.__dict__['_value']['monomerList'].addItem()
                     err.extend(chemComp.load(loop=loop, loopIndex=n))
-            if err.maxSeverity() > SEVERITY_WARNING:
+            if err.maxSeverity() > Severity.WARNING:
                 raise err
         #print 'CDictData.loadFile', self.monomerList
         self.dataChanged.emit()
@@ -861,7 +720,7 @@ class CDictData(CCP4Data.CData):
         except Exception as e:
             err.append(self.__class__, 105, exc_info=sys.exc_info())
         #print 'CDictData.mergeFile', err.report()
-        if err.maxSeverity() > SEVERITY_WARNING:
+        if err.maxSeverity() > Severity.WARNING:
             return err
         err.extend(self.merge(dictData=dictObj.fileContent, overwrite=overwrite))
         return err
@@ -926,7 +785,6 @@ class CDictData(CCP4Data.CData):
         return self.save(cifFile=cifFile)
 
     def save(self, cifFile=None, fileName=None):
-        from core import CCP4Utils
         if fileName is None:
             fileName = self.parent().__str__()
         try:
@@ -955,8 +813,8 @@ class CDictDataFile(CCP4File.CDataFile):
                    205 : {'description' : 'Error attempting to merge geometry files - failed to run libcheck'}}
   
     def defaultProjectDict(self, projectId=None, projectName=None, create=True):
-        from core import CCP4Modules
-        projectDir = CCP4Modules.PROJECTSMANAGER().getProjectDirectory(projectId=projectId, projectName=projectName)
+        from .CCP4ProjectsManager import PROJECTSMANAGER
+        projectDir = PROJECTSMANAGER().getProjectDirectory(projectId=projectId, projectName=projectName)
         if projectDir is None:
             return None
         projectFilesDir = os.path.join(projectDir, 'CCP4_PROJECT_FILES')
@@ -967,7 +825,6 @@ class CDictDataFile(CCP4File.CDataFile):
                 return None
         projectDict = os.path.join(projectDir, 'CCP4_PROJECT_FILES', 'refmac_dictionary.cif')
         if not os.path.exists(projectDict):
-            from core import CCP4Utils
             shutil.copyfile(os.path.join(CCP4Utils.getCCP4I2Dir(), 'data', 'refmac_dictionary.cif'), projectDict)
         return projectDict
 
@@ -978,51 +835,6 @@ class CDictDataFile(CCP4File.CDataFile):
         else:
             return CCP4File.CDataFile.saveToDb(self)
 
-    def mergeInDictFiles(self, dictFileList=[], parentWorkDirectory=None):
-        #print 'CDictDataFile.mergeInDictFiles', dictFileList, parentWorkDirectory
-        err = CErrorReport()
-        try:
-            import libcheck
-            wrapper = libcheck.libcheck(self)
-        except:
-            err.append(self.__class__, 201, name=self.objectName())
-            return None, err
-        try:
-            indx = 1
-            myDir = os.path.join(parentWorkDirectory, 'libcheck_' + str(indx))
-            while os.path.exists(myDir):
-                indx += 1
-                myDir = os.path.join(parentWorkDirectory, 'libcheck_' + str(indx))
-            os.mkdir(myDir)
-            wrapper.workDirectory = myDir
-        except:
-            err.append(self.__class__, 202, name=self.objectPath())
-            return None, err
-        try:
-            wrapper.container.controlParameters.RUN_MODE = 'MERGE'
-            wrapper.container.inputData.DICTLIB.setFullPath(self.__str__())
-            for dictFile in dictFileList:
-                if isinstance(dictFile, CCP4File.CDataFile):
-                    dictFile=dictFile.fullPath.__str__()
-                wrapper.container.inputData.MERGELIST.append(dictFile)
-        except:
-            err.append(self.__class__, 203, name=self.objectPath())
-            return None, err
-        try:
-            from core import CCP4PluginScript
-            status = wrapper.process()
-            if status != CCP4PluginScript.CPluginScript.SUCCEEDED:
-                err.append(self.__class__, 204, name=self.objectPath())
-                return None, err
-            else:
-                return self.__str__(), err
-        except CException as e:
-            err.append(e)
-            return None,err
-        except Exception as e:
-            print(e)
-            err.append(self.__class__, 205, name=self.objectPath())
-            return self.__str__(),err
 
 class CTLSDataFile(CCP4File.CDataFile):
     '''A refmac TLS file'''
@@ -1088,7 +900,7 @@ class CSeqDataFile(CCP4File.CDataFile):
     def validity(self, arg):
         v = CCP4File.CDataFile.validity(self, arg)
         '''
-        if v.maxSeverity() in [SEVERITY_UNDEFINED,SEVERITY_UNDEFINED_ERROR]:
+        if v.maxSeverity() in [Severity.UNDEFINED,Severity.UNDEFINED_ERROR]:
           if arg.has_key('fileContent') and arg['fileContent'] is not None:
             v = arg['fileContent'].validity(arg['fileContent'].get())
             #print 'CSeqDataFile.validity content',content.get(),v
@@ -1118,7 +930,6 @@ class CSeqDataFile(CCP4File.CDataFile):
     def importFile(self, fileName=None, jobId=None, annotation=None, validatedFile=None, edited=False, jobNumber=None):
         #print 'CSeqDataFile.importFile',fileName,self.fileContent.identifier,'validatedFile',validatedFile,'fileContent.sequence',self.fileContent.sequence.isSet()
         #print 'CSeqDataFile.importFile','dict validatedFile',self.__dict__.get('validatedFile',None)
-        #import traceback
         #traceback.print_stack(limit=5)
         self.blockSignals(True)
         #if edited:
@@ -1160,7 +971,6 @@ class CSeqDataFile(CCP4File.CDataFile):
         nsmap = {'u' : 'http://uniprot.org/uniprot'}
         try:
             #print 'identifyFile trying uniprot',filename
-            from core import CCP4Utils
             root = CCP4Utils.openFileToEtree(filename)
             eleList = root.xpath('./u:entry/u:accession', namespaces=nsmap)
             #print 'identifyFile eleList', eleList
@@ -1202,7 +1012,7 @@ class CSeqDataFile(CCP4File.CDataFile):
                 except:
                     err = CErrorReport(self.__class__, 'Error attempting to read as: ' + testOrder[n])
                 print('identifyFile', err, 'rv=', rv)
-                if err.maxSeverity() <= SEVERITY_WARNING:
+                if err.maxSeverity() <= Severity.WARNING:
                     if testOrder[n] == 'fasta':
                         #Beware biopython allows a 'noformat' file as fasta
                         format0 = self.fileContent.simpleFormatTest(filename)
@@ -1225,7 +1035,7 @@ class CSeqDataFile(CCP4File.CDataFile):
                             err,rv = self.bioGetSeqIdentifiers(tmpFile, testOrder[n])
                         except:
                             err = CErrorReport(self.__class__, 'Error attempting to read as: ' + testOrder[n])
-                        if err.maxSeverity() <= SEVERITY_WARNING:
+                        if err.maxSeverity() <= Severity.WARNING:
                             formt = testOrder[n]
                         else:
                             n = n + 1
@@ -1297,7 +1107,6 @@ class CSeqDataFileList(CCP4Data.CList):
         return err
 
     def mergeFiles(self, outputFile):
-        from core import CCP4Utils
         err = CErrorReport()
         text = ''
         for seqFileObj in self.__dict__['_value']:
@@ -1333,7 +1142,6 @@ class CSequenceAlignment(CCP4Data.CData, CBioPythonSeqInterface):
 
     def loadFile(self, fileName, format='unknown'):
         '''
-        import os
         if format == 'internal':
           self.loadInternalFile(fileName)
         elif format == 'uniprot':
@@ -1414,7 +1222,6 @@ class CSeqAlignDataFile(CCP4File.CDataFile):
         nsmap = { 'u' : 'http://uniprot.org/uniprot' }   
         try:
           #print 'identifyFile trying uniprot',filename
-          from core import CCP4Utils
           root = CCP4Utils.openFileToEtree(filename)
           eleList = root.xpath('./u:entry/u:accession',namespaces=nsmap)
           #print 'identifyFile eleList',eleList
@@ -1464,7 +1271,7 @@ class CSeqAlignDataFile(CCP4File.CDataFile):
                 except Exception as e:
                     err = CErrorReport(self.__class__, 206, details='Attempting to read as format:' + testOrder[n] + '\n' + str(e), stack=False)
                     #print 'bioGetSeqIdentifiers', testOrder[n], str(err)
-                if err.maxSeverity() <= SEVERITY_WARNING:
+                if err.maxSeverity() <= Severity.WARNING:
                     formt = testOrder[n]
                 else:
                     allErrors.extend(err)
@@ -1571,7 +1378,7 @@ class CSeqAlignDataFile(CCP4File.CDataFile):
 
     def validity(self, arg):
         v = CCP4File.CDataFile.validity(self, arg)
-        if v.maxSeverity() > SEVERITY_WARNING:
+        if v.maxSeverity() > Severity.WARNING:
             return v
         reqNSeq = self.qualifiers('requiredSequences')
         #print 'CSeqAlignDataFile.validity',reqNSeq,type(reqNSeq)
@@ -1579,7 +1386,7 @@ class CSeqAlignDataFile(CCP4File.CDataFile):
             return v
         err, idList = self.bioGetSeqIdentifiers()
         #print 'CSeqAlignDataFile.validity',err.maxSeverity(),idList
-        if err.maxSeverity() > SEVERITY_WARNING:
+        if err.maxSeverity() > Severity.WARNING:
             v.extend(err)
             return v
         if not len(idList) in reqNSeq:
@@ -1639,15 +1446,12 @@ class CHhpredData(CCP4File.CDataFileContent):
     CONTENTS = {'alignmentList' : {'class' :CCP4Data.CList, 'subItem' : {'class' :CHhpredItem}}}
 
     def hhpredParser(self, fileName):
-        from core import CCP4Utils
         try:
             text = CCP4Utils.readFile(str(fileName))
         except Exception as e:
             raise CException(self.__class__, 201, fileName)
         #print 'loadFile',text
         try:
-            import iotbx
-            from iotbx import bioinformatics
             hp = iotbx.bioinformatics.hhsearch_parser(text)
         except Exception as e:
             print("FAILED TO PARSE HHPRED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
@@ -1725,13 +1529,12 @@ class CBlastData(CCP4File.CDataFileContent):
     CONTENTS = {'queryId' : {'class' : CCP4Data.CString },
                 'alignmentList' : {'class' : CCP4Data.CList, 'subItem' : {'class' : CBlastItem}}}
     ERROR_CODES = {201 : {'description' : 'Failed reading blast file'},
-                   202 : {'description' : 'Blast file contains results of more than one query - only the first is read', 'severity' : SEVERITY_WARNING},
+                   202 : {'description' : 'Blast file contains results of more than one query - only the first is read', 'severity' : Severity.WARNING},
                    203 : {'description' : 'Failed parsing Blast file'}}
 
     def loadFile(self, fileName=None):
         # Bio.SearchIo formats: "hmmer3-tab', 'blast-xml', 'phmmer3-domtab', 'exonerate-text', 'hmmer3-text',
         # 'blast-text', 'hmmer2-text', 'exonerate-vulgar', 'exonerate-cigar', 'blast-tab', 'fasta-m10', 'hmmsearch3-domtab', 'blat-psl', 'hmmscan3-domtab"
-        import Bio.SearchIO
         mode = None
         fileName = str(fileName)
         try:
@@ -1761,38 +1564,12 @@ class CBlastData(CCP4File.CDataFileContent):
             else:
                 raise  CException(self.__class__, 202, fileName)
 
-    def getBioPyVersion(self):
-        from Bio import __version__ as bioversion
-        try:
-            version=float(bioversion)
-            return version
-        except:
-            return None
-
     def getAlignmentText(self, indx):
-
-        bioversion=self.getBioPyVersion()
-        if bioversion is not None:
-            if bioversion < 1.79:
-                from Bio.Alphabet import generic_protein
-        from Bio.Seq import Seq
-        from Bio.SeqRecord import SeqRecord
-        from Bio.Align import MultipleSeqAlignment
         try:
-            if bioversion is not None:
-                if bioversion < 1.79:
-                    a = SeqRecord(Seq(self.alignmentList[indx].querySequence.__str__(), generic_protein), id=self.queryId.__str__())
-                    b = SeqRecord(Seq(self.alignmentList[indx].hitSequence.__str__(), generic_protein), id=self.alignmentList[indx].hitId.__str__())
-                else:
-                    a = SeqRecord(Seq(self.alignmentList[indx].querySequence.__str__(), id="prot1", annotations={"molecule_type": "protein"}), id=self.queryId.__str__())
-                    b = SeqRecord(Seq(self.alignmentList[indx].hitSequence.__str__(), id="prot2", annotations={"molecule_type": "protein"}), id=self.alignmentList[indx].hitId.__str__())
-            else:
-                a = SeqRecord(Seq(self.alignmentList[indx].querySequence.__str__(), id="prot1", annotations={"molecule_type": "protein"}), id=self.queryId.__str__())
-                b = SeqRecord(Seq(self.alignmentList[indx].hitSequence.__str__(), id="prot2", annotations={"molecule_type": "protein"}), id=self.alignmentList[indx].hitId.__str__())
-            #a = SeqRecord(Seq(self.alignmentList[indx].querySequence.__str__(), generic_protein), id=self.queryId.__str__())
-            #b = SeqRecord(Seq(self.alignmentList[indx].hitSequence.__str__(), generic_protein), id=self.alignmentList[indx].hitId.__str__())
-            align = MultipleSeqAlignment([a, b], annotations={"tool": "CCP4i2"})
-            f = StringIO()
+            a = Bio.SeqRecord.SeqRecord(Bio.Seq.Seq(self.alignmentList[indx].querySequence.__str__(), id="prot1", annotations={"molecule_type": "protein"}), id=self.queryId.__str__())
+            b = Bio.SeqRecord.SeqRecord(Bio.Seq.Seq(self.alignmentList[indx].hitSequence.__str__(), id="prot2", annotations={"molecule_type": "protein"}), id=self.alignmentList[indx].hitId.__str__())
+            align = Bio.Align.MultipleSeqAlignment([a, b], annotations={"tool": "CCP4i2"})
+            f = io.StringIO()
             count = Bio.AlignIO.write(align, f, "clustal")
         except:
             return 'Error creating alignment text'
@@ -1884,23 +1661,13 @@ class CPdbData(CCP4File.CDataFileContent):
         self.__dict__['lastLoadedFile'] = None
 
     def loadFile(self, fileName=None):
-        try:
-            import ccp4mg
-            import mmdb2 as mmdb
-        except:
-            print('FAILED CCP4ModelData imported ccp4mg')
         #print 'CPdbData.loadFile',fileName
-        from core import CCP4Utils
         if fileName is None:
             raise CException(self.__class__, 101, str(fileName), name=self.objectPath())
         # Convert CDataFile or CFilePath to string
         fileName = str(fileName)
         if not os.path.exists(fileName):
             raise CException(self.__class__, 101, str(fileName), name=self.objectPath())
-        try:
-            import ccp4mg
-        except:
-            raise CException(self.__class__, 101, name=self.objectPath())
         if self.__dict__['_molHnd'] is not None:
             del self.__dict__['_molHnd']
             self.__dict__['_molHnd'] = None
@@ -1932,11 +1699,6 @@ class CPdbData(CCP4File.CDataFileContent):
             return CCP4Data.CData.__getattr__(self, name)
 
     def interpretResidueInput(self, resid=None):
-        try:
-            import ccp4mg
-            import mmdb2 as mmdb
-        except:
-            print('FAILED CCP4ModelData imported ccp4mg')
         insCode = '*'
         if resid is None:
             resNum = mmdb.ANY_RES
@@ -1955,12 +1717,6 @@ class CPdbData(CCP4File.CDataFileContent):
         return resNum, insCode
 
     def validRangeSelection(self, chainId=None, firstRes=None, lastRes=None, selModel=1):
-        try:
-            import ccp4mg
-            import mmdb2 as mmdb
-        except:
-            print('FAILED CCP4ModelData imported ccp4mg')
-        import mmut
         if chainId is None:
             if len(self.__dict__['_composition'].chains) > 0:
                 raise CException (self.__class__, 103, name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
@@ -1969,22 +1725,6 @@ class CPdbData(CCP4File.CDataFileContent):
         else:
             if not self.__dict__['_composition'].chains.count(chainId):
                 raise CException (self.__class__, 104, chainId, name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
-        '''
-        if firstRes is None and lastRes is None:
-          selCom = '/'+str(selModel)+'/'+chainId
-        elif lastRes is None:
-          selCom = chainId + '/' + str(firstRes)
-        else:
-          selCom = chainId + '/' + str(firstRes) + '-' + str(lastRes)
-        print 'validRangeSelection selCom',selCom
-          
-        resHnd = self.__dict__['_molHnd'].NewSelection()
-        resSel = mmdb.newPPCResidue()
-        self.__dict__['_molHnd'].Select(resHnd,mmdb.STYPE_RESIDUE,selCom,mmdb.SKEY_NEW)
-        nSel = self.__dict__['_molHnd'].GetSelIndex(resHnd,resSel)
-        self.__dict__['_molHnd'].DeleteSelection(resHnd)
-        print 'validRangeSelection nSel',nSel
-        '''
         if chainId is None or len(chainId.strip()) == 0:
             chainId ='*'
         else:
@@ -2007,60 +1747,7 @@ class CPdbData(CCP4File.CDataFileContent):
             raise CException(self.__class__, 105, selCom, name=self.objectPath())   # KJS : Need to fix (no selCom)
         return nSel
 
-    def splitAtomId(self, atomId='', splitRes=False, resRange=False):
-        model = ''
-        chain = ''
-        res = ''
-        res2 = ''
-        atom = ''
-        aid = ''
-        atomId = atomId.strip()
-        if atomId:
-            aid = atomId.split('/')
-            if len(aid) <= 1:
-                # there are no separators
-                atom = atomId
-            else:
-                # If atomId begins with a slash and model number then expect
-                # first item (before first slash) to be the blank
-                # If this is not so then insert a model number 
-                if aid[0] and len(aid) < 5:
-                    aid.insert(0, '')
-                    aid.insert(1, '1')
-                if len(aid) >= 2:
-                    model = aid[1]
-                if len(aid) >= 3:
-                    chain = aid[2]
-                if len(aid) >= 5:
-                    atom = aid[4].split('[')[0]
-                    # mmdb GetAtomID returns the altLoc after the element type
-                    if len(aid[4].split(']'))>1:
-                        atom = atom + aid[4].split(']')[1]
-                if len(aid) >= 4:
-                    if aid[3].count('-'):
-                        res, res2 = aid[3].split('-')[0:2]
-                    else:
-                        if splitRes:
-                            res = aid[3].split('(')[0].split('.')
-                            if len(res)==1:
-                                res.append('')
-                            return [model, chain, res[0], res[1], atom]
-                        else:
-                            res = aid[3]
-        #print 'splitAtomID',atomId,aid,[model,chain,res,res2,atom]
-        if resRange:
-            return [model, chain, res, res2, atom]
-        else:
-            return [model, chain, res, atom]
-
     def interpretSelection(self, command, fileName=None):
-        try:
-            import ccp4mg
-            import mmdb2 as mmdb
-        except:
-            print('FAILED CCP4ModelData imported ccp4mg')
-        from core import CCP4SelectionTree
-        import mmut
         try:
             toks = CCP4SelectionTree.SelectionParser().tokenise(command)
         except CException as e:
@@ -2100,12 +1787,6 @@ class CPdbData(CCP4File.CDataFileContent):
 
     def writeSelection(self, selHnd, fileName):
         # Does an atom-by-atom copy so potentially slow
-        try:
-            import ccp4mg
-            import mmdb2 as mmdb
-        except:
-            print('FAILED CCP4ModelData imported ccp4mg')
-        import mmut
         thisMolHnd = mmdb.Manager()
         thisMolHnd.Copy(self.molHnd, mmdb.MMDBFCM_Title | mmdb.MMDBFCM_Cryst)
         if self.molHnd.GetNumberOfModels() > 1 and False:
@@ -2136,8 +1817,6 @@ class CPdbData(CCP4File.CDataFileContent):
         return RC
 
     def makeOneResPDB(self, resName='UNK', atomDefList=[], cell=None, spaceGroup='P 1', fileName=None):
-        import ccp4mg
-        import mmdb2 as mmdb
         #Trivial test data
         #atomDefList = [ { 'name' : ' SE ', 'element' : 'SE' , 'x' : 45.0, 'y': 45.0, 'z' : 78.0, 'occupancy' : 1.0, 'tempFactor' : 10.0 } ]
         #atomDefList = [ { 'name' : ' SE ', 'element' : 'SE' , 'xFrac' : 0.45, 'yFrac': 0.45, 'zFrac' : 0.78, 'occupancy' : 1.0, 'tempFactor' : 10.0 } ]
@@ -2197,7 +1876,6 @@ class CPdbData(CCP4File.CDataFileContent):
             return x, y, z
         except:
             try:
-                import pygl_coord
                 xptr = pygl_coord.doublep()
                 yptr = pygl_coord.doublep()
                 zptr = pygl_coord.doublep()
@@ -2212,12 +1890,11 @@ class CPdbData(CCP4File.CDataFileContent):
                 return None, None, None
 
     def loadSequences(self, molHnd):
-        import collections
         self.__dict__['_sequences'] = collections.OrderedDict()
-        amino_acid_code = MODELINFO('amino_acid_code')
-        solventList = MODELINFO('solvent', 'ORDER')
-        soluteList = MODELINFO('solute', 'ORDER')
-        nucleic_acid_code = MODELINFO('nucleic_acid_code')
+        amino_acid_code = CCP4Residues.amino_acid_code
+        solventList = CCP4Residues.solvent
+        soluteList = CCP4Residues.solute
+        nucleic_acid_code = CCP4Residues.nucleic_acid_code
         for chainId in self.composition.peptides:
             self.__dict__['_sequences'][chainId] = ''
             peptideChain = molHnd.GetChain(1, chainId)
@@ -2247,8 +1924,6 @@ class CPdbData(CCP4File.CDataFileContent):
                 del self.__dict__['_sequences'][chainId]
 
     def writeFasta(self, fileName):
-        import copy
-        from core import CCP4Utils
         text = ''
         for chainId,sequence in self.sequences:
             text += '>' + chainId + '\n'
@@ -2274,21 +1949,15 @@ class CPdbDataComposition:
         #try:
         self.analyseResTypes(molHnd, selModel)
         #except:
-        #  print 'ERROR analysing coordinate file composition - maybe due to failure to import mmdb/mmut'
+        #  print 'ERROR analysing coordinate file composition'
         try:
             self.elements = self.analyseElements(molHnd, selModel)
         except:
-            print('ERROR analysing coordinate file composition - maybe due to failure to import mmdb/mmut')
+            print('ERROR analysing coordinate file composition')
 
         #print 'CPdbDataComposition.__init__',self.monomers,self.chains
 
     def analyseElements(self, molHnd, selModel=1):
-        try:
-            import ccp4mg
-            import mmdb2 as mmdb
-        except:
-            print('FAILED CCP4ModelData imported ccp4mg')
-        import mmut
         elements = []
         hydHnd = molHnd.NewSelection()
         hydSel = mmdb.newPPCAtom()
@@ -2331,34 +2000,14 @@ class CPdbDataComposition:
         return elements
 
     def resTypeSelCommand(self, resType):
-        resList =  MODELINFO(resType, 'ORDER')
-        com = resList[0]
-        for item in resList[1:]:
-            com = com + ',' + item
-        return com
+        resList = getattr(CCP4Residues, resType, [])
+        return ",".join(resList)
 
     def analyseResTypes(self, molHnd, selModel=1):
-        try:
-            import ccp4mg            # KJS : This function is too long.
-            import mmdb2 as mmdb
-        except:
-            print('FAILED CCP4ModelData imported ccp4mg')
-        import mmut
         new_swig_mmdb = True
-        try:
-            import version
-            ccp4mg_version_tup = tuple([int(x) for x in version.ccp4mg_version.split('.')])
-        except:
-            ccp4mg_version_tup = (2, 7, 0)
-        if ccp4mg_version_tup >= (2, 8, 0):
-            nChainsp = mmut.intp()
-            chainTable = mmut.GetChainTable(molHnd, selModel, nChainsp)
-            self.nChains = nChainsp.value()
-        else:
-            chainTable = mmdb.newPPCChain()
-            nChains = mmdb.intp()
-            molHnd.GetChainTable(selModel, chainTable, nChains)
-            self.nChains = nChains.value()
+        nChainsp = mmut.intp()
+        chainTable = mmut.GetChainTable(molHnd, selModel, nChainsp)
+        self.nChains = nChainsp.value()
         hydHnd = molHnd.NewSelection()
         hydSel = mmdb.newPPCAtom()
         resHnd = molHnd.NewSelection()
@@ -2376,11 +2025,7 @@ class CPdbDataComposition:
         self.nAtoms = 0
         self.nAtoms = molHnd.GetNumberOfAtoms()
         for n in range(0, self.nChains):
-            if ccp4mg_version_tup >= (2, 8, 0):
-                #print 'analyseResTypes',
-                pc = mmdb.getPCChain(chainTable, n)
-            else:
-                pc = mmdb.CChainPtr(mmdb.getPCChain(chainTable, n))
+            pc = mmdb.getPCChain(chainTable, n)
             chainID = pc.GetChainID()
             self.chains.append(chainID)
             nres = pc.GetNumberOfResidues()
@@ -2535,9 +2180,9 @@ class CPdbDataFile(CCP4File.CDataFile):
     QUALIFIERS_DEFINITION = {'ifAtomSelection' : {'type' :bool,
                                                   'description' : 'Atom selection option enabled'}}
     ERROR_CODES = {401 : {'description' : 'Failed running coord_format to fix coordinate file - is it a PDB file?'},
-                   402 : {'severity' : SEVERITY_WARNING, 'description' : 'Badly formated PDB file fixed'},
-                   403 : {'severity' : SEVERITY_WARNING,'description' : 'Fixed by removing text'},
-                   404 : {'severity' : SEVERITY_WARNING,'description' : 'Fixed by adding text'},
+                   402 : {'severity' : Severity.WARNING, 'description' : 'Badly formated PDB file fixed'},
+                   403 : {'severity' : Severity.WARNING,'description' : 'Fixed by removing text'},
+                   404 : {'severity' : Severity.WARNING,'description' : 'Fixed by adding text'},
                    405 : {'description' : 'There are no ATOM or HETATM lines in the PDB file'},
                    410 : {'description' : 'No file loaded - can not convert coordinate file format'},
                    411 : {'description' : 'Failed loading file - can not convert coordinate file format'},
@@ -2581,17 +2226,6 @@ class CPdbDataFile(CCP4File.CDataFile):
                 return False
             except (ValueError, RuntimeError):
                 raise CException(self.__class__, 414, self.__str__())
-    
-    def isPDB(self):
-        try: 
-            gemmi.cif.read(self.fullPath.__str__())
-            return False
-        except (ValueError, RuntimeError):
-            try:
-                gemmi.read_structure(self.fullPath.__str__())
-                return True
-            except (ValueError, RuntimeError):
-                raise CException(self.__class__, 414, self.__str__())
 
     def getSelectedAtomsPdbFile(self, fileName=None):
         if not self.isSelectionSet():
@@ -2610,8 +2244,6 @@ class CPdbDataFile(CCP4File.CDataFile):
         return [text, self.selection.__str__()]
 
     def assertSame(self, other, diagnostic=False, **kw):
-        import tempfile
-        from core import CCP4Utils
         report = CCP4File.CDataFile.assertSame(self, other, diagnostic=diagnostic, testChecksum=True)
         if not(len(report) == 1 and report[0]['code'] == 308):
             return report
@@ -2627,55 +2259,34 @@ class CPdbDataFile(CCP4File.CDataFile):
             for obj, fileObj in [[self, f1], [other, f2]]:
                 text = CCP4Utils.readFile(obj.__str__())
                 if text[0:6] == 'HEADER':
-                    if sys.version_info > (3,0):
-                        os.write(fileObj[0], text.split('\n', 1)[1].encode("utf-8"))
-                    else:
-                        os.write(fileObj[0], text.split('\n', 1)[1])
+                    os.write(fileObj[0], text.split('\n', 1)[1].encode("utf-8"))
                 else:
                     retest = False
                 os.close(fileObj[0])
             if retest:
                 # Beware need to set object name to get it printed out in report
-                obj1 = CPdbDataFile(name=self.objectPath(False), fullPath=f1[1])
+                obj1 = CPdbDataFile(fullPath=f1[1], name=self.objectPath())
                 obj2 = CPdbDataFile(fullPath=f2[1])
                 otherSum = obj2.checksum()
                 selfSum = obj1.checksum()
                 if otherSum != selfSum:
-                    report.append(self.__class__, 308, name=self.objectPath(False), details=str(self) + ' : ' + str(other))
+                    report.append(self.__class__, 308, name=self.objectPath(), details=str(self) + ' : ' + str(other))
             else:
                 return report
         except:
             return report
 
-    def fixFile(self, xyzout=None, jobId=None, overwrite=False): # unused. KJS
-        self.runCoord_format(xyzout=xyzout, jobId=jobId, overwrite=overwrite)
-
-    def runCoord_format(self, xyzout=None, outputFormat=None, jobId=None, overwrite=False):
-        from core import CCP4Modules
-        from core import CCP4Utils
-        if xyzout is None:
-            xyzout = self.importFileName(jobId=jobId)
-        if jobId is not None:
-            jobDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId)
-            logFile = os.path.normpath(os.path.join(jobDirectory, self.objectName() + '_coord_format.log'))
-        else:
-            logFile = None
-        arglist = ['xyzin', self.__str__()]
-        arglist.extend(['xyzout', xyzout])
-        if outputFormat is not None:
-            com = 'OUTPUT ' + outputFormat + '''\nFIXBLANK\nEND\n'''
-        else:
-            com = '''FIXBLANK\nEND\n'''
-        pid = CCP4Modules.PROCESSMANAGER().startProcess('coord_format', arglist, inputText=com, logFile=logFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
+    def runCoord_format(self, xyzout):
+        from .CCP4ProcessManager import PROCESSMANAGER
+        arglist = ['xyzin', str(self), 'xyzout', xyzout]
+        com = '''FIXBLANK\nEND\n'''
+        pid = PROCESSMANAGER().startProcess('coord_format', arglist, inputText=com, logFile=None)
+        status = PROCESSMANAGER().getJobData(pid)
+        PROCESSMANAGER().getJobData(pid, 'exitCode')
         if status != 0:
             return CErrorReport(self.__class__, 401, 'Exit status:' + str(status), name=self.objectPath(), stack=False)
-        diffs = CCP4Utils.nonWhiteDifferences(self.__str__(), xyzout)
+        diffs = CCP4Utils.nonWhiteDifferences(str(self), xyzout)
         if len(diffs) > 0:
-            if overwrite:
-                os.remove(xyzin)    # KJS : Something wrong here, can't see xyzin anywhere...
-                os.rename(xyzout, xyzin)
             ret =  CErrorReport(self.__class__, 402, xyzout, name=self.objectPath(), stack=False)
             for diff in diffs:
                 if diff[0] < 0:
@@ -2683,11 +2294,9 @@ class CPdbDataFile(CCP4File.CDataFile):
                 else:
                     ret.append(self.__class__, 404, diff[1], stack=False)
             return ret
-        else:
-            return CErrorReport()
+        return CErrorReport()
 
     def importFile(self, jobId=None, sourceFileName=None, ext=None, annotation=None, jobNumber=None):
-        from core import CCP4Utils
         if sourceFileName is None:
             sourceFileName = self.__str__()
         if annotation is None:
@@ -2739,10 +2348,6 @@ class CPdbDataFile(CCP4File.CDataFile):
         ''' Remove 'DUM' or other problem residue names or atom names and optionally save to otheFileName '''
         if not self.exists():
             return 0
-        import ccp4mg
-        import mmdb2 as mmdb
-        import mmut
-        import copy
         molHnd = mmdb.Manager()
         molHnd.ReadCoorFile(str(self))
         print('Remove dummy atoms - file contains', molHnd.GetNumberOfAtoms(), 'atoms')
@@ -2872,7 +2477,7 @@ class CPdbEnsembleItem(CCP4Data.CData):
                 if self.__dict__['_value']['rms_to_target'].isSet():
                     return self.__dict__['_value']['rms_to_target'].__str__()
         elif role == QtCore.Qt.BackgroundRole:
-            from qtgui import CCP4StyleSheet
+            from ..qtgui import CCP4StyleSheet
             if self.__dict__.get('currentItem', False):
                 return QtGui.QBrush(QtGui.QColor(CCP4StyleSheet.HIGHLIGHTCOLOUR))
         elif role ==  QtCore.Qt.UserRole:
@@ -2921,7 +2526,7 @@ class CEnsemble(CCP4Data.CData):
                 return self.__dict__['_value']['number'].__str__()+' x '+self.__dict__['_value']['label'].__str__()
         elif role ==  QtCore.Qt.BackgroundRole:
             if self.__dict__.get('currentItem', False):
-                from qtgui import CCP4StyleSheet
+                from ..qtgui import CCP4StyleSheet
                 return QtGui.QBrush(QtGui.QColor(CCP4StyleSheet.HIGHLIGHTCOLOUR))
         elif role == QtCore.Qt.ForegroundRole:
             if self.greyOut():
@@ -3056,25 +2661,10 @@ class CResidueRangeList(CCP4Data.CList):
     SUBITEM = {'class' : CResidueRange}
 
 class CSequenceString(CCP4Data.CString):
-    ERROR_CODES = {401 : {'description' : 'Non-alphabet character removed from sequence', 'severity' : SEVERITY_WARNING},
+    ERROR_CODES = {401 : {'description' : 'Non-alphabet character removed from sequence', 'severity' : Severity.WARNING},
                    402 : {'description' : 'Invalid characters (BJOXZ) in sequence'},
-                   403 : {'description' : 'Sequence undefined', 'severity' : SEVERITY_WARNING}}
+                   403 : {'description' : 'Sequence undefined', 'severity' : Severity.WARNING}}
     pass
-
-    # This is used by CAsuContentSeqView.validate() to test validity of sequence
-    # but we don't want its strict criteria blocking setting the model object value
-    # in CAsuContentSeqView.updateModelFromView()
-    def validity0(self, arg):
-        err = CErrorReport()
-        if arg is None or len(arg.strip()) == 0:
-            err.append(self.__class__, 403)
-            return err
-        seq1 = re.sub(r'[BJOXZ]', '', arg)
-        #print 'CSequenceString.validity',seq1
-        #print 'CSequenceString.validity',len(seq1),len(arg)
-        if len(seq1) < len(arg):
-            err.append(self.__class__, 402)
-        return err
 
 
 class CAsuContentSeq(CCP4Data.CData):
@@ -3142,7 +2732,6 @@ class CAsuContentSeq(CCP4Data.CData):
         nGap = 10
         nLine = 60
         seqList = []
-        import copy
         text = copy.deepcopy(str(self.sequence))
         while len(text) > 0:
             line = text[0:nLine]
@@ -3156,7 +2745,6 @@ class CAsuContentSeq(CCP4Data.CData):
         return newText
 
     def molecularWeight(self,polymerType="PROTEIN"):
-        import Bio.SeqUtils
         # Beware BioPython not robust to bad sequences
         if polymerType == "PROTEIN":
             seq = re.sub('[^GALMFWKQESPVICYHRNDT]', '', str(self.__dict__['_value']['sequence']))
@@ -3214,40 +2802,6 @@ class CAsuContentSeqList(CCP4Data.CList):
                 return rv
         return rv
 
-    '''
-    def loadSequenceFile(self,record=0,fileId=None):
-        fileAnnotation = None
-        if fileId is not None:
-          from core import CCP4Modules
-          fileName = CCP4Modules.PROJECTSMANAGER().db().getFullPath(fileId=fileId)
-          fileAnnotation = CCP4Modules.PROJECTSMANAGER().db().getFileInfo(fileId=fileId,mode='annotation')
-          #print 'CAsuContentSeqList.loadSequenceFile fileAnnotation',fileAnnotation
-          seqFile = CCP4ModelData.CSeqDataFile(parent=self)
-          seqFile.setFullPath(fileName)
-          seqFile.__dict__['format'] = 'internal'
-          seqFile.fileContent.loadInternalFile(str(self.seqFile))
-        else:
-          #print 'CAsuContentSeqList.loadSequenceFile to loadExternalFile',seqFile
-          seqFile.fileContent.loadExternalFile(str(seqFile),seqFile.__dict__['format'],record=record)
-          #self.model.source = self.seqFile.__str__()
-        cleanSeq,err = self[0].cleanupSequence(seqFile.fileContent.sequence)
-        if err.maxSeverity()>SEVERITY_WARNING:
-          raise err
-        self.model.sequence.set(cleanSeq)
-        try:
-          self.model.name.set(self.model.name.fix(self.seqFile.fileContent.name))
-        except:
-          pass
-        if not self.model.name.isSet():
-          if fileAnnotation is not None:
-            self.model.name.set(self.model.name.fix(fileAnnotation))
-          else:
-            import os
-            self.model.name.set(os.path.split(os.path.splitext(self.seqFile.__str__())[0])[1])
-        self.model.description.set(self.seqFile.fileContent.description)
-        self.extendSeqList(self.seqFile,recordList[1:])
-    '''
-
     def extendSeqList(self, fileObject, recordList=[]):
         '''
         Reading sequence file into CAsuContentSeqView user seelcts multiple sequences
@@ -3258,7 +2812,7 @@ class CAsuContentSeqList(CCP4Data.CList):
             for record in recordList:
                 fileObject.fileContent.loadExternalFile(fileObject.__str__(), fileObject.__dict__['format'], record=record)
                 rv =self.matchingSequence(str(fileObject.fileContent.sequence), str(fileObject.fileContent.name))
-                if rv.maxSeverity() <= SEVERITY_WARNING: 
+                if rv.maxSeverity() <= Severity.WARNING: 
                     self.addItem()
                     self[-1].name.set(self[-1].name.fix(str(fileObject.fileContent.name)))
                     self[-1].description.set(fileObject.fileContent.description)
@@ -3272,7 +2826,7 @@ class CAsuContentSeqList(CCP4Data.CList):
             for record in recordList:
                 chainId = list(fileObject.fileContent.sequences.keys())[record]
                 rv =self.matchingSequence(fileObject.fileContent.sequences[chainId], chainId)
-                if rv.maxSeverity() <= SEVERITY_WARNING:
+                if rv.maxSeverity() <= Severity.WARNING:
                     self.addItem()
                     #print 'CAsuContentSeqList.extendSeqList chainId',chainId
                     self[-1].name.set(chainId)
@@ -3323,7 +2877,7 @@ class CAsuContent(CCP4File.CDataFileContent):
             return
         xmlFileObject = CCP4File.CI2XmlDataFile(fileName)
         err = xmlFileObject.loadHeader()
-        if err.maxSeverity() > SEVERITY_WARNING:
+        if err.maxSeverity() > Severity.WARNING:
             raise CErrorReport(self.__class__, 101, str(fileName), name=self.objectPath())
         if xmlFileObject.header.function != 'ASUCONTENT':
             raise CErrorReport(self.__class__, 102, str(fileName), name=self.objectPath())
@@ -3340,13 +2894,6 @@ class CAsuContent(CCP4File.CDataFileContent):
             if item in jobDetails and jobDetails[item] is not None:
                 xmlFileObject.header.get(item).set(jobDetails[item])
         xmlFileObject.saveFile(self.getEtree())
-
-    def getChainNames(self):
-        chainNamesList = []
-        for item in self.seqList:
-            chainNamesList.append(str(item.name))
-        return chainNamesList
-
 
     def molecularWeight(self):
         return self.seqList.molecularWeight()
@@ -3412,7 +2959,6 @@ class CAsuDataFile(CCP4File.CI2XmlDataFile):
     def writeFasta(self, fileName, indx=-1, format='fasta', writeMulti=False, polymerTypes=["PROTEIN", "RNA", "DNA"]):
         # Write a fasta file or a bad pir file with extra blank line but not other
         # proper pir features
-        from core import CCP4Utils
         self.loadFile()
         selectionMode = self.qualifiers('selectionMode')
         if indx < 0:
@@ -3446,7 +2992,6 @@ class CAsuDataFile(CCP4File.CI2XmlDataFile):
         CCP4Utils.saveFile(fileName, text)
 
     def writeArpPir(self, fileName, indx=-1, writeMulti=False):
-        from core import CCP4Utils
         self.loadFile()
         selectionMode = self.qualifiers('selectionMode')
         if indx < 0:
@@ -3525,9 +3070,7 @@ class CPairwiseAlignment:
             self.seq2 = str(sequence2)
 
     def align(self):
-        import Bio
-        from Bio import pairwise2
-        alignments = pairwise2.align.globalxx(self.seq1, self.seq2)
+        alignments = Bio.pairwise2.align.globalxx(self.seq1, self.seq2)
         if len(alignments) > 0:
             #print 'align', alignments[0]
             return alignments[0]
@@ -3535,12 +3078,10 @@ class CPairwiseAlignment:
             return None
 
     def formattedAlignment(self, label1='', label2=''):
-        import Bio
-        from Bio import pairwise2
         ali = self.align()
         if ali is None:
             return 'No alignment found\n'
-        text = pairwise2.format_alignment(*ali)
+        text = Bio.pairwise2.format_alignment(*ali)
         labels = [(label1 + '              ')[0:15], '               ', (label2 + '              ')[0:15]]
         lines = text.split('\n')
         print('formattedAlignment', lines)
@@ -3575,73 +3116,7 @@ class CChainMatch:
             elif isinstance(model, CAsuDataFile):
                 setattr(self, chain, model.fileContent.seqList)
 
-    def score2(self):
-        # Attempts to take into account the number of copies expected for sequence (model2)
-        import copy
-        # setup the score 'matrix'
-        # http://stackoverflow.com/questions/6667201/how-to-define-two-dimensional-array-in-python
-        nCh1 = nCh2 = 0
-        nCh1 = len(self.chains1)
-        for seqObj in self.chains2:
-            nCh2 += max(1, int(seqObj.nCopies))
-        # A matrix of scores - this has multiple elements if chain has multiple copies
-        score = [[0]*nCh2 for i in range(nCh1)]
-        # A matrix with same elements as score matrix providing indexing back to the chains
-        chIndex = [[None]*nCh2 for i in range(nCh1)]
-        print('CChainMatch nCh', nCh1, nCh2, score)
-        # Get score for all chains in chains1 v. all chains in chains2
-        # Where the chain has multiple copies make multiple row/column
-        n1 = 0
-        chIndx1 = 0
-        for c1 in self.chains1:
-            n2 = 0
-            chIndx2 = 0
-            for c2 in self.chains2:
-                align = CPairwiseAlignment(str(c1.sequence), str(c2.sequence))
-                ret = align.align()
-                #print 'n1, n2, ret[2], ret[4]', n1, n2, ret[2], ret[4]
-                if ret is not None:
-                    print('CChainMatch ret', ret)
-                    print('CChainMatch', n1, n2, score)
-                    score[n1][n2] = float(ret[2])/float(ret[4])
-                    chIndex[n1][n2] = [chIndx1,chIndx2]
-                    print('score', n1, n2, score[n1][n2])
-                for i2 in range(int(c2.nCopies) - 1):
-                    #print 'Copying n2 score', n1, n2
-                    n2 += 1
-                    score[n1][n2] = score[n1][n2 - 1]
-                    chIndex[n1][n2] = [chIndx1,chIndx2]
-                n2 += 1
-                chIndx2 += 1
-            n1 += 1
-            chIndx1 += 1
-        #for i1 in range(nCh1): print 'CChainMatch.match', score[i1]
-        #for i1 in range(nCh1): print 'CChainMatch.match', chIndex[i1]
-        matchList = []
-        maxMatch = min(nCh1, nCh2)
-        while len(matchList) < maxMatch:
-            bestValue = 0.0
-            bestPair = [-1, -1]
-            for n1 in range(nCh1):
-                for n2 in range(nCh2):
-                    if score[n1][n2] > bestValue:
-                        bestValue = copy.deepcopy(score[n1][n2])
-                        bestPair = [n1, n2]
-            #print 'bestValue',bestValue,bestPair
-            if bestValue > 0.0:
-                # add best matched pair of chains to list and 'blank' them out of the score matrix
-                matchList.append(chIndex[bestPair[0]][bestPair[1]])
-                for i2 in range(nCh2):
-                    score[bestPair[0]][i2] = -1.0
-                for i1 in range(nCh1):
-                    score[i1][bestPair[1]] = -1.0
-            else:
-                break
-        print('matchList', matchList)
-        return matchList
-
     def score(self):
-        import copy
         # setup the score 'matrix'
         # http://stackoverflow.com/questions/6667201/how-to-define-two-dimensional-array-in-python
         nCh1 = len(self.chains1)
@@ -3679,17 +3154,7 @@ class CChainMatch:
         print('matchList', matchList)
         return matchList
 
-    def bestAlignments(self):
-        matchList = self.score()
-        for chIndx1, chIndx2 in matchList:
-            #print 'chIndx1,chIndx2',chIndx1,chIndx2
-            #print 'matching',self.chains1[chIndx1].name,self.chains2[chIndx2].name
-            align = CPairwiseAlignment(str(self.chains1[chIndx1].sequence), str(self.chains2[chIndx2].sequence))
-            ret = align.align()
-            print(ret)
-
     def reportXmlAlignments(self):
-        from lxml import etree
         matchList = self.score()
         root = etree.Element('ChainMatching')
         for chIndx1, chIndx2 in matchList:
@@ -3703,77 +3168,3 @@ class CChainMatch:
             e = etree.SubElement(ele, 'Alignment')
             e.text = align.formattedAlignment(str(self.chains1[chIndx1].name), str(self.chains2[chIndx2].name))
         return root
-
-#===========================================================================================================
-import unittest
-
-def TESTSUITE():
-    suite = unittest.defaultTestLoader.loadTestsFromTestCase(testPdbData)
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testRange))
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testSeqData))
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)
-
-
-class testPdbData(unittest.TestCase):
-
-    def test1(self):
-        p = CPdbData()
-        p.loadFile(CPdbDataFile(project='CCP4I2_TOP', relPath='test/data', baseName='1df7.pdb'))
-        self.assertEqual(p.composition.chains,['A'], 'Error loading CPDBData - wrong chains')
-        self.assertEqual(p.composition.moleculeType, ['PROTEIN', 'MONOMER'], 'Error loading CPDBData - wrong moleculeType')
-
-    def test2(self):
-        p = CPdbData()
-        resNum, altLoc = p.interpretResidueInput('123.1')
-        self.assertEqual(resNum, 123, 'Error in CPdbData.interpretResidueInput - wrong resNum')
-        self.assertEqual(altLoc, '1', 'Error in CPdbData.interpretResidueInput - wrong altLoc')
-
-    def test3(self):
-        from core import CCP4Utils
-        p = CPdbDataFile(project='CCP4I2_TOP', relPath='test/data', baseName='1df7.pdb')
-        p.selection = 'A/10-20'
-        self.assertEqual(p.isSelectionSet(), True, 'Error - CPdbDataFile.isSelectionSet() wrong')
-        p.getSelectedAtomsPdbFile(fileName=os.path.join(CCP4Utils.getTestTmpDir(), '1df7_selection.pdb'))
-
-
-class testRange(unittest.TestCase):
-
-    def test1(self):
-        from core import CCP4Container
-        c = CCP4Container.CContainer()
-        c.addContent(name='XYZIN', cls=CPdbDataFile)
-        c.addContent(name='DOMAINLIST', cls=CCP4Data.CList, subItem={'class':CResidueRangeList } )
-        c.DOMAINLIST.append([])
-        c.DOMAINLIST[0].append({'chainId':'A', 'firstRes':'1', 'lastRes':'20'})
-        c.DOMAINLIST[0].append({'chainId':'B', 'firstRes':'1', 'lastRes':'40'})
-        #print 'testRange.test1',c.DOMAINLIST[0].subItemClass()
-        #print 'testRange.test1',c.DOMAINLIST[0],type(c.DOMAINLIST[0])
-        #print 'testRange.test1',c.DOMAINLIST[0][1],type(c.DOMAINLIST[0][1])
-        self.assertEqual(c.DOMAINLIST[0][1].chainId, 'B', 'Failed to set CResidueRangeList data')
-
-
-class testSeqData(unittest.TestCase):
-
-    def test1(self):
-        seq = CSequence()
-        seq.loadFile(CSeqDataFile(project='CCP4I2_TOP', relPath='test/data', baseName='1mzr.fasta'))
-        print(seq.__dict__['_value'])
-        seq.loadFile(CSeqDataFile(project='CCP4I2_TOP', relPath='test/data', baseName='1mzr.pir'))
-        print(seq.__dict__['_value'])
-
-class testCAsuContent(unittest.TestCase):
-
-    def testMolecularWeight(self):
-        asuFile = CAsuDataFile(project='CCP4I2_TOP', relPath='demo_data/gamma', baseName='gamma.asu.xml')
-        asuFile.loadFile()
-
-    def testCreateCAsuContent(self):
-        sequence = CAsuContentSeq({'sequence':'QWERTY', 'nCopies':1, 'polymerType':'PROTEIN', 'name':'DUMMY', 'desccription':'', 'source':''})
-        asuContent = CAsuContent()
-        asuContent.seqList.addItem(sequence)
-        print(asuContent)
-        self.assertAlmostEqual(asuContent.molecularWeight(), second=881.93, places=2)

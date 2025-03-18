@@ -17,7 +17,7 @@ from . import CCP4File
 from . import CCP4ModelData
 from . import CCP4TaskManager
 from . import CCP4XtalData
-from ..qtcore.CCP4JobController import JOBCONTROLLER
+from ..utils import startup
 from .CCP4ErrorHandling import CException
 
 
@@ -447,7 +447,6 @@ class CI2Runner(object):
             jobDirectory = kwargs['jobDirectory']
         else:
             from . import CCP4ProjectsManager
-            from ..utils import startup
             CCP4ProjectsManager.CProjectsManager.insts = None
             
             self.pm = startup.startProjectsManager(dbFileName=kwargs.get('dbFile',None))
@@ -680,7 +679,7 @@ class CI2Runner(object):
         self.pm.db().gleanJobFiles(jobId=cOpenJob.jobId,container=cOpenJob.container,
                               roleList=[CCP4DbApi.FILE_ROLE_IN])
         rv = cOpenJob.saveParams()
-
+        from ..qtcore.CCP4JobController import JOBCONTROLLER
         jc=JOBCONTROLLER()
         jc.setDiagnostic(True)
         jc.setDbFile(self.pm.db()._fileName)

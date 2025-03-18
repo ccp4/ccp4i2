@@ -5,11 +5,14 @@ import sys
 
 from PySide2 import QtCore
 
+from ..core.CCP4Config import CONFIG
+from ..core.CCP4Utils import getCCP4I2Dir
+from ..utils.QApp import QTAPPLICATION
+
 
 @QtCore.Slot('CRunPlugin')
 def quitThread(thread):
     print('quitThread',thread); sys.stdout.flush()
-    from ..core.CCP4Modules import QTAPPLICATION
     QTAPPLICATION(graphical=False).quit()
     sys.exit()
 
@@ -22,16 +25,13 @@ def main():
     parser.add_argument("-c", "--configFile", help="Read in an i2 Configuration file")
     parser.add_argument("-db", "--dbFile", help="Read in an i2 database file")
     args = parser.parse_args()
-    from ..core.CCP4Utils import getCCP4I2Dir
     top_path = getCCP4I2Dir()
     print('runTask Script raw Input Arguments', sys.argv)
     print("runTask Script top_path(CCPI2dir) and __file__ variables", top_path, __file__)
     # Use the specified config file or dbFile
     if args.configFile is not None:
         print('Running plugin using config file:', args.configFile)
-    from ..core.CCP4Config import CONFIG
-    config = CONFIG(args.configFile)
-    config.graphical = False
+    config = CONFIG(args.configFile, graphical=False)
     if args.dbFile is not None and os.path.exists(args.dbFile):
         print('Running plugin using database file:', args.dbFile)
         config.dbFile = args.dbFile
@@ -48,7 +48,6 @@ def main():
         comFilePath = None
         compressedFile = sXmlIn
     from ..core import CCP4PluginScript
-    from ..core.CCP4Modules import QTAPPLICATION
     if 0:
         print('Run non-asynchronous task',xmlHeader.pluginName)
         runPlugin = CCP4PluginScript.CRunPlugin(None, top_path, comFilePath=comFilePath, compressedFile=compressedFile, dbXmlFile=args.dbXmlFile)

@@ -4,7 +4,6 @@ import http.cookiejar
 import io
 import itertools
 import json
-
 import mimetypes
 import os
 import re
@@ -16,6 +15,8 @@ import urllib.request
 
 from lxml import etree
 import mimetools
+
+from ..utils.startup import setupEnvironment, startProjectsManager
 
 
 class MultiPartForm(object):
@@ -182,7 +183,6 @@ class CCP4i2DjangoSession(DjangoSession):
         self.pm = self.myStartProjectsManager()
 
     def myStartProjectsManager(self):
-        from ..utils.startup import setupEnvironment, startProjectsManager
         setupEnvironment()
         return startProjectsManager()
 

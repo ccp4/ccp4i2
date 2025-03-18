@@ -1,25 +1,7 @@
-from __future__ import print_function
-
-
 """
      CCP4NonGuiProjectUtils.py: CCP4 GUI Project
      Copyright (C) 2015 University of Newcastle
 
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the sstatusW
-     license to address the requirements of UK law.
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-"""
      Martin Noble Jul 2015
      
      Create a class to allow for programatic (non gui) import of a .ccp4_project.zip 
@@ -28,10 +10,14 @@ from __future__ import print_function
      
      Initially offers one call
 """
-from core.CCP4Modules import PROJECTSMANAGER
-from core.CCP4ErrorHandling import CException, SEVERITY_WARNING
+
+import os
+
 from PySide2 import QtCore
-from core import CCP4Utils
+
+from . import CCP4Utils
+from .CCP4ErrorHandling import CException, Severity
+
 
 DIAGNOSTIC=True
 
@@ -42,9 +28,8 @@ class CCP4NonGuiProjectUtils(QtCore.QObject):
         self.importCompressedArchive(compressedArchive)
     
   def importCompressedArchive(self, compressedArchive=None):
-    import os
     if not os.path.isfile(compressedArchive): return
-
+    from .CCP4ProjectsManager import PROJECTSMANAGER
     try:
       xmlFile = PROJECTSMANAGER().extractDatabaseXml(compressedArchive)
     except CException as e:
@@ -55,7 +40,7 @@ class CCP4NonGuiProjectUtils(QtCore.QObject):
       return
 
     try:
-      from dbapi import CCP4DbApi
+      from ..dbapi import CCP4DbApi
       self.dbImport = CCP4DbApi.CDbXml(db=PROJECTSMANAGER().db(),xmlFile=xmlFile)
       #self.dbImport.setDiagnostic(True)
       importProjectInfo = self.dbImport.loadProjectInfo()  
@@ -71,7 +56,6 @@ class CCP4NonGuiProjectUtils(QtCore.QObject):
 
     if projectInfo is None:
       print('Is a new project',self.dbImport.projectId)
-      import os
       dirNameRoot = os.path.normpath(os.path.join(CCP4Utils.getProjectDirectory(),self.dbImport.projectName))
       dirName = dirNameRoot
       incrementCounter = 0
@@ -85,13 +69,12 @@ class CCP4NonGuiProjectUtils(QtCore.QObject):
       self.importProject(compressedArchive, projectInfo['projectdirectory'], existingProject=self.dbImport.projectId)
 
   def importProject(self,compressedArchive,dirName,existingProject=None):
-    import os
     if DIAGNOSTIC: print('CProjectManagerDialog.importProject',compressedArchive,dirName,existingProject)
     # Load the database.xml into temporary tables in db
     self.dbImport.projectDirectory = dirName
     if existingProject is None:
       ret = self.dbImport.createProject()
-      if ret.maxSeverity()>SEVERITY_WARNING:
+      if ret.maxSeverity()>Severity.WARNING:
         print(ret.report())
         print('Error creating project in database')
         return
@@ -108,7 +91,7 @@ class CCP4NonGuiProjectUtils(QtCore.QObject):
 
     if DIAGNOSTIC: print('CProjectManagerDialog.importProject setting Temp Tables',self.dbImport.errReport.report())
     
-    if self.dbImport.errReport.maxSeverity()>SEVERITY_WARNING:
+    if self.dbImport.errReport.maxSeverity()>Severity.WARNING:
       if DIAGNOSTIC: print('Error report from the import process..')
       if DIAGNOSTIC: print(self.dbImport.errReport.report())
       print('Error loading data from project export file')
@@ -122,7 +105,7 @@ class CCP4NonGuiProjectUtils(QtCore.QObject):
         return
 
     print('Unpacking project files to '+dirName)
-    from qtcore import CCP4Export
+    from ..qtcore import CCP4Export
     # Unpack project files from the tar file (possibly in separate thread) 
     # Pass import thread dbImport to enable query database and flagging loaded jobs/files
     if DIAGNOSTIC: print('CProjectManagerDialog.importProject creating import thread')
@@ -144,7 +127,7 @@ class CCP4NonGuiProjectUtils(QtCore.QObject):
               print('Job_'+str(item[4]),item[2])
         else:
           print('CProjectManagerDialog.importProject stats', key,value)
-    if errReport.maxSeverity()>SEVERITY_WARNING:
+    if errReport.maxSeverity()>Severity.WARNING:
       self.dbImport.removeTempTables()
       text = 'ERRORS UNPACKING DATA FILES\n'
       for err in errReport: text = text + err['details'] + '\n'

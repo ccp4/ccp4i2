@@ -3,13 +3,13 @@ import sys
 from lxml import etree
 
 from .. import I2_TOP
+from ..utils.startup import setupEnvironment, startProjectsManager
 
 
 def main():
     print('Running CCP4i2 makeReport from:', I2_TOP)
-    from ..utils.startup import setupEnvironment, startProjectsManager
     setupEnvironment()
-    from report import CCP4ReportGenerator, CCP4ReportParser
+    from ..report import CCP4ReportGenerator, CCP4ReportParser
 
     argList = sys.argv[1:]
     print('argList',argList,len(argList))

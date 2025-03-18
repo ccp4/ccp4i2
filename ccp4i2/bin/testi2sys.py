@@ -6,11 +6,16 @@ import sys
 import time
 
 from lxml import etree
+from PySide2 import QtCore
+
+from ..core import CCP4Utils
+from ..core.CCP4Config import CONFIG
+from ..utils import startup
+from ..utils.QApp import QTAPPLICATION
 
 
 def quitThread(thread):
     print('quitThread',thread, flush=True)
-    from ..core.CCP4Modules import QTAPPLICATION
     QTAPPLICATION(graphical=False).quit()
     sys.exit()
 
@@ -61,7 +66,6 @@ def main():
     # but need to leave something for the CBazaar.initialise to pop()
     del sys.argv[2:]
 
-    from ..core import CCP4Utils
     source = CCP4Utils.getCCP4I2Dir()
     t = time.localtime()
     startTime = time.strftime('%y-%m-%d-%H-%M',t)
@@ -86,14 +90,10 @@ def main():
         print("ERROR: compressed project file recognised as file or directory: "+compressedProjectFile)
         sys.exit()
 
-
-
     # Use the specified config file or dbFile
-    from ..core.CCP4Config import CONFIG
     if configFile is not None:
         print('Running tests using config file:', configFile)
-    config = CONFIG(configFile)
-    config.graphical = False
+    config = CONFIG(configFile, graphical=False)
 
     if outputDirectory is None:
         outputDirectory = os.getcwd()
@@ -118,8 +118,6 @@ def main():
 
     #sys.argv =  [sys.argv[0]]
 
-    from ..core.CCP4Modules import QTAPPLICATION
-    from ..utils import startup
     app = QTAPPLICATION(graphical=False)
     pm = startup.startProjectsManager(dbFileName=dbFile,loadDiagnostic=False)
     pm.startCheckForFinishedJobs()

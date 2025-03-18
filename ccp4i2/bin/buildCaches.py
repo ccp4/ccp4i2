@@ -1,9 +1,8 @@
 from ..core import CCP4TaskManager
-from ..core import CCP4Config
+from ..core.CCP4Config import CONFIG
 
 
 def main():
-    config = CCP4Config.CConfig()
-    config.insts.graphical = True
+    CONFIG(graphical=True)
     taskManager=CCP4TaskManager.CTaskManager()
     taskManager.buildLookupFromScratch()

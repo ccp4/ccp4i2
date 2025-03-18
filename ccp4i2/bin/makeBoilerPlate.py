@@ -5,10 +5,12 @@ import os
 import sys
 import time
 
+from ..utils.startup import setupEnvironment
+
 
 def checkForPythonNameClash(nameRoot):
-    from ..core import CCP4Modules
-    CCP4Modules.TASKMANAGER()
+    from ..core import CCP4TaskManager
+    CCP4TaskManager.TASKMANAGER()
     scriptClass = nameRoot
     guiClass = nameRoot+"_gui"
     reportClass = nameRoot +"_report"
@@ -35,7 +37,6 @@ def makeScriptDirectory(wrapperScriptDirectory):
 
 def main():
     CCP4I2_TOP= os.path.abspath(os.environ["CCP4I2"])
-    from ..utils.startup import setupEnvironment
     setupEnvironment(path=CCP4I2_TOP)
     from ..core import CCP4TaskManager
     destinations = CCP4TaskManager.MODULE_ORDER

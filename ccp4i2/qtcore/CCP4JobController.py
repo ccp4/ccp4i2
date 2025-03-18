@@ -1,95 +1,28 @@
-from __future__ import print_function
-
 """
-     CCP4JobController.py: CCP4 GUI Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2010 University of York
+Liz Potterton May 2010 - Non-graphical controller for running scripts
+Liz Potterton May 2011 - Rewrite to use CCP4DbApi to RDMS database and separate jobs as processes
 """
 
-"""
-   Liz Potterton May 2010 - Non-graphical controller for running scripts
-   Liz Potterton May 2011 - Rewrite to use CCP4DbApi to RDMS database and separate jobs as processes
-"""
-
+import copy
 import os
-import sys
 import re
 import shutil
-import copy
-import functools
 import subprocess
+import sys
 import traceback
 
 from PySide2 import QtCore
-from core import CCP4Utils
-from core import CCP4Container
-from core import CCP4JobServer
-from core.CCP4ErrorHandling import *
 
-class CServerSetup(CCP4Container.CContainer):
+from ..core import CCP4JobServer
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
 
-    serverSetupSaved = QtCore.Signal()
 
-    insts = None
-    
-    def __init__(self,source=None):
-        CCP4Container.CContainer.__init__(self,name='SERVER_SETUP')
-        CServerSetup.insts = self
-        self.__dict__['source'] = None
-        from core import CCP4Modules
-        defFile = CCP4Modules.TASKMANAGER().searchDefFile('serverSetup')
-        self.loadContentsFromXml(defFile)
-        self.load(source=source)
-
-    def load(self,source=None):
-        prefFile,source = self.preferencesFile(source=source)
-        if os.path.exists(prefFile):
-            # Beware if params file has >1 serverGroup we need to add the 2+ groups to the
-            # the container as they are not in the def file 
-            from core import CCP4File, CCP4Annotation
-            fObj = CCP4File.CI2XmlDataFile(prefFile)
-            for sGEle in fObj.getBodyEtree():
-                if self.get(str(sGEle.tag)) is None:
-                    self.setContents( { str(sGEle.tag) : { 'class' :CCP4Annotation.CServerGroup }} )
-            self.loadDataFromXml(prefFile)
-            self.__dict__['source'] = source
-
-    def writeAccess(self,source):
-        dir = os.path.split(self.preferencesFile(source)[0])[0]
-        return os.access(dir , os.W_OK | os.X_OK)
-
-    def preferencesFile(self,source=None):
-        if source is None or source == 'user':
-            filename = str(os.path.join(CCP4Utils.getDotDirectory(),'configs','serverSetup.params.xml'))
-            if os.path.exists(filename) or source == 'user':
-                return filename,'user'
-        filename = str(os.path.join(CCP4Utils.getCCP4I2Dir(),'local_setup','serverSetup.params.xml'))
-        return filename,'installation'
-
-    def save(self,source=None):
-        prefFile,source = self.preferencesFile(source=source)
-        if os.path.exists(prefFile):
-            shutil.copyfile(prefFile,prefFile+'.bak')
-        #print 'CServerSetup.save',prefFile
-        self.saveDataToXml(fileName=prefFile)
-        self.__dict__['source'] = source
-        try:
-            self.serverSetupSaved.emit()
-        except:
-            pass
+def JOBCONTROLLER():
+    if not CJobController.insts:
+        CJobController()
+    return CJobController.insts
 
 
 class CJobController(CCP4JobServer.CJobServer):
@@ -913,33 +846,3 @@ echo "PID=$pid"
                     #print(pinfo)
                     pInfoDict[pinfo['pid']] = pinfo
         return pInfoDict
-
-
-#===========================================================================================================
-import unittest
-
-class testController(unittest.TestCase):
-
-    def setUp(self):
-        self.controller = CJobController()
-
-    def testRunFreerflag(self):
-        from core import CCP4Container
-        controlFile = os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','freerflag','test_data','test1.data.xml')
-        stdoutFile = os.path.join(CCP4Utils.getTestTmpDir(),'CJobController_test.stdout')
-        c = CCP4Container.CContainer()
-        c.loadDataFromXml(controlFile)
-        output = str(c.outputData.HKLOUT)
-        print('Output file:',output,'Stdout:',stdoutFile)
-        if os.path.exists(output): os.remove(output)
-        self.controller.runTask(fileName=controlFile,wait=3000)
-        self.assertTrue(os.path.exists(output),'No output file created')
-
-
-def TESTSUITE():
-    suite = unittest.TestLoader().loadTestsFromTestCase(testController)
-    return suite
-    
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)
