@@ -1,32 +1,13 @@
-from __future__ import print_function
-
 """
-     CCP4PerformanceData.py: CCP4 GUI Project
-     Copyright (C) 2014 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copi
-es may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2014 STFC
+Liz Potterton Mar 2014 - performance indicators
 """
 
-"""
-   Liz Potterton Mar 2014 - performance indicators
-"""
-
-from core import CCP4Data,CCP4XtalData
 from PySide2 import QtCore
-from core.CCP4ErrorHandling import *
+
+from . import CCP4Data, CCP4XtalData
+from .CCP4ErrorHandling import CErrorReport, Severity
+
 
 def performanceIndicatorClasses():
   # This is used by CCP4DbApi.getJobPerformance (and perhaps other methods) to get the
@@ -42,12 +23,12 @@ class CPerformanceIndicator(CCP4Data.CData):
   CONTENTS_ORDER = ['value','annotation']
   CONTENTS = { 'value' : { 'class' : CCP4Data.CFloat, 'qualifiers' : { 'min' : 0.0 } },
                'annotation' :  { 'class' : CCP4Data.CString } }
-  ERROR_CODES = { 300 : { 'description' : 'Passed', 'severity': SEVERITY_OK },
+  ERROR_CODES = { 300 : { 'description' : 'Passed', 'severity': Severity.OK },
                   301 : { 'description' : 'Data value not set' },
                   302 : { 'description' : 'Performance indicator value difference greater than tolereance' },
                   303 : { 'description' : 'Performance indicator value different' },
-                  304 : { 'description' : 'Performance indicator value difference greater than tolereance - but improved', 'severity' : SEVERITY_WARNING },
-                  305 : { 'description' : 'Performance indicator not used', 'severity' : SEVERITY_OK }
+                  304 : { 'description' : 'Performance indicator value difference greater than tolereance - but improved', 'severity' : Severity.WARNING },
+                  305 : { 'description' : 'Performance indicator not used', 'severity' : Severity.OK }
                   }
   
   def saveToDb(self):
@@ -355,7 +336,7 @@ class CAtomCountPerformance(CPerformanceIndicator):
 
   def setFromPdbDataFile(self,fileName):
     if  isinstance(fileName,str):
-      from core import CCP4ModelData
+      from . import CCP4ModelData
       fileName = CCP4ModelData.CPdbDataFile(fileName)
     try:
       fileName.loadFile()
@@ -488,4 +469,3 @@ class CSuperposePerformance(CPerformanceIndicator):
     if self.__dict__['_value']['nResidues'].isSet(): ret['nResidues'] = int(self.__dict__['_value']['nResidues'])
     #if self.__dict__['_value']['QScore'].isSet(): ret['QScore'] = float(self.__dict__['_value']['QScore'])
     return  [],None,ret
-

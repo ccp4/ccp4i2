@@ -1,16 +1,21 @@
-from __future__ import print_function
-
-import os
-import sys
 import glob
-import time
+import os
 import shutil
+import sys
 import threading
+import time
 
 from PySide2 import QtCore
 
-from core import CCP4Config
-from core import CCP4Utils
+from . import CCP4Utils
+from .CCP4Config import CONFIG
+
+
+def PRINTHANDLER():
+    if CPrintHandler.insts is None:
+        CPrintHandler()
+    return CPrintHandler.insts
+
 
 class CPrintHandler:
     insts = None
@@ -53,8 +58,7 @@ class CPrintHandler:
     def write(self, value):
         f = self.getFileObject()
         f.write(str(value))
-        if CCP4Config.CConfig.insts.developer:      # KJS : There seems to be a problem here.
-            #sys.__stdout__.write(str(threading.currentThread())+value)
+        if CONFIG().developer:
             sys.__stdout__.write(str(value))
 
     @QtCore.Slot()
