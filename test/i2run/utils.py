@@ -1,7 +1,7 @@
 from contextlib import contextmanager
 from email.message import EmailMessage
 from multiprocessing import Process
-from os.path import basename
+from os.path import basename, join
 from pathlib import Path
 from random import choice
 from shutil import rmtree
@@ -13,9 +13,10 @@ from xml.etree import ElementTree as ET
 from requests import get, Response
 
 from ccp4i2.core import CCP4I2Runner
+from ccp4i2.core.CCP4Utils import getCCP4I2Dir
 
 
-def valid_filename_from_response(response: Response):
+def filenameFromResponse(response: Response):
     """
     Extracts a valid filename from the response headers or URL.
     Ensures that the filename is safe to use by stripping whitespace,
@@ -41,7 +42,7 @@ def download(url: str):
     """
     response = get(url, allow_redirects=True, stream=True, timeout=30)
     response.raise_for_status()
-    suffix = f"_{valid_filename_from_response(response)}"
+    suffix = f"_{filenameFromResponse(response)}"
     with NamedTemporaryFile(suffix=suffix, delete=False) as temp:
         for chunk in response.iter_content(chunk_size=1_000_000):
             temp.write(chunk)
@@ -81,3 +82,7 @@ def i2run(args: list[str]):
     rmtree(tmp_name, ignore_errors=True)
     for extension in ("sqlite", "sqlite-shm", "sqlite-wal"):
         Path(f"{tmp_name}.{extension}").unlink(missing_ok=True)
+
+
+def demoData(*paths):
+    return join(getCCP4I2Dir(), "demo_data", *paths)
