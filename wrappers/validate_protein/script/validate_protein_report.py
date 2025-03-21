@@ -13,17 +13,36 @@ class validate_protein_report(Report):
 
         results = self.addResults()
 
+        have_results = False
+
         if len(self.xmlnode.findall('.//Iris'))>0:
+            have_results = True
             self.add_iris_panel()
 
         if len(self.xmlnode.findall('.//Molprobity'))>0:
+            have_results = True
             self.add_molprobity()
         
         if len(self.xmlnode.findall('.//B_factors'))>0:
+            have_results = True
             self.add_b_factors()
         
         if len(self.xmlnode.findall('.//Ramachandran'))>0:
+            have_results = True
             self.add_ramachandran()
+
+        if not have_results:
+            self.add_no_results_warning()
+
+
+    def add_no_results_warning(self, parent=None):
+        if parent is None:
+            parent = self
+        parent.addDiv(style='clear:both;')
+        section_div = parent.addDiv()
+        fold = section_div.addFold(label='No results produced!', initiallyOpen=True)
+        fold.append('<p style="border-style: double; background-color: #FFD580; font-weight:bold; font-size: 14px;"><b>Warning - validation has failed to produce any results. This probably means that validation has failed. Please examine the log files below.</b></p>')
+        section_div.addDiv(style='clear:both;')
 
 
     def add_iris_panel(self, parent=None):
