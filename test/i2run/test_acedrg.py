@@ -6,8 +6,6 @@ from . import utils
 def check_output(directory: Path, code: str):
     cifPath = directory / f"{code}.cif"
     pdbPath = directory / f"{code}.pdb"
-    assert cifPath.exists()
-    assert pdbPath.exists()
     gemmi.read_pdb(str(pdbPath))
     doc = gemmi.cif.read(str(cifPath))
     gemmi.make_chemcomp_from_block(doc[-1])

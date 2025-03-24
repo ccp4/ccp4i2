@@ -1,3 +1,4 @@
+import gemmi
 from .utils import demoData, i2run
 
 
@@ -6,4 +7,4 @@ def test_acorn():
     args += ["--F_SIGF", demoData("gamma", "merged_intensities_Xe.mtz")]
     args += ["--XYZIN", demoData("gamma", "gamma_model.pdb")]
     with i2run(args) as directory:
-        assert (directory / "PHSOUT.mtz").exists()
+        gemmi.read_mtz_file(str(directory / "PHSOUT.mtz"))
