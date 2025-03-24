@@ -2,7 +2,7 @@ from .utils import demoData, i2run
 import gemmi
 
 
-def test_auspex():
+def test_crank2():
     seqFile = demoData("gamma", "gamma.pir")
     mtzFile = demoData("gamma", "merged_intensities_Xe.mtz")
     args = ["crank2"]
