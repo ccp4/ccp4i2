@@ -1,5 +1,4 @@
 from contextlib import contextmanager
-from email.message import EmailMessage
 from multiprocessing import Process
 from os.path import basename, join
 from pathlib import Path
@@ -8,29 +7,11 @@ from shutil import rmtree
 from string import ascii_letters, digits
 from tempfile import NamedTemporaryFile
 from urllib.parse import urlparse, unquote
+from urllib.request import urlopen
 from xml.etree import ElementTree as ET
-
-from requests import get, Response
 
 from ccp4i2.core import CCP4I2Runner
 from ccp4i2.core.CCP4Utils import getCCP4I2Dir
-
-
-def filenameFromResponse(response: Response):
-    """
-    Extracts a valid filename from the response headers or URL.
-    Ensures that the filename is safe to use by stripping whitespace,
-    replacing spaces with underscores, and removing any characters
-    that are not alphanumeric, dash, underscore or dot.
-    """
-    message = EmailMessage()
-    for header, value in response.headers.items():
-        message[header] = value
-    url_name = unquote(basename(urlparse(response.url).path))
-    name = message.get_filename() or url_name
-    name = name.strip().replace(" ", "_")
-    name = "".join(c for c in name if c.isalnum() or c in "-_.")
-    return name
 
 
 @contextmanager
@@ -40,17 +21,19 @@ def download(url: str):
     Yields a pathlib.Path object to the temporary file.
     Use in a with statement to ensure the file is deleted afterwards.
     """
-    response = get(url, allow_redirects=True, stream=True, timeout=30)
-    response.raise_for_status()
-    suffix = f"_{filenameFromResponse(response)}"
-    with NamedTemporaryFile(suffix=suffix, delete=False) as temp:
-        for chunk in response.iter_content(chunk_size=1_000_000):
-            temp.write(chunk)
-    path = Path(temp.name).resolve()
-    try:
-        yield path
-    finally:
-        path.unlink(missing_ok=True)
+    urlName = unquote(basename(urlparse(url).path))
+    with urlopen(url, timeout=30) as response:
+        name = response.headers.get_filename() or urlName
+        name = name.strip().replace(" ", "_")
+        name = "".join(c for c in name if c.isalnum() or c in "-_.")
+        with NamedTemporaryFile(suffix=f"_{name}", delete=False) as temp:
+            while chunk := response.read(1_000_000):
+                temp.write(chunk)
+        path = Path(temp.name).resolve()
+        try:
+            yield path
+        finally:
+            path.unlink(missing_ok=True)
 
 
 @contextmanager
