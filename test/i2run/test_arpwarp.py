@@ -8,7 +8,7 @@ def test_arpwarp():
     args += ["--AWA_FREE", demoData("gamma", "freeR.mtz")]
     args += ["--AWA_PHINI", demoData("gamma", "initial_phases.mtz")]
     args += ["--AWA_PHREF", demoData("gamma", "initial_phases.mtz")]
-    args += ["--AWA_SEQIN", f"seqFile={demoData('gamma', 'gamma.pir')}"]
+    args += ["--AWA_SEQIN", demoData("gamma", "gamma.asu.xml")]
     args += ["--AWA_BIG_CYCLES", "1"]
     args += ["--AWA_SMALL_CYCLES", "1"]
     with i2run(args) as directory:

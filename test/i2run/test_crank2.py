@@ -1,17 +1,15 @@
-from .utils import demoData, i2run
 import gemmi
+from .utils import demoData, i2run
 
 
 def test_crank2():
-    seqFile = demoData("gamma", "gamma.pir")
-    mtzFile = demoData("gamma", "merged_intensities_Xe.mtz")
     args = ["crank2"]
     args += [
         "--F_SIGFanom",
-        f"fullPath={mtzFile}",
+        f"fullPath={demoData('gamma', 'merged_intensities_Xe.mtz')}",
         "columnLabels=/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"
     ]
-    args += ["--SEQIN", f"seqFile={seqFile}"]
+    args += ["--SEQIN", demoData("gamma", "gamma.asu.xml")]
     args += ["--NUMBER_SUBSTRUCTURE", "2"]
     args += ["--ATOM_TYPE", "Xe"]
     args += ["--FPRIME", "-0.79"]

@@ -6,7 +6,7 @@ def test_mrbump():
     args = ["mrbump_basic"]
     args += ["--F_SIGF", demoData("gamma", "merged_intensities_Xe.mtz")]
     args += ["--FREERFLAG", demoData("gamma", "freeR.mtz")]
-    args += ["--ASUIN", f"seqFile={demoData('gamma', 'gamma.pir')}"]
+    args += ["--ASUIN", demoData("gamma", "gamma.asu.xml")]
     args += ["--MRMAX", "5"]
     args += ["--REDUNDANCYLEVEL", "95"]
     args += ["--PJOBS", "2"]
