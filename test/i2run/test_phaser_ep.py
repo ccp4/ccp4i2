@@ -1,0 +1,20 @@
+import gemmi
+from .utils import demoData, i2run
+
+
+def test_phaser_ep():
+    args = ["phaser_EP"]
+    args += ["--F_SIGF", demoData("gamma", "merged_intensities_Xe.mtz")]
+    args += ["--XYZIN_PARTIAL", demoData("gamma", "heavy_atoms.pdb")]
+    args += ["--XYZIN_HA", demoData("gamma", "heavy_atoms.pdb")]
+    args += ["--ASUFILE", demoData("gamma", "gamma.asu.xml")]
+    args += ["--COMP_BY", "ASU"]
+    args += ["--WAVELENGTH", "1.542"]
+    args += ["--LLGC_CYCLES", "20"]
+    args += ["--ELEMENTS", "Xe"]
+    args += ["--RUNPARROT", "False"]
+    with i2run(args) as directory:
+        for name in ["ABCDOUT_1", "ABCDOUT_2", "MAPOUT_1", "MAPOUT_2"]:
+            gemmi.read_mtz_file(str(directory / f"{name}.mtz"))
+        for name in ["PHASER.1", "PHASER.1.hand"]:
+            gemmi.read_pdb(str(directory / f"{name}.pdb"))
