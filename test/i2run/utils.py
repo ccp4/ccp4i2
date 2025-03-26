@@ -58,7 +58,8 @@ def i2run(args: list[str]):
     process.join()
     directory = Path(tmp_name, "CCP4_JOBS", "job_1")
     xml_path = directory / "diagnostic.xml"
-    assert len(list(ET.parse(xml_path).iter("errorReport"))) == 0
+    errors = ET.parse(xml_path).findall(".//errorReport")
+    assert len(errors) == 0, "Error reports found in diagnostic.xml"
     # Below code not inside a try/finally block
     # So that the project is only removed if an error is not raised
     yield directory
