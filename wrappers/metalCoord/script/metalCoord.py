@@ -18,7 +18,7 @@ class metalCoord(CPluginScript):
     TASKNAME = 'metalCoord'        # Task name - should be same as class name
     TASKVERSION = 0.1              # Version of this plugin
     TASKCOMMAND = 'metalCoord'     # The command to run the executable
-    MAINTAINER = 'martin.maly@soton.ac.uk'
+    MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
 
     ERROR_CODES = { 201 : { 'description' : 'No output JSON file from metalCoord' },
                     202 : { 'description' : 'Log file does not report successful job completion' , 'severity' : SEVERITY_WARNING },
@@ -34,7 +34,12 @@ class metalCoord(CPluginScript):
         self.appendCommandLine(['stats'])
         self.appendCommandLine(['-p', str(self.container.inputData.XYZIN.fullPath)])
         if self.container.controlParameters.MAXIMUM_COORDINATION_NUMBER.isSet():
-            self.appendCommandLine(['-c', str(self.container.controlParameters.MAXIMUM_COORDINATION_NUMBER)])
+            if str(self.container.controlParameters.MAXIMUM_COORDINATION_NUMBER) != "auto":
+                self.appendCommandLine(['-c', str(self.container.controlParameters.MAXIMUM_COORDINATION_NUMBER)])
+                option = f"COORD{int(str(self.container.controlParameters.MAXIMUM_COORDINATION_NUMBER)):02d}"
+                if hasattr(self.container.coordination, option):
+                    if getattr(self.container.coordination, option) != "auto":
+                        self.appendCommandLine(['--cl', str(getattr(self.container.coordination, option))])
         if self.container.controlParameters.MINIMUM_SAMPLE_SIZE.isSet():
             self.appendCommandLine(['-m', str(self.container.controlParameters.MINIMUM_SAMPLE_SIZE)])
         if self.container.controlParameters.DISTANCE_THRESHOLD.isSet():
@@ -84,8 +89,10 @@ class metalCoord(CPluginScript):
         # Convert JSON to external restraint keywords
         self.outputRestraintsPrefix = str(self.container.inputData.LIGAND_CODE) + "_restraints"
         self.outputRestraintsFilename = self.outputRestraintsPrefix + ".txt"
+        self.outputRestraintsMmcifFilename = self.outputRestraintsPrefix + ".mmcif"
         self.outputRestraintsPathPrefix = os.path.join(self.getWorkDirectory(), self.outputRestraintsPrefix)
         self.outputRestraintsPath = os.path.join(self.getWorkDirectory(), self.outputRestraintsFilename)
+        self.outputRestraintsMmcifPath = os.path.join(self.getWorkDirectory(), self.outputRestraintsMmcifFilename)
         if self.container.controlParameters.SAVE_PDBMMCIF:
             stPath = str(self.container.inputData.XYZIN.fullPath)
         else:
@@ -100,6 +107,10 @@ class metalCoord(CPluginScript):
         if os.path.isfile(self.outputRestraintsPath):
             self.container.outputData.RESTRAINTS.setFullPath(self.outputRestraintsPath)
             self.container.outputData.RESTRAINTS.annotation = 'Restraints for ' + str(self.container.inputData.LIGAND_CODE)
+        if self.container.controlParameters.SAVE_PDBMMCIF:
+            if os.path.isfile(self.outputRestraintsMmcifPath) and stPath:
+                self.container.outputData.XYZOUT.setFullPath(self.outputRestraintsMmcifPath)
+                self.container.outputData.XYZOUT.annotation = 'Structure model with links from MetalCoord (mmCIF format)'
 
         # Convert JSON to program.xml for i2 report
         outputJsonStats = json.loads(outputJsonText)
