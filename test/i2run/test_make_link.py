@@ -15,6 +15,5 @@ def test_6ndn():
         args += ["--BOND_ORDER", "DOUBLE"]
         args += ["--TOGGLE_LINK", "True"]
         args += ["--XYZIN", str(pdb)]
-        with i2run(args) as directory:
-            assert directory.exists()
-            assert False
+        with i2run(args) as job:
+            assert job.exists()

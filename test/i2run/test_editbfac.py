@@ -34,10 +34,10 @@ def robetta_pdb_fixture():
 def test_alphafold_pdb(alphafold_pdb):
     args = ["editbfac"]
     args += ["--XYZIN", alphafold_pdb]
-    with i2run(args) as directory:
-        gemmi.read_pdb(str(directory / "converted_model.pdb"))
-        gemmi.read_pdb(str(directory / "converted_model_chainA1.pdb"))
-        gemmi.read_pdb(str(directory / "converted_model_chainA2.pdb"))
+    with i2run(args) as job:
+        gemmi.read_pdb(str(job / "converted_model.pdb"))
+        gemmi.read_pdb(str(job / "converted_model_chainA1.pdb"))
+        gemmi.read_pdb(str(job / "converted_model_chainA2.pdb"))
 
 
 def test_alphafold_cif(alphafold_cif):
@@ -45,19 +45,19 @@ def test_alphafold_cif(alphafold_cif):
     args += ["--XYZIN", alphafold_cif]
     args += ["--CONFCUT", "False"]
     args += ["--COMPACTREG", "False"]
-    with i2run(args) as directory:
-        gemmi.read_pdb(str(directory / "converted_model.pdb"))
-        assert not (directory / "converted_model_chainA1.pdb").exists()
+    with i2run(args) as job:
+        gemmi.read_pdb(str(job / "converted_model.pdb"))
+        assert not (job / "converted_model_chainA1.pdb").exists()
 
 
 def test_alphafold_pae(alphafold_cif, alphafold_pae):
     args = ["editbfac"]
     args += ["--XYZIN", alphafold_cif]
     args += ["--PAEIN", alphafold_pae]
-    with i2run(args) as directory:
-        gemmi.read_pdb(str(directory / "converted_model.pdb"))
+    with i2run(args) as job:
+        gemmi.read_pdb(str(job / "converted_model.pdb"))
         for i in range(1, 5):
-            gemmi.read_pdb(str(directory / f"converted_model_chainA{i}.pdb"))
+            gemmi.read_pdb(str(job / f"converted_model_chainA{i}.pdb"))
 
 
 def test_robetta(robetta_pdb):
@@ -66,6 +66,6 @@ def test_robetta(robetta_pdb):
     args += ["--BTREATMENT", "rmsd"]
     args += ["--CONFCUT", "False"]
     args += ["--COMPACTREG", "False"]
-    with i2run(args) as directory:
-        gemmi.read_pdb(str(directory / "converted_model.pdb"))
-        assert not (directory / "converted_model_chainA1.pdb").exists()
+    with i2run(args) as job:
+        gemmi.read_pdb(str(job / "converted_model.pdb"))
+        assert not (job / "converted_model_chainA1.pdb").exists()

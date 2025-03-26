@@ -26,20 +26,20 @@ def _beta_blip_args():
     return args
 
 
-def _check_output(directory: Path, include_refinement: bool=True):
-    gemmi.read_pdb(str(directory / f"PHASER.1.pdb"))
+def _check_output(job: Path, include_refinement: bool=True):
+    gemmi.read_pdb(str(job / f"PHASER.1.pdb"))
     if include_refinement:
-        gemmi.read_pdb(str(directory / "XYZOUT_REFMAC.pdb"))
-        gemmi.read_pdb(str(directory / "XYZOUT_SHEETBEND.pdb"))
+        gemmi.read_pdb(str(job / "XYZOUT_REFMAC.pdb"))
+        gemmi.read_pdb(str(job / "XYZOUT_SHEETBEND.pdb"))
     for mtz in ["DIFMAPOUT_1", "MAPOUT_1", "PHASEOUT_1"]:
-        gemmi.read_mtz_file(str(directory / f"{mtz}.mtz"))
+        gemmi.read_mtz_file(str(job / f"{mtz}.mtz"))
 
 
 def test_beta_blip_default():
     args = _beta_blip_args()
     args += ["--COMP_BY", "DEFAULT"]
-    with i2run(args) as directory:
-        _check_output(directory)
+    with i2run(args) as job:
+        _check_output(job)
 
 
 def test_beta_blip_asu():
@@ -51,5 +51,5 @@ def test_beta_blip_asu():
     ]
     args += ["--RUNSHEETBEND", "False"]
     args += ["--RUNREFMAC", "False"]
-    with i2run(args) as directory:
-        _check_output(directory, include_refinement=False)
+    with i2run(args) as job:
+        _check_output(job, include_refinement=False)

@@ -11,6 +11,6 @@ def test_mrbump():
     args += ["--REDUNDANCYLEVEL", "95"]
     args += ["--PJOBS", "2"]
     args += ["--NCYC", "10"]
-    with i2run(args) as directory:
-        gemmi.read_pdb(str(directory / "output_mrbump_1.pdb"))
-        gemmi.read_mtz_file(str(directory / "output_mrbump_1.mtz"))
+    with i2run(args) as job:
+        gemmi.read_pdb(str(job / "output_mrbump_1.pdb"))
+        gemmi.read_mtz_file(str(job / "output_mrbump_1.mtz"))

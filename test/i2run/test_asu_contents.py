@@ -35,8 +35,8 @@ def test_beta_blip():
     args += ["source/relPath=$CCP4/some/path/to/beta_blip"]
     args += ["nCopies=1"]
     args += ["polymerType=PROTEIN"]
-    with i2run(args) as directory:
-        actual = ET.parse(directory / "ASUCONTENTFILE.asu.xml").find(".//seqList")
+    with i2run(args) as job:
+        actual = ET.parse(job / "ASUCONTENTFILE.asu.xml").find(".//seqList")
         expected = ET.fromstring(
             f"""
             <seqList>

@@ -16,6 +16,6 @@ def test_crank2():
     args += ["--FDPRIME", "7.36"]
     args += ["--WAVELENGTH", "1.54179"]
     args += ["--END_PIPELINE", "dmfull"]
-    with i2run(args) as directory:
+    with i2run(args) as job:
         for name in ["FPHOUT_DIFFANOM", "FPHOUT_HL", "FPHOUT", "FREEROUT"]:
-            gemmi.read_mtz_file(str(directory / f"{name}.mtz"))
+            gemmi.read_mtz_file(str(job / f"{name}.mtz"))

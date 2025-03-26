@@ -11,8 +11,8 @@ def test_arpwarp():
     args += ["--AWA_SEQIN", demoData("gamma", "gamma.asu.xml")]
     args += ["--AWA_BIG_CYCLES", "1"]
     args += ["--AWA_SMALL_CYCLES", "1"]
-    with i2run(args) as directory:
+    with i2run(args) as job:
         for name in ["XYZDUM", "XYZOUT"]:
-            gemmi.read_pdb(str(directory / f"{name}.pdb"))
+            gemmi.read_pdb(str(job / f"{name}.pdb"))
         for name in ["DIFFPHIOUT", "FPHIOUT"]:
-            gemmi.read_mtz_file(str(directory / f"{name}.mtz"))
+            gemmi.read_mtz_file(str(job / f"{name}.mtz"))

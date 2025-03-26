@@ -13,8 +13,8 @@ def test_phaser_ep():
     args += ["--LLGC_CYCLES", "20"]
     args += ["--ELEMENTS", "Xe"]
     args += ["--RUNPARROT", "False"]
-    with i2run(args) as directory:
+    with i2run(args) as job:
         for name in ["ABCDOUT_1", "ABCDOUT_2", "MAPOUT_1", "MAPOUT_2"]:
-            gemmi.read_mtz_file(str(directory / f"{name}.mtz"))
+            gemmi.read_mtz_file(str(job / f"{name}.mtz"))
         for name in ["PHASER.1", "PHASER.1.hand"]:
-            gemmi.read_pdb(str(directory / f"{name}.pdb"))
+            gemmi.read_pdb(str(job / f"{name}.pdb"))

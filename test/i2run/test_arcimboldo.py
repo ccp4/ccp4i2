@@ -7,5 +7,5 @@ def test_arcimboldo():
     args += ["--ARCIMBOLDO_OPTIONS", "LITE"]
     args += ["--MOLECULAR_WEIGHT", "15000"]
     args += ["--N_FRAGMENTS", "1"]
-    with i2run(args) as directory:
-        assert directory.exists()
+    with i2run(args) as job:
+        assert job.exists()
