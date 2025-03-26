@@ -3,7 +3,7 @@ from qtgui import CCP4TaskWidget
 class CmetalCoord_gui(CCP4TaskWidget.CTaskWidget):
 
     TASKNAME = 'metalCoord'
-    TASKVERSION = 1.0
+    TASKVERSION = 0.2
     TASKMODULE =['refinement']
     TASKTITLE = 'MetalCoord'
     SHORTTASKTITLE = 'MetalCoord'
