@@ -65,6 +65,10 @@
             "acorn",
             "parrot"
         ],
+        "deprecated": [
+            "buccaneer_build_refine_mr",
+            "nautilus_build_refine"
+        ],
         "developer_tools": [
             "MakeMonster",
             "SyncToDjango",
@@ -110,8 +114,6 @@
             "coot_find_waters",
             "arp_warp_classic",
             "shelxeMR",
-            "buccaneer_build_refine_mr",
-            "nautilus_build_refine",
             "dr_mr_modelbuild_pipeline",
             "ccp4mg_general",
             "coot_gtk3_rebuild"
@@ -150,6 +152,7 @@
             "buster",
             "coot_rsr_morph",
             "lorestr_i2",
+            "metalCoord",
             "pairef",
             "pdb_redo_api",
             "sheetbend",
@@ -2266,7 +2269,7 @@
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "paul.bond@york.ac.uk",
                 "TASKTITLE": "Autobuild protein (Buccaneer pipeline)",
-                "class": "pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mrbuccaneer_build_refine_mr",
+                "class": null,
                 "clsModule": "pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mr",
                 "clsName": "buccaneer_build_refine_mr",
                 "internal": false,
@@ -3083,7 +3086,7 @@
             "0.1": {
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
-                "MAINTAINER": "martin.maly@soton.ac.uk",
+                "MAINTAINER": "martin.maly@mrc-lmb.cam.ac.uk",
                 "TASKTITLE": null,
                 "class": "wrappers.metalCoord.script.metalCoordmetalCoord",
                 "clsModule": "wrappers.metalCoord.script.metalCoord",
@@ -3293,7 +3296,7 @@
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "kevin.cowtan@york.ac.uk",
                 "TASKTITLE": "Autobuild RNA/DNA (Nautilus pipeline)",
-                "class": "pipelines.nautilus_build_refine.script.nautilus_build_refinenautilus_build_refine",
+                "class": null,
                 "clsModule": "pipelines.nautilus_build_refine.script.nautilus_build_refine",
                 "clsName": "nautilus_build_refine",
                 "internal": false,
@@ -4238,6 +4241,7 @@
         "lorestr_i2": "qticons/lorestr_i2.png",
         "matthews": "qticons/matthews.png",
         "mergeMtz": "qticons/mergeMtz.png",
+        "metalCoord": "qticons/ccp4.png",
         "model_building": "qticons/model_building.png",
         "model_data_utility": "qticons/model_data_utility.png",
         "modelcraft": "qticons/modelcraft.png",
@@ -5762,6 +5766,20 @@
                 "shortTitle": "Merge to MTZ",
                 "taskName": "mergeMtz",
                 "taskVersion": 0.1
+            }
+        },
+        "metalCoord": {
+            "0.0.0": {
+                "DESCRIPTION": "Generate restraints for metal-containing monomers",
+                "MAINTAINER": "Nobody",
+                "RANK": null,
+                "TASKTITLE": "MetalCoord",
+                "class": "wrappers.metalCoord.script.metalCoord_guiCmetalCoord_gui",
+                "clsModule": "wrappers.metalCoord.script.metalCoord_gui",
+                "clsName": "CmetalCoord_gui",
+                "shortTitle": "MetalCoord",
+                "taskName": "metalCoord",
+                "taskVersion": 1.0
             }
         },
         "modelcraft": {
