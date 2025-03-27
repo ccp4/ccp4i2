@@ -1,8 +1,15 @@
+from pytest import mark
 from .utils import demoData, i2run
 
 
-def test_aimless():
-    args = ["aimless_pipe"]
-    args += ["--UNMERGEDFILES", demoData("gamma", "gamma_native.mtz")]
+@mark.parametrize(
+    "file",
+    [
+        demoData("gamma", "gamma_native.mtz"),
+        demoData("mdm2", "mdm2_unmerged.mtz"),
+    ],
+)
+def test_aimless(file: str):
+    args = ["aimless_pipe", "--UNMERGEDFILES", f"file={file}"]
     with i2run(args) as job:
-        assert job.exists()
+        assert False, "Check output files"
