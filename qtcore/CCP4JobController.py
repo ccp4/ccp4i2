@@ -393,6 +393,7 @@ class CJobController(CCP4JobServer.CJobServer):
         return argList
 
     def runTask(self, jobId=None, wait=None):
+        import threading, signal, time
         from core import CCP4Modules
         from qtcore import CCP4HTTPServerThread
         from dbapi import CCP4DbApi
@@ -405,7 +406,7 @@ class CJobController(CCP4JobServer.CJobServer):
             print('JOBCONTROLLER starting job:', argList , taskname)
         callDict = {}
         path, name = os.path.split(controlFile)
-        if not self.USE_QPROCESS or taskname == "dui" or taskname == "dials_image" \
+        if not self.USE_QPROCESS or taskname == "prosmart_refmac" or taskname == "validate_protein" or taskname == "dui" or taskname == "dials_image" \
                                                        or taskname == "dials_rlattice":
             callDict['stdout'] = open(os.path.join(path, 'stdout.txt'), 'w')
             callDict['stderr'] = open(os.path.join(path, 'stderr.txt'), 'w')
@@ -426,7 +427,7 @@ class CJobController(CCP4JobServer.CJobServer):
             my_env['CCP4I2_PROJECT_ID'] = jobInfo['projectid']
             my_env['CCP4I2_PROJECT_NAME'] = jobInfo['projectname']
         callDict['env'] = my_env
-        if not self.USE_QPROCESS or taskname == "dui" or taskname == "dials_image" \
+        if not self.USE_QPROCESS or taskname == "prosmart_refmac" or taskname == "validate_protein" or taskname == "dui" or taskname == "dials_image" \
                                                        or taskname == "dials_rlattice":
             print("RUNNING DUI (or DIALS viewers) IN SUBPROCESS PLUGIN MODE")   # KJS : tmp diag print.
             try:
@@ -437,6 +438,20 @@ class CJobController(CCP4JobServer.CJobServer):
                 self._errorReport.append(self.__class__, 102, 'Control file: ' + str(controlFile))
             self.db.updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_RUNNING)
             self.db.updateJob(jobId, 'processId', int(sp.pid))
+            def check_for_crash(sp):
+                while 1:
+                    try:
+                        sp.communicate(timeout=1)
+                    except subprocess.TimeoutExpired:
+                        pass
+                    if sp.returncode is not None:
+                        if -sp.returncode in (-signal.SIGSEGV,signal.SIGBUS,signal.SIGABRT,signal.SIGFPE,signal.SIGILL,signal.SIGTERM):
+                            self.db.updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_FAILED)
+                        break
+                    time.sleep(2)
+            t = threading.Thread(target=check_for_crash,args=(sp,))
+            t.daemon = True
+            t.start()
             return sp
         else:
             qArgList = []
