@@ -1,40 +1,27 @@
-from __future__ import print_function
+"""
+Copyright (C) 2013 STFC
+Liz Potterton July 2013 - create and manage workflows
+"""
+
+import copy
+import glob
+import os
 
 from PySide2 import QtCore
 
-"""
-     CCP4WorkflowManager.py: CCP4 GUI Project
-     Copyright (C) 2013 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-"""
-     Liz Potterton July 2013 - create and manage workflows
-"""
-
-import os
-import re
-import glob
-from core import CCP4Modules
-from core import CCP4Data
-from core import CCP4Container
-from core import CCP4File
-from core import CCP4CustomManager
-from .CCP4ErrorHandling import *
+from . import CCP4Container
+from . import CCP4CustomManager
+from . import CCP4Data
+from . import CCP4File
+from .CCP4ErrorHandling import CErrorReport, CException
 from .CCP4TaskManager import TASKMANAGER
+
+
+def WORKFLOWMANAGER():
+    if CWorkflowManager.insts is None:
+        CWorkflowManager.insts = CWorkflowManager()
+    return CWorkflowManager.insts
+
 
 class CWorkflowManager(CCP4CustomManager.CCustomManager):
 
@@ -68,10 +55,11 @@ class CWorkflowManager(CCP4CustomManager.CCustomManager):
 
     def createWorkflow(self, projectId=None, jobList=[], name=None, title=None, overwrite=False):
         #print 'CWorkflowMananger.createWorkflow',projectId,jobList,name,overwrite,title
-        from dbapi import CCP4DbApi
+        from ..dbapi import CCP4DbApi
+        from .CCP4ProjectsManager import PROJECTSMANAGER
         workflowDir = self.createDirectory(name, overwrite=overwrite)
-        db = CCP4Modules.PROJECTSMANAGER().db()
-        projectDir = CCP4Modules.PROJECTSMANAGER().getProjectDirectory(projectId=projectId)
+        db = PROJECTSMANAGER().db()
+        projectDir = PROJECTSMANAGER().getProjectDirectory(projectId=projectId)
         jobZeroInputParams = CCP4Container.CContainer(parent=self, name='inputData')
         jobZeroOutputParams = CCP4Container.CContainer(parent=self, name='outputData')
         workflowParams = CWorkflowDefinition(name=name)
@@ -161,7 +149,6 @@ class CWorkflowManager(CCP4CustomManager.CCustomManager):
         return CErrorReport()
 
     def uniqueKey(self, keyIn, container):
-        import copy
         nn = 0
         key = copy.deepcopy(keyIn)
         while 1:  # KJS : Potential infinite loop if things wrong ?

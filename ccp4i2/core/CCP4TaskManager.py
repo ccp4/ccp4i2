@@ -1,44 +1,27 @@
-from __future__ import print_function
-
 """
-     CCP4TaskManager.py: CCP4 GUI Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2010 University of York
+Liz Potterton Sept 2010 - Class to keep track of all CCP4Tasks
 """
 
-"""
-   Liz Potterton Sept 2010 - Class to keep track of all CCP4Tasks
-"""
+import glob
+import importlib
+import inspect
+import json
 import os
+import pkgutil
 import re
 import sys
 import time
-import inspect
-import glob
-import json
-import importlib
-from lxml import etree
-from core.CCP4Config import GRAPHICAL, DEVELOPER
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import WEBBROWSER, PROJECTSMANAGER, WORKFLOWMANAGER, CUSTOMTASKMANAGER
-from dbapi import CCP4DbApi
-from core import CCP4Utils
+import traceback
 
-# To see the timings for loading modules set TIMING=True
-TIMING = False
+from lxml import etree
+
+from . import CCP4Utils
+from ..dbapi import CCP4DbApi
+from .CCP4Config import CONFIG
+from .CCP4ErrorHandling import CErrorReport, Severity
+
+
 MODULE_ORDER = ['data_entry', 'data_processing', 'data_reduction', 'bigpipes', 'alpha_fold', 'expt_phasing', 'bioinformatics',
                 'molecular_replacement', 'density_modification', 'model_building', 'refinement', 'ligands',
                 'validation', 'export', 'expt_data_utility', 'model_data_utility', 'developer_tools',
@@ -90,9 +73,8 @@ def TASKMANAGER():
         CTaskManager.insts = CTaskManager()
     return CTaskManager.insts
 
-def LISTTASKS(ifPrint=True):
+def LISTTASKS():
     tm = TASKMANAGER()
-    tm.buildLookup()
     text = '\n\nThe current menu\n\n'
     tree = tm.taskTree()
     for moduleName,moduleTitle,taskList in tree:
@@ -103,8 +85,6 @@ def LISTTASKS(ifPrint=True):
             else:
                 text += "                  {0:30} {1:50}\n".format(taskName, "None")
     text += tm.printLookup()
-    if ifPrint:
-        print(text)
     return text
 
 class CTaskManager:
@@ -164,8 +144,6 @@ class CTaskManager:
         thisDir = os.path.split(__file__)[0]
         jsonPath = os.path.join(thisDir, "CachedLookups.json")
         try:
-            if TIMING:
-                t1 = time.time()
             with open(jsonPath,"r") as jsonFile:
                 jsonText = jsonFile.read()
                 compositeDict = json.loads(jsonText)
@@ -207,70 +185,40 @@ class CTaskManager:
                                             tmpM += "    " + str(x[1]) + "\n"
                                 #print (clsNam, chkset)
                                 print ("---------------------")
-                                """
-                                if GRAPHICAL():
-                                    from PySide2 import QtWidgets
-                                    QtWidgets.QMessageBox.warning(None, "Problem Loading CachedLookups JSON", tmpM)
-                                """
                             #Don't bother to load class, but set it to "None", obliging it to be loaded when needed
                             versionDict["class"] = None
-                            #Following coad would force load classes at this point
-                            '''
-                            moduleName = versionDict["clsModule"]
-                            importedModule = ""
-                            if moduleName not in sys.modules:
-                                try:
-                                    importedModule = importlib.import_module(moduleName)
-                                except:
-                                    print "Unable to import module ",moduleName
-                            else:
-                                importedModule = sys.modules[moduleName]
-                            className = versionDict["clsName"]
-                            versionDict["class"] = getattr(importedModule, className, None)
-                            '''
                 #Set the class to none on the performance classses, so as to force lazy load
                 for taskName, performanceClassDict in self.taskPerformanceClassLookup.items():
                     performanceClassDict["class"] = None
-            if TIMING:
-                t2 = time.time()
-                print("Time to load cache", t2 - t1)
             return CErrorReport()
         except:
             raise
 
     def explore_package(self, module_name, module_name_list):
-        import pkgutil
         loader = pkgutil.get_loader(module_name)
-        if sys.version_info > (3,0):
-            fname = os.path.dirname(loader.get_filename())
-        else:
-            fname = loader.filename
+        fname = os.path.dirname(loader.get_filename())
         for sub_module in pkgutil.walk_packages([fname], prefix=module_name+"."):
             _, sub_module_name, _ = sub_module
             module_name_list.append(sub_module_name)
 
     def buildLookupFromScratch(self):
         print("#CCP4TaskManager.buildLookupFromScratch")
-        from core import CCP4PluginScript
-        from report import CCP4ReportParser
-        from core import CCP4PerformanceData
-        graphical = GRAPHICAL()
+        from . import CCP4PerformanceData
+        from . import CCP4PluginScript
+        from ..report import CCP4ReportParser
+        graphical = CONFIG().graphical
         myErrorReport = CErrorReport()
         loadTarget = [[self._searchPath, True]]
         if graphical:
-            from qtgui import CCP4TaskWidget
+            from ..qtgui import CCP4TaskWidget
             loadTarget.insert(0, [self._guiSearchPath, False])
         # Get the performance data classes
         clsList = inspect.getmembers(CCP4PerformanceData, inspect.isclass)
         for className,cls in clsList:
             if issubclass(cls, CCP4PerformanceData.CPerformanceIndicator) and not cls == CCP4PerformanceData.CPerformanceIndicator:
                 self.performanceClassLookup[className] = {"class":cls, "clsName":cls.__name__, "clsModule":cls.__module__}
-        if TIMING:
-            t3 = time.time()
         moduleLookup = {'wrappers' : []}
         guiedTasks = []
-        if TIMING:
-            t6 = time.time()
         #Toplevel
         module_name_list = []
         self.explore_package("wrappers", module_name_list)
@@ -278,9 +226,6 @@ class CTaskManager:
         self.explore_package("pipelines", module_name_list)
         module_name_list = [module_name for module_name in
                             module_name_list if "crank2.crank2" not in module_name and 'PdbView' not in module_name]
-        if TIMING:
-            t7 = time.time()
-            print("Time for explore_package = ",t7-t6)
 
         for module_name in module_name_list:
             pyFile = None
@@ -297,8 +242,6 @@ class CTaskManager:
             if pyFile is not None:
                 pyFile = mymodule.__file__
                 if True:
-                    if TIMING:
-                        t1 = time.time()
                     clsList = inspect.getmembers(mymodule, inspect.isclass)
                     for className, cls in clsList:
                         if graphical and issubclass(cls, CCP4TaskWidget.CTaskWidget) and not cls == CCP4TaskWidget.CTaskWidget:
@@ -386,13 +329,6 @@ class CTaskManager:
                                     self.reportLookup[taskName][taskVersion]['modes'].append('Failed')
                             except:
                                 pass
-                if TIMING:
-                    t2 = time.time()
-                    if(t2-t1) > 0.1:
-                        print("Time to load", pyFile, t2-t1)
-        if TIMING:
-            t4 = time.time()
-            print("Time to load all", t4-t3)
         # Sort the task order according to MODULE_DEFAULTS - allow a wrapper to be
         # included if it is listed in the MODULE_DEFAULTS
         for module,taskList in list(moduleLookup.items()):
@@ -408,9 +344,6 @@ class CTaskManager:
                         self.moduleLookup[module].append(item)
             else:
                 self.moduleLookup[module].extend(taskList)
-        if TIMING:
-            t5 = time.time()
-            print("Time to do rest", t5-t4)
         #---------------------------------------------------------------
         class MyEncoder(json.JSONEncoder):
             def default(self, obj):
@@ -445,18 +378,15 @@ class CTaskManager:
         jsonPath = os.path.join(thisDir, "CachedLookups.json")
         with open(jsonPath,"w") as jsonFile:
             jsonFile.write(jsonBlob)
-        if TIMING:
-            t8 = time.time()
-            print("Time to encode and write json", t8-t5)
         return myErrorReport
 
     def loadCustomisation(self):
-        from core import CCP4File
         err = CErrorReport()
         customFile = os.path.join(CCP4Utils.getCCP4I2Dir(), 'custom_code', 'task_customisation.xml')
         if not os.path.exists(customFile):
             return err
         try:
+            from . import CCP4File
             xmlFile = CCP4File.CI2XmlDataFile(customFile)
             body = xmlFile.getBodyEtree()
         except:
@@ -556,6 +486,7 @@ class CTaskManager:
         data = self.getTaskData(name, version)
         if self.lazyLoadClassForDict(data) is not None:
             return data['class']
+        from .CCP4WorkflowManager import WORKFLOWMANAGER
         if name in WORKFLOWMANAGER().getList():
             data = self.getTaskData('workflow')
             return self.lazyLoadClassForDict(data)
@@ -563,11 +494,7 @@ class CTaskManager:
             return None
 
     def getReportClass(self, name='', version=None, jobStatus=None, doReload=False):
-        if sys.version_info >= (3,4):
-            from importlib import reload
-        else:
-            from imp import reload
-        import report.CCP4ReportParser
+        from ..report import CCP4ReportParser
         data = self.getReportData(name, version)
         if jobStatus == 'Running remotely':
             jobStatus = 'Running'
@@ -579,10 +506,10 @@ class CTaskManager:
                 if cls is None:
                     return None
                 module = __import__(cls.__module__)
-                module = reload(module)
+                module = importlib.reload(module)
                 clsList = inspect.getmembers(module, inspect.isclass)
                 for className, cls1 in clsList:
-                    if issubclass(cls1, report.CCP4ReportParser.Report) and getattr(cls1, 'TASKNAME') == name and getattr(cls1, 'TASKVERSION') == data['version']:
+                    if issubclass(cls1, CCP4ReportParser.Report) and getattr(cls1, 'TASKNAME') == name and getattr(cls1, 'TASKVERSION') == data['version']:
                         self.reportLookup[name][data['version']]['class'] = cls1
                         print('Reloading task report module for', className)
                         return cls1
@@ -604,7 +531,6 @@ class CTaskManager:
         try:
             importedModule = importlib.import_module(moduleName)
         except:
-            import traceback
             traceback.print_exc()
             importedModule = None
             
@@ -612,7 +538,6 @@ class CTaskManager:
         correspondingClass = getattr(importedModule,className,None)
         data['class'] = correspondingClass
         #print '#CTaskManager lazy Load of class', data['class'].__name__
-        #import traceback
         #traceback.print_stack(limit=3)
         return correspondingClass
 
@@ -632,6 +557,8 @@ class CTaskManager:
             cls = self.lazyLoadClassForDict(data)
             if cls is not None:
                 return cls
+        from .CCP4CustomTaskManager import CUSTOMTASKMANAGER
+        from .CCP4WorkflowManager import WORKFLOWMANAGER
         if name in WORKFLOWMANAGER().getList():
             data = self.getScriptData('workflow', version)
             cls = self.lazyLoadClassForDict(data)
@@ -645,9 +572,6 @@ class CTaskManager:
 
     def getClass(self, name='', version=None):
         data = self.getTaskData(name, version)
-        #print 'TASKMANAGER.getClass getTaskData',name,data
-        #import traceback
-        #traceback.print_stack()
         if len(data) == 0:
             data = self.getScriptData(name, version)
         return self.lazyLoadClassForDict(data)
@@ -671,8 +595,10 @@ class CTaskManager:
             return taskTitle
         else:
             # Try customisations - will return same input taskName if not recognised
+            from .CCP4WorkflowManager import WORKFLOWMANAGER
             title = WORKFLOWMANAGER().getTitle(taskName)
             if title == taskName:
+                from .CCP4CustomTaskManager import CUSTOMTASKMANAGER
                 title = CUSTOMTASKMANAGER().getTitle(taskName)
             if title is None:
                 title = taskName
@@ -747,7 +673,7 @@ class CTaskManager:
         return self.lazyLoadClassForDict(performanceClassDict)
 
     def taskTree(self, shortTitles=False):
-        from core.CCP4Modules import PREFERENCES
+        from .CCP4Preferences import PREFERENCES
         # Return list of [module_name,taskList]
         tree = []
         for module in MODULE_ORDER:
@@ -770,72 +696,7 @@ class CTaskManager:
                     else:
                         taskList.extend(self.moduleLookup[module])
                     tree.append([module, MODULE_TITLES.get(module, module), taskList])
-        #print 'TASKMANAGER.taskTree',tree
-        '''
-          workflows = WORKFLOWMANAGER().getList()
-          if len(workflows)>0:
-            tree.append(['workflows','Workflows',workflows])
-          customtasks =CUSTOMTASKMANAGER().getList()
-          if len(customtasks)>0:
-            tree.append(['customTasks','Custom tasks',customtasks])
-        '''
         return tree
-
-
-    def openDataFile(self, fileName='', editableData=True):    # This only appears to be used in CCP4ProjectWidgetDemo
-        from core import CCP4File
-        h = CCP4File.CI2XmlHeader()
-        h.loadFromXml(fileName)
-        taskName = str(h.pluginName)
-        widget = self.openTask(taskName, editableData=editableData)
-        if widget is not None:
-            widget.loadData(fileName)
-
-    def openTask(self, taskName, version=None, projectId=None, editableData=True):
-        from qtgui import CCP4TaskViewer
-        if not GRAPHICAL():
-            raise CException(self.__class__, 104, 'task name: ' + taskName)
-        defFile = self.lookupDefFile(taskName, version=version)
-        if defFile is None: # KJS : Changed. cf lookup & search.
-            defFile = self.searchDefFile(taskName, version=version)
-            if defFile is None:
-                e = CException(self.__class__, 101, 'task name: ' + taskName)
-                e.warningMessage(windowTitle='Task menu')
-        cls = self.getClass(taskName)
-        if cls is not None:
-            taskTitle= getattr(cls,'TASKTITLE', taskName)
-        else:
-            taskTitle = taskName
-        widget = CCP4TaskViewer.CTaskViewer(parent=WEBBROWSER(), project=projectId)
-        if DEVELOPER():
-            widget.open(fileName=defFile, taskName=taskName, taskTitle=taskTitle, editableData=editableData)
-        else:
-            try:
-                widget.open(fileName=defFile, taskName=taskName, taskTitle=taskTitle, editableData=editableData)
-            except CException as e:
-                e.warningMessage(windowTitle='Task menu')
-                return None
-            except:
-                e = CException(self.__class__, 102, 'task name: ' + taskName)
-                e.warningMessage(windowTitle='Task menu')
-                return None
-        if DEVELOPER():
-            widget.setObjectName(taskName)
-            WEBBROWSER().newTab(widget, taskName)
-            widget.show()
-        else:
-            try:
-                widget.setObjectName(taskName)
-                WEBBROWSER().newTab(widget, taskName)
-                widget.show()
-            except CException as e:
-                e.warningMessage(windowTitle='Task menu')
-                return None
-            except:
-                e = CException(self.__class__, 103, 'task name: ' + taskName)
-                e.warningMessage(windowTitle='Task menu')
-                return None
-        return widget
 
     def searchDefFile(self, name=None, version=None):
         if name is None:
@@ -920,7 +781,7 @@ class CTaskManager:
                 if len(pixFileList) > 0:
                     self.timeFindingIcons += (time.time() - t1)
                     return pixFileList[0]
-        if DEVELOPER(): print("Icon not found", name)
+        if CONFIG().developer: print("Icon not found", name)
         self.timeFindingIcons += (time.time() - t1)
         return os.path.join(CCP4Utils.getCCP4I2Dir(), 'qticons', 'ccp4.png')
 
@@ -931,6 +792,7 @@ class CTaskManager:
             return True
         elif self.searchXrtFile(name=name, jobStatus=jobStatus) is not None:
             return True
+        from .CCP4WorkflowManager import WORKFLOWMANAGER
         defFile = WORKFLOWMANAGER().getDefFile(name)
         return (defFile is not None)
 
@@ -967,6 +829,7 @@ class CTaskManager:
         if len(fileList) > 0:
             return fileList[0]
         # Try if it is a workflow - returns None if not recognised
+        from .CCP4WorkflowManager import WORKFLOWMANAGER
         defFile = WORKFLOWMANAGER().getDefFile(name)
         if defFile is not None:
             return defFile
@@ -979,33 +842,9 @@ class CTaskManager:
             defFile = os.path.join(CCP4Utils.getCCP4I2Dir(), 'tasks', der_name, der_name + '.def.xml')
             if os.path.exists(defFile):
                 return defFile
+        from .CCP4CustomTaskManager import CUSTOMTASKMANAGER
         defFile = CUSTOMTASKMANAGER().getDefFile(name)
         return defFile
-    '''
-    def whatNext(self,taskName,jobId=None):
-      else:
-        return ()
-
-    def whatNext(self,taskName,jobId=None):
-      import os,re
-      from core import CCP4Utils
-      fileName = os.path.join(CCP4Utils.getCCP4I2Dir(),'docs','whatnext',taskName+'.html')
-      if not os.path.exists(fileName): return []
-
-      text = CCP4Utils.readFile(fileName)
-      x = re.compile(r"(.*)<!--TASKNAMES(.*)-->(.*)",re.DOTALL)
-      s = x.match(text)
-      #print 'TASKMANAGER.whatNext groups',s.groups()
-      if s is None: return []
-      lineList = s.groups()[1].split()
-      taskList = []
-      for line in lineList:
-       nameList = line.split(',')
-       for name in nameList:
-         taskList.append((name,self.getTitle(name)))
-      print 'TASKMANAGER.whatNext taskList',taskList
-      return taskList
-    '''
 
     def exportJobFiles(self, taskName=None, jobId=None, mode='menu'):
         data = self.getScriptData(taskName)
@@ -1055,6 +894,7 @@ class CTaskManager:
             return []
 
     def whatNext(self, taskName, jobId=None):
+        from .CCP4ProjectsManager import PROJECTSMANAGER
         #print 'CCP4TaskManager.whatNext',taskName,jobId,type(jobId),self.taskLookup.has_key(taskName)
         # Get the jobs parent - the parent pipeline should provide the info for what to do next
         childJobs = [jobId]
@@ -1106,6 +946,7 @@ class CTaskManager:
         return rv
 
     def getWhatNextPage(self, taskName=None, jobId=None):
+        from .CCP4ProjectsManager import PROJECTSMANAGER
         if taskName is None and jobId is not None:
             taskName = PROJECTSMANAGER().db().getJobInfo(jobId=jobId, mode='taskname')
         if taskName is None:
@@ -1119,21 +960,17 @@ class CTaskManager:
         else:
             return None
 
-    def viewSelection(self, taskName, jobId=None):
-        #Does task need to define what files are displayed in graphics
-        pass
-
     def getI1TaskTitle(self, taskName):
         if self.i1TaskLookup is None:
             self.loadI1TaskTitles()
         return self.i1TaskLookup.get(taskName, taskName)
 
     def loadI1TaskTitles(self, fileName=None):
-        from qtgui import CCP4I1Projects
+        from ..qtgui import CCP4I1Projects
         if fileName is None:
             fileName = os.path.join(CCP4Utils.getCCP4Dir(), 'share', 'ccp4i', 'etc', 'modules.def')
         metaData, params, err = CCP4I1Projects.readI1DefFile(fileName)
-        if err.maxSeverity() > SEVERITY_WARNING or 'TASK_NAME' not in params:
+        if err.maxSeverity() > Severity.WARNING or 'TASK_NAME' not in params:
             return CErrorReport(self.__class__, 103, details=fileName, stack=False)
         self.i1TaskLookup = {}
         for nT in range(len(params['TASK_NAME'][1])):
@@ -1150,7 +987,7 @@ class CMakeDocsIndex():
         pass
 
     def run(self):
-        from report import CCP4ReportParser
+        from ..report import CCP4ReportParser
         # List of documented tasks
         try:
             dList = glob.glob(os.path.join(CCP4Utils.getCCP4I2Dir(), 'docs', 'sphinx', 'build', 'html', 'tasks', '*'))
@@ -1221,26 +1058,3 @@ class CMakeDocsIndex():
         except:
             return CErrorReport(self.__class__, 101, details=os.path.join(sph_pth, 'tasks', 'index.html'))
         return CErrorReport()
-
-import unittest
-
-def TESTSUITE():
-    suite = unittest.defaultTestLoader.loadTestsFromTestCase(testBuildLookups)
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testLoadLookups))
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)
-
-class testBuildLookups(unittest.TestCase):
-    def test1(self):
-        taskManager = CTaskManager()
-        taskManager.buildLookupFromScratch()
-        self.assertTrue(len(taskManager.taskLookup) >= 97,msg="Built less than 97 tasks...possibly something fishy")
-
-class testLoadLookups(unittest.TestCase):
-    def test1(self):
-        taskManager = CTaskManager()
-        taskManager.loadCachedClassLookups()
-        self.assertTrue(len(taskManager.taskLookup) >= 97,msg="Loaded less than 97 tasks...possibly something fishy")

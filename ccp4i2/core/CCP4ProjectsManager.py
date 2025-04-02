@@ -1,52 +1,32 @@
-from __future__ import print_function
-
 """
-     CCP4ProjectsManager.py: CCP4 GUI Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2010 University of York
+Liz Potterton - May 2010 - Quick version with hard-coded project - pending database
 """
-
-'''
-  Liz Potterton - May 2010 - Quick version with hard-coded project - pending database
-'''
 
 # NB  load methods from ccp4mg and inconsistent with data types in the init
 
+import copy
+import datetime
+import functools
+import glob
 import os
 import re
-import sys
-import glob
-import time
 import shutil
-import tempfile
-import zipfile
+import sys
 import tarfile
-import functools
+import tempfile
+import time
+import zipfile
 
+from lxml import etree
 from PySide2 import QtCore
 
-from core import CCP4File
-
-from core.CCP4Config import QT, DEVELOPER, XMLPARSER
-if QT():
-    from core.CCP4QtObject import CObject
-else:
-    from core.CCP4Object import CObject
-
-from core.CCP4ErrorHandling import *
+from . import CCP4File
+from . import CCP4Utils
+from .CCP4ErrorHandling import CErrorReport, CException, Severity
+from .CCP4QtObject import CObject
+from .CCP4Utils import getCCP4I2Dir, getDotDirectory, getHOME
+from .CCP4WarningMessage import warningMessage
 
 
 def PROJECTSMANAGER():
@@ -68,18 +48,18 @@ class CProjectsManager(CObject):
 
     insts = None
     CHECKINTERVAL = 1000
-    ERROR_CODES = {101 : {'severity' : SEVERITY_ERROR, 'description' : 'Failed creating CCP4I2_TEST project in'},
-                   102 : {'severity' : SEVERITY_ERROR, 'description' : 'CProjectsManager.addProject project of that name exists'},
-                   103 : {'severity' : SEVERITY_ERROR, 'description' : 'CProjectsManager.addProject imput project wrong type'},
-                   104 : {'severity' : SEVERITY_ERROR,'description' : 'Creating project, no name given for project'},
-                   105 : {'severity' : SEVERITY_ERROR,'description' : 'CProjectsManager.createProject Error creating project'},
-                   106 : {'severity' : SEVERITY_ERROR,'description' : 'CProjectsManager.createProject Error setting project directory'},
-                   107 : {'severity' : SEVERITY_ERROR,'description' : 'CProjectsManager.createProject Error making project directory'},
-                   108 : {'severity' : SEVERITY_ERROR,'description' : 'CProjectsManager.openDirectoriesDef  No HOME/USERPROFILE directory'},
-                   109 : {'severity' : SEVERITY_ERROR,'description' : 'CProjectsManager.deleteProject no project of that name'},
-                   110 : {'severity' : SEVERITY_ERROR,'description' : 'CProjectsManager.openDirectoriesDef Error opening directories.def file'},
-                   111 : {'severity' : SEVERITY_ERROR,'description' : 'CProjectsManager.write_ccp4i_directories No HOME/USERPROFILE directory, Error saving directories.def '},
-                   112 : {'severity' : SEVERITY_ERROR,'description' : 'Attempting to create project in directory that is used by another project.'},
+    ERROR_CODES = {101 : {'severity' : Severity.ERROR, 'description' : 'Failed creating CCP4I2_TEST project in'},
+                   102 : {'severity' : Severity.ERROR, 'description' : 'CProjectsManager.addProject project of that name exists'},
+                   103 : {'severity' : Severity.ERROR, 'description' : 'CProjectsManager.addProject imput project wrong type'},
+                   104 : {'severity' : Severity.ERROR,'description' : 'Creating project, no name given for project'},
+                   105 : {'severity' : Severity.ERROR,'description' : 'CProjectsManager.createProject Error creating project'},
+                   106 : {'severity' : Severity.ERROR,'description' : 'CProjectsManager.createProject Error setting project directory'},
+                   107 : {'severity' : Severity.ERROR,'description' : 'CProjectsManager.createProject Error making project directory'},
+                   108 : {'severity' : Severity.ERROR,'description' : 'CProjectsManager.openDirectoriesDef  No HOME/USERPROFILE directory'},
+                   109 : {'severity' : Severity.ERROR,'description' : 'CProjectsManager.deleteProject no project of that name'},
+                   110 : {'severity' : Severity.ERROR,'description' : 'CProjectsManager.openDirectoriesDef Error opening directories.def file'},
+                   111 : {'severity' : Severity.ERROR,'description' : 'CProjectsManager.write_ccp4i_directories No HOME/USERPROFILE directory, Error saving directories.def '},
+                   112 : {'severity' : Severity.ERROR,'description' : 'Attempting to create project in directory that is used by another project.'},
                    113 : {'description' : 'No directory name provided for making directory'},
                    114 : {'description' : 'Error creating directory'},
                    115 : {'description' : 'Error creating sub-directory in project directory'},
@@ -111,9 +91,9 @@ class CProjectsManager(CObject):
                    180 : {'description' : 'Error reading input_params.xml file to find list of input files to job'},
                    181 : {'description' : 'Error extracting an input file path from input_params.xml'},
                    182 : {'description' : 'Input file for job does not exist'},
-                   200 : {'severity' : SEVERITY_OK,'description' : 'Successfully deleted project directory'},
+                   200 : {'severity' : Severity.OK,'description' : 'Successfully deleted project directory'},
                    201 : {'description' : 'Error attempting to delete project directory'},
-                   202 : {'severity' : SEVERITY_OK,'description' : 'Successfully deleted project from database'},
+                   202 : {'severity' : Severity.OK,'description' : 'Successfully deleted project from database'},
                    203 : {'description' : 'Error attempting to delete project from database'},
                    204 : {'description' : 'No projectId provided for delete project from database'},
                    210 : {'description' : 'Failed to delete temporary file created in exporting MTZ'}}
@@ -139,7 +119,7 @@ class CProjectsManager(CObject):
         self._db.jobFinished.connect(self.backupDBIfTopLevel)
 
     def loadDbTaskTitles(self):
-        from core import CCP4TaskManager
+        from . import CCP4TaskManager
         # Load task titles on startup to enable text searching
         if self._dbTaskTitlesLoaded:
             return
@@ -158,7 +138,6 @@ class CProjectsManager(CObject):
 
     @QtCore.Slot(dict)
     def backupDBIfTopLevel(self,args):
-        from core.CCP4Modules import PROJECTSMANAGER
         #We do not back up if we can verify that this is a sub job
         if hasattr(args,"has_key") and "parentJobId" in args and args["parentJobId"] is not None:
             print("Not backing up after sub-job")
@@ -176,7 +155,6 @@ class CProjectsManager(CObject):
 
     def backupDB(self):
         print("----------------------------------------backupDB----------------------------------------")
-        import datetime
         def datetimesort(k1,k2):
             t1 = datetime.datetime.strptime(k1.lstrip("database_sqlite_backup-"),"%d%m%Y-%H%M%S")
             t2 = datetime.datetime.strptime(k2.lstrip("database_sqlite_backup-"),"%d%m%Y-%H%M%S")
@@ -187,8 +165,6 @@ class CProjectsManager(CObject):
             if t1 == t2:
                 return 0
             return None
-        from core import CCP4Utils
-        from dbapi import CCP4DbApi
         n = datetime.datetime.now()
         basefname = datetime.datetime.strftime(n,"database_sqlite_backup-%d%m%Y-%H%M%S")
         fname = os.path.join(CCP4Utils.getDotDirectory(),'db',basefname)
@@ -207,10 +183,7 @@ class CProjectsManager(CObject):
             os.remove(b)
 
     def backupDBXML(self):
-        from lxml import etree
-        from core import CCP4Utils, CCP4Modules
-
-        proj_dir_list0=CCP4Modules.PROJECTSMANAGER().db().getProjectDirectoryList()
+        proj_dir_list0=PROJECTSMANAGER().db().getProjectDirectoryList()
         root = etree.Element("ProjectRoots")
         for projectInfo in proj_dir_list0:
             projectRoot = etree.Element("project")
@@ -223,8 +196,6 @@ class CProjectsManager(CObject):
         print("Backed up list of projects to",dbListBackupName)
 
     def initialiseDirectories(self):
-        from core.CCP4Utils import getCCP4I2Dir
-        #self.directories['CCP4I2_TOP'] = getCCP4I2Dir()
         self._db.setDirectoryAlias('CCP4I2_TOP', getCCP4I2Dir())
 
     def Exit(self):
@@ -232,7 +203,6 @@ class CProjectsManager(CObject):
         #sys.__stdout__.write('CProjectsManager.Exit blockExit '+str(self.blockExit)+'\n');sys.__stdout__.flush()
 
     def makeDefaultProject(self, projectName='CCP4I2_TEST', projectPath=None):
-        from core.CCP4Utils import getHOME
         try:
             defaultProject = self.db().getProjectId(projectName=projectName)
         except:
@@ -240,10 +210,6 @@ class CProjectsManager(CObject):
                 projectPath = os.path.join(getHOME(), projectName)
             defaultProject = self.createProject(projectName, projectPath)
         return defaultProject
-
-    def addAlias(self, aliasName=None, aliasDirectory=None, context='CURRENT'):
-        #self.directories[ aliasName] = aliasDirectory
-        self._db.setDirectoryAlias(alias=aliasName, aliasDirectory=aliasDirectory)
 
     def projectStatus(self,projectName=None):
         try:
@@ -302,7 +268,6 @@ class CProjectsManager(CObject):
         return e
 
     def openDirectoriesDef(self, mode, **kw):
-        from core import CCP4Utils
         ccp4_dir = CCP4Utils.getHOME()
         if  not os.path.exists(ccp4_dir):
             raise CException(self.__class__, 108, ccp4_dir)
@@ -383,7 +348,6 @@ class CProjectsManager(CObject):
         return 0
 
     def getProjectDirectory(self, projectName=None, projectId=None, testAlias=False):
-        from core import CCP4Utils
         if projectName in ['CCP4I2', 'CCP4I2_TOP'] or projectId in ['CCP4I2', 'CCP4I2_TOP'] :
             return CCP4Utils.getCCP4I2Dir()
         elif projectName == 'CCP4I2_TEST' or projectId == 'CCP4I2_TEST':
@@ -398,9 +362,6 @@ class CProjectsManager(CObject):
             except:
                 pDir = None
         return pDir
-
-    def projectIdFromPath(self, path):
-        return None
 
     def projectNameStatus(self, projectName):
         proj_list = self._db.listProjectNames()
@@ -514,12 +475,9 @@ class CProjectsManager(CObject):
 
     def save(self, fileName=None):
         errorReport = CErrorReport()
-        if XMLPARSER() == 'lxml':
-            from lxml import etree
         if fileName is None:
-            from core.CCP4Utils import getDotDirectory, saveFile
             fileName = os.path.join(getDotDirectory(),'projects.xml')
-        from core.CCP4File import CI2XmlDataFile
+        from .CCP4File import CI2XmlDataFile
         f = CI2XmlDataFile(fullPath=fileName)
         f.header.function.set('PROJECTDIRECTORIES')
         f.header.setCurrent()
@@ -535,9 +493,8 @@ class CProjectsManager(CObject):
     def restore(self, fileName=None):
         errorReport = CErrorReport()
         if fileName is None:
-            from core.CCP4Utils import getDotDirectory, saveFile
             fileName = os.path.join(getDotDirectory(), 'projects.xml')
-        from core.CCP4File import CI2XmlDataFile
+        from .CCP4File import CI2XmlDataFile
         # Beware CDataFile will attempt to interpret any file path and call PROJECTSMAMANGER
         # --> recursion and crash
         f = CI2XmlDataFile(baseName='projects.xml', relPath=getDotDirectory())
@@ -559,78 +516,8 @@ class CProjectsManager(CObject):
             print('PROJECTSMANAGER restore errrors:\n', errorReport.report())
         return errorReport
 
-    '''
-    def saveTaskToDb(self,taskName=None,saveData=None,controlFile=None,projectId=None):
-        # This saves the task gui parameters to a params.xml file and regisiters this as a job with the db
-        # taskName is name of task
-        # saveData is method that writes a control parameters to given file name (CTaskViewer.saveData)
-
-        jobId,projectName,jobNumber = self.newJob(taskName=taskName,projectId=projectId)
-        e = None
-        if controlFile is None:
-          try:
-            controlFile = self.makeFileName(jobId=jobId,mode='PARAMS')
-            print 'TaskViewer.saveTask',controlFile
-            saveData(fileName=controlFile,projectName=projectName,jobNumber=jobNumber)
-            controlFile = self.makeFileName(jobId=jobId,mode='JOB_INPUT')
-            saveData(fileName=controlFile,projectName=projectName,jobNumber=jobNumber)
-          except CErrorReport as e:
-            e.append(self.__class__,118)
-          except:
-            e = CErrorReport()
-            e.append(self.__class__,118)
-
-        if e is not None:
-          e.warningMessage()
-          return
-
-        import CCP4DbApi
-        self.updateJobStatus(jobId=jobId,status=CCP4DbApi.JOB_STATUS_FINISHED)
-    '''
-
-    '''
-      def runTask(self,jobId=None,taskName=None,saveData=None,controlFile=None,projectId=None):
-        # taskName is name of task
-        # saveData is method that writes a control parameters to given file name (CTaskViewer.saveData)
-
-        if jobId is None:
-          # Need to create new job in database
-          jobId,projectName,jobNumber = self.newJob(taskName=taskName,projectId=projectId)
-          jobInfo = { 'taskname' : taskName,
-                      'projectname' : projectName,
-                      'jobnumber' : jobNumber }
-        else:
-          jobInfo =  self._db.getJobInfo(jobId=jobId,mode=['taskname','jobnumber','projectname'])
-          taskName = jobInfo['taskname']
-          projectName = jobInfo['projectname']
-          jobNumber = jobInfo['jobnumber']
-
-        e = None
-        if controlFile is None:
-          #try:
-            controlFile = self.makeFileName(jobId=jobId,mode='JOB_INPUT',jobInfo=jobInfo)
-            print 'TaskViewer.runTask',controlFile
-        if saveData is not None:
-            saveData(fileName=controlFile,projectName=projectName,jobNumber=jobNumber)
-          #except CErrorReport as e:
-          #  e.append(self.__class__,118)
-          #except:
-          #  e = CErrorReport()
-          #  e.append(self.__class__,118)
-
-        if e is not None:
-          e.warningMessage()
-          return
-
-        # Update control file path in db and set status to queue the job
-        #self.updateJobControlFile(jobId=jobId,controlFile=controlFile)
-        import CCP4DbApi
-        self.updateJobStatus(jobId=jobId,status=CCP4DbApi.JOB_STATUS_QUEUED)
-    '''
-
     def newJob(self, taskName=None, jobTitle=None, projectId=None, jobNumber=None):
         #if jobTitle is None:
-        #  import CCP4TaskManager
         #  jobTitle = CCP4TaskManager.TASKMANAGER().getTitle(taskName)
         jobId = self._db.createJob(projectId, taskName, jobTitle=jobTitle, jobNumber=jobNumber)
         jobInfo = self._db.getJobInfo(jobId, ['jobnumber', 'projectid'])
@@ -641,11 +528,9 @@ class CProjectsManager(CObject):
         return jobId, projectName, jobInfo['jobnumber']
 
     def deleteJob(self, jobId=None, jobNumber=None, projectName=None, projectId=None, importFiles=[], deleteImportFiles=True):
-        from dbapi import CCP4DbApi
-        from core import CCP4Modules
-        from core import CCP4Utils
-        from dbapi import CCP4DbUtils
-        from lxml import etree
+        from ..dbapi import CCP4DbApi
+        from ..dbapi import CCP4DbUtils
+        from ..qtcore.CCP4JobController import JOBCONTROLLER
         print('PROJECTSMANAGER.deleteJob importFiles', jobId, importFiles, deleteImportFiles)
         if jobId is None:
             jobId = self._db.getJobId(jobNumber=jobNumber, projectName=projectName, projectId=projectId)
@@ -682,7 +567,7 @@ class CProjectsManager(CObject):
             print('PROJECTMANAGER.deleteJob job does not exist', jobId)
             return
         if status in (CCP4DbApi.JOB_STATUS_RUNNING, CCP4DbApi.JOB_STATUS_REMOTE):
-            err = CCP4Modules.JOBCONTROLLER().killJobProcess(jobId=jobId)
+            err = JOBCONTROLLER().killJobProcess(jobId=jobId)
             if len(err) > 0:
                 raise err
         jobDir = self.jobDirectory(jobId=jobId)
@@ -711,17 +596,6 @@ class CProjectsManager(CObject):
                     if os.path.exists(os.path.join(copyJobDir, name)):
                         shutil.move(os.path.join(copyJobDir, name), os.path.join(jobDir, name))
                         break
-                '''
-                if parFile is not None:
-                  from core import CCP4File
-                  fileObj = CCP4File.CI2XmlDataFile(fullPath=os.path.join(copyJobDir,name))
-                  fileObj.header.comment = 'Original '+fileObj.header.pluginName.__str__()+' task deleted but imported files saved'
-                  fileObj.header.pluginName = 'import_files'
-                  fileObj.header.pluginVersion.unSet()
-                  bodyEtree = fileObj.getBodyEtree()
-                  fileObj.setFullPath(os.path.join(jobDir,'params.xml'))
-                  fileObj.saveFile(bodyEtree=bodyEtree)
-                '''
                 try:
                     shutil.rmtree(copyJobDir)
                 except:
@@ -739,9 +613,9 @@ class CProjectsManager(CObject):
 
     def runInternalTask(self, jobId, projectId, taskName):
         print('runInternalTask')
-        from core import CCP4TaskManager
-        from dbapi import CCP4DbApi
-        from core import CCP4PluginScript
+        from . import CCP4PluginScript
+        from . import CCP4TaskManager
+        from ..dbapi import CCP4DbApi
         cls = CCP4TaskManager.TASKMANAGER().getPluginScriptClass(taskName)
         if cls is not None:
             db = self.db()
@@ -789,14 +663,14 @@ class CProjectsManager(CObject):
 
     @QtCore.Slot(dict)
     def handleJobToDelete(self, args={}):
-        from core import CCP4Modules
-        from dbapi import CCP4DbApi
-        if not bool(CCP4Modules.PREFERENCES().DELETE_INTERACTIVE_JOBS):
+        from ..dbapi import CCP4DbApi
+        from .CCP4Preferences import PREFERENCES
+        if not bool(PREFERENCES().DELETE_INTERACTIVE_JOBS):
             self.db().updateJobStatus(jobId=args.get('jobId'), status=CCP4DbApi.JOB_STATUS_FINISHED)
             return
-        if bool(CCP4Modules.PREFERENCES().SHOW_DELETE_INTERACTIVE_JOBS):
+        if bool(PREFERENCES().SHOW_DELETE_INTERACTIVE_JOBS):
             jobInfo = self.db().getJobInfo(args.get('jobId'), ['taskname', 'projectid', 'jobnumber'])
-            from qtgui import CCP4ProjectViewer
+            from ..qtgui import CCP4ProjectViewer
             pV = CCP4ProjectViewer.PROJECTVIEWER(jobInfo['projectid'])
             print('handleJobToDelete', pV, jobInfo)
             if pV is not None:
@@ -858,7 +732,7 @@ class CProjectsManager(CObject):
         self.jobUpdated.emit(jobId)
 
     def setInputFileNames(self, container, contextJobId=None, projectId=None, force=False):
-        from dbapi import CCP4DbApi
+        from ..dbapi import CCP4DbApi
         myErrorReport = CErrorReport()
         try:
             dataList = container.inputData.dataOrder()
@@ -928,21 +802,14 @@ class CProjectsManager(CObject):
                 dobj = container.outputData.find(objectName)
                 #print 'setOutputData get',objectName,dobj.get(),dobj.isSet()
                 if isinstance(dobj,CCP4File.CDataFile) and (force or not dobj.isSet()):
-                    '''
-                    nameFromFileKey = dobj.qualifiers('nameFromFileKey')
-                    if nameFromFileKey is not None and container.find(nameFromFileKey) is not None:
-                        sourceObj =  container.find(nameFromFileKey)
-                        baseName = jobName + os.path.splitext(sourceObj.baseName.get())[0]
-                    else:
-                  '''
                     dobj.setOutputPath(jobName=jobName, projectId=projectId, relPath=relPath)
             except:
                 myErrorReport.append(self.__class__, 152, objectName)
         return myErrorReport
 
     def getJobParams(self, jobId=None, inputParams=False):
-        from core import CCP4TaskManager
-        from core import CCP4Container
+        from . import CCP4Container
+        from . import CCP4TaskManager
         if inputParams:
             filename = self.makeFileName(jobId=jobId, mode='JOB_INPUT')
         else:
@@ -1020,8 +887,7 @@ class CProjectsManager(CObject):
 
     def importFiles(self, jobId=None, container=None, projectId=None):
         #print 'PROJECTSMANAGER.importFiles',jobId,repr(container),projectId
-        import copy
-        from dbapi import CCP4DbApi
+        from ..dbapi import CCP4DbApi
         err= CErrorReport()
         if container is None:
             try:
@@ -1215,7 +1081,7 @@ class CProjectsManager(CObject):
         return dbfile
 
     def extractDatabaseXmlFromZip(self, compressedFile, tempDir=None, diagnostic=False):
-        from qtcore import CCP4Export
+        from ..qtcore import CCP4Export
         if tempDir is None:
             importDir = tempfile.gettempdir()
         else:
@@ -1243,15 +1109,15 @@ class CProjectsManager(CObject):
     def getJobInputFiles(self, projectDir='', jobIdList=[], jobNumberList=[], useDb=False, excludeI2files=False):
         # Find the input files that would also need to be exported with a job
         # ***** Should have checked jobs have valid input before we get this far ************
-        from core import CCP4Modules
-        from core import CCP4Container
-        from core import CCP4Utils
+        from ..qtgui.CCP4DemoData import DEMODATAMANAGER
+        from . import CCP4Container
+        from . import CCP4Utils
         errReport = CErrorReport()
         fileList = []
         fileIdList = []
         fromJobIdList = []
         if useDb:
-            demoDataDirList = CCP4Modules.DEMODATAMANAGER().getTestDatasets()
+            demoDataDirList = DEMODATAMANAGER().getTestDatasets()
             demoData = []
             for f1, f2 in demoDataDirList:
                 demoData.append(f1)
@@ -1316,7 +1182,7 @@ class CProjectsManager(CObject):
         return fileList, fileIdList, fromJobIdList, errReport
 
     def compressProject(self, projectId, after=None, jobList=None, excludeI2files=False, fileName=None, blocking=False, parentWidget=None):
-        from qtcore import CCP4Export
+        from ..qtcore import CCP4Export
         #print 'CProjectManager.compressProject',after,jobList,excludeI2files,fileName
         projectInfo = self.db().getProjectInfo(projectId=projectId)
         # If there is a limited set of jobs then find the input jobs that are not output by jobs on that list
@@ -1333,8 +1199,8 @@ class CProjectsManager(CObject):
         # exportProjectXml returns list of TOP-LEVEL jobNumbers for the export
         jobNumberList, errReport = self.db().exportProjectXml(projectId, fileName=dbxml, recordExport=True, status='exportable', after=after, jobList=jobList, inputFileList=inputFileIdList, inputFileFromJobList=fromJobIdList)
         #print 'CProjectManagerDialog.compressProject jobNumberList',jobNumberList,
-        if errReport.maxSeverity() > SEVERITY_WARNING:
-            errReport.warningMessage('Export project','Error creating XML database file', parent=self)
+        if errReport.maxSeverity() > Severity.WARNING:
+            warningMessage(errReport, 'Export project','Error creating XML database file', parent=self)
             return
         if jobList is not None:
             directoriesList = []
@@ -1349,14 +1215,14 @@ class CProjectsManager(CObject):
 
     @QtCore.Slot(str,str,'QWidget')
     def doneSavingJobData(self, projectName, fileName, parentWidget):
-        if self.exportThread.errorReport.maxSeverity() > SEVERITY_WARNING:
-            self.exportThread.errorReport.warningMessage('Saving job data', 'Error saving data files for export to\n' + str(fileName), parent=parentWidget)
+        if self.exportThread.errorReport.maxSeverity() > Severity.WARNING:
+            warningMessage(self.exportThread.errorReport, 'Saving job data', 'Error saving data files for export to\n' + str(fileName), parent=parentWidget)
         self.exportThread.deleteLater()
         self.exportThread = None
 
     def exportJobMtzFile(self, jobId):
-        from core import CCP4XtalData
-        from core import CCP4TaskManager
+        from . import CCP4TaskManager
+        from . import CCP4XtalData
         # Devise name for the merged file and check if it has already been created
         jobDir = self.jobDirectory(jobId=jobId, create=False)
         jobInfo = self.db().getJobInfo(jobId, ['taskname', 'jobnumber'])
@@ -1448,8 +1314,8 @@ class CProjectsManager(CObject):
         return outfile
 
     def getSourceReflectionFile(self, jobId=None, jobParamNameList=None):
-        from core import CCP4XtalData
-        from core import CCP4TaskManager
+        from . import CCP4TaskManager
+        from . import CCP4XtalData
         exportTaskName = self.db().getJobInfo(jobId=jobId, mode='taskname')
         #print 'into getSourceReflectionFile',exportTaskName
         if not isinstance(jobParamNameList,list):
@@ -1467,15 +1333,15 @@ class CProjectsManager(CObject):
                 jobNumber =  self.db().getJobInfo(jobId=fileInfoList[0]['jobId'], mode='jobnumber')
                 if taskName == 'aimless_pipe':
                     mode = 'Data reduction'
-                    from pipelines.aimless_pipe.script import aimless_pipe
+                    from ..pipelines.aimless_pipe.script import aimless_pipe
                     reflnFile = aimless_pipe.exportJobFile(jobId=fileInfoList[0]['jobId'], mode='complete_mtz')
                 elif taskName == 'import_merged':
                     mode = 'Imported by import merged'
-                    from pipelines.import_merged.script import import_merged
+                    from ..pipelines.import_merged.script import import_merged
                     reflnFile = import_merged.exportJobFile(jobId=fileInfoList[0]['jobId'], mode='complete_mtz')
                 elif taskName == 'AlternativeImportXIA2':
                     mode = 'Imported from XIA2'
-                    import AlternativeImportXIA2
+                    from ..wrappers.AlternativeImportXIA2.script import AlternativeImportXIA2
                     reflnFile = AlternativeImportXIA2.exportJobFile(jobId=fileInfoList[0]['jobId'], mode='complete_mtz', fileInfo=fileInfoList[0])
                 else:
                     mode = 'Imported file'
@@ -1586,11 +1452,10 @@ class CPurgeProject(CObject):
     ERROR_CODES = {101 : {'description' : 'Failed to delete'}}
 
     def __init__(self, projectId=None, jobId=None, db=None):
-        from core import CCP4Modules
         CObject.__init__(self)
         self.error = CErrorReport()
         if db is None:
-            self.db = CCP4Modules.PROJECTSMANAGER().db()
+            self.db = PROJECTSMANAGER().db()
         else:
             self.db = db
         self.projectId = projectId
@@ -1683,11 +1548,9 @@ class CPurgeProject(CObject):
         return os.path.join(*dL)
 
     def purgeProject(self, severity=None, context='temporary'):
-        from core.CCP4Modules import PROJECTSMANAGER
         ''' # Concept of LastCleanupTime complicated by possibility of differnt severities of cleanup
         if self.db is not None and self.projectId is not None:
           lastCleanupTime = self.db.getProjectInfo(projectId=self.projectId,mode='lastcleanuptime')
-          import time
           self.db.updateProject(projectId=self.projectId,key='LastCleanupTime',value=time.time())
         else:
           lastCleanupTime = None '''
@@ -1703,7 +1566,7 @@ class CPurgeProject(CObject):
     def getTaskSearchList(self, taskName, severity):
         '''Default search list for this task including the generic search list'''
         # If search item does not have a third element then add one
-        from core import CCP4TaskManager
+        from . import CCP4TaskManager
         mySearchList = []
         for idx in range(len(self.SEARCHLIST)):
             try:
@@ -1730,7 +1593,7 @@ class CPurgeProject(CObject):
         return mySearchList
 
     def createReport(self, jobId=None, jobStatus=None, jobNumber=None, func=None):
-        from report import CCP4ReportGenerator
+        from ..report import CCP4ReportGenerator
         self.generator = CCP4ReportGenerator.CReportGenerator(jobId=jobId, jobStatus=jobStatus, jobNumber=jobNumber)
         if jobStatus == 5:
             try:
@@ -1748,9 +1611,8 @@ class CPurgeProject(CObject):
                 else:
                     func()
             except CException as e:
-                if e.maxSeverity() > SEVERITY_WARNING:
+                if e.maxSeverity() > Severity.WARNING:
                     pass
-                    #e.warningMessage(windowTitle=self.parent().windowTitle(),message='Failed creating job report',parent=self)
         return True
 
     @QtCore.Slot(str,str,str,str,bool,str,str,list,str,bool)
@@ -1844,119 +1706,3 @@ class CPurgeProject(CObject):
         #print 'delList',jobNumber,taskName,delList
         #print 'dbDelList',dbDelList
         return delList, dbDelList
-
-
-#===========================================================================================================
-import unittest
-def TESTSUITE():
-    suite = unittest.defaultTestLoader.loadTestsFromTestCase(testManager)
-    #suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testProject))
-    #suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testJob))
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)
-
-class testJob(unittest.TestCase):
-
-    def test1(self):
-        j = CJob(jobId=99,taskName='testing')  # KJS : Looks like this may not work ...
-        j.inputFiles.HKLIN = {  'baseName' : 'foo.mtz', 'project' : 'myProject' }
-        j.outputFiles.set({'HKLOUT' : { 'baseName' : 'foo_99.mtz', 'project' : 'myProject' }} )
-        from lxml import etree
-        tree = j.getEtree()
-        text = etree.tostring(tree, pretty_print=True)
-        #print text
-        k = CJob(jobId=99)
-        k.setEtree(tree)
-        self.assertEqual(str(k.jobId),'job_99','Wrong job id')
-        self.assertEqual(k.inputFiles.HKLIN.get(),{ 'baseName' : 'foo.mtz', 'project' : 'myProject' , 'relPath' : None },'Wrong inputFile')
-        self.assertEqual(k.outputFiles.HKLOUT.get(),{ 'baseName' : 'foo_99.mtz', 'project' : 'myProject' , 'relPath' : None },'Wrong outputFile')
-
-class testProject(unittest.TestCase):
-
-    def test1(self):
-        p = CProject(name='myproject')     # KJS : More problems ?
-        jobId = p.newJob(taskName='testing',title='Just testing projects')
-        print('testProject.test1',jobId,list(p.jobList.keys()))
-        print(p.jobList[jobId].taskName)
-        self.assertEqual(p.jobList[jobId].taskName,'testing','Error in CProject.newJob')
-
-    def test2(self):
-        p = CProjectDirectories()
-        p.setDirectory('/Users/me/myProject')
-        self.assertEqual(p.getDirectory(),'/Users/me/myProject','Failed setting CProjectDirectories')
-        from core import CCP4Utils
-        import platform
-        user = CCP4Utils.getUserId() + '@' + platform.node()
-        self.assertEqual(p[user],'/Users/me/myProject','Error getting currentUserAddress')
-        p = CProject(name='myproject')
-        p.directories.setDirectory('/Users/me/myProject')
-        self.assertEqual(p.directories.getDirectory(),'/Users/me/myProject','Failed setting CProject.directories')
-        jobId = p.newJob(taskName='testing',title='Just testing projects')
-        fileName = p.makeFileName(jobId=jobId,mode='LOG')
-        self.assertEqual(fileName,'/Users/me/myProject/'+jobId+'_testing.log')
-        from lxml import etree
-        tree = p.getEtree()
-        q = CProject(name='myproject')
-        q.setEtree(tree)
-        jobId = p.newJob(taskName='anotherTest',title='Another test job')
-        self.assertEqual(jobId,'job_2','Error inn XML cycle returning jobId')
-
-
-class testManager(unittest.TestCase):
-
-    def setUp(self):
-        from .CCP4Utils import getHOME
-        self.testDir = os.path.join(getHOME(),'CCP4I2_TEST')
-        if not os.path.exists(self.testDir):
-            os.mkdir(self.testDir)
-        dbFile = os.path.join(self.testDir,'test_database.sql')
-        if os.path.exists(dbFile): os.remove(dbFile)
-        self.pm = CProjectsManager(name='TESTPROJECTMANAGER',databaseFile=dbFile)
-        self.pm.createProject('myproject',os.path.join(self.testDir,'myproject'))
-        self.pm.createProject('anotherproject',os.path.join(self.testDir,'anotherproject'))
-
-    def test1(self):
-        pDir = self.pm.getProjectDirectory(projectName='myproject')
-        self.assertTrue(pDir,os.path.join(self.testDir,'myproject'),'Error testing project directory')
-
-    def test2(self):
-        try:
-            self.pm.createProject('myproject',os.path.join(self.testDir,'whatever'))
-        except CException as e:
-            self.assertEqual(e[0]['code'] , 110, 'Wrong error code (not 110) creating project with same name')
-        except:
-            self.fail('Failed unknown reason attempting to create project with same name')
-        try:
-            self.pm.createProject('newproject',os.path.join(self.testDir,'myproject'))
-        except CException as e:
-            self.assertEqual(e[0]['code'] , 117, 'Wrong error code (not 117) creating project with same dir')
-        except:
-            self.fail('Failed with unknown reason attempting to create project with same dir')
-
-
-    '''
-    def test3(self):
-         self.pm.deleteProject('myproject')
-         p = self.pm.getProject('myproject')
-         self.assertTrue(p is None,'Error removing project')
-
-    def test4(self):
-        pname,relpath,pid = self.pm.interpretDirectory( os.path.join(self.testDir,'myproject') )
-        self.assertEqual(pname,'myproject','interpretDirectory did not find correct project')
-        self.assertEqual(relpath,'','interpretDirectory returns incorrect relPath')
-
-    def test5(self):
-        proj_list,alias_list = self.pm.getProjectsList()
-        self.assertEqual(proj_list,['anotherproject','myproject'],'getProjectsList returns wrong project list')
-        self.assertEqual(alias_list,['CCP4I2_TOP'],'getProjectsList returns wrong directories list')
-
-    def test6(self):
-        fileName = os.path.join(self.testDir,'projects.xml')
-        self.pm.save(fileName)
-        pm = CProjectsManager(name='TESTPROJECTMANAGER')
-        pm.restore(fileName)
-        self.assertEqual(len(pm.projects),2,'Failed in save/restore projects')
-    '''

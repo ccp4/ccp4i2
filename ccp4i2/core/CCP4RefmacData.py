@@ -1,8 +1,7 @@
 
-from core import CCP4Data
-from core import CCP4File
+from . import CCP4Data
+from . import CCP4File
 
-# -----------------------------------------------------------------------------------
 
 class CRefmacRestraintsDataFile(CCP4File.CDataFile):
     QUALIFIERS = {'fileLabel' : 'restraints', 'mimeTypeName' : 'application/refmac-external-restraints',

@@ -1,52 +1,33 @@
-from __future__ import print_function
-
 """
-     CCP4XtalData.py: CCP4 GUI Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-"""
-   Liz Potterton Jan 2010 - Created. Classes for CCP4 xtal data
-                 Sep 2010 - Converted to 'generic' data style
+Copyright (C) 2010 University of York
+Liz Potterton Jan 2010 - Created. Classes for CCP4 xtal data
+              Sep 2010 - Converted to 'generic' data style
 """
 
 ## @package CCP4XtalData (QtCore) Data objects for CCP4 crystallographic data
-import os
-import re
-import glob
-import types
-import math
-import sys
 
+import copy
+import errno
+import math
+import os
+import pickle
+import re
+import shutil
+import tempfile
+
+import clipper
+import hklfile
+from lxml import etree
 from PySide2 import QtCore
 
-from core import CCP4Data
-from core import CCP4File
-from core import CCP4Utils
-from core import CCP4Modules
-from core import CCP4ModelData
 
-from core.CCP4Config import XMLPARSER,QT
-from core.CCP4ErrorHandling import *
+from . import CCP4Data
+from . import CCP4File
+from . import CCP4ModelData
+from . import CCP4Utils
+from ..googlecode import diff_match_patch_py3
+from .CCP4ErrorHandling import CErrorReport, CException, Severity
 
-if XMLPARSER() == 'lxml':
-    from lxml import etree
-else:
-    from elementtree import ElementTree as etree
 
 def SYMMETRYMANAGER():
     # Horrible mess if loadSymLib crashes!
@@ -54,9 +35,16 @@ def SYMMETRYMANAGER():
         CSymmetryManager.insts = CSymmetryManager()
         try:
             CSymmetryManager.insts.loadSymLib()
-        except CException as e:
+        except CException:
             pass
     return CSymmetryManager.insts
+
+
+def safeFloat(value):
+    try:
+        return float(value)
+    except ValueError:
+        return None
 
 
 class CSymmetryManager:
@@ -101,19 +89,6 @@ class CSymmetryManager:
                            ['C 2 2 21', 'C 2 2 2', 1020, 1021],
                            ['I 21 21 21', 'I 2 2 2', 1023],
                            ['P 1 21 1', 'P 1 2 1', 'P 1 1 2', 'P 1 1 21']]
-
-    def convertLaue(self):
-        out = []
-        for lG in self.laueGroups:
-            out.append([])
-            for sG in lG:
-                if self.ccp4NumberList.count(sG):
-                    out[-1].append(self.hmSpaceGroupList[self.ccp4NumberList.index(sG)])
-                    if out[-1][-1] == '' :
-                        out[-1][-1] = sG
-                else:
-                    out[-1].append( sG)
-        print(out)
 
     def loadSymLib(self, fileName=None):
         if fileName is None:
@@ -243,15 +218,6 @@ class CSymmetryManager:
             return (7 + code, hits)
         return (2 + code, spaceGroup)
 
-    def spaceGroupCompleter(self,spaceGroup=None):
-        up = spaceGroup.upper().strip()
-        hits = []
-        for system, groups in list(self.chiralSpaceGroups.items()):
-            for gp in groups:
-                if re.match(spaceGroup, gp):
-                    hits.append(gp)
-        return hits
-
     def ccp4toHm(self,num):
         if self.ccp4NumberList.count(num):
             return self.hmSpaceGroupList[self.ccp4NumberList.index(num)]
@@ -271,13 +237,13 @@ class CSpaceGroup(CCP4Data.CString):
     QUALIFIERS = {'allowUndefined' : True, 'toolTip' : 'Hermann-Mauguin space group name',
                   'helpFile' : 'crystal_data#space_group'}
     ERROR_CODES = {101 : {'description' : 'Invalid space group'},
-                   102 : {'description' : 'Space group is not chiral', 'severity' : SEVERITY_WARNING},
+                   102 : {'description' : 'Space group is not chiral', 'severity' : Severity.WARNING},
                    103 : {'description' : 'Space group is not Hermann-Mauguin standard'},
                    104 : {'description' : 'Space group is not a chiral Hermann-Mauguin standard. Full syminfo.lib information not loaded.'},
                    105 : {'description' : 'Space group is not Hermann-Mauguin standard - has wrong number of spaces?'},
-                   106 : {'description' : 'Space group is undefined', 'severity' : SEVERITY_UNDEFINED},
+                   106 : {'description' : 'Space group is undefined', 'severity' : Severity.UNDEFINED},
                    107 : {'description' : 'Space group is undefined'},
-                   108 : {'description' : 'Space group is incomplete', 'severity' : SEVERITY_WARNING}}
+                   108 : {'description' : 'Space group is incomplete', 'severity' : Severity.WARNING}}
 
     def validity(self,arg):
         ''' Need to check is valid space group name '''
@@ -700,7 +666,7 @@ class CGenericReflDataFile(CCP4File.CDataFile):
             return 'merged'
 
     def getFileContent(self):
-        from core import CCP4DataManager
+        from . import CCP4DataManager
         contentClass = self.fileContentClass()
         if self.__dict__['_fileContent'] is None or self.__dict__['_fileContent'].__class__ != contentClass:
             self.__dict__['_fileContent'] = None
@@ -714,7 +680,7 @@ class CGenericReflDataFile(CCP4File.CDataFile):
         return self.__dict__['_fileContent']
 
     def fileContentClass(self,className=None):
-        from core import CCP4DataManager
+        from . import CCP4DataManager
         if className is None:
             if not self.exists() or (self.getExt() not in ['.mmcif','.cif','.ent']):
                 className = 'CUnmergedDataContent'
@@ -777,17 +743,13 @@ class CMmcifReflData(CCP4File.CMmcifData):
         cell = {'a':None, 'b':None, 'c':None, 'alpha':None, 'beta':None, 'gamma':None}
         wavelength = None
         pyStrSpaceGroupName = ''
-        iSpaceGroupNumber = -1
         haveFreeRColumn = False
         haveFobsColumn = False
         haveFpmObsColumn = False
         haveIobsColumn = False
         haveIpmObsColumn = False
-        from core.CCP4Utils import safeFloat
         for j, pyStrLine in enumerate(mmcifLines):
             try:
-                if "_symmetry.Int_Tables_number" in pyStrLine:
-                    iSpaceGroupNumber = int(pyStrLine.split()[1])
                 if "_symmetry.space_group_name_H-M" in pyStrLine:
                     pyStrSpaceGroupName = pyStrLine[pyStrLine.index("_symmetry.space_group_name_H-M")+31:]
                     pyStrSpaceGroupName = pyStrSpaceGroupName.strip().strip('"').strip("'").strip()
@@ -848,10 +810,10 @@ class CMtzDataFile(CCP4File.CDataFile):
                    154 : {'description' :'Failed merging MTZ files - error running cad - see log'},
                    401 : {'description' :'MTZ file header data differs'},
                    402 : {'description' :'MTZ file columns differ'},
-                   403 : {'description' :'Error trying to access number of reflections' , 'severity' : SEVERITY_WARNING},
+                   403 : {'description' :'Error trying to access number of reflections' , 'severity' : Severity.WARNING},
                    404 : {'description' :'MTZ files have different number of reflections'},
                    405 : {'description' :'MTZ column mean value differs'},
-                   406 : {'description' :'MTZ file header data differs - may be autogenerated names', 'severity' : SEVERITY_WARNING},
+                   406 : {'description' :'MTZ file header data differs - may be autogenerated names', 'severity' : Severity.WARNING},
                    407 : {'description' : 'Error splitting MTZ file - failed creating input command to cmtzsplit'},
                    408 : {'description' : 'Error splitting MTZ file - output file missing'}}
 
@@ -864,7 +826,7 @@ class CMtzDataFile(CCP4File.CDataFile):
 
     def validity(self, arg={}):
         err = CCP4File.CDataFile.validity(self, arg)
-        if err.maxSeverity() > SEVERITY_WARNING or not self.isSet():
+        if err.maxSeverity() > Severity.WARNING or not self.isSet():
             return err
         otherMtz = self.getDataByKey('sameCrystalAs')
         if otherMtz is None or not otherMtz.isSet():
@@ -895,9 +857,7 @@ class CMtzDataFile(CCP4File.CDataFile):
         kw.update(keywords)
         kw.update(args)
         error = CErrorReport()
-        cbin = os.path.normpath(os.path.join( CCP4Utils.getOSDir(), 'bin', 'mtz2various' ))
-        if not os.path.exists(cbin):
-            cbin =  os.path.normpath(os.path.join( CCP4Utils.getCCP4Dir(), 'bin', 'mtz2various' ))
+        cbin = shutil.which('mtz2various')
         if hklin is None:
             hklin=self.__str__()
         arglist = ['HKLIN', hklin, 'HKLOUT', hklout]
@@ -914,9 +874,10 @@ class CMtzDataFile(CCP4File.CDataFile):
         inputFile = os.path.normpath(os.path.splitext(hklout)[0] + '_mtz2various.com')
         CCP4Utils.saveFile(inputFile,comText)
         logFile = os.path.normpath(os.path.splitext(hklout)[0] + '_mtz2various.log')
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile, inputFile=inputFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
+        from .CCP4ProcessManager import PROCESSMANAGER
+        pid = PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile, inputFile=inputFile)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid, 'exitCode')
         if status == 0 and os.path.exists(hklout):
             return hklout, error
         else:
@@ -926,7 +887,7 @@ class CMtzDataFile(CCP4File.CDataFile):
     def runMtzjoin(self, outfile, infiles):
         error = CErrorReport()
         logFile = os.path.normpath(os.path.splitext(outfile)[0] + '_cmtzjoin.log')
-        cbin = CCP4Utils.getCCP4Exe('cmtzjoin')
+        cbin = shutil.which('cmtzjoin')
         arglist = ['-mtzout', outfile]
         try:
             for name,cols in infiles:
@@ -937,9 +898,10 @@ class CMtzDataFile(CCP4File.CDataFile):
                     arglist.append(cols)
         except:
             error.append(self.__class__, 152, str(name) + ' ' + str(cols))
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
+        from .CCP4ProcessManager import PROCESSMANAGER
+        pid = PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid, 'exitCode')
         if status not in [0, 101] or not os.path.exists(outfile):
             error.append(self.__class__, 153, logFile)
             outfile = None
@@ -977,9 +939,10 @@ class CMtzDataFile(CCP4File.CDataFile):
         inputFile = os.path.normpath(os.path.splitext(hklout)[0] + '_cad.com')
         CCP4Utils.saveFile(inputFile, comText)
         logFile =  os.path.normpath(os.path.splitext(hklout)[0] + '_cad.log')
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile, inputFile=inputFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+        from .CCP4ProcessManager import PROCESSMANAGER
+        pid = PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile, inputFile=inputFile)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
         if status == 0 and os.path.exists(hklout):
             return hklout, error
         else:
@@ -988,32 +951,32 @@ class CMtzDataFile(CCP4File.CDataFile):
 
     def assertSame(self, other, diagnostic=False, **kw):
         report = CCP4File.CDataFile.assertSame(self, other, diagnostic=diagnostic, testChecksum=False, **kw)
-        if report.maxSeverity() > SEVERITY_WARNING or report.count(code=315) > 0:
+        if report.maxSeverity() > Severity.WARNING or report.count(code=315) > 0:
             return report
         try:
             self.loadFile()
         except:
-            report.append(self.__class__, 311, self.__str__(), name=self.objectPath(False))
+            report.append(self.__class__, 311, self.__str__(), name=self.objectPath())
             return report
         try:
             other.loadFile()
         except:
-            report.append(self.__class__, 312, other.__str__(), name=self.objectPath(False))
+            report.append(self.__class__, 312, other.__str__(), name=self.objectPath())
             return report
         sg1 = self.fileContent.spaceGroup
         sg2 = other.fileContent.spaceGroup
         if sg1 != sg2:
-            report.append(self.__class__, 401, f"spaceGroup : {sg1} : {sg2}", stack=False, name=self.objectPath(False) )
+            report.append(self.__class__, 401, f"spaceGroup : {sg1} : {sg2}", stack=False, name=self.objectPath() )
         cell1 = self.fileContent.cell
         cell2 = other.fileContent.cell
         for attr in ['a', 'b', 'c', 'alpha', 'beta', 'gamma']:
             if not math.isclose(getattr(cell1, attr), getattr(cell2, attr), abs_tol=0.001):
-                report.append(self.__class__, 401, f"cell {cell1} : {cell2}", stack=False, name=self.objectPath(False) )
+                report.append(self.__class__, 401, f"cell {cell1} : {cell2}", stack=False, name=self.objectPath() )
         for attr in ['low', 'high']:
             if getattr(self.fileContent.resolutionRange, attr) != getattr(other.fileContent.resolutionRange, attr):
                 lerrStr = attr + ' : ' + str(getattr(self.fileContent.resolutionRange, attr)) + ' : ' \
                                        + str(getattr(other.fileContent.resolutionRange, attr))
-                report.append(self.__class__, 401, lerrStr, stack=False, name=self.objectPath(False))
+                report.append(self.__class__, 401, lerrStr, stack=False, name=self.objectPath())
         ok = 0
         if len(self.fileContent.datasets) != len(other.fileContent.datasets):
             ok = 2
@@ -1029,21 +992,21 @@ class CMtzDataFile(CCP4File.CDataFile):
                         ok = 2
         if ok == 2:
             lerrStr = 'datasets ' + ' : ' + str( self.fileContent.datasets ) + ' : ' + str(other.fileContent.datasets)
-            report.append(self.__class__, 401, lerrStr, stack=False, name=self.objectPath(False) )
+            report.append(self.__class__, 401, lerrStr, stack=False, name=self.objectPath() )
         elif ok == 1:
             lerrStr = 'datasets ' + ' : ' + str( self.fileContent.datasets ) + ' : ' + str(other.fileContent.datasets)
-            report.append(self.__class__, 406, lerrStr, stack=False, name=self.objectPath(False) )
+            report.append(self.__class__, 406, lerrStr, stack=False, name=self.objectPath() )
         if len(self.fileContent.listOfColumns) != len(other.fileContent.listOfColumns):
-            report.append(self.__class__, 402, stack=False, name=self.objectPath(False))
+            report.append(self.__class__, 402, stack=False, name=self.objectPath())
         # Test the number of reflections
         myRefnList = self.hklfileReflectionList()
         otherRefnList = other.hklfileReflectionList()
         if myRefnList is None or otherRefnList is None:
-            report.append(self.__class__, 403, stack=False, name=self.objectPath(False))
+            report.append(self.__class__, 403, stack=False, name=self.objectPath())
         else:
             if myRefnList.NumberReflections() != otherRefnList.NumberReflections():
                 lerrStr = str(myRefnList.NumberReflections() )+' : '+str (otherRefnList.NumberReflections() )
-                report.append(self.__class__, 404, lerrStr, stack=False , name=self.objectPath(False))
+                report.append(self.__class__, 404, lerrStr, stack=False , name=self.objectPath())
             else:
                 myRefnList.ReadData()
                 otherRefnList.ReadData()
@@ -1053,11 +1016,11 @@ class CMtzDataFile(CCP4File.CDataFile):
                     if diagnostic:
                         print('Reflection data mean values for ',self.fileContent.listOfColumns[icol].columnLabel,' mine:',myStats[icol].Mean(),'other:',otherStats[icol].Mean())
                     if not abs(otherStats[icol].Mean() - myStats[icol].Mean()) < max(abs(otherStats[icol].Mean()/100.0), 0.0001):
-                        report.append(self.__class__, 405, str(self.fileContent.listOfColumns[icol].columnLabel) + ' ' +  str( myStats[icol].Mean())+ ' : ' + str(otherStats[icol].Mean()), name=self.objectPath(False) )
+                        report.append(self.__class__, 405, str(self.fileContent.listOfColumns[icol].columnLabel) + ' ' +  str( myStats[icol].Mean())+ ' : ' + str(otherStats[icol].Mean()), name=self.objectPath() )
         if diagnostic:
             print('CMtzDataFile.assertSame NumberReflections', myRefnList.NumberReflections(), otherRefnList.NumberReflections())
         if len(report) == 0:
-            report.append(self.__class__, 300, name=self.objectPath(False), stack=False)
+            report.append(self.__class__, 300, name=self.objectPath(), stack=False)
         #print 'CMtzDataFile.assertSame done',report.report()
         return report
 
@@ -1065,8 +1028,6 @@ class CMtzDataFile(CCP4File.CDataFile):
         if not self.exists():
             return None
         try:
-            import ccp4mg
-            import hklfile
             return hklfile.ReflectionList(self.__str__())
         except:
             return None
@@ -1076,9 +1037,7 @@ class CMtzDataFile(CCP4File.CDataFile):
         ret = CErrorReport()
         if logFile is None:
             logFile = CCP4Utils.makeTmpFile(cdir=False)
-        cbin = os.path.join(CCP4Utils.getOSDir(), 'bin', 'cmtzsplit')
-        if not os.path.exists(cbin):
-            cbin = os.path.join(CCP4Utils.getCCP4Dir(), 'bin', 'cmtzsplit')
+        cbin = shutil.which('cmtzsplit')
         arglist = ['-mtzin', str(self)]
         for ii in range(min(len(colinList), len(outfiles))):
             try:
@@ -1106,9 +1065,10 @@ class CMtzDataFile(CCP4File.CDataFile):
                                 break
             except:
                 ret.append(self.__class__, 407, name + ' ' + colin)
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
+        from .CCP4ProcessManager import PROCESSMANAGER
+        pid = PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid, 'exitCode')
         if status == 0:
             for outfile in outfiles:
                 if not os.path.exists(outfile[0]):
@@ -1159,12 +1119,6 @@ class CUnmergedDataContent(CCP4File.CDataFileContent):
         self.__dict__['_value']['knowncell'].set(True)
         self.__dict__['_value']['knownwavelength'].set(True)
         # get the file format
-        try:
-            import ccp4mg
-            import hklfile
-        except Exception as e:
-            print('FAILED IMPORTING HKLFILE')
-            print(e)
         self.format.set('unk')
         if os.path.splitext(fileName)[1] in ['.mmcif', '.cif', '.ent']:
             self.format.set('mmcif')
@@ -1231,8 +1185,6 @@ class CUnmergedDataContent(CCP4File.CDataFileContent):
         try:
             hm = reflectionList.Spacegroup().symbol_hm()
             if not isinstance(hm, str):
-                import ccp4mg
-                import hklfile   # KJS : put this in here for now to fix line below
                 hm = hklfile.ClipperStringAsString(hm)
             self.__dict__['_value']['spaceGroup'].set(hm)
         except:
@@ -1258,23 +1210,6 @@ class CUnmergedDataFile(CCP4File.CDataFile):
         CCP4File.CDataFile.__init__(self, value=value, qualifiers=qualis, parent=parent, name=name, fullPath=fullPath, keywords=kw)
         self.baseName.setQualifier('allowedCharacters', '*?')
         self.relPath.setQualifier('allowedCharacters', '*?')
-
-    def isWildCard(self):
-        if self.baseName.isSet() and (str(self.baseName).count('*') + str(self.baseName).count('?')) > 0:
-            return True
-        else:
-            return False
-
-    def globFiles(self):
-        allFiles = glob.glob(self.fullPath().__str__())
-        return allFiles
-
-    def fileFormat(self):
-        if not self.baseName.isSet():
-            return None
-        base, ext = os.path.splitext( self.baseName.__str__())
-        if ext == '.mtz':
-            return 'mtz'
 
 
 class CUnmergedDataFileList(CCP4Data.CList):
@@ -1304,22 +1239,6 @@ class CImportUnmerged(CCP4Data.CData):
             keys.append('wavelength')
         return self.itemValidity(args, keys=keys)
 
-    def aimlessExcludeBatch(self):
-        #Return a string of 'EXCLUDE BATCH ..' lines
-        if not self.__dict__['_value']['excludeSelection'].isSet():
-            return ''
-        ret = ''
-        batchList = self.excludeSelection.removeWhiteSpace(str(self.__dict__['_value']['excludeSelection'])).split(",")
-        listout = ''
-        for batch in batchList:
-            if "-" in batch:
-                ret +=  "EXCLUDE BATCH %s\n" % batch.replace("-", " TO ")
-            else:
-                listout += " " + batch
-        if len(listout) > 0:
-            ret +=  "EXCLUDE BATCH %s\n" % listout
-        return ret
-
     def loadDatasetName(self,signal=True):
         disallowed =  ['dummy', 'new', 'none']
         self.file.loadFile()
@@ -1347,15 +1266,6 @@ class CImportUnmerged(CCP4Data.CData):
 class CImportUnmergedList(CCP4Data.CList):
     QUALIFIERS = {'listMinLength' : 1}
     SUBITEM = {'class' : CImportUnmerged}
-
-    def getCrystalList(self):
-        xtalList = []
-        for item in self.__dict__['_value']:
-            if item.crystalName.isSet():
-                xtal = item.crystalName.__str__()
-                if xtalList.count(xtal) == 0:
-                    xtalList.append(xtal)
-        return xtalList
 
     def saveToDb(self):
         fileObjList = []
@@ -1509,11 +1419,11 @@ class CMtzData(CCP4File.CDataFileContent):
                    102 : {'description' : 'Error creating command file for mtzdump'},
                    103 : {'description' : 'No log file found from mtzdump'},
                    104 : {'description' : 'Error reading log file from mtzdump'},
-                   105 : {'severity': SEVERITY_WARNING, 'description' : 'Different spacegroup'},
-                   106 : {'severity': SEVERITY_WARNING, 'description' : 'Different cell parameter'},
-                   107 : {'severity': SEVERITY_WARNING, 'description' : 'Different cell parameters'},
-                   108 : {'severity': SEVERITY_ERROR, 'description' : 'Different Laue group'},
-                   109 : {'severity': SEVERITY_ERROR, 'description' : 'Different point group'},
+                   105 : {'severity': Severity.WARNING, 'description' : 'Different spacegroup'},
+                   106 : {'severity': Severity.WARNING, 'description' : 'Different cell parameter'},
+                   107 : {'severity': Severity.WARNING, 'description' : 'Different cell parameters'},
+                   108 : {'severity': Severity.ERROR, 'description' : 'Different Laue group'},
+                   109 : {'severity': Severity.ERROR, 'description' : 'Different point group'},
                    410 : {'description' :'Invalid CSeqDataFile passed to matthewCoeff'},
                    411 : {'description' :'Failed to run matthewCoeff'}}
 
@@ -1524,12 +1434,7 @@ class CMtzData(CCP4File.CDataFileContent):
         if not os.path.exists(self.__dict__['lastLoadedFile']):
             self.unSet()
             raise CException(self.__class__, 101, fileName, name=self.objectPath())
-        try:
-            import ccp4mg
-            import hklfile   # KJS : Perhaps re-write this.
-            useHklfile = True
-        except:
-            useHklfile = False
+        useHklfile = True
         if useHklfile:
             self.extractMtzData(self.__dict__['lastLoadedFile'])
             self.dataLoaded.emit()
@@ -1541,7 +1446,8 @@ class CMtzData(CCP4File.CDataFileContent):
             except:
                 raise CException(self.__class__, 102, inputFile, name=self.objectPath())
             logFile = self.logFileName()
-            pid = CCP4Modules.PROCESSMANAGER().startProcess(command='mtzdump', args=['HKLIN', self.__dict__['lastLoadedFile']],
+            from .CCP4ProcessManager import PROCESSMANAGER
+            pid = PROCESSMANAGER().startProcess(command='mtzdump', args=['HKLIN', self.__dict__['lastLoadedFile']],
                                                             inputFile = inputFile, logFile = logFile, waitForFinished=1000)
             try:
                 self.scrapeMtzdumpLog(pid)
@@ -1574,7 +1480,6 @@ class CMtzData(CCP4File.CDataFileContent):
         return rv
 
     def parseMtzdumpLog(self, logText=''):
-        from core.CCP4Utils import safeFloat
         # Extract data from log file. Code taken from EDNA example
         pyListLogLines = logText.split("\n")
         cell = []
@@ -1582,7 +1487,6 @@ class CMtzData(CCP4File.CDataFileContent):
         column_name_list = []
         column_type_list = []
         pyStrSpaceGroupName = ''
-        iSpaceGroupNumber = -1
         lowerResolutionLimit = None
         upperResolutionLimit = None
         for j, pyStrLine in enumerate(pyListLogLines):
@@ -1590,7 +1494,6 @@ class CMtzData(CCP4File.CDataFileContent):
                 cell = list(map(safeFloat, pyListLogLines[j + 5].split()))
             if " * Space group = " in pyStrLine:
                 pyStrSpaceGroupName = pyStrLine.split("'")[1].strip()
-                iSpaceGroupNumber = int(pyStrLine.replace("(", " ").replace(")", " ").split()[-1])
             if "*  Resolution Range" in pyStrLine:
                 lowerResolutionLimit = float(((pyListLogLines[j + 2].split("(")[1]).split())[0])
                 upperResolutionLimit = float(((pyListLogLines[j + 2].split("(")[1]).split())[2])
@@ -1646,15 +1549,6 @@ class CMtzData(CCP4File.CDataFileContent):
                     listOfColumns.append(column)
             return listOfColumns
 
-    def getColumnType(self, guiLabel=''):
-        if guiLabel is None:
-            return ''
-        columnLabel = guiLabel.split('/')[-1]
-        for column in self.__dict__['_value']['listOfColumns']:
-            if column.colmnLabel == columnLabel:
-                return column.columnType
-        return ''
-
     def getPartnerColumn(self, firstColumn='', columnGroupItem=None):
         # NB returns a CMtzColumn
         partnerTypes = columnGroupItem.columnType
@@ -1674,11 +1568,6 @@ class CMtzData(CCP4File.CDataFileContent):
             return None
 
     def extractMtzData(self, fileName):
-        try:
-            import ccp4mg
-            import hklfile
-        except:
-            print('FAILED IMPORTING HKLFILE')
         reflectionList = hklfile.ReflectionList(fileName)
         ftype = reflectionList.FileType()
         if ftype.FileType() in [hklfile.ReflectionFileType.ABSENT, hklfile.ReflectionFileType.UNKNOWN]:
@@ -1820,7 +1709,6 @@ class CMtzData(CCP4File.CDataFileContent):
         return err
 
     def clipperSameCellCoor(self, other, tolerance=1.0):
-        import clipper
         cell = other.mmdbManager.GetCell()
         otherA = float(cell[1])
         otherB = float(cell[2])
@@ -1846,7 +1734,6 @@ class CMtzData(CCP4File.CDataFileContent):
         return result
 
     def clipperSameCell(self, other, tolerance=None):
-        import clipper
         if tolerance is None:
             myHigh = self.resolutionRange.high.get()
             otherHigh = other.resolutionRange.high.get()
@@ -1969,7 +1856,6 @@ class CMtzData(CCP4File.CDataFileContent):
         if molWt < 0.01:
             raise CException(self.__class__, 410, str(seqDataFile))
         # temporary log and xml files
-        import tempfile
         f1 = tempfile.mkstemp()
         os.close(f1[0])
         f2 = tempfile.mkstemp()
@@ -1987,7 +1873,8 @@ class CMtzData(CCP4File.CDataFileContent):
         if polymerMode != "":
             comText =  comText + '\nMODE ' + polymerMode
         argList = ['XMLFILE' , f1[1]]
-        pid = CCP4Modules.PROCESSMANAGER().startProcess('matthews_coef', argList, logFile=f2[1], inputText=comText)
+        from .CCP4ProcessManager import PROCESSMANAGER
+        pid = PROCESSMANAGER().startProcess('matthews_coef', argList, logFile=f2[1], inputText=comText)
         if not os.path.exists(f1[1]):
             raise CException(self.__class__,411,str(seqDataFile))
         # Get results from xml file
@@ -2095,9 +1982,9 @@ class CProgramColumnGroup0(CCP4Data.CData):
                                             'description' : 'Flag if the parameter must be set at run time'}}
     ERROR_CODES = {101 : {'description' : 'Column not in MTZ file'},
                    102 : {'description' : 'Column wrong type'},
-                   103 : {'description' : 'MTZ file is not defined', 'severity' : SEVERITY_WARNING},
+                   103 : {'description' : 'MTZ file is not defined', 'severity' : Severity.WARNING},
                    104 : {'description' : 'No column group selected'},
-                   105 : {'description' : 'No column group selected', 'severity' : SEVERITY_WARNING}}
+                   105 : {'description' : 'No column group selected', 'severity' : Severity.WARNING}}
 
     def __getattr__(self,name):
         # This method necessary to get reference to columns (used most in scripts) to work
@@ -2375,7 +2262,7 @@ class CProgramColumnGroup(CCP4Data.CData):
         if validity.count(code=104) > 0 or fix:
             data = self.fix(data)
             validity = self.validity(data)
-        if validity.maxSeverity()<SEVERITY_ERROR:
+        if validity.maxSeverity()<Severity.ERROR:
             for column in self.qualifiers('columnGroup'):
                 columnName = str(column.columnName)
                 if columnName in data:
@@ -2709,9 +2596,6 @@ class CFormFactor(CCP4Data.CData):
         err = CErrorReport()
         return err
 
-    def guiValue(self):
-        return self.__dict__['_value']['Fp'].__str__() + ','+self.__dict__['_value']['Fpp'].__str__()
-
     # Do we need lookup/calculate values if not provided?
 
 
@@ -2815,7 +2699,7 @@ class CMiniMtzDataFile(CMtzDataFile):
                    206 : {'description' : 'File contains unmerged data'},
                    210 : {'description' : 'Failed creating mini-MTZ'},
                    211 : {'description' : 'Insufficient columns selected from imported MTZ'},
-                   212 : {'description' : 'Data already imported as', 'severity' : SEVERITY_WARNING},
+                   212 : {'description' : 'Data already imported as', 'severity' : Severity.WARNING},
                    220 : {'description' : 'Can not convert file content, file does not exist'},
                    221 : {'description' : 'Can not convert file content, existing content insufficiently rich'},
                    222 : {'description' : 'Can not convert file content, bad input for target content'},
@@ -2905,10 +2789,6 @@ class CMiniMtzDataFile(CMtzDataFile):
                 self.__dict__['columnGroupList'].append(cls(parent=self.parent(),name=self.objectName()+'_COLUMNS',qualifiers={'mtzFileKey': self.objectName()}))
         return self.__dict__['columnGroupList']
 
-    def defaultName(self,jobId=None):
-        jobDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId = jobId)
-        return  os.path.normpath(os.path.join(jobDirectory, self.objectName() + CCP4File.CDataFile.SEPARATOR + self.qualifiers('fileLabel') + '.mtz'))
-
     def set(self,value={},**kw):
         CCP4File.CDataFile.set(*[self,value], **kw)
         self.__dict__['sourceFileName'] = None
@@ -2916,7 +2796,8 @@ class CMiniMtzDataFile(CMtzDataFile):
     def splitMtz(self,jobId=None,projectId=None,contentFlag=None,i2Labels=[],columnLabels=[]):
         errorReport = CErrorReport()
         # Set name for new split file and if it already exists remove previous refernce from db
-        jobDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId)
+        from .CCP4ProjectsManager import PROJECTSMANAGER
+        jobDirectory = PROJECTSMANAGER().jobDirectory(jobId=jobId)
         filename = self.importFileName(jobDirectory=jobDirectory)
         #Set up the colin/colout
         colin = ','.join(columnLabels)
@@ -2937,7 +2818,7 @@ class CMiniMtzDataFile(CMtzDataFile):
         else:
             fileType = None
         #Have we done the same import before?
-        dbFileId, importId, checksum, dbAnnotation = CCP4Modules.PROJECTSMANAGER().alreadyImportedId(sourceFileName=self.__str__(),
+        dbFileId, importId, checksum, dbAnnotation = PROJECTSMANAGER().alreadyImportedId(sourceFileName=self.__str__(),
                                                                                                      projectId=projectId,
                                                                                                      contentFlag=contentFlag,
                                                                                                      sourceFileReference=colin,
@@ -2950,15 +2831,13 @@ class CMiniMtzDataFile(CMtzDataFile):
             return errorReport
         # Run cmtzsplit
         logFile =  os.path.normpath(os.path.join(jobDirectory, self.objectName() + '_mtzsplit.log'))
-        cbin = os.path.normpath(os.path.join(CCP4Utils.getOSDir(), 'bin', 'cmtzsplit'))
-        if not os.path.exists(cbin):
-            cbin = os.path.normpath(os.path.join(CCP4Utils.getCCP4Dir(), 'bin', 'cmtzsplit'))
+        cbin = shutil.which('cmtzsplit')
         arglist = ['-mtzin', self.__str__()]
         arglist.extend(['-mtzout', filename])
         arglist.extend(['-colin', colin,'-colout', colout])
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
+        pid = PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid, 'exitCode')
         if status != 0:
             errorReport.append(self.__class__, 210, 'Exit status:' + str(status), name=self.objectPath())
             return errorReport
@@ -2998,7 +2877,8 @@ class CMiniMtzDataFile(CMtzDataFile):
             return None
         # Try is info in Db
         if self.dbFileId.isSet() and not reset:
-            flag = CCP4Modules.PROJECTSMANAGER().db().getFileInfo(fileId=str(self.dbFileId), mode='filecontent')
+            from .CCP4ProjectsManager import PROJECTSMANAGER
+            flag = PROJECTSMANAGER().db().getFileInfo(fileId=str(self.dbFileId), mode='filecontent')
             if flag is not None:
                 self.__dict__['_value']['contentFlag'].set(flag)
                 return flag
@@ -3019,10 +2899,11 @@ class CMiniMtzDataFile(CMtzDataFile):
         CMtzDataFile.updateData(self)
 
     def importFromCif(self, jobId=None):
+        from .CCP4ProcessManager import PROCESSMANAGER
         errorReport = CErrorReport()
         # Set name for new split file and if it already exists remove previous reference from db
         if jobId is not None:
-            jobDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId)
+            jobDirectory = PROJECTSMANAGER().jobDirectory(jobId=jobId)
         else:
             jobDirectory = CCP4Utils.makeTmpFile(cdir=True)
         # Run cif2mtz
@@ -3031,9 +2912,9 @@ class CMiniMtzDataFile(CMtzDataFile):
         hklout = os.path.normpath(os.path.join(jobDirectory,self.stripedName()+'.mtz'))
         arglist = ['hklin', self.__str__(), 'hklout', hklout]
         inputText = '''END\n'''
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile, inputText=inputText)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+        pid = PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile, inputText=inputText)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
         if status != 0:
             errorReport.append(self.__class__, 225, 'Exit status:'+str(status), name=self.objectPath())
             return errorReport
@@ -3056,7 +2937,7 @@ class CMiniMtzDataFile(CMtzDataFile):
                 labin.extend(mtzObj.columnNames())
                 infiles.append ( [ mtzObj.__str__(), mtzObj.columnNames(ifString=True)] )
             hklin,err = self.runMtzjoin(tmpFile, infiles)
-            if hklin is None or err.maxSeverity() > SEVERITY_WARNING:
+            if hklin is None or err.maxSeverity() > Severity.WARNING:
                 return None, err
         else:
             hklin = self.__str__()
@@ -3119,7 +3000,6 @@ class CObsDataFile(CMiniMtzDataFile):
         if not self.contentFlag.isSet():
             return 'ok',targetContent
         if isinstance(targetContent, list):
-            import copy
             targetContentList = copy.deepcopy(targetContent)
         else:
             targetContentList = [targetContent]
@@ -3249,9 +3129,10 @@ class CObsDataFile(CMiniMtzDataFile):
         inputText += colTypeSigOut + "\n"
         inputText += "WRITE " + targetFile + " COL " + colOut + " " + colSigOut + "\n"
         inputText += "STOP\n"
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(cbin, argList, inputText=inputText, logFile=logFile, cwd=myDir)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+        from .CCP4ProcessManager import PROCESSMANAGER
+        pid = PROCESSMANAGER().startProcess(cbin, argList, inputText=inputText, logFile=logFile, cwd=myDir)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
         if status != 0 or not os.path.exists(targetFile):
             error.append(self.__class__, 303, str(targetFile), name=self.objectName())
             return None, error
@@ -3260,8 +3141,8 @@ class CObsDataFile(CMiniMtzDataFile):
             return targetFile, error
 
     def runTruncate(self, targetContent=None, targetFile=None, parentPlugin=None):
-        from wrappers.ctruncate.script import ctruncate
-        from core import CCP4PluginScript
+        from . import CCP4PluginScript
+        from ..wrappers.ctruncate.script import ctruncate
         error = CErrorReport()
         wrapper = ctruncate.ctruncate(self)
         if parentPlugin is not None:
@@ -3269,9 +3150,7 @@ class CObsDataFile(CMiniMtzDataFile):
             try:
                 os.mkdir(myDir)
             except OSError as e:
-                import errno
                 if e.errno == errno.EEXIST:
-                    import shutil
                     os.rename(myDir, os.path.join(parentPlugin.workDirectory, 'ctruncate_previous'))
                     shutil.rmtree(os.path.join(parentPlugin.workDirectory, 'ctruncate_previous'))
                     os.mkdir(myDir)
@@ -3304,40 +3183,6 @@ class CObsDataFile(CMiniMtzDataFile):
             return None, error
         else:
             return targetFile, error
-
-    def convertObsMtz( self, infile=None, outfile=[], parentPlugin=None ):
-        # Expect to use this to convert Fpairs to Fmean
-        error = CErrorReport()
-        cbin = os.path.normpath(os.path.join(CCP4Utils.getOSDir(), 'bin', 'cmtzsplit'))
-        if not os.path.exists(cbin):
-            cbin =  os.path.normpath(os.path.join(CCP4Utils.getCCP4Dir(), 'bin', 'cmtzsplit'))
-        arglist = ['-mtzin', infile]
-        if len(outfile) == 2:
-            name, colin = outfile
-            colout = ''
-        else:
-            name, colin, colout = outfile
-        if parentPlugin is not None:
-            logFile = os.path.normpath(os.path.join(self.parentPlugin.workDirectory, self.objectName() + '_splitMtz.log'))
-        else:
-            logFile = os.path.normpath(os.path.join(os.path.split(name)[0], self.objectName() + '_splitMtz.log'))
-        arglist.append('-mtzout')
-        arglist.append(name)
-        arglist.append('-colin')
-        arglist.append(colin)
-        arglist.append('-colout')
-        if len(colout) > 0:
-            arglist.append(colout)
-        else:
-            arglist.append(colin)
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
-        if status == 0 and os.path.exists(outfile[0]):
-            return outfile[0],error
-        else:
-            error.append(self, 302, self.__str__())
-            return None, error
 
 
 class CPhsDataFile(CMiniMtzDataFile):
@@ -3381,7 +3226,6 @@ class CPhsDataFile(CMiniMtzDataFile):
 
     def conversion(self,targetContent):
         if isinstance(targetContent,list):
-            import copy
             targetContentList = copy.deepcopy(targetContent)
         else:
             targetContentList = [targetContent]
@@ -3415,8 +3259,8 @@ class CPhsDataFile(CMiniMtzDataFile):
 
     def runChltofom(self, targetContent=None, targetFile=None):
         error = CErrorReport()
-        from wrappers.chltofom.script import chltofom
-        from core import CCP4PluginScript
+        from . import CCP4PluginScript
+        from ..wrappers.chltofom.script import chltofom
         wrapper = chltofom.chltofom(self)
         wrapper.container.inputData.HKLIN.setFullPath(self.fullPath.__str__())
         wrapper.container.inputData.HKLIN.setContentFlag()
@@ -3513,7 +3357,6 @@ class CPhaserSolDataFile(CCP4File.CDataFile):
 
     def assertSame(self,other,diagnostic=False,**kw):
         try:
-            import pickle
             selfStr = pickle.load(open(self.__str__())).unparse()
             print('CPhaserSolDataFile.assertSame selfStr',selfStr)
             otherStr = pickle.load(open(other.__str__())).unparse()
@@ -3521,12 +3364,7 @@ class CPhaserSolDataFile(CCP4File.CDataFile):
         except:
             return CErrorReport(self.__class__,301,name=self.objectPath(),details=str(self)+' : '+str(other))
         # Unsophisicated diff
-        if sys.version_info > (3,0):
-            from googlecode import diff_match_patch_py3
-            dmp =  diff_match_patch_py3.diff_match_patch()
-        else:
-            from googlecode import diff_match_patch
-            dmp =  diff_match_patch.diff_match_patch()
+        dmp =  diff_match_patch_py3.diff_match_patch()
         diffs = dmp.diff_main(selfStr,otherStr)
         print('CPhaserSolDataFile.assertSame diffs', diffs)
         if len(diffs) > 1:
@@ -3616,7 +3454,8 @@ class CMergeMiniMtz(CCP4Data.CData):
             self.__dict__['_value']['columnTag'].unSet()
             return
         else:
-            fileInfo = CCP4Modules.PROJECTSMANAGER().db().getFileInfo(fileId = self.__dict__['_value']['fileName'].dbFileId.__str__(),
+            from .CCP4ProjectsManager import PROJECTSMANAGER
+            fileInfo = PROJECTSMANAGER().db().getFileInfo(fileId = self.__dict__['_value']['fileName'].dbFileId.__str__(),
                                                                       mode=['jobnumber','jobparamname','taskname'])
             if fileInfo['taskname'] is not None:
                 self.__dict__['_value']['columnTag'].set(fileInfo['jobnumber'] + '_' + fileInfo['taskname'][0:20])
@@ -3673,7 +3512,7 @@ class CRunBatchRange(CCP4Data.CData):
     def validity(self,arg):
         # Check validity of the individual items
         v = self.itemValidity(arg)
-        if v.maxSeverity() > SEVERITY_WARNING:
+        if v.maxSeverity() > Severity.WARNING:
             return v
         if not isinstance(arg,dict):
             arg = arg.get()
@@ -3733,219 +3572,3 @@ class CDataset(CCP4Data.CData):
 
 class CDatasetList(CCP4Data.CList):
     SUBITEM = {'class' : CDataset}
-
-
-#===========================================================================================================
-import unittest
-def TESTSUITE():
-    '''
-    suite = unittest.TestLoader().loadTestsFromTestCase(testAssorted)
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testCell))
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testMtz))
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testSpaceGroup))
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testComponents))
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testComposition))
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testCObsDataFile))
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testCPhsDataFile))
-    '''
-    suite= unittest.TestLoader().loadTestsFromTestCase(testCPhsDataFile)
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)
-
-class testAssorted(unittest.TestCase):
-
-    def setUp(self):
-        if QT():
-            from PySide2 import QtCore
-            self.app = CCP4Modules.QTAPPLICATION()
-        from core import CCP4Container
-        self.mummy = CCP4Container.CContainer()
-
-    def testMtzColumn(self):
-        t = CMtzColumn(columnLabel='foo',columnType='A',parent=self.mummy)
-        self.assertEqual(t.columnLabel,'foo','Error instantiating CMtzColumn')
-        try:
-            t = CMtzColumn(columnLabel='foo',columnType='Z',parent=self.mummy)
-        except CException as e:
-            self.assertEqual(e[0]['code'],103,'Wrong error when instantiating CMtzColumn with bad column type')
-        except:
-            self.fail('Unexpected exception when instantiating CMtzColumn with bad column type')
-
-    def testMtzData(self):
-        filename =  os.path.normpath(os.path.join(CCP4Utils.getCCP4I2Dir(),'test','data','gere_nat.mtz'))
-        t = CMtzData(parent=self.mummy, name='foo')
-        t.loadFile(filename)
-        self.assertEqual(19, t.getNColumns(), 'CMtzData loaded MTZ reports wrong number of columns')
-
-class testMtz(unittest.TestCase):
-    def setUp(self):
-        self.testDataDir = os.path.normpath(os.path.join(CCP4Utils.getCCP4I2Dir(),'test','data'))
-        # make all background jobs wait for completion
-        CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
-        if QT():
-            from PySide2 import QtCore
-            self.app = CCP4Modules.QTAPPLICATION()
-            self.mummy = QtCore.QObject(self.app)
-        else:
-            self.mummy = None
-
-    def tearDown(self):
-        CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
-
-    def test_1(self):
-        self.mtz = CMtzDataFile( os.path.normpath(os.path.join(self.testDataDir,'gere_nat.mtz'),parent=self.mummy))
-        print("test_1 getNColumns",self.mtz.getFileContent().getNColumns())
-        self.assertEqual( 19, self.mtz.getFileContent().getNColumns(),'CMtzDataFile loaded MTZ reports wrong number of columns')
-
-    def test_2(self):
-        from core import CCP4Container
-        self.dataContainer = CCP4Container.CContainer()
-        self.dataContainer.loadContentsFromXml( os.path.normpath(os.path.join(self.testDataDir,'test_mtz_2.def.xml')))
-        columns = self.dataContainer.testCProgramColumnGroup.F_SIGF.qualifiers('columnGroup')
-        self.assertEqual(str(columns[0].columnName),'F','CProgramColumnGroup failed to load from test_mtz_2.def.xml')
-        self.assertEqual(str(columns[1].columnName),'SIGF','CProgramColumnGroup failed to load from test_mtz_2.def.xml')
-        self.dataContainer.loadDataFromXml( os.path.normpath(os.path.join(self.testDataDir,'test_mtz_2.params.xml')))
-        #print 'test_2',self.dataContainer
-        dataF = self.dataContainer.inputData.F_SIGF.F
-        self.assertEqual(dataF,'F_nat','CProgramColumnGroup failed to load from test_mtz_2.params.xml')
-
-    def test_3(self):
-        from core import CCP4Container
-        self.dataContainer = CCP4Container.CContainer()
-        self.dataContainer.loadContentsFromXml( os.path.normpath(os.path.join(self.testDataDir,'test_mtz_2.def.xml')))
-        # def file does not have SIGF defined
-        self.dataContainer.loadDataFromXml( os.path.normpath(os.path.join(self.testDataDir,'test_mtz_3.params.xml')))
-        fixed = self.dataContainer.inputData.F_SIGF.fix(self.dataContainer.testCProgramColumnGroup.F_SIGF.get())
-        #print 'test_3 fixed',fixed,self.dataContainer.testCProgramColumnGroup.F_SIGF
-        self.assertEqual(str(self.dataContainer.testCProgramColumnGroup.F_SIGF.SIGF),'SIGF_nat','CProgramColumnGroup.Partner failed to find unset column')
-
-
-class testCell(unittest.TestCase):
-    def testLength1(self):
-        l = CCellLength(56.8)
-        m = CCellLength()
-        m.nm = 5.69
-        self.assertEqual(l > m,False, 'Comparison of CCellLength failed')
-        self.assertEqual(l + 0.2 > m,True, 'Addition and comparison of CCellLength failed')
-
-    def testAngle1(self):
-        t = CCellAngle(90.0)
-        if t.rad<math.pi/2.0-0.001 or t.rad>math.pi/2.0+0.001:
-            self.fail('Error return CCellAngle as radians')
-
-    def testAngle2(self):
-        try:
-            t = CCellAngle(-56.0)
-        except CException as e:
-            self.assertEqual(len(e),1,'Unexpected exception length in setting  CCellAngle')
-            self.assertEqual(e[0]['code'],101,'Unexpected exception in setting  CCellAngle')
-        except:
-            self.fail('Unexpected exception in setting  CCellAngle')
-        else:
-            self.fail('No exception in setting CCellAngle')
-
-    def testCell1(self):
-        c = CCell(a=78.0,b=56.0,c=13.5,alpha=89.0,beta=93.8,gamma=103.4)
-        if c.a.nm > 7.81 or c.a.nm < 7.79:
-            self.fail('Error returning cell length as nm')
-
-class testSpaceGroup(unittest.TestCase):
-
-    def setUp(self):
-        self.symMan = SYMMETRYMANAGER()
-
-    def test1(self):
-        # test that the hard-coded chiral space groups match to xHM names in syminfo.lib
-        for xSys in self.symMan.crystalSystems:
-            for sgp in self.symMan.chiralSpaceGroups[xSys]:
-                status,newSgp = self.symMan.spaceGroupValidity(sgp)
-                if status == 5:
-                    newSgpChiral = []
-                    for item in newSgp:
-                        ii = self.symMan.hmSpaceGroupList.index(item)
-                        if self.symMan.pointGroupList[ii].count('-') == 0:
-                            newSgpChiral.append(item)
-                    print(sgp,'*',status,'*',newSgpChiral)
-                elif status != 0:
-                    self.fail('SYMMETRYMANAGER chrial space group name not found in syminfo.lib:'+sgp)
-
-    def test2(self):
-        s = CSpaceGroup()
-        for sgp,expectedErr,expectedFix in [['P 21 21 21' , None, 'P 21 21 21'],
-                                            ['P -1', 102,'P -1' ],
-                                            ['P4/n b m', 103, 'P 4/n b m :1'],
-                                            ['P21 1 1', 105 ,'P 21 1 1']]:
-            rv = s.validity( sgp )
-            if len(rv) == 0:
-                if expectedErr is not None:
-                    self.fail('No validity fail for CSpaceGroup:'+sgp)
-            elif len(rv) > 1:
-                self.fail('CErrorReport for CSpaceGroup longer than 1:'+sgp)
-            elif rv[0]['code'] != expectedErr:
-                self.fail('CErrorReport for CSpaceGroup does not give expected error:'+sgp)
-            fix = s.fix(sgp)
-            #print 'test2',sgp,fix
-            if fix != expectedFix:
-                self.fail('Incorrect CSpaceGroup.fix() for:'+sgp)
-
-    def test3(self):
-        s = CSpaceGroupCell()
-        for sgp,cell,expectedErr in [
-          ['P 21 21 21', {'a': 64.900, 'b':78.320, 'c':38.790, 'alpha':90.00, 'beta':90.00, 'gamma': 90.00}, None],
-          ['P 21 21 21', {'a': 64.900, 'b':78.320, 'c':38.790, 'alpha':90.00, 'beta':91.00, 'gamma': 90.00}, 103],
-          ['P 21 21 21', {'a': 64.900, 'b':78.320, 'c':64.900, 'alpha':90.00, 'beta':90.00, 'gamma': 90.00}, 101],
-          ['P 21 1 1', {'a': 64.900, 'b':78.320, 'c':38.790, 'alpha':90.00, 'beta':90.00, 'gamma': 90.00}, 104]]:
-            rv = s.validity({'spaceGroup' : sgp, 'cell' : cell})
-            #print rv.report()
-            if len(rv) == 0:
-                if expectedErr is not None:
-                    self.fail('No validity fail for CSpaceGroupCell:'+sgp)
-            elif len(rv)>1:
-                self.fail('CErrorReport for CSpaceGroupCell longer than 1:'+sgp)
-            elif rv[0]['code'] != expectedErr:
-                self.fail('CErrorReport for CSpaceGroupCell does not give expected error:'+sgp)
-
-
-class testCObsDataFile(unittest.TestCase):
-    def setUp(self):
-        self.testDataDir =  os.path.normpath(os.path.join(CCP4Utils.getCCP4I2Dir(),'test','data'))
-        self.app = CCP4Modules.QTAPPLICATION()
-        from PySide2 import QtCore
-        self.mummy = QtCore.QObject(self.app)
-
-    def test1(self):
-        self.obs = CObsDataFile(parent=self.mummy,fullPath= os.path.normpath(os.path.join(self.testDataDir,'rnase_obs_fpair.mtz')))
-        self.obs.setContentFlag()
-        print('testCObsDataFile.test1 contentFlag',self.obs.contentFlag)
-        outfile = os.path.normpath(os.path.join(CCP4Utils.getTestTmpDir(),'testCObsDataFile.mtz'))
-        if os.path.exists(outfile):
-            os.remove(outfile)
-        self.obs.convert(targetContent=CObsDataFile.CONTENT_FLAG_FMEAN,targetFile=outfile)
-        self.assertTrue(os.path.exists(outfile),'CObsDataFile.convert failed')
-
-class testCPhsDataFile(unittest.TestCase):
-    def setUp(self):
-        self.testDataDir =  os.path.normpath(os.path.join(CCP4Utils.getCCP4I2Dir(),'test','data'))
-        self.app = CCP4Modules.QTAPPLICATION()
-        from PySide2 import QtCore
-        self.mummy = QtCore.QObject(self.app)
-
-    def test1(self):
-        self.phs = CPhsDataFile(parent=self.mummy,fullPath= os.path.normpath(os.path.join(self.testDataDir,'rnase25_mini_HL.mtz')))
-        self.phs.setContentFlag()
-        print('testCPhsDataFile.test1 contentFlag',self.phs.contentFlag)
-        outfile =  os.path.normpath(os.path.join(CCP4Utils.getTestTmpDir(),'testCPhsDataFile.mtz'))
-        if os.path.exists(outfile):
-            os.remove(outfile)
-        self.phs.convert(targetContent=CPhsDataFile.CONTENT_FLAG_PHIFOM,targetFile=outfile)
-        self.assertTrue(os.path.exists(outfile),'CPhsDataFile.convert failed')
-        # beware self.phs suddenly is something else..
-        self.phs.setFullPath(outfile)
-        self.phs.loadFile()
-        columns = self.phs.fileContent.getListOfColumns()
-        print('testCPhsDataFile.test1',columns)
-        self.assertEqual(len(columns),2,'Output from testCPhsDataFile has wrong number of columns')
-        self.assertTrue(columns[0].columnLabel.__str__() in ['PHI','FOM'] and columns[1].columnLabel.__str__() in ['PHI','FOM'],'Output from testCPhsDataFile has wrong column labels')
