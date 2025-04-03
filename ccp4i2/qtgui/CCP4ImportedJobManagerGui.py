@@ -1,35 +1,16 @@
-from __future__ import print_function
-
 """
-     CCP4ReportExternalManagerGui.py: CCP4 GUI Project
-     Copyright (C) 2013 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2013 STFC
+Liz Potterton July 2013 - report jobs run external to ccp4i2
 """
 
-"""
-     Liz Potterton July 2013 - report jobs run external to ccp4i2
-"""
+import functools
+import os
 
-import os, functools
-from PySide2 import QtGui, QtWidgets,QtCore
-from core import CCP4Data,CCP4Container
-from qtgui import CCP4CustomisationGui,CCP4Widgets
-from core import CCP4ImportedJobManager
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import IMPORTEDJOBMANAGER,WEBBROWSER,PROJECTSMANAGER
+from PySide2 import QtCore, QtWidgets
+
+from ..core import CCP4ImportedJobManager
+from ..qtgui import CCP4CustomisationGui, CCP4Widgets
+
 
 def openGui():
   if CImportedJobManagerGui.insts is None:
@@ -47,6 +28,7 @@ class CImportedJobManagerGui(CCP4CustomisationGui.CCustomisationGui):
     
 
   def manager(self):
+    from ..core.CCP4ImportedJobManager import IMPORTEDJOBMANAGER
     return IMPORTEDJOBMANAGER()
 
   def handleNew(self):
@@ -137,7 +119,8 @@ class CCreateImportedJobDialog(QtWidgets.QDialog):
     
     self.widgets = {}
     self.model = CCP4ImportedJobManager.CImportedJobDefinition(self,name=name)
-    if name is not None:  
+    if name is not None:
+      from ..core.CCP4ImportedJobManager import IMPORTEDJOBMANAGER
       self.model.loadDataFromXml(fileName=os.path.join(IMPORTEDJOBMANAGER().getDirectory(name),'task.xml'),loadHeader=True)
 
     line = QtWidgets.QHBoxLayout()
@@ -241,6 +224,7 @@ class CCreateImportedJobDialog(QtWidgets.QDialog):
     
   @QtCore.Slot()
   def help(self):
+    from .CCP4WebBrowser import WEBBROWSER
     WEBBROWSER().loadWebPage(helpFileName='customisation')
 
   @QtCore.Slot()
@@ -251,6 +235,7 @@ class CCreateImportedJobDialog(QtWidgets.QDialog):
   def accept(self):
     if not self.model.isValid(): return
     name = self.model.name.__str__()
+    from ..core.CCP4ImportedJobManager import IMPORTEDJOBMANAGER
     if os.path.exists(os.path.join(IMPORTEDJOBMANAGER().getDirectory(name))):
       QtWidgets.QMessageBox.warning(self,self.windowTitle(),'There is already an imported job called: '+name+'.  Please enter alternative name')
       return

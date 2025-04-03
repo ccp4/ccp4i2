@@ -1,30 +1,18 @@
 """
-     CCP4MessageBox.py: CCP4 GUI Project
-     Copyright (C) 2012 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-"""
-   Liz Potterton Feb 2012 -wrap QMessageBox
+Copyright (C) 2012 STFC
+Liz Potterton Feb 2012 -wrap QMessageBox
 """
 
 ##@package CCP4ProjectWidget View a project
-                            
-from PySide2 import QtGui, QtWidgets,QtCore
-from ccp4i2 import __version__, __version_date__
+
+import os
+import shutil
+import sys
+import traceback
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from .. import __version__, __version_date__
 
 
 class CMessageBox(QtWidgets.QDialog):
@@ -32,7 +20,6 @@ class CMessageBox(QtWidgets.QDialog):
   DEVELOPERS = [ [ 'Liz' , 'liz.potterton@york.ac.uk' ],
                  ['Andrey' , 'andrey.lebedev@stfc.ac.uk'] ,
                  [ 'Stuart', 'stuart.mcnicholas@york.ac.uk'] ]
-
 
   def __init__(self,parent=None,title=None,message='',exception=None,details=None,jobId=None,openJob=None):
     QtWidgets.QDialog.__init__(self,parent)
@@ -42,7 +29,7 @@ class CMessageBox(QtWidgets.QDialog):
     if openJob is not None and openJob.jobId is not None:
       self.openJob = openJob
     elif jobId is not None:
-      from dbapi import CCP4DbUtils
+      from ..dbapi import CCP4DbUtils
       self.openJob = CCP4DbUtils.COpenJob(jobId=jobId)
     else:
       self.openJob = None
@@ -64,7 +51,6 @@ class CMessageBox(QtWidgets.QDialog):
     self.layout().addWidget(buttons)
 
     if exception is not None:
-      import sys,traceback
       try:
         stack =  traceback.format_exc()
       except:
@@ -108,22 +94,20 @@ class CMessageBox(QtWidgets.QDialog):
     b.clicked.connect(self.reportDialog.close)
     self.reportDialog.show()
     self.reportDialog.raise_()
-                 
-    
+
   @QtCore.Slot()
   def send(self):
-    import os,sys,shutil
-    from core import CCP4Modules
-    from dbapi import CCP4DbApi
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+    from ..dbapi import CCP4DbApi
     selectedAdr = None
     selectedDev = self.devWidget.currentText().__str__()
     for dev,adr in  CMessageBox.DEVELOPERS:
       if selectedDev == dev : selectedAdr = adr
     if self.openJob is not None and self.sendJobWidget.isChecked():
       #print 'CMessageBox.send jobId',self.openJob.jobId
-      jobDir =  os.path.split(CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self.openJob.jobId,mode='ROOT'))[0]
+      jobDir =  os.path.split(PROJECTSMANAGER().makeFileName(jobId=self.openJob.jobId,mode='ROOT'))[0]
       #Copy input files into the same directory
-      fileList = CCP4Modules.PROJECTSMANAGER().db().getJobFiles(jobId=self.openJob.jobId,role=CCP4DbApi.FILE_ROLE_IN,mode='fullPath')
+      fileList = PROJECTSMANAGER().db().getJobFiles(jobId=self.openJob.jobId,role=CCP4DbApi.FILE_ROLE_IN,mode='fullPath')
       inputFilesDir = os.path.join(jobDir,'INPUT_FILES')
       if not os.path.exists(inputFilesDir): os.mkdir(inputFilesDir)
       for inpFile in fileList:
@@ -161,9 +145,7 @@ class CMessageBox(QtWidgets.QDialog):
     rv =  QtGui.QDesktopServices.openUrl( QtCore.QUrl(message) )
     self.reportDialog.close()
     self.close()
-    
 
-    
   @QtCore.Slot()
   def toggleDetails(self):
     if str(self.showButton.text())[0:4] == 'Show':
@@ -176,5 +158,3 @@ class CMessageBox(QtWidgets.QDialog):
       self.textWidget.setReadOnly(False)
       self.textWidget.setPlainText(self.message)
       self.textWidget.setReadOnly(True)
-
-  

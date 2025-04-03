@@ -1,42 +1,28 @@
-from __future__ import print_function
-
 """
-     CCP4JobControlGui.py: CCP4 GUI Project
-     Copyright (C) 2016STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.sstac
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2016 STFC
+Liz Potterton april 2016 - Gui for remote running
 """
 
-"""
-   Liz Potterton april 2016 - Gui for remote running
-"""
-
-import os
-import glob
-import time
+from collections.abc import Callable
 import functools
-import sys
-if sys.version_info >= (3,7):
-    from collections.abc import Callable
-else:
-    from collections import Callable
-from PySide2 import QtGui, QtWidgets,QtCore
-from core.CCP4ErrorHandling import *
-from core import CCP4Modules
-from core import CCP4Annotation
-from qtgui import CCP4Widgets
-from core import CCP4JobServer
+import os
+import time
+
+from ccp4mg.qtgui import UtilityThread
+from PySide2 import QtCore, QtWidgets
+
+from . import CCP4Widgets
+from ..core import CCP4Annotation
+from ..core import CCP4JobServer
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import CException
+
+
+def JOBCONTROLLERGUI():
+    if CServerParamsDialog.insts is None:
+        CServerParamsDialog.insts = CServerParamsDialog()
+    return  CServerParamsDialog.insts
+
 
 class CServerParamsDialog(QtWidgets.QDialog):
     insts = None
@@ -65,7 +51,8 @@ class CServerParamsDialog(QtWidgets.QDialog):
         ret = []
       elif mechanism == 'custom':
         if customCodeFile is not None:
-          return CCP4Modules.JOBCONTROLLER().customHandler(customCodeFile=customCodeFile).SHOW_USER_PARAMS
+          from ..qtcore.CCP4JobController import JOBCONTROLLER
+          return JOBCONTROLLER().customHandler(customCodeFile=customCodeFile).SHOW_USER_PARAMS
         else:
           return ['username','password']
       if mechanism in ['qsub_local','qsub_remote','qsub_shared','slurm_remote']:
@@ -135,7 +122,8 @@ class CServerParamsDialog(QtWidgets.QDialog):
         self.labels = { }
         QtWidgets.QDialog.__init__(self,parent)
         try:
-          self.loadConfig()
+          from ..core.CCP4ServerSetup import SERVERSETUP
+          self.container = SERVERSETUP()
         except:
           print('Failed loading server config file from CCP4I2/local_setup/servers_config.params.xml')
         
@@ -211,7 +199,7 @@ class CServerParamsDialog(QtWidgets.QDialog):
           if param == 'machine':
             self.widgets[param] = QtWidgets.QComboBox(self)
           elif param == 'queueOptionsFile':
-            from core import CCP4File
+            from ..core import CCP4File
             self.queueOptionsFile = CCP4File.CDataFile(parent=self)
             self.widgets[param] = CCP4Widgets.CDataFileView(self,model=self.queueOptionsFile)
           else:
@@ -230,7 +218,8 @@ class CServerParamsDialog(QtWidgets.QDialog):
               w.deleteLater()
             except:
               pass
-          guiFunction = getattr(CCP4Modules.JOBCONTROLLER().customHandler(customCodeFile=serverGroup.customCodeFile),'guiFrame',None)
+          from ..qtcore.CCP4JobController import JOBCONTROLLER
+          guiFunction = getattr(JOBCONTROLLER().customHandler(customCodeFile=serverGroup.customCodeFile),'guiFrame',None)
           if guiFunction is not None and isinstance(guiFunction, Callable):
             try:
               guiFunction(parentFrame=self.customFrame)
@@ -284,11 +273,6 @@ See under Utilities -> System administrator tools''')
           self.labels['password'].setText('Your key file password')
           self.widgets['password'].setToolTip('Your key file password')
 
-        
-      
-    def loadConfig(self):
-      self.container = CCP4Modules.SERVERSETUP()
-          
     @QtCore.Slot()
     def accept(self):
         QtWidgets.QDialog.accept(self)
@@ -310,7 +294,8 @@ See under Utilities -> System administrator tools''')
             
     @QtCore.Slot()
     def help(self):
-      CCP4Modules.WEBBROWSER().loadWebPage(helpFileName='servers.html',newTab=True)
+      from .CCP4WebBrowser import WEBBROWSER
+      WEBBROWSER().loadWebPage(helpFileName='servers.html',newTab=True)
 
 class CServerGroupView(CCP4Widgets.CComplexLineWidget):
     
@@ -503,7 +488,8 @@ class CServerSetupWindow(QtWidgets.QDialog):
     self.layout().setContentsMargins(MARGIN,MARGIN,MARGIN,MARGIN)
     self.widgets= {}
 
-    self.container = CCP4Modules.SERVERSETUP()
+    from ..core.CCP4ServerSetup import SERVERSETUP
+    self.container = SERVERSETUP()
     self.container.load()
     line = QtWidgets.QHBoxLayout()
     self.sourceLabel = QtWidgets.QLabel('Server setup loaded from ',self)
@@ -559,7 +545,6 @@ class CServerSetupWindow(QtWidgets.QDialog):
     self.layout().addLayout(line)
 
   def makeAllWidgets(self):
-    #print 'makeAllWidgets',self.container,self.container._value,self.getNServerGroups()
     n = 1
     while self.container.get('SERVERGROUP'+str(n)) is not None:
       self.makeWidget(n)
@@ -577,12 +562,6 @@ class CServerSetupWindow(QtWidgets.QDialog):
     self.widgets['SERVERGROUP'+str(n)].setMinimumWidth(550)
     self.widgets['SERVERGROUP'+str(n)].deleteButton.clicked.connect(functools.partial(self.handleDelete,n))
     self.widgets['SERVERGROUP'+str(n)].testButton.clicked.connect(functools.partial(self.handleTest,n))
-    #self.layout().addWidget(self.widgets['SERVERGROUP'+str(n)])
-    '''
-    self.widgets['SERVERGROUP'+str(n)].updateViewFromModel()
-    self.widgets['SERVERGROUP'+str(n)].widgets['serverList'].updateViewFromModel()
-    self.widgets['SERVERGROUP'+str(n)].widgets['serverList'].handleRowChange(0,force=True)
-    '''
 
     self.contentLayout.addWidget(self.widgets['SERVERGROUP'+str(n)])
 
@@ -594,7 +573,7 @@ class CServerSetupWindow(QtWidgets.QDialog):
     if self.container.source is not None:
       self.sourceLabel.setText('Server setup loaded from '+str(self.container.source))
       altSource =  ['user','installation'][1 -  ['user','installation'].index( self.container.source )]
-      if os.path.exists(self.container.preferencesFile(altSource)[0]):
+      if self.container.preferencesFile(altSource)[0].exists():
         self.altSourceBut.setText('Load '+altSource+' setup')
         self.altSourceBut.setEnabled(True)
         return
@@ -700,9 +679,6 @@ class CServerSetupWindow(QtWidgets.QDialog):
     self.testMessage.show()
     self.testMessage.raise_()
 
-    #FIXME - This signal does not exist?
-    #CCP4Modules.JOBCONTROLLER().testMessageSignal.connect(self.updateTestReport)
-    import UtilityThread
     if not hasattr(self,'testThreads'): self.testThreads = {}
     self.testThreads[indx] = UtilityThread.UtilityThread(functools.partial(self.runTests,indx))
     self.testThreads[indx].finished.connect(functools.partial(self.cancelTests,indx))
@@ -738,7 +714,8 @@ class CServerSetupWindow(QtWidgets.QDialog):
       #print 'testing server',server
       self.testMessageSignal.emit('Testing '+str(server)+'\n')
       try:
-        ret = CCP4Modules.JOBCONTROLLER().testRemoteFiles(machine=str(server),username=str(self.testDialogUsername.text()),
+        from ..qtcore.CCP4JobController import JOBCONTROLLER
+        ret = JOBCONTROLLER().testRemoteFiles(machine=str(server),username=str(self.testDialogUsername.text()),
            password = str(self.testDialogPassword.text()), remoteFileList=remoteFileList,timeout=timeout,maxTries=maxTries)
         message = ''
         labelList = ['CCP4 distro','Tmp dir']
@@ -754,25 +731,20 @@ class CServerSetupWindow(QtWidgets.QDialog):
 
   @QtCore.Slot(str)
   def doApply(self,source):
-    #print 'CServerSetupWindow.doApply', self.widgets['SERVERGROUP1'].widgets['serverList'].listWidget.count()
     invalidList = []
     for key in list(self.widgets.keys()):
       self.widgets[key].updateModelFromView()
-      #print 'CServerSetupWindow.doApply',key,self.widgets[key].widgets['mechanism'].currentIndex(),self.container.get(key).mechanism
       self.widgets[key].validate()
       if self.widgets[key].isValid is not None and not self.widgets[key].isValid:
         invalidList.append(key)
 
-    #print 'CServerSetupWindow.doApply invalidList',invalidList
-    
     if len(invalidList)>0:
       QtWidgets.QMessageBox.warning(self,'Server setup','Invalid data - not saved')
     else:
       self.container.save(source)
-      #QtWidgets.QDialog.close(self)
       self.setAltSourceButton()
-      from core import CCP4Modules
-      CCP4Modules.JOBCONTROLLER().resetServersEnabled()
+      from ..qtcore.CCP4JobController import JOBCONTROLLER
+      JOBCONTROLLER().resetServersEnabled()
 
   @QtCore.Slot()
   def close(self):
@@ -780,37 +752,8 @@ class CServerSetupWindow(QtWidgets.QDialog):
 
   @QtCore.Slot()
   def help(self):
-    CCP4Modules.WEBBROWSER().loadWebPage(helpFileName='servers.html',newTab=True)
-
-    
-class CRemoteStatus(QtWidgets.QDialog):
-  def __init__(self,parent):
-    QtWidgets.QDialog.__init__(self,parent)
-    self.setModal(False)
-    self.setLayout(QtWidgets.QVBoxLayout())
-    self.advice = QtWidgets.QLabel(self)
-    self.layout().addWidget(self.advice)
-    self.jobList = QtWidgets.QListWidget(self)   
-    self.layout().addWidget(self.jobList )
-    butLayout = QtWidgets.QHBoxLayout()
-    for label,connect in [['Close',self.close]]:
-      but = QtWidgets.QPushButton(label,self)
-      but.clicked.connect(connect)
-      butLayout.addWidget(but)
-    self.layout().addLayout(butLayout)
-    
-  def load(self,text='',title=None,advice=None):
-    if title is not None:
-      self.setWindowTitle(title)
-    else:
-      self.setWindowTitle('')
-    if advice is not None:
-      self.advice.setText(advice)
-    else:
-      self.advice.setText('')
-    self.jobList.clear()
-    lineList = text.split('\n')
-    for line in lineList: self.jobList.addItem(line)
+    from .CCP4WebBrowser import WEBBROWSER
+    WEBBROWSER().loadWebPage(helpFileName='servers.html',newTab=True)
 
 
 class CPasswordEntry(QtWidgets.QDialog):
@@ -837,7 +780,6 @@ class CPasswordEntry(QtWidgets.QDialog):
     #print 'sendPass',passw
     self.passwordEntered.emit(passw)
     self.close()
-
 
 
 class CListProcesses(QtWidgets.QDialog):
@@ -875,11 +817,13 @@ class CListProcesses(QtWidgets.QDialog):
     self.markFailedButton.setEnabled(False)
     self.layout().addLayout(butLayout)
     self.projectNameCache = {}
-    CCP4Modules.JOBCONTROLLER().remoteProcessesList.connect(self.handleRemoteProcessesList)
+    from ..qtcore.CCP4JobController import JOBCONTROLLER
+    JOBCONTROLLER().remoteProcessesList.connect(self.handleRemoteProcessesList)
 
   def projectName(self,projectId):
     if projectId not in self.projectNameCache:
-      self.projectNameCache[projectId] = CCP4Modules.PROJECTSMANAGER().db().getProjectInfo(projectId,'projectname')
+      from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+      self.projectNameCache[projectId] = PROJECTSMANAGER().db().getProjectInfo(projectId,'projectname')
     return self.projectNameCache[projectId]
 
   @QtCore.Slot()
@@ -888,15 +832,15 @@ class CListProcesses(QtWidgets.QDialog):
     #self.tableWidget.setRowCount(0)
     self.treeWidget.setHeaderLabels(self.COLUMNHEADERS)
     # load local info
-    import time
     now = time.time()
-    procDict = CCP4Modules.JOBCONTROLLER().listLocalProcesses(containsList=['ccp4'])
+    from ..qtcore.CCP4JobController import JOBCONTROLLER
+    procDict = JOBCONTROLLER().listLocalProcesses(containsList=['ccp4'])
     #print 'CListProcesses.load',procDict
-    runningJobs = CCP4Modules.PROJECTSMANAGER().db().getRunningJobs()
-    from core import CCP4Utils
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+    runningJobs = PROJECTSMANAGER().db().getRunningJobs()
     self.drawTree(CCP4Utils.getHostName(),now,procDict,runningJobs)
     
-    CCP4Modules.JOBCONTROLLER().listRemoteProcesses()
+    JOBCONTROLLER().listRemoteProcesses()
 
 
   @QtCore.Slot(tuple)
@@ -904,7 +848,8 @@ class CListProcesses(QtWidgets.QDialog):
     machine,jobDict,procDict,atTime = args
     #print 'handleRemoteProcessesList',machine,procDict,procDict,atTime
     #print 'handleRemoteProcessesList processes keys',procDict.keys()
-    runningJobs = CCP4Modules.PROJECTSMANAGER().db().getRunningJobs(remote=True)
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+    runningJobs = PROJECTSMANAGER().db().getRunningJobs(remote=True)
     #print 'handleRemoteProcessesList runningJobs',runningJobs
     self.drawTree(machine,atTime,procDict,runningJobs)
 
@@ -918,7 +863,8 @@ class CListProcesses(QtWidgets.QDialog):
     self.treeWidget.expandItem(machineItem)
     for jobId,jobNumber,taskName,projectId,processId,parentJobId in runningJobs:
       if parentJobId is None and processId is not None:
-        taskTitle = CCP4Modules.TASKMANAGER().getTitle(taskName)
+        from ..core.CCP4TaskManager import TASKMANAGER
+        taskTitle = TASKMANAGER().getTitle(taskName)
         #print 'CListProcesses.load',jobId,jobNumber,processId
         projectName = self.projectName(projectId)
         if processId in procDict:
@@ -959,11 +905,11 @@ class CListProcesses(QtWidgets.QDialog):
        treeItem.setData(0,QtCore.Qt.UserRole,jobId)
          
      return treeItem
-     
 
   @QtCore.Slot()
   def help(self):
-    CCP4Modules.WEBBROWSER().loadWebPage(helpFileName='tutorial',target='running')
+    from .CCP4WebBrowser import WEBBROWSER
+    WEBBROWSER().loadWebPage(helpFileName='tutorial',target='running')
 
   @QtCore.Slot()
   def handleSelectionChanged(self):
@@ -980,20 +926,23 @@ class CListProcesses(QtWidgets.QDialog):
     
   @QtCore.Slot()
   def killJob(self):
-    from dbapi import CCP4DbApi
+    from ..dbapi import CCP4DbApi
     jobId = self.treeWidget.selectedItems()[0].data(0,QtCore.Qt.UserRole).__str__()
     print('CListProcesses.killJob',jobId)
-    err = CCP4Modules.JOBCONTROLLER().killJobProcess(jobId=jobId)
-    CCP4Modules.PROJECTSMANAGER().db().updateJobStatus(jobId,CCP4DbApi.JOB_STATUS_FAILED)
+    from ..qtcore.CCP4JobController import JOBCONTROLLER
+    err = JOBCONTROLLER().killJobProcess(jobId=jobId)
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+    PROJECTSMANAGER().db().updateJobStatus(jobId,CCP4DbApi.JOB_STATUS_FAILED)
 
     self.load()
 
   @QtCore.Slot(bool)
   def markFinished(self,failed=True):
-    from dbapi import CCP4DbApi
+    from ..dbapi import CCP4DbApi
     jobId = self.treeWidget.selectedItems()[0].data(0,QtCore.Qt.UserRole).__str__()
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     if failed:
-      CCP4Modules.PROJECTSMANAGER().db().updateJobStatus(jobId,CCP4DbApi.JOB_STATUS_FAILED)
+      PROJECTSMANAGER().db().updateJobStatus(jobId,CCP4DbApi.JOB_STATUS_FAILED)
     else:
-      CCP4Modules.PROJECTSMANAGER().db().updateJobStatus(jobId,CCP4DbApi.JOB_STATUS_FINISHED)
+      PROJECTSMANAGER().db().updateJobStatus(jobId,CCP4DbApi.JOB_STATUS_FINISHED)
     self.load()

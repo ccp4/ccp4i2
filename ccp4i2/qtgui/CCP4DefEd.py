@@ -593,9 +593,7 @@ class CDefEd(QtWidgets.QMainWindow):
     return newName
   
   def handleNew(self):
-    from ..core.CCP4Container import CContainer
     from ..core.CCP4Data import CString
-    
     container,afterObject = self.insertPositionInContainer()   
     # unique name
     newName = self.newName('NONAME')
@@ -744,22 +742,11 @@ class CDefEd(QtWidgets.QMainWindow):
     self.nAutoSaved = 0
     self.autoSavedStatus = []
     self.autoSavedPosition = -1
-  
 
   def autoSave(self):
     self.nAutoSaved = self.nAutoSaved + 1
     self.autoSavedStatus.append(self.getSaveStatus())
     self.autoSavedPosition = len(self.autoSavedStatus)-1
-
-  def autoRestore(self,increment=0):
-    if increment<=0:
-      new=max(0,self.autoSavedPosition+increment)
-    else:
-      new = min(len(self.autoSavedStatus)-1,self.autoSavedPosition+increment)
-
-    if new != self.autoSavedPosition:
-      self.autoSavedPosition = new
-      self.updateStatus(status=self.autoSavedStatus[self.autoSavedPosition])
 
   def getSaveStatus(self):
     current = self.currentDataObject()
@@ -801,19 +788,19 @@ class CDefEd(QtWidgets.QMainWindow):
             subObj.setQualifier(qualifierName,value)
           
           except CException as e:
-            e.warningMessage()
+            warningMessage(e)
           except:
             e = CException(self.__class__,104,qualifierName)
-            e.warningMessage()
+            warningMessage(e)
           
       else:
         try:
           dataObject.setQualifier(qualifierName,value)        
         except CException as e:
-          e.warningMessage()
+          warningMessage(e)
         except:
           e = CException(self.__class__,104,qualifierName)
-          e.warningMessage()
+          warningMessage(e)
       
       self.redrawCurrentItem()
       self.edited= True
@@ -824,16 +811,7 @@ class CDefEd(QtWidgets.QMainWindow):
     dataObject = self.currentDataObject()
     #print 'handleCollectionQualifierEdited dataObject',repr(dataObject)
     if dataObject is not None:
-      #try:
-      if 1:
-        dataObject.setQualifier(qualifierName,value)
-      '''
-      except CException as e:
-        e.warningMessage()
-      except:
-        e = CException(self.__class__,104,qualifierName)
-        e.warningMessage()
-      '''
+      dataObject.setQualifier(qualifierName,value)
       self.redrawCurrentItem()
       self.edited= True
 
@@ -868,7 +846,7 @@ class CDefEd(QtWidgets.QMainWindow):
     dataObject = self.currentDataObject()
     if dataObject is None:
       e = CException(self.__class__,110)
-      e.warningMessage()
+      warningMessage(e)
       return
     #print 'handleListStateChanged', state,isinstance(dataObject,CList)
     if isinstance(dataObject,CCP4Data.CCollection):
@@ -891,7 +869,7 @@ class CDefEd(QtWidgets.QMainWindow):
         newObject = DATAMANAGER().getClass(className)(name=name)
       except:
         e = CException(self.__class__,105,className)
-        e.warningMessage()
+        warningMessage(e)
         return
       if isinstance(oldObject,CCP4Data.CCollection) and oldObject.subItemClassName() == className:
         try:
@@ -937,7 +915,7 @@ class CDefEd(QtWidgets.QMainWindow):
     except CException as e:
       if not self.nameClashWarned.count(newName):
         self.nameClashWarned.append(newName)
-        e.warningMessage()
+        warningMessage(e)
 
     # Beware until the content tree is updated to reflect new name
     # there is descrepancy between gui and container and dataObjectFromTreeWidgetItem and
@@ -1035,7 +1013,7 @@ class CContentsTree(QtWidgets.QTreeWidget):
     QtWidgets.QTreeWidget.clear(self)
 
   def loadContainer(self,container=None,parent=None):
-    from core import CCP4Container
+    from ..core import CCP4Container
     e = CErrorReport()
     for name in container.dataOrder():
       defn = container.contents(name)
@@ -1056,8 +1034,7 @@ class CContentsTree(QtWidgets.QTreeWidget):
     return e
 
   def makeTreeWidgetItem(self,name,defn):
-    from core import CCP4Container,CCP4Data
-    import types
+    from ..core import CCP4Container, CCP4Data
     item = None
     if defn['class'] == CCP4Container.CContainer:
       item = QtWidgets.QTreeWidgetItem([name],1001)
@@ -1312,7 +1289,6 @@ class CDefEditor(QtWidgets.QFrame):
     self.rightFrame.layout().setSpacing(CDefEd.MARGIN)
     self.rightFrame.layout().setContentsMargins(CDefEd.MARGIN,CDefEd.MARGIN,CDefEd.MARGIN,CDefEd.MARGIN)
     
-    import functools
     self.connect(self.nameEditor,QtCore.SIGNAL('editingFinished()'),functools.partial(self.emit,QtCore.SIGNAL('nameChanged')))
     self.connect(self.nameCombo,QtCore.SIGNAL('editTextChanged()'),functools.partial(self.emit,QtCore.SIGNAL('nameChanged')))
     self.connect(self.nameCombo,QtCore.SIGNAL('currentIndexChanged(int)'),functools.partial(self.emit,QtCore.SIGNAL('nameChanged')))
@@ -1342,14 +1318,13 @@ class CDefEditor(QtWidgets.QFrame):
 
   def drawQualifiers(self,cls):
     # Not using CCP4Widgets 'cos want to keep the standard context menu with paste function
-    import types,functools
     try:
       obj = cls()
       qDefs = obj.qualifiersDefinition()
       qOrder = obj.qualifiersOrder()
     except:
       e = CException(self.__class__,101,cls.__name__)
-      e.warningMessage()
+      warningMessage(e)
       return
     
     self.deleteQualiferWidget()
@@ -1409,7 +1384,7 @@ class CDefEditor(QtWidgets.QFrame):
       except:
         e.append(self.__class__,102,quali)
 
-    if len(e)>0: e.warningMessage()
+    if len(e)>0: warningMessage(e)
 
   def setDefaultQualifiers(self):
     cls = DATAMANAGER().getClass(self.currentClassName)
@@ -1444,7 +1419,7 @@ class CDefEditor(QtWidgets.QFrame):
       except:
          e.append(self.__class__,103,key)
          
-    if len(e)>0: e.warningMessage()
+    if len(e)>0: warningMessage(e)
 
         
   def changeDataClass(self,clsName):
@@ -1458,7 +1433,6 @@ class CDefEditor(QtWidgets.QFrame):
     self.setDefaultQualifiers()
 
   def set(self,dataObj=None):
-    from core.CCP4XtalData import CProgramColumnGroup
     if dataObj is None or not isinstance(dataObj,CCP4Data.CData): return
     self.nameEditor.setText(str(dataObj.objectName()))
     if isinstance(dataObj,CCP4Data.CCollection):
@@ -1510,7 +1484,7 @@ class CDefEditor(QtWidgets.QFrame):
 
   def setColumnGroupWidget(self,currentObject):
     #print 'deEditor.setColumnGroupWidget',currentObject.objectName(),type(currentObject)
-    from core.CCP4XtalData import CProgramColumnGroup
+    from ..core.CCP4XtalData import CProgramColumnGroup
     if currentObject is None or not isinstance(currentObject,CProgramColumnGroup):
       self.columnGroupWidget.setVisible(False)
       self.columnGroupWidget.blockSignals(True)
@@ -1602,8 +1576,6 @@ class CCollectionFrame(QtWidgets.QFrame):
     
     self.layout().addWidget(self.stack)
    
-    import functools
-
     self.connect(self.classCombo,QtCore.SIGNAL('currentIndexChanged(int)'),self.updateStack)
     self.connect(self.dictDefault,QtCore.SIGNAL('editingFinished()'),functools.partial(self.emit,QtCore.SIGNAL('qualifierEdited'),'default'))
     self.connect(self.listDefault,QtCore.SIGNAL('editingFinished()'),functools.partial(self.emit,QtCore.SIGNAL('qualifierEdited'),'default'))
@@ -1665,7 +1637,6 @@ class CCollectionFrame(QtWidgets.QFrame):
       self.compare.setCurrentIndex(2)
     self.listDefault.setText(str(qualis.get('default')))
     self.dictDefault.setText('')
-    
 
   def setDict(self,dataObj):
     self.classCombo.setCurrentIndex(2)
@@ -1675,10 +1646,6 @@ class CCollectionFrame(QtWidgets.QFrame):
     self.compare.setCurrentIndex(0)
     self.listDefault.setText('')
     self.dictDefault.setText(str(qualis.get('default')))
-  
-  def setTable(self,dataObj):
-    self.classCombo.setCurrentIndex(3)
-    
 
   def getQualifiers(self):
     qualis = {}
@@ -1734,7 +1701,7 @@ class CClassInfo(QtGui.QTextDocument):
 
     
   def setClassName(self,clsName):
-    from core.CCP4DataManager import DATAMANAGER
+    from ..core.CCP4DataManager import DATAMANAGER
     cls = DATAMANAGER().getClass(clsName)
     if cls is not None:
       self._className=clsName
@@ -1742,14 +1709,14 @@ class CClassInfo(QtGui.QTextDocument):
       self.setHtml(self.getInfo())
 
   def getClass(self):
-    from core.CCP4DataManager import DATAMANAGER
+    from ..core.CCP4DataManager import DATAMANAGER
     return DATAMANAGER().getClass(self._className)
    
 
   def getClassPathText(self):
     cls = self.getClass()
     if cls is None: return ''
-    from core.CCP4Data import baseClassList
+    from ..core.CCP4Data import baseClassList
     baseClassList = baseClassList(cls)
     text = ''
     for clsItem in baseClassList:
@@ -1759,7 +1726,7 @@ class CClassInfo(QtGui.QTextDocument):
     return text[0:-4]
 
   def getContentsText(self):
-    from core import CCP4Data
+    from ..core import CCP4Data
     cls = self.getClass()
     if cls is None: return ''
     text = '<h4>Contents of class:</h4>\n'
@@ -1793,7 +1760,6 @@ class CClassInfo(QtGui.QTextDocument):
     return text
 
   def getQualifiersInfo(self):
-    import types,re
     cls = self.getClass()
     if cls is None: return ''
     try:
@@ -1802,8 +1768,6 @@ class CClassInfo(QtGui.QTextDocument):
       qOrder = obj.qualifiersOrder()
       qValues = obj.qualifiers()
     except:
-      #e = CException(self.__class__,101,cls.__name__)
-      #e.warningMessage()
       print('Can not get qualifiers info for class')
       return ''
     text = '<h4>Qualifiers for class:</h4>\n<table>\n'
@@ -1874,8 +1838,7 @@ class CProgramColumnGroupQualifierView(QtWidgets.QFrame):
 
   def __init__(self,parent=None):
     QtWidgets.QFrame.__init__(self,parent=None)
-    from core.CCP4XtalData import CColumnType
-    import functools
+    from ..core.CCP4XtalData import CColumnType
     self.setLayout(QtWidgets.QGridLayout())
     maxColumns=5
     iCol = -1
@@ -1931,8 +1894,7 @@ class CProgramColumnGroupQualifierView(QtWidgets.QFrame):
     return colGroupItemList
 
   def set(self,colGroupItemList=[]):
-    import types
-    from core.CCP4XtalData import CColumnType
+    from ..core.CCP4XtalData import CColumnType
     self.clear()
     iRow = 0
     columnTypes = CColumnType.QUALIFIERS['enumerators']
@@ -1962,7 +1924,7 @@ class CMakeWrapperPlugin(QtWidgets.QDialog):
 
   def __init__(self,parent=None):
     QtWidgets.QDialog.__init__(self,parent)
-    from core.CCP4ScriptManager import SCRIPTMANAGER
+    from ..core.CCP4ScriptManager import SCRIPTMANAGER
 
     self.setModal(True)
     self.setWindowTitle('Create Plugin')
@@ -2010,7 +1972,7 @@ class CMakeWrapperPlugin(QtWidgets.QDialog):
     self.layout().addWidget(buttonBox)
 
   def makeWrapper(self):
-    from core.CCP4ScriptManager import SCRIPTMANAGER
+    from ..core.CCP4ScriptManager import SCRIPTMANAGER
     name = str(self.name.text()).strip()
     pipeline = str(self.pipeline.currentText())
     if pipeline == 'Wrappers' : pipeline = None
@@ -2026,12 +1988,12 @@ class CMakeWrapperPlugin(QtWidgets.QDialog):
     try:
       wrapperDir,report = SCRIPTMANAGER().makeWrapperPlugin(name=name,pipeline=pipeline,template=template,license=license)
     except CException as e:
-      e.warningMessage()
+      warningMessage(e)
     except:
        QtWidgets.QMessageBox.warning(self,'Undefined error','Undefined error trying to create wrapper directory')
     else:
       if len(report)>0:
-        report.warningMessage()
+        warningMessage(report)
       elif wrapperDir is not None:
         QtWidgets.QMessageBox.information(self,'New wrapper plugin','New wrapper plugin created in directory '+wrapperDir)
 
@@ -2040,7 +2002,6 @@ class CMakePipeline(QtWidgets.QDialog):
 
   def __init__(self,parent=None):
     QtWidgets.QDialog.__init__(self,parent)
-    from core.CCP4ScriptManager import SCRIPTMANAGER
 
     self.setModal(True)
     self.setWindowTitle('Create Pipeline')
@@ -2065,7 +2026,7 @@ class CMakePipeline(QtWidgets.QDialog):
 
 
   def makePipeline(self):
-    from core.CCP4ScriptManager import SCRIPTMANAGER
+    from ..core.CCP4ScriptManager import SCRIPTMANAGER
     name = str(self.name.text()).strip()
     
     if len(name)==0:    
@@ -2076,7 +2037,7 @@ class CMakePipeline(QtWidgets.QDialog):
     try:
       pipelineDir = SCRIPTMANAGER().makePipeline(name=name)
     except CException as e:
-      e.warningMessage()
+      warningMessage(e)
     #except:
     #   QtWidgets.QMessageBox.warning(self,'Undefined error','Undefined error trying to create pipeline directory')
 

@@ -1,39 +1,22 @@
-from __future__ import print_function
-
 """
-     CCP4DbApi.py: CCP4 GUI Project
-     Copyright (C) 2012 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2012 STFC
 """
 
 # May 2012 Tools to handle import/export of files
 
-from PySide2 import QtCore,QtGui, QtWidgets
-from qtgui import CCP4Widgets
-from core import CCP4File,CCP4Annotation,CCP4Data
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import PROJECTSMANAGER,TASKMANAGER,PREFERENCES
-from core.CCP4DataManager import DATAMANAGER
-
 import os
 
+from PySide2 import QtCore, QtWidgets
+
+from . import CCP4Widgets
+from ..core import CCP4Annotation, CCP4Data, CCP4File
+from ..core.CCP4DataManager import DATAMANAGER
+
+
 class CExportedFileCombo(CCP4Widgets.CComplexLineWidget):
-  
+
   MODEL_CLASS = CCP4File.CExportedFile
-  
+
   def __init__(self,parent=None,model=None,qualifiers={}):
     CCP4Widgets.CComplexLineWidget.__init__(self,parent,qualifiers=qualifiers)
     self.widget = CCP4Widgets.CComboBox(self)
@@ -48,7 +31,6 @@ class CExportedFileCombo(CCP4Widgets.CComplexLineWidget):
     self.updateViewFromModel()
     self.widget.currentIndexChanged[int].connect(self.updateModelFromView0)
 
-
   def setProjectId(self,projectId=None):
     self.projectId = projectId
     self.widget.clear()
@@ -62,18 +44,19 @@ class CExportedFileCombo(CCP4Widgets.CComplexLineWidget):
     else:
       indx = self.widget.findData(expId)
       if indx>=0: self.widget.setCurrentIndex(indx)
-    
-  
+
   def load(self):
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     exportedFiles = PROJECTSMANAGER().db().getExportFilesByFileType(fileTypeClass=self.fileTypeClass,before=self.before,projectId=self.projectId)
     self.widget.addItem('',-1)
     for exFile in exportedFiles:
+      from ..core.CCP4TaskManager import TASKMANAGER
       title = TASKMANAGER().getTitle(exFile['taskname'])
       if len(exFile['exportfilename'])>22:
         self.widget.addItem('..'+exFile['exportfilename'][-20:]+' '+exFile['jobnumber']+' '+title,exFile['exportid'])
       else:
         self.widget.addItem(exFile['exportfilename']+' '+exFile['jobnumber']+' '+title,exFile['exportid'])
-        
+
   def getValue(self):
     #print 'CExportedFileCombo.getValue',self.widget.currentIndex(),item,type(item)
     indx = CCP4Data.varToUUID( self.widget.itemData(self.widget.currentIndex()) )
@@ -83,8 +66,9 @@ class CExportedFileCombo(CCP4Widgets.CComplexLineWidget):
   def updateModelFromView0(self,indx):
     self.updateModelFromView()
 
+
 class CExportedFileListView(CCP4Widgets.CListView):
-  
+
   MODEL_CLASS = CCP4File.CExportedFileList
   def __init__(self,parent,model=None,qualifiers={},**kw):
     qualis = { 
@@ -104,6 +88,7 @@ class CImportInfo(QtWidgets.QFrame):
     self.model = model
     self.importId = importId
     if importId is not None:
+      from ..core.CCP4ProjectsManager import PROJECTSMANAGER
       importFileInfo = PROJECTSMANAGER().db().getImportFileInfo(importId=importId)
       before = importFileInfo.get('creationtime')
       if importFileInfo.get('annotation',None) is not None:
@@ -153,13 +138,14 @@ class CImportInfo(QtWidgets.QFrame):
         anno = self.annotation.get('text').__str__()
       else:
         anno = ''
+      from ..core.CCP4ProjectsManager import PROJECTSMANAGER
       PROJECTSMANAGER().db().updateImportFile(importId=self.importId,key='annotation',value=anno)
     else:
       anno = self.annotation.get('text').__str__()
       if len(anno)>0:
         self.model.__dict__['sourceFileAnnotation'] = anno
-      
-        
+
+
 class CImportInfoDialog(QtWidgets.QDialog):
   def __init__(self,parent,model=None,importId=None,importFileName=None,label=None,sourceFileAnnotation=''):
     # Expect input model to be set to a CDataFile if this is called for a freshly imported file
@@ -174,6 +160,7 @@ class CImportInfoDialog(QtWidgets.QDialog):
     self.showAutoWidget.toggled.connect(self.handleShowAuto)
     self.layout().addWidget(self.showAutoWidget)
     #self.layout().addWidget(QtWidgets.QLabel('This window accessible from the file icon menu',self))
+    from ..core.CCP4Preferences import PREFERENCES
     if PREFERENCES().AUTO_INFO_ON_FILE_IMPORT:
       self.showAutoWidget.setCheckState(QtCore.Qt.Checked)
     else:
@@ -200,7 +187,7 @@ class CImportInfoDialog(QtWidgets.QDialog):
 
   @QtCore.Slot(bool)
   def handleShowAuto(self,auto):
-    #print 'CImportInfoDialog.handleShowAuto',auto
+    from ..core.CCP4Preferences import PREFERENCES
     PREFERENCES().AUTO_INFO_ON_FILE_IMPORT = auto
     PREFERENCES().save()
 
@@ -223,7 +210,6 @@ class CManageImportFiles(QtWidgets.QDialog):
     self.deleteFilesGui = None
     PROJECTSMANAGER().db().jobDeleted.connect(self.fileList.handleJobDeleted)
 
-
   @QtCore.Slot()
   def editInfo(self):
     rv = self.fileList.currentSelection()
@@ -240,11 +226,11 @@ class CManageImportFiles(QtWidgets.QDialog):
     rv = self.fileList.currentSelection()
     if rv is None: return
     importId,fileId,jobId,fileName = rv
-    #followOnJobs = PROJECTSMANAGER().db().getFollowOnJobs(jobId=jobId)
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     jobTree = PROJECTSMANAGER().db().getFollowOnJobs(jobId=jobId)
     delJobId,importFiles,followOnJobs = jobTree
-    
-    from qtgui import CCP4ProjectViewer
+
+    from . import CCP4ProjectViewer
     self.deleteJobGui = CCP4ProjectViewer.CDeleteJobGui(self,projectId=self.projectId,jobIdList=[jobId],jobTreeList=[jobTree], 
                                            label='Delete jobs that use imported file:'+fileName,deleteImportFiles=True)
     self.deleteJobGui.show()
@@ -263,16 +249,18 @@ class CImportFileList(QtWidgets.QTreeWidget):
     self.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
     self.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
     self.projectId = None
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     PROJECTSMANAGER().db().importFileDeleted.connect(self.handleImportFileDeleted)
 
-                          
   def load(self,projectId):
     # This returns list of: ImportId,JobId,FileID,FileTypeId,Filename,Annotation, JobNumber TaskName SourceFileName CreateTime
     #                          0        1       2        3         4           5        6        7         8            9
     self.projectId = projectId
     self.clear()
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     fileInfoList = PROJECTSMANAGER().db().getProjectImportFiles(projectId=projectId,ifJobInfo=True)
     for fileInfo in fileInfoList:
+      from ..core.CCP4TaskManager import TASKMANAGER
       taskTitle = TASKMANAGER().getTitle(fileInfo[7])
       qList = []
       for item in [fileInfo[8],fileInfo[4],fileInfo[9],fileInfo[6],taskTitle]: qList.append(str(item))
@@ -297,7 +285,6 @@ class CImportFileList(QtWidgets.QTreeWidget):
     #print 'CImportFileList.handleJobDeleted',args
     if args['projectId'] == self.projectId: self.load(self.projectId)
 
-    
   def currentSelection(self):
     indices = self.selectionModel().selectedRows()
     #print 'CImportFileList.currentSelection',indices,len(indices)
@@ -309,4 +296,3 @@ class CImportFileList(QtWidgets.QTreeWidget):
     fileName = indices[0].data().__str__()
     #print 'CImportFileList.currentSelection', fileId,ok
     return importId,fileId,jobId,fileName
-    

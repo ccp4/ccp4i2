@@ -1,44 +1,34 @@
-from __future__ import print_function
-
-
 """
-     CCP4I1Projects.py: CCP4 GUI Project
-     Copyright (C) 2016   STFC
+Copyright (C) 2016 STFC
+Liz Potterton Jan 2016 - Classes for importing and displaying CCP4i projects
 
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-"""
-   Liz Potterton Jan 2016 - Classes for importing and displaying CCP4i projects
-"""
-
-"""
 To interpret i1 project def files we need to access
   ccp4i/etc/modules.def
   ccp4i/tasks/*.def
 """
 
-import os,re,time,sys,traceback,copy,functools
-from core import CCP4Utils
-from qtgui import CCP4ProjectWidget, CCP4WebBrowser, CCP4WebView, CCP4TextViewer
-from core import CCP4File
-from core.CCP4Modules import *
-from core.CCP4TaskManager import TASKMANAGER
-from core.CCP4ErrorHandling import *
-from PySide2 import QtCore,QtGui, QtWidgets
+import copy
+import functools
+import os
+import re
+import shutil
+import sys
+import time
+
 from lxml import etree
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from . import CCP4ProjectWidget
+from . import CCP4TextViewer
+from . import CCP4WebBrowser
+from . import CCP4WebView
+from ..core import CCP4File
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
+from ..core.CCP4Modules import *
+from ..core.CCP4TaskManager import TASKMANAGER
+from ..core.CCP4WarningMessage import warningMessage
+from ..utils.QApp import QTAPPLICATION
 
 
 # CI1ProjectManager -> CI1Project -> CI1Job ->CI1File is hierarchy of
@@ -51,10 +41,6 @@ def CI1PREFERENCES():
   if CI1Preferences.insts is None:
       p = CI1Preferences()
   return CI1Preferences.insts
-
-def isAlive(qobj):
-    import shiboken2
-    return shiboken2.isValid(qobj)
 
 
 def splitDefLine(line):
@@ -187,7 +173,6 @@ class CI1TreeItemFolder(CCP4ProjectWidget.CTreeItemFolder):
     return ele
     
   def mimeData(self):
-    from lxml import etree
     root = etree.Element('name')
     root.text = self.name
     encodedData = QtCore.QByteArray()
@@ -289,7 +274,7 @@ class CI1TreeItemProject(CCP4ProjectWidget.CTreeItemProject):
     dbFile = os.path.normpath(os.path.join(self.directory,'CCP4_DATABASE','database.def'))
     print('Loading database file:',dbFile)
     metaData,params,err = readI1DefFile(dbFile)
-    if err.maxSeverity()>SEVERITY_WARNING:
+    if err.maxSeverity()>Severity.WARNING:
       print(err.report())
       return err
     if params.get('NJOBS',None) is None:
@@ -302,14 +287,18 @@ class CI1TreeItemProject(CCP4ProjectWidget.CTreeItemProject):
       if params['TASKNAME'][1][nJ] is None:
         pass
       else:
-        lastTime = max(lastTime,CCP4Utils.safeFloat(params['DATE'][1][nJ],0))
+        try:
+          finishtime = float(params['DATE'][1][nJ])
+        except (TypeError, ValueError):
+          finishtime = None
+        lastTime = max(lastTime, finishtime or 0)
         info = { 'jobid' : str(nJ),
              'jobnumber' : str(nJ),
              'taskname' : params['TASKNAME'][1][nJ],
              'jobtitle' : params['TITLE'][1][nJ],
              'evaluation' : 'Unknown',
              'status' :  CI1TreeItemJob.STATUSCONV.get(params['STATUS'][1][nJ],'Pending'),
-             'finishtime' : CCP4Utils.safeFloat(params['DATE'][1][nJ]),
+             'finishtime' : finishtime,
              'parentjobid' : None
              }
         jItem = CI1TreeItemJob(self,info=info)
@@ -465,7 +454,6 @@ class CI1TreeItemProject(CCP4ProjectWidget.CTreeItemProject):
 
   def mimeData(self):
     #print 'CI1TreeItemProject.mimeData'
-    from lxml import etree
     root = etree.Element('name')
     root.text = self.getProjectName()
     encodedData = QtCore.QByteArray()
@@ -633,9 +621,9 @@ class CI1ProjectModel(QtCore.QAbstractItemModel):
   def loadDirectoriesDefFile(self,fileName=None):
     err = CErrorReport()
     metaData,params,err = readI1DefFile(fileName)
-    if err.maxSeverity()>SEVERITY_WARNING or 'N_PROJECTS' not in params:
+    if err.maxSeverity()>Severity.WARNING or 'N_PROJECTS' not in params:
       return CErrorReport(self.__class__,101,details = fileName,stack=False)
-    nProjects = CCP4Utils.safeInt(params.get('N_PROJECTS')[1])
+    nProjects = int(params.get('N_PROJECTS')[1])
     for nP in range(1,nProjects+1):
       pObj = self.getProject(params['PROJECT_ALIAS'][1][nP])
       #print 'loadDirectoriesDefFile',params['PROJECT_ALIAS'][1][nP],pObj
@@ -843,6 +831,7 @@ class CI1ProjectView(QtWidgets.QTreeView):
     self.setEditTriggers(QtWidgets.QAbstractItemView.EditKeyPressed)
     #self.setFocusPolicy(QtCore.Qt.NoFocus)
     self.setToolTip('Right mouse click for options to view jobs and files')
+    from ..core.CCP4Preferences import PREFERENCES
     self.setAlternatingRowColors(PREFERENCES().TABLES_ALTERNATING_COLOR)
     PREFERENCES().TABLES_ALTERNATING_COLOR.dataChanged.connect(self.resetAlternatingRowColors)
     self.forceUpdate = sys.platform.count('inux') or sys.platform.count('arwin')
@@ -890,21 +879,17 @@ class CI1ProjectView(QtWidgets.QTreeView):
     #print 'calling QTreeView.mousePressEvent'
     QtWidgets.QTreeView.mousePressEvent(self,event)
 
-
   def nodeFromEvent(self,event):
     modelIndex = self.indexAt(QtCore.QPoint(event.x(),event.y()))
     col = self.model().COLUMNS[modelIndex.column()]
     return modelIndex,self.model().nodeFromIndex(modelIndex),col
 
-    return [None,None,None,indx]
-  
   def selectRow(self,modelIndex=None):
     #print 'CProjectView.selectRow',modelIndex.row()
     sel = QtCore.QItemSelection( modelIndex.sibling(modelIndex.row(),0) , modelIndex.sibling(modelIndex.row(),2) )
     self.selectionModel().select(sel,QtCore.QItemSelectionModel.ClearAndSelect)
     #print 'CProjectView.selectRow DONE'
 
-  
   def startDrag(self,dropActions=None,modelIndex=None):
     #print 'CI1ProjectView.startDrag'
     if modelIndex is None:
@@ -1029,6 +1014,7 @@ class CI1ProjectView(QtWidgets.QTreeView):
       
   @QtCore.Slot()
   def resetAlternatingRowColors(self):
+    from ..core.CCP4Preferences import PREFERENCES
     self.setAlternatingRowColors(PREFERENCES().TABLES_ALTERNATING_COLOR)
   
 class CI1ProjectWidget(QtWidgets.QFrame):
@@ -1149,14 +1135,14 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
                   102 : { 'description' : 'Failed to find/open old CCP4 def file' },
                   103 : { 'description' : 'Failed loading task titles from modules definition file' },
                   104 : { 'description' : 'Unknown failure loading project database file' },
-                  105 : { 'severity' : SEVERITY_WARNING, 'description' : 'Project with this name already loaded - will overwrite' },
-                  106 : { 'severity' : SEVERITY_WARNING, 'description' : 'Project directory does not exist' },
+                  105 : { 'severity' : Severity.WARNING, 'description' : 'Project with this name already loaded - will overwrite' },
+                  106 : { 'severity' : Severity.WARNING, 'description' : 'Project directory does not exist' },
                   107 : { 'description' : 'Folder with this name already exists' },
-                  110 : { 'severity' : SEVERITY_WARNING, 'description' : 'Failed loading subsiduary task def file' },
-                  111 : { 'severity' : SEVERITY_WARNING, 'description' : 'Failed parsing line of def file' },
-                  112 : { 'severity' : SEVERITY_WARNING, 'description' : 'Failed loading CCP4 task def file to extract type info' },
+                  110 : { 'severity' : Severity.WARNING, 'description' : 'Failed loading subsiduary task def file' },
+                  111 : { 'severity' : Severity.WARNING, 'description' : 'Failed parsing line of def file' },
+                  112 : { 'severity' : Severity.WARNING, 'description' : 'Failed loading CCP4 task def file to extract type info' },
                   121 : { 'description' : 'Input file not found' },
-                  122 : { 'severity' : SEVERITY_OK, 'description' : 'Copied' }
+                  122 : { 'severity' : Severity.OK, 'description' : 'Copied' }
                   }
   def __init__(self,parent=None,fileName=None):
     CCP4WebBrowser.CMainWindow.__init__(self,parent)
@@ -1230,7 +1216,7 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
     self.rightFrame.layout().addWidget(self.qtrButton)
 
     # left/right splitter
-    from qtgui import CCP4TaskWidget
+    from . import CCP4TaskWidget
     self.splitterSizes = [400,CCP4TaskWidget.WIDTH+CCP4TaskWidget.PADDING_ALLOWANCE]
     mainWidget = QtWidgets.QSplitter(self)
     mainWidget.setOrientation(QtCore.Qt.Horizontal)
@@ -1277,9 +1263,11 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
     message = 'Errors loading old CCP4i projects:\n'
     for proj,dir in self._projectWidget.projectView.model().loadErrorProjects:
       message += '{:30} {:100}\n'.format(proj,dir)
-    self._projectWidget.projectView.model().loadErrorReport.warningMessage(parent=self,windowTitle=self.windowTitle(),message=message)
+    errorReport = self._projectWidget.projectView.model().loadErrorReport
+    warningMessage(errorReport, parent=self,windowTitle=self.windowTitle(),message=message)
 
   def showHelp(self):
+    from ..qtgui.CCP4WebBrowser import WEBBROWSER
     WEBBROWSER().loadWebPage(helpFileName='CCP4i1Projects.html',newTab=True)
 
   def handleCurrentJobChanged(self,jobId,projectId):
@@ -1320,6 +1308,7 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
       else:
         fileType = "text/plain"
     if fileType == "application/CCP4-mtz":
+      from ..qtcore.CCP4Launcher import LAUNCHER
       LAUNCHER().launch('viewhkl',[fileName])
     elif fileType == "chemical/x-pdb":
       self.textView.loadText(CCP4Utils.readFile(fileName))
@@ -1336,10 +1325,10 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
       return
     elif logFile == 'CURRENTLOG':
       if self.currentLogFile is None: return
-      import copy
       logFile = copy.deepcopy(self.currentLogFile)
     if os.path.splitext(logFile)[1] == '.html':
         logFile = os.path.splitext(logFile)[0]
+    from ..qtcore.CCP4Launcher import LAUNCHER
     LAUNCHER().launch('logview',[logFile])
 
   @QtCore.Slot(str,str,str)
@@ -1356,6 +1345,7 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
         if os.path.splitext(path)[1] in ['.mtz','.pdb']:
           fileList.append(fItem.filePath())
     if mode == 'coot' : mode = 'coot0'
+    from ..qtcore.CCP4Launcher import LAUNCHER
     LAUNCHER().openInViewer(viewer=mode,fileName=fileList)
 
   @QtCore.Slot(str,str)
@@ -1378,7 +1368,7 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
 
   @QtCore.Slot(str)
   def findProjectDir(self,projectId):
-    from qtgui import CCP4FileBrowser
+    from . import CCP4FileBrowser
     self.findProjectDialog = CCP4FileBrowser.CFileDialog(self,fileMode=QtWidgets.QFileDialog.Directory,
       title='Find project directory for '+projectId)
     self.findProjectDialog.selectFile.connect(functools.partial(self.updateProjectDir,projectId))
@@ -1397,7 +1387,7 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
     self.model().getProject(projectId).setDirectory(directory)
     err = self.model().getProject(projectId).editDatabaseDef(resetDir=True)
     err.append(self.model().editDirectoriesDefFile(projectDbIndex=self.model().getProject(projectId).refDbIndex,directory=directory))
-    if err.maxSeverity()>SEVERITY_WARNING:
+    if err.maxSeverity()>Severity.WARNING:
       mess = QtWidgets.QMessageBox.warning(self,'Find project directory for '+projectId,"Failed saving changed project directory to old CCP4 files")
     return
 
@@ -1410,7 +1400,6 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
     pObj = self.model().getProject(projectId)
 
     err = CErrorReport()
-    import shutil
     
     importDir = os.path.join(pObj.directory,'IMPORTED_FILES')
     if not os.path.exists(importDir):
@@ -1425,7 +1414,7 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
     
     dbFile = os.path.normpath(os.path.join(pObj.directory,'CCP4_DATABASE','database.def'))
     metaData,params,err = readI1DefFile(dbFile)
-    if err.maxSeverity()>SEVERITY_WARNING or params.get('NJOBS',None) is None:
+    if err.maxSeverity()>Severity.WARNING or params.get('NJOBS',None) is None:
       return
 
     sourceLookup = {}
@@ -1478,8 +1467,8 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
 
     if len(movedFiles)>0:
       err0 = pObj.editDatabaseDef(movedFiles=movedFiles)
-      if err0.maxSeverity()>SEVERITY_WARNING:
-        err0.warningMessage('Collect input files','There was an error saving the new filenames to the old CCP4 database',parent=self)
+      if err0.maxSeverity()>Severity.WARNING:
+        warningMessage(err0, 'Collect input files','There was an error saving the new filenames to the old CCP4 database',parent=self)
 
     self.reloadProject(projectId)
     
@@ -1493,7 +1482,7 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
   @QtCore.Slot(str)
   def annotateProject(self,projectId):
     #print 'annotateProject',projectId
-    from core import CCP4Annotation,CCP4DataManager
+    from ..core import CCP4Annotation, CCP4DataManager
     pObj = self.model().getProject(projectId)
     if pObj is None: return
     if getattr(self,'annotateWindow',None) is None:
@@ -1541,13 +1530,14 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
   @QtCore.Slot(str)
   def makeI2Project(self,projectId):
     try:
-      pid = CCP4Modules.PROJECTSMANAGER().db().getProjectId(projectName=projectId)
+      from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+      pid = PROJECTSMANAGER().db().getProjectId(projectName=projectId)
     except:
       reqNewName = False
     else:
       reqNewName = True
 
-    from qtgui import CCP4ProjectManagerGui
+    from . import CCP4ProjectManagerGui
     if CCP4ProjectManagerGui.CNewProjectGui.insts is None:
       CCP4ProjectManagerGui.CNewProjectGui.insts = CCP4ProjectManagerGui.CNewProjectGui()
       CCP4ProjectManagerGui.CNewProjectGui.insts.projectCreated.connect(functools.partial(self.associateI2Project,projectId))
@@ -1559,7 +1549,7 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
   @QtCore.Slot(str)
   def handleAssociateI2Project(self,i1ProjectName):
     print('handleAssociateI2Project',i1ProjectName)
-    from qtgui import CCP4ProjectManagerGui
+    from . import CCP4ProjectManagerGui
     self.associateDialog = QtWidgets.QDialog(self)
     self.associateDialog.setLayout(QtWidgets.QVBoxLayout())
     self.associateDialog.layout().addWidget(QtWidgets.QLabel('Choose CCP4i2 project to associate with project '+i1ProjectName,self.associateDialog))
@@ -1602,6 +1592,7 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
   def associateI2Project(self,i1ProjectName,projectId=None):
     #print 'associateI2Project',i1ProjectName,projectId
     pObj = self.model().getProject(i1ProjectName)
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     PROJECTSMANAGER().db().updateProject(projectId,key='I1ProjectName',value=i1ProjectName)
     PROJECTSMANAGER().db().updateProject(projectId,key='I1ProjectDirectory',value=pObj.directory)
     
@@ -1623,13 +1614,14 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
     return self.actionDefinitions.get(name,dict(text=name))
 
   def loadDb(self,overwriteProject=None):
-    from qtgui import CCP4FileBrowser
+    from . import CCP4FileBrowser
     dialog = CCP4FileBrowser.CFileDialog(self,
            title='Load old CCP4 project(s) from directories.def or database.def',
            filters= [ 'Old CCP4 directory.def or database.def (*.def)' ],
            defaultSuffix='.def',
            fileMode=QtWidgets.QFileDialog.ExistingFile  )
 #Not possible with native browser as far as I know. SJM 22/11/2018.
+    from ..core.CCP4Preferences import PREFERENCES
     if not PREFERENCES().NATIVEFILEBROWSER:
         dialog.widget.fileDialog.setFilter(QtCore.QDir.AllEntries | QtCore.QDir.Hidden | QtCore.QDir.NoDotAndDotDot )
     dialog.show()
@@ -1672,7 +1664,7 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
     try:
       self.model().addFolder(name)
     except CException as e:
-      e.warningMessage(parent=self,windowTitle=self.windowTitle(),message='Failed to create new folder')
+      warningMessage(e, parent=self,windowTitle=self.windowTitle(),message='Failed to create new folder')
 
   @QtCore.Slot(str)
   def copyFile(self,fileName):
@@ -1728,14 +1720,12 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
     pass
   def openSendReport(self):
     pass
-  def openUpdate(self):
-    pass
   @staticmethod
   @QtCore.Slot()
   def updateInstances(qobj):
     l = []
     for w in CI1ProjectViewer.Instances:
-      if isAlive(w): l.append(w)   
+      if CCP4Utils.isAlive(w): l.append(w)
     CI1ProjectViewer.Instances = l
 
 # Put preferences in a class - could be subclassed from CContainer if
@@ -1795,4 +1785,3 @@ class CI1Preferences:
       if item not in usedTags:
         if item in self.tagList: self.tagList.remove(item)
     self.appendedTags = []
-        
