@@ -446,7 +446,12 @@ class CJobController(CCP4JobServer.CJobServer):
                         pass
                     if sp.returncode is not None:
                         if -sp.returncode in (-signal.SIGSEGV,signal.SIGBUS,signal.SIGABRT,signal.SIGFPE,signal.SIGILL,signal.SIGTERM):
-                            self.db.updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_FAILED)
+                            jobDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId)
+#This takes a chance that at least some of the job might have been successful if a program.xml exists.
+                            if os.path.exists(os.path.join(jobDirectory,"program.xml")):
+                                self.db.updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_UNSATISFACTORY)
+                            else:
+                                self.db.updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_FAILED)
                         break
                     time.sleep(2)
             t = threading.Thread(target=check_for_crash,args=(sp,))
