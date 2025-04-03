@@ -1,33 +1,23 @@
-from __future__ import print_function
-
 """
-     CCP4Report.py: CCP4 GUI Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2010 University of York
 """
 
 ##@package CCP4Report (QtCore) Data types for tables,graphs etc found in reports
 
-from PySide2 import QtCore
+import array
+import copy
 import os
+import sys
+import tempfile
+
 from lxml import etree
-from core.CCP4ErrorHandling import *
-from core.CCP4DataManager import DATAMANAGER
-from core.CCP4Data import CData
-from report.CCP4ReportParser import CCP4NS
+from PySide2 import QtCore
+
+from ..core import CCP4Utils
+from ..core.CCP4DataManager import DATAMANAGER
+from ..core.CCP4ErrorHandling import CException
+from ..report.CCP4ReportParser import CCP4NS
+
 
 NSMAP = { 'ccp4' : CCP4NS }
 
@@ -74,7 +64,6 @@ class CReportTable(QtCore.QAbstractTableModel):
     # Read first row and determine data type (int or float)
     # Add approariately typed array to self.columns list
     if len(eleList)> self.nColumns:
-      import array
       self.columns = []
       self.columnTypes = []
       for ic in range(0,self.nColumns):
@@ -123,14 +112,9 @@ class CReportTable(QtCore.QAbstractTableModel):
     if self.columnTypes[idx.column()] != 'text':
       if role == QtCore.Qt.DisplayRole:
         return self.columns[idx.column()][idx.row()]
-
-#FIXME PYQT - or maybe None? This used to return QVariant.
+    #FIXME PYQT - or maybe None? This used to return QVariant.
     return None
 
-  def columnDataType(self,column=-1):
-    if column>=0 and column<len(self.columnTypes):
-      return self.columnTypes(ic)
-      
   def headerData(self,section,orientation=QtCore.Qt.Horizontal,role=QtCore.Qt.DisplayRole):
     if role==QtCore.Qt.DisplayRole:
       if orientation == QtCore.Qt.Horizontal:
@@ -138,18 +122,13 @@ class CReportTable(QtCore.QAbstractTableModel):
           #print 'headerData',section,self.columnLabels[section]
           v = self.columnLabels[section]
           return v
-#FIXME PYQT - or maybe None? This used to return QVariant.
+      #FIXME PYQT - or maybe None? This used to return QVariant.
       return None
 
   def qualifiers(self):
     return {}
 
 
-class CPlotDirectives(CData):
-
-  pass  
-    
-    
 class CReport(QtCore.QObject):
 
   ERROR_CODES =  { 101 : {'description' : 'Report XML file does not found' },
@@ -178,7 +157,6 @@ class CReport(QtCore.QObject):
     if not os.path.exists(self.filename):
       raise CException(self.__class__,101,self.filename)
     try:
-      from core import CCP4Utils
       root = CCP4Utils.openFileToEtree(self.filename)
       #root = tree.getroot()
       #print 'CReport.loadFromXmlFile',root
@@ -214,26 +192,12 @@ class CReport(QtCore.QObject):
     except:
       raise CException(self.__class__,103)
     return text
-  
-  def saveToXmlFile(self,root,filename):
-    try:
-      text = etree.tostring(root,pretty_print=True)
-    except:
-      raise CException(self.__class__,104,filename)
-    #print 'CReport.saveXMLFile',filename,text
-    try:
-      from core import CCP4Utils
-      CCP4Utils.saveFile(self,fileName=filename,text=text)
-    except:
-      raise CException(self.__class__,105,filename)
-    
 
   def tostring(self,root):
     if root is not None: return etree.tostring(root)
     return ''
 
   def extractBaseHref(self,root):
-    import sys
     self.baseHref = None
     self.resetBaseHref= None
     if sys.platform[0:3] == 'win': return
@@ -242,16 +206,14 @@ class CReport(QtCore.QObject):
     if len(eleList)>0 and eleList[0].get('href') is not None:
       self.baseHref = QtCore.QUrl(eleList[0].get('href')).toLocalFile().__str__()
       if self.baseHref is None: return
-      from core import CCP4Utils
       localBasePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'docs')
       try:
-        ifSame = CCP4Utils.samefile(self.baseHref,localBasePath)
+        ifSame = os.path.samefile(self.baseHref,localBasePath)
       except:
         ifSame = False
       #print 'extractBaseHref samepath', localBasePath,ifSame
     if not ifSame and self.baseHref is not None and self.baseHref.count('ccp4i2')>0:
       eleList[0].set('href','file://'+localBasePath+'/')
-      import tempfile
       path,base0 = os.path.split(self.filename)
       path,dir0 = os.path.split(path)
       self.resetBaseHref = os.path.join(tempfile.gettempdir(),dir0+'_'+base0)
@@ -260,7 +222,6 @@ class CReport(QtCore.QObject):
       #print 'extractBaseHref',self.resetBaseHref
 
   def extractCCP4Data(self,root):
-    import copy
     #for element in root.iterdescendants(): print element.tag
     body = root.find('body')
     if body is not None:
@@ -385,26 +346,3 @@ class CReport(QtCore.QObject):
         return self.dataArray[id]
     else:
       return None
-
-#========================================================================================   
-import unittest
-def TESTSUITE():
-  suite = unittest.defaultTestLoader.loadTestsFromTestCase(testReport)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)
-
-class testReport(unittest.TestCase):
-
-  def test1(self):
-    from core import CCP4File
-    testFile = CCP4File.CDataFile(project='CCP4I2_TOP',relPath='test/data',baseName='test_report.html')
-    r = CReport()
-    r.loadFromXmlFile(str(testFile))
-    x = r.getDataObject(id='final_results')
-    self.assertEqual(x.cell.a,123.4,'Failed to load container and cell data')
-    x = r.getDataObject(id='data_table_1')
-    self.assertEqual(x.nColumns,9,'Failed to load CReportTableModel number of columns')
-    

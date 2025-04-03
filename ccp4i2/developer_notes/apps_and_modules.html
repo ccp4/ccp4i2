@@ -45,17 +45,9 @@ parameters in the config are:</p>
   <TR><td>developer</td><td>DEVELOPER()</td><td>True if user is a
     developer - some extra functionality shown and less error trapping
   at key points in code</td></TR>
-  <TR><td>version</td><td>VERSION()</td><td>The ccp4i2 version taken
-    from core/version.params.xml</td></TR>
   <TR><td>graphical</td><td>GRAPHICAL()</td><td>True for main gui but
      harwired false in core/runTask.py so will skip loading graphical modules that may
     crash on servers without graphical support</td></TR>
-  <TR><td>qt</td><td>QT()</td><td>If false attempt to make core data objects
-    not Qt-dependent - that option not tested for years.</td></TR>
-  <TR><td>xmlParser</td><td>XMLPARSER()</td><td>Attempt to make xml
-    parser flexible - lxml is now hardcoded in many places</td></TR>
-  <TR><td>dbMode</td><td>DBMODE()</td><td>Choice of sql mechanism -
-    currently sqlite</td></TR>
   <TR><td>dbFile</td><td>DBFILE()</td><td>Database file</td></TR>
   <TR><td>dbUser</td><td>DBUSER()</td><td>Name of user recognised by
     the database</td></TR>
@@ -156,9 +148,5 @@ have their own view class but use one from a super-class. When
 generating task input guis 
 <i>CDataManager.getWidgetClass()</i> is used to find the most appropriate view
 class for any input model class.<p>
-<p><i>CDataManager.makeHtmlClassListing()</i> will autogenerate documentation
-for the data classes and by default place in <a
-href="../docs/developers/modules/index.html">docs/developers/modules</a>.
-This function should be run from the <i>pyi2</i> interface.</p>
 </body>
 </html>

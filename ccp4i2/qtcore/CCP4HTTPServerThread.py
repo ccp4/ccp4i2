@@ -1,21 +1,30 @@
 from http.server import SimpleHTTPRequestHandler
 from http.server import ThreadingHTTPServer
+import glob
+import json
 import mimetypes
 import os
+import queue
 import re
-import sys
 
 from PySide2 import QtCore
 import dials
 import mrparse
 
-from core import CCP4Modules
+from ..core import CCP4Utils
+from ..utils.QApp import QTAPPLICATION
 
 
 DEFAULT_PORT = 43434
 
 
-def makeServer(port):
+def HTTPSERVER(fileName=None):
+    if CHTTPServerThread.insts is None:
+        CHTTPServerThread(fileName=fileName)
+    return CHTTPServerThread.insts
+
+
+def makeServer(port: int):
       CHTTPRequestHandler.protocol_version = "HTTP/1.0"
       try:
         return ThreadingHTTPServer(('127.0.0.1', port), CHTTPRequestHandler)
@@ -27,41 +36,41 @@ class CHTTPServerThread(QtCore.QThread):
 
     insts = None
 
-    def __init__(self,parent=None,parentDir=None,port=None,fileName=None):
-      if parent is None: parent = CCP4Modules.QTAPPLICATION()
-      QtCore.QThread.__init__(self,parent)
-      self.setObjectName('HTTPServer')
-      CHTTPServerThread.insts = self
-      self.port = None
-      if port is not None:
-        self.defaultPort = port
-      else:
-        self.defaultPort = '43434'
-      self.parentDir = parentDir
-      self.dbThread = CCP4Modules.DBSERVER(fileName)
+    def __init__(self, parent=None, parentDir=None, fileName=None):
+        if parent is None:
+            parent = QTAPPLICATION()
+        QtCore.QThread.__init__(self, parent)
+        self.setObjectName('HTTPServer')
+        CHTTPServerThread.insts = self
+        self.port = None
+        self.parentDir = parentDir
+        from ..qtcore.CCP4DbThread import DBSERVER
+        self.dbThread = DBSERVER(fileName)
       
     def quitServer(self):
-      self.dbThread.queue.put("ShutdownSignal")
-      #sys.__stdout__.write('Try to shut down server cleanly\n');sys.__stdout__.flush()
-      if hasattr(self,"httpd"): self.httpd.shutdown()
+        self.dbThread.queue.put("ShutdownSignal")
+        if hasattr(self, "httpd"):
+            self.httpd.shutdown()
 
     def run(self):
-
       # Code from http://www.linuxjournal.com/content/tech-tip-really-simple-http-server-python
       # Using this short script so that it will only serve localhost
 
-      if self.parentDir is not None: os.chdir(self.parentDir)
-      self.httpd =  makeServer(self.defaultPort)  
-      if self.httpd is None: self.httpd = makeServer(0)
-      
+      if self.parentDir is not None:
+          os.chdir(self.parentDir)
+      self.httpd = makeServer(DEFAULT_PORT)
+      if self.httpd is None:
+          self.httpd = makeServer(0)
+
       if self.httpd is not None:
            sa = self.httpd.socket.getsockname()
-           f = CCP4Modules.PRINTHANDLER().getFileObject(thread='HTTPServer',name='HTTPServer')
-           f.write( "CCP4i2 starting HTTP server on "+str( sa[0])+ " port "+str(sa[1])+'\n' )
-           print("CCP4i2 starting HTTP server on "+str( sa[0])+ " port "+str(sa[1])+'\n')
+           message = f"CCP4i2 starting HTTP server on {sa[0]} port {sa[1]}\n"
+           from ..core.CCP4PrintHandler import PRINTHANDLER
+           f = PRINTHANDLER().getFileObject(thread='HTTPServer',name='HTTPServer')
+           f.write(message)
+           print(message)
            self.port = sa[1]
            self.httpd.serve_forever()
-      return
 
 
 class CHTTPRequestHandler(SimpleHTTPRequestHandler):
@@ -69,22 +78,6 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
         self.send_header('Cross-Origin-Opener-Policy', 'same-origin')
         self.send_header('Cross-Origin-Embedder-Policy', 'require-corp')
         SimpleHTTPRequestHandler.end_headers(self)
-        
-    def log_message(self,format,*args):
-      # More programming by stackoverflow...
-      # http://stackoverflow.com/questions/10651052/how-to-quiet-simplehttpserver/10651257#10651257
-      # The base class code
-      '''
-      sys.stderr.write("%s - - [%s] %s\n" %
-                     (self.address_string(),
-                      self.log_date_time_string(),
-                      format%args))
-      '''
-      f = CCP4Modules.PRINTHANDLER().getFileObject(thread='HTTPServer',name='HTTPServer')
-      f.write("%s - - [%s] %s\n" %
-                     (self.address_string(),
-                      self.log_date_time_string(),
-                      format%args))
 
     #Here I am going to do some hackery to allow the HTTP server to return information about the
     #database
@@ -109,7 +102,8 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
     def do_GET_main(self,self_path):
         #print("do_GET_main",self_path)
         if (i := self_path.find("site-packages/dials/static")) > -1:
-            #This mangling is done to help with imported projects which might have links to different file locations
+            # This mangling is done to help with imported projects
+            # which might have links to different file locations
             subPath = self_path[i:].removeprefix("site-packages/dials/")
             # Leads to a mixture of path separators on Windows
             newPath = os.path.join(os.path.dirname(dials.__file__), subPath)
@@ -120,7 +114,8 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                 self.send_response(404)
             return
         if (i := self_path.find("site-packages/mrparse/html")) > -1:
-            #This mangling is done to help with imported projects which might have links to different file locations
+            # This mangling is done to help with imported projects
+            # which might have links to different file locations
             subPath = self_path[i:].removeprefix("site-packages/mrparse/")
             # Leads to a mixture of path separators on Windows
             newPath = os.path.join(os.path.dirname(mrparse.__file__), subPath)
@@ -135,16 +130,10 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
             #print("Normal service")
             SimpleHTTPRequestHandler.do_GET(self)
         else:
-            from core.CCP4Modules import HTTPSERVER
             dbQueue = HTTPSERVER().dbThread.queue
-            
+
             #Create my own Queue for reading response
-            if sys.version_info >= (3,0):
-                import queue
-                dbRequest = {'responseQueue':queue.Queue()}
-            else:
-                import Queue
-                dbRequest = {'responseQueue':Queue.Queue()}
+            dbRequest = {'responseQueue':queue.Queue()}
 
             newPath = None
             if self_path.startswith("/database/projectId/"):
@@ -215,9 +204,8 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                 splitToken = token.strip().split('=')
                 if len(splitToken) == 1: tokensDict[splitToken[0]] = True
                 else: tokensDict[splitToken[0]] = '='.join(splitToken[1:])
-            #print(tokensDict)
-            import json
-            
+            print(tokensDict)
+
             if len(tokens) == 1:
                 docTemplate = '''
                     <!DOCTYPE html>
@@ -253,11 +241,11 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                 docString1 = re.sub('__serverName__',str(self.server.server_name),docTemplate)
                 docString = re.sub('__serverPort__', str(self.server.server_port),docString1)
                 self.returnData('text/html; charset=UTF-8', docString)
-#SJM 18/07/2018 - Commented out this, no other reference to db anywhere...
-                #db.close()
+                # SJM 18/07/2018 - Commented out this, no other reference to db anywhere...
+                # db.close()
                 return
-            
-            from qtcore.CCP4DbThread import CDbThread
+
+            from ..qtcore.CCP4DbThread import CDbThread
             if tokens[1] in CDbThread.databaseCalls:
                 dbRequest['path'] = self_path
                 dbQueue.put(dbRequest)
@@ -354,9 +342,7 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                     return
                         
                 elif iconType is not None:
-                    from core import CCP4Utils
-                    import glob
-                    from dbapi import CCP4DbApi
+                    from ..dbapi import CCP4DbApi
                     itype = 0
                     try:
                         itype = CCP4DbApi.FILETYPES_TEXT.index(iconType)

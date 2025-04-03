@@ -1,13 +1,12 @@
-import sys
 import math
+import sys
 
 from lxml import etree
-
 import gemmi
-from  pipelines.import_merged.script.mmcifutils import *
-from  pipelines.import_merged.script.importutils import *
-#from mmcifutils import *
-#from importutils import *
+import numpy
+
+from .importutils import addXMLelement, ReflectionDataTypes
+from .mmcifutils import CifBlockInfo, printBlockInfo
 
 
 class GetColumn():
@@ -92,10 +91,6 @@ class CIFReflectionData:
         if outfile is None: self.dataout = False
         self.freerfile = freerfile
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    def setNoDataOut(self):
-        # Set flag for FreeR output only
-        self.dataout = False
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def gettype(self, typelist):
         # Loop possible types in order of priority

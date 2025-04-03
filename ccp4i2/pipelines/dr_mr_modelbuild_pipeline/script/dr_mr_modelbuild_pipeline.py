@@ -1,50 +1,22 @@
-from __future__ import print_function
-
 """
-    dr_mr_modelbuild.py: CCP4 GUI Project
-     Copyright (C) 2020 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-"""
+Copyright (C) 2020 STFC
 TODO
-
 * If 2 enantiomers don't bother with second one if first one gives R < 30%.
-
 """
 
-import sys, os, shutil, copy
+import copy
 import json
+import os
+import shutil
+import sys
 
-try:
-    from PySide2.QtCore import Slot
-except:
-    from PyQt4.QtCore import pyqtSlot as Slot
-
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core.CCP4ErrorHandling import *
 from lxml import etree
+from PySide2.QtCore import Slot
 
-try:
-    import ccp4mg
-    import mmdb2 as mmdb
-except:
-    print('FAILED CCP4ModelData imported ccp4mg')
-import mmut
+from ....core import CCP4Utils
+from ....core.CCP4ErrorHandling import CException
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class dr_mr_modelbuild_pipeline(CPluginScript):
 
@@ -689,7 +661,6 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
         fphiinList.append(fphiinList.makeItem())
         fphiinList[-1].set(self.mapToUse)
         self.cootPlugin.container.inputData.DICT.set(self.dictToUse)
-        #coot_stepped_refine,coot_fit_residues,coot_script_lines
         self.cootPlugin.container.controlParameters.SCRIPT.set('''#Script to fit ligand into density
 monomerMolNo = get_monomer('DRG')
 add_ligand_clear_ligands()

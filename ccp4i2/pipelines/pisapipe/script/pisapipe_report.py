@@ -1,7 +1,6 @@
-from report.CCP4ReportParser import *
-import sys
-import math
-from pipelines.pisapipe.wrappers.pisa_xml.script.pisa_xml_report import pisa_xml_report
+from ....report.CCP4ReportParser import Report
+from ..wrappers.pisa_xml.script.pisa_xml_report import pisa_xml_report
+
 
 class pisapipe_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -19,4 +18,3 @@ class pisapipe_report(Report):
         if pisa_xmlNode is not None:
             my_pisa_xml_report = pisa_xml_report(xmlnode=pisa_xmlNode)
             my_pisa_xml_report.defaultReport(parent=self)
-

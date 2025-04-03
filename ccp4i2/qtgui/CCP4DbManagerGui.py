@@ -1,28 +1,11 @@
 """
-     CCP4ManageDbGui.py: CCP4 GUI Project
-     Copyright (C) 2014 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2014 STFC
+Liz Potterton Sep 2014 - Tools to manage database
 """
 
-"""
-     Liz Potterton Sep 2014 - Tools to manage database
-"""
+from PySide2 import QtCore, QtGui, QtWidgets
 
-from PySide2 import QtGui,QtWidgets,QtCore
-  
+
 class CChallengeUnknownUser(QtWidgets.QDialog):
     # This class is being used to create a pop-up (in the initialiser) as part of a db user/passwd system
     # I've changed this to make it a bit easier for users, & less misleading, should they ever encounter a db username mix-up.
@@ -68,11 +51,3 @@ class CChallengeUnknownUser(QtWidgets.QDialog):
 
     def getReset(self):
         return False #self.resetName.isChecked()
-
-class CDbManagerDialog(QtWidgets.QDialog):
-
-    def __init__(self,parent=None):
-        QtWidgets.QDialog.__init__(self,parent)
-        self.setWindowTitle('Database manager')
-        layout = QtWidgets.QVBoxLayout()
-        self.setLayout(layout)

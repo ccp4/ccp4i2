@@ -1,8 +1,8 @@
 #!/usr/bin/python
-import os,sys
-from program import program
-import common
-import math
+
+from .. import common
+from ..program import program
+
 
 class prasa(program):
   name="PRASA"

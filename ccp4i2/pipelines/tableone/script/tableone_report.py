@@ -1,10 +1,11 @@
-from core import CCP4Modules
+import os
+import re
 
-from report.CCP4ReportParser import *
-from core import CCP4ErrorHandling
 from docx import Document
 from iotbx import mtz
-import re
+
+from ....report.CCP4ReportParser import Report
+
 
 class tableone_report(Report):
 
@@ -20,8 +21,9 @@ class tableone_report(Report):
 
 
     def GetPerformanceInfo(self):
+        from ....core.CCP4ProjectsManager import PROJECTSMANAGER
         # Fetch the performance info related to the job that produced the input pdb file.
-        dbm = CCP4Modules.PROJECTSMANAGER().db()
+        dbm = PROJECTSMANAGER().db()
         for xdic in self.jobInfo["inputfiles"]:
             if xdic["filetypeclass"] == "PdbDataFile":
                 pdbJobId = xdic["jobid"]
@@ -35,12 +37,6 @@ class tableone_report(Report):
         mobj = mtz.object(mtzpath)
         resol = mobj.max_min_resolution()
         return resol
-
-    def GetNRefl(self):
-        mtzpath = self.jobInfo["filenames"]["F_SIGF"]
-        mobj = mtz.object(mtzpath)
-        nrefl = mobj.n_reflections()
-        return nrefl
 
     def getTable1L(self):
         namc = ["Resolution Range (Angstroms)", "Space Group", "Unit Cell (a, b, c), in Angstroms", "Unit Cell (alpha, beta, gamma), in degrees",

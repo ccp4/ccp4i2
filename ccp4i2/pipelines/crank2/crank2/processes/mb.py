@@ -1,7 +1,11 @@
 #!/usr/bin/python
-import os,sys,multiprocessing
-from process import process
-import common
+
+import multiprocessing
+import os
+import sys
+
+from .. import common
+from ..process import process
 
 
 class mb(process):

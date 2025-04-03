@@ -1,37 +1,14 @@
-from __future__ import print_function
-
-
 """
-     tasks/molrep_mr/Cmolrep_mr.py: CCP4 GUI Project
-     Copyright (C) 2011 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2011 University of York
+Andrey Lebedev September 2011 - molrep_mr gui
 """
 
-"""
-     Andrey Lebedev September 2011 - molrep_mr gui
-"""
-
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
+from ....qtgui import CCP4TaskWidget
 
 
 def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None):
-    from core import CCP4Modules
-    jobStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId,'status')
+    from ....core.CCP4ProjectsManager import PROJECTSMANAGER
+    jobStatus = PROJECTSMANAGER().db().getJobInfo(jobId,'status')
     if jobStatus == 'Unsatisfactory':
         returnList = ['molrep_pipe', 'phaser_pipeline']
     else:
@@ -63,18 +40,6 @@ class Cmolrep_pipe(CCP4TaskWidget.CTaskWidget):
 
     folder = self.openFolder(folderFunction='inputData',title='Input Data and Protocol')
 
-
-    """
-    self.createLine( [ 'advice', 'What to do?' ] )
-    self.setMenuText( 'PERFORM', {
-       'srf': 'Self Rotation Function',
-       'pat': 'Rotation and Translation Searches',
-       'den': 'Search in Density after Refinement',
-    } )
-    self.createLine( [ 'widget', '-guiMode', 'multiLineRadio', 'PERFORM' ] )
-    """
-    
-
     self.openSubFrame( toggle = [ 'PERFORM','close', [ 'den' ]] )
     self.createLine( [ 'subtitle', 'Experimental data' ] )
     self.createLine( [ 'widget', 'F_SIGF' ] )
@@ -102,14 +67,6 @@ class Cmolrep_pipe(CCP4TaskWidget.CTaskWidget):
     line = ['label', 'Run', 'widget', 'RUNSHEETBEND', 'label', 'shift field refinement followed by']
     self.createLine(line + ['widget', 'REFMAC_NCYC', 'label', 'cycles of restrained refinement'])
     self.closeSubFrame()
-
-    '''
-    self.openSubFrame( toggle = [ 'PERFORM','open', [ 'den' ] ])
-    self.createLine( [ 'advice', 'Partial Model and Map Coefficients: define PDB and MTZ after the same refmac run' ] )
-    self.createLine( [ 'widget', 'XYZIN_FIX' ] )
-    self.createLine( [ 'widget', 'F_PHI_MAP' ] )
-    self.closeSubFrame()
-    '''
 
     self.createLine( [ 'label', '' ] )
     self.createLine( [ 'widget', 'DYNREP', 'label', 'Refmac dynamic table and graph (devel option)' ] )
@@ -221,17 +178,3 @@ class Cmolrep_pipe(CCP4TaskWidget.CTaskWidget):
        'b': 'Directly as the value of additional B-factor',
     } )
     self.createLine( [ 'label', '         ', 'widget', '-guiMode', 'multiLineRadio', 'LOW_PATH_VAR' ])
-
-
-
-    '''
-    print 'CTaskMolrep stackedWidgets'
-    for w in self.findChildren( CCP4TaskWidget.CStackedWidget ) :
-      print '   ', w, w.controlVar
-
-    self.updateViewFromModel()
-    '''
-
-
-
-

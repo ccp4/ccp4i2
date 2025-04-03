@@ -1,26 +1,10 @@
-"""
-    MakeProjectsAndDoLigandPipeline_gui.py: CCP4 GUI Project
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
+import fnmatch
+import os
 
-from __future__ import print_function
+from PySide2 import QtCore, QtWidgets
 
-from PySide2 import QtCore
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
-from qtgui.CCP4TaskWidget import CTaskWidget
 
 #-------------------------------------------------------------------
 class MakeProjectsAndDoLigandPipeline_gui(CTaskWidget):
@@ -40,7 +24,6 @@ class MakeProjectsAndDoLigandPipeline_gui(CTaskWidget):
         CTaskWidget.__init__(self,parent)
 
     def drawContents(self):
-        from PySide2 import QtGui, QtWidgets,QtCore
         self.openFolder(folderFunction='inputData',followFrom=False)
 
         self.createLine(['subtitle','Root directory'])
@@ -124,8 +107,6 @@ class MakeProjectsAndDoLigandPipeline_gui(CTaskWidget):
 
     @QtCore.Slot()
     def rootDirChanged(self):
-        import fnmatch
-        import os
         matches = []
         rootLength = len(self.container.inputData.ROOT_DIRECTORY.__str__())
         for root, dirnames, filenames in os.walk(self.container.inputData.ROOT_DIRECTORY.__str__()):
@@ -166,7 +147,6 @@ class MakeProjectsAndDoLigandPipeline_gui(CTaskWidget):
 
         self.editor.repaint()
 
-from PySide2 import QtCore, QtGui, QtWidgets
 #------------------------------------------------------------------------------------------------------
 #------------------------------------------------------------------------------------------------------
 #------------------------------------------------------------------------------------------------------
@@ -211,7 +191,6 @@ class StartTableModel(QtCore.QAbstractTableModel):
             else:
                 text = "Undefined"
         elif index.column() == 2:
-            import os
             if index.row() < len(self.forGui.container.inputData.PATH_LIST):
                 text = self.forGui.container.inputData.PATH_LIST[index.row()].__str__()
                 if role == QtCore.Qt.DisplayRole:
@@ -325,4 +304,3 @@ class StartTableModel(QtCore.QAbstractTableModel):
         if orientation == QtCore.Qt.Horizontal and role == QtCore.Qt.DisplayRole:
             resultQStr = self.headersAsQStrings[section]
         return resultQStr
-

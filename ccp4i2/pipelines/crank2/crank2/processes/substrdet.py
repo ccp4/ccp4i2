@@ -1,10 +1,19 @@
 #!/usr/bin/python
-from __future__ import print_function
-import os,sys,shutil
-import heapq,time,re,math
-from process import process,crvapi
-from program import program
-import common,data
+
+import glob
+import heapq
+import math
+import os
+import shutil
+import sys
+
+import gemmi
+
+from .. import common, data
+from ..process import process, crvapi
+from ..program import program
+
+
 par=common.parameter
 
 class substrdet(process):
@@ -474,7 +483,6 @@ class substrdet(process):
         ref_all_sol = True if self.GetParam('optimize_sol')==2 or \
           (self.GetParam('optimize_sol') is None and self.score_adj*100<self.GetParam('threshold_weak')) else False
         if not ref_all_sol and self.GetParam('optimize_sol') is None: # be careful with solutions with many special pos.
-          import gemmi
           struct=gemmi.read_structure(self.prog.out.Get('model').GetFileName())
           spec_pos=[struct.cell.is_special_position(s.atom.pos) for s in struct[0].all() if s.atom.occ>=0.3]
           if spec_pos and sum(spec_pos)/len(spec_pos)>0.35:
@@ -494,7 +502,6 @@ class substrdet(process):
           if os.path.isfile(os.path.join(prog.rundir,'stop_prasa')):
             os.remove( os.path.join(prog.rundir,'stop_prasa') )
           if ref_all_sol:
-            import glob
             for pdb in glob.glob(os.path.join(prog.rundir,'*.pdb_*')):
               prasa_ref.SetKey('pdbin', pdb)
           else:

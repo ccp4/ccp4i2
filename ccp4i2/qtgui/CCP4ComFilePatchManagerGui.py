@@ -1,34 +1,18 @@
-from __future__ import print_function
-
 """
-     CCP4ComFilePatchManagerGui.py: CCP4 GUI Project
-     Copyright (C) 2013 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2013 STFC
+Liz Potterton July 2013 - create and manage com file patches
 """
 
-"""
-     Liz Potterton July 2013 - create and manage com file patches
-"""
-
+import functools
 import os
-from PySide2 import QtGui, QtWidgets,QtCore
-from core import CCP4Data,CCP4Container
-from qtgui import CCP4CustomisationGui
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import COMFILEPATCHMANAGER,WEBBROWSER,PROJECTSMANAGER
+import re
+
+from PySide2 import QtCore, QtWidgets
+
+from ..core.CCP4ErrorHandling import Severity
+from ..core.CCP4WarningMessage import warningMessage
+from ..qtgui import CCP4CustomisationGui
+
 
 def openGui():
   if CComFilePatchManagerGui.insts is None:
@@ -41,11 +25,11 @@ class CComFilePatchManagerGui(CCP4CustomisationGui.CCustomisationGui):
 
   insts = None
 
-
   def __init__(self,parent=None):
     CCP4CustomisationGui.CCustomisationGui.__init__(self,parent=parent,mode='comfilepatch',title='Task Parameter and Patches Manager')
 
   def manager(self):
+    from ..core.CCP4ComFilePatchManager import COMFILEPATCHMANAGER
     return COMFILEPATCHMANAGER()
 
   def handleNew(self):
@@ -67,7 +51,7 @@ class CCreatePatchDialog(QtWidgets.QDialog):
   created = QtCore.Signal(str)
 
   def __init__(self,parent=None,new=True):
-    from qtgui import CCP4Widgets
+    from ..qtgui import CCP4Widgets
     QtWidgets.QDialog.__init__(self,parent)
     self.setWindowTitle('Set custom task parameters')
     self.selectedJob = None
@@ -172,6 +156,7 @@ class CCreatePatchDialog(QtWidgets.QDialog):
     self.originalTextEdit.clear()
     # get list of projectId,projectName,projectDir,parentId
     if hasattr(self,'projectCombo'):
+      from ..core.CCP4ProjectsManager import PROJECTSMANAGER
       projectList =  PROJECTSMANAGER().db().listProjects(order='name')
       for project in projectList:
         item = self.projectCombo.addItem(project[1],project[0])
@@ -184,6 +169,7 @@ class CCreatePatchDialog(QtWidgets.QDialog):
     
   @QtCore.Slot()
   def help(self):
+    from ..qtgui.CCP4WebBrowser import WEBBROWSER
     WEBBROWSER().loadWebPage(helpFileName='customisation')
 
   @QtCore.Slot()
@@ -201,7 +187,6 @@ class CCreatePatchDialog(QtWidgets.QDialog):
       QtWidgets.QMessageBox.warning(self,'Task parameters','Please provide a unique name for task parameters')
       return
 
-    import re
     name0 = re.sub('[^a-zA-Z0-9_-]','_',name)
     if name0 != name:
       self.nameLineEdit.setText(name0)
@@ -210,9 +195,9 @@ class CCreatePatchDialog(QtWidgets.QDialog):
                                 "Please click 'Save task parameters' again" )
       return
 
+    from ..core.CCP4ComFilePatchManager import COMFILEPATCHMANAGER
     diry = COMFILEPATCHMANAGER().getDirectory(name=name)
     if os.path.exists(diry):
-      import functools
       msgBox = QtWidgets.QMessageBox()
       msgBox.setWindowTitle('Create task parameter')
       msgBox.setText('There is already a task parameter directory called\n'+os.path.split(diry)[1])
@@ -244,6 +229,7 @@ class CCreatePatchDialog(QtWidgets.QDialog):
       jobId = self.selectedJob
       while jobId is not None:
         try:
+          from ..core.CCP4ProjectsManager import PROJECTSMANAGER
           jobInfoList.append( PROJECTSMANAGER().db().getJobInfo(jobId=jobId,mode=['parentjobid','taskname']) )
           jobId = jobInfoList[-1]['parentjobid']
         except:
@@ -254,14 +240,16 @@ class CCreatePatchDialog(QtWidgets.QDialog):
     title = self.titleLineEdit.text().__str__()
     useControlParams = self.useControlParamsWidget.isChecked()
     print('createPatch title',title)
+    from ..core.CCP4ComFilePatchManager import COMFILEPATCHMANAGER
     err = COMFILEPATCHMANAGER().createPatch(name,title,taskNameList,self.selectedProject,self.selectedJob,self.originalText,text2,useControlParams,overwrite=True)
-    if err.maxSeverity()>SEVERITY_WARNING:
-      err.warningMessage('Create command file patch','Error saving patch',parent=self)
+    if err.maxSeverity()>Severity.WARNING:
+      warningMessage(err, 'Create command file patch','Error saving patch',parent=self)
       return
     self.created.emit(name)
 
   def patchContainer(self,name):
-    from core import CCP4ComFilePatchManager
+    from ..core import CCP4ComFilePatchManager
+    from ..core.CCP4ComFilePatchManager import COMFILEPATCHMANAGER
     container = CCP4ComFilePatchManager.CPatchDefinition(parent=self,name=name)
     fileName=COMFILEPATCHMANAGER().getCustomFile(name=name)
     #print 'patchContainer fileName',fileName
@@ -274,6 +262,7 @@ class CCreatePatchDialog(QtWidgets.QDialog):
     return container,None
 
   def loadPatch(self,name):
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     container,errMess = self.patchContainer(name)
     if errMess is not None:
       QtWidgets.QMessageBox.warning(self,'Error loading task parameter information',errMess)
@@ -299,7 +288,7 @@ class CCreatePatchDialog(QtWidgets.QDialog):
         self.jobsLabel.setText('Unknown')
     if getattr(self,'taskLabel') is not None:
       label = 'Apply patch to tasks: '
-      from core import CCP4TaskManager
+      from ..core import CCP4TaskManager
       for taskName in container.taskNameList:
         title = CCP4TaskManager.TASKMANAGER().getTitle(taskName=taskName)
         label = label + title + ' '
@@ -315,5 +304,3 @@ class CCreatePatchDialog(QtWidgets.QDialog):
     self.useControlParamsWidget.setChecked(container.controlParameters.isSet())
     self.loadedFrom= name
     #self.titleLineEdit.setReadOnly(True)
-    
-

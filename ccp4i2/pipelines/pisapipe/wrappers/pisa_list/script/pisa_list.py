@@ -1,7 +1,7 @@
 
-from core.CCP4PluginScript import CPluginScript
+from ......core.CCP4PluginScript import CPluginScript
 
-  
+
 class pisa_list(CPluginScript):
 
     TASKMODULE = None                               # Where this plugin will appear on the gui
@@ -12,11 +12,7 @@ class pisa_list(CPluginScript):
     COMTEMPLATE = None                                   # The program com file template
     COMTEMPLATEFILE = None                               # Name of file containing com file template
 
-  
     def makeCommandAndScript(self):
       self.appendCommandLine([self.container.controlParameters.IDENTIFIER.__str__(), '-list','monomers'] )
 
       return 0
-    
-
-     

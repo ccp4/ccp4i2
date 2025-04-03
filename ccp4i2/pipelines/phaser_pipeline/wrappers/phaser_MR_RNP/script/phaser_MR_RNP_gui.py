@@ -1,12 +1,14 @@
 """
-    pipelines/phaser_pipeline/wrappers/phaser_MR/script/phaser_MR_gui.py
-    Copyright (C) 2014 Newcastle University
-    Author: Martin Noble
-    
-    """
+Copyright (C) 2014 Newcastle University
+Author: Martin Noble
+"""
 
-from qtgui.CCP4TaskWidget import CTaskWidget
+import pickle
+
 from PySide2 import QtCore
+
+from ......qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class phaser_MR_RNP_gui(CTaskWidget):
@@ -88,7 +90,6 @@ class phaser_MR_RNP_gui(CTaskWidget):
         
         if self.container.inputData.SOLIN.isSet():
             with open(str(self.container.inputData.SOLIN.fullPath),'r') as file:
-                import pickle
                 resultObject = pickle.load(file)
                 for solution in resultObject:
                     label = str(len(elements)) + ': '
@@ -116,7 +117,7 @@ class phaser_MR_RNP_gui(CTaskWidget):
         #Here override logic of whether this is a valid task to allow for CSeqDataFile from the
         #CASUComponentList being required ONLY IF COMP_BY has the value "ASU"
         invalidElements = CTaskWidget.isValid(self)
-        from core import CCP4ModelData, CCP4XtalData
+        from ......core import CCP4ModelData, CCP4XtalData
         widgLib = {"COMP_BY":"Not set yet"}
         self.getParams(widgLib)
         if widgLib["COMP_BY"] != "ASU":
@@ -127,4 +128,3 @@ class phaser_MR_RNP_gui(CTaskWidget):
             if self.container.inputData.USINGSOLELEMENTS in invalidElements:
                 invalidElements.remove(self.container.inputData.USINGSOLELEMENTS)
         return invalidElements
-

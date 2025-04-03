@@ -1,13 +1,11 @@
-from __future__ import print_function
 """
-    pipelines/phaser_pipeline/wrappers/phaser_MR/script/phaser_MR_gui.py
-    Copyright (C) 2014 Newcastle University
-    Author: Martin Noble
-    
-    """
+Copyright (C) 2014 Newcastle University
+Author: Martin Noble
+"""
 
-from qtgui.CCP4TaskWidget import CTaskWidget
 from PySide2 import QtCore
+
+from ......qtgui.CCP4TaskWidget import CTaskWidget
 
 
 #-------------------------------------------------------------------
@@ -43,7 +41,6 @@ class phaser_EP_AUTO_gui(CTaskWidget):
         self.openSubFrame()
         self.autoGenerate(container=self.container.keywords,selection={'excludeParameters' : ['TITL','ROOT']})
         self.closeSubFrame()
-    
 
     def drawPhaserFrontPage(self):
         self.openFolder(folderFunction='inputData')
@@ -104,7 +101,6 @@ class phaser_EP_AUTO_gui(CTaskWidget):
     def handleCOMP_BY(self):
         self.container.inputData.ASUFILE.setQualifiers({'allowUndefined':(str(self.container.inputData.COMP_BY) != "ASU")})            
         self.validate()
-        
 
     @QtCore.Slot()
     def handlePARTIALMODELORMAP(self):
@@ -119,4 +115,3 @@ class phaser_EP_AUTO_gui(CTaskWidget):
             attribute.setQualifiers({'mustExist' : needed , 'allowUndefined' : (not needed) } )
             widget = self.getWidget(attrName)
             if widget is not None: widget.validate()
-

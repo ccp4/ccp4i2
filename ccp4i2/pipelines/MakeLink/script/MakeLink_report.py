@@ -1,27 +1,9 @@
-from __future__ import print_function
-"""
-    MakeLink_report.py: CCP4 GUI Project
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
-
-from report.CCP4ReportParser import Report
-import sys
-#from lxml import etree
+import os
 import xml.etree.ElementTree as etree
-from core import CCP4Utils
+
+from ....core import CCP4Utils
+from ....report.CCP4ReportParser import Report
+
 
 class MakeLink_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -69,7 +51,6 @@ class MakeLink_report(Report):
 
     def picture(self,parent=None) :
       ccp4i2_root = CCP4Utils.getCCP4I2Dir()
-      import os
       
       baseScenePath = os.path.join(ccp4i2_root,'pipelines','MakeLink','script','MakeLink.scene.xml')
 
@@ -78,10 +59,8 @@ class MakeLink_report(Report):
       dictPath = self.jobInfo['filenames'].get('UNL_CIF', None)
       tlc = "UNL"  # This must match the dictionary
       annotation = self.jobInfo['filenames'].get('ANNOTATION', None)
-#FIXME - XML PICTURE
+      #FIXME - XML PICTURE
       #self.addLigandToGallery(parent,baseScenePath,scenePath,pdbPath,dictPath,tlc,annotation)
 
       #pictureGallery = parent.addObjectGallery(style='float:left;border:1px solid black;',height='400px', tableWidth='170px', contentWidth='450px')
       #self.addLigandToGallery(baseScenePath,pdbPath,dictPath,tlc,scenePath,annotation,pictureGallery)
-
-      return

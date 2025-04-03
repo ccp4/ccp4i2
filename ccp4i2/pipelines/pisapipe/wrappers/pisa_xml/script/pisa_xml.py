@@ -1,11 +1,12 @@
 
-from core.CCP4PluginScript import CPluginScript
-from lxml import etree
 import os
-from core import CCP4Modules
-from core import CCP4Utils
 
+from lxml import etree
 from PySide2 import QtCore
+
+from ......core.CCP4PluginScript import CPluginScript
+from ......core import CCP4Utils
+
 
 class pisa_xml(CPluginScript):
 
@@ -28,7 +29,8 @@ class pisa_xml(CPluginScript):
     def retrieveAssemblies(self):
         try:
             self.assembliesXMLPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'assemblies.xml'))
-            CCP4Modules.LAUNCHER().launch(viewer='pisa', argList = [self.container.controlParameters.IDENTIFIER.__str__(), '-xml','assemblies'], callBack = self.retrieveAssembliesFinished, logFile = self.assembliesXMLPath)
+            from ......qtcore.CCP4Launcher import LAUNCHER
+            LAUNCHER().launch(viewer='pisa', argList = [self.container.controlParameters.IDENTIFIER.__str__(), '-xml','assemblies'], callBack = self.retrieveAssembliesFinished, logFile = self.assembliesXMLPath)
         except:
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
@@ -45,7 +47,8 @@ class pisa_xml(CPluginScript):
     def retrieveInterfaces(self):
         try:
             self.interfacesXMLPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'interfaces.xml'))
-            CCP4Modules.LAUNCHER().launch(viewer='pisa', argList = [self.container.controlParameters.IDENTIFIER.__str__(), '-xml','interfaces'], callBack = self.retrieveInterfacesFinished, logFile = self.interfacesXMLPath)
+            from ......qtcore.CCP4Launcher import LAUNCHER
+            LAUNCHER().launch(viewer='pisa', argList = [self.container.controlParameters.IDENTIFIER.__str__(), '-xml','interfaces'], callBack = self.retrieveInterfacesFinished, logFile = self.interfacesXMLPath)
         except:
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED

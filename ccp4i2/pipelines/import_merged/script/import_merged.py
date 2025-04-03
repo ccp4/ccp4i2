@@ -1,37 +1,19 @@
-from __future__ import print_function
-
 """
-    import_merged.py: CCP4 GUI Project
-     Copyright (C) 2015 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2015 STFC
 """
 
+import os
 import sys
-import os,shutil
-from PySide2 import QtCore
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core.CCP4ErrorHandling import *
-from lxml import etree
-from pipelines.aimless_pipe.script.aimless_pipe_utils import *
 
-from  pipelines.import_merged.script.mmcifutils import *
-from  pipelines.import_merged.script.mmcifconvert import *
-from  pipelines.import_merged.script.importutils import *
-from  pipelines.import_merged.script.mtzimport import *
+from lxml import etree
+from PySide2 import QtCore
+
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+from ....pipelines.aimless_pipe.script.aimless_pipe_utils import CellCheck
+from .mmcifconvert import ConvertCIF
+from .mtzimport import ImportMTZ
+
 
 class import_merged(CPluginScript):
 
@@ -118,7 +100,7 @@ class import_merged(CPluginScript):
             self.x2mtz.container.outputData.FREEOUT.set(self.container.outputData.FREEOUT)
         self.x2mtz.checkOutputData()
         ret = self.x2mtz.processOutputFiles()  # runs cmtzsplit
-        if sys.platform != 'win32': # CCP4Utils.samefile() doesn't work (r1728)
+        if sys.platform != 'win32':
           self.x2mtz.reportStatus(ret)
         self.container.outputData.OBSOUT.set(self.x2mtz.container.outputData.OBSOUT)
         if self.importXML is not None:
@@ -366,7 +348,6 @@ class import_merged(CPluginScript):
     def nearlyDone(self,status):
       print('import_merged.nearlyDone')
       self.container.outputData.OBSOUT.setContentFlag(reset=True)
-      import shutil
       try:
           # XML data: We have
           #   a) self.importXML etree element report on the import step
@@ -675,16 +656,15 @@ def exportJobFile(jobId=None,mode=None):
     #  If amplitudes F, then return Fs + FreeR
     #     don't use ctruncate output which has intensities derived from F^2
     #     which would mean truncate applied twice
-    import os
-    from core import CCP4Modules
-    from core import CCP4XtalData
+    from ....core import CCP4XtalData
+    from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 
     print("\nexportJobFile")
-    jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
+    jobDir = PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
     exportFile = os.path.join(jobDir,'exportMtz.mtz')
     if os.path.exists(exportFile): return exportFile
 
-    db = CCP4Modules.PROJECTSMANAGER().db()
+    db = PROJECTSMANAGER().db()
     #print("DB:", db.getJobFilesInfo(jobId=jobId))
     info = db.getJobFilesInfo(jobId=jobId,jobParamName='OBSOUT')
     obsfileContent = info[0]['fileContent']
@@ -697,27 +677,27 @@ def exportJobFile(jobId=None,mode=None):
     truncateOut = None
     if isIntensity:
         # Use truncate output
-        childJobs = CCP4Modules.PROJECTSMANAGER().db().getChildJobs(jobId=jobId,details=True)
+        childJobs = PROJECTSMANAGER().db().getChildJobs(jobId=jobId,details=True)
         #print('import_merged.exportMtz',childJobs)
         for jobNo,subJobId,taskName  in childJobs:
             if taskName == 'aimless_pipe':
-                aimlessChildJobs = CCP4Modules.PROJECTSMANAGER().db().getChildJobs(jobId=subJobId,details=True)
+                aimlessChildJobs = PROJECTSMANAGER().db().getChildJobs(jobId=subJobId,details=True)
                 print('import_merged.exportMtz aimlessChildJobs',aimlessChildJobs)
                 for jobNo0,subJobId0,taskName0  in aimlessChildJobs:
                     if taskName0 == 'ctruncate':
-                        truncateOut = os.path.join( CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=subJobId0,create=False),'HKLOUT.mtz')
+                        truncateOut = os.path.join( PROJECTSMANAGER().jobDirectory(jobId=subJobId0,create=False),'HKLOUT.mtz')
                         if not os.path.exists(truncateOut): truncateOut = None
         obsOut = truncateOut
     else:
         # Amplitudes F, use original processed file
-        obsOut = os.path.join( CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False), obsfilename)
+        obsOut = os.path.join( PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False), obsfilename)
 
 
     #print("now FreeR")
     info = db.getJobFilesInfo(jobId=jobId,jobParamName='FREEOUT')
     freerfilename = info[0]['fileName']
     freerflagOut = None
-    freerflagOut = os.path.join( CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False),freerfilename)
+    freerflagOut = os.path.join( PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False),freerfilename)
     if not os.path.exists(freerflagOut): freerflagOut = None
     #if truncateOut is None: return None
     #if freerflagOut is None: return truncateOut

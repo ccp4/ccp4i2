@@ -1,6 +1,9 @@
-from __future__ import print_function
+import os
+import sys
 
-from report.CCP4ReportParser import *
+from ccp4i2.core.CCP4ErrorHandling import Severity
+from ccp4i2.report.CCP4ReportParser import Report
+
 
 class bucref_report(Report):
   # Specify which gui task and/or pluginscript this applies to
@@ -11,7 +14,7 @@ class bucref_report(Report):
   CSS_VERSION = '0.1.0'
   def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,taskVersion=None,**kw):
     Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo,cssVersion=self.CSS_VERSION,**kw)
-    if self.errorReport().maxSeverity()>SEVERITY_WARNING:
+    if self.errorReport().maxSeverity()>Severity.WARNING:
       print('FAILED instantiating buccaneer_build_refine_mr report generator')
       self.errorReport().report()
       return
@@ -259,7 +262,6 @@ class bucref_report(Report):
       fold.addPre(text = alignChainNode.findall('Alignment')[0].text)
 
 def test(xmlFile=None,jobId=None,reportFile=None):
-  import sys,os
   if reportFile is None:
     if xmlFile is not None:
       reportFile = os.path.join(os.path.split(xmlFile)[0],'report.html')

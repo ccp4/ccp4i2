@@ -1,6 +1,5 @@
-from report.CCP4ReportParser import *
-import sys
-import math
+from ......report.CCP4ReportParser import Report
+
 
 class pisa_xml_report(Report):
     # Specify which gui task and/or pluginscript this applies to

@@ -1,7 +1,7 @@
 #!/usr/bin/python
-import os,sys
-from process import process
-import common
+
+from .. import common
+from ..process import process
 
 
 class fixsubstrpdb(process):

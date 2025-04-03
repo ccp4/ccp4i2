@@ -1,13 +1,14 @@
-from core.CCP4ErrorHandling import *
-from qtgui import CCP4XtalWidgets
-from qtgui.CCP4TaskWidget import CTaskWidget
-
 import gemmi
 from PySide2 import QtCore, QtWidgets
 
-from  pipelines.import_merged.script.mmcifutils import *
-from  pipelines.import_merged.script.dybuttons import *
-from  pipelines.import_merged.script.importutils import ReflectionDataTypes
+from ....core.CCP4ErrorHandling import CErrorReport, Severity
+from ....core.CCP4WarningMessage import warningMessage
+from ....qtgui import CCP4XtalWidgets
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+from .dybuttons import ChoiceButtons, MyMessageBox
+from .importutils import ReflectionDataTypes
+from .mmcifutils import CifBlockInfo
+
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -339,7 +340,7 @@ class CTaskimport_merged(CTaskWidget):
     
     errors = mtzModel.validColumns()
    
-    if errors.maxSeverity()>SEVERITY_WARNING:
+    if errors.maxSeverity()>Severity.WARNING:
       #print errors.report()
       if errors.count(cls=mtzModel.__class__,code=203)>0:
         QtWidgets.QMessageBox.warning(self,'Error in selected MTZ file','Selected MTZ file does not contain correct type of data')
@@ -373,13 +374,13 @@ class CTaskimport_merged(CTaskWidget):
     sourceFileName = mtzModel.__dict__.get('sourceFileName','')
     if sourceFileName is None: sourceFileName = ''
     #print 'handleSelColDialogApply',error.report(),sourceFileName
-    if error.maxSeverity()==SEVERITY_WARNING and error[0]['code']==212:
+    if error.maxSeverity()==Severity.WARNING and error[0]['code']==212:
       mess = QtWidgets.QMessageBox.warning(self,self.windowTitle(),'This data is already imported as\n'+error[0]['details'])
-    elif error.maxSeverity()>=SEVERITY_WARNING:
+    elif error.maxSeverity()>=Severity.WARNING:
       if error[0]['code']==211:
         mess = QtWidgets.QMessageBox.warning(self,self.windowTitle(),'No column data selected')
       else:
-        error.warningMessage(windowTitle='Splitting MTZ: '+sourceFileName,jobId=jobId,parent=self)
+        warningMessage(error, windowTitle='Splitting MTZ: '+sourceFileName,jobId=jobId,parent=self)
       self.container.inputData.HKLIN.unSet()
       
     else:
@@ -682,7 +683,7 @@ class CTaskimport_merged(CTaskWidget):
       self.container.inputData.CRYSTALNAME
       self.container.inputData.MAXIMUM_RESOLUTION
       '''
-      
+
       nblocks = len(self.rblocks)
       naccepted = len(self.container.guiParameters.MMCIF_BLOCK_DETAILS)
       if nblocks > 0 and naccepted == 0:

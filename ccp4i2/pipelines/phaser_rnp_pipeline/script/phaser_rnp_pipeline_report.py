@@ -1,8 +1,7 @@
-from report.CCP4ReportParser import *
-import sys
-from pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script.phaser_MR_AUTO_report import phaser_MR_AUTO_report
-from wrappers.refmac_i2.script.refmac_report import refmac_report
-from wrappers.pointless.script.pointless_report import pointless_report
+from ....report.CCP4ReportParser import Report
+from ....wrappers.pointless.script.pointless_report import pointless_report
+from ....wrappers.refmac_i2.script.refmac_report import refmac_report
+from ...phaser_pipeline.wrappers.phaser_MR_AUTO.script.phaser_MR_AUTO_report import phaser_MR_AUTO_report
 
 
 class phaser_rnp_pipeline_report(Report):
@@ -39,5 +38,3 @@ class phaser_rnp_pipeline_report(Report):
         rM_report = refmac_report(xmlnode=refmacNode, jobStatus='nooutput')
 
         rM_report.addSummary(parent=self)
-        
-

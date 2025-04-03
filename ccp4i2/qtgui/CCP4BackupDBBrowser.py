@@ -1,14 +1,16 @@
-from __future__ import print_function
-
-import sys
-import os
-import sqlite3
-import glob
 from datetime import datetime
 import functools
-
-from PySide2 import QtCore, QtGui, QtWidgets
+import glob
+import os
 import sqlite3
+import sys
+import tempfile
+
+from lxml import etree
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from ..core import CCP4Utils
+
 
 def datetimesort(k1,k2):
     t1 = datetime.strptime(k1.lstrip("database_sqlite_backup-"),"%d%m%Y-%H%M%S")
@@ -51,11 +53,7 @@ class CBackupDBBrowser(QtWidgets.QDialog):
     databaseRecoveryFile = QtCore.Signal(str)
 
     def backupFromXML(self):
-        import tempfile
-        from lxml import etree
-
-        from dbapi.CCP4DbApi import CDbXml, CDbApi
-        from core import CCP4Utils
+        from ..dbapi.CCP4DbApi import CDbXml, CDbApi
 
         projectDirectories = []
 

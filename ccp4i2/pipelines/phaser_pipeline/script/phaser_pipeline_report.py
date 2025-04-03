@@ -1,8 +1,8 @@
-from report.CCP4ReportParser import *
-import sys
-from wrappers.refmac_i2.script.refmac_report import refmac_report
-from wrappers.csymmatch.script.csymmatch_report import csymmatch_report
-from wrappers.sheetbend.script.sheetbend_report import sheetbend_report
+from ....report.CCP4ReportParser import Report
+from ....wrappers.csymmatch.script.csymmatch_report import csymmatch_report
+from ....wrappers.refmac_i2.script.refmac_report import refmac_report
+from ....wrappers.sheetbend.script.sheetbend_report import sheetbend_report
+
 
 class phaser_pipeline_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -20,13 +20,13 @@ class phaser_pipeline_report(Report):
             # old versions of task
             self.MODE_TY = None 
         if self.MODE_TY == "MR_FRF":
-            from pipelines.phaser_pipeline.wrappers.phaser_MR_FRF.script.phaser_MR_FRF_report import phaser_MR_FRF_report
+            from ..wrappers.phaser_MR_FRF.script.phaser_MR_FRF_report import phaser_MR_FRF_report
         elif self.MODE_TY == "MR_FTF":
-            from pipelines.phaser_pipeline.wrappers.phaser_MR_FTF.script.phaser_MR_FTF_report import phaser_MR_FTF_report
+            from ..wrappers.phaser_MR_FTF.script.phaser_MR_FTF_report import phaser_MR_FTF_report
         elif self.MODE_TY == "MR_PAK":
-            from pipelines.phaser_pipeline.wrappers.phaser_MR_PAK.script.phaser_MR_PAK_report import phaser_MR_PAK_report
+            from ..wrappers.phaser_MR_PAK.script.phaser_MR_PAK_report import phaser_MR_PAK_report
         else:
-            from pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script.phaser_MR_AUTO_report import phaser_MR_AUTO_report
+            from ..wrappers.phaser_MR_AUTO.script.phaser_MR_AUTO_report import phaser_MR_AUTO_report
 
         if jobStatus == None or jobStatus.lower() =='nooutput': return
         self.addDiv(style='clear:both;')
@@ -69,5 +69,3 @@ class phaser_pipeline_report(Report):
         rM_report = refmac_report(xmlnode=refmacNode, jobStatus='nooutput')
 
         rM_report.addSummary(parent=self)
-
-

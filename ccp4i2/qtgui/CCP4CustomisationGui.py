@@ -1,33 +1,14 @@
-from __future__ import print_function
-
 """
-     CCP4CustomisationGui.py: CCP4 GUI Project
-     Copyright (C) 2013 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2013 STFC
+Liz Potterton July 2013 - create and manage customisations
 """
 
-"""
-     Liz Potterton July 2013 - create and manage customisations
-"""
+import functools
 
-import os
-from PySide2 import QtGui, QtWidgets,QtCore
-from core import CCP4Data,CCP4Container
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import WEBBROWSER,PROJECTSMANAGER,DUMMYMAINWINDOW
+from PySide2 import QtCore, QtWidgets
+
+from ..core.CCP4ErrorHandling import CException, Severity
+from ..core.CCP4WarningMessage import warningMessage
 
 
 class CCustomisationGui(QtWidgets.QDialog):
@@ -35,6 +16,7 @@ class CCustomisationGui(QtWidgets.QDialog):
   insts = []
   
   def __init__(self,parent=None,mode=None,title=None,ifEdit=True,ifClone=True):
+    from ..qtgui.CCP4WebBrowser import DUMMYMAINWINDOW
     if parent is None: parent = DUMMYMAINWINDOW()
     QtWidgets.QDialog.__init__(self,parent)
     CCustomisationGui.insts.append(self)
@@ -110,7 +92,7 @@ class CCustomisationGui(QtWidgets.QDialog):
     try:
       self.manager().clone(original,new)
     except CException as e:
-      e.warningMessage('Clone '+self.mode,'Error cloning '+original,parent=self)
+      warningMessage(e, 'Clone '+self.mode,'Error cloning '+original,parent=self)
       return
     self.handleEdit(new)
   
@@ -124,8 +106,7 @@ class CCustomisationGui(QtWidgets.QDialog):
   def handleExport(self):
     selected = self.customListView.selectedItem()
     if selected is None: return
-    from qtgui import CCP4FileBrowser
-    import functools
+    from . import CCP4FileBrowser
     self.browser = CCP4FileBrowser.CFileDialog(self,
            title='Save '+self.mode+' to compressed file',
            filters= ['CCP4 '+self.mode+' (*.ccp4_'+self.mode+'.tar.gz)'],
@@ -140,12 +121,12 @@ class CCustomisationGui(QtWidgets.QDialog):
     self.browser.deleteLater()
     del self.browser
     err = self.manager().export(selected,fileName)
-    if err.maxSeverity()>SEVERITY_WARNING:
-      err.warningMessage('Export '+self.mode,'Error creating compressed file',parent=self)
+    if err.maxSeverity()>Severity.WARNING:
+      warningMessage(err, 'Export '+self.mode,'Error creating compressed file',parent=self)
       
   @QtCore.Slot()
   def handleImport(self):
-    from qtgui import CCP4FileBrowser
+    from . import CCP4FileBrowser
     self.browser = CCP4FileBrowser.CFileDialog(self,
            title='Import '+self.mode+' compressed file',
            filters= ['CCP4 compressed '+self.mode+' (*.ccp4_'+self.mode+'.tar.gz)'],
@@ -164,7 +145,7 @@ class CCustomisationGui(QtWidgets.QDialog):
       self.manager().testImport(fileName)
     except CException as e:
       if e.count(code=110) == 0:
-        e.warningMessage('Error opening compressed '+self.mode+' file',parent=self)
+        warningMessage(e, 'Error opening compressed '+self.mode+' file',parent=self)
       else:
         name = e[0]['details']
         self.importQuery = CCustomImportDialog(self,name,fileName)
@@ -174,7 +155,7 @@ class CCustomisationGui(QtWidgets.QDialog):
       try:
         self.manager().uncompress(fileName,self.manager().getDirectory())
       except CException as e:
-        e.warningMessage('Error importing '+self.mode,'Failed to write to '+self.mode+' directory',parent=self)
+        warningMessage(e, 'Error importing '+self.mode,'Failed to write to '+self.mode+' directory',parent=self)
 
   @QtCore.Slot(str,str,bool,bool)
   def handleImport2(self,name,fileName,overwrite,rename):
@@ -194,9 +175,9 @@ class CCustomisationGui(QtWidgets.QDialog):
       QtWidgets.QMessageBox.warning(self,self.windowTitle(),'Error deleting '+self.mode+' '+selected)
 
   @QtCore.Slot()
-  def handleHelp(self):   
+  def handleHelp(self):
+    from ..qtgui.CCP4WebBrowser import WEBBROWSER
     WEBBROWSER().loadWebPage(helpFileName='customisation')
-
 
 
 class CCustomListWidget(QtWidgets.QListWidget):
@@ -290,20 +271,6 @@ class CCustomCloneDialog(QtWidgets.QDialog):
     line.addWidget(self.nameWidget)
     self.layout().addLayout(line)
 
-    '''
-    line = QtWidgets.QHBoxLayout()  
-    line.addWidget( QtWidgets.QLabel('Title',self))
-    self.titleWidget = QtWidgets.QLineEdit(self)
-    line.addWidget(self.titleWidget)
-    self.layout().addLayout(line)
-
-    line = QtWidgets.QHBoxLayout()
-    self.editWidget =  QtWidgets.QCheckBox('Edit new '+self.parent().mode,self)
-    self.editWidget.setChecked(True)
-    line.addWidget(self.editWidget )
-    self.layout().addLayout(line)
-    '''
-    
     butBox = QtWidgets.QDialogButtonBox(self)
     but = butBox.addButton('Clone '+self.parent().mode,QtWidgets.QDialogButtonBox.ActionRole)
     but.setDefault(False)
@@ -317,12 +284,6 @@ class CCustomCloneDialog(QtWidgets.QDialog):
   def setSelected(self,selected):
     self.selected = selected
     self.label.setText('Clone '+str(selected)+' to new '+self.parent().mode+':')
-    '''
-    if selected is None:
-      self.titleWidget.setText('')
-    else:
-      self.titleWidget.setText(self.parent().manager().getTitle(selected))
-    '''
 
   @QtCore.Slot()
   def apply(self):
@@ -332,12 +293,6 @@ class CCustomCloneDialog(QtWidgets.QDialog):
     if len(name)<=0 or name in self.parent().manager().getList():
       QtWidgets.QMessageBox.warning(self,'Clone '+self.parent().mode,'Please enter unique name for new '+self.parent().mode)
       return
-
-    '''
-    if len(title)<=0 or title == self.parent().manager().getTitle(self.selected):
-      QtWidgets.QMessageBox.warning(self,'Clone '+self.parent().mode,'Please enter a different title')
-      return
-    '''
 
     self.clone.emit((self.selected,name))
     self.close()

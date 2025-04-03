@@ -1,7 +1,14 @@
 #!/usr/bin/python
-import os,sys,shutil,time
-from program import program
-import common
+
+import os
+import shutil
+import time
+
+import gemmi
+
+from .. import common
+from ..program import program
+
 
 class refmac(program):
   name="REFMAC5"
@@ -123,7 +130,6 @@ class refmac(program):
         else:
           numat=0
           try:
-            import gemmi
             struct=gemmi.read_structure(self.inp.Get('model',typ='substr').GetFileName())
             for s in struct[0].all():
               numat+=1

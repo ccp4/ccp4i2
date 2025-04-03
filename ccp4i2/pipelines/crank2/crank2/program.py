@@ -1,14 +1,16 @@
-from __future__ import with_statement
-import os,sys,copy,re
-from xml.etree import ElementTree as ET
-import subprocess,threading,time
 from distutils import spawn
-import common,data,inout
-if sys.version_info[0]==2:
-  from Queue import Queue  
-else:
-  from queue import Queue
+from queue import Queue
+import collections
+import copy
+import os
+import re
+import subprocess
+import sys
+import threading
+import time
+import xml.etree.ElementTree as ET
 
+from . import common, data, inout
 
 
 class program(object):
@@ -437,7 +439,6 @@ class program(object):
       f = open(logfile,"r")
       from_str = f.read()
     if param:
-      import collections
       if common.is_string(param) or not isinstance(param, collections.Iterable):
         param = [param,]
       if param_escape:
@@ -512,26 +513,6 @@ class program(object):
   def DefineOutput(self):
     """Defines program output (as a function of input and parameters)"""
     pass
-
-  def CheckOutput(self):
-    pass
-    # checks whether the defined output files do not exist already
-    #for of in [ f  for o in self.out.GetAll() for f in o.GetFiles() ]:
-    #  while os.path.isfile(of.name):
-      #if os.path.isfile(of.name):
-        # if the file exists already then check whether it is used by any other object of this step
-        #greatest_parent=self.process
-        #while greatest_parent.parent_process is not None:
-        #  greatest_parent=greatest_parent.parent_process
-        #loop over a list of all objects anywhere in the process/program tree of this step
-        #for p in greatest_parent.GetFlatSubTree():
-        #  #print 'debug',p.nick
-        #  if p!=self:
-        #    for o in p.inp.GetAll()+p.out.GetAll():
-        #      #print 'debug2',o.nick
-        #      if of.name in [f.name for f in o.GetFiles()] and o not in self.out.GetAll():
-        #        common.Warning('File {0} already exists'.format(of.name))
-        #        break
 
 
   def GetFlatSubTree(self,lst=None):
@@ -747,23 +728,6 @@ class program(object):
     """Returns the value of virtual parameters, None if no such parameter defined"""
     return self.GetParam(par,is_key=0,is_arg=0)
 
-  def GetAnyParam(self, par, value=True):
-    """Searches all program parameters - virtuals, arguments, keywords in this order
-       are returns a list of parameters found, empty if no such parameter 'par' found
-    """
-    lst=[]
-    if self.GetParam(par,is_key=0,is_arg=0) is not None:
-      lst.append( self.GetParam(par,is_key=0,is_arg=0) )
-    if self.GetParam(par,is_key=0,is_arg=1) is not None:
-      lst.append( self.GetParam(par,is_key=0,is_arg=1) )
-    if self.GetParam(par,is_key=1,is_arg=0) is not None:
-      lst.append( self.GetParam(par,is_key=1,is_arg=0) )
-    return lst
-
-  def CapitalizeArg(self, arg):
-    """Capitalize value of the inputted arg inplace (if existing and if possible)"""
-    self.CapitalizeParam(arg,value,is_key=0,is_arg=1)
-
   def CapitalizeKey(self, key):
     """Capitalize value of the inputted key inplace (if existing and if possible)"""
     self.CapitalizeParam(key,value,is_key=1,is_arg=0)
@@ -776,17 +740,6 @@ class program(object):
     # Capitalize value of the inputted parameter inplace (if existing and if possible)
     self.SetParam( par, self.GetParam(par,is_key=is_key,is_arg=is_arg,capitalized=True), 
                    is_key=is_key, is_arg=is_arg )
-
-  def CapitalizeAnyParam(self, par):
-    """Searches all program parameters - virtuals, arguments, keywords in this order
-       are capitalizes a list of parameters found, empty if no such parameter 'par' found
-    """
-    if self.GetParam(par,is_key=0,is_arg=0) is not None:
-      self.CapitalizeParam(par,is_key=0,is_arg=0)
-    if self.GetParam(par,is_key=1,is_arg=0) is not None:
-      self.CapitalizeParam(par,is_key=1,is_arg=0)
-    if self.GetParam(par,is_key=0,is_arg=1) is not None:
-      self.CapitalizeParam(par,is_key=0,is_arg=1)
 
   def ClearAllKeys(self):
     """Deletes all the currently defined program keywords"""
@@ -835,12 +788,6 @@ class program(object):
       return True
     else:
       return False
-
-  def IsNonFalseKey(self,key):
-    return self.IsNonFalseParam(key,is_key=True)
-
-  def IsNonFalseArg(self,arg):
-    return self.IsNonFalseParam(arg,is_arg=True)
 
   def IsNonFalseVirtPar(self,par):
     return self.IsNonFalseParam(par)
@@ -1009,10 +956,7 @@ class program(object):
     startupinfo=None
     if os.name == 'nt':
       startupinfo = subprocess.STARTUPINFO()
-      if sys.version_info == (2, 7):
-        startupinfo.dwFlags |= subprocess._subprocess.STARTF_USESHOWWINDOW
-      else:
-        startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+      startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
     # interactive output - use with care
     # runs the program in a separate thread, allowing to process its output simultanously
     # the output lines are passed one by one to the Interact_output method of the program

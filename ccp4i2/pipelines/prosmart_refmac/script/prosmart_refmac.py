@@ -1,30 +1,25 @@
-from __future__ import print_function
-
 """
-    refmac.py: CCP4 GUI Project
-    Copyright (C) 2010 University of York
+Copyright (C) 2010 University of York
+"""
 
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
+import functools
+import math
+import os
+import shutil
+import sys
+import traceback
 
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
-
+from ccp4mg import mmdb2
 from lxml import etree
+from mmtbx.command_line import molprobity
 from PySide2 import QtCore
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core import CCP4Utils
-import os,sys,shutil,re
+from rdkit import Chem
+import clipper
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class prosmart_refmac(CPluginScript):
 
@@ -203,7 +198,6 @@ class prosmart_refmac(CPluginScript):
            tmpFileName = self.pipelinexmlfile+'_tmp'
            with open(tmpFileName,'w') as aFile:
                CCP4Utils.writeXML(aFile, newXml )
-           import shutil
            shutil.move(tmpFileName, self.pipelinexmlfile)
            self.xmlLength = len(newXml)
 
@@ -255,18 +249,15 @@ class prosmart_refmac(CPluginScript):
         print("AAA1")
         if statusDict['finishStatus'] == CPluginScript.UNSATISFACTORY:
             print("AAA1.UNSATISFACTORY")
-            import os
             if os.path.isfile(self.firstRefmac.container.outputData.LIBOUT.__str__()):
-                from wrappers.acedrg.script import acedrg
+                from ....wrappers.acedrg.script import acedrg
                 try:
                     rdkitMol = acedrg.molFromDict(self.firstRefmac.container.outputData.LIBOUT.__str__())
-                    from rdkit import Chem
                     molRemovedHs = Chem.RemoveHs(rdkitMol)
                     svgXml = acedrg.svgFromMol(molRemovedHs)
                     self.xmlroot.append(svgXml)
                 except:
                     print('Unable to generate svg from DICT')
-                import shutil
                 shutil.copyfile(self.firstRefmac.container.outputData.LIBOUT.__str__(), self.container.outputData.LIBOUT.__str__())
                 self.container.outputData.LIBOUT.annotation = 'Refmac-generated library...use with caution'
             if os.path.isfile(self.firstRefmac.container.outputData.PSOUT.__str__()):
@@ -276,7 +267,7 @@ class prosmart_refmac(CPluginScript):
                 CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot,pretty_print=True))
             self.reportStatus(CPluginScript.UNSATISFACTORY)
 
-        elif self.firstRefmac.errorReport.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        elif self.firstRefmac.errorReport.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             print("AAA1.MAXSEVERITY")
             #This gets done in thefirstRefmac.reportStatus() - Liz
             #self.extendErrorReport(self.firstRefmac.errorReport)
@@ -300,7 +291,6 @@ class prosmart_refmac(CPluginScript):
         self.handleXmlChanged(self.firstRefmac.makeFileName(format='PROGRAMXML'))
 
         print("AAA10")
-        import os
         if statusDict['finishStatus'] == CPluginScript.FAILED:
             #This gets done in the firstRefmac.reportStatus() - Liz
             self.fileSystemWatcher = None
@@ -406,7 +396,6 @@ class prosmart_refmac(CPluginScript):
 
     @QtCore.Slot(dict)
     def cootFinished(self, statusDict={}):
-        import functools
         # Check coot status and start refmac
         self.checkFinishStatus(statusDict=statusDict,failedErrCode=204, outputFile= self.cootPlugin.container.outputData.XYZOUT,noFileErrCode=205)
         try:
@@ -449,7 +438,6 @@ class prosmart_refmac(CPluginScript):
     def postCootRefmacFinished(self, refmacJob, statusDict={}):
         self.handleXmlChanged(refmacJob.makeFileName(format='PROGRAMXML'))
 
-        import os
         self.fileSystemWatcher = None
         if statusDict['finishStatus'] == CPluginScript.FAILED:
             #This gets done in the firstRefmac.reportStatus() - Liz
@@ -470,8 +458,7 @@ class prosmart_refmac(CPluginScript):
         self.finishUp(refmacJob)
 
     def finishUp(self, refmacJob):
-        from core import CCP4ProjectsManager
-        import shutil
+        from ....core import CCP4ProjectsManager
         print('into prosmart_refmac.finishUp')
         for attr in self.container.outputData.dataOrder():
             print('prosmart_refmac.finishUp attr',attr)
@@ -490,7 +477,7 @@ class prosmart_refmac(CPluginScript):
                     pass
 
         print('prosmart_refmac.finishUp 1')
-        from core import CCP4XtalData
+        from ....core import CCP4XtalData
         # Apply database annotations
         self.container.outputData.XYZOUT.annotation.set('Model from refinement (PDB format)')
         self.container.outputData.CIFFILE.annotation.set('Model from refinement (mmCIF format)')
@@ -556,14 +543,11 @@ class prosmart_refmac(CPluginScript):
                  #MN: First order attempt at providing molprobity analysis
                  try:
                      print("Attempting molprobity run after refinement...")
-                     from mmtbx.command_line import molprobity
                      coordPath = self.container.outputData.XYZOUT.fullPath.__str__()
                      fileRoot, fileExt = os.path.splitext(coordPath)
                      sanitizedCoordPath = fileRoot + "+asPDB.pdb"
 
                      #Use mmdb to do some sanitization
-                     import ccp4mg
-                     import mmdb2
                      mmdb2.InitMatType()
                      m = mmdb2.Manager()
 
@@ -734,7 +718,6 @@ class prosmart_refmac(CPluginScript):
 
                        self.saveXml()
                    except:
-                       import traceback
                        print("Some problem with verdict...."); sys.stdout.flush()
                        exc_type, exc_value, exc_tb = sys.exc_info()[:3]
                        sys.stderr.write(str(exc_type) + '\n')
@@ -745,7 +728,6 @@ class prosmart_refmac(CPluginScript):
              except Exception as err:
                 xml_validation_status.text = "FAILURE"
                 self.saveXml()
-                import traceback
                 traceback.print_exc()
                 print("...Failed validation run after refinement", err)
 
@@ -762,7 +744,6 @@ class prosmart_refmac(CPluginScript):
         self.reportStatus(CPluginScript.SUCCEEDED)
 
     def tryVariousRefmacWeightsAround(self, weight):
-        import math
         print('Generating jobs with weights around ', weight)
         #make an array to hold the child-jobs
         refmacJobs = []
@@ -801,13 +782,9 @@ class prosmart_refmac(CPluginScript):
         if  status == CPluginScript.FAILED:
             self.reportStatus(status)
             return
-        import sys
         # callback is passed the jobId (=Non
         # if not in ccp4i2-db context) and processId that
         # can serve at identifier for subProcess
-        import sys
-        import time
-        from copy import deepcopy
 
         #print 'demo_multi_mtzdump.handleDone',ret
 
@@ -847,7 +824,7 @@ class prosmart_refmac(CPluginScript):
         xmlcyc.append (rstats[0])
 
     def handleTimeout(self):
-        import sys;sys.stdout.flush()
+        sys.stdout.flush()
 
         for rtask in self.jobsInTrain:
             print('TERMINATING', rtask.processId,sys.stdout.flush())
@@ -860,7 +837,6 @@ class prosmart_refmac(CPluginScript):
         self.reportStatus(CPluginScript.FAILED)
 
 def coefficientsToMap(coefficientsPath, mapPath=None, overSample=1.0):
-    import clipper
     mtz_file = clipper.CCP4MTZfile()
     hkl_info = clipper.HKL_info()
     mtz_file.open_read (str(coefficientsPath))
@@ -889,23 +865,21 @@ def coefficientsToMap(coefficientsPath, mapPath=None, overSample=1.0):
 
 # Function called from gui to support exporting MTZ files
 def exportJobFile(jobId=None,mode=None,fileInfo={}):
-    import os
-    from core import CCP4Modules
-    from dbapi.CCP4DbApi import CDbApi
-    from dbapi.CCP4DbApi import FILE_ROLE_OUT
+    from ....core.CCP4ProjectsManager import PROJECTSMANAGER
+    from ....dbapi.CCP4DbApi import FILE_ROLE_OUT
 
-    theDb = CCP4Modules.PROJECTSMANAGER().db()
+    theDb = PROJECTSMANAGER().db()
     if mode == 'complete_mtz':
         #print 'refmac.exportJobFile',mode
         childJobs = theDb.getChildJobs(jobId=jobId,details=True)
         #print 'exportJobFile childJobs',childJobs
         if childJobs[-1][2] == 'refmac':
-          jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=childJobs[-1][1],create=False)
+          jobDir = PROJECTSMANAGER().jobDirectory(jobId=childJobs[-1][1],create=False)
           if os.path.exists(os.path.join(jobDir,'hklout.mtz')):
              return  os.path.join(jobDir,'hklout.mtz')
         elif childJobs[-1][2] == 'validate_protein':
           if childJobs[-2][2] == 'refmac':
-             jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=childJobs[-2][1],create=False)
+             jobDir = PROJECTSMANAGER().jobDirectory(jobId=childJobs[-2][1],create=False)
              if os.path.exists(os.path.join(jobDir,'hklout.mtz')):
                 return  os.path.join(jobDir,'hklout.mtz')
 
@@ -930,32 +904,3 @@ def exportJobFileMenu(jobId=None):
             ['2FoFc_as_map', '2FoFc as map', 'application/CCP4-map'],
             ['FoFc_as_map', 'FoFc as map', 'application/CCP4-map'],
             ]
-
-#============================================================================================
-import unittest
-class testRefmac(unittest.TestCase):
-
-    def test1(self):
-        # Test creation of log file using ../test_data/test1.params.xml input
-        from core.CCP4Utils import getCCP4I2Dir
-        import os
-        workDirectory = CCP4Utils.getTestTmpDir()
-        logFile = os.path.join(workDirectory,'prosmart_refmac_test1.log')
-        # Delete any existing log file
-        if os.path.exists(logFile): os.remove(logFile)
-        self.wrapper = prosmart_refmac(name='prosmart_refmac_test1',workDirectory=workDirectory)
-        self.wrapper.container.loadDataFromXml(os.path.join(getCCP4I2Dir(),'wrappers','prosmart_refmac','test_data','test1.params.xml'))
-        self.wrapper.setWaitForFinished(1000000)
-        pid = self.wrapper.process()
-        self.wrapper.setWaitForFinished(-1)
-        if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-#self.assertTrue(os.path.exists(logFile),'No log file found')
-
-
-def TESTSUITE():
-    suite = unittest.TestLoader().loadTestsFromTestCase(testRefmac)
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)

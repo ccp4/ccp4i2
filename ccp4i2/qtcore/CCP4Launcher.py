@@ -1,34 +1,20 @@
-from __future__ import print_function
-
 """
-     CCP4Launcher.py: CCP4 GUI Project
-     Copyright (C) 2011 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2011 University of York
+Liz Potterton June 2011 - Class to launch other viewers
 """
 
-"""
-   Liz Potterton June 2011 - Class to launch other viewers
-"""
+import functools
 import os
 import re
-import sys
+import shutil
 import socket
-import functools
-from core.CCP4ErrorHandling import *
-from PySide2 import QtCore, QtGui
+import sys
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from ..core import CCP4Utils
+from ..utils.QApp import QTAPPLICATION
+
 
 class NamedSocket(socket.socket):
     def __init__(self,domain,protocol):
@@ -39,22 +25,25 @@ class NamedSocket(socket.socket):
     def setActive(self,Active):
         self._isActive = Active
 
-    def getActive(self):
-        return self._isActive
-
     def setName(self,name):
         self._myName = name
 
     def getName(self):
         return self._myName
 
+
+def LAUNCHER():
+    if CLauncher.insts is None:
+        parent = QTAPPLICATION()
+        CLauncher(parent)
+    return CLauncher.insts
+
 class CLauncher(QtCore.QObject):
     insts = None
 
     def __init__(self,parent=None):
         if parent is None:
-            from core import CCP4Modules
-            parent = CCP4Modules.QTAPPLICATION()
+            parent = QTAPPLICATION()
         QtCore.QObject.__init__(self,parent)
         if CLauncher.insts is None: CLauncher.insts = self
         self.hostPorts = {'CCP4mg' : {'hostname': 'localhost', 'port' : 9000}}
@@ -105,17 +94,16 @@ class CLauncher(QtCore.QObject):
         self.blockExit = False
 
     def getExecutable(self, viewer, guiParent=None):
-        from core import CCP4Modules
-        from core import CCP4Utils
+        from ..core.CCP4Preferences import PREFERENCES
         viewer = viewer.lower()
         path = None
         if viewer == 'ccp4mg':
-            path = str(CCP4Modules.PREFERENCES().CCP4MG_EXECUTABLE)
+            path = str(PREFERENCES().CCP4MG_EXECUTABLE)
             if  path is not None and os.path.isfile(path) and os.access(path, os.X_OK):
                 return path
-            if CCP4Utils.which(viewer) is not None:
+            if shutil.which(viewer) is not None:
                 if sys.platform[0:3] == 'win':
-                    whichExe = CCP4Utils.which(viewer)
+                    whichExe = shutil.which(viewer)
                     if not viewer.lower().endswith(".bat") and whichExe.lower().endswith(".bat"):
                         viewer = whichExe
                 return viewer
@@ -129,29 +117,25 @@ class CLauncher(QtCore.QObject):
             if guiParent is not None:
                 return self.queryExecutable(viewer=viewer,guiParent=guiParent)
         elif  viewer == 'coot':
-            path = str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)
+            path = str(PREFERENCES().COOT_EXECUTABLE)
             #print 'CLauncher.getExecutable  prfrences coot',path
             if path is not None and os.path.isfile(path) and os.access(path, os.X_OK):
                 if sys.platform == 'win32':
                     altpath = self.modifyCootBat()
                     if altpath is not None: return altpath
                 return path
-            if CCP4Utils.which(viewer) is not None: return viewer
-            #from core import CCP4Config
-            #path = CCP4Config.PATH(viewer)
+            if shutil.which(viewer) is not None: return viewer
             if guiParent is not None:
                 return self.queryExecutable(viewer=viewer,guiParent=guiParent)
         elif  viewer == 'lidia':
-            path = str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)
+            path = str(PREFERENCES().COOT_EXECUTABLE)
             #print 'CLauncher.getExecutable  prfrences coot',path
             if  path is not None and os.path.isfile(path) and os.access(path, os.X_OK):
                 if sys.platform == 'win32':
                     altpath = self.modifyLidiaBat()
                     if altpath is not None: return altpath
                 return path
-            if CCP4Utils.which(viewer) is not None: return viewer
-            #from core import CCP4Config
-            #path = CCP4Config.PATH(viewer)
+            if shutil.which(viewer) is not None: return viewer
             if guiParent is not None:
                 return self.queryExecutable(viewer=viewer,guiParent=guiParent)
         return path
@@ -159,7 +143,6 @@ class CLauncher(QtCore.QObject):
     def launch(self,viewer=None,argList=[],envEdit=[],projectId=None,logFile=None,callBack=None,guiParent=None):
         #Bother - launch() gets called directly from CCP4ReportWidgets
         # Beware multiple calls to launch (from coot_model_building) seems to retain previous envEdit
-        from core import CCP4Utils
         #print "CLauncher launch"
         editEnv = []
         editEnv.extend(envEdit)
@@ -172,13 +155,9 @@ class CLauncher(QtCore.QObject):
                 if cootD is not None:
                     editEnv.append(['PWD',self.cootDir(projectId)])
             editEnv.append( ['PYTHONHOME'] )
-        """
-        if viewer == 'moorhen':
-            import os
-            from core import CCP4Utils
-            argList.insert(0,os.path.normpath(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','coot_model_building','test_data','moorhen.py')))
-            exe = os.path.join(CCP4Utils.getCCP4I2Dir(),'bin','Python')
-        """
+        # if viewer == 'moorhen':
+        #     argList.insert(0,os.path.normpath(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','coot_model_building','test_data','moorhen.py')))
+        #     exe = os.path.join(CCP4Utils.getCCP4I2Dir(),'bin','Python')
         if viewer == 'loggraph':
             argList.insert(0,os.path.normpath(os.path.join(CCP4Utils.getCCP4I2Dir(),'pimple','MGQTmatplotlib.py')))
             if sys.platform == "win32" or sys.platform == "win64":
@@ -202,7 +181,7 @@ class CLauncher(QtCore.QObject):
         else:
             exe = self.getExecutable(viewer,guiParent=guiParent)
         if sys.platform[0:3] == "win" and viewer in ("ccp4mg", "lidia"):
-            whichExe = CCP4Utils.which(exe)
+            whichExe = shutil.which(exe)
             if not exe.lower().endswith(".bat") and whichExe.lower().endswith(".bat"):
                 exe = whichExe
         if exe is None:
@@ -210,14 +189,7 @@ class CLauncher(QtCore.QObject):
             exe = viewer
         if sys.platform[0:3] == "win" and viewer == "logview":
             exe += ".bat"
-        '''
-        import subprocess
-        try:
-            p = subprocess.Popen('-nore',executable=exe)
-        #except:
-        #  print 'Error starting viewer',viewer,'with command',exe
-        #  return None
-        '''
+
         qArgList = []
         for item in argList:
             if item is not None:
@@ -251,45 +223,9 @@ class CLauncher(QtCore.QObject):
             p.start(exe,qArgList)
         return p
 
-    '''
-    # This version attempts to open viewer and then send commands through sockets
-    # mg does not allow socket input
-    def openInViewer(self,viewer=None,fileName=None,jobId=None):
-      print 'CLauncher.openInViewer',viewer,fileName,jobId
-      if fileName is not None:
-        comLine = self.makeCommand(viewer=viewer,command='openFile',data=fileName)
-      elif jobId is not None:
-        # This will open just one file - need to talk to Stuart
-        from core import CCP4Modules
-        
-        fileList = CCP4Modules.PROJECTSMANAGER().db().getJobFiles(jobId=jobId,mode='fullPath')
-        if len(fileList)>0:
-          comLine = self.makeCommand(viewer=viewer,command='openFile',data=fileList[0])
-      #print 'CLauncher.openInViewer command',str(comLine)
-      if comLine is None:
-        print 'Can not create launcher command for:',viewer,fileName,jobId
-        return
-
-      if self.sockets.has_key(viewer):
-        try:
-          self.sockets[viewer].sendall(comLine)
-        except:
-          # Send failed - assume the socket broken and try resetting
-          self.sockets[viewer].close()
-          del self.sockets[viewer]
-
-      if not self.sockets.has_key(viewer):
-        if not self.hostPorts.has_key(viewer):
-          print 'Do not know hostname,port for viewer:',viewer
-          return
-        hostname= self.hostPorts[viewer]['hostname']
-        port = self.hostPorts[viewer]['port']
-        self.openSocket(hostname,port,viewer,comLine)
-    '''
     def modifyCootBat(self):
-        from core import CCP4Modules
-        from core import CCP4Utils
-        cootBat = CCP4Modules.PREFERENCES().COOT_EXECUTABLE.__str__()
+        from ..core.CCP4Preferences import PREFERENCES
+        cootBat = PREFERENCES().COOT_EXECUTABLE.__str__()
         if not os.path.splitext(cootBat)[1] == '.bat' or not os.path.exists(cootBat):
             return None
         text = CCP4Utils.readFile(cootBat)
@@ -299,9 +235,8 @@ class CLauncher(QtCore.QObject):
         return modFile
 
     def modifyLidiaBat(self):
-        from core import CCP4Modules
-        from core import CCP4Utils
-        cootBat = CCP4Modules.PREFERENCES().COOT_EXECUTABLE.__str__()
+        from ..core.CCP4Preferences import PREFERENCES
+        cootBat = PREFERENCES().COOT_EXECUTABLE.__str__()
         if not os.path.splitext(cootBat)[1] == '.bat' or not os.path.exists(cootBat):
             return None
         text = CCP4Utils.readFile(cootBat)
@@ -311,12 +246,11 @@ class CLauncher(QtCore.QObject):
         return modFile
 
     def cootDir(self,projectId):
-        from core import CCP4Modules
-        #print '  cootDir',projectId,type(projectId),CCP4Modules.PROJECTSMANAGER().getProjectDirectory(projectId=projectId)
         if projectId is None:
             return None
         else:
-            cootDir = os.path.join(CCP4Modules.PROJECTSMANAGER().getProjectDirectory(projectId=projectId),'CCP4_COOT')
+            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+            cootDir = os.path.join(PROJECTSMANAGER().getProjectDirectory(projectId=projectId),'CCP4_COOT')
             if not os.path.exists(cootDir):
                 try:
                     os.mkdir(cootDir)
@@ -326,11 +260,9 @@ class CLauncher(QtCore.QObject):
         return cootDir
     
     def openInViewer(self,viewer=None,fileName=None,jobId=None,projectId=None,style=None,guiParent=None,fileType='chemical/x-pdb'):
-        from core import CCP4Modules
-        from core import CCP4Utils
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         if projectId is None and jobId is not None:
             try:
-                from core.CCP4Modules import PROJECTSMANAGER
                 projectId = PROJECTSMANAGER().db().getJobInfo(jobId,mode='projectid')
             except:
                 pass
@@ -356,11 +288,12 @@ class CLauncher(QtCore.QObject):
             self.runCootJob(contextJobId=jobId, projectId=projectId, fileName=fileName, fileType=fileType )
         elif viewer.lower() == 'lidia':
             cootExeDir = None
-            if hasattr(CCP4Modules.PREFERENCES(), 'COOT_EXECUTABLE'):
-                if os.path.isfile(str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)):
-                    cootExeDir = str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)
+            from ..core.CCP4Preferences import PREFERENCES
+            if hasattr(PREFERENCES(), 'COOT_EXECUTABLE'):
+                if os.path.isfile(str(PREFERENCES().COOT_EXECUTABLE)):
+                    cootExeDir = str(PREFERENCES().COOT_EXECUTABLE)
             if cootExeDir is None:
-                cootExeDir = CCP4Utils.which('coot')
+                cootExeDir = shutil.which('coot')
             cootDir = os.path.normpath(os.path.dirname(os.path.dirname(cootExeDir)))
             envEdit = [['COOT_PREFIX', cootDir]]
             COOT_DATA_DIR = os.path.normpath(os.path.join(cootDir, 'share', 'coot'))
@@ -377,7 +310,7 @@ class CLauncher(QtCore.QObject):
             if fileName is not None:
                 self.launch(viewer='loggraph', argList=[fileName])
             elif jobId is not None:
-                logfile = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=jobId, mode='REPORT')
+                logfile = PROJECTSMANAGER().makeFileName(jobId=jobId, mode='REPORT')
                 #print 'openInViewer loggraph',logfile
                 self.launch(viewer='loggraph', argList=[logfile])
                 #self.launch(viewer='loggraph')
@@ -385,7 +318,6 @@ class CLauncher(QtCore.QObject):
             QtGui.QDesktopServices.openUrl(QtCore.QUrl.fromLocalFile(fileName))
 
     def mgComLine(self, fileName=None, jobId=None, style='Bonds:All_atoms'):
-        from core import CCP4Modules
         # common styles: 'bonds:all_atoms' 'ribbons:colour_chains' 'ribbons:colour_blend_thru_chain' 'ribbons:secondary_structure'
         #print 'LAUNCHER.mgComLine jobId',jobId
         if style is None: style = 'Bonds:All_atoms'
@@ -397,7 +329,8 @@ class CLauncher(QtCore.QObject):
         else:
             line.append(fileName)
         if jobId is not None:
-            scenefileList =CCP4Modules.PROJECTSMANAGER().getSceneFiles(jobId=jobId)
+            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+            scenefileList =PROJECTSMANAGER().getSceneFiles(jobId=jobId)
             if len(scenefileList) > 0:
                 line.append(scenefileList[0])
             else:
@@ -406,13 +339,12 @@ class CLauncher(QtCore.QObject):
         return line
 
     def runCootJob(self,projectId=None,contextJobId=None,fileName=None,fileType='chemical/x-pdb'):
-        from dbapi import CCP4DbUtils
-        from dbapi import CCP4DbApi
-        from core import CCP4Modules
-        from core.CCP4Modules import PROJECTSMANAGER
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+        from ..dbapi.CCP4DbApi import FILETYPELIST
+        from ..dbapi.CCP4DbUtils import COpenJob
         if projectId is None:
-            projectId = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(contextJobId,'projectid')
-        openJob = CCP4DbUtils.COpenJob(projectId=projectId)
+            projectId = PROJECTSMANAGER().db().getJobInfo(contextJobId,'projectid')
+        openJob = COpenJob(projectId=projectId)
         openJob.createJob(taskName='coot_rebuild',contextJobId=contextJobId)
         if fileName is not None:
             #need to establish what sort of file we are trying to view...difficult from here since we have only a fileName
@@ -429,11 +361,11 @@ class CLauncher(QtCore.QObject):
                 partFileInfo = selectedInfos[0]
                 fileInfo = db.getFileInfo(fileId=partFileInfo[1],mode=['jobid','filename','relpath','projectid','annotation','filecontent','filesubtype'])
                 dobj = None
-                if CCP4DbApi.FILETYPELIST[int(partFileInfo[3])][1] == 'chemical/x-pdb':
+                if FILETYPELIST[int(partFileInfo[3])][1] == 'chemical/x-pdb':
                     dobj = openJob.container.inputData.XYZIN_LIST
-                elif CCP4DbApi.FILETYPELIST[int(partFileInfo[3])][1] == 'application/CCP4-mtz-map' and fileInfo['filesubtype']== 1:
+                elif FILETYPELIST[int(partFileInfo[3])][1] == 'application/CCP4-mtz-map' and fileInfo['filesubtype']== 1:
                     dobj = openJob.container.inputData.FPHIIN_LIST
-                elif CCP4DbApi.FILETYPELIST[int(partFileInfo[3])][1] == 'application/CCP4-mtz-map' and fileInfo['filesubtype']== 2:
+                elif FILETYPELIST[int(partFileInfo[3])][1] == 'application/CCP4-mtz-map' and fileInfo['filesubtype']== 2:
                     dobj = openJob.container.inputData.DELFPHIIN_LIST
                 if dobj is not None:
                     dobj.addItem()
@@ -448,15 +380,6 @@ class CLauncher(QtCore.QObject):
                 dobj = openJob.container.inputData.XYZIN_LIST
                 dobj.addItem()
                 dobj[-1].setFullPath(fileName)
-        openJob.runJob()
-
-    def runLidiaJob(self, projectId=None, contextJobId=None, fileName=None):
-        from dbapi import CCP4DbUtils
-        from core import CCP4Modules
-        if projectId is None:
-            projectId = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(contextJobId, 'projectid')
-        openJob = CCP4DbUtils.COpenJob(projectId=projectId)
-        openJob.createJob(taskName='Lidia', contextJobId=contextJobId)
         openJob.runJob()
 
     def cootComLine(self,fileName=None,jobId=None):
@@ -484,19 +407,19 @@ class CLauncher(QtCore.QObject):
             return line
 
     def makeCootParamsFile(self,contextJobId=None,projectId=None,taskName='coot_rebuild'):
-        from core import CCP4Container
-        from core import CCP4Modules
-        from core import CCP4File
-        from core import CCP4TaskManager
-        from core import CCP4ModelData
-        from core import CCP4XtalData
+        from ..core import CCP4Container
+        from ..core import CCP4File
+        from ..core import CCP4ModelData
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+        from ..core.CCP4TaskManager import TASKMANAGER
+        from ..core.CCP4XtalData import CMapCoeffsDataFile
         comLine = []
         # Make container
-        defFile = CCP4TaskManager.TASKMANAGER().lookupDefFile(name=taskName)
+        defFile = TASKMANAGER().lookupDefFile(name=taskName)
         container = CCP4Container.CContainer()
         container.loadContentsFromXml(fileName=defFile)
         #Loop over inputData files to pull best file of type from database
-        db = CCP4Modules.PROJECTSMANAGER().db()
+        db = PROJECTSMANAGER().db()
         for key in container.inputData.dataOrder():
             dobj = container.inputData.get(key)
             if isinstance(dobj,CCP4File.CDataFile):
@@ -513,7 +436,7 @@ class CLauncher(QtCore.QObject):
                               'contentFlag' :fileInfo['filecontent'], 'subType' :fileInfo['filesubtype'] } )
                 if isinstance(dobj,CCP4ModelData.CPdbDataFile):
                     comLine.extend(['--pdb',dobj.__str__()])
-                elif isinstance(dobj,CCP4XtalData.CMapCoeffsDataFile):
+                elif isinstance(dobj,CMapCoeffsDataFile):
                     comLine.extend(['--data',dobj.__str__()])
         paramsFileName = os.path.join(db.getProjectDirectory(jobId=contextJobId),'CCP4_COOT','params.xml')
         #print 'makeCootParamsFile paramsFileName',paramsFileName
@@ -522,16 +445,16 @@ class CLauncher(QtCore.QObject):
         return paramsFileName,comLine
 
     def getFilesToDisplay(self,jobId):
-        from core import CCP4Modules
-        from core import CCP4Data
-        from core import CCP4TaskManager
-        taskName =  CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId,'taskname')
-        paramList = CCP4TaskManager.TASKMANAGER().getTaskAttribute(taskName,'MGDISPLAYFILES',None)
+        from ..core import CCP4Data
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+        from ..core.CCP4TaskManager import TASKMANAGER
+        taskName =  PROJECTSMANAGER().db().getJobInfo(jobId,'taskname')
+        paramList = TASKMANAGER().getTaskAttribute(taskName,'MGDISPLAYFILES',None)
         # No DISPLAYFILES defined for task so Just give the output files
         if paramList is None:
-            fileNameList = CCP4Modules.PROJECTSMANAGER().db().getJobFiles(jobId=jobId,mode='fullPath')
+            fileNameList = PROJECTSMANAGER().db().getJobFiles(jobId=jobId,mode='fullPath')
         else:
-            container = CCP4Modules.PROJECTSMANAGER().db().getParamsContainer(jobId)
+            container = PROJECTSMANAGER().db().getParamsContainer(jobId)
             fileNameList = []
             for param in paramList:
                 obj = container.find(param)
@@ -562,9 +485,8 @@ class CLauncher(QtCore.QObject):
         return None
 
     def queryExecutable(self,viewer,guiParent):
-        from PySide2 import QtGui, QtWidgets
-        from qtgui import CCP4FileBrowser
-        self.findViewerDialog = CCP4FileBrowser.CFileDialog(guiParent,'Find '+viewer,filters=[' (*)'],projectCombo=False)
+        from ..qtgui.CCP4FileBrowser import CFileDialog
+        self.findViewerDialog = CFileDialog(guiParent,'Find '+viewer,filters=[' (*)'],projectCombo=False)
         label = QtWidgets.QLabel("""Sorry - failed to find """+viewer+""". Please enter the program executable and then view again.\n The executable can also be set in Preferences.""",self.findViewerDialog)
         label.setStyleSheet( "QLabel { font-weight: bold;  border: 2px solid} ")
         self.findViewerDialog.addWidget(label)
@@ -574,29 +496,11 @@ class CLauncher(QtCore.QObject):
 
     @QtCore.Slot(str,str)
     def handleFindViewer(self,viewer,filePath):
-        from core import CCP4Modules
+        from ..core.CCP4Preferences import PREFERENCES
         #print 'handleFindViewer',viewer,filePath
         if os.path.exists(filePath):
             if viewer in ['coot','coot_job']:
-                CCP4Modules.PREFERENCES().COOT_EXECUTABLE.set(filePath)
+                PREFERENCES().COOT_EXECUTABLE.set(filePath)
             else:
-                CCP4Modules.PREFERENCES().CCP4MG_EXECUTABLE.set(filePath)
-            CCP4Modules.PREFERENCES().save()
-
-#===================================================================================================
-import unittest
-def TESTSUITE():
-    suite = unittest.defaultTestLoader.loadTestsFromTestCase(testLaunch)
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)
-
-class testLaunch(unittest.TestCase):
-
-    def test1(self):
-        l = CLauncher()
-        com = l.makeCommand(viewer='CCP4mg',command='openFile',data='foo/bar')
-        print('testLaunch.test1',com)
-        self.assertEqual(com[0:7],'<begin>','makeCommand failed for openFile')
+                PREFERENCES().CCP4MG_EXECUTABLE.set(filePath)
+            PREFERENCES().save()

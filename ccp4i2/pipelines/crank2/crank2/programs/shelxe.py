@@ -1,7 +1,11 @@
 #!/usr/bin/python
-import os,sys,shutil
-from program import program
-import common
+
+import os
+import shutil
+
+from .. import common
+from ..program import program
+
 
 class shelxe(program):
   name="SHELXE"

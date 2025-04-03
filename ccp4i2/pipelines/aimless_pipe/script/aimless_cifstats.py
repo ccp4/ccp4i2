@@ -15,9 +15,10 @@
 # with the blockid blkid constructed as blkid-datasetname, taken from
 # the last part of the project/crystal/dataset name
 
-import os,sys
-import xml.etree.ElementTree as ET
+import argparse
 import math
+import sys
+import xml.etree.ElementTree as ET
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 def getItem(xblock, item, gettext=True):
@@ -473,7 +474,6 @@ class CifStatsOutput:
 if __name__ == "__main__":
     args = sys.argv
     # Parse arguments from string list
-    import argparse
     parser = argparse.ArgumentParser(args)
     if len(args) <= 1:
         print("Usage: python aimlessstatscif.py xmlfilename [options]")

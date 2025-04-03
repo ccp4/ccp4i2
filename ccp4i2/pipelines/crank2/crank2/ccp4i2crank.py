@@ -1,11 +1,12 @@
-from __future__ import with_statement
-from future.utils import raise_
-import os,sys,copy,shutil
-import common,manager,parse
+import os
+import shutil
+import sys
+
+from . import common, parse
+from ....core import CCP4ErrorHandling
 
 
 def CallCrankFromCCP4i2(ccp4i2crank, xmlfile=None, inpfile=None, defaults=False, rvapi_style=None):
-  from core import CCP4PluginScript, CCP4ErrorHandling
   # we need to return to the original cwd when leaving otherwise i2 gets confused
   cwd_saved = os.getcwd()
   os.chdir(ccp4i2crank.workDirectory)
@@ -35,12 +36,7 @@ def CallCrankFromCCP4i2(ccp4i2crank, xmlfile=None, inpfile=None, defaults=False,
     f.close()
     if error:
       os.chdir(cwd_saved)
-      # simple raise used to lose the trace...  raise_ is needed to make a python2/3 compatible specific error raise with trace
-      #raise_(error,None,sys.exc_info()[2])
-      try: #python2
-        raise
-      except RuntimeError: #python3
-        raise error
+      raise error
   # register output objects from the last step... (or from previous step if not present in last)
   if not defaults:
     if hasattr(crank.processes[-1],'ccp4i2job'):
@@ -80,7 +76,6 @@ def RegisterSubOutputAsMain(i2crank,crank,i2subjob,outd_name):
     if outd_name not in('PERFORMANCE',):
       filepath=OutFilesDirMatch(str(i2_subjob_obj),crank)
       if filepath:
-        from core import CCP4ErrorHandling
         try:
           getattr(i2crank.container.outputData, outd_name).setFullPath(filepath)
           getattr(i2crank.container.outputData, outd_name).annotation.set( i2_subjob_obj.annotation )
@@ -88,7 +83,7 @@ def RegisterSubOutputAsMain(i2crank,crank,i2subjob,outd_name):
           getattr(i2crank.container.outputData, outd_name).set(filepath)
 
 def RegisterProcessToCCP4i2(ccp4i2crank, process):
-  from core import CCP4PluginScript, CCP4ErrorHandling, CCP4XtalData
+  from ....core import CCP4PluginScript, CCP4XtalData
   sys.stdout = stdout_save
   subjob = ccp4i2crank.makePluginObject(pluginName='crank2_'+process.nick, pluginTitle=process.short_name[0].upper()+process.short_name[1:])
   if subjob is None:
@@ -170,12 +165,12 @@ annotations = { 'FPHOUT_HAND2':    '"Best" density - other hand (not chosen)', \
               }
 
 def RegisterOutputToCCP4i2(process,error,nosuccess=False):
-  from core import CCP4PluginScript, CCP4ErrorHandling, CCP4XtalData
+  from ....core import CCP4PluginScript, CCP4XtalData
   sys.stdout = stdout_save
   i2job=process.ccp4i2job
   if error:
     i2job.reportStatus(CCP4PluginScript.CPluginScript.FAILED)
-    raise_(error,None,sys.exc_info()[2])
+    raise error
   else:
     for outd_name in i2job.container.outputData._dataOrder:
      if not hasattr(i2job,'out_params') or outd_name in i2job.out_params:
@@ -216,7 +211,7 @@ def RegisterOutputToCCP4i2(process,error,nosuccess=False):
               error = i2job.splitHklout([outd_name,], [out_obj.GetLabel('ph')+','+out_obj.GetLabel('fom'),], infile=filepath)
           else:
             error = i2job.splitHklout([outd_name,], [out_obj.GetLabel('f')+','+out_obj.GetLabel('ph'),], infile=filepath)
-          if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+          if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             i2job.reportStatus(CCP4PluginScript.CPluginScript.FAILED)
       elif outd_name.startswith('F_SIGF'):
         out_obj=None

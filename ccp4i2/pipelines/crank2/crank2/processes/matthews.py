@@ -1,8 +1,11 @@
 #!/usr/bin/python
-import os,sys,math
-from process import process
-from program import program
-import common
+
+import math
+import sys
+
+from .. import common
+from ..process import process
+from ..program import program
 
 
 class matthews(process):

@@ -1,30 +1,15 @@
 """
-     tasks/buccaneer_build_refine/CTaskbuccaneer_build_refine.py: CCP4 GUI Project
-     Copyright (C) 2011 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2011 University of York
+Liz Potterton Dec 2011 - copy and revise buccaneer gui
+Jon Agirre 2014 - Add new MR options, revise the gui and simplify it
 """
 
-"""
-     Liz Potterton Dec 2011 - copy and revise buccaneer gui
-     Jon Agirre 2014 - Add new MR options, revise the gui and simplify it
-"""
+import multiprocessing
+import os
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
+from PySide2 import QtCore
+
+from ....qtgui import CCP4TaskWidget
 
 
 def whatNext(jobId,childTaskName,childJobNumber,projectName):
@@ -215,7 +200,6 @@ class CTaskbuccaneer_build_refine_mr(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'widget','BUCCANEER_FIX_POSITION','label','Build the new model in the same place as the input model' ] )
     self.createLine( [ 'label','Residue name for unsequenced residues','widget','BUCCANEER_NEW_RESIDUE_NAME' ] )
   
-    import multiprocessing, os
     self.getContainer().controlParameters.BUCCANEER_JOBS = int ( os.getenv ( 'OMP_NUM_THREADS', multiprocessing.cpu_count() ) )
     self.createLine( [ 'tooltip',  'The default value shows the detected number of cores', 'label', 'Use up to', 'widget', 'BUCCANEER_JOBS', 'label', 'CPU cores whenever possible' ] ) 
     self.createLine( [ 'widget','BUCCANEER_CLEANUP','label','Clean up intermediate map files as job progresses' ] )

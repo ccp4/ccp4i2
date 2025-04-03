@@ -1,20 +1,20 @@
-from __future__ import print_function
-import sys
 import copy
 import json
-from report.CCP4ReportParser import *
-from wrappers.refmac_i2.script.refmac_report import refmac_report
-#from lxml import etree
-import xml.etree.ElementTree as etree
-from wrappers.sheetbend.script.sheetbend_report import sheetbend_report
-from wrappers.pointless.script import pointless_report
-from wrappers.aimless.script import aimless_report
-from wrappers.ctruncate.script import ctruncate_report
-from wrappers.phaser_analysis.script import phaser_analysis_report
-from pipelines.aimless_pipe.script.aimless_pipe_utils import *
-from pipelines.buccaneer_build_refine_mr.script import buccaneer_build_refine_mr_report
-from pipelines.aimless_pipe.script import aimless_pipe_report
-from wrappers.modelcraft.script import modelcraft_report
+import os
+import sys
+import uuid
+
+from ....pipelines.aimless_pipe.script import aimless_pipe_report
+from ....pipelines.buccaneer_build_refine_mr.script import buccaneer_build_refine_mr_report
+from ....report.CCP4ReportParser import Report
+from ....wrappers.aimless.script import aimless_report
+from ....wrappers.ctruncate.script import ctruncate_report
+from ....wrappers.modelcraft.script import modelcraft_report
+from ....wrappers.phaser_analysis.script import phaser_analysis_report
+from ....wrappers.pointless.script import pointless_report
+from ....wrappers.refmac_i2.script.refmac_report import refmac_report
+from ....wrappers.sheetbend.script.sheetbend_report import sheetbend_report
+
 
 class MyRefmacReport(refmac_report):
     def addSummary(self, xmlnode=None, parent=None, withTables=True):
@@ -22,13 +22,9 @@ class MyRefmacReport(refmac_report):
         if xmlnode is None: xmlnode = self.xmlnode
         
         summaryFold = parent.addFold(label='Summary of refinement', brief='Summary', initiallyOpen=True)
-        import uuid
         uuid._uuid_generate_time = None
         uuid._uuid_generate_random = None
-        if sys.version_info >= (3,0):
-            uuid_str = uuid.uuid4().hex
-        else:
-            uuid_str = uuid.uuid4().get_hex()
+        uuid_str = uuid.uuid4().hex
         
         self.addScrollableDownloadableTable1(parent=summaryFold,internalId=uuid_str)
         self.addProgressGraph(parent=summaryFold)
@@ -63,9 +59,6 @@ class dr_mr_modelbuild_pipeline_report(Report):
   def __init__(self, xmlnode=None, jobInfo={}, jobStatus=None, **kw):
     self.xmlnode = xmlnode
     Report.__init__(self, xmlnode=xmlnode, jobInfo=jobInfo, jobStatus=jobStatus, **kw)
-
-    #import traceback
-    #traceback.print_stack()
 
     aimlessdone = len(xmlnode.findall('.//AIMLESS_PIPE'))>0
     molrepdone = len(xmlnode.findall('.//MolrepResult'))>0
@@ -509,7 +502,6 @@ class dr_mr_modelbuild_pipeline_report(Report):
               clearingDiv = summaryfold2.addDiv(style="clear:both;")
 
 if __name__ == "__main__":
-  import sys
   dr_mr_modelbuild_pipeline_report(xmlFile=sys.argv[1], jobId=sys.argv[2])
 
 

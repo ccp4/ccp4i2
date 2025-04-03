@@ -1,27 +1,12 @@
-from __future__ import print_function
+import sys
 
-# -------------------------------------------------
-import os,sys
-try:
-  from report.CCP4ReportParser import *
-except:
-  exec(compile(open(os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc')).read(), os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc'), 'exec'))
-  from report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
+from ....wrappers.aimless.script import aimless_report
+from ....wrappers.ctruncate.script import ctruncate_report
+from ....wrappers.phaser_analysis.script import phaser_analysis_report
+from ....wrappers.pointless.script import pointless_report
+from .aimless_pipe_utils import colourText, displayFileList
 
-try:
-  # this is for testing
-  import pointless_report
-  import aimless_report
-  import ctruncate_report
-  import phaser_analysis_report
-  from  aimless_pipe_utils import *
-  print("Import testing")
-except:
-  from wrappers.pointless.script import pointless_report
-  from wrappers.aimless.script import aimless_report
-  from wrappers.ctruncate.script import ctruncate_report
-  from wrappers.phaser_analysis.script import phaser_analysis_report
-  from pipelines.aimless_pipe.script.aimless_pipe_utils import *
 
 class aimless_pipe_report(Report):
   # Specify which gui task and/or pluginscript this applies to
@@ -742,10 +727,6 @@ class aimless_pipe_report(Report):
     self.pointlessreport.Errors(spacegroupDiv)   #  report any fatal errors
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  def addPointlessReport(self):
-    self.pointlessreport.MainMessages(self)
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   def addCtruncateReports(self, parent=None):
     ndatasets = len(self.ctruncatereports)
     for ctruncatereport in self.ctruncatereports:
@@ -1037,11 +1018,6 @@ class datasetIndex:
       self.ctruncateidx[self.dnameindex[dname]] = i
       i += 1
     #print("ctruncateidx", self.ctruncateidx)
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  def ctruncateIndex(self, aimlessidx):
-    # Returns index for ctruncate given the Aimless index
-    return self.ctruncateidx[aimlessidx]
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   def indexPhaser(self, phaserxmlnodelist):

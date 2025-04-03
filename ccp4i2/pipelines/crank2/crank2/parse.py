@@ -1,15 +1,13 @@
-import os,sys,io
-import common,manager,process
-import pkgutil,csv
-try:
-  import argparse
-  no_argparse=False
-except:
-  import optparse
-  no_argparse=True
+import argparse
+import csv
+import io
+import os
+import sys
+
+from . import common, manager
+
 
 program="crank2"
-
 
 csv.register_dialect('crank_parse', delimiter=' ', skipinitialspace=1, doublequote=False, quotechar='"')
 
@@ -102,11 +100,11 @@ class parse:
       self.PrintProcesses()
       common.Error('No such process {0} supported.'.format(proc), debug=False)
     else:
-      from process import process
+      from .process import process
       process.from_name(proc,None).PrintParams()
 
   def PrintProcesses(self):
-    from process import process
+    from .process import process
     common.Info('The following processes are supported:')
     for proc in manager.crank.supported_procs:
       proc_obj = process.from_name(proc,None)
@@ -117,7 +115,7 @@ class parse:
         common.Info('{0:15}    supported programs:  {1}'.format('', ', '.join(proc_obj.supported_progs)))
 
   def PrintDataObjects(self):
-    from data import data_container
+    from .data import data_container
     common.Info('The following data objects are supported:')
     for data_obj in data_container.__subclasses__():
       common.Info('\n{0:10} {1}'.format(data_obj.__name__, data_obj.description))
@@ -138,40 +136,17 @@ class parse:
       common.Error('{0} file {1} does not exist.'.format(opt_str.strip('-').upper(),fil))
     if not os.path.isabs(fil):
       fil = os.path.join(os.getcwd(), fil)
-  if no_argparse:
-    class CheckFileAction():
-      pass
-    class OptionParserMod(optparse.OptionParser):
-      def CheckFileAction(self,opt,fil):
-        parse.CheckFile(opt,fil)
-      def OpenFileAction(self, option, opt_str, value, parser):
-        parse.CheckFile(opt_str,value)
-        setattr(parser.values, option.dest, open(value))
-      def add_argument(self,*args,**kwargs):
-        if 'action' in kwargs and kwargs['action'] is parse.CheckFileAction:
-          kwargs['action']="callback"
-          kwargs['callback']=self.CheckFileAction
-          kwargs['type']="str"
-        if 'type' in kwargs and kwargs['type'] is file:
-          kwargs['action']="callback"
-          kwargs['callback']=self.OpenFileAction
-          kwargs['type']="str"
-        self.add_option(*args,**kwargs)
-  else:
-    class CheckFileAction(argparse.Action):
-      def __call__(self, parser, namespace, values, option_string=None):
-        parse.CheckFile(option_string,values)
-        setattr(namespace, self.dest, values)
+  class CheckFileAction(argparse.Action):
+    def __call__(self, parser, namespace, values, option_string=None):
+      parse.CheckFile(option_string,values)
+      setattr(namespace, self.dest, values)
 
   def ParseCommandLine(self,argv=None):
     descr='CRANK2 software for automatic protein structure solution from experimental phases'
     epilog='All the *in and *out options are case insensitive and can be used without the initial dashes. '+\
            'If XMLIN or KEYIN is specified, it is used as input; otherwise standard input of keywords is assumed.'
-    if no_argparse:
-      parser = parse.OptionParserMod(description=descr, version=" ")
-    else:
-      parser = argparse.ArgumentParser(prog=program,description=descr,epilog=epilog)
-      parser.add_argument('-v','-i','--version', action='version', version='')
+    parser = argparse.ArgumentParser(prog=program,description=descr,epilog=epilog)
+    parser.add_argument('-v','-i','--version', action='version', version='')
     parser.add_argument('--xmlin', type=argparse.FileType('r'), help='specify input XML file to be executed')
     parser.add_argument('--keyin', type=argparse.FileType('r'), help='read keyword input from this file')
     parser.add_argument('--hklin', action=parse.CheckFileAction, help='specify input data file in MTZ format')
@@ -197,18 +172,11 @@ class parse:
     parser.add_argument('--disable-mtz-label-prefix', action='store_true', help='disable program prefixes in output mtz labels')
     parser.add_argument('--graceful-preliminary-stop', action='store_true', help='quit gracefully (no exception) if pipeline stops preliminary due to no hope to succeed')
     # preprocessing of the passed arguments to make them case insensitive and the form without -- accepted
-    if not no_argparse:
-      inouts = parser.parse_args('').__dict__
-    else:
-      inouts, trash = parser.parse_args()
-      inouts=inouts.__dict__
+    inouts = parser.parse_args('').__dict__
     if argv is None:
       argv=sys.argv[1:]
     argv2 = ['--'+a.strip('-').lower()  if a.strip('-').lower() in inouts else a  for a in argv]
-    if not no_argparse:
-      self.pars_arg = parser.parse_args(argv2)
-    else:
-      self.pars_arg, trash = parser.parse_args(argv2)
+    self.pars_arg = parser.parse_args(argv2)
     # postprocessing
     if self.pars_arg.gcx or self.pars_arg.write_defaults:
       self.pars_arg.disable_rvapi = True
@@ -232,8 +200,6 @@ class parse:
   def ParseInputFile(self,crank,dummy=False):
     # may be changed to only str after py2 support is obsoleted
     self.unicod = str
-    if sys.version_info[0] < 3:
-      self.unicod = unicode
     # we can read from stdin or file
     if self.pars_arg.keyin:
       self.f_in=self.pars_arg.keyin

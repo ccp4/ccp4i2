@@ -1,16 +1,15 @@
-from __future__ import print_function
-
 """
-    lidiaAcedrg_gui.py
-    Copyright (C) 2015 Newcastle University
-    Author: Martin Noble
-    
-    """
+Copyright (C) 2015 Newcastle University
+Author: Martin Noble
+"""
 
-from PySide2 import QtGui, QtWidgets,QtCore
 import os
-from qtgui.CCP4TaskWidget import CTaskWidget
+
+import ccp4srs
 import gemmi
+
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class lidiaAcedrgNew_gui(CTaskWidget):
@@ -74,7 +73,6 @@ class lidiaAcedrgNew_gui(CTaskWidget):
         self.closeSubFrame()
 
         try:
-            import ccp4srs
             dummy = ccp4srs.Graph()
             self.createLine(['subtitle','Atom Naming'])
             self.openSubFrame( frame=[True])

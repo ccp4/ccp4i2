@@ -1,12 +1,13 @@
-from __future__ import print_function
+import os
 
-from core.CCP4PluginScript import CPluginScript
-import sys, os
-from core import CCP4ErrorHandling
-from core import CCP4Modules
-from pipelines.phaser_pipeline.wrappers.phaser_MR.script import phaser_MR
 from lxml import etree
-from core import CCP4Utils
+import phaser
+
+from ......core import CCP4ErrorHandling
+from ......core import CCP4Utils
+from ......core.CCP4PluginScript import CPluginScript
+from ......pipelines.phaser_pipeline.wrappers.phaser_MR.script import phaser_MR
+
 
 class EPAUTOCallbackObject(phaser_MR.CallbackObject):
     def __init__(self, xmlroot=None, xmlResponders = [],workDirectory=None):
@@ -66,8 +67,6 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
         self.callbackObject = EPAUTOCallbackObject(self.xmlroot, [self.flushXML])
     
     def startProcess(self, command, **kw):
-        
-        import phaser
         outputObject = phaser.Output()
         outputObject.setPhenixCallback(self.callbackObject)
 
@@ -155,20 +154,21 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
         
         with open (self.makeFileName('LOG'),'a') as logfile:
             logfile.write(self.resultObject.logfile())
-            jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=self.jobId)
+            from ......core.CCP4ProjectsManager import PROJECTSMANAGER
+            jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=self.jobId)
             if "jobtitle" in jobInfo and jobInfo["jobtitle"]:
                 logfile.write(str(jobInfo["jobtitle"])+"\n")
             while "parentjobid" in jobInfo and jobInfo["parentjobid"]:
-                jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=jobInfo["parentjobid"])
+                jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=jobInfo["parentjobid"])
                 if "jobtitle" in jobInfo and jobInfo["jobtitle"]:
                     logfile.write(str(jobInfo["jobtitle"])+"\n")
 
         return CPluginScript.SUCCEEDED
 
     def processInputFiles(self):
-        from core import CCP4XtalData
+        from ......core import CCP4XtalData
         self.hklin,error = self.makeHklin([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FPAIR]])
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             for report in error._reports:
                 if report['code'] == 32:
                     report['details'] = 'F+ and F- cannot be derived from data. Check file import.'
@@ -181,19 +181,14 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
         return newNode
 
     def flushXML(self, xml):
-        from lxml import etree
-        import os
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
         with open(tmpFilename,'w') as tmpFile:
             CCP4Utils.writeXML(tmpFile,etree.tostring(xml, pretty_print=True))
         self.renameFile(tmpFilename, self.makeFileName('PROGRAMXML'))
 
-
     def processOutputFiles(self):
-        import os,shutil
         resultObject = self.resultObject
-
-        from core import CCP4XtalData
+        from ......core import CCP4XtalData
 
         for hand in ['','.hand']:
             possibleCoords = os.path.join(self.getWorkDirectory(),'PHASER.1'+hand+'.pdb')
@@ -252,4 +247,3 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
             self.container.outputData.LLGMAPOUT[1].annotation.set(str(self.container.outputData.LLGMAPOUT[1]) + ' - reversed hand')
         
         return CPluginScript.SUCCEEDED
-

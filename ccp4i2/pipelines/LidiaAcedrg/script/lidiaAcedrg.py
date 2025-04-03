@@ -1,12 +1,13 @@
+import os
+import shutil
 
-from core.CCP4PluginScript import CPluginScript
-from PySide2 import QtCore
-import os,glob,re,time,sys
-from core import CCP4XtalData
 from lxml import etree
-import math
-from core import CCP4Modules,CCP4Utils
-from core import CCP4ErrorHandling
+from PySide2 import QtCore
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class lidiaAcedrg(CPluginScript):
     TASKNAME = 'LidiaAcedrg'            # Task name - should be same as class name
@@ -15,7 +16,7 @@ class lidiaAcedrg(CPluginScript):
     TIMEOUT_PERIOD = 9999999.9
     WHATNEXT = ['coot_rebuild']
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
-    ERROR_CODES = { 201 : {'description' : 'Expected output file not made', 'severity':CCP4ErrorHandling.SEVERITY_WARNING },}
+    ERROR_CODES = { 201 : {'description' : 'Expected output file not made', 'severity':CCP4ErrorHandling.Severity.WARNING },}
 
     def process(self):
         
@@ -59,7 +60,6 @@ class lidiaAcedrg(CPluginScript):
             
             out.MOLOUT_LIST.append(self.container.outputData.MOLOUT_LIST.makeItem())
             out.MOLOUT_LIST[-1].fullPath = os.path.normpath(os.path.join(self.getWorkDirectory(),self.container.inputData.TLC.__str__()+'.mol'))
-            import shutil
             shutil.copyfile(molFile.fullPath.__str__(),out.MOLOUT_LIST[-1].fullPath.__str__())
             out.MOLOUT_LIST[-1].annotation = 'MOL file for '+self.container.inputData.TLC.__str__()
             
@@ -82,7 +82,6 @@ class lidiaAcedrg(CPluginScript):
         if result != CPluginScript.SUCCEEDED:
             self.finishWithStatus(result)
         out = self.container.outputData
-        import shutil
 
         if self.container.inputData.CONFORMERSFROM.__str__() != "RDKIT":
             if os.path.isfile(acedrgPlugin.container.outputData.DICTOUT.fullPath.__str__()):

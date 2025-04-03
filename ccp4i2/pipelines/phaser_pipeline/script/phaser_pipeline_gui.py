@@ -1,14 +1,11 @@
 """
-    pipelines/phaser_pipeline/wrappers/phaser_MR/script/phaser_MR_gui.py
-    Copyright (C) 2014 Newcastle University
-    Author: Martin Noble
-    
-    """
+Copyright (C) 2014 Newcastle University
+Author: Martin Noble
+"""
 
-from qtgui.CCP4TaskWidget import CTaskWidget
-from pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script import phaser_MR_AUTO_gui
-from PySide2 import QtCore
-from core import CCP4ErrorHandling
+from ....core import CCP4ErrorHandling
+from ....pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script import phaser_MR_AUTO_gui
+
 
 #-------------------------------------------------------------------
 class phaser_pipeline_gui(phaser_MR_AUTO_gui.phaser_MR_AUTO_gui):
@@ -26,12 +23,6 @@ class phaser_pipeline_gui(phaser_MR_AUTO_gui.phaser_MR_AUTO_gui):
 
     def __init__(self,parent):
         super(phaser_pipeline_gui,self).__init__(parent)
-        #Here deal with clones of legacy tasks where the logic of selecting I vs F was different POSSIBILITIES:
-        '''if self.container.inputData.F_OR_I.isSet() and self.container.inputData.F_OR_I.__str__() == 'I' and self.container.inputData.I_SIGI.isSet():
-            self.container.inputData.inputData.F_SIGF = self.container.inputData.inputData.I_SIGI
-            self.container.inputData.inputData.I_SIGI.unSet()
-        '''
-
 
     def setDefaultParameters(self):
         # Reimplement in tasks to set initial parameters

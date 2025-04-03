@@ -1,29 +1,11 @@
-from __future__ import print_function
-
-
 """
-     qtgui/CCP4AnnotationWidgets.py: CCP4 Gui Project
-     Copyright (C) 2016 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2016 STFC
 """
-from PySide2 import QtCore,QtGui, QtWidgets
-from core.CCP4Modules import *
-from core.CCP4ErrorHandling import *
-from core import CCP4Annotation
-from qtgui import CCP4Widgets
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from ..core import CCP4Annotation
+from ..qtgui import CCP4Widgets
 
 
 class CAnnotationView(CCP4Widgets.CComplexLineWidget):
@@ -97,6 +79,7 @@ class CAnnotationView(CCP4Widgets.CComplexLineWidget):
     def updateModelFromText(self):
         self.updateModelFromView()
 
+
 class CTimeView(CCP4Widgets.CViewWidget):
     MODEL_CLASS = CCP4Annotation.CTime
 
@@ -142,57 +125,6 @@ class CTimeView(CCP4Widgets.CViewWidget):
         self.connectUpdateViewFromModel(True)
 
 
-class CMetaDataTagView(CCP4Widgets.CComplexLineWidget):
-    MODEL_CLASS = CCP4Annotation.CMetaDataTag
-
-    def __init__(self,parent=None,model=None,qualifiers={}):
-        CCP4Widgets.CComplexLineWidget.__init__(self,parent=parent,qualifiers=qualifiers)
-        self.widgets['tag'] = CCP4Widgets.CComboBox(self)
-        self.layout().addWidget(self.widgets['tag'])
-        self.setModel(model)
-
-    def setModel(self,model):
-        #print 'CMetaDataTagView.setModel',model
-        #try:
-        #  print 'CMetaDataTagView.setModel',model.parent().__dict__['_value'],repr(model)
-        #except:
-        #  pass
-        # These only need connecting on first call to setModel() - if this is a list editor then
-        # likely to be called multiple times
-        if self.model is not None:
-            self.model.enumeratorsUpdated.disconnect(self.updateCombo)
-        if self.model is None and model is not None:
-            self.widgets['tag'].dataChanged.connect(self.updateTag)
-            self.widgets['tag'].returnPressed.connect(self.handleReturn)
-            self.widgets['tag'].focusOut.connect(self.handleReturn)
-        CComplexLineWidget.setModel(self,model)   # KJS : Another one...
-        if self.model is not None:
-            self.updateCombo()
-            self.model.enumeratorsUpdated.connect(self.updateCombo)
-
-    @QtCore.Slot()
-    def handleReturn(self):
-        #print 'CMetaDataTagView.handleReturn',self.widgets['tag'].currentText()
-        # addEnumerator() creates new tag if necessary and return index of the tag
-        idx = self.model.addEnumerator(str(self.widgets['tag'].currentText()))
-        from qtgui import CCP4I1Projects
-        #print 'CMetaDataTagView.handleReturn',CCP4I1Projects.CI1PREFERENCES().tagList
-        #print 'CMetaDataTagView.handleReturn idx',idx
-        if idx >= 0:
-            self.updateCombo()
-            self.widgets['tag'].setCurrentIndex(idx)
-        self.updateTag()
-
-    @QtCore.Slot()
-    def updateTag(self):
-        #print 'updateTag ',self.widgets['tag'].getValue()
-        self.model.tag.set( self.widgets['tag'].getValue(),checkValidity=False)
-
-    @QtCore.Slot()
-    def updateCombo(self):
-        self.widgets['tag'].populate(self.model.getEnumerators())
-
-
 class CMetaDataTagListView(CCP4Widgets.CListView):
 
     MODEL_CLASS = CCP4Annotation.CMetaDataTagList
@@ -207,7 +139,7 @@ class CMetaDataTagListView(CCP4Widgets.CListView):
     def updateCombo(self):
         self.editor.widget.updateCombo()
 
-   
+
 class CDateRangeView(CCP4Widgets.CComplexLineWidget):
 
     MODEL_CLASS = CCP4Annotation.CDateRange

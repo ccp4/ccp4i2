@@ -1,7 +1,10 @@
-from qtgui import CCP4TaskWidget
-import sys
 import os
+import sys
+
 from iotbx import mtz, file_reader, reflection_file_reader
+import pandas as pd
+
+from ....qtgui import CCP4TaskWidget
 
 
 class CTaskimport_serial_pipe(CCP4TaskWidget.CTaskWidget):
@@ -176,7 +179,6 @@ class CTaskimport_serial_pipe(CCP4TaskWidget.CTaskWidget):
 
 
     def updateFromStreamFile(self):
-        import pandas as pd
         def get_cell_streamfile(streamfile):
             cell = [None, None, None, None, None, None]
             cell_string = None

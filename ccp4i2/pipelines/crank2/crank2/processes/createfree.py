@@ -1,7 +1,8 @@
 #!/usr/bin/python
-import os,sys
-from process import process
-import common
+
+from .. import common
+from ..process import process
+
 
 class createfree(process):
   name="definition of a free set of reflections"

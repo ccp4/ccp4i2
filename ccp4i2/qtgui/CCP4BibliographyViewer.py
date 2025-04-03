@@ -1,35 +1,22 @@
 """
-     CCP4BibliographyViewer.py: CCP4 GUI Project
-     Copyright (C) 2014STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.sstac
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-"""
-   Liz Potterton Sept 2014 - View and export bibliography
+Copyright (C) 2014 STFC
+Liz Potterton Sept 2014 - View and export bibliography
 """
 
 import functools
-from PySide2 import QtGui, QtWidgets,QtCore
-from core.CCP4ErrorHandling import *
-from core import CCP4Annotation, CCP4Modules
-from qtgui import CCP4Widgets
+import glob
+import os
+
+from PySide2 import QtCore, QtWidgets
+
+from ..core import CCP4Annotation
+from ..core.CCP4ErrorHandling import Severity
+from ..qtgui import CCP4Widgets
+
 
 class CBibReferenceView(CCP4Widgets.CComplexLineWidget):
   MODEL_CLASS = CCP4Annotation.CBibReference
 
-  
   def __init__(self,parent=None,model=None,qualifiers={}):
     CCP4Widgets.CComplexLineWidget.__init__(self,parent=parent,qualifiers={'vboxLayout' : True })
     self.setMinimumWidth(500)
@@ -68,7 +55,8 @@ class CBibReferenceView(CCP4Widgets.CComplexLineWidget):
         authorText = str(model.authorList[0])
         for author in model.authorList[1:]: authorText = authorText + ',' + str(author)
         self.widgets['authorList'].setText(authorText)
-    
+
+
 class CBibReferenceGroupView(CCP4Widgets.CComplexLineWidget):
   MODEL_CLASS = CCP4Annotation.CBibReferenceGroup
 
@@ -95,16 +83,15 @@ class CBibReferenceGroupView(CCP4Widgets.CComplexLineWidget):
       self.widgets['title'].setText('')
     else:
       self.widgets['title'].setText(str(model.title))
-    if model is not None and len(model.references)>0:                                            
+    if model is not None and len(model.references) > 0:
       for refObj in model.references:
-        #print 'CBibReferenceGroupView.setModel',refObj                  
         widget = CBibReferenceView(parent=self,model=refObj)
         self.referencesLayout.addWidget(widget)
-       
+
   def getMenuDef(self):
     #return ['select_all','deselect_all','export_medline','export_bibtxt']
     return ['export_medline','export_bibtex']
-      
+
   def getActionDef(self,name):
     if name == 'select_all':
       return dict (
@@ -139,7 +126,7 @@ class CBibReferenceGroupView(CCP4Widgets.CComplexLineWidget):
     #for i in range(self.referencesLayout.count()):
     #  if self.referencesLayout.itemAt(i).widget().widgets['selection'].isChecked():
     if self.fileBrowser is None:
-      from qtgui import CCP4FileBrowser
+      from ..qtgui import CCP4FileBrowser
       self.fileBrowser = CCP4FileBrowser.CFileDialog(parent=self,
                                       title='Export bibliography',
                                       filters = ['.'+format+'.txt'],
@@ -151,9 +138,10 @@ class CBibReferenceGroupView(CCP4Widgets.CComplexLineWidget):
   @QtCore.Slot(str,str)
   def export(self,format,fileName):
     err = self.model.export(cformat=format,fileName=fileName)
-    if err.maxSeverity()>SEVERITY_WARNING:
-      err.warningMessage(parent=self,windowTitle='Error attempting to export bibliography')
-    
+    if err.maxSeverity()>Severity.WARNING:
+      from ..core.CCP4WarningMessage import warningMessage
+      warningMessage(err, parent=self,windowTitle='Error attempting to export bibliography')
+
 
 class CBibliographyViewer(QtWidgets.QMainWindow):
   def __init__(self,parent=None):
@@ -165,11 +153,11 @@ class CBibliographyViewer(QtWidgets.QMainWindow):
     self.setCentralWidget(self.frame)
     #self.scroll.setWidget(self.frame)
     self.frame.setLayout(QtWidgets.QVBoxLayout())
-    
 
   def setReferences(self,jobId=None,taskNameList=[]):
-    import os,glob
-    pm = CCP4Modules.PROJECTSMANAGER()
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+    from ..core.CCP4TaskManager import TASKMANAGER
+    pm = PROJECTSMANAGER()
     if jobId is not None:
       taskBiblio = glob.glob(os.path.join(pm.jobDirectory(jobId=jobId),'*.medline.txt'))
       if len(taskBiblio)>0:
@@ -179,7 +167,7 @@ class CBibliographyViewer(QtWidgets.QMainWindow):
         self.referenceGroupViews.append(CBibReferenceGroupView(self))
         self.referenceGroupViews[-1].setModel(self.referenceGroups[-1])
         self.frame.layout().addWidget(self.referenceGroupViews[-1])
-        self.setWindowTitle('Bibliography for '+CCP4Modules.TASKMANAGER().getTitle(taskName))
+        self.setWindowTitle('Bibliography for '+TASKMANAGER().getTitle(taskName))
         return
   
     if len(taskNameList) == 0: taskNameList.append(pm.db().getJobInfo(jobId=jobId,mode='taskname') )
@@ -191,5 +179,5 @@ class CBibliographyViewer(QtWidgets.QMainWindow):
       #print 'setReferences referenceGroups',self.referenceGroups[-1]
       self.referenceGroupViews[-1].setModel(self.referenceGroups[-1])
       self.frame.layout().addWidget(self.referenceGroupViews[-1])
-    self.setWindowTitle('Bibliography for '+CCP4Modules.TASKMANAGER().getTitle(taskNameList[0]))
+    self.setWindowTitle('Bibliography for '+TASKMANAGER().getTitle(taskNameList[0]))
     self.frame.show()

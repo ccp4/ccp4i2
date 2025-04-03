@@ -42,7 +42,7 @@ class phaser_EP_report(Report):
         if parent is None: parent = self
         if len(self.xmlnode.findall('ShelxCD'))>0:
             shelxNode = self.xmlnode.findall('ShelxCD')[0]
-            from wrappers.ShelxCDE.script.ShelxCD_report import ShelxCD_report
+            from ....wrappers.ShelxCDE.script.ShelxCD_report import ShelxCD_report
             shelx_report = ShelxCD_report (xmlnode=shelxNode, jobStatus='nooutput')
             self.addDiv(style='clear:both;')
             if len(shelxNode.findall('.//Shelxd'))>0:
@@ -58,13 +58,13 @@ class phaser_EP_report(Report):
         phaserDiv = self.addDiv( xmlnode=phaserNode,style="width:100%;border-width: 0px; border-color: black; clear:both; margin:1px; padding:1px;")
 
         if phaserNode is not None:
-            from pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script.phaser_EP_AUTO_report import phaser_EP_AUTO_report
+            from ....pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script.phaser_EP_AUTO_report import phaser_EP_AUTO_report
             phaser_report = phaser_EP_AUTO_report(xmlnode=phaserNode, jobStatus='nooutput')
             phaser_report.drawContent(jobStatus=jobStatus, parent=phaserDiv)
 
         if len(self.xmlnode.findall('.//original/ParrotResult'))>0:
             parrotOriginalHandNode = self.xmlnode.findall('.//original/ParrotResult')[0]
-            from wrappers.parrot.script.parrot_report import parrot_report
+            from ....wrappers.parrot.script.parrot_report import parrot_report
             parrotOriginalNode = etree.fromstring(etree.tostring(parrotOriginalHandNode))
             parrot_original_report = parrot_report(xmlnode=parrotOriginalNode, jobStatus='nooutput')
             parrot_original_hand = parent.addFold(label='Density modification: Original hand', initiallyOpen=False)
@@ -72,7 +72,7 @@ class phaser_EP_report(Report):
             parrot_original_hand.addDiv(style="clear:both;")
         if len(self.xmlnode.findall('.//inverted/ParrotResult'))>0:
             parrotInvertedHandNode = self.xmlnode.findall('.//inverted/ParrotResult')[0]
-            from wrappers.parrot.script.parrot_report import parrot_report
+            from ....wrappers.parrot.script.parrot_report import parrot_report
             parrotInvertedNode = etree.fromstring(etree.tostring(parrotInvertedHandNode))
             parrot_inverted_report = parrot_report(xmlnode=parrotInvertedNode, jobStatus='nooutput')
             parrot_inverted_hand = parent.addFold(label='Density modification: Inverted hand', initiallyOpen=False)
@@ -92,7 +92,7 @@ class phaser_EP_report(Report):
 
         if buccsg1 is not None:
             buccDiv1 = self.addDiv( xmlnode=buccsg1,style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
-            from pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mr_report import bucref_report
+            from ....pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mr_report import bucref_report
             buccaneer_original_report = bucref_report(xmlnode=buccsg1, jobStatus='nooutput')
             buccaneer_original_hand = buccDiv1.addFold(label='ModelBuilding: Original hand', initiallyOpen=False)
             buccaneer_original_report.finishedText(parent=buccaneer_original_hand)
@@ -102,7 +102,7 @@ class phaser_EP_report(Report):
 
         if buccsg2 is not None:
             buccDiv2 = self.addDiv( xmlnode=buccsg2,style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
-            from pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mr_report import bucref_report
+            from ....pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mr_report import bucref_report
             buccaneer_inverted_report = bucref_report(xmlnode=buccsg2, jobStatus='nooutput')
             buccaneer_inverted_hand = buccDiv2.addFold(label='ModelBuilding: Inverted hand', initiallyOpen=False)
             buccaneer_inverted_report.finishedText(parent=buccaneer_inverted_hand)

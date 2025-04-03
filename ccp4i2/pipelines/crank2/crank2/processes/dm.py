@@ -1,7 +1,12 @@
 #!/usr/bin/python
-import os,sys
-from process import process
-import common
+
+import gemmi
+import numpy as np
+
+from .. import common
+from ..process import process
+
+
 par=common.parameter
 
 class dm(process):
@@ -72,7 +77,6 @@ class dm(process):
   def RunPostprocess(self, *args, **kwargs):
     # the existing mapseg implementation passes mask as F,PH which include missing refs for better precision.  Removing them from the output here.
     if self.GetParam('map_segmentation'):
-      import gemmi,numpy as np
       out_obj=self.out.Get('mapcoef',typ='densmod')
       mtz = gemmi.read_mtz_file(out_obj.GetFileName('mtz'))
       fsfinp = self.inp.Get('fsigf',typ='average',col='sigf')

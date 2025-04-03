@@ -1,6 +1,7 @@
-from __future__ import print_function
-from report.CCP4ReportParser import *
-import sys
+import re
+
+from ......report.CCP4ReportParser import Report
+
 
 class phaser_MR_FRF_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -28,7 +29,6 @@ class phaser_MR_FRF_report(Report):
         indentText = "...."
         addIndent = False
         removeIndent = False
-        import re
         for iNode, summaryNode in enumerate(self.xmlnode.findall('Summary')):
             destination = searchPathFold
              #Make a result folder for any summmary blocks in the XML

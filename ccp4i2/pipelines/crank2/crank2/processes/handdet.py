@@ -1,9 +1,12 @@
 #!/usr/bin/python
-import os,sys
-from process import process, crvapi
-import common
-par=common.parameter
 
+import os
+
+from .. import common, crvapi, inout
+from ..process import process
+
+
+par=common.parameter
 
 class handdet(process):
   name="hand determination"
@@ -237,7 +240,6 @@ class handdet(process):
     self.out.Set(self.chosen_phas.out.Get('model',typ='substr'))
     self.out.Set(self.chosen_phas.out.GetAll('mapcoef',stored_order=True))
     self.out.Set(self.chosen_phas.inp.GetAll('fsigf',stored_order=True))
-    import inout
     self.out2 = inout.input_output(is_output=True,parent=self)
     self.out2.Set(self.other_phas.out.Get('model',typ='substr'),propagate=False)
     self.out2.Set(self.other_phas.out.GetAll('mapcoef',stored_order=True),propagate=False)

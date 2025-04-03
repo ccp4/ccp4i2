@@ -1,13 +1,10 @@
 """
-    pipelines/phaser_rnp_pipeline/phaser_rnp_pipeline_gui.py
-    Copyright (C) 2014 Newcastle University
-    Author: Martin Noble
-    
-    """
+Copyright (C) 2014 Newcastle University
+Author: Martin Noble
+"""
 
-from qtgui.CCP4TaskWidget import CTaskWidget
-from PySide2 import QtCore
-from pipelines.phaser_pipeline.wrappers.phaser_MR_RNP.script import phaser_MR_RNP_gui
+from ...phaser_pipeline.wrappers.phaser_MR_RNP.script import phaser_MR_RNP_gui
+
 
 #-------------------------------------------------------------------
 class phaser_rnp_pipeline_gui(phaser_MR_RNP_gui.phaser_MR_RNP_gui):
@@ -77,4 +74,3 @@ class phaser_rnp_pipeline_gui(phaser_MR_RNP_gui.phaser_MR_RNP_gui):
         self.getWidget('SELECTIONS').setListVisible(visible=True)
         self.getWidget('SELECTIONS').setEditorVisible(visible=True)
         self.closeSubFrame()
-

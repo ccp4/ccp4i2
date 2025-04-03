@@ -1,33 +1,16 @@
-from __future__ import print_function
-from future.utils import raise_
 """
-     crank2.py: CCP4 GUI Project
-     Copyright (C) 2010 University of York, Leiden University
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2010 University of York, Leiden University
 """
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling, CCP4Utils, CCP4XtalData
-from core import CCP4Modules
-from pipelines.crank2.script import crank2_basepipe
+import os
+import traceback
 
-import sys,os,shutil
+from ....core import CCP4Utils, CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+from ....pipelines.crank2.script import crank2_basepipe
+
 
 crank2_path=os.path.join(CCP4Utils.getCCP4I2Dir(),'pipelines','crank2','crank2')
-sys.path.append( crank2_path )
 
 class crank2(CPluginScript):
 
@@ -223,8 +206,9 @@ class crank2(CPluginScript):
       crank_lines.append("createfree {} fraction::{}".format(no_out_next, inp.FREE_RATIO*0.01))
 
     self.i2_shelxdir = None
-    if hasattr(CCP4Modules.PREFERENCES(),'SHELXDIR') and CCP4Modules.PREFERENCES().SHELXDIR:
-      self.i2_shelxdir = str(CCP4Modules.PREFERENCES().SHELXDIR)
+    from ....core.CCP4Preferences import PREFERENCES
+    if hasattr(PREFERENCES(),'SHELXDIR') and PREFERENCES().SHELXDIR:
+      self.i2_shelxdir = str(PREFERENCES().SHELXDIR)
 
     if basepipe.ToggleDetection() or (basepipe.ToggleShelxCDE() and (inp.XYZIN_SUB.isSet() or inp.XYZIN_SUB_RES.isSet())):
       faest = "faest"
@@ -461,7 +445,7 @@ class crank2(CPluginScript):
         self.rvapi_converter=True
       elif os.path.isfile(i2natfile):
         os.remove(i2natfile)
-      import ccp4i2crank,common,traceback
+      from ..crank2 import ccp4i2crank, common
       try:
         crank2 = ccp4i2crank.CallCrankFromCCP4i2(self, inpfile=inpfile, defaults=defaults, rvapi_style=rvapi_style)
         if not defaults and self.has_cont_attr(ctrl,"CLEANUP") and bool(ctrl.CLEANUP):
@@ -479,14 +463,14 @@ class crank2(CPluginScript):
         try:
           self.reportStatus(CPluginScript.UNSATISFACTORY)
         except RuntimeError:
-          raise_(e,None,sys.exc_info()[2])
+          raise e
       except Exception as e:
         err = str(e) +'\n\n'+str(traceback.format_exc())
         self.appendErrorReport(0, err)
         try:
           self.reportStatus(CPluginScript.FAILED)
         except RuntimeError:
-          raise_(e,None,sys.exc_info()[2])
+          raise e
     else:
       return 0
 
@@ -496,7 +480,8 @@ class crank2(CPluginScript):
     protected = [ os.path.realpath(str(getattr(c.outputData,f))) for c in all_cont for f in c.outputData._dataOrder if str(getattr(c.outputData,f)) ]
     protected += [ os.path.realpath(str(getattr(c.inputData,f))) for c in all_cont for f in c.inputData._dataOrder if str(getattr(c.inputData,f)) ]
     count_removed=0
-    for root,dirs,files in os.walk( CCP4Modules.PROJECTSMANAGER().jobDirectory(self.jobId) ):
+    from ....core.CCP4ProjectsManager import PROJECTSMANAGER
+    for root,dirs,files in os.walk( PROJECTSMANAGER().jobDirectory(self.jobId) ):
       for f in files:
         if f.lower().endswith('.mtz') and os.path.realpath(os.path.join(root,f)) not in protected:
           os.remove( os.path.join(root,f) )

@@ -1,58 +1,40 @@
-from __future__ import print_function
-
 """
 Qt/matplotlib widget: made using matplotlib.backends.backend_qt4agg
-"""
-"""
-     qtgui/MGQTmatplotlib.py: CCP4MG Molecular Graphics Program
-     Copyright (C) 2011 University of York
-     Copyright (C) 2012 Science and Technology Facilities Council
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+qtgui/MGQTmatplotlib.py: CCP4MG Molecular Graphics Program
+Copyright (C) 2011 University of York
+Copyright (C) 2012 Science and Technology Facilities Council
 """
 
-import sys
-import os
-import math
-import glob
-import functools
-import traceback
+from collections.abc import Callable
 import copy
+import functools
+import getopt
+import glob
+import math
+import os
+import sys
+import tempfile
+import traceback
+import uuid
+import warnings
 
-from matplotlib.backends.qt_compat import QtCore, QtGui, QtWidgets
+from lxml import etree
+from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib.backends.backend_qt5agg import FigureCanvas
-
+from matplotlib.backends.qt_compat import QtCore, QtGui, QtWidgets
 from matplotlib.figure import Figure
-from matplotlib.ticker import FuncFormatter, ScalarFormatter
 from matplotlib.font_manager import FontProperties
+from matplotlib.ticker import FuncFormatter, ScalarFormatter
+from pylab import cm
+from scipy import optimize
+import matplotlib
 import matplotlib.gridspec as gridspec
 import matplotlib.transforms as mtransforms
-import matplotlib
 import numpy
-from lxml import etree
 
-from matplotlib.backends.backend_pdf import PdfPages
-
-if sys.version_info >= (3,7):
-    from collections.abc import Callable
-else:
-    from collections import Callable
 
 numpy.seterr(invalid='ignore')
 
-import warnings
 warnings.filterwarnings("ignore","'Legend' needs 'contains' method")
 
 
@@ -91,8 +73,6 @@ def getMatplotlibFontList():
     return items
 
 def openFileToEtree(fileName=None,printout=True):
-  from lxml import etree
-
   # Use this as etree.parse() seg faults on some Linux
   parser = etree.HTMLParser()
   f = open(fileName)
@@ -386,7 +366,6 @@ class LogGraph(QtWidgets.QWidget):
                                 xvals = l.get_xdata()
                                 v = l.get_ydata()
                                 if doBestFit == 4:
-                                    from scipy import optimize
                                     e = lambda v,x,y: sum(((v[1]*numpy.exp(v[0]*x))-y)**2)
 
                                     v0=[0.3,2.]
@@ -443,20 +422,12 @@ class LogGraph(QtWidgets.QWidget):
         plot.canvas.ax[0].set_xscale(self.axis_styles[otherWidget.x_axis_style.currentIndex()])
         plot.canvas.ax[0].set_yscale(self.axis_styles[otherWidget.y_axis_style.currentIndex()])
 
-        if sys.version_info >= (3,0):
-            plot.canvas.ax[0].set_xlabel(str(otherWidget.x_axis_label.text()))
-            plot.canvas.ax[0].set_ylabel(str(otherWidget.y_axis_label.text()))
-            plot.canvas.ax[0].set_title(str(otherWidget.plot_title.text()))
-            plot.canvas.xlabel = str(otherWidget.x_axis_label.text())
-            plot.canvas.ylabel = str(otherWidget.y_axis_label.text())
-            plot.canvas.title = str(otherWidget.plot_title.text())
-        else:
-            plot.canvas.ax[0].set_xlabel(unicode(otherWidget.x_axis_label.text()))
-            plot.canvas.ax[0].set_ylabel(unicode(otherWidget.y_axis_label.text()))
-            plot.canvas.ax[0].set_title(unicode(otherWidget.plot_title.text()))
-            plot.canvas.xlabel = unicode(otherWidget.x_axis_label.text())
-            plot.canvas.ylabel = unicode(otherWidget.y_axis_label.text())
-            plot.canvas.title = unicode(otherWidget.plot_title.text())
+        plot.canvas.ax[0].set_xlabel(str(otherWidget.x_axis_label.text()))
+        plot.canvas.ax[0].set_ylabel(str(otherWidget.y_axis_label.text()))
+        plot.canvas.ax[0].set_title(str(otherWidget.plot_title.text()))
+        plot.canvas.xlabel = str(otherWidget.x_axis_label.text())
+        plot.canvas.ylabel = str(otherWidget.y_axis_label.text())
+        plot.canvas.title = str(otherWidget.plot_title.text())
 
         xminold = plot.canvas.ax[0].get_xlim()[0]
         xmaxold = plot.canvas.ax[-1].get_xlim()[1]
@@ -642,15 +613,9 @@ class LogGraph(QtWidgets.QWidget):
                     else:
                         selector['weight'].setChecked(False)
                     if fn and "family" in fn:
-                        if sys.version_info >= (3,0):
-                            selector['family'].setCurrentIndex(selector['family'].findText(fn['family']))
-                        else:
-                            selector['family'].setCurrentIndex(selector['family'].findText(unicode(fn['family'],"utf-8")))
+                        selector['family'].setCurrentIndex(selector['family'].findText(fn['family']))
                     else:
-                        if sys.version_info >= (3,0):
-                            selector['family'].setCurrentIndex(selector['family'].findText('Bitstream Vera Sans'))
-                        else:
-                            selector['family'].setCurrentIndex(selector['family'].findText(unicode('Bitstream Vera Sans',"utf-8")))
+                        selector['family'].setCurrentIndex(selector['family'].findText('Bitstream Vera Sans'))
                     if fn and "family" in fn:
                         selector['size'].setValue(fn['size'])
                     else:
@@ -740,18 +705,9 @@ class LogGraph(QtWidgets.QWidget):
         for hist in self.histograms:
             if len(hist)>1:
                 if not hasattr(hist['patches'][0],"ccp4_uuid"):
-                    if sys.platform != 'win32':
-                        import uuid
-                        uuid._uuid_generate_time = None
-                        uuid._uuid_generate_random = None
-                        if sys.version_info >= (3,0):
-                            uuid_str = uuid.uuid4().hex
-                        else:
-                            uuid_str = uuid.uuid4().get_hex()
-                    else:
-                        import msilib
-                        uuid_str = msilib.gen_uuid().strip('{').strip('}').replace('-','')
-                    hist['patches'][0].ccp4_uuid = uuid_str
+                    uuid._uuid_generate_time = None
+                    uuid._uuid_generate_random = None
+                    hist['patches'][0].ccp4_uuid = uuid.uuid4().hex
                 widget = QtWidgets.QWidget()
                 widgetLayout = QtWidgets.QGridLayout()
                 widget.setLayout(widgetLayout)
@@ -791,16 +747,7 @@ class LogGraph(QtWidgets.QWidget):
         for l in lines:
             if l.get_label() is not None and not l.get_label().endswith('_matplotlib_line_of_best_fit'):
                 if not hasattr(l,"ccp4_uuid"):
-                    if sys.platform != 'win32':
-                        import uuid
-                        if sys.version_info >= (3,0):
-                            uuid_str = uuid.uuid4().hex
-                        else:
-                            uuid_str = uuid.uuid4().get_hex()
-                    else:
-                        import msilib
-                        uuid_str = msilib.gen_uuid().strip('{').strip('}').replace('-','')
-                    l.ccp4_uuid = uuid_str
+                    l.ccp4_uuid = uuid.uuid4().hex
                 widget = QtWidgets.QWidget()
                 widgetLayout = QtWidgets.QGridLayout()
                 widget.setLayout(widgetLayout)
@@ -878,7 +825,6 @@ class LogGraph(QtWidgets.QWidget):
                 widget.bestFitCombo = QtWidgets.QComboBox()
                 fitItems = ['None','Linear','Quadratic','Cubic']
                 try:
-                    from scipy import optimize
                     fitItems.append('Exponential')
                 except:
                     pass
@@ -1309,10 +1255,7 @@ class LogGraph(QtWidgets.QWidget):
 
 
 
-        if sys.version_info > (3,0):
-            status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True).decode("utf-8")
-        else:
-            status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True)
+        status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True).decode("utf-8")
         return status_xml
 
     @QtCore.Slot(bool,bool)
@@ -1399,7 +1342,6 @@ class LogGraph(QtWidgets.QWidget):
             plot = self.graph.currentWidget().currentWidget()
             if not filename.endswith('.pdf') and not filename.endswith('.PDF') and not filename.endswith('.png') and not filename.endswith('.PNG') and not filename.endswith('.ps') and not filename.endswith('.PS'):
                 if filename.endswith(formats_py):
-                    import tempfile
                     f = tempfile.NamedTemporaryFile(suffix=".png",prefix="ccp4mg"+str(os.getpid()))
                     fn = f.name
                     f.close()
@@ -1418,7 +1360,6 @@ class LogGraph(QtWidgets.QWidget):
                     plot.canvas.fig.savefig(filename,dpi=dpi)
 
     def updateStatusFormat(self):
-      import math
       def logBase(num):
         try:
           l = math.log10(num)
@@ -1609,7 +1550,6 @@ class LogGraph(QtWidgets.QWidget):
         plot.setDefaultSymbolSize(self.defaultSymbolSize)
         plot.canvas.MouseMoveEvent.connect(functools.partial(self.updateStatusWithXandY,None,None))
         graph.addWidget(plot)
-        from pylab import cm
         plot.canvas.ax[0].contour(Z,80,cmap=cm.bone,linewidths=1,origin='lower')
         CS = plot.canvas.ax[0].contourf(Z,80,linestyles='dotted',origin='lower')
         plot.canvas.fig.colorbar(CS)
@@ -1985,7 +1925,6 @@ class LogGraph(QtWidgets.QWidget):
 
     def addCCP4ReportFile(self,fname,select=None):
         #print('CCP4Table.addCCP4ReportFile',fname)
-        from lxml import etree
         try:
             doc = openFileToEtree(fname)
         except:
@@ -2151,26 +2090,6 @@ class LogGraph(QtWidgets.QWidget):
                 array2 = numpy.array_split(array1,len(array1)/len(t.xpath('headers')[0].text.strip().split()))
                 array = numpy.array(array2)
                 return array
-
-    def addTableFromEtreeAndSetVisible(self,table):
-        oldCount = self.table_combo.count()
-        self.data_combo.blockSignals(True)
-        graphs = []
-        graph = self.addTableFromEtree(table)
-        graphs.append(graph)
-        self.table_combo.setCurrentIndex(oldCount)
-        self.data_combo.setCurrentIndex(0)
-        self.graph.setCurrentIndex(oldCount)
-        self.graph.currentWidget().setCurrentIndex(0)
-        self.setCurrentData(0)
-        self.table_combo.blockSignals(False)
-        self.data_combo.blockSignals(False)
-        return graphs
-
-    def addTableFromDataIslandDivs(self,tree=None):
-            print("addTableFromEtree"); sys.stdout.flush()
-            print("addTableFromEtree",tree); sys.stdout.flush()
-            print(etree.tostring(t,pretty_print=True))
 
     def addTableFromEtree(self,tree=None):
         t = tree
@@ -2747,10 +2666,7 @@ class LogGraph(QtWidgets.QWidget):
             if len(pngs)==0:
                 haveEditIcon = False
             for png in pngs:
-                if sys.version_info >= (3,0):
-                    icon.addFile(png)
-                else:
-                    icon.addFile(unicode(png,'utf-8'))
+                icon.addFile(png)
             self.editPlotStyle.setIcon(icon)
         except:
             haveEditIcon = False
@@ -3096,10 +3012,7 @@ class QtMatplotlibCanvas(FigureCanvas):
             self.right = 1
         else:
             if self.ylabel or self.xlabel:
-                if sys.version_info >= (3,0) or type(self.label_font.get_family()[0]) == unicode:
-                        labelFontscale = math.pow(float(QtGui.QFontMetrics(QtGui.QFont(self.label_font.get_family()[0],self.label_font.get_size())).height())/self.defaultTextHeight,0.6)
-                else:
-                        labelFontscale = math.pow(float(QtGui.QFontMetrics(QtGui.QFont(unicode(self.label_font.get_family()[0],"utf-8"),self.label_font.get_size())).height())/self.defaultTextHeight,0.6)
+                labelFontscale = math.pow(float(QtGui.QFontMetrics(QtGui.QFont(self.label_font.get_family()[0],self.label_font.get_size())).height())/self.defaultTextHeight,0.6)
             if self.ylabel:
                 self.left = 0.3 / self.width()*200.*labelFontscale
             else:
@@ -3112,10 +3025,7 @@ class QtMatplotlibCanvas(FigureCanvas):
             self.bottom = 0.1
         else:
             if self.title:
-                if sys.version_info >= (3,0) or type(self.label_font.get_family()[0]) == unicode:
-                        fontscale = math.pow(float(QtGui.QFontMetrics(QtGui.QFont(self.title_font.get_family()[0],self.title_font.get_size())).height())/self.defaultTextHeight,0.6)
-                else:
-                        fontscale = math.pow(float(QtGui.QFontMetrics(QtGui.QFont(unicode(self.title_font.get_family()[0],"utf-8"),self.title_font.get_size())).height())/self.defaultTextHeight,0.6)
+                fontscale = math.pow(float(QtGui.QFontMetrics(QtGui.QFont(self.title_font.get_family()[0],self.title_font.get_size())).height())/self.defaultTextHeight,0.6)
                 self.top = 1 - 0.15 / self.height()*200.*fontscale
             else:
                 self.top = 1 - 0.05 / self.height()*200.
@@ -3124,10 +3034,7 @@ class QtMatplotlibCanvas(FigureCanvas):
             else:
                 self.bottom = 0.1 / self.height()*200.
 
-        if sys.version_info >= (3,0) or type(self.label_font.get_family()[0]) == unicode:
-            axesFontscale = math.pow(float(QtGui.QFontMetrics(QtGui.QFont(self.axes_font.get_family()[0],self.axes_font.get_size())).height())/self.defaultTextHeight,0.6)-1.
-        else:
-            axesFontscale = math.pow(float(QtGui.QFontMetrics(QtGui.QFont(unicode(self.axes_font.get_family()[0],"utf-8"),self.axes_font.get_size())).height())/self.defaultTextHeight,0.6)-1.
+        axesFontscale = math.pow(float(QtGui.QFontMetrics(QtGui.QFont(self.axes_font.get_family()[0],self.axes_font.get_size())).height())/self.defaultTextHeight,0.6)-1.
         self.left += 0.3 / self.width()*200.*axesFontscale
         self.bottom += 0.3 / self.width()*200.*axesFontscale
         if len(self.rax)>0:
@@ -3254,16 +3161,7 @@ class QtMatplotlibCanvas(FigureCanvas):
         for l in axis[0].get_lines():
             if not hasattr(l,"ignore"):
                 if not hasattr(l,"ccp4_uuid"):
-                    if sys.platform != 'win32':
-                        import uuid
-                        if sys.version_info >= (3,0):
-                            uuid_str = uuid.uuid4().hex
-                        else:
-                            uuid_str = uuid.uuid4().get_hex()
-                    else:
-                        import msilib
-                        uuid_str = msilib.gen_uuid().strip('{').strip('}').replace('-','')
-                    l.ccp4_uuid = uuid_str
+                    l.ccp4_uuid = uuid.uuid4().hex
                 for theAxis in axis[1:]:
                     for l2t in theAxis.get_lines():
                         if hasattr(l2t,"ccp4_uuid") and l2t.ccp4_uuid == l.ccp4_uuid:
@@ -3848,46 +3746,6 @@ def CCP4LogToEtree(b):
         bigtree.append(tree)
     return bigtree
 
-def CCP4LogToXML(b):
-    splits = b[b.find("$TABLE"):].split("$TABLE")
-    newsplits = []
-    gs = []
-
-    status_xml = ""
-    header ="""<?xml version="1.0" encoding="UTF-8" ?>\n"""
-    status_xml += header
-    
-    NSMAP = {'xsi':"http://www.w3.org/2001/XMLSchema-instance"}
-    NS = NSMAP['xsi']
-    location_attribute = '{%s}noNamespaceSchemaLocation' % NS
-    bigtree = etree.Element("CCP4ApplicationOutput",nsmap = NSMAP,attrib={location_attribute: 'http://www.ysbl.york.ac.uk/~mcnicholas/schema/CCP4ApplicationOutput.xsd'})
-    for ns in splits[1:]:
-        ns = "$TABLE"+ns
-        newsplits.append(ns)
-        table = CCP4Table(ns)
-        tree = table.toEtree()
-        bigtree.append(tree)
-
-    status_xml += etree.tostring(bigtree,encoding='utf-8', pretty_print=True)
-    return status_xml
-
-def CCP4LogFileNameToXML(f):
-    if f.endswith('.log') or f.endswith('.txt'):
-        fo = open(f)
-        b = fo.read()
-        fo.close()
-        return CCP4LogToXML(b)
-    else:
-        return CCP4LogToXML("")
-
-def CCP4LogFileNameToEtree(f):
-    if f.endswith('.log') or f.endswith('.txt'):
-        fo = open(f)
-        b = fo.read()
-        fo.close()
-        return CCP4LogToEtree(b)
-    else:
-        return CCP4LogToEtree("")
 
 if __name__ == "__main__":
     if "-quit" in sys.argv:
@@ -3900,20 +3758,6 @@ if __name__ == "__main__":
     else:
         #app.addLibraryPath(os.path.join(os.environ['CCP4MG'],"QtPlugins"))
         app.addLibraryPath(os.path.join(os.path.dirname(__file__),'..',"QtPlugins"))
-
-    """
-    t = 0
-    timer = QtCore.QTimer()
-    win = QtMatplotlibWidget()
-
-    def addRandomPoint():
-        import random
-        global t, timer, win
-        t = t + 1
-        v = random.randint(1,20)
-        print t*timer.interval()/1000., v
-        win.addPoint((t,v))
-    """
 
     @QtCore.Slot(dict)
     def regionTest(vals):
@@ -3929,7 +3773,6 @@ if __name__ == "__main__":
     testla = False
     select = []
 
-    import getopt
 
     try:
         opts, args = getopt.getopt(sys.argv[1:], "hnx:s:g:G:", ["hist", "nomainwin","testla", "xsd=", "select=","graph=","graphTotal="])
@@ -4001,14 +3844,11 @@ if __name__ == "__main__":
         layout.addWidget(selectorWidget)
         @QtCore.Slot()
         def drawLineSelector():
-            import sip
             child = selectorWidget.layout().takeAt(0)
             while child:
-                if child:
-                    if hasattr(child,"widget") and child.widget() is not None:
-                        sip.delete(child.widget())
-                    sip.delete(child)
-                    child = selectorWidget.layout().takeAt(0)
+                if hasattr(child, "widget") and child.widget() is not None:
+                    child.widget().deleteLater()
+                child = selectorWidget.layout().takeAt(0)
 
             if win.graph and win.graph.currentWidget() and win.graph.currentWidget().currentWidget():
                 currentGraph = win.graph.currentWidget().currentWidget()

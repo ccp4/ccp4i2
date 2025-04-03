@@ -1,12 +1,10 @@
-from __future__ import print_function
-from report.CCP4ReportParser import *
-from report import CCP4RvapiParser
-import os,shutil
+import functools
+import io
+import os
+import xml.etree.ElementTree as etree
 
-if sys.version_info >= (3,0):
-    from io import StringIO
-else:
-    from StringIO import StringIO
+from ....report import CCP4RvapiParser
+from ....report.CCP4ReportParser import Container, Report
 
 
 dummy_report =  '<html>\n<head>\n<title>Running Crank2</title>\n</head>\n'
@@ -42,7 +40,7 @@ def et(fileName=None):
         root.text="Presentation not loaded. You can try to click this link to open it or use the View -> Log file  option."
       except Exception as e:
         print('Crank2 report failed (also returning the error message in report): {0}'.format(e))
-        f = StringIO(dummy_report)
+        f = io.StringIO(dummy_report)
         root = etree.parse( f ).getroot()
         f.close()
   return root
@@ -62,7 +60,6 @@ class crank2_report(CCP4RvapiParser.RvapiReport):
     else:
       crank2_report.WATCHED_FILE = self.WATCHED_FILE = 'program.xml'
       Report.__init__(self,xmlnode=xmlnode,jobInfo=jobInfo,**kw)
-      import functools
       #if os.path.isfile(os.path.join(rundir, "index.html")):
       i=0
       while os.path.isdir(os.path.join(rundir, 'job_'+str(i+1))):  i+=1

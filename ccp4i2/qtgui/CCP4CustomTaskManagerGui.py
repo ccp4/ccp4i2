@@ -1,35 +1,20 @@
-from __future__ import print_function
-
 """
-     CCP4CustomTaskManagerGui.py: CCP4 GUI Project
-     Copyright (C) 2013 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2013 STFC
+Liz Potterton July 2013 - create and manage custom tasks
 """
 
-"""
-     Liz Potterton July 2013 - create and manage custom tasks
-"""
-
+import copy
+import functools
 import os
-from PySide2 import QtGui, QtWidgets,QtCore
-from core import CCP4Data,CCP4Container
-from qtgui import CCP4CustomisationGui,CCP4Widgets
-from core import CCP4CustomTaskManager
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import CUSTOMTASKMANAGER,WEBBROWSER,PROJECTSMANAGER
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from . import CCP4CustomisationGui, CCP4Widgets
+from ..core import CCP4CustomTaskManager
+from ..core import CCP4Data
+from ..core.CCP4ErrorHandling import Severity
+from ..core.CCP4WarningMessage import warningMessage
+
 
 def openGui():
   if CCustomTaskManagerGui.insts is None:
@@ -49,6 +34,7 @@ class CCustomTaskManagerGui(CCP4CustomisationGui.CCustomisationGui):
     
 
   def manager(self):
+    from ..core.CCP4CustomTaskManager import CUSTOMTASKMANAGER
     return CUSTOMTASKMANAGER()
 
   def handleNew(self):
@@ -120,7 +106,6 @@ class CCustomTaskParamView(CCP4Widgets.CComplexLineWidget):
 
   MODEL_CLASS =CCP4CustomTaskManager.CCustomTaskParam
   def __init__(self,parent=None,model=None,qualifiers={}):
-    import functools
     qualis = {}
     qualis.update(qualifiers)
     qualis['vboxLayout'] = True
@@ -312,7 +297,6 @@ class CMiniMtzRequiredContentWidget(CCP4Widgets.CViewWidget):
   def setMode(self,mode):
     #print 'CMiniMtzRequiredContentWidget.setMode',mode,self.mode
     if mode == self.mode: return
-    import copy
     self.mode = copy.deepcopy(mode)
     if self.mode == 'CObsDataFile':
       self.layout().setCurrentIndex(1)
@@ -390,7 +374,8 @@ class CCreateCustomTaskDialog(QtWidgets.QDialog):
     
     self.widgets = {}
     self.model = CCP4CustomTaskManager.CCustomTaskDefinition(self,name=name)
-    if name is not None:  
+    if name is not None:
+      from ..core.CCP4CustomTaskManager import CUSTOMTASKMANAGER
       self.model.loadDataFromXml(fileName=os.path.join(CUSTOMTASKMANAGER().getDirectory(name),'task.xml'),loadHeader=True,check=False)
 
     line = QtWidgets.QHBoxLayout()
@@ -454,7 +439,6 @@ class CCreateCustomTaskDialog(QtWidgets.QDialog):
     
     #print 'CCreateCustomTaskDialog.init',len(self.model.comFileList)
 
-  
   def updateViewFromModel(self):
     for key in list(self.widgets.keys()):
       self.widgets[key].updateViewFromModel()
@@ -468,11 +452,10 @@ class CCreateCustomTaskDialog(QtWidgets.QDialog):
     print('CCreateCustomTaskDialog.updateModelFromView title',self.widgets['title'].getValue())
     self.model.header.pluginName.set(self.widgets['name'].getValue())
     self.model.header.pluginTitle.set(self.widgets['title'].getValue())
-  
-
 
   @QtCore.Slot()
   def help(self):
+    from ..qtgui.CCP4WebBrowser import WEBBROWSER
     WEBBROWSER().loadWebPage(helpFileName='customisation')
 
   @QtCore.Slot()
@@ -484,7 +467,7 @@ class CCreateCustomTaskDialog(QtWidgets.QDialog):
     if not self.model.name.isSet():
        QtWidgets.QMessageBox.warning(self,'Create Custom Task','Custom task name must be entered')
        return
-    if self.model.name.validity(self.model.name.__str__()).maxSeverity() > SEVERITY_WARNING:
+    if self.model.name.validity(self.model.name.__str__()).maxSeverity() > Severity.WARNING:
       QtWidgets.QMessageBox.warning(self,'Create Custom Task','Custom task name must be single word')
       return
     if not self.model.comLine.isSet():
@@ -502,6 +485,7 @@ class CCreateCustomTaskDialog(QtWidgets.QDialog):
         QtWidgets.QMessageBox.warning(self,'Create Custom Task',"There are undefined parameters in the command line/file.\nPlease click 'Update parameters' and check the definitions in the parameter list")
         return
 
+    from ..core.CCP4CustomTaskManager import CUSTOMTASKMANAGER
     mergedMtzs = CUSTOMTASKMANAGER().getMergedMtzs(self.model.paramList)
     #print 'CCreateCustomTaskDialog.accept mergedMtzs',mergedMtzs
     for key,value in list(mergedMtzs.items()):
@@ -517,7 +501,6 @@ class CCreateCustomTaskDialog(QtWidgets.QDialog):
        msgBox.setText('There is already a custom task directory called '+self.model.name.__str__())
        b = msgBox.addButton(QtWidgets.QMessageBox.Cancel)
        b = msgBox.addButton('Overwrite',QtWidgets.QMessageBox.ApplyRole)
-       import functools
        b.clicked.connect(functools.partial(self.createCustomTask,True))
        msgBox.exec_()
     else:        
@@ -528,20 +511,14 @@ class CCreateCustomTaskDialog(QtWidgets.QDialog):
   def createCustomTask(self,overwrite=False):
     self.hide()
     #try:
+    from ..core.CCP4CustomTaskManager import CUSTOMTASKMANAGER
     err = CUSTOMTASKMANAGER().createCustomTask(name=self.model.name.__str__(),title=self.model.title.__str__(),container=self.model,overwrite=overwrite)
-    '''
-    except CException as err:
-      pass
-    except Exception as e:
-       QtWidgets.QMessageBox.warning(self,'Create Custom Task',"Error saving custom task\n"+str(e))
-       return
-    ''' 
-    if err.maxSeverity()>SEVERITY_WARNING:
-      err.warningMessage('Create custom task','Error saving custom task',parent=self)
+
+    if err.maxSeverity()>Severity.WARNING:
+      warningMessage(err, 'Create custom task','Error saving custom task',parent=self)
       return
     
     self.customTaskCreated.emit(self.model.name.__str__())
-
 
   @QtCore.Slot()
   def updateParametersList(self):
@@ -563,12 +540,6 @@ class CCreateCustomTaskDialog(QtWidgets.QDialog):
 
     paramNameList = self.paramNameList(tag)
 
-    '''
-    for ii in range(len(self.model.paramList)-1,-1,-1):
-      if not self.model.paramList[ii].name.__str__() in paramNameList:
-        del self.model.paramList[ii]
-    '''
-
     for param in paramNameList:
       obj,indx = self.model.paramList.getItemByName(param)
       if obj is None:
@@ -584,9 +555,8 @@ class CCreateCustomTaskDialog(QtWidgets.QDialog):
     
 
   def paramNameList(self,tag='#'):
+    from ..core.CCP4CustomTaskManager import CUSTOMTASKMANAGER
     paramNameList = CUSTOMTASKMANAGER().extractParams(tag,self.model.comLine.__str__())
     for ii in range(len(self.model.comFileList)):
       paramNameList.extend(CUSTOMTASKMANAGER().extractParams(tag,self.model.comFileList[ii].text.__str__()))
     return paramNameList
-
-

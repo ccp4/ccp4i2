@@ -1,7 +1,11 @@
 #!/usr/bin/python
-import os,sys
-from program import program
-import common
+
+import os
+import shutil
+
+from .. import common
+from ..program import program
+
 
 class shelxc(program):
   name="SHELXC"
@@ -100,7 +104,6 @@ class shelxc(program):
   def CheckFilePathLength(self,key,fi_opt):
     max_length=75
     if len(self.GetKey(key)[1])>max_length:
-      import shutil
       loc_file = os.path.basename(self.GetKey(key)[1])
       if len(loc_file)>max_length:
         loc_file = loc_file[:max_length-4] + loc_file[-4:]

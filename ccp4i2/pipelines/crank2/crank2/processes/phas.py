@@ -1,10 +1,12 @@
 #!/usr/bin/python
-import os,sys
-from process import process,crvapi
-from program import program
-import common
-par=common.parameter
 
+import os
+
+from .. process import process
+from .. import common, crvapi
+
+
+par=common.parameter
 
 class phas(process):
   name="phasing and substructure refinement"

@@ -1,20 +1,15 @@
-from __future__ import print_function
+from copy import deepcopy
+import os
+import shutil
+import sys
 
-try:
-    import ccp4mg
-    import mmdb2 as mmdb
-except:
-    print('FAILED CCP4ModelData imported ccp4mg')
-import mmut
-
-from PySide2 import QtCore
-from core.CCP4PluginScript import CPluginScript
-import sys, os
-from core import CCP4ErrorHandling
-from core import CCP4Modules
 from lxml import etree
-from core import CCP4Utils
-  
+from PySide2 import QtCore
+
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
+
 class phaser_pipeline(CPluginScript):
 
     TASKNAME = 'phaser_pipeline'                                  # Task name - should be same as class name
@@ -93,7 +88,6 @@ class phaser_pipeline(CPluginScript):
 
     def phaserXMLUpdated(self, newXML):
         for oldNode in self.xmlroot.xpath('PhaserMrResults'): self.xmlroot.remove(oldNode)
-        from copy import deepcopy
         self.xmlroot.append(deepcopy(newXML))
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
         with open(tmpFilename,'w') as xmlfile:
@@ -301,7 +295,6 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
             self.harvestFile(pluginOutputListItem, pipelineOutputListItem)
 
     def harvestFile(self, pluginOutputItem, pipelineOutputItem):
-        import shutil
         try:
             shutil.copyfile(str(pluginOutputItem.fullPath), str(pipelineOutputItem.fullPath))
             pipelineOutputItem.annotation.set(pluginOutputItem.annotation)

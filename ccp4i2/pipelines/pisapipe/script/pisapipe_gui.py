@@ -1,5 +1,5 @@
-from qtgui.CCP4TaskWidget import CTaskWidget
-from PySide2 import QtCore
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class CTaskPisapipe(CTaskWidget):
@@ -16,10 +16,6 @@ class CTaskPisapipe(CTaskWidget):
     CTaskWidget.__init__(self,parent)
 
   def drawContents(self):
-
     self.setProgramHelpFile('pisapipe')
-
     self.openFolder(folderFunction='inputData',followFrom=False)
-
     self.createLine ( [ 'widget','PDBIN' ] )
-    

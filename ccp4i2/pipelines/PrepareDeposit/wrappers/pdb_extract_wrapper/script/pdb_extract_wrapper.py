@@ -1,14 +1,11 @@
-from __future__ import print_function
+import os
 
-
-from core.CCP4PluginScript import CPluginScript
-from PySide2 import QtCore
-import os,glob,re,time,sys
-from core import CCP4XtalData
 from lxml import etree
-import math
-from core import CCP4Modules
-from core import CCP4Utils
+from PySide2 import QtCore
+
+from ......core import CCP4Utils
+from ......core.CCP4PluginScript import CPluginScript
+
 
 class pdb_extract_wrapper(CPluginScript):
     TASKMODULE = 'wrappers'                               # Where this plugin will appear on the gui
@@ -35,18 +32,19 @@ class pdb_extract_wrapper(CPluginScript):
         envEdit = [['PDB_EXTRACT',PDB_EXTRACT_DIR]]
         envEdit.append(['PWD',os.path.normpath(self.getWorkDirectory())])
         
+        from ......qtcore.CCP4Launcher import LAUNCHER
         if self.container.inputData.ENTRYDATAIN.isSet():
             argList = ['-r','refmac5','-ipdb',self.container.inputData.XYZIN.__str__(),'-iENT',self.container.inputData.ENTRYDATAIN.__str__()]
             print('Arglist',argList)
             print('envEdit',envEdit)
-            p = CCP4Modules.LAUNCHER().launch(viewer='pdb_extract', argList = argList, callBack = self.handleFinished, envEdit=envEdit,logFile = self.makeFileName('LOG'))
+            p = LAUNCHER().launch(viewer='pdb_extract', argList = argList, callBack = self.handleFinished, envEdit=envEdit,logFile = self.makeFileName('LOG'))
             p.waitForFinished(-1)
         else:
             #MN: Note the nasty kludge of using "-SOL" to force an inpfile name to be generated to work round what looks to me to be a bug in pdb_extract v3.22 code
             argList = ['-PDB',self.container.inputData.XYZIN.__str__(),'-SOL',os.path.join(self.getWorkDirectory(),'intermediateFile.pdb')]
             print('Arglist',argList)
             print('envEdit',envEdit)
-            p = CCP4Modules.LAUNCHER().launch(viewer='extract', argList = argList, callBack = self.handleFinished, envEdit=envEdit,logFile = self.makeFileName('LOG'))
+            p = LAUNCHER().launch(viewer='extract', argList = argList, callBack = self.handleFinished, envEdit=envEdit,logFile = self.makeFileName('LOG'))
             p.waitForFinished(-1)
         return CPluginScript.SUCCEEDED
 
@@ -63,4 +61,3 @@ class pdb_extract_wrapper(CPluginScript):
             CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot, pretty_print=True))
         
         self.reportStatus(CPluginScript.SUCCEEDED)
-

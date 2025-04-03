@@ -1,8 +1,13 @@
 #!/usr/bin/python
-import os,sys
-from process import process, crvapi
+
+import os
 import threading
-import common
+
+from . import handdet
+from .. import common
+from ..process import process, crvapi
+
+
 par=common.parameter
 
 class phdmmb(process):
@@ -266,7 +271,6 @@ class phdmmb(process):
           spgr2 = pdbcur.GetStatGrep('spgr',from_str=f.read())
         if "".join(spgr1.split()) != "".join(spgr2.split()):
           spgr_num1 = self.inp.Get('fsigf',filetype='mtz').GetSpacegroupNumber(self)
-          from processes import handdet
           if [list(ep) for ep in handdet.handdet.enant_pairs if spgr_num1 in ep]:
             self.prog2.out.Get('mapcoef',filetype='phs',typ='best').spgr = spgr2
             enant_mtz = handdet.handdet.ChangeHand2Spacegroup(self,spgr1,spgr2,self.inp.GetAll('fsigf'))

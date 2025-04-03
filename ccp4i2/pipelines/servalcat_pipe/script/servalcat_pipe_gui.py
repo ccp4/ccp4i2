@@ -1,41 +1,27 @@
 """
-    servalcat_pipe_gui.py: CCP4 GUI Project
-    Copyright (C) 2024 University of Southampton, MRC LMB Cambridge
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2024 University of Southampton, MRC LMB Cambridge
+Andrey Lebedev September 2011 - refmac_martin gui
+Liz Potterton Aug 2012 - convert for MTZ ADO's demo
+Liz Potterton Oct 2012 - Moved mini-MTZ version to refmac_martin
 """
 
-"""
-     Andrey Lebedev September 2011 - refmac_martin gui
-     Liz Potterton Aug 2012 - convert for MTZ ADO's demo
-     Liz Potterton Oct 2012 - Moved mini-MTZ version to refmac_martin
-"""
-
-from PySide2 import QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from core import CCP4XtalData
-from pipelines.import_merged.script.dybuttons import ChoiceButtons
 import os
 import shutil
+import traceback
+
+from PySide2 import QtCore, QtWidgets
+from PySide2.QtWidgets import QMessageBox
+import ccp4mg.mmdb2 as mmdb
 import gemmi
+
+from ....core import CCP4XtalData
+from ....qtgui import CCP4TaskWidget
+from ...import_merged.script.dybuttons import ChoiceButtons
 
 
 def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None):
-    import os
-    from core import CCP4Modules, CCP4Utils, CCP4File, CCP4Container, CCP4Data, CCP4PluginScript
-    jobStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId,'status')
+    from ....core.CCP4ProjectsManager import PROJECTSMANAGER
+    jobStatus = PROJECTSMANAGER().db().getJobInfo(jobId,'status')
     if jobStatus == 'Unsatisfactory':
         returnList = ['LidiaAcedrg', 'servalcat_pipe']
     else:
@@ -64,8 +50,8 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
 
   def ToggleTLSModeOn(self):
     if str(self.container.controlParameters.TLSMODE) != 'NONE':
-        from core import CCP4Modules
-        CurrentStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(self._jobId,'status')
+        from ....core.CCP4ProjectsManager import PROJECTSMANAGER
+        CurrentStatus = PROJECTSMANAGER().db().getJobInfo(self._jobId,'status')
         if CurrentStatus == "Pending":
             self.container.controlParameters.BFACSETUSE = True
         return True
@@ -73,8 +59,8 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
 
   def ToggleTLSModeOff(self):
     if str(self.container.controlParameters.TLSMODE) == 'NONE':
-        from core import CCP4Modules
-        CurrentStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(self._jobId,'status')
+        from ....core.CCP4ProjectsManager import PROJECTSMANAGER
+        CurrentStatus = PROJECTSMANAGER().db().getJobInfo(self._jobId,'status')
         if CurrentStatus == "Pending":
             self.container.controlParameters.BFACSETUSE = False
         return True
@@ -681,7 +667,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
      chain_list = {}
      if self.container.inputData.XYZIN.isSet():
          model_path = self.container.inputData.XYZIN.fullPath.__str__()
-         import mmdb2 as mmdb
          molHnd = mmdb.Manager()
          molHnd.SetFlag(mmdb.MMDBF_IgnoreRemarks)
          molHnd.SetFlag(mmdb.MMDBF_IgnoreBlankLines)
@@ -714,7 +699,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
   def isValid(self):
       invalidElements = super(Cservalcat_pipe, self).isValid()
       #Check whether invocation is from runTask
-      import traceback
       functionNames = [a[2] for a in traceback.extract_stack()]
 
       if str(self.container.controlParameters.DATA_METHOD) == 'xtal':
@@ -730,7 +714,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
             if str(self.container.inputData.XYZIN.fileContent.mmdbManager.GetSpaceGroup()) != str(self.container.inputData.HKLIN.fileContent.spaceGroup): sgMismatch = True
             if cellMismatch or sgMismatch:
                if functionNames[-2] == 'runTask':
-                     from PySide2.QtWidgets import QMessageBox
                      msg = QMessageBox()
                      msg.setIcon(QMessageBox.Question)
                      msg.setText("Warning")
@@ -750,7 +733,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
 
          if functionNames[-2] == 'runTask':
             if not self.container.inputData.FREERFLAG.isSet():
-               from PySide2.QtWidgets import QMessageBox
                msg = QMessageBox()
                msg.setIcon(QMessageBox.Question)
 
@@ -794,7 +776,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
       elif str(self.container.controlParameters.DATA_METHOD) == 'spa':
          if not self.container.inputData.MAPIN1.isSet() or not self.container.inputData.MAPIN2.isSet():
             if functionNames[-2] == 'runTask':
-               from PySide2.QtWidgets import QMessageBox
                msg = QMessageBox()
                msg.setIcon(QMessageBox.Critical)
                msg.setText("Error")
@@ -808,7 +789,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
                   invalidElements.append(self.container.inputData.MAPIN2)
          if not self.container.inputData.MAPMASK.isSet():
             if functionNames[-2] == 'runTask':
-               from PySide2.QtWidgets import QMessageBox
                msg = QMessageBox()
                msg.setIcon(QMessageBox.Critical)
                msg.setText("Error")
@@ -819,7 +799,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
                invalidElements.append(self.container.inputData.MAPMASK)
          if not self.container.controlParameters.RES_MIN.isSet():
             if functionNames[-2] == 'runTask':
-               from PySide2.QtWidgets import QMessageBox
                msg = QMessageBox()
                msg.setIcon(QMessageBox.Critical)
                msg.setText("Error")
@@ -830,4 +809,3 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
                invalidElements.append(self.container.controlParameters.RES_MIN)
 
       return invalidElements
-

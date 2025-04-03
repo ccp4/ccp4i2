@@ -1,21 +1,8 @@
-import sys
+import math
+
 import gemmi
 
-import math
-import numpy
 
-
-# -------------------------------------------------------------
-import time
-class MyTimer():
-    def __init__(self):
-        self.t1 = time.perf_counter()
-    def reset(self):
-        self.t1 = time.perf_counter()
-    def gettime(self, message):
-        t1 = self.t1 
-        t2 = time.perf_counter()
-        print("*^*", message, f": {t2-t1:0.4f} secs")
 
 # * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 # Classes to store information about a Gemmi reflection block
@@ -45,13 +32,7 @@ class ColumnSet():
             if not self.flagpresent[i]:
                 s += self.columnlabels[i] + ', '
         return s[:-2]
-            
-    # -------------------------------------------------------------
-    def formatcolumnlabels(self):
-        s = ''
-        for lab in self.columnlabels:
-          s += lab +", "
-        return s[:-2]
+
 
 # * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 class CIFLabelSets():
@@ -307,19 +288,6 @@ class CifBlockInfo:
         # brief formatted column information
         s = self.labelsets.formatContent()
         return s
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    def formatColumnInfo(self):
-        # formatted column information in more detail
-        s = ''
-        # list of ColumnSet objects
-        columnsets = self.labelsets.getcolumnsets()
-        for colset in columnsets:
-            # List of data types and columns
-            s += colset.text + ": [" +\
-                 colset.formatcolumnlabels() + "], "
-
-        return s[:-2]
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def allowsimplewrite(self, reducehkl=True):

@@ -1,5 +1,7 @@
 # dummy class just used for mr-sad reference
-from program import program
+
+from ..program import program
+
 class crank2_mrsad(program):
   name="Crank2"
   references = ( "Skubak P, Arac D, Bowler MW, Correia AR, Hoelz A, Larsen S, Leonard GA, McCarthy AA," +

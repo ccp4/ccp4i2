@@ -1,39 +1,32 @@
-from __future__ import print_function
-
 """
-     CCP4AbstractViewer.py: CCP4 GUI Project
-     Copyright (C) 2009-2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-"""
-     Liz Potterton Jan 2010 - Create CCP4AbstractViewer
+Copyright (C) 2009-2010 University of York
+Liz Potterton Jan 2010 - Create CCP4AbstractViewer
 """
 
 ## @package CCP4AbstractViewer (QtGui) Base for file viewers in CCP4WebBrowser
+
 import os
-from PySide2 import QtGui, QtWidgets,QtCore
-from core import CCP4Modules
-from core.CCP4ErrorHandling import *
+import sys
+import time
+
+from PySide2 import QtCore, QtWidgets
+
+from ..core.CCP4ErrorHandling import Severity
+from ..utils.QApp import QTAPPLICATION
+
+
+def FILEWATCHER():
+    if CFileWatchTimer.insts is None:
+        CFileWatchTimer.insts =  CFileWatchTimer()
+    return CFileWatchTimer.insts
+
 
 def handleFileChanged(fileName):
     fileName = str(fileName)
     #print 'CCP4AbstractViewer.handleFileChanged',fileName
     indx = 0
-    browser = CCP4Modules.WEBBROWSER(indx)
+    from ..qtgui.CCP4WebBrowser import WEBBROWSER
+    browser = WEBBROWSER(indx)
     while browser is not None:
         tab = browser.fileOpenInTab(fileName)
         #print 'CCP4AbstractViewer.handleFileChanged tab',tab
@@ -42,7 +35,7 @@ def handleFileChanged(fileName):
             browser.tab().widget(tab).reload()
             return
         indx = indx + 1
-        browser = CCP4Modules.WEBBROWSER(indx)
+        browser = WEBBROWSER(indx)
 
 
 #-------------------------------------------------------------------
@@ -50,9 +43,9 @@ class CAbstractViewer(QtWidgets.QScrollArea):
 #-------------------------------------------------------------------
     MENUTEXT = 'Viewer'
     FILEWATCHER = None
-    ERROR_CODES = {1 : {'severity' : SEVERITY_ERROR, 'description' : 'Failed opening file'},
-                   2 : {'severity' : SEVERITY_ERROR, 'description' : 'Failed reading file'},
-                   3 : {'severity' : SEVERITY_ERROR, 'description' : 'No file name or file does not exist'},}
+    ERROR_CODES = {1 : {'severity' : Severity.ERROR, 'description' : 'Failed opening file'},
+                   2 : {'severity' : Severity.ERROR, 'description' : 'Failed reading file'},
+                   3 : {'severity' : Severity.ERROR, 'description' : 'No file name or file does not exist'},}
 # Subclassed to display various file types in the CCP4WebBrowser
 #-------------------------------------------------------------------
     def __init__(self,parent=None,fileName=None):
@@ -100,17 +93,16 @@ class CAbstractViewer(QtWidgets.QScrollArea):
             return ''
 
     def watchFile(self,modTime=180.0):
-        import time
         if self.fileName is None: return
         # Only watch files last modified in last three minutes
         if time.time() - os.path.getmtime(self.fileName) > modTime: return
-        CCP4Modules.FILEWATCHER().addPath(self.fileName)
+        FILEWATCHER().addPath(self.fileName)
 
     def close(self):
         if self.fileName is None: return
         #print 'CAbstractViewer.close removing watch',self.fileName
         try:
-            CCP4Modules.FILEWATCHER().removePath(self.fileName)
+            FILEWATCHER().removePath(self.fileName)
         except:
             pass
   
@@ -158,24 +150,12 @@ class CAbstractViewer(QtWidgets.QScrollArea):
 #-------------------------------------------------------------------
     def getFileExt(self):
 #-------------------------------------------------------------------
-#FIXME
         return None
-        #print 'getFileExt',self.__class__
-        from qtcore import CCP4CustomMimeTypes
-        mimeHandler = CCP4CustomMimeTypes.MimeTypesHandler()
-        
-        mimetype = mimeHandler.getMimeTypeForViewer(self.__class__)
-        if  mimetype:
-            exts =  mimeHandler.getMimeTypeInfo(mimetype,'fileExtensions')
-        else:
-            exts = []
-        #print 'getFileExt',exts
-        return exts
 
 #-------------------------------------------------------------------
     def getLabel(self):
 #-------------------------------------------------------------------
-        from qtcore import CCP4CustomMimeTypes
+        from ..qtcore import CCP4CustomMimeTypes
         mimeHandler = CCP4CustomMimeTypes.MimeTypesHandler()
             
         mimetype = mimeHandler.getMimeTypeForViewer(self.__class__)
@@ -189,12 +169,12 @@ class CAbstractViewer(QtWidgets.QScrollArea):
     def browserWindow(self):
         return self.parent()
 
-
     def handleTabbedOpen(self):
         pass
 
     def handleTabbedClosed(self):
         pass
+
 
 class CFileWatchTimer(QtCore.QObject):
 
@@ -204,7 +184,7 @@ class CFileWatchTimer(QtCore.QObject):
     insts = None
 
     def __init__(self,interval=2000):
-        parent = CCP4Modules.QTAPPLICATION()
+        parent = QTAPPLICATION()
         QtCore.QObject.__init__(self,parent)
         parent.aboutToQuit.connect(self.Exit)
         self.files = {}
@@ -217,24 +197,21 @@ class CFileWatchTimer(QtCore.QObject):
 
     @QtCore.Slot()
     def Exit(self):
-        import sys
         self.timer.stop()
         sys.__stdout__.write('CFileWatcher.Exit blockExit'+str(self.blockExit)+'\n');sys.__stdout__.flush()
 
     def addPath(self,fileName):
-        from core import CCP4Utils
         for item in list(self.files.keys()):
-            if CCP4Utils.samefile(fileName,item,default=False): return False
+            if os.path.samefile(fileName,item,default=False): return False
         self.files[fileName] = os.path.getmtime(fileName)
         return True
 
     def removePath(self,fileName):
-        from core import CCP4Utils
         if fileName in self.files:
             del self.files[fileName]
             return True
         for item in list(self.files.keys()):
-            if CCP4Utils.samefile(item,fileName,default=False):
+            if os.path.samefile(item,fileName,default=False):
                 del self.files[item]
                 return True
         return False
@@ -260,4 +237,3 @@ class CFileWatchTimer(QtCore.QObject):
         for fileName in delList:
             del self.files[fileName]
         self.blockExit = False
-   

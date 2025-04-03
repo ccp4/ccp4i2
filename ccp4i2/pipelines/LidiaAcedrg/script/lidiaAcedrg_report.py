@@ -1,9 +1,11 @@
-from report.CCP4ReportParser import *
-import sys
-#from lxml import etree
+import os
 import xml.etree.ElementTree as etree
-import math
-from wrappers.acedrg.script.acedrg_report import acedrg_report
+
+from ....core import CCP4Utils
+from ....report.CCP4ReportParser import Report
+from ....wrappers.acedrg.script.acedrg_report import acedrg_report
+
+
 class lidiaAcedrg_report(Report):
     # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'LidiaAcedrg'
@@ -52,9 +54,7 @@ class lidiaAcedrg_report(Report):
     def addPictures(self, parent=None):
         #Note...this cnnot be moved into the acedrg_report because it uses this jobs jobInfo
         if parent is None: parent = self
-        from core import CCP4Utils
         ccp4i2_root = CCP4Utils.getCCP4I2Dir()
-        import os
         baseScenePath = os.path.join(ccp4i2_root,'wrappers','acedrg','script','acedrg.scene.xml')
         #tlc = self.jobInfo['filenames']['TLC'].upper()
         if 'filenames' in self.jobInfo and 'XYZOUT_LIST' in self.jobInfo['filenames'] and len(self.jobInfo['filenames']['XYZOUT_LIST'])>0:

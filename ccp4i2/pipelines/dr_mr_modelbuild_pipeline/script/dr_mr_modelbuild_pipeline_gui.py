@@ -1,33 +1,11 @@
-from __future__ import print_function
+"""
+Copyright (C) 2011 University of York
+Stuart McNicholas 2020-2021 adapted from Andrey Lebedev September 2011 - molrep_mr gui
+"""
 
 from PySide2 import QtCore
 
-"""
-     tasks/molrep_mr/Cmolrep_mr.py: CCP4 GUI Project
-     Copyright (C) 2011 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-"""
-     Stuart McNicholas 2020-2021 adapted from Andrey Lebedev September 2011 - molrep_mr gui
-"""
-
 from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
-
 
 
 class Cdr_mr_modelbuild_pipeline(CCP4TaskWidget.CTaskWidget):
@@ -203,4 +181,3 @@ class Cdr_mr_modelbuild_pipeline(CCP4TaskWidget.CTaskWidget):
         print("final",invalidElements)
         print("##################################################")
         return invalidElements
-    

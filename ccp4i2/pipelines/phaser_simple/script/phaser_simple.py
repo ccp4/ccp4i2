@@ -1,12 +1,6 @@
-try:
-    import ccp4mg
-    import mmdb2 as mmdb
-except:
-    print('FAILED CCP4ModelData imported ccp4mg')
-import mmut
+from ...phaser_pipeline.script import phaser_pipeline
 
-from pipelines.phaser_pipeline.script import phaser_pipeline
-  
+
 class phaser_simple(phaser_pipeline.phaser_pipeline):
     TASKNAME = 'phaser_simple'                                  # Task name - should be same as class name
     
@@ -21,7 +15,6 @@ class phaser_simple(phaser_pipeline.phaser_pipeline):
         return invalidFiles
 
     def createEnsembleElements(self):
-        from core.CCP4ModelData import CPdbDataFile, CAtomSelection, CPdbEnsembleItem
         elements = self.container.inputData.ENSEMBLES
         #Before removing all elements from this list, I have to set its listMinLength to 0
         self.container.inputData.ENSEMBLES.setQualifiers({'listMinLength':0})

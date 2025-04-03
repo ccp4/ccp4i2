@@ -1,27 +1,24 @@
-from __future__ import print_function
-
 """
-     CCP4DefEd.py: CCP4 GUI Project
-     Copyright (C) 2010 University of York
+Copyright (C) 2010 University of York
 
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Liz Potterton Oct 2010 Create widget to edit def.xml files
 """
 
-"""
-   Liz Potterton Oct 2010 Create widget to edit def.xml files
-"""
+import functools
+import os
+import re
+import shutil
+import sys
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from .. import __version__
+from ..core import CCP4Data
+from ..core import CCP4Utils
+from ..core.CCP4DataManager import DATAMANAGER
+from ..core.CCP4ErrorHandling import CErrorReport, CException
+from ..core.CCP4WarningMessage import warningMessage
+from . import CCP4Widgets
 
 
 HELPTEXT = { 'Introduction' : """<html>
@@ -80,14 +77,6 @@ Optionally add short title that will be used in the GUI.</p>
 
 CONTAINER_NAMES = ['inputData','controlParameters','outputData','guiControls']
 
-import os
-from PySide2 import QtGui, QtWidgets, QtCore
-from core.CCP4ErrorHandling import *
-from core.CCP4Config import DEVELOPER
-from core.CCP4DataManager import DATAMANAGER
-from qtgui import CCP4Widgets
-from core import CCP4Data
-     
 
 class CDefEd(QtWidgets.QMainWindow):
 
@@ -111,12 +100,6 @@ class CDefEd(QtWidgets.QMainWindow):
 
 
   def __init__(self,parent=None):
-    if not parent:
-      try:
-        from core import CCP4Modules
-        parent = CCP4Modules.MAINWINDOW()
-      except:
-        pass
     QtWidgets.QMainWindow.__init__(self,parent)
     self.setWindowTitle('CCP4i2 defEd - DEF file editor')
     if not CDefEd.insts: CDefEd.insts = self
@@ -140,7 +123,6 @@ class CDefEd(QtWidgets.QMainWindow):
 
     self.contextMenu = QtWidgets.QMenu(self)
     
-    import functools
     for menuName,menuTitle in [['File','&File'],['Tools','&Tools']]:
       m = self.menuBar().addMenu(menuTitle)
       m.setObjectName(menuName)
@@ -163,7 +145,6 @@ class CDefEd(QtWidgets.QMainWindow):
 
 
     # Create buttons
-    import functools
     self.appendContainerButton = CCP4Widgets.CPushButton(self,text='Append container')
     self.buttonLayout.addWidget(self.appendContainerButton)
     self.connect(self.appendContainerButton,QtCore.SIGNAL('clicked()'),functools.partial(self.handleNewContainer,True))
@@ -197,7 +178,7 @@ class CDefEd(QtWidgets.QMainWindow):
     frame.layout().setSpacing(CDefEd.MARGIN)
     self.classInfoToolBar = QtWidgets.QToolBar('Class Information',self)
     self.classInfoToolBar.setMaximumSize(9999,25)
-    from qtgui import CCP4GuiUtils
+    from . import CCP4GuiUtils
     CCP4GuiUtils.populateToolBar(self,toolBarWidget=self.classInfoToolBar,definition=['back','forward'])
     frame.layout().addWidget(self.classInfoToolBar)
 
@@ -220,13 +201,12 @@ class CDefEd(QtWidgets.QMainWindow):
     self.show()
     
     if self.container is None:
-      from core import CCP4Container
+      from ..core import CCP4Container
       self.container = CCP4Container.CContainer(name='NEWCONTAINER')
 
     QtCore.QTimer.singleShot(0,self.handleCommandLine)
 
   def handleCommandLine(self):
-    import sys
     if len(sys.argv)>1: self.loadDefFile(sys.argv[1])
 
 
@@ -236,7 +216,7 @@ class CDefEd(QtWidgets.QMainWindow):
       pass
     else:
       widget.clear()
-      from qtgui import CCP4GuiUtils
+      from . import CCP4GuiUtils
       CCP4GuiUtils.populateMenu(self,widget,self.menuDefinitions[menuName],default_icon='')
 
   def initialiseActionDefinitions(self):
@@ -298,15 +278,6 @@ class CDefEd(QtWidgets.QMainWindow):
           slot = self.makeDataXml,
           enabled = 0
           )
-    '''
-    self.actionDefinitions['makeHtml'] = dict (
-          text = "Make Html class listing",
-          tip = "Make Html class listing",
-          slot = self.makeHtmlClassListing,
-          enabled = 0
-          )
-    '''
-    
     self.actionDefinitions['back'] = dict (
           text = "Back",
           tip = "Go back to previous page",
@@ -319,30 +290,11 @@ class CDefEd(QtWidgets.QMainWindow):
           slot = self.handleForward,
           enabled = 0
           )
-    
-    '''
-    self.actionDefinitions['find'] = dict (
-          text = "Find",
-          tip = "Find in file",
-          slot = self.openFind,
-          icon = 'search',
-          checkable = 1,
-          checked = self.isFindFrameOpen,
-          )
-    
-    
-    self.actionDefinitions['reload'] = dict (
-          text = "Reload",
-          tip = "Reload current page",
-          slot = self.reloadPage,
-          enabled = 1
-         )
-    '''
+
   def getActionDef(self,name,**info):
     return self.actionDefinitions.get(name,dict(text=name))
 
   def updateContextMenu(self,mode=None,event=None):
-    import functools
     if event is None or mode is None: return
     self.contextMenu.clear()
     a = self.contextMenu.addAction('Help: '+mode)
@@ -366,7 +318,6 @@ class CDefEd(QtWidgets.QMainWindow):
       for indx in range(self.contentsTree.topLevelItemCount()):
         t = self.treeToText( self.contentsTree.topLevelItem(indx) ,0)
         text = text + t
-    from core import CCP4Utils
     CCP4Utils.saveFile(fileName=fileName,text=text)
 
   def treeToText(self,parent,level):
@@ -388,7 +339,7 @@ class CDefEd(QtWidgets.QMainWindow):
         
   
   def loadDefFile(self,fileName):
-    from core.CCP4Container import CContainer
+    from ..core.CCP4Container import CContainer
     self.container = CContainer(parent=self)
     #Expect loadContentsFromXml to return the error but put in try/except
     # just in case
@@ -402,11 +353,11 @@ class CDefEd(QtWidgets.QMainWindow):
     '''
 
     if len(e)>0: 
-      e.warningMessage()
+      warningMessage(e)
 
     e = self.contentsTree.populate(container=self.container)
     if len(e)>0:
-      e.warningMessage('Error drawing contents tree for def file')
+      warningMessage(e, 'Error drawing contents tree for def file')
     self.initialiseSave()
     if self.contentsTree.firstDataItem is None:
       self.defEditor.unSet()
@@ -429,7 +380,6 @@ class CDefEd(QtWidgets.QMainWindow):
     self.edited = False
 
   def handleSaveFile(self):
-    import shutil
     if self.loadedFileName is None: return
     if os.path.exists(self.loadedFileName):
       bak = 1
@@ -441,20 +391,19 @@ class CDefEd(QtWidgets.QMainWindow):
         shutil.copyfile(self.loadedFileName,bakFile)
       except:
         e = CException(self.__class__,111,bakFile)
-        e.warningMessage()
+        warningMessage(e)
 
     #print 'CDefEd.handleSaveFile',self.loadedFileName
     try:
       self.container.saveContentsToXml(self.loadedFileName)
     except CException as e:
-      e.warningMessage()
+      warningMessage(e)
     except Exception as e:
       e = CException(self.__class__,112,self.loadedFileName)
-      e.warningMessage()
+      warningMessage(e)
     self.edited = False
  
   def handleSaveAsFile(self):
-    from core import CCP4Utils
     if not self.edited:
       QtWidgets.QMessageBox.warning(self,'No data to save','No changes to data to save')
       return
@@ -486,9 +435,7 @@ class CDefEd(QtWidgets.QMainWindow):
     h.creationTime.setCurrentTime()
     h.userId.setCurrentUser()
     h.pluginName = pluginName
-    from core.CCP4Config import VERSION
-    h.ccp4iVersion = VERSION()
-    
+    h.ccp4iVersion = __version__
 
   def saveDef(self,fileName):
     #print 'CDefEd.saveData',fileName
@@ -498,7 +445,7 @@ class CDefEd(QtWidgets.QMainWindow):
       fileName = str(fileName[0])
     if self.container is None:
       e = CException(self.__class__,103,fileName)
-      e.warningMessage()
+      warningMessage(e)
       return
     
     if str(self.container.objectName()) == 'NEWCONTAINER':
@@ -510,26 +457,16 @@ class CDefEd(QtWidgets.QMainWindow):
     self.initialiseHeader(pluginName=basename)
     # Recreate headerDialog every time so the call to saveDef2 uses the right fileName
     self.headerDialog = CHeaderDialog(self,model=self.container.header)
-    import functools
     self.connect(self.headerDialog,QtCore.SIGNAL('closed'),functools.partial(self.saveDef2,fileName))
     done = self.headerDialog.show()
     
   def saveDef2(self,fileName):
-    #try:
     self.container.saveContentsToXml(fileName)
-    #except CException as e:
-    #  e.warningMessage()
-    #except Exception as e:
-    #  e = CException(self.__class__,112,self.loadedFileName)
-    #  e.warningMessage()
-      
-      
     self.edited = False
     self.loadedFileName = fileName
 
   def handleSelectionChanged(self):
-    from  CCP4Container import CContainer
-    from core.CCP4XtalData import CProgramColumnGroup
+    from ..core.CCP4Container import CContainer
     current = self.contentsTree.selectedItem()
     #print 'handleSelectionChanged',current
     dataObj = self.dataObjectFromTreeWidgetItem(current)
@@ -574,8 +511,6 @@ class CDefEd(QtWidgets.QMainWindow):
     self.drawContentTreeItem(currentItem,dataObject)
 
   def drawContentTreeItem(self,item,dataObject):
-    import types
-    from core import CCP4XtalData
     item.setText(0,str(dataObject.objectName()))
     item.setText(1,dataObject.__class__.__name__)
 
@@ -623,7 +558,7 @@ class CDefEd(QtWidgets.QMainWindow):
   
 
   def insertPositionInContainer(self):
-    from core.CCP4Container import CContainer
+    from ..core.CCP4Container import CContainer
     # Figure out which container and which afterObject
     dataObject = self.currentDataObject()
     if dataObject is None:
@@ -643,7 +578,7 @@ class CDefEd(QtWidgets.QMainWindow):
       if container is None or not isinstance(container,CContainer):
         # Very odd!
         e = CException(self.__class__,107)
-        e.warningMessage()
+        warningMessage(e)
         return
       afterObject = str(dataObject.objectName())
     #print 'handleNew',repr(container),repr(afterObject)
@@ -658,8 +593,8 @@ class CDefEd(QtWidgets.QMainWindow):
     return newName
   
   def handleNew(self):
-    from core.CCP4Container import CContainer
-    from core.CCP4Data import CString
+    from ..core.CCP4Container import CContainer
+    from ..core.CCP4Data import CString
     
     container,afterObject = self.insertPositionInContainer()   
     # unique name
@@ -670,18 +605,18 @@ class CDefEd(QtWidgets.QMainWindow):
       newObject = CString(name=newName,parent=container)
     except:
       e = CException(self.__class__,108)
-      e.warningMessage()
+      warningMessage(e)
       return
     #print 'newObject',repr(newObject)
     # Add object to container
     try:
       container.addObject(newObject,name=newName,afterObject=afterObject)
     except CException as e:
-      e.warningMessage()
+      warningMessage(e)
       return
     except:
       e = CException(self.__class__,109,str(container.objectName()))
-      e.warningMessage()
+      warningMessage(e)
       return
 
     # Add to contentsTree
@@ -693,7 +628,7 @@ class CDefEd(QtWidgets.QMainWindow):
     
     
   def handleNewContainer(self,append=False):
-    from core.CCP4Container import CContainer
+    from ..core.CCP4Container import CContainer
     if append:
       container = self.container
       afterObject = None
@@ -708,18 +643,18 @@ class CDefEd(QtWidgets.QMainWindow):
       newObject = CContainer(name=newName,parent=container)
     except:
       e = CException(self.__class__,108)
-      e.warningMessage()
+      warningMessage(e)
       return
     #print 'newObject',repr(newObject)
     # Add object to container
     try:
       container.addObject(newObject,name=newName,afterObject=afterObject)
     except CException as e:
-      e.warningMessage()
+      warningMessage(e)
       return
     except:
       e = CException(self.__class__,109,str(container.objectName()))
-      e.warningMessage()
+      warningMessage(e)
       return
 
     # Add to contentsTree

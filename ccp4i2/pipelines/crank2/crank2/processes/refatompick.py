@@ -1,9 +1,10 @@
 #!/usr/bin/python
-import os,sys
-from process import process
-import common
-par=common.parameter
 
+from .. import common
+from ..process import process
+
+
+par=common.parameter
 
 class refatompick(process):
   name="iterative substructure improvement and phasing"

@@ -1,12 +1,10 @@
-from __future__ import print_function
+import os
+import xml.etree.ElementTree as ET
 
+from lxml import etree
 
-import os,sys
-try:
-  from report.CCP4ReportParser import *
-except:
-  exec(compile(open(os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc')).read(), os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc'), 'exec'))
-  from report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import GenericElement
+
 
 # - - - - - - - - - - - - - - - - -
 def displayFile(fileroot, parent, filenames, text, projectid=None, jobNumber=None):
@@ -278,7 +276,6 @@ def selectGraphs(xmlnode, baseElement="CCP4Table",
                  graphID=None,
                  graphTitle=None,
                  plotTitleList=None):
-  import xml.etree.ElementTree as etree
   '''
   Select from xmlnode (usually = <CCP4Table> element) graphs
   with id= graphID
@@ -330,7 +327,7 @@ def selectGraphs(xmlnode, baseElement="CCP4Table",
           newplot.append(plot)
 
       if len(newplot) != 0:
-        newCCP4Table = etree.Element("CCP4Table", attrib=attrib)
+        newCCP4Table = ET.Element("CCP4Table", attrib=attrib)
         for plot in newplot:
           newCCP4Table.append(plot)
 
@@ -376,14 +373,12 @@ class CellCheck:
 
   # - - - - - - - - - - - - - - - - -
   def addElement(self, containerXML, elementname, elementtext):
-    from lxml import etree
     e2 = etree.Element(elementname)
     e2.text = elementtext
     containerXML.append(e2)
 
   # - - - - - - - - - - - - - - - - -
   def cellCompatibilityXML (self,mtzContent1 ,mtzContent2, cellsAreTheSame):
-    from lxml import etree
     " Make XML report of cells and their compatibility"
     # Mostly for comparing observed data with freer data,
     #  but also for observed v. observed

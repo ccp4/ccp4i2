@@ -1,13 +1,12 @@
-from __future__ import print_function
 """
-    pipelines/phaser_pipeline/wrappers/phaser_MR/script/phaser_MR_gui.py
-    Copyright (C) 2014 Newcastle University
-    Author: Martin Noble
-    
-    """
+Copyright (C) 2014 Newcastle University
+Author: Martin Noble
+"""
 
-from qtgui.CCP4TaskWidget import CTaskWidget
 from PySide2 import QtCore
+
+from ......qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class phaser_EP_LLG_gui(CTaskWidget):
@@ -88,10 +87,9 @@ class phaser_EP_LLG_gui(CTaskWidget):
         if not self.container.inputData.XYZIN_PARTIAL.isSet() and not self.container.inputData.XYZIN_HA.isSet():
             invalidElements.append(self.container.inputData.XYZIN_PARTIAL)
             invalidElements.append(self.container.inputData.XYZIN_HA)
-        from core import CCP4ModelData, CCP4XtalData
+        from ......core import CCP4ModelData, CCP4XtalData
         widgLib = {"COMP_BY":"Not set yet"}
         self.getParams(widgLib)
         if widgLib["COMP_BY"] != "ASU":
             invalidElements = [invalidElement for invalidElement in invalidElements if (type(invalidElement) != CCP4XtalData.CAsuComponent and type(invalidElement) != CCP4ModelData.CSeqDataFile)]
         return invalidElements
-

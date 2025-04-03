@@ -1,13 +1,11 @@
-from __future__ import print_function
-
 # Some classes to help handle dynamic GUI buttons
 
-from PySide2 import QtCore,QtGui, QtWidgets
-
-import math
 import functools
+
+from PySide2 import QtCore, QtWidgets
+
+
 # -------------------------------------------------------------
-####class ChoiceButtons(QtWidgets.QWidget):
 class ChoiceButtons(QtWidgets.QDialog):
 #
 # A class to handle a variable number of choice buttons, with annotations
@@ -46,7 +44,6 @@ class ChoiceButtons(QtWidgets.QDialog):
     cancelSignal = QtCore.Signal()
 
     def __init__(self,parent=None):
-        ###QtWidgets.QWidget.__init__(self, parent)
         QtWidgets.QDialog.__init__(self, parent)
         self.selected = ""
         self.selectedList = []
@@ -54,7 +51,7 @@ class ChoiceButtons(QtWidgets.QDialog):
         self.setLayout(layout)
         layout.setSpacing(0)
         self.mylayout = layout
-        
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def setChoices(self, title, choices, tags=None, notes=None, subtitle=None, exclusiveChoice=True):
         # title       heading for the pane (bold)
@@ -131,7 +128,6 @@ class ChoiceButtons(QtWidgets.QDialog):
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     @QtCore.Slot(str)
     def setSelected(self,s):
-        #print("DYB setSelected", s)
         self.selected = s
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -157,7 +153,7 @@ class ChoiceButtons(QtWidgets.QDialog):
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def getLayout(self):
         return self.layout()
-    
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def addOtherText(self, header, textlist):
         # List of text strings to be displayed below buttons

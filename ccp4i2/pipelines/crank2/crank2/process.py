@@ -1,13 +1,15 @@
-from __future__ import with_statement
-import os,sys,copy,shutil
-import common,data,inout
-from xml.etree import ElementTree as ET
-from program import program
-try:
-  import crvapi
-except:
-  if hasattr(sys,'exc_clear'): sys.exc_clear()
-  crvapi = False
+import copy
+import datetime
+import getpass
+import json
+import os
+import shutil
+import sys
+import xml.etree.ElementTree as ET
+
+from . import common, crvapi, data, inout
+from .program import program
+
 
 class process(object):
   """ Base class for processes such as model building, density modification etc"""
@@ -98,7 +100,7 @@ class process(object):
        inpline - if specified then initialization is performed using this input line (preprocessed list assumed)
     """
     if procnick=='crank':
-      from manager import crank
+      from .manager import crank
       return crank(xmlelem,inpline,parent,dummy=dummy)
     try:
       # import the specific process
@@ -234,7 +236,6 @@ class process(object):
     # the banner functionality is not (yet?) provided either by a ccp4 python module or
     #  a standalone binary afaik, so this is a reimplementation
     # (calling static C libccp from python would be too much trouble for this single purpose)
-    import datetime,getpass
     version=self.GetCrankParent().GetVersion()
     mdate=datetime.datetime.fromtimestamp( os.path.getmtime(sys.modules[self.__class__.__module__].__file__) )
     mdate=str(mdate.day)+'/'+str(mdate.month)+'/'+str(mdate.year)[-2:]
@@ -359,9 +360,6 @@ class process(object):
       return True
     else:
       return False
-
-  def IsTrueOrNoneVirtPar(self,par):
-    return self.IsTrueOrNoneParam(par)
 
   # is param not defined or None or True?  (usually used to test whether program defaults should be redefined - if False then orig.prog.def. are forced)
   def IsTrueOrNoneParam(self,par):
@@ -896,7 +894,6 @@ class process(object):
             section.Text('&emsp;'+r)
           section.Text('<BR>')
           binaries={'programs_used':self.GetLogGraphPrograms(rvapi=True,binaries=True)}
-          import json
           crvapi.PutMetaData( json.dumps(binaries), rvdoc )
           if crvapi.tree:
             self.rv_report = self.rv_report.Tree("Processes")

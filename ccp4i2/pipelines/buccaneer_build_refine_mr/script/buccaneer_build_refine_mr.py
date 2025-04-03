@@ -1,35 +1,19 @@
-from __future__ import print_function
-
 """
-    buccaneer_build_refine_mr.py: CCP4 GUI Project
-    Copyright (C) 2010 University of York
-
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the 
-    license to address the requirements of UK law.
-
-    You should have received a copy of the modified GNU Lesser General 
-    Public License along with this library.  If not, copies may be 
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
+Copyright (C) 2010 University of York
 """
 
+from copy import deepcopy
 import inspect
-import sys
-import time
 import os
 import shutil
+
 from lxml import etree
-from copy import deepcopy
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core import CCP4ModelData
-from core import CCP4ProjectsManager
+
+from ....core import CCP4ModelData
+from ....core import CCP4ProjectsManager
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class buccaneer_build_refine_mr(CPluginScript):
 
@@ -506,46 +490,3 @@ class buccaneer_build_refine_mr(CPluginScript):
         for plugin in self.processedPlugins[self.cycle - 2]:
             cleanup = CCP4ProjectsManager.CPurgeProject(plugin._dbProjectId)
             cleanup.purgeJob(plugin.jobId, context="extended_intermediate", reportMode="skip")
-
-# ===== Unit testing ===========================================================
-
-import unittest
-
-class test_buccaneer_build_refine_mr(unittest.TestCase):
-
-    def setUp(self):
-        # make all background jobs wait for completion
-        from core.CCP4Modules import QTAPPLICATION, PROCESSMANAGER
-        self.app = QTAPPLICATION()
-        PROCESSMANAGER().setWaitForFinished(10000)
-
-    def tearDown(self):
-        from core.CCP4Modules import PROCESSMANAGER
-        PROCESSMANAGER().setWaitForFinished(-1)
-
-    def test_1(self):
-        from core.CCP4Modules import QTAPPLICATION
-        from core.CCP4Utils import getCCP4I2Dir
-
-        # Run the pipeline
-        wrapper = buccaneer_build_refine_mr(parent=QTAPPLICATION(), name='buccaneer_build_refine_mr')
-        wrapper.container.loadDataFromXml(os.path.join(getCCP4I2Dir(), 'pipelines', 'buccaneer_build_refine_mr', 'test_data', 'test_1.params.xml'))
-        # Ensure no output file exists already
-        xyzout = wrapper.container.outputData.XYZOUT.fullPath.get()
-        if xyzout is not None and os.path.exists(xyzout):
-            os.remove(xyzout)
-        xmlout = wrapper.makeFileName('PROGRAMXML')
-        if xmlout is not None and os.path.exists(xmlout):
-            os.remove(xmlout)
-        wrapper.process()
-
-        # test if output file created
-        self.assertEqual(os.path.exists(xyzout), 1, 'Failed to create copied pdb file '+xyzout)
-
-def TESTSUITE():
-    suite = unittest.TestLoader().loadTestsFromTestCase(test_buccaneer_build_refine_mr)
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)

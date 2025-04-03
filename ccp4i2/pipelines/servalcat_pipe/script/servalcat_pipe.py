@@ -1,32 +1,24 @@
 """
-    servalcat_pipe.py: CCP4 GUI Project
-    Copyright (C) 2024 University of Southampton, MRC LMB Cambridge
+Copyright (C) 2024 University of Southampton, MRC LMB Cambridge
+"""
 
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
+from operator import itemgetter
+import csv
+import functools
+import os
+import shutil
+import sys
 
 from lxml import etree
 from PySide2 import QtCore
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core import CCP4Utils
-from . import monitor_differences
-import os, sys, shutil
+import clipper
 import gemmi
 import numpy
-from operator import itemgetter
+
+from . import monitor_differences
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
 
 
 class servalcat_pipe(CPluginScript):
@@ -165,7 +157,7 @@ class servalcat_pipe(CPluginScript):
                 stPath = None
                 keep_links = True
             print("Converting MetalCoord analyses from JSON files to restraints")
-            from wrappers.metalCoord.script import json2restraints
+            from ....wrappers.metalCoord.script import json2restraints
             json2restraints.main(
                 jsonPaths=self.metalCoordOutputJsonPaths,
                 stPath=stPath,
@@ -381,7 +373,6 @@ class servalcat_pipe(CPluginScript):
     def adp_analysis(self, modelPath, iqrFactor=2.0):
         print("Running ADP analysis...")
         try:
-            import csv
             adp_dict = {}
             adp_per_resi = {}
             adp_dict["All"] = []
@@ -595,7 +586,7 @@ class servalcat_pipe(CPluginScript):
                 CCP4Utils.writeXML(programXML, etree.tostring(self.xmlroot, pretty_print=True))
             self.reportStatus(CPluginScript.UNSATISFACTORY)
 
-        elif self.firstServalcat.errorReport.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        elif self.firstServalcat.errorReport.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             print("AAA1.MAXSEVERITY")
             #This gets done in thefirstServalcat.reportStatus() - Liz
             try:
@@ -672,7 +663,6 @@ class servalcat_pipe(CPluginScript):
 
     @QtCore.Slot(dict)
     def cootFinished(self, statusDict={}):
-        import functools
         # Check coot status and start servalcat
         self.checkFinishStatus(statusDict=statusDict, failedErrCode=204, outputFile=self.cootPlugin.container.outputData.XYZOUT, noFileErrCode=205)
         try:
@@ -724,7 +714,7 @@ class servalcat_pipe(CPluginScript):
         self.finishUp(servalcatJob)
 
     def finishUp(self, servalcatJob):
-        from core import CCP4ProjectsManager
+        from ....core import CCP4ProjectsManager
         print('into servalcat_pipe.finishUp')
         for attr in self.container.outputData.dataOrder():
             try:
@@ -815,7 +805,6 @@ class servalcat_pipe(CPluginScript):
         self.reportStatus(CPluginScript.FAILED)
 
 def coefficientsToMap(coefficientsPath, mapPath=None, overSample=1.0):
-    import clipper
     mtz_file = clipper.CCP4MTZfile()
     hkl_info = clipper.HKL_info()
     mtz_file.open_read (str(coefficientsPath))
@@ -843,18 +832,17 @@ def coefficientsToMap(coefficientsPath, mapPath=None, overSample=1.0):
 
 # Function called from gui to support exporting MTZ files
 def exportJobFile(jobId=None,mode=None,fileInfo={}):
-    from core import CCP4Modules
-
-    theDb = CCP4Modules.PROJECTSMANAGER().db()
+    from ....core.CCP4ProjectsManager import PROJECTSMANAGER
+    theDb = PROJECTSMANAGER().db()
     if mode == 'complete_mtz':
         childJobs = theDb.getChildJobs(jobId=jobId,details=True)
         if childJobs[-1][2] == 'servalcat':
-          jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=childJobs[-1][1],create=False)
+          jobDir = PROJECTSMANAGER().jobDirectory(jobId=childJobs[-1][1],create=False)
           if os.path.exists(os.path.join(jobDir,'refined.mtz')):
              return  os.path.join(jobDir,'refined.mtz')
         elif childJobs[-1][2] == 'validate_protein':
           if childJobs[-2][2] == 'servalcat':
-             jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=childJobs[-2][1],create=False)
+             jobDir = PROJECTSMANAGER().jobDirectory(jobId=childJobs[-2][1],create=False)
              if os.path.exists(os.path.join(jobDir,'refined.mtz')):
                 return  os.path.join(jobDir,'refined.mtz')
 

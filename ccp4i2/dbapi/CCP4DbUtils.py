@@ -1,42 +1,23 @@
-from __future__ import print_function
-
 """
-     CCP4Dbutils.py: CCP4 GUI Project
-     Copyright (C) 2011 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2011 University of York
+Liz Potterton Mar 2011 - utilities for working with CCP4DbApi
 """
 
-"""
-   Liz Potterton Mar 2011 - utilities for working with CCP4DbApi
-"""
-
-import os
 import copy
-import shutil
-import glob
 import functools
+import glob
+import os
+import shutil
+import time
 
-from PySide2 import QtCore
 from lxml import etree
+from PySide2 import QtCore
 
-from core import CCP4Data
-from dbapi import CCP4DbApi
-from core.CCP4Config import *
-from core.CCP4Modules import PROJECTSMANAGER, TASKMANAGER, JOBCONTROLLER, WORKFLOWMANAGER
-from core.CCP4ErrorHandling import *
+from . import CCP4DbApi
+from ..core import CCP4Data
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
+
 
 class COpenJob(QtCore.QObject):
 
@@ -62,6 +43,7 @@ class COpenJob(QtCore.QObject):
         self.reset()
         if jobId is not None:
             self.set(jobId)
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         PROJECTSMANAGER().db().jobStatusUpdated.connect(self.handleJobStatusUpdated)
         PROJECTSMANAGER().db().jobFinished.connect(self.handleJobStatusUpdated)
         PROJECTSMANAGER().db().jobUpdated.connect(self.handleJobUpdated)
@@ -91,8 +73,10 @@ class COpenJob(QtCore.QObject):
             self.__dict__['previous'] = copy.deepcopy(self.jobId)
         self.__dict__['jobId'] = jobId
         if jobId is not None:
+            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             self.__dict__['info'] = PROJECTSMANAGER().db().getJobInfo(jobId=jobId, mode=COpenJob.MODE)
             if self.__dict__['info']['taskname'] is not None:
+                from ..core.CCP4WorkflowManager import WORKFLOWMANAGER
                 self.__dict__['isWorkflow'] = (WORKFLOWMANAGER().getDefFile(self.__dict__['info']['taskname']) is not None)
         else:
             self.__dict__['info'] = {}
@@ -116,6 +100,7 @@ class COpenJob(QtCore.QObject):
             self.__dict__['clonedFromJobId'] = value
 
     def __getattr__(self,key):
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         if key in ['jobId','info','container','isWorkflow','childjobstaskname','clonedFromJobId']:
             return self.__dict__[key]
         elif key == 'projectId':
@@ -145,6 +130,7 @@ class COpenJob(QtCore.QObject):
             if self.jobnumber is not None:
                 text = 'Job ' + str(self.jobnumber) + ':  '
             if self.taskname is not None:
+                from ..core.CCP4TaskManager import TASKMANAGER
                 text = text + TASKMANAGER().getTitle(self.taskname)
             return text
         elif key == 'jobDir':
@@ -160,13 +146,6 @@ class COpenJob(QtCore.QObject):
         retstring = 'jobId: ' + str(self.__dict__['jobId']) + ' projectId: ' + str(self.__dict__['_projectId']) + \
                     ' projectName: ' + str(self.__dict__['_projectName']) + ' info: ' + str(self.__dict__['info'])
         return retstring
-
-    def updateInfo(self):
-        if self.jobId is not None:
-            self.__dict__['info'] = PROJECTSMANAGER().db().getJobInfo(jobId=self.jobId, mode=COpenJob.MODE)
-        if self.__dict__['info']['taskname'] is not None:
-            self.__dict__['isWorkflow'] = (WORKFLOWMANAGER().getDefFile(self.__dict__['info']['taskname']) is not None)
-        self.__dict__['childjobtaskname'] = []
 
     @QtCore.Slot(dict)
     def handleJobStatusUpdated(self, args):
@@ -205,12 +184,13 @@ class COpenJob(QtCore.QObject):
             self.workflowJobStatusUpdated.emit((args['parentJobId'],args['jobId'],args['taskName'],args['status']))
 
     def createJob(self,taskName=None,taskVersion=None,cloneJobId=None,contextJobId=None,jobNumber=None,copyInputFiles=False):
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         if self.__dict__['_projectId'] is None:
             return CErrorReport(self.__class__,101)
         if taskName is None and cloneJobId is not None:
             pass
         rv = self.createContainer(taskName=taskName,taskVersion=taskVersion)
-        if rv.maxSeverity()>SEVERITY_WARNING:
+        if rv.maxSeverity()>Severity.WARNING:
             return rv
         if self.__dict__['jobId'] is None:
             jobId, pName, jNumber = PROJECTSMANAGER().newJob(taskName=taskName,projectId=self.projectId,jobNumber=jobNumber)
@@ -233,7 +213,7 @@ class COpenJob(QtCore.QObject):
         return rv
 
     def copyInputFiles(self,container, sourceProjectDir):
-        from core import CCP4File
+        from ..core import CCP4File
         errorReport = CErrorReport()
         for key in container.dataOrder():
             obj0 = container.__getattr__(key)
@@ -265,6 +245,7 @@ class COpenJob(QtCore.QObject):
                 except:
                     print('ERROR copying file',fileObj.__str__(),targetFile)
                 else:
+                    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
                     try:
                         dbFileId = str(fileObj.dbFileId)
                         fileInfo = PROJECTSMANAGER().db().getFileInfo(dbFileId,mode='sourceFileName')
@@ -278,8 +259,9 @@ class COpenJob(QtCore.QObject):
                         PROJECTSMANAGER().db().createFile(jobId=self.jobId,projectId=self.projectId,fileObject=fileObj,sourceFileName=fileInfo.get('sourcefilename',None))
 
     def setInputByContextJob(self,contextJobId=None):
-        from core import CCP4File
+        from ..core import CCP4File
         #Loop over inputData files to pull best file of type from database
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         db = PROJECTSMANAGER().db()
         for key in self.__dict__['container'].inputData.dataOrder():
             dobj = self.__dict__['container'].inputData.get(key)
@@ -313,7 +295,8 @@ class COpenJob(QtCore.QObject):
                                                     'subType' :fileInfo['filesubtype'] } )
 
     def createContainer(self, taskName=None, taskVersion=None):
-        from core import CCP4Container
+        from ..core import CCP4Container
+        from ..core.CCP4TaskManager import TASKMANAGER
         defFile = TASKMANAGER().lookupDefFile(taskName,taskVersion)
         if defFile is None:
             return CErrorReport(self.__class__,104,str(taskName)+' '+str(taskVersion))
@@ -329,7 +312,7 @@ class COpenJob(QtCore.QObject):
         if self.__dict__['info'].get('taskname',None) is None:
             return CErrorReport(self.__class__,120)
         rv = self.createContainer(taskName=self.__dict__['info']['taskname'],taskVersion=self.__dict__['info'].get('taskversion',None))
-        if rv.maxSeverity()>SEVERITY_WARNING:
+        if rv.maxSeverity()>Severity.WARNING:
             return rv
         rv = self.loadParams()
         return rv
@@ -341,15 +324,18 @@ class COpenJob(QtCore.QObject):
             return CErrorReport(self.__class__,102)
         if self.__dict__['container'] is None:
             return CErrorReport(self.__class__,105)
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         ifImportFile,errors = PROJECTSMANAGER().importFiles(jobId=self.jobId,container=self.container)
         #print 'COpenJob.runJob',ifImportFile,errors
         rv = self.saveParams()
-        if rv.maxSeverity()>SEVERITY_WARNING: return rv
+        if rv.maxSeverity()>Severity.WARNING: return rv
         #Record input files in database
         PROJECTSMANAGER().db().gleanJobFiles(jobId=self.__dict__['jobId'],container=self.__dict__['container'],
                                              projectId=self.__dict__['_projectId'],roleList=[CCP4DbApi.FILE_ROLE_IN])
         self.cleanupJobDir()
+        from ..core.CCP4TaskManager import TASKMANAGER
         if runMode.startswith('remo'):
+            from ..qtcore.CCP4JobController import JOBCONTROLLER
             JOBCONTROLLER().createServerParams(self.__dict__['jobId'],serverParams)
         elif TASKMANAGER().isInternalPlugin(self.taskName):
             #print 'COpenJob.runJob isInternalPlugin'
@@ -362,6 +348,7 @@ class COpenJob(QtCore.QObject):
     def cleanupJobDir(self):
         # Delete a pre-existing report - assume we are restarting job
         try:
+            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             os.remove(PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='REPORT'))
         except:
             pass
@@ -370,6 +357,7 @@ class COpenJob(QtCore.QObject):
     def deleteJob(self):
         if self.__dict__['jobId'] is None:
             return CErrorReport(self.__class__,102)
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         PROJECTSMANAGER().deleteJob(jobId=self.jobId)
         self.reset()
         return CErrorReport()
@@ -378,18 +366,20 @@ class COpenJob(QtCore.QObject):
         if self.__dict__['jobId'] is None:
             return CErrorReport(self.__class__,102)    
         if kill:
+            from ..qtcore.CCP4JobController import JOBCONTROLLER
             err = JOBCONTROLLER().killJobProcess(jobId=self.jobId)
             if delete:
                 err.extend(self.deleteJob())  # KJS > Fixed. deleteJob takes no args apparently....
             return err
         else:
+            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             jobDir = PROJECTSMANAGER().jobDirectory(jobId=self.jobId,create=False)
             if jobDir is not None:
-                from core import CCP4Utils
                 CCP4Utils.saveFile( os.path.join(jobDir,'INTERRUPT'),'Signal to interrupt job')
         return CErrorReport()
 
     def loadParams(self, fileName=None):
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         if fileName is None:
             fileName = PROJECTSMANAGER().makeFileName(jobId = self.__dict__['jobId'],mode='JOB_INPUT')
         try:
@@ -401,12 +391,13 @@ class COpenJob(QtCore.QObject):
         return CErrorReport()
 
     def saveParams(self, fileName=None):
-        from core import CCP4File
+        from ..core import CCP4File
         if self.__dict__['jobId'] is None:
             return CErrorReport(self.__class__,102)
         if self.__dict__['container'] is None:
             return CErrorReport(self.__class__,105)
         if fileName is None:
+            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             fileName = PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='JOB_INPUT')
         f = CCP4File.CI2XmlDataFile(fullPath=fileName)
         cHeader = self.container.getHeader()
@@ -426,9 +417,6 @@ class COpenJob(QtCore.QObject):
         f.saveFile(bodyEtree=bodyEtree)
         return CErrorReport()
 
-    def setFollowFromJob(self,jobId):
-        pass
-
     def childOpenJob(self,index):
         if self.__dict__['info']['childjobs'] is not None:
             if index < 0:
@@ -438,48 +426,6 @@ class COpenJob(QtCore.QObject):
         else:
             return None
 
-
-class CCP4SimpleDatabase(CCP4Data.CData):
-
-    ERROR_CODES = {100 : {'description' : 'Failed to connect to database file'},
-                   101 : {'description' : 'Failed to connect to new database file'},
-                   102 : {'description' : 'Error initialising database'},}
-
-    def __init__(self): # KJS : This is badly broken. Suspect it's never actually used. 
-        from core import CCP4Utils
-        from core import CCP4Annotation
-        userId = CCP4Annotation.CUserAddress()
-        userId.setCurrent()
-        userName = str(userId.userId)
-        institution = str(userId.platformNode)
-        self.fileName = os.path.join(CCP4Utils.getDotDirectory(),'db','sqlite.db')
-        if not os.path.exists(self.fileName):
-            # Need to create with appropriate schema
-            try:
-                self.UIdb = UIdb(filename =self.fileName ,hostname='localhost',user=userName)
-                cur = self.UIdb.establishConnection()
-            except:
-                raise CException(self.__class__,101,self.fileName)
-            try:
-                schema = os.path.join(CCP4Utils.getCCP4I2Dir(),'dbapi','database_schema.sql')
-                self.UIdb.readFile(schema)
-            except:
-                pass
-            try:
-                self.UIdb = UIdb(filename =self.fileName ,hostname='localhost',user=userName)
-                cur = self.UIdb.establishConnection()
-            except:
-                raise CException(self.__class__,101,self.fileName)
-            # Add current user to user table
-            self.UIdb.createUser(userName,institution)
-            # Add ccp4i2 and ccp4mg to user agents
-            self.UIdb.createNewUserAgent('ccp4i2',VERSION(),'CCP4i2 GUI')
-            self.UIdb.createNewUserAgent('ccp4mg','','CCP4mg')
-        else:
-            try:
-                self.UIdb = UIdb(filename =self.fileName ,hostname='localhost',user=userName)
-            except:
-                raise CException(self.__class__,101,self.fileName)
 
 # Sorting function
 def compareJobNumber(jobA,jobB):
@@ -508,7 +454,6 @@ class CProjectDirToDb:
         self.saveEtree(xmlFile)
 
     def createEtree(self,projectDirectory):
-        from core import CCP4Utils
         root = etree.Element('root')
         ele =  etree.Element('projectname')
         ele.text = self.projectName
@@ -525,7 +470,7 @@ class CProjectDirToDb:
         return root
 
     def saveEtree(self,fileName):
-        from core import CCP4File
+        from ..core import CCP4File
         f = CCP4File.CI2XmlDataFile(fullPath=fileName)
         f.header.setCurrent()
         f.header.function.set('PROJECTDATABASE')
@@ -538,7 +483,7 @@ class CProjectDirToDb:
 
     def globJobs(self,dir,parentJobNumber=None,parentJobId=None):
         print('Loading from:',dir,'parentJob:',parentJobNumber,parentJobId)
-        from core import CCP4Container,CCP4File,CCP4TaskManager
+        from ..core import CCP4Container, CCP4File, CCP4TaskManager
         jobDirList = glob.glob(os.path.join(dir,'job_*'))
         jobDirList.sort(cmp=functools.cmp_to_key(compareJobNumber))
         #print 'CProjectDirToDb.globJobs sorted',jobDirList
@@ -584,7 +529,7 @@ class CProjectDirToDb:
         return paramsFile
 
     def getJobTree(self, header, container, parentJobId=None):
-        from core import CCP4File
+        from ..core import CCP4File
         job = etree.Element('job')
         for item,name  in [['jobId', 'jobid'], ['jobNumber', 'jobnumber'], ['pluginName', 'taskname'],
                            ['creationTime', 'creationtime'], ['creationTime', 'finishtime']]:
@@ -629,16 +574,16 @@ class CMakeProjectDbXml(QtCore.QThread):
 
     jobLoaded = QtCore.Signal(int)
 
-    ERROR_CODES = {101 : { 'severity' : SEVERITY_WARNING,'description' : 'Error interpreting jobnumber from directory' },
-                   102 : { 'severity' : SEVERITY_WARNING,'description' : 'Unknown error attempting to find task info for job' },
-                   103 : { 'severity' : SEVERITY_WARNING,'description' : 'Error loading def.xml data file for job' },
-                   104 : { 'severity' : SEVERITY_WARNING, 'description' : 'File specified in def file does not exist' },
-                   105 : { 'severity' : SEVERITY_WARNING, 'description' : 'File specified in def file does not have dbFileId' },
-                   106 : { 'severity' : SEVERITY_WARNING,'description' : 'Can not find file type id for file' },
-                   107 : { 'severity' : SEVERITY_WARNING,'description' : 'Error interpreting xdata' },
-                   108 : { 'severity' : SEVERITY_WARNING,'description' : 'Error loading job.ccp4db.xml for job number' },
-                   109 : { 'severity' : SEVERITY_WARNING,'description' : 'No params.xml or input_params.xml file in job directory' },
-                   110 : { 'severity' : SEVERITY_WARNING, 'description' : 'Failed to find import info in job backup file for file' },
+    ERROR_CODES = {101 : { 'severity' : Severity.WARNING,'description' : 'Error interpreting jobnumber from directory' },
+                   102 : { 'severity' : Severity.WARNING,'description' : 'Unknown error attempting to find task info for job' },
+                   103 : { 'severity' : Severity.WARNING,'description' : 'Error loading def.xml data file for job' },
+                   104 : { 'severity' : Severity.WARNING, 'description' : 'File specified in def file does not exist' },
+                   105 : { 'severity' : Severity.WARNING, 'description' : 'File specified in def file does not have dbFileId' },
+                   106 : { 'severity' : Severity.WARNING,'description' : 'Can not find file type id for file' },
+                   107 : { 'severity' : Severity.WARNING,'description' : 'Error interpreting xdata' },
+                   108 : { 'severity' : Severity.WARNING,'description' : 'Error loading job.ccp4db.xml for job number' },
+                   109 : { 'severity' : Severity.WARNING,'description' : 'No params.xml or input_params.xml file in job directory' },
+                   110 : { 'severity' : Severity.WARNING, 'description' : 'Failed to find import info in job backup file for file' },
                    111 : { 'description' : '' }}
 
     def __init__(self,db=None,projectDir=None,projectName=None):
@@ -685,7 +630,7 @@ class CMakeProjectDbXml(QtCore.QThread):
         return len(jobDirList)
 
     def saveXmlFile(self, xmlFile=None):
-        from core import CCP4File
+        from ..core import CCP4File
         if xmlFile is None:
             xmlFile = self.projectDir+'.ccp4db.xml'
         body = etree.Element('ccp4i2_body')
@@ -733,7 +678,7 @@ class CMakeProjectDbXml(QtCore.QThread):
         backup = None
         if jobNumber.count('.') == 0 and os.path.exists(os.path.join(jobDirectory,'job.ccp4db.xml')):
             try:
-                from core import CCP4File
+                from ..core import CCP4File
                 backupObj = CCP4File.CI2XmlDataFile(os.path.join(jobDirectory,'job.ccp4db.xml'))
                 backup = backupObj.getBodyEtree()
             except:
@@ -782,7 +727,7 @@ class CMakeProjectDbXml(QtCore.QThread):
 
     def loadJobParams(self,jobId=None,jobDirectory=None,container=None,backup=None):
         #This closely parallels CDbApi.gleanJobFiles()
-        from core import CCP4File
+        from ..core import CCP4File
         for subcontainer,file_role in [[container.inputData,CCP4DbApi.FILE_ROLE_IN],[container.outputData,CCP4DbApi.FILE_ROLE_OUT]]:
             keyList = subcontainer.dataOrder()
             print('loadJobParams keyList',repr(subcontainer),keyList)
@@ -974,13 +919,12 @@ class CMakeProjectDbXml(QtCore.QThread):
         ele.set('projectname',self.projectName)
         ele.set('projectdirectory',self.projectDir)
         ele.set('lastjobnumber',str(self.lastJobNumber))
-        from core import CCP4Utils
         userId = CCP4Utils.getUserId()
         if userId is not None: ele.set('username',userId)
         return ele
 
     def loadContainer(self,fileName):
-        from core import CCP4Container,CCP4File,CCP4TaskManager
+        from ..core import CCP4Container, CCP4File, CCP4TaskManager
         header = CCP4File.CI2XmlHeader()
         header.loadFromXml(fileName)
         #print 'CMakeProjectDbXml.loadContainer',header
@@ -998,7 +942,7 @@ class CMakeProjectDbXml(QtCore.QThread):
         #print 'CMakeProjectDbXml.loadContainer',defFile
         err = container.loadContentsFromXml(defFile,guiAdmin=True)
         self.errReport.extend(err)
-        if err.maxSeverity()>SEVERITY_WARNING: return None
+        if err.maxSeverity()>Severity.WARNING: return None
         try:
             container.loadDataFromXml(fileName=fileName,guiAdmin=True)
         except CException as e:
@@ -1013,7 +957,7 @@ class CJobDbBackup:
     # Backup file in job directory
 
     def __init__(self,jobId=None,jobNumber=None,taskName=None,jobDirectory=None,projectName=None,fileName=None,projectId=None):
-        from core import CCP4File
+        from ..core import CCP4File
         self.jobId = jobId
         self._diagnostic = False
         if fileName is not None:
@@ -1026,6 +970,7 @@ class CJobDbBackup:
             self.body = copy.deepcopy(root.xpath('./ccp4i2_body')[0])
         else:
             jobInfo = {}
+            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             if jobNumber is None or taskName is None:
                 jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=jobId,mode=['jobnumber','taskname'])        
             if projectName is None: projectName = PROJECTSMANAGER().db().getProjectInfo(projectId=projectId,mode='projectname')
@@ -1039,7 +984,9 @@ class CJobDbBackup:
             self.body = self.buildTree(jobId=jobId,jobNumber=jobNumber)
 
     def save(self,updateAll=False):
-        if updateAll: self.scrapeFromDb(db=PROJECTSMANAGER().db())
+        if updateAll:
+            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+            self.scrapeFromDb(db=PROJECTSMANAGER().db())
         self.xmlFile.saveFile(bodyEtree=self.body)
 
     def buildTree(self,jobId=None,jobNumber=None):
@@ -1149,6 +1096,7 @@ class CCopyJobDirectories:
 
     def copyJob(self,jobId):
         err = CErrorReport()
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         jobDir = PROJECTSMANAGER().jobDirectory(jobId=jobId,projectId=self.projectId)
         targetJobDir = os.path.join(self.targetDir,os.path.split(jobDir)[1])
         if self.copyData:
@@ -1166,6 +1114,7 @@ class CCopyJobDirectories:
     def copyDataFiles(self,jobId=None):
         # Need to copy input files from preceeding jobs
         err = CErrorReport()
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         inputFileIdList = PROJECTSMANAGER().db().getFilesUsedInJobList(jobList=[jobId])
         if len(inputFileIdList)==0: return
         
@@ -1214,6 +1163,7 @@ class CCopyJobDirectories:
         return err
 
 def makeJobBackupForProject(projectName):
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     db = PROJECTSMANAGER().db()
     projectId = db.getProjectId(projectName=projectName)
     projectDir = db.getProjectDirectory(projectId=projectId)
@@ -1224,6 +1174,7 @@ def makeJobBackupForProject(projectName):
 
 def makeJobBackup(jobId=None,projectName=None,db=None):
     if db is None:
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         db = PROJECTSMANAGER().db()
     jobInfo=db.getJobInfo(jobId=jobId,mode=['projectname','projectid','jobNumber'])
     jobDirectory = db.jobDirectory(jobId=jobId)
@@ -1231,58 +1182,3 @@ def makeJobBackup(jobId=None,projectName=None,db=None):
     backup = CJobDbBackup(jobId=jobId,jobNumber=jobInfo['jobnumber'],jobDirectory=jobDirectory,projectName=jobInfo['projectname'],projectId=jobInfo['projectid'])
     backup.scrapeFromDb(db=db)
     backup.save()
-
-def makeProjectDbXml(projectDir,xmlFile=None):
-    makeDb = CMakeProjectDbXml(PROJECTSMANAGER().db())
-    makeDb.loadProject()   # KJS. Again takes *no* argument. Either loadProject is broken or this is a typo. 
-    if xmlFile is None:
-        xmlFile = projectDir+'.ccp4db.xml'
-    makeDb.saveXmlFile(xmlFile= xmlFile)
-    return xmlFile
-
-#=========================================================================================================================
-def TESTSUITE():
-    suite = unittest.defaultTestLoader.loadTestsFromTestCase(testMakeProjectDbXml)
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(testJobDbBackup))
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)
-
-
-class testMakeProjectDbXml(unittest.TestCase):
-
-    def setUp(self):
-        from core import CCP4Utils,CCP4Modules
-        self.TESTDBFILE = os.path.join(CCP4Utils.getTestTmpDir(),'CCP4DbApi.testsqlite.db')
-        if os.path.exists(self.TESTDBFILE): os.remove(self.TESTDBFILE)
-        # Create a temporary database (only used for getFileTypeId)
-        self.db = CCP4DbApi.CDbApi(mode='sqlite',userName='me',userPassword='foo',fileName=self.TESTDBFILE)
-        self.mode = 'sqlite'
-        CCP4Modules.PROJECTSMANAGER().setDatabase(self.db)
-        self.makeDb = CMakeProjectDbXml(db=self.db)
-
-    def test1(self):
-        self.makeDb.loadProject(projectDir = '/Users/lizp/Desktop/test_projects/tt3')
-        self.makeDb.saveXmlFile(xmlFile= '/Users/lizp/Desktop/make_tt3.ccp4db.xml')
-
-
-class testJobDbBackup(unittest.TestCase):
-
-    def setUp(self):
-        from core import CCP4Utils
-        from dbapi import CCP4DbApi
-        self.TESTDBFILE = os.path.join(CCP4Utils.getTestTmpDir(),'CCP4DbApi.testsqlite.db')
-        self.db = CCP4DbApi.CDbApi(mode='sqlite',userName='me',userPassword='foo',fileName=self.TESTDBFILE)
-        print('testJobDbBackup.setUp..')
-        self.db.listProjects()
-
-    def test1(self):
-        self.backup = CJobDbBackup(jobId=1,jobNumber='1',fileName='/Users/lizp/Desktop/testJobDbBackup.ccp4db.xml')
-        self.backup.updateJob('preceecingjobid',999)
-        self.backup.editImportFile(fileId=111,importId=1,sourceFileName='/whereever/whatever.pdb',fileName='HKLIN.pdb',annotation='testing testing',creationTime=9999999.9)
-        self.backup.editExportFile(fileId=111,exportId=1,exportFileName='/whereever/whatever.pdb',creationTime=9999999.9)
-        self.backup.editComment(commentId=222,userName='me',timeOfComment=9999999.9,comment='Try this')
-        self.backup.save()
-

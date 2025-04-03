@@ -1,20 +1,17 @@
-from __future__ import print_function
-
+import math
 import os
 import re
-import sys
-import math
-from lxml import etree
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4XtalData
-from core import CCP4ErrorHandling
-from core import CCP4Utils
-import clipper
-from wrappers.validate_protein.script import validate_protein
+
+from ccp4mg import mmdb2
 from iotbx import mtz
-import ccp4mg
-import mmdb2
+from lxml import etree
 from mmtbx.command_line import molprobity
+import clipper
+
+from ....core.CCP4PluginScript import CPluginScript
+from ....core import CCP4Utils
+from ....wrappers.validate_protein.script import validate_protein
+
 
 class tableone(CPluginScript):
 
@@ -36,8 +33,6 @@ class tableone(CPluginScript):
 
     def process(self):
         CPluginScript.process(self)
-        valpro_pth1 = os.path.join(CCP4Utils.getCCP4Dir(), 'share', 'ccp4i2', 'wrappers', 'validate_protein', 'script')
-        sys.path.append(valpro_pth1)
         # Be careful with this. validate_protein may well change, best to co-ordinate this.
         vprotein = validate_protein.validate_protein()
         l1, x1 = vprotein.b_averages(str(self.container.inputData.XYZIN))

@@ -1,5 +1,5 @@
-from report.CCP4ReportParser import Report
-import sys
+from ......report.CCP4ReportParser import Report
+
 
 class phaser_EP_LLG_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -38,6 +38,3 @@ class phaser_EP_LLG_report(Report):
             graph = graphgroup.addFlotGraph( xmlnode=graphTableNode, title=graphTableNode.get("title") )
             graph = graph.addPimpleData(xmlnode=graphTableNode)
         parent.addDiv(style='clear:both;')
-
-
-

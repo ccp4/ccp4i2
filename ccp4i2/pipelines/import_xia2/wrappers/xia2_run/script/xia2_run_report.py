@@ -1,8 +1,7 @@
-from report.CCP4ReportParser import *
-import sys
-
 #Use the RUN_TITLES from the script rather than the run code name
 from . import xia2_run
+from ......report.CCP4ReportParser import Report
+
 
 class xia2_run_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -13,8 +12,7 @@ class xia2_run_report(Report):
         
         runSummaryFold = self.addFold(label="Xia2 runs", initiallyOpen=True)
         runTable = runSummaryFold.addTable(title="Data reduction summary", transpose=True)
-        
-        
+
         names = []
         titles = []
         spaceGroups = []

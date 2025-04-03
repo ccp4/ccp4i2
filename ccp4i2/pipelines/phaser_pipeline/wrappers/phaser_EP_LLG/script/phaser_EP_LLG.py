@@ -1,10 +1,5 @@
+from ...phaser_EP_AUTO.script import phaser_EP_AUTO
 
-from core.CCP4PluginScript import CPluginScript
-import sys, os
-from core import CCP4ErrorHandling
-from core import CCP4Modules
-from pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script import phaser_EP_AUTO
-from lxml import etree
 
 class phaser_EP_LLG(phaser_EP_AUTO.phaser_EP_AUTO):
 
@@ -22,4 +17,3 @@ class phaser_EP_LLG(phaser_EP_AUTO.phaser_EP_AUTO):
 
     def __init__(self,*args, **kwargs):
         super(phaser_EP_LLG,self).__init__(*args, **kwargs)
-        

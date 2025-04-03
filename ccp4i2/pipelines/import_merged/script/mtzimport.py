@@ -1,12 +1,9 @@
-import sys
-import math
-import numpy
-import gemmi
-
 from lxml import etree
+import gemmi
+import numpy
 
-from pipelines.import_merged.script.importutils import *
-#from importutils import *
+from .importutils import addXMLelement, ReflectionDataTypes
+
 
 class ImportMTZ():
     # Import MTZ into I2 objects

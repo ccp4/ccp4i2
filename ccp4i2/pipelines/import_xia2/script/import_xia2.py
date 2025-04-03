@@ -1,11 +1,12 @@
 """
-     import_xia2.py: CCP4 GUI Project
-     Copyright (C) 2013 STFC
+Copyright (C) 2013 STFC
 """
 
-import os,shutil
-from core import CCP4PluginScript
-from pipelines.import_xia2.wrappers.xia2_run.script import xia2_run
+import glob
+import os
+
+from ....core import CCP4PluginScript
+
 
 class import_xia2(CCP4PluginScript.CPluginScript):
 
@@ -37,7 +38,6 @@ class import_xia2(CCP4PluginScript.CPluginScript):
         runModeList = [ os.path.split(xdir)[1][0:-4] ]
         xdir = os.path.split(xdir)[0]
       else:
-        import glob
         dirList = glob.glob(os.path.join(xdir,'*-run'))
         for d in dirList: runModeList.append(os.path.split(d)[1][0:-4] )
         if len(runModeList)==0:
@@ -66,14 +66,3 @@ class import_xia2(CCP4PluginScript.CPluginScript):
           
 
       self.finished.emit(CCP4PluginScript.CPluginScript.SUCCEEDED)
-
-'''
-import unittest
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(test_import_xia2)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)
-'''

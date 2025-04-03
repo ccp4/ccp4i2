@@ -1,11 +1,12 @@
-from __future__ import print_function
-import os,sys,copy,ctypes,shutil
-from xml.etree import ElementTree as ET
-try:
-  import ast
-  no_ast=False
-except ImportError:
-  no_ast=True
+import ast
+import copy
+import ctypes
+import io
+import os
+import shutil
+import sys
+import types
+import xml.etree.ElementTree as ET
 
 
 class CrankError(Exception):
@@ -77,31 +78,12 @@ def SymLink(target, copy, ignore_error=True, copy_fallback=False):
 # Automatically convert inputted string to other types 
 # (the original string returned if no conversion occured)
 def AutoConvert(strng):
-  if not no_ast:
-    try:
-      return ast.literal_eval(strng.strip())
-    except (ValueError,SyntaxError,AttributeError):
-      if hasattr(sys,'exc_clear'): sys.exc_clear()
-      return strng
-  else:
-    return AutoConvert_dummy(strng)
+  try:
+    return ast.literal_eval(strng.strip())
+  except (ValueError,SyntaxError,AttributeError):
+    if hasattr(sys,'exc_clear'): sys.exc_clear()
+    return strng
 
-def AutoConvert_dummy(strng):
-  if strng=='False':
-    return False
-  if strng=='True':
-    return True
-  if strng=='None':
-    return None
-  try:
-    return int(strng)
-  except (TypeError,ValueError):
-    if hasattr(sys,'exc_clear'): sys.exc_clear()
-  try:
-    return float(strng)
-  except (TypeError,ValueError):
-    if hasattr(sys,'exc_clear'): sys.exc_clear()
-  return strng
 
 # define is_string()
 try:
@@ -119,7 +101,6 @@ try:
         return isinstance(f, file)
 except NameError:
     def is_file(f):
-        import io
         return isinstance(f, io.IOBase)
 
 
@@ -240,8 +221,7 @@ class parameter(object):
         self.typ.append(typ)
       # this has been disabled (by default) since NoneType is not pickleable in python 2.x and thus not compatible with multiprocessing
       if not disable_none_type:
-        from types import NoneType
-        self.typ.append(NoneType)
+        self.typ.append(types.NoneType)
     # share the value of parameter par with children of the process having a parameter with the 
     # same name supported if the par has a shared_with_children attribute (recursive)
     self.shared_with_children = share

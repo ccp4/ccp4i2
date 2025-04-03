@@ -1,12 +1,12 @@
-from __future__ import print_function
-
-from core.CCP4PluginScript import CPluginScript
-import sys, os
+import os
 import pickle
-from core import CCP4ErrorHandling
-from core import CCP4Modules
-from pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script import phaser_MR_AUTO
+
 from lxml import etree
+import phaser
+
+from ......core.CCP4PluginScript import CPluginScript
+from ......pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script import phaser_MR_AUTO
+
 
 class phaser_MR_FRF(phaser_MR_AUTO.phaser_MR_AUTO):
 
@@ -23,7 +23,6 @@ class phaser_MR_FRF(phaser_MR_AUTO.phaser_MR_AUTO):
     ERROR_CODES = { 201 : { 'description' : 'Failed to find file' },}
 
     def startProcess(self, command, **kw):
-        import phaser
         outputObject = phaser.Output()
         outputObject.setPhenixCallback(self.callbackObject)
 
@@ -86,20 +85,12 @@ class phaser_MR_FRF(phaser_MR_AUTO.phaser_MR_AUTO):
         solutions = resultObject.getDotRlist()
         if len(solutions) > 0:
             picklePath = str(self.container.outputData.RFILEOUT.fullPath)
-            if sys.version_info > (3,0):
-                with open(picklePath,'wb') as pickleFile:
-                    try:
-                        pickle.dump(solutions, pickleFile)
-                    except Exception as e:
-                        print('Unable to Pickle Rfile solutions', e)
-                    self.container.outputData.RFILEOUT.annotation.set('Rfile (pkl) from rotation search')
-            else:
-                with open(picklePath,'w') as pickleFile:
-                    try:
-                        pickle.dump(solutions, pickleFile)
-                    except Exception as e:
-                        print('Unable to Pickle Rfile solutions', e)
-                    self.container.outputData.RFILEOUT.annotation.set('Rfile (pkl) from rotation search')
+            with open(picklePath,'wb') as pickleFile:
+                try:
+                    pickle.dump(solutions, pickleFile)
+                except Exception as e:
+                    print('Unable to Pickle Rfile solutions', e)
+                self.container.outputData.RFILEOUT.annotation.set('Rfile (pkl) from rotation search')
         #Remove old digested summaries and add new ones parsed from the result summary block
         for summaryNode in self.xmlroot.xpath('Summary'):
             summaryNode.getparent().remove(summaryNode)

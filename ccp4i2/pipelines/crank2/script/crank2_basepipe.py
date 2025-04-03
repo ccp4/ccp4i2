@@ -1,4 +1,3 @@
-from __future__ import print_function
 class crank2_basepipe():
   # separation of the pipeline steps setting as the script does not work with gui objects anymore
 

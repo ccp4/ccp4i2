@@ -1,20 +1,23 @@
-from __future__ import print_function
-
 """
-     aimless_pipe.py: CCP4 GUI Project
-     Copyright (C) 2012 STFC
+Copyright (C) 2012 STFC
 """
 
-import sys
+import fileinput
+import glob
 import os
-from PySide2 import QtCore
-from core.CCP4PluginScript import CPluginScript
-from lxml import etree as lxml_etree
-from pipelines.aimless_pipe.script.aimless_pipe_utils import *
-from  pipelines.aimless_pipe.script.aimless_cifstats import *
+import shutil
+import sys
+import traceback
 
-from core import CCP4Utils
-from core.CCP4Data import CString
+from PySide2 import QtCore
+from lxml import etree as lxml_etree
+
+from ....core import CCP4Utils
+from ....core.CCP4Data import CString
+from ....core.CCP4PluginScript import CPluginScript
+from .aimless_cifstats import CifStatsExtractFromXML
+from .aimless_pipe_utils import CellCheck
+
 
 class aimless_pipe(CPluginScript):
 
@@ -243,7 +246,6 @@ class aimless_pipe(CPluginScript):
             self.fatalError = [202, 'Aimless failed', status]
             self.process_finish(CPluginScript.FAILED)
             self.reportStatus(status)
-            import traceback
             traceback.print_exc()
             return
 
@@ -331,7 +333,6 @@ class aimless_pipe(CPluginScript):
       self.ndatasets_processed = 0
       self.ndatasets_failed = 0
 
-      import shutil
       # Copy any unmerged files to main directory
       nunmerged = len(self.aimless.container.outputData.MTZUNMERGEDOUT)
       #print "Nunmerged",nunmerged
@@ -343,7 +344,7 @@ class aimless_pipe(CPluginScript):
           fname = os.path.split(str(unmergedfile))[1]
 
           # File content to get datasetName
-          from core.CCP4XtalData import CUnmergedDataContent
+          from ....core.CCP4XtalData import CUnmergedDataContent
           unmergedcontent = CUnmergedDataContent()
           unmergedcontent.loadFile(unmergedfile.fullPath)
           dname = str(unmergedcontent.datasetName)
@@ -380,7 +381,7 @@ class aimless_pipe(CPluginScript):
         filePath = os.path.join(self.workDirectory,'HKLOUT_'+str(self.ndatasets_processed)+'-observed_data.mtz')
         self.ctruncateOutputDataObject = hkloutList[-1]
         hkloutList[-1].setFullPath(filePath)
-        from core import CCP4XtalData
+        from ....core import CCP4XtalData
         hkloutList[-1].contentFlag = CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR
         try:
           name =  os.path.splitext(os.path.split(self.container.inputData.UNMERGEDFILES[len(hkloutList)-1].file.__str__())[1])[0]
@@ -456,8 +457,6 @@ class aimless_pipe(CPluginScript):
 
     #  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     def process_finish(self,status):
-      import os,shutil
-
       print("process_finish", status)
       xmlout = str( self.makeFileName( 'PROGRAMXML' ) )
       xmlroot = lxml_etree.Element("AIMLESS_PIPE")
@@ -586,7 +585,6 @@ class aimless_pipe(CPluginScript):
           if os.path.isfile(fulllog):
               #print("Appending log ",log)
               files.append(fulllog)
-      import fileinput
       outfile = os.path.join(self.workDirectory,'log.txt')
       fout = open(outfile, 'w')
       for line in fileinput.input(files):
@@ -646,7 +644,6 @@ class aimless_pipe(CPluginScript):
         # the PURGE mechanism
         print("*cleanup*")
         try:
-            import glob
             wd = self.workDirectory
             filelist = glob.glob(wd+"/*/*.xmgr")
             for fn in filelist:
@@ -937,7 +934,6 @@ class aimless_pipe(CPluginScript):
               print('Cells not compatible', status)
               return status, freerReportXML
 
-      from wrappers.freerflag.script import freerflag
       freerReportXML = None
       self.freerflag = self.makePluginObject('freerflag')
       self.freerflag.container.inputData.F_SIGF = self.container.outputData.HKLOUT[0]
@@ -997,24 +993,23 @@ class aimless_pipe(CPluginScript):
 # ----------------------------------------------------------------------
 # Function to return list of names of exportable MTZ(s)
 def exportJobFile(jobId=None,mode=None):
-    import os
-    from core import CCP4Modules
-    from core import CCP4XtalData
+    from ....core import CCP4XtalData
+    from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 
-    jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
+    jobDir = PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
     exportFile = os.path.join(jobDir,'exportMtz.mtz')
     if os.path.exists(exportFile): return exportFile
 
-    childJobs = CCP4Modules.PROJECTSMANAGER().db().getChildJobs(jobId=jobId,details=True)
+    childJobs = PROJECTSMANAGER().db().getChildJobs(jobId=jobId,details=True)
     #print 'aimless.exportMtz',childJobs
     truncateOut = None
     freerflagOut = None
     for jobNo,subJobId,taskName  in childJobs:
       if taskName == 'ctruncate':
-        truncateOut = os.path.join( CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=subJobId,create=False),'HKLOUT.mtz')
+        truncateOut = os.path.join( PROJECTSMANAGER().jobDirectory(jobId=subJobId,create=False),'HKLOUT.mtz')
         if not os.path.exists(truncateOut): truncateOut = None
       elif taskName == 'freerflag':
-        freerflagOut = os.path.join( CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False),'FREERFLAG.mtz')
+        freerflagOut = os.path.join( PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False),'FREERFLAG.mtz')
         if not os.path.exists(freerflagOut): freerflagOut = None
     if truncateOut is None: return None
     if freerflagOut is None: return truncateOut
@@ -1031,166 +1026,3 @@ def exportJobFileMenu(jobId=None):
     # Return a list of items to appear on the 'Export' menu - each has three subitems:
     # [ unique identifier - will be mode argument to exportJobFile() , menu item , mime type (see CCP4CustomMimeTypes module) ]
     return [ [ 'complete_mtz' ,'MTZ file' , 'application/CCP4-mtz' ] ]
-                                                
-# ---------------------------------------------------------------------
-'''
-import clipper
-import math
-
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # NOT USED # #
-class SameCell:
-    "Check if two cells are the same"
-
-    def __init__(self):
-      self.ccell1 = None   # clipper cells
-      self.ccell2 = None
-      self.tolerance = None
-
-    # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-    def compareCellsinFileContent(self, filecontent1cell, filecontent2cell,
-                                  tolerance=None):
-        "Compare cell from two fileContent cell objects"
-        """
-        Return dictionary of:
-          'validity'           True if cells are simlar within resolution of tolerance
-          'maximumResolution1' maximum allowed resolution in cell1
-          'maximumResolution2' maximum allowed resolution in cell2
-          'difference'  average cell difference in A        
-          'tolerance'   in A
-        """
-        if tolerance is not None:
-            self.tolerance = tolerance
-
-        cell1 = self.extractCell(filecontent1cell.get())
-        cell2 = self.extractCell(filecontent2cell.get())
-
-        return self.computeDiffs(cell1, cell2)
-
-    # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-    def compareCells(self, gcell1, gcell2, tolerance=None):
-        "Compare two cell dictionaries (entry for testing)"
-        if tolerance is not None:
-            self.tolerance = tolerance
-        cell1 = self.extractCell(gcell1)
-        cell2 = self.extractCell(gcell2)
-        return self.computeDiffs(cell1, cell2)
-        
-    # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-    def computeDiffs(self, cell1, cell2):
-        "cell1, cell2 are arrays of cell dimensions"
-        # store clipper cells
-        self.ccell1 = self.makeCell(cell1[0], cell1[1], cell1[2],
-                                   cell1[3], cell1[4], cell1[5])
-        self.ccell2 = self.makeCell(cell2[0], cell2[1], cell2[2],
-                                   cell2[3], cell2[4], cell2[5])
-        return self.computeResults()
-
-    # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-    def makeCell(self, a, b, c, alpha, beta, gamma):
-        "Return clipper::Cell from cell dimensions, angles in degress or radians"
-        return clipper.Cell(clipper.Cell_descr(a, b, c, alpha, beta, gamma))
-
-    # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-    def computeResults(self):
-        "Compute results, return as dictionary"
-        #print "computeResults"
-        recipdifference = self.reciprocalcellDifference()
-        difference = self.cellDifference()
-        if self.tolerance is None:
-            self.tolerance = 1.0
-        #print "tolerance", self.tolerance
-        equals = self.ccell1.equals(self.ccell2, self.tolerance)  # Boolean
-        #print "Result:",equals, difference, recipdifference
-        """
-        Return dictionary of:
-          'validity'           True if cells are simlar within resolution of tolerance
-          'maximumResolution1' maximum allowed resolution in cell1
-          'maximumResolution2' maximum allowed resolution in cell2
-          'difference'  average cell difference in A
-          'tolerance'   in A
-        """
-        result = {'validity': equals,
-                  'maximumResolution1': recipdifference[0],
-                  'maximumResolution2': recipdifference[1],
-                  'difference': difference, 'tolerance': self.tolerance}
-        return result
-    # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-    def extractCell(self, celldict):
-        "extract cell dimensions, return array"
-        cell = []
-        for item in ['a','b','c','alpha','beta', 'gamma']:
-            cell.append(float(celldict[item]))
-        return cell
-
-    # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-    def reciprocalcellDifference(self):
-        "Get resolution at which ccell2 is different from ccell1, two values"
-        fracmat1 = self.ccell1.matrix_frac()
-        fracmat2 = self.ccell2.matrix_frac()
-        s = 0.0
-        for j in range(3):
-            for i in range(3):
-                s += (fracmat1[i][j] - fracmat2[i][j])**2
-        s = math.sqrt(s)
-        volume1 = self.ccell1.volume()
-        volume2 = self.ccell2.volume()
-        return s * math.pow(volume1, 0.66666666667), \
-               s * math.pow(volume2, 0.66666666667)
-
-    # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-    def cellDifference(self):
-        "Get resolution at which self.ccell2 is different from self.ccell1"
-        orthmat1 = self.ccell1.matrix_orth()
-        orthmat2 = self.ccell2.matrix_orth()
-        #print "orth1\n", orthmat1.format()
-        #print "orth2\n", orthmat2.format()
-        s = 0.0
-        for j in range(3):
-            for i in range(3):
-                s += (orthmat1[i][j] - orthmat2[i][j])**2
-        return math.sqrt(s)
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-'''
- 
-#======================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-import unittest
-
-class testaimless_pipe(unittest.TestCase):
-
-   def setUp(self):
-    from core import CCP4Modules
-    self.app = CCP4Modules.QTAPPLICATION()
-    # make all background jobs wait for completion
-    # this is essential for unittest to work
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
-
-   def tearDown(self):
-    from core import CCP4Modules
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
-
-   def test_1(self):
-     from core import CCP4Modules
-     import os
-
-     workDirectory = os.path.join(CCP4Utils.getTestTmpDir(),'test1')
-     if not os.path.exists(workDirectory): os.mkdir(workDirectory)
-
-     self.wrapper = aimless_pipe(parent=CCP4Modules.QTAPPLICATION(),name='test1',workDirectory=workDirectory)
-     self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'pipelines','aimless_pipe','test_data','test1.data.xml'))
-
-     self.wrapper.setWaitForFinished(1000000)
-     pid = self.wrapper.process()
-     self.wrapper.setWaitForFinished(-1)
-     if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(testaimless_pipe)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)

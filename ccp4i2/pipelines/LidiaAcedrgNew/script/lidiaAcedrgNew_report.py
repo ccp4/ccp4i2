@@ -1,11 +1,11 @@
-from __future__ import print_function
-
-from report.CCP4ReportParser import *
-import sys
-#from lxml import etree
+import os
 import xml.etree.ElementTree as etree
-import math
-from wrappers.acedrgNew.script.acedrgNew_report import acedrgNew_report
+
+from ....core import CCP4Utils
+from ....report.CCP4ReportParser import Report
+from ....wrappers.acedrgNew.script.acedrgNew_report import acedrgNew_report
+
+
 class lidiaAcedrgNew_report(Report):
     # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'LidiaAcedrgNew'
@@ -56,9 +56,7 @@ class lidiaAcedrgNew_report(Report):
     def addPictures(self, parent=None):
         #Note...this cnnot be moved into the acedrg_report because it uses this jobs jobInfo
         if parent is None: parent = self
-        from core import CCP4Utils
         ccp4i2_root = CCP4Utils.getCCP4I2Dir()
-        import os
         baseScenePath = os.path.join(ccp4i2_root,'wrappers','acedrg','script','acedrg.scene.xml')
         if not 'TLC' in self.jobInfo['filenames']: return
         tlc = self.jobInfo['filenames']['TLC'].upper()
@@ -91,10 +89,6 @@ class lidiaAcedrgNew_report(Report):
                         """
                     
                     with open(scenePath,'w') as specializedScene:
-                        if sys.version_info > (3,0):
-                            specializedScene.write(etree.tostring(rootNode).decode())
-                        else:
-                            specializedScene.write(etree.tostring(rootNode))
+                        specializedScene.write(etree.tostring(rootNode).decode())
                     pic = pictureGallery.addPicture(label=os.path.split(pdbPath.__str__())[1],title=os.path.split(pdbPath.__str__())[1],sceneFile=scenePath)
         return
-    

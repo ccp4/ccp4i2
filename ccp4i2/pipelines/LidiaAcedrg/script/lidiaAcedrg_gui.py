@@ -1,13 +1,10 @@
 """
-    lidiaAcedrg_gui.py
-    Copyright (C) 2015 Newcastle University
-    Author: Martin Noble
-    
-    """
+Copyright (C) 2015 Newcastle University
+Author: Martin Noble
+"""
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
-from qtgui.CCP4TaskWidget import CTaskWidget
 
 #-------------------------------------------------------------------
 class lidiaAcedrg_gui(CTaskWidget):
@@ -50,9 +47,6 @@ class lidiaAcedrg_gui(CTaskWidget):
         self.openSubFrame( frame=[False], toggle=['CONFORMERSFROM','open',['RDKIT']] )
         self.createLine ( [ 'label','Number of random RDKit start structures','widget','-toolTip','More start structures may provide a beter start conformer','NRANDOM' ] )
         self.closeSubFrame()
-
-
-
 
     def isValid(self):
         invalidElements = super(lidiaAcedrg_gui, self).isValid()

@@ -1,10 +1,13 @@
+import os
 import sys
-from xml.etree import ElementTree as ET
-from report.CCP4ReportParser import *
+import traceback
+import xml.etree.ElementTree as ET
 
-from wrappers.servalcat.script import servalcat_report
-from wrappers.validate_protein.script import validate_protein_report
-import base64
+import pandas
+
+from ....report.CCP4ReportParser import Report
+from ....wrappers.servalcat.script import servalcat_report
+from ....wrappers.validate_protein.script import validate_protein_report
 
 
 class servalcat_pipe_report(Report):
@@ -179,7 +182,6 @@ class servalcat_pipe_report(Report):
     def addAdpAnalysis(self, adpFold=None):
         if len(self.xmlnode.findall(".//ADP_ANALYSIS")) == 0:
             return
-        import pandas
         if adpFold is None:
             adpFold = self.addFold(label='ADP analysis', initiallyOpen=False, brief='ADP')
 
@@ -289,7 +291,6 @@ class servalcat_pipe_report(Report):
     def addCoordADPDev(self, parent=None, xmlnode=None):
         if len(self.xmlnode.findall(".//COORD_ADP_DEV")) == 0:
             return
-        import pandas
         if parent is None: parent = self
         if xmlnode is None: xmlnode = self.xmlnode
         devFold = parent.addFold(label="Changes in coordinates and ADPs after refinement", brief='Deviations')
@@ -348,5 +349,4 @@ class servalcat_pipe_report(Report):
 
 
 if __name__ == "__main__":
-    import sys
     servalcat_pipe_report(xmlFile=sys.argv[1],jobId=sys.argv[2])

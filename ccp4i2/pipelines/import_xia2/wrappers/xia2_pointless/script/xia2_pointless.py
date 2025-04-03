@@ -1,10 +1,13 @@
 """
-     xia2_pointless.py: CCP4 GUI Project
-     Copyright (C) 2013 STFC
+Copyright (C) 2013 STFC
 """
 
-import os,shutil,glob
-from core import CCP4PluginScript
+import glob
+import os
+import shutil
+
+from ......core import CCP4PluginScript
+
 
 class xia2_pointless(CCP4PluginScript.CPluginScript):
 
@@ -30,5 +33,3 @@ class xia2_pointless(CCP4PluginScript.CPluginScript):
         shutil.copyfile(logfileList[0],os.path.join(self.workDirectory,'log.txt'))
 
       self.reportStatus(CCP4PluginScript.CPluginScript.SUCCEEDED)
-    
-

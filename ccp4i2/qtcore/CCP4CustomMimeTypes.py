@@ -1,34 +1,30 @@
-from __future__ import print_function
-
 """
-     CCP4CustomMimeTypes.py: CCP4 GUI Project
-     Copyright (C) 2001-2008 University of York, CCLRC
-     Copyright (C) 2009-2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2001-2008 University of York, CCLRC
+Copyright (C) 2009-2010 University of York
+Liz Potterton Jan 2010 - Create CCP4MimeTypes. Copy MGAbstractViewer and subclasses from MG project
 """
 
-"""
-     Liz Potterton Jan 2010 - Create CCP4MimeTypes. Copy MGAbstractViewer and subclasses from MG project
-"""
-## @package CCP4CustomMimeTypes (QtWebKit) Manager for file MIME types - access via CCP4Modules.MIMETYPESHANDLER()
+## @package CCP4CustomMimeTypes (QtWebKit) Manager for file MIME types - access via MIMETYPESHANDLER()
+
 import os
-from core.CCP4Config import GRAPHICAL
-from core.CCP4ErrorHandling import *
-from PySide2 import QtCore
-from core import CCP4Utils
+
+from PySide2 import QtCore, QtGui
+import gemmi
+
+from ..core import CCP4ErrorHandling
+from ..core import CCP4Utils
+from ..core.CCP4Config import CONFIG
+from ..core.CCP4ErrorHandling import Severity
+from ..qtgui import CCP4FileSystemView
+from ..qtgui import CCP4ImageViewer
+from ..qtgui import CCP4TextViewer
+
+
+def MIMETYPESHANDLER():
+    if not CCustomMimeTypes.insts:
+        CCustomMimeTypes()
+    return CCustomMimeTypes.insts
+
 
 #-------------------------------------------------------------------------------------
 
@@ -36,39 +32,21 @@ from core import CCP4Utils
 # further.  We really just want to know whether to use our viewer class
 # or the Qt DesktpServices class to handle display
 
-if GRAPHICAL():
-    from PySide2 import QtGui
 
-if False:
-    from PyQt4 import QtWebKit, QtGui
-
-    class CMimeType(QtWebKit.QWebPluginFactory.MimeType):
-        def __init__(self):
-            QtWebKit.QWebPluginFactory.MimeType.__init__(self)
-            self.viewer = ''                   # our viewer class - subclass of CAbstractViewer
-            self.useDesktopServices = 0        # use QtDesktopServices to display
-            self.useWebBrowser = 0             # use CWebBrowser to display
-            self.icon = ''                     # icon from ccp4i2/qticons
-            self.fixedWidthFont = False        # display with fixed width font
-            self.fileValidity = None           # method to test file validity - returns CErrorReport
-            self.contentLabel = None           # terminal part of basename indicating file content
-            self.className = None              # name (without initial C) of the CDataFile subclass
-
-else:
-    class CMimeType:
-        def __init__(self):
-            self.name = ''
-            self.description = ''
-            self.fileExtensions = []
-            self.viewers = []
-            self.viewer = ''                   # our viewer class - subclass of CAbstractViewer
-            self.useDesktopServices = 0        # use QtDesktopServices to display
-            self.useWebBrowser = 0             # use CWebBrowser to display
-            self.icon = ''                     # icon from ccp4i2/qticons
-            self.fixedWidthFont = False        # display with fixed width font
-            self.fileValidity = None           # method to test file validity - returns CErrorReport
-            self.contentLabel = None           # terminal part of basename indicating file content
-            self.className = None              # name (without initial C) of the CDataFile subclass
+class CMimeType:
+    def __init__(self):
+        self.name = ''
+        self.description = ''
+        self.fileExtensions = []
+        self.viewers = []
+        self.viewer = ''                   # our viewer class - subclass of CAbstractViewer
+        self.useDesktopServices = 0        # use QtDesktopServices to display
+        self.useWebBrowser = 0             # use CWebBrowser to display
+        self.icon = ''                     # icon from ccp4i2/qticons
+        self.fixedWidthFont = False        # display with fixed width font
+        self.fileValidity = None           # method to test file validity - returns CErrorReport
+        self.contentLabel = None           # terminal part of basename indicating file content
+        self.className = None              # name (without initial C) of the CDataFile subclass
 
 #--------------------------------------------------------------------------------------
 
@@ -78,12 +56,12 @@ class CCustomMimeTypes(QtCore.QObject):
     ICONS = {}
     ERROR_CODES = {
           101 : {'description' : 'File format not recognised'},
-          102 : {'severity' : SEVERITY_WARNING, 'description' : 'No validity test method for format'},
+          102 : {'severity' : Severity.WARNING, 'description' : 'No validity test method for format'},
           103 : {'description' : 'File does not exist'},
-          104 : {'severity' : SEVERITY_WARNING, 'description' : 'UNKNOWN ERROR running validity test'},
-          105 : {'severity' : SEVERITY_WARNING, 'description' : 'File has inappropriate extension'},
+          104 : {'severity' : Severity.WARNING, 'description' : 'UNKNOWN ERROR running validity test'},
+          105 : {'severity' : Severity.WARNING, 'description' : 'File has inappropriate extension'},
           106 : {'description' : 'File is not this format'},
-          107 : {'severity' : SEVERITY_WARNING, 'description' : 'File not strictly valid but may be usable'}}
+          107 : {'severity' : Severity.WARNING, 'description' : 'File not strictly valid but may be usable'}}
 
     def __init__(self):
         QtCore.QObject.__init__(self)
@@ -97,11 +75,6 @@ class CCustomMimeTypes(QtCore.QObject):
         self.knownEntFiles = {}
 
     def setupStandards(self):
-        if GRAPHICAL():
-            from qtgui import CCP4TextViewer
-            from qtgui import CCP4FileSystemView
-            from qtgui import CCP4ImageViewer
-
         mimeType = CMimeType()
         mimeType.name = "text/html"
         mimeType.description = "Hypertext markup language"
@@ -111,7 +84,7 @@ class CCustomMimeTypes(QtCore.QObject):
         self.mimeTypes["text/html"] = mimeType
 
         mimeType = CMimeType()
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4FileSystemView.CFileSystemView]
         mimeType.name = "dir"
         mimeType.description = "Directory"
@@ -120,7 +93,7 @@ class CCustomMimeTypes(QtCore.QObject):
         self.mimeTypes["dir"] = mimeType
 
         mimeType = CMimeType()
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.name = "text/plain"
         mimeType.description = "Standard plain text"
@@ -145,7 +118,7 @@ class CCustomMimeTypes(QtCore.QObject):
         self.mimeTypes[mimeType.name] = mimeType
 
         mimeType = CMimeType()
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.name = "application/coot-script"
         mimeType.icon = 'CootHistoryDataFile'
@@ -158,7 +131,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "chemical/x-pdb"
         mimeType.description = "Model coordinates"
         mimeType.fileExtensions = ['pdb','cif','ent']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CCoordsViewer]
         mimeType.icon = 'PdbDataFile'
         mimeType.fixedWidthFont = True
@@ -169,14 +142,14 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "chemical/x-pdb-ensemble"
         mimeType.description = "Ensemble of model coordinates"
         mimeType.fileExtensions = ['pdb','cif','ent']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CCoordsViewer]
         mimeType.icon = 'EnsemblePdbDataFile'
         mimeType.fixedWidthFont = True
         mimeType.className = 'EnsemblePdbDataFile'
         self.mimeTypes["chemical/x-pdb-ensemble"] = mimeType
 
-        if GRAPHICAL():
+        if CONFIG().graphical:
             image_formats_c = QtGui.QImageReader.supportedImageFormats()
             image_formats = []
             for im in image_formats_c:
@@ -290,7 +263,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "application/CCP4-shelx-FA"
         mimeType.description = "Shelx FA"
         mimeType.fileExtensions = ['hkl']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.icon = ''
         mimeType.className = 'ShelxFADataFile'
@@ -328,7 +301,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "chemical/x-cif"
         mimeType.description = 'mmCif reflection data'
         mimeType.fileExtensions = ['cif','mmcif']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.fixedWidthFont = True
         self.mimeTypes["chemical/x-cif"] = mimeType
@@ -346,7 +319,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "application/CCP4-seq"
         mimeType.description = "Sequence file"
         mimeType.fileExtensions = ['pir','seq','fas','fsa','fa','fasta']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.icon = 'SeqDataFile'
         mimeType.className = 'SeqDataFile'
@@ -357,7 +330,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = 'application/CCP4-asu-content'
         mimeType.description = "Asu content file"
         mimeType.fileExtensions = ['asu.xml']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.icon = 'AsuDataFile'
         mimeType.className = 'AsuDataFile'
@@ -368,7 +341,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "application/CCP4-seqalign"
         mimeType.description = "Sequence alignment file"
         mimeType.fileExtensions = ['fas','fasta','pir','aln','msf','phy','bla']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.icon = 'SeqAlignDataFile'
         mimeType.className = 'SeqAlignDataFile'
@@ -379,7 +352,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "application/refmac-dictionary"
         mimeType.description = "Dictionary file"
         mimeType.fileExtensions = ['cif','dict']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.icon = 'DictDataFile'
         mimeType.className = 'DictDataFile'
@@ -390,7 +363,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.description = "External restraints file"
         mimeType.fileExtensions = ['txt']
         mimeType.fixedWidthFont = True
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.icon = 'RestraintsFile'
         self.mimeTypes["application/refmac-external-restraints"] = mimeType
@@ -400,7 +373,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.description = "Refmac5 keyword file"
         mimeType.fileExtensions = ['txt']
         mimeType.fixedWidthFont = True
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.icon = 'RefmacKeywordFile'
         mimeType.className = 'CRefmacKeywordFile'
@@ -410,7 +383,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "text/xml"
         mimeType.description = "XML parameters file"
         mimeType.fileExtensions = ['xml']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.icon = 'task_file'
         self.mimeTypes["text/xml"] = mimeType
@@ -419,7 +392,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "application/CCP4-com"
         mimeType.description = "Program command file"
         mimeType.fileExtensions = ['com']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.icon = 'task_file'
         self.mimeTypes["application/CCP4-com"] = mimeType
@@ -430,24 +403,6 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.fileExtensions = ['ccp4db.zip','ccp4_project.zip']
         mimeType.icon = 'db_file'
         self.mimeTypes["application/CCP4-compressed-db"] = mimeType
-
-        '''
-        mimeType = CMimeType()
-        mimeType.name = "application/CCP4-task-data"
-        mimeType.description = "Task parameters file"
-        mimeType.fileExtensions = ['params.xml','input_params.xml']
-        mimeType.viewers = []
-        mimeType.icon = 'task_file'
-        self.mimeTypes["application/CCP4-task-data"] = mimeType
-
-        mimeType = CMimeType()
-        mimeType.name = "application/CCP4-task-def"
-        mimeType.description = "Task definition file"
-        mimeType.fileExtensions = ['def.xml','def']
-        mimeType.viewers = []
-        mimeType.icon = 'task_file'
-        self.mimeTypes["application/CCP4-task-def"] = mimeType
-        '''
 
         mimeType = CMimeType()
         mimeType.name = "application/CCP4-I2-command"
@@ -502,7 +457,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "application/HHPred-alignments"
         mimeType.description = "HHPred sequence search results"
         mimeType.fileExtensions = ['hhr']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.className = 'HhpredDataFile'
         self.mimeTypes["application/Hhpred-alignments"] = mimeType
@@ -511,7 +466,7 @@ class CCustomMimeTypes(QtCore.QObject):
         mimeType.name = "application/Blast-alignments"
         mimeType.description = "Blast sequence search results"
         mimeType.fileExtensions = ['bla']
-        if GRAPHICAL():
+        if CONFIG().graphical:
             mimeType.viewers = [CCP4TextViewer.CTextViewer]
         mimeType.className = 'BlastDataFile'
         self.mimeTypes["application/Blast-alignments"] = mimeType
@@ -549,16 +504,6 @@ class CCustomMimeTypes(QtCore.QObject):
         else:
             return 1
 
-    def removeMimeType(self,name=''):
-        if name in self.mimeTypes:
-            del self.mimeTypes[name]
-            return 0
-        else:
-            return 1
-
-    def getMimeTypes(self):
-        return list(self.mimeTypes.keys())
-
     def getMimeTypeInfo(self,name='',info='',singleExtension=False):
         if name not in self.mimeTypes:
             return ''
@@ -580,19 +525,8 @@ class CCustomMimeTypes(QtCore.QObject):
             else:
                 return result
 
-    def getCustomMimeExtensions(self):
-        ext_list = []
-        for key, mime_type in list(self.mimeTypes.items()):
-            ext_list.extend(mime_type.fileExtensions)
-        return ext_list
-
     def isSupportedFormat(self, cformat):
         return cformat in self.mimeTypes
-
-    def classFromFileName(self,fileName=''):
-        mimeType = self.formatFromFileExt(fileName=fileName)
-        if mimeType is None: return None
-        return self.mimeTypes[mimeType].className
 
     def classListFromFileName(self,fileName=''):
         mimeTypeList = self.formatListFromFileExt(fileName=fileName)
@@ -613,7 +547,7 @@ class CCustomMimeTypes(QtCore.QObject):
                 ext2 = os.path.splitext(os.path.splitext(str(fileName))[0])[1]
                 if ext2: ext2 = ext2[1:]+'.'+ext
             elif ext == 'mtz':
-                from core import CCP4File
+                from ..core import CCP4File
                 base = os.path.split(root)[1]
                 if base.count(CCP4File.CDataFile.SEPARATOR):
                     contentLabel = base.split(CCP4File.CDataFile.SEPARATOR)[-1]
@@ -684,8 +618,6 @@ class CCustomMimeTypes(QtCore.QObject):
         return formatList
 
     def disambiguateCif(self,fileName):
-
-        import gemmi
         try:
             tryPdb = gemmi.read_structure(fileName)
             if len(tryPdb) > 0:
@@ -739,7 +671,6 @@ class CCustomMimeTypes(QtCore.QObject):
     def getIconsForFileFilters(self):
         # Used by file browser to set icons
         filters = {}
-        from core import CCP4Utils
         path = os.path.join(CCP4Utils.getCCP4I2Dir(),'qticons')
         for key, mimetype in list(self.mimeTypes.items()):
             if mimetype.icon is not None:

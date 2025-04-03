@@ -1,9 +1,17 @@
 #!/usr/bin/python
-import os,sys,shutil,subprocess,copy,multiprocessing
-from process import process, crvapi
-from program import program
-import common,inout
+
+import copy
 import fileinput
+import multiprocessing
+import os
+import shutil
+import sys
+
+from .. import common, crvapi, inout
+from ..process import process
+from ..program import program
+
+
 par=common.parameter
 
 class mbref(process):

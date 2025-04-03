@@ -13,6 +13,7 @@ __email__ = "kolenpe1@cvut.cz"
 __version__ = "0.5"
 
 from argparse import ArgumentParser
+
 import gemmi
 import pandas as pd
 

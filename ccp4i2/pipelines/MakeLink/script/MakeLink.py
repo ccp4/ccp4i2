@@ -1,24 +1,13 @@
-from __future__ import print_function
-"""
-    MakeLink.py: CCP4 GUI Project
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
-
 import os
-from core.CCP4PluginScript import CPluginScript
+import shutil
+
+from gemmi import cif
+from lxml import etree
+import gemmi
+
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class MakeLink(CPluginScript):
     TASKNAME = 'MakeLink'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -178,7 +167,6 @@ class MakeLink(CPluginScript):
        print('')
        print("Getting link bond value from dictionary...")
        try:
-          from gemmi import cif
           link_dict = cif.read_file(cif_file_path)
           block = link_dict.find_block("link_list")
           if block:
@@ -273,8 +261,6 @@ class MakeLink(CPluginScript):
        print("Applying links to model...")
        print("Using detection threshold: "+str(threshold)+" Angstroms")
        try:
-         import gemmi
-         
          def create_link(conn_list,a1,a2,linkid,ASU):
            con = gemmi.Connection()
            ctr = 1
@@ -439,9 +425,6 @@ class MakeLink(CPluginScript):
             
     def processOutputFiles(self):
         #Create (dummy) PROGRAMXML
-        from lxml import etree
-        from core import CCP4Utils
-        import sys, os, shutil
         pipelineXMLStructure = etree.Element("MakeLink")
         
         for iPlugin, AcedrgLinkPlugin in enumerate(self.AcedrgLinkPlugins):

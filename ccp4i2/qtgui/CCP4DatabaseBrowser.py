@@ -1,27 +1,7 @@
 """
-     qtgui/CCP4DatabaseBrowser.py: CCP4 Gui Project
-     Copyright (C) 2014 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-'''
+Copyright (C) 2014 STFC
 Liz Potterton Mar 14 - Browse projects and files
-'''
 
-'''
 This module provides a dialog box to select a file of a given fileType from any project.
 It is normally used from CDataFileView.
 It reimplements QTreeView and QAbstractItemModel and uses the same CTreeItem classes (to support
@@ -30,12 +10,11 @@ It displays only the project heirarchy and a list of the files in the project (i
 The files are only loaded into the tree widget when the user opens a project folder
 There is no special handling of the current project so theer is a possiblity of selecting a file
 in the current project.
-'''
+"""
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from core import CCP4Modules
-from qtgui import CCP4ProjectWidget
+from PySide2 import QtCore, QtWidgets
 
+from ..qtgui import CCP4ProjectWidget
 
 
 class CDatabaseBrowser(QtWidgets.QDialog):
@@ -141,7 +120,8 @@ class CDatabaseBrowserModel(QtCore.QAbstractItemModel):
     if not self.canFetchMore(parent): return
     parentNode = parent.internalPointer()
     projectId = parentNode.getProjectId()
-    fileList = CCP4Modules.PROJECTSMANAGER().db().getProjectFiles(projectId=projectId,
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+    fileList = PROJECTSMANAGER().db().getProjectFiles(projectId=projectId,
                                                            fileType=self.fileType,topLevelOnly=True)
     #print 'CDatabaseBrowserModel.fetchMore fileList',fileList
     parentNode.clearFiles()
@@ -154,7 +134,8 @@ class CDatabaseBrowserModel(QtCore.QAbstractItemModel):
   def loadModel(self):
     # Get list of projects in reverse alphabetic order so can run through the list in reverse
     # (so can delete project from list once it is in the tree)
-    projectList = CCP4Modules.PROJECTSMANAGER().db().getProjectDirectoryList(order='DESC')
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+    projectList = PROJECTSMANAGER().db().getProjectDirectoryList(order='DESC')
     #print 'CDatabaseBrowserModel.loadModel projectList',projectList
     # This is a list of projects with [projectId,projectName,projectDir,parentProjectId] for each project
     lookup = {}
@@ -181,10 +162,3 @@ class CDatabaseBrowserModel(QtCore.QAbstractItemModel):
           parent.appendChildProject(treeItem)
           lookup[projectList[indx][0]] = treeItem
           del projectList[indx]
-      
-     
-
-      
-        
-        
-                             
