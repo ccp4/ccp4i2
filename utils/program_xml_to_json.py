@@ -66,7 +66,7 @@ def program_xml_to_json(xmlText):
     if len(flips)>0:
 
         flip_section = {}
-        flip_section["title"] = "Peptide flips"
+        flip_section["title"] = "Side chain flips"
         flip_section["items"] = []
 
         for el in flips:
