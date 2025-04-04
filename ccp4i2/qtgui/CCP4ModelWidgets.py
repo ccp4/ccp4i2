@@ -1,37 +1,28 @@
-from __future__ import print_function
-
 """
-     qtgui/CCP4ModelWidgets.py: CCP4 Gui Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2010 University of York
 """
 
 ##@package CCP4ModelWidgets (QtGui) Collection of widgets for model data types
 
-import os
-import sys
-import re
 import functools
-from PySide2 import QtGui, QtWidgets,QtCore
-from core import CCP4ModelData
-from core import CCP4Modules,CCP4Utils
-from core.CCP4ErrorHandling import *
-from qtgui import CCP4Widgets
-from qtgui import CCP4SequenceList
-from qtgui import CCP4RefmacMultiAtomSelection
+import os
+import re
+
+from Bio import SeqIO
+from Bio.Seq import Seq
+from Bio.SeqRecord import SeqRecord
+from lxml import etree
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from . import CCP4RefmacMultiAtomSelection
+from . import CCP4SequenceList
+from . import CCP4Widgets
+from ..core import CCP4ModelData
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import CException, Severity
+from ..core.CCP4WarningMessage import warningMessage
+from ..utils.QApp import QTAPPLICATION
+
 
 class CResidueRangeView(CCP4Widgets.CComplexLineWidget):
 
@@ -78,10 +69,6 @@ class CResidueRangeView(CCP4Widgets.CComplexLineWidget):
     def getMenuDef(self):
       return ['clear','copy','paste','help']
 
-class CSequenceEdit:
-  def __init__(self,parent=None,model=None):
-    pass
-      
 
 class CSequenceView(CCP4Widgets.CComplexLineWidget):
 
@@ -194,7 +181,6 @@ class CSeqDataFileView(CCP4Widgets.CDataFileView):
     else:
       return CCP4Widgets.CDataFileView.getActionDef(self,name)
 
-
   def showEditor(self,visible=None):
     if visible is None: visible = not self.widgets['sequence'].isVisible()
     #print 'CSeqDataFile.showEditor',visible,self.model.exists(),self.widgets['sequence'].model
@@ -249,7 +235,7 @@ class CSeqDataFileView(CCP4Widgets.CDataFileView):
           fileContent.loadFile(str(self.model),format=self.model.__dict__['format'])
           err = self.model.fileContent.assertSame(fileContent)
           #print 'CSeqDataFileView.saveSequence',self.model.fileContent,fileContent,err.report()
-          if err.maxSeverity()>SEVERITY_WARNING:
+          if err.maxSeverity()>Severity.WARNING:
             mess = QtWidgets.QMessageBox(self)
             mess.setWindowTitle('Sequence file')
             mess.setText('Save sequence or reference data to a new file')
@@ -273,7 +259,7 @@ class CSeqDataFileView(CCP4Widgets.CDataFileView):
     if self.editable:
       try:
         sequenceIsValid =  self.widgets['sequence'].validate(isValid=isValid,reportMessage=reportMessage)
-        if self.model.qualifiers('allowUndefined') and sequenceIsValid.maxSeverity()<SEVERITY_WARNING:
+        if self.model.qualifiers('allowUndefined') and sequenceIsValid.maxSeverity()<Severity.WARNING:
           #Allow the sequence to be undefined if the sequence file is allowed to be undefined
           isValid = dataFileIsValid
         else:
@@ -318,8 +304,9 @@ class CSeqDataFileView(CCP4Widgets.CDataFileView):
          win.layout().insertWidget(1,label)
          win.show()
          return
-       elif self.model.fileContent.__dict__['loadWarning'].maxSeverity()>SEVERITY_WARNING:
-         self.model.fileContent.__dict__['loadWarning'].warningMessage(windowTitle='Importing sequence file',parent=self,message='Failed importing sequence file')
+       elif self.model.fileContent.__dict__['loadWarning'].maxSeverity()>Severity.WARNING:
+         warning = self.model.fileContent.__dict__['loadWarning']
+         warningMessage(warning, windowTitle='Importing sequence file',parent=self,message='Failed importing sequence file')
          self.model.unSet()
          self.updateViewFromModel()
          return
@@ -384,7 +371,8 @@ class CSeqDataFileView(CCP4Widgets.CDataFileView):
       self.model.annotation = anno
       #self.model.blockSignals(False)
       self.updateViewFromModel()
-      if CCP4Modules.PREFERENCES().AUTO_INFO_ON_FILE_IMPORT and not self.model.dbFileId.isSet():        
+      from ..core.CCP4Preferences import PREFERENCES
+      if PREFERENCES().AUTO_INFO_ON_FILE_IMPORT and not self.model.dbFileId.isSet():        
           self.openInfo(label=self.model.qualifiers('guiLabel').lower(),sourceFileAnnotation=self.model.__dict__.get('sourceFileAnnotation',''))
 
   def acceptFixedPir(self,but):
@@ -418,7 +406,7 @@ class CSeqDataFileView(CCP4Widgets.CDataFileView):
       self.updateViewFromModel()
       return
     else:
-      #print 'CSeqDataFileView.handleIdChooser',record; import sys; sys.stdout.flush()
+      #print 'CSeqDataFileView.handleIdChooser',record; sys.stdout.flush()
       if len(recordList) == 1:
           self.model.fileContent.loadExternalFile(self.model.__str__(),self.model.__dict__['format'],record=recordList[0])
           self.doImportFile()
@@ -438,91 +426,7 @@ class CSeqDataFileView(CCP4Widgets.CDataFileView):
       textList.append( text[0:-1]+')' )    
     return textList
 
-'''
-This reimplemetation of CDataFileView provides tools for user to merge Refmac dictionary files
-It is no longer presented on the gui but the issues are handled in the appropriate scripts
-eg.CPluginScript.mergeDictToProjectLib() is used.
 
-class CDictDataFileView(CCP4Widgets.CDataFileView):
-  MODEL_CLASS = CCP4ModelData.CDictDataFile
-  PROJECT_FILE_LABEL = 'Ideal ligand geometry file for project'
-
-  def __init__(self,parent=None,model=None,qualifiers={},**kw):
-    qualis = {}
-    qualis.update(qualifiers)
-    qualis.update(kw)
-    CCP4Widgets.CDataFileView.__init__(self,parent=parent,model=model,qualifiers=qualis)
-    
-
-  def getActionDef(self,name):
-    if name == 'manage_dict':
-      return dict (
-        text = self.tr("View/edit dictionary"),
-        tip = self.tr('View/edit the currently selected dictionary'),
-        slot = self.manageProjectDictionary
-      )
-    else:
-      return CCP4Widgets.CDataFileView.getActionDef(self,name)
-
-  def manageProjectDictionary(self):
-    if not hasattr(self,'dictManager'):     
-      #self.dictManager = CDictDataDialog(model=self.model.fileContent)
-      self.dictManager = CDictDataDialog(parent=self.parentTaskWidget(),projectId=self.parentTaskWidget().projectId())
-    self.dictManager.show()
-    self.dictManager.raise_()
-    
-  @QtCore.Slot()
-  def handleMerge(self):
-    from qtgui import CCP4FileBrowser
-    self.mergeFileBrowser = CCP4FileBrowser.CFileDialog(parent=self,title='Select dictionary file to merge into project dictionary',
-          defaultSuffix=CCP4Modules.MIMETYPESHANDLER().getMimeTypeInfo(name='application/refmac-dictionary',info='fileExtensions'),
-                                 fileMode=QtWidgets.QFileDialog.ExistingFiles,saveButtonText='Merge these files')
-    self.mergeFileBrowser.show()
-    self.mergeFileBrowser.selectFiles.connect(self.mergeFiles)
-
-  def mergeFiles(self,selectedFiles=[]):   
-    # 'CDictDataFileView.mergeFiles',selectedFiles
-    if hasattr(self,'mergeFileBrowser'):
-      self.mergeFileBrowser.close()
-      self.mergeFileBrowser.deleteLater()
-    
-    workDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(
-        jobId=self.parentTaskWidget().jobId(),projectId=self.parentTaskWidget().projectId())
-    newFile,err = self.model.mergeInDictFiles(dictFileList=selectedFiles,parentWorkDirectory=workDirectory)
-    
-    for fileName in selectedFiles:
-      err = self.model.fileContent.mergeFile(fileName=fileName,overwrite=True)
-      #print 'CDictDataFileView.mergeFiles',err.report(),err.maxSeverity()
-      if err.maxSeverity()>SEVERITY_WARNING:
-        err.warningMessage(windowTitle='Error merging Refmac dictionaries',parent=self,message='Error attempting to merge Refmac dictionaries')
-      return
-
-  """
-  def loadJobCombo(self):
-    CCP4Widgets.CDataFileView.loadJobCombo(self)
-    if self.jobCombo.findText(CDictDataFileView.PROJECT_FILE_LABEL)<0:
-      # Call the defaultProjectDict even though result is not used it will ensure that
-      # a file exists (by creting emptly file if necessary)
-      if  self.model is None: return
-      dictFile = self.model.defaultProjectDict(projectId=self.parentTaskWidget().projectId())
-      self.jobCombo.insertItem(1,CDictDataFileView.PROJECT_FILE_LABEL)
-      self.jobCombo.setCurrentIndex(1)
-  """
-
-  def handleFollowFrom(self,contextJobId,projectId):
-    self.jobCombo.setCurrentIndex(1)
-
-  def handleJobComboChange(self,indx=None):
-    self.connectUpdateViewFromModel(False)
-    if indx is None: indx = 0
-    if str(self.jobCombo.itemText(indx)) == CDictDataFileView.PROJECT_FILE_LABEL:
-      self.model.set(self.model.defaultProjectDict(projectId=self.parentTaskWidget().projectId()))
-      self.model.annotation = CDictDataFileView.PROJECT_FILE_LABEL
-    else:
-      CCP4Widgets.CDataFileView.handleJobComboChange(self,indx0=indx)
-    
-'''
-      
 class CMonomerView(CCP4Widgets.CComplexLineWidget):
 
   MODEL_CLASS = CCP4ModelData.CMonomer
@@ -560,23 +464,6 @@ class CMonomerView(CCP4Widgets.CComplexLineWidget):
     self.layout().addWidget(self.widgets['smiles'],1,4)
 
 
-    '''
-    toolTip = self.model.qualifiers('toolTip')
-    if toolTip is NotImplemented:
-      toolTip = ''
-    else:
-      toolTip = toolTip
-    
-      
-    for item in self.model.CONTENTS_ORDER:
-      widget = self.widgets[item]
-      tT = self.model.getDataObjects(item).qualifiers('toolTip')
-      if tT is NotImplemented: tT = ''
-      widget.setToolTip(toolTip+tT)
-      if self.editable:
-        widget.editSignal.connect(self.updateModelFromView)
-        widget.acceptDropDataSignal.connect(self.acceptDropData)
-    '''
 
 class CPdbEnsembleItemView(CCP4Widgets.CComplexLineWidget):
   MODEL_CLASS = CCP4ModelData.CPdbEnsembleItem
@@ -621,8 +508,7 @@ class CPdbEnsembleItemView(CCP4Widgets.CComplexLineWidget):
               print("disconnect fail")
   
     if model is None or isinstance(model,self.MODEL_CLASS):
-      from qtgui.CCP4Widgets import CViewWidget
-      CViewWidget.setModel(self,model)
+      CCP4Widgets.CViewWidget.setModel(self,model)
       
       if model is not None:
         model.dataChanged.connect(self.validate)
@@ -667,20 +553,7 @@ class CPdbEnsembleItemView(CCP4Widgets.CComplexLineWidget):
     cEnsembleLabelView = self.parent().findChildren(CEnsembleLabelView)[0]
     self.parent().parent().updateViewFromModel(**kw)
     cEnsembleLabelView.validate()
-  
-  '''
-  def getMenuDef(self):
-    return self.widgets['structure'].getMenuDef()
 
-  def getActionDef(self,name):
-    return self.widgets['structure'].getActionDef(name)
-
-  def showAtomSelection(self):
-    self.widgets['structure'].showAtomSelection()
-
-  def viewContents(self):
-    self.widgets['structure'].viewContents()
-  '''
 
 class CEnsembleView(CCP4Widgets.CComplexLineWidget):
   def __init__(self,parent=None,model=None,qualifiers={}):
@@ -726,7 +599,7 @@ class CEnsembleLabelView(CCP4Widgets.CComplexLineWidget):
       else:
         v = self.model.number.validity(self.model.number.get())
         v.extend(self.model.label.validity(self.model.label.get()))
-        isValid = (v.maxSeverity()<=SEVERITY_WARNING)
+        isValid = (v.maxSeverity()<=Severity.WARNING)
     
     CCP4Widgets.CComplexLineWidget.validate(self,isValid=isValid,reportMessage=reportMessage)
 
@@ -824,7 +697,8 @@ class CPdbDataFileView(CCP4Widgets.CDataFileView):
 
   def openViewer(self,mode):
     if mode == 'view_text':
-      CCP4Modules.WEBBROWSER().openFile(fileName=self.model.__str__(),toFront=True)
+      from .CCP4WebBrowser import WEBBROWSER
+      WEBBROWSER().openFile(fileName=self.model.__str__(),toFront=True)
     else:
       CCP4Widgets.CDataFileView.openViewer(self,mode)
 
@@ -1130,13 +1004,12 @@ class CPdbDataFileView(CCP4Widgets.CDataFileView):
     CCP4Widgets.CDataFileView.handleBrowserOpenFile(self,filename,downloadInfo,**kw)
     err = self.model.importFile(jobId=self.parentTaskWidget().jobId(),jobNumber=self.parentTaskWidget().jobNumber())
     if err is not None and len(err)>0:
-      if err.maxSeverity()>SEVERITY_WARNING:
+      if err.maxSeverity()>Severity.WARNING:
         message = 'File failed validation test'
-        err.warningMessage(windowTitle='Importing coordinate file',parent=self,message=message)
+        warningMessage(err, windowTitle='Importing coordinate file',parent=self,message=message)
         self.model.unSet()
     self.updateViewFromModel()
     self.validate()
-    
 
 
 class CPdbContentsViewer(QtWidgets.QDialog):
@@ -1233,7 +1106,8 @@ class CAtomSelectionView(CCP4Widgets.CComplexLineWidget):
 
   @QtCore.Slot()
   def showHelp(self):
-    CCP4Modules.WEBBROWSER().loadWebPage(helpFileName='general/atom_selection.html')
+    from .CCP4WebBrowser import WEBBROWSER
+    WEBBROWSER().loadWebPage(helpFileName='general/atom_selection.html')
 
 
   def setValue(self,value={}):
@@ -1246,7 +1120,6 @@ class CAtomSelectionView(CCP4Widgets.CComplexLineWidget):
 
   def updateViewFromModel(self):
     #print 'CAtomSelectionView.updateViewFromModel'
-    #import traceback
     #traceback.print_stack(limit=10)
     self.widgets['text'].blockSignals(True)
     self.widgets['text'].setText(self.model.__str__())
@@ -1275,7 +1148,6 @@ class CAtomSelectionView(CCP4Widgets.CComplexLineWidget):
   @QtCore.Slot(str)
   def applySelection(self,text=None):
     #print 'CSelectionLine.applySelection',text
-    #import traceback
     #traceback.print_stack(limit=5)
     if text is None: text = self.widgets['text'].text()
     if isinstance(self.model.parent(),CCP4ModelData.CPdbDataFile):
@@ -1323,12 +1195,13 @@ class CAtomSelectionView(CCP4Widgets.CComplexLineWidget):
 class CDictDataDialog(QtWidgets.QDialog):
   def __init__(self,parent=None,model=None,projectId=None):
     if parent is None:
-      parent = CCP4Modules.QTAPPLICATION()
+      parent = QTAPPLICATION()
     QtWidgets.QDialog. __init__(self,parent)
     self.setLayout(QtWidgets.QHBoxLayout())
     self.setModal(False)
     if projectId is not None:
-      pName = ' for '+CCP4Modules.PROJECTSMANAGER().db().getProjectInfo(projectId=projectId,mode='projectname')
+      from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+      pName = ' for '+PROJECTSMANAGER().db().getProjectInfo(projectId=projectId,mode='projectname')
     else:
       pName=''
     self.setWindowTitle('Manage project dictionary'+pName)
@@ -1340,7 +1213,8 @@ class CDictDataDialog(QtWidgets.QDialog):
   def closeEvent(self,event):
     #print 'CDictDataDialog.closeEvent',self.frame.showWidget
     if self.frame.showWidget is not  None and CCP4Utils.isAlive(self.frame.showWidget):
-      CCP4Modules.WEBBROWSER().tab().deleteTabWidget(widget=self.frame.showWidget)
+      from .CCP4WebBrowser import WEBBROWSER
+      WEBBROWSER().tab().deleteTabWidget(widget=self.frame.showWidget)
     event.accept()
 
 class CDictDataView(CCP4Widgets.CViewWidget):
@@ -1353,7 +1227,7 @@ class CDictDataView(CCP4Widgets.CViewWidget):
       #self.dictDataFile.set(self.dictDataFile.defaultProjectDict(projectId=projectId))
       self.dictDataFile.loadFile()
       self.model = self.dictDataFile.fileContent
-      from qtgui import CCP4ProjectViewer
+      from . import CCP4ProjectViewer
       CCP4ProjectViewer.FILEWATCHER().addJobPath(os.path.split( os.path.split(str(self.dictDataFile))[0])[1],self.dictDataFile.__str__())
       CCP4ProjectViewer.FILEWATCHER().fileChanged.connect(self.handleFileChanged)
     else:
@@ -1410,18 +1284,19 @@ class CDictDataView(CCP4Widgets.CViewWidget):
     #print 'CDictDataView.handleShow',idd,self.model,self.model.parent()
     if self.showWidget is not None: print('alive?',CCP4Utils.isAlive(self.showWidget))
     if self.showWidget is None or (not CCP4Utils.isAlive(self.showWidget)):
-      self.showWidget = CCP4Modules.WEBBROWSER().openFile(self.model.parent().__str__())
+      from .CCP4WebBrowser import WEBBROWSER
+      self.showWidget = WEBBROWSER().openFile(self.model.parent().__str__())
     else:
       self.showWidget.browserWindow().show()
       self.showWidget.browserWindow().raise_()
     if idd is not None:
       self.showWidget.findText(subString='data_comp_'+idd)
 
-
   def handleMerge(self):
-    from qtgui import CCP4FileBrowser
+    from . import CCP4FileBrowser
     self.mergeFileBrowser = CCP4FileBrowser.CFileDialog(parent=self,title='Select geometry file to merge into project geometry file',
-          defaultSuffix=CCP4Modules.MIMETYPESHANDLER().getMimeTypeInfo(name='application/refmac-dictionary',info='fileExtensions'),
+          from ..qtcore.CCP4CustomMimeTypes import MIMETYPESHANDLER
+          defaultSuffix=MIMETYPESHANDLER().getMimeTypeInfo(name='application/refmac-dictionary',info='fileExtensions'),
           filters = ['Geometry file for refinement(*.cif)'], fileMode=QtWidgets.QFileDialog.ExistingFiles,saveButtonText='Merge these files')
     self.mergeFileBrowser.show()
     self.mergeFileBrowser.selectFiles.connect(self.mergeFiles)
@@ -1436,8 +1311,8 @@ class CDictDataView(CCP4Widgets.CViewWidget):
     for fileName in selectedFiles:
       err = self.model.mergeFile(fileName=fileName,overwrite=True)
       #print 'CDictDataFileView.mergeFiles',err.report(),err.maxSeverity()
-      if err.maxSeverity()>SEVERITY_WARNING:
-        err.warningMessage(windowTitle='Error merging geometry files',parent=self,message='Error attempting to merge geometry files')
+      if err.maxSeverity()>Severity.WARNING:
+        warningMessage(err, windowTitle='Error merging geometry files',parent=self,message='Error attempting to merge geometry files')
       return
 
   @QtCore.Slot()
@@ -1446,8 +1321,8 @@ class CDictDataView(CCP4Widgets.CViewWidget):
     #print 'CDictDataView.handleDelete',idd
     if idd is None: return
     err = self.model.delete(idd)
-    if err.maxSeverity()>SEVERITY_WARNING:
-      err.warningMessage(windowTitle='Error deleting item in geometry file',parent=self,message='Error attempting to edit geometry file')
+    if err.maxSeverity()>Severity.WARNING:
+      warningMessage(err, windowTitle='Error deleting item in geometry file',parent=self,message='Error attempting to edit geometry file')
     return
 
 
@@ -1486,9 +1361,6 @@ class CDictDataList(QtWidgets.QTreeWidget):
     else:
       self.model().removeRow(modInxList[0].row())
 
-  def handleMonomerAdded(self,id):
-    pass
-      
   def currentSelection(self):
     indices = self.selectionModel().selectedRows()
     if len(indices) == 0:
@@ -1784,8 +1656,9 @@ class CAsuContentSeqListView(CCP4Widgets.CViewWidget):
     def actOnTextDropped(self,text):
 #
         try:
-            fileInfo = CCP4Modules.PROJECTSMANAGER().db().getFileInfo(text,mode=['projectid','relpath','filename','annotation','filesubtype','filecontent','filetype'])
-            projectDir = CCP4Modules.PROJECTSMANAGER().db().getProjectInfo(projectId=fileInfo['projectid'],mode='projectdirectory')
+            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+            fileInfo = PROJECTSMANAGER().db().getFileInfo(text,mode=['projectid','relpath','filename','annotation','filesubtype','filecontent','filetype'])
+            projectDir = PROJECTSMANAGER().db().getProjectInfo(projectId=fileInfo['projectid'],mode='projectdirectory')
             filePath = os.path.join(projectDir,fileInfo['relpath'],fileInfo['filename'])
             url = QtCore.QUrl.fromLocalFile(filePath)
             self.actOnUrlsDropped([url])
@@ -2066,8 +1939,8 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
         self.infoline = None
         if self.editable:
             #FIXME - Need to provide an API to hide this.
-            self.icona = QtGui.QIcon(CCP4Modules.PIXMAPMANAGER().getPixmap("list_add_grey"))
-            self.iconm = QtGui.QIcon(CCP4Modules.PIXMAPMANAGER().getPixmap("list_delete_grey"))
+            self.icona = QtGui.QIcon(CCP4Widgets.PIXMAPMANAGER().getPixmap("list_add_grey"))
+            self.iconm = QtGui.QIcon(CCP4Widgets.PIXMAPMANAGER().getPixmap("list_delete_grey"))
             self.buttonAS = QtWidgets.QToolButton(self)
             self.buttonAS.setIcon(self.icona)
             self.buttonAS.setMaximumHeight(16)
@@ -2158,7 +2031,6 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
         if textData.count('application/CCP4-seq'):
           self.handleBrowserOpenFile(textData.split(' ')[0])
         else:
-          from lxml import etree
           tree = etree.fromstring(textData)
           if tree.tag == 'SeqDataFile':
             fileName = os.path.join(tree.xpath('./relPath')[0].text,tree.xpath('./baseName')[0].text)
@@ -2190,8 +2062,8 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
             self.importDialog.show()
 
             #Need a CMtzDataFileView for Matthews calc...
-            from core import CCP4XtalData
-            from qtgui import CCP4XtalWidgets
+            from . import CCP4XtalWidgets
+            from ..core import CCP4XtalData
             scl = CCP4Widgets.CLabel(self)
             scl.setText("<b>Solvent content analysis</b>")
             self.hklFile = CCP4XtalData.CMtzDataFile(parent=self.importAsuContentView.model)
@@ -2204,7 +2076,7 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
             self.importDialog.layout().addWidget(resultWidget)
             resultWidget.setHtml("<p>Solvent content analysis will appear here when there is a valid sequence list and reflection file above.</p></body></html>")
             def runMatthews():
-                 if (self.importAsuContent.validity(self.importAsuContent.get()).maxSeverity() <= SEVERITY_WARNING) and self.hklFile.isSet() and len(self.importAsuContent) > 0:
+                 if (self.importAsuContent.validity(self.importAsuContent.get()).maxSeverity() <= Severity.WARNING) and self.hklFile.isSet() and len(self.importAsuContent) > 0:
                      totWeight = 0.0
                      text = "<table><tr><th style=\"text-align:left\">Name</th><th>Number of copies</th><th>Molecular weight</th></tr>"
                      for seqObj in self.importAsuContent:
@@ -2267,13 +2139,14 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
     def doImport(self):
         #print 'CAsuDataFileView.doImport validate',self.importAsuContent,self.importAsuContent.validity(self.importAsuContent.get())
         #print 'CAsuDataFileView.doImport jobCombo',self.jobCombo.count()
-        if self.importAsuContent.validity(self.importAsuContent.get()).maxSeverity() <= SEVERITY_WARNING:
+        if self.importAsuContent.validity(self.importAsuContent.get()).maxSeverity() <= Severity.WARNING:
             self.importDialog.hide()
-            from dbapi import CCP4DbUtils
+            from ..dbapi import CCP4DbUtils
             openJob = CCP4DbUtils.COpenJob(projectId=self.parentTaskWidget().projectId())
             openJob.createJob(taskName='ProvideAsuContents')
             print(openJob.container)
-            jobId = CCP4Modules.PROJECTSMANAGER().db().getJobId(projectId=self.parentTaskWidget().projectId(),jobNumber=openJob.jobNumber)
+            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+            jobId = PROJECTSMANAGER().db().getJobId(projectId=self.parentTaskWidget().projectId(),jobNumber=openJob.jobNumber)
             openJob.container.inputData.ASU_CONTENT.set(self.importAsuContent)
             if self.infoline:
                 ntxt = str(self.infoline)
@@ -2288,14 +2161,14 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
             if self.hklFile.isSet():
                 openJob.container.inputData.HKLIN.set(self.hklFile)
             err = openJob.runJob()
-            if err.maxSeverity() > SEVERITY_WARNING:
-                err.warningMessage(windowTitle='Importing sequence file to AU contents',parent=self,message='Failed creating AU content file')
+            if err.maxSeverity() > Severity.WARNING:
+                warningMessage(err, windowTitle='Importing sequence file to AU contents',parent=self,message='Failed creating AU content file')
                 return
             self.resetJobCombo = openJob.jobNumber
             print("End of doImport", openJob.container, openJob.container)
             if self.infoline:
                 print(ntxt, openJob.container.guiAdmin)
-                CCP4Modules.PROJECTSMANAGER().db().updateJob(jobId=jobId, key='jobTitle', value=ntxt)
+                PROJECTSMANAGER().db().updateJob(jobId=jobId, key='jobTitle', value=ntxt)
 
     def handleJobFinished(self, args):
         # After the CDataFileView.handleJobFinished() has updated the jobCombo make sure the new asu file is selected in it
@@ -2336,7 +2209,7 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
     def openViewer(self, mode):
         if not self.model.exists():
             return
-        from qtgui import CCP4TextViewer
+        from . import CCP4TextViewer
         text = ''
         for seqObj in self.model.fileContent.seqList:
             text += str(seqObj.nCopies) + ' copies of ' + str(seqObj.name) + '\n'
@@ -2461,60 +2334,37 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
         self.selectionGroup.blockSignals(False)
 
     def showHelp(self):
-        CCP4Modules.WEBBROWSER().loadWebPage(helpFileName='model_data')
+        from .CCP4WebBrowser import WEBBROWSER
+        WEBBROWSER().loadWebPage(helpFileName='model_data')
 
     def exportSeq(self):
-        from qtgui import CCP4FileBrowser
+        from . import CCP4FileBrowser
         filters = ["FASTA format (*.fasta *.fa *.ffn *.ffa *.fna *.frn)","EMBL format (*.embl)"]
         self.exportBrowser = CCP4FileBrowser.CFileDialog(self, title='Save selected sequences to file',
                                                          filters=filters, fileMode=QtWidgets.QFileDialog.AnyFile)
         self.exportBrowser.selectFile.connect(self.doExportSeq)
         self.exportBrowser.show()
 
-    def getBioPyVersion(self):
-        from Bio import __version__ as bioversion
-        try:
-            version=float(bioversion)
-            return version
-        except:
-            return None
-
     @QtCore.Slot(str)
     def doExportSeq(self, fileName):
         theFilter = "fasta"
+        from ..core.CCP4Preferences import PREFERENCES
         if "." in fileName:
             theFilter = fileName[fileName.rfind(".") + 1:]
             if theFilter.lower().startswith("em"):
                 theFilter = "embl"
             else:
                 theFilter = "fasta"
-        elif not CCP4Modules.PREFERENCES().NATIVEFILEBROWSER:
+        elif not PREFERENCES().NATIVEFILEBROWSER:
             if str(self.exportBrowser.widget.fileDialog.selectedFilter()).startswith("EMBL"):
                 theFilter = "embl"
                 fileName += ".embl"
             else:
                 theFilter = "fasta"
                 fileName += ".fasta"
-        from Bio import SeqIO
-        from Bio.Seq import Seq
-        from Bio.SeqRecord import SeqRecord
-        bioversion=getBioPyVersion()
-        if bioversion is not None:
-            if bioversion < 1.79:
-                from Bio.Alphabet import generic_protein
-                from Bio.Alphabet import generic_nucleotide
         seqs = []
         for seqObj in self.model.fileContent.seqList:
-            if bioversion is not None:
-                if bioversion < 1.79:
-                    seqs.append(SeqRecord(Seq(str(seqObj.sequence), generic_protein), name=str(seqObj.description), 
-                                  id=str(seqObj.name), description=str(seqObj.description)))
-                else:
-                    seqs.append(SeqRecord(Seq(str(seqObj.sequence), id="prot", annotations={"molecule_type": "protein"}), name=str(seqObj.description), 
-                                  id=str(seqObj.name), description=str(seqObj.description)))
-            else:
-                seqs.append(SeqRecord(Seq(str(seqObj.sequence), id="prot", annotations={"molecule_type": "protein"}), name=str(seqObj.description), 
-                                  id=str(seqObj.name), description=str(seqObj.description)))
+              seqs.append(SeqRecord(Seq(str(seqObj.sequence), id="prot", annotations={"molecule_type": "protein"}), name=str(seqObj.description), 
+                                id=str(seqObj.name), description=str(seqObj.description)))
         with open(fileName,'w+') as outputFileHandle:
             SeqIO.write(seqs,outputFileHandle, theFilter)
-    
