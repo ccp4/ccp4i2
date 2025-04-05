@@ -1,75 +1,46 @@
-from __future__ import print_function
-
-
 """
-     CCP4ProjectViewer.py: CCP4 GUI Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.sstac
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-"""
-   Liz Potterton June 2011 - Project document in a QtMainWindow
+Copyright (C) 2010 University of York
+Liz Potterton June 2011 - Project document in a QtMainWindow
 """
 
 ##@package CCP4ProjectViewer (QtGui)   Project document in a QtMainWindow
-import sys
-import time
-import os
-import sys
-import glob
-import shutil
+
+from pathlib import Path
 import functools
+import glob
+import json
 import math
-import base64
+import os
+import shutil
+import sys
 import tempfile
+import time
+
 from lxml import etree
+from PySide2 import QtCore, QtGui, QtWebChannel, QtWebEngineWidgets, QtWidgets
+import clipper
+import gemmi
 
-from PySide2 import QtGui, QtWidgets, QtCore, QtWebEngineWidgets, QtWebChannel
-
-from core.CCP4Config import DEVELOPER
-from core.CCP4TaskManager import TASKMANAGER
-from core.CCP4Modules import QTAPPLICATION, PROJECTSMANAGER, WEBBROWSER
-from core.CCP4Modules import LAUNCHER, MIMETYPESHANDLER, PREFERENCES
-from core.CCP4Modules import JOBCONTROLLER, PIXMAPMANAGER, JOBCONTROLLERGUI
-from core.CCP4Modules import WORKFLOWMANAGER, CUSTOMTASKMANAGER
-from core.CCP4ErrorHandling import *
-from core import CCP4I2Runner
-from qtgui import CCP4ProjectWidget
-from qtgui import CCP4WebBrowser
-from dbapi import CCP4DbApi
+from . import CCP4ProjectWidget
+from . import CCP4TaskWidget
+from . import CCP4WebBrowser
+from . import CCP4WebToolBarButtons
+from ..core import CCP4I2Runner
+from ..core import CCP4Utils
+from ..core.CCP4Config import CONFIG
+from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
+from ..core.CCP4TaskManager import TASKMANAGER
+from ..core.CCP4WarningMessage import warningMessage
+from ..dbapi import CCP4DbApi
+from ..dbapi.CCP4DbUtils import COpenJob
+from ..utils.QApp import QTAPPLICATION
 from .CCP4MessageBox import CMessageBox
-from dbapi.CCP4DbUtils import COpenJob
-from core import CCP4Utils
-from qtgui import CCP4GuiUtils
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4WebToolBarButtons
 
-try:
-    # Python 2
-    from cStringIO import StringIO
-except ImportError:
-    # Python 3
-    from io import StringIO
-    
+
 KJS_DEVINTER_ON = False
 DEFAULT_WINDOW_SIZE = (1400, 800)
 ALWAYS_SHOW_SERVER_BUTTON = False
 
-def isAlive(qobj):
-    import shiboken2
-    return shiboken2.isValid(qobj)
 
 def PROJECTVIEWER(projectId=None, open=False):
     for pv in CProjectViewer.Instances:
@@ -79,20 +50,6 @@ def PROJECTVIEWER(projectId=None, open=False):
         return pv
     return None
 
-def getMenuIconOld(parent,name,size):
-    # Deprecated as it was loading the same icons multiple times.
-    pixFile = TASKMANAGER().searchIconFile(name)
-    fileName, fileExtension = os.path.splitext(pixFile)
-    icon=None
-    if fileExtension.lower() == ".svg":
-        try:
-            icon = QtGui.QIcon(pixFile)
-        except:
-            print('Unable to load SVG task icon')
-            icon=None
-    if icon is None:
-        icon = QtGui.QIcon(pixFile)
-    return icon
 
 staticIconMap = {}
 def getMenuIcon(parent, name, size=None):
@@ -127,7 +84,6 @@ class CCP4WebReportBridge(QtCore.QObject):
     jsSignal = QtCore.Signal(dict)
     @QtCore.Slot(str)
     def clicked(self,jsargs):
-        import json
         launchParams = json.loads(jsargs)
         self.jsSignal.emit(launchParams)
     
@@ -164,31 +120,6 @@ class HTMLDelegate(QtWidgets.QStyledItemDelegate):
 
     def setCompact(self,comapct):
         self._compact = comapct
-
-    def editorEvent(self, event, model, option, index):
-        self.showHelpButton = False
-        self.showHelpClose = False
-        self.showHelpIndex = None
-        if hasattr(event,"pos"):
-            self.lastTextPos = event.pos()
-        if event.type() not in [QtCore.QEvent.Leave, QtCore.QEvent.MouseMove, QtCore.QEvent.MouseButtonRelease] or not (option.state & QtWidgets.QStyle.State_Enabled):
-            return False
-        options = QtWidgets.QStyleOptionViewItem(option)
-        style = QtWidgets.QApplication.style() if options.widget is None else options.widget.style()
-        textRect = style.subElementRect(QtWidgets.QStyle.SE_ItemViewItemText, options)
-
-        if options.rect.width() - self.lastTextPos.x() > -15 and options.rect.width() - self.lastTextPos.x() < 35 and abs((self.lastTextPos.y()-textRect.top())-options.rect.height()/2)<15:
-            self.showHelpButton = True
-            self.showHelpIndex = index
-        if options.rect.width() - self.lastTextPos.x() > -5 and options.rect.width() - self.lastTextPos.x() < 25 and abs((self.lastTextPos.y()-textRect.top())-options.rect.height()/2)<15:
-            if event.type() == QtCore.QEvent.MouseButtonRelease:
-                helpAvailable = index.model().mapToSource(index).internalPointer().helpAvailable()
-                if helpAvailable:
-                    self.helpClicked.emit(index)
-                return True
-            self.showHelpClose = True
-
-        return True
 
     def paint(self, painter, option, index):
 
@@ -344,9 +275,6 @@ class TreeItem(QtGui.QStandardItem):
     def setDate(self,date):
         self._date = date
 
-    def setNumber(self,number):
-        self._number = number
-
     def parentItem(self):
         return self.m_parentItem
 
@@ -494,35 +422,6 @@ class TreeModel(QtCore.QAbstractItemModel):
         else:
             return QtCore.QModelIndex()
 
-class JobListTreeModel(TreeModel):
-    def __init__(self,data,parent=None):
-        TreeModel.__init__(self,parent)
-
-        self.rootItem = JobTreeItem("Root")
-        self.setupModelData(data,self.rootItem)
-
-    def setupModelData(self,lines,parent):
-        lines = [x for x in lines if len(x)>0]
-        
-        jobTreeItems = []
-        for l in lines:
-            jobTreeItems.append(JobTreeItem(l, None))
-            jobTreeItems[-1].setDate(l[2])
-            jobTreeItems[-1].setNumber(l[0])
-            jobTreeItems[-1].setName(l[1])
-        
-        for job in jobTreeItems:
-            childJobs = [candidate for candidate in jobTreeItems if candidate.m_itemData[4] == job.m_itemData[3]]
-            for childJob in childJobs:
-                childJob.m_parentItem = job
-                job.appendChild(childJob)
-        
-        unrootedJobs = [job for job in jobTreeItems if job.m_parentItem is None]
-        for job in unrootedJobs:
-            job.m_parentItem = parent
-            parent.appendChild(job)
-        
-        return
 
 class CTaskListProxyModel(QtCore.QSortFilterProxyModel):
         def __init__(self,parent=None):
@@ -600,6 +499,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
 
     @QtCore.Slot()
     def setToolButtonStyle(self):
+        from ..core.CCP4Preferences import PREFERENCES
         if PREFERENCES().TOOLBARBUTTONSSTYLE == 1:
             self.webviewToolBar.page().runJavaScript("setButtonStyle('textOnly')")
             self.dockWidget.setFixedHeight(57)
@@ -617,6 +517,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         #self.destroyed.connect(CProjectViewer.updateInstances)
         self._dictionaryWidget = None
         self.mainwins = []
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         if jobId is None:
             jobIdList = PROJECTSMANAGER().db().getProjectJobList(projectId=projectId, topLevelOnly=True, maxLength=1)
             if len(jobIdList) > 0:
@@ -663,6 +564,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         # And set the splitter sizes after show ...
         self.setCentralWidget(mainWidget)
         self.taskFrame.outputFrame.webView.csvDownloadRequest.connect(self.handleCsvDownloadRequest)
+        from ..core.CCP4Preferences import PREFERENCES
         @QtCore.Slot(int)
         def zoomFactorChanged(val):
             PREFERENCES().REPORT_ZOOM_FACTOR.set(self.taskFrame.outputFrame.webView.zoomFactor())
@@ -696,6 +598,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         self.addToolBar(CCP4WebBrowser.CToolBar(self, 'project', 'project'))
         toolbar = self.toolBar('project') 
         if toolbar is not None:
+            from ..qtcore.CCP4JobController import JOBCONTROLLER
             if ALWAYS_SHOW_SERVER_BUTTON or JOBCONTROLLER().serversEnabled():
                 toolbar.extend(['task_menu', 'export_project', 'sep', 'run', 'run_remote', 'clone',
                             'task_help', 'references', 'export_mtz', 'show_log', 'view_coot', 'view_ccp4mg', 'show_i2run', 'sep', 'new_project2'])
@@ -775,6 +678,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                             item.setData(QtCore.Qt.UserRole,name)
                             #MN Trying to make code more compact/readable
                             if mapping == "SHOW_RUN_REMOTE_TOOLBUTTON":
+                                from ..qtcore.CCP4JobController import JOBCONTROLLER
                                 if ALWAYS_SHOW_SERVER_BUTTON or JOBCONTROLLER().serversEnabled():
                                    val = PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON
                                 else:
@@ -782,37 +686,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                             else:
                                 val = getattr(PREFERENCES(), mapping)
                             #replaces:
-                            '''
-                            if mapping == "SHOW_TASK_MENU_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_TASK_MENU_TOOLBUTTON
-                            elif mapping == "SHOW_JOB_SEARCH_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_JOB_SEARCH_TOOLBUTTON
-                            elif mapping == "SHOW_EXPORT_PROJECT_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_EXPORT_PROJECT_TOOLBUTTON
-                            elif mapping == "SHOW_RUN_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_RUN_TOOLBUTTON
-                            elif mapping == "SHOW_RUN_REMOTE_TOOLBUTTON":
-                                if ALWAYS_SHOW_SERVER_BUTTON or JOBCONTROLLER().serversEnabled():
-                                   val = PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON
-                                else:
-                                   val = False
-                            elif mapping == "SHOW_CLONE_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_CLONE_TOOLBUTTON
-                            elif mapping == "SHOW_TASK_HELP_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_TASK_HELP_TOOLBUTTON
-                            elif mapping == "SHOW_REFERENCES_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_REFERENCES_TOOLBUTTON
-                            elif mapping == "SHOW_EXPORT_MTZ_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_EXPORT_MTZ_TOOLBUTTON
-                            elif mapping == "SHOW_VIEW_COOT_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_VIEW_COOT_TOOLBUTTON
-                            elif mapping == "SHOW_VIEW_CCP4MG_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_VIEW_CCP4MG_TOOLBUTTON
-                            elif mapping == "SHOW_SHOW_LOG_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_SHOW_LOG_TOOLBUTTON
-                            elif mapping == "NEW_PROJECT_TOOLBUTTON":
-                                val = PREFERENCES().NEW_PROJECT_TOOLBUTTON
-                            '''
                             if val:
                                 item.setCheckState(QtCore.Qt.Checked)
 
@@ -831,35 +704,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                     #MN Trying to make code more compact/readable
                     getattr(PREFERENCES(), mapping).set(val)
                     #Replacing
-                    '''
-                    if mapping == "SHOW_TASK_MENU_TOOLBUTTON":
-                        PREFERENCES().SHOW_TASK_MENU_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_JOB_SEARCH_TOOLBUTTON":
-                        PREFERENCES().SHOW_JOB_SEARCH_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_EXPORT_PROJECT_TOOLBUTTON":
-                        PREFERENCES().SHOW_EXPORT_PROJECT_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_RUN_TOOLBUTTON":
-                        PREFERENCES().SHOW_RUN_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_RUN_REMOTE_TOOLBUTTON":
-                        PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_CLONE_TOOLBUTTON":
-                        PREFERENCES().SHOW_CLONE_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_TASK_HELP_TOOLBUTTON":
-                        PREFERENCES().SHOW_TASK_HELP_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_REFERENCES_TOOLBUTTON":
-                        PREFERENCES().SHOW_REFERENCES_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_EXPORT_MTZ_TOOLBUTTON":
-                        PREFERENCES().SHOW_EXPORT_MTZ_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_VIEW_COOT_TOOLBUTTON":
-                        PREFERENCES().SHOW_VIEW_COOT_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_VIEW_CCP4MG_TOOLBUTTON":
-                        PREFERENCES().SHOW_VIEW_CCP4MG_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_SHOW_LOG_TOOLBUTTON":
-                        PREFERENCES().SHOW_SHOW_LOG_TOOLBUTTON.set(val)
-                    elif mapping == "NEW_PROJECT_TOOLBUTTON":
-                        PREFERENCES().NEW_PROJECT_TOOLBUTTON.set(val)
-                    '''
-                    
                 listWidget.itemChanged.connect(setItemVisibilities)
                 prefWidget.exec_()
 
@@ -879,48 +723,17 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                         mapping = CCP4WebBrowser.CToolBar.toolBarPreferencesMapping[str(name)]
                         #MN Trying to increase code compactness/readability
                         if mapping == "SHOW_RUN_REMOTE_TOOLBUTTON":
+                            from ..qtcore.CCP4JobController import JOBCONTROLLER
                             if ALWAYS_SHOW_SERVER_BUTTON or JOBCONTROLLER().serversEnabled():
                                val = PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON
                             else:
                                val = False
                         else:
                             val = getattr(PREFERENCES(), mapping)
-                        #Replaces:
-                        '''
-                        if mapping == "SHOW_TASK_MENU_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_TASK_MENU_TOOLBUTTON
-                        elif mapping == "SHOW_JOB_SEARCH_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_JOB_SEARCH_TOOLBUTTON
-                        elif mapping == "SHOW_EXPORT_PROJECT_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_EXPORT_PROJECT_TOOLBUTTON
-                        elif mapping == "SHOW_RUN_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_RUN_TOOLBUTTON
-                        elif mapping == "SHOW_RUN_REMOTE_TOOLBUTTON":
-                            if ALWAYS_SHOW_SERVER_BUTTON or JOBCONTROLLER().serversEnabled():
-                               val = PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON
-                            else:
-                               val = False
-                        elif mapping == "SHOW_CLONE_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_CLONE_TOOLBUTTON
-                        elif mapping == "SHOW_TASK_HELP_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_TASK_HELP_TOOLBUTTON
-                        elif mapping == "SHOW_REFERENCES_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_REFERENCES_TOOLBUTTON
-                        elif mapping == "SHOW_EXPORT_MTZ_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_EXPORT_MTZ_TOOLBUTTON
-                        elif mapping == "SHOW_VIEW_COOT_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_VIEW_COOT_TOOLBUTTON
-                        elif mapping == "SHOW_VIEW_CCP4MG_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_VIEW_CCP4MG_TOOLBUTTON
-                        elif mapping == "SHOW_SHOW_LOG_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_SHOW_LOG_TOOLBUTTON
-                        elif mapping == "NEW_PROJECT_TOOLBUTTON":
-                            val = PREFERENCES().NEW_PROJECT_TOOLBUTTON
-                        '''
                         self.webviewToolBar.setButtonVisible(str(name),val)
 
                     else:
-                        if DEVELOPER(): print(name,"not in mapping")
+                        if CONFIG().developer: print(name,"not in mapping")
             
             @QtCore.Slot(list)
             def handleButtonListUpdated(buttonList):
@@ -962,16 +775,19 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
     def resetZoom(self):
         if hasattr(self,"taskFrame") and hasattr(self.taskFrame,"outputFrame") and hasattr(self.taskFrame.outputFrame,"webView"):
             self.taskFrame.outputFrame.webView.setZoomFactor(1.0)
+            from ..core.CCP4Preferences import PREFERENCES
             PREFERENCES().REPORT_ZOOM_FACTOR.set(self.taskFrame.outputFrame.webView.zoomFactor())
 
     def zoomIn(self):
         if hasattr(self,"taskFrame") and hasattr(self.taskFrame,"outputFrame") and hasattr(self.taskFrame.outputFrame,"webView"):
             self.taskFrame.outputFrame.webView.setZoomFactor(self.taskFrame.outputFrame.webView.zoomFactor()*1.2)
+            from ..core.CCP4Preferences import PREFERENCES
             PREFERENCES().REPORT_ZOOM_FACTOR.set(self.taskFrame.outputFrame.webView.zoomFactor())
 
     def zoomOut(self):
         if hasattr(self,"taskFrame") and hasattr(self.taskFrame,"outputFrame") and hasattr(self.taskFrame.outputFrame,"webView"):
             self.taskFrame.outputFrame.webView.setZoomFactor(self.taskFrame.outputFrame.webView.zoomFactor()/1.2)
+            from ..core.CCP4Preferences import PREFERENCES
             PREFERENCES().REPORT_ZOOM_FACTOR.set(self.taskFrame.outputFrame.webView.zoomFactor())
  
     @QtCore.Slot('QModelIndex',int,int)
@@ -987,6 +803,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
 
     def close(self):
         if sys.platform == "darwin":
+            from ..core.CCP4Preferences import PREFERENCES
             PREFERENCES().TOOLBARBUTTONSSTYLE.dataChanged.disconnect(self.setToolButtonStyle)
         # Update the last access info for all open projects
         self._projectWidget.model().sourceModel().rowsInserted.disconnect(self.handleNumberOfJobsChanged)
@@ -996,6 +813,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         for w in self.Instances:
             if w != self:
                 openProjectIdList.append(w.taskFrame.openJob.projectId)
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         PROJECTSMANAGER().db().updateProjectLastAcess(self.taskFrame.openJob.projectId, openProjectIdList)
         CCP4WebBrowser.CMainWindow.close(self)
 
@@ -1005,7 +823,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
     def addI1Widget(self, projectName, projectDir):
         '''Open an i1 project viewer'''
         try:
-            from qtgui import CCP4I1Projects
+            from . import CCP4I1Projects
             frame = QtWidgets.QFrame(self)
             frame.setLayout(QtWidgets.QVBoxLayout())
             frame.layout().setContentsMargins(0, 0, 0, 0)
@@ -1017,8 +835,8 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
             infoList = [projectName, projectName]
             pObj = CCP4I1Projects.CI1TreeItemProject(self.i1Widget.model().rootItem, infoList=infoList, directory=projectDir)
             err=pObj.loadDatabase()
-            if err.maxSeverity() > SEVERITY_WARNING:
-                err.warningMessage('CCP4i project', 'Error loading old CCP4 project data', parent=self)
+            if err.maxSeverity() > Severity.WARNING:
+                warningMessage(err, 'CCP4i project', 'Error loading old CCP4 project data', parent=self)
             else:
                 self.i1Widget.model().beginResetModel()
                 self.i1Widget.model().rootItem = pObj
@@ -1057,6 +875,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
             return
         if mode == 'def':
             defFile = os.path.join(self.i1Widget.model().rootItem.directory, 'CCP4_DATABASE', str(jobId) + '_' + jItem.taskName + '.def')
+            from .CCP4WebBrowser import WEBBROWSER
             WEBBROWSER().openFile(defFile, format="text/plain")
         if mode in ['coot', 'ccp4mg']:
             fileList = []
@@ -1067,6 +886,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                         fileList.append(fItem.filePath())
             if mode == 'coot':
                 mode = 'coot0'
+            from ..qtcore.CCP4Launcher import LAUNCHER
             LAUNCHER().openInViewer(viewer=mode, fileName=fileList)
 
     @QtCore.Slot(str,str,str)
@@ -1074,6 +894,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         '''View a file from i1project viewer'''
         if fileName is None:
             return
+        from ..qtcore.CCP4Launcher import LAUNCHER
         if mode == 'qtrview':
             if os.path.splitext(fileName)[1] == '.html':
                 fileName = os.path.splitext(fileName)[0]
@@ -1087,6 +908,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                     fileType = "chemical/x-pdb"
                 else:
                     fileType = "text/plain"
+            from .CCP4WebBrowser import WEBBROWSER
             if fileType == "application/CCP4-mtz":
                 LAUNCHER().launch('hklview', [fileName])
             elif fileType == "chemical/x-pdb":
@@ -1098,8 +920,8 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
     def reloadI1Project(self):
         self.i1Widget.model().beginResetModel()
         err = self.i1Widget.model().rootItem.loadDatabase()
-        if err.maxSeverity() > SEVERITY_WARNING:
-            err.warningMessage('CCP4i project', 'Error loading old CCP4 project data', parent=self)
+        if err.maxSeverity() > Severity.WARNING:
+            warningMessage(err, 'CCP4i project', 'Error loading old CCP4 project data', parent=self)
         self.i1Widget.model().endResetModel()
 
     @QtCore.Slot(str)
@@ -1192,6 +1014,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         cssUrl = QtCore.QUrl("data:text/css;charset=utf-8;base64,"+base64.b64encode(css).decode())
         settings.setUserStyleSheetUrl(cssUrl)
         """
+        from ..core.CCP4Preferences import PREFERENCES
         settings.setFontSize(QtWebEngineWidgets.QWebEngineSettings.DefaultFontSize,int(PREFERENCES().GUI_FONT_SIZE))
         settings.setFontSize(QtWebEngineWidgets.QWebEngineSettings.DefaultFixedFontSize,int(PREFERENCES().GUI_FONT_SIZE))
         self.setToolButtonStyle()
@@ -1298,6 +1121,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
     def handleHelpMenu(self, mode):
         if not isinstance(mode, str):
             mode = str(mode.objectName())
+        from .CCP4WebBrowser import WEBBROWSER
         if mode == 'references':
             self.showBibliography(taskNameList=[self.taskFrame.openJob.taskName])
         elif mode == 'task_help':
@@ -1312,6 +1136,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         return status
 
     def testReportAvailable(self):
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         testReportList = glob.glob(os.path.join(PROJECTSMANAGER().db().getProjectInfo(projectId=self.taskFrame.openJob.projectId, mode='projectdirectory'), 'CCP4_test*.log'))
         return (len(testReportList) > 0)
 
@@ -1319,7 +1144,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         try:
             self.taskFrame.outputFrame.showOutput(redo=True, doReload=True)
         except CException as e:
-            e.warningMessage('Creating report','Error creating report', parent=self)
+            warningMessage(e, 'Creating report','Error creating report', parent=self)
 
     def openTask(self, taskName=None, jobId=None, followJobId=None):
         try:
@@ -1328,17 +1153,11 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         except:
             print('ERROR CProjectView.init opening jobId,taskName', jobId, taskName)
 
-    def openDictionary(self, state):
-        if self._dictionaryWidget is None or (not isAlive(self._dictionaryWidget)):
-            from qtgui import CCP4ModelWidgets
-            self._dictionaryWidget = CCP4ModelWidgets.CDictDataDialog(parent=self, projectId=self.getProject())
-        self._dictionaryWidget.show()
-        self._dictionaryWidget.raise_()
-
     def setSelectedJob(self,jobId):
         self._projectWidget.selectJob(jobId)
 
     def Exit(self):
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         PROJECTSMANAGER().db().updateProject(projectId=self.taskFrame.openJob.projectId, key='lastaccess')
         self.taskFrame.saveStatus()
 
@@ -1347,7 +1166,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
     def updateInstances(qobj):
         l = []
         for w in CProjectViewer.Instances:
-            if isAlive(w):
+            if CCP4Utils.isAlive(w):
                 l.append(w)
         CProjectViewer.Instances = l
 
@@ -1405,6 +1224,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
     def handleJobListSelectionChange(self, fileId, jobId, pipelineJobId, detatch):
         '''Keep the task display in step with the selection on the project job list'''
         if detatch:
+            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=jobId,mode=['status', 'taskname'])
             if jobInfo['status'] in CCP4DbApi.FINISHED_JOB_STATUS:
                 self.openTaskMainWindow('output',jobId)
@@ -1418,7 +1238,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                 try:
                     openJob = self.taskFrame.openTask(jobId=jobId)
                 except CException as e:
-                    e.warningMessage('Opening new job','Failed opening job', parent=self)
+                    warningMessage(e, 'Opening new job','Failed opening job', parent=self)
                 self.showTaskChooser(False)
                 self.deleteSpawnedTaskWindows(jobId)
             elif  jobId == str(self.taskFrame.openJob.jobId) and self.rightStack.currentIndex() == 1:
@@ -1429,9 +1249,10 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         '''If necessary create the task input frame when the task frame tab changed to input
           This is part of mechanism to ensure slow task frame drawing is only done when necessary'''
         if mode == CProjectViewer.INPUT_TAB and self.taskFrame.inputFrame.taskWidget is None:
-            from core import CCP4Container
             oJ = self.taskFrame.openJob
             defFile = TASKMANAGER().lookupDefFile(oJ.taskname, oJ.taskversion)
+            from ..core import CCP4Container
+            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             container = CCP4Container.CContainer(parent=self.taskFrame, definitionFile=defFile, guiAdmin=True)
             paramsFile = PROJECTSMANAGER().makeFileName(jobId = oJ.jobId, mode='JOB_INPUT')
             if not os.path.exists(paramsFile): paramsFile = PROJECTSMANAGER().makeFileName(jobId = oJ.jobId,mode='PARAMS')
@@ -1449,8 +1270,8 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         self.lastTaskFrameMode = mode
 
     def showLog(self):
-        import tempfile
         jobId = str(self.taskFrame.openJob.jobId)
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         jobDirectory = PROJECTSMANAGER().makeFileName(jobId=jobId,mode='ROOT')
         logfiles = []
         for root, subFolders, files in os.walk(jobDirectory):
@@ -1470,11 +1291,9 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
             fh.close()
         logfile = tempfile.NamedTemporaryFile(suffix='.txt',delete=False)
         logFileName = logfile.name
-        if sys.version_info > (3,0):
-            logfile.write(bytes(text,"UTF-8"))
-        else:
-            logfile.write(text)
+        logfile.write(bytes(text,"UTF-8"))
         logfile.close()
+        from ..qtcore.CCP4Launcher import LAUNCHER
         LAUNCHER().launch('logview',[logFileName])
 
     def burrowOn(self, etreeElement, root):
@@ -1502,8 +1321,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
 
     def i2runForElement(self, element, objectName=None):
         result = ""
-        from core import CCP4Data
-        from core import CCP4ModelData
+        from ..core import CCP4Data
         elementEtree = element.getEtree()
         if len(elementEtree) == 0:
             if elementEtree.text is not None and len(elementEtree.text)>0:
@@ -1522,8 +1340,8 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         return result
                     
     def listContents(self, container, baseXml):
-        from core import CCP4Container
-        from core import CCP4Data
+        from ..core import CCP4Container
+        from ..core import CCP4Data
         #print("Contents of container", container)
         result = ""
         
@@ -1552,6 +1370,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         return result
     
     def showI2run(self):
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         taskName = PROJECTSMANAGER().db().getJobInfo(jobId=self.taskFrame.openJob.jobId, mode=['taskname'])
         projectName = PROJECTSMANAGER().db().getJobInfo(jobId=self.taskFrame.openJob.jobId, mode=['projectname'])['projectname']
         i2Runner = CCP4I2Runner.CI2Runner(['i2run', taskName])
@@ -1565,7 +1384,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         #print(i2Runner.defXml,'i2Runner.defXml')
         result = "i2run {} --projectName {} \\\n".format(taskName, projectName) + self.listContents(self.taskFrame.inputFrame.taskWidget.container, i2Runner.defXml)
 
-        from PySide2 import QtWidgets
         d = QtWidgets.QDialog()
         okButton = QtWidgets.QPushButton("OK")
 
@@ -1594,11 +1412,13 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
     @QtCore.Slot(object,str)
     def exportJobFile(self,exportInfo,jobId):
         '''Export a job (by export project mechanism) or export specific output file'''
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+        from ..qtcore.CCP4CustomMimeTypes import MIMETYPESHANDLER
         if exportInfo == 'job':
             if getattr(PROJECTSMANAGER(), 'exportThread', None) is not None:
                 QtWidgets.QMessageBox.warning(self, 'Export job', 'Please wait - another job currently being exported')
                 return
-            from qtgui import CCP4FileBrowser
+            from . import CCP4FileBrowser
             self.browser = CCP4FileBrowser.CFileDialog(self, title='Save all job files',
                                                        filters=[MIMETYPESHANDLER().getMimeTypeInfo('application/CCP4-compressed-db', 'filter')],
                                                        defaultSuffix=MIMETYPESHANDLER().getMimeTypeInfo('application/CCP4-compressed-db', 'fileExtensions')[0],
@@ -1614,7 +1434,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                     QtWidgets.QMessageBox.warning(self, self.windowTitle(), 'No export file for job')
                     return
             if fromFile is not None:
-                from qtgui import CCP4FileBrowser
+                from . import CCP4FileBrowser
                 self.browser = CCP4FileBrowser.CFileDialog(self, title='Save ' + exportInfo[1],
                                                            filters=[MIMETYPESHANDLER().getMimeTypeInfo(exportInfo[2], 'filter')],
                                                            defaultSuffix=MIMETYPESHANDLER().getMimeTypeInfo(exportInfo[2], 'fileExtensions')[0],
@@ -1634,12 +1454,13 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
     @QtCore.Slot(str,str)
     def doExportJob(self,jobId,toFile):
         '''Export a job by project export'''
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         projectId = PROJECTSMANAGER().db().getJobInfo(jobId=jobId, mode=['projectid'])
         PROJECTSMANAGER().compressProject(projectId, jobList=[jobId], excludeI2files=False, fileName=toFile)
 
     @QtCore.Slot(str,str,str)
     def purgeJobFiles(self, jobId, context='temporary'):
-        from core import CCP4ProjectsManager
+        from ..core import CCP4ProjectsManager
         purger = CCP4ProjectsManager.CPurgeProject(jobId=jobId, projectId=self.taskFrame.openJob.projectId)
         purger.purgeJob(jobId=jobId, context=context)
 
@@ -1649,6 +1470,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
         print("cloneTask",self.taskFrame.openJob.jobId,oldJobId)
         print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         if not oldJobId:
             try:
                 if PROJECTSMANAGER().db().getJobInfo(jobId=self.taskFrame.openJob.jobId, mode='status') == 'Pending':
@@ -1666,7 +1488,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         try:
             openJob =  self.taskFrame.openTask(taskName=clonedJobInfo['taskname'], cloneJobId=oldJobId, suggestedParams=suggestedParams)
         except CException as e:
-            e.warningMessage('Opening new job', 'Failed opening ' + str(clonedJobInfo['taskname']) + ' job', parent=self)
+            warningMessage(e, 'Opening new job', 'Failed opening ' + str(clonedJobInfo['taskname']) + ' job', parent=self)
         if openJob is not None:
             self.setSelectedJob(jobId=openJob.jobId)
             self.showTaskChooser(False)
@@ -1674,18 +1496,20 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
     @QtCore.Slot(bool,bool,str)
     def stopJob(self, kill=False, delete=False, jobId=None):
         '''Stop a running job'''
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         taskName = PROJECTSMANAGER().db().getJobInfo(jobId=jobId, mode='taskname')
         if kill and taskName == 'coot_rebuild':
             QtWidgets.QMessageBox.warning(self, self.windowTitle(), 'Please close Coot from within Coot')
             return
         if kill:
+            from ..qtcore.CCP4JobController import JOBCONTROLLER
             err = JOBCONTROLLER().killJobProcess(jobId=jobId)
             if delete:
                 try:
                     self.deleteJob(jobIdList=[jobId])
                 except CException as e:
                     err.extend(e)
-                    err.warningMessage('Deleting job', 'Failed deleting job', parent=self)
+                    warningMessage(err, 'Deleting job', 'Failed deleting job', parent=self)
             else:
                 PROJECTSMANAGER().db().updateJobStatus(jobId, CCP4DbApi.JOB_STATUS_FAILED)
         else:
@@ -1696,6 +1520,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
     @QtCore.Slot(bool,str)
     def markFailedJob(self, succeeded=False, jobId=None):
         '''Set job status to finished or failed'''
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         if succeeded:
             PROJECTSMANAGER().db().updateJobStatus(jobId=jobId, status = CCP4DbApi.JOB_STATUS_FINISHED)
         else:
@@ -1723,6 +1548,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
     def suggestOpenJob(self, lastOpenJobId=None):
         # Suggest an open job when the current one has been deleted. This only get called if the last job in list 
         # (usually the first job that was run) is delete because the Qt widget just moves the selection to the next job down list
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         jobIdList = PROJECTSMANAGER().db().getProjectJobListInfo(projectId=self.taskFrame.openJob.projectId, mode='JobId', topLevelOnly=True, order='DESC')
         if len(jobIdList) > 0:
             return jobIdList[0]['jobid']
@@ -1738,6 +1564,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
 
     def showHelp(self, mode='ccp4i2',newTab=True):
         '''Show help pages'''
+        from .CCP4WebBrowser import WEBBROWSER
         WEBBROWSER().showHelp(mode=mode,newTab=newTab)
 
     @QtCore.Slot(str,str,str)
@@ -1745,6 +1572,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         '''Handle user selection of next task (in Job list) by creating new job'''
         openJob = self.taskFrame.openTask(taskName=nextTask, followJobId=jobId, patchParamsFile=patchParamsFile)
         self.setSelectedJob(jobId=openJob.jobId)
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         PROJECTSMANAGER().db().updateJob(jobId=openJob.jobId, key='preceedingjobid', value=jobId)
 
     @QtCore.Slot(str,str)
@@ -1753,6 +1581,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         if taskName == 'clone_rerun':
             self.cloneTask()
         elif taskName == 'clone_suggested':
+                from ..core.CCP4ProjectsManager import PROJECTSMANAGER
                 outputXmlFile = PROJECTSMANAGER().makeFileName(jobId=self.taskFrame.openJob.jobId,mode='PROGRAMXML')
                 parser = etree.XMLParser()
                 f = open(outputXmlFile)
@@ -1773,16 +1602,18 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
             taskTitle= TASKMANAGER().getTitle(taskName)
             QtWidgets.QMessageBox.warning(self, self.windowTitle(), 'Sorry - no What Next? page for ' + str(taskTitle))
         else:
+            from .CCP4WebBrowser import WEBBROWSER
             view = WEBBROWSER().loadWebPage(helpFileName=nextPage)
             if view is not None:
                 if projectId is None:
+                    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
                     projectId = PROJECTSMANAGER().db().getJobInfo(jobId=jobId, mode='projectid')
                 view.report.setJobInfo(jobInfo= {'jobId' : jobId, 'projectId' : projectId})
 
     @QtCore.Slot(str,list)
     def showBibliography(self, jobId=None, taskNameList=[]):
         '''Show bibliography for task'''
-        from qtgui import CCP4BibliographyViewer
+        from . import CCP4BibliographyViewer
         if jobId is None:
             jobId = self.taskFrame.openJob.jobId
         viewer = CCP4BibliographyViewer.CBibliographyViewer(self)
@@ -1791,16 +1622,18 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
 
     def openApplication(self,application):
         '''Pass on request for program logs'''
+        from .CCP4WebBrowser import WEBBROWSER
         WEBBROWSER().openApplication(application)
     
     def launchJobRequest(self,taskName,args):
         try:
+            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             jobId, pName, jNumber = PROJECTSMANAGER().newJob(taskName=taskName, projectId=self.taskFrame.openJob.projectId)
         except:
             QtWidgets.QMessageBox.warning(self, 'Error in creating new job','Unknown error creating new job' + str(taskName) + '\n')
             return
         # Create an input params file for job
-        from core import CCP4Container
+        from ..core import CCP4Container
         container = CCP4Container.CContainer(definitionFile=TASKMANAGER().lookupDefFile(taskName), guiAdmin=True)
         # Load known data to the params file
         if taskName == 'mergeMtz' and args.get('fileName', None) is not None:
@@ -1838,6 +1671,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
     @QtCore.Slot(str,str)
     def openTaskMainWindow(self, mode, jobId=None):
         '''Open a popout window containing task input or report'''
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         openJob = COpenJob(jobId=jobId)
         if mode == 'input':
             paramsFile = PROJECTSMANAGER().makeFileName(jobId = jobId, mode='JOB_INPUT')
@@ -1846,7 +1680,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
             defFile = TASKMANAGER().lookupDefFile(openJob.taskname, openJob.taskversion)
             if defFile is None:
                 return None
-            from core import CCP4Container
+            from ..core import CCP4Container
             container = CCP4Container.CContainer(parent=self, definitionFile=defFile, guiAdmin=True)
             container.loadDataFromXml(paramsFile)
             taskEditable = (openJob.status in ['Unknown', 'Pending'])
@@ -1854,7 +1688,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                 widget = CTaskInputFrame(self)
                 widget.createTaskWidget(openJob.taskname, projectId=openJob.projectid, jobId=jobId, container=container, taskEditable=taskEditable)
             except CException as e:
-                e.warningMessage(parent=self)
+                warningMessage(e, parent=self)
                 return None
             except Exception as e:
                 QtWidgets.QMessageBox.warning(self, 'Error in creating task input','Unknown error creating task input widget for job number '+str(openJob.jobnumber)+str(e))
@@ -1862,14 +1696,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
             if 1:
                 widget = CReportView(self)
                 widget.showOutput(openJob=openJob)
-            '''
-            except CException as e:
-                e.warningMessage(parent=self)
-                return None
-            except Exception as e:
-                CMessageBox(self,message='Unknown error creating report file for job number '+str(openJob.jobnumber),exception=e,openJob=openJob)
-                return
-            '''
         elif mode == 'status':
             widget = CJobStatusWidget(self)
             widget.setJob(openJob)
@@ -1902,6 +1728,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
     def handleViewTask0(self,jobId, action=None):
         '''Show job files in ccp4mg or coot'''
         text = str(action.text())
+        from ..qtcore.CCP4Launcher import LAUNCHER
         if text.count('4mg'):
             LAUNCHER().openInViewer(viewer='ccp4mg', jobId=jobId, projectId=self.taskFrame.openJob.projectId, guiParent=self)
         elif text.count('oot'):
@@ -1909,16 +1736,10 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
 
     def openSendReport(self):
         '''Open window to send developer error report'''
-        from qtgui import CCP4ErrorReportViewer
+        from . import CCP4ErrorReportViewer
         widget = CCP4ErrorReportViewer.CSendJobError(self, projectId=self.taskFrame.openJob.projectId, projectName=self.taskFrame.openJob.projectName)
         widget.show()
 
-    def openUpdate(self):
-        '''Open the update manager'''
-        from qtgui import CCP4UpdateDialog
-        widget = CCP4UpdateDialog.CUpdateDialog(self)
-        widget.show()
-    
     @QtCore.Slot(list,bool)
     def deleteJob(self, jobIdList, deleteImportFiles=True):
         '''Delete one or more jobs'''
@@ -1927,9 +1748,10 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         if not isinstance(jobIdList, list):
             jobIdList = [jobIdList]
         try:
+            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             jobTreeList = PROJECTSMANAGER().db().getMultiFollowOnJobs(jobIdList=jobIdList, traceImportFiles=deleteImportFiles)
         except CException as e:
-            e.warningMessage(parent=self, windowTitle=self.windowTitle(), message='Error attempting to find jobs dependent on output files')
+            warningMessage(e, parent=self, windowTitle=self.windowTitle(), message='Error attempting to find jobs dependent on output files')
             return
         xtrJobIdList = []
         for  jobTree in jobTreeList:
@@ -1953,7 +1775,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                     PROJECTSMANAGER().deleteJob(jobId=delJobId, importFiles=importFiles, projectId=self.taskFrame.openJob.projectId,
                                                 deleteImportFiles=deleteImportFiles)
                 except CException as e:
-                    e.warningMessage(parent=self, windowTitle=self.windowTitle(), message='Error attempting to delete job')
+                    warningMessage(e, parent=self, windowTitle=self.windowTitle(), message='Error attempting to delete job')
                     return
                 except Exception as e:
                     QtWidgets.QMessageBox.warning(self, self.windowTitle(), 'Unrecognised error deleting job\n'+str(e))
@@ -1980,14 +1802,14 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
 
     def handleProjectMenuExport(self):
         if CCP4WebBrowser.CMainWindow.projectManagerDialog is None:
-            from qtgui import CCP4ProjectManagerGui
+            from . import CCP4ProjectManagerGui
             CCP4WebBrowser.CMainWindow.projectManagerDialog = CCP4ProjectManagerGui.CProjectManagerDialog()
             CCP4WebBrowser.CMainWindow.projectManagerDialog.hide()    # KJS : Problem here. Non-existent functions by the looks of it.
         CCP4WebBrowser.CMainWindow.projectManagerDialog.handleExport3(self.taskFrame.openJob.projectId)
 
     def openManageImportFiles(self):
         '''Open window showing imported files for this project'''
-        from qtgui import CCP4ImpExpWidgets
+        from . import CCP4ImpExpWidgets
         widget = CCP4ImpExpWidgets.CManageImportFiles(self, projectId=self.taskFrame.openJob.projectId)
         widget.show()
 
@@ -1996,12 +1818,13 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         '''Export a comma-separated-variables file containing data from a report table'''
         if jobId is None:
             jobId = self.taskFrame.openJob.jobId
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         fileName = os.path.join(PROJECTSMANAGER().makeFileName(jobId=jobId, mode='TABLES_DIR'), dataName + '.csv')
         if not os.path.exists(fileName):
             fileName = os.path.join(PROJECTSMANAGER().makeFileName(jobId=jobId, mode='TABLES_DIR'), dataName + '.csv').replace(" ","_")
             if not os.path.exists(fileName):
                 return
-        from qtgui import CCP4FileBrowser
+        from . import CCP4FileBrowser
         self.fileBrowser = CCP4FileBrowser.CFileDialog(self, title='Save csv table file for ' + dataName,
                                                        filters=['csv table file (*.csv)'], defaultSuffix='csv',
                                                        fileMode=QtWidgets.QFileDialog.AnyFile)
@@ -2010,6 +1833,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
     
     @QtCore.Slot(str,str,str)
     def downloadCsvFile(self, jobId, dataName, targetFile):
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         sourceFile = os.path.join(PROJECTSMANAGER().makeFileName(jobId=jobId, mode='TABLES_DIR'), dataName + '.csv')
         if not os.path.exists(sourceFile):
             sourceFile = os.path.join(PROJECTSMANAGER().makeFileName(jobId=jobId, mode='TABLES_DIR'), dataName + '.csv').replace(" ","_")
@@ -2064,6 +1888,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         pix1.save(f, "PNG")
         f.close()
         print('Saved to ', fileName)
+        from .CCP4WebBrowser import WEBBROWSER
         WEBBROWSER().openFile(fileName)
 
     def queryDeleteJob(self, jobId, jobInfo):
@@ -2075,6 +1900,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         ''') with no output files are deleted.\nYou can change this in the Preferences window.\nJob number ''' + str(jobInfo.get('jobnumber',' ')) + \
         '''will be deleted.''', self))
         self.queryDelete = QtWidgets.QCheckBox('Delete interactive jobs with no output files', self.queryDeleteWindow)
+        from ..core.CCP4Preferences import PREFERENCES
         self.queryDelete.setChecked(bool(PREFERENCES().DELETE_INTERACTIVE_JOBS))
         self.queryShow = QtWidgets.QCheckBox('Do not show this warning again', self.queryDeleteWindow)
         self.queryShow.setChecked(True)
@@ -2093,9 +1919,11 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         ifDelete = self.queryDelete.isChecked()
         self.queryDeleteWindow.hide()
         self.queryDeleteWindow.deleteLater()
+        from ..core.CCP4Preferences import PREFERENCES
         PREFERENCES().DELETE_INTERACTIVE_JOBS.set(ifDelete)
         PREFERENCES().SHOW_DELETE_INTERACTIVE_JOBS.set(ifShow)
         PREFERENCES().save()
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         if ifDelete:
             try:
                 PROJECTSMANAGER().db().deleteJob(jobId=jobId, deleteChildren=True)
@@ -2110,16 +1938,18 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
           This is usually only relevant when i2 restarted after closing down
           with remote jobs running'''
         # i2 does not save user password on remote machines - check if we need a password in order to check the remote machine
+        from ..qtcore.CCP4JobController import JOBCONTROLLER
         requirePass = JOBCONTROLLER().checkForRemotePasswords(self.taskFrame.openJob.projectId)
         if len(requirePass) == 0:
             return
-        from qtgui import CCP4JobControlGui
+        from . import CCP4JobControlGui
         self.passwordEntry = CCP4JobControlGui.CPasswordEntry(parent=self, label='Please enter password for ' + requirePass[0]['username'] + ' on ' + requirePass[0]['machine'] + '\nTo enable recovering remote jobs')
         self.passwordEntry.passwordEntered.connect(functools.partial(self.handlePasswordEntry,requirePass[0]['jobId']))
         self.passwordEntry.show()
     
     @QtCore.Slot(str,str)
     def handlePasswordEntry(self,jobId,password):
+        from ..qtcore.CCP4JobController import JOBCONTROLLER
         JOBCONTROLLER().patchRemotePasswords(jobId,password)
 
     def widgetIsSaveable(self):
@@ -2253,20 +2083,6 @@ class CTaskButtons(QtWidgets.QButtonGroup):
                 self.button('view').setEnabled(jobStatus in ['Finished', 'Interrupted', 'To delete'])
                 self.button('clone').setEnabled(True)
 
-    def setNextMenu(self,jobId=None, taskName=None):
-        nextList = TASKMANAGER().whatNext(taskName, jobId)
-        menu = self.button('next').menu()
-        menu.clear()
-        for item in nextList:
-            action = menu.addAction(item[1])
-            if item[2] is not None:
-                action.setData(item[0] + ' ' + item[2])
-            else:
-                action.setData(item[0])
-        menu.addSeparator()
-        action=menu.addAction(CTaskButtons.MOREINFO)
-        action.setData(taskName)
-
 
 class CJobStatusWidget(QtWidgets.QFrame):
 
@@ -2343,6 +2159,7 @@ class CJobStatusWidget(QtWidgets.QFrame):
             self.annotation.setPlainText('')
             self.history.setReadOnly(False)
             self.history.clear()
+            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             db = PROJECTSMANAGER().db()
             commentList = db.getComments(jobId=self.openJob.jobId)
             text = '<html><body>'
@@ -2367,6 +2184,7 @@ class CJobStatusWidget(QtWidgets.QFrame):
         if self.openJob.jobId is None:
             return
         try:
+            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             PROJECTSMANAGER().db().updateJob(jobId=self.openJob.jobId, key='evaluation', value=indx)
         except:
             pass
@@ -2376,6 +2194,7 @@ class CJobStatusWidget(QtWidgets.QFrame):
         if self.openJob.jobId is None:
             return
         try:
+            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             text = str(self.title.text())
             PROJECTSMANAGER().db().updateJob(jobId=self.openJob.jobId, key='jobTitle', value=text)
             projectId=self.openJob.projectId
@@ -2392,6 +2211,7 @@ class CJobStatusWidget(QtWidgets.QFrame):
         try:
             text = str(self.annotation.toPlainText())
             if len(text) > 0:
+                from ..core.CCP4ProjectsManager import PROJECTSMANAGER
                 if self.commentId is None:
                     self.commentId = PROJECTSMANAGER().db().createComment(jobId=self.openJob.jobId,comment=text)
                 else:
@@ -2470,6 +2290,7 @@ class CChooseTaskFrame(QtWidgets.QFrame):
 
         self.anyButton.setChecked(True)
 
+        from ..core.CCP4Preferences import PREFERENCES
         if PREFERENCES().SHOW_TASK_MODE_BUTTONS:
             self.layout().addLayout(modeLayout)
 
@@ -2496,7 +2317,9 @@ class CChooseTaskFrame(QtWidgets.QFrame):
         buttonGroup.button(0).clicked.connect(self.handleChooseTask0)
         self.taskTree.doubleClicked.connect(self.handleChooseTask)
         buttonGroup.button(1).clicked.connect(functools.partial(self.window().showTaskChooser, False))
+        from ..core.CCP4WorkflowManager import WORKFLOWMANAGER
         WORKFLOWMANAGER().listChanged.connect(self.invalidateTaskTree)
+        from ..core.CCP4CustomTaskManager import CUSTOMTASKMANAGER
         CUSTOMTASKMANAGER().listChanged.connect(self.invalidateTaskTree)
         PREFERENCES().preferencesSaved.connect(self.invalidateTaskTree)
 
@@ -2540,11 +2363,12 @@ class CChooseTaskFrame(QtWidgets.QFrame):
     @QtCore.Slot()
     def invalidateTaskTree(self):
         self.taskTreeLoaded = False
-        if isAlive(self) and self.isVisible():
+        if CCP4Utils.isAlive(self) and self.isVisible():
             self.loadTaskTree()
     
     def loadTaskTree(self):
         # KJS: 4k (w,h) approx. double that of 1080p.
+        from ..core.CCP4Preferences import PREFERENCES
         compact = PREFERENCES().COMPACT_TASK_MENU
         if PREFERENCES().HD_ICONS:
             setHD = "HD"
@@ -2632,6 +2456,7 @@ class CChooseTaskFrame(QtWidgets.QFrame):
             try:
                 taskName = str(self.taskTree.model().data(idx,QtCore.Qt.UserRole + 2))
                 fileName = TASKMANAGER().searchHelpFile(name=taskName)
+                from .CCP4WebBrowser import WEBBROWSER
                 WEBBROWSER().openFile(fileName)
             except:
                 pass
@@ -2651,72 +2476,6 @@ class CChooseTaskFrame(QtWidgets.QFrame):
         self.anyButton.clicked.connect(expandIfFiltered)
         self.mrButton.clicked.connect(expandIfFiltered)
         self.epButton.clicked.connect(expandIfFiltered)
-
-
-class CTaskTreeModuleWidget(QtWidgets.QFrame):
-
-    def __init__(self,moduleName,iconName=None):
-        QtWidgets.QFrame.__init__(self)
-        self.setObjectName('taskTreeModule')
-        self.setLayout(QtWidgets.QHBoxLayout())
-        MARGIN = 2 #was 1
-        self.layout().setContentsMargins(MARGIN, MARGIN, MARGIN, MARGIN)
-        self.layout().setSpacing(MARGIN)
-        icon = getMenuIcon(self, iconName, 24) 
-        icon.setObjectName('icon')
-        self.layout().addWidget(icon)
-        label = QtWidgets.QLabel(moduleName, self)
-        label.setObjectName('title')
-        self.layout().insertSpacing(1, 4)
-        self.layout().addWidget(label, 1, QtCore.Qt.AlignVCenter)
-        self.layout().addStretch(5)
-
-
-class CTaskTreeItemWidget(QtWidgets.QFrame):
-
-    def __init__(self, taskName, compact=False):
-        MARGIN = 4 # was 2
-        QtWidgets.QFrame.__init__(self)
-        self.setObjectName('taskTreeItem')
-        layout = QtWidgets.QHBoxLayout()
-        layout.setSpacing(MARGIN)
-        layout.setContentsMargins(MARGIN, MARGIN, MARGIN, MARGIN)
-        self.setLayout(layout)
-        rank = TASKMANAGER().getTaskAttribute(taskName, 'RANK')
-        qticonsDir = os.path.join(CCP4Utils.getCCP4I2Dir(), 'qticons')
-        if compact:
-            size = 24
-        else:
-            self.setFrameStyle(QtWidgets.QFrame.NoFrame) # was QFrame.StyledPanel
-            size = 48
-            if rank == 1:
-                self.setObjectName('taskpipe')
-            else :
-                self.setObjectName('tasktool')
-        icon = getMenuIcon(self, taskName, size)
-        icon.setObjectName('icon')
-        self.layout().addWidget(icon)
-        self.layout().insertSpacing(1, 6) # this is new, provides space between icon and text
-        label = QtWidgets.QLabel(TASKMANAGER().getTitle(taskName), self)
-        if rank == 2:
-            label.setObjectName('title2')
-        else:
-            label.setObjectName('title')
-        if compact:
-            self.layout().addWidget(label)
-        else:
-            vBox = QtWidgets.QVBoxLayout()
-            self.layout().addLayout(vBox)
-            vBox.addWidget(label, 0, QtCore.Qt.AlignBottom)
-            desc = TASKMANAGER().getTaskAttribute(taskName, 'DESCRIPTION')
-            label = QtWidgets.QLabel(str(desc))
-            if rank == 2:
-                label.setObjectName('description2')
-            else:
-                label.setObjectName('description')
-            vBox.addWidget(label, 0, QtCore.Qt.AlignTop)
-            self.layout().addStretch(5)
-            #if rank == 2: self.layout().insertSpacing ( 0, 48 )
 
 
 class CTaskTree(QtWidgets.QTreeView):
@@ -2742,14 +2501,9 @@ class CTaskTree(QtWidgets.QTreeView):
             #Keyboard scrolling with items of different height trigger this problem which took me *ages* to fix.
             self.scrollTo(current,QtWidgets.QAbstractItemView.PositionAtBottom)
 
-    def supportedDropActions(self):
-        return QtCore.Qt.CopyAction
-
-    def dropMimeData(self, parent, index, data, action):
-        return True
-
     def mimeTypes(self):
         typesList = []
+        from ..qtcore.CCP4CustomMimeTypes import MIMETYPESHANDLER
         for item in list(MIMETYPESHANDLER().mimeTypes.keys()):
             typesList.append(item)
         typesList.append('jobid')
@@ -2788,36 +2542,6 @@ class CTaskTree(QtWidgets.QTreeView):
         self.sizeChangedSignal.emit(self.size())
         QtWidgets.QTreeView.resizeEvent(self,event)
 
-class CTaskWidgetItem(QtWidgets.QTreeWidgetItem):
-
-    def __init__(self, parent, taskName):
-        self.taskName = taskName
-        self.title = TASKMANAGER().getTitle(taskName)
-        QtWidgets.QTreeWidgetItem.__init__(self, parent)
-
-    def flags(self):
-        return QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsDropEnabled
-
-    def data(self, ic, role):
-        if ic == 0:
-            if role == QtCore.Qt.FontRole:
-                italicFont = QtGui.QFont()
-                italicFont.setItalic(True)
-                return italicFont
-            if role == QtCore.Qt.DisplayRole:
-                return self.title
-            if role == QtCore.Qt.ToolTipRole:
-                desc = TASKMANAGER().getTaskAttribute(self.taskName, 'DESCRIPTION')
-                #print 'CTaskWidgetItem.data',self.taskName,desc
-                if desc is not None:
-                    return desc
-                else:
-                    return self.taskName
-            if role == 101:
-                return self.taskName
-#FIXME PYQT - or maybe None? This used to return QVariant.
-        return None
-
 
 def FILEWATCHER():
     if CFileSystemWatcher.insts is None:
@@ -2838,6 +2562,7 @@ class CFileSystemWatcher(QtCore.QFileSystemWatcher):
         QtCore.QFileSystemWatcher.__init__(self, parent)
         # Fix for fail on NFS (and perhaps elsewhere) to convert to using internal poller mechanism
         # https://bugreports.qt.io/browse/QTBUG-8351
+        from ..core.CCP4Preferences import PREFERENCES
         if PREFERENCES().FILESYSTEMWATCHERPOLLER:
             self.setObjectName("_qt_autotest_force_engine_poller")
         self.jobPaths = {}
@@ -2956,9 +2681,6 @@ class CFileSystemWatcher(QtCore.QFileSystemWatcher):
                 self.jobPaths[jobId].remove(path)
                 QtCore.QFileSystemWatcher.removePath(self,path)
                 return
-    
-    def listJobs(self):
-        print(self.jobPaths)
 
     def triggerJobsByUpdateInterval(self):
         for jobId,value in list(self.jobsByUpdateInterval.items()):
@@ -2993,7 +2715,6 @@ class CReportView(QtWidgets.QStackedWidget):
 
     def __init__(self,parent=None):
         QtWidgets.QStackedWidget.__init__(self,parent=parent)
-        from qtgui import CCP4WebView
         #self.setLayout(QtWidgets.QVBoxLayout())
         #self.layout().setSpacing(0)
         #self.layout().setContentsMargins(1,1,1,1)
@@ -3041,6 +2762,7 @@ class CReportView(QtWidgets.QStackedWidget):
             self.linksStack.addWidget(self.linksFrame[ii])
         self.webFrame.layout().addWidget(self.linksStack)
         self.backToReportButton = QtWidgets.QPushButton("Back to main report")
+        from . import CCP4WebView
         self.webView = CCP4WebView.CWebView(self,blockLoading=True)
         self.webView.loadFinished.connect(self.handleLoadFinished)
         self.webView.page().profile().downloadRequested.connect(self.handleDownload)
@@ -3081,11 +2803,14 @@ class CReportView(QtWidgets.QStackedWidget):
         self.webView.page().NavigationRequest.connect(self.handleNavigationRequest)
         self.webView.page().CustomMimeTypeRequested.connect(self.handleCustomMimeTypeRequested)
         FILEWATCHER().jobFileChanged.connect(self.handleFileChanged)
+        from ..qtcore.CCP4JobController import JOBCONTROLLER
         JOBCONTROLLER().remoteJobUpdated.connect(self.handleFileChanged)
         self.openJob.jobStatusUpdated.connect(self.handleJobStatusUpdated)
         self.openJob.workflowJobStatusUpdated.connect(self.handleWorkflowJobStatusUpdated)
         def actOnJSSignal(args):
             print(args)
+            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+            from ..qtcore.CCP4Launcher import LAUNCHER
             if 'exe' in args and args['exe'] == 'loggraph':
                 reportFile = PROJECTSMANAGER().makeFileName(jobId=self.openJob.jobId,mode='REPORT')
                 launchArgs = []
@@ -3144,11 +2869,11 @@ class CReportView(QtWidgets.QStackedWidget):
                         win.setLayout(layout)
                         win.exec_()
                     else:
+                        from .CCP4WebBrowser import WEBBROWSER
                         WEBBROWSER().openFile(fileName=filePath,format='text/plain')
                 else:
                     LAUNCHER().openInViewer(viewer=args['action'][5:],fileName=filePath,projectId=fileInfo['projectid'],guiParent=self.parent())
             elif 'action' in args and args['action'] == "quick_view":
-                import gemmi
                 fileInfo = PROJECTSMANAGER().db().getFileInfo(args.get('dbFileId',None),mode=['projectid','relpath','filename','annotation','filesubtype','filecontent','filetype'])
                 projectDir = PROJECTSMANAGER().db().getProjectInfo(projectId=fileInfo['projectid'],mode='projectdirectory')
                 filePath = os.path.join(projectDir,fileInfo['relpath'],fileInfo['filename'])
@@ -3180,7 +2905,6 @@ class CReportView(QtWidgets.QStackedWidget):
 
             elif 'action' in args and args['action'] == "export_as_map":
                 def coefficientsToMap(coefficientsPath, mapPath=None, overSample=1.0):
-                    import clipper
                     mtz_file = clipper.CCP4MTZfile()
                     hkl_info = clipper.HKL_info()
                     mtz_file.open_read (str(coefficientsPath))
@@ -3234,13 +2958,14 @@ class CReportView(QtWidgets.QStackedWidget):
                 fileType = fileInfo["filetype"]
                 fileName = fileInfo["filename"]
                 filePath = os.path.join(projectDir,fileInfo['relpath'],fileInfo['filename'])
+                from ..qtcore.CCP4CustomMimeTypes import MIMETYPESHANDLER
                 filters = MIMETYPESHANDLER().getMimeTypeInfo(fileType,'filter')
                 suffices =  MIMETYPESHANDLER().getMimeTypeInfo(fileType,'fileExtensions')
                 if len(suffices)>0:
                     defaultSuffix =  suffices[0]
                 else:
                     defaultSuffix =  ""
-                from qtgui import CCP4FileBrowser
+                from . import CCP4FileBrowser
                 fileBrowser = CCP4FileBrowser.CFileDialog(parent=self,
                                       title='Export '+fileName,
                                       filters = [filters],
@@ -3250,12 +2975,12 @@ class CReportView(QtWidgets.QStackedWidget):
                 fileBrowser.show()
 
             elif 'action' in args and args['action'] == "editLabel":
-                from qtgui import CCP4Widgets
+                from . import CCP4Widgets
                 d = CCP4Widgets.CEditFileLabel(parent=self,fileId=args.get('dbFileId',None))
                 d.accepted.connect(self.labelEdited.emit)
 
             elif 'action' in args and args['action'] == "WebGL":
-                from report.CCP4ReportParser import WEBGLSOURCES, MTZToB64Map
+                from ..report.CCP4ReportParser import WEBGLSOURCES, MTZToB64Map
                 htmlBase = args['htmlBase']
                 print("Now WebGL it")
                 onLoadText = """<script>
@@ -3717,18 +3442,19 @@ CCP4I2 3D View
         self._diagnostic = True
 
     def exportData(self,myFileName,fileId,exportFileName):
-      from qtgui import CCP4Widgets
       if os.path.splitext(exportFileName) !=  os.path.splitext(myFileName):
         exportFileName = os.path.splitext(exportFileName)[0] +  os.path.splitext(myFileName)[1]
       try:
         shutil.copyfile(myFileName,exportFileName)
       except:
+        from . import CCP4Widgets
         e = CException(CCP4Widgets.CDataFileView,100,'From: '+str(myFileName)+' to: '+str(exportFileName),name=self.modelObjectPath())
-        e.warningMessage('Copying file',parent=self)
+        warningMessage(e, 'Copying file',parent=self)
       else:
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         PROJECTSMANAGER().db().createExportFile(fileId=fileId,exportFilename=exportFileName)
         fileInfo = PROJECTSMANAGER().db().getFileInfo(fileId=fileId,mode=['jobid','projectname'])
-        from dbapi import CCP4DbUtils
+        from ..dbapi import CCP4DbUtils
         CCP4DbUtils.makeJobBackup(jobId=fileInfo['jobid'],projectName=fileInfo['projectname'])
 
     def setReportLinks(self,labelList=[]):
@@ -3773,6 +3499,7 @@ CCP4I2 3D View
 
 #I'm protecting this in try/except because I am trying to be very careful not to break other the whole program.
                 try:
+                    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
                     outputXmlFile = PROJECTSMANAGER().makeFileName(jobId=self.openJob.jobId,mode='PROGRAMXML')
                     parser = etree.XMLParser()
                     f = open(outputXmlFile,'rb')
@@ -3788,7 +3515,6 @@ CCP4I2 3D View
                     pass
                     """
                     print("Problem adding the clone with suggested button")
-                    import traceback
                     exc_type, exc_value, exc_tb = sys.exc_info()[:3]
                     sys.stderr.write(str(exc_type) + '\n')
                     sys.stderr.write(str(exc_value) + '\n')
@@ -3851,23 +3577,24 @@ CCP4I2 3D View
                 if not os.path.exists(path):
                     # Requesting report file that is not yet created
                     if self.generator is None:
-                        from report import CCP4ReportGenerator
+                        from ..report import CCP4ReportGenerator
                         self.generator = CCP4ReportGenerator.CReportGenerator(jobId=openJob.jobId,jobStatus=openJob.status,jobNumber=openJob.jobNumber)
                         #self.generator.FinishedPictures.connect(self.handleMgFinished)
                     try:
                         reportFile, newPageOrNewData = self.generator.makeReportFile()
                     except CException as e:
-                        if  e.maxSeverity()>SEVERITY_WARNING:
-                            e.warningMessage(windowTitle=self.parent().windowTitle(),message='Failed creating job report',parent=self)
+                        if  e.maxSeverity()>Severity.WARNING:
+                            warningMessage(e, windowTitle=self.parent().windowTitle(),message='Failed creating job report',parent=self)
                     except Exception as e:
                         QtWidgets.QMessageBox.warning(self,self.parent().windowTitle(),'Unknown error creating report file for job number '+str(openJob.jobNumber))
                     if os.path.exists(reportFile):
                         err = self.generator.mergeIntoParent(parentFile=self._reportFile)
-                        if err.maxSeverity() <= SEVERITY_WARNING:
+                        if err.maxSeverity() <= Severity.WARNING:
                             self.webView.reload()
                 return
         print('CReportView.handleNavigationRequest 4',url); sys.stdout.flush()
         # See if the web browser can do something
+        from .CCP4WebBrowser import WEBBROWSER
         WEBBROWSER().loadPage(url=url,newTab=True)
         WEBBROWSER().raise_()
         print('CReportView.handleNavigationRequest end')
@@ -3876,13 +3603,13 @@ CCP4I2 3D View
     @QtCore.Slot('QUrl')
     def handleCustomMimeTypeRequested(self,url):
         #print 'CReportView.handleCustomMimeTypeRequest',url
+        from .CCP4WebBrowser import WEBBROWSER
         WEBBROWSER().CustomMimeTypeRequested(url)
 
     def showOutput(self,openJob=None,reportFile=None,reportErr=True,redo=False,doReload=False):
-        from qtgui import CCP4TextViewer
-        from report import CCP4ReportGenerator
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+        from ..report import CCP4ReportGenerator
         #print 'showOutput',openJob,reportFile,redo
-        #import traceback
         #traceback.print_stack(limit=8)
         # If not report file then try making it from an outputXmlFile
         # Otherwise use a log or diagnostic file
@@ -3914,7 +3641,7 @@ CCP4I2 3D View
                 else:
                     self.generator.setJobStatus(openJob.status)
                 # Comment out to ensure errors are trapped
-                if DEVELOPER():
+                if CONFIG().developer:
                     reportFile, newPageOrNewData = self.generator.makeReportFile(redo=redo,doReload=doReload,useGeneric=(logFile is None))
                 else:
                     try:
@@ -3925,8 +3652,8 @@ CCP4I2 3D View
                             reportFile, newPageOrNewData = self.generator.makeReportFile(redo=redo,doReload=doReload,useGeneric=(logFile is None))
                     except CException as e:
                         # Dont report lack for report definition file
-                        if reportErr and e.maxSeverity()>SEVERITY_WARNING and e.code != 3:
-                            e.warningMessage(windowTitle=self.parent().windowTitle(),message='Failed creating job report',parent=self)
+                        if reportErr and e.maxSeverity()>Severity.WARNING and e.code != 3:
+                            warningMessage(e, windowTitle=self.parent().windowTitle(),message='Failed creating job report',parent=self)
                         reportFile = None
                     except Exception as e:
                         if reportErr:
@@ -3979,7 +3706,6 @@ CCP4I2 3D View
 
     @QtCore.Slot(object,str,bool)
     def showOutput0(self,openJob,reportFile,linkList,reloadedData):
-        from qtgui import CCP4TextViewer
         if not reloadedData:
             if reportFile is None or os.path.splitext(reportFile)[1] in ['.html','.htm']:
                 self.setCurrentIndex(0)
@@ -4009,6 +3735,7 @@ CCP4I2 3D View
                 # Xml file - treat as text
                 self.linksStack.setCurrentIndex(0)
                 if self.textView is None:
+                    from . import CCP4TextViewer
                     self.textView = CCP4TextViewer.CTextViewer(self)
                     self.addWidget(self.textView)
                 self.setCurrentIndex(1)
@@ -4104,6 +3831,7 @@ CCP4I2 3D View
         if runningXrt is not None:
             updateInterval = TASKMANAGER().getReportAttribute(openJob.taskName,'UPDATE_INTERVAL')
             watchFile = TASKMANAGER().getReportAttribute(openJob.taskName,'WATCHED_FILE')
+            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             if watchFile is None:
                 outputXmlFile = PROJECTSMANAGER().makeFileName(jobId=openJob.jobId,mode='PROGRAMXML')
             else:
@@ -4122,6 +3850,8 @@ class CTaskInputFrame(QtWidgets.QFrame):
         self.layout().setContentsMargins(0,CProjectViewer.MARGIN,0,CProjectViewer.MARGIN)
         self.layout().setSpacing(CProjectViewer.MARGIN)
         self.taskWidget = None
+        from ..core.CCP4Preferences import PREFERENCES
+        from ..qtcore.CCP4JobController import JOBCONTROLLER
         PREFERENCES().TASK_WINDOW_LAYOUT.dataChanged.connect(self.redraw)
         JOBCONTROLLER().serverJobFailed.connect(self.handleServerJobFail)
 
@@ -4129,22 +3859,19 @@ class CTaskInputFrame(QtWidgets.QFrame):
         # Create task widget
         taskWidgetClass = TASKMANAGER().getTaskWidgetClass(taskName)
         if taskWidgetClass is not None:
-            if DEVELOPER():
+            try:
                 taskWidget = taskWidgetClass(self)
-            else:
-                try:
-                    taskWidget = taskWidgetClass(self)
-                except CException as e:
-                    e.warningMessage('Error opening task window: '+str(taskName),parent=self)
-                    raise e
-                except Exception as e:
-                    mess = QtWidgets.QMessageBox.warning(self,'Error opening task window: '+str(taskName),str(e))
-                    raise CException(self.__class__,101,taskName)
+            except CException as e:
+                warningMessage(e, 'Error opening task window: '+str(taskName),parent=self)
+                raise e
+            except Exception as e:
+                mess = QtWidgets.QMessageBox.warning(self,'Error opening task window: '+str(taskName),str(e))
+                raise CException(self.__class__,101,taskName)
             taskWidget.folderAttributes.setAttribute(attribute='editable',folderFunction='all',value=taskEditable)
             taskWidget.setContainer(container)
         else:
             # Try for an auto-generated gui?
-            from qtgui import CCP4ContainerView
+            from . import CCP4ContainerView
             taskWidget = CCP4ContainerView.CContainerView(self,container=container)
             taskWidget.folderAttributes.setAttribute(attribute='editable',folderFunction='all',value=taskEditable)
             #  raise CException(self.__class__,103,taskName)    
@@ -4187,7 +3914,7 @@ class CTaskInputFrame(QtWidgets.QFrame):
         # The method to fix any issues in user input
         rv = self.taskWidget.fix()
         if len(rv) > 0:
-            rv.warningMessage(parent=self, windowTitle='Running task', message='Error in input data')
+            warningMessage(rv, parent=self, windowTitle='Running task', message='Error in input data')
             return
         # Check validity
         invalidList = self.taskWidget.isValid()
@@ -4237,6 +3964,7 @@ class CTaskInputFrame(QtWidgets.QFrame):
             return
         # Remove unset items from lists
         container.removeUnsetListItems()
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         ifImportFile, errors = PROJECTSMANAGER().importFiles(jobId=jobId, container=container)
         rv = self.makeJobInputFile(jobId)
         if not rv:
@@ -4263,16 +3991,12 @@ class CTaskInputFrame(QtWidgets.QFrame):
                 self.runRemotely(jobId,projectId)
                 return
             elif TASKMANAGER().isInternalPlugin(taskName):
-                if DEVELOPER():
+                try:
                     PROJECTSMANAGER().runInternalTask(jobId=self.taskWidget.jobId(), projectId=self.taskWidget.projectId(),
-                                                      taskName=self.taskWidget.taskName())
-                else:
-                    try:
-                        PROJECTSMANAGER().runInternalTask(jobId=self.taskWidget.jobId(), projectId=self.taskWidget.projectId(),
-                                                          taskName=self.taskWidget.taskName())
-                    except Exception as e:
-                        err = CException(self.__class__,101,taskName,str(e))
-                        err.warningMessage('Running internaltask','Failed running task',parent=self)
+                                                        taskName=self.taskWidget.taskName())
+                except Exception as e:
+                    err = CException(self.__class__,101,taskName,str(e))
+                    warningMessage(err, 'Running internaltask','Failed running task',parent=self)
             else:
                 PROJECTSMANAGER().updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_QUEUED)
         self.redrawTaskWidget()
@@ -4283,6 +4007,7 @@ class CTaskInputFrame(QtWidgets.QFrame):
         taskName = self.taskWidget.taskName()
         jobId = self.taskWidget.jobId()
         projectId=self.taskWidget.projectId()
+        from ..core.CCP4Preferences import PREFERENCES
         if isinstance(self.taskWidget,CCP4TaskWidget.CTaskWidget) and PREFERENCES().TASK_WINDOW_LAYOUT == 'FOLDER':
             scrollDisp = self.taskWidget.getScrollDisplacement()
             folderOpenStatus = self.taskWidget.widget.getFolderOpenStatus()
@@ -4309,6 +4034,7 @@ class CTaskInputFrame(QtWidgets.QFrame):
             return False
         #Beware -- this is trying to save status of previous task widget which may have been deleted 
         try:
+          from ..core.CCP4ProjectsManager import PROJECTSMANAGER
           status =  PROJECTSMANAGER().db().getJobInfo(jobId=self.taskWidget._jobId,mode=['status'])
         except:
             print('makeJobInputFile NOT saving input_params.xml file - db query fail')
@@ -4321,6 +4047,7 @@ class CTaskInputFrame(QtWidgets.QFrame):
         return True
 
     def makeJobBall(self,jobId,projectId,mechanism='ssh_shared'):
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         jobNumber = PROJECTSMANAGER().db().getJobInfo(jobId=jobId,mode=['jobnumber'])
         projectInfo = PROJECTSMANAGER().db().getProjectInfo(projectId=projectId)
         #dbxml = JOBCONTROLLER().getServerParam(jobId,'dbXml')
@@ -4329,6 +4056,7 @@ class CTaskInputFrame(QtWidgets.QFrame):
             dbxml = os.path.join( projectInfo['projectdirectory'],'CCP4_TMP','DATABASE'+str(int(time.time()))+'.db.xml')
         else:
             dbxml = os.path.join( jobDir, 'DATABASE.db.xml' )
+            from ..qtcore.CCP4JobController import JOBCONTROLLER
             JOBCONTROLLER().setServerParam(jobId,'dbXml',dbxml)
         inputFilesList,inputFileIdList,fromJobList,errReport =  PROJECTSMANAGER().getJobInputFiles(projectDir=projectInfo['projectdirectory'],jobIdList=[jobId],jobNumberList=[jobNumber])
         print('runRemotely inputFilesList',inputFilesList,'fromJobList',fromJobList)
@@ -4339,13 +4067,13 @@ class CTaskInputFrame(QtWidgets.QFrame):
             fromJobIdList.append(item['jobid'])
             fromJobNumberList.append(item['jobnumber'])
         jobNumberList,errReport = PROJECTSMANAGER().db().exportProjectXml(projectId,fileName=dbxml,jobList=[jobId],inputFileList=inputFileIdList,inputFileFromJobList=fromJobIdList)
-        if errReport.maxSeverity()>SEVERITY_WARNING:
-            errReport.warningMessage("title",'Error creating XML database file',parent=self)
+        if errReport.maxSeverity()>Severity.WARNING:
+            warningMessage(errReport, "title",'Error creating XML database file',parent=self)
             return False
         if mechanism in ['ssh_shared','qsub_local','qsub_shared']:
             self.runRemotely1(jobId,projectId)
         else:
-            from qtcore import CCP4Export
+            from ..qtcore import CCP4Export
             tarball = os.path.join( projectInfo['projectdirectory'],'CCP4_TMP','job_'+jobNumber+'_setup.ccp4db.zip')
             if os.path.exists(tarball):
                 os.remove(tarball)
@@ -4356,6 +4084,8 @@ class CTaskInputFrame(QtWidgets.QFrame):
             self.exportThread.start()
 
     def runRemotely(self,jobId,projectId,message=None):
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+        from .CCP4JobControlGui import JOBCONTROLLERGUI
         dialog = JOBCONTROLLERGUI()
         jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId,['jobnumber','taskname'])
         dialog.setWindowTitle('Run '+jobInfo['jobnumber']+ ' ' + TASKMANAGER().getTitle(jobInfo['taskname']))
@@ -4363,6 +4093,7 @@ class CTaskInputFrame(QtWidgets.QFrame):
         rv = dialog.exec_()
         print('runRemotely',rv,dialog.valid(),dialog.get('mechanism'))
         if rv == QtWidgets.QDialog.Accepted and dialog.valid():
+            from ..qtcore.CCP4JobController import JOBCONTROLLER
             JOBCONTROLLER().createServerParams(jobId,dialog.getParams())
             print('project viewer runRemotely runningReport',self.taskWidget.taskName(),TASKMANAGER().getReportClass(self.taskWidget.taskName(),jobStatus='Running'))
             JOBCONTROLLER().setServerParam(jobId,'runningReport', (TASKMANAGER().getReportClass(self.taskWidget.taskName(),jobStatus='Running') is not None) )
@@ -4371,6 +4102,7 @@ class CTaskInputFrame(QtWidgets.QFrame):
     @QtCore.Slot(str,str)
     def runRemotely1(self,jobId,projectId):
         print('runRemotely1',jobId,projectId)
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         PROJECTSMANAGER().updateJobStatus(jobId=jobId,status=CCP4DbApi.JOB_STATUS_QUEUED)
         self.redrawTaskWidget()
 
@@ -4402,12 +4134,7 @@ class CTaskInputFrame(QtWidgets.QFrame):
         taskEditable = self.taskWidget.folderAttributes.attribute('editable')
         # ? followJobId copied in container ?
         taskWidget = self.createTaskWidget(taskName,projectId=projectId,jobId=jobId,container=container,taskEditable=taskEditable)
-    
-    def parentProjectViewer(self):
-        p = self.parent()
-        while not isinstance(p,CProjectViewer):
-            p = p.parent()
-        return p
+
 
 class CTaskTitleBarLayout(QtWidgets.QHBoxLayout):
 
@@ -4449,6 +4176,7 @@ class CTaskTitleBar(QtWidgets.QFrame):
     def setOpenJob(self, openJob):
         # Sets up the blue bar with Job status
         self.ftsize = self.llfont
+        from ..core.CCP4Preferences import PREFERENCES
         if PREFERENCES().GUI_FONT_SIZE >= self.llfont:
             self.ftsize = min(PREFERENCES().GUI_FONT_SIZE, self.ulfont)
         if sys.platform == "win32":
@@ -4518,6 +4246,7 @@ class CTaskFrame(QtWidgets.QFrame):
         self.buttons.button('view').menu().triggered.connect(self.handleViewTask)
         self.buttons.button('task_menu').clicked.connect(functools.partial(self.window().showTaskChooser,True))
         self.outputFrame.reportAvailable.connect(self.handleReportAvailable)
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         PROJECTSMANAGER().db().jobFinished.connect(self.handleJobFinished)
         PROJECTSMANAGER().db().jobStarted.connect(self.handleJobStarted)
         self.outputFrame.labelEdited.connect(self.labelEdited.emit)
@@ -4527,7 +4256,7 @@ class CTaskFrame(QtWidgets.QFrame):
             self.inputFrame.makeJobInputFile(openJob.jobId)
         else:
             self.inputFrame.makeJobInputFile()
-        from dbapi import CCP4DbUtils
+        from ..dbapi import CCP4DbUtils
         if openJob is None:
             openJob = self.openJob
         if openJob.jobId is not None:
@@ -4607,12 +4336,13 @@ class CTaskFrame(QtWidgets.QFrame):
                 reportFile = self.outputFrame.showOutput(self.openJob, reportErr=False)
             except CException as e:
                 print(e)
-                e.warningMessage(self.window().windowTitle(), 'Error creating job report', parent=self)
+                warningMessage(e, self.window().windowTitle(), 'Error creating job report', parent=self)
             except Exception as e:
                 print(e)
                 CMessageBox(self,message='Error creating report for job number '+str(self.openJob.jobnumber),exception=e,openJob=self.openJob)
             self.buttons.setEnabled(self.openJob.status)
             if self.openJob.status == 'Running':
+                from ..core.CCP4ProjectsManager import PROJECTSMANAGER
                 runningSubJob = PROJECTSMANAGER().db().getRunningSubJob(jobId=self.openJob.jobId)
                 if runningSubJob is not None:
                     self.outputFrame.setNextButtons(runningSubJob['taskName'],runningSubJob['jobId'],'Running')
@@ -4635,6 +4365,7 @@ class CTaskFrame(QtWidgets.QFrame):
     def handleViewTask(self,mode):
         if not isinstance(mode,str):
             mode = str(mode.text())
+        from ..qtcore.CCP4Launcher import LAUNCHER
         if mode.count('4mg'):
             LAUNCHER().openInViewer(viewer='ccp4mg',jobId=self.openJob.jobId,projectId=self.openJob.projectId,guiParent=self)
         elif mode.count('oot'):
@@ -4660,7 +4391,8 @@ class CTaskFrame(QtWidgets.QFrame):
             self.tab.setTabEnabled(self.OUTPUT_TAB,False)
 
     def openTask(self,taskName=None,jobId=None,cloneJobId=None,followJobId=None,patchParamsFile=None,suggestedParams=None):
-        from core import CCP4Container,CCP4File
+        from ..core import CCP4Container, CCP4File
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         #print 'CTaskFrame.openTask',taskName,jobId,'followJobId',followJobId,'cloneJobId',cloneJobId
         # If there is jobid try to get the paramsFile and ensure consistent taskName
         # ??? Should we be concerned about version number ???
@@ -4689,7 +4421,7 @@ class CTaskFrame(QtWidgets.QFrame):
                     taskName = str(header.pluginName)
                 elif taskName != str(header.pluginName):
                     err = CException(self.__class__,102,'Suggested: '+str(taskName)+' File: '+str(paramsFile)+' Contains: '+str(header.pluginName))
-                    err.warningMessage('Error loading params file','Error loading params file for job id: '+jobId,parent=self)
+                    warningMessage(err, 'Error loading params file','Error loading params file for job id: '+jobId,parent=self)
                     return None
             else:
                 paramsFile = None
@@ -4700,6 +4432,7 @@ class CTaskFrame(QtWidgets.QFrame):
         # Create an COpenJob instance to hold the meta-data for this job
         openJob=COpenJob(jobId=jobId,projectId=self.openJob.projectId)
         taskEditable =  ( openJob.status in ['Unknown','Pending'] )
+        from ..core.CCP4Preferences import PREFERENCES
         if openJob.status == "Finished" and PREFERENCES().AUTO_UPDATE_REPORT80:
             stamp80 = os.path.join(PROJECTSMANAGER().makeFileName(jobId = openJob.jobId,mode='ROOT'),"REP8STMP")
             reportFile = PROJECTSMANAGER().makeFileName(jobId = openJob.jobId,mode='REPORT')
@@ -4720,7 +4453,6 @@ class CTaskFrame(QtWidgets.QFrame):
                     print("########################################")
             if redoReportFor80:
                 self.report71.emit(openJob)
-                from pathlib import Path
                 Path(stamp80).touch()
                 print("Created stamp",stamp80)
         # For a cloned job copy the params.def.xml
@@ -4804,10 +4536,10 @@ class CTaskFrame(QtWidgets.QFrame):
             else:
                 self.inputFrame.closeTaskWidget()
         except CException as e:
-            e.warningMessage(self.windowTitle(),'Error drawing task widget',parent=self)
+            warningMessage(e, self.windowTitle(),'Error drawing task widget',parent=self)
         except Exception as e:
             err = CErrorReport(self.__class__,999,details=str(e),exc_info=sys.exc_info())
-            err.warningMessage(self.windowTitle(),'Unknown error drawing task widget\n\n'+str(e),parent=self)
+            warningMessage(err, self.windowTitle(),'Unknown error drawing task widget\n\n'+str(e),parent=self)
         else:
             t3 = time.time()
             self.openJob = openJob
@@ -4840,20 +4572,15 @@ class CTaskMainWindow(CCP4WebBrowser.CMainWindow):
 
     def openApplication(self,application):
         '''Pass on request for program logs'''
+        from .CCP4WebBrowser import WEBBROWSER
         WEBBROWSER().openApplication(application)
 
     def handleProjectMenuExport(self):
         pass
 
-    def openUpdate(self):
-        '''Open the update manager'''
-        from qtgui import CCP4UpdateDialog
-        widget = CCP4UpdateDialog.CUpdateDialog(self)
-        widget.show()
-    
     def openSendReport(self):
         '''Open window to send developer error report'''
-        from qtgui import CCP4ErrorReportViewer
+        from . import CCP4ErrorReportViewer
         widget = CCP4ErrorReportViewer.CSendJobError(self, projectId=self.taskFrame.openJob.projectId, projectName=self.taskFrame.openJob.projectName)
         widget.show()
 
@@ -4930,6 +4657,7 @@ class CTaskMainWindow(CCP4WebBrowser.CMainWindow):
         frame.layout().addWidget(self.titleBar)
         self.buttons = CTaskButtons(self,frame.layout(),mode=CTaskButtons.RUNONLYMODE)
         self.setCentralWidget(frame)
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         PROJECTSMANAGER().db().jobStatusUpdated.connect(self.titleBar.setStatusBar)
         PROJECTSMANAGER().db().jobFinished.connect(self.titleBar.setStatusBar)
 
@@ -5015,6 +4743,7 @@ class CDeleteJobGui(QtWidgets.QDialog):
 #FIXME There is no self.jobId, what is this meant to do and what is self.jobId meant to be?
 #Possibly getMultiFollowOnJobs(jobIdList=self.jobIdList,...) ?
 #And why is this self.followOnJobs? Why member of class?
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         self.followOnJobs = PROJECTSMANAGER().db().getFollowOnJobs(jobId=self.jobId,traceImportFiles=(deleteImportFiles>0))
         self.tree.load(self.followOnJobs,jobsToDeleteWithSelectedFiles=self.jobsToDeleteWithSelectedFiles)
         
@@ -5038,6 +4767,7 @@ class CDeleteJobGui(QtWidgets.QDialog):
     def deleteJobs0(self,jobTree=None,deleteImportFiles=False):
         jobId,importFiles,descendents = jobTree
         if jobId is not None:
+            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             PROJECTSMANAGER().deleteJob(jobId=jobId,importFiles=importFiles,projectId=self.projectId,deleteImportFiles=deleteImportFiles)
         for childJobTree in descendents:
             self.deleteJobs0(childJobTree,deleteImportFiles=False)
@@ -5055,6 +4785,7 @@ class CJobTree(QtWidgets.QTreeWidget):
 
     def load(self, jobTree, treeParentId=None, jobsToDeleteWithSelectedFiles=[]):
         jobId, importFiles, childJobTree = jobTree
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=jobId,mode=['jobnumber', 'taskname', 'status'])
         taskTitle = TASKMANAGER().getTitle(jobInfo['taskname'])
         # Only add job once - beware a jobs could be child of multiple preceeding jobs so appear in jobTree more than once
@@ -5071,5 +4802,3 @@ class CJobTree(QtWidgets.QTreeWidget):
                 item.setIcon(0,self.icon)
             for childJob in childJobTree:
                 self.load(childJob,treeParentId=item,jobsToDeleteWithSelectedFiles=jobsToDeleteWithSelectedFiles)
-
-
