@@ -1,47 +1,38 @@
-from __future__ import print_function
-
-
 """
-     CCP4ProjectManagerGui.py: CCP4 GUI Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the sstatusW
-     license to address the requirements of UK law.
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-"""
-     Liz Potterton Feb 2010 - Create CCP4ProjectManager mostly as placeholder
-     Liz Potterton May 2010 - Rename CCP4ProjectManagerGui 
+Copyright (C) 2010 University of York
+Liz Potterton Feb 2010 - Create CCP4ProjectManager mostly as placeholder
+Liz Potterton May 2010 - Rename CCP4ProjectManagerGui 
 """
 
 ##@package CCP4ProjectManagerGui (QtGui) Project handling tools for web browser (currently just a Project menu)
-import functools
+
+import copy
 import datetime
-import sys
+import functools
+import glob
 import os
-from PySide2 import QtGui, QtWidgets, QtCore
-from core.CCP4Modules import PROJECTSMANAGER,WEBBROWSER,PREFERENCES,MIMETYPESHANDLER
-from core.CCP4ErrorHandling import *
-from qtgui import CCP4Widgets
-from core.CCP4Config import DEVELOPER
+import shutil
+import sys
+import time
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from . import CCP4Widgets
+from .. import I2_TOP
+from ..core import CCP4Utils
+from ..core.CCP4Config import CONFIG
+from ..core.CCP4ErrorHandling import CException, Severity
+from ..core.CCP4WarningMessage import warningMessage
+
 
 DIAGNOSTIC = True
 
 def openProject(projectId=None,projectName=None):
     print('openProject',projectId,projectName, end=' ')
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     if projectId is None: projectId = PROJECTSMANAGER().db().getProjectId(projectName=projectName)
     if projectId is None: return None
-    from qtgui import CCP4ProjectViewer
+    from . import CCP4ProjectViewer
     for window in CCP4ProjectViewer.CProjectViewer.Instances:
       if  window.projectId() == projectId:
         window.show()
@@ -55,7 +46,7 @@ def openProject(projectId=None,projectName=None):
 
 
 def formatDate(fTime):
-  from qtgui import CCP4ProjectWidget
+  from . import CCP4ProjectWidget
   if fTime is None: return ''
   try:
     date = time.strftime(CCP4ProjectWidget.CTreeItemJob.DATE_FORMAT,time.localtime(int(fTime)))
@@ -103,9 +94,9 @@ class CNewProjectGui(QtWidgets.QDialog):
     self.setWindowTitle('Create a New Project')
     self.setLayout(QtWidgets.QVBoxLayout())
 
-    from core import CCP4Data
-    from core import CCP4File
-    from core import CCP4DataManager
+    from ..core import CCP4Data
+    from ..core import CCP4DataManager
+    from ..core import CCP4File
     self.name = CCP4Data.CString(parent=self)
     self.directory = CCP4File.CDataFile(parent=self,qualifiers={'isDirectory' : True, 'mustExist': False, 'fromPreviousJob' : False  })
 
@@ -171,8 +162,8 @@ class CNewProjectGui(QtWidgets.QDialog):
 
   @QtCore.Slot()
   def help(self):
-    from core import CCP4Modules
-    CCP4Modules.WEBBROWSER().loadWebPage(helpFileName='general/tutorial' , target='projects')
+    from .CCP4WebBrowser import WEBBROWSER
+    WEBBROWSER().loadWebPage(helpFileName='general/tutorial' , target='projects')
 
   def clear(self):
     self.name.unSet()
@@ -184,6 +175,7 @@ class CNewProjectGui(QtWidgets.QDialog):
   def selectDir(self):
     self.nameWidget.updateModelFromView()
     name = self.name.get()
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     if name is None:
       self.createButton.setEnabled(True)
       QtWidgets.QMessageBox.warning(self,'No project name','You must provide a project name')
@@ -202,8 +194,8 @@ class CNewProjectGui(QtWidgets.QDialog):
   @QtCore.Slot(str)
   def addProject(self,directory = None):
     from core import CCP4Modules
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     #print 'CNewProjectGui.addProject',directory,'*'
-    from core import CCP4Utils
     self.nameWidget.updateModelFromView()
     name = self.name.get()
     #print 'CNewProjectGui.addProject',name 
@@ -229,10 +221,10 @@ class CNewProjectGui(QtWidgets.QDialog):
       if os.path.isfile(directory):
         QtWidgets.QMessageBox.warning(self,'Create project','Selected directory is a file')
         return
-      elif CCP4Utils.samefile(directory,CCP4Utils.getHOME()):
+      elif os.path.samefile(directory,CCP4Utils.getHOME()):
         QtWidgets.QMessageBox.warning(self,'Create project','Selected directory is users home area')
         return
-      elif CCP4Utils.samefile(directory,CCP4Utils.getProjectDirectory()):
+      elif os.path.samefile(directory,CCP4Utils.getProjectDirectory()):
         QtWidgets.QMessageBox.warning(self,'Create project','Selected directory is the CCP4 master project directory')
         return
 
@@ -256,40 +248,25 @@ class CNewProjectGui(QtWidgets.QDialog):
         QtWidgets.QMessageBox.warning(self,'Directory does not exist','The parent directory for the project directory does not exist: ' +parentDir )
         return
 
-
-
-      '''
-      rv = QtWidgets.QMessageBox.question(self,'Make new directory','Make a new directory for the project',
-                            QtWidgets.QMessageBox.Ok|QtWidgets.QMessageBox.Cancel)
-      if rv == QtWidgets.QMessageBox.Cancel: return
-      '''
-
       try:
         os.mkdir(directory)
       except:
          QtWidgets.QMessageBox.warning(self,'Error making directory','Error making directory: '+directory)
          return
 
-    if DEVELOPER():
+    try:
       projectId = PROJECTSMANAGER().createProject(projectName=name0,projectPath=directory)
-    else:
-      try:
-        projectId = PROJECTSMANAGER().createProject(projectName=name0,projectPath=directory)
-      except CException as e:
-        e.warningMessage(parent=self)
-        return
-      except:
-        QtWidgets.QMessageBox.warning(self,'Error creating project','Unknown error creating project')
-        return
+    except CException as e:
+      warningMessage(e, parent=self)
+      return
+    except:
+      QtWidgets.QMessageBox.warning(self,'Error creating project','Unknown error creating project')
+      return
 
     self.descriptionWidget.save(projectId)
 
-    '''
-    if self.xtalContents.isChecked() and pView is not None:
-      pView.openTask(taskName='newProject')
-    '''
     self.projectCreated.emit(projectId)
-    CCP4Modules.PROJECTSMANAGER().backupDBXML()
+    PROJECTSMANAGER().backupDBXML()
     pView = openProject(projectId)
 
     #print 'CNewProjectGui.addProject to close'
@@ -343,16 +320,6 @@ class CExportOptionsDialog(QtWidgets.QDialog):
     line.addWidget(self.selectionWidget)
     self.layout().addLayout(line)
 
-
-    #if DEVELOPER():
-    if False:
-      line = QtWidgets.QHBoxLayout()
-      self.excludeI2files = QtWidgets.QCheckBox(self)
-      self.excludeI2files.setChecked(True)
-      line.addWidget(self.excludeI2files)
-      line.addWidget(QtWidgets.QLabel('Exclude demo data files from CCP4I2 distribution',self))
-      self.layout().addLayout(line)
-
     line = QtWidgets.QHBoxLayout()
     buttonBox = QtWidgets.QDialogButtonBox(self)
     but = buttonBox.addButton('Export',QtWidgets.QDialogButtonBox.AcceptRole)
@@ -383,6 +350,7 @@ class CExportJobSelection(QtWidgets.QLineEdit):
       self.setToolTip("Enter list of jobs e.g. '27-29,31'")
 
     def getSelection(self):
+      from ..core.CCP4ProjectsManager import PROJECTSMANAGER
       errList = []
       seleList = []
       text = str(self.text())
@@ -423,7 +391,7 @@ class CImportExportListWidget(QtWidgets.QComboBox):
       self.load()
 
     def load(self):
-      import time
+      from ..core.CCP4ProjectsManager import PROJECTSMANAGER
       exportList = PROJECTSMANAGER().db().getProjectExportInfo(projectId=self.projectId)
       importList = PROJECTSMANAGER().db().getProjectImportInfo(projectId=self.projectId)
       #print 'CImportExportListWidget.load',len(exportList),len(importList)
@@ -460,6 +428,7 @@ class CImportExportListWidget(QtWidgets.QComboBox):
       return qVar.__str__()
 
     def getTime(self):
+      from ..core.CCP4ProjectsManager import PROJECTSMANAGER
       tid = self.getCurrentItem()
       try:
         info = PROJECTSMANAGER().db().getProjectExportInfo(projectExportId=tid)
@@ -483,9 +452,8 @@ class CImportNewProjectDialog(QtWidgets.QDialog):
     self.setWindowTitle('Import a New Project?')
     self.setLayout(QtWidgets.QVBoxLayout())
 
-    from core import CCP4Data
-    from core import CCP4File
-    from core import CCP4DataManager
+    from ..core import CCP4DataManager
+    from ..core import CCP4File
 
     self.projectInfoDisplay = CProjectInfoDisplay(self)
     self.layout().addWidget(self.projectInfoDisplay)
@@ -539,7 +507,6 @@ class CImportNewProjectDialog(QtWidgets.QDialog):
     self.layout().addLayout(line)
 
   def reset(self,importProjectInfo):
-    from core import CCP4Utils
     self.directory0.unSet()
     self.projectInfoDisplay.load(importProjectInfo)
     self.projectNameWidget.setText(importProjectInfo['projectName'])
@@ -570,6 +537,7 @@ class CImportNewProjectDialog(QtWidgets.QDialog):
         QtWidgets.QMessageBox.warning(self,'Import a New Project?','Please enter a name for the new project')
         return
       try:
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         projectId = PROJECTSMANAGER().db().getProjectId(projectName = projectName)
       except:
         pass
@@ -607,10 +575,6 @@ class CImportExistingProjectDialog(QtWidgets.QDialog):
     #self.setModal(True)
     self.setWindowTitle('Import to an Existing Project?')
     self.setLayout(QtWidgets.QVBoxLayout())
-
-    from core import CCP4Data
-    from core import CCP4File
-    from core import CCP4DataManager
 
     self.projectInfoDisplay = CProjectInfoDisplay(self)
     self.layout().addWidget(self.projectInfoDisplay)
@@ -673,11 +637,11 @@ class CProjectInfoDisplay(QtWidgets.QFrame):
     #print 'CProjectInfoDisplay.load',projectInfo
     for item in ['projectName','hostName','userId']:
        self.widgets[item].setText(str(projectInfo.get(item,'')))
-    import time
     t = projectInfo.get('creationTime',None)
     if t is None:
       text = ''
     else:
+      from ..core.CCP4ProjectsManager import PROJECTSMANAGER
       text = time.strftime(PROJECTSMANAGER().db().TIMEFORMAT,time.localtime(float(t)))
     self.widgets['creationTime'].setText(text)
 
@@ -979,11 +943,6 @@ class CProjectsTreeView(QtWidgets.QTreeView):
         mimeData.setData('project',encodedData)
         return mimeData
 
-    def dragLeaveEvent(self,event):
-        self.dropSite = None
-        event.accept()
-        self.repaint()
-
     def dragEnterEvent(self,event):
         if event.mimeData().hasFormat('project'):
             event.accept()
@@ -1055,16 +1014,14 @@ class CProjectsTreeView(QtWidgets.QTreeView):
 
         self.dropSite = None
 
-        if sys.version_info > (3,0):
-            movedProjects = event.mimeData().data('project').data().decode()
-        else:
-            movedProjects = event.mimeData().data('project').data()
+        movedProjects = event.mimeData().data('project').data().decode()
         movedProjects_a = movedProjects.strip(",").split(",")
 
         for movedProject in movedProjects_a:
             if movedProject == targetProjectId:
                 continue
             try:
+                from ..core.CCP4ProjectsManager import PROJECTSMANAGER
                 PROJECTSMANAGER().db().updateProject(movedProject,key='parentProjectId',value=targetProjectId)
             except Exception as e:
                 print('Failed to move project',e)
@@ -1124,17 +1081,18 @@ class CProjectsTreeWidget(QtWidgets.QTreeWidget):
     self.setAcceptDrops(True)
     self.header().resizeSection(0,300)
     #self.setDragDropMode(QtWidgets.QAbstractItemView.InternalMove)
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     PROJECTSMANAGER().db().projectTagsChanged.connect(self.handleProjectTagsChanged)
 
   def projectIcon(self):
     if CProjectsTreeWidget.PROJECTICON is None:
-      from core import CCP4Utils
       fileName = os.path.join(CCP4Utils.getCCP4I2Dir(),'qticons','project.png')
       CProjectsTreeWidget.PROJECTICON = QtGui.QIcon(QtGui.QPixmap(fileName))
     return CProjectsTreeWidget.PROJECTICON
 
   def populate(self,args={}):
     self.clear()
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     proj_dir_list0=PROJECTSMANAGER().db().getProjectDirectoryList()
     #print 'CProjectsView.populate',proj_dir_list
     proj_dir_list = []
@@ -1166,6 +1124,7 @@ class CProjectsTreeWidget(QtWidgets.QTreeWidget):
   @QtCore.Slot(str)
   def handleProjectTagsChanged(self,projectId):
     #print 'CProjectsTreeWidget.handleProjectTagsChanged',projectId,self.projInfo[projectId]['name']
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     tagList = PROJECTSMANAGER().db().getProjectTags(projectId,tagText=True)
     text = ''
     for tid,tagText in tagList:
@@ -1252,7 +1211,7 @@ class CProjectsTreeWidget(QtWidgets.QTreeWidget):
       return seleList[0]
 
   def mimeData(self,widgetItemList):
-    from core import CCP4Data
+    from ..core import CCP4Data
     #print 'CProjectsTreeWidget.mimeData',widgetItemList
     encodedData = QtCore.QByteArray()
     for widgetItem in widgetItemList:
@@ -1277,7 +1236,7 @@ class CProjectsTreeWidget(QtWidgets.QTreeWidget):
     #print 'dragMoveEvent',event.mimeData().hasFormat('project')
     #if event.mimeData().hasFormat('project') and dropItem is not None:
     if event.mimeData().hasFormat('project'):
-      from dbapi import CCP4DbApi
+      from ..dbapi import CCP4DbApi
       movedProject = CCP4DbApi.UUIDTYPE(event.mimeData().data('project').data())
       targetProjectId = self.item2ProjectId(dropItem)
       if movedProject == targetProjectId:
@@ -1292,7 +1251,7 @@ class CProjectsTreeWidget(QtWidgets.QTreeWidget):
     targetItem = self.itemAt(event.pos().x(),event.pos().y())
     #print 'CProjectsTreeWidget.dropEvent',event,targetItem  
     if event.mimeData().hasFormat('project'):
-      from dbapi import CCP4DbApi
+      from ..dbapi import CCP4DbApi
       movedProject = CCP4DbApi.UUIDTYPE(event.mimeData().data('project').data())
       targetProjectId = self.item2ProjectId(targetItem)
       if movedProject == targetProjectId:
@@ -1300,6 +1259,7 @@ class CProjectsTreeWidget(QtWidgets.QTreeWidget):
         return
       #print 'dropEvent targetProject',targetItem,targetProjectId
       try:
+        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         PROJECTSMANAGER().db().updateProject(movedProject,key='parentProjectId',value=targetProjectId)
       except CException as e:
         print('Failed to move project',e.report())
@@ -1352,22 +1312,10 @@ class CProjectsTreeWidget(QtWidgets.QTreeWidget):
 
   def item2ProjectId(self,item):
     if item is None: return None
-    from core import CCP4Data
+    from ..core import CCP4Data
     projectId = CCP4Data.varToUUID(item.data(0,QtCore.Qt.UserRole))
     return  projectId
 
-  '''
-  def mimeTypes(self):
-    return ['project']
-
-  def supportedDropActions(self):
-    print 'supportedDropActions'
-    return QtCore.Qt.MoveAction
-
-  def dropMimeData(self,parent,index,data,action):
-    print 'CProjectsTreeWidget.dropMimeData',parent,index,data,action
-    return True
-  '''
 
 class CProjectsStatusBar(QtWidgets.QStatusBar):
   def __init__(self,parent):
@@ -1401,7 +1349,6 @@ class CProjectsStatusBar(QtWidgets.QStatusBar):
 
 
 def repopulateTreeViewNew(proxyModel,projectsView):
-       from core import CCP4Utils
        projectsViewModel = CProjectsViewModel()
 
        rootItem = projectsViewModel.rootItem
@@ -1424,6 +1371,7 @@ def repopulateTreeViewNew(proxyModel,projectsView):
        proxyModel.setSourceModel(projectsViewModel)
        projectsView.setModel(proxyModel)
 
+       from ..core.CCP4ProjectsManager import PROJECTSMANAGER
        proj_dir_list0=PROJECTSMANAGER().db().getProjectDirectoryList()
        pTagList = PROJECTSMANAGER().db().getProjectTagList()
        commentList = PROJECTSMANAGER().db().getProjectCommentsList()
@@ -1483,7 +1431,6 @@ class CProjectManagerDialog(QtWidgets.QDialog):
   startSavingJobDataSignal = QtCore.Signal()
 
   def __init__(self,parent=None):
-    from core import CCP4Utils
     QtWidgets.QDialog.__init__(self,parent)
     self.newProjectGui = None
     self.importProjectManager = None
@@ -1544,7 +1491,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     cleanupButton.setAutoDefault(False)
     exportButton.setAutoDefault(False)
 
-    if DEVELOPER():
+    if CONFIG().developer:
         rerunButton = self.buttonFrame.addButton('Rerun test project',QtWidgets.QDialogButtonBox.ActionRole)
         rerunButton.setEnabled(False)
         rerunButton.clicked.connect(self.handleRerun)
@@ -1563,7 +1510,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
         moveButton.setEnabled(enab)
         deleteButton.setEnabled(enab)
         exportButton.setEnabled(enab)
-        if DEVELOPER():
+        if CONFIG().developer:
             rerunButton.setEnabled(enab)
         openButton.setDefault(True)
 
@@ -1599,9 +1546,8 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     advButton = QtWidgets.QPushButton()
     if sys.platform == "darwin":
         advButton.setIconSize(QtCore.QSize(12,12))
-    iconDir = os.path.join(os.environ['CCP4I2_TOP'],'qticons')
-    upArrow = QtGui.QIcon(os.path.join(iconDir,"up.png"))
-    downArrow = QtGui.QIcon(os.path.join(iconDir,"down.png"))
+    upArrow = QtGui.QIcon(str(I2_TOP / 'qticons' / "up.png"))
+    downArrow = QtGui.QIcon(str(I2_TOP / 'qticons' / "down.png"))
     advButton.setIcon(downArrow)
     searchFilterWidget.layout().addWidget(advButton)
     searchFilterWidget.layout().setContentsMargins(0,0,0,0)
@@ -1659,6 +1605,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     def handleRepopulateTreeViewNew():
         repopulateTreeViewNew(self.projectsViewProxyModel,self.projectsView)
 
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     PROJECTSMANAGER().db().projectsListChanged.connect(handleRepopulateTreeViewNew)
     PROJECTSMANAGER().db().projectUpdated.connect(handleRepopulateTreeViewNew)
     PROJECTSMANAGER().db().projectCommentEdited.connect(handleRepopulateTreeViewNew)
@@ -1702,6 +1649,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
         w.show()
         w.raise_()
         return
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     pName = PROJECTSMANAGER().db().getProjectInfo(projectId=projectId,mode='projectname')
     descriptionDialog = CProjectDescriptionDialog(self,projectId,pName)
     descriptionDialog.show()
@@ -1720,6 +1668,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
   def handleRenameProject(self):
     projectId=self.projectsView.selectedProjectId()
     if projectId is None: return
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     pName = PROJECTSMANAGER().db().getProjectInfo(projectId=projectId,mode='projectname')
 
     self.renameDialog = QtWidgets.QDialog(self)
@@ -1743,13 +1692,13 @@ class CProjectManagerDialog(QtWidgets.QDialog):
   @QtCore.Slot(str)
   def renameProject(self,projectId):
     self.renameDialog.hide()   
-    from core import CCP4Utils
     #print 'renameProject',projectId,self.renameWidget.text()
     name0 = self.renameWidget.text().__str__()
     if len(name0)==0: return
     name = CCP4Utils.safeOneWord(name0)
     if name0 != name:
       print('Fixing name to ',name)
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     try:
       PROJECTSMANAGER().db().getProjectId(name)
     except:
@@ -1762,7 +1711,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     try:
       PROJECTSMANAGER().db().updateProject(projectId,'projectname',name)
     except CException as e:
-      e.warningMessage(parent=self,windowTitle=self.windowTitle(),message='Error changing project name')
+      warningMessage(e, parent=self,windowTitle=self.windowTitle(),message='Error changing project name')
 
 
   @QtCore.Slot()
@@ -1788,6 +1737,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
       #print 'handleExport calling statusBar'
       self.statusWidget.showMessage("Select a project before selecting 'Export'",5)
       return
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     projectInfo =  PROJECTSMANAGER().db().getProjectInfo(projectId=projectId)
 
     if not hasattr(self,'exportOptions'):
@@ -1803,6 +1753,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
       #print 'handleExport calling statusBar'
       self.statusWidget.showMessage("Select a project before selecting 'Export'",5)
       return
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     projectInfo =  PROJECTSMANAGER().db().getProjectInfo(projectId=projectId)
 
     if not hasattr(self,'exportOptions'):
@@ -1839,7 +1790,6 @@ class CProjectManagerDialog(QtWidgets.QDialog):
 
   @QtCore.Slot(str,int)
   def handleExport2(self,projectId,mode):
-    from core import CCP4Utils
     #print('handleExport2',projectId,mode)
     if mode == 0: return
     if mode == 1:
@@ -1857,20 +1807,17 @@ class CProjectManagerDialog(QtWidgets.QDialog):
         mess = QtWidgets.QMessageBox.warning(self,'Export project',errText)
         return
 
-    #if DEVELOPER():
-    if False:
-      excludeI2files = self.exportOptionsWidget.excludeI2files.isChecked()
-    else:
-      excludeI2files = False
+    excludeI2files = False
 
     #print 'handleExport2',after,jobList
     self.exportOptionsWidget.close()
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     projectInfo =  PROJECTSMANAGER().db().getProjectInfo(projectId=projectId)
 
     safeName = CCP4Utils.safeOneWord(projectInfo['projectname'])
 
-    from qtgui import CCP4FileBrowser
-    from qtcore import CCP4Export
+    from . import CCP4FileBrowser
+    from ..qtcore import CCP4Export
     self.browser = CCP4FileBrowser.CFileDialog(self,
            title='Save project data to compressed file',
            filters= ['CCP4 Project Database (*.'+CCP4Export.COMPRESSED_SUFFIX+')'],
@@ -1881,8 +1828,10 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     self.browser.show()
 
   def export(self,projectId,fileName):
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     jobNumberList,errReport = PROJECTSMANAGER().db().exportProjectXml(projectId,fileName)
-    if len(errReport)>0: errReport.warningMessage(parent=self,windowTitle='Errors exporting project',message='Some errors in exporting project to file:\n'+fileName)
+    if len(errReport)>0:
+       warningMessage(errReport, parent=self,windowTitle='Errors exporting project',message='Some errors in exporting project to file:\n'+fileName)
 
 
   @QtCore.Slot(str,float,list,list,str)
@@ -1891,6 +1840,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     self.browser.hide()
     self.browser.deleteLater()
 
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     projectInfo = PROJECTSMANAGER().db().getProjectInfo(projectId=projectId)
     # If there is a limited set of jobs then find the input jobs that are not output by jobs on that list
     inputFilesList,inputFileIdList,fromJobList,errReport =  PROJECTSMANAGER().getJobInputFiles(projectDir=projectInfo['projectdirectory'],jobIdList=jobList,useDb=True,excludeI2files=excludeI2files)
@@ -1901,41 +1851,25 @@ class CProjectManagerDialog(QtWidgets.QDialog):
       fromJobIdList.append(item[0])
       fromJobNumberList.append(item[1])
 
-    import time,os
     dbxml = os.path.join( projectInfo['projectdirectory'],'CCP4_TMP','DATABASE'+str(int(time.time()))+'.db.xml')
     self.statusWidget.showMessage('Creating XML database:'+dbxml)
     #print 'Creating temporary database xml file in:',dbxml
     # exportProjectXml returns list of TOP-LEVEL jobNumbers for the export
     jobNumberList,errReport = PROJECTSMANAGER().db().exportProjectXml(projectId,fileName=dbxml,recordExport=True,status='exportable',after=after,jobList=jobList,inputFileList=inputFileIdList,inputFileFromJobList=fromJobIdList)
     #print 'CProjectManagerDialog.compressProject jobNumberList',jobNumberList
-    if errReport.maxSeverity()>SEVERITY_WARNING:
+    if errReport.maxSeverity()>Severity.WARNING:
         self.statusWidget.clearMessage()
-        errReport.warningMessage('Export project','Error creating XML database file',parent=self)
+        warningMessage(errReport, 'Export project','Error creating XML database file',parent=self)
         return
 
-
-    #except:
-    #  jobList = []
-    #  err = CErrorReport(self.__class__,171)
-    #  err.warningMessage(title,'Error getting project jobs from database',parent=self)
-    #print 'compressProject',jobList
-
     directoriesList = ['CCP4_IMPORTED_FILES','CCP4_PROJECT_FILES']
-    from qtcore import CCP4Export
+    from ..qtcore import CCP4Export
     self.exportThread = CCP4Export.ExportProjectThread(self,projectDir=projectInfo['projectdirectory'],dbxml=dbxml,target=fileName,jobList=jobNumberList,inputFilesList=inputFilesList,directoriesList=directoriesList,)
     self.exportThread.savingJobData.connect(self.updateSavingJobData)
     self.exportThread.startSavingJobData.connect(self.progressSavingJobData)
     self.exportThread.finished.connect(functools.partial(self.doneSavingJobData,projectInfo['projectname'],fileName))
     self.startSavingJobDataSignal.emit()
     self.exportThread.start()
-
-    '''
-    compressedFile,errReport = PROJECTSMANAGER().compressProject(projectId,fileName,after=after)
-    if compressedFile is None:
-      errReport.warningMessage('Exporting database','Error creating export compressed file')
-    else:
-      QtWidgets.QMessageBox.information(self,'Exporting project','Project saved as'+compressedFile)
-    '''
 
   @QtCore.Slot(int)
   def progressSavingJobData(self,numberOfJobs):
@@ -1958,8 +1892,9 @@ class CProjectManagerDialog(QtWidgets.QDialog):
 
   @QtCore.Slot(str,str)
   def doneSavingJobData(self,projectName,filename):
-    if self.exportThread.errorReport.maxSeverity()>SEVERITY_WARNING:
-      self.exportThread.errorReport.warningMessage('Saving job data','Error saving data files for export',parent=self)
+    report = self.exportThread.errorReport
+    if report.maxSeverity()>Severity.WARNING:
+      warningMessage(report, 'Saving job data','Error saving data files for export',parent=self)
     else:
       self.statusWidget.hideProgress()
       self.statusWidget.showMessage('Project '+str(projectName)+' saved to: '+str(filename))
@@ -1969,7 +1904,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
 
   @QtCore.Slot()
   def handleExportAll(self):
-      from utils import ExportAllProjects
+      from ..core.CCP4ProjectsManager import PROJECTSMANAGER
       projects = PROJECTSMANAGER().db().getProjectDirectoryList()
 
       cwd = os.getcwd()
@@ -2024,6 +1959,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
               pc = int(100. * iproject / origLenProjects)
               progressBar.setValue(pc)
               progressLabel.setText("Exporting project "+name+" "+str(iproject+1)+" of "+str(origLenProjects))
+              from ..utils import ExportAllProjects
               compClass = ExportAllProjects.CompressClass(projectName=name,fileName=os.path.join(rv,name+".ccp4_project.zip"))
               compClass.doneSignal.connect(functools.partial(exportNextProject,iproject+1))
               compClass.run()
@@ -2038,15 +1974,14 @@ class CProjectManagerDialog(QtWidgets.QDialog):
 
   @QtCore.Slot()
   def handleImportProject(self):
-
-    from dbapi import CCP4DbApi
+    from ..dbapi import CCP4DbApi
     CCP4DbApi.CDbXml.updateInstances()
     if len(CCP4DbApi.CDbXml.Instances)>0:
       QtWidgets.QMessageBox.warning(self,'Import project','Another import is already in progress - please wait')
       return
 
-    from qtgui import CCP4FileBrowser
-    from qtcore import CCP4Export
+    from . import CCP4FileBrowser
+    from ..qtcore.CCP4CustomMimeTypes import MIMETYPESHANDLER
     self.browser = CCP4FileBrowser.CFileDialog(self,
            title='Import project compressed file',
            filters = [ MIMETYPESHANDLER().getMimeTypeInfo("application/CCP4-compressed-db",'filter') ],
@@ -2057,7 +1992,6 @@ class CProjectManagerDialog(QtWidgets.QDialog):
 
   @QtCore.Slot(str)
   def handleImportProject1(self,compressedFile):
-    from qtgui import CCP4FileBrowser
 
     if hasattr(self,'browser'):
       try:
@@ -2069,10 +2003,11 @@ class CProjectManagerDialog(QtWidgets.QDialog):
 
     self.statusWidget.showMessage('Checking contents of compressed file')
 
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     try:
       xmlFile = PROJECTSMANAGER().extractDatabaseXml(compressedFile)
     except CException as e:
-      e.warningMessage('Import project','Failed extracting database XML file from compressed file',parent=self)
+      warningMessage(e, 'Import project','Failed extracting database XML file from compressed file',parent=self)
       self.statusWidget.clear()
     except Exception as e:
       QtWidgets.QMessageBox.warning(self,'Import project','Error extracting database xml file from '+str(compressedFile))
@@ -2080,7 +2015,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
       return
 
     try:
-      from dbapi import CCP4DbApi
+      from ..dbapi import CCP4DbApi
       self.dbImport = CCP4DbApi.CDbXml(db=PROJECTSMANAGER().db(),xmlFile=xmlFile)
       #self.dbImport.setDiagnostic(True)
       importProjectInfo = self.dbImport.loadProjectInfo()  
@@ -2126,6 +2061,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
       projectId = self.importNewDialog.mergeProject()
       self.importNewDialog.deleteLater()
       del self.importNewDialog
+      from ..core.CCP4ProjectsManager import PROJECTSMANAGER
       projectInfo = PROJECTSMANAGER().db().getProjectInfo(projectId=projectId)
       self.dbImport.projectId = projectId
       self.dbImport.projectDirectory = projectInfo['projectdirectory']
@@ -2152,9 +2088,9 @@ class CProjectManagerDialog(QtWidgets.QDialog):
       ret = self.dbImport.createProject()
       if DIAGNOSTIC:
           print('dbImport.createProject()',ret.report())
-      if ret.maxSeverity()>SEVERITY_WARNING:
+      if ret.maxSeverity()>Severity.WARNING:
         print(ret.report())
-        ret.warningMessage(parent=self,windowTitle='Error creating project in database',ifStack=False)
+        warningMessage(ret, parent=self,windowTitle='Error creating project in database',ifStack=False)
         return
 
 
@@ -2172,10 +2108,10 @@ class CProjectManagerDialog(QtWidgets.QDialog):
 
     if DIAGNOSTIC: print('CProjectManagerDialog.importProject setting Temp Tables',self.dbImport.errReport.report())
 
-    if self.dbImport.errReport.maxSeverity()>SEVERITY_WARNING:
+    if self.dbImport.errReport.maxSeverity()>Severity.WARNING:
       if DIAGNOSTIC: print('Error report from the import process..')
       if DIAGNOSTIC: print(self.dbImport.errReport.report())
-      self.dbImport.errReport.warningMessage(parent=self,windowTitle='Error loading data from project export file',ifStack=False)
+      warningMessage(self.dbImport.errReport, parent=self,windowTitle='Error loading data from project export file',ifStack=False)
 
     # Make project directory if necessary
     if not os.path.exists(dirName):
@@ -2186,7 +2122,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
         return
 
     self.statusWidget.showMessage('Unpacking project files to '+dirName)
-    from qtcore import CCP4Export
+    from ..qtcore import CCP4Export
     # Unpack project files from the tar file (possibly in separate thread) 
     # Pass import thread dbImport to enable query database and flagging loaded jobs/files
     if DIAGNOSTIC: print('CProjectManagerDialog.importProject creating import thread')
@@ -2209,7 +2145,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
               print('Job_'+str(item[4]),item[2])
         else:
           print('CProjectManagerDialog.importProject stats', key,value)
-    if errReport.maxSeverity()>SEVERITY_WARNING:
+    if errReport.maxSeverity()>Severity.WARNING:
       self.dbImport.removeTempTables()
       text = 'ERRORS UNPACKING DATA FILES\n'
       for err in errReport: text = text + err['details'] + '\n'
@@ -2235,8 +2171,8 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     if stats.get('incrJobNumber',0) > 0:
         text = text +'\nImporting jobs '+str(stats['importMin'])+' to '+str(stats['importMax'])+' have been renumbered\n'+str(int(stats['importMin'])+int(stats['incrJobNumber']))+' to '+str(int(stats['importMax'])+int(stats['incrJobNumber'])) +' to avoid clash with existing jobs'
     if len(text)>0:  QtWidgets.QMessageBox.information(self,'Import complete',text)
-    CCP4Modules.PROJECTSMANAGER().backupDBXML()
-    import copy
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+    PROJECTSMANAGER().backupDBXML()
     projectId = copy.deepcopy(self.dbImport.projectId)
     openProject(projectId=projectId)
 
@@ -2251,15 +2187,13 @@ class CProjectManagerDialog(QtWidgets.QDialog):
   def doneImportProgress(self):
     pass
 
-  def repairProject(self):
-    pass
-
   @QtCore.Slot()
   def handleDeleteProject(self):
     projectId=self.projectsView.selectedProjectId()
     if projectId is None:
         self.statusWidget.showMessage("Select a project before selecting 'Delete'",5)
         return
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     projectInfo =  PROJECTSMANAGER().db().getProjectInfo(projectId=projectId)
 
     self.deleteDialog = QtWidgets.QDialog(self)
@@ -2285,16 +2219,18 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     deleteDirectory = self.deleteDirectory.isChecked()
     self.deleteDialog.close()
     if projectId is None: return
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     e = PROJECTSMANAGER().deleteProject(projectId=projectId,deleteDirectory=deleteDirectory)
-    if e.maxSeverity()>SEVERITY_WARNING:
-       e.warningMessage('Deleting project',parent=self)
-    CCP4Modules.PROJECTSMANAGER().backupDBXML()
+    if e.maxSeverity()>Severity.WARNING:
+       warningMessage(e, 'Deleting project',parent=self)
+    PROJECTSMANAGER().backupDBXML()
 
   @QtCore.Slot()
   def handleMoveProject(self):
     projectId=self.projectsView.selectedProjectId()
     #print 'handleMoveProject projectId',projectId,type(projectId)
     if projectId is None: return
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     projectInfo =  PROJECTSMANAGER().db().getProjectInfo(projectId=projectId)
 
     self.moveProjectId = projectId
@@ -2316,8 +2252,8 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     self.moveDialog.layout().addWidget(but)
     self.moveModeGroup.buttonReleased[int].connect(self.handleMoveModeChange)
 
-    from core import CCP4File
-    from core import CCP4DataManager
+    from ..core import CCP4DataManager
+    from ..core import CCP4File
     self.moveStack = QtWidgets.QStackedLayout()
     self.moveDialog.layout().addLayout(self.moveStack)
 
@@ -2325,7 +2261,6 @@ class CProjectManagerDialog(QtWidgets.QDialog):
 
 
     self.moveDirectory0 =  CCP4File.CDataFile(parent=self,qualifiers= {  'isDirectory' : True, 'mustExist' : True } )
-    from qtgui import CCP4FileBrowser
     self.moveDirectory0Widget = CCP4DataManager.DATAMANAGER().widget(model=self.moveDirectory0,parentWidget=self,qualifiers={'jobCombo': False, 'projectBrowser' : False } )
     self.moveDirectory0Widget.updateViewFromModel()
     self.moveDirectory0Widget.fileLineEdit.setCharWidth(60,mode='minimum')
@@ -2386,10 +2321,9 @@ class CProjectManagerDialog(QtWidgets.QDialog):
        return
 
     #print 'moveProject',newDir,self.moveMode
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     projectInfo =  PROJECTSMANAGER().db().getProjectInfo(projectId=self.moveProjectId)
     if self.moveMode == 1:
-      import glob
-      import shutil
       try:
         subDirList = glob.glob(os.path.join(projectInfo['projectdirectory'], 'CCP4_*'))
         for subDir in subDirList:
@@ -2404,7 +2338,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     try:
       PROJECTSMANAGER().db().updateProject(self.moveProjectId,key='projectdirectory',value=newDir)
     except CException as e:
-      e.warningMessage(windowTitle='Error updating database',parent=self)
+      warningMessage(e, windowTitle='Error updating database',parent=self)
       return
     except Exception as e:
       QtWidgets.QMessageBox.warning(self,'Error updating database',str(e))
@@ -2419,6 +2353,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     if projectId is None:
       ret = QtWidgets.QMessageBox.question(self,self.windowTitle(),'Remove temporary files from all projects?',QtWidgets.QMessageBox.Ok|QtWidgets.QMessageBox.Cancel)
       if ret != QtWidgets.QMessageBox.Ok: return
+      from ..core.CCP4ProjectsManager import PROJECTSMANAGER
       PROJECTSMANAGER().cleanupAllProjects(context='temporary')
     else:
       msgBox = QtWidgets.QMessageBox()
@@ -2434,18 +2369,18 @@ class CProjectManagerDialog(QtWidgets.QDialog):
   @QtCore.Slot(str,str)
   def handleCleanup2(self,projectId,context):
       #print 'handleCleanup2',projectId,context
-      from core import CCP4ProjectsManager
+      from ..core import CCP4ProjectsManager
       cleanup = CCP4ProjectsManager.CPurgeProject(projectId = projectId)
       cleanup.purgeProject(context=context)
 
   @QtCore.Slot()
   def handleRerun(self):
-    from qtgui import CCP4FileBrowser
     projectId=self.projectsView.selectedProjectId()
     if projectId is None: return
     self.rerunProjectId = projectId
     filter_list = []
 
+    from . import CCP4FileBrowser
     self.rerunDialog = CCP4FileBrowser.CFileDialog(self,fileMode=QtWidgets.QFileDialog.Directory,
       title='Directory for rerun output')
     self.rerunDialog.selectFile.connect(self.rerunProject)
@@ -2453,32 +2388,19 @@ class CProjectManagerDialog(QtWidgets.QDialog):
 
   @QtCore.Slot(str)
   def rerunProject(self,outputDirectory):
-    from coore import CCP4ProjectBasedTesting
-    from qtgui import CCP4TextViewer
     self.rerunDialog.close()
     if not os.path.exists(outputDirectory) or not os.path.isdir(outputDirectory):
       QtWidgets.QMessageBox.warning(self,'No suitable directory for project rerun','You must provide a directory in which the rerun project directory will be created')
       return
+    from ..core import CCP4ProjectBasedTesting
     self.projectBasedTest = CCP4ProjectBasedTesting.CProjectBasedTesting(sourceProjectList=[self.rerunProjectId],outputDirectory=outputDirectory,useCurrentDb=True)
     #self.projectBasedTest.start()
     self.projectBasedTest.runTests()
     logFile = self.projectBasedTest.logFiles[-1]
     print('Re-running project log file:',logFile)
+    from .CCP4WebBrowser import WEBBROWSER
     widget = WEBBROWSER().openFile(logFile)
     self.projectBasedTest.reportUpdated.connect(WEBBROWSER().reloadFile)
-
-
-  def handleRecover(self):
-    # Attempt to recreate database from the contents of the project directory - no longer working
-    ret = QtWidgets.QMessageBox.question(self,'Recover project',"This will attempt to restore a project to the database\n from the information in the project directory.\nAn intermediary file called my_project_dir.ccp4db.xml will be created and read automatically.\nThis file could also be edited and read with the 'Import project XML' tool.",QtWidgets.QMessageBox.Ok|QtWidgets.QMessageBox.Cancel)
-    if ret == QtWidgets.QMessageBox.Cancel: return
-
-    from qtgui import CCP4FileBrowser
-    self.browser = CCP4FileBrowser.CFileDialog(self,
-           title='Recover database from the project directory',
-           fileMode=QtWidgets.QFileDialog.Directory  )
-    self.browser.selectFile.connect(self.recoverProject)
-    self.browser.show()
 
   def recoverProject(self,projectDir):
     #print 'recoverProject',projectDir
@@ -2489,7 +2411,7 @@ class CProjectManagerDialog(QtWidgets.QDialog):
       QtWidgets.QMessageBox.warning(self,'Not a project directory?','This does not appear to be a CCP4i2 project directory which should contain a CCP4_JOBS sub-directory')
       return
 
-    from dbapi import CCP4DbUtils
+    from ..dbapi import CCP4DbUtils
     self.makeDbXml = CCP4DbUtils.CMakeProjectDbXml(self,projectDir=projectDir,projectName=os.path.split(projectDir)[-1])
     self.makeDbXml.jobLoaded.connect(self.statusWidget.setProgress)
 
@@ -2498,14 +2420,14 @@ class CProjectManagerDialog(QtWidgets.QDialog):
 
     errReport = self.makeDbXml.loadProject()
 
-    if errReport.maxSeverity()>SEVERITY_WARNING:
-      errReport.warningMessage(parent=self,windowTitle='Error recovering project directory',
-                               message='Some errors are reported',ifStack=False,minSeverity=SEVERITY_ERROR)
+    if errReport.maxSeverity()>Severity.WARNING:
+      warningMessage(errReport, parent=self,windowTitle='Error recovering project directory',
+                               message='Some errors are reported',ifStack=False,minSeverity=Severity.ERROR)
       return
 
     xmlFile = self.makeDbXml.saveXmlFile()
     if len(errReport)>0:
-       errReport.warningMessage(parent=self,windowTitle='Project database information recovered',
+       warningMessage(errReport, parent=self,windowTitle='Project database information recovered',
          message='The project database information has been recovered and saved to '+xmlFile+ \
         '\nThere are some warnings which can probably be ignored.\nTo seee click Show Details' ,ifStack=False)
 
@@ -2514,24 +2436,9 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     self.statusWidget.clear()
     self.statusWidget.removeProgress()
 
-  def handleImportXmlDatabase(self):
-    from qtgui import CCP4FileBrowser
-    self.browser = CCP4FileBrowser.CFileDialog(self,
-           title='Recover database from the project directory',
-           filters= ['CCP4 Database XML (*.ccp4db.xml)'],
-           defaultSuffix= 'xml',
-           fileMode=QtWidgets.QFileDialog.ExistingFile  )                   
-    self.browser.selectFile.connect(self.handleRecoverDirSelected)
-    self.browser.show()
-
-  @QtCore.Slot(str)
-  def handleRecoverDirSelected(self,xmlFile):
-    self.browser.hide()
-    self.importXmlDatabase(xmlFile)
-
   def importXmlDatabase(self,xmlFile,projectDir=None):
-    from dbapi import CCP4DbApi
-
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
+    from ..dbapi import CCP4DbApi
     self.dbImport = CCP4DbApi.CDbXml(db=PROJECTSMANAGER().db(),xmlFile=xmlFile)
     projectInfo = self.dbImport.loadProjectInfo()
     # Check that we have a projectId and it is not already in DB
@@ -2555,9 +2462,9 @@ class CProjectManagerDialog(QtWidgets.QDialog):
     self.dbImport.createTempTables()
     self.dbImport.loadTempTable()
 
-    if self.dbImport.errReport.maxSeverity()>SEVERITY_WARNING:
+    if self.dbImport.errReport.maxSeverity()>Severity.WARNING:
       print('Error report from the import process..')
-      self.dbImport.errReport.warningMessage(windowTitle='Project manager- importing XML',
+      warningMessage(self.dbImport.errReport, windowTitle='Project manager- importing XML',
                                 message='Failed importing database from XML file',ifStack=False,parent=self)
     else:
       self.dbImport.setAllToImport()
@@ -2586,6 +2493,7 @@ class CProjectDescription(QtWidgets.QFrame):
   def __init__(self,parent,projectId,projectName=''):
     QtWidgets.QFrame.__init__(self,parent)
     self.projectId = projectId
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     self.dbTags = PROJECTSMANAGER().db().getTagList()
     #print 'CProjectDescription self.dbTags',self.dbTags
 
@@ -2599,7 +2507,7 @@ class CProjectDescription(QtWidgets.QFrame):
     self.layout().addWidget(self.annotationWidget,1,0,4,self.TAGSPERROW)
 
     #self.layout().addWidget(QtWidgets.QLabel('Tag the project..',self),5,0,1,self.TAGSPERROW)
-    from qtgui import CCP4GuiUtils
+    from . import CCP4GuiUtils
     icon = CCP4GuiUtils.createIcon('list_add_grey')
     self.moreTagsBut = QtWidgets.QToolButton(self)
     self.moreTagsBut.setIcon(icon)
@@ -2661,9 +2569,10 @@ class CProjectDescription(QtWidgets.QFrame):
     if len(text)==0:
       return
     try:
+      from ..core.CCP4ProjectsManager import PROJECTSMANAGER
       tagId = PROJECTSMANAGER().db().newTag(self.projectId,text=text)
     except CException as e:
-      e.warningMessage('Save project tag','Failed saving new project tag',self)
+      warningMessage(e, 'Save project tag','Failed saving new project tag',self)
       return
     except Exception as e:
       print('Failed creating tag',e)
@@ -2695,6 +2604,7 @@ class CProjectDescription(QtWidgets.QFrame):
         self.drawTags()
         self.tagWidgets[-self.TAGSPERROW].setCurrentIndex(tagWidget.count()-1)
     elif mode in [ 'tagDeleted', 'tagUpdated','unusedTagsDeleted']:
+      from ..core.CCP4ProjectsManager import PROJECTSMANAGER
       self.dbTags = PROJECTSMANAGER().db().getTagList()
       comboList = []
       comboList.extend(self.tagWidgets)
@@ -2737,9 +2647,11 @@ class CProjectDescription(QtWidgets.QFrame):
         tid = str(tW.itemData(tW.currentIndex()))
         if not tid in projectTagList: projectTagList.append(tid )
     #print 'CProjectDescription.handleTagWidgetChanged',projectTagList
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     PROJECTSMANAGER().db().resetProjectTags(self.projectId,projectTagList)
 
   def load(self):
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     if self.projectId is not None:
       commentInfo = PROJECTSMANAGER().db().getCommentInfo(projectId=self.projectId)
     else:
@@ -2771,6 +2683,7 @@ class CProjectDescription(QtWidgets.QFrame):
     if projectId is not None: self.projectId = projectId
     annotation = str(self.annotationWidget.toPlainText())
     #print 'CProjectDescription.save',annotation
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     if self.commentId is None:
       PROJECTSMANAGER().db().createComment(projectId=self.projectId,comment=annotation)
     else:
@@ -2809,6 +2722,7 @@ class CProjectDescription(QtWidgets.QFrame):
       self.deleteTagWarning.setText('')
       return
     tagId = self.deleteTagCombo.itemData(self.deleteTagCombo.currentIndex(),QtCore.Qt.UserRole).__str__()
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     taggedProjects = PROJECTSMANAGER().db().getProjectsWithTag(tagId)
     if len(taggedProjects)>0:
       text = 'Tag used: '+ taggedProjects[0][1]
@@ -2821,10 +2735,12 @@ class CProjectDescription(QtWidgets.QFrame):
   def applyDeleteTag(self):
     if self.deleteTagCombo.currentIndex() == 0: return
     tagId = self.deleteTagCombo.itemData(self.deleteTagCombo.currentIndex(),QtCore.Qt.UserRole).__str__()
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     PROJECTSMANAGER().db().deleteTag(tagId)
     self.deleteTagCombo.window().hide()
 
   def deleteUnusedTags(self):
+    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     PROJECTSMANAGER().db().deleteUnusedTags()
 
   def editTag(self):
@@ -2868,6 +2784,7 @@ class CProjectDescription(QtWidgets.QFrame):
     #print 'saveEditTag',new
     if len(new)==0 or new == self.editTagCombo.currentText(): return
     try:
+      from ..core.CCP4ProjectsManager import PROJECTSMANAGER
       PROJECTSMANAGER().db().updateTag(tagId,'text',new)
     except Exception as e:
       print('ERROR editing tag', e)
@@ -2892,290 +2809,3 @@ class CProjectDescriptionDialog(QtWidgets.QDialog):
     ret = self.widget.save()
     self.close()
     self.deleteLater()
-
-class CSearchProjectWidget(QtWidgets.QFrame):
-  def __init__(self,parent):
-    QtWidgets.QFrame.__init__(self,parent)
-    from qtgui import CCP4GuiUtils
-    self.setFrameShape(QtWidgets.QFrame.Box)
-    self.setLineWidth(2)
-    self.setLayout(QtWidgets.QVBoxLayout())
-    self.layout().setSpacing(2)
-    self.layout().setContentsMargins(2,2,2,2)
-    self.widgets = {}
-    self.model = {}
-
-    line = QtWidgets.QHBoxLayout()
-    line.addWidget(QtWidgets.QLabel('Highlight  ',self))
-    for item,label in [['name','name'],['annotation','description or'],['tags','tag']]:
-      self.widgets[item] = QtWidgets.QCheckBox(label,self)
-      self.widgets[item].setChecked(True)
-      line.addWidget(self.widgets[item])
-    self.widgets['textSearchMode'] = QtWidgets.QComboBox(self)
-    self.widgets['textSearchMode'].setEditable(False)
-    for lab in [ 'is','starts with','contains']:
-      self.widgets['textSearchMode'].addItem(lab)
-    self.widgets['textSearchMode'].setCurrentIndex(2)
-    line.addWidget(self.widgets['textSearchMode'])
-    self.widgets['text'] = CTagLineEdit(self)
-    line.addWidget(self.widgets['text'])
-    self.widgets['tagCombo'] =  QtWidgets.QComboBox(self)
-    self.widgets['tagCombo'].setEditable(False)
-    self.widgets['tagCombo'].currentIndexChanged[int].connect(self.handleTagCombo)
-    self.loadTagCombo()
-    line.addWidget(self.widgets['tagCombo'])
-
-    self.simpleButtons = QtWidgets.QFrame(self)
-    line.addWidget(self.simpleButtons)
-    self.simpleButtons.setLayout(QtWidgets.QHBoxLayout())
-    self.simpleButtons.layout().setSpacing(0)
-    self.simpleButtons.layout().setContentsMargins(0,0,0,0)
-    for text,icon,toolTip,action in [
-         [ 'Search',None , 'Highlight matching projects', self.doSearch ],
-         [ None ,'undo' , 'Unset highlighted projects', self.clear ],
-         [ None ,'help', 'Show help pages' , self.showHelp] ,
-         [ None ,'search-plus' , 'Show advanced search tools' ,functools.partial(self.toggleAdvanced,True) ] ]:
-      but = QtWidgets.QToolButton(self)
-      if text is not None:
-        but.setText(text)
-        but.setMinimumHeight(but.iconSize().height())
-      else:
-        icon =CCP4GuiUtils.createIcon(name=icon)    
-        but.setIcon(icon)
-      but.setToolTip(toolTip)
-      but.clicked.connect(action)
-      self.simpleButtons.layout().addWidget(but)
-
-    self.layout().addLayout(line)
-    self.widgets['text'].enterKeyPress.connect(self.doSearch)
-
-    PROJECTSMANAGER().db().tagCreated.connect(self.loadTagCombo)
-    PROJECTSMANAGER().db().tagUpdated.connect(self.loadTagCombo)
-    PROJECTSMANAGER().db().tagDeleted.connect(self.loadTagCombo)
-
-    self.adFrame = None
-
-  @QtCore.Slot()
-  def loadTagCombo(self):
-    self.widgets['tagCombo'].clear()
-    self.widgets['tagCombo'].addItem('Tag..',0)
-    for tagId,parentId,text in PROJECTSMANAGER().db().getTagList():
-      self.widgets['tagCombo'].addItem(text,tagId)
-
-  @QtCore.Slot(int)
-  def handleTagCombo(self,indx):
-    if indx==0: return
-    self.widgets['text'].setText(self.widgets['tagCombo'].currentText())
-
-  def drawAdvancedFrame(self):
-    from core import CCP4Annotation
-    from qtgui import CCP4AnnotationWidgets,CCP4GuiUtils
-    self.adFrame = QtWidgets.QFrame(self)
-    self.adFrame.setLayout(QtWidgets.QVBoxLayout())
-    self.adFrame.layout().setSpacing(1)
-    self.adFrame.layout().setContentsMargins(1,1,1,1)
-    self.adFrame.hide()
-    self.layout().addWidget(self.adFrame)
-
-    line = QtWidgets.QHBoxLayout()
-    line.setSpacing(1)
-    '''
-    Taken out alternative date search modes - just use active mode
-    line.addWidget(QtWidgets.QLabel('and was',self))
-    self.widgets['dateMode'] = QtWidgets.QButtonGroup(self)
-    for item,bid in [['active',1],['created',2],['last accessed',3]]:
-      but = QtWidgets.QRadioButton(item,self)
-      line.addWidget(but)
-      self.widgets['dateMode'].addButton(but,bid)
-    self.widgets['dateMode'].button(1).setChecked(True)
-    '''
-    self.widgets['useDate'] = QtWidgets.QCheckBox('Project active',self)
-    self.widgets['useDate'].setChecked(False)
-    line.addWidget(self.widgets['useDate'])   
-    self.model['dateRange']=CCP4Annotation.CDateRange(parent=self)
-    self.widgets['dateRange'] = CCP4AnnotationWidgets.CDateRangeView(parent=self,model=self.model['dateRange'])
-    self.widgets['dateRange'].layout().takeAt(0).widget().deleteLater()
-    self.widgets['dateRange'].setStyleSheet("QFrame { border : 0px };")
-    line.addWidget(self.widgets['dateRange'])
-    line.addStretch(2)
-    self.adFrame.layout().addLayout(line)
-
-    line = QtWidgets.QHBoxLayout()
-    line.addWidget(QtWidgets.QLabel('and is a sub-project of',self))
-    from qtgui import CCP4Widgets
-    self.widgets['drop'] = QtWidgets.QToolButton(self)
-    self.widgets['drop'].setIcon(QtGui.QIcon(CCP4Widgets.PIXMAPMANAGER().getPixmap('project')))
-    line.addWidget(self.widgets['drop'])   
-    self.widgets['parent'] = QtWidgets.QComboBox(self)
-    self.widgets['parent'].setEditable(False)
-    line.addWidget(self.widgets['parent'])
-    line.setStretch(2,2)
-    self.adFrame.layout().addLayout(line)
-
-    line = QtWidgets.QHBoxLayout()
-    line.addWidget(QtWidgets.QLabel('and uses',self))
-    self.modeButtonGroup = QtWidgets.QButtonGroup(self)
-    self.modeButtonGroup.setExclusive(True)
-    butId = 0
-    #for item in ['task and control parameters or','imported file or','directory']:
-    for item in ['imported file or','directory']:
-      but = QtWidgets.QRadioButton(item,self)
-      butId += 1
-      self.modeButtonGroup.addButton(but,butId)
-      line.addWidget(but)
-    line.addStretch(2)
-    self.modeButtonGroup.button(1).setChecked(True)
-    self.modeButtonGroup.buttonClicked[int].connect(self.handleModeChange)
-    self.adFrame.layout().addLayout(line)
-
-    self.modeStack = QtWidgets.QStackedLayout()
-    self.adFrame.layout().addLayout(self.modeStack)
-
-    frame = QtWidgets.QFrame(self)
-    frame.setLayout(QtWidgets.QVBoxLayout())
-    frame.layout().setSpacing(2)
-    frame.layout().setContentsMargins(2,2,2,2)
-    line = QtWidgets.QHBoxLayout()
-    line.addWidget(QtWidgets.QLabel('Task'))
-
-    '''
-    #self.widgets['taskName'] = QtWidgets.QTreeView(self)
-    self.widgets['taskName'] =CCP4Widgets.CTreeComboBox(self)
-    self.taskMenu = CCP4Widgets.CTasksModel(self)
-    self.widgets['taskName'].setModel(self.taskMenu)    
-    line.addWidget(self.widgets['taskName'])
-    frame.layout().addLayout(line)
-    self.modeStack.addWidget(frame)
-    '''
-
-    frame = QtWidgets.QFrame(self)
-    frame.setLayout(QtWidgets.QVBoxLayout())
-    frame.layout().setSpacing(2)
-    frame.layout().setContentsMargins(2,2,2,2)
-    line = QtWidgets.QHBoxLayout()
-    from core import CCP4File
-    self.model['importedFile'] = CCP4File.CDataFile(parent=self)
-    self.widgets['importedFile'] = CCP4Widgets.CDataFileView(self,model=self.model['importedFile'],
-                qualifiers= { 'jobCombo':False, 'autoInfoOnFileImport':False, 'browseDb' : False } )
-    self.widgets['importedFile'].layout().takeAt(0).widget().deleteLater()
-    line.addWidget(QtWidgets.QLabel('File imported into project'))
-    line.addWidget( self.widgets['importedFile'])
-    line.setStretchFactor(self.widgets['importedFile'],2)
-    frame.layout().addLayout(line)
-    self.modeStack.addWidget(frame)
-
-    frame = QtWidgets.QFrame(self)
-    frame.setLayout(QtWidgets.QVBoxLayout())
-    frame.layout().setSpacing(2)
-    frame.layout().setContentsMargins(2,2,2,2)
-    line = QtWidgets.QHBoxLayout()
-    self.model['projectDir'] = CCP4File.CDataFile(parent=self,qualifiers={'isDirectory':True, 'mustExist' : True })
-    self.widgets['projectDir'] = CCP4Widgets.CDataFileView(self,model=self.model['projectDir'],
-                qualifiers= { 'jobCombo':False, 'autoInfoOnFileImport':False, 'browseDb' : False } )
-    self.widgets['projectDir'].layout().takeAt(0).widget().deleteLater()
-    line.addWidget(QtWidgets.QLabel('Uses project directory'))
-    line.addWidget( self.widgets['projectDir'])
-    line.setStretchFactor(self.widgets['projectDir'],2)
-    frame.layout().addLayout(line)
-    self.modeStack.addWidget(frame)
-
-    line =QtWidgets.QHBoxLayout()
-    line.addStretch(0.5)
-    for icon,label,action in [ ['search','Search',self.doSearch],
-                          ['help','Help',self.showHelp],
-                          ['undo','Clear',self.clear],
-                          ['search-plus','Close',functools.partial(self.toggleAdvanced,False)] ]:
-      icon =CCP4GuiUtils.createIcon(name=icon)
-      but = QtWidgets.QPushButton(icon,label,self)
-      but.clicked.connect(action)
-      line.addWidget(but)
-      line.addStretch(0.1)
-    line.addStretch(0.5)
-    self.adFrame.layout().addLayout(line)
-
-    self.load()
-
-  @QtCore.Slot(bool)
-  def toggleAdvanced(self,advanced=None):
-    #print 'toggleAdvanced',advanced,self.height()
-    if not advanced:
-      self.adFrame.hide()
-      self.simpleButtons.show()
-    else:
-      # Save the heigth of the basic frame to reset when closing advanced
-      if self.adFrame is None: self.drawAdvancedFrame()
-      self.adFrame.show()
-      self.simpleButtons.hide()
-
-  @QtCore.Slot(int)
-  def handleModeChange(self,mode):
-    self.modeStack.setCurrentIndex(mode-1)
-
-  @QtCore.Slot()
-  def doSearch(self):
-    params = self.get()
-    retList = PROJECTSMANAGER().db().projectSearch(searchParams=params)
-    #print 'CSearchProjectDialog.handleApply',retList
-    pidList = []
-    for pid,name in retList: pidList.append(pid)
-    self.parent().projectsView.setHighlights(None,pidList)
-
-  def clear(self):
-    self.parent().projectsView.setHighlights(None,[])
-
-  @QtCore.Slot(str)
-  def showHelp(self,target=None):
-    WEBBROWSER().loadWebPage(helpFileName='searchTools',target=target)
-
-  def load(self):
-    info = PROJECTSMANAGER().db().getProjectSearchInfo()
-    #print 'load',info
-    self.widgets['parent'].setEditable(True)
-    self.widgets['parent'].clear()
-    self.widgets['parent'].addItem('Not set',-1)
-    for pid,name in info['parentProjects']:
-      self.widgets['parent'].addItem(name,pid)
-    self.widgets['parent'].setEditable(False)
-
-
-  def get(self):
-    ret = {}
-    nSearch = 0
-    for name in [ 'name','annotation','tags']:
-      ret[name] = self.widgets[name].isChecked()
-      if ret[name]: nSearch+=1
-
-    ret['textSearchMode'] = self.widgets['textSearchMode'].currentIndex()
-
-    if nSearch>0:
-      ret['searchText'] = str(self.widgets['text'].text()).strip()
-      if len(ret['searchText']) ==0: ret['searchText'] = None
-    else:
-      ret['searchText'] = None
-
-    '''
-    ret['dateMode'] = ['active','created','lastAccessed'][self.widgets['dateMode'].checkedId()-1]
-    '''
-    if self.adFrame is not None and self.adFrame.isVisible(): 
-      ret['dateMode'] = 'active'
-      ret['useDate'] = self.widgets['useDate'].isChecked()
-
-      self.widgets['dateRange'].updateModelFromView()
-      ret['minTime'],ret['maxTime'] = self.model['dateRange'].epochRange()
-
-      if self.widgets['parent'].currentIndex() == 0:
-        ret['parent'] = None
-      else:
-        ret['parent'] = str(self.widgets['parent'].itemData(self.widgets['parent'].currentIndex()))
-
-      if self.modeButtonGroup.checkedId() == 1:
-        self.widgets['importedFile'].updateModelFromView()
-        if self.model['importedFile'].isSet():
-          ret['importedFile'] = str(self.model['importedFile'])
-      elif self.modeButtonGroup.checkedId() == 2:
-        self.widgets['projectDir'].updateModelFromView()
-        if self.model['projectDir'].isSet():
-          ret['projectDir'] = str(self.model['projectDir'])
-
-    #print 'CSearchProjectWidget.get',ret
-    return ret
