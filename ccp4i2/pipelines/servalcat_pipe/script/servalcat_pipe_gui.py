@@ -15,12 +15,12 @@ import ccp4mg.mmdb2 as mmdb
 import gemmi
 
 from ....core import CCP4XtalData
+from ....core.CCP4Modules import PROJECTSMANAGER
 from ....qtgui import CCP4TaskWidget
 from ...import_merged.script.dybuttons import ChoiceButtons
 
 
 def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None):
-    from ....core.CCP4ProjectsManager import PROJECTSMANAGER
     jobStatus = PROJECTSMANAGER().db().getJobInfo(jobId,'status')
     if jobStatus == 'Unsatisfactory':
         returnList = ['LidiaAcedrg', 'servalcat_pipe']
@@ -50,7 +50,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
 
   def ToggleTLSModeOn(self):
     if str(self.container.controlParameters.TLSMODE) != 'NONE':
-        from ....core.CCP4ProjectsManager import PROJECTSMANAGER
         CurrentStatus = PROJECTSMANAGER().db().getJobInfo(self._jobId,'status')
         if CurrentStatus == "Pending":
             self.container.controlParameters.BFACSETUSE = True
@@ -59,7 +58,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
 
   def ToggleTLSModeOff(self):
     if str(self.container.controlParameters.TLSMODE) == 'NONE':
-        from ....core.CCP4ProjectsManager import PROJECTSMANAGER
         CurrentStatus = PROJECTSMANAGER().db().getJobInfo(self._jobId,'status')
         if CurrentStatus == "Pending":
             self.container.controlParameters.BFACSETUSE = False

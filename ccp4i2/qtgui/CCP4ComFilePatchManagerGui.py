@@ -10,6 +10,7 @@ import re
 from PySide2 import QtCore, QtWidgets
 
 from ..core.CCP4ErrorHandling import Severity
+from ..core.CCP4Modules import COMFILEPATCHMANAGER, PROJECTSMANAGER, WEBBROWSER
 from ..core.CCP4WarningMessage import warningMessage
 from ..qtgui import CCP4CustomisationGui
 
@@ -29,7 +30,6 @@ class CComFilePatchManagerGui(CCP4CustomisationGui.CCustomisationGui):
     CCP4CustomisationGui.CCustomisationGui.__init__(self,parent=parent,mode='comfilepatch',title='Task Parameter and Patches Manager')
 
   def manager(self):
-    from ..core.CCP4ComFilePatchManager import COMFILEPATCHMANAGER
     return COMFILEPATCHMANAGER()
 
   def handleNew(self):
@@ -156,7 +156,6 @@ class CCreatePatchDialog(QtWidgets.QDialog):
     self.originalTextEdit.clear()
     # get list of projectId,projectName,projectDir,parentId
     if hasattr(self,'projectCombo'):
-      from ..core.CCP4ProjectsManager import PROJECTSMANAGER
       projectList =  PROJECTSMANAGER().db().listProjects(order='name')
       for project in projectList:
         item = self.projectCombo.addItem(project[1],project[0])
@@ -169,7 +168,6 @@ class CCreatePatchDialog(QtWidgets.QDialog):
     
   @QtCore.Slot()
   def help(self):
-    from ..qtgui.CCP4WebBrowser import WEBBROWSER
     WEBBROWSER().loadWebPage(helpFileName='customisation')
 
   @QtCore.Slot()
@@ -195,7 +193,6 @@ class CCreatePatchDialog(QtWidgets.QDialog):
                                 "Please click 'Save task parameters' again" )
       return
 
-    from ..core.CCP4ComFilePatchManager import COMFILEPATCHMANAGER
     diry = COMFILEPATCHMANAGER().getDirectory(name=name)
     if os.path.exists(diry):
       msgBox = QtWidgets.QMessageBox()
@@ -229,7 +226,6 @@ class CCreatePatchDialog(QtWidgets.QDialog):
       jobId = self.selectedJob
       while jobId is not None:
         try:
-          from ..core.CCP4ProjectsManager import PROJECTSMANAGER
           jobInfoList.append( PROJECTSMANAGER().db().getJobInfo(jobId=jobId,mode=['parentjobid','taskname']) )
           jobId = jobInfoList[-1]['parentjobid']
         except:
@@ -240,7 +236,6 @@ class CCreatePatchDialog(QtWidgets.QDialog):
     title = self.titleLineEdit.text().__str__()
     useControlParams = self.useControlParamsWidget.isChecked()
     print('createPatch title',title)
-    from ..core.CCP4ComFilePatchManager import COMFILEPATCHMANAGER
     err = COMFILEPATCHMANAGER().createPatch(name,title,taskNameList,self.selectedProject,self.selectedJob,self.originalText,text2,useControlParams,overwrite=True)
     if err.maxSeverity()>Severity.WARNING:
       warningMessage(err, 'Create command file patch','Error saving patch',parent=self)
@@ -249,7 +244,6 @@ class CCreatePatchDialog(QtWidgets.QDialog):
 
   def patchContainer(self,name):
     from ..core import CCP4ComFilePatchManager
-    from ..core.CCP4ComFilePatchManager import COMFILEPATCHMANAGER
     container = CCP4ComFilePatchManager.CPatchDefinition(parent=self,name=name)
     fileName=COMFILEPATCHMANAGER().getCustomFile(name=name)
     #print 'patchContainer fileName',fileName
@@ -262,7 +256,6 @@ class CCreatePatchDialog(QtWidgets.QDialog):
     return container,None
 
   def loadPatch(self,name):
-    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     container,errMess = self.patchContainer(name)
     if errMess is not None:
       QtWidgets.QMessageBox.warning(self,'Error loading task parameter information',errMess)

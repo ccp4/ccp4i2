@@ -15,6 +15,7 @@ from PySide2 import QtCore, QtGui, QtWidgets
 from . import CCP4TextViewer
 from .. import __version__
 from ..core import CCP4Utils
+from ..core.CCP4Modules import PRINTHANDLER, PROJECTSMANAGER
 from ..core.CCP4Version import CCP4_VERSION
 
 
@@ -61,7 +62,6 @@ class CSendJobError(QtWidgets.QDialog):
 
     @QtCore.Slot()
     def applySend(self):
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         from ..dbapi import CCP4DbUtils
         print('applySend')
         comments = str(self.comments.toPlainText())
@@ -104,7 +104,6 @@ class CPrintLogViewer(CCP4TextViewer.CTextViewer):
             f"Using Python version: {sys.version}\n"
             f"Using Qt version: {QtCore.qVersion()}\n"
         )
-        from ..core.CCP4PrintHandler import PRINTHANDLER
         ph = PRINTHANDLER()
         text = ph.getContent(thread)
         self.viewer.append(versionText + text)

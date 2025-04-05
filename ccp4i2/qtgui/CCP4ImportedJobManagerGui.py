@@ -9,6 +9,7 @@ import os
 from PySide2 import QtCore, QtWidgets
 
 from ..core import CCP4ImportedJobManager
+from ..core.CCP4Modules import IMPORTEDJOBMANAGER, WEBBROWSER
 from ..qtgui import CCP4CustomisationGui, CCP4Widgets
 
 
@@ -28,7 +29,6 @@ class CImportedJobManagerGui(CCP4CustomisationGui.CCustomisationGui):
     
 
   def manager(self):
-    from ..core.CCP4ImportedJobManager import IMPORTEDJOBMANAGER
     return IMPORTEDJOBMANAGER()
 
   def handleNew(self):
@@ -120,7 +120,6 @@ class CCreateImportedJobDialog(QtWidgets.QDialog):
     self.widgets = {}
     self.model = CCP4ImportedJobManager.CImportedJobDefinition(self,name=name)
     if name is not None:
-      from ..core.CCP4ImportedJobManager import IMPORTEDJOBMANAGER
       self.model.loadDataFromXml(fileName=os.path.join(IMPORTEDJOBMANAGER().getDirectory(name),'task.xml'),loadHeader=True)
 
     line = QtWidgets.QHBoxLayout()
@@ -224,7 +223,6 @@ class CCreateImportedJobDialog(QtWidgets.QDialog):
     
   @QtCore.Slot()
   def help(self):
-    from .CCP4WebBrowser import WEBBROWSER
     WEBBROWSER().loadWebPage(helpFileName='customisation')
 
   @QtCore.Slot()
@@ -235,7 +233,6 @@ class CCreateImportedJobDialog(QtWidgets.QDialog):
   def accept(self):
     if not self.model.isValid(): return
     name = self.model.name.__str__()
-    from ..core.CCP4ImportedJobManager import IMPORTEDJOBMANAGER
     if os.path.exists(os.path.join(IMPORTEDJOBMANAGER().getDirectory(name))):
       QtWidgets.QMessageBox.warning(self,self.windowTitle(),'There is already an imported job called: '+name+'.  Please enter alternative name')
       return

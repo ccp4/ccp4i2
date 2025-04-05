@@ -13,6 +13,7 @@ import traceback
 from PySide2 import QtCore, QtGui, QtWidgets
 
 from .. import __version__, __version_date__
+from ..core.CCP4Modules import PROJECTSMANAGER
 
 
 class CMessageBox(QtWidgets.QDialog):
@@ -97,7 +98,6 @@ class CMessageBox(QtWidgets.QDialog):
 
   @QtCore.Slot()
   def send(self):
-    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     from ..dbapi import CCP4DbApi
     selectedAdr = None
     selectedDev = self.devWidget.currentText().__str__()

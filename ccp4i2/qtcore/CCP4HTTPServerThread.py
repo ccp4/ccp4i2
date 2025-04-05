@@ -12,6 +12,7 @@ import dials
 import mrparse
 
 from ..core import CCP4Utils
+from ..core.CCP4Modules import DBSERVER, PRINTHANDLER
 from ..utils.QApp import QTAPPLICATION
 
 
@@ -44,7 +45,6 @@ class CHTTPServerThread(QtCore.QThread):
         CHTTPServerThread.insts = self
         self.port = None
         self.parentDir = parentDir
-        from ..qtcore.CCP4DbThread import DBSERVER
         self.dbThread = DBSERVER(fileName)
       
     def quitServer(self):
@@ -65,7 +65,6 @@ class CHTTPServerThread(QtCore.QThread):
       if self.httpd is not None:
            sa = self.httpd.socket.getsockname()
            message = f"CCP4i2 starting HTTP server on {sa[0]} port {sa[1]}\n"
-           from ..core.CCP4PrintHandler import PRINTHANDLER
            f = PRINTHANDLER().getFileObject(thread='HTTPServer',name='HTTPServer')
            f.write(message)
            print(message)

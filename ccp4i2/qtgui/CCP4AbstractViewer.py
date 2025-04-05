@@ -12,6 +12,7 @@ import time
 from PySide2 import QtCore, QtWidgets
 
 from ..core.CCP4ErrorHandling import Severity
+from ..core.CCP4Modules import WEBBROWSER
 from ..utils.QApp import QTAPPLICATION
 
 
@@ -25,7 +26,6 @@ def handleFileChanged(fileName):
     fileName = str(fileName)
     #print 'CCP4AbstractViewer.handleFileChanged',fileName
     indx = 0
-    from ..qtgui.CCP4WebBrowser import WEBBROWSER
     browser = WEBBROWSER(indx)
     while browser is not None:
         tab = browser.fileOpenInTab(fileName)

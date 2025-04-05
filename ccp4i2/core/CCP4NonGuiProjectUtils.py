@@ -17,6 +17,7 @@ from PySide2 import QtCore
 
 from . import CCP4Utils
 from .CCP4ErrorHandling import CException, Severity
+from .CCP4Modules import PROJECTSMANAGER
 
 
 DIAGNOSTIC=True
@@ -29,7 +30,6 @@ class CCP4NonGuiProjectUtils(QtCore.QObject):
     
   def importCompressedArchive(self, compressedArchive=None):
     if not os.path.isfile(compressedArchive): return
-    from .CCP4ProjectsManager import PROJECTSMANAGER
     try:
       xmlFile = PROJECTSMANAGER().extractDatabaseXml(compressedArchive)
     except CException as e:

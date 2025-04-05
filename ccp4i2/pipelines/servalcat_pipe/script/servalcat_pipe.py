@@ -18,6 +18,7 @@ import numpy
 from . import monitor_differences
 from ....core import CCP4ErrorHandling
 from ....core import CCP4Utils
+from ....core.CCP4Modules import PROJECTSMANAGER
 from ....core.CCP4PluginScript import CPluginScript
 
 
@@ -832,7 +833,6 @@ def coefficientsToMap(coefficientsPath, mapPath=None, overSample=1.0):
 
 # Function called from gui to support exporting MTZ files
 def exportJobFile(jobId=None,mode=None,fileInfo={}):
-    from ....core.CCP4ProjectsManager import PROJECTSMANAGER
     theDb = PROJECTSMANAGER().db()
     if mode == 'complete_mtz':
         childJobs = theDb.getChildJobs(jobId=jobId,details=True)

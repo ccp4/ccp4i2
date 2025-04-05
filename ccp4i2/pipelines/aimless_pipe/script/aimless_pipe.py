@@ -15,6 +15,7 @@ from lxml import etree as lxml_etree
 from ....core import CCP4Utils
 from ....core.CCP4Data import CString
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Modules import PROJECTSMANAGER
 from .aimless_cifstats import CifStatsExtractFromXML
 from .aimless_pipe_utils import CellCheck
 
@@ -993,9 +994,6 @@ class aimless_pipe(CPluginScript):
 # ----------------------------------------------------------------------
 # Function to return list of names of exportable MTZ(s)
 def exportJobFile(jobId=None,mode=None):
-    from ....core import CCP4XtalData
-    from ....core.CCP4ProjectsManager import PROJECTSMANAGER
-
     jobDir = PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
     exportFile = os.path.join(jobDir,'exportMtz.mtz')
     if os.path.exists(exportFile): return exportFile
@@ -1015,7 +1013,7 @@ def exportJobFile(jobId=None,mode=None):
     if freerflagOut is None: return truncateOut
 
     # print('aimless_pipe.exportJobFile  runCad:',exportFile,[ freerflagOut ])
-    
+    from ....core import CCP4XtalData
     m = CCP4XtalData.CMtzDataFile(truncateOut)
     #print m.runCad.__doc__   #Print out docs for the function
     outfile,err = m.runCad(exportFile,[ freerflagOut ] )

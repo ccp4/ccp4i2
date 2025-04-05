@@ -17,6 +17,10 @@ from . import CCP4DbApi
 from ..core import CCP4Data
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
+from ..core.CCP4Modules import JOBCONTROLLER
+from ..core.CCP4Modules import PROJECTSMANAGER
+from ..core.CCP4Modules import TASKMANAGER
+from ..core.CCP4Modules import WORKFLOWMANAGER
 
 
 class COpenJob(QtCore.QObject):
@@ -43,7 +47,6 @@ class COpenJob(QtCore.QObject):
         self.reset()
         if jobId is not None:
             self.set(jobId)
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         PROJECTSMANAGER().db().jobStatusUpdated.connect(self.handleJobStatusUpdated)
         PROJECTSMANAGER().db().jobFinished.connect(self.handleJobStatusUpdated)
         PROJECTSMANAGER().db().jobUpdated.connect(self.handleJobUpdated)
@@ -73,10 +76,8 @@ class COpenJob(QtCore.QObject):
             self.__dict__['previous'] = copy.deepcopy(self.jobId)
         self.__dict__['jobId'] = jobId
         if jobId is not None:
-            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             self.__dict__['info'] = PROJECTSMANAGER().db().getJobInfo(jobId=jobId, mode=COpenJob.MODE)
             if self.__dict__['info']['taskname'] is not None:
-                from ..core.CCP4WorkflowManager import WORKFLOWMANAGER
                 self.__dict__['isWorkflow'] = (WORKFLOWMANAGER().getDefFile(self.__dict__['info']['taskname']) is not None)
         else:
             self.__dict__['info'] = {}
@@ -100,7 +101,6 @@ class COpenJob(QtCore.QObject):
             self.__dict__['clonedFromJobId'] = value
 
     def __getattr__(self,key):
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         if key in ['jobId','info','container','isWorkflow','childjobstaskname','clonedFromJobId']:
             return self.__dict__[key]
         elif key == 'projectId':
@@ -130,7 +130,6 @@ class COpenJob(QtCore.QObject):
             if self.jobnumber is not None:
                 text = 'Job ' + str(self.jobnumber) + ':  '
             if self.taskname is not None:
-                from ..core.CCP4TaskManager import TASKMANAGER
                 text = text + TASKMANAGER().getTitle(self.taskname)
             return text
         elif key == 'jobDir':
@@ -184,7 +183,6 @@ class COpenJob(QtCore.QObject):
             self.workflowJobStatusUpdated.emit((args['parentJobId'],args['jobId'],args['taskName'],args['status']))
 
     def createJob(self,taskName=None,taskVersion=None,cloneJobId=None,contextJobId=None,jobNumber=None,copyInputFiles=False):
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         if self.__dict__['_projectId'] is None:
             return CErrorReport(self.__class__,101)
         if taskName is None and cloneJobId is not None:
@@ -245,7 +243,6 @@ class COpenJob(QtCore.QObject):
                 except:
                     print('ERROR copying file',fileObj.__str__(),targetFile)
                 else:
-                    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
                     try:
                         dbFileId = str(fileObj.dbFileId)
                         fileInfo = PROJECTSMANAGER().db().getFileInfo(dbFileId,mode='sourceFileName')
@@ -261,7 +258,6 @@ class COpenJob(QtCore.QObject):
     def setInputByContextJob(self,contextJobId=None):
         from ..core import CCP4File
         #Loop over inputData files to pull best file of type from database
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         db = PROJECTSMANAGER().db()
         for key in self.__dict__['container'].inputData.dataOrder():
             dobj = self.__dict__['container'].inputData.get(key)
@@ -296,7 +292,6 @@ class COpenJob(QtCore.QObject):
 
     def createContainer(self, taskName=None, taskVersion=None):
         from ..core import CCP4Container
-        from ..core.CCP4TaskManager import TASKMANAGER
         defFile = TASKMANAGER().lookupDefFile(taskName,taskVersion)
         if defFile is None:
             return CErrorReport(self.__class__,104,str(taskName)+' '+str(taskVersion))
@@ -324,7 +319,6 @@ class COpenJob(QtCore.QObject):
             return CErrorReport(self.__class__,102)
         if self.__dict__['container'] is None:
             return CErrorReport(self.__class__,105)
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         ifImportFile,errors = PROJECTSMANAGER().importFiles(jobId=self.jobId,container=self.container)
         #print 'COpenJob.runJob',ifImportFile,errors
         rv = self.saveParams()
@@ -333,9 +327,7 @@ class COpenJob(QtCore.QObject):
         PROJECTSMANAGER().db().gleanJobFiles(jobId=self.__dict__['jobId'],container=self.__dict__['container'],
                                              projectId=self.__dict__['_projectId'],roleList=[CCP4DbApi.FILE_ROLE_IN])
         self.cleanupJobDir()
-        from ..core.CCP4TaskManager import TASKMANAGER
         if runMode.startswith('remo'):
-            from ..qtcore.CCP4JobController import JOBCONTROLLER
             JOBCONTROLLER().createServerParams(self.__dict__['jobId'],serverParams)
         elif TASKMANAGER().isInternalPlugin(self.taskName):
             #print 'COpenJob.runJob isInternalPlugin'
@@ -348,7 +340,6 @@ class COpenJob(QtCore.QObject):
     def cleanupJobDir(self):
         # Delete a pre-existing report - assume we are restarting job
         try:
-            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             os.remove(PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='REPORT'))
         except:
             pass
@@ -357,7 +348,6 @@ class COpenJob(QtCore.QObject):
     def deleteJob(self):
         if self.__dict__['jobId'] is None:
             return CErrorReport(self.__class__,102)
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         PROJECTSMANAGER().deleteJob(jobId=self.jobId)
         self.reset()
         return CErrorReport()
@@ -366,20 +356,17 @@ class COpenJob(QtCore.QObject):
         if self.__dict__['jobId'] is None:
             return CErrorReport(self.__class__,102)    
         if kill:
-            from ..qtcore.CCP4JobController import JOBCONTROLLER
             err = JOBCONTROLLER().killJobProcess(jobId=self.jobId)
             if delete:
                 err.extend(self.deleteJob())  # KJS > Fixed. deleteJob takes no args apparently....
             return err
         else:
-            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             jobDir = PROJECTSMANAGER().jobDirectory(jobId=self.jobId,create=False)
             if jobDir is not None:
                 CCP4Utils.saveFile( os.path.join(jobDir,'INTERRUPT'),'Signal to interrupt job')
         return CErrorReport()
 
     def loadParams(self, fileName=None):
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         if fileName is None:
             fileName = PROJECTSMANAGER().makeFileName(jobId = self.__dict__['jobId'],mode='JOB_INPUT')
         try:
@@ -397,7 +384,6 @@ class COpenJob(QtCore.QObject):
         if self.__dict__['container'] is None:
             return CErrorReport(self.__class__,105)
         if fileName is None:
-            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             fileName = PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='JOB_INPUT')
         f = CCP4File.CI2XmlDataFile(fullPath=fileName)
         cHeader = self.container.getHeader()
@@ -970,7 +956,6 @@ class CJobDbBackup:
             self.body = copy.deepcopy(root.xpath('./ccp4i2_body')[0])
         else:
             jobInfo = {}
-            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             if jobNumber is None or taskName is None:
                 jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=jobId,mode=['jobnumber','taskname'])        
             if projectName is None: projectName = PROJECTSMANAGER().db().getProjectInfo(projectId=projectId,mode='projectname')
@@ -984,9 +969,7 @@ class CJobDbBackup:
             self.body = self.buildTree(jobId=jobId,jobNumber=jobNumber)
 
     def save(self,updateAll=False):
-        if updateAll:
-            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
-            self.scrapeFromDb(db=PROJECTSMANAGER().db())
+        if updateAll: self.scrapeFromDb(db=PROJECTSMANAGER().db())
         self.xmlFile.saveFile(bodyEtree=self.body)
 
     def buildTree(self,jobId=None,jobNumber=None):
@@ -1096,7 +1079,6 @@ class CCopyJobDirectories:
 
     def copyJob(self,jobId):
         err = CErrorReport()
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         jobDir = PROJECTSMANAGER().jobDirectory(jobId=jobId,projectId=self.projectId)
         targetJobDir = os.path.join(self.targetDir,os.path.split(jobDir)[1])
         if self.copyData:
@@ -1114,7 +1096,6 @@ class CCopyJobDirectories:
     def copyDataFiles(self,jobId=None):
         # Need to copy input files from preceeding jobs
         err = CErrorReport()
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         inputFileIdList = PROJECTSMANAGER().db().getFilesUsedInJobList(jobList=[jobId])
         if len(inputFileIdList)==0: return
         
@@ -1163,7 +1144,6 @@ class CCopyJobDirectories:
         return err
 
 def makeJobBackupForProject(projectName):
-    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     db = PROJECTSMANAGER().db()
     projectId = db.getProjectId(projectName=projectName)
     projectDir = db.getProjectDirectory(projectId=projectId)
@@ -1174,7 +1154,6 @@ def makeJobBackupForProject(projectName):
 
 def makeJobBackup(jobId=None,projectName=None,db=None):
     if db is None:
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         db = PROJECTSMANAGER().db()
     jobInfo=db.getJobInfo(jobId=jobId,mode=['projectname','projectid','jobNumber'])
     jobDirectory = db.jobDirectory(jobId=jobId)

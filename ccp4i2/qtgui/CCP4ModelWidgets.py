@@ -20,6 +20,12 @@ from . import CCP4Widgets
 from ..core import CCP4ModelData
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CException, Severity
+from ..core.CCP4Modules import FILEWATCHER
+from ..core.CCP4Modules import MIMETYPESHANDLER
+from ..core.CCP4Modules import PIXMAPMANAGER
+from ..core.CCP4Modules import PREFERENCES
+from ..core.CCP4Modules import PROJECTSMANAGER
+from ..core.CCP4Modules import WEBBROWSER
 from ..core.CCP4WarningMessage import warningMessage
 from ..utils.QApp import QTAPPLICATION
 
@@ -371,7 +377,6 @@ class CSeqDataFileView(CCP4Widgets.CDataFileView):
       self.model.annotation = anno
       #self.model.blockSignals(False)
       self.updateViewFromModel()
-      from ..core.CCP4Preferences import PREFERENCES
       if PREFERENCES().AUTO_INFO_ON_FILE_IMPORT and not self.model.dbFileId.isSet():        
           self.openInfo(label=self.model.qualifiers('guiLabel').lower(),sourceFileAnnotation=self.model.__dict__.get('sourceFileAnnotation',''))
 
@@ -517,13 +522,13 @@ class CPdbEnsembleItemView(CCP4Widgets.CComplexLineWidget):
           self.iconButton.setToolTip(toolTip+'\n'+self.iconButton.toolTip())
         for key,w in list(self.widgets.items()):
           if key in ['structure','identity_to_target','rms_to_target']:
-            if isinstance(w,CViewWidget): w.setModel(model.get(key))
+            if isinstance(w,CCP4Widgets.CViewWidget): w.setModel(model.get(key))
           elif key in ['number']:
             if ensemble is not None:
-              if isinstance(w,CViewWidget): w.setModel(ensemble.get(key))
+              if isinstance(w,CCP4Widgets.CViewWidget): w.setModel(ensemble.get(key))
       else:
         for key,w in list(self.widgets.items()):
-           if isinstance(w,CViewWidget): w.setModel(None)
+           if isinstance(w,CCP4Widgets.CViewWidget): w.setModel(None)
   
     # Set allowUndefined True for the first CPdbEnsembleItem in the first CEnsemble where the CEnsembleList
     # is allowed zero length
@@ -697,7 +702,6 @@ class CPdbDataFileView(CCP4Widgets.CDataFileView):
 
   def openViewer(self,mode):
     if mode == 'view_text':
-      from .CCP4WebBrowser import WEBBROWSER
       WEBBROWSER().openFile(fileName=self.model.__str__(),toFront=True)
     else:
       CCP4Widgets.CDataFileView.openViewer(self,mode)
@@ -1106,7 +1110,6 @@ class CAtomSelectionView(CCP4Widgets.CComplexLineWidget):
 
   @QtCore.Slot()
   def showHelp(self):
-    from .CCP4WebBrowser import WEBBROWSER
     WEBBROWSER().loadWebPage(helpFileName='general/atom_selection.html')
 
 
@@ -1200,7 +1203,6 @@ class CDictDataDialog(QtWidgets.QDialog):
     self.setLayout(QtWidgets.QHBoxLayout())
     self.setModal(False)
     if projectId is not None:
-      from ..core.CCP4ProjectsManager import PROJECTSMANAGER
       pName = ' for '+PROJECTSMANAGER().db().getProjectInfo(projectId=projectId,mode='projectname')
     else:
       pName=''
@@ -1213,7 +1215,6 @@ class CDictDataDialog(QtWidgets.QDialog):
   def closeEvent(self,event):
     #print 'CDictDataDialog.closeEvent',self.frame.showWidget
     if self.frame.showWidget is not  None and CCP4Utils.isAlive(self.frame.showWidget):
-      from .CCP4WebBrowser import WEBBROWSER
       WEBBROWSER().tab().deleteTabWidget(widget=self.frame.showWidget)
     event.accept()
 
@@ -1227,9 +1228,8 @@ class CDictDataView(CCP4Widgets.CViewWidget):
       #self.dictDataFile.set(self.dictDataFile.defaultProjectDict(projectId=projectId))
       self.dictDataFile.loadFile()
       self.model = self.dictDataFile.fileContent
-      from . import CCP4ProjectViewer
-      CCP4ProjectViewer.FILEWATCHER().addJobPath(os.path.split( os.path.split(str(self.dictDataFile))[0])[1],self.dictDataFile.__str__())
-      CCP4ProjectViewer.FILEWATCHER().fileChanged.connect(self.handleFileChanged)
+      FILEWATCHER().addJobPath(os.path.split( os.path.split(str(self.dictDataFile))[0])[1],self.dictDataFile.__str__())
+      FILEWATCHER().fileChanged.connect(self.handleFileChanged)
     else:
       self.model = model
       self.dictDataFile = model.parent()
@@ -1284,7 +1284,6 @@ class CDictDataView(CCP4Widgets.CViewWidget):
     #print 'CDictDataView.handleShow',idd,self.model,self.model.parent()
     if self.showWidget is not None: print('alive?',CCP4Utils.isAlive(self.showWidget))
     if self.showWidget is None or (not CCP4Utils.isAlive(self.showWidget)):
-      from .CCP4WebBrowser import WEBBROWSER
       self.showWidget = WEBBROWSER().openFile(self.model.parent().__str__())
     else:
       self.showWidget.browserWindow().show()
@@ -1295,7 +1294,6 @@ class CDictDataView(CCP4Widgets.CViewWidget):
   def handleMerge(self):
     from . import CCP4FileBrowser
     self.mergeFileBrowser = CCP4FileBrowser.CFileDialog(parent=self,title='Select geometry file to merge into project geometry file',
-          from ..qtcore.CCP4CustomMimeTypes import MIMETYPESHANDLER
           defaultSuffix=MIMETYPESHANDLER().getMimeTypeInfo(name='application/refmac-dictionary',info='fileExtensions'),
           filters = ['Geometry file for refinement(*.cif)'], fileMode=QtWidgets.QFileDialog.ExistingFiles,saveButtonText='Merge these files')
     self.mergeFileBrowser.show()
@@ -1656,7 +1654,6 @@ class CAsuContentSeqListView(CCP4Widgets.CViewWidget):
     def actOnTextDropped(self,text):
 #
         try:
-            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             fileInfo = PROJECTSMANAGER().db().getFileInfo(text,mode=['projectid','relpath','filename','annotation','filesubtype','filecontent','filetype'])
             projectDir = PROJECTSMANAGER().db().getProjectInfo(projectId=fileInfo['projectid'],mode='projectdirectory')
             filePath = os.path.join(projectDir,fileInfo['relpath'],fileInfo['filename'])
@@ -1939,8 +1936,8 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
         self.infoline = None
         if self.editable:
             #FIXME - Need to provide an API to hide this.
-            self.icona = QtGui.QIcon(CCP4Widgets.PIXMAPMANAGER().getPixmap("list_add_grey"))
-            self.iconm = QtGui.QIcon(CCP4Widgets.PIXMAPMANAGER().getPixmap("list_delete_grey"))
+            self.icona = QtGui.QIcon(PIXMAPMANAGER().getPixmap("list_add_grey"))
+            self.iconm = QtGui.QIcon(PIXMAPMANAGER().getPixmap("list_delete_grey"))
             self.buttonAS = QtWidgets.QToolButton(self)
             self.buttonAS.setIcon(self.icona)
             self.buttonAS.setMaximumHeight(16)
@@ -2145,7 +2142,6 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
             openJob = CCP4DbUtils.COpenJob(projectId=self.parentTaskWidget().projectId())
             openJob.createJob(taskName='ProvideAsuContents')
             print(openJob.container)
-            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             jobId = PROJECTSMANAGER().db().getJobId(projectId=self.parentTaskWidget().projectId(),jobNumber=openJob.jobNumber)
             openJob.container.inputData.ASU_CONTENT.set(self.importAsuContent)
             if self.infoline:
@@ -2334,7 +2330,6 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
         self.selectionGroup.blockSignals(False)
 
     def showHelp(self):
-        from .CCP4WebBrowser import WEBBROWSER
         WEBBROWSER().loadWebPage(helpFileName='model_data')
 
     def exportSeq(self):
@@ -2348,7 +2343,6 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
     @QtCore.Slot(str)
     def doExportSeq(self, fileName):
         theFilter = "fasta"
-        from ..core.CCP4Preferences import PREFERENCES
         if "." in fileName:
             theFilter = fileName[fileName.rfind(".") + 1:]
             if theFilter.lower().startswith("em"):

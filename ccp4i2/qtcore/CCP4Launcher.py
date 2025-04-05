@@ -13,6 +13,7 @@ import sys
 from PySide2 import QtCore, QtGui, QtWidgets
 
 from ..core import CCP4Utils
+from ..core.CCP4Modules import PREFERENCES, PROJECTSMANAGER, TASKMANAGER
 from ..utils.QApp import QTAPPLICATION
 
 
@@ -94,7 +95,6 @@ class CLauncher(QtCore.QObject):
         self.blockExit = False
 
     def getExecutable(self, viewer, guiParent=None):
-        from ..core.CCP4Preferences import PREFERENCES
         viewer = viewer.lower()
         path = None
         if viewer == 'ccp4mg':
@@ -224,7 +224,6 @@ class CLauncher(QtCore.QObject):
         return p
 
     def modifyCootBat(self):
-        from ..core.CCP4Preferences import PREFERENCES
         cootBat = PREFERENCES().COOT_EXECUTABLE.__str__()
         if not os.path.splitext(cootBat)[1] == '.bat' or not os.path.exists(cootBat):
             return None
@@ -235,7 +234,6 @@ class CLauncher(QtCore.QObject):
         return modFile
 
     def modifyLidiaBat(self):
-        from ..core.CCP4Preferences import PREFERENCES
         cootBat = PREFERENCES().COOT_EXECUTABLE.__str__()
         if not os.path.splitext(cootBat)[1] == '.bat' or not os.path.exists(cootBat):
             return None
@@ -249,7 +247,6 @@ class CLauncher(QtCore.QObject):
         if projectId is None:
             return None
         else:
-            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             cootDir = os.path.join(PROJECTSMANAGER().getProjectDirectory(projectId=projectId),'CCP4_COOT')
             if not os.path.exists(cootDir):
                 try:
@@ -260,7 +257,6 @@ class CLauncher(QtCore.QObject):
         return cootDir
     
     def openInViewer(self,viewer=None,fileName=None,jobId=None,projectId=None,style=None,guiParent=None,fileType='chemical/x-pdb'):
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         if projectId is None and jobId is not None:
             try:
                 projectId = PROJECTSMANAGER().db().getJobInfo(jobId,mode='projectid')
@@ -288,7 +284,6 @@ class CLauncher(QtCore.QObject):
             self.runCootJob(contextJobId=jobId, projectId=projectId, fileName=fileName, fileType=fileType )
         elif viewer.lower() == 'lidia':
             cootExeDir = None
-            from ..core.CCP4Preferences import PREFERENCES
             if hasattr(PREFERENCES(), 'COOT_EXECUTABLE'):
                 if os.path.isfile(str(PREFERENCES().COOT_EXECUTABLE)):
                     cootExeDir = str(PREFERENCES().COOT_EXECUTABLE)
@@ -329,7 +324,6 @@ class CLauncher(QtCore.QObject):
         else:
             line.append(fileName)
         if jobId is not None:
-            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             scenefileList =PROJECTSMANAGER().getSceneFiles(jobId=jobId)
             if len(scenefileList) > 0:
                 line.append(scenefileList[0])
@@ -339,7 +333,6 @@ class CLauncher(QtCore.QObject):
         return line
 
     def runCootJob(self,projectId=None,contextJobId=None,fileName=None,fileType='chemical/x-pdb'):
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         from ..dbapi.CCP4DbApi import FILETYPELIST
         from ..dbapi.CCP4DbUtils import COpenJob
         if projectId is None:
@@ -410,8 +403,6 @@ class CLauncher(QtCore.QObject):
         from ..core import CCP4Container
         from ..core import CCP4File
         from ..core import CCP4ModelData
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
-        from ..core.CCP4TaskManager import TASKMANAGER
         from ..core.CCP4XtalData import CMapCoeffsDataFile
         comLine = []
         # Make container
@@ -446,8 +437,6 @@ class CLauncher(QtCore.QObject):
 
     def getFilesToDisplay(self,jobId):
         from ..core import CCP4Data
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
-        from ..core.CCP4TaskManager import TASKMANAGER
         taskName =  PROJECTSMANAGER().db().getJobInfo(jobId,'taskname')
         paramList = TASKMANAGER().getTaskAttribute(taskName,'MGDISPLAYFILES',None)
         # No DISPLAYFILES defined for task so Just give the output files
@@ -496,7 +485,6 @@ class CLauncher(QtCore.QObject):
 
     @QtCore.Slot(str,str)
     def handleFindViewer(self,viewer,filePath):
-        from ..core.CCP4Preferences import PREFERENCES
         #print 'handleFindViewer',viewer,filePath
         if os.path.exists(filePath):
             if viewer in ['coot','coot_job']:

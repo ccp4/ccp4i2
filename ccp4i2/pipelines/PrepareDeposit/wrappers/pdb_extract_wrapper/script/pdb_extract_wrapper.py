@@ -5,6 +5,7 @@ from PySide2 import QtCore
 
 from ......core import CCP4Utils
 from ......core.CCP4PluginScript import CPluginScript
+from ......core.CCP4Modules import LAUNCHER
 
 
 class pdb_extract_wrapper(CPluginScript):
@@ -32,7 +33,6 @@ class pdb_extract_wrapper(CPluginScript):
         envEdit = [['PDB_EXTRACT',PDB_EXTRACT_DIR]]
         envEdit.append(['PWD',os.path.normpath(self.getWorkDirectory())])
         
-        from ......qtcore.CCP4Launcher import LAUNCHER
         if self.container.inputData.ENTRYDATAIN.isSet():
             argList = ['-r','refmac5','-ipdb',self.container.inputData.XYZIN.__str__(),'-iENT',self.container.inputData.ENTRYDATAIN.__str__()]
             print('Arglist',argList)

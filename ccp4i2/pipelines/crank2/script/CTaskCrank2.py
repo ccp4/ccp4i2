@@ -11,6 +11,7 @@ from PySide2 import QtCore
 from . import crank2_basepipe
 from ....core import CCP4ErrorHandling
 from ....core import CCP4Utils
+from ....core.CCP4Modules import PROJECTSMANAGER
 from ....qtgui import CCP4TaskWidget
 from ....qtgui import CCP4Widgets
 
@@ -731,7 +732,6 @@ class CTaskCrank2(CCP4TaskWidget.CTaskWidget):
     # here we assume that input mtz will be converted to mini-mtz in ccp4 dir. without this we'd get
     # double generation and thus slow response. However if mini-mtz is not created then no generation
     # will take place - these two lines would have to be removed in such case!
-    from ....core.CCP4ProjectsManager import PROJECTSMANAGER
     if not os.path.realpath(path).startswith(os.path.realpath(CCP4Utils.getTestTmpDir())) and \
        not os.path.realpath(path).startswith(os.path.realpath(PROJECTSMANAGER().getProjectDirectory(projectId=self.projectId()))):
       return 0
@@ -850,7 +850,6 @@ class CTaskCrank2(CCP4TaskWidget.CTaskWidget):
       print("Starting generating defaults.")
       self.ConnectDefaultGenTrig(disconnect=True)
       try:
-        from ....core.CCP4ProjectsManager import PROJECTSMANAGER
         workDir = PROJECTSMANAGER().jobDirectory(self.jobId(),subDir='TMP')
       except:
         workDir = None
@@ -1024,7 +1023,6 @@ def PrepCont(cont,name='crank2'):
   return cont_new
 
 def whatNext(jobId,childTaskName,childJobNumber,projectName):
-  from ....core.CCP4ProjectsManager import PROJECTSMANAGER
   whatnext = []
   cont = PROJECTSMANAGER().getJobParams(jobId)
   if cont.outputData.XYZOUT.isSet():
@@ -1072,7 +1070,6 @@ def exportMtzColumnLabels(jobId=None,paramNameList=None,sourceInfoList=[]):
   colLabels = { 'FPHOUT_HL':'FPHOUT_HL', 'FPHOUT_DIFF':'FPHOUT_DIFF', 'FPHOUT_2FOFC':'FPHOUT_2FOFC', 'FPHOUT_DIFFANOM':'FPHOUT_DIFFANOM' }
   #print 'CTaskCrank2.exportMtzColumnLabel',jobId,paramNameList,sourceInfoList
   from ....core import CCP4Container
-  from ....core.CCP4ProjectsManager import PROJECTSMANAGER
   paramsFile = PROJECTSMANAGER().makeFileName(jobId = jobId,mode='PARAMS')
   #print 'CTaskCrank2.exportMtzColumnLabel paramsFile',paramsFile
   c = CCP4Container.CContainer()

@@ -4,6 +4,7 @@ import re
 from docx import Document
 from iotbx import mtz
 
+from ....core.CCP4Modules import PROJECTSMANAGER
 from ....report.CCP4ReportParser import Report
 
 
@@ -21,7 +22,6 @@ class tableone_report(Report):
 
 
     def GetPerformanceInfo(self):
-        from ....core.CCP4ProjectsManager import PROJECTSMANAGER
         # Fetch the performance info related to the job that produced the input pdb file.
         dbm = PROJECTSMANAGER().db()
         for xdic in self.jobInfo["inputfiles"]:

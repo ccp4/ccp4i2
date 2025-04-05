@@ -23,6 +23,38 @@ from core import CCP4Modules
 from core.CCP4ErrorHandling import *
 from qtgui import CCP4WebToolBarButtons
 
+def WEBBROWSER(index = -1,new=False,mini=False):
+    if new or (len(CBrowserWindow.Instances)==0 and index<0):
+        t = CBrowserWindow(welcome=False)
+        if mini: t.setMini(True)
+        t.show()
+        t.raise_()
+        return t
+    index = min(index,0)
+    if index<len(CBrowserWindow.Instances):
+        win = list(CBrowserWindow.Instances)[index]
+        print('WEBBROWSER raise_')
+        try:
+            win.show()
+            win.raise_()
+        except:
+            pass
+        return win
+    else:
+        return None
+
+
+def DUMMYMAINWINDOW():
+    if CBrowserWindow.Dummy is None:
+        CBrowserWindow.Dummy = CBrowserWindow()
+        CBrowserWindow.Dummy.hide()  # KJS: Looks like there is no hide present. Check to see if this is used anywhere.
+        try:
+            CBrowserWindow.Instances.remove(CBrowserWindow.Dummy)
+        except:
+            print('Error in DUMMYMAINWINDOW')
+    return CBrowserWindow.Dummy
+
+
 def setupWebkit():
     try:   # nice.... not.... also our old friend the try-except-pass (check this is indent'ed ok )
         if sys.platform == 'win32':

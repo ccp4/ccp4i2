@@ -8,6 +8,7 @@ from lxml import etree
 from ....core import CCP4ErrorHandling
 from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Modules import JOBCONTROLLER, PROJECTSMANAGER
 
 
 class MakeProjectsAndDoLigandPipeline(CPluginScript):
@@ -50,8 +51,6 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
 
     #The startProcess method is where you build in the pipeline logic
     def startProcess(self, command, **kws):
-        from ....core.CCP4ProjectsManager import PROJECTSMANAGER
-        from ....qtcore.CCP4JobController import JOBCONTROLLER
         pm = PROJECTSMANAGER()
         
         for iLigand, projectName in enumerate(self.container.inputData.PROJECTNAME_LIST):

@@ -21,6 +21,10 @@ from PySide2 import QtCore, QtWidgets
 from . import CCP4Utils
 from ..utils import startup
 from .CCP4ErrorHandling import CErrorReport, CException, Severity
+from .CCP4Modules import COMFILEPATCHMANAGER
+from .CCP4Modules import PREFERENCES
+from .CCP4Modules import PROCESSMANAGER
+from .CCP4Modules import PROJECTSMANAGER
 from .CCP4QtObject import CObject
 
 
@@ -192,7 +196,6 @@ class CPluginScript(CObject):
         return modFile
 
     def getCommand(self, exeName=None):
-        from .CCP4Preferences import PREFERENCES
         if not self.RUNEXTERNALPROCESS:
             return None
         if exeName is None:
@@ -429,7 +432,6 @@ class CPluginScript(CObject):
         #print 'CPluginScript.appendErrorReport',cls,'code',code
         try:
             jobId = str(self._dbJobId)
-            from .CCP4ProjectsManager import PROJECTSMANAGER
             jobDirectory = PROJECTSMANAGER().makeFileName(jobId=jobId,mode='ROOT')
             logfiles = []
             for root, subFolders, files in os.walk(jobDirectory):
@@ -672,7 +674,6 @@ class CPluginScript(CObject):
         for line in self.commandScript:
             script = script + line
         try:
-            from .CCP4ComFilePatchManager import COMFILEPATCHMANAGER
             script, results = COMFILEPATCHMANAGER().applyPatches(str(patchSele.patch), script)
             #print 'CPluginScript.applyComFilePatches',script,results
         except CException as e:
@@ -805,7 +806,6 @@ class CPluginScript(CObject):
             readyReadStandardOutputHandler = None
             if hasattr(self, '_readyReadStandardOutputHandler'):
                 readyReadStandardOutputHandler = self._readyReadStandardOutputHandler
-            from .CCP4ProcessManager import PROCESSMANAGER
             self._runningProcessId = PROCESSMANAGER().startProcess(command=command, interpreter=self._interpreter, args=self.commandLine, inputFile=inputFile, logFile=logFile,
                                                                                ifAsync=self._ifAsync, timeout=self._timeout, jobId=self._dbJobId, jobNumber=self._dbJobNumber,
                                                                                projectId=self._dbProjectId, handler=handler, cwd=cwd, readyReadStandardOutputHandler=readyReadStandardOutputHandler)
@@ -847,7 +847,6 @@ class CPluginScript(CObject):
         if container is None:
             container = self.container
         if self.COMTEMPLATEFILE != None:
-            # KJS : hmmmmm . I can't find interpretFile anywhere.
             fileName = interpretFile(self.COMTEMPLATEFILE)   # Ok, this looks broken. COMTEMPxxFILE seems not to be used anywhere.
             if not os.path.exists(fileName):                  # & this looks like it will crash if it is.
                 self.appendErrorReport(14, fileName)
@@ -974,7 +973,6 @@ class CPluginScript(CObject):
             self.finished.emit(status)
 
     def postProcessCheck(self, processId):
-        from .CCP4ProcessManager import PROCESSMANAGER
         if processId is None or processId < 0:
             self.appendErrorReport(10)
             return CPluginScript.FAILED, None, None
@@ -1132,7 +1130,6 @@ class CPluginScript(CObject):
         #print 'CPluginScript.terminate childPluginList',childPluginList
         for obj in childPluginList:
             obj.terminate()
-        from .CCP4ProcessManager import PROCESSMANAGER
         PROCESSMANAGER().terminateProcess(self._runningProcessId)
         self.reportStatus(CPluginScript.FAILED)
 
@@ -1448,7 +1445,6 @@ class CPluginScript(CObject):
         except:
             self.appendErrorReport(28, str(infiles))
         #print 'joinMtz arglist',arglist
-        from .CCP4ProcessManager import PROCESSMANAGER
         pid = PROCESSMANAGER().startProcess(bin, arglist, logFile=logFile)
         status = PROCESSMANAGER().getJobData(pid)
         exitCode = PROCESSMANAGER().getJobData(pid, 'exitCode')
@@ -1504,7 +1500,6 @@ class CPluginScript(CObject):
                      comFileText = '_N'+'\n'+'_FILE_L '+outfile_old+'\n'+'_FILE_L2 '+dictfile.fullPath.__str__()+'\n'+'_FILE_O '+outfile_string+'\n'+'_END'+'\n'
                      #print comFileText
                      logFile = self.makeFileName('LOG', qualifier='libcheck_'+str(idx))
-                     from .CCP4ProcessManager import PROCESSMANAGER
                      pid = PROCESSMANAGER().startProcess(bin, inputText=comFileText, logFile=logFile)
                      status = PROCESSMANAGER().getJobData(pid)
                      exitCode = PROCESSMANAGER().getJobData(pid, 'exitCode')
@@ -1628,7 +1623,6 @@ class CPluginScript(CObject):
         except:
             self.appendErrorReport(27, str(outfiles))
         #print 'CPluginScript.splitMtz',bin,arglist
-        from .CCP4ProcessManager import PROCESSMANAGER
         pid = PROCESSMANAGER().startProcess(bin, arglist, logFile=logFile)
         status = PROCESSMANAGER().getJobData(pid)
         exitCode = PROCESSMANAGER().getJobData(pid, 'exitCode')
@@ -1675,7 +1669,6 @@ class CPluginScript(CObject):
     def fileWatcher(self):
         if (not hasattr(self, "fileSystemWatcher")) or self.fileSystemWatcher is None:
             self.fileSystemWatcher = QtCore.QFileSystemWatcher(parent=self)
-            from .CCP4Preferences import PREFERENCES
             if PREFERENCES().FILESYSTEMWATCHERPOLLER:
                 self.fileSystemWatcher.setObjectName("_qt_autotest_force_engine_poller")
             self.fileSystemWatcher.fileChanged.connect(self.filterAndDispatchFileUpdates)
@@ -1970,7 +1963,6 @@ class CInternalPlugin(CPluginScript):
 
     def __init__(self, parent=None, jobId=None, projectId=None, jobTitle=None, **kw):
         from ..dbapi import CCP4DbApi
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         db = PROJECTSMANAGER().db()
         if jobId is None:
             if projectId is None:
@@ -2097,7 +2089,6 @@ class CRunPlugin(CObject):
             outFile = outFile + '.' + item
         print('Saving job to:',outFile)
         try:
-            from .CCP4ProjectsManager import PROJECTSMANAGER
             PROJECTSMANAGER().cleanupJob(jobDirectory=os.path.join(self.dbXml.projectDirectory, 'CCP4_JOBS','job_' + str(jobNumber)))
         except Exception as e:
             print('ERROR cleaning up job directory before compressing\n' + str(e))
@@ -2268,7 +2259,6 @@ class CRunPlugin(CObject):
         #print 'CRunPlugin.postRun',status,'dbXmlFile',self.dbXmlFile,PREFERENCES().RETAIN_DIAGNOSTIC_FILES
         if self.plugin:
             self.errorReport.extend(self.plugin.errorReport, stack=True)
-        from .CCP4Preferences import PREFERENCES
         if not PREFERENCES().RETAIN_DIAGNOSTIC_FILES:
             if self.compressedFile is not None:
                 self.cleanup(status=status, context='script_finish_remote')

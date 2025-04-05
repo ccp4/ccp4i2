@@ -14,6 +14,7 @@ from . import CCP4CustomManager
 from . import CCP4Data
 from . import CCP4File
 from .CCP4ErrorHandling import CErrorReport, CException
+from .CCP4Modules import PROJECTSMANAGER
 from .CCP4TaskManager import TASKMANAGER
 
 
@@ -56,7 +57,6 @@ class CWorkflowManager(CCP4CustomManager.CCustomManager):
     def createWorkflow(self, projectId=None, jobList=[], name=None, title=None, overwrite=False):
         #print 'CWorkflowMananger.createWorkflow',projectId,jobList,name,overwrite,title
         from ..dbapi import CCP4DbApi
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         workflowDir = self.createDirectory(name, overwrite=overwrite)
         db = PROJECTSMANAGER().db()
         projectDir = PROJECTSMANAGER().getProjectDirectory(projectId=projectId)

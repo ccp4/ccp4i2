@@ -14,6 +14,7 @@ from PySide2 import QtCore, QtGui
 from . import CCP4Data, CCP4Utils
 from .CCP4Data import CBaseData
 from .CCP4ErrorHandling import CErrorReport, CException
+from .CCP4Modules import TASKMANAGER
 
 
 class CTime(CCP4Data.CInt):
@@ -274,7 +275,6 @@ class CBibReferenceGroup(CCP4Data.CData):
     }
 
     def loadFromMedline(self, fileNameList=[], taskName=None, version=None):
-        from .CCP4TaskManager import TASKMANAGER
         if len(fileNameList) == 0 and taskName is not None:
             self.__dict__['fileNameList'] = TASKMANAGER().searchReferenceFile(taskName,version=version)
             if len(fileNameList) == 0:

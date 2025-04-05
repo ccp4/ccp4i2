@@ -24,12 +24,12 @@ from PySide2 import QtCore
 from . import CCP4File
 from . import CCP4Utils
 from .CCP4ErrorHandling import CErrorReport, CException, Severity
+from .CCP4Modules import JOBCONTROLLER, DEMODATAMANAGER, PREFERENCES
 from .CCP4QtObject import CObject
 from .CCP4Utils import getCCP4I2Dir, getDotDirectory, getHOME
 from .CCP4WarningMessage import warningMessage
 
 
-def PROJECTSMANAGER():
     if CProjectsManager.insts is None:
         CProjectsManager.insts = CProjectsManager()
     return CProjectsManager.insts
@@ -530,7 +530,6 @@ class CProjectsManager(CObject):
     def deleteJob(self, jobId=None, jobNumber=None, projectName=None, projectId=None, importFiles=[], deleteImportFiles=True):
         from ..dbapi import CCP4DbApi
         from ..dbapi import CCP4DbUtils
-        from ..qtcore.CCP4JobController import JOBCONTROLLER
         print('PROJECTSMANAGER.deleteJob importFiles', jobId, importFiles, deleteImportFiles)
         if jobId is None:
             jobId = self._db.getJobId(jobNumber=jobNumber, projectName=projectName, projectId=projectId)
@@ -664,7 +663,6 @@ class CProjectsManager(CObject):
     @QtCore.Slot(dict)
     def handleJobToDelete(self, args={}):
         from ..dbapi import CCP4DbApi
-        from .CCP4Preferences import PREFERENCES
         if not bool(PREFERENCES().DELETE_INTERACTIVE_JOBS):
             self.db().updateJobStatus(jobId=args.get('jobId'), status=CCP4DbApi.JOB_STATUS_FINISHED)
             return
@@ -1109,7 +1107,6 @@ class CProjectsManager(CObject):
     def getJobInputFiles(self, projectDir='', jobIdList=[], jobNumberList=[], useDb=False, excludeI2files=False):
         # Find the input files that would also need to be exported with a job
         # ***** Should have checked jobs have valid input before we get this far ************
-        from ..qtgui.CCP4DemoData import DEMODATAMANAGER
         from . import CCP4Container
         from . import CCP4Utils
         errReport = CErrorReport()

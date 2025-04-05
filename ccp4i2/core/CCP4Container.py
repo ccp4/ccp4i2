@@ -11,6 +11,7 @@ from lxml import etree
 from . import CCP4Data
 from .CCP4DataManager import DATAMANAGER
 from .CCP4ErrorHandling import CErrorReport, CException, Severity
+from .CCP4Modules import TASKMANAGER
 
 
 class CContainer(CCP4Data.CData):
@@ -222,7 +223,6 @@ class CContainer(CCP4Data.CData):
 
     def loadDataFromXml(self, fileName=None, guiAdmin=False, check=True, function='PARAMS', loadHeader=False):
         from . import CCP4File
-        from .CCP4TaskManager import TASKMANAGER
         f = CCP4File.CI2XmlDataFile(fullPath=fileName)
         #f.loadFile()
         #print 'CContainer.loadDataFromXml',fileName,f.header.function,self.pluginName()

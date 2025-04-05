@@ -33,6 +33,7 @@ from . import CCP4Residues
 from . import CCP4SelectionTree
 from . import CCP4Utils
 from .CCP4ErrorHandling import CErrorReport, CException, Severity
+from .CCP4Modules import PROCESSMANAGER, PROJECTSMANAGER
 
 
 BIOPYTHON = True
@@ -369,7 +370,6 @@ class CSequenceMeta(CCP4Data.CData):
                    404 : {'description' : 'Reading uniprot xml file failed'}}
 
     def getUniprotXml(self, projectId=None):
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         if projectId is None:
             raise CErrorReport(self.__class__, 403)
         if not self.uniprotId.isSet():
@@ -813,7 +813,6 @@ class CDictDataFile(CCP4File.CDataFile):
                    205 : {'description' : 'Error attempting to merge geometry files - failed to run libcheck'}}
   
     def defaultProjectDict(self, projectId=None, projectName=None, create=True):
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         projectDir = PROJECTSMANAGER().getProjectDirectory(projectId=projectId, projectName=projectName)
         if projectDir is None:
             return None
@@ -2277,7 +2276,6 @@ class CPdbDataFile(CCP4File.CDataFile):
             return report
 
     def runCoord_format(self, xyzout):
-        from .CCP4ProcessManager import PROCESSMANAGER
         arglist = ['xyzin', str(self), 'xyzout', xyzout]
         com = '''FIXBLANK\nEND\n'''
         pid = PROCESSMANAGER().startProcess('coord_format', arglist, inputText=com, logFile=None)

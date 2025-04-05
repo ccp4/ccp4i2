@@ -9,6 +9,7 @@ from PySide2 import QtCore
 
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
+from ..core.CCP4Modules import PROJECTSMANAGER
 
 
 COMPRESSED_SUFFIX = 'ccp4_project.zip'
@@ -75,7 +76,6 @@ class ExportProjectThread(QtCore.QThread):
                 savedInputRelPaths0.append(os.path.join('CCP4_JOBS','job_'+job))
                 saveDir = os.path.join(self.projectDir,'CCP4_JOBS','job_'+job)
                 print('Saving job number:',job,saveDir);sys.stdout.flush()
-                from ..core.CCP4ProjectsManager import PROJECTSMANAGER
                 PROJECTSMANAGER().cleanupJob(jobDirectory=saveDir)
                 tf.add(saveDir,arcname='CCP4_JOBS/job_'+job)
                 done+=1      
@@ -131,7 +131,6 @@ class ExportProjectThread(QtCore.QThread):
                 savedInputRelPaths0.append(os.path.join('CCP4_JOBS', 'job_' + job))
                 saveDir = os.path.join(self.projectDir, 'CCP4_JOBS', 'job_' + job)
                 print('Saving job number:', job, saveDir); sys.stdout.flush()
-                from ..core.CCP4ProjectsManager import PROJECTSMANAGER
                 PROJECTSMANAGER().cleanupJob(jobDirectory=saveDir)
                 CCP4Utils.zipDirectory(zip, saveDir, rootRelPath=self.projectDir)
                 done += 1
@@ -229,7 +228,6 @@ class ImportProjectThread(QtCore.QObject):
             self.extractProjectDir(self.compressedFile, self.projectDir, mode=mode)
             self.extractingJobData.emit((mode,1))
         # Ensure all other directories are created
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         PROJECTSMANAGER().makeProjectDirectory(directory=self.projectDir)
         return self.errReport
   

@@ -27,6 +27,7 @@ from . import CCP4ModelData
 from . import CCP4Utils
 from ..googlecode import diff_match_patch_py3
 from .CCP4ErrorHandling import CErrorReport, CException, Severity
+from .CCP4Modules import PROCESSMANAGER, PROJECTSMANAGER
 
 
 def SYMMETRYMANAGER():
@@ -874,7 +875,6 @@ class CMtzDataFile(CCP4File.CDataFile):
         inputFile = os.path.normpath(os.path.splitext(hklout)[0] + '_mtz2various.com')
         CCP4Utils.saveFile(inputFile,comText)
         logFile = os.path.normpath(os.path.splitext(hklout)[0] + '_mtz2various.log')
-        from .CCP4ProcessManager import PROCESSMANAGER
         pid = PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile, inputFile=inputFile)
         status = PROCESSMANAGER().getJobData(pid)
         exitCode = PROCESSMANAGER().getJobData(pid, 'exitCode')
@@ -898,7 +898,6 @@ class CMtzDataFile(CCP4File.CDataFile):
                     arglist.append(cols)
         except:
             error.append(self.__class__, 152, str(name) + ' ' + str(cols))
-        from .CCP4ProcessManager import PROCESSMANAGER
         pid = PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile)
         status = PROCESSMANAGER().getJobData(pid)
         exitCode = PROCESSMANAGER().getJobData(pid, 'exitCode')
@@ -939,7 +938,6 @@ class CMtzDataFile(CCP4File.CDataFile):
         inputFile = os.path.normpath(os.path.splitext(hklout)[0] + '_cad.com')
         CCP4Utils.saveFile(inputFile, comText)
         logFile =  os.path.normpath(os.path.splitext(hklout)[0] + '_cad.log')
-        from .CCP4ProcessManager import PROCESSMANAGER
         pid = PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile, inputFile=inputFile)
         status = PROCESSMANAGER().getJobData(pid)
         exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
@@ -1065,7 +1063,6 @@ class CMtzDataFile(CCP4File.CDataFile):
                                 break
             except:
                 ret.append(self.__class__, 407, name + ' ' + colin)
-        from .CCP4ProcessManager import PROCESSMANAGER
         pid = PROCESSMANAGER().startProcess(cbin, arglist, logFile=logFile)
         status = PROCESSMANAGER().getJobData(pid)
         exitCode = PROCESSMANAGER().getJobData(pid, 'exitCode')
@@ -1446,7 +1443,6 @@ class CMtzData(CCP4File.CDataFileContent):
             except:
                 raise CException(self.__class__, 102, inputFile, name=self.objectPath())
             logFile = self.logFileName()
-            from .CCP4ProcessManager import PROCESSMANAGER
             pid = PROCESSMANAGER().startProcess(command='mtzdump', args=['HKLIN', self.__dict__['lastLoadedFile']],
                                                             inputFile = inputFile, logFile = logFile, waitForFinished=1000)
             try:
@@ -1873,7 +1869,6 @@ class CMtzData(CCP4File.CDataFileContent):
         if polymerMode != "":
             comText =  comText + '\nMODE ' + polymerMode
         argList = ['XMLFILE' , f1[1]]
-        from .CCP4ProcessManager import PROCESSMANAGER
         pid = PROCESSMANAGER().startProcess('matthews_coef', argList, logFile=f2[1], inputText=comText)
         if not os.path.exists(f1[1]):
             raise CException(self.__class__,411,str(seqDataFile))
@@ -2796,7 +2791,6 @@ class CMiniMtzDataFile(CMtzDataFile):
     def splitMtz(self,jobId=None,projectId=None,contentFlag=None,i2Labels=[],columnLabels=[]):
         errorReport = CErrorReport()
         # Set name for new split file and if it already exists remove previous refernce from db
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         jobDirectory = PROJECTSMANAGER().jobDirectory(jobId=jobId)
         filename = self.importFileName(jobDirectory=jobDirectory)
         #Set up the colin/colout
@@ -2877,7 +2871,6 @@ class CMiniMtzDataFile(CMtzDataFile):
             return None
         # Try is info in Db
         if self.dbFileId.isSet() and not reset:
-            from .CCP4ProjectsManager import PROJECTSMANAGER
             flag = PROJECTSMANAGER().db().getFileInfo(fileId=str(self.dbFileId), mode='filecontent')
             if flag is not None:
                 self.__dict__['_value']['contentFlag'].set(flag)
@@ -2899,7 +2892,6 @@ class CMiniMtzDataFile(CMtzDataFile):
         CMtzDataFile.updateData(self)
 
     def importFromCif(self, jobId=None):
-        from .CCP4ProcessManager import PROCESSMANAGER
         errorReport = CErrorReport()
         # Set name for new split file and if it already exists remove previous reference from db
         if jobId is not None:
@@ -3129,7 +3121,6 @@ class CObsDataFile(CMiniMtzDataFile):
         inputText += colTypeSigOut + "\n"
         inputText += "WRITE " + targetFile + " COL " + colOut + " " + colSigOut + "\n"
         inputText += "STOP\n"
-        from .CCP4ProcessManager import PROCESSMANAGER
         pid = PROCESSMANAGER().startProcess(cbin, argList, inputText=inputText, logFile=logFile, cwd=myDir)
         status = PROCESSMANAGER().getJobData(pid)
         exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
@@ -3454,7 +3445,6 @@ class CMergeMiniMtz(CCP4Data.CData):
             self.__dict__['_value']['columnTag'].unSet()
             return
         else:
-            from .CCP4ProjectsManager import PROJECTSMANAGER
             fileInfo = PROJECTSMANAGER().db().getFileInfo(fileId = self.__dict__['_value']['fileName'].dbFileId.__str__(),
                                                                       mode=['jobnumber','jobparamname','taskname'])
             if fileInfo['taskname'] is not None:

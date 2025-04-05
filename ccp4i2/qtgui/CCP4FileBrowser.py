@@ -21,6 +21,10 @@ import requests
 
 from ..core import CCP4File
 from ..core import CCP4Utils
+from ..core.CCP4Modules import MIMETYPESHANDLER
+from ..core.CCP4Modules import PREFERENCES
+from ..core.CCP4Modules import PROJECTSMANAGER
+from ..core.CCP4Modules import WEBBROWSER
 
 
 class GenericWorker(QtCore.QObject):
@@ -52,7 +56,6 @@ class CFileDialog(QtWidgets.QDialog):
     def __init__(self, parent=None, title='Open file', filters=[], defaultSuffix=None, defaultFileName='',
                  fileMode=QtWidgets.QFileDialog.ExistingFile, fileLabel=None, **kw):
         QtWidgets.QDialog.__init__(self, parent)
-        from ..core.CCP4Preferences import PREFERENCES
         if PREFERENCES().NATIVEFILEBROWSER:
             self.input = {'title' : title, 'filters' : filters, 'defaultSuffix':defaultSuffix,
                           'defaultFileName' : defaultFileName, 'fileMode' : fileMode,
@@ -153,7 +156,6 @@ class CFileDialog(QtWidgets.QDialog):
         return self.widget.fileDialog.isVisible()
 
     def show(self):
-        from ..core.CCP4Preferences import PREFERENCES
         if PREFERENCES().NATIVEFILEBROWSER:
             # OpenFileName with double extension messing up see: https://bugreports.qt.io/browse/QTBUG-44227
             filterText, secondExt = self.makeFilterText(self.input['filters'], truncateExt=(self.input['fileMode'] == QtWidgets.QFileDialog.AnyFile))
@@ -292,7 +294,6 @@ class CFileDialog1(QtWidgets.QWidget):
         self.ccp4i_combo = None
 
     def drawProjectCombo(self):
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         ccp4_dirs, ccp4_aliases = PROJECTSMANAGER().getProjectsList()
         #print 'CFileDialog.__init__', ccp4_dirs,ccp4_aliases
         #if len(ccp4_dirs) > 0 or len(ccp4_aliases) > 0:
@@ -315,7 +316,6 @@ class CFileDialog1(QtWidgets.QWidget):
     def loadProjectCombo(self):
         self.projectCombo.clear()
         self.projectCombo.addItem('Full path..')
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         ccp4_dirs, ccp4_aliases = PROJECTSMANAGER().getProjectsList()
         for project in ccp4_dirs:
             self.projectCombo.addItem(project)
@@ -323,7 +323,6 @@ class CFileDialog1(QtWidgets.QWidget):
     @QtCore.Slot(str)
     def projectComboChanged(self, alias):
         #print('projectComboChanged',alias)
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         path = PROJECTSMANAGER().getProjectDirectory(projectName=str(alias))
         if path is not None:
             self.fileDialog.setDirectory(str(path))
@@ -405,7 +404,6 @@ class CFileDialog1(QtWidgets.QWidget):
         if self.projectId is None:
             tmpDir = CCP4Utils.getTMP()
         else:
-            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             tmpDir = os.path.join(PROJECTSMANAGER().getProjectDirectory(projectId=self.projectId),'CCP4_DOWNLOADED_FILES')
             if not os.path.exists(tmpDir):
                 try:
@@ -530,7 +528,6 @@ class CFileDialog1(QtWidgets.QWidget):
     @QtCore.Slot()
     def viewWebSite(self):
         mode = self.downloadCombo.itemData(self.downloadCombo.currentIndex()).__str__()
-        from .CCP4WebBrowser import WEBBROWSER
         WEBBROWSER().loadPage(QtCore.QUrl('http://' + self.DOWNLOAD_DEFINITIONS[mode]['page']), newTab=True)
 
 
@@ -546,7 +543,6 @@ class IconProvider(QtWidgets.QFileIconProvider):
     def icon(self, fileInfo):
         if isinstance(fileInfo, QtCore.QFileInfo):
             suffix = str(fileInfo.completeSuffix())
-            from ..qtcore.CCP4CustomMimeTypes import MIMETYPESHANDLER
             if suffix == 'mtz':
                 content = fileInfo.baseName().__str__().split(CCP4File.CDataFile.SEPARATOR)[-1]
                 mimeType=MIMETYPESHANDLER().formatFromFileExt(ext=suffix, contentLabel=content)

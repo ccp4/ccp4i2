@@ -19,6 +19,7 @@ from . import CCP4TaskManager
 from . import CCP4XtalData
 from ..utils import startup
 from .CCP4ErrorHandling import CException
+from .CCP4Modules import JOBCONTROLLER
 
 
 class CI2Runner(object):
@@ -679,7 +680,7 @@ class CI2Runner(object):
         self.pm.db().gleanJobFiles(jobId=cOpenJob.jobId,container=cOpenJob.container,
                               roleList=[CCP4DbApi.FILE_ROLE_IN])
         rv = cOpenJob.saveParams()
-        from ..qtcore.CCP4JobController import JOBCONTROLLER
+
         jc=JOBCONTROLLER()
         jc.setDiagnostic(True)
         jc.setDbFile(self.pm.db()._fileName)

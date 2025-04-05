@@ -9,6 +9,7 @@ from lxml import etree
 from PySide2 import QtCore
 
 from ....core import CCP4Utils
+from ....core.CCP4Modules import PROJECTSMANAGER
 from ....core.CCP4PluginScript import CPluginScript
 from ....pipelines.aimless_pipe.script.aimless_pipe_utils import CellCheck
 from .mmcifconvert import ConvertCIF
@@ -657,7 +658,6 @@ def exportJobFile(jobId=None,mode=None):
     #     don't use ctruncate output which has intensities derived from F^2
     #     which would mean truncate applied twice
     from ....core import CCP4XtalData
-    from ....core.CCP4ProjectsManager import PROJECTSMANAGER
 
     print("\nexportJobFile")
     jobDir = PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)

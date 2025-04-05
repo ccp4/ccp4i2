@@ -21,6 +21,7 @@ from .. import __version__
 from ..googlecode import diff_match_patch_py3
 from ..report.CCP4ReportParser import CCP4NS
 from .CCP4ErrorHandling import CErrorReport, CException, Severity
+from .CCP4Modules import PROJECTSMANAGER
 
 
 # Version number of form n.m or n.m.i
@@ -105,7 +106,7 @@ class CProjectName(CCP4Data.CString):
             return v
         elif arg == 'FULLPATH':
             return v
-        from .CCP4ProjectsManager import PROJECTSMANAGER
+
         d = PROJECTSMANAGER().getProjectDirectory(projectName=arg, testAlias=True)
         #print 'CProjectName.validity',arg,d
         if d is None:
@@ -128,7 +129,6 @@ class CProjectName(CCP4Data.CString):
                 if isinstance(obj,CCP4PluginScript.CPluginScript):
                     return obj.getWorkDirectory()
             return None
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         d = PROJECTSMANAGER().getProjectDirectory(projectName=str(self._value), testAlias=True)
         if d is None:
             return CFilePath()
@@ -164,7 +164,6 @@ class CProjectId(CCP4Data.CUUID):
                 v.append(self.__class__, 2, name=self.objectPath(), label=self.qualifiers('guiLabel'), stack=False)
             return v
         arg = str(arg)
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         d = PROJECTSMANAGER().getProjectDirectory(projectId=arg, testAlias=True)
         if d is None:
             if not self.qualifiers('allowUnfound'):
@@ -190,7 +189,6 @@ class CProjectId(CCP4Data.CUUID):
                 if isinstance(obj, CCP4PluginScript.CPluginScript):
                     return obj.getWorkDirectory()
             return None
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         d = PROJECTSMANAGER().getProjectDirectory(projectId=str(self._value))
         if d is None:
             return CFilePath()
@@ -463,7 +461,6 @@ class CDataFile(CCP4Data.CData):
                     path = obj.getWorkDirectory()
                     obj = None
         else:
-            from .CCP4ProjectsManager import PROJECTSMANAGER
             path = PROJECTSMANAGER().getProjectDirectory(projectId=projectId, testAlias=True)
             #print 'CDataFile.makeFullPath project path',projectId,type(projectId),path
             if path is None:
@@ -501,7 +498,6 @@ class CDataFile(CCP4Data.CData):
         if self.qualifiers('mustExist') and not os.path.exists(str(value)):
             raise CException(self.__class__, 101, 'Filename: ' + str(value), name=self.objectPath())
         if checkDb:
-            from .CCP4ProjectsManager import PROJECTSMANAGER
             projectName, relPath, projectId = PROJECTSMANAGER().interpretDirectory(path)
         else:
             projectId = None
@@ -519,7 +515,6 @@ class CDataFile(CCP4Data.CData):
     def setDbFileId(self, fileId):
         self.unSet()
         try:
-            from .CCP4ProjectsManager import PROJECTSMANAGER
             modelist = ['filename', 'relpath', 'annotation', 'projectid', 'filesubtype', 'filecontent']
             fileInfo = PROJECTSMANAGER().db().getFileInfo(fileId=fileId, mode=modelist)
         except Exception as e:
@@ -556,7 +551,6 @@ class CDataFile(CCP4Data.CData):
             if useAnnotation and self.__dict__['_value']['annotation'].isSet():
                 return self.__dict__['_value']['annotation'].__str__()
             if self.__dict__['_value']['dbFileId'].isSet():
-                from .CCP4ProjectsManager import PROJECTSMANAGER
                 fileInfo = PROJECTSMANAGER().db().getFileInfo(fileId=str(self.__dict__['_value']['dbFileId']), mode=['jobnumber', 'taskname'])
                 #print 'CDataFile.guiLabel fileInfo',fileInfo
                 gLabel = self.qualifiers('mimeTypeDescription') + ' from ' + str(fileInfo['jobnumber']) + ' ' \
@@ -571,7 +565,6 @@ class CDataFile(CCP4Data.CData):
 
     def getProjectId(self, projectName):
         try:
-            from .CCP4ProjectsManager import PROJECTSMANAGER
             return PROJECTSMANAGER().db().getProjectId(projectName=projectName)
         except:
             return None
@@ -855,7 +848,6 @@ class CDataFile(CCP4Data.CData):
             ext = '.' + self.qualifiers('fileExtensions')[0]
         #print 'CDataFile.importFileName jobId', jobId
         if jobDirectory is None:
-            from .CCP4ProjectsManager import PROJECTSMANAGER
             jobDirectory = PROJECTSMANAGER().jobDirectory(jobId=jobId)
         objName = self.objectName()
         if len(objName) == 0:
@@ -1382,7 +1374,6 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
                     seq_annotation = df.xpath("annotation")[0].text.split()[-1]
                     seq_relPath = df.xpath("relPath")[0].text
                     print(seq_dbFileId,seq_baseName,seq_project,seq_annotation,seq_relPath)
-                    from .CCP4ProjectsManager import PROJECTSMANAGER
                     projectName=PROJECTSMANAGER().db().getProjectInfo(projectId=seq_project,mode='projectdirectory')
                     seqFileName = os.path.join(projectName,seq_relPath,seq_baseName)
                     seqFile = CCP4ModelData.CSeqDataFile(parent=None)
@@ -1415,7 +1406,6 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
                 SEQIN_el = inpD.xpath(oldTag)[0]
                 inpD.remove(SEQIN_el)
                 print("REMOVED OLD")
-                from .CCP4ProjectsManager import PROJECTSMANAGER
                 projectName=PROJECTSMANAGER().db().getProjectInfo(projectId=seq_project, mode='projectdirectory')
                 seqFileName = os.path.join(projectName, seq_relPath, seq_baseName)
                 seqFile = CCP4ModelData.CSeqDataFile(parent=None)
@@ -1437,7 +1427,6 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
                     #This needs to contain list of stuff when list input!
                     container.inputData.ASU_CONTENT.set(asu_inps)
                     container.outputData.ASUCONTENTFILE.set({'project' : seq_project, 'baseName' : "ASUCONTENTFILE.asu.xml", "relPath":"CCP4_JOBS/job_" + str(asuJob.info["jobnumber"])})
-                    from .CCP4ProjectsManager import PROJECTSMANAGER
                     fName = PROJECTSMANAGER().makeFileName(jobId=asuJob.jobId, mode='JOB_INPUT')
                     if os.path.isfile(fName):
                         os.remove(fName)
@@ -1455,19 +1444,17 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
                     f.header.ccp4iVersion.set(__version__)
                     if sys.platform == 'darwin':
                         f.header.OS.set('MacOSX')
-                    elif sys.platform.startswith('linux'):
+                    if sys.platform.startswith('linux'):
                         f.header.OS.set('Linux')
-                    elif sys.platform.startswith('win'):
+                    if sys.platform.startswith('win'):
                         f.header.OS.set('Windows')
                     f.header.jobNumber.set(str(asuJob.info["jobnumber"]))
                     print("SETTING JOB NUMBER IN HEADER TO",asuJob.info["jobnumber"])
                     f.header.hostName.set(CCP4Utils.getHostName())
                     f.saveFile(bodyEtree=container.getEtree())
-                    from .CCP4ProjectsManager import PROJECTSMANAGER
                     PROJECTSMANAGER().runInternalTask(jobId = asuJob.jobId, projectId=seq_project, taskName = 'ProvideAsuContents')
                 print("--------------------",taskName,"--------------------")
                 if taskName != "clamshelx":
-                    from .CCP4ProjectsManager import PROJECTSMANAGER
                     jobFiles = PROJECTSMANAGER().db().getJobFilesInfo(jobId = asuJob.jobId)
                     ASUIN = etree.SubElement(body.xpath("inputData")[0],newTag)
                     ASUIN_dbFileId = etree.SubElement(ASUIN,"dbFileId")
@@ -1559,7 +1546,6 @@ class CExportedFile(CCP4Data.CData):
         from . import CCP4TaskManager
         from ..dbapi import CCP4DbApi
         if self.exportId.isSet():
-            from .CCP4ProjectsManager import PROJECTSMANAGER
             exFile = PROJECTSMANAGER().db().getExportFileInfo(exportId=CCP4DbApi.UUIDTYPE(self.__dict__['_value']['exportId']),mode='label')
             if len(exFile) > 0:
                 title = CCP4TaskManager.TASKMANAGER().getTitle(exFile['taskname'])

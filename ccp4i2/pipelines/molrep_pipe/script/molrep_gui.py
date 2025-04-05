@@ -3,11 +3,11 @@ Copyright (C) 2011 University of York
 Andrey Lebedev September 2011 - molrep_mr gui
 """
 
+from ....core.CCP4Modules import PROJECTSMANAGER
 from ....qtgui import CCP4TaskWidget
 
 
 def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None):
-    from ....core.CCP4ProjectsManager import PROJECTSMANAGER
     jobStatus = PROJECTSMANAGER().db().getJobInfo(jobId,'status')
     if jobStatus == 'Unsatisfactory':
         returnList = ['molrep_pipe', 'phaser_pipeline']

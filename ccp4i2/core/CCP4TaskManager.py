@@ -19,6 +19,10 @@ from lxml import etree
 from . import CCP4Utils
 from ..dbapi import CCP4DbApi
 from .CCP4Config import CONFIG
+from .CCP4Modules import CUSTOMTASKMANAGER
+from .CCP4Modules import PREFERENCES
+from .CCP4Modules import PROJECTSMANAGER
+from .CCP4Modules import WORKFLOWMANAGER
 from .CCP4ErrorHandling import CErrorReport, Severity
 
 
@@ -486,7 +490,6 @@ class CTaskManager:
         data = self.getTaskData(name, version)
         if self.lazyLoadClassForDict(data) is not None:
             return data['class']
-        from .CCP4WorkflowManager import WORKFLOWMANAGER
         if name in WORKFLOWMANAGER().getList():
             data = self.getTaskData('workflow')
             return self.lazyLoadClassForDict(data)
@@ -557,8 +560,6 @@ class CTaskManager:
             cls = self.lazyLoadClassForDict(data)
             if cls is not None:
                 return cls
-        from .CCP4CustomTaskManager import CUSTOMTASKMANAGER
-        from .CCP4WorkflowManager import WORKFLOWMANAGER
         if name in WORKFLOWMANAGER().getList():
             data = self.getScriptData('workflow', version)
             cls = self.lazyLoadClassForDict(data)
@@ -595,10 +596,8 @@ class CTaskManager:
             return taskTitle
         else:
             # Try customisations - will return same input taskName if not recognised
-            from .CCP4WorkflowManager import WORKFLOWMANAGER
             title = WORKFLOWMANAGER().getTitle(taskName)
             if title == taskName:
-                from .CCP4CustomTaskManager import CUSTOMTASKMANAGER
                 title = CUSTOMTASKMANAGER().getTitle(taskName)
             if title is None:
                 title = taskName
@@ -673,7 +672,6 @@ class CTaskManager:
         return self.lazyLoadClassForDict(performanceClassDict)
 
     def taskTree(self, shortTitles=False):
-        from .CCP4Preferences import PREFERENCES
         # Return list of [module_name,taskList]
         tree = []
         for module in MODULE_ORDER:
@@ -792,7 +790,6 @@ class CTaskManager:
             return True
         elif self.searchXrtFile(name=name, jobStatus=jobStatus) is not None:
             return True
-        from .CCP4WorkflowManager import WORKFLOWMANAGER
         defFile = WORKFLOWMANAGER().getDefFile(name)
         return (defFile is not None)
 
@@ -829,7 +826,6 @@ class CTaskManager:
         if len(fileList) > 0:
             return fileList[0]
         # Try if it is a workflow - returns None if not recognised
-        from .CCP4WorkflowManager import WORKFLOWMANAGER
         defFile = WORKFLOWMANAGER().getDefFile(name)
         if defFile is not None:
             return defFile
@@ -842,7 +838,6 @@ class CTaskManager:
             defFile = os.path.join(CCP4Utils.getCCP4I2Dir(), 'tasks', der_name, der_name + '.def.xml')
             if os.path.exists(defFile):
                 return defFile
-        from .CCP4CustomTaskManager import CUSTOMTASKMANAGER
         defFile = CUSTOMTASKMANAGER().getDefFile(name)
         return defFile
 
@@ -894,7 +889,6 @@ class CTaskManager:
             return []
 
     def whatNext(self, taskName, jobId=None):
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         #print 'CCP4TaskManager.whatNext',taskName,jobId,type(jobId),self.taskLookup.has_key(taskName)
         # Get the jobs parent - the parent pipeline should provide the info for what to do next
         childJobs = [jobId]
@@ -946,7 +940,6 @@ class CTaskManager:
         return rv
 
     def getWhatNextPage(self, taskName=None, jobId=None):
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         if taskName is None and jobId is not None:
             taskName = PROJECTSMANAGER().db().getJobInfo(jobId=jobId, mode='taskname')
         if taskName is None:

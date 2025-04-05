@@ -14,6 +14,7 @@ from . import CCP4File
 from . import CCP4Utils
 from ..googlecode import diff_match_patch_py3
 from .CCP4ErrorHandling import CErrorReport, CException
+from .CCP4Modules import PROJECTSMANAGER
 
 
 def COMFILEPATCHMANAGER():
@@ -79,7 +80,6 @@ class CComFilePatchManager(CCP4CustomManager.CCustomManager):
             if jobId is None:
                 raise CException(self.__class__, 206)
             from . import CCP4TaskManager
-            from .CCP4ProjectsManager import PROJECTSMANAGER
             jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=jobId, mode=['taskname', 'taskversion'])
             defFile = CCP4TaskManager.TASKMANAGER().lookupDefFile(name=jobInfo['taskname'], version=jobInfo['taskversion'])
             taskContainer = CCP4Container.CContainer()
@@ -118,7 +118,6 @@ class CComFilePatchManager(CCP4CustomManager.CCustomManager):
         if jobId is None:
             return ''
         try:
-            from .CCP4ProjectsManager import PROJECTSMANAGER
             jobDir = PROJECTSMANAGER().jobDirectory(jobId=jobId)
             comFilePath = os.path.join(jobDir, 'com.txt')
         except:

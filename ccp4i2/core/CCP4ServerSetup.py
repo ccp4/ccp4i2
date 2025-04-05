@@ -5,6 +5,7 @@ import shutil
 from .. import I2_TOP
 from ..core import CCP4Container
 from ..core import CCP4Utils
+from .CCP4Modules import TASKMANAGER
 
 
 def SERVERSETUP():
@@ -20,7 +21,6 @@ class CServerSetup(CCP4Container.CContainer):
         super().__init__(name="SERVER_SETUP")
         CServerSetup.insts = self
         self.__dict__["source"] = None
-        from ..core.CCP4TaskManager import TASKMANAGER
         defFile = TASKMANAGER().searchDefFile("serverSetup")
         self.loadContentsFromXml(defFile)
 

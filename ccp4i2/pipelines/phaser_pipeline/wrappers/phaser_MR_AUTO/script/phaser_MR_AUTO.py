@@ -8,6 +8,7 @@ import phaser
 
 from ......core import CCP4ErrorHandling
 from ......core import CCP4Utils
+from ......core.CCP4Modules import PROJECTSMANAGER
 from ......core.CCP4PluginScript import CPluginScript
 from ......pipelines.phaser_pipeline.wrappers.phaser_MR.script import phaser_MR
 
@@ -379,7 +380,6 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
     def finishCaptureCPlusPlusStdout(self):
         os.dup2(self.stdout_save, self.stdout_fileno)
         os.close(self.stdout_save)
-        from ......core.CCP4ProjectsManager import PROJECTSMANAGER
         jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=self.jobId)
         if "jobtitle" in jobInfo and jobInfo["jobtitle"]:
             self.logFile.write(str(jobInfo["jobtitle"])+"\n")

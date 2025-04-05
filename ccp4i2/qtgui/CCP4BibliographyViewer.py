@@ -11,6 +11,8 @@ from PySide2 import QtCore, QtWidgets
 
 from ..core import CCP4Annotation
 from ..core.CCP4ErrorHandling import Severity
+from ..core.CCP4Modules import PROJECTSMANAGER, TASKMANAGER
+from ..core.CCP4WarningMessage import warningMessage
 from ..qtgui import CCP4Widgets
 
 
@@ -139,7 +141,6 @@ class CBibReferenceGroupView(CCP4Widgets.CComplexLineWidget):
   def export(self,format,fileName):
     err = self.model.export(cformat=format,fileName=fileName)
     if err.maxSeverity()>Severity.WARNING:
-      from ..core.CCP4WarningMessage import warningMessage
       warningMessage(err, parent=self,windowTitle='Error attempting to export bibliography')
 
 
@@ -155,8 +156,6 @@ class CBibliographyViewer(QtWidgets.QMainWindow):
     self.frame.setLayout(QtWidgets.QVBoxLayout())
 
   def setReferences(self,jobId=None,taskNameList=[]):
-    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
-    from ..core.CCP4TaskManager import TASKMANAGER
     pm = PROJECTSMANAGER()
     if jobId is not None:
       taskBiblio = glob.glob(os.path.join(pm.jobDirectory(jobId=jobId),'*.medline.txt'))

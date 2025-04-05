@@ -8,6 +8,7 @@ import functools
 from PySide2 import QtCore, QtWidgets
 
 from ..core.CCP4ErrorHandling import CException, Severity
+from ..core.CCP4Modules import DUMMYMAINWINDOW, WEBBROWSER
 from ..core.CCP4WarningMessage import warningMessage
 
 
@@ -16,7 +17,6 @@ class CCustomisationGui(QtWidgets.QDialog):
   insts = []
   
   def __init__(self,parent=None,mode=None,title=None,ifEdit=True,ifClone=True):
-    from ..qtgui.CCP4WebBrowser import DUMMYMAINWINDOW
     if parent is None: parent = DUMMYMAINWINDOW()
     QtWidgets.QDialog.__init__(self,parent)
     CCustomisationGui.insts.append(self)
@@ -176,7 +176,6 @@ class CCustomisationGui(QtWidgets.QDialog):
 
   @QtCore.Slot()
   def handleHelp(self):
-    from ..qtgui.CCP4WebBrowser import WEBBROWSER
     WEBBROWSER().loadWebPage(helpFileName='customisation')
 
 

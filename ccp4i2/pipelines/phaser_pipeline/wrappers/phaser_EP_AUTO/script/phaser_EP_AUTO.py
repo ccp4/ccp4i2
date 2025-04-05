@@ -5,6 +5,7 @@ import phaser
 
 from ......core import CCP4ErrorHandling
 from ......core import CCP4Utils
+from ......core.CCP4Modules import PROJECTSMANAGER
 from ......core.CCP4PluginScript import CPluginScript
 from ......pipelines.phaser_pipeline.wrappers.phaser_MR.script import phaser_MR
 
@@ -154,7 +155,6 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
         
         with open (self.makeFileName('LOG'),'a') as logfile:
             logfile.write(self.resultObject.logfile())
-            from ......core.CCP4ProjectsManager import PROJECTSMANAGER
             jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=self.jobId)
             if "jobtitle" in jobInfo and jobInfo["jobtitle"]:
                 logfile.write(str(jobInfo["jobtitle"])+"\n")

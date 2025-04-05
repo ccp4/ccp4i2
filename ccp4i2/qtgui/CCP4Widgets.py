@@ -47,6 +47,13 @@ DRAGICONSIZE=20
 CONTRASTCOLOUR = '#9BFFFF'
 ERRORCOLOUR = '#FF0000'
 
+
+def PIXMAPMANAGER():
+    if CPixmapManager.insts is None:
+        CPixmapManager()
+    return CPixmapManager.insts
+
+
 class MyProxyStyle(QtWidgets.QCommonStyle):
     def __init__(self):
         """Initialize all functions we're not overriding.

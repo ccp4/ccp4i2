@@ -19,6 +19,7 @@ import psutil
 from ..core import CCP4JobServer
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
+from ..core.CCP4Modules import HTTPSERVER, PROJECTSMANAGER
 from ..utils.QApp import QTAPPLICATION
 
 
@@ -61,7 +62,6 @@ class CJobController(CCP4JobServer.CJobServer):
         if parent is None:
             parent = QTAPPLICATION()
         if db is None:
-            from ..core.CCP4ProjectsManager import PROJECTSMANAGER
             db = PROJECTSMANAGER().db()
         QtCore.QObject.__init__(self,parent)
         if CJobController.insts is None:
@@ -290,7 +290,6 @@ class CJobController(CCP4JobServer.CJobServer):
                 status = self.db.getJobInfo(jobId=jobId, mode='status')
                 if not status in ['Queued', 'Running']:
                     raise CException(self.__class__, 111, 'Job id' + str(jobId))
-                from ..core.CCP4ProjectsManager import PROJECTSMANAGER
                 logFile = PROJECTSMANAGER().makeFileName(jobId=jobId, mode='LOG')
                 size = self.getFileSize(logFile)
                 self._watchedJobs[jobId] = {'logFile' : logFile, 'size' : size}
@@ -321,10 +320,8 @@ class CJobController(CCP4JobServer.CJobServer):
         return argList
 
     def runTask(self, jobId=None, wait=None):
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         from ..dbapi import CCP4DbApi
         from ..qtcore import CCP4HTTPServerThread
-        from ..qtcore.CCP4HTTPServerThread import HTTPSERVER
         #print 'CJobController.runTask pythonExecutable',CCP4Utils.pythonExecutable()
         controlFile = self.db._makeJobFileName(jobId=jobId, mode='JOB_INPUT')
         argList = self.getArgList(controlFile)
@@ -701,7 +698,6 @@ echo "PID=$pid"
         CCP4JobServer.CJobServer.Exit(self)
 
     def loadRemoteRun(self,jobId=None,compressedFile=None,xmlDbFile=None):
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         from ..dbapi import CCP4DbApi
         #print 'loadRemoteRun',jobId,compressedFile,xmlDbFile
         # Extract database xmlfile

@@ -7,6 +7,7 @@ import traceback
 
 from ....core import CCP4Utils, CCP4XtalData
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Modules import PREFERENCES, PROJECTSMANAGER
 from ....pipelines.crank2.script import crank2_basepipe
 
 
@@ -206,7 +207,6 @@ class crank2(CPluginScript):
       crank_lines.append("createfree {} fraction::{}".format(no_out_next, inp.FREE_RATIO*0.01))
 
     self.i2_shelxdir = None
-    from ....core.CCP4Preferences import PREFERENCES
     if hasattr(PREFERENCES(),'SHELXDIR') and PREFERENCES().SHELXDIR:
       self.i2_shelxdir = str(PREFERENCES().SHELXDIR)
 
@@ -480,7 +480,6 @@ class crank2(CPluginScript):
     protected = [ os.path.realpath(str(getattr(c.outputData,f))) for c in all_cont for f in c.outputData._dataOrder if str(getattr(c.outputData,f)) ]
     protected += [ os.path.realpath(str(getattr(c.inputData,f))) for c in all_cont for f in c.inputData._dataOrder if str(getattr(c.inputData,f)) ]
     count_removed=0
-    from ....core.CCP4ProjectsManager import PROJECTSMANAGER
     for root,dirs,files in os.walk( PROJECTSMANAGER().jobDirectory(self.jobId) ):
       for f in files:
         if f.lower().endswith('.mtz') and os.path.realpath(os.path.join(root,f)) not in protected:

@@ -21,6 +21,7 @@ from ..dbapi import CCP4DbUtils
 from ..utils import startup
 from ..utils.QApp import QTAPPLICATION
 from .CCP4ErrorHandling import CException, CErrorReport, Severity
+from .CCP4Modules import JOBCONTROLLER, PROCESSMANAGER, PROJECTSMANAGER
 
 
 DIAGNOSTIC = False
@@ -58,7 +59,6 @@ def run(sourceProjectList=[], outputDirectory=None, dbFile=None):
     jc.setDiagnostic(False)
     if dbFile is not None:
         jc.setDbFile(dbFile)
-    from .CCP4ProjectsManager import PROJECTSMANAGER
     PROJECTSMANAGER().startCheckForFinishedJobs()
     startTime = time.strftime('%y-%m-%d-%H-%M',time.localtime())
     print('Test results will be saved to: ' + os.path.join(outputDirectory, 'CCP4_test-' + startTime + '.log'))
@@ -140,14 +140,12 @@ class CProjectBasedTesting(QtCore.QObject):
             setattr(self, name, kw.get(name, defn['default']))
         if self.resetBaseline:
             self.copyFiles = 1
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         if not useCurrentDb:
             try:
                 PROJECTSMANAGER().db().openDb(fileName=self.dbFile, createDb=True, diagnostic=False)
             except:
                 raise CException(self.__class__, 101, self.dbFile)
             else:
-                from ..qtcore.CCP4JobController import JOBCONTROLLER
                 JOBCONTROLLER().setDbFile(self.dbFile)
         PROJECTSMANAGER().db().jobFinished.connect(self.handleJobFinished)
         print('Project based testing set up using database:', self.dbFile)
@@ -210,7 +208,6 @@ class CProjectBasedTesting(QtCore.QObject):
         if self.copyFiles:
             self.copyImportedFiles(fromJobId=self.sourceJobInfo['jobid'], toJobId=job.jobId)
 
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         sourceProjectId = PROJECTSMANAGER().db().getJobInfo(self.sourceJobInfo['jobid'],'projectid')
         targetProjectId = PROJECTSMANAGER().db().getJobInfo(job.jobId,'projectid')
         sourceDir = PROJECTSMANAGER().db().getProjectDirectory(projectId=sourceProjectId)
@@ -234,7 +231,6 @@ class CProjectBasedTesting(QtCore.QObject):
 
     def unpackProject(self, compressedFile):
         from ..qtcore import CCP4Export
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         # Extract database xml file from compressedFile
         try:
             xmlFile = PROJECTSMANAGER().extractDatabaseXml(compressedFile)
@@ -274,7 +270,6 @@ class CProjectBasedTesting(QtCore.QObject):
         return projectName
 
     def setupProject(self,sourceProject):
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         if DIAGNOSTIC: print('CProjectBasedTesting,setupProject',sourceProject)
         try:
             self.sourceProjectId = PROJECTSMANAGER().db().getProjectId(projectName=sourceProject)
@@ -303,7 +298,6 @@ class CProjectBasedTesting(QtCore.QObject):
         return len(self.sourceProjectJobs)
 
     def copyImportedFiles(self, fromJobId, toJobId):
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         importedFileInfoList = PROJECTSMANAGER().db().getImportFileInstances(jobId=fromJobId, brief=False)
         for info in importedFileInfoList:
             targetFileId = PROJECTSMANAGER().db().createFile(jobId=toJobId,fileTypeId=info['filetypeid'], sourceFileName=info['sourcefilename'],
@@ -329,7 +323,6 @@ class CProjectBasedTesting(QtCore.QObject):
             self.runSubJobTests(sourceJobId, testJobId)
 
     def runSubJobTests(self, sourceJobId, testJobId, testSubJobs=False):
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         sourceSubJobList = PROJECTSMANAGER().db().getJobInfo(sourceJobId, 'childjobs')
         testSubJobList = PROJECTSMANAGER().db().getJobInfo(testJobId, 'childjobs')
         nSubJobs = min(len(sourceSubJobList),len(testSubJobList))
@@ -341,7 +334,6 @@ class CProjectBasedTesting(QtCore.QObject):
                 self.runJobTest(sourceSubJobList[idx], testSubJobList[idx], testSubJobs)
 
     def runJobTest(self, sourceJobId, testJobId, testSubJobs=False):
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         report = CErrorReport()
         taskName = PROJECTSMANAGER().db().getJobInfo(sourceJobId, 'taskname')
         cls = CCP4TaskManager.TASKMANAGER().getPluginScriptClass(taskName)
@@ -374,7 +366,6 @@ class CProjectBasedTesting(QtCore.QObject):
         return report.maxSeverity()
 
     def reportJobStatus(self, jobId, expected=False):
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         status = PROJECTSMANAGER().db().getJobInfo(jobId, 'status')
         if not expected:
             self.log.write('Job database status: ' + status)
@@ -386,7 +377,6 @@ class CProjectBasedTesting(QtCore.QObject):
                 etree.SubElement(self.currentJobNode,'ExpectedStatus').text = str(status)
 
     def listPluginErrorReport(self, jobId):
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         try:
             tree = CCP4Utils.openFileToEtree(PROJECTSMANAGER().makeFileName(jobId=jobId, mode='DIAGNOSTIC'))
             report = CErrorReport()
@@ -415,7 +405,6 @@ class CProjectBasedTesting(QtCore.QObject):
         os.rename(self.lastCompressedFile, self.lastCompressedFile + '.backup_' + time.strftime('%y-%m-%d-%H-%M', time.localtime()))
         dbxml = os.path.join(self.testProjectDir, 'CCP4_TMP', 'DATABASE' + str(int(time.time())) + '.db.xml')
         print('Creating temporary database xml file in:',dbxml)
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         errReport = PROJECTSMANAGER().db().exportProjectXml(self.testProjectId, fileName=dbxml)
         self.exportThread = CCP4Export.ExportProjectThread(self, projectDir=self.testProjectDir, dbxml=dbxml, target=self.lastCompressedFile)
         self.lastCompressedFile = None
@@ -432,7 +421,6 @@ class CProjectBasedTesting(QtCore.QObject):
         self.finished.emit()
 
     def compareComFiles(self, sourceJobId, testJobId):
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         report = CErrorReport()
         sourceComFile = PROJECTSMANAGER().db()._makeJobFileName(jobId=sourceJobId, mode='COM')
         testComFile = PROJECTSMANAGER().db()._makeJobFileName(jobId=testJobId, mode='COM')
@@ -476,7 +464,6 @@ class CProjectBasedTesting(QtCore.QObject):
         self.runTestSys('eval')
 
     def sourceProjectDir(self):
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         return PROJECTSMANAGER().db().getProjectDirectory(projectId=self.sourceProjectId)
 
     def handleRunTestSysFinished(self, pid):
@@ -486,7 +473,6 @@ class CProjectBasedTesting(QtCore.QObject):
         #exePath = os.path.join(os.environ('TESTSYSSRC'),'testsys.py')
         exePath = '/Users/lizp/Desktop/pavols_test_sys/testsys.py'
         projectDir = self.sourceProjectDir()
-        from .CCP4ProcessManager import PROCESSMANAGER
         PROCESSMANAGER().startProcess(exePath, arg=argList, editEnv=[['TESTSYS', os.path.join(projectDir, 'CCP4_TEST_SYSTEM')]], handler=[self.handleRunTestSysFinished])
 
 
@@ -501,7 +487,6 @@ class BuildTestSuite:
         self.projectId = projectId
 
     def run(self):
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         self.errorReport = CErrorReport()
         projectInfo = PROJECTSMANAGER().db().getProjectInfo(projectId=self.projectId)
         #print 'PROJECTSMANAGER().makeTestSuite projectId',projectId,projectInfo
@@ -538,4 +523,3 @@ class BuildTestSuite:
             os.mkdir(path)   # KJS : Not clear what this function is supposed to be doing ...check.
         except:
             self.errorReport.append(self.__class__, 213, path)
-

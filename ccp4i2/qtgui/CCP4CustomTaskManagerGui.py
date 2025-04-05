@@ -13,6 +13,7 @@ from . import CCP4CustomisationGui, CCP4Widgets
 from ..core import CCP4CustomTaskManager
 from ..core import CCP4Data
 from ..core.CCP4ErrorHandling import Severity
+from ..core.CCP4Modules import CUSTOMTASKMANAGER, WEBBROWSER
 from ..core.CCP4WarningMessage import warningMessage
 
 
@@ -34,7 +35,6 @@ class CCustomTaskManagerGui(CCP4CustomisationGui.CCustomisationGui):
     
 
   def manager(self):
-    from ..core.CCP4CustomTaskManager import CUSTOMTASKMANAGER
     return CUSTOMTASKMANAGER()
 
   def handleNew(self):
@@ -375,7 +375,6 @@ class CCreateCustomTaskDialog(QtWidgets.QDialog):
     self.widgets = {}
     self.model = CCP4CustomTaskManager.CCustomTaskDefinition(self,name=name)
     if name is not None:
-      from ..core.CCP4CustomTaskManager import CUSTOMTASKMANAGER
       self.model.loadDataFromXml(fileName=os.path.join(CUSTOMTASKMANAGER().getDirectory(name),'task.xml'),loadHeader=True,check=False)
 
     line = QtWidgets.QHBoxLayout()
@@ -455,7 +454,6 @@ class CCreateCustomTaskDialog(QtWidgets.QDialog):
 
   @QtCore.Slot()
   def help(self):
-    from ..qtgui.CCP4WebBrowser import WEBBROWSER
     WEBBROWSER().loadWebPage(helpFileName='customisation')
 
   @QtCore.Slot()
@@ -485,7 +483,6 @@ class CCreateCustomTaskDialog(QtWidgets.QDialog):
         QtWidgets.QMessageBox.warning(self,'Create Custom Task',"There are undefined parameters in the command line/file.\nPlease click 'Update parameters' and check the definitions in the parameter list")
         return
 
-    from ..core.CCP4CustomTaskManager import CUSTOMTASKMANAGER
     mergedMtzs = CUSTOMTASKMANAGER().getMergedMtzs(self.model.paramList)
     #print 'CCreateCustomTaskDialog.accept mergedMtzs',mergedMtzs
     for key,value in list(mergedMtzs.items()):
@@ -511,7 +508,6 @@ class CCreateCustomTaskDialog(QtWidgets.QDialog):
   def createCustomTask(self,overwrite=False):
     self.hide()
     #try:
-    from ..core.CCP4CustomTaskManager import CUSTOMTASKMANAGER
     err = CUSTOMTASKMANAGER().createCustomTask(name=self.model.name.__str__(),title=self.model.title.__str__(),container=self.model,overwrite=overwrite)
 
     if err.maxSeverity()>Severity.WARNING:
@@ -555,7 +551,6 @@ class CCreateCustomTaskDialog(QtWidgets.QDialog):
     
 
   def paramNameList(self,tag='#'):
-    from ..core.CCP4CustomTaskManager import CUSTOMTASKMANAGER
     paramNameList = CUSTOMTASKMANAGER().extractParams(tag,self.model.comLine.__str__())
     for ii in range(len(self.model.comFileList)):
       paramNameList.extend(CUSTOMTASKMANAGER().extractParams(tag,self.model.comFileList[ii].text.__str__()))

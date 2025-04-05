@@ -6,6 +6,7 @@ from PySide2 import QtCore
 
 from ......core.CCP4PluginScript import CPluginScript
 from ......core import CCP4Utils
+from ......core.CCP4Modules import LAUNCHER
 
 
 class pisa_xml(CPluginScript):
@@ -29,7 +30,6 @@ class pisa_xml(CPluginScript):
     def retrieveAssemblies(self):
         try:
             self.assembliesXMLPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'assemblies.xml'))
-            from ......qtcore.CCP4Launcher import LAUNCHER
             LAUNCHER().launch(viewer='pisa', argList = [self.container.controlParameters.IDENTIFIER.__str__(), '-xml','assemblies'], callBack = self.retrieveAssembliesFinished, logFile = self.assembliesXMLPath)
         except:
             return CPluginScript.FAILED
@@ -47,7 +47,6 @@ class pisa_xml(CPluginScript):
     def retrieveInterfaces(self):
         try:
             self.interfacesXMLPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'interfaces.xml'))
-            from ......qtcore.CCP4Launcher import LAUNCHER
             LAUNCHER().launch(viewer='pisa', argList = [self.container.controlParameters.IDENTIFIER.__str__(), '-xml','interfaces'], callBack = self.retrieveInterfacesFinished, logFile = self.interfacesXMLPath)
         except:
             return CPluginScript.FAILED

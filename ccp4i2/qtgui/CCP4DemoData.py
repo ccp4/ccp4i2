@@ -18,6 +18,7 @@ from PySide2 import QtCore, QtWidgets
 
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CErrorReport, CException
+from ..core.CCP4Modules import PROJECTSMANAGER
 from ..core.CCP4WarningMessage import warningMessage
 
 
@@ -89,7 +90,6 @@ class CDemoData:
     def copyDemoDataToProject(self,parentWidget=None,projectId=None,dataset=None):
         source = os.path.join(CCP4Utils.getCCP4I2Dir(),'demo_data',dataset)
         if not os.path.exists(source): source = os.path.join(CCP4Utils.getDotDirectory(),'demo_data',dataset)
-        from ..core.CCP4ProjectsManager import PROJECTSMANAGER
         dest = os.path.join(PROJECTSMANAGER().db().getProjectInfo(projectId=projectId,mode='projectdirectory'),dataset)
         if os.path.exists(dest):
             QtWidgets.QMessageBox.information(parentWidget,'Download demo data','Test data was already copied to the project directory '+dest)

@@ -25,8 +25,11 @@ from . import CCP4WebView
 from ..core import CCP4File
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
-from ..core.CCP4Modules import *
-from ..core.CCP4TaskManager import TASKMANAGER
+from ..core.CCP4Modules import LAUNCHER
+from ..core.CCP4Modules import PREFERENCES
+from ..core.CCP4Modules import PROJECTSMANAGER
+from ..core.CCP4Modules import TASKMANAGER
+from ..core.CCP4Modules import WEBBROWSER
 from ..core.CCP4WarningMessage import warningMessage
 from ..utils.QApp import QTAPPLICATION
 
@@ -831,7 +834,6 @@ class CI1ProjectView(QtWidgets.QTreeView):
     self.setEditTriggers(QtWidgets.QAbstractItemView.EditKeyPressed)
     #self.setFocusPolicy(QtCore.Qt.NoFocus)
     self.setToolTip('Right mouse click for options to view jobs and files')
-    from ..core.CCP4Preferences import PREFERENCES
     self.setAlternatingRowColors(PREFERENCES().TABLES_ALTERNATING_COLOR)
     PREFERENCES().TABLES_ALTERNATING_COLOR.dataChanged.connect(self.resetAlternatingRowColors)
     self.forceUpdate = sys.platform.count('inux') or sys.platform.count('arwin')
@@ -1014,7 +1016,6 @@ class CI1ProjectView(QtWidgets.QTreeView):
       
   @QtCore.Slot()
   def resetAlternatingRowColors(self):
-    from ..core.CCP4Preferences import PREFERENCES
     self.setAlternatingRowColors(PREFERENCES().TABLES_ALTERNATING_COLOR)
   
 class CI1ProjectWidget(QtWidgets.QFrame):
@@ -1267,7 +1268,6 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
     warningMessage(errorReport, parent=self,windowTitle=self.windowTitle(),message=message)
 
   def showHelp(self):
-    from ..qtgui.CCP4WebBrowser import WEBBROWSER
     WEBBROWSER().loadWebPage(helpFileName='CCP4i1Projects.html',newTab=True)
 
   def handleCurrentJobChanged(self,jobId,projectId):
@@ -1308,7 +1308,6 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
       else:
         fileType = "text/plain"
     if fileType == "application/CCP4-mtz":
-      from ..qtcore.CCP4Launcher import LAUNCHER
       LAUNCHER().launch('viewhkl',[fileName])
     elif fileType == "chemical/x-pdb":
       self.textView.loadText(CCP4Utils.readFile(fileName))
@@ -1328,7 +1327,6 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
       logFile = copy.deepcopy(self.currentLogFile)
     if os.path.splitext(logFile)[1] == '.html':
         logFile = os.path.splitext(logFile)[0]
-    from ..qtcore.CCP4Launcher import LAUNCHER
     LAUNCHER().launch('logview',[logFile])
 
   @QtCore.Slot(str,str,str)
@@ -1345,7 +1343,6 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
         if os.path.splitext(path)[1] in ['.mtz','.pdb']:
           fileList.append(fItem.filePath())
     if mode == 'coot' : mode = 'coot0'
-    from ..qtcore.CCP4Launcher import LAUNCHER
     LAUNCHER().openInViewer(viewer=mode,fileName=fileList)
 
   @QtCore.Slot(str,str)
@@ -1530,7 +1527,6 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
   @QtCore.Slot(str)
   def makeI2Project(self,projectId):
     try:
-      from ..core.CCP4ProjectsManager import PROJECTSMANAGER
       pid = PROJECTSMANAGER().db().getProjectId(projectName=projectId)
     except:
       reqNewName = False
@@ -1592,7 +1588,6 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
   def associateI2Project(self,i1ProjectName,projectId=None):
     #print 'associateI2Project',i1ProjectName,projectId
     pObj = self.model().getProject(i1ProjectName)
-    from ..core.CCP4ProjectsManager import PROJECTSMANAGER
     PROJECTSMANAGER().db().updateProject(projectId,key='I1ProjectName',value=i1ProjectName)
     PROJECTSMANAGER().db().updateProject(projectId,key='I1ProjectDirectory',value=pObj.directory)
     
@@ -1621,7 +1616,6 @@ class CI1ProjectViewer(CCP4WebBrowser.CMainWindow):
            defaultSuffix='.def',
            fileMode=QtWidgets.QFileDialog.ExistingFile  )
 #Not possible with native browser as far as I know. SJM 22/11/2018.
-    from ..core.CCP4Preferences import PREFERENCES
     if not PREFERENCES().NATIVEFILEBROWSER:
         dialog.widget.fileDialog.setFilter(QtCore.QDir.AllEntries | QtCore.QDir.Hidden | QtCore.QDir.NoDotAndDotDot )
     dialog.show()

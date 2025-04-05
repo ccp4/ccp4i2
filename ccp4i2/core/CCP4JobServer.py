@@ -17,6 +17,7 @@ import paramiko
 
 from . import CCP4Utils
 from .CCP4ErrorHandling import CException
+from .CCP4Modules import PROCESSMANAGER, PROJECTSMANAGER, SERVERSETUP
 
 
 PARAMIKO_PORT=22
@@ -136,7 +137,6 @@ class CServerParams:
         self.setDbParams()
 
     def setDbParams(self):
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         jobInfo = PROJECTSMANAGER().db().getJobInfo(self.jobId, ['jobnumber', 'projectid', 'projectname'])
         self.jobNumber = jobInfo['jobnumber']
         self.projectId = jobInfo['projectid']
@@ -226,7 +226,6 @@ class CJobServer(QtCore.QObject):
         return os.path.join(CCP4Utils.getDotDirectory(), 'status', 'jobServer.params.xml')
 
     def restoreFromDb(self):
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         jobInfoList = PROJECTSMANAGER().db().getServerJobs()
         #print 'restoreFromDb',jobInfoList
         for jobInfo in jobInfoList:
@@ -293,7 +292,6 @@ class CJobServer(QtCore.QObject):
                 self.db.updateServerJob(jobId, key, value)
 
     def getServerParam(self, jobId, key):
-        from .CCP4ServerSetup import SERVERSETUP
         if jobId not in self._serverParams:
             return None
         rv = getattr(self._serverParams[jobId], key, None)
@@ -853,7 +851,6 @@ class CJobServer(QtCore.QObject):
                 raise CException(self.__class__,361)
             else:
                 from ..dbapi import CCP4DbApi
-                from .CCP4ProjectsManager import PROJECTSMANAGER
                 self.deleteServerParams(jobId)
                 PROJECTSMANAGER().db().updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_FAILED)
         elif sP.mechanism in ['qsub_remote']:
@@ -876,7 +873,6 @@ class CJobServer(QtCore.QObject):
                 raise CException(self.__class__,361)
             else:
                 from ..dbapi import CCP4DbApi
-                from .CCP4ProjectsManager import PROJECTSMANAGER
                 self.deleteServerParams(jobId)
                 PROJECTSMANAGER().db().updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_FAILED)
         elif sP.mechanism in ['slurm_remote']:
@@ -884,7 +880,6 @@ class CJobServer(QtCore.QObject):
 
     def handleRemoteDel(self, jobId, out, err):
         from ..dbapi import CCP4DbApi
-        from .CCP4ProjectsManager import PROJECTSMANAGER
         if self._diagnostic:
             print('handleRemoteQsubDel', jobId, out, err)
         self.deleteServerParams(jobId)
@@ -904,7 +899,6 @@ class CJobServer(QtCore.QObject):
             self.customHandler(jobid).killJob(jobId)
 
     def runLocalTest(self, jobId, remoteSh):
-        from .CCP4ProcessManager import PROCESSMANAGER
         PROCESSMANAGER().startProcess('sh', [remoteSh], handler=[self.localTestFinished, {'jobId':jobId}], ifAsync=True)
 
     def localTestFinished(self, pid, jobId=None):

@@ -5,6 +5,7 @@ Liz Potterton - create class to maintain GUIPreferences - Sept 2011
 
 from PySide2 import QtCore, QtWidgets
 
+from ..core.CCP4Modules import PREFERENCES, TASKMANAGER
 from ..utils.QApp import QTAPPLICATION
 
 
@@ -13,9 +14,6 @@ class CPreferencesWindow(QtWidgets.QDialog):
   def __init__(self,parent):
     QtWidgets.QDialog.__init__(self,parent)
     self.setLayout(QtWidgets.QVBoxLayout())
-
-    from ..core.CCP4Preferences import PREFERENCES
-    from ..core.CCP4TaskManager import TASKMANAGER
 
     widgetClass = TASKMANAGER().getTaskWidgetClass('guipreferences')
     widget = widgetClass(self,layoutMode='TAB')
@@ -52,7 +50,6 @@ class CPreferencesWindow(QtWidgets.QDialog):
 
   @QtCore.Slot()
   def doApply(self):
-    from ..core.CCP4Preferences import PREFERENCES
     PREFERENCES().save()
     try:
       PREFERENCES().EXEPATHLIST.setupExeLookup()
