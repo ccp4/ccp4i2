@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 #     baubles.py: a smarter CCP4 logfile browser
 #     Copyright (C) STFC 2007 Peter Briggs, Kevin Cowtan
 #
@@ -36,11 +34,14 @@ from __future__ import print_function
 # Backend for a smarter logfile browser
 # using smartie
 #
-import smartie
-import sys
+
 import os
 import re
+import sys
 import time
+
+from . import smartie
+
 
 __cvs_id__ = "$Id: baubles.py,v 1.9 2010/01/12 15:45:25 rmk65 Exp $"
 __version__ = "0.0.8"
@@ -693,10 +694,6 @@ class javaloggraph:
         elif self.__archive == "JLogView.jar":
             self.__code="JLogView_.LGApplet.class"
 
-    def setCodebase(self,codebase):
-        """Explicitly set the codebase for the applet"""
-        self.__codebase = codebase;
-
     def codebase(self):
         """Return the value of the codebase for the applet."""
         return self.__codebase
@@ -1315,7 +1312,6 @@ def baubles(log,htmlfile=None):
     if htmlfile:
         html = open(htmlfile,"w")
     else:
-        import sys
         html = sys.stdout
 
     # Write a header

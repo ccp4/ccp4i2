@@ -1,10 +1,11 @@
-from __future__ import print_function
+import glob
+import os
+import shutil
+import sys
+import xml.etree.ElementTree as ET
 
+from . import smartie as SM
 
-import os, sys, time
-import smartie as SM
-from xml.etree import ElementTree as ET
-import shutil,glob
 
 # ------------------------------------------------------------------------------
 

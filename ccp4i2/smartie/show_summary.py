@@ -1,4 +1,9 @@
-from __future__ import print_function
+"""
+show_summary
+
+Given the name of a CCP4 log file, print the text enclosed in summary
+tags to standard out.
+"""
 
 #     baubles.py: a smarter CCP4 logfile browser
 #     Copyright (C) 2006-2007 Peter Briggs, Wanjuan Yang, CCLRC 
@@ -14,15 +19,12 @@ from __future__ import print_function
 #
 ########################################################################
 
-"""show_summary
+import sys
 
-Given the name of a CCP4 log file, print the text enclosed in summary
-tags to standard out."""
+from . import smartie
+
 
 __cvs_id__ = "$Id: show_summary.py,v 1.1 2008/08/26 14:23:39 pjx Exp $"
-
-import smartie
-import sys
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

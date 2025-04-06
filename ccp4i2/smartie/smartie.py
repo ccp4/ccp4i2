@@ -1,5 +1,18 @@
-from __future__ import print_function
+"""
+smartie: CCP4 logfile parsing functions
 
+The smartie module provides a set of classes and methods for parsing
+logfiles from CCP4i and CCP4 programs. The central class is the 'logfile',
+which provides a basic DOM-like description of a logfile and its
+contents. Other classes provide descriptions of smaller chunks of logfile
+features (programs, tables, keytext data and CCP4i informational messages).
+
+The name 'smartie' reflects the module's origins as the intended driver
+for a 'smart logfile browser'.
+
+Some additional documentation material is also available in the file
+smartie_overview.html.
+"""
 #     smartie.py: CCP4 logfile parsing classes and functions
 #     Copyright (C) 2006-2007 Peter Briggs, Wanjuan Yang, CCLRC 
 #
@@ -14,32 +27,20 @@ from __future__ import print_function
 #
 #########################################################################
 
-"""smartie: CCP4 logfile parsing functions
-
-The smartie module provides a set of classes and methods for parsing
-logfiles from CCP4i and CCP4 programs. The central class is the 'logfile',
-which provides a basic DOM-like description of a logfile and its
-contents. Other classes provide descriptions of smaller chunks of logfile
-features (programs, tables, keytext data and CCP4i informational messages).
-
-The name 'smartie' reflects the module's origins as the intended driver
-for a 'smart logfile browser'.
-
-Some additional documentation material is also available in the file
-smartie_overview.html."""
-
-__cvs_id__ = "$Id: smartie.py,v 1.7 2012/07/05 20:30:36 rmk65 Exp $"
-__version__ = "0.0.15"
-
 #######################################################################
 # Import modules that this module depends on
 #######################################################################
-import sys
-import os
-import re
+
 import copy
 import linecache
+import os
+import re
+import sys
 import time
+
+
+__cvs_id__ = "$Id: smartie.py,v 1.7 2012/07/05 20:30:36 rmk65 Exp $"
+__version__ = "0.0.15"
 
 #######################################################################
 # Class definitions
@@ -596,47 +597,7 @@ class logfile:
                 # This is the first fragment
                 fragment.set_startline(1)
 
-    def fragment_to_program(self,i):
-        """Convert the i'th fragment to a program.
 
-        This method allows a fragment in the logfile to be
-        recast as a program, and performs all the necessary
-        book keeping operations such as updating the lists
-        of fragment and program objects.
-
-        On successful conversion the converted program
-        object is returned. If the fragment is already a
-        program then no action is taken."""
-
-        if self.fragment(i).isprogram():
-            return self.fragment(i)
-        prog = copyfragment(self.fragment(i),program())
-        # Add the converted program fragment to the
-        # list of programs
-        # To do this we need to work out where it belongs
-        if i == 0:
-            # Fragment was the first in the list
-            # Add to the start of the program list
-            self.__programs.insert(0,prog)
-        else:
-            # Look for a fragment after this one
-            # in the list which is also a program
-            nextprog = None
-            for j in range(i,self.nfragments()):
-                if self.fragment(j).isprogram():
-                    nextprog = self.fragment(j)
-                    break
-            if not nextprog:
-                # No programs found - append
-                self.__programs.append(prog)
-            else:
-                # Locate this in the list of programs
-                j = self.__programs.index(nextprog)
-                self.__programs.insert(j,prog)
-        # Remove the converted fragment
-        self.__fragments.remove(self.fragment(i))
-        return prog
-        
 # fragment
 #
 # Abstract description of a generic logfile fragment
@@ -1266,16 +1227,6 @@ class table:
         # Check the table_parse_error flag
         return self.__table_parse_error
 
-    def setrawtable(self,rawtable):
-        """Store the 'raw' table text from the original logfile.
-
-        The raw table data is the original text (for example, the
-        fragment of log file text) supplied to the object to
-        populate itself from."""
-        
-        # Store the "raw" table data
-        self.__rawtable = rawtable
-
     def rawtable(self):
         """Return the 'raw' table text taken from the logfile.
 
@@ -1540,57 +1491,6 @@ class table:
             else:
                 # Assign a null value
                 self.table_column(icol).append("*")
-
-    def definegraph(self,title,columns,scaling=""):
-        """Add a new graph definition to the table.
-
-        This provides an interface to adding new graph
-        definitions to an existing table.
-
-        title:   title for the graph.
-        columns: a list of column names. The first column
-                 will the be the X-axis, others will be
-                 the Y-values.
-        scaling: (optional) the scaling definition.
-
-        Possible scaling strings are:
-
-        'A': fully automatic (axes limits are automatically
-             determined when the graph is rendered (this is
-             the default)
-        'N': 'nought', axes limits start at zero
-        'XMIN|XMAXxYMIN|YMAX': limits xmin,xmax and ymin,ymax.
-
-        Raises a ValueError if insufficient number of columns
-        are specified, or if a specified column name doesn't
-        appear in the table.
-        """
-        # Check that there are at least two columns
-        if len(columns) < 2:
-            raise ValueError("Graph definition needs at least two columns")
-        # Build the graph description i.e. list of comma-separated
-        # column numbers (this is the loggraph format)
-        graph_desc = ""
-        for colnam in columns:
-            found = False
-            for icol in range(0,self.ncolumns()):
-                if self.table_column(icol).title() == colnam:
-                    graph_desc = graph_desc+","+str(icol+1)
-                    found = True
-                    break
-            if not found:
-                # The specified column wasn't located
-                # Raise an exception
-                raise ValueError("Column "+str(colnam)+" not found in table")
-        # Built the list - strip any leading commas
-        graph_desc = graph_desc.strip(",")
-        # Add a 'blank' table_graph
-        new_graph = self.addgraph(title)
-        # Scaling type
-        new_graph.setscaling('A')
-        if scaling != "": new_graph.setscaling(scaling)
-        new_graph.setcolumns(graph_desc)
-        return new_graph
 
     def table_column(self,i):
         """Return the i'th column associated with the table.
@@ -1878,14 +1778,6 @@ class table_graph:
     def set_parent_table(self,table):
         """Store a reference to the parent table object."""
         self.__parent_table = table
-
-    def graphcols(self):
-        """Return a list of the column names in the graph."""
-        columns = []
-        table = self.__parent_table
-        for col in self.__column_list:
-            columns.append(table.table_column(col).title())
-        return columns
 
     def setscaling(self,scaling):
         """Store the scaling description.
@@ -3589,71 +3481,6 @@ def tokenise(line):
         tokens.append(sline[start:len(sline)])
     return tokens
 
-##############################################################
-# Diagnostic methods used for testing and as examples
-##############################################################
-
-# List the TABLE tags in a file
-def table_tags(filen):
-    """Report occurances of '$TABLE' tags in a log file.
-
-    This function is principally a diagnostic tool and is
-    independent of the other classes and methods in this
-    module. It takes the name of a log file as input,
-    scans the file for occurances of the $TABLE tag, and
-    reports this to stdout."""
-    
-    print("Scanning file "+str(filen))
-    rtable = re.compile(r"\$TABLE *:")
-    f = open(filen,"r")
-    linecount = 0
-    tablecount = 0
-    tablelist = []
-    for line in f:
-        linecount = linecount + 1
-        table = rtable.search(line)
-        if table:
-            tablecount = tablecount + 1
-            print(str(linecount)+": "+str(line.rstrip("\n")))
-            tablelist.append(line.rstrip("\n"))
-    f.close()
-    print(str(linecount)+" lines and "+str(tablecount)+" tables")
-    return tablelist
-
-# An example of making a new table from scratch
-def table_example():
-    """Demonstration function that creates and populates a table object.
-
-    This function is for demonstration purposes only; it shows
-    the basics of how to make and output a table. It creates
-    a new table object, names it, populates some columns of data
-    and then adds some graph definitions before outputting the
-    formatted table to stdout."""
-    
-    print("\nExample making a new table from scratch:\n")
-    # Make a new (empty) table object
-    tbl = table("A table with random data")
-    # Add three columns called "x", "x^2" and "1/x"
-    tbl.addcolumn("x")
-    tbl.addcolumn("x^2")
-    tbl.addcolumn("1/x")
-    # Add some rows of data
-    for i in range(0,10):
-        row = dict()
-        row["x"] = i
-        row["x^2"] = i*i
-        if i != 0:
-            row["1/x"] = 1.0/float(i)
-        else:
-            row["1/x"] = "?"
-        tbl.add_data(row)
-    # Define some graphs
-    tbl.definegraph("Y = X(squared)",("x","x^2"))
-    tbl.definegraph("Y = 1/X",("x","1/x"))
-    tbl.definegraph("All data",("x","x^2","1/x"))
-    # Print out the data as a simple "table" and in loggraph markup
-    print(tbl.show())
-    print(tbl.loggraph())
 
 if __name__ == "__main__":
     """Usage example and demonstration for smartie.
