@@ -2,9 +2,11 @@ import os
 import random
 import glob
 
-from PySide2 import QtGui, QtWidgets, QtCore, QtWebEngine, QtWebEngineWidgets
+from PySide2 import QtCore, QtGui, QtWebEngineWidgets, QtWidgets
 
-from core import CCP4Utils, CCP4Modules
+from ..core import CCP4Utils
+from ..core.CCP4Modules import PREFERENCES
+
 
 class CTipsOfTheDay(QtWidgets.QDialog):
 
@@ -29,7 +31,7 @@ class CTipsOfTheDay(QtWidgets.QDialog):
 
         showCheck = QtWidgets.QCheckBox("Show Tips on Startup")
         layout.addWidget(showCheck)
-        showTipsOfTheDay = CCP4Modules.PREFERENCES().SHOW_TIPS_OF_THE_DAY
+        showTipsOfTheDay = PREFERENCES().SHOW_TIPS_OF_THE_DAY
         if showTipsOfTheDay:
             showCheck.setChecked(True)
         @QtCore.Slot(bool)

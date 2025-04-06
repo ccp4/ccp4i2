@@ -1,5 +1,6 @@
 """
      CCP4WebBrowser.py: CCP4 GUI Project
+
    Liz Potterton Jan 2010 - Copied from MGWebBrowser with changes to make stand-alone and to enable
                             Qt plugins and custom mime types
                  Feb 2010 - Make menus/toolbars customisable, add CCP4ProjectManger as placeholder
@@ -12,16 +13,33 @@ import functools
 import glob
 import os
 import re
+import shutil
 import sys
+import tempfile
 import time
+import traceback
+import zipfile
 
 from lxml import etree
 from PySide2 import QtCore, QtGui, QtWebEngineWidgets, QtWidgets
 
-from qtgui import CCP4WebView
-from core import CCP4Modules
-from core.CCP4ErrorHandling import *
-from qtgui import CCP4WebToolBarButtons
+from . import CCP4WebToolBarButtons
+from . import CCP4WebView
+from .. import __version__, __version_date__
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
+from ..core.CCP4Modules import DEMODATAMANAGER
+from ..core.CCP4Modules import JOBCONTROLLER
+from ..core.CCP4Modules import LAUNCHER
+from ..core.CCP4Modules import MIMETYPESHANDLER
+from ..core.CCP4Modules import PIXMAPMANAGER
+from ..core.CCP4Modules import PREFERENCES
+from ..core.CCP4Modules import PROJECTSMANAGER
+from ..core.CCP4Modules import TASKMANAGER
+from ..core.CCP4Version import CCP4_VERSION
+from ..core.CCP4WarningMessage import warningMessage
+from ..utils.QApp import QTAPPLICATION
+
 
 def WEBBROWSER(index = -1,new=False,mini=False):
     if new or (len(CBrowserWindow.Instances)==0 and index<0):
@@ -76,11 +94,11 @@ def setupWebkit():
                 pass
 
 def checkRunningJobs():
-    runningJobs = CCP4Modules.PROJECTSMANAGER().db().getRunningJobs()
+    runningJobs = PROJECTSMANAGER().db().getRunningJobs()
     topRunningJobs = {}
     for job in runningJobs:
         if job[5] is None and len(job[1].split('.')) == 1:
-            projectName=CCP4Modules.PROJECTSMANAGER().db().getProjectInfo(projectId=job[3],mode='projectname')
+            projectName=PROJECTSMANAGER().db().getProjectInfo(projectId=job[3],mode='projectname')
             if projectName in topRunningJobs:
                 topRunningJobs[projectName].append(job)
             else:
@@ -92,7 +110,7 @@ def exitBrowser():
         topRunningJobs = checkRunningJobs()
         if len(topRunningJobs) > 0:
             message = "The following jobs are still running and you are in 'Local database mode'."
-            if bool(CCP4Modules.PREFERENCES().DBLOCAL_QUIT_RUNNING):
+            if bool(PREFERENCES().DBLOCAL_QUIT_RUNNING):
                 message += "<br/><br/>If you quit, results from these running jobs may be lost <em> but the job will appear to still be running when you restart CCP4i2</em>.<br/><br/>Do you really want to quit?<br/><br/>"
             else:
                 message += "<br/><br/>Please wait for these jobs to finish before quitting. Or kill them if you really want to quit now.<br/><br/>"
@@ -104,7 +122,7 @@ def exitBrowser():
     
             mb = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Question,"Jobs still running",message)
 
-            if bool(CCP4Modules.PREFERENCES().DBLOCAL_QUIT_RUNNING):
+            if bool(PREFERENCES().DBLOCAL_QUIT_RUNNING):
                 mb.addButton("Really quit",QtWidgets.QMessageBox.AcceptRole)
                 mb.addButton("Cancel",QtWidgets.QMessageBox.RejectRole)
                 rv = mb.exec_()
@@ -115,30 +133,28 @@ def exitBrowser():
                 rv = mb.exec_()
                 return
     purgeStatusFiles(0)
-    from qtgui import CCP4ProjectViewer
+    from . import CCP4ProjectViewer
     #print '*CCP4WebBrowser exitBrowser'
     CMainWindow.queryClose=False
     rv = saveStatus()
     purgeStatusFiles(2)
     for win in CCP4ProjectViewer.CProjectViewer.Instances:
         win.Exit()
-    CCP4Modules.PREFERENCES().save()
+    PREFERENCES().save()
     #print 'purgeStatusFiles done'
-    #CCP4Modules.QTAPPLICATION().setActiveWindow(CCP4Modules.WEBBROWSER())
-    CCP4Modules.QTAPPLICATION().closeAllWindows()
+    #QTAPPLICATION().setActiveWindow(WEBBROWSER())
+    QTAPPLICATION().closeAllWindows()
 
 def saveStatus():
-    from core import CCP4Utils
-    from qtgui import CCP4I1Projects
-    from core import CCP4File
+    from . import CCP4I1Projects
+    from ..core import CCP4File
     if CMainWindow.STATUS_SAVED:
         return ''
-    from qtgui import CCP4ProjectViewer
+    from . import CCP4ProjectViewer
     body = etree.Element('body')
     root = etree.Element('windows')
     body.append(root)
     #print 'saveStatus',CBrowserWindow.Instances,CCP4ProjectViewer.CProjectViewer.Instances
-    #import traceback
     #traceback.print_stack(limit=5)
     for win in CCP4I1Projects.CI1ProjectViewer.Instances:
         win.Exit()
@@ -184,7 +200,7 @@ def saveStatus():
     for win in CCP4ProjectViewer.CProjectViewer.Instances:
         size = None
         try:
-            projectName = CCP4Modules.PROJECTSMANAGER().db().getProjectInfo(projectId=win.getProject(), mode='projectname')
+            projectName = PROJECTSMANAGER().db().getProjectInfo(projectId=win.getProject(), mode='projectname')
             jobNumber = win.getOpenJobNumber()
             size = (win.size().width(),win.size().height())
         except:
@@ -218,8 +234,7 @@ def saveStatus():
     return statusFile
 
 def restoreStatus():
-    from core import CCP4Utils
-    from qtgui import CCP4ProjectViewer
+    from . import CCP4ProjectViewer
     # For now just try to restore projects
     statusEtree = retrieveStatus()
     if statusEtree is None:
@@ -231,7 +246,7 @@ def restoreStatus():
             for  projectEle in winEle.iter('project'):
                 projectName=projectEle.text
                 try:
-                    projectId = CCP4Modules.PROJECTSMANAGER().db().getProjectId(projectName=projectName)
+                    projectId = PROJECTSMANAGER().db().getProjectId(projectName=projectName)
                 except:
                     projectId = None
                     print('Unable to open project - ' + projectEle.text + '- not found in database')
@@ -243,7 +258,7 @@ def restoreStatus():
                     jobEle = winEle.find('openJobNumber')
                     if jobEle is not None:
                         try:
-                            jobId = CCP4Modules.PROJECTSMANAGER().db().getJobId(jobNumber=str(jobEle.text), projectName=projectName)
+                            jobId = PROJECTSMANAGER().db().getJobId(jobNumber=str(jobEle.text), projectName=projectName)
                         except CException as e:
                             #print e.report()
                             jobId = None
@@ -269,7 +284,7 @@ def restoreStatus():
                         print("Failed to open project", projectId, jobId)
         elif str(winEle.tag) == 'browser':
             if nBrowserWindows == 0:
-                browser = CCP4Modules.WEBBROWSER()
+                browser = WEBBROWSER()
                 for w in CBrowserWindow.Instances:
                     browser.loadFinished.connect(w.handleFindNext)
             else:
@@ -307,8 +322,7 @@ def restoreStatus():
 
 def applyCommandLine(args):
     # If there is a file/project on the com line.
-    from core import CCP4Utils
-    from qtgui import CCP4ProjectViewer
+    from . import CCP4ProjectViewer
     #print 'CCP4Browser.applyCommandLine',args
     iArg = 0
     while iArg < len(args):
@@ -319,7 +333,7 @@ def applyCommandLine(args):
         else:
             projectName = args[iArg]
             try:
-                projectId = CCP4Modules.PROJECTSMANAGER().db().getProjectId(projectName=projectName)
+                projectId = PROJECTSMANAGER().db().getProjectId(projectName=projectName)
             except:
                 projectId = None
             #print 'CCP4WebBrowser.applyCommandLine projectId', projectId
@@ -328,7 +342,7 @@ def applyCommandLine(args):
                 #print 'CCP4Browser.applyCommandLine filepath', filepath
                 if os.path.exists(filepath):
                     #print 'Opening file:', filepath
-                    CCP4Modules.WEBBROWSER().openFile(filepath, internal=True)
+                    WEBBROWSER().openFile(filepath, internal=True)
                 else:
                     print(args[iArg],'not recognised as project name or file')
             else:
@@ -345,8 +359,7 @@ def applyCommandLine(args):
 
 
 def retrieveStatus():
-    from core import CCP4File
-    from core import CCP4Utils
+    from ..core import CCP4File
     statusFileList = glob.glob(os.path.join(CCP4Utils.getDotDirectory(), 'status', 'status_*.ccp4i2_status.xml'))
     if len(statusFileList) == 0:
         return None
@@ -359,7 +372,6 @@ def retrieveStatus():
         return root
 
 def purgeStatusFiles(leave=1):
-    from core import CCP4Utils
     #print 'purgeStatusFiles leave',leave
     statusFileList = sorted(glob.glob(os.path.join(CCP4Utils.getDotDirectory(), 'status', 'status_*.ccp4i2_status.xml')))
     #print 'purgeStatusFiles',statusFileList
@@ -373,7 +385,7 @@ def purgeStatusFiles(leave=1):
 #-------------------------------------------------------------------
 def OPENFILE(fileName=None, cformat=None, title=None, toFront=False):
 #-------------------------------------------------------------------
-    mimeTypeHandler = CCP4Modules.MIMETYPESHANDLER()
+    mimeTypeHandler = MIMETYPESHANDLER()
     if os.path.isdir(fileName):
         cformat = 'dir'
     if mimeTypeHandler is None:
@@ -400,9 +412,9 @@ def OPENFILE(fileName=None, cformat=None, title=None, toFront=False):
         widgetClass = widgetClassList[0]
         if isinstance(widgetClass,str):
             # This is a keyword for the launcher
-            CCP4Modules.LAUNCHER().openInViewer(viewer=widgetClass, fileName=fileName)
+            LAUNCHER().openInViewer(viewer=widgetClass, fileName=fileName)
             return None
-    CCP4Modules.WEBBROWSER().openFile(fileName=fileName, format=format, title=title, toFront=toFront)
+    WEBBROWSER().openFile(fileName=fileName, format=format, title=title, toFront=toFront)
 
 
 class CTabWidget(QtWidgets.QTabWidget):
@@ -482,15 +494,12 @@ class CEditSplitter(QtWidgets.QSplitter):
 class CMenuBar(QtWidgets.QMenuBar):
 
     def __init__(self, parent):
-        from core.CCP4Bazaar import bzrlib_exists
         QtWidgets.QMenuBar. __init__(self, parent)
         self.menuDefinitions = {}
         for menuName, menuTitle in [ ['File', '&File/Projects'], ['Edit', '&Edit'], ['View', '&View'],
                                     ['Utilities', '&Utilities'],['Help', 'Help/Tutorials']]:
             print("Adding menu",menuName, menuTitle)
             self.addMenu(menuName, menuTitle)
-        #self.menuDefinitions['File'] = ['open_tab','open_browser', 'open', 'sep','close_window', 'quit']
-        #self.menuDefinitions['Edit'] = ['find','preferences','ccp4i2_config']
 
 #It is a bit cheeky inserting help_about here, but we know that OS X will intercept this and stick in Application Menu.
 #And the 'Edit' menu does not seem to be redrawn (at present!). I guess a special '_dummy' menu as MG does it would allow
@@ -516,11 +525,9 @@ class CMenuBar(QtWidgets.QMenuBar):
             self.menuDefinitions['Help'] = ['help_about', 'demo_data_info', 'help_quickstart', 'help_quickexpert', 'help_youtube',
                                         'task_docs', 'cloud_docs', 'help_ccp4i2',
                                         'tips_of_the_day']
-        if bzrlib_exists:
-            self.menuDefinitions['Utilities'][-1].insert(1, 'update_gui')
         # Beware need to define the 'quit' in File menu at startup for the slot to exitBrowser() to work
         # This is likely a mac-specific thing since the quit gets move to application menu
-        from qtgui import CCP4GuiUtils
+        from . import CCP4GuiUtils
         CCP4GuiUtils.populateMenu(self.parent(), self.menuWidget('Edit'), self.menuDefinition('Edit'), default_icon='')
         CCP4GuiUtils.populateMenu(self.parent(), self.menuWidget('View'), self.menuDefinition('View'), default_icon='')
         CCP4GuiUtils.populateMenu(self.parent(), self.menuWidget('File'), self.menuDefinition('File'), default_icon='')
@@ -529,7 +536,7 @@ class CMenuBar(QtWidgets.QMenuBar):
         return self.findChild(QtWidgets.QMenu, menuName)
 
     def updateMenu(self, menuName):
-        from qtgui import CCP4GuiUtils
+        from . import CCP4GuiUtils
         menuWidget = self.menuWidget(menuName)
         if menuWidget is None:
             pass
@@ -555,7 +562,7 @@ class CMenuBar(QtWidgets.QMenuBar):
             if len(menuDefn) > 0:
                 menuWidget.setEnabled(True)
         elif menuName == 'File':
-            recentProjects = CCP4Modules.PROJECTSMANAGER().db().getRecentProjects(order='access', limit=11)
+            recentProjects = PROJECTSMANAGER().db().getRecentProjects(order='access', limit=11)
             menuDefn = ['manage_projects', 'new_project', 'export_project',
                         'import_project', 'sep']
             for projectId, projectName, accessTime in recentProjects[:10]:
@@ -568,7 +575,7 @@ class CMenuBar(QtWidgets.QMenuBar):
 
             #SJM 16/03/2018 - This is arguably unneccessary. Manage/open is perhaps better.
             #                 I have however removed 'more_projects' as it is duplicate of Manage/open.
-            proj_dir_list0=CCP4Modules.PROJECTSMANAGER().db().getProjectDirectoryList()
+            proj_dir_list0=PROJECTSMANAGER().db().getProjectDirectoryList()
             if len(proj_dir_list0)>15:
                 submenuMore = ["More projects"]
                 chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -634,11 +641,11 @@ class CMenuBar(QtWidgets.QMenuBar):
             menuWidget.clear()
             menuDefn = [['Copy demo data to project']]
             if self.parent().isProjectViewer():
-                testDatasets = CCP4Modules.DEMODATAMANAGER().getTestDatasets()
+                testDatasets = DEMODATAMANAGER().getTestDatasets()
                 for dataset,label in testDatasets:
                     self.parent().setActionDefinition('download_test_' + dataset,
                                                       dict(text=label, tip="Copy this data to project directory",
-                                                           slot = functools.partial(CCP4Modules.DEMODATAMANAGER().copyDemoDataToProject,
+                                                           slot = functools.partial(DEMODATAMANAGER().copyDemoDataToProject,
                                                                                     self, self.parent().taskFrame.openJob.projectId, dataset),
                                                            enabled = self.parent().isProjectViewer))
                     menuDefn[0].append('download_test_' + dataset)
@@ -652,7 +659,7 @@ class CMenuBar(QtWidgets.QMenuBar):
             CCP4GuiUtils.populateMenu(self.parent(), menuWidget, self.menuDefinition(menuName), default_icon='')
 
     def isProjectOpen(self, projectId):
-        from qtgui import CCP4ProjectViewer
+        from . import CCP4ProjectViewer
         for proj in CCP4ProjectViewer.CProjectViewer.Instances:
             if hasattr(proj,'taskFrame') and hasattr(proj.taskFrame,'openJob') and proj.taskFrame.openJob.projectId == projectId:
                 return True
@@ -675,32 +682,8 @@ class CMenuBar(QtWidgets.QMenuBar):
                 widget.addAction("dum")
         return widget
 
-    def removeMenu(self, menuName=''):
-        # Save current menus, clear and add all menus again
-        currentMenuList = []
-        found = False
-        currentMenuWidgets = self.findChildren(QtWidgets.QMenu)
-        for w in currentMenuWidgets:
-            name = str(w.objectName())
-            if name == menuName:
-                found = True
-            else:
-                currentMenuList.append([str(w.objectName()), str(w.title())])
-        if found:
-            self.clear()
-            for menuName, menuTitle in currentMenuList:
-                self.addMenu(menuName, menuTitle)
-
-    def setMenuTitle(self, menuName='', menuTitle=''):
-        widget = self.menuWidget(menuName)
-        if widget is not None:
-            widget.setTitle(menuTitle)
-
     def menuDefinition(self, menuName=''):
         return self.menuDefinitions.get(menuName,[])
-
-    def setMenuDefinition(self, menuName='', definition=[]):
-        self.menuDefinitions[menuName] = definition
 
     def appendToMenu(self, menuName='', menuItem=''):
         # menuItem should be the name of an action or 'sep' (separator)
@@ -731,15 +714,15 @@ class CToolBar(QtWidgets.QToolBar):
     def __init__(self,parent,name='',title=''):
         QtWidgets.QToolBar.__init__(self, title, parent)
         self.setObjectName(name)
-        if hasattr(CCP4Modules.PREFERENCES(), "TOOLBARBUTTONSSTYLE"):
-            if int(CCP4Modules.PREFERENCES().TOOLBARBUTTONSSTYLE) == 0:
+        if hasattr(PREFERENCES(), "TOOLBARBUTTONSSTYLE"):
+            if int(PREFERENCES().TOOLBARBUTTONSSTYLE) == 0:
                 self.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
-            elif int(CCP4Modules.PREFERENCES().TOOLBARBUTTONSSTYLE) == 1:
+            elif int(PREFERENCES().TOOLBARBUTTONSSTYLE) == 1:
                 self.setToolButtonStyle(QtCore.Qt.ToolButtonTextOnly)
             else:
                 self.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
         # KJS : This is the place it is set, not sure where this is redrawn.
-        if CCP4Modules.PREFERENCES().HD_ICONS:
+        if PREFERENCES().HD_ICONS:
             self.setIconSize(QtCore.QSize(48, 48))
         else:
             self.setIconSize(QtCore.QSize(24, 24))
@@ -763,7 +746,7 @@ class CToolBar(QtWidgets.QToolBar):
 
     def redraw(self):
         self.clear()
-        from qtgui import CCP4GuiUtils
+        from . import CCP4GuiUtils
         CCP4GuiUtils.populateToolBar(parent=self.parent(), toolBarWidget=self, definition=self.definition)
 
         children = self.findChildren(QtWidgets.QToolButton)
@@ -771,7 +754,7 @@ class CToolBar(QtWidgets.QToolBar):
             if child.defaultAction() is not None:
                 theName = str(child.defaultAction().objectName())
                 if theName in self.toolBarPreferencesMapping:
-                    if not CCP4Modules.PREFERENCES().get(self.toolBarPreferencesMapping[theName]):
+                    if not PREFERENCES().get(self.toolBarPreferencesMapping[theName]):
                         child.defaultAction().setVisible(False)
 
     def editPreferences(self):
@@ -814,35 +797,35 @@ class CToolBar(QtWidgets.QToolBar):
                 val = False
             #FIXME - Aargh. There must be a nicer way.
             #MN Trying to increase code compactness/readability
-            getattr(CCP4Modules.PREFERENCES(), mapping).set(val)
+            getattr(PREFERENCES(), mapping).set(val)
             #Replaces
             '''
             if mapping == "SHOW_TASK_MENU_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_TASK_MENU_TOOLBUTTON.set(val)
+                PREFERENCES().SHOW_TASK_MENU_TOOLBUTTON.set(val)
             elif mapping == "SHOW_JOB_SEARCH_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_JOB_SEARCH_TOOLBUTTON.set(val)
+                PREFERENCES().SHOW_JOB_SEARCH_TOOLBUTTON.set(val)
             elif mapping == "SHOW_EXPORT_PROJECT_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_EXPORT_PROJECT_TOOLBUTTON.set(val)
+                PREFERENCES().SHOW_EXPORT_PROJECT_TOOLBUTTON.set(val)
             elif mapping == "SHOW_RUN_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_RUN_TOOLBUTTON.set(val)
+                PREFERENCES().SHOW_RUN_TOOLBUTTON.set(val)
             elif mapping == "SHOW_RUN_REMOTE_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON.set(val)
+                PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON.set(val)
             elif mapping == "SHOW_CLONE_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_CLONE_TOOLBUTTON.set(val)
+                PREFERENCES().SHOW_CLONE_TOOLBUTTON.set(val)
             elif mapping == "SHOW_TASK_HELP_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_TASK_HELP_TOOLBUTTON.set(val)
+                PREFERENCES().SHOW_TASK_HELP_TOOLBUTTON.set(val)
             elif mapping == "SHOW_REFERENCES_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_REFERENCES_TOOLBUTTON.set(val)
+                PREFERENCES().SHOW_REFERENCES_TOOLBUTTON.set(val)
             elif mapping == "SHOW_EXPORT_MTZ_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_EXPORT_MTZ_TOOLBUTTON.set(val)
+                PREFERENCES().SHOW_EXPORT_MTZ_TOOLBUTTON.set(val)
             elif mapping == "SHOW_VIEW_COOT_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_VIEW_COOT_TOOLBUTTON.set(val)
+                PREFERENCES().SHOW_VIEW_COOT_TOOLBUTTON.set(val)
             elif mapping == "SHOW_VIEW_CCP4MG_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_VIEW_CCP4MG_TOOLBUTTON.set(val)
+                PREFERENCES().SHOW_VIEW_CCP4MG_TOOLBUTTON.set(val)
             elif mapping == "SHOW_SHOW_LOG_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_SHOW_LOG_TOOLBUTTON.set(val)
+                PREFERENCES().SHOW_SHOW_LOG_TOOLBUTTON.set(val)
             elif mapping == "NEW_PROJECT_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().NEW_PROJECT_TOOLBUTTON.set(val)
+                PREFERENCES().NEW_PROJECT_TOOLBUTTON.set(val)
             '''
         listWidget.itemChanged.connect(setItemVisibilities)
         prefWidget.exec_()
@@ -856,13 +839,9 @@ class CToolBar(QtWidgets.QToolBar):
         menu.addAction(custAct);
         menu.exec_(e.globalPos());
 
-def isAlive(qobj):
-    import shiboken2
-    return shiboken2.isValid(qobj)
 
 def mainWindowIcon():
     if CMainWindow._MAINWINDOWICON is None:
-        from core import CCP4Utils
         fileName = os.path.join(CCP4Utils.getCCP4I2Dir(), 'qticons', 'ccp4.png')
         CMainWindow._MAINWINDOWICON = QtGui.QIcon(QtGui.QPixmap(fileName))
     return CMainWindow._MAINWINDOWICON
@@ -884,27 +863,22 @@ class CMainWindow(QtWidgets.QMainWindow):
                    209 : {'description' : 'Selected inappropriate directory to save as compressed task file'}}
 
     def showTipsOfTheDay(self):
-        from qtgui.CCP4TipsOfTheDay import CTipsOfTheDay
+        from .CCP4TipsOfTheDay import CTipsOfTheDay
         tipsOfTheDay = CTipsOfTheDay()
         tipsOfTheDay.exec_()
 
     def backupDB(self):
-        CCP4Modules.PROJECTSMANAGER().backupDB()
+        PROJECTSMANAGER().backupDB()
 
     def backupDBXML(self):
-        CCP4Modules.PROJECTSMANAGER().backupDBXML()
+        PROJECTSMANAGER().backupDBXML()
 
     def __init__(self, parent=None):
-        from qtcore import CCP4UpdateManager
+        from ..qtcore import CCP4UpdateManager
         QtWidgets.QMainWindow.__init__(self,parent)
         self.setAttribute(QtCore.Qt.WA_DeleteOnClose)
         self.setWindowIcon(mainWindowIcon())
-        # Remove access to bzr as Andrey claims it causes access to repository that is acting badly possibly due to loading
-        try:
-            from core import CCP4Update
-            self.version = CCP4Update.get_ccp4_str() + ' '
-        except:
-            self.version = 'DEVELOPMENT CCP4i2'
+        self.version = f"CCP4-{CCP4_VERSION}"
         self.preferenceWindow=None
         self.configWindow=None
         self.fileDialog = None
@@ -919,8 +893,8 @@ class CMainWindow(QtWidgets.QMainWindow):
             shortcut.activated.connect(exitBrowser)
 
     def closeEvent(self, event):
-        from qtgui import CCP4ProjectViewer
-        from qtgui import CCP4I1Projects
+        from . import CCP4I1Projects
+        from . import CCP4ProjectViewer
         if CBrowserWindow.Dummy is None:
             nOpen = 0
         else:
@@ -928,7 +902,7 @@ class CMainWindow(QtWidgets.QMainWindow):
         #print 'closeEvent Dummy.findChildren',nOpen
         nOpen = nOpen + len(CBrowserWindow.Instances) + len(CCP4ProjectViewer.CProjectViewer.Instances) + len(CCP4I1Projects.CI1ProjectViewer.Instances)
         #print 'closeEvent Instances',nOpen
-        #print 'closingDown',CCP4Modules.QTAPPLICATION().closingDown()
+        #print 'closingDown',QTAPPLICATION().closingDown()
         if nOpen > 1:
             #self.close()
             event.accept()
@@ -941,7 +915,7 @@ class CMainWindow(QtWidgets.QMainWindow):
             if rv ==  QtWidgets.QMessageBox.Close:
                 self.Exit()
                 saveStatus()
-                CCP4Modules.PREFERENCES().save()
+                PREFERENCES().save()
                 purgeStatusFiles(2)
                 event.accept()
             else:
@@ -1002,8 +976,6 @@ class CMainWindow(QtWidgets.QMainWindow):
                                               checkable = 1, checked = self.isFindFrameOpen, enabled = self.widgetIsSearchable, shortcut = QtGui.QKeySequence.Find)
         self.actionDefinitions['preferences'] = dict(text = "Preferences", slot = self.openPreferences,
                                                      checkable = 1, checked = self.isPreferencesOpen,)
-        self.actionDefinitions['ccp4i2_config'] = dict(text = "Configure CCP4i2", slot = self.openConfig,
-                                                       checkable = 1, checked = self.isConfigOpen,)
         self.actionDefinitions['open_tab'] = dict(text = "New tab", tip = "Open a new web browser tab",
                                                       slot = self.createWindow, enabled = self.isNotProjectViewer, shortcut = "Ctrl+T",icon="newtab")
         self.actionDefinitions['open_browser'] = dict(text = "New browser window", tip = "Open a new web browser window",
@@ -1110,17 +1082,17 @@ class CMainWindow(QtWidgets.QMainWindow):
         if hasattr(self,"tab"):
             print(self.tab().currentWidget())
             self.tab().currentWidget().setZoomFactor(1.0)
-            CCP4Modules.PREFERENCES().BROWSER_ZOOM_FACTOR.set(self.tab().currentWidget().zoomFactor())
+            PREFERENCES().BROWSER_ZOOM_FACTOR.set(self.tab().currentWidget().zoomFactor())
 
     def zoomIn(self):
         if hasattr(self,"tab"):
             self.tab().currentWidget().setZoomFactor(self.tab().currentWidget().zoomFactor()*1.2)
-            CCP4Modules.PREFERENCES().BROWSER_ZOOM_FACTOR.set(self.tab().currentWidget().zoomFactor())
+            PREFERENCES().BROWSER_ZOOM_FACTOR.set(self.tab().currentWidget().zoomFactor())
 
     def zoomOut(self):
         if hasattr(self,"tab"):
             self.tab().currentWidget().setZoomFactor(self.tab().currentWidget().zoomFactor()/1.2)
-            CCP4Modules.PREFERENCES().BROWSER_ZOOM_FACTOR.set(self.tab().currentWidget().zoomFactor())
+            PREFERENCES().BROWSER_ZOOM_FACTOR.set(self.tab().currentWidget().zoomFactor())
 
     def updateActionEnabled(self, dummy1=None, dummy2=None):
         for actionName in ['print', 'run', 'find', 'save']:
@@ -1131,13 +1103,13 @@ class CMainWindow(QtWidgets.QMainWindow):
                 action.setEnabled(ifEnabled)
 
     def zoomFactorChanged(self,val):
-        CCP4Modules.PREFERENCES().BROWSER_ZOOM_FACTOR.set(self.tab().currentWidget().zoomFactor())
+        PREFERENCES().BROWSER_ZOOM_FACTOR.set(self.tab().currentWidget().zoomFactor())
 
     def createWindow(self,type=None):
         view = CCP4WebView.CWebView()
         view.searchFound.connect(self.findFrame.searchCallback)
         view.zoomFactorChanged.connect(self.zoomFactorChanged)
-        view.setZoomFactor(CCP4Modules.PREFERENCES().BROWSER_ZOOM_FACTOR)
+        view.setZoomFactor(PREFERENCES().BROWSER_ZOOM_FACTOR)
         view.CustomMimeTypeRequested.connect(self.CustomMimeTypeRequested)
         #view.NewWindowRequested.connect(self.NewWindowRequested)
         view.StatusBarMessage.connect(self.StatusBarMessage)
@@ -1171,7 +1143,7 @@ class CMainWindow(QtWidgets.QMainWindow):
         else:
             fb = QtWidgets.QFileDialog()
 #Not possible with native browser as far as I know. SJM 22/11/2018.
-            if not CCP4Modules.PREFERENCES().NATIVEFILEBROWSER:
+            if not PREFERENCES().NATIVEFILEBROWSER:
                 fb.setOption(QtWidgets.QFileDialog.DontUseNativeDialog)
             fb.setFileMode(QtWidgets.QFileDialog.ExistingFile)
             fb.setFilter(QtCore.QDir.AllEntries | QtCore.QDir.Hidden | QtCore.QDir.NoDotAndDotDot)
@@ -1182,8 +1154,7 @@ class CMainWindow(QtWidgets.QMainWindow):
             
     @QtCore.Slot(str)
     def openI1Projects1(self, fileName=None):
-        from qtgui import CCP4I1Projects
-        from core import CCP4Utils
+        from . import CCP4I1Projects
         if fileName is None:
             if sys.platform == "win32":
                 fileName = os.path.normpath(os.path.join(CCP4Utils.getHOME(), 'CCP4', 'windows', 'directories.def'))
@@ -1203,7 +1174,7 @@ class CMainWindow(QtWidgets.QMainWindow):
 
     def openProject(self,projectId,projectName=None):
         #print 'CMainWindow.openProject',projectId,projectName
-        from qtgui import CCP4ProjectViewer
+        from . import CCP4ProjectViewer
         for window in CCP4ProjectViewer.CProjectViewer.Instances:
             #print 'currently open',window,window.taskFrame.openJob.projectId,type(window.taskFrame.openJob.projectId)
             try:
@@ -1214,7 +1185,7 @@ class CMainWindow(QtWidgets.QMainWindow):
             except Exception as e:
                 #print 'CMainWindow.openProject error',str(e)
                 pass
-        projectDir = CCP4Modules.PROJECTSMANAGER().db().getProjectInfo(projectId=projectId,mode='projectdirectory')
+        projectDir = PROJECTSMANAGER().db().getProjectInfo(projectId=projectId,mode='projectdirectory')
         if not os.path.exists(projectDir):
             QtWidgets.QMessageBox.warning(self,'','Error in opening project '+str(projectName)+'\nProject directory does not exist:\n'+str(projectDir))
             return
@@ -1226,23 +1197,23 @@ class CMainWindow(QtWidgets.QMainWindow):
         p.show()
 
     def openWorkflow(self):
-        from core import CCP4WorkflowManagerGui
+        from . import CCP4WorkflowManagerGui
         CCP4WorkflowManagerGui.openWorkflowManagerGui()
 
     def openPatchComFile(self):
-        from core import CCP4ComFilePatchManagerGui
+        from . import CCP4ComFilePatchManagerGui
         CCP4ComFilePatchManagerGui.openGui()
 
     def openCustomTasks(self):
-        from qtgui import CCP4CustomTaskManagerGui
+        from . import CCP4CustomTaskManagerGui
         CCP4CustomTaskManagerGui.openGui()
 
     def openImportJobs(self):
-        from qtgui import CCP4ImportedJobManagerGui
+        from . import CCP4ImportedJobManagerGui
         CCP4ImportedJobManagerGui.openGui()
 
     def handleProjectMenu(self, mode=''):
-        from qtgui import CCP4ProjectManagerGui
+        from . import CCP4ProjectManagerGui
         #print 'handleprojectMenu',mode
         if mode == 'new_project':
             if CCP4ProjectManagerGui.CNewProjectGui.insts is None:
@@ -1270,9 +1241,8 @@ class CMainWindow(QtWidgets.QMainWindow):
             self.makeGeneralProject()
 
     def makeGeneralProject(self):
-        from core import CCP4Utils
         name = 'General'
-        status = CCP4Modules.PROJECTSMANAGER().projectStatus(name)
+        status = PROJECTSMANAGER().projectStatus(name)
         if status == 0:
             QtWidgets.QMessageBox.information(self,'General project exists','General project already exists - use Project menu to open it')
             return
@@ -1284,9 +1254,9 @@ class CMainWindow(QtWidgets.QMainWindow):
             directory = os.path.join(CCP4Utils.getHOME(),'CCP4_General_Project')
             print('Making General Project in directory:',directory)
             try:
-                projectId = CCP4Modules.PROJECTSMANAGER().createProject(projectName=name,projectPath=directory)
+                projectId = PROJECTSMANAGER().createProject(projectName=name,projectPath=directory)
             except CException as e:
-                e.warningMessage()
+                warningMessage(e)
                 return
             except:
                 QtWidgets.QMessageBox.warning(self, 'Error creating project', 'Unknown error creating project')
@@ -1297,7 +1267,7 @@ class CMainWindow(QtWidgets.QMainWindow):
 
     def openPreferences(self):
         if self.preferenceWindow is None:
-            from qtgui import CCP4PreferencesGui
+            from . import CCP4PreferencesGui
             self.preferenceWindow = CCP4PreferencesGui.CPreferencesWindow(self)
         #print 'CMainWindow.openPreferences',self.preferenceWindow
         self.preferenceWindow.show()
@@ -1328,14 +1298,14 @@ class CMainWindow(QtWidgets.QMainWindow):
         ret = dialog.exec_()
         if ret == QtWidgets.QDialog.Accepted:
             if len(tokenIdEdit.text()) > 0 and len(secretEdit.text()) > 0:
-                    CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_ID.set(tokenIdEdit.text())
-                    CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_SECRET.set(secretEdit.text())
+                    PREFERENCES().PDB_REDO_TOKEN_ID.set(tokenIdEdit.text())
+                    PREFERENCES().PDB_REDO_TOKEN_SECRET.set(secretEdit.text())
                     QtWidgets.QMessageBox.information(self,'Successfully set PDB_REDO token','Successfully set PDB_REDO token<br/>You should now be able use the PDB_REDO task.'.format(payload.get('expires')),QtWidgets.QMessageBox.Ok)
 
 
     def openServerSetup(self):
         if getattr(self,'serverSetupWindow',None) is None:
-            from qtgui import CCP4JobControlGui
+            from . import CCP4JobControlGui
             self.serverSetupWindow = CCP4JobControlGui.CServerSetupWindow(self)
         #print 'CMainWindow.openPreferences',self.preferenceWindow
         self.serverSetupWindow.show()
@@ -1347,24 +1317,10 @@ class CMainWindow(QtWidgets.QMainWindow):
         else:
             return False
 
-    def openConfig(self):
-        if self.configWindow is None:
-            from core import CCP4ConfigGui
-            self.configWindow = CCP4ConfigGui.CConfigWindow(self)
-        #print 'CMainWindow.openConfig',self.configWindow
-        self.configWindow.show()
-        self.configWindow.raise_()
-
-    def isConfigOpen(self):
-        if self.configWindow is not None and self.configWindow.isVisible():
-            return True
-        else:
-            return False
-
     def openFileDialog(self):
-        from qtgui import CCP4FileBrowser
+        from . import CCP4FileBrowser
         filter_list = []
-        mimeTypeHandler = CCP4Modules.MIMETYPESHANDLER()
+        mimeTypeHandler = MIMETYPESHANDLER()
         if self.fileDialog is None:
             filter_list.append('All files (*.*)')
             self.fileDialog = CCP4FileBrowser.CFileDialog(self, title='Open file', filters=filter_list, addAll=False)
@@ -1393,13 +1349,12 @@ class CMainWindow(QtWidgets.QMainWindow):
                 openJob = self.taskFrame.openJob
             except:
                 return
-            fileName = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=openJob.jobId,mode='REPORT')
+            fileName = PROJECTSMANAGER().makeFileName(jobId=openJob.jobId,mode='REPORT')
             if os.path.exists(fileName):
-                CCP4Modules.WEBBROWSER().openFile(fileName=fileName,format='text/plain')
+                WEBBROWSER().openFile(fileName=fileName,format='text/plain')
         elif mode == 'remake_cached_lookups':
             try:
-                from core.CCP4Modules import TASKMANAGER, PIXMAPMANAGER
-                from core.CCP4DataManager import DATAMANAGER
+                from ..core.CCP4DataManager import DATAMANAGER
                 print("Off to remake CTaskManager cache...")
                 TASKMANAGER().buildLookupFromScratch()
                 print("...Completed")
@@ -1412,24 +1367,24 @@ class CMainWindow(QtWidgets.QMainWindow):
             except:
                 print("Failed to remake caches")
         elif mode == 'view_test_report':
-            testReportList = glob.glob(os.path.join(CCP4Modules.PROJECTSMANAGER().db().getProjectInfo(projectId=self.openJob.projectId,mode='projectdirectory'),'CCP4_test*.log'))
+            testReportList = glob.glob(os.path.join(PROJECTSMANAGER().db().getProjectInfo(projectId=self.openJob.projectId,mode='projectdirectory'),'CCP4_test*.log'))
             if len(testReportList) > 0:
-                CCP4Modules.WEBBROWSER().openFile(fileName=testReportList[0])
+                WEBBROWSER().openFile(fileName=testReportList[0])
             return
         elif mode == 'make_test_suite':
-            from core import CCP4ProjectBasedTesting
+            from ..core import CCP4ProjectBasedTesting
             testBuilder = CCP4ProjectBasedTesting.BuildTestSuite(projectId=self.getProject())  
             rv = testBuilder.run()
-            if rv.maxSeverity() > SEVERITY_WARNING:
-                rv.warningMessage(parent=self,windowTitle=self.windowTitle(),message='Error converting project to test suite')
+            if rv.maxSeverity() > Severity.WARNING:
+                warningMessage(rv, parent=self,windowTitle=self.windowTitle(),message='Error converting project to test suite')
             else:
                 builder = CCP4ProjectBasedTesting.BuildTestSuite(projectId=self.getProject())
                 try:
                     err = builder.run()
                 except:
-                    err.warningMessage()
+                    warningMessage(err)
                 else:
-                    projDir = CCP4Modules.PROJECTSMANAGER().db().getProjectDirectory(projectId=self.getProject())
+                    projDir = PROJECTSMANAGER().db().getProjectDirectory(projectId=self.getProject())
                     self.testSuiteDialog = QtWidgets.QDialog(self)
                     self.testSuiteDialog.setWindowTitle('Creating a test suite')
                     self.testSuiteDialog.setLayout(QtWidgets.QVBoxLayout())
@@ -1441,30 +1396,26 @@ class CMainWindow(QtWidgets.QMainWindow):
                     self.testSuiteDialog.show()
                     self.testSuiteDialog.raise_()
         elif mode == 'auto_task_docs':
-            from core import CCP4TaskManager
+            from ..core import CCP4TaskManager
             rv = CCP4TaskManager.CMakeDocsIndex().run()
-            if rv.maxSeverity() > SEVERITY_WARNING:
-                rv.warningMessage(parent=self,windowTitle=self.windowTitle(),message='Error recreating task documentation index page')
+            if rv.maxSeverity() > Severity.WARNING:
+                warningMessage(rv, parent=self,windowTitle=self.windowTitle(),message='Error recreating task documentation index page')
 
     def listTasks(self):
-        import tempfile
-        from core import CCP4TaskManager
-        from core import CCP4Utils
-        text = CCP4TaskManager.LISTTASKS(ifPrint=False)
+        from ..core import CCP4TaskManager
+        text = CCP4TaskManager.LISTTASKS()
         fileName = tempfile.mktemp(suffix='.txt')
         CCP4Utils.saveFile(fileName,text)
-        widget = CCP4Modules.WEBBROWSER().openFile(fileName)
+        widget = WEBBROWSER().openFile(fileName)
         widget.setFont(style='fixed_width')
 
     def openExportTask(self):
-        from core import CCP4Utils
-        import zipfile
         dirPath = QtWidgets.QFileDialog.getExistingDirectory(self,'Select pipeline directory to save as task compressed file',os.path.join(CCP4Utils.getCCP4I2Dir(),'pipelines')).__str__()
         if not os.path.isdir(dirPath):
             return
         if not os.path.relpath(dirPath,CCP4Utils.getCCP4I2Dir()).startswith('pipelines'):
             err = CException(self.__class__,209,dirPath)
-            err.warningMessage(parent=self,windowTitle='Error creating compressed task file',message='Selected directory is not a pipeline in the currently running cccp4i2')
+            warningMessage(err, parent=self,windowTitle='Error creating compressed task file',message='Selected directory is not a pipeline in the currently running cccp4i2')
             return
         zipPath = dirPath + '.ccp4i2task.zip'
         if os.path.exists(zipPath):
@@ -1477,33 +1428,28 @@ class CMainWindow(QtWidgets.QMainWindow):
             zip = zipfile.ZipFile(zipPath, mode='w')
         except:
             err = CException(self.__class__, 201, zipPath)
-            err.warningMessage(parent=self,windowTitle='Error creating compressed task file',message='Creating'+str(zipPath))
+            warningMessage(err, parent=self,windowTitle='Error creating compressed task file',message='Creating'+str(zipPath))
             return
         try:
             CCP4Utils.zipDirectory(zip,dirPath,rootRelPath=CCP4Utils.getCCP4I2Dir())
         except:
-            err = CException(self.__class__, 202, 'Saving', dirPath, 'to', zipPath)
-            err.warningMessage(parent=self,windowTitle='Error creating compressed task file',message='Saving'+str(dirPath))
+            err = CException(self.__class__, 202, f'Saving {dirPath} to {zipPath}')
+            warningMessage(err, parent=self,windowTitle='Error creating compressed task file',message='Saving'+str(dirPath))
             return
         try:
             zip.close()
         except:
             return CErrorReport(self.__class__,203,zipPath)
-            err.warningMessage(parent=self,windowTitle='Error creating compressed task file',message='Closing'+str(zipPath))
-            return # ? Extra return here.
         info = QtWidgets.QMessageBox.information(self,'Saved compressed task file','Task saved to'+str(zipPath))
 
     def openImportTask(self):
-        import shutil
-        import zipfile
-        from core import CCP4Utils
         filePath,selectedFilter = QtWidgets.QFileDialog.getOpenFileName(self,'Select compressed file containing task','',"Compressed task (*.ccp4i2task.zip)").__str__()
         if not os.path.isfile(filePath): return
         try:
             zip = zipfile.ZipFile(filePath,mode='r')
         except:
             err = CException(self.__class__,204,filePath)
-            err.warningMessage(parent=self,windowTitle='Error reading compressed task file',message='Reading '+str(filePath))
+            warningMessage(err, parent=self,windowTitle='Error reading compressed task file',message='Reading '+str(filePath))
             return
         targetPath = CCP4Utils.getCCP4I2Dir()
         err= CException()
@@ -1528,13 +1474,12 @@ class CMainWindow(QtWidgets.QMainWindow):
                     err.append(self.__class__,205,filePath)
         zip.close()
         if len(err) > 0:
-            err.warningMessage(parent=self,windowTitle='Error reading compressed task file',message='Extracting from '+str(filePath)+' to '+str(targetPath))
+            warningMessage(err, parent=self,windowTitle='Error reading compressed task file',message='Extracting from '+str(filePath)+' to '+str(targetPath))
             return
         info = QtWidgets.QMessageBox.information(self,'New task installed','New '+ zinfo.filename+ ' task installed - Please restart CCP4i2')
 
     def showAbout(self):
         if not hasattr(self,'aboutDialog'):
-            from core import CCP4Utils
             self.aboutDialog = QtWidgets.QDialog(self)
             self.aboutDialog.setLayout(QtWidgets.QVBoxLayout())
             self.aboutDialog.layout().setContentsMargins(1,1,1,1)
@@ -1554,9 +1499,9 @@ class CMainWindow(QtWidgets.QMainWindow):
             topRightWidget.layout().addWidget(label)
             topWidget.layout().addWidget(topRightWidget)
             self.aboutDialog.layout().addWidget(topWidget)
-            version = CCP4Utils.getProgramVersion('ccp4i2')
-            date = CCP4Utils.getProgramVersion('ccp4i2',mode='date')
-            label = QtWidgets.QLabel('Version '+version+' built on '+date+"\n"+'User interface to CCP4 Program Suite version '+ CCP4Utils.getProgramVersion('ccp4'),self)
+            version = __version__
+            date = __version_date__
+            label = QtWidgets.QLabel('Version '+version+' built on '+date+"\n"+'User interface to CCP4 Program Suite version '+ CCP4_VERSION,self)
             label.setStyleSheet("QLabel { font-size: 14px; font-style: italic; font-weight: bold; }")
             topRightWidget.layout().addWidget(label)
             label = QtWidgets.QLabel(self)
@@ -1578,11 +1523,10 @@ class CMainWindow(QtWidgets.QMainWindow):
         self.aboutDialog.raise_()
 
     def showDemoDataInfo(self):
-        from core import CCP4Utils
-        CCP4Modules.WEBBROWSER().loadWebPage(CCP4Modules.DEMODATAMANAGER().getOverviewPage())
+        WEBBROWSER().loadWebPage(DEMODATAMANAGER().getOverviewPage())
 
     def downloadDemoData(self):
-        CCP4Modules.DEMODATAMANAGER().downloadDemoData(self)
+        DEMODATAMANAGER().downloadDemoData(self)
 
     def getProject(self):
         return None
@@ -1604,11 +1548,11 @@ class CMainWindow(QtWidgets.QMainWindow):
         pass
     
     def makeDemoData(self):
-        CCP4Modules.DEMODATAMANAGER().makeDemoData(parentWidget=self)
+        DEMODATAMANAGER().makeDemoData(parentWidget=self)
     
     def listProcesses(self):
-        CCP4Modules.JOBCONTROLLER().listLocalProcesses()
-        from qtgui import CCP4JobControlGui
+        JOBCONTROLLER().listLocalProcesses()
+        from . import CCP4JobControlGui
         if getattr(self,'listProcessesWindow',None) is None:
             self.listProcessesWindow = CCP4JobControlGui.CListProcesses(self)
         self.listProcessesWindow.load()
@@ -1626,7 +1570,6 @@ class TwoFingerFlickRecognizer(QtWidgets.QGestureRecognizer):
         return TwoFingerFlickGesture()
 
     def recognize(self,state,watched,event):
-        import time
         if event.type() == QtCore.QEvent.TouchEnd and self.inGesture:
             #print self.diff,(time.time() - self.startTime), self.diff/(time.time() - self.startTime)
             if abs(self.diff/(time.time() - self.startTime))>300:
@@ -1762,7 +1705,7 @@ class CBrowserWindow(CMainWindow):
     @QtCore.Slot()
     @staticmethod
     def updateInstances(qobj):
-        CBrowserWindow.Instances = set([window for window in CBrowserWindow.Instances if isAlive(window)])
+        CBrowserWindow.Instances = set([window for window in CBrowserWindow.Instances if CCP4Utils.isAlive(window)])
         print('webbrowser.updateInstances',CBrowserWindow.Instances)
 
     def closeEvent(self,e):
@@ -1794,14 +1737,6 @@ class CBrowserWindow(CMainWindow):
             for tab in tabs:
                 tab.cornerWidget().setText('Close tab')
 
-    def positionOver(self,widget):
-        geom = widget.geometry()
-        globalPos = widget.mapToGlobal(QtCore.QPoint(geom.x(),geom.y()))
-        self.move(globalPos)
-    
-    def downloadTestData(self,**kw):
-        pass
-    
     def drawFindTool(self):
         self.findFrame = CFindFrame(self)
         self.findDock = QtWidgets.QDockWidget('Find',self)
@@ -1846,12 +1781,6 @@ class CBrowserWindow(CMainWindow):
             return None
         return self.stack.currentWidget()
 
-    def contextTab(self,context):
-        for indx in range(self.stack.count()):
-            if str(self.stack.widget(indx).objectName()) == context:
-                return self.stack.widget(indx)
-        return None
-
     def setTab(self,context):
         tab = self.stack.currentWidget()
         if tab is not None and str(tab.objectName()) == context:
@@ -1887,16 +1816,6 @@ class CBrowserWindow(CMainWindow):
                 self.editSplitter.addressEdit.setText(title)
         self.tab().repaint()
         return idx
-
-    def handleTabCornerWidget(self,clickBool = None):
-        if self.mini:
-            self.setMini(False)
-
-    def tabWidgets(self):
-        widgets = []
-        for idx in range(0,self.tab().count()):
-            widgets.append(self.tab().widget(idx))
-        return widgets
 
 #-------------------------------------------------------------------
     def setTabIndex(self, index=-1, fileName=''):
@@ -1942,8 +1861,8 @@ class CBrowserWindow(CMainWindow):
 #-------------------------------------------------------------------
     def openApplication(self, application=None):
 #-------------------------------------------------------------------
-        from qtgui import CCP4TextViewer
-        from qtgui import CCP4ErrorReportViewer
+        from . import CCP4ErrorReportViewer
+        from . import CCP4TextViewer
         widget = None
         application = str(application)
         idx = self.fileOpenInTab(application)
@@ -1975,7 +1894,6 @@ class CBrowserWindow(CMainWindow):
 #-------------------------------------------------------------------
     def openFile(self, fileName=None, format=None, title=None, toFront=False, internal=False):
 #-------------------------------------------------------------------
-        from core import CCP4Config
         # Is the file already displayed - force a redraw
         if fileName is None or fileName=='None':
             return None
@@ -1987,7 +1905,7 @@ class CBrowserWindow(CMainWindow):
             self.tab().setCurrentIndex(idx)
             if toFront: self.raise_()
             return self.tab().widget(idx)
-        mimeTypeHandler = CCP4Modules.MIMETYPESHANDLER()
+        mimeTypeHandler = MIMETYPESHANDLER()
         #print "CCP4WebBrowser.open fileName",fileName,format,mimeTypeHandler,title
         if not os.path.exists(fileName):
             QtWidgets.QMessageBox.warning(self,self.windowTitle(),'File does not exist \n'+fileName)
@@ -2035,29 +1953,23 @@ class CBrowserWindow(CMainWindow):
                          
             if isinstance(widgetClass,str):
                 # This is a keyword for the launcher
-                CCP4Modules.LAUNCHER().openInViewer(viewer=widgetClass,fileName=fileName)
+                LAUNCHER().openInViewer(viewer=widgetClass,fileName=fileName)
                 return None
-            if CCP4Config.DEVELOPER():
+            try:
                 widget = widgetClass(self)
-            else:
-                try:
-                    widget = widgetClass(self)
-                except:
-                    QtWidgets.QMessageBox.warning(None,self.windowTitle(),'Error opening display for file type: '+format)
-                    return None
+            except:
+                QtWidgets.QMessageBox.warning(None,self.windowTitle(),'Error opening display for file type: '+format)
+                return None
             #print 'CWebBrowser.openFile',widget
-            if CCP4Config.DEVELOPER():
+            try:
                 rv = widget.open(fileName=fileName)
-            else:
-                try:
-                    rv = widget.open(fileName=fileName)
-                except CException as e:
-                    widget.close()
-                    e.warningMessage(windowTitle=self.windowTitle())
-                except:
-                    widget.close()
-                    QtWidgets.QMessageBox.warning(None,self.windowTitle(),'Attempting to display file '+os.path.split(fileName)[-1]+'\n as '+format+' failed.\n')
-                    return None
+            except CException as e:
+                widget.close()
+                warningMessage(e, windowTitle=self.windowTitle())
+            except:
+                widget.close()
+                QtWidgets.QMessageBox.warning(None,self.windowTitle(),'Attempting to display file '+os.path.split(fileName)[-1]+'\n as '+format+' failed.\n')
+                return None
             if title is None:
                 title = widget.title()
             self.newTab(widget,title,url=QtCore.QUrl.fromLocalFile(fileName),toolTip=fileName)
@@ -2084,7 +1996,6 @@ class CBrowserWindow(CMainWindow):
 
     def showHelp(self,mode='ccp4i2',newTab=True):
         print('showHelp',mode)
-        from core import CCP4Utils
         sph_pth = os.path.join(CCP4Utils.getCCP4I2Dir(), 'docs', 'sphinx', 'build', 'html')
         if mode == 'ccp4i2':
             url = QtCore.QUrl.fromLocalFile(os.path.join(sph_pth, 'index.html'))
@@ -2116,7 +2027,6 @@ class CBrowserWindow(CMainWindow):
             self.loadWebPage(helpFileName='general/license.html', newTab=newTab)
 
     def loadWebPage(self, fileName=None, helpFileName=None, target=None, newTab=0):
-        from core import CCP4Utils
         #print 'loadWebPage',fileName,helpFileName,target
         if fileName is not None:
             if target is None and fileName.count('#'):
@@ -2164,7 +2074,7 @@ class CBrowserWindow(CMainWindow):
                 #print 'loadPage file',target
         if not url.isValid():
             err = CException(self.__class__, 100, url.path().toAscii())
-            err.warningMessage()
+            warningMessage(err)
             return
             #print "CWebBrowser.loadPage trying", url.path(), target
         if self.tab().count() > 0:
@@ -2180,7 +2090,6 @@ class CBrowserWindow(CMainWindow):
                 exc_type, exc_value, exc_tb = sys.exc_info()[:3]
                 print(exc_type)
                 print(exc_value)
-                import traceback
                 traceback.print_tb(exc_tb)
                 return None
             return widget
@@ -2189,7 +2098,7 @@ class CBrowserWindow(CMainWindow):
             view = CCP4WebView.CWebView()
             view.searchFound.connect(self.findFrame.searchCallback)
             view.zoomFactorChanged.connect(self.zoomFactorChanged)
-            view.setZoomFactor(CCP4Modules.PREFERENCES().BROWSER_ZOOM_FACTOR)
+            view.setZoomFactor(PREFERENCES().BROWSER_ZOOM_FACTOR)
             view.CustomMimeTypeRequested.connect(self.CustomMimeTypeRequested)
             #view.NewWindowRequested.connect(self.NewWindowRequested)
             view.StatusBarMessage.connect(self.StatusBarMessage)
@@ -2206,7 +2115,6 @@ class CBrowserWindow(CMainWindow):
             return view
 
     def loadViaHTTP(self, fileName=None, target=None):
-        from core import CCP4Utils
         relPath = os.path.relpath(fileName, os.path.join(CCP4Utils.getCCP4I2Dir(), 'docs', 'sphinx', 'build', 'html'))
         #print 'loadViaHTTP',relPath
         url =  QtCore.QUrl('http://127.0.0.1:43434/' + relPath + '#' + target)
@@ -2332,35 +2240,6 @@ class CBrowserWindow(CMainWindow):
             return w.isSearchable()
         else:
             return False
-#-------------------------------------------------------------------
-    def widgetIsScaleable(self):
-#-------------------------------------------------------------------
-        w = self.currentWidget()
-        if w is not None:
-            return w.isScaleable()
-        else:
-            return None
-
-#-------------------------------------------------------------------
-    def isCurrentWidget(self, mode='text'):
-#-------------------------------------------------------------------
-        widget = self.currentWidget()
-        if widget is None:
-            return 0
-        if mode=='text':
-            from qtgui import CCP4TextViewer
-            if isinstance(widget, CCP4TextViewer.CTextViewer):
-                return 1
-            else:
-                return 0
-        if mode=='image':
-            from qtgui import CCP4ImageViewer
-            if isinstance(widget, CCP4ImageViewer.CImageViewer):
-                return 1
-            else:
-                return 0
-        else:
-            return 0
 
 #-------------------------------------------------------------------
     def handlePrint(self):
@@ -2380,7 +2259,7 @@ class CBrowserWindow(CMainWindow):
 #-------------------------------------------------------------------
     def handleSave(self):
 #-------------------------------------------------------------------
-        from qtgui import CCP4FileBrowser
+        from . import CCP4FileBrowser
         widget = self.currentWidget()
         if widget is None:
             return
@@ -2464,7 +2343,7 @@ class CBrowserWindow(CMainWindow):
         event.ignore()
 
     def openSendReport(self):
-        from qtgui import CCP4ErrorReportViewer
+        from . import CCP4ErrorReportViewer
         widget = CCP4ErrorReportViewer.CSendJobError(self, projectId=self.getProject())
         widget.show()
 

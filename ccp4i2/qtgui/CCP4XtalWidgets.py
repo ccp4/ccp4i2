@@ -1,90 +1,21 @@
-from __future__ import print_function
-
 """
-     qtgui/CCP4XtalWidgets.py: CCP4 Gui Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2010 University of York
 """
 
 ##@package CCP4XtalWidgets (QtGui) Collection of widgets for crystallographic data types
 
-import os
 import functools
+import os
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from core import CCP4XtalData
-from qtgui import  CCP4Widgets
-from core.CCP4Utils import safeFloat
-from core.CCP4ErrorHandling import *
-from core import CCP4Modules
+from lxml import etree
+from PySide2 import QtCore, QtWidgets
 
+from . import CCP4Widgets
+from ..core import CCP4Utils
+from ..core import CCP4XtalData
+from ..core.CCP4ErrorHandling import CException, Severity
+from ..core.CCP4Modules import LAUNCHER, PREFERENCES, WEBBROWSER
 
-class CSpaceGroupsAbstractItemModel(QtCore.QAbstractItemModel):
-
-    def __init__(self,parent):
-        QtCore.QAbstractItemModel.__init__(self,parent)
-        chiralSpaceGroups= CCP4XtalData.SYMMETRYMANAGER().chiralSpaceGroups
-        crystalSystems = CCP4XtalData.SYMMETRYMANAGER().crystalSystems
-        model = []
-        for key in crystalSystems:
-            model.append((key,chiralSpaceGroups[key]))
-        self.rootItem = CTreeItem(self,'root',model)
-
-    def columnCount(self,parent):
-        return 1
-
-    def childCount(self):
-        return self.rootItem.childCount()
-
-    def rowCount(self,index):
-        if not index.isValid():
-            return self.childCount()
-        else:
-            return index.internalPointer().childCount()
-
-    def child(self,row):
-        return self.rootItem.child(row)
-
-    def data(self, index, role):
-        if not index.isValid():
-            return None
-        item = index.internalPointer()
-        #return item.data(index.column(),role)
-        return item.data(role)
-
-    def index(self, row, column, parent):
-        if row < 0 or column < 0 or row >= self.rowCount(parent) or column >= self.columnCount(parent):
-            return QtCore.QModelIndex()
-        if not parent.isValid():
-            parentItem = self.rootItem
-        else:
-            parentItem = parent.internalPointer()
-        childItem = parentItem.child(row)
-        if childItem:
-            return self.createIndex(row, column, childItem)
-        else:
-            return QtCore.QModelIndex()
-
-    def parent(self,index):
-        if not index.isValid():
-            return QtCore.QModelIndex()
-        childItem = index.internalPointer()
-        parentItem = childItem.parent
-        if parentItem == self.rootItem:
-            return QtCore.QModelIndex()
-        return self.createIndex(parentItem.row(), 0, parentItem)
 
 class CSpaceGroupTreeView(QtWidgets.QTreeView):
 
@@ -99,19 +30,6 @@ class CSpaceGroupTreeView(QtWidgets.QTreeView):
                 self.parent().parent().blockClose = True
                 event.accept()
                 return
-
-class CSpaceGroupCombo(QtWidgets.QComboBox):
-
-    def __init__(self,parent):
-        QtWidgets.QComboBox.__init__(self, parent)
-        self.blockClose = False
-
-    def hidePopup(self):
-        #print 'CSpaceGroupCombo.hidePopup'
-        if self.blockClose:
-            self.blockClose = False
-            return
-        QtWidgets.QComboBox.hidePopup(self)
 
 
 class CSpaceGroupView(CCP4Widgets.CComplexLineWidget):
@@ -222,7 +140,7 @@ class CSpaceGroupCellView(CCP4Widgets.CComplexLineWidget):
     def handleLoadButton(self):
         #print 'CSpaceGroupCellView.handleLoadButton'
         filterText = [ 'Coordinate file (*.pdb *.cif *.ent)' ,'Experimental data file (*.mtz *.cif *.ent)']
-        from qtgui import CCP4FileBrowser
+        from . import CCP4FileBrowser
         self.fileBrowser = CCP4FileBrowser.CFileDialog(self, title='Select experimental data file or coordinate file',
                                                        filters = filterText, defaultFileName='')
         self.fileBrowser.setStyleSheet("")
@@ -235,7 +153,7 @@ class CSpaceGroupCellView(CCP4Widgets.CComplexLineWidget):
         ext = os.path.splitext(fileName)[1]
         self.model.blockSignals(True)
         if ext == '.pdb':
-            from core import CCP4ModelData
+            from ..core import CCP4ModelData
             obj = CCP4ModelData.CPdbDataFile(fileName)
             #print 'CSpaceGroupCellView.loadFromFile',obj.fileContent.mmdbManager.GetCell(),obj.fileContent.mmdbManager.GetSpaceGroup()
             self.model.unSet()
@@ -267,7 +185,6 @@ class CSpaceGroupCellView(CCP4Widgets.CComplexLineWidget):
                 'FreeRDataFile', 'MapCoeffsDataFile', 'PdbDataFile']
 
     def acceptDropData(self, textData):
-        from lxml import etree
         tree = etree.fromstring(textData)
         try:
             path = os.path.join(tree.xpath('//relPath')[0].text.__str__(), tree.xpath('//baseName')[0].text.__str__())
@@ -434,17 +351,6 @@ class  CProgramColumnGroupCombo(QtWidgets.QComboBox):
 
     def beep(self):
         print('CProgramColumnGroupCombo.beep', self.currentIndex(), self.view().selectionModel().currentIndex().row())
-
-    def currentColumnGroupIndices(self):
-        modelIndex = self.view().selectionModel().currentIndex()
-        if modelIndex.isValid():
-            data = modelIndex.internalPointer().data(QtCore.Qt.UserRole)
-            if data is None:
-                return -1, -1
-            val = data.__str__().split('.')
-            return int(val[0]), int(val[1])
-        else:
-            return -1,-1
 
     def setCurrentColumnGroup(self,dataset,columnGroupText):
         #print 'CProgramColumnGroupCombo.setCurrentColumnGroup',dataset,columnGroupText
@@ -736,7 +642,6 @@ class CAsuComponentView(CCP4Widgets.CComplexLineWidget):
                 self.widgets[item].connectUpdateViewFromModel(True)
 
     def acceptDropData(self,textData):
-        from lxml import etree
         tree = etree.fromstring(textData)
         #print 'CAsuComponentView.acceptDropData',textData,tree.tag
         self.widgets['seqFile'].connectUpdateViewFromModel(False)
@@ -1013,16 +918,15 @@ class CImportUnmergedView(CCP4Widgets.CComplexLineWidget):
         if ext is None:
             return
         if ext == '.mtz' or mode == 'view_ViewHKL':
-            CCP4Modules.LAUNCHER().openInViewer('viewHKL',fileName=self.model.file.__str__())
+            LAUNCHER().openInViewer('viewHKL',fileName=self.model.file.__str__())
         else:
-            CCP4Modules.WEBBROWSER().openFile(self.model.file.__str__(),format='text/plain',toFront=True)
+            WEBBROWSER().openFile(self.model.file.__str__(),format='text/plain',toFront=True)
 
     # Just drag the file name
     def dragData(self):
         if self.model.file.isSet():
             tree = self.model.file.getEtree()
             tree.tag = 'UnmergedDataFile'
-            from lxml import etree
             text = etree.tostring(tree,pretty_print=False)
             return text
         else:
@@ -1032,7 +936,6 @@ class CImportUnmergedView(CCP4Widgets.CComplexLineWidget):
         return 'UnmergedDataFile'
 
     def acceptDropData(self,textData):
-        from lxml import etree
         #print 'CImportUnmergedView.acceptDropData',textData
         tree = etree.fromstring(textData)
         self.connectUpdateViewFromModel(False)
@@ -1160,14 +1063,14 @@ class CMiniMtzDataFileView(CMtzDataFileView):
         self.model.blockSignals(False)
         if self.model.getExt() in ['.cif','.ent']:
             err = self.model.importFromCif(jobId=self.parentTaskWidget().jobId())
-            if err.maxSeverity()>SEVERITY_WARNING:
-                err.warningMessage('Importing experimental data','Failed loading cif format file',parent=self)
+            if err.maxSeverity()>Severity.WARNING:
+                warningMessage(err, 'Importing experimental data','Failed loading cif format file',parent=self)
                 self.model.unSet()
                 return
         errors = self.model.validColumns()
         #print 'CMiniMtzDataFileView.handleBrowserOpenFile',errors.report()
         #print 'CMiniMtzDataFileView.handleBrowserOpenFile sourceFileAnnotation',self.model.__dict__.get('sourceFileAnnotation','')
-        if errors.maxSeverity()>SEVERITY_WARNING:
+        if errors.maxSeverity()>Severity.WARNING:
             #print errors.report()
             if errors.count(cls=self.model.__class__,code=206)>0:
                 QtWidgets.QMessageBox.warning(self,'Error in selected MTZ file','This file contains unmerged data - use Data Reduction task to import it')
@@ -1196,7 +1099,7 @@ class CMiniMtzDataFileView(CMtzDataFileView):
             # Selected file has correct complement of columns but needs to be imported to same
             # target filename as used by self.model.splitMtz()
             self.model.importFile(jobId=self.parentTaskWidget().jobId(),jobNumber=self.parentTaskWidget().jobNumber())
-            if CCP4Modules.PREFERENCES().AUTO_INFO_ON_FILE_IMPORT and not self.model.dbFileId.isSet():
+            if PREFERENCES().AUTO_INFO_ON_FILE_IMPORT and not self.model.dbFileId.isSet():
                 # If this is a downloaded file then it will have some provenance info in
                 # self.model.sourceFileAnnotation put there by CDataFileView.handleBrowserOpenFile()
                 self.openInfo(label=self.model.qualifiers('guiLabel').lower(),sourceFileAnnotation=self.model.__dict__.get('sourceFileAnnotation',''))
@@ -1215,16 +1118,16 @@ class CMiniMtzDataFileView(CMtzDataFileView):
         error = self.model.splitMtz(jobId=jobId,projectId=projectId,contentFlag=selectedColumns[0],i2Labels=selectedColumns[1],columnLabels=selectedColumns[3])
         #print 'CMiniMtzDataFileView.handleDialogApply',error
         self.model.dataChanged.emit()
-        if error.maxSeverity()==SEVERITY_WARNING and error[0]['code']==212:
+        if error.maxSeverity()==Severity.WARNING and error[0]['code']==212:
             mess = QtWidgets.QMessageBox.warning(self,self.windowTitle(),'This data is already imported as\n'+error[0]['details'])
             self.loadJobCombo()
             self.updateJobCombo()
             self.validate()
-        elif error.maxSeverity()>=SEVERITY_WARNING:
+        elif error.maxSeverity()>=Severity.WARNING:
             if error[0]['code']==211:
                 mess = QtWidgets.QMessageBox.warning(self,self.windowTitle(),'No column data selected')
             else:
-                error.warningMessage(windowTitle='Splitting MTZ: '+sourceFileName,jobId=jobId,parent=self)
+                warningMessage(error, windowTitle='Splitting MTZ: '+sourceFileName,jobId=jobId,parent=self)
             self.model.unSet()
             self.updateJobCombo()
             self.validate()
@@ -1232,7 +1135,7 @@ class CMiniMtzDataFileView(CMtzDataFileView):
             self.loadJobCombo()
             self.updateJobCombo()
             self.validate()
-            if CCP4Modules.PREFERENCES().AUTO_INFO_ON_FILE_IMPORT:
+            if PREFERENCES().AUTO_INFO_ON_FILE_IMPORT:
                 #print 'CMiniMtzDaaFile.handleDialogApply sourceFileReference',self.model.__dict__.get('sourceFileReference','')
                 # If this is a downloaded file then it will have some provenance info in
                 # self.model.sourceFileAnnotation put there by CDataFileView.handleBrowserOpenFile()
@@ -1330,7 +1233,6 @@ class CMergeMiniMtzView(CCP4Widgets.CComplexLineWidget):
     @QtCore.Slot('QMimeData')
     def acceptDropData(self,textData):
         #print 'CMergeMiniMtzView.acceptDropData',textData
-        from lxml import etree
         tree = etree.fromstring(textData)
         tree.tag = self.dragType()
         #print 'CMergeMiniMtzView.acceptDropData',textData,tree.tag
@@ -1514,13 +1416,12 @@ class CReindexOperatorView(CCP4Widgets.CComplexLineWidget):
                 self.setModel(model)
 
     def help(self):
-        from core import CCP4Utils
         page = os.path.join(CCP4Utils.getCCP4Dir(),'html','reindexing.html')
         if not os.path.exists(page):
             page = os.path.join(CCP4Utils.getCCP4Dir(),'docs','reindexing.html')
         #print 'CReindexOperatorView.help',page,os.path.exists(page)
         if os.path.exists(page):
-            CCP4Modules.WEBBROWSER().loadWebPage(fileName=page)
+            WEBBROWSER().loadWebPage(fileName=page)
 
 
 class CColumnGroupListView(CCP4Widgets.CComplexLineWidget):
@@ -1637,8 +1538,8 @@ class CSelectColumnsWidget(QtWidgets.QDialog):
     ERROR_CODES = {300 : {'description' : 'There is no data of required type in MTZ file'}}
 
     def __init__(self,parent=None,model=None,applyNow=False,filename=None):
-        from qtgui import CCP4TaskWidget
-        from core import CCP4DataManager
+        from . import CCP4TaskWidget
+        from ..core import CCP4DataManager
         QtWidgets.QDialog.__init__(self,parent)
         self.model = model
         baseName = str(self.model.baseName)
@@ -1798,5 +1699,4 @@ class CSelectColumnsWidget(QtWidgets.QDialog):
 
     @QtCore.Slot()
     def handleHelp(self):
-        CCP4Modules.WEBBROWSER().loadWebPage(helpFileName='data_files')
-
+        WEBBROWSER().loadWebPage(helpFileName='data_files')

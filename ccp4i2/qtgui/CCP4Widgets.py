@@ -1,44 +1,40 @@
-from __future__ import print_function
-
 """
-     qtgui/CCP4Widgets.py: CCP4 Gui Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2010 University of York
 """
 
 ##@package CCP4Widgets (QtGui) Collection of widgets for simple data types
-from PySide2 import QtGui, QtWidgets,QtCore,QtSvg
-from core import CCP4Data
-from core import CCP4ModelData
-from core import CCP4XtalData
-from core import CCP4File
-from qtgui import CCP4SequenceList
-from qtgui import CCP4RefmacMultiAtomSelection
-from core.CCP4Modules import PROJECTSMANAGER, PIXMAPMANAGER, QTAPPLICATION, TASKMANAGER, LAUNCHER
-from core.CCP4Modules import WEBBROWSER, PREFERENCES, MIMETYPESHANDLER, COMFILEPATCHMANAGER
 
-from core.CCP4ErrorHandling import *
+import functools
+import glob
+import json
 import os
 import re
-import sys
 import shutil
-import glob
-import functools
+import sys
 import traceback
-import json
+
+from lxml import etree
+from PySide2 import QtGui, QtWidgets,QtCore,QtSvg
+
+from . import CCP4RefmacMultiAtomSelection
+from . import CCP4SequenceList
+from .. import I2_TOP
+from ..core import CCP4Data
+from ..core import CCP4File
+from ..core import CCP4ModelData
+from ..core import CCP4XtalData
+from ..core.CCP4ErrorHandling import CException, Severity
+from ..core.CCP4Modules import COMFILEPATCHMANAGER
+from ..core.CCP4Modules import LAUNCHER
+from ..core.CCP4Modules import MIMETYPESHANDLER
+from ..core.CCP4Modules import PIXMAPMANAGER
+from ..core.CCP4Modules import PREFERENCES
+from ..core.CCP4Modules import PROJECTSMANAGER
+from ..core.CCP4Modules import TASKMANAGER
+from ..core.CCP4Modules import WEBBROWSER
+from ..core.CCP4WarningMessage import warningMessage
+from ..utils.QApp import QTAPPLICATION
+
 
 # Jon Agirre - 1 Feb 2019: Increased DRAGICONSIZE from 16 to 20
 # as it was impossible to see the dragged icon on some systems
@@ -145,7 +141,6 @@ class CBaseWidget:
         return fileList
 
     def makeDragEtree(self, path, mimeType):
-        from lxml import etree
         rel, base = os.path.split(path)
         fileEle = etree.Element(str(mimeType).encode('ascii', 'ignore'))
         ele = etree.Element('relPath')
@@ -175,7 +170,6 @@ class CBaseWidget:
                         return mimeData.data(item).data()
             elif mimeData.hasFormat('jobId'):
                 dropText = mimeData.data('jobId').data()
-                from lxml import etree
                 tree = etree.fromstring(dropText)
                 for groupName in ['outputFiles','outputData']:
                     groupEle = tree.find(groupName)
@@ -230,8 +224,8 @@ class CBaseWidget:
         return tip
 
     def parentTaskWidget(self):
-        from qtgui import CCP4TaskWidget
-        from qtgui import CCP4ContainerView
+        from . import CCP4ContainerView
+        from . import CCP4TaskWidget
         w = self.parent()
         while w is not None and isinstance(w, QtWidgets.QWidget):
             if isinstance(w, (CCP4TaskWidget.CTaskWidget, CCP4ContainerView.CContainerView)):
@@ -241,7 +235,7 @@ class CBaseWidget:
         return None
 
     def parentTaskFrame(self):
-        from qtgui import CCP4ProjectViewer
+        from . import CCP4ProjectViewer
         w = self.parent()
         while w is not None and isinstance(w, QtWidgets.QWidget):
             if isinstance(w, (CCP4ProjectViewer.CTaskFrame)):
@@ -275,7 +269,7 @@ class CPixmapManager:
 
     def loadCache(self, dir='', subDirectories = ['']):
         if not dir:
-            dir = os.path.join(os.environ['CCP4I2_TOP'], 'qticons')
+            dir = str(I2_TOP / 'qticons')
         try:
             with open(os.path.join(dir, "CachedPixmapPaths.json"), "r") as pixmapCacheFile:
                 self.cachedFilenames=json.loads(pixmapCacheFile.read())
@@ -284,7 +278,7 @@ class CPixmapManager:
 
     def buildCacheFromScratch(self, dir='', subDirectories = []):
         if not dir:
-            dir = os.path.join(os.environ['CCP4I2_TOP'], 'qticons')
+            dir = str(I2_TOP / 'qticons')
             subDirectories = ['']
         self.cachedFilenames = {}
         for subd in subDirectories:
@@ -302,8 +296,7 @@ class CPixmapManager:
 
     def loadPixmaps(self, dir='', width=32, height=0):
         if not dir:
-            dir = os.path.join(os.environ['CCP4I2_TOP'], 'qticons')
-            subDirectories = ['']
+            dir = str(I2_TOP / 'qticons')
         self.pixmaps = {}
         if height<=0:
             height = width
@@ -325,7 +318,7 @@ class CPixmapManager:
         return pixmap
 
     def getPixmap(self,name):
-        dir = os.path.join(os.environ['CCP4I2_TOP'], 'qticons')
+        dir = str(I2_TOP / 'qticons')
         #print 'getPixmap',name,self.pixmaps.has_key(name)
         if name in self.cachedFilenames:
             filename = self.cachedFilenames[name]
@@ -339,17 +332,6 @@ class CPixmapManager:
             return self.pixmaps['blank']
         else:
             return None
-
-class CIntValidator(QtGui.QIntValidator):
-    '''Reimplementation of Qt validator'''
-
-    def __init__(self, bottom=None, top=None, parent=None):
-        QtGui.QIntValidator.__init__(self, bottom, top, parent)
-
-    def validate(self, input, pos):
-        if len(input) == 0:
-            return (QtGui.QValidator.Acceptable, pos)
-        return QtGui.QIntValidator.validate(self, input, pos)
 
 
 class CDoubleValidator(QtGui.QDoubleValidator):
@@ -827,12 +809,6 @@ class CRadioButtonGroup(QtWidgets.QButtonGroup, CBaseWidget):
         QtWidgets.QButtonGroup.addButton(self,but,self.lastButtonId)
         return but
 
-    def removeRadioButton(self, value=None):
-        for but in self.buttons():
-            if str(but.objectName()) == value:
-                QtWidgets.QButtonGroup.removeButton(self, but)
-                return
-
     def setValue(self, value=None):
         #print 'CRadioButtonGroup.setValue',value,self.buttons()
         value = str(value)
@@ -857,18 +833,6 @@ class CRadioButtonGroup(QtWidgets.QButtonGroup, CBaseWidget):
 
     def setToolTip(self,tip):
         for but in self.buttons(): but.setToolTip(tip)
-
-
-class CBooleanRadioButtonGroup(CRadioButtonGroup):
-
-    def __init__(self,parent=None,qualifiers={},**kw):
-        qualis = {}
-        qualis.update(qualifiers)
-        qualis.update(kw)
-        CRadioButtonGroup.__init__(self,parent=parent,qualifiers=qualis)
-        menuText = qualis.get('menuText',[NotImplemented,NotImplemented])
-        self.addRadioButton(True,menuText[0])
-        self.addRadioButton(False,menuText[1])
 
 
 class CFolder(QtWidgets.QFrame):
@@ -1194,21 +1158,21 @@ class CViewWidget(QtWidgets.QFrame, CBaseWidget):
             v = self.model.validity(self.model.get())
             update = False
             #print 'CViewWidget.validate maxSeverity', v.maxSeverity(), v.report(ifStack=False,mode=2)
-            if v.maxSeverity() > SEVERITY_WARNING:
+            if v.maxSeverity() > Severity.WARNING:
                 if self.isValid is None or self.isValid:
                     update = True
                 self.setProperty("isValid", False)
                 self.setProperty("hasWarning", False)
                 self.isValid = False
-                self.validityMessage = v.report(ifStack=False, user=True, mode=2, minSeverity=SEVERITY_UNDEFINED_ERROR)
-            elif v.maxSeverity()==SEVERITY_WARNING:
+                self.validityMessage = v.report(ifStack=False, user=True, mode=2, minSeverity=Severity.UNDEFINED_ERROR)
+            elif v.maxSeverity()==Severity.WARNING:
                 # For warning message do not highlight widget but do set the warning text
                 if self.isValid is None or not self.isValid:
                     update = True
                 self.setProperty("isValid", True)
                 self.setProperty("hasWarning", True)
                 self.isValid = True
-                self.validityMessage = v.report(ifStack=False, user=True, mode=2, minSeverity=SEVERITY_UNDEFINED_ERROR)
+                self.validityMessage = v.report(ifStack=False, user=True, mode=2, minSeverity=Severity.UNDEFINED_ERROR)
             else:
                 if self.isValid is None or not self.isValid: update = True
                 self.setProperty("isValid",True)
@@ -1265,7 +1229,7 @@ class CViewWidget(QtWidgets.QFrame, CBaseWidget):
 
 class CSeparator(CViewWidget):
     '''Hold container widgets in auto-generated gui'''
-    from core import CCP4Container
+    from ..core import CCP4Container
 
     MODEL_CLASS = CCP4Container.CContainer
 
@@ -1368,7 +1332,7 @@ class CComplexLineWidget(CViewWidget):
     if self.iconName is None and self.dragType() is not None:
       self.iconName = self.dragType()
     #print 'CComplexLineWidget.createIconButton',self,type(self),self.dragType(),'iconName',self.iconName
-    from qtgui import CCP4GuiUtils
+    from . import CCP4GuiUtils
     icon =CCP4GuiUtils.createIcon(name=self.iconName)
     self.iconButton = CIconButton(self,icon=icon,dragType= self._dragType)
     self.iconButton.setIcon(icon)
@@ -1535,7 +1499,7 @@ class CComplexLineWidget(CViewWidget):
   @QtCore.Slot('QMouseEvent')
   def updateMenu(self,event=None):
     #print 'CDataFileView.updateMenu',self,type(self),self.getMenuDef()
-    from qtgui import CCP4GuiUtils
+    from . import CCP4GuiUtils
     self.iconMenu.clear()
     CCP4GuiUtils.populateMenu(self,menuWidget=self.iconMenu,definition=self.getMenuDef(),getActionDef=self.getActionDef)
     if sys.platform == "darwin":
@@ -1589,7 +1553,6 @@ class CComplexLineWidget(CViewWidget):
   @QtCore.Slot(object)
   def acceptDropData(self,textData):
     #print 'CComplexLineWidget.acceptDropData',textData
-    from lxml import etree
     tree = etree.fromstring(textData)
     tree.tag = self.dragType()
     #print 'CComplexLineWidget.acceptDropData',textData,tree.tag
@@ -1776,7 +1739,7 @@ class CDataFileView(CComplexLineWidget):
               testAction = QtWidgets.QAction("Browse for demo data",browserButton);
               @QtCore.Slot(bool)
               def handleOpenTrigger():
-                  self.openBrowser(os.path.join(os.environ['CCP4I2_TOP'],"demo_data"))
+                  self.openBrowser(str(I2_TOP / "demo_data"))
               testAction.triggered.connect(handleOpenTrigger)
               menu.addAction(testAction);
               browserButton.setMenu(menu);
@@ -1811,7 +1774,7 @@ class CDataFileView(CComplexLineWidget):
   @QtCore.Slot()
   def downloadGui(self):
     '''Display a window to download from web server'''
-    from qtgui import CCP4FileBrowser
+    from . import CCP4FileBrowser
     projectId = self.parentTaskWidget().projectId()
     downloadDir = os.path.join(PROJECTSMANAGER().db().getProjectDirectory(projectId),'CCP4_DOWNLOAD')
     self.dowloadDialog = QtWidgets.QDialog(self)
@@ -1851,7 +1814,7 @@ class CDataFileView(CComplexLineWidget):
   def handleFollowFrom(self,contextJobId,projectId):
     '''Handle change to the followFrom job'''
     print('CDataFileView.handleFollowFrom',self.model.objectName(),contextJobId,self.model.qualifiers('fromPreviousJob'))
-    from dbapi import CCP4DbApi
+    from ..dbapi import CCP4DbApi
     if self.model.qualifiers('fromPreviousJob'):
       if contextJobId is None:
         self.model.unSet()
@@ -1966,7 +1929,7 @@ class CDataFileView(CComplexLineWidget):
 
   def handleExport(self):
     '''Handle menu option to export file'''
-    from qtgui import CCP4FileBrowser
+    from . import CCP4FileBrowser
     fileType = PROJECTSMANAGER().db().getFileInfo(fileId=self.model.dbFileId,mode='fileType')
     filters = MIMETYPESHANDLER().getMimeTypeInfo(fileType,'filter')
     defaultSuffix =  MIMETYPESHANDLER().getMimeTypeInfo(fileType,'fileExtensions')[0]
@@ -1989,16 +1952,16 @@ class CDataFileView(CComplexLineWidget):
       shutil.copyfile(myFileName,exportFileName)
     except:
       e = CException(self.__class__,100,'From: '+str(myFileName)+' to: '+str(exportFileName),name=self.modelObjectPath())
-      e.warningMessage('Copying file',parent=self)
+      warningMessage(e, 'Copying file',parent=self)
     else:
       PROJECTSMANAGER().db().createExportFile(fileId=fileId,exportFilename=exportFileName)
       fileInfo = PROJECTSMANAGER().db().getFileInfo(fileId=fileId,mode=['jobid','projectname'])
-      from dbapi import CCP4DbUtils
+      from ..dbapi import CCP4DbUtils
       CCP4DbUtils.makeJobBackup(jobId=fileInfo['jobid'],projectName=fileInfo['projectname'])
 
   def handleEditLabel(self):
-    from qtgui import CCP4Widgets
-    d = CCP4Widgets.CEditFileLabel(parent=self,fileId=self.model.dbFileId.__str__(),fileLabel=self.jobLabel.getValue())
+    from .CCP4Widgets import CEditFileLabel
+    CEditFileLabel(parent=self,fileId=self.model.dbFileId.__str__(),fileLabel=self.jobLabel.getValue())
 
   @QtCore.Slot(dict)
   def handleDbFileUpdated(self,args):
@@ -2059,7 +2022,7 @@ class CDataFileView(CComplexLineWidget):
       return
 
     if self.role is None:
-      container = self.model.parentContainer()
+      container = parentContainer(self.model)
       if container is not None and container.objectName() == 'outputData':
         self.role = 'output'
       else:
@@ -2228,7 +2191,7 @@ class CDataFileView(CComplexLineWidget):
       # Open in external viewer
       LAUNCHER().openInViewer(mode[5:],fileName=fileName,projectId=self.taskProjectId(),guiParent=self)
     else:
-      from qtgui import CCP4WebBrowser
+      from . import CCP4WebBrowser
       CCP4WebBrowser.OPENFILE(fileName,toFront=True)
 
 
@@ -2242,7 +2205,7 @@ class CDataFileView(CComplexLineWidget):
     ifInput = self.model.qualifiers('mustExist')
     try:
       if not ifInput:
-        ifInput = (str(self.model.parentContainer().objectName()) == 'inputData')
+        ifInput = (str(parentContainer(self.model).objectName()) == 'inputData')
     except:
       pass
     if PREFERENCES().NATIVEFILEBROWSER:
@@ -2259,10 +2222,10 @@ class CDataFileView(CComplexLineWidget):
       self.browser.show()
       self.browser.raise_()
       return
-    from qtgui import CCP4FileBrowser
+    from . import CCP4FileBrowser
     try:
       if not ifInput:
-        ifInput = (str(self.model.parentContainer().objectName()) == 'inputData')
+        ifInput = (str(parentContainer(self.model).objectName()) == 'inputData')
     except:
       pass
     #print 'CDataFileView.openBrowser',self.model.parent().objectName(),ifInput, self.model.qualifiers('isDirectory'),self.model.qualifiers('mustExist')
@@ -2294,7 +2257,7 @@ class CDataFileView(CComplexLineWidget):
 
         self.browser.setDownloadMode(modeList=downloadModes,projectId=projectId)
 
-      demo_data_dir = os.path.normpath(os.path.join(os.environ['CCP4I2_TOP'],"demo_data"))
+      demo_data_dir = str(I2_TOP / "demo_data")
       urls = self.browser.widget.fileDialog.sidebarUrls()
       url_paths = []
 
@@ -2352,7 +2315,7 @@ class CDataFileView(CComplexLineWidget):
       if isinstance(self.model,CCP4XtalData.CMiniMtzDataFile):
         pass
       else:
-        e.warningMessage('Attempting to select file',parent=self)
+        warningMessage(e, 'Attempting to select file',parent=self)
     #print 'CDataFileView.handleBrowserOpenFile fullPath',self.model.fullPath
     if updateView: self.updateViewFromModel()
     if validate: self.validate()
@@ -2532,9 +2495,6 @@ class CDataFileView(CComplexLineWidget):
     self.jobCombo.setCurrentIndex(resetIndex)
     self.jobCombo.blockSignals(False)
 
-  def showEditAnnotation(self):
-    pass
-
   def openInfo(self,label=None,sourceFileAnnotation=''):
     '''Open the file info window for user to enter provenance of newly imported file'''
     #print 'CDataFileView.openInfo',self.model,self.model.exists(),self.model.getSourceFileName()
@@ -2544,7 +2504,7 @@ class CDataFileView(CComplexLineWidget):
     else:
       importId = None
     #print 'CDataFileView.openInfo importId',importId
-    from qtgui import CCP4ImpExpWidgets
+    from . import CCP4ImpExpWidgets
     self.infoWidget = CCP4ImpExpWidgets.CImportInfoDialog(self,self.model,importId=importId,label=label,sourceFileAnnotation=sourceFileAnnotation)
     self.infoWidget.setProjectId(self.taskProjectId())
     self.infoWidget.show()
@@ -2554,7 +2514,6 @@ class CDataFileView(CComplexLineWidget):
   def acceptDropData(self,textData):
     '''Reimplement drop to handle drag from outside i2'''
     #print('CDataFileView.acceptDropData',textData)
-    from lxml import etree
     tree = etree.fromstring(textData)
     if tree.find('dbFileId') is not None and len(tree.find('dbFileId').text)>0:
       CComplexLineWidget.acceptDropData(self,textData)
@@ -2583,7 +2542,7 @@ class CDataFileView(CComplexLineWidget):
       self.databaseBrowser.show()
       self.databaseBrowser.raise_()
       return
-    from qtgui import CCP4DatabaseBrowser
+    from . import CCP4DatabaseBrowser
     self.databaseBrowser = CCP4DatabaseBrowser.CDatabaseBrowser(parent=self,title='Open file from another project',
                                    fileType=self.model.qualifiers('mimeTypeName'),projectId=self.taskProjectId())
     self.databaseBrowser.fileSelected.connect(self.handleDatabaseBrowserOpenFile)
@@ -2639,7 +2598,6 @@ class CStackedWidget(CViewWidget):
 
   def __init__(self,parent):
     CViewWidget.__init__(self,parent)
-    from qtgui import CCP4TaskWidget
     self.setLayout(QtWidgets.QStackedLayout())
 
   @QtCore.Slot(bool)
@@ -2930,7 +2888,7 @@ class CListView(CComplexLineWidget):
         self.layout().addWidget(self.editorStack,2,0,1,2)
       else:
         self.layout().addWidget(self.editorStack,3,0)
-      from core import CCP4DataManager
+      from ..core import CCP4DataManager
       editorClassName = qualis.get('editorClassName',None)
       #print "\n\nCListView.init qualis['editorClassName']", editorClassName
       if editorClassName is not None:
@@ -3248,7 +3206,7 @@ class CListView(CComplexLineWidget):
   def setValidity(self,row,isValid=None):
     if isValid is None:
       validity = self.model[row].validity(self.model[row].get())
-      if validity.maxSeverity()>SEVERITY_WARNING:
+      if validity.maxSeverity()>Severity.WARNING:
         isValid = False
       else:
         isValid = True
@@ -3268,7 +3226,7 @@ class CListView(CComplexLineWidget):
     validity = self.model.validity(self.model.__dict__['_value'])
     previous = self.listWidget.property('isValid')
     #print 'CListView.setValidity',previous,validity.maxSeverity()
-    if validity.maxSeverity()>SEVERITY_WARNING:
+    if validity.maxSeverity()>Severity.WARNING:
       self.listWidget.setProperty('isValid',False)
     else:
       self.listWidget.setProperty('isValid',True)
@@ -3606,7 +3564,7 @@ class CTreeView(CComplexLineWidget):
   SIDE_BOX = False
 
   def __init__(self,parent=None,model=None,qualifiers={}):
-    from core import CCP4DataManager
+    from ..core import CCP4DataManager
     qualis = {'gridLayout' : True, 'iconName' : 'List' }
     qualis.update(qualifiers)
     #print 'CListView qualis',qualis
@@ -3700,7 +3658,7 @@ class CTreeView(CComplexLineWidget):
         self.layout().addWidget(self.editorStack,2,0,1,2)
       else:
         self.layout().addWidget(self.editorStack,3,0)
-      from core import CCP4DataManager
+      from ..core import CCP4DataManager
       for editorDefn in self.editorDefnList:
         editor = CCP4DataManager.DATAMANAGER().widget(modelClass=editorDefn.get('modelClass'),parentWidget=self.editorStack)
         editor.setObjectName(editorDefn.get('modelClass').__name__)
@@ -3720,11 +3678,6 @@ class CTreeView(CComplexLineWidget):
       self.listWidget.insert.connect(self.addLine)
       self.listWidget.delete.connect(self.deleteLine)
       self.listWidget.leftMouseRelease.connect(self.handleRowChange)
-
-  def resetAbstractModel(self):
-    self.abstractModel = CTreeViewAbstractItemModel(self,self.model)
-    self.abstractModel.setHeaderData(self.columnHeaders)
-    self.listWidget.setModel(self.abstractModel)
 
   def setModel(self,value):
     self.model = value
@@ -3933,7 +3886,7 @@ class CTreeView(CComplexLineWidget):
       if e.count(code=107):
          QtWidgets.QMessageBox.warning(self,self.windowTitle(),'Can not delete item\nList must contain at least one item')
       else:
-        e.warningMessage(message='Error attempting to delete item',windowTitle='Error editing',parent=self)
+        warningMessage(e, message='Error attempting to delete item',windowTitle='Error editing',parent=self)
       self.abstractModel.endRemoveRows()
       if editorModel is not None: self.editorStack.widget(editorIndex).setModel(editorModel)
     except Exception as e:
@@ -3995,7 +3948,7 @@ class CTreeView(CComplexLineWidget):
     return
     if isValid is None:
       validity = self.model[row].validity(self.model[row].get())
-      if validity.maxSeverity()>SEVERITY_WARNING:
+      if validity.maxSeverity()>Severity.WARNING:
         isValid = False
       else:
         isValid = True
@@ -4105,7 +4058,6 @@ class CStringView(CViewWidget):
     def updateViewFromModel(self):
       #print 'CStringView.updateViewFromModel',self.blockUpdateView
       if self.blockUpdateView: return
-      #import traceback
       #traceback.print_stack(limit=10)
       if self.model is None: return
       self.widget.blockSignals(True)
@@ -4356,7 +4308,7 @@ class CGenericGridView(CViewWidget):
      maxRowLength = 0
      for row in self.getWidgetItems():
        maxRowLength = max(maxRowLength,len(row))
-     from core import CCP4DataManager
+     from ..core import CCP4DataManager
      iRow = -1
      for rowItems in self.getWidgetItems():
         iRow = iRow + 1
@@ -4492,7 +4444,7 @@ class CPatchSelectionView(CComplexLineWidget):
   @QtCore.Slot(str)
   def viewPatch(self,patchName):
     if self.viewWidgetDict.get(patchName,None) is None:
-      from qtgui import CCP4ComFilePatchManagerGui
+      from . import CCP4ComFilePatchManagerGui
       self.viewWidgetDict[patchName] = CCP4ComFilePatchManagerGui.CCreatePatchDialog(self,new=False)
       self.viewWidgetDict[patchName].loadPatch(patchName)
     self.viewWidgetDict[patchName].show()
@@ -4549,7 +4501,6 @@ class CFollowFromJobView(CComplexLineWidget):
       for item in mimeData.formats():
         #print 'CFollowFromJobView.updateMenu data:',str(item),mimeData.data(item)
         if str(item).startswith('taskParameters') and str(item)[15:]==self.parentTaskWidget().taskName():
-          from lxml import etree
           root = etree.fromstring(str(mimeData.data(item)))
           jobNo = root.find('jobNumber').text
           projectName = root.find('projectName').text
@@ -4618,7 +4569,7 @@ class CFollowFromJobView(CComplexLineWidget):
         self.listDialog.setLayout(QtWidgets.QHBoxLayout())
         self.listDialog.layout().setSpacing(0)
         self.listDialog.layout().setContentsMargins(0,0,0,0)
-        from dbapi import CCP4DbApi
+        from ..dbapi import CCP4DbApi
         self.listView = CFinishedJobsListWidget(self.listDialog,self.projectId,jobStatus = [CCP4DbApi.JOB_STATUS_FINISHED,CCP4DbApi.JOB_STATUS_INTERRUPTED])
         self.listDialog.layout().addWidget(self.listView)
         #self.listDialog.setModal(True)
@@ -4653,7 +4604,6 @@ class CFollowFromJobView(CComplexLineWidget):
   def acceptDropData(self,textData):
     #print 'CFollowFromJob.acceptDropData',textData, textData.count('taskParameters')
     if textData.count('taskParameters') > 0:
-      from lxml import etree
       root = etree.fromstring(textData)
       #print 'CFollowFromJob.acceptDropData',root.find('taskName').text,self.parentTaskWidget().taskName()
       try:
@@ -4762,7 +4712,7 @@ class CFinishedJobsCombo(QtWidgets.QComboBox):
   def load(self):
     MAXJOBS = 10
     #print 'CFinishedJobCombo.load'
-    from dbapi import CCP4DbApi
+    from ..dbapi import CCP4DbApi
     jobInfoList = PROJECTSMANAGER().db().getProjectJobListInfo(projectId=self.projectId,
           jobStatus=[CCP4DbApi.JOB_STATUS_FINISHED],topLevelOnly=True,maxJobs=MAXJOBS+1,
           mode=['jobid','jobnumber','taskname','jobtitle'],order='DESC')
@@ -4788,7 +4738,7 @@ class CFinishedJobsCombo(QtWidgets.QComboBox):
 
   @QtCore.Slot(dict)
   def handleJobFinished(self,args):
-    from dbapi import CCP4DbApi
+    from ..dbapi import CCP4DbApi
     if args['projectId'] != self.projectId or args['status']!= CCP4DbApi.JOB_STATUS_FINISHED: return
     self.addJob(args['jobId'])
 
@@ -4918,24 +4868,6 @@ class CSearchPathView(CComplexLineWidget):
     line.addWidget(self.widgets['path'])
     self.layout().addLayout(line)
 
-class CFramelessWarning(QtWidgets.QDialog):
-  def __init__(self,parent=None,message=None,position=None):
-    QtWidgets.QDialog.__init__(self,parent=parent)
-    #print 'CFramelessWarning',message
-    self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.Dialog)
-    self.setFocusPolicy(QtCore.Qt.NoFocus)
-    self.setLayout(QtWidgets.QGridLayout())
-    self.layout().setSpacing(3)
-    self.layout().setContentsMargins(3,3,3,3)
-    self.label = QtWidgets.QLabel(self)
-    self.layout().addWidget(self.label,1,0)
-    self.label.setText(message)
-    self.setGeometry(position.x(),position.y(),150,10)
-    self.show()
-    self.timer = QtCore.QTimer()
-    self.timer.setSingleShot(True)
-    self.timer.timeout.connect(self.close)
-    self.timer.start(3000)
 
 class CJobSelectionCombo(QtWidgets.QComboBox):
   def __init__(self,parent,projectId=None,ifOneJob=False):
@@ -5036,7 +4968,7 @@ class CEditFileLabel(QtWidgets.QDialog):
     self.setLayout(QtWidgets.QVBoxLayout())
     if fileId is not None:
       fileInfo = PROJECTSMANAGER().db().getFileInfo(fileId=fileId,mode=['annotation','jobid','fileclass'])
-      from core import CCP4DataManager
+      from ..core import CCP4DataManager
       fileClass = CCP4DataManager.DATAMANAGER().getClass(fileInfo.get('fileclass',''))
       if fileClass is not None:
         fileTypeLabel = fileClass.QUALIFIERS['guiLabel']
@@ -5274,7 +5206,7 @@ class CTasksModel(QtCore.QAbstractItemModel):
 
   def __init__(self,parent):
      QtCore.QAbstractItemModel.__init__(self,parent)
-     from core import CCP4TaskManager
+     from ..core import CCP4TaskManager
      modelAsList = CCP4TaskManager.TASKMANAGER().taskTree(shortTitles=True)
      model = []
      for module in modelAsList:
@@ -5330,35 +5262,14 @@ class CTasksModel(QtCore.QAbstractItemModel):
       return QtCore.QModelIndex()
     return self.createIndex(parentItem.row(), 0, parentItem)
 
-class CTreeComboBox(QtWidgets.QComboBox):
-  # Represent a tree in a combobox?
-  #from  http://qt.shoutwiki.com/wiki/Implementing_QTreeView_in_QComboBox_using_Qt-_Part_2
 
-  def __init__(self,parent):
-    QtWidgets.QComboBox.__init__(self,parent)
-    self.skipNextHide = False
-    self.setView(QtWidgets.QTreeView(self))
-    self.view().viewport().installEventFilter(self)
-    QtWidgets.QComboBox.resize(self,200,30)
-
-
-  def eventFilter(self,object,event):
-    if event.type() == QtCore.QEvent.MouseButtonPress and object == self.view().viewport():
-        mouseEvent = QtGui.QMouseEvent(event)
-        index = self.view().indexAt(mouseEvent.pos())
-        #print 'eventFilter',self.view().visualRect(index).contains(mouseEvent.pos())
-        if  not self.view().visualRect(index).contains(mouseEvent.pos()):
-           self.skipNextHide = True
-    return False
-
-  def showPopup(self):
-    #self.setRootModelIndex(self.model().rootItem.index())
-    QtWidgets.QComboBox.showPopup(self)
-
-  def hidePopup(self):
-    self.setRootModelIndex(self.view().currentIndex().parent())
-    self.setCurrentIndex(self.view().currentIndex().row())
-    if self.skipNextHide:
-      self.skipNextHide = False
-    else:
-      QtWidgets.QComboBox.hidePopup(self)
+def parentContainer(data: CCP4Data.CData):
+    try:
+        obj = data
+        while isinstance(obj, CCP4Data.CData):
+            obj = obj.parent()
+            if isinstance(obj, CCP4Container.CContainer):
+                return obj
+        return None
+    except:
+        return None

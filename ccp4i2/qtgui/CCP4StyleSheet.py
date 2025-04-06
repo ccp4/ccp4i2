@@ -1,34 +1,18 @@
-from __future__ import print_function
-
 """
-     CCP4StyleSheet.py: CCP4 GUI Project
-     Copyright (C) 2011 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-"""
-     Liz Potterton Dec 2011 - Simple Qt Style Sheet
+Copyright (C) 2011 University of York
+Liz Potterton Dec 2011 - Simple Qt Style Sheet
 """
 
 import os
 import sys
-from core import CCP4Modules, CCP4Utils
 
 from PySide2.QtGui import QPalette
-from PySide2.QtWidgets import QLabel,QApplication
+from PySide2.QtWidgets import QLabel
+
+from ..core import CCP4Utils
+from ..core.CCP4Modules import PREFERENCES
+from ..utils.QApp import QTAPPLICATION
+
 
 HIGHLIGHTCOLOUR = '#87C8D5'
 LOWLIGHTCOLOUR ='#C1D8E0'
@@ -38,7 +22,7 @@ RUNCOLOUR = '#FFD777'
 
 def setStyleSheet(app=None):
     if app is None:
-        app = CCP4Modules.QTAPPLICATION()
+        app = QTAPPLICATION()
 
 
     label = QLabel("Am I in the dark?")
@@ -50,7 +34,7 @@ def setStyleSheet(app=None):
     print("isDarkMode?",isDarkMode)
     print("########################################")
         
-    preferences = CCP4Modules.PREFERENCES()
+    preferences = PREFERENCES()
     #print 'setStyleSheet',preferences.INVALID_FRAME_WIDTH,preferences.INVALID_FRAME_COLOUR
     qticonsDir = os.path.join(CCP4Utils.getCCP4I2Dir(),'qticons').replace(os.path.sep,'/')
     # paddingAllowance is subtracted from complex widget width so they can be accomodated in the (notionally) 600px width

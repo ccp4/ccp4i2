@@ -1,38 +1,28 @@
-from __future__ import print_function
-
 """
-     CCP4TaskWidget.py: CCP4 GUI Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details."""
-
-"""
-     Liz Potterton Jan 2010 - Create CCP4TaskWidget prototype
+Copyright (C) 2010 University of York
+Liz Potterton Jan 2010 - Create CCP4TaskWidget prototype
 """
 
 ##@package CCP4TaskWidget (QtGui)  Widget to view CCP4 tasks
+
+import functools
 import os
 import re
 import traceback
-import functools
-from PySide2 import QtGui, QtWidgets, QtCore
-from qtgui import CCP4Widgets
-from core.CCP4Modules import *
-from core.CCP4ErrorHandling import *
-from core.CCP4DataManager import DATAMANAGER
-from core.CCP4Config import DEVELOPER
+import unicodedata
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from . import CCP4Widgets
+from ..core.CCP4DataManager import DATAMANAGER
+from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
+from ..core.CCP4Modules import COMFILEPATCHMANAGER
+from ..core.CCP4Modules import PREFERENCES
+from ..core.CCP4Modules import PROJECTSMANAGER
+from ..core.CCP4Modules import TASKMANAGER
+from ..core.CCP4Modules import WEBBROWSER
+from ..utils.QApp import QTAPPLICATION
+
 
 MARGIN = 1
 WIDTH = 600
@@ -41,9 +31,6 @@ LINEHEIGHT = 20
 USER_NOVICE = 0
 USER_REGULAR = 1
 USER_EXPERT = 2
-
-def whatNext(self, jobId=None, childJobs=[], childTaskName=None):
-    return []
 
 
 class CFolderAttributes:
@@ -284,7 +271,7 @@ class CTaskWidgetDrawMethods:
         return group
 
     def createJobTitle(self, followFrom=True):
-        from core import CCP4TaskManager
+        from ..core import CCP4TaskManager
         self.jobHeaderFrame = self.parentTaskWidget().openSubFrame(frame=[False])
         self.jobHeaderFrame.setObjectName('jobHeaderFrame') # so that it can be styled
         if self.ignoreInput:
@@ -349,14 +336,13 @@ class CTaskWidgetDrawMethods:
 
     @QtCore.Slot()
     def saveTitle(self):
-        from core import CCP4Modules
         jobId = self.parentTaskWidget().jobId()
         if jobId is None:
             return
         text = str(self.jobTitleWidget.text())
         print('CTaskWidgetDrawMethods.saveTitle', jobId,text)
         try:
-            CCP4Modules.PROJECTSMANAGER().db().updateJob(jobId=jobId, key='jobTitle', value=text)
+            PROJECTSMANAGER().db().updateJob(jobId=jobId, key='jobTitle', value=text)
         except:
             pass
 
@@ -375,8 +361,7 @@ class CTaskWidget(QtWidgets.QFrame):
 
     def __init__(self, parent=None, title=None, projectId=None, jobId=None, layoutMode=None):
         QtWidgets.QFrame.__init__(self, parent)
-        from core import CCP4Container
-        from core import CCP4Modules
+        from ..core import CCP4Container
         self.setTitle(title)
         self.helpFile = ''
         self.programHelpFile = ''
@@ -391,7 +376,7 @@ class CTaskWidget(QtWidgets.QFrame):
         if layoutMode is not None and layoutMode in ['TAB', 'FOLDER']:
             self.layoutMode = layoutMode
         else:
-            self.layoutMode = str(CCP4Modules.PREFERENCES().TASK_WINDOW_LAYOUT)
+            self.layoutMode = str(PREFERENCES().TASK_WINDOW_LAYOUT)
         # Project is projectName as this is used by the CDataFileView most frequently
         self._projectId = projectId
         self._jobId = jobId
@@ -487,7 +472,7 @@ class CTaskWidget(QtWidgets.QFrame):
 
     def loadControlParameters(self,jobId):
         print('CTaskWidget.loadControlParameters', jobId)
-        from core import CCP4Container
+        from ..core import CCP4Container
         defFile = PROJECTSMANAGER().makeFileName(jobId, 'PARAMS')
         if not os.path.exists(defFile):
             defFile1 = PROJECTSMANAGER().makeFileName(jobId, 'JOB_INPUT')
@@ -626,11 +611,8 @@ class CTaskWidget(QtWidgets.QFrame):
     def isEditor(self):
         return self.EDITOR
 
-    def autoPopulateInput(self):
-        return self.AUTOPOPULATEINPUT
-      
     def getParams(self, paramValues={}):
-        from core import CCP4Data
+        from ..core import CCP4Data
         for key, value in list(paramValues.items()):
             widget = self.getWidget(key)
             if widget is not None:
@@ -657,13 +639,10 @@ class CTaskWidget(QtWidgets.QFrame):
     def setProgramHelpFile(self, helpFile):
         self.programHelpFile = helpFile
 
-    def setHelpFile(self, helpFile):
-        self.helpFile = helpFile
-
     @QtCore.Slot(str,str,str,int,int)
     def populateContextMenu(self, name, helpFile, helpTarget, globalX, globalY):
         #print 'CTaskWidget.populateContextMenu',name,helpTarget,globalX,globalY
-        from qtgui import CCP4GuiUtils
+        from . import CCP4GuiUtils
         self.widgetWithContextMenu = [name, helpFile, helpTarget]
         self.contextMenuWidget.clear()
         CCP4GuiUtils.populateMenu(self, self.contextMenuWidget, ['help'], default_icon='')
@@ -693,8 +672,6 @@ class CTaskWidget(QtWidgets.QFrame):
 
     def updateModelFromView(self,textOnly=False):
         rv = CErrorReport()
-        from qtgui.CCP4Widgets import CViewWidget
-        from qtgui.CCP4ContainerView import CContainerView
         toggledFrame = {}
         for t in self.widget.toggleList:
           toggledFrame[t.target] = t.getTargetVisibility()
@@ -860,21 +837,14 @@ class CTaskWidget(QtWidgets.QFrame):
         return rv
 
     def cootFix(self):
-        from core import CCP4Modules
-        from qtgui import CCP4FileBrowser
-        path = str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)
+        from . import CCP4FileBrowser
+        path = str(PREFERENCES().COOT_EXECUTABLE)
         #print 'CTaskWidget.cootFix',path
         try:
             if  path is not None and os.path.exists(path):
                 return CErrorReport()
         except:
             pass
-        '''
-        path = CCP4Utils.findCootPath()
-        if path is not None:
-          CCP4Modules.PREFERENCES().COOT_EXECUTABLE.set(fullPath=path)
-          return CErrorReport()
-        '''
         self.cootFixDialog = CCP4FileBrowser.CFileDialog(self, 'Find Coot Path', filters=[' (*)'], projectCombo=False)
         label = QtWidgets.QLabel("""Sorry - failed to find Coot. Please enter the Coot executable and then 'Run' again.\nBeware you are probably using a CCP4 nightly build that does not include Coot.\nThe Coot executable can also be set in Preferences.""",self)
         label.setStyleSheet("QLabel { font-weight: bold;  border: 2px solid} ")
@@ -890,9 +860,8 @@ class CTaskWidget(QtWidgets.QFrame):
         self.cootFixDialog.hide()
         self.cootFixDialog.deleteLater()
         if filePath is not None and os.path.exists(filePath):
-            from core import CCP4Modules
-            CCP4Modules.PREFERENCES().COOT_EXECUTABLE.set(filePath)
-            CCP4Modules.PREFERENCES().save()
+            PREFERENCES().COOT_EXECUTABLE.set(filePath)
+            PREFERENCES().save()
         else:
             pass
 
@@ -931,9 +900,9 @@ class CTaskWidget(QtWidgets.QFrame):
             self.scrollArea.verticalScrollBar().setValue(value)
 
     def autoGenerate(self, container=None, selection={}, subFrame=False):
-        from core import CCP4File
-        from core import CCP4Data
-        from core import CCP4Container
+        from ..core import CCP4Container
+        from ..core import CCP4Data
+        from ..core import CCP4File
         label = container.qualifiers('guiLabel')
         defn = container.qualifiers('guiDefinition')
         if defn is None or defn is NotImplemented:
@@ -1020,34 +989,25 @@ class CTaskWidget(QtWidgets.QFrame):
         Normalizes string, converts to lowercase, removes non-alpha characters,
         and converts spaces to hyphens.
         """
-        import unicodedata
         value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore')
-        if sys.version_info >= (3,0):
-            try:
-                value = value.decode()
-            except:
-                pass
-            value = str(re.sub(r'[^\w\s-]', '', value).strip().lower())
-            value = str(re.sub(r'[-\s]+', '-', value))
-        else:
-            value = unicode(re.sub(r'[^\w\s-]', '', value).strip().lower())
-            value = unicode(re.sub(r'[-\s]+', '-', value))
-        
+        try:
+            value = value.decode()
+        except:
+            pass
+        value = str(re.sub(r'[^\w\s-]', '', value).strip().lower())
+        value = str(re.sub(r'[-\s]+', '-', value))
         return value
     
     def patchOutputFilePaths(self, jobInfo, fileName, projectDirectory=None):
-        from core import CCP4File
-        from core import CCP4Data
-        from core import CCP4ModelData
+        from ..core import CCP4Data
+        from ..core import CCP4File
+        from ..core import CCP4ModelData
         jobDirectory = os.path.split(os.path.normpath(fileName))[0]
         dataList = self.container.outputData.dataOrder()
         for objectName in dataList:
             dobj = self.container.outputData.find(objectName)
             partPath = os.path.join(jobInfo['jobnumber']+"_"+jobInfo['projectname']+"_"+objectName+"_"+jobInfo['taskname'])
-            if sys.version_info >= (3,0):
-                partPath = str(self.slugify(str(partPath)))
-            else:
-                partPath = str(self.slugify(unicode(partPath)))
+            partPath = str(self.slugify(str(partPath)))
             if isinstance(dobj,CCP4File.CDataFile):
                 if isinstance(dobj,CCP4ModelData.CPdbDataFile) and dobj.contentFlag.isSet() and int(dobj.contentFlag) == 2:
                     fullPath = os.path.join(jobDirectory, partPath+"." + dobj.fileExtensions()[1])
@@ -1092,18 +1052,17 @@ class CTaskWidget(QtWidgets.QFrame):
         # Assume the updateModelFromView() has been called earlier by project viewer before the
         # validation of input
         #self.updateModelFromView()
-        from core import CCP4File
-        from core import CCP4Modules
-        from core import CCP4TaskManager
+        from ..core import CCP4File
+        from ..core import CCP4TaskManager
         if fileName is None:
             if self.paramsFileName is not None:
                 fileName= self.paramsFileName
             else:
-                fileName = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self._jobId, mode='JOB_INPUT')
+                fileName = PROJECTSMANAGER().makeFileName(jobId=self._jobId, mode='JOB_INPUT')
         jobInfo = {}
         if self._jobId is not None:
             try:
-                jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=self._jobId, mode=['taskname', 'jobnumber', 'projectname', 'status', 'projectid'])
+                jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=self._jobId, mode=['taskname', 'jobnumber', 'projectname', 'status', 'projectid'])
             except:
                 pass
         f = CCP4File.CI2XmlDataFile(fullPath=fileName)
@@ -1125,7 +1084,7 @@ class CTaskWidget(QtWidgets.QFrame):
                 
         #MN set output file paths here, where project, and jobNumber are all known
         #MNDoing a single lookup of projectDirectory can speed up the patching of file names later
-        projectDirectory=CCP4Modules.PROJECTSMANAGER().db().getProjectDirectory(jobInfo['projectid'])
+        projectDirectory=PROJECTSMANAGER().db().getProjectDirectory(jobInfo['projectid'])
         self.patchOutputFilePaths(jobInfo, fileName, projectDirectory=projectDirectory)
         
         bodyEtree = self.container.getEtree()
@@ -1350,13 +1309,10 @@ class CTaskFolder(CCP4Widgets.CFolder):
         #print 'CTaskFolder.__init__',title
         self._attributes = attributes
         CCP4Widgets.CFolder.__init__(self, parent, title, copen, titleBar, toggle=toggle)
-        from qtgui import CCP4StyleSheet
+        from . import CCP4StyleSheet
         self.setTitleColour(CCP4StyleSheet.LOWLIGHTCOLOUR)
         if self.titleBar is not None:
             self.titleBar.setMaximumHeight(30)
-
-    def setupUpdateStatus(self, *args):
-        pass
 
 
 #---------------------------------------------------------------------
@@ -1480,16 +1436,13 @@ class CTaskLine(QtWidgets.QFrame):
                     qualifiers.update(model.qualifiers())
                     qualifiers.update(widgetQualifiers)
                     #print 'widgetQualifiers',definition[pDef],model.qualifiers(),widgetQualifiers
-                    if DEVELOPER():
+                    try:
                         widget = DATAMANAGER().widget(model=model, parentWidget=self.parent(), qualifiers=widgetQualifiers, name=definition[pDef])
-                    else:
-                        try:
-                            widget = DATAMANAGER().widget(model=model, parentWidget=self.parent(), qualifiers=widgetQualifiers, name=definition[pDef])
-                        except CException as e:
-                            e.appendDetails(definition[pDef])
-                            myException.extend(e)
-                        except:
-                            myException.append(self.__class__, 103, definition[pDef])
+                    except CException as e:
+                        e.appendDetails(definition[pDef])
+                        myException.extend(e)
+                    except:
+                        myException.append(self.__class__, 103, definition[pDef])
                     #print 'CTaskLine widget',definition[pDef],widget,widget.STRETCH
                     #widget = dataContainer.widget(name=par,parentWidget=self,widgetQualifiers=widgetQualifiers)
                     if widget is not None:
@@ -1715,7 +1668,7 @@ class CTabFrame(QtWidgets.QFrame):
         allSet = True
         for key, obj in list(self.dataObjects.items()):
             #print 'CTabFrame.updateStatus testing',key,obj.validity().report()
-            if obj.validity(obj.get()).maxSeverity() > SEVERITY_WARNING:
+            if obj.validity(obj.get()).maxSeverity() > Severity.WARNING:
                 allSet = False
                 break
         if allSet:
@@ -1797,62 +1750,3 @@ class CStackedLayout(QtWidgets.QStackedLayout):
             indx = valueList.index(value)
             #print 'CStackedLayout.update',value,indx
             self.setCurrentIndex(indx)
-
-
-#===========================================================================================================
-import unittest
-def TESTSUITE():
-    suite = unittest.defaultTestLoader.loadTestsFromTestCase(testTaskWidget)
-    return suite
-
-def runAllTests():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)
-
-#-------------------------------------------------------------------
-class CSummatTask(CFolderTaskWidget):
-#-------------------------------------------------------------------
-# Subclass CTaskWidget to give specific task window
-
-    def __init__(self, parent):
-        CTaskWidget.__init__(self, parent=None)
-
-    def drawContents(self):
-        #self.setProgramHelpFile('fft')
-        #self.openFolder(folderFunction='protocol')
-        self.openFolder(title='Test folder')
-        #self.createTitleLine()
-        self.createLine(['widget', 'nCycles', 'label', 'cycles with cutoff', 'widget', 'cutoff'])
-        self.createLine(['label', 'Range of gubbins', 'widget', 'range' ] )
-
-
-#class testTaskWidget(unittest.TestCase):
-class testTaskWidget():
-
-    def __init__(self):
-        self.setUp()
-
-    def setUp(self):
-        from core.CCP4Modules import QTAPPLICATION
-        self.app = QTAPPLICATION()
-        self.window = QtWidgets.QMainWindow()
-
-    def test1(self):
-        from core.CCP4Container import CContainer
-        summat = CContainer(parent=self.app, definitionFile='/Users/lizp/Desktop/dev/ccp4i2/sandpit/summat.contents.xml')
-        self.assertEqual(len(summat.CONTENTS), 4, 'Container - Wrong content length')
-        self.assertEqual(summat.gubbins.startValue, 12.0, 'Container - sub-container CFloat wrong initial value')
-
-    def test2(self):
-        from core.CCP4Container import CContainer
-        import sys
-        self.container = CContainer(parent=self.app, definitionFile='/Users/lizp/Desktop/dev/ccp4i2/sandpit/summat.contents.xml')
-        self.task = CSummatTask(self.window)
-        self.task.setContainer(self.container)
-        self.task.draw()
-        self.window.setCentralWidget(self.task)
-        self.window.show()
-        sys.exit(self.app.exec_())
-
-    def tearDown(self):
-        self.app.quit()

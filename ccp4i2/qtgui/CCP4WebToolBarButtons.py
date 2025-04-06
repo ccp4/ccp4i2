@@ -1,21 +1,18 @@
-from __future__ import print_function
-import sys, os
 import functools
+import os
+import sys
 
-from PySide2 import QtCore, QtGui, QtWidgets, QtWebEngine, QtWebEngineWidgets, QtWebChannel
+from PySide2 import QtCore, QtGui, QtWebChannel, QtWebEngineWidgets, QtWidgets
+
 
 class CCP4WebToolBarButtonBridge(QtCore.QObject):
     buttonClicked = QtCore.Signal(str)
     buttonList = QtCore.Signal(list)
+
     @QtCore.Slot(str)
     def clicked(self,buttonName):
         self.buttonClicked.emit(buttonName)
-    @QtCore.Slot('QJsonArray')
-    def namesRequest(self,buttonNames):
-        ls = []
-        for i in range(buttonNames.count()):
-            ls.append(buttonNames.at(i).toString())
-        self.buttonList.emit(ls)
+
 
 class CCP4WebToolBarButtons(QtWebEngineWidgets.QWebEngineView):
     buttonClicked = QtCore.Signal(str)

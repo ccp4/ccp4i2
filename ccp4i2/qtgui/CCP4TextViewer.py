@@ -1,33 +1,20 @@
-from __future__ import print_function
-
-
 """
-     CCP4TextViewer.py: CCP4 GUI Project
-     Copyright (C) 2009-2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2009-2010 University of York
+Liz Potterton Jan 2010 - Create CCP4AbstractViewer
 """
 
-"""
-     Liz Potterton Jan 2010 - Create CCP4AbstractViewer
-"""
 ##@package CCP4TextViewer (QtGui) Web browser plugin to view text files and coordinate files
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4AbstractViewer
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import MIMETYPESHANDLER,QTAPPLICATION,PREFERENCES
+
+import sys
+import traceback
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+from . import CCP4AbstractViewer
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import CException, Severity
+from ..core.CCP4Modules import MIMETYPESHANDLER, PREFERENCES
+
 
 class CTextBrowser(QtWidgets.QPlainTextEdit):
 
@@ -49,10 +36,6 @@ class CTextBrowser(QtWidgets.QPlainTextEdit):
   def mouseReleaseEvent(self,event):    
     self.mouseRelease.emit(event.globalPos())
     event.accept()
-    
-  def mouseDoubleClickEvent(self,event):    
-    self.mouseDoubleClick.emit(event.globalPos())
-    event.accept()
 
 
 #-------------------------------------------------------------------
@@ -72,7 +55,7 @@ class CTextViewer(CCP4AbstractViewer.CAbstractViewer):
 
   ERROR_CODES = {}
   ERROR_CODES.update(CCP4AbstractViewer.CAbstractViewer.ERROR_CODES)
-  ERROR_CODES.update( { 101 : { 'severity' : SEVERITY_ERROR,
+  ERROR_CODES.update( { 101 : { 'severity' : Severity.ERROR,
                                 'description' : 'Error loading text into document' }
                         } )
 
@@ -200,11 +183,6 @@ class CTextViewer(CCP4AbstractViewer.CAbstractViewer):
     if found: self.viewer.ensureCursorVisible()
     return found
 
-#-------------------------------------------------------------------
-  def highlightText(self):
-#-------------------------------------------------------------------
-    pass
-
   def goToTop(self):
     # This did not work
     #self.viewer.verticalScrollBar().triggerAction(QtWidgets.QScrollBar.SliderToMinimum)
@@ -215,7 +193,6 @@ class CTextViewer(CCP4AbstractViewer.CAbstractViewer):
 #-------------------------------------------------------------------
   def open(self,fileName=None,lineLimit=None,**kw):
 #-------------------------------------------------------------------     
-      import os
       try:
         f = open(fileName,'r')
       except:
@@ -331,7 +308,6 @@ class CTextViewer(CCP4AbstractViewer.CAbstractViewer):
   def Save(self,fileName):
 #-------------------------------------------------------------------
     #print 'mgTextViewer.Save',self,self.filename,filename
-    from core import CCP4Utils
     CCP4Utils.saveFile(fileName,str(self.document.toPlainText()))
 
 #-------------------------------------------------------------------
@@ -432,24 +408,6 @@ class CCoordsViewer(CTextViewer):
 '''
 
 
-#-------------------------------------------------------------------
-class CMtzHeaderViewer(CTextViewer):
-#-------------------------------------------------------------------
-
-  MENUTEXT='Display as text'
-
-  def __init__(self,parent,fileName=''):
-    CTextViewer.__init__(self,parent)
-    if fileName: self.open(fileName)
-
-  def open(self,fileName=None,**kw):
-    self.loadText('Awaiting nicer MTZ dump for '+fileName)
-    import os
-    self.fileName = os.path.abspath(fileName)
-    self.setObjectName(os.path.split(fileName)[-1])
-
-
-
 class CScriptViewerLogger(QtCore.QObject):
 
   newLines = QtCore.Signal(list)
@@ -458,7 +416,6 @@ class CScriptViewerLogger(QtCore.QObject):
     QtCore.QObject.__init__(self,parent)
     self.log = []
   def write(self, data):
-    #import sys
     #print>>sys.__stdout__, 'logging',data
     self.newLines.emit([data])
     self.log.append(data)
@@ -467,7 +424,7 @@ class CScriptViewerLogger(QtCore.QObject):
 class CScriptViewer(CTextViewer):
 
   def __init__(self,parent,fileName=None):
-    from qtgui import CCP4Widgets
+    from . import CCP4Widgets
     CTextViewer.__init__(self,parent)
     self.layout().insertWidget(0,CCP4Widgets.CItalicLabel('Enter script:'))
     self.viewer.setReadOnly(False)
@@ -487,7 +444,6 @@ class CScriptViewer(CTextViewer):
     script = self.viewer.toPlainText().__str__()
     #print '*****CScriptViewer.run',script
     if len(script)>0:
-      import sys,traceback
       logger = CScriptViewerLogger(self)
       logger.newLines.connect(self.appendStdoutViewer)
       sys.stdout = logger

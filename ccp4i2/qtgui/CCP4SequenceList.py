@@ -1,11 +1,3 @@
-from __future__ import print_function
-
-import sys
-import functools
-import textwrap
-
-from PySide2 import QtCore, QtGui, QtWidgets
-
 """
 This is a simple implementation of an edit for a sequence data model (name,no of copies, description, sequence).
 
@@ -19,13 +11,16 @@ There are Save/Don't save button.
 
 """
 
+import functools
+import random
+import string
+import sys
+import textwrap
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+
 class SequenceModel(QtCore.QAbstractTableModel):
-
-    def canDropMimeData(self, data, action, row, column, parent):
-        return True
-
-    def dropMimeData(self, data, action, row, column, parent):
-        return True
 
     def setEditable(self,val):
         self.beginResetModel()
@@ -157,10 +152,7 @@ class ComboDelegate(QtWidgets.QStyledItemDelegate):
         return cb
 
     def setEditorData(self,editor, index):
-        if sys.version_info > (3,0):
-            currentText = index.data(QtCore.Qt.EditRole)
-        else:
-            currentText = str(index.data(QtCore.Qt.EditRole))
+        currentText = index.data(QtCore.Qt.EditRole)
         cbIndex = editor.findText(currentText)
         if (cbIndex >= 0):
            editor.setCurrentIndex(cbIndex)
@@ -531,45 +523,8 @@ class SequenceTable(QtWidgets.QWidget):
             self.table.model().removeRows(self.table.selectionModel().selectedRows())
             self.minusButton.setEnabled(False)
 
-class SequenceTableDialog(QtWidgets.QDialog):
-
-    loadFromSeqFileSignal = QtCore.Signal()
-    loadFromCoorFileSignal = QtCore.Signal()
-    loadFromTextSignal = QtCore.Signal()
-    loadDataSignal = QtCore.Signal(tuple)
-    urlsDroppedSignal = QtCore.Signal(list)
-    textDroppedSignal = QtCore.Signal(str)
-
-    def keyPressEvent(self,e):
-#FIXME - Never get here ... Lack of focus?
-        print(e.key())
-        if e.key()==QtCore.Qt.Key_Escape:
-            self.reject()
-
-    def __init__(self,parent=None):
-        QtWidgets.QDialog.__init__(self,parent)
-        st = SequenceTable(self)
-        layout = QtWidgets.QVBoxLayout(self)
-        self.setLayout(layout)
-        layout.addWidget(st)
-        st.loadFromSeqFileSignal.connect(self.loadFromSeqFileSignal.emit)
-        st.loadFromCoorFileSignal.connect(self.loadFromCoorFileSignal.emit)
-        st.loadFromTextSignal.connect(self.loadFromTextSignal.emit)
-        st.loadDataSignal.connect(self.loadDataSignal.emit)
-        st.urlsDroppedSignal.connect(self.urlsDroppedSignal.emit)
-        st.textDroppedSignal.connect(self.textDroppedSignal.emit)
-        dbb = QtWidgets.QDialogButtonBox()
-        layout.addWidget(dbb)
-        closeButton = dbb.addButton(QtWidgets.QDialogButtonBox.Save)
-        discardButton = dbb.addButton(QtWidgets.QDialogButtonBox.Discard)
-        closeButton.clicked.connect(self.accept)
-        discardButton.clicked.connect(self.reject)
-        layout.setContentsMargins(0,0,0,0)
 
 if __name__ == "__main__":
-    import sip
-    sip.setdestroyonexit(False)
-
     app = QtWidgets.QApplication(sys.argv)
 
     win = SequenceTable()
@@ -580,8 +535,6 @@ if __name__ == "__main__":
     win.setModel(model)
 
     def addRandomSequence():
-        import random
-        import string
         name = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(10))
         copies = random.randint(1,20)
         desc = "This sequence is "+''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(10))

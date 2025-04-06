@@ -1,39 +1,35 @@
-from __future__ import print_function
-
-
 """
-     CCP4ProjectWidget.py: CCP4 GUI Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.highlightL 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-"""
-   Liz Potterton April 2011 - list database
+Copyright (C) 2010 University of York
+Liz Potterton April 2011 - list database
 """
 
 ##@package CCP4ProjectWidget View a project
-                            
-from PySide2 import QtGui, QtWidgets,QtCore,QtSvg
-from core.CCP4Modules import WEBBROWSER,PROJECTSMANAGER,MIMETYPESHANDLER,QTAPPLICATION,LAUNCHER,PREFERENCES
-from core.CCP4TaskManager import TASKMANAGER
-from core.CCP4ErrorHandling import *
-from dbapi import CCP4DbApi
-from qtgui import CCP4StyleSheet
-from core import CCP4Utils, CCP4File
-import os,sys, time, datetime
+
+import copy
+import datetime
 import functools
+import os
+import shutil
+import sys
+import time
+
+from lxml import etree
+from PySide2 import QtCore, QtGui, QtSvg, QtWidgets
+
+from . import CCP4StyleSheet
+from .. import I2_TOP
+from ..core import CCP4File, CCP4Utils
+from ..core.CCP4ErrorHandling import CErrorReport, CException
+from ..core.CCP4Modules import LAUNCHER
+from ..core.CCP4Modules import MIMETYPESHANDLER
+from ..core.CCP4Modules import PREFERENCES
+from ..core.CCP4Modules import PROJECTSMANAGER
+from ..core.CCP4Modules import WEBBROWSER
+from ..core.CCP4TaskManager import TASKMANAGER
+from ..core.CCP4WarningMessage import warningMessage
+from ..dbapi import CCP4DbApi
+from ..utils.QApp import QTAPPLICATION
+
 
 _PROJECTMODEL = {}
 _BROWSERMODE = 0
@@ -58,7 +54,7 @@ def loadSvg(fileName,size=24):
 
 def jobIcon(style='job'):
     if style not in _JOBICON:
-      fileName = os.path.normpath(os.path.join(CCP4Utils.getCCP4I2Dir(),'qticons',style))
+      fileName = str(I2_TOP / 'qticons' / style)
       if os.path.exists(fileName+'.png'):
         _JOBICON[style] = QtGui.QIcon(QtGui.QPixmap(fileName+'.png'))
         #print 'jobIcon',fileName+'.png'
@@ -72,7 +68,7 @@ def jobIcon(style='job'):
         movie.start()
         _JOBICON[style] = label
       else:
-        fileName = os.path.normpath(os.path.join(CCP4Utils.getCCP4I2Dir(),'qticons','evaluations',style))
+        fileName = str(I2_TOP / 'qticons' / 'evaluations' / style)
         if os.path.exists(fileName+'.png'):
           _JOBICON[style] = QtGui.QIcon(QtGui.QPixmap(fileName+'.png'))
         elif os.path.exists(fileName+'.svg'):
@@ -292,20 +288,6 @@ class CTreeItemProject(CTreeItem):
     elif role == QtCore.Qt.UserRole:
       if column == 0:
         return self.projectId
-      '''
-      elif role == QtCore.Qt.BackgroundRole:
-        if self.highlight:
-          return QtGui.QBrush(QtGui.QColor(CCP4StyleSheet.HIGHLIGHTCOLOUR))
-        
-        elif CProjectModel.CONTRAST_MODE == 1 and self.top:
-          return QtGui.QBrush(QtGui.QColor(CCP4StyleSheet.LOWLIGHTCOLOUR))
-                             
-      elif role == QtCore.Qt.FontRole and CProjectModel.CONTRAST_MODE == 2:
-        if self.top:
-          return CTreeItemJob.boldFont
-        else:
-          return CTreeItemJob.italicFont
-      '''
 
 #FIXME PYQT - or maybe None? This used to return QVariant.
     return None
@@ -433,7 +415,6 @@ class CTreeItemFile(CTreeItem):
     return True
 
   def mimeData(self):
-    from lxml import etree
     urlList = []
     mimeType = CCP4DbApi.FILETYPES_CLASS[self.fileType]
     root,err = PROJECTSMANAGER().db().getFileEtree(fileId=self.fileId)
@@ -481,8 +462,7 @@ class JobListHTMLDelegate(QtWidgets.QStyledItemDelegate):
     def __init__(self,parent=None):
         QtWidgets.QStyledItemDelegate. __init__(self,parent)
         self.editorWidget = None
-        qticonsDir = os.path.join(CCP4Utils.getCCP4I2Dir(),'qticons')
-        self.donePix = QtGui.QPixmap(os.path.join(qticonsDir,"job.png") )
+        self.donePix = QtGui.QPixmap(str(I2_TOP / 'qticons' / "job.png"))
 
     def createEditor(self,parent,option,modelIndex):
         #if self.parent().model().data(modelIndex,QtCore.Qt.DisplayRole):
@@ -854,25 +834,24 @@ class CTreeItemJob(CTreeItem):
   DATE_FORMAT = '%a %d %b %y'
   TODAY = None
   THISYEAR = None
-  qticonsDir = os.path.join(CCP4Utils.getCCP4I2Dir(),'qticons')
-  DONE_PIX = os.path.join(qticonsDir,"green-tick.png")
-  PENDING_PIX = os.path.join(qticonsDir,"undone.png")
-  BEST_PIX = os.path.join(qticonsDir,"evaluations","Best.png")
-  GOOD_PIX = os.path.join(qticonsDir,"evaluations","Good.png")
-  REJEJECTED_PIX = os.path.join(qticonsDir,"evaluations","Rejected.png")
-  FAILED_PIX = os.path.join(qticonsDir,"red-cross.png")
-  BLANK_PIX = os.path.join(qticonsDir,"blank.png")
-  RUNNING_PIX = os.path.join(qticonsDir,"running.png")
-  RUNNING_DARK_PIX = os.path.join(qticonsDir,"running_dark.png")
-  FOLDER_PIX = os.path.join(qticonsDir,"file_manager2.png")
-  TO_DELETE_PIX = os.path.join(qticonsDir,"dustbin.png")
-  PAUSE_PIX = os.path.join(qticonsDir,"pause.png")
-  UNKNOWN_PIX = os.path.join(qticonsDir,"question.png")
+  qticonsDir = I2_TOP / 'qticons'
+  DONE_PIX = str(qticonsDir / "green-tick.png")
+  PENDING_PIX = str(qticonsDir / "undone.png")
+  BEST_PIX = str(qticonsDir / "evaluations" / "Best.png")
+  GOOD_PIX = str(qticonsDir / "evaluations" / "Good.png")
+  REJEJECTED_PIX = str(qticonsDir / "evaluations" / "Rejected.png")
+  FAILED_PIX = str(qticonsDir / "red-cross.png")
+  BLANK_PIX = str(qticonsDir / "blank.png")
+  RUNNING_PIX = str(qticonsDir / "running.png")
+  RUNNING_DARK_PIX = str(qticonsDir / "running_dark.png")
+  FOLDER_PIX = str(qticonsDir / "file_manager2.png")
+  TO_DELETE_PIX = str(qticonsDir / "dustbin.png")
+  PAUSE_PIX = str(qticonsDir / "pause.png")
+  UNKNOWN_PIX = str(qticonsDir / "question.png")
   IMG_HEIGHT_STR = "XXXX_IMG_HEIGHT_XXXX"
   
   def __init__(self,parent=None,info={}):
     CTreeItem.__init__(self,parent=parent)
-    #import traceback
     #print 'CTreeItemJob',info.get('jobnumber',None),info.get('taskname',None)
     #traceback.print_stack()
     #print '\n\n'
@@ -938,13 +917,12 @@ class CTreeItemJob(CTreeItem):
       self.name = self.jobNumber +' '+ TASKMANAGER().getShortTitle( self.taskName )
     try:
       PROJECTSMANAGER().db().updateJob(self.jobId,key='jobtitle',value=jobTitle)
-      from dbapi import CCP4DbUtils
+      from ..dbapi import CCP4DbUtils
       CCP4DbUtils.makeJobBackup(jobId=self.jobId)
     except:
       print('ERROR in editing job name')
       
   def setName(self,jobTitle=None):
-    #import traceback
     #traceback.print_stack(limit=5)
     if jobTitle is not None and len(jobTitle)>0:
       self.name = self.jobNumber +' '+ jobTitle
@@ -1246,7 +1224,6 @@ class CTreeItemJob(CTreeItem):
     return False
 
   def mimeData(self):
-    from lxml import etree
     urlList = []
     mimeType = 'FollowFromJob'
     root = etree.Element('jobId')
@@ -1470,9 +1447,6 @@ class CProjectModel(QtCore.QAbstractItemModel):
         rv = self.getJobTreeItem(jobId,item)
         if rv is not None: return rv
     return None
-        
-  def currentProjectId(self):
-    return self._projectId
 
   @QtCore.Slot(dict)
   def createJob(self,args):
@@ -1706,17 +1680,6 @@ class CProjectModel(QtCore.QAbstractItemModel):
     self.redraw()
     #print 'from updateFollowFrom'
 
-  def updateHighlight(self,jobId=None):
-    for jid,highlight in [ [ self.highlightJob,False ] , [ jobId , True ] ]:
-      if jid is not None:
-        index = self.modelIndexFromJob(jobId=jid)
-        if index is not None:
-          node = self.nodeFromIndex(index)
-          node.set('highlight',highlight)
-          self.dataChanged.emit(index,index)
-    self.highlightJob = jobId
-    self.redraw()
-    
   def fileLabel(self,modelIndex=None,maxLength=None):
     node = self.nodeFromIndex(modelIndex)
     if node is None: return ''
@@ -1747,17 +1710,6 @@ class CProjectView(QtWidgets.QTreeView):
   jobClicked = QtCore.Signal('QModelIndex')
   fileClicked = QtCore.Signal('QModelIndex')
 
-  """
-  def changeEvent(self,e):
-      #FIXME - *THIS* is the cause of my performance woes. I have to not react to every change event, just last one. Hmm ...
-      print("changeEvent")
-      import traceback
-      traceback.print_stack()
-      return QtWidgets.QTreeView.changeEvent(self,e)
-
-      if e.type() == QtCore.QEvent.StyleChange or QtCore.QEvent.FontChange:
-          self.resizeColumnToContents(0)
-  """
 
   def __init__(self,parent=None):
     QtWidgets.QTreeView.__init__(self,parent)
@@ -2030,9 +1982,9 @@ class CProjectWidget(QtWidgets.QFrame):
     #layout.setSizeConstraint(QtWidgets.QLayout.SetMinAndMaxSize)
     self.setLayout(layout)
 
-    iconDir = os.path.join(os.environ['CCP4I2_TOP'],'qticons')
-    upArrow = QtGui.QIcon(os.path.join(iconDir,"up.png"))
-    downArrow = QtGui.QIcon(os.path.join(iconDir,"down.png"))
+    iconDir = I2_TOP / 'qticons'
+    upArrow = QtGui.QIcon(str(iconDir / "up.png"))
+    downArrow = QtGui.QIcon(str(iconDir / "down.png"))
     self.taskSearchBox = QtWidgets.QLineEdit()
 
     searchLayout = QtWidgets.QHBoxLayout()
@@ -2201,7 +2153,6 @@ class CProjectWidget(QtWidgets.QFrame):
     
   @QtCore.Slot('QMouseEvent')
   def showJobListPopup(self,event):
-    from core.CCP4TaskManager import TASKMANAGER
     modelIndex,node,column = self.projectView.nodeFromEvent(event)
     #print 'showJobListPopup',node.getName(),column
     position = QtCore.QPoint(event.globalX(),event.globalY())
@@ -2415,7 +2366,6 @@ class CProjectWidget(QtWidgets.QFrame):
 
   @QtCore.Slot(str,str,str,str)
   def showHistory(self,jobId,fileType,role=None,selection=None):
-    import copy
     #print 'showHistory',jobId,fileType,role,selection
     jobNum = PROJECTSMANAGER().db().getJobInfo(jobId,mode='jobnumber')
     self.historyLeafList = []
@@ -2453,10 +2403,7 @@ class CProjectWidget(QtWidgets.QFrame):
       jobsTree = PROJECTSMANAGER().db().getSucceedingJobs(jobId,fileType=fileType)
       sortSuceedingJobs(jobsTree,preceedingJobList)
       # historyLeafList is list of list of jobs to each final 'leaf' job
-      if sys.version_info > (3,0):
-        self.historyLeafList = sorted(tmpLeafList,key=functools.cmp_to_key(compareHistoryLeaf))
-      else:
-        self.historyLeafList = sorted(tmpLeafList,cmp=compareHistoryLeaf)
+      self.historyLeafList = sorted(tmpLeafList,key=functools.cmp_to_key(compareHistoryLeaf))
       #print 'showHistory leafList',self.historyLeafList
       if len(self.historyLeafList)<=1:
         self.historyGui.set('History of job '+str(jobNum)+' '+self.historyFileTypeText(fileType))
@@ -2499,7 +2446,7 @@ class CProjectWidget(QtWidgets.QFrame):
     #print 'handleEvaluationPopup',evaluation,jobId
     try:
       PROJECTSMANAGER().db().updateJob(jobId,key='evaluation',value=evaluation)
-      from dbapi import CCP4DbUtils
+      from ..dbapi import CCP4DbUtils
       CCP4DbUtils.makeJobBackup(jobId=jobId)
     except:
       print('ERROR in handleEvaluationPopup')
@@ -2530,7 +2477,6 @@ class CProjectWidget(QtWidgets.QFrame):
     elif action == 'Copy parameters':
       # Set 'taskParameters' data on the application clipboard
       # to enable it to be pasted elsewhere
-      from lxml import etree
       root = etree.Element('taskParameters')
       jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId,mode=['taskname','jobnumber','projectname','projectid'])
       for name,value in [[ 'jobId' , jobId],['taskName',jobInfo['taskname']],['jobNumber',jobInfo['jobnumber']],['projectName',jobInfo['projectname']],['projectId',jobInfo['projectid']]]:
@@ -2543,7 +2489,6 @@ class CProjectWidget(QtWidgets.QFrame):
       mimeData.setData('taskParameters_'+jobInfo['taskname'],data)
       QTAPPLICATION().clipboard().setMimeData(mimeData)
     elif action == 'Edit label':
-      #from qtgui import CCP4Widgets
       #d = CCP4Widgets.CEditFileLabel(parent=self,jobId=jobId)
       #d.move(position-QtCore.QPoint(20,20))
       #print 'handleJobListPopup modelIndex',modelIndex.row(),modelIndex.column()
@@ -2570,7 +2515,7 @@ class CProjectWidget(QtWidgets.QFrame):
         WEBBROWSER().openFile(reportFile,toFront=True)
       else:
         try:
-          from report import CCP4ReportGenerator
+          from ..report import CCP4ReportGenerator
           jobNumber =  PROJECTSMANAGER().db().getJobInfo(jobId=jobId,mode='jobnumber')
           generator = CCP4ReportGenerator.CReportGenerator(jobId=jobId,jobStatus='Finished',jobNumber=jobNumber)
           reportFile, newPageOrNewData = generator.makeReportFile()
@@ -2584,7 +2529,7 @@ class CProjectWidget(QtWidgets.QFrame):
     elif action == 'Diagnostic':
       #diagFile = PROJECTSMANAGER().makeFileName(jobId,'DIAGNOSTIC')
       jobInfo =  PROJECTSMANAGER().db().getJobInfo(jobId=jobId,mode=['jobnumber','status'])
-      from report import CCP4ReportGenerator
+      from ..report import CCP4ReportGenerator
       generator = CCP4ReportGenerator.CReportGenerator(jobId=jobId,jobStatus=jobInfo['status'],jobNumber=jobInfo['jobnumber'])
       reportFile = generator.makeFailedReportFile(redo=False)
       WEBBROWSER().openFile(reportFile,toFront=True)
@@ -2615,7 +2560,6 @@ class CProjectWidget(QtWidgets.QFrame):
             #self.projectView.edit(modelIndex)
             self.projectView.edit(self.projectView.model().mapFromSource(modelIndex))
             #fileLabel = self.projectView.model().fileLabel(modelIndex=modelIndex,maxLength=None)
-            #from qtgui import CCP4Widgets
             #d = CCP4Widgets.CEditFileLabel(parent=self,fileId=fileId)
             #d.move(position-QtCore.QPoint(20,20))
           
@@ -2628,7 +2572,7 @@ class CProjectWidget(QtWidgets.QFrame):
             else:
               title = 'Export all experimental data associated with job '+str(fileInfo['jobnumber'])
             #print 'file_export',fileType,filters,defaultSuffix
-            from qtgui import CCP4FileBrowser
+            from ..qtgui import CCP4FileBrowser
             fileBrowser = CCP4FileBrowser.CFileDialog(parent=self,
                                       title=title,
                                      filters = [filters],
@@ -2647,20 +2591,18 @@ class CProjectWidget(QtWidgets.QFrame):
 
 
   def launchViewer(self,filePath):
-    from core import CCP4Modules
     format = MIMETYPESHANDLER().formatFromFileExt(fileName=filePath)
     viewerList = MIMETYPESHANDLER().getViewers(format)
     #print 'CProjectWidget.launchViewer',filePath,format,viewerList
     if len(viewerList)<=0:
-      CCP4Modules.WEBBROWSER().openFile(filePath,toFront=True)
+      WEBBROWSER().openFile(filePath,toFront=True)
     elif isinstance(viewerList[0],str):
-      CCP4Modules.LAUNCHER().openInViewer(viewer=viewerList[0],fileName=filePath,projectId=self.projectView.model().sourceModel()._projectId,guiParent=self)
+      LAUNCHER().openInViewer(viewer=viewerList[0],fileName=filePath,projectId=self.projectView.model().sourceModel()._projectId,guiParent=self)
     else:
-      from qtgui import CCP4WebBrowser
+      from . import CCP4WebBrowser
       CCP4WebBrowser.OPENFILE(filePath,toFront=True)
 
   def showDatabaseEntry(self,jobId=None,fileId=None):
-    import copy
     win = QtWidgets.QDialog(self)
     win.setWindowTitle('Database entry')
     win.setLayout(QtWidgets.QVBoxLayout())
@@ -2721,21 +2663,20 @@ class CProjectWidget(QtWidgets.QFrame):
           exportFileName = os.path.splitext(exportFileName)[0] +  os.path.splitext(myFileName)[1]
       if fileId is None:
         myFileName = os.path.join(PROJECTSMANAGER().db().jobDirectory(jobId=jobId),'hklout.mtz')
-      import shutil
       try:
         shutil.copyfile(myFileName,exportFileName)
       except:
         e = CException(self.__class__,100,'From: '+str(myFileName)+' to: '+str(exportFileName))
-        e.warningMessage('Copying file',parent=self)
+        warningMessage(e, 'Copying file',parent=self)
       else:
         PROJECTSMANAGER().db().createExportFile(fileId=fileId,exportFilename=exportFileName)
         fileInfo = PROJECTSMANAGER().db().getFileInfo(fileId=fileId,mode=['jobid','projectname'])
-        from dbapi import CCP4DbUtils
+        from ..dbapi import CCP4DbUtils
         CCP4DbUtils.makeJobBackup(jobId=fileInfo['jobid'],projectName=fileInfo['projectname'])
     elif jobId is not None:
       # Use the mergeMtz plugin to merge all input and output data objects
-      from core import CCP4TaskManager
-      from dbapi import CCP4DbApi
+      from ..core import CCP4TaskManager
+      from ..dbapi import CCP4DbApi
       taskObj = CCP4TaskManager.TASKMANAGER().getPluginScriptClass('mergeMtz')(self)
       #print 'CProjectWidget.exportData taskObj',taskObj
       taskObj.container.outputData.HKLOUT.setFullPath(exportFileName)
@@ -2824,23 +2765,6 @@ class CFileIconProvider(QtWidgets.QFileIconProvider):
 
   def icon(self,fileInfo):
     return QtGui.QIcon()
-    #print 'CFileIconProvider.icon',fileInfo
-    if isinstance(fileInfo,QtCore.QFileInfo):
-      suffix = str(fileInfo.completeSuffix())
-      #print 'CFileIconProvider',suffix
-      if suffix == 'mtz':
-        content = fileInfo.baseName().__str__().split(CCP4File.CDataFile.SEPARATOR)[-1]
-        #print 'CFileIconProvider content',content
-        mimeType=MIMETYPESHANDLER().formatFromFileExt(ext=suffix,contentLabel=content)
-      else:
-        mimeType=MIMETYPESHANDLER().formatFromFileExt(ext=suffix)
-      #print 'CFileIconProvider.icon',suffix,mimeType
-      if mimeType is not None:
-        icon = MIMETYPESHANDLER().icon(mimeType)
-        if icon is not None:
-          #print 'CFileIconProvider providing',icon
-          return icon
-    return QtGui.QIcon()
     
   
     
@@ -2928,10 +2852,6 @@ class CProjectDirModel(QtWidgets.QFileSystemModel):
     #print 'CProjectDirModel.data',retStr,taskName
     return retStr+' '+taskName
 
-    
-  def supportedDragActions(self):
-    return QtCore.Qt.CopyAction
-
   def mimeTypes(self):
     typesList = []
     for item in list(MIMETYPESHANDLER().mimeTypes.keys()): typesList.append(item)
@@ -2939,7 +2859,6 @@ class CProjectDirModel(QtWidgets.QFileSystemModel):
     return typesList
 
   def projectRootIndex(self):
-    import os
     return self.index(os.path.join(str(self.rootPath()),'CCP4_JOBS'),0)
 
   def jobNumberToModelIndex(self,jobNumber):
@@ -2953,28 +2872,6 @@ class CProjectDirModel(QtWidgets.QFileSystemModel):
     else:
       return QtCore.QModelIndex()
 
-  '''
-  def mimeData(self,modelIndexList):
-    modelIndex = modelIndexList[0]
-    qFileInfo = self.fileInfo(modelIndex)
-    path = str(qFileInfo.absoluteFilePath())
-    mimeType = MIMETYPESHANDLER().formatFromFileExt(fileName=path)
-    if mimeType is None: return None
-      
-    from core import CCP4File
-    fileObj = CCP4File.CDataFile(fullPath=path)
-    dragText = fileObj.xmlText(pretty_print=False)
-    print 'mimeData dragText',mimeType,dragText
-    
-    encodedData = QtCore.QByteArray()
-    encodedData.append(dragText)
-    mime = QtCore.QMimeData()
-    # With mime type as text the data can be dropped on desktop
-    # but the type of the data is lost
-    #mimeData.setData('text/plain',data)
-    mime.setData(mimeType,encodedData)
-    return mime
-  '''
 
 class CProjectDirView(QtWidgets.QTreeView):
   
@@ -3020,8 +2917,7 @@ class CProjectDirView(QtWidgets.QTreeView):
     fileId,jobId = PROJECTSMANAGER().db().matchFileName(fileName=fileName)
     #print 'CProjectDirView.startDrag fileName',fileName,fileId
     if fileId is None: return
- 
-    from lxml import etree   
+
     mimeType = PROJECTSMANAGER().db().getFileInfo(fileId=fileId,mode='fileclass')
     root,err = PROJECTSMANAGER().db().getFileEtree(fileId=fileId)
     dragText = etree.tostring(root)
@@ -3052,48 +2948,7 @@ class CProjectDirView(QtWidgets.QTreeView):
 
     #print 'CProjectDirView.startDrag exec_'
     drag.exec_(QtCore.Qt.CopyAction)
-      
-    
-    
-class CEvaluationDelegate(QtWidgets.QItemDelegate):
 
-  def __init__(self,parent=None):
-    QtWidgets.QItemDelegate. __init__(self,parent)
-    
-
-  def createEditor(self,parent,option,modelIndex):
-    cacheIndex = self.parent().model().cacheFromModelIndex(modelIndex)
-    if 'evaluation' in self.parent().model()._dataCache[cacheIndex]:
-      iconCombo = QtWidgets.QComboBox(parent)
-      iconCombo.setEditable(False)
-      for item in CCP4DbApi.JOB_EVALUATION_TEXT:
-        iconCombo.addItem(jobIcon(item),item)
-      iconCombo.show()
-      return iconCombo
-    else:
-      return None
-    
-  def setEditorData(self,editor,modelIndex):
-    cacheIndex = self.parent().model().cacheFromModelIndex(modelIndex)
-    data = self.parent().model()._dataCache[cacheIndex]['evaluation']
-    #print 'CEvaluationDelegate.setEditorData',data
-    editor.setCurrentIndex(CCP4DbApi.JOB_EVALUATION_TEXT.index(data))
-
-  def setModelData(self,editor,model,modelIndex):
-    evaluation = str(editor.currentText())
-    cacheIndex = self.parent().model().cacheFromModelIndex(modelIndex)
-    self.parent().model()._dataCache[cacheIndex]['evaluation'] = evaluation
-    jobid = self.parent().model()._dataCache[cacheIndex]['jobid']
-    try:
-      PROJECTSMANAGER().db().updateJob(jobid,key='evaluation',value=evaluation)
-    except:
-      pass
-
-  def updateEditorGeometry(self,editor,option,modelIndex):
-    r = option.rect
-    r.setHeight(editor.geometry().height())
-    r.setWidth(editor.geometry().width())
-    editor.setGeometry(r)
 
 class CJobEditLineEdit(QtWidgets.QLineEdit):
 
@@ -3170,52 +3025,6 @@ class CJobEditDelegate(QtWidgets.QStyledItemDelegate):
     rightShift = 25 + node.isJob()*25
     pos=view.mapToGlobal(view.visualRect(modelIndex).topLeft())
     editor.move(pos+QtCore.QPoint(rightShift,20))
-
-
-    
-class CFollowFromDelegate(QtWidgets.QItemDelegate):
-
-  def __init__(self,parent=None):
-    QtWidgets.QItemDelegate. __init__(self,parent)
-    
-
-  def createEditor(self,parent,option,modelIndex):
-    cacheIndex = self.parent().model().cacheFromModelIndex(modelIndex)
-    if 'status' in self.parent().model()._dataCache[cacheIndex]:
-      iconCombo = QtWidgets.QComboBox(parent)
-      iconCombo.setEditable(False)
-      for text,icon in [['Unused','greendot'],['Current','greenarrowsup']]:
-        iconCombo.addItem(jobIcon(icon),text)
-      iconCombo.show()
-      return iconCombo
-    else:
-      return None
-    
-  def setEditorData(self,editor,modelIndex):
-    cacheIndex = self.parent().model().cacheFromModelIndex(modelIndex)
-    if self.parent().model()._followFromCacheId == cacheIndex:
-      editor.setCurrentIndex(1)
-    else:
-      editor.setCurrentIndex(0)
-
-  def setModelData(self,editor,model,modelIndex):
-    status = str(editor.currentText())
-    cacheIndex = self.parent().model().cacheFromModelIndex(modelIndex)
-    if status == 'Current':
-      if cacheIndex == self.parent().model()._followFromCacheId:
-        return
-      else:
-        jobid = self.parent().model()._dataCache[cacheIndex]['jobid']
-        try:
-          PROJECTSMANAGER().db().setProjectFollowFromJobId(self.parent().model()._projectId,jobid)
-        except:
-          print('Error setting db setProjectFollowFromJobId')
-
-  def updateEditorGeometry(self,editor,option,modelIndex):
-    r = option.rect
-    r.setHeight(editor.geometry().height())
-    r.setWidth(editor.geometry().width())
-    editor.setGeometry(r)
 
 
 class CHistoryGui(QtWidgets.QFrame):
@@ -3296,8 +3105,8 @@ class CJobSearchWidget(QtWidgets.QFrame):
   MARGIN = 1
 
   def __init__(self,parent=None,projectName=''):
-    from core import CCP4Annotation
-    from qtgui import CCP4AnnotationWidgets
+    from ..core import CCP4Annotation
+    from ..qtgui import CCP4AnnotationWidgets
     QtWidgets.QFrame.__init__(self,parent=parent)
     self.setLayout(QtWidgets.QVBoxLayout())
     self.layout().setMargin(CJobSearchWidget.MARGIN)
@@ -3393,8 +3202,8 @@ class CJobSearchWidget(QtWidgets.QFrame):
     line.addWidget(QtWidgets.QLabel('Enter name or use browser to select imported file',self))
     frame.layout().addLayout(line)
     line = QtWidgets.QHBoxLayout()
-    from core import CCP4File
-    from core import CCP4DataManager
+    from ..core import CCP4File
+    from ..core import CCP4DataManager
     self.importedFileObj = CCP4File.CDataFile(parent=self)
     self.importedFileWidget = CCP4DataManager.DATAMANAGER().widget(model=self.importedFileObj,parentWidget=self)
     line.addWidget(self.importedFileWidget)
@@ -3574,7 +3383,7 @@ class CJobSearchDialog(QtWidgets.QDialog):
       try:
         jobList = PROJECTSMANAGER().db().projectJobSearch(self.parent().projectId,searchParams=searchParams)
       except CException as e:
-        e.warningMessage('Searching database',parent=self)
+        warningMessage(e, 'Searching database',parent=self)
         return
       except Exception as e:
         print(e)
@@ -3712,13 +3521,13 @@ class CJobSearchDialog(QtWidgets.QDialog):
     defFile = TASKMANAGER().lookupDefFile(taskName)
     if defFile is None: defFile = TASKMANAGER().searchDefFile(taskName)
     if defFile is None: return None
-    from core import CCP4Container
+    from ..core import CCP4Container
     container = CCP4Container.CContainer()
     container.loadContentsFromXml(defFile)
     return container
 
   def loadParamFile(self,fileName):
-    from core import CCP4File
+    from ..core import CCP4File
     xmlFile = CCP4File.CI2XmlDataFile(fullPath=fileName)
     body = xmlFile.getBodyEtree()
     return body

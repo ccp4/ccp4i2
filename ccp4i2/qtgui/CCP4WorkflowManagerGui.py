@@ -1,37 +1,21 @@
-from __future__ import print_function
-
 """
-     CCP4WorkflowManagerGui.py: CCP4 GUI Project
-     Copyright (C) 2013 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2013 STFC
+Liz Potterton July 2013 - create and manage workflows
 """
 
-"""
-     Liz Potterton July 2013 - create and manage workflows
-"""
-
+import functools
 import os
 import re
-import functools
+import sys
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from core import CCP4Container
-from qtgui import CCP4CustomisationGui
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import WORKFLOWMANAGER,WEBBROWSER,PROJECTSMANAGER
+from PySide2 import QtCore, QtWidgets
+
+from . import CCP4CustomisationGui
+from ..core import CCP4Container
+from ..core.CCP4ErrorHandling import CException, Severity
+from ..core.CCP4Modules import PROJECTSMANAGER, WEBBROWSER, WORKFLOWMANAGER
+from ..core.CCP4WarningMessage import warningMessage
+
 
 def openWorkflowManagerGui():
     if CWorkflowManagerGui.insts is None:
@@ -70,11 +54,11 @@ class CWorkflowManagerGui(CCP4CustomisationGui.CCustomisationGui):
         try:
             editor = CWorkflowEditDialog(self, name=selected)
         except CException as e:
-            e.warningMessage('Create workflow', 'Error opening workflow editor.\nPossibly a file is corrupted.\n' + self.manager().getDirectory(selected), parent=self)
+            warningMessage(e, 'Create workflow', 'Error opening workflow editor.\nPossibly a file is corrupted.\n' + self.manager().getDirectory(selected), parent=self)
             return
         except Exception as e:
             e = CException(self.__class__, 202, exc_info=sys.exc_info())
-            e.warningMessage('Create workflow', 'Error opening workflow editor.\nPossibly a file is corrupted.\n' + self.manager().getDirectory(selected), parent=self)
+            warningMessage(e, 'Create workflow', 'Error opening workflow editor.\nPossibly a file is corrupted.\n' + self.manager().getDirectory(selected), parent=self)
             return
         editor.show()
 
@@ -86,7 +70,7 @@ class CCreateWorkflowDialog(QtWidgets.QDialog):
     ERROR_CODES = {201 : {'description' : 'Unkown error saving workflow'}}
 
     def __init__(self, parent=None):
-        from qtgui import CCP4Widgets
+        from . import CCP4Widgets
         QtWidgets.QDialog.__init__(self, parent)
         self.setWindowTitle('Create a workflow')
         self.setLayout(QtWidgets.QVBoxLayout())
@@ -181,14 +165,14 @@ class CCreateWorkflowDialog(QtWidgets.QDialog):
         try:
             err = WORKFLOWMANAGER().createWorkflow(projectId=projectId, jobList=jobList, name=name, overwrite=overwrite, title=title)
         except CException as err:
-            err.warningMessage('Create workflow', 'Error saving workflow', parent=self)
+            warningMessage(err, 'Create workflow', 'Error saving workflow', parent=self)
             return
         except Exception as e:
             err = CException(self.__class__,201,exc_info=sys.exc_info())
-            err.warningMessage('Create workflow', 'Error saving workflow', parent=self)
+            warningMessage(err, 'Create workflow', 'Error saving workflow', parent=self)
             return
-        if err.maxSeverity()>SEVERITY_WARNING:
-            err.warningMessage('Create workflow', 'Error saving workflow', parent=self)
+        if err.maxSeverity()>Severity.WARNING:
+            warningMessage(err, 'Create workflow', 'Error saving workflow', parent=self)
             return
         self.workflowCreated.emit(name)
 
@@ -208,7 +192,7 @@ class CWorkflowEditDialog(QtWidgets.QDialog):
         self.setWindowTitle('Edit workflow: '+name)
         self.name = name
         directory = WORKFLOWMANAGER().getDirectory(self.name)
-        from core import CCP4WorkflowManager
+        from ..core import CCP4WorkflowManager
         self.workflowDef = CCP4WorkflowManager.CWorkflowDefinition(self,name=self.name)
         fileName = WORKFLOWMANAGER().getCustomFile(self.name)
         #print 'CWorkflowEditDialog workflowDef',self.name,self.workflowDef.header.pluginName,fileName
@@ -280,7 +264,7 @@ class CWorkflowEditDialog(QtWidgets.QDialog):
                 le.setText(outFile.annotation.__str__())
 
     def updateModelFromView(self):
-        from core import CCP4WorkflowManager
+        from ..core import CCP4WorkflowManager
         self.jobDefs['job_0'].header.pluginTitle.set(str(self.titleWidget.text()))
         for inputWidget in self.inputWidgets:
             label = str(inputWidget.label.text()).strip()
@@ -376,4 +360,3 @@ class CWorkflowOutputChooser(QtWidgets.QScrollArea):
                 le.setObjectName(jobKey+'_'+key)
                 layout.addWidget(le,indx,1)
         self.widget().show()
-
