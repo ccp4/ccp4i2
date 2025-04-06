@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
 An even more simplified version of the stuff in CCP4TestDb.py
 This reads a directory's DATABASE.db.xml and attempts to build a db entry for it.
@@ -8,21 +6,15 @@ TODO:
 Does not seem quite perfect yet. Imports 198 out of 259 for one of my preojects. Certainly ignores all "Pending" jobs. Hmm. Possibly failed too.
 So probably need os.walk through CCP4_JOBS instead of looking at files in XML file?
 """
-import sys
-import os
-if __name__ == "__main__":
-    sys.path.append(os.path.join(os.path.dirname(__file__),".."))
-import shutil
 
-from PySide2 import QtCore
+import os
+import sys
+
 from lxml import etree
 
-from dbapi import CCP4DbApi,CCP4DbUtils
-from core import CCP4File
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import PROJECTSMANAGER,TASKMANAGER,QTAPPLICATION,JOBCONTROLLER
-from core.CCP4QtObject import CObject
-from qtcore import CCP4Export   
+from ..core.CCP4Modules import PROJECTSMANAGER
+from ..dbapi import CCP4DbApi
+
 
 def parse_from_unicode(unicode_str):
     utf8_parser = etree.XMLParser(encoding='utf-8')
@@ -53,12 +45,7 @@ def importFilesFromDirXML(dbFileName,dirName,importProjectComments=False):
     
     with open(xmlFile) as f:
         t = f.read()
-    
-        if sys.version_info < (3,0):
-            xmlparser = etree.XMLParser()
-            tree = etree.fromstring(t, xmlparser)
-        else:
-            tree = parse_from_unicode(t)
+        tree = parse_from_unicode(t)
         
         doneJobs = []
         if len(tree.xpath("ccp4i2_body"))>0:
@@ -99,9 +86,9 @@ def importFilesFromDirXML(dbFileName,dirName,importProjectComments=False):
     dbImport.db.projectReset.emit({'projectId':dbImport.projectId})
     dbImport = None
 
+
 if __name__ == "__main__":
     fileName = sys.argv[1]
     dirName = sys.argv[2]
 
     importFilesFromDirXML(fileName,dirName)
-

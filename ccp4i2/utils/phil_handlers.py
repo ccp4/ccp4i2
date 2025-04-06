@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 #
 #  Copyright (C) 2016 STFC Rutherford Appleton Laboratory, UK.
 #
@@ -7,14 +5,15 @@ from __future__ import print_function
 #  Acknowledgements: based on ideas and code by Nat Echols and Martin Noble.
 #
 
-from lxml import etree
+from datetime import datetime
+from io import StringIO
+import getpass
 import re
+import socket
 import sys
+import time
 
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
+from lxml import etree
 
 
 class Phil2Etree(object):
@@ -211,16 +210,9 @@ class PhilTaskCreator(object):
 
         self.fmt_dic = {}
 
-        import getpass
-
         self.fmt_dic["USERID"] = getpass.getuser()
 
-        from datetime import datetime
-        import time
-
         self.fmt_dic["CREATIONTIME"] = datetime.fromtimestamp(time.time()).isoformat()
-
-        import socket
 
         self.fmt_dic["HOSTNAME"] = socket.gethostname()
 

@@ -5,43 +5,38 @@ Liz Potterton Feb 2010 - Some minimal functionality to bootstrap program startup
 import atexit
 import os
 import shutil
+import sqlite3
+import string
 import sys
 import tempfile
 import time
 
+from lxml import etree
 from PySide2 import QtWidgets
 
 from .. import I2_TOP
+from ..core import CCP4ErrorHandling
+from ..core import CCP4Utils
+from ..core.CCP4Config import CONFIG
+from ..core.CCP4Modules import JOBCONTROLLER
+from ..core.CCP4Modules import LAUNCHER
+from ..core.CCP4Modules import PREFERENCES
+from ..core.CCP4Modules import PRINTHANDLER
+from ..core.CCP4Modules import PROJECTSMANAGER
+from ..core.CCP4WarningMessage import warningMessage
+from ..utils.QApp import QTAPPLICATION
 
 
 class DatabaseFailException(Exception):
     pass
 
 
-def getCCP4I2Dir():
-    return str(I2_TOP)
-
-
 def setupEnvironment(path=''):
-    os.environ["BOOST_ADAPTBX_FPE_DEFAULT"] = "1"
-    os.environ["CCP4I2_TOP"] = path or getCCP4I2Dir()
-    os.environ["CCP4I2"] = os.environ["CCP4I2_TOP"]
-    os.environ["LC_ALL"] = "C"
-    os.environ["LD_LIBRARY_PATH"] = os.path.join(os.environ["CCP4"], "lib")
-    os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = os.path.join(os.environ["CCP4"], "QtPlugins")
-    if sys.platform.startswith("linux"):
-        os.environ["DIR_QT_LIBRARY_DATA"] = os.path.join(os.environ["CCP4"], "resources")
-        os.environ["QTWEBENGINE_DISABLE_SANDBOX"] = "1"
-
-
-def setupPythonpath():
-    sys.path.insert(0, getCCP4I2Dir())
+    os.environ["CCP4I2_TOP"] = path or str(I2_TOP)
 
 
 def createMissingDATABASEdbXML():
-    from lxml import etree
-    from core import CCP4Modules, CCP4Utils
-    proj_dir_list0=CCP4Modules.PROJECTSMANAGER().db().getProjectDirectoryList()
+    proj_dir_list0=PROJECTSMANAGER().db().getProjectDirectoryList()
 
     for proj in proj_dir_list0:
         updateDBXML = False
@@ -71,7 +66,7 @@ def createMissingDATABASEdbXML():
                             break
         if updateDBXML:
             print("Rebuilding DATABASE.db.xml for project",d)
-            CCP4Modules.PROJECTSMANAGER().db().exportProjectXml(projectid,fileName=dbxml)
+            PROJECTSMANAGER().db().exportProjectXml(projectid,fileName=dbxml)
 
 #TODO At this point we should probably be checking that proj_dir_list0 is consistent 
 #     with projectList-backup.xml
@@ -85,7 +80,7 @@ def createMissingDATABASEdbXML():
     if len(proj_dir_list0) > 0 and not os.path.exists(dbListBackupName):
         print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
         print("Project directory list does not exist, creating")
-        CCP4Modules.PROJECTSMANAGER().backupDBXML()
+        PROJECTSMANAGER().backupDBXML()
         print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
 
     elif os.path.exists(dbListBackupName):
@@ -105,7 +100,7 @@ def createMissingDATABASEdbXML():
                 if setXML.issubset(setDB):
                     print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
                     print("Project directory list is not up to date, recreating")
-                    CCP4Modules.PROJECTSMANAGER().backupDBXML()
+                    PROJECTSMANAGER().backupDBXML()
                     print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
                 else:
                    dirListStr =  "<br/>".join([str(x) for x in (setXML - setDB)])
@@ -116,14 +111,11 @@ def createMissingDATABASEdbXML():
 
 
 def startBrowser(args, app=None, splash=None):
-    from core import CCP4Modules
-    from qtgui import CCP4WebBrowser
-    from qtgui import CCP4StyleSheet, CCP4WebView
+    from ..qtgui import CCP4StyleSheet
+    from ..qtgui import CCP4WebBrowser
     # KJS: Removed the linux check. Unclear why it's in here.
     # if sys.platform == "linux2": win = QtWidgets.QWidget(); splash.finish(win); splash.show()
-    config = loadConfig()
-    config.set('graphical', True)
-    config.set('qt', True)
+    CONFIG(graphical=True)
     kw = {'graphical' : True}
     ii = 0
     while ii < len(args):
@@ -158,7 +150,7 @@ def startBrowser(args, app=None, splash=None):
                 kw['userName'] = args[ii]
         ii += 1
     if app is None:
-        app = CCP4Modules.QTAPPLICATION()
+        app = QTAPPLICATION()
     startPrintHandler(app)
     #CCP4WebBrowser.setupWebkit()
     proj_man = startProjectsManager(**kw)
@@ -166,11 +158,10 @@ def startBrowser(args, app=None, splash=None):
     job_cont = startJobController()
     if kw.get('dbFileName',None) is not None:
         job_cont.setDbFile(kw['dbFileName'])
-    launcher = CCP4Modules.LAUNCHER()
+    launcher = LAUNCHER()
     #print 'startup.startBrowser app',app
     createMissingDATABASEdbXML()
     def pushLocalDB():
-        from core import CCP4Config, CCP4Utils
         try:
             print()
         except ValueError:
@@ -178,10 +169,10 @@ def startBrowser(args, app=None, splash=None):
             print("Restoring stdout")
         if 'dbFileName' in kw and 'useLocalDBFile' in kw and kw['dbFileName'] is not None and kw['useLocalDBFile'] is not None and kw['dbFileName'] == kw['useLocalDBFile']:
             print("Need to push back temporary database file ......")
-            origFileName = CCP4Config.DBFILE()
+            origFileName = CONFIG().dbFile
             if origFileName is None:
                 origFileName = os.path.join(CCP4Utils.getDotDirectory(), 'db', 'database.sqlite')
-            pm = CCP4Modules.PROJECTSMANAGER()
+            pm = PROJECTSMANAGER()
             tFile = tempfile.NamedTemporaryFile(delete=False)
             tFileName = tFile.name
             tFile.close()
@@ -209,38 +200,36 @@ def startBrowser(args, app=None, splash=None):
             print("No need to push back local db file.")
     #----------------------------------------------------------------------
     def backupListOfProjects():
-        CCP4Modules.PROJECTSMANAGER().backupDBXML()
+        PROJECTSMANAGER().backupDBXML()
  
     #----------------------------------------------------------------------
     def closeHTTPServer(parent=None):
         # Called on exit to find and close all CHTTPServerThread threads
-        from qtcore import CCP4HTTPServerThread
+        from ..qtcore import CCP4HTTPServerThread
         if CCP4HTTPServerThread.CHTTPServerThread.insts is not None:
             CCP4HTTPServerThread.CHTTPServerThread.insts.quitServer()   # KJS : Should be ok.
     #----------------------------------------------------------------------
     proj_man.doCheckForFinishedJobs.connect(proj_man.checkForFinishedJobs)
     # the aboutToQuit() signal does not work atexit is too late to save status - 
-    for func in (backupListOfProjects, pushLocalDB, proj_man.Exit, job_cont.Exit, launcher.Exit, closeHTTPServer, CCP4Modules.PRINTHANDLER().exit):
+    for func in (backupListOfProjects, pushLocalDB, proj_man.Exit, job_cont.Exit, launcher.Exit, closeHTTPServer, PRINTHANDLER().exit):
         atexit.register(func)
     # KJS : Moved the style & font changes to make up some time. Should be fine.
     CCP4StyleSheet.setStyleSheet()
-    #CCP4WebView.setGlobalSettings()
-    startHTTPServer(parent=app,**kw)
+    startHTTPServer(parent=app, fileName=kw.get('dbFileName'))
     CCP4WebBrowser.restoreStatus()
     CCP4WebBrowser.applyCommandLine(args)
     if hasattr(splash, "close"):
         splash.close()
-    showTipsOfTheDay = CCP4Modules.PREFERENCES().SHOW_TIPS_OF_THE_DAY
+    showTipsOfTheDay = PREFERENCES().SHOW_TIPS_OF_THE_DAY
     if showTipsOfTheDay:
-        from qtgui.CCP4TipsOfTheDay import CTipsOfTheDay
+        from ..qtgui.CCP4TipsOfTheDay import CTipsOfTheDay
         tipsOfTheDay = CTipsOfTheDay()
         tipsOfTheDay.exec_()
 
 
 def startJobController():
-    from core import CCP4Modules
     print('Starting Job Controller')
-    jc = CCP4Modules.JOBCONTROLLER()
+    jc = JOBCONTROLLER()
     jc.startTimer()
     print('Starting Job Controller - DONE')
     jc.restoreRunningJobs()
@@ -248,7 +237,6 @@ def startJobController():
  
 
 def copyDB(origFileName,f2):
-    import sqlite3
     print(origFileName,f2)
     con = sqlite3.connect(origFileName,5.0,1, check_same_thread = False)
     sql = "".join([s+"\n" for s in con.iterdump()])
@@ -264,17 +252,6 @@ def copyDB(origFileName,f2):
         print("Fail cur.executescript(sql) in startup copyDB")# ,com KJS. Not sure what this was meant to print.
         conbak.close()
         raise
-    """p = re.compile(";[\r\n]+")
-    sql_commands = p.split(sql)
-    for com in sql_commands:
-        if com == "COMMIT":
-            continue
-        try:
-            cur.execute(com)
-        except:
-            print("Fail",com)
-            conbak.close()
-            raise"""
     conbak.commit()
     print("Saved backup database to",f2)
     conbak.close()
@@ -282,10 +259,7 @@ def copyDB(origFileName,f2):
 
 
 def startProjectsManager(dbFileName=None, checkForFinishedJobs=False, useLocalDBFile=None, **kw):
-    from core import CCP4Config
-    from core import CCP4Utils
-    from core import CCP4Modules,CCP4ProjectsManager, CCP4Utils
-    import string
+    from ..core import CCP4ProjectsManager
     print(dbFileName)
     print(useLocalDBFile)
     if CCP4ProjectsManager.CProjectsManager.insts is not None:
@@ -295,10 +269,10 @@ def startProjectsManager(dbFileName=None, checkForFinishedJobs=False, useLocalDB
         print('Starting Project Manager')
         if dbFileName is not None:
             print('Using database file: ', dbFileName)
-        pm = CCP4Modules.PROJECTSMANAGER()
+        pm = PROJECTSMANAGER()
         try:
             if dbFileName is not None and useLocalDBFile is not None and dbFileName == useLocalDBFile:
-                origFileName = CCP4Config.DBFILE()
+                origFileName = CONFIG().dbFile
                 if origFileName is None:
                     origFileName = os.path.join(CCP4Utils.getDotDirectory(), 'db', 'database.sqlite')
                 if os.path.exists(origFileName):
@@ -314,29 +288,26 @@ def startProjectsManager(dbFileName=None, checkForFinishedJobs=False, useLocalDB
             if nullHome:
                 message = "CCP4i2 can not determine your home directory's name correctly. This is probably because your username contains special (non-ASCII) characters. CCP4i2 and other CCP4 programs are unlikely to work correctly in these circumstances. Please try creating a new user without such characters for running CCP4i2. <br/><br><b>Any errors after this are likely caused by this problem.</b>"
                 print(message)
-                if CCP4Config.GRAPHICAL():
+                if CONFIG().graphical:
                     QtWidgets.QMessageBox.warning(None,"Filename warning",message)
 
             db = startDb(pm, mode='sqlite', fileName=dbFileName,**kw)
 
-            if sys.version_info > (3,6):
-                isAscii = db._fileName.isascii()
-            else:
-                isAscii = all(ord(char) < 128 for char in db._fileName)
+            isAscii = db._fileName.isascii()
             hasSpace = True in [c in db._fileName for c in string.whitespace]
 
             if not isAscii or hasSpace:
                 message = 'The database filename:\n\n'+db._fileName+'\n\ncontains characters that mean ccp4i2, or other CCP4\nprogram is unlikely to work. If your UserName contains spaces or special characters and you run into problems, please try creating a new user without such characters for running CCP4i2.'
                 print(message)
-                if CCP4Config.GRAPHICAL():
+                if CONFIG().graphical:
                     QtWidgets.QMessageBox.warning(None,"Filename warning",message)
 
             pm.setDatabase(db)
         except DatabaseFailException:
             print("Failed to open database file!!!!!!!!")
-            if dbFileName is None and CCP4Config.DBFILE() is None:
+            if dbFileName is None and CONFIG().dbFile is None:
                 #This is manual backup
-                from qtgui import CCP4BackupDBBrowser
+                from ..qtgui import CCP4BackupDBBrowser
                 dbOrigName = os.path.join(CCP4Utils.getDotDirectory(), 'db', 'database.sqlite')
                 win = CCP4BackupDBBrowser.CBackupDBBrowser()
                 win.setDBDirectory(os.path.join(CCP4Utils.getDotDirectory(), 'db'))
@@ -363,8 +334,8 @@ def startProjectsManager(dbFileName=None, checkForFinishedJobs=False, useLocalDB
                 print(dbFileName,"corrupted")
                 sys.exit()
             else:
-                res = QtWidgets.QMessageBox.warning(None,"Database file corrupted?","The specified database file "+CCP4Config.DBFILE()+" is corrupted or not a valid CCP4i2 database. As specifying the dbFile parameter in the config file is non-standard behaviour, automatic fixing of the problem is not possible. You must specify a valid CCP4i2 database file in this parameter or seek expert assistance.")
-                print(CCP4Config.DBFILE(),"corrupted")
+                res = QtWidgets.QMessageBox.warning(None,"Database file corrupted?","The specified database file "+CONFIG().dbFile+" is corrupted or not a valid CCP4i2 database. As specifying the dbFile parameter in the config file is non-standard behaviour, automatic fixing of the problem is not possible. You must specify a valid CCP4i2 database file in this parameter or seek expert assistance.")
+                print(CONFIG().dbFile,"corrupted")
                 sys.exit()
         except SystemExit:
             raise
@@ -375,10 +346,8 @@ def startProjectsManager(dbFileName=None, checkForFinishedJobs=False, useLocalDB
 
 
 def startDb(parent=None, fileName=None, mode='sqlite', userName=None, userPassword=None,**kw):
-    from core import CCP4Utils
-    from core import CCP4ErrorHandling
-    from dbapi import CCP4DbApi
-    from qtgui import CCP4DbManagerGui
+    from ..dbapi import CCP4DbApi
+    from ..qtgui import CCP4DbManagerGui
     try:
         db = CCP4DbApi.CDbApi(parent=parent, fileName=fileName, mode=mode, createDb=True, userName=userName,
                               userPassword=userPassword, loadDiagnostic=kw.get('loadDiagnostic',True))
@@ -412,11 +381,11 @@ def startDb(parent=None, fileName=None, mode='sqlite', userName=None, userPasswo
                         try:
                             db.updateUser(ownerName, newUserName=currentUserName)
                         except CCP4ErrorHandling.CException as e:
-                            e.warningMessage(parent=parent)
+                            warningMessage(e, parent=parent)
                     return db
         if kw.get('graphical', True):
             try:
-                e.warningMessage(parent=parent)
+                warningMessage(e, parent=parent)
             except:
                 pass
             print(e.report())
@@ -435,29 +404,15 @@ def startDb(parent=None, fileName=None, mode='sqlite', userName=None, userPasswo
     return db
 
 
-def loadConfig():
-    from core import CCP4Config, CCP4Utils
-    config = CCP4Config.CONFIG(os.path.join(CCP4Utils.getDotDirectory(), 'configs', 'ccp4i2_config.params.xml'))
-    return config
-
-
-def  startHTTPServer(parent=None, port=None, **kw):
-    from qtcore import CCP4HTTPServerThread
-    from core import CCP4Utils
-    if port is None:
-        port = CCP4HTTPServerThread.DEFAULT_PORT
-    diry = os.path.join(CCP4Utils.getCCP4I2Dir(), 'docs')
-    try:
-        fileName = kw['dbFileName']
-    except:
-        fileName = None
-    t = CCP4HTTPServerThread.CHTTPServerThread(parent=parent, parentDir=diry, port=port, fileName=fileName)
+def startHTTPServer(parent, fileName):
+    from ..qtcore import CCP4HTTPServerThread
+    diry = str(I2_TOP / 'docs')
+    t = CCP4HTTPServerThread.CHTTPServerThread(parent=parent, parentDir=diry, fileName=fileName)
     t.start()
-    return
 
 
 def startPrintHandler(app):
-    from core import CCP4PrintHandler
+    from ..core import CCP4PrintHandler
     printHandler = CCP4PrintHandler.CPrintHandler(parent=app)
     try:
         printHandler.cleanupLogs()
@@ -465,7 +420,7 @@ def startPrintHandler(app):
         print('ERROR cleaning up print logs')
         print(e)
     # Do a getFileObject() here to ensure the filename is main_thread
-    f = printHandler.getFileObject(thread=None, name='main_thread')
+    printHandler.getFileObject(thread=None, name='main_thread')
     sys.stdout = printHandler
     sys.stderr = printHandler
     app.aboutToQuit.connect(printHandler.exit)

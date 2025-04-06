@@ -1,12 +1,3 @@
-import sys
-import os
-import functools
-import glob
-import tempfile
-import shutil
-import sqlite3
-import argparse
-
 """
 This program constructs a CCP4I2 database from a set of ZIP files in a folder.
 It can be used in two ways:
@@ -17,15 +8,23 @@ It can be used in two ways:
         python3 ImportAllProjects.py input_folder_containing_zip_files output_folder_where_project_files_will_go [-a|--append] [-d|--dbFile=outputdbname]
 """
 
-from PySide2 import QtCore
+import argparse
+import glob
+import os
+import shutil
+import sqlite3
+import sys
+import tempfile
+
+from ..core import CCP4Utils
+from ..core.CCP4ErrorHandling import Severity
+from ..core.CCP4Modules import PROJECTSMANAGER
+from .QApp import QTAPPLICATION
+
 
 def ImportZipFile(compressedFile,destDirName):
-
-    from core.CCP4Modules import PROJECTSMANAGER,JOBCONTROLLER
-    from core.CCP4ErrorHandling import SEVERITY_WARNING
-    from dbapi import CCP4DbApi
-    from qtcore import CCP4Export
-
+    from ..dbapi import CCP4DbApi
+    from ..qtcore import CCP4Export
     try:
       xmlFile = PROJECTSMANAGER().extractDatabaseXml(compressedFile)
     except CException as e:
@@ -52,13 +51,13 @@ def ImportZipFile(compressedFile,destDirName):
 
     if projectInfo is None:
       ret = dbImport.createProject(projectDirectory=dirName)
-      if ret.maxSeverity()>SEVERITY_WARNING:
+      if ret.maxSeverity()>Severity.WARNING:
           print('Error creating project',dbImport.projectName,'in database')
           return
       dbImport.createTempTables()
       dbImport.loadTempTable()
       dbImport.setExclImportedFiles()
-      if dbImport.errReport.maxSeverity()>SEVERITY_WARNING:
+      if dbImport.errReport.maxSeverity()>Severity.WARNING:
           print('Error report from the import process..')
           print(dbImport.errReport.report())
       if not os.path.exists(dirName):
@@ -86,7 +85,7 @@ def ImportZipFile(compressedFile,destDirName):
           else:
             print('ImportAllProjects stats', key,value)
 
-      if errReport.maxSeverity()>SEVERITY_WARNING:
+      if errReport.maxSeverity()>Severity.WARNING:
         dbImport.removeTempTables()
         text = 'ERRORS UNPACKING DATA FILES\n'
         for err in errReport: text = text + err['details'] + '\n'
@@ -111,17 +110,13 @@ def ImportZipFile(compressedFile,destDirName):
 
       print('Import complete',text)
 
-      #CCP4Modules.PROJECTSMANAGER().backupDBXML()
+      #PROJECTSMANAGER().backupDBXML()
 
     else:
       print("Project '"+dbImport.projectName+"' already exists")
 
 def ImportAll(zipDir,dbFile,destDirName,appendDB):
-
-    from core import CCP4Config
-    from utils.QApp import CGuiApplication
-    from utils import startup
-
+    from . import startup
     try:
         os.mkdir(destDirName)
     except FileExistsError as e:
@@ -130,9 +125,7 @@ def ImportAll(zipDir,dbFile,destDirName,appendDB):
         print(error)
         return
 
-    app = CGuiApplication(sys.argv)
-    CCP4Config.CONFIG().set('graphical', False)
-    CCP4Config.CONFIG().set('qt', True)
+    QTAPPLICATION(graphical=False)
 
     zipFiles = glob.glob(os.path.join(zipDir,"*.zip"))
     
@@ -219,8 +212,6 @@ def ImportAll(zipDir,dbFile,destDirName,appendDB):
 
 if __name__ == "__main__":
 
-    sys.path.append(os.path.join(os.path.dirname(__file__),".."))
-
     parser = argparse.ArgumentParser( prog='ImportAllProjects')
     parser.add_argument('inputfolder',help="Folder containing input zip files")
     parser.add_argument('outputfolder',help="Output folder where project files will go. e.g. $HOME/CCP4I2_PROJECTS")
@@ -232,7 +223,6 @@ if __name__ == "__main__":
     print(args.append)
     print(args.dbFile)
 
-    from core import CCP4Utils
     destDirName = CCP4Utils.getProjectDirectory()
 
     if len(sys.argv)>2:
@@ -244,4 +234,3 @@ if __name__ == "__main__":
         dbName = "database.sqlite"
 
     ImportAll(args.inputfolder,dbName,destDirName,args.append)
-

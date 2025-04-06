@@ -1,18 +1,3 @@
-import sys
-import os
-import fnmatch
-import datetime
-from io import StringIO
-from collections import OrderedDict
-from operator import itemgetter
-from pathlib import Path
-
-from distutils.version import LooseVersion
-
-from dateutil import parser
-from dateutil.tz import tzlocal
-from lxml import etree
-
 """
 This is a script which attempts to construct an XML file such as is created by export (or backupDB) from input_params.xml/params.xml/stdout.txt files.
 
@@ -54,8 +39,22 @@ DATABASE.db.xml:577
 fasolt:ccp4i2-devel-clean stuart$ grep -c 'fileuse fileid'  reconstruct.xml DATABASE.db.xml 
 reconstruct.xml:269
 DATABASE.db.xml:209
-
 """
+
+from collections import OrderedDict
+from distutils.version import LooseVersion
+from io import StringIO
+from operator import itemgetter
+from pathlib import Path
+import datetime
+import fnmatch
+import os
+import sys
+
+from dateutil import parser
+from dateutil.tz import tzlocal
+from lxml import etree
+
 
 timeZoneName = datetime.datetime.now(tzlocal()).tzname().split()[0]
 
