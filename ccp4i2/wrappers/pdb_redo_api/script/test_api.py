@@ -22,12 +22,14 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import json
-import requests
 import argparse
+import json
 import time
 
+import requests
+
 from . import PDBRedoAPIAuth
+
 
 # Due to a bug? in the server implementation, the :port is required here...
 PDBREDO_URI = 'https://pdb-redo.eu'

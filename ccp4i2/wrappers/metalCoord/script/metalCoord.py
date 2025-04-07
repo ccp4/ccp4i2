@@ -1,15 +1,16 @@
 """
-    metalCoord.py: CCP4 GUI Project
-    Martin Maly, MRC-LMB
+Martin Maly, MRC-LMB
 """
 
-import os
 import json
-from xml.etree import ElementTree as ET
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4ErrorHandling import *
-from core import CCP4Utils
-from wrappers.servalcat.script.json2xml import json2xml
+import os
+import xml.etree.ElementTree as ET
+
+from . import json2restraints
+from ....core import CCP4Utils
+from ....core.CCP4ErrorHandling import Severity
+from ....core.CCP4PluginScript import CPluginScript
+from ...servalcat.script.json2xml import json2xml
 
 
 class metalCoord(CPluginScript):
@@ -21,7 +22,7 @@ class metalCoord(CPluginScript):
     MAINTAINER = 'martin.maly@soton.ac.uk'
 
     ERROR_CODES = { 201 : { 'description' : 'No output JSON file from metalCoord' },
-                    202 : { 'description' : 'Log file does not report successful job completion' , 'severity' : SEVERITY_WARNING },
+                    202 : { 'description' : 'Log file does not report successful job completion' , 'severity' : Severity.WARNING },
                     }
 
 
@@ -90,7 +91,6 @@ class metalCoord(CPluginScript):
             stPath = str(self.container.inputData.XYZIN.fullPath)
         else:
             stPath = None
-        from . import json2restraints
         json2restraints.main(
             jsonPaths=[self.outputJsonPath],
             stPath=stPath,

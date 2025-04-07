@@ -1,17 +1,15 @@
-from __future__ import print_function
-
 """
-     freerflag.py: CCP4 GUI Project
-     Copyright (C) 2011 STFC
+Copyright (C) 2011 STFC
 """
 
 import os
-import gemmi
-from lxml import etree
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core import CCP4Utils
+from lxml import etree
+import gemmi
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
 
 
 class freerflag(CPluginScript):
@@ -52,7 +50,7 @@ class freerflag(CPluginScript):
             # ignoreErrorCodes to say makeHklin can ignore cmtzjoin gives exitCode 101 for incomplete freerflag
             self.hklin,error = self.makeHklin(['F_SIGF','FREERFLAG'],ignoreErrorCodes=[36])
             print('freerflag.processInputFiles',self.hklin,error)
-            if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+            if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
                 return CPluginScript.FAILED
             else:
                 # Optional global cutoff
@@ -109,7 +107,6 @@ class freerflag(CPluginScript):
 
     # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
     def makeCommandAndScript(self):
-      import os
       self.hklout = os.path.join(self.workDirectory,"hklout.mtz")
 
       self.appendCommandLine(['HKLIN', self.hklin])
@@ -182,7 +179,7 @@ class freerflag(CPluginScript):
       else:          
           error = self.splitHklout(['FREEROUT'],['FreeR_flag'])
 
-      if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+      if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
         return CPluginScript.FAILED
      
       # Annotation cf aimless_pipe
@@ -216,67 +213,3 @@ class freerflag(CPluginScript):
         e2 = etree.Element(elementname)
         e2.text = elementtext
         containerXML.append(e2)
-
-
-#======================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-import unittest
-
-class testfreerflag(unittest.TestCase):
-
-   def setUp(self):
-    from core import CCP4Modules
-    self.app = CCP4Modules.QTAPPLICATION()
-    # make all background jobs wait for completion
-    # this is essential for unittest to work
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
-
-   def tearDown(self):
-    from core import CCP4Modules
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
-
-   def test_1(self):
-     from core import CCP4Modules
-     import os
-
-     workDirectory = CCP4Utils.getTestTmpDir()
-     # this needs to agree with name attribute below
-     logFile = os.path.join(workDirectory,'test1_freerflag.log')
-     # Delete any existing log file
-     if os.path.exists(logFile): os.remove(logFile)
-
-     self.wrapper = freerflag(parent=CCP4Modules.QTAPPLICATION(),name='test1',workDirectory=workDirectory)
-     self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','freerflag','test_data','test1.data.xml'))
-
-     self.wrapper.setWaitForFinished(1000000)
-     pid = self.wrapper.process()
-     self.wrapper.setWaitForFinished(-1)
-     if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-
-   def test_2(self):
-     from core import CCP4Modules
-     import os
-
-     workDirectory = CCP4Utils.getTestTmpDir()
-     # this needs to agree with name attribute below
-     logFile = os.path.join(workDirectory,'test2_freerflag.log')
-     # Delete any existing log file
-     if os.path.exists(logFile): os.remove(logFile)
-
-     self.wrapper = freerflag(parent=CCP4Modules.QTAPPLICATION(),name='test2',workDirectory=workDirectory)
-     self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','freerflag','test_data','test2.data.xml'))
-
-     self.wrapper.setWaitForFinished(1000000)
-     pid = self.wrapper.process()
-     self.wrapper.setWaitForFinished(-1)
-     if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(testfreerflag)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)

@@ -1,13 +1,13 @@
-from __future__ import print_function
-
+import os
 import pathlib
-import sys,os
+import sys
 import textwrap
+
 import lxml
 
-from core import CCP4File
-from core.CCP4ModelData import CPdbDataFile
-from core.CCP4PluginScript import CPluginScript
+from ....core import CCP4File
+from ....core.CCP4ModelData import CPdbDataFile
+from ....core.CCP4PluginScript import CPluginScript
 
 
 class coot_rsr_morph(CPluginScript):

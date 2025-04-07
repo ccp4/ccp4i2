@@ -1,30 +1,10 @@
-
 """
-     tasks/molrep_mr/Cmolrep_mr.py: CCP4 GUI Project
-     Copyright (C) 2011 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2011 University of York
+Andrey Lebedev September 2011 - molrep_mr gui
 """
 
-"""
-     Andrey Lebedev September 2011 - molrep_mr gui
-"""
+from ....qtgui import CCP4TaskWidget
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
 
 def whatNext(jobId=None):
   return [ ]
@@ -50,47 +30,12 @@ class Cmolrep_selfrot(CCP4TaskWidget.CTaskWidget):
 
     self.setProgramHelpFile('molrep')
 
-#-  --------------------          --------------------          --------------------
-
     folder = self.openFolder(folderFunction='inputData',title='Input Data')
-
-    '''
-    self.createLine( [ 'advice', 'What to do?' ] )
-    self.setMenuText( 'PERFORM', {
-       'srf': 'Self Rotation Function',
-       'pat': 'Rotation and Translation Searches',
-       'den': 'Search in Density after Refinement',
-    } )
-    self.createLine( [ 'widget', '-guiMode', 'multiLineRadio', 'PERFORM' ] )
-    '''
 
     self.openSubFrame( toggle = [ 'PERFORM','close', [ 'den' ]] )
     self.createLine( [ 'advice', 'Experimental Data' ] )
     self.createLine( [ 'widget', 'F_SIGF' ] )
     self.closeSubFrame()
-
-    '''
-    self.openSubFrame( toggle=[ 'PERFORM','close', [ 'srf' ]] )
-    self.createLine( [ 'advice', 'Search Model' ] )
-    self.createLine( [ 'widget', 'XYZIN' ] )
-    self.createLine( [ 'widget', 'SEQIN' ] )
-    self.createLine( [ 'label', 'The number of monomers to search for', 'widget', 'NMON' ] )
-    self.closeSubFrame()
-
-    self.openSubFrame( toggle = [ 'PERFORM','open', [ 'pat' ]] )
-    self.createLine( [ 'advice', 'Fixed Model' ] )
-    self.createLine( [ 'widget', 'XYZIN_FIX' ] )
-    self.closeSubFrame()
-
-
-    self.openSubFrame( toggle = [ 'PERFORM','open', [ 'den' ] ])
-    self.createLine( [ 'advice', 'Partial Model and Map Coefficients: define PDB and MTZ after the same refmac run' ] )
-    self.createLine( [ 'widget', 'XYZIN_FIX' ] )
-    self.createLine( [ 'widget', 'F_PHI_MAP' ] )
-    self.closeSubFrame()
-    '''
-
-#-   --------------------          --------------------          --------------------
 
     folder = self.openFolder(folderFunction='controlParameters',title='Basic Options')
 
@@ -101,7 +46,6 @@ class Cmolrep_selfrot(CCP4TaskWidget.CTaskWidget):
        'n': 'never'
     } )
     self.createLine( [ 'label', '         ', 'widget', '-guiMode', 'multiLineRadio', 'SEQ' ] )
-
 
     self.createLine( [ 'advice', 'B-factors modification options' ] )
     self.setMenuText( 'SURF', {
@@ -116,7 +60,6 @@ class Cmolrep_selfrot(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'advice', 'Number of peaks to analyse' ] )
     self.createLine( [ 'label', '         ', 'label', 'Number of Rotation Function peaks', 'widget', 'NP'] )
     self.createLine( [ 'label', '         ', 'label', 'Number of Translation Function peaks', 'widget', 'NPT'])
-
 
     folder = self.openFolder(folderFunction='controlParameters',title='Advanced Options')
 
@@ -147,7 +90,6 @@ class Cmolrep_selfrot(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'label', '         ', 'widget', '-guiMode', 'multiLineRadio', 'SCORE' ] )
     self.createLine( [ 'label', '         ', 'label', 'Expected number of copies (for contrast calculation only)', 'widget', 'NMON_EXP'] )
 
-
     self.createLine( [  'advice', 'Scaling' ] )
     self.setMenuText( 'ANISO', {
        'y': 'anisotropic',
@@ -156,7 +98,6 @@ class Cmolrep_selfrot(CCP4TaskWidget.CTaskWidget):
     } )
     self.createLine( [ 'label', '         ', 'widget', '-guiMode', 'multiLineRadio', 'ANISO' ] )
     self.closeSubFrame()
-
 
     self.createLine( [ 'advice', 'High pass filter parameter (B-add, the B-factor applied to input structure amplitudes)' ] )
 
@@ -174,7 +115,6 @@ class Cmolrep_selfrot(CCP4TaskWidget.CTaskWidget):
     lab1 = 'B-add'
     self.createLine( [ 'label', '         ', 'label', lab1, 'widget', 'BADD' ], toggle=[ 'HIGH_PATH_VAR', 'open' , ['b'] ] )
 
-
     self.createLine( [ 'advice', 'Low pass filter parameter (B-off, the B-factor of the removed fraction of structure amplitudes)' ] )
 
     self.setMenuText( 'LOW_PATH_VAR', {
@@ -184,17 +124,4 @@ class Cmolrep_selfrot(CCP4TaskWidget.CTaskWidget):
     } )
     self.createLine( [ 'label', '         ', 'widget', '-guiMode', 'multiLineRadio', 'LOW_PATH_VAR' ])
 
-
-
-    '''
-    print 'CTaskMolrep stackedWidgets'
-    for w in self.findChildren( CCP4TaskWidget.CStackedWidget ) :
-      print '   ', w, w.controlVar
-
-    self.updateViewFromModel()
-    '''
-
     self.container.guiParameters.OPEN_HIGH_PATH_VAR = True
-
-
-

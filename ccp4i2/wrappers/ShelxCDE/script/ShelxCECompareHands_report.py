@@ -1,7 +1,6 @@
-from report.CCP4ReportParser import *
-import sys
-import math
-from wrappers.ShelxCDE.script import ShelxCE_report
+from . import ShelxCE_report
+from ....report.CCP4ReportParser import Report
+
 
 class ShelxCECompareHands_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -39,4 +38,3 @@ class ShelxCECompareHands_report(Report):
         for secondHandNode in secondHandNodes:
             shelxCEReport = ShelxCE_report.ShelxCE_report(xmlnode=secondHandNode,jobStatus=self.jobStatus)
             shelxCEReport.shelXEReport(parent=secondHandDiv, initiallyOpen=True,idRoot="SecondHand")
-

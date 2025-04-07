@@ -1,4 +1,5 @@
-from report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
+
 
 class cif2mtz_report(Report):
     TASKNAME = 'cif2mtz'

@@ -1,12 +1,10 @@
 """
-    cpatterson_gui.py
-    Copyright (C) 2014-2019 Jon Agirre & University of York
-    Author: Jon Agirre
-
+Copyright (C) 2014-2019 Jon Agirre & University of York
+Author: Jon Agirre
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui.CCP4TaskWidget import CTaskWidget
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 class cpatterson_gui(CTaskWidget):
 

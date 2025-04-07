@@ -1,15 +1,13 @@
-from __future__ import print_function
-
 """
-    wrappers/ProvideSequence/script/ProvideSequence_gui.py
-    Martin Noble
-    """
+Martin Noble
+"""
 
-from PySide2 import QtGui, QtWidgets,QtCore,QtWebEngine, QtWebEngineWidgets
-from qtgui.CCP4TaskWidget import CTaskWidget
-from qtgui import CCP4Widgets
-import os
 import functools
+
+from PySide2 import QtCore, QtWebEngineWidgets
+
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 class CTaskProvideAsuContents(CTaskWidget):
     
@@ -154,12 +152,6 @@ class CTaskProvideAsuContents(CTaskWidget):
         except:
             pass
         self.getWidget('ASU_CONTENT').validate()
-        """
-        if len(self.getWidget('ASU_CONTENT').model)<2:
-           self.getWidget('ASU_CONTENT').setListVisible(0)
-        else:
-           self.getWidget('ASU_CONTENT').setListVisible(1)
-        """
 
     def fix(self):
       #print 'CTaskProvideAsuContents.fix'

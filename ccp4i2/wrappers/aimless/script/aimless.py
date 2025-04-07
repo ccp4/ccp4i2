@@ -1,12 +1,8 @@
-from __future__ import print_function
-
-"""
-    aimless.py: CCP4 GUI Project
-    Copyright (C) 2012 STFC
-    """
-
+import glob
 import os
-from core.CCP4PluginScript import CPluginScript
+
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class aimless(CPluginScript):
     
@@ -461,7 +457,6 @@ class aimless(CPluginScript):
     def processOutputFiles(self):
         print("AIMLESS FINISHED START")
         
-        import glob
         nOutFiles = 0
         par = self.container.controlParameters
         out = self.container.outputData
@@ -505,46 +500,3 @@ class aimless(CPluginScript):
         else:
           self.appendErrorReport(201)
           return CPluginScript.FAILED
-
-#======================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-import unittest
-
-class testaimless(unittest.TestCase):
-    
-    # -----------------------------------------------------------------------
-    def setUp(self):
-        from core import CCP4Modules
-        self.app = CCP4Modules.QTAPPLICATION()
-        # make all background jobs wait for completion
-        # this is essential for unittest to work
-        CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
-    
-    def tearDown(self):
-        from core import CCP4Modules
-        CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
-    
-    def test_1(self):
-        from core import CCP4Modules, CCP4Utils
-        import osos
-        
-        workDirectory = os.path.join(CCP4Utils.getTestTmpDir(),'test1')
-        if not os.path.exists(workDirectory): os.mkdir(workDirectory)
-        
-        self.wrapper = aimless(parent=CCP4Modules.QTAPPLICATION(),name='test1',workDirectory=workDirectory)
-        self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','aimless','test_data','test1.data.xml'))
-        
-        self.wrapper.setWaitForFinished(1000000)
-        pid = self.wrapper.process()
-        self.wrapper.setWaitForFinished(-1)
-        if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-
-def TESTSUITE():
-    suite = unittest.TestLoader().loadTestsFromTestCase(testaimless)
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)

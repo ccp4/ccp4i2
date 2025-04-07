@@ -1,4 +1,7 @@
-from qtgui import CCP4TaskWidget
+import multiprocessing
+
+from ....qtgui import CCP4TaskWidget
+
 
 class CTaskmrparse(CCP4TaskWidget.CTaskWidget):
 
@@ -14,7 +17,6 @@ class CTaskmrparse(CCP4TaskWidget.CTaskWidget):
         CCP4TaskWidget.CTaskWidget.__init__(self,parent)
 
     def drawContents(self):
-        import multiprocessing
         MAXPROC=multiprocessing.cpu_count()  
 
         self.openFolder(folderFunction='inputData', title='Input Data')
@@ -35,11 +37,6 @@ class CTaskmrparse(CCP4TaskWidget.CTaskWidget):
         self.createLine( [ 'widget', 'DATABASE', 'label', 'Databases to search for models (PDB, AFDB, All)' ] )
         self.closeSubFrame()
 
-#        self.createLine( [ 'subtitle', 'Model databases', 'Databases to search for possible search models' ] )
-#        self.createLine( [ 'widget', 'SEARCH_PDB', 'label', 'Search PDB for for possible MR search models' ] )
-#        self.createLine( [ 'advice', indent+'Non-redundancy level for homologue search:' ], toggle=['SEARCH_PDB', 'open', [ True ] ] )
-#        self.createLine( [ 'label', indent, 'widget', 'REDUNDANCYLEVEL' ], toggle=['SEARCH_PDB', 'open', [ True ] ]  )
-
         self.openSubFrame(frame=[True], toggle = ['DATABASE', 'close', ['AFDB'] ] )
         self.createLine( [ 'subtitle', 'Optional PDB Settings', 'Set PDB database options' ] )
         self.createLine( [ 'widget', '-browseDb', True, 'PDBLOCAL', 'tip', 'Local PDB mirror' ], toggle=['DATABASE', 'close', ['AFDB'] ]  )# ,toggle=['PASTEORREAD','open',['HHPREDIN']])
@@ -59,9 +56,3 @@ class CTaskmrparse(CCP4TaskWidget.CTaskWidget):
 
         self.createLine(['subtitle', 'Do sequence classification?', 'widget', 'DO_CLASSIFY'])
         self.closeSubFrame()
-        # self.createLine(['advice',
-        #                  'Coiled-coil and transmembrane classification require locally installed programs (Deepcoil & TMHMM)'])
-        # self.createLine(['advice',
-        #                  'DeepCoil can be downloaded from: <a href="https://github.com/labstructbioinf/DeepCoil">https://github.com/labstructbioinf/DeepCoil</a>'])
-        # self.createLine(['advice',
-        #                  'TMHMM can be downloaded from: <a href="https://github.com/dansondergaard/tmhmm.py">https://github.com/dansondergaard/tmhmm.py</a>'])

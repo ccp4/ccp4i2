@@ -1,18 +1,18 @@
-from __future__ import print_function
-from PySide2 import QtGui, QtWidgets,QtCore
+import json
+import os
+import subprocess
+import sys
+import zipfile
 
-from qtgui.CCP4TaskWidget import CTaskWidget
-from core.CCP4Modules import PROJECTSMANAGER
-from core.CCP4ErrorHandling import *
+from PySide2 import QtCore, QtWidgets
+
 from . import CCP4i2DjangoSession
-import functools
-import sys, os
+from ....core.CCP4Modules import PREFERENCES, PROJECTSMANAGER, SERVERSETUP
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+from .TreeModel import TreeNode, TreeModel
 
-#-------------------------------------------------------------------
+
 class SyncToDjango(CTaskWidget):
-#-------------------------------------------------------------------
-    
-    # Subclass CTaskWidget to give specific task window
     TASKNAME = 'SyncToDjango'
     TASKVERSION = 0.1
     TASKMODULE=[ 'developer_tools' ]
@@ -24,10 +24,8 @@ class SyncToDjango(CTaskWidget):
     DIRECTION="NeitherUpNorDown"
     
     def drawContents(self):
-        from lxml import etree
         self.openFolder(folderFunction='inputData',followFrom=False)
-        from core import CCP4Modules
-        container = CCP4Modules.SERVERSETUP()
+        container = SERVERSETUP()
         container.load()
         serversEtree = container.getEtree(excludeUnset=True)
         allServerNames = serversEtree.xpath("//CHostname/text()")
@@ -109,7 +107,6 @@ class SyncToDjango(CTaskWidget):
         if "443" in serverName: transportType = "https://"
         response = self.ccp4i2DjangoSession().getURLWithValues(transportType+serverName+"?listProjects",{})
         responseText = response.read()
-        import json
         self.directoryList = json.loads(responseText)
         projectHierarchy = ProjectHierarchy(directoryList = self.directoryList)
         self.projectsTree.setModel(projectHierarchy)
@@ -146,7 +143,7 @@ class SyncToDjango(CTaskWidget):
     
     @QtCore.Slot(str)
     def openSelected(self, item):
-        from qtgui.CCP4ProjectManagerGui import openProject
+        from ....qtgui.CCP4ProjectManagerGui import openProject
         for anIndex in self.projectsTree.selectionModel().selection().indexes():
             openProject(anIndex.internalPointer().ref.projectTuple[0])
 
@@ -154,11 +151,8 @@ class SyncToDjango(CTaskWidget):
     def cootSelected(self, item):
         for anIndex in self.projectsTree.selectionModel().selection().indexes():
             projectId = anIndex.internalPointer().ref.projectTuple[0]
-            from core.CCP4Modules import PREFERENCES
             archiveName = self.ccp4i2DjangoSession().lastLigandPipelineExportForProjectId(projectId)
-            import subprocess
             currentDirectory = os.path.realpath(PROJECTSMANAGER().db().jobDirectory(self.jobId()))
-            import zipfile
             zip_ref = zipfile.ZipFile(archiveName, 'r')
             zip_ref.extractall(currentDirectory)
             filenames = [os.path.basename(filePath) for filePath in zip_ref.namelist()]
@@ -192,9 +186,6 @@ class SyncToDjango(CTaskWidget):
                 for project in projectsToSync:
                     self.ccp4i2DjangoSession().syncProject(project[0])
                 return
-
-
-from .TreeModel import TreeNode, TreeModel
 
 class NamedElement(object): # your internal structure
     def __init__(self, name, subelements, projectTuple):
@@ -244,12 +235,6 @@ class ProjectHierarchy(TreeModel):
             return 'Name'
         return None
     
-#--------------------------------------------------------------------------------------------------
     def flags(self, index=QtCore.QModelIndex()):
-#--------------------------------------------------------------------------------------------------
         #print "Evaluating flags for", str(index.column()), str(index.row())
         return QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled
-
-
-
-

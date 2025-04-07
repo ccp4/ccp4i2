@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 # Normally would use findall (http://www.w3schools.com/findall/) to access the program output but
 # I've added some convenience functions (haspath(),ifselect(),select() etc) to tidy up the Python code
 # So here if the program output has a TwinWarning append some text to the report.  append() parses
@@ -7,15 +5,12 @@ from __future__ import print_function
 # object automatically and appends that.
 #
 
+import sys
 
-import os,sys
-try:
-  from report.CCP4ReportParser import *
-except:
-  exec(compile(open(os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc')).read(), os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc'), 'exec'))
-  from report.CCP4ReportParser import *
+from ....core.CCP4ErrorHandling import Severity
+from ....pipelines.aimless_pipe.script.aimless_pipe_utils import colourText, displayFile, formatRange, html_linebreak
+from ....report.CCP4ReportParser import Report
 
-from pipelines.aimless_pipe.script.aimless_pipe_utils import *
 
 # - - - - - - - - - - - - - - - - -
 class pointless_report(Report):
@@ -29,7 +24,7 @@ class pointless_report(Report):
     except:
       self.fileroot = None
 
-    if self.errorReport().maxSeverity()>SEVERITY_WARNING:
+    if self.errorReport().maxSeverity()>Severity.WARNING:
       print('FAILED instantiating Pointless report generator')
       self.errorReport().report()
       return
@@ -415,13 +410,7 @@ class pointless_report(Report):
           message = '<div style="color:'+colour+';font-size:130%">'+message+'</div>'
         parent.append(message)
         parent.append("<br/>")
-      
-  # - - - - - - - - - - - - - - - - -
-  def isTwinWarning(self):
-    if len(self.xmlnode.findall('TwinWarning'))>0:
-      return True
-    return False
-      
+
   # - - - - - - - - - - - - - - - - -
   def Errors(self,parent=None, colour=True):
     fail = False
@@ -1013,8 +1002,6 @@ class pointless_report(Report):
 
 ############################################################################
 if __name__ == "__main__":
-#  report = PointlessReport(xmlFile = os.path.join(os.environ['CCP4I2_TOP'],'test','report_test','gam_1.xml' ))
-
   report = pointless_report(xmlFile = sys.argv[1] )
   tree= report.as_etree()
   #  print etree.tostring(tree,pretty_print=True)

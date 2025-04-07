@@ -1,9 +1,9 @@
-from __future__ import print_function
-
-from report.CCP4ReportParser import *
-from core import CCP4Utils
-import sys
+import os
 import xml.etree.ElementTree as etree
+
+from ....core import CCP4Utils
+from ....report.CCP4ReportParser import Report
+
 
 class ccp4mg_edit_model_report(Report):
     # Specify which gui task and/or pluginscript this applies to

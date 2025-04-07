@@ -1,5 +1,5 @@
-from report.CCP4ReportParser import *
-import sys
+from ....report.CCP4ReportParser import Report
+
 
 class acorn_report(Report):
     TASKNAME= "acorn"

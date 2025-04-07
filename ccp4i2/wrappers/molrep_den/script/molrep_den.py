@@ -1,28 +1,16 @@
-
 """
-     molrep_mr.py: CCP4 GUI Project
-     Copyright (C) 2011 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2011 STFC
 """
 
 import os
 import re
-import shutil
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4ErrorHandling import *
+
+from lxml import etree
+
+from ....core import CCP4Utils
+from ....core.CCP4ErrorHandling import Severity
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class molrep_den(CPluginScript):
 
@@ -32,9 +20,9 @@ class molrep_den(CPluginScript):
     TASKMODULE = 'test'
     MAINTAINER = 'andrey.lebedev@stfc.ac.uk'
 
-    ERROR_CODES = {101 : { 'severity': SEVERITY_WARNING, 'description' : 'Failed extracting tables from molrep.doc' },
-                   102 : { 'severity': SEVERITY_WARNING, 'description' : 'Failed writing tables to program.xml' },
-                   103 : { 'severity': SEVERITY_WARNING, 'description' : 'No tables extracted from molrep.doc' },
+    ERROR_CODES = {101 : { 'severity': Severity.WARNING, 'description' : 'Failed extracting tables from molrep.doc' },
+                   102 : { 'severity': Severity.WARNING, 'description' : 'Failed writing tables to program.xml' },
+                   103 : { 'severity': Severity.WARNING, 'description' : 'No tables extracted from molrep.doc' },
                    104 : { 'description' : 'No output coordinate file from Molrep' },
                    105 : { 'description' : 'No output log file from Molrep' },
                    106 : { 'description' : 'Error parsing log file from Molrep' }}
@@ -43,7 +31,7 @@ class molrep_den(CPluginScript):
     def processInputFiles(self):
       # Ensure the obs data is in form of F_SIGF
       if self.container.guiParameters.PERFORM != 'den':
-        from core import CCP4XtalData
+        from ....core import CCP4XtalData
         # Using CObsDataFile.convert() did not work for input of anomalous Is (as from aimless)
         self.F_SIGF_hklin,errReport = self.makeHklin([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
         #self.F_SIGF_hklin,errReport = self.container.inputData.F_SIGF.convert(targetContent=CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN)
@@ -80,7 +68,6 @@ class molrep_den(CPluginScript):
       inp = self.container.inputData
       par = self.container.controlParameters
       gui = self.container.guiParameters
-      from core import CCP4Utils
       self.path_wrk = str( self.getWorkDirectory() )
       self.path_scr = os.path.join( self.path_wrk, 'scratch' )
       if not os.path.exists(self.path_scr): os.mkdir( self.path_scr )
@@ -276,10 +263,8 @@ class molrep_den(CPluginScript):
 
 
     def saveProgramXml ( self, docFileName, programXmlFileName ) :
-      from core import CCP4Utils
       titles = []
       status = 0
-      from lxml import etree
       results = etree.Element('MolrepResult')
       tf = etree.Element('MR_TF')
       results.append(tf)
@@ -291,18 +276,6 @@ class molrep_den(CPluginScript):
         e = etree.Element(key)
         e.text = value
         tf.append(e)
-
-      '''
-      table = [ '<?xml version="1.0" encoding="ASCII" standalone="yes"?>' ]
-      table.append( "<MolrepResult>" )
-      table.append( "<MR_TF>" )
-      table.append( "Error <err_level>0</err_level>" )
-      table.append( "Message <err_message>normal termination</err_message>" )
-      table.append( "nmon_solution <n_solution>1</n_solution>" )
-      table.append( "mr_score <mr_score>0.0000</mr_score>" )
-      table.append( "</MR_TF>" )
-      table.append( " <RFpeaks>" )
-      '''
 
       docfileText = CCP4Utils.readFile(docFileName)
       docfileList = docfileText.split('\n')
@@ -357,7 +330,6 @@ class molrep_den(CPluginScript):
                 
 
     def extractLaueDataFromLog(self):
-      from core import CCP4Utils
       try:
         text = CCP4Utils.readFile(self.makeFileName('LOG'))
       except:
@@ -380,7 +352,7 @@ class molrep_den(CPluginScript):
         #print 'spg,score',spg,score
       return data
 
-'''       
+'''
 0123456789012345678901234567890123456789012345678901234567890
  +-------------------------------------------------------+
  |        Nsg     sg                        Score   Cntr |
@@ -394,5 +366,4 @@ class molrep_den(CPluginScript):
  |    7 2018   P 21 2 21                    0.288  4.563 |
  |    8 3018   P 2 21 21                    0.296 13.246 |
  +-------------------------------------------------------+
-'''       
-
+'''

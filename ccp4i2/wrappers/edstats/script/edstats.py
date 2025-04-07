@@ -1,35 +1,17 @@
-from __future__ import print_function
-
 """
-     edstats.py: CCP4 GUI Project
-     Copyright (C) 2014 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-"""
-     Jon Agirre         2014 - Started development
-     Jon Agirre         2018 - Improved interface, updated to latest binary
+Copyright (C) 2014 University of York
+Jon Agirre 2014 - Started development
+Jon Agirre 2018 - Improved interface, updated to latest binary
 
 """
 
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4Modules import PROCESSMANAGER
-from core import CCP4ErrorHandling
-from core.CCP4ClipperUtils import is_aminoacid
-from core import CCP4Utils
+import os
+
+from lxml import etree
+
+from ....core import CCP4Utils
+from ....core.CCP4ClipperUtils import is_aminoacid
+from ....core.CCP4PluginScript import CPluginScript
 
 
 class edstats(CPluginScript):
@@ -45,8 +27,6 @@ class edstats(CPluginScript):
     MAINTAINER = 'jon.agirre@york.ac.uk'
 
     def processInputFiles(self):
-      from core import CCP4XtalData
-
       self.cfftPlugin1 = self.makeCfftPlugin1 ( )
       error = self.cfftPlugin1.process ( )
       if error == CPluginScript.FAILED:
@@ -64,13 +44,11 @@ class edstats(CPluginScript):
 
       #print 'taskMakeHklin F_SIGF',self.container.inputData.F_SIGF,type(self.container.inputData.F_SIGF),self.container.inputData.F_SIGF.contentFlag
       #self.hklin,error = self.makeHklin ( [ ['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN ] ] )
-      #if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING: return CPluginScript.FAILED
+      #if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING: return CPluginScript.FAILED
 
       return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
-
-        import os
         out = self.container.outputData
         self.path_wrk = str( self.getWorkDirectory() )
 
@@ -80,7 +58,6 @@ class edstats(CPluginScript):
             out.COOTSCRIPTOUT.set ( fileName3 )
             out.COOTSCRIPTOUT.annotation.set ( 'guided tour on the reported issues' )
 
-        from lxml import etree
         xmlRoot = etree.Element('Edstats')
         segmentNode = None
 
@@ -342,9 +319,6 @@ class edstats(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def makeCommandAndScript(self):
-      import os
-      from core import CCP4XtalData
-
       self.path_wrk = str( self.getWorkDirectory() )
       edstatsOut = os.path.join ( self.path_wrk, 'edstats.out' )
 
@@ -391,32 +365,3 @@ class edstats(CPluginScript):
         cfftPlugin2.container.inputData.FPHIIN = self.container.inputData.FPHIIN2
         cfftPlugin2.container.inputData.RESOLUTION = self.container.inputData.RES_HIGH * 3.0 / 4.1
         return cfftPlugin2
-
-#=============================================================================================
-import unittest
-class testEdstats(unittest.TestCase):
-
-    def test1(self):
-      # Test creation of log file using ../test_data/test1.params.xml input
-      from core.CCP4Utils import getCCP4I2Dir
-      import os
-      workDirectory = CCP4Utils.getTestTmpDir()
-      logFile = os.path.join(workDirectory,'edstats_test1.log')
-      # Delete any existing log file
-      if os.path.exists(logFile): os.remove(logFile)
-      self.wrapper = edstats(name='edstats_test1',workDirectory=workDirectory)
-      self.wrapper.container.loadDataFromXml(os.path.join(getCCP4I2Dir(),'wrappers','edstats','test_data','test1.params.xml'))
-      self.wrapper.setWaitForFinished(1000000)
-      pid = self.wrapper.process()
-      self.wrapper.setWaitForFinished(-1)
-      if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-      #self.assertTrue(os.path.exists(logFile),'No log file found')
-
-
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(testEdstats)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)

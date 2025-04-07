@@ -1,27 +1,18 @@
-#
+#  Create xia2_multiplex.def.xml from PHIL parameters
 #  Copyright (C) 2022 UKRI/STFC Rutherford Appleton Laboratory, UK.
 #
 #  Author: David Waterman
 #  Acknowledgements: based on ideas and code by Nat Echols and Martin Noble.
 #
 
-"""Create xia2_multiplex.def.xml from PHIL parameters"""
-
-import sys
-import os
 from lxml import etree
+from xia2.cli.multiplex import phil_scope
 
-# Nasty trick required to import PhilTaskCreator when running with ccp4-python
-this_dir = os.path.dirname(os.path.realpath(__file__))
-ccp4i2_dir = os.path.dirname(os.path.dirname(os.path.dirname(this_dir)))
-sys.path.append(ccp4i2_dir)
-from utils.phil_handlers import PhilTaskCreator
+from ....utils.phil_handlers import PhilTaskCreator
 
 
 class Xia2MultiplexTaskCreator(PhilTaskCreator):
     def __init__(self, debug=False):
-
-        from xia2.cli.multiplex import phil_scope
 
         PhilTaskCreator.__init__(self, phil_scope, debug)
         self.fmt_dic["PLUGINNAME"] = "xia2_multiplex"

@@ -1,9 +1,5 @@
-from __future__ import print_function
+from ...x2mtz.script import x2mtz
 
-
-
-from core.CCP4PluginScript import CPluginScript
-from wrappers.x2mtz.script import x2mtz
 
 class scalepack2mtz(x2mtz.x2mtz):
 
@@ -70,52 +66,3 @@ class scalepack2mtz(x2mtz.x2mtz):
             s = "RESOLUTION %f  %f" % (low, high)
 
         return s
-
-
-#======================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-import unittest
-
-class testscalepack2mtz(unittest.TestCase):
-
-   def setUp(self):
-    from core import CCP4Modules
-    self.app = CCP4Modules.QTAPPLICATION()
-    # make all background jobs wait for completion
-    # this is essential for unittest to work
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
-
-   def tearDown(self):
-    from core import CCP4Modules
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
-
-   def test_1(self):
-     from core import CCP4Modules
-     from core import CCP4Utils
-     import os
-
-     workDirectory = CCP4Utils.getTestTmpDir()
-     # this needs to agree with name attribute below
-     logFile = os.path.join(workDirectory,'convert2mtz_test_auto.log')
-     # Delete any existing log file
-     if os.path.exists(logFile): os.remove(logFile)
-
-     self.wrapper = scalepack2mtz(parent=CCP4Modules.QTAPPLICATION(),name='convert2mtz_test_auto',workDirectory=workDirectory)
-     self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','convert2mtz','test_data','cns_input.data.xml'))
-
-     self.wrapper.setWaitForFinished(1000000)
-     pid = self.wrapper.process()
-     self.wrapper.setWaitForFinished(-1)
-     if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-     #self.assertTrue(os.path.exists(logFile),'No log file found')
-
-
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(testconvert2mtz)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)

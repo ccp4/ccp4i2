@@ -1,26 +1,11 @@
-"""
-    morda_i2.py: CCP4 GUI Project
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
+import os
+import shutil
+import sys
 
-"""
+from ....core import CCP4ErrorHandling
+from ....core import CCP4PluginScript
+from ....core import CCP4XtalData
 
-import os, sys, shutil, re
-from core import CCP4PluginScript
-from core import CCP4ErrorHandling
-from core import CCP4XtalData
 
 class morda_i2(CCP4PluginScript.CPluginScript):
     TASKNAME = 'morda_i2'
@@ -34,7 +19,7 @@ class morda_i2(CCP4PluginScript.CPluginScript):
     def processInputFiles(self):
         content_flag = CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN
         self.hklin, error = self.makeHklin([['F_SIGF', content_flag], 'FREERFLAG'])
-        if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return self.FAILED
 
         assert self.container.inputData.ASUIN.isSet()
@@ -78,7 +63,7 @@ class morda_i2(CCP4PluginScript.CPluginScript):
             grp1 = ['FPHIOUT', 'DIFFPHIOUT']
             grp2 = ['FWT,PHWT', 'DELFWT,PHDELWT']
             error = self.splitHklout(grp1, grp2, infile=hklout)
-            if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+            if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
                 return self.FAILED
 
             try:
@@ -99,4 +84,3 @@ class morda_i2(CCP4PluginScript.CPluginScript):
 
         else:
             return self.UNSATISFACTORY
-

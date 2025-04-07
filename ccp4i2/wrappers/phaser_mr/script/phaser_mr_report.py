@@ -1,10 +1,12 @@
-from report.CCP4ReportParser import *
-import sys
+import copy
+import string
 import xml.etree.ElementTree as etree
+
+from ....report.CCP4ReportParser import Report
+
 
 class pimpleGraph():
     def __init__(self,title=None, separator =' ', xmlnode=None):
-        import copy
         if xmlnode is not None:
             self.xmlnode = copy.deepcopy(xmlnode)
             if title is not None: self.xmlnode.set('title',title)
@@ -29,7 +31,6 @@ class pimpleGraph():
         return
     
     def dataAsText(self):
-        import string
         textLines = [string.join(dataRow,' ') for dataRow in self.data]
         text = string.join(textLines,'\n')
         return text
@@ -43,34 +44,6 @@ class pimpleGraph():
     
     def dataRow(self,row):
         return self.data[row]
-    
-    def appendPimpleGraph(self, otherPimpleGraph = None):
-        if otherPimpleGraph is None: return
-        import string
-        import copy
-        self.headers += otherPimpleGraph.headers
-        self.headersNode.text = string.join(self.headers,self.separator)
-        originalNRows = self.nRows()
-        originalNColumns = self.nColumns()
-        finalNRows = max(originalNRows, otherPimpleGraph.nRows())
-        for row in range(finalNRows):
-            if row>=originalNRows:
-                self.data.append([])
-                self.data[-1] += (['-' for i in range(originalNColumns)])
-            if row>=otherPimpleGraph.nRows():
-                self.data[row] += (['-' for i in range(otherPimpleGraph.nColumns())])
-            else:
-                self.data[row] += otherPimpleGraph.dataRow(row)
-        self.dataNode.text = self.dataAsText()
-        for plot in otherPimpleGraph.xmlnode.findall('./plot'):
-            copiedPlot = copy.deepcopy(plot)
-            for plotline in copiedPlot.findall('plotline'):
-                intXcol = int(plotline.get('xcol'))
-                plotline.set('xcol',str(intXcol+originalNColumns))
-                intYcol = int(plotline.get('ycol'))
-                plotline.set('ycol',str(intYcol+originalNColumns))
-            self.xmlnode.append(copiedPlot)
-        return
 
     def columnWithHeader(self,header):
         if not header in self.headers: return None
@@ -156,7 +129,6 @@ class phaser_mr_report(Report):
             plotLine = plot.append('plotline',xcol=1,ycol=number,rightaxis=rightAxis,colour=colour)
 
     def addSearchResults(self, parent = None):
-        import string
         if parent is None: parent = self
         searchNodes = self.xmlnode.findall('.//Search')
         for iSearchNode in range(len(searchNodes)):
@@ -228,7 +200,6 @@ class phaser_mr_report(Report):
                         intensityDistributionGraph.addPimpleData(xmlnode=intensityDistributionNode)
         clearingDiv = parent.addDiv(style="clear:both;")
 
-
     def addSummaries(self, parent = None):
         if parent is None: parent = self
         #Unclear why I now have to put a div in to contain things....
@@ -236,4 +207,3 @@ class phaser_mr_report(Report):
         summaryNodes = self.xmlnode.findall('.//CCP4Summary')
         for summaryNode in summaryNodes:
             summaryDiv.addPre(text = summaryNode.text)
-

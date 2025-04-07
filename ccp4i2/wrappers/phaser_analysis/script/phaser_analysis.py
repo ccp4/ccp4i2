@@ -1,11 +1,6 @@
-from __future__ import print_function
+"""
+Copyright (C) 2012 STFC
 
-"""
-    phaser_analysis.py: CCP4 GUI Project
-    Copyright (C) 2012 STFC
-"""
-
-"""
 Run Phaser to analyse merged data, mainly to get the plot of
  average information content per reflection as a function of resolution,
  in order to estimate the useful resolution
@@ -16,20 +11,14 @@ See:
   https://doi.org/10.1107/S2059798320001588
 """
 
-import sys
-import os
-#exec(compile(open(os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc')).read(), os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc'), 'exec'))
-
 import math
+import os
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Modules
 from lxml import etree
-from core import CCP4Utils
-
-#from phaser_analysis_utils import *
-from .phaser_analysis_utils import Tabledata, AnalyseGraph, AnalysisLog, Makexmlgraph
 import phaser
+
+from ....core.CCP4PluginScript import CPluginScript
+from .phaser_analysis_utils import AnalyseGraph, AnalysisLog, Makexmlgraph, addElement
 
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -147,7 +136,6 @@ class phaser_analysis(CPluginScript):
 
     # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
     def makeXML(self, xmlout):
-        from .phaser_analysis_utils import Tabledata, AnalyseGraph, AnalysisLog, Makexmlgraph
         # Uses self.logfile and self.loggraphs
         self.xmlroot = etree.Element('PHASER_ANALYSIS')
         self.xmlroot.set('name', self.pxdname)  # dataset name
@@ -185,7 +173,6 @@ class phaser_analysis(CPluginScript):
 
     # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
     def makeXMLloggraph(self, graphtitle, gname):
-        from .phaser_analysis_utils import Makexmlgraph
         # Make XML version of loggraph with title graphtitle and name gname
         # Returns True if this graph was found
 
@@ -204,8 +191,6 @@ class phaser_analysis(CPluginScript):
 
     # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
     def resolutionlimit(self, threshold):
-        from .phaser_analysis_utils import Tabledata, AnalyseGraph, AnalysisLog, Makexmlgraph, addElement
-
         # estimate resolution limit from XML graph of information content
         # Add result to self.xmlroot
         

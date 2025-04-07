@@ -1,17 +1,16 @@
-from __future__ import print_function
-
 """
-    wrappers/AlternativeImportXIA2/script/AlternativeImportXIA2_gui.py
-    Martin Noble
-    """
+Martin Noble
+"""
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
 import glob
 import os
-from core import CCP4Utils
+
 from lxml import etree
+from PySide2 import QtCore
+
+from ....core.CCP4ErrorHandling import CException
+from ....qtgui import CCP4TaskWidget
+
 
 class CTaskAlternativeImportXIA2(CCP4TaskWidget.CTaskWidget):
     
@@ -59,7 +58,6 @@ class CTaskAlternativeImportXIA2(CCP4TaskWidget.CTaskWidget):
         candidateJobs = [os.path.split(path)[1] for path in glob.glob(pattern)]
         
         runSummaries = self.container.controlParameters.runSummaries
-        from core.CCP4ErrorHandling import CException
         runSummaries.setQualifiers({'listMinLength' : 0})
         while len(runSummaries) > 0:
             try:
@@ -88,12 +86,3 @@ class CTaskAlternativeImportXIA2(CCP4TaskWidget.CTaskWidget):
                         print('Unable to find fields')
         self.validate()
         self.getWidget('runSummaries').updateViewFromModel()
-
-    '''
-    def isValid(self):
-        from qtgui.CCP4TaskWidget import CTaskWidget
-        invalidElements = CTaskWidget.isValid(self)
-        if len(invalidElements)>0: print 'Import XIA2 faulty widgets:',invalidElements
-        print [invalidElement.__dict__ for invalidElement in invalidElements]
-        return invalidElements
-    '''

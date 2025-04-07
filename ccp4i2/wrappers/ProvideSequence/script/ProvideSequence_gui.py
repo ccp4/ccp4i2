@@ -1,14 +1,16 @@
-from __future__ import print_function
-
 """
-    wrappers/ProvideSequence/script/ProvideSequence_gui.py
-    Martin Noble
-    """
+Martin Noble
+"""
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui.CCP4TaskWidget import CTaskWidget
-from qtgui import CCP4Widgets
 import os
+import re
+
+from PySide2 import QtCore
+import gemmi
+
+from ....core.CCP4Modules import PROJECTSMANAGER
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 class CTaskProvideSequence(CTaskWidget):
     
@@ -54,9 +56,8 @@ PASTERYOURSEQUENCEINHERE"""
         self.getWidget('SEQUENCETEXT').widget.textChanged.connect(self.validate)
 #I am changing this 'unSet' to occur only if job is 'Pending'. This might still be unnecessary but better, I think.
         try:
-            from core import CCP4Modules
             jobId = self.jobId()
-            status = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId,'status')
+            status = PROJECTSMANAGER().db().getJobInfo(jobId,'status')
             if status == "Pending":
                 self.container.inputData.SEQIN.unSet()
         except:
@@ -79,7 +80,6 @@ PASTERYOURSEQUENCEINHERE"""
         self.validate()
 
     def sequencesFromSEQRES(self,fn):
-        import gemmi
         seqs = {}
         st = gemmi.read_structure(fn)
         st.setup_entities()
@@ -99,7 +99,6 @@ PASTERYOURSEQUENCEINHERE"""
             self.container.controlParameters.SEQUENCETEXT = ''
             for sequenceId in sequences:
                 if self.container.inputData.XYZIN.annotation.isSet():
-                  import re
                   formattedHeader = '>'+ re.sub(' ','_',str(self.container.inputData.XYZIN.annotation))
                 else:
                   formattedHeader = '>'+os.path.split(self.container.inputData.XYZIN.fullPath.__str__())[1]
@@ -130,9 +129,7 @@ PASTERYOURSEQUENCEINHERE"""
         'DHU':'D',
         }
         sequences = {}
-        import mmut
         if os.path.isfile(filePath):
-            from core.CCP4ModelData import CPdbData
             aCPdbData = CPdbData()
             aCPdbData.loadFile(filePath)
             mmdbManager = aCPdbData.mmdbManager
@@ -182,4 +179,3 @@ PASTERYOURSEQUENCEINHERE"""
             if self.container.inputData.XYZIN in invalidElements:
                 invalidElements.remove(self.container.inputData.XYZIN)
         return invalidElements
-

@@ -1,8 +1,7 @@
-from __future__ import print_function
-#from PyQt4 import QtGui,QtCore
-from PySide2 import QtGui,QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
+import multiprocessing
+
+from ....qtgui import CCP4TaskWidget
+
 
 def whatNext(jobId=None):
   return [ 'modelcraft' ]
@@ -33,15 +32,11 @@ class Cslicendice(CCP4TaskWidget.CTaskWidget):
     return
 
   def drawContents(self):
-
-    import multiprocessing
     MAXPROC=multiprocessing.cpu_count()  
  
     indent = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
 
     self.setProgramHelpFile('slicendice')
-
-#-  --------------------          --------------------          --------------------
 
     folder = self.openFolder(folderFunction='inputData',title='Input Data')
 
@@ -76,8 +71,6 @@ class Cslicendice(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'advice', 'rms residue score threshold:' ] , toggle=['BFACTOR_TREATMENT', 'open', [ 'rms' ] ]   )
     self.createLine( [ 'label', indent, 'widget', 'RMS_THRESHOLD' ] , toggle=['BFACTOR_TREATMENT', 'open', [ 'rms' ] ]   )
 
-#-   --------------------          --------------------          --------------------
-
     folder = self.openFolder(folderFunction='controlParameters',title='Options')
 
     self.createLine( [ 'subtitle', 'Model slicing', 'Settings controlling slicing of search models' ] )
@@ -102,44 +95,32 @@ class Cslicendice(CCP4TaskWidget.CTaskWidget):
 
     self.closeFolder()
 
-#-   --------------------          --------------------          --------------------
-
     print('CTaskMolrep stackedWidgets')
     for w in self.findChildren( CCP4TaskWidget.CStackedWidget ) :
       print('   ', w, w.controlVar)
-
     self.updateViewFromModel()
 
-#-   --------------------          --------------------          --------------------
 
-
-  def openSIM( self ) :
+  def openSIM(self):
 
     gui = self.container.guiParameters
     if gui.OPEN_HIGH_PATH_VAR and str( gui.HIGH_PATH_VAR ) == 'i' :
       return True
-
     else:
       return False
 
 
-  def openRESMAX( self ) :
-
+  def openRESMAX(self):
     gui = self.container.guiParameters
     if gui.OPEN_HIGH_PATH_VAR and str( gui.HIGH_PATH_VAR ) == 'r' :
       return True
-
     else:
       return False
 
 
-  def openBADD( self ) :
-
+  def openBADD(self):
     gui = self.container.guiParameters
     if gui.OPEN_HIGH_PATH_VAR and str( gui.HIGH_PATH_VAR ) == 'b' :
       return True
-
     else:
       return False
-
-

@@ -1,11 +1,12 @@
 """
-    wrappers/ProvideTLS/script/ProvideTLS_gui.py
-    Martin Noble
-    """
+Martin Noble
+"""
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
+import os
+
+from PySide2 import QtCore
+
+from ....qtgui import CCP4TaskWidget
 
 
 class CProveideTLS(CCP4TaskWidget.CTaskWidget):
@@ -59,7 +60,6 @@ class CProveideTLS(CCP4TaskWidget.CTaskWidget):
                                                          
     @QtCore.Slot()
     def handleSelectTlsin(self):
-        import os
         if self.becauseTLSSet:
             self.becauseTLSSet = False
         elif self.container.inputData.TLSIN.isSet():
@@ -72,10 +72,8 @@ class CProveideTLS(CCP4TaskWidget.CTaskWidget):
 
     def rangesFromPDB(self, filePath):
         ranges = []
-        import os
         if os.path.isfile(filePath):
-            import mmut
-            from core.CCP4ModelData import CPdbData
+            from ....core.CCP4ModelData import CPdbData
             aCPdbData = CPdbData()
             aCPdbData.loadFile(filePath)
             for chain in aCPdbData.composition.peptides:
@@ -83,5 +81,3 @@ class CProveideTLS(CCP4TaskWidget.CTaskWidget):
             for chain in aCPdbData.composition.nucleics:
                 ranges.append({'Type':'Nucleic', 'Chain':chain, 'firstResidue':0, 'lastResidue':999})
         return ranges
-
-

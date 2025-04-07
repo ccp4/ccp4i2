@@ -1,5 +1,6 @@
-from __future__ import print_function
-from report.CCP4ReportParser import *
+from ....core.CCP4ErrorHandling import Severity
+from ....report.CCP4ReportParser import Report
+
 
 class pyphaser_mr_report(Report):
   # Specify which gui task and/or pluginscript this applies to
@@ -8,7 +9,7 @@ class pyphaser_mr_report(Report):
   RUNNING = True
   def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):
     Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo,**kw)
-    if self.errorReport().maxSeverity()>SEVERITY_WARNING:
+    if self.errorReport().maxSeverity()>Severity.WARNING:
       print('FAILED instantiating pyphaser_mr report generator')
       self.errorReport().report()
       return
@@ -71,5 +72,3 @@ class pyphaser_mr_report(Report):
     l.append('colour','green')
 
     pic = parent.addPicture(label="Final structure",sceneFile="$CCP4I2/wrappers/pyphaser_mr/script/pyphaser_mr_1.scene.xml")
-
-        

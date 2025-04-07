@@ -1,24 +1,8 @@
-from __future__ import print_function
-"""
-    SubtractNative.py: CCP4 GUI Project
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
+from ccp4mg import mmdb2 as mmdb, mmut
+import clipper
 
-import os
-from core.CCP4PluginScript import CPluginScript
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class SubtractNative(CPluginScript):
     TASKNAME = 'SubtractNative'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -44,7 +28,6 @@ class SubtractNative(CPluginScript):
     
     def startProcess(self, command, **kw):
         print(1)
-        import clipper
         print(2)
         mtz_file = clipper.CCP4MTZfile()
         print(3)
@@ -71,8 +54,6 @@ class SubtractNative(CPluginScript):
         mmol=clipper.MiniMol()
         f.import_minimol (mmol)
         print(mmol)
-        import ccp4mg
-        import mmdb2 as mmdb
         UsingMMDB=False
         if UsingMMDB:
             manager = mmdb.Manager()
@@ -81,7 +62,6 @@ class SubtractNative(CPluginScript):
             manager.SelectAtoms( hndl, 0, 0, mmdb.SKEY_NEW );
             print(8)
             selAtoms = mmdb.newPPCAtom()
-            import mmut
             nSelAtoms = mmut.intp()
             print(nSelAtoms.value())
             print(9)
@@ -125,71 +105,10 @@ class SubtractNative(CPluginScript):
         mapout.export_xmap_float( mymap )
         mapout.close_write()
         print(7)
-        '''
-        print([a for a in dir(clipper) if 'FFT' in a.upper()])
-        try:
-            mymap.fft_to_float(fphidata)
-        except Exception as err:
-            print(dir(mymap))
-            print("Error FFTing to {}".format(str(err)))
-                                              
-        print(5.5)
 
-
-        mtzout = clipper.CCP4MTZfile()
-        mtzoutPath = str(self.container.outputData.MAPCOEFFSOUT.fullPath)
-        mtzout.open_write( mtzoutPath )
-        mtzout.export_xmap( fphidata )
-        mtzout.close_write()
-
-              /* mmdb part of the calculation */
-
-  CMMDBManager mmdb;
-  mmdb.ReadPDBASCII( "input.pdb" );           // read pdb file
-  int hndl = mmdb.NewSelection();             // make selection handle
-  mmdb.SelectAtoms( hndl, 0, 0, SKEY_NEW );   // select all atoms
-  PPCAtom psel;
-  int nsel;
-  mmdb.GetSelIndex( hndl, psel, nsel );       // get the selection
-
-  /* Clipper part of the calculation */
-
-  clipper::HKL_info hkls;       // make reflection lists for result
-  /* *********************************************************** */
-  /* NOTE: we need to initialise the reflection list 'hkls' here */
-  /* *********************************************************** */
-  clipper::HKL_data<clipper::data32::F_phi> fphi(hkls);  // and data list
-  clipper::MMDBAtom_list atoms( psel, nsel );            // make atom list
-  clipper::SFcalc_aniso_fft<float>( fphi, atoms );       // and do SF calc'''
-        
-        '''
-      // prepare target map
-  const HKL_info& hkls = fphidata.base_hkl_info();
-  const Grid_sampling grid( hkls.spacegroup(), hkls.cell(), hkls.resolution() );
-  Xmap<float> xmap( hkls.spacegroup(), hkls.cell(), grid );
-
-  // work out how big a box we need to calc density over for each atom
-  Grid_range gd( hkls.cell(), grid, 3.0 );
-  Xmap<float>::Map_reference_coord i0, iu, iv, iw;
-  // loop over atoms
-  for ( int i = 0; i < atoms.size(); i++ ) if ( !atoms[i].is_null() ) {
-    AtomShapeFn sf( atoms[i] );  // get atom shape fn
-    Coord_frac uvw = atoms[i].coord_orth().coord_frac( hkls.cell() );
-    Coord_grid g0 = uvw.coord_grid( grid ) + gd.min();
-    Coord_grid g1 = uvw.coord_grid( grid ) + gd.max();
-    i0 = Xmap<float>::Map_reference_coord( xmap, g0 );
-    // sum all map contributions from this atoms
-    for ( iu = i0; iu.coord().u() <= g1.u(); iu.next_u() )
-      for ( iv = iu; iv.coord().v() <= g1.v(); iv.next_v() )
-        for ( iw = iv; iw.coord().w() <= g1.w(); iw.next_w() )
-          xmap[iw] += sf.rho( iw.coord_orth() );
-  }
-
-'''
         return CPluginScript.SUCCEEDED
     
     def processOutputFiles(self):
         with open(str(self.makeFileName('PROGRAMXML')),"w") as xmlFile:
             xmlFile.write('<SubtractNative></SubtractNative>')
         return CPluginScript.SUCCEEDED
-

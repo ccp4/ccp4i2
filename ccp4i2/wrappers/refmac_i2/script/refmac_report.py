@@ -1,8 +1,11 @@
-from __future__ import print_function
-
-from report.CCP4ReportParser import *
+import os
 import sys
 import xml.etree.ElementTree as etree
+
+from ....core import CCP4Utils
+from ....report.CCP4ReportParser import PARSER, Report
+from ...acedrgNew.script.MyCIFDigestor import MyCIFFile
+
 
 class refmac_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -459,9 +462,7 @@ class refmac_report(Report):
         pictureGallery = pictureFold.addObjectGallery(style='float:left;',height='550px', tableWidth='260px', contentWidth='450px')
         clearingDiv = parent.addDiv(style="clear:both;")
         jobDirectory = jobInfo['fileroot']
-        from core import CCP4Utils
         ccp4i2_root = CCP4Utils.getCCP4I2Dir()
-        import os
         baseScenePath = os.path.join(ccp4i2_root,'pipelines','prosmart_refmac','script','prosmart_refmac_1.scene.xml')
         monomerNodes = xmlnode.findall('.//ModelComposition[last()]/Monomer')
         
@@ -486,7 +487,6 @@ class refmac_report(Report):
             try:
                 dictPath = self.jobInfo['filenames'][dictObjectName]
                 if dictPath is not None and dictPath != "":
-                    from wrappers.acedrgNew.script.MyCIFDigestor import MyCIFFile
                     myCIFFile = MyCIFFile(filePath=dictPath)
                     #Find and act on list of residues in the dictionary provided
                     for compListBlock  in [block for block in myCIFFile.blocks if block.category == 'data_comp_list']:
@@ -563,7 +563,6 @@ class refmac_report(Report):
         try:
             dictPath = self.jobInfo['filenames'][dictObjectName]
             if dictPath is not None and dictPath != "":
-                from wrappers.acedrgNew.script.MyCIFDigestor import MyCIFFile
                 myCIFFile = MyCIFFile(filePath=dictPath)
                 #Find and act on list of residues in the dictionary provided
                 for compListBlock  in [block for block in myCIFFile.blocks if block.category == 'data_comp_list']:
@@ -721,7 +720,6 @@ class refmac_report(Report):
         return table1
 
 def test(xmlFile=None,jobId=None,reportFile=None):
-    import sys,os
     print(xmlFile)
     try:
         text = open( xmlFile ).read()
@@ -734,5 +732,4 @@ def test(xmlFile=None,jobId=None,reportFile=None):
     r.as_html_file(reportFile)
 
 if __name__ == "__main__":
-    import sys
     refmac_report(xmlFile=sys.argv[1],jobId=sys.argv[2])

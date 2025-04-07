@@ -1,36 +1,17 @@
-from __future__ import print_function
-
 """
-    x2mtz.py: CCP4 GUI Project
      Copyright (C) 2015 STFC
 
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-'''
 Base class for importing reflection data provides processOutputFiles() method to split mtz
 by either taking columns specified by HKLIN_OBS_COLUMNS and HKLIN_FREER_COLUMN or by finding best choice
 automatically
-'''
-
-import os,shutil
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core.CCP4ErrorHandling import *
+"""
 
 from lxml import etree
+
+from ....core import CCP4Utils
+from ....core.CCP4ErrorHandling import Severity
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class x2mtz(CPluginScript):
 
@@ -40,8 +21,6 @@ class x2mtz(CPluginScript):
     ERROR_CODES = { 301 : { 'description' : 'Input data file not found' },
                     302 : { 'description' : 'Failed automatic search for best reflection and freer data in converted file' }
                     }
-
-
 
     def processOutputFiles(self):
       outputData = self.container.outputData
@@ -128,7 +107,7 @@ class x2mtz(CPluginScript):
           CCP4Utils.writeXML(outputXML,etree.tostring(self.x2mtzXML,pretty_print=True))
 
       #print( 'x2mtz splitHklout err',err)
-      if err.maxSeverity()>SEVERITY_WARNING:
+      if err.maxSeverity()>Severity.WARNING:
         print('ERROR in splitHklout')
         print(err.report())
         return CPluginScript.FAILED

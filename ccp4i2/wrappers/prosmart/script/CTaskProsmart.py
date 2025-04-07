@@ -1,17 +1,12 @@
 """
-     tasks/prosmart/CTaskProsmart.py
-     Copyright (C) 2011 STFC
-     Author: Martyn Winn
-
+Copyright (C) 2011 STFC
+Author: Martyn Winn
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
-from qtgui.CCP4TaskWidget import CTaskWidget
 
-#-------------------------------------------------------------------
 class CTaskProsmart(CTaskWidget):
-#-------------------------------------------------------------------
 
 # Subclass CTaskWidget to give specific task window
   TASKNAME = 'prosmart'
@@ -24,7 +19,6 @@ class CTaskProsmart(CTaskWidget):
 
   def drawContents(self):
 
-      
     self.setProgramHelpFile('prosmart')
                         
     self.openFolder(folderFunction='inputData')
@@ -57,4 +51,3 @@ class CTaskProsmart(CTaskWidget):
     self.autoGenerate(container=self.container.controlParameters,selection={'includeParameters' : ['SUPERPOSE_THRESHOLD','INCLUDE_MAIN','PERFORM_FLIPS','OUTPUT_DM','DISPLAY_AS_DEGREES' ,'OUTPUT_PDB_CHAIN_RESTRAINTS', 'MERGE_CHAINS','RENAME_CHAIN','IS_NMR_MD_ENSEMBLE'] } )
 
     self.closeTabFrame()
-

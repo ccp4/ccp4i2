@@ -1,10 +1,10 @@
 #!/usr/bin/env python
+
 import logging
-import pprint
-import os
-import argparse
+
+from ..tests.access_test_files import TestFiles
 from .xml_parsing import parse_xml
-from wrappers.adding_stats_to_mmcif_i2.script.wwpdb_validation.tests.access_test_files import TestFiles
+
 
 logger = logging.getLogger()
 FORMAT = "%(filename)s - %(funcName)s - %(message)s"

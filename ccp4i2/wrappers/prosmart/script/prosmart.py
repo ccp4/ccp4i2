@@ -1,13 +1,14 @@
-from __future__ import print_function
-
 """
-    prosmart.py: CCP4 GUI Project
-    Copyright (C) 2013
+Copyright (C) 2013
 """
 
+import glob
 import os
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4ErrorHandling import *
+import shutil
+
+from ....core.CCP4ErrorHandling import Severity
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class prosmart(CPluginScript):
     
@@ -18,15 +19,12 @@ class prosmart(CPluginScript):
     MAINTAINER = 'nicholls@mrc-lmb.cam.ac.uk'
 
     ERROR_CODES = { 201 : { 'description' : 'No output restraint file from Prosmart' },
-                    202 : { 'description' : 'Log file does not report successful job completion' , 'severity' : SEVERITY_WARNING },
+                    202 : { 'description' : 'Log file does not report successful job completion' , 'severity' : Severity.WARNING },
                     203 : { 'description' : 'Unable to successfully construct reference model list' },
                     204 : { 'description' : 'Unable to successfully construct target chain list' }
                     }
-   
 
     def processInputFiles(self):
-        import os
-        import shutil
         # Use temp input filename from which prosmart takes output restraints filename
         self.tempFile = os.path.splitext(str(self.container.outputData.RESTRAINTS))[0]+'_TARGET.pdb'
         print('prosmart tempFile',self.tempFile)
@@ -53,19 +51,7 @@ class prosmart(CPluginScript):
         
         if self.container.inputData.EXT_FILE.isSet():
             self.appendCommandLine(['-f',self.container.inputData.EXT_FILE])
-        #if self.container.inputData.INPUTDIR.isSet():
-        #self.appendCommandLine(['-input_dir',self.container.inputData.INPUTDIR])
-        # (Don't yet know how to specify this sort of input - may or may not be specified multiple times)
-        #if self.container.controlParameters.CHAIN1.isSet():
-        #self.appendCommandLine(['-c1',self.container.controlParameters.CHAIN1])
-        #if self.container.controlParameters.CHAIN2.isSet():
-        #self.appendCommandLine(['-c2',self.container.controlParameters.CHAIN2])
-        # (Don't yet know how to specify this sort of input - expects >1 value)
-        #if self.container.controlParameters.INPUT_RANGE.isSet():
-        #self.appendCommandLine(['-align',self.container.controlParameters.INPUT_RANGE])
-        #if self.container.controlParameters.INPUT_RANGE_RM.isSet():
-        #self.appendCommandLine(['-align_rm',self.container.controlParameters.INPUT_RANGE_RM])
-    
+
         if self.container.inputData.CHAINLIST_1.isSet():
            c1 = ['-c1']
            for chain in self.container.inputData.CHAINLIST_1.__str__().split():
@@ -91,11 +77,6 @@ class prosmart(CPluginScript):
                 self.appendCommandLine(['-a1'])
             elif self.container.controlParameters.ALIGN_MODE == '2':
                 self.appendCommandLine(['-a2'])
-        #if self.container.controlParameters.SEQ_IDENTICAL.isSet():
-        #   self.appendCommandLine(['-id'])
-        #if self.container.controlParameters.ALL_ON_ALL.isSet():
-        #    self.appendCommandLine(['-allonall'])
-
 
         ### Fragment Options
         if self.container.controlParameters.LIB_MODE == 'LIB':
@@ -104,16 +85,7 @@ class prosmart(CPluginScript):
             self.appendCommandLine(['-helix'])
         elif self.container.controlParameters.LIB_MODE == 'STRAND':
             self.appendCommandLine(['-strand'])
-        # (other options - most probably don't need to be used in this gui - probably never used by end users)
-        #if self.container.controlParameters.LIB_CONFIG.isSet():
-        #    self.appendCommandLine(['-library_config',self.container.controlParameters.LIB_CONFIG])
-        #if self.container.controlParameters.LIB_LOCATION.isSet():
-        #    self.appendCommandLine(['-library',self.container.controlParameters.LIB_LOCATION])
-        #if self.container.controlParameters.LIB_SCORE.isSet():
-        #    self.appendCommandLine(['-lib_score',self.container.controlParameters.LIB_SCORE])
-        #if self.container.controlParameters.LIB_FRAGLEN.isSet():
-        #    self.appendCommandLine(['-lib_fraglen',self.container.controlParameters.LIB_FRAGLEN])
-               
+
         ### Alignment Options
         if self.container.controlParameters.FRAGLEN.isSet():
             self.appendCommandLine(['-len',self.container.controlParameters.FRAGLEN])
@@ -158,20 +130,7 @@ class prosmart(CPluginScript):
             self.appendCommandLine(['-output_dm'])
     
         ### Output Options
-        """
-        if not self.container.controlParameters.OUTPUT_PDB_FILES:
-            self.appendCommandLine(['-quick'])
-        else:
-            self.appendCommandLine(['-out_pdb'])
-            if self.container.controlParameters.OUTPUT_WHOLE_PDB:
-                self.appendCommandLine(['-out_pdb_full'])
-            if self.container.controlParameters.OUTPUT_COLOUR_SCRIPTS:
-                self.appendCommandLine(['-out_colour'])
-                if self.container.controlParameters.COLOUR_SCORE.isSet():
-                    self.appendCommandLine(['-colour_score',self.container.controlParameters.COLOUR_SCORE])
-                if self.container.controlParameters.SIDE_COLOUR_SCORE.isSet():
-                    self.appendCommandLine(['-side_score',self.container.controlParameters.SIDE_COLOUR_SCORE])
-        """
+
         # (Don't yet know how to specify this sort of input - expects >1 value)
         #if self.container.controlParameters.COLOUR_SIMILAR.isSet():
         #    self.appendCommandLine(['-col1',self.container.controlParameters.COLOUR_SIMILAR])
@@ -311,8 +270,6 @@ class prosmart(CPluginScript):
               self.appendCommandLine(keys)
 
     def processOutputFiles(self):
-        import os,glob,shutil
-
         try:
           #Remove potentially confusing tempFile
           os.remove(self.tempFile)
@@ -328,16 +285,7 @@ class prosmart(CPluginScript):
             shutil.copyfile(resFileList[0],self.container.outputData.RESTRAINTS.__str__())
 
         self.container.outputData.RESTRAINTS.annotation = 'Restraints for ' + str(self.container.inputData.TARGET_MODEL.annotation)
-        
-        #htmlFilePath = os.path.join(self.workDirectory.__str__(),'ProSMART_Results.html')
-        '''xmlPath = self.makeFileName('PROGRAMXML')
-        from lxml import etree
-        xmlRoot = etree.Element('PROSMART')
-        xmlString = etree.tostring(xmlRoot,pretty_print=True)
-        xmlFile=open( xmlPath,'w')
-        xmlFile.write( xmlString )
-        xmlFile.close()'''
-                
+
         # sanity check that prosmart has produced something
         ok = False
         logText = self.logFileText()
@@ -348,69 +296,3 @@ class prosmart(CPluginScript):
         if not ok: self.appendErrorReport(202)
         
         return CPluginScript.SUCCEEDED
-
-#======================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-import unittest
-
-class testprosmart(unittest.TestCase):
-    
-    def setUp(self):
-        from core import CCP4Modules
-        self.app = CCP4Modules.QTAPPLICATION()
-        # make all background jobs wait for completion
-        # this is essential for unittest to work
-        CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
-    
-    def tearDown(self):
-        from core import CCP4Modules
-        CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
-    
-    def test_1(self):
-        from core import CCP4Modules, CCP4Utils
-        import os
-        
-        workDirectory = CCP4Utils.getTestTmpDir()
-        # this needs to agree with name attribute below
-        logFile = os.path.join(workDirectory,'prosmart_test1.log')
-        # Delete any existing log file
-        if os.path.exists(logFile): os.remove(logFile)
-        
-        self.wrapper = prosmart(parent=CCP4Modules.QTAPPLICATION(),name='prosmart_test1',workDirectory=workDirectory)
-        self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','prosmart','test_data','prosmart_test1.data.xml'))
-        
-        self.wrapper.setWaitForFinished(1000000)
-        pid = self.wrapper.process()
-        self.wrapper.setWaitForFinished(-1)
-        if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-    #self.assertTrue(os.path.exists(logFile),'No log file found')
-    
-    def test_2(self):
-        from core import CCP4Modules, CCP4Utils
-        import os
-        
-        workDirectory = CCP4Utils.getTestTmpDir()
-        # this needs to agree with name attribute below
-        logFile = os.path.join(workDirectory,'prosmart_test2.log')
-        # Delete any existing log file
-        if os.path.exists(logFile): os.remove(logFile)
-        
-        self.wrapper = prosmart(parent=CCP4Modules.QTAPPLICATION(),name='prosmart_test2',workDirectory=workDirectory)
-        self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','prosmart','test_data','prosmart_test2.data.xml'))
-        
-        self.wrapper.setWaitForFinished(1000000)
-        pid = self.wrapper.process()
-        self.wrapper.setWaitForFinished(-1)
-        if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-#self.assertTrue(os.path.exists(logFile),'No log file found')
-
-
-def TESTSUITE():
-    suite = unittest.TestLoader().loadTestsFromTestCase(testprosmart)
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)

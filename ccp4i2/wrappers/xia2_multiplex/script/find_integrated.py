@@ -1,12 +1,12 @@
 """Find integrated.{expt,refl} file pairs for DIALS integration output,
 recursively under a root directory"""
 
+from pathlib import Path
 import glob
 import os
-import os.path
-from pathlib import Path
+import sys
+
 from dxtbx.model.experiment_list import ExperimentList
-from dials.array_family import flex
 
 
 def is_xia2_dir(path):
@@ -72,7 +72,5 @@ def find_integrated(root_dir):
 
 
 if __name__ == "__main__":
-    import sys
-
     for pth in find_integrated(sys.argv[1]):
         print(pth)

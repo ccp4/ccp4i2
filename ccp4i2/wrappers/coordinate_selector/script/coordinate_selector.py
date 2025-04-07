@@ -1,27 +1,12 @@
-from __future__ import print_function
-
-"""
-    coordinate_selector.py: CCP4 GUI Project
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
-
 import os
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
 import pathlib
+
+from lxml import etree
+import gemmi
+
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class coordinate_selector(CPluginScript):
     
@@ -51,22 +36,19 @@ class coordinate_selector(CPluginScript):
             raise
             self.appendErrorReport(202)         
             return(CPluginScript.FAILED)
-            
+
     def postProcessCheck(self, processId):
         if not os.path.isfile(str(self.container.outputData.XYZOUT.fullPath)): return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
         
     def processOutputFiles(self):
-        import gemmi
-
         if self.container.controlParameters.OVERRIDE_SUBTYPE.isSet():
             self.container.outputData.XYZOUT.subType = int(self.container.controlParameters.OVERRIDE_SUBTYPE)
         self.container.outputData.XYZOUT.annotation.set(self.container.inputData.XYZIN.selection.__str__()+' of '+self.container.inputData.XYZIN.annotation.__str__())
 
-        from core.CCP4ModelData import CPdbData
+        from ....core.CCP4ModelData import CPdbData
         aCPdbData = CPdbData()
         aCPdbData.loadFile(self.container.outputData.XYZOUT.fullPath)
-        from lxml import etree
         rxml = etree.Element('CoordinateSelector')
         modelCompositionNode = etree.SubElement(rxml,'ModelComposition')
 

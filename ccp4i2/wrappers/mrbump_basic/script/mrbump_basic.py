@@ -1,7 +1,9 @@
-from __future__ import print_function
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4Modules import PROCESSMANAGER
-from core import CCP4ErrorHandling
+import multiprocessing
+import os
+
+from ....core import CCP4ErrorHandling
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class mrbump_basic(CPluginScript):
 
@@ -13,7 +15,7 @@ class mrbump_basic(CPluginScript):
     MAINTAINER = 'ronan.keegan@stfc.ac.uk'
 
     def processInputFiles(self):
-        from core import CCP4XtalData
+        from ....core import CCP4XtalData
         error = None
         self.hklin = None
         dataObjects = []
@@ -23,7 +25,7 @@ class mrbump_basic(CPluginScript):
         if self.container.inputData.FREERFLAG.isSet():
             dataObjects += ['FREERFLAG']
         self.hklin,error = self.makeHklin(dataObjects)
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         else:
             return CPluginScript.SUCCEEDED
@@ -36,11 +38,7 @@ class mrbump_basic(CPluginScript):
       gui = self.container.guiParameters
       out = self.container.outputData
 
-      from core import CCP4Utils
-      import os
-
       # Set the max number of processors
-      import multiprocessing
       MAXPROC=multiprocessing.cpu_count()  
 
       keyin = "MAPROGRAM clustalw2\n" 
@@ -197,46 +195,17 @@ class mrbump_basic(CPluginScript):
       inp.ASUIN.writeFasta(fileName=seqFile)
       self.appendCommandLine( [ 'SEQIN', seqFile ] )
       self.appendCommandLine( [ 'KEYIN', str( keyfile ) ] )
-      #self.appendCommandLine( [ 'HKLOUT', str( out.HKLOUT.fullPath ) ] )
-      #self.appendCommandLine( [ 'XYZOUT', str( out.XYZOUT.fullPath ) ] )
-
-      #self.appendCommandLine(['XYZOUT',self.container.outputData.XYZOUT.fullPath])
-      #self.appendCommandLine(['HKLOUT',self.container.outputData.HKLOUT.fullPath])
 
       self.appendCommandLine( [ 'XMLOUT', str( self.makeFileName( 'PROGRAMXML' ) ) ] )
 
-#      self.appendCommandScript( "JOBID test_mrbump" )
-#      self.appendCommandScript( "LABIN F=F SIGF=SIGF FreeR_flag=FREER" )
-#      self.appendCommandScript( "MAPROGRAM clustalw2" )
-#      self.appendCommandScript( "DOFASTA False" )
-#      self.appendCommandScript( "DOPHMMER True" )
-#      self.appendCommandScript( "DOHHPRED False" )
-#      self.appendCommandScript( "MDLU False" )
-#      self.appendCommandScript( "MDLD False" )
-#      self.appendCommandScript( "MDLC True" )
-#      self.appendCommandScript( "MDLM False" )
-#      self.appendCommandScript( "MDLP False" )
-#      self.appendCommandScript( "MDLS False" )
-#      self.appendCommandScript( "MRNUM 1" )
-#      self.appendCommandScript( "END" )
       self.appendCommandScript( "" )
 
       return CPluginScript.SUCCEEDED
 
-#    """
-#    def postProcess( self, processId=-1, data={} ) :
-#      import os
-#      out = self.container.outputData
-#      xmlout = str( self.makeFileName( 'PROGRAMXML' ) )
-#      self.reportStatus(0)
-#    """
-#
 
     # process one or more output files
     # also writes the XML file, previously done by postProcess()
     def processOutputFiles(self):
-        import os,shutil
-
         xyzout = os.path.join(self.getWorkDirectory(), "output_mrbump_1.pdb")
         if os.path.exists(xyzout):
             self.container.outputData.XYZOUT=xyzout
@@ -247,71 +216,19 @@ class mrbump_basic(CPluginScript):
         if os.path.exists(hklout):
             self.container.outputData.HKLOUT=hklout
 
-        from core import CCP4XtalData
-        from core import CCP4File
-        import os
-        
         # Need to set the expected content flag  for phases data
         self.container.outputData.XYZOUT.annotation = 'Model from MrBump refinement'
         self.container.outputData.FPHIOUT.annotation = 'Weighted map from MrBump refinement'
         self.container.outputData.DIFFPHIOUT.annotation = 'Weighted difference map from MrBump refinement'
-        #self.container.outputData.ABCDOUT.annotation = 'Calculated phases from refinement'
-        #self.container.outputData.ABCDOUT.contentFlag = CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL
-        #self.container.outputData.TLSOUT.annotation = 'TLS parameters from refinement'
-        #self.container.outputData.LIBOUT.annotation = 'Generated dictionary from refinement'
 
         # Split out data objects that have been generated. Do this after applying the annotation, and flagging
         # above, since splitHklout needs to know the ABCDOUT contentFlag
         
         outputFiles = ['FPHIOUT','DIFFPHIOUT']
         outputColumns = ['FWT,PHWT','DELFWT,PHDELWT']
-        #if self.container.controlParameters.PHOUT:
-        #    outputFiles+=['ABCDOUT']
-        #    outputColumns+=['HLACOMB,HLBCOMB,HLCCOMB,HLDCOMB']
+
         error = self.splitHklout(outputFiles,outputColumns,infile=hklout)
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
 
-        #for indx in range(len(self.container.outputData.MAPOUT)):
-        #    self.container.outputData.MAPOUT[indx].annotation = 'Map for solution '+str(indx+1)
-        #    self.container.outputData.MAPOUT[indx].subType = 1
-        #    self.container.outputData.DIFMAPOUT[indx].annotation = 'Difference map for solution '+str(indx+1)
-        #    self.container.outputData.DIFMAPOUT[indx].subType = 2
-        #    self.container.outputData.PHASEOUT[indx].annotation = 'Phases for solution '+str(indx+1)
-
         return CPluginScript.SUCCEEDED
-
-#------------------------------------------------------------------------------------
-import unittest
-
-class testmrbump_basic( unittest.TestCase ) :
-
-#- def setUp( self ) :
-#- def tearDown( self ) :
-#- def test2( self ) :
-
-   def test1( self ) :
-
-      from core.CCP4Utils import getCCP4I2Dir
-      import os
-
-      xmlInput = os.path.join( getCCP4I2Dir(), 'wrappers', 'mrbump_basic', 'test_data', 'test1'+'.params.xml' )
-      self.wrapper = mrbump_basic( name='job' )
-      self.wrapper.container.loadDataFromXml( xmlInput )
-      self.wrapper.setWaitForFinished( 1000000 )
-
-      pid = self.wrapper.process()
-      self.wrapper.setWaitForFinished( -1 )
-      if len(self.wrapper.errorReport)>0:
-         print(self.wrapper.errorReport.report())
-
-def TESTSUITE() :
-
-   suite = unittest.TestLoader().loadTestsFromTestCase( testmrbump_basic )
-   return suite
-
-def testModule() :
-
-   suite = TESTSUITE()
-   unittest.TextTestRunner( verbosity=2 ).run( suite )
-

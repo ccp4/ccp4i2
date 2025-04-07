@@ -1,6 +1,8 @@
-from core import CCP4Modules
 from PySide2 import QtCore
-from qtgui import CCP4TaskWidget
+
+from ....core.CCP4Modules import PROJECTSMANAGER
+from ....qtgui import CCP4TaskWidget
+
 
 class CTaskDials_image(CCP4TaskWidget.CTaskWidget):
 
@@ -27,7 +29,7 @@ class CTaskDials_image(CCP4TaskWidget.CTaskWidget):
 
     @QtCore.Slot()
     def populatePickleFile(self):
-        pm = CCP4Modules.PROJECTSMANAGER()
+        pm = PROJECTSMANAGER()
         if self.container.inputData.JSON_IN.dbFileId.isSet():
             fileId = self.container.inputData.JSON_IN.dbFileId
             jobparamname = pm.db().getFileInfo(fileId=fileId)['jobparamname']
@@ -39,4 +41,3 @@ class CTaskDials_image(CCP4TaskWidget.CTaskWidget):
                 self.container.inputData.PICKLE_IN.unSet()
         else:
             self.container.inputData.PICKLE_IN.unSet()
-

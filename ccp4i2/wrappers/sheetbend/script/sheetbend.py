@@ -1,25 +1,11 @@
-"""
-    sheetbend.py: CCP4 GUI Project
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
-
 import os
-from core.CCP4PluginScript import CPluginScript
-from lxml import etree
 import pathlib
+
+from lxml import etree
+
+from ....core import CCP4ErrorHandling
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class sheetbend(CPluginScript):
     TASKNAME = 'sheetbend'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -35,12 +21,11 @@ class sheetbend(CPluginScript):
         super(sheetbend, self).__init__(*args, **kws)
 
     def processInputFiles(self):
-        from core import CCP4XtalData
+        from ....core import CCP4XtalData
         colgrps = [ ['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN] ]
         if self.container.inputData.FREERFLAG.isSet(): colgrps.append( 'FREERFLAG' )
         self.hklin, columns, error = self.makeHklin0( colgrps )
-        from core import CCP4ErrorHandling
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         #Preprocess coordinates to extract a subset
         self.selectedCoordinatesPath = os.path.join(self.getWorkDirectory(), "selected_xyzin.pdb")
@@ -75,7 +60,6 @@ class sheetbend(CPluginScript):
         self.appendCommandScript( "xmlout %s"%(self.makeFileName('PROGRAMXML')) )
         return CPluginScript.SUCCEEDED
 
-    def processOutputFiles(self):        
+    def processOutputFiles(self):
         self.xmlroot = etree.parse(self.makeFileName('PROGRAMXML')).getroot()
         return CPluginScript.SUCCEEDED
-

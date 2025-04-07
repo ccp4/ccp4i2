@@ -1,14 +1,21 @@
-from __future__ import print_function
-
-
-from core.CCP4PluginScript import CPluginScript
-from PySide2 import QtCore
-import os,glob,re,time,sys
-from core import CCP4XtalData
-from lxml import etree
-import math
-from core import CCP4Modules,CCP4Utils
+import os
 import platform
+
+from Bio.PDB.MMCIF2Dict import MMCIF2Dict
+from lxml import etree
+from rdkit import Chem
+from rdkit.Chem import AllChem
+from rdkit.Chem import MCS
+from rdkit.Chem import rdmolops
+from rdkit.Chem.Draw import spingCanvas
+from rdkit.Chem.Draw.MolDrawing import DrawingOptions
+from rdkit.Chem.rdmolfiles import MolFromPDBBlock
+from rdkit.Geometry.rdGeometry import Point3D
+import rdkit.Chem.Draw.MolDrawing
+
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class acedrg(CPluginScript):
     TASKMODULE = 'wrappers'                               # Where this plugin will appear on the gui
@@ -29,8 +36,6 @@ class acedrg(CPluginScript):
         self.xmlroot = etree.Element('Acedrg')
     
     def processInputFiles(self):
-        from rdkit import Chem
-        from rdkit.Chem import AllChem
         if self.container.inputData.MOLIN.isSet():
             self.originalMolFilePath = os.path.normpath(self.container.inputData.MOLIN.__str__())
         if self.container.inputData.MOLORSMILES.__str__() == 'SMILES':
@@ -53,7 +58,6 @@ class acedrg(CPluginScript):
         for iAtom in range(mol.GetNumAtoms()):
             atom = mol.GetAtomWithIdx(iAtom)
             atom.ClearProp('molAtomMapNumber')
-        from rdkit.Chem import AllChem
         AllChem.Compute2DCoords(mol)
         smilesNode = etree.SubElement(self.xmlroot,'SMILES')
         smilesNode.text = Chem.MolToSmiles(mol, isomericSmiles=True)
@@ -159,7 +163,6 @@ class acedrg(CPluginScript):
                 self.apppendErrorReport(202)
                 return CPluginScript.FAILED
             
-        from rdkit import Chem
         # Generate RDKit mol from the Dict: this one won't necessarily (or even probably) have proper carry over
         # of chirality information
         mol = molFromDict(cifFilePath)
@@ -173,7 +176,6 @@ class acedrg(CPluginScript):
         Chem.Kekulize(referenceMol)
 
         #Find largest common substructure, and corresponding atom equivalences
-        from rdkit.Chem import MCS
         mols = [mol, referenceMol]
         atomsOfMol = [i for i in range(mol.GetNumAtoms())]
         atomsOfTemplate = [i for i in range(mol.GetNumAtoms())]
@@ -200,7 +202,6 @@ class acedrg(CPluginScript):
         iConf = 0
         
         #generate a mol from the pdb block
-        from rdkit.Chem.rdmolfiles import MolFromPDBBlock
         pdbMol = MolFromPDBBlock(pdbBlock)
     
         #Provide data to allow graphing of conformer energies
@@ -270,10 +271,6 @@ class acedrg(CPluginScript):
 
 def svgFromMol(mol):
     try:
-        from rdkit.Chem.Draw import spingCanvas
-        import rdkit.Chem.Draw.MolDrawing
-        from rdkit.Chem.Draw.MolDrawing import DrawingOptions
-        
         myCanvas = spingCanvas.Canvas(size=(350,350),name='MyCanvas',imageType='svg')
         myDrawing = rdkit.Chem.Draw.MolDrawing(canvas=myCanvas)
         for iAtom in range(mol.GetNumAtoms()):
@@ -292,43 +289,16 @@ def svgFromMol(mol):
         svg = myCanvas.canvas.text()#.replace('svg:','')
         return etree.fromstring(svg)
     except:
-        from rdkit import Chem
         molBlock = Chem.MolToMolBlock(mol)
-        import MOLSVG
+        from ...Lidia.script import MOLSVG
         mdlMolecule = MOLSVG.MDLMolecule(molBlock=molBlock)
         return mdlMolecule.svgXML(size=(350,350))
 
-def svgFromPDB(pdbFilePath):
-    from rdkit import Chem
-    mol = Chem.rdmolfiles.MolFromPDBFile(pdbFilePath)
-    Chem.Kekulize(mol)
-    return svgFromRdkitMol(mol)
-    
-def svgFromRdkitMol(mol):
-    
-    from rdkit.Chem.Draw import spingCanvas
-    import rdkit.Chem.Draw.MolDrawing
-    from rdkit.Chem.Draw.MolDrawing import DrawingOptions
-    
-    myCanvas = spingCanvas.Canvas(size=(300,300),name='MyCanvas',imageType='svg')
-    myDrawing = rdkit.Chem.Draw.MolDrawing(canvas=myCanvas)
-    
-    
-    from rdkit.Chem.Draw.MolDrawing import DrawingOptions
-    drawingOptions = DrawingOptions()
-    drawingOptions.noCarbonSymbols=True
-    drawingOptions.includeAtomNumbers=False
-    myDrawing.AddMol(mol, drawingOptions=drawingOptions)
-    svg = myCanvas.canvas.text().replace('svg:','')
-    return etree.fromstring(svg)
-
 
 def molFromDict(cifFilePath):
-    from rdkit import Chem
-    from Bio.PDB.MMCIF2Dict import MMCIF2Dict
     mmcif_dict = MMCIF2Dict ( cifFilePath)
 
-    from core import CCP4ModelData
+    from ....core import CCP4ModelData
     elMap = {}
     for iElement in range (len(CCP4ModelData.CElement.QUALIFIERS['enumerators'])):
         elMap[CCP4ModelData.CElement.QUALIFIERS['enumerators'][iElement].upper()] = iElement+1
@@ -358,7 +328,6 @@ def molFromDict(cifFilePath):
         atom.SetProp('molAtomMapNumber',atom_id)
         atom.SetMonomerInfo(atomPDBResidueInfo)
         atomIdMap[raw_atom_id] = iAtom
-        from rdkit.Geometry.rdGeometry import Point3D
         try:
             xString = mmcif_dict['_chem_comp_atom.x'][iAtom]
             yString = mmcif_dict['_chem_comp_atom.y'][iAtom]
@@ -398,7 +367,6 @@ def molFromDict(cifFilePath):
     blk = Chem.MolToPDBBlock(mol)
     mol = Chem.MolFromPDBBlock(blk,sanitize=True)
 
-    from rdkit.Chem import Draw
     try:
         Chem.SanitizeMol(mol)
     except:
@@ -407,7 +375,6 @@ def molFromDict(cifFilePath):
     # Use the coordinates in the input CIF file to assign stereochemistry
     try:
         #print(initialConformerId)
-        from rdkit.Chem import rdmolops
         rdmolops.AssignAtomChiralTagsFromStructure(mol, confId=initialConformerId, replaceExistingTags=True)
     except:
         print('Unable to assign stereochemistry from coordinates in the dict file')
@@ -417,13 +384,10 @@ def molFromDict(cifFilePath):
     except:
         pass
 
-    from rdkit.Chem import AllChem
     confId2D = AllChem.Compute2DCoords(mol)
     return mol
 
 def lowEnergyPDBForMol(molInput, nRandom=500):
-    from rdkit import Chem
-    from rdkit.Chem import AllChem
     mol = Chem.AddHs(molInput)
     cids = AllChem.EmbedMultipleConfs(mol, nRandom, clearConfs = False)
     

@@ -1,15 +1,14 @@
-from __future__ import print_function
-
 """
-    wrappers/ProvideAlignment/script/ProvideAlignment_gui.py
-    Martin Noble
-    """
+Martin Noble
+"""
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui.CCP4TaskWidget import CTaskWidget
+import tempfile
+
+from PySide2 import QtCore, QtWidgets
+
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 from .ProvideAlignment import importAlignment
-from qtgui import CCP4Widgets
-import os
+
 
 class CAlignmentSelectorModel(QtCore.QAbstractItemModel):
     
@@ -48,12 +47,6 @@ class CAlignmentSelectorModel(QtCore.QAbstractItemModel):
     return item.data(role)
     
   def index(self,row,column,parent):
-    #print 'CAlignmentSelectorModel.index',row,column,parent
-    #<p style='white-space:pre'>
-    #QString toolTip = QString("<FONT COLOR=black>");
-#toolTip += ("I am the very model of a modern major general, I've information vegetable animal and mineral, I know the kinges of England and I quote the fights historical from Marathon to Waterloo in order categorical...");
-#toolTip += QString("</FONT>");
-
     try:
       if self.parent_.container.controlParameters.PASTEORREAD == 'HHPREDIN':
         return self.createIndex(row,column,self.parent_.container.inputData.HHPREDIN.fileContent.alignmentList[row])
@@ -171,11 +164,8 @@ class CTaskProvideAlignment(CTaskWidget):
       if not self.container.inputData.ALI_INDEX.isSet(): self.container.inputData.ALI_INDEX.set(0)
       self.selector.selectionModel().select(self.selectorModel.index(int(self.container.inputData.ALI_INDEX),0,QtCore.QModelIndex()),
                                                 QtCore.QItemSelectionModel.ClearAndSelect)
-           
 
     def isValid(self):
-        import sys
-        import tempfile
         #Here override logic of whether there is validinput to task
         invalidElements = super(CTaskProvideAlignment,self).isValid()
         if self.container.controlParameters.PASTEORREAD.__str__() ==  'PASTE':
@@ -183,10 +173,7 @@ class CTaskProvideAlignment(CTaskWidget):
                 invalidElements.remove(self.container.inputData.ALIGNIN)
             # Create a temporary data object to test for validity (==recognisability) of pasted text
             tempFile = tempfile.NamedTemporaryFile(suffix='.txt',delete=False)
-            if sys.version_info >= (3,0):
-                tempFile.write(bytes(self.container.controlParameters.SEQUENCETEXT.__str__(),"utf-8"))
-            else:
-                tempFile.write(self.container.controlParameters.SEQUENCETEXT.__str__())
+            tempFile.write(bytes(self.container.controlParameters.SEQUENCETEXT.__str__(),"utf-8"))
             tempFile.close()
             alignment, format, commentary = importAlignment(tempFile.name)
             print('isValid',alignment, format, commentary)
@@ -195,21 +182,9 @@ class CTaskProvideAlignment(CTaskWidget):
                 if self.container.controlParameters.SEQUENCETEXT in invalidElements:
                     invalidElements.remove(self.container.controlParameters.SEQUENCETEXT)
             else:
-                '''
-                from PySide2 import QtGui, QtWidgets,QtCore
-                box =  QtWidgets.QMessageBox()
-                box.setText("Failed to interpret text with following messages:\n"+commentary.getvalue())
-                box.setWindowTitle('Failure to interpret text')
-                box.addButton('Continue',QtWidgets.QMessageBox.YesRole)
-                box.show()
-                box.raise_()
-                reply = box.exec_()
-                '''
                 if not self.container.controlParameters.SEQUENCETEXT in invalidElements:
                     invalidElements.append(self.container.controlParameters.SEQUENCETEXT)
-            import os
         else:
             if self.container.controlParameters.SEQUENCETEXT in invalidElements:
                 invalidElements.remove(self.container.controlParameters.SEQUENCETEXT)
         return invalidElements
-

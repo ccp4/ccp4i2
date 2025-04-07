@@ -1,9 +1,9 @@
-import os,glob,re,time,sys
-import math
 import getopt
+import sys
 
 from rdkit import Chem
 from rdkit.Chem.Draw import rdMolDraw2D
+
 from .setDativeBonds import set_dative_bonds
 
 

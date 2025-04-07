@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 #=======================================================================================
 #
 #    acorn.py : acorn(CPluginScript)
@@ -12,14 +10,17 @@ from __future__ import print_function
 #
 #=======================================================================================
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core import CCP4ErrorHandling, CCP4XtalData
-from core import CCP4Modules
-import time
-from io import *
-import os, sys, string, traceback
+import os
+import sys
+import traceback
+
+from lxml import etree
 import clipper
+
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+from ....smartie import smartie
+
 
 class acorn(CPluginScript):
     
@@ -143,30 +144,25 @@ class acorn(CPluginScript):
         print("Process OUPUT (KJS)")
         #if (self.container.controlParameters.ACOMPS_PEAKSEARCH): #  forgot Eleanor told me this isn't used these days (.. leave out)
         #    print "You should not be seeing this (KJS - Acorn)" # leave commented out section in for now.
-        #    pido1 = CCP4Modules.PROCESSMANAGER().startProcess( binfft, arglisto1, logFile=logfile1 )
-        #    stat1 = CCP4Modules.PROCESSMANAGER().getJobData( pid1 )
-        #    ex1    = CCP4Modules.PROCESSMANAGER().getJobData( pid1,'exitCode' )
+        #    pido1 = PROCESSMANAGER().startProcess( binfft, arglisto1, logFile=logfile1 )
+        #    stat1 = PROCESSMANAGER().getJobData( pid1 )
+        #    ex1    = PROCESSMANAGER().getJobData( pid1,'exitCode' )
         
-        #    pido2 = CCP4Modules.PROCESSMANAGER().startProcess( binmapmask, arglisto2, logFile=logfile2 )
-        #   stat2 = CCP4Modules.PROCESSMANAGER().getJobData( pid2 )
-        #   ex2   = CCP4Modules.PROCESSMANAGER().getJobData( pid2,'exitCode' )
+        #    pido2 = PROCESSMANAGER().startProcess( binmapmask, arglisto2, logFile=logfile2 )
+        #   stat2 = PROCESSMANAGER().getJobData( pid2 )
+        #   ex2   = PROCESSMANAGER().getJobData( pid2,'exitCode' )
         
         #   inTxt3  = "threshold rms %s"%(str(self.container.inputData.ACOMPS_MAXPEAKS)) 
         #   inTxt3 += "numpeaks %s"%(str(self.container.inputData.ACOMP_RMSMULT))
-        #   pido3 = CCP4Modules.PROCESSMANAGER().startProcess( binpeakmax, arglisto3, inputText = inTxt3, logFile=logfile3 )
-        #   stat3 = CCP4Modules.PROCESSMANAGER().getJobData( pid3 )
-        #   ex3   = CCP4Modules.PROCESSMANAGER().getJobData( pid3,'exitCode' )
+        #   pido3 = PROCESSMANAGER().startProcess( binpeakmax, arglisto3, inputText = inTxt3, logFile=logfile3 )
+        #   stat3 = PROCESSMANAGER().getJobData( pid3 )
+        #   ex3   = PROCESSMANAGER().getJobData( pid3,'exitCode' )
         
         # Parse the output text file to create an xml file which can then be parsed by the report to make html .......
-        from lxml import etree
         rootNode = etree.Element("acorn")
         xmlRI = etree.SubElement(rootNode,"RunInfo")
         
         # Use the ccp4 Smartie Class to parse the ascii log file from Acorn.
-        smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
-        sys.path.append(smartiePath)
-        import smartie
-        
         aclfile = self.makeFileName('LOG')
         smfile  = smartie.parselog(aclfile)
         

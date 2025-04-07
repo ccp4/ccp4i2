@@ -1,22 +1,22 @@
-from __future__ import print_function
-
-import sys
+from inspect import getsourcefile
+import functools
+import glob
 import os
 import shutil
-import glob
-import functools
-from inspect import getsourcefile
+import sys
+import tempfile
 
-from PySide2 import QtCore
+from ccp4mg import mmdb2 as mmdb, mmut, point_funcs, pygl_coord, sequence_util
+from ccp4mg.python.ui import global_definitions, MolLabel
+from ccp4mg.python.ui.global_definitions import get_dispobj
+from ccp4mg.qtgui import displayTableObjects, MGApplication
+from ccp4mg.qtgui.plugins.Sequence import SequenceViewer
+from PySide2 import QtCore, QtGui, QtWidgets
+
 
 def InstallSaveToi2MenuItem(workDirectory):
-  import displayTableObjects
-  import MolLabel
-  import SequenceViewer
-  from global_definitions import get_dispobj
-  
+
   def SequenceView__init__(self,parent=None):
-      from PySide2 import QtGui, QtWidgets
       SequenceViewer.SequenceView.old__init__(self,parent)
       children = self.findChildren(QtWidgets.QAction)
       for child in children:
@@ -24,8 +24,6 @@ def InstallSaveToi2MenuItem(workDirectory):
            child.setText("Load sequence/alignment from file")
 
   def setDelegateACVs(self):
-      from PySide2 import QtGui, QtWidgets
-      import point_funcs
       atomColourVectors = []
       for sd in self.sequence_displays:
             acv = []
@@ -50,7 +48,6 @@ def InstallSaveToi2MenuItem(workDirectory):
 
 
   def GetColourByNucleotideAtomTable():
-    from PySide2 import QtGui, QtWidgets
     colourByNucleotideAtomTable = {}
     colourByNucleotideAtomTable["A"] = QtGui.QColor(255,0,0);     # red
     colourByNucleotideAtomTable["T"] = QtGui.QColor(255,255,0);   # yellow
@@ -65,7 +62,6 @@ def InstallSaveToi2MenuItem(workDirectory):
     return colourByNucleotideAtomTable
 
   def GetColourByAtomTable():
-    from PySide2 import QtGui, QtWidgets
     colourByAtomTable = {}
     colourByAtomTable["A"] = QtGui.QColor(255,127,80);  # coral
     colourByAtomTable["R"] = QtGui.QColor(0,0,255);     # blue
@@ -94,8 +90,6 @@ def InstallSaveToi2MenuItem(workDirectory):
     return colourByAtomTable
 
   def alignmentToSequenceDisplay(self,new_sequences,checkStates={},align=True):
-                  import sequence_util
-                  import global_definitions
                   mappings = []
                   mappedNew = {}
                   acv = None
@@ -199,7 +193,6 @@ def InstallSaveToi2MenuItem(workDirectory):
                     self.sequenceView.itemDelegate().setColumnMapping(mappings[i],i)
                     #print "Set",i,len(mappings[i])
                   self.resetModelandView(checkStates)
-                  #if not global_definitions.DEVELOPER(): return
 
                   self.updateUDDs()
                   self.applySelectionsFromDispobjs()
@@ -268,9 +261,6 @@ def InstallSaveToi2MenuItem(workDirectory):
 
 SequenceViewer_initialized = 0
 def SetupSequenceLoadingFromI2():
-  from MGMainWindow import MGMainWindowCore
-  import global_definitions
-
   SEQUENCE_SUFFIXES = [".pir",".fasta",".pfam",".gde",".rsf",".gcg",".cd",".amps",".gb",".msf",".clw",".afa",".seq"]
   
   def openSequence(args):
@@ -284,7 +274,6 @@ def SetupSequenceLoadingFromI2():
   
   def initSequenceViewer():
     if not hasattr(global_definitions.MAINWINDOW(),"sequence_dialog"):
-      import SequenceViewer
       SequenceViewer.initializePlugin()
       SequenceViewer.handleSequenceDialog()
     global_definitions.MAINWINDOW().sequence_dialog.ClearAlign()
@@ -304,16 +293,6 @@ def SetupSequenceLoadingFromI2():
 
 @QtCore.Slot(str)
 def saveEnsembleToI2(workDirectory):
-      import global_definitions
-      try:
-        import mmdb2 as mmdb
-      except:
-        print("Failed to import mmdb")
-        exc_type, exc_value,exc_tb = sys.exc_info()[:3]
-        print(exc_type)
-        print(exc_value)
-      import mmut
-      import pygl_coord
       newManager = mmdb.Manager()
       iModel = 0
       """
@@ -388,7 +367,6 @@ def saveEnsembleToI2(workDirectory):
       fname = os.path.join(dropDir,'output'+str(maxIndx+1)+'.pdb')
 
       if (preamble1 is not None) and (preamble2 is not None):
-          import tempfile
           tfile = tempfile.NamedTemporaryFile(suffix=".pdb",prefix="ccp4mg"+str(os.getpid()),delete=False)
           tname = tfile.name
           tfile.close()
@@ -407,7 +385,6 @@ def saveEnsembleToI2(workDirectory):
 
 
 def InstallSaveEnsembleToi2MenuItem(workDir):
-    import MGApplication
     mainwin = MGApplication.GetMainWindow()
 
     menu_defn = {}

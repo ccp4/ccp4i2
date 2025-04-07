@@ -1,11 +1,16 @@
-from __future__ import print_function
+import glob
+import os
+import re
+import shutil
+import sys
+import time
 
-
-from core.CCP4PluginScript import CPluginScript
-from PySide2 import QtCore
-import os,re,time,sys
 from lxml import etree
-from core import CCP4Utils
+from PySide2 import QtCore
+
+from ....core.CCP4PluginScript import CPluginScript
+from ....core import CCP4Utils
+
 
 class ccp4mg_edit_nomrbump(CPluginScript):
     
@@ -21,7 +26,6 @@ class ccp4mg_edit_nomrbump(CPluginScript):
     ERROR_CODES = {  200 : { 'description' : 'CCP4MG exited with error status' }, 201 : { 'description' : 'Failed in harvest operation' },202 : { 'description' : 'Failed in processOutputFiles' }}
 
     def makeCommandAndScript(self):
-        from core import CCP4Utils
         self.dropDir = os.path.join(self.workDirectory,'CCP4MG_FILE_DROP')
         if not os.path.exists(self.dropDir):
           try:
@@ -103,10 +107,7 @@ class ccp4mg_edit_nomrbump(CPluginScript):
                 #an issue with the existence of files
                 pass
 
-        if sys.version_info > (3,0):
-            status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True).decode("utf-8")
-        else:
-            status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True)
+        status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True).decode("utf-8")
 
         print("Writing",self.mgStatusPath)
         print(status_xml)
@@ -114,7 +115,6 @@ class ccp4mg_edit_nomrbump(CPluginScript):
         with open(self.mgStatusPath, 'wb') as xmlFile:
              xmlFile.write(bytes(status_xml,"utf-8"))
 
-        
         clArgs = [ '-norestore',self.mgStatusPath ]
 
         origInterface_fname = os.path.join(CCP4Utils.getCCP4I2Dir(),"wrappers","ccp4mg_edit_nomrbump","script","ccp4i2CCP4MGInterfaceNoMRBUMP.py")
@@ -142,7 +142,6 @@ class ccp4mg_edit_nomrbump(CPluginScript):
 
 
     def numberOfOutputFiles(self):
-        import glob
         outList = glob.glob(os.path.normpath(os.path.join(self.dropDir,'output*.pdb')))
         #print 'numberOfOutputFiles outList',os.path.join(self.dropDir,'output*.pdb'),outList
         #print 'numberOfOutputFiles xmlList',glob.glob(os.path.normpath(os.path.join(self.workDirectory,'*.xml')))
@@ -155,7 +154,6 @@ class ccp4mg_edit_nomrbump(CPluginScript):
 
     @QtCore.Slot(str)
     def handleFileDrop(self,directory):
-        import time,glob
         print('ccp4mg_edit_nomrbump',time.time())
         print('ccp4mg_edit_nomrbump',glob.glob(os.path.join(self.workDirectory,'*.*')))
         #print 'handleFileDrop',directory
@@ -167,7 +165,6 @@ class ccp4mg_edit_nomrbump(CPluginScript):
         try:
             # First up import PDB files that have been output
             
-            import os, glob, shutil
             globPath = os.path.normpath(os.path.join(self.dropDir,'output*.pdb'))
             outList = glob.glob(globPath)
             
@@ -183,7 +180,6 @@ class ccp4mg_edit_nomrbump(CPluginScript):
                 xyzoutList[-1].subType = 1
 
             # Create a trivial xml output file
-            from lxml import etree
             self.xmlroot = etree.Element('ccp4mg_edit_nomrbump')
             e = etree.Element('number_output_files')
             e.text = str(self.numberOfOutputFiles())
@@ -206,11 +202,9 @@ class ccp4mg_edit_nomrbump(CPluginScript):
           return CPluginScript.MARK_TO_DELETE
 
     def addReportWarning(self, text):
-        from lxml import etree
         warningsNode = None
         warningsNodes = self.xmlroot.xpath('//Warnings')
         if len(warningsNodes) == 0: warningsNode = etree.SubElement(self.xmlroot, 'Warnings')
         else: warningsNode = warningsNodes[0]
         warningNode = etree.SubElement(warningsNode,'Warning')
         warningNode.text = text
-

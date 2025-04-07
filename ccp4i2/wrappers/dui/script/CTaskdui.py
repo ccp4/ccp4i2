@@ -1,5 +1,6 @@
 
-from qtgui import CCP4TaskWidget
+from ....qtgui import CCP4TaskWidget
+
 
 class CTaskdui(CCP4TaskWidget.CTaskWidget):
 
@@ -28,4 +29,3 @@ class CTaskdui(CCP4TaskWidget.CTaskWidget):
         self.createLine(['label', 'Click "Run" to start'])
         self.createLine(['label', 'When you have finished integration in DIALS, exit DUI'])
         self.createLine(['label', 'Then use the "Data reduction" follow-on task'])
-

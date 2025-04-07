@@ -1,9 +1,7 @@
-from __future__ import print_function
-
-from report.CCP4ReportParser import *
-import sys
-import math
 import xml.etree.ElementTree as etree
+
+from ....report.CCP4ReportParser import Graph, Report
+
 
 class import_mosflm_report(Report):
 
@@ -324,13 +322,3 @@ class import_mosflm_report(Report):
                                            require='CCP4i2Widgets', initiallyDrawn=firstOne, width='285px',  height='285px', 
                                            title=str(iImageName),  label="Image "+str(iImageName))
             firstOne = False
-
-
-
-
-            
-
-
-
-
-

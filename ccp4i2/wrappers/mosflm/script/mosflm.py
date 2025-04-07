@@ -1,19 +1,18 @@
-from __future__ import print_function
-
-
-from core.CCP4PluginScript import CPluginScript
-from lxml import etree
-import threading
+import os
 import socketserver
-import os, sys
-from PySide2 import QtCore
-from core import CCP4Utils
+import threading
+import time
+
+from lxml import etree
+
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class MosflmRequestHandler(socketserver.StreamRequestHandler):
     commandLines = []
     xmlRoot = None
     xmlFilepath = None
-    import time
     
     def handle(self):
         responseText = "Squazgar"
@@ -30,7 +29,6 @@ class MosflmRequestHandler(socketserver.StreamRequestHandler):
                 responseText = self.rfile.readline().strip()
         
         #print '\n\nInto listen loop\n\n'
-        from lxml import etree
         inBlockIntegrate = False
         while responseText != "<done>":
             #Block until readable
@@ -81,11 +79,8 @@ class mosflm(CPluginScript):
     '''
     
     def makeCommandAndScript(self):
-        import os
         #self.simpleServer = MyServer()
         #self.simpleServer.start()
-        import socket
-        import threading
         
         address = ('127.0.0.1', 0)
 
@@ -99,11 +94,8 @@ class mosflm(CPluginScript):
         t.start()
         print('Server loop running in thread:', t.getName())
 
-        import time
         time.sleep(0.1)
         address,port = myMosflmServer.server_address
         self.appendCommandLine(['MOSFLMSOCKET', str(port)])
         self.appendCommandLine(['HKLOUT',self.container.outputData.UNMERGEDMTZ.fullPath])
         return CPluginScript.SUCCEEDED
-
-

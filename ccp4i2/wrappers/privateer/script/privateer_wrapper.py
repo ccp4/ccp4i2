@@ -1,27 +1,12 @@
-from __future__ import print_function
-
 """
-     privateer.py: CCP4 GUI Project
-     Copyright (C) 2014-2019 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2014-2019 University of York
 """
 
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4Modules import PROCESSMANAGER
-from core import CCP4ErrorHandling
+import os
+
+from ....core import CCP4ErrorHandling
+from ....core.CCP4Modules import PROCESSMANAGER
+from ....core.CCP4PluginScript import CPluginScript
 
 
 class privateer(CPluginScript):
@@ -33,17 +18,16 @@ class privateer(CPluginScript):
     MAINTAINER = 'jon.agirre@york.ac.uk'
 
     def processInputFiles(self):
-      from core import CCP4XtalData
+      from ....core import CCP4XtalData
       #print 'taskMakeHklin F_SIGF',self.container.inputData.F_SIGF,type(self.container.inputData.F_SIGF),self.container.inputData.F_SIGF.contentFlag
       self.hklin,error = self.makeHklin ( [ ['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN ] ] )
-      if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING: return CPluginScript.FAILED
+      if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING: return CPluginScript.FAILED
 
       return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
 
         print(self.WHATNEXT)
-        import os
         out = self.container.outputData
         self.path_wrk = str( self.getWorkDirectory() )
 
@@ -81,8 +65,6 @@ class privateer(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def makeCommandAndScript(self):
-      import os
-      from core import CCP4XtalData
 
       self.appendCommandLine(['-stdin'])
 
@@ -138,41 +120,4 @@ class privateer(CPluginScript):
       if self.container.controlParameters.EXPRESSION != "undefined" :
         self.appendCommandScript("expression %s" % (self.container.controlParameters.EXPRESSION) )
 
-
-#      OUTPUT DATA
-#      if self.container.outputData.XYZOUT.isSet():
-#          self.appendCommandScript("pdbout %s"%(str(self.container.outputData.XYZOUT.fullPath)))
-#      self.appendCommandScript("xmlout %s"%(self.makeFileName('PROGRAMXML')))
-
       return CPluginScript.SUCCEEDED
-
-
-#=============================================================================================
-import unittest
-class testPrivateer(unittest.TestCase):
-
-  def test1(self):
-    # Test creation of log file using ../test_data/test1.params.xml input
-    from core.CCP4Utils import getCCP4I2Dir
-    from core import CCP4Utils
-    import os
-    workDirectory = CCP4Utils.getTestTmpDir()
-    logFile = os.path.join(workDirectory,'privateer_test1.log')
-    # Delete any existing log file
-    if os.path.exists(logFile): os.remove(logFile)
-    self.wrapper = privateer(name='privateer_test1',workDirectory=workDirectory)
-    self.wrapper.container.loadDataFromXml(os.path.join(getCCP4I2Dir(),'wrappers','privateer','test_data','test1.params.xml'))
-    self.wrapper.setWaitForFinished(1000000)
-    pid = self.wrapper.process()
-    self.wrapper.setWaitForFinished(-1)
-    if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-    #self.assertTrue(os.path.exists(logFile),'No log file found')
-
-
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(testPrivateer)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)

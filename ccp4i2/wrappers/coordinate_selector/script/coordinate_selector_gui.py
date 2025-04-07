@@ -1,18 +1,12 @@
 """
-    coordinate_selector_gui.py
-    Copyright (C) 2014 Newcastle University
-    Author: Martin Noble
-    
-    """
+Copyright (C) 2014 Newcastle University
+Author: Martin Noble
+"""
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
-from qtgui.CCP4TaskWidget import CTaskWidget
 
-#-------------------------------------------------------------------
 class coordinate_selector_gui(CTaskWidget):
-    #-------------------------------------------------------------------
-    
     # Subclass CTaskWidget to give specific task window
     TASKNAME = 'coordinate_selector'
     TASKVERSION = 0.1
@@ -21,10 +15,10 @@ class coordinate_selector_gui(CTaskWidget):
     SHORTTASKTITLE='Import coordinates'
     DESCRIPTION = '''Select (potentially complicated) subset from a coordinate set'''
     MGDISPLAYFILES = ['XYZIN','XYZOUT']
-    
+
     def __init__(self,parent):
         CTaskWidget.__init__(self,parent)
-    
+
     def drawContents(self):
         self.openFolder(folderFunction='inputData',followFrom=False)
         self.createLine( ['subtitle','Select a coordinate file and enter atom selection'] )

@@ -1,12 +1,13 @@
-from __future__ import print_function
-
 """
-     ctruncate.py: CCP4 GUI Project
-     Copyright (C) 2012 STFC
+Copyright (C) 2012 STFC
 """
 
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4ErrorHandling import *
+import os
+
+from ....core.CCP4ErrorHandling import Severity
+from ....core.CCP4PluginScript import CPluginScript
+
+
 class ctruncate(CPluginScript):
 
     TASKMODULE = 'expt_data_utility'      # Where this plugin will appear on the gui
@@ -22,7 +23,7 @@ class ctruncate(CPluginScript):
     COMTEMPLATE = None
     MAINTAINER = 'charles.ballard@stfc.ac.uk'
 
-    ERROR_CODES = { 201 : { 'severity' : SEVERITY_WARNING , 'description' : 'Error creating XML output' } }
+    ERROR_CODES = { 201 : { 'severity' : Severity.WARNING , 'description' : 'Error creating XML output' } }
 
 
     def makeCommandAndScript(self):
@@ -52,7 +53,6 @@ class ctruncate(CPluginScript):
          self.appendCommandLine(['-seqin',inp.SEQIN.fullPath])
       #print 'ctruncate.makeCommandAndScript OUTPUTMINIMTZ',self.container.controlParameters.OUTPUTMINIMTZ,type(self.container.controlParameters.OUTPUTMINIMTZ)
       #if self.container.controlParameters.OUTPUTMINIMTZ:
-        #import os
         #self.tmpHklout = os.path.join(self.workDirectory,'ctruncate_output.mtz')
         #self.appendCommandLine(['-hklout',self.tmpHklout])
        # else:
@@ -96,7 +96,6 @@ class ctruncate(CPluginScript):
       return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
-      import os,shutil
       #print 'ctruncate.processOutputFiles',self.container.controlParameters.OUTPUTMINIMTZ,self.container.controlParameters.OUTPUTMINIMTZCONTENTFLAG
       #print 'ctruncate.processOutputFiles HKLOUT',self.container.outputData.HKLOUT.__str__(),os.path.exists(self.container.outputData.HKLOUT.__str__())
               
@@ -113,7 +112,7 @@ class ctruncate(CPluginScript):
           
         logFile = os.path.join(self.workDirectory,'cmtzsplit.log')
         # ***** Check ctruncate column names
-        from core import CCP4XtalData
+        from ....core import CCP4XtalData
         if outputContent == 4:
           # MN Kludge here..*FIXME*.looks to me like the column labels output by ctruncate for Fmean, SIGFmean
           # depend on the type of data it started with (ISIGI, vs ISIGIanom)
@@ -162,64 +161,4 @@ class ctruncate(CPluginScript):
           self.container.outputData.OBSOUT1.contentFlag.set(4)
         #print('\n***ctruncate.processOutputFiles after splitMtz status',status,'contentFlag',self.container.outputData.OBSOUT.contentFlag)
 
-        '''
-        if status != CPluginScript.SUCCEEDED: return status
-        if os.path.exists(self.container.outputData.HKLOUT.__str__()):
-          bakup,ext = os.path.splitext(self.container.outputData.HKLOUT.__str__())
-          bakup = bakup + '_bak'+ext
-          shutil.move(self.container.outputData.HKLOUT.__str__(),bakup)
-          print 'bakup',bakup,os.path.exists(bakup)
-        try:
-          shutil.move(self.tmpHklfile,self.container.outputData.HKLOUT.__str__())
-        except:
-          print 'Failed ctruncATE.processOutputFiles'
-          return CPluginScript.FAILED
-        '''  
-
       return CPluginScript.SUCCEEDED
-
-    
-        
-
-#======================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-import unittest
-
-class testctruncate(unittest.TestCase):
-
-   def setUp(self):
-    from core import CCP4Modules
-    self.app = CCP4Modules.QTAPPLICATION()
-    # make all background jobs wait for completion
-    # this is essential for unittest to work
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
-
-   def tearDown(self):
-    from core import CCP4Modules
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
-
-   def test_1(self):
-     from core import CCP4Modules
-     from core import CCP4Utils
-     import os
-
-     workDirectory = os.path.join(CCP4Utils.getTestTmpDir(),'test1')
-     if not os.path.exists(workDirectory): os.mkdir(workDirectory)
-
-     self.wrapper = ctruncate(parent=CCP4Modules.QTAPPLICATION(),name='test1',workDirectory=workDirectory)
-     self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','ctruncate','test_data','test1.data.xml'))
-
-     self.wrapper.setWaitForFinished(1000000)
-     pid = self.wrapper.process()
-     self.wrapper.setWaitForFinished(-1)
-     if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(testctruncate)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)

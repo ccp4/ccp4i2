@@ -1,11 +1,12 @@
-
-from report.CCP4ReportParser import *
-from core.CCP4Modules import PREFERENCES
 import os
 import re
 import shutil
 
 import xml.etree.ElementTree as etree
+
+from ....core.CCP4Modules import PREFERENCES
+from ....report.CCP4ReportParser import Report
+
 
 def parse_from_unicode(unicode_str):
     utf8_parser = etree.XMLParser(encoding='utf-8')

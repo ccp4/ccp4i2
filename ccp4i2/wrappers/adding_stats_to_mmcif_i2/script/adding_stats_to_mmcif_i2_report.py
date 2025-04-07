@@ -1,27 +1,12 @@
-"""
-    adding_stats_to_mmcif_i2_report.py: CCP4 GUI Project
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
-
-from report.CCP4ReportParser import Report
+from decimal import Decimal
 import os
 import sys
 import xml.etree.ElementTree as etree
-from wrappers.refmac_i2.script import refmac_report
-from wrappers.aimless.script.aimless_report import aimless_report
+
+from ....report.CCP4ReportParser import Report
+from ....wrappers.refmac_i2.script import refmac_report
+from ....wrappers.aimless.script.aimless_report import aimless_report
+
 
 class adding_stats_to_mmcif_i2_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -155,7 +140,6 @@ class adding_stats_to_mmcif_i2_report(Report):
         return rv
 
     def makeValidationSvg(self, sliders, filename):
-        from decimal import Decimal
         filtered_sliders = [i for i in sliders if i['value'] is not None]
         no_sliders = len(filtered_sliders)
         # print filtered_sliders
@@ -179,4 +163,3 @@ class adding_stats_to_mmcif_i2_report(Report):
         svg += self.write_footer(no_sliders)
         with open(filename,'w') as f:
             f.write(svg)
-

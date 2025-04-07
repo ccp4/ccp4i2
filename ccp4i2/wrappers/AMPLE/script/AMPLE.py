@@ -1,33 +1,14 @@
-"""
-AMPLE.py: CCP4 GUI Project
-
-This library is free software: you can redistribute it and/or
-modify it under the terms of the GNU Lesser General Public License
-version 3, modified in accordance with the provisions of the
-license to address the requirements of UK law.
-
-You should have received a copy of the modified GNU Lesser General
-Public License along with this library.  If not, copies may be
-downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Lesser General Public License for more details.
-"""
-
-from lxml import etree
 import os
 import shutil
 
-# CCP4 imports
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-
-# AMPLE imports
 from ample.constants import AMPLE_PKL
 from ample.util import mrbump_util
 from ample.util.ample_util import I2DIR
+from lxml import etree
+
+from ....core import CCP4ErrorHandling
+from ....core.CCP4PluginScript import CPluginScript
+
 
 #AMPLE_ROOT_NODE = 'AMPLE'
 AMPLE_LOG_NODE = 'LogText'
@@ -72,11 +53,11 @@ class AMPLE(CPluginScript):
         #                       the input data objects
         #                       3) A CCP4 Error object
         '''
-        from core import CCP4XtalData
+        from ....core import CCP4XtalData
         # No idea why we need the 'AMPLE_F_SIGF' bit...
         self.hklin, self.columns, error = self.makeHklin0(
             [['AMPLE_F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
-        if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         if self.hklin is None: return CPluginScript.FAILED
 

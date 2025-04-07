@@ -1,4 +1,5 @@
-from qtgui import CCP4TaskWidget
+from ....qtgui import CCP4TaskWidget
+
 
 class CTaskfindmyseq(CCP4TaskWidget.CTaskWidget):
     TASKNAME = 'findmyseq'

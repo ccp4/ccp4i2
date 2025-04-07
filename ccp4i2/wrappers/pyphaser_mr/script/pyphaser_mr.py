@@ -1,18 +1,20 @@
-from __future__ import print_function
 """
-     pyphaser_mr.py: CCP4 GUI Project
-     Copyright (C) 2011 STFC
-     Author: Martyn Winn
+Copyright (C) 2011 STFC
+Author: Martyn Winn
 
-     This wrapper uses python bindings to Phaser.
-     Need to set PYTHONPATH, LD_LIBRARY_PATH and LIBTBX_BUILD
-     correctly, e.g. as in the phaser.python dispatcher
+This wrapper uses python bindings to Phaser.
+Need to set PYTHONPATH, LD_LIBRARY_PATH and LIBTBX_BUILD
+correctly, e.g. as in the phaser.python dispatcher
 """
 
-import sys
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core import CCP4Modules
+import os
+
+import phaser
+
+from ....core import CCP4ErrorHandling
+from ....core.CCP4PluginScript import CPluginScript
+from ....utils.QApp import QTAPPLICATION
+
 
 class pyphaser_mr(CPluginScript):
 
@@ -35,7 +37,6 @@ class pyphaser_mr(CPluginScript):
          self.reportStatus(CPluginScript.FAILED)
          return
 
-       import phaser
        inputData = self.container.inputData
 
        inp = phaser.InputMR_DAT()
@@ -47,7 +48,7 @@ class pyphaser_mr(CPluginScript):
        self.initialResults = phaser.runMR_DAT(inp)
        self.xmlfile = None
        self.outputInitialXml()
-       CCP4Modules.QTAPPLICATION().sendPostedEvents()
+       QTAPPLICATION().sendPostedEvents()
 
        if self.container.controlParameters.MODE == "MR_AUTO":
           inp = phaser.InputMR_AUTO()
@@ -62,21 +63,6 @@ class pyphaser_mr(CPluginScript):
        inp.setCELL6(self.initialResults.getUnitCell())
        inp.setREFL(self.initialResults.getMiller(),self.initialResults.getFobs(),self.initialResults.getSigFobs())
 
-       # contents of target asu
-       '''
-    setCOMP_BY(str ["AVERAGE" | "SOLVENT" | "ASU" ])
-    setCOMP_PERC(float <SOLVENT>)
-    addCOMP_PROT_MW_NUM(float <MW>,float <NUM>)
-    addCOMP_PROT_STR_NUM(str <SEQ>,float <NUM>)
-    addCOMP_PROT_NRES_NUM(float <NRES>,float <NUM>)
-    addCOMP_PROT_SEQ_NUM(str <FILE>,float <NUM>)
-    addCOMP_NUCL_MW_NUM(float <MW>,float <NUM>)
-    addCOMP_NUCL_STR_NUM(str <SEQ>,float <NUM>)
-    addCOMP_NUCL_NRES_NUM(float <NRES>,float <NUM>)
-    addCOMP_NUCL_SEQ_NUM(str <FILE>,float <NUM>)
-    addCOMP_ATOM(str <TYPE>,float <NUM>)
-    -->
-'''
        controlParameters = self.container.controlParameters
        if controlParameters.COMP_BY == 'DEFAULT':
            #Default is 50% solvent ?
@@ -135,7 +121,6 @@ class pyphaser_mr(CPluginScript):
            inp.setPEAK_ROTA_CUTO(float(self.container.controlParameters.PEAKS_ROT_CUTOFF))
 
        # Set root to correct working directory
-       import os
        if self.container.controlParameters.ROOT.isSet():
            inp.setROOT(os.path.join(self.getWorkDirectory(),str(self.container.controlParameters.ROOT)))
        else:
@@ -183,10 +168,10 @@ class pyphaser_mr(CPluginScript):
        self.xmlfile.flush()
 
     def processInputFiles(self):
-      from core import CCP4XtalData
+      from ....core import CCP4XtalData
 
       self.hklin,error = self.makeHklin([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
-      if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+      if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
         for report in error._reports:
           if report['code'] == 32:
             report['details'] = 'Observed data has no F/SIGF columns, required by Phaser. Check file import.'
@@ -197,9 +182,6 @@ class pyphaser_mr(CPluginScript):
     # process one or more output files
     # also writes the XML file, previously done by postProcess()
     def processOutputFiles(self):
-
-      import os,shutil
-
       if self.container.controlParameters.NUM_SOL_OUT.isSet():
         num_sol = self.container.controlParameters.NUM_SOL_OUT.isSet()
       else:
@@ -293,8 +275,4 @@ class pyphaser_mr(CPluginScript):
       self.xmlfile.write( "</PhaserMrResults>\n" )
       self.xmlfile.close()
 
-      #print dir(self.results.getTemplatesForSolution(0))
-      #print dir(self.results.getDotSol()[0])
-
       return CPluginScript.SUCCEEDED
-

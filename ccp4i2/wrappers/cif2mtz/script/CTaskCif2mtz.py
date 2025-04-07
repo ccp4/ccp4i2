@@ -1,12 +1,12 @@
 """
-     tasks/cif2mtz/CTaskCif2mtz.py
-     Copyright (C) 2011 STFC
-     Author: Martyn Winn
-
+Copyright (C) 2011 STFC
+Author: Martyn Winn
 """
 
-from qtgui.CCP4TaskWidget import CTaskWidget
 from PySide2 import QtCore
+
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class CTaskCif2mtz(CTaskWidget):

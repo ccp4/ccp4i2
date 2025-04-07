@@ -1,27 +1,13 @@
-from __future__ import print_function
 """
-    pointless_reindexToMatch: CCP4 GUI Project
-    Copyright (C) 2014 Newcastle University
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,S
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
+Copyright (C) 2014 Newcastle University
+"""
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
+import os
+
 from lxml import etree
-import sys, os
+
+from ....core import CCP4ErrorHandling
+from ....core.CCP4PluginScript import CPluginScript
 
 
 class pointless_reindexToMatch(CPluginScript):
@@ -29,10 +15,9 @@ class pointless_reindexToMatch(CPluginScript):
     TASKCOMMAND = 'pointless'
     TASKVERSION= 0.0
     ASYNCHRONOUS = False
-    
+
     ERROR_CODES = { 201 : {'description' : 'Failed to make input files' }, 202 : {'description' : 'Failed to make output files' }, 203 : {'description' : 'Failed to identify a best reindexing' }}
-    
-    
+
     def formatCellLength(self, p):
         return "%7.1f" % float(p)
 
@@ -116,18 +101,7 @@ class pointless_reindexToMatch(CPluginScript):
             print("postProcessCheck FAIL")
             return CPluginScript.UNSATISFACTORY, exitStatus, exitCode
         return status, exitStatus, exitCode
-        
-        '''
-print "PRM postProcessCheck"
-        processId = self.getProcessId()
-        from core import CCP4Modules
-        exitStatus = CCP4Modules.PROCESSMANAGER().getJobData(processId,'exitStatus')
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(processId,'exitCode')
-        print "exitStatus", exitStatus
-        print "exitCode", exitCode
-        print "postProcessCheck success"
-        return CPluginScript.SUCCEEDED
-'''
+
     def processOutputFiles(self):
         print('#PRM processOutputFiles')
         try:
@@ -137,8 +111,6 @@ print "PRM postProcessCheck"
                 self.processHKLOUT()
             # Process XML 
             try:
-                from core import CCP4Utils
-                
                 with open(self.makeFileName('PROGRAMXML'),'r') as unfixedXMLFile:
                     text = unfixedXMLFile.read()
                 try:
@@ -205,7 +177,7 @@ print "PRM postProcessCheck"
 
 
         error = self.splitHklout(outputFilesList,outputColumnsList,infile = reindexedFilename)
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             self.appendErrorReport(202,'Pointless_reindexToMatch: error in splitting file')
             return CPluginScript.FAILED
         else:
@@ -233,4 +205,3 @@ print "PRM postProcessCheck"
             self.container.outputData.F_SIGF_OUT.subType = self.container.inputData.F_SIGF.subType
             if self.container.inputData.FREERFLAG.isSet():
                 self.container.outputData.FREERFLAG_OUT.annotation = title
-

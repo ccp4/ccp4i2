@@ -1,30 +1,12 @@
-"""
-    SIMBAD.py: CCP4 GUI Project
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
-
-from lxml import etree
 import os
-import shutil
 import platform
+import shutil
 
-# CCP4 imports
-from core.CCP4PluginScript import CPluginScript
 from simbad.util import SIMBAD_DIRNAME
 from simbad.util.simbad_results import SimbadResults
+
+from ....core import CCP4ErrorHandling
+from ....core.CCP4PluginScript import CPluginScript
 
 
 class SIMBAD(CPluginScript):
@@ -59,24 +41,13 @@ class SIMBAD(CPluginScript):
         #                       the input data objects
         #                       3) A CCP4 Error object
         """
-        from core import CCP4XtalData
-        from core import CCP4ErrorHandling
+        from ....core import CCP4XtalData
         self.hklin, error = self.makeHklin([['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
 
-        if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         if self.hklin is None:
             return CPluginScript.FAILED
-
-        #Preprocess coordinates to extract a subset
-        '''
-        # The method "getSelectedAtomsPdbFile" applied to a coordinate data object
-        # selects those atoms declared in the objects "selectionString" property and writes them into
-        # a pruned down file, the name of which is provided in the argument
-        self.selectedCoordinatesPath = os.path.join(self.getWorkDirectory(), "selected_xyzin.pdb")
-        self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.selectedCoordinatesPath)
-        '''
-        
         return self.SUCCEEDED
 
     def makeCommandAndScript(self):
@@ -117,18 +88,6 @@ class SIMBAD(CPluginScript):
         """
         Associate the tasks output coordinate file with the output coordinate object XYZOUT:
         """
-        #debug_console()
-        
-        # Split an MTZ file into minimtz data objects
-        '''
-        outputFilesToMake = ['FPHIOUT','DIFFPHIOUT']
-        columnsToTake = ['FWT,PHWT','DELFWT,PHDELWT']
-        infile = os.path.join(self.workDirectory,'final.mtz')
-        error = self.splitHklout(outputFilesToMake, columnsToTake, infile=infile)
-        import CCP4ErrorHandling
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
-            return CPluginScript.FAILED
-        '''
         top_files = SimbadResults(os.path.join(self.getWorkDirectory(),SIMBAD_DIRNAME)).top_files()
         if top_files:
             for fo in top_files:
@@ -142,6 +101,5 @@ class SIMBAD(CPluginScript):
                 self.container.outputData.XYZOUT[-1].annotation = fo.ref_pdb_annotation
                 self.container.outputData.HKLOUT.append(mtz)
                 self.container.outputData.HKLOUT[-1].annotation = fo.ref_mtz_annotation
-#         self.flushXML()
 
         return self.SUCCEEDED

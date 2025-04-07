@@ -1,21 +1,18 @@
-
-import coot_gui_api
-import coot_gui
-import coot
-from gi.repository import Gtk
-import gi
+from pathlib import Path
 import os
-import sys
 import glob
 import xml.etree.ElementTree as ET
 
-import django
-from pathlib import Path
 from django.conf import settings
+from gi.repository import Gtk
+import coot
+import coot_gui
+import coot_gui_api
+import django
+import gi
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-sys.path.append(BASE_DIR)
-print(sys.path)
+from . import models
+
 
 settings.configure(
     INSTALLED_APPS=(
@@ -30,9 +27,6 @@ settings.configure(
     },
 )
 django.setup()
-
-from CCP4i2 import models
-
 gi.require_version('Gtk', '3.0')
 
 # example for main_hbox and main_toolbar:

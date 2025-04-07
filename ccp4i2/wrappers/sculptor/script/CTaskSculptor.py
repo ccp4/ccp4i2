@@ -1,18 +1,17 @@
 """
-     tasks/sculptor/CTaskSculptor.py
-     Copyright (C) 2011 STFC
-     Author: Martyn Winn
-
+Copyright (C) 2011 STFC
+Author: Martyn Winn
 """
 
-from qtgui.CCP4TaskWidget import CTaskWidget
+import os
+
 from PySide2 import QtCore
 
-#-------------------------------------------------------------------
-class CTaskSculptor(CTaskWidget):
-#-------------------------------------------------------------------
+from ....core.CCP4ModelData import CPdbData
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
-# Subclass CTaskWidget to give specific task window
+
+class CTaskSculptor(CTaskWidget):
   TASKNAME = 'sculptor'
   TASKVERSION = 0.1
   TASKMODULE='bioinformatics'
@@ -76,7 +75,6 @@ class CTaskSculptor(CTaskWidget):
   @QtCore.Slot()
   def alignmentChanged(self):
       # Keep in sync with similar method in CTaskChainsaw
-      import os
       idList = []
       enumerators = []
       if self.container.inputData.ALIGNIN.exists():
@@ -89,9 +87,7 @@ class CTaskSculptor(CTaskWidget):
 
   @QtCore.Slot()
   def xyzinChanged(self):
-      import os
       if self.container.inputData.XYZIN.isSet() and os.path.isfile(self.container.inputData.XYZIN.__str__()):
-        from core.CCP4ModelData import CPdbData
         aCPdbData = CPdbData()
         aCPdbData.loadFile(self.container.inputData.XYZIN.fullPath)
         enumerators = []
@@ -119,4 +115,3 @@ class CTaskSculptor(CTaskWidget):
 
     self.getWidget('ALIGNIN').validate()
     self.getWidget('SEQUENCEIN').validate()
-

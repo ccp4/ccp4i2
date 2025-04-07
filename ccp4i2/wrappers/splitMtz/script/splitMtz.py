@@ -1,11 +1,10 @@
-from __future__ import print_function
+import os
+import sys
+
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
 
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4XtalData
-import os,sys
-
-  
 class splitMtz(CPluginScript):
 
     TASKTITLE = 'Import and Split MTZ to experimental data objects'     # A short title for gui menu
@@ -60,33 +59,3 @@ class splitMtz(CPluginScript):
       print('splitMtz.process status',status) ; sys.stdout.flush()
       
       return status
-     
-#====================================================================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-import unittest
-
-class testsplitMtz(unittest.TestCase):
-
-   def setUp(self):
-    # make all background jobs wait for completion
-    # this is essential for unittest to work
-    from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
-    self.app = QTAPPLICATION()
-    PROCESSMANAGER().setWaitForFinished(10000)
-
-   def tearDown(self):
-    from core.CCP4Modules import PROCESSMANAGER
-    PROCESSMANAGER().setWaitForFinished(-1)
-
-   
-     
-
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(testsplitMtz)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)

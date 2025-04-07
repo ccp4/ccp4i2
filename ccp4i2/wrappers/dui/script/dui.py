@@ -1,10 +1,11 @@
-import time
+import glob
 import os
 import re
-import glob
 import shutil
+import time
 
-from core.CCP4PluginScript import CPluginScript
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class dui(CPluginScript):
     TASKMODULE = 'data_processing'
@@ -76,4 +77,3 @@ class dui(CPluginScript):
             if self.stime < os.path.getmtime(afile):
                 shutil.copy(afile, self.getWorkDirectory())
         return CPluginScript.SUCCEEDED
-

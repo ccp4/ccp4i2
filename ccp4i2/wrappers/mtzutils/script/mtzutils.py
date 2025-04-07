@@ -1,10 +1,10 @@
 """
-     mtzutils.py: CCP4 GUI Project
-     Copyright (C) 2011 STFC
-     Author: Martyn Winn
+Copyright (C) 2011 STFC
+Author: Martyn Winn
 """
 
-from core.CCP4PluginScript import CPluginScript
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class mtzutils(CPluginScript):
 
@@ -40,5 +40,3 @@ class mtzutils(CPluginScript):
       self.appendCommandScript('END')
 
       return 0
-
-     

@@ -1,6 +1,8 @@
-from report.CCP4ReportParser import *
-from core import CCP4Modules
-import sys,os
+import os
+
+from ....core.CCP4Modules import PROJECTSMANAGER
+from ....report.CCP4ReportParser import Report
+
 
 class prosmart_report(Report):
     TASKNAME='prosmart'
@@ -13,7 +15,7 @@ class prosmart_report(Report):
             jobNumber = self.jobInfo.get("jobnumber", None)
             jobId = self.jobInfo.get("jobid", None)
 
-            jobDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId = jobId)
+            jobDirectory = PROJECTSMANAGER().jobDirectory(jobId = jobId)
             pdbredourl = (
                 "/database/?getProjectJobFile?projectId=" + projectid
                 + "?fileName=ProSMART_Results_i2.html"+"?jobNumber="
@@ -53,5 +55,3 @@ class prosmart_report(Report):
             self.append('<iframe style="{1}" src="{0}"></iframe>'.format(pdbredourl,iframe_style))
 
         self.addDiv(style="clear:both;")
-        
-

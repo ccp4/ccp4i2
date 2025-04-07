@@ -1,8 +1,11 @@
-from __future__ import print_function
-from core.CCP4PluginScript import CPluginScript
-from lxml import etree
 import os
-from wrappers.ShelxCDE.script import ShelxCDEBase
+
+from lxml import etree
+
+from . import ShelxCDEBase
+from ....core.CCP4Modules import PROCESSMANAGER
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class ShelxCE(ShelxCDEBase.ShelxCDEBase):
     TASKMODULE = 'test'                               # Where this plugin will appear on the gui
@@ -53,9 +56,8 @@ class ShelxCE(ShelxCDEBase.ShelxCDEBase):
     def processOutputFiles(self):
         print('#shelxcd processOutputFiles')
         processId = self.getProcessId()
-        from core import CCP4Modules
-        exitStatus = CCP4Modules.PROCESSMANAGER().getJobData(processId,'exitStatus')
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(processId,'exitCode')
+        exitStatus = PROCESSMANAGER().getJobData(processId,'exitStatus')
+        exitCode = PROCESSMANAGER().getJobData(processId,'exitCode')
         if exitStatus != CPluginScript.SUCCEEDED:
             print('ShelxCE ended with non success status')
             self.appendErrorReport(210)
@@ -127,4 +129,3 @@ class ShelxCE(ShelxCDEBase.ShelxCDEBase):
         self.txtOutputFiles()
         
         return CPluginScript.SUCCEEDED
-

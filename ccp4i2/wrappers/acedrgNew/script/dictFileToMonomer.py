@@ -1,10 +1,9 @@
-from __future__ import print_function
-
 import collections
+import sys
 
-import ccp4mg
-import mmdb2
+from ccp4mg import mmdb2
 import ccp4srs
+
 
 def dictFileToMonomer(dictFileName):
     f = mmdb2.File()
@@ -245,8 +244,6 @@ def dictFileToMonomer(dictFileName):
         return None
 
 if __name__ == "__main__":
-    import sys
-
     monomer = dictFileToMonomer(sys.argv[1])
     print("atoms",monomer.n_atoms())
     print("bonds",monomer.n_bonds())

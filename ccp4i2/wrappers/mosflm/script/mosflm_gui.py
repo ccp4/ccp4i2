@@ -1,11 +1,9 @@
 """
-    wrappers/mosflm/script/mosflm_gui.py
-    Martin Noble
-    """
+Martin Noble
+"""
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
+from ....qtgui import CCP4TaskWidget
+
 
 class CTaskpointless(CCP4TaskWidget.CTaskWidget):
     
@@ -19,8 +17,7 @@ class CTaskpointless(CCP4TaskWidget.CTaskWidget):
     
     def __init__(self,parent):
         CCP4TaskWidget.CTaskWidget.__init__(self,parent)
-    
-    
+
     def drawContents(self):
         
         self.setProgramHelpFile('mosflm')
@@ -28,4 +25,3 @@ class CTaskpointless(CCP4TaskWidget.CTaskWidget):
         folder = self.openFolder(folderFunction='controlParameters',title='Control parameters',followFrom=False)
         
         self.createLine( [ 'widget', '-guiMode','multiLine','SCRIPT' ] )
-

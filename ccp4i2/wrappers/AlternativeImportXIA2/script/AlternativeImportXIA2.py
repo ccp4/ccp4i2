@@ -1,12 +1,15 @@
-from __future__ import print_function
-
-
-from core.CCP4PluginScript import CPluginScript
-import os, sys
-from lxml import etree
-from core import CCP4Utils
-import shutil
 import glob
+import os
+import shutil
+
+from lxml import etree
+
+from ....core import CCP4Utils
+from ....core.CCP4Modules import PROJECTSMANAGER
+from ....core.CCP4PluginScript import CPluginScript
+from ....pimple import MGQTmatplotlib
+from ....smartie import smartie
+
 
 class AlternativeImportXIA2(CPluginScript):
 
@@ -28,7 +31,6 @@ class AlternativeImportXIA2(CPluginScript):
         
         self.checkOutputData()
         
-        from lxml import etree
         self.xmlroot = etree.Element('XIA2Import')
 
         unmergedOut =  self.container.outputData.UNMERGEDOUT
@@ -50,7 +52,6 @@ class AlternativeImportXIA2(CPluginScript):
                 if programEtree is not None: runXML.append(programEtree)
         
             #Grab integrated (unmerged) files
-            import sys
             pattern = None
             if runName.startswith('3d'):
                 pattern = os.path.join(dirPath,'DataFiles','Integrate','')+'*INTEGRATE.HKL'
@@ -99,7 +100,7 @@ class AlternativeImportXIA2(CPluginScript):
                     logFile = os.path.join(self.workDirectory,'cmtzsplit.log')
                     status = self.splitMtz(srcPath,[[obsPath,colin,colout],[freerPath,colfree,colfreeout]],logFile)
                     if status == CPluginScript.SUCCEEDED:
-                        from core import CCP4XtalData
+                        from ....core import CCP4XtalData
                         obsOut.append(obsOut.makeItem())
                         obsOut[-1].fullPath = obsPath
                         obsOut[-1].annotation = runName+' of '+srcFilename[:-8]
@@ -133,12 +134,7 @@ class AlternativeImportXIA2(CPluginScript):
                 print('Directory already exists:',os.path.join(self.workDirectory, runName))
             toPath = os.path.join(self.workDirectory, runName, fileRoot)
             shutil.copyfile(fromPath, toPath)
-            
-            smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
-            sys.path.append(smartiePath)
-            import smartie
-            
-            from lxml import etree
+
             pointlessEtree = etree.Element(programName.upper())
             
             logfile = smartie.parselog(toPath)
@@ -161,7 +157,6 @@ class AlternativeImportXIA2(CPluginScript):
         return pointlessEtree
                 
     def xmlForSmartieTable(self, table, parent):
-        from pimple import MGQTmatplotlib
         tableetree = MGQTmatplotlib.CCP4LogToEtree(table.rawtable())
         parent.append(tableetree)
         return tableetree
@@ -169,8 +164,6 @@ class AlternativeImportXIA2(CPluginScript):
     
 # Function called from gui to support exporting MTZ files
 def exportJobFile(jobId=None,mode=None,fileInfo={}):
-    import os,glob
-    from core import CCP4Modules
     #print 'AlternativeImportXIA2.exportJobFile',mode
     if mode == 'complete_mtz':
       if fileInfo.get('fullPath',None) is not None:
@@ -181,7 +174,7 @@ def exportJobFile(jobId=None,mode=None,fileInfo={}):
         else:
           return None
       else:
-        jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
+        jobDir = PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
         allMtzs = glob.glob(os.path.join(jobDir,'*_all.mtz'))
         #print 'AlternativeImportXIA2.exportJobFile',jobDir,allMtzs
         if len(allMtzs)>0:
@@ -194,39 +187,3 @@ def exportJobFileMenu(jobId=None):
     # Return a list of items to appear on the 'Export' menu - each has three subitems:
     # [ unique identifier - will be mode argument to exportJobFile() , menu item , mime type (see CCP4CustomMimeTypes module) ]
     return [ [ 'complete_mtz' ,'MTZ file' , 'application/CCP4-mtz' ] ]
-
-
-    
-
-#====================================================================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-import unittest
-
-class testProvideTLS(unittest.TestCase):
-
-   def setUp(self):
-    # make all background jobs wait for completion
-    # this is essential for unittest to work
-    from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
-    self.app = QTAPPLICATION()
-    PROCESSMANAGER().setWaitForFinished(10000)
-
-   def tearDown(self):
-    from core.CCP4Modules import PROCESSMANAGER
-    PROCESSMANAGER().setWaitForFinished(-1)
-
-   def test_1(self):
-     from core.CCP4Modules import QTAPPLICATION
-     wrapper = ProvideTLS(parent=QTAPPLICATION(),name='ProvideTLS_test1')
-     wrapper.container.loadDataFromXml()
-     
-
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(testProvideTLS)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)

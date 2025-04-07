@@ -1,39 +1,19 @@
-from __future__ import print_function
-"""
-    adding_stats_to_mmcif_i2.py: CCP4 GUI Project
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
-
-import os
-import sys
-import shutil
-import time
-from core.CCP4PluginScript import CPluginScript
-import gemmi
-import numpy as np
-import pandas
-from core import CCP4ModelData
-from core import CCP4Container
-from core.CCP4Modules import PROJECTSMANAGER
-from core import CCP4Utils
-from core import CCP4ErrorHandling
-import ccp4mg
-import hklfile
 import logging
+import os
+import shutil
+import sys
+import time
+
 from lxml import etree
+from onedep import __apiUrl__
+from onedep.api.Validate import Validate
+from adding_stats_to_mmcif.__main__ import run_process
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
+
 logger = logging.getLogger()
 FORMAT = "%(filename)s - %(funcName)s - %(message)s"
 logging.basicConfig(format=FORMAT)
@@ -92,8 +72,6 @@ class adding_stats_to_mmcif_i2(CPluginScript):
 
     def startProcess(self, *args, **kwargs):
         self.createReflectionsCif()
-
-        from adding_stats_to_mmcif.__main__ import run_process
         #print("Imported adding_stats_to_mmcif")
         if self.container.controlParameters.USEAIMLESSXML:
             aimless_xml_file = str(
@@ -190,7 +168,7 @@ except Exception as err:
                 self.getWorkDirectory(), 'mergedForMakingCif.mtz')
             self.hklin, self.columns, error = self.makeHklin0(miniMtzsIn=[['F_SIGF', int(self.container.inputData.F_SIGF.contentFlag)], [
                                                               'F_SIGF', refmacContentFlag], ['FREERFLAG', 0], ['FPHIOUT', 1], ['DIFFPHIOUT', 1]], hklin='mergedForMakingCif', ignoreErrorCodes=[])
-            if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+            if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
                 self.reportStatus(CPluginScript.FAILED)
 
         # Now convert refmac input to mmcif
@@ -219,8 +197,6 @@ except Exception as err:
                 print("OneDep status: %s\n" % sD['status'])
 
     def performOnedepValidation(self):
-        from onedep import __apiUrl__
-        from onedep.api.Validate import Validate
         val = Validate(apiUrl=__apiUrl__)
         ret = val.newSession()
         self.display_status(ret)

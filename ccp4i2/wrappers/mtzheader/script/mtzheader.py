@@ -1,17 +1,17 @@
-from __future__ import print_function
-
 """
-     mtzheader.py: CCP4 GUI Project
-     Copyright (C) 2011 STFC
-     Author: Martyn Winn
+Copyright (C) 2011 STFC
+Author: Martyn Winn
 
-     This wrapper uses Stuart's python wrapper to Phil's hklfile.
-     It deliberately does not use mtzdump.
-     You need hklfile.py and _hklfile.so on PYTHONPATH. Latter is
-     set in ccp4i2/utils/setup.sh
+This wrapper uses Stuart's python wrapper to Phil's hklfile.
+It deliberately does not use mtzdump.
+You need hklfile.py and _hklfile.so on PYTHONPATH. Latter is
+set in ccp4i2/utils/setup.sh
 """
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4mg import hklfile
+
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class mtzheader(CPluginScript):
 
@@ -28,8 +28,6 @@ class mtzheader(CPluginScript):
          return
 
        # No output files, so skip checkOutputData
-       import ccp4mg
-       import hklfile
 
        reflection_list = hklfile.ReflectionList()
        reflection_list.init(str(self.container.inputData.HKLIN))
@@ -72,4 +70,3 @@ class mtzheader(CPluginScript):
 
        # Needed!
        self.reportStatus(CPluginScript.SUCCEEDED)
-

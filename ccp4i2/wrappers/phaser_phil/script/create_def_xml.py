@@ -1,22 +1,17 @@
-from __future__ import print_function
-#
 #  Copyright (C) 2016 STFC Rutherford Appleton Laboratory, UK.
 #
 #  Author: David Waterman
 #  Acknowledgements: based on ideas and code by Nat Echols and Martin Noble.
-#
 
 """Create phaser_phil.def.xml from PHIL parameters"""
 
-import sys
 import os
-from lxml import etree
 
-# Nasty trick required to import PhilTaskCreator when running with ccp4-python
-this_dir = os.path.dirname(os.path.realpath(__file__))
-ccp4i2_dir = os.path.dirname(os.path.dirname(os.path.dirname(this_dir)))
-sys.path.append(ccp4i2_dir)
-from utils.phil_handlers import PhilTaskCreator
+from iotbx import phil
+from lxml import etree
+import phaser
+
+from ....utils.phil_handlers import PhilTaskCreator
 
 
 class PhaserTaskCreator(PhilTaskCreator):
@@ -24,8 +19,6 @@ class PhaserTaskCreator(PhilTaskCreator):
   def __init__(self, debug=False):
 
     # Get the PHIL information as a scope
-    import phaser
-    from iotbx import phil
     phaser_path = phaser.__path__[0]
     with open(os.path.join(phaser_path, 'phenix_interface',
       '__init__.params'), 'r') as f:

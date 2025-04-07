@@ -1,15 +1,14 @@
 """
-     tasks/scaleit/CTaskscaleit.py
-     Copyright (C) 2011 STFC
-     Author: Phil Evans
-
+Copyright (C) 2011 STFC
+Author: Phil Evans
 """
-from PySide2 import QtCore
-from qtgui.CCP4TaskWidget import CTaskWidget
 
-from pipelines.aimless_pipe.script.aimless_pipe_utils import CellCheck, CellFormat, colourText
-from wrappers.scaleit.script.scaleit_utils import DatalistCheck
-from pipelines.import_merged.script.dybuttons import MyMessageBox
+import traceback
+
+from PySide2 import QtCore
+
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+from .scaleit_utils import DatalistCheck
 
 
 class CTaskscaleit(CTaskWidget):
@@ -60,7 +59,6 @@ class CTaskscaleit(CTaskWidget):
   def isValid(self):
     invalidElements = super().isValid()
     # Check whether invocation is from runTask  (cf prosmart_refmac_gui)
-    import traceback
     functionNames = [a[2] for a in traceback.extract_stack()]
     # print("\n*** isValid call ", functionNames)
     if functionNames[-2] != 'runTask':
@@ -74,4 +72,3 @@ class CTaskscaleit(CTaskWidget):
       
     #  OK 
     return invalidElements
-

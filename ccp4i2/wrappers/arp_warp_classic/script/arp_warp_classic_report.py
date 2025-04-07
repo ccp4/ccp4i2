@@ -1,5 +1,5 @@
 
-from report.CCP4RvapiParser import RvapiReport
+from ....report.CCP4RvapiParser import RvapiReport
 
 class arp_warp_classic_report(RvapiReport):
   TASKNAME = 'arp_warp_classic'
@@ -11,4 +11,3 @@ class arp_warp_classic_report(RvapiReport):
 
   RVAPI_MERGE_TABS = True
   RVAPI_STD_HEADER = False
-

@@ -1,27 +1,16 @@
-
 """
-     molrep_mr.py: CCP4 GUI Project
-     Copyright (C) 2011 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2011 STFC
 """
 
+import os
 import re
-import shutil
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4ErrorHandling import *
+
+from lxml import etree
+
+from ....core import CCP4Utils
+from ....core.CCP4ErrorHandling import Severity
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class molrep_mr(CPluginScript):
 
@@ -31,9 +20,9 @@ class molrep_mr(CPluginScript):
     TASKMODULE = 'wrappers'
     MAINTAINER = 'andrey.lebedev@stfc.ac.uk'
 
-    ERROR_CODES = { 101 : { 'severity': SEVERITY_WARNING, 'description' : 'Failed extracting tables from molrep.doc' },
-                    102 : { 'severity': SEVERITY_WARNING, 'description' : 'Failed writing tables to program.xml' },
-                    103 : { 'severity': SEVERITY_WARNING, 'description' : 'No tables extracted from molrep.doc' },
+    ERROR_CODES = { 101 : { 'severity': Severity.WARNING, 'description' : 'Failed extracting tables from molrep.doc' },
+                    102 : { 'severity': Severity.WARNING, 'description' : 'Failed writing tables to program.xml' },
+                    103 : { 'severity': Severity.WARNING, 'description' : 'No tables extracted from molrep.doc' },
                     104 : { 'description' : 'No output coordinate file from Molrep' },
                     105 : { 'description' : 'No output log file from Molrep' },
                     106 : { 'description' : 'Error parsing log file from Molrep' }
@@ -41,17 +30,15 @@ class molrep_mr(CPluginScript):
 
 
     def processInputFiles(self):
-      import os
       # Ensure the obs data is in form of F_SIGF
       if self.container.guiParameters.PERFORM != 'den':
-        from core import CCP4XtalData
+        from ....core import CCP4XtalData
         # Using CObsDataFile.convert() did not work for input of anomalous Is (as from aimless)
         self.F_SIGF_hklin,errReport = self.makeHklin([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
         #self.F_SIGF_hklin,errReport = self.container.inputData.F_SIGF.convert(targetContent=CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN)
         #print 'molrep_mr.processInputFiles',self.F_SIGF_hklin,errReport
         if self.F_SIGF_hklin is None: return CPluginScript.FAILED
 
-        
       if self.container.guiParameters.PERFORM != 'srf':
         if self.container.inputData.XYZIN.isSelectionSet():
           self.selectedXYZIN = os.path.join(self.workDirectory,'XYZIN_selected_atoms.pdb')
@@ -61,10 +48,9 @@ class molrep_mr(CPluginScript):
           self.container.inputData.XYZIN.convertFormat('pdb',self.selectedXYZIN )
         else:
           self.selectedXYZIN = str( self.container.inputData.XYZIN)
-          
-          
+
       return CPluginScript.SUCCEEDED
-            
+
     @staticmethod
     def replace_MSE(model, pdbin):
       with open(model) as istream:
@@ -87,8 +73,6 @@ class molrep_mr(CPluginScript):
       par = self.container.controlParameters
       gui = self.container.guiParameters
 
-      from core import CCP4Utils
-      import os
       self.path_wrk = str( self.getWorkDirectory() )
       self.path_scr = os.path.join( self.path_wrk, 'scratch' )
       if not os.path.exists(self.path_scr): os.mkdir( self.path_scr )
@@ -166,30 +150,6 @@ class molrep_mr(CPluginScript):
          else :
             raise Exception()
 
-#-    if par.HIGH_PATH_VAR.isSet() :
-#-       if str( gui.HIGH_PATH_VAR ) == 's' :
-#-          pass
-##          self.appendCommandScript( "high_pass_var s" )
-#-       elif str( gui.HIGH_PATH_VAR ) == 'i' :
-#-          self.appendCommandScript( "high_pass_var i" )
-#-       elif str( gui.HIGH_PATH_VAR ) == 'r' :
-#-          self.appendCommandScript( "high_pass_var r" )
-#-       elif str( gui.HIGH_PATH_VAR ) == 'b' :
-#-          self.appendCommandScript( "high_pass_var b" )
-#-       else :
-#-          raise Exception()
-
-#-    if par.LOW_PATH_VAR.isSet() :
-#-       if str( gui.LOW_PATH_VAR ) == 'c' :
-#-          pass
-##          self.appendCommandScript( "low_pass_var c" )
-#-       elif str( gui.LOW_PATH_VAR ) == 'r' :
-#-          self.appendCommandScript( "low_pass_var r" )
-#-       elif str( gui.LOW_PATH_VAR ) == 'b' :
-#-          self.appendCommandScript( "low_pass_var b" )
-#-       else :
-#-          raise Exception()
-
       if par.SEQ.isSet() :
          if str( par.SEQ ) == 'y' :
             pass
@@ -227,22 +187,10 @@ class molrep_mr(CPluginScript):
         if par.SG.isSet():  self.appendCommandScript( "sg %s" %( str( par.SG ) ) )
       elif par.SG_OPTIONS == 'laue':
         self.appendCommandScript( "sg all")
-#-    out = self.container.outputData
-#-    print str( out.XYZOUT.fullPath )
-
-
-#-    print
-#-    print '------------------------------------------'
-#-    print self.commandLine
-#-    print self.commandScript
-#-    print '------------------------------------------'
-#-    print
 
       return 0
 
     def processOutputFiles( self ) :
-
-      import os
       out = self.container.outputData
       gui = self.container.guiParameters
       par = self.container.controlParameters
@@ -269,12 +217,6 @@ class molrep_mr(CPluginScript):
       elif gui.PERFORM == 'den':
         out.XYZOUT.annotation = 'Model from molrep density search'
 
-#-    file = os.path.join( self.path_wrk, 'molrep.xml' )
-#-    if os.path.isfile( file ) :
-#-       os.rename( file, xmlout )
-
-#-    print str( out.XYZOUT.fullPath )
-
       docout = os.path.join( self.path_wrk, 'molrep.doc' )
       xmlout = str( self.makeFileName( 'PROGRAMXML' ) )
       self.saveProgramXml(docout,xmlout )
@@ -289,13 +231,9 @@ class molrep_mr(CPluginScript):
       
       return CPluginScript.SUCCEEDED
 
-
-
     def saveProgramXml ( self, docFileName, programXmlFileName ) :
-      from core import CCP4Utils
       titles = []
       status = 0
-      from lxml import etree
       results = etree.Element('MolrepResult')
       tf = etree.Element('MR_TF')
       results.append(tf)
@@ -307,18 +245,6 @@ class molrep_mr(CPluginScript):
         e = etree.Element(key)
         e.text = value
         tf.append(e)
-
-      '''
-      table = [ '<?xml version="1.0" encoding="ASCII" standalone="yes"?>' ]
-      table.append( "<MolrepResult>" )
-      table.append( "<MR_TF>" )
-      table.append( "Error <err_level>0</err_level>" )
-      table.append( "Message <err_message>normal termination</err_message>" )
-      table.append( "nmon_solution <n_solution>1</n_solution>" )
-      table.append( "mr_score <mr_score>0.0000</mr_score>" )
-      table.append( "</MR_TF>" )
-      table.append( " <RFpeaks>" )
-      '''
 
       docfileText = CCP4Utils.readFile(docFileName)
       docfileList = docfileText.split('\n')
@@ -377,10 +303,8 @@ class molrep_mr(CPluginScript):
         results.append(eLaue)
           
       CCP4Utils.saveEtreeToFile(results,programXmlFileName)
-                
 
     def extractLaueDataFromLog(self):
-      from core import CCP4Utils
       try:
         text = CCP4Utils.readFile(self.makeFileName('LOG'))
       except:
@@ -403,7 +327,7 @@ class molrep_mr(CPluginScript):
         #print 'spg,score',spg,score
       return data
 
-'''       
+'''
 0123456789012345678901234567890123456789012345678901234567890
  +-------------------------------------------------------+
  |        Nsg     sg                        Score   Cntr |
@@ -417,5 +341,4 @@ class molrep_mr(CPluginScript):
  |    7 2018   P 21 2 21                    0.288  4.563 |
  |    8 3018   P 2 21 21                    0.296 13.246 |
  +-------------------------------------------------------+
-'''       
-
+'''

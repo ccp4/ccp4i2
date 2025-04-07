@@ -1,11 +1,5 @@
-"""
-     ccp4mg_general task widget
-"""
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
-from PySide2 import QtGui, QtWidgets,QtCore
-
-from qtgui.CCP4TaskWidget import CTaskWidget
-from core import CCP4Modules
 
 #-------------------------------------------------------------------
 class Cccp4mg_general(CTaskWidget):
@@ -36,10 +30,8 @@ class Cccp4mg_general(CTaskWidget):
     self.createLine( [ 'widget', 'DICT' ] )
  
   def isValid(self):
-    import os
     #print 'Ccoot_rebuild.isValid'
     if self.getWidget('followFrom') is None: return
     followJobId = self.getWidget('followFrom').currentJobId()
     #print 'Ccoot_rebuild.isValid followFrom',followJobId
     return CTaskWidget.isValid(self)
-  

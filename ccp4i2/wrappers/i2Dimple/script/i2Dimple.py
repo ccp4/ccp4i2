@@ -1,26 +1,16 @@
-"""
-    i2Dimple.py: CCP4 GUI Project
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
-
+import configparser
+import json
 import os
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4XtalData
-from core import CCP4ErrorHandling
 import platform
+import subprocess
+
+from lxml import etree
+import ccp4mg.mmdb2 as mmdb
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class i2Dimple(CPluginScript):
     TASKNAME = 'i2Dimple'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -45,7 +35,7 @@ class i2Dimple(CPluginScript):
         if self.container.inputData.FREERFLAG.isSet():
             inputs += [ ['FREERFLAG', 1] ]
         self.hklin,self.columns,error = self.makeHklin0(inputs)
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         #makeHklin0 takes as arguments a list of sublists
         #Each sublist comprises 1) An input DATA object identifier as specified ni the inputData container of .de.f.xml
@@ -56,9 +46,7 @@ class i2Dimple(CPluginScript):
         #                       the input data objects that were input
         #                       3) A CCP4 Error object
         self.columnsAsArray = self.columns.split(",")
-        
-        import ccp4mg
-        import mmdb2 as mmdb
+
         self.xyzin = os.path.join(self.getWorkDirectory(),"selected_xyzin.pdb")
 
         #A work around to cast input coordinates into PDB format for dimple if necessary
@@ -67,7 +55,7 @@ class i2Dimple(CPluginScript):
         if result == 0:
             temp_pdb = os.path.join(self.getWorkDirectory(),"selected_xyzin_temp.pdb")
             RC=testLoader.WritePDBASCII(self.xyzin)
-            from core.CCP4ModelData import CPdbDataFile
+            from ....core.CCP4ModelData import CPdbDataFile
             temporaryObject = CPdbDataFile(fullPath=self.xyzin)
             temporaryObject.loadFile()
             if self.container.inputData.XYZIN.isSelectionSet():
@@ -100,21 +88,17 @@ class i2Dimple(CPluginScript):
         outputColumns = ['FWT,PHWT','DELFWT,PHDELWT']
         infile = os.path.join(self.workDirectory,'final.mtz')
         error = self.splitHklout(outputFiles,outputColumns,infile=infile)
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
                 
         #Create (dummy) PROGRAMXML
-        from lxml import etree
-        import sys
         with open(self.makeFileName("PROGRAMXML"),"wb") as programXMLFile:
             xmlStructure = etree.Element("i2Dimple")
             
             #Here transform information parsed from dimple.log into program.xml
             #Parse the dimple log (which is compatible with configparser !)
-            import configparser
             configParser = configparser.SafeConfigParser()
             configParser.read(os.path.join(self.getWorkDirectory(),"dimple.log"))
-            import json
             try:
                 #Extract phaser outputs if any
                 if "phaser" in configParser.sections():
@@ -147,7 +131,6 @@ class i2Dimple(CPluginScript):
                             with open(reindexCommandPath,"w") as reindexCommandFile:
                                 reindexCommandFile.write("reindex {}".format(bestReindex[0]))
                             reindexExecutablePath = os.path.join(os.environ["CBIN"],"reindex")
-                            import subprocess
 
                             initialPath = self.container.inputData.F_SIGF.fullPath.__str__()
                             reindexedPath = self.container.outputData.F_SIGF_OUT.fullPath.__str__()
@@ -158,7 +141,6 @@ class i2Dimple(CPluginScript):
                             if self.container.inputData.FREERFLAG.isSet():
                                 initialPath = self.container.inputData.FREERFLAG.fullPath.__str__()
                                 reindexedPath = self.container.outputData.FREERFLAG_OUT.fullPath.__str__()
-                                import subprocess
                                 with open(reindexCommandPath,"r") as reindexCommandFile:
                                     subprocess.call([reindexExecutablePath, "HKLIN", initialPath,"HKLOUT", reindexedPath],stdin=reindexCommandFile)
                                 self.container.outputData.FREERFLAG_OUT.annotation = ("FreeR reindexed by operator {}".format(bestReindex[0]))

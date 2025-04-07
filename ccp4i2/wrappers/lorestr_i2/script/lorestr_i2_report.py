@@ -1,24 +1,5 @@
-"""
-    lorestr_i2_report.py: CCP4 GUI Project
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
-
-from report.CCP4ReportParser import Report
-import sys
-from wrappers.validate_protein.script import validate_protein_report
+from ....report.CCP4ReportParser import Report
+from ...validate_protein.script import validate_protein_report
 
 
 class lorestr_i2_report(Report):
@@ -45,49 +26,8 @@ class lorestr_i2_report(Report):
         if parent is None: parent=self
         self.addDefaultReport(self)
 
-
-
     def addDefaultReport(self, parent=None):
         if parent is None: parent=self
-
-# Decided not to display parameters
-#         if len(self.xmlnode.findall("Parameters")) > 0:
-#             parametersFold = parent.addFold(label="LORESTR Parameters", initiallyOpen=True)
-#             # parametersFold.addPre(text = 'Received parameters:' )
-#
-#             table = parametersFold.addTable(select="Parameters[last()]", transpose = True ) # ,style="width:250px;")
-#
-#             nh = self.xmlnode.findall('Parameters/nh')
-#             if len(nh) > 0:
-#               table.addData(title="Maximal number of homologues", data=[nh[0].text])
-#             nc = self.xmlnode.findall('Parameters/nc')
-#             if len(nc) > 0:
-#               table.addData(title="Maximal number of chains", data=[nc[0].text])
-#             dna = self.xmlnode.findall('Parameters/dna')
-#             if len(dna) > 0:
-#               table.addData(title="Use DNA/RNA restraints", data=[dna[0].text])
-#             mr = self.xmlnode.findall('Parameters/mr')
-#             if len(mr) > 0:
-#               table.addData(title="Run 100-200 cycles of jelly body after MR", data=[mr[0].text])
-#             molprob = self.xmlnode.findall('Parameters/molprobity')
-#             if len(molprob) > 0:
-#               table.addData(title="Use Molprobity to evaluate geometrical quality", data=[molprob[0].text])
-#               if molprob[0].text == 'True':
-#                 self.molProbity = True
-#             auto = self.xmlnode.findall('Parameters/auto')
-#             if len(auto) > 0:
-#               table.addData(title="Automatically download homologues from the PDB", data=[auto[0].text])
-#               minres = self.xmlnode.findall('Parameters/minRes')
-#               if len(minres) > 0:
-#                 table.addData(title="Lowest resolution for auto download of homologues (A)", data=[minres[0].text])
-#             else:
-#               table.addData(title="Automatically download homologues fromt the PDB", data=['False'])
-#             cpu = self.xmlnode.findall('Parameters/nCPU')
-#             if len(cpu) > 0:
-#               table.addData(title="Number of CPUs to use", data=[cpu[0].text])
-# #            newFold.addPre(text = 'Auto: ' + self.xmlnode.findall("Parameters/auto")[0].text)
-# #            newFold.addPre(text = 'Molprobity: ' + self.xmlnode.findall("Parameters/molprobity")[0].text)
-# End of Parameters section
 
 # Global parameter - availability of Molprobity - determines additional columns in the tables
         molprob = self.xmlnode.findall('Parameters/molprobity')
@@ -329,10 +269,5 @@ class lorestr_i2_report(Report):
                      self.addText("Warning - MolProbity analysis failed")
             except:
                pass
-
-
-
-
-
 
 # End Best Protocol

@@ -1,11 +1,12 @@
+import os
+import re
+import shutil
 
-from core.CCP4PluginScript import CPluginScript
-from PySide2 import QtCore
-import os,glob,re,time,sys,shutil
-from core import CCP4XtalData
 from lxml import etree
-import math
-from core import CCP4Modules,CCP4Utils
+
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class clustalw(CPluginScript):
     TASKTITLE = 'clustalw'     # A short title for gui menu
@@ -34,37 +35,27 @@ class clustalw(CPluginScript):
         return CPluginScript.SUCCEEDED
     
     def processInputFiles(self):
-        if True:
-            self.startFileName = os.path.normpath(os.path.join(self.getWorkDirectory(),'tempAlignment.fasta'))
-            if self.container.inputData.SEQUENCELISTORALIGNMENT == 'ALIGNMENT':
-                shutil.copyfile(self.container.inputData.ALIGNMENTIN.__str__(),self.startFileName)
-            else:
-                sequenceStack = []
-                sequenceStack_check = []
-                for sequenceFile in self.container.inputData.SEQIN:
-                    possibleNameRoot = '>'+sequenceFile.fileContent.identifier.__str__()
-                    if len(possibleNameRoot.strip()) == 1:
-                        possibleNameRoot = ">unk"
-                    possibleName = possibleNameRoot
-                    iCount = 0
-                    while possibleName in sequenceStack_check:
-                        possibleName = possibleNameRoot + '_' + str(iCount)
-                        iCount += 1
-                    sequenceStack.append([possibleName, sequenceFile.fileContent.sequence.__str__()])
-                    sequenceStack_check.append(possibleName)
-                if sys.version_info > (3,0):
-                    with open(self.startFileName,'w') as startFile:
-                        for identifier,seq in sequenceStack:
-                            startFile.write(identifier+'\n')
-                            startFile.write(seq+'\n')
-                else:
-                    with open(self.startFileName,'wb') as startFile:
-                        for identifier,seq in sequenceStack:
-                            startFile.write(identifier+'\n')
-                            startFile.write(seq+'\n')
+        self.startFileName = os.path.normpath(os.path.join(self.getWorkDirectory(),'tempAlignment.fasta'))
+        if self.container.inputData.SEQUENCELISTORALIGNMENT == 'ALIGNMENT':
+            shutil.copyfile(self.container.inputData.ALIGNMENTIN.__str__(),self.startFileName)
         else:
-            self.appendErrorReport(200)
-            return CPluginScript.FAILED
+            sequenceStack = []
+            sequenceStack_check = []
+            for sequenceFile in self.container.inputData.SEQIN:
+                possibleNameRoot = '>'+sequenceFile.fileContent.identifier.__str__()
+                if len(possibleNameRoot.strip()) == 1:
+                    possibleNameRoot = ">unk"
+                possibleName = possibleNameRoot
+                iCount = 0
+                while possibleName in sequenceStack_check:
+                    possibleName = possibleNameRoot + '_' + str(iCount)
+                    iCount += 1
+                sequenceStack.append([possibleName, sequenceFile.fileContent.sequence.__str__()])
+                sequenceStack_check.append(possibleName)
+            with open(self.startFileName,'w') as startFile:
+                for identifier,seq in sequenceStack:
+                    startFile.write(identifier+'\n')
+                    startFile.write(seq+'\n')
         return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
@@ -117,7 +108,3 @@ class clustalw(CPluginScript):
         self.container.outputData.ALIGNMENTOUT.annotation = anno[0:-2]
 
         return CPluginScript.SUCCEEDED
-
-
-
-    

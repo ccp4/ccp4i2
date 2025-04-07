@@ -1,16 +1,11 @@
-from __future__ import print_function
-
-import sys
-import os
-import glob
-import tempfile
 import functools
+import glob
+import os
+import sys
 
-from PySide2 import QtCore, QtGui, QtWidgets
+from PySide2 import QtCore, QtWidgets
+from ccp4mg import PdbView  # Needs to be after PySide2 import
 
-import ccp4mg
-import mmdb2
-import PdbView
 
 #workDirectory = "XXXXX_WORK_DIR_XXXXX"
 
@@ -36,28 +31,6 @@ class PdbViewMainWindowI2(PdbView.PDBVIEWMainWindow):
       print("Save",fname)
 
       self.save(fname)
-
-      """
-      child = self.findChildren(PdbView.PDBVIEWWidget)[0]
-      
-      child.table().selectAll()
-      child.copyData()
-      clippy = QtWidgets.QApplication.clipboard()
-
-      print clippy.text()
-
-      inputFile = tempfile.NamedTemporaryFile(suffix=".cif",delete=False)
-      inputFile.write(str(clippy.text()))
-      tfile = inputFile.name
-
-      print tfile
-      inputFile.close()
-      molHnd = mmdb2.Manager()
-      molHnd.ReadCoorFile(tfile)
-
-      child.table().clearSelection()
-      molHnd.WritePDBASCII(fname)
-      """
 
   def __init__(self,parent=None,widget=None,workDir=None):
     PdbView.PDBVIEWMainWindow.__init__(self,parent,widget)

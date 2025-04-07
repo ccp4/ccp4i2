@@ -1,28 +1,15 @@
 """
-    TestObsConversions.py: CCP4 GUI Project
-    Copyright (C) 2015 Newcastle University
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,S
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
+Copyright (C) 2015 Newcastle University
+"""
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core.CCP4ErrorHandling import *
-from core import CCP4Modules
-from core import CCP4Utils
+import os
+
 from lxml import etree
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class TestObsConversions(CPluginScript):
     TASKTITLE = 'TestObsConversions'
@@ -64,10 +51,9 @@ class TestObsConversions(CPluginScript):
         pathNode.text = str(getattr(self.container.inputData,inputType))
         
         self.hklin,error = self.makeHklin([[inputType, int(self.container.controlParameters.INPUT_REPRESENTATION)]])
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             self.appendErrorReport(201, inputType + " conversion to type number " + str(self.container.controlParameters.INPUT_REPRESENTATION))
             return CPluginScript.FAILED
-        import os
         intermediateFilePath = os.path.join(self.getWorkDirectory(),'intermediate.mtz')
         os.rename(self.hklin, intermediateFilePath)
 
@@ -88,15 +74,14 @@ class TestObsConversions(CPluginScript):
         pathNode.text = str(getattr(self.container.inputData,inputType))
 
         self.hklin,columns,error = self.makeHklin0([['F_SIGF_INTERMEDIATE', int(self.container.controlParameters.OUTPUT_REPRESENTATION)]])
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             self.appendErrorReport(202, 'F_SIGF_INTERMEDIATE' + " conversion to type number " + str(self.container.controlParameters.OUTPUT_REPRESENTATION))
             return CPluginScript.FAILED
 
-        from core.CCP4XtalData import CObsDataFile
         outputFiles = ['F_SIGF_FINAL']
         outputColumns = [columns]
         error = self.splitHklout(outputFiles,outputColumns,infile=self.hklin)
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         self.container.outputData.F_SIGF_FINAL.setContentFlag(reset=True)
         
@@ -115,5 +100,3 @@ class TestObsConversions(CPluginScript):
         pathNode.text = str(getattr(self.container.outputData,inputType))
 
         return CPluginScript.SUCCEEDED
-
-

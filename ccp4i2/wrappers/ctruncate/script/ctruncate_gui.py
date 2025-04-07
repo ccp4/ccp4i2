@@ -1,13 +1,11 @@
 """
-    ctruncate_gui.py
-    Copyright (C) 2015STFC
-    Author: Liz POtterton
-
+Copyright (C) 2015 STFC
+Author: Liz POtterton
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui.CCP4TaskWidget import CTaskWidget
-from core.CCP4ErrorHandling import CErrorReport
+from ....core.CCP4ErrorHandling import CErrorReport
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 class ctruncate_gui(CTaskWidget):
 
@@ -17,8 +15,7 @@ class ctruncate_gui(CTaskWidget):
     TASKTITLE='Convert intensities to amplitudes'
     DESCRIPTION = 'Convert reflection intensities to structure factors (ctruncate)'
 
-    ERROR_CODES = { 200 : { 'description' : 'Selected input data is not intensities' }
-                    }
+    ERROR_CODES = { 200 : { 'description' : 'Selected input data is not intensities' } }
 
     def __init__(self,parent):
         CTaskWidget.__init__(self,parent)

@@ -1,37 +1,12 @@
-"""
-        SIMBAD_report.py: CCP4 GUI Project
-
-        This library is free software: you can redistribute it and/or
-        modify it under the terms of the GNU Lesser General Public License
-        version 3, modified in accordance with the provisions of the
-        license to address the requirements of UK law.
-
-        You should have received a copy of the modified GNU Lesser General
-        Public License along with this library.  If not, copies may be
-        downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-        This program is distributed in the hope that it will be useful,
-        but WITHOUT ANY WARRANTY; without even the implied warranty of
-        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-        GNU Lesser General Public License for more details.
-        """
-
-
-
+import argparse
 import os
 import re
-
-if __name__ == '__main__':
-    import sys
-    ccp4 = os.environ['CCP4']
-    sys.path.append(os.path.join(ccp4, 'share', 'ccp4i2', 'report'))
-    sys.path.append(os.path.join(ccp4, 'share', 'ccp4i2', 'core'))
-    sys.path.append(os.path.join(ccp4, 'lib', 'python2.7', 'site-packages'))
-
 import xml.etree.ElementTree as ET
-from report.CCP4ReportParser import Report
 
 from simbad.util import SIMBAD_DIRNAME, SIMBAD_PYRVAPI_SHAREDIR
+
+from ....report.CCP4ReportParser import Report
+
 
 class SIMBAD_report(Report):
     TASKNAME = 'SIMBAD'
@@ -140,7 +115,6 @@ class SIMBAD_report(Report):
 if __name__ == '__main__':
     # Run with no arguments in the CCP4 job directory (the one that holds the SIMBAD directory)
     def test2():
-        import argparse
         parser = argparse.ArgumentParser(
             description='test of morda report generator',
             formatter_class=argparse.ArgumentDefaultsHelpFormatter
@@ -179,20 +153,3 @@ if __name__ == '__main__':
             print >> ostream, htmlstr.replace('><', '>\n<')
 
     test2()
-
-
-# #from CCP4ReportParser import Report
-# # class AMPLE_report(Report):
-# #      # Specify which gui task and/or pluginscript this applies to
-# #      TASKNAME = 'AMPLE'
-# #      RUNNING = False
-# #      def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):
-# #              Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo, jobStatus=jobStatus, **kw)
-# #              clearingDiv = self.addDiv(style="clear:both;")
-# #              self.addDefaultReport(self)
-# #
-# #      def addDefaultReport(self, parent=None):
-# #              if parent is None: parent=self
-# #              if len(self.xmlnode.xpath("LogText")) > 0:
-# #                      newFold = parent.addFold(label="Log text", initiallyOpen=True)
-# #                      newFold.addPre(text = self.xmlnode.xpath("LogText")[0].text)

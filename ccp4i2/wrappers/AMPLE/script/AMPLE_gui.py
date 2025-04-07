@@ -1,35 +1,16 @@
 """
-    AMPLE_gui.py: CCP4 GUI Project
-
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
-
-"""
 Notes
 
 icons live in devel/qticons
 for help.html file copy into devel/docs/tasks/AMPLE
-
 """
 
-from qtgui.CCP4TaskWidget import CTaskWidget
-# David's handy debug console
-#from phil2etree import debug_console
+from multiprocessing import cpu_count
 
 from PySide2 import QtCore
-from multiprocessing import cpu_count
+
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 class AMPLE_gui(CTaskWidget):
     """
@@ -97,7 +78,6 @@ class AMPLE_gui(CTaskWidget):
         self.createLine( ['widget', 'AMPLE_ROSETTA_FRAGS9'])
         self.createLine( ['widget', 'AMPLE_CONTACT_FILE'])
         self.createLine( ['subtitle' ,'What is the format of the contact file?', 'widget', 'AMPLE_CONTACT_FORMAT'])
-        self.setContactFileOptions()
         self.closeSubFrame()
 
         # Depending on the AMPLE_RUN_MODE we need to set certain files as required or not
@@ -114,17 +94,6 @@ class AMPLE_gui(CTaskWidget):
         self.closeSubFrame()
 
         self.drawOptions()
-
-    def setContactFileOptions(self):
-        """Attempt to set a drop-down dynamically but it doesn't appear to be possible"""
-        return
-        # Can't set default options dynamically so need to check if the default value is FOO which indicates
-        # we need to set our own default
-        if self.container.inputData.AMPLE_CONTACT_FORMAT != 'FOO': return
-        from ample.util.contact_util import CONTACT_FILE_PARSERS
-        self.container.inputData.AMPLE_CONTACT_FORMAT.setQualifiers({'enumerators' : CONTACT_FILE_PARSERS})
-        self.container.inputData.AMPLE_CONTACT_FORMAT = CONTACT_FILE_PARSERS[0]
-        return
 
     def drawOptions(self):
         folder = self.openFolder(folderFunction='inputData',title='Advanced Options')

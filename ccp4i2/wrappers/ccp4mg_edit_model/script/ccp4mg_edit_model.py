@@ -1,11 +1,18 @@
-from __future__ import print_function
+from stat import S_ISREG, ST_CTIME, ST_MODE
+import glob
+import os
+import re
+import shutil
+import sys
+import time
 
-
-from core.CCP4PluginScript import CPluginScript
-from PySide2 import QtCore
-import os,re,time,sys
+from ccp4mg.qtgui.plugins.Sequence.phmmerReport import PhmmerReportNoGui
 from lxml import etree
-from core import CCP4Utils
+from PySide2 import QtCore
+
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class ccp4mg_edit_model(CPluginScript):
     
@@ -20,7 +27,6 @@ class ccp4mg_edit_model(CPluginScript):
     ERROR_CODES = {  200 : { 'description' : 'CCP4MG exited with error status' }, 201 : { 'description' : 'Failed in harvest operation' },202 : { 'description' : 'Failed in processOutputFiles' }}
 
     def makeCommandAndScript(self):
-        from core import CCP4Utils
         self.dropDir = os.path.join(self.workDirectory,'CCP4MG_FILE_DROP')
         if not os.path.exists(self.dropDir):
           try:
@@ -47,17 +53,13 @@ class ccp4mg_edit_model(CPluginScript):
         location_attribute = '{%s}noNamespaceSchemaLocation' % NS
         tree = etree.Element("CCP4MG_Status",nsmap = NSMAP,attrib={location_attribute: 'http://www.ysbl.york.ac.uk/~mcnicholas/schema/CCP4MGApplicationOutput.xsd'})
 
-        if sys.version_info > (3,0):
-            status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True).decode("utf-8")
-        else:
-            status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True)
+        status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True).decode("utf-8")
 
         print("Writing",self.mgStatusPath)
         print(status_xml)
 
         with open(self.mgStatusPath, 'wb') as xmlFile:
              xmlFile.write(bytes(status_xml,"utf-8"))
-
         
         if sys.platform == 'win32':
             clArgs = [ '-noredirect','-norestore',self.mgStatusPath ]
@@ -150,7 +152,6 @@ class ccp4mg_edit_model(CPluginScript):
 
 
     def numberOfOutputFiles(self):
-        import glob
         outList = glob.glob(os.path.normpath(os.path.join(self.dropDir,'output*.pdb')))
         #print 'numberOfOutputFiles outList',os.path.join(self.dropDir,'output*.pdb'),outList
         #print 'numberOfOutputFiles xmlList',glob.glob(os.path.normpath(os.path.join(self.workDirectory,'*.xml')))
@@ -163,7 +164,6 @@ class ccp4mg_edit_model(CPluginScript):
 
     @QtCore.Slot(str)
     def handleFileDrop(self,directory):
-        import time,glob
         print('ccp4mg_edit_model',time.time())
         print('ccp4mg_edit_model',glob.glob(os.path.join(self.workDirectory,'*.*')))
         #print 'handleFileDrop',directory
@@ -172,12 +172,9 @@ class ccp4mg_edit_model(CPluginScript):
 
         
     def processOutputFiles(self):
-        import shutil
-        from stat import S_ISREG, ST_CTIME, ST_MODE
         try:
             # First up import PDB files that have been output
-            
-            import os, glob, shutil
+
             globPath = os.path.normpath(os.path.join(self.dropDir,'output*.pdb'))
             outList = glob.glob(globPath)
             
@@ -193,7 +190,6 @@ class ccp4mg_edit_model(CPluginScript):
                 xyzoutList[-1].subType.set(1)
 
             # Create an xml output file and harvest the MrBUMP log files.
-            from lxml import etree
             self.xmlroot = etree.Element('ccp4mg_edit_model')
             e = etree.Element('number_output_files')
             e.text = str(self.numberOfOutputFiles())
@@ -224,9 +220,6 @@ class ccp4mg_edit_model(CPluginScript):
                             shutil.copyfile(log, os.path.join(self.workDirectory,"mrbump_"+os.path.basename(log)))
                     if mrBumpDir is not None:
                         try:
-                            import ccp4mg
-                            sys.path.append(os.path.join(os.path.dirname(ccp4mg.__file__),"qtgui","plugins","Sequence"))
-                            from phmmerReport import PhmmerReportNoGui
                             win = PhmmerReportNoGui()
                             win.setResultsDir(mrBumpDir)
                             svg = win.svg(500,short=True)
@@ -256,7 +249,6 @@ class ccp4mg_edit_model(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def addReportWarning(self, text):
-        from lxml import etree
         warningsNode = None
         warningsNodes = self.xmlroot.xpath('//Warnings')
         if len(warningsNodes) == 0: warningsNode = etree.SubElement(self.xmlroot, 'Warnings')

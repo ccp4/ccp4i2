@@ -1,7 +1,9 @@
-from __future__ import print_function
+import math
 
-import sys
 from lxml import etree
+
+from ....core import CCP4Utils
+
 
 class MDLAtom(object):
     def __init__(self, molLine=None):
@@ -110,7 +112,6 @@ class MDLMolecule(object):
             atom.z = 15.+self.factor*(atom.z-zmin)
 
     def svgXML(self, size = None):
-        import math
         if size is None: size = (240,180)
         self.normalize(size)
         svgNode = etree.fromstring('''
@@ -203,11 +204,9 @@ class MDLMolecule(object):
         return svgNode
 
 if __name__ == '__main__':
-    from core import CCP4Utils
     newLigand = MDLMolecule('job_1/prodrg-in.mdl')
     newLigand.normalize()
     aNode = newLigand.svgXML()
     a = etree.tostring(aNode, pretty_print=True)
     with open('new.svg','w') as outputSVG:
         CCP4Utils.writeXML(outputSVG,a)
-

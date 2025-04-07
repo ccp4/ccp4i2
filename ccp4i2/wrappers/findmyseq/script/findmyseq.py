@@ -1,11 +1,12 @@
-import os
 import json
+import os
+
 from lxml import etree
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4XtalData
-from core import CCP4ErrorHandling
-from core import CCP4Utils
-from core import CCP4Modules
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class findmyseq(CPluginScript):
     TASKMODULE = 'bioinformatics'         # Gui location
@@ -22,7 +23,7 @@ class findmyseq(CPluginScript):
     
     ERROR_CODES = { 101 : {'description' : 'Blank ' \
                            'In case needed (Prob not needed here)', 
-                           'severity':CCP4ErrorHandling.SEVERITY_ERROR } }
+                           'severity':CCP4ErrorHandling.Severity.ERROR } }
 
     def __init__(self, *args, **kwargs):
         self.outjfile = None

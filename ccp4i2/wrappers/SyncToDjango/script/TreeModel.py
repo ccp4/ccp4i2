@@ -1,5 +1,7 @@
-
 #Shamelessly copied from https://www.hardcoded.net/articles/using_qtreeview_with_qabstractitemmodel
+
+from PySide2 import QtCore
+
 
 class TreeNode(object):
     def __init__(self, parent, row):
@@ -10,7 +12,6 @@ class TreeNode(object):
     def _getChildren(self):
         raise NotImplementedError()
 
-from PySide2 import QtCore
 class TreeModel(QtCore.QAbstractItemModel):
     def __init__(self):
         QtCore.QAbstractItemModel.__init__(self)
@@ -43,4 +44,3 @@ class TreeModel(QtCore.QAbstractItemModel):
             return len(self.rootNodes)
         node = parent.internalPointer()
         return len(node.subnodes)
-

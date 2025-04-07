@@ -1,8 +1,11 @@
 import os
 import pathlib
+
 from lxml import etree
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4ModelData import CPdbDataFile
+
+from ......core.CCP4ModelData import CPdbDataFile
+from ......core.CCP4PluginScript import CPluginScript
+
 
 class coot_find_waters(CPluginScript):
     
@@ -44,7 +47,7 @@ class coot_find_waters(CPluginScript):
         if os.path.exists(self.container.outputData.XYZOUT.__str__()): status = CPluginScript.SUCCEEDED
         print('coot_find_waters.handleFinish',self.container.outputData.XYZOUT, os.path.exists(self.container.outputData.XYZOUT.__str__()))
         # Create a trivial xml output file
-        from core import CCP4File
+        from ......core import CCP4File
         root = etree.Element('coot_find_waters')
 
         cootlines = open(self.makeFileName('LOG')).readlines()
@@ -59,38 +62,3 @@ class coot_find_waters(CPluginScript):
         f = CCP4File.CXmlDataFile(fullPath=self.makeFileName('PROGRAMXML'))
         f.saveFile(root)
         return status
-
-
-
-#====================================================================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-import unittest
-
-class testcoot_find_waters(unittest.TestCase):
-    
-    def setUp(self):
-        # make all background jobs wait for completion
-        # this is essential for unittest to work
-        from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
-        self.app = QTAPPLICATION()
-        PROCESSMANAGER().setWaitForFinished(10000)
-    
-    def tearDown(self):
-        from core.CCP4Modules import PROCESSMANAGER
-        PROCESSMANAGER().setWaitForFinished(-1)
-    
-    def test_1(self):
-        from core.CCP4Modules import QTAPPLICATION
-        wrapper = coot_find_waters(parent=QTAPPLICATION(),name='coot_find_waters_test1')
-        wrapper.container.loadDataFromXml()
-
-
-def TESTSUITE():
-    suite = unittest.TestLoader().loadTestsFromTestCase(testcoot_find_waters)
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)

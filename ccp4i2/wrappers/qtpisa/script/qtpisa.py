@@ -1,11 +1,15 @@
-from __future__ import print_function
+import glob
+import os
+import shutil
+import sys
+import time
 
-
-from core.CCP4PluginScript import CPluginScript
-from PySide2 import QtCore
-import os,re,time,sys
 from lxml import etree
-from core import CCP4Utils
+from PySide2 import QtCore
+
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class qtpisa(CPluginScript):
     
@@ -21,7 +25,6 @@ class qtpisa(CPluginScript):
     ERROR_CODES = {  200 : { 'description' : 'QtPisa exited with error status' }, 201 : { 'description' : 'Failed in harvest operation' },202 : { 'description' : 'Failed in processOutputFiles' }}
 
     def makeCommandAndScript(self):
-        from core import CCP4Utils
         self.dropDir = os.path.join(self.workDirectory,'QTPISA_FILE_DROP')
         if not os.path.exists(self.dropDir):
           try:
@@ -42,7 +45,6 @@ class qtpisa(CPluginScript):
 
 
     def numberOfOutputFiles(self):
-        import glob
         outList = glob.glob(os.path.normpath(os.path.join(self.dropDir,'*.xml')))
         #print 'numberOfOutputFiles outList',os.path.join(self.dropDir,'*.xml'),outList
         #print 'numberOfOutputFiles xmlList',glob.glob(os.path.normpath(os.path.join(self.workDirectory,'*.xml')))
@@ -50,7 +52,6 @@ class qtpisa(CPluginScript):
 
     @QtCore.Slot(str)
     def handleFileDrop(self,directory):
-        import time,glob
         print('qtpisa',time.time())
         print('qtpisa',glob.glob(os.path.join(self.workDirectory,'*.*')))
         #print 'handleFileDrop',directory
@@ -60,11 +61,8 @@ class qtpisa(CPluginScript):
     def processOutputFiles(self):
         try:
             # First up import PDB files that have been output
-            
-            import os, glob, shutil
             globPath = os.path.normpath(os.path.join(self.dropDir,'*.xml'))
             outList = glob.glob(globPath)
-            
 
             report_xml = etree.Element("qtpisa_report")
 
@@ -126,4 +124,3 @@ class qtpisa(CPluginScript):
         else: warningsNode = warningsNodes[0]
         warningNode = etree.SubElement(warningsNode,'Warning')
         warningNode.text = text
-

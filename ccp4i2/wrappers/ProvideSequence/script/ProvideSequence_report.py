@@ -1,8 +1,7 @@
-from __future__ import print_function
-
-from report.CCP4ReportParser import *
-import sys
 import xml.etree.ElementTree as etree
+
+from ....report.CCP4ReportParser import Report
+
 
 class ProvideSequence_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -46,4 +45,3 @@ class ProvideSequence_report(Report):
             parent.addPre(text=aliNode.text)
         print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
         print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
-

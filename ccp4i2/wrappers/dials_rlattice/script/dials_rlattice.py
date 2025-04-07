@@ -1,4 +1,5 @@
-from core.CCP4PluginScript import CPluginScript
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class dials_rlattice(CPluginScript):
 
@@ -30,4 +31,3 @@ class dials_rlattice(CPluginScript):
         inputPickle = self.container.inputData.PICKLE_IN.fullPath.__str__()
         self.appendCommandLine(inputJson)
         self.appendCommandLine(inputPickle)
-

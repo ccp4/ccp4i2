@@ -1,6 +1,10 @@
+import os
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
+from lxml import etree
+
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class phaser_ensembler(CPluginScript):
     TASKNAME = 'phaser_ensembler'                                  # Task name - should be same as class name
@@ -10,13 +14,11 @@ class phaser_ensembler(CPluginScript):
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 9999999.9
 
-
     def makeCommandAndScript(self):
         for iCoordSet, xyzin in enumerate(self.container.inputData.XYZIN_LIST):
             if not xyzin.isSelectionSet():
                 self.appendCommandLine(['input.model='+xyzin.fullPath.__str__()])
             else:
-                import os
                 xyzin.selection.text='{'+xyzin.selection.__str__()+'} and {(ALA,CYS,ASP,GLU,PHE,GLY,HIS,ILE,LYS,LEU,MET,ASN,PRO,GLN,ARG,SER,THR,VAL,TRP,TYR)}'
                 inputCoordPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'selected_'+iCoordSet.__str__()+'.pdb'))
                 xyzin.getSelectedAtomsPdbFile(inputCoordPath)
@@ -42,13 +44,12 @@ class phaser_ensembler(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
-        import os
         fileIfMadePath = os.path.join(self.getWorkDirectory(),'ensemble_merged.pdb')
         if os.path.isfile(fileIfMadePath):
             remarkedFilePath = os.path.join(self.getWorkDirectory(),'ensemble_remarked.pdb')
             if self.container.inputData.OVERRIDEID.isSet():
                 with open(remarkedFilePath,'w') as remarkedFile:
-                    from core.CCP4ModelData import CPdbData
+                    from ....core.CCP4ModelData import CPdbData
                     ensembledUnremarked = CPdbData()
                     ensembledUnremarked.loadFile(fileIfMadePath)
                     mmdbManager = ensembledUnremarked.mmdbManager
@@ -59,11 +60,9 @@ class phaser_ensembler(CPluginScript):
                 self.container.outputData.XYZOUT.setFullPath(remarkedFilePath)
             else:
                 self.container.outputData.XYZOUT.setFullPath(fileIfMadePath)
-            
-            
+
             self.container.outputData.XYZOUT.annotation = 'Merged ensemble'
-            
-            from lxml import etree
+
             logText = open(self.makeFileName('LOG'),"r").read()
             rootNode = etree.Element('PHASER_ENSEMBLER')
             logNode = etree.SubElement(rootNode,'LOGTEXT')
@@ -73,4 +72,3 @@ class phaser_ensembler(CPluginScript):
             return CPluginScript.SUCCEEDED
         else:
             return CPluginScript.FAILED
-

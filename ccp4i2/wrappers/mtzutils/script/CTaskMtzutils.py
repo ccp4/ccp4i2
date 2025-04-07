@@ -1,17 +1,12 @@
 """
-     tasks/mtzutils/CTaskMtzutils.py
-     Copyright (C) 2011 STFC
-     Author: Martyn Winn
-
+Copyright (C) 2011 STFC
+Author: Martyn Winn
 """
 
-from qtgui.CCP4TaskWidget import CTaskWidget
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
-#-------------------------------------------------------------------
+
 class CTaskMtzutils(CTaskWidget):
-#-------------------------------------------------------------------
-
-# Subclass CTaskWidget to give specific task window
   TASKNAME = 'mtzutils'
   TASKVERSION = 0.0
   TASKMODULE='test'
@@ -19,7 +14,6 @@ class CTaskMtzutils(CTaskWidget):
 
   def __init__(self,parent):
     CTaskWidget.__init__(self,parent)
-
 
   def drawContents(self):
 
@@ -48,4 +42,3 @@ class CTaskMtzutils(CTaskWidget):
 
     self.createLine ( [  'help', 'TESTING',
                          'widget','HKLOUT' ] )
-

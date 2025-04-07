@@ -29,12 +29,13 @@ Dependencies:
 To list all the available options, run:
 ccp4-python json2restraints.py -h
 """
+
+import argparse
 import json
-try:
-    import gemmi
-except:
-    import sys
-    raise SystemExit("ERROR: module GEMMI not found.\n")
+import os
+import sys
+
+import gemmi
 
 
 def main(jsonPaths, stPath=None, outputPrefix="restraints", jsonEquivalentsPath=None, keep_links=False, phenix_variant=None):
@@ -295,8 +296,6 @@ def main(jsonPaths, stPath=None, outputPrefix="restraints", jsonEquivalentsPath=
         try:
             st.write_pdb(outputPdbPath)
         except Exception as e:
-            import sys
-            import os
             sys.stderr.write("WARNING: Output PDB file could not be written: ")
             sys.stderr.write(str(e))
             sys.stderr.write("\n")
@@ -309,7 +308,6 @@ def main(jsonPaths, stPath=None, outputPrefix="restraints", jsonEquivalentsPath=
 
 
 if __name__ == "__main__":
-    import argparse
     parser = argparse.ArgumentParser(
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter

@@ -1,7 +1,7 @@
-from report.CCP4ReportParser import *
-import sys
-from lxml import etree
 import math
+
+from ....report.CCP4ReportParser import Report
+
 
 class ShelxCDEBaseReport(Report):
     

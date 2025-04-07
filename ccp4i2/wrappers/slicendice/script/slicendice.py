@@ -1,16 +1,14 @@
-from __future__ import print_function
-import os
-import shutil
 import json
 import multiprocessing
+import os
+import shutil
+
 from lxml import etree
-from core import CCP4Utils
-from core import CCP4XtalData
-from core import CCP4File
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4Modules import PROCESSMANAGER
-from core import CCP4ErrorHandling
-from core.CCP4ErrorHandling import *
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class slicendice(CPluginScript):
 
@@ -38,7 +36,7 @@ class slicendice(CPluginScript):
         if self.container.inputData.FREERFLAG.isSet():
             dataObjects += ['FREERFLAG']
         self.hklin,error = self.makeHklin(dataObjects)
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         else:
             return CPluginScript.SUCCEEDED
@@ -153,7 +151,7 @@ class slicendice(CPluginScript):
         #    outputFiles+=['ABCDOUT']
         #    outputColumns+=['HLACOMB,HLBCOMB,HLCCOMB,HLDCOMB']
         error = self.splitHklout(outputFiles,outputColumns,infile=hklout)
-        if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
 
         #Set performance indicators
@@ -193,35 +191,3 @@ class slicendice(CPluginScript):
         xmlfile.write(xmlString)
         xmlfile.close()
         return CPluginScript.SUCCEEDED
-
-#------------------------------------------------------------------------------------
-import unittest
-
-class testslicendice( unittest.TestCase ) :
-
-#- def setUp( self ) :
-#- def tearDown( self ) :
-#- def test2( self ) :
-
-   def test1( self ) :
-      from core.CCP4Utils import getCCP4I2Dir
-      xmlInput = os.path.join( getCCP4I2Dir(), 'wrappers', 'slicendice', 'test_data', 'test1'+'.params.xml' )
-      self.wrapper = slicendice( name='job' )
-      self.wrapper.container.loadDataFromXml( xmlInput )
-      self.wrapper.setWaitForFinished( 1000000 )
-
-      pid = self.wrapper.process()
-      self.wrapper.setWaitForFinished( -1 )
-      if len(self.wrapper.errorReport)>0:
-         print(self.wrapper.errorReport.report())
-
-def TESTSUITE() :
-
-   suite = unittest.TestLoader().loadTestsFromTestCase( testslicendice )
-   return suite
-
-def testModule() :
-
-   suite = TESTSUITE()
-   unittest.TextTestRunner( verbosity=2 ).run( suite )
-

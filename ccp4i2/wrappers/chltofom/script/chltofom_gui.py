@@ -1,6 +1,6 @@
 
-from qtgui.CCP4TaskWidget import CTaskWidget
-from PySide2 import QtCore
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class CTaskchltofom(CTaskWidget):
@@ -22,4 +22,3 @@ class CTaskchltofom(CTaskWidget):
     self.openFolder(folderFunction='inputData',followFrom=False)
 
     self.createLine ( [ 'widget','HKLIN' ] )
-    

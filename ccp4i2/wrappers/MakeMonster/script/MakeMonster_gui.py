@@ -1,15 +1,15 @@
 """
-     MakeMonster task widget
+MakeMonster task widget
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+import functools
 
-from qtgui.CCP4TaskWidget import CTaskWidget
-from core import CCP4Modules
+from PySide2 import QtCore
 
-#-------------------------------------------------------------------
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
+
 class MakeMonster_gui(CTaskWidget):
-#-------------------------------------------------------------------
 
 # Subclass CTaskWidget to give specific task window
     TASKNAME = 'MakeMonster'
@@ -21,7 +21,6 @@ class MakeMonster_gui(CTaskWidget):
     dataTypesDict = {'Obs':'reflection','Phi':'phase','FWT':'Map coeffs','DELFWT':'Difmap coeffs','FREER':'FreeR flags'}
     
     def drawContents(self):
-        import functools
         self.openFolder(folderFunction='inputData')
         
         for dataType in ['Obs','Phi','FWT','DELFWT','FREER']:

@@ -1,13 +1,20 @@
+from pathlib import Path
 import glob
 import os
-from pathlib import Path
 import platform
+import shutil
 import sys
-from PySide2 import QtCore
+
 from lxml import etree
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Modules
-from core import CCP4Utils
+from PySide2 import QtCore
+from rdkit import Chem
+import acedrg
+
+from . import MOLSVG
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Modules import LAUNCHER, PREFERENCES
+
 
 class lidia(CPluginScript):
     TASKMODULE = 'wrappers'  # Where this plugin will appear on the gui
@@ -36,7 +43,7 @@ class lidia(CPluginScript):
         envEdit=[['PWD', os.path.normpath(self.getWorkDirectory())]]
         if lidiaPath[1]:
             envEdit.append(["PYTHONHOME",lidiaPath[1]])
-        CCP4Modules.LAUNCHER().launch(
+        LAUNCHER().launch(
             viewer=viewer,
             argList=argList,
             callBack=self.handleFinished,
@@ -83,29 +90,25 @@ class lidia(CPluginScript):
 
     def svgForMolFile(self, molFilePath):
         try:
-            from rdkit import Chem
             mol = Chem.MolFromMolFile(molFilePath)
             Chem.SanitizeMol(mol)
             Chem.Kekulize(mol)
-            import acedrg
             return acedrg.svgFromMol(mol)
         except:
             return self.mySvgForMolFile(molFilePath)
 
     def mySvgForMolFile(self, molFilePath):
-        from . import MOLSVG
         mdlMolecule = MOLSVG.MDLMolecule(molFilePath)
         return mdlMolecule.svgXML(size=(300,300))
 
 
 def _lidiaPath() -> str:
-    if hasattr(CCP4Modules.PREFERENCES(), 'COOT_EXECUTABLE'):
-        path = Path(str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE))
+    if hasattr(PREFERENCES(), 'COOT_EXECUTABLE'):
+        path = Path(str(PREFERENCES().COOT_EXECUTABLE))
         if path.is_file():
             return (str(path.resolve().parent / "lidia"),None)
-    if lidiaPath := CCP4Utils.which('lidia'):
+    if lidiaPath := shutil.which('lidia'):
         return (str(Path(lidiaPath).resolve()),None)
     if sys.platform == "linux":# Seems that lidia does not run without PYTHONPATH being set on Linux
         return (str(Path(os.environ["CCP4"]).resolve() / "coot_py2/bin/lidia"),str(Path(os.environ["CCP4"]).resolve() / "coot_py2/"))
-    else:
-        return (str(Path(os.environ["CCP4"]).resolve() / "coot_py2/bin/lidia"),None)
+    return (str(Path(os.environ["CCP4"]).resolve() / "coot_py2/bin/lidia"),None)

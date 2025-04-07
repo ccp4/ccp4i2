@@ -1,12 +1,12 @@
 """
-    validate_protein_gui.py
-    Copyright (C) 2022
-    Author: William Rochira and Jon Agirre
+Copyright (C) 2022
+Author: William Rochira and Jon Agirre
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui.CCP4TaskWidget import CTaskWidget
-from qtgui import CCP4Widgets
+from PySide2 import QtCore
+
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 class validate_protein_gui(CTaskWidget):
     TASKNAME = 'validate_protein'

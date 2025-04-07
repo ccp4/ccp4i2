@@ -1,34 +1,20 @@
 """
-     arcimboldo.py: CCP4 GUI 2 Project
-     Copyright (C) 2014 The University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2014 The University of York
 """
 
 ## @package arcimboldo
 # This script runs all three versions of arcimboldo
 
-#!/usr/bin/env ccp4-python
+from distutils.dir_util import copy_tree
+import os
+
 from lxml import etree
 
-import os, subprocess, sys, time, json, re
-from distutils.dir_util import copy_tree
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4XtalData
-from core import CCP4Utils
-from core import CCP4Modules
+from ....core import CCP4Utils
+from ....core import CCP4XtalData
+from ....core.CCP4Modules import PROCESSMANAGER
+from ....core.CCP4PluginScript import CPluginScript
+
 
 ccp4_home = os.environ.get ( "CCP4", "not_set" )
 
@@ -45,8 +31,8 @@ class arcimboldo(CPluginScript):
     def genHKL(self, hklin):
         binf = os.path.normpath(os.path.join( CCP4Utils.getCCP4Dir().__str__(), 'bin', 'mtz2hkl' ))
         arglist = ['-f', hklin.__str__()]
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(binf, arglist)
-        return CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
+        pid = PROCESSMANAGER().startProcess(binf, arglist)
+        return PROCESSMANAGER().getJobData(pid, 'exitCode')
 
     def generateBor (self, hklin, columns):
         inputData = self.container.inputData
@@ -232,45 +218,3 @@ class arcimboldo(CPluginScript):
         if os.path.exists(self.makeFileName('PROGRAMXML')):
             os.remove(self.makeFileName('PROGRAMXML'))
         os.rename(tmpFilename, self.makeFileName('PROGRAMXML'))
-
-
-#=====================================================================================================
-#=================================test suite=========================================================
-#=====================================================================================================
-
-import unittest
-from core.CCP4Utils import getCCP4I2Dir,getTMP
-
-# unit testing asynchronous processes potential tricky but QProcess has option to wait for finished
- 
-class test_arcimboldo ( unittest.TestCase ) :
-    def setUp(self):
-      # make all background jobs wait for completion
-      PROCESSMANAGER().setWaitForFinished(10000)
-
-    def tearDown(self):
-      PROCESSMANAGER().setWaitForFinished(-1)
-
-    def test_arcimboldo(self):
-      import os
-      inputData =  CScriptDataContainer(name='test_arcimboldo_test',containerType='inputData',initialise=test_arcimboldo.INPUTDATA)
-      outputData =  CScriptDataContainer(name='test_arcimboldo_test',containerType='outputData',initialise=test_arcimboldo.OUTPUTDATA)
-      try:
-         inputData.importXML(os.path.join(getCCP4I2Dir(),'wrappers','test_arcimboldo','test_data','test_arcimboldo_test_1.def.xml'))
-      except CException as e:
-         self.fail(e.errorType)
-      try:
-         outputData.importXML(os.path.join(getCCP4I2Dir(),'wrappers','test_arcimboldo','test_data','test_arcimboldo_test_1.def.xml'))
-      except CException as e:
-         self.fail(e.errorType)
-      
-      wrapper = test_arcimboldo()
-      pid = wrapper.process()
-
-    def testSuite():
-      suite = unittest.TestLoader().loadTestsFromTestCase(test_test_arcimboldo)
-      return suite
-
-    def runAllTests():
-      suite = testSuite()
-      unittest.TextTestRunner(verbosity=2).run(suite)

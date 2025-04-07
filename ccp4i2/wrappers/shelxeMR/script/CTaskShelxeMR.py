@@ -1,7 +1,7 @@
 #=======================================================================================
 #
 #    CTaskShelxeMR.py : CTaskShelxeMR(CCP4TaskWidget.CTaskWidget)
-#    
+#    Copyright (C) 2015 STFC
 #    Author  : Kyle Stevenson,STFC
 #    Created : 14th April 2016, KJS
 #
@@ -9,7 +9,8 @@
 #
 #=======================================================================================
 
-from qtgui import CCP4TaskWidget
+from ....qtgui import CCP4TaskWidget
+
 
 class CTaskShelxeMR(CCP4TaskWidget.CTaskWidget):
 
@@ -56,22 +57,3 @@ class CTaskShelxeMR(CCP4TaskWidget.CTaskWidget):
         self.createLine(['label', 'Apply n-fold symmetry (NC) to C-alpha traces:', 'stretch', 'widget', 'USENFOLD'])
         self.closeSubFrame()
         self.closeFolder()
-
-"""
-     CTaskShelxeMR.py: CCP4 GUI Project
-     Copyright (C) 2015 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""

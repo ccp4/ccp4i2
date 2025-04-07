@@ -1,30 +1,17 @@
-from __future__ import print_function
-
 """
-     parrot.py: CCP4 GUI Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2010 University of York
 """
 
 import os
-import sys
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core import CCP4ErrorHandling
-from core import CCP4XtalData
+
+from lxml import etree
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Utils
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+from ....pimple import MGQTmatplotlib
+from ....smartie import smartie
 
 
 class parrot(CPluginScript):
@@ -46,7 +33,7 @@ class parrot(CPluginScript):
       if self.container.inputData.FREERFLAG.isSet(): cols.append('FREERFLAG')
       if self.container.inputData.F_PHI.isSet(): cols.append('F_PHI')
       self.hklin, __, error = self.makeHklInput(cols)
-      if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING: return CPluginScript.FAILED
+      if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING: return CPluginScript.FAILED
 
       self.refHklin = None
       conPars = self.container.controlParameters
@@ -54,7 +41,7 @@ class parrot(CPluginScript):
          conPars.F_SIGF_REF.exists() and conPars.ABCD_REF.exists() and conPars.XYZIN_REF.exists():
         self.refHklin, __, error = self.makeHklInput([['F_SIGF_REF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN],'ABCD_REF'],
                                                      extendOutputColnames=False, useInputColnames=False)
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
           self.refHklin = None
 
       self.seqin = os.path.join(self.workDirectory,'seqin.fasta')
@@ -73,7 +60,6 @@ class parrot(CPluginScript):
       self.container.outputData.FPHIOUT.annotation = self.jobNumberString() + ' Map coefficients from density modification'
       
       # extend XML output
-      from lxml import etree
       rootNode = etree.Element("ParrotResult")
       with open(self.xmlout,'r') as xmlFile:
         rootNode = etree.fromstring(xmlFile.read())
@@ -88,18 +74,12 @@ class parrot(CPluginScript):
 
       # error checking
       error = self.splitHklout(['FPHIOUT','ABCDOUT'],['parrot.F_phi.F,parrot.F_phi.phi','parrot.ABCD.A,parrot.ABCD.B,parrot.ABCD.C,parrot.ABCD.D'])
-      if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+      if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
         return CPluginScript.FAILED
       else:
         return CPluginScript.SUCCEEDED
 
     def scrapeSmartieGraphs(self, smartieNode):
-        smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
-        sys.path.append(smartiePath)
-        import smartie
-        
-        from lxml import etree
-        
         logfile = smartie.parselog(self.makeFileName('LOG'))
         for smartieTable in logfile.tables():
             if smartieTable.ngraphs() > 0:
@@ -107,7 +87,6 @@ class parrot(CPluginScript):
         return
 
     def xmlForSmartieTable(self, table, parent):
-        from pimple import MGQTmatplotlib
         tableetree = MGQTmatplotlib.CCP4LogToEtree(table.rawtable())
         parent.append(tableetree)
         return tableetree
@@ -168,63 +147,7 @@ class parrot(CPluginScript):
 
       return CPluginScript.SUCCEEDED
 
-     
-# ----------------------------------------------------------------------
-# Function to return list of names of exportable MTZ(s)
-'''
-def exportJobFile(jobId=None,mode=None):
-    import os
-    from core import CCP4Modules
-    from core import CCP4XtalData
 
-    # Devise name for the merged file and check if it has already been created
-    jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
-    exportFile = os.path.join(jobDir,'exportMtz.mtz')
-    if os.path.exists(exportFile): return exportFile
-
-    # Get the source reflection data either from aimless or an imported file
-    # getSourceReflectionFile() returns a dict with elements: fileName, source, jobNumber
-    reflnInfo = CCP4Modules.PROJECTSMANAGER().getSourceReflectionFile(jobId = jobId, jobParamName='F_SIGF')
-    print 'parrot.exportJobFile getSourceReflectionFile',reflnInfo
-    if reflnInfo['fileName'] is None: return None
-
-    # Query database for filenames and job info for the input and ouptput phase objects
-    db = CCP4Modules.PROJECTSMANAGER().db()
-    abcdInfo = db.getJobFilesInfo(jobId=jobId,jobParamName='ABCD',input=True)
-    jN2 = abcdInfo[0]['jobnumber']+'_'+abcdInfo[0]['taskname']
-    abcdOutInfo = db.getJobFilesInfo(jobId=jobId,jobParamName='ABCDOUT')
-    jN3 = abcdOutInfo[0]['jobnumber']+'_'+abcdOutInfo[0]['taskname']
-    print 'parrot.exportJobFile abcdInfo',abcdInfo
-    print 'parrot.exportJobFile abcdOutInfo',abcdOutInfo
-
-    print 'parrot.exportJobFile  runCad:',exportFile,abcdInfo[0]['fullPath'],  abcdOutInfo[0]['fullPath']
-    # Custom input to runCad to set output column names
-    comLines = [ ]
-
-    # Beware the input phases not necessarilly HL
-    if abcdInfo[0].get('fileContent',None) is not None:
-      fC = abcdInfo[0]['fileContent']
-    else:
-      p = CCP4XtalData.CPhsDataFile(abcdInfo[0]['fullPath'])
-      p.setContentFlag()
-      fC = int(p.contentFlag)
-
-    # Use CAD LABOUT line to set column labels in export file
-    if fC == 1:
-     comLines.append ( 'LABOUT FILENUMBER 2 E1=HLA_'+jN2+'  E2=HLB_'+jN2+' E3=HLC_'+jN2+' E4=HLD_'+jN2 )
-    else:
-      comLines.append ( 'LABOUT FILENUMBER 2 E1=PHI_'+jN2+'  E2=FOM_'+jN2 )
-    # Parrot output is always HLs?
-    comLines.append ( 'LABOUT FILENUMBER 3 E1=HLA_'+jN3+'  E2=HLB_'+jN3+' E3=HLC_'+jN3+' E4=HLD_'+jN3 )
-
-    #  Create an CMtzDataFile object and initialise with the refln data file
-    m = CCP4XtalData.CMtzDataFile(reflnInfo['fileName'])
-    #print m.runCad.__doc__   #Print out docs for the function
-    outfile,err = m.runCad(exportFile,[ abcdInfo[0]['fullPath'],  abcdOutInfo[0]['fullPath'] ] ,comLines )
-    print 'aimless_pipe.exportJobFile',outfile,err.report()
-    return   outfile
-'''                                                
- 
 def exportJobFileMenu(jobId=None):
     # Return a list of items to appear on the 'Export' menu - each has three subitems:
     # [ unique identifier - will be mode argument to exportJobFile() , menu item , mime type (see CCP4CustomMimeTypes module) ]

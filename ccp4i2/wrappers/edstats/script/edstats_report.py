@@ -1,14 +1,14 @@
-from report.CCP4ReportParser import *
-from core import CCP4Utils
-from core.CCP4ClipperUtils import is_aminoacid
-import os
+"""
+edstats report generator
+Jon Agirre (YSBL, The University of York) 2014-2018
+"""
+
+import sys
 import xml.etree.ElementTree as etree
 
-"""
-    edstats report generator
-    Jon Agirre (YSBL, The University of York) 2014-2018
+from ....core.CCP4ClipperUtils import is_aminoacid
+from ....report.CCP4ReportParser import Report
 
-"""
 
 class edstats_report(Report):
   # Specify which gui task and/or pluginscript this applies to
@@ -409,5 +409,4 @@ class edstats_report(Report):
     self.addTaskReferences()
 
 if __name__ == "__main__":
-  import sys
   edstats_report(xmlFile=sys.argv[1],jobId=sys.argv[2])

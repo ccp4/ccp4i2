@@ -1,8 +1,10 @@
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4XtalData
-from core import CCP4ErrorHandling
-import os
 import glob
+import os
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class AUSPEX(CPluginScript):
 
@@ -36,7 +38,7 @@ class AUSPEX(CPluginScript):
         if bFData:
             cols1.append(['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN])
         self.hklin1, __, error1 = self.makeHklInput(cols1, extendOutputColnames=True, useInputColnames=True)
-        if error1.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        if error1.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
 
     def processOutputFiles(self):

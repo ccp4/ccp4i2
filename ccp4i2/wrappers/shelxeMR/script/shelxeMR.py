@@ -1,4 +1,3 @@
-from __future__ import print_function
 #=======================================================================================
 #
 #    shelxeMR.py : shelxeMR(CPluginScript)
@@ -11,18 +10,20 @@ from __future__ import print_function
 #
 #=======================================================================================
 
-from io import *
 import os
 import re
-import sys
 import shutil
+
 from lxml import etree
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core import CCP4ErrorHandling
-from core import CCP4XtalData
-from core import CCP4Modules
-from core.CCP4ErrorHandling import CErrorReport, CException
+from mrbump.file_info import MTZ_parse
+from mrbump.parsers.parse_shelxe import ShelxeLogParser
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Utils
+from ....core import CCP4XtalData
+from ....core.CCP4Modules import PROCESSMANAGER, PROJECTSMANAGER
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class shelxeMR(CPluginScript):
 
@@ -39,11 +40,6 @@ class shelxeMR(CPluginScript):
     filecaught = False
 
     def __init__(self, *args, **kwargs):
-        # Append paths to MrBump parsers
-        mrbump_pth1 = os.path.join(CCP4Utils.getCCP4Dir(), 'lib', 'py2', 'mrbump', 'parsers')
-        mrbump_pth2 = os.path.join(CCP4Utils.getCCP4Dir(), 'lib', 'py2', 'mrbump', 'file_info')
-        sys.path.append(mrbump_pth1)
-        sys.path.append(mrbump_pth2)
         CPluginScript.__init__(self, *args, **kwargs)
         self.MTZ = None
         self.shelx_fname = "shelxrun"
@@ -51,7 +47,7 @@ class shelxeMR(CPluginScript):
     # Override functions that are needed for run
     def process(self):
         if not self.filecaught:
-            jobDirectory = CCP4Modules.PROJECTSMANAGER().db().jobDirectory(jobId=self.jobId)
+            jobDirectory = PROJECTSMANAGER().db().jobDirectory(jobId=self.jobId)
             self.watchDirectory(jobDirectory, handler=self.handleDirectoryChanged)
         CPluginScript.process(self)
 
@@ -72,7 +68,7 @@ class shelxeMR(CPluginScript):
         if self.container.inputData.FREERFLAG.isSet():
             cols.append('FREERFLAG')
         self.hklin, columns, error = self.makeHklInput(cols, extendOutputColnames=True, useInputColnames=True)
-        if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         # Rename the .pdb file to .pda
         pdb_fullpath = self.container.inputData.XYZIN.fullPath.__str__()
@@ -97,12 +93,11 @@ class shelxeMR(CPluginScript):
         outputFiles = ['FPHIOUT']
         outputColumns = ['FWT,PHWT']
         error = self.splitHklout(outputFiles, outputColumns, os.path.join(self.getWorkDirectory(), 'sftools_out.mtz'))
-        if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 
     def parseLogfile(self):
-        from mrbump.parsers.parse_shelxe import ShelxeLogParser
         # Parse the shelxe logfile
         rootNode = etree.Element("shelxeMR")
         sxlog = ShelxeLogParser(self.makeFileName('LOG'))
@@ -148,7 +143,6 @@ class shelxeMR(CPluginScript):
 ##================================ Local functions used in data run =========================================
     # Generate .hkl file from .mtz reflection file.
     def genHKL(self):
-        from mrbump.file_info import MTZ_parse
         # Define the binary file (with path), as well as the mtz2various logfile
         binf = os.path.normpath(os.path.join( CCP4Utils.getCCP4Dir().__str__(), 'bin', 'mtz2various' ))
         # input & output file (same name as model+.hkl). Also logfile name.
@@ -156,8 +150,6 @@ class shelxeMR(CPluginScript):
         outfile = os.path.join(self.getWorkDirectory(),self.shelx_fname + '.hkl')
         arglist = ['HKLIN', infile, 'HKLOUT', outfile]
         logFile = os.path.normpath(os.path.join(self.getWorkDirectory(), 'mtz2various.log'))
-        mrbumpf_pth = os.path.join(CCP4Utils.getCCP4Dir(), 'share', 'mrbump', 'include', 'file_info')
-        sys.path.append(mrbumpf_pth)
         self.mtz = MTZ_parse.MTZ_parse()
         self.mtz.run_mtzdmp(infile)
         # Extra input needed to be read-in by mtz2various
@@ -165,9 +157,9 @@ class shelxeMR(CPluginScript):
         inputText += ('output SHELX\n')
         inputText += ('FSQUARED')
         # Fire the hkl conversion up.
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(binf, arglist, inputText=inputText, logFile=logFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
+        pid = PROCESSMANAGER().startProcess(binf, arglist, inputText=inputText, logFile=logFile)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid, 'exitCode')
         if status == 0 and os.path.exists(outfile[0]):
             return CPluginScript.SUCCEEDED
         else:
@@ -243,32 +235,13 @@ class shelxeMR(CPluginScript):
         logFile1 =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'f2mtzCh.log'))
         logFile2 =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'cad.log'))
         logFile3 =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'sftools.log'))
-        pid1 = CCP4Modules.PROCESSMANAGER().startProcess(binf2m, arglist1, inputText=inputText1, logFile=logFile1)
-        stat1 = CCP4Modules.PROCESSMANAGER().getJobData(pid1)
-        exCd1 = CCP4Modules.PROCESSMANAGER().getJobData(pid1, 'exitCode')
-        pid2 = CCP4Modules.PROCESSMANAGER().startProcess( bincad, arglist2, inputText=inputText2, logFile=logFile2)
-        stat2 = CCP4Modules.PROCESSMANAGER().getJobData(pid2)
-        exCd2 = CCP4Modules.PROCESSMANAGER().getJobData(pid2, 'exitCode')
-        pid3 = CCP4Modules.PROCESSMANAGER().startProcess(binsft, arglist3, inputText=inputText3, logFile=logFile3)
-        stat3 = CCP4Modules.PROCESSMANAGER().getJobData(pid3)
-        exCd3 = CCP4Modules.PROCESSMANAGER().getJobData(pid3, 'exitCode')
+        pid1 = PROCESSMANAGER().startProcess(binf2m, arglist1, inputText=inputText1, logFile=logFile1)
+        stat1 = PROCESSMANAGER().getJobData(pid1)
+        exCd1 = PROCESSMANAGER().getJobData(pid1, 'exitCode')
+        pid2 = PROCESSMANAGER().startProcess( bincad, arglist2, inputText=inputText2, logFile=logFile2)
+        stat2 = PROCESSMANAGER().getJobData(pid2)
+        exCd2 = PROCESSMANAGER().getJobData(pid2, 'exitCode')
+        pid3 = PROCESSMANAGER().startProcess(binsft, arglist3, inputText=inputText3, logFile=logFile3)
+        stat3 = PROCESSMANAGER().getJobData(pid3)
+        exCd3 = PROCESSMANAGER().getJobData(pid3, 'exitCode')
         return CPluginScript.SUCCEEDED
-        
-"""
-     shelxeMR.py: CCP4 GUI Project
-     Copyright (C) 2015 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""

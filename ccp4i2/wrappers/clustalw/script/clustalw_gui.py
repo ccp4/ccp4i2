@@ -1,13 +1,12 @@
 """
-    clustalw_gui.py
-    Copyright (C) 2015 Newcastle University
-    Author: Martin Noble
-    
-    """
+Copyright (C) 2015 Newcastle University
+Author: Martin Noble
+"""
 
+from PySide2 import QtCore
 
-from qtgui.CCP4TaskWidget import CTaskWidget
-from PySide2 import QtGui, QtWidgets,QtCore
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class clustalw_gui(CTaskWidget):

@@ -1,11 +1,13 @@
 """
-     tasks/freerflag/CTaskFreerflag.py
-     Copyright (C) 2011 STFC
-     Author: Martyn Winn
+Copyright (C) 2011 STFC
+Author: Martyn Winn
 
 """
+
 from PySide2 import QtCore
-from qtgui.CCP4TaskWidget import CTaskWidget
+
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 class CTaskFreerflag(CTaskWidget):
 
@@ -117,4 +119,3 @@ class CTaskFreerflag(CTaskWidget):
     self.maximum_datares_label.setText('{:5.2f}'.format(highResD))
     self.maximum_freeres_label.setText('{:5.2f}'.format(highResF))
     return True
-

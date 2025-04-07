@@ -1,15 +1,11 @@
 import os
-import re
-import shutil
-import subprocess
-import glob
+
 from lxml import etree
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4XtalData
-from core import CCP4ErrorHandling
-from core import CCP4Utils
-from core import CCP4Modules
+from ....core import CCP4ErrorHandling
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class pairef(CPluginScript):
     TASKMODULE = 'refinement'         # Gui menu location
@@ -24,7 +20,7 @@ class pairef(CPluginScript):
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
     
     ERROR_CODES = { 101 : {'description' : 'Blank for now, may need this ',
-                           'severity':CCP4ErrorHandling.SEVERITY_ERROR } }
+                           'severity':CCP4ErrorHandling.Severity.ERROR } }
 
     def __init__(self, *args, **kwargs):
         self.seqin = None
@@ -54,7 +50,7 @@ class pairef(CPluginScript):
         if self.container.inputData.FREERFLAG.isSet():
             cols1.append(['FREERFLAG', None])
         self.hklin, __, errorb = self.makeHklInput(cols1, extendOutputColnames=True, useInputColnames=True)
-        if errorb.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        if errorb.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 
@@ -125,34 +121,6 @@ class pairef(CPluginScript):
         htf = os.path.join(self.getWorkDirectory(), "pairef_project" ,"PAIREF_project.html")
         stf = os.path.join(self.getWorkDirectory(), "pairef_project" ,"styles.css")
 
-#Kyle stuff which was always commented.
-        #shutil.copy(htf, self.getWorkDirectory())
-        #shutil.copy(stf, self.getWorkDirectory())
-        #ifiles = glob.glob(os.path.join(self.getWorkDirectory(), "pairef_project", "*.png" ))
-        #for ifl in ifiles:
-        #    shutil.copy(ifl, self.getWorkDirectory())
-        # Keep this consistent with other ref progs
-        #pdbfile_bus = os.path.join(self.getWorkDirectory(), "refine.pdb")
-        #if os.path.exists(pdbfile_bus):
-        #    self.container.outputData.XYZOUT = pdbfile_bus
-        #self.container.outputData.XYZOUT.annotation = 'Model from refinement'
-        # MTZ i2 int conv.
-        #mtzfile_bus = os.path.join(self.getWorkDirectory(), "refine.mtz")
-        #self.container.outputData.ABCDOUT.annotation = 'Calculated phases from refinement'
-        #self.container.outputData.ABCDOUT.contentFlag = CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL
-        #self.container.outputData.FPHIOUT.annotation = 'Weighted map from refinement'
-        #self.container.outputData.DIFFPHIOUT.annotation = 'Weighted difference map from refinement'
-        #outFiles = ['FPHIOUT', 'DIFFPHIOUT', 'ABCDOUT']
-        #outCols =  ['2FOFCWT,PH2FOFCWT', 'FOFCWT,PHFOFCWT', 'HLA,HLB,HLC,HLD']
-        #rep = self.splitHklout(miniMtzsOut=outFiles, programColumnNames=outCols, infile=mtzfile_bus)
-        #if rep.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
-        #    return CPluginScript.FAILED
-        # Extract what is needed from the report.
-        #plfilep = self.makeFileName('LOG')
-        #plfile = open(blfilep, 'r')
-        #pltxt = blfile.read()
-        #plfile.close()
-
 
         cutoff = '0.0'
         cfn = os.path.join(self.getWorkDirectory(), "pairef_project" ,"PAIREF_cutoff.txt")
@@ -169,4 +137,3 @@ class pairef(CPluginScript):
         xmlfile.write(xmlString)
         xmlfile.close()
         return CPluginScript.SUCCEEDED
-

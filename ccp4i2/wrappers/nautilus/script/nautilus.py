@@ -1,31 +1,11 @@
-from __future__ import print_function
-
-"""
-    nautilus.py: CCP4 GUI Project
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
-
 import os
-from core import CCP4XtalData
-from core import CCP4ErrorHandling
-from core.CCP4PluginScript import CPluginScript
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4XtalData
+from ....core.CCP4PluginScript import CPluginScript
 
 
 class nautilus(CPluginScript):
-
     TASKMODULE="developer_tools"
     TASKNAME = 'nautilus'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
     TASKVERSION= 0.1               # Version of this plugin
@@ -34,10 +14,8 @@ class nautilus(CPluginScript):
     PURGESEARCHLIST = [ [ 'hklin.mtz' , 0 ], ['log_mtzjoin.txt', 0] ]
     TASKCOMMAND="cnautilus"
 
-    
     def __init__(self, *args, **kws):
         super(nautilus, self).__init__(*args, **kws)
-
 
     def processInputFiles(self):
         #Preprocess reflections to generate an "HKLIN" file
@@ -49,7 +27,7 @@ class nautilus(CPluginScript):
             print('FREERFLAG is not set, so joining the rest of the data objects')
             self.hklin,columns,error = self.makeHklin0([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN], 'ABCD', 'FWT_PHWT_IN' ])
 
-          if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+          if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             print('ERROR creating input HKLIN with FWT_PHWT_IN')
             print(error.report())
             return CPluginScript.FAILED
@@ -61,7 +39,7 @@ class nautilus(CPluginScript):
             print('FREERFLAG is not set, so joining the rest of the data objects')
             self.hklin,columns,error = self.makeHklin0([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN],'ABCD' ])
           
-          if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+          if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             print('ERROR creating input HKLIN')
             print(error.report())
             return CPluginScript.FAILED
@@ -71,7 +49,6 @@ class nautilus(CPluginScript):
         self.container.inputData.ASUIN.writeFasta(self.seqin, polymerTypes=["RNA", "DNA"])
 
         return CPluginScript.SUCCEEDED
-
 
     def makeCommandAndScript(self,**kw):
         self.appendCommandLine(['-stdin'])
@@ -109,7 +86,6 @@ class nautilus(CPluginScript):
 
         return CPluginScript.SUCCEEDED
 
-
     def processOutputFiles(self):
       self.container.outputData.XYZOUT.annotation = 'Model built with Nautilus'
       self.container.outputData.XYZOUT.subType=1
@@ -137,4 +113,3 @@ class nautilus(CPluginScript):
       except Exception as e:
         print(str(e))
       return CPluginScript.SUCCEEDED
-

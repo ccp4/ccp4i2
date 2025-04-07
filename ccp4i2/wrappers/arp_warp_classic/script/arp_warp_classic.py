@@ -1,9 +1,15 @@
+import os
+import re
+import shutil
+import subprocess
+import sys
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core import CCP4ErrorHandling, CCP4XtalData
-from core import CCP4Modules
-import os, sys, shutil
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Utils
+from ....core import CCP4XtalData
+from ....core.CCP4Modules import PREFERENCES
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class arp_warp_classic(CPluginScript):
 
@@ -94,7 +100,7 @@ class arp_warp_classic(CPluginScript):
         self.script.append(('phaselabin', 'PHIB=AWA_PHREF_PHI FOM=AWA_PHREF_FOM'))
 
       self.hklin, columns, error = self.makeHklin0(cols)
-      if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+      if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
         return CPluginScript.FAILED
 
 
@@ -166,7 +172,6 @@ class arp_warp_classic(CPluginScript):
             jsrview += '.exe'
 
           cmd = [jsrview, os.path.join(report_path, 'index.html')]
-          import subprocess
           subprocess.Popen(cmd)
 
       self.script.append(('workdir', self.workDirectory))
@@ -205,7 +210,6 @@ class arp_warp_classic(CPluginScript):
       if os.path.isfile(xyzwrk):
         #shutil.copy(xyzwrk, xyzout)
         # LP - make sure there are no 'DUM' atoms in the file - save any to 'dummy_atoms.pdb'
-        #from core import CCP4ModelData
         #pdbobj = CCP4ModelData.CPdbDataFile(xyzwrk)
         #pdbobj.removeDummyAtoms(str(self.container.outputData.XYZOUT),os.path.join(self.workDirectory,'XYZOUT_dummy_atoms.pdb'))
         # AL - the above code is broken and replaced with a hack below;
@@ -213,7 +217,6 @@ class arp_warp_classic(CPluginScript):
         with open(xyzwrk) as istream:
           pdb_records = istream.read()
 
-        import re
         match_dummy = re.search('^ATOM .+ DUM +DUM ', pdb_records, flags=re.M)
         if match_dummy:
           xyzdum = str(self.container.outputData.XYZDUM.fullPath)
@@ -240,7 +243,7 @@ class arp_warp_classic(CPluginScript):
       outputColumns = ['FWT,PHWT','DELFWT,PHDELWT']
       error = self.splitHklout(outputFiles, outputColumns, infile=hklawa)
 
-      if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+      if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
         return CPluginScript.FAILED
 
       try:
@@ -255,11 +258,10 @@ class arp_warp_classic(CPluginScript):
         pass
 
       try:
-        if not CCP4Modules.PREFERENCES().RETAIN_DIAGNOSTIC_FILES:
+        if not PREFERENCES().RETAIN_DIAGNOSTIC_FILES:
           shutil.rmtree(os.path.join(self.workDirectory, 'PSP'))
 
       except:
         pass
 
       return CPluginScript.SUCCEEDED
-

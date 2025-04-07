@@ -1,7 +1,8 @@
-from report.CCP4ReportParser import *
 import sys
-from xml.etree import ElementTree as ET
+
 from numpy import sign
+
+from ....report.CCP4ReportParser import Report
 
 
 def isnumber(n):
@@ -1171,5 +1172,4 @@ class servalcat_report(Report):
 
 
 if __name__ == "__main__":
-    import sys
     servalcat_report(xmlFile=sys.argv[1],jobId=sys.argv[2])

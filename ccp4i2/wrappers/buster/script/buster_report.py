@@ -1,6 +1,7 @@
 import os
 
-from report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
+
 
 class buster_report(Report):
 
@@ -88,5 +89,3 @@ class buster_report(Report):
             summary_LL_Url = "Plots/summary_LL.png"
             summary_LL_Fold = self.addFold(label="summary_LL.png", initiallyOpen=False)
             summary_LL_Fold.append("<img src=\"%s\"></img>"%(summary_LL_Url))
-
-        return

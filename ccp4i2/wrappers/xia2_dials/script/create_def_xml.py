@@ -1,29 +1,18 @@
-from __future__ import print_function
-
-#
+#  Create xia2_dials.def.xml from PHIL parameters
 #  Copyright (C) 2016 STFC Rutherford Appleton Laboratory, UK.
 #
 #  Author: David Waterman
 #  Acknowledgements: based on ideas and code by Nat Echols and Martin Noble.
 #
 
-"""Create xia2_dials.def.xml from PHIL parameters"""
-
-import sys
-import os
 from lxml import etree
+from xia2.Handlers.Phil import master_phil
 
-# Nasty trick required to import PhilTaskCreator when running with ccp4-python
-this_dir = os.path.dirname(os.path.realpath(__file__))
-ccp4i2_dir = os.path.dirname(os.path.dirname(os.path.dirname(this_dir)))
-sys.path.append(ccp4i2_dir)
-from utils.phil_handlers import PhilTaskCreator
+from ....utils.phil_handlers import PhilTaskCreator
 
 
 class Xia2DialsTaskCreator(PhilTaskCreator):
     def __init__(self, debug=False):
-
-        from xia2.Handlers.Phil import master_phil
 
         PhilTaskCreator.__init__(self, master_phil, debug)
         self.fmt_dic["PLUGINNAME"] = "xia2_dials"

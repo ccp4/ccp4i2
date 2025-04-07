@@ -1,10 +1,10 @@
 """
-     unique.py: CCP4 GUI Project
-     Author: Martyn Winn
-     Copyright (C) 2011 STFC
+Author: Martyn Winn
+Copyright (C) 2011 STFC
 """
 
-from core.CCP4PluginScript import CPluginScript
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class unique(CPluginScript):
 
@@ -46,4 +46,3 @@ $TITLE TITLE $TITLE
       self.container.saveDataToXml(self.makeFileName('PROGRAMXML'))
 
       self.reportStatus(rv)
-

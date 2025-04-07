@@ -1,27 +1,11 @@
-from __future__ import print_function
-
 """
-     buccaneer.py: CCP4 GUI Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2010 University of York
 """
 
 import os
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
+
+from ....core.CCP4PluginScript import CPluginScript
+from ....core import CCP4ErrorHandling
 
 
 class buccaneer_mr(CPluginScript):
@@ -39,7 +23,7 @@ class buccaneer_mr(CPluginScript):
 
 
     def processInputFiles(self):
-      from core import CCP4XtalData
+      from ....core import CCP4XtalData
       #print 'taskMakeHklin F_SIGF',self.container.inputData.F_SIGF,type(self.container.inputData.F_SIGF),self.container.inputData.F_SIGF.contentFlag
       if self.container.inputData.FWT_PHWT_IN.isSet():
         if self.container.inputData.FREERFLAG.isSet():
@@ -49,7 +33,7 @@ class buccaneer_mr(CPluginScript):
           print('FREERFLAG is not set, so joining the rest of the data objects')
           self.hklin,columns,error = self.makeHklInput([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN], 'ABCD', 'FWT_PHWT_IN' ])
 
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
           print('ERROR creating input HKLIN with FWT_PHWT_IN')
           print(error.report())
           return CPluginScript.FAILED
@@ -61,7 +45,7 @@ class buccaneer_mr(CPluginScript):
           print('FREERFLAG is not set, so joining the rest of the data objects')
           self.hklin,columns,error = self.makeHklInput([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN],'ABCD' ])
         
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
           print('ERROR creating input HKLIN')
           print(error.report())
           return CPluginScript.FAILED
@@ -74,7 +58,7 @@ class buccaneer_mr(CPluginScript):
       if conPars.F_SIGF_REF.isSet() and conPars.ABCD_REF.isSet() and conPars.XYZIN_REF.isSet() and \
          conPars.F_SIGF_REF.exists() and conPars.ABCD_REF.exists() and conPars.XYZIN_REF.exists():
         self.refHklin,error = self.makeHklin([['F_SIGF_REF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN],'ABCD_REF'])
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
           self.refHklin = None
       return CPluginScript.SUCCEEDED
 
@@ -86,8 +70,7 @@ class buccaneer_mr(CPluginScript):
       return CPluginScript.SUCCEEDED
 
     def makeCommandAndScript(self):
-      from core import CCP4XtalData
-   
+      from ....core import CCP4XtalData
       self.appendCommandLine(['-stdin'])
 
       # INPUT DATA
@@ -187,6 +170,3 @@ class buccaneer_mr(CPluginScript):
         self.appendCommandScript("pdbin-ref %s"%(str(self.container.controlParameters.XYZIN_REF.fullPath)))
 
       return CPluginScript.SUCCEEDED
-
-
-

@@ -2,13 +2,15 @@ import os
 import re
 import shutil
 import subprocess
+
 from lxml import etree
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4XtalData
-from core import CCP4ErrorHandling
-from core import CCP4Utils
-from core import CCP4Modules
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Utils
+from ....core import CCP4XtalData
+from ....core.CCP4Modules import PREFERENCES, PROCESSMANAGER
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class buster(CPluginScript):
     TASKMODULE = 'refinement'         # Gui menu location
@@ -25,7 +27,7 @@ class buster(CPluginScript):
     
     ERROR_CODES = { 101 : {'description' : 'Failed to initialise BUSTER, do you have BUSTER installed & the i2 preferences setup ' \
                            'to point to the correct BUSTER installation folder (or have run the setup script for BUSTER) ?', 
-                           'severity':CCP4ErrorHandling.SEVERITY_ERROR } }
+                           'severity':CCP4ErrorHandling.Severity.ERROR } }
 
     def __init__(self, *args, **kwargs):
         self.seqin = None
@@ -38,8 +40,8 @@ class buster(CPluginScript):
         bpres_act = shutil.which('refine')
         if bpres_act:
             goodtogo = True
-        elif CCP4Modules.PREFERENCES().BUSTERDIR.exists():
-            scriplo = os.path.join(CCP4Modules.PREFERENCES().BUSTERDIR.__str__(), 'setup.sh')
+        elif PREFERENCES().BUSTERDIR.exists():
+            scriplo = os.path.join(PREFERENCES().BUSTERDIR.__str__(), 'setup.sh')
             print(scriplo)
             self.source_script(scriplo)
             goodtogo = True
@@ -91,12 +93,12 @@ class buster(CPluginScript):
             inputText = "LABIN FILE 1 E1=F_SIGF_F E2=F_SIGF_SIGF E3=FREERFLAG_FREER\n"
             inputText += ("LABOUT FILE 1 E1=F_SIGF_F E2=F_SIGF_SIGF E3=FREER")
         # Fire the hkl conversion up.
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(binc, arglist, inputText=inputText, logFile=self.logfc)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        extCde = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
+        pid = PROCESSMANAGER().startProcess(binc, arglist, inputText=inputText, logFile=self.logfc)
+        status = PROCESSMANAGER().getJobData(pid)
+        extCde = PROCESSMANAGER().getJobData(pid, 'exitCode')
         if not(status == 0 and os.path.exists(self.outfilec)):
             return CPluginScript.FAILED
-        if errorb.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        if errorb.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 
@@ -123,7 +125,7 @@ class buster(CPluginScript):
         outFiles = ['FPHIOUT', 'DIFFPHIOUT', 'ABCDOUT']
         outCols =  ['2FOFCWT,PH2FOFCWT', 'FOFCWT,PHFOFCWT', 'HLA,HLB,HLC,HLD']
         rep = self.splitHklout(miniMtzsOut=outFiles, programColumnNames=outCols, infile=mtzfile_bus)
-        if rep.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        if rep.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
         # Extract what is needed for the i2 Buster report.
         blfilep = self.makeFileName('LOG')

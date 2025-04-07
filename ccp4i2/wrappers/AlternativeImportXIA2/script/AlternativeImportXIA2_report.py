@@ -1,4 +1,5 @@
-from report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
+
 
 class AlternativeImportXIA2_report(Report):
     # Specify which gui task and/or pluginscript this applies to

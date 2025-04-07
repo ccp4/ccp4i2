@@ -1,25 +1,12 @@
 """
-     cpatterson.py: CCP4 GUI 2 Project
-     Copyright (C) 2014 The University of York, 2024 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2014 The University of York, 2024 STFC
 """
 
 from lxml import etree
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
+
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class cpatterson(CPluginScript):
 
@@ -31,7 +18,7 @@ class cpatterson(CPluginScript):
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 
     def processInputFiles ( self ):
-        from core import CCP4XtalData
+        from ....core import CCP4XtalData
         self.hklin,error = self.makeHklin([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
 
     def makeCommandAndScript(self):

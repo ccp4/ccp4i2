@@ -1,14 +1,15 @@
-from __future__ import print_function
+import sys
 
-import os,sys
-try:
-  from report.CCP4ReportParser import *
-except:
-  exec(compile(open(os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc')).read(), os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc'), 'exec'))
-  from report.CCP4ReportParser import *
+from ....report.CCP4ReportParser import Report
+from ....pipelines.aimless_pipe.script.aimless_pipe_utils import (
+    colourText,
+    displayFile,
+    html_linebreak,
+    median,
+    SDcorrectionData,
+    selectGraphs,
+)
 
-#from aimless_pipe_utils import *
-from pipelines.aimless_pipe.script.aimless_pipe_utils import *
 
 # - - - - - - - - - - - - - - - - -
 class EstimatesofResolution:
@@ -2041,18 +2042,6 @@ class aimless_report(Report):
       return sdcd
 
     # - - - - - - - - - - - - - - - - -
-    def displaySDcorrectionParameters(self,parent=None):
-      ''' call SDcorrectionParameters first to extract values '''
-      if len(self.sdcorrparams) == 0: return
-      sdheader = "Parameters for improvement of sd(I) estimates: "
-      sdheader += "sd'(I) = SdFac * Sqrt[sd(I)^2 + SdB I + (SdAdd I)^2]\n"
-      sdheader += SDcorrectionData.header((len(self.sdcorrparams)>1))
-      parent.append(html_linebreak(sdheader))
-      
-      for sdc in self.sdcorrparams:
-        parent.append(html_linebreak(sdc.as_string()))
-
-    # - - - - - - - - - - - - - - - - -
     def displayISa(self):
       """ ISa values """
       s = ""
@@ -2088,11 +2077,9 @@ class aimless_report(Report):
       
   # - - - - - - - - - - - - - - - - -
   # - - - - - - - - - - - - - - - - -
-        
+
 ############################################################################
 if __name__ == "__main__":
-
-  #execfile(os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc'))
   report = aimless_report(xmlFile = sys.argv[1] )
   tree= report.as_etree()
   report.as_html_file(fileName='./test-aimless.html')

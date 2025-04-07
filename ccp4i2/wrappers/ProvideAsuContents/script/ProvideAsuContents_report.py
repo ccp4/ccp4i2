@@ -1,10 +1,10 @@
-from __future__ import print_function
-
-from report.CCP4ReportParser import *
-from core import CCP4ModelData, CCP4Modules
-from report import CCP4ReportParser
-import sys,os
+import os
 import xml.etree.ElementTree as etree
+
+from ....core import CCP4ModelData
+from ....core.CCP4Modules import PROJECTSMANAGER
+from ....report.CCP4ReportParser import Report
+
 
 class ProvideAsuContents_report(Report):
     TASKNAME = 'ProvideAsuContents'
@@ -36,27 +36,19 @@ class ProvideAsuContents_report(Report):
         text += '</p>'
         #print 'ProvideAsuContents report', text
         div.append(text)
-        '''
-        div.addText(text=str(seqObj.nCopies)+' copies of '+str(seqObj.name))
-        div.addText(text='Description: '+str(seqObj.description))
-        if seqObj.source.isSet(): div.addText(text='Loaded from file: '+str(seqObj.source))
-        '''
         div.addPre(text=seqObj.formattedSequence())
 
 #Oh dear, I want USEPROGRAMXML = True, but that breaks reports for old jobs, so I have to reimplement getOutputXml here so that
 #I can support old jobs without program.xml and new ones with.
       if hasattr(self,"jobInfo") and self.jobInfo and "jobid" in self.jobInfo:
 
-          outputXmlFile = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId=self.jobInfo["jobid"],mode='PROGRAMXML')
+          outputXmlFile = PROJECTSMANAGER().makeFileName(jobId=self.jobInfo["jobid"],mode='PROGRAMXML')
 
           if os.path.exists(outputXmlFile):
               #A new job
               with open(outputXmlFile,'r') as inputFile:
                   text = inputFile.read()
-                  if sys.version_info > (3,0):
-                      outputXml = etree.fromstring( text.encode('utf-8'))
-                  else:
-                      outputXml = etree.fromstring( text )
+                  outputXml = etree.fromstring( text.encode('utf-8'))
                   matthewsAnalysis = outputXml.findall( ".//matthewsCompositions" )
                   if len(matthewsAnalysis) > 0 and len(matthewsAnalysis[0])>0:
                       text = ''

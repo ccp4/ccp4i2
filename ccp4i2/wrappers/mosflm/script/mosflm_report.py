@@ -1,10 +1,8 @@
-from __future__ import print_function
-
-from report.CCP4ReportParser import *
-import sys
 import xml.etree.ElementTree as etree
 
-from wrappers.import_mosflm.script import import_mosflm_report
+from ....report.CCP4ReportParser import Report
+from ...import_mosflm.script import import_mosflm_report
+
 
 class mosflm_report(Report):
     # Specify which gui task and/or pluginscript this applies to

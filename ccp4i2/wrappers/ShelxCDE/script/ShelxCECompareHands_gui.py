@@ -1,29 +1,24 @@
-from __future__ import print_function
 """
-    ShelxECompareHands_gui.py
-    Copyright (C) 2015 Newcastle University
-    Author: Martin Noble
-    
-    """
+Copyright (C) 2015 Newcastle University
+Author: Martin Noble
+"""
 
-from PySide2 import QtGui, QtWidgets,QtCore
+import os
 
 from . import ShelxCE_gui
+from ....core.CCP4Modules import PROJECTSMANAGER
+
 
 def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None):
-    import os
-    from lxml import etree
-    from core import CCP4Modules
-    from core import CCP4Utils
-    from core import CCP4File
-    from core import CCP4Container
-    from core import CCP4Data
-    from core import CCP4ModelData
+    from ....core import CCP4Container
+    from ....core import CCP4Data
+    from ....core import CCP4File
+    from ....core import CCP4ModelData
     returnList = ['coot_rebuild','parrot',['modelcraft','$CCP4I2/wrappers/modelcraft/script/experimental.params.xml']]
     try:
-        jobDirectory = CCP4Modules.PROJECTSMANAGER().db().jobDirectory(jobId=jobId)
+        jobDirectory = PROJECTSMANAGER().db().jobDirectory(jobId=jobId)
         
-        cont = CCP4Modules.PROJECTSMANAGER().getJobParams(jobId)
+        cont = PROJECTSMANAGER().getJobParams(jobId)
         taskName='phaser_EP_AUTO'
         fileRoot = 'Subsequent'+taskName+'.params.xml'
         paramsPath = os.path.normpath(os.path.join(jobDirectory,fileRoot))
@@ -57,11 +52,7 @@ def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None)
     return returnList
 
 
-#-------------------------------------------------------------------
 class ShelxCECompareHands_gui(ShelxCE_gui.ShelxCE_gui):
-    #-------------------------------------------------------------------
-    
-    # Subclass CTaskWidget to give specific task window
     TASKMODULE = 'test'                               # Where this plugin will appear on the gui
     TASKTITLE = 'ShelxE Compare hands pipeline'     # A short title for gui menu
     SHORTTASKTITLE = 'Compare HA hands - ShelxE'     # A short title for gui menu
@@ -78,4 +69,3 @@ class ShelxCECompareHands_gui(ShelxCE_gui.ShelxCE_gui):
         self.openSubFrame( frame=[True] )
         self.autoGenerate(container=self.container.keywords,selection={'includeParameters' : ['h','z','sX','aN','n','q','mN']})
         self.closeSubFrame()
-

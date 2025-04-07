@@ -1,7 +1,6 @@
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
-from core import CCP4Modules
+from ....core.CCP4Modules import PREFERENCES
+from ....qtgui import CCP4TaskWidget
+
 
 class CTaskPDB_REDO(CCP4TaskWidget.CTaskWidget):
 
@@ -21,7 +20,7 @@ class CTaskPDB_REDO(CCP4TaskWidget.CTaskWidget):
     
     folder = self.openFolder(folderFunction='inputData',title='Input Data',followFrom=False)
 
-    if not CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_SECRET or not CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_ID or not CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_ID:
+    if not PREFERENCES().PDB_REDO_TOKEN_SECRET or not PREFERENCES().PDB_REDO_TOKEN_ID or not PREFERENCES().PDB_REDO_TOKEN_ID:
         self.createLine( [ 'subtitle', '<span style="color:red;">You do not have valid PDB-REDO token/secret set. Please set these using:<br/> <em>Utilities -> System administration tools -> Configure login tokens for PDB-REDO.<br/><br/>You can obtain a token/secret pair from https://services.pdb-redo.eu/</em></span>' ] )
 
     self.createLine( [ 'subtitle', 'Main Input data' ] )
@@ -60,14 +59,10 @@ class CTaskPDB_REDO(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'widget', 'LOOSER', 'label', 'Use looser restraints in refinement' ] )
     self.createLine( [ 'advice', 'Note: The tighter and looser values are subtracted so the net effect of having both set to 2 will be none' ] )
     self.closeSubFrame()
- 
+
   def isValid(self):
-    if not CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_SECRET or not CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_ID or not CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_ID:
-
+    if not PREFERENCES().PDB_REDO_TOKEN_SECRET or not PREFERENCES().PDB_REDO_TOKEN_ID or not PREFERENCES().PDB_REDO_TOKEN_ID:
         invalidElements = super(CTaskPDB_REDO, self).isValid()
-        invalidElements.append(CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_SECRET)
-
+        invalidElements.append(PREFERENCES().PDB_REDO_TOKEN_SECRET)
         return invalidElements
-        
     return CCP4TaskWidget.CTaskWidget.isValid(self)
- 

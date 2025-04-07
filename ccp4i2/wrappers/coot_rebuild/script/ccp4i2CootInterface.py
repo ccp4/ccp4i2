@@ -1,13 +1,11 @@
-from __future__ import print_function
+import os
+import sys
+import urllib.error
+import urllib.parse
+import urllib.request
 
+import gtk
 
-import sys, os
-if sys.version_info >= (3,0):
-    import urllib.request, urllib.error, urllib.parse
-else:
-    import urllib
-    import urllib2
-import traceback
 
 class ccp4i2CootInterface():
     FileTypes = [('chemical/x-pdb',None,'Import coordinates from project'),
@@ -37,13 +35,11 @@ class ccp4i2CootInterface():
         print(self.ccp4i2ProjectID)
 
     def addSeparator(self, menu):
-        import gtk
         sep = gtk.MenuItem()
         menu.add(sep)
         sep.show()
 
     def installMenus(self):
-        import gtk
         menu = coot_menubar_menu("CCP4i2 extensions")
         self.ccp4i2ExtensionsMenuItem = menu.get_attach_widget()
         self.ccp4i2ExtensionsMenuItem.connect('activate', self.populateMenus)
@@ -186,10 +182,7 @@ class ccp4i2CootInterface():
                 #proxy = urllib2.ProxyHandler({})
                 #opener = urllib2.build_opener(proxy)
                 #urllib2.install_opener(opener)
-                if sys.version_info >= (3,0):
-                    f.write(urllib.request.urlopen(url,proxies={}).read())
-                else:
-                    f.write(urllib.urlopen(url,proxies={}).read())
+                f.write(urllib.request.urlopen(url,proxies={}).read())
         except IOError:
             print('Unable to retrieve '+url)
             return None
@@ -221,10 +214,7 @@ class ccp4i2CootInterface():
         url = self.serverRoot + "?" + command
         for key in kwargs: url+="?"+str(key)+"="+str(kwargs[key])
         # fetch the url
-        if sys.version_info >= (3,0):
-            json = urllib.request.urlopen(url,proxies={}).read()
-        else:
-            json = urllib.urlopen(url,proxies={}).read()
+        json = urllib.request.urlopen(url,proxies={}).read()
         # convert to a native python object
         (true,false,null) = (True,False,None)
         fileInfo = eval(json)

@@ -1,11 +1,5 @@
-"""
-     ccp4mg_edit_model task widget
-"""
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
-from PySide2 import QtGui, QtWidgets,QtCore
-
-from qtgui.CCP4TaskWidget import CTaskWidget
-from core import CCP4Modules
 
 #-------------------------------------------------------------------
 class Cccp4mg_edit_model(CTaskWidget):
@@ -50,14 +44,9 @@ class Cccp4mg_edit_model(CTaskWidget):
     self.createLine( [ 'widget', '-browseDb', True, 'HHPREDIN', 'tip', 'HHPred results' ] )# ,toggle=['PASTEORREAD','open',['HHPREDIN']])
     self.createLine( [ 'widget', '-browseDb', True, 'PDBLOCAL', 'tip', 'Local PDB mirror' ] )# ,toggle=['PASTEORREAD','open',['HHPREDIN']])
 
-  def ToggleSPDB(self):
-    return str(self.container.inputData.REDUNDANCYLEVEL) == '100'
- 
   def isValid(self):
-    import os
     #print 'Ccoot_rebuild.isValid'
     if self.getWidget('followFrom') is None: return
     followJobId = self.getWidget('followFrom').currentJobId()
     #print 'Ccoot_rebuild.isValid followFrom',followJobId
     return CTaskWidget.isValid(self)
-  

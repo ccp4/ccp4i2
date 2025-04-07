@@ -1,11 +1,15 @@
-from __future__ import print_function
-from core.CCP4PluginScript import CPluginScript
-from PySide2 import QtCore
-import os,re,time,sys
-from core import CCP4XtalData
+import datetime
+import glob
+import os
+import shutil
+
 from lxml import etree
-import math
-from core import CCP4Modules,CCP4Utils
+
+from ....core import CCP4Utils
+from ....core.CCP4Modules import PROCESSMANAGER
+from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4XtalData import CObsDataFile
+
 
 class ShelxCDEBase(CPluginScript):
     
@@ -155,7 +159,6 @@ class ShelxCDEBase(CPluginScript):
             datasets = {'RIPA':inp.RIPA,'NAT':inp.NAT}
         
         for datasetName in datasets:
-            from core.CCP4XtalData import CObsDataFile
             if datasets[datasetName].isSet():
                 self.makeHklin([datasetName])
                 mtzFilepath = os.path.join(self.getWorkDirectory(),'hklin.mtz')
@@ -179,9 +182,9 @@ class ShelxCDEBase(CPluginScript):
         name,colin = outfile
         logFile =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'mtz2sca.log'))
         arglist = ['-p',colin[0],'-P',colin[1],'-m',colin[2],'-M',colin[3],infile,name]
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin,arglist,logFile=logFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+        pid = PROCESSMANAGER().startProcess(bin,arglist,logFile=logFile)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
         if status == 0 and os.path.exists(outfile[0]):
             return CPluginScript.SUCCEEDED
         else:
@@ -195,9 +198,9 @@ class ShelxCDEBase(CPluginScript):
         arglist = ['hklin',infile,'hklout',name]
         inputText = 'output SHELX\n'
         inputText += ('LABIN ' + ' '.join(colin) + '\n')
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin,arglist,inputText=inputText, logFile=logFile)
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+        pid = PROCESSMANAGER().startProcess(bin,arglist,inputText=inputText, logFile=logFile)
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
         if status == 0 and os.path.exists(outfile[0]):
             return CPluginScript.SUCCEEDED
         else:
@@ -256,7 +259,6 @@ class ShelxCDEBase(CPluginScript):
         elif self.container.controlParameters.MODE.__str__() == 'RIPAS':
             datasetNames = ['RIPA','NAT']
 
-        from core.CCP4XtalData import CObsDataFile
         inp = self.container.inputData
         for datasetName in datasetNames:
             dataset = getattr(inp,datasetName)
@@ -280,9 +282,9 @@ class ShelxCDEBase(CPluginScript):
         except:
             print('#ShelxCDEBase runShelxc: NTRY unset or not relevant')
 
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+        pid = PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
 
         if status == 0 and os.path.exists(os.path.join(self.getWorkDirectory(),'result_fa.hkl')):
             return CPluginScript.SUCCEEDED
@@ -338,7 +340,6 @@ class ShelxCDEBase(CPluginScript):
                     e2TableLine = 0
 
     def handleShelxeLogChanged(self, logFilename):
-        import datetime
         timeNow = datetime.datetime.now()
         if not hasattr(self,"lastScrapeTime"): self.lastScrapeTime = timeNow
         deltaTime = timeNow - self.lastScrapeTime
@@ -348,7 +349,6 @@ class ShelxCDEBase(CPluginScript):
             self.lastScrapeTime = timeNow
     
     def handleShelxdLogChanged(self, logFilename):
-        import datetime
         timeNow = datetime.datetime.now()
         if not hasattr(self,"lastScrapeTime"): self.lastScrapeTime = timeNow
         deltaTime = timeNow - self.lastScrapeTime
@@ -381,9 +381,9 @@ class ShelxCDEBase(CPluginScript):
         inputText = '''INPUT pdb
 OUTPUT frac
 '''
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+        pid = PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
 
         if status != 0 or not os.path.exists(fracFilePath):
             self.appendErrorReport(201,str(bin)+' '+str(arglist)+' '+str(inputText)+' '+str(fracFilePath))
@@ -479,9 +479,9 @@ OUTPUT frac
 
         inputText += 'SYMMETRY %s\n'%spgrName
 
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+        pid = PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
 
         if status != 0 or not os.path.exists(tmpMtzFilePath):
             self.appendErrorReport(203,str(bin)+' '+str(arglist)+' '+str(inputText)+' '+str(logFile))
@@ -501,9 +501,9 @@ OUTPUT frac
         inputText += "WRITE "+mapFilePath+" COL 4 3\n"
         inputText += "STOP\n"
 
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+        pid = PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
 
         if status != 0 or not os.path.exists(mapFilePath):
             self.appendErrorReport(205,str(bin)+' '+str(arglist)+' '+str(inputText)+' '+str(logFile))
@@ -521,9 +521,9 @@ OUTPUT frac
             inputText += "WRITE "+phsOutFilePath+" COL 3 2\n"
             inputText += "STOP\n"
 
-            pid = CCP4Modules.PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
-            status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-            exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+            pid = PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
+            status = PROCESSMANAGER().getJobData(pid)
+            exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
 
             if status != 0 or not os.path.exists(phsOutFilePath):
                 self.appendErrorReport(206,str(bin)+' '+str(arglist)+' '+str(inputText)+' '+str(logFile))
@@ -631,9 +631,9 @@ OUTPUT frac
         inputText = 'SYMOP '+inversion_operation+'\n'
         inputText += 'symcommit\n'
         
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
+        pid = PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
+        status = PROCESSMANAGER().getJobData(pid)
+        exitCode = PROCESSMANAGER().getJobData(pid,'exitCode')
 
         if status != 0 or not os.path.exists(outputPDBPath):
             self.appendErrorReport(201,str(bin)+' '+str(arglist)+' '+str(inputText)+' '+str(inputPDBPath))
@@ -641,63 +641,8 @@ OUTPUT frac
 
         return CPluginScript.SUCCEEDED
 
-    def resToPDB(self, inputResPath, outputPDBPath):
-        elements = []
-        coords = []
-        with open(inputResPath,'r') as inputRes:
-            lines = [line.strip() for line in inputRes.readlines()]
-            for line in lines:
-                tokens = line.split()
-                if len(tokens) > 0 and tokens[0] == 'SFAC':
-                    elements = [token.upper() for token in tokens[1:]]
-                elif len(tokens) == 7:
-                    coordElement = elements[int(tokens[1])-1]
-                    coord = {'Element':coordElement,'X':float(tokens[2]),'Y':float(tokens[3]),'Z':float(tokens[4]),'OCC':float(tokens[5]),'B':float(tokens[6])}
-                    #coord = {'element':coordElement,'xFrac':float(tokens[2]),'yFrac':float(tokens[3]),'zFrac':float(tokens[4]),'occupancy':float(tokens[5]),'tempFactor':float(tokens[6])}
-                    coords.append(coord)
-
-        """
-        # This code (with the alternate definition of coord above) is better way to create PDB file
-        from core import CCP4ModelData
-        pdb = CCP4ModelData.CPdbData()
-        cellString, spaceGroupNumber, extantFile = self.cellString()
-        pdb.makeOneResPdb(atomDefList=coords,cell=extantFile.fileContent.cell,spaceGroup=extantFile.fileContent.spaceGroup,fileName=outputPDBPath)
-        """
-        
-        outputFracPath = outputPDBPath+'.ha'
-        with open(outputFracPath,'w') as outputHA:
-            cellString, spaceGroupNumber, extantFile = self.cellString()
-            outputHA.write(cellString)
-            iCoord = 1
-            for coord in coords:
-                element = [ element for element in ShelxCDEBase.PeriodicTable if element['Symbol'].upper() == coord['Element']][0]
-                #I confess I don't understand negative occupancies here
-                outputHA.write ('ATOM %s %10.5f %10.5f %10.5f %10.5f %10.5f\n'%(element['Symbol'], coord['X'], coord['Y'], coord['Z'], coord['OCC'], coord['B']*100.))
-
-        bin =  os.path.normpath(os.path.join( 'coordconv' ))
-        logFile =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'coordconv_2.log'))
-        arglist = ['XYZIN',outputFracPath,'XYZOUT',outputPDBPath]
-        
-        inputText = '''INPUT HA
-OUTPUT pdb
-'''
-        inputText += self.cellString()[0]
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
-        status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
-
-        if status != 0 or not os.path.exists(outputPDBPath):
-            self.appendErrorReport(201,str(bin)+' '+str(arglist)+' '+str(inputText)+' '+str(outputFracPath))
-            return CPluginScript.FAILED
-        
-
-        return CPluginScript.SUCCEEDED
-
-
-
     def txtOutputFiles(self):
         # Add '.txt' extension to files so will display correctly in i2 and desktop tools
-        import glob,shutil
         # also : pha phs hat from shelxe
         for ext in [ '*.lst', '*.res', '*.ins', '*.frac' ]:
           fileList = glob.glob(os.path.join(self.getWorkDirectory(),ext))

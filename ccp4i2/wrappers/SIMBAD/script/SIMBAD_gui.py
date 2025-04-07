@@ -1,32 +1,9 @@
-"""
-    SIMBAD_gui.py: CCP4 GUI Project
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
-
-from qtgui.CCP4TaskWidget import CTaskWidget
-#from phil2etree import debug_console # David's handy debug console
 from multiprocessing import cpu_count
+
+from ....qtgui.CCP4TaskWidget import CTaskWidget
 
 
 class SIMBAD_gui(CTaskWidget):
-    """
-    Draw the SIMBAD gui
-    """
-
-    # Subclass CTaskWidget to give specific task window
     TASKNAME = 'SIMBAD' # this has to match the pluginName given in the corresponding .def.xml
     TASKVERSION = 0.1
     TASKMODULE = 'molecular_replacement'
@@ -51,8 +28,7 @@ class SIMBAD_gui(CTaskWidget):
 
         self.createLine(['subtitle', 'Search level:', 'widget', 'SIMBAD_SEARCH_LEVEL'])
         self.createLine(['subtitle', 'Organism:', 'widget', 'SIMBAD_ORGANISM'], toggle=['SIMBAD_SEARCH_LEVEL', 'close',
-                                                                                        ['Lattice']])
-        
+
         # Number of processors
         self.openSubFrame(frame=True)
         # There's no sensible way to set dynamic defaults so we use an unusual number or processors in the xml to indicate we haven't set a dynamic default yet

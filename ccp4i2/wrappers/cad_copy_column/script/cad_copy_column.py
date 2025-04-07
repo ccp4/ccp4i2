@@ -1,11 +1,9 @@
-from __future__ import print_function
-
 """
-     cad_copy_column.py: CCP4 GUI Project
-     Copyright (C) 2011 STFC
+Copyright (C) 2011 STFC
 """
 
-from core.CCP4PluginScript import CPluginScript
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class cad_copy_column(CPluginScript):
 
@@ -38,50 +36,3 @@ class cad_copy_column(CPluginScript):
       self.appendCommandScript('END')
 
       return 0
-
-     
-#======================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-import unittest
-
-class testcad_copy_column(unittest.TestCase):
-
-   def setUp(self):
-    from core import CCP4Modules
-    self.app = CCP4Modules.QTAPPLICATION()
-    # make all background jobs wait for completion
-    # this is essential for unittest to work
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
-
-   def tearDown(self):
-    from core import CCP4Modules
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
-
-   def test_1(self):
-     import os
-     from core import CCP4Modules, CCP4Utils
-
-     workDirectory = CCP4Utils.getTestTmpDir()
-     logFile = os.path.join(workDirectory,'cad_copy_column_test1.log')
-     # Delete any existing log file
-     if os.path.exists(logFile): os.remove(logFile)
-
-     self.wrapper = cad_copy_column(parent=CCP4Modules.QTAPPLICATION(),name='cad_copy_column_test1',workDirectory=workDirectory)
-     self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','cad_copy_column','test_data','test1.data.xml'))
-
-     self.wrapper.setWaitForFinished(1000000)
-     pid = self.wrapper.process()
-     self.wrapper.setWaitForFinished(-1)
-     if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-     #self.assertTrue(os.path.exists(logFile),'No log file found')
-     
-
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(testcad_copy_column)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)

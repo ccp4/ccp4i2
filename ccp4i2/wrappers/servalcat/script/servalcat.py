@@ -1,33 +1,23 @@
 """
-    servalcat.py: CCP4 GUI Project
     Copyright (C) 2024 MRC-LBM, University of Southampton
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,S
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
+"""
+
+import json
+import os
+import pathlib
+import shutil
+import sys
+import traceback
+import xml.etree.ElementTree as ET
 
 from PySide2 import QtCore
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core.CCP4ErrorHandling import *
-from core import CCP4Modules, CCP4XtalData, CCP4Utils
-from xml.etree import ElementTree as ET
+
+from ....core import CCP4ErrorHandling
+from ....core import CCP4Utils
+from ....core import CCP4XtalData
+from ....core.CCP4Modules import PROCESSMANAGER, PROJECTSMANAGER
+from ....core.CCP4PluginScript import CPluginScript
 from .json2xml import json2xml
-import pathlib
-import os
-import json
-import shutil
 
 
 class servalcat(CPluginScript):
@@ -42,7 +32,7 @@ class servalcat(CPluginScript):
         
     ERROR_CODES = { 201 : {'description' : 'Refmac returned with non zero status' },
                     202:  {'description': 'New library created but strictly required' },
-                    203:  {'description': 'New library created', 'severity':CCP4ErrorHandling.SEVERITY_WARNING},
+                    203:  {'description': 'New library created', 'severity':CCP4ErrorHandling.Severity.WARNING},
                     204:  {'description': 'Program completed without generating XMLOUT.' },
                     }
     
@@ -57,7 +47,7 @@ class servalcat(CPluginScript):
         if not hasattr(self,'logFileHandle'): self.logFileHandle = open(self.makeFileName('LOG'),'w')
         if not hasattr(self,'logFileBuffer'): self.logFileBuffer = ''
         pid = self.getProcessId()
-        qprocess = CCP4Modules.PROCESSMANAGER().getJobData(pid,attribute='qprocess')
+        qprocess = PROCESSMANAGER().getJobData(pid,attribute='qprocess')
         availableStdout = qprocess.readAllStandardOutput()
         if sys.version_info > (3,0):
             self.logFileHandle.write(availableStdout.data().decode("utf-8"))
@@ -122,7 +112,7 @@ class servalcat(CPluginScript):
             if self.container.inputData.FREERFLAG.isSet():
                 dataObjects += ['FREERFLAG']
             self.hklin,error = self.makeHklin(dataObjects)
-            if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+            if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
                 return CPluginScript.FAILED
 
             return CPluginScript.SUCCEEDED
@@ -130,11 +120,11 @@ class servalcat(CPluginScript):
     def processOutputFiles(self):
         if hasattr(self,'logFileHandle'):
             self.logFileHandle.write("JOB TITLE SECTION\n")
-            jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=self.jobId)
+            jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=self.jobId)
             if "jobtitle" in jobInfo and jobInfo["jobtitle"]:
                 self.logFileHandle.write(str(jobInfo["jobtitle"])+"\n")
             while "parentjobid" in jobInfo and jobInfo["parentjobid"]:
-                jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=jobInfo["parentjobid"])
+                jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=jobInfo["parentjobid"])
                 if "jobtitle" in jobInfo and jobInfo["jobtitle"]:
                     self.logFileHandle.write(str(jobInfo["jobtitle"])+"\n")
             self.logFileHandle.close()
@@ -142,7 +132,6 @@ class servalcat(CPluginScript):
             self.xmlroot.clear()
         
         # First up check for exit status of the program
-        from core.CCP4Modules import PROCESSMANAGER
         exitStatus = 0
         exitCode = 0
         try:
@@ -162,15 +151,11 @@ class servalcat(CPluginScript):
             self.appendErrorReport(201, 'Exit code: Unable to recover exitCode')
             return CPluginScript.FAILED
         if exitCode != 0:
-            import os
             try:
                 logFileText = open(self.makeFileName('LOG')).read()
             except:
                 self.appendErrorReport(201, 'Exit code: '+ str(exitCode))
             return CPluginScript.FAILED
-
-        import os
-        from core import CCP4XtalData
 
         outputCifPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined.mmcif'))
         self.container.outputData.CIFFILE.setFullPath(outputCifPath)
@@ -202,7 +187,7 @@ class servalcat(CPluginScript):
         # Split out data objects that have been generated. Do this after applying the annotation, and flagging
         # above, since splitHklout needs to know contentFlags
         error = self.splitHklout(outputFiles, outputColumns, hkloutFilePath)
-        if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
+        if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
 
         if str(self.container.controlParameters.DATA_METHOD) == 'spa':
@@ -553,7 +538,6 @@ class servalcat(CPluginScript):
                 # Write program.xml_tmp and move it to program.xml
                 self.flushXml()
             except Exception:
-                import traceback
                 print(traceback.format_exc())
 
     def flushXml(self):  # assumes self.xmlroot and self.xmlLength are well set

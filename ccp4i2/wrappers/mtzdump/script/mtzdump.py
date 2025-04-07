@@ -1,28 +1,10 @@
-from __future__ import print_function
-
 """
-     mtzdump.scripts.py: CCP4 GUI Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-
-     etc
+Copyright (C) 2010 University of York
 """
 
-from core.CCP4PluginScript import CPluginScript
-     
+from ....core.CCP4PluginScript import CPluginScript
+
+
 class mtzdump(CPluginScript):
 
     TASKMODULE = 'test'
@@ -106,42 +88,3 @@ class mtzdump(CPluginScript):
                'lowerResolutionLimit' : lowerResolutionLimit,
                'upperResolutionLimit' : upperResolutionLimit,
                'listOfColumns' : listOfColumns }
-    
-
-#=====================================================================================================
-#=================================test suite=========================================================
-#=====================================================================================================
-
-import unittest
-
-# unit testing asynchronous processes potential tricky but QProcess has option to wait for finished
- 
-class testMtzdump(unittest.TestCase):
-  
-  def setUp(self):
-    # make all background jobs wait for completion
-    from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
-    self.app = QTAPPLICATION()
-    PROCESSMANAGER().setWaitForFinished(10000)
-
-  def tearDown(self):
-    from core.CCP4Modules import PROCESSMANAGER
-    PROCESSMANAGER().setWaitForFinished(-1)
-
-  def testMtzdump(self):
-    from core.CCP4Modules import QTAPPLICATION
-    self.wrapper = mtzdump(parent=QTAPPLICATION(),name='test_mtzdump')
-    self.wrapper.container.inputData.HKLIN.set({'project':'CCP4I2_TOP','baseName':'gere_nat.mtz','relPath':'test/data'})
-    pid = self.wrapper.process()
-    print(self.wrapper.container.outputData.CELL)
-    if len(self.wrapper.errorReport)>0: self.wrapper.errorReport.report()
-    self.assertEqual(self.wrapper.container.outputData.CELL.a,108.742,'Mtzdump output CELL wrong')
-
-
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(testMtzdump)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)

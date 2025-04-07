@@ -9,10 +9,13 @@
 #
 #=======================================================================================
 
+import functools
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
+from PySide2 import QtCore
+
+from ....core import CCP4ErrorHandling
+from ....qtgui import CCP4TaskWidget
+
 
 class CTaskAcorn(CCP4TaskWidget.CTaskWidget):
     
@@ -33,7 +36,6 @@ class CTaskAcorn(CCP4TaskWidget.CTaskWidget):
         CCP4TaskWidget.CTaskWidget.__init__(self,parent)
 
     def drawContents(self):
-        import functools
         self.setProgramHelpFile('acorn')  # Comes in two varieties; version 1 needs the reflections & the model; version 2 also needs the phase info.
         
         folder1 = self.openFolder(folderFunction='inputData',title='Input Data')
@@ -129,7 +131,6 @@ class CTaskAcorn(CCP4TaskWidget.CTaskWidget):
                 
         
     def taskValidity(self):
-        from core import CCP4ErrorHandling
         rv = CCP4ErrorHandling.CErrorReport()
         # Check the space group is same in both input Mini-MTZ files 
         if self.container.controlParameters.ACORN_PHSIN_TYPE == "phases":

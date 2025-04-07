@@ -1,13 +1,12 @@
 """
-    cmapcoeff_gui.py
-    Copyright (C) 2014-2019 Jon Agirre & University of York
-    Author: Jon Agirre
-
+Copyright (C) 2014-2019 Jon Agirre & University of York
+Author: Jon Agirre
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui.CCP4TaskWidget import CTaskWidget
-from core import CCP4XtalData
+from PySide2 import QtCore
+
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 class cmapcoeff_gui(CTaskWidget):
 

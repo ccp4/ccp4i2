@@ -1,11 +1,9 @@
-from __future__ import print_function
-
 """
-     pointless.py: CCP4 GUI Project
-     Copyright (C) 2012 STFC
+Copyright (C) 2012 STFC
 """
 
-from core.CCP4PluginScript import CPluginScript
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class pointless(CPluginScript):
 
@@ -198,91 +196,3 @@ class pointless(CPluginScript):
             s = "RESOLUTION HIGH %f" % high
 
         return s
-
-#======================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-import unittest
-
-class testpointless(unittest.TestCase):
-
-   def setUp(self):
-    from core import CCP4Modules
-    self.app = CCP4Modules.QTAPPLICATION()
-    # make all background jobs wait for completion
-    # this is essential for unittest to work
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
-
-   def tearDown(self):
-    from core import CCP4Modules
-    CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
-
-   def test_1(self):
-     from core import CCP4Modules, CCP4Utils
-     import os
-
-     workDirectory = os.path.join(CCP4Utils.getTestTmpDir(),'test1')
-     if not os.path.exists(workDirectory): os.mkdir(workDirectory)
-
-     self.wrapper = pointless(parent=CCP4Modules.QTAPPLICATION(),name='test1',workDirectory=workDirectory)
-     self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','pointless','test_data','test1.data.xml'))
-
-     self.wrapper.setWaitForFinished(1000000)
-     pid = self.wrapper.process()
-     self.wrapper.setWaitForFinished(-1)
-     if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-
-   def test_2(self):
-     from core import CCP4Modules, CCP4Utils
-     import os
-
-     workDirectory = os.path.join(CCP4Utils.getTestTmpDir(),'test2')
-     if not os.path.exists(workDirectory): os.mkdir(workDirectory)
-
-     self.wrapper = pointless(parent=CCP4Modules.QTAPPLICATION(),name='test2',workDirectory=workDirectory)
-     self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','pointless','test_data','test2.data.xml'))
-
-     self.wrapper.setWaitForFinished(1000000)
-     pid = self.wrapper.process()
-     self.wrapper.setWaitForFinished(-1)
-     if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-
-   def test_3(self):
-     from core import CCP4Modules, CCP4Utils
-     import os
-
-     workDirectory = os.path.join(CCP4Utils.getTestTmpDir(),'test3')
-     if not os.path.exists(workDirectory): os.mkdir(workDirectory)
-
-     self.wrapper = pointless(parent=CCP4Modules.QTAPPLICATION(),name='test3',workDirectory=workDirectory)
-     self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','pointless','test_data','test3.data.xml'))
-
-     self.wrapper.setWaitForFinished(1000000)
-     pid = self.wrapper.process()
-     self.wrapper.setWaitForFinished(-1)
-     if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-
-   def test_4(self):
-     from core import CCP4Modules, CCP4Utils
-     import os
-
-     workDirectory = os.path.join(CCP4Utils.getTestTmpDir(),'test4')
-     if not os.path.exists(workDirectory): os.mkdir(workDirectory)
-
-     self.wrapper = pointless(parent=CCP4Modules.QTAPPLICATION(),name='test4',workDirectory=workDirectory)
-     self.wrapper.container.loadDataFromXml(os.path.join(CCP4Utils.getCCP4I2Dir(),'wrappers','pointless','test_data','test4.data.xml'))
-
-     self.wrapper.setWaitForFinished(1000000)
-     pid = self.wrapper.process()
-     self.wrapper.setWaitForFinished(-1)
-     if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(testpointless)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)
-

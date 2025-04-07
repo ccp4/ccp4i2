@@ -1,5 +1,7 @@
-from report.CCP4ReportParser import *
 import sys
+
+from ....report.CCP4ReportParser import Report
+
 
 class fft_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -9,9 +11,7 @@ class fft_report(Report):
         Report.__init__(self,xmlnode=xmlnode,jobInfo=jobInfo,**kw)
 
         #if jobStatus is None or jobStatus.lower() is 'nooutput': return
-     
-        import os
-        
+
         results = self.addResults()
 #        results.append ( '<h3>Map statistics:</h3>' )
         results.append ( '&#160; &#160; &#160; &#160; Number of points: ' + self.xmlnode.findall ( ".//Cfft/NPoints" )[0].text )
@@ -25,6 +25,4 @@ class fft_report(Report):
                 ' &#160; &#160; &#160; &#160; max =' + self.xmlnode.findall ( ".//Cfft/Max" )[0].text )
 
 if __name__ == "__main__":
-    import sys
     fft_report(xmlFile=sys.argv[1],jobId=sys.argv[2])
-

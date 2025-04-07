@@ -1,9 +1,11 @@
-from __future__ import print_function
+import os
 
-from wrappers.molrep_mr.script import molrep_mr
 from lxml import etree
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
+
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+from ...molrep_mr.script import molrep_mr
+
 
 class molrep_selfrot(molrep_mr.molrep_mr):
     TASKNAME='molrep_selfrot'
@@ -22,7 +24,6 @@ class molrep_selfrot(molrep_mr.molrep_mr):
         return CPluginScript.SUCCEEDED
 
     def scrapeDocFile(self):
-        import os
         docFilepath = os.path.join(self.workDirectory,'molrep.doc.txt')
         lines = []
         with open(docFilepath,'r') as docFile:
@@ -121,4 +122,3 @@ class molrep_selfrot(molrep_mr.molrep_mr):
         newNode = etree.SubElement(parent, str(key))
         newNode.text = str(text)
         return newNode
-

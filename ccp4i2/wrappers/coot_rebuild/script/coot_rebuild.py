@@ -1,10 +1,16 @@
-from __future__ import print_function
+import glob
+import os
+import re
+import sys
+import time
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-
+from Bio.PDB.MMCIF2Dict import MMCIF2Dict
+from lxml import etree
 from PySide2 import QtCore
-import os,re,time,sys
+
+from ....core import CCP4Utils
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class coot_rebuild(CPluginScript):
 #class coot_rebuild(CInternalPlugin):
@@ -43,7 +49,6 @@ class coot_rebuild(CPluginScript):
         if self.container.inputData.COOTSTATEFILE.isSet(): self.copyStateFile()
 
         '''
-          import shutil
           try:
             shutil.copyfile(self.container.inputData.COOTSTATEFILE.__str__(),os.path.join(self.dropDir,'0-coot-history.py'))
           except:
@@ -208,8 +213,6 @@ file_to_preferences('template_key_bindings.py')
         if self.container.inputData.DICT.isSet():
 
             try:
-                from Bio.PDB.MMCIF2Dict import MMCIF2Dict
-
                 mmcif_dict = MMCIF2Dict ( str ( self.container.inputData.DICT.fullPath.__str__() ) )
                 lib_name    = mmcif_dict['_lib_name']
                 lib_version = mmcif_dict['_lib_version']
@@ -234,7 +237,6 @@ file_to_preferences('template_key_bindings.py')
         clArgs += ['--script',self.cootScriptPath ]
 
         '''if  self.container.inputData.COOTSTATEFILE.exists():
-          from core import CCP4Utils
           contents = CCP4Utils.readFile(self.container.inputData.COOTSTATEFILE.__str__())
           if len(contents)>5:
             clArgs += ['--script',self.container.inputData.COOTSTATEFILE.__str__()]
@@ -254,7 +256,6 @@ file_to_preferences('template_key_bindings.py')
 
 
     def numberOfOutputFiles(self):
-        import glob
         outList = glob.glob(os.path.normpath(os.path.join(self.dropDir,'output*.pdb')))
         outList += glob.glob(os.path.normpath(os.path.join(self.dropDir,'output*.cif')))
         #print 'numberOfOutputFiles outList',os.path.join(self.dropDir,'output*.pdb'),outList
@@ -268,7 +269,6 @@ file_to_preferences('template_key_bindings.py')
 
     @QtCore.Slot(str)
     def handleFileDrop(self,directory):
-        import time,glob
         print('coot_rebuild',time.time())
         print('coot_rebuild',glob.glob(os.path.join(self.workDirectory,'*.*')))
         #print 'handleFileDrop',directory
@@ -279,8 +279,6 @@ file_to_preferences('template_key_bindings.py')
     def processOutputFiles(self):
         try:
             # First up import PDB files that have been output
-
-            import os, glob, shutil
             outList = glob.glob(os.path.normpath(os.path.join(self.dropDir,'output*.pdb')))
             outList += glob.glob(os.path.normpath(os.path.join(self.dropDir,'output*.cif')))
 
@@ -319,7 +317,6 @@ file_to_preferences('template_key_bindings.py')
             dictoutList = dictoutList[0:len(cifOutList)]
 
             # Create a trivial xml output file
-            from lxml import etree
             self.xmlroot = etree.Element('coot_rebuild')
             e = etree.Element('number_output_files')
             e.text = str(self.numberOfOutputFiles())
@@ -360,13 +357,6 @@ file_to_preferences('template_key_bindings.py')
         else:
           return CPluginScript.MARK_TO_DELETE
 
-    def clearCootWorkingDir(self):
-        # Remove the working directory state and history files
-        import glob
-        zeroFileList = glob.glob(os.path.normpath(os.path.join(self.projectDirectory(),'CCP4_COOT','0-coot*')))
-        for filn in zeroFileList:
-            os.remove(filn)
-
     def copyStateFile(self):
         newText = ''
         text = CCP4Utils.readFile(self.container.inputData.COOTSTATEFILE.fullPath.__str__())
@@ -378,7 +368,6 @@ file_to_preferences('template_key_bindings.py')
         CCP4Utils.saveFile(os.path.normpath(os.path.join(self.dropDir,'0-coot-history.scm')),text)
 
     def addReportWarning(self, text):
-        from lxml import etree
         warningsNode = None
         warningsNodes = self.xmlroot.xpath('//Warnings')
         if len(warningsNodes) == 0: warningsNode = etree.SubElement(self.xmlroot, 'Warnings')

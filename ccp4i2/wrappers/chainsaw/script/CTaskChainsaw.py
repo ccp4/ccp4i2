@@ -1,13 +1,12 @@
 """
-     tasks/chainsaw/CTaskChainsaw.py
-     Copyright (C) 2011 STFC
-     Author: Martyn Winn
-
+Copyright (C) 2011 STFC
+Author: Martyn Winn
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide2 import QtCore
 
-from qtgui.CCP4TaskWidget import CTaskWidget
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+
 
 #-------------------------------------------------------------------
 class CTaskChainsaw(CTaskWidget):
@@ -52,7 +51,6 @@ class CTaskChainsaw(CTaskWidget):
   @QtCore.Slot()  
   def alignmentChanged(self):
       # Keep in sync with similar method in CTaskSculptor
-      import os
       idList = []
       enumerators = []
       if self.container.inputData.ALIGNIN.exists():

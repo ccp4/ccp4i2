@@ -22,13 +22,15 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-from requests.auth import AuthBase
+from datetime import datetime
+from urllib.parse import urlparse
+import base64
 import hashlib
 import hmac
-import base64
 import re
-from urllib.parse import urlparse
-from datetime import datetime, timezone
+
+from requests.auth import AuthBase
+
 
 class PDBRedoAPIAuth(AuthBase):
     def __init__(self, token_id, token_secret):

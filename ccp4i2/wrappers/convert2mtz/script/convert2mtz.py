@@ -1,13 +1,11 @@
 """
-     convert2mtz.py: CCP4 GUI Project
-     Copyright (C) 2011 STFC
-     Author: Martyn Winn
-
-     Wrapper to convert2mtz
+Copyright (C) 2011 STFC
+Author: Martyn Winn
+Wrapper to convert2mtz
 """
 
-from core.CCP4PluginScript import CPluginScript
-from wrappers.x2mtz.script import x2mtz
+from ...x2mtz.script import x2mtz
+
 
 class convert2mtz(x2mtz.x2mtz):
 
@@ -50,5 +48,3 @@ class convert2mtz(x2mtz.x2mtz):
           self.appendCommandScript("seed %f" % self.container.controlParameters.SEED)
 
       return 0
-
-

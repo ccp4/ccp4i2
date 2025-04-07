@@ -1,8 +1,5 @@
+from ....qtgui import CCP4TaskWidget
 
-
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
 
 class csymmatch_gui(CCP4TaskWidget.CTaskWidget):
 
@@ -19,12 +16,10 @@ class csymmatch_gui(CCP4TaskWidget.CTaskWidget):
   def __init__(self,parent):
     CCP4TaskWidget.CTaskWidget.__init__(self,parent)
 
-
   def drawContents(self):
 
     self.setProgramHelpFile('csymmatch')
 
-    
     # Remove the 'followFrom' widget cos there can be no preceeding jobs - (this may be wrong thing to do)                    
     folder = self.openFolder(folderFunction='inputData',title='Input Data',followFrom=False)
 

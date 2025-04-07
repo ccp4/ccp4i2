@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 #
 #  Copyright (C) 2016 STFC Rutherford Appleton Laboratory, UK.
 #
@@ -7,16 +5,19 @@ from __future__ import print_function
 #  Acknowledgements: based on code by Graeme Winter and Martin Noble.
 #
 
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4ErrorHandling import *
-import os, glob, shutil
-from core import CCP4Utils
-from lxml import etree
-from core import CCP4Container
-from core import CCP4XtalData
-import platform
+import glob
 import json
+import os
+import platform
 import re
+import shutil
+
+from lxml import etree
+
+from ....core import CCP4Container
+from ....core import CCP4XtalData
+from ....core.CCP4Modules import PROCESSMANAGER
+from ....core.CCP4PluginScript import CPluginScript
 
 
 class Cxia2_dials(CPluginScript):
@@ -165,8 +166,6 @@ class Cxia2_dials(CPluginScript):
     def processOutputFiles(self):
 
         # Check for exit status of the program
-        from core.CCP4Modules import PROCESSMANAGER
-
         exitStatus = PROCESSMANAGER().getJobData(
             pid=self.getProcessId(), attribute="exitStatus"
         )

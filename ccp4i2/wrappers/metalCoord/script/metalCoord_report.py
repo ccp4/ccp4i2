@@ -1,7 +1,8 @@
-from report.CCP4ReportParser import *
-from core import CCP4Modules
 import os
-from xml.etree import ElementTree as ET
+import xml.etree.ElementTree as ET
+
+from ....core.CCP4Modules import PROJECTSMANAGER
+from ....report.CCP4ReportParser import Report
 
 
 class metalCoord_report(Report):
@@ -14,7 +15,7 @@ class metalCoord_report(Report):
         if jobStatus is None or jobStatus.lower() == 'nooutput': return
 
         jobId = self.jobInfo.get("jobid", None)
-        jobDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId = jobId)
+        jobDirectory = PROJECTSMANAGER().jobDirectory(jobId = jobId)
         self.jobLog = os.path.join(jobDirectory, "log.txt")
         if jobStatus is not None and jobStatus.lower() == "running":
             self.runningReport(parent=self)

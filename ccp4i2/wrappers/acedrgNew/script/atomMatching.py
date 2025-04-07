@@ -1,19 +1,13 @@
-from __future__ import print_function
-
-import sys
-import os
 import argparse
+import os
 import re
+import sys
 
-import ccp4mg
-import mmdb2
+from ccp4mg import mmdb2
 import ccp4srs
 
-from rdkit import Chem
-from rdkit.Chem import AllChem
-import rdkit
-
 from .dictFileToMonomer import dictFileToMonomer
+
 
 def replaceMatchesInDict(matches,theDict,outfile):
     """

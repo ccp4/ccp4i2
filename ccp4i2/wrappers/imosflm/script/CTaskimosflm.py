@@ -1,11 +1,9 @@
 """
-    wrappers/imosflm/script/CTaskimosflm.py
-    Phil Evans
-    """
+Phil Evans
+"""
 
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from qtgui import CCP4Widgets
+from ....qtgui import CCP4TaskWidget
+
 
 class CTaskiMasflm(CCP4TaskWidget.CTaskWidget):
     
@@ -32,4 +30,3 @@ class CTaskiMasflm(CCP4TaskWidget.CTaskWidget):
         self.createLine( ['label', \
            'When you have finished integration in iMosflm, select "Session->Exit" to return here'] )
         self.createLine( ['label', 'Then use the "Data reduction" follow-on task'])
-
