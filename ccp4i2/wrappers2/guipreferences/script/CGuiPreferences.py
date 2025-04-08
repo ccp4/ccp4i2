@@ -1,35 +1,16 @@
-from __future__ import print_function
-
 """
-     tasks/guipreferences.py: CCP4 GUI Project
-     Copyright (C) 2011 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2011 University of York
+Liz Potterton Sept 2011 - Create a task window for GUI preferences
 """
 
-"""
-     Liz Potterton Sept 2011 - Create a task window for GUI preferences
-"""
-import sys
-from PySide2 import QtGui, QtWidgets,QtCore
+from PySide2 import QtWidgets
 
-from qtgui.CCP4TaskWidget import CTaskWidget
+from ....core.CCP4Config import CONFIG
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+from ....utils.QApp import QTAPPLICATION
 
-#-------------------------------------------------------------------
+
 class CGuiPreferences(CTaskWidget):
-#-------------------------------------------------------------------
 
 # Subclass CTaskWidget to give specific task window
   TASKNAME = 'guipreferences'
@@ -39,16 +20,12 @@ class CGuiPreferences(CTaskWidget):
 
 
   def drawContents(self):
-    
-    from core import CCP4Modules
-    from core.CCP4Config import DEVELOPER
-
-    self.container.WINDOWS_STYLE.setQualifier('enumerators',CCP4Modules.QTAPPLICATION().getStyleKeys())
+    self.container.WINDOWS_STYLE.setQualifier('enumerators',QTAPPLICATION().getStyleKeys())
 
     self.openFolder(title='Task interface')
 
 
-    if DEVELOPER():
+    if CONFIG().developer:
         self.createLine( [ 'label' , 'Use windows style', 'widget' , 'WINDOWS_STYLE'] )
 
     self.createLine( [ 'label' , 'Use font size',
@@ -144,7 +121,6 @@ class CGuiPreferences(CTaskWidget):
     self.openFolder(title='Advanced')
     self.createLine( ['label' ,'The following polling option may be necessary to enable report real time updates on networked systems' ])
     self.createLine( ['widget','FILESYSTEMWATCHERPOLLER','label','Use file system watcher polling mechanism (restart gui)'])
-    self.createLine( ['widget','BZR_DOWNLOAD','label','Enable update of CCP4i2 from code repository (NOT normally recommended!)'])
     self.createLine( ['widget','DBLOCAL_QUIT_RUNNING','label','Allow quitting of ccp4i2 when jobs are running in "Local database mode" (NOT normally recommended!)'])
     self.createLine( ['advice','Deleting temporary files' ])
     self.createLine( ['widget','RETAIN_DIAGNOSTIC_FILES','label','Retain diagnostic files after job run'])
@@ -158,4 +134,3 @@ class CGuiPreferences(CTaskWidget):
     self.createLine( [ 'label' , 'Invalid/missing data uses ',
                        'widget', 'INVALID_FRAME_MODE',
                        'label' , 'style' ], toggle = ['INVALID_FRAME_MODE', 'open', [ 2 ] ]  )
-

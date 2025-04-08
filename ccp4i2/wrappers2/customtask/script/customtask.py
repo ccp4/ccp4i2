@@ -1,30 +1,15 @@
-from __future__ import print_function
-
-
 """
-    customtaskw.py: CCP4 GUI Project
-     Copyright (C) 2013 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2013 STFC
 """
-import os,shutil,glob
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4CustomTaskManager
-from core import CCP4Modules
-from core import CCP4Utils
+import glob
+import os
+import shutil
+
+from ....core import CCP4CustomTaskManager
+from ....core import CCP4Utils
+from ....core.CCP4Modules import CUSTOMTASKMANAGER
+from ....core.CCP4PluginScript import CPluginScript
 
 
 class customtask(CPluginScript):
@@ -38,7 +23,7 @@ class customtask(CPluginScript):
                   }
 
   def process(self):
-    manager = CCP4Modules.CUSTOMTASKMANAGER()
+    manager = CUSTOMTASKMANAGER()
     customDef = CCP4CustomTaskManager.CCustomTaskDefinition(self,name=self.TASKNAME)
     customDef.loadDataFromXml(fileName=manager.getCustomFile(name=self.TASKNAME))
     #print 'customtask.process container',customDef
@@ -82,7 +67,6 @@ class customtask(CPluginScript):
     comLineWords = comLine.split()
     self.command = comLineWords[0]
     self.appendCommandLine(comLineWords[1:])
-
 
     for comFile in customDef.comFileList:
       if comFile.text.isSet():
@@ -136,8 +120,7 @@ class customtask(CPluginScript):
         columnList.append(col)
       print('CustomTask splitting output MTZ',monsterName,nameList,columnList)
       self.splitHklout(miniMtzsOut=nameList,programColumnNames=columnList,infile=monsterFileName,logFile=None)
-    
-    
+
     status = CPluginScript.SUCCEEDED
     self.reportStatus(status) 
     return status

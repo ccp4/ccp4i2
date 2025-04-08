@@ -1,35 +1,19 @@
-from __future__ import print_function
-
 """
-     tasks/workflow/CTaskWorkflow.py: CCP4 GUI Project
-     Copyright (C) 2014 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2014 STFC
+Liz Potterton July 2014
 """
 
-"""
-     Liz Potterton July 2014
-"""
+import functools
+import os
 
-import functools,os
-from PySide2 import QtGui, QtWidgets,QtCore
-from qtgui import CCP4TaskWidget
-from core import CCP4WorkflowManager,CCP4Container
-from qtgui import CCP4ProjectViewer
-from core.CCP4Modules import WORKFLOWMANAGER,PROJECTSMANAGER
-from core.CCP4TaskManager import TASKMANAGER
+from PySide2 import QtCore, QtWidgets
+
+from ..core import CCP4Container, CCP4WorkflowManager
+from ..core.CCP4Modules import PROJECTSMANAGER, WORKFLOWMANAGER
+from ..core.CCP4TaskManager import TASKMANAGER
+from ..qtgui import CCP4ProjectViewer
+from ..qtgui import CCP4TaskWidget
+
 
 class CTaskWorkflow(CCP4TaskWidget.CTaskWidget):
 
@@ -40,14 +24,12 @@ class CTaskWorkflow(CCP4TaskWidget.CTaskWidget):
   def __init__(self,parent):
     CCP4TaskWidget.CTaskWidget.__init__(self,parent)
 
-
   def setDefaultParameters(self):
     self.workflowName = self.container.header.pluginName.__str__()
     #print 'CTaskWorkflow.setDefaultParameters',self.workflowName
     self.workflowDef = CCP4WorkflowManager.CWorkflowDefinition(self,name=self.workflowName)
     fileName = WORKFLOWMANAGER().getCustomFile(self.workflowName)
     self.workflowDef.loadDataFromXml(fileName,function='WORKFLOW')
-      
 
   def drawContents(self):
     folder = self.openFolder(folderFunction='inputData',title='Input Data')    
@@ -70,7 +52,6 @@ class CTaskWorkflow(CCP4TaskWidget.CTaskWidget):
   def paramsFilePath(self,jobName):
     splitPath =  os.path.split(PROJECTSMANAGER().makeFileName(jobId=self.jobId(),mode='JOB_INPUT'))
     return os.path.join(splitPath[0],jobName+'_'+splitPath[1])
-
 
   @QtCore.Slot('QListWidgetItem')
   def openSubJobTaskWidget(self,listWidgetItem):
@@ -108,4 +89,3 @@ class CTaskWorkflow(CCP4TaskWidget.CTaskWidget):
     win.windowAboutToClose.connect(functools.partial(self.handleClosingSubTaskWindow,jobName))
     win.show()
     win.raise_()
-

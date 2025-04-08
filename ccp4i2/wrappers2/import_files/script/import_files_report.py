@@ -1,4 +1,7 @@
-from report.CCP4ReportParser import *
+import sys
+
+from ....report.CCP4ReportParser import ImportedFiles, Report
+
 
 class import_files_report(Report):
   TASKNAME = 'import_files'
@@ -10,5 +13,4 @@ class import_files_report(Report):
     self.children.append(ImportedFiles(jobInfo=self.jobInfo))
         
 if __name__ == "__main__":
-  import sys
   import_files_report(xmlFile=sys.argv[1],jobId=sys.argv[2])

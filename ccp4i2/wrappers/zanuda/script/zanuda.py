@@ -1,27 +1,10 @@
-"""
-    zanuda.py: CCP4 GUI Project
-
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-"""
-
 import os
 import re
-from core.CCP4ErrorHandling import SEVERITY_WARNING
-from core.CCP4ModelData import CPdbDataFile
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4XtalData import CMapCoeffsDataFile, CObsDataFile, CPhsDataFile
+
+from ....core.CCP4ErrorHandling import Severity
+from ....core.CCP4ModelData import CPdbDataFile
+from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4XtalData import CMapCoeffsDataFile, CObsDataFile
 
 
 class zanuda(CPluginScript):
@@ -47,7 +30,7 @@ class zanuda(CPluginScript):
             ["FREERFLAG", None],
         ]
         self.hklin, self.columns, error = self.makeHklin0(miniMtzs)
-        if error.maxSeverity() > SEVERITY_WARNING:
+        if error.maxSeverity() > Severity.WARNING:
             return CPluginScript.FAILED
         self.model = os.path.join(self.getWorkDirectory(), "model.xyz")
         self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.model)
@@ -84,7 +67,7 @@ class zanuda(CPluginScript):
         files = ["FPHIOUT", "DIFFPHIOUT"]
         columns = ["FWT,PHWT", "DELFWT,PHDELWT"]
         error = self.splitHklout(files, columns, zanuda_mtz)
-        if error.maxSeverity() > SEVERITY_WARNING:
+        if error.maxSeverity() > Severity.WARNING:
             return CPluginScript.FAILED
         log = os.path.join(self.getWorkDirectory(), 'log.txt')
         if os.path.isfile(log):
@@ -97,4 +80,3 @@ class zanuda(CPluginScript):
                 outputData.PERFORMANCE.RFactor.set(rr[-1][-2])
                 outputData.PERFORMANCE.RFree.set(rr[-1][-1])
         return CPluginScript.SUCCEEDED
-

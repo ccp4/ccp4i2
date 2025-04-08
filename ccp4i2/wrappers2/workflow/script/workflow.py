@@ -1,32 +1,18 @@
-from __future__ import print_function
-
-
 """
-     workflow.py: CCP4 GUI Project
-     Copyright (C) 2013 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2013 STFC
 """
-import os,shutil,time
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4WorkflowManager,CCP4Modules
-from core.CCP4ErrorHandling import *
-from core import CCP4Data
+import os
+import shutil
+import traceback
 
 from PySide2 import QtCore
+
+from ....core import CCP4Data, CCP4WorkflowManager
+from ....core.CCP4ErrorHandling import Severity
+from ....core.CCP4Modules import PROJECTSMANAGER
+from ....core.CCP4PluginScript import CPluginScript
+
 
 class workflow(CPluginScript):
 
@@ -36,7 +22,7 @@ class workflow(CPluginScript):
                   202 : { 'description' : 'FAILED to read workflow definition file' },
                   201 : { 'description' : 'FAILED to found workflow definition directory' },
                   204 : { 'description' : 'FAILED to copy output file to next program input' },
-                  205: { 'severity' : SEVERITY_WARNING, 'description' : 'Can not perform specified file copy' }
+                  205: { 'severity' : Severity.WARNING, 'description' : 'Can not perform specified file copy' }
                   }
   ASYNCHRONOUS = True
   TIMEOUT_PERIOD = 240
@@ -54,9 +40,9 @@ class workflow(CPluginScript):
     #print 'workflow.process workflowDef',self.workflowDef.dataOrder()
     workflowFile = self.workflowManager.getCustomFile(name=self.TASKNAME)
     err = self.workflowDef.loadDataFromXml(fileName=workflowFile,check=False,function='WORKFLOW')
-    if err.maxSeverity()>=SEVERITY_WARNING:
+    if err.maxSeverity()>=Severity.WARNING:
       self.extendErrorReport(err)
-      if err.maxSeverity()>SEVERITY_WARNING:
+      if err.maxSeverity()>Severity.WARNING:
         self.appendErrorReport(202,'File: '+workflowFile)
         self.reportStatus(CPluginScript.FAILED)
         return CPluginScript.FAILED
@@ -83,7 +69,7 @@ class workflow(CPluginScript):
     
     # Load the control parameters
     err = self.subJobs[self.currentJobKey].container.loadDataFromXml(os.path.join(self.workflowDirectory,self.currentJobKey+'.params.xml'))
-    if err.maxSeverity()>SEVERITY_WARNING:
+    if err.maxSeverity()>Severity.WARNING:
       self.extendErrorReport(err)
       self.reportStatus(CPluginScript.FAILED)
       return CPluginScript.FAILED
@@ -93,9 +79,9 @@ class workflow(CPluginScript):
     #print 'workflow.runNextJob paramsFile',paramsFile,os.path.exists(paramsFile)
     if os.path.exists(paramsFile):
       err = self.subJobs[self.currentJobKey].container.loadDataFromXml(paramsFile)
-      if err.maxSeverity()>SEVERITY_WARNING: self.extendErrorReport(err)
+      if err.maxSeverity()>Severity.WARNING: self.extendErrorReport(err)
                                                      
-    CCP4Modules.PROJECTSMANAGER().setOutputFileNames(container=self.subJobs[self.currentJobKey].container,projectId=self.projectId(),jobNumber=self.subJobs[self.currentJobKey].getJobNumber())
+    PROJECTSMANAGER().setOutputFileNames(container=self.subJobs[self.currentJobKey].container,projectId=self.projectId(),jobNumber=self.subJobs[self.currentJobKey].getJobNumber())
     #print 'workflow.runNextJob subJobs',self.currentJobKey,jobDef.taskName.__str__(),self.subJobs[self.currentJobKey] 
     inputData = self.subJobs[self.currentJobKey].container.inputData
     for inpDef in jobDef.input:                                             
@@ -124,12 +110,10 @@ class workflow(CPluginScript):
 
   @QtCore.Slot(dict)
   def handleJobFinished(self,statusDict):
-    #import time
     #print 'handleJobFinished',self.currentJobIndex,statusDict,time.time()
     finishedJobId = statusDict.get('jobId',None)
     if finishedJobId != self.subJobs[self.currentJobKey].getJobId():
       #print 'workflow.handleJobFinished ignoring finished signal from a CPluginScript that is not the last task'
-      import traceback
       traceback.print_stack()
       return
     if statusDict['finishStatus']  == CPluginScript.FAILED: self.finish(CPluginScript.FAILED)
@@ -164,5 +148,3 @@ class workflow(CPluginScript):
   def finish(self,status):
     #print 'workflow.finish',status
     self.reportStatus(status) 
-    
-

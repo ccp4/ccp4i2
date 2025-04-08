@@ -4,15 +4,16 @@
 #  Author: Martin Maly, David Waterman
 #
 
-from PySide2 import QtCore, QtWidgets
-from qtgui.CCP4TaskWidget import CTaskWidget
-from core import CCP4Container
-import qtgui
-from .find_expt_refl import find_expt_refl
-from dxtbx.serialize import load
-from cctbx import uctbx
-from scitbx.array_family import flex
 import os
+
+from cctbx import uctbx
+from dxtbx.serialize import load
+from PySide2 import QtCore, QtWidgets
+from scitbx.array_family import flex
+
+from .... import qtgui
+from ....qtgui.CCP4TaskWidget import CTaskWidget
+from .find_expt_refl import find_expt_refl
 
 
 class FindIntegratedWorker(QtCore.QObject):
@@ -54,7 +55,7 @@ class xia2_ssx_reduce_gui(CTaskWidget):
         #     if self.getWidget('followFrom') is None: return
         #     followJobId = self.getWidget('followFrom').currentJobId()
         #     if followJobId is not None:
-        #         container_follow = CCP4Modules.PROJECTSMANAGER().getJobParams(jobId=followJobId)
+        #         container_follow = PROJECTSMANAGER().getJobParams(jobId=followJobId)
         return CTaskWidget.isValid(self)
 
 

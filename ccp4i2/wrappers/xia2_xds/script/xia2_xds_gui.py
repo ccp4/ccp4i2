@@ -1,18 +1,14 @@
-#
 #  Copyright (C) 2016 STFC Rutherford Appleton Laboratory, UK.
 #
 #  Author: David Waterman
 #  Acknowledgements: based on code by Graeme Winter and Martin Noble.
-#
 
-from PySide2 import QtGui, QtWidgets, QtCore
+import shutil
 
-from qtgui.CCP4TaskWidget import CTaskWidget
-from core import CCP4Container
-from core import CCP4Utils
-from core import CCP4Modules
+from PySide2 import QtCore
 
-from wrappers.xia2_dials.script import xia2_dials_gui
+from ....core.CCP4Modules import PREFERENCES
+from ...xia2_dials.script import xia2_dials_gui
 
 
 class xia2_xds_gui(xia2_dials_gui.xia2_dials_gui):
@@ -32,8 +28,8 @@ class xia2_xds_gui(xia2_dials_gui.xia2_dials_gui):
         # Try to find dependencies
         failed = []
         for cmd in ["xds", "xscale"]:
-            tst = CCP4Modules.PREFERENCES().EXEPATHLIST.getExecutable(cmd)
-            if CCP4Utils.which(tst) is None:
+            tst = PREFERENCES().EXEPATHLIST.getExecutable(cmd)
+            if shutil.which(tst) is None:
                 failed.append(cmd)
 
         if len(failed) > 0:

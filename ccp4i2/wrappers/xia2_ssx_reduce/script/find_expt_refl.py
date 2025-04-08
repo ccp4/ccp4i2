@@ -1,12 +1,12 @@
 """Find integrated*.{expt,refl} or scaled*.{expt,refl} file pairs without duplicates,
 recursively under a root directory"""
 
+from pathlib import Path
 import glob
 import os
-import os.path
-from pathlib import Path
+import sys
+
 from dxtbx.model.experiment_list import ExperimentList
-from dials.array_family import flex
 
 
 def is_xia2_dir(path):
@@ -81,7 +81,5 @@ def find_expt_refl(root_dir, preference="integrated"):
 
 
 if __name__ == "__main__":
-    import sys
-
     for pth in find_expt_refl(sys.argv[1]):
         print(pth)

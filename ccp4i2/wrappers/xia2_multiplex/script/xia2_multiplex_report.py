@@ -4,11 +4,12 @@
 #  Author: David Waterman
 #
 
-import os
-from report.CCP4ReportParser import Report
-import json
 from collections import OrderedDict
 from math import sqrt
+import json
+import os
+
+from ....report.CCP4ReportParser import Report
 
 
 class xia2_multiplex_report(Report):

@@ -1,21 +1,11 @@
-#
+#  Create xia2_xds.def.xml from PHIL parameters
 #  Copyright (C) 2017 STFC Rutherford Appleton Laboratory, UK.
 #
 #  Author: David Waterman
 #  Acknowledgements: based on ideas and code by Nat Echols and Martin Noble.
 #
 
-"""Create xia2_xds.def.xml from PHIL parameters"""
-
-import sys
-import os
-
-# Nasty trick required to import Xia2DialsTaskCreator when running with
-# ccp4-python
-this_dir = os.path.dirname(os.path.realpath(__file__))
-ccp4i2_dir = os.path.dirname(os.path.dirname(os.path.dirname(this_dir)))
-sys.path.append(ccp4i2_dir)
-from wrappers.xia2_dials.script.create_def_xml import Xia2DialsTaskCreator
+from ...xia2_dials.script.create_def_xml import Xia2DialsTaskCreator
 
 
 class Xia2XDSTaskCreator(Xia2DialsTaskCreator):
