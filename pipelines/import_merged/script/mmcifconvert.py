@@ -126,7 +126,7 @@ class CIFReflectionData:
         return foundtypes
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    def simpleMTZwrite(self, cifdatatype, haveFreeR=True, resorange=None ):
+    def simpleMTZwrite(self, cifdatatype, haveFreeR=True, resorange=None):
         # use CifToMtz to just create MTZ file of data
         #  either just the data itself (Is or Fs) if haveFreeR is False
         #    else both data and FreeR
@@ -152,6 +152,9 @@ class CIFReflectionData:
         if self.dataout:
             # I or F data
             #  Check for all types
+            if cifdatatype not in ReflectionDataTypes.REFLECTION_DATA:
+                cifdatatype = self.gettype(ReflectionDataTypes.DATA_PRIORITY)
+            self.cifdatatype = cifdatatype
             spec_lines = ReflectionDataTypes.REFLECTION_DATA[cifdatatype]
             if spec_lines is None: return False
             #print("cifdatatype", cifdatatype,",  spec_lines", spec_lines)
@@ -790,12 +793,6 @@ class ConvertCIF():
         haveFreeR = blkinfo.haveFreeR()
 
         # Data types for cif and mtz names
-        if cifdatatype is None:
-            # type with highest priority
-            self.cifdatatype = str(self.gettype(ReflectionDataTypes.DATA_PRIORITY))
-        else:
-            self.cifdatatype = cifdatatype     # specified type
-        #print("** s.cifd", self.cifdatatype)
             
         # Cases:
         #  1. just one asymmetric unit present
@@ -814,7 +811,7 @@ class ConvertCIF():
         if blkinfo.allowsimplewrite(reducehkl):
             print("simple write")
             # Now write the main data
-            self.status = refdata.simpleMTZwrite(self.cifdatatype,
+            self.status = refdata.simpleMTZwrite(cifdatatype,
                                                  haveFreeR, resorange)
         else:
             # Other cases need special treatment
@@ -824,7 +821,7 @@ class ConvertCIF():
             elif blkinfo.allowanomalouswrite():
                 print("anom pairs")
                 # Data with anomalous pairs on different lines
-                self.status = refdata.anomMTZwritedata(self.cifdatatype,
+                self.status = refdata.anomMTZwritedata(cifdatatype,
                                                        reducehkl,
                                                        haveFreeR, resorange)
             else:
@@ -832,7 +829,7 @@ class ConvertCIF():
                     print("Non-standard asu or rfreeFlagmissing")
                     # Data in non-standard asu, reduce hkl
                     self.status = \
-                       refdata.nonstandardMTZwritedata(self.cifdatatype,
+                       refdata.nonstandardMTZwritedata(cifdatatype,
                                         reducehkl, haveFreeR,
                                         blkinfo.rfreeFlagmissing(), resorange)
                 else:
