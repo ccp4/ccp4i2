@@ -23,6 +23,11 @@ class Severity(Enum):
             return self.value > other.value
         return self.value[0] > other
 
+    def __ge__(self, other):
+        if self.__class__ == other.__class__:
+            return self.value >= other.value
+        return self.value[0] >= other
+
     @classmethod
     def __getitem__(cls, text: str):
         return {s.value[1]: s for s in cls}[text]
