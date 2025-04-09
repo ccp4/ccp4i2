@@ -14,9 +14,9 @@ def QTAPPLICATION(graphical=None):
         if graphical is None:
             graphical = CONFIG().graphical
         if graphical:
-            _QTAPPLICATION = CGuiApplication(sys.argv)
+            _QTAPPLICATION = CGuiApplication()
         else:
-            _QTAPPLICATION = CApplication(sys.argv)
+            _QTAPPLICATION = CApplication()
     return _QTAPPLICATION
 
 
@@ -24,8 +24,8 @@ class CApplication(QtCore.QCoreApplication):
 
     doCheckForFinishedJobs = QtCore.Signal()
 
-    def __init__(self, args):
-        super().__init__(self, args)
+    def __init__(self):
+        super().__init__(sys.argv)
 
 
 class CGuiApplication(QtWidgets.QApplication):
@@ -33,8 +33,8 @@ class CGuiApplication(QtWidgets.QApplication):
     doCheckForFinishedJobs = QtCore.Signal()
     prefsChanged = QtCore.Signal()
 
-    def __init__(self, args):
-        super().__init__(self, args)
+    def __init__(self):
+        super().__init__(sys.argv)
 
     def objectPath(self):
         return ''

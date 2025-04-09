@@ -68,13 +68,11 @@ def startDb(parent=None, fileName=None, mode='sqlite', userName=None, userPasswo
 
 if __name__ == "__main__":
 
-    from core import CCP4Config
-    from utils.QApp import CGuiApplication # KJS : does this need to go in here (is fn used ?)
-    app = CGuiApplication(sys.argv)
-    CCP4Config.CONFIG().set('graphical', False)
-    CCP4Config.CONFIG().set('qt', True)
     from core import CCP4Modules
-    from core import CCP4Utils
+    from core.CCP4Config import CONFIG
+    from utils.QApp import QTAPPLICATION
+    CONFIG(graphical=False)
+    app = QTAPPLICATION()
 
     pm = CCP4Modules.PROJECTSMANAGER()
     db = startDb(pm, mode='sqlite')
