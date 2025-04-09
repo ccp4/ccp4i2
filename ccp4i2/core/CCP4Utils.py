@@ -2,6 +2,7 @@
 Liz Potterton Jan 2010 - Copied from ccp4mg python/ui/utils.py and converted to Qt
 """
 
+import importlib
 import getpass
 import glob
 import os
@@ -357,6 +358,10 @@ def globSearchPath(searchPath=[], cfile='*'):
     for path in searchPath:
         fileList.extend(glob.glob(os.path.join(path, cfile)))
     return fileList
+
+
+def importModule(name):
+    return importlib.import_module(f"ccp4i2.{name}")
 
 
 def importFileModule(pyFile, report=False):

@@ -236,7 +236,7 @@ class CTaskManager:
             mymodule = None
             try:
                 #print("Trying",module_name); sys.stdout.flush()
-                mymodule = importlib.import_module(module_name)
+                mymodule = CCP4Utils.importModule(module_name)
                 pyFile = mymodule.__file__
             except:
                 print("Failed to import module", module_name)
@@ -411,7 +411,7 @@ class CTaskManager:
         classNameList.sort()
         for task in classNameList:
             for version in list(self.taskLookup[task].keys()):
-                module = importlib.import_module(self.taskLookup[task][version]['clsModule'])
+                module = CCP4Utils.importModule(self.taskLookup[task][version]['clsModule'])
                 pyFile = module.__file__
                 path = os.path.relpath(pyFile, i2dir)
                 maintainer = self.taskLookup[task][version]['MAINTAINER']
@@ -431,7 +431,7 @@ class CTaskManager:
         classNameList.sort()
         for task in classNameList:
             for version in list(self.scriptLookup[task].keys()):
-                module = importlib.import_module(self.scriptLookup[task][version]['clsModule'])
+                module = CCP4Utils.importModule(self.scriptLookup[task][version]['clsModule'])
                 pyFile = module.__file__
                 path = os.path.relpath(pyFile, i2dir)
                 text += "{0:30} {1:10} {3:30} {2}\n".format(task, version, path, self.scriptLookup[task][version]['MAINTAINER'])
@@ -440,7 +440,7 @@ class CTaskManager:
         classNameList.sort()
         for task in classNameList:
             for version in list(self.reportLookup[task].keys()):
-                module = importlib.import_module(self.reportLookup[task][version]['clsModule'])
+                module = CCP4Utils.importModule(self.reportLookup[task][version]['clsModule'])
                 pyFile = module.__file__
                 path = os.path.relpath(pyFile, i2dir)
                 text += "{0:30} {1:10} {3:30} {2}\n".format(task, version, path, self.reportLookup[task][version]['MAINTAINER'], str(self.reportLookup[task][version]['modes']))
@@ -532,7 +532,7 @@ class CTaskManager:
         if className is None:
             return None
         try:
-            importedModule = importlib.import_module(moduleName)
+            importedModule = CCP4Utils.importModule(moduleName)
         except:
             traceback.print_exc()
             importedModule = None
@@ -799,7 +799,7 @@ class CTaskManager:
 
         data = self.getTaskData(name, version)
         if data.get('clsModule', None) is not None:
-            module = importlib.import_module(data.get('clsModule', None))
+            module = CCP4Utils.importModule(data.get('clsModule', None))
             if module is not None:
                 defFile = os.path.join(os.path.split(module.__file__)[0], name + '.def.xml')
                 if os.path.exists(defFile):
@@ -807,7 +807,7 @@ class CTaskManager:
 
         data = self.getScriptData(name, version)
         if data.get('clsModule', None) is not None:
-            module = importlib.import_module(data.get('clsModule', None))
+            module = CCP4Utils.importModule(data.get('clsModule', None))
             if module is not None:
                 defFile = os.path.join(os.path.split(module.__file__)[0], name + '.def.xml')
                 if os.path.exists(defFile):
@@ -848,7 +848,7 @@ class CTaskManager:
             return []
         try:
             moduleName=data['clsModule']
-            mod = importlib.import_module(moduleName)
+            mod = CCP4Utils.importModule(moduleName)
             if mod is None:
                 print('CTaskManager.exportMtz no module for', taskName, data['clsModule'])
                 return []
@@ -878,7 +878,7 @@ class CTaskManager:
             print('CTaskManager.exportMtzColumnLabels no module for', taskName)
             return []
         try:
-            mod = importlib.import_module(data['clsModule'])
+            mod = CCP4Utils.importModule(data['clsModule'])
         except:
             print('CTaskManager.exportMtzColumnLabels no module for', taskName)
             return []
@@ -914,7 +914,7 @@ class CTaskManager:
             self.getScriptData(pipelineTaskName)
         if len(data) > 0:
             try:
-                mod = importlib.import_module(data.get('clsModule'))
+                mod = CCP4Utils.importModule(data.get('clsModule'))
             except:
                 pass
             else:

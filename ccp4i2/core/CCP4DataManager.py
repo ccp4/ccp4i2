@@ -3,7 +3,6 @@ Liz Potterton Aug 2010 - Class to keep track of all CCP4Data and CCP4Widget clas
 """
 
 import glob
-import importlib
 import inspect
 import json
 import os
@@ -123,7 +122,7 @@ class CDataManager:
         allModules = coreModules + qtguiModules
         
         for moduleName in allModules:
-            module = importlib.import_module(moduleName)
+            module = CCP4Utils.importModule(moduleName)
             clsList = inspect.getmembers(module, inspect.isclass)
             
             for name, cls in clsList:
@@ -174,19 +173,19 @@ class CDataManager:
     def getClass(self, className=''):
         if className in self.clsLookup:
             if self.clsLookup[className].get('class',None) is None:
-                module = importlib.import_module(self.clsLookup[className]['clsModule'])
+                module = CCP4Utils.importModule(self.clsLookup[className]['clsModule'])
                 clsName = self.clsLookup[className]['clsName']
                 self.clsLookup[className]['class'] = getattr(module, clsName)
             return self.clsLookup[className]['class']
         elif className in self.toUpper:
             if self.clsLookup[self.toUpper[className]].get('class',None) is None:
-                module = importlib.import_module(self.clsLookup[self.toUpper[className]]['clsModule'])
+                module = CCP4Utils.importModule(self.clsLookup[self.toUpper[className]]['clsModule'])
                 clsName = self.clsLookup[self.toUpper[className]]['clsName']
                 self.clsLookup[self.toUpper[className]]['class'] = getattr(module, clsName)
             return self.clsLookup[self.toUpper[className]]['class']
         elif className in self.widgetLookup:
             if self.widgetLookup[className].get('class',None) is None:
-                module = importlib.import_module(self.widgetLookup[className]['clsModule'])
+                module = CCP4Utils.importModule(self.widgetLookup[className]['clsModule'])
                 clsName = self.widgetLookup[className]['clsName']
                 self.widgetLookup[className]['class'] = getattr(module, clsName)
             return self.widgetLookup[className]['class']
@@ -204,7 +203,7 @@ class CDataManager:
         widgetClassDict = self.viewLookup.get(modelClassName, None)
         if widgetClassDict is not None:
             if widgetClassDict.get('class',None) is None:
-                module = importlib.import_module(widgetClassDict['clsModule'])
+                module = CCP4Utils.importModule(widgetClassDict['clsModule'])
                 widgetClassDict['class'] = getattr(module,widgetClassDict['clsName'])
             return widgetClassDict['class']
 
@@ -218,7 +217,7 @@ class CDataManager:
                 widgetClassDict = self.viewLookup.get(clsName, None)
                 if widgetClassDict is not None:
                     if widgetClassDict.get('class',None) is None:
-                        module = importlib.import_module(widgetClassDict['clsModule'])
+                        module = CCP4Utils.importModule(widgetClassDict['clsModule'])
                         widgetClassDict['class'] = getattr(module,widgetClassDict['clsName'])
                         widgetClass =widgetClassDict['class']
                     return widgetClassDict['class']
