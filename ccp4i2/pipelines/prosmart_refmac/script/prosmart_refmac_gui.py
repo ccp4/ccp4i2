@@ -9,8 +9,8 @@ import traceback
 
 from PySide2 import QtCore, QtWidgets
 from PySide2.QtWidgets import QMessageBox
-import ccp4mg.mmdb2 as mmdb
 
+from ....core.CCP4MgImports import mmdb2 as mmdb
 from ....core.CCP4Modules import PROJECTSMANAGER
 from ....qtgui import CCP4TaskWidget
 

@@ -1,7 +1,8 @@
 import sys
 
 from PySide2 import QtCore, QtWidgets
-from ccp4mg import PdbView  # Needs to be after PySide2 import
+
+from ....core.CCP4MgImports import PdbView
 
 
 if __name__ == "__main__":

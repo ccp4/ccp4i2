@@ -16,7 +16,6 @@ import shutil
 import tempfile
 
 import clipper
-import hklfile
 from lxml import etree
 from PySide2 import QtCore
 
@@ -27,6 +26,7 @@ from . import CCP4ModelData
 from . import CCP4Utils
 from ..googlecode import diff_match_patch_py3
 from .CCP4ErrorHandling import CErrorReport, CException, Severity
+from .CCP4MgImports import hklfile
 from .CCP4Modules import PROCESSMANAGER, PROJECTSMANAGER
 
 

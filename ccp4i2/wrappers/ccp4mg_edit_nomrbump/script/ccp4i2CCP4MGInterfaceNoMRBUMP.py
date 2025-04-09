@@ -6,12 +6,19 @@ import shutil
 import sys
 import tempfile
 
-from ccp4mg import mmdb2 as mmdb, mmut, point_funcs, pygl_coord, sequence_util
-from ccp4mg.python.ui import global_definitions, MolLabel
-from ccp4mg.python.ui.global_definitions import get_dispobj
-from ccp4mg.qtgui import displayTableObjects, MGApplication
-from ccp4mg.qtgui.plugins.Sequence import SequenceViewer
 from PySide2 import QtCore, QtGui, QtWidgets
+
+from ....core.CCP4MgImports import displayTableObjects
+from ....core.CCP4MgImports import get_dispobj
+from ....core.CCP4MgImports import global_definitions
+from ....core.CCP4MgImports import MGApplication
+from ....core.CCP4MgImports import mmdb2 as mmdb
+from ....core.CCP4MgImports import mmut
+from ....core.CCP4MgImports import MolLabel
+from ....core.CCP4MgImports import point_funcs
+from ....core.CCP4MgImports import pygl_coord
+from ....core.CCP4MgImports import sequence_util
+from ....core.CCP4MgImports import SequenceViewer
 
 
 def InstallSaveToi2MenuItem(workDirectory):
@@ -216,13 +223,13 @@ def InstallSaveToi2MenuItem(workDirectory):
         #menu.extend(['clone','delete'])
         return menu
     else:
-      return displayTableObjects.GMolDisp._getGuiDef(self,name,pickevent)
+      return displayTableObjects().GMolDisp._getGuiDef(self,name,pickevent)
   
   def getActionDef(self,name,**info):
    if name =='savetoi2':
      return dict (text = self.tr('Save selected atoms to ccp4i2'), slot = self.saveToi2, enabled = 1 )
    else:
-     return displayTableObjects.GMolDisp._getActionDef(self,name,**info)
+     return displayTableObjects().GMolDisp._getActionDef(self,name,**info)
   
   def saveToi2(self):
 
@@ -247,12 +254,12 @@ def InstallSaveToi2MenuItem(workDirectory):
     else:
       print("Some failure!!!!")
   
-  displayTableObjects.GMolDisp._getGuiDef = displayTableObjects.GMolDisp.getGuiDef
-  displayTableObjects.GMolDisp._getActionDef = displayTableObjects.GMolDisp.getActionDef
+  displayTableObjects().GMolDisp._getGuiDef = displayTableObjects().GMolDisp.getGuiDef
+  displayTableObjects().GMolDisp._getActionDef = displayTableObjects().GMolDisp.getActionDef
   
-  displayTableObjects.GMolDisp.getGuiDef = getGuiDef
-  displayTableObjects.GMolDisp.getActionDef = getActionDef
-  displayTableObjects.GMolDisp.saveToi2 = saveToi2
+  displayTableObjects().GMolDisp.getGuiDef = getGuiDef
+  displayTableObjects().GMolDisp.getActionDef = getActionDef
+  displayTableObjects().GMolDisp.saveToi2 = saveToi2
 
   #SequenceViewer.SequenceView.alignmentToSequenceDisplay = alignmentToSequenceDisplay
   #SequenceViewer.SequenceView.setDelegateACVs = setDelegateACVs

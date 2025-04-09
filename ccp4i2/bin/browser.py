@@ -8,7 +8,6 @@ import sys
 import time
 
 from PySide2 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets
-import ccp4mg # Sets sys.path so import of MG modules will work from here onwards
 
 from .. import I2_TOP
 from ..utils.QApp import QTAPPLICATION

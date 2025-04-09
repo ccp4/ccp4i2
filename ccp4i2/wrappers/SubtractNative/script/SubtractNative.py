@@ -1,6 +1,6 @@
-from ccp4mg import mmdb2 as mmdb, mmut
 import clipper
 
+from ....core.CCP4MgImports import mmdb2 as mmdb, mmut
 from ....core.CCP4PluginScript import CPluginScript
 
 

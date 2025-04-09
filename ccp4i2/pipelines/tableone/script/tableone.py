@@ -2,14 +2,14 @@ import math
 import os
 import re
 
-from ccp4mg import mmdb2
 from iotbx import mtz
 from lxml import etree
 from mmtbx.command_line import molprobity
 import clipper
 
-from ....core.CCP4PluginScript import CPluginScript
 from ....core import CCP4Utils
+from ....core.CCP4MgImports import mmdb2
+from ....core.CCP4PluginScript import CPluginScript
 from ....wrappers.validate_protein.script import validate_protein
 
 

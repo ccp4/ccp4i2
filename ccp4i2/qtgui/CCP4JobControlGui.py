@@ -8,7 +8,6 @@ import functools
 import os
 import time
 
-from ccp4mg.qtgui import UtilityThread
 from PySide2 import QtCore, QtWidgets
 
 from . import CCP4Widgets
@@ -16,6 +15,7 @@ from ..core import CCP4Annotation
 from ..core import CCP4JobServer
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CException
+from ..core.CCP4MgImports import UtilityThread
 from ..core.CCP4Modules import JOBCONTROLLER
 from ..core.CCP4Modules import PROJECTSMANAGER
 from ..core.CCP4Modules import SERVERSETUP

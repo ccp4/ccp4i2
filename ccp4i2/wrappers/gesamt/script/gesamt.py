@@ -3,10 +3,10 @@ import os
 import pathlib
 import re
 
-from ccp4mg import mmut, pygl_coord
 from lxml import etree
 
 from ....core import CCP4Utils
+from ....core.CCP4MgImports import mmut, pygl_coord
 from ....core.CCP4PluginScript import CPluginScript
 
 

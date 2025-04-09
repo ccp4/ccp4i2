@@ -10,13 +10,13 @@ import socket
 import subprocess
 import sys
 
-import UtilityThread
 from lxml import etree
 from PySide2 import QtCore
 import paramiko
 
 from . import CCP4Utils
 from .CCP4ErrorHandling import CException
+from .CCP4MgImports import UtilityThread
 from .CCP4Modules import PROCESSMANAGER, PROJECTSMANAGER, SERVERSETUP
 
 

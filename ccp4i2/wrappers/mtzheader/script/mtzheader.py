@@ -8,8 +8,7 @@ You need hklfile.py and _hklfile.so on PYTHONPATH. Latter is
 set in ccp4i2/utils/setup.sh
 """
 
-from ccp4mg import hklfile
-
+from ....core.CCP4MgImports import hklfile
 from ....core.CCP4PluginScript import CPluginScript
 
 

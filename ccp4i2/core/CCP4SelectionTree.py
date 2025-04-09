@@ -7,9 +7,8 @@ March 2012 Liz Potterton Copied from CCP4mg model_selection.py
 
 import re
 
-from ccp4mg import mmdb2 as mmdb
-
 from .CCP4ErrorHandling import CException
+from .CCP4MgImports import mmdb2 as mmdb
 
 
 class SelectionParser:

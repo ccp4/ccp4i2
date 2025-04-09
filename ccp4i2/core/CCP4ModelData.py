@@ -12,7 +12,6 @@ import shutil
 import sys
 import tempfile
 
-from ccp4mg import mmut, pygl_coord
 from lxml import etree
 from PySide2 import QtCore, QtGui
 import Bio
@@ -23,7 +22,6 @@ import Bio.Seq
 import Bio.SeqIO
 import Bio.SeqRecord
 import Bio.SeqUtils
-import ccp4mg.mmdb2 as mmdb
 import gemmi
 import iotbx
 
@@ -33,6 +31,7 @@ from . import CCP4Residues
 from . import CCP4SelectionTree
 from . import CCP4Utils
 from .CCP4ErrorHandling import CErrorReport, CException, Severity
+from .CCP4MgImports import mmdb2 as mmdb, mmut, pygl_coord
 from .CCP4Modules import PROCESSMANAGER, PROJECTSMANAGER
 
 

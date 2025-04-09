@@ -9,7 +9,6 @@ import shutil
 import sys
 import traceback
 
-from ccp4mg import mmdb2
 from lxml import etree
 from mmtbx.command_line import molprobity
 from PySide2 import QtCore
@@ -18,8 +17,9 @@ import clipper
 
 from ....core import CCP4ErrorHandling
 from ....core import CCP4Utils
-from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4MgImports import mmdb2
 from ....core.CCP4Modules import PROJECTSMANAGER
+from ....core.CCP4PluginScript import CPluginScript
 
 
 class prosmart_refmac(CPluginScript):

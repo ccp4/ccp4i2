@@ -5,10 +5,10 @@ import platform
 import subprocess
 
 from lxml import etree
-import ccp4mg.mmdb2 as mmdb
 
 from ....core import CCP4ErrorHandling
 from ....core import CCP4XtalData
+from ....core.CCP4MgImports import mmdb2 as mmdb
 from ....core.CCP4PluginScript import CPluginScript
 
 
