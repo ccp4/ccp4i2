@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+      <function>DEF</function>
+      <comment></comment>
+      <creationTime>Current</creationTime>
+      <userId>andrea</userId>
+      <ccp4iVersion>0.0.1</ccp4iVersion>
+      <jobId/>
+      <project></project>
+      <pluginName>AUSPEX</pluginName>
+      <pluginVersion></pluginVersion>
+      <pluginTitle>AUSPEX Test</pluginTitle>
+      <jobNumber></jobNumber>
+  </ccp4i2_header>
+  <ccp4i2_body id="AUSPEX">
+    <container id="inputData">
+      <content id="F_SIGF">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <allowUndefined>False</allowUndefined>
+          <toolTip>MTZ File</toolTip>
+        </qualifiers>
+      </content>
+      <content id="YLIM">
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>minmax,auto,auto_low,low</enumerators>
+          <menuText>plot all data,core of distribution,core distribution with focus on low values,only values below the mean</menuText>
+          <default>auto</default>
+        </qualifiers>
+      </content>
+      <content id="DLIM">
+        <className>CFloat</className>
+        <qualifiers>
+          <min>0.0</min>
+          <max>200.0</max>
+          <toolTip>Specify the maximum resolution to show in the plots.</toolTip>
+        </qualifiers>
+      </content>
+      <content id="SINGFIG">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>Should the images be generated in separate png files?</toolTip>
+        </qualifiers>
+      </content>
+      <content id="FLAGICE">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>True</default>
+          <toolTip>Should ice rings be flagged red?</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="IM_OUT">
+        <className>CList</className>
+        <subItem>
+          <className>CImageFile</className>
+        </subItem>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>
