@@ -5,7 +5,7 @@ import os
 import sys
 import time
 
-from ..utils.startup import setupEnvironment
+from .. import I2_TOP
 
 
 def checkForPythonNameClash(nameRoot):
@@ -36,8 +36,6 @@ def makeScriptDirectory(wrapperScriptDirectory):
 
 
 def main():
-    CCP4I2_TOP= os.path.abspath(os.environ["CCP4I2"])
-    setupEnvironment(path=CCP4I2_TOP)
     from ..core import CCP4TaskManager
     destinations = CCP4TaskManager.MODULE_ORDER
     parser = ArgumentParser(description='Initiate CCP4i2 plugin from boiler plate')
@@ -66,12 +64,12 @@ def main():
     nameClashed = checkForPythonNameClash(nameRoot)
     if nameClashed and not parameterNamespace.overwrite: sys.exit(1)
     
-    boilerplateRoot = os.path.join(CCP4I2_TOP, "wrappers", "boilerplate", "script")
-    pluginRoot = os.path.join(CCP4I2_TOP, "wrappers", nameRoot, "script")
+    boilerplateRoot = str(I2_TOP / "wrappers" / "boilerplate" / "script")
+    pluginRoot = str(I2_TOP / "wrappers" / nameRoot / "script")
     nameToReplace="ZZPluginNameZZ"
     if parameterNamespace.type == "pipeline":
-        boilerplateRoot = os.path.join(CCP4I2_TOP, "pipelines", "boilerplate", "script")
-        pluginRoot = os.path.join(CCP4I2_TOP, "pipelines", nameRoot, "script")
+        boilerplateRoot = str(I2_TOP / "pipelines" / "boilerplate" / "script")
+        pluginRoot = str(I2_TOP / "pipelines" / nameRoot / "script")
         nameToReplace="ZZPipelineNameZZ"
 
     directoryClashed = makeScriptDirectory(pluginRoot)

@@ -16,7 +16,7 @@ import urllib.request
 from lxml import etree
 import mimetools
 
-from ..utils.startup import setupEnvironment, startProjectsManager
+from ..utils.startup import startProjectsManager
 
 
 class MultiPartForm(object):
@@ -183,7 +183,6 @@ class CCP4i2DjangoSession(DjangoSession):
         self.pm = self.myStartProjectsManager()
 
     def myStartProjectsManager(self):
-        setupEnvironment()
         return startProjectsManager()
 
     def projectIdForName(self, projectName=None, strict=False):

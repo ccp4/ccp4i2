@@ -12,7 +12,7 @@ import ccp4mg # Sets sys.path so import of MG modules will work from here onward
 
 from .. import I2_TOP
 from ..utils.QApp import QTAPPLICATION
-from ..utils.startup import setupEnvironment, startBrowser
+from ..utils.startup import startBrowser
 
 
 def main():
@@ -26,13 +26,12 @@ def main():
         print('Failed finding Qt verion')
     print(' ')
     QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)
-    setupEnvironment()
     app = QTAPPLICATION(graphical=True)
     QtWebEngineWidgets.QWebEngineProfile.defaultProfile().clearHttpCache()
     splash = None
     # This splash screen is not used properly as it does not wait for any window.
     # However it does seem to set whatever is necessary to get the app to switch to the correct menu bar on OS X.
-    pixmap = QtGui.QPixmap(os.path.join(os.environ["CCP4I2"], "qticons/ccp4i2.png"))
+    pixmap = QtGui.QPixmap(str(I2_TOP / "qticons" / "ccp4i2.png"))
     pix2 = QtGui.QPixmap(pixmap)
     pix2.fill(QtCore.Qt.white)
     painter = QtGui.QPainter()

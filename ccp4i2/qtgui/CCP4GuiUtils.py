@@ -12,6 +12,7 @@ import types
 
 from PySide2 import QtCore, QtGui, QtSvg, QtWidgets
 
+from .. import I2_TOP
 from ..qtgui import CCP4Widgets
 
 
@@ -95,7 +96,7 @@ def createIcon(name=None,adef={},icon_path='',default_icon='unknown'):
         icon_name = 'unknown'
     if not icon_path:
         if 'CCP4I2_TOP' in os.environ:
-            icon_path = os.path.join(os.path.abspath(os.environ['CCP4I2_TOP']),'qticons')
+            icon_path = str(I2_TOP / "qticons")
     #print 'guiUtils.createIcon',icon_path,icon_name
     for ext in ICON_EXTENSIONS:
         filename = os.path.join(icon_path,icon_name+ext)
@@ -109,7 +110,7 @@ def createIcon(name=None,adef={},icon_path='',default_icon='unknown'):
             return ico
     if default_icon:
         if 'CCP4I2_TOP' in os.environ:
-            file = os.path.join(os.path.abspath(os.environ['CCP4I2_TOP']),'qticons',default_icon+'.png')
+            file = str(I2_TOP / "qticons" / default_icon + '.png')
             return QtGui.QIcon(file)
     else:
         return None
@@ -250,7 +251,7 @@ def loadPixmap(name='',group='actions',icon_path='',width=32,height=0):
     size_key = str(width)+'_'+str(height)
     if not (name in LOADED_PIXMAPS and size_key in LOADED_PIXMAPS[name]):
         if not icon_path:
-            icon_path = os.path.join(os.path.abspath(os.environ['CCP4I2_TOP']),'qticons')
+            icon_path = str(I2_TOP / "qticons")
         file = ''
         for ext in ICON_EXTENSIONS:
             f = os.path.join(icon_path,group,name+ext)   
@@ -258,7 +259,7 @@ def loadPixmap(name='',group='actions',icon_path='',width=32,height=0):
                 file = f
                 break
         if not file:
-            file = os.path.join(os.environ['CCP4I2_TOP'],'qticons','unknown.png')
+            file = str(I2_TOP / "qticons", "unknown.png")
             if  not os.path.exists(file):
                 return None
         if name not in LOADED_PIXMAPS:

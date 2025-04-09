@@ -55,6 +55,8 @@ from dateutil import parser
 from dateutil.tz import tzlocal
 from lxml import etree
 
+from .. import I2_TOP
+
 
 timeZoneName = datetime.datetime.now(tzlocal()).tzname().split()[0]
 
@@ -273,7 +275,7 @@ def generate_xml_from_project_directory(project_dir):
     
     
     def getPluginDefXmlInt(pluginName):
-        for wrap_root, wrap_dirn, wrap_files in os.walk(os.environ["CCP4I2"]):
+        for wrap_root, wrap_dirn, wrap_files in os.walk(str(I2_TOP)):
             for items in fnmatch.filter(wrap_files, pluginName+".def.xml"):
                 pluginDefXml = os.path.join(wrap_root,items)
         with open(pluginDefXml) as f:

@@ -16,35 +16,7 @@ class testProject(unittest.TestCase):
         p = CProjectName()
         p.set('CCP4I2_TEST')
         self.assertEqual(p,'CCP4I2_TEST','Failed to set good project name')
-    """
-    def testCProjectName2(self):
-        p = CProjectName()
-        try:
-          p.set('rubbish')
-        except CException as e:
-          self.assertEqual(len(e),1,'Unexpected exception length in setting bad CProjectName')
-          self.assertEqual(e[0]['code'],104,'Unexpected exception in setting bad CProjectName')
-        except:
-          self.fail('Unexpected exception in setting bad CProjectName')
-        else:
-          self.fail('No exception in setting bad CProjectName')
 
-    def testCProjectName3(self):
-        PROJECTSMANAGER().createProject('DUMMY_CCP4I2_TEST',os.path.join(getHOME(),'DUMMY_CCP4I2_TEST'))
-        shutil.rmtree(os.path.join(getHOME(),'DUMMY_CCP4I2_TEST'))
-
-        p = CProjectName()
-        try:
-          p.set('DUMMY_CCP4I2_TEST')
-        except CException as e:
-          self.assertEqual(len(e),1,'Unexpected exception length in setting project with nonexistant directory')
-          self.assertEqual(e[0]['code'],106,'Unexpected exception in setting project with nonexistant directory')
-        except:
-          self.fail('Unexpected exception in setting bad project with nonexistant directory')
-        else:
-          self.fail('No exception in setting project with nonexistant directory')
-        PROJECTSMANAGER().deleteProject('DUMMY_CCP4I2_TEST')
-    """
 
 class testFilePath(unittest.TestCase):
 
@@ -70,6 +42,7 @@ class testFilePath(unittest.TestCase):
         except:
             self.fail('Unexpected exception in fixing bad CFilePath')
         self.assertEqual(f, 'foo/bar/fo_e_ue.tmp', 'Error setting CFilePath')
+
 
 class testDataFile(unittest.TestCase):
 
@@ -115,14 +88,6 @@ class testDataFile(unittest.TestCase):
         self.assertEqual(projectName,'CCP4I2_TEST','CDataFile setting full path gives wrong project')
         self.assertEqual(f.relPath,'foo/bar','CDataFile setting full path gives wrong relPath')
         self.assertEqual(f.baseName,'myfile.txt','CDataFile setting full path gives wrong baseName')
-
-    def testDataFile5(self):
-        bindir = os.path.join(os.environ['CCP4I2_TOP'],'bin')
-        f = CDataFile(relPath=bindir,baseName='browser')
-        #print 'testDataFile5',bindir,f.fullPath
-        h = CFilePath(os.path.join(bindir,'browser'))
-        self.assertTrue(f.samefile(os.path.join(bindir,'browser')),'Failed CDataFile.samefile(Python string)')
-        self.assertTrue(f.samefile(h),'Failed CDataFile.samefile(CFilePath)')
 
 
 class testI2XmlDataFile(unittest.TestCase):

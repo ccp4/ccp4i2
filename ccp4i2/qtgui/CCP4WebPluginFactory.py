@@ -7,6 +7,8 @@ import os
 
 from PySide2 import QtCore, QtGui, QtWidgets
 
+from .. import I2_TOP
+
 
 ##@package CCP4WebPluginFactory  (QtWebKit) Demo of webkit plgin widgets
 # A trivial button to test PyQt/Javascript interface
@@ -20,7 +22,7 @@ class ccp4_test_plugin(QtWidgets.QWidget):
      self.label.setMinimumWidth(300)
      layout.addWidget(self.label,0,0)
      self.image = QtWidgets.QLabel(self)
-     pixmap = QtGui.QPixmap(os.path.join(os.environ['CCP4I2'],'test','data','ramachandran.png')).scaled(200,200)
+     pixmap = QtGui.QPixmap(str(I2_TOP / 'test' / 'data' / 'ramachandran.png')).scaled(200,200)
      self.image.setPixmap(pixmap)
      layout.addWidget(self.image,1,1)
      self.setLayout(layout)

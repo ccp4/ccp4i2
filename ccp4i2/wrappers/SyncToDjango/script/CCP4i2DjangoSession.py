@@ -195,8 +195,7 @@ class CCP4i2DjangoSession(DjangoSession):
 
     def projectsManager(self):
         if self._pm is None:
-            from ....utils.startup import setupEnvironment, startProjectsManager
-            setupEnvironment()
+            from ....utils.startup import startProjectsManager
             self._pm = startProjectsManager()
         return self._pm
 

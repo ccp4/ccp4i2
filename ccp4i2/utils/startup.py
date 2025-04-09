@@ -31,10 +31,6 @@ class DatabaseFailException(Exception):
     pass
 
 
-def setupEnvironment(path=''):
-    os.environ["CCP4I2_TOP"] = path or str(I2_TOP)
-
-
 def createMissingDATABASEdbXML():
     proj_dir_list0=PROJECTSMANAGER().db().getProjectDirectoryList()
 
