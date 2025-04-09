@@ -12,7 +12,7 @@ class CObject(QtCore.QObject):
     finished = QtCore.Signal(int)
 
     def __init__(self, parent=None, name=None):
-        super().__init__(self, parent)
+        super().__init__(parent)
         if name is not None:
             self.setObjectName(name)
 
