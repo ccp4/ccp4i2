@@ -30,6 +30,7 @@ from .CCP4Utils import getCCP4I2Dir, getDotDirectory, getHOME
 from .CCP4WarningMessage import warningMessage
 
 
+def PROJECTSMANAGER():
     if CProjectsManager.insts is None:
         CProjectsManager.insts = CProjectsManager()
     return CProjectsManager.insts
