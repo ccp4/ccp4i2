@@ -126,7 +126,7 @@ class CErrorReport():
             report['name'] = name
 
     def maxSeverity(self):
-        return max(r['severity'] for r in self._reports)
+        return max((r['severity'] for r in self._reports), default=Severity.OK)
 
     def __len__(self):
         return len(self._reports)
