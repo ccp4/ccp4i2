@@ -211,7 +211,7 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
                 splitToken = token.strip().split('=')
                 if len(splitToken) == 1: tokensDict[splitToken[0]] = True
                 else: tokensDict[splitToken[0]] = '='.join(splitToken[1:])
-            print(tokensDict)
+            # print(tokensDict)
 
             if len(tokens) == 1:
                 docTemplate = '''
