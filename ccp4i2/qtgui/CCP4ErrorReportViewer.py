@@ -15,7 +15,8 @@ from PySide2 import QtCore, QtGui, QtWidgets
 from . import CCP4TextViewer
 from .. import __version__
 from ..core import CCP4Utils
-from ..core.CCP4Modules import PRINTHANDLER, PROJECTSMANAGER
+from ..core.CCP4Modules import PROJECTSMANAGER
+from ..core.CCP4PrintHandler import PRINTHANDLER
 from ..core.CCP4Version import CCP4_VERSION
 
 

@@ -12,7 +12,8 @@ import dials
 import mrparse
 
 from ..core import CCP4Utils
-from ..core.CCP4Modules import DBSERVER, PRINTHANDLER
+from ..core.CCP4Modules import DBSERVER
+from ..core.CCP4PrintHandler import PRINTHANDLER
 from ..utils.QApp import QTAPPLICATION
 
 

@@ -21,8 +21,8 @@ from ..core.CCP4Config import CONFIG
 from ..core.CCP4Modules import JOBCONTROLLER
 from ..core.CCP4Modules import LAUNCHER
 from ..core.CCP4Modules import PREFERENCES
-from ..core.CCP4Modules import PRINTHANDLER
 from ..core.CCP4Modules import PROJECTSMANAGER
+from ..core.CCP4PrintHandler import PRINTHANDLER
 from ..core.CCP4WarningMessage import warningMessage
 from ..utils.QApp import QTAPPLICATION
 

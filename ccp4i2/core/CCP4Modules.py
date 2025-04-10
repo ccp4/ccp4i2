@@ -57,10 +57,6 @@ def PREFERENCES():
     from . import CCP4Preferences
     return CCP4Preferences.PREFERENCES()
 
-def PRINTHANDLER():
-    from . import CCP4PrintHandler
-    return CCP4PrintHandler.PRINTHANDLER()
-
 def PROCESSMANAGER():
     from . import CCP4ProcessManager
     return CCP4ProcessManager.PROCESSMANAGER()
