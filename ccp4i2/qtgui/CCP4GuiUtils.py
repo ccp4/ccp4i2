@@ -95,8 +95,7 @@ def createIcon(name=None,adef={},icon_path='',default_icon='unknown'):
     else:
         icon_name = 'unknown'
     if not icon_path:
-        if 'CCP4I2_TOP' in os.environ:
-            icon_path = str(I2_TOP / "qticons")
+        icon_path = str(I2_TOP / "qticons")
     #print 'guiUtils.createIcon',icon_path,icon_name
     for ext in ICON_EXTENSIONS:
         filename = os.path.join(icon_path,icon_name+ext)
@@ -109,9 +108,8 @@ def createIcon(name=None,adef={},icon_path='',default_icon='unknown'):
             ico =  QtGui.QIcon(pix)
             return ico
     if default_icon:
-        if 'CCP4I2_TOP' in os.environ:
-            file = str(I2_TOP / "qticons" / default_icon + '.png')
-            return QtGui.QIcon(file)
+        file = str(I2_TOP / "qticons" / default_icon + '.png')
+        return QtGui.QIcon(file)
     else:
         return None
 
