@@ -76,6 +76,7 @@ def getReport(
                 break
         else:
             print('ERROR in CErrorHandling - error code not found', code, cls)
+            print(*stack)
     return report
 
 

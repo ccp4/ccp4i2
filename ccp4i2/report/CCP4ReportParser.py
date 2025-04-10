@@ -1327,12 +1327,6 @@ class Report( Container ):
             links.append(anchor)   
         title = body.find("h4")
         #print 'addLinks title',title
-        """
-        if title is None:
-          body.insert(0,links)
-        else:
-          body.insert(2,links)
-        """
 
     def getTitle(self):
         if 'jobnumber' in self.jobInfo and 'tasktitle' in self.jobInfo:
@@ -1504,14 +1498,6 @@ class DrillDown(ReportClass):
     if len(subJobs)==0: return  etree.Element('root')
     
     # make a folder
-    '''
-    fold = foldTitleLine('Show Sub-Jobs')
-    if fold.tag == 'root':
-      root.extend(fold)
-    else:
-      root.append(fold)
-    div = root.find('div')
-    '''
     div = etree.Element('div')
     div.set('class','sub-job-list')
     if self.id is not None: div.set('id',self.id)
@@ -1528,31 +1514,6 @@ class DrillDown(ReportClass):
       fold = foldLinkLine(text,job[3],'jobId'+str(job[1]))
       div.extend(fold)
 
-      '''
-      # Simple link mode
-      div = root.find('div')
-      a =  etree.Element('a')
-      a.set('href',job[3])
-      a.set('id','jobId'+str(job[1]))
-      a.text= text
-      div.append(a)
-      div.append(etree.Element('br'))
-      '''   
-      
-      '''
-      # Alternative 'button' mode
-      obj = etree.Element('object')
-      obj.set('class','qt_object_subjob')
-      obj.set('type','x-ccp4-widget/CSubJobButton')
-      #obj.set('id',self.id+'_'+str(job[0]))
-      div.append(obj)
-
-      for key,value in [['label',text],['jobId',str(self.jobInfo.get('jobid',None))],['subJobNumber',job[0]],['link',job[2]]:
-        p = etree.Element('param')
-        p.set('name',key)
-        p.set('value',value)
-        obj.append(p)
-      '''
     return div
 
   def getSubJobs(self,jobDir):
@@ -1574,13 +1535,6 @@ class DrillDown(ReportClass):
       else:
         pluginName = None
         jobId = None
-      '''
-      reportFile =  glob.glob(os.path.join(path,'*.report.html'))
-      if len(reportFile) == 0:
-        reportFile = None
-      else:
-        reportFile = reportFile[0]
-      '''
       reportFile = parsFile[0][0:-10]+'report.html'
       
       retSubJobs.append([os.path.split(path)[-1].split('_')[-1],jobId,pluginName,reportFile,subJobs])
@@ -1611,22 +1565,6 @@ def foldTitleLine(label, initiallyOpen, brief = None):
   return root
 
 def foldLinkLine(label,href,id):
-  '''
-  root = etree.Element('root')
-  anchor = etree.Element('a')
-  anchor.set('name',label)
-  root.append(anchor)
-  span = etree.Element('span')
-  span.set('class','folder_link')
-  a =  etree.Element('a')
-  a.set('href',href)
-  a.set('id',id)
-  a.text = 'Show '+label
-  span.append(a)
-  root.append(span)
-  return root
-  '''
-
   '''
   Aiming for..
   <span class="folder" onclick="togglesubjob(this)">Show 1: Model building - Buccaneer</span>

@@ -664,39 +664,6 @@ class CTaskWidget(QtWidgets.QFrame):
             return
         WEBBROWSER().loadWebPage(helpPath)
 
-    '''
-    def updateModelFromView(self,textOnly=False):
-        # Not convinced this is needed and sledge-hammer updateModelFromView() of some
-        # widgets (eg CImportUnmerged) very bad as trashes gui-generalted data (such as cell params)
-        return
-
-    def updateModelFromView(self,textOnly=False):
-        rv = CErrorReport()
-        toggledFrame = {}
-        for t in self.widget.toggleList:
-          toggledFrame[t.target] = t.getTargetVisibility()
-        widgetList = self.findChildren(CViewWidget)
-        #print 'CTaskWidget.updateModelFromView',textOnly,widgetList
-        for widget in widgetList:
-          #print widget.model.objectName(),
-          w = widget.parent()
-          isVis = True
-          while isVis and not isinstance(w,(CTaskWidget,CContainerView,QtWidgets.QDialog,QtWidgets.QMainWindow)):
-            #print w,toggledFrame.get(w,True) ,'*',
-            if not toggledFrame.get(w,True): isVis = False
-            w = w.parent()
-          #print 'isVis',isVis,widget.getValue()
-          if isVis:
-            try:
-              if textOnly:
-                widget.updateModelFromText()
-              else:
-                widget.updateModelFromView()
-            except:
-              rv.append(self.__class__,102,str(widget.objectName()),stack=False)
-        return rv
-    '''
-
     def updateModelFromView(self, textOnly=False):
         # Called when user clicks run - try to fix any text widget with focus that has not updated
         # the model since has not had the 'finished' signal from user hitting return or moving focus
@@ -708,19 +675,6 @@ class CTaskWidget(QtWidgets.QFrame):
             elif isinstance(fW,CCP4Widgets.CTextEdit):
                 fW.textChanged.emit()
         return rv
-        '''
-        w = fW.parent()
-        while w is not None:
-            if isinstance(w,(CCP4Widgets.CStringView,CCP4Widgets.CFloatView,CCP4Widgets.CIntView)):
-                try:
-                    print('CTaskWidget.updateModelFromView updating model from view for',w.model.objectName(),'widget value:',w.getValue(),'old model value:',w.model)
-                    w.updateModelFromView()
-                except:
-                    pass
-                return rv
-            else:
-                w = w.parent()
-        '''
 
     def updateViewFromModel(self):
         rv = CErrorReport()
@@ -752,18 +706,8 @@ class CTaskWidget(QtWidgets.QFrame):
         #print 'CTaskLine widget',name,widget
         if widget is not None:
             widget.setObjectName(name)
-            #modelTip = model.qualifiers('toolTip')
-            #if modelTip is not NotImplemented:
-            #  widget.setToolTip(modelTip)
             if model.qualifiers('toolTip') is not NotImplemented:
                 widget.setToolTip(model.qualifiers('toolTip'))
-            '''
-            if widget.STRETCH > 0:
-                self.layout().setStretch(self.layout().count(),widget.stretchFactor())
-                doneStretch = True
-            elif widgetQualifiers.get('charWidth',1) < 0:
-                doneStretch = True
-            '''
             if helpTarget is not None:   # KJS: Change to functools version 
                 widget.contextMenuRequest.connect(functools.partial(self.populateContextMenu, name, self.programHelpFile, helpTarget))
         return widget
@@ -1247,31 +1191,21 @@ class CToggle(QtCore.QObject):
             self.applyVisibilityFunction()
 
     def setTargetVisibility(self):
-        '''
-        widget = self.parent().findChild(QtWidgets.QWidget,self.parameter)
-        #print 'setTargetVisibility',self.parent(),self.parameter,widget
-        if widget is None:
-          raise CException(self.__class__,103,self.parameter)    
-        if widget.model is None:
-          raise CException(self.__class__,104,self.parameter)
-        '''
         obj = self.parent().parentTaskWidget().container.find(self.parameter)
         if obj is None:
             return
         value = obj.get()
         #print 'CToggle.setTargetVisibility',self.parameter,value,self.values,self.values.count(value),self.state
-        #if isinstance(self.target,CTaskLine) or isinstance(self.target,CSubFrame) or isinstance(self.target,CTaskFolder):
-        if 1:
-            if self.values.count(value):
-                if self.state == 'open':
-                    self.target.show()
-                else:
-                    self.target.hide()
+        if self.values.count(value):
+            if self.state == 'open':
+                self.target.show()
             else:
-                if self.state == 'open':
-                    self.target.hide()
-                else:
-                    self.target.show()
+                self.target.hide()
+        else:
+            if self.state == 'open':
+                self.target.hide()
+            else:
+                self.target.show()
 
     def getTargetVisibility(self):
         try:
@@ -1326,8 +1260,7 @@ class CSubFrame(QtWidgets.QFrame):
 class CTaskLine(QtWidgets.QFrame):
 #---------------------------------------------------------------------
     ERROR_CODES = {101 : {'description' : 'No data container for task line'},
-                   102 : {'description' : 'No model found for task line item'},
-                   103 : {'description' : 'Error creating widget for task line item'}}
+                   102 : {'description' : 'No model found for task line item'}}
     MARGIN = 0
 
     def __init__(self, parent=None):
@@ -1374,8 +1307,6 @@ class CTaskLine(QtWidgets.QFrame):
                 self.helpTarget = definition[pDef]
             if definition[pDef] == 'label':
                 pDef = pDef + 1
-#FIXME - SJM 30/05/2017 - I have no idea why the colour is hardwired. It means that setEnabled(False) shows no "greying out" effect.
-                #lab = QtWidgets.QLabel('<FONT color=black>' + definition[pDef] + '</FONT>')
                 lab = QtWidgets.QLabel('<span>'+definition[pDef]+'</span>')
                 if self.tip is not None: lab.setToolTip(self.tip)
                 self.layout().addWidget(lab)
@@ -1389,7 +1320,6 @@ class CTaskLine(QtWidgets.QFrame):
                 if self.tip is not None: subtitle.setToolTip(self.tip)
             if definition[pDef] in [ 'advice','warning']:
                 pDef = pDef + 1
-                #label = QtWidgets.QLabel('<FONT color=black>' + definition[pDef] + '</FONT>')
                 label = QtWidgets.QLabel('<span>'+definition[pDef]+'</span>')
                 label.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
                 self.layout().setContentsMargins(CFolderTaskWidget.MARGIN,CFolderTaskWidget.MARGIN,CFolderTaskWidget.MARGIN,CFolderTaskWidget.MARGIN)
@@ -1441,15 +1371,9 @@ class CTaskLine(QtWidgets.QFrame):
                     except CException as e:
                         e.appendDetails(definition[pDef])
                         myException.extend(e)
-                    except:
-                        myException.append(self.__class__, 103, definition[pDef])
                     #print 'CTaskLine widget',definition[pDef],widget,widget.STRETCH
-                    #widget = dataContainer.widget(name=par,parentWidget=self,widgetQualifiers=widgetQualifiers)
                     if widget is not None:
                         widget.setObjectName(definition[pDef])
-                        #modelTip = model.qualifiers('toolTip')
-                        #if modelTip is not NotImplemented:
-                        #  widget.setToolTip(modelTip)
                         if self.tip is not None:
                             widget.setToolTip(self.tip + ' (' + str(definition[pDef]) + ')')
                         else:
@@ -1477,19 +1401,8 @@ class CTaskLine(QtWidgets.QFrame):
                             ifFullLine = True
             if definition[pDef] == 'format':
                 pass
-            '''
-            if ['toggle','toggle_display'].count(definition[pDef]):
-                if pDef+3<len(definition) and ['open','close'].count(definition[pDef+2]):
-                  self.parent().setToggle(self,definition[pDef+1],definition[pDef+2],definition[pDef+3])
-                  pDef = pDef+3
-            '''
         if not ifFullLine and not doneStretch:
             self.layout().addStretch(2)
-        #if doneStretch:
-        #  self.layout().addSpacing(1)
-        #self.layout().addStretch(0.1)
-        #else:
-        #  self.layout().addStretch(2)
         return myException
 
 

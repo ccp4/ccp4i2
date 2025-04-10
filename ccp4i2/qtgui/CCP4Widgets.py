@@ -1316,10 +1316,6 @@ class CComplexLineWidget(CViewWidget):
     if iconButton is None: iconButton = (parent is not None and (not isinstance(parent,CComplexLineWidget) or isinstance(parent,CListView)))
     if iconButton:
       self.createIconButton()
-      '''
-      if qualis.get('guiLabel',NotImplemented) is not NotImplemented:
-        layout.addWidget(QtWidgets.QLabel(qualis['guiLabel'],self))
-      '''
       self.setFrameShape(QtWidgets.QFrame.StyledPanel)
 
       self.iconButton.rightMousePress.connect(self.updateMenu)

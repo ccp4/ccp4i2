@@ -84,10 +84,10 @@ class adding_stats_to_mmcif_i2(CPluginScript):
                 aimlessXML = etree.fromstring(aimlessXMLFile.read())
                 try:
                     lastAimlessNode = aimlessXML.xpath('.//AIMLESS_PIPE')[-1]
-                except IndexError as err:
+                except IndexError:
                     try:
                         lastAimlessNode = aimlessXML.xpath('.//AIMLESS')[-1]
-                    except IndexError as err:
+                    except IndexError:
                         self.appendErrorReport(203, aimless_xml_file)
                         return CPluginScript.FAILED
                 self.xmlroot.append(lastAimlessNode)

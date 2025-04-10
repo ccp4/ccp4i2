@@ -30,8 +30,7 @@ class CDataManager:
                    104: { 'description' : 'Parent widget is not a Qt QWidget'},
                    105: { 'description' : 'No suitable widget class found for model'},
                    106: { 'description' : 'Error handling qualifiers for widget'},
-                   107: { 'description' : 'Loading DATAMANAGER, failed attempting to import module'},
-                   108: { 'description' : 'Undetermined error creating widget'}}
+                   107: { 'description' : 'Loading DATAMANAGER, failed attempting to import module'}}
 
     insts = None
 
@@ -248,12 +247,7 @@ class CDataManager:
             qualis.update(qualifiers)
         except:
             raise CException(self.__class__, 106)
-        try:
-            widget = widgetClass(parent=parentWidget, model=model, qualifiers=qualis)
-        except CException as e:
-            raise e
-        except:
-            raise CException(self.__class__, 108, stack=False)
+        widget = widgetClass(parent=parentWidget, model=model, qualifiers=qualis)
         return widget
 
     def buildQStandardItemModel(self, parent=None, mode=None):
