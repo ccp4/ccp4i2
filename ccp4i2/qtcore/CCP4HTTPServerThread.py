@@ -79,6 +79,13 @@ class CHTTPRequestHandler(SimpleHTTPRequestHandler):
         self.send_header('Cross-Origin-Embedder-Policy', 'require-corp')
         SimpleHTTPRequestHandler.end_headers(self)
 
+    def log_message(self, format, *args):
+      # More programming by stackoverflow...
+      # http://stackoverflow.com/questions/10651052/how-to-quiet-simplehttpserver/10651257#10651257
+      # The base class code writes to sys.stderr
+      f = PRINTHANDLER().getFileObject(thread='HTTPServer', name='HTTPServer')
+      f.write(f"{self.address_string()} - - [{self.log_date_time_string()}] {format%args}\n")
+
     #Here I am going to do some hackery to allow the HTTP server to return information about the
     #database
     def do_GET(self):
