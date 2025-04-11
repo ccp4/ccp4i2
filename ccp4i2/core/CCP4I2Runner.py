@@ -7,6 +7,7 @@ import time
 import traceback
 import xml.etree.ElementTree as ET
 
+import clipper
 import gemmi
 from lxml import etree
 import numpy
