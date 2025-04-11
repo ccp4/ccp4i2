@@ -6,6 +6,7 @@ Liz Potterton May 2011 - Rewrite to use CCP4DbApi to RDMS database and separate 
 
 import copy
 import os
+import pathlib
 import re
 import shutil
 import signal
@@ -42,7 +43,6 @@ class CJobController(CCP4JobServer.CJobServer):
     SERVERCHECK = 10
     REPORTCHECK = 20
     # Beware using QProcess does handle the environment customisation
-    USE_QPROCESS = True
     SERVERSENABLED = None
 
     ERROR_CODES = {101 : {'description' : 'Control file not found'},
@@ -72,7 +72,6 @@ class CJobController(CCP4JobServer.CJobServer):
         self.db.jobDeleted.connect(self.handleJobDeleted)
         self.failedOpenConnection.connect(self.handleFailTuple)
         self.failedRemoteCommand.connect(self.handleFailTuple)
-        self.configFile = None
         self._watchedJobs = {}
         self._errorReport = CErrorReport()
         self._diagnostic = False
@@ -117,11 +116,6 @@ class CJobController(CCP4JobServer.CJobServer):
 
     def setDiagnostic(self, mode):
         self._diagnostic = mode
-
-    def setConfigFile(self, fileName):
-        # Set the config file to be passed to the sub-process
-        # This is most mechanism to specify alternative config file that specifies database used for testing purposes
-        self.configFile = fileName
 
     def startTimer(self):
         self.timer = QtCore.QTimer(self)
@@ -258,16 +252,6 @@ class CJobController(CCP4JobServer.CJobServer):
 
     def watchLogFiles(self):
         # Initialise the runningJobs list is necessary
-        '''
-        This is for watching all jobs - probably wrong approach
-        if self.runningJobs is None:
-          runningJobs = self.db.getJobsByStatus(status=CCP4DbApi.JOB_STATUS_RUNNING)
-          self.runningJobs = {}
-          for jobId in runningJobs:
-            logFile = self.db._makeJobFileName(jobId=jobId,mode='LOG')
-            size = os.path.getsize(logFile)
-            self.runningJobs[jobId] = { 'logFile' : logFile, 'size' : size }
-        '''
         for jobId, details in list(self._watchedJobs.items()):
             size = self.getFileSize(details['logFile'])
             #print 'JOBCONTROLLER.watchLogFiles',jobId,details['logFile'],size
@@ -313,105 +297,76 @@ class CJobController(CCP4JobServer.CJobServer):
             else:
                 exe = CCP4Utils.pythonExecutable()
         argList = [exe, runTask, fileName]
-        if self.configFile is not None:
-            argList.extend(['-config', self.configFile])
         if self._dbFile is not None:
             argList.extend(['-db', self._dbFile])
         return argList
 
-    def runTask(self, jobId=None, wait=None):
+    def runTask(self, jobId, wait=None):
         from ..dbapi import CCP4DbApi
         from ..qtcore import CCP4HTTPServerThread
-        #print 'CJobController.runTask pythonExecutable',CCP4Utils.pythonExecutable()
         controlFile = self.db._makeJobFileName(jobId=jobId, mode='JOB_INPUT')
         argList = self.getArgList(controlFile)
         db = PROJECTSMANAGER().db()
         taskname = db.getJobInfo(jobId=jobId)['taskname']
         if self._diagnostic:
             print('JOBCONTROLLER starting job:', argList , taskname)
-        callDict = {}
-        path, name = os.path.split(controlFile)
-        if not self.USE_QPROCESS or taskname == "dui" or taskname == "dials_image" \
-                                                       or taskname == "dials_rlattice":
-            callDict['stdout'] = open(os.path.join(path, 'stdout.txt'), 'w')
-            callDict['stderr'] = open(os.path.join(path, 'stderr.txt'), 'w')
-        #MN run tasks with modified environment carrying :
-        #-port of HTTP Server
-        #-projectid and
-        #-projectname
-        try:
-            httpServerPort = HTTPSERVER(fileName=self._dbFile).port
-        except:
-            httpServerPort = CCP4HTTPServerThread.DEFAULT_PORT
-        my_env = os.environ.copy()
-        my_env['CCP4I2_HTTP_PORT'] = str(httpServerPort)
-        if jobId is not None:
-            jobInfo = db.getJobInfo(jobId=jobId, mode=['projectid', 'projectname', 'jobnumber'])
-            #print '\*\* jobInfo'
-            #print jobInfo
-            my_env['CCP4I2_PROJECT_ID'] = jobInfo['projectid']
-            my_env['CCP4I2_PROJECT_NAME'] = jobInfo['projectname']
-        callDict['env'] = my_env
-        if not self.USE_QPROCESS or taskname == "dui" or taskname == "dials_image" \
-                                                       or taskname == "dials_rlattice":
-            print("RUNNING DUI (or DIALS viewers) IN SUBPROCESS PLUGIN MODE")   # KJS : tmp diag print.
+        jobInfo = db.getJobInfo(jobId=jobId, mode=['projectid', 'projectname', 'jobnumber'])
+        environment = {
+            'CCP4I2_HTTP_PORT': str(CCP4HTTPServerThread.DEFAULT_PORT),
+            'CCP4I2_PROJECT_ID': jobInfo['projectid'],
+            'CCP4I2_PROJECT_NAME': jobInfo['projectname'],
+        }
+        directory = pathlib.Path(controlFile).parent
+        stdoutPath = directory / "stdout.txt"
+        stderrPath = directory / "stderr.txt"
+        if taskname in ("dui", "dials_image", "dials_rlattice"):
             try:
-                sp = subprocess.Popen(argList, **callDict)
-            except Exception as e:
-                # Failed to start job --
-                sp = None
+                popen = subprocess.Popen(
+                    argList,
+                    stdout=stdoutPath.open("w"),
+                    stderr=stderrPath.open("w"),
+                    env={**os.environ, **environment},
+                )
+            except Exception:
                 self._errorReport.append(self.__class__, 102, 'Control file: ' + str(controlFile))
+                return None
             self.db.updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_RUNNING)
-            self.db.updateJob(jobId, 'processId', int(sp.pid))
-            return sp
-        else:
-            qArgList = []
-            for item in argList[1:]:
-                qArgList.append(item)
-            p = QtCore.QProcess(self)
-            p.setObjectName(str(jobId))
-            stdoutFile = os.path.join(path, 'stdout.txt')
-            stderrFile = os.path.join(path, 'stderr.txt')
-            if stdoutFile is not None:
-                if os.path.exists(stdoutFile):
-                    CCP4Utils.backupFile(stdoutFile, delete=True)
-                p.setStandardOutputFile(stdoutFile)
-            if stderrFile is not None:
-                if os.path.exists(stderrFile):
-                    CCP4Utils.backupFile(stderrFile, delete=True)
-                p.setStandardErrorFile(stderrFile)
-            #MN Changed here to apply environment edits to inform Coot or other tasks of how to talk to the http server
-            processEnvironment = QtCore.QProcessEnvironment.systemEnvironment()
-            for editItem in [('CCP4I2_HTTP_PORT', str(httpServerPort)), ('CCP4I2_PROJECT_ID', jobInfo['projectid']), ('CCP4I2_PROJECT_NAME', jobInfo['projectname'])]:
-                processEnvironment.insert(editItem[0],editItem[1])
-            # Fudge for MRBUMP task on OS X, because of rosetta requiring cctbx to set DYLD_LIBRARY_PATH.
-            dbtn = PROJECTSMANAGER().db()
-            jobInfoTN = dbtn.getJobInfo(jobId=jobId,mode=['taskname'])
-            if jobInfoTN == "mrbump_basic" and sys.platform == "darwin":
-                if 'CCP4' in os.environ:
-                    print("Copying $CCP4/lib to DYLD_LIBRARY_PATH")
-                    if 'DYLD_LIBRARY_PATH' in os.environ:
-                        processEnvironment.insert('DYLD_LIBRARY_PATH', os.path.join(os.environ['CCP4'], 'lib') + os.pathsep + os.environ['DYLD_LIBRARY_PATH'])
-                    else:
-                        processEnvironment.insert('DYLD_LIBRARY_PATH', os.path.join(os.environ['CCP4'], 'lib'))
-            #MN end edit
-            p.finished.connect(lambda exitCode,exitStatus: self.handleFinish(jobId,exitCode,exitStatus))
-            p.setProgram(argList[0])
-            p.setArguments(qArgList)
-            p.setProcessEnvironment(processEnvironment)
-            p.startDetached()
-            if wait is not None:
-                p.waitForFinished(wait)
-            self.db.updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_RUNNING)
-            self.db.updateJob(jobId, 'processId', int(p.pid()))
-            #print 'runTask processId',p.pid(),type(p.pid())
-            return p
+            self.db.updateJob(jobId, 'processId', int(popen.pid))
+            return popen
+        if stdoutPath.exists():
+            CCP4Utils.backupFile(stdoutPath, delete=True)
+        if stderrPath.exists():
+            CCP4Utils.backupFile(stderrPath, delete=True)
+        # MN Changed here to apply environment edits to inform Coot or other tasks of how to talk to the http server
+        processEnvironment = QtCore.QProcessEnvironment.systemEnvironment()
+        for key, value in environment.items():
+            processEnvironment.insert(key, value)
+        # Fudge for MRBUMP task on OS X, because of rosetta requiring cctbx to set DYLD_LIBRARY_PATH.
+        if taskname == "mrbump_basic" and sys.platform == "darwin":
+            print("Copying $CCP4/lib to DYLD_LIBRARY_PATH")
+            path = os.environ["CLIB"]
+            if "DYLD_LIBRARY_PATH" in os.environ:
+                path += os.pathsep + os.environ["DYLD_LIBRARY_PATH"]
+            processEnvironment.insert("DYLD_LIBRARY_PATH", path)
+        #MN end edit
+        process = QtCore.QProcess(self)
+        process.setObjectName(str(jobId))
+        process.setStandardOutputFile(str(stdoutPath))
+        process.setStandardErrorFile(str(stderrPath))
+        process.finished.connect(lambda exitCode,exitStatus: self.handleFinish(jobId,exitCode,exitStatus))
+        process.setProgram(argList[0])
+        process.setArguments(argList[1:])
+        process.setProcessEnvironment(processEnvironment)
+        process.startDetached()
+        if wait is not None:
+            process.waitForFinished(wait)
+        self.db.updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_RUNNING)
+        self.db.updateJob(jobId, 'processId', int(process.pid()))
+        return process
 
     def saveSh(self,jobId,argList,local_sh,pidfile=None):
-        #pyi2 = '$CCP4/share/ccp4i2/bin/pyi2'
         pyi2 = '$CCP4/bin/ccp4-python'
         command = pyi2+" "+' '.join(argList[1:])
-        #print 'saveSh',command
         tx = '''#!/bin/sh
 CCP4='''+self.getServerParam(jobId,'ccp4Dir')+'''
 export CCP4
@@ -477,7 +432,6 @@ echo "PID=$pid"
         if sP.mechanism in [ 'ssh_shared', 'qsub_local', 'qsub_shared' ]:
             ccp4i2Dir = os.environ.get('CCP4I2_REMOTE','$CCP4/share/ccp4i2')
             #print 'runOnServer ccp4i2Dir',ccp4i2Dir
-            #argList = self.getArgList(controlFile,ccp4Dir='$CCP4',ccp4i2Dir='$CCP4/share/ccp4i2-devel')
             argList = self.getArgList(controlFile,ccp4Dir='$CCP4',ccp4i2Dir=ccp4i2Dir)
             # argList add the -dbxml arg for running on shared file system
             argList.extend ( [ '-dbxml' , sP.dbXml ] )

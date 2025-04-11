@@ -123,7 +123,6 @@ def main():
     pm.startCheckForFinishedJobs()
     jc = startup.startJobController()
     jc.setDiagnostic(False)
-    #jc.setConfigFile(configFile)
     if dbFile is not None: jc.setDbFile(dbFile)
     pm.doCheckForFinishedJobs.connect(pm.checkForFinishedJobs)
     from ..core import CCP4DataManager
