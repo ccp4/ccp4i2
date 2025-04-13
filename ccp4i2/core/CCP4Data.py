@@ -2118,26 +2118,22 @@ class CCollection(CData):
     def setSubItem(self,subItem={}):
         if subItem.get('class',None) is None:
             self.__dict__['_subItemObject'] = None
-        else:
-            self.__dict__['_subItemObject']=subItem['class'](parent=self,name='subItemObject',qualifiers=subItem.get('qualifiers',{}))
+        self.__dict__['_subItemObject']=subItem['class'](parent=self,name='subItemObject',qualifiers=subItem.get('qualifiers',{}))
 
     def subItemClassName(self):
         if self.__dict__.get('_subItemObject',None) is None:
             return None
-        else:
-            return self.__dict__['_subItemObject'].__class__.__name__
+        return self.__dict__['_subItemObject'].__class__.__name__
 
     def subItemClass(self):
         if self.__dict__.get('_subItemObject', None) is None:
             return self.SUBITEM.get('class', None)
-        else:
-            return self.__dict__['_subItemObject'].__class__
+        return self.__dict__['_subItemObject'].__class__
 
     def subItemQualifiers(self, name=None, default=True, custom=True):
         if self.__dict__.get('_subItemObject', None) is None:
             return {}
-        else:
-            return self.__dict__['_subItemObject'].qualifiers(name=name, default=default, custom=custom)
+        return self.__dict__['_subItemObject'].qualifiers(name=name, default=default, custom=custom)
 
     def subItemObject(self):
         return self.__dict__['_subItemObject']
@@ -2870,13 +2866,12 @@ class CList(CCollection):
 
     def saveToDb(self):
         ifSave = self.subItemQualifiers('saveToDb', default=False)
-        if ifSave:
+        if ifSave is True or ifSave is NotImplemented:
             objList = []
             for item in self.__dict__['_value']:
                 objList.append(item)
             return objList, None, {}
-        else:
-            return [], None, {}
+        return [], None, {}
 
     # Support Qt QAbstractItemModel
     def data(self, column, role):
