@@ -406,8 +406,8 @@ class CJobController(CCP4JobServer.CJobServer):
             print('JOBCONTROLLER starting job:', argList , taskname)
         callDict = {}
         path, name = os.path.split(controlFile)
-        if not self.USE_QPROCESS or taskname == "prosmart_refmac" or taskname == "validate_protein" or taskname == "dui" or taskname == "dials_image" \
-                                                       or taskname == "dials_rlattice":
+        if not self.USE_QPROCESS or taskname == "prosmart_refmac" or taskname == "servalcat_pipe" or taskname == "validate_protein" \
+                or taskname == "dui" or taskname == "dials_image" or taskname == "dials_rlattice":
             callDict['stdout'] = open(os.path.join(path, 'stdout.txt'), 'w')
             callDict['stderr'] = open(os.path.join(path, 'stderr.txt'), 'w')
         #MN run tasks with modified environment carrying :
@@ -427,8 +427,8 @@ class CJobController(CCP4JobServer.CJobServer):
             my_env['CCP4I2_PROJECT_ID'] = jobInfo['projectid']
             my_env['CCP4I2_PROJECT_NAME'] = jobInfo['projectname']
         callDict['env'] = my_env
-        if not self.USE_QPROCESS or taskname == "prosmart_refmac" or taskname == "validate_protein" or taskname == "dui" or taskname == "dials_image" \
-                                                       or taskname == "dials_rlattice":
+        if not self.USE_QPROCESS or taskname == "prosmart_refmac" or taskname == "servalcat_pipe" or taskname == "validate_protein" \
+                or taskname == "dui" or taskname == "dials_image" or taskname == "dials_rlattice":
             print("RUNNING DUI (or DIALS viewers) IN SUBPROCESS PLUGIN MODE")   # KJS : tmp diag print.
             try:
                 sp = subprocess.Popen(argList, **callDict)
