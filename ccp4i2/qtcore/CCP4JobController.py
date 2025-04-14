@@ -357,8 +357,6 @@ class CJobController(CCP4JobServer.CJobServer):
         process.setArguments(argList[1:])
         process.setProcessEnvironment(processEnvironment)
         process.startDetached()
-        if wait is not None:
-            process.waitForFinished(wait)
         self.db.updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_RUNNING)
         self.db.updateJob(jobId, 'processId', int(process.pid()))
         return process
