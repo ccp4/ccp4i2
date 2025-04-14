@@ -282,21 +282,8 @@ class CJobController(CCP4JobServer.CJobServer):
                 del self._watchedJobs[jobId]
         #print 'JOBCONTROLLER.watchJob',self._watchedJobs
 
-    def getArgList(self, fileName, ccp4Dir=None, ccp4i2Dir=None):
-        if ccp4Dir is not None:
-            # This is only used for 'remote' jobs which will only be run on Linux so can assume '/' separator
-            runTask = "${CCP4I2}/bin/runTask.py"
-            exe = ccp4Dir + '/bin/ccp4-python'
-        else:
-            # running locally
-            ccp4i2Dir = CCP4Utils.getCCP4I2Dir()
-            runTask = os.path.join(ccp4i2Dir, 'bin', 'runTask.py')
-            # For some reason, ccp4-python fails to start qprocesses on windows,so fall back to sys.executable...something fishy here: MN
-            if sys.platform.startswith('win'):
-                exe = sys.executable
-            else:
-                exe = CCP4Utils.pythonExecutable()
-        argList = [exe, runTask, fileName]
+    def getArgList(self, fileName):
+        argList = ["ccp4i2-runTask", fileName]
         if self._dbFile is not None:
             argList.extend(['-db', self._dbFile])
         return argList
@@ -320,45 +307,45 @@ class CJobController(CCP4JobServer.CJobServer):
         stderrPath = directory / "stderr.txt"
         if taskname in ("dui", "dials_image", "dials_rlattice"):
             try:
-                popen = subprocess.Popen(
+                process = subprocess.Popen(
                     argList,
                     stdout=stdoutPath.open("w"),
                     stderr=stderrPath.open("w"),
                     env={**os.environ, **environment},
                 )
+                pid = process.pid
             except Exception:
                 self._errorReport.append(self.__class__, 102, 'Control file: ' + str(controlFile))
                 return None
-            self.db.updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_RUNNING)
-            self.db.updateJob(jobId, 'processId', popen.pid)
-            return popen
-        if stdoutPath.exists():
-            CCP4Utils.backupFile(stdoutPath, delete=True)
-        if stderrPath.exists():
-            CCP4Utils.backupFile(stderrPath, delete=True)
-        # MN Changed here to apply environment edits to inform Coot or other tasks of how to talk to the http server
-        processEnvironment = QtCore.QProcessEnvironment.systemEnvironment()
-        for key, value in environment.items():
-            processEnvironment.insert(key, value)
-        # Fudge for MRBUMP task on OS X, because of rosetta requiring cctbx to set DYLD_LIBRARY_PATH.
-        if taskname == "mrbump_basic" and sys.platform == "darwin":
-            print("Copying $CCP4/lib to DYLD_LIBRARY_PATH")
-            path = os.environ["CLIB"]
-            if "DYLD_LIBRARY_PATH" in os.environ:
-                path += os.pathsep + os.environ["DYLD_LIBRARY_PATH"]
-            processEnvironment.insert("DYLD_LIBRARY_PATH", path)
-        #MN end edit
-        process = QtCore.QProcess(self)
-        process.setObjectName(str(jobId))
-        process.setStandardOutputFile(str(stdoutPath))
-        process.setStandardErrorFile(str(stderrPath))
-        process.finished.connect(lambda exitCode,exitStatus: self.handleFinish(jobId,exitCode,exitStatus))
-        process.setProgram(argList[0])
-        process.setArguments(argList[1:])
-        process.setProcessEnvironment(processEnvironment)
-        process.startDetached()
+        else:
+            if stdoutPath.exists():
+                CCP4Utils.backupFile(stdoutPath, delete=True)
+            if stderrPath.exists():
+                CCP4Utils.backupFile(stderrPath, delete=True)
+            # MN Changed here to apply environment edits to inform Coot or other tasks of how to talk to the http server
+            processEnvironment = QtCore.QProcessEnvironment.systemEnvironment()
+            for key, value in environment.items():
+                processEnvironment.insert(key, value)
+            # Fudge for MRBUMP task on OS X, because of rosetta requiring cctbx to set DYLD_LIBRARY_PATH.
+            if taskname == "mrbump_basic" and sys.platform == "darwin":
+                print("Copying $CCP4/lib to DYLD_LIBRARY_PATH")
+                path = os.environ["CLIB"]
+                if "DYLD_LIBRARY_PATH" in os.environ:
+                    path += os.pathsep + os.environ["DYLD_LIBRARY_PATH"]
+                processEnvironment.insert("DYLD_LIBRARY_PATH", path)
+            #MN end edit
+            process = QtCore.QProcess(self)
+            process.setObjectName(str(jobId))
+            process.setStandardOutputFile(str(stdoutPath))
+            process.setStandardErrorFile(str(stderrPath))
+            process.finished.connect(lambda exitCode,exitStatus: self.handleFinish(jobId,exitCode,exitStatus))
+            process.setProgram(argList[0])
+            process.setArguments(argList[1:])
+            process.setProcessEnvironment(processEnvironment)
+            process.startDetached()
+            pid = int(process.pid())
         self.db.updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_RUNNING)
-        self.db.updateJob(jobId, 'processId', int(process.pid()))
+        self.db.updateJob(jobId, 'processId', pid)
         return process
 
     def saveSh(self,jobId,argList,local_sh,pidfile=None):
