@@ -20,7 +20,7 @@ import psutil
 from ..core import CCP4JobServer
 from ..core import CCP4Utils
 from ..core.CCP4ErrorHandling import CErrorReport, CException, Severity
-from ..core.CCP4Modules import HTTPSERVER, PROJECTSMANAGER
+from ..core.CCP4Modules import PROJECTSMANAGER
 from ..utils.QApp import QTAPPLICATION
 
 
@@ -183,7 +183,7 @@ class CJobController(CCP4JobServer.CJobServer):
         if len(queuedJobs) > 0:
             jobId = queuedJobs[0]
             if self.serverParams(jobId) is None:
-                sp = self.runTask(jobId=jobId)
+                self.runTask(jobId=jobId)
             else:
                 self.runOnServer(jobId=jobId)
 
@@ -301,16 +301,15 @@ class CJobController(CCP4JobServer.CJobServer):
             argList.extend(['-db', self._dbFile])
         return argList
 
-    def runTask(self, jobId, wait=None):
+    def runTask(self, jobId):
         from ..dbapi import CCP4DbApi
         from ..qtcore import CCP4HTTPServerThread
         controlFile = self.db._makeJobFileName(jobId=jobId, mode='JOB_INPUT')
         argList = self.getArgList(controlFile)
-        db = PROJECTSMANAGER().db()
-        taskname = db.getJobInfo(jobId=jobId)['taskname']
+        taskname = self.db.getJobInfo(jobId=jobId)['taskname']
         if self._diagnostic:
-            print('JOBCONTROLLER starting job:', argList , taskname)
-        jobInfo = db.getJobInfo(jobId=jobId, mode=['projectid', 'projectname', 'jobnumber'])
+            print('JOBCONTROLLER starting job:', argList, taskname)
+        jobInfo = self.db.getJobInfo(jobId=jobId, mode=['projectid', 'projectname'])
         environment = {
             'CCP4I2_HTTP_PORT': str(CCP4HTTPServerThread.DEFAULT_PORT),
             'CCP4I2_PROJECT_ID': jobInfo['projectid'],
@@ -331,7 +330,7 @@ class CJobController(CCP4JobServer.CJobServer):
                 self._errorReport.append(self.__class__, 102, 'Control file: ' + str(controlFile))
                 return None
             self.db.updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_RUNNING)
-            self.db.updateJob(jobId, 'processId', int(popen.pid))
+            self.db.updateJob(jobId, 'processId', popen.pid)
             return popen
         if stdoutPath.exists():
             CCP4Utils.backupFile(stdoutPath, delete=True)

@@ -12,7 +12,7 @@ class testController(unittest.TestCase):
         output = str(c.outputData.HKLOUT)
         print('Output file:',output,'Stdout:',stdoutFile)
         if os.path.exists(output): os.remove(output)
-        self.controller.runTask(fileName=controlFile,wait=3000)
+        self.controller.runTask(fileName=controlFile)
         self.assertTrue(os.path.exists(output),'No output file created')
 
 
