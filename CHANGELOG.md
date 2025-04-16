@@ -12,6 +12,7 @@
 - Changing Buccaneer to ModelCraft in the Phaser EP task
 - Fixed MrParse report on Windows
 - Increased maximum Coot files saved from 10 to 250
+- Added an i2run script for Windows
 
 ## [2.2.3] - 2025-02-07
 
