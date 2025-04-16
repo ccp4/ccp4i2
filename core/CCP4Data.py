@@ -2790,9 +2790,6 @@ class CList(CCollection):
             self.__dict__['_value'].append(obj)
         else:
             self.__dict__['_value'].insert(index, obj)
-        print(obj)
-        print(type(obj))
-        print(obj.dataChanged)
         obj.dataChanged.connect(self.dataChanged.emit)
         self.itemAdded.emit(index)
         self.updateData()
@@ -3133,7 +3130,7 @@ class COutputFileList(CList):
 
     PYTHONTYPE = list
     CONTENTS = {}
-    QUALIFIERS = {'default' : NotImplemented, 'listMinLength' : 0, 'listMaxLength' : 10,
+    QUALIFIERS = {'default' : NotImplemented, 'listMinLength' : 0, 'listMaxLength' : 250,
         'listCompare' : NotImplemented, 'nameRoot' : NotImplemented}
     QUALIFIERS_ORDER = ['listMinLength', 'listMaxLength', 'listCompare', 'nameRoot']
     QUALIFIERS_DEFINITION = {'default' : {'type' :list},

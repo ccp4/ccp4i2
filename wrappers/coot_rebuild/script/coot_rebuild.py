@@ -295,8 +295,9 @@ file_to_preferences('template_key_bindings.py')
                 os.rename(outputPDB, newPath)
                 xyzoutList[iFile].annotation = "Coot output file number"+str(iFile)
                 xyzoutList[iFile].subType = 1
-            #Here truncate the xyzoutList back to the numberof files that werew actually found
+            #Here truncate the xyzoutList back to the numberof files that were actually found
             xyzoutList = xyzoutList[0:len(outList)]
+            self.container.outputData.XYZOUT.set(xyzoutList)
 
             #Ligand builder places output cifs in the coot-cif directory as prorg-out.cif
             #'prodrgify this residue' places output cifs in the coot-cif directory as prodrg-???.cif
@@ -315,8 +316,9 @@ file_to_preferences('template_key_bindings.py')
                 elif 'prodrg' in fname: annotation='Coot/Prodrg created geometry for ligand'
                 else: annotation='Coot/Prodrg created geometry for ligand'
                 dictoutList[iFile].annotation = annotation
-            #Here truncate the dictoutList back to the numberof files that werew actually found
+            #Here truncate the dictoutList back to the numberof files that were actually found
             dictoutList = dictoutList[0:len(cifOutList)]
+            self.container.outputData.DICTOUT.set(dictoutList)
 
             # Create a trivial xml output file
             from lxml import etree
