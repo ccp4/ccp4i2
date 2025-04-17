@@ -426,10 +426,11 @@ class CI2Runner(object):
                     if className in ["CList", "CImportUnmergedList", "CAsuContentSeqList", "CEnsembleList"]:
                         parser.add_argument(commandFlag, type=str, nargs='+', help="{}:{}".format(className, helpText), action="append")
                     else:
-                        try:
-                            enumerators = keyword.findall('qualifiers/enumerators')
-                            parser.add_argument(commandFlag, type=str, help="{}:{}".format(className, helpText), choices=enumerators[0].text.split(","), nargs='+')
-                        except:
+                        enumerators = keyword.findall('qualifiers/enumerators')
+                        choices = "tmp" if len(enumerators) == 0 else enumerators[0].text
+                        if choices != "tmp":
+                            parser.add_argument(commandFlag, type=str, help="{}:{}".format(className, helpText), choices=choices.split(","), nargs='+')
+                        else:
                             parser.add_argument(commandFlag, type=str, help="{}:{}".format(className, helpText), nargs='+')
                 except argparse.ArgumentError as err:
                     print("Problem handling argument ", err)
