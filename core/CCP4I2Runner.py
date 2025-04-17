@@ -577,13 +577,13 @@ class CI2Runner(object):
                             #Assume that the entityToModify will accept a "set" for the quoted value
                             if valueItem.startswith('"') and valueItem.endswith('"'):
                                 try:
-                                    entityToModify.set(valueItem[1:-2])
+                                    entityToModify.set(valueItem[1:-1])
                                 except CException as err:
-                                    print("Failed setting attribute {} on {} to value {}".format(parameterName, entityToModify, valueItem[1:-2]))
+                                    print("Failed setting attribute {} on {} to value {}".format(parameterName, entityToModify, valueItem[1:-1]))
                                     print(err)
                                     raise err
                                 except ValueError as err:
-                                    print("Failed setting attribute {} on {} to value {}".format(parameterName, entityToModify, valueItem[1:-2]))
+                                    print("Failed setting attribute {} on {} to value {}".format(parameterName, entityToModify, valueItem[1:-1]))
                                     print(err)
                                     raise err
                             #Now deal with subElement=subValue examples

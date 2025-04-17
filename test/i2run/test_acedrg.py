@@ -27,6 +27,6 @@ def test_from_smiles():
     args = ["LidiaAcedrgNew"]
     args += ["--MOLSMILESORSKETCH", "SMILES"]
     args += ["--TLC", "HCA"]
-    args += ["--SMILESIN", "CN1CCC23C4C1CC5=C2C(=C(C=C5)OC)OC3C(=O)CC4"]
+    args += ["--SMILESIN", '"CN1CCC23C4C1CC5=C2C(=C(C=C5)OC)OC3C(=O)CC4"']
     with utils.i2run(args) as job:
         check_output(job, "HCA")
