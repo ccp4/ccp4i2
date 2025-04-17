@@ -2,6 +2,9 @@ import gemmi
 from .utils import demoData, i2run
 
 
+# TODO: Test long ligand names (e.g. 8xfm)
+
+
 def test_molrep():
     args = ["molrep_pipe"]
     args += ["--inputData.F_SIGF", demoData("gamma", "merged_intensities_Xe.mtz")]

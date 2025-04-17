@@ -87,27 +87,6 @@ def test_8xfm_files(mmcif, sfcif, mtz, fasta):
     gemmi.read_structure(mmcif)
 
 
-# TODO
-# def test_arp_warp_classic(mmcif, mtz, fasta):
-#     "Test that arp_warp_classic can handle long ligand names in mmCIF"
-#     args = ["arp_warp_classic"]
-#     args += ["--AWA_MODELIN", mmcif]
-#     args += ["--AWA_FOBS", f"fullPath={mtz}", "columnLabels=/*/*/[FP,SIGFP]"]
-#     args += ["--AWA_FREE", f"fullPath={mtz}", "columnLabels=/*/*/[FreeR_flag]"]
-#     args += ["--AWA_SEQIN", f"seqFile={fasta}"]
-#     args += ["--AWA_ARP_MODE", "WARPNTRACEMODEL"]
-
-
-# TODO
-# def test_buster(mmcif, mtz):
-#     "Test that buster can handle long ligand names in mmCIF"
-#     args = ["buster"]
-#     args += ["--XYZIN", mmcif]
-#     args += ["--F_SIGF", f"fullPath={mtz}", "columnLabels=/*/*/[FP,SIGFP]"]
-#     args += ["--FREERFLAG", f"fullPath={mtz}", "columnLabels=/*/*/[FreeR_flag]"]
-#     args += ["--WAT", "OFF"]
-
-
 def test_coordinate_selector(mmcif):
     "Test that coordinate_selector can handle long ligand names in mmCIF"
     args = ["coordinate_selector"]
@@ -139,30 +118,6 @@ def test_csymmatch(mmcif):
     i2run(args)
 
 
-# TODO
-# def test_dr_mr_modelbuild_pipeline(mmcif, mtz, fasta):
-#     "Test that dr_mr_modelbuild_pipeline can handle long ligand names in mmCIF"
-#     args = ["dr_mr_modelbuild_pipeline"]
-#     args += ["--XYZIN", mmcif]
-#     args += ["--F_SIGF_IN", f"fullPath={mtz}", "columnLabels=/*/*/[FP,SIGFP]"]
-#     args += ["--FREER_IN", f"fullPath={mtz}", "columnLabels=/*/*/[FreeR_flag]"]
-#     args += ["--ASUIN", f"seqFile={fasta}"]
-#     args += ["--BUCC_NCYC", "5"]
-#     args += ["--REFMAC_NCYC", "0"]
-#     args += ["--BUCCANEER_OR_MODELCRAFT", "MODELCRAFT"]
-#     args += ["--MERGED_OR_UNMERGED", "MERGED"]
-#     args += ["--NMON", "1"]
-
-
-# TODO
-# def test_lorestr_i2(mmcif, mtz):
-#     "Test that lorestr_i2 can handle long ligand names in mmCIF"
-#     args = ["lorestr_i2"]
-#     args += ["--XYZIN", f"fullPath={mmcif}"]
-#     args += ["--F_SIGF", f"fullPath={mtz}", "columnLabels=/*/*/[FP,SIGFP]"]
-#     args += ["--FREERFLAG", f"fullPath={mtz}", "columnLabels=/*/*/[FreeR_flag]"]
-
-
 def test_modelcraft(mmcif, mtz, fasta):
     "Test that modelcraft can handle long ligand names in mmCIF"
     args = ["modelcraft"]
@@ -172,42 +127,6 @@ def test_modelcraft(mmcif, mtz, fasta):
     args += ["--ASUIN", f"seqFile={fasta}"]
     args += ["--CYCLES", "1"]
     i2run(args)
-
-
-# TODO
-# def test_molrep_pipe(mmcif, mtz, fasta):
-#     "Test that molrep_pipe can handle long ligand names in mmCIF"
-#     args = ["molrep_pipe"]
-#     args += ["--XYZIN", mmcif]
-#     args += ["--inputData.F_SIGF", f"fullPath={mtz}", "columnLabels=/*/*/[FP,SIGFP]"]
-#     args += ["--inputData.FREERFLAG", f"fullPath={mtz}", "columnLabels=/*/*/[FreeR_flag]"]
-#     args += ["--ASUIN", f"seqFile={fasta}"]
-#     args += ["--RUNSHEETBEND", "False"]
-#     args += ["--REFMAC_NCYC", "0"]
-#     args += ["--NMON", "1"]
-#     args += ["--SEQ", "n"]  # Don't modify search model
-
-
-# TODO
-# def test_phaser_rnp_pipeline(mmcif, mtz):
-#     "Test that phaser_rnp_pipeline can handle long ligand names in mmCIF"
-#     args = ["phaser_rnp_pipeline"]
-#     args += ["--XYZIN_PARENT", mmcif]
-#     args += ["--F_SIGF", f"fullPath={mtz}", "columnLabels=/*/*/[FP,SIGFP]"]
-#     args += ["--FREERFLAG", f"fullPath={mtz}", "columnLabels=/*/*/[FreeR_flag]"]
-
-
-# TODO
-# def test_phaser_simple(mmcif, mtz, fasta):
-#     "Test that phaser_simple can handle long ligand names in mmCIF"
-#     args = ["phaser_simple"]
-#     args += ["--XYZIN", mmcif]
-#     args += ["--F_SIGF", f"fullPath={mtz}", "columnLabels=/*/*/[FP,SIGFP]"]
-#     args += ["--FREERFLAG", f"fullPath={mtz}", "columnLabels=/*/*/[FreeR_flag]"]
-#     args += ["--ASUFILE", f"seqFile={fasta}"]
-#     args += ["--F_OR_I", "F"]
-#     args += ["--COMP_BY", "ASU"]
-#     args += ["--SEARCHSEQUENCEIDENTITY", "1.0"]
 
 
 def test_prosmart_refmac(mmcif, mtz):
@@ -243,18 +162,3 @@ def test_sheetbend(mmcif, mtz):
     args += ["--F_SIGF", f"fullPath={mtz}", "columnLabels=/*/*/[FP,SIGFP]"]
     args += ["--FREERFLAG", f"fullPath={mtz}", "columnLabels=/*/*/[FreeR_flag]"]
     i2run(args)
-
-
-# TODO
-# def test_shelxemr(mmcif, mtz):
-#     "Test that shelxeMR can handle long ligand names in mmCIF"
-#     args = ["shelxeMR"]
-#     args += ["--XYZIN", mmcif]
-#     args += ["--F_SIGF", f"fullPath={mtz}", "columnLabels=/*/*/[FP,SIGFP]"]
-#     args += ["--FREERFLAG", f"fullPath={mtz}", "columnLabels=/*/*/[FreeR_flag]"]
-#     args += ["--FSOLVENT", "0.6"]
-
-
-# TODO
-# def test_substituteligand():
-#     "Test that SubstituteLigand can handle long ligand names in mmCIF"

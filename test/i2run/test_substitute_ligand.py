@@ -2,6 +2,9 @@ import gemmi
 from .utils import demoData, i2run
 
 
+# TODO: Test long ligand names (e.g. 8xfm)
+
+
 def test_substitute_ligand():
     args = ["SubstituteLigand"]
     args += ["--XYZIN", demoData("mdm2", "4hg7.cif")]

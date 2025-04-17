@@ -7,6 +7,9 @@ from .utils import demoData, i2run
 pytestmark = mark.skipif(platform == "win32", reason="Not supported on Windows")
 
 
+# TODO: Test long ligand names (e.g. 8xfm)
+
+
 def test_arpwarp():
     args = ["arp_warp_classic"]
     args += ["--AWA_FOBS", demoData("gamma", "merged_intensities_Xe.mtz")]
