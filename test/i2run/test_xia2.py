@@ -1,3 +1,4 @@
+from sys import platform
 from tarfile import open as taropen
 from tempfile import TemporaryDirectory
 from pytest import fixture, mark
@@ -14,8 +15,7 @@ def image_dir_fixture():
                 yield tmpDir
 
 
-@mark.parametrize("task", ["xia2_dials", "xia2_xds"])
-def test_xia2(task, image_dir):
+def run_test(task, image_dir):
     args = [task]
     args += ["--IMAGE_FILE"]
     args += ["imageFile/baseName=th_8_2_0001.cbf"]
@@ -24,3 +24,12 @@ def test_xia2(task, image_dir):
     args += ["imageEnd=20"]
     with i2run(args) as job:
         assert False, "Check output files"
+
+
+def test_xia2_dials(image_dir):
+    run_test("xia2_dials", image_dir)
+
+
+@mark.skipif(platform == "win32", reason="Not supported on Windows")
+def test_xia2_xds(image_dir):
+    run_test("xia2_xds", image_dir)

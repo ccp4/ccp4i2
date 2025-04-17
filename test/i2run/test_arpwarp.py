@@ -1,5 +1,10 @@
-import gemmi
+from sys import platform
+from gemmi import read_mtz_file, read_pdb
+from pytest import mark
 from .utils import demoData, i2run
+
+
+pytestmark = mark.skipif(platform == "win32", reason="Not supported on Windows")
 
 
 def test_arpwarp():
@@ -13,6 +18,6 @@ def test_arpwarp():
     args += ["--AWA_SMALL_CYCLES", "1"]
     with i2run(args) as job:
         for name in ["XYZDUM", "XYZOUT"]:
-            gemmi.read_pdb(str(job / f"{name}.pdb"))
+            read_pdb(str(job / f"{name}.pdb"))
         for name in ["DIFFPHIOUT", "FPHIOUT"]:
-            gemmi.read_mtz_file(str(job / f"{name}.mtz"))
+            read_mtz_file(str(job / f"{name}.mtz"))
