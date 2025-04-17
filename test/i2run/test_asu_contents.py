@@ -1,3 +1,4 @@
+import os
 import xml.etree.ElementTree as ET
 from .utils import i2run
 
@@ -16,6 +17,8 @@ _BLIP_SEQ = (
     "STAGVTLSLSCFDVDGYSSTGFYRGSAHLWFTDGVLQGKRQWDLV"
 )
 
+_FAKE_PATH = os.path.join("$CCP4", "path", "to", "beta_blip")
+
 
 def test_beta_blip():
     args = ["ProvideAsuContents"]
@@ -25,14 +28,14 @@ def test_beta_blip():
     args += ["name=BETA"]
     args += ["description=Beta-lactamase"]
     args += ["source/baseName=beta.seq"]
-    args += ["source/relPath=$CCP4/some/path/to/beta_blip"]
+    args += [f"source/relPath={_FAKE_PATH}"]
     args += ["polymerType=PROTEIN"]
     args += ["--ASU_CONTENT"]
     args += ["name=BLIP"]
     args += ["description=Beta-lactamase inhibitory protein"]
     args += [f"sequence={_BLIP_SEQ}"]
     args += ["source/baseName=blip.seq"]
-    args += ["source/relPath=$CCP4/some/path/to/beta_blip"]
+    args += [f"source/relPath={_FAKE_PATH}"]
     args += ["nCopies=1"]
     args += ["polymerType=PROTEIN"]
     with i2run(args) as job:
@@ -48,7 +51,7 @@ def test_beta_blip():
                 <description>Beta-lactamase</description>
                 <source>
                   <baseName>beta.seq</baseName>
-                  <relPath>$CCP4/some/path/to/beta_blip</relPath>
+                  <relPath>{_FAKE_PATH}</relPath>
                 </source>
               </CAsuContentSeq>
               <CAsuContentSeq>
@@ -59,7 +62,7 @@ def test_beta_blip():
                 <description>Beta-lactamase inhibitory protein</description>
                 <source>
                   <baseName>blip.seq</baseName>
-                  <relPath>$CCP4/some/path/to/beta_blip</relPath>
+                  <relPath>{_FAKE_PATH}</relPath>
                 </source>
               </CAsuContentSeq>
             </seqList>
