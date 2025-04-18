@@ -1,6 +1,7 @@
 from sys import platform
 from tarfile import open as taropen
 from tempfile import TemporaryDirectory
+from gemmi import read_mtz_file
 from pytest import fixture, mark
 from .utils import download, i2run
 
@@ -23,7 +24,8 @@ def run_test(task, image_dir):
     args += ["imageStart=1"]
     args += ["imageEnd=20"]
     with i2run(args) as job:
-        assert False, "Check output files"
+        for name in ("freer", "NATIVE_SWEEP1_INTEGRATE", "obs"):
+            read_mtz_file(str(job / f"AUTOMATIC_DEFAULT_{name}.mtz"))
 
 
 def test_xia2_dials(image_dir):
