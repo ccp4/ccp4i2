@@ -10,6 +10,8 @@ from urllib.parse import urlparse, unquote
 from urllib.request import urlopen
 from xml.etree import ElementTree as ET
 
+import gemmi
+
 from ccp4i2.core import CCP4I2Runner
 from ccp4i2.core.CCP4Utils import getCCP4I2Dir
 
@@ -70,3 +72,14 @@ def i2run(args: list[str]):
 
 def demoData(*paths):
     return join(getCCP4I2Dir(), "demo_data", *paths)
+
+
+def hasLongLigandName(path):
+    "Does the structure contains a residue with a name longer than 3 characters?"
+    structure = gemmi.read_structure(str(path), format=gemmi.CoorFormat.Mmcif)
+    for model in structure:
+        for chain in model:
+            for residue in chain:
+                if len(residue.name) > 3:
+                    return True
+    return False
