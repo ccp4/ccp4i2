@@ -1,6 +1,17 @@
 import xml.etree.ElementTree as ET
 from gemmi import CoorFormat, read_mtz_file, read_structure
-from .utils import demoData, i2run
+from .utils import demoData, hasLongLigandName, i2run
+
+
+def test_8xfm(cif8xfm, mtz8xfm):
+    args = ["prosmart_refmac"]
+    args += ["--XYZIN", cif8xfm]
+    args += ["--F_SIGF", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FP,SIGFP]"]
+    args += ["--FREERFLAG", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FREE]"]
+    args += ["--NCYCLES", "2"]
+    args += ["--ADD_WATERS", "True"]
+    with i2run(args) as job:
+        assert hasLongLigandName(job / "CIFFILE.pdb")
 
 
 def test_gamma():
