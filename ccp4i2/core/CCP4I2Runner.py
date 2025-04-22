@@ -412,10 +412,11 @@ class CI2Runner(object):
                     if className in ["CList", "CImportUnmergedList", "CAsuContentSeqList", "CEnsembleList"]:
                         parser.add_argument(commandFlag, type=str, nargs='+', help="{}:{}".format(className, helpText), action="append")
                     else:
-                        try:
-                            enumerators = keyword.findall('qualifiers/enumerators')
-                            parser.add_argument(commandFlag, type=str, help="{}:{}".format(className, helpText), choices=enumerators[0].text.split(","), nargs='+')
-                        except:
+                        enumerators = keyword.findall('qualifiers/enumerators')
+                        choices = "tmp" if len(enumerators) == 0 else enumerators[0].text
+                        if choices != "tmp":
+                            parser.add_argument(commandFlag, type=str, help="{}:{}".format(className, helpText), choices=choices.split(","), nargs='+')
+                        else:
                             parser.add_argument(commandFlag, type=str, help="{}:{}".format(className, helpText), nargs='+')
                 except argparse.ArgumentError as err:
                     print("Problem handling argument ", err)
@@ -539,7 +540,10 @@ class CI2Runner(object):
                     parameterName = dataPathElements[-1]
                     #print('Parameter name: [{}] [{}]'.format( parameterName, type(theEntity)))
                     
-                    if isinstance(theEntity,(CCP4Data.CList,)) and not isinstance(theEntity,(CCP4Data.CString,)):
+                    if isinstance(theEntity, CCP4XtalData.CXia2ImageSelectionList):
+                        entityList = theEntity
+                        valueLists = [value]
+                    elif isinstance(theEntity,(CCP4Data.CList,)) and not isinstance(theEntity,(CCP4Data.CString,)):
                         entityList = theEntity
                         valueLists = value
                     else:
@@ -561,13 +565,13 @@ class CI2Runner(object):
                             #Assume that the entityToModify will accept a "set" for the quoted value
                             if valueItem.startswith('"') and valueItem.endswith('"'):
                                 try:
-                                    entityToModify.set(valueItem[1:-2])
+                                    entityToModify.set(valueItem[1:-1])
                                 except CException as err:
-                                    print("Failed setting attribute {} on {} to value {}".format(parameterName, entityToModify, valueItem[1:-2]))
+                                    print("Failed setting attribute {} on {} to value {}".format(parameterName, entityToModify, valueItem[1:-1]))
                                     print(err)
                                     raise err
                                 except ValueError as err:
-                                    print("Failed setting attribute {} on {} to value {}".format(parameterName, entityToModify, valueItem[1:-2]))
+                                    print("Failed setting attribute {} on {} to value {}".format(parameterName, entityToModify, valueItem[1:-1]))
                                     print(err)
                                     raise err
                             #Now deal with subElement=subValue examples

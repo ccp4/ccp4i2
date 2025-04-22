@@ -104,12 +104,9 @@ class aimless_pipe(CPluginScript):
         if status.get('finishStatus') == CPluginScript.FAILED:
             print("failed in Pointless", status)
             self.fatalError = [201, 'Pointless failed', status]
-            #         self.appendErrorReport(201, details='Pointless failed')
-            #         self.reportStatus(status)
-            if status.get('finishStatus') == CPluginScript.FAILED:
-                print("failed")
-                self.process_finish(CPluginScript.FAILED)
-                self.reportStatus(status)
+            print("failed")
+            self.process_finish(CPluginScript.FAILED)
+            self.reportStatus(status)
             return
 
         try:
@@ -628,7 +625,7 @@ class aimless_pipe(CPluginScript):
         outputfile = str(filePath)
 
         # Use 1st datasetname as blockname
-        if self.ndatasets == 1:
+        if getattr(self, "ndatasets", 1) == 1:
             blkname = self.container.inputData.UNMERGEDFILES[0].dataset
         else:
             blkname = self.container.inputData.UNMERGEDFILES[0].crystalName

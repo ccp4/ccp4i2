@@ -240,6 +240,8 @@ class CIFReflectionData:
 
         if self.dataout:
             # Normal data
+            if cifdatatype not in ReflectionDataTypes.DATA_PRIORITY:
+                cifdatatype = self.gettype(ReflectionDataTypes.DATA_PRIORITY)
             i = ReflectionDataTypes.DATA_PRIORITY.index(cifdatatype)
             #  Equivalent anomalous type
             anomcifdatatype = ReflectionDataTypes.DATA_PRIORITY[i-1]
@@ -414,7 +416,12 @@ class CIFReflectionData:
         mtzspecs = None
         nref = len(self.hkl_list)
 
+        self.cifdatatype = None
         if self.dataout:
+            if cifdatatype not in ReflectionDataTypes.REFLECTION_DATA:
+                cifdatatype = self.gettype(ReflectionDataTypes.DATA_PRIORITY)
+                self.cifdatatype = cifdatatype
+
             anomalous = False
             if 'anomalous' in cifdatatype:
                 anomalous = True

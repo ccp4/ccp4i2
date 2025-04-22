@@ -213,6 +213,9 @@ class Cxia2_dials(CPluginScript):
                     return CPluginScript.FAILED
                 crystal_name = json_data[0]["crystal_name"]
                 wavelength_names = json_data[0]["wavelengths"]
+        else:
+            self.appendErrorReport(200)
+            return CPluginScript.FAILED
         element = etree.SubElement(self.xmlroot, "Xia2CrystalName")
         element.text = etree.CDATA(crystal_name)
 
