@@ -11,6 +11,8 @@
 - Hiding nanobind leak warnings from Gemmi 0.7
 - Changing Buccaneer to ModelCraft in the Phaser EP task
 - Fixed MrParse report on Windows
+- Increased maximum Coot files saved from 10 to 250
+- Added an i2run script for Windows
 - Added more i2run tests to replace test101
 
 ## [2.2.3] - 2025-02-07
