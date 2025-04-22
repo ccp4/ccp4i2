@@ -1,6 +1,6 @@
 # CCP4i2 Changelog
 
-## [2.2.4] - 2025-04-16
+## [2.2.4] - 2025-04-20
 
 - Fixed window maximising on Windows
 - ModelCraft used by default in the DR/MR/MB pipeline
@@ -13,6 +13,7 @@
 - Fixed MrParse report on Windows
 - Increased maximum Coot files saved from 10 to 250
 - Added an i2run script for Windows
+- Added more i2run tests to replace test101
 
 ## [2.2.3] - 2025-02-07
 

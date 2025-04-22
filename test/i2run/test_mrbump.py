@@ -1,0 +1,16 @@
+import gemmi
+from .utils import demoData, i2run
+
+
+def test_mrbump():
+    args = ["mrbump_basic"]
+    args += ["--F_SIGF", demoData("gamma", "merged_intensities_Xe.mtz")]
+    args += ["--FREERFLAG", demoData("gamma", "freeR.mtz")]
+    args += ["--ASUIN", demoData("gamma", "gamma.asu.xml")]
+    args += ["--MRMAX", "5"]
+    args += ["--REDUNDANCYLEVEL", "95"]
+    args += ["--PJOBS", "2"]
+    args += ["--NCYC", "10"]
+    with i2run(args) as job:
+        gemmi.read_pdb(str(job / "output_mrbump_1.pdb"))
+        gemmi.read_mtz_file(str(job / "output_mrbump_1.mtz"))
