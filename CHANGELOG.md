@@ -1,6 +1,6 @@
 # CCP4i2 Changelog
 
-## [2.2.4] - 2025-02-25
+## [2.2.4] - 2025-04-16
 
 - Fixed window maximising on Windows
 - ModelCraft used by default in the DR/MR/MB pipeline
@@ -11,6 +11,8 @@
 - Hiding nanobind leak warnings from Gemmi 0.7
 - Changing Buccaneer to ModelCraft in the Phaser EP task
 - Fixed MrParse report on Windows
+- Increased maximum Coot files saved from 10 to 250
+- Added an i2run script for Windows
 
 ## [2.2.3] - 2025-02-07
 
