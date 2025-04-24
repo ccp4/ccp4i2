@@ -415,6 +415,8 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'label', indent+indent+'highest (d<sub>min</sub>):', 'widget', 'RES_MIN', 'label', ' lowest (d<sub>max</sub>):', 'widget', 'RES_MAX' ], toggle = ['RES_CUSTOM', 'open', [ True ] ], appendLine=custom_res )
     self.createLine( [ 'label', 'FreeR flag number for test set:' , 'widget', 'FREERFLAG_NUMBER'])
     self.createLine( [ 'label', 'Diffraction experiment type:', 'widget', 'SCATTERING_FACTORS' ] )
+    if self.isEditable():
+        self.container.controlParameters.SCATTERING_FACTORS.dataChanged.connect(self.ExperimentChanged)
     self.createLine( [ 'widget', 'REFINE_DFRAC', 'label', 'Refine deuterium fraction' ], toggle = ['SCATTERING_FACTORS', 'open', [ 'neutron' ] ] )
     self.createLine( [ 'widget', 'USE_WORK_IN_EST', 'label', 'Use work reflections in maximum likelihood parameter estimates' ] )
     self.closeSubFrame()
@@ -475,14 +477,14 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
   @QtCore.Slot()
   def hklinChanged(self):
     self.getObsType()
-  
+
   @QtCore.Slot()
   def ExperimentChanged(self):
     if str(self.container.controlParameters.SCATTERING_FACTORS) == "neutron":
       self.container.controlParameters.H_REFINE.set(True)
     else:
       self.container.controlParameters.H_REFINE.set(False)
-    
+
   @QtCore.Slot()
   def modelChanged(self):
      self.container.prosmartProtein.TOGGLE.set(False)
