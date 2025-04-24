@@ -2422,7 +2422,7 @@ class CProgramColumnGroup(CCP4Data.CData):
             rv.extend(self.set(data))
             return rv
 
-    def getEtree(self):
+    def getEtree(self, excludeUnset=True, name=None, useLXML=True):
         name = self.objectName()
         if name is None or len(name) == 0:
             name = self.className()
