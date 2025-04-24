@@ -62,24 +62,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     return str(self.container.controlParameters.WEIGHT_OPT) == 'AUTO' and \
       not self.container.controlParameters.WEIGHT_NO_ADJUST
 
-  def ToggleTLSModeOn(self):
-    if str(self.container.controlParameters.TLSMODE) != 'NONE':
-        from core import CCP4Modules
-        CurrentStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(self._jobId,'status')
-        if CurrentStatus == "Pending":
-            self.container.controlParameters.BFACSETUSE = True
-        return True
-    return False
-
-  def ToggleTLSModeOff(self):
-    if str(self.container.controlParameters.TLSMODE) == 'NONE':
-        from core import CCP4Modules
-        CurrentStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(self._jobId,'status')
-        if CurrentStatus == "Pending":
-            self.container.controlParameters.BFACSETUSE = False
-        return True
-    return False
-
   def ToggleRigidModeOn(self):
     return str(self.container.controlParameters.REFINEMENT_MODE) == 'RIGID'
 
@@ -107,57 +89,8 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
   def ToggleJellyOff(self):
     return bool(self.container.controlParameters.UNRESTRAINED) or bool(self.container.controlParameters.FIX_XYZ)
 
-  def ToggleNeutronModeOn(self):
-    return str(self.container.controlParameters.SCATTERING_FACTORS) == 'NEUTRON'
-
-  def ToggleNeutronModeOff(self):
-    return not str(self.container.controlParameters.SCATTERING_FACTORS) == 'NEUTRON'
-    
-  def ToggleNeutronModeHD(self):
-    if not self.container.controlParameters.HYDR_USE:
-      return False
-    return self.container.controlParameters.HD_FRACTION
-
-  def ToggleNeutronModeHD_YES(self):
-    if not self.container.controlParameters.HYDR_USE:
-      return False
-    if str(self.container.controlParameters.HYDR_ALL) == "ALL":
-      return False
-    return self.container.controlParameters.HD_FRACTION
-
-  def ToggleNeutronModeHD_ALL(self):
-    if not self.container.controlParameters.HYDR_USE:
-      return False
-    if str(self.container.controlParameters.HYDR_ALL) == "YES":
-      return False
-    return self.container.controlParameters.HD_FRACTION
-
-  def ToggleH_REFINE(self):
-    if not self.container.controlParameters.HYDR_USE:
-      return False
-    return self.container.controlParameters.H_REFINE
-
-  def ToggleTLSModeFile(self):
-    return str(self.container.controlParameters.TLSMODE) == 'FILE'
-
   def ToggleTwinSuboptimal(self):
     return (not self.container.controlParameters.HKLIN_IS_I_SIGI or self.container.controlParameters.F_SIGF_OR_I_SIGI == "F_SIGF")
-
-  def CheckScaleType(self):
-    if str(self.container.controlParameters.SCALE_TYPE) == 'BABINET':
-        self.container.controlParameters.SOLVENT_MASK_TYPE.set('NO')
-    else:
-        self.container.controlParameters.SOLVENT_MASK_TYPE.set('EXPLICIT')
-    return True
-
-  def ToggleUseSolventMask(self):
-    return str(self.container.controlParameters.SOLVENT_MASK_TYPE) == 'EXPLICIT'
-
-  def ToggleSolventAdvanced(self):
-    return str(self.container.controlParameters.SOLVENT_MASK_TYPE) == 'EXPLICIT' and self.container.controlParameters.SOLVENT_ADVANCED
-
-  def ToggleElectronDiffraction(self):
-    return str(self.container.controlParameters.SCATTERING_FACTORS) == 'ELECTRON'
 
   def ToggleOccComplete(self):
     if self.container.controlParameters.OCCUPANCY_GROUPS and self.container.controlParameters.OCCUPANCY_COMPLETE:
@@ -166,11 +99,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
 
   def ToggleOccIncomplete(self):
     if self.container.controlParameters.OCCUPANCY_GROUPS and self.container.controlParameters.OCCUPANCY_INCOMPLETE:
-        return True
-    return False
-
-  def TogglePlatonyzerNAMG(self):
-    if self.container.platonyzer.TOGGLE and str(self.container.platonyzer.MODE) == 'NA_MG':
         return True
     return False
 
