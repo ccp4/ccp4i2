@@ -553,6 +553,13 @@ hydrogens are only to be used if already present in the input coordinate file.</
                   <toolTip>Specify to use appropriate scattering factors for the experiment type.</toolTip>
                </qualifiers>
             </content>
+          <content id="REFINE_DFRAC">
+            <className>CBoolean</className>
+            <qualifiers>
+              <default>False</default>
+                <toolTip>Refine deuterium fraction.</toolTip>
+            </qualifiers>
+          </content>
           <content id="NO_SOLVENT">
              <className>CBoolean</className>
              <qualifiers>
