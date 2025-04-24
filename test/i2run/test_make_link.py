@@ -16,7 +16,7 @@ def test_6ndn():
         args += ["--DELETE_2", "O4A"]
         args += ["--BOND_ORDER", "DOUBLE"]
         args += ["--TOGGLE_LINK", "True"]
-        args += ["--XYZIN", str(pdb)]
+        args += ["--XYZIN", pdb]
         with i2run(args) as job:
             doc = cif.read(str(job / "LYS-PLP_link.cif"))
             for name in ("mod_LYSm1", "mod_PLPm1", "link_LYS-PLP"):

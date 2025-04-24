@@ -6,10 +6,10 @@ from .utils import demoData, download, i2run
 def test_2ceu_cif():
     with download(pdbe_sfcif("2ceu")) as cif:
         args = ["import_merged"]
-        args += ["--HKLIN", str(cif)]
+        args += ["--HKLIN", cif]
         args += ["--SPACEGROUP", "I 2 2 2"]
         with i2run(args) as job:
-            check_output(job, str(cif))
+            check_output(job, cif)
 
 
 def test_gamma_mtz():

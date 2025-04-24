@@ -33,7 +33,7 @@ def download(url: str):
                 temp.write(chunk)
         path = Path(temp.name).resolve()
         try:
-            yield path
+            yield str(path)
         finally:
             path.unlink(missing_ok=True)
 
