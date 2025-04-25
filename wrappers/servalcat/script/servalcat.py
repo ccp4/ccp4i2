@@ -378,7 +378,9 @@ class servalcat(CPluginScript):
             if self.container.controlParameters.USE_WORK_IN_EST:
                 self.appendCommandLine(['--use_work_in_est'])
             if self.container.controlParameters.NO_SOLVENT:
-                self.appendCommandLine(['--no_solvent'])          
+                self.appendCommandLine(['--no_solvent'])
+            if self.container.controlParameters.REFINE_DFRAC:
+                self.appendCommandLine(['--refine_dfrac'])
 
         # options for both servalcat refine_xtal_norefmac and servalcat refine_spa_norefmac
         self.appendCommandLine(['--model', self.inputCoordPath])
