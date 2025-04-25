@@ -169,6 +169,15 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                   <saveToDb>True</saveToDb>
                </qualifiers>
             </content>
+            <content id="CIFFILEDEP"><!-- only from servalcat refine_xtal_norefmac -s neutron \-\-refine_dfrac -->
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default>
+                        <contentFlag>2</contentFlag>
+                    </default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
             <content id="MAP_FO"><!-- only from servalcat refine_spa_norefmac -->
                 <className>CMapDataFile</className>
                 <qualifiers>

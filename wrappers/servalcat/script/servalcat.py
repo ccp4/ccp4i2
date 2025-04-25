@@ -179,6 +179,12 @@ class servalcat(CPluginScript):
         if os.path.isfile(outputPdbPath):
             self.container.outputData.XYZOUT.setFullPath(outputPdbPath)
             self.container.outputData.XYZOUT.annotation.set('Model from refinement (PDB format)')
+        if str(self.container.controlParameters.SCATTERING_FACTORS) == "neutron" and \
+                self.container.controlParameters.REFINE_DFRAC:
+            outputCifDepPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined_hd_expand.mmcif'))
+            if os.path.isfile(outputCifDepPath):
+                self.container.outputData.CIFFILEDEP.setFullPath(outputCifDepPath)
+                self.container.outputData.CIFFILEDEP.annotation = 'Model from refinement (mmCIF format for deposition)'
         self.container.outputData.FPHIOUT.annotation.set('Density map (Fourier coeff.)')
         self.container.outputData.FPHIOUT.subType = 1
         self.container.outputData.DIFFPHIOUT.annotation.set('Difference density map (Fourier coeff.)')
