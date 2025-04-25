@@ -108,7 +108,7 @@ def createIcon(name=None,adef={},icon_path='',default_icon='unknown'):
             ico =  QtGui.QIcon(pix)
             return ico
     if default_icon:
-        file = str(I2_TOP / "qticons" / default_icon + '.png')
+        file = str(I2_TOP / "qticons" / f"{default_icon}.png")
         return QtGui.QIcon(file)
     else:
         return None
