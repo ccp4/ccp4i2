@@ -720,7 +720,7 @@ class CData(CObject, CDataQualifiers):
             element = etree_xml.Element(name)
         for key in self.dataOrder():
             if not excludeUnset or self._value[key].isSet(allSet=False):
-                ele = self._value[key].getEtree()
+                ele = self._value[key].getEtree(useLXML=useLXML)
                 element.append(ele)
         return element
 

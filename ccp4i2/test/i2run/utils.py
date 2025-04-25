@@ -20,7 +20,7 @@ from ccp4i2.core.CCP4Utils import getCCP4I2Dir
 def download(url: str):
     """
     Downloads a file from the given URL and saves it to a temporary file.
-    Yields a pathlib.Path object to the temporary file.
+    Yields a string path to the temporary file.
     Use in a with statement to ensure the file is deleted afterwards.
     """
     urlName = unquote(basename(urlparse(url).path))
@@ -33,7 +33,7 @@ def download(url: str):
                 temp.write(chunk)
         path = Path(temp.name).resolve()
         try:
-            yield path
+            yield str(path)
         finally:
             path.unlink(missing_ok=True)
 

@@ -416,7 +416,6 @@ class CIFReflectionData:
         mtzspecs = None
         nref = len(self.hkl_list)
 
-        self.cifdatatype = None
         if self.dataout:
             if cifdatatype not in ReflectionDataTypes.REFLECTION_DATA:
                 cifdatatype = self.gettype(ReflectionDataTypes.DATA_PRIORITY)

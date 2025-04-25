@@ -10,25 +10,25 @@ _ROBETTA_MODELS = "https://robetta.bakerlab.org/models_download.php"
 @pytest.fixture(scope="module", name="alphafold_cif")
 def alphafold_cif_fixture():
     with download(f"{_AF_Q8W3K0}-model_v4.cif") as path:
-        yield str(path)
+        yield path
 
 
 @pytest.fixture(scope="module", name="alphafold_pdb")
 def alphafold_pdb_fixture():
     with download(f"{_AF_Q8W3K0}-model_v4.pdb") as path:
-        yield str(path)
+        yield path
 
 
 @pytest.fixture(scope="module", name="alphafold_pae")
 def alphafold_pae_fixture():
     with download(f"{_AF_Q8W3K0}-predicted_aligned_error_v4.json") as path:
-        yield str(path)
+        yield path
 
 
 @pytest.fixture(scope="module", name="robetta_pdb")
 def robetta_pdb_fixture():
     with download(f"{_ROBETTA_MODELS}?id=14697") as path:
-        yield str(path)
+        yield path
 
 
 def test_alphafold_pdb(alphafold_pdb):
