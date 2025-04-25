@@ -5,9 +5,9 @@ from ....core.CCP4ErrorHandling import CErrorReport, Severity
 from ....core.CCP4WarningMessage import warningMessage
 from ....qtgui import CCP4XtalWidgets
 from ....qtgui.CCP4TaskWidget import CTaskWidget
-from .dybuttons import ChoiceButtons, MyMessageBox
+from .dybuttons import ChoiceButtons, MyMessageBox, selectBox
 from .importutils import ReflectionDataTypes
-from .mmcifutils import CifBlockInfo
+from .mmcifutils import CifBlockInfo, printBlockInfo
 
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
