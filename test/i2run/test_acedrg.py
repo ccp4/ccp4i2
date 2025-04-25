@@ -18,7 +18,7 @@ def test_from_mol():
         args = ["LidiaAcedrgNew"]
         args += ["--MOLSMILESORSKETCH", "MOL"]
         args += ["--TLC", "PCA"]
-        args += ["--MOLIN", str(molPath)]
+        args += ["--MOLIN", molPath]
         with utils.i2run(args) as job:
             check_output(job, "PCA")
 
