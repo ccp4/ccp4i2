@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ccp4i2"
+dynamic = ["version"]
+description = "CCP4i2 graphical interface for CCP4 software"
+readme = "README.md"
+license = { file = "LICENSE" }
+keywords = ["CCP4", "X-ray", "Crystallography", "MX", "Interface"]
+classifiers = [
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Private :: Do Not Upload",
+]
+dependencies = [
+    "biopython",
+    "dials",
+    "django",
+    "dxtbx",
+    "gemmi",
+    "lxml",
+    "matplotlib",
+    "numpy",
+    "onedep_api",
+    "paramiko",
+    "psutil",
+    "PySide2",
+    "pytest",
+    "python-dateutil",
+    "python-docx",
+    "rdkit",
+    "requests",
+    "scipy",
+    "shiboken2",
+    "xia2",
+]
+requires-python = ">=3.9"
+
+[project.scripts]
+ccp4i2 = "ccp4i2.__main__:main"
+ccp4i2-runTask = "ccp4i2.bin.runTask:main"
+i2run = "ccp4i2.core.CCP4I2Runner:main"
+
+[project.urls]
+Source = "https://github.com/ccp4/ccp4i2"
+Issues = "https://github.com/ccp4/ccp4i2/issues"
+
+[tool.setuptools.dynamic]
+version = { attr = "ccp4i2.__version__" }
+
+[tool.setuptools.package-data]
+ccp4i2 = ["**/*"]
+
+# Non-PyPI dependencies in CCP4:
+# - acedrg
+# - adding_stats_to_mmcif
+# - ample
+# - ccp4mg
+# - ccp4srs
+# - clipper
+# - iotbx
+# - mmtbx
+# - mrbump
+# - mrparse
+# - phaser
+# - phaser_ext
+# - pyrvapi
+# - simbad
+
+# Missing dependencies:
+# - pycofe

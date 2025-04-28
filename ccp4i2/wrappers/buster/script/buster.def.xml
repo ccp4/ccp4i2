@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+      <function>DEF</function>
+      <comment></comment>
+      <creationTime>Current</creationTime>
+      <userId>Kyle</userId>
+      <ccp4iVersion>0.0.1</ccp4iVersion>
+      <jobId/>
+      <project></project>
+      <pluginName>buster</pluginName>
+      <pluginVersion></pluginVersion>
+      <pluginTitle>Buster Test</pluginTitle>
+      <jobNumber></jobNumber>
+  </ccp4i2_header>
+  <ccp4i2_body id="buster">
+    <container id="inputData">
+        <content id="F_SIGF">
+            <className>CObsDataFile</className>
+            <qualifiers>
+                <mustExist>True</mustExist>
+                <allowUndefined>False</allowUndefined>
+                <fromPreviousJob>True</fromPreviousJob>
+                <toolTip>MTZ Reflections File</toolTip>
+            </qualifiers>
+        </content>
+        <content id="FREERFLAG">
+            <className>CFreeRDataFile</className>
+            <qualifiers>
+                <mustExist>True</mustExist>
+                <allowUndefined>True</allowUndefined>
+                <fromPreviousJob>True</fromPreviousJob>
+                <sameCrystalAs>F_SIGF</sameCrystalAs>
+                <toolTip>Free R set corresponding to the reflection data</toolTip>
+            </qualifiers>
+        </content>
+        <content id="XYZIN">
+            <className>CPdbDataFile</className>
+            <qualifiers>
+                <ifAtomSelection>True</ifAtomSelection>
+                <mustExist>True</mustExist>
+                <allowUndefined>False</allowUndefined>
+                <fromPreviousJob>True</fromPreviousJob>
+                <requiredSubType>1,0</requiredSubType>
+                <toolTip>File containing model coordinates (PDB/mmCIF).</toolTip>
+            </qualifiers>
+        </content>
+        <content id="DICT">
+            <className>CDictDataFile</className>
+            <qualifiers>
+                <default><contentFlag>2</contentFlag></default>
+                <mimeTypeName>application/refmac-dictionary</mimeTypeName>
+                <mimeTypeDescription>Ligand geometry file</mimeTypeDescription>
+                <toolTip>Restraint dictionary (mmCIF file) representing ideal geometry, e.g. for a ligand(s).</toolTip>
+                <label>Ligand geometry</label>
+                <fileExtensions>cif</fileExtensions>
+                <guiLabel>Restraint dictionary</guiLabel>
+            </qualifiers>
+        </content>
+    </container>
+    <container id="outputData">
+       <content id="XYZOUT">
+            <className>CPdbDataFile</className>
+            <qualifiers>
+                <default>
+                  <subType>1</subType>
+                </default>
+                <saveToDb>True</saveToDb>
+            </qualifiers>
+       </content>
+       <content id="CIFFILE">
+            <className>CPdbDataFile</className>
+            <qualifiers>
+                <default>
+                  <contentFlag>2</contentFlag>
+                </default>
+                <saveToDb>True</saveToDb>
+            </qualifiers>
+       </content>
+       <content id="REFLFN_CIFFILE">
+            <className>CMmcifReflDataFile</className>
+            <qualifiers>
+                <saveToDb>True</saveToDb>
+            </qualifiers>
+       </content>
+       <content id="FPHIOUT">
+            <className>CMapCoeffsDataFile</className>
+            <qualifiers>
+                <default>
+                  <subType>1</subType>
+                  <contentFlag>1</contentFlag>
+                </default>
+                <saveToDb>True</saveToDb>
+            </qualifiers>
+       </content>
+       <content id="DIFFPHIOUT">
+            <className>CMapCoeffsDataFile</className>
+            <qualifiers>
+                <default>
+                  <subType>2</subType>
+                  <contentFlag>1</contentFlag>
+                </default>
+                <saveToDb>True</saveToDb>
+            </qualifiers>
+       </content>
+       <content id="ABCDOUT">
+            <className>CPhsDataFile</className>
+            <qualifiers>
+                <default>
+                  <contentFlag>1</contentFlag>
+                </default>
+                <saveToDb>True</saveToDb>
+            </qualifiers>
+       </content>
+       <content id="PERFORMANCEINDICATOR">
+            <className>CRefinementPerformance</className>
+       </content>
+    </container>
+    <container id="inputParameters">
+       <content id="NBCYCLES">
+           <className>CInt</className>
+           <qualifiers>
+               <default>5</default>
+               <min>1</min>
+               <toolTip>Number of big refinement cycles to perform.</toolTip>
+           </qualifiers>
+       </content>
+       <content id="NSCYCLES">
+           <className>CInt</className>
+           <qualifiers>
+               <default>100</default>
+               <min>1</min>
+               <toolTip>Number of small refinement cycles to perform.</toolTip>
+           </qualifiers>
+       </content>
+       <content id="AUTO_NCS">
+       <className>CBoolean</className>
+           <qualifiers>
+              <default>False</default>
+              <toolTip>Turn on automated NCS restraints.</toolTip>
+           </qualifiers>
+       </content>
+       <content id="RBR">
+       <className>CBoolean</className>
+           <qualifiers>
+              <default>False</default>
+              <toolTip>Turn on rigid body refinement for first large cycle.</toolTip>
+           </qualifiers>
+       </content>
+       <content id="TLS">
+       <className>CBoolean</className>
+           <qualifiers>
+              <default>False</default>
+              <toolTip>Turn on TLS Refinement.</toolTip>
+           </qualifiers>
+       </content>
+       <content id="WAT">
+           <className>CString</className>
+           <qualifiers>
+              <default>AUTO</default>
+              <onlyEnumerators>True</onlyEnumerators>
+              <menuText>Treatment of waters</menuText>
+              <enumerators>OFF,ON,MAN</enumerators>
+              <toolTip>Water Treatment</toolTip>
+           </qualifiers>
+       </content>
+       <content id="WATCYC">
+           <className>CInt</className>
+           <qualifiers>
+               <default>1</default>
+               <min>1</min>
+               <toolTip>Water treatment from this number of BigCycle onwards</toolTip>
+           </qualifiers>
+       </content>
+    </container>
+  </ccp4i2_body>
+</ccp4:ccp4i2>
