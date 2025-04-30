@@ -25,6 +25,7 @@ from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core import CCP4Utils
 import os,sys,shutil,re
+import traceback
 
 class prosmart_refmac(CPluginScript):
 
@@ -678,10 +679,10 @@ class prosmart_refmac(CPluginScript):
                 validateXMLPath = self.validate.makeFileName('PROGRAMXML')
                 validateXML = CCP4Utils.openFileToEtree(validateXMLPath)
                 if len(validateXML.xpath("//Validate_geometry_CCP4i2/Model_info"))>0:
-                   xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Model_info")[0]) 
+                   xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Model_info")[0])
                 if self.validate.container.controlParameters.DO_IRIS:
                    if len(validateXML.xpath("//Validate_geometry_CCP4i2/Iris"))>0:
-                      xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Iris")[0]) 
+                      xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Iris")[0])
                 if self.validate.container.controlParameters.DO_BFACT:
                    if len(validateXML.xpath("//Validate_geometry_CCP4i2/B_factors"))>0:
                       xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/B_factors")[0])
@@ -734,7 +735,6 @@ class prosmart_refmac(CPluginScript):
 
                        self.saveXml()
                    except:
-                       import traceback
                        print("Some problem with verdict...."); sys.stdout.flush()
                        exc_type, exc_value, exc_tb = sys.exc_info()[:3]
                        sys.stderr.write(str(exc_type) + '\n')
@@ -745,7 +745,6 @@ class prosmart_refmac(CPluginScript):
              except Exception as err:
                 xml_validation_status.text = "FAILURE"
                 self.saveXml()
-                import traceback
                 traceback.print_exc()
                 print("...Failed validation run after refinement", err)
 
@@ -754,6 +753,39 @@ class prosmart_refmac(CPluginScript):
             logfiles.append(self.firstRefmac.makeFileName('LOG'))
         if hasattr(self,"refmacPostCootPlugin"):
             logfiles.append(self.refmacPostCootPlugin.makeFileName('LOG'))
+
+        if self.container.inputData.SEQIN.isSet() and len(self.container.inputData.SEQIN) > 0:
+            #FIXME - this needs to work for models with more than one chain
+            try:
+                n = 69
+                import gemmi
+                total_model_seq = ""
+                st = gemmi.read_structure(str(self.container.outputData.XYZOUT))
+                st.setup_entities()
+                for n_ch, chain in enumerate(st[0]):
+                    for n_res, res in enumerate(chain):
+                        total_model_seq += gemmi.one_letter_code([res.name])
+
+                seq_model_pir = ">P1;refinement_model\n\n" + ("\n").join([total_model_seq[i:i+n] for i in range(0, len(total_model_seq), n)]) + "*"
+                self.provide_seq_model = self.makePluginObject('ProvideSequence')
+                self.provide_seq_model.container.controlParameters.SEQUENCETEXT.set(seq_model_pir)
+                self.provide_seq_model.process()
+
+                try:
+                    self.clustalw = self.makePluginObject('clustalw')
+                    self.clustalw.container.inputData.SEQUENCELISTORALIGNMENT.set("SEQUENCELIST")
+                    self.clustalw.container.inputData.SEQIN.append(self.clustalw.container.inputData.SEQIN.makeItem())
+                    self.clustalw.container.inputData.SEQIN[-1].setFullPath(str(self.provide_seq_model.container.outputData.SEQUENCEFILE_LIST[0].fullPath))
+                    self.clustalw.container.inputData.SEQIN.append(self.clustalw.container.inputData.SEQIN.makeItem())
+                    self.clustalw.container.inputData.SEQIN[-1].set(self.container.inputData.SEQIN[0])
+                    self.clustalw.process()
+                except Exception as err:
+                    traceback.print_exc()
+                    print("...sequences alignment test failed", err)
+
+            except Exception as err:
+                traceback.print_exc()
+                print("...importing sequences for alignment test failed", err)
 
         self.createWarningsXML(logfiles)
         self.saveXml()
