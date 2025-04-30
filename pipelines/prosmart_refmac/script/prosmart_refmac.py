@@ -755,7 +755,8 @@ class prosmart_refmac(CPluginScript):
             logfiles.append(self.refmacPostCootPlugin.makeFileName('LOG'))
 
         if self.container.inputData.SEQIN.isSet() and len(self.container.inputData.SEQIN) > 0:
-            #FIXME - this needs to work for models with more than one chain
+            #FIXME - This needs to work for models with more than one chain
+            #        or the Beta-Blip case with both target sequences in same chain in final model.
             try:
                 n = 69
                 import gemmi
