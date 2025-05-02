@@ -1,4 +1,5 @@
 from sys import platform
+import re
 from gemmi import read_mtz_file, read_pdb
 from pytest import mark
 from .utils import demoData, i2run
@@ -24,3 +25,7 @@ def test_arpwarp():
             read_pdb(str(job / f"{name}.pdb"))
         for name in ["DIFFPHIOUT", "FPHIOUT"]:
             read_mtz_file(str(job / f"{name}.mtz"))
+        log = (job / "log.txt").read_text()
+        pattern = re.compile(r"R = [\.\d]+ \(Rfree = ([\.\d]+)\)")
+        rfrees = [float(x) for x in pattern.findall(log)]
+        assert rfrees[-1] < 0.4
