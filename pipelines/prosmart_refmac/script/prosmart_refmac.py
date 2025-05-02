@@ -754,11 +754,25 @@ class prosmart_refmac(CPluginScript):
         if hasattr(self,"refmacPostCootPlugin"):
             logfiles.append(self.refmacPostCootPlugin.makeFileName('LOG'))
 
-        if self.container.inputData.SEQIN.isSet() and len(self.container.inputData.SEQIN) > 0:
-            #FIXME - This needs to work for models with more than one chain
-            #        or the Beta-Blip case with both target sequences in same chain in final model.
+        asuin = self.container.inputData.ASUIN
+        if asuin.isSet():
+            """
+            FIXME - This needs to work for models with more than one chain
+                    or the Beta-Blip case with both target sequences in same chain in final model.
+            So, ideas:
+            [x] If the model has one chain and the user has input one test target sequences then OK.
+            [ ] If the model has one chain and the user has input multiple test target sequences then
+                we can try all concat combinations and see which is best.
+            [ ] Multiple chains and one target - try all chains.
+            [ ] Multiple chains and multiple targets - Hmm. Lots of combinations.
+            """
+            for idx in range(len(asuin.fileContent.seqList)):
+                print(idx)
+                print(asuin.fileContent.seqList[idx],type(asuin.fileContent.seqList[idx]))
+                asu_seq_0 = asuin.fileContent.seqList[idx].sequence
             try:
                 n = 69
+                asu_seq_0_pir = ">P1;refinement_model\n\n" + ("\n").join([asu_seq_0[i:i+n] for i in range(0, len(asu_seq_0), n)]) + "*"
                 import gemmi
                 total_model_seq = ""
                 st = gemmi.read_structure(str(self.container.outputData.XYZOUT))
@@ -768,6 +782,10 @@ class prosmart_refmac(CPluginScript):
                         total_model_seq += gemmi.one_letter_code([res.name])
 
                 seq_model_pir = ">P1;refinement_model\n\n" + ("\n").join([total_model_seq[i:i+n] for i in range(0, len(total_model_seq), n)]) + "*"
+                self.provide_seq_asu_0 = self.makePluginObject('ProvideSequence')
+                self.provide_seq_asu_0.container.controlParameters.SEQUENCETEXT.set(asu_seq_0_pir)
+                self.provide_seq_asu_0.process()
+
                 self.provide_seq_model = self.makePluginObject('ProvideSequence')
                 self.provide_seq_model.container.controlParameters.SEQUENCETEXT.set(seq_model_pir)
                 self.provide_seq_model.process()
@@ -778,8 +796,9 @@ class prosmart_refmac(CPluginScript):
                     self.clustalw.container.inputData.SEQIN.append(self.clustalw.container.inputData.SEQIN.makeItem())
                     self.clustalw.container.inputData.SEQIN[-1].setFullPath(str(self.provide_seq_model.container.outputData.SEQUENCEFILE_LIST[0].fullPath))
                     self.clustalw.container.inputData.SEQIN.append(self.clustalw.container.inputData.SEQIN.makeItem())
-                    self.clustalw.container.inputData.SEQIN[-1].set(self.container.inputData.SEQIN[0])
+                    self.clustalw.container.inputData.SEQIN[-1].setFullPath(str(self.provide_seq_asu_0.container.outputData.SEQUENCEFILE_LIST[0].fullPath))
                     self.clustalw.process()
+
                 except Exception as err:
                     traceback.print_exc()
                     print("...sequences alignment test failed", err)

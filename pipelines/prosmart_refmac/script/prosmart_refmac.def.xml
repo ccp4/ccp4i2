@@ -21,19 +21,14 @@
             </CI2XmlDataFile>
         </file>
         <container id="inputData">
-            <content id="SEQIN">
-                <className>CList</className>
-                <qualifiers>
-                 <guiLabel>Reference sequence</guiLabel>
-                 <listMinLength>0</listMinLength>
-                </qualifiers>
-                <subItem>
-                    <className>CSeqDataFile</className>
-                    <qualifiers>
-                        <mustExist>True</mustExist>
-                        <allowUndefined>True</allowUndefined>
-                    </qualifiers>
-                </subItem>
+            <content id="ASUIN">
+              <className>CAsuDataFile</className>
+              <qualifiers>
+                <mustExist>True</mustExist>
+                <allowUndefined>True</allowUndefined>
+                <fromPreviousJob>False</fromPreviousJob>
+                <selectionMode>0</selectionMode>
+              </qualifiers>
             </content>
            <content id="AMINOACID_CHAINS">
               <className>CList</className>
