@@ -1,5 +1,9 @@
 # CCP4i2 Changelog
 
+## [2.2.7] - 2025-05-02
+
+- Fix for ASU contents view with QtGui/QtWidgets changes
+
 ## [2.2.6] - 2025-04-24
 
 - Fix for import merged from a CIF file with a non-standard ASU
