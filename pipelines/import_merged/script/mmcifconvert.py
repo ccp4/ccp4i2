@@ -2,56 +2,12 @@ import sys
 import math
 
 from lxml import etree
-
 import gemmi
-from  pipelines.import_merged.script.mmcifutils import *
-from  pipelines.import_merged.script.importutils import *
-#from mmcifutils import *
-#from importutils import *
+
+from pipelines.import_merged.script.mmcifutils import *
+from pipelines.import_merged.script.importutils import *
 
 
-class GetColumn():
-    def __init__(self):
-        pass
-
-    def getcolumn(self, rb, tag):
-        # extract a column with label including tag
-        # return list of strings
-    
-        s = rb.block.as_string()
-        lines = s.split('\n')
-
-        j = 0  # line number
-        jloop = -1
-
-        for line in lines:
-            # Find tag and record line number of start of loop
-            if 'loop_' in line: jloop = j
-            if tag in line:
-                break
-            j += 1
-
-        # Count columns, ie labels in loop_
-        ncol = 0
-        jtag = -1
-        for line in lines[jloop+1:]:
-            if line[0] != '_':
-                break
-            if tag in line:
-                jtag = ncol
-            ncol += 1
-
-        jlinestart = jloop+ncol+1 # first line of data
-
-        coldata = []   # required data
-        for line in lines[jlinestart:]:
-            d = line.split()
-            if len(d) != ncol:
-                break
-            coldata.append(d[jtag])
-        return coldata
-
-# * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 class Taggedhkl():
     # reduced tuple(hkl), index into original list, isym value
     def __init__(self, rhkl, idx, isym):
@@ -61,13 +17,11 @@ class Taggedhkl():
 
     def format(self):
         return self.rhkl, self.idx, self.isym
-        #return str(self.rhkl), str(self.idx), str(self.isym)
-    
-# * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+
 class CIFReflectionData:
     # class to contain reflection data from an mmcif file
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def __init__(self, rblock):
         # Construct from a cif block
         self.rblock = rblock
@@ -86,27 +40,24 @@ class CIFReflectionData:
         # Start XML report
         self.convertXML = etree.Element('MMCIF_CONVERT')
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def setMTZnames(self, outfile, freerfile):
         self.outfile = outfile
         if outfile is None: self.dataout = False
         self.freerfile = freerfile
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def setNoDataOut(self):
         # Set flag for FreeR output only
         self.dataout = False
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     def gettype(self, typelist):
         # Loop possible types in order of priority
         # Return first one found in file
         for labtype in typelist:
             if labtype in self.labeltypes:
                 foundtype = labtype
-                break            
+                break
         return foundtype
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def gettypes(self, typelist):
         # Loop possible types in order of priority
         # Return list of found ones
@@ -116,7 +67,6 @@ class CIFReflectionData:
                 foundtypes.append(labtype)
         return foundtypes
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def gettypesinfile(self, typelist):
         # Return all relevant types found in file
         foundtypes = []
@@ -125,7 +75,6 @@ class CIFReflectionData:
                 foundtypes.append(labtype)
         return foundtypes
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def simpleMTZwrite(self, cifdatatype, haveFreeR=True, resorange=None):
         # use CifToMtz to just create MTZ file of data
         #  either just the data itself (Is or Fs) if haveFreeR is False
@@ -193,7 +142,7 @@ class CIFReflectionData:
                       haveFreeR, nreduced, resorange)
 
         return True
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     def setMtzResolutionLimits(self, mtz, resorange):
         dmin = resorange[1]
         if resorange[0] > 0.0:
@@ -203,15 +152,14 @@ class CIFReflectionData:
         else:
             mtz.set_data(mtz.array[mtz.make_d_array() >= dmin])
         return mtz
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     def outputMTZ(self, mtz, data, outfile, resorange):
         # Set data into mtz, trim if necessary, write to outfile
         mtz.set_data(data)
         if resorange is not None:
             mtz = self.setMtzResolutionLimits(mtz,resorange)
         mtz.write_to_file(outfile)
-        
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     def makereducemessage(self, reducehkl=True):
         reducemessage = ''
         if not self.cifblockinfo.standardasu():
@@ -222,12 +170,11 @@ class CIFReflectionData:
                 reducemessage = 'no hkl change from non-standard asymmetric unit'
         return reducemessage
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def samehkl(self, hkl1, hkl2):
         if hkl1 == tuple(hkl2):
             return True
         return False
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     def anomMTZwritedata(self, cifdatatype,
                          reducehkl=True, haveFreeR=True, resorange=None):
         # disentangle anomalous data with I/F +- on different lines
@@ -272,7 +219,6 @@ class CIFReflectionData:
                 print("Wrong array lengths", nref, len(cifdata), len(cifsigma))
                 return False
 
-
         freerspecs = None
         if haveFreeR:
             # Loop possible FreeR types in order of priority
@@ -287,7 +233,7 @@ class CIFReflectionData:
             tag = freerspecs[0].split()[0]
             if tag == 'status':
                 #  status is a single character string, convert to float
-                ciffreer = self.make_freer_array(tag)
+                ciffreer = self.make_freer_array()
             else:
                 ciffreer  = self.rblock.make_float_array(tag)
 
@@ -404,7 +350,6 @@ class CIFReflectionData:
 
         return True
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def nonstandardMTZwritedata(self, cifdatatype,
                                 reducehkl=True, haveFreeR=True,
                                 freeRmissing=False, resorange=None):
@@ -456,7 +401,7 @@ class CIFReflectionData:
             tag = freerspecs[0].split()[0]
             if tag == 'status':
                 #  status is a single character string, convert to float
-                ciffreer = self.make_freer_array(tag)
+                ciffreer = self.make_freer_array()
             else:
                 ciffreer  = self.rblock.make_float_array(tag)
 
@@ -601,13 +546,13 @@ class CIFReflectionData:
         self.addtoXML(cifdatatype, juniq, message,
                       reducemessage, haveFreeR, nreduced, resorange)
         return True
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     def settonan(self, dataline, i1, n):
         if abs(dataline[i1+1]) < 1.0e-10:
             for i in range(i1, i1+n):
                 dataline[i] = math.nan
         return dataline
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     def maketaggedlist(self):
         # Make hkl list for sorting, to give access to I/F+- mates
         sg = self.rblock.spacegroup   # gemmi.SpaceGroup
@@ -626,7 +571,6 @@ class CIFReflectionData:
         taggedlist.sort(key=lambda x: x.rhkl)
         return taggedlist
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def start_mtz(self, mtz, specs):
         mtz.spacegroup = self.rblock.spacegroup
         mtz.set_cell_for_all(self.rblock.cell)
@@ -645,17 +589,14 @@ class CIFReflectionData:
             #  MTZ column label, column type
             self.addMTZcolumnLabelType(mtz, spec)
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    def make_freer_array(self, tag):
+    def make_freer_array(self):
         #  status is a single character string, convert to int
-        gc = GetColumn()
-        scol = gc.getcolumn(self.rblock, tag)
+        scol = getcolumn(self.rblock, "status")
         freer = []
         for sc in scol:
             freer.append(self.status_to_freeflag(sc))
         return freer
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def  status_to_freeflag(self, status):
         # Convert status to freerflag, cf gemmi/include/cif2mtz.hpp
         # Anything other than 'o' or 'f' is set as NaN
@@ -668,7 +609,6 @@ class CIFReflectionData:
             return 0.0;
         return math.nan;
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def getMTZcol(self, spec):
         if spec is None: return spec
         s = ''
@@ -676,7 +616,6 @@ class CIFReflectionData:
             s += sp.split()[1] + ","
         return s[:-1]  # remove trailing comma
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def storeColumnNames(self, mtzspecs, freerspecs):
         # Send output column names to XML
         mtzcols = self.getMTZcol(mtzspecs)      # may be None
@@ -688,7 +627,6 @@ class CIFReflectionData:
         if freercols is not None:
             addXMLelement(self.convertXML, 'freercolumnname',  freercols)
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def addMTZcolumnLabelType(self, mtz, spec):
         #  MTZ column label, column type, fix Freer type
         clabel = spec.split()[1]
@@ -696,7 +634,7 @@ class CIFReflectionData:
         if ctype == 's':
             ctype = 'I'
         mtz.add_column(clabel, ctype)
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     def addtoXML(self, datatype, nunique, typemessage,
                  reducehklmessage='', haveFreeR=True, nreduced=0,
                  resorange=None):
@@ -738,7 +676,6 @@ class CIFReflectionData:
             addXMLelement(self.convertXML,
                           'numreducedhkl', str(nreduced))
                       
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def resorangeXML(self, resorange, id=None):
         # XML version of resolution range
         resoxml = etree.Element('ResolutionRange')
@@ -750,17 +687,15 @@ class CIFReflectionData:
             addXMLelement(resoxml, 'max', "{:.3f}".format(resorange[1]))
         return resoxml
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def getXML(self):
         # Return XML report
         return self.convertXML
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def contentFlag(self):
         contentflag = ReflectionDataTypes.CONTENT_FLAGS[self.cifdatatype]
         return contentflag
 
-# * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
 class ConvertCIF():
     def __init__(self, inputfilename, blockname, cifdatatype,
                  outfile, freerfile,
@@ -844,19 +779,15 @@ class ConvertCIF():
 
         self.contentflag = refdata.contentFlag()
         self.XMLreport = refdata.getXML()
-        #print(etree.tostring(self.XMLreport, pretty_print=True))
 
         if not self.status:
             print("Data write failed")
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def contentFlag(self):
         return self.contentflag
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def getstatus(self):
         return self.status
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def getXML(self):
-            return self.XMLreport
+        return self.XMLreport

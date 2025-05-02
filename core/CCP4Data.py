@@ -1058,18 +1058,8 @@ class CBaseData(CData):
                     return propFget(self)
                 except:
                     raise AttributeError("%r object has no attribute %r" % (self.__class__.__name__, name))
-                    """
-                    raise CException(CData, 9, name)
-                    print('Inaccessible attribute')
-                    traceback.print_stack(limit=5)
-                    """
             else:
                 raise AttributeError("%r object has no attribute %r" % (self.__class__.__name__, name))
-                """
-                raise CException(CData, 8, name)
-                print('Inaccessible attribute')
-                traceback.print_stack(limit=5)
-                """
 
     def __setattr__(self, name=None, value=NotImplemented):
         if value is NotImplemented:

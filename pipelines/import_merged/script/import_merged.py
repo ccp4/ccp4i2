@@ -1,94 +1,70 @@
-from __future__ import print_function
-
 """
-    import_merged.py: CCP4 GUI Project
-     Copyright (C) 2015 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Copyright (C) 2015 STFC
 """
 
+import os
 import sys
-import os,shutil
+
+from lxml import etree
 from PySide2 import QtCore
+
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
 from core.CCP4ErrorHandling import *
-from lxml import etree
 from pipelines.aimless_pipe.script.aimless_pipe_utils import *
+from pipelines.import_merged.script.mmcifutils import *
+from pipelines.import_merged.script.mmcifconvert import *
+from pipelines.import_merged.script.importutils import *
+from pipelines.import_merged.script.mtzimport import *
 
-from  pipelines.import_merged.script.mmcifutils import *
-from  pipelines.import_merged.script.mmcifconvert import *
-from  pipelines.import_merged.script.importutils import *
-from  pipelines.import_merged.script.mtzimport import *
 
 class import_merged(CPluginScript):
 
     TASKNAME = 'import_merged'
     MAINTAINER = 'liz.potterton@york.ac.uk'
     WHATNEXT = []
-    ERROR_CODES = { 301 : { 'description' : 'No output file found after conversion program' },
-                    302 : { 'description' : 'Output from conversion does not contain recognised reflection or FreeR set data' }
-                    }
+    ERROR_CODES = {
+        301: {'description': 'No output file found after conversion program'},
+        302: {'description': 'Output from conversion does not contain recognised reflection or FreeR set data'},
+    }
     # Note - preserving the HKLOUT by changing severity from the system default of 1 to 5 and
     # beware issues with caseinsensitivity
-    PURGESEARCHLIST = [ [ 'HKLIN*.mtz' , 1 ],
-                        ['aimless_pipe%*/HKLOUT*.mtz', 1],
-                        [ 'hklout.mtz' , 5 ],    
-                        [ 'HKLOUT.mtz' , 5 ]
-                      ]
-    #------------------------------------------------------------------------
+    PURGESEARCHLIST = [
+        ['HKLIN*.mtz', 1],
+        ['aimless_pipe%*/HKLOUT*.mtz', 1],
+        ['hklout.mtz', 5],
+        ['HKLOUT.mtz', 5],
+    ]
+
     def process(self):
-      self.container.inputData.HKLIN.loadFile()
-      self.fformat = self.container.inputData.HKLIN.getFormat()
-      # Type(self.fformat) can be either [mtz] <class 'CCP4Data.CString'> or [mmcif] str  WHY? 
-      print("process self.fformat", type(self.fformat))
-      merged = self.container.inputData.HKLIN.getMerged()
+      inputData = self.container.inputData
+      outputData = self.container.outputData
+      controlParameters = self.container.controlParameters
+
+      inputData.HKLIN.loadFile()
+      self.fformat = str(inputData.HKLIN.getFormat())
       self.isintensity = 0  # unknown I or F
-      
-      obsout = None
 
       self.x2mtz = None
-      self.mmcifXML = None
-      self.resolutioncutoff = False
-      #print("IDRR", self.container.inputData.RESOLUTION_RANGE_SET)
-      if self.container.inputData.RESOLUTION_RANGE_SET:
-          self.resolutioncutoff = True
-
-      if str(self.fformat) == 'mtz':
-          # MTZ file: if there is a resolution cutoff specified,
-          # cannot use x2mtz to run cmtzsplit
-          if not self.resolutioncutoff:
-              self.x2mtz = self.makePluginObject('x2mtz')
-      #elif str(self.fformat) == 'mmcif':
-      #    pass
-      # # self.x2mtz = self.makePluginObject('cif2mtz')  # not needed now
-      elif str(self.fformat) in [ 'shelx' ]:
+      if self.fformat == 'mtz' and not inputData.RESOLUTION_RANGE.isSet(allSet=False):
+        # MTZ file: if there is a resolution cutoff specified,
+        # cannot use x2mtz to run cmtzsplit
+        self.x2mtz = self.makePluginObject('x2mtz')
+      elif self.fformat == 'shelx':
         self.x2mtz = self.makePluginObject('convert2mtz')
-      elif str(self.fformat) in [ 'sca' ]:
+      elif self.fformat == 'sca':
         self.x2mtz = self.makePluginObject('scalepack2mtz')
-
       if self.x2mtz is not None:
           #  Copy parameters to x2mtz sub-object
-          self.x2mtz.container.inputData.copyData(otherContainer=self.container.inputData)
-          self.x2mtz.container.outputData.copyData(otherContainer=self.container.outputData,dataList=['HKLOUT','OBSOUT'])
+          self.x2mtz.container.inputData.copyData(otherContainer=inputData)
+          self.x2mtz.container.outputData.copyData(otherContainer=outputData, dataList=['HKLOUT','OBSOUT'])
 
       self.freeRcompleteTried = True
       self.importXML = None
+      self.mmcifXML = None
       self.freeout = None
       if self.fformat == 'mtz':
-        if self.resolutioncutoff:
+        if inputData.RESOLUTION_RANGE.isSet(allSet=False):
             self.importXML = etree.Element('IMPORT_LOG')  # information about the import step
             status = self.importmtz()
             self.makeReportXML(self.importXML)  # add initial stuff for XML into self.importXML
@@ -96,31 +72,28 @@ class import_merged(CPluginScript):
             return  # Probably doesnt get here
         # No resolution cutoff
         # Just call the processOutputFiles() to convert to mini mtzs
-        self.x2mtz.container.outputData.HKLOUT.set(self.container.inputData.HKLIN)
+        self.x2mtz.container.outputData.HKLOUT.set(inputData.HKLIN)
         # Pick up dataset name (and crystal name if available)
-        fcontent = self.container.inputData.HKLIN.getFileContent()
+        fcontent = inputData.HKLIN.getFileContent()
         #print 'input file content', type(fcontent), fcontent
         #print 'columns', fcontent.listOfColumns
         # check if selection columns are intensity or amplitudes
         # return +1 if intensity, -1 if amplitude, 0 if unknown
-        self.isintensity = self.isIntensity(self.container.inputData.HKLIN_OBS_COLUMNS,
+        self.isintensity = self.isIntensity(inputData.HKLIN_OBS_COLUMNS,
                                             fcontent.listOfColumns)
         self.importXML = etree.Element('IMPORT_LOG')  # information about the import step
         self.makeReportXML(self.importXML)  # add initial stuff for XML into self.importXML
 
-        if len(fcontent.datasets)>=2:
-          #print fcontent.datasets[1]
-          # self.crystalName = ###  set this, but how?
-          self.container.inputData.DATASETNAME = fcontent.datasets[1]
+        if len(fcontent.datasets) >= 2:
+          inputData.DATASETNAME = fcontent.datasets[1]
 
-
-        if self.container.controlParameters.SKIP_FREER:
-            self.x2mtz.container.outputData.FREEOUT.set(self.container.outputData.FREEOUT)
+        if controlParameters.SKIP_FREER:
+            self.x2mtz.container.outputData.FREEOUT.set(outputData.FREEOUT)
         self.x2mtz.checkOutputData()
         ret = self.x2mtz.processOutputFiles()  # runs cmtzsplit
         if sys.platform != 'win32': # CCP4Utils.samefile() doesn't work (r1728)
           self.x2mtz.reportStatus(ret)
-        self.container.outputData.OBSOUT.set(self.x2mtz.container.outputData.OBSOUT)
+        outputData.OBSOUT.set(self.x2mtz.container.outputData.OBSOUT)
         if self.importXML is not None:
             freeRcolumnLabel = str(self.x2mtz.freeRcolumnLabel)
             if freeRcolumnLabel is not None:
@@ -133,29 +106,28 @@ class import_merged(CPluginScript):
           self.importXML = etree.Element('IMPORT_LOG')  # information about the import step
           #  +1 if intensity, -1 if amplitude, 0 if unknown
           self.isintensity = 0
-          if str(self.fformat) in [ 'sca' ]:
+          if self.fformat == 'sca':
               self.isintensity = +1  # scalepack files are intensity
-          if self.container.inputData.MMCIF_SELECTED_ISINTENSITY:
-              self.isintensity = self.container.inputData.MMCIF_SELECTED_ISINTENSITY
+          if inputData.MMCIF_SELECTED_ISINTENSITY:
+              self.isintensity = inputData.MMCIF_SELECTED_ISINTENSITY
 
           self.makeReportXML(self.importXML)  # add initial stuff for XML into self.importXML
           self.outputLogXML(self.importXML)  # send self.importXML to program.xml
 
           # mmCIF, direct import
-          if str(self.fformat) == 'mmcif':
+          if self.fformat == 'mmcif':
               status = self.convertmmcif()
               self.process1(status)
               return  # Probably doesnt get here
 
           self.connectSignal(self.x2mtz,'finished',self.process1slot)
-          ret = self.x2mtz.process()
-        
-    #------------------------------------------------------------------------
+          self.x2mtz.process()
+
     @QtCore.Slot(dict)
     def process1slot(self,status):
         self.process1(status)
 
-    def process1(self,status, completeFreeR=True):
+    def process1(self, status, completeFreeR=True):
         'if completeFreeR False, always generate new FreeR (for 2nd attempt)'
         #print('process1',type(status),status)
         if status is not None and status.get('finishStatus') == CPluginScript.FAILED:
@@ -241,8 +213,7 @@ class import_merged(CPluginScript):
 
         self.connectSignal(self.freerflag,'finished',self.process2)
         status = self.freerflag.process()
-        
-    #------------------------------------------------------------------------
+
     @QtCore.Slot(dict)
     def process2(self,status):
       freerOK = True
@@ -299,7 +270,7 @@ class import_merged(CPluginScript):
       if doFreeR:
           self.importXML.append(self.freerflag.getXML())
       else:
-          self.addElement(self.importXML, 'freeRsource', 'None') 
+          self.addElement(self.importXML, 'freeRsource', 'None')
 
       # Run aimless for a report on data quality
       self.aimlesspipe = self.makePluginObject('aimless_pipe',pluginTitle='DR run for data analysis')
@@ -308,18 +279,9 @@ class import_merged(CPluginScript):
       if len(unmergedList)==0: unmergedList.addItem()
       # Always do analysis on the file which is saved as pipeline output
       unmergedList[0].file.set(self.container.outputData.OBSOUT.__str__())
-      ##  earlier versions in some cases analysed the input file
-      #if self.fformat in ['mmcif']:
-      #    unmergedList[0].file.set(self.container.outputData.HKLOUT.__str__())
-      #      elif  self.fformat in ['mtz']:
-      #          unmergedList[0].file.set(self.container.outputData.OBSOUT.__str__())
-      #      else:
-      #          unmergedList[0].file.set(self.container.inputData.HKLIN.__str__())
       #print 'unmergedList 1',    unmergedList
       xname = self.filteredName(str(self.container.inputData.CRYSTALNAME), 'X')
-      #xname = CCP4Utils.safeOneWord(str(self.container.inputData.CRYSTALNAME))
       dname = self.filteredName(str(self.container.inputData.DATASETNAME), 'D')
-      #dname = CCP4Utils.safeOneWord(str(self.container.inputData.DATASETNAME))
       unmergedList[0].crystalName.set(xname)
       unmergedList[0].dataset.set(dname)
       #print 'unmergedList 2',    unmergedList
@@ -344,12 +306,6 @@ class import_merged(CPluginScript):
       self.aimlesspipe.container.controlParameters.SDCORRECTION_SDFAC = 1.0
       self.aimlesspipe.container.controlParameters.SDCORRECTION_SDB = 0.0
       self.aimlesspipe.container.controlParameters.SDCORRECTION_SDADD = 0.0
-      
-
-#  Probably shouldn't run Phaser but try anyway
-#      if self.isintensity < 0:
-#         print("* Fs input, don't run Phaser")
-#          self.aimlesspipe.container.controlParameters.DOPHASERANALYSIS = False
 
       tempXML = self.importXML
       self.addElement(tempXML, "DRPIPE_RUNNING", "True") 
@@ -361,7 +317,6 @@ class import_merged(CPluginScript):
 
       return CPluginScript.SUCCEEDED
 
-    #------------------------------------------------------------------------
     @QtCore.Slot(dict)
     def nearlyDone(self,status):
       print('import_merged.nearlyDone')
@@ -383,7 +338,6 @@ class import_merged(CPluginScript):
       print('import_merged.nearlyDone, finished')
       self.reportStatus(status)
 
-    #------------------------------------------------------------------------
     def isIntensity(self, selectedcolumns, listOfColumns):
         """
         check if selection columns are intensity or amplitudes
@@ -415,7 +369,6 @@ class import_merged(CPluginScript):
 
         return isintensity
 
-    #------------------------------------------------------------------------
     def outputLogXML(self, x1XML, x2XML=None):
       'output x1XML and optionally x2XML to program.xml'
       #print "outputLogXML", x1XML
@@ -426,7 +379,6 @@ class import_merged(CPluginScript):
       with open (self.makeFileName('PROGRAMXML'),"w") as outputXML:
           CCP4Utils.writeXML(outputXML,etree.tostring(rootXML,pretty_print=True))
 
-    #------------------------------------------------------------------------
     def makeReportXML(self, containerXML):
         'Make initial report XML'
         #print("mrx 1",  type(self.fformat),  self.fformat)
@@ -481,15 +433,12 @@ class import_merged(CPluginScript):
             if self.container.inputData.MMCIF_SELECTED_COLUMNS.isSet():
                 self.addElement(containerXML, 'mmcifblockcolumns',
                                 str(self.container.inputData.MMCIF_SELECTED_COLUMNS))
-            
-    #------------------------------------------------------------------------
-    def addElement(self, containerXML, elementname, elementtext):
-        #print 'addElement', elementname, type(elementtext), elementtext 
-        e2 = etree.Element(elementname)
-        e2.text = elementtext
-        containerXML.append(e2)
 
-    #------------------------------------------------------------------------
+    def addElement(self, containerXML, elementname, elementtext):
+        element = etree.Element(elementname)
+        element.text = elementtext
+        containerXML.append(element)
+
     def filteredName(self,name, default=None):
         """ filtered to remove spaces and other rubbish """
         if name is None: return ""
@@ -502,7 +451,6 @@ class import_merged(CPluginScript):
             # only letters and numbers, no spaces or other stuff
         return CCP4Utils.safeOneWord(name)
 
-    #------------------------------------------------------------------------
     def convertmmcif(self):
         # Convert an mmcif file to a data file (OBSOUT) and
         #  (if present) a FreeR file
@@ -544,7 +492,6 @@ class import_merged(CPluginScript):
 
         return status
 
-    # ---------------------------------------------------------------------------
     def makeResoRange(self):
         resorange = None
         if self.container.inputData.RESOLUTION_RANGE:
@@ -560,10 +507,9 @@ class import_merged(CPluginScript):
                 resorange = (dmax, dmin)
         return resorange
 
-    #------------------------------------------------------------------------
     def importmtz(self):
         # Import an mtz file to a data file (OBSOUT) and
-        #  (if present) a FreeR file, with optional resolution cutoffs
+        # (if present) a FreeR file, with optional resolution cutoffs
         # Uses Gemmi
 
         outputData = self.container.outputData
@@ -606,7 +552,6 @@ class import_merged(CPluginScript):
         status = {'finishStatus':CPluginScript.SUCCEEDED}
         return status
 
-    # -------------------------------------------------------------------------
     def columnthings(self, filename):
         #  Sort out which columns are wanted, cf x2mtz.py
         print('HKLIN_OBS_COLUMNS', self.container.inputData.HKLIN_OBS_COLUMNS)
@@ -646,36 +591,30 @@ class import_merged(CPluginScript):
             freeRcolumnLabel = str(columnGroups[ifree].columnList[0].columnLabel)
         return obsColLabels, freeRcolumnLabel
 
-    # -----------------------------------------------------------------------
     def bestcolumns(self, columnGroups):
         # Try to figure the 'best' obs data and freer data in the input file
-        #for cg in columnGroups:
-        #    print('bestcolumns cg',cg.get())
-        #   print("* type",cg.columnGroupType)
-
         ifree = -1
         iBestObs = -1
-        for ii in range(len(columnGroups)):
-            if columnGroups[ii].columnGroupType == 'FreeR':
+        for ii, columnGroup in enumerate(columnGroups):
+            if columnGroup.columnGroupType == 'FreeR':
                 ifree = ii  #  Index for FreeR
-            elif columnGroups[ii].columnGroupType == 'Obs':
+            elif columnGroup.columnGroupType == 'Obs':
               # print( "@cg ", columnGroups[ii].contentFlag, columnGroups[iBestObs].contentFlag)
               if iBestObs<0 or \
-               columnGroups[ii].contentFlag<columnGroups[iBestObs].contentFlag:
+               columnGroup.contentFlag<columnGroups[iBestObs].contentFlag:
                   # Now the "best" obs column based on content type
                   iBestObs = ii
         return iBestObs, ifree   # indices to columngroups for Obs and Free
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# Function to return name of exportable MTZ
+
 def exportJobFile(jobId=None,mode=None):
+    # Function to return name of exportable MTZ
     #  If the input file contained intensities,
     #     then return the output from ctruncate + freer
     #     ie I and F and FreeR
     #  If amplitudes F, then return Fs + FreeR
     #     don't use ctruncate output which has intensities derived from F^2
     #     which would mean truncate applied twice
-    import os
     from core import CCP4Modules
     from core import CCP4XtalData
 
@@ -718,26 +657,22 @@ def exportJobFile(jobId=None,mode=None):
     freerfilename = info[0]['fileName']
     freerflagOut = None
     freerflagOut = os.path.join( CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False),freerfilename)
-    if not os.path.exists(freerflagOut): freerflagOut = None
-    #if truncateOut is None: return None
-    #if freerflagOut is None: return truncateOut
+    if not os.path.exists(freerflagOut):
+        freerflagOut = None
     if freerflagOut is None: return None
 
-    #print('import_merge.exportJobFile  runCad:',exportFile,[ freerflagOut ])
-    
     m = CCP4XtalData.CMtzDataFile(obsOut)   # observed data
-    #print(m.runCad.__doc__)   #Print out docs for the function
     #  Make sure that FreeR is flagged as base dataset
     comLines = ["XNAME FILE_NUMBER 2 ALL=HKL_base",
                 "DNAME FILE_NUMBER 2 ALL=HKL_base"]
     outfile,err = m.runCad(exportFile,[ freerflagOut ], comLines)
     print('aimless_pipe.exportJobFile',outfile,err.report())
-    return   outfile                                                   
- 
+    return outfile
+
+
 def exportJobFileMenu(jobId=None):
     print("exportJobFileMenu")
     # Return a list of items to appear on the 'Export' menu - each has three subitems:
     # [ unique identifier - will be mode argument to exportJobFile() , menu item , mime type (see CCP4CustomMimeTypes module) ]
     print("Result:", [ [ 'complete_mtz' ,'MTZ file' , 'application/CCP4-mtz' ] ])
     return [ [ 'complete_mtz' ,'MTZ file' , 'application/CCP4-mtz' ] ]
-                                                

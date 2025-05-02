@@ -1,25 +1,7 @@
-import sys
+import math
 import gemmi
 
-import math
-import numpy
 
-
-# -------------------------------------------------------------
-import time
-class MyTimer():
-    def __init__(self):
-        self.t1 = time.perf_counter()
-    def reset(self):
-        self.t1 = time.perf_counter()
-    def gettime(self, message):
-        t1 = self.t1 
-        t2 = time.perf_counter()
-        print("*^*", message, f": {t2-t1:0.4f} secs")
-
-# * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-# Classes to store information about a Gemmi reflection block
-# -------------------------------------------------------------
 class ColumnSet():
     # a set of CIF columns
     def __init__(self, columnlabels, flagpresent, text, typecode):
@@ -28,32 +10,25 @@ class ColumnSet():
         # text          brief text describing the column set content
         # typecode      int code for data type
 
-        #print("ColumnSet", columnlabels, flagpresent, text)
         self.columnlabels = columnlabels
         self.flagpresent = flagpresent
         self.text = text
         self.typecode = typecode
-        self.OK = True
-        if False in flagpresent:
-            self.OK = False
+        self.OK = False not in flagpresent
 
-    # -------------------------------------------------------------
     def missingColumns(self):
-        if self.OK: return ''
-        s = ''
-        for i in range(len(self.flagpresent)):
-            if not self.flagpresent[i]:
-                s += self.columnlabels[i] + ', '
-        return s[:-2]
-            
-    # -------------------------------------------------------------
-    def formatcolumnlabels(self):
-        s = ''
-        for lab in self.columnlabels:
-          s += lab +", "
-        return s[:-2]
+        if self.OK:
+            return ""
+        return ", ".join(
+            label
+            for label, present in zip(self.columnlabels, self.flagpresent)
+            if not present
+        )
 
-# * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    def formatcolumnlabels(self):
+        return ", ".join(self.columnlabels)
+
+
 class CIFLabelSets():
     # class to manage appropriate sets of reflection labels in an mmcif file
     # Each set should be all present or all absent
@@ -178,8 +153,6 @@ class CIFLabelSets():
         return s[:-2]
 
 
-# - - - - - - - - - - - - - - -
-    
 class CifBlockInfo:
     # Extract and store information from a Gemmi rblock
     def __init__(self, rblock):
@@ -414,8 +387,8 @@ class HKLstatus():
             else:
                 s = "Unmerged data"
         return s
-        
-# * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+
 class HKLcheck():
     # class to check the hkl list from an mmcif block, to diagnose any issues
 
@@ -473,10 +446,6 @@ class HKLcheck():
 
         self.maxhist =  max(hist);
         self.unique = nunique
-
-        #if len(hist) > 1:
-            # Multiplicity
-            #print("Histogram of multiplicities:", hist)
 
         # Assess reflection list
         # Cases:
@@ -549,49 +518,45 @@ class HKLcheck():
             print("No explicit anomalous")
         print(self.hklcheck.formathklstatus())
 
-# * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-class GetColumn():
-    def __init__(self):
-        pass
 
-    def getcolumn(self, rb, tag):
-        # extract a column with label including tag
-        # return list of strings
+def getcolumn(rb, tag):
+    # extract a column with label including tag
+    # return list of strings
     
-        s = rb.block.as_string()
-        lines = s.split('\n')
+    s = rb.block.as_string()
+    lines = s.split('\n')
 
-        j = 0  # line number
-        jloop = -1
+    j = 0  # line number
+    jloop = -1
 
-        for line in lines:
-            # Find tag and record line number of start of loop
-            if 'loop_' in line: jloop = j
-            if tag in line:
-                break
-            j += 1
+    for line in lines:
+        # Find tag and record line number of start of loop
+        if 'loop_' in line: jloop = j
+        if tag in line:
+            break
+        j += 1
 
-        # Count columns, ie labels in loop_
-        ncol = 0
-        jtag = -1
-        for line in lines[jloop+1:]:
-            if line[0] != '_':
-                break
-            if tag in line:
-                jtag = ncol
-            ncol += 1
+    # Count columns, ie labels in loop_
+    ncol = 0
+    jtag = -1
+    for line in lines[jloop+1:]:
+        if line[0] != '_':
+            break
+        if tag in line:
+            jtag = ncol
+        ncol += 1
 
-        jlinestart = jloop+ncol+1 # first line of data
+    jlinestart = jloop+ncol+1 # first line of data
 
-        coldata = []   # required data
-        for line in lines[jlinestart:]:
-            d = line.split()
-            if len(d) != ncol:
-                break
-            coldata.append(d[jtag])
-        return coldata
+    coldata = []   # required data
+    for line in lines[jlinestart:]:
+        d = line.split()
+        if len(d) != ncol:
+            break
+        coldata.append(d[jtag])
+    return coldata
 
-# * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
 class FreerStatus():
     def __init__(self, rblock, columnlabels):
         # columnlabels contain either 'status' or 'pdbx_r_free_flag'
@@ -626,7 +591,7 @@ class FreerStatus():
                           len(self.statuslist), len(self.freerlist))
                     return
                 self.flagssame = self.sameFlags()
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     def warning(self):
         # Returns list of warning messages if the is a problem, else ''
         s = []
@@ -643,19 +608,17 @@ class FreerStatus():
             s.append("WARNING: some FreeR flags are flagged as missing")
 
         return s
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     def checkStatus(self):
         # check to see if status flags are all the same
-        tag = 'status'
         # returns list of ints, 'f' -> 0, or 'o' -> 1
-        self.statuslist = self.make_freer_array(tag)
+        self.statuslist = self.make_freer_array()
         # return True if all values are the same
         return self.allTheSame(self.statuslist)
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    def make_freer_array(self, tag):
+
+    def make_freer_array(self):
         #  status is a single character string, convert to int
-        gc = GetColumn()
-        scol = gc.getcolumn(self.rblock, tag)
+        scol = getcolumn(self.rblock, "status")
         # Check for valid status flag
         s = self.isStatusValid(scol[0])
         self.freerStatusType = s
@@ -667,7 +630,7 @@ class FreerStatus():
         elif s == 'integer':
             self.statussame = self.readRfreeFlag('status')
             return self.freerlist
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     def isStatusValid(self, status):
         # Check for valid status flag
         vf = self.status_to_freeflag(status)
@@ -775,19 +738,19 @@ class FreerStatus():
             if self.rfreeflagsame:
                 return False
         return True
-        
+
 # * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 def printLines(slist):
     # Print a list of strings sensibly
     WIDTH = 76  # characters
     sl = " "
     n = 1
-    for i in range(len(slist)):
-        n += len(slist[i])+2
+    for i, string in enumerate(slist):
+        n += len(string) + 2
         if n > WIDTH:
             sl += '\n  '
             n = 1
-        sl += slist[i]
+        sl += string
         if i < len(slist)-1:
             sl += ', '
     print(sl)
@@ -840,4 +803,3 @@ def printBlockInfo(cifblockinfo):
         if len(frs.warning()) > 0:
             for s in frs.warning():
                 print(s)
-        

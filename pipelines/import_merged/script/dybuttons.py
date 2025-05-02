@@ -1,13 +1,9 @@
-from __future__ import print_function
-
 # Some classes to help handle dynamic GUI buttons
 
-from PySide2 import QtCore,QtGui, QtWidgets
-
-import math
 import functools
-# -------------------------------------------------------------
-####class ChoiceButtons(QtWidgets.QWidget):
+from PySide2 import QtCore, QtWidgets
+
+
 class ChoiceButtons(QtWidgets.QDialog):
 #
 # A class to handle a variable number of choice buttons, with annotations
@@ -45,17 +41,14 @@ class ChoiceButtons(QtWidgets.QDialog):
     applySignal = QtCore.Signal()
     cancelSignal = QtCore.Signal()
 
-    def __init__(self,parent=None):
-        ###QtWidgets.QWidget.__init__(self, parent)
-        QtWidgets.QDialog.__init__(self, parent)
+    def __init__(self, parent=None):
+        super().__init__(parent)
         self.selected = ""
         self.selectedList = []
-        layout = QtWidgets.QVBoxLayout()
-        self.setLayout(layout)
-        layout.setSpacing(0)
-        self.mylayout = layout
-        
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        self.mylayout = QtWidgets.QVBoxLayout()
+        self.setLayout(self.mylayout)
+        self.mylayout.setSpacing(0)
+
     def setChoices(self, title, choices, tags=None, notes=None, subtitle=None, exclusiveChoice=True):
         # title       heading for the pane (bold)
         # choices     list of button names
@@ -70,8 +63,6 @@ class ChoiceButtons(QtWidgets.QDialog):
         if notes is not None:
             if (len(notes) == 0 or (len(notes) == 1 and notes[0] == '')):
                 notes_ = None
-        #print("setChoices", choices, "\n", tags_)
-        self.numberOfChoices = len(choices)
 
         self.selectedList = []
         layout = self.layout()
@@ -89,20 +80,20 @@ class ChoiceButtons(QtWidgets.QDialog):
         layout.addWidget(QtWidgets.QLabel(" "))
 
         # draw each choice + labels etc
-        for i in range(len(choices)):
+        for i, choice in enumerate(choices):
             # choice + tag on same line
             linelayout = QtWidgets.QHBoxLayout()
             linelayout.setSpacing(10)
             label = QtWidgets.QLabel('>> ')
             linelayout.addWidget(label)
-            c = str(choices[i])  # the choice
+            c = str(choice)  # the choice
             if exclusiveChoice:
-                button = QtWidgets.QRadioButton(str(c))
+                button = QtWidgets.QRadioButton(c)
                 if i == 0: button.setChecked(True)  # mark 1st as default
             else:
-                button = QtWidgets.QCheckBox(str(c))
+                button = QtWidgets.QCheckBox(c)
                 button.setChecked(True)  # all checked
-                self.selectedList.append(str(c))
+                self.selectedList.append(c)
             button.setMinimumWidth(80)
             linelayout.addWidget(button)
             if exclusiveChoice:
@@ -128,22 +119,19 @@ class ChoiceButtons(QtWidgets.QDialog):
 
         self.mylayout = layout
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     @QtCore.Slot(str)
     def setSelected(self,s):
         #print("DYB setSelected", s)
         self.selected = s
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # @QtCore.Slot(str)
     def setSelectedList(self, state):
         # print(state, self.sender().text())
-        if self.sender().text() not in self.selectedList and state == True:
+        if self.sender().text() not in self.selectedList and state is True:
             self.selectedList.append(self.sender().text())
-        elif self.sender().text() in self.selectedList and state == False:
+        elif self.sender().text() in self.selectedList and state is False:
             self.selectedList.remove(self.sender().text())
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def clearLayout(self, layout):
         # Clear everything in a layout, from stack overflow
         if layout is not None:
@@ -154,11 +142,9 @@ class ChoiceButtons(QtWidgets.QDialog):
                 elif child.layout() is not None:
                     self.clearLayout(child.layout())
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def getLayout(self):
         return self.layout()
     
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def addOtherText(self, header, textlist):
         # List of text strings to be displayed below buttons
         layout = self.layout()
@@ -173,7 +159,6 @@ class ChoiceButtons(QtWidgets.QDialog):
             label.setStyleSheet("color:SteelBlue;")
             layout.addWidget(label)
             
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def addActionButtons(self):
         buttonLine = QtWidgets.QHBoxLayout()
         buttonLine.addStretch(.5)
@@ -187,9 +172,8 @@ class ChoiceButtons(QtWidgets.QDialog):
         self.layout().addWidget(QtWidgets.QLabel(" "))
         self.layout().addLayout(buttonLine)
 
-#-------------------------------------------------------------------
+
 class selectBox():
-    # Use dybuttons
     def __init__(self, title, choices, tags=None, notes=None, subtitle=None):
         self.selected = choices[0]
         self.cb = ChoiceButtons()
@@ -201,36 +185,30 @@ class selectBox():
         self.cb.applySignal.connect(self.handleApply)
         self.cb.cancelSignal.connect(self.handleCancel)
         
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def buttonClicked(self):
         self.selected = self.cb.selected
         print("Selected:", self.selected)
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def getSelected(self):
         return self.selected
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def handleApply(self):
         print("handleApply", self.selected)
         self.cb.hide()
         
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def handleCancel(self):
         self.selected = 'Cancelled'
         print("handleCancel")
         self.cb.hide()
     
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def execit(self):
         self.cb.exec_()
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def deleteLater(self):
         self.cb.clearLayout(self.cb.getLayout())
         self.cb.deleteLater()
 
-#-------------------------------------------------------------------
+
 class MyMessageBox:
     # A simple warning message box
     # Exits from displayText are: 0 for Open, 1 for Abort
@@ -270,7 +248,7 @@ class MyMessageBox:
         buttons = 0
         for b in self.buttonlist: buttons |= b
         self.msgBox.setStandardButtons(buttons)
-        self.msgBox.setDefaultButton(self.buttonlist[self.default]);
-        ret = self.msgBox.exec_();
+        self.msgBox.setDefaultButton(self.buttonlist[self.default])
+        ret = self.msgBox.exec_()
         idx = self.buttonlist.index(ret)
         return idx

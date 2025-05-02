@@ -1,12 +1,9 @@
-import sys
-import math
-import numpy
-import gemmi
-
 from lxml import etree
+import gemmi
+import numpy
 
-from pipelines.import_merged.script.importutils import *
-#from importutils import *
+from pipelines.import_merged.script.importutils import addXMLelement, ReflectionDataTypes
+
 
 class ImportMTZ():
     # Import MTZ into I2 objects
@@ -46,14 +43,12 @@ class ImportMTZ():
         print ('col1', col1, type(obsColLabels[0]), obsColLabels[0])
         datasetID = col1.dataset_id
 
-        chosenDatasetIndex = -1
         chosenDataset = None
-        for i in range(len(mtz.datasets)):
-            if mtz.datasets[i].id == datasetID:
-                chosenDatasetIndex = i
-                chosenDataset = mtz.datasets[i]
+        for dataset in mtz.datasets:
+            if dataset.id == datasetID:
+                chosenDataset = dataset
                 break
-            
+
         contentType = ReflectionDataTypes.CONTENT_TYPES[contentFlag]
         print(contentFlag, contentType)
 
@@ -114,7 +109,6 @@ class ImportMTZ():
             print("File ", freerfile, " written, number of reflections",
               len(data))
 
-        
         self.makeXMLreport(nrefunique, nrefunique, contentType,
                            resorangein, resorange)
                            
@@ -142,7 +136,6 @@ class ImportMTZ():
                 #  MTZ column label, column type
                 self.addMTZcolumnLabelType(mtzout, spec)
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def setMtzResolutionLimits(self, mtz, resorange):
         dmin = resorange[1]
         if resorange[0] > 0.0:
@@ -153,7 +146,6 @@ class ImportMTZ():
             mtz.set_data(mtz.array[mtz.make_d_array() >= dmin])
         return mtz
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def addMTZcolumnLabelType(self, mtz, spec):
         #  MTZ column label, column type, fix Freer type
         clabel = spec.split()[1]
@@ -164,7 +156,6 @@ class ImportMTZ():
         mtz.add_column(clabel, ctype)
         self.outputcolumns.append(clabel)
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def makeXMLreport(self, nrefunique, nreffreer, contentType,
                       resorangein, resorangeout):
         
@@ -190,23 +181,19 @@ class ImportMTZ():
             rrngxml = self.resorangeXML(resorangeout, 'cutresolution')
             self.importXML.append(rrngxml)
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def getstatus(self):
         return self.status
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def getXML(self):
         return self.importXML
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def resorangeXML(self, resorange, id=None):
         # XML version of resolution range, a tuple of (dmax, dmin)
         resoxml = etree.Element('ResolutionRange')
         if id is not None:
             resoxml.set('id', id)
         if resorange[0] > 0.0:
-            addXMLelement(resoxml, 'min', "{:.3f}".format(resorange[0]))
+            addXMLelement(resoxml, 'min', f"{resorange[0]:.3f}")
         if resorange[1] > 0.0:
-            addXMLelement(resoxml, 'max', "{:.3f}".format(resorange[1]))
+            addXMLelement(resoxml, 'max', f"{resorange[1]:.3f}")
         return resoxml
-

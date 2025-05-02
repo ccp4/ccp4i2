@@ -7,15 +7,15 @@
     <pluginVersion></pluginVersion>
     <ccp4iVersion>0.0.1</ccp4iVersion>
     <pluginName>x2mtz</pluginName>
-    <jobId/>
+    <jobId />
   </ccp4i2_header>
-  <ccp4i2_body id="mtz2mini">
+  <ccp4i2_body>
     <container id="inputData">
       <content id="HKLIN">
         <className>CMtzDataFile</className>
         <qualifiers>
           <mustExist>True</mustExist>
-	  <allowUndefined>False</allowUndefined>
+          <allowUndefined>False</allowUndefined>
         </qualifiers>
       </content>
       <content id="HKLIN_OBS_CONTENT_FLAG">
@@ -24,22 +24,22 @@
       <content id="HKLIN_OBS_COLUMNS">
         <className>CString</className>
       </content>
-       <content id="HKLIN_FREER_COLUMN">
+      <content id="HKLIN_FREER_COLUMN">
         <className>CString</className>
-       </content>
-       </container>
-       <container id="outputData">
+      </content>
+    </container>
+    <container id="outputData">
       <content id="HKLOUT">
         <className>CMtzDataFile</className>
-        <qualifiers/>
+        <qualifiers />
       </content>
       <content id="OBSOUT">
         <className>CObsDataFile</className>
-        <qualifiers/>
+        <qualifiers />
       </content>
       <content id="FREEOUT">
         <className>CFreeRDataFile</className>
-        <qualifiers/>
+        <qualifiers />
       </content>
     </container>
     <container id="controlParameters">
