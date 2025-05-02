@@ -758,46 +758,51 @@ class prosmart_refmac(CPluginScript):
         if asuin.isSet():
             """
             FIXME - This needs to work for models with more than one chain
-                    or the Beta-Blip case with both target sequences in same chain in final model.
-            So, ideas:
+            (Some of?) possibilities:
             [x] If the model has one chain and the user has input one test target sequences then OK.
             [ ] If the model has one chain and the user has input multiple test target sequences then
                 we can try all concat combinations and see which is best.
             [ ] Multiple chains and one target - try all chains.
             [ ] Multiple chains and multiple targets - Hmm. Lots of combinations.
             """
-            for idx in range(len(asuin.fileContent.seqList)):
-                print(idx)
-                print(asuin.fileContent.seqList[idx],type(asuin.fileContent.seqList[idx]))
-                asu_seq_0 = asuin.fileContent.seqList[idx].sequence
             try:
-                n = 69
-                asu_seq_0_pir = ">P1;refinement_model\n\n" + ("\n").join([asu_seq_0[i:i+n] for i in range(0, len(asu_seq_0), n)]) + "*"
                 import gemmi
-                total_model_seq = ""
+                n = 69
+                provide_seq_asu = []
+                for idx in range(len(asuin.fileContent.seqList)):
+                    print(idx)
+                    print(asuin.fileContent.seqList[idx],type(asuin.fileContent.seqList[idx]))
+                    asu_seq_0 = asuin.fileContent.seqList[idx].sequence
+                    asu_seq_0_pir = ">P1;"+str(asuin.fileContent.seqList[idx].name)+"\n\n" + ("\n").join([asu_seq_0[i:i+n] for i in range(0, len(asu_seq_0), n)]) + "*"
+                    provide_seq_asu_i = self.makePluginObject('ProvideSequence')
+                    provide_seq_asu_i.container.controlParameters.SEQUENCETEXT.set(asu_seq_0_pir)
+                    provide_seq_asu_i.process()
+                    provide_seq_asu.append(provide_seq_asu_i)
+
+                provide_seq_chain = []
                 st = gemmi.read_structure(str(self.container.outputData.XYZOUT))
                 st.setup_entities()
                 for n_ch, chain in enumerate(st[0]):
+                    print("There is a new chain",chain.name)
+                    total_chain_seq = ""
                     for n_res, res in enumerate(chain):
-                        total_model_seq += gemmi.one_letter_code([res.name])
+                        total_chain_seq += gemmi.one_letter_code([res.name])
 
-                seq_model_pir = ">P1;refinement_model\n\n" + ("\n").join([total_model_seq[i:i+n] for i in range(0, len(total_model_seq), n)]) + "*"
-                self.provide_seq_asu_0 = self.makePluginObject('ProvideSequence')
-                self.provide_seq_asu_0.container.controlParameters.SEQUENCETEXT.set(asu_seq_0_pir)
-                self.provide_seq_asu_0.process()
+                        seq_model_pir = ">P1;refinement_model\n\n" + ("\n").join([total_chain_seq[i:i+n] for i in range(0, len(total_chain_seq), n)]) + "*"
 
-                self.provide_seq_model = self.makePluginObject('ProvideSequence')
-                self.provide_seq_model.container.controlParameters.SEQUENCETEXT.set(seq_model_pir)
-                self.provide_seq_model.process()
+                    provide_seq_chain_i = self.makePluginObject('ProvideSequence')
+                    provide_seq_chain_i.container.controlParameters.SEQUENCETEXT.set(seq_model_pir)
+                    provide_seq_chain_i.process()
+                    provide_seq_chain.append(provide_seq_chain_i)
 
                 try:
-                    self.clustalw = self.makePluginObject('clustalw')
-                    self.clustalw.container.inputData.SEQUENCELISTORALIGNMENT.set("SEQUENCELIST")
-                    self.clustalw.container.inputData.SEQIN.append(self.clustalw.container.inputData.SEQIN.makeItem())
-                    self.clustalw.container.inputData.SEQIN[-1].setFullPath(str(self.provide_seq_model.container.outputData.SEQUENCEFILE_LIST[0].fullPath))
-                    self.clustalw.container.inputData.SEQIN.append(self.clustalw.container.inputData.SEQIN.makeItem())
-                    self.clustalw.container.inputData.SEQIN[-1].setFullPath(str(self.provide_seq_asu_0.container.outputData.SEQUENCEFILE_LIST[0].fullPath))
-                    self.clustalw.process()
+                    clustalw = self.makePluginObject('clustalw')
+                    clustalw.container.inputData.SEQUENCELISTORALIGNMENT.set("SEQUENCELIST")
+                    clustalw.container.inputData.SEQIN.append(clustalw.container.inputData.SEQIN.makeItem())
+                    clustalw.container.inputData.SEQIN[-1].setFullPath(str(provide_seq_chain[0].container.outputData.SEQUENCEFILE_LIST[0].fullPath))
+                    clustalw.container.inputData.SEQIN.append(clustalw.container.inputData.SEQIN.makeItem())
+                    clustalw.container.inputData.SEQIN[-1].setFullPath(str(provide_seq_asu[0].container.outputData.SEQUENCEFILE_LIST[0].fullPath))
+                    clustalw.process()
 
                 except Exception as err:
                     traceback.print_exc()
