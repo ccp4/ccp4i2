@@ -1,4 +1,5 @@
 from pathlib import Path
+import json
 from gemmi import CoorFormat, read_mtz_file, read_structure
 from .utils import demoData, hasLongLigandName, i2run
 
@@ -7,6 +8,9 @@ def _check_output(job: Path):
     read_structure(str(job / "XYZOUT.cif"), format=CoorFormat.Mmcif)
     for name in ["ABCD", "DIFFPHI", "FPHI"]:
         read_mtz_file(str(job / f"{name}OUT.mtz"))
+    with (job / "modelcraft" / "modelcraft.json").open() as json_file:
+        results = json.load(json_file)
+        assert results["final"]["r_free"] < 0.3
 
 
 def test_8xfm(cif8xfm, mtz8xfm, seq8xfm):
