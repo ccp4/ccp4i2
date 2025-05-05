@@ -18,3 +18,6 @@ def test_phaser_ep():
             gemmi.read_mtz_file(str(job / f"{name}.mtz"))
         for name in ["PHASER.1", "PHASER.1.hand"]:
             gemmi.read_pdb(str(job / f"{name}.pdb"))
+        model = gemmi.read_structure(str(job / "PHASER.1.pdb"))[0]
+        occs = [cra.atom.occ for cra in model.all()]
+        assert [occ > 0.11 for occ in occs].count(True) == 3
