@@ -1,3 +1,4 @@
+import xml.etree.ElementTree as ET
 import gemmi
 from .utils import demoData, i2run
 
@@ -10,3 +11,6 @@ def test_parrot():
     with i2run(args) as job:
         for name in ["ABCDOUT", "FPHIOUT"]:
             gemmi.read_mtz_file(str(job / f"{name}.mtz"))
+        xml = ET.parse(job / "program.xml")
+        foms = [float(e.text) for e in xml.findall(".//MeanFOM")]
+        assert max(foms) > 0.8
