@@ -1,3 +1,4 @@
+import xml.etree.ElementTree as ET
 import gemmi
 from .utils import demoData, i2run
 
@@ -23,3 +24,8 @@ def test_substitute_ligand():
             gemmi.read_mtz_file(str(job / f"{name}.mtz"))
         gemmi.read_structure(str(job / "selected_atoms.pdb"), format=gemmi.CoorFormat.Mmcif)
         gemmi.read_structure(str(job / "XYZOUT.pdb"))
+        xml = ET.parse(job / "program.xml")
+        rworks = [float(e.text) for e in xml.iter("r_factor")]
+        rfrees = [float(e.text) for e in xml.iter("r_free")]
+        assert rworks[-1] < 0.23
+        assert rfrees[-1] < 0.23
