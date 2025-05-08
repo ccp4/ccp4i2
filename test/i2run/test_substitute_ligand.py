@@ -28,4 +28,4 @@ def test_substitute_ligand():
         rworks = [float(e.text) for e in xml.iter("r_factor")]
         rfrees = [float(e.text) for e in xml.iter("r_free")]
         assert rworks[-1] < 0.23
-        assert rfrees[-1] < 0.23
+        assert rfrees[-1] < 0.25

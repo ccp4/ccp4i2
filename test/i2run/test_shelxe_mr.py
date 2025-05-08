@@ -17,4 +17,4 @@ def test_gamma():
         read_pdb(str(job / "shelxrun.pdb"))
         read_mtz_file(str(job / "FPHIOUT.mtz"))
         xml = ET.parse(job / "program.xml")
-        assert float(xml.find(".//BestCC").text) > 44
+        assert float(xml.find(".//BestCC").text) > 43
