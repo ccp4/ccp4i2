@@ -116,8 +116,7 @@
             "shelxeMR",
             "dr_mr_modelbuild_pipeline",
             "ccp4mg_general",
-            "coot1",
-            "coot_gtk3_rebuild"
+            "coot1"
         ],
         "model_data_utility": [
             "csymmatch",
@@ -167,6 +166,7 @@
             "ShelxCECompareHands",
             "cif2mtz",
             "convert2mtz",
+            "coot1",
             "fft",
             "import_serial",
             "libcheck",
@@ -764,15 +764,6 @@
                 "class": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues_reportcoot_fit_residues_report",
                 "clsModule": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues_report",
                 "clsName": "coot_fit_residues_report",
-                "modes": []
-            }
-        },
-        "coot_gtk3_rebuild": {
-            "0.0.0": {
-                "MAINTAINER": "Nobody",
-                "class": "wrappers.coot_gtk3_rebuild.script.coot_gtk3_rebuild_reportcoot_gtk3_rebuild_report",
-                "clsModule": "wrappers.coot_gtk3_rebuild.script.coot_gtk3_rebuild_report",
-                "clsName": "coot_gtk3_rebuild_report",
                 "modes": []
             }
         },
@@ -2455,10 +2446,10 @@
             }
         },
         "coot1": {
-            "0.0": {
+            "0.1": {
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
-                "MAINTAINER": "martin.noble@newcastle.ac.uk",
+                "MAINTAINER": "paul.bond@york.ac.uk",
                 "TASKTITLE": "Coot 1",
                 "class": "wrappers.coot1.script.coot1coot1",
                 "clsModule": "wrappers.coot1.script.coot1",
@@ -2489,19 +2480,6 @@
                 "class": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residuescoot_fit_residues",
                 "clsModule": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues",
                 "clsName": "coot_fit_residues",
-                "internal": false,
-                "subTasks": []
-            }
-        },
-        "coot_gtk3_rebuild": {
-            "0.0": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "martin.noble@newcastle.ac.uk",
-                "TASKTITLE": "Rebuild model with coot - Gtk3",
-                "class": "wrappers.coot_gtk3_rebuild.script.coot_gtk3_rebuildcoot_gtk3_rebuild",
-                "clsModule": "wrappers.coot_gtk3_rebuild.script.coot_gtk3_rebuild",
-                "clsName": "coot_gtk3_rebuild",
                 "internal": false,
                 "subTasks": []
             }
@@ -4186,10 +4164,9 @@
         "cmapcoeff": "qticons/cmapcoeff.png",
         "comit": "qticons/ccp4.png",
         "coordinate_selector": "qticons/coordinate_selector.png",
-        "coot1": "qticons/ccp4.png",
+        "coot1": "qticons/coot1.png",
         "coot_find_waters": "qticons/coot_find_waters.png",
         "coot_fit_residues": "qticons/ccp4.png",
-        "coot_gtk3_rebuild": "qticons/ccp4.png",
         "coot_rebuild": "qticons/coot_rebuild.png",
         "coot_rsr_morph": "qticons/coot_rsr_morph.png",
         "coot_script_lines": "qticons/coot_script_lines.png",
@@ -5178,16 +5155,16 @@
         },
         "coot1": {
             "0.0.0": {
-                "DESCRIPTION": "Interactive building (Coot)",
+                "DESCRIPTION": "Interactive model building with Coot 1",
                 "MAINTAINER": "Nobody",
                 "RANK": null,
-                "TASKTITLE": "Coot 1",
+                "TASKTITLE": null,
                 "class": "wrappers.coot1.script.coot1_guiCcoot1",
                 "clsModule": "wrappers.coot1.script.coot1_gui",
                 "clsName": "Ccoot1",
-                "shortTitle": "COOT1",
+                "shortTitle": null,
                 "taskName": "coot1",
-                "taskVersion": 0.1
+                "taskVersion": "0.0.0"
             }
         },
         "coot_find_waters": {
@@ -5218,26 +5195,12 @@
                 "taskVersion": 0.1
             }
         },
-        "coot_gtk3_rebuild": {
-            "0.0.0": {
-                "DESCRIPTION": "Interactive building (Gtk3 Coot)",
-                "MAINTAINER": "Nobody",
-                "RANK": null,
-                "TASKTITLE": "Model building - COOT Gtk3",
-                "class": "wrappers.coot_gtk3_rebuild.script.coot_gtk3_rebuild_guiCcoot_gtk3_rebuild",
-                "clsModule": "wrappers.coot_gtk3_rebuild.script.coot_gtk3_rebuild_gui",
-                "clsName": "Ccoot_gtk3_rebuild",
-                "shortTitle": "COOT-Gtk3",
-                "taskName": "coot_gtk3_rebuild",
-                "taskVersion": 0.1
-            }
-        },
         "coot_rebuild": {
             "0.0.0": {
-                "DESCRIPTION": "Interactive building (Coot)",
+                "DESCRIPTION": "Interactive building (Coot 0.9)",
                 "MAINTAINER": "Nobody",
                 "RANK": null,
-                "TASKTITLE": "Model building - COOT",
+                "TASKTITLE": "Model building - COOT 0.9",
                 "class": "wrappers.coot_rebuild.script.coot_rebuild_guiCcoot_rebuild",
                 "clsModule": "wrappers.coot_rebuild.script.coot_rebuild_gui",
                 "clsName": "Ccoot_rebuild",

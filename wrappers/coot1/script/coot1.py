@@ -10,7 +10,6 @@ class coot1(CPluginScript):
     TASKTITLE = "Coot 1"
     TASKCOMMAND = str(Path(environ["CCP4"], "coot_py3", "bin", "coot"))
     TASKVERSION = 0.1
-    DESCRIPTION = "Interactive model building with Coot 1)"
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = "paul.bond@york.ac.uk"

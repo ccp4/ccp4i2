@@ -3,6 +3,7 @@ from qtgui.CCP4TaskWidget import CTaskWidget
 
 class Ccoot1(CTaskWidget):
     TASKNAME = "coot1"
+    DESCRIPTION = "Interactive model building with Coot 1"
 
     def drawContents(self):
         self.openFolder(folderFunction="inputData")
