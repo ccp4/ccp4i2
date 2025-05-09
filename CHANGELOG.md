@@ -1,5 +1,9 @@
 # CCP4i2 Changelog
 
+## [2.3.0] - 2025-05-09
+
+- Added a Coot 1 task
+
 ## [2.2.6] - 2025-04-24
 
 - Fix for import merged from a CIF file with a non-standard ASU
