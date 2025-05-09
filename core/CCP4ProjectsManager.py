@@ -1677,13 +1677,6 @@ class CPurgeProject(CObject):
 
     def purgeProject(self, severity=None, context='temporary'):
         from core.CCP4Modules import PROJECTSMANAGER
-        ''' # Concept of LastCleanupTime complicated by possibility of differnt severities of cleanup
-        if self.db is not None and self.projectId is not None:
-          lastCleanupTime = self.db.getProjectInfo(projectId=self.projectId,mode='lastcleanuptime')
-          import time
-          self.db.updateProject(projectId=self.projectId,key='LastCleanupTime',value=time.time())
-        else:
-          lastCleanupTime = None '''
         if severity is None:
             severity = CPurgeProject.CONTEXTLOOKUP.get(context)
         for jN, tN, iN, jS in self.topJobs(lastCleanupTime=None):
@@ -1698,23 +1691,22 @@ class CPurgeProject(CObject):
         # If search item does not have a third element then add one
         from core import CCP4TaskManager
         mySearchList = []
-        for idx in range(len(self.SEARCHLIST)):
+        for item in self.SEARCHLIST:
             try:
-                if self.SEARCHLIST[idx][1] in severity:
-                    if len(self.SEARCHLIST[idx]) == 2:
-                        mySearchList.append([self.SEARCHLIST[idx][0], self.SEARCHLIST[idx][1], None])
+                if item[1] in severity:
+                    if len(item) == 2:
+                        mySearchList.append([item[0], item[1], None])
                     else:
-                        mySearchList.append(self.SEARCHLIST[idx])
+                        mySearchList.append(item)
             except:
-                print('FAILED handling file purge search item', self.SEARCHLIST[idx])
+                print('FAILED handling file purge search item', item)
         taskList = CCP4TaskManager.TASKMANAGER().getTaskAttribute(taskName, 'PURGESEARCHLIST', script=True)
-        #print 'getTaskSearchList',taskName,taskList
         if taskList is not None:
-            for ii in range(len(taskList)):
-                if len(taskList[ii]) == 2:
-                    search = [taskList[ii][0] , taskList[ii][1], None]
+            for task in taskList:
+                if len(task) == 2:
+                    search = [task[0] , task[1], None]
                 else:
-                    search = taskList[ii]
+                    search = task
                 idx = self.searchListIndex(mySearchList, search[0])
                 if idx >= 0:
                     mySearchList[idx] = search
