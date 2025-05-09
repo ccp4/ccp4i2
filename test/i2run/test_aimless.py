@@ -5,7 +5,7 @@ from pytest import approx
 from .utils import demoData, i2run
 
 
-def check_result(job: Path):
+def check_result(job: Path, spacegroup, resolution, rmeas):
     for name in [
         "FREERFLAG",
         "HKLOUT_0-observed_data_asIMEAN",
@@ -14,28 +14,20 @@ def check_result(job: Path):
     ]:
         read_mtz_file(str(job / f"{name}.mtz"))
     tree = ET.parse(job / "XMLOUT.xml")
-    return {
-        "spacegroup": tree.find(".//Result/Dataset/SpacegroupName").text,
-        "resolution": float(tree.find(".//ResolutionHigh/Overall").text),
-        "rmeas": float(tree.find(".//Rmeas/Overall").text),
-    }
+    assert tree.find(".//Result/Dataset/SpacegroupName").text == spacegroup
+    assert float(tree.find(".//ResolutionHigh/Overall").text) == approx(resolution)
+    assert float(tree.find(".//Rmeas/Overall").text) == approx(rmeas)
 
 
 def test_gamma():
     mtz = demoData("gamma", "gamma_native.mtz")
     args = ["aimless_pipe", "--UNMERGEDFILES", f"file={mtz}"]
     with i2run(args) as job:
-        result = check_result(job)
-        assert result["spacegroup"] == "P 21 21 21"
-        assert result["resolution"] == approx(1.81)
-        assert result["rmeas"] == approx(0.061)
+        check_result(job, "P 21 21 21", 1.81, 0.061)
 
 
 def test_mdm2():
     mtz = demoData("mdm2", "mdm2_unmerged.mtz")
     args = ["aimless_pipe", "--UNMERGEDFILES", f"file={mtz}"]
     with i2run(args) as job:
-        result = check_result(job)
-        assert result["spacegroup"] == "P 61 2 2"
-        assert result["resolution"] == approx(1.25)
-        assert result["rmeas"] == approx(0.068)
+        check_result(job, "P 61 2 2", 1.25, 0.068)

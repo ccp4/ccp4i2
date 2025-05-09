@@ -20,4 +20,4 @@ def test_phaser_ep():
             gemmi.read_pdb(str(job / f"{name}.pdb"))
         model = gemmi.read_structure(str(job / "PHASER.1.pdb"))[0]
         occs = [cra.atom.occ for cra in model.all()]
-        assert [occ > 0.11 for occ in occs].count(True) == 3
+        assert sum(occ > 0.11 for occ in occs) == 3
