@@ -18,13 +18,12 @@ class coot1(CPluginScript):
 
     ERROR_CODES = {}
 
-    def makeCommandAndScript(self):
+    def makeCommandAndScript(self, container=None):
         inputData = self.container.inputData
 
         if inputData.XYZIN_LIST.isSet():
             for path in inputData.XYZIN_LIST:
                 self.appendCommandLine(["--coords", path])
-                # script.append(f"coot.read_coordinates('{path}')")
 
         if inputData.DICT.isSet():
             self.appendCommandLine(["--dictionary", inputData.DICT])
