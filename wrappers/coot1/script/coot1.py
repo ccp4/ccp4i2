@@ -16,6 +16,7 @@ class coot1(CPluginScript):
     TASKNAME = "coot1"
     TASKMODULE = "model_building"
     TASKTITLE = "Coot 1"
+    SHORTTASKTITLE = "Coot 1"
     TASKCOMMAND = coot1Command()
     TASKVERSION = 0.1
     ASYNCHRONOUS = True
