@@ -3,6 +3,8 @@ from qtgui.CCP4TaskWidget import CTaskWidget
 
 class Ccoot1(CTaskWidget):
     TASKNAME = "coot1"
+    TASKTITLE = "Coot 1"
+    SHORTTASKTITLE = "Coot 1"
     DESCRIPTION = "Interactive model building with Coot 1"
 
     def drawContents(self):
