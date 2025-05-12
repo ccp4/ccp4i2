@@ -1,3 +1,4 @@
+import re
 import gemmi
 from .utils import demoData, i2run
 
@@ -19,3 +20,6 @@ def test_crank2():
     with i2run(args) as job:
         for name in ["FPHOUT_DIFFANOM", "FPHOUT_HL", "FPHOUT", "FREEROUT"]:
             gemmi.read_mtz_file(str(job / f"{name}.mtz"))
+        log = (job / "log.txt").read_text()
+        foms = [float(x) for x in re.findall(r"FOM is (0\.\d+)", log)]
+        assert max(foms) > 0.7

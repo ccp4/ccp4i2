@@ -1,3 +1,4 @@
+import re
 from gemmi import read_mtz_file, read_pdb
 from pytest import fixture
 from .urls import pdbe_fasta, redo_mtz
@@ -28,3 +29,8 @@ def test_single_atom_mr(fasta, mtz):
         assert len(atoms) > 0, "No atoms in the output structure"
         for name in ["ABCDOUT_1", "MAPOUT_1", "SingleMR.1"]:
             read_mtz_file(str(job / f"{name}.mtz"))
+        log = (job / "log.txt").read_text()
+        llgs = re.findall(r"Final Log-Likelihood = +([\d\.]+)", log)
+        rworks = re.findall(r"Final R-factor = +([\d\.]+)", log)
+        assert float(llgs[-1]) > 5000
+        assert float(rworks[-1]) < 23

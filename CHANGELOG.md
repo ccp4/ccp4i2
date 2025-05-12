@@ -3,6 +3,7 @@
 ## [2.3.0] - 2025-05-12
 
 - Added a Coot 1 task
+- Added performance testing to the i2run tests
 - Fix to AUSPEX command line for Windows
 
 ## [2.2.6] - 2025-04-24

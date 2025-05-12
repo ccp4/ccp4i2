@@ -1,3 +1,4 @@
+import xml.etree.ElementTree as ET
 import gemmi
 from .utils import demoData, i2run
 
@@ -14,6 +15,11 @@ def test_gamma():
             gemmi.read_pdb(str(job / f"{name}.pdb"))
         for name in ["DIFMAPOUT_1", "MAPOUT_1", "PHASEOUT_1"]:
             gemmi.read_mtz_file(str(job / f"{name}.mtz"))
+        xml = ET.parse(job / "program.xml")
+        rworks = [float(e.text) for e in xml.iter("r_factor")]
+        assert min(rworks) < 0.27
+        llgs = [float(e.text) for e in xml.findall(".//Solution/LLG")]
+        assert max(llgs) > 1000
 
 
 def test_no_solution():
