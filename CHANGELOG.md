@@ -1,7 +1,8 @@
 # CCP4i2 Changelog
 
-## [2.2.7] - 2025-05-12
+## [2.3.0] - 2025-05-12
 
+- Added a Coot 1 task
 - Fix to AUSPEX command line for Windows
 
 ## [2.2.6] - 2025-04-24
