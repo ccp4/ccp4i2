@@ -1,6 +1,21 @@
 # CCP4i2 Changelog
 
-## [2.2.4] - 2025-02-25
+## [2.3.0] - 2025-05-12
+
+- Added a Coot 1 task
+- Added performance testing to the i2run tests
+- Fix to AUSPEX command line for Windows
+- Fix for ASU contents view with QtGui/QtWidgets changes
+
+## [2.2.6] - 2025-04-24
+
+- Fix for import merged from a CIF file with a non-standard ASU
+
+## [2.2.5] - 2025-04-23
+
+- Fix for missing useLXML arguments in getEtree
+
+## [2.2.4] - 2025-04-20
 
 - Fixed window maximising on Windows
 - ModelCraft used by default in the DR/MR/MB pipeline
@@ -11,6 +26,9 @@
 - Hiding nanobind leak warnings from Gemmi 0.7
 - Changing Buccaneer to ModelCraft in the Phaser EP task
 - Fixed MrParse report on Windows
+- Increased maximum Coot files saved from 10 to 250
+- Added an i2run script for Windows
+- Added more i2run tests to replace test101
 
 ## [2.2.3] - 2025-02-07
 
