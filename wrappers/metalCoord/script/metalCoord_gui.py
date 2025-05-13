@@ -14,7 +14,6 @@ class CmetalCoord_gui(CCP4TaskWidget.CTaskWidget):
         CCP4TaskWidget.CTaskWidget.__init__(self, parent)
 
     def drawContents(self):
-        tab = '&nbsp;&nbsp;&nbsp;&nbsp;'
         self.openFolder(folderFunction='inputData', title='Input Data')
         self.createLine(['tip', 'Atomic model', 'widget', 'XYZIN'])
         self.createLine(['label', 'Monomer code', 'widget', 'LIGAND_CODE'])
