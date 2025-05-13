@@ -1,5 +1,5 @@
 from pathlib import Path
-from gemmi import CoorFormat, read_structure
+from gemmi import read_structure
 from pytest import fixture
 from .urls import pdbe_mmcif
 from .utils import download, i2run
@@ -27,5 +27,5 @@ def test_single_atom_mr(cif):
     with i2run(args) as job:
         for ext in ("_coot.txt", ".mmcif", ".params", ".pdb", ".txt"):
             assert Path(job / f"AF3_restraints{ext}").exists()
-        read_structure(str(job / "AF3_restraints.mmcif"), format=CoorFormat.Mmcif)
-        read_structure(str(job / "AF3_restraints.pdb"), format=CoorFormat.Pdb)
+        read_structure(str(job / "AF3_restraints.mmcif"))
+        read_structure(str(job / "AF3_restraints.pdb"))
