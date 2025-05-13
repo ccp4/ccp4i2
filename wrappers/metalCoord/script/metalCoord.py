@@ -49,13 +49,13 @@ class metalCoord(CPluginScript):
         if self.container.controlParameters.USE_PDB:
             self.appendCommandLine('--use-pdb')
         self.appendCommandLine(['-l', self.container.inputData.LIGAND_CODE])
-        outputJsonFilename = str(self.container.inputData.LIGAND_CODE) + ".json"
+        outputJsonFilename = f"{self.container.inputData.LIGAND_CODE}.json"
         self.outputJsonPath = os.path.join(self.getWorkDirectory(), outputJsonFilename)
         self.appendCommandLine(['-o', outputJsonFilename])
 
     def processOutputFiles(self):
         # sanity check that metalCoord finished successfully - from .json.status.json
-        outputJsonStatusFilename = str(self.container.inputData.LIGAND_CODE) + ".json.status.json"
+        outputJsonStatusFilename = f"{self.container.inputData.LIGAND_CODE}.json.status.json"
         outputJsonStatusPath = os.path.join(self.getWorkDirectory(), outputJsonStatusFilename)
         with open(outputJsonStatusPath, encoding="utf-8") as file:
             data = json.load(file)
@@ -72,7 +72,7 @@ class metalCoord(CPluginScript):
         # Load JSON file content
         if os.path.isfile(self.outputJsonPath):
             self.container.outputData.JSON.setFullPath(self.outputJsonPath)
-            self.container.outputData.JSON.annotation = 'Full analysis for monomer ' + str(self.container.inputData.LIGAND_CODE)
+            self.container.outputData.JSON.annotation = f'Full analysis for monomer {self.container.inputData.LIGAND_CODE}'
             with open(self.outputJsonPath, encoding="utf-8") as outputJsonFile:
                 outputJsonText = outputJsonFile.read()
         else:
@@ -80,9 +80,9 @@ class metalCoord(CPluginScript):
             return CPluginScript.FAILED
 
         # Convert JSON to external restraint keywords
-        outputRestraintsPrefix = str(self.container.inputData.LIGAND_CODE) + "_restraints"
-        outputRestraintsFilename = outputRestraintsPrefix + ".txt"
-        outputRestraintsMmcifFilename = outputRestraintsPrefix + ".mmcif"
+        outputRestraintsPrefix = f"{self.container.inputData.LIGAND_CODE}_restraints"
+        outputRestraintsFilename = f"{outputRestraintsPrefix}.txt"
+        outputRestraintsMmcifFilename = f"{outputRestraintsPrefix}.mmcif"
         outputRestraintsPathPrefix = os.path.join(self.getWorkDirectory(), outputRestraintsPrefix)
         outputRestraintsPath = os.path.join(self.getWorkDirectory(), outputRestraintsFilename)
         outputRestraintsMmcifPath = os.path.join(self.getWorkDirectory(), outputRestraintsMmcifFilename)
@@ -98,7 +98,7 @@ class metalCoord(CPluginScript):
             keep_links=bool(self.container.controlParameters.KEEP_LINKS))
         if os.path.isfile(outputRestraintsPath):
             self.container.outputData.RESTRAINTS.setFullPath(outputRestraintsPath)
-            self.container.outputData.RESTRAINTS.annotation = 'Restraints for ' + str(self.container.inputData.LIGAND_CODE)
+            self.container.outputData.RESTRAINTS.annotation = f'Restraints for {self.container.inputData.LIGAND_CODE}'
         if self.container.controlParameters.SAVE_PDBMMCIF:
             if os.path.isfile(outputRestraintsMmcifPath) and stPath:
                 self.container.outputData.XYZOUT.setFullPath(outputRestraintsMmcifPath)
