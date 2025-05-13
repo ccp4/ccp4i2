@@ -5,6 +5,7 @@
 - Added a Coot 1 task
 - Added performance testing to the i2run tests
 - Fix to AUSPEX command line for Windows
+- Fix for ASU contents view with QtGui/QtWidgets changes
 
 ## [2.2.6] - 2025-04-24
 
