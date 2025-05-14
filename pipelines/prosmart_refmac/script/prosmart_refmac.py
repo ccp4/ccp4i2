@@ -756,6 +756,7 @@ class prosmart_refmac(CPluginScript):
 
         asuin = self.container.inputData.ASUIN
         if asuin.isSet():
+            self.saveXml()
             """
             FIXME - This needs to work for models with more than one chain
             (Some of?) possibilities:
@@ -777,24 +778,51 @@ class prosmart_refmac(CPluginScript):
                 st = gemmi.read_structure(str(self.container.outputData.XYZOUT))
                 st.setup_entities()
 
-                #Currently matching all model chains with first sequence in ASU
+                all_best = {}
                 for c in st[0]:
+                    best_score = 0
+                    current_best = None
                     for asu_seq in provide_seq_asu:
                         result = gemmi.align_sequence_to_polymer(asu_seq,
                                          c.get_polymer(),
                                          gemmi.PolymerType.PeptideL,
                                          gemmi.AlignmentScoring())
 
-                        print(c,asu_seq)
-                        print(result.score)
-                        print(result.match_count)
-                        print(result.calculate_identity())
-                        print(result.calculate_identity(1))
-                        print(result.calculate_identity(2))
-                        print(result.cigar_str())
-                        print
+                        if result.score > best_score:
+                            best_score = result.score
+                            current_best = (result,asu_seq)
+
+                    if current_best is not None:
+                        all_best[c.name] = current_best,c
+
+                xml_seq_align = etree.SubElement(self.xmlroot,"SequenceAlignment")
+                for c,best in all_best.items():
+                    result = best[0][0]
+
+
+                    xml_this_chain_align = etree.SubElement(xml_seq_align,"Alignment")
+                    xml_chain_id = etree.SubElement(xml_this_chain_align,"ChainID")
+                    xml_chain_id.text = c
+                    xml_chain_match_count = etree.SubElement(xml_this_chain_align,"match_count")
+                    xml_chain_match_count.text = str(result.match_count)
+                    xml_chain_match_identity = etree.SubElement(xml_this_chain_align,"identity")
+                    xml_chain_match_identity.text = str(result.calculate_identity())
+                    xml_chain_match_identity_1 = etree.SubElement(xml_this_chain_align,"identity_1")
+                    xml_chain_match_identity_1.text = str(result.calculate_identity(1))
+                    xml_chain_match_identity_2 = etree.SubElement(xml_this_chain_align,"identity_2")
+                    xml_chain_match_identity_2.text = str(result.calculate_identity(2))
+                    xml_chain_match_cigar = etree.SubElement(xml_this_chain_align,"CIGAR")
+                    xml_chain_match_cigar.text = str(result.cigar_str())
+
+                    xml_chain_match_align_1 = etree.SubElement(xml_this_chain_align,"align_1")
+                    xml_chain_match_align_1.text = result.add_gaps(gemmi.one_letter_code(best[0][1]),1)
+                    xml_chain_match_align_1 = etree.SubElement(xml_this_chain_align,"align_match")
+                    xml_chain_match_align_1.text = result.match_string
+                    xml_chain_match_align_2 = etree.SubElement(xml_this_chain_align,"align_2")
+                    xml_chain_match_align_2.text = result.add_gaps(gemmi.one_letter_code(best[1].get_polymer().extract_sequence()), 2)
 
             except Exception as err:
+                self.saveXml()
                 traceback.print_exc()
                 print("...importing sequences for alignment test failed", err)
 
