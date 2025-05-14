@@ -334,6 +334,56 @@ class prosmart_refmac_report(Report):
                 suggestedDiv.append(tableText)
                 suggestedDiv.append('<p><b>You can do this by clicking the <i>"Re-run with suggested parameters"</i> button at the bottom of this report.</b></p>')
 
+        xmlPath = './/SequenceAlignment/Alignment'
+        xmlNodes = xmlnode.findall(xmlPath)
+        if len(xmlNodes)>0:
+          clearingDiv = self.addDiv(style="clear:both;")
+          alignFold = self.addFold(label='Sequence alignment information',brief='Seq. Align. Info.')
+          k = 60
+          for alignNode in xmlNodes:
+                chainID = alignNode.findall("ChainID")[0].text
+                match_count = alignNode.findall("match_count")[0].text
+                identity = alignNode.findall("identity")[0].text
+                cigar = alignNode.findall("CIGAR")[0].text
+                align_1 = alignNode.findall("align_1")[0].text
+                align_2 = alignNode.findall("align_2")[0].text
+                align_match = alignNode.findall("align_match")[0].text
+                labelDiv = alignFold.addDiv(style='border:0px solid black; width:700px; overflow:auto;')
+                labelDiv.append("<b>Chain: "+chainID+"</b>")
+                tableText = "<table>\n"
+                tableText += "<tr>"
+                tableText += "<th>Match count</th>"
+                tableText += "<td>"+match_count+"</td>"
+                tableText += "</tr>"
+                tableText += "<tr>"
+                tableText += "<th>Identity</th>"
+                tableText += "<td>"+identity+"</td>"
+                tableText += "</tr>"
+                tableText += "<tr>"
+                tableText += "<th>CIGAR</th>"
+                tableText += "<td>"+cigar+"</td>"
+                tableText += "</tr>"
+                tableText += "</table>\n"
+                alignFold.append(tableText)
+                pre_text = ""
+
+                for i in range(0, len(align_match), k):
+                     pre_text += str(i+1)
+                     pre_text += (60-len(str(i)+str(i+k)))*' '
+                     pre_text += str(i+k)
+                     pre_text += "\n"
+                     pre_text += align_1[i:i+k] + "\n"
+                     pre_text += align_match[i:i+k] + "\n"
+                     pre_text += align_2[i:i+k] + "\n"
+                     pre_text += "\n"
+
+                alignFold.append('<pre>'+pre_text+'</pre>')
+
+          """
+          text = "There are alignments ..."
+          alignFold.append(text + '</span>')
+          """
+
         self.showWarnings()
 
     def addProgressGraph(self, parent, xmlnode,internalId="SummaryGraph",tag="RefmacInProgress"):
