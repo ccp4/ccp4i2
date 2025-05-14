@@ -370,7 +370,7 @@ class prosmart_refmac_report(Report):
                 for i in range(0, len(align_match), k):
                      pre_text += str(i+1)
                      pre_text += (60-len(str(i)+str(i+k)))*' '
-                     pre_text += str(i+k)
+                     pre_text += str(min(i+k,len(align_match)))
                      pre_text += "\n"
                      pre_text += align_1[i:i+k] + "\n"
                      pre_text += align_match[i:i+k] + "\n"
