@@ -1,8 +1,9 @@
 # CCP4i2 Changelog
 
-## [2.3.0] - 2025-05-12
+## [2.3.0] - 2025-05-13
 
 - Added a Coot 1 task
+- Added a MetalCoord task
 - Added performance testing to the i2run tests
 - Fix to AUSPEX command line for Windows
 - Fix for ASU contents view with QtGui/QtWidgets changes

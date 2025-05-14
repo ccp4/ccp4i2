@@ -152,6 +152,7 @@
             "buster",
             "coot_rsr_morph",
             "lorestr_i2",
+            "metalCoord",
             "pairef",
             "pdb_redo_api",
             "sheetbend",
@@ -3073,7 +3074,7 @@
             "0.1": {
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
-                "MAINTAINER": "martin.maly@soton.ac.uk",
+                "MAINTAINER": "martin.maly@mrc-lmb.cam.ac.uk",
                 "TASKTITLE": null,
                 "class": "wrappers.metalCoord.script.metalCoordmetalCoord",
                 "clsModule": "wrappers.metalCoord.script.metalCoord",
@@ -4215,6 +4216,7 @@
         "lorestr_i2": "qticons/lorestr_i2.png",
         "matthews": "qticons/matthews.png",
         "mergeMtz": "qticons/mergeMtz.png",
+        "metalCoord": "qticons/ccp4.png",
         "model_building": "qticons/model_building.png",
         "model_data_utility": "qticons/model_data_utility.png",
         "modelcraft": "qticons/modelcraft.png",
@@ -5739,6 +5741,20 @@
                 "shortTitle": "Merge to MTZ",
                 "taskName": "mergeMtz",
                 "taskVersion": 0.1
+            }
+        },
+        "metalCoord": {
+            "0.0.0": {
+                "DESCRIPTION": "Generate restraints for metal-containing monomers",
+                "MAINTAINER": "Nobody",
+                "RANK": null,
+                "TASKTITLE": "MetalCoord",
+                "class": "wrappers.metalCoord.script.metalCoord_guiCmetalCoord_gui",
+                "clsModule": "wrappers.metalCoord.script.metalCoord_gui",
+                "clsName": "CmetalCoord_gui",
+                "shortTitle": "MetalCoord",
+                "taskName": "metalCoord",
+                "taskVersion": 1.0
             }
         },
         "modelcraft": {
