@@ -14,7 +14,7 @@ def cif_fixture():
         yield path
 
 
-def test_single_atom_mr(cif):
+def test_metalcoord(cif):
     args = ["metalCoord"]
     args += ["--XYZIN", cif]
     args += ["--LIGAND_CODE", "AF3"]
