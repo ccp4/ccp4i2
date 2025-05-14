@@ -767,46 +767,32 @@ class prosmart_refmac(CPluginScript):
             """
             try:
                 import gemmi
-                n = 69
                 provide_seq_asu = []
-                for idx in range(len(asuin.fileContent.seqList)):
-                    print(idx)
-                    print(asuin.fileContent.seqList[idx],type(asuin.fileContent.seqList[idx]))
-                    asu_seq_0 = asuin.fileContent.seqList[idx].sequence
-                    asu_seq_0_pir = ">P1;"+str(asuin.fileContent.seqList[idx].name)+"\n\n" + ("\n").join([asu_seq_0[i:i+n] for i in range(0, len(asu_seq_0), n)]) + "*"
-                    provide_seq_asu_i = self.makePluginObject('ProvideSequence')
-                    provide_seq_asu_i.container.controlParameters.SEQUENCETEXT.set(asu_seq_0_pir)
-                    provide_seq_asu_i.process()
-                    provide_seq_asu.append(provide_seq_asu_i)
 
-                provide_seq_chain = []
+                for idx in range(len(asuin.fileContent.seqList)):
+                    seq = asuin.fileContent.seqList[idx].sequence
+                    seq_full = [gemmi.expand_one_letter(i, gemmi.ResidueKind.AA) for i in seq]
+                    provide_seq_asu.append(seq_full)
+
                 st = gemmi.read_structure(str(self.container.outputData.XYZOUT))
                 st.setup_entities()
-                for n_ch, chain in enumerate(st[0]):
-                    print("There is a new chain",chain.name)
-                    total_chain_seq = ""
-                    for n_res, res in enumerate(chain):
-                        total_chain_seq += gemmi.one_letter_code([res.name])
 
-                        seq_model_pir = ">P1;refinement_model\n\n" + ("\n").join([total_chain_seq[i:i+n] for i in range(0, len(total_chain_seq), n)]) + "*"
+                #Currently matching all model chains with first sequence in ASU
+                for c in st[0]:
+                    for asu_seq in provide_seq_asu:
+                        result = gemmi.align_sequence_to_polymer(asu_seq,
+                                         c.get_polymer(),
+                                         gemmi.PolymerType.PeptideL,
+                                         gemmi.AlignmentScoring())
 
-                    provide_seq_chain_i = self.makePluginObject('ProvideSequence')
-                    provide_seq_chain_i.container.controlParameters.SEQUENCETEXT.set(seq_model_pir)
-                    provide_seq_chain_i.process()
-                    provide_seq_chain.append(provide_seq_chain_i)
-
-                try:
-                    clustalw = self.makePluginObject('clustalw')
-                    clustalw.container.inputData.SEQUENCELISTORALIGNMENT.set("SEQUENCELIST")
-                    clustalw.container.inputData.SEQIN.append(clustalw.container.inputData.SEQIN.makeItem())
-                    clustalw.container.inputData.SEQIN[-1].setFullPath(str(provide_seq_chain[0].container.outputData.SEQUENCEFILE_LIST[0].fullPath))
-                    clustalw.container.inputData.SEQIN.append(clustalw.container.inputData.SEQIN.makeItem())
-                    clustalw.container.inputData.SEQIN[-1].setFullPath(str(provide_seq_asu[0].container.outputData.SEQUENCEFILE_LIST[0].fullPath))
-                    clustalw.process()
-
-                except Exception as err:
-                    traceback.print_exc()
-                    print("...sequences alignment test failed", err)
+                        print(c,asu_seq)
+                        print(result.score)
+                        print(result.match_count)
+                        print(result.calculate_identity())
+                        print(result.calculate_identity(1))
+                        print(result.calculate_identity(2))
+                        print(result.cigar_str())
+                        print
 
             except Exception as err:
                 traceback.print_exc()
