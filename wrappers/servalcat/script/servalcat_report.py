@@ -472,7 +472,29 @@ class servalcat_report(Report):
             plotLine.append('colour', 'red')
             plotLine.append('symbolsize', '0')
 
-        # MnD0FC0, MnD1FCbulk - only for servalcat_xtal_norefmac
+        # Completeness - only for servalcat_xtal_norefmac
+        if len(xmlnode.findall('.//cycle[last()]/data/binned/Cmpl')) > 0:
+            graphCmplTitle = "Completeness (%)"
+            graphCmpl = gallery.addFlotGraph(
+                xmlnode=xmlnode,
+                title=graphCmplTitle,
+                internalId=graphCmplTitle,
+                outputXml=self.outputXml,
+                label=graphCmplTitle,
+                style=galleryGraphStyle)
+            graphCmpl.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
+            graphCmpl.addData(title="Completeness(%)", select=".//cycle[last()]/data/binned/./Cmpl")
+            plotCmpl = graphCmpl.addPlotObject()
+            plotCmpl.append('title', graphCmplTitle)
+            plotCmpl.append('plottype', 'xy')
+            plotCmpl.append('xlabel', 'Resolution (&Aring;)')
+            plotCmpl.append('legendposition', x=0, y=1)
+            plotCmpl.append('xscale', 'oneoversqrt')
+            plotLine = plotCmpl.append('plotline', xcol=1, ycol=2)
+            plotLine.append('colour', 'orange')
+            plotLine.append('symbolsize', '0')
+
+        #  MnD0FC0, MnD1FCbulk - only for servalcat_xtal_norefmac
         if len(xmlnode.findall('.//cycle[last()]/data/binned/MnD0FC0')) > 0 and \
                 len(xmlnode.findall('.//cycle[last()]/data/binned/MnD1FCbulk')) > 0:
             graphDtitle = "Mean |D0*FC0| and |D1*FCbulk|"
@@ -499,6 +521,34 @@ class servalcat_report(Report):
             plotLine = plotD.append('plotline', xcol=1, ycol=3, rightaxis='true')
             plotLine.append('colour', 'red')
             plotLine.append('symbolsize', '0')
+
+        # MnIo, MnIc - only for servalcat_xtal_norefmac
+        if len(xmlnode.findall('.//cycle[last()]/data/binned/MnIo')) > 0 and \
+                len(xmlnode.findall('.//cycle[last()]/data/binned/MnIc')) > 0:
+            graphMnIoIcTitle = "Mean Io and mean Ic"
+            graphMnIoIc = gallery.addFlotGraph(
+                xmlnode=xmlnode,
+                title=graphDtitle,
+                internalId=graphDtitle,
+                outputXml=self.outputXml,
+                label=graphMnIoIcTitle,
+                style=galleryGraphStyle)
+            graphMnIoIc.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
+            graphMnIoIc.addData(title="MeanIo", select=".//cycle[last()]/data/binned/./MnIo")
+            graphMnIoIc.addData(title="MeanIc", select=".//cycle[last()]/data/binned/./MnIc")
+            plotMnIoIc = graphMnIoIc.addPlotObject()
+            plotMnIoIc.append('title', graphMnIoIcTitle)
+            plotMnIoIc.append('plottype', 'xy')
+            plotMnIoIc.append('xlabel', 'Resolution (&Aring;)')
+            plotMnIoIc.append('xscale', 'oneoversqrt')
+            plotMnIoIc.append('legendposition', x=1, y=1)
+            plotLine = plotMnIoIc.append('plotline', xcol=1, ycol=2)
+            plotLine.append('colour', 'blue')
+            plotLine.append('symbolsize', '0')
+            plotLine = plotMnIoIc.append('plotline', xcol=1, ycol=3)
+            plotLine.append('colour', 'red')
+            plotLine.append('symbolsize', '0')
+
         clearingDiv = parent.addDiv(style="clear:both;")
 
     def addOutlierAnalysis(self, parent=None, xmlnode=None):
