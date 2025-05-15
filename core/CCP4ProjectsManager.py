@@ -921,13 +921,6 @@ class CProjectsManager(CObject):
                 dobj = container.outputData.find(objectName)
                 #print 'setOutputData get',objectName,dobj.get(),dobj.isSet()
                 if isinstance(dobj,CCP4File.CDataFile) and (force or not dobj.isSet()):
-                    '''
-                    nameFromFileKey = dobj.qualifiers('nameFromFileKey')
-                    if nameFromFileKey is not None and container.find(nameFromFileKey) is not None:
-                        sourceObj =  container.find(nameFromFileKey)
-                        baseName = jobName + os.path.splitext(sourceObj.baseName.get())[0]
-                    else:
-                  '''
                     dobj.setOutputPath(jobName=jobName, projectId=projectId, relPath=relPath)
             except:
                 myErrorReport.append(self.__class__, 152, objectName)
@@ -950,8 +943,8 @@ class CProjectsManager(CObject):
         container.loadDataFromXml(filename)
         return container
 
-    def importFilePath(self, jobId=None, projectId=None, baseName=None, fileExtensions=None,
-                       use_CCP4_IMPORTED_FILES=True, importNumber=1, newFile=True, importId=None):
+    def importFilePath(self, projectId=None, baseName=None, fileExtensions=None, newFile=True, importId=None):
+        importNumber = 1
         # Get the file baseName from the sourcefilename saved in the import table
         if baseName is None and importId is not None:
             importInfo = self.db().getImportFileInfo(importId=importId, mode=['sourcefilename', 'importnumber'])
@@ -965,21 +958,15 @@ class CProjectsManager(CObject):
             base, ext = os.path.splitext(baseName)
             if not ext[1:] in fileExtensions:
                 baseName = base + '.' + fileExtensions[0]
-        if not use_CCP4_IMPORTED_FILES:
-            jobDir = self.db().jobDirectory(jobId=jobId)
-            filePath = os.path.join(jobDir,baseName)
-        else:
-            filePath = os.path.join(self.db().getProjectDirectory(projectId=projectId), 'CCP4_IMPORTED_FILES', baseName)
-            root,ext = os.path.splitext(filePath)
-            root = root + '_'
+        filePath = os.path.join(self.db().getProjectDirectory(projectId=projectId), 'CCP4_IMPORTED_FILES', baseName)
+        root,ext = os.path.splitext(filePath)
+        root = root + '_'
+        filePath = root + str(importNumber) + ext
+        if not newFile:
+            return filePath, importNumber
+        while os.path.exists(filePath):
+            importNumber += 1
             filePath = root + str(importNumber) + ext
-            if not newFile:
-                return filePath, importNumber
-            else:
-                while os.path.exists(filePath):
-                    importNumber += 1
-                    filePath = root + str(importNumber) + ext
-        #print 'PROJECTSMANAGER.importFilePath filePath',jobId,'projectId',projectId,use_CCP4_IMPORTED_FILES,filePath
         return filePath, importNumber
 
     def alreadyImportedId(self, sourceFileName=None, projectId=None, contentFlag=None, sourceFileReference=None, fileType=None):
@@ -1047,7 +1034,7 @@ class CProjectsManager(CObject):
                             sourceFileReference = obj.__dict__.get('sourceFileReference', None)
                             sourceFileAnnotation = obj.__dict__.get('sourceFileAnnotation', None)
                             targetObj = obj
-                            targetFile, importNumber=self.importFilePath(jobId=jobId, projectId=projectId, baseName=os.path.split(sourceFileName)[-1],
+                            targetFile, importNumber=self.importFilePath(projectId=projectId, baseName=os.path.split(sourceFileName)[-1],
                                                                          fileExtensions=obj.qualifiers('fileExtensions'))
                             #Has the monster-MTZ been imported before for a different set of columns
                             dbFileId, importId, checksum, dbAnnotation = self.alreadyImportedId(sourceFileName=sourceFileName, projectId=projectId)
@@ -1057,7 +1044,7 @@ class CProjectsManager(CObject):
                                                                                fileExtensions=obj.qualifiers('fileExtensions'), newFile=False)
                                 #print 'targetFile from importId',targetFile,importNumber
                             else:
-                                targetFile, importNumber=self.importFilePath(jobId=jobId, projectId=projectId, baseName=os.path.split(sourceFileName)[-1],
+                                targetFile, importNumber=self.importFilePath(projectId=projectId, baseName=os.path.split(sourceFileName)[-1],
                                                                              fileExtensions=obj.qualifiers('fileExtensions'))
                         else:
                             # Test if user attempting to import an already imported file
@@ -1076,7 +1063,7 @@ class CProjectsManager(CObject):
                                                                                                 sourceFileReference=sourceFileReference,fileType=sourceFileType)
                             #print 'File has been previously imported?',sourceFileName,'previous file id',dbFileId,'checksum comparison',checksum
                             if dbFileId is None:
-                                targetFile,importNumber=self.importFilePath(jobId=jobId, projectId=projectId, baseName=os.path.split(sourceFileName)[-1],
+                                targetFile,importNumber=self.importFilePath(projectId=projectId, baseName=os.path.split(sourceFileName)[-1],
                                                                             fileExtensions=obj.qualifiers('fileExtensions'))
                                 value = {}
                                 if obj.contentFlag.isSet():

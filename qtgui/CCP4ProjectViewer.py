@@ -1187,11 +1187,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
     @QtCore.Slot(str)
     def setToolButtonFontSize(self):
         settings = self.webviewToolBar.settings()
-        """
-        css = bytes(".button {font-size: "+str(PREFERENCES().GUI_FONT_SIZE)+"px;}","utf-8")
-        cssUrl = QtCore.QUrl("data:text/css;charset=utf-8;base64,"+base64.b64encode(css).decode())
-        settings.setUserStyleSheetUrl(cssUrl)
-        """
         settings.setFontSize(QtWebEngineWidgets.QWebEngineSettings.DefaultFontSize,int(PREFERENCES().GUI_FONT_SIZE))
         settings.setFontSize(QtWebEngineWidgets.QWebEngineSettings.DefaultFixedFontSize,int(PREFERENCES().GUI_FONT_SIZE))
         self.setToolButtonStyle()
@@ -1862,14 +1857,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
             if 1:
                 widget = CReportView(self)
                 widget.showOutput(openJob=openJob)
-            '''
-            except CException as e:
-                e.warningMessage(parent=self)
-                return None
-            except Exception as e:
-                CMessageBox(self,message='Unknown error creating report file for job number '+str(openJob.jobnumber),exception=e,openJob=openJob)
-                return
-            '''
         elif mode == 'status':
             widget = CJobStatusWidget(self)
             widget.setJob(openJob)
@@ -5020,16 +5007,6 @@ class CDeleteJobGui(QtWidgets.QDialog):
         
     @QtCore.Slot()
     def deleteJobs(self):
-        '''
-        # Beware importFilePath() returns a name for a new import so this will not work
-        for importId,fileName in self.importFileList:
-          filePath = PROJECTSMANAGER().importFilePath(projectId=self.projectId,baseName=fileName)
-          try:
-            os.remove(filePath)
-            PROJECTSMANAGER().db().deleteImportFile(importId=importId)
-          except:
-            print 'ERROR deleting file',filePath
-        '''
         for jobTree in self.jobTreeList:
             self.deleteJobs0(jobTree,deleteImportFiles=self.deleteImportFiles)
         self.jobsDeleted.emit()

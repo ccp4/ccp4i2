@@ -1412,12 +1412,6 @@ def getNodePath(node, key=None):
     if key is not None:
         name = name + '.' + key
     return name
-    '''
-      path.append(getUniqueNodeLabel(node))
-      for p in node.iterancestors():
-        path.insert(0,getUniqueNodeLabel(p))
-      return path
-    '''
 
 def getUniqueNodeLabel(node):
     name = re.sub('{http://www.ccp4.ac.uk/ccp4ns}', '', str(node.tag))
@@ -1440,12 +1434,11 @@ def xmlFileHeader(fileName):
         raise e # CException(self.__class__, 115, fileName, name=self.objectPath()) # KJS - A global function does not have a class instance ....
     return h
 
-def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=None, taskName=None, suggestedParams=None):
+def cloneI2XmlFile(sourceFile, targetFile, header={}, taskFrame=None, taskName=None, suggestedParams=None):
     import getpass
     from core import CCP4ModelData, CCP4TaskManager, CCP4Utils
     xFile = CI2XmlDataFile(sourceFile)
-    if current:
-        xFile.header.setCurrent()
+    xFile.header.setCurrent()
     xFile.header.set(header)
     #This stops the header being overwritten with that from targetFile
     xFile.setQualifiers({'autoLoadHeader' : False})
@@ -1688,17 +1681,6 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
         body.remove(interruptContainer[0])
     xFile.setFullPath(targetFile)
     xFile.saveFile(bodyEtree=body)
-    """
-    print "**************************************************"
-    parser = etree.XMLParser()
-    f = open(targetFile)
-    s = f.read()
-    f.close()
-    tree = etree.fromstring(s, parser)
-    print "The new file"
-    print etree.tostring(tree,pretty_print=True)
-    print "**************************************************"
-    """
 
 class CSearchPath(CCP4Data.CData):
     CONTENTS = {'name' : {'class' : CCP4Data.CString}, 'path' : {'class' : CDataFile},}
