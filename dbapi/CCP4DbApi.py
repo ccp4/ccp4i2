@@ -4705,7 +4705,7 @@ TaskTitle TEXT );''')
       jobIdList = self.fetchAll2Py(UUIDTYPE)
       return jobIdList
 
-    def setJobToImport(self,jobId=None,projectId=None,importFiles=[]):
+    def setJobToImport(self,jobId=None,projectId=None):
       # Delete child jobs
       self.execute("SELECT JobID FROM Jobs WHERE ParentJobID = ?",(jobId,))
       childJobs = self.fetchAll2Py(UUIDTYPE)

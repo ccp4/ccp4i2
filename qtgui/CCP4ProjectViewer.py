@@ -5031,7 +5031,7 @@ class CJobTree(QtWidgets.QTreeWidget):
         self.icon = QtGui.QIcon( QtGui.QPixmap(os.path.join(CCP4Utils.getCCP4I2Dir(), 'qticons', 'list_delete.png')).scaled(16,16))
 
     def load(self, jobTree, treeParentId=None, jobsToDeleteWithSelectedFiles=[]):
-        jobId, importFiles, childJobTree = jobTree
+        jobId, _, childJobTree = jobTree
         jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=jobId,mode=['jobnumber', 'taskname', 'status'])
         taskTitle = TASKMANAGER().getTitle(jobInfo['taskname'])
         # Only add job once - beware a jobs could be child of multiple preceeding jobs so appear in jobTree more than once
@@ -5048,5 +5048,3 @@ class CJobTree(QtWidgets.QTreeWidget):
                 item.setIcon(0,self.icon)
             for childJob in childJobTree:
                 self.load(childJob,treeParentId=item,jobsToDeleteWithSelectedFiles=jobsToDeleteWithSelectedFiles)
-
-
