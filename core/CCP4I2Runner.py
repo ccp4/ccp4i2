@@ -8,16 +8,10 @@ import time
 import xml.etree.ElementTree as ET
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from core import CCP4TaskManager
-from core import CCP4Config
 from core import CCP4File
 from core import CCP4Data
 from core import CCP4ModelData
 from core import CCP4XtalData
-if sys.platform == "win32":
-    import ccp4mg
-    import hklfile
-else:
-    from ccp4mg import hklfile
 from core import CCP4Modules
 from lxml import etree
 #import clipper
