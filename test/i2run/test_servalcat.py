@@ -1,3 +1,4 @@
+import xml.etree.ElementTree as ET
 from .utils import hasLongLigandName, i2run
 
 
@@ -15,3 +16,10 @@ def test_8xfm(cif8xfm, mtz8xfm):
     args += ["--VALIDATE_MOLPROBITY", "False"]
     with i2run(args) as job:
         assert hasLongLigandName(job / "CIFFILE.pdb")
+        xml = ET.parse(job / "program.xml")
+        rworks = [float(e.text) for e in xml.findall(".//summary/Rwork")]
+        rfrees = [float(e.text) for e in xml.findall(".//summary/Rfree")]
+        assert len(rworks) == len(rfrees) == 3
+        assert rworks[-1] < rworks[0]
+        assert rworks[-1] < 0.18
+        assert rfrees[-1] < 0.25

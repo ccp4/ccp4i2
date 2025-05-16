@@ -3131,15 +3131,15 @@ class CReportView(QtWidgets.QStackedWidget):
                             for seq in seqs:
                                 html += seq +"\n"
                             html += "</pre>\n"
-                        win = QtGui.QDialog()
-                        widget = QtGui.QTextEdit()
+                        win = QtWidgets.QDialog()
+                        widget = QtWidgets.QTextEdit()
                         widget.setReadOnly(True)
                         widget.setHtml(html)
-                        layout = QtGui.QVBoxLayout()
+                        layout = QtWidgets.QVBoxLayout()
                         layout.addWidget(widget)
-                        dbb = QtGui.QDialogButtonBox()
+                        dbb = QtWidgets.QDialogButtonBox()
                         layout.addWidget(dbb)
-                        closeButton = dbb.addButton(QtGui.QDialogButtonBox.Close)
+                        closeButton = dbb.addButton(QtWidgets.QDialogButtonBox.Close)
                         closeButton.clicked.connect(win.accept)
                         win.setLayout(layout)
                         win.exec_()
