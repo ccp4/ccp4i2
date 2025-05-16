@@ -1,6 +1,7 @@
 from sys import platform
 from tarfile import open as taropen
 from tempfile import TemporaryDirectory
+import re
 from gemmi import read_mtz_file
 from pytest import fixture, mark
 from .utils import download, i2run
@@ -26,6 +27,11 @@ def run_test(task, image_dir):
     with i2run(args) as job:
         for name in ("freer", "NATIVE_SWEEP1_INTEGRATE", "obs"):
             read_mtz_file(str(job / f"AUTOMATIC_DEFAULT_{name}.mtz"))
+        log = (job / "log.txt").read_text()
+        assert re.search(r"spacegroup: (.*)\n", log).group(1) == "P 41 21 2"
+        assert float(re.search(r"High reso[^\d]+([\d\.]+)", log).group(1)) < 1.3
+        assert float(re.search(r"Low reso[^\d]+([\d\.]+)", log).group(1)) > 35
+        assert int(re.search(r"Total unique +(\d+)", log).group(1)) > 11000
 
 
 def test_xia2_dials(image_dir):

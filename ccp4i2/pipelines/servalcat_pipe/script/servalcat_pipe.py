@@ -170,7 +170,7 @@ class servalcat_pipe(CPluginScript):
                 self.container.outputData.METALCOORD_RESTRAINTS.annotation = 'Restraints for metal sites'
             if os.path.isfile(self.outputRestraintsMmcifPath) and stPath:
                 self.container.outputData.METALCOORD_XYZ.setFullPath(self.outputRestraintsMmcifPath)
-                self.container.outputData.METALCOORD_XYZ.annotation = 'Input structure with links from MetalCoord'
+                self.container.outputData.METALCOORD_XYZ.annotation = 'Structure model with links from MetalCoord (mmCIF format)'
 
     def executeMetalCoord(self, ligand_code):
         self.metalCoordPlugin = self.makePluginObject('metalCoord')

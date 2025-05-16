@@ -20,11 +20,8 @@ class AUSPEX(CPluginScript):
     MAINTAINER = 'Andrea.Thorn@web.de'
 
     def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.hklin = None
-        CPluginScript.__init__(self, *args, **kwargs)
-
-    def process(self):
-        CPluginScript.process(self)
 
     def processInputFiles(self):
         cols1 = []
@@ -37,7 +34,7 @@ class AUSPEX(CPluginScript):
             cols1.append(['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN])
         if bFData:
             cols1.append(['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN])
-        self.hklin1, __, error1 = self.makeHklInput(cols1, extendOutputColnames=True, useInputColnames=True)
+        self.hklin, __, error1 = self.makeHklInput(cols1, extendOutputColnames=True, useInputColnames=True)
         if error1.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
 
@@ -52,10 +49,10 @@ class AUSPEX(CPluginScript):
 
     def makeCommandAndScript(self, container=None):
         self.appendCommandLine("--no-filename-in-title")
-        self.appendCommandLine("%s"%str(self.hklin1))
-        self.appendCommandLine("--ylim %s"%(self.container.inputData.YLIM))
+        self.appendCommandLine(self.hklin)
+        self.appendCommandLine(["--ylim", self.container.inputData.YLIM])
         if self.container.inputData.DLIM.isSet():
-            self.appendCommandLine("--dmin %f"%(float(self.container.inputData.DLIM)))
+            self.appendCommandLine(["--dmin", self.container.inputData.DLIM])
         if self.container.inputData.SINGFIG:
             self.appendCommandLine("--single-figure")
         if not self.container.inputData.FLAGICE:
