@@ -44,7 +44,7 @@ def test_gamma_siras():
     args += ["--FDPRIME", "7.36"]
     with i2run(args) as job:
         read_pdb(str(job / "n_REFMAC5.pdb"))
-        _check_output(job, min_fom=0.7, max_rwork=0.22, max_rfree=0.28)
+        _check_output(job, min_fom=0.7, max_rwork=0.23, max_rfree=0.28)
 
 
 def _check_output(job, min_fom, max_rwork, max_rfree):

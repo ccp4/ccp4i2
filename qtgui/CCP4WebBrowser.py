@@ -35,10 +35,7 @@ import time
 import glob
 import re
 from lxml import etree
-if sys.version_info >= (3,7):
-    from collections.abc import Callable
-else:
-    from collections import Callable
+from collections.abc import Callable
 import functools
 from PySide2 import QtWebEngine, QtWebEngineWidgets, QtGui, QtWidgets, QtCore
 from qtgui import CCP4WebView

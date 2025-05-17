@@ -27,10 +27,7 @@ import glob
 import time
 import functools
 import sys
-if sys.version_info >= (3,7):
-    from collections.abc import Callable
-else:
-    from collections import Callable
+from collections.abc import Callable
 from PySide2 import QtGui, QtWidgets,QtCore
 from core.CCP4ErrorHandling import *
 from core import CCP4Modules

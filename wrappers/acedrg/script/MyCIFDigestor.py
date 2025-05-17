@@ -12,7 +12,7 @@ class MyCIFBlock(object):
 class MyCIFLoopLine(object):
     pass
 
-from collections import Sequence
+from collections.abc import Sequence
 class MyCIFLoop(Sequence):
     TAG = '_loop'
     def __init__(self, text):
