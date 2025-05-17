@@ -1,9 +1,10 @@
 # CCP4i2 Changelog
 
-## [2.3.1] - 2025-05-16
+## [2.3.1] - 2025-05-17
 
 - Changed some performance testing thresholds
 - Removed unused CCP4I2Runner code
+- Removed deprecated collections imports
 
 ## [2.3.0] - 2025-05-13
 

@@ -30,10 +30,7 @@ import types
 import sys
 import traceback
 import copy
-if sys.version_info >= (3,7):
-    from collections.abc import Callable
-else:
-    from collections import Callable
+from collections.abc import Callable
 
 from PySide2 import QtCore, QtSql
 
