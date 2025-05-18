@@ -28,6 +28,7 @@ import os
 import re
 import sys
 import types
+import shutil
 try:
     from StringIO import StringIO
 except ImportError:
@@ -355,22 +356,6 @@ class CFilePath(CCP4Data.CString):
             return CFilePath(other)
         else:
             return CFilePath(os.path.normpath(os.path.join(other, self._value)))
-
-    """
-    def __cmp__(self,arg):
-        other =  self.getValue(arg)
-        if self._value is None or other is None:
-          if self._value is not None:
-            return -1
-          elif other is not None:
-            return 1
-          else:
-            return 0
-        else:
-          #MN 'str' and 'unicode' types do not have __cmp__, but equality can be tested using ==
-          if isinstance(self._value,basestring) and isinstance(other,basestring): return self._value == other
-          return self._value.__cmp__(other)
-    """
 
     def __str__(self):
         if self._value is None:
@@ -932,12 +917,9 @@ class CDataFile(CCP4Data.CData):
         #print 'CMiniMtzDataFile.importFileName', filename
         return filename
 
-    def importFile(self, jobId=None, sourceFileName=None, ext=None, annotation=None, validatedFile=None, jobNumber=None):
-        import shutil
-        if sourceFileName is None:
-            sourceFileName = self.__str__()
-        if ext is None:
-            ext=os.path.splitext(self.__str__())[1]
+    def importFile(self, jobId=None, annotation=None, validatedFile=None, jobNumber=None):
+        sourceFileName = str(self)
+        ext = os.path.splitext(sourceFileName)[1]
         filename = self.importFileName(jobId=jobId, ext=ext)
         #print 'CDataFile.importFile copy', sourceFileName, filename
         if validatedFile is not None and os.path.exists(validatedFile):
@@ -960,20 +942,20 @@ class CDataFile(CCP4Data.CData):
 
     def isDosFile(self):
         from core import CCP4Utils
-        text = CCP4Utils.readFile(self.__str__())
+        text = CCP4Utils.readFile(str(self))
         isDFile = (text.find('\r\n') >= 0)
         return isDFile
 
     def resetLineEnd(self, outputFilename=None, toDos=False):
         from core import CCP4Utils
-        text = CCP4Utils.readFile(self.__str__())
+        text = CCP4Utils.readFile(str(self))
         isDos = text.find('\r\n') >= 0
         if isDos == toDos:
             if outputFilename is not None:
                 CCP4Utils.saveFile(text=text, fileName=outputFilename)
                 return outputFilename
             else:
-                return self.__str__()
+                return str(self)
         if outputFilename is None:
             import tempfile
             outputFilename = tempfile.mktemp(suffix='.txt')

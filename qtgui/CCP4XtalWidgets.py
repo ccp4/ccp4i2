@@ -1182,7 +1182,7 @@ class CMiniMtzDataFileView(CMtzDataFileView):
                 #print 'handleBrowserOpenFile applyNow',applyNow,filename
                 try:
                     self.dialog=CSelectColumnsWidget(parent=self,model=self.model,applyNow=False,filename=filename)
-                except CException as e:
+                except CException:
                     mess = 'This file '+ filename + '\ndoes not contain the appropriate data: '
                     for rC in self.model.requiredContent():
                         mess = mess + self.model.CONTENT_ANNOTATION[rC-1]+','

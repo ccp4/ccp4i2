@@ -938,18 +938,17 @@ class CProjectsManager(CObject):
                     and obj.qualifiers("saveToDb")
                     and not obj.qualifiers("isDirectory")
                     and (
-                        getattr(container, "guiParameters", None) is None
-                        or getattr(container.guiParameters, "COPY_" + key, True)
+                        container.__getattr__("guiParameters", None) is None
+                        or container.guiParameters.__getattr__("COPY_" + key, True)
                     )
                 ):
                     obj.blockSignals(True)
-                    # print 'PROJECTSMANAGER.importFiles',obj.objectName(),obj.__dict__.get('sourceFileName','NO sourceFileName'),obj
-                    if 'sourceFileName' in obj.__dict__ and obj.__dict__['sourceFileName'] is not None:
+                    sourceFileName = obj.__dict__.get('sourceFileName', None)
+                    sourceFileReference = obj.__dict__.get('sourceFileReference', None)
+                    sourceFileAnnotation = obj.__dict__.get('sourceFileAnnotation', None)
+                    if sourceFileName is not None:
                         # The file has already being imported (i.e. for CMiniMtzDataFile)
-                        sourceFileName = obj.__dict__['sourceFileName']
                         # print 'PROJECTSMANAGER.importFiles previously imported from sourceFileName',sourceFileName
-                        sourceFileReference = obj.__dict__.get('sourceFileReference', None)
-                        sourceFileAnnotation = obj.__dict__.get('sourceFileAnnotation', None)
                         targetObj = obj
                         targetFile, importNumber=self.importFilePath(projectId=projectId, baseName=os.path.split(sourceFileName)[-1],
                                                                         fileExtensions=obj.qualifiers('fileExtensions'))
@@ -965,14 +964,9 @@ class CProjectsManager(CObject):
                                                                             fileExtensions=obj.qualifiers('fileExtensions'))
                     else:
                         # Test if user attempting to import an already imported file
-                        if ('sourceFileName' in obj.__dict__) == 'COPYDONE':
-                            sourceFileName = None
-                        else:
-                            sourceFileName = str(obj)
-                        sourceFileReference = obj.__dict__.get('sourceFileReference', None)
-                        sourceFileAnnotation = obj.__dict__.get('sourceFileAnnotation', None)
+                        sourceFileName = str(obj)
                         mimeTypeName = obj.qualifiers('mimeTypeName')
-                        if CCP4DbApi.FILETYPES_TEXT.count(mimeTypeName):
+                        if mimeTypeName in CCP4DbApi.FILETYPES_TEXT:
                             sourceFileType = CCP4DbApi.FILETYPES_TEXT.index(mimeTypeName)
                         else:
                             sourceFileType = None
