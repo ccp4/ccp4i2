@@ -886,35 +886,28 @@ class CProjectsManager(CObject):
 
     def alreadyImportedId(self, sourceFileName=None, projectId=None, contentFlag=None, sourceFileReference=None, fileType=None):
         # is there already an imported file with same sourceFileName and same checksum?
-        # Return the matching importId OR the checksum for sourceFileName neded to create new import record
-        importList=self.db().getImportedFile(sourceFileName=sourceFileName, projectId=projectId, fileContent=contentFlag,
-                                             reference=sourceFileReference, fileType=fileType)
+        # Return the matching importId OR the checksum for sourceFileName needed to create new import record
+        importList = self.db().getImportedFile(sourceFileName=sourceFileName, projectId=projectId, fileContent=contentFlag, reference=sourceFileReference, fileType=fileType)
         if len(importList) == 0:
-            importId = None
-            checksum = None
-            dbFileId = None
-            annotation = None
-        else:
-            checksum = importList[0][2]
-            dbFileId = importList[0][1]
-            importId = importList[0][0]
-            annotation = importList[0][3]
-        sourceChecksum = None
-        if dbFileId is None or checksum is not None:
+            return None, None, None
+        importId = importList[0][0]
+        dbFileId = importList[0][1]
+        checksum = importList[0][2]
+        annotation = importList[0][3]
+        if dbFileId is None and checksum is not None:
             try:
                 fileObj = CCP4File.CDataFile(fullPath=sourceFileName)
                 sourceChecksum = fileObj.checksum()
                 # If checksums dont match cancel the importId
-                if checksum is not None and sourceChecksum != checksum:
+                if sourceChecksum != checksum:
                     dbFileId = None
                     importId = None
             except:
                 pass
-        #print 'CProjectmaanger.alreadyImportedId',sourceFileName,dbFileId,checksum,sourceChecksum
-        return dbFileId, importId, sourceChecksum, annotation
+        return dbFileId, importId, annotation
 
     def importFiles(self, jobId=None, container=None):
-        #print 'PROJECTSMANAGER.importFiles',jobId,repr(container)
+        print('PROJECTSMANAGER.importFiles', jobId, repr(container))
         import copy
         from dbapi import CCP4DbApi
         err = CErrorReport()
@@ -946,36 +939,39 @@ class CProjectsManager(CObject):
                     sourceFileName = obj.__dict__.get('sourceFileName', None)
                     sourceFileReference = obj.__dict__.get('sourceFileReference', None)
                     sourceFileAnnotation = obj.__dict__.get('sourceFileAnnotation', None)
+                    extensions = obj.qualifiers('fileExtensions')
                     if sourceFileName is not None:
+                        baseName = os.path.split(sourceFileName)[-1]
                         # The file has already being imported (i.e. for CMiniMtzDataFile)
                         # print 'PROJECTSMANAGER.importFiles previously imported from sourceFileName',sourceFileName
                         targetObj = obj
-                        targetFile, importNumber=self.importFilePath(projectId=projectId, baseName=os.path.split(sourceFileName)[-1],
-                                                                        fileExtensions=obj.qualifiers('fileExtensions'))
+                        targetFile, importNumber=self.importFilePath(projectId=projectId, baseName=baseName,
+                                                                        fileExtensions=extensions)
                         # Has the monster-MTZ been imported before for a different set of columns
-                        dbFileId, importId, checksum, dbAnnotation = self.alreadyImportedId(sourceFileName=sourceFileName, projectId=projectId)
+                        _, importId, _ = self.alreadyImportedId(sourceFileName=sourceFileName, projectId=projectId)
                         if importId is not None:
                             # it has been imported before so just use the same 'targetFile'
                             targetFile, importNumber = self.importFilePath(projectId=projectId, importId=importId,
-                                                                            fileExtensions=obj.qualifiers('fileExtensions'), newFile=False)
+                                                                            fileExtensions=extensions, newFile=False)
                             # print 'targetFile from importId',targetFile,importNumber
                         else:
-                            targetFile, importNumber=self.importFilePath(projectId=projectId, baseName=os.path.split(sourceFileName)[-1],
-                                                                            fileExtensions=obj.qualifiers('fileExtensions'))
+                            targetFile, importNumber=self.importFilePath(projectId=projectId, baseName=baseName,
+                                                                            fileExtensions=extensions)
                     else:
                         # Test if user attempting to import an already imported file
                         sourceFileName = str(obj)
+                        baseName = os.path.split(sourceFileName)[-1]
                         mimeTypeName = obj.qualifiers('mimeTypeName')
                         if mimeTypeName in CCP4DbApi.FILETYPES_TEXT:
                             sourceFileType = CCP4DbApi.FILETYPES_TEXT.index(mimeTypeName)
                         else:
                             sourceFileType = None
-                        dbFileId, importId, checksum, dbAnnotation = self.alreadyImportedId(sourceFileName=sourceFileName,projectId=projectId,
-                                                                                            sourceFileReference=sourceFileReference,fileType=sourceFileType)
+                        dbFileId, _, _ = self.alreadyImportedId(sourceFileName=sourceFileName,projectId=projectId,
+                                                                       sourceFileReference=sourceFileReference,fileType=sourceFileType)
                         # print 'File has been previously imported?',sourceFileName,'previous file id',dbFileId,'checksum comparison',checksum
                         if dbFileId is None:
-                            targetFile,importNumber=self.importFilePath(projectId=projectId, baseName=os.path.split(sourceFileName)[-1],
-                                                                        fileExtensions=obj.qualifiers('fileExtensions'))
+                            targetFile,importNumber=self.importFilePath(projectId=projectId, baseName=baseName,
+                                                                        fileExtensions=extensions)
                             value = {}
                             if obj.contentFlag.isSet():
                                 value['contentFlag'] = int(obj.contentFlag)
@@ -1027,7 +1023,7 @@ class CProjectsManager(CObject):
                         try:
                             fileId = self.db().createFile(fileObject=targetObj, projectId=projectId, jobId=jobId, sourceFileName=sourceFileName,
                                                             reference=sourceFileReference, importNumber=importNumber, sourceFileAnnotation=sourceFileAnnotation)
-                            print('Database recording file', targetObj.fullPath.__str__(), 'imported from', sourceFileName, 'file id:', fileId)
+                            print('Database recording file', str(targetObj.fullPath), 'imported from', sourceFileName, 'file id:', fileId)
                         except CException as e:
                             err.extend(e)
                         except Exception as e:
@@ -1038,7 +1034,7 @@ class CProjectsManager(CObject):
                             ifImportedFiles = True
                             if targetObj != obj:
                                 obj.setFullPath(targetFile)
-                                obj.annotation = targetObj.annotation.__str__()
+                                obj.annotation = str(targetObj.annotation)
                             obj.dbFileId = fileId
                     obj.blockSignals(False)
         return ifImportedFiles, err
