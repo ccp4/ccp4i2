@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import argparse
 import sys
 import os
@@ -8,23 +6,17 @@ import time
 import xml.etree.ElementTree as ET
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from core import CCP4TaskManager
-from core import CCP4Config
 from core import CCP4File
 from core import CCP4Data
 from core import CCP4ModelData
 from core import CCP4XtalData
-if sys.platform == "win32":
-    import ccp4mg
-    import hklfile
-else:
-    from ccp4mg import hklfile
 from core import CCP4Modules
 from lxml import etree
-#import clipper
 import gemmi
 import numpy
 import re
 from core.CCP4ErrorHandling import CException
+
 
 class CI2Runner(object):
     def __init__(self, cmdLineArgs, theParser=None):
@@ -49,100 +41,6 @@ class CI2Runner(object):
         while os.path.exists(basePath+"_"+str(counter)+extension):
             counter += 1
         return basePath+"_"+str(counter)+extension
-
-    def smartSplitMTZ(self, inputFilePath=None, inputColumnPath=None, objectPath=None, intoDirectory=None):
-        if inputFilePath is None: raise Exception("smartSplitMTZ Exception:", "Must provide an input file")
-        if not os.path.isfile(inputFilePath): raise Exception("smartSplitMTZ Exception:", "inputFile must exist"+str(inputFilePath))
-        if inputColumnPath is None: raise Exception("smartSplitMTZ Exception:", "Must provide an input columnPath e.g. '/*/*/[F,SIGFP]'")
-        if objectPath is not None and intoDirectory is not None: raise Exception("smartSplitMTZ Exception:", "Provide either full output path for file, or name of directory where file should be placed")
-        if objectPath is  None and intoDirectory is  None: raise Exception("smartSplitMTZ Exception:", "Provide either full output path for file, or name of directory where file should be placed")
-        
-
-        mtz_file = clipper.CCP4MTZfile()
-        hkl_info = clipper.HKL_info()
-        mtz_file.open_read (inputFilePath)
-        mtz_file.import_hkl_info ( hkl_info )
-        xtal = clipper.MTZcrystal()
-        mtz_file.import_crystal( xtal, inputColumnPath )
-        dataset=clipper.MTZdataset()
-        mtz_file.import_dataset( dataset, inputColumnPath )
-        providedColumnPaths = mtz_file.column_paths()
-        
-        selectedColumnLabelsExp=re.compile(r"^/(?P<XtalName>[A-Za-z0-9_. -+\*,]+)/(?P<DatasetName>[A-Za-z0-9_. -+\*,]+)/\[(?P<Columns>[A-Za-z0-9_. -+\*,]+)\]")
-        columnsMatch=selectedColumnLabelsExp.search(inputColumnPath)
-        selectedColumnLabelExp=re.compile(r"^/(?P<XtalName>[A-Za-z0-9_. -+\*,]+)/(?P<DatasetName>[A-Za-z0-9_. -+\*,]+)/(?P<Column>[A-Za-z0-9_. -+\*,]+)")
-        columnMatch=selectedColumnLabelExp.search(inputColumnPath)
-        if columnsMatch is not None:
-            selectedColumnPaths  =["/{}/{}/{}".format(columnsMatch.group("XtalName"),columnsMatch.group("DatasetName"),column) for column in columnsMatch.group("Columns").split(",") ]
-        elif columnMatch is not None:
-            selectedColumnPaths  =["/{}/{}/{}".format(columnMatch.group("XtalName"),columnMatch.group("DatasetName"),columnMatch.group("Column"))]
-
-        typeSignature = ""
-        for selectedColumnPath in selectedColumnPaths:
-            selectedColumnMatch = selectedColumnLabelExp.search(selectedColumnPath)
-            for providedColumnPath in providedColumnPaths:
-                #Generating clipper String and then calling str to deal with
-                #Known unpredictable bug in clipper-python
-                try:
-                  columnName, columnType = str(clipper.String(providedColumnPath)).split(" ")
-                except NotImplementedError as err:
-                  columnName, columnType = str(providedColumnPath).split(" ")
-                parsedColumnMatch = selectedColumnLabelExp.search(columnName)
-                if ((selectedColumnMatch.group("XtalName") == "*" or selectedColumnMatch.group("XtalName") == parsedColumnMatch.group("XtalName")) and
-                    (selectedColumnMatch.group("DatasetName") == "*" or selectedColumnMatch.group("DatasetName") == parsedColumnMatch.group("DatasetName")) and
-                    selectedColumnMatch.group("Column") == parsedColumnMatch.group("Column")):
-                    typeSignature += columnType
-                    break
-        #print("Type signature", typeSignature)
-        if typeSignature == "FQ":
-            extractedData = clipper.HKL_data_F_sigF_float(hkl_info)
-            cls = CCP4XtalData.CObsDataFile
-            contentType = 4
-        if typeSignature == "JQ":
-            extractedData = clipper.HKL_data_I_sigI_float(hkl_info)
-            cls = CCP4XtalData.CObsDataFile
-            contentType = 3
-        if typeSignature == "GLGL" or typeSignature == "FQFQ":
-            extractedData = clipper.HKL_data_F_sigF_ano_float(hkl_info)
-            cls = CCP4XtalData.CObsDataFile
-            contentType = 2
-        if typeSignature == "KMKM"  or typeSignature == "JQJQ":
-            extractedData = clipper.HKL_data_I_sigI_ano_float(hkl_info)
-            cls = CCP4XtalData.CObsDataFile
-            contentType = 1
-        elif typeSignature == "AAAA":
-            extractedData = clipper.HKL_data_ABCD_float(hkl_info)
-            cls = CCP4XtalData.CPhsDataFile
-            contentType = 1
-        elif typeSignature == "PW":
-            extractedData = clipper.HKL_data_Phi_fom_float(hkl_info)
-            cls = CCP4XtalData.CPhsDataFile
-            contentType = 2
-        elif typeSignature == "I":
-            extractedData = clipper.HKL_data_Flag(hkl_info)
-            cls = CCP4XtalData.CFreeRDataFile
-            contentType = 1
-        outputColumnPath = "[{}]".format(','.join(getattr(cls, "CONTENT_SIGNATURE_LIST")[contentType-1]))
-
-        mtz_file.import_hkl_data( extractedData, inputColumnPath )
-        mtz_file.close_read()
-
-        if intoDirectory is not None:
-            firstGuess = os.path.join(intoDirectory,typeSignature+'_ColumnsFrom_'+os.path.split(inputFilePath)[1])
-            objectPath = availableNameBasedOn(firstGuess)
-
-        mtzout = clipper.CCP4MTZfile()
-        mtzout.open_write( objectPath )
-        mtzout.export_hkl_info( hkl_info )
-        crystalName = clipper.String(xtal.crystal_name())
-        datasetName = clipper.String(dataset.dataset_name())
-        outputColumnPath = "/{}/{}/{}".format(str(crystalName), str(datasetName), outputColumnPath )
-        mtzout.export_crystal( xtal, outputColumnPath )
-        mtzout.export_dataset( dataset, outputColumnPath )
-        mtzout.export_hkl_data( extractedData, outputColumnPath )
-        mtzout.close_write()
-
-        return objectPath
 
     def gemmiSplitMTZ(self, inputFilePath=None, inputColumnPath=None, objectPath=None, intoDirectory=None):
         if inputFilePath is None: raise Exception("smartSplitMTZ Exception:", "Must provide an input file")
