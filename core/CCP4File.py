@@ -24,6 +24,7 @@ from __future__ import print_function
    Liz Potterton Aug 2010 - File handling classes
 """
 
+import hashlib
 import os
 import re
 import sys
@@ -795,28 +796,19 @@ class CDataFile(CCP4Data.CData):
         baseName += '.' + self.fileExtensions()[0]
         self.set({'project' : projectId, 'relPath' : relPath, 'baseName' : baseName } )
 
-    def checksum(self, blockSize=256*128, ifHex=True, filePath = None):
+    def checksum(self, filePath=None):
         '''From http://stackoverflow.com/questions/1131220/get-md5-hash-of-big-files-in-python
         Block size directly depends on the block size of your filesystem
         to avoid performances issues
         Here I have blocks of 4096 octets (Default NTFS)'''
-        if filePath is None:
-            try:
-                filePath = self.__str__()
-                #print 'CDataFile.checksum path', path, os.path.exists(path)
-            except:
-                return None
-        if not os.path.exists(filePath):
-            return None
-        import hashlib
         md5 = hashlib.md5()
-        with open(filePath,'rb') as f:
-            for chunk in iter(lambda: f.read(blockSize), b''):
-                md5.update(chunk)
-        if ifHex:
-            return md5.hexdigest()
-        else:
-            return md5.digest()
+        try:
+            with open(filePath or str(self), 'rb') as f:
+                while chunk := f.read(32_768):
+                    md5.update(chunk)
+        except:
+            return None
+        return md5.hexdigest()
 
     def assertSame(self, arg, testPath=False, testChecksum=True, testSize=False, testDiff=False, diagnostic=False, fileName=None):
         from core import CCP4Utils
