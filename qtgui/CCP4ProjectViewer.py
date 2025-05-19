@@ -773,7 +773,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                             item.setFlags(item.flags() | QtCore.Qt.ItemIsUserCheckable)
                             item.setCheckState(QtCore.Qt.Unchecked)
                             item.setData(QtCore.Qt.UserRole,name)
-                            #MN Trying to make code more compact/readable
                             if mapping == "SHOW_RUN_REMOTE_TOOLBUTTON":
                                 if ALWAYS_SHOW_SERVER_BUTTON or JOBCONTROLLER().serversEnabled():
                                    val = PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON
@@ -781,38 +780,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                                    val = False
                             else:
                                 val = getattr(PREFERENCES(), mapping)
-                            #replaces:
-                            '''
-                            if mapping == "SHOW_TASK_MENU_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_TASK_MENU_TOOLBUTTON
-                            elif mapping == "SHOW_JOB_SEARCH_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_JOB_SEARCH_TOOLBUTTON
-                            elif mapping == "SHOW_EXPORT_PROJECT_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_EXPORT_PROJECT_TOOLBUTTON
-                            elif mapping == "SHOW_RUN_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_RUN_TOOLBUTTON
-                            elif mapping == "SHOW_RUN_REMOTE_TOOLBUTTON":
-                                if ALWAYS_SHOW_SERVER_BUTTON or JOBCONTROLLER().serversEnabled():
-                                   val = PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON
-                                else:
-                                   val = False
-                            elif mapping == "SHOW_CLONE_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_CLONE_TOOLBUTTON
-                            elif mapping == "SHOW_TASK_HELP_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_TASK_HELP_TOOLBUTTON
-                            elif mapping == "SHOW_REFERENCES_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_REFERENCES_TOOLBUTTON
-                            elif mapping == "SHOW_EXPORT_MTZ_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_EXPORT_MTZ_TOOLBUTTON
-                            elif mapping == "SHOW_VIEW_COOT_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_VIEW_COOT_TOOLBUTTON
-                            elif mapping == "SHOW_VIEW_CCP4MG_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_VIEW_CCP4MG_TOOLBUTTON
-                            elif mapping == "SHOW_SHOW_LOG_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_SHOW_LOG_TOOLBUTTON
-                            elif mapping == "NEW_PROJECT_TOOLBUTTON":
-                                val = PREFERENCES().NEW_PROJECT_TOOLBUTTON
-                            '''
                             if val:
                                 item.setCheckState(QtCore.Qt.Checked)
 
@@ -828,38 +795,8 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                         val = False
                     mapping = CCP4WebBrowser.CToolBar.toolBarPreferencesMapping[str(name)]
                     
-                    #MN Trying to make code more compact/readable
                     getattr(PREFERENCES(), mapping).set(val)
-                    #Replacing
-                    '''
-                    if mapping == "SHOW_TASK_MENU_TOOLBUTTON":
-                        PREFERENCES().SHOW_TASK_MENU_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_JOB_SEARCH_TOOLBUTTON":
-                        PREFERENCES().SHOW_JOB_SEARCH_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_EXPORT_PROJECT_TOOLBUTTON":
-                        PREFERENCES().SHOW_EXPORT_PROJECT_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_RUN_TOOLBUTTON":
-                        PREFERENCES().SHOW_RUN_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_RUN_REMOTE_TOOLBUTTON":
-                        PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_CLONE_TOOLBUTTON":
-                        PREFERENCES().SHOW_CLONE_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_TASK_HELP_TOOLBUTTON":
-                        PREFERENCES().SHOW_TASK_HELP_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_REFERENCES_TOOLBUTTON":
-                        PREFERENCES().SHOW_REFERENCES_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_EXPORT_MTZ_TOOLBUTTON":
-                        PREFERENCES().SHOW_EXPORT_MTZ_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_VIEW_COOT_TOOLBUTTON":
-                        PREFERENCES().SHOW_VIEW_COOT_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_VIEW_CCP4MG_TOOLBUTTON":
-                        PREFERENCES().SHOW_VIEW_CCP4MG_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_SHOW_LOG_TOOLBUTTON":
-                        PREFERENCES().SHOW_SHOW_LOG_TOOLBUTTON.set(val)
-                    elif mapping == "NEW_PROJECT_TOOLBUTTON":
-                        PREFERENCES().NEW_PROJECT_TOOLBUTTON.set(val)
-                    '''
-                    
+
                 listWidget.itemChanged.connect(setItemVisibilities)
                 prefWidget.exec_()
 
@@ -877,7 +814,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                     name = v
                     if str(name) in CCP4WebBrowser.CToolBar.toolBarPreferencesMapping:
                         mapping = CCP4WebBrowser.CToolBar.toolBarPreferencesMapping[str(name)]
-                        #MN Trying to increase code compactness/readability
                         if mapping == "SHOW_RUN_REMOTE_TOOLBUTTON":
                             if ALWAYS_SHOW_SERVER_BUTTON or JOBCONTROLLER().serversEnabled():
                                val = PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON
@@ -885,38 +821,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                                val = False
                         else:
                             val = getattr(PREFERENCES(), mapping)
-                        #Replaces:
-                        '''
-                        if mapping == "SHOW_TASK_MENU_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_TASK_MENU_TOOLBUTTON
-                        elif mapping == "SHOW_JOB_SEARCH_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_JOB_SEARCH_TOOLBUTTON
-                        elif mapping == "SHOW_EXPORT_PROJECT_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_EXPORT_PROJECT_TOOLBUTTON
-                        elif mapping == "SHOW_RUN_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_RUN_TOOLBUTTON
-                        elif mapping == "SHOW_RUN_REMOTE_TOOLBUTTON":
-                            if ALWAYS_SHOW_SERVER_BUTTON or JOBCONTROLLER().serversEnabled():
-                               val = PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON
-                            else:
-                               val = False
-                        elif mapping == "SHOW_CLONE_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_CLONE_TOOLBUTTON
-                        elif mapping == "SHOW_TASK_HELP_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_TASK_HELP_TOOLBUTTON
-                        elif mapping == "SHOW_REFERENCES_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_REFERENCES_TOOLBUTTON
-                        elif mapping == "SHOW_EXPORT_MTZ_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_EXPORT_MTZ_TOOLBUTTON
-                        elif mapping == "SHOW_VIEW_COOT_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_VIEW_COOT_TOOLBUTTON
-                        elif mapping == "SHOW_VIEW_CCP4MG_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_VIEW_CCP4MG_TOOLBUTTON
-                        elif mapping == "SHOW_SHOW_LOG_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_SHOW_LOG_TOOLBUTTON
-                        elif mapping == "NEW_PROJECT_TOOLBUTTON":
-                            val = PREFERENCES().NEW_PROJECT_TOOLBUTTON
-                        '''
+
                         self.webviewToolBar.setButtonVisible(str(name),val)
 
                     else:

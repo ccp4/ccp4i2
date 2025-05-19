@@ -2183,13 +2183,9 @@ class CProjectWidget(QtWidgets.QFrame):
     #print 'handleHistorySlider',value
     self.setJobColour(self.historyLeafList[value-1],self.historySelection)
     self.projectView.update()
-    
-  @QtCore.Slot(bool)
-  def showJobSearch(self,show=True):
-    if not show:
-     if getattr(self,'jobSeachGui',None) is not None:
-        self.jobSeachGui.hide()
-     return
+
+  @QtCore.Slot()
+  def showJobSearch(self):
     if getattr(self,'jobSeachGui',None) is None:
       projectName = PROJECTSMANAGER().db().getProjectInfo(self.projectId,mode='projectname')
       self.jobSeachGui = CJobSearchDialog(self,projectName=projectName)

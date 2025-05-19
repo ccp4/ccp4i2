@@ -3995,12 +3995,8 @@ TaskTitle TEXT );''')
       if fileType is not None:
         cmd = cmd + ' AND Files.FiletypeID = ?'
         args.append(fileType)
-      #print 'CDbApi.getImportedFile',cmd,args
       self.execute(cmd,args)
-      rv = self.fetchAll2PyList([UUIDTYPE,UUIDTYPE,str,str,str,str])
-
-      #print 'getImportedFile',sourceFileName,rv
-      return rv
+      return self.fetchAll2PyList([UUIDTYPE,UUIDTYPE,str,str,str,str])
 
     def getImportFileInstances(self,jobId=None,brief=True):
       if brief:
