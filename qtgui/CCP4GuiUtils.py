@@ -25,10 +25,7 @@ import os
 import types
 import functools
 import sys
-if sys.version_info >= (3,7):
-    from collections.abc import Callable
-else:
-    from collections import Callable
+from collections.abc import Callable
 from PySide2 import QtGui, QtWidgets,QtCore,QtSvg
 from qtgui import CCP4Widgets
 
