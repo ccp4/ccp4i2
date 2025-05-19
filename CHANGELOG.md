@@ -1,5 +1,9 @@
 # CCP4i2 Changelog
 
+## [2.3.2] - 2025-05-19
+
+- Fixed Iterable import
+
 ## [2.3.1] - 2025-05-17
 
 - Changed some performance testing thresholds
