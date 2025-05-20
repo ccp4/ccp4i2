@@ -4125,7 +4125,7 @@ class CTaskInputFrame(QtWidgets.QFrame):
             return
         # Remove unset items from lists
         container.removeUnsetListItems()
-        ifImportFile, errors = PROJECTSMANAGER().importFiles(jobId=jobId, container=container)
+        PROJECTSMANAGER().importFiles(jobId=jobId, container=container)
         rv = self.makeJobInputFile(jobId)
         if not rv:
             QtWidgets.QMessageBox.warning(self, str(self.taskWidget.title()), 'Job failed writing input parameters file')
