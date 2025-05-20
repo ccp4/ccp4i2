@@ -884,26 +884,16 @@ class CProjectsManager(CObject):
         return filePath, importNumber
 
     def alreadyImportedId(self, sourceFileName=None, projectId=None, contentFlag=None, sourceFileReference=None, fileType=None):
-        # is there already an imported file with same sourceFileName and same checksum?
-        # Return the matching importId OR the checksum for sourceFileName needed to create new import record
-        importList = self.db().getImportedFile(sourceFileName=sourceFileName, projectId=projectId, fileContent=contentFlag,
+        # Is there already an imported file with same checksum?
+        fileObj = CCP4File.CDataFile(fullPath=sourceFileName)
+        sourceChecksum = fileObj.checksum()
+        importList = self.db().getImportedFile(checksum=sourceChecksum, projectId=projectId, fileContent=contentFlag,
                                                reference=sourceFileReference, fileType=fileType)
         if len(importList) == 0:
             return None, None, None
         importId = importList[0][0]
         dbFileId = importList[0][1]
-        checksum = importList[0][2]
         annotation = importList[0][3]
-        if dbFileId is None and checksum is not None:
-            try:
-                fileObj = CCP4File.CDataFile(fullPath=sourceFileName)
-                sourceChecksum = fileObj.checksum()
-                # If checksums dont match cancel the importId
-                if sourceChecksum != checksum:
-                    dbFileId = None
-                    importId = None
-            except:
-                pass
         return dbFileId, importId, annotation
 
     def importFiles(self, jobId=None, container=None):
