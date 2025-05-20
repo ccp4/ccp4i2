@@ -582,8 +582,6 @@ class CTaskListProxyModel(QtCore.QSortFilterProxyModel):
 class CProjectViewer(CCP4WebBrowser.CMainWindow):
 #------------------------------------------------------------------------------------------------------
 
-    jobSearch = QtCore.Signal()
-
     ERROR_CODES = {101 : {'description' : 'Error creating task widget for'},
                    102 : {'description' : 'Wrong task name in imported params file'},
                    103 : {'description' : 'Error attempting to auto-generate task widget for'},
@@ -1124,8 +1122,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
             self.actionDefinitions['run_remote'] = dict(text="Run on server", tip="Run this job on a server",
                                                     slot=functools.partial(self.runTask, 'run_remote'), icon='running')
 
-        self.actionDefinitions['job_search'] = dict(text="Job search", tip="Search job list",
-                                                    slot=self.jobSearch.emit, icon='search')
         self.actionDefinitions['view_coot'] = dict(text="View in Coot", tip="Show map & models related to the job in Coot",
                                                    slot=functools.partial(self.handleViewTask, 'view_coot'), icon='coot_rebuild')
         self.actionDefinitions['view_ccp4mg'] = dict(text="View in CCP4mg", tip="Show map & models related to the job in CCP4mg",

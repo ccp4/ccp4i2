@@ -701,7 +701,6 @@ class CToolBar(QtWidgets.QToolBar):
 
     toolBarPreferencesMapping = {
        "task_menu" : "SHOW_TASK_MENU_TOOLBUTTON",
-       "job_search" : "SHOW_JOB_SEARCH_TOOLBUTTON",
        "export_project" : "SHOW_EXPORT_PROJECT_TOOLBUTTON",
        "run" : "SHOW_RUN_TOOLBUTTON",
        "run_remote" : "SHOW_RUN_REMOTE_TOOLBUTTON",
