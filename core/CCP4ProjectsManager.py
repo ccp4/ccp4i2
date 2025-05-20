@@ -886,7 +886,8 @@ class CProjectsManager(CObject):
     def alreadyImportedId(self, sourceFileName=None, projectId=None, contentFlag=None, sourceFileReference=None, fileType=None):
         # is there already an imported file with same sourceFileName and same checksum?
         # Return the matching importId OR the checksum for sourceFileName needed to create new import record
-        importList = self.db().getImportedFile(sourceFileName=sourceFileName, projectId=projectId, fileContent=contentFlag, reference=sourceFileReference, fileType=fileType)
+        importList = self.db().getImportedFile(sourceFileName=sourceFileName, projectId=projectId, fileContent=contentFlag,
+                                               reference=sourceFileReference, fileType=fileType)
         if len(importList) == 0:
             return None, None, None
         importId = importList[0][0]
