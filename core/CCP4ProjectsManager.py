@@ -909,10 +909,7 @@ class CProjectsManager(CObject):
         print('PROJECTSMANAGER.importFiles', jobId, repr(container))
         from dbapi import CCP4DbApi
         if container is None:
-            try:
-                container = self.db().getParamsContainer(jobId=jobId)
-            except:
-                pass
+            container = self.db().getParamsContainer(jobId=jobId)
         projectId = self.db().getJobInfo(jobId=jobId, mode='projectId')
         for key in container.inputData.dataOrder():
             obj0 = getattr(container.inputData, key)
