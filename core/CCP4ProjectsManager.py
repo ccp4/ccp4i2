@@ -883,11 +883,11 @@ class CProjectsManager(CObject):
             filePath = root + str(importNumber) + ext
         return filePath, importNumber
 
-    def alreadyImportedId(self, sourceFileName=None, projectId=None, contentFlag=None, sourceFileReference=None, fileType=None):
+    def alreadyImportedId(self, sourceFileName, projectId, contentFlag=None, sourceFileReference=None, fileType=None):
         # Is there already an imported file with same checksum?
         fileObj = CCP4File.CDataFile(fullPath=sourceFileName)
         sourceChecksum = fileObj.checksum()
-        importList = self.db().getImportedFile(checksum=sourceChecksum, projectId=projectId, fileContent=contentFlag,
+        importList = self.db().getImportedFile(sourceChecksum, projectId, fileContent=contentFlag,
                                                reference=sourceFileReference, fileType=fileType)
         if len(importList) == 0:
             return None, None, None

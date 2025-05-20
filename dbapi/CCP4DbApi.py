@@ -3969,7 +3969,7 @@ TaskTitle TEXT );''')
           i = i + 1
       return ret
 
-    def getImportedFile(self,checksum,projectId=None,fileContent=None,reference=None,fileType=None):
+    def getImportedFile(self,checksum,projectId,fileContent=None,reference=None,fileType=None):
       # Beware different mini-MTZ types may have been imported from the same source file.
       # The importAnnotation is the list of input columns and should match
       # if exactly the same data was imported from a monster-MTZ.
@@ -3985,11 +3985,9 @@ TaskTitle TEXT );''')
         " INNER JOIN Files ON ImportFiles.FileId = Files.FileId"
         " INNER JOIN Jobs ON Files.JobId = Jobs.JobId"
         " WHERE ImportFiles.checksum = ?"
+        " AND Jobs.ProjectId = ?"
       )
-      args = [checksum]
-      if projectId is not None:
-        cmd += " AND Jobs.ProjectId = ?"
-        args.append(projectId)
+      args = [checksum, projectId]
       if fileContent is not None:
         cmd += " AND Files.FileContent = ?"
         args.append(fileContent)
