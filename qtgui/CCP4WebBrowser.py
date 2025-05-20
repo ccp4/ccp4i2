@@ -799,7 +799,6 @@ class CToolBar(QtWidgets.QToolBar):
                 val = True
             else:
                 val = False
-            #FIXME - Aargh. There must be a nicer way.
             getattr(CCP4Modules.PREFERENCES(), mapping).set(val)
         listWidget.itemChanged.connect(setItemVisibilities)
         prefWidget.exec_()
