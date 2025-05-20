@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4ProjectsManager.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -25,6 +23,7 @@ from __future__ import print_function
 
 # NB  load methods from ccp4mg and inconsistent with data types in the init
 
+import copy
 import os
 import re
 import sys
@@ -908,17 +907,12 @@ class CProjectsManager(CObject):
 
     def importFiles(self, jobId=None, container=None):
         print('PROJECTSMANAGER.importFiles', jobId, repr(container))
-        import copy
         from dbapi import CCP4DbApi
-        err = CErrorReport()
         if container is None:
             try:
                 container = self.db().getParamsContainer(jobId=jobId)
-            except CException as e:
-                err.extend(e)
-            except Exception:
-                err.append(self.__class__, 161, 'Error loading container for job')
-        ifImportedFiles = False
+            except:
+                pass
         projectId = self.db().getJobInfo(jobId=jobId, mode='projectId')
         for key in container.inputData.dataOrder():
             obj0 = getattr(container.inputData, key)
@@ -968,7 +962,6 @@ class CProjectsManager(CObject):
                             sourceFileType = None
                         dbFileId, _, _ = self.alreadyImportedId(sourceFileName=sourceFileName,projectId=projectId,
                                                                        sourceFileReference=sourceFileReference,fileType=sourceFileType)
-                        # print 'File has been previously imported?',sourceFileName,'previous file id',dbFileId,'checksum comparison',checksum
                         if dbFileId is None:
                             targetFile,importNumber=self.importFilePath(projectId=projectId, baseName=baseName,
                                                                         fileExtensions=extensions)
@@ -1003,7 +996,6 @@ class CProjectsManager(CObject):
                             if not targetObj.isSet():
                                 targetObj.setFullPath(targetFile)
                         except:
-                            err.append(self.__class__, 160, sourceFileName + ' to ' + targetFile)
                             targetObj = None
                     if targetObj is not None:
                         # Set annotation on the imported targetObj and create an imported file record in the db
@@ -1016,7 +1008,7 @@ class CProjectsManager(CObject):
                                 if anno is NotImplemented or anno is None:
                                     anno = 'Imported'
                                 else:
-                                    anno = anno + ' imported'
+                                    anno += ' imported'
                                 targetObj.annotation = anno + ' from ' + os.path.split(sourceFileName)[1] + ' by job ' + \
                                                             str(self.db().getJobInfo(jobId=jobId, mode='jobnumber'))
                         # print 'PROJECTSMANAGER.importFiles targetObj sourceFileAnnotation',targetObj,targetObj.__dict__.get('sourceFileAnnotation',None)
@@ -1024,20 +1016,15 @@ class CProjectsManager(CObject):
                             fileId = self.db().createFile(fileObject=targetObj, projectId=projectId, jobId=jobId, sourceFileName=sourceFileName,
                                                             reference=sourceFileReference, importNumber=importNumber, sourceFileAnnotation=sourceFileAnnotation)
                             print('Database recording file', str(targetObj.fullPath), 'imported from', sourceFileName, 'file id:', fileId)
-                        except CException as e:
-                            err.extend(e)
-                        except Exception as e:
-                            # print 'PROJECTSMANAGER.importFiles',str(e)
-                            err.append(self.__class__, 161, sourceFileName)
+                        except:
+                            pass
                         else:
                             print('PROJECTSMANAGER.importFiles resetting path', obj.objectName(), targetFile)
-                            ifImportedFiles = True
                             if targetObj != obj:
                                 obj.setFullPath(targetFile)
                                 obj.annotation = str(targetObj.annotation)
                             obj.dbFileId = fileId
                     obj.blockSignals(False)
-        return ifImportedFiles, err
 
     def getSceneFiles(self, jobId=None):
         scenefileList = glob.glob(os.path.join(self.jobDirectory(jobId=jobId), 'scene_*.scene.xml'))
