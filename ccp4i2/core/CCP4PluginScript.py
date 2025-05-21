@@ -1545,11 +1545,6 @@ class CPluginScript(CObject):
             error.append(self.__class__, 34, str(outfiles))
             self.appendErrorReport(34, str(outfiles))
             return error
-        '''
-          for ii in range(min(len(miniMtzsOut),len(programColumnNames))):
-            obj = self.container.outputData.get(miniMtzsOut[ii])
-            if obj is not None: obj.setContentFlag()
-        '''
         print('splitHklout DONE')
         return error
 

@@ -896,15 +896,7 @@ class CSeqDataFile(CCP4File.CDataFile):
         return rv
 
     def validity(self, arg):
-        v = CCP4File.CDataFile.validity(self, arg)
-        '''
-        if v.maxSeverity() in [Severity.UNDEFINED,Severity.UNDEFINED_ERROR]:
-          if arg.has_key('fileContent') and arg['fileContent'] is not None:
-            v = arg['fileContent'].validity(arg['fileContent'].get())
-            #print 'CSeqDataFile.validity content',content.get(),v
-        print 'CSeqDataFile.validity',len(v),v.report()
-        '''
-        return v
+        return CCP4File.CDataFile.validity(self, arg)
 
     def updateData(self):
         self.identifyFile()
@@ -923,19 +915,15 @@ class CSeqDataFile(CCP4File.CDataFile):
         annotation = self.annotation.__str__()
         if annotation[-8:] != '(edited)':
             annotation = annotation +' (edited)'
-        self.importFile(jobId=jobId, annotation=annotation, edited=True)
-        
-    def importFile(self, fileName=None, jobId=None, annotation=None, validatedFile=None, edited=False, jobNumber=None):
+        self.importFile(jobId=jobId, annotation=annotation)
+
+    def importFile(self, jobId=None, annotation=None, validatedFile=None, jobNumber=None):
         #print 'CSeqDataFile.importFile',fileName,self.fileContent.identifier,'validatedFile',validatedFile,'fileContent.sequence',self.fileContent.sequence.isSet()
         #print 'CSeqDataFile.importFile','dict validatedFile',self.__dict__.get('validatedFile',None)
         #traceback.print_stack(limit=5)
         self.blockSignals(True)
-        #if edited:
-        #  self.__dict__['sourceFileName'] = 'COPYDONE'
-        #else:
-        self.__dict__['sourceFileName'] = self.__str__()
-        if fileName is None:
-            fileName = self.importFileName(jobId=jobId,ext='.fasta')
+        self.__dict__['sourceFileName'] = str(self)
+        fileName = self.importFileName(jobId=jobId, ext='.fasta')
         if 'validatedFile' in self.__dict__:
             validatedFile = self.__dict__.get('validatedFile',None)
             del self.__dict__['validatedFile']
@@ -944,7 +932,7 @@ class CSeqDataFile(CCP4File.CDataFile):
         elif self.fileContent.sequence.isSet():
             self.fileContent.saveFile(fileName=fileName)
         else:
-            shutil.copyfile(self.__str__(), fileName)
+            shutil.copyfile(str(self), fileName)
         self.setFullPath(fileName)
         # Set source information up for the PROJECTSMANAGER.importFiles()
         if annotation is not None:
@@ -952,7 +940,7 @@ class CSeqDataFile(CCP4File.CDataFile):
             self.annotation = annotation
         elif not self.annotation.isSet():
             self.annotation = re.sub('[^a-zA-Z0-9_-]', '_', str(self.fileContent.identifier))
-        self.__dict__['sourceFileAnnotation'] = self.annotation.__str__()
+        self.__dict__['sourceFileAnnotation'] = str(self.annotation)
         self.__dict__['format'] = 'internal'
         self.dbFileId.unSet()
         self.blockSignals(False)
@@ -2293,18 +2281,16 @@ class CPdbDataFile(CCP4File.CDataFile):
             return ret
         return CErrorReport()
 
-    def importFile(self, jobId=None, sourceFileName=None, ext=None, annotation=None, jobNumber=None):
-        if sourceFileName is None:
-            sourceFileName = self.__str__()
+    def importFile(self, jobId=None, annotation=None, validatedFile=None, jobNumber=None):
+        sourceFileName = str(self)
+        ext = os.path.splitext(sourceFileName)[1]
         if annotation is None:
             annotation= self.qualifiers('guiLabel') + ' imported from ' + os.path.split(sourceFileName)[1]
             if jobNumber is not None:
                 annotation += ' by job ' + str(jobNumber)
-        if ext is None:
-            ext=os.path.splitext(self.__str__())[1]
         if 'sourceFileName' in self.__dict__:
             del self.__dict__['sourceFileName']
-        if os.path.splitext(sourceFileName)[1] in ['.pdb', '.ent']:
+        if ext in ['.pdb', '.ent']:
             text = CCP4Utils.readFile(sourceFileName)
             if text.count('\nATOM ') + text.count('\nHETATM ') == 0:
                 return CErrorReport(self.__class__, 405, stack=False)

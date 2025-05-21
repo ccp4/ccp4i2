@@ -222,8 +222,6 @@ class CManageImportFiles(QtWidgets.QDialog):
     if rv is None: return
     importId,fileId,jobId,fileName = rv
     jobTree = PROJECTSMANAGER().db().getFollowOnJobs(jobId=jobId)
-    delJobId,importFiles,followOnJobs = jobTree
-
     from . import CCP4ProjectViewer
     self.deleteJobGui = CCP4ProjectViewer.CDeleteJobGui(self,projectId=self.projectId,jobIdList=[jobId],jobTreeList=[jobTree], 
                                            label='Delete jobs that use imported file:'+fileName,deleteImportFiles=True)

@@ -756,27 +756,19 @@ class CDataFile(CCP4Data.CData):
         baseName += '.' + self.fileExtensions()[0]
         self.set({'project' : projectId, 'relPath' : relPath, 'baseName' : baseName } )
 
-    def checksum(self, blockSize=256*128, ifHex=True, filePath = None):
+    def checksum(self, filePath=None):
         '''From http://stackoverflow.com/questions/1131220/get-md5-hash-of-big-files-in-python
         Block size directly depends on the block size of your filesystem
         to avoid performances issues
         Here I have blocks of 4096 octets (Default NTFS)'''
-        if filePath is None:
-            try:
-                filePath = self.__str__()
-                #print 'CDataFile.checksum path', path, os.path.exists(path)
-            except:
-                return None
-        if not os.path.exists(filePath):
-            return None
         md5 = hashlib.md5()
-        with open(filePath,'rb') as f:
-            for chunk in iter(lambda: f.read(blockSize), b''):
-                md5.update(chunk)
-        if ifHex:
-            return md5.hexdigest()
-        else:
-            return md5.digest()
+        try:
+            with open(filePath or str(self), 'rb') as f:
+                while chunk := f.read(32_768):
+                    md5.update(chunk)
+        except:
+            return None
+        return md5.hexdigest()
 
     def assertSame(self, arg, testPath=False, testChecksum=True, testSize=False, testDiff=False, diagnostic=False, fileName=None):
         if isinstance(arg, self.__class__):
@@ -871,11 +863,9 @@ class CDataFile(CCP4Data.CData):
         #print 'CMiniMtzDataFile.importFileName', filename
         return filename
 
-    def importFile(self, jobId=None, sourceFileName=None, ext=None, annotation=None, validatedFile=None, jobNumber=None):
-        if sourceFileName is None:
-            sourceFileName = self.__str__()
-        if ext is None:
-            ext=os.path.splitext(self.__str__())[1]
+    def importFile(self, jobId=None, annotation=None, validatedFile=None, jobNumber=None):
+        sourceFileName = str(self)
+        ext = os.path.splitext(sourceFileName)[1]
         filename = self.importFileName(jobId=jobId, ext=ext)
         #print 'CDataFile.importFile copy', sourceFileName, filename
         if validatedFile is not None and os.path.exists(validatedFile):
@@ -1265,11 +1255,11 @@ def xmlFileHeader(fileName):
         raise e # CException(self.__class__, 115, fileName, name=self.objectPath()) # KJS - A global function does not have a class instance ....
     return h
 
-def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=None, taskName=None, suggestedParams=None):
+
+def cloneI2XmlFile(sourceFile, targetFile, header={}, taskFrame=None, taskName=None, suggestedParams=None):
     from . import CCP4ModelData, CCP4TaskManager
     xFile = CI2XmlDataFile(sourceFile)
-    if current:
-        xFile.header.setCurrent()
+    xFile.header.setCurrent()
     xFile.header.set(header)
     #This stops the header being overwritten with that from targetFile
     xFile.setQualifiers({'autoLoadHeader' : False})
@@ -1509,17 +1499,6 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
         body.remove(interruptContainer[0])
     xFile.setFullPath(targetFile)
     xFile.saveFile(bodyEtree=body)
-    """
-    print "**************************************************"
-    parser = etree.XMLParser()
-    f = open(targetFile)
-    s = f.read()
-    f.close()
-    tree = etree.fromstring(s, parser)
-    print "The new file"
-    print etree.tostring(tree,pretty_print=True)
-    print "**************************************************"
-    """
 
 class CSearchPath(CCP4Data.CData):
     CONTENTS = {'name' : {'class' : CCP4Data.CString}, 'path' : {'class' : CDataFile},}

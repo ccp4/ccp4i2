@@ -583,7 +583,7 @@ class CI2Runner(object):
         rv = cOpenJob.saveParams()
     
         cOpenJob.openJob()
-        ifImportFile, errors = self.pm.importFiles(jobId=cOpenJob.jobId, container=cOpenJob.container)
+        self.pm.importFiles(jobId=cOpenJob.jobId, container=cOpenJob.container)
         #print(ifImportFile, errors)
         #Record input files in database
         from ..dbapi import CCP4DbApi
