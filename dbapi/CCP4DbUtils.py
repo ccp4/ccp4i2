@@ -341,8 +341,7 @@ class COpenJob(QtCore.QObject):
             return CErrorReport(self.__class__,102)
         if self.__dict__['container'] is None:
             return CErrorReport(self.__class__,105)
-        ifImportFile,errors = PROJECTSMANAGER().importFiles(jobId=self.jobId,container=self.container)
-        #print 'COpenJob.runJob',ifImportFile,errors
+        PROJECTSMANAGER().importFiles(jobId=self.jobId,container=self.container)
         rv = self.saveParams()
         if rv.maxSeverity()>SEVERITY_WARNING: return rv
         #Record input files in database

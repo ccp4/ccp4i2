@@ -582,8 +582,6 @@ class CTaskListProxyModel(QtCore.QSortFilterProxyModel):
 class CProjectViewer(CCP4WebBrowser.CMainWindow):
 #------------------------------------------------------------------------------------------------------
 
-    jobSearch = QtCore.Signal()
-
     ERROR_CODES = {101 : {'description' : 'Error creating task widget for'},
                    102 : {'description' : 'Wrong task name in imported params file'},
                    103 : {'description' : 'Error attempting to auto-generate task widget for'},
@@ -773,7 +771,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                             item.setFlags(item.flags() | QtCore.Qt.ItemIsUserCheckable)
                             item.setCheckState(QtCore.Qt.Unchecked)
                             item.setData(QtCore.Qt.UserRole,name)
-                            #MN Trying to make code more compact/readable
                             if mapping == "SHOW_RUN_REMOTE_TOOLBUTTON":
                                 if ALWAYS_SHOW_SERVER_BUTTON or JOBCONTROLLER().serversEnabled():
                                    val = PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON
@@ -781,38 +778,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                                    val = False
                             else:
                                 val = getattr(PREFERENCES(), mapping)
-                            #replaces:
-                            '''
-                            if mapping == "SHOW_TASK_MENU_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_TASK_MENU_TOOLBUTTON
-                            elif mapping == "SHOW_JOB_SEARCH_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_JOB_SEARCH_TOOLBUTTON
-                            elif mapping == "SHOW_EXPORT_PROJECT_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_EXPORT_PROJECT_TOOLBUTTON
-                            elif mapping == "SHOW_RUN_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_RUN_TOOLBUTTON
-                            elif mapping == "SHOW_RUN_REMOTE_TOOLBUTTON":
-                                if ALWAYS_SHOW_SERVER_BUTTON or JOBCONTROLLER().serversEnabled():
-                                   val = PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON
-                                else:
-                                   val = False
-                            elif mapping == "SHOW_CLONE_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_CLONE_TOOLBUTTON
-                            elif mapping == "SHOW_TASK_HELP_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_TASK_HELP_TOOLBUTTON
-                            elif mapping == "SHOW_REFERENCES_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_REFERENCES_TOOLBUTTON
-                            elif mapping == "SHOW_EXPORT_MTZ_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_EXPORT_MTZ_TOOLBUTTON
-                            elif mapping == "SHOW_VIEW_COOT_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_VIEW_COOT_TOOLBUTTON
-                            elif mapping == "SHOW_VIEW_CCP4MG_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_VIEW_CCP4MG_TOOLBUTTON
-                            elif mapping == "SHOW_SHOW_LOG_TOOLBUTTON":
-                                val = PREFERENCES().SHOW_SHOW_LOG_TOOLBUTTON
-                            elif mapping == "NEW_PROJECT_TOOLBUTTON":
-                                val = PREFERENCES().NEW_PROJECT_TOOLBUTTON
-                            '''
                             if val:
                                 item.setCheckState(QtCore.Qt.Checked)
 
@@ -828,38 +793,8 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                         val = False
                     mapping = CCP4WebBrowser.CToolBar.toolBarPreferencesMapping[str(name)]
                     
-                    #MN Trying to make code more compact/readable
                     getattr(PREFERENCES(), mapping).set(val)
-                    #Replacing
-                    '''
-                    if mapping == "SHOW_TASK_MENU_TOOLBUTTON":
-                        PREFERENCES().SHOW_TASK_MENU_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_JOB_SEARCH_TOOLBUTTON":
-                        PREFERENCES().SHOW_JOB_SEARCH_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_EXPORT_PROJECT_TOOLBUTTON":
-                        PREFERENCES().SHOW_EXPORT_PROJECT_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_RUN_TOOLBUTTON":
-                        PREFERENCES().SHOW_RUN_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_RUN_REMOTE_TOOLBUTTON":
-                        PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_CLONE_TOOLBUTTON":
-                        PREFERENCES().SHOW_CLONE_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_TASK_HELP_TOOLBUTTON":
-                        PREFERENCES().SHOW_TASK_HELP_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_REFERENCES_TOOLBUTTON":
-                        PREFERENCES().SHOW_REFERENCES_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_EXPORT_MTZ_TOOLBUTTON":
-                        PREFERENCES().SHOW_EXPORT_MTZ_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_VIEW_COOT_TOOLBUTTON":
-                        PREFERENCES().SHOW_VIEW_COOT_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_VIEW_CCP4MG_TOOLBUTTON":
-                        PREFERENCES().SHOW_VIEW_CCP4MG_TOOLBUTTON.set(val)
-                    elif mapping == "SHOW_SHOW_LOG_TOOLBUTTON":
-                        PREFERENCES().SHOW_SHOW_LOG_TOOLBUTTON.set(val)
-                    elif mapping == "NEW_PROJECT_TOOLBUTTON":
-                        PREFERENCES().NEW_PROJECT_TOOLBUTTON.set(val)
-                    '''
-                    
+
                 listWidget.itemChanged.connect(setItemVisibilities)
                 prefWidget.exec_()
 
@@ -877,7 +812,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                     name = v
                     if str(name) in CCP4WebBrowser.CToolBar.toolBarPreferencesMapping:
                         mapping = CCP4WebBrowser.CToolBar.toolBarPreferencesMapping[str(name)]
-                        #MN Trying to increase code compactness/readability
                         if mapping == "SHOW_RUN_REMOTE_TOOLBUTTON":
                             if ALWAYS_SHOW_SERVER_BUTTON or JOBCONTROLLER().serversEnabled():
                                val = PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON
@@ -885,38 +819,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
                                val = False
                         else:
                             val = getattr(PREFERENCES(), mapping)
-                        #Replaces:
-                        '''
-                        if mapping == "SHOW_TASK_MENU_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_TASK_MENU_TOOLBUTTON
-                        elif mapping == "SHOW_JOB_SEARCH_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_JOB_SEARCH_TOOLBUTTON
-                        elif mapping == "SHOW_EXPORT_PROJECT_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_EXPORT_PROJECT_TOOLBUTTON
-                        elif mapping == "SHOW_RUN_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_RUN_TOOLBUTTON
-                        elif mapping == "SHOW_RUN_REMOTE_TOOLBUTTON":
-                            if ALWAYS_SHOW_SERVER_BUTTON or JOBCONTROLLER().serversEnabled():
-                               val = PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON
-                            else:
-                               val = False
-                        elif mapping == "SHOW_CLONE_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_CLONE_TOOLBUTTON
-                        elif mapping == "SHOW_TASK_HELP_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_TASK_HELP_TOOLBUTTON
-                        elif mapping == "SHOW_REFERENCES_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_REFERENCES_TOOLBUTTON
-                        elif mapping == "SHOW_EXPORT_MTZ_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_EXPORT_MTZ_TOOLBUTTON
-                        elif mapping == "SHOW_VIEW_COOT_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_VIEW_COOT_TOOLBUTTON
-                        elif mapping == "SHOW_VIEW_CCP4MG_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_VIEW_CCP4MG_TOOLBUTTON
-                        elif mapping == "SHOW_SHOW_LOG_TOOLBUTTON":
-                            val = PREFERENCES().SHOW_SHOW_LOG_TOOLBUTTON
-                        elif mapping == "NEW_PROJECT_TOOLBUTTON":
-                            val = PREFERENCES().NEW_PROJECT_TOOLBUTTON
-                        '''
+
                         self.webviewToolBar.setButtonVisible(str(name),val)
 
                     else:
@@ -1187,11 +1090,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
     @QtCore.Slot(str)
     def setToolButtonFontSize(self):
         settings = self.webviewToolBar.settings()
-        """
-        css = bytes(".button {font-size: "+str(PREFERENCES().GUI_FONT_SIZE)+"px;}","utf-8")
-        cssUrl = QtCore.QUrl("data:text/css;charset=utf-8;base64,"+base64.b64encode(css).decode())
-        settings.setUserStyleSheetUrl(cssUrl)
-        """
         settings.setFontSize(QtWebEngineWidgets.QWebEngineSettings.DefaultFontSize,int(PREFERENCES().GUI_FONT_SIZE))
         settings.setFontSize(QtWebEngineWidgets.QWebEngineSettings.DefaultFixedFontSize,int(PREFERENCES().GUI_FONT_SIZE))
         self.setToolButtonStyle()
@@ -1224,8 +1122,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
             self.actionDefinitions['run_remote'] = dict(text="Run on server", tip="Run this job on a server",
                                                     slot=functools.partial(self.runTask, 'run_remote'), icon='running')
 
-        self.actionDefinitions['job_search'] = dict(text="Job search", tip="Search job list",
-                                                    slot=self.jobSearch.emit, icon='search')
         self.actionDefinitions['view_coot'] = dict(text="View in Coot", tip="Show map & models related to the job in Coot",
                                                    slot=functools.partial(self.handleViewTask, 'view_coot'), icon='coot_rebuild')
         self.actionDefinitions['view_ccp4mg'] = dict(text="View in CCP4mg", tip="Show map & models related to the job in CCP4mg",
@@ -1862,14 +1758,6 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
             if 1:
                 widget = CReportView(self)
                 widget.showOutput(openJob=openJob)
-            '''
-            except CException as e:
-                e.warningMessage(parent=self)
-                return None
-            except Exception as e:
-                CMessageBox(self,message='Unknown error creating report file for job number '+str(openJob.jobnumber),exception=e,openJob=openJob)
-                return
-            '''
         elif mode == 'status':
             widget = CJobStatusWidget(self)
             widget.setJob(openJob)
@@ -4237,7 +4125,7 @@ class CTaskInputFrame(QtWidgets.QFrame):
             return
         # Remove unset items from lists
         container.removeUnsetListItems()
-        ifImportFile, errors = PROJECTSMANAGER().importFiles(jobId=jobId, container=container)
+        PROJECTSMANAGER().importFiles(jobId=jobId, container=container)
         rv = self.makeJobInputFile(jobId)
         if not rv:
             QtWidgets.QMessageBox.warning(self, str(self.taskWidget.title()), 'Job failed writing input parameters file')
@@ -5020,16 +4908,6 @@ class CDeleteJobGui(QtWidgets.QDialog):
         
     @QtCore.Slot()
     def deleteJobs(self):
-        '''
-        # Beware importFilePath() returns a name for a new import so this will not work
-        for importId,fileName in self.importFileList:
-          filePath = PROJECTSMANAGER().importFilePath(projectId=self.projectId,baseName=fileName)
-          try:
-            os.remove(filePath)
-            PROJECTSMANAGER().db().deleteImportFile(importId=importId)
-          except:
-            print 'ERROR deleting file',filePath
-        '''
         for jobTree in self.jobTreeList:
             self.deleteJobs0(jobTree,deleteImportFiles=self.deleteImportFiles)
         self.jobsDeleted.emit()
@@ -5054,7 +4932,7 @@ class CJobTree(QtWidgets.QTreeWidget):
         self.icon = QtGui.QIcon( QtGui.QPixmap(os.path.join(CCP4Utils.getCCP4I2Dir(), 'qticons', 'list_delete.png')).scaled(16,16))
 
     def load(self, jobTree, treeParentId=None, jobsToDeleteWithSelectedFiles=[]):
-        jobId, importFiles, childJobTree = jobTree
+        jobId, _, childJobTree = jobTree
         jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId=jobId,mode=['jobnumber', 'taskname', 'status'])
         taskTitle = TASKMANAGER().getTitle(jobInfo['taskname'])
         # Only add job once - beware a jobs could be child of multiple preceeding jobs so appear in jobTree more than once
@@ -5071,5 +4949,3 @@ class CJobTree(QtWidgets.QTreeWidget):
                 item.setIcon(0,self.icon)
             for childJob in childJobTree:
                 self.load(childJob,treeParentId=item,jobsToDeleteWithSelectedFiles=jobsToDeleteWithSelectedFiles)
-
-
