@@ -346,7 +346,6 @@ class CSeqDataFileView(CCP4Widgets.CDataFileView):
       return
 
     if self.model.__dict__['format'] is None or self.model.__dict__['format'] != 'internal':
-      #self.model.importFile(jobId=self.parentTaskWidget().jobId(),jobNumber=self.parentTaskWidget().jobNumber())
       self.doImportFile()
     else:
       self.model.dataChanged.emit()

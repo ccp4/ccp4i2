@@ -701,7 +701,6 @@ class CToolBar(QtWidgets.QToolBar):
 
     toolBarPreferencesMapping = {
        "task_menu" : "SHOW_TASK_MENU_TOOLBUTTON",
-       "job_search" : "SHOW_JOB_SEARCH_TOOLBUTTON",
        "export_project" : "SHOW_EXPORT_PROJECT_TOOLBUTTON",
        "run" : "SHOW_RUN_TOOLBUTTON",
        "run_remote" : "SHOW_RUN_REMOTE_TOOLBUTTON",
@@ -800,38 +799,7 @@ class CToolBar(QtWidgets.QToolBar):
                 val = True
             else:
                 val = False
-            #FIXME - Aargh. There must be a nicer way.
-            #MN Trying to increase code compactness/readability
             getattr(CCP4Modules.PREFERENCES(), mapping).set(val)
-            #Replaces
-            '''
-            if mapping == "SHOW_TASK_MENU_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_TASK_MENU_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_JOB_SEARCH_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_JOB_SEARCH_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_EXPORT_PROJECT_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_EXPORT_PROJECT_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_RUN_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_RUN_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_RUN_REMOTE_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_CLONE_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_CLONE_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_TASK_HELP_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_TASK_HELP_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_REFERENCES_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_REFERENCES_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_EXPORT_MTZ_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_EXPORT_MTZ_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_VIEW_COOT_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_VIEW_COOT_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_VIEW_CCP4MG_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_VIEW_CCP4MG_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_SHOW_LOG_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_SHOW_LOG_TOOLBUTTON.set(val)
-            elif mapping == "NEW_PROJECT_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().NEW_PROJECT_TOOLBUTTON.set(val)
-            '''
         listWidget.itemChanged.connect(setItemVisibilities)
         prefWidget.exec_()
 
