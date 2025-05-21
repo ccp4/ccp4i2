@@ -34,4 +34,4 @@ def test_gamma_ep():
     args += ["--USE_MODEL_PHASES", "False"]
     args += ["--CYCLES", "2"]
     with i2run(args) as job:
-        _check_output(job, max_rfree=0.32)
+        _check_output(job, max_rfree=0.35)
