@@ -24,10 +24,12 @@ from __future__ import print_function
    Liz Potterton Aug 2010 - File handling classes
 """
 
+import hashlib
 import os
 import re
 import sys
 import types
+import shutil
 try:
     from StringIO import StringIO
 except ImportError:
@@ -355,22 +357,6 @@ class CFilePath(CCP4Data.CString):
             return CFilePath(other)
         else:
             return CFilePath(os.path.normpath(os.path.join(other, self._value)))
-
-    """
-    def __cmp__(self,arg):
-        other =  self.getValue(arg)
-        if self._value is None or other is None:
-          if self._value is not None:
-            return -1
-          elif other is not None:
-            return 1
-          else:
-            return 0
-        else:
-          #MN 'str' and 'unicode' types do not have __cmp__, but equality can be tested using ==
-          if isinstance(self._value,basestring) and isinstance(other,basestring): return self._value == other
-          return self._value.__cmp__(other)
-    """
 
     def __str__(self):
         if self._value is None:
@@ -810,28 +796,19 @@ class CDataFile(CCP4Data.CData):
         baseName += '.' + self.fileExtensions()[0]
         self.set({'project' : projectId, 'relPath' : relPath, 'baseName' : baseName } )
 
-    def checksum(self, blockSize=256*128, ifHex=True, filePath = None):
+    def checksum(self, filePath=None):
         '''From http://stackoverflow.com/questions/1131220/get-md5-hash-of-big-files-in-python
         Block size directly depends on the block size of your filesystem
         to avoid performances issues
         Here I have blocks of 4096 octets (Default NTFS)'''
-        if filePath is None:
-            try:
-                filePath = self.__str__()
-                #print 'CDataFile.checksum path', path, os.path.exists(path)
-            except:
-                return None
-        if not os.path.exists(filePath):
-            return None
-        import hashlib
         md5 = hashlib.md5()
-        with open(filePath,'rb') as f:
-            for chunk in iter(lambda: f.read(blockSize), b''):
-                md5.update(chunk)
-        if ifHex:
-            return md5.hexdigest()
-        else:
-            return md5.digest()
+        try:
+            with open(filePath or str(self), 'rb') as f:
+                while chunk := f.read(32_768):
+                    md5.update(chunk)
+        except:
+            return None
+        return md5.hexdigest()
 
     def assertSame(self, arg, testPath=False, testChecksum=True, testSize=False, testDiff=False, diagnostic=False, fileName=None):
         from core import CCP4Utils
@@ -932,12 +909,9 @@ class CDataFile(CCP4Data.CData):
         #print 'CMiniMtzDataFile.importFileName', filename
         return filename
 
-    def importFile(self, jobId=None, sourceFileName=None, ext=None, annotation=None, validatedFile=None, jobNumber=None):
-        import shutil
-        if sourceFileName is None:
-            sourceFileName = self.__str__()
-        if ext is None:
-            ext=os.path.splitext(self.__str__())[1]
+    def importFile(self, jobId=None, annotation=None, validatedFile=None, jobNumber=None):
+        sourceFileName = str(self)
+        ext = os.path.splitext(sourceFileName)[1]
         filename = self.importFileName(jobId=jobId, ext=ext)
         #print 'CDataFile.importFile copy', sourceFileName, filename
         if validatedFile is not None and os.path.exists(validatedFile):
@@ -960,20 +934,20 @@ class CDataFile(CCP4Data.CData):
 
     def isDosFile(self):
         from core import CCP4Utils
-        text = CCP4Utils.readFile(self.__str__())
+        text = CCP4Utils.readFile(str(self))
         isDFile = (text.find('\r\n') >= 0)
         return isDFile
 
     def resetLineEnd(self, outputFilename=None, toDos=False):
         from core import CCP4Utils
-        text = CCP4Utils.readFile(self.__str__())
+        text = CCP4Utils.readFile(str(self))
         isDos = text.find('\r\n') >= 0
         if isDos == toDos:
             if outputFilename is not None:
                 CCP4Utils.saveFile(text=text, fileName=outputFilename)
                 return outputFilename
             else:
-                return self.__str__()
+                return str(self)
         if outputFilename is None:
             import tempfile
             outputFilename = tempfile.mktemp(suffix='.txt')
@@ -1412,12 +1386,6 @@ def getNodePath(node, key=None):
     if key is not None:
         name = name + '.' + key
     return name
-    '''
-      path.append(getUniqueNodeLabel(node))
-      for p in node.iterancestors():
-        path.insert(0,getUniqueNodeLabel(p))
-      return path
-    '''
 
 def getUniqueNodeLabel(node):
     name = re.sub('{http://www.ccp4.ac.uk/ccp4ns}', '', str(node.tag))
@@ -1440,12 +1408,11 @@ def xmlFileHeader(fileName):
         raise e # CException(self.__class__, 115, fileName, name=self.objectPath()) # KJS - A global function does not have a class instance ....
     return h
 
-def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=None, taskName=None, suggestedParams=None):
+def cloneI2XmlFile(sourceFile, targetFile, header={}, taskFrame=None, taskName=None, suggestedParams=None):
     import getpass
     from core import CCP4ModelData, CCP4TaskManager, CCP4Utils
     xFile = CI2XmlDataFile(sourceFile)
-    if current:
-        xFile.header.setCurrent()
+    xFile.header.setCurrent()
     xFile.header.set(header)
     #This stops the header being overwritten with that from targetFile
     xFile.setQualifiers({'autoLoadHeader' : False})
@@ -1688,17 +1655,6 @@ def cloneI2XmlFile(sourceFile, targetFile, header={}, current=True, taskFrame=No
         body.remove(interruptContainer[0])
     xFile.setFullPath(targetFile)
     xFile.saveFile(bodyEtree=body)
-    """
-    print "**************************************************"
-    parser = etree.XMLParser()
-    f = open(targetFile)
-    s = f.read()
-    f.close()
-    tree = etree.fromstring(s, parser)
-    print "The new file"
-    print etree.tostring(tree,pretty_print=True)
-    print "**************************************************"
-    """
 
 class CSearchPath(CCP4Data.CData):
     CONTENTS = {'name' : {'class' : CCP4Data.CString}, 'path' : {'class' : CDataFile},}

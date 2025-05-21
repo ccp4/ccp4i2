@@ -242,7 +242,6 @@ class CManageImportFiles(QtWidgets.QDialog):
     importId,fileId,jobId,fileName = rv
     #followOnJobs = PROJECTSMANAGER().db().getFollowOnJobs(jobId=jobId)
     jobTree = PROJECTSMANAGER().db().getFollowOnJobs(jobId=jobId)
-    delJobId,importFiles,followOnJobs = jobTree
     
     from qtgui import CCP4ProjectViewer
     self.deleteJobGui = CCP4ProjectViewer.CDeleteJobGui(self,projectId=self.projectId,jobIdList=[jobId],jobTreeList=[jobTree], 
