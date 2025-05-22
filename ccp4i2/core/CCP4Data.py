@@ -4,9 +4,8 @@ Liz Potterton Aug 2010 - 'Generic' CCP4Data classes
 
 import re
 import string
-import xml.etree.ElementTree as etree_xml
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore
 
 from . import CCP4Utils
@@ -197,14 +196,14 @@ class CDataQualifiers:
         if tag is None or len(tag) == 0:
             tag = self.__class__.__name__
             error.append(self.__class__, 14, name=self.objectPath())
-        element = etree.Element(str(tag))
+        element = ET.Element(str(tag))
         if customOnly:
             qualis = self.qualifiers(default=False, contentQualifiers=False)
         else:
             qualis = self.qualifiers(contentQualifiers=False)
         for key, value in list(qualis.items()):
             try:
-                ele = etree.Element(key)
+                ele = ET.Element(key)
                 if self.qualifiersDefinition(key).get('type', str) == list:
                     txt = ''
                     for item in value:
@@ -233,7 +232,7 @@ class CDataQualifiers:
     def dictQualifersEtree(self, root, inputDict):
         error = CErrorReport()
         for key,value in list(inputDict.items()):
-            root.append(etree.Element(key))
+            root.append(ET.Element(key))
             if isinstance(value,list):
                 txt = ''
                 for item in value:
@@ -607,7 +606,9 @@ class CData(CObject, CDataQualifiers):
 
     def xmlText(self, pretty_print=True, xml_declaration=False):
         tree = self.getEtree()
-        text = etree.tostring(tree, pretty_print=pretty_print, xml_declaration=xml_declaration)
+        if pretty_print:
+            ET.indent(tree)
+        text = ET.tostring(tree, xml_declaration=xml_declaration)
         return text
 
     def __len__(self):
@@ -709,18 +710,15 @@ class CData(CObject, CDataQualifiers):
         self.blockSignals(False)
         self.updateData()
 
-    def getEtree(self, excludeUnset=True, name=None, useLXML=True):
+    def getEtree(self, excludeUnset=True, name=None):
         if name is None:
             name = self.objectName()
         if name is None or len(name) == 0:
             name = self.className()
-        if useLXML:
-            element = etree.Element(name)
-        else:
-            element = etree_xml.Element(name)
+        element = ET.Element(name)
         for key in self.dataOrder():
             if not excludeUnset or self._value[key].isSet(allSet=False):
-                ele = self._value[key].getEtree(useLXML=useLXML)
+                ele = self._value[key].getEtree()
                 element.append(ele)
         return element
 
@@ -962,15 +960,12 @@ class CBaseData(CData):
         else:
             self.set(value=self.qualifiers('default'))
 
-    def getEtree(self, excludeUnset=True, name=None, useLXML=True):
+    def getEtree(self, excludeUnset=True, name=None):
         if name is None:
             name = self.objectName()
         if name is None or len(name) == 0:
             name = self.className()
-        if useLXML:
-            element = etree.Element(str(name))
-        else:
-            element = etree_xml.Element(str(name))
+        element = ET.Element(str(name))
         if hasattr(self.__str__(),"decode"):
             text = self.__str__().decode('ISO-8859-1')
         else:
@@ -2164,11 +2159,11 @@ class CCollection(CData):
 
     def subItemEtree(self, customOnly=True):
         errors = CErrorReport()
-        element = etree.Element('subItem')
+        element = ET.Element('subItem')
         if self.__dict__['_subItemObject'] is None:
             errors.append(self.__class__, 112, name=self.objectPath())
             return element, errors
-        classEle = etree.Element('className')
+        classEle = ET.Element('className')
         classEle.text = self.subItemClassName()
         element.append(classEle)
         qualiEle,errs = self.__dict__['_subItemObject'].qualifiersEtree(customOnly=True, tag='qualifiers')
@@ -2359,24 +2354,15 @@ class CDict(CCollection):
         self.updateData()
         return rv
 
-    def getEtree(self, excludeUnset=True, name=None, useLXML=True):
+    def getEtree(self, excludeUnset=True, name=None):
         if name is None:
             name = self.objectName()
         if name is None or len(name) == 0:
             name = self.className()
-        if useLXML:
-            element = etree.Element(name)
-        else:
-            element = etree_xml.Element(name)
+        element = ET.Element(name)
         for key in self.dataOrder():
-            if useLXML:
-                element.append(etree.Element('item'))
-            else:
-                element.append(etree_xml.Element('item'))
-            if useLXML:
-                ele = etree.Element('key')
-            else:
-                ele = etree_xml.Element('key')
+            element.append(ET.Element('item'))
+            ele = ET.Element('key')
             ele.text = key
             element[-1].append(ele)
             element[-1].append(self.__dict__['_value'][key].getEtree(name='value'))
@@ -2419,7 +2405,7 @@ class CList(CCollection):
                    107 : {'description' : 'Deleting item will reduce list below minimum length'},
                    108 : {'description' : 'Adding item will extend list beyond maximum length'},
                    109 : {'description' : 'Invalid item class'},
-                   110 : {'description' : 'etree (XML) list item of wrong type'},
+                   110 : {'description' : 'XML list item of wrong type'},
                    112 : {'description' : 'No list item object set for list'}}
 
     def coerce(self, arg):
@@ -2551,21 +2537,18 @@ class CList(CCollection):
                     rv.append(self.makeItem())
         return rv
 
-    def getEtree(self, excludeUnset=True, name=None, useLXML=True):
+    def getEtree(self, excludeUnset=True, name=None):
         if name is None:
             name = self.objectName()
         if name is None or len(name) == 0:
             name = self.className()
-        if useLXML:
-            element = etree.Element(name)
-        else:
-            element = etree_xml.Element(name)
+        element = ET.Element(name)
         if len(self.__dict__['_value']) == 0:
             #This seems to be necessary to get empty list written out properly
             element.text = ''
         else:
             for item in self.__dict__['_value']:
-                ele = item.getEtree(useLXML=useLXML)
+                ele = item.getEtree()
                 element.append(ele)
         return element
 
@@ -2909,23 +2892,20 @@ class COutputFileList(CList):
                                             'description':'Name hint for the base name of output files'}
                               }
 
-    def getEtree(self, excludeUnset=True, name=None, useLXML=True):
+    def getEtree(self, excludeUnset=True, name=None):
         if name is None:
             name = self.objectName()
         if name is None or len(name) == 0:
             name = self.className()
-        if useLXML:
-            element = etree.Element(name)
-        else:
-            element = etree_xml.Element(name)
+        element = ET.Element(name)
         if len(self.__dict__['_value']) == 0:
             #This seems to be necessary to get empty list written out properly
             element.text = ''
         else:
             for item in self.__dict__['_value']:
-                ele = item.getEtree(useLXML=useLXML)
+                ele = item.getEtree()
                 element.append(ele)
-        print(etree.tostring(element))
+        print(ET.tostring(element))
         return element
 
 

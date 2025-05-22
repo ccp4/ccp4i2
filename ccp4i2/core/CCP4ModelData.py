@@ -11,8 +11,8 @@ import re
 import shutil
 import sys
 import tempfile
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore, QtGui
 import Bio
 import Bio.Align
@@ -3139,15 +3139,15 @@ class CChainMatch:
 
     def reportXmlAlignments(self):
         matchList = self.score()
-        root = etree.Element('ChainMatching')
+        root = ET.Element('ChainMatching')
         for chIndx1, chIndx2 in matchList:
             #print 'chIndx1,chIndx2', chIndx1, chIndx2
-            ele = etree.SubElement(root, 'AlignChain')
+            ele = ET.SubElement(root, 'AlignChain')
             align = CPairwiseAlignment(str(self.chains1[chIndx1].sequence), str(self.chains2[chIndx2].sequence))
-            e = etree.SubElement(ele, 'ChainId')
+            e = ET.SubElement(ele, 'ChainId')
             e.text = self.chains1[chIndx1].name.__str__()
-            e = etree.SubElement(ele, 'ChainId2')
+            e = ET.SubElement(ele, 'ChainId2')
             e.text = self.chains2[chIndx2].name.__str__()
-            e = etree.SubElement(ele, 'Alignment')
+            e = ET.SubElement(ele, 'Alignment')
             e.text = align.formattedAlignment(str(self.chains1[chIndx1].name), str(self.chains2[chIndx2].name))
         return root

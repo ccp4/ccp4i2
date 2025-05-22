@@ -8,7 +8,6 @@ import traceback
 import xml.etree.ElementTree as ET
 
 import gemmi
-from lxml import etree
 import numpy
 from PySide2 import QtCore
 
@@ -231,8 +230,8 @@ class CI2Runner(object):
             xmlFileObject.header.setCurrent()
             xmlFileObject.header.function.set('ASUCONTENT')
             #xmlFileObject.header.projectName.set(projectName)
-            baseRoot=etree.Element("root")
-            sequenceListRoot=etree.SubElement(baseRoot, 'seqList')
+            baseRoot=ET.Element("root")
+            sequenceListRoot=ET.SubElement(baseRoot, 'seqList')
             xmlFileObject.saveFile(baseRoot)
             cAsuDataFile.setFullPath(tempASUFile.name)
             firstSequence = True
@@ -514,7 +513,7 @@ class CI2Runner(object):
                                         if deconvolutedPathElement == 'text':
                                             propertyToModify.text.set(propertyValue)
                                             #print("[{}] [{}] [{}]".format(entityToModify, entityToModify.selection, entityToModify.selection.text))
-                                            #print(etree.tostring(entityToModify.getEtree()))
+                                            #print(ET.tostring(entityToModify.getEtree()))
                                             continue
                                     elif isinstance(propertyToModify,(CCP4ModelData.CAsuDataFile,)):
                                         if deconvolutedPathElement == 'seqFile':

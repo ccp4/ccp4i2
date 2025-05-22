@@ -14,8 +14,8 @@ import re
 import shutil
 import sys
 import traceback as traceback_module
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore, QtWidgets
 
 from . import CCP4Utils
@@ -1828,10 +1828,10 @@ class CPluginScript(CObject):
         We could probably make this more generic.
         It is up to wrapper authors to implement this appropriately and call when required.
         """
-        warningsNode = etree.SubElement(self.xmlroot,"Warnings")
+        warningsNode = ET.SubElement(self.xmlroot,"Warnings")
         for f in logfiles:
-           fileNode = etree.SubElement(warningsNode,"logFile")
-           fileNameNode = etree.SubElement(fileNode,"fileName")
+           fileNode = ET.SubElement(warningsNode,"logFile")
+           fileNameNode = ET.SubElement(fileNode,"fileName")
            fileNameNode.text = f
            with open(f) as fh:
                lines = fh.readlines()
@@ -1839,29 +1839,29 @@ class CPluginScript(CObject):
                for l in lines:
                    errors = re.findall("ERROR",l)
                    if len(errors)>0:
-                       warningNode = etree.SubElement(fileNode,"warning")
-                       typeNode = etree.SubElement(warningNode,"type")
-                       warningTextNode = etree.SubElement(warningNode,"text")
+                       warningNode = ET.SubElement(fileNode,"warning")
+                       typeNode = ET.SubElement(warningNode,"type")
+                       warningTextNode = ET.SubElement(warningNode,"text")
                        typeNode.text = "ERROR"
-                       lineNumberNode = etree.SubElement(warningNode,"lineNumber")
+                       lineNumberNode = ET.SubElement(warningNode,"lineNumber")
                        warningTextNode.text = l.rstrip("\n")
                        lineNumberNode.text = str(il)
                    warnings = re.findall("WARNING",l)
                    if len(warnings)>0:
-                       warningNode = etree.SubElement(fileNode,"warning")
-                       typeNode = etree.SubElement(warningNode,"type")
-                       warningTextNode = etree.SubElement(warningNode,"text")
+                       warningNode = ET.SubElement(fileNode,"warning")
+                       typeNode = ET.SubElement(warningNode,"type")
+                       warningTextNode = ET.SubElement(warningNode,"text")
                        typeNode.text = "WARNING"
-                       lineNumberNode = etree.SubElement(warningNode,"lineNumber")
+                       lineNumberNode = ET.SubElement(warningNode,"lineNumber")
                        warningTextNode.text = l.rstrip("\n")
                        lineNumberNode.text = str(il)
                    attentions = re.findall("ATTENTION",l)
                    if len(attentions)>0:
-                       warningNode = etree.SubElement(fileNode,"warning")
-                       typeNode = etree.SubElement(warningNode,"type")
-                       warningTextNode = etree.SubElement(warningNode,"text")
+                       warningNode = ET.SubElement(fileNode,"warning")
+                       typeNode = ET.SubElement(warningNode,"type")
+                       warningTextNode = ET.SubElement(warningNode,"text")
                        typeNode.text = "ATTENTION"
-                       lineNumberNode = etree.SubElement(warningNode,"lineNumber")
+                       lineNumberNode = ET.SubElement(warningNode,"lineNumber")
                        warningTextNode.text = l.rstrip("\n")
                        lineNumberNode.text = str(il)
                    il += 1
@@ -2292,19 +2292,19 @@ class CRunPlugin(CObject):
         self.emitFinishSignal(0)
 
     def makeLog(self):
-        progTree = etree.Element('programVersions')
+        progTree = ET.Element('programVersions')
         try:
             progVersions = self.plugin.getProgramVersions()
         except:
             print('ERROR trying to get program versions')
         else:
             for pV in list(progVersions.items()):
-                ele = etree.Element('programVersion')
+                ele = ET.Element('programVersion')
                 progTree.append(ele)
-                e = etree.Element('program')
+                e = ET.Element('program')
                 e.text = pV[0]
                 ele.append(e)
-                e = etree.Element('version')
+                e = ET.Element('version')
                 e.text = pV[1]
                 ele.append(e)
         body = self.errorReport.getEtree()
@@ -2315,7 +2315,9 @@ class CRunPlugin(CObject):
             print('Error saving diagnostic log file')
             print('The contents are:')
             try:
-                print(etree.tostring(self.errorReport.getEtree(), pretty_print=True))
+                etree = self.errorReport.getEtree()
+                ET.indent(etree)
+                print(ET.tostring(etree))
             except:
                 print('Error writing contents')
 

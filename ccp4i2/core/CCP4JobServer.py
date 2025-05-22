@@ -9,8 +9,8 @@ import re
 import socket
 import subprocess
 import sys
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore
 import paramiko
 
@@ -87,45 +87,12 @@ class CServerParams:
         else:
             return self.remotePath[0:-1]+'.FINISHED'
 
-    '''
-    @property
-    def jobNumber(self):
-        """Get the jobNumber"""
-        print 'jobNumber',self.jobId
-        if self._jobNumber is None:
-            jobInfo = self.db.getJobInfo(jobId=self.jobId,mode=['jobnumber','projectid'])
-            self._jobNumber = jobInfo['jobnumber']
-            self._projectId = jobInfo['projectid']
-        return self._jobNumber
-
-    @property
-    def projectName(self):
-        """Get the projectName"""
-        if self._projectName is None:
-            if self._projectId is None: self.jobNumber()
-            projectInfo = self.db.getProjectInfo(projectId=self._projectId)
-            self._projectName = projectInfo['projectname']
-            self._projectDirectory = projectInfo['projectdirectory']
-        return self._projectName
-
-    @property
-    def projectDirectory(self):
-        """Get the projectDirectory"""
-        print 'projectDirectory',self._projectId
-        if self._projectDirectory is None:
-            if self._projectId is None: self.jobNumber()
-            projectInfo = self.db.getProjectInfo(projectId=self._projectId)
-            self._projectName = projectInfo['projectname']
-            self._projectDirectory = projectInfo['projectdirectory']
-        return self._projectDirectory
-    '''
-
     def getEtree(self):
-        ele = etree.Element('serverParams')
+        ele = ET.Element('serverParams')
         ele.set('jobId', str(self.jobId))
         for key in CServerParams.SAVELIST:
             if getattr(self, key, None) is not None:
-                e = etree.Element(key)
+                e = ET.Element(key)
                 e.text = str(getattr(self,key))
                 ele.append(e)
         return ele
@@ -217,7 +184,7 @@ class CJobServer(QtCore.QObject):
         fileObj = CCP4File.CI2XmlDataFile(fileName)
         fileObj.header.setCurrent()
         fileObj.header.function.set('JOBSERVERSTATUS')
-        bodyEtree = etree.Element('serverParamsList')
+        bodyEtree = ET.Element('serverParamsList')
         for jobId, sP in list(self._serverParams.items()):
             bodyEtree.append(sP.getEtree())
         fileObj.saveFile(bodyEtree)
@@ -384,8 +351,7 @@ class CJobServer(QtCore.QObject):
         self.setServerParam(jobId, 'pollReport', 0)
 
     def parseQsubStat(self, returnString, mode='finished'):
-        parser = etree.XMLParser()
-        tree = etree.fromstring(returnString, parser)
+        tree = ET.fromstring(returnString)
         if mode == 'finished':
             qsubIdDict = {}
             jobs = tree.xpath("job_info|queue_info")
@@ -414,12 +380,6 @@ class CJobServer(QtCore.QObject):
             return False
         if finishHandler is None:
             finishHandler = self._transportFilesFinished
-        """
-        sP.sshThreadTransport = UtilityThread.UtilityThread(functools.partial(self._transportFiles, jobId, copyList, mode, failSignal, diagnostic))
-        sP.sshThreadTransport.finished.connect(functools.partial(finishHandler, jobId))
-        self.runInSSHThreads.append(sP.sshThreadTransport)
-        sP.sshThreadTransport.start()
-        """
         self._transportFiles( jobId, copyList, mode, failSignal, diagnostic)
         finishHandler(jobId)
         return True
@@ -434,14 +394,6 @@ class CJobServer(QtCore.QObject):
                 mach = sP.machine
                 port = PARAMIKO_PORT
 
-            """
-            transport = paramiko.Transport((mach, port))
-            if sP.validate in ['key_filename', 'pass_key_filename'] and sP.keyFilename is not None and len(sP.keyFilename) > 0:
-                transport.connect(username=sP.username, password=sP.password, pkey=self.getPKey(jobId))
-            else:
-                transport.connect(username=sP.username, password=sP.password)
-            sftp = paramiko.SFTPClient.from_transport(transport)
-            """
             ssh = paramiko.SSHClient()
             ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
             if sP.validate in ['key_filename', 'pass_key_filename'] and sP.keyFilename is not None and len(sP.keyFilename) > 0:

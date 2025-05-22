@@ -5,8 +5,7 @@ Liz Potterton Aug 2010 - Generic container for CCP4Data objects
 import inspect
 import re
 import sys
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from . import CCP4Data
 from .CCP4DataManager import DATAMANAGER
@@ -268,7 +267,7 @@ class CContainer(CCP4Data.CData):
             errorReport.append(self.__class__, 130, fileName, name=self.objectPath())
         return errorReport
 
-    def getEtree(self, excludeUnset=True, useLXML=True):
+    def getEtree(self, excludeUnset=True):
         name = self.objectName()
         if name.count(' ') > 0:
             name = re.sub(' ', '_', name)
@@ -288,8 +287,6 @@ class CContainer(CCP4Data.CData):
         if subContainer is not None:
             subConList = bodyEtree.xpath('./' + subContainer)
             if len(subConList) > 0:
-                #bodyEtree = etree.Element('dummy')
-                #bodyEtree.append(subConList[0])
                 bodyEtree = subConList[0]
         try:
             f.saveFile(bodyEtree=bodyEtree)
@@ -426,7 +423,7 @@ class CContainer(CCP4Data.CData):
     def saveContentsToEtree(self):
         errors = CErrorReport()
         # Create element
-        element = etree.Element('container')
+        element = ET.Element('container')
         name = self.objectName()
         if name is not None and len(name) > 0:
             element.set('id', name)
@@ -445,7 +442,6 @@ class CContainer(CCP4Data.CData):
                     # also keep qualifiers
                     qualiEle, errs = obj.qualifiersEtree(customOnly=True, tag='qualifiers', recurse=False)
                     #print 'saveContentsToEtree qualiEle'
-                    #print etree.tostring(qualiEle, pretty_print=True)
                     errors.extend(errs)
                     ele.append(qualiEle)
                     element.append(ele)
@@ -453,9 +449,9 @@ class CContainer(CCP4Data.CData):
                     #  errors.append(self.__class__, 128, name)
                 else:
                     #try:
-                        ele = etree.Element('content')
+                        ele = ET.Element('content')
                         ele.set('id',name)
-                        classEle = etree.Element('className')
+                        classEle = ET.Element('className')
                         cls =  self.CONTENTS[name].get('class', None)
                         if cls is not None:
                             classEle.text = cls.__name__

@@ -16,9 +16,9 @@ import sys
 import tarfile
 import tempfile
 import time
+import xml.etree.ElementTree as ET
 import zipfile
 
-from lxml import etree
 from PySide2 import QtCore
 
 from . import CCP4File
@@ -185,14 +185,15 @@ class CProjectsManager(CObject):
 
     def backupDBXML(self):
         proj_dir_list0=PROJECTSMANAGER().db().getProjectDirectoryList()
-        root = etree.Element("ProjectRoots")
+        root = ET.Element("ProjectRoots")
         for projectInfo in proj_dir_list0:
-            projectRoot = etree.Element("project")
+            projectRoot = ET.Element("project")
             projectRoot.text =  projectInfo[2]
             root.append(projectRoot)
         dbListBackupName = os.path.join(CCP4Utils.getDotDirectory(),'projectList-backup.xml')
         dbListBackupFile = open(dbListBackupName,"w+")
-        CCP4Utils.writeXML(dbListBackupFile,etree.tostring(root,pretty_print=True))
+        ET.indent(root)
+        CCP4Utils.writeXML(dbListBackupFile,ET.tostring(root))
         dbListBackupFile.close()
         print("Backed up list of projects to",dbListBackupName)
 
@@ -598,7 +599,7 @@ class CProjectsManager(CObject):
             except:
                 raise CException(self.__class__, 143, str(jobDir))
             # Add a dummy program.xml
-            dummy = etree.Element('dummy')
+            dummy = ET.Element('dummy')
             CCP4Utils.saveEtreeToFile(dummy, os.path.join(jobDir, 'program.xml'))
             self._db.setJobToImport(jobId=jobId, projectId=projectId)
             # Save the job db backup

@@ -13,9 +13,8 @@ import sys
 import tarfile
 import tempfile
 import time
-import xml.etree.ElementTree as etree_xml
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 import shiboken2
 
 from .. import I2_TOP
@@ -128,7 +127,8 @@ def saveEtreeToFile(tree=None, fileName=None):
     if tree is None:
         raise CException(CUtils, 101, fileName)
     try:
-        text = etree.tostring(tree, pretty_print=True, xml_declaration=True)
+        ET.indent(tree)
+        text = ET.tostring(tree, xml_declaration=True)
     except:
         raise CException(CUtils, 102, fileName)
     try:
@@ -137,28 +137,22 @@ def saveEtreeToFile(tree=None, fileName=None):
         raise CException(CUtils, 103, fileName)
 
 
-utf8_parser = etree.XMLParser(encoding='utf-8')
+def parse_from_unicode(unicode_str):
+    return ET.fromstring(unicode_str)
 
 
-def parse_from_unicode(unicode_str, useLXML=True):
-    if useLXML:
-        s = unicode_str.encode('utf-8')
-        return etree.fromstring(s, parser=utf8_parser)
-    return etree_xml.fromstring(unicode_str)
-
-
-def openFileToEtree(fileName=None, printout=False,useLXML=True):
-    # Use this as etree.parse() seg faults on some Linux
+def openFileToEtree(fileName=None, printout=False):
     try:
         f = open(os.path.normpath(fileName))
         s = f.read()
         f.close()
-        tree = parse_from_unicode(s,useLXML=useLXML)
+        tree = parse_from_unicode(s)
     except:
         raise CException(CUtils, 104, fileName)
     else:
         if printout:
-            print(etree.tostring(tree, pretty_print=True))
+            ET.indent(tree)
+            print(ET.tostring(tree))
         return tree
 
 
