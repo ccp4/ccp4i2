@@ -1,9 +1,10 @@
 # CCP4i2 Changelog
 
-## [2.3.2] - 2025-05-21
+## [2.3.2] - 2025-05-22
 
 - Avoid re-importing files with the same checksum
-- Fixed Iterable import
+- Fixed collections.Iterable import
+- Changed some performance testing thresholds
 
 ## [2.3.1] - 2025-05-17
 
