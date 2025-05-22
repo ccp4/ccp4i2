@@ -1,6 +1,5 @@
 import os
 import pathlib
-import sys
 import textwrap
 
 import lxml
@@ -32,16 +31,14 @@ class coot_rsr_morph(CPluginScript):
         pdb_path = str(self.container.inputData.XYZIN.fullPath)
         mtz_path = str(self.container.inputData.FPHIIN.fullPath)
         out_path = os.path.normpath(str(self.container.outputData.XYZOUT))
-        if sys.platform.startswith("win"):
-            out_path = out_path.replace("\\","\\\\")
         local_radius = self.container.controlParameters.LOCAL_RADIUS
         gm_alpha = self.container.controlParameters.GM_ALPHA
         blur_b_factor = self.container.controlParameters.BLUR_B_FACTOR
         script = textwrap.dedent(
             f"""\
             try:
-                imol = read_pdb("{pdb_path}")
-                imap = make_and_draw_map("{mtz_path}", "F", "PHI", "", 0, 0)
+                imol = read_pdb(r"{pdb_path}")
+                imap = make_and_draw_map(r"{mtz_path}", "F", "PHI", "", 0, 0)
                 generate_self_restraints(imol, {local_radius})
                 set_show_extra_restraints(imol, 0)
                 set_refinement_geman_mcclure_alpha({gm_alpha})
@@ -53,7 +50,7 @@ class coot_rsr_morph(CPluginScript):
                     residues = fit_protein_make_specs(imol, "all-chains")
                     with AutoAccept():
                         refine_residues_py(imol, residues)
-                write_{outFormat}_file(imol, "{out_path}")
+                write_{outFormat}_file(imol, r"{out_path}")
             except Exception:
                 import traceback
                 print(traceback.format_exc())
@@ -63,7 +60,7 @@ class coot_rsr_morph(CPluginScript):
         script_path = os.path.join(self.workDirectory, "script.py")
         with open(script_path, "w") as stream:
             stream.write(script)
-        self.appendCommandLine(["--no-graphics", "--script", script_path])
+        self.appendCommandLine(["--no-state-script", "--no-graphics", '--python', "--script", script_path])
         return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):

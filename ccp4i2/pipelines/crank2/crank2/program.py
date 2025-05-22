@@ -1,6 +1,6 @@
+from collections.abc import Iterable
 from distutils import spawn
 from queue import Queue
-import collections
 import copy
 import os
 import re
@@ -439,7 +439,7 @@ class program(object):
       f = open(logfile,"r")
       from_str = f.read()
     if param:
-      if common.is_string(param) or not isinstance(param, collections.Iterable):
+      if common.is_string(param) or not isinstance(param, Iterable):
         param = [param,]
       if param_escape:
         param = [re.escape(str(p)) for p in param]
