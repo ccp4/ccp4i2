@@ -1,5 +1,6 @@
 from __future__ import with_statement
 import os,sys,copy,re
+from collections.abc import Iterable
 from xml.etree import ElementTree as ET
 import subprocess,threading,time
 from distutils import spawn
@@ -437,8 +438,7 @@ class program(object):
       f = open(logfile,"r")
       from_str = f.read()
     if param:
-      import collections
-      if common.is_string(param) or not isinstance(param, collections.Iterable):
+      if common.is_string(param) or not isinstance(param, Iterable):
         param = [param,]
       if param_escape:
         param = [re.escape(str(p)) for p in param]

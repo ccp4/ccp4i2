@@ -4,6 +4,8 @@
 
 - Avoid re-importing files with the same checksum
 - Fix for the Coot RSR Morph task on Windows
+- Fixed collections.Iterable import
+- Changed some performance testing thresholds
 
 ## [2.3.1] - 2025-05-17
 
