@@ -89,7 +89,12 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
   def ToggleJellyOff(self):
     return bool(self.container.controlParameters.UNRESTRAINED) or bool(self.container.controlParameters.FIX_XYZ)
 
+  def ToggleFSIGFOrISIGIavailable(self):
+     return (bool(self.container.controlParameters.HKLIN_IS_I_SIGI) and str(self.container.controlParameters.MERGED_OR_UNMERGED) == "merged")
+
   def ToggleTwinSuboptimal(self):
+    if str(self.container.controlParameters.MERGED_OR_UNMERGED) == "unmerged":
+       return False
     return (not self.container.controlParameters.HKLIN_IS_I_SIGI or self.container.controlParameters.F_SIGF_OR_I_SIGI == "F_SIGF")
 
   def ToggleOccComplete(self):
@@ -120,14 +125,19 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     if self.isEditable():
        self.container.inputData.XYZIN.dataChanged.connect( self.modelChanged)
     # self.createLine( [ 'label', 'Experimental data type:', 'widget', 'DATA_METHOD' ])
+
     self.openSubFrame(toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ] )
-    self.createLine( [ 'widget', '-browseDb', True, 'HKLIN' ] )
+    self.createLine( [ 'widget', '-browseDb', True, 'HKLIN' ], toggle = ['MERGED_OR_UNMERGED', 'open', [ 'merged' ] ] )
+    self.createLine( [ 'widget', '-browseDb', True, 'HKLIN_UNMERGED' ], toggle = ['MERGED_OR_UNMERGED', 'open', [ 'unmerged' ] ] )
     self.container.inputData.HKLIN.dataChanged.connect( self.hklinChanged )
+    self.createLine( [ 'label', 'Diffraction data are', 'widget', 'MERGED_OR_UNMERGED'] )
     self.createLine( [ 'label', 'Refinement against <b>amplitudes</b>.'], toggle = ['HKLIN_IS_I_SIGI', 'open', [ False ] ] )
-    self.createLine( [ 'label', 'Refinement against', 'widget', 'F_SIGF_OR_I_SIGI'], toggle = ['HKLIN_IS_I_SIGI', 'open', [ True ] ] )
+    self.createLine( [ 'label', 'Refinement against <b>intensities</b>.'], toggle = ['MERGED_OR_UNMERGED', 'open', [ 'unmerged' ] ] )
+    self.createLine( [ 'label', 'Refinement against', 'widget', 'F_SIGF_OR_I_SIGI'], toggleFunction=[self.ToggleFSIGFOrISIGIavailable, ['HKLIN_IS_I_SIGI', 'MERGED_OR_UNMERGED' ] ] )
     self.createLine( [ 'widget', '-browseDb', True, 'FREERFLAG' ] )
     self.createLine( [ 'widget', 'USE_TWIN', 'label', 'Twin refinement' ] )
-    self.createLine( [ 'label', '<i>Warning: Intensities should be given for twin refinement. Using amplitudes is suboptimal.</i>' ], toggleFunction=[self.ToggleTwinSuboptimal, ['HKLIN_IS_I_SIGI', 'F_SIGF_OR_I_SIGI', 'HKLIN']])
+    self.createLine( [ 'label', '<i>Warning: Intensities should be given for twin refinement. Using amplitudes is suboptimal.</i>' ],
+                    toggleFunction=[self.ToggleTwinSuboptimal, ['HKLIN_IS_I_SIGI', 'F_SIGF_OR_I_SIGI', 'HKLIN']])
     self.closeSubFrame()
 
     self.openSubFrame(toggle = ['DATA_METHOD', 'open', [ 'spa' ] ] )
