@@ -30,10 +30,7 @@ import types
 import sys
 import traceback
 import copy
-if sys.version_info >= (3,7):
-    from collections.abc import Callable
-else:
-    from collections import Callable
+from collections.abc import Callable
 
 from PySide2 import QtCore, QtSql
 
@@ -3972,38 +3969,36 @@ TaskTitle TEXT );''')
           i = i + 1
       return ret
 
-    def getImportedFile(self,sourceFileName,projectId=None,lastModifiedTime=None,mimeTypeName=None,fileContent=None,reference=None,fileType=None):
-      # Beware different mini-MTZ types may have been imported from the same source file
-      # The importAnnotation is the list of input columns and should match if exactly the same data
-      # was imported from a monster-MTZ
-
-      cmd = 'SELECT ImportFiles.ImportID,Files.FileId,ImportFiles.checksum,Files.Annotation, Jobs.JobId, Jobs.JobNumber FROM ImportFiles INNER JOIN Files ON ImportFiles.FileId =Files.FileId INNER JOIN Jobs ON Files.JobId = Jobs.JobId WHERE ImportFiles.SourceFilename=?'
-      args = [sourceFileName]
-      if projectId is not None:
-        cmd = cmd + ' AND Jobs.ProjectId = ?'
-        args.append(projectId)
-      if lastModifiedTime is not None:
-        cmd = cmd + ' AND ImportFiles.LastModifiedTime BETWEEN ? AND ?'
-        args.extend(lastModifiedTime-0.1,lastModifiedTime+0.1)
-      if mimeTypeName  is not None and mimeTypeName in FILETYPES_TEXT:
-        fileType = FILETYPES_TEXT.index(mimeTypeName)
-        cmd = cmd + ' AND Files.FileTypeId = ?'
-        args.append(fileType)
+    def getImportedFile(self,checksum,projectId,fileContent=None,reference=None,fileType=None):
+      # Beware different mini-MTZ types may have been imported from the same source file.
+      # The importAnnotation is the list of input columns and should match
+      # if exactly the same data was imported from a monster-MTZ.
+      cmd = (
+        "SELECT"
+        " ImportFiles.ImportID,"
+        " ImportFiles.FileId,"
+        " ImportFiles.checksum,"
+        " Files.Annotation,"
+        " Jobs.JobId,"
+        " Jobs.JobNumber"
+        " FROM ImportFiles"
+        " INNER JOIN Files ON ImportFiles.FileId = Files.FileId"
+        " INNER JOIN Jobs ON Files.JobId = Jobs.JobId"
+        " WHERE ImportFiles.checksum = ?"
+        " AND Jobs.ProjectId = ?"
+      )
+      args = [checksum, projectId]
       if fileContent is not None:
-         cmd = cmd + ' AND Files.FileContent = ?'
-         args.append(fileContent)
+        cmd += " AND Files.FileContent = ?"
+        args.append(fileContent)
       if reference is not None:
-        cmd = cmd + ' AND ImportFiles.reference = ?'
+        cmd += " AND ImportFiles.reference = ?"
         args.append(reference)
       if fileType is not None:
-        cmd = cmd + ' AND Files.FiletypeID = ?'
+        cmd += " AND Files.FiletypeID = ?"
         args.append(fileType)
-      #print 'CDbApi.getImportedFile',cmd,args
-      self.execute(cmd,args)
-      rv = self.fetchAll2PyList([UUIDTYPE,UUIDTYPE,str,str,str,str])
-
-      #print 'getImportedFile',sourceFileName,rv
-      return rv
+      self.execute(cmd, args)
+      return self.fetchAll2PyList([UUIDTYPE, UUIDTYPE, str, str, str, str])
 
     def getImportFileInstances(self,jobId=None,brief=True):
       if brief:
@@ -4705,7 +4700,7 @@ TaskTitle TEXT );''')
       jobIdList = self.fetchAll2Py(UUIDTYPE)
       return jobIdList
 
-    def setJobToImport(self,jobId=None,projectId=None,importFiles=[]):
+    def setJobToImport(self,jobId=None,projectId=None):
       # Delete child jobs
       self.execute("SELECT JobID FROM Jobs WHERE ParentJobID = ?",(jobId,))
       childJobs = self.fetchAll2Py(UUIDTYPE)
