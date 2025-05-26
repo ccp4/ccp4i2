@@ -126,7 +126,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'label', 'Refinement against <b>amplitudes</b>.'], toggle = ['HKLIN_IS_I_SIGI', 'open', [ False ] ] )
     self.createLine( [ 'label', 'Refinement against', 'widget', 'F_SIGF_OR_I_SIGI'], toggle = ['HKLIN_IS_I_SIGI', 'open', [ True ] ] )
     self.createLine( [ 'widget', '-browseDb', True, 'FREERFLAG' ] )
-    self.createLine( [ 'widget', 'USE_TWIN', 'label', 'Crystal is twinned' ] )
+    self.createLine( [ 'widget', 'USE_TWIN', 'label', 'Twin refinement' ] )
     self.createLine( [ 'label', '<i>Warning: Intensities should be given for twin refinement. Using amplitudes is suboptimal.</i>' ], toggleFunction=[self.ToggleTwinSuboptimal, ['HKLIN_IS_I_SIGI', 'F_SIGF_OR_I_SIGI', 'HKLIN']])
     self.closeSubFrame()
 
