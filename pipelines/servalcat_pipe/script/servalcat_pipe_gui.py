@@ -427,7 +427,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'label', 'Diffraction experiment type:', 'widget', 'SCATTERING_FACTORS' ] )
     if self.isEditable():
         self.container.controlParameters.SCATTERING_FACTORS.dataChanged.connect(self.ExperimentChanged)
-    self.createLine( [ 'widget', 'REFINE_DFRAC', 'label', 'Refine deuterium fraction' ], toggle = ['SCATTERING_FACTORS', 'open', [ 'neutron' ] ] )
     self.createLine( [ 'widget', 'USE_WORK_IN_EST', 'label', 'Use work reflections in maximum likelihood parameter estimates' ] )
     self.closeSubFrame()
 
@@ -490,7 +489,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
 
   @QtCore.Slot()
   def ExperimentChanged(self):
-    if str(self.container.controlParameters.SCATTERING_FACTORS) == "neutron":
+    if str(self.container.controlParameters.SCATTERING_FACTORS) == "NEUTRON":
       self.container.controlParameters.H_REFINE.set(True)
     else:
       self.container.controlParameters.H_REFINE.set(False)
