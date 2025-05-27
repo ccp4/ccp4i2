@@ -360,6 +360,8 @@ class servalcat_report(Report):
             outputXml=self.outputXml,
             label=graphCCtitle,
             style=galleryGraphStyle)
+        second_present = True
+        CCstar_present = False
         graphCC.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
         if len(xmlnode.findall('.//cycle[last()]/data/binned/fsc_FC_full')) > 0:  # SPA refinement
             graphCC.addData(title="fsc_FC_full", select=".//cycle[last()]/data/binned/./fsc_FC_full")
@@ -379,6 +381,9 @@ class servalcat_report(Report):
             graphCC.addData(title="CCIwork", select=".//cycle[last()]/data/binned/./CCIwork")
             if len(xmlnode.findall('.//cycle[last()]/data/binned/CCIfree')) > 0:
                 graphCC.addData(title="CCIfree", select=".//cycle[last()]/data/binned/./CCIfree")
+        if len(xmlnode.findall('.//cycle[last()]/data/binned/CC*')) > 0:
+            CCstar_present = True
+            graphCC.addData(title="CC*", select=".//cycle[last()]/data/binned/./CC*")
         plotCC = graphCC.addPlotObject()
         plotCC.append('title', graphCCtitle)
         plotCC.append('plottype', 'xy')
