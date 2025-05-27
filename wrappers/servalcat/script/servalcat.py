@@ -177,18 +177,9 @@ class servalcat(CPluginScript):
         self.container.outputData.CIFFILE.setFullPath(outputCifPath)
         self.container.outputData.CIFFILE.annotation.set('Model from refinement (mmCIF format)')
         outputPdbPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined.pdb'))
-        if os.path.isfile(outputPdbPath) and not self.container.controlParameters.REFINE_DFRAC:
+        if os.path.isfile(outputPdbPath):
             self.container.outputData.XYZOUT.setFullPath(outputPdbPath)
             self.container.outputData.XYZOUT.annotation.set('Model from refinement (PDB format)')
-        if str(self.container.controlParameters.SCATTERING_FACTORS) == "neutron":
-            outputCifDepPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined_hd_expand.mmcif'))
-            if os.path.isfile(outputCifDepPath):
-                self.container.outputData.CIFFILEDEP.setFullPath(outputCifDepPath)
-                self.container.outputData.CIFFILEDEP.annotation = 'Model from refinement (mmCIF format, HD expanded, for deposition)'
-            outputPdbPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined_hd_expand.pdb'))
-            if os.path.isfile(outputPdbPath):
-                self.container.outputData.XYZOUT.setFullPath(outputPdbPath)
-                self.container.outputData.XYZOUT.annotation.set('Model from refinement (PDB format, HD expanded)')
         self.container.outputData.FPHIOUT.annotation.set('Density map (Fourier coeff.)')
         self.container.outputData.FPHIOUT.subType = 1
         self.container.outputData.DIFFPHIOUT.annotation.set('Difference density map (Fourier coeff.)')
