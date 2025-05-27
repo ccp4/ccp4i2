@@ -1,12 +1,10 @@
-from __future__ import print_function
+import argparse
+import os
+import shutil
+import sqlite3
 import sys
 import tempfile
-import shutil
-import os
-import sqlite3
-import argparse
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 import reconstructDBFromXML
 if __name__ == "__main__":
@@ -49,10 +47,8 @@ if __name__ == "__main__":
                 continue
             if len(project_tree.xpath("//ccp4i2_body/jobTable/job")) == 0:
                 continue
-            if sys.version_info < (3,0):
-                outl = etree.tostring(project_tree,pretty_print=True)
-            else:
-                outl = etree.tostring(project_tree,pretty_print=True).decode()
+            ET.indent(project_tree)
+            outl = ET.tostring(project_tree).decode()
             dbxmlout = os.path.join(str(d),"DATABASE.db.xml")
             with open(dbxmlout,"w+") as outfd:
                 outfd.write(outl)

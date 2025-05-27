@@ -2,8 +2,7 @@ from datetime import datetime
 import os
 import shutil
 import sys
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4ErrorHandling
 from ....core import CCP4Utils
@@ -39,9 +38,9 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
 
     def __init__(self, *args, **kws):
         super(MakeProjectsAndDoLigandPipeline, self).__init__(*args, **kws)
-        self.xmlroot = etree.Element("MakeProjectsAndDoLigandPipeline")
-        etree.SubElement(self.xmlroot,"Message").text = "Starting processing"
-        etree.SubElement(self.xmlroot,"Warnings").text = "No warnings"
+        self.xmlroot = ET.Element("MakeProjectsAndDoLigandPipeline")
+        ET.SubElement(self.xmlroot,"Message").text = "Starting processing"
+        ET.SubElement(self.xmlroot,"Warnings").text = "No warnings"
         self.jobIds = []
         self.runningJobs = []
         self.processes = {}
@@ -61,12 +60,12 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
             pluginTitle = "SubstituteLigand"
             projectNameStr = projectName.__str__()
             
-            datasetElement = etree.SubElement(self.xmlroot,"Dataset")
-            etree.SubElement(datasetElement,"ProjectName").text = projectNameStr
-            etree.SubElement(datasetElement,"SMILES").text = self.container.inputData.SMILES_LIST[iLigand].__str__()
-            etree.SubElement(datasetElement,"MaximumResolution").text = "-"
-            etree.SubElement(datasetElement,"Rfree").text = "-"
-            etree.SubElement(datasetElement,"Rfactor").text = "-"
+            datasetElement = ET.SubElement(self.xmlroot,"Dataset")
+            ET.SubElement(datasetElement,"ProjectName").text = projectNameStr
+            ET.SubElement(datasetElement,"SMILES").text = self.container.inputData.SMILES_LIST[iLigand].__str__()
+            ET.SubElement(datasetElement,"MaximumResolution").text = "-"
+            ET.SubElement(datasetElement,"Rfree").text = "-"
+            ET.SubElement(datasetElement,"Rfactor").text = "-"
             self.dumpXml()
 
             #Scriptmatically create a new project with specified name and location
@@ -229,7 +228,7 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
         datasetElement.xpath("Rfactor")[0].text = "N/D"
         try:
             print("name of correspnding PROGRAMXML", whichPlugin.makeFileName("PROGRAMXML"))
-            pluginEtree = CCP4Utils.openFileToEtree(whichPlugin.makeFileName("PROGRAMXML"))
+            pluginEtree = ET.parse(whichPlugin.makeFileName("PROGRAMXML")).getroot()
             try:
                 rnodeText = pluginEtree.xpath('//ResolutionLimitEstimate[@type="CChalf" and ./Direction[text()="Overall"]]/MaximumResolution/text()')[-1]
                 datasetElement.xpath("MaximumResolution")[0].text = rnodeText
@@ -257,4 +256,4 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
 
     def dumpXml(self):
         with open(self.makeFileName("PROGRAMXML"),"w") as programXmlFile:
-            CCP4Utils.writeXML(programXmlFile,etree.tostring(self.xmlroot))
+            CCP4Utils.writeXML(programXmlFile,ET.tostring(self.xmlroot))

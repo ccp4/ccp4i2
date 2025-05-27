@@ -64,17 +64,17 @@ class cphasematch(CPluginScript):
             self.container.outputData.PERFORMANCE.weightedPhaseError = float(wdphi1)
             self.container.outputData.PERFORMANCE.reflectionCorrelation = float(ecorr)
 
-            self.xmlnode = etree.Element('cphasematch')
-            etree.SubElement(self.xmlnode,'phaseError').text = dphi
-            etree.SubElement(self.xmlnode,'weightedPhaseError1').text = wdphi1
-            etree.SubElement(self.xmlnode,'weightedPhaseError2').text = wdphi2
-            etree.SubElement(self.xmlnode,'reflectionFCorrelation').text = fcorr
-            etree.SubElement(self.xmlnode,'reflectionECorrelation').text = ecorr
+            self.xmlnode = ET.Element('cphasematch')
+            ET.SubElement(self.xmlnode,'phaseError').text = dphi
+            ET.SubElement(self.xmlnode,'weightedPhaseError1').text = wdphi1
+            ET.SubElement(self.xmlnode,'weightedPhaseError2').text = wdphi2
+            ET.SubElement(self.xmlnode,'reflectionFCorrelation').text = fcorr
+            ET.SubElement(self.xmlnode,'reflectionECorrelation').text = ecorr
 
-            smartieNode = etree.SubElement(self.xmlnode,'SmartieGraphs')
+            smartieNode = ET.SubElement(self.xmlnode,'SmartieGraphs')
             self.scrapeSmartieGraphs(smartieNode)
 
-            etree.ElementTree(self.xmlnode).write(self.makeFileName('PROGRAMXML'))
+            ET.ElementTree(self.xmlnode).write(self.makeFileName('PROGRAMXML'))
 
             return CPluginScript.SUCCEEDED
 

@@ -6,6 +6,7 @@ import glob
 import os
 import re
 import shutil
+import xml.etree.ElementTree as ET
 
 from lxml import etree
 
@@ -68,11 +69,6 @@ class xia2_run(CCP4PluginScript.CPluginScript):
         shutil.copytree(os.path.join(xdir,'xia2_html'),os.path.join(self.workDirectory,'xia2_html'))
       else:
         self.appendErrorReport(cls=self.__class__,code=103)
-        '''
-        txtfile =  os.path.join(xdir,'xia2.txt')
-        if os.path.exists(txtfile):
-          shutil.copyfile(txtfile,os.path.join(self.workDirectory,'report.txt'))
-        '''
 
       xmlfile = os.path.join(xdir,'ispyb.xml')
       #print 'xia2_run.process',xmlfile,os.path.exists(xmlfile)
@@ -206,7 +202,7 @@ class xia2_run(CCP4PluginScript.CPluginScript):
       ispyb = os.path.join(self.container.inputData.XIA2_DIRECTORY.__str__(),runMode+'-run','ispyb.xml')
       #print 'xia2_run.setPerformance',ispyb
       try:
-        xml = CCP4Utils.openFileToEtree(ispyb)
+        xml = ET.parse(ispyb).getroot()
       except:
         self.appendErrorReport(110,ispyb,stack=False)
       else:
@@ -218,11 +214,11 @@ class xia2_run(CCP4PluginScript.CPluginScript):
           self.appendErrorReport(111,ispyb,stack=False)
          
     def makeXml(self,runMode):
-      self.xmlroot = etree.Element('XIA2Import')
-      runXML = etree.SubElement(self.xmlroot,'XIA2Run',name=str(runMode))
+      self.xmlroot = ET.Element('XIA2Import')
+      runXML = ET.SubElement(self.xmlroot,'XIA2Run',name=str(runMode))
       ispyb = os.path.join(self.container.inputData.XIA2_DIRECTORY.__str__(),runMode+'-run','ispyb.xml')
       try:
-        ispybxml = CCP4Utils.openFileToEtree(ispyb)
+        ispybxml = ET.parse(ispyb).getroot()
       except:
         self.appendErrorReport(110,ispyb,stack=False)
       else:
@@ -237,7 +233,7 @@ class xia2_run(CCP4PluginScript.CPluginScript):
       logFiles = glob.glob( os.path.join(self.container.inputData.XIA2_DIRECTORY.__str__(), runMode+'-run', 'LogFiles','') + "*" + programName + ".log" )
       #print 'harvestLogXML',logFiles
       if len(logFiles)==0: return None        
-      root = etree.Element(programName.upper())
+      root = ET.Element(programName.upper())
       logfile = smartie.parselog(logFiles[0])
       for smartieTable in logfile.tables():
         if smartieTable.ngraphs() > 0:
@@ -250,7 +246,7 @@ class xia2_run(CCP4PluginScript.CPluginScript):
         summaryTextLines = []
         with open(logFiles[0]) as myLogFile:
             summaryTextLines = myLogFile.readlines()[summary.start():summary.end()-1]
-        preElement = etree.SubElement(root,'CCP4Summary')
+        preElement = ET.SubElement(root,'CCP4Summary')
         preElementText = ''
         for summaryTextLine in summaryTextLines:
           preElementText += (summaryTextLine)

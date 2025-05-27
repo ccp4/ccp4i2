@@ -1,4 +1,5 @@
-from lxml import etree
+import xml.etree.ElementTree as ET
+
 import gemmi
 
 
@@ -13,7 +14,7 @@ sys.path = old_sys_path
 
 def getJSCOFERefmac5Verdict(programxml=None,pdbfile=None,refmaclog=None):
     verdict_meta_refmac = verdict_refmac.parseRefmacLog(refmaclog)
-    tree = etree.parse(programxml)
+    tree = ET.parse(programxml).getroot()
     st = gemmi.read_structure(pdbfile)
     st.setup_entities()
 

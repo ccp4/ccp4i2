@@ -1,7 +1,7 @@
 import os
 import pathlib
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 import gemmi
 
 from ....core import CCP4Utils
@@ -34,8 +34,6 @@ class coordinate_selector(CPluginScript):
             self.container.inputData.XYZIN.getSelectedAtomsPdbFile(str(self.container.outputData.XYZOUT.fullPath))
         except:
             raise
-            self.appendErrorReport(202)         
-            return(CPluginScript.FAILED)
 
     def postProcessCheck(self, processId):
         if not os.path.isfile(str(self.container.outputData.XYZOUT.fullPath)): return CPluginScript.FAILED
@@ -49,8 +47,8 @@ class coordinate_selector(CPluginScript):
         from ....core.CCP4ModelData import CPdbData
         aCPdbData = CPdbData()
         aCPdbData.loadFile(self.container.outputData.XYZOUT.fullPath)
-        rxml = etree.Element('CoordinateSelector')
-        modelCompositionNode = etree.SubElement(rxml,'ModelComposition')
+        rxml = ET.Element('CoordinateSelector')
+        modelCompositionNode = ET.SubElement(rxml,'ModelComposition')
 
         try:
             st = gemmi.read_structure(self.container.outputData.XYZOUT.fullPath.__str__())
@@ -62,16 +60,16 @@ class coordinate_selector(CPluginScript):
         st.setup_entities()
 
         for mod in st:
-            modEle = etree.SubElement(modelCompositionNode,"Model",id=str(mod.num))
+            modEle = ET.SubElement(modelCompositionNode,"Model",id=str(mod.num))
 
         for model in st:
             for chain in model:
                 for residue in chain:
                     if residue.entity_type == gemmi.EntityType.NonPolymer:
                         if len(residue) == 1 and residue[0].element.is_metal:
-                            lig = etree.SubElement(modelCompositionNode,"Metal",id="/"+str(model.num)+"/"+chain.name+"/"+str(residue.seqid)+"("+residue.name+")")
+                            lig = ET.SubElement(modelCompositionNode,"Metal",id="/"+str(model.num)+"/"+chain.name+"/"+str(residue.seqid)+"("+residue.name+")")
                         else:
-                            lig = etree.SubElement(modelCompositionNode,"Ligand",id="/"+str(model.num)+"/"+chain.name+"/"+str(residue.seqid)+"("+residue.name+")")
+                            lig = ET.SubElement(modelCompositionNode,"Ligand",id="/"+str(model.num)+"/"+chain.name+"/"+str(residue.seqid)+"("+residue.name+")")
 
         model = st[0]
 
@@ -79,15 +77,15 @@ class coordinate_selector(CPluginScript):
         nResidues = 0
 
         for chain in model:
-            ch = etree.SubElement(modelCompositionNode,"Chain",id=chain.name)
-            chain_name = etree.SubElement(ch,"Name")
-            polylen = etree.SubElement(ch,"PolymerLength")
-            waterlen = etree.SubElement(ch,"WaterLength")
-            nonpolylen = etree.SubElement(ch,"NonPolymerLength")
-            metallen = etree.SubElement(ch,"MetalLength")
-            ligandlen = etree.SubElement(ch,"LigandLength")
-            unknownlen = etree.SubElement(ch,"UnknownLength")
-            polytype = etree.SubElement(ch,"PolymerTypes")
+            ch = ET.SubElement(modelCompositionNode,"Chain",id=chain.name)
+            chain_name = ET.SubElement(ch,"Name")
+            polylen = ET.SubElement(ch,"PolymerLength")
+            waterlen = ET.SubElement(ch,"WaterLength")
+            nonpolylen = ET.SubElement(ch,"NonPolymerLength")
+            metallen = ET.SubElement(ch,"MetalLength")
+            ligandlen = ET.SubElement(ch,"LigandLength")
+            unknownlen = ET.SubElement(ch,"UnknownLength")
+            polytype = ET.SubElement(ch,"PolymerTypes")
             chain_name.text = chain.name
             polylen.text = str(chain.get_polymer().length())
             waterlen.text = str(sum(res.is_water() for res in chain))
@@ -124,7 +122,8 @@ class coordinate_selector(CPluginScript):
             polytype.text = ",".join(list(set(polytypes)))
 
         with open(self.makeFileName('PROGRAMXML'),'w') as outputFile:
-            CCP4Utils.writeXML(outputFile,etree.tostring(rxml, pretty_print=True))
+            ET.indent(rxml)
+            CCP4Utils.writeXML(outputFile,ET.tostring(rxml))
 
         print("########################################")
         print("Set NATOMS")

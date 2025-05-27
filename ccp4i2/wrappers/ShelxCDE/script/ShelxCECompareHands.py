@@ -3,8 +3,8 @@ import functools
 import shutil
 import sys
 import tempfile
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore
 
 from . import ShelxCE
@@ -27,7 +27,7 @@ class ShelxCECompareHands(ShelxCE.ShelxCE):
             self.reportStatus(CPluginScript.FAILED)
         self.checkOutputData()
         
-        self.xmlroot = etree.Element('ShelxCECompareHands')
+        self.xmlroot = ET.Element('ShelxCECompareHands')
         
         self.firstHandPlugin = self.makePluginObject('ShelxCE')
         self.firstHandPlugin.container.inputData.copyData(self.container.inputData)
@@ -66,7 +66,7 @@ class ShelxCECompareHands(ShelxCE.ShelxCE):
         #Pick a winner !
         firstHandCC = float(self.firstHandPlugin.container.outputData.PERFORMANCE.CC)
         secondHandCC = float(self.secondHandPlugin.container.outputData.PERFORMANCE.CC)
-        choiceNode = etree.SubElement(self.xmlroot,'HandChosen')
+        choiceNode = ET.SubElement(self.xmlroot,'HandChosen')
         if secondHandCC > firstHandCC:
             pluginOutput = self.secondHandPlugin.container.outputData
             choiceNode.text='Inverted'
@@ -91,12 +91,12 @@ class ShelxCECompareHands(ShelxCE.ShelxCE):
     def subjobXMLChanged(self, nodeName, changedFile):
             with open(changedFile,'r') as changedXML:
                 newText = changedXML.read()
-            changedRoot = etree.fromstring(newText)
+            changedRoot = ET.fromstring(newText)
             #Remove old copies of XML
             oldNodes = self.xmlroot.xpath(nodeName)
             for oldNode in oldNodes:
                 oldNode.getparent().remove(oldNode)
-            newNode = etree.SubElement(self.xmlroot,nodeName)
+            newNode = ET.SubElement(self.xmlroot,nodeName)
             newNode.append(changedRoot)
             timeNow = datetime.datetime.now()
             if not hasattr(self,"lastFlushTime"): self.lastFlushTime = timeNow
@@ -108,11 +108,9 @@ class ShelxCECompareHands(ShelxCE.ShelxCE):
     def flushXML(self):
         try:
             xmlPath = self.makeFileName('PROGRAMXML')
-            tfile = tempfile.NamedTemporaryFile()
-            xmlTmpPath = tfile.name
-            tfile.close()
-            with open(xmlTmpPath,'w') as tmpFile:
-                CCP4Utils.writeXML(tmpFile,etree.tostring(self.xmlroot, pretty_print=True))
+            with tempfile.NamedTemporaryFile() as tfile:
+                xmlTmpPath = tfile.name
+            CCP4Utils.writeXml(self.xmlroot, xmlTmpPath)
             shutil.move(xmlTmpPath, xmlPath)
             
         except BaseException as e:

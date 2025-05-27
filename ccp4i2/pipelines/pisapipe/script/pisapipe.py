@@ -1,4 +1,5 @@
-from lxml import etree
+import xml.etree.ElementTree as ET
+
 from PySide2 import QtCore
 
 from ....core import CCP4Utils
@@ -40,9 +41,10 @@ class pisapipe(CPluginScript):
         status = statusDict['finishStatus']
         print('pisa_xmlFinished', status)
         if status == CPluginScript.FAILED: self.reportStatus(status)
-        self.xmlroot = etree.Element('pisapipe')
-        xmlOfTask = CCP4Utils.openFileToEtree(self.xmlTask.makeFileName('PROGRAMXML'))
+        self.xmlroot = ET.Element('pisapipe')
+        xmlOfTask = ET.parse(self.xmlTask.makeFileName('PROGRAMXML')).getroot()
         self.xmlroot.append(xmlOfTask)
         with open(self.makeFileName('PROGRAMXML'),'w') as outputXMLFile:
-            CCP4Utils.writeXML(outputXML,etree.tostring(self.xmlroot,pretty_print=True))
+            ET.indent(self.xmlroot)
+            CCP4Utils.writeXML(outputXMLFile, ET.tostring(self.xmlroot))
         self.reportStatus(CPluginScript.SUCCEEDED)

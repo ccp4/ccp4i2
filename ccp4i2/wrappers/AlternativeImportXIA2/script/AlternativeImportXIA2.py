@@ -1,6 +1,7 @@
 import glob
 import os
 import shutil
+import xml.etree.ElementTree as ET
 
 from lxml import etree
 
@@ -31,7 +32,7 @@ class AlternativeImportXIA2(CPluginScript):
         
         self.checkOutputData()
         
-        self.xmlroot = etree.Element('XIA2Import')
+        self.xmlroot = ET.Element('XIA2Import')
 
         unmergedOut =  self.container.outputData.UNMERGEDOUT
         obsOut =  self.container.outputData.HKLOUT
@@ -39,14 +40,14 @@ class AlternativeImportXIA2(CPluginScript):
 
         for runSummary in self.container.controlParameters.runSummaries:
             runName = runSummary.split(':')[0]
-            runXML = etree.SubElement(self.xmlroot,'XIA2Run',name=str(runName))
+            runXML = ET.SubElement(self.xmlroot,'XIA2Run',name=str(runName))
             dirPath = os.path.join(self.container.controlParameters.directoryPath.__str__(), runName)
             destDirPath = self.workDirectory
 
             # Grab digested ispyb XML
             fileNameIfAny = os.path.join(dirPath, "ispyb.xml")
             if os.path.isfile(fileNameIfAny):
-                runXML.append(CCP4Utils.openFileToEtree(fileNameIfAny))
+                runXML.append(ET.parse(fileNameIfAny).getroot())
             for programName in ['pointless','aimless','truncate']:
                 programEtree = self.harvestLogXML(runName, programName)
                 if programEtree is not None: runXML.append(programEtree)
@@ -116,7 +117,8 @@ class AlternativeImportXIA2(CPluginScript):
                 print('Unable to find merged data to import for run ', runName)
     
             with open(self.makeFileName('PROGRAMXML'),'w') as xmlFile:
-                CCP4Utils.writeXML(xmlFile,etree.tostring(self.xmlroot, pretty_print=True))
+                ET.indent(self.xmlroot)
+                CCP4Utils.writeXML(xmlFile,ET.tostring(self.xmlroot))
 
         self.reportStatus(CPluginScript.SUCCEEDED)
         return CPluginScript.SUCCEEDED
@@ -135,7 +137,7 @@ class AlternativeImportXIA2(CPluginScript):
             toPath = os.path.join(self.workDirectory, runName, fileRoot)
             shutil.copyfile(fromPath, toPath)
 
-            pointlessEtree = etree.Element(programName.upper())
+            pointlessEtree = ET.Element(programName.upper())
             
             logfile = smartie.parselog(toPath)
             for smartieTable in logfile.tables():
@@ -148,7 +150,7 @@ class AlternativeImportXIA2(CPluginScript):
                 summaryTextLines = []
                 with open(toPath) as myLogFile:
                     summaryTextLines = myLogFile.readlines()[summary.start():summary.end()-1]
-                preElement = etree.SubElement(pointlessEtree,'CCP4Summary')
+                preElement = ET.SubElement(pointlessEtree,'CCP4Summary')
                 preElementText = ''
                 for summaryTextLine in summaryTextLines:
                     preElementText += (summaryTextLine)

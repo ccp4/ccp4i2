@@ -4,8 +4,8 @@ import glob
 import os
 import sys
 import time
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore
 
 from ..core import CCP4Utils
@@ -27,9 +27,10 @@ def onTestRunnerComplete(logXmlPath, logXmlRoot, app):
             t.quitServer()
         t.wait()
     if logXmlRoot is not None:
-        logXmlTree = etree.ElementTree(logXmlRoot)
+        logXmlTree = ET.ElementTree(logXmlRoot)
         with open(logXmlPath, 'wb') as f:
-            f.write(etree.tostring(logXmlTree,pretty_print=True))
+            ET.indent(logXmlRoot)
+            f.write(ET.tostring(logXmlTree))
     sys.exit()
 
 
@@ -134,7 +135,7 @@ def main():
     log.write('Started: '+startTime0+'\n\n\n')
     if pns.xmlOut:
         logXmlPath = os.path.join(outputDirectory,'test-'+startTime+'.xml')
-        logXmlRoot = etree.Element('ProjectTesting',startTime=startTime)
+        logXmlRoot = ET.Element('ProjectTesting',startTime=startTime)
     else:
         logXmlPath = None
         logXmlRoot = None

@@ -1,6 +1,5 @@
 import os
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4ErrorHandling
 from ....core import CCP4XtalData
@@ -108,10 +107,11 @@ class pairef(CPluginScript):
             self.appendCommandLine(str(self.comfile))
 
         self.xmlout = self.makeFileName('PROGRAMXML')
-        rootNode = etree.Element("Pairef")
+        rootNode = ET.Element("Pairef")
         # Save xml
         xmlfile = open(self.xmlout, 'wb')
-        xmlString= etree.tostring(rootNode, pretty_print=True)
+        ET.indent(rootNode)
+        xmlString= ET.tostring(rootNode)
         xmlfile.write(xmlString)
         xmlfile.close()
         
@@ -128,12 +128,13 @@ class pairef(CPluginScript):
             cutoff = cf.read().strip()
         self.container.outputData.PERFORMANCEINDICATOR.cutoff.set(cutoff)
 
-        rootNode = etree.Element("Pairef")
-        etree.SubElement(rootNode, "Cutoff").text = cutoff
+        rootNode = ET.Element("Pairef")
+        ET.SubElement(rootNode, "Cutoff").text = cutoff
 
         # Save xml
         xmlfile = open(self.xmlout, 'wb')
-        xmlString= etree.tostring(rootNode, pretty_print=True)
+        ET.indent(rootNode)
+        xmlString= ET.tostring(rootNode)
         xmlfile.write(xmlString)
         xmlfile.close()
         return CPluginScript.SUCCEEDED

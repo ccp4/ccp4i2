@@ -48,12 +48,12 @@ class coot_find_waters(CPluginScript):
         print('coot_find_waters.handleFinish',self.container.outputData.XYZOUT, os.path.exists(self.container.outputData.XYZOUT.__str__()))
         # Create a trivial xml output file
         from ......core import CCP4File
-        root = etree.Element('coot_find_waters')
+        root = ET.Element('coot_find_waters')
 
         cootlines = open(self.makeFileName('LOG')).readlines()
         for line in cootlines:
             if line.startswith('INFO:: found'):
-                nWatersElement = etree.SubElement(root,'WatersFound')
+                nWatersElement = ET.SubElement(root,'WatersFound')
                 lineElements = line.split()
                 nWatersElement.text = lineElements[2]
     

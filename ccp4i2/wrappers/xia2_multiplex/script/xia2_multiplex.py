@@ -10,6 +10,7 @@ import json
 import os
 import platform
 import shutil
+import xml.etree.ElementTree as ET
 
 from dxtbx.model.experiment_list import ExperimentList
 from lxml import etree
@@ -18,6 +19,7 @@ from ....core import CCP4Container
 from ....core import CCP4XtalData
 from ....core.CCP4Modules import PROCESSMANAGER
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Utils import writeXml
 
 
 class Cxia2_multiplex(CPluginScript):
@@ -96,7 +98,7 @@ class Cxia2_multiplex(CPluginScript):
         # Create PHIL file and command line
         self._setCommandLineCore(phil_filename="xia2_multiplex.phil")
 
-        self.xmlroot = etree.Element("Xia2Multiplex")
+        self.xmlroot = ET.Element("Xia2Multiplex")
 
         self.watchFile(
             os.path.normpath(
@@ -137,7 +139,7 @@ class Cxia2_multiplex(CPluginScript):
             pid=self.getProcessId(), attribute="exitStatus"
         )
         if exitStatus != CPluginScript.SUCCEEDED:
-            element = etree.SubElement(self.xmlroot, "Xia2MultiplexError")
+            element = ET.SubElement(self.xmlroot, "Xia2MultiplexError")
             element.text = "Unknown xia2.multiplex error"
             return exitStatus
 
@@ -147,7 +149,7 @@ class Cxia2_multiplex(CPluginScript):
         )
         if os.path.isfile(xia2MultiplexLogPath):
             with open(xia2MultiplexLogPath, "r") as xia2MultiplexLogFile:
-                element = etree.SubElement(self.xmlroot, "Xia2MultiplexLog")
+                element = ET.SubElement(self.xmlroot, "Xia2MultiplexLog")
                 element.text = etree.CDATA(xia2MultiplexLogFile.read())
 
         # Read xia2.multiplex.json to read performance
@@ -171,9 +173,9 @@ class Cxia2_multiplex(CPluginScript):
         ] = "{:.2f}, {:.2f}, {:.2f}<br/>{:.2f}, {:.2f}, {:.2f}".format(*cell)
 
         # Also store these in the XML for the report
-        element = etree.SubElement(self.xmlroot, "Xia2MultiplexSG")
+        element = ET.SubElement(self.xmlroot, "Xia2MultiplexSG")
         element.text = etree.CDATA(run_data["space group"])
-        element = etree.SubElement(self.xmlroot, "Xia2MultiplexCell")
+        element = ET.SubElement(self.xmlroot, "Xia2MultiplexCell")
         element.text = etree.CDATA(run_data["unit cell"])
 
         unmergedOut = self.container.outputData.UNMERGEDOUT
@@ -201,7 +203,7 @@ class Cxia2_multiplex(CPluginScript):
                 merged.append(mtz)
 
         if not unmerged:
-            element = etree.SubElement(self.xmlroot, "Xia2MultiplexError")
+            element = ET.SubElement(self.xmlroot, "Xia2MultiplexError")
             element.text = "Unable to find unmerged MTZs"
             return CPluginScript.FAILED
         for candidate in unmerged:
@@ -228,7 +230,7 @@ class Cxia2_multiplex(CPluginScript):
                 unmergedOut[-1].annotation.set("Unmerged reflections: " + srcFilename)
 
         if not merged:
-            element = etree.SubElement(self.xmlroot, "Xia2MultiplexError")
+            element = ET.SubElement(self.xmlroot, "Xia2MultiplexError")
             element.text = "Unable to find merged MTZs"
             return CPluginScript.FAILED
         for srcPath in merged:
@@ -301,15 +303,14 @@ class Cxia2_multiplex(CPluginScript):
         # remove xia2.multiplex.log nodes
         for Xia2MultiplexLogNode in self.xmlroot.xpath("Xia2MultiplexLog"):
             self.xmlroot.remove(Xia2MultiplexLogNode)
-        xia2MultiplexLogNode = etree.SubElement(self.xmlroot, "Xia2MultiplexLog")
+        xia2MultiplexLogNode = ET.SubElement(self.xmlroot, "Xia2MultiplexLog")
         with open(filename, "r") as xia2MultiplexLogFile:
             xia2MultiplexLogNode.text = etree.CDATA(xia2MultiplexLogFile.read())
         self.flushXML()
 
     def flushXML(self):
         tmpFilename = self.makeFileName("PROGRAMXML") + "_tmp"
-        with open(tmpFilename, "wb") as xmlFile:
-            xmlFile.write(etree.tostring(self.xmlroot, pretty_print=True))
+        writeXml(self.xmlroot, tmpFilename)
         if os.path.exists(self.makeFileName("PROGRAMXML")):
             os.remove(self.makeFileName("PROGRAMXML"))
         os.rename(tmpFilename, self.makeFileName("PROGRAMXML"))

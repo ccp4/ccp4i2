@@ -41,24 +41,24 @@ class molrep_pipe_report(refmac_report):
   )
 
   def molrep_plot_xml(self, title, nmon, yincr, label_list):
-    e0 = etree.Element('plot')
+    e0 = ET.Element('plot')
     e0.text = '\n'
-    e1 = etree.SubElement(e0, 'title')
+    e1 = ET.SubElement(e0, 'title')
     e1.text = title
     e1.tail = '\n'
-    e1 = etree.SubElement(e0, 'plottype')
+    e1 = ET.SubElement(e0, 'plottype')
     e1.text = 'xy'
     e1.tail = '\n'
     for imon in range(nmon):
-      e1 = etree.SubElement(e0, 'plotline')
+      e1 = ET.SubElement(e0, 'plotline')
       e1.attrib['xcol'] = str(3* imon + 1)
       e1.attrib['ycol'] = str(3* imon + yincr)
       e1.text = '\n'
       e1.tail = '\n'
-      e2 = etree.SubElement(e1, 'colour')
+      e2 = ET.SubElement(e1, 'colour')
       e2.text = self.COLOUR[imon][1]
       e2.tail = '\n'
-      e2 = etree.SubElement(e1, 'label')
+      e2 = ET.SubElement(e1, 'label')
       e2.text = label_list[imon]
       e2.tail = '\n'
 

@@ -18,7 +18,7 @@ class hklin2cif(CPluginScript):
     
     def __init__(self,*args,**kws):
         innate=CPluginScript.__init__(self, *args, **kws)
-        self.xmlroot = etree.Element('Hklin2cif')
+        self.xmlroot = ET.Element('Hklin2cif')
 
     def makeCommandAndScript(self):
         self.outputCifPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'Reflections.cif'))

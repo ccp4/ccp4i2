@@ -11,6 +11,7 @@ import tempfile
 import time
 import urllib.parse
 import urllib.request
+import xml.etree.ElementTree as ET
 import zipfile
 
 from lxml import etree
@@ -66,12 +67,12 @@ class CDemoData:
         if self.testDatasets is None: self.loadTestDatasets()
         fileName = os.path.join(CCP4Utils.getCCP4I2Dir(),'demo_data','datasets_list.xml')
         #print 'saveTestDatasets',len(self.testDatasets)
-        root = etree.Element('datasetList')
+        root = ET.Element('datasetList')
         for name,label in self.testDatasets:
-            ele = etree.SubElement(root,'dataset')
-            e = etree.SubElement(ele,'name')
+            ele = ET.SubElement(root,'dataset')
+            e = ET.SubElement(ele,'name')
             e.text = name
-            e = etree.SubElement(ele,'label')
+            e = ET.SubElement(ele,'label')
             e.text = label
         CCP4Utils.saveEtreeToFile(root,fileName)
 
@@ -81,7 +82,7 @@ class CDemoData:
         if not os.path.exists(fileName):
             self.saveTestDatasets()
             return
-        root = CCP4Utils.openFileToEtree(fileName)
+        root = ET.parse(fileName).getroot()
         self.testDatasets = []
         for ele in root:
             self.testDatasets.append([ele.find('name').text,ele.find('label').text])

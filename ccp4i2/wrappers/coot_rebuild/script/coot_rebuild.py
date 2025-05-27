@@ -319,10 +319,10 @@ file_to_preferences('template_key_bindings.py')
             self.container.outputData.DICTOUT.set(dictoutList)
 
             # Create a trivial xml output file
-            self.xmlroot = etree.Element('coot_rebuild')
-            e = etree.Element('number_output_files')
+            self.xmlroot = ET.Element('coot_rebuild')
+            e = ET.Element('number_output_files')
             e.text = str(self.numberOfOutputFiles())
-            e = etree.Element('number_output_dicts')
+            e = ET.Element('number_output_dicts')
             e.text = str(len(dictoutList))
             self.xmlroot.append(e)
 
@@ -337,12 +337,12 @@ file_to_preferences('template_key_bindings.py')
                         self.addReportWarning('mergeDictToProjectLib raised exception: Does not compromise output Dict')
 
                     ligNodes = self.xmlroot.xpath('//LIGANDS')
-                    if len(ligNodes) == 0: ligNode = etree.SubElement(self.xmlroot,'LIGANDS')
+                    if len(ligNodes) == 0: ligNode = ET.SubElement(self.xmlroot,'LIGANDS')
                     else: ligNode = ligNodes[0]
                     try:
                         annotation='Coot/Prodrg created geometry for'
                         for item in dictFile.fileContent.monomerList:
-                            lig =  etree.SubElement(ligNode,'ligand')
+                            lig =  ET.SubElement(ligNode,'ligand')
                             lig.text = str(item.three_letter_code)
                             annotation += (' ' + str(item.three_letter_code))
                         dictFile.annotation = annotation
@@ -372,7 +372,7 @@ file_to_preferences('template_key_bindings.py')
     def addReportWarning(self, text):
         warningsNode = None
         warningsNodes = self.xmlroot.xpath('//Warnings')
-        if len(warningsNodes) == 0: warningsNode = etree.SubElement(self.xmlroot, 'Warnings')
+        if len(warningsNodes) == 0: warningsNode = ET.SubElement(self.xmlroot, 'Warnings')
         else: warningsNode = warningsNodes[0]
-        warningNode = etree.SubElement(warningsNode,'Warning')
+        warningNode = ET.SubElement(warningsNode,'Warning')
         warningNode.text = text

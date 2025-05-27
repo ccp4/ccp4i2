@@ -1,6 +1,6 @@
 import os
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore
 
 from ......core import CCP4Utils
@@ -22,7 +22,7 @@ class pdb_extract_wrapper(CPluginScript):
     ERROR_CODES = {  200 : { 'description' : 'Failed to add item to mol list' },201 : { 'description' : 'Failed to setFullPath' },}
     
     def process(self):
-        self.xmlroot = etree.Element('pdb_extract_wrapper')
+        self.xmlroot = ET.Element('pdb_extract_wrapper')
         
         invalidFiles = self.checkInputData()
         if len(invalidFiles)>0:
@@ -58,6 +58,7 @@ class pdb_extract_wrapper(CPluginScript):
             self.container.outputData.CIFFILE.setFullPath(filePath)
             print('pdb_extract.mmcif',self.container.outputData.CIFFILE.__str__(), os.path.isfile(self.container.outputData.CIFFILE.__str__()))
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-            CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot, pretty_print=True))
+            ET.indent(self.xmlroot)
+            CCP4Utils.writeXML(programXML,ET.tostring(self.xmlroot))
         
         self.reportStatus(CPluginScript.SUCCEEDED)

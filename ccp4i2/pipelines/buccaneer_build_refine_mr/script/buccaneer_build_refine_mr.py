@@ -6,8 +6,7 @@ from copy import deepcopy
 import inspect
 import os
 import shutil
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4ModelData
 from ....core import CCP4ProjectsManager
@@ -375,13 +374,13 @@ class buccaneer_build_refine_mr(CPluginScript):
     def initialiseXML(self):
         self.pipelinexmlfile = self.makeFileName('PROGRAMXML')
         if self.restarted and os.path.exists(self.pipelinexmlfile):
-            self.xmlroot = etree.fromstring(open(self.pipelinexmlfile).read())
+            self.xmlroot = ET.fromstring(open(self.pipelinexmlfile).read())
         else:
-            self.xmlroot = etree.Element("BuccaneerBuildRefineResult")
+            self.xmlroot = ET.Element("BuccaneerBuildRefineResult")
 
     def addXMLCycle(self):
-        self.xmlcyc = etree.SubElement(self.xmlroot, "BuildRefineCycle")
-        etree.SubElement(self.xmlcyc, "Number").text = str(self.cycle + 1)
+        self.xmlcyc = ET.SubElement(self.xmlroot, "BuildRefineCycle")
+        ET.SubElement(self.xmlcyc, "Number").text = str(self.cycle + 1)
 
     def appendXMLToRoot(self, xml):
         self.xmlroot.append(xml)
@@ -392,8 +391,8 @@ class buccaneer_build_refine_mr(CPluginScript):
         self.writeXMLRoot()
 
     def writeFinalXML(self):
-        xml = etree.Element("FinalStatistics")
-        etree.SubElement(xml, "BestCycle").text = str(self.best_cycle + 1)
+        xml = ET.Element("FinalStatistics")
+        ET.SubElement(xml, "BestCycle").text = str(self.best_cycle + 1)
         cycle = self.xmlroot.findall("BuildRefineCycle")[self.best_cycle]
         for node in cycle.find("BuccaneerResult").find("Final"):
             xml.append(deepcopy(node))
@@ -403,15 +402,16 @@ class buccaneer_build_refine_mr(CPluginScript):
 
     def writeXMLRoot(self):
         with open(self.pipelinexmlfile, 'w') as f:
-            CCP4Utils.writeXML(f, etree.tostring(self.xmlroot, pretty_print=True))
+            ET.indent(self.xmlroot)
+            CCP4Utils.writeXML(f, ET.tostring(self.xmlroot))
 
     def parseBuccaneerXML(self, plugin):
-        return CCP4Utils.openFileToEtree(plugin.makeFileName('PROGRAMXML'))
+        return ET.parse(plugin.makeFileName('PROGRAMXML')).getroot()
 
     def parseRefmacXML(self, plugin):
-        raw_xml = CCP4Utils.openFileToEtree(plugin.makeFileName('PROGRAMXML'))
+        raw_xml = ET.parse(plugin.makeFileName('PROGRAMXML')).getroot()
         stats = raw_xml.xpath("//REFMAC/Overall_stats/stats_vs_cycle")
-        new_xml = etree.Element('RefmacResult')
+        new_xml = ET.Element('RefmacResult')
         for node in stats[0].xpath("new_cycle[last()]/r_factor | new_cycle[last()]/r_free | new_cycle[last()]/rmsBOND |  new_cycle[last()]/rmsANGLE"):
             node.text = str(node.text).strip()
             if node.tag == 'rmsBOND':

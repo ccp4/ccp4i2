@@ -1,12 +1,12 @@
 """
-     Copyright (C) 2015 STFC
+Copyright (C) 2015 STFC
 
 Base class for importing reflection data provides processOutputFiles() method to split mtz
 by either taking columns specified by HKLIN_OBS_COLUMNS and HKLIN_FREER_COLUMN or by finding best choice
 automatically
 """
 
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4Utils
 from ....core.CCP4ErrorHandling import Severity
@@ -32,7 +32,7 @@ class x2mtz(CPluginScript):
         self.appendErrorReport(301)
         return CPluginScript.FAILED
 
-      self.x2mtzXML = etree.Element('X2MTZ')
+      self.x2mtzXML = ET.Element('X2MTZ')
 
       #print '\nx2mtz content', inputData.HKLIN.getFileContent()
 
@@ -102,9 +102,7 @@ class x2mtz(CPluginScript):
       #print('outputcolnames', outputcolnames)
       self.addElement(self.x2mtzXML, 'outputcolumnnames', outputcolnames)
       
-      with open (self.makeFileName('PROGRAMXML'),"w") as outputXML:
-          #print("*x2mtz write XML to ",outputXML)
-          CCP4Utils.writeXML(outputXML,etree.tostring(self.x2mtzXML,pretty_print=True))
+      CCP4Utils.writeXml(self.x2mtzXML, self.makeFileName('PROGRAMXML'))
 
       #print( 'x2mtz splitHklout err',err)
       if err.maxSeverity()>Severity.WARNING:
@@ -117,6 +115,6 @@ class x2mtz(CPluginScript):
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     def addElement(self, containerXML, elementname, elementtext):
         #print 'addElement', elementname, type(elementtext), elementtext 
-        e2 = etree.Element(elementname)
+        e2 = ET.Element(elementname)
         e2.text = elementtext
         containerXML.append(e2)

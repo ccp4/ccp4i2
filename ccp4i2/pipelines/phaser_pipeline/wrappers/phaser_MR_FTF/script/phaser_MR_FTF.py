@@ -99,14 +99,14 @@ class phaser_MR_FTF(phaser_MR_AUTO.phaser_MR_AUTO):
             phaser_warnings = [wrng for wrng in resultObject.warnings()]
             for warningsElement in self.xmlroot.xpath('PhaserWarnings')[0]:
                 if warningsElement.text not in phaser_warnings:
-                    advisoriesElement = etree.SubElement(self.xmlroot,'PhaserAdvisories')
-                    advisoryElement = etree.SubElement(advisoriesElement,'Advisory')
+                    advisoriesElement = ET.SubElement(self.xmlroot,'PhaserAdvisories')
+                    advisoryElement = ET.SubElement(advisoriesElement,'Advisory')
                     advisoryElement.text = warningsElement.text
             for warningsElement in self.xmlroot.xpath('PhaserWarnings')[0]:
                 warningsElement.getparent().remove(warningsElement)
             for warning in phaser_warnings:
-                warningsElement = etree.SubElement(self.xmlroot,'PhaserWarnings')
-                warningElement = etree.SubElement(warningsElement,'Warning')
+                warningsElement = ET.SubElement(self.xmlroot,'PhaserWarnings')
+                warningElement = ET.SubElement(warningsElement,'Warning')
                 warningElement.text = warning
 
         #Remove old digested summaries and add new ones parsed from the result summary block
@@ -115,11 +115,11 @@ class phaser_MR_FTF(phaser_MR_AUTO.phaser_MR_AUTO):
         summary_buffer = '***'
         for text in resultObject.summary().split('\n'):
             if text.startswith("**********") and not summary_buffer.strip().endswith("***"):
-                summaryNode = etree.SubElement(self.xmlroot,'Summary')
+                summaryNode = ET.SubElement(self.xmlroot,'Summary')
                 summaryNode.text = summary_buffer
                 summary_buffer = ""
             summary_buffer += (text+'\n')
-        summaryNode = etree.SubElement(self.xmlroot,'Summary')
+        summaryNode = ET.SubElement(self.xmlroot,'Summary')
         summaryNode.text = summary_buffer
 
         self.flushXML(self.xmlroot)

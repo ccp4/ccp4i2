@@ -17,6 +17,7 @@ import tempfile
 import traceback
 import uuid
 import warnings
+import xml.etree.ElementTree as ET
 
 from lxml import etree
 from matplotlib.backends.backend_pdf import PdfPages
@@ -72,14 +73,6 @@ def getMatplotlibFontList():
 
     return items
 
-def openFileToEtree(fileName=None,printout=True):
-  # Use this as etree.parse() seg faults on some Linux
-  parser = etree.HTMLParser()
-  f = open(fileName)
-  s = f.read()
-  f.close()
-  tree = etree.fromstring(s, parser)
-  return tree
 
 class StackedWidget(QtWidgets.QStackedWidget):
 
@@ -173,25 +166,25 @@ class CCP4Table:
             self.x_scaling = scaling_functions["oneoversqrt"]
 
     def toEtree(self):
-        t = etree.Element("CCP4Table")
+        t = ET.Element("CCP4Table")
         t.attrib["title"] = self.title
-        theData = etree.Element("data")
+        theData = ET.Element("data")
         theDataText = ''
         for tdl in self.data_lines:
             theDataText += ''.join([("%s "%n) for n in tdl[:]]).strip() + '\n'
         theData.text = theDataText
         t.append(theData)
-        theHeaders = etree.Element("headers",separator=' ')
+        theHeaders = ET.Element("headers",separator=' ')
         theHeaders.text = ''.join([("%s "%n) for n in self.headers[:]]).strip() + '\n'
         t.append(theHeaders)
         for g in self.graphs_list:
-            p = etree.Element('plot')
-            theTitle = etree.Element("title")
+            p = ET.Element('plot')
+            theTitle = ET.Element("title")
             theTitle.text = g[0]
             p.append(theTitle)
             t.append(p)
             for s in g[1].split(',')[1:]:
-                plotline = etree.Element('plotline', xcol=g[1].split(',')[0], ycol=s)
+                plotline = ET.Element('plotline', xcol=g[1].split(',')[0], ycol=s)
                 p.append(plotline)
         return t
 
@@ -652,11 +645,11 @@ class LogGraph(QtWidgets.QWidget):
 
         
     def fontsToEtree(self):
-        tree = etree.Element('Fonts')
-        tree.append(etree.Element('titleFont'))
-        tree.append(etree.Element('axesTickerFont'))
-        tree.append(etree.Element('axesLabelFont'))
-        tree.append(etree.Element('legendFont'))
+        tree = ET.Element('Fonts')
+        tree.append(ET.Element('titleFont'))
+        tree.append(ET.Element('axesTickerFont'))
+        tree.append(ET.Element('axesLabelFont'))
+        tree.append(ET.Element('legendFont'))
 
         for p2, sel in zip(['titleFont','axesTickerFont','axesLabelFont','legendFont'],[self.titleFontSel,self.axesFontSel,self.axesLabelFontSel,self.legendFontSel]):
             for p in tree.xpath(p2):
@@ -1086,7 +1079,7 @@ class LogGraph(QtWidgets.QWidget):
         NSMAP = {'xsi':"http://www.w3.org/2001/XMLSchema-instance"}
         NS = NSMAP['xsi']
         location_attribute = '{%s}noNamespaceSchemaLocation' % NS
-        tree = etree.Element("CCP4ApplicationOutput",nsmap = NSMAP,attrib={location_attribute: 'http://www.ysbl.york.ac.uk/~mcnicholas/schema/CCP4ApplicationOutput.xsd'})
+        tree = ET.Element("CCP4ApplicationOutput",nsmap = NSMAP,attrib={location_attribute: 'http://www.ysbl.york.ac.uk/~mcnicholas/schema/CCP4ApplicationOutput.xsd'})
         tree.append(self.fontsToEtree())
         for surf in self.surface_etrees:
             tree.append(surf)
@@ -1094,7 +1087,7 @@ class LogGraph(QtWidgets.QWidget):
             cw = self.graph.widget(i)
             if cw in self.table_etrees:
                 t = str(self.table_combo.itemText(i))
-                tableTree = etree.Element('CCP4Table',title=t)
+                tableTree = ET.Element('CCP4Table',title=t)
                 tree.append(tableTree)
                 for data in self.table_etrees[cw].xpath('data'):
                     tableTree.append(copy.deepcopy(data))
@@ -1107,14 +1100,14 @@ class LogGraph(QtWidgets.QWidget):
                         #print "Have a canvas, already drawn",j
                         el = self.table_etrees[cw].xpath('plot')[j]
                         if hasattr(cw2.canvas,"x_scaling") and cw2.canvas.x_scaling is scaling_functions['oneoversqrt']:
-                            el.append(etree.Element('xscale'))
+                            el.append(ET.Element('xscale'))
                             el.xpath("xscale")[0].text = 'oneoversqrt'
                         if hasattr(cw2.canvas,"y_scaling") and cw2.canvas.y_scaling is scaling_functions['oneoversqrt']:
-                            el.append(etree.Element('yscale'))
+                            el.append(ET.Element('yscale'))
                             el.xpath("yscale")[0].text = 'oneoversqrt'
                         if cw2.canvas.custom_xlim:
                             if not len(el.xpath("xrange")) > 0:
-                                el.append(etree.Element('xrange'))
+                                el.append(ET.Element('xrange'))
                             el.xpath("xrange")[0].set("min",str(cw2.canvas.custom_xlim[0]))
                             el.xpath("xrange")[0].set("max",str(cw2.canvas.custom_xlim[1]))
                         if cw2.canvas.custom_ylim:
@@ -1126,34 +1119,34 @@ class LogGraph(QtWidgets.QWidget):
                                     theEl = yrangeel
                                     break
                             else:
-                                el.append(etree.Element('yrange'))
+                                el.append(ET.Element('yrange'))
                                 theEl = el.xpath("yrange")[-1]
                             if len(el.xpath("yrange"))==0:
-                                el.append(etree.Element('yrange'))
+                                el.append(ET.Element('yrange'))
                                 theEl = el.xpath("yrange")[-1]
                             theEl.set("min",str(cw2.canvas.custom_ylim[0]))
                             theEl.set("max",str(cw2.canvas.custom_ylim[1]))
                         if cw2.canvas.title:
                             if not len(el.xpath("title")) > 0:
-                                el.append(etree.Element('title'))
+                                el.append(ET.Element('title'))
                             el.xpath("title")[0].text = cw2.canvas.title
                         if cw2.canvas.xlabel:
                             if not len(el.xpath("xlabel")) > 0:
-                                el.append(etree.Element('xlabel'))
+                                el.append(ET.Element('xlabel'))
                             el.xpath("xlabel")[0].text = cw2.canvas.xlabel
                         if cw2.canvas.ylabel:
                             if not len(el.xpath("ylabel")) > 0:
-                                el.append(etree.Element('ylabel'))
+                                el.append(ET.Element('ylabel'))
                             el.xpath("ylabel")[0].text = cw2.canvas.ylabel
 
                         if cw2.canvas.xbreak:
                             if not len(el.xpath("xbreaks")) > 0:
-                                el.append(etree.Element('xbreaks'))
+                                el.append(ET.Element('xbreaks'))
                             for node in el.xpath("xbreaks") :
                                 for n in node:
                                     node.remove(n)
                             for br in cw2.canvas.xbreak:
-                                xmlbr = etree.Element('break')
+                                xmlbr = ET.Element('break')
                                 xmlbr.set("min",str(br[0]))
                                 xmlbr.set("max",str(br[1]))
                                 for node in el.xpath("xbreaks") :
@@ -1161,12 +1154,12 @@ class LogGraph(QtWidgets.QWidget):
 
                         if cw2.canvas.ybreak:
                             if not len(el.xpath("ybreaks")) > 0:
-                                el.append(etree.Element('ybreaks'))
+                                el.append(ET.Element('ybreaks'))
                             for node in el.xpath("ybreaks") :
                                 for n in node:
                                     node.remove(n)
                             for br in cw2.canvas.ybreak:
-                                xmlbr = etree.Element('break')
+                                xmlbr = ET.Element('break')
                                 xmlbr.set("min",str(br[0]))
                                 xmlbr.set("max",str(br[1]))
                                 for node in el.xpath("ybreaks") :
@@ -1174,20 +1167,20 @@ class LogGraph(QtWidgets.QWidget):
 
                         if hasattr(cw2.canvas,"custom_legend_position"):
                             if not len(el.xpath("legendposition")) > 0:
-                                el.append(etree.Element('legendposition'))
+                                el.append(ET.Element('legendposition'))
                             for node in el.xpath("legendposition") :
                                 node.set("x",str(cw2.canvas.custom_legend_position[0]))
                                 node.set("y",str(cw2.canvas.custom_legend_position[1]))
 
                         if cw2.canvas.ax[0].get_legend() and not cw2.canvas.ax[0].legend_.get_visible():
                             if not len(el.xpath("showlegend")) > 0:
-                                el.append(etree.Element('showlegend'))
+                                el.append(ET.Element('showlegend'))
                             for node in el.xpath("showlegend") :
                                 node.text = "false"
                         if hasattr(cw2.canvas,"fix_aspect_ratio") and cw2.canvas.fix_aspect_ratio:
                             print("should be saving with fixed aspect ratio")
                             if not len(el.xpath("fixaspectratio")) > 0:
-                                el.append(etree.Element('fixaspectratio'))
+                                el.append(ET.Element('fixaspectratio'))
                             for node in el.xpath("fixaspectratio") :
                                 node.text = "true"
 
@@ -1196,41 +1189,41 @@ class LogGraph(QtWidgets.QWidget):
                             # Just do the simple lines. Histograms will be more complex.
                             if len(self.elementToPlotMap[plotline])==1:
                                 if len(plotline.xpath("label")) == 0:
-                                    plotline.append(etree.Element('label'))
+                                    plotline.append(ET.Element('label'))
                                 for node in plotline.xpath("label") :
                                     node.text = self.elementToPlotMap[plotline][0].get_label()
                                 if len(plotline.xpath("symbol")) == 0:
-                                    plotline.append(etree.Element('symbol'))
+                                    plotline.append(ET.Element('symbol'))
                                 for node in plotline.xpath("symbol") :
                                     node.text = self.elementToPlotMap[plotline][0].get_marker()
                                 if len(plotline.xpath("symbolsize")) == 0:
-                                    plotline.append(etree.Element('symbolsize'))
+                                    plotline.append(ET.Element('symbolsize'))
                                 for node in plotline.xpath("symbolsize") :
                                     node.text = str(int(self.elementToPlotMap[plotline][0].get_markersize()))
                                 if len(plotline.xpath("markeredgewidth")) == 0:
-                                    plotline.append(etree.Element('markeredgewidth'))
+                                    plotline.append(ET.Element('markeredgewidth'))
                                 for node in plotline.xpath("markeredgewidth") :
                                     node.text = str(int(self.elementToPlotMap[plotline][0].get_markeredgewidth()))
                                 if len(plotline.xpath("colour")) == 0:
-                                    plotline.append(etree.Element('colour'))
+                                    plotline.append(ET.Element('colour'))
                                 for node in plotline.xpath("colour") :
                                     node.text = self.elementToPlotMap[plotline][0].get_color()
                                 if len(plotline.xpath("linestyle")) == 0:
-                                    plotline.append(etree.Element('linestyle'))
+                                    plotline.append(ET.Element('linestyle'))
                                 for node in plotline.xpath("linestyle") :
                                     node.text = self.elementToPlotMap[plotline][0].get_linestyle()
                                 if len(plotline.xpath("linesize")) == 0:
-                                    plotline.append(etree.Element('linesize'))
+                                    plotline.append(ET.Element('linesize'))
                                 for node in plotline.xpath("linesize") :
                                     node.text = str(int(self.elementToPlotMap[plotline][0].get_linewidth()))
                                 if not self.elementToPlotMap[plotline][0].get_visible():
                                     if len(plotline.xpath("visible")) == 0:
-                                        plotline.append(etree.Element('visible'))
+                                        plotline.append(ET.Element('visible'))
                                     for node in plotline.xpath("visible") :
                                         node.text = "false"
                                 if hasattr(self.elementToPlotMap[plotline][0],"hide_from_legend") and self.elementToPlotMap[plotline][0].hide_from_legend:
                                     if len(plotline.xpath("showinlegend")) == 0:
-                                        plotline.append(etree.Element('showinlegend'))
+                                        plotline.append(ET.Element('showinlegend'))
                                     for node in plotline.xpath("showinlegend") :
                                         node.text = "false"
 
@@ -1244,18 +1237,17 @@ class LogGraph(QtWidgets.QWidget):
                                     if hasattr(cw2._do_the_plot_.args[0],"x_scaling"):
                                         if cw2._do_the_plot_.args[0].x_scaling is scaling_functions['oneoversqrt']:
                                             if len(el.xpath("xscale"))==0:
-                                                el.append(etree.Element('xscale'))
+                                                el.append(ET.Element('xscale'))
                                                 el.xpath("xscale")[0].text = 'oneoversqrt'
                                     if hasattr(cw2._do_the_plot_.args[0],"y_scaling"):
                                         if cw2._do_the_plot_.args[0].y_scaling is scaling_functions['oneoversqrt']:
                                             if len(el.xpath("yscale"))==0:
-                                                el.append(etree.Element('yscale'))
+                                                el.append(ET.Element('yscale'))
                                                 el.xpath("yscale")[0].text = 'oneoversqrt'
                         tableTree.append(copy.deepcopy(el))
 
-
-
-        status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True).decode("utf-8")
+        ET.indent(tree)
+        status_xml += ET.tostring(tree,encoding='utf-8').decode("utf-8")
         return status_xml
 
     @QtCore.Slot(bool,bool)
@@ -1510,7 +1502,7 @@ class LogGraph(QtWidgets.QWidget):
         d = f.readlines()
         f.close()
         Z = []
-        surfaceTree = etree.Element('CCP4Surface',title=filename, rows=str(len(d)),columns=str(len(d[0].split())))
+        surfaceTree = ET.Element('CCP4Surface',title=filename, rows=str(len(d)),columns=str(len(d[0].split())))
         surfaceTree.text = ''
         for l in d:
             surfaceTree.text += l
@@ -1576,13 +1568,13 @@ class LogGraph(QtWidgets.QWidget):
         if graph_uuid != None:
             graph.setObjectName(graph_uuid)
         self.graph.addWidget(graph)
-        t = etree.Element("CCP4Table")
-        theDataEl = etree.Element("data")
+        t = ET.Element("CCP4Table")
+        theDataEl = ET.Element("data")
         self.table_etrees[graph] = t
         inGraph = False
         graph_lists.append((filename+' '+str(iset),''))
-        p = etree.Element('plot')
-        theTitle = etree.Element("title")
+        p = ET.Element('plot')
+        theTitle = ET.Element("title")
         theTitle.text = filename+' '+str(iset)
         p.append(theTitle)
         t.append(p)
@@ -1672,7 +1664,7 @@ class LogGraph(QtWidgets.QWidget):
                         ig = ig + 1
 
                     #print "adding plotline",label,ig,p
-                    plotline = etree.Element('plotline',xcol=str(2*(ig-1)),ycol=str(2*(ig-1)+1))
+                    plotline = ET.Element('plotline',xcol=str(2*(ig-1)),ycol=str(2*(ig-1)+1))
                     p.append(plotline)
                     self.elementToPlotMap[plotline] = thePlot
                     
@@ -1926,7 +1918,7 @@ class LogGraph(QtWidgets.QWidget):
     def addCCP4ReportFile(self,fname,select=None):
         #print('CCP4Table.addCCP4ReportFile',fname)
         try:
-            doc = openFileToEtree(fname)
+            doc = ET.parse(fname).getroot()
         except:
             exc_type, exc_value,exc_tb = sys.exc_info()[:3]
             sys.stderr.write(str(exc_type)+'\n')
@@ -1935,7 +1927,7 @@ class LogGraph(QtWidgets.QWidget):
             QtWidgets.QMessageBox.warning(self,"Report HTML parse error","File "+fname+" does not seem to be valid HTML")
             return []
         graphList = []
-        #print 'CCP4Table.addCCP4ReportFile doc',etree.tostring(doc,pretty_print=True)
+        #print 'CCP4Table.addCCP4ReportFile doc',ET.tostring(doc)
         for tag in ('ccp4_data','{http://www.ccp4.ac.uk/ccp4ns}ccp4_data'):
             for tableEle in doc.iter(tag = tag):
                 #print 'CCP4Table.addCCP4ReportFile found ccp4_data',tableEle.tag
@@ -1953,10 +1945,10 @@ class LogGraph(QtWidgets.QWidget):
                         if len(dataData.strip())>0 and dataData.endswith(".xml") and len(doc.findall(".//*[@id='"+dataData+"']"))==0:
                             fnameXML = os.path.join(os.path.dirname(fname),dataData)
                             try:
-                                docXML = openFileToEtree(fnameXML)
+                                docXML = ET.parse(fnameXML).getroot()
                                 tables = docXML.xpath('/CCP4ApplicationOutput/CCP4Table')
                                 for t in tables:
-                                    #print CCP4Table.addCCP4ReportFile XML table',etree.tostring(doc,pretty_print=True)
+                                    #print CCP4Table.addCCP4ReportFile XML table',ET.tostring(doc)
                                     graph = self.addTableFromEtree(t)
                                     graphList.append(graph)
                             except:
@@ -1966,7 +1958,7 @@ class LogGraph(QtWidgets.QWidget):
     
     def addXMLCCP4TableFile(self,fname,graph_uuid=None,xsd=None):
         try:
-            doc = openFileToEtree(fname)
+            doc = ET.parse(fname).getroot()
         except:
             exc_type, exc_value,exc_tb = sys.exc_info()[:3]
             sys.stderr.write(str(exc_type)+'\n')
@@ -1978,7 +1970,7 @@ class LogGraph(QtWidgets.QWidget):
         if xsd:
             xmlschema_doc = None
             try:
-                    xmlschema_doc = openFileToEtree(xsd)
+                    xmlschema_doc = ET.parse(xsd).getroot()
             except:
                     exc_type, exc_value,exc_tb = sys.exc_info()[:3]
                     sys.stderr.write(str(exc_type)+'\n')
@@ -2462,25 +2454,25 @@ class LogGraph(QtWidgets.QWidget):
         if graph_uuid != None:
             graph.setObjectName(graph_uuid)
         self.graph.addWidget(graph)
-        t = etree.Element("CCP4Table")
-        theData = etree.Element("data")
+        t = ET.Element("CCP4Table")
+        theData = ET.Element("data")
         theDataText = ''
         for tdl in table.data_lines:
             theDataText += ''.join([("%s "%n) for n in tdl[:]]).strip() + '\n'
         theData.text = theDataText
         t.append(theData)
         self.table_etrees[graph] = t
-        theHeaders = etree.Element("headers",separator=' ')
+        theHeaders = ET.Element("headers",separator=' ')
         theHeaders.text = ''.join([("%s "%n) for n in table.headers[:]]).strip() + '\n'
         t.append(theHeaders)
         for g in table.graphs_list:
-            p = etree.Element('plot')
-            theTitle = etree.Element("title")
+            p = ET.Element('plot')
+            theTitle = ET.Element("title")
             theTitle.text = g[0]
             p.append(theTitle)
             t.append(p)
             for s in g[1].split(',')[1:]:
-                plotline = etree.Element('plotline', xcol=g[1].split(',')[0], ycol=s)
+                plotline = ET.Element('plotline', xcol=g[1].split(',')[0], ycol=s)
                 p.append(plotline)
             def add_plot(table,graph,g,t,p):
                 plot = QtMatplotlibWidget(title=g[0])
@@ -3737,7 +3729,7 @@ def CCP4LogToEtree(b):
     newsplits = []
     gs = []
 
-    bigtree = etree.Element("CCP4ApplicationOutput")
+    bigtree = ET.Element("CCP4ApplicationOutput")
     for ns in splits[1:]:
         ns = "$TABLE"+ns
         newsplits.append(ns)

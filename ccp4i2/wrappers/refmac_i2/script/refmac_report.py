@@ -1,6 +1,6 @@
 import os
 import sys
-import xml.etree.ElementTree as etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4Utils
 from ....report.CCP4ReportParser import PARSER, Report
@@ -280,14 +280,6 @@ class refmac_report(Report):
            FractionTable.addData(title="Twinning Operator",data=fraction_data['operator'])
            FractionTable.addData(title="Fraction",data=fraction_data['fraction'])
         except: pass
-        
-#        table = twinningFold.addTable(select='//Twinning[last()]/TwinningSymmetryOperator',style="width:250px;float:left;",internalId="TwinningOperatorTable",outputXml=self.outputXml)
-#        for title,select in  [[ "Symmetry operator" ,"SymmetryOperator" ], [ "Rmerge"  , "Rmerge" ]]:
-#            table.addData(title=title,select=select)
-#        
-#        table = twinningFold.addTable(select='//Twinning[last()]/TwinOperator',style="width:250px;float:left;",internalId="TwinningFractionTable",outputXml=self.outputXml)
-#        for title,select in  [[ "Twinning operator" ,"SymmetryOperator" ], [ "Fraction"  , "Fraction" ]]:
-#            table.addData(title=title,select=select)
 
         clearingDiv = parent.addDiv(style="clear:both;")
         return
@@ -296,18 +288,13 @@ class refmac_report(Report):
         if parent is None:
             parent=self
         reportFold = parent.addFold(label='Other plots from log file',brief='Other')
-        
-        """
-        #MN Here explicitly correct the absence of annotation of xscale as oneoversqrt in plots versus resln
-        for fixmeNode in self.xmlnode.findall(".//CCP4ApplicationOutput/CCP4Table[contains(@title,'resln')]/plot"):
-            fixmeNode.append(etree.fromstring('<xscale>oneoversqrt</xscale>'))
-        """
+
         #SJM - A python xml library version of above.    
         for tableNode in self.xmlnode.findall(".//CCP4ApplicationOutput/CCP4Table"):
             if "title" in tableNode.attrib and "resln" in tableNode.attrib["title"]:
                 plots = tableNode.findall("./plot")
                 for plot in plots:
-                    plot.append(etree.fromstring('<xscale>oneoversqrt</xscale>'))
+                    plot.append(ET.fromstring('<xscale>oneoversqrt</xscale>'))
         
         graphTableList = self.xmlnode.findall('SmartieGraphs/CCP4ApplicationOutput/CCP4Table')
         gallery = reportFold.addObjectGallery(height='300px',contentWidth='420px',tableWidth='360px',style='float:left;width:800px;')
@@ -379,66 +366,59 @@ class refmac_report(Report):
 
     def appendMolDisp(self, molDataNode=None, selectionText='all', carbonColour='yellow', othersByElement=True,style='CYLINDER',bondOrder=False):
         if molDataNode is None: return
-        molDispNode = etree.SubElement(molDataNode,'MolDisp')
+        molDispNode = ET.SubElement(molDataNode,'MolDisp')
         if bondOrder:
-            drawingStyleNode = etree.fromstring('<drawing_style><show_multiple_bonds>1</show_multiple_bonds><deloc_ring>1</deloc_ring></drawing_style>')
+            drawingStyleNode = ET.fromstring('<drawing_style><show_multiple_bonds>1</show_multiple_bonds><deloc_ring>1</deloc_ring></drawing_style>')
             molDispNode.append(drawingStyleNode)
         
-        selectNode = etree.SubElement(molDispNode,'select')
+        selectNode = ET.SubElement(molDispNode,'select')
         selectNode.text = selectionText
-        '''
-            selectionParametersNode = etree.SubElement(molDispNode,'selection_parameters')
-            selectNode = etree.SubElement(selectionParametersNode,'select')
-            selectNode.text = 'cid'
-            
-            cidNode = etree.SubElement(selectionParametersNode,'cid')
-            cidNode.text = selectionText
-            '''
-        colourParametersNode = etree.SubElement(molDispNode,'colour_parameters')
+
+        colourParametersNode = ET.SubElement(molDispNode,'colour_parameters')
         
-        colourModeNode = etree.SubElement(colourParametersNode,'colour_mode')
+        colourModeNode = ET.SubElement(colourParametersNode,'colour_mode')
         colourModeNode.text = 'one_colour'
         if othersByElement:
-            nonCNode = etree.SubElement(colourParametersNode,'non_C_atomtype')
+            nonCNode = ET.SubElement(colourParametersNode,'non_C_atomtype')
             nonCNode.text='1'
-        oneColourNode = etree.SubElement(colourParametersNode,'one_colour')
+        oneColourNode = ET.SubElement(colourParametersNode,'one_colour')
         oneColourNode.text=carbonColour
         #
-        styleNode = etree.SubElement(molDispNode,'style')
+        styleNode = ET.SubElement(molDispNode,'style')
         styleNode.text=style
 
     def addMap(self, mapDataNode = None, fPhiObjectName='FPHIOUT', fCol='F', phiCol='PHI', gridSize=0.5, contourUnits='sigma', model='id1', contourLevel=1.0, isDifmap=False):
         if mapDataNode is None: return
-        filenameNode = etree.SubElement(mapDataNode,'filename',database='filenames/'+fPhiObjectName)
+        filenameNode = ET.SubElement(mapDataNode,'filename',database='filenames/'+fPhiObjectName)
         columnsNode = None
         if isDifmap:
-            columnsNode = etree.SubElement(mapDataNode,'difColumns')
-            isDifferenceMapNode = etree.SubElement(mapDataNode,'isDifferenceMap')
+            columnsNode = ET.SubElement(mapDataNode,'difColumns')
+            isDifferenceMapNode = ET.SubElement(mapDataNode,'isDifferenceMap')
             isDifferenceMapNode.text='True'
         else:
-            columnsNode = etree.SubElement(mapDataNode,'columns')
-            isDifferenceMapNode = etree.SubElement(mapDataNode,'isDifferenceMap')
+            columnsNode = ET.SubElement(mapDataNode,'columns')
+            isDifferenceMapNode = ET.SubElement(mapDataNode,'isDifferenceMap')
             isDifferenceMapNode.text='False'
-        fColNode = etree.SubElement(columnsNode,'F')
+        fColNode = ET.SubElement(columnsNode,'F')
         fColNode.text = fCol
-        phiColNode = etree.SubElement(columnsNode,'PHI')
+        phiColNode = ET.SubElement(columnsNode,'PHI')
         phiColNode.text = phiCol
         
-        modelNode = etree.SubElement(mapDataNode,'model')
+        modelNode = ET.SubElement(mapDataNode,'model')
         modelNode.text = model
-        gridSizeNode = etree.SubElement(mapDataNode,'gridSize')
+        gridSizeNode = ET.SubElement(mapDataNode,'gridSize')
         gridSizeNode.text=str(gridSize)
-        contourUnitsNode = etree.SubElement(mapDataNode,'contourUnits')
+        contourUnitsNode = ET.SubElement(mapDataNode,'contourUnits')
         contourUnitsNode.text = contourUnits
-        mapDispNode = etree.SubElement(mapDataNode,'MapDisp')
-        contourLevelNode = etree.SubElement(mapDispNode,'contourLevel')
+        mapDispNode = ET.SubElement(mapDataNode,'MapDisp')
+        contourLevelNode = ET.SubElement(mapDispNode,'contourLevel')
         contourLevelNode.text = str(contourLevel)
-        differenceNode = etree.SubElement(mapDispNode,'difference')
-        colourNode = etree.SubElement(mapDispNode,'colour')
+        differenceNode = ET.SubElement(mapDispNode,'difference')
+        colourNode = ET.SubElement(mapDispNode,'colour')
         if isDifmap:
             differenceNode.text='1'
             colourNode.text='green'
-            colourNode2 = etree.SubElement(mapDispNode,'second_colour')
+            colourNode2 = ET.SubElement(mapDispNode,'second_colour')
             colourNode2.text='red'
         else:
             differenceNode.text='0'
@@ -473,15 +453,15 @@ class refmac_report(Report):
         interestingBits=list(interestingBitsSet)+['all']
         
         for iMonomer, interestingBit in enumerate(interestingBits):
-            baseSceneXML = CCP4Utils.openFileToEtree(baseScenePath,useLXML=False) #This is lxml, not xml ...
-            sceneNode = baseSceneXML#.findall('.//scene')[0]
+            baseSceneXML = ET.parse(baseScenePath).getroot()
+            sceneNode = baseSceneXML
             
             #Define data and associated display objects
-            dataNode = etree.SubElement(sceneNode,'data')
+            dataNode = ET.SubElement(sceneNode,'data')
             
             #Load model and draw representations
-            molDataNode = etree.SubElement(dataNode,'MolData',id='id1')
-            fileNode = etree.SubElement(molDataNode,'filename',database='filenames/'+coordObjectName)
+            molDataNode = ET.SubElement(dataNode,'MolData',id='id1')
+            fileNode = ET.SubElement(molDataNode,'filename',database='filenames/'+coordObjectName)
             
             #Handle custom monomers
             try:
@@ -493,7 +473,7 @@ class refmac_report(Report):
                         for loop in compListBlock.loops():
                             for loopline in loop:
                                 tlc  = loopline['three_letter_code']
-                                customResNode = etree.fromstring('''<customResCIFFiles>
+                                customResNode = ET.fromstring('''<customResCIFFiles>
                                     <cifmonomer>
                                     <name>'''+tlc+'''</name>
                                     <filename>'''+dictPath+'''</filename>
@@ -504,13 +484,13 @@ class refmac_report(Report):
                 print('Failed analysing DICT'+"Base error: {0}".format(err))
             
             #Define view (possibly some advantage in doing this after loading the moelcule from which it is inferred)
-            viewNode = etree.SubElement(sceneNode,'View')
+            viewNode = ET.SubElement(sceneNode,'View')
             autoScaleNode = self.subElementWithText(viewNode,'scale_auto',1)
             autoScaleNode = self.subElementWithText(viewNode,'slab_enabled',1)
             centreMolDataNode = self.subElementWithText(viewNode,'centre_MolData','id1')
             centreSelectionNode = self.subElementWithText(viewNode,'centre_selection',interestingBit)
             
-            orientationAutoNode = etree.SubElement(viewNode,'orientation_auto')
+            orientationAutoNode = ET.SubElement(viewNode,'orientation_auto')
             orientationAutoMolDataNode = self.subElementWithText(orientationAutoNode,'molData','id1')
             orientationAutoSelectionNode = self.subElementWithText(orientationAutoNode,'selection', interestingBit)
             
@@ -534,30 +514,30 @@ class refmac_report(Report):
             self.appendMolDisp(molDataNode=molDataNode, selectionText=selectionText, carbonColour='yellow', othersByElement=True,style='BALLSTICK',bondOrder=True)
             
             #Load and draw 2Fo-Fc
-            mapDataNode = etree.SubElement(dataNode,'MapData',id='id3')
+            mapDataNode = ET.SubElement(dataNode,'MapData',id='id3')
             self.addMap(mapDataNode, fPhiObjectName=mapObjectName, fCol='F', phiCol='PHI', gridSize=0.5, contourUnits='sigma', model='id1', contourLevel=1.0, isDifmap=False)
             
             #Load and draw Fo-Fc
-            mapDataNode = etree.SubElement(dataNode,'MapData',id='id4')
+            mapDataNode = ET.SubElement(dataNode,'MapData',id='id4')
             self.addMap(mapDataNode, fPhiObjectName=difmapObjectName, fCol='F', phiCol='PHI', gridSize=0.5, contourUnits='sigma', model='id1', contourLevel=3.0, isDifmap=True)
             
             # Dump out the XML
-            et = etree.ElementTree(baseSceneXML)
+            et = ET.ElementTree(baseSceneXML)
             sceneFilePath = os.path.join(jobDirectory,'monomer'+str(iMonomer)+'.scene.xml')
             et.write(sceneFilePath)
             # And add the picture
             pic = pictureGallery.addPicture(sceneFile=sceneFilePath,label='Picture of selection "'+interestingBit+'"')
 
         #And finally the full monty picture :-)
-        baseSceneXML = CCP4Utils.openFileToEtree(baseScenePath,useLXML=False)
-        sceneNode = baseSceneXML#.findall('scene')[0]
+        baseSceneXML = ET.parse(baseScenePath).getroot()
+        sceneNode = baseSceneXML
         
         #Define data and associated display objects
-        dataNode = etree.SubElement(sceneNode,'data')
+        dataNode = ET.SubElement(sceneNode,'data')
         
         #Load model and draw representations
-        molDataNode = etree.SubElement(dataNode,'MolData',id='id1')
-        fileNode = etree.SubElement(molDataNode,'filename',database='filenames/'+coordObjectName)
+        molDataNode = ET.SubElement(dataNode,'MolData',id='id1')
+        fileNode = ET.SubElement(molDataNode,'filename',database='filenames/'+coordObjectName)
         
         #Handle custom monomers
         try:
@@ -569,7 +549,7 @@ class refmac_report(Report):
                     for loop in compListBlock.loops():
                         for loopline in loop:
                             tlc  = loopline['three_letter_code']
-                            customResNode = etree.fromstring('''<customResCIFFiles>
+                            customResNode = ET.fromstring('''<customResCIFFiles>
                                 <cifmonomer>
                                 <name>'''+tlc+'''</name>
                                 <filename>'''+dictPath+'''</filename>
@@ -580,13 +560,13 @@ class refmac_report(Report):
             print('Failed analysing DICT'+"Base error: {0}".format(err))
         
         #Define view (possibly some advantage in doing this after loading the moelcule from which it is inferred)
-        viewNode = etree.SubElement(sceneNode,'View')
+        viewNode = ET.SubElement(sceneNode,'View')
         autoScaleNode = self.subElementWithText(viewNode,'scale_auto',1)
         autoScaleNode = self.subElementWithText(viewNode,'slab_enabled',1)
         centreMolDataNode = self.subElementWithText(viewNode,'centre_MolData','id1')
         centreSelectionNode = self.subElementWithText(viewNode,'centre_selection',interestingBit)
         
-        orientationAutoNode = etree.SubElement(viewNode,'orientation_auto')
+        orientationAutoNode = ET.SubElement(viewNode,'orientation_auto')
         orientationAutoMolDataNode = self.subElementWithText(orientationAutoNode,'molData','id1')
         orientationAutoSelectionNode = self.subElementWithText(orientationAutoNode,'selection', interestingBit)
         
@@ -616,15 +596,15 @@ class refmac_report(Report):
             self.appendMolDisp(molDataNode=molDataNode, selectionText=selectionText, carbonColour='yellow', othersByElement=True,style='BALLSTICK',bondOrder=True)
         
         #Load and draw 2Fo-Fc
-        mapDataNode = etree.SubElement(dataNode,'MapData',id='id3')
+        mapDataNode = ET.SubElement(dataNode,'MapData',id='id3')
         self.addMap(mapDataNode, fPhiObjectName=mapObjectName, fCol='F', phiCol='PHI', gridSize=0.5, contourUnits='sigma', model='id1', contourLevel=1.0, isDifmap=False)
         
         #Load and draw Fo-Fc
-        mapDataNode = etree.SubElement(dataNode,'MapData',id='id4')
+        mapDataNode = ET.SubElement(dataNode,'MapData',id='id4')
         self.addMap(mapDataNode, fPhiObjectName=difmapObjectName, fCol='F', phiCol='PHI', gridSize=0.5, contourUnits='sigma', model='id1', contourLevel=3.0, isDifmap=True)
         
         # Dump out the XML
-        et = etree.ElementTree(baseSceneXML)
+        et = ET.ElementTree(baseSceneXML)
         sceneFilePath = os.path.join(jobDirectory,'fullMonty.scene.xml')
         et.write(sceneFilePath)
         # And add the picture
@@ -632,7 +612,7 @@ class refmac_report(Report):
 
 
     def subElementWithText(self, parent, tag, text):
-        result = etree.SubElement(parent, tag)
+        result = ET.SubElement(parent, tag)
         result.text = str(text)
         return result
 
@@ -723,7 +703,7 @@ def test(xmlFile=None,jobId=None,reportFile=None):
     print(xmlFile)
     try:
         text = open( xmlFile ).read()
-        xmlnode = etree.fromstring( text, PARSER() )
+        xmlnode = ET.fromstring( text, PARSER() )
     except:
         print('FAILED loading XML file:', kw['xmlFile'])
     if reportFile is None and xmlFile is not None:

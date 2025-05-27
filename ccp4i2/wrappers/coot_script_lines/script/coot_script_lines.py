@@ -1,8 +1,7 @@
 import glob
 import os
 import shutil
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4Utils
 from ....core.CCP4Modules import PROCESSMANAGER
@@ -126,11 +125,11 @@ class coot_script_lines(CPluginScript):
             return CPluginScript.FAILED
 
         # Create a trivial xml output file
-        self.xmlroot = etree.Element('coot_script_lines')
-        e = etree.Element('number_output_pdbs')
+        self.xmlroot = ET.Element('coot_script_lines')
+        e = ET.Element('number_output_pdbs')
         e.text = str(iPDBOut)
         self.xmlroot.append(e)
-        e = etree.Element('number_output_cifs')
+        e = ET.Element('number_output_cifs')
         e.text = str(iCIFOut)
         self.xmlroot.append(e)
         tableElement = self.logToXML()
@@ -138,7 +137,8 @@ class coot_script_lines(CPluginScript):
         
         try:
             aFile=open( self.makeFileName('PROGRAMXML'),'w')
-            CCP4Utils.writeXML(aFile,etree.tostring(self.xmlroot,pretty_print=True))
+            ET.indent(self.xmlroot)
+            CCP4Utils.writeXML(aFile,ET.tostring(self.xmlroot))
             aFile.close()
         except:
             print('Oops')
@@ -148,11 +148,11 @@ class coot_script_lines(CPluginScript):
 
     def logToXML(self):
         
-        tableelement = etree.Element('Table', title='Per residue statistics')
+        tableelement = ET.Element('Table', title='Per residue statistics')
         
         pairs = [('Col_0','N'),('Col_1','StartBonds'),('Col_2','FinalBonds')]
         for pair in pairs:
-            headerElement = etree.SubElement(tableelement,'Header',label=pair[1],identifier=pair[0])
+            headerElement = ET.SubElement(tableelement,'Header',label=pair[1],identifier=pair[0])
         
         cootlines = open(self.makeFileName('LOG')).readlines()
         iRow = 1
@@ -164,21 +164,21 @@ class coot_script_lines(CPluginScript):
                     currentChangeList.append(line.split()[1])
                 else:
                     currentChangeList.append(line.split()[1])
-                    rowElement = etree.SubElement(tableelement,"row")
-                    rowNoElement = etree.SubElement(rowElement,'Col_0')
+                    rowElement = ET.SubElement(tableelement,"row")
+                    rowNoElement = ET.SubElement(rowElement,'Col_0')
                     rowNoElement.text = str(iRow)
-                    startBondsElement = etree.SubElement(rowElement,'Col_1')
+                    startBondsElement = ET.SubElement(rowElement,'Col_1')
                     startBondsElement.text = str(currentChangeList[0])
-                    finalBondsElement = etree.SubElement(rowElement,'Col_2')
+                    finalBondsElement = ET.SubElement(rowElement,'Col_2')
                     finalBondsElement.text = str(currentChangeList[1])
                     currentChangeList = []
                     iRow += 1
     
         if iRow == 1: return None
     
-        graphElement = etree.SubElement(tableelement,"Graph", title = "By residue bonds")
-        graphColumnElement = etree.SubElement(graphElement,"Column", label='N', positionInList=str(0))
-        graphColumnElement = etree.SubElement(graphElement,"Column", label='StartBonds', positionInList=str(1))
-        graphColumnElement = etree.SubElement(graphElement,"Column", label='FinalBonds', positionInList=str(2))
+        graphElement = ET.SubElement(tableelement,"Graph", title = "By residue bonds")
+        graphColumnElement = ET.SubElement(graphElement,"Column", label='N', positionInList=str(0))
+        graphColumnElement = ET.SubElement(graphElement,"Column", label='StartBonds', positionInList=str(1))
+        graphColumnElement = ET.SubElement(graphElement,"Column", label='FinalBonds', positionInList=str(2))
         
         return tableelement

@@ -1,8 +1,6 @@
 import os
 import xml.etree.ElementTree as ET
 
-from lxml import etree
-
 from ....report.CCP4ReportParser import GenericElement
 
 
@@ -373,7 +371,7 @@ class CellCheck:
 
   # - - - - - - - - - - - - - - - - -
   def addElement(self, containerXML, elementname, elementtext):
-    e2 = etree.Element(elementname)
+    e2 = ET.Element(elementname)
     e2.text = elementtext
     containerXML.append(e2)
 
@@ -396,7 +394,7 @@ class CellCheck:
     'tolerance'   in A
     """
 
-    cellReportXML= etree.Element('ObsFreeCellComparison')
+    cellReportXML= ET.Element('ObsFreeCellComparison')
     
     cellformat = CellFormat()
     self.addElement(cellReportXML, 'cell1',cellformat.shortformatCell(mtzContent1.cell))
@@ -414,7 +412,7 @@ class CellCheck:
     self.addElement(cellReportXML, 'sgname2', sgname2)
     
 
-    #print "cellReportXML",etree.tostring(cellReportXML,pretty_print=True)
+    #print "cellReportXML",ET.tostring(cellReportXML)
     return cellReportXML
 # end class CellCheck
 

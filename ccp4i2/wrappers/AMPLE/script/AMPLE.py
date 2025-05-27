@@ -1,5 +1,6 @@
 import os
 import shutil
+import xml.etree.ElementTree as ET
 
 from ample.constants import AMPLE_PKL
 from ample.util import mrbump_util
@@ -210,7 +211,7 @@ class AMPLE(CPluginScript):
             ['-ccp4i2_xml', self.makeFileName('PROGRAMXML')])
         #self.appendCommandLine(['-do_mr', False])
 
-        #         self.xmlroot = etree.Element(AMPLE_ROOT_NODE)
+        #         self.xmlroot = ET.Element(AMPLE_ROOT_NODE)
         #         logFile = os.path.join(self.getWorkDirectory(),LOGFILE_NAME)
         #         self.watchFile(logFile,self.handleLogChanged)
         return self.SUCCEEDED
@@ -220,7 +221,7 @@ class AMPLE(CPluginScript):
             w.write('flushXML: {0}\n'.format(self.makeFileName('PROGRAMXML')))
         for ampleTxtNode in self.xmlroot.xpath(AMPLE_LOG_NODE):
             self.xmlroot.remove(ampleTxtNode)
-        element = etree.SubElement(self.xmlroot, AMPLE_LOG_NODE)
+        element = ET.SubElement(self.xmlroot, AMPLE_LOG_NODE)
         with open(filename, 'r') as logFile:
             element.text = etree.CDATA(logFile.read())
         self.flushXML()
@@ -228,7 +229,8 @@ class AMPLE(CPluginScript):
     def flushXML(self):
         tmpFilename = self.makeFileName('PROGRAMXML') + '_tmp'
         with open(tmpFilename, 'wb') as xmlFile:
-            xmlFile.write(etree.tostring(self.xmlroot, pretty_print=True))
+            ET.indent(self.xmlroot)
+            xmlFile.write(ET.tostring(self.xmlroot))
         if os.path.exists(self.makeFileName('PROGRAMXML')):
             os.remove(self.makeFileName('PROGRAMXML'))
         os.rename(tmpFilename, self.makeFileName('PROGRAMXML'))

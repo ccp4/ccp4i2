@@ -1,4 +1,4 @@
-import xml.etree.ElementTree as etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4Utils
 from ....report.CCP4ReportParser import Report
@@ -50,8 +50,8 @@ class pdbview_edit_report(Report):
         if self.jobInfo and "filenames" in self.jobInfo and "XYZOUT" in self.jobInfo["filenames"]:
           i = 0
           for fname in self.jobInfo['filenames']["XYZOUT"]:
-             baseSceneXML = CCP4Utils.openFileToEtree(baseScenePath)
-             et = etree.ElementTree(baseSceneXML)
+             baseSceneXML = ET.parse(baseScenePath).getroot()
+             et = ET.ElementTree(baseSceneXML)
              filename_element = et.findall(".//data/MolData/filename")[0]
              del filename_element.attrib["database"]
              filename_element.text = fname

@@ -1,6 +1,5 @@
 import os
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core.CCP4PluginScript import CPluginScript
 from . import ShelxCDEBase
@@ -24,7 +23,7 @@ class ShelxCD(ShelxCDEBase.ShelxCDEBase):
         result = self.runShelxc()
         if result != CPluginScript.SUCCEEDED: return result
 
-        self.xmlroot = etree.Element('ShelxCD')
+        self.xmlroot = ET.Element('ShelxCD')
         
         logFile =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'shelxc.log'))
         self.scrapeShelxcLog(self.xmlroot, logFile)

@@ -1043,7 +1043,5 @@ class datasetIndex:
 if __name__ == "__main__":
   report = aimless_pipe_report(xmlFile = sys.argv[1],jobStatus="Finished" )
   tree= report.as_etree()
-  #print(etree.tostring(tree,pretty_print=True))
   report.as_html_file(fileName='./test-pipeline.html')
   if len(report.errorReport())>0: print('ERRORS:',r.errorReport())
-  

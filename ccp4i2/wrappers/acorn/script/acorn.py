@@ -13,8 +13,8 @@
 import os
 import sys
 import traceback
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 import clipper
 
 from ....core import CCP4XtalData
@@ -159,8 +159,8 @@ class acorn(CPluginScript):
         #   ex3   = PROCESSMANAGER().getJobData( pid3,'exitCode' )
         
         # Parse the output text file to create an xml file which can then be parsed by the report to make html .......
-        rootNode = etree.Element("acorn")
-        xmlRI = etree.SubElement(rootNode,"RunInfo")
+        rootNode = ET.Element("acorn")
+        xmlRI = ET.SubElement(rootNode,"RunInfo")
         
         # Use the ccp4 Smartie Class to parse the ascii log file from Acorn.
         aclfile = self.makeFileName('LOG')
@@ -171,12 +171,13 @@ class acorn(CPluginScript):
         vccoef = tabs[0].col("CC")
         
         for cn, cc in zip(vcycnum,vccoef):
-            xmlcyc = etree.SubElement(xmlRI,"Cycle")
-            etree.SubElement(xmlcyc,"NCycle").text          = str(cn)
-            etree.SubElement(xmlcyc,"CorrelationCoef").text = str(cc)
+            xmlcyc = ET.SubElement(xmlRI,"Cycle")
+            ET.SubElement(xmlcyc,"NCycle").text          = str(cn)
+            ET.SubElement(xmlcyc,"CorrelationCoef").text = str(cc)
         
         xmlfile = open(self.xmlout,'w')
-        xmlString = etree.tostring(rootNode,pretty_print=True)
+        ET.indent(rootNode)
+        xmlString = ET.tostring(rootNode)
 
         xmlfile.write(xmlString.decode("utf-8"))
         

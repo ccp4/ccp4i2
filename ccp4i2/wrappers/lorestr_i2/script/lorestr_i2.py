@@ -5,7 +5,6 @@ import xml.etree.ElementTree as ET
 from lxml import etree
 
 from ....core import CCP4ErrorHandling
-from ....core import CCP4Utils
 from ....core.CCP4Modules import PROCESSMANAGER
 from ....core.CCP4PluginScript import CPluginScript
 
@@ -26,7 +25,7 @@ class lorestr_i2(CPluginScript):
     def __init__(self, *args, **kws):
         super(lorestr_i2, self).__init__(*args, **kws)
         self._readyReadStandardOutputHandler = self.handleReadyReadStandardOutput
-        self.xmlroot = etree.Element('lorestr_i2')
+        self.xmlroot = ET.Element('lorestr_i2')
 #        self.logScraper = logScraper(xmlroot=self.xmlroot, flushXML=self.flushXML)
         self.xmlLength = 0
 
@@ -100,8 +99,8 @@ class lorestr_i2(CPluginScript):
         self.logFileHandle.write(availableStdout)
         self.logFileHandle.flush()
 
-        self.xmlroot = etree.Element("lorestr_i2")
-        logText = etree.SubElement(self.xmlroot,"LogText")
+        self.xmlroot = ET.Element("lorestr_i2")
+        logText = ET.SubElement(self.xmlroot,"LogText")
         logText.text = etree.CDATA(availableStdout)
         self.flushXML()
 
@@ -264,7 +263,7 @@ class lorestr_i2(CPluginScript):
            validateXMLPath = self.validate.makeFileName('PROGRAMXML')
            print(validateXMLPath)
 
-           validateXML = CCP4Utils.openFileToEtree(validateXMLPath)
+           validateXML = ET.parse(validateXMLPath).getroot()
            print(validateXML)
 
            self.xmlroot = ET.parse(self.makeFileName('PROGRAMXML')).getroot()

@@ -122,8 +122,8 @@ class sculptor(CPluginScript):
             xyzoutList[-1].subType = 2
 
         # Create a trivial xml output file
-        root = etree.Element('sculptor')
-        e = etree.Element('number_output_files')
+        root = ET.Element('sculptor')
+        e = ET.Element('number_output_files')
         e.text = str(len(xyzoutList))
         root.append(e)
         CCP4Utils.saveEtreeToFile(root,self.makeFileName('PROGRAMXML'))

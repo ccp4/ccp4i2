@@ -8,8 +8,8 @@ import functools
 import os
 import shutil
 import sys
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore
 import clipper
 import gemmi
@@ -47,8 +47,8 @@ class servalcat_pipe(CPluginScript):
         super(servalcat_pipe, self).__init__(*args, **kws)
         self.pipelinexmlfile = self.makeFileName(format='PROGRAMXML')
         self.refmacMonitors = {}
-        self.xmlroot = etree.Element("SERVALCAT")
-        self.xmlroot2 = etree.Element("SERVALCAT")
+        self.xmlroot = ET.Element("SERVALCAT")
+        self.xmlroot2 = ET.Element("SERVALCAT")
 
     def startProcess(self, processId):
         try:
@@ -214,7 +214,7 @@ class servalcat_pipe(CPluginScript):
     @QtCore.Slot(str)
     def handleXmlChanged2(self, xmlFilename2):
         self.xmlroot2.clear()
-        servalcatEtree2 = CCP4Utils.openFileToEtree(xmlFilename2) # MM , useLXML=False)
+        servalcatEtree2 = ET.parse(xmlFilename2).getroot()
         servalcatXML2 = servalcatEtree2.xpath('//SERVALCAT')
         if len(servalcatXML2) == 1:
             servalcatXML2[0].tag = "SERVALCAT_WATERS"
@@ -224,7 +224,7 @@ class servalcat_pipe(CPluginScript):
     @QtCore.Slot(str)
     def handleXmlChanged(self, xmlFilename):
         self.xmlroot.clear()
-        servalcatEtree = CCP4Utils.openFileToEtree(xmlFilename) # MM , useLXML=False)
+        servalcatEtree = ET.parse(xmlFilename).getroot()
         servalcatXML = servalcatEtree.xpath("//SERVALCAT")
         if len(servalcatXML) == 1:
             servalcatXML[0].tag = "SERVALCAT_FIRST"
@@ -232,25 +232,28 @@ class servalcat_pipe(CPluginScript):
         self.saveXml()
 
     def saveXml2(self):
-        newXml = etree.tostring(self.xmlroot2, pretty_print=True)
+        ET.indent(self.xmlroot2)
+        newXml = ET.tostring(self.xmlroot2)
         if len(newXml) > self.xmlLength2:
             # Get content of program.xml_first
             firstFileName = self.pipelinexmlfile + '_first'
             with open(firstFileName, 'r') as aFile:
-                masterXml = etree.fromstring(aFile.read())
+                masterXml = ET.fromstring(aFile.read())
             # Add content of program.xml of the last servalcat subjob
             masterXml.xpath('//SERVALCAT')[0].append(self.xmlroot2.xpath("//SERVALCAT/SERVALCAT_WATERS")[0])
             self.xmlLength2 = len(newXml)
             # Save as program.xml_tmp and then move to program.xml
             tmpFileName = self.pipelinexmlfile + '_tmp'
             with open(tmpFileName, 'w') as aFile:
-                CCP4Utils.writeXML(aFile,etree.tostring(masterXml, pretty_print=True) )
+                ET.indent(masterXml)
+                CCP4Utils.writeXML(aFile,ET.tostring(masterXml) )
             shutil.move(tmpFileName, self.pipelinexmlfile)
             self.xmlroot = masterXml
 
     def saveXml(self):
         # Save the xml if it has grown
-        newXml = etree.tostring(self.xmlroot, pretty_print=True)
+        ET.indent(self.xmlroot)
+        newXml = ET.tostring(self.xmlroot)
         if len(newXml) > self.xmlLength:
            # Save as program.xml_tmp and then move to program.xml
            tmpFileName = self.pipelinexmlfile + '_tmp'
@@ -350,8 +353,8 @@ class servalcat_pipe(CPluginScript):
             self.validate.process()
 
             validateXMLPath = self.validate.makeFileName('PROGRAMXML')
-            validateXML = CCP4Utils.openFileToEtree(validateXMLPath)
-            xml_validation = etree.SubElement(self.xmlroot,"Validation")
+            validateXML = ET.parse(validateXMLPath).getroot()
+            xml_validation = ET.SubElement(self.xmlroot,"Validation")
             if len(validateXML.xpath("//Validate_geometry_CCP4i2/Model_info"))>0:
                 xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Model_info")[0]) 
             if self.validate.container.controlParameters.DO_IRIS:
@@ -452,42 +455,42 @@ class servalcat_pipe(CPluginScript):
                 fieldnames = ["chain", "resi", "adp", "adp_sidechain"]
                 writer = csv.writer(csvfile, quoting=csv.QUOTE_NONNUMERIC)
                 writer.writerow(fieldnames)
-            adp_root = etree.Element('ADP_ANALYSIS')
-            chains_root = etree.SubElement(adp_root, "chains")
+            adp_root = ET.Element('ADP_ANALYSIS')
+            chains_root = ET.SubElement(adp_root, "chains")
             for ch, values in adp_dict.items():
-                chain = etree.SubElement(chains_root, "chain")
-                chain_name = etree.SubElement(chain, "name")
+                chain = ET.SubElement(chains_root, "chain")
+                chain_name = ET.SubElement(chain, "name")
                 chain_name.text = str(ch)
                 chain.set("name", str(ch))
-                chain_min = etree.SubElement(chain, "min")
+                chain_min = ET.SubElement(chain, "min")
                 chain_min.text = "{:.2f}".format(min(values))
-                chain_max = etree.SubElement(chain, "max")
+                chain_max = ET.SubElement(chain, "max")
                 chain_max.text = "{:.2f}".format(max(values))
                 chain_med_val = numpy.median(values)
                 chain_mad_val = numpy.median(numpy.absolute(values - chain_med_val))
-                chain_med = etree.SubElement(chain, "med")
+                chain_med = ET.SubElement(chain, "med")
                 chain_med.text = "{:.2f}".format(chain_med_val)
-                chain_mad = etree.SubElement(chain, "mad")
+                chain_mad = ET.SubElement(chain, "mad")
                 chain_mad.text = "{:.2f}".format(chain_mad_val)
-                chain_q1 = etree.SubElement(chain, "q1")
+                chain_q1 = ET.SubElement(chain, "q1")
                 chain_q1.text = "{:.2f}".format(numpy.quantile(values, 0.25))
-                chain_q3 = etree.SubElement(chain, "q3")
+                chain_q3 = ET.SubElement(chain, "q3")
                 chain_q3.text = "{:.2f}".format(numpy.quantile(values, 0.75))
                 chain_mean_val = numpy.mean(values)
                 chain_std_val = numpy.std(values)
-                chain_mean = etree.SubElement(chain, "mean")
+                chain_mean = ET.SubElement(chain, "mean")
                 chain_mean.text = "{:.2f}".format(chain_mean_val)
-                chain_std = etree.SubElement(chain, "std")
+                chain_std = ET.SubElement(chain, "std")
                 chain_std.text = "{:.2f}".format(chain_std_val)
 
                 hist, bin_edges = numpy.histogram(values, bins="auto")
                 bin_edges = numpy.delete(bin_edges, -1)
-                chain_histogram = etree.SubElement(chain, 'histogram')
+                chain_histogram = ET.SubElement(chain, 'histogram')
                 for i in range(len(bin_edges)):
-                    bin_elem = etree.SubElement(chain_histogram, 'bin')
-                    bin_adp = etree.SubElement(bin_elem, 'adp')
+                    bin_elem = ET.SubElement(chain_histogram, 'bin')
+                    bin_adp = ET.SubElement(bin_elem, 'adp')
                     bin_adp.text = "{:.2f}".format(bin_edges[i])
-                    bin_count = etree.SubElement(bin_elem, 'count')
+                    bin_count = ET.SubElement(bin_elem, 'count')
                     bin_count.text = str(hist[i])
 
                 if ch != "All":
@@ -507,30 +510,30 @@ class servalcat_pipe(CPluginScript):
                                             adp_per_resi_adp_round,
                                             adp_per_resi_adp_sidechain_round])
             if os.path.exists(csvFilePath):
-                per_resi_element = etree.SubElement(adp_root, "per_resi")
-                per_resi_csv_element = etree.SubElement(per_resi_element, "CSV_FILE")
+                per_resi_element = ET.SubElement(adp_root, "per_resi")
+                per_resi_csv_element = ET.SubElement(per_resi_element, "CSV_FILE")
                 per_resi_csv_element.text = str(csvFileName)
 
-            outliers_root = etree.SubElement(adp_root, "outliers")
-            outliers_adp_limit_low = etree.SubElement(outliers_root, "adp_limit_low")
+            outliers_root = ET.SubElement(adp_root, "outliers")
+            outliers_adp_limit_low = ET.SubElement(outliers_root, "adp_limit_low")
             outliers_adp_limit_low.text = "{:.2f}".format(adp_limit_low)
-            outliers_adp_limit_high = etree.SubElement(outliers_root, "adp_limit_high")
+            outliers_adp_limit_high = ET.SubElement(outliers_root, "adp_limit_high")
             outliers_adp_limit_high.text = "{:.2f}".format(adp_limit_high)
-            outliers_adp_iqr_factor = etree.SubElement(outliers_root, "iqr_factor")
+            outliers_adp_iqr_factor = ET.SubElement(outliers_root, "iqr_factor")
             outliers_adp_iqr_factor.text = "{:.2f}".format(iqrFactor)
-            outliers_low = etree.SubElement(outliers_root, "low")
+            outliers_low = ET.SubElement(outliers_root, "low")
             for outlier in adp_low:
-                outlier_elem = etree.SubElement(outliers_low, "data")
-                outlier_adp = etree.SubElement(outlier_elem, "adp")
+                outlier_elem = ET.SubElement(outliers_low, "data")
+                outlier_adp = ET.SubElement(outlier_elem, "adp")
                 outlier_adp.text = "{:.2f}".format(outlier["adp"])
-                outlier_atom = etree.SubElement(outlier_elem, "atom")
+                outlier_atom = ET.SubElement(outlier_elem, "atom")
                 outlier_atom.text = str(outlier["atom"])
-            outliers_high = etree.SubElement(outliers_root, "high")
+            outliers_high = ET.SubElement(outliers_root, "high")
             for outlier in adp_high:
-                outlier_elem = etree.SubElement(outliers_high, "data")
-                outlier_adp = etree.SubElement(outlier_elem, "adp")
+                outlier_elem = ET.SubElement(outliers_high, "data")
+                outlier_adp = ET.SubElement(outlier_elem, "adp")
                 outlier_adp.text = "{:.2f}".format(outlier["adp"])
-                outlier_atom = etree.SubElement(outlier_elem, "atom")
+                outlier_atom = ET.SubElement(outlier_elem, "atom")
                 outlier_atom.text = str(outlier["atom"])
 
             self.xmlroot.append(adp_root)
@@ -571,7 +574,7 @@ class servalcat_pipe(CPluginScript):
                 xmlText += "\n<CSV_FILE>" + csvFileName + "</CSV_FILE>"
             # xmlText += "\n<CSV><![CDATA[\n" + csv_string + "\n]]></CSV>"
             xmlText += "\n</COORD_ADP_DEV>"
-            xmlTree = etree.fromstring(xmlText)
+            xmlTree = ET.fromstring(xmlText)
             self.xmlroot.append(xmlTree)
             self.saveXml()
             print("Monitoring of changes/shifts of coordinates and ADPs...")
@@ -584,20 +587,22 @@ class servalcat_pipe(CPluginScript):
         if statusDict['finishStatus'] == CPluginScript.UNSATISFACTORY:
             print("AAA1.UNSATISFACTORY")
             with open(self.makeFileName('PROGRAMXML'), 'w') as programXML:
-                CCP4Utils.writeXML(programXML, etree.tostring(self.xmlroot, pretty_print=True))
+                ET.indent(self.xmlroot)
+                CCP4Utils.writeXML(programXML, ET.tostring(self.xmlroot))
             self.reportStatus(CPluginScript.UNSATISFACTORY)
 
         elif self.firstServalcat.errorReport.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             print("AAA1.MAXSEVERITY")
             #This gets done in thefirstServalcat.reportStatus() - Liz
             try:
-                servalcatEtree = CCP4Utils.openFileToEtree(self.firstServalcat.makeFileName('PROGRAMXML'))
+                servalcatEtree = ET.parse(self.firstServalcat.makeFileName('PROGRAMXML')).getroot()
                 servalcatXML = servalcatEtree.xpath('//SERVALCAT')
                 if len(servalcatXML) == 1: self.xmlroot.append(servalcatXML[0])
             except:
                 print('Failed attempt to read XML file from first Refmac')
             try:
-                newXml = etree.tostring(self.xmlroot,pretty_print=True)
+                ET.indent(self.xmlroot)
+                newXml = ET.tostring(self.xmlroot)
                 aFile = open(self.pipelinexmlfile, 'w')
                 CCP4Utils.writeXML(aFile, newXml)
                 aFile.close()
@@ -619,7 +624,8 @@ class servalcat_pipe(CPluginScript):
             print("AAA12")
             # self.addCycleXML(self.firstServalcat) # MM
             aFile=open( self.pipelinexmlfile,'w')
-            CCP4Utils.writeXML(aFile, etree.tostring(self.xmlroot, pretty_print=True) )
+            ET.indent(self.xmlroot)
+            CCP4Utils.writeXML(aFile, ET.tostring(self.xmlroot) )
             aFile.close()
             print("AAA13")
             if self.container.controlParameters.OPTIMISE_WEIGHT:
@@ -669,7 +675,7 @@ class servalcat_pipe(CPluginScript):
         try:
           if self.container.controlParameters.ADD_WATERS:
             aFile = open(self.pipelinexmlfile,'r')
-            oldXml = etree.fromstring(aFile.read())
+            oldXml = ET.fromstring(aFile.read())
             aFile.close()
             nwaters = "unknown"
             cootLogTxt = os.path.join(os.path.dirname(self.cootPlugin.container.outputData.XYZOUT.__str__()), "log.txt")
@@ -681,11 +687,12 @@ class servalcat_pipe(CPluginScript):
                       if len(numsearch)>0:
                          nwaters = numsearch[0]
                       break
-            postRefmacCoot = etree.Element("CootAddWaters")
+            postRefmacCoot = ET.Element("CootAddWaters")
             postRefmacCoot.text = "Coot added " + nwaters + " water molecules."
             oldXml.append(postRefmacCoot)
             aFile = open(self.pipelinexmlfile+'_tmpcoot','w')
-            CCP4Utils.writeXML(aFile,etree.tostring(oldXml,pretty_print=True))
+            ET.indent(oldXml)
+            CCP4Utils.writeXML(aFile,ET.tostring(oldXml))
             aFile.close()
             shutil.move(self.pipelinexmlfile+'_tmpcoot', self.pipelinexmlfile)
           self.cootPlugin.container.outputData.XYZOUT.subType = 1

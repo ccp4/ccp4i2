@@ -6,8 +6,7 @@
 #
 
 import os
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core.CCP4PluginScript import CPluginScript
 from ...xia2_dials.script import xia2_dials
@@ -19,13 +18,10 @@ class Cxia2_xds(xia2_dials.Cxia2_dials):
     TASKNAME = "xia2_xds"
 
     def makeCommandAndScript(self):
-        par = self.container.controlParameters
-        inp = self.container.inputData
-
         # Create PHIL file and command line
         self._setCommandLineCore(phil_filename="xia2_xds.phil")
 
-        self.xmlroot = etree.Element("Xia2Xds")
+        self.xmlroot = ET.Element("Xia2Xds")
 
         self.watchFile(
             os.path.normpath(os.path.join(self.getWorkDirectory(), "xia2.txt")),

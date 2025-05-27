@@ -2,8 +2,7 @@ import csv
 import os
 import pathlib
 import re
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4Utils
 from ....core.CCP4MgImports import mmut, pygl_coord
@@ -91,7 +90,7 @@ class gesamt(CPluginScript):
         nResValue = None
         transformationMatrix = []
         
-        xmlRoot = etree.Element('Gesamt')
+        xmlRoot = ET.Element('Gesamt')
         perResidueNode = None
         iRes = 0
 
@@ -124,7 +123,7 @@ class gesamt(CPluginScript):
                     nResValue = int(tokens[-1])
                 if line.strip().startswith('.-------------.------------.-------------'):
                     inPerResidue = True
-                    perResidueNode = etree.Element('PerResidue')
+                    perResidueNode = ET.Element('PerResidue')
                 if 'Transformation matrix for Target:' in line: inTargetMatrix = True
                 if inTargetMatrix:
                     if inMeatOfMatrix:
@@ -139,12 +138,12 @@ class gesamt(CPluginScript):
                 if inPerResidue:
                     tokens = line.strip().split('|')
                     if len(tokens) > 1 and not ('Query' in tokens[1] or '-----' in tokens[1]):
-                        row = etree.SubElement(perResidueNode,'Row')
-                        calphaDistanceNode = etree.SubElement(row,'Distance')
+                        row = ET.SubElement(perResidueNode,'Row')
+                        calphaDistanceNode = ET.SubElement(row,'Distance')
                         calphaDistanceNode.text = tokens[2].strip()[3:-3]
-                        equivalenceNode = etree.SubElement(row,'Equivalence')
+                        equivalenceNode = ET.SubElement(row,'Equivalence')
                         equivalenceNode.text = line.strip()
-                        iResNode = etree.SubElement(row,'iRes')
+                        iResNode = ET.SubElement(row,'iRes')
                         iResNode.text = str(iRes)
                         iRes += 1
                 if line.strip().startswith("`-------------'------------'-------------'"):
@@ -163,7 +162,7 @@ class gesamt(CPluginScript):
             self.container.outputData.PERFORMANCE.RMSxyz.set(rmsValue)
             #self.container.outputData.PERFORMANCE.QScore = qValue
             self.container.outputData.PERFORMANCE.nResidues.set(nResValue)
-            transformationNode = etree.SubElement(xmlRoot,'Transformation',
+            transformationNode = ET.SubElement(xmlRoot,'Transformation',
                                                   omega=str(polarValues[0]),
                                                   phi=str(polarValues[1]),
                                                   kappa=str(polarValues[2]),
@@ -177,11 +176,11 @@ class gesamt(CPluginScript):
                                                   q = str( qValue ),
                                                   seqid = str(seqId),
                                                   nRes  = str(nResValue ) )
-            matrixNode = etree.SubElement(transformationNode,'Matrix')
+            matrixNode = ET.SubElement(transformationNode,'Matrix')
             
             #Storing the transform in 4x4 matrix format, we need to add the bottom row of a 4x4transformation matrix
             for element in transformationMatrix + [0.,0.,0.,1.]:
-                elementNode = etree.SubElement(matrixNode,'Element')
+                elementNode = ET.SubElement(matrixNode,'Element')
                 elementNode.text = str(element)
 
             if perResidueNode is not None: transformationNode.append(perResidueNode)
@@ -200,8 +199,8 @@ class gesamt(CPluginScript):
                 print("Hmm, transformationMatrix is length",len(transformationMatrix))
 
         if os.path.exists(self.csvout):
-            transformationCSVNode = etree.SubElement(xmlRoot,'TransformationCSV')
-            perResidueNode = etree.SubElement(transformationCSVNode,'PerResidue')
+            transformationCSVNode = ET.SubElement(xmlRoot,'TransformationCSV')
+            perResidueNode = ET.SubElement(transformationCSVNode,'PerResidue')
             currentChain = "dummy_dummy_dummy"
             with open(self.csvout) as csvfile:
                 spamreader = csv.reader(csvfile)
@@ -218,17 +217,17 @@ class gesamt(CPluginScript):
                     if (inMultiDisplacement or inPairwiseDistance) and len(row)>0 and len(row[0].strip())>0:
                         chain = row[-1].strip().split()[-2].split(":")[0]
                         if chain != currentChain:
-                            chainNode = etree.SubElement(perResidueNode,'Chain')
+                            chainNode = ET.SubElement(perResidueNode,'Chain')
                             currentChain = chain
                         name_num = (row[-1].split(":")[1])
                         resType = re.findall(r'[A-Z]+', name_num)[0]
                         iRes = re.findall(r'\d+', name_num)[0]
                         if aminoResidues.count(resType)>0:
-                            rowNode = etree.SubElement(chainNode,'Row')
-                            equivalenceNode = etree.SubElement(rowNode,"Equivalence")
-                            distanceNode = etree.SubElement(rowNode,"Distance")
-                            iResNode = etree.SubElement(rowNode,"iRes")
-                            chainIDNode = etree.SubElement(rowNode,"chainID")
+                            rowNode = ET.SubElement(chainNode,'Row')
+                            equivalenceNode = ET.SubElement(rowNode,"Equivalence")
+                            distanceNode = ET.SubElement(rowNode,"Distance")
+                            iResNode = ET.SubElement(rowNode,"iRes")
+                            chainIDNode = ET.SubElement(rowNode,"chainID")
                             chainIDNode.text = chain
                             distanceNode.text = row[0].strip()
                             iResNode.text = iRes
@@ -267,16 +266,16 @@ class gesamt(CPluginScript):
                         inScore = False
 
                     if inScore and len(row)>0 and (row[0].strip().startswith("Q-score") or row[0].strip().startswith("quality Q")):
-                        qNode = etree.SubElement(transformationCSVNode,'Q_CSV')
+                        qNode = ET.SubElement(transformationCSVNode,'Q_CSV')
                         qNode.text = row[1]
 
                     if inScore and len(row)>0 and (row[0].strip().startswith("r.m.s.d") or row[0].strip().startswith("RMSD")):
-                        rmsdNode = etree.SubElement(transformationCSVNode,'RMSD_CSV')
+                        rmsdNode = ET.SubElement(transformationCSVNode,'RMSD_CSV')
                         rmsdNode.text = row[1]
                         self.container.outputData.PERFORMANCE.RMSxyz.set(float(row[1]))
 
                     if inScore and len(row)>0 and (row[0].strip().startswith("Nalign") or row[0].strip().startswith("Aligned residues")):
-                        nAlignNode = etree.SubElement(transformationCSVNode,'NALIGN_CSV')
+                        nAlignNode = ET.SubElement(transformationCSVNode,'NALIGN_CSV')
                         nAlignNode.text = row[1]
                         self.container.outputData.PERFORMANCE.nResidues.set(int(row[1]))
 
@@ -286,14 +285,15 @@ class gesamt(CPluginScript):
                     multiTransformations[-1].append(multiTransformationsCombined[i])
 
                 if len(pairwiseTransformation)>0:
-                    matrixNode = etree.SubElement(transformationCSVNode,'matrixCSV')
+                    matrixNode = ET.SubElement(transformationCSVNode,'matrixCSV')
                     matrixNode.text = ",".join(pairwiseTransformation)
                 for transform in multiTransformations:
-                    matrixNode = etree.SubElement(transformationCSVNode,'matrixCSV')
+                    matrixNode = ET.SubElement(transformationCSVNode,'matrixCSV')
                     matrixNode.text = ",".join(transform)
                 
         with open(self.makeFileName('PROGRAMXML'),'w') as xmlFile:
-            xmlString = etree.tostring(xmlRoot, pretty_print=True)
+            ET.indent(xmlRoot)
+            xmlString = ET.tostring(xmlRoot)
             CCP4Utils.writeXML(xmlFile,xmlString)
 
         out.XYZOUT.annotation.set("Gesamt output file (selected atoms from query and target only)")

@@ -142,11 +142,11 @@ class CBaseWidget:
 
     def makeDragEtree(self, path, mimeType):
         rel, base = os.path.split(path)
-        fileEle = etree.Element(str(mimeType).encode('ascii', 'ignore'))
-        ele = etree.Element('relPath')
+        fileEle = ET.Element(str(mimeType).encode('ascii', 'ignore'))
+        ele = ET.Element('relPath')
         ele.text = rel
         fileEle.append(ele)
-        ele = etree.Element('baseName')
+        ele = ET.Element('baseName')
         ele.text = base
         fileEle.append(ele)
         text = etree.tostring(fileEle)

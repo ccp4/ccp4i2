@@ -400,7 +400,7 @@ class CSequenceMeta(CCP4Data.CData):
         # Every element in these files has the namespace prefix
         nsmap = {'u' : 'http://uniprot.org/uniprot'}
         ret = {}
-        root = CCP4Utils.openFileToEtree(fileName)
+        root = ET.parse(fileName).getroot()
         try:
             eleList = root.xpath('./u:entry', namespaces=nsmap)
             if len(eleList) > 0:
@@ -957,7 +957,7 @@ class CSeqDataFile(CCP4File.CDataFile):
         nsmap = {'u' : 'http://uniprot.org/uniprot'}
         try:
             #print 'identifyFile trying uniprot',filename
-            root = CCP4Utils.openFileToEtree(filename)
+            root = ET.parse(filename).getroot()
             eleList = root.xpath('./u:entry/u:accession', namespaces=nsmap)
             #print 'identifyFile eleList', eleList
         except:
@@ -1202,68 +1202,37 @@ class CSeqAlignDataFile(CCP4File.CDataFile):
         self.__dict__['format'] = 'unknown'
         self.__dict__['identifiers'] = []
         if filename is None:
-            filename = self.__str__()
-        '''
-        # Try if its a uniprot xml
-        nsmap = { 'u' : 'http://uniprot.org/uniprot' }   
-        try:
-          #print 'identifyFile trying uniprot',filename
-          root = CCP4Utils.openFileToEtree(filename)
-          eleList = root.xpath('./u:entry/u:accession',namespaces=nsmap)
-          #print 'identifyFile eleList',eleList
-        except:      
-          pass
-        else:
-          if len(eleList)>0:
-            self.__dict__['format'] = 'uniprot'
-            self.__dict__['identifiers'] = [ str(eleList[0].text) ]
-            return
-        # Return the file format and list of seq identifiers in the file
-        # This requires BioPython tools
-        if not BIOPYTHON:
-          text = CCP4Utils.readFile(str(filename))
-          lines = text.split('\n')
-          if '>P1;' in lines[0]:
-            formt = 'pir'
-          elif '>' in lines[0]:
-            formt = 'fasta'
-          else:
-            formt = 'unknown'
-          self.__dict__['format'] = formt
-          self.__dict__['identifiers'] = []
-        else:
-        '''
+            filename = str(self)
         allErrors = CErrorReport()
-        if 1:
-            if not os.path.exists(filename):
-                return
-            ext = os.path.splitext(str(filename))[1][1:]
-            firstFormat = EXTLIST.get(ext, None)
-            if firstFormat == 'blast':
-                self.__dict__['format'] = firstFormat
-                self.__dict__['identifiers'] = []
-                return self.__dict__['format'], self.__dict__['identifiers']
-            testOrder = ALIGNFORMATLIST
-            if firstFormat is not None and firstFormat in testOrder:
-                testOrder.remove(firstFormat)
-                testOrder.insert(0, firstFormat)
-            #print 'testOrder', testOrder, 'firstFormat', firstFormat
-            n = 0
-            formt = 'unknown'
-            rv = []
-            while formt == 'unknown' and n < len(testOrder):
-                try:
-                    err, rv = self.bioGetSeqIdentifiers(filename, testOrder[n])
-                except Exception as e:
-                    err = CErrorReport(self.__class__, 206, details='Attempting to read as format:' + testOrder[n] + '\n' + str(e), stack=False)
-                    #print 'bioGetSeqIdentifiers', testOrder[n], str(err)
-                if err.maxSeverity() <= Severity.WARNING:
-                    formt = testOrder[n]
-                else:
-                    allErrors.extend(err)
-                    n = n + 1
-            self.__dict__['format'] = formt
-            self.__dict__['identifiers'] = rv
+        if not os.path.exists(filename):
+            return
+        ext = os.path.splitext(str(filename))[1][1:]
+        firstFormat = EXTLIST.get(ext, None)
+        if firstFormat == 'blast':
+            self.__dict__['format'] = firstFormat
+            self.__dict__['identifiers'] = []
+            return self.__dict__['format'], self.__dict__['identifiers']
+        testOrder = ALIGNFORMATLIST
+        if firstFormat is not None and firstFormat in testOrder:
+            testOrder.remove(firstFormat)
+            testOrder.insert(0, firstFormat)
+        #print 'testOrder', testOrder, 'firstFormat', firstFormat
+        n = 0
+        formt = 'unknown'
+        rv = []
+        while formt == 'unknown' and n < len(testOrder):
+            try:
+                err, rv = self.bioGetSeqIdentifiers(filename, testOrder[n])
+            except Exception as e:
+                err = CErrorReport(self.__class__, 206, details='Attempting to read as format:' + testOrder[n] + '\n' + str(e), stack=False)
+                #print 'bioGetSeqIdentifiers', testOrder[n], str(err)
+            if err.maxSeverity() <= Severity.WARNING:
+                formt = testOrder[n]
+            else:
+                allErrors.extend(err)
+                n = n + 1
+        self.__dict__['format'] = formt
+        self.__dict__['identifiers'] = rv
         #print 'CSeqAlignDataFile.identifyFile errors', allErrors.report()
         #print 'CSeqAlignDataFile.identifyFile', self.__dict__['format'], self.__dict__['identifiers']
         return self.__dict__['format'],self.__dict__['identifiers']

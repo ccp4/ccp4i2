@@ -1,4 +1,5 @@
-import xml.etree.ElementTree as etree
+import os
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4Utils
 from ....report.CCP4ReportParser import Report
@@ -24,7 +25,7 @@ class qtpisa_report(Report):
 
         print("SELF.XMLNODE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",self.xmlnode)
 
-        t = etree.tostring(self.xmlnode)
+        t = ET.tostring(self.xmlnode)
 
         ser_no_interface = []
         sym_id_interface = []
@@ -82,9 +83,6 @@ class qtpisa_report(Report):
           assemblyTable.addData ( title = "ASA", data = asa_assembly )
           assemblyTable.addData ( title = "BSA", data = bsa_assembly )
 
-        #self.drawPictures()
-        #self.drawWarnings()
-
     def drawWarnings(self, parent=None):
         if parent is None: parent = self
         warnings = self.xmlnode.findall('.//Warnings/Warning')
@@ -111,13 +109,14 @@ class qtpisa_report(Report):
         if self.jobInfo and "filenames" in self.jobInfo and "XYZOUT" in self.jobInfo["filenames"]:
           i = 0
           for fname in self.jobInfo['filenames']["XYZOUT"]:
-             baseSceneXML = CCP4Utils.openFileToEtree(baseScenePath)
-             et = etree.ElementTree(baseSceneXML)
+             baseSceneXML = ET.parse(baseScenePath).getroot()
+             et = ET.ElementTree(baseSceneXML)
              filename_element = et.findall(".//scene/data/MolData/filename")[0]
              del filename_element.attrib["database"]
              filename_element.text = fname
-             print(etree.tostring(et,pretty_print=True))
+             ET.indent(et)
+             print(ET.tostring(et))
              sceneFilePath = os.path.join(jobDirectory,'qtpisa_scene'+str(i)+'.scene.xml')
-             et.write(sceneFilePath,pretty_print=True)
+             et.write(sceneFilePath)
              pic = pictureGallery.addPicture(sceneFile=sceneFilePath,label='Picture of structure '+str(i+1))
              i = i + 1

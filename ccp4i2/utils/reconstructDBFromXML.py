@@ -50,6 +50,7 @@ import datetime
 import fnmatch
 import os
 import sys
+import xml.etree.ElementTree as ET
 
 from dateutil import parser
 from dateutil.tz import tzlocal
@@ -155,20 +156,20 @@ def generate_xml_from_project_directory(project_dir):
     endOfTime = parser.parse(endOfTimeStr + " " + timeZoneName)
     creationTime = endOfTime
     
-    eleTree = etree.parse(StringIO('<ccp4:ccp4i2 xmlns:ccp4="'+CCP4NS+'"></ccp4:ccp4i2>'))
+    eleTree = ET.parse(StringIO('<ccp4:ccp4i2 xmlns:ccp4="'+CCP4NS+'"></ccp4:ccp4i2>'))
     root = eleTree.getroot()
-    ccp4i2_header = etree.SubElement(root,"ccp4i2_header")
-    ccp4i2_body = etree.SubElement(root,"ccp4i2_body")
-    jobTable_el = etree.SubElement(ccp4i2_body,"jobTable")
-    fileTable_el = etree.SubElement(ccp4i2_body,"fileTable")
-    fileUseTable_el = etree.SubElement(ccp4i2_body,"fileuseTable")
+    ccp4i2_header = ET.SubElement(root,"ccp4i2_header")
+    ccp4i2_body = ET.SubElement(root,"ccp4i2_body")
+    jobTable_el = ET.SubElement(ccp4i2_body,"jobTable")
+    fileTable_el = ET.SubElement(ccp4i2_body,"fileTable")
+    fileUseTable_el = ET.SubElement(ccp4i2_body,"fileuseTable")
     
     jobs = []
     
     def parse_from_unicode(unicode_str):
-        utf8_parser = etree.XMLParser(encoding='utf-8')
+        utf8_parser = ET.XMLParser(encoding='utf-8')
         s = unicode_str.encode('utf-8')
-        return etree.fromstring(s, parser=utf8_parser)
+        return ET.fromstring(s, parser=utf8_parser)
     
     def merge_header_info(path):
         path = Path(path)
@@ -184,7 +185,7 @@ def generate_xml_from_project_directory(project_dir):
 
                     for name in ("projectId", "jobId", "projectName", "jobNumber"):
                         if header2.xpath(name) and not header1.xpath(name):
-                            element = etree.SubElement(header1, name)
+                            element = ET.SubElement(header1, name)
                             element.text = header2.xpath(name)[0].text
 
         return tree1
@@ -426,7 +427,7 @@ def generate_xml_from_project_directory(project_dir):
                                 while parent.tag != "inputData":
                                     jobparamname = parent.tag
                                     parent = parent.find("..")
-                                #file_el = etree.SubElement(fileTable_el,"file")
+                                #file_el = ET.SubElement(fileTable_el,"file")
                                 attrib = OrderedDict()
                                 attrib["fileid"] = fileid
                                 attrib["filename"] = filename
@@ -495,7 +496,7 @@ def generate_xml_from_project_directory(project_dir):
     currentids = []
     
     for j in jobs:
-        job_el = etree.SubElement(jobTable_el,"job")
+        job_el = ET.SubElement(jobTable_el,"job")
         for k,v in j.items():
             job_el.attrib[k] = v
 
@@ -509,7 +510,7 @@ def generate_xml_from_project_directory(project_dir):
                         j.attrib["status"] = "6"
 
     for f in fileuses:
-        file_el = etree.Element("fileuse")
+        file_el = ET.Element("fileuse")
         file_el.attrib["fileid"] = f["fileid"]
         file_el.attrib["jobid"] = f["jobid"]
         file_el.attrib["roleid"] = f["roleid"]
@@ -517,7 +518,7 @@ def generate_xml_from_project_directory(project_dir):
         fileUseTable_el.append(file_el)
     
     for f in files:
-        file_el = etree.Element("file")
+        file_el = ET.Element("file")
         for k,v in f.items():
             if v is not None:
                 if not k in ("number","inout"):
@@ -540,27 +541,27 @@ def generate_xml_from_project_directory(project_dir):
     #print creationTime
     #print OS
     
-    fn = etree.SubElement(ccp4i2_header,"function")
+    fn = ET.SubElement(ccp4i2_header,"function")
     fn.text = "PROJECTDATABASE"
-    projectName_el = etree.SubElement(ccp4i2_header,"projectName")
+    projectName_el = ET.SubElement(ccp4i2_header,"projectName")
     projectName_el.text = projectName
-    hostName_el = etree.SubElement(ccp4i2_header,"hostName")
+    hostName_el = ET.SubElement(ccp4i2_header,"hostName")
     hostName_el.text = hostName
-    userId_el = etree.SubElement(ccp4i2_header,"userId")
+    userId_el = ET.SubElement(ccp4i2_header,"userId")
     userId_el.text = userId
-    ccp4iVersion_el = etree.SubElement(ccp4i2_header,"ccp4iVersion")
+    ccp4iVersion_el = ET.SubElement(ccp4i2_header,"ccp4iVersion")
     ccp4iVersion_el.text = ccp4iVersion
-    projectId_el = etree.SubElement(ccp4i2_header,"projectId")
+    projectId_el = ET.SubElement(ccp4i2_header,"projectId")
     projectId_el.text = projectId
-    creationTime_el = etree.SubElement(ccp4i2_header,"creationTime")
+    creationTime_el = ET.SubElement(ccp4i2_header,"creationTime")
     creationTime_el.text = datetime.datetime.strftime(creationTime,"%H:%M %d/%b/%y")
-    OS_el = etree.SubElement(ccp4i2_header,"OS")
+    OS_el = ET.SubElement(ccp4i2_header,"OS")
     OS_el.text = OS
     
-    databaseTable_el = etree.SubElement(ccp4i2_body,"databaseTable") #Ug.
+    databaseTable_el = ET.SubElement(ccp4i2_body,"databaseTable") #Ug.
     
-    projectTable_el = etree.SubElement(ccp4i2_body,"projectTable")
-    project_el = etree.SubElement(projectTable_el,"project")
+    projectTable_el = ET.SubElement(ccp4i2_body,"projectTable")
+    project_el = ET.SubElement(projectTable_el,"project")
     project_el.attrib["projectid"] = projectId
     project_el.attrib["projectname"] = projectName
     project_el.attrib["projectcreated"] = str(datetime_to_float(creationTime))
@@ -568,24 +569,24 @@ def generate_xml_from_project_directory(project_dir):
     project_el.attrib["projectdirectory"] = projectRoot
     project_el.attrib["username"] = userId
     
-    importfileTable_el = etree.SubElement(ccp4i2_body,"importfileTable")
-    exportfileTable_el = etree.SubElement(ccp4i2_body,"exportfileTable")
-    xdataTable_el = etree.SubElement(ccp4i2_body,"xdataTable")
-    commentTable_el = etree.SubElement(ccp4i2_body,"commentTable")
-    projectcommentTable_el = etree.SubElement(ccp4i2_body,"projectcommentTable")
-    jobkeyvalueTable_el = etree.SubElement(ccp4i2_body,"jobkeyvalueTable")
-    jobkeycharvalueTable_el = etree.SubElement(ccp4i2_body,"jobkeycharvalueTable")
-    fileassociationmemberTable_el = etree.SubElement(ccp4i2_body,"fileassociationmemberTable")
-    fileassociationTable_el = etree.SubElement(ccp4i2_body,"fileassociationTable")
-    projecttagTable_el = etree.SubElement(ccp4i2_body,"projecttagTable")
-    tagTable_el = etree.SubElement(ccp4i2_body,"tagTable")
+    importfileTable_el = ET.SubElement(ccp4i2_body,"importfileTable")
+    exportfileTable_el = ET.SubElement(ccp4i2_body,"exportfileTable")
+    xdataTable_el = ET.SubElement(ccp4i2_body,"xdataTable")
+    commentTable_el = ET.SubElement(ccp4i2_body,"commentTable")
+    projectcommentTable_el = ET.SubElement(ccp4i2_body,"projectcommentTable")
+    jobkeyvalueTable_el = ET.SubElement(ccp4i2_body,"jobkeyvalueTable")
+    jobkeycharvalueTable_el = ET.SubElement(ccp4i2_body,"jobkeycharvalueTable")
+    fileassociationmemberTable_el = ET.SubElement(ccp4i2_body,"fileassociationmemberTable")
+    fileassociationTable_el = ET.SubElement(ccp4i2_body,"fileassociationTable")
+    projecttagTable_el = ET.SubElement(ccp4i2_body,"projecttagTable")
+    tagTable_el = ET.SubElement(ccp4i2_body,"tagTable")
     
     for jobId, vals in jkv:
         for k, v in vals.items():
             if isinstance(v, float) or isinstance(v, int):
-                kve = etree.SubElement(jobkeyvalueTable_el, "jobkeyvalue")
+                kve = ET.SubElement(jobkeyvalueTable_el, "jobkeyvalue")
             else:
-                kve = etree.SubElement(jobkeycharvalueTable_el, "jobkeycharvalue")
+                kve = ET.SubElement(jobkeycharvalueTable_el, "jobkeycharvalue")
             kve.attrib["jobid"] = jobId
             if k in KEYTYPEDICT:
                 kve.attrib["keytypeid"] = str(KEYTYPEDICT[k])
@@ -595,4 +596,5 @@ def generate_xml_from_project_directory(project_dir):
 
 if __name__ == "__main__":
     project_tree = generate_xml_from_project_directory(sys.argv[1])
-    print(etree.tostring(project_tree,pretty_print=True).decode())
+    ET.indent(project_tree)
+    print(ET.tostring(project_tree).decode())

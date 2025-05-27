@@ -21,7 +21,7 @@ class ProvideSequence(CPluginScript):
     RUNEXTERNALPROCESS=False
 
     def startProcess(self, command, **kw):
-        root = etree.Element('ProvideSequence')
+        root = ET.Element('ProvideSequence')
         
         # Create a temporary file to store the sequence(s) that will be used
         tempFile = tempfile.NamedTemporaryFile(suffix='.txt',delete=False)
@@ -31,7 +31,7 @@ class ProvideSequence(CPluginScript):
         #Attempt to interpret that as an alignment and/or stack of sequences
         alignment, format, commentary = importAlignment(tempFile.name)
         
-        commentaryNode = etree.SubElement(root,"Commentary")
+        commentaryNode = ET.SubElement(root,"Commentary")
         commentaryNode.text = commentary.getvalue()
         
         if alignment is None:
@@ -40,7 +40,7 @@ class ProvideSequence(CPluginScript):
             self.reportStatus(CPluginScript.UNSATISFACTORY)
             return
         
-        formatNode = etree.SubElement(root,'Format')
+        formatNode = ET.SubElement(root,'Format')
         formatNode.text = format
 
         for iSeq, seq in enumerate(alignment):
@@ -53,12 +53,12 @@ class ProvideSequence(CPluginScript):
                 SeqIO.write([seq],outputFileHandle,'fasta')
             outputFile.annotation = seq.id + '-' + seq.description
         
-            sequenceElement = etree.SubElement(root,'Sequence')
+            sequenceElement = ET.SubElement(root,'Sequence')
             outputString = io.StringIO()
             SeqIO.write([seq],outputString,'fasta')
             sequenceElement.text = outputString.getvalue()
             for property in ['id','name','description','seq']:
-                newElement = etree.SubElement(sequenceElement,property)
+                newElement = ET.SubElement(sequenceElement,property)
                 newElement.text = str(getattr(seq,property,'Undefined'))
 
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:

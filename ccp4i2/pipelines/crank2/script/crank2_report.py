@@ -18,7 +18,7 @@ def et(fileName=None):
     script=root.find('body/script')
     if script is not None:
       script.text=script.text.replace('docURI         = "";', 'docURI         = "{}";'.format(os.path.dirname(fileName)+os.sep))
-      #root = etree.Element('iframe')
+      #root = ET.Element('iframe')
       #root.set('src', fileName)
   except Exception as e:
     print('Crank2 report failed with error message: {0}'.format(e))
@@ -26,15 +26,15 @@ def et(fileName=None):
     if os.path.isfile(os.path.join(os.path.dirname(fileName),'log.txt')):
       with open(os.path.join(os.path.dirname(fileName),'log.txt')) as f:
         t = f.read()
-        root = etree.Element("div")
-        clearDiv =  etree.SubElement(root,"div")
+        root = ET.Element("div")
+        clearDiv =  ET.SubElement(root,"div")
         clearDiv.set('style','clear:both;')
-        pre = etree.SubElement(root,"pre")
+        pre = ET.SubElement(root,"pre")
         pre.text = t
     else:
     # the code below opens the presentation in the i2 browser.  could be used as an alternative.
       try:
-        root = etree.Element('a')
+        root = ET.Element('a')
         root.set('href', fileName)
         root.set('style', "font-size: 130%")
         root.text="Presentation not loaded. You can try to click this link to open it or use the View -> Log file  option."

@@ -11,6 +11,7 @@ import os
 import platform
 import re
 import shutil
+import xml.etree.ElementTree as ET
 
 from lxml import etree
 
@@ -18,6 +19,7 @@ from ....core import CCP4Container
 from ....core import CCP4XtalData
 from ....core.CCP4Modules import PROCESSMANAGER
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Utils import writeXml
 
 
 class Cxia2_dials(CPluginScript):
@@ -121,7 +123,7 @@ class Cxia2_dials(CPluginScript):
         # Create PHIL file and command line
         self._setCommandLineCore(phil_filename="xia2_dials.phil")
 
-        self.xmlroot = etree.Element("Xia2Dials")
+        self.xmlroot = ET.Element("Xia2Dials")
 
         self.watchFile(
             os.path.normpath(os.path.join(self.getWorkDirectory(), "xia2.txt")),
@@ -170,7 +172,7 @@ class Cxia2_dials(CPluginScript):
             pid=self.getProcessId(), attribute="exitStatus"
         )
         if exitStatus != CPluginScript.SUCCEEDED:
-            element = etree.SubElement(self.xmlroot, "Xia2Error")
+            element = ET.SubElement(self.xmlroot, "Xia2Error")
             element.text = "Failed to locate XIA2"
             return exitStatus
 
@@ -180,7 +182,7 @@ class Cxia2_dials(CPluginScript):
         )
         if os.path.isfile(xia2TxtPath):
             with open(xia2TxtPath, "r") as xia2TxtFile:
-                element = etree.SubElement(self.xmlroot, "Xia2Txt")
+                element = ET.SubElement(self.xmlroot, "Xia2Txt")
                 element.text = etree.CDATA(xia2TxtFile.read())
 
         # Infer if xia2 gave an error by virtue of xia2.error existing
@@ -189,7 +191,7 @@ class Cxia2_dials(CPluginScript):
         )
         if os.path.isfile(xia2ErrorPath):
             with open(xia2ErrorPath, "r") as xia2ErrorFile:
-                element = etree.SubElement(self.xmlroot, "Xia2Error")
+                element = ET.SubElement(self.xmlroot, "Xia2Error")
                 element.text = etree.CDATA(xia2ErrorFile.read())
                 self.flushXML()
             return CPluginScript.SUCCEEDED
@@ -216,7 +218,7 @@ class Cxia2_dials(CPluginScript):
         else:
             self.appendErrorReport(200)
             return CPluginScript.FAILED
-        element = etree.SubElement(self.xmlroot, "Xia2CrystalName")
+        element = ET.SubElement(self.xmlroot, "Xia2CrystalName")
         element.text = etree.CDATA(crystal_name)
 
         par = self.container.controlParameters
@@ -444,15 +446,14 @@ class Cxia2_dials(CPluginScript):
         # remove xia2.txt nodes
         for xia2TxtNode in self.xmlroot.xpath("Xia2Txt"):
             self.xmlroot.remove(xia2TxtNode)
-        xia2TxtNode = etree.SubElement(self.xmlroot, "Xia2Txt")
+        xia2TxtNode = ET.SubElement(self.xmlroot, "Xia2Txt")
         with open(filename, "r") as xia2DotTxtFile:
             xia2TxtNode.text = etree.CDATA(xia2DotTxtFile.read())
         self.flushXML()
 
     def flushXML(self):
         tmpFilename = self.makeFileName("PROGRAMXML") + "_tmp"
-        with open(tmpFilename, "wb") as xmlFile:
-            xmlFile.write(etree.tostring(self.xmlroot, pretty_print=True))
+        writeXml(self.xmlroot)
         if os.path.exists(self.makeFileName("PROGRAMXML")):
             os.remove(self.makeFileName("PROGRAMXML"))
         os.rename(tmpFilename, self.makeFileName("PROGRAMXML"))

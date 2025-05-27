@@ -1,7 +1,6 @@
 import os
 import shutil
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
@@ -18,7 +17,7 @@ class phaser_EP(CPluginScript):
     ERROR_CODES = {202:{'description':'Failed in harvest operation'},}
 
     def process(self):
-        self.xmlroot = etree.Element('PhaserEP')
+        self.xmlroot = ET.Element('PhaserEP')
         if self.container.inputData.PARTIALMODELORMAP == 'SEARCH':
             rv = self.run_shelx()
             if rv == CPluginScript.SUCCEEDED:
@@ -59,14 +58,14 @@ class phaser_EP(CPluginScript):
             if self.container.keywords.HAND in ['both', 'off']:
                 modelCraftOriginal = self.makeModelCraftPlugin(hand='original')
                 if modelCraftOriginal.process() == CPluginScript.SUCCEEDED:
-                    element = etree.Element("ModelCraft")
+                    element = ET.Element("ModelCraft")
                     element.text = modelCraftOriginal.getWorkDirectory()
                     self.updateXml(element, 'ModelCraft', hand='original')
                     self.copyPluginOutput(modelCraftOriginal.container.outputData.XYZOUT, pipelineOutputs.XYZOUT, annotation='Autobuilt model - original hand')
             if self.container.keywords.HAND in ['both', 'on']:
                 modelCraftInverted = self.makeModelCraftPlugin(hand='inverted')
                 if modelCraftInverted.process() == CPluginScript.SUCCEEDED:
-                    element = etree.Element("ModelCraft")
+                    element = ET.Element("ModelCraft")
                     element.text = modelCraftInverted.getWorkDirectory()
                     self.updateXml(element, 'ModelCraft', hand='inverted')
                     self.copyPluginOutput(modelCraftInverted.container.outputData.XYZOUT, pipelineOutputs.XYZOUT, annotation='Autobuilt model - reversed hand')
@@ -136,7 +135,7 @@ class phaser_EP(CPluginScript):
         return plugin
 
     def updateXmlFromFile(self, xmlFilename, element, hand=None):
-        newXML = CCP4Utils.openFileToEtree(xmlFilename)
+        newXML = ET.parse(xmlFilename).getroot()
         self.updateXml(newXML, element, hand)
 
     def updateXml(self, newXML, element, hand=None):
@@ -147,11 +146,12 @@ class phaser_EP(CPluginScript):
         else:
             if len(self.xmlroot.xpath('//{}/{}'.format(hand,element))) > 0:
                 self.xmlroot.remove(self.xmlroot.xpath('//{}/{}'.format(hand,element))[0])
-            hand_node = etree.SubElement(self.xmlroot, hand)
+            hand_node = ET.SubElement(self.xmlroot, hand)
             hand_node.append(newXML)
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
         with open(tmpFilename,'w') as xmlfile:
-            CCP4Utils.writeXML(xmlfile,etree.tostring(self.xmlroot,pretty_print=True))
+            ET.indent(self.xmlroot)
+            CCP4Utils.writeXML(xmlfile,ET.tostring(self.xmlroot))
         self.renameFile(tmpFilename,self.makeFileName('PROGRAMXML'))
 
     def copyPluginOutput(self, pluginOutputItem, pipelineOutputList, annotation=None):

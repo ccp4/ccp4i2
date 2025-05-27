@@ -2,8 +2,8 @@ from copy import deepcopy
 import os
 import shutil
 import sys
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore
 
 from ....core import CCP4Utils
@@ -37,7 +37,7 @@ class phaser_pipeline(CPluginScript):
             self.reportStatus(CPluginScript.FAILED)
         self.checkOutputData()
 
-        self.xmlroot = etree.Element('PhaserPipeline')
+        self.xmlroot = ET.Element('PhaserPipeline')
         
         if self.container.inputData.MODE_TY == "MR_FRF":
             self.phaserPlugin = self.makePluginObject('phaser_MR_FRF')
@@ -91,7 +91,8 @@ class phaser_pipeline(CPluginScript):
         self.xmlroot.append(deepcopy(newXML))
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
         with open(tmpFilename,'w') as xmlfile:
-            CCP4Utils.writeXML(xmlfile,etree.tostring(self.xmlroot,pretty_print=True))
+            ET.indent(self.xmlroot)
+            CCP4Utils.writeXML(xmlfile,ET.tostring(self.xmlroot))
         self.renameFile(tmpFilename,self.makeFileName('PROGRAMXML'))
 
     @QtCore.Slot(dict)
@@ -308,12 +309,13 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
         for oldNode in self.xmlroot.xpath(replacingElementOfType):
             self.xmlroot.remove(oldNode)
         try:
-            newXML = CCP4Utils.openFileToEtree(changedFile)
+            newXML = ET.parse(changedFile).getroot()
         except:
-            newXML = etree.Element(replacingElementOfType)
+            newXML = ET.Element(replacingElementOfType)
         self.xmlroot.append(newXML)
         with open(self.makeFileName('PROGRAMXML'),'w') as xmlfile:
-            CCP4Utils.writeXML(xmlfile,etree.tostring(self.xmlroot,pretty_print=True))
+            ET.indent(self.xmlroot)
+            CCP4Utils.writeXML(xmlfile,ET.tostring(self.xmlroot))
 
     def checkFinishStatus( self, statusDict,failedErrCode,outputFile = None,noFileErrCode= None):
         if len(statusDict)>0 and statusDict['finishStatus'] == CPluginScript.FAILED:

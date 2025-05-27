@@ -1,7 +1,7 @@
 import math
 import sys
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 import gemmi
 import numpy
 
@@ -83,7 +83,7 @@ class CIFReflectionData:
         self.dataout = True
         # Resolution limits are in self.cifblockinfo.resolutionrange
         # Start XML report
-        self.convertXML = etree.Element('MMCIF_CONVERT')
+        self.convertXML = ET.Element('MMCIF_CONVERT')
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def setMTZnames(self, outfile, freerfile):
@@ -736,7 +736,7 @@ class CIFReflectionData:
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def resorangeXML(self, resorange, id=None):
         # XML version of resolution range
-        resoxml = etree.Element('ResolutionRange')
+        resoxml = ET.Element('ResolutionRange')
         if id is not None:
             resoxml.set('id', id)
         if resorange[0] > 0.0:
@@ -839,7 +839,7 @@ class ConvertCIF():
 
         self.contentflag = refdata.contentFlag()
         self.XMLreport = refdata.getXML()
-        #print(etree.tostring(self.XMLreport, pretty_print=True))
+        #print(ET.tostring(self.XMLreport))
 
         if not self.status:
             print("Data write failed")

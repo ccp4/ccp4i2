@@ -56,7 +56,7 @@ class privateer_report(Report):
     # This change to graphical representation was suggested by Dave Brown and Paul Emsley
     #   at a CCP4 WG2 meeting at Birkbeck in London (January 2019). Users nodded in agreement.
 
-    new_tree = etree.Element('privateer_report')
+    new_tree = ET.Element('privateer_report')
     pyranose_tree = etree.SubElement ( new_tree, 'pyranoses' )
     furanose_tree = etree.SubElement ( new_tree, 'furanoses')
 

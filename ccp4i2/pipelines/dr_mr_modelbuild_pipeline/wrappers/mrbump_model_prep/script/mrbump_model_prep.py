@@ -6,8 +6,8 @@ from collections import OrderedDict
 import json
 import os
 import sys
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from mrbump.output import modelout
 
 from ......core import CCP4ErrorHandling
@@ -33,12 +33,12 @@ class mrbump_model_prep(CPluginScript):
         modelsJsonFile=os.path.join(logDir, "models.json")
         if os.path.isfile(modelsJsonFile):
              model_dict=mjson.readJson(modelsJsonFile)
-             xmlroot = etree.Element('mrbump_model_prep')
+             xmlroot = ET.Element('mrbump_model_prep')
 
              for k,v in model_dict.items():
-                 model = etree.SubElement(xmlroot,"model")
+                 model = ET.SubElement(xmlroot,"model")
                  for field in MRBUMPFIELDS:
-                     ele = etree.SubElement(model,field)
+                     ele = ET.SubElement(model,field)
                      ele.text = str(getattr(v,field))
 
              with open(modelsJsonFile) as f:
@@ -49,11 +49,12 @@ class mrbump_model_prep(CPluginScript):
                  break
                  
              bestFile = model_dict[theKey].modelPDBfile
-             bestModel = etree.SubElement(xmlroot,"bestModel")
+             bestModel = ET.SubElement(xmlroot,"bestModel")
              bestModel.text = str(bestFile)
 
              with open(str(self.makeFileName('PROGRAMXML')), 'w') as ostream:
-                 CCP4Utils.writeXML(ostream,etree.tostring(xmlroot,pretty_print=True))
+                 ET.indent(xmlroot)
+                 CCP4Utils.writeXML(ostream,ET.tostring(xmlroot))
 
     def findOutputFileFromLog(self,logDir):
         mjson=modelout.Json()

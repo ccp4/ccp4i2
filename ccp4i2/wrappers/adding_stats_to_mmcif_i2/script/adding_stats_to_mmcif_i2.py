@@ -58,7 +58,7 @@ class adding_stats_to_mmcif_i2(CPluginScript):
 
     def __init__(self, *args, **kws):
         super(adding_stats_to_mmcif_i2, self).__init__(*args, **kws)
-        self.xmlroot = etree.Element('adding_stats_to_mmcif')
+        self.xmlroot = ET.Element('adding_stats_to_mmcif')
         #print("db=", PROJECTSMANAGER().db())
 
     def processInputFiles(self):

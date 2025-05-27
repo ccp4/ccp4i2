@@ -153,9 +153,3 @@ class nautilus_build_refine_report(Report):
 
     def picture(self,parent=None) :
         pic = parent.addPicture(label="Autobuilt structure",sceneFile="$CCP4I2/pipelines/nautilus_build_refine/script/nautilus_1.scene.xml",id='autobuild_1')
-
-
-# Temporary hard-wire to save typing..
-#from core import CCP4Utils
-#r = nautilus_build_refine_report(xmlnode=CCP4Utils.openFileToEtree('/home/cowtan/CCP4I2_PROJECTS/test/CCP4_JOBS/job_30/program.xml'))
-#r.as_html_file('/tmp/report.html')

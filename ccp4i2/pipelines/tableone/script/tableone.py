@@ -1,9 +1,9 @@
 import math
 import os
 import re
+import xml.etree.ElementTree as ET
 
 from iotbx import mtz
-from lxml import etree
 from mmtbx.command_line import molprobity
 import clipper
 
@@ -28,7 +28,7 @@ class tableone(CPluginScript):
 
 
     def __init__(self, *args, **kwargs):
-        self.xml_root = etree.Element("tableone")
+        self.xml_root = ET.Element("tableone")
         CPluginScript.__init__(self, *args, **kwargs)
 
     def process(self):
@@ -57,11 +57,11 @@ class tableone(CPluginScript):
         cang.append(str(math.degrees(cel.alpha())))
         cang.append(str(math.degrees(cel.beta())))
         cang.append(str(math.degrees(cel.gamma())))
-        xmlpdb = etree.SubElement(self.xml_root, "PdbInfo")
-        etree.SubElement(xmlpdb, "SpaceGroup").text = spgt
+        xmlpdb = ET.SubElement(self.xml_root, "PdbInfo")
+        ET.SubElement(xmlpdb, "SpaceGroup").text = spgt
         for t1, v1, t2, v2 in zip(clenw, clen, cangw, cang):
-            etree.SubElement(xmlpdb, t1).text = v1
-            etree.SubElement(xmlpdb, t2).text = v2
+            ET.SubElement(xmlpdb, t1).text = v1
+            ET.SubElement(xmlpdb, t2).text = v2
         return CPluginScript.SUCCEEDED
 
     def PreparePdbForMolprobity(self, pdbin, workdir):
@@ -106,7 +106,8 @@ class tableone(CPluginScript):
     def processOutputFiles(self):
         self.parseLogfile()
         with open(self.makeFileName('PROGRAMXML'), 'w') as xml_file:
-            CCP4Utils.writeXML(xml_file,etree.tostring(self.xml_root, pretty_print=True))
+            ET.indent(self.xml_root)
+            CCP4Utils.writeXML(xml_file,ET.tostring(self.xml_root))
         return CPluginScript.SUCCEEDED
 
     def makeCommandAndScript(self, container=None):
@@ -160,7 +161,7 @@ class tableone(CPluginScript):
         logmolf.close()
         val.update({"Rotamers" : float(re.search(r"Rotamer outliers\s+=\s+(\d+.\d+)", lrinmol).group(1))})
         val.update({"Clashscore" : float(re.search(r"Clashscore\s+=\s+(\d+.\d+)", lrinmol).group(1))})
-        xmlsec = etree.SubElement(self.xml_root, "DataInfo")
+        xmlsec = ET.SubElement(self.xml_root, "DataInfo")
         for x,y in val.items():
-            etree.SubElement(xmlsec, x).text = str(y)
+            ET.SubElement(xmlsec, x).text = str(y)
         return

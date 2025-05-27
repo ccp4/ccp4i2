@@ -1,4 +1,5 @@
-from lxml import etree
+import xml.etree.ElementTree as ET
+
 import gemmi
 import numpy
 
@@ -165,7 +166,7 @@ class ImportMTZ():
     def makeXMLreport(self, nrefunique, nreffreer, contentType,
                       resorangein, resorangeout):
         
-        self.importXML = etree.Element('X2MTZ')
+        self.importXML = ET.Element('X2MTZ')
         addXMLelement(self.importXML, 'inputcolumnames',
                       ','.join(self.inputcolumns))
         addXMLelement(self.importXML, 'outputcolumnames',
@@ -198,7 +199,7 @@ class ImportMTZ():
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def resorangeXML(self, resorange, id=None):
         # XML version of resolution range, a tuple of (dmax, dmin)
-        resoxml = etree.Element('ResolutionRange')
+        resoxml = ET.Element('ResolutionRange')
         if id is not None:
             resoxml.set('id', id)
         if resorange[0] > 0.0:

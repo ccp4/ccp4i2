@@ -1874,7 +1874,7 @@ class CMtzData(CCP4File.CDataFileContent):
             raise CException(self.__class__,411,str(seqDataFile))
         # Get results from xml file
         rv = {'results' : []}
-        xTree = CCP4Utils.openFileToEtree(fileName=f1[1])
+        xTree = ET.parse(f1[1]).getroot()
         try:
             rv['cell_volume'] = float( xTree.xpath('cell')[0].get('volume'))
         except:

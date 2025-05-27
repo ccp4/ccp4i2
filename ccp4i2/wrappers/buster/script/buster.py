@@ -2,8 +2,7 @@ import os
 import re
 import shutil
 import subprocess
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4ErrorHandling
 from ....core import CCP4Utils
@@ -161,24 +160,25 @@ class buster(CPluginScript):
             if fig:
                 graphf = True
         # xml (should not be necessary for graphs but images will not load)
-        rootNode = etree.Element("Buster")
-        xmlRI = etree.SubElement(rootNode, "RunInfo")
-        xmlbcyc = etree.SubElement(xmlRI, "Best")
-        etree.SubElement(xmlbcyc, "R").text = str(rrfr[0])
-        etree.SubElement(xmlbcyc, "RFree").text = str(rrfr[1])
+        rootNode = ET.Element("Buster")
+        xmlRI = ET.SubElement(rootNode, "RunInfo")
+        xmlbcyc = ET.SubElement(xmlRI, "Best")
+        ET.SubElement(xmlbcyc, "R").text = str(rrfr[0])
+        ET.SubElement(xmlbcyc, "RFree").text = str(rrfr[1])
         # Graphs into xml format recogn. by i2
         for ij, cycle in enumerate(allcyc):
-            xmlcyc = etree.SubElement(xmlRI, "Cycle")
-            etree.SubElement(xmlcyc, "NCycle").text = str(ij)
-            etree.SubElement(xmlcyc, "RFact").text = str(cycle[1])
-            etree.SubElement(xmlcyc, "RFree").text = str(cycle[2])
-            etree.SubElement(xmlcyc, "LLG").text = str(cycle[3])
-            etree.SubElement(xmlcyc, "LLGF").text = str(cycle[4])
-            etree.SubElement(xmlcyc, "RMSB").text = str(cycle[5])
-            etree.SubElement(xmlcyc, "RMSA").text = str(cycle[6])
+            xmlcyc = ET.SubElement(xmlRI, "Cycle")
+            ET.SubElement(xmlcyc, "NCycle").text = str(ij)
+            ET.SubElement(xmlcyc, "RFact").text = str(cycle[1])
+            ET.SubElement(xmlcyc, "RFree").text = str(cycle[2])
+            ET.SubElement(xmlcyc, "LLG").text = str(cycle[3])
+            ET.SubElement(xmlcyc, "LLGF").text = str(cycle[4])
+            ET.SubElement(xmlcyc, "RMSB").text = str(cycle[5])
+            ET.SubElement(xmlcyc, "RMSA").text = str(cycle[6])
         # Save xml
         xmlfile = open(self.xmlout, 'wb')
-        xmlString= etree.tostring(rootNode, pretty_print=True)
+        ET.indent(rootNode)
+        xmlString= ET.tostring(rootNode)
         xmlfile.write(xmlString)
         xmlfile.close()
         return CPluginScript.SUCCEEDED

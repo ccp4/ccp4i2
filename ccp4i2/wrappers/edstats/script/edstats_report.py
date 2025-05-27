@@ -30,7 +30,7 @@ class edstats_report(Report):
 
     list_of_chains = [ ] # We are going to separate results by chains
 
-    new_tree = etree.Element('edstats_report')
+    new_tree = ET.Element('edstats_report')
     protein_fragments = etree.SubElement ( new_tree, 'protein' )
     ligands = etree.SubElement ( new_tree, 'ligands')
     waters = etree.SubElement ( new_tree, 'waters' )
@@ -114,7 +114,7 @@ class edstats_report(Report):
         p.append( 'yrange',  rightaxis='true', min = '0.0', max = '20.0' )
         p.append( 'yrange',  rightaxis='false', min = '-8.0', max = '6.0' )
         #plot_tree = p.as_etree()
-        #etree.SubElement( plot_tree, 'polygon', linecolour="#cccccc", fillcolour="#aaaaaa", alpha="0.2" ).text = "0 5 10 15 20 25 30 35"
+        #ET.SubElement( plot_tree, 'polygon', linecolour="#cccccc", fillcolour="#aaaaaa", alpha="0.2" ).text = "0 5 10 15 20 25 30 35"
         #rect = p.append( 'polygon', linecolour="#cccccc", fillcolour="#aaaaaa", alpha="0.2" )
 
         l = p.append( 'plotline', xcol = 1, ycol = 2, rightaxis=True  ) # ZOm

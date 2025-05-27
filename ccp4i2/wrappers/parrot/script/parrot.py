@@ -3,8 +3,7 @@ Copyright (C) 2010 University of York
 """
 
 import os
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4ErrorHandling
 from ....core import CCP4Utils
@@ -60,13 +59,12 @@ class parrot(CPluginScript):
       self.container.outputData.FPHIOUT.annotation = self.jobNumberString() + ' Map coefficients from density modification'
       
       # extend XML output
-      rootNode = etree.Element("ParrotResult")
-      with open(self.xmlout,'r') as xmlFile:
-        rootNode = etree.fromstring(xmlFile.read())
-      smartieNode = etree.SubElement(rootNode,'SmartieGraphs')
+      rootNode = ET.parse(self.xmlout).getroot()
+      smartieNode = ET.SubElement(rootNode,'SmartieGraphs')
       self.scrapeSmartieGraphs(smartieNode)
       with open(self.xmlout,'w') as xmlFile:
-        CCP4Utils.writeXML(xmlFile,etree.tostring(rootNode,pretty_print=True))
+        ET.indent(rootNode)
+        CCP4Utils.writeXML(xmlFile,ET.tostring(rootNode))
 
       # performance data
       final_fom = float(rootNode.xpath('//ParrotResult/Final/MeanFOM')[0].text)

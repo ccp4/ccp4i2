@@ -378,7 +378,8 @@ class CProjectBasedTesting(QtCore.QObject):
 
     def listPluginErrorReport(self, jobId):
         try:
-            tree = CCP4Utils.openFileToEtree(PROJECTSMANAGER().makeFileName(jobId=jobId, mode='DIAGNOSTIC'))
+            fileName = PROJECTSMANAGER().makeFileName(jobId=jobId, mode='DIAGNOSTIC')
+            tree = ET.parse(fileName).getroot()
             report = CErrorReport()
             report.setEtree(tree)
             #print 'listPluginErrorReport',tree

@@ -5,8 +5,8 @@ Copyright (C) 2015 STFC
 import os
 import shutil
 import subprocess as SP
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore
 
 from ....core import CCP4Utils
@@ -38,10 +38,11 @@ class molrep_pipe(CPluginScript):
       else:
         self.newspacegroup = str(self.container.inputData.F_SIGF.fileContent.spaceGroup)
 
-      self.xmlroot = etree.Element('MolrepPipe')
+      self.xmlroot = ET.Element('MolrepPipe')
       self.xmlroot.text = '\n'
       with open(str(self.makeFileName('PROGRAMXML')), 'w') as ostream:
-        CCP4Utils.writeXML(ostream,etree.tostring(self.xmlroot,pretty_print=True))
+        ET.indent(self.xmlroot)
+        CCP4Utils.writeXML(ostream,ET.tostring(self.xmlroot))
 
       if str(self.container.controlParameters.SG_OPTIONS) == 'laue':
         self.run1()
@@ -69,23 +70,15 @@ class molrep_pipe(CPluginScript):
           rf = float(rft)
           rf_list.append((rf, e2))
 
-        '''
-        # not suitable for lxml
-        e1 = etree.SubElement(tree, 'RFsorted' + str(cou))
-        e1.text = '\n    '
-        e1.tail = '\n  '
-        for rf, e2 in sorted(rf_list):
-          e1.append(e2)
-        '''
-        f1 = etree.SubElement(tree, 'RFsorted' + str(cou))
+        f1 = ET.SubElement(tree, 'RFsorted' + str(cou))
         f1.text = e1.text
         f1.tail = e1.tail
         for rf, e2 in sorted(rf_list):
-          f2 = etree.SubElement(f1, e2.tag)
+          f2 = ET.SubElement(f1, e2.tag)
           f2.text = e2.text
           f2.tail = e2.tail
           for e3 in e2:
-            f3 = etree.SubElement(f2, e3.tag)
+            f3 = ET.SubElement(f2, e3.tag)
             f3.text = e3.text
             f3.tail = e3.tail
 
@@ -99,7 +92,8 @@ class molrep_pipe(CPluginScript):
       tree.tail = '\n'
       tree.tag = tag
       with open(str(self.makeFileName('PROGRAMXML')), 'w') as ostream:
-        CCP4Utils.writeXML(ostream,etree.tostring(self.xmlroot,pretty_print=True))
+        ET.indent(self.xmlroot)
+        CCP4Utils.writeXML(ostream,ET.tostring(self.xmlroot))
 
     @QtCore.Slot(dict)
     def fin1(self, status):
@@ -108,9 +102,7 @@ class molrep_pipe(CPluginScript):
         return
 
       xml = self.molrep1.makeFileName('PROGRAMXML')
-      tree = CCP4Utils.openFileToEtree(xml)
-      if tree is None:
-        return
+      tree = ET.parse(xml).getroot()
 
       self.unique_tags(tree)
 
@@ -124,7 +116,7 @@ class molrep_pipe(CPluginScript):
       testList = laueE.findall('test')
       eleNames = ['space_group', 'score', 'contrast']
       for testE in testList:
-        e1 = etree.SubElement(testE, 'selected')
+        e1 = ET.SubElement(testE, 'selected')
         e1.text = '-'
         laueData.append({})
         for name in eleNames:
@@ -142,7 +134,7 @@ class molrep_pipe(CPluginScript):
       self.newspacegroup = laueData[best]['space_group']
       e1 = testList[best].find('selected')
       e1.text = 'yes'
-      e0 = etree.SubElement(laueE, 'selected')
+      e0 = ET.SubElement(laueE, 'selected')
       e0.text = self.newspacegroup
       e0.tail = '\n'
 
@@ -190,9 +182,7 @@ class molrep_pipe(CPluginScript):
         self.reportStatus(status)
         return
 
-      tree = CCP4Utils.openFileToEtree(self.molrep2.makeFileName('PROGRAMXML'))
-      if tree is None:
-        return
+      tree = ET.parse(self.molrep2.makeFileName('PROGRAMXML')).getroot()
 
       self.unique_tags(tree)
       self.appendxml(tree, 'MolrepSearch')
@@ -237,9 +227,7 @@ class molrep_pipe(CPluginScript):
         self.reportStatus(status)
         return
 
-      tree = CCP4Utils.openFileToEtree(self.sheetbendPlugin.makeFileName('PROGRAMXML'))
-      if tree is None:
-        return
+      tree = ET.parse(self.sheetbendPlugin.makeFileName('PROGRAMXML')).getroot()
 
       self.appendxml(tree, 'SheetbendResult')
 
@@ -276,9 +264,7 @@ class molrep_pipe(CPluginScript):
 
     @QtCore.Slot(dict)
     def handleXmlChanged(self, xmlFilename):
-      tree = CCP4Utils.openFileToEtree(self.refmac.makeFileName('PROGRAMXML'))
-      if tree is None:
-        return
+      tree = ET.parse(self.refmac.makeFileName('PROGRAMXML')).getroot()
 
       self.appendxml(tree, 'RefmacRunning')
 
@@ -287,9 +273,7 @@ class molrep_pipe(CPluginScript):
         self.reportStatus(status)
         return
 
-      tree = CCP4Utils.openFileToEtree(self.refmac.makeFileName('PROGRAMXML'))
-      if tree is None:
-        return
+      tree = ET.parse(self.refmac.makeFileName('PROGRAMXML')).getroot()
 
       self.appendxml(tree, 'Refmac')
 

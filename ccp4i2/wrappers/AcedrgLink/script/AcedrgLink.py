@@ -53,8 +53,8 @@ class AcedrgLink(CPluginScript):
         #without this, a report will not be generated
         
         with open(self.makeFileName("PROGRAMXML"),"w") as programXMLFile:
-            xmlStructure = etree.Element("acedrg_link")
-            logText = etree.SubElement(xmlStructure,"LogText")
+            xmlStructure = ET.Element("acedrg_link")
+            logText = ET.SubElement(xmlStructure,"LogText")
             with open(self.makeFileName("LOG"),"r") as logFile:
                 logText.text = etree.CDATA(logFile.read())
             CCP4Utils.writeXML(programXMLFile,etree.tostring(xmlStructure))

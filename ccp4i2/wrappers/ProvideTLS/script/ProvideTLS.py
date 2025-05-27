@@ -22,8 +22,8 @@ class ProvideTLS(CPluginScript):
         with open(self.container.outputData.TLSFILE.fullPath.__str__(),"w") as myFile:
             myFile.write(self.container.controlParameters.TLSTEXT.__str__() )
 
-        root = etree.Element('ProvideTLSOutput')
-        tlsElement = etree.SubElement(root,'TLSProvided')
+        root = ET.Element('ProvideTLSOutput')
+        tlsElement = ET.SubElement(root,'TLSProvided')
         tlsElement.text = self.container.controlParameters.TLSTEXT.__str__()
         with open(self.makeFileName('PROGRAMXML'),'w') as xmlFile:
             CCP4Utils.writeXML(xmlFile,etree.tostring(root,pretty_print=True))

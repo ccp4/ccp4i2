@@ -2,7 +2,7 @@ import functools
 import glob
 import os
 import re
-import xml.etree.ElementTree as etree
+import xml.etree.ElementTree as ET
 
 from PySide2 import QtCore
 
@@ -104,29 +104,21 @@ class CReportGenerator(QtCore.QObject):
     
     #print('getOutputXml',outputXmlFile)
     try:
-        with open(outputXmlFile,'r') as inputFile:
-            text = inputFile.read()
-            outputXml = etree.fromstring( text.encode('utf-8'))
-    except Exception as e:
-        #print('Error in getOutputXml',e)
+        outputXml = ET.parse(outputXmlFile).getroot()
+    except Exception:
         outputXmlFile =  os.path.join(os.path.split(outputXmlFile)[0],'XMLOUT.xml')
         try:
-          with open(outputXmlFile,'r') as inputFile:
-              text = inputFile.read()
-              outputXml = etree.fromstring( text,CCP4ReportParser.PARSER() )
-        except Exception as e :
+            outputXml = ET.parse(outputXmlFile).getroot()
+        except Exception:
             outputXmlFile = PROJECTSMANAGER().makeFileName(jobId=self.jobId,mode='RVAPIXML')
             try:
-             with open(outputXmlFile,'r') as inputFile:
-                 text = inputFile.read()
-                 outputXml = etree.fromstring( text, CCP4RvapiParser.PARSER() )
+                outputXml = ET.parse(outputXmlFile).getroot()
             except:
                 # no recognised form of XML data has been found
                 outputXmlFile=None
                 outputXml = None
-
     return outputXmlFile,outputXml
-        
+
   def makeReportFile(self,redo=False,doReload=False,useGeneric=False,makePictures=True):
       
       #MN changed so as to return a tuple reportFile (a path) and newPageOrNewData: the latter has value "NEWPAGE" if a brand new report page is created and needs to be uploaded, or "NEWDATA" if an existing report.html needs only to be updated with new data for graphs, tables etc.
@@ -161,7 +153,7 @@ class CReportGenerator(QtCore.QObject):
         
         #print 'makeReportFile outputXml',outputXml
     else:
-        outputXml = etree.fromstring('<dummy/>')
+        outputXml = ET.fromstring('<dummy/>')
         
     if self.jobInfo is None:
       self.jobInfo = getReportJobInfo(self.jobId)
@@ -179,7 +171,7 @@ class CReportGenerator(QtCore.QObject):
       self.report.as_html_file(fileName=self.reportFile,htmlBase=self.htmlBase())
     else:
       try:
-        xrtTree = etree.XML( open(xrtFile ).read() )
+        xrtTree = ET.parse(xrtFile).getroot()
       except Exception as e:
         print(e)
         raise CCP4ErrorHandling.CException(self.__class__,3,stack=False)  
@@ -207,17 +199,7 @@ class CReportGenerator(QtCore.QObject):
     self.report.makeXMLFiles(directory=jobDirectory)
 
     if not makePictures: return self.reportFile, newPageOrNewData
-    
-    """
-    if self.report.containsPictures():
 
-      try:
-        self.mgProcess = self.runMg(pictureQueue=self.report.pictureQueue ,callBack=lambda exitCode,exitStatus: self.handleMgFinished(self.jobId,self.report.pictureQueue[1:],exitCode,exitStatus))
-      except:
-        print('ERROR making report, running CCP4mg to create pictures')
-      else:
-        pass
-    """
     return self.reportFile, newPageOrNewData
 
   def makePleaseWaitReport(self,jobRunning=True):
@@ -225,7 +207,7 @@ class CReportGenerator(QtCore.QObject):
       self.jobInfo = getReportJobInfo(self.jobId)
     doc = CCP4ReportParser.htmlDoc()
     body = doc.getroot().findall('./body')[0]
-    h3 = etree.Element('h3')
+    h3 = ET.Element('h3')
     if jobRunning:
       h3.text = 'Please wait, no output yet from job '+str(self.jobInfo['jobnumber'])+': '+ self.jobInfo['tasktitle']
     else:
@@ -233,7 +215,7 @@ class CReportGenerator(QtCore.QObject):
     body.append(h3)
 
     # Write to file
-    text = etree.tostring(doc.getroot())
+    text = ET.tostring(doc.getroot())
     CCP4Utils.saveFile(fileName=self.reportFile,text=text)
     return self.reportFile
 
@@ -250,7 +232,7 @@ class CReportGenerator(QtCore.QObject):
     if reportClass is not None:
       if self.jobInfo is None:
         self.jobInfo = getReportJobInfo(self.jobId)
-      outputXml = etree.Element('dummy')
+      outputXml = ET.Element('dummy')
       report = reportClass(xmlnode=outputXml,jobInfo=self.jobInfo, standardise=True, jobStatus = self.jobStatus , jobNumber=self.jobNumber )
       #print 'CReportGenerator report',report
       report.as_html_file(fileName=self.reportFile,htmlBase=self.htmlBase())
@@ -395,8 +377,7 @@ class CReportGenerator(QtCore.QObject):
 
 
   def mergeIntoParent(self,parentFile=None):
-    #parentTree = etree.parse(parentFile)
-    parentTree = CCP4Utils.openFileToEtree(parentFile)
+    parentTree = ET.parse(parentFile).getroot()
     #print 'mergeIntoParent jobId',self.jobId
     # Find the span-link created by CCP4ReportParser.foldLinkLine
     path = 'body/div[@class="sub-job-list"]/span[@class="folder_link"]/a[@id="jobId'+str(self.jobId)+'"]'
@@ -410,8 +391,7 @@ class CReportGenerator(QtCore.QObject):
     insertIndex = insertEle.index(aEle.xpath('..')[0])
 
     # Convert body of sub-job report to a hidesection div
-    #myTree =  etree.parse(self.reportFile)
-    myTree = CCP4Utils.openFileToEtree(self.reportFile)
+    myTree = ET.parse(self.reportFile).getroot()
     body = myTree.xpath('./body')[0]
     body.tag ='div'
     body.set('id','jobId'+str(self.jobId))
@@ -419,7 +399,7 @@ class CReportGenerator(QtCore.QObject):
 
     # make a span for the folder title
     # This should do the same as CCP4ReportParser.foldTitleLine()
-    span = etree.Element('span')
+    span = ET.Element('span')
     span.set('class','folder')
     span.set('onclick','toggleview(this)')
     span.text = label
@@ -431,7 +411,7 @@ class CReportGenerator(QtCore.QObject):
 
     newFile = os.path.join(os.path.split(parentFile)[0],'tmp_report.html')
     #print 'mergeIntoParent newFile',newFile
-    text = etree.tostring(parentTree)
+    text = ET.tostring(parentTree)
     try:
       CCP4Utils.saveFile(fileName=newFile,text=text)
     except:

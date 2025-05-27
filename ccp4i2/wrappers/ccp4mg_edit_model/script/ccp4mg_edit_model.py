@@ -5,8 +5,8 @@ import re
 import shutil
 import sys
 import time
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore
 
 from ....core import CCP4Utils
@@ -51,9 +51,10 @@ class ccp4mg_edit_model(CPluginScript):
         NSMAP = {'xsi':"http://www.w3.org/2001/XMLSchema-instance"}
         NS = NSMAP['xsi']
         location_attribute = '{%s}noNamespaceSchemaLocation' % NS
-        tree = etree.Element("CCP4MG_Status",nsmap = NSMAP,attrib={location_attribute: 'http://www.ysbl.york.ac.uk/~mcnicholas/schema/CCP4MGApplicationOutput.xsd'})
+        tree = ET.Element("CCP4MG_Status",nsmap = NSMAP,attrib={location_attribute: 'http://www.ysbl.york.ac.uk/~mcnicholas/schema/CCP4MGApplicationOutput.xsd'})
 
-        status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True).decode("utf-8")
+        ET.indent(tree)
+        status_xml += ET.tostring(tree,encoding='utf-8').decode("utf-8")
 
         print("Writing",self.mgStatusPath)
         print(status_xml)
@@ -190,8 +191,8 @@ class ccp4mg_edit_model(CPluginScript):
                 xyzoutList[-1].subType.set(1)
 
             # Create an xml output file and harvest the MrBUMP log files.
-            self.xmlroot = etree.Element('ccp4mg_edit_model')
-            e = etree.Element('number_output_files')
+            self.xmlroot = ET.Element('ccp4mg_edit_model')
+            e = ET.Element('number_output_files')
             e.text = str(self.numberOfOutputFiles())
             self.xmlroot.append(e)
             logFName = os.path.join(self.workDirectory,"log.txt")
@@ -204,7 +205,7 @@ class ccp4mg_edit_model(CPluginScript):
                         if logL.startswith("MRBUMP_DIRECTORY"):
                             mrBumpDir = logL.split()[1].strip()
                     if mrBumpDir is not None:
-                        edir = etree.Element('MGMRBUMPDIR')
+                        edir = ET.Element('MGMRBUMPDIR')
                         edir.text = str(mrBumpDir)
                         self.xmlroot.append(edir)
                         logs = glob.glob(os.path.normpath(os.path.join(mrBumpDir,'logs','*.log')))
@@ -214,7 +215,7 @@ class ccp4mg_edit_model(CPluginScript):
                         logs = ((stat[ST_CTIME], path) for stat, path in logs if S_ISREG(stat[ST_MODE]))
                         
                         for cdate, log in sorted(logs):
-                            elog = etree.Element(os.path.basename(log))
+                            elog = ET.Element(os.path.basename(log))
                             elog.text = str(log)
                             self.xmlroot.append(elog)
                             shutil.copyfile(log, os.path.join(self.workDirectory,"mrbump_"+os.path.basename(log)))
@@ -224,7 +225,7 @@ class ccp4mg_edit_model(CPluginScript):
                             win.setResultsDir(mrBumpDir)
                             svg = win.svg(500,short=True)
                             print(svg)
-                            self.xmlroot.append(etree.fromstring(svg))
+                            self.xmlroot.append(ET.fromstring(svg))
                         except:
                             exc_type, exc_value,exc_tb = sys.exc_info()[:3]
                             sys.stderr.write(str(exc_type)+'\n')
@@ -240,19 +241,12 @@ class ccp4mg_edit_model(CPluginScript):
             self.appendErrorReport(202,'Data harvesting failed')
             
         CCP4Utils.saveEtreeToFile(self.xmlroot,self.makeFileName('PROGRAMXML'))
-        """
-        if ( len(outList) ) > 0:
-          return CPluginScript.SUCCEEDED
-        else:
-          return CPluginScript.MARK_TO_DELETE
-        """
         return CPluginScript.SUCCEEDED
 
     def addReportWarning(self, text):
         warningsNode = None
         warningsNodes = self.xmlroot.xpath('//Warnings')
-        if len(warningsNodes) == 0: warningsNode = etree.SubElement(self.xmlroot, 'Warnings')
+        if len(warningsNodes) == 0: warningsNode = ET.SubElement(self.xmlroot, 'Warnings')
         else: warningsNode = warningsNodes[0]
-        warningNode = etree.SubElement(warningsNode,'Warning')
+        warningNode = ET.SubElement(warningsNode,'Warning')
         warningNode.text = text
-

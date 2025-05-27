@@ -3,8 +3,7 @@ Copyright (C) 2015 Newcastle University
 """
 
 import os
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4ErrorHandling
 from ....core import CCP4Utils
@@ -22,11 +21,10 @@ class TestObsConversions(CPluginScript):
 
     def __init__(self,parent=None,name=None,workDirectory=None,dummy=False,taskName=None,**kw):
         super(TestObsConversions,self).__init__(parent, name, workDirectory, dummy, taskName, **kw)
-        self.xmlroot = etree.Element('TestObsConversions')
+        self.xmlroot = ET.Element('TestObsConversions')
 
     def startProcess(self, command):
-        with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-            CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot, pretty_print=True))
+        CCP4Utils.writeXml(self.xmlroot, self.makeFileName('PROGRAMXML'))
         return CPluginScript.SUCCEEDED
 
     def processInputFiles(self):
@@ -38,16 +36,16 @@ class TestObsConversions(CPluginScript):
         elif int(self.container.controlParameters.INPUT_REPRESENTATION) == 3:
             inputType = 'F_SIGF_AS_IMEAN'
         
-        fileNode = etree.SubElement(self.xmlroot,'File')
-        typeNode = etree.SubElement(fileNode,'Role')
+        fileNode = ET.SubElement(self.xmlroot,'File')
+        typeNode = ET.SubElement(fileNode,'Role')
         typeNode.text = 'Input'
-        contentFlagNode = etree.SubElement(fileNode,'ContentFlag')
+        contentFlagNode = ET.SubElement(fileNode,'ContentFlag')
         contentFlagNode.text = str(getattr(self.container.inputData,inputType).contentFlag)
-        columnsNode = etree.SubElement(fileNode,'Columns')
+        columnsNode = ET.SubElement(fileNode,'Columns')
         fileToInterrogate = getattr(self.container.inputData,inputType)
         columnsInFile = fileToInterrogate.getFileContent().getListOfColumns()
         columnsNode.text = str([column.columnLabel.__str__() for column in columnsInFile])
-        pathNode = etree.SubElement(fileNode,'Path')
+        pathNode = ET.SubElement(fileNode,'Path')
         pathNode.text = str(getattr(self.container.inputData,inputType))
         
         self.hklin,error = self.makeHklin([[inputType, int(self.container.controlParameters.INPUT_REPRESENTATION)]])
@@ -61,16 +59,16 @@ class TestObsConversions(CPluginScript):
         self.container.inputData.F_SIGF_INTERMEDIATE.setContentFlag(reset=True)
         
         inputType = 'F_SIGF_INTERMEDIATE'
-        fileNode = etree.SubElement(self.xmlroot,'File')
-        typeNode = etree.SubElement(fileNode,'Role')
+        fileNode = ET.SubElement(self.xmlroot,'File')
+        typeNode = ET.SubElement(fileNode,'Role')
         typeNode.text = 'Intermediate'
-        contentFlagNode = etree.SubElement(fileNode,'ContentFlag')
+        contentFlagNode = ET.SubElement(fileNode,'ContentFlag')
         contentFlagNode.text = str(getattr(self.container.inputData,inputType).contentFlag)
-        columnsNode = etree.SubElement(fileNode,'Columns')
+        columnsNode = ET.SubElement(fileNode,'Columns')
         fileToInterrogate = getattr(self.container.inputData,inputType)
         columnsInFile = fileToInterrogate.getFileContent().getListOfColumns()
         columnsNode.text = str([column.columnLabel.__str__() for column in columnsInFile])
-        pathNode = etree.SubElement(fileNode,'Path')
+        pathNode = ET.SubElement(fileNode,'Path')
         pathNode.text = str(getattr(self.container.inputData,inputType))
 
         self.hklin,columns,error = self.makeHklin0([['F_SIGF_INTERMEDIATE', int(self.container.controlParameters.OUTPUT_REPRESENTATION)]])
@@ -86,17 +84,17 @@ class TestObsConversions(CPluginScript):
         self.container.outputData.F_SIGF_FINAL.setContentFlag(reset=True)
         
         inputType = 'F_SIGF_FINAL'
-        fileNode = etree.SubElement(self.xmlroot,'File')
-        typeNode = etree.SubElement(fileNode,'Role')
+        fileNode = ET.SubElement(self.xmlroot,'File')
+        typeNode = ET.SubElement(fileNode,'Role')
         typeNode.text = 'Final'
-        contentFlagNode = etree.SubElement(fileNode,'ContentFlag')
+        contentFlagNode = ET.SubElement(fileNode,'ContentFlag')
         contentFlagNode.text = str(getattr(self.container.outputData,inputType).contentFlag)
-        columnsNode = etree.SubElement(fileNode,'Columns')
+        columnsNode = ET.SubElement(fileNode,'Columns')
         fileToInterrogate = getattr(self.container.outputData,inputType)
         columnsInFile = fileToInterrogate.getFileContent().getListOfColumns()
         columnsNode.text = str([column.columnLabel.__str__() for column in columnsInFile])
         self.container.outputData.PERFORMANCEINDICATOR.columnLabelsString = columnsNode.text
-        pathNode = etree.SubElement(fileNode,'Path')
+        pathNode = ET.SubElement(fileNode,'Path')
         pathNode.text = str(getattr(self.container.outputData,inputType))
 
         return CPluginScript.SUCCEEDED

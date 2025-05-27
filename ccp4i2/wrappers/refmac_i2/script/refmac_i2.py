@@ -6,8 +6,8 @@ import os
 import pathlib
 import re
 import shutil
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore
 
 from ....core import CCP4ErrorHandling
@@ -39,7 +39,7 @@ class refmac_i2(CPluginScript):
     def __init__(self,*args, **kwargs):
         super(refmac_i2, self).__init__(*args, **kwargs)
         self._readyReadStandardOutputHandler = self.handleReadyReadStandardOutput
-        self.xmlroot = etree.Element('REFMAC')
+        self.xmlroot = ET.Element('REFMAC')
         self.logScraper = logScraper(xmlroot=self.xmlroot, flushXML=self.flushXML)
         self.xmlLength = 0
 
@@ -55,7 +55,8 @@ class refmac_i2(CPluginScript):
         self.logScraper.processLogChunk(availableStdout.data().decode("utf-8"))
     
     def flushXML(self):
-        newXml = etree.tostring(self.xmlroot,pretty_print=True)
+        ET.indent(self.xmlroot)
+        newXml = ET.tostring(self.xmlroot)
         if len(newXml)>self.xmlLength:
             self.xmlLength = len(newXml)
             with open (self.makeFileName('PROGRAMXML')+'_tmp','w') as programXmlFile:
@@ -215,9 +216,9 @@ class refmac_i2(CPluginScript):
         #Use Refmacs XMLOUT as the basis for output XML.  If not existent (probably due to failure), then create a new one
         rxml = None
         try:
-            rxml = CCP4Utils.openFileToEtree(os.path.normpath(os.path.join(self.getWorkDirectory(),'XMLOUT.xml')))
+            rxml = ET.parse(os.path.normpath(os.path.join(self.getWorkDirectory(),'XMLOUT.xml'))).getroot()
         except:
-            rxml = etree.Element('REFMAC')
+            rxml = ET.Element('REFMAC')
             self.appendErrorReport(204,self.makeFileName('PROGRAMXML'))
             return CPluginScript.FAILED
         
@@ -233,16 +234,16 @@ class refmac_i2(CPluginScript):
         #Perform analysis of output coordinate file composition
         if os.path.isfile(str(self.container.outputData.XYZOUT.fullPath)):
             self.container.outputData.XYZOUT.fileContent.loadFile(self.container.outputData.XYZOUT.fullPath)
-            modelCompositionNode = etree.SubElement(rxml,'ModelComposition')
+            modelCompositionNode = ET.SubElement(rxml,'ModelComposition')
             for chain in self.container.outputData.XYZOUT.fileContent.composition.chains:
-                chainNode = etree.SubElement(modelCompositionNode,'Chain',id=chain)
+                chainNode = ET.SubElement(modelCompositionNode,'Chain',id=chain)
             for monomer in self.container.outputData.XYZOUT.fileContent.composition.monomers:
-                monomerNode = etree.SubElement(modelCompositionNode,'Monomer',id=monomer)
+                monomerNode = ET.SubElement(modelCompositionNode,'Monomer',id=monomer)
 
         #Skim smartie graphs from the log file
-        smartieNode = etree.SubElement(rxml,'SmartieGraphs')
+        smartieNode = ET.SubElement(rxml,'SmartieGraphs')
         self.scrapeSmartieGraphs(smartieNode)
-        et = etree.ElementTree(rxml)
+        et = ET.ElementTree(rxml)
         
         #And write out the XML
         et.write(self.makeFileName('PROGRAMXML'), pretty_print=True)

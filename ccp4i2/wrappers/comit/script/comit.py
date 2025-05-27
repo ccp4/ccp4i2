@@ -54,8 +54,8 @@ class comit(CPluginScript):
         #Create (dummy) PROGRAMXML, which basically contains only the log text of the job
         #without this, a report will not be generated
         with open(self.makeFileName("PROGRAMXML"),"w") as programXMLFile:
-            xmlStructure = etree.Element("i2comit")
-            logText = etree.SubElement(xmlStructure,"LogText")
+            xmlStructure = ET.Element("i2comit")
+            logText = ET.SubElement(xmlStructure,"LogText")
             with open(self.makeFileName("LOG"),"r") as logFile:
                 logText.text = etree.CDATA(logFile.read())
             CCP4Utils.writeXML(programXMLFile,etree.tostring(xmlStructure))

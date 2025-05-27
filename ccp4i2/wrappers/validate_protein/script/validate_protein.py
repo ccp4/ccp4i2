@@ -10,10 +10,10 @@ from math import pi
 import os
 import shutil
 import traceback
+import xml.etree.ElementTree as ET
 
 from iris_validation.graphics import Panel
 from iris_validation.metrics import metrics_model_series_from_files
-from lxml import etree
 import iris_validation
 import numpy as np
 import warnings
@@ -32,7 +32,7 @@ class validate_protein(CPluginScript):
 
     def process(self):
         log_string = ''
-        self.xml_root = etree.Element('Validate_geometry_CCP4i2')
+        self.xml_root = ET.Element('Validate_geometry_CCP4i2')
 
         self.latest_model_path = self.previous_model_path = self.latest_reflections_path = self.previous_reflections_path = None
 
@@ -106,8 +106,7 @@ class validate_protein(CPluginScript):
                 traceback.print_exc()
                 log_string += _print_and_return('UNHANDLED ERROR:\n%s' % e)
 
-        with open(self.makeFileName('PROGRAMXML'), 'w') as xml_file:
-            xml_file.write(etree.tostring(self.xml_root, pretty_print=True).decode('utf8'))
+        CCP4Utils.writeXml(self.xml_root self.makeFileName('PROGRAMXML'))
 
         self.reportStatus(CPluginScript.SUCCEEDED)
         return CPluginScript.SUCCEEDED
@@ -115,7 +114,7 @@ class validate_protein(CPluginScript):
 
     def calculate_iris_metrics(self):
         log_string = ''
-        xml_root = etree.Element('Model_info')
+        xml_root = ET.Element('Model_info')
 
         print("PATHS\n",self.latest_model_path, self.previous_model_path,self.latest_reflections_path, self.previous_reflections_path)
         self.model_series = metrics_model_series_from_files(model_paths=(self.latest_model_path, self.previous_model_path),
@@ -128,14 +127,14 @@ class validate_protein(CPluginScript):
                                                             run_molprobity=self.container.controlParameters.DO_MOLPROBITY,
                                                             multiprocessing=False)
         self.latest_model = self.model_series.metrics_models[-1]
-        etree.SubElement(xml_root, 'Chain_count').text = str(self.latest_model.chain_count)
+        ET.SubElement(xml_root, 'Chain_count').text = str(self.latest_model.chain_count)
         print ("Number of models returned: {}".format(len(self.model_series.metrics_models)))
         return log_string, xml_root
 
 
     def generate_iris_report(self):
         log_string = ''
-        xml_root = etree.Element('Iris')
+        xml_root = ET.Element('Iris')
         model_series_data = self.model_series.get_raw_data()
         panel = Panel(model_series_data, 
                       custom_labels={'Latest': self.container.inputData.NAME_1, 
@@ -144,75 +143,75 @@ class validate_protein(CPluginScript):
                      )
         panel.dwg.attribs['style'] += ' margin-top: -20px;'
         panel_string = panel.dwg.tostring()
-        etree.SubElement(xml_root, 'Panel_svg').text = panel_string
+        ET.SubElement(xml_root, 'Panel_svg').text = panel_string
         return log_string, xml_root
 
 
     def compile_molprobity_data(self):
         log_string = ''
-        xml_root = etree.Element('Molprobity')
+        xml_root = ET.Element('Molprobity')
         molprobity_data = self.latest_model.molprobity_data['model_wide']
 
-        xml_summary = etree.SubElement(xml_root, 'Summary')
-        etree.SubElement(xml_summary, 'Ramachandran_outliers').text = str(round(molprobity_data['summary']['ramachandran_outliers'], 2)) + '%'
-        etree.SubElement(xml_summary, 'Ramachandran_favoured').text = str(round(molprobity_data['summary']['ramachandran_favoured'], 2)) + '%' 
-        etree.SubElement(xml_summary, 'Rotamer_outliers').text = str(round(molprobity_data['summary']['rotamer_outliers'], 2)) + '%'
-        etree.SubElement(xml_summary, 'CBeta_deviations').text = str(molprobity_data['summary']['cbeta_deviations'])
-        etree.SubElement(xml_summary, 'Clashscore').text = str(round(molprobity_data['summary']['clashscore'], 2))
-        etree.SubElement(xml_summary, 'RMS_bonds').text = str(round(molprobity_data['summary']['rms_bonds'], 4))
-        etree.SubElement(xml_summary, 'RMS_angles').text = str(round(molprobity_data['summary']['rms_angles'], 2))
-        etree.SubElement(xml_summary, 'Molprobity_score').text = str(round(molprobity_data['summary']['molprobity_score'], 2))
+        xml_summary = ET.SubElement(xml_root, 'Summary')
+        ET.SubElement(xml_summary, 'Ramachandran_outliers').text = str(round(molprobity_data['summary']['ramachandran_outliers'], 2)) + '%'
+        ET.SubElement(xml_summary, 'Ramachandran_favoured').text = str(round(molprobity_data['summary']['ramachandran_favoured'], 2)) + '%' 
+        ET.SubElement(xml_summary, 'Rotamer_outliers').text = str(round(molprobity_data['summary']['rotamer_outliers'], 2)) + '%'
+        ET.SubElement(xml_summary, 'CBeta_deviations').text = str(molprobity_data['summary']['cbeta_deviations'])
+        ET.SubElement(xml_summary, 'Clashscore').text = str(round(molprobity_data['summary']['clashscore'], 2))
+        ET.SubElement(xml_summary, 'RMS_bonds').text = str(round(molprobity_data['summary']['rms_bonds'], 4))
+        ET.SubElement(xml_summary, 'RMS_angles').text = str(round(molprobity_data['summary']['rms_angles'], 2))
+        ET.SubElement(xml_summary, 'Molprobity_score').text = str(round(molprobity_data['summary']['molprobity_score'], 2))
 
         for category, element_name in (('ramachandran', 'Ramachandran_outliers'),
                                        ('omega', 'Nonplanar_omegas'),
                                        ('rotamer', 'Rotamer_outliers'),
                                        ('c-beta', 'CBeta_outliers'),
                                        ('nqh_flips', 'Side_chain_flips')):
-            category_root = etree.SubElement(xml_root, element_name)
+            category_root = ET.SubElement(xml_root, element_name)
             for row in molprobity_data['details'][category]:
                 chain, seqnum, name, score = row
                 if score is None:
                     score = 'N/A'
                 else:
                     score = str(round(score, 3))
-                item = etree.SubElement(category_root, 'Outlier', chain=chain, seqnum=seqnum, name=name, score=score)
+                item = ET.SubElement(category_root, 'Outlier', chain=chain, seqnum=seqnum, name=name, score=score)
 
-        clash_root = etree.SubElement(xml_root, 'Clashes')
+        clash_root = ET.SubElement(xml_root, 'Clashes')
         for row in molprobity_data['details']['clash']:
-            item = etree.SubElement(clash_root, 'Outlier', first_atom=row[0], second_atom=row[1], overlap=str(row[2]))
+            item = ET.SubElement(clash_root, 'Outlier', first_atom=row[0], second_atom=row[1], overlap=str(row[2]))
 
         return log_string, xml_root
 
 
     def b_averages(self):
         log_string = ''
-        xml_root = etree.Element('B_factors')
+        xml_root = ET.Element('B_factors')
 
         b_factor_list_names = ('all', 'amino_acids', 'main_chains', 'side_chains', 'non_amino_acids', 'waters', 'ligands', 'ions')
         for chain_id, chain in enumerate(self.latest_model.chains):
             for list_name, b_factor_list in zip(b_factor_list_names, chain.b_factor_lists()):
                 mean, std = np.mean(b_factor_list), np.std(b_factor_list)
                 n = len(b_factor_list)
-                etree.SubElement(xml_root, list_name, chain=str(chain_id), mean=str(mean), std=str(std), n=str(n))
+                ET.SubElement(xml_root, list_name, chain=str(chain_id), mean=str(mean), std=str(std), n=str(n))
         for list_name, b_factor_list in zip(b_factor_list_names, self.latest_model.b_factor_lists()):
             mean, std = np.mean(b_factor_list), np.std(b_factor_list)
             n = len(b_factor_list)
-            etree.SubElement(xml_root, list_name, chain='All', mean=str(mean), std=str(std), n=str(n))
+            ET.SubElement(xml_root, list_name, chain='All', mean=str(mean), std=str(std), n=str(n))
         return log_string, xml_root
 
 
     def ramachandran_maps(self):
         log_string = ''
-        xml_root = etree.Element('Ramachandran')
+        xml_root = ET.Element('Ramachandran')
 
         img_dir_from = os.path.join(os.path.normpath(CCP4Utils.getCCP4I2Dir()),
                                     os.path.normpath('wrappers/validate_protein/script/img/'))
         img_dir_to = os.path.join(os.path.normpath(self.workDirectory), 'img')
         shutil.copytree(img_dir_from, img_dir_to)
 
-        favoured_root = etree.SubElement(xml_root, 'Favoured')
-        allowed_root = etree.SubElement(xml_root, 'Allowed')
-        outliers_root = etree.SubElement(xml_root, 'Outliers')
+        favoured_root = ET.SubElement(xml_root, 'Favoured')
+        allowed_root = ET.SubElement(xml_root, 'Allowed')
+        outliers_root = ET.SubElement(xml_root, 'Outliers')
         n_residues, n_favoured, n_allowed, n_outliers, n_na = 0, 0, 0, 0, 0
 
         for chain in self.latest_model:
@@ -232,16 +231,16 @@ class validate_protein(CPluginScript):
                 else:
                     residue_root = outliers_root
                     n_outliers += 1
-                residue_rama = etree.SubElement(residue_root, 'Residue', chain=str(chain.chain_id), seqnum=str(residue.sequence_number), type=residue.code)
-                etree.SubElement(residue_rama, 'Phi').text = str(residue.phi * 180 / pi)
-                etree.SubElement(residue_rama, 'Psi').text = str(residue.psi * 180 / pi)
+                residue_rama = ET.SubElement(residue_root, 'Residue', chain=str(chain.chain_id), seqnum=str(residue.sequence_number), type=residue.code)
+                ET.SubElement(residue_rama, 'Phi').text = str(residue.phi * 180 / pi)
+                ET.SubElement(residue_rama, 'Psi').text = str(residue.psi * 180 / pi)
 
-        totals = etree.SubElement(xml_root, 'Totals')
-        etree.SubElement(totals, 'Residues').text = str(n_residues)
-        etree.SubElement(totals, 'Favoured').text = str(n_favoured)
-        etree.SubElement(totals, 'Allowed').text = str(n_allowed)
-        etree.SubElement(totals, 'Outliers').text = str(n_outliers)
-        etree.SubElement(totals, 'NA').text = str(n_na)
+        totals = ET.SubElement(xml_root, 'Totals')
+        ET.SubElement(totals, 'Residues').text = str(n_residues)
+        ET.SubElement(totals, 'Favoured').text = str(n_favoured)
+        ET.SubElement(totals, 'Allowed').text = str(n_allowed)
+        ET.SubElement(totals, 'Outliers').text = str(n_outliers)
+        ET.SubElement(totals, 'NA').text = str(n_na)
 
         return log_string, xml_root
 

@@ -1,7 +1,6 @@
 import os
 import shutil
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
@@ -54,7 +53,7 @@ class ZZPipelineNameZZ(CPluginScript):
             
     def processOutputFiles(self):
         #Create (dummy) PROGRAMXML
-        pipelineXMLStructure = etree.Element("ZZPipelineNameZZ")
+        pipelineXMLStructure = ET.Element("ZZPipelineNameZZ")
         
         for iPlugin, ZZFirstPluginNameZZPlugin in enumerate(self.ZZFirstPluginNameZZPlugins):
             out = self.container.outputData
@@ -78,12 +77,12 @@ class ZZPipelineNameZZ(CPluginScript):
                             out.DIFFPHIOUT_LIST[-1].fullPath.__str__())
             
             #Catenate output XMLs
-            pluginXMLStructure = CCP4Utils.openFileToEtree(ZZFirstPluginNameZZPlugin.makeFileName("PROGRAMXML"))
-            cycleElement = etree.SubElement(pluginXMLStructure,"Cycle")
+            pluginXMLStructure = ET.parse(ZZFirstPluginNameZZPlugin.makeFileName("PROGRAMXML")).getroot()
+            cycleElement = ET.SubElement(pluginXMLStructure,"Cycle")
             cycleElement.text = str(iPlugin)
             pipelineXMLStructure.append(pluginXMLStructure)
         
         with open(self.makeFileName("PROGRAMXML"),"w") as pipelineXMLFile:
-            CCP4Utils.writeXML(pipelineXMLFile,etree.tostring(pipelineXMLStructure))
+            CCP4Utils.writeXML(pipelineXMLFile,ET.tostring(pipelineXMLStructure))
         
         return CPluginScript.SUCCEEDED

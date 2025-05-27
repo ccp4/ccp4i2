@@ -1,5 +1,5 @@
 import os
-import xml.etree.ElementTree as etree
+import xml.etree.ElementTree as ET
 
 from rdkit import Chem
 from rdkit.Chem import AllChem
@@ -37,7 +37,8 @@ class MakeProjectsAndDoLigandPipeline_report(Report):
                     mol = Chem.MolFromSmiles(smilesString)
                     confId2D = AllChem.Compute2DCoords(mol)
                     svgStructure = acedrg.svgFromMol(mol)
-                    svgText = etree.tostring(svgStructure,pretty_print=True)
+                    ET.indent(svgStructure)
+                    svgText = ET.tostring(svgStructure)
                     svgText = svgText.replace("<svg>","<svg:svg>").replace("</svg>","</svg:svg>").replace("<line>","<svg:line>").replace("</line>","</svg:line>").replace("<text>","<svg:text>").replace("</text>","</svg:text>").replace("<polygon>","<svg:polygon>").replace("</polygon>","</svg:polygon>").replace('xmlns="http://www.w3.org/2000/svg"','xmlns:svg="http://www.w3.org/2000/svg"')
                     with open(svgFilename,"w") as svgFile:
                         CCP4Utils.writeXML(svgFile,svgText)

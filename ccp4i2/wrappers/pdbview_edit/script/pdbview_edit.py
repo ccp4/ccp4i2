@@ -125,8 +125,8 @@ class pdbview_edit(CPluginScript):
                 xyzoutList[-1].subType = 1
 
             # Create a trivial xml output file
-            self.xmlroot = etree.Element('pdbview_edit')
-            e = etree.Element('number_output_files')
+            self.xmlroot = ET.Element('pdbview_edit')
+            e = ET.Element('number_output_files')
             e.text = str(self.numberOfOutputFiles())
             self.xmlroot.append(e)
             
@@ -149,8 +149,8 @@ class pdbview_edit(CPluginScript):
     def addReportWarning(self, text):
         warningsNode = None
         warningsNodes = self.xmlroot.xpath('//Warnings')
-        if len(warningsNodes) == 0: warningsNode = etree.SubElement(self.xmlroot, 'Warnings')
+        if len(warningsNodes) == 0: warningsNode = ET.SubElement(self.xmlroot, 'Warnings')
         else: warningsNode = warningsNodes[0]
-        warningNode = etree.SubElement(warningsNode,'Warning')
+        warningNode = ET.SubElement(warningsNode,'Warning')
         warningNode.text = text
 

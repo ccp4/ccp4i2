@@ -104,7 +104,7 @@ class testI2XmlDataFile(unittest.TestCase):
     def test3(self):
         c = CI2XmlDataFile(projectName='CCP4I2_TEST',baseName='testXmlDataFile.xml')
         if c.fullPath.exists() : os.remove(c.fullPath.get())
-        ele = etree.Element(CI2XmlDataFile.BODY_TAG)
+        ele = ET.Element(CI2XmlDataFile.BODY_TAG)
         c.saveFile(bodyEtree=ele)
         self.assertTrue(os.path.exists(c.fullPath.get()),'No file written by saveFile')
 

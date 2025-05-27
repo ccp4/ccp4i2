@@ -9,6 +9,7 @@ import os
 import re
 import sys
 import traceback
+import xml.etree.ElementTree as ET
 
 from lxml import etree
 from PySide2 import QtCore, QtGui, QtWebEngineWidgets, QtWidgets
@@ -415,7 +416,7 @@ class CSubJobReport(QtCore.QObject):
 
     def merge(self,reportFile,idText):
         #myTree =  etree.parse(reportFile)
-        myTree = CCP4Utils.openFileToEtree(reportFile)
+        myTree = ET.parse(reportFile).getroot()
         # Load the ccp4_data while we have the file as xml
         self.parent().report.loadFromEtree(myTree)
         # Convert body of sub-job report html to a div.subjob

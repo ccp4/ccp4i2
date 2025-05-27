@@ -73,7 +73,7 @@ class coot_rsr_morph(CPluginScript):
             os.path.exists(self.container.outputData.XYZOUT.__str__()),
         )
         # Create a trivial xml output file
-        root = lxml.etree.Element("coot_rsr_morph")
+        root = lxml.ET.Element("coot_rsr_morph")
         self.container.outputData.XYZOUT.subType = 1
         xml_file = CCP4File.CXmlDataFile(fullPath=self.makeFileName("PROGRAMXML"))
         xml_file.saveFile(root)

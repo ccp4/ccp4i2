@@ -2,9 +2,6 @@
 Copyright (C) 2014 The University of York, 2024 STFC
 """
 
-from lxml import etree
-
-from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
 
 
@@ -34,12 +31,5 @@ class cpatterson(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
-
         self.container.outputData.MAPOUT.annotation = 'Computed using ' + str(self.container.inputData.F_SIGF.annotation)
-
-        xmlRoot = etree.Element('Patterson')
-        with open ( self.makeFileName('PROGRAMXML'),'w' ) as xmlFile:
-            xmlString = etree.tostring ( xmlRoot, pretty_print=True )
-            CCP4Utils.writeXML(xmlFile,xmlString)
-
         return CPluginScript.SUCCEEDED

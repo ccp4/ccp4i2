@@ -3,8 +3,8 @@ import platform
 import re
 import shutil
 import sys
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from rdkit import Chem
 from rdkit.Chem import AllChem
 import ccp4srs
@@ -31,7 +31,7 @@ class acedrgNew(CPluginScript):
     
     def __init__(self,*args,**kws):
         CPluginScript.__init__(self, *args,**kws)
-        self.xmlroot = etree.Element('Acedrg')
+        self.xmlroot = ET.Element('Acedrg')
         self.smileStrCode = None
 
     def processInputFiles(self):
@@ -109,7 +109,7 @@ class acedrgNew(CPluginScript):
         #print 'Original mol file path', self.originalMolFilePath
     
         #Get the SMILES of the input MOL and put into report
-        smilesNode = etree.SubElement(self.xmlroot,'SMILES')
+        smilesNode = ET.SubElement(self.xmlroot,'SMILES')
         try:
             if self.container.inputData.MOL2IN.isSet():
                 mol = Chem.MolFromMol2File(self.originalMolFilePath)
@@ -268,7 +268,7 @@ class acedrgNew(CPluginScript):
             try:
                 from .MyCIFDigestor import MyCIFFile
                 myCIFFile = MyCIFFile(filePath=cifFilePath)
-                geometryNode = etree.SubElement(self.xmlroot,'Geometry')
+                geometryNode = ET.SubElement(self.xmlroot,'Geometry')
                 propertiesOfCategories = {'_chem_comp_bond':['atom_id_1','atom_id_2','value_dist','value_dist_esd','type'],
                 '_chem_comp_angle':['atom_id_1','atom_id_2','atom_id_3','value_angle','value_angle_esd'],
                 '_chem_comp_tor':['atom_id_1','atom_id_2','atom_id_3','atom_id_4','value_angle','period','value_angle_esd'],
@@ -287,10 +287,10 @@ class acedrgNew(CPluginScript):
                                     if property in loopline:
                                         examples[-1][property] = loopline[property]
                         for example in examples:
-                            exampleNode = etree.SubElement(geometryNode, category)
+                            exampleNode = ET.SubElement(geometryNode, category)
                             for property in properties:
                                 if property in example:
-                                    propertyNode = etree.SubElement(exampleNode, property)
+                                    propertyNode = ET.SubElement(exampleNode, property)
                                     propertyNode.text = example[property]
             except:
                 self.apppendErrorReport(202)
@@ -337,11 +337,11 @@ class acedrgNew(CPluginScript):
             
         
         # Get 2D picture of structure from the RDKit mol and place in report
-        svgNode = etree.SubElement(self.xmlroot,'SVGNode')
+        svgNode = ET.SubElement(self.xmlroot,'SVGNode')
         try:
             from . import mol2svg
             svgText = bytes(mol2svg.svgFromMol(referenceMolToDraw),"utf-8")
-            svgMolNode = etree.fromstring(svgText)
+            svgMolNode = ET.fromstring(svgText)
         except Exception as e:
             try:
                 from ...Lidia.script import MOLSVG
@@ -350,10 +350,11 @@ class acedrgNew(CPluginScript):
             except Exception as e:
                 print("ERROR: Drawing SVG picture of molecule was not successful.")
                 print(e)
-                svgMolNode = etree.fromstring("<svg></svg>")
+                svgMolNode = ET.fromstring("<svg></svg>")
         svgNode.append(svgMolNode)
 
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-            CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot,pretty_print=True))
+            ET.indent(self.xmlroot)
+            CCP4Utils.writeXML(programXML,ET.tostring(self.xmlroot))
 
         return CPluginScript.SUCCEEDED

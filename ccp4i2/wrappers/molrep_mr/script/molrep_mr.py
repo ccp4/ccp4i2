@@ -234,15 +234,15 @@ class molrep_mr(CPluginScript):
     def saveProgramXml ( self, docFileName, programXmlFileName ) :
       titles = []
       status = 0
-      results = etree.Element('MolrepResult')
-      tf = etree.Element('MR_TF')
+      results = ET.Element('MolrepResult')
+      tf = ET.Element('MR_TF')
       results.append(tf)
       for key,value in [ ['err_level','0'],
                          ['err_message','normal termination'],
                          ['n_solution','1'],
                          ['mr_score','0.0000'] ]:
           
-        e = etree.Element(key)
+        e = ET.Element(key)
         e.text = value
         tf.append(e)
 
@@ -262,7 +262,7 @@ class molrep_mr(CPluginScript):
             if line.strip().startswith( 'RF ' ) :
               titles = line.replace( "(", " " ).replace( ")", "" ).replace( "/", "_" ).split()
               #print 'titles',titles
-              rf = etree.Element('RFpeaks')
+              rf = ET.Element('RFpeaks')
               results.append(rf)
 
             else:
@@ -271,10 +271,10 @@ class molrep_mr(CPluginScript):
                 try :
                   for i in (0,1): ii = int( words[i] )
                   for i in range(2,len(words)): ii = float( words[i] )
-                  peak = etree.Element('RFpeak')
+                  peak = ET.Element('RFpeak')
                   for key,value in zip( titles, words ) :
                     #print ' key,value', key,value
-                    e = etree.Element(key)
+                    e = ET.Element(key)
                     e.text = str(float(value))
                     peak.append(e)
                 except :
@@ -290,12 +290,12 @@ class molrep_mr(CPluginScript):
         except:
           scores = None
         eleNames = ['space_group','score','contrast']
-        eLaue = etree.Element('laue_group_alternatives')
+        eLaue = ET.Element('laue_group_alternatives')
         for d in data:
-          eTest = etree.Element('test')
+          eTest = ET.Element('test')
           eLaue.append(eTest)
           for ii in range(3):
-            e = etree.Element(eleNames[ii])
+            e = ET.Element(eleNames[ii])
             e.text = str(d[ii])
             eTest.append(e)     
           if scores:

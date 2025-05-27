@@ -5,10 +5,12 @@
 #  Acknowledgements: based on ideas and code by Nat Echols and Martin Noble.
 #
 
-from lxml import etree
+import xml.etree.ElementTree as ET
+
 from xia2.Handlers.Phil import master_phil
 
 from ....utils.phil_handlers import PhilTaskCreator
+from ccp4i2.core.CCP4Utils import printXml
 
 
 class Xia2DialsTaskCreator(PhilTaskCreator):
@@ -31,7 +33,7 @@ class Xia2DialsTaskCreator(PhilTaskCreator):
             "xia2__settings__input__image",
         ]
 
-        self.inputDataXML = etree.fromstring(
+        self.inputDataXML = ET.fromstring(
             """
 <container id="inputData">
   <content id="IMAGE_FILE">
@@ -60,7 +62,7 @@ class Xia2DialsTaskCreator(PhilTaskCreator):
 """
         )
 
-        self.outputDataXML = etree.fromstring(
+        self.outputDataXML = ET.fromstring(
             """
 <container id="outputData">
   <content id="UNMERGEDOUT">
@@ -141,7 +143,7 @@ class Xia2DialsTaskCreator(PhilTaskCreator):
         self._remove_elements_by_id(self.phil_tree, self._elts_to_remove)
 
         if self.debug:
-            print(etree.tostring(self.phil_tree, pretty_print=True))
+            printXml(self.phil_tree)
 
         super(Xia2DialsTaskCreator, self).__call__()
 

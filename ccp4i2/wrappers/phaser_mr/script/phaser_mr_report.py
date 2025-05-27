@@ -19,13 +19,13 @@ class pimpleGraph():
             self.separator = self.headersNode.get('separator')
             self.headers = self.headersNode.text.strip().split(self.separator)
             return
-        self.xmlnode = etree.Element('CCP4Table')
+        self.xmlnode = ET.Element('CCP4Table')
         self.xmlnode.set('title',title)
-        self.dataNode = etree.SubElement(self.xmlnode,'data')
+        self.dataNode = ET.SubElement(self.xmlnode,'data')
         self.data = [[]]
         self.dataNode.text = ''
         self.separator = separator
-        self.headersNode = etree.SubElement(self.xmlnode,'headers',separator=self.separator)
+        self.headersNode = ET.SubElement(self.xmlnode,'headers',separator=self.separator)
         self.headersNode.text = ''
         self.headers = []
         return

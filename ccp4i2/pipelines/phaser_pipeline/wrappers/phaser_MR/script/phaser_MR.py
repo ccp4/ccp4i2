@@ -19,10 +19,10 @@ class CallbackObject(object):
         try:
             aNode = self.xmlroot.xpath('CurrentActivity')[0]
         except:
-            aNode = etree.SubElement(self.xmlroot,'CurrentActivity')
-            self.currentActivityLabel = etree.SubElement(aNode,'label')
-            self.currentActivityMax = etree.SubElement(aNode,'max')
-            self.currentActivityValue = etree.SubElement(aNode,'value')
+            aNode = ET.SubElement(self.xmlroot,'CurrentActivity')
+            self.currentActivityLabel = ET.SubElement(aNode,'label')
+            self.currentActivityMax = ET.SubElement(aNode,'max')
+            self.currentActivityValue = ET.SubElement(aNode,'value')
         return aNode
     def startProgressBar(self, arg1, arg2):
         aNode = self.currentActivityNode()
@@ -41,8 +41,8 @@ class CallbackObject(object):
     def warn(self, warning):
         try:
             warningsElement = self.xmlroot.xpath('PhaserWarnings')[0]
-        except: warningsElement = etree.SubElement(self.xmlroot,'PhaserWarnings')
-        warningElement = etree.SubElement(warningsElement,'Warning')
+        except: warningsElement = ET.SubElement(self.xmlroot,'PhaserWarnings')
+        warningElement = ET.SubElement(warningsElement,'Warning')
         warningElement.text = warning
         self.notifyResponders()
     def loggraph(self, arg1, arg2):
@@ -254,7 +254,7 @@ class phaser_MR(CPluginScript):
         return CPluginScript.SUCCEEDED
 
 def subElementWithText(parent, type, value):
-    result = etree.SubElement(parent,type)
+    result = ET.SubElement(parent,type)
     result.text = str(value)
     return result
 
@@ -264,17 +264,17 @@ def xmlFromSol(solText, parentNode):
     solutionElement = None
     for line in solText.split('\n'):
         if line.strip().startswith( 'SOLU SET' ):
-            solutionElement = etree.SubElement(parentNode,'Solution')
+            solutionElement = ET.SubElement(parentNode,'Solution')
             splitLine = line.strip().split()
             if len(splitLine) > 2:
-                annotationElement = etree.SubElement(solutionElement,'Annotation')
+                annotationElement = ET.SubElement(solutionElement,'Annotation')
                 annotationElement.text = ' '.join(splitLine[2:])
         elif line.strip().startswith( 'SOLU SPAC' ):
-            spaceGroupElement = etree.SubElement(solutionElement,'spaceGroup')
+            spaceGroupElement = ET.SubElement(solutionElement,'spaceGroup')
             spaceGroupElement.text = line.strip()[10:]
         elif line.strip().startswith('SOLU 6DIM'):
-            componentElement=etree.SubElement(solutionElement,'Component')
-            nameElement = etree.SubElement(componentElement,'Name')
+            componentElement=ET.SubElement(solutionElement,'Component')
+            nameElement = ET.SubElement(componentElement,'Name')
             nameElement.text = line.strip().split()[3]
         elif not line.strip().startswith('SOLU') and not line.strip().startswith('#') and solutionElement is not None:
             #Here if the annotation is spread over multiple lines:

@@ -12,13 +12,12 @@ import os
 import shutil
 import sys
 import time
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore, QtGui, QtSvg, QtWidgets
 
 from . import CCP4StyleSheet
 from .. import I2_TOP
-from ..core import CCP4File, CCP4Utils
 from ..core.CCP4ErrorHandling import CErrorReport, CException
 from ..core.CCP4Modules import LAUNCHER
 from ..core.CCP4Modules import MIMETYPESHANDLER
@@ -423,7 +422,7 @@ class CTreeItemFile(CTreeItem):
     relPath = root.find('relPath')
     #print 'CTreeItemFile.mimeData projectId',info,PROJECTSMANAGER().getProjectDirectory(projectId=info['projectid']),relPath.text
     relPath.text = os.path.normpath(os.path.join(PROJECTSMANAGER().getProjectDirectory(projectId=info['projectid']),str(relPath.text)))
-    dragText = etree.tostring(root,pretty_print=False)
+    dragText = ET.tostring(root)
     urlList = [QtCore.QUrl()]
     urlList[0].setPath( PROJECTSMANAGER().db().getFullPath(fileId=self.fileId ) )
     urlList[0].setScheme("file")
@@ -1226,9 +1225,9 @@ class CTreeItemJob(CTreeItem):
   def mimeData(self):
     urlList = []
     mimeType = 'FollowFromJob'
-    root = etree.Element('jobId')
+    root = ET.Element('jobId')
     root.text = str(self.jobId)
-    dragText = etree.tostring(root,pretty_print=False)
+    dragText = ET.tostring(root)
     sceneFiles = PROJECTSMANAGER().getSceneFiles(jobId=self.jobId)
     if len(sceneFiles)>0:
       urlList = [QtCore.QUrl()]
@@ -2464,12 +2463,13 @@ class CProjectWidget(QtWidgets.QFrame):
     elif action == 'Copy parameters':
       # Set 'taskParameters' data on the application clipboard
       # to enable it to be pasted elsewhere
-      root = etree.Element('taskParameters')
+      root = ET.Element('taskParameters')
       jobInfo = PROJECTSMANAGER().db().getJobInfo(jobId,mode=['taskname','jobnumber','projectname','projectid'])
       for name,value in [[ 'jobId' , jobId],['taskName',jobInfo['taskname']],['jobNumber',jobInfo['jobnumber']],['projectName',jobInfo['projectname']],['projectId',jobInfo['projectid']]]:
-        e = etree.SubElement(root,name)
+        e = ET.SubElement(root,name)
         e.text = value
-      dragText = etree.tostring(root,pretty_print=True)
+      ET.indent(root)
+      dragText = ET.tostring(root)
       data = QtCore.QByteArray()
       data.append(dragText)
       mimeData = QtCore.QMimeData()
@@ -2907,7 +2907,7 @@ class CProjectDirView(QtWidgets.QTreeView):
 
     mimeType = PROJECTSMANAGER().db().getFileInfo(fileId=fileId,mode='fileclass')
     root,err = PROJECTSMANAGER().db().getFileEtree(fileId=fileId)
-    dragText = etree.tostring(root)
+    dragText = ET.tostring(root)
     #print 'CProjectDirView.startDrag',mimeType,dragText
     
     encodedData = QtCore.QByteArray()

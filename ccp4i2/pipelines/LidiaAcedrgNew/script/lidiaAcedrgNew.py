@@ -1,8 +1,8 @@
 import os
 import shutil
 import sys
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore
 
 from ....core import CCP4ErrorHandling
@@ -21,8 +21,8 @@ class lidiaAcedrgNew(CPluginScript):
 
     def process(self):
         
-        self.xmlroot = etree.Element('LidiaAcedrg')
-        tlcNode = etree.SubElement(self.xmlroot,'TLC')
+        self.xmlroot = ET.Element('LidiaAcedrg')
+        tlcNode = ET.SubElement(self.xmlroot,'TLC')
         tlcNode.text = 'UNL'
         if self.container.inputData.TLC.isSet():
             tlcNode.text = self.container.inputData.TLC.__str__()
@@ -64,7 +64,7 @@ class lidiaAcedrgNew(CPluginScript):
         if status == CPluginScript.FAILED:
             self.finishWithStatus(status)
         
-        lidiaRoot = CCP4Utils.openFileToEtree(self.lidiaPlugin.makeFileName('PROGRAMXML'))
+        lidiaRoot = ET.parse(self.lidiaPlugin.makeFileName('PROGRAMXML')).getroot()
         self.xmlroot.append(lidiaRoot)
         self.flushXML()
         
@@ -153,7 +153,7 @@ class lidiaAcedrgNew(CPluginScript):
         shutil.copyfile(acedrgPlugin.container.outputData.MOLOUT.fullPath.__str__(), out.MOLOUT_LIST[-1].fullPath.__str__())
         out.MOLOUT_LIST[-1].annotation = acedrgPlugin.container.outputData.MOLOUT.annotation
 
-        acedrgRoot = CCP4Utils.openFileToEtree(acedrgPlugin.makeFileName('PROGRAMXML'))
+        acedrgRoot = ET.parse(acedrgPlugin.makeFileName('PROGRAMXML')).getroot()
         self.xmlroot.append(acedrgRoot)
 
         return CPluginScript.SUCCEEDED
@@ -164,4 +164,5 @@ class lidiaAcedrgNew(CPluginScript):
 
     def flushXML(self):
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-            CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot,pretty_print=True))
+            ET.indent(self.xmlroot)
+            CCP4Utils.writeXML(programXML,ET.tostring(self.xmlroot))

@@ -228,7 +228,6 @@ class servalcat(CPluginScript):
             xmlText = json2xml(jsonStats, tag_name_subroot="cycle")
             xmlFilePath = str(os.path.join(self.getWorkDirectory(), "refined_stats.xml"))
             xmlText = self.xmlAddRoot(xmlText, xmlFilePath, xmlRootName="SERVALCAT")
-            # self.xmlroot = CCP4Utils.openFileToEtree(xmlFilePath)
             self.xmlroot = ET.fromstring(xmlText)
             rxml = self.xmlroot
             et = ET.ElementTree(self.xmlroot)

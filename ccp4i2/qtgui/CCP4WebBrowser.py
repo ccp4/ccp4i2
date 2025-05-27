@@ -18,9 +18,9 @@ import sys
 import tempfile
 import time
 import traceback
+import xml.etree.ElementTree as ET
 import zipfile
 
-from lxml import etree
 from PySide2 import QtCore, QtGui, QtWebEngineWidgets, QtWidgets
 
 from . import CCP4WebToolBarButtons
@@ -151,27 +151,27 @@ def saveStatus():
     if CMainWindow.STATUS_SAVED:
         return ''
     from . import CCP4ProjectViewer
-    body = etree.Element('body')
-    root = etree.Element('windows')
+    body = ET.Element('body')
+    root = ET.Element('windows')
     body.append(root)
     #print 'saveStatus',CBrowserWindow.Instances,CCP4ProjectViewer.CProjectViewer.Instances
     #traceback.print_stack(limit=5)
     for win in CCP4I1Projects.CI1ProjectViewer.Instances:
         win.Exit()
     for win in CBrowserWindow.Instances:
-        winEle = etree.Element('browser')
+        winEle = ET.Element('browser')
         try:
             size = (win.size().width(),win.size().height())
-            sizeEle = etree.Element('windowSize')
+            sizeEle = ET.Element('windowSize')
             sizeEle.text = str(size[0]) + ',' + str(size[1])
             winEle.append(sizeEle)
         except:
             pass
         #print 'CMainWindow.saveStatus browser',win.tab().count()
         for ii in range(win.tab().count()):
-            tabEle = etree.Element('tab')
+            tabEle = ET.Element('tab')
             winEle.append(tabEle)
-            fileEle =  etree.Element('filename')
+            fileEle =  ET.Element('filename')
             try:
                 url = win.tab().widget(ii).url()
             except:
@@ -193,7 +193,7 @@ def saveStatus():
             tabEle.append(fileEle)
             title = win.tab().widget(ii).title()
             if title is not None:
-                titleEle = etree.Element('title')
+                titleEle = ET.Element('title')
                 titleEle.text = title
             tabEle.append(titleEle)
         root.append(winEle)
@@ -206,24 +206,23 @@ def saveStatus():
         except:
             pass
         else:
-            winEle = etree.Element('projectViewer')
-            projectEle = etree.Element('project')
+            winEle = ET.Element('projectViewer')
+            projectEle = ET.Element('project')
             #print 'CMainWindow.saveStatus projectName',projectName
             projectEle.text = projectName
             winEle.append(projectEle)
             if jobNumber is not None:
-                jobEle = etree.Element('openJobNumber')
+                jobEle = ET.Element('openJobNumber')
                 jobEle.text = str(jobNumber)
                 winEle.append(jobEle)
                 if size is not None:
-                    sizeEle = etree.Element('windowSize')
+                    sizeEle = ET.Element('windowSize')
                     sizeEle.text = str(size[0])+','+str(size[1])
                     winEle.append(sizeEle)
             # Issues with handing ByteArray - skip this for now
-            #ele = etree.SubElement(projectEle,'headerState')
+            #ele = ET.SubElement(projectEle,'headerState')
             #ele.text = win.projectWidget().getHeaderState()
             root.append(winEle)
-    #print 'CCP4WebBrowser.saveStatus',etree.tostring(body,pretty_print=True)
     statusFile = os.path.join(CCP4Utils.getDotDirectory(), 'status', 'status_' + str(int(time.time())) + '.ccp4i2_status.xml')
     f= CCP4File.CI2XmlDataFile(statusFile)
     f.header.function.set('STATUS')

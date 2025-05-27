@@ -162,7 +162,7 @@ class editbfac(CPluginScript):
         status = CPluginScript.SUCCEEDED
         # Create a trivial xml output file
         from ....core import CCP4File
-        root = etree.Element('editbfac')
+        root = ET.Element('editbfac')
         self.container.outputData.XYZOUT.subType = 1
         f = CCP4File.CXmlDataFile(fullPath=self.makeFileName('PROGRAMXML'))
         f.saveFile(root)

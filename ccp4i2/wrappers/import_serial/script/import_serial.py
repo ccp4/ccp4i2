@@ -84,12 +84,6 @@ class import_serial(CPluginScript):
 
         # XML output 'program.xml' is produced by the command line application
         self.xmlout = self.makeFileName('PROGRAMXML')
-        # rootNode = etree.Element("import_serial")
-        # Save xml
-        #xmlfile = open(self.xmlout, 'wb')
-        #xmlString= etree.tostring(rootNode, pretty_print=True)
-        #xmlfile.write(xmlString)
-        #xmlfile.close()
         print("import_serial: makeCommandAndScript end")
         return CPluginScript.SUCCEEDED
 
@@ -99,10 +93,5 @@ class import_serial(CPluginScript):
         self.container.outputData.HKLOUT.setAnnotation("Merged intensities")
         self.container.outputData.HKLOUT.contentFlag = CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN # not sure if does anything
 
-        # Save xml
-        #xmlfile = open(self.xmlout, 'wb')
-        #xmlString= etree.tostring(root, pretty_print=True)
-        #xmlfile.write(xmlString)
-        #xmlfile.close()
         print("import_serial: processOutputFiles end")
         return CPluginScript.SUCCEEDED

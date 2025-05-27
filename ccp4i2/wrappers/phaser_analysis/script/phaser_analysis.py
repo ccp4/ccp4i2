@@ -137,7 +137,7 @@ class phaser_analysis(CPluginScript):
     # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
     def makeXML(self, xmlout):
         # Uses self.logfile and self.loggraphs
-        self.xmlroot = etree.Element('PHASER_ANALYSIS')
+        self.xmlroot = ET.Element('PHASER_ANALYSIS')
         self.xmlroot.set('name', self.pxdname)  # dataset name
 
         # Save all loggraphs to file (for now anyway)
@@ -218,7 +218,7 @@ class phaser_analysis(CPluginScript):
         elif allOK < 0:
             message = 'No acceptable data'
 
-        resolutionxml = etree.Element('ResolutionEstimate', type=name)
+        resolutionxml = ET.Element('ResolutionEstimate', type=name)
         addElement(resolutionxml, 'Threshold', "{:6.2f}".format(threshold))
         addElement(resolutionxml, 'Columns', xcol+' '+ycol)
         addElement(resolutionxml, 'ResolutionLimitEstimate', "{:6.2f}".format(reslimit))

@@ -304,7 +304,7 @@ class scaleit_report(Report):
         temp.append(plotelement)
       newplotelements = temp
 
-      newblock = etree.Element(thisgraph.tag)
+      newblock = ET.Element(thisgraph.tag)
       newblock.attrib['title'] = thisgraph.get('title')
       for elem in thisgraph:
           if elem.tag != 'plot':
@@ -349,7 +349,7 @@ class scaleit_report(Report):
 # - - - - - - - - -  - - - - - - - - -  - - - - - - - - - 
 def addElement(containerXML, elementname, elementtext):
     #print 'addElement', elementname, type(elementtext), elementtext 
-    e2 = etree.Element(elementname)
+    e2 = ET.Element(elementname)
     e2.text = elementtext
     containerXML.append(e2)
 

@@ -3,7 +3,6 @@ import sys
 from ....report.CCP4ReportParser import Report
 
 
-# - - - - - - - - - - - - - - - - -
 class freerflag_report(Report):
     # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'freerflag'
@@ -74,9 +73,8 @@ class freerflag_report(Report):
         parent.append(' <br/>')
         parent.addText(text=message)
 
-# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
 if __name__ == "__main__":
     report = freerflag_report(xmlFile = sys.argv[1] )
     tree= report.as_etree()
-    #  print etree.tostring(tree,pretty_print=True)
     report.as_html_file(fileName='./test-freer.html')

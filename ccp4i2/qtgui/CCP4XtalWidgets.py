@@ -6,8 +6,8 @@ Copyright (C) 2010 University of York
 
 import functools
 import os
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore, QtWidgets
 
 from . import CCP4Widgets
@@ -185,7 +185,7 @@ class CSpaceGroupCellView(CCP4Widgets.CComplexLineWidget):
                 'FreeRDataFile', 'MapCoeffsDataFile', 'PdbDataFile']
 
     def acceptDropData(self, textData):
-        tree = etree.fromstring(textData)
+        tree = ET.fromstring(textData)
         try:
             path = os.path.join(tree.xpath('//relPath')[0].text.__str__(), tree.xpath('//baseName')[0].text.__str__())
         except:
@@ -642,7 +642,7 @@ class CAsuComponentView(CCP4Widgets.CComplexLineWidget):
                 self.widgets[item].connectUpdateViewFromModel(True)
 
     def acceptDropData(self,textData):
-        tree = etree.fromstring(textData)
+        tree = ET.fromstring(textData)
         #print 'CAsuComponentView.acceptDropData',textData,tree.tag
         self.widgets['seqFile'].connectUpdateViewFromModel(False)
         if tree.tag in ['SeqDataFile','seqFile']:
@@ -927,7 +927,7 @@ class CImportUnmergedView(CCP4Widgets.CComplexLineWidget):
         if self.model.file.isSet():
             tree = self.model.file.getEtree()
             tree.tag = 'UnmergedDataFile'
-            text = etree.tostring(tree,pretty_print=False)
+            text = ET.tostring(tree)
             return text
         else:
             return None
@@ -937,7 +937,7 @@ class CImportUnmergedView(CCP4Widgets.CComplexLineWidget):
 
     def acceptDropData(self,textData):
         #print 'CImportUnmergedView.acceptDropData',textData
-        tree = etree.fromstring(textData)
+        tree = ET.fromstring(textData)
         self.connectUpdateViewFromModel(False)
         if tree.tag == 'UnmergedDataFile':
             self.model.file.unSet()
@@ -1233,7 +1233,7 @@ class CMergeMiniMtzView(CCP4Widgets.CComplexLineWidget):
     @QtCore.Slot('QMimeData')
     def acceptDropData(self,textData):
         #print 'CMergeMiniMtzView.acceptDropData',textData
-        tree = etree.fromstring(textData)
+        tree = ET.fromstring(textData)
         tree.tag = self.dragType()
         #print 'CMergeMiniMtzView.acceptDropData',textData,tree.tag
         self.connectUpdateViewFromModel(False)

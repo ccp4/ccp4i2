@@ -9,8 +9,8 @@ import copy
 import os
 import sys
 import tempfile
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore
 
 from ..core import CCP4Utils
@@ -157,10 +157,10 @@ class CReport(QtCore.QObject):
     if not os.path.exists(self.filename):
       raise CException(self.__class__,101,self.filename)
     try:
-      root = CCP4Utils.openFileToEtree(self.filename)
+      root = ET.parse(self.filename).getroot()
       #root = tree.getroot()
       #print 'CReport.loadFromXmlFile',root
-    except etree.ParseError as e:
+    except ET.ParseError as e:
       #print 'CReport.loadFromXmlFile',e.filename,e.lineno,e.msg,e.offset,e.print_file_and_line,e.text
       raise CException(self.__class__,102,e.msg+' in file '+filename)
     except:
@@ -188,13 +188,14 @@ class CReport(QtCore.QObject):
   def toString(self,root):
     text = ''
     try:
-      text = etree.tostring(root,pretty_print=True)
+      ET.indent(root)
+      text = ET.tostring(root)
     except:
       raise CException(self.__class__,103)
     return text
 
   def tostring(self,root):
-    if root is not None: return etree.tostring(root)
+    if root is not None: return ET.tostring(root)
     return ''
 
   def extractBaseHref(self,root):
@@ -228,7 +229,6 @@ class CReport(QtCore.QObject):
       #for element in body.findall('ccp4:ccp4_data',namespaces=NSMAP):
       for tag in ('ccp4_data','{http://www.ccp4.ac.uk/ccp4ns}ccp4_data'):
         for element in body.findall('.//'+tag):
-          #print 'CReport.extractCCP4Data found ccp4_data',etree.tostring(element,pretty_print=True)
           data_type = element.get('type','')
           id = element.get('id','')
           #print 'CReport.extractCCP4Data',data_type,id
@@ -244,11 +244,9 @@ class CReport(QtCore.QObject):
        raise CException(self.__class__,106,data_type)
      #print 'CReport.parseCCP4Data',data_type,name,dataClass
      dataobj = dataClass(parent=self,name=name)
-     #print 'CReport.parseCCP4Data',name,data_type,etree.tostring(element,pretty_print=True)
      if data_type == 'CContainer':
        e = dataobj.loadFromEtree(element)
      else:
-       #print 'CReport.parseCCP4Data',name,data_type,etree.tostring(element,pretty_print=True)
        e = dataobj.setEtree(element)      
      self.dataArray[name] = dataobj
      return e
@@ -268,7 +266,6 @@ class CReport(QtCore.QObject):
         else:
           parent = parent.xpath('..')[0]
       if isTop:
-        #print etree.tostring(ele,pretty_print=True)
         if ele.text.count( u"\u25BC") or  ele.text.count( u"\u25B6"):
           #Confused - seems to work if chop first two chrs rather than first seven
           txt = str(ele.text[2:])

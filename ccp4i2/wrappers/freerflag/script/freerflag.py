@@ -3,8 +3,8 @@ Copyright (C) 2011 STFC
 """
 
 import os
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 import gemmi
 
 from ....core import CCP4ErrorHandling
@@ -134,7 +134,7 @@ class freerflag(CPluginScript):
     # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
     def processOutputFiles(self):
       print("freerflag - processOutputFiles")
-      self.xmlRoot = etree.Element('FREERFLAGINFO')
+      self.xmlRoot = ET.Element('FREERFLAGINFO')
       annotation = ''
 
       if self.container.controlParameters.GEN_MODE == 'COMPLETE':
@@ -171,7 +171,8 @@ class freerflag(CPluginScript):
                               '{:6.2f}'.format(resmax))
 
       with open ( self.makeFileName('PROGRAMXML'),'w' ) as xmlFile:
-         xmlString = etree.tostring (self.xmlRoot, pretty_print=True )
+         ET.indent(self.xmlRoot)
+         xmlString = ET.tostring(self.xmlRoot)
          CCP4Utils.writeXML(xmlFile,xmlString)
 
       if self.container.controlParameters.GEN_MODE == 'COMPLETE':
@@ -210,6 +211,6 @@ class freerflag(CPluginScript):
     # - - - - - - - - -  - - - - - - - - -  - - - - - - - - - 
     def addElement(self, containerXML, elementname, elementtext):
         #print 'addElement', elementname, type(elementtext), elementtext 
-        e2 = etree.Element(elementname)
+        e2 = ET.Element(elementname)
         e2.text = elementtext
         containerXML.append(e2)

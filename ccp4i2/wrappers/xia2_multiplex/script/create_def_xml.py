@@ -5,11 +5,12 @@
 #  Acknowledgements: based on ideas and code by Nat Echols and Martin Noble.
 #
 
-from lxml import etree
+import xml.etree.ElementTree as ET
+
 from xia2.cli.multiplex import phil_scope
 
 from ....utils.phil_handlers import PhilTaskCreator
-
+from ccp4i2.core.CCP4Utils import printXml
 
 class Xia2MultiplexTaskCreator(PhilTaskCreator):
     def __init__(self, debug=False):
@@ -17,7 +18,7 @@ class Xia2MultiplexTaskCreator(PhilTaskCreator):
         PhilTaskCreator.__init__(self, phil_scope, debug)
         self.fmt_dic["PLUGINNAME"] = "xia2_multiplex"
 
-        self.inputDataXML = etree.fromstring(
+        self.inputDataXML = ET.fromstring(
             """
 <container id="inputData">
   <content id="SEARCH_ROOT_DIR">
@@ -74,7 +75,7 @@ class Xia2MultiplexTaskCreator(PhilTaskCreator):
 """
         )
 
-        self.outputDataXML = etree.fromstring(
+        self.outputDataXML = ET.fromstring(
             """
 <container id="outputData">
   <content id="UNMERGEDOUT">
@@ -135,7 +136,7 @@ class Xia2MultiplexTaskCreator(PhilTaskCreator):
         )
 
         if self.debug:
-            print(etree.tostring(self.phil_tree, pretty_print=True))
+            printXml(self.phil_tree)
 
         super(Xia2MultiplexTaskCreator, self).__call__()
 

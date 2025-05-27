@@ -11,6 +11,7 @@ import json
 import os
 import platform
 import shutil
+import xml.etree.ElementTree as ET
 
 from dxtbx.model.experiment_list import ExperimentList
 from lxml import etree
@@ -124,7 +125,7 @@ class Cxia2_ssx_reduce(CPluginScript):
         # Create PHIL file and command line
         self._setCommandLineCore(phil_filename="xia2_ssx_reduce.phil")
 
-        self.xmlroot = etree.Element("Xia2SsxReduce")
+        self.xmlroot = ET.Element("Xia2SsxReduce")
 
         self.watchFile(
             os.path.normpath(
@@ -164,7 +165,7 @@ class Cxia2_ssx_reduce(CPluginScript):
             pid=self.getProcessId(), attribute="exitStatus"
         )
         if exitStatus != CPluginScript.SUCCEEDED:
-            element = etree.SubElement(self.xmlroot, "Xia2SsxReduceError")
+            element = ET.SubElement(self.xmlroot, "Xia2SsxReduceError")
             element.text = "Unknown xia2.ssx_reduce error"
             return exitStatus
 
@@ -178,7 +179,7 @@ class Cxia2_ssx_reduce(CPluginScript):
         merged = []
         merged.extend(glob.glob(os.path.normpath(os.path.join(DataFilesPath, "*.mtz"))))
         if not merged:
-            element = etree.SubElement(self.xmlroot, "Xia2SsxReduceError")
+            element = ET.SubElement(self.xmlroot, "Xia2SsxReduceError")
             with open(xia2SsxReduceLogPath, "r") as xia2SsxReduceLogFile:
                 xia2SsxReduceLog = xia2SsxReduceLogFile.read()
                 text_terminated_abruptly = \
@@ -202,7 +203,7 @@ class Cxia2_ssx_reduce(CPluginScript):
         # Read xia2.ssx_reduce.log
         if os.path.isfile(xia2SsxReduceLogPath):
             with open(xia2SsxReduceLogPath, "r") as xia2SsxReduceLogFile:
-                element = etree.SubElement(self.xmlroot, "Xia2SsxReduceLog")
+                element = ET.SubElement(self.xmlroot, "Xia2SsxReduceLog")
                 element.text = etree.CDATA(xia2SsxReduceLogFile.read())
                 print(element.text)
 
@@ -227,11 +228,11 @@ class Cxia2_ssx_reduce(CPluginScript):
                     DialsMergeLogFilesPath.append(DialsMergeLogFilePath)
 
         # Read LogFiles/dials.merge*.log files
-        element_master = etree.SubElement(self.xmlroot, "DialsMergeLogMaster")
+        element_master = ET.SubElement(self.xmlroot, "DialsMergeLogMaster")
         for DialsMergeLogPath in DialsMergeLogFilesPath:
             if os.path.isfile(DialsMergeLogPath):
                 with open(DialsMergeLogPath, "r") as DialsMergeLogFile:
-                    element = etree.SubElement(element_master, "DialsMergeLog")
+                    element = ET.SubElement(element_master, "DialsMergeLog")
                     element.text = etree.CDATA(DialsMergeLogFile.read())
                     print(element.text)
 
@@ -264,7 +265,7 @@ class Cxia2_ssx_reduce(CPluginScript):
             DialsCosymLogPath = DialsCosymLogPath2
         if DialsCosymLogPath:
             with open(DialsCosymLogPath, "r") as DialsCosymLogFile:
-                element = etree.SubElement(self.xmlroot, "DialsCosymLog")
+                element = ET.SubElement(self.xmlroot, "DialsCosymLog")
                 element.text = etree.CDATA(DialsCosymLogFile.read())
                 print(element.text)
 
@@ -282,9 +283,9 @@ class Cxia2_ssx_reduce(CPluginScript):
             ] = "{:.2f}, {:.2f}, {:.2f}<br/>{:.2f}, {:.2f}, {:.2f}".format(*cell)
 
         # Also store these in the XML for the report
-        element = etree.SubElement(self.xmlroot, "Xia2SsxReduceSG")
+        element = ET.SubElement(self.xmlroot, "Xia2SsxReduceSG")
         element.text = etree.CDATA(run_data["space group"])
-        element = etree.SubElement(self.xmlroot, "Xia2SsxReduceCell")
+        element = ET.SubElement(self.xmlroot, "Xia2SsxReduceCell")
         element.text = etree.CDATA(run_data["unit cell"])
 
         for srcPath in merged:
@@ -396,7 +397,7 @@ class Cxia2_ssx_reduce(CPluginScript):
         # remove xia2.ssx_reduce.log nodes
         for Xia2SsxReduceLogNode in self.xmlroot.xpath("Xia2SsxReduceLog"):
             self.xmlroot.remove(Xia2SsxReduceLogNode)
-        xia2SsxReduceLogNode = etree.SubElement(self.xmlroot, "Xia2SsxReduceLog")
+        xia2SsxReduceLogNode = ET.SubElement(self.xmlroot, "Xia2SsxReduceLog")
         with open(filename, "r") as xia2SsxReduceLogFile:
             xia2SsxReduceLogNode.text = etree.CDATA(xia2SsxReduceLogFile.read())
         self.flushXML()
@@ -404,7 +405,8 @@ class Cxia2_ssx_reduce(CPluginScript):
     def flushXML(self):
         tmpFilename = self.makeFileName("PROGRAMXML") + "_tmp"
         with open(tmpFilename, "wb") as xmlFile:
-            xmlFile.write(etree.tostring(self.xmlroot, pretty_print=True))
+            ET.indent(self.xmlroot)
+            xmlFile.write(ET.tostring(self.xmlroot))
         if os.path.exists(self.makeFileName("PROGRAMXML")):
             os.remove(self.makeFileName("PROGRAMXML"))
         os.rename(tmpFilename, self.makeFileName("PROGRAMXML"))

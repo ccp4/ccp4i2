@@ -1,7 +1,7 @@
 import os
 import shutil
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore
 
 from ....core.CCP4PluginScript import CPluginScript
@@ -20,7 +20,7 @@ class SubstituteLigand(CPluginScript):
 
     def __init__(self, *args,**kws):
         super(SubstituteLigand, self).__init__(*args, **kws)
-        self.xmlroot = etree.Element('SubstituteLigand')
+        self.xmlroot = ET.Element('SubstituteLigand')
         self.obsToUse = None
         self.freerToUse = None
     
@@ -65,7 +65,7 @@ class SubstituteLigand(CPluginScript):
     def lidiaAcedrg_finished(self, status):
         if status.get('finishStatus') == CPluginScript.FAILED:
             self.reportStatus(CPluginScript.FAILED)
-        pluginRoot = CCP4Utils.openFileToEtree(self.lidiaAcedrgPlugin.makeFileName('PROGRAMXML'))
+        pluginRoot = ET.parse(self.lidiaAcedrgPlugin.makeFileName('PROGRAMXML')).getroot()
         self.xmlroot.append(pluginRoot)
         self.flushXML()
         self.harvestFile(self.lidiaAcedrgPlugin.container.outputData.DICTOUT_LIST[0], self.container.outputData.DICTOUT)
@@ -101,7 +101,7 @@ class SubstituteLigand(CPluginScript):
         if status.get('finishStatus') == CPluginScript.FAILED:
             self.reportStatus(CPluginScript.FAILED)
         
-        pluginRoot = CCP4Utils.openFileToEtree(self.aimlessPlugin.makeFileName('PROGRAMXML'))
+        pluginRoot = ET.parse(self.aimlessPlugin.makeFileName('PROGRAMXML')).getroot()
         self.xmlroot.append(pluginRoot)
         #Here check on the resolution estimate, and cut dataset back accordingly
         if self.aimlessCycle == 0:
@@ -160,7 +160,7 @@ class SubstituteLigand(CPluginScript):
         if status.get('finishStatus') == CPluginScript.FAILED:
             self.reportStatus(status)
         try:
-            pluginRoot = CCP4Utils.openFileToEtree(self.rnpPlugin.makeFileName('PROGRAMXML'))
+            pluginRoot = ET.parse(self.rnpPlugin.makeFileName('PROGRAMXML')).getroot()
             self.xmlroot.append(pluginRoot)
             self.flushXML()
             self.harvestFile(self.rnpPlugin.container.outputData.MAPOUT_REFMAC, self.container.outputData.FPHIOUT)
@@ -195,7 +195,7 @@ class SubstituteLigand(CPluginScript):
         if status.get('finishStatus') == CPluginScript.FAILED:
             self.reportStatus(status)
         try:
-            pluginRoot = CCP4Utils.openFileToEtree(self.i2Dimple.makeFileName('PROGRAMXML'))
+            pluginRoot = ET.parse(self.i2Dimple.makeFileName('PROGRAMXML')).getroot()
             self.xmlroot.append(pluginRoot)
             self.flushXML()
             self.harvestFile(self.i2Dimple.container.outputData.FPHIOUT, self.container.outputData.FPHIOUT)
@@ -270,10 +270,10 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))'''
             if len(modelCompositionNodes) > 0: modelCompositionNode = modelCompositionNodes[-1]
             else:
                 refmacNodes = self.xmlroot.xpath('//REFMAC')
-                if len(refmacNodes) > 0: modelCompositionNode = etree.SubElement(refmacNodes[-1],"ModelComposition")
+                if len(refmacNodes) > 0: modelCompositionNode = ET.SubElement(refmacNodes[-1],"ModelComposition")
             if modelCompositionNode is not None:
                 for monomer in aCPdbData.composition.monomers:
-                    monomerNode = etree.SubElement(modelCompositionNode,'Monomer',id=monomer)
+                    monomerNode = ET.SubElement(modelCompositionNode,'Monomer',id=monomer)
         self.finishWithStatus(CPluginScript.SUCCEEDED)
 
     def harvestFile(self, pluginOutputItem, pipelineOutputItem):
@@ -288,12 +288,13 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))'''
             self.finishWithStatus(CPluginScript.FAILED)
 
     def appendXML(self, changedFile, replacingElementOfType=None):
-        newXML = CCP4Utils.openFileToEtree(changedFile)
+        newXML = ET.parse(changedFile).getroot()
         oldNodes = self.xmlroot.xpath(replacingElementOfType)
         if len(oldNodes) > 0: oldNodes[0].parent().remove(oldNodes[0])
         self.xmlroot.append(newXML)
         with open(self.makeFileName('PROGRAMXML'),'w') as xmlfile:
-            CCP4Utils.writeXML(xmlfile,etree.tostring(self.xmlroot,pretty_print=True))
+            ET.indent(self.xmlroot)
+            CCP4Utils.writeXML(xmlfile,ET.tostring(self.xmlroot))
 
     def checkFinishStatus( self, statusDict,failedErrCode,outputFile = None,noFileErrCode= None):
         if len(statusDict)>0 and statusDict['finishStatus'] == CPluginScript.FAILED:
@@ -311,4 +312,5 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))'''
 
     def flushXML(self):
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-            CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot,pretty_print=True))
+            ET.indent(self.xmlroot)
+            CCP4Utils.writeXML(programXML,ET.tostring(self.xmlroot))

@@ -1,7 +1,6 @@
 import sys
 import unittest
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ccp4i2.core import QtCore
 from ccp4i2.core.CCP4Data import CList, CInt, CException, CIntRange, CFloat, CDict, CDataFile
@@ -117,7 +116,8 @@ class testCListAssorted(unittest.TestCase):
 '''
         self.l.set([{'start' : 2, 'end':6},{'start' : 4, 'end':14},{'start' : 5, 'end':15}])
         element = self.l.getEtree()
-        text = etree.tostring(element,pretty_print=True)
+        ET.indent(element)
+        text = ET.tostring(element)
         #print text
         self.assertEqual(text,testXML,'Failed writing XML comparison')
         m = CList(subItemClass=CIntRange,listMaxLength=4)

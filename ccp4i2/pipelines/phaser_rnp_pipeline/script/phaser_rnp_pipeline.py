@@ -28,7 +28,7 @@ class phaser_rnp_pipeline(phaser_pipeline.phaser_pipeline):
             self.reportStatus(CPluginScript.FAILED)        
         self.checkOutputData()
 
-        self.xmlroot = etree.Element('PhaserPipeline')
+        self.xmlroot = ET.Element('PhaserPipeline')
 
         self.F_SIGF_TOUSE = self.container.inputData.F_SIGF
         self.FREERFLAG_TOUSE = self.container.inputData.FREERFLAG

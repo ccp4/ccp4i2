@@ -1,5 +1,5 @@
 import os
-import xml.etree.ElementTree as etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4Utils
 from ....report.CCP4ReportParser import Report
@@ -140,12 +140,12 @@ class ccp4mg_edit_model_report(Report):
                          annot = f['annotation']
                          break
 
-             baseSceneXML = CCP4Utils.openFileToEtree(baseScenePath)
-             et = etree.ElementTree(baseSceneXML)
+             baseSceneXML = ET.parse(baseScenePath).getroot()
+             et = ET.ElementTree(baseSceneXML)
              filename_element = et.findall(".//data/MolData/filename")[0]
              MolData_element = et.findall(".//data/MolData")[0]
              if len(annot)>0:
-                 name_element = etree.Element("name")
+                 name_element = ET.Element("name")
                  name_element.text = annot
                  MolData_element.append(name_element)
              del filename_element.attrib["database"]

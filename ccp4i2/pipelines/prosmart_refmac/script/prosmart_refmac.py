@@ -8,6 +8,7 @@ import os
 import shutil
 import sys
 import traceback
+import xml.etree.ElementTree as ET
 
 from lxml import etree
 from mmtbx.command_line import molprobity
@@ -45,8 +46,8 @@ class prosmart_refmac(CPluginScript):
         super(prosmart_refmac,self).__init__(*args, **kws)
         self.pipelinexmlfile = self.makeFileName(format='PROGRAMXML')
         self.refmacMonitors = {}
-        self.xmlroot = etree.Element("RefmacOptimiseWeight")
-        self.xmlroot2 = etree.Element("RefmacOptimiseWeight")
+        self.xmlroot = ET.Element("RefmacOptimiseWeight")
+        self.xmlroot2 = ET.Element("RefmacOptimiseWeight")
 
 #    def startProcess(self, processId):
 #        if self.container.prosmartProtein.TOGGLE:
@@ -162,7 +163,7 @@ class prosmart_refmac(CPluginScript):
     @QtCore.Slot(str)
     def handleXmlChanged2(self, xmlFilename):
         self.xmlroot2.clear()
-        refmacEtree = CCP4Utils.openFileToEtree(xmlFilename)
+        refmacEtree = ET.parse(xmlFilename).getroot()
         refmacXML = refmacEtree.xpath('//REFMAC')
         if len(refmacXML) == 1:
             refmacXML[0].tag="RefmacPostCootInProgress"
@@ -172,7 +173,7 @@ class prosmart_refmac(CPluginScript):
     @QtCore.Slot(str)
     def handleXmlChanged(self, xmlFilename):
         self.xmlroot.clear()
-        refmacEtree = CCP4Utils.openFileToEtree(xmlFilename)
+        refmacEtree = ET.parse(xmlFilename).getroot()
         refmacXML = refmacEtree.xpath('//REFMAC')
         if len(refmacXML) == 1:
             refmacXML[0].tag="RefmacInProgress"
@@ -180,21 +181,24 @@ class prosmart_refmac(CPluginScript):
         self.saveXml()
 
     def saveXml2(self):
-        newXml = etree.tostring(self.xmlroot2,pretty_print=True)
+        ET.indent(newXml)
+        newXml = ET.tostring(self.xmlroot2)
         if len(newXml) > self.xmlLength2:
            firstFileName = self.pipelinexmlfile+'_first'
            with open(firstFileName,'r') as aFile:
-               oldXml = etree.fromstring(aFile.read())
+               oldXml = ET.fromstring(aFile.read())
            oldXml.xpath('//RefmacOptimiseWeight')[0].append(self.xmlroot2.xpath("//RefmacOptimiseWeight/RefmacPostCootInProgress")[0])
            tmpFileName = self.pipelinexmlfile+'_tmp'
            with open(tmpFileName,'w') as aFile:
-               CCP4Utils.writeXML(aFile,etree.tostring(oldXml,pretty_print=True) )
+               ET.indent(oldXml)
+               CCP4Utils.writeXML(aFile,ET.tostring(oldXml))
            shutil.move(tmpFileName, self.pipelinexmlfile)
            self.xmlLength2 = len(newXml)
 
     def saveXml(self):
         # Save the xml if it has grown
-        newXml = etree.tostring(self.xmlroot,pretty_print=True)
+        ET.indent(self.xmlroot)
+        newXml = ET.tostring(self.xmlroot)
         if len(newXml) > self.xmlLength:
            tmpFileName = self.pipelinexmlfile+'_tmp'
            with open(tmpFileName,'w') as aFile:
@@ -265,7 +269,8 @@ class prosmart_refmac(CPluginScript):
                 shutil.copyfile(self.firstRefmac.container.outputData.PSOUT.__str__(), self.container.outputData.PSOUT.__str__())
                 self.container.outputData.PSOUT.annotation.set('Pictures of ligand prepared by refmac')
             with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-                CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot,pretty_print=True))
+                ET.indent(self.xmlroot)
+                CCP4Utils.writeXML(programXML,ET.tostring(self.xmlroot))
             self.reportStatus(CPluginScript.UNSATISFACTORY)
 
         elif self.firstRefmac.errorReport.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
@@ -273,13 +278,14 @@ class prosmart_refmac(CPluginScript):
             #This gets done in thefirstRefmac.reportStatus() - Liz
             #self.extendErrorReport(self.firstRefmac.errorReport)
             try:
-              refmacEtree = CCP4Utils.openFileToEtree(self.firstRefmac.makeFileName('PROGRAMXML'))
+              refmacEtree = ET.parse(self.firstRefmac.makeFileName('PROGRAMXML')).getroot()
               refmacXML = refmacEtree.xpath('//REFMAC')
               if len(refmacXML) == 1: self.xmlroot.append(refmacXML[0])
             except:
               print('Failed attempt to read XML file from first Refmac')
             try:
-              newXml = etree.tostring(self.xmlroot,pretty_print=True)
+              ET.indent(self.xmlroot)
+              newXml = ET.tostring(self.xmlroot)
               aFile = open(self.pipelinexmlfile,'w')
               CCP4Utils.writeXML(aFile,newXml)
               aFile.close()
@@ -301,7 +307,8 @@ class prosmart_refmac(CPluginScript):
             print("AAA12")
             self.addCycleXML(self.firstRefmac)
             aFile=open( self.pipelinexmlfile,'w')
-            CCP4Utils.writeXML(aFile, etree.tostring(self.xmlroot,pretty_print=True) )
+            ET.indent(self.xmlroot)
+            CCP4Utils.writeXML(aFile, ET.tostring(self.xmlroot) )
             aFile.close()
             print("AAA13")
             if self.container.controlParameters.OPTIMISE_WEIGHT:
@@ -402,7 +409,7 @@ class prosmart_refmac(CPluginScript):
         try:
           if self.container.controlParameters.ADD_WATERS:
             aFile = open(self.pipelinexmlfile,'r')
-            oldXml = etree.fromstring(aFile.read())
+            oldXml = ET.fromstring(aFile.read())
             aFile.close()
             nwaters = "unknown"
             cootLogTxt = os.path.join(os.path.dirname(self.cootPlugin.container.outputData.XYZOUT.__str__()),"log.txt")
@@ -414,11 +421,12 @@ class prosmart_refmac(CPluginScript):
                       if len(numsearch)>0:
                          nwaters = numsearch[0]
                       break
-            postRefmacCoot = etree.Element("CootAddWaters")
+            postRefmacCoot = ET.Element("CootAddWaters")
             postRefmacCoot.text = "Coot added "+nwaters+" waters"
             oldXml.append(postRefmacCoot)
             aFile = open(self.pipelinexmlfile+'_tmpcoot','w')
-            CCP4Utils.writeXML(aFile,etree.tostring(oldXml,pretty_print=True))
+            ET.indent(oldXml)
+            CCP4Utils.writeXML(aFile,ET.tostring(oldXml))
             aFile.close()
             shutil.move(self.pipelinexmlfile+'_tmpcoot', self.pipelinexmlfile)
           self.cootPlugin.container.outputData.XYZOUT.subType = 1
@@ -446,14 +454,16 @@ class prosmart_refmac(CPluginScript):
             return
         else:
             self.addCycleXML(refmacJob,"refmacPostCoot")
-            newXml = etree.tostring(self.xmlroot,pretty_print=True)
+            ET.indent(self.xmlroot)
+            newXml = ET.tostring(self.xmlroot)
             refmacPostCoot = self.xmlroot.xpath("refmacPostCoot")
             aFile = open(self.pipelinexmlfile,'r')
-            oldXml = etree.fromstring(aFile.read())
+            oldXml = ET.fromstring(aFile.read())
             aFile.close()
             oldXml.extend(refmacPostCoot)
             aFile = open(self.pipelinexmlfile,'w')
-            CCP4Utils.writeXML(aFile,etree.tostring(oldXml,pretty_print=True))
+            ET.indent(oldXml)
+            CCP4Utils.writeXML(aFile,ET.tostring(oldXml))
             aFile.close()
 
         self.finishUp(refmacJob)
@@ -505,9 +515,9 @@ class prosmart_refmac(CPluginScript):
               annotation = 'Refmac generated geometry for:'
               for item in self.container.outputData.LIBOUT.fileContent.monomerList:
                 annotation = annotation + ' ' + str(item.three_letter_code)
-              ligxml = etree.SubElement(self.xmlroot,"LIGANDS")
+              ligxml = ET.SubElement(self.xmlroot,"LIGANDS")
               for item in self.container.outputData.LIBOUT.fileContent.monomerList:
-                ligNode = etree.SubElement(ligxml,"ligand")
+                ligNode = ET.SubElement(ligxml,"ligand")
                 ligNode.text = str(item.three_letter_code)
               self.saveXml()
           except:
@@ -568,24 +578,6 @@ class prosmart_refmac(CPluginScript):
                          at.segID = b"    "
                      m.FinishStructEdit()
 
-                     #Looking at the molprobity output, it seems to me that it tres to handle alternates properly...
-                     #I am not sure that the following code is appropriate, so am commenting out MN
-                     '''
-                     #Delete alternate locations using mmdb logic
-                     sel = m.NewSelection()
-                     m.SelectAtoms(sel, 0,"*",mmdb2.ANY_RES,"*",mmdb2.ANY_RES,"*","*","*","*","! ",mmdb2.SKEY_OR )
-                     selindexp = mmdb2.intp()
-                     selAtoms = mmdb2.GetAtomSelIndex(m,sel,selindexp)
-                     nSelAtoms = selindexp.value()
-                     # Edit out the SEGIDs - should have happened at read time ?
-                     residuesWithAltes = set()
-                     for i in range(nSelAtoms):
-                         at = mmdb2.getPCAtom(selAtoms,i)
-                         residuesWithAltes.add(at.GetResidue())
-                     for residue in residuesWithAltes:
-                         residue.DeleteAltLocs()
-                     m.FinishStructEdit()
-                     '''
                      m.WritePDBASCII(sanitizedCoordPath)
 
                      fileRoot = os.path.join(self.getWorkDirectory(),"molprobity")
@@ -604,11 +596,11 @@ class prosmart_refmac(CPluginScript):
 
                      mpOutPath = fileRoot+".out"
                      if os.path.isfile(mpOutPath):
-                         etree.SubElement(etree.SubElement(self.xmlroot,"Molprobity"), "Output").text = etree.CDATA(open(mpOutPath).read())
+                         ET.SubElement(ET.SubElement(self.xmlroot,"Molprobity"), "Output").text = etree.CDATA(open(mpOutPath).read())
                      self.saveXml()
                      print("...Succeeded molprobity run after refinement :-)")
                  except Exception as err:
-                     etree.SubElement(etree.SubElement(self.xmlroot,"Molprobity"), "Output").text = etree.CDATA(str(err))
+                     ET.SubElement(ET.SubElement(self.xmlroot,"Molprobity"), "Output").text = etree.CDATA(str(err))
                      self.saveXml()
                      print("...Failed molprobity run after refinement :-(", err)
 
@@ -629,8 +621,8 @@ class prosmart_refmac(CPluginScript):
               validate_molprobity = self.container.controlParameters.VALIDATE_MOLPROBITY
 
            if validate_baverage or validate_molprobity or validate_ramachandran or validate_iris:
-             xml_validation = etree.SubElement(self.xmlroot,"Validation")
-             xml_validation_status = etree.SubElement(xml_validation,"Success")
+             xml_validation = ET.SubElement(self.xmlroot,"Validation")
+             xml_validation_status = ET.SubElement(xml_validation,"Success")
              try:
                 self.validate = self.makePluginObject('validate_protein')
                 self.validate.container.inputData.XYZIN_1.set(self.container.outputData.XYZOUT)
@@ -661,7 +653,7 @@ class prosmart_refmac(CPluginScript):
                 self.validate.process()
 
                 validateXMLPath = self.validate.makeFileName('PROGRAMXML')
-                validateXML = CCP4Utils.openFileToEtree(validateXMLPath)
+                validateXML = ET.parse(validateXMLPath).getroot()
                 if len(validateXML.xpath("//Validate_geometry_CCP4i2/Model_info"))>0:
                    xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Model_info")[0]) 
                 if self.validate.container.controlParameters.DO_IRIS:
@@ -699,22 +691,22 @@ class prosmart_refmac(CPluginScript):
 
                        suggestedParameters = self.mapVerdictSuggestionsToi2Params(suggestedParameters)
 
-                       xml_verdict = etree.SubElement(self.xmlroot,"Verdict")
-                       xml_verdict_score = etree.SubElement(xml_verdict,"verdict_score")
+                       xml_verdict = ET.SubElement(self.xmlroot,"Verdict")
+                       xml_verdict_score = ET.SubElement(xml_verdict,"verdict_score")
                        xml_verdict_score.text = str(verdict_score)
-                       xml_verdict_message = etree.SubElement(xml_verdict,"verdict_message")
+                       xml_verdict_message = ET.SubElement(xml_verdict,"verdict_message")
                        xml_verdict_message.text = etree.CDATA(verdict_message)
-                       xml_bottomline = etree.SubElement(xml_verdict,"bottomline")
+                       xml_bottomline = ET.SubElement(xml_verdict,"bottomline")
                        xml_bottomline.text = etree.CDATA(bottomline)
-                       xml_meanRfree = etree.SubElement(xml_verdict,"meanRfree")
+                       xml_meanRfree = ET.SubElement(xml_verdict,"meanRfree")
                        xml_meanRfree.text = str(meanRfree)
-                       xml_medianClash = etree.SubElement(xml_verdict,"medianClash")
+                       xml_medianClash = ET.SubElement(xml_verdict,"medianClash")
                        xml_medianClash.text = str(medianClash)
-                       xml_ramaOutliers = etree.SubElement(xml_verdict,"ramaOutliers")
+                       xml_ramaOutliers = ET.SubElement(xml_verdict,"ramaOutliers")
                        xml_ramaOutliers.text = str(ramaOutliers)
-                       xml_suggestedParameters = etree.SubElement(xml_verdict,"suggestedParameters")
+                       xml_suggestedParameters = ET.SubElement(xml_verdict,"suggestedParameters")
                        for k,v in suggestedParameters.items():
-                          xml_suggestedParameters_k = etree.SubElement(xml_suggestedParameters,k)
+                          xml_suggestedParameters_k = ET.SubElement(xml_suggestedParameters,k)
                           xml_suggestedParameters_k.text = str(v)
 
                        self.saveXml()
@@ -794,7 +786,8 @@ class prosmart_refmac(CPluginScript):
         self.addCycleXML(rtask)
         # Save the xml on every cycle
         aFile=open( self.pipelinexmlfile,'w')
-        CCP4Utils.writeXML(aFile, etree.tostring(self.xmlroot,pretty_print=True) )
+        ET.indent(self.xmlroot)
+        CCP4Utils.writeXML(aFile, ET.tostring(self.xmlroot) )
         aFile.close()
 
         #decrement count of running jobs
@@ -816,9 +809,9 @@ class prosmart_refmac(CPluginScript):
         return
 
     def addCycleXML(self, rtask, name="RefmacWeight"):
-        xmlcyc = etree.SubElement(self.xmlroot,name)
-        cycWeightNode = etree.SubElement(xmlcyc,"weight")
-        rxml = CCP4Utils.openFileToEtree(rtask.makeFileName('PROGRAMXML'))
+        xmlcyc = ET.SubElement(self.xmlroot,name)
+        cycWeightNode = ET.SubElement(xmlcyc,"weight")
+        rxml = ET.parse(rtask.makeFileName('PROGRAMXML')).getroot()
         try: cycWeightNode.text = rxml.xpath("//Cycle/WeightUsed")[-1].text
         except: pass
         rstats = rxml.xpath("//REFMAC")

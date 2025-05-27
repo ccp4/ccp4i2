@@ -64,7 +64,7 @@ class qtpisa(CPluginScript):
             globPath = os.path.normpath(os.path.join(self.dropDir,'*.xml'))
             outList = glob.glob(globPath)
 
-            report_xml = etree.Element("qtpisa_report")
+            report_xml = ET.Element("qtpisa_report")
 
             iFile = 1
             xyzoutList = self.container.outputData.XYZOUT
@@ -95,8 +95,8 @@ class qtpisa(CPluginScript):
                 report_xml.append(tree)
 
             # Create a trivial xml output file
-            self.xmlroot = etree.Element('qtpisa')
-            e = etree.Element('number_output_files')
+            self.xmlroot = ET.Element('qtpisa')
+            e = ET.Element('number_output_files')
             e.text = str(self.numberOfOutputFiles())
             self.xmlroot.append(e)
             self.xmlroot.append(report_xml)
@@ -120,7 +120,7 @@ class qtpisa(CPluginScript):
     def addReportWarning(self, text):
         warningsNode = None
         warningsNodes = self.xmlroot.xpath('//Warnings')
-        if len(warningsNodes) == 0: warningsNode = etree.SubElement(self.xmlroot, 'Warnings')
+        if len(warningsNodes) == 0: warningsNode = ET.SubElement(self.xmlroot, 'Warnings')
         else: warningsNode = warningsNodes[0]
-        warningNode = etree.SubElement(warningsNode,'Warning')
+        warningNode = ET.SubElement(warningsNode,'Warning')
         warningNode.text = text

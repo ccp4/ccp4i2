@@ -2,12 +2,12 @@ import json
 import multiprocessing
 import os
 import shutil
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4ErrorHandling
 from ....core import CCP4XtalData
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Utils import writeXml
 
 
 class slicendice(CPluginScript):
@@ -81,14 +81,6 @@ class slicendice(CPluginScript):
         self.xmlout = self.makeFileName('PROGRAMXML')
         return CPluginScript.SUCCEEDED
 
-#    """
-#    def postProcess( self, processId=-1, data={} ) :
-#      out = self.container.outputData
-#      xmlout = str( self.makeFileName( 'PROGRAMXML' ) )
-#      self.reportStatus(0)
-#    """
-#
-
     # process one or more output files
     # also writes the XML file, previously done by postProcess()
 
@@ -107,24 +99,18 @@ class slicendice(CPluginScript):
         # Get the best soln from the json file
         print("HERE:")
         try:
-            #rfrl = list(jdd.get('final_r_free').values())
             lowest_rfree=1.0
             best_split=None
             for split in jdd['dice'].keys():
                 if jdd['dice'][split]['final_r_free'] <= lowest_rfree:
                     lowest_rfree=jdd['dice'][split]['final_r_free']
                     best_split=split
-            #rfrl = jdd['dice'][best_split]['final_r_free']
-            #lindx = rfrl.index(min(rfrl))
-            #bskey = list(jdd.get('final_r_free').keys())[lindx]
         except:
             # Failed to find a solution in the json file.
             self.appendErrorReport(19122)
             print("SlicenDice: NO solution found in the json outfile.")
             return CPluginScript.FAILED
         # Need to copy the files into the actual project directory - cannot be a sub-directory. Not entirely sure why but...
-        #xyz = os.path.normpath(jdd.get('xyzout').get(bskey))
-        #hkl = os.path.normpath(jdd.get('hklout').get(bskey))
         xyz = os.path.normpath(jdd['dice'][best_split]['xyzout'])
         hkl = os.path.normpath(jdd['dice'][best_split]['hklout'])
         xyzout = os.path.join(self.getWorkDirectory(),os.path.basename(xyz))
@@ -147,17 +133,12 @@ class slicendice(CPluginScript):
         
         outputFiles = ['FPHIOUT', 'DIFFPHIOUT']
         outputColumns = ['FWT,PHWT', 'DELFWT,PHDELWT']
-        #if self.container.controlParameters.PHOUT:
-        #    outputFiles+=['ABCDOUT']
-        #    outputColumns+=['HLACOMB,HLBCOMB,HLCCOMB,HLDCOMB']
         error = self.splitHklout(outputFiles,outputColumns,infile=hklout)
         if error.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
 
         #Set performance indicators
         try:
-            #bid = jdd.get('split_id').get(bskey)
-            #rrfr = [jdd.get('final_r_fact').get(bskey), jdd.get('final_r_free').get(bskey)]
             bid = best_split.split("_")[-1]
             rrfr = [jdd['dice'][best_split]['final_r_fact'], jdd['dice'][best_split]['final_r_free']]
             self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(str(rrfr[0]))
@@ -165,29 +146,20 @@ class slicendice(CPluginScript):
         except:
             print("Failed to load r-factors from json log")
         # xml info
-        rootNode = etree.Element("SliceNDice")
-        xmlRI = etree.SubElement(rootNode, "RunInfo")
-        xmlbcyc = etree.SubElement(xmlRI, "Best")
-        etree.SubElement(xmlbcyc, "bid").text = str(bid)
-        etree.SubElement(xmlbcyc, "R").text = str(rrfr[0])
-        etree.SubElement(xmlbcyc, "RFree").text = str(rrfr[1])
+        rootNode = ET.Element("SliceNDice")
+        xmlRI = ET.SubElement(rootNode, "RunInfo")
+        xmlbcyc = ET.SubElement(xmlRI, "Best")
+        ET.SubElement(xmlbcyc, "bid").text = str(bid)
+        ET.SubElement(xmlbcyc, "R").text = str(rrfr[0])
+        ET.SubElement(xmlbcyc, "RFree").text = str(rrfr[1])
         # Get solns & save
-        #for key in jdd.get('split_id').keys():
         for key in jdd['dice'].keys():
-            xmlcyc = etree.SubElement(xmlRI, "Sol")
-            etree.SubElement(xmlcyc, "SolID").text = str(key.split("_")[-1])
-            etree.SubElement(xmlcyc, "llg").text = str(jdd['dice'][key]['phaser_llg'])
-            etree.SubElement(xmlcyc, "tfz").text = str(jdd['dice'][key]['phaser_tfz'])
-            etree.SubElement(xmlcyc, "srf").text = str(jdd['dice'][key]['final_r_fact'])
-            etree.SubElement(xmlcyc, "sre").text = str(jdd['dice'][key]['final_r_free'])
-            #etree.SubElement(xmlcyc, "SolID").text = str(jdd.get('split_id').get(key))
-            #etree.SubElement(xmlcyc, "llg").text = str(jdd.get('phaser_llg').get(key))
-            #etree.SubElement(xmlcyc, "tfz").text = str(jdd.get('phaser_tfz').get(key))
-            #etree.SubElement(xmlcyc, "srf").text = str(jdd.get('final_r_fact').get(key))
-            #etree.SubElement(xmlcyc, "sre").text = str(jdd.get('final_r_free').get(key))
+            xmlcyc = ET.SubElement(xmlRI, "Sol")
+            ET.SubElement(xmlcyc, "SolID").text = str(key.split("_")[-1])
+            ET.SubElement(xmlcyc, "llg").text = str(jdd['dice'][key]['phaser_llg'])
+            ET.SubElement(xmlcyc, "tfz").text = str(jdd['dice'][key]['phaser_tfz'])
+            ET.SubElement(xmlcyc, "srf").text = str(jdd['dice'][key]['final_r_fact'])
+            ET.SubElement(xmlcyc, "sre").text = str(jdd['dice'][key]['final_r_free'])
         # Save xml
-        xmlfile = open(self.xmlout, 'wb')
-        xmlString= etree.tostring(rootNode, pretty_print=True)
-        xmlfile.write(xmlString)
-        xmlfile.close()
+        writeXml(rootNode, self.xmlout)
         return CPluginScript.SUCCEEDED

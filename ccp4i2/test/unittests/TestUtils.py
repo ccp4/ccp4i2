@@ -12,7 +12,7 @@ class testEtreeTools(unittest.TestCase):
 
     def test1(self):
         fileName = os.path.join(getCCP4I2Dir(),'test','data','test_job_104.def.xml')
-        root = openFileToEtree(fileName=fileName)
+        root = ET.parse(fileName).getroot()
         self.assertEqual(root.tag,'ccp4i2','Failed to read first item in eTree')
  
     def test2(self):

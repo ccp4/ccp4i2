@@ -5,7 +5,8 @@
 #  Acknowledgements: based on ideas and code by Nat Echols and Martin Noble.
 #
 
-from lxml import etree
+import xml.etree.ElementTree as ET
+
 from xia2.cli.ssx_reduce import phil_scope
 
 from ....utils.phil_handlers import PhilTaskCreator
@@ -16,7 +17,7 @@ class Xia2SsxReduceTaskCreator(PhilTaskCreator):
         PhilTaskCreator.__init__(self, phil_scope, debug)
         self.fmt_dic["PLUGINNAME"] = "xia2_ssx_reduce"
 
-        self.inputDataXML = etree.fromstring(
+        self.inputDataXML = ET.fromstring(
             """
 <container id="inputData">
   <content id="SEARCH_ROOT_DIR">
@@ -73,7 +74,7 @@ class Xia2SsxReduceTaskCreator(PhilTaskCreator):
 """
         )
 
-        self.outputDataXML = etree.fromstring(
+        self.outputDataXML = ET.fromstring(
             """
 <container id="outputData">
   <content id="HKLOUT">
@@ -119,7 +120,8 @@ class Xia2SsxReduceTaskCreator(PhilTaskCreator):
         )
 
         if self.debug:
-            print(etree.tostring(self.phil_tree, pretty_print=True))
+            ET.indent(self.phil_tree)
+            print(ET.tostring(self.phil_tree))
 
         super(Xia2SsxReduceTaskCreator, self).__call__()
 

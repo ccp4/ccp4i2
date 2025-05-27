@@ -6,7 +6,7 @@ class logScraper(object):
     def __init__(self, *args, **kws):
         super(logScraper,self).__init__()
         
-        self.xmlroot = kws.get('xmlroot',etree.Element('REFMAC'))
+        self.xmlroot = kws.get('xmlroot',ET.Element('REFMAC'))
         self.flushXML = kws.get('flushXML',self._flushXML)
         
         self.blockHandlers = [{'triggerText':'Twin operators with Rmerge', 'finishFunction':lambda line: '---' in line,'parseFunction':self.parseTwin1},
@@ -78,7 +78,7 @@ class logScraper(object):
                 try:
                     parentNode = self.xmlroot.xpath(trigger['parentTag'])[-1]
                     for tag in trigger['tagPath'].split("/"):
-                        parentNode = etree.SubElement(parentNode,tag)
+                        parentNode = ET.SubElement(parentNode,tag)
                     parentNode.text = str(trigger['extractor'](line))
                 except:
                     print('parent ',trigger['parentTag'],' of trigger ',trigger['triggerText'],' not found')
@@ -91,47 +91,47 @@ class logScraper(object):
         tokens = line.split(':')
         if len(tokens) > 1:
             try: parentNode = self.xmlroot.xpath('Twinning')[0]
-            except: parentNode = etree.SubElement(self.xmlroot,'Twinning')
-            twinningBySymmetryOperatorNode = etree.SubElement(parentNode,'TwinningSymmetryOperator')
+            except: parentNode = ET.SubElement(self.xmlroot,'Twinning')
+            twinningBySymmetryOperatorNode = ET.SubElement(parentNode,'TwinningSymmetryOperator')
             operatorTokens = tokens[0].split()
             if len(operatorTokens) > 3:
                 operatorText = operatorTokens[-3]+operatorTokens[-2]+operatorTokens[-1]
-                twinningSymmetryOperatorNode = etree.SubElement(twinningBySymmetryOperatorNode,'SymmetryOperator')
+                twinningSymmetryOperatorNode = ET.SubElement(twinningBySymmetryOperatorNode,'SymmetryOperator')
                 twinningSymmetryOperatorNode.text = operatorText
             otTokens = tokens[1].split('=')
             if len(otTokens) > 1:
                 operatorText = otTokens[1]
                 if len(operatorTokens) > 1:
-                    twinningRmergeNode = etree.SubElement(twinningBySymmetryOperatorNode,'Rmerge')
+                    twinningRmergeNode = ET.SubElement(twinningBySymmetryOperatorNode,'Rmerge')
                     twinningRmergeNode.text = operatorText
 
     def parseTwin2(self, line):
         tokens = line.split(':')
         if len(tokens) > 3:
             try: parentNode = self.xmlroot.xpath('Twinning')[0]
-            except: parentNode = etree.SubElement(self.xmlroot,'Twinning')
-            twinningByTwinOperatorNode = etree.SubElement(parentNode,'TwinOperator')
-            twinningTwinOperatorNode = etree.SubElement(twinningByTwinOperatorNode,'SymmetryOperator')
+            except: parentNode = ET.SubElement(self.xmlroot,'Twinning')
+            twinningByTwinOperatorNode = ET.SubElement(parentNode,'TwinOperator')
+            twinningTwinOperatorNode = ET.SubElement(twinningByTwinOperatorNode,'SymmetryOperator')
             twinningTwinOperatorNode.text = tokens[1]
             try:
                 fractionText = tokens[2].split(';')[0].split('=')[1]
-                twinningFractionNode = etree.SubElement(twinningByTwinOperatorNode,'Fraction')
+                twinningFractionNode = ET.SubElement(twinningByTwinOperatorNode,'Fraction')
                 twinningFractionNode.text = fractionText
             except:
                 pass
 
     def parseLinks(self, line):
             try: parentNode = self.xmlroot.xpath('Links')[0]
-            except: parentNode = etree.SubElement(self.xmlroot,'Links')
-            xml_link = etree.SubElement(parentNode,"Link")
+            except: parentNode = ET.SubElement(self.xmlroot,'Links')
+            xml_link = ET.SubElement(parentNode,"Link")
             xml_link.text = str(line.strip())
 
     def parseAlignment(self, line):
         if 'No of aligned' not in line and '---' not in line and 'Alignment results' not in line:
             try: parentNode = self.xmlroot.xpath('NCS')[0]
-            except: parentNode = etree.SubElement(self.xmlroot,'NCS')
+            except: parentNode = ET.SubElement(self.xmlroot,'NCS')
             tokens = [token.strip() for token in line.split(':')]
-            equivalenceNode = etree.SubElement(parentNode,'equivalence',selection1 = tokens[2],selection2=tokens[3],nEquivalent=tokens[4],score=tokens[5],rms=tokens[6],ave_rmsLoc=tokens[7])
+            equivalenceNode = ET.SubElement(parentNode,'equivalence',selection1 = tokens[2],selection2=tokens[3],nEquivalent=tokens[4],score=tokens[5],rms=tokens[6],ave_rmsLoc=tokens[7])
 
     def parseBondOutlier(self, line):
         parentNode = self.xmlroot
@@ -139,16 +139,16 @@ class logScraper(object):
             for tag in "OutliersByCriteria/Bond".split("/"):
                 oldParentNode=parentNode
                 try: parentNode = oldParentNode.xpath(tag)[0]
-                except: parentNode = etree.SubElement(oldParentNode,tag)
-            criterionNode = etree.SubElement(parentNode,"Criteria")
+                except: parentNode = ET.SubElement(oldParentNode,tag)
+            criterionNode = ET.SubElement(parentNode,"Criteria")
             criterionNode.text = line
     
         elif len(line.split()) > 0:
             for tag in "OutliersByCriteria/Bond".split("/"):
                 oldParentNode=parentNode
                 try: parentNode = oldParentNode.xpath(tag)[0]
-                except: parentNode = etree.SubElement(oldParentNode,tag)
-            criterionNode = etree.SubElement(parentNode,"Outlier")
+                except: parentNode = ET.SubElement(oldParentNode,tag)
+            criterionNode = ET.SubElement(parentNode,"Outlier")
             outlier = {}
             outlier['chainId1'] = line[0:1]
             outlier['resId1'] = line[4:8]
@@ -170,16 +170,16 @@ class logScraper(object):
             for tag in "OutliersByCriteria/VDW".split("/"):
                 oldParentNode=parentNode
                 try: parentNode = oldParentNode.xpath(tag)[0]
-                except: parentNode = etree.SubElement(oldParentNode,tag)
-            criterionNode = etree.SubElement(parentNode,"Criteria")
+                except: parentNode = ET.SubElement(oldParentNode,tag)
+            criterionNode = ET.SubElement(parentNode,"Criteria")
             criterionNode.text = line
     
         elif len(line.split()) > 0:
             for tag in "OutliersByCriteria/VDW".split("/"):
                 oldParentNode=parentNode
                 try: parentNode = oldParentNode.xpath(tag)[0]
-                except: parentNode = etree.SubElement(oldParentNode,tag)
-            criterionNode = etree.SubElement(parentNode,"Outlier")
+                except: parentNode = ET.SubElement(oldParentNode,tag)
+            criterionNode = ET.SubElement(parentNode,"Outlier")
             outlier = {}
             outlier['chainId1'] = line[0:1]
             outlier['resId1'] = line[4:8]

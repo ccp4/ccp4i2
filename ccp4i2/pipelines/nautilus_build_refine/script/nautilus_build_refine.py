@@ -1,6 +1,5 @@
 import shutil
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
@@ -27,9 +26,9 @@ class nautilus_build_refine(CPluginScript):
 
         # XML
         self.pipelinexmlfile = self.makeFileName(format='PROGRAMXML')
-        self.xmlroot = etree.Element("NautilusBuildRefineResult")
-        self.xmlcyc = etree.SubElement(self.xmlroot,"BuildRefineCycle")
-        etree.SubElement(self.xmlcyc,"Number").text = str(1)
+        self.xmlroot = ET.Element("NautilusBuildRefineResult")
+        self.xmlcyc = ET.SubElement(self.xmlroot,"BuildRefineCycle")
+        ET.SubElement(self.xmlcyc,"Number").text = str(1)
 
         self.ncycles = int( self.container.controlParameters.ITERATIONS )
 
@@ -64,8 +63,8 @@ class nautilus_build_refine(CPluginScript):
 
         # SUBSEQUENT CYCLES
         for cyc in range(1,self.ncycles):
-          self.xmlcyc = etree.SubElement(self.xmlroot,"BuildRefineCycle")
-          etree.SubElement(self.xmlcyc,"Number").text = str(cyc+1)
+          self.xmlcyc = ET.SubElement(self.xmlroot,"BuildRefineCycle")
+          ET.SubElement(self.xmlcyc,"Number").text = str(cyc+1)
 
           #  NAUTILUS
           nautilusPlugin = self.makePluginObject("nautilus")
@@ -112,15 +111,16 @@ class nautilus_build_refine(CPluginScript):
 
     # Utility functions
     def copyNautilusXML(self,plugin):
-        self.xmlcyc.append( CCP4Utils.openFileToEtree(plugin.makeFileName('PROGRAMXML')) )
+        self.xmlcyc.append(ET.parse(plugin.makeFileName('PROGRAMXML')).getroot())
         f = open( self.pipelinexmlfile,'w')
-        CCP4Utils.writeXML(f,etree.tostring(self.xmlroot,pretty_print=True))
+        ET.indent(self.xmlroot)
+        CCP4Utils.writeXML(f,ET.tostring(self.xmlroot))
 
     def copyRefmacXML(self,plugin):
-        rxml = CCP4Utils.openFileToEtree(plugin.makeFileName('PROGRAMXML'))
+        rxml = ET.parse(plugin.makeFileName('PROGRAMXML')).getroot()
         rstats = rxml.xpath("//REFMAC/Overall_stats/stats_vs_cycle")
         if len(rstats)>0:
-          refele = etree.SubElement(self.xmlcyc,'RefmacResult')
+          refele = ET.SubElement(self.xmlcyc,'RefmacResult')
           for node in rstats[0].xpath("new_cycle[last()]/r_factor | new_cycle[last()]/r_free | new_cycle[last()]/rmsBOND |  new_cycle[last()]/rmsANGLE"):
             node.text = str(node.text).strip()
             if node.tag == 'rmsBOND':
@@ -128,4 +128,5 @@ class nautilus_build_refine(CPluginScript):
               node.tag='rmsBONDx100'
             refele.append( node )
         f = open( self.pipelinexmlfile,'w')
-        CCP4Utils.writeXML(f,etree.tostring(self.xmlroot,pretty_print=True))
+        ET.indent(self.xmlroot)
+        CCP4Utils.writeXML(f,ET.tostring(self.xmlroot))

@@ -1,7 +1,7 @@
 
 import os
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore
 
 from ......core.CCP4PluginScript import CPluginScript
@@ -22,7 +22,7 @@ class pisa_xml(CPluginScript):
 
   
     def process(self):
-        self.xmlroot = etree.Element('pisa_xml')
+        self.xmlroot = ET.Element('pisa_xml')
         result = self.retrieveAssemblies()
         if result != CPluginScript.SUCCEEDED:
             self.reportStatus(result)
@@ -37,8 +37,8 @@ class pisa_xml(CPluginScript):
 
     @QtCore.Slot(int,int)
     def retrieveAssembliesFinished(self,exitCode,exitStatus):
-        assembliesNode = etree.SubElement(self.xmlroot,'Assemblies')
-        assembliesXML = CCP4Utils.openFileToEtree(self.assembliesXMLPath)
+        assembliesNode = ET.SubElement(self.xmlroot,'Assemblies')
+        assembliesXML = ET.parse(self.assembliesXMLPath).getroot()
         assembliesNode.append(assembliesXML)
         result = self.retrieveInterfaces()
         if result != CPluginScript.SUCCEEDED:
@@ -54,14 +54,15 @@ class pisa_xml(CPluginScript):
 
     @QtCore.Slot(int,int)
     def retrieveInterfacesFinished(self,exitCode,exitStatus):
-        interfacesNode = etree.SubElement(self.xmlroot,'Interfaces')
-        interfacesXML = CCP4Utils.openFileToEtree(self.interfacesXMLPath)
+        interfacesNode = ET.SubElement(self.xmlroot,'Interfaces')
+        interfacesXML = ET.parse(self.interfacesXMLPath).getroot()
         interfacesNode.append(interfacesXML)
         self.finishWithStatus(CPluginScript.SUCCEEDED)
 
     def flushXML(self):
         with open(self.makeFileName('PROGRAMXML'),'w') as outputXML:
-            CCP4Utils.writeXML(outputXML,etree.tostring(self.xmlroot,pretty_print=True))
+            ET.indent(self.xmlroot)
+            CCP4Utils.writeXML(outputXML,ET.tostring(self.xmlroot))
 
     def finishWithStatus(self, status=CPluginScript.SUCCEEDED):
         self.flushXML()

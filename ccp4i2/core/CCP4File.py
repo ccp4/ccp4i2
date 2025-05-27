@@ -930,7 +930,7 @@ class CI2XmlHeader(CCP4Data.CData):
             raise CException(self.__class__, 101, 'Filename: ' + fileName, name = self.objectPath())
         root = None
         try:
-            root = CCP4Utils.openFileToEtree(fileName)
+            root = ET.parse(fileName).getroot()
         except:
             pass
         if root is None:
@@ -1030,23 +1030,20 @@ class CXmlDataFile(CDataFile):
             print(ET.tostring(root))
         return root
 
-
     def assertSame(self, arg, testPath=False, testChecksum=True, testSize=False, testDiff=False, diagnostic=False, fileName=None):
         #MN Now here we have an issue that assertSame on an XML file is fraught with difficulties, and an identical checkSum is probably far too stringent.  I'm gonna suggest that we should remove testChecksum for now, with a view to putting in a more intelligent comparison later
         report = CDataFile.assertSame(self, arg, testPath, False, testSize, testDiff, diagnostic, fileName)
         return report
 
-
     def getEtreeRoot(self,fileName=None):
         if fileName is None:
             fileName = self.fullPath.get()
         try:
-            tree = CCP4Utils.openFileToEtree(fileName)
+            return ET.parse(fileName).getroot()
         except ET.ParseError as e:
             raise CException(self.__class__, 1009, fileName + ' : ' + str(e), name=self.objectPath())
         except Exception as e:
             raise CException(self.__class__, 1001, fileName + ' : ' + str(e), name=self.objectPath())
-        return tree
 
     def saveFile(self, bodyEtree=None):
         fileName = self.fullPath.get()
@@ -1109,14 +1106,14 @@ class CI2XmlDataFile(CXmlDataFile):
             fileName = self.fullPath.get()
         #print 'getEtreeRoot fileName', fileName, type(fileName)
         try:
-            root = CCP4Utils.openFileToEtree(fileName)
+            root = ET.parse(fileName).getroot()
+            if root.tag not in [CI2XmlDataFile.ROOT_TAG, '{' + CCP4NS + '}' + CI2XmlDataFile.ROOT_TAG]:
+                raise CException(self.__class__, 1003, fileName, name=self.objectPath())
+            return root
         except ET.ParseError as e:
             raise CException(self.__class__, 1009, fileName + ' : ' + str(e), name=self.objectPath())
         except Exception as e:
             raise CException(self.__class__, 1001, fileName + ' : ' + str(e), name=self.objectPath())
-        if not root.tag in [CI2XmlDataFile.ROOT_TAG, '{' + CCP4NS + '}' + CI2XmlDataFile.ROOT_TAG]:
-            raise CException(self.__class__, 1003, fileName, name=self.objectPath())
-        return root
 
     def loadHeader(self, root=None):
         err = CErrorReport()

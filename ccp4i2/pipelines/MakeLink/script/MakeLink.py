@@ -1,8 +1,8 @@
 import os
 import shutil
+import xml.etree.ElementTree as ET
 
 from gemmi import cif
-from lxml import etree
 import gemmi
 
 from ....core import CCP4Utils
@@ -425,7 +425,7 @@ class MakeLink(CPluginScript):
             
     def processOutputFiles(self):
         #Create (dummy) PROGRAMXML
-        pipelineXMLStructure = etree.Element("MakeLink")
+        pipelineXMLStructure = ET.Element("MakeLink")
         
         for iPlugin, AcedrgLinkPlugin in enumerate(self.AcedrgLinkPlugins):
             self.container.outputData.CIF_OUT.setFullPath(os.path.join(self.getWorkDirectory(),AcedrgLinkPlugin.container.inputData.LINK_ID.__str__()+"_link.cif"))
@@ -440,12 +440,12 @@ class MakeLink(CPluginScript):
             self.container.outputData.UNL_CIF = AcedrgLinkPlugin.container.outputData.UNL_CIF.fullPath.__str__()
             
             #Catenate output XMLs
-            pluginXMLStructure = CCP4Utils.openFileToEtree(AcedrgLinkPlugin.makeFileName("PROGRAMXML"))
-            cycleElement = etree.SubElement(pluginXMLStructure,"Cycle")
+            pluginXMLStructure = ET.parse(AcedrgLinkPlugin.makeFileName("PROGRAMXML")).getroot()
+            cycleElement = ET.SubElement(pluginXMLStructure,"Cycle")
             cycleElement.text = str(iPlugin)
             pipelineXMLStructure.append(pluginXMLStructure)
         
         with open(self.makeFileName("PROGRAMXML"),"w") as pipelineXMLFile:
-            CCP4Utils.writeXML(pipelineXMLFile,etree.tostring(pipelineXMLStructure))
+            CCP4Utils.writeXML(pipelineXMLFile,ET.tostring(pipelineXMLStructure))
         
         return CPluginScript.SUCCEEDED

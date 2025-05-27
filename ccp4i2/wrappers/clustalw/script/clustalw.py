@@ -1,8 +1,7 @@
 import os
 import re
 import shutil
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
@@ -21,7 +20,7 @@ class clustalw(CPluginScript):
     def __init__(self,*args,**kws):
         CPluginScript.__init__(self, *args,**kws)
         self.TASKCOMMAND = os.path.normpath(os.path.join(CCP4Utils.getCCP4Dir(),'libexec','clustalw2'))
-        self.xmlroot = etree.Element('Clustalw')
+        self.xmlroot = ET.Element('Clustalw')
 
     def makeCommandAndScript(self):
         self.appendCommandLine('-infile='+self.startFileName)
@@ -61,13 +60,13 @@ class clustalw(CPluginScript):
     def processOutputFiles(self):
         try:
             with open(self.dndFilepath,'r') as aFile:
-                aNode = etree.SubElement(self.xmlroot, 'Dendogram')
+                aNode = ET.SubElement(self.xmlroot, 'Dendogram')
                 aNode.text = aFile.read()
             with open(self.statsFilepath,'r') as aFile:
-                aNode = etree.SubElement(self.xmlroot, 'Statistics')
+                aNode = ET.SubElement(self.xmlroot, 'Statistics')
                 aNode.text = aFile.read()
             with open(self.container.outputData.ALIGNMENTOUT.__str__(),'r') as aFile:
-                aNode = etree.SubElement(self.xmlroot, 'Alignment')
+                aNode = ET.SubElement(self.xmlroot, 'Alignment')
                 aNode.text = aFile.read()
             with open (self.makeFileName('LOG'),'r') as logFile:
                 lines = logFile.readlines()
@@ -76,26 +75,27 @@ class clustalw(CPluginScript):
                 for line in lines:
                     if line.startswith('Sequences ('):
                         tokens = line.split()
-                        pairwiseScoreNode = etree.SubElement(self.xmlroot,'PairwiseScore')
-                        scoreNode = etree.SubElement(pairwiseScoreNode,'Score')
+                        pairwiseScoreNode = ET.SubElement(self.xmlroot,'PairwiseScore')
+                        scoreNode = ET.SubElement(pairwiseScoreNode,'Score')
                         scoreNode.text = tokens[-1]
                         for iPartner in range(2):
-                            partnerNode = etree.SubElement(pairwiseScoreNode,'Partner')
+                            partnerNode = ET.SubElement(pairwiseScoreNode,'Partner')
                             partnerNode.text = tokens[1][1:-1].split(':')[iPartner]
                         if int(scoreNode.text)>bestScore:
                             bestScore = int(scoreNode.text)
                             bestPair = tokens[1][1:-1].split(':')
                 if bestPair is not None:
-                    bestPairNode = etree.SubElement(self.xmlroot,'BestPair')
-                    scoreNode = etree.SubElement(bestPairNode,'Score')
+                    bestPairNode = ET.SubElement(self.xmlroot,'BestPair')
+                    scoreNode = ET.SubElement(bestPairNode,'Score')
                     scoreNode.text = str(bestScore)
                     for iPartner in range(2):
-                        partnerNode = etree.SubElement(bestPairNode,'Partner')
+                        partnerNode = ET.SubElement(bestPairNode,'Partner')
                         partnerNode.text = bestPair[iPartner]
 
         
             with open (self.makeFileName('PROGRAMXML'),'w') as programXML:
-                CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot,pretty_print=True))
+                ET.indent(self.xmlroot)
+                CCP4Utils.writeXML(programXML,ET.tostring(self.xmlroot))
         except:
             return CPluginScript.FAILED
 

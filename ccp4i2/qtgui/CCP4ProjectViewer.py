@@ -15,8 +15,8 @@ import shutil
 import sys
 import tempfile
 import time
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore, QtGui, QtWebChannel, QtWebEngineWidgets, QtWidgets
 import clipper
 import gemmi
@@ -1272,7 +1272,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         result = ""
         if len(etreeElement) == 0:
             subKeyword = "/".join(root.getpath(etreeElement).split("/")[2:])
-            #print(etree.tostring(etreeElement))
+            #print(ET.tostring(etreeElement))
             if etreeElement.text is not None and len(etreeElement.text) != 0:
                 textToUse = etreeElement.text
                 #Here apply some patching to make syntax a bit more compact:
@@ -1304,7 +1304,7 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
         else:
             interimResult = ""
             for subElement in elementEtree:
-                interimResult += self.burrowOn(subElement, etree.ElementTree(elementEtree))
+                interimResult += self.burrowOn(subElement, ET.ElementTree(elementEtree))
             print("interimResult [{}]".format(interimResult))
             if len(interimResult) > 0:
                 result += '\t--{} \\\n'.format(objectName, elementEtree.text)
@@ -1543,11 +1543,10 @@ class CProjectViewer(CCP4WebBrowser.CMainWindow):
             self.cloneTask()
         elif taskName == 'clone_suggested':
                 outputXmlFile = PROJECTSMANAGER().makeFileName(jobId=self.taskFrame.openJob.jobId,mode='PROGRAMXML')
-                parser = etree.XMLParser()
                 f = open(outputXmlFile)
                 s = f.read()
                 f.close()
-                tree = etree.fromstring(s, parser)
+                tree = ET.fromstring(s)
                 suggested = tree.xpath("Verdict/suggestedParameters")
                 self.cloneTask(suggestedParams=suggested[0])
         else:
@@ -2769,7 +2768,7 @@ class CReportView(QtWidgets.QStackedWidget):
                 filePath = os.path.join(projectDir,fileInfo['relpath'],fileInfo['filename'])
                 if args['action'] == "view_text":
                     if args["filetypeclass"] == "AsuDataFile":
-                        tree = CCP4Utils.openFileToEtree(filePath)
+                        tree = ET.parse(filePath).getroot()
                         seqs = tree.xpath("//CAsuContentSeq")
                         html = """<body>"""
                         for seq in seqs:
@@ -3265,14 +3264,14 @@ CCP4I2 3D View
                 html += "</tr>\n"
                 html += "</table>\n"
 
-                tree = CCP4Utils.openFileToEtree(args["picdef"])
+                tree = ET.parse(args["picdef"]).getroot()
                 MolDatas = tree.xpath("ccp4i2_body/scene/data/MolData")
 
                 for m in MolDatas:
                     fn = m.xpath("filename")
                     with open(fn[0].text) as f:
                         fnt = f.read()
-                    fd = etree.SubElement(m,"filedata")
+                    fd = ET.SubElement(m,"filedata")
                     fd.text = fnt.replace("<","&lt;").replace(">","&gt;")
                     m.remove(fn[0])
 
@@ -3280,16 +3279,17 @@ CCP4I2 3D View
 
                 for m in MapDatas:
                     fn = m.xpath("filename")
-                    fd = etree.SubElement(m,"filedata")
+                    fd = ET.SubElement(m,"filedata")
                     b64map, mean,std_dev = MTZToB64Map(fn[0].text)
                     fd.text = b64map
-                    sigma = etree.SubElement(m,"sigma")
+                    sigma = ET.SubElement(m,"sigma")
                     sigma.text = str(std_dev)
-                    mean = etree.SubElement(m,"mean")
+                    mean = ET.SubElement(m,"mean")
                     mean.text = str(mean)
                     m.remove(fn[0])
 
-                sceneText = etree.tostring(tree,pretty_print=True).decode("utf-8")
+                ET.indent(tree)
+                sceneText = ET.tostring(tree).decode("utf-8")
 
                 fog_slider_range_uuid_str = "fog_slider"
                 clip_slider_range_uuid_str = "clip_slider"
@@ -3428,11 +3428,10 @@ CCP4I2 3D View
 #I'm protecting this in try/except because I am trying to be very careful not to break other the whole program.
                 try:
                     outputXmlFile = PROJECTSMANAGER().makeFileName(jobId=self.openJob.jobId,mode='PROGRAMXML')
-                    parser = etree.XMLParser()
                     f = open(outputXmlFile,'rb')
                     s = f.read()
                     f.close()
-                    tree = etree.fromstring(s, parser)
+                    tree = ET.fromstring(s)
                     suggested = tree.xpath("Verdict/suggestedParameters")
                     if len(suggested)>0 and len(suggested[0])>0:
                         but = QtWidgets.QPushButton("Re-run with suggested parameters",self)

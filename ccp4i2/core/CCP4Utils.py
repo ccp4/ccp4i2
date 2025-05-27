@@ -22,8 +22,20 @@ from ..googlecode import diff_match_patch_py3
 from .CCP4ErrorHandling import CException
 
 
-def writeXML(f,t):
-    f.write(t.decode("utf-8"))
+def printXml(element, pretty_print=True):
+    if isinstance(element, ET.ElementTree):
+        element = element.getroot()
+    if pretty_print:
+        ET.indent(element)
+    print(ET.tostring(element))
+
+
+def writeXml(tree, file_or_filename, pretty_print=True):
+    if isinstance(tree, ET.Element):
+        tree = ET.ElementTree(tree)
+    if pretty_print:
+        ET.indent(tree)
+    tree.write(file_or_filename)
 
 
 class CUtils:
@@ -139,21 +151,6 @@ def saveEtreeToFile(tree=None, fileName=None):
 
 def parse_from_unicode(unicode_str):
     return ET.fromstring(unicode_str)
-
-
-def openFileToEtree(fileName=None, printout=False):
-    try:
-        f = open(os.path.normpath(fileName))
-        s = f.read()
-        f.close()
-        tree = parse_from_unicode(s)
-    except:
-        raise CException(CUtils, 104, fileName)
-    else:
-        if printout:
-            ET.indent(tree)
-            print(ET.tostring(tree))
-        return tree
 
 
 def getHostName():

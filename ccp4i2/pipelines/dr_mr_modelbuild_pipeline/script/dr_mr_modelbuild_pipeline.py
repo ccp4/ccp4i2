@@ -9,8 +9,8 @@ import json
 import os
 import shutil
 import sys
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2.QtCore import Slot
 
 from ....core import CCP4Utils
@@ -36,10 +36,11 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
       self.runningJobs=[]
       self.newspacegroup = str(self.container.inputData.F_SIGF.fileContent.spaceGroup)
 
-      self.xmlroot = etree.Element('CCP4i2DRMRMBPipe')
+      self.xmlroot = ET.Element('CCP4i2DRMRMBPipe')
       self.xmlroot.text = '\n'
       with open(str(self.makeFileName('PROGRAMXML')), 'w') as ostream:
-        CCP4Utils.writeXML(ostream,etree.tostring(self.xmlroot,pretty_print=True))
+        ET.indent(self.xmlroot)
+        CCP4Utils.writeXML(ostream,ET.tostring(self.xmlroot,pretty_print=True))
 
       if self.container.controlParameters.LIGANDAS.__str__() == 'DICT':
             self.dictToUse = self.container.inputData.DICTIN
@@ -62,7 +63,7 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
     def lidiaAcedrg_finished(self, status):
         if status.get('finishStatus') == CPluginScript.FAILED:
             self.reportStatus(CPluginScript.FAILED)
-        pluginRoot = CCP4Utils.openFileToEtree(self.lidiaAcedrgPlugin.makeFileName('PROGRAMXML'))
+        pluginRoot = ET.parse(self.lidiaAcedrgPlugin.makeFileName('PROGRAMXML')).getroot()
         self.xmlroot.append(pluginRoot)
         self.flushXML()
         self.harvestFile(self.lidiaAcedrgPlugin.container.outputData.DICTOUT_LIST[0], self.container.outputData.DICTOUT)
@@ -115,7 +116,7 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
             self.reportStatus(CPluginScript.FAILED)
 
         if self.container.controlParameters.MERGED_OR_UNMERGED.__str__() == 'UNMERGED':
-            pluginRoot = CCP4Utils.openFileToEtree(self.aimlessPlugin.makeFileName('PROGRAMXML'))
+            pluginRoot = ET.parse(self.aimlessPlugin.makeFileName('PROGRAMXML')).getroot()
             self.xmlroot.append(pluginRoot)
         self.flushXML()
 
@@ -159,7 +160,7 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
                     print("MrBUMP model prep plugin succeeded. Copying data ...")
                     self.XYZIN = str(self.mrbump.container.outputData.XYZOUT)
                     print("Move on to MR...")
-                    pluginRoot = CCP4Utils.openFileToEtree(self.mrbump.makeFileName('PROGRAMXML'))
+                    pluginRoot = ET.parse(self.mrbump.makeFileName('PROGRAMXML')).getroot()
                     self.xmlroot.append(pluginRoot)
                     self.flushXML()
                     self.aimlessCyclesFinished()
@@ -408,7 +409,7 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
       if status is not None and status == CPluginScript.FAILED:
         self.reportStatus(status)
         return
-      pluginRoot = CCP4Utils.openFileToEtree(molrep_job.makeFileName('PROGRAMXML'))
+      pluginRoot = ET.parse(molrep_job.makeFileName('PROGRAMXML')).getroot()
       self.xmlroot.append(pluginRoot)
       self.flushXML()
 
@@ -440,7 +441,7 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
         self.reportStatus(status)
         return
 
-      tree = CCP4Utils.openFileToEtree(sheetbend_job.makeFileName('PROGRAMXML'))
+      tree = ET.parse(sheetbend_job.makeFileName('PROGRAMXML')).getroot()
       self.xmlroot.append(tree)
       self.flushXML()
 
@@ -482,7 +483,7 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
         self.reportStatus(status)
         return
 
-      tree = CCP4Utils.openFileToEtree(refmac_job.makeFileName('PROGRAMXML'))
+      tree = ET.parse(refmac_job.makeFileName('PROGRAMXML')).getroot()
       self.xmlroot.append(tree)
       self.flushXML()
 
@@ -530,7 +531,7 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
         self.reportStatus(status)
         return
 
-      tree = CCP4Utils.openFileToEtree(acorn_job.makeFileName('PROGRAMXML'))
+      tree = ET.parse(acorn_job.makeFileName('PROGRAMXML')).getroot()
       self.xmlroot.append(tree)
       self.flushXML()
 
@@ -602,11 +603,11 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
         self.xmlroot = copy.deepcopy(self.oldTree)
         USE_BUCCANEER = self.container.controlParameters.BUCCANEER_OR_MODELCRAFT.__str__() == 'BUCCANEER'
         if USE_BUCCANEER:
-            tree = CCP4Utils.openFileToEtree(buccaneer.makeFileName('PROGRAMXML'))
+            tree = ET.parse(buccaneer.makeFileName('PROGRAMXML')).getroot()
             self.xmlroot.append(tree)
         else:
             print("Do something else!"); sys.stdout.flush()
-            tree = etree.Element("ModelCraft")
+            tree = ET.Element("ModelCraft")
             directory = os.path.join(buccaneer.getWorkDirectory(), "modelcraft")
             tree.text = directory
             self.xmlroot.append(tree)
@@ -756,7 +757,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))''')
         if not USE_BUCCANEER:
             self.oldTree = copy.deepcopy(self.xmlroot)
             self.xmlroot = copy.deepcopy(self.oldTree)
-            tree = etree.Element("ModelCraft")
+            tree = ET.Element("ModelCraft")
             directory = os.path.join(plugin.getWorkDirectory(), "modelcraft")
             tree.text = directory
             self.xmlroot.append(tree)
@@ -797,7 +798,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))''')
                 plugin.reportStatus(CPluginScript.INTERRUPTED)
 
             self.xmlroot = copy.deepcopy(self.oldTree)
-            tree = CCP4Utils.openFileToEtree(plugin.makeFileName('PROGRAMXML'))
+            tree = ET.parse(plugin.makeFileName('PROGRAMXML')).getroot()
             self.xmlroot.append(tree)
             self.flushXML()
 
@@ -811,4 +812,4 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))''')
 
     def flushXML(self):
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-            CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot,pretty_print=True))
+            CCP4Utils.writeXML(programXML,ET.tostring(self.xmlroot,pretty_print=True))

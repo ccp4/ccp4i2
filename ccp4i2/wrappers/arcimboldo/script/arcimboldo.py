@@ -7,8 +7,7 @@ Copyright (C) 2014 The University of York
 
 from distutils.dir_util import copy_tree
 import os
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4Utils
 from ....core import CCP4XtalData
@@ -152,15 +151,16 @@ class arcimboldo(CPluginScript):
         nameJob = str(guiAdmin.jobTitle)
         pathHtml = str(os.path.join(self.getWorkDirectory(),'arcimboldo.html'))
         pathXml = str(os.path.join(self.getWorkDirectory(),'arcimboldo.xml'))
-        self.programXml = etree.Element('arcimboldo')
-        element = etree.SubElement(self.programXml, 'nameJob')
+        self.programXml = ET.Element('arcimboldo')
+        element = ET.SubElement(self.programXml, 'nameJob')
         element.text = nameJob
-        element = etree.SubElement(self.programXml, 'pathHtml')
+        element = ET.SubElement(self.programXml, 'pathHtml')
         element.text = pathHtml
-        element = etree.SubElement(self.programXml, 'pathXml')
+        element = ET.SubElement(self.programXml, 'pathXml')
         element.text = pathXml
         with open(self.makeFileName('PROGRAMXML'), 'w+') as xml:
-            xml.write(etree.tostring(self.programXml, encoding='unicode', pretty_print=True))
+            ET.indent(self.programXml)
+            xml.write(ET.tostring(self.programXml, encoding='unicode'))
         self.watchFile(pathXml, self.refreshXML)
 
     def processInputFiles ( self ):
@@ -204,17 +204,13 @@ class arcimboldo(CPluginScript):
             outputData.XYZOUT.append(outputData.XYZOUT.makeItem())
             outputData.XYZOUT[-1].setFullPath(pdbout)
             outputData.XYZOUT[-1].annotation = 'Best pdb solution'
-    #      phsout = os.path.join(self.getWorkDirectory(), "best.phs")
-    #      if os.path.exists(phsout):
-    #         outputData.PHSOUT.append(outputData.PHSOUT.makeItem())
-    #         outputData.PHSOUT[-1].setFullPath(phsout)
-    #         outputData.PHSOUT[-1].annotation = 'Best phs solution'
         return CPluginScript.SUCCEEDED
 
     def refreshXML(self, filename):
         tmpFilename = self.makeFileName('PROGRAMXML') + '_tmp'
         with open(tmpFilename, 'w+') as xmlFile:
-            xmlFile.write(etree.tostring(self.programXml, encoding='unicode', pretty_print=True))
+            ET.indent(self.programXml)
+            xmlFile.write(ET.tostring(self.programXml, encoding='unicode'))
         if os.path.exists(self.makeFileName('PROGRAMXML')):
             os.remove(self.makeFileName('PROGRAMXML'))
         os.rename(tmpFilename, self.makeFileName('PROGRAMXML'))

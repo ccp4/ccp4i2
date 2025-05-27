@@ -1,7 +1,6 @@
 import os
 import shutil
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
@@ -21,7 +20,7 @@ class PrepareDeposit(CPluginScript):
 
     def process(self):
         
-        self.xmlroot = etree.Element('PrepareDeposit')
+        self.xmlroot = ET.Element('PrepareDeposit')
         
         invalidFiles = self.checkInputData()
         if len(invalidFiles)>0:
@@ -72,7 +71,7 @@ class PrepareDeposit(CPluginScript):
         if rv is not CPluginScript.SUCCEEDED:
             self.reportStatus(rv)
 
-        refmacRootNode = CCP4Utils.openFileToEtree(refmacPlugin.makeFileName('PROGRAMXML'))
+        refmacRootNode = ET.parse(refmacPlugin.makeFileName('PROGRAMXML')).getroot()
         self.xmlroot.append(refmacRootNode)
         self.flushXML()
         
@@ -149,5 +148,6 @@ class PrepareDeposit(CPluginScript):
             if hasattr(self,'xmlroot'): xml=self.xmlroot
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
         with open(tmpFilename,'w') as tmpFile:
-            CCP4Utils.writeXML(tmpFile,etree.tostring(xml, pretty_print=True))
+            ET.indent(xml)
+            CCP4Utils.writeXML(tmpFile,ET.tostring(xml))
         self.renameFile(tmpFilename, self.makeFileName('PROGRAMXML'))
