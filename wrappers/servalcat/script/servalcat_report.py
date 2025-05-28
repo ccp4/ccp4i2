@@ -360,30 +360,38 @@ class servalcat_report(Report):
             outputXml=self.outputXml,
             label=graphCCtitle,
             style=galleryGraphStyle)
-        second_present = True
-        CCstar_present = False
+        n_icols = 0
         graphCC.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
         if len(xmlnode.findall('.//cycle[last()]/data/binned/fsc_FC_full')) > 0:  # SPA refinement
             graphCC.addData(title="fsc_FC_full", select=".//cycle[last()]/data/binned/./fsc_FC_full")
+            n_icols += 1
             if len(xmlnode.findall('.//cycle[last()]/data/binned/cc_FC_full')) > 0:
                 graphCC.addData(title="CC_FC_full", select=".//cycle[last()]/data/binned/./cc_FC_full")
+                n_icols += 1
             if len(xmlnode.findall('.//cycle[last()]/data/binned/mcos_FC_full')) > 0:
                 graphCC.addData(title="mcos_FC_full", select=".//cycle[last()]/data/binned/./mcos_FC_full")
+                n_icols += 1
         elif len(xmlnode.findall('.//cycle[last()]/data/binned/CCI')) > 0:
             graphCC.addData(title="CCI", select=".//cycle[last()]/data/binned/./CCI")
+            n_icols += 1
         elif len(xmlnode.findall('.//cycle[last()]/data/binned/CCF')) > 0:
             graphCC.addData(title="CCF", select=".//cycle[last()]/data/binned/./CCF")
+            n_icols += 1
         elif len(xmlnode.findall('.//cycle[last()]/data/binned/CCFwork')) > 0:
             graphCC.addData(title="CCFwork", select=".//cycle[last()]/data/binned/./CCFwork")
+            n_icols += 1
             if len(xmlnode.findall('.//cycle[last()]/data/binned/CCFfree')) > 0:
                 graphCC.addData(title="CCFfree", select=".//cycle[last()]/data/binned/./CCFfree")
+                n_icols += 1
         else:
             graphCC.addData(title="CCIwork", select=".//cycle[last()]/data/binned/./CCIwork")
+            n_icols += 1
             if len(xmlnode.findall('.//cycle[last()]/data/binned/CCIfree')) > 0:
                 graphCC.addData(title="CCIfree", select=".//cycle[last()]/data/binned/./CCIfree")
-        if len(xmlnode.findall('.//cycle[last()]/data/binned/CC*')) > 0:
-            CCstar_present = True
-            graphCC.addData(title="CC*", select=".//cycle[last()]/data/binned/./CC*")
+                n_icols += 1
+        if len(xmlnode.findall('.//cycle[last()]/data/binned/CC')) > 0:
+            graphCC.addData(title="CC*", select=".//cycle[last()]/data/binned/./CC")
+            n_icols += 1
         plotCC = graphCC.addPlotObject()
         plotCC.append('title', graphCCtitle)
         plotCC.append('plottype', 'xy')
@@ -392,12 +400,11 @@ class servalcat_report(Report):
         plotCC.append('yrange', max=1.0)
         plotCC.append('xscale', 'oneoversqrt')
         plotCC.append('legendposition', x=1, y=1)
-        plotLine = plotCC.append('plotline', xcol=1, ycol=2)
-        plotLine.append('colour', 'orange')
-        plotLine.append('symbolsize', '0')
-        plotLine = plotCC.append('plotline', xcol=1, ycol=3)
-        plotLine.append('colour', 'blue')
-        plotLine.append('symbolsize', '0')
+        colours = ['orange', 'blue', 'gray']
+        for i in range(n_icols):
+            plotLine = plotCC.append('plotline', xcol=1, ycol=2 + i)
+            plotLine.append('colour', colours[i])
+            plotLine.append('symbolsize', '0')
 
         # R-values vs. resolution - only for servalcat_xtal_norefmac
         if len(xmlnode.findall('.//cycle[last()]/data/binned/R1')) > 0 or \
