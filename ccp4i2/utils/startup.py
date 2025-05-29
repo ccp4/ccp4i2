@@ -10,8 +10,8 @@ import string
 import sys
 import tempfile
 import time
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtWidgets
 
 from .. import I2_TOP
@@ -80,11 +80,9 @@ def createMissingDATABASEdbXML():
         print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
 
     elif os.path.exists(dbListBackupName):
-        utf8_parser = etree.XMLParser(encoding='utf-8')
 
         def parse_from_unicode(unicode_str):
-            s = unicode_str.encode('utf-8')
-            return etree.fromstring(s, parser=utf8_parser)
+            return ET.fromstring(unicode_str)
     
         with open(dbListBackupName, 'r') as infile: 
             s = infile.read()

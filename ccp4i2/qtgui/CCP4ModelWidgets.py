@@ -7,11 +7,11 @@ Copyright (C) 2010 University of York
 import functools
 import os
 import re
+import xml.etree.ElementTree as ET
 
 from Bio import SeqIO
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
-from lxml import etree
 from PySide2 import QtCore, QtGui, QtWidgets
 
 from . import CCP4RefmacMultiAtomSelection
@@ -2027,7 +2027,7 @@ class CAsuDataFileView(CCP4Widgets.CDataFileView):
         if textData.count('application/CCP4-seq'):
           self.handleBrowserOpenFile(textData.split(' ')[0])
         else:
-          tree = etree.fromstring(textData)
+          tree = ET.fromstring(textData)
           if tree.tag == 'SeqDataFile':
             fileName = os.path.join(tree.xpath('./relPath')[0].text,tree.xpath('./baseName')[0].text)
             self.handleBrowserOpenFile(fileName,None)

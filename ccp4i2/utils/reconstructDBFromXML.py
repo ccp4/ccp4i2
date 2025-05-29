@@ -363,7 +363,7 @@ def generate_xml_from_project_directory(project_dir):
                                     with open(os.path.join(os.path.dirname(fn),"report.html")) as f:
                                         t = f.read()
                                         html_parser = etree.HTMLParser()
-                                        html_tree = etree.fromstring(t,html_parser)
+                                        html_tree = ET.fromstring(t,html_parser)
                                         imgs = html_tree.xpath("//img")
                                         for img in imgs:
                                             if "id" in img.attrib and "filepath" in img.attrib:

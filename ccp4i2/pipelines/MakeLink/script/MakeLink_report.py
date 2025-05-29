@@ -1,5 +1,5 @@
 import os
-import xml.etree.ElementTree as etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4Utils
 from ....report.CCP4ReportParser import Report
@@ -9,11 +9,12 @@ class MakeLink_report(Report):
     # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'MakeLink'
     RUNNING = False
+
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):
         Report. __init__(self, xmlnode=xmlnode, jobInfo=jobInfo, jobStatus=jobStatus, **kw)
-        clearingDiv = self.addDiv(style="clear:both;")
+        self.addDiv(style="clear:both;")
         self.addDefaultReport(self)
-        clearingDiv = self.addDiv(style="clear:both;")
+        self.addDiv(style="clear:both;")
 
     def addDefaultReport(self, parent=None):
         if parent is None: parent=self
@@ -40,13 +41,12 @@ class MakeLink_report(Report):
        with open(baseScenePath,'r') as baseScene:
            baseSceneText = baseScene.read()
            specializedText = baseSceneText.replace('SUBSTITUTEME',pdbPath)
-           rootNode = etree.fromstring(specializedText)
+           rootNode = ET.fromstring(specializedText)
            molDataNode = rootNode.findall('/scene/data/MolData')[0]
-           customResNode = etree.fromstring('''<customResCIFFiles> <cifmonomer> <name>'''+tlc+'''</name> <filename>'''+dictPath+'''</filename> </cifmonomer> </customResCIFFiles>''')
+           customResNode = ET.fromstring('''<customResCIFFiles> <cifmonomer> <name>'''+tlc+'''</name> <filename>'''+dictPath+'''</filename> </cifmonomer> </customResCIFFiles>''')
            molDataNode.append(customResNode)
-           with open(scenePath,'w') as specializedScene:
-               CCP4Utils.writeXML(specializedScene,etree.tostring(rootNode))
-           pic = pictureGallery.addPicture(label=annotation,sceneFile=scenePath)
+           CCP4Utils.writeXml(rootNode, scenePath)
+           pictureGallery.addPicture(label=annotation,sceneFile=scenePath)
        return
 
     def picture(self,parent=None) :

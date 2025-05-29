@@ -1,5 +1,5 @@
 import os
-import xml.etree.ElementTree as etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4ModelData
 from ....core.CCP4Modules import PROJECTSMANAGER
@@ -46,9 +46,9 @@ class ProvideAsuContents_report(Report):
 
           if os.path.exists(outputXmlFile):
               #A new job
-              with open(outputXmlFile,'r') as inputFile:
+              with open(outputXmlFile, encoding="utf-8") as inputFile:
                   text = inputFile.read()
-                  outputXml = etree.fromstring( text.encode('utf-8'))
+                  outputXml = ET.fromstring(text)
                   matthewsAnalysis = outputXml.findall( ".//matthewsCompositions" )
                   if len(matthewsAnalysis) > 0 and len(matthewsAnalysis[0])>0:
                       text = ''

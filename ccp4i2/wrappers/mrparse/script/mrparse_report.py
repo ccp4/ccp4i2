@@ -1,21 +1,17 @@
 import os
 import re
 import shutil
-
-import xml.etree.ElementTree as etree
+import sys
+import xml.etree.ElementTree as ET
 
 from ....core.CCP4Modules import PREFERENCES
 from ....report.CCP4ReportParser import Report
 
 
-def parse_from_unicode(unicode_str):
-    utf8_parser = etree.XMLParser(encoding='utf-8')
-    s = unicode_str.encode('utf-8')
-    return etree.fromstring(s, parser=utf8_parser)
-
 def to_i2_url(fname,projectid,jobNumber):
     mrparseurl = "/database/projectid/" + projectid + "/jobnumber/"+str(jobNumber) + "/file/" + fname
     return mrparseurl
+
 
 def change_i2_mrparse_paths(lines,projectid,jobNumber):
     """
@@ -124,27 +120,25 @@ class mrparse_report(Report):
             ResultsI2Folder.append('<br></br>')
             ResultsI2Folder.append('<a href="{0}">Open Results</a>'.format(mrparseurl))
 
-#FIXME - XML PICTURE
+        # FIXME - XML PICTURE
         return
         mrparse_xml = os.path.join(basepath, 'params.xml')
-        with open(mrparse_xml) as f:
-            t = f.read()
-            tree = parse_from_unicode(t)
-            pdbs = tree.findall(".//ccp4i2_body/outputData/XYZOUT/CPdbDataFile")
-            pictureFold = self.addFold(label='Picture', initiallyOpen=False)
-            pictureFold.addText(text='View of the models')
+        tree = ET.parse(mrparse_xml).getroot()
+        pdbs = tree.findall(".//ccp4i2_body/outputData/XYZOUT/CPdbDataFile")
+        pictureFold = self.addFold(label='Picture', initiallyOpen=False)
+        pictureFold.addText(text='View of the models')
 
-            pictureGallery = pictureFold.addObjectGallery(style='float:left;',height='550px', tableWidth='260px', contentWidth='450px')
-            pdbidx = 1
-            for pdb in pdbs:
-                scene = """<?xml version='1.0'?>
+        pictureGallery = pictureFold.addObjectGallery(style='float:left;',height='550px', tableWidth='260px', contentWidth='450px')
+        pdbidx = 1
+        for pdb in pdbs:
+            scene = """<?xml version='1.0'?>
 <scene>
     <data>"""
-                baseName = pdb.findall("baseName")[0].text
-                scene += "<MolData id='id{0}'>\n".format(pdbidx)
-                scene += '<filename>{0}</filename>\n'.format(os.path.join(basepath,baseName))
-                scene += "</MolData>\n"
-                scene += """</data>
+            baseName = pdb.findall("baseName")[0].text
+            scene += "<MolData id='id{0}'>\n".format(pdbidx)
+            scene += '<filename>{0}</filename>\n'.format(os.path.join(basepath,baseName))
+            scene += "</MolData>\n"
+            scene += """</data>
   <View>
      <scale_auto>1</scale_auto>
      <slab_enabled>0</slab_enabled>
@@ -159,11 +153,10 @@ class mrparse_report(Report):
   </View>
   <wizard><template>Ribbons:colour chains</template>
     <parameters>"""
-                scene += "<MolData{0}>id{0}</MolData{0}>\n".format(pdbidx)
-                pdbidx += 1
-                scene += """</parameters>
+            scene += "<MolData{0}>id{0}</MolData{0}>\n".format(pdbidx)
+            pdbidx += 1
+            scene += """</parameters>
   </wizard>
 </scene>"""
-                pic = pictureGallery.addPicture(label=baseName, scene=scene)
-
+            pic = pictureGallery.addPicture(label=baseName, scene=scene)
         return

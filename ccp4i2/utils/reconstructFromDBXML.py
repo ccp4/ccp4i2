@@ -1,22 +1,16 @@
-from __future__ import print_function
+import argparse
+import shutil
+import sqlite3
 import sys
 import tempfile
-import shutil
-import os
-import sqlite3
-import argparse
+import xml.etree.ElementTree as ET
 
-from lxml import etree
+from . import importDir
 
-if __name__ == "__main__":
-    sys.path.append(os.path.join(os.path.dirname(__file__),".."))
-import importDir
-
-utf8_parser = etree.XMLParser(encoding='utf-8')
 
 def parse_from_unicode(unicode_str):
-    s = unicode_str.encode('utf-8')
-    return etree.fromstring(s, parser=utf8_parser)
+    return ET.fromstring(unicode_str)
+
 
 def reconstruct(inputFileName,fileName):
     with open(inputFileName, 'r') as infile: 

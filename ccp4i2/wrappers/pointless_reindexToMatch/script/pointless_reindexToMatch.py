@@ -3,8 +3,7 @@ Copyright (C) 2014 Newcastle University
 """
 
 import os
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4ErrorHandling
 from ....core.CCP4PluginScript import CPluginScript
@@ -114,7 +113,7 @@ class pointless_reindexToMatch(CPluginScript):
                 with open(self.makeFileName('PROGRAMXML'),'r') as unfixedXMLFile:
                     text = unfixedXMLFile.read()
                 try:
-                    rootNode = etree.fromstring(text)
+                    rootNode = ET.fromstring(text)
                 except:
                     #MN Pointless's XML can be corrupt...I've spotted this in instances where the XYZIN_REF has been set, and
                     #the corresponding XML closing tag is split across two lines.
@@ -133,7 +132,7 @@ class pointless_reindexToMatch(CPluginScript):
                         if (inMarkup and character != '\n') or not inMarkup: fixedText += character
                     with open(self.makeFileName('PROGRAMXML'),'w') as fixedXMLFile:
                         fixedXMLFile.write(fixedText)
-                    rootNode = etree.fromstring(fixedText)
+                    rootNode = ET.fromstring(fixedText)
                 #print( '#PRM rootNode',rootNode)
                 
                 if taskoption != 'ANALYSE' and taskoption != 'LATTICE' \

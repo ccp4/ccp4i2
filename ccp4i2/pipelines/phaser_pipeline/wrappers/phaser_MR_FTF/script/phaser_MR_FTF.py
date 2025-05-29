@@ -1,6 +1,7 @@
 import os
+import pickle
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 import phaser
 
 from ......core.CCP4PluginScript import CPluginScript
@@ -91,7 +92,6 @@ class phaser_MR_FTF(phaser_MR_AUTO.phaser_MR_AUTO):
                     pickle.dump(solutions, pickleFile)
                 except:
                     raise
-                    print('Unable to Pickle solutions')
                 self.container.outputData.SOLOUT.annotation = 'Solutions from Phaser'
 
         #Remove warnings and replace with ones parsed from the resultObject

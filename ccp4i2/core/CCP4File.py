@@ -1148,8 +1148,7 @@ class CI2XmlDataFile(CXmlDataFile):
         else:
             if bodyEtree.tag != CI2XmlDataFile.BODY_TAG:
                 bodyEtree.tag = CI2XmlDataFile.BODY_TAG
-        doc = ET.parse(io.StringIO( '<ccp4:ccp4i2 xmlns:ccp4="' + CCP4NS + '"></ccp4:ccp4i2>'))
-        root = doc.getroot()
+        root = ET.fromstring(f'<ccp4:ccp4i2 xmlns:ccp4="{CCP4NS}"></ccp4:ccp4i2>')
         headerEtree = self.__dict__['_value']['header'].getEtree()
         headerEtree.tag = CI2XmlDataFile.HEADER_TAG
         root.append(headerEtree)
@@ -1158,7 +1157,7 @@ class CI2XmlDataFile(CXmlDataFile):
                 root.remove(root.findall('./' + CI2XmlDataFile.BODY_TAG))
             root.append(bodyEtree)
         try:
-            doc.write(os.path.normpath(str(fileName)), encoding = "ASCII", xml_declaration = True)  
+            CCP4Utils.writeXml(root, fileName, encoding="ASCII", xml_declaration=True)
         except:
             raise CException(self.__module__, 1008, fileName)
 

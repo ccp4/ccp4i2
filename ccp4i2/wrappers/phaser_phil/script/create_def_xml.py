@@ -6,11 +6,13 @@
 """Create phaser_phil.def.xml from PHIL parameters"""
 
 import os
+import xml.etree.ElementTree as ET
 
 from iotbx import phil
 from lxml import etree
 import phaser
 
+from ....core.CCP4Utils import printXml
 from ....utils.phil_handlers import PhilTaskCreator
 
 
@@ -27,7 +29,7 @@ class PhaserTaskCreator(PhilTaskCreator):
     PhilTaskCreator.__init__(self, phaser_phil, debug)
     self.fmt_dic['PLUGINNAME'] = "phaser_phil"
 
-    self.inputDataXML = etree.fromstring('''
+    self.inputDataXML = ET.fromstring('''
 <container id="inputData">
     <content id="XYZIN">
         <className>CPdbDataFile</className>
@@ -48,7 +50,7 @@ class PhaserTaskCreator(PhilTaskCreator):
 </container>
 ''')
 
-    self.outputDataXML = etree.fromstring('''
+    self.outputDataXML = ET.fromstring('''
 <container id="outputData">
     <content id="XYZOUT">
         <className>CPdbDataFile</className>
@@ -62,11 +64,11 @@ class PhaserTaskCreator(PhilTaskCreator):
   def __call__(self):
 
     if self.debug:
-      print(etree.tostring(self.phil_tree, pretty_print=True))
+      printXml(self.phil_tree)
 
     super(PhaserTaskCreator, self).__call__()
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
   ptc = PhaserTaskCreator()
   ptc()

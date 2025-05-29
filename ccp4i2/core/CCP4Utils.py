@@ -30,12 +30,12 @@ def printXml(element, pretty_print=True):
     print(ET.tostring(element))
 
 
-def writeXml(tree, file_or_filename, pretty_print=True):
+def writeXml(tree, file_or_filename, pretty_print=True, encoding=None, xml_declaration=None):
     if isinstance(tree, ET.Element):
         tree = ET.ElementTree(tree)
     if pretty_print:
         ET.indent(tree)
-    tree.write(file_or_filename)
+    tree.write(file_or_filename, encoding=encoding, xml_declaration=xml_declaration)
 
 
 class CUtils:

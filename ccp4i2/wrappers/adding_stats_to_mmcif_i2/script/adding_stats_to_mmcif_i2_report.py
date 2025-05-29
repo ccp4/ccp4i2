@@ -1,7 +1,7 @@
 from decimal import Decimal
 import os
 import sys
-import xml.etree.ElementTree as etree
+import xml.etree.ElementTree as ET
 
 from ....report.CCP4ReportParser import Report
 from ....wrappers.refmac_i2.script import refmac_report
@@ -58,8 +58,7 @@ class adding_stats_to_mmcif_i2_report(Report):
         summary = []
 
         if validationXMLFilename != '' and os.path.isfile(validationXMLFilename): # we did send files to validation server:
-            with open(validationXMLFilename,'r') as validationXMLFile:
-                validationXML = etree.fromstring(validationXMLFile.read())
+            validationXML = ET.parse(validationXMLFilename).getroot()
             summary = self.parseXml(validationXML)
             if os.path.exists(validationSvg):
                 with open(validationSvg,'r') as f:

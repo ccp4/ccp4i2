@@ -1,9 +1,10 @@
 import copy
 import json
 import os
-import xml.etree.ElementTree as etree
-from report.CCP4ReportParser import Report
-from wrappers.modelcraft.script.modelcraft_report import modelcraft_report
+import xml.etree.ElementTree as ET
+
+from ....report.CCP4ReportParser import Report
+from ....wrappers.modelcraft.script.modelcraft_report import modelcraft_report
 
 
 class phaser_EP_report(Report):
@@ -65,7 +66,7 @@ class phaser_EP_report(Report):
         if len(self.xmlnode.findall('.//original/ParrotResult'))>0:
             parrotOriginalHandNode = self.xmlnode.findall('.//original/ParrotResult')[0]
             from ....wrappers.parrot.script.parrot_report import parrot_report
-            parrotOriginalNode = etree.fromstring(etree.tostring(parrotOriginalHandNode))
+            parrotOriginalNode = ET.fromstring(ET.tostring(parrotOriginalHandNode))
             parrot_original_report = parrot_report(xmlnode=parrotOriginalNode, jobStatus='nooutput')
             parrot_original_hand = parent.addFold(label='Density modification: Original hand', initiallyOpen=False)
             parrot_original_report.defaultReport(parent=parrot_original_hand)
@@ -73,7 +74,7 @@ class phaser_EP_report(Report):
         if len(self.xmlnode.findall('.//inverted/ParrotResult'))>0:
             parrotInvertedHandNode = self.xmlnode.findall('.//inverted/ParrotResult')[0]
             from ....wrappers.parrot.script.parrot_report import parrot_report
-            parrotInvertedNode = etree.fromstring(etree.tostring(parrotInvertedHandNode))
+            parrotInvertedNode = ET.fromstring(ET.tostring(parrotInvertedHandNode))
             parrot_inverted_report = parrot_report(xmlnode=parrotInvertedNode, jobStatus='nooutput')
             parrot_inverted_hand = parent.addFold(label='Density modification: Inverted hand', initiallyOpen=False)
             parrot_inverted_report.defaultReport(parent=parrot_inverted_hand)
@@ -85,8 +86,8 @@ class phaser_EP_report(Report):
         buccsg2 = None
 
         if len(buccxml)>1:
-            buccsg1 = etree.fromstring(etree.tostring(buccxml[0]))
-            buccsg2 = etree.fromstring(etree.tostring(buccxml[1]))
+            buccsg1 = ET.fromstring(ET.tostring(buccxml[0]))
+            buccsg2 = ET.fromstring(ET.tostring(buccxml[1]))
         elif len(buccxml)>0:
             buccsg1 = buccxml[0]
 

@@ -12,8 +12,8 @@ import re
 import shutil
 import sys
 import traceback
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtGui, QtWidgets,QtCore,QtSvg
 
 from . import CCP4RefmacMultiAtomSelection
@@ -149,12 +149,10 @@ class CBaseWidget:
         ele = ET.Element('baseName')
         ele.text = base
         fileEle.append(ele)
-        text = etree.tostring(fileEle)
+        text = ET.tostring(fileEle)
         return text
 
     def acceptMimeData(self, mimeData):
-        #print('CBaseData.acceptMimeData', repr(self), self.dragTypeList(), self.dropTypes())
-        # for item in mimeData.formats(): print 'CBaseData.acceptMimeData data:',str(item),mimeData.data(item)
         dragTypeList = self.dragTypeList()
         if dragTypeList is not None:
             for dragType in dragTypeList:
@@ -170,13 +168,13 @@ class CBaseWidget:
                         return mimeData.data(item).data()
             elif mimeData.hasFormat('jobId'):
                 dropText = mimeData.data('jobId').data()
-                tree = etree.fromstring(dropText)
+                tree = ET.fromstring(dropText)
                 for groupName in ['outputFiles','outputData']:
                     groupEle = tree.find(groupName)
                     if groupEle is not None:
                         for ele in groupEle:
                             if ele.tag in dragTypeList:
-                                return etree.tostring(ele)
+                                return ET.tostring(ele)
         fileList = self.getFilesFromMimeData(mimeData)
         #print('acceptMimeData fileList',fileList, self.dropTypes())
         for path,mimeType in fileList:
@@ -1549,7 +1547,7 @@ class CComplexLineWidget(CViewWidget):
   @QtCore.Slot(object)
   def acceptDropData(self,textData):
     #print 'CComplexLineWidget.acceptDropData',textData
-    tree = etree.fromstring(textData)
+    tree = ET.fromstring(textData)
     tree.tag = self.dragType()
     #print 'CComplexLineWidget.acceptDropData',textData,tree.tag
     self.connectUpdateViewFromModel(False)
@@ -2510,7 +2508,7 @@ class CDataFileView(CComplexLineWidget):
   def acceptDropData(self,textData):
     '''Reimplement drop to handle drag from outside i2'''
     #print('CDataFileView.acceptDropData',textData)
-    tree = etree.fromstring(textData)
+    tree = ET.fromstring(textData)
     if tree.find('dbFileId') is not None and len(tree.find('dbFileId').text)>0:
       CComplexLineWidget.acceptDropData(self,textData)
     else:
@@ -4497,7 +4495,7 @@ class CFollowFromJobView(CComplexLineWidget):
       for item in mimeData.formats():
         #print 'CFollowFromJobView.updateMenu data:',str(item),mimeData.data(item)
         if str(item).startswith('taskParameters') and str(item)[15:]==self.parentTaskWidget().taskName():
-          root = etree.fromstring(str(mimeData.data(item)))
+          root = ET.fromstring(str(mimeData.data(item)))
           jobNo = root.find('jobNumber').text
           projectName = root.find('projectName').text
           if root.find('projectId').text == self.parentTaskWidget().projectId():
@@ -4600,7 +4598,7 @@ class CFollowFromJobView(CComplexLineWidget):
   def acceptDropData(self,textData):
     #print 'CFollowFromJob.acceptDropData',textData, textData.count('taskParameters')
     if textData.count('taskParameters') > 0:
-      root = etree.fromstring(textData)
+      root = ET.fromstring(textData)
       #print 'CFollowFromJob.acceptDropData',root.find('taskName').text,self.parentTaskWidget().taskName()
       try:
         if root.find('taskName').text == self.parentTaskWidget().taskName():

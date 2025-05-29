@@ -1,7 +1,7 @@
 import os
 import re
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from phaser.ensembler import PHIL_MASTER
 
 
@@ -87,7 +87,7 @@ if __name__ == "__main__":
     root = ET.Element('container',id='phaser_ensembler')
 
     #Here introduce the CCP4i2 classes needed to handle input and output files
-    inputDataXML = etree.fromstring(
+    inputDataXML = ET.fromstring(
 '''
 <dummyRoot>
     <container id="inputData">

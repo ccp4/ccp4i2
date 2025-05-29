@@ -1,7 +1,7 @@
 import os
 import sys
 import traceback
-import xml.etree.ElementTree as etree
+import xml.etree.ElementTree as ET
 
 from lxml.html.clean import Cleaner
 
@@ -41,7 +41,7 @@ class prosmart_refmac_report(Report):
         try:
             if len(self.xmlnode.findall('svg')) > 0:
                 sketchDiv = parent.addDiv(style="width:350px; height:350px; border:1px solid black;")
-                sketchDiv.append(etree.tostring(self.xmlnode.findall('.//svg')[0]))
+                sketchDiv.append(ET.tostring(self.xmlnode.findall('.//svg')[0]))
         except:
             pass
 
@@ -52,7 +52,7 @@ class prosmart_refmac_report(Report):
         xmlPath = './/LIGANDS'
         xmlNodes = xmlnode.findall(xmlPath)
         if len(xmlNodes)>0:
-          clearingDiv = self.addDiv(style="clear:both;")
+          self.addDiv(style="clear:both;")
           ligandFold = self.addFold(label='New ligand(s) found',brief='Ligand')
           text = '<span style="font-size:110%">Geometry restaints for the following novel ligands have been added to the project ligand geometry file:'
           ligandNodes = xmlNodes[0].findall('ligand')
@@ -64,7 +64,7 @@ class prosmart_refmac_report(Report):
         xmlPath = './/PROSMART'
         xmlNodes = xmlnode.findall(xmlPath)
         if len(xmlNodes)>0:
-            clearingDiv = self.addDiv(style="clear:both;")
+            self.addDiv(style="clear:both;")
             prosmartFold = self.addFold(label='Prosmart results',brief='Prosmart')
             prosmartFold.append('<span style="font-size:110%">HTML Results will be displayed in browser </span>')
             prosmartFold.append('<a href="job_1/ProSMART_Results.html">Open Results</a>')
@@ -80,7 +80,7 @@ class prosmart_refmac_report(Report):
 
         #Raid the refmac report of finished jobs
         summaryFold = self.addFold(label='Refinement', initiallyOpen=True,brief='Refinement')
-        clearingDiv = self.addDiv(style="clear:both;")
+        self.addDiv(style="clear:both;")
         try:
             weightText = self.xmlnode.findall('.//WeightUsed')[-1].text
             self.addPre(outputXml=self.outputXml, internalId="WeightUsed", text="Current weight applied to X-ray term is "+weightText,style="font-size:125%;")
@@ -238,9 +238,6 @@ class prosmart_refmac_report(Report):
                 else:
                     self.addProgressGraph(topElementsDiv2, refmacReportNode1,internalId="SummaryGraphPostCoot",tag="refmacPostCoot/REFMAC")
                     # Could also add other graphs.
-                    """
-                    refmacReport2.addSmartieGraphs(self,internalIdPrefix='postCoot')
-                    """
         except:
              pass
 
@@ -396,13 +393,7 @@ class prosmart_refmac_report(Report):
                 if nCycles-offset == 1: nodeSelect = [0, 1]
                 print("nodeSelect",nodeSelect)
 
-#                selectString = "//RefmacOptimiseWeight/"+tag+"/Cycle[1]"
-#                for i in range(2,nCycles):
-#                    selectString += " | //RefmacOptimiseWeight/"+tag+"/Cycle[%d]" % i
                 progressTable = progressTableDiv.addTable(style="height:250px; width:260px;float:left;", outputXml=self.outputXml, internalId=internalId)
-#                progressTable.addData(title="Cycle", select="number")
-#                progressTable.addData(title="R-factor", select="r_factor")
-#                progressTable.addData(title="R-free",   select="r_free",   expr="x if float(x)>=0.0 else '-'")
                 print("number",[nodeData['number'][i] for i in nodeSelect])
                 print("Rfactors",[nodeData['Rfactor'][i] for i in nodeSelect])
                 print("Rfree",[nodeData['Rfree'][i] for i in nodeSelect])
@@ -416,21 +407,11 @@ class prosmart_refmac_report(Report):
                 if not rmsBond_data.count('-') == len(rmsBond_data):
                    progressTable.addData(title="Bond RMSD",   expr="x if float(x)>=0.0 else '-'", data=rmsBond_data)
 
-#                rmsBonds = self.xmlnode.findall('//'+tag+'/Cycle/rmsBonds')
-#                if len(rmsBonds)> 0:
-#                    cycleNodes = self.xmlnode.findall('//'+tag+'/Cycle')
-#                    data = []
-#                    for iCycleNode, cycleNode in enumerate(cycleNodes):
-#                        if iCycleNode == 0 or iCycleNode == nCycles-2 or iCycleNode == nCycles-1:
-#                            try: data.append(cycleNode.findall('rmsBonds')[0].text)
-#                            except: data.append('-')
-#                    progressTable.addData(title="RMS Deviation", subtitle="Bond", data=data)
-
     def addByWeightResults(self, parent, xmlnode):
         if parent is None: parent = self
-        if True:# FIXME len(self.xmlnode.findall("./RefmacOptimiseWeight"))>0:
+        if True: # FIXME len(self.xmlnode.findall("./RefmacOptimiseWeight"))>0:
             #I *do not know* why This is needed
-            clearingDiv = parent.addDiv(style="clear:both;")
+            parent.addDiv(style="clear:both;")
             byWeightsFold = parent.addFold(label="Results by weight",initiallyOpen=True,brief='By weight')
 
             #Sort refmacweight nodes in order of increasing weight parameter
@@ -491,7 +472,7 @@ class prosmart_refmac_report(Report):
 def test(xmlFile=None,jobId=None,reportFile=None):
     try:
         text = open( xmlFile ).read()
-        xmlnode = etree.fromstring( text, PARSER() )
+        xmlnode = ET.fromstring( text, PARSER() )
     except:
         print('FAILED loading XML file:', kw['xmlFile'])
     if reportFile is None and xmlFile is not None:

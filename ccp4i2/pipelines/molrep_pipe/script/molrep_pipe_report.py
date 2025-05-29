@@ -1,6 +1,6 @@
 import os
 import sys
-import xml.etree.ElementTree as etree
+import xml.etree.ElementTree as ET
 
 from ....report.CCP4ReportParser import Report
 from ....wrappers.refmac_i2.script.refmac_report import refmac_report
@@ -62,7 +62,7 @@ class molrep_pipe_report(refmac_report):
       e2.text = label_list[imon]
       e2.tail = '\n'
 
-    return etree.tostring(e0)
+    return ET.tostring(e0)
 
   def molrep_report(self, parent, prefix, sgtest=False):
     label_list = list()
@@ -228,7 +228,7 @@ class molrep_pipe_report(refmac_report):
 def test(xmlFile=None,jobId=None,reportFile=None):
     try:
         text = open( xmlFile ).read()
-        xmlnode = etree.fromstring( text )
+        xmlnode = ET.fromstring( text )
     except:
         print('FAILED loading XML file:', kw['xmlFile'])
     if reportFile is None and xmlFile is not None:
@@ -238,4 +238,3 @@ def test(xmlFile=None,jobId=None,reportFile=None):
 
 if __name__ == "__main__":
   test(xmlFile=sys.argv[1], jobId=sys.argv[2], reportFile=sys.argv[3])
-

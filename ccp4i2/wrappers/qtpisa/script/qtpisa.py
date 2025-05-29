@@ -3,8 +3,8 @@ import os
 import shutil
 import sys
 import time
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore
 
 from ....core import CCP4Utils
@@ -72,11 +72,7 @@ class qtpisa(CPluginScript):
                 fpath,fname = os.path.split(outputXML)
                 xyzoutList.append(xyzoutList.makeItem())
 
-                parser = etree.XMLParser()
-                f = open(outputXML)
-                s = f.read()
-                f.close()
-                tree = etree.fromstring(s, parser)
+                tree = ET.parse(outputXML).getroot()
 
                 pisa_type = tree.xpath("//pisa_file/type")[0].text
                 pisa_no = tree.xpath("//pisa_file/ser_no")[0].text

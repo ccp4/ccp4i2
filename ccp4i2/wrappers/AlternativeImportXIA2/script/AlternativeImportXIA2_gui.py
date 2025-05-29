@@ -4,8 +4,8 @@ Martin Noble
 
 import glob
 import os
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore
 
 from ....core.CCP4ErrorHandling import CException
@@ -70,19 +70,17 @@ class CTaskAlternativeImportXIA2(CCP4TaskWidget.CTaskWidget):
         for candidateJob in candidateJobs:
             xmlFilePath = os.path.join(self.container.inputData.XIA2_DIRECTORY.__str__(),candidateJob,'ispyb.xml')
             if os.path.isfile(xmlFilePath):
-                with open(xmlFilePath) as xmlFile:
-                    text = xmlFile.read()
-                    xmlOfFile = etree.fromstring(text)
-                    try:
-                        spaceGroupText = (' '+xmlOfFile.xpath('//spaceGroup')[0].text)
-                        resolutionText = (' Res: '+xmlOfFile.xpath('//resolutionLimitHigh')[0].text)
-                        rMeasText = (' Rmeas: '+xmlOfFile.xpath('//rMeasAllIPlusIMinus')[0].text)
-                        runSummaries.append(runSummaries.makeItem())
-                        runSummaries[-1] = candidateJob + ':'
-                        runSummaries[-1] += spaceGroupText
-                        runSummaries[-1] += resolutionText
-                        runSummaries[-1] += rMeasText
-                    except:
-                        print('Unable to find fields')
+                xmlOfFile = ET.parse(xmlFilePath).getroot()
+                try:
+                    spaceGroupText = (' '+xmlOfFile.xpath('//spaceGroup')[0].text)
+                    resolutionText = (' Res: '+xmlOfFile.xpath('//resolutionLimitHigh')[0].text)
+                    rMeasText = (' Rmeas: '+xmlOfFile.xpath('//rMeasAllIPlusIMinus')[0].text)
+                    runSummaries.append(runSummaries.makeItem())
+                    runSummaries[-1] = candidateJob + ':'
+                    runSummaries[-1] += spaceGroupText
+                    runSummaries[-1] += resolutionText
+                    runSummaries[-1] += rMeasText
+                except:
+                    print('Unable to find fields')
         self.validate()
         self.getWidget('runSummaries').updateViewFromModel()

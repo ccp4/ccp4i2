@@ -14,7 +14,6 @@ import urllib.request
 import xml.etree.ElementTree as ET
 import zipfile
 
-from lxml import etree
 from PySide2 import QtCore, QtWidgets
 
 from ..core import CCP4Utils
@@ -318,7 +317,7 @@ class CDownloadDemoDataDialog(QtWidgets.QDialog):
                     self.source.setEditText(self.path)
         pageText = urlpath.read().decode('utf-8')
         urlpath.close()
-        pageNode = etree.fromstring(pageText)
+        pageNode = ET.fromstring(pageText)
         self.zipList = []
         for node in pageNode.iterfind('.//a'):
             if node.get('href') is not None and 'ccp4i2_demo.zip' in node.get('href'):

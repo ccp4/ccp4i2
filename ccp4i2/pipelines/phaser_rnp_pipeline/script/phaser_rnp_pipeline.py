@@ -1,4 +1,4 @@
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core.CCP4PluginScript import CPluginScript
 from ...phaser_pipeline.script import phaser_pipeline
@@ -15,17 +15,11 @@ class phaser_rnp_pipeline(phaser_pipeline.phaser_pipeline):
     
     ERROR_CODES = {  200 : { 'description' : 'Phaser exited with error statut' }, 202 : { 'description' : 'Failed in harvest operation' }, 203 : { 'description' : 'Columns not present' }, 204 : { 'description' : 'Failed in plugin:',205 : { 'description' : 'Failed in pointless reindex operation' }, }, }
     WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
-    
 
-    '''
-    def __init__(self,parent=None,name=None,workDirectory=''):
-      CPluginScript. __init__(self,parent=parent,name=name)
-    '''
-    
     def process(self):
         invalidFiles = self.checkInputData()
         if len(invalidFiles)>0:
-            self.reportStatus(CPluginScript.FAILED)        
+            self.reportStatus(CPluginScript.FAILED)
         self.checkOutputData()
 
         self.xmlroot = ET.Element('PhaserPipeline')

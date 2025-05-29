@@ -1,8 +1,8 @@
 import os
 import re
 import pickle
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 import phaser_ext
 
 from ......core import CCP4Data

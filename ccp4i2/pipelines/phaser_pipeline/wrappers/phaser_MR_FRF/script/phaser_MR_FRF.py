@@ -1,7 +1,7 @@
 import os
 import pickle
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 import phaser
 
 from ......core.CCP4PluginScript import CPluginScript

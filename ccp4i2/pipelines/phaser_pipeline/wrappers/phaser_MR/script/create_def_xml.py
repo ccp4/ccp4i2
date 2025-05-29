@@ -2,16 +2,15 @@
 # Based on create_def_xml.py for xia2 written by David Waterman
 
 import os
-import io
 import re
 import xml.etree.ElementTree as ET
 
 from iotbx.phil import parse
 import phaser
 
+from ......core.CCP4Utils import writeXml
 from ......utils.phil_handlers import Phil2Etree
 from ......utils.phil_handlers import PhilTaskCreator
-
 
 class PhaserPhil2Etree(Phil2Etree):
   
@@ -323,12 +322,10 @@ class PhaserKeywordsCreator(PhilTaskCreator):
     # Write out prettified version
     out_file = self.fmt_dic['PLUGINNAME'] + '.def.xml'
     parser = ET.XMLParser(remove_blank_text=True)
-    tree = ET.parse(io.StringIO(ET.tostring(task_xml).decode("utf-8")), parser)
+    tree = ET.fromstring(task_xml, parser)
     try:
-      with open(out_file, 'wb') as f:
-        print('Writing def.xml to %s' % out_file)
-        ET.indent(tree)
-        f.write(ET.tostring(tree, xml_declaration=True))
+      print('Writing def.xml to', out_file)
+      writeXml(tree, out_file, xml_declaration=True)
     except OSError as exception:
       if exception.errno == errno.EACCES:
         raise RuntimeError('No write permission to this directory')

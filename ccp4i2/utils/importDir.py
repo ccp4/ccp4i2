@@ -9,17 +9,15 @@ So probably need os.walk through CCP4_JOBS instead of looking at files in XML fi
 
 import os
 import sys
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ..core.CCP4Modules import PROJECTSMANAGER
 from ..dbapi import CCP4DbApi
 
 
 def parse_from_unicode(unicode_str):
-    utf8_parser = etree.XMLParser(encoding='utf-8')
-    s = unicode_str.encode('utf-8')
-    return etree.fromstring(s, parser=utf8_parser)
+    return ET.fromstring(unicode_str)
+
 
 def importFilesFromDirXML(dbFileName,dirName,importProjectComments=False):
     """

@@ -1525,11 +1525,10 @@ class CBlastData(CCP4File.CDataFileContent):
             b = Bio.SeqRecord.SeqRecord(Bio.Seq.Seq(self.alignmentList[indx].hitSequence.__str__(), id="prot2", annotations={"molecule_type": "protein"}), id=self.alignmentList[indx].hitId.__str__())
             align = Bio.Align.MultipleSeqAlignment([a, b], annotations={"tool": "CCP4i2"})
             f = io.StringIO()
-            count = Bio.AlignIO.write(align, f, "clustal")
+            Bio.AlignIO.write(align, f, "clustal")
+            return f.getvalue()
         except:
             return 'Error creating alignment text'
-        else:  
-            return f.getvalue()
 
 
 class CElement(CCP4Data.COneWord):

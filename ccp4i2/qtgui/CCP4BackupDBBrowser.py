@@ -5,8 +5,8 @@ import os
 import sqlite3
 import sys
 import tempfile
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from PySide2 import QtCore, QtGui, QtWidgets
 
 from ..core import CCP4Utils
@@ -62,8 +62,7 @@ class CBackupDBBrowser(QtWidgets.QDialog):
         dbListBackup = dbListBackupFile.read()
         dbListBackupFile.close()
 
-        parser = etree.XMLParser()
-        backupListTree = etree.fromstring(dbListBackup, parser)
+        backupListTree = ET.fromstring(dbListBackup)
 
         for p in backupListTree.xpath("project"):
             projectDirectories.append(p.text)
@@ -81,16 +80,15 @@ class CBackupDBBrowser(QtWidgets.QDialog):
             if os.path.exists(dbXML):
                 print("Trying",dbXML)
                 try:
-                    parser = etree.XMLParser()
                     f = open(dbXML)
                     s = f.read()
                     f.close()
-                    tree = etree.fromstring(s, parser)
+                    tree = ET.fromstring(s)
                     projectId = tree.xpath('ccp4i2_header/projectId')[0].text
                     projectName = tree.xpath('ccp4i2_header/projectName')[0].text
                     db.createProject(projectName,projectId=projectId,projectDirectory=projectDirectory)
                     dbImport = CDbXml(db=db,xmlFile=dbXML)
-                    err = dbImport.loadTable()
+                    dbImport.loadTable()
                 except:
                     pass
 

@@ -12,6 +12,7 @@ import tempfile
 import unicodedata
 import urllib.parse
 import urllib.request
+import xml.etree.ElementTree as ET
 
 from lxml import etree
 import mimetools

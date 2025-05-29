@@ -3,8 +3,8 @@ import os
 import shutil
 import sys
 import time
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 from onedep import __apiUrl__
 from onedep.api.Validate import Validate
 from adding_stats_to_mmcif.__main__ import run_process
@@ -80,24 +80,22 @@ class adding_stats_to_mmcif_i2(CPluginScript):
             aimless_xml_file = ''
         #print("aimless_xml_file is", aimless_xml_file)
         if aimless_xml_file is not '':
-            with open(aimless_xml_file, "r") as aimlessXMLFile:
-                aimlessXML = etree.fromstring(aimlessXMLFile.read())
+            aimlessXML = ET.parse(aimless_xml_file).getroot()
+            try:
+                lastAimlessNode = aimlessXML.xpath('.//AIMLESS_PIPE')[-1]
+            except IndexError:
                 try:
-                    lastAimlessNode = aimlessXML.xpath('.//AIMLESS_PIPE')[-1]
+                    lastAimlessNode = aimlessXML.xpath('.//AIMLESS')[-1]
                 except IndexError:
-                    try:
-                        lastAimlessNode = aimlessXML.xpath('.//AIMLESS')[-1]
-                    except IndexError:
-                        self.appendErrorReport(203, aimless_xml_file)
-                        return CPluginScript.FAILED
-                self.xmlroot.append(lastAimlessNode)
+                    self.appendErrorReport(203, aimless_xml_file)
+                    return CPluginScript.FAILED
+            self.xmlroot.append(lastAimlessNode)
             # Here create a re-rooted aimless XML file incase the aimless_pipe or aimless modules
             # was nested...this should maybe be nahdled in adding_stats_to_mmcif core code.
             if aimlessXML.tag != 'AIMLESS' and aimlessXML.tag != 'AIMLESS':
                 aimless_xml_file = os.path.join(
                     self.workDirectory, 'TempAimlessXML.xml')
-                with open(aimless_xml_file, 'wb') as tempAimlessXML:
-                    tempAimlessXML.write(etree.tostring(lastAimlessNode))
+                CCP4Utils.writeXml(lastAimlessNode, aimless_xml_file)
 
         output_mmcif = str(self.container.outputData.MMCIFOUT.fullPath)
 
@@ -113,8 +111,7 @@ class adding_stats_to_mmcif_i2(CPluginScript):
                                    "Failed to adding_stats_to_mmcif")
             return self.reportStatus(CPluginScript.FAILED)
 
-        with open(self.makeFileName('PROGRAMXML'), 'w') as programXML:
-            CCP4Utils.writeXML(programXML, etree.tostring(self.xmlroot))
+        CCP4Utils.writeXml(self.xmlroot, self.makeFileName('PROGRAMXML'))
 
         if self.container.controlParameters.SENDTOVALIDATIONSERVER:
             self.performOnedepValidation()
@@ -250,12 +247,9 @@ except Exception as err:
             self.display_status(ret)
             logging.debug('getting xml status: {}'.format(ret))
 
-            with open(output_xml_file_name, "r") as validationXMLFile:
-                validationXML = etree.fromstring(validationXMLFile.read())
-                self.xmlroot.append(validationXML)
-                with open(self.makeFileName('PROGRAMXML'), 'w') as thisXMLFile:
-                    CCP4Utils.writeXML(thisXMLFile, etree.tostring(
-                        self.xmlroot, pretty_print=True))
+            validationXML = ET.parse(output_xml_file_name).getroot()
+            self.xmlroot.append(validationXML)
+            CCP4Utils.writeXml(self.xmlroot, self.makeFileName('PROGRAMXML'))
 
             if output_svg_file_name:
                 ret = val.getOutputByType(
