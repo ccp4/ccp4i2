@@ -191,10 +191,7 @@ class CProjectsManager(CObject):
             projectRoot.text =  projectInfo[2]
             root.append(projectRoot)
         dbListBackupName = os.path.join(CCP4Utils.getDotDirectory(),'projectList-backup.xml')
-        dbListBackupFile = open(dbListBackupName,"w+")
-        ET.indent(root)
-        CCP4Utils.writeXML(dbListBackupFile,ET.tostring(root))
-        dbListBackupFile.close()
+        CCP4Utils.writeXml(root, dbListBackupName)
         print("Backed up list of projects to",dbListBackupName)
 
     def initialiseDirectories(self):

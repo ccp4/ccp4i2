@@ -444,8 +444,7 @@ class MakeLink(CPluginScript):
             cycleElement = ET.SubElement(pluginXMLStructure,"Cycle")
             cycleElement.text = str(iPlugin)
             pipelineXMLStructure.append(pluginXMLStructure)
-        
-        with open(self.makeFileName("PROGRAMXML"),"w") as pipelineXMLFile:
-            CCP4Utils.writeXML(pipelineXMLFile,ET.tostring(pipelineXMLStructure))
-        
+
+        CCP4Utils.writeXml(pipelineXMLStructure, ET.tostring(pipelineXMLStructure))
+
         return CPluginScript.SUCCEEDED

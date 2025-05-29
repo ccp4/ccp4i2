@@ -3,6 +3,7 @@ import json
 import os
 import platform
 import subprocess
+import xml.etree.ElementTree as ET
 
 from lxml import etree
 
@@ -10,6 +11,7 @@ from ....core import CCP4ErrorHandling
 from ....core import CCP4XtalData
 from ....core.CCP4MgImports import mmdb2 as mmdb
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Utils import writeXml
 
 
 class i2Dimple(CPluginScript):
@@ -92,98 +94,97 @@ class i2Dimple(CPluginScript):
             return CPluginScript.FAILED
                 
         #Create (dummy) PROGRAMXML
-        with open(self.makeFileName("PROGRAMXML"),"wb") as programXMLFile:
-            xmlStructure = ET.Element("i2Dimple")
-            
-            #Here transform information parsed from dimple.log into program.xml
-            #Parse the dimple log (which is compatible with configparser !)
-            configParser = configparser.SafeConfigParser()
-            configParser.read(os.path.join(self.getWorkDirectory(),"dimple.log"))
-            try:
-                #Extract phaser outputs if any
-                if "phaser" in configParser.sections():
-                    phaserElement = ET.SubElement(xmlStructure,"PHASER")
-                    phaserElement.text = configParser.get("phaser","status")
-                refmacCycleArrays = {}
-                #Extract refmac5 jelly cycles output
-                if "refmac5 jelly"  in configParser.sections():
-                    for property in ["iter_overall_r", "iter_free_r", "rmsBOND", "rmsANGL","rmsCHIRAL"]:
-                        perCycleArray = json.loads(configParser.get("refmac5 jelly",property))
-                        refmacCycleArrays[property] = perCycleArray
-                #Extract refmac5 jelly cycles output
-                if "refmac5 restr"  in configParser.sections():
-                    for property in ["iter_overall_r", "iter_free_r", "rmsBOND", "rmsANGL","rmsCHIRAL"]:
-                        perCycleArray = json.loads(configParser.get("refmac5 restr",property))
-                        if property in refmacCycleArrays: refmacCycleArrays[property] += perCycleArray
-                        else: refmacCycleArrays[property] = perCycleArray
-                #Identify if pointless has spotted a better reindexing
-                if "pointless" in configParser.sections():
-                    if "alt_reindex" in [item[0] for item in configParser.items("pointless")]:
-                        alt_reindexes = json.loads(configParser.get("pointless","alt_reindex"))
-                        bestReindex = ("[h,k,l]",0.)
-                        for alt_reindex in alt_reindexes:
-                            if alt_reindex["cc"] > bestReindex[1]:
-                                bestReindex = (alt_reindex["op"], alt_reindex["cc"])
-                        if bestReindex[0] != "[h,k,l]":
-                            ET.SubElement(xmlStructure,"REINDEX").text = "{}".format(bestReindex[0])
-                            
-                            reindexCommandPath = os.path.join(self.getWorkDirectory(),"reindex.txt")
-                            with open(reindexCommandPath,"w") as reindexCommandFile:
-                                reindexCommandFile.write("reindex {}".format(bestReindex[0]))
-                            reindexExecutablePath = os.path.join(os.environ["CBIN"],"reindex")
+        xmlStructure = ET.Element("i2Dimple")
+        
+        #Here transform information parsed from dimple.log into program.xml
+        #Parse the dimple log (which is compatible with configparser !)
+        configParser = configparser.SafeConfigParser()
+        configParser.read(os.path.join(self.getWorkDirectory(),"dimple.log"))
+        try:
+            #Extract phaser outputs if any
+            if "phaser" in configParser.sections():
+                phaserElement = ET.SubElement(xmlStructure,"PHASER")
+                phaserElement.text = configParser.get("phaser","status")
+            refmacCycleArrays = {}
+            #Extract refmac5 jelly cycles output
+            if "refmac5 jelly"  in configParser.sections():
+                for property in ["iter_overall_r", "iter_free_r", "rmsBOND", "rmsANGL","rmsCHIRAL"]:
+                    perCycleArray = json.loads(configParser.get("refmac5 jelly",property))
+                    refmacCycleArrays[property] = perCycleArray
+            #Extract refmac5 jelly cycles output
+            if "refmac5 restr"  in configParser.sections():
+                for property in ["iter_overall_r", "iter_free_r", "rmsBOND", "rmsANGL","rmsCHIRAL"]:
+                    perCycleArray = json.loads(configParser.get("refmac5 restr",property))
+                    if property in refmacCycleArrays: refmacCycleArrays[property] += perCycleArray
+                    else: refmacCycleArrays[property] = perCycleArray
+            #Identify if pointless has spotted a better reindexing
+            if "pointless" in configParser.sections():
+                if "alt_reindex" in [item[0] for item in configParser.items("pointless")]:
+                    alt_reindexes = json.loads(configParser.get("pointless","alt_reindex"))
+                    bestReindex = ("[h,k,l]",0.)
+                    for alt_reindex in alt_reindexes:
+                        if alt_reindex["cc"] > bestReindex[1]:
+                            bestReindex = (alt_reindex["op"], alt_reindex["cc"])
+                    if bestReindex[0] != "[h,k,l]":
+                        ET.SubElement(xmlStructure,"REINDEX").text = "{}".format(bestReindex[0])
+                        
+                        reindexCommandPath = os.path.join(self.getWorkDirectory(),"reindex.txt")
+                        with open(reindexCommandPath,"w") as reindexCommandFile:
+                            reindexCommandFile.write("reindex {}".format(bestReindex[0]))
+                        reindexExecutablePath = os.path.join(os.environ["CBIN"],"reindex")
 
-                            initialPath = self.container.inputData.F_SIGF.fullPath.__str__()
-                            reindexedPath = self.container.outputData.F_SIGF_OUT.fullPath.__str__()
+                        initialPath = self.container.inputData.F_SIGF.fullPath.__str__()
+                        reindexedPath = self.container.outputData.F_SIGF_OUT.fullPath.__str__()
+                        with open(reindexCommandPath,"r") as reindexCommandFile:
+                            subprocess.call([reindexExecutablePath, "HKLIN", initialPath,"HKLOUT", reindexedPath],stdin=reindexCommandFile)
+                            self.container.outputData.F_SIGF_OUT.annotation = ("Observations reindexed by operator {}".format(bestReindex[0]))
+
+                        if self.container.inputData.FREERFLAG.isSet():
+                            initialPath = self.container.inputData.FREERFLAG.fullPath.__str__()
+                            reindexedPath = self.container.outputData.FREERFLAG_OUT.fullPath.__str__()
                             with open(reindexCommandPath,"r") as reindexCommandFile:
                                 subprocess.call([reindexExecutablePath, "HKLIN", initialPath,"HKLOUT", reindexedPath],stdin=reindexCommandFile)
-                                self.container.outputData.F_SIGF_OUT.annotation = ("Observations reindexed by operator {}".format(bestReindex[0]))
+                            self.container.outputData.FREERFLAG_OUT.annotation = ("FreeR reindexed by operator {}".format(bestReindex[0]))
 
-                            if self.container.inputData.FREERFLAG.isSet():
-                                initialPath = self.container.inputData.FREERFLAG.fullPath.__str__()
-                                reindexedPath = self.container.outputData.FREERFLAG_OUT.fullPath.__str__()
-                                with open(reindexCommandPath,"r") as reindexCommandFile:
-                                    subprocess.call([reindexExecutablePath, "HKLIN", initialPath,"HKLOUT", reindexedPath],stdin=reindexCommandFile)
-                                self.container.outputData.FREERFLAG_OUT.annotation = ("FreeR reindexed by operator {}".format(bestReindex[0]))
+            if len(refmacCycleArrays) > 0:
+                refmacCyclesNode = ET.SubElement(xmlStructure,"REFMAC")
+                overall_statsNode = ET.SubElement(refmacCyclesNode,"Overall_stats")
+                stats_vs_cycleNode = ET.SubElement(overall_statsNode,"stats_vs_cycle")
+                for iCycle in range(len(refmacCycleArrays["iter_overall_r"])):
+                    refmacCycleNode = ET.SubElement(stats_vs_cycleNode,"new_cycle")
+                    ET.SubElement(refmacCycleNode,"cycle").text = str(iCycle+1)
+                    for property, value in refmacCycleArrays.items():
+                        modPropName = property
+                        if modPropName == 'iter_overall_r': modPropName = 'r_factor'
+                        elif modPropName == 'iter_free_r': modPropName = 'r_free'
+                        elif modPropName == 'rmsANGL': modPropName = 'rmsANGLE'
+                        propertyNode = ET.SubElement(refmacCycleNode, modPropName)
+                        propertyNode.text = str(value[iCycle])
+            #Report on blobs found
+            if "find-blobs" in configParser.sections():
+                findBlobsNode = ET.SubElement(xmlStructure,"find-blobs")
+                blobPositionsArray = json.loads(configParser.get("find-blobs","blobs"))
+                blobScoresArray = json.loads(configParser.get("find-blobs","scores"))
+                for iBlob, blobScore in enumerate(blobScoresArray):
+                    blobPosition = blobPositionsArray[iBlob]
+                    blobNode = ET.SubElement(findBlobsNode,"Blob")
+                    ET.SubElement(blobNode,"x").text = str(blobPosition[0])
+                    ET.SubElement(blobNode,"y").text = str(blobPosition[1])
+                    ET.SubElement(blobNode,"z").text = str(blobPosition[2])
+                    ET.SubElement(blobNode,"score").text = str(blobScore)
+        except Exception as err:
+            self.appendErrorReport(201, err.__str__())
+            return CPluginScript.FAILED
+        
+        logText = ET.SubElement(xmlStructure,"LogText")
+        with open(self.makeFileName("LOG"),"r") as logFile:
+            logText.text = etree.CDATA(logFile.read())
+        
+        #Extract performanceindictors from XML
+        try:
+            self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(xmlStructure.xpath("//Cycle/iter_overall_r")[-1].text)
+            self.container.outputData.PERFORMANCEINDICATOR.RFree.set(xmlStructure.xpath("//Cycle/iter_free_r")[-1].text)
+        except: pass
 
-                if len(refmacCycleArrays) > 0:
-                    refmacCyclesNode = ET.SubElement(xmlStructure,"REFMAC")
-                    overall_statsNode = ET.SubElement(refmacCyclesNode,"Overall_stats")
-                    stats_vs_cycleNode = ET.SubElement(overall_statsNode,"stats_vs_cycle")
-                    for iCycle in range(len(refmacCycleArrays["iter_overall_r"])):
-                        refmacCycleNode = ET.SubElement(stats_vs_cycleNode,"new_cycle")
-                        ET.SubElement(refmacCycleNode,"cycle").text = str(iCycle+1)
-                        for property, value in refmacCycleArrays.items():
-                            modPropName = property
-                            if modPropName == 'iter_overall_r': modPropName = 'r_factor'
-                            elif modPropName == 'iter_free_r': modPropName = 'r_free'
-                            elif modPropName == 'rmsANGL': modPropName = 'rmsANGLE'
-                            propertyNode = ET.SubElement(refmacCycleNode, modPropName)
-                            propertyNode.text = str(value[iCycle])
-                #Report on blobs found
-                if "find-blobs" in configParser.sections():
-                    findBlobsNode = ET.SubElement(xmlStructure,"find-blobs")
-                    blobPositionsArray = json.loads(configParser.get("find-blobs","blobs"))
-                    blobScoresArray = json.loads(configParser.get("find-blobs","scores"))
-                    for iBlob, blobScore in enumerate(blobScoresArray):
-                        blobPosition = blobPositionsArray[iBlob]
-                        blobNode = ET.SubElement(findBlobsNode,"Blob")
-                        ET.SubElement(blobNode,"x").text = str(blobPosition[0])
-                        ET.SubElement(blobNode,"y").text = str(blobPosition[1])
-                        ET.SubElement(blobNode,"z").text = str(blobPosition[2])
-                        ET.SubElement(blobNode,"score").text = str(blobScore)
-            except Exception as err:
-                self.appendErrorReport(201, err.__str__())
-                return CPluginScript.FAILED
-            
-            logText = ET.SubElement(xmlStructure,"LogText")
-            with open(self.makeFileName("LOG"),"r") as logFile:
-                logText.text = etree.CDATA(logFile.read())
-            
-            #Extract performanceindictors from XML
-            try:
-                self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(xmlStructure.xpath("//Cycle/iter_overall_r")[-1].text)
-                self.container.outputData.PERFORMANCEINDICATOR.RFree.set(xmlStructure.xpath("//Cycle/iter_free_r")[-1].text)
-            except: pass
-            
-            programXMLFile.write(etree.tostring(xmlStructure))
+        writeXml(xmlStructure, self.makeFileName("PROGRAMXML"))
         return CPluginScript.SUCCEEDED

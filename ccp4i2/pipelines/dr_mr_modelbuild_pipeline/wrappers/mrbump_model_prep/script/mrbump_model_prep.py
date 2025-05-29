@@ -52,9 +52,7 @@ class mrbump_model_prep(CPluginScript):
              bestModel = ET.SubElement(xmlroot,"bestModel")
              bestModel.text = str(bestFile)
 
-             with open(str(self.makeFileName('PROGRAMXML')), 'w') as ostream:
-                 ET.indent(xmlroot)
-                 CCP4Utils.writeXML(ostream,ET.tostring(xmlroot))
+             CCP4Utils.writeXml(xmlroot, self.makeFileName('PROGRAMXML'))
 
     def findOutputFileFromLog(self,logDir):
         mjson=modelout.Json()

@@ -401,9 +401,7 @@ class buccaneer_build_refine_mr(CPluginScript):
         self.appendXMLToRoot(xml)
 
     def writeXMLRoot(self):
-        with open(self.pipelinexmlfile, 'w') as f:
-            ET.indent(self.xmlroot)
-            CCP4Utils.writeXML(f, ET.tostring(self.xmlroot))
+        CCP4Utils.writeXml(self.xmlroot, self.pipelinexmlfile)
 
     def parseBuccaneerXML(self, plugin):
         return ET.parse(plugin.makeFileName('PROGRAMXML')).getroot()

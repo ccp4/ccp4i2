@@ -113,10 +113,7 @@ class aimless_pipe(CPluginScript):
             pointlessXMLPath = self.pointless.makeFileName('PROGRAMXML')
             pointlessEtree = ET.parse(pointlessXMLPath)
             self.rootXML.append(pointlessEtree.getroot())
-            with open (self.makeFileName('PROGRAMXML'),"w") as outputXML:
-                ET.indent(self.rootXML)
-                CCP4Utils.writeXML(\
-                    outputXML, ET.tostring(self.rootXML, encoding='unicode'))
+            CCP4Utils.writeXml(self.rootXML, self.makeFileName('PROGRAMXML'))
         except:
             pass
 

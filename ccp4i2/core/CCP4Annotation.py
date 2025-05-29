@@ -323,15 +323,6 @@ class CMetaDataTag(CCP4Data.CData):
 
     def __init__(self, **kw):
         CCP4Data.CData.__init__(self, **kw)
-        '''
-        print 'CMetaDataTag.__init__',repr(self.parent()),self.parent
-        try:
-          print self.parent().index(self)
-        except:
-          print 'no index'
-        import traceback
-        traceback.print_stack(limit=6)
-        '''
 
     def validity(self, arg):
         if isinstance(arg,CMetaDataTag):

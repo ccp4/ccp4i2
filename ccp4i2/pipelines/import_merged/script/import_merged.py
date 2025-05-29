@@ -405,9 +405,7 @@ class import_merged(CPluginScript):
       rootXML.append(x1XML)
       if x2XML is not None:
           rootXML.append(x2XML)
-      with open (self.makeFileName('PROGRAMXML'),"w") as outputXML:
-          ET.indent(rootXML)
-          CCP4Utils.writeXML(outputXML,ET.tostring(rootXML))
+      CCP4Utils.writeXml(rootXML, self.makeFileName('PROGRAMXML'))
 
     #------------------------------------------------------------------------
     def makeReportXML(self, containerXML):

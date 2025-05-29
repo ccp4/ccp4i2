@@ -38,9 +38,7 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
 
       self.xmlroot = ET.Element('CCP4i2DRMRMBPipe')
       self.xmlroot.text = '\n'
-      with open(str(self.makeFileName('PROGRAMXML')), 'w') as ostream:
-        ET.indent(self.xmlroot)
-        CCP4Utils.writeXML(ostream,ET.tostring(self.xmlroot,pretty_print=True))
+      self.flushXML()
 
       if self.container.controlParameters.LIGANDAS.__str__() == 'DICT':
             self.dictToUse = self.container.inputData.DICTIN
@@ -811,5 +809,4 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))''')
         plugin.reportStatus(CPluginScript.SUCCEEDED)
 
     def flushXML(self):
-        with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-            CCP4Utils.writeXML(programXML,ET.tostring(self.xmlroot,pretty_print=True))
+        CCP4Utils.writeXml(self.xmlroot, self.makeFileName('PROGRAMXML'))
