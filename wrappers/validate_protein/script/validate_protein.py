@@ -73,9 +73,12 @@ class validate_protein(CPluginScript):
         
         if self.container.controlParameters.TWO_DATASETS :
             self.previous_model_path = str(self.container.inputData.XYZIN_2)
-            self.previous_reflections_path, _ = self.makeHklin([['F_SIGF_2',
-                                                               CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]], 
-                                                               hklin='F_SIGF_2')
+            if self.container.inputData.F_SIGF_2.isSet() :
+                self.previous_reflections_path, _ = self.makeHklin([['F_SIGF_2',
+                                                                CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]], 
+                                                                hklin='F_SIGF_2')
+            else:
+                self.previous_reflections_path = None
             log_string += _print_and_return('\n\nCalculating metrics for two datasets...\n\n')
         else :
             log_string += _print_and_return('\n\nCalculating metrics for one dataset...\n\n')
