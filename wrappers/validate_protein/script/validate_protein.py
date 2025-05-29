@@ -173,8 +173,8 @@ class validate_protein(CPluginScript):
         xml_root = etree.Element('Iris')
         model_series_data = self.model_series.get_raw_data()
         panel = Panel(model_series_data,
-                      custom_labels={'Latest': self.container.inputData.XYZIN_1.NAME_1,
-                                     'Previous': self.container.inputData.XYZIN_2.NAME_1
+                      custom_labels={'Latest': self.container.inputData.NAME_1,
+                                     'Previous': self.container.inputData.NAME_2
                                      }
                      )
 
