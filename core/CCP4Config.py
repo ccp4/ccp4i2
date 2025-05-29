@@ -29,6 +29,9 @@ import re
 import glob
 from lxml import etree
 
+import gemmi
+gemmi.set_leak_warnings(False)
+
 def DEFCONFIG():
     if  CConfig.insts is None:
         from core import CCP4Utils

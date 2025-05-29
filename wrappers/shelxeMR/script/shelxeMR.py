@@ -168,11 +168,10 @@ class shelxeMR(CPluginScript):
         pid = CCP4Modules.PROCESSMANAGER().startProcess(binf, arglist, inputText=inputText, logFile=logFile)
         status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
         exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
-        if status == 0 and os.path.exists(outfile[0]):
+        if status == 0 and os.path.exists(outfile):
             return CPluginScript.SUCCEEDED
-        else:
-            self.appendErrorReport(exitCode) # was 201 ?!?
-            return CPluginScript.FAILED
+        self.appendErrorReport(exitCode) # was 201 ?!?
+        return CPluginScript.FAILED
 
     def convToMTZ(self):
         binf2m = os.path.normpath(os.path.join(CCP4Utils.getCCP4Dir().__str__(), 'bin', 'f2mtz'))

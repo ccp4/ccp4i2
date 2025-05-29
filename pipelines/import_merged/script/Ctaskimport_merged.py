@@ -1,18 +1,13 @@
-from __future__ import print_function
-
-from qtgui.CCP4TaskWidget import CTaskWidget
-from PySide2 import QtCore,QtGui, QtWidgets
-from core import CCP4XtalData
-from qtgui import CCP4XtalWidgets
 from core.CCP4ErrorHandling import *
-
-import math
-import functools
+from qtgui import CCP4XtalWidgets
+from qtgui.CCP4TaskWidget import CTaskWidget
 
 import gemmi
+from PySide2 import QtCore, QtWidgets
 
 from  pipelines.import_merged.script.mmcifutils import *
 from  pipelines.import_merged.script.dybuttons import *
+from  pipelines.import_merged.script.importutils import ReflectionDataTypes
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -35,11 +30,11 @@ class CTaskimport_merged(CTaskWidget):
   # -------------------------------------------------------------
   def __init__(self,parent):
     CTaskWidget.__init__(self,parent)
-    
 
   # -------------------------------------------------------------
   def drawContents(self):
-    #print("Ctaskimport_merged.py drawContents")
+    print("Ctaskimport_merged.py drawContents")
+    self.container.guiParameters.HKLIN_HAS_COLUMNS.set(False)
 
     if self.container.inputData.SPACEGROUPCELL.isSet():
       #print("SPACEGROUPCELL set")
@@ -50,7 +45,7 @@ class CTaskimport_merged(CTaskWidget):
       self.container.inputData.SPACEGROUP.set\
           (self.container.inputData.SPACEGROUPCELL.spaceGroup)
       self.container.inputData.SPACEGROUPCELL.unSet()
-    
+
     self.openFolder(folderFunction='inputData',followFrom=False)
 
     self.createLine ( [ 'subtitle','Select a merged data file' ] )
@@ -65,12 +60,44 @@ class CTaskimport_merged(CTaskWidget):
 
     self.openSubFrame(toggle=[ 'SHOW_MMCIF_BLOCKS', 'open', [ True ] ] )
     self.setMMCIFframe()
-    self.setCIFblocklist()
-    
     self.closeSubFrame()  #  MMCIF frame
     self.closeSubFrame()  #  non-MTZ frame
-    self.createLine (['label',''])
 
+
+    self.createLine (['label',''])
+    # Selected columns
+    self.columnAdviceMTZ   = 'reselect input file to change'
+    self.columnAdviceMMCIF = ' reselect cif reflection block to change content selection'
+
+    advlabel = ''
+    clabel = ''
+
+    self.container.guiParameters.HKLIN_HAS_COLUMNS.set(False)
+    if self.container.inputData.HKLIN_FORMAT == 'MTZ':
+      self.container.guiParameters.HKLIN_HAS_COLUMNS.set(True)
+      clabel =  ' MTZ columns: ' + str(self.container.inputData.HKLIN_OBS_COLUMNS)
+      advlabel = self.columnAdviceMTZ
+
+    elif self.container.inputData.HKLIN_FORMAT == 'MMCIF':
+      self.container.guiParameters.HKLIN_HAS_COLUMNS.set(True)
+      content = str(self.container.inputData.MMCIF_SELECTED_CONTENT)
+      block = str(self.container.inputData.MMCIF_SELECTED_BLOCK)
+      clabel =  ' MMCIF Block: ' + block + ', content type: ' + content
+      advlabel = self.columnAdviceMMCIF
+      
+    colLine = self.createLine( ['label','Selected data: ',
+                                'label', clabel,
+                                'advice', advlabel],
+                               toggle=['HKLIN_HAS_COLUMNS','open',[True]])
+    self.selectedColumnLabels = colLine.layout().itemAt(1).widget()
+    self.selectedColumnAdvice = colLine.layout().itemAt(2).widget()
+    
+    #print(">*>* Format", self.container.inputData.HKLIN_FORMAT,
+    #    self.container.guiParameters.HKLIN_HAS_COLUMNS)
+
+    if self.container.inputData.HKLIN_FORMAT == 'MMCIF':
+      self.setCIFblocklist()
+    
     self.createLine (['label',
                       'This file appears to be from the StarAniso server'],
                      toggle=['STARANISO_DATA', 'closed', [False]])
@@ -182,9 +209,16 @@ class CTaskimport_merged(CTaskWidget):
   @QtCore.Slot(bool)
   def updateFromFile(self,force=True):
     # Explicit call to CGenericREflnDataFile.getFileContent() otherwise CData properties code gets it wrong
-    print("\n** updateFromFile HKLIN ",self.container.inputData.HKLIN.fileContent)
-    print("IDRR", self.container.inputData.RESOLUTION_RANGE)
     self.unSetAll()
+    fc = self.container.inputData.HKLIN.getFileContent()
+    print("\n** updateFromFile HKLIN ",self.container.inputData.HKLIN.fileContent)
+
+    if not self.container.inputData.HKLIN.isSet():
+      print("HKLIN unset")
+      return
+
+    #print("IDRR", self.container.inputData.RESOLUTION_RANGE)
+    #self.unSetAll()
 
     self.container.inputData.HKLIN.loadFile()
     # What is the format?
@@ -224,8 +258,6 @@ class CTaskimport_merged(CTaskWidget):
             return
         # Open button, continue to try
        
-    #print("*self.container.inputData.HKLIN_FORMAT",
-    #     self.container.inputData.HKLIN_FORMAT)
     if self.container.inputData.HKLIN_FORMAT == 'MMCIF':
       if not self.openMmcifFile():
         return   # fail
@@ -235,8 +267,6 @@ class CTaskimport_merged(CTaskWidget):
       # not mmcif
       self.container.guiParameters.SHOW_MMCIF_BLOCKS.set(False)
       # Not mmcif
-      print('CTaskimport_merged.updateFromFile fileContent',type(fileContent))
-      print(fileContent)
       self.container.inputData.UNITCELL.set(fileContent.cell.fix(fileContent.cell.get()))
       if force or fileContent.spaceGroup.isSet():
         self.container.inputData.SPACEGROUP.set(fileContent.spaceGroup)
@@ -301,6 +331,7 @@ class CTaskimport_merged(CTaskWidget):
      
   # -------------------------------------------------------------
   def selectObsColumns(self):
+    print("selectObsColumns")
     hklin = self.container.inputData.HKLIN
     mtzModel = self.container.inputData.get('HKLIN_OBS')
     mtzModel.setFullPath(str(hklin))
@@ -316,7 +347,6 @@ class CTaskimport_merged(CTaskWidget):
         return
       elif errors.count(cls=mtzModel.__class__,code=204)>0 or errors.count(cls=mtzModel.__class__,code=205)>0:
         applyNow = (errors.count(cls=mtzModel.__class__,code=205)>0)
-        #print('handleBrowserOpenFile applyNow',applyNow,hklin)
         self.selColDialog=CCP4XtalWidgets.CSelectColumnsWidget(parent=self,model=mtzModel,applyNow=applyNow,filename=str(hklin))
         self.selColDialog.applySignal.connect(self.handleSelColDialogApply)
         self.selColDialog.cancelSignal.connect(self.handleSelColDialogCancel)
@@ -327,7 +357,7 @@ class CTaskimport_merged(CTaskWidget):
   @QtCore.Slot()
   def handleSelColDialogApply(self):
     contentFlag,i2Names,dataset,colLabels = self.selColDialog.getSelection()
-    #print 'handleSelColDialogApply getSelection',contentFlag,i2Names,dataset,colLabels
+    #print('handleSelColDialogApply getSelection',contentFlag,i2Names,dataset,colLabels)
     try:
       self.selColDialog.hide()
     except:
@@ -367,10 +397,15 @@ class CTaskimport_merged(CTaskWidget):
       self.selColDialog.deleteLater()
       if not ok:
         self.unSetAll(ifHklin=True)
+        print("Not OK")
       else:
+        # MTZ format
         self.container.inputData.HKLIN_OBS_CONTENT_FLAG = contentFlag
         self.container.inputData.HKLIN_OBS_COLUMNS = columns[0:-1]
-        #print 'HKLIN_OBS_COLUMNS',self.container.inputData.HKLIN_OBS_COLUMNS
+        self.container.guiParameters.HKLIN_HAS_COLUMNS.set(True)
+        colLabel = ' MTZ columns: ' + str(self.container.inputData.HKLIN_OBS_COLUMNS)
+        self.selectedColumnLabels.setText(colLabel)
+        self.selectedColumnAdvice.setText(self.columnAdviceMTZ)
         #print 'handleSelColDialogApply',mtzModel.fileContent.datasets,mtzModel.fileContent.crystalNames
         # Expect the datasets/cryalNames lists to be HKL_base and possibly the crystal/dataset for the extracted data
         datasets =  mtzModel.fileContent.datasets
@@ -426,8 +461,8 @@ class CTaskimport_merged(CTaskWidget):
   # -------------------------------------------------------------
   def toggleSkip2(self):
     #  Leave FreeR unchanged
-   # print('>> toggleSkip2 FRF', self.container.inputData.FREERFLAG.isSet(),
-   #       "HF", self.container.inputData.HASFREER)
+    # print('>> toggleSkip2 FRF', self.container.inputData.FREERFLAG.isSet(),
+    #       "HF", self.container.inputData.HASFREER)
     if self.container.inputData.FREERFLAG.isSet():
       return False
     if not self.container.inputData.HASFREER:
@@ -451,11 +486,17 @@ class CTaskimport_merged(CTaskWidget):
     
   # -------------------------------------------------------------
   def unSetAll(self,ifHklin=False):
-    print("unSetAll", ifHklin)
+    #print("unSetAll", ifHklin)
     for item in ['HKLIN_OBS','HKLIN_OBS_COLUMNS','HKLIN_OBS_CONTENT_FLAG',
                  'CRYSTALNAME','DATASETNAME',
-                 'MAXIMUM_RESOLUTION','CAN_CUT_RESOLUTION']:
+                 'MAXIMUM_RESOLUTION','CAN_CUT_RESOLUTION',
+                 'MMCIF_SELECTED_BLOCK', 'MMCIF_SELECTED_DETAILS',
+                 'MMCIF_SELECTED_INFO', 'MMCIF_SELECTED_COLUMNS',
+                 'MMCIF_SELECTED_CONTENT',
+                 'MMCIF_SELECTED_ISINTENSITY']:
         self.container.inputData.get(item).unSet()       
+    for item in ['HKLIN_HAS_COLUMNS', 'SHOW_MMCIF_BLOCKS', 'HKLINISMTZ']:
+      self.container.guiParameters.get(item).unSet()
     for item in ['WAVELENGTH','CRYSTALNAME','DATASETNAME']:
       self.getWidget(item).validate()
     self.container.inputData.RESOLUTION_RANGE_SET.set(False)
@@ -466,8 +507,12 @@ class CTaskimport_merged(CTaskWidget):
 
   # -------------------------------------------------------------
   def openMmcifFile(self):
-      #print("openMmcifFile", self.container.inputData.HKLIN)
-      if self.container.inputData.HKLIN.isSet():
+      print("openMmcifFile", self.container.inputData.HKLIN)
+      if not self.container.inputData.HKLIN.isSet():
+        # No hklin
+        self.unSetAll(False)
+        return
+      else:
         try:
           self.mmcif = gemmi.cif.read(str(self.container.inputData.HKLIN))
         except Exception as e:
@@ -497,7 +542,9 @@ class CTaskimport_merged(CTaskWidget):
 
         self.cifblockinfo = []
         for rb in self.rblocks:
-          self.cifblockinfo.append(CifBlockInfo(rb))
+          self.cifblockinfo.append(CifBlockInfo(rb))   # in mmcifutils
+          cbi = self.cifblockinfo[-1]
+          printBlockInfo(cbi)
 
         # check if file is from StarAniso
         self.checkForStarAniso()
@@ -505,8 +552,7 @@ class CTaskimport_merged(CTaskWidget):
 
   # -------------------------------------------------------------
   def processMmcifFile(self):
-    #print("** processMmcifFile", self.container.inputData.HKLIN)
-
+    print("** processMmcifFile", self.container.inputData.HKLIN)
     self.container.guiParameters.SHOW_MMCIF_BLOCKS.set(True) # for mmCIF file
 
     nblock = len(self.rblocks)
@@ -522,6 +568,8 @@ class CTaskimport_merged(CTaskWidget):
     otherlist = []
     idxblkinfo = []
     for idx, cifinfo in enumerate(self.cifblockinfo):
+      #print(">>>")
+      #printBlockInfo(cifinfo)
       if cifinfo.merged_diffn_data():
         # block contains Is or Fs
         idxblkinfo.append(idx)
@@ -546,6 +594,9 @@ class CTaskimport_merged(CTaskWidget):
       else:
         otherlist.append(self.otherinfo(cifinfo))
 
+    #print("detailslist", len(detailslist), detailslist)
+    #print("infolist", infolist)
+    #print("columnlist", columnlist)
     self.container.guiParameters.MMCIF_INDICES.set(idxblkinfo)
     self.container.guiParameters.MMCIF_BLOCKNAMES.set(ids)
     self.container.guiParameters.MMCIF_BLOCK_DETAILS.set(detailslist)
@@ -579,7 +630,6 @@ class CTaskimport_merged(CTaskWidget):
 
       #  cifinfo.columnnames is a dictionary
       columnlist = self.formatColumnNames(cifinfo.columnnames)
-      print("otherinfo columnnames", columnlist)
       s += '\n   '+columnlist
 
     return s  
@@ -587,20 +637,17 @@ class CTaskimport_merged(CTaskWidget):
   # -------------------------------------------------------------
   def setColumnNames(self, columnlist):
       # columnlist is a dictionary of columns names indexed by content
-      
-      # Possible content types, in order of priority
-      contenttypes = ['I+- anomalous', 'F+- anomalous', 'Imean', 'Fmean']
       columnlists = []
       for clist in columnlist:
           collist = None
-          for ctype in contenttypes:
+          for ctype in ReflectionDataTypes.DATA_PRIORITY:
               if ctype in clist:
                   collist = clist[ctype]
                   fclmns = self.formatColumnlist(collist)
                   columnlists.append(fclmns)
                   break
-
       self.container.guiParameters.MMCIF_BLOCK_COLUMNS.set(columnlists)
+
   # -------------------------------------------------------------
   def formatColumnNames(self, columnlist):
       # columnlist is a dictionary of columns names indexed by content
@@ -625,6 +672,7 @@ class CTaskimport_merged(CTaskWidget):
   # -------------------------------------------------------------
   def extractMmcifInfo(self, blockname=None):
       print("**extractMmcifInfo", blockname)
+
       '''
       We want to set:
       self.container.inputData.UNITCELL
@@ -634,9 +682,12 @@ class CTaskimport_merged(CTaskWidget):
       self.container.inputData.CRYSTALNAME
       self.container.inputData.MAXIMUM_RESOLUTION
       '''
-
+      
       nblocks = len(self.rblocks)
       naccepted = len(self.container.guiParameters.MMCIF_BLOCK_DETAILS)
+      if nblocks > 0 and naccepted == 0:
+        self.processMmcifFile()
+        naccepted = len(self.container.guiParameters.MMCIF_BLOCK_DETAILS)
 
       cifinfo = None
       jblock = 0
@@ -678,6 +729,8 @@ class CTaskimport_merged(CTaskWidget):
       self.container.inputData.MAXIMUM_RESOLUTION.set(\
         cifinfo.highres)
 
+      #print("M_S_I", self.container.inputData.MMCIF_SELECTED_INFO)
+      #print("M_S_C", self.container.inputData.MMCIF_SELECTED_COLUMNS)
       self.getMaximumResolution()
       #  +1 if intensity, -1 if amplitude, 0 if unknown
       isintensity = -1
@@ -733,10 +786,14 @@ class CTaskimport_merged(CTaskWidget):
   def setMMCIFframe(self):
       # just make an empty area for later, if needed
       # and if HKLIN is MMCIF, create file data objects
-      print("markCIFframe")
+      print("markCIFframe", self.container.inputData.HKLIN)
+      if not self.container.inputData.HKLIN:
+        return
       if self.widget.subFrame is not None:
+          #print("subFrame")
           self.cifpane = self.widget.subFrame.layout()
       else:
+          #print("no subFrame")
           self.cifpane = self.widget.currentFolderLayout
 
       self.cifbuttons = ChoiceButtons()
@@ -747,7 +804,105 @@ class CTaskimport_merged(CTaskWidget):
       if self.container.inputData.HKLIN_FORMAT == 'MMCIF':
           # make self.mmcif & .rblocks
           self.openMmcifFile()
+          
+  # -------------------------------------------------------------
+  def infoList(self):
+    # Get list of column content types from selected Cif block
+    contents = str(self.container.inputData.MMCIF_SELECTED_INFO).split(',')
+    # Remove leading spaces, if present
+    for idx, ct in enumerate(contents):
+      contents[idx] = ct.strip()
 
+    return contents
+    
+  # -------------------------------------------------------------
+  def cifColumnSelect(self):
+    # column selection box, where appropriate
+    #  returns type found or selected
+    if self.container.inputData.MMCIF_SELECTED_CONTENT.isSet():
+      return
+    
+    msc = self.container.inputData.MMCIF_SELECTED_CONTENT
+    if msc == 'NONE':
+      msc = "None"
+    if msc == '':
+      msc = 'Blank'
+    #print(">*> cifColumnSelect", msc)
+    #print("<< ", self.container.inputData.MMCIF_SELECTED_CONTENT)
+    #print("<<** ", type(self.container.inputData.MMCIF_SELECTED_CONTENT))
+    #print("<*** ", len(self.container.inputData.MMCIF_SELECTED_CONTENT))
+   
+    self.selectedContent = None
+
+    contents = self.infoList()
+    #print("contents", contents)
+    #print("Ctypes", ReflectionDataTypes.DATA_PRIORITY)
+    ntypefound = 0
+    ctypefound = None
+    choices = []
+    for ctype in ReflectionDataTypes.DATA_PRIORITY:
+      if ctype in contents:
+        # Possible type found, in order of priority
+        ntypefound += 1
+        ctypefound = ctype
+        choices.append(ctype)
+
+    if ntypefound == 0:
+      return
+    
+    # If only one found, just accept it
+    if ntypefound == 1:
+      self.selectedContent = ctypefound
+      self.setMMCIFcontentColumns()
+      block = str(self.container.inputData.MMCIF_SELECTED_BLOCK)
+      clabel =  ' MMCIF Block: ' + block + ', content type: ' + self.selectedContent
+      self.selectedColumnLabels.setText(clabel)
+      self.selectedColumnAdvice.setText(' sole available option')
+      return
+  
+    title = "Select data column group to import"
+    subtitle = "shown in order of priority"
+    tags = ['  <<    default', '', '', '']
+
+    notes = []
+    for ctype in choices:
+      l = ReflectionDataTypes.TYPE_LABELS[ctype]
+      notes.append(l)
+    
+    selbox = selectBox(title, choices, tags, notes, subtitle=subtitle)
+    selbox.execit()
+
+    self.selectedContent = selbox.getSelected()
+    #print(">Column selected", self.selectedContent)
+    if self.selectedContent is None:
+      self.selectedContent = "Unspecified"
+    if self.selectedContent == 'Cancelled':
+      self.unSetAll(ifHklin=True)
+      self.selectedContent = "Unspecified"
+      
+    self.setMMCIFcontentColumns()
+    block = str(self.container.inputData.MMCIF_SELECTED_BLOCK)
+    clabel =  ' MMCIF Block: ' + block + ', content type: ' + self.selectedContent
+    self.selectedColumnLabels.setText(clabel)
+    self.selectedColumnAdvice.setText(self.columnAdviceMMCIF)
+
+    selbox.deleteLater()
+  # -------------------------------------------------------------
+  def setMMCIFcontentColumns(self):
+    # store content and mmcif columns
+    self.container.inputData.MMCIF_SELECTED_CONTENT.set(self.selectedContent)
+    if self.selectedContent == "Unspecified":
+      return
+
+    cifspecs = ReflectionDataTypes.REFLECTION_DATA[self.selectedContent]
+    #print("cifspecs", cifspecs)
+    ciflabels = ''
+    for spec in cifspecs:
+      l = spec.split()
+      ciflabels += l[0] + ', '
+    
+    self.container.inputData.MMCIF_SELECTED_COLUMNS.set(ciflabels[:-2])
+    
   # -------------------------------------------------------------
   @QtCore.Slot(str)
   def cifblockClicked(self):
@@ -755,6 +910,8 @@ class CTaskimport_merged(CTaskWidget):
       #print("Clicked", s)
       self.selectedBlock = s
       self.extractMmcifInfo(s)
+      self.container.inputData.MMCIF_SELECTED_CONTENT.unSet()
+      self.cifColumnSelect()
 
   # -------------------------------------------------------------
   def setCIFblocklist(self):
@@ -763,7 +920,7 @@ class CTaskimport_merged(CTaskWidget):
       if self.container.guiParameters.MMCIF_BLOCK_INFO:
           infolist = self.strlist(self.container.guiParameters.MMCIF_BLOCK_INFO)
           # Edit infolist
-          #   (this would be easier if I hadn't lumped different things together)
+           #   (this would be easier if I hadn't lumped different things together)
           for i, info in enumerate(infolist):
             info = 'Column content type: '+info
             if not 'FreeR' in info:
@@ -792,6 +949,10 @@ class CTaskimport_merged(CTaskWidget):
           "Reflection blocks not containing importable merged reflection data",
             self.strlist(self.container.guiParameters.MMCIF_BLOCK_OTHER))
 
+      self.container.guiParameters.HKLIN_HAS_COLUMNS.set(True)
+          
+      self.cifColumnSelect()
+
   # -------------------------------------------------------------
   def checkForStarAniso(self):
     # current check loop for _software.name == STARANISO in 1st block
@@ -819,4 +980,3 @@ class CTaskimport_merged(CTaskWidget):
       for i in range(len(cstringlist)):
           sl.append(str(cstringlist[i]))
       return sl
-

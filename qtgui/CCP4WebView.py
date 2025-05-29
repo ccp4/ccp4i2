@@ -219,9 +219,21 @@ class CWebView(QtWebEngineWidgets.QWebEngineView):
                 if q.split("=")[1] != "report.html" and q.split("=")[1] !=  "report_tmp.html":
                     nonReport = True
 
+        baseName = os.path.basename(self.url().path())
         if self.url().path().startswith("/database/projectId"):
-                nonReport = True
-        if self.url().scheme() == "file" and os.path.basename(self.url().path()) != "report.html" and os.path.basename(self.url().path()) != "report_tmp.html":
+            nonReport = True
+        if (
+            self.url().scheme() == "file"
+            and baseName not in {"report.html", "report_tmp.html"}
+        ):
+            nonReport = True
+        if (
+            self.url().scheme() == "http"
+            and "/database/projectid/" in self.url().path()
+            and "/jobnumber/" in self.url().path()
+            and "/file/" in self.url().path()
+            and baseName not in {"blank.html", "report.html", "report_tmp.html"}
+        ):
             nonReport = True
         if nonReport:
             if self.history().canGoBack():

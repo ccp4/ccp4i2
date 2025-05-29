@@ -33,7 +33,7 @@ class refmac_i2(CPluginScript):
     TASKNAME = 'refmac'
     TASKCOMMAND = 'refmacat'
     TASKVERSION= 0.0
-    WHATNEXT = ['prosmart_refmac','buccaneer_build_refine_mr']
+    WHATNEXT = ['prosmart_refmac','modelcraft']
     ASYNCHRONOUS = False
     PERFORMANCECLASS = 'CRefinementPerformance'
         
@@ -206,6 +206,12 @@ class refmac_i2(CPluginScript):
         self.container.outputData.LIBOUT.annotation = 'Generated dictionary from refinement'
         self.container.outputData.ANOMFPHIOUT.annotation = 'Anomalous map coefficients'
         self.container.outputData.DIFANOMFPHIOUT.annotation = 'Difference anomalous map coefficients (LLG map)'
+
+        if str(self.container.controlParameters.SCATTERING_FACTORS) == "NEUTRON":
+            outputCifDepPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'XYZOUT_hd_expand.mmcif'))
+            if os.path.isfile(outputCifDepPath):
+                self.container.outputData.CIFFILEDEP.setFullPath(outputCifDepPath)
+                self.container.outputData.CIFFILEDEP.annotation = 'MMCIF Model from refinement (for deposition)'
 
         # Split out data objects that have been generated. Do this after applying the annotation, and flagging
         # above, since splitHklout needs to know the ABCDOUT contentFlag
@@ -517,16 +523,13 @@ class refmac_i2(CPluginScript):
                     self.appendCommandScript("HYDROGEN DFRACTION ALL")
                  elif self.container.controlParameters.HD_FRACTION_TYPE.__str__() == 'POLAR':
                     self.appendCommandScript("HYDROGEN DFRACTION POLAR")
-                 if str(self.container.controlParameters.HYDR_ALL) == 'YES':
-                    if self.container.controlParameters.HD_INIT.__str__() == 'DEUTERIUM':
-                       self.appendCommandScript("HYDROGEN DFRACTION INIT")
-                    elif self.container.controlParameters.HD_INIT.__str__() == 'MIXTURE':
-                       self.appendCommandScript("HYDROGEN DFRACTION INIT REFINEABLE 1 UNREFINEABLE 0")
-                 elif str(self.container.controlParameters.HYDR_ALL) == 'ALL':
-                    if self.container.controlParameters.HD_INIT_HALL.__str__() == 'DEUTERIUM':
-                       self.appendCommandScript("HYDROGEN DFRACTION INIT")
-                    elif self.container.controlParameters.HD_INIT_HALL.__str__() == 'MIXTURE':
-                       self.appendCommandScript("HYDROGEN DFRACTION INIT REFINEABLE 1 UNREFINEABLE 0")
+              if (self.container.controlParameters.HYDR_ALL == 'ALL' or \
+                    self.container.controlParameters.HYDR_ALL == 'YES') and \
+                    self.container.controlParameters.HD_INIT_TOGGLE:
+                 if self.container.controlParameters.HD_INIT.__str__() == 'DEUTERIUM':
+                    self.appendCommandScript("HYDROGEN DFRACTION INIT")
+                 elif self.container.controlParameters.HD_INIT.__str__() == 'MIXTURE':
+                    self.appendCommandScript("HYDROGEN DFRACTION INIT REFINEABLE 1 UNREFINEABLE 0")
 
         if self.container.controlParameters.RES_CUSTOM:
             if self.container.controlParameters.RES_MIN.isSet() and self.container.controlParameters.RES_MAX.isSet():

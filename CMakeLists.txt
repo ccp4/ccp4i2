@@ -87,11 +87,13 @@ install(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/i2run-inst DESTINATION bin RENAME i2run
 if(WIN32)
   install(FILES ${CMAKE_SOURCE_DIR}/Windows/ccp4i2.ico DESTINATION .)
   install(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/ccp4i2.bat DESTINATION bin)
+  install(PROGRAMS ${CMAKE_SOURCE_DIR}/bin/i2run.bat DESTINATION bin)
 endif()
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
   install(FILES ${CMAKE_SOURCE_DIR}/Linux/ccp4i2.png DESTINATION .)
 endif()
 
+install(FILES ${CMAKE_SOURCE_DIR}/__init__.py DESTINATION ${Python_SITELIB}/ccp4i2)
 install(FILES ${CMAKE_SOURCE_DIR}/VERSION DESTINATION ${Python_SITELIB}/ccp4i2)
 

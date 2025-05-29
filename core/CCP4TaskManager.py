@@ -74,7 +74,7 @@ MODULE_DEFAULTS = {'molecular_replacement' : ['mrbump_basic', 'phaser_simple', '
                    'refinement'            : ['servalcat_pipe', 'prosmart_refmac'],
                    'bioinformatics'        : ['ccp4mg_edit_model' , 'ccp4mg_edit_nomrbump', 'chainsaw', 'sculptor','phaser_ensembler','clustalw'],
                    'bigpipes'              : ['SubstituteLigand','dr_mr_modelbuild_pipeline'],
-                   'model_building'        : ['modelcraft', 'coot_rebuild','coot_script_lines', 'coot_find_waters','arp_warp_classic','shelxeMR','buccaneer_build_refine_mr','nautilus_build_refine','dr_mr_modelbuild_pipeline'],
+                   'model_building'        : ['modelcraft', 'coot_rebuild','coot_script_lines', 'coot_find_waters','arp_warp_classic','shelxeMR','dr_mr_modelbuild_pipeline'],
                    'validation'            : ['validate_protein', 'edstats', 'privateer', 'qtpisa'],
                    'export'                : ['PrepareDeposit'],
                    'expt_data_utility'     : ['pointless_reindexToMatch', 'phaser_EP_LLG', 'cmapcoeff', 'chltofom', 'cphasematch', 'ctruncate', 'splitMtz', 'scaleit'],
@@ -770,26 +770,7 @@ class CTaskManager:
                     else:
                         taskList.extend(self.moduleLookup[module])
                     tree.append([module, MODULE_TITLES.get(module, module), taskList])
-        #print 'TASKMANAGER.taskTree',tree
-        '''
-          workflows = WORKFLOWMANAGER().getList()
-          if len(workflows)>0:
-            tree.append(['workflows','Workflows',workflows])
-          customtasks =CUSTOMTASKMANAGER().getList()
-          if len(customtasks)>0:
-            tree.append(['customTasks','Custom tasks',customtasks])
-        '''
         return tree
-
-
-    def openDataFile(self, fileName='', editableData=True):    # This only appears to be used in CCP4ProjectWidgetDemo
-        from core import CCP4File
-        h = CCP4File.CI2XmlHeader()
-        h.loadFromXml(fileName)
-        taskName = str(h.pluginName)
-        widget = self.openTask(taskName, editableData=editableData)
-        if widget is not None:
-            widget.loadData(fileName)
 
     def openTask(self, taskName, version=None, projectId=None, editableData=True):
         from qtgui import CCP4TaskViewer

@@ -528,10 +528,11 @@ class import_merged(CPluginScript):
         self.freeout = freerfile
         reducehkl = True  # for now
 
-        #print("convertmmcif files", outfile, freerfile)
+        # print("convertmmcif files", outfile, freerfile)
         resorange = self.makeResoRange()
             
-        convertcif = ConvertCIF(filename, blockname,
+        cifcontenttype = str(self.container.inputData.MMCIF_SELECTED_CONTENT)
+        convertcif = ConvertCIF(filename, blockname, cifcontenttype,
                                 outfile, freerfile, reducehkl, resorange)
 
         self.mmcifXML = convertcif.getXML()

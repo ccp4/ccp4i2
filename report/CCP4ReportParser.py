@@ -3761,9 +3761,12 @@ class JobLogFiles(ReportClass):
                 fileName = os.path.join(root,fn)
                 if os.path.exists(fileName):
                     allText += fileName + "\n"
-                    with open(fileName) as f:
+                    try:
+                        f = open(fileName) 
                         t = f.read()
                         allText += t + "\n\n"
+                    except:
+                        print("Could not read file",fn)
 
     download = logFold.addCopyToClipboard(text=allText,label="Copy all to clipboard")
 
@@ -3775,8 +3778,11 @@ class JobLogFiles(ReportClass):
                     fileFold = Fold(label=fileName,brief=os.path.basename(fileName))
                     logFold.append(fileFold)
                     t = ""
-                    with open(fileName) as f:
+                    try:
+                        f = open(fileName)
                         t = f.read()
+                    except:
+                        print("Could not read file",fn)
                     download = fileFold.addCopyToClipboard(text=t,label="Copy "+os.path.basename(fileName)+" to clipboard")
                     logPre = fileFold.addPre()
                     logPre.text = t

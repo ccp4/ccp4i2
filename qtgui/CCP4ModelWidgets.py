@@ -346,7 +346,6 @@ class CSeqDataFileView(CCP4Widgets.CDataFileView):
       return
 
     if self.model.__dict__['format'] is None or self.model.__dict__['format'] != 'internal':
-      #self.model.importFile(jobId=self.parentTaskWidget().jobId(),jobNumber=self.parentTaskWidget().jobNumber())
       self.doImportFile()
     else:
       self.model.dataChanged.emit()
@@ -1800,7 +1799,7 @@ class CAsuContentSeqListView(CCP4Widgets.CViewWidget):
         privateModel = CCP4SequenceList.SequenceModel()
         self.widgets['seqTable'].setModel(privateModel)
         for mod in self.model:
-            privateModel.addItem((str(mod.num),int(mod.nCopies),str(mod.description),str(mod.polymerType),str(mod.sequence)))
+            privateModel.addItem((str(mod.name),int(mod.nCopies),str(mod.description),str(mod.polymerType),str(mod.sequence)))
         self.validate()
         @QtCore.Slot('QModelIndex','QModelIndex')
         def privateModelDataChanged(tl,br):

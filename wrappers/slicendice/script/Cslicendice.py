@@ -5,7 +5,7 @@ from qtgui import CCP4TaskWidget
 from qtgui import CCP4Widgets
 
 def whatNext(jobId=None):
-  return [ 'buccaneer_build_refine_mr' ]
+  return [ 'modelcraft' ]
 
 
 class Cslicendice(CCP4TaskWidget.CTaskWidget):
@@ -16,7 +16,7 @@ class Cslicendice(CCP4TaskWidget.CTaskWidget):
   TASKTITLE='SliceNDice - Auto model processing and MR'
   DESCRIPTION='Automated processing of predicted or deposited search models and Molecular Replacement'
   RANK=1
-  WHATNEXT = ['prosmart_refmac','buccaneer_build_refine_mr','coot_rebuild']
+  WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
 
   def __init__(self,parent):
     CCP4TaskWidget.CTaskWidget.__init__(self,parent)

@@ -177,7 +177,7 @@ class servalcat_pipe(CPluginScript):
                 self.container.outputData.METALCOORD_RESTRAINTS.annotation = 'Restraints for metal sites'
             if os.path.isfile(self.outputRestraintsMmcifPath) and stPath:
                 self.container.outputData.METALCOORD_XYZ.setFullPath(self.outputRestraintsMmcifPath)
-                self.container.outputData.METALCOORD_XYZ.annotation = 'Input structure with links from MetalCoord'
+                self.container.outputData.METALCOORD_XYZ.annotation = 'Structure model with links from MetalCoord (mmCIF format)'
 
     def executeMetalCoord(self, ligand_code):
         self.metalCoordPlugin = self.makePluginObject('metalCoord')
@@ -337,11 +337,15 @@ class servalcat_pipe(CPluginScript):
         if validate_iris or validate_baverage or validate_molprobity or validate_ramachandran:
             self.validate = self.makePluginObject('validate_protein')
             self.validate.container.inputData.XYZIN_1.set(self.container.outputData.XYZOUT)
-            self.validate.container.inputData.F_SIGF_1.set(self.container.inputData.HKLIN)
             self.validate.container.inputData.XYZIN_2.set(self.container.inputData.XYZIN)
-            self.validate.container.inputData.F_SIGF_2.set(self.container.inputData.HKLIN)
             self.validate.container.inputData.NAME_1.set("Refined")
             self.validate.container.inputData.NAME_2.set("Input")
+            if str(self.container.controlParameters.SCATTERING_FACTORS) == "XRAY":
+                self.validate.container.inputData.F_SIGF_1.set(self.container.inputData.HKLIN)
+                self.validate.container.inputData.F_SIGF_2.set(self.container.inputData.HKLIN)
+            else:
+                self.validate.container.inputData.F_SIGF_1.set(None)
+                self.validate.container.inputData.F_SIGF_2.set(None)
 
             self.validate.container.controlParameters.DO_IRIS.set(validate_iris)
             self.validate.container.controlParameters.DO_BFACT.set(validate_baverage)

@@ -2422,7 +2422,7 @@ class CProgramColumnGroup(CCP4Data.CData):
             rv.extend(self.set(data))
             return rv
 
-    def getEtree(self):
+    def getEtree(self, excludeUnset=True, name=None, useLXML=True):
         name = self.objectName()
         if name is None or len(name) == 0:
             name = self.className()
@@ -2937,12 +2937,12 @@ class CMiniMtzDataFile(CMtzDataFile):
         else:
             fileType = None
         #Have we done the same import before?
-        dbFileId, importId, checksum, dbAnnotation = CCP4Modules.PROJECTSMANAGER().alreadyImportedId(sourceFileName=self.__str__(),
-                                                                                                     projectId=projectId,
-                                                                                                     contentFlag=contentFlag,
-                                                                                                     sourceFileReference=colin,
-                                                                                                     fileType=fileType)
-        print('CMiniMtzDataFile.splitMtz alreadyImportedId in', self.__str__(), projectId, fileType, contentFlag, colin)
+        dbFileId, _, dbAnnotation = CCP4Modules.PROJECTSMANAGER().alreadyImportedId(sourceFileName=str(self),
+                                                                                    projectId=projectId,
+                                                                                    contentFlag=contentFlag,
+                                                                                    sourceFileReference=colin,
+                                                                                    fileType=fileType)
+        print('CMiniMtzDataFile.splitMtz alreadyImportedId in', str(self), projectId, fileType, contentFlag, colin)
         print('Testing if file previously imported previous db id', dbFileId)
         if dbFileId is not None:
             self.setDbFileId(dbFileId)

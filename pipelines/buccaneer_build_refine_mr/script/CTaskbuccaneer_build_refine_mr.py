@@ -30,9 +30,9 @@ from qtgui import CCP4Widgets
 def whatNext(jobId,childTaskName,childJobNumber,projectName):
   #print 'buccaneer_build_refine_mr.whatNext',projectName
   if childJobNumber is None:
-    return ['coot_rebuild','edstats','prosmart_refmac','buccaneer_build_refine_mr']
+    return ['coot_rebuild','edstats','prosmart_refmac','modelcraft']
   elif childTaskName == 'refmac':
-    return  ['coot_rebuild','edstats','prosmart_refmac','buccaneer_build_refine_mr']
+    return  ['coot_rebuild','edstats','prosmart_refmac','modelcraft']
   else:
     return [['prosmart_refmac','Refine this model before continuing']]
 
@@ -41,13 +41,13 @@ def whatNext(jobId,childTaskName,childJobNumber,projectName):
 class CTaskbuccaneer_build_refine_mr(CCP4TaskWidget.CTaskWidget):
   TASKNAME = 'buccaneer_build_refine_mr'
   TASKVERSION = 0.0
-  TASKMODULE='model_building'
+  TASKMODULE='deprecated'
   TASKTITLE='Autobuild protein - BUCCANEER'
   SHORTTASKTITLE='BUCCANEER'
   TASKLABEL = 'bucanr'
   DESCRIPTION = 'Iterations of model building (Buccaneer) and refinement (Refmac5, Prosmart and Coot)'
   MGDISPLAYFILES = ['XYZOUT']
-  WHATNEXT = ['coot_rebuild','prosmart_refmac','buccaneer_build_refine_mr', 'edstats']
+  WHATNEXT = ['coot_rebuild','prosmart_refmac','modelcraft', 'edstats']
   PROGRAMHELP = ['cbuccaneer','refmac5']
   RANK=1
   EXPORTMTZPARAMS = [ 'F_SIGF','FPHIOUT', ['DIFFPHIOUT' ,'diff' ] , 'ABCDOUT' ]
