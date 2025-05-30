@@ -1,5 +1,5 @@
 from pytest import fixture
-from .urls import pdbe_fasta, redo_cif, redo_mtz, rcsb_mmcif, rcsb_sfcif
+from .urls import pdbe_fasta, redo_cif, redo_mtz
 from .utils import download
 
 
@@ -19,17 +19,3 @@ def mtz8xfm():
 def seq8xfm():
     with download(pdbe_fasta("8xfm")) as path:
         yield path
-
-
-# For test_servalcat.py
-@fixture(scope="session")
-def cif8ola():
-    with download(rcsb_mmcif("8ola")) as path:
-        yield path
-
-
-@fixture(scope="session")
-def mtz8ola():
-    with download(redo_mtz("8ola")) as path:
-        yield path
-
