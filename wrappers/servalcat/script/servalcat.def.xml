@@ -36,6 +36,14 @@
                     <toolTip>File containing structure factor amplitudes/intensities and uncertainties (F/SigF or I/SigI).</toolTip>
                 </qualifiers>
             </content>
+            <content id="HKLIN_UNMERGED">
+            <className>CUnmergedMtzDataFile</className>
+               <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+              </qualifiers>
+            </content>
             <content id="FREERFLAG">
                 <className>CFreeRDataFile</className>
                 <qualifiers>
@@ -227,6 +235,16 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                  <menuText>Diffraction data,SPA maps</menuText>
                  <enumerators>xtal,spa</enumerators>
                  <default>xtal</default>
+                 <allowUndefined>False</allowUndefined>
+              </qualifiers>
+           </content>
+           <content id="MERGED_OR_UNMERGED">
+              <className>CString</className>
+              <qualifiers>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <menuText>merged,unmerged</menuText>
+                 <enumerators>merged,unmerged</enumerators>
+                 <default>merged</default>
                  <allowUndefined>False</allowUndefined>
               </qualifiers>
            </content>
