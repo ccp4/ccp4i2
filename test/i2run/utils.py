@@ -74,10 +74,6 @@ def demoData(*paths):
     return join(getCCP4I2Dir(), "demo_data", *paths)
 
 
-def testData(*paths):
-    return join(getCCP4I2Dir(), "test", "data", *paths)
-
-
 def hasLongLigandName(path):
     "Does the structure contains a residue with a name longer than 3 characters?"
     structure = gemmi.read_structure(str(path), format=gemmi.CoorFormat.Mmcif)
