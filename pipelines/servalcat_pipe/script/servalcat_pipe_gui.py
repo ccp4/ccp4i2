@@ -129,6 +129,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.openSubFrame(toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ] )
     self.createLine( [ 'widget', '-browseDb', True, 'HKLIN' ], toggle = ['MERGED_OR_UNMERGED', 'open', [ 'merged' ] ] )
     self.createLine( [ 'widget', '-browseDb', True, 'HKLIN_UNMERGED' ], toggle = ['MERGED_OR_UNMERGED', 'open', [ 'unmerged' ] ] )
+    self.createLine( [ 'label', '<i>Warning: Unmerged data should be scaled.</i>' ], toggle = ['MERGED_OR_UNMERGED', 'open', [ 'unmerged' ] ] )
     self.container.inputData.HKLIN.dataChanged.connect( self.hklinChanged )
     self.createLine( [ 'label', 'Diffraction data are', 'widget', 'MERGED_OR_UNMERGED'] )
     self.createLine( [ 'label', 'Refinement against <b>amplitudes</b>.'], toggle = ['HKLIN_IS_I_SIGI', 'open', [ False ] ] )
