@@ -93,7 +93,7 @@ class servalcat_report(Report):
             plotCC.append('plottype', 'xy')
             plotCC.append('xlabel', 'Cycle')
             plotCC.append('ylabel', '⟨FSCmodel⟩')
-            plotCC.append('yrange', max=1.0)
+            plotCC.append('yrange', min=0.0, max=1.0)
             plotCC.append('xintegral', 'true')
             plotCC.append('legendposition', x=0, y=1)
             plotLine = plotCC.append('plotline', xcol=1, ycol=3)
@@ -105,6 +105,7 @@ class servalcat_report(Report):
             plotR.append('plottype', 'xy')
             plotR.append('xlabel', 'Cycle')
             plotR.append('ylabel', 'R-value')
+            plotR.append('yrange', min=0.0)
             plotR.append('xintegral', 'true')
             plotR.append('legendposition', x=0, y=0)
             plotLine = plotR.append('plotline', xcol=1, ycol=3)
@@ -118,7 +119,7 @@ class servalcat_report(Report):
             plotCC.append('plottype', 'xy')
             plotCC.append('xlabel', 'Cycle')
             plotCC.append('ylabel', 'Correlation')
-            plotCC.append('yrange', max=1.0)
+            plotCC.append('yrange', min=0.0, max=1.0)
             plotCC.append('xintegral', 'true')
             plotCC.append('legendposition', x=0, y=1)
             plotLine = plotCC.append('plotline', xcol=1, ycol=4)
@@ -159,6 +160,7 @@ class servalcat_report(Report):
             plotRmsd.append('yrange', rightaxis='false')
             plotRmsd.append('xlabel', 'Cycle')
             plotRmsd.append('ylabel', ' ')
+            plotRmsd.append('yrange', min=0.0)
             plotRmsd.append('xintegral', 'true')
             plotRmsd.append('legendposition', x=0, y=0)
             plotLine = plotRmsd.append('plotline', xcol=1, ycol=2, rightaxis='false')
@@ -173,6 +175,7 @@ class servalcat_report(Report):
             plotRmsz.append('plottype', 'xy')
             plotRmsz.append('xlabel', '')
             plotRmsz.append('ylabel', '')
+            plotRmsz.append('yrange', min=0.0)
             plotRmsz.append('xintegral', 'true')
             plotRmsz.append('legendposition', x=0, y=0)
             plotLine = plotRmsz.append('plotline', xcol=1, ycol=4, rightaxis='false')
@@ -360,39 +363,51 @@ class servalcat_report(Report):
             outputXml=self.outputXml,
             label=graphCCtitle,
             style=galleryGraphStyle)
+        n_icols = 0
         graphCC.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
         if len(xmlnode.findall('.//cycle[last()]/data/binned/fsc_FC_full')) > 0:  # SPA refinement
             graphCC.addData(title="fsc_FC_full", select=".//cycle[last()]/data/binned/./fsc_FC_full")
+            n_icols += 1
             if len(xmlnode.findall('.//cycle[last()]/data/binned/cc_FC_full')) > 0:
                 graphCC.addData(title="CC_FC_full", select=".//cycle[last()]/data/binned/./cc_FC_full")
+                n_icols += 1
             if len(xmlnode.findall('.//cycle[last()]/data/binned/mcos_FC_full')) > 0:
                 graphCC.addData(title="mcos_FC_full", select=".//cycle[last()]/data/binned/./mcos_FC_full")
+                n_icols += 1
         elif len(xmlnode.findall('.//cycle[last()]/data/binned/CCI')) > 0:
             graphCC.addData(title="CCI", select=".//cycle[last()]/data/binned/./CCI")
+            n_icols += 1
         elif len(xmlnode.findall('.//cycle[last()]/data/binned/CCF')) > 0:
             graphCC.addData(title="CCF", select=".//cycle[last()]/data/binned/./CCF")
+            n_icols += 1
         elif len(xmlnode.findall('.//cycle[last()]/data/binned/CCFwork')) > 0:
             graphCC.addData(title="CCFwork", select=".//cycle[last()]/data/binned/./CCFwork")
+            n_icols += 1
             if len(xmlnode.findall('.//cycle[last()]/data/binned/CCFfree')) > 0:
                 graphCC.addData(title="CCFfree", select=".//cycle[last()]/data/binned/./CCFfree")
+                n_icols += 1
         else:
             graphCC.addData(title="CCIwork", select=".//cycle[last()]/data/binned/./CCIwork")
+            n_icols += 1
             if len(xmlnode.findall('.//cycle[last()]/data/binned/CCIfree')) > 0:
                 graphCC.addData(title="CCIfree", select=".//cycle[last()]/data/binned/./CCIfree")
+                n_icols += 1
+        if len(xmlnode.findall('.//cycle[last()]/data/binned/CC')) > 0:
+            graphCC.addData(title="CC*", select=".//cycle[last()]/data/binned/./CC")
+            n_icols += 1
         plotCC = graphCC.addPlotObject()
         plotCC.append('title', graphCCtitle)
         plotCC.append('plottype', 'xy')
         plotCC.append('xlabel', 'Resolution (&Aring;)')
         plotCC.append('ylabel', 'Correlation')
-        plotCC.append('yrange', max=1.0)
+        plotCC.append('yrange', min=0.0, max=1.0)
         plotCC.append('xscale', 'oneoversqrt')
-        plotCC.append('legendposition', x=1, y=1)
-        plotLine = plotCC.append('plotline', xcol=1, ycol=2)
-        plotLine.append('colour', 'orange')
-        plotLine.append('symbolsize', '0')
-        plotLine = plotCC.append('plotline', xcol=1, ycol=3)
-        plotLine.append('colour', 'blue')
-        plotLine.append('symbolsize', '0')
+        plotCC.append('legendposition', x=0, y=0)
+        colours = ['orange', 'blue', 'gray']
+        for i in range(n_icols):
+            plotLine = plotCC.append('plotline', xcol=1, ycol=2 + i)
+            plotLine.append('colour', colours[i])
+            plotLine.append('symbolsize', '0')
 
         # R-values vs. resolution - only for servalcat_xtal_norefmac
         if len(xmlnode.findall('.//cycle[last()]/data/binned/R1')) > 0 or \
@@ -431,6 +446,7 @@ class servalcat_report(Report):
             plotR.append('plottype', 'xy')
             plotR.append('xlabel', 'Resolution (&Aring;)')
             plotR.append('ylabel', 'R-value')
+            plotR.append('yrange', min=0.0)
             plotR.append('xscale', 'oneoversqrt')
             plotR.append('legendposition', x=1, y=0)  # right bottom corner
             plotLine = plotR.append('plotline', xcol=1, ycol=2)
@@ -472,7 +488,30 @@ class servalcat_report(Report):
             plotLine.append('colour', 'red')
             plotLine.append('symbolsize', '0')
 
-        # MnD0FC0, MnD1FCbulk - only for servalcat_xtal_norefmac
+        # Completeness - only for servalcat_xtal_norefmac
+        if len(xmlnode.findall('.//cycle[last()]/data/binned/Cmpl')) > 0:
+            graphCmplTitle = "Completeness (%)"
+            graphCmpl = gallery.addFlotGraph(
+                xmlnode=xmlnode,
+                title=graphCmplTitle,
+                internalId=graphCmplTitle,
+                outputXml=self.outputXml,
+                label=graphCmplTitle,
+                style=galleryGraphStyle)
+            graphCmpl.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
+            graphCmpl.addData(title="Completeness(%)", select=".//cycle[last()]/data/binned/./Cmpl")
+            plotCmpl = graphCmpl.addPlotObject()
+            plotCmpl.append('title', graphCmplTitle)
+            plotCmpl.append('plottype', 'xy')
+            plotCmpl.append('xlabel', 'Resolution (&Aring;)')
+            plotCmpl.append('legendposition', x=0, y=1)
+            plotCmpl.append('xscale', 'oneoversqrt')
+            plotCmpl.append('yrange', min=0.0, max=100.0)
+            plotLine = plotCmpl.append('plotline', xcol=1, ycol=2)
+            plotLine.append('colour', 'orange')
+            plotLine.append('symbolsize', '0')
+
+        #  MnD0FC0, MnD1FCbulk - only for servalcat_xtal_norefmac
         if len(xmlnode.findall('.//cycle[last()]/data/binned/MnD0FC0')) > 0 and \
                 len(xmlnode.findall('.//cycle[last()]/data/binned/MnD1FCbulk')) > 0:
             graphDtitle = "Mean |D0*FC0| and |D1*FCbulk|"
@@ -491,6 +530,7 @@ class servalcat_report(Report):
             plotD.append('plottype', 'xy')
             plotD.append('xlabel', 'Resolution (&Aring;)')
             plotD.append('xscale', 'oneoversqrt')
+            plotD.append('yrange', min=0.0)
             plotD.append('legendposition', x=1, y=1)
             plotLine = plotD.append('plotline', xcol=1, ycol=2)
             plotLine.append('colour', 'blue')
@@ -499,6 +539,35 @@ class servalcat_report(Report):
             plotLine = plotD.append('plotline', xcol=1, ycol=3, rightaxis='true')
             plotLine.append('colour', 'red')
             plotLine.append('symbolsize', '0')
+
+        # MnIo, MnIc - only for servalcat_xtal_norefmac
+        if len(xmlnode.findall('.//cycle[last()]/data/binned/MnIo')) > 0 and \
+                len(xmlnode.findall('.//cycle[last()]/data/binned/MnIc')) > 0:
+            graphMnIoIcTitle = "Mean Io and mean Ic"
+            graphMnIoIc = gallery.addFlotGraph(
+                xmlnode=xmlnode,
+                title=graphDtitle,
+                internalId=graphDtitle,
+                outputXml=self.outputXml,
+                label=graphMnIoIcTitle,
+                style=galleryGraphStyle)
+            graphMnIoIc.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
+            graphMnIoIc.addData(title="MeanIo", select=".//cycle[last()]/data/binned/./MnIo")
+            graphMnIoIc.addData(title="MeanIc", select=".//cycle[last()]/data/binned/./MnIc")
+            plotMnIoIc = graphMnIoIc.addPlotObject()
+            plotMnIoIc.append('title', graphMnIoIcTitle)
+            plotMnIoIc.append('plottype', 'xy')
+            plotMnIoIc.append('xlabel', 'Resolution (&Aring;)')
+            plotMnIoIc.append('xscale', 'oneoversqrt')
+            plotMnIoIc.append('yrange', min=0.0)
+            plotMnIoIc.append('legendposition', x=1, y=1)
+            plotLine = plotMnIoIc.append('plotline', xcol=1, ycol=2)
+            plotLine.append('colour', 'blue')
+            plotLine.append('symbolsize', '0')
+            plotLine = plotMnIoIc.append('plotline', xcol=1, ycol=3)
+            plotLine.append('colour', 'red')
+            plotLine.append('symbolsize', '0')
+
         clearingDiv = parent.addDiv(style="clear:both;")
 
     def addOutlierAnalysis(self, parent=None, xmlnode=None):
