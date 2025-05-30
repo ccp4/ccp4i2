@@ -1,5 +1,9 @@
 # CCP4i2 Changelog
 
+## [2.3.3] - 2025-05-29
+
+- Fix to Coot output files
+
 ## [2.3.2] - 2025-05-22
 
 - Avoid re-importing files with the same checksum
