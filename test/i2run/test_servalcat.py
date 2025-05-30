@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
-from .utils import hasLongLigandName, i2run, testData
+import os
+from .utils import hasLongLigandName, i2run, demoData, testData
 
 
 def test_8xfm(cif8xfm, mtz8xfm):
@@ -52,3 +53,39 @@ def test_8ola(cif8ola, mtz8ola):
         assert rworks[-1] < rworks[0]
         assert rworks[-1] < 0.15
         assert rfrees[-1] < 0.20
+
+
+# x-ray data
+# input as unmerged data
+# refinement against intensities
+# no free flag
+def test_mdm2_unmerged():
+    ncycle = 3
+    args = ["servalcat_pipe"]
+    args += ["--XYZIN", f"fullPath={demoData(os.path.join('mdm2', '4hg7.cif'))}"]
+    args += ["--DATA_METHOD", "xtal"]
+    args += ["--MERGED_OR_UNMERGED", "unmerged"]
+    args += ["--HKLIN_UNMERGED", f"fullPath={demoData(os.path.join('mdm2', 'mdm2_unmerged.mtz'))}"]
+    # args += ["--FREERFLAG", f"fullPath={demoData(os.path.join('mdm2', 'mdm2_unmerged.mtz'))}", "columnLabels=/*/*/[FREE]"]
+    args += ["--NCYCLES", str(ncycle)]
+    args += ["--RES_CUSTOM", "True"]
+    args += ["--RES_MIN", "1.5"]
+    args += ["--B_REFINEMENT_MODE", "aniso"]
+    args += ["--H_OUT", "True"]
+    args += ["--RANDOMIZEUSE", "True"]
+    args += ["--RANDOMIZE", "0.05"]
+    args += ["--BFACSETUSE", "True"]
+    args += ["--VALIDATE_IRIS", "True"]
+    args += ["--VALIDATE_BAVERAGE", "False"]
+    args += ["--VALIDATE_RAMACHANDRAN", "True"]
+    args += ["--VALIDATE_MOLPROBITY", "True"]
+    args += ["--RUN_ADP_ANALYSIS", "True"]
+    with i2run(args) as job:
+        xml = ET.parse(job / "program.xml")
+        r1s = [float(e.text) for e in xml.findall(".//data/summary/R1")]
+        cciavgs = [float(e.text) for e in xml.findall(".//data/summary/CCIavg")]
+        assert len(r1s) == len(cciavgs) == ncycle + 1
+        assert r1s[-1] < 0.36
+        assert r1s[0] > r1s[-1]
+        assert cciavgs[-1] > 0.8
+        assert cciavgs[0] < cciavgs[-1]
