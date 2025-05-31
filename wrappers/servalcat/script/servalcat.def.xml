@@ -263,13 +263,6 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                     <toolTip>Number of refinement cycles to perform after addition of water molecules.</toolTip>
               </qualifiers>
             </content>
-
-          <content id="RES_MIN">
-            <className>CFloat</className>
-            <qualifiers>
-               <toolTip>High resolution (d_min)</toolTip>
-            </qualifiers>
-          </content>
           <content id="NCYCLES">
                 <className>CInt</className>
                 <qualifiers>
@@ -549,6 +542,12 @@ hydrogens are only to be used if already present in the input coordinate file.</
             </qualifiers>
           </content>
           <content id="RES_MAX">
+            <className>CFloat</className>
+            <qualifiers>
+               <toolTip>Low resolution (d_max)</toolTip>
+            </qualifiers>
+          </content>
+          <content id="RES_MIN">
             <className>CFloat</className>
             <qualifiers>
                <toolTip>High resolution (d_min)</toolTip>
