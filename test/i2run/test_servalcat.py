@@ -43,18 +43,18 @@ def test_8xfm(cif8xfm, mtz8xfm):
 # x-ray diffraction data
 # input as unmerged data
 # refinement against intensities
-# no free flag
-def test_mdm2_unmerged():
-    ncycle = 3
+def test_1gyu_unmerged(cif1gyu):
+    ncycle = 2
     args = ["servalcat_pipe"]
-    args += ["--XYZIN", f"fullPath={demoData(os.path.join('mdm2', '4hg7.cif'))}"]
+    args += ["--XYZIN", cif1gyu]
     args += ["--DATA_METHOD", "xtal"]
     args += ["--MERGED_OR_UNMERGED", "unmerged"]
-    args += ["--HKLIN_UNMERGED", f"fullPath={demoData(os.path.join('mdm2', 'mdm2_unmerged.mtz'))}"]
-    # args += ["--FREERFLAG", f"fullPath={demoData(os.path.join('mdm2', 'mdm2_unmerged.mtz'))}", "columnLabels=/*/*/[FREE]"]
+    args += ["--HKLIN_UNMERGED", f"fullPath={demoData(os.path.join('gamma', 'HKLOUT_unmerged.mtz'))}"]
+    args += ["--FREERFLAG", f"fullPath={demoData(os.path.join('gamma', 'freeR.mtz'))}", "columnLabels=/*/*/[FREER]"]
     args += ["--NCYCLES", str(ncycle)]
     args += ["--RES_CUSTOM", "True"]
-    args += ["--RES_MIN", "1.5"]
+    args += ["--RES_CUSTOM", "True"]
+    args += ["--RES_MIN", "1.9"]
     args += ["--B_REFINEMENT_MODE", "aniso"]
     args += ["--H_OUT", "True"]
     args += ["--RANDOMIZEUSE", "True"]
@@ -67,13 +67,19 @@ def test_mdm2_unmerged():
     args += ["--RUN_ADP_ANALYSIS", "True"]
     with i2run(args) as job:
         xml = ET.parse(job / "program.xml")
-        r1s = [float(e.text) for e in xml.findall(".//data/summary/R1")]
-        cciavgs = [float(e.text) for e in xml.findall(".//data/summary/CCIavg")]
-        assert len(r1s) == len(cciavgs) == ncycle + 1
-        assert r1s[-1] < 0.36
-        assert r1s[0] > r1s[-1]
-        assert cciavgs[-1] > 0.8
-        assert cciavgs[0] < cciavgs[-1]
+        r1works = [float(e.text) for e in xml.findall(".//data/summary/R1work")]
+        r1frees = [float(e.text) for e in xml.findall(".//data/summary/R1free")]
+        cciworkavgs = [float(e.text) for e in xml.findall(".//data/summary/CCIworkavg")]
+        ccifreeavgs = [float(e.text) for e in xml.findall(".//data/summary/CCIfreeavg")]
+        assert len(r1works) == len(r1frees) == len(cciworkavgs) == len(ccifreeavgs) == ncycle + 1
+        assert r1works[-1] < 0.20
+        assert r1frees[-1] < 0.25
+        assert r1works[0] > r1works[-1]
+        assert r1frees[0] > r1frees[-1]
+        assert cciworkavgs[-1] > 0.90
+        assert ccifreeavgs[-1] > 0.80
+        assert cciworkavgs[0] < cciworkavgs[-1]
+        assert ccifreeavgs[0] < ccifreeavgs[-1]
 
 
 # electron diffraction data

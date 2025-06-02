@@ -1,5 +1,5 @@
 from pytest import fixture
-from .urls import pdbe_fasta, redo_cif, redo_mtz
+from .urls import pdbe_fasta, redo_cif, redo_mtz, pdbe_mmcif
 from .utils import download
 
 
@@ -18,6 +18,12 @@ def mtz8xfm():
 @fixture(scope="session")
 def seq8xfm():
     with download(pdbe_fasta("8xfm")) as path:
+        yield path
+
+
+@fixture(scope="session")
+def cif1gyu():
+    with download(pdbe_mmcif("1gyu")) as path:
         yield path
 
 
