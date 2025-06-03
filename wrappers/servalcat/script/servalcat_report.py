@@ -154,6 +154,8 @@ class servalcat_report(Report):
             progressGraph2.addData(title="RMSD_angle", select=".//cycle/geom/summary/rmsd/Bond_angles_non_H", expr="x if float(x)>=0.0 else '-'")
             progressGraph2.addData(title="RMSZ_bond", select=".//cycle/geom/summary/rmsZ/Bond_distances_non_H", expr="x if float(x)>=0.0 else '-'")
             progressGraph2.addData(title="RMSZ_angle", select=".//cycle/geom/summary/rmsZ/Bond_angles_non_H", expr="x if float(x)>=0.0 else '-'")
+            cycles_list_without_zero = range(1, len(xmlnode.findall('.//cycle')))  # weight for the 0th cycle is not defined
+            progressGraph2.addData(title="Cycle", data=cycles_list_without_zero)
             progressGraph2.addData(title="Weight", select=".//cycle/weight", expr="x if float(x)>=0.0 else '-'")
             plotRmsd = progressGraph2.addPlotObject()
             plotRmsd.append('title', 'RMS Deviations')
@@ -194,7 +196,7 @@ class servalcat_report(Report):
             plotWeight.append('yrange', min=0.0)
             plotWeight.append('xintegral', 'true')
             plotWeight.append('legendposition', x=0, y=0)
-            plotLine = plotWeight.append('plotline', xcol=1, ycol=5, rightaxis='false')
+            plotLine = plotWeight.append('plotline', xcol=6, ycol=7, rightaxis='false')
             plotLine.append('colour', 'blue')
             plotLine.append('symbolsize', '0')
 
@@ -259,8 +261,11 @@ class servalcat_report(Report):
             except: pass
             try: cycle_data['-LL'][idx] = "{:.4f}".format(float(cycle.findall('data/summary/-LL')[0].text))
             except: pass
-            try: cycle_data['weight'][idx] = "{:.2f}".format(float(cycle.findall('weight')[0].text))
-            except: pass
+            if idx == 0:  # weight for the 0th cycle is not defined
+                cycle_data['weight'][idx] = '-'
+            else:
+                try: cycle_data['weight'][idx] = "{:.2f}".format(float(cycle.findall('weight')[0].text))
+                except: pass
             if len(FSCaverageNodes) > 0: # SPA refinement
                 try: cycle_data['FSCaverage'][idx] = "{:.4f}".format(float(cycle.findall('data/summary/FSCaverage')[0].text))
                 except: pass
