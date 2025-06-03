@@ -399,6 +399,12 @@ hydrogens are only to be used if already present in the input coordinate file.</
                    <toolTip>Specifies ADP parameterisation. Default: isotropic.</toolTip>
                 </qualifiers>
             </content>
+          <content id="VDWR_WEIGHT">
+             <className>CFloat</className>
+             <qualifiers>
+                <default>1.0</default>
+             </qualifiers>
+          </content>
           <content id="ADPR_WEIGHT">
              <className>CFloat</className>
              <qualifiers>

@@ -396,6 +396,11 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'widget', 'ADP_RESTRAINT_NO_LONG_RANGE', 'label', 'No long range for ADP restraint' ] )
     self.closeSubFrame()
 
+    self.createLine( [ 'subtitle', 'Van der Waals Repulsion Restraints'] )
+    self.openSubFrame()
+    self.createLine( [ 'label', 'Van der Waals repulsion restraint weight:', 'stretch', 'widget', 'VDWR_WEIGHT' ] )
+    self.closeSubFrame()
+
     self.createLine( [ 'subtitle', 'Infrequently Used Options'] )
     self.openSubFrame()
     self.createLine( [ 'widget', 'UNRESTRAINED', 'label', 'No positional restraints' ] )

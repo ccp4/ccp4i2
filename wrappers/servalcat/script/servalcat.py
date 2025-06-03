@@ -449,7 +449,7 @@ class servalcat(CPluginScript):
         if self.container.controlParameters.BFACSETUSE and \
                 str(self.container.controlParameters.BFACSET):
             self.appendCommandLine(['--bfactor', str(self.container.controlParameters.BFACSET)])
-        if float(self.container.controlParameters.ADPR_WEIGHT) != "1":
+        if str(float(self.container.controlParameters.ADPR_WEIGHT)) != "1":
             self.appendCommandLine(['--adpr_weight', str(self.container.controlParameters.ADPR_WEIGHT)])
         if self.container.controlParameters.MAX_DIST_FOR_ADP_RESTRAINT.isSet():
             self.appendCommandLine(['--max_dist_for_adp_restraint', str(self.container.controlParameters.MAX_DIST_FOR_ADP_RESTRAINT)])
@@ -469,6 +469,9 @@ class servalcat(CPluginScript):
 
         keywordFilePath = str(os.path.join(self.getWorkDirectory(), 'keywords.txt'))
 
+        if str(float(self.container.controlParameters.VDWR_WEIGHT)) != "1":
+            with open(keywordFilePath, "a+") as keywordFile:
+                keywordFile.write("VDWR " + str(self.container.controlParameters.VDWR_WEIGHT) + "\n")
         # Occupancy refinement
         if self.container.controlParameters.OCCUPANCY_GROUPS:
             with open(keywordFilePath, "a+") as keywordFile:

@@ -608,6 +608,86 @@ class servalcat_report(Report):
         outStacd = xmlnode.findall('.//cycle[last()]/geom/outliers/stacd')
         outVdw = xmlnode.findall('.//cycle[last()]/geom/outliers/vdw')
 
+        if len(outVdw) > 0:
+            n_outliers = len(outVdw)
+            div = outlierFold.addDiv(style='font-size:110%')
+            div.append("Van der Waals repulsion outliers indicating close contacts (clashes) between non-bonding atoms:")
+            outData = {'atom1': ["-"]*n_outliers,
+                       'atom2': ["-"]*n_outliers,
+                       'value': ["-"]*n_outliers,
+                       'ideal': ["-"]*n_outliers,
+                       'z': ["-"]*n_outliers,
+                       'z_abs': ["-"]*n_outliers,
+                       'type': ["-"]*n_outliers,
+                       'note': ["-"]*n_outliers,
+                       'difference': ["-"]*n_outliers,
+                       'difference_float': ["-"]*n_outliers}
+            for i, outlier in enumerate(outVdw):
+                try: outData['atom1'][i] = str(outlier.findall('atom1')[0].text)
+                except: outData['atom1'][i] = '-'
+                try: outData['atom2'][i] = str(outlier.findall('atom2')[0].text)
+                except: outData['atom2'][i] = '-'
+                try: outData['value'][i] = "{:.2f}".format(float(outlier.findall('value')[0].text))
+                except: outData['value'][i] = '-'
+                try: outData['ideal'][i] = "{:.2f}".format(float(outlier.findall('ideal')[0].text))
+                except: outData['ideal'][i] = '-'
+                try:
+                    z = float(outlier.findall('z')[0].text)
+                    outData['z'][i] = "{:.2f}".format(z)
+                    outData['z_abs'][i] = round(abs(z), 2)
+                except:
+                    outData['z'][i] = '-'
+                    outData['z_abs'][i] = '-'
+                try:
+                    outType = int(outlier.findall('type')[0].text)
+                    if outType == 1:
+                        outData['note'][i] = "Van der Waals"
+                    elif outType == 2:
+                        outData['note'][i] = "Torsion"
+                    elif outType == 3:
+                        outData['note'][i] = "Hydrogen bond"
+                    elif outType == 4:
+                        outData['note'][i] = "Metal"
+                    elif outType == 5:
+                        outData['note'][i] = "Dummy-nondummy"
+                    elif outType == 6:
+                        outData['note'][i] = "Dummy-nondummy"
+                    elif outType > 6:
+                        outData['note'][i] = "Symmetry related"
+                    outData['type'][i] = -outType
+                except:
+                    outData['type'][i] = '-'
+                    outData['note'][i] = '-'
+                try:
+                    # difference = | value - ideal |
+                    difference = abs(float(outlier.findall('value')[0].text) - float(outlier.findall('ideal')[0].text))
+                    outData['difference_float'][i] = difference
+                    outData['difference'][i] = "{:.2f}".format(difference)
+                except:
+                    outData['difference'] = '-'
+                    outData['difference_float'] = '-'
+
+            outDataZip = list(zip(outData['z_abs'], outData['difference_float'], outData['type'], outData['atom1'], outData['atom2'],
+                                  outData['value'], outData['ideal'], outData['z'], outData['difference']))
+            outDataZip.sort(reverse=True)
+            outData['z_abs'], outData['difference_float'], outData['type'], outData['atom1'], outData['atom2'], \
+                outData['value'], outData['ideal'], outData['z'], outData['difference'] = zip(*outDataZip)
+
+            clearingDiv = outlierFold.addDiv(style="clear:both;")
+            styleDiv = outlierFold.addDiv(style="color:navy; text-align: right;")
+            fullTable = None
+            fullTable = styleDiv.addTable()
+            fullTable.addData(title="Atom 1", data=outData['atom1'])
+            fullTable.addData(title="Atom 2", data=outData['atom2'])
+            fullTable.addData(title="Distance (&Aring;)", data=outData['value'])
+            fullTable.addData(title="Critical<br>distance (&Aring;)", data=outData['ideal'])
+            fullTable.addData(title="Difference from<br>critical (&Aring;)", data=outData['difference'])
+            fullTable.addData(title="Z", data=outData['z'])
+            fullTable.addData(title="Type", data=outData['note'])
+        else:
+            div = outlierFold.addDiv(style='font-size:110%')
+            div.append("No clashes between atoms (Van der Waals repulsion outliers) observed.")
+
         if len(outBond) > 0:
             n_outliers = len(outBond)
             div = outlierFold.addDiv(style='font-size:110%')
@@ -942,15 +1022,17 @@ class servalcat_report(Report):
                 try: outData['dev'][i] = "{:.2f}".format(float(outlier.findall('dev')[0].text))
                 except: outData['dev'][i] = '-'
                 try:
-                    outData['z'][i] = "{:.2f}".format(float(outlier.findall('z')[0].text))
+                    z = float(outlier.findall('z')[0].text)
+                    outData['z'][i] = "{:.2f}".format(z)
                     outData['z_abs'][i] = round(abs(z), 2)
                 except:
                     outData['z'][i] = '-'
                     outData['z_abs'][i] = '-'
             # Does not need to be sorted
             clearingDiv = outlierFold.addDiv(style="clear:both;")
+            styleDiv = outlierFold.addDiv(style="color:navy; text-align: right;")
             fullTable = None
-            fullTable = outlierFold.addTable()
+            fullTable = styleDiv.addTable()
             fullTable.addData(title="Label", data=outData['label'])
             fullTable.addData(title="Atom", data=outData['atom'])
             fullTable.addData(title="Deviation (&Aring;)", data=outData['dev'])
@@ -958,64 +1040,6 @@ class servalcat_report(Report):
         else:
             div = outlierFold.addDiv(style='font-size:110%')
             div.append("No planarity outliers observed.")
-
-        if len(outVdw) > 0:
-            n_outliers = len(outVdw)
-            div = outlierFold.addDiv(style='font-size:110%')
-            div.append("Van der Waals outliers indicating close contacts between non-bonding atoms:")
-            outData = {'atom1': ["-"]*n_outliers,
-                       'atom2': ["-"]*n_outliers,
-                       'value': ["-"]*n_outliers,
-                       'ideal': ["-"]*n_outliers,
-                       'z': ["-"]*n_outliers,
-                       'z_abs': ["-"]*n_outliers,
-                       'type': ["-"]*n_outliers,
-                       'note': ["-"]*n_outliers,
-                       'difference': ["-"]*n_outliers,
-                       'difference_float': ["-"]*n_outliers}
-            for i, outlier in enumerate(outVdw):
-                try: outData['atom1'][i] = str(outlier.findall('atom1')[0].text)
-                except: outData['atom1'][i] = '-'
-                try: outData['atom2'][i] = str(outlier.findall('atom2')[0].text)
-                except: outData['atom2'][i] = '-'
-                try: outData['value'][i] = "{:.2f}".format(float(outlier.findall('value')[0].text))
-                except: outData['value'][i] = '-'
-                try: outData['ideal'][i] = "{:.2f}".format(float(outlier.findall('ideal')[0].text))
-                except: outData['ideal'][i] = '-'
-                try:
-                    outData['z'][i] = "{:.2f}".format(float(outlier.findall('z')[0].text))
-                    outData['z_abs'][i] = round(abs(z), 2)
-                except:
-                    outData['z'][i] = '-'
-                    outData['z_abs'][i] = '-'
-                try:
-                    outType = int(outlier.findall('type')[0].text)
-                    if outType == 1:
-                        outData['note'][i] = "Van der Waals"
-                    elif outType == 2:
-                        outData['note'][i] = "Torsion"
-                    elif outType == 3:
-                        outData['note'][i] = "Hydrogen bond"
-                    elif outType == 4:
-                        outData['note'][i] = "Metal"
-                    elif outType == 5:
-                        outData['note'][i] = "Dummy-nondummy"
-                    elif outType == 6:
-                        outData['note'][i] = "Dummy-nondummy"
-                    elif outType > 6:
-                        outData['note'][i] = "Symmetry related"
-                    outData['type'][i] = -outType
-                except:
-                    outData['type'][i] = '-'
-                    outData['note'][i] = '-'
-                try:
-                    # difference = | value - ideal |
-                    difference = abs(float(outlier.findall('value')[0].text) - float(outlier.findall('ideal')[0].text))
-                    outData['difference_float'][i] = difference
-                    outData['difference'][i] = "{:.2f}".format(difference)
-                except:
-                    outData['difference'] = '-'
-                    outData['difference_float'] = '-'
 
             outDataZip = list(zip(outData['z_abs'], outData['difference_float'], outData['type'], outData['atom1'], outData['atom2'],
                                   outData['value'], outData['ideal'], outData['z'], outData['difference']))
@@ -1034,9 +1058,6 @@ class servalcat_report(Report):
             fullTable.addData(title="Difference from<br>critical (&Aring;)", data=outData['difference'])
             fullTable.addData(title="Z", data=outData['z'])
             fullTable.addData(title="Type", data=outData['note'])
-        else:
-            div = outlierFold.addDiv(style='font-size:110%')
-            div.append("No Van der Waals outliers observed.")
 
         if len(outStacd) > 0:
             n_outliers = len(outStacd)
