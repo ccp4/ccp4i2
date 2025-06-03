@@ -93,37 +93,38 @@ class servalcat(CPluginScript):
         #Append Observation with representation dependent on whether we are detwining on Is or not
 
         if str(self.container.controlParameters.DATA_METHOD) == 'xtal':
-            obsTypeRoot = 'CONTENT_FLAG_F'
-            obsPairOrMean = 'MEAN'
-            if self.container.inputData.HKLIN.isSet():
-                if self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR:
-                    obsTypeRoot = 'CONTENT_FLAG_I'
-                    obsPairOrMean = 'PAIR'
-                elif self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN:
-                    obsTypeRoot = 'CONTENT_FLAG_I'
-                    obsPairOrMean = 'MEAN'
-                elif self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_FPAIR:
-                    obsTypeRoot = 'CONTENT_FLAG_F'
-                    obsPairOrMean = 'PAIR'
-                elif self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN:
-                    obsTypeRoot = 'CONTENT_FLAG_F'
-                    obsPairOrMean = 'MEAN'
-            if self.container.controlParameters.F_SIGF_OR_I_SIGI.isSet():
-                # overwrite to use F despite available I
-                if str(self.container.controlParameters.F_SIGF_OR_I_SIGI) == "F_SIGF":
-                    obsTypeRoot = 'CONTENT_FLAG_F'
-            if str(self.container.controlParameters.SCATTERING_FACTORS) in ["electron", "neutron"]:
-                # overwrite to not use anomalous pairs even if they are present in case of data from electron or neutron diffraction
+            if str(self.container.controlParameters.MERGED_OR_UNMERGED) == "merged":
+                obsTypeRoot = 'CONTENT_FLAG_F'
                 obsPairOrMean = 'MEAN'
-            obsType = getattr(CCP4XtalData.CObsDataFile, obsTypeRoot+obsPairOrMean)
-            dataObjects += [['HKLIN', obsType]]
+                if self.container.inputData.HKLIN.isSet():
+                    if self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR:
+                        obsTypeRoot = 'CONTENT_FLAG_I'
+                        obsPairOrMean = 'PAIR'
+                    elif self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN:
+                        obsTypeRoot = 'CONTENT_FLAG_I'
+                        obsPairOrMean = 'MEAN'
+                    elif self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_FPAIR:
+                        obsTypeRoot = 'CONTENT_FLAG_F'
+                        obsPairOrMean = 'PAIR'
+                    elif self.container.inputData.HKLIN.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN:
+                        obsTypeRoot = 'CONTENT_FLAG_F'
+                        obsPairOrMean = 'MEAN'
+                if self.container.controlParameters.F_SIGF_OR_I_SIGI.isSet():
+                    # overwrite to use F despite available I
+                    if str(self.container.controlParameters.F_SIGF_OR_I_SIGI) == "F_SIGF":
+                        obsTypeRoot = 'CONTENT_FLAG_F'
+                if str(self.container.controlParameters.SCATTERING_FACTORS) in ["electron", "neutron"]:
+                    # overwrite to not use anomalous pairs even if they are present in case of data from electron or neutron diffraction
+                    obsPairOrMean = 'MEAN'
+                obsType = getattr(CCP4XtalData.CObsDataFile, obsTypeRoot+obsPairOrMean)
+                dataObjects += [['HKLIN', obsType]]
 
-            #Include FreeRflag if called for
-            if self.container.inputData.FREERFLAG.isSet():
-                dataObjects += ['FREERFLAG']
-            self.hklin,error = self.makeHklin(dataObjects)
-            if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
-                return CPluginScript.FAILED
+                #Include FreeRflag if called for
+                if self.container.inputData.FREERFLAG.isSet():
+                    dataObjects += ['FREERFLAG']
+                self.hklin,error = self.makeHklin(dataObjects)
+                if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
+                    return CPluginScript.FAILED
 
             return CPluginScript.SUCCEEDED
 
@@ -361,7 +362,14 @@ class servalcat(CPluginScript):
         elif str(self.container.controlParameters.DATA_METHOD) == "xtal":
             # options only for servalcat refine_xtal_norefmac
             self.appendCommandLine(['refine_xtal_norefmac'])
-            self.appendCommandLine(['--hklin', self.hklin])
+            self.appendCommandLine(['--hklin'])
+            if str(self.container.controlParameters.MERGED_OR_UNMERGED) == "unmerged":
+                self.appendCommandLine([str(self.container.inputData.HKLIN_UNMERGED.fullPath)])
+                if self.container.inputData.FREERFLAG.isSet():
+                    self.appendCommandLine(
+                        ['--hklin_free', str(self.container.inputData.FREERFLAG.fullPath)])
+            else:
+                self.appendCommandLine([self.hklin])
             if self.container.inputData.FREERFLAG.isSet():
                 if self.container.controlParameters.FREERFLAG_NUMBER.isSet():
                     self.appendCommandLine(['--free', str(self.container.controlParameters.FREERFLAG_NUMBER)])
@@ -441,7 +449,7 @@ class servalcat(CPluginScript):
         if self.container.controlParameters.BFACSETUSE and \
                 str(self.container.controlParameters.BFACSET):
             self.appendCommandLine(['--bfactor', str(self.container.controlParameters.BFACSET)])
-        if float(self.container.controlParameters.ADPR_WEIGHT) != "1":
+        if str(float(self.container.controlParameters.ADPR_WEIGHT)) != "1":
             self.appendCommandLine(['--adpr_weight', str(self.container.controlParameters.ADPR_WEIGHT)])
         if self.container.controlParameters.MAX_DIST_FOR_ADP_RESTRAINT.isSet():
             self.appendCommandLine(['--max_dist_for_adp_restraint', str(self.container.controlParameters.MAX_DIST_FOR_ADP_RESTRAINT)])
@@ -461,6 +469,9 @@ class servalcat(CPluginScript):
 
         keywordFilePath = str(os.path.join(self.getWorkDirectory(), 'keywords.txt'))
 
+        if str(float(self.container.controlParameters.VDWR_WEIGHT)) != "1":
+            with open(keywordFilePath, "a+") as keywordFile:
+                keywordFile.write("VDWR " + str(self.container.controlParameters.VDWR_WEIGHT) + "\n")
         # Occupancy refinement
         if self.container.controlParameters.OCCUPANCY_GROUPS:
             with open(keywordFilePath, "a+") as keywordFile:

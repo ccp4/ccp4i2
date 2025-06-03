@@ -340,7 +340,10 @@ class servalcat_pipe(CPluginScript):
             self.validate.container.inputData.XYZIN_2.set(self.container.inputData.XYZIN)
             self.validate.container.inputData.NAME_1.set("Refined")
             self.validate.container.inputData.NAME_2.set("Input")
-            if str(self.container.controlParameters.SCATTERING_FACTORS) == "XRAY":
+            if (
+                str(self.container.controlParameters.SCATTERING_FACTORS) == "XRAY"
+                and str(self.container.controlParameters.MERGED_OR_UNMERGED) == "merged"
+            ):
                 self.validate.container.inputData.F_SIGF_1.set(self.container.inputData.HKLIN)
                 self.validate.container.inputData.F_SIGF_2.set(self.container.inputData.HKLIN)
             else:
