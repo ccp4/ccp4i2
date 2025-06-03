@@ -154,6 +154,7 @@ class servalcat_report(Report):
             progressGraph2.addData(title="RMSD_angle", select=".//cycle/geom/summary/rmsd/Bond_angles_non_H", expr="x if float(x)>=0.0 else '-'")
             progressGraph2.addData(title="RMSZ_bond", select=".//cycle/geom/summary/rmsZ/Bond_distances_non_H", expr="x if float(x)>=0.0 else '-'")
             progressGraph2.addData(title="RMSZ_angle", select=".//cycle/geom/summary/rmsZ/Bond_angles_non_H", expr="x if float(x)>=0.0 else '-'")
+            progressGraph2.addData(title="Weight", select=".//cycle/weight", expr="x if float(x)>=0.0 else '-'")
             plotRmsd = progressGraph2.addPlotObject()
             plotRmsd.append('title', 'RMS Deviations')
             plotRmsd.append('plottype', 'xy')
@@ -183,6 +184,18 @@ class servalcat_report(Report):
             plotLine.append('symbolsize', '0')
             plotLine = plotRmsz.append('plotline', xcol=1, ycol=5, rightaxis='false')
             plotLine.append('colour', 'red')
+            plotLine.append('symbolsize', '0')
+
+            plotWeight = progressGraph2.addPlotObject()
+            plotWeight.append('title', 'Weight')
+            plotWeight.append('plottype', 'xy')
+            plotWeight.append('xlabel', '')
+            plotWeight.append('ylabel', '')
+            plotWeight.append('yrange', min=0.0)
+            plotWeight.append('xintegral', 'true')
+            plotWeight.append('legendposition', x=0, y=0)
+            plotLine = plotWeight.append('plotline', xcol=1, ycol=5, rightaxis='false')
+            plotLine.append('colour', 'blue')
             plotLine.append('symbolsize', '0')
 
         clearingDiv = parent.addDiv(style="clear:both;")
@@ -237,7 +250,8 @@ class servalcat_report(Report):
                       'rmsCHIRAL':['-']*ncyc,
                       'zBOND':['-']*ncyc,
                       'zANGLE':['-']*ncyc,
-                      'zCHIRAL':['-']*ncyc}
+                      'zCHIRAL':['-']*ncyc,
+                      'weight':['-']*ncyc,}
         idx = 0
         for cycle in all_cycles:
             cycle_data['mode'][idx] = 'Restr'
@@ -245,7 +259,7 @@ class servalcat_report(Report):
             except: pass
             try: cycle_data['-LL'][idx] = "{:.4f}".format(float(cycle.findall('data/summary/-LL')[0].text))
             except: pass
-            try: cycle_data['weight'][idx] = "{:.4f}".format(float(cycle.findall('weight')[0].text))
+            try: cycle_data['weight'][idx] = "{:.2f}".format(float(cycle.findall('weight')[0].text))
             except: pass
             if len(FSCaverageNodes) > 0: # SPA refinement
                 try: cycle_data['FSCaverage'][idx] = "{:.4f}".format(float(cycle.findall('data/summary/FSCaverage')[0].text))
