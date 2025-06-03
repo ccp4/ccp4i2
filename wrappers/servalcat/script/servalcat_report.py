@@ -245,6 +245,8 @@ class servalcat_report(Report):
             except: pass
             try: cycle_data['-LL'][idx] = "{:.4f}".format(float(cycle.findall('data/summary/-LL')[0].text))
             except: pass
+            try: cycle_data['weight'][idx] = "{:.4f}".format(float(cycle.findall('weight')[0].text))
+            except: pass
             if len(FSCaverageNodes) > 0: # SPA refinement
                 try: cycle_data['FSCaverage'][idx] = "{:.4f}".format(float(cycle.findall('data/summary/FSCaverage')[0].text))
                 except: pass
@@ -343,6 +345,7 @@ class servalcat_report(Report):
             fullTable.addData(title="RMSZ (bond/angle/chiral)", subtitle="Bond", data=cycle_data_sel['zBOND'])
             fullTable.addData(subtitle="Angle", data=cycle_data_sel['zANGLE'])
             fullTable.addData(subtitle="Chiral", data=cycle_data_sel['zCHIRAL'])
+        fullTable.addData(title="Weight", data=cycle_data_sel['weight'])
 
 
     def addGraphsVsResolution(self, parent=None, xmlnode=None, internalIdPrefix=''):
