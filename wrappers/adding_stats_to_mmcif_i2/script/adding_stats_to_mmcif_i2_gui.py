@@ -77,15 +77,15 @@ class adding_stats_to_mmcif_i2_gui(CTaskWidget):
 
         self.openSubFrame(frame=True, title='Related files')
         self.createLine(['widget', 'USEANOMALOUS', 'label',
-                        'Anomalous used in  refmac job'])
+                        'Anomalous used in Refmacat job'])
         self.createLine(['widget', 'USE_TWIN', 'label',
-                        'Twinning (i.e. intensities) used in refmac job'])
+                        'Twinning (i.e. intensities) used in Refmacat/Servalcat job'])
         self.createLine(['tip', 'Input reflections', 'widget',
                         '-browseFiles', False, 'F_SIGF'])
         self.createLine(['widget', '-browseFiles', True, 'SCALEDUNMERGED'])
         self.createLine(['widget', '-guiLabel', 'Aimless XML',
                         '-browseFiles', False, 'AIMLESSXML'])
-        self.createLine(['widget', '-guiLabel', 'Refmac task XML',
+        self.createLine(['widget', '-guiLabel', 'Refmacat/Servalcat task XML',
                         '-browseFiles', False, 'REFMACINPUTPARAMSXML'])
         self.createLine(['tip', 'FreeR flag', 'widget',
                         '-browseFiles', False, 'FREERFLAG'])
@@ -101,9 +101,13 @@ class adding_stats_to_mmcif_i2_gui(CTaskWidget):
         self.getWidget('DICT_LIST').setListVisible(True)
         self.closeSubFrame()
 
-    def updateFromRefmacJob(self, jobId, includeXYZIN=False):
+    def updateFromRefinementJob(self, jobId, includeXYZIN=False):
+        jobInfo = PROJECTSMANAGER().db().getJobInfo(
+            jobId=jobId, mode=["status", "taskname"])
+
         # Start off by unsetting
-        for paramName in ['TLSIN', 'FREERFLAG', 'AIMLESSXML', 'REFMACINPUTPARAMSXML', 'F_SIGF', 'FPHIOUT', 'DIFFPHIOUT', 'SCALEDUNMERGED']:
+        paramNames = ['TLSIN', 'FREERFLAG', 'AIMLESSXML', 'REFMACINPUTPARAMSXML', 'F_SIGF', 'FPHIOUT', 'DIFFPHIOUT', 'SCALEDUNMERGED']
+        for paramName in paramNames:
             getattr(self.container.inputData, paramName).unSet()
 
         jobDir = PROJECTSMANAGER().db().jobDirectory(jobId)
@@ -119,7 +123,9 @@ class adding_stats_to_mmcif_i2_gui(CTaskWidget):
         # print getReportJobInfo(jobId=jobId)
 
         paramsContainer = PROJECTSMANAGER().db().getParamsContainer(jobId=jobId)
-        self.container.controlParameters.USEANOMALOUS = paramsContainer.controlParameters.USEANOMALOUS
+        if jobInfo["taskname"] == "prosmart_refmac":
+            self.container.controlParameters.USEANOMALOUS = paramsContainer.controlParameters.USEANOMALOUS
+        ### MM: How for servalcat? The USEANOMALOUS parameters isn't there available
         self.container.controlParameters.USE_TWIN = paramsContainer.controlParameters.USE_TWIN
 
         jobFiles = PROJECTSMANAGER().db().getJobFilesInfo(jobId=jobId, input=True)
@@ -131,12 +137,19 @@ class adding_stats_to_mmcif_i2_gui(CTaskWidget):
                     self.container.inputData.DICT_LIST.makeItem())
                 self.container.inputData.DICT_LIST[-1].setDbFileId(
                     inputFile['fileId'])
-            elif inputFile['fileTypeId'] in [9]:  # Here identify input TLS file
+            elif inputFile['fileTypeId'] in [9] and jobInfo["taskname"] == "prosmart_refmac":  # Here identify input TLS file
                 self.container.inputData.TLSIN.setDbFileId(inputFile['fileId'])
             elif inputFile['fileTypeId'] in [10]:  # Here identify input FREER Flag file
                 self.container.inputData.FREERFLAG.setDbFileId(
                     inputFile['fileId'])
             elif inputFile['fileTypeId'] in [11]:  # Here identify input Reflections
+                ### MM: What if merged intensities were used for refinement in servalcat, not amplitudes?
+                ###     This happens when bool(paramsContainer.controlParameters.HKLIN_IS_I_SIGI) == True
+                ###     and str(paramsContainer.controlParameters.F_SIGF_OR_I_SIGI) == 'I_SIGI'
+                ###
+                ### MM: What if UNMERGED intensities were used for refinement in servalcat?
+                ###     This happens when paramsContainer.inputData.HKLIN_UNMERGED.isSet() and
+                ###     str(paramsContainer.paramsContainer.MERGED_VS_UNMERGED) == 'unmerged'
                 self.container.inputData.F_SIGF.setDbFileId(
                     inputFile['fileId'])
                 self.container.inputData.F_SIGF = self.container.inputData.F_SIGF
@@ -187,11 +200,15 @@ class adding_stats_to_mmcif_i2_gui(CTaskWidget):
         # Override if an updated version was output
         jobFiles = PROJECTSMANAGER().db().getJobFilesInfo(jobId=jobId, input=False)
         for file in jobFiles:
-            if file['jobParamName'] == 'TLSOUT':
-                self.container.inputData.TLSIN.setDbFileId(file['fileId'])
-            if file['jobParamName'] == 'XYZOUT' and includeXYZIN:
-                self.container.inputData.XYZIN.setDbFileId(file['fileId'])
-            # Get output map coefficients from REFMAC
+            if jobInfo["taskname"] == "servalcat_pipe":
+                if file['jobParamName'] == 'CIFFILE' and includeXYZIN:
+                    self.container.inputData.XYZIN.setDbFileId(file['fileId'])
+            else:  # prosmart_refmac
+                if file['jobParamName'] == 'TLSOUT':
+                    self.container.inputData.TLSIN.setDbFileId(file['fileId'])
+                if file['jobParamName'] == 'XYZOUT' and includeXYZIN:
+                    self.container.inputData.XYZIN.setDbFileId(file['fileId'])
+            # Get output map coefficients
             if file['jobParamName'] == 'FPHIOUT':
                 self.container.inputData.FPHIOUT.setDbFileId(file['fileId'])
             if file['jobParamName'] == 'DIFFPHIOUT':
@@ -207,9 +224,9 @@ class adding_stats_to_mmcif_i2_gui(CTaskWidget):
             jobInfo = PROJECTSMANAGER().db().getJobInfo(
                 jobId=creatingJob, mode=["status", "taskname"])
             print(jobInfo)
-            if jobInfo["status"] == 'Finished' and jobInfo["taskname"] == "prosmart_refmac":
-                self.updateFromRefmacJob(creatingJob)
-            elif jobInfo["taskname"] != "prosmart_refmac":
+            if jobInfo["status"] == 'Finished' and jobInfo["taskname"] in ["prosmart_refmac", "servalcat_pipe"]:
+                self.updateFromRefinementJob(creatingJob)
+            elif jobInfo["taskname"] not in ["prosmart_refmac", "servalcat_pipe"]:
                 #from PyQt4.QtCore import *
                 self.warn("Wrong coordinate source warning",
                           "Coordinates to be deposited should be the output of a prosmart_refmac job",
