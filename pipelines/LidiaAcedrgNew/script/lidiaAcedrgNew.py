@@ -148,7 +148,9 @@ class lidiaAcedrgNew(CPluginScript):
             shutil.copyfile(acedrgPlugin.container.outputData.XYZOUT.fullPath.__str__(), out.XYZOUT_LIST[-1].fullPath.__str__())
             out.XYZOUT_LIST[-1].annotation = acedrgPlugin.container.outputData.XYZOUT.annotation
         else:
-            self.appendErrorReport(201,'XYZOUT')
+            # No output PDB for 5-letter code monomers
+            pass
+            # self.appendErrorReport(201,'XYZOUT')
 
         out.MOLOUT_LIST.append(out.MOLOUT_LIST.makeItem())
         out.MOLOUT_LIST[-1].fullPath = os.path.normpath(os.path.join(self.getWorkDirectory(),self.container.inputData.TLC.__str__()+'_RDKIT.mol'))
