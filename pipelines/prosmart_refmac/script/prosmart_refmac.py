@@ -757,15 +757,6 @@ class prosmart_refmac(CPluginScript):
         asuin = self.container.inputData.ASUIN
         if asuin.isSet():
             self.saveXml()
-            """
-            FIXME - This needs to work for models with more than one chain
-            (Some of?) possibilities:
-            [x] If the model has one chain and the user has input one test target sequences then OK.
-            [ ] If the model has one chain and the user has input multiple test target sequences then
-                we can try all concat combinations and see which is best.
-            [ ] Multiple chains and one target - try all chains.
-            [ ] Multiple chains and multiple targets - Hmm. Lots of combinations.
-            """
             try:
                 import gemmi
                 provide_seq_asu = []
