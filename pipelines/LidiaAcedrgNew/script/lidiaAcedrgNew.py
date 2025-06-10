@@ -3,11 +3,9 @@ from __future__ import print_function
 
 from core.CCP4PluginScript import CPluginScript
 from PySide2 import QtCore
-import os,glob,re,time,sys
-from core import CCP4XtalData
+import os, sys
 from lxml import etree
-import math
-from core import CCP4Modules,CCP4Utils
+from core import CCP4Utils
 from core import CCP4ErrorHandling
 
 class lidiaAcedrgNew(CPluginScript):
