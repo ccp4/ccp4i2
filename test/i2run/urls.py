@@ -1,5 +1,6 @@
 _PDBE = "https://www.ebi.ac.uk/pdbe"
 _RCSB = "https://files.rcsb.org/download"
+_RCSB_ligands = "https://files.rcsb.org/ligands/download"
 _REDO = "https://pdb-redo.eu/db"
 
 
@@ -59,6 +60,13 @@ def rcsb_sfcif(code: str):
 def rcsb_sfcif_gz(code: str):
     return f"{_RCSB}/{code}-sf.cif.gz"
 
+
+def rcsb_monomercif(code: str):
+    return f"{_RCSB_ligands}/{code}.cif"
+
+
+def rcsb_monomersdf(code: str):
+    return f"{_RCSB_ligands}/{code}_ideal.sdf"
 
 def redo_cif(code: str):
     return f"{_REDO}/{code}/{code}_final.cif"
