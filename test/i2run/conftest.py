@@ -29,7 +29,7 @@ def cif8ola():
 
 @fixture(scope="session")
 def mtz8ola():
-    with download(pdbe_mmcif("8ola")) as path:
+    with download(redo_mtz("8ola")) as path:
         yield path
 
 
@@ -41,7 +41,7 @@ def cif8olf():
 
 @fixture(scope="session")
 def mtz8olf():
-    with download(pdbe_mmcif("8olf")) as path:
+    with download(redo_mtz("8olf")) as path:
         yield path
 
 

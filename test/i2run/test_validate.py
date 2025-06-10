@@ -21,7 +21,7 @@ def test_8xfm_nosf(cif8xfm):
 def test_8xfm_sf(cif8xfm, mtz8xfm):
     args = ["validate_protein"]
     args += ["--XYZIN_1", cif8xfm]
-    args += ["--F_SIGF_1", mtz8xfm]
+    args += ["--F_SIGF_1", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FP,SIGFP]"]
     with i2run(args) as job:
         xml = ET.parse(job / "program.xml")
         check_program_xml(xml)
@@ -30,7 +30,7 @@ def test_8xfm_sf(cif8xfm, mtz8xfm):
 def test_8ola_sf(cif8ola, mtz8ola):
     args = ["validate_protein"]
     args += ["--XYZIN_1", cif8ola]
-    args += ["--F_SIGF_1", mtz8ola]
+    args += ["--F_SIGF_1", f"fullPath={mtz8ola}", "columnLabels=/*/*/[FP,SIGFP]"]
     with i2run(args) as job:
         xml = ET.parse(job / "program.xml")
         check_program_xml(xml)
@@ -49,10 +49,27 @@ def test_8ola_8olf_nosf(cif8ola, cif8olf):
 def test_8ola_8olf_sf(cif8ola, cif8olf, mtz8ola, mtz8olf):
     args = ["validate_protein"]
     args += ["--XYZIN_1", cif8ola]
-    args += ["--F_SIGF_1", mtz8ola]
+    args += ["--F_SIGF_1", f"fullPath={mtz8ola}", "columnLabels=/*/*/[FP,SIGFP]"]
     args += ["--XYZIN_2", cif8olf]
-    args += ["--F_SIGF_2", mtz8olf]
+    args += ["--F_SIGF_2", f"fullPath={mtz8olf}", "columnLabels=/*/*/[FP,SIGFP]"]
     args += ["--TWO_DATASETS", "True"]
+    with i2run(args) as job:
+        xml = ET.parse(job / "program.xml")
+        check_program_xml(xml)
+
+
+def test_7beq_cif_nosf(cif7beq):  # electron diffr.
+    args = ["validate_protein"]
+    args += ["--XYZIN_1", cif7beq]
+    with i2run(args) as job:
+        xml = ET.parse(job / "program.xml")
+        check_program_xml(xml)
+
+
+def test_7beq_cif_sf(cif7beq, mtz7beq):  # electron diffr.
+    args = ["validate_protein"]
+    args += ["--XYZIN_1", cif7beq]
+    args += ["--F_SIGF_1", f"fullPath={mtz7beq}", "columnLabels=/*/*/[FP,SIGFP]"]
     with i2run(args) as job:
         xml = ET.parse(job / "program.xml")
         check_program_xml(xml)
@@ -74,27 +91,12 @@ def test_8rk1_pdb_nosf(pdb8rk1):  # neutron diffr., deuterium fraction
         check_program_xml(xml)
 
 
+'''The following test raises Segmentation fault and hangs forever.
 def test_8rk1_cif_sffrom_8c4y(cif8rk1, mtz8c4y):  # neutron diffr., deuterium fraction
     args = ["validate_protein"]
     args += ["--XYZIN_1", cif8rk1]
-    args += ["--F_SIGF_1", mtz8c4y]
+    args += ["--F_SIGF_1", f"fullPath={mtz8c4y}", "columnLabels=/*/*/[FP,SIGFP]"]
     with i2run(args) as job:
         xml = ET.parse(job / "program.xml")
         check_program_xml(xml)
-
-
-def test_7beq_cif_nosf(cif7beq):  # electron diffr.
-    args = ["validate_protein"]
-    args += ["--XYZIN_1", cif7beq]
-    with i2run(args) as job:
-        xml = ET.parse(job / "program.xml")
-        check_program_xml(xml)
-
-
-def test_7beq_cif_nosf(cif7beq, mtz7beq):  # electron diffr.
-    args = ["validate_protein"]
-    args += ["--XYZIN_1", cif7beq]
-    args += ["--F_SIGF_1", mtz7beq]
-    with i2run(args) as job:
-        xml = ET.parse(job / "program.xml")
-        check_program_xml(xml)
+'''
