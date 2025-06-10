@@ -271,6 +271,7 @@ class CProcessManager(QtCore.QObject):
                     callDict['stdin'] = open(self.processInfo[pid]['inputFile'])
                 if self.processInfo[pid]['logFile'] is not None:
                     callDict['stdout'] = open(self.processInfo[pid]['logFile'],'w')
+                    callDict['stderr'] = callDict['stdout']
                 callDict['env'] = self.ccp4Env(self.processInfo[pid]['resetEnv'])
                 if self.processInfo[pid]['cwd'] is not None:
                     callDict['cwd'] = self.processInfo[pid]['cwd']
@@ -406,6 +407,7 @@ class CProcessManager(QtCore.QObject):
             p.setStandardOutputFile(self.processInfo[pid]['logFile'])
         if self.processInfo[pid]['readyReadStandardOutputHandler'] is not None:
             p.readyReadStandardOutput.connect(self.processInfo[pid]['readyReadStandardOutputHandler'])
+        p.setProcessChannelMode(QtCore.QProcess.MergedChannels)
         p.start(self.processInfo[pid]['command'], qArgList)
         p.finished.connect(self.printFinished)
         p.finished.connect(lambda exitCode,exitStatus: self.handleFinish(pid,exitCode,exitStatus))
