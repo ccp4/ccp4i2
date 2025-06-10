@@ -1,5 +1,30 @@
 # CCP4i2 Changelog
 
+## [2.3.3] - 2025-05-29
+
+- Fix to Coot output files
+
+## [2.3.2] - 2025-05-22
+
+- Avoid re-importing files with the same checksum
+- Fix for the Coot RSR Morph task on Windows
+- Fixed collections.Iterable import
+- Changed some performance testing thresholds
+
+## [2.3.1] - 2025-05-17
+
+- Changed some performance testing thresholds
+- Removed unused CCP4I2Runner code
+- Removed deprecated collections imports
+
+## [2.3.0] - 2025-05-13
+
+- Added a Coot 1 task
+- Added a MetalCoord task
+- Added performance testing to the i2run tests
+- Fix to AUSPEX command line for Windows
+- Fix for ASU contents view with QtGui/QtWidgets changes
+
 ## [2.2.6] - 2025-04-24
 
 - Fix for import merged from a CIF file with a non-standard ASU
