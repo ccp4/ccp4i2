@@ -772,8 +772,15 @@ class prosmart_refmac(CPluginScript):
 
                 for idx in range(len(asuin.fileContent.seqList)):
                     seq = asuin.fileContent.seqList[idx].sequence
-                    seq_full = [gemmi.expand_one_letter(i, gemmi.ResidueKind.AA) for i in seq]
-                    provide_seq_asu.append(seq_full)
+                    if asuin.fileContent.seqList[idx].polymerType == "PROTEIN":
+                        seq_full = [gemmi.expand_one_letter(i, gemmi.ResidueKind.AA) for i in seq]
+                        provide_seq_asu.append((seq_full,gemmi.ResidueKind.AA))
+                    elif asuin.fileContent.seqList[idx].polymerType == "DNA":
+                        seq_full = [gemmi.expand_one_letter(i, gemmi.ResidueKind.DNA) for i in seq]
+                        provide_seq_asu.append((seq_full,gemmi.ResidueKind.DNA))
+                    elif asuin.fileContent.seqList[idx].polymerType == "RNA":
+                        seq_full = [gemmi.expand_one_letter(i, gemmi.ResidueKind.RNA) for i in seq]
+                        provide_seq_asu.append((seq_full,gemmi.ResidueKind.RNA))
 
                 st = gemmi.read_structure(str(self.container.outputData.XYZOUT))
                 st.setup_entities()
@@ -782,10 +789,16 @@ class prosmart_refmac(CPluginScript):
                 for c in st[0]:
                     best_score = 0
                     current_best = None
-                    for asu_seq in provide_seq_asu:
+                    for asu_seq,seq_type in provide_seq_asu:
+                        if seq_type == gemmi.ResidueKind.AA:
+                            matchType = gemmi.PolymerType.PeptideL
+                        elif seq_type == gemmi.ResidueKind.DNA:
+                            matchType = gemmi.PolymerType.Dna
+                        elif seq_type == gemmi.ResidueKind.RNA:
+                            matchType = gemmi.PolymerType.Rna
                         result = gemmi.align_sequence_to_polymer(asu_seq,
                                          c.get_polymer(),
-                                         gemmi.PolymerType.PeptideL,
+                                         matchType,
                                          gemmi.AlignmentScoring())
 
                         if result.score > best_score:
