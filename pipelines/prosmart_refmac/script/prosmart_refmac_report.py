@@ -30,10 +30,10 @@ class prosmart_refmac_report(Report):
 
         div = parent.addDiv(style='clear:both;margin:4px;padding:4px;outline-style:solid;outline-color:darkorange;outline-width:medium;')
         div.append('<h3>Warning - unsatisfactory finish to job</h3>')
-        div.addText(text='The prosmart-refmacat pipeline crashed for some reason. However some output was generated so an attempt will be made to draw the report.')
+        div.addText(text='The Refmacat pipeline crashed for some reason. However some output was generated so an attempt will be made to draw the report.')
         div.append('<br/>')
-        div.append('The pipepline might have died because a sub task, e.g. "Multimetric validation" might not have completed for some reason - incompatible atom, residue type, etc. in input file; obscure map format; etc. In this case you should have all your output files <em>and be able to continue from here</em>, but there will be no validation information (Iris, molprobity, etc.) in the report.')
-        div.addText(text='Or refmacat might have crashed for some reason. Please check all log files and reports of main job and sub-jobs.')
+        div.append('The pipeline might have died because a sub task, e.g. "Multimetric validation" might not have completed for some reason - incompatible atom, residue type, etc. in input file; obscure map format; etc. In this case you should have all your output files <em>and be able to continue from here</em>, but there will be no validation information (Iris, molprobity, etc.) in the report.')
+        div.addText(text='Or Refmacat might have crashed for some reason. Please check all log files and reports of main job and sub-jobs.')
         div.append('<br/>')
         div.addText(text='e.g. it is possible that refmac died because it encountered a ligand not present in the monomer libraries it has read (i.e. the default CCP4 libraries plus any library you provided through the GUI). To continue, you have a number of options.')
         #parent.append('<br/>')
