@@ -281,7 +281,7 @@ class CProcessManager(QtCore.QObject):
                     callDict['shell'] = 'True'
                 #print 'calling subprocess',argList,callDict
                 rv = subprocess.call(*[argList], **callDict)
-                self.handleFinish(pid, rv, 0)
+                self.handleFinish(None, pid, rv, 0)
             except subprocess.CalledProcessError as e:
                 self.processInfo[pid]['exitStatus'] = -2
                 self.processInfo[pid]['exitCode'] = e.errno
@@ -394,7 +394,7 @@ class CProcessManager(QtCore.QObject):
         print('startQProcess process says finished', code, stat)
 
     def startQProcess(self, pid):
-        #print 'startQProcess',pid,self.processInfo[pid].get('logFile',None)
+        #print('startQProcess',pid,self.processInfo[pid].get('logFile',None))
         self.processInfo[pid]['startTime'] = time.time()
         qArgList = []
         for item in self.processInfo[pid]['argList'][1:]:
@@ -414,11 +414,11 @@ class CProcessManager(QtCore.QObject):
             p.readyReadStandardOutput.connect(self.processInfo[pid]['readyReadStandardOutputHandler'])
         p.start(self.processInfo[pid]['command'], qArgList)
         p.finished.connect(self.printFinished)
-        p.finished.connect(lambda exitCode,exitStatus: self.handleFinish(pid,exitCode,exitStatus))
+        p.finished.connect(lambda exitCode,exitStatus: self.handleFinish(p,pid,exitCode,exitStatus))
         ok = p.waitForStarted(1000)
         #print 'startQProcess waitForStarted',ok
         if not ok:
-            self.handleFinish(pid, 1, 101)
+            self.handleFinish(p, pid, 1, 101)
             return
         if not self.processInfo[pid]['ifAsync']:
             p.waitForFinished(self.processInfo[pid]['timeout'])
@@ -445,15 +445,36 @@ class CProcessManager(QtCore.QObject):
     def PopenInThreadExit(self, pid, rv):
         #print 'PopenInThreadExit',pid,rv
         #self.processInfo[pid]['finishTime'] = time.time()
-        self.handleFinish(pid, rv, 0)
+        self.handleFinish(None, pid, rv, 0)
         #self.runHandler(pid)
 
     @QtCore.Slot(str,int,int)
-    def handleFinish(self, pid, exitCode=0, exitStatus=0):
+    def handleFinish(self, qp, pid, exitCode=0, exitStatus=0):
         print('Process finished:', pid, 'exit code:', exitCode, 'exit status:', exitStatus,'time:', time.strftime('%H:%M:%S %d/%b/%Y', time.localtime(time.time())))
         self.processInfo[pid]['finishTime'] = time.time()
         self.processInfo[pid]['exitStatus'] = int(exitStatus)
         self.processInfo[pid]['exitCode'] = exitCode
+        if qp and exitCode != 0:
+            out = qp.readAllStandardOutput().data().decode("utf-8")
+            err = qp.readAllStandardError().data().decode("utf-8")
+            print("Non-zero exitCode")
+            print("Last output available:",out)
+            print("Last errors available:",err)
+            sys.stderr.write(err)
+            sys.stderr.flush()
+            if "logFile" in self.processInfo[pid] and self.processInfo[pid]["logFile"]:
+                print("Yes, a log file was specified")
+            else:
+                print("No, a log file was not specified")
+                if len(out)>0:
+                    logFile = open(os.path.join(self.processInfo[pid]["cwd"],"log.txt"),"w")
+                    logFile.write(out)
+                    logFile.close()
+                if len(err)>0:
+                    print("Trying to write something .....")
+                    errFile = open(os.path.join(self.processInfo[pid]["cwd"],"log_err.txt"),"w")
+                    errFile.write(err)
+                    errFile.close()
         if "logFile" in self.processInfo[pid] and self.processInfo[pid]["logFile"]:
             if "jobId" in self.processInfo[pid] and self.processInfo[pid]["jobId"]:
                 jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=self.processInfo[pid]["jobId"])
