@@ -271,7 +271,7 @@ class CProcessManager(QtCore.QObject):
                     callDict['stdin'] = open(self.processInfo[pid]['inputFile'])
                 if self.processInfo[pid]['logFile'] is not None:
                     logFileName = self.processInfo[pid]['logFile']
-                    logErrName = logFileName[:logFileName.rfind(".")]+"_stderr.txt" if logFileName.rfind(".")>-1 else logFileName+"_stderr.txt"
+                    logErrName = logFileName[:logFileName.rfind(".")]+"_err.txt" if logFileName.rfind(".")>-1 else logFileName+"_err.txt"
                     callDict['stdout'] = open(logFileName,'w')
                     callDict['stderr'] = open(logErrName,'w')
                 callDict['env'] = self.ccp4Env(self.processInfo[pid]['resetEnv'])
@@ -407,7 +407,7 @@ class CProcessManager(QtCore.QObject):
             p.setStandardInputFile(QtCore.QProcess.nullDevice())
         if self.processInfo[pid]['logFile'] is not None:
             logFileName = self.processInfo[pid]['logFile']
-            logErrName = logFileName[:logFileName.rfind(".")]+"_stderr.txt" if logFileName.rfind(".")>-1 else logFileName+"_stderr.txt"
+            logErrName = logFileName[:logFileName.rfind(".")]+"_err.txt" if logFileName.rfind(".")>-1 else logFileName+"_err.txt"
             p.setStandardOutputFile(logFileName)
             p.setStandardErrorFile(logErrName)
         if self.processInfo[pid]['readyReadStandardOutputHandler'] is not None:
