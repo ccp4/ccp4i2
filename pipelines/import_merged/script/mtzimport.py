@@ -77,7 +77,7 @@ class ImportMTZ():
 
         print("nrefs", nrefs)
         nrefunique = nrefs[0]
-        data = numpy.zeros((nrefunique, ncolumns), dtype=numpy.float)
+        data = numpy.zeros((nrefunique, ncolumns), dtype=float)
 
         for i in range(ncolumns):
             data[:,i] = coldata[i]
@@ -103,7 +103,7 @@ class ImportMTZ():
             print(mtzspecs)
             self.start_mtzout(mtz, mtzout, mtz.title, None, mtzspecs)
 
-            data = numpy.zeros((nrefunique, ncolumns), dtype=numpy.float)
+            data = numpy.zeros((nrefunique, ncolumns), dtype=float)
 
             for i in range(ncolumns):
                 data[:,i] = coldata[i]
