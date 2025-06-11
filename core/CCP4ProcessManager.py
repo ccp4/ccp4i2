@@ -270,8 +270,10 @@ class CProcessManager(QtCore.QObject):
                 if self.processInfo[pid]['inputFile'] is not None:
                     callDict['stdin'] = open(self.processInfo[pid]['inputFile'])
                 if self.processInfo[pid]['logFile'] is not None:
-                    callDict['stdout'] = open(self.processInfo[pid]['logFile'],'w')
-                    callDict['stderr'] = callDict['stdout']
+                    logFileName = self.processInfo[pid]['logFile']
+                    logErrName = logFileName[:logFileName.rfind(".")]+"_stderr.txt" if logFileName.rfind(".")>-1 else logFileName+"_stderr.txt"
+                    callDict['stdout'] = open(logFileName,'w')
+                    callDict['stderr'] = open(logErrName,'w')
                 callDict['env'] = self.ccp4Env(self.processInfo[pid]['resetEnv'])
                 if self.processInfo[pid]['cwd'] is not None:
                     callDict['cwd'] = self.processInfo[pid]['cwd']
@@ -404,10 +406,12 @@ class CProcessManager(QtCore.QObject):
         else:
             p.setStandardInputFile(QtCore.QProcess.nullDevice())
         if self.processInfo[pid]['logFile'] is not None:
-            p.setStandardOutputFile(self.processInfo[pid]['logFile'])
+            logFileName = self.processInfo[pid]['logFile']
+            logErrName = logFileName[:logFileName.rfind(".")]+"_stderr.txt" if logFileName.rfind(".")>-1 else logFileName+"_stderr.txt"
+            p.setStandardOutputFile(logFileName)
+            p.setStandardErrorFile(logErrName)
         if self.processInfo[pid]['readyReadStandardOutputHandler'] is not None:
             p.readyReadStandardOutput.connect(self.processInfo[pid]['readyReadStandardOutputHandler'])
-        p.setProcessChannelMode(QtCore.QProcess.MergedChannels)
         p.start(self.processInfo[pid]['command'], qArgList)
         p.finished.connect(self.printFinished)
         p.finished.connect(lambda exitCode,exitStatus: self.handleFinish(pid,exitCode,exitStatus))
