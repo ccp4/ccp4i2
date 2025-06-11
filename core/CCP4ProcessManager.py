@@ -454,6 +454,8 @@ class CProcessManager(QtCore.QObject):
         self.processInfo[pid]['finishTime'] = time.time()
         self.processInfo[pid]['exitStatus'] = int(exitStatus)
         self.processInfo[pid]['exitCode'] = exitCode
+        if not qp and exitCode != 0:
+            print("Non-zero exitCode but not from QProcess - look in any log_err.txt files for errors.")
         if qp and exitCode != 0:
             out = qp.readAllStandardOutput().data().decode("utf-8")
             err = qp.readAllStandardError().data().decode("utf-8")
