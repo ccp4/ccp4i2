@@ -31,18 +31,16 @@ class servalcat_pipe_report(Report):
         div.append('<h3>Warning - unsatisfactory finish to job</h3>')
         div.addText(text=(
             'The Servalcat pipeline crashed for some reason.'
+            ' Please check all log files and reports of main job and sub-jobs.'
             ' However some output was generated so an attempt will be made to draw the report.'
-            ))
+        ))
         div.append('<br/>')
-        div.append(
-            'The pipeline might have died because a sub task, e.g. "Multimetric Validation"'
+        div.addText(text=(
+            'The pipeline might have crashed because a sub task, e.g. "Multimetric Validation"'
             ' might not have completed for some reason - incompatible atom, residue type, etc.'
             ' in input file; obscure map format; etc. In this case you should have all your'
             ' output files <em>and be able to continue from here</em>, but there will be no'
-            ' validation information (Iris, MolProbity, etc.) in the report.')
-        div.addText(text=(
-        'Or Servalcat might have crashed for some reason.'
-        ' Please check all log files and reports of main job and sub-jobs.'
+            ' validation information (Iris, MolProbity, etc.) in the report.'
         ))
         div.append('<br/>')
 
