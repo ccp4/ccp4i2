@@ -463,18 +463,19 @@ class CProcessManager(QtCore.QObject):
             sys.stderr.write(err)
             sys.stderr.flush()
             if "logFile" in self.processInfo[pid] and self.processInfo[pid]["logFile"]:
-                print("Yes, a log file was specified")
+                logFileName = self.processInfo[pid]["logFile"]
+                logErrName = logFileName[:logFileName.rfind(".")]+"_err.txt" if logFileName.rfind(".")>-1 else logFileName+"_err.txt"
             else:
-                print("No, a log file was not specified")
-                if len(out)>0:
-                    logFile = open(os.path.join(self.processInfo[pid]["cwd"],"log.txt"),"w")
-                    logFile.write(out)
-                    logFile.close()
-                if len(err)>0:
-                    print("Trying to write something .....")
-                    errFile = open(os.path.join(self.processInfo[pid]["cwd"],"log_err.txt"),"w")
-                    errFile.write(err)
-                    errFile.close()
+                logFileName = os.path.join(self.processInfo[pid]["cwd"],"log.txt")
+                logErrName = os.path.join(self.processInfo[pid]["cwd"],"log_err.txt")
+            if len(out)>0:
+                logFile = open(logFileName)
+                logFile.write(out)
+                logFile.close()
+            if len(err)>0:
+                errFile = open(logErrName,"w")
+                errFile.write(err)
+                errFile.close()
         if "logFile" in self.processInfo[pid] and self.processInfo[pid]["logFile"]:
             if "jobId" in self.processInfo[pid] and self.processInfo[pid]["jobId"]:
                 jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=self.processInfo[pid]["jobId"])
