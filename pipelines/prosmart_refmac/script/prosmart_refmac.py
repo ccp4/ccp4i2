@@ -754,32 +754,39 @@ class prosmart_refmac(CPluginScript):
         if hasattr(self,"refmacPostCootPlugin"):
             logfiles.append(self.refmacPostCootPlugin.makeFileName('LOG'))
 
-        asuin = self.container.inputData.ASUIN
-        if asuin.isSet():
-            self.saveXml()
-            try:
+        def addSequenceAlignment(fn,asuin,root):
+                xml_seq_align = etree.SubElement(root,"SequenceAlignment")
                 import gemmi
+                import numpy as np
+                from scipy.optimize import linear_sum_assignment
+
                 provide_seq_asu = []
 
                 for idx in range(len(asuin.fileContent.seqList)):
                     seq = asuin.fileContent.seqList[idx].sequence
-                    if asuin.fileContent.seqList[idx].polymerType == "PROTEIN":
-                        seq_full = [gemmi.expand_one_letter(i, gemmi.ResidueKind.AA) for i in seq]
-                        provide_seq_asu.append((seq_full,gemmi.ResidueKind.AA))
-                    elif asuin.fileContent.seqList[idx].polymerType == "DNA":
-                        seq_full = [gemmi.expand_one_letter(i, gemmi.ResidueKind.DNA) for i in seq]
-                        provide_seq_asu.append((seq_full,gemmi.ResidueKind.DNA))
-                    elif asuin.fileContent.seqList[idx].polymerType == "RNA":
-                        seq_full = [gemmi.expand_one_letter(i, gemmi.ResidueKind.RNA) for i in seq]
-                        provide_seq_asu.append((seq_full,gemmi.ResidueKind.RNA))
+                    print("########################################")
+                    nCopies = int(asuin.fileContent.seqList[idx].nCopies)
+                    print(int(asuin.fileContent.seqList[idx].nCopies))
+                    print("########################################")
+                    for ic in range(nCopies):
+                        if asuin.fileContent.seqList[idx].polymerType == "PROTEIN":
+                            seq_full = [gemmi.expand_one_letter(i, gemmi.ResidueKind.AA) for i in seq]
+                            provide_seq_asu.append((seq_full,gemmi.ResidueKind.AA))
+                        elif asuin.fileContent.seqList[idx].polymerType == "DNA":
+                            seq_full = [gemmi.expand_one_letter(i, gemmi.ResidueKind.DNA) for i in seq]
+                            provide_seq_asu.append((seq_full,gemmi.ResidueKind.DNA))
+                        elif asuin.fileContent.seqList[idx].polymerType == "RNA":
+                            seq_full = [gemmi.expand_one_letter(i, gemmi.ResidueKind.RNA) for i in seq]
+                            provide_seq_asu.append((seq_full,gemmi.ResidueKind.RNA))
 
-                st = gemmi.read_structure(str(self.container.outputData.XYZOUT))
+                st = gemmi.read_structure(fn)
                 st.setup_entities()
 
-                all_best = {}
+                align_scores = []
+                align_results = []
                 for c in st[0]:
-                    best_score = 0
-                    current_best = None
+                    score_row = []
+                    results_row = []
                     for asu_seq,seq_type in provide_seq_asu:
                         if seq_type == gemmi.ResidueKind.AA:
                             matchType = gemmi.PolymerType.PeptideL
@@ -792,21 +799,26 @@ class prosmart_refmac(CPluginScript):
                                          matchType,
                                          gemmi.AlignmentScoring())
 
-                        if result.score > best_score:
-                            best_score = result.score
-                            current_best = (result,asu_seq)
+                        score_row.append(result.score)
+                        results_row.append((result,asu_seq,c))
 
-                    if current_best is not None:
-                        all_best[c.name] = current_best,c
+                    align_scores.append(score_row)
+                    align_results.append(results_row)
 
-                xml_seq_align = etree.SubElement(self.xmlroot,"SequenceAlignment")
-                for c,best in all_best.items():
-                    result = best[0][0]
+                cost = np.array(align_scores)
+                row_ind, col_ind = linear_sum_assignment(cost,True)
 
+                ii = 0
+                for icol in col_ind:
+                    irow = row_ind[ii]
+                    result = align_results[irow][icol][0]
+                    seq =  align_results[irow][icol][1]
+                    chain =  align_results[irow][icol][2]
+                    ii += 1
 
                     xml_this_chain_align = etree.SubElement(xml_seq_align,"Alignment")
                     xml_chain_id = etree.SubElement(xml_this_chain_align,"ChainID")
-                    xml_chain_id.text = c
+                    xml_chain_id.text = chain.name
                     xml_chain_match_count = etree.SubElement(xml_this_chain_align,"match_count")
                     xml_chain_match_count.text = str(result.match_count)
                     xml_chain_match_identity = etree.SubElement(xml_this_chain_align,"identity")
@@ -819,12 +831,17 @@ class prosmart_refmac(CPluginScript):
                     xml_chain_match_cigar.text = str(result.cigar_str())
 
                     xml_chain_match_align_1 = etree.SubElement(xml_this_chain_align,"align_1")
-                    xml_chain_match_align_1.text = result.add_gaps(gemmi.one_letter_code(best[0][1]),1)
+                    xml_chain_match_align_1.text = result.add_gaps(gemmi.one_letter_code(seq),1)
                     xml_chain_match_align_1 = etree.SubElement(xml_this_chain_align,"align_match")
                     xml_chain_match_align_1.text = result.match_string
                     xml_chain_match_align_2 = etree.SubElement(xml_this_chain_align,"align_2")
-                    xml_chain_match_align_2.text = result.add_gaps(gemmi.one_letter_code(best[1].get_polymer().extract_sequence()), 2)
+                    xml_chain_match_align_2.text = result.add_gaps(gemmi.one_letter_code(chain.get_polymer().extract_sequence()), 2)
 
+        asuin = self.container.inputData.ASUIN
+        if asuin.isSet():
+            self.saveXml()
+            try:
+                addSequenceAlignment(str(self.container.outputData.XYZOUT),asuin,self.xmlroot)
             except Exception as err:
                 self.saveXml()
                 traceback.print_exc()
