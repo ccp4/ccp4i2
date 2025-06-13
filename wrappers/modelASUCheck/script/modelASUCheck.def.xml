@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <userId>stuart</userId>
+        <creationTime>2025-06-13T11:22:52.503588</creationTime>
+        <pluginVersion></pluginVersion>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <pluginName>modelASUCheck</pluginName>
+        <pluginTitle>Check model against AU contents</pluginTitle>
+        <jobId/>
+    </ccp4i2_header>
+    <ccp4i2_body id="modelASUCheck">
+<!--You must provide an inputData container, although it can be empty-->
+        <container id="inputData">
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="ASUIN">
+              <className>CAsuDataFile</className>
+              <qualifiers>
+                <mustExist>True</mustExist>
+                <allowUndefined>False</allowUndefined>
+                <fromPreviousJob>False</fromPreviousJob>
+                <selectionMode>0</selectionMode>
+              </qualifiers>
+            </content>
+        </container>
+<!--You must provide an outputData container, although it can be empty-->
+        <container id="outputData">
+        </container>
+    </ccp4i2_body>
+</ccp4i2>
