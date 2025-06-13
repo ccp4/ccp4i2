@@ -754,94 +754,17 @@ class prosmart_refmac(CPluginScript):
         if hasattr(self,"refmacPostCootPlugin"):
             logfiles.append(self.refmacPostCootPlugin.makeFileName('LOG'))
 
-        def addSequenceAlignment(fn,asuin,root):
-                xml_seq_align = etree.SubElement(root,"SequenceAlignment")
-                import gemmi
-                import numpy as np
-                from scipy.optimize import linear_sum_assignment
-
-                provide_seq_asu = []
-
-                for idx in range(len(asuin.fileContent.seqList)):
-                    seq = asuin.fileContent.seqList[idx].sequence
-                    print("########################################")
-                    nCopies = int(asuin.fileContent.seqList[idx].nCopies)
-                    print(int(asuin.fileContent.seqList[idx].nCopies))
-                    print("########################################")
-                    for ic in range(nCopies):
-                        if asuin.fileContent.seqList[idx].polymerType == "PROTEIN":
-                            seq_full = [gemmi.expand_one_letter(i, gemmi.ResidueKind.AA) for i in seq]
-                            provide_seq_asu.append((seq_full,gemmi.ResidueKind.AA))
-                        elif asuin.fileContent.seqList[idx].polymerType == "DNA":
-                            seq_full = [gemmi.expand_one_letter(i, gemmi.ResidueKind.DNA) for i in seq]
-                            provide_seq_asu.append((seq_full,gemmi.ResidueKind.DNA))
-                        elif asuin.fileContent.seqList[idx].polymerType == "RNA":
-                            seq_full = [gemmi.expand_one_letter(i, gemmi.ResidueKind.RNA) for i in seq]
-                            provide_seq_asu.append((seq_full,gemmi.ResidueKind.RNA))
-
-                st = gemmi.read_structure(fn)
-                st.setup_entities()
-
-                align_scores = []
-                align_results = []
-                for c in st[0]:
-                    score_row = []
-                    results_row = []
-                    for asu_seq,seq_type in provide_seq_asu:
-                        if seq_type == gemmi.ResidueKind.AA:
-                            matchType = gemmi.PolymerType.PeptideL
-                        elif seq_type == gemmi.ResidueKind.DNA:
-                            matchType = gemmi.PolymerType.Dna
-                        elif seq_type == gemmi.ResidueKind.RNA:
-                            matchType = gemmi.PolymerType.Rna
-                        result = gemmi.align_sequence_to_polymer(asu_seq,
-                                         c.get_polymer(),
-                                         matchType,
-                                         gemmi.AlignmentScoring())
-
-                        score_row.append(result.score)
-                        results_row.append((result,asu_seq,c))
-
-                    align_scores.append(score_row)
-                    align_results.append(results_row)
-
-                cost = np.array(align_scores)
-                row_ind, col_ind = linear_sum_assignment(cost,True)
-
-                ii = 0
-                for icol in col_ind:
-                    irow = row_ind[ii]
-                    result = align_results[irow][icol][0]
-                    seq =  align_results[irow][icol][1]
-                    chain =  align_results[irow][icol][2]
-                    ii += 1
-
-                    xml_this_chain_align = etree.SubElement(xml_seq_align,"Alignment")
-                    xml_chain_id = etree.SubElement(xml_this_chain_align,"ChainID")
-                    xml_chain_id.text = chain.name
-                    xml_chain_match_count = etree.SubElement(xml_this_chain_align,"match_count")
-                    xml_chain_match_count.text = str(result.match_count)
-                    xml_chain_match_identity = etree.SubElement(xml_this_chain_align,"identity")
-                    xml_chain_match_identity.text = str(result.calculate_identity())
-                    xml_chain_match_identity_1 = etree.SubElement(xml_this_chain_align,"identity_1")
-                    xml_chain_match_identity_1.text = str(result.calculate_identity(1))
-                    xml_chain_match_identity_2 = etree.SubElement(xml_this_chain_align,"identity_2")
-                    xml_chain_match_identity_2.text = str(result.calculate_identity(2))
-                    xml_chain_match_cigar = etree.SubElement(xml_this_chain_align,"CIGAR")
-                    xml_chain_match_cigar.text = str(result.cigar_str())
-
-                    xml_chain_match_align_1 = etree.SubElement(xml_this_chain_align,"align_1")
-                    xml_chain_match_align_1.text = result.add_gaps(gemmi.one_letter_code(seq),1)
-                    xml_chain_match_align_1 = etree.SubElement(xml_this_chain_align,"align_match")
-                    xml_chain_match_align_1.text = result.match_string
-                    xml_chain_match_align_2 = etree.SubElement(xml_this_chain_align,"align_2")
-                    xml_chain_match_align_2.text = result.add_gaps(gemmi.one_letter_code(chain.get_polymer().extract_sequence()), 2)
-
         asuin = self.container.inputData.ASUIN
         if asuin.isSet():
             self.saveXml()
             try:
-                addSequenceAlignment(str(self.container.outputData.XYZOUT),asuin,self.xmlroot)
+                self.modelASUCheck = self.makePluginObject('modelASUCheck')
+                self.modelASUCheck.container.inputData.XYZIN.set(self.container.outputData.XYZOUT)
+                self.modelASUCheck.container.inputData.ASUIN.set(asuin)
+                self.modelASUCheck.process()
+                modelASUCheckEtree = CCP4Utils.openFileToEtree(self.modelASUCheck.makeFileName('PROGRAMXML'))
+                modelASUCheckXML = modelASUCheckEtree.xpath('//SequenceAlignment')
+                if len(modelASUCheckXML) == 1: self.xmlroot.append(modelASUCheckXML[0])
             except Exception as err:
                 self.saveXml()
                 traceback.print_exc()
