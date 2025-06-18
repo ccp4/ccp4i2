@@ -2,6 +2,11 @@ import sys
 import xml.etree.ElementTree as etree
 import json
 
+def split_resno_and_ins(resno_ins):
+    resno = "".join([x for x in resno_ins if x.isnumeric()])
+    ins = "".join([x for x in resno_ins if x.isalpha()])
+    return resno,ins
+
 def program_xml_to_json(xmlText):
 
     xmlnode = etree.fromstring(xmlText)
@@ -25,21 +30,23 @@ def program_xml_to_json(xmlText):
 
         for el in validation_rama_outliers:
             chain = el.attrib["chain"]
-            resno = el.attrib["seqnum"]
+            resno_ins = el.attrib["seqnum"]
+            resno,ins = split_resno_and_ins(resno_ins)
             item = {}
             item["label"] = "Ramachandran Outlier"
             item["position-type"] = "by-residue-spec"
-            item["residue-spec"] = [chain,resno,""]
+            item["residue-spec"] = [chain,int(resno),ins]
             item["action"] = ["triple-refinement-action","triple-refinement-with-rama-restraints-action"]
             rama_section["items"].append(item)
     
         for el in mol_rama_outliers:
             chain = el.attrib["chain"]
-            resno = el.attrib["seqnum"]
+            resno_ins = el.attrib["seqnum"]
+            resno,ins = split_resno_and_ins(resno_ins)
             item = {}
             item["label"] = "Ramachandran Outlier"
             item["position-type"] = "by-residue-spec"
-            item["residue-spec"] = [chain,resno,""]
+            item["residue-spec"] = [chain,int(resno),ins]
             item["action"] = ["triple-refinement-action","triple-refinement-with-rama-restraints-action"]
             rama_section["items"].append(item)
 
@@ -53,11 +60,12 @@ def program_xml_to_json(xmlText):
 
         for el in rota_outliers:
             chain = el.attrib["chain"]
-            resno = el.attrib["seqnum"]
+            resno_ins = el.attrib["seqnum"]
+            resno,ins = split_resno_and_ins(resno_ins)
             item = {}
             item["label"] = "Rotamer outlier"
             item["position-type"] = "by-residue-spec"
-            item["residue-spec"] = [chain,resno,""]
+            item["residue-spec"] = [chain,int(resno),ins]
             item["action"] = ["auto-fit-rotamer-action"]
             rota_section["items"].append(item)
 
@@ -71,11 +79,12 @@ def program_xml_to_json(xmlText):
 
         for el in flips:
             chain = el.attrib["chain"]
-            resno = el.attrib["seqnum"]
+            resno_ins = el.attrib["seqnum"]
+            resno,ins = split_resno_and_ins(resno_ins)
             item = {}
             item["label"] = "Side chain flip"
             item["position-type"] = "by-residue-spec"
-            item["residue-spec"] = [chain,resno,""]
+            item["residue-spec"] = [chain,int(resno),ins]
             item["action"] = ["side-chain-flip-action"]
             flip_section["items"].append(item)
 
@@ -91,16 +100,18 @@ def program_xml_to_json(xmlText):
             first_atom = el.attrib["first_atom"].split()
             second_atom = el.attrib["second_atom"].split()
             chain_1 = first_atom[0]
-            resno_1 = first_atom[1]
+            resno_ins_1 = first_atom[1]
             atom_1 = first_atom[3]
+            resno_1,ins_1 = split_resno_and_ins(resno_ins_1)
             chain_2 = second_atom[0]
-            resno_2 = second_atom[1]
+            resno_ins_2 = second_atom[1]
             atom_2 = second_atom[3]
+            resno_2,ins_2 = split_resno_and_ins(resno_ins_2)
             item = {}
             item["label"] = "Molprobity clash"
             item["position-type"] = "by-atom-spec-pair"
-            item["atom-1-spec"] = [chain_1,resno_1,"",atom_1,""]
-            item["atom-2-spec"] = [chain_2,resno_2,"",atom_2,""]
+            item["atom-1-spec"] = [chain_1,int(resno_1),ins_1,atom_1,""]
+            item["atom-2-spec"] = [chain_2,int(resno_2),ins_2,atom_2,""]
             item["action"] = ["sphere-refinement-action"]
             clash_section["items"].append(item)
 
