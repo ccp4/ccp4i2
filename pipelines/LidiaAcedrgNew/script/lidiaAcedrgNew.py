@@ -1,12 +1,13 @@
-from __future__ import print_function
+import os
+import sys
 
-
-from core.CCP4PluginScript import CPluginScript
-from PySide2 import QtCore
-import os, sys
 from lxml import etree
-from core import CCP4Utils
+from PySide2 import QtCore
+
 from core import CCP4ErrorHandling
+from core import CCP4Utils
+from core.CCP4PluginScript import CPluginScript
+
 
 class lidiaAcedrgNew(CPluginScript):
     TASKNAME = 'LidiaAcedrgNew'            # Task name - should be same as class name
@@ -140,15 +141,12 @@ class lidiaAcedrgNew(CPluginScript):
         else:
             self.appendErrorReport(201, 'DICTOUT')
 
+        # No output PDB for 5-letter code monomers
         if os.path.isfile(acedrgPlugin.container.outputData.XYZOUT.fullPath.__str__()):
             out.XYZOUT_LIST.append(out.XYZOUT_LIST.makeItem())
             out.XYZOUT_LIST[-1].fullPath = os.path.normpath(os.path.join(self.getWorkDirectory(),self.container.inputData.TLC.__str__()+'.pdb'))
             shutil.copyfile(acedrgPlugin.container.outputData.XYZOUT.fullPath.__str__(), out.XYZOUT_LIST[-1].fullPath.__str__())
             out.XYZOUT_LIST[-1].annotation = acedrgPlugin.container.outputData.XYZOUT.annotation
-        else:
-            # No output PDB for 5-letter code monomers
-            pass
-            # self.appendErrorReport(201,'XYZOUT')
 
         out.MOLOUT_LIST.append(out.MOLOUT_LIST.makeItem())
         out.MOLOUT_LIST[-1].fullPath = os.path.normpath(os.path.join(self.getWorkDirectory(),self.container.inputData.TLC.__str__()+'_RDKIT.mol'))
