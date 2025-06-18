@@ -1,5 +1,5 @@
 _PDBE = "https://www.ebi.ac.uk/pdbe"
-_RCSB = "https://files.rcsb.org/download"
+_RCSB = "https://files.rcsb.org"
 _REDO = "https://pdb-redo.eu/db"
 
 
@@ -36,28 +36,36 @@ def rcsb_fasta(code: str):
     return f"https://www.rcsb.org/fasta/entry/{code}"
 
 
+def rcsb_ligand_cif(code: str):
+    return f"{_RCSB}/ligands/download/{code}.cif"
+
+
+def rcsb_ligand_sdf(code: str):
+    return f"{_RCSB}/ligands/download/{code}_ideal.sdf"
+
+
 def rcsb_mmcif(code: str):
-    return f"{_RCSB}/{code}.cif"
+    return f"{_RCSB}/download/{code}.cif"
 
 
 def rcsb_mmcif_gz(code: str):
-    return f"{_RCSB}/{code}.cif.gz"
+    return f"{_RCSB}/download/{code}.cif.gz"
 
 
 def rcsb_pdb(code: str):
-    return f"{_RCSB}/{code}.pdb"
+    return f"{_RCSB}/download/{code}.pdb"
 
 
 def rcsb_pdb_gz(code: str):
-    return f"{_RCSB}/{code}.pdb.gz"
+    return f"{_RCSB}/download/{code}.pdb.gz"
 
 
 def rcsb_sfcif(code: str):
-    return f"{_RCSB}/{code}-sf.cif"
+    return f"{_RCSB}/download/{code}-sf.cif"
 
 
 def rcsb_sfcif_gz(code: str):
-    return f"{_RCSB}/{code}-sf.cif.gz"
+    return f"{_RCSB}/download/{code}-sf.cif.gz"
 
 
 def redo_cif(code: str):
