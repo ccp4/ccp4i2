@@ -299,11 +299,11 @@ class CIFReflectionData:
             # Now for the main cif data
             mtzspecs = ReflectionDataTypes.REFLECTION_DATA[self.cifdatatype]
             ncolumns = len(mtzspecs) + 3
-            data = numpy.zeros((nrefunique, ncolumns), dtype=numpy.float)
+            data = numpy.zeros((nrefunique, ncolumns), dtype=float)
             dataline0 = [math.nan]*ncolumns  # Missing items set to NaN
             dataline = list(dataline0)
         if haveFreeR:
-            freerdata = numpy.zeros((nrefunique, 4), dtype=numpy.float)
+            freerdata = numpy.zeros((nrefunique, 4), dtype=float)
             frdataline0 = [math.nan]*4
             frdataline = list(frdataline0)
 
@@ -468,11 +468,11 @@ class CIFReflectionData:
         nrefunique = self.cifblockinfo.nrefunique()
         if self.dataout:
             ncolumns = len(mtzspecs) + 3
-            data = numpy.zeros((nrefunique, ncolumns), dtype=numpy.float)
+            data = numpy.zeros((nrefunique, ncolumns), dtype=float)
             dataline = [math.nan]*ncolumns
             anomswap = [2,3, 0,1]  # indices to swap + and - if needed
         if haveFreeR:
-            freerdata = numpy.zeros((nrefunique, 4), dtype=numpy.float)
+            freerdata = numpy.zeros((nrefunique, 4), dtype=float)
             frdataline = [math.nan]*4
 
         ops = self.rblock.spacegroup.operations()

@@ -65,6 +65,7 @@ class servalcat_report(Report):
         progressGraph.addData(title="Cycle", select=".//cycle/Ncyc") # ycol=1
         progressGraph.addData(title="-LL", select=".//cycle/data/summary/minusLL") # ycol=2
         spa_refinement = False
+        intensity_based_refinement = False
         if len(xmlnode.findall('.//cycle[last()]/data/summary/FSCaverage')) > 0:
             progressGraph.addData(title="⟨FSCmodel⟩", select=".//cycle/data/summary/FSCaverage", expr="x if float(x)>=0.0 else ''")  # ycol=3
             spa_refinement = True
@@ -75,6 +76,7 @@ class servalcat_report(Report):
                 progressGraph.addData(title="Rfree", select=".//cycle/data/summary/Rfree", expr="x if float(x)>=0.0 else '-'")  # ycol=5
                 progressGraph.addData(title="⟨CCFfree⟩", select=".//cycle/data/summary/CCFfreeavg", expr="x if float(x)>=-1.0 else '-'")  # ycol=6
         elif len(xmlnode.findall('.//cycle[last()]/data/summary/R1work')) > 0:
+            intensity_based_refinement = True
             progressGraph.addData(title="R1work", select=".//cycle/data/summary/R1work", expr="x if float(x)>=0.0 else ''")  # ycol=3
             progressGraph.addData(title="⟨CCIwork⟩", select=".//cycle/data/summary/CCIworkavg", expr="x if float(x)>=-1.0 else ''")  # ycol=4
             if len(xmlnode.findall('.//cycle[last()]/data/summary/R1free')) > 0:
@@ -84,6 +86,7 @@ class servalcat_report(Report):
             progressGraph.addData(title="R", select=".//cycle/data/summary/R", expr="x if float(x)>=0.0 else ''")  # ycol=3
             progressGraph.addData(title="⟨CCF⟩", select=".//cycle/data/summary/CCFavg", expr="x if float(x)>=-1.0 else ''")  # ycol=4
         elif len(xmlnode.findall('.//cycle[last()]/data/summary/R1')) > 0:
+            intensity_based_refinement = True
             progressGraph.addData(title="R1", select=".//cycle/data/summary/R1", expr="x if float(x)>=0.0 else ''")  # ycol=3
             progressGraph.addData(title="⟨CCI⟩", select=".//cycle/data/summary/CCIavg", expr="x if float(x)>=-1.0 else ''")  # ycol=4
 
@@ -99,35 +102,69 @@ class servalcat_report(Report):
             plotLine = plotCC.append('plotline', xcol=1, ycol=3)
             plotLine.append('colour', 'orange')
             plotLine.append('symbolsize', '0')
+
         else:
-            plotR = progressGraph.addPlotObject()
-            plotR.append('title', 'R-values')
-            plotR.append('plottype', 'xy')
-            plotR.append('xlabel', 'Cycle')
-            plotR.append('ylabel', 'R-value')
-            plotR.append('yrange', min=0.0)
-            plotR.append('xintegral', 'true')
-            plotR.append('legendposition', x=0, y=0)
-            plotLine = plotR.append('plotline', xcol=1, ycol=3)
-            plotLine.append('colour', 'orange')
-            plotLine.append('symbolsize', '0')
-            plotLine = plotR.append('plotline', xcol=1, ycol=5)
-            plotLine.append('colour', 'blue')
-            plotLine.append('symbolsize', '0')
-            plotCC = progressGraph.addPlotObject()
-            plotCC.append('title', 'Correlations')
-            plotCC.append('plottype', 'xy')
-            plotCC.append('xlabel', 'Cycle')
-            plotCC.append('ylabel', 'Correlation')
-            plotCC.append('yrange', min=0.0, max=1.0)
-            plotCC.append('xintegral', 'true')
-            plotCC.append('legendposition', x=0, y=1)
-            plotLine = plotCC.append('plotline', xcol=1, ycol=4)
-            plotLine.append('colour', 'orange')
-            plotLine.append('symbolsize', '0')
-            plotLine = plotCC.append('plotline', xcol=1, ycol=6)
-            plotLine.append('colour', 'blue')
-            plotLine.append('symbolsize', '0')
+            if intensity_based_refinement:
+                plotCC = progressGraph.addPlotObject()
+                plotCC.append('title', 'Correlations')
+                plotCC.append('plottype', 'xy')
+                plotCC.append('xlabel', 'Cycle')
+                plotCC.append('ylabel', 'Correlation')
+                plotCC.append('yrange', min=0.0, max=1.0)
+                plotCC.append('xintegral', 'true')
+                plotCC.append('legendposition', x=0, y=1)
+                plotLine = plotCC.append('plotline', xcol=1, ycol=4)
+                plotLine.append('colour', 'orange')
+                plotLine.append('symbolsize', '0')
+                plotLine = plotCC.append('plotline', xcol=1, ycol=6)
+                plotLine.append('colour', 'blue')
+                plotLine.append('symbolsize', '0')
+    
+                plotR = progressGraph.addPlotObject()
+                plotR.append('title', 'R-values')
+                plotR.append('plottype', 'xy')
+                plotR.append('xlabel', 'Cycle')
+                plotR.append('ylabel', 'R-value')
+                plotR.append('yrange', min=0.0)
+                plotR.append('xintegral', 'true')
+                plotR.append('legendposition', x=0, y=0)
+                plotLine = plotR.append('plotline', xcol=1, ycol=3)
+                plotLine.append('colour', 'orange')
+                plotLine.append('symbolsize', '0')
+                plotLine = plotR.append('plotline', xcol=1, ycol=5)
+                plotLine.append('colour', 'blue')
+                plotLine.append('symbolsize', '0')
+
+            else:
+                plotR = progressGraph.addPlotObject()
+                plotR.append('title', 'R-values')
+                plotR.append('plottype', 'xy')
+                plotR.append('xlabel', 'Cycle')
+                plotR.append('ylabel', 'R-value')
+                plotR.append('yrange', min=0.0)
+                plotR.append('xintegral', 'true')
+                plotR.append('legendposition', x=0, y=0)
+                plotLine = plotR.append('plotline', xcol=1, ycol=3)
+                plotLine.append('colour', 'orange')
+                plotLine.append('symbolsize', '0')
+                plotLine = plotR.append('plotline', xcol=1, ycol=5)
+                plotLine.append('colour', 'blue')
+                plotLine.append('symbolsize', '0')
+
+                plotCC = progressGraph.addPlotObject()
+                plotCC.append('title', 'Correlations')
+                plotCC.append('plottype', 'xy')
+                plotCC.append('xlabel', 'Cycle')
+                plotCC.append('ylabel', 'Correlation')
+                plotCC.append('yrange', min=0.0, max=1.0)
+                plotCC.append('xintegral', 'true')
+                plotCC.append('legendposition', x=0, y=1)
+                plotLine = plotCC.append('plotline', xcol=1, ycol=4)
+                plotLine.append('colour', 'orange')
+                plotLine.append('symbolsize', '0')
+                plotLine = plotCC.append('plotline', xcol=1, ycol=6)
+                plotLine.append('colour', 'blue')
+                plotLine.append('symbolsize', '0')
 
         plotLL = progressGraph.addPlotObject()
         plotLL.append('title', '-LL')
@@ -154,6 +191,9 @@ class servalcat_report(Report):
             progressGraph2.addData(title="RMSD_angle", select=".//cycle/geom/summary/rmsd/Bond_angles_non_H", expr="x if float(x)>=0.0 else '-'")
             progressGraph2.addData(title="RMSZ_bond", select=".//cycle/geom/summary/rmsZ/Bond_distances_non_H", expr="x if float(x)>=0.0 else '-'")
             progressGraph2.addData(title="RMSZ_angle", select=".//cycle/geom/summary/rmsZ/Bond_angles_non_H", expr="x if float(x)>=0.0 else '-'")
+            cycles_list_without_zero = range(1, len(xmlnode.findall('.//cycle')))  # weight for the 0th cycle is not defined
+            progressGraph2.addData(title="Cycle", data=cycles_list_without_zero)
+            progressGraph2.addData(title="Weight", select=".//cycle/weight", expr="x if float(x)>=0.0 else '-'")
             plotRmsd = progressGraph2.addPlotObject()
             plotRmsd.append('title', 'RMS Deviations')
             plotRmsd.append('plottype', 'xy')
@@ -183,6 +223,18 @@ class servalcat_report(Report):
             plotLine.append('symbolsize', '0')
             plotLine = plotRmsz.append('plotline', xcol=1, ycol=5, rightaxis='false')
             plotLine.append('colour', 'red')
+            plotLine.append('symbolsize', '0')
+
+            plotWeight = progressGraph2.addPlotObject()
+            plotWeight.append('title', 'Weight')
+            plotWeight.append('plottype', 'xy')
+            plotWeight.append('xlabel', '')
+            plotWeight.append('ylabel', '')
+            plotWeight.append('yrange', min=0.0)
+            plotWeight.append('xintegral', 'true')
+            plotWeight.append('legendposition', x=0, y=0)
+            plotLine = plotWeight.append('plotline', xcol=6, ycol=7, rightaxis='false')
+            plotLine.append('colour', 'blue')
             plotLine.append('symbolsize', '0')
 
         clearingDiv = parent.addDiv(style="clear:both;")
@@ -237,7 +289,8 @@ class servalcat_report(Report):
                       'rmsCHIRAL':['-']*ncyc,
                       'zBOND':['-']*ncyc,
                       'zANGLE':['-']*ncyc,
-                      'zCHIRAL':['-']*ncyc}
+                      'zCHIRAL':['-']*ncyc,
+                      'weight':['-']*ncyc,}
         idx = 0
         for cycle in all_cycles:
             cycle_data['mode'][idx] = 'Restr'
@@ -245,6 +298,11 @@ class servalcat_report(Report):
             except: pass
             try: cycle_data['-LL'][idx] = "{:.4f}".format(float(cycle.findall('data/summary/-LL')[0].text))
             except: pass
+            if idx == 0:  # weight for the 0th cycle is not defined
+                cycle_data['weight'][idx] = '-'
+            else:
+                try: cycle_data['weight'][idx] = "{:.2f}".format(float(cycle.findall('weight')[0].text))
+                except: pass
             if len(FSCaverageNodes) > 0: # SPA refinement
                 try: cycle_data['FSCaverage'][idx] = "{:.4f}".format(float(cycle.findall('data/summary/FSCaverage')[0].text))
                 except: pass
@@ -343,6 +401,7 @@ class servalcat_report(Report):
             fullTable.addData(title="RMSZ (bond/angle/chiral)", subtitle="Bond", data=cycle_data_sel['zBOND'])
             fullTable.addData(subtitle="Angle", data=cycle_data_sel['zANGLE'])
             fullTable.addData(subtitle="Chiral", data=cycle_data_sel['zCHIRAL'])
+        fullTable.addData(title="Weight", data=cycle_data_sel['weight'])
 
 
     def addGraphsVsResolution(self, parent=None, xmlnode=None, internalIdPrefix=''):
@@ -585,6 +644,86 @@ class servalcat_report(Report):
         outStaca = xmlnode.findall('.//cycle[last()]/geom/outliers/staca')
         outStacd = xmlnode.findall('.//cycle[last()]/geom/outliers/stacd')
         outVdw = xmlnode.findall('.//cycle[last()]/geom/outliers/vdw')
+
+        if len(outVdw) > 0:
+            n_outliers = len(outVdw)
+            div = outlierFold.addDiv(style='font-size:110%')
+            div.append("Van der Waals repulsion outliers indicating close contacts (clashes) between non-bonding atoms:")
+            outData = {'atom1': ["-"]*n_outliers,
+                       'atom2': ["-"]*n_outliers,
+                       'value': ["-"]*n_outliers,
+                       'ideal': ["-"]*n_outliers,
+                       'z': ["-"]*n_outliers,
+                       'z_abs': ["-"]*n_outliers,
+                       'type': ["-"]*n_outliers,
+                       'note': ["-"]*n_outliers,
+                       'difference': ["-"]*n_outliers,
+                       'difference_float': ["-"]*n_outliers}
+            for i, outlier in enumerate(outVdw):
+                try: outData['atom1'][i] = str(outlier.findall('atom1')[0].text)
+                except: outData['atom1'][i] = '-'
+                try: outData['atom2'][i] = str(outlier.findall('atom2')[0].text)
+                except: outData['atom2'][i] = '-'
+                try: outData['value'][i] = "{:.2f}".format(float(outlier.findall('value')[0].text))
+                except: outData['value'][i] = '-'
+                try: outData['ideal'][i] = "{:.2f}".format(float(outlier.findall('ideal')[0].text))
+                except: outData['ideal'][i] = '-'
+                try:
+                    z = float(outlier.findall('z')[0].text)
+                    outData['z'][i] = "{:.2f}".format(z)
+                    outData['z_abs'][i] = round(abs(z), 2)
+                except:
+                    outData['z'][i] = '-'
+                    outData['z_abs'][i] = '-'
+                try:
+                    outType = int(outlier.findall('type')[0].text)
+                    if outType == 1:
+                        outData['note'][i] = "Van der Waals"
+                    elif outType == 2:
+                        outData['note'][i] = "Torsion"
+                    elif outType == 3:
+                        outData['note'][i] = "Hydrogen bond"
+                    elif outType == 4:
+                        outData['note'][i] = "Metal"
+                    elif outType == 5:
+                        outData['note'][i] = "Dummy-nondummy"
+                    elif outType == 6:
+                        outData['note'][i] = "Dummy-nondummy"
+                    elif outType > 6:
+                        outData['note'][i] = "Symmetry related"
+                    outData['type'][i] = -outType
+                except:
+                    outData['type'][i] = '-'
+                    outData['note'][i] = '-'
+                try:
+                    # difference = | value - ideal |
+                    difference = abs(float(outlier.findall('value')[0].text) - float(outlier.findall('ideal')[0].text))
+                    outData['difference_float'][i] = difference
+                    outData['difference'][i] = "{:.2f}".format(difference)
+                except:
+                    outData['difference'] = '-'
+                    outData['difference_float'] = '-'
+
+            outDataZip = list(zip(outData['z_abs'], outData['difference_float'], outData['type'], outData['atom1'], outData['atom2'],
+                                  outData['value'], outData['ideal'], outData['z'], outData['difference']))
+            outDataZip.sort(reverse=True)
+            outData['z_abs'], outData['difference_float'], outData['type'], outData['atom1'], outData['atom2'], \
+                outData['value'], outData['ideal'], outData['z'], outData['difference'] = zip(*outDataZip)
+
+            clearingDiv = outlierFold.addDiv(style="clear:both;")
+            styleDiv = outlierFold.addDiv(style="color:navy; text-align: right;")
+            fullTable = None
+            fullTable = styleDiv.addTable()
+            fullTable.addData(title="Atom 1", data=outData['atom1'])
+            fullTable.addData(title="Atom 2", data=outData['atom2'])
+            fullTable.addData(title="Distance (&Aring;)", data=outData['value'])
+            fullTable.addData(title="Critical<br>distance (&Aring;)", data=outData['ideal'])
+            fullTable.addData(title="Difference from<br>critical (&Aring;)", data=outData['difference'])
+            fullTable.addData(title="Z", data=outData['z'])
+            fullTable.addData(title="Type", data=outData['note'])
+        else:
+            div = outlierFold.addDiv(style='font-size:110%')
+            div.append("No clashes between atoms (Van der Waals repulsion outliers) observed.")
 
         if len(outBond) > 0:
             n_outliers = len(outBond)
@@ -920,15 +1059,17 @@ class servalcat_report(Report):
                 try: outData['dev'][i] = "{:.2f}".format(float(outlier.findall('dev')[0].text))
                 except: outData['dev'][i] = '-'
                 try:
-                    outData['z'][i] = "{:.2f}".format(float(outlier.findall('z')[0].text))
+                    z = float(outlier.findall('z')[0].text)
+                    outData['z'][i] = "{:.2f}".format(z)
                     outData['z_abs'][i] = round(abs(z), 2)
                 except:
                     outData['z'][i] = '-'
                     outData['z_abs'][i] = '-'
             # Does not need to be sorted
             clearingDiv = outlierFold.addDiv(style="clear:both;")
+            styleDiv = outlierFold.addDiv(style="color:navy; text-align: right;")
             fullTable = None
-            fullTable = outlierFold.addTable()
+            fullTable = styleDiv.addTable()
             fullTable.addData(title="Label", data=outData['label'])
             fullTable.addData(title="Atom", data=outData['atom'])
             fullTable.addData(title="Deviation (&Aring;)", data=outData['dev'])
@@ -936,85 +1077,6 @@ class servalcat_report(Report):
         else:
             div = outlierFold.addDiv(style='font-size:110%')
             div.append("No planarity outliers observed.")
-
-        if len(outVdw) > 0:
-            n_outliers = len(outVdw)
-            div = outlierFold.addDiv(style='font-size:110%')
-            div.append("Van der Waals outliers indicating close contacts between non-bonding atoms:")
-            outData = {'atom1': ["-"]*n_outliers,
-                       'atom2': ["-"]*n_outliers,
-                       'value': ["-"]*n_outliers,
-                       'ideal': ["-"]*n_outliers,
-                       'z': ["-"]*n_outliers,
-                       'z_abs': ["-"]*n_outliers,
-                       'type': ["-"]*n_outliers,
-                       'note': ["-"]*n_outliers,
-                       'difference': ["-"]*n_outliers,
-                       'difference_float': ["-"]*n_outliers}
-            for i, outlier in enumerate(outVdw):
-                try: outData['atom1'][i] = str(outlier.findall('atom1')[0].text)
-                except: outData['atom1'][i] = '-'
-                try: outData['atom2'][i] = str(outlier.findall('atom2')[0].text)
-                except: outData['atom2'][i] = '-'
-                try: outData['value'][i] = "{:.2f}".format(float(outlier.findall('value')[0].text))
-                except: outData['value'][i] = '-'
-                try: outData['ideal'][i] = "{:.2f}".format(float(outlier.findall('ideal')[0].text))
-                except: outData['ideal'][i] = '-'
-                try:
-                    outData['z'][i] = "{:.2f}".format(float(outlier.findall('z')[0].text))
-                    outData['z_abs'][i] = round(abs(z), 2)
-                except:
-                    outData['z'][i] = '-'
-                    outData['z_abs'][i] = '-'
-                try:
-                    outType = int(outlier.findall('type')[0].text)
-                    if outType == 1:
-                        outData['note'][i] = "Van der Waals"
-                    elif outType == 2:
-                        outData['note'][i] = "Torsion"
-                    elif outType == 3:
-                        outData['note'][i] = "Hydrogen bond"
-                    elif outType == 4:
-                        outData['note'][i] = "Metal"
-                    elif outType == 5:
-                        outData['note'][i] = "Dummy-nondummy"
-                    elif outType == 6:
-                        outData['note'][i] = "Dummy-nondummy"
-                    elif outType > 6:
-                        outData['note'][i] = "Symmetry related"
-                    outData['type'][i] = -outType
-                except:
-                    outData['type'][i] = '-'
-                    outData['note'][i] = '-'
-                try:
-                    # difference = | value - ideal |
-                    difference = abs(float(outlier.findall('value')[0].text) - float(outlier.findall('ideal')[0].text))
-                    outData['difference_float'][i] = difference
-                    outData['difference'][i] = "{:.2f}".format(difference)
-                except:
-                    outData['difference'] = '-'
-                    outData['difference_float'] = '-'
-
-            outDataZip = list(zip(outData['z_abs'], outData['difference_float'], outData['type'], outData['atom1'], outData['atom2'],
-                                  outData['value'], outData['ideal'], outData['z'], outData['difference']))
-            outDataZip.sort(reverse=True)
-            outData['z_abs'], outData['difference_float'], outData['type'], outData['atom1'], outData['atom2'], \
-                outData['value'], outData['ideal'], outData['z'], outData['difference'] = zip(*outDataZip)
-
-            clearingDiv = outlierFold.addDiv(style="clear:both;")
-            styleDiv = outlierFold.addDiv(style="color:navy; text-align: right;")
-            fullTable = None
-            fullTable = styleDiv.addTable()
-            fullTable.addData(title="Atom 1", data=outData['atom1'])
-            fullTable.addData(title="Atom 2", data=outData['atom2'])
-            fullTable.addData(title="Distance (&Aring;)", data=outData['value'])
-            fullTable.addData(title="Critical<br>distance (&Aring;)", data=outData['ideal'])
-            fullTable.addData(title="Difference from<br>critical (&Aring;)", data=outData['difference'])
-            fullTable.addData(title="Z", data=outData['z'])
-            fullTable.addData(title="Type", data=outData['note'])
-        else:
-            div = outlierFold.addDiv(style='font-size:110%')
-            div.append("No Van der Waals outliers observed.")
 
         if len(outStacd) > 0:
             n_outliers = len(outStacd)
