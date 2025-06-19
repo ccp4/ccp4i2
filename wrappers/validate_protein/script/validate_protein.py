@@ -23,8 +23,8 @@
 
 import os
 import sys
-import time
 import shutil
+import json
 from math import pi
 import traceback
 
@@ -35,9 +35,14 @@ warnings.filterwarnings('ignore')
 import numpy as np
 from lxml import etree
 
+from iris_validation.graphics import Panel
+from iris_validation.metrics import metrics_model_series_from_files
+import iris_validation
+
 try:
     from core import CCP4Utils, CCP4XtalData
     from core.CCP4PluginScript import CPluginScript
+    from core import CCP4Modules
 except ImportError:
     if 'CCP4' not in os.environ:
         sys.exit('Error: CCP4 environment variable must be set')
@@ -45,12 +50,9 @@ except ImportError:
     try:
         from core import CCP4Utils
         from core.CCP4PluginScript import CPluginScript
+        from core import CCP4Modules
     except ImportError:
         sys.exit('Error: Failed to import CCP4 core modules')
-
-from iris_validation.graphics import Panel
-from iris_validation.metrics import metrics_model_series_from_files
-import iris_validation
 
 class validate_protein(CPluginScript):
     TASKNAME = 'validate_protein'
@@ -175,6 +177,11 @@ class validate_protein(CPluginScript):
         log_string = ''
         xml_root = etree.Element('Iris')
         model_series_data = self.model_series.get_raw_data()
+
+        job_directory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId = self.jobId)
+        with open(os.path.join(job_directory,'logfile_iris.json'), 'w', encoding="utf-8") as outfile:
+            outfile.write(json.dumps(model_series_data))
+
         panel = Panel(model_series_data,
                       custom_labels={'Latest': self.container.inputData.NAME_1,
                                      'Previous': self.container.inputData.NAME_2
