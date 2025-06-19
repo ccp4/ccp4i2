@@ -4,7 +4,7 @@ from .urls import redo_cif, redo_mtz, pdbe_mmcif
 from .utils import download, hasLongLigandName, i2run, demoData
 
 
-# x-ray data
+# x-ray diffraction data
 # monomer with 5-letter code
 # add waters
 def test_8xfm(cif8xfm, mtz8xfm):
@@ -76,7 +76,7 @@ def test_1gyu_unmerged():
 
 
 # electron diffraction data
-# prosmart protein
+# prosmart reference protein
 def test_7beq_electron():
     with download(redo_cif("7beq")) as cif7beq, download(redo_mtz("7beq")) as mtz7beq, download(redo_cif("7ber")) as cif7ber:
         ncycle = 3
