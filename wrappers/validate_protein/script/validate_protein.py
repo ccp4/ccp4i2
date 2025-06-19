@@ -148,9 +148,9 @@ class validate_protein(CPluginScript):
             print("PATHS\n",self.latest_model_path, self.previous_model_path,self.latest_reflections_path, self.previous_reflections_path)
             self.model_series = metrics_model_series_from_files(model_paths=(self.latest_model_path, self.previous_model_path),
                                                                 reflections_paths=(self.latest_reflections_path, self.previous_reflections_path),
-                                                                sequence_paths=(None,),
-                                                                distpred_paths=(None,),
-                                                                model_json_paths=(None,),
+                                                                sequence_paths=(None, None),
+                                                                distpred_paths=(None, None),
+                                                                model_json_paths=(None, None),
                                                                 run_covariance=False,
                                                                 calculate_rama_z=self.container.controlParameters.DO_TORTOIZE,
                                                                 run_molprobity=self.container.controlParameters.DO_MOLPROBITY,
