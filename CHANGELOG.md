@@ -4,7 +4,8 @@
 
 - Servalcat refinement against unmerged data
 - Servalcat option for van der Waals restraint weight
-- More graphs added to the Servalcat report
+- More graphs in the Servalcat report
+- More Servalcat i2 run tests
 - Fix for deprecated numpy.float
 
 ## [2.3.3] - 2025-05-29
