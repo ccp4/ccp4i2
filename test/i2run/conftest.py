@@ -1,5 +1,5 @@
 from pytest import fixture
-from .urls import pdbe_fasta, redo_cif, redo_mtz, pdbe_mmcif
+from .urls import pdbe_fasta, redo_cif, redo_mtz
 from .utils import download
 
 
