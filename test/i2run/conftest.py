@@ -19,39 +19,3 @@ def mtz8xfm():
 def seq8xfm():
     with download(pdbe_fasta("8xfm")) as path:
         yield path
-
-
-@fixture(scope="session")
-def cif1gyu():
-    with download(pdbe_mmcif("1gyu")) as path:
-        yield path
-
-
-@fixture(scope="session")
-def cif7beq():
-    with download(redo_cif("7beq")) as path:
-        yield path
-
-
-@fixture(scope="session")
-def mtz7beq():
-    with download(redo_mtz("7beq")) as path:
-        yield path
-
-
-@fixture(scope="session")
-def cif7ber():
-    with download(redo_cif("7ber")) as path:
-        yield path
-
-
-@fixture(scope="session")
-def cif7prg():
-    with download(redo_cif("7prg")) as path:
-        yield path
-
-
-@fixture(scope="session")
-def mtz7prg():
-    with download(redo_mtz("7prg")) as path:
-        yield path
