@@ -116,7 +116,7 @@ class servalcat_report(Report):
         plotLL.append('ylabel', '-LL')
         plotLL.append('xintegral', 'true')
         plotLL.append('legendposition', x=0, y=1)
-        plotLine.append('colour', 'orange')
+        plotLL.append('colour', 'orange')
         plotLine = plotLL.append('plotline', xcol=1, ycol=2)
         plotLine.append('colour', 'blue')
         plotLine.append('symbolsize', '0')
