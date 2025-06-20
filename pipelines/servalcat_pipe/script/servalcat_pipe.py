@@ -439,20 +439,19 @@ class servalcat_pipe(CPluginScript):
             adp_low = []
             adp_high = []
             for model in st:
-                for chain in model:
-                    for residue in chain:
-                        for atom in residue:
-                            if atom.element != gemmi.Element('H') and atom.occ > 0:
-                                if atom.aniso.nonzero():
-                                    adp_atom = gemmi.calculate_b_est(atom)
-                                else:
-                                    adp_atom = atom.b_iso
-                                if adp_atom < adp_limit_low:
-                                    adp_low.append({"atom": str(model.get_cra(atom)),
-                                                    "adp": adp_atom})
-                                elif adp_atom > adp_limit_high:
-                                    adp_high.append({"atom": str(model.get_cra(atom)),
-                                                    "adp": adp_atom})
+                lookup = list(model.all())
+                for cra in lookup:
+                    if not cra.atom.is_hydrogen and cra.atom.occ > 0:
+                        if cra.atom.aniso.nonzero():
+                            adp_atom = gemmi.calculate_b_est(cra.atom)
+                        else:
+                            adp_atom = cra.atom.b_iso
+                        if adp_atom < adp_limit_low:
+                            adp_low.append({"atom": str(cra.atom),
+                                            "adp": adp_atom})
+                        elif adp_atom > adp_limit_high:
+                            adp_high.append({"atom": str(cra.atom),
+                                            "adp": adp_atom})
             adp_low = sorted(adp_low, key=itemgetter('adp'))
             adp_high = sorted(adp_high, key=itemgetter('adp'), reverse=True)
 
