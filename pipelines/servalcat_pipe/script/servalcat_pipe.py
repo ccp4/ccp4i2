@@ -551,17 +551,19 @@ class servalcat_pipe(CPluginScript):
     def coord_adp_dev_analysis(self, model1Path, model2Path):
         print("Monitoring of changes/shifts of coordinated and ADPs...")
         try:
-            coordDevMinReported = self.container.monitor.MIN_COORDDEV
-            ADPAbsDevMinReported = self.container.monitor.MIN_ADPDEV
+            coordDevMinReported = float(self.container.monitor.MIN_COORDDEV)
+            ADPAbsDevMinReported = float(self.container.monitor.MIN_ADPDEV)
             csvFileName = "report_coord_adp_dev.csv"
             csvFilePath = str(os.path.join(self.getWorkDirectory(), csvFileName))
             df = monitor_differences.main(
                 file1=model1Path, file2=model2Path, output=csvFilePath,
-                minCoordDev=float(coordDevMinReported), minAdpDev=float(ADPAbsDevMinReported),
+                minCoordDev=coordDevMinReported, minAdpDev=ADPAbsDevMinReported,
                 useHydrogens=False)
-            if df is None or df.empty or ["CoodDev", "ADPDev"] not in df.columns:
-                sys.stderr.write("ERROR: Monitoring of changes/shifts of coordinates and ADPs was not successful: "
-                                 "No data found in the output file.\n")
+            if df is None or df.empty or not all(col in df.columns for col in ["CoordDev", "ADPDev"]):
+                sys.stderr.write(
+                    "WARNING: No changes/shifts of coordinates and ADPs detected above given thresholds "
+                    f" ({coordDevMinReported} A, {ADPAbsDevMinReported} A^2). "
+                    f" No data reported in the output file {csvFileName}.\n")
                 return
             coordDevMean = df["CoordDev"].mean()
             ADPAbsDevMean = df["ADPDev"].mean()
