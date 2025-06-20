@@ -165,28 +165,21 @@ def generate_xml_from_project_directory(project_dir):
     fileUseTable_el = ET.SubElement(ccp4i2_body,"fileuseTable")
     
     jobs = []
-    
-    def parse_from_unicode(unicode_str):
-        utf8_parser = ET.XMLParser(encoding='utf-8')
-        s = unicode_str.encode('utf-8')
-        return ET.fromstring(s, parser=utf8_parser)
-    
+
     def merge_header_info(path):
         path = Path(path)
-        with path.open() as f1:
-            tree1 = parse_from_unicode(f1.read())
+        tree1 = ET.parse(path).getroot()
         if path.name == "params.xml" and (path.parent / "input_params.xml").exists():
-            with (path.parent / "input_params.xml").open() as f2:
-                tree2 = parse_from_unicode(f2.read())
+            tree2 = ET.parse(path.parent / "input_params.xml").getroot()
 
-                if tree1.xpath("./ccp4i2_header") and tree2.xpath("./ccp4i2_header"):
-                    header1 = tree1.xpath("./ccp4i2_header")[0]
-                    header2 = tree2.xpath("./ccp4i2_header")[0]
+            if tree1.xpath("./ccp4i2_header") and tree2.xpath("./ccp4i2_header"):
+                header1 = tree1.xpath("./ccp4i2_header")[0]
+                header2 = tree2.xpath("./ccp4i2_header")[0]
 
-                    for name in ("projectId", "jobId", "projectName", "jobNumber"):
-                        if header2.xpath(name) and not header1.xpath(name):
-                            element = ET.SubElement(header1, name)
-                            element.text = header2.xpath(name)[0].text
+                for name in ("projectId", "jobId", "projectName", "jobNumber"):
+                    if header2.xpath(name) and not header1.xpath(name):
+                        element = ET.SubElement(header1, name)
+                        element.text = header2.xpath(name)[0].text
 
         return tree1
 
@@ -247,22 +240,19 @@ def generate_xml_from_project_directory(project_dir):
                     attrib["taskname"] = pluginName
                     parentXML = os.path.join(os.path.dirname(os.path.dirname(fn)),"params.xml")
                     if os.path.exists(parentXML):
-                        with open(parentXML) as f2:
-                            t2 = f2.read()
-                            tree2 = parse_from_unicode(t2)
-                            if len(tree2.xpath("ccp4i2_header")[0].xpath("jobId"))>0 and len(tree2.xpath("ccp4i2_header")[0].xpath("jobId")[0].text)>0:
-                                jobId2 = tree2.xpath("ccp4i2_header")[0].xpath("jobId")[0].text
-                                attrib["parentjobid"] = jobId2
+                        tree2 = ET.parse(parentXML).getroot()
+                        if len(tree2.xpath("ccp4i2_header")[0].xpath("jobId"))>0 and len(tree2.xpath("ccp4i2_header")[0].xpath("jobId")[0].text)>0:
+                            jobId2 = tree2.xpath("ccp4i2_header")[0].xpath("jobId")[0].text
+                            attrib["parentjobid"] = jobId2
                     #Hmm, no good. Not all jobs have a diagnostic.xml, only top level jobs. If a top-level has finished, then all sub-jobs must be!
                     try:
-                        with open(os.path.join(os.path.dirname(fn),"diagnostic.xml")) as fdiag:
-                            tdiag = fdiag.read()
-                            treediag = parse_from_unicode(tdiag)
-                            if len(treediag.xpath("ccp4i2_body")[0].xpath("errorReport"))>0:
-                                attrib["status"] = "5"
-                            else:
-                                attrib["status"] = "6" #IT may be running of course, but we skip that possibility and leave user to deal with.
-                            attrib["finishtime"] = str(os.path.getmtime(os.path.join(os.path.dirname(fn),"diagnostic.xml")))
+                        path = os.path.join(os.path.dirname(fn),"diagnostic.xml")
+                        treediag = ET.parse(path).getroot()
+                        if len(treediag.xpath("ccp4i2_body")[0].xpath("errorReport"))>0:
+                            attrib["status"] = "5"
+                        else:
+                            attrib["status"] = "6" #IT may be running of course, but we skip that possibility and leave user to deal with.
+                        attrib["finishtime"] = str(os.path.getmtime(path))
                     except: 
                         attrib["status"] = "1"
                     jobs.append(attrib)
@@ -279,10 +269,7 @@ def generate_xml_from_project_directory(project_dir):
         for wrap_root, wrap_dirn, wrap_files in os.walk(str(I2_TOP)):
             for items in fnmatch.filter(wrap_files, pluginName+".def.xml"):
                 pluginDefXml = os.path.join(wrap_root,items)
-        with open(pluginDefXml) as f:
-            t = f.read()
-            tree = parse_from_unicode(t)
-        return tree
+        return ET.parse(pluginDefXml).getroot()
     
     def getPluginDefXml(pluginName,wrapper_cache):
     

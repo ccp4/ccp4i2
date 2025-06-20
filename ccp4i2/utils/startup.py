@@ -81,27 +81,22 @@ def createMissingDATABASEdbXML():
 
     elif os.path.exists(dbListBackupName):
 
-        def parse_from_unicode(unicode_str):
-            return ET.fromstring(unicode_str)
-    
-        with open(dbListBackupName, 'r') as infile: 
-            s = infile.read()
-            tree = parse_from_unicode(s)
-            projs = tree.xpath("//project")
-            setXML = set([str(x.text) for x in projs])
-            setDB = set([str(x[2]) for x in proj_dir_list0])
-            if (setXML!=setDB):
-                if setXML.issubset(setDB):
-                    print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-                    print("Project directory list is not up to date, recreating")
-                    PROJECTSMANAGER().backupDBXML()
-                    print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-                else:
-                   dirListStr =  "<br/>".join([str(x) for x in (setXML - setDB)])
-                   print("Backup project list is inconsistent with database contents. This might be a serious problem.")
-                   res = QtWidgets.QMessageBox.warning(None,"Database file / Project list backup","Backup project list file "+dbListBackupName+" is inconsistent with database contents. This might be a serious problem.<br/><br/>The following project directories contained in "+dbListBackupName+" do not correspond to anything in the database:<br/><br/>"+dirListStr+"<br/><br/>If you think all is well, then click 'OK', otherwise click 'Abort' and investigate the problem.<br/><br/>Do not click 'OK' if you are not sure what is wrong.",QtWidgets.QMessageBox.Ok|QtWidgets.QMessageBox.Abort)
-                   if res == QtWidgets.QMessageBox.Abort:
-                       sys.exit()
+        tree = ET.parse(dbListBackupName).getroot()
+        projs = tree.xpath("//project")
+        setXML = set([str(x.text) for x in projs])
+        setDB = set([str(x[2]) for x in proj_dir_list0])
+        if (setXML!=setDB):
+            if setXML.issubset(setDB):
+                print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+                print("Project directory list is not up to date, recreating")
+                PROJECTSMANAGER().backupDBXML()
+                print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+            else:
+                dirListStr =  "<br/>".join([str(x) for x in (setXML - setDB)])
+                print("Backup project list is inconsistent with database contents. This might be a serious problem.")
+                res = QtWidgets.QMessageBox.warning(None,"Database file / Project list backup","Backup project list file "+dbListBackupName+" is inconsistent with database contents. This might be a serious problem.<br/><br/>The following project directories contained in "+dbListBackupName+" do not correspond to anything in the database:<br/><br/>"+dirListStr+"<br/><br/>If you think all is well, then click 'OK', otherwise click 'Abort' and investigate the problem.<br/><br/>Do not click 'OK' if you are not sure what is wrong.",QtWidgets.QMessageBox.Ok|QtWidgets.QMessageBox.Abort)
+                if res == QtWidgets.QMessageBox.Abort:
+                    sys.exit()
 
 
 def startBrowser(args, app=None, splash=None):

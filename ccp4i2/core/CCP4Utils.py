@@ -149,10 +149,6 @@ def saveEtreeToFile(tree=None, fileName=None):
         raise CException(CUtils, 103, fileName)
 
 
-def parse_from_unicode(unicode_str):
-    return ET.fromstring(unicode_str)
-
-
 def getHostName():
     # From http://stackoverflow.com/questions/4271740/how-can-i-use-python-to-get-the-system-name
     if socket.gethostname().find('.') >= 0:

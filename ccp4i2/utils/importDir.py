@@ -15,10 +15,6 @@ from ..core.CCP4Modules import PROJECTSMANAGER
 from ..dbapi import CCP4DbApi
 
 
-def parse_from_unicode(unicode_str):
-    return ET.fromstring(unicode_str)
-
-
 def importFilesFromDirXML(dbFileName,dirName,importProjectComments=False):
     """
     dbFileName: the database file
@@ -41,34 +37,32 @@ def importFilesFromDirXML(dbFileName,dirName,importProjectComments=False):
     dbImport.loadTempTable()
     dbImport.setExclImportedFiles()
     
-    with open(xmlFile) as f:
-        t = f.read()
-        tree = parse_from_unicode(t)
-        
-        doneJobs = []
-        if len(tree.xpath("ccp4i2_body"))>0:
-            #Import jobs with input/output files and their files.
-            if len(tree.xpath("ccp4i2_body")[0].xpath("fileTable"))>0:
-                ft = tree.xpath("ccp4i2_body")[0].xpath("fileTable")[0]
-                for f in ft:
-                    if len(tree.xpath("//job[@jobid='"+f.attrib["jobid"]+"']"))>0:
-                        job = tree.xpath("//job[@jobid='"+f.attrib["jobid"]+"']")[0]
-                        jobNo = job.attrib["jobnumber"]
-                        if not jobNo in doneJobs:
-                            ifImport,newJobNumber = dbImport.importThisFile( jobNumber = jobNo, fileName = None )
-                            doneJobs.append(jobNo)
-                        ifImport,newJobNumber = dbImport.importThisFile( jobNumber = jobNo, fileName = f.attrib["filename"] )
- 
-            #Import jobs with no input/output files.
-            if len(tree.xpath("ccp4i2_body")[0].xpath("jobTable"))>0:
-                jt = tree.xpath("ccp4i2_body")[0].xpath("jobTable")[0]
-                for j in jt:
-                    if len(tree.xpath("//job[@jobid='"+j.attrib["jobid"]+"']"))>0:
-                        job = tree.xpath("//job[@jobid='"+j.attrib["jobid"]+"']")[0]
-                        jobNo = job.attrib["jobnumber"]
-                        if not jobNo in doneJobs:
-                            ifImport,newJobNumber = dbImport.importThisFile( jobNumber = jobNo, fileName = None )
-                            doneJobs.append(jobNo)
+    tree = ET.parse(xmlFile).getroot()
+
+    doneJobs = []
+    if len(tree.xpath("ccp4i2_body"))>0:
+        #Import jobs with input/output files and their files.
+        if len(tree.xpath("ccp4i2_body")[0].xpath("fileTable"))>0:
+            ft = tree.xpath("ccp4i2_body")[0].xpath("fileTable")[0]
+            for f in ft:
+                if len(tree.xpath("//job[@jobid='"+f.attrib["jobid"]+"']"))>0:
+                    job = tree.xpath("//job[@jobid='"+f.attrib["jobid"]+"']")[0]
+                    jobNo = job.attrib["jobnumber"]
+                    if not jobNo in doneJobs:
+                        ifImport,newJobNumber = dbImport.importThisFile( jobNumber = jobNo, fileName = None )
+                        doneJobs.append(jobNo)
+                    ifImport,newJobNumber = dbImport.importThisFile( jobNumber = jobNo, fileName = f.attrib["filename"] )
+
+        #Import jobs with no input/output files.
+        if len(tree.xpath("ccp4i2_body")[0].xpath("jobTable"))>0:
+            jt = tree.xpath("ccp4i2_body")[0].xpath("jobTable")[0]
+            for j in jt:
+                if len(tree.xpath("//job[@jobid='"+j.attrib["jobid"]+"']"))>0:
+                    job = tree.xpath("//job[@jobid='"+j.attrib["jobid"]+"']")[0]
+                    jobNo = job.attrib["jobnumber"]
+                    if not jobNo in doneJobs:
+                        ifImport,newJobNumber = dbImport.importThisFile( jobNumber = jobNo, fileName = None )
+                        doneJobs.append(jobNo)
 
     dbImport.db.commit()
     pm.makeProjectDirectory(directory=dirName)

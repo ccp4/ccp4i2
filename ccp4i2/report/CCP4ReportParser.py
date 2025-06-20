@@ -3097,11 +3097,6 @@ class GenericElement(ReportClass):
     return ele
  
 
-def parse_from_unicode(unicode_str):
-    utf8_parser = ET.XMLParser(encoding='utf-8')
-    s = unicode_str.encode('utf-8')
-    return ET.fromstring(s, parser=utf8_parser)
-
 class Plot(GenericElement):
 
   ERROR_CODES = { 101 : { 'severity': Severity.WARNING , 'description' : 'Failed loading Plot schema' },
@@ -3114,7 +3109,7 @@ class Plot(GenericElement):
   def validate(self):
     try:
       schemafile = os.path.join(CCP4Utils.getCCP4I2Dir(),'pimple','CCP4ApplicationOutput.xsd')
-      schematree = parse_from_unicode(open(schemafile).read())
+      schematree = ET.parse(schemafile).getroot()
       schema = lxml_etree.XMLSchema(schematree)
     except:
       raise
