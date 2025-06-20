@@ -559,6 +559,10 @@ class servalcat_pipe(CPluginScript):
                 file1=model1Path, file2=model2Path, output=csvFilePath,
                 minCoordDev=float(coordDevMinReported), minAdpDev=float(ADPAbsDevMinReported),
                 ignoreHydrogens=True)
+            if df is None or df.empty or ["CoodDev", "ADPDev"] not in df.columns:
+                sys.stderr.write("ERROR: Monitoring of changes/shifts of coordinates and ADPs was not successful: "
+                                 "No data found in the output file.\n")
+                return
             coordDevMean = df["CoordDev"].mean()
             ADPAbsDevMean = df["ADPDev"].mean()
             # Save csv in program.xml
