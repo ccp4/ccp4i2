@@ -648,7 +648,7 @@ class prosmart_refmac(CPluginScript):
              xml_validation_status = etree.SubElement(xml_validation,"Success")
              try:
                 self.validate = self.makePluginObject('validate_protein')
-                self.validate.container.inputData.XYZIN_1.set(self.container.outputData.XYZOUT)
+                self.validate.container.inputData.XYZIN_1.set(self.container.outputData.CIFFILE)
                 self.validate.container.inputData.XYZIN_2.set(self.container.inputData.XYZIN)
                 if str(self.container.controlParameters.SCATTERING_FACTORS) == "XRAY":
                     self.validate.container.inputData.F_SIGF_1.set(self.container.inputData.F_SIGF)
@@ -666,6 +666,7 @@ class prosmart_refmac(CPluginScript):
                 #Agirre and Rob Nicholls
                 self.validate.container.outputData.COOTSCRIPTOUT = self.container.outputData.COOTSCRIPTOUT
 
+                self.validate.container.controlParameters.TWO_DATASETS.set(True)
                 self.validate.container.controlParameters.DO_IRIS = validate_iris
                 self.validate.container.controlParameters.DO_BFACT = validate_baverage
                 self.validate.container.controlParameters.DO_RAMA = validate_ramachandran

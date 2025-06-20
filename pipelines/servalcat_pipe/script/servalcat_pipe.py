@@ -336,7 +336,7 @@ class servalcat_pipe(CPluginScript):
 
         if validate_iris or validate_baverage or validate_molprobity or validate_ramachandran:
             self.validate = self.makePluginObject('validate_protein')
-            self.validate.container.inputData.XYZIN_1.set(self.container.outputData.XYZOUT)
+            self.validate.container.inputData.XYZIN_1.set(self.container.outputData.CIFFILE)
             self.validate.container.inputData.XYZIN_2.set(self.container.inputData.XYZIN)
             self.validate.container.inputData.NAME_1.set("Refined")
             self.validate.container.inputData.NAME_2.set("Input")
@@ -350,6 +350,7 @@ class servalcat_pipe(CPluginScript):
                 self.validate.container.inputData.F_SIGF_1.set(None)
                 self.validate.container.inputData.F_SIGF_2.set(None)
 
+            self.validate.container.controlParameters.TWO_DATASETS.set(True)
             self.validate.container.controlParameters.DO_IRIS.set(validate_iris)
             self.validate.container.controlParameters.DO_BFACT.set(validate_baverage)
             self.validate.container.controlParameters.DO_RAMA.set(validate_ramachandran)
