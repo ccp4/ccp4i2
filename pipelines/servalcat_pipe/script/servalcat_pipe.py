@@ -547,7 +547,9 @@ class servalcat_pipe(CPluginScript):
             self.saveXml()
             print("ADP analysis done.")
         except Exception as e:
-            sys.stderr.write("ERROR: ADP analysis as not successful: " + str(e) + "\n")
+            sys.stderr.write("ERROR: ADP analysis was not successful: " + str(e) + "\n")
+            import traceback
+            sys.stderr.write(traceback.format_exc())
 
     def coord_adp_dev_analysis(self, model1Path, model2Path):
         print("Monitoring of changes/shifts of coordinated and ADPs...")
@@ -558,7 +560,8 @@ class servalcat_pipe(CPluginScript):
             csvFilePath = str(os.path.join(self.getWorkDirectory(), csvFileName))
             df = monitor_differences.main(
                 file1=model1Path, file2=model2Path, output=csvFilePath,
-                minCoordDev=float(coordDevMinReported), minAdpDev=float(ADPAbsDevMinReported))
+                minCoordDev=float(coordDevMinReported), minAdpDev=float(ADPAbsDevMinReported),
+                ignoreHydrogens=True)
             coordDevMean = df["CoordDev"].mean()
             ADPAbsDevMean = df["ADPDev"].mean()
             # Save csv in program.xml
@@ -587,6 +590,8 @@ class servalcat_pipe(CPluginScript):
             print("Monitoring of changes/shifts of coordinates and ADPs...")
         except Exception as e:
             sys.stderr.write("ERROR: Monitoring of changes/shifts of coordinates and ADPs was not successful: " + str(e) + "\n")
+            import traceback
+            sys.stderr.write(traceback.format_exc())
 
     @QtCore.Slot(dict)
     def firstServalcatFinished(self, statusDict):

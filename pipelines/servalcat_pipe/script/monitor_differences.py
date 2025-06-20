@@ -58,16 +58,27 @@ def search(st1Cras, st2Cras, output, minCoordDev, minAdpDev):
     return df
 
 
-def main(file1, file2, output=None, minCoordDev=0, minAdpDev=0):
+def main(file1, file2, output=None, minCoordDev=0, minAdpDev=0, ignoreHydrogens=True):
     print("File 1 is " + file1 + ".")
     print("File 2 is " + file2 + ".")
-    st1 = gemmi.read_structure(file1, format=gemmi.CoorFormat.Detect)
-    st2 = gemmi.read_structure(file2, format=gemmi.CoorFormat.Detect)
+    try:
+        st1 = gemmi.read_structure(file1, format=gemmi.CoorFormat.Detect)
+    except gemmi.Error as e:
+        print(f"ERROR reading file {file1}: {e}")
+        return None
+    try:
+        st2 = gemmi.read_structure(file2, format=gemmi.CoorFormat.Detect)
+    except gemmi.Error as e:
+        print(f"ERROR reading file {file2}: {e}")
+        return None
     st1Cras = list(st1[0].all())
     st2Cras = list(st2[0].all())
+    if ignoreHydrogens:
+        st1Cras = [cra for cra in st1Cras if not cra.atom.is_hydrogen()]
+        st2Cras = [cra for cra in st2Cras if not cra.atom.is_hydrogen()]
     if len(st1Cras) != len(st2Cras):
         print(
-            "Number of atoms in the 1st file does not match the number"
+            "WARNING: Number of atoms in the 1st file does not match the number"
             " of atoms in the second file."
         )
     return search(st1Cras, st2Cras, output, minCoordDev, minAdpDev)
@@ -80,6 +91,9 @@ if __name__ == "__main__":
     parser.add_argument("output")
     parser.add_argument("--minCoordDev", type=float, default=0)
     parser.add_argument("--minAdpDev", type=float, default=0)
+    parser.add_argument(
+        "--ignoreHydrogens", action="store_true", help="Ignore hydrogen atoms"
+    )
     args = parser.parse_args()
 
-    main(args.file1, args.file2, args.output, args.minCoordDev, args.minAdpDev)
+    main(args.file1, args.file2, args.output, args.minCoordDev, args.minAdpDev, args.ignoreHydrogens)

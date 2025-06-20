@@ -42,6 +42,7 @@ def test_8xfm(cif8xfm, mtz8xfm):
 # x-ray diffraction data
 # input as unmerged data
 # refinement against intensities
+# add hydrogens
 def test_1gyu_unmerged():
     with download(pdbe_mmcif("1gyu")) as cif1gyu:
         ncycle = 2
@@ -60,6 +61,7 @@ def test_1gyu_unmerged():
         args += ["--RANDOMIZEUSE", "True"]
         args += ["--RANDOMIZE", "0.05"]
         args += ["--BFACSETUSE", "True"]
+        args += ["--H_OUT", "True"]    
         args += ["--VALIDATE_IRIS", "True"]
         args += ["--VALIDATE_BAVERAGE", "False"]
         args += ["--VALIDATE_RAMACHANDRAN", "True"]
