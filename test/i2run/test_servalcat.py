@@ -21,9 +21,16 @@ def test_8xfm(cif8xfm, mtz8xfm):
     args += ["--VALIDATE_BAVERAGE", "False"]
     args += ["--VALIDATE_RAMACHANDRAN", "False"]
     args += ["--VALIDATE_MOLPROBITY", "False"]
+    args += ["--RUN_ADP_ANALYSIS", "False"]
+    args += ["--RUN_COORDADPDEV_ANALYSIS", "False"]
     with i2run(args) as job:
         assert hasLongLigandName(job / "CIFFILE.pdb")
         xml = ET.parse(job / "program.xml")
+        check_program_xml_pipeline(xml, args)
+        root = xml.getroot()
+        assert root.tag == "SERVALCAT"
+        for tag in ["SERVALCAT_FIRST", "CootAddWaters", "SERVALCAT_WATERS"]:
+            assert root.find(tag) is not None
         rworks = [float(e.text) for e in xml.findall(".//summary/Rwork")]
         rfrees = [float(e.text) for e in xml.findall(".//summary/Rfree")]
         assert len(rworks) == len(rfrees) == 6
@@ -58,8 +65,10 @@ def test_1gyu_unmerged():
         args += ["--VALIDATE_RAMACHANDRAN", "True"]
         args += ["--VALIDATE_MOLPROBITY", "True"]
         args += ["--RUN_ADP_ANALYSIS", "True"]
+        args += ["--RUN_COORDADPDEV_ANALYSIS", "True"]
         with i2run(args) as job:
             xml = ET.parse(job / "program.xml")
+            check_program_xml_pipeline(xml, args)
             r1works = [float(e.text) for e in xml.findall(".//data/summary/R1work")]
             r1frees = [float(e.text) for e in xml.findall(".//data/summary/R1free")]
             cciworkavgs = [float(e.text) for e in xml.findall(".//data/summary/CCIworkavg")]
@@ -100,10 +109,12 @@ def test_7beq_electron():
         args += ["--VALIDATE_RAMACHANDRAN", "True"]
         args += ["--VALIDATE_MOLPROBITY", "True"]
         args += ["--RUN_ADP_ANALYSIS", "True"]
+        args += ["--RUN_COORDADPDEV_ANALYSIS", "True"]
         with i2run(args) as job:
             assert os.path.isfile(os.path.join(job, "job_1", "RESTRAINTS.txt"))
             assert os.path.isfile(os.path.join(job, "job_1", "ProSMART_Results.html"))
             xml = ET.parse(job / "program.xml")
+            check_program_xml_pipeline(xml, args)
             rworks = [float(e.text) for e in xml.findall(".//data/summary/Rwork")]
             rfrees = [float(e.text) for e in xml.findall(".//data/summary/Rfree")]
             ccfworkavgs = [float(e.text) for e in xml.findall(".//data/summary/CCFworkavg")]
@@ -144,12 +155,14 @@ def test_7prg_neutron():
         args += ["--VALIDATE_RAMACHANDRAN", "True"]
         args += ["--VALIDATE_MOLPROBITY", "True"]
         args += ["--RUN_ADP_ANALYSIS", "True"]
+        args += ["--RUN_COORDADPDEV_ANALYSIS", "True"]
         with i2run(args) as job:
             assert os.path.isfile(os.path.join(job, "job_1", "CA.json"))
             assert os.path.isfile(os.path.join(job, "job_1", "CA_restraints.txt"))
             assert os.path.isfile(os.path.join(job, "metal_restraints.txt"))
             assert os.path.isfile(os.path.join(job, "metal_restraints.mmcif"))
             xml = ET.parse(job / "program.xml")
+            check_program_xml_pipeline(xml, args)
             rworks = [float(e.text) for e in xml.findall(".//data/summary/Rwork")]
             rfrees = [float(e.text) for e in xml.findall(".//data/summary/Rfree")]
             ccfworkavgs = [float(e.text) for e in xml.findall(".//data/summary/CCFworkavg")]
@@ -165,6 +178,33 @@ def test_7prg_neutron():
             # assert ccffreeavgs[0] < ccffreeavgs[-1]
             xml_validation = ET.parse(job / "job_3" / "program.xml")
             check_program_xml_validate(xml_validation, expected_chain_count=4)
+
+
+def check_program_xml_pipeline(xml, args):
+
+    def has_two_following_args(args, arg1, arg2):
+        return any(args[i] == arg1 and args[i + 1] == arg2 for i in range(len(args) - 1))
+
+    root = xml.getroot()
+    assert root.tag == "SERVALCAT"
+    tags = ["SERVALCAT_FIRST"]
+    if not has_two_following_args(args, "--RUN_ADP_ANALYSIS", "False"):
+        tags.append("ADP_ANALYSIS")
+    if not has_two_following_args(args, "--RUN_COORDADPDEV_ANALYSIS", "False"):
+        tags.append("COORD_ADP_DEV")
+    if not (
+        has_two_following_args(args, "--VALIDATE_IRIS", "False") and
+        has_two_following_args(args, "--VALIDATE_BAVERAGE", "False") and
+        has_two_following_args(args, "--VALIDATE_RAMACHANDRAN", "False") and
+        has_two_following_args(args, "--VALIDATE_MOLPROBITY", "False")
+    ):
+        tags.append("Validation")
+    if has_two_following_args(args, "--ADD_WATERS", "True"):
+        tags.append("CootAddWaters")
+        tags.append("SERVALCAT_WATERS")
+    for tag in tags:
+        assert root.find(tag) is not None, f"Missing tag in program.xml: {tag}"
+        assert len(root.find(tag)) or root.find(tag).text is not None, f"Tag {tag} in program.xml has no content"
 
 
 def check_program_xml_validate(xml, expected_chain_count=1):
