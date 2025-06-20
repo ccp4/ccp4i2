@@ -747,13 +747,6 @@ def applySelect(xrtnode,xmlnode,jobInfo={}):
   return xrtnode
 
 
-def PARSER():
-  I2XmlParser.insts = ET.XMLParser(encoding='utf-8')
-  return I2XmlParser.insts
-
-class I2XmlParser:
-  insts = None
-  
 class ReportClass(object):
     def __init__(self, *arg, **kw):
         super(ReportClass,self).__init__()
@@ -1138,8 +1131,7 @@ class Report( Container ):
                 return
         if xmlnode is None and 'xmlFile' in kw:
             try:
-                text = open( kw['xmlFile'] ).read()
-                self.xmlnode = ET.fromstring( text, PARSER() )
+                self.xmlnode = ET.parse(kw['xmlFile']).getroot()
             except Exception as e:
                 self.errReport.append(self.__class__,106, 'Reading file: '+str(kw['xmlFile'])+'\n'+str(e))
                 return
@@ -1171,7 +1163,7 @@ class Report( Container ):
                     self.errReport.append(self.__class__,101,fileName)
                 else:
                     try:
-                        ele = ET.fromstring( open(fileName ).read(), PARSER() )
+                        ele = ET.parse(fileName).getroot()
                     except:
                         self.errReport.append(self.__class__,102,fileName)
                     else:
@@ -3708,7 +3700,7 @@ class Picture:
       sceneRoot = xrtnode
     elif kw.get('scene',None) is not None:
       try:
-        sceneRoot = ET.fromstring( kw['scene'], PARSER() )
+        sceneRoot = ET.fromstring(kw['scene'])
       except:
         raise CException(self.__class__,103, kw['scene'])
     elif kw.get('sceneFile',None) is not None:
@@ -3720,7 +3712,7 @@ class Picture:
         raise CException(self.__class__,101,fileName)
       else:
         try:
-          sceneRoot = ET.fromstring( open(fileName ).read(), PARSER() )
+          sceneRoot = ET.parse(fileName).getroot()
         except:
           raise CException(self.__class__,102,fileName)
     
@@ -3980,8 +3972,8 @@ class Picture:
 # Main program, if run from command line.
 # Usage: python report.py my.xrt my.xml
 if __name__ == "__main__":
-  xrt = ET.fromstring( open( sys.argv[1] ).read(), PARSER() )
-  xml = ET.fromstring( open( sys.argv[2] ).read(), PARSER() )
+  xrt = ET.parse(sys.argv[1]).getroot()
+  xml = ET.parse(sys.argv[2]).getroot()
   xreport = xrt.findall( "/report" )[0]
   report = Report( xreport, xml )
   #print report.as_html()
@@ -4147,8 +4139,8 @@ class ReferenceGroup(Container):
 
 #========================================================================================
 def test(arg1,arg2,arg3=None):
-  xrt = ET.fromstring( open( arg1 ).read(), PARSER() )
-  xml = ET.fromstring( open( arg2 ).read(), PARSER() )
+  xrt = ET.parse(arg1).getroot()
+  xml = ET.parse(arg2).getroot()
   #print 'text',xrt.findall( "/report" )
   standardise = False
   xreport = xrt.findall( "/report" )[0]

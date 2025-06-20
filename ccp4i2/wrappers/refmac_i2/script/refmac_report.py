@@ -3,7 +3,7 @@ import sys
 import xml.etree.ElementTree as ET
 
 from ....core import CCP4Utils
-from ....report.CCP4ReportParser import PARSER, Report
+from ....report.CCP4ReportParser import Report
 from ...acedrgNew.script.MyCIFDigestor import MyCIFFile
 
 
@@ -702,8 +702,7 @@ class refmac_report(Report):
 def test(xmlFile=None,jobId=None,reportFile=None):
     print(xmlFile)
     try:
-        text = open( xmlFile ).read()
-        xmlnode = ET.fromstring( text, PARSER() )
+        xmlnode = ET.parse(xmlFile).getroot()
     except:
         print('FAILED loading XML file:', kw['xmlFile'])
     if reportFile is None and xmlFile is not None:

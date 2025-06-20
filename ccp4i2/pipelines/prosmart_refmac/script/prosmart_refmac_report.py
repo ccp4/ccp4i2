@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 
 from lxml.html.clean import Cleaner
 
-from ....report.CCP4ReportParser import PARSER, Report
+from ....report.CCP4ReportParser import Report
 from ....wrappers.refmac_i2.script import refmac_report
 from ....wrappers.validate_protein.script import validate_protein_report
 
@@ -471,8 +471,7 @@ class prosmart_refmac_report(Report):
 
 def test(xmlFile=None,jobId=None,reportFile=None):
     try:
-        text = open( xmlFile ).read()
-        xmlnode = ET.fromstring( text, PARSER() )
+        xmlnode = ET.parse(xmlFile).getroot()
     except:
         print('FAILED loading XML file:', kw['xmlFile'])
     if reportFile is None and xmlFile is not None:
