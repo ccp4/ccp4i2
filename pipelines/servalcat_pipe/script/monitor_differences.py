@@ -61,8 +61,8 @@ def search(st1Cras, st2Cras, output, minCoordDev, minAdpDev):
 def main(file1, file2, output=None, minCoordDev=0, minAdpDev=0):
     print("File 1 is " + file1 + ".")
     print("File 2 is " + file2 + ".")
-    st1 = gemmi.read_structure(file1)
-    st2 = gemmi.read_structure(file2)
+    st1 = gemmi.read_structure(file1, format=gemmi.CoorFormat.Detect)
+    st2 = gemmi.read_structure(file2, format=gemmi.CoorFormat.Detect)
     st1Cras = list(st1[0].all())
     st2Cras = list(st2[0].all())
     if len(st1Cras) != len(st2Cras):
