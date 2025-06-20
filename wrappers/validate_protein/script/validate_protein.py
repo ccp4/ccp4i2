@@ -183,10 +183,11 @@ class validate_protein(CPluginScript):
             outfile.write(json.dumps(model_series_data))
 
         panel = Panel(model_series_data,
-                      custom_labels={'Latest': self.container.inputData.NAME_1,
+                      custom_labels={'Latest'  : self.container.inputData.NAME_1,
                                      'Previous': self.container.inputData.NAME_2
                                      }
                      )
+
 
         panel.dwg.attribs['style'] += ' margin-top: -20px;'
         panel_string = panel.dwg.tostring()
