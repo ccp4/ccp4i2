@@ -54,16 +54,23 @@ class servalcat(CPluginScript):
 
     @QtCore.Slot()
     def handleReadyReadStandardOutput(self):
-        if not hasattr(self,'logFileHandle'): self.logFileHandle = open(self.makeFileName('LOG'),'w')
+        if not hasattr(self,'logFileHandle'):
+            logFileName = self.makeFileName('LOG')
+            self.logFileHandle = open(logFileName,'w')
+        if not hasattr(self,'errFileHandle'):
+            logFileName = self.makeFileName('LOG')
+            logErrName = logFileName[:logFileName.rfind(".")]+"_err.txt" if logFileName.rfind(".")>-1 else logFileName+"_err.txt"
+            self.errFileHandle = open(logErrName,'w')
+
         if not hasattr(self,'logFileBuffer'): self.logFileBuffer = ''
         pid = self.getProcessId()
         qprocess = CCP4Modules.PROCESSMANAGER().getJobData(pid,attribute='qprocess')
         availableStdout = qprocess.readAllStandardOutput()
-        if sys.version_info > (3,0):
-            self.logFileHandle.write(availableStdout.data().decode("utf-8"))
-        else:
-            self.logFileHandle.write(availableStdout)
+        self.logFileHandle.write(availableStdout.data().decode("utf-8"))
         self.logFileHandle.flush()
+        availableStderr = qprocess.readAllStandardError()
+        self.errFileHandle.write(availableStderr.data().decode("utf-8"))
+        self.errFileHandle.flush()
 
     def xmlAddRoot(self, xmlText, xmlFilePath=None, xmlRootName=None):
         if xmlRootName:
