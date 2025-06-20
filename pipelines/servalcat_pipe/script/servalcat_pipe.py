@@ -558,7 +558,7 @@ class servalcat_pipe(CPluginScript):
             df = monitor_differences.main(
                 file1=model1Path, file2=model2Path, output=csvFilePath,
                 minCoordDev=float(coordDevMinReported), minAdpDev=float(ADPAbsDevMinReported),
-                ignoreHydrogens=True)
+                useHydrogens=False)
             if df is None or df.empty or ["CoodDev", "ADPDev"] not in df.columns:
                 sys.stderr.write("ERROR: Monitoring of changes/shifts of coordinates and ADPs was not successful: "
                                  "No data found in the output file.\n")
@@ -588,7 +588,7 @@ class servalcat_pipe(CPluginScript):
             xmlTree = etree.fromstring(xmlText)
             self.xmlroot.append(xmlTree)
             self.saveXml()
-            print("Monitoring of changes/shifts of coordinates and ADPs...")
+            print("Monitoring of changes/shifts of coordinates and ADPs done.")
         except Exception as e:
             sys.stderr.write("ERROR: Monitoring of changes/shifts of coordinates and ADPs was not successful: " + str(e) + "\n")
             import traceback

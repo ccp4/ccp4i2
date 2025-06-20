@@ -58,7 +58,7 @@ def search(st1Cras, st2Cras, output, minCoordDev, minAdpDev):
     return df
 
 
-def main(file1, file2, output=None, minCoordDev=0, minAdpDev=0, ignoreHydrogens=True):
+def main(file1, file2, output=None, minCoordDev=0, minAdpDev=0, useHydrogens=False):
     print("File 1 is " + file1 + ".")
     print("File 2 is " + file2 + ".")
     try:
@@ -73,7 +73,7 @@ def main(file1, file2, output=None, minCoordDev=0, minAdpDev=0, ignoreHydrogens=
         return None
     st1Cras = list(st1[0].all())
     st2Cras = list(st2[0].all())
-    if ignoreHydrogens:
+    if not useHydrogens:
         st1Cras = [cra for cra in st1Cras if not cra.atom.is_hydrogen()]
         st2Cras = [cra for cra in st2Cras if not cra.atom.is_hydrogen()]
     if len(st1Cras) != len(st2Cras):
@@ -92,8 +92,8 @@ if __name__ == "__main__":
     parser.add_argument("--minCoordDev", type=float, default=0)
     parser.add_argument("--minAdpDev", type=float, default=0)
     parser.add_argument(
-        "--ignoreHydrogens", action="store_true", help="Ignore hydrogen atoms"
+        "--hydrogens", action="store_true", help="Do not ignore hydrogen atoms"
     )
     args = parser.parse_args()
 
-    main(args.file1, args.file2, args.output, args.minCoordDev, args.minAdpDev, args.ignoreHydrogens)
+    main(args.file1, args.file2, args.output, args.minCoordDev, args.minAdpDev, not args.hydrogens)
