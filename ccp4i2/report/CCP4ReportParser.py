@@ -167,8 +167,7 @@ def htmlBase():
 def htmlDoc(htmlBase=None,cssVersion=None,cssFile=None,jsFile=None,title=None, additionalJsFiles=None, additionalCssFiles=None, requireDataMain=None, additionalScript=None):
   if cssFile is None:cssFile = 'xreport.css'
   if jsFile is None: jsFile = 'xreport.js'
-  doc = ET.parse(io.StringIO(DOCTYPE))
-  html = doc.getroot()
+  html = ET.fromstring(DOCTYPE)
   if htmlBase is None: htmlBase = '../../report_files'
   
   # Default ot latest htmlBaseVersion or get the latest minor version
@@ -631,7 +630,7 @@ function onMouseOut(event,id) {
 
   body = ET.Element('body')
   html.append(body)
-  return doc
+  return ET.ElementTree(html)
 
 def testPathExists(self,relPath):
   return True
@@ -2109,8 +2108,7 @@ class Table(BaseTable):
   def data_as_etree(self,fileName=None):
 
     hassubhead = sum( [ x != None for x in self.colsubtitle ] ) > 0
-    eleTree = ET.parse(io.StringIO('<script></script>'))
-    ccp4_data = eleTree.getroot()
+    ccp4_data = ET.Element('script')
     ccp4_data.set('id','data_'+self.internalId)
     ccp4_data.set('type','application/xml')
 
@@ -2832,10 +2830,8 @@ class Graph(ReportClass):
     return root
 
   def data_as_etree(self):
-    eleTree = ET.parse(io.StringIO('<ccp4:ccp4_data xmlns:ccp4="'+CCP4NS+'"></ccp4:ccp4_data>'))
-    ccp4_data = eleTree.getroot()
+    ccp4_data = ET.fromstring('<ccp4:ccp4_data xmlns:ccp4="'+CCP4NS+'"></ccp4:ccp4_data>')
     if self.title is not None: ccp4_data.set('title',self.title)
-    #ccp4_data = ET.Element('ccp4_data')
     ccp4_data.set('id','data_'+self.internalId)
     ccp4_data.set('style','display:none;')
 

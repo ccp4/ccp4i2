@@ -6,13 +6,14 @@
 #
 
 from datetime import datetime
-from io import StringIO
 import getpass
 import re
 import socket
 import sys
 import time
 import xml.etree.ElementTree as ET
+
+from ..core.CCP4Utils import writeXml
 
 
 class Phil2Etree(object):
@@ -264,8 +265,5 @@ class PhilTaskCreator(object):
         # Write out prettified version
         out_file = self.fmt_dic["PLUGINNAME"] + ".def.xml"
         parser = ET.XMLParser(remove_blank_text=True)
-        tree = ET.parse(StringIO(ET.tostring(task_xml).decode("utf-8")), parser)
-        ET.indent(tree)
-        with open(out_file, "w") as f:
-            f.write(ET.tostring(tree, xml_declaration=True).decode("utf-8"))
-        return
+        tree = ET.fromstring(ET.tostring(task_xml), parser)
+        writeXml(tree, out_file, xml_declaration=True)

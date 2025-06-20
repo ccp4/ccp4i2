@@ -1,9 +1,9 @@
 import io
 import os
 import tempfile
+import xml.etree.ElementTree as ET
 
 from Bio import SeqIO
-from lxml import etree
 
 from ....core import CCP4ModelData
 from ....core import CCP4Utils
@@ -35,8 +35,7 @@ class ProvideSequence(CPluginScript):
         commentaryNode.text = commentary.getvalue()
         
         if alignment is None:
-            with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-                CCP4Utils.writeXML(programXML,etree.tostring(root, pretty_print=True))
+            CCP4Utils.writeXml(root, self.makeFileName('PROGRAMXML'))
             self.reportStatus(CPluginScript.UNSATISFACTORY)
             return
         
@@ -61,8 +60,7 @@ class ProvideSequence(CPluginScript):
                 newElement = ET.SubElement(sequenceElement,property)
                 newElement.text = str(getattr(seq,property,'Undefined'))
 
-        with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-            CCP4Utils.writeXML(programXML,etree.tostring(root, pretty_print=True))
+        CCP4Utils.writeXml(root, self.makeFileName('PROGRAMXML'))
         return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self, *args, **kwargs):

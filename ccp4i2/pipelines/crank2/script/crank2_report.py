@@ -1,7 +1,6 @@
 import functools
-import io
 import os
-import xml.etree.ElementTree as etree
+import xml.etree.ElementTree as ET
 
 from ....report import CCP4RvapiParser
 from ....report.CCP4ReportParser import Container, Report
@@ -13,8 +12,7 @@ dummy_report += '<body>\n<h3>CRANK2 job running - no report available yet</h3>\n
 
 def et(fileName=None):
   try:
-    #root = etree.parse( os.path.join(rundir, "index.html"), parser=parser ).getroot()
-    root = etree.parse( fileName ).getroot()
+    root = ET.parse(fileName).getroot()
     script=root.find('body/script')
     if script is not None:
       script.text=script.text.replace('docURI         = "";', 'docURI         = "{}";'.format(os.path.dirname(fileName)+os.sep))
@@ -40,9 +38,7 @@ def et(fileName=None):
         root.text="Presentation not loaded. You can try to click this link to open it or use the View -> Log file  option."
       except Exception as e:
         print('Crank2 report failed (also returning the error message in report): {0}'.format(e))
-        f = io.StringIO(dummy_report)
-        root = etree.parse( f ).getroot()
-        f.close()
+        root = ET.fromstring(dummy_report)
   return root
 
 

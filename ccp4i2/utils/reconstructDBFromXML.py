@@ -43,7 +43,6 @@ DATABASE.db.xml:209
 
 from collections import OrderedDict
 from distutils.version import LooseVersion
-from io import StringIO
 from operator import itemgetter
 from pathlib import Path
 import datetime
@@ -156,8 +155,7 @@ def generate_xml_from_project_directory(project_dir):
     endOfTime = parser.parse(endOfTimeStr + " " + timeZoneName)
     creationTime = endOfTime
     
-    eleTree = ET.parse(StringIO('<ccp4:ccp4i2 xmlns:ccp4="'+CCP4NS+'"></ccp4:ccp4i2>'))
-    root = eleTree.getroot()
+    root = ET.fromstring('<ccp4:ccp4i2 xmlns:ccp4="'+CCP4NS+'"></ccp4:ccp4i2>')
     ccp4i2_header = ET.SubElement(root,"ccp4i2_header")
     ccp4i2_body = ET.SubElement(root,"ccp4i2_body")
     jobTable_el = ET.SubElement(ccp4i2_body,"jobTable")
