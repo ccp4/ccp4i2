@@ -353,8 +353,6 @@ class acedrgNew(CPluginScript):
                 svgMolNode = ET.fromstring("<svg></svg>")
         svgNode.append(svgMolNode)
 
-        with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-            ET.indent(self.xmlroot)
-            CCP4Utils.writeXML(programXML,ET.tostring(self.xmlroot))
+        CCP4Utils.writeXml(self.xmlroot, self.makeFileName('PROGRAMXML'))
 
         return CPluginScript.SUCCEEDED

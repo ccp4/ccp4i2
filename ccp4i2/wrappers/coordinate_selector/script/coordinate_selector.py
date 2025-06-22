@@ -121,9 +121,7 @@ class coordinate_selector(CPluginScript):
                             polytypes.append("Cyclic pseudo-peptide")
             polytype.text = ",".join(list(set(polytypes)))
 
-        with open(self.makeFileName('PROGRAMXML'),'w') as outputFile:
-            ET.indent(rxml)
-            CCP4Utils.writeXML(outputFile,ET.tostring(rxml))
+        CCP4Utils.writeXml(rxml, self.makeFileName('PROGRAMXML'))
 
         print("########################################")
         print("Set NATOMS")

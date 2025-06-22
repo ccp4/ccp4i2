@@ -1,4 +1,5 @@
 import os
+import xml.etree.ElementTree as ET
 
 from lxml import etree
 
@@ -52,11 +53,10 @@ class AcedrgLink(CPluginScript):
         #Create (dummy) PROGRAMXML, which basically contains only the log text of the job
         #without this, a report will not be generated
         
-        with open(self.makeFileName("PROGRAMXML"),"w") as programXMLFile:
-            xmlStructure = ET.Element("acedrg_link")
-            logText = ET.SubElement(xmlStructure,"LogText")
-            with open(self.makeFileName("LOG"),"r") as logFile:
-                logText.text = etree.CDATA(logFile.read())
-            CCP4Utils.writeXML(programXMLFile,etree.tostring(xmlStructure))
+        xmlStructure = ET.Element("acedrg_link")
+        logText = ET.SubElement(xmlStructure,"LogText")
+        with open(self.makeFileName("LOG"),"r") as logFile:
+            logText.text = etree.CDATA(logFile.read())
+        CCP4Utils.writeXml(xmlStructure, self.makeFileName("PROGRAMXML"))
 
         return CPluginScript.SUCCEEDED

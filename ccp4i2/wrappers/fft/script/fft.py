@@ -84,9 +84,6 @@ class fft(CPluginScript):
             elif line.strip().startswith ( 'Map statistics' ) :
                 readingStuff = True
 
-        with open ( self.makeFileName('PROGRAMXML'),'w' ) as xmlFile:
-            ET.indent(xmlRoot)
-            xmlString = ET.tostring(xmlRoot)
-            CCP4Utils.writeXML(xmlFile,xmlString)
+        CCP4Utils.writeXml(xmlRoot, self.makeFileName('PROGRAMXML'))
 
         return CPluginScript.SUCCEEDED

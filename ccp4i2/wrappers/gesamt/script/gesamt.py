@@ -290,11 +290,8 @@ class gesamt(CPluginScript):
                 for transform in multiTransformations:
                     matrixNode = ET.SubElement(transformationCSVNode,'matrixCSV')
                     matrixNode.text = ",".join(transform)
-                
-        with open(self.makeFileName('PROGRAMXML'),'w') as xmlFile:
-            ET.indent(xmlRoot)
-            xmlString = ET.tostring(xmlRoot)
-            CCP4Utils.writeXML(xmlFile,xmlString)
+
+        CCP4Utils.writeXml(xmlRoot, self.makeFileName('PROGRAMXML'))
 
         out.XYZOUT.annotation.set("Gesamt output file (selected atoms from query and target only)")
         return CPluginScript.SUCCEEDED

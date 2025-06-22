@@ -57,8 +57,5 @@ class pdb_extract_wrapper(CPluginScript):
             filePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'pdb_extract.mmcif'))
             self.container.outputData.CIFFILE.setFullPath(filePath)
             print('pdb_extract.mmcif',self.container.outputData.CIFFILE.__str__(), os.path.isfile(self.container.outputData.CIFFILE.__str__()))
-        with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-            ET.indent(self.xmlroot)
-            CCP4Utils.writeXML(programXML,ET.tostring(self.xmlroot))
-        
+        CCP4Utils.writeXml(self.xmlroot, self.makeFileName('PROGRAMXML'))
         self.reportStatus(CPluginScript.SUCCEEDED)

@@ -44,7 +44,5 @@ class pisapipe(CPluginScript):
         self.xmlroot = ET.Element('pisapipe')
         xmlOfTask = ET.parse(self.xmlTask.makeFileName('PROGRAMXML')).getroot()
         self.xmlroot.append(xmlOfTask)
-        with open(self.makeFileName('PROGRAMXML'),'w') as outputXMLFile:
-            ET.indent(self.xmlroot)
-            CCP4Utils.writeXML(outputXMLFile, ET.tostring(self.xmlroot))
+        CCP4Utils.writeXml(self.xmlroot, self.makeFileName('PROGRAMXML'))
         self.reportStatus(CPluginScript.SUCCEEDED)

@@ -40,9 +40,7 @@ class molrep_pipe(CPluginScript):
 
       self.xmlroot = ET.Element('MolrepPipe')
       self.xmlroot.text = '\n'
-      with open(str(self.makeFileName('PROGRAMXML')), 'w') as ostream:
-        ET.indent(self.xmlroot)
-        CCP4Utils.writeXML(ostream,ET.tostring(self.xmlroot))
+      CCP4Utils.writeXml(self.xmlroot, self.makeFileName('PROGRAMXML'))
 
       if str(self.container.controlParameters.SG_OPTIONS) == 'laue':
         self.run1()
@@ -91,9 +89,7 @@ class molrep_pipe(CPluginScript):
       self.xmlroot.append(tree)
       tree.tail = '\n'
       tree.tag = tag
-      with open(str(self.makeFileName('PROGRAMXML')), 'w') as ostream:
-        ET.indent(self.xmlroot)
-        CCP4Utils.writeXML(ostream,ET.tostring(self.xmlroot))
+      CCP4Utils.writeXml(self.xmlroot, self.makeFileName('PROGRAMXML'))
 
     @QtCore.Slot(dict)
     def fin1(self, status):

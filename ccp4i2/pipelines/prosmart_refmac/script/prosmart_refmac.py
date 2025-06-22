@@ -189,9 +189,7 @@ class prosmart_refmac(CPluginScript):
                oldXml = ET.fromstring(aFile.read())
            oldXml.xpath('//RefmacOptimiseWeight')[0].append(self.xmlroot2.xpath("//RefmacOptimiseWeight/RefmacPostCootInProgress")[0])
            tmpFileName = self.pipelinexmlfile+'_tmp'
-           with open(tmpFileName,'w') as aFile:
-               ET.indent(oldXml)
-               CCP4Utils.writeXML(aFile,ET.tostring(oldXml))
+           CCP4Utils.writeXml(oldXml, tmpFileName)
            shutil.move(tmpFileName, self.pipelinexmlfile)
            self.xmlLength2 = len(newXml)
 
@@ -201,8 +199,7 @@ class prosmart_refmac(CPluginScript):
         newXml = ET.tostring(self.xmlroot)
         if len(newXml) > self.xmlLength:
            tmpFileName = self.pipelinexmlfile+'_tmp'
-           with open(tmpFileName,'w') as aFile:
-               CCP4Utils.writeXML(aFile, newXml )
+           CCP4Utils.writeXml(newXml, tmpFileName)
            shutil.move(tmpFileName, self.pipelinexmlfile)
            self.xmlLength = len(newXml)
 
@@ -268,9 +265,7 @@ class prosmart_refmac(CPluginScript):
             if os.path.isfile(self.firstRefmac.container.outputData.PSOUT.__str__()):
                 shutil.copyfile(self.firstRefmac.container.outputData.PSOUT.__str__(), self.container.outputData.PSOUT.__str__())
                 self.container.outputData.PSOUT.annotation.set('Pictures of ligand prepared by refmac')
-            with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-                ET.indent(self.xmlroot)
-                CCP4Utils.writeXML(programXML,ET.tostring(self.xmlroot))
+            CCP4Utils.writeXml(self.xmlroot, self.makeFileName('PROGRAMXML'))
             self.reportStatus(CPluginScript.UNSATISFACTORY)
 
         elif self.firstRefmac.errorReport.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
@@ -284,11 +279,7 @@ class prosmart_refmac(CPluginScript):
             except:
               print('Failed attempt to read XML file from first Refmac')
             try:
-              ET.indent(self.xmlroot)
-              newXml = ET.tostring(self.xmlroot)
-              aFile = open(self.pipelinexmlfile,'w')
-              CCP4Utils.writeXML(aFile,newXml)
-              aFile.close()
+              CCP4Utils.writeXml(self.xmlroot, self.pipelinexmlfile)
             except:
                print('Failed attempt to write pipeline XML file')
             self.reportStatus(CPluginScript.FAILED)
@@ -306,10 +297,7 @@ class prosmart_refmac(CPluginScript):
         else:
             print("AAA12")
             self.addCycleXML(self.firstRefmac)
-            aFile=open( self.pipelinexmlfile,'w')
-            ET.indent(self.xmlroot)
-            CCP4Utils.writeXML(aFile, ET.tostring(self.xmlroot) )
-            aFile.close()
+            CCP4Utils.writeXml(self.xmlroot, self.pipelinexmlfile)
             print("AAA13")
             if self.container.controlParameters.OPTIMISE_WEIGHT:
                 print("AAA14")
@@ -424,10 +412,7 @@ class prosmart_refmac(CPluginScript):
             postRefmacCoot = ET.Element("CootAddWaters")
             postRefmacCoot.text = "Coot added "+nwaters+" waters"
             oldXml.append(postRefmacCoot)
-            aFile = open(self.pipelinexmlfile+'_tmpcoot','w')
-            ET.indent(oldXml)
-            CCP4Utils.writeXML(aFile,ET.tostring(oldXml))
-            aFile.close()
+            CCP4Utils.writeXml(oldXml, self.pipelinexmlfile+'_tmpcoot')
             shutil.move(self.pipelinexmlfile+'_tmpcoot', self.pipelinexmlfile)
           self.cootPlugin.container.outputData.XYZOUT.subType = 1
           self.currentCoordinates = self.cootPlugin.container.outputData.XYZOUT
@@ -455,16 +440,12 @@ class prosmart_refmac(CPluginScript):
         else:
             self.addCycleXML(refmacJob,"refmacPostCoot")
             ET.indent(self.xmlroot)
-            newXml = ET.tostring(self.xmlroot)
             refmacPostCoot = self.xmlroot.xpath("refmacPostCoot")
             aFile = open(self.pipelinexmlfile,'r')
             oldXml = ET.fromstring(aFile.read())
             aFile.close()
             oldXml.extend(refmacPostCoot)
-            aFile = open(self.pipelinexmlfile,'w')
-            ET.indent(oldXml)
-            CCP4Utils.writeXML(aFile,ET.tostring(oldXml))
-            aFile.close()
+            CCP4Utils.writeXml(oldXml, self.pipelinexmlfile)
 
         self.finishUp(refmacJob)
 
@@ -785,10 +766,7 @@ class prosmart_refmac(CPluginScript):
 
         self.addCycleXML(rtask)
         # Save the xml on every cycle
-        aFile=open( self.pipelinexmlfile,'w')
-        ET.indent(self.xmlroot)
-        CCP4Utils.writeXML(aFile, ET.tostring(self.xmlroot) )
-        aFile.close()
+        CCP4Utils.writeXml(self.xmlroot, self.pipelinexmlfile)
 
         #decrement count of running jobs
         self.jobsCompleted.append(rtask)

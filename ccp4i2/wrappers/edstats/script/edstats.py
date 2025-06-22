@@ -309,11 +309,7 @@ class edstats(CPluginScript):
                 cootscript.write(interestingWaterBitsDef)
                 cootscript.write('ccp4i2Interface.add_consolidated_menu(title="Waters", interesting_bits=water_outliers)\n')
 
-
-        with open(self.makeFileName('PROGRAMXML'),'w') as xmlFile:
-            ET.indent(xmlRoot)
-            xmlString = ET.tostring(xmlRoot)
-            CCP4Utils.writeXML(xmlFile,xmlString)
+        CCP4Utils.writeXml(xmlRoot, self.makeFileName('PROGRAMXML'))
 
         return CPluginScript.SUCCEEDED
 

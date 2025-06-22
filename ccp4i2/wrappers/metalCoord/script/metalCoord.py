@@ -110,7 +110,6 @@ class metalCoord(CPluginScript):
         xmlText = json2xml(list(outputJsonStats), tag_name_subroot="site")
         xmlroot = ET.fromstringlist(["<METALCOORD>", xmlText, "</METALCOORD>"])
         ET.indent(xmlroot, space="\t", level=0)
-        with open(self.makeFileName('PROGRAMXML'), 'w', encoding="utf-8") as programXML:
-            CCP4Utils.writeXML(programXML, ET.tostring(xmlroot))
+        CCP4Utils.writeXml(xmlroot, self.makeFileName('PROGRAMXML'), pretty_print=False)
 
         return CPluginScript.SUCCEEDED

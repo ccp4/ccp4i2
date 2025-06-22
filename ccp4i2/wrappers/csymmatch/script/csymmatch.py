@@ -2,8 +2,6 @@ import os
 import pathlib
 import xml.etree.ElementTree as ET
 
-from lxml import etree
-
 from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
 
@@ -82,10 +80,7 @@ class csymmatch(CPluginScript):
                     if segmentNode is not None:
                         scoreNode = ET.SubElement(segmentNode,'Score')
                         scoreNode.text = line.strip().split(':')[1]
-    
-        with open(self.makeFileName('PROGRAMXML'),'w') as xmlFile:
-            ET.indent(xmlRoot)
-            xmlString = ET.tostring(xmlRoot)
-            CCP4Utils.writeXML(xmlFile,xmlString)
+
+        CCP4Utils.writeXml(xmlRoot, self.makeFileName('PROGRAMXML'))
 
         return CPluginScript.SUCCEEDED

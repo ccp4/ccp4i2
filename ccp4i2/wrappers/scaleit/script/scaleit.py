@@ -3,9 +3,9 @@ Copyright (C) 2011 STFC
 """
 
 import os
+import xml.etree.ElementTree as ET
 
-from lxml import etree
-
+from ....core import CCP4Utils
 from ....core import CCP4XtalData
 from ....core.CCP4ErrorHandling import CErrorReport
 from ....core.CCP4PluginScript import CPluginScript
@@ -200,6 +200,4 @@ class scaleit(CPluginScript):
     # - - - - - - - - -  - - - - - - - - -  - - - - - - - - - 
     def writeXML(self, xml):
         print("*writeXML")
-        et = ET.ElementTree(xml)
-        # and write out the XML
-        et.write(self.makeFileName('PROGRAMXML'), pretty_print=True)
+        CCP4Utils.writeXml(xml, self.makeFileName('PROGRAMXML'))

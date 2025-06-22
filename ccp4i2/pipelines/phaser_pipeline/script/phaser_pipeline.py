@@ -90,9 +90,7 @@ class phaser_pipeline(CPluginScript):
         for oldNode in self.xmlroot.xpath('PhaserMrResults'): self.xmlroot.remove(oldNode)
         self.xmlroot.append(deepcopy(newXML))
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
-        with open(tmpFilename,'w') as xmlfile:
-            ET.indent(self.xmlroot)
-            CCP4Utils.writeXML(xmlfile,ET.tostring(self.xmlroot))
+        CCP4Utils.writeXml(self.xmlroot, tmpFilename)
         self.renameFile(tmpFilename,self.makeFileName('PROGRAMXML'))
 
     @QtCore.Slot(dict)
@@ -313,9 +311,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
         except:
             newXML = ET.Element(replacingElementOfType)
         self.xmlroot.append(newXML)
-        with open(self.makeFileName('PROGRAMXML'),'w') as xmlfile:
-            ET.indent(self.xmlroot)
-            CCP4Utils.writeXML(xmlfile,ET.tostring(self.xmlroot))
+        CCP4Utils.writeXml(self.xmlroot, self.makeFileName('PROGRAMXML'))
 
     def checkFinishStatus( self, statusDict,failedErrCode,outputFile = None,noFileErrCode= None):
         if len(statusDict)>0 and statusDict['finishStatus'] == CPluginScript.FAILED:

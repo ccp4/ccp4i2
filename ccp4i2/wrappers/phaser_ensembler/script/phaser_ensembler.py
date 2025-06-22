@@ -1,4 +1,5 @@
 import os
+import xml.etree.ElementTree as ET
 
 from lxml import etree
 
@@ -67,8 +68,7 @@ class phaser_ensembler(CPluginScript):
             rootNode = ET.Element('PHASER_ENSEMBLER')
             logNode = ET.SubElement(rootNode,'LOGTEXT')
             logNode.text = etree.CDATA(logText)
-            with open (self.makeFileName('PROGRAMXML'),'w') as outputFile:
-                CCP4Utils.writeXML(outputFile,etree.tostring(rootNode))
+            CCP4Utils.writeXml(rootNode, self.makeFileName('PROGRAMXML'))
             return CPluginScript.SUCCEEDED
         else:
             return CPluginScript.FAILED

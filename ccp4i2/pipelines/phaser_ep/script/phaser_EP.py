@@ -149,9 +149,7 @@ class phaser_EP(CPluginScript):
             hand_node = ET.SubElement(self.xmlroot, hand)
             hand_node.append(newXML)
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
-        with open(tmpFilename,'w') as xmlfile:
-            ET.indent(self.xmlroot)
-            CCP4Utils.writeXML(xmlfile,ET.tostring(self.xmlroot))
+        CCP4Utils.writeXml(self.xmlroot, tmpFilename)
         self.renameFile(tmpFilename,self.makeFileName('PROGRAMXML'))
 
     def copyPluginOutput(self, pluginOutputItem, pipelineOutputList, annotation=None):

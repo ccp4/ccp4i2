@@ -92,10 +92,7 @@ class clustalw(CPluginScript):
                         partnerNode = ET.SubElement(bestPairNode,'Partner')
                         partnerNode.text = bestPair[iPartner]
 
-        
-            with open (self.makeFileName('PROGRAMXML'),'w') as programXML:
-                ET.indent(self.xmlroot)
-                CCP4Utils.writeXML(programXML,ET.tostring(self.xmlroot))
+            CCP4Utils.writeXml(self.xmlroot, self.makeFileName('PROGRAMXML'))
         except:
             return CPluginScript.FAILED
 

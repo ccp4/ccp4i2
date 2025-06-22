@@ -147,7 +147,5 @@ class PrepareDeposit(CPluginScript):
         if xml is None:
             if hasattr(self,'xmlroot'): xml=self.xmlroot
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
-        with open(tmpFilename,'w') as tmpFile:
-            ET.indent(xml)
-            CCP4Utils.writeXML(tmpFile,ET.tostring(xml))
+        CCP4Utils.writeXml(xml, tmpFilename)
         self.renameFile(tmpFilename, self.makeFileName('PROGRAMXML'))

@@ -1,4 +1,4 @@
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
@@ -25,7 +25,6 @@ class ProvideTLS(CPluginScript):
         root = ET.Element('ProvideTLSOutput')
         tlsElement = ET.SubElement(root,'TLSProvided')
         tlsElement.text = self.container.controlParameters.TLSTEXT.__str__()
-        with open(self.makeFileName('PROGRAMXML'),'w') as xmlFile:
-            CCP4Utils.writeXML(xmlFile,etree.tostring(root,pretty_print=True))
+        CCP4Utils.writeXml(root, self.makeFileName('PROGRAMXML'))
 
         self.reportStatus(CPluginScript.SUCCEEDED)

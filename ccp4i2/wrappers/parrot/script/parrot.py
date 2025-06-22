@@ -62,9 +62,7 @@ class parrot(CPluginScript):
       rootNode = ET.parse(self.xmlout).getroot()
       smartieNode = ET.SubElement(rootNode,'SmartieGraphs')
       self.scrapeSmartieGraphs(smartieNode)
-      with open(self.xmlout,'w') as xmlFile:
-        ET.indent(rootNode)
-        CCP4Utils.writeXML(xmlFile,ET.tostring(rootNode))
+      CCP4Utils.writeXml(rootNode, self.xmlout)
 
       # performance data
       final_fom = float(rootNode.xpath('//ParrotResult/Final/MeanFOM')[0].text)

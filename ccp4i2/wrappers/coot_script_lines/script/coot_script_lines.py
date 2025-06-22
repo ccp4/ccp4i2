@@ -136,10 +136,7 @@ class coot_script_lines(CPluginScript):
         if tableElement is not None: self.xmlroot.append(tableElement)
         
         try:
-            aFile=open( self.makeFileName('PROGRAMXML'),'w')
-            ET.indent(self.xmlroot)
-            CCP4Utils.writeXML(aFile,ET.tostring(self.xmlroot))
-            aFile.close()
+            CCP4Utils.writeXml(self.xmlroot, self.makeFileName('PROGRAMXML'))
         except:
             print('Oops')
             return CPluginScript.FAILED

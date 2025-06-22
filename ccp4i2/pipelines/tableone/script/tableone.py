@@ -105,9 +105,7 @@ class tableone(CPluginScript):
 
     def processOutputFiles(self):
         self.parseLogfile()
-        with open(self.makeFileName('PROGRAMXML'), 'w') as xml_file:
-            ET.indent(self.xml_root)
-            CCP4Utils.writeXML(xml_file,ET.tostring(self.xml_root))
+        CCP4Utils.writeXml(self.xml_root, self.makeFileName('PROGRAMXML'))
         return CPluginScript.SUCCEEDED
 
     def makeCommandAndScript(self, container=None):

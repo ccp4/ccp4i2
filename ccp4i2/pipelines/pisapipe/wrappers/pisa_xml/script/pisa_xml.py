@@ -60,9 +60,7 @@ class pisa_xml(CPluginScript):
         self.finishWithStatus(CPluginScript.SUCCEEDED)
 
     def flushXML(self):
-        with open(self.makeFileName('PROGRAMXML'),'w') as outputXML:
-            ET.indent(self.xmlroot)
-            CCP4Utils.writeXML(outputXML,ET.tostring(self.xmlroot))
+        CCP4Utils.writeXml(self.xmlroot, self.makeFileName('PROGRAMXML'))
 
     def finishWithStatus(self, status=CPluginScript.SUCCEEDED):
         self.flushXML()

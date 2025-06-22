@@ -95,8 +95,7 @@ class ProvideAlignment(CPluginScript):
           except:
             pass
             
-        with open (self.makeFileName('PROGRAMXML'),'w') as programXML:
-            CCP4Utils.writeXML(programXML,etree.tostring(root,pretty_print=True))
+        CCP4Utils.writeXml(root, self.makeFileName('PROGRAMXML'))
        
         return status
 

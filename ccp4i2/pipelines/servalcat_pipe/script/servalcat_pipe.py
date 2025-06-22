@@ -244,9 +244,7 @@ class servalcat_pipe(CPluginScript):
             self.xmlLength2 = len(newXml)
             # Save as program.xml_tmp and then move to program.xml
             tmpFileName = self.pipelinexmlfile + '_tmp'
-            with open(tmpFileName, 'w') as aFile:
-                ET.indent(masterXml)
-                CCP4Utils.writeXML(aFile,ET.tostring(masterXml) )
+            CCP4Utils.writeXml(masterXml, tmpFileName)
             shutil.move(tmpFileName, self.pipelinexmlfile)
             self.xmlroot = masterXml
 
@@ -257,8 +255,7 @@ class servalcat_pipe(CPluginScript):
         if len(newXml) > self.xmlLength:
            # Save as program.xml_tmp and then move to program.xml
            tmpFileName = self.pipelinexmlfile + '_tmp'
-           with open(tmpFileName, 'w') as aFile:
-               CCP4Utils.writeXML(aFile, newXml)
+           CCP4Utils.writeXml(self.xmlroot, tmpFileName)
            shutil.move(tmpFileName, self.pipelinexmlfile)
            self.xmlLength = len(newXml)
 
@@ -586,9 +583,7 @@ class servalcat_pipe(CPluginScript):
         print("AAA1")
         if statusDict['finishStatus'] == CPluginScript.UNSATISFACTORY:
             print("AAA1.UNSATISFACTORY")
-            with open(self.makeFileName('PROGRAMXML'), 'w') as programXML:
-                ET.indent(self.xmlroot)
-                CCP4Utils.writeXML(programXML, ET.tostring(self.xmlroot))
+            CCP4Utils.writeXml(self.xmlroot, self.makeFileName('PROGRAMXML'))
             self.reportStatus(CPluginScript.UNSATISFACTORY)
 
         elif self.firstServalcat.errorReport.maxSeverity() > CCP4ErrorHandling.Severity.WARNING:
@@ -601,11 +596,7 @@ class servalcat_pipe(CPluginScript):
             except:
                 print('Failed attempt to read XML file from first Refmac')
             try:
-                ET.indent(self.xmlroot)
-                newXml = ET.tostring(self.xmlroot)
-                aFile = open(self.pipelinexmlfile, 'w')
-                CCP4Utils.writeXML(aFile, newXml)
-                aFile.close()
+                CCP4Utils.writeXml(self.xmlroot, self.pipelinexmlfile)
             except:
                print('Failed attempt to write pipeline XML file')
             self.reportStatus(CPluginScript.FAILED)
@@ -623,10 +614,7 @@ class servalcat_pipe(CPluginScript):
         else:
             print("AAA12")
             # self.addCycleXML(self.firstServalcat) # MM
-            aFile=open( self.pipelinexmlfile,'w')
-            ET.indent(self.xmlroot)
-            CCP4Utils.writeXML(aFile, ET.tostring(self.xmlroot) )
-            aFile.close()
+            CCP4Utils.writeXml(self.xmlroot, self.pipelinexmlfile)
             print("AAA13")
             if self.container.controlParameters.OPTIMISE_WEIGHT:
                 print("AAA14")
@@ -690,10 +678,7 @@ class servalcat_pipe(CPluginScript):
             postRefmacCoot = ET.Element("CootAddWaters")
             postRefmacCoot.text = "Coot added " + nwaters + " water molecules."
             oldXml.append(postRefmacCoot)
-            aFile = open(self.pipelinexmlfile+'_tmpcoot','w')
-            ET.indent(oldXml)
-            CCP4Utils.writeXML(aFile,ET.tostring(oldXml))
-            aFile.close()
+            CCP4Utils.writeXml(oldXml, self.pipelinexmlfile+'_tmpcoot')
             shutil.move(self.pipelinexmlfile+'_tmpcoot', self.pipelinexmlfile)
           self.cootPlugin.container.outputData.XYZOUT.subType = 1
           self.currentCoordinates = self.cootPlugin.container.outputData.XYZOUT

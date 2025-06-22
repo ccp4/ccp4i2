@@ -355,13 +355,11 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
 
     def flushXML(self, xml):
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
-        with open(tmpFilename,'w') as tmpFile:
-            ET.indent(xml)
-            xmlText = ET.tostring(xml)
-            CCP4Utils.writeXML(tmpFile,xmlText)
-            #Here adapt the update frequency to depend on the size of the current XML structure
-            xmlUpdateDelay = max(5, int(len(xmlText)/100000))
-            self.callbackObject.minimumDelayInSeconds = xmlUpdateDelay
+        CCP4Utils.writeXml(xml, tmpFilename)
+        #Here adapt the update frequency to depend on the size of the current XML structure
+        ET.indent(xml)
+        xmlUpdateDelay = max(5, int(len(ET.tostring(xml))/100000))
+        self.callbackObject.minimumDelayInSeconds = xmlUpdateDelay
         self.renameFile(tmpFilename, self.makeFileName('PROGRAMXML'))
 
     def prepareCaptureCPlusPlusStdoutToLog(self):

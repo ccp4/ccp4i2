@@ -182,9 +182,7 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
 
     def flushXML(self, xml):
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
-        with open(tmpFilename,'w') as tmpFile:
-            ET.indent(xml)
-            CCP4Utils.writeXML(tmpFile,ET.tostring(xml))
+        CCP4Utils.writeXml(xml, tmpFilename)
         self.renameFile(tmpFilename, self.makeFileName('PROGRAMXML'))
 
     def processOutputFiles(self):

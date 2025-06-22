@@ -292,9 +292,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))'''
         oldNodes = self.xmlroot.xpath(replacingElementOfType)
         if len(oldNodes) > 0: oldNodes[0].parent().remove(oldNodes[0])
         self.xmlroot.append(newXML)
-        with open(self.makeFileName('PROGRAMXML'),'w') as xmlfile:
-            ET.indent(self.xmlroot)
-            CCP4Utils.writeXML(xmlfile,ET.tostring(self.xmlroot))
+        self.flushXML()
 
     def checkFinishStatus( self, statusDict,failedErrCode,outputFile = None,noFileErrCode= None):
         if len(statusDict)>0 and statusDict['finishStatus'] == CPluginScript.FAILED:
@@ -311,6 +309,4 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))'''
         self.reportStatus(status)
 
     def flushXML(self):
-        with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-            ET.indent(self.xmlroot)
-            CCP4Utils.writeXML(programXML,ET.tostring(self.xmlroot))
+        CCP4Utils.writeXml(self.xmlroot, self.makeFileName('PROGRAMXML'))

@@ -44,20 +44,13 @@ class MosflmRequestHandler(socketserver.StreamRequestHandler):
                         newXML = ET.tostring(MosflmRequestHandler.xmlRoot)
                         if len(newXML) > len(currentXML):
                             currentXML=newXML
-                            with open(MosflmRequestHandler.xmlFilepath+'.tmp',"w") as myfile:
-                                CCP4Utils.writeXML(myfile,currentXML)
-                                myfile.flush()
-                                os.fsync(myfile.fileno())
+                            CCP4Utils.writeXml(MosflmRequestHandler.xmlRoot, MosflmRequestHandler.xmlFilepath+'.tmp')
                             os.rename(MosflmRequestHandler.xmlFilepath+'.tmp',MosflmRequestHandler.xmlFilepath)
                 except:
                     print('Couldnt interpret ['+responseText+']')
             self.wfile.write('continue\n')
             self.wfile.flush()
-        with open(MosflmRequestHandler.xmlFilepath+'.tmp',"w") as myfile:
-            ET.indent(MosflmRequestHandler.xmlRoot)
-            CCP4Utils.writeXML(myfile,ET.tostring(MosflmRequestHandler.xmlRoot))
-            myfile.flush()
-            os.fsync(myfile.fileno())
+        CCP4Utils.writeXml(MosflmRequestHandler.xmlRoot, MosflmRequestHandler.xmlFilepath+'.tmp')
         os.rename(MosflmRequestHandler.xmlFilepath+'.tmp',MosflmRequestHandler.xmlFilepath)
 
 class MosflmServer(socketserver.ThreadingMixIn, socketserver.TCPServer):

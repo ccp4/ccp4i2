@@ -544,8 +544,7 @@ class servalcat(CPluginScript):
         newXml = ET.tostring(self.xmlroot)
         if len(newXml) > self.xmlLength:
             self.xmlLength = len(newXml)
-            with open(self.makeFileName('PROGRAMXML')+'_tmp','w') as programXmlFile:
-                CCP4Utils.writeXML(programXmlFile, newXml)
+            CCP4Utils.writeXml(self.xmlroot, self.makeFileName('PROGRAMXML')+'_tmp')
             shutil.move(self.makeFileName('PROGRAMXML')+'_tmp', self.makeFileName('PROGRAMXML'))
 
     def setProgramVersion(self):

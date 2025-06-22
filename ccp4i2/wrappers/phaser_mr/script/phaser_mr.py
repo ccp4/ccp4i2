@@ -210,10 +210,7 @@ class phaser_mr(CPluginScript):
             self.container.outputData.PHASEOUT[indx].annotation.set('Phases for solution '+str(indx+1))
 
         phaserMRElement = self.generateProgramXML()
-        newXml = etree.tostring(phaserMRElement,pretty_print=True)
-        with open( self.makeFileName( 'PROGRAMXML' )+'.tmp','w') as aFile:
-            CCP4Utils.writeXML(aFile,newXml)
-            aFile.flush()
+        CCP4Utils.writeXml(phaserMRElement, self.makeFileName( 'PROGRAMXML' )+'.tmp')
         self.renameFile(self.makeFileName( 'PROGRAMXML' )+'.tmp',self.makeFileName( 'PROGRAMXML' ))
 
         # Add .txt extension to some files to enable display from the 'Project directory' window

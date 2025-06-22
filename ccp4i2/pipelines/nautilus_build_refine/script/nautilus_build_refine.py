@@ -112,9 +112,7 @@ class nautilus_build_refine(CPluginScript):
     # Utility functions
     def copyNautilusXML(self,plugin):
         self.xmlcyc.append(ET.parse(plugin.makeFileName('PROGRAMXML')).getroot())
-        f = open( self.pipelinexmlfile,'w')
-        ET.indent(self.xmlroot)
-        CCP4Utils.writeXML(f,ET.tostring(self.xmlroot))
+        CCP4Utils.writeXml(self.xmlroot, self.pipelinexmlfile)
 
     def copyRefmacXML(self,plugin):
         rxml = ET.parse(plugin.makeFileName('PROGRAMXML')).getroot()
@@ -127,6 +125,4 @@ class nautilus_build_refine(CPluginScript):
               node.text = str(100*float(node.text))
               node.tag='rmsBONDx100'
             refele.append( node )
-        f = open( self.pipelinexmlfile,'w')
-        ET.indent(self.xmlroot)
-        CCP4Utils.writeXML(f,ET.tostring(self.xmlroot))
+        CCP4Utils.writeXml(self.xmlroot, self.pipelinexmlfile)

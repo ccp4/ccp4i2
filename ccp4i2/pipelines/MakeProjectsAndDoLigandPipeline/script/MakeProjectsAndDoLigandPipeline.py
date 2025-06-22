@@ -255,5 +255,4 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def dumpXml(self):
-        with open(self.makeFileName("PROGRAMXML"),"w") as programXmlFile:
-            CCP4Utils.writeXML(programXmlFile,ET.tostring(self.xmlroot))
+        CCP4Utils.writeXml(self.xmlroot, self.makeFileName("PROGRAMXML"), pretty_print=False)

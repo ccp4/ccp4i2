@@ -82,11 +82,8 @@ class lidia(CPluginScript):
             svgNode = ET.SubElement(rootNode,'SVGNode')
             
             svgNode.append(self.svgForMolFile(outputMOL))
-    
-        with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
-            ET.indent(rootNode)
-            q = ET.tostring(rootNode,encoding='utf-8')
-            CCP4Utils.writeXML(programXML,q)
+
+        CCP4Utils.writeXml(rootNode, self.makeFileName('PROGRAMXML'))
         
         self.reportStatus(CPluginScript.SUCCEEDED)
 

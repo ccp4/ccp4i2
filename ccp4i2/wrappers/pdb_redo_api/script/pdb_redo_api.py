@@ -62,17 +62,15 @@ class pdb_redo_api(CPluginScript):
             'looser': int(self.container.controlParameters.LOOSER),
         }
 
-        with open(self.makeFileName("PROGRAMXML"),"w") as programXMLFile:
-            xmlStructure = ET.Element("pdb_redo_api")
-            CCP4Utils.writeXML(programXMLFile,ET.tostring(xmlStructure))
+        xmlStructure = ET.Element("pdb_redo_api")
+        CCP4Utils.writeXml(xmlStructure, self.makeFileName("PROGRAMXML"))
 
         print("Submit PDB-REDO job")
         self.pdb_redo_job_id = test_api.submit(xyzin,self.hklin,token_id,token_secret,sequence=sequence,restraints=restraints,params=params)
-        with open(self.makeFileName("PROGRAMXML"),"w") as programXMLFile:
-            xmlStructure = ET.Element("pdb_redo_api")
-            pdbRedoId = ET.SubElement(xmlStructure,'PDB_REDO_JOB_ID')
-            pdbRedoId.text = str(self.pdb_redo_job_id)
-            CCP4Utils.writeXML(programXMLFile,ET.tostring(xmlStructure))
+        xmlStructure = ET.Element("pdb_redo_api")
+        pdbRedoId = ET.SubElement(xmlStructure,'PDB_REDO_JOB_ID')
+        pdbRedoId.text = str(self.pdb_redo_job_id)
+        CCP4Utils.writeXml(xmlStructure, self.makeFileName("PROGRAMXML"))
 
         print("Wait for PDB-REDO job")
         try:
@@ -83,17 +81,16 @@ class pdb_redo_api(CPluginScript):
                 output_zip = os.path.join(self.getWorkDirectory(),"pdb_redo_results.zip")
                 test_api.do_fetch(self.pdb_redo_job_id,token_id,token_secret,output_zip)
                 print("Got",output_zip); sys.stdout.flush()
-                with open(self.makeFileName("PROGRAMXML"),"w") as programXMLFile:
-                    xmlStructure = ET.Element("pdb_redo_api")
-                    pdbRedoId = ET.SubElement(xmlStructure,'PDB_REDO_JOB_ID')
-                    pdbRedoId.text = str(self.pdb_redo_job_id)
-                    with zipfile.ZipFile(output_zip) as myzip:
-                        for f in myzip.namelist():
-                            myzip.extract(f,self.getWorkDirectory())
-                            pdbRedoDir = ET.SubElement(xmlStructure,'PDB_REDO_RESULTS_DIR')
-                            redoDir = os.path.dirname(f)
-                            pdbRedoDir.text = str(redoDir)
-                    CCP4Utils.writeXML(programXMLFile,ET.tostring(xmlStructure))
+                xmlStructure = ET.Element("pdb_redo_api")
+                pdbRedoId = ET.SubElement(xmlStructure,'PDB_REDO_JOB_ID')
+                pdbRedoId.text = str(self.pdb_redo_job_id)
+                with zipfile.ZipFile(output_zip) as myzip:
+                    for f in myzip.namelist():
+                        myzip.extract(f,self.getWorkDirectory())
+                        pdbRedoDir = ET.SubElement(xmlStructure,'PDB_REDO_RESULTS_DIR')
+                        redoDir = os.path.dirname(f)
+                        pdbRedoDir.text = str(redoDir)
+                CCP4Utils.writeXml(xmlStructure, self.makeFileName("PROGRAMXML"))
             except:
                 print("Failed to get pdb_redo_results.zip after job failure")
             
@@ -197,23 +194,21 @@ class pdb_redo_api(CPluginScript):
                                 print("Set performance RFree")
                                 self.container.outputData.PERFORMANCE.RFree.set(j["properties"]["RFFIN"])
 
-        with open(self.makeFileName("PROGRAMXML"),"w") as programXMLFile:
-            xmlStructure = ET.Element("pdb_redo_api")
-            if "properties" in j:
-                for k,v in j["properties"].items():
-                    ele = ET.SubElement(xmlStructure,k)
-                    ele.text = str(v)
-            pdbRedoDir = ET.SubElement(xmlStructure,'PDB_REDO_RESULTS_DIR')
-            pdbRedoDir.text = str(redoDir)
-            pdbRedoId = ET.SubElement(xmlStructure,'PDB_REDO_JOB_ID')
-            pdbRedoId.text = str(self.pdb_redo_job_id)
-            if finalRefmacLog:
-                finalRefmacLogEle = ET.SubElement(xmlStructure,'PDB_REDO_FINAL_REFMAC_LOG_FILE')
-                finalRefmacLogEle.text = str(finalRefmacLog)
-            if pdbRedoLog:
-                pdbRedoLogEle = ET.SubElement(xmlStructure,'PDB_REDO_LOG_FILE')
-                pdbRedoLogEle.text = str(pdbRedoLog)
-            ET.indent(xmlStructure)
-            CCP4Utils.writeXML(programXMLFile,ET.tostring(xmlStructure,encoding='utf-8'))
+        xmlStructure = ET.Element("pdb_redo_api")
+        if "properties" in j:
+            for k,v in j["properties"].items():
+                ele = ET.SubElement(xmlStructure,k)
+                ele.text = str(v)
+        pdbRedoDir = ET.SubElement(xmlStructure,'PDB_REDO_RESULTS_DIR')
+        pdbRedoDir.text = str(redoDir)
+        pdbRedoId = ET.SubElement(xmlStructure,'PDB_REDO_JOB_ID')
+        pdbRedoId.text = str(self.pdb_redo_job_id)
+        if finalRefmacLog:
+            finalRefmacLogEle = ET.SubElement(xmlStructure,'PDB_REDO_FINAL_REFMAC_LOG_FILE')
+            finalRefmacLogEle.text = str(finalRefmacLog)
+        if pdbRedoLog:
+            pdbRedoLogEle = ET.SubElement(xmlStructure,'PDB_REDO_LOG_FILE')
+            pdbRedoLogEle.text = str(pdbRedoLog)
+        CCP4Utils.writeXml(xmlStructure, self.makeFileName("PROGRAMXML"))
 
         return CPluginScript.SUCCEEDED

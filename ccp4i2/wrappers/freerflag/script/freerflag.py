@@ -170,10 +170,7 @@ class freerflag(CPluginScript):
               self.addElement(self.xmlRoot, 'GlobalResolutionLimit',
                               '{:6.2f}'.format(resmax))
 
-      with open ( self.makeFileName('PROGRAMXML'),'w' ) as xmlFile:
-         ET.indent(self.xmlRoot)
-         xmlString = ET.tostring(self.xmlRoot)
-         CCP4Utils.writeXML(xmlFile,xmlString)
+      CCP4Utils.writeXml(self.xmlRoot, self.makeFileName('PROGRAMXML'))
 
       if self.container.controlParameters.GEN_MODE == 'COMPLETE':
           error = self.splitHklout(['FREEROUT'],['FREER'])
