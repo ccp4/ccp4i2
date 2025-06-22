@@ -604,13 +604,6 @@ class CData(CObject, CDataQualifiers):
                 items.append('')
         return items
 
-    def xmlText(self, pretty_print=True, xml_declaration=False):
-        tree = self.getEtree()
-        if pretty_print:
-            ET.indent(tree)
-        text = ET.tostring(tree, xml_declaration=xml_declaration)
-        return text
-
     def __len__(self):
         return self.__dict__['_value'].__len__()
 

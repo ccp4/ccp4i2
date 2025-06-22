@@ -3539,7 +3539,6 @@ TaskTitle TEXT );''')
                     errorReport.append(self.__class__,172,str(e),stack=False)
           if file_role == FILE_ROLE_OUT and xmlText is not None:
             # Not a file but is output data - save as xdata
-            #xmlText =obj.xmlText(pretty_print=False)
             dataClass = obj0.__class__.__name__
             #print 'gleanJobFiles',dataClass,xmlText
             self.createXData(jobId=jobId,dataClass=dataClass,dataXml=xmlText)

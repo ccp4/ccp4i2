@@ -1541,8 +1541,7 @@ class CComplexLineWidget(CViewWidget):
       print('No help file defined for ',self.model.__class__)
 
   def dragData(self):
-    #print 'CComplexLineWidget.dragData',self.model.xmlText(pretty_print=False)
-    return self.model.xmlText(pretty_print=False)
+    return ET.tostring(self.model.getEtree(), xml_declaration=False)
 
   @QtCore.Slot(object)
   def acceptDropData(self,textData):

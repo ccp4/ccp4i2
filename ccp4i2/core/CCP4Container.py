@@ -681,7 +681,7 @@ class CContainer(CCP4Data.CData):
         from . import CCP4File
         nonexistantList = []
         for key,obj0 in list(self.__dict__['_value'].items()):
-            objList, xmlText, keyValues = obj0.saveToDb()
+            objList, _, _ = obj0.saveToDb()
             for obj in objList:
                 if isinstance(obj,CCP4File.CDataFile):
                     #print 'CContainer.nonexistantFiles', key, obj.qualifiers('mustExist'), obj.exists(), obj.isSet(), obj.qualifiers('allowUndefined'), obj.fullPath
@@ -697,7 +697,7 @@ class CContainer(CCP4Data.CData):
         from . import CCP4File
         ret= {}
         for key,obj0 in list(self.__dict__['_value'].items()):
-            objList, xmlText, keyValues = obj0.saveToDb()
+            objList, _, _ = obj0.saveToDb()
             for obj in objList:
                 if isinstance(obj, CCP4File.CDataFile) and obj.dbFileId.isSet():
                     ret[str(obj.dbFileId)] = key

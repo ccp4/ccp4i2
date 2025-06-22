@@ -957,9 +957,9 @@ class CPluginScript(CObject):
         for key in keyList:
             obj0 = self.container.outputData.__getattr__(key)
             try:
-                objList, xmlText, keyValues = obj0.saveToDb()
+                objList, _, _ = obj0.saveToDb()
             except:
-                objList, xmlText, keyValues = [], None, {}
+                objList, _, _ = [], None, {}
             for obj in objList:
                 if isinstance(obj, CCP4File.CDataFile) and obj.isSet():
                     obj.setContentFlag()
@@ -1798,9 +1798,9 @@ class CPluginScript(CObject):
         keyList = self.container.outputData.dataOrder()
         for key in keyList:
             obj0 = self.container.outputData.__getattr__(key)
-            objList0, xmlText0, keyValues0 = obj0.testComparisonData()
+            objList0, _, _ = obj0.testComparisonData()
             obj1 = otherContainer.outputData.__getattr__(key)
-            objList1, xmlText1, keyValues1 = obj1.testComparisonData()
+            objList1, _, _ = obj1.testComparisonData()
             if len(objList0) != len(objList1):
                 apndtxt = str(obj0.objectPath()) + ' : ' + str(objList0)+' : ' + str(objList1)
                 report.append(CPluginScript, 310, apndtxt, name=self.objectName())

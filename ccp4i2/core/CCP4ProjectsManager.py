@@ -1117,7 +1117,7 @@ class CProjectsManager(CObject):
                     for key in container.inputData.dataOrder():
                         obj0 = container.inputData.__getattr__(key)
                         try:
-                            objList, xmlText, keyValues = obj0.saveToDb()
+                            objList, _, _ = obj0.saveToDb()
                             for obj in objList:
                                 if isinstance(obj,CCP4File.CDataFile) and obj.isSet() and obj.exists():
                                     item = [obj.relPath.__str__(), obj.baseName.__str__()]

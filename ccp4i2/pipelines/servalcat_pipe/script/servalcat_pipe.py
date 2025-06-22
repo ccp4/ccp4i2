@@ -552,26 +552,19 @@ class servalcat_pipe(CPluginScript):
             coordDevMean = df["CoordDev"].mean()
             ADPAbsDevMean = df["ADPDev"].mean()
             # Save csv in program.xml
-            xmlText = "\n<COORD_ADP_DEV>"
-            xmlText += "\n<STATISTICS>"
-            xmlText += "\n<coordDevMean>"
-            xmlText += str(round(coordDevMean, 2))
-            xmlText += "</coordDevMean>"
-            xmlText += "\n<coordDevMinReported>"
-            xmlText += str(round(coordDevMinReported, 2))
-            xmlText += "</coordDevMinReported>"
-            xmlText += "\n<ADPAbsDevMean>"
-            xmlText += str(round(ADPAbsDevMean, 2))
-            xmlText += "</ADPAbsDevMean>"
-            xmlText += "\n<coordADPAbsMinReported>"
-            xmlText += str(round(ADPAbsDevMinReported, 2))
-            xmlText += "</coordADPAbsMinReported>"
-            xmlText += "\n</STATISTICS>"
+            xmlCoordAdpDev = ET.SubElement(self.xmlroot, 'COORD_ADP_DEV')
+            xmlStats = ET.SubElement(xmlCoordAdpDev, 'STATISTICS')
+            xmlCoordDevMean = ET.SubElement(xmlStats, coordDevMean)
+            xmlCoordDevMean.text = str(round(coordDevMean, 2))
+            xmlCoordDevMinReported = ET.SubElement(xmlStats, 'coordDevMinReported')
+            xmlCoordDevMinReported.text = str(round(coordDevMinReported, 2))
+            xmlADPAbsDevMean = ET.SubElement(xmlStats, 'ADPAbsDevMean')
+            xmlADPAbsDevMean.text = str(round(ADPAbsDevMean, 2))
+            xmlADPAbsDevMinReported = ET.SubElement(xmlStats, 'coordADPAbsMinReported')
+            xmlADPAbsDevMinReported.text = str(round(ADPAbsDevMinReported, 2))
             if os.path.exists(csvFilePath):
-                xmlText += "\n<CSV_FILE>" + csvFileName + "</CSV_FILE>"
-            xmlText += "\n</COORD_ADP_DEV>"
-            xmlTree = ET.fromstring(xmlText)
-            self.xmlroot.append(xmlTree)
+                xmlCsvFile = ET.SubElement(xmlCoordAdpDev, 'CSV_FILE')
+                xmlCsvFile.text = csvFileName
             self.saveXml()
             print("Monitoring of changes/shifts of coordinates and ADPs...")
         except Exception as e:

@@ -212,17 +212,13 @@ class COpenJob(QtCore.QObject):
 
     def copyInputFiles(self,container, sourceProjectDir):
         from ..core import CCP4File
-        errorReport = CErrorReport()
         for key in container.dataOrder():
             obj0 = container.__getattr__(key)
             try:
-                objList, xmlText, keyValues = obj0.saveToDb()
-                jobParamName = obj0.objectName()
+                objList, _, _ = obj0.saveToDb()
             except:
                 print('ERROR in copyInputFiles for',key)
-                objList, xmlText, keyValues = [],None,{}
-                jobParamName = ''
-            importList = []
+                objList, _, _ = [],None,{}
             for obj in objList:
                 if isinstance(obj,CCP4File.CDataFile) and obj.exists():
                     self.copyInputFile(obj,sourceProjectDir)

@@ -86,7 +86,7 @@ class CWorkflowManager(CCP4CustomManager.CCustomManager):
             workflowParams.jobDef[jobLabel].taskName = jobInfo['taskname']
             for key in container.inputData.dataOrder():
                 obj0 = container.inputData.__getattr__(key)
-                objList, xmlText, keyValues = obj0.saveToDb()
+                objList, _, _ = obj0.saveToDb()
                 #print 'createWorkflow input obj0,objList',jobLabel,key,obj0,objList
                 for obj in objList:
                     #print 'obj,isSet',key,obj,obj.isSet()
@@ -124,7 +124,7 @@ class CWorkflowManager(CCP4CustomManager.CCustomManager):
                     obj0.unSet()
             for key in container.outputData.dataOrder():
                 obj0 = container.outputData.__getattr__(key)
-                objList, xmlText, keyValues = obj0.saveToDb()
+                objList, _, _ = obj0.saveToDb()
                 #if len(objList)>0 and obj0.isSet() and obj0.exists():
                 if len(objList)>0 and obj0.isSet():
                     workflowParams.jobDef[jobLabel].allOutputFiles.append({'key' : key, 'className' : obj0.__class__.__name__})
