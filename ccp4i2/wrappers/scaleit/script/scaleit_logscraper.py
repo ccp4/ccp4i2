@@ -1,7 +1,7 @@
 import sys
+import xml.etree.ElementTree as ET
 
-from lxml import etree
-
+from ....core.CCP4Utils import writeXml
 from ....pimple import MGQTmatplotlib
 from ....smartie import smartie
 
@@ -464,7 +464,5 @@ if __name__ == "__main__":
     print("\nData\n")
     xml = logscrape.makeXML()
 
-    et = ET.ElementTree(xml)
     # and write out the XML
-    et.write('scl.xml', pretty_print=True)
-
+    writeXml(xml, 'scl.xml')

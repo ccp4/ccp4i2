@@ -1,4 +1,4 @@
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 
 class logScraper(object):
@@ -85,7 +85,8 @@ class logScraper(object):
                 if trigger['doFlush']: self.flushXML()
 
     def _flushXML(self):
-        print(etree.tostring(self.xmlroot, pretty_print=True))
+        ET.indent(self.xmlroot)
+        print(ET.tostring(self.xmlroot))
 
     def parseTwin1(self, line):
         tokens = line.split(':')

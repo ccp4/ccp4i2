@@ -243,10 +243,8 @@ class refmac_i2(CPluginScript):
         #Skim smartie graphs from the log file
         smartieNode = ET.SubElement(rxml,'SmartieGraphs')
         self.scrapeSmartieGraphs(smartieNode)
-        et = ET.ElementTree(rxml)
-        
         #And write out the XML
-        et.write(self.makeFileName('PROGRAMXML'), pretty_print=True)
+        CCP4Utils.writeXml(rxml, self.makeFileName('PROGRAMXML'))
        
         with open(self.container.outputData.COOTSCRIPTOUT.fullPath.__str__(),"w") as cootscript:
             #Write a GUI to regions that Refmac has identified as containing duffers

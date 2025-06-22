@@ -1,8 +1,8 @@
 import shutil
-
-from lxml import etree
+import xml.etree.ElementTree as ET
 
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Utils import writeXml
 
 
 class ProvideAsuContents(CPluginScript):
@@ -69,9 +69,7 @@ class ProvideAsuContents(CPluginScript):
                   matthewsCoeff.text = "{0:.2f}".format(float(result.get('matth_coef')))
                   matthewsProbability.text = "{0:.2f}".format(float(result.get('prob_matth')))
 
-      newXml = etree.tostring(xmlroot,pretty_print=True)
-      with open (self.makeFileName('PROGRAMXML')+'_tmp','w') as programXmlFile:
-          programXmlFile.write(newXml.decode("utf-8"))
+      writeXml(xmlroot, self.makeFileName('PROGRAMXML')+'_tmp')
       shutil.move(self.makeFileName('PROGRAMXML')+'_tmp', self.makeFileName('PROGRAMXML'))
 
       return CPluginScript.SUCCEEDED

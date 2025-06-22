@@ -13,11 +13,12 @@ See:
 
 import math
 import os
+import xml.etree.ElementTree as ET
 
-from lxml import etree
 import phaser
 
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Utils import writeXml
 from .phaser_analysis_utils import AnalyseGraph, AnalysisLog, Makexmlgraph, addElement
 
 
@@ -168,8 +169,7 @@ class phaser_analysis(CPluginScript):
 
         self.resolutionlimit(self.threshold)
 
-        with open(xmlout, 'wb') as f:
-            f.write(etree.tostring(self.xmlroot, pretty_print=True))
+        writeXml(self.xmlroot, xmlout)
 
     # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
     def makeXMLloggraph(self, graphtitle, gname):

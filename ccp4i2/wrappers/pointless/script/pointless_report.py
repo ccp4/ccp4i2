@@ -1004,5 +1004,4 @@ class pointless_report(Report):
 if __name__ == "__main__":
   report = pointless_report(xmlFile = sys.argv[1] )
   tree= report.as_etree()
-  #  print etree.tostring(tree,pretty_print=True)
   report.as_html_file(fileName='./test.html')

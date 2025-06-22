@@ -226,13 +226,12 @@ class phaser_mr(CPluginScript):
         if (os.stat(logFilename).st_size - self.oldLogLength) > 1000:
             self.oldLogLength = os.stat(logFilename).st_size
             phaserMRElement = self.generateProgramXML()
-            newXml = etree.tostring(phaserMRElement,pretty_print=True)
-            if self.xmlText is None or len(newXml)>len(self.xmlText):
-                with open( self.makeFileName( 'PROGRAMXML' )+'.tmp','w') as aFile:
-                    aFile.write( newXml )
-                    aFile.flush()
+            ET.indent(phaserMRElement)
+            newXmlText = ET.tostring(phaserMRElement)
+            if self.xmlText is None or len(newXmlText)>len(self.xmlText):
+                self.xmlText = newXmlText
+                CCP4Utils.writeXml(phaserMRElement, self.makeFileName( 'PROGRAMXML' )+'.tmp')
                 self.renameFile(self.makeFileName( 'PROGRAMXML' )+'.tmp',self.makeFileName( 'PROGRAMXML' ))
-                self.xmlText = newXml
 
     def generateProgramXML(self):
         phaserMRElement = ET.Element("PhaserMrResult")
@@ -346,13 +345,11 @@ class phaser_mr(CPluginScript):
         #Collect a list of graphs of different types
         rotationTables = []
         translationTables = []
-        packingTables = []
         refinementTables = []
         
         rotationTablesDict = {}
         translationTablesDict = {}
         refinementTablesDict = {}
-        packingTablesDict = {}
         
         #print 'Log contained tableCount ',str(len(logfile.tables()))
         for smartieTable in logfile.tables():
@@ -420,8 +417,7 @@ class phaser_mr(CPluginScript):
 
         #print len(searchComponentSummaries), len(rotationTables), len(translationTables), len(refinementTables)
         if len(searchComponentSummaries) > 0:
-            searchesElement = ET.SubElement(programEtree,"Searches")
-            iSearch = 0
+            ET.SubElement(programEtree,"Searches")
             for searchComponentSummary in searchComponentSummaries:
                 searchElement = ET.SubElement(programEtree,"Search")
                 searchElement.append(searchComponentSummary)
@@ -440,5 +436,3 @@ class phaser_mr(CPluginScript):
                     if hashedSoughtComponent in refinementTablesDict:
                         for refinementTable in refinementTablesDict[hashedSoughtComponent]:
                             searchElement.append(refinementTable)
-                                
-                #print etree.tostring(searchElement,pretty_print=True)
