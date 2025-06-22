@@ -9,6 +9,7 @@ Note also python bindings, and XML output of Phaser.
 from time import gmtime, strftime
 import glob
 import os
+import xml.etree.ElementTree as ET
 
 from lxml import etree
 
