@@ -16,16 +16,7 @@ class SubtractNative(CPluginScript):
                        ]
     RUNEXTERNALPROCESS = False
     TASKCOMMAND="command"
-    
-    def __init__(self, *args, **kws):
-        super(SubtractNative, self).__init__(*args, **kws)
 
-    def processInputFiles(self):
-        return CPluginScript.SUCCEEDED
-
-    def makeCommandAndScript(self,**kw):
-        return CPluginScript.SUCCEEDED
-    
     def startProcess(self, command, **kw):
         print(1)
         print(2)
@@ -106,9 +97,4 @@ class SubtractNative(CPluginScript):
         mapout.close_write()
         print(7)
 
-        return CPluginScript.SUCCEEDED
-    
-    def processOutputFiles(self):
-        with open(str(self.makeFileName('PROGRAMXML')),"w") as xmlFile:
-            xmlFile.write('<SubtractNative></SubtractNative>')
         return CPluginScript.SUCCEEDED

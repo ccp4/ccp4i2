@@ -25,17 +25,9 @@ class MakeLink_report(Report):
             except:
                 print("Missing cycle")
             try:
-                logTextNode = AcedrgLinkNode.findall("LogText")[0]
-            except:
-                print("Missing logText")
-            try:
                 newFold = parent.addFold(label="Log text for iteration "+cycleNode.text, initiallyOpen=True)
             except:
                 print("Unable to make fold")
-            try:
-                newFold.addPre(text = logTextNode.text)
-            except:
-                print("Unable to add Pre")
 
     def addLigandToGallery(self,pictureGallery,baseScenePath,scenePath,pdbPath,dictPath,tlc,annotation):
        with open(baseScenePath,'r') as baseScene:

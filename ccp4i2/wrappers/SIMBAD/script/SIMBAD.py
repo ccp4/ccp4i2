@@ -15,32 +15,12 @@ class SIMBAD(CPluginScript):
     MAINTAINER = 'hlasimpk@liv.ac.uk'
     ERROR_CODES = {1: {'description' : 'Something not very good has happened.'}}
     WHATNEXT = ['prosmart_refmac', 'modelcraft', 'coot_rebuild']
-#     PURGESEARCHLIST = [ [ 'hklin.mtz' , 0 ],
-#                        ['log_mtzjoin.txt', 0]
-#                        ]
     TASKCOMMAND="simbad"
 
-# Andre's stuff for a clean shutdown - a file caled INTERUPT will be created.
-#     INTERRUPTABLE = True
-#     INTERRUPTLABEL = 'Stop and keep current best solution'
-    
     def __init__(self, *args, **kws):
         super(SIMBAD, self).__init__(*args, **kws)
 
     def processInputFiles(self):
-        #Preprocess reflections to generate an "HKLIN" file
-        """
-        #makeHklin0 takes as arguments a list of sublists
-        #Each sublist comprises 1) A reflection data object identifier (one of those specified in the inputData container
-        #                           the task in the corresponding .def.xml
-        #                       2) The requested data representation type to be placed into the file that is generated
-        #
-        #makeHklin0 returns a tuple comprising:
-        #                       1) the file path of the file that has been created
-        #                       2) a list of strings, each of which contains a comma-separated list of column labels output from
-        #                       the input data objects
-        #                       3) A CCP4 Error object
-        """
         from ....core import CCP4XtalData
         self.hklin, error = self.makeHklin([['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
 

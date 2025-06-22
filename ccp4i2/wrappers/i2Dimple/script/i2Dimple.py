@@ -5,8 +5,6 @@ import platform
 import subprocess
 import xml.etree.ElementTree as ET
 
-from lxml import etree
-
 from ....core import CCP4ErrorHandling
 from ....core import CCP4XtalData
 from ....core.CCP4MgImports import mmdb2 as mmdb
@@ -39,14 +37,6 @@ class i2Dimple(CPluginScript):
         self.hklin,self.columns,error = self.makeHklin0(inputs)
         if error.maxSeverity()>CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
-        #makeHklin0 takes as arguments a list of sublists
-        #Each sublist comprises 1) An input DATA object identifier as specified ni the inputData container of .de.f.xml
-        #                       2) The requested data representation type to be placed into the file that is generated
-        #makeHklin returns a tuple comprising:
-        #                       1) the file path of the file that has been created
-        #                       2) a list of strings each of which contains a comma-separated list of column labels output from
-        #                       the input data objects that were input
-        #                       3) A CCP4 Error object
         self.columnsAsArray = self.columns.split(",")
 
         self.xyzin = os.path.join(self.getWorkDirectory(),"selected_xyzin.pdb")
@@ -175,11 +165,7 @@ class i2Dimple(CPluginScript):
         except Exception as err:
             self.appendErrorReport(201, err.__str__())
             return CPluginScript.FAILED
-        
-        logText = ET.SubElement(xmlStructure,"LogText")
-        with open(self.makeFileName("LOG"),"r") as logFile:
-            logText.text = etree.CDATA(logFile.read())
-        
+
         #Extract performanceindictors from XML
         try:
             self.container.outputData.PERFORMANCEINDICATOR.RFactor.set(xmlStructure.xpath("//Cycle/iter_overall_r")[-1].text)

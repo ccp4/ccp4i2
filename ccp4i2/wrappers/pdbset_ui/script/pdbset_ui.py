@@ -1,7 +1,3 @@
-import base64
-import xml.etree.ElementTree as ET
-
-from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
 
 
@@ -42,12 +38,3 @@ class pdbset_ui(CPluginScript):
       self.appendCommandScript( s+"\nEND\n" )
 
       return CPluginScript.SUCCEEDED
-
-    def processOutputFiles(self):
-        xmlStructure = ET.Element("pdbset_ui")
-        logText = ET.SubElement(xmlStructure,"LogText")
-        with open(self.makeFileName("LOG"),"rb") as logFile:
-            logText.text = base64.b64encode(logFile.read())
-        CCP4Utils.writeXml(xmlStructure, self.makeFileName("PROGRAMXML"))
-
-        return CPluginScript.SUCCEEDED

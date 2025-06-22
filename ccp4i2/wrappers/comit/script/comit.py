@@ -1,10 +1,6 @@
 import os
-import xml.etree.ElementTree as ET
-
-from lxml import etree
 
 from ....core import CCP4ErrorHandling
-from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
 
 
@@ -27,8 +23,6 @@ class comit(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def makeCommandAndScript(self,**kw):
-        inp = self.container.inputData
-        out = self.container.outputData
         con = self.container.controlParameters
 
         self.hklout = os.path.join(self.workDirectory,"hklout.mtz")
@@ -39,8 +33,8 @@ class comit(CPluginScript):
         self.appendCommandScript( 'colout i2' )
         self.appendCommandScript( "colin-fo F_SIGF_F,F_SIGF_SIGF" )
         self.appendCommandScript( "colin-fc F_PHI_IN_F,F_PHI_IN_PHI" )
-        self.appendCommandScript( "nomit %s"%(str(self.container.controlParameters.NOMIT)) )
-        self.appendCommandScript( "pad-radius %s"%(str(self.container.controlParameters.PAD_RADIUS)) )
+        self.appendCommandScript( "nomit %s"%(str(con.NOMIT)) )
+        self.appendCommandScript( "pad-radius %s"%(str(con.PAD_RADIUS)) )
 
         return CPluginScript.SUCCEEDED
 
@@ -51,12 +45,3 @@ class comit(CPluginScript):
         self.container.outputData.F_PHI_OUT.subType = 1
         if error.maxSeverity ( ) > CCP4ErrorHandling.Severity.WARNING:
             return CPluginScript.FAILED
-
-        #Create (dummy) PROGRAMXML, which basically contains only the log text of the job
-        #without this, a report will not be generated
-        xmlStructure = ET.Element("i2comit")
-        logText = ET.SubElement(xmlStructure,"LogText")
-        with open(self.makeFileName("LOG"),"r") as logFile:
-            logText.text = etree.CDATA(logFile.read())
-        CCP4Utils.writeXml(xmlStructure, self.makeFileName("PROGRAMXML"))
-        return CPluginScript.SUCCEEDED

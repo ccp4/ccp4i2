@@ -2,6 +2,7 @@ import os
 
 from phaser.command_line import main
 
+from ....core import CCP4Container
 from ....core.CCP4PluginScript import CPluginScript
 
 
@@ -16,12 +17,6 @@ class phaser_phil(CPluginScript):
                        ['log_mtzjoin.txt', 0]
                        ]
     TASKCOMMAND='ccp4-python'
-
-    def __init__(self, *args, **kws):
-        super(phaser_phil, self).__init__(*args, **kws)
-
-    def processInputFiles(self):
-        return CPluginScript.SUCCEEDED
 
     # Copied here from xia2_dials - if useful should be moved to the base
     # class
@@ -47,7 +42,6 @@ class phaser_phil(CPluginScript):
 
     def makeCommandAndScript(self,**kw):
         par = self.container.controlParameters
-        inp = self.container.inputData
 
         # PHIL parameters set by the gui
         phil_file = os.path.normpath(os.path.join(
@@ -66,7 +60,4 @@ class phaser_phil(CPluginScript):
 
         self.appendCommandLine([phil_file])
 
-        return CPluginScript.SUCCEEDED
-
-    def processOutputFiles(self):
         return CPluginScript.SUCCEEDED

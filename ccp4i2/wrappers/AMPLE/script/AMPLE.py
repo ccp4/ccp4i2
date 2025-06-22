@@ -5,17 +5,9 @@ import xml.etree.ElementTree as ET
 from ample.constants import AMPLE_PKL
 from ample.util import mrbump_util
 from ample.util.ample_util import I2DIR
-from lxml import etree
 
 from ....core import CCP4ErrorHandling
 from ....core.CCP4PluginScript import CPluginScript
-
-
-#AMPLE_ROOT_NODE = 'AMPLE'
-AMPLE_LOG_NODE = 'LogText'
-LOGFILE_NAME = 'log.txt'
-
-#LOGFILE_NAME = os.path.join('AMPLE_0','AMPLE.log')
 
 
 class AMPLE(CPluginScript):
@@ -41,19 +33,6 @@ class AMPLE(CPluginScript):
         super(AMPLE, self).__init__(*args, **kws)
 
     def processInputFiles(self):
-        #Preprocess reflections to generate an "HKLIN" file
-        '''
-        #makeHklin0 takes as arguments a list of sublists
-        #Each sublist comprises 1) A reflection data object identifier (one of those specified in the inputData container
-        #                           the task in the corresponding .def.xml
-        #                       2) The requested data representation type to be placed into the file that is generated
-        #
-        #makeHklin0 returns a tuple comprising:
-        #                       1) the file path of the file that has been created
-        #                       2) a list of strings, each of which contains a comma-separated list of column labels output from
-        #                       the input data objects
-        #                       3) A CCP4 Error object
-        '''
         from ....core import CCP4XtalData
         # No idea why we need the 'AMPLE_F_SIGF' bit...
         self.hklin, self.columns, error = self.makeHklin0(
@@ -64,15 +43,6 @@ class AMPLE(CPluginScript):
 
         self.F, self.SIGF = self.columns.split(',')
         self.fasta = self.container.inputData.AMPLE_SEQIN
-
-        #Preprocess coordinates to extract a subset
-        '''
-        # The method "getSelectedAtomsPdbFile" applied to a coordinate data object
-        # selects those atoms declared in the objects "selectionString" property and writes them into
-        # a pruned down file, the name of which is provided in the argument
-        self.selectedCoordinatesPath = os.path.join(self.getWorkDirectory(), "selected_xyzin.pdb")
-        self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.selectedCoordinatesPath)
-        '''
 
         return self.SUCCEEDED
 
@@ -209,22 +179,7 @@ class AMPLE(CPluginScript):
         self.appendCommandLine(['-nproc', str(params.AMPLE_NPROC)])
         self.appendCommandLine(
             ['-ccp4i2_xml', self.makeFileName('PROGRAMXML')])
-        #self.appendCommandLine(['-do_mr', False])
-
-        #         self.xmlroot = ET.Element(AMPLE_ROOT_NODE)
-        #         logFile = os.path.join(self.getWorkDirectory(),LOGFILE_NAME)
-        #         self.watchFile(logFile,self.handleLogChanged)
         return self.SUCCEEDED
-
-    def handleLogChanged(self, filename):
-        with open(os.path.join(self.getWorkDirectory(), 'foo.txt'), 'a') as w:
-            w.write('flushXML: {0}\n'.format(self.makeFileName('PROGRAMXML')))
-        for ampleTxtNode in self.xmlroot.xpath(AMPLE_LOG_NODE):
-            self.xmlroot.remove(ampleTxtNode)
-        element = ET.SubElement(self.xmlroot, AMPLE_LOG_NODE)
-        with open(filename, 'r') as logFile:
-            element.text = etree.CDATA(logFile.read())
-        self.flushXML()
 
     def flushXML(self):
         tmpFilename = self.makeFileName('PROGRAMXML') + '_tmp'

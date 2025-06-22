@@ -5,9 +5,10 @@ class i2Dimple_report(Report):
     # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'i2Dimple'
     RUNNING = False
+
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):
         Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo, jobStatus=jobStatus, **kw)
-        clearingDiv = self.addDiv(style="clear:both;")
+        self.addDiv(style="clear:both;")
         self.addDefaultReport(self)
         
     def addDefaultReport(self, parent=None):
@@ -51,8 +52,6 @@ class i2Dimple_report(Report):
             newFold.addDiv(style="clear:both;")
             
             #Create a data column for the cycle number
-            nCycles = len(self.xmlnode.findall(".//REFMAC/Overall_stats/stats_vs_cycle/new_cycle"))
-            #progressGraph.addData(title="Cycle", data=[iCycle for iCycle in range(nCycles)])
             progressGraph.addData(title="Cyle", select="new_cycle/cycle")
             progressGraph.addData(title="R_Factor", select="new_cycle/r_factor")
             progressGraph.addData(title="R_Free",  select="new_cycle/r_free")
@@ -122,7 +121,3 @@ class i2Dimple_report(Report):
             l.append('colour','blue')
             
             newFold.addDiv(style="clear:both;")
-
-        if len(self.xmlnode.findall("LogText")) > 0:
-            newFold = parent.addFold(label="Summary", initiallyOpen=True)
-            newFold.addPre(text = self.xmlnode.findall("LogText")[0].text)

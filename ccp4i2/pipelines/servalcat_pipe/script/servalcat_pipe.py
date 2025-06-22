@@ -569,7 +569,6 @@ class servalcat_pipe(CPluginScript):
             xmlText += "\n</STATISTICS>"
             if os.path.exists(csvFilePath):
                 xmlText += "\n<CSV_FILE>" + csvFileName + "</CSV_FILE>"
-            # xmlText += "\n<CSV><![CDATA[\n" + csv_string + "\n]]></CSV>"
             xmlText += "\n</COORD_ADP_DEV>"
             xmlTree = ET.fromstring(xmlText)
             self.xmlroot.append(xmlTree)
