@@ -4,6 +4,7 @@ import xml.etree.ElementTree as ET
 from ....core import CCP4ErrorHandling
 from ....core import CCP4XtalData
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Utils import writeXml
 
 
 class pairef(CPluginScript):
@@ -109,19 +110,10 @@ class pairef(CPluginScript):
         self.xmlout = self.makeFileName('PROGRAMXML')
         rootNode = ET.Element("Pairef")
         # Save xml
-        xmlfile = open(self.xmlout, 'wb')
-        ET.indent(rootNode)
-        xmlString= ET.tostring(rootNode)
-        xmlfile.write(xmlString)
-        xmlfile.close()
-        
+        writeXml(rootNode, self.xmlout)
         return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
-        htf = os.path.join(self.getWorkDirectory(), "pairef_project" ,"PAIREF_project.html")
-        stf = os.path.join(self.getWorkDirectory(), "pairef_project" ,"styles.css")
-
-
         cutoff = '0.0'
         cfn = os.path.join(self.getWorkDirectory(), "pairef_project" ,"PAIREF_cutoff.txt")
         with open(cfn) as cf:
@@ -132,9 +124,5 @@ class pairef(CPluginScript):
         ET.SubElement(rootNode, "Cutoff").text = cutoff
 
         # Save xml
-        xmlfile = open(self.xmlout, 'wb')
-        ET.indent(rootNode)
-        xmlString= ET.tostring(rootNode)
-        xmlfile.write(xmlString)
-        xmlfile.close()
+        writeXml(rootNode, self.xmlout)
         return CPluginScript.SUCCEEDED

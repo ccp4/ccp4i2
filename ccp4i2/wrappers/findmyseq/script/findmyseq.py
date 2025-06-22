@@ -3,6 +3,7 @@ import os
 import xml.etree.ElementTree as ET
 
 from ....core import CCP4ErrorHandling
+from ....core import CCP4Utils
 from ....core import CCP4XtalData
 from ....core.CCP4PluginScript import CPluginScript
 
@@ -70,11 +71,7 @@ class findmyseq(CPluginScript):
         rootNode = ET.Element("FindMySeq")
         #xmlRI = ET.SubElement(rootNode, "RunInfo")
         # Save xml
-        xmlfile = open(self.xmlout, 'wb')
-        ET.indent(rootNode)
-        xmlString= ET.tostring(rootNode)
-        xmlfile.write(xmlString)
-        xmlfile.close()
+        CCP4Utils.writeXml(rootNode, self.xmlout)
         return CPluginScript.SUCCEEDED
 
     def makeCommandAndScript(self, container=None):

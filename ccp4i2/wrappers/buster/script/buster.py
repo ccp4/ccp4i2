@@ -176,11 +176,7 @@ class buster(CPluginScript):
             ET.SubElement(xmlcyc, "RMSB").text = str(cycle[5])
             ET.SubElement(xmlcyc, "RMSA").text = str(cycle[6])
         # Save xml
-        xmlfile = open(self.xmlout, 'wb')
-        ET.indent(rootNode)
-        xmlString= ET.tostring(rootNode)
-        xmlfile.write(xmlString)
-        xmlfile.close()
+        CCP4Utils.writeXml(rootNode, self.xmlout)
         return CPluginScript.SUCCEEDED
 
     def makeCommandAndScript(self, container=None):

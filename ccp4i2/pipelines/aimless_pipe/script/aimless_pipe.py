@@ -539,14 +539,9 @@ class aimless_pipe(CPluginScript):
                 e.append(freerxml)
         xmlroot.append(e)
 
-      ET.indent(xmlroot)
-      newXml = ET.tostring(xmlroot,encoding='unicode')
-      xmlfile = open( xmlout, "w" )
-      xmlfile.write(newXml)
-      xmlfile.close()
+      CCP4Utils.writeXml(xmlroot, xmlout)
       if self.container.outputData.XMLOUT.isSet(): # i.e. not import_merged
-        with open(str(self.container.outputData.XMLOUT.fullPath), 'w') as f:
-            f.write(newXml)
+        CCP4Utils.writeXml(xmlroot, str(self.container.outputData.XMLOUT.fullPath))
         self.container.outputData.XMLOUT.annotation = 'Pipeline XML'
 
         #  Write mmcif file of statistics from Aimless, not for import_merge

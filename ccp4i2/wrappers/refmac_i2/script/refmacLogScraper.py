@@ -1,5 +1,7 @@
 import xml.etree.ElementTree as ET
 
+from ....core.CCP4Utils import printXml
+
 
 class logScraper(object):
     
@@ -85,8 +87,7 @@ class logScraper(object):
                 if trigger['doFlush']: self.flushXML()
 
     def _flushXML(self):
-        ET.indent(self.xmlroot)
-        print(ET.tostring(self.xmlroot))
+        printXml(self.xmlroot)
 
     def parseTwin1(self, line):
         tokens = line.split(':')

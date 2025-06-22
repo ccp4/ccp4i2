@@ -39,13 +39,6 @@ class ccp4mg_general(CPluginScript):
         if sys.platform == 'win32':
           self.mgStatusPath = re.sub(r'\\\\',r'\\',self.mgStatusPath)
         # Declare script text then re.sub in the variables
-        if sys.platform == "win32":
-          i2dir = CCP4Utils.getCCP4I2Dir().replace('\\','/')
-        else:
-          i2dir = CCP4Utils.getCCP4I2Dir()
-
-
-        status_xml = ""
 
         NSMAP = {'xsi':"http://www.w3.org/2001/XMLSchema-instance"}
         NS = NSMAP['xsi']
@@ -261,15 +254,10 @@ class ccp4mg_general(CPluginScript):
                 #an issue with the existence of files
                 pass
 
-        ET.indent(tree)
-        status_xml += ET.tostring(tree)
-
         print("Writing",self.mgStatusPath)
-        print(status_xml)
+        CCP4Utils.printXml(tree)
+        CCP4Utils.writeXml(tree, self.mgStatusPath)
 
-        with open(self.mgStatusPath, 'wb') as xmlFile:
-             xmlFile.write(bytes(status_xml,"utf-8"))
-        
         clArgs = [ '-norestore',self.mgStatusPath ]
 
         origInterface_fname = os.path.join(CCP4Utils.getCCP4I2Dir(),"wrappers","ccp4mg_general","script","ccp4i2CCP4MGInterface.py")

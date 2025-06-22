@@ -3289,7 +3289,7 @@ CCP4I2 3D View
                     m.remove(fn[0])
 
                 ET.indent(tree)
-                sceneText = ET.tostring(tree).decode("utf-8")
+                sceneText = ET.tostring(tree)
 
                 fog_slider_range_uuid_str = "fog_slider"
                 clip_slider_range_uuid_str = "clip_slider"

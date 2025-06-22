@@ -39,13 +39,6 @@ class ccp4mg_edit_nomrbump(CPluginScript):
         if sys.platform == 'win32':
           self.mgStatusPath = re.sub(r'\\\\',r'\\',self.mgStatusPath)
         # Declare script text then re.sub in the variables
-        if sys.platform == "win32":
-          i2dir = CCP4Utils.getCCP4I2Dir().replace('\\','/')
-        else:
-          i2dir = CCP4Utils.getCCP4I2Dir()
-
-
-        status_xml = ""
 
         NSMAP = {'xsi':"http://www.w3.org/2001/XMLSchema-instance"}
         NS = NSMAP['xsi']
@@ -107,14 +100,9 @@ class ccp4mg_edit_nomrbump(CPluginScript):
                 #an issue with the existence of files
                 pass
 
-        ET.indent(tree)
-        status_xml += ET.tostring(tree,encoding='utf-8').decode("utf-8")
-
         print("Writing",self.mgStatusPath)
-        print(status_xml)
-
-        with open(self.mgStatusPath, 'wb') as xmlFile:
-             xmlFile.write(bytes(status_xml,"utf-8"))
+        CCP4Utils.printXml(tree)
+        CCP4Utils.writeXml(tree, self.mgStatusPath)
 
         clArgs = [ '-norestore',self.mgStatusPath ]
 

@@ -15,9 +15,6 @@ class testJob(unittest.TestCase):
         j.inputFiles.HKLIN = {  'baseName' : 'foo.mtz', 'project' : 'myProject' }
         j.outputFiles.set({'HKLOUT' : { 'baseName' : 'foo_99.mtz', 'project' : 'myProject' }} )
         tree = j.getEtree()
-        ET.indent(tree)
-        text = ET.tostring(tree)
-        #print text
         k = CJob(jobId=99)
         k.setEtree(tree)
         self.assertEqual(str(k.jobId),'job_99','Wrong job id')

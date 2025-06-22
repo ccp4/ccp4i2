@@ -167,7 +167,6 @@ class CReport(QtCore.QObject):
       raise CException(self.__class__,102,filename)
 
     self.loadFromEtree(root)
-    #print 'loadFromXmlFile loaded tree' , self.toString(root)
     
   def loadFromEtree(self,root):
     #try:
@@ -177,22 +176,12 @@ class CReport(QtCore.QObject):
       self.extractTopFolds(root)
     #except:
     #  raise CException('CReport.loadFromEtree','Error extracting ccp4_data elements')
-    
 
   def containsCCP4Data(self):
     if self.ccp4_data:
       return True
     else:
       return False
-
-  def toString(self,root):
-    text = ''
-    try:
-      ET.indent(root)
-      text = ET.tostring(root)
-    except:
-      raise CException(self.__class__,103)
-    return text
 
   def tostring(self,root):
     if root is not None: return ET.tostring(root)

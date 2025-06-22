@@ -19,6 +19,7 @@ import clipper
 
 from ....core import CCP4XtalData
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Utils import writeXml
 from ....smartie import smartie
 
 
@@ -175,11 +176,7 @@ class acorn(CPluginScript):
             ET.SubElement(xmlcyc,"NCycle").text          = str(cn)
             ET.SubElement(xmlcyc,"CorrelationCoef").text = str(cc)
         
-        xmlfile = open(self.xmlout,'w')
-        ET.indent(rootNode)
-        xmlString = ET.tostring(rootNode)
-
-        xmlfile.write(xmlString.decode("utf-8"))
+        writeXml(rootNode, self.xmlout)
         
         #Informative labels
         self.container.outputData.PHSOUT.annotation = 'Phase probabilities for measured reflections only'

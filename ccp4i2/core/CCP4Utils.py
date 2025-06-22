@@ -139,12 +139,7 @@ def saveEtreeToFile(tree=None, fileName=None):
     if tree is None:
         raise CException(CUtils, 101, fileName)
     try:
-        ET.indent(tree)
-        text = ET.tostring(tree, xml_declaration=True)
-    except:
-        raise CException(CUtils, 102, fileName)
-    try:
-        saveFile(fileName=fileName, text=text, overwrite=1)
+        writeXml(tree, fileName, xml_declaration=True)
     except:
         raise CException(CUtils, 103, fileName)
 

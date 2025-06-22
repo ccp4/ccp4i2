@@ -169,8 +169,8 @@ class phaser_mr(CPluginScript):
 
     def processInputFiles(self):
       from ....core import CCP4XtalData
-      self.xmlText = None
       self.oldLogLength = 0
+      self.oldXmlLength = 0
       self.watchFile(self.makeFileName('LOG'), self.handleLogChanged)
       
       self.hklin,error = self.makeHklin([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
@@ -226,10 +226,9 @@ class phaser_mr(CPluginScript):
         if (os.stat(logFilename).st_size - self.oldLogLength) > 1000:
             self.oldLogLength = os.stat(logFilename).st_size
             phaserMRElement = self.generateProgramXML()
-            ET.indent(phaserMRElement)
-            newXmlText = ET.tostring(phaserMRElement)
-            if self.xmlText is None or len(newXmlText)>len(self.xmlText):
-                self.xmlText = newXmlText
+            newXmlLength = len(ET.tostring(phaserMRElement))
+            if newXmlLength > self.oldXmlLength:
+                self.oldXmlLength = newXmlLength
                 CCP4Utils.writeXml(phaserMRElement, self.makeFileName( 'PROGRAMXML' )+'.tmp')
                 self.renameFile(self.makeFileName( 'PROGRAMXML' )+'.tmp',self.makeFileName( 'PROGRAMXML' ))
 

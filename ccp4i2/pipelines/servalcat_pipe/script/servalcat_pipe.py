@@ -232,16 +232,15 @@ class servalcat_pipe(CPluginScript):
         self.saveXml()
 
     def saveXml2(self):
-        ET.indent(self.xmlroot2)
-        newXml = ET.tostring(self.xmlroot2)
-        if len(newXml) > self.xmlLength2:
+        newXmlLength = len(ET.tostring(self.xmlroot2))
+        if newXmlLength > self.xmlLength2:
             # Get content of program.xml_first
             firstFileName = self.pipelinexmlfile + '_first'
             with open(firstFileName, 'r') as aFile:
                 masterXml = ET.fromstring(aFile.read())
             # Add content of program.xml of the last servalcat subjob
             masterXml.xpath('//SERVALCAT')[0].append(self.xmlroot2.xpath("//SERVALCAT/SERVALCAT_WATERS")[0])
-            self.xmlLength2 = len(newXml)
+            self.xmlLength2 = newXmlLength
             # Save as program.xml_tmp and then move to program.xml
             tmpFileName = self.pipelinexmlfile + '_tmp'
             CCP4Utils.writeXml(masterXml, tmpFileName)
@@ -250,14 +249,13 @@ class servalcat_pipe(CPluginScript):
 
     def saveXml(self):
         # Save the xml if it has grown
-        ET.indent(self.xmlroot)
-        newXml = ET.tostring(self.xmlroot)
-        if len(newXml) > self.xmlLength:
+        newXmlLength = ET.tostring(self.xmlroot)
+        if newXmlLength > self.xmlLength:
            # Save as program.xml_tmp and then move to program.xml
            tmpFileName = self.pipelinexmlfile + '_tmp'
            CCP4Utils.writeXml(self.xmlroot, tmpFileName)
            shutil.move(tmpFileName, self.pipelinexmlfile)
-           self.xmlLength = len(newXml)
+           self.xmlLength = newXmlLength
 
     def createServalcatJob(self, withWeight=-1, inputCoordinates=None, ncyc=-1):
         result = self.makePluginObject('servalcat')
@@ -554,17 +552,12 @@ class servalcat_pipe(CPluginScript):
             # Save csv in program.xml
             xmlCoordAdpDev = ET.SubElement(self.xmlroot, 'COORD_ADP_DEV')
             xmlStats = ET.SubElement(xmlCoordAdpDev, 'STATISTICS')
-            xmlCoordDevMean = ET.SubElement(xmlStats, coordDevMean)
-            xmlCoordDevMean.text = str(round(coordDevMean, 2))
-            xmlCoordDevMinReported = ET.SubElement(xmlStats, 'coordDevMinReported')
-            xmlCoordDevMinReported.text = str(round(coordDevMinReported, 2))
-            xmlADPAbsDevMean = ET.SubElement(xmlStats, 'ADPAbsDevMean')
-            xmlADPAbsDevMean.text = str(round(ADPAbsDevMean, 2))
-            xmlADPAbsDevMinReported = ET.SubElement(xmlStats, 'coordADPAbsMinReported')
-            xmlADPAbsDevMinReported.text = str(round(ADPAbsDevMinReported, 2))
+            ET.SubElement(xmlStats, coordDevMean).text = str(round(coordDevMean, 2))
+            ET.SubElement(xmlStats, 'coordDevMinReported').text = str(round(coordDevMinReported, 2))
+            ET.SubElement(xmlStats, 'ADPAbsDevMean').text = str(round(ADPAbsDevMean, 2))
+            ET.SubElement(xmlStats, 'coordADPAbsMinReported').text = str(round(ADPAbsDevMinReported, 2))
             if os.path.exists(csvFilePath):
-                xmlCsvFile = ET.SubElement(xmlCoordAdpDev, 'CSV_FILE')
-                xmlCsvFile.text = csvFileName
+                ET.SubElement(xmlCoordAdpDev, 'CSV_FILE').text = csvFileName
             self.saveXml()
             print("Monitoring of changes/shifts of coordinates and ADPs...")
         except Exception as e:

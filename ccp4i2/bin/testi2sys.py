@@ -27,10 +27,7 @@ def onTestRunnerComplete(logXmlPath, logXmlRoot, app):
             t.quitServer()
         t.wait()
     if logXmlRoot is not None:
-        logXmlTree = ET.ElementTree(logXmlRoot)
-        with open(logXmlPath, 'wb') as f:
-            ET.indent(logXmlRoot)
-            f.write(ET.tostring(logXmlTree))
+        CCP4Utils.writeXml(logXmlRoot, logXmlPath)
     sys.exit()
 
 

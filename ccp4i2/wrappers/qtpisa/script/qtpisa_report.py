@@ -107,16 +107,12 @@ class qtpisa_report(Report):
         jobDirectory = jobInfo['fileroot']
 
         if self.jobInfo and "filenames" in self.jobInfo and "XYZOUT" in self.jobInfo["filenames"]:
-          i = 0
-          for fname in self.jobInfo['filenames']["XYZOUT"]:
+          for i, fname in enumerate(self.jobInfo['filenames']["XYZOUT"]):
              baseSceneXML = ET.parse(baseScenePath).getroot()
-             et = ET.ElementTree(baseSceneXML)
-             filename_element = et.findall(".//scene/data/MolData/filename")[0]
+             filename_element = baseSceneXML.findall(".//scene/data/MolData/filename")[0]
              del filename_element.attrib["database"]
              filename_element.text = fname
-             ET.indent(et)
-             print(ET.tostring(et))
-             sceneFilePath = os.path.join(jobDirectory,'qtpisa_scene'+str(i)+'.scene.xml')
-             et.write(sceneFilePath)
-             pic = pictureGallery.addPicture(sceneFile=sceneFilePath,label='Picture of structure '+str(i+1))
-             i = i + 1
+             CCP4Utils.printXml(baseSceneXML)
+             sceneFilePath = os.path.join(jobDirectory, f'qtpisa_scene{i}.scene.xml')
+             CCP4Utils.writeXml(baseSceneXML, sceneFilePath)
+             pictureGallery.addPicture(sceneFile=sceneFilePath,label='Picture of structure '+str(i+1))

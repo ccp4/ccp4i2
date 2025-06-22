@@ -40,28 +40,16 @@ class ccp4mg_edit_model(CPluginScript):
         if sys.platform == 'win32':
           self.mgStatusPath = re.sub(r'\\\\',r'\\',self.mgStatusPath)
         # Declare script text then re.sub in the variables
-        if sys.platform == "win32":
-          i2dir = CCP4Utils.getCCP4I2Dir().replace('\\','/')
-        else:
-          i2dir = CCP4Utils.getCCP4I2Dir()
-
-
-        status_xml = ""
 
         NSMAP = {'xsi':"http://www.w3.org/2001/XMLSchema-instance"}
         NS = NSMAP['xsi']
         location_attribute = '{%s}noNamespaceSchemaLocation' % NS
         tree = ET.Element("CCP4MG_Status",nsmap = NSMAP,attrib={location_attribute: 'http://www.ysbl.york.ac.uk/~mcnicholas/schema/CCP4MGApplicationOutput.xsd'})
 
-        ET.indent(tree)
-        status_xml += ET.tostring(tree,encoding='utf-8').decode("utf-8")
-
         print("Writing",self.mgStatusPath)
-        print(status_xml)
+        CCP4Utils.printXml(tree)
+        CCP4Utils.writeXml(tree, self.mgStatusPath)
 
-        with open(self.mgStatusPath, 'wb') as xmlFile:
-             xmlFile.write(bytes(status_xml,"utf-8"))
-        
         if sys.platform == 'win32':
             clArgs = [ '-noredirect','-norestore',self.mgStatusPath ]
         else:

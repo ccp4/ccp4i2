@@ -9,6 +9,7 @@ import xml.etree.ElementTree as ET
 
 from xia2.cli.ssx_reduce import phil_scope
 
+from ....core.CCP4Utils import printXml
 from ....utils.phil_handlers import PhilTaskCreator
 
 
@@ -120,8 +121,7 @@ class Xia2SsxReduceTaskCreator(PhilTaskCreator):
         )
 
         if self.debug:
-            ET.indent(self.phil_tree)
-            print(ET.tostring(self.phil_tree))
+            printXml(self.phil_tree)
 
         super(Xia2SsxReduceTaskCreator, self).__call__()
 

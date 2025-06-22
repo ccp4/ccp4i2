@@ -15,7 +15,7 @@ class MosflmRequestHandler(socketserver.StreamRequestHandler):
     
     def handle(self):
         responseText = "Squazgar"
-        currentXML = ''
+        currentXmlLength = ''
         
         while responseText != '<done>':
             responseText = self.rfile.readline().strip()
@@ -40,10 +40,9 @@ class MosflmRequestHandler(socketserver.StreamRequestHandler):
                         inBlockIntegrate = True
                     elif inBlockIntegrate:
                         inBlockIntegrate = False
-                        ET.indent(MosflmRequestHandler.xmlRoot)
-                        newXML = ET.tostring(MosflmRequestHandler.xmlRoot)
-                        if len(newXML) > len(currentXML):
-                            currentXML=newXML
+                        newXmlLength = len(ET.tostring(MosflmRequestHandler.xmlRoot))
+                        if newXmlLength > currentXmlLength:
+                            currentXmlLength = newXmlLength
                             CCP4Utils.writeXml(MosflmRequestHandler.xmlRoot, MosflmRequestHandler.xmlFilepath+'.tmp')
                             os.rename(MosflmRequestHandler.xmlFilepath+'.tmp',MosflmRequestHandler.xmlFilepath)
                 except:

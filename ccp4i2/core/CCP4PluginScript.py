@@ -2316,8 +2316,7 @@ class CRunPlugin(CObject):
             print('The contents are:')
             try:
                 etree = self.errorReport.getEtree()
-                ET.indent(etree)
-                print(ET.tostring(etree))
+                CCP4Utils.printXml(etree)
             except:
                 print('Error writing contents')
 

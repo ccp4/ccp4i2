@@ -55,12 +55,10 @@ class refmac_i2(CPluginScript):
         self.logScraper.processLogChunk(availableStdout.data().decode("utf-8"))
     
     def flushXML(self):
-        ET.indent(self.xmlroot)
-        newXml = ET.tostring(self.xmlroot)
-        if len(newXml)>self.xmlLength:
-            self.xmlLength = len(newXml)
-            with open (self.makeFileName('PROGRAMXML')+'_tmp','w') as programXmlFile:
-                programXmlFile.write(newXml.decode("utf-8"))
+        newXmlLength = len(ET.tostring(self.xmlroot))
+        if newXmlLength > self.xmlLength:
+            self.xmlLength = newXmlLength
+            CCP4Utils.writeXml(self.xmlroot, self.makeFileName('PROGRAMXML')+'_tmp')
             shutil.move(self.makeFileName('PROGRAMXML')+'_tmp', self.makeFileName('PROGRAMXML'))
 
     def processInputFiles(self):

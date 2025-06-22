@@ -4,12 +4,11 @@ import shutil
 import sqlite3
 import sys
 import tempfile
-import xml.etree.ElementTree as ET
 
-import reconstructDBFromXML
-if __name__ == "__main__":
-    sys.path.append(os.path.join(os.path.dirname(__file__),".."))
-import importDir
+from . import importDir
+from . import reconstructDBFromXML
+from ..core.CCP4Utils import writeXml
+
 
 if __name__ == "__main__":
 
@@ -47,11 +46,8 @@ if __name__ == "__main__":
                 continue
             if len(project_tree.xpath("//ccp4i2_body/jobTable/job")) == 0:
                 continue
-            ET.indent(project_tree)
-            outl = ET.tostring(project_tree).decode()
             dbxmlout = os.path.join(str(d),"DATABASE.db.xml")
-            with open(dbxmlout,"w+") as outfd:
-                outfd.write(outl)
+            writeXml(project_tree, dbxmlout)
 
             importDir.importFilesFromDirXML(tfn,str(d))
 

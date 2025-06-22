@@ -181,9 +181,8 @@ class prosmart_refmac(CPluginScript):
         self.saveXml()
 
     def saveXml2(self):
-        ET.indent(newXml)
-        newXml = ET.tostring(self.xmlroot2)
-        if len(newXml) > self.xmlLength2:
+        newXmlLength = len(ET.tostring(self.xmlroot2))
+        if newXmlLength > self.xmlLength2:
            firstFileName = self.pipelinexmlfile+'_first'
            with open(firstFileName,'r') as aFile:
                oldXml = ET.fromstring(aFile.read())
@@ -191,17 +190,16 @@ class prosmart_refmac(CPluginScript):
            tmpFileName = self.pipelinexmlfile+'_tmp'
            CCP4Utils.writeXml(oldXml, tmpFileName)
            shutil.move(tmpFileName, self.pipelinexmlfile)
-           self.xmlLength2 = len(newXml)
+           self.xmlLength2 = newXmlLength
 
     def saveXml(self):
         # Save the xml if it has grown
-        ET.indent(self.xmlroot)
-        newXml = ET.tostring(self.xmlroot)
-        if len(newXml) > self.xmlLength:
+        newXmlLength = ET.tostring(self.xmlroot)
+        if newXmlLength > self.xmlLength:
            tmpFileName = self.pipelinexmlfile+'_tmp'
-           CCP4Utils.writeXml(newXml, tmpFileName)
+           CCP4Utils.writeXml(self.xmlroot, tmpFileName)
            shutil.move(tmpFileName, self.pipelinexmlfile)
-           self.xmlLength = len(newXml)
+           self.xmlLength = newXmlLength
 
     def refmacJobWithWeight(self, withWeight=-1, inputCoordinates=None, ncyc=-1):
         result = self.makePluginObject('refmac')
@@ -439,7 +437,6 @@ class prosmart_refmac(CPluginScript):
             return
         else:
             self.addCycleXML(refmacJob,"refmacPostCoot")
-            ET.indent(self.xmlroot)
             refmacPostCoot = self.xmlroot.xpath("refmacPostCoot")
             aFile = open(self.pipelinexmlfile,'r')
             oldXml = ET.fromstring(aFile.read())

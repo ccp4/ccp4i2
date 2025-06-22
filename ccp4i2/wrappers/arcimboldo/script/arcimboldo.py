@@ -158,9 +158,7 @@ class arcimboldo(CPluginScript):
         element.text = pathHtml
         element = ET.SubElement(self.programXml, 'pathXml')
         element.text = pathXml
-        with open(self.makeFileName('PROGRAMXML'), 'w+') as xml:
-            ET.indent(self.programXml)
-            xml.write(ET.tostring(self.programXml, encoding='unicode'))
+        CCP4Utils.writeXml(self.programXml, self.makeFileName('PROGRAMXML'))
         self.watchFile(pathXml, self.refreshXML)
 
     def processInputFiles ( self ):
@@ -208,9 +206,7 @@ class arcimboldo(CPluginScript):
 
     def refreshXML(self, filename):
         tmpFilename = self.makeFileName('PROGRAMXML') + '_tmp'
-        with open(tmpFilename, 'w+') as xmlFile:
-            ET.indent(self.programXml)
-            xmlFile.write(ET.tostring(self.programXml, encoding='unicode'))
+        CCP4Utils.writeXml(self.programXml, tmpFilename)
         if os.path.exists(self.makeFileName('PROGRAMXML')):
             os.remove(self.makeFileName('PROGRAMXML'))
         os.rename(tmpFilename, self.makeFileName('PROGRAMXML'))

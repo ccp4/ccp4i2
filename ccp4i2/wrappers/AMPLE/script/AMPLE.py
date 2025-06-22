@@ -1,6 +1,5 @@
 import os
 import shutil
-import xml.etree.ElementTree as ET
 
 from ample.constants import AMPLE_PKL
 from ample.util import mrbump_util
@@ -8,6 +7,7 @@ from ample.util.ample_util import I2DIR
 
 from ....core import CCP4ErrorHandling
 from ....core.CCP4PluginScript import CPluginScript
+from ....core.CCP4Utils import writeXml
 
 
 class AMPLE(CPluginScript):
@@ -183,9 +183,7 @@ class AMPLE(CPluginScript):
 
     def flushXML(self):
         tmpFilename = self.makeFileName('PROGRAMXML') + '_tmp'
-        with open(tmpFilename, 'wb') as xmlFile:
-            ET.indent(self.xmlroot)
-            xmlFile.write(ET.tostring(self.xmlroot))
+        writeXml(self.xmlroot, tmpFilename)
         if os.path.exists(self.makeFileName('PROGRAMXML')):
             os.remove(self.makeFileName('PROGRAMXML'))
         os.rename(tmpFilename, self.makeFileName('PROGRAMXML'))

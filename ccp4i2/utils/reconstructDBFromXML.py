@@ -56,6 +56,7 @@ from dateutil.tz import tzlocal
 from lxml import etree
 
 from .. import I2_TOP
+from ..core.CCP4Utils import printXml
 
 
 timeZoneName = datetime.datetime.now(tzlocal()).tzname().split()[0]
@@ -581,5 +582,4 @@ def generate_xml_from_project_directory(project_dir):
 
 if __name__ == "__main__":
     project_tree = generate_xml_from_project_directory(sys.argv[1])
-    ET.indent(project_tree)
-    print(ET.tostring(project_tree).decode())
+    printXml(project_tree)

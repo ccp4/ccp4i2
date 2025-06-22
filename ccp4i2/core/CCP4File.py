@@ -4,7 +4,6 @@ Liz Potterton Aug 2010 - File handling classes
 
 import getpass
 import hashlib
-import io
 import os
 import re
 import shutil
@@ -1026,8 +1025,7 @@ class CXmlDataFile(CDataFile):
             fileName = self.fullPath.get()
         root = self.getEtreeRoot(fileName)
         if printout:
-            ET.indent(root)
-            print(ET.tostring(root))
+            CCP4Utils.printXml(root)
         return root
 
     def assertSame(self, arg, testPath=False, testChecksum=True, testSize=False, testDiff=False, diagnostic=False, fileName=None):
@@ -1053,12 +1051,7 @@ class CXmlDataFile(CDataFile):
             traceback.print_stack()
             raise CException(self.__class__, 1006, fileName, name=self.objectPath())
         try:
-            ET.indent(bodyEtree)
-            text = ET.tostring(bodyEtree, xml_declaration=True)
-        except:
-            raise CException(self.__module__, 1007, fileName)
-        try:
-            CCP4Utils.saveFile(fileName=fileName, text=text, overwrite=1)
+            CCP4Utils.writeXml(bodyEtree, fileName, xml_declaration=True)
         except:
             raise CException(self.__module__, 1008, fileName)
 
@@ -1097,8 +1090,7 @@ class CI2XmlDataFile(CXmlDataFile):
             fileName = self.fullPath.get()
         root = self.getEtreeRoot(fileName)
         if printout:
-            ET.indent(root)
-            print(ET.tostring(root))
+            CCP4Utils.printXml(root)
         return self.loadHeader(root)
 
     def getEtreeRoot(self, fileName=None):

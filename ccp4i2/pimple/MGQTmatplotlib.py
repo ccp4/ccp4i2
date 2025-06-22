@@ -33,6 +33,8 @@ import matplotlib.gridspec as gridspec
 import matplotlib.transforms as mtransforms
 import numpy
 
+from ..core.CCP4Utils import writeXml
+
 
 numpy.seterr(invalid='ignore')
 
@@ -1072,10 +1074,6 @@ class LogGraph(QtWidgets.QWidget):
                     self.loadFile(str(f))
 
     def statusAsXML(self):
-        status_xml = ""
-        header ="""<?xml version="1.0" encoding="UTF-8" ?>\n"""
-        status_xml += header
-
         NSMAP = {'xsi':"http://www.w3.org/2001/XMLSchema-instance"}
         NS = NSMAP['xsi']
         location_attribute = '{%s}noNamespaceSchemaLocation' % NS
@@ -1245,20 +1243,10 @@ class LogGraph(QtWidgets.QWidget):
                                                 el.append(ET.Element('yscale'))
                                                 el.xpath("yscale")[0].text = 'oneoversqrt'
                         tableTree.append(copy.deepcopy(el))
-
-        ET.indent(tree)
-        status_xml += ET.tostring(tree,encoding='utf-8').decode("utf-8")
-        return status_xml
+        return tree
 
     @QtCore.Slot(bool,bool)
     def saveFileDialog(self,saveAll=False,saveStatus=False):
-        """
-        if saveStatus:
-            print "Saving status"
-            status = self.statusAsXML()
-            #print status; sys.stdout.flush()
-            return
-        """
         filter_list = []
         if not saveAll:
             filter_list.append(self.tr("Postscript (*.ps)"))
@@ -1303,10 +1291,7 @@ class LogGraph(QtWidgets.QWidget):
 
             if saveStatus:
                 print("Saving status")
-                status = self.statusAsXML()
-                f = open(filename,"w")
-                f.write(status)
-                f.close()
+                writeXml(self.statusAsXML(), filename, xml_declaration=True)
                 return
             if saveAll:
                 pp = PdfPages(filename)
