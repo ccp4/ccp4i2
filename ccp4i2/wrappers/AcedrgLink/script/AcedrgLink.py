@@ -1,9 +1,5 @@
 import os
-import xml.etree.ElementTree as ET
 
-from lxml import etree
-
-from ....core import CCP4Utils
 from ....core.CCP4PluginScript import CPluginScript
 
 
@@ -49,14 +45,5 @@ class AcedrgLink(CPluginScript):
 
         self.container.outputData.UNL_PDB.setFullPath(os.path.join(self.getWorkDirectory(),self.container.inputData.LINK_ID.__str__()+"_TMP","UNL_for_link.pdb"))
         self.container.outputData.UNL_CIF.setFullPath(os.path.join(self.getWorkDirectory(),self.container.inputData.LINK_ID.__str__()+"_TMP","UNL_for_link.cif"))
-
-        #Create (dummy) PROGRAMXML, which basically contains only the log text of the job
-        #without this, a report will not be generated
-        
-        xmlStructure = ET.Element("acedrg_link")
-        logText = ET.SubElement(xmlStructure,"LogText")
-        with open(self.makeFileName("LOG"),"r") as logFile:
-            logText.text = etree.CDATA(logFile.read())
-        CCP4Utils.writeXml(xmlStructure, self.makeFileName("PROGRAMXML"))
 
         return CPluginScript.SUCCEEDED
