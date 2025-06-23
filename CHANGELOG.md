@@ -1,8 +1,9 @@
 # CCP4i2 Changelog
 
-## [2.3.4] - 2025-06-09
+## [2.3.4] - 2025-06-23
 
 - Fix for deprecated numpy.float
+- More AceDrg i2run tests
 
 ## [2.3.3] - 2025-05-29
 
