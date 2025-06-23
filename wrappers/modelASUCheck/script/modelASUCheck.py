@@ -16,129 +16,94 @@
     GNU Lesser General Public License for more details.
     """
 
-import os
 import traceback
-from lxml import etree
-from core.CCP4PluginScript import CPluginScript
+import xml.etree.ElementTree as ET
+
+from scipy.optimize import linear_sum_assignment
+import gemmi
+import numpy as np
+
 from core import CCP4Utils
+from core.CCP4PluginScript import CPluginScript
 
-def addSequenceAlignmentToEtree(fn,asuin,root):
-    import gemmi
-    import numpy as np
-    from scipy.optimize import linear_sum_assignment
 
-    xml_seq_align = etree.SubElement(root,"SequenceAlignment")
+class modelASUCheck(CPluginScript):
+    TASKNAME = "modelASUCheck"
+    TASKVERSION = 0.1
+    MAINTAINER = "person@server.com"
+    ERROR_CODES = {
+        201: {"description": "Failed to analyse output files"},
+        202: {"description": "Failed applying selection ot PDB file"},
+    }
+    RUNEXTERNALPROCESS = False
 
-    provide_seq_asu = []
+    def startProcess(self, command=None, handler=None, **kw):
+        xyzin = self.container.inputData.XYZIN
+        asuin = self.container.inputData.ASUIN
 
-    for idx in range(len(asuin.fileContent.seqList)):
-        seq = asuin.fileContent.seqList[idx].sequence
-        nCopies = int(asuin.fileContent.seqList[idx].nCopies)
-        for ic in range(nCopies):
-            if asuin.fileContent.seqList[idx].polymerType == "PROTEIN":
-                seq_full = [gemmi.expand_one_letter(i, gemmi.ResidueKind.AA) for i in seq]
-                provide_seq_asu.append((seq_full,gemmi.ResidueKind.AA))
-            elif asuin.fileContent.seqList[idx].polymerType == "DNA":
-                seq_full = [gemmi.expand_one_letter(i, gemmi.ResidueKind.DNA) for i in seq]
-                provide_seq_asu.append((seq_full,gemmi.ResidueKind.DNA))
-            elif asuin.fileContent.seqList[idx].polymerType == "RNA":
-                seq_full = [gemmi.expand_one_letter(i, gemmi.ResidueKind.RNA) for i in seq]
-                provide_seq_asu.append((seq_full,gemmi.ResidueKind.RNA))
+        xml = ET.Element("modelASUCheck")
+        try:
+            xml.append(sequenceAlignment(str(xyzin), asuin))
+        except Exception as err:
+            traceback.print_exc()
+            print("...importing sequences for alignment test failed", err)
+            return CPluginScript.FAILED
+        CCP4Utils.saveEtreeToFile(xml, self.makeFileName("PROGRAMXML"))
+        return CPluginScript.SUCCEEDED
 
-    st = gemmi.read_structure(fn)
-    st.setup_entities()
+
+def sequenceAlignment(xyzinPath, asuin):
+    structure = gemmi.read_structure(xyzinPath)
+    structure.setup_entities()
 
     align_scores = []
     align_results = []
-    for c in st[0]:
+    for chain in structure[0]:
         score_row = []
         results_row = []
-        for asu_seq,seq_type in provide_seq_asu:
-            if seq_type == gemmi.ResidueKind.AA:
-                matchType = gemmi.PolymerType.PeptideL
-            elif seq_type == gemmi.ResidueKind.DNA:
-                matchType = gemmi.PolymerType.Dna
-            elif seq_type == gemmi.ResidueKind.RNA:
-                matchType = gemmi.PolymerType.Rna
-            result = gemmi.align_sequence_to_polymer(asu_seq,
-                             c.get_polymer(),
-                             matchType,
-                             gemmi.AlignmentScoring())
-
+        for fullSeq, polymerType in sequences(asuin):
+            scoring = gemmi.AlignmentScoring()
+            result = gemmi.align_sequence_to_polymer(
+                fullSeq, chain.get_polymer(), polymerType, scoring
+            )
             score_row.append(result.score)
-            results_row.append((result,asu_seq,c))
-
+            results_row.append((result, fullSeq, chain))
         align_scores.append(score_row)
         align_results.append(results_row)
 
     cost = np.array(align_scores)
-    row_ind, col_ind = linear_sum_assignment(cost,True)
+    row_ind, col_ind = linear_sum_assignment(cost, True)
 
-    ii = 0
-    for icol in col_ind:
-        irow = row_ind[ii]
-        result = align_results[irow][icol][0]
-        seq =  align_results[irow][icol][1]
-        chain =  align_results[irow][icol][2]
-        ii += 1
+    xml = ET.Element("SequenceAlignment")
+    for irow, icol in zip(row_ind, col_ind):
+        result, seq, chain = align_results[irow][icol]
 
-        xml_this_chain_align = etree.SubElement(xml_seq_align,"Alignment")
-        xml_chain_id = etree.SubElement(xml_this_chain_align,"ChainID")
-        xml_chain_id.text = chain.name
-        xml_chain_match_count = etree.SubElement(xml_this_chain_align,"match_count")
-        xml_chain_match_count.text = str(result.match_count)
-        xml_chain_match_identity = etree.SubElement(xml_this_chain_align,"identity")
-        xml_chain_match_identity.text = str(result.calculate_identity())
-        xml_chain_match_identity_1 = etree.SubElement(xml_this_chain_align,"identity_1")
-        xml_chain_match_identity_1.text = str(result.calculate_identity(1))
-        xml_chain_match_identity_2 = etree.SubElement(xml_this_chain_align,"identity_2")
-        xml_chain_match_identity_2.text = str(result.calculate_identity(2))
-        xml_chain_match_cigar = etree.SubElement(xml_this_chain_align,"CIGAR")
-        xml_chain_match_cigar.text = str(result.cigar_str())
+        alignment = ET.SubElement(xml, "Alignment")
+        ET.SubElement(alignment, "ChainID").text = chain.name
+        ET.SubElement(alignment, "match_count").text = str(result.match_count)
+        ET.SubElement(alignment, "identity").text = str(result.calculate_identity())
+        ET.SubElement(alignment, "identity_1").text = str(result.calculate_identity(1))
+        ET.SubElement(alignment, "identity_2").text = str(result.calculate_identity(2))
+        ET.SubElement(alignment, "CIGAR").text = str(result.cigar_str())
+        ET.SubElement(alignment, "align_1").text = result.add_gaps(
+            gemmi.one_letter_code(seq), 1
+        )
+        ET.SubElement(alignment, "align_match").text = result.match_string
+        ET.SubElement(alignment, "align_2").text = result.add_gaps(
+            gemmi.one_letter_code(chain.get_polymer().extract_sequence()), 2
+        )
+    return xml
 
-        xml_chain_match_align_1 = etree.SubElement(xml_this_chain_align,"align_1")
-        xml_chain_match_align_1.text = result.add_gaps(gemmi.one_letter_code(seq),1)
-        xml_chain_match_align_1 = etree.SubElement(xml_this_chain_align,"align_match")
-        xml_chain_match_align_1.text = result.match_string
-        xml_chain_match_align_2 = etree.SubElement(xml_this_chain_align,"align_2")
-        xml_chain_match_align_2.text = result.add_gaps(gemmi.one_letter_code(chain.get_polymer().extract_sequence()), 2)
 
-class modelASUCheck(CPluginScript):
-    TASKNAME = 'modelASUCheck'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
-    TASKVERSION= 0.1               # Version of this plugin
-    MAINTAINER = 'person@server.com'
-    ERROR_CODES = { 201 : {'description' : 'Failed to analyse output files' },
-                    202 : {'description' : 'Failed applying selection ot PDB file' }
-                    }
-    PURGESEARCHLIST = [ [ 'hklin.mtz' , 0 ],
-                       ['log_mtzjoin.txt', 0]
-                       ]
-    TASKCOMMAND="None"
-    ASYNCHRONOUS = False
-    RUNEXTERNALPROCESS = False
-
-    def __init__(self, *args, **kws):
-        super(modelASUCheck, self).__init__(*args, **kws)
-
-    def makeCommandAndScript(self,**kw):
-        return
-    
-    def startProcess(self, comList, **kw):
-    
-        xyzin = self.container.inputData.XYZIN
-        asuin = self.container.inputData.ASUIN
-
-        self.xmlroot = etree.Element('modelASUCheck')
-        
-        if asuin.isSet() and xyzin.isSet():
-            try:
-                addSequenceAlignmentToEtree(str(xyzin),asuin,self.xmlroot)
-            except Exception as err:
-                traceback.print_exc()
-                print("...importing sequences for alignment test failed", err)
-        CCP4Utils.saveEtreeToFile(self.xmlroot,self.makeFileName('PROGRAMXML'))
-
-        return CPluginScript.SUCCEEDED
-
-    def processOutputFiles(self):
-        return CPluginScript.SUCCEEDED
+def sequences(asuin):
+    for seq in asuin.fileContent.seqList:
+        for _ in range(int(seq.nCopies)):
+            if seq.polymerType == "PROTEIN":
+                expanded = gemmi.expand_one_letter_sequence(seq.sequence, gemmi.ResidueKind.AA)
+                yield expanded, gemmi.PolymerType.PeptideL
+            elif seq.polymerType == "DNA":
+                expanded = gemmi.expand_one_letter_sequence(seq.sequence, gemmi.ResidueKind.DNA)
+                yield expanded, gemmi.PolymerType.Dna
+            elif seq.polymerType == "RNA":
+                expanded = gemmi.expand_one_letter_sequence(seq.sequence, gemmi.ResidueKind.RNA)
+                yield expanded, gemmi.PolymerType.Rna
