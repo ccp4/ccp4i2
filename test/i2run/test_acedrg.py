@@ -13,7 +13,7 @@ def test_from_cif_monomer_library():
     args += ["--DICTIN2", cifPath]
     args += ["--USE_COORD", "True"]
     with i2run(args) as job:
-        check_output(job, "A1LU6", hasLongLigandName=True)
+        check_output(job, "A1LU6")
 
 
 def test_from_cif_rcsb():
@@ -23,7 +23,7 @@ def test_from_cif_rcsb():
         args += ["--TLC", "A1LU6"]
         args += ["--DICTIN2", cifPath]
         with i2run(args) as job:
-            check_output(job, "A1LU6", hasLongLigandName=True)
+            check_output(job, "A1LU6")
 
 
 def test_from_cif_rcsb_metal_AF3():
@@ -57,7 +57,7 @@ def test_from_sdf():
         args += ["--TLC", "A1LU6"]
         args += ["--MOLIN", sdfPath]
         with i2run(args) as job:
-            check_output(job, "A1LU6", hasLongLigandName=True)
+            check_output(job, "A1LU6")
 
 
 def test_from_smiles():
@@ -92,12 +92,10 @@ def test_from_smiles_atom_name_matching():
         check_output(job, "LIG")
 
 
-def check_output(job: Path, code: str, hasLongLigandName=False):
-    cifPath = job / f"{code}.cif"
-    if not hasLongLigandName:
-        pdbPath = job / f"{code}.pdb"
-        gemmi.read_pdb(str(pdbPath))
-    doc = gemmi.cif.read(str(cifPath))
+def check_output(job: Path, code: str):
+    if len(code) <= 3:
+        gemmi.read_pdb(str(job / f"{code}.pdb"))
+    doc = gemmi.cif.read(str(job / f"{code}.cif"))
     gemmi.make_chemcomp_from_block(doc[-1])
 
 
