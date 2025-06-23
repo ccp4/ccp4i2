@@ -17,41 +17,39 @@
     """
 
 from report.CCP4ReportParser import Report
-import sys
+
 
 class modelASUCheck_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'modelASUCheck'
-    RUNNING = False
-    def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):
-        Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo, jobStatus=jobStatus, **kw)
-        clearingDiv = self.addDiv(style="clear:both;")
-        xmlPath = './/SequenceAlignment/Alignment'
-        xmlNodes = xmlnode.findall(xmlPath)
-        self.addAlignReport(xmlNodes,True)
 
-    def addAlignReport(self,xmlNodes,initiallyOpen=False,parent=None):
+    def __init__(self, xmlnode=None, jobInfo={}, jobStatus=None, **kw):
+        super(). __init__(xmlnode=xmlnode, jobInfo=jobInfo, jobStatus=jobStatus, **kw)
+        self.addAlignReport(xmlnode, initiallyOpen=True)
+
+    def addAlignReport(self, xml, initiallyOpen=False, parent=None):
         if parent is None:
             parent = self
-        
+
+        xmlNodes = xml.findall('.//SequenceAlignment/Alignment')
         if len(xmlNodes)>0:
-          clearingDiv = parent.addDiv(style="clear:both;")
-          alignFold = parent.addFold(label='Sequence alignment information',brief='Seq. Align. Info.', initiallyOpen=initiallyOpen)
-          k = 60
-          for alignNode in xmlNodes:
+            parent.addDiv(style="clear:both;")
+            fold = parent.addFold(label='Sequence alignment information',brief='Seq. Align. Info.', initiallyOpen=initiallyOpen)
+            lineLength = 60
+            for alignNode in xmlNodes:
                 chainID = alignNode.findall("ChainID")[0].text
-                match_count = alignNode.findall("match_count")[0].text
+                matchCount = alignNode.findall("match_count")[0].text
                 identity = alignNode.findall("identity")[0].text
                 cigar = alignNode.findall("CIGAR")[0].text
-                align_1 = alignNode.findall("align_1")[0].text
-                align_2 = alignNode.findall("align_2")[0].text
-                align_match = alignNode.findall("align_match")[0].text
-                labelDiv = alignFold.addDiv(style='border:0px solid black; width:700px; overflow:auto;')
+                align1 = alignNode.findall("align_1")[0].text
+                align2 = alignNode.findall("align_2")[0].text
+                alignMatch = alignNode.findall("align_match")[0].text
+                labelDiv = fold.addDiv(style='border:0px solid black; width:700px; overflow:auto;')
                 labelDiv.append("<b>Chain: "+chainID+"</b>")
+
                 tableText = "<table>\n"
                 tableText += "<tr>"
                 tableText += "<th>Match count</th>"
-                tableText += "<td>"+match_count+"</td>"
+                tableText += "<td>"+matchCount+"</td>"
                 tableText += "</tr>"
                 tableText += "<tr>"
                 tableText += "<th>Identity</th>"
@@ -62,18 +60,16 @@ class modelASUCheck_report(Report):
                 tableText += "<td>"+cigar+"</td>"
                 tableText += "</tr>"
                 tableText += "</table>\n"
-                alignFold.append(tableText)
-                pre_text = ""
+                fold.append(tableText)
 
-                for i in range(0, len(align_match), k):
-                     pre_text += str(i+1)
-                     pre_text += (60-len(str(i)+str(i+k)))*' '
-                     pre_text += str(min(i+k,len(align_match)))
-                     pre_text += "\n"
-                     pre_text += align_1[i:i+k] + "\n"
-                     pre_text += align_match[i:i+k] + "\n"
-                     pre_text += align_2[i:i+k] + "\n"
-                     pre_text += "\n"
-
-                alignFold.append('<pre>'+pre_text+'</pre>')
-    
+                preText = ""
+                for i in range(0, len(alignMatch), lineLength):
+                    preText += str(i + 1)
+                    preText += (60 - len(str(i) + str(i + lineLength))) * " "
+                    preText += str(min(i + lineLength, len(alignMatch)))
+                    preText += "\n"
+                    preText += align1[i : i + lineLength] + "\n"
+                    preText += alignMatch[i : i + lineLength] + "\n"
+                    preText += align2[i : i + lineLength] + "\n"
+                    preText += "\n"
+                fold.append('<pre>'+preText+'</pre>')
