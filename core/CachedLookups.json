@@ -116,8 +116,7 @@
             "shelxeMR",
             "dr_mr_modelbuild_pipeline",
             "ccp4mg_general",
-            "coot1",
-            "coot_one"
+            "coot1"
         ],
         "model_data_utility": [
             "csymmatch",
@@ -767,15 +766,6 @@
                 "class": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues_reportcoot_fit_residues_report",
                 "clsModule": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues_report",
                 "clsName": "coot_fit_residues_report",
-                "modes": []
-            }
-        },
-        "coot_one": {
-            "0.0.0": {
-                "MAINTAINER": "Nobody",
-                "class": "wrappers.coot_1.script.coot_one_reportcoot_one_report",
-                "clsModule": "wrappers.coot_1.script.coot_one_report",
-                "clsName": "coot_one_report",
                 "modes": []
             }
         },
@@ -2501,19 +2491,6 @@
                 "class": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residuescoot_fit_residues",
                 "clsModule": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues",
                 "clsName": "coot_fit_residues",
-                "internal": false,
-                "subTasks": []
-            }
-        },
-        "coot_one": {
-            "0.0": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "stuart.mcnicholas@york.ac.uk",
-                "TASKTITLE": "Rebuild model with coot 1",
-                "class": "wrappers.coot_1.script.coot_onecoot_one",
-                "clsModule": "wrappers.coot_1.script.coot_one",
-                "clsName": "coot_one",
                 "internal": false,
                 "subTasks": []
             }
@@ -5266,20 +5243,6 @@
                 "clsName": "Ccoot_fit_residues",
                 "shortTitle": "Coot fit residues",
                 "taskName": "coot_fit_residues",
-                "taskVersion": 0.1
-            }
-        },
-        "coot_one": {
-            "0.0.0": {
-                "DESCRIPTION": "Interactive building (Coot 1)",
-                "MAINTAINER": "Nobody",
-                "RANK": null,
-                "TASKTITLE": "Model building - COOT 1",
-                "class": "wrappers.coot_1.script.coot_one_guiCcoot_one",
-                "clsModule": "wrappers.coot_1.script.coot_one_gui",
-                "clsName": "Ccoot_one",
-                "shortTitle": "COOT",
-                "taskName": "coot_one",
                 "taskVersion": 0.1
             }
         },
