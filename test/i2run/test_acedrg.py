@@ -6,7 +6,7 @@ from .utils import download, i2run
 
 
 def test_from_cif_monomer_library():
-    cifPath = Path(environ["CLIBD_MON"], "A", "A1LU6.cif")
+    cifPath = str(Path(environ["CLIBD_MON"], "A", "A1LU6.cif"))
     args = ["LidiaAcedrgNew"]
     args += ["--MOLSMILESORSKETCH", "DICT"]
     args += ["--TLC", "A1LU6"]
