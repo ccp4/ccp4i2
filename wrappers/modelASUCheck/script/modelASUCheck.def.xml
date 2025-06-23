@@ -8,10 +8,9 @@
         <ccp4iVersion>0.0.1</ccp4iVersion>
         <pluginName>modelASUCheck</pluginName>
         <pluginTitle>Check model against AU contents</pluginTitle>
-        <jobId/>
+        <jobId />
     </ccp4i2_header>
     <ccp4i2_body id="modelASUCheck">
-<!--You must provide an inputData container, although it can be empty-->
         <container id="inputData">
             <content id="XYZIN">
                 <className>CPdbDataFile</className>
@@ -21,16 +20,15 @@
                 </qualifiers>
             </content>
             <content id="ASUIN">
-              <className>CAsuDataFile</className>
-              <qualifiers>
-                <mustExist>True</mustExist>
-                <allowUndefined>False</allowUndefined>
-                <fromPreviousJob>False</fromPreviousJob>
-                <selectionMode>0</selectionMode>
-              </qualifiers>
+                <className>CAsuDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                    <fromPreviousJob>False</fromPreviousJob>
+                    <selectionMode>0</selectionMode>
+                </qualifiers>
             </content>
         </container>
-<!--You must provide an outputData container, although it can be empty-->
         <container id="outputData">
         </container>
     </ccp4i2_body>

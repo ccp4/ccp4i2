@@ -18,19 +18,14 @@
 
 from qtgui.CCP4TaskWidget import CTaskWidget
 
-#-------------------------------------------------------------------
-class modelASUCheck_gui(CTaskWidget):
-#-------------------------------------------------------------------
 
+class modelASUCheck_gui(CTaskWidget):
     TASKNAME = 'modelASUCheck'
     TASKVERSION = 0.1
     TASKMODULE = [ 'model_data_utility' ]
-    SHORTTASKTITLE='Check model against AU contents'
-    TASKTITLE='Check model against AU contents'
-    DESCRIPTION = '''Align sequences in model to those in AU contents to validate model.'''
-
-    def __init__(self,parent):
-        CTaskWidget.__init__(self,parent)
+    SHORTTASKTITLE = 'Check model against AU contents'
+    TASKTITLE = 'Check model against AU contents'
+    DESCRIPTION = 'Align sequences in model to those in AU contents to validate model.'
 
     def drawContents(self):
         self.openFolder(folderFunction='inputData',followFrom=False)
