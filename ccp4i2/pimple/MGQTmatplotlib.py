@@ -19,7 +19,6 @@ import uuid
 import warnings
 import xml.etree.ElementTree as ET
 
-from lxml import etree
 from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib.backends.backend_qt5agg import FigureCanvas
 from matplotlib.backends.qt_compat import QtCore, QtGui, QtWidgets
@@ -28,6 +27,7 @@ from matplotlib.font_manager import FontProperties
 from matplotlib.ticker import FuncFormatter, ScalarFormatter
 from pylab import cm
 from scipy import optimize
+from xmlschema import XMLSchema
 import matplotlib
 import matplotlib.gridspec as gridspec
 import matplotlib.transforms as mtransforms
@@ -1953,9 +1953,9 @@ class LogGraph(QtWidgets.QWidget):
             return []
 
         if xsd:
-            xmlschema_doc = None
+            schema = None
             try:
-                    xmlschema_doc = ET.parse(xsd).getroot()
+                    schema = XMLSchema(xsd)
             except:
                     exc_type, exc_value,exc_tb = sys.exc_info()[:3]
                     sys.stderr.write(str(exc_type)+'\n')
@@ -1963,11 +1963,10 @@ class LogGraph(QtWidgets.QWidget):
                     traceback.print_tb(exc_tb)
                     QtWidgets.QMessageBox.warning(self,"XML validation error","File "+xsd+ " is not a valid schema")
 
-            if xmlschema_doc is not None:
+            if schema is not None:
                 try:
-                    xmlschema = etree.XMLSchema(xmlschema_doc)
-                    xmlschema.assertValid(doc)
-                    print("Validated successfully against",xsd)
+                    schema.validate(doc)
+                    print("Validated successfully against", xsd)
                 except:
                     exc_type, exc_value,exc_tb = sys.exc_info()[:3]
                     sys.stderr.write(str(exc_type)+'\n')

@@ -26,7 +26,6 @@ import copy
 import csv
 import functools
 import glob
-import io
 import json
 import os
 import re
@@ -37,8 +36,8 @@ import traceback
 import uuid
 import xml.etree.ElementTree as ET
 
-from lxml import etree as lxml_etree
 from PySide2 import QtCore, QtGui
+from xmlschema import XMLSchema, XMLSchemaValidationError
 import clipper
 
 from ..core import CCP4Utils
@@ -3095,13 +3094,8 @@ class Plot(GenericElement):
     GenericElement.__init__(self,tag='plot',text=text,**kw)
 
   def validate(self):
-    try:
-      schemafile = os.path.join(CCP4Utils.getCCP4I2Dir(),'pimple','CCP4ApplicationOutput.xsd')
-      schematree = ET.parse(schemafile).getroot()
-      schema = lxml_etree.XMLSchema(schematree)
-    except:
-      raise
-      return CErrorReport(self.__class__,101,schemafile)
+    schemafile = os.path.join(CCP4Utils.getCCP4I2Dir(),'pimple','CCP4ApplicationOutput.xsd')
+    schema = XMLSchema(schemafile)
 
     print("SCHEMA",schema)
 
@@ -3111,12 +3105,11 @@ class Plot(GenericElement):
     table.append(tree)
     output = ET.Element('CCP4ApplicationOutput')
     output.append(table)
-    valid = schema.validate(ET.fromstring(ET.tostring(output)))
-    if not valid:
-      log = str(schema.error_log)
-      #print 'validate log',log
+    try:
+      schema.validate(output)
+    except XMLSchemaValidationError as err:
       err = CErrorReport()
-      err.append(self.__class__,102,log)
+      err.append(self.__class__,102,err.reason)
       return err
     else:
       return CErrorReport()
