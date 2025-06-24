@@ -335,11 +335,8 @@ class prosmart_refmac_report(Report):
                 suggestedDiv.append(tableText)
                 suggestedDiv.append('<p><b>You can do this by clicking the <i>"Re-run with suggested parameters"</i> button at the bottom of this report.</b></p>')
 
-        xmlNodes = xmlnode.findall('.//SequenceAlignment/Alignment')
-        if len(xmlNodes) > 0:
-          self.addDiv(style="clear:both;")
-          align_report = modelASUCheck_report.modelASUCheck_report(xmlnode=self.xmlnode, jobInfo=self.jobInfo)
-          align_report.addAlignReport(xmlNodes, parent=self)
+        align_report = modelASUCheck_report.modelASUCheck_report(xmlnode=self.xmlnode, jobInfo=self.jobInfo)
+        align_report.addAlignReport(xmlnode, parent=self)
 
         self.showWarnings()
 
