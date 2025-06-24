@@ -17,8 +17,8 @@
     """
 
 import traceback
-import xml.etree.ElementTree as ET
 
+from lxml import etree
 from scipy.optimize import linear_sum_assignment
 import gemmi
 import numpy as np
@@ -41,7 +41,7 @@ class modelASUCheck(CPluginScript):
         xyzin = self.container.inputData.XYZIN
         asuin = self.container.inputData.ASUIN
 
-        xml = ET.Element("modelASUCheck")
+        xml = etree.Element("modelASUCheck")
         try:
             xml.append(sequenceAlignment(str(xyzin), asuin))
         except Exception as err:
@@ -74,22 +74,22 @@ def sequenceAlignment(xyzinPath, asuin):
     cost = np.array(align_scores)
     row_ind, col_ind = linear_sum_assignment(cost, True)
 
-    xml = ET.Element("SequenceAlignment")
+    xml = etree.Element("SequenceAlignment")
     for irow, icol in zip(row_ind, col_ind):
         result, seq, chain = align_results[irow][icol]
 
-        alignment = ET.SubElement(xml, "Alignment")
-        ET.SubElement(alignment, "ChainID").text = chain.name
-        ET.SubElement(alignment, "match_count").text = str(result.match_count)
-        ET.SubElement(alignment, "identity").text = str(result.calculate_identity())
-        ET.SubElement(alignment, "identity_1").text = str(result.calculate_identity(1))
-        ET.SubElement(alignment, "identity_2").text = str(result.calculate_identity(2))
-        ET.SubElement(alignment, "CIGAR").text = str(result.cigar_str())
-        ET.SubElement(alignment, "align_1").text = result.add_gaps(
+        alignment = etree.SubElement(xml, "Alignment")
+        etree.SubElement(alignment, "ChainID").text = chain.name
+        etree.SubElement(alignment, "match_count").text = str(result.match_count)
+        etree.SubElement(alignment, "identity").text = str(result.calculate_identity())
+        etree.SubElement(alignment, "identity_1").text = str(result.calculate_identity(1))
+        etree.SubElement(alignment, "identity_2").text = str(result.calculate_identity(2))
+        etree.SubElement(alignment, "CIGAR").text = str(result.cigar_str())
+        etree.SubElement(alignment, "align_1").text = result.add_gaps(
             gemmi.one_letter_code(seq), 1
         )
-        ET.SubElement(alignment, "align_match").text = result.match_string
-        ET.SubElement(alignment, "align_2").text = result.add_gaps(
+        etree.SubElement(alignment, "align_match").text = result.match_string
+        etree.SubElement(alignment, "align_2").text = result.add_gaps(
             gemmi.one_letter_code(chain.get_polymer().extract_sequence()), 2
         )
     return xml
@@ -102,6 +102,6 @@ def sequences(asuin):
             "DNA": (gemmi.ResidueKind.DNA, gemmi.PolymerType.Dna),
             "RNA": (gemmi.ResidueKind.RNA, gemmi.PolymerType.Rna),
         }[seq.polymerType]
-        expanded = gemmi.expand_one_letter_sequence(seq.sequence, residueKind)
+        expanded = gemmi.expand_one_letter_sequence(str(seq.sequence), residueKind)
         for _ in range(int(seq.nCopies)):
             yield expanded, polymerType
