@@ -26,6 +26,8 @@ from core import CCP4ErrorHandling
 from core import CCP4Utils
 import os,sys,shutil,re
 import traceback
+from wrappers.modelASUCheck.script.modelASUCheck import sequenceAlignment
+
 
 class prosmart_refmac(CPluginScript):
 
@@ -758,15 +760,9 @@ class prosmart_refmac(CPluginScript):
         if asuin.isSet():
             self.saveXml()
             try:
-                self.modelASUCheck = self.makePluginObject('modelASUCheck')
-                self.modelASUCheck.container.inputData.XYZIN.set(self.container.outputData.XYZOUT)
-                self.modelASUCheck.container.inputData.ASUIN.set(asuin)
-                self.modelASUCheck.process()
-                modelASUCheckEtree = CCP4Utils.openFileToEtree(self.modelASUCheck.makeFileName('PROGRAMXML'))
-                modelASUCheckXML = modelASUCheckEtree.xpath('//SequenceAlignment')
-                if len(modelASUCheckXML) == 1: self.xmlroot.append(modelASUCheckXML[0])
+                xyzinPath = str(self.container.outputData.XYZOUT)
+                self.xmlroot.append(sequenceAlignment(xyzinPath, asuin))
             except Exception as err:
-                self.saveXml()
                 traceback.print_exc()
                 print("...importing sequences for alignment test failed", err)
 
