@@ -2,6 +2,7 @@
 
 ## [2.3.4] - 2025-06-23
 
+- New task to validate a model against the ASU contents
 - Fix for deprecated numpy.float
 - More AceDrg i2run tests
 
