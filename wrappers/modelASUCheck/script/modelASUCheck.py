@@ -97,13 +97,11 @@ def sequenceAlignment(xyzinPath, asuin):
 
 def sequences(asuin):
     for seq in asuin.fileContent.seqList:
+        residueKind, polymerType = {
+            "PROTEIN": (gemmi.ResidueKind.AA, gemmi.PolymerType.PeptideL),
+            "DNA": (gemmi.ResidueKind.DNA, gemmi.PolymerType.Dna),
+            "RNA": (gemmi.ResidueKind.RNA, gemmi.PolymerType.Rna),
+        }[seq.polymerType]
+        expanded = gemmi.expand_one_letter_sequence(seq.sequence, residueKind)
         for _ in range(int(seq.nCopies)):
-            if seq.polymerType == "PROTEIN":
-                expanded = gemmi.expand_one_letter_sequence(seq.sequence, gemmi.ResidueKind.AA)
-                yield expanded, gemmi.PolymerType.PeptideL
-            elif seq.polymerType == "DNA":
-                expanded = gemmi.expand_one_letter_sequence(seq.sequence, gemmi.ResidueKind.DNA)
-                yield expanded, gemmi.PolymerType.Dna
-            elif seq.polymerType == "RNA":
-                expanded = gemmi.expand_one_letter_sequence(seq.sequence, gemmi.ResidueKind.RNA)
-                yield expanded, gemmi.PolymerType.Rna
+            yield expanded, polymerType
