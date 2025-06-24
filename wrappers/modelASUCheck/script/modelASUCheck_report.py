@@ -31,9 +31,9 @@ class modelASUCheck_report(Report):
             parent = self
 
         xmlNodes = xml.findall('.//SequenceAlignment/Alignment')
-        if len(xmlNodes)>0:
+        if len(xmlNodes) > 0:
             parent.addDiv(style="clear:both;")
-            fold = parent.addFold(label='Sequence alignment information',brief='Seq. Align. Info.', initiallyOpen=initiallyOpen)
+            fold = parent.addFold(label='Sequence alignment information', brief='Seq. Align. Info.', initiallyOpen=initiallyOpen)
             lineLength = 60
             for alignNode in xmlNodes:
                 chainID = alignNode.findall("ChainID")[0].text
@@ -47,18 +47,9 @@ class modelASUCheck_report(Report):
                 labelDiv.append("<b>Chain: "+chainID+"</b>")
 
                 tableText = "<table>\n"
-                tableText += "<tr>"
-                tableText += "<th>Match count</th>"
-                tableText += "<td>"+matchCount+"</td>"
-                tableText += "</tr>"
-                tableText += "<tr>"
-                tableText += "<th>Identity</th>"
-                tableText += "<td>"+identity+"</td>"
-                tableText += "</tr>"
-                tableText += "<tr>"
-                tableText += "<th>CIGAR</th>"
-                tableText += "<td>"+cigar+"</td>"
-                tableText += "</tr>"
+                tableText += f"<tr><th>Match count</th><td>{matchCount}</td></tr>"
+                tableText += f"<tr><th>Identity</th><td>{identity}</td></tr>"
+                tableText += f"<tr><th>CIGAR</th><td>{cigar}</td></tr>"
                 tableText += "</table>\n"
                 fold.append(tableText)
 
