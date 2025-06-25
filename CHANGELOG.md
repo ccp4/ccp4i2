@@ -1,7 +1,11 @@
 # CCP4i2 Changelog
 
-## [2.3.4] - 2025-06-23
+## [2.4.0] - 2025-06-23
 
+- Servalcat refinement against unmerged data
+- Servalcat option for van der Waals restraint weight
+- More graphs in the Servalcat report
+- More Servalcat i2 run tests
 - Fix for deprecated numpy.float
 - More AceDrg i2run tests
 
