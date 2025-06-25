@@ -92,8 +92,8 @@ if __name__ == "__main__":
     parser.add_argument("--minCoordDev", type=float, default=0)
     parser.add_argument("--minAdpDev", type=float, default=0)
     parser.add_argument(
-        "--hydrogens", action="store_true", help="Do not ignore hydrogen atoms"
+        "--hydrogens", action="store_true", help="Include hydrogen atoms"
     )
     args = parser.parse_args()
 
-    main(args.file1, args.file2, args.output, args.minCoordDev, args.minAdpDev, not args.hydrogens)
+    main(args.file1, args.file2, args.output, args.minCoordDev, args.minAdpDev, args.hydrogens)
