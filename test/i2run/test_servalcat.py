@@ -27,16 +27,7 @@ def test_8xfm(cif8xfm, mtz8xfm):
         assert hasLongLigandName(job / "CIFFILE.pdb")
         xml = ET.parse(job / "program.xml")
         check_program_xml_pipeline(xml, args)
-        root = xml.getroot()
-        assert root.tag == "SERVALCAT"
-        for tag in ["SERVALCAT_FIRST", "CootAddWaters", "SERVALCAT_WATERS"]:
-            assert root.find(tag) is not None
-        rworks = [float(e.text) for e in xml.findall(".//summary/Rwork")]
-        rfrees = [float(e.text) for e in xml.findall(".//summary/Rfree")]
-        assert len(rworks) == len(rfrees) == 6
-        assert rworks[-1] < rworks[0]
-        assert rworks[-1] < 0.18
-        assert rfrees[-1] < 0.25
+        check_r_and_cc(xml, expectedLen=6, maxRwork=0.18, maxRfree=0.25)
 
 
 # x-ray diffraction data
@@ -61,7 +52,7 @@ def test_1gyu_unmerged():
         args += ["--RANDOMIZEUSE", "True"]
         args += ["--RANDOMIZE", "0.05"]
         args += ["--BFACSETUSE", "True"]
-        args += ["--H_OUT", "True"]    
+        args += ["--H_OUT", "True"]
         args += ["--VALIDATE_IRIS", "True"]
         args += ["--VALIDATE_BAVERAGE", "False"]
         args += ["--VALIDATE_RAMACHANDRAN", "True"]
@@ -71,19 +62,15 @@ def test_1gyu_unmerged():
         with i2run(args) as job:
             xml = ET.parse(job / "program.xml")
             check_program_xml_pipeline(xml, args)
-            r1works = [float(e.text) for e in xml.findall(".//data/summary/R1work")]
-            r1frees = [float(e.text) for e in xml.findall(".//data/summary/R1free")]
-            cciworkavgs = [float(e.text) for e in xml.findall(".//data/summary/CCIworkavg")]
-            ccifreeavgs = [float(e.text) for e in xml.findall(".//data/summary/CCIfreeavg")]
-            assert len(r1works) == len(r1frees) == len(cciworkavgs) == len(ccifreeavgs) == ncycle + 1
-            assert r1works[-1] < 0.20
-            assert r1frees[-1] < 0.25
-            assert r1works[0] > r1works[-1]
-            assert r1frees[0] > r1frees[-1]
-            assert cciworkavgs[-1] > 0.90
-            assert ccifreeavgs[-1] > 0.80
-            assert cciworkavgs[0] < cciworkavgs[-1]
-            assert ccifreeavgs[0] < ccifreeavgs[-1]
+            check_r_and_cc(
+                xml,
+                expectedLen=ncycle + 1,
+                intensities=True,
+                maxRwork=0.20,
+                maxRfree=0.25,
+                minCCwork=0.90,
+                minCCfree=0.80,
+            )
 
 
 # electron diffraction data
@@ -117,21 +104,15 @@ def test_7beq_electron():
             assert os.path.isfile(os.path.join(job, "job_1", "ProSMART_Results.html"))
             xml = ET.parse(job / "program.xml")
             check_program_xml_pipeline(xml, args)
-            rworks = [float(e.text) for e in xml.findall(".//data/summary/Rwork")]
-            rfrees = [float(e.text) for e in xml.findall(".//data/summary/Rfree")]
-            ccfworkavgs = [float(e.text) for e in xml.findall(".//data/summary/CCFworkavg")]
-            ccffreeavgs = [float(e.text) for e in xml.findall(".//data/summary/CCFfreeavg")]
-            assert len(rworks) == len(rfrees) == len(ccfworkavgs) == len(ccffreeavgs) == ncycle + 1
-            assert rworks[-1] < 0.25
-            assert rworks[0] > rworks[-1]
-            assert rfrees[-1] < 0.31
-            assert rfrees[0] > rfrees[-1]
-            assert ccfworkavgs[-1] > 0.85
-            assert ccfworkavgs[0] < ccfworkavgs[-1]
-            assert ccffreeavgs[-1] > 0.75
-            assert ccffreeavgs[0] < ccffreeavgs[-1]
-            xml_validation = ET.parse(job / "job_3" / "program.xml")
-            check_program_xml_validate(xml_validation)
+            check_program_xml_validate(job)
+            check_r_and_cc(
+                xml,
+                expectedLen=ncycle + 1,
+                maxRwork=0.25,
+                maxRfree=0.31,
+                minCCwork=0.85,
+                minCCfree=0.75,
+            )
 
 
 # neutron diffraction data
@@ -165,53 +146,72 @@ def test_7prg_neutron():
             assert os.path.isfile(os.path.join(job, "metal_restraints.mmcif"))
             xml = ET.parse(job / "program.xml")
             check_program_xml_pipeline(xml, args)
-            rworks = [float(e.text) for e in xml.findall(".//data/summary/Rwork")]
-            rfrees = [float(e.text) for e in xml.findall(".//data/summary/Rfree")]
-            ccfworkavgs = [float(e.text) for e in xml.findall(".//data/summary/CCFworkavg")]
-            ccffreeavgs = [float(e.text) for e in xml.findall(".//data/summary/CCFfreeavg")]
-            assert len(rworks) == len(rfrees) == len(ccfworkavgs) == len(ccffreeavgs) == ncycle + 1
-            assert rworks[-1] < 0.35
-            assert rworks[0] > rworks[-1]
-            assert rfrees[-1] < 0.40
-            assert rfrees[0] > rfrees[-1]
-            assert ccfworkavgs[-1] > 0.65
-            assert ccfworkavgs[0] < ccfworkavgs[-1]
-            assert ccffreeavgs[-1] > 0.55
-            # assert ccffreeavgs[0] < ccffreeavgs[-1]
-            xml_validation = ET.parse(job / "job_3" / "program.xml")
-            check_program_xml_validate(xml_validation, expected_chain_count=4)
+            check_program_xml_validate(job, expected_chain_count=4)
+            check_r_and_cc(
+                xml,
+                expectedLen=ncycle + 1,
+                maxRwork=0.35,
+                maxRfree=0.40,
+                minCCwork=0.65,
+                minCCfree=0.55,
+            )
 
 
 def check_program_xml_pipeline(xml, args):
-
-    def has_two_following_args(args, arg1, arg2):
+    def has_two_following_args(arg1, arg2):
         return any(args[i] == arg1 and args[i + 1] == arg2 for i in range(len(args) - 1))
 
     root = xml.getroot()
     assert root.tag == "SERVALCAT"
     tags = ["SERVALCAT_FIRST"]
-    if not has_two_following_args(args, "--RUN_ADP_ANALYSIS", "False"):
+    if not has_two_following_args("--RUN_ADP_ANALYSIS", "False"):
         tags.append("ADP_ANALYSIS")
-    if not has_two_following_args(args, "--RUN_COORDADPDEV_ANALYSIS", "False"):
+    if not has_two_following_args("--RUN_COORDADPDEV_ANALYSIS", "False"):
         tags.append("COORD_ADP_DEV")
     if not (
-        has_two_following_args(args, "--VALIDATE_IRIS", "False") and
-        has_two_following_args(args, "--VALIDATE_BAVERAGE", "False") and
-        has_two_following_args(args, "--VALIDATE_RAMACHANDRAN", "False") and
-        has_two_following_args(args, "--VALIDATE_MOLPROBITY", "False")
+        has_two_following_args("--VALIDATE_IRIS", "False")
+        and has_two_following_args("--VALIDATE_BAVERAGE", "False")
+        and has_two_following_args("--VALIDATE_RAMACHANDRAN", "False")
+        and has_two_following_args("--VALIDATE_MOLPROBITY", "False")
     ):
         tags.append("Validation")
-    if has_two_following_args(args, "--ADD_WATERS", "True"):
+    if has_two_following_args("--ADD_WATERS", "True"):
         tags.append("CootAddWaters")
         tags.append("SERVALCAT_WATERS")
     for tag in tags:
-        assert root.find(tag) is not None, f"Missing tag in program.xml: {tag}"
-        assert len(root.find(tag)) or root.find(tag).text is not None, f"Tag {tag} in program.xml has no content"
+        element = root.find(tag)
+        assert element is not None, f"Missing tag in program.xml: {tag}"
+        assert len(element) or element.text is not None, f"Tag {tag} in program.xml has no content"
 
 
-def check_program_xml_validate(xml, expected_chain_count=1):
+def check_program_xml_validate(job, expected_chain_count=1):
+    xml = ET.parse(job / "job_3" / "program.xml")
     for xml_tag in ["Chain_count", "Iris", "Panel_svg", "Molprobity", "B_factors", "Ramachandran"]:
         xml_tag_findall = xml.findall(f".//{xml_tag}")
         assert len(xml_tag_findall) > 0, f"XML tag missing in program.xml: {xml_tag}"
         if xml_tag == "Chain_count":
             assert xml_tag_findall[0].text == str(expected_chain_count), f"Expected {expected_chain_count} chain, got {xml_tag_findall[0].text}"
+
+
+def check_r_and_cc(
+    xml: ET.ElementTree,
+    expectedLen: int,
+    intensities: bool = False,
+    maxRwork: float = None,
+    maxRfree: float = None,
+    minCCwork: float = None,
+    minCCfree: float = None,
+):
+    rLabel = "R1" if intensities else "R"
+    ccLabel = "CCI" if intensities else "CCF"
+    rworks = [float(e.text) for e in xml.findall(f".//data/summary/{rLabel}work")]
+    rfrees = [float(e.text) for e in xml.findall(f".//data/summary/{rLabel}free")]
+    ccworks = [float(e.text) for e in xml.findall(f".//data/summary/{ccLabel}workavg")]
+    ccfrees = [float(e.text) for e in xml.findall(f".//data/summary/{ccLabel}freeavg")]
+    assert len(rworks) == len(rfrees) == len(ccworks) == len(ccfrees) == expectedLen
+    assert rworks[0] >= rworks[-1]
+    assert ccworks[0] <= ccworks[-1]
+    assert maxRwork is None or rworks[-1] <= maxRwork
+    assert maxRfree is None or rfrees[-1] <= maxRfree
+    assert minCCwork is None or ccworks[-1] >= minCCwork
+    assert minCCfree is None or ccfrees[-1] >= minCCfree
