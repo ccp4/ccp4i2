@@ -592,9 +592,8 @@ class servalcat_pipe(CPluginScript):
             self.saveXml()
             print("Monitoring of changes/shifts of coordinates and ADPs done.")
         except Exception as e:
-            sys.stderr.write("ERROR: Monitoring of changes/shifts of coordinates and ADPs was not successful: " + str(e) + "\n")
-            import traceback
             sys.stderr.write(traceback.format_exc())
+            sys.stderr.write("ERROR: Monitoring of changes/shifts of coordinates and ADPs was not successful: " + str(e) + "\n")
 
     @QtCore.Slot(dict)
     def firstServalcatFinished(self, statusDict):
