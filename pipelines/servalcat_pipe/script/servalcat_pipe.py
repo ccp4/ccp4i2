@@ -24,6 +24,7 @@ from core import CCP4ErrorHandling
 from core import CCP4Utils
 from . import monitor_differences
 import os, sys, shutil
+import traceback
 import gemmi
 import numpy
 from operator import itemgetter
@@ -544,9 +545,8 @@ class servalcat_pipe(CPluginScript):
             self.saveXml()
             print("ADP analysis done.")
         except Exception as e:
-            sys.stderr.write("ERROR: ADP analysis was not successful: " + str(e) + "\n")
-            import traceback
             sys.stderr.write(traceback.format_exc())
+            sys.stderr.write("ERROR: ADP analysis was not successful: " + str(e) + "\n")
 
     def coord_adp_dev_analysis(self, model1Path, model2Path):
         print("Monitoring of changes/shifts of coordinated and ADPs...")
