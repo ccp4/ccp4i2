@@ -449,7 +449,7 @@ class servalcat(CPluginScript):
         if self.container.controlParameters.BFACSETUSE and \
                 str(self.container.controlParameters.BFACSET):
             self.appendCommandLine(['--bfactor', str(self.container.controlParameters.BFACSET)])
-        if str(float(self.container.controlParameters.ADPR_WEIGHT)) != "1":
+        if float(self.container.controlParameters.ADPR_WEIGHT) != 1.0:
             self.appendCommandLine(['--adpr_weight', str(self.container.controlParameters.ADPR_WEIGHT)])
         if self.container.controlParameters.MAX_DIST_FOR_ADP_RESTRAINT.isSet():
             self.appendCommandLine(['--max_dist_for_adp_restraint', str(self.container.controlParameters.MAX_DIST_FOR_ADP_RESTRAINT)])

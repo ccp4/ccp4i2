@@ -152,6 +152,7 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                 <className>CPdbDataFile</className>
                 <qualifiers>
                     <default>
+                        <subType>1</subType>
                         <contentFlag>2</contentFlag>
                     </default>
                     <saveToDb>True</saveToDb>
@@ -160,7 +161,10 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
             <content id="XYZOUT">
                 <className>CPdbDataFile</className>
                 <qualifiers>
-                    <default><subType>1</subType></default>
+                    <default>
+                        <subType>1</subType>
+                        <contentFlag>1</contentFlag>
+                    </default>
                     <saveToDb>True</saveToDb>
                 </qualifiers>
             </content>
