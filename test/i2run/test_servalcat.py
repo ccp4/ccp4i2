@@ -75,8 +75,8 @@ def test_1gyu_unmerged():
 
 # electron diffraction data
 # prosmart reference protein
-def test_7beq_electron():
-    with download(redo_cif("7beq")) as cif7beq, download(redo_mtz("7beq")) as mtz7beq, download(redo_cif("7ber")) as cif7ber:
+def test_7beq_electron(cif7beq, mtz7beq):
+    with download(redo_cif("7ber")) as cif7ber:
         ncycle = 3
         args = ["servalcat_pipe"]
         args += ["--XYZIN", cif7beq]
