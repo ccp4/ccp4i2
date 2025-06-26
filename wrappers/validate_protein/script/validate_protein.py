@@ -183,8 +183,8 @@ class validate_protein(CPluginScript):
             outfile.write(json.dumps(model_series_data))
 
         panel = Panel(model_series_data,
-                      custom_labels={'Latest'  : self.container.inputData.NAME_1,
-                                     'Previous': self.container.inputData.NAME_2
+                      custom_labels={'First'  : self.container.inputData.NAME_1,
+                                     'Second': self.container.inputData.NAME_2
                                      }
                      )
 
