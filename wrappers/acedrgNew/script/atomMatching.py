@@ -15,6 +15,20 @@ import rdkit
 
 from .dictFileToMonomer import dictFileToMonomer
 
+def quote_quotes(t):
+    if '"' in t:
+        print("double, quoting single")
+        print(t)
+        print("'" + t +"'")
+        return "'" + t +"'"
+    elif "'" in t:
+        print("single, quoting double")
+        print(t)
+        print('"' + t + '"')
+        return '"' + t + '"'
+    else:
+        return t
+
 def replaceMatchesInDict(matches,theDict,outfile):
     """
     Replace all replacements at once.
@@ -30,7 +44,7 @@ def replaceMatchesInDict(matches,theDict,outfile):
         lines = f.readlines()
 
     for l in lines:
-        text = pattern.sub(lambda m: matches[re.escape(m.group(0))], l.rstrip())
+        text = pattern.sub(lambda m:" "+ quote_quotes(matches[re.escape(m.group(0))])+" " , l.rstrip())
         outlines.append(text+"\n")
 
     with open(outfile,"w+") as f:
@@ -195,12 +209,12 @@ def matchAtoms(ifname,ofname=None,dictMatchName=None,selection="",dictFileName=N
                 if not matched:
                     print(res.GetAtom(i).name, "not matched")
                     if res.GetAtom(i).name in allMatchNames:
-                        print("Problem this name is already used")
+                        print("Problem this name is already used",res.GetAtom(i).name)
                         elLen = len(res.GetAtom(i).element.strip())
                         iguess = 1
                         if elLen == 1:
                             haveName = False
-                            while iguess < 10:
+                            while iguess < 1000 and not haveName:
                                 if iguess < 10:
                                     guessName = ' ' + res.GetAtom(i).element.strip() + str(iguess) + ' '
                                 elif iguess < 100:
@@ -208,11 +222,16 @@ def matchAtoms(ifname,ofname=None,dictMatchName=None,selection="",dictFileName=N
                                 elif iguess < 1000:
                                     guessName = res.GetAtom(i).element.strip() + str(iguess)
                                 if not guessName in allMatchNames:
-                                    print(guessName,"is plausible")
-                                    retMatches[res.GetAtom(i).GetAtomName()] = guessName
-                                    allMatchNames.append(guessName)
-                                    haveName = True
-                                    break
+                                    taken = False
+                                    for j in range(res.GetNumberOfAtoms()):
+                                        if res.GetAtom(j).name == guessName:
+                                            taken = True
+                                    if not taken:
+                                        print(guessName,"is plausible")
+                                        retMatches[res.GetAtom(i).GetAtomName()] = guessName
+                                        allMatchNames.append(guessName)
+                                        haveName = True
+                                        break
                                 iguess += 1
                         elif elLen == 1:
                             pass
