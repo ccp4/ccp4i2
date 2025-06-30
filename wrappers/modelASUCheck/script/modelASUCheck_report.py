@@ -49,7 +49,7 @@ class modelASUCheck_report(Report):
                 labelDiv.append("<b>Chain: "+chainID+"</b>")
 
                 if alignMatch is None:
-                    fold.append('<span style="color:orange">No matching alignment for AU contents Chain: '+chainID+'</span>')
+                    fold.append('<span style="color:orange">No chain in the model is matched to chain: '+chainID+' defined in the AU contents. This might mean that the chain defined in the AU contents has not been modelled or that a model chain has not had its residue types defined.</span>')
                     continue
 
                 tableText = "<table>\n"
@@ -77,4 +77,4 @@ class modelASUCheck_report(Report):
             for nonAlignNode in nonMatchedXmlNodes:
                 chainID = nonAlignNode.text
                 labelDiv.addDiv(style="clear:both;")
-                labelDiv.append('<span style="color:orange">No matching alignment for structure Chain: '+chainID+'</span>')
+                labelDiv.append('<span style="color:orange">Chain '+chainID+' in structure does not match anything in AU contents. This could be an incorrectly modelled chain, or one that has not had its residue types defined.</span>')
