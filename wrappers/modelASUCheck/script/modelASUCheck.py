@@ -74,10 +74,11 @@ def sequenceAlignment(xyzinPath, asuin):
     cost = np.array(align_scores)
     row_ind, col_ind = linear_sum_assignment(cost, True)
 
+    matched_model_chains = []
     xml = etree.Element("SequenceAlignment")
     for irow, icol in zip(row_ind, col_ind):
         result, seq, chain = align_results[irow][icol]
-
+        matched_model_chains.append(chain.name)
         alignment = etree.SubElement(xml, "Alignment")
         etree.SubElement(alignment, "ChainID").text = chain.name
         etree.SubElement(alignment, "match_count").text = str(result.match_count)
@@ -92,6 +93,13 @@ def sequenceAlignment(xyzinPath, asuin):
         etree.SubElement(alignment, "align_2").text = result.add_gaps(
             gemmi.one_letter_code(chain.get_polymer().extract_sequence()), 2
         )
+
+    polymer_types = [gemmi.PolymerType.PeptideL, gemmi.PolymerType.PeptideD, gemmi.PolymerType.Dna, gemmi.PolymerType.Rna, gemmi.PolymerType.DnaRnaHybrid]
+
+    nonAligned = etree.SubElement(xml, "NonAlignedModelChains")
+    for chain in structure[0]:
+        if not chain.name in matched_model_chains and chain.get_polymer().check_polymer_type() in polymer_types:
+            etree.SubElement(nonAligned, "ChainID").text = chain.name
     return xml
 
 

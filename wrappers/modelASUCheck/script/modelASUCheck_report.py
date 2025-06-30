@@ -31,7 +31,9 @@ class modelASUCheck_report(Report):
             parent = self
 
         xmlNodes = xml.findall('.//SequenceAlignment/Alignment')
-        if len(xmlNodes) > 0:
+        nonMatchedXmlNodes = xml.findall('.//SequenceAlignment/NonAlignedModelChains/ChainID')
+
+        if len(xmlNodes) > 0 or len(nonMatchedXmlNodes)>0:
             parent.addDiv(style="clear:both;")
             fold = parent.addFold(label='Sequence alignment information', brief='Seq. Align. Info.', initiallyOpen=initiallyOpen)
             lineLength = 60
@@ -45,6 +47,10 @@ class modelASUCheck_report(Report):
                 alignMatch = alignNode.findall("align_match")[0].text
                 labelDiv = fold.addDiv(style='border:0px solid black; width:700px; overflow:auto;')
                 labelDiv.append("<b>Chain: "+chainID+"</b>")
+
+                if alignMatch is None:
+                    fold.append('<span style="color:orange">No matching alignment for AU contents Chain: '+chainID+'</span>')
+                    continue
 
                 tableText = "<table>\n"
                 tableText += f"<tr><th>Match count</th><td>{matchCount}</td></tr>"
@@ -64,3 +70,11 @@ class modelASUCheck_report(Report):
                     preText += align2[i : i + lineLength] + "\n"
                     preText += "\n"
                 fold.append('<pre>'+preText+'</pre>')
+
+        if len(nonMatchedXmlNodes)>0:
+            labelDiv = fold.addDiv(style="clear:both;")
+            labelDiv.append("<b>Non matched chains from structure</b>")
+            for nonAlignNode in nonMatchedXmlNodes:
+                chainID = nonAlignNode.text
+                labelDiv.addDiv(style="clear:both;")
+                labelDiv.append('<span style="color:orange">No matching alignment for structure Chain: '+chainID+'</span>')
