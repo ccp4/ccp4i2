@@ -36,6 +36,14 @@
                     <toolTip>File containing structure factor amplitudes/intensities and uncertainties (F/SigF or I/SigI).</toolTip>
                 </qualifiers>
             </content>
+            <content id="HKLIN_UNMERGED">
+            <className>CUnmergedMtzDataFile</className>
+               <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+              </qualifiers>
+            </content>
             <content id="FREERFLAG">
                 <className>CFreeRDataFile</className>
                 <qualifiers>
@@ -144,6 +152,7 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                 <className>CPdbDataFile</className>
                 <qualifiers>
                     <default>
+                        <subType>1</subType>
                         <contentFlag>2</contentFlag>
                     </default>
                     <saveToDb>True</saveToDb>
@@ -152,7 +161,10 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
             <content id="XYZOUT">
                 <className>CPdbDataFile</className>
                 <qualifiers>
-                    <default><subType>1</subType></default>
+                    <default>
+                        <subType>1</subType>
+                        <contentFlag>1</contentFlag>
+                    </default>
                     <saveToDb>True</saveToDb>
                 </qualifiers>
             </content>
@@ -230,6 +242,16 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                  <allowUndefined>False</allowUndefined>
               </qualifiers>
            </content>
+           <content id="MERGED_OR_UNMERGED">
+              <className>CString</className>
+              <qualifiers>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <menuText>merged,unmerged</menuText>
+                 <enumerators>merged,unmerged</enumerators>
+                 <default>merged</default>
+                 <allowUndefined>False</allowUndefined>
+              </qualifiers>
+           </content>
             <content id="ADD_WATERS">
               <className>CBoolean</className>
               <qualifiers>
@@ -245,13 +267,6 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                     <toolTip>Number of refinement cycles to perform after addition of water molecules.</toolTip>
               </qualifiers>
             </content>
-
-          <content id="RES_MIN">
-            <className>CFloat</className>
-            <qualifiers>
-               <toolTip>High resolution (d_min)</toolTip>
-            </qualifiers>
-          </content>
           <content id="NCYCLES">
                 <className>CInt</className>
                 <qualifiers>
@@ -388,6 +403,12 @@ hydrogens are only to be used if already present in the input coordinate file.</
                    <toolTip>Specifies ADP parameterisation. Default: isotropic.</toolTip>
                 </qualifiers>
             </content>
+          <content id="VDWR_WEIGHT">
+             <className>CFloat</className>
+             <qualifiers>
+                <default>1.0</default>
+             </qualifiers>
+          </content>
           <content id="ADPR_WEIGHT">
              <className>CFloat</className>
              <qualifiers>
@@ -531,6 +552,12 @@ hydrogens are only to be used if already present in the input coordinate file.</
             </qualifiers>
           </content>
           <content id="RES_MAX">
+            <className>CFloat</className>
+            <qualifiers>
+               <toolTip>Low resolution (d_max)</toolTip>
+            </qualifiers>
+          </content>
+          <content id="RES_MIN">
             <className>CFloat</className>
             <qualifiers>
                <toolTip>High resolution (d_min)</toolTip>

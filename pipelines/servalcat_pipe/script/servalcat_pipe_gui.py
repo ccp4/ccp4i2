@@ -37,9 +37,9 @@ def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None)
     from core import CCP4Modules, CCP4Utils, CCP4File, CCP4Container, CCP4Data, CCP4PluginScript
     jobStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId,'status')
     if jobStatus == 'Unsatisfactory':
-        returnList = ['LidiaAcedrg', 'servalcat_pipe']
+        returnList = ['LidiaAcedrgNew', 'servalcat_pipe']
     else:
-        returnList = ['servalcat_pipe', 'coot_rebuild', 'moorhen_rebuild', 'modelcraft']
+        returnList = ['servalcat_pipe', 'coot_rebuild', 'modelcraft']
     return returnList
 
 class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
@@ -61,24 +61,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
   def ToggleWeightAdjustRmszAvailable(self):
     return str(self.container.controlParameters.WEIGHT_OPT) == 'AUTO' and \
       not self.container.controlParameters.WEIGHT_NO_ADJUST
-
-  def ToggleTLSModeOn(self):
-    if str(self.container.controlParameters.TLSMODE) != 'NONE':
-        from core import CCP4Modules
-        CurrentStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(self._jobId,'status')
-        if CurrentStatus == "Pending":
-            self.container.controlParameters.BFACSETUSE = True
-        return True
-    return False
-
-  def ToggleTLSModeOff(self):
-    if str(self.container.controlParameters.TLSMODE) == 'NONE':
-        from core import CCP4Modules
-        CurrentStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(self._jobId,'status')
-        if CurrentStatus == "Pending":
-            self.container.controlParameters.BFACSETUSE = False
-        return True
-    return False
 
   def ToggleRigidModeOn(self):
     return str(self.container.controlParameters.REFINEMENT_MODE) == 'RIGID'
@@ -107,57 +89,13 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
   def ToggleJellyOff(self):
     return bool(self.container.controlParameters.UNRESTRAINED) or bool(self.container.controlParameters.FIX_XYZ)
 
-  def ToggleNeutronModeOn(self):
-    return str(self.container.controlParameters.SCATTERING_FACTORS) == 'NEUTRON'
-
-  def ToggleNeutronModeOff(self):
-    return not str(self.container.controlParameters.SCATTERING_FACTORS) == 'NEUTRON'
-    
-  def ToggleNeutronModeHD(self):
-    if not self.container.controlParameters.HYDR_USE:
-      return False
-    return self.container.controlParameters.HD_FRACTION
-
-  def ToggleNeutronModeHD_YES(self):
-    if not self.container.controlParameters.HYDR_USE:
-      return False
-    if str(self.container.controlParameters.HYDR_ALL) == "ALL":
-      return False
-    return self.container.controlParameters.HD_FRACTION
-
-  def ToggleNeutronModeHD_ALL(self):
-    if not self.container.controlParameters.HYDR_USE:
-      return False
-    if str(self.container.controlParameters.HYDR_ALL) == "YES":
-      return False
-    return self.container.controlParameters.HD_FRACTION
-
-  def ToggleH_REFINE(self):
-    if not self.container.controlParameters.HYDR_USE:
-      return False
-    return self.container.controlParameters.H_REFINE
-
-  def ToggleTLSModeFile(self):
-    return str(self.container.controlParameters.TLSMODE) == 'FILE'
+  def ToggleFSIGFOrISIGIavailable(self):
+     return (bool(self.container.controlParameters.HKLIN_IS_I_SIGI) and str(self.container.controlParameters.MERGED_OR_UNMERGED) == "merged")
 
   def ToggleTwinSuboptimal(self):
+    if str(self.container.controlParameters.MERGED_OR_UNMERGED) == "unmerged":
+       return False
     return (not self.container.controlParameters.HKLIN_IS_I_SIGI or self.container.controlParameters.F_SIGF_OR_I_SIGI == "F_SIGF")
-
-  def CheckScaleType(self):
-    if str(self.container.controlParameters.SCALE_TYPE) == 'BABINET':
-        self.container.controlParameters.SOLVENT_MASK_TYPE.set('NO')
-    else:
-        self.container.controlParameters.SOLVENT_MASK_TYPE.set('EXPLICIT')
-    return True
-
-  def ToggleUseSolventMask(self):
-    return str(self.container.controlParameters.SOLVENT_MASK_TYPE) == 'EXPLICIT'
-
-  def ToggleSolventAdvanced(self):
-    return str(self.container.controlParameters.SOLVENT_MASK_TYPE) == 'EXPLICIT' and self.container.controlParameters.SOLVENT_ADVANCED
-
-  def ToggleElectronDiffraction(self):
-    return str(self.container.controlParameters.SCATTERING_FACTORS) == 'ELECTRON'
 
   def ToggleOccComplete(self):
     if self.container.controlParameters.OCCUPANCY_GROUPS and self.container.controlParameters.OCCUPANCY_COMPLETE:
@@ -166,11 +104,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
 
   def ToggleOccIncomplete(self):
     if self.container.controlParameters.OCCUPANCY_GROUPS and self.container.controlParameters.OCCUPANCY_INCOMPLETE:
-        return True
-    return False
-
-  def TogglePlatonyzerNAMG(self):
-    if self.container.platonyzer.TOGGLE and str(self.container.platonyzer.MODE) == 'NA_MG':
         return True
     return False
 
@@ -192,14 +125,20 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     if self.isEditable():
        self.container.inputData.XYZIN.dataChanged.connect( self.modelChanged)
     # self.createLine( [ 'label', 'Experimental data type:', 'widget', 'DATA_METHOD' ])
+
     self.openSubFrame(toggle = ['DATA_METHOD', 'open', [ 'xtal' ] ] )
-    self.createLine( [ 'widget', '-browseDb', True, 'HKLIN' ] )
+    self.createLine( [ 'widget', '-browseDb', True, 'HKLIN' ], toggle = ['MERGED_OR_UNMERGED', 'open', [ 'merged' ] ] )
+    self.createLine( [ 'widget', '-browseDb', True, 'HKLIN_UNMERGED' ], toggle = ['MERGED_OR_UNMERGED', 'open', [ 'unmerged' ] ] )
+    self.createLine( [ 'label', '<i>Warning: Unmerged data should be scaled.</i>' ], toggle = ['MERGED_OR_UNMERGED', 'open', [ 'unmerged' ] ] )
     self.container.inputData.HKLIN.dataChanged.connect( self.hklinChanged )
+    self.createLine( [ 'label', 'Diffraction data are', 'widget', 'MERGED_OR_UNMERGED'] )
     self.createLine( [ 'label', 'Refinement against <b>amplitudes</b>.'], toggle = ['HKLIN_IS_I_SIGI', 'open', [ False ] ] )
-    self.createLine( [ 'label', 'Refinement against', 'widget', 'F_SIGF_OR_I_SIGI'], toggle = ['HKLIN_IS_I_SIGI', 'open', [ True ] ] )
+    self.createLine( [ 'label', 'Refinement against <b>intensities</b>.'], toggle = ['MERGED_OR_UNMERGED', 'open', [ 'unmerged' ] ] )
+    self.createLine( [ 'label', 'Refinement against', 'widget', 'F_SIGF_OR_I_SIGI'], toggleFunction=[self.ToggleFSIGFOrISIGIavailable, ['HKLIN_IS_I_SIGI', 'MERGED_OR_UNMERGED' ] ] )
     self.createLine( [ 'widget', '-browseDb', True, 'FREERFLAG' ] )
-    self.createLine( [ 'widget', 'USE_TWIN', 'label', 'Crystal is twinned' ] )
-    self.createLine( [ 'label', '<i>Warning: Intensities should be given for twin refinement. Using amplitudes is suboptimal.</i>' ], toggleFunction=[self.ToggleTwinSuboptimal, ['HKLIN_IS_I_SIGI', 'F_SIGF_OR_I_SIGI', 'HKLIN']])
+    self.createLine( [ 'widget', 'USE_TWIN', 'label', 'Twin refinement' ] )
+    self.createLine( [ 'label', '<i>Warning: Intensities should be given for twin refinement. Using amplitudes is suboptimal.</i>' ],
+                    toggleFunction=[self.ToggleTwinSuboptimal, ['HKLIN_IS_I_SIGI', 'F_SIGF_OR_I_SIGI', 'HKLIN']])
     self.closeSubFrame()
 
     self.openSubFrame(toggle = ['DATA_METHOD', 'open', [ 'spa' ] ] )
@@ -457,6 +396,11 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'widget', 'ADP_RESTRAINT_NO_LONG_RANGE', 'label', 'No long range for ADP restraint' ] )
     self.closeSubFrame()
 
+    self.createLine( [ 'subtitle', 'Van der Waals Repulsion Restraints'] )
+    self.openSubFrame()
+    self.createLine( [ 'label', 'Van der Waals repulsion restraint weight:', 'stretch', 'widget', 'VDWR_WEIGHT' ] )
+    self.closeSubFrame()
+
     self.createLine( [ 'subtitle', 'Infrequently Used Options'] )
     self.openSubFrame()
     self.createLine( [ 'widget', 'UNRESTRAINED', 'label', 'No positional restraints' ] )
@@ -487,6 +431,8 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'label', indent+indent+'highest (d<sub>min</sub>):', 'widget', 'RES_MIN', 'label', ' lowest (d<sub>max</sub>):', 'widget', 'RES_MAX' ], toggle = ['RES_CUSTOM', 'open', [ True ] ], appendLine=custom_res )
     self.createLine( [ 'label', 'FreeR flag number for test set:' , 'widget', 'FREERFLAG_NUMBER'])
     self.createLine( [ 'label', 'Diffraction experiment type:', 'widget', 'SCATTERING_FACTORS' ] )
+    if self.isEditable():
+        self.container.controlParameters.SCATTERING_FACTORS.dataChanged.connect(self.ExperimentChanged)
     self.createLine( [ 'widget', 'USE_WORK_IN_EST', 'label', 'Use work reflections in maximum likelihood parameter estimates' ] )
     self.closeSubFrame()
 
@@ -546,14 +492,14 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
   @QtCore.Slot()
   def hklinChanged(self):
     self.getObsType()
-  
+
   @QtCore.Slot()
   def ExperimentChanged(self):
     if str(self.container.controlParameters.SCATTERING_FACTORS) == "NEUTRON":
       self.container.controlParameters.H_REFINE.set(True)
     else:
       self.container.controlParameters.H_REFINE.set(False)
-    
+
   @QtCore.Slot()
   def modelChanged(self):
      self.container.prosmartProtein.TOGGLE.set(False)

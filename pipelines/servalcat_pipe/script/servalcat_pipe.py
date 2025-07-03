@@ -24,6 +24,7 @@ from core import CCP4ErrorHandling
 from core import CCP4Utils
 from . import monitor_differences
 import os, sys, shutil
+import traceback
 import gemmi
 import numpy
 from operator import itemgetter
@@ -340,7 +341,10 @@ class servalcat_pipe(CPluginScript):
             self.validate.container.inputData.XYZIN_2.set(self.container.inputData.XYZIN)
             self.validate.container.inputData.NAME_1.set("Refined")
             self.validate.container.inputData.NAME_2.set("Input")
-            if str(self.container.controlParameters.SCATTERING_FACTORS) == "XRAY":
+            if (
+                str(self.container.controlParameters.SCATTERING_FACTORS) == "XRAY"
+                and str(self.container.controlParameters.MERGED_OR_UNMERGED) == "merged"
+            ):
                 self.validate.container.inputData.F_SIGF_1.set(self.container.inputData.HKLIN)
                 self.validate.container.inputData.F_SIGF_2.set(self.container.inputData.HKLIN)
             else:
@@ -436,20 +440,16 @@ class servalcat_pipe(CPluginScript):
             adp_low = []
             adp_high = []
             for model in st:
-                for chain in model:
-                    for residue in chain:
-                        for atom in residue:
-                            if atom.element != gemmi.Element('H') and atom.occ > 0:
-                                if atom.aniso.nonzero():
-                                    adp_atom = gemmi.calculate_b_est(atom)
-                                else:
-                                    adp_atom = atom.b_iso
-                                if adp_atom < adp_limit_low:
-                                    adp_low.append({"atom": str(model.get_cra(atom)),
-                                                    "adp": adp_atom})
-                                elif adp_atom > adp_limit_high:
-                                    adp_high.append({"atom": str(model.get_cra(atom)),
-                                                    "adp": adp_atom})
+                for cra in model.all():
+                    if not cra.atom.is_hydrogen and cra.atom.occ > 0:
+                        if cra.atom.aniso.nonzero():
+                            adp_atom = gemmi.calculate_b_est(cra.atom)
+                        else:
+                            adp_atom = cra.atom.b_iso
+                        if adp_atom < adp_limit_low:
+                            adp_low.append({"atom": str(cra), "adp": adp_atom})
+                        elif adp_atom > adp_limit_high:
+                            adp_high.append({"atom": str(cra), "adp": adp_atom})
             adp_low = sorted(adp_low, key=itemgetter('adp'))
             adp_high = sorted(adp_high, key=itemgetter('adp'), reverse=True)
 
@@ -545,18 +545,26 @@ class servalcat_pipe(CPluginScript):
             self.saveXml()
             print("ADP analysis done.")
         except Exception as e:
-            sys.stderr.write("ERROR: ADP analysis as not successful: " + str(e) + "\n")
+            sys.stderr.write(traceback.format_exc())
+            sys.stderr.write("ERROR: ADP analysis was not successful: " + str(e) + "\n")
 
     def coord_adp_dev_analysis(self, model1Path, model2Path):
         print("Monitoring of changes/shifts of coordinated and ADPs...")
         try:
-            coordDevMinReported = self.container.monitor.MIN_COORDDEV
-            ADPAbsDevMinReported = self.container.monitor.MIN_ADPDEV
+            coordDevMinReported = float(self.container.monitor.MIN_COORDDEV)
+            ADPAbsDevMinReported = float(self.container.monitor.MIN_ADPDEV)
             csvFileName = "report_coord_adp_dev.csv"
             csvFilePath = str(os.path.join(self.getWorkDirectory(), csvFileName))
             df = monitor_differences.main(
                 file1=model1Path, file2=model2Path, output=csvFilePath,
-                minCoordDev=float(coordDevMinReported), minAdpDev=float(ADPAbsDevMinReported))
+                minCoordDev=coordDevMinReported, minAdpDev=ADPAbsDevMinReported,
+                useHydrogens=False)
+            if df is None or df.empty or not all(col in df.columns for col in ["CoordDev", "ADPDev"]):
+                sys.stderr.write(
+                    "WARNING: No changes/shifts of coordinates and ADPs detected above given thresholds "
+                    f" ({coordDevMinReported} A, {ADPAbsDevMinReported} A^2). "
+                    f" No data reported in the output file {csvFileName}.\n")
+                return
             coordDevMean = df["CoordDev"].mean()
             ADPAbsDevMean = df["ADPDev"].mean()
             # Save csv in program.xml
@@ -582,8 +590,9 @@ class servalcat_pipe(CPluginScript):
             xmlTree = etree.fromstring(xmlText)
             self.xmlroot.append(xmlTree)
             self.saveXml()
-            print("Monitoring of changes/shifts of coordinates and ADPs...")
+            print("Monitoring of changes/shifts of coordinates and ADPs done.")
         except Exception as e:
+            sys.stderr.write(traceback.format_exc())
             sys.stderr.write("ERROR: Monitoring of changes/shifts of coordinates and ADPs was not successful: " + str(e) + "\n")
 
     @QtCore.Slot(dict)

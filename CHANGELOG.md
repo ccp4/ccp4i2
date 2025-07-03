@@ -1,8 +1,14 @@
 # CCP4i2 Changelog
 
-## [2.3.4] - 2025-07-03
+## [2.4.0] - 2025-07-03
 
 - Capturing stderr of sub-jobs
+- Servalcat refinement against unmerged data
+- Servalcat option for van der Waals restraint weight
+- More graphs in the Servalcat report
+- More Servalcat i2 run tests
+- Fix for deprecated numpy.float
+- More AceDrg i2run tests
 
 ## [2.3.3] - 2025-05-29
 
