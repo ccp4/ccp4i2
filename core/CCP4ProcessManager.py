@@ -35,25 +35,6 @@ from core import CCP4Config
 #NOQ - remove
 from PySide2 import QtCore
 
-def PopenInThread(pid, callArgList, callDict, onExit=None):
-    """
-    Runs the given args in a subprocess.Popen, and then calls the function
-    onExit when the subprocess completes.
-    onExit is a callable object, and popenArgs is a list/tuple of args that 
-    would give to subprocess.Popen.
-    """
-    #--------------------------------------------------------------
-    def runInThread(pid, callArgList, callDict, onExit=None ):
-        #print 'runInThread',pid
-        rv = subprocess.call(*[callArgList], **callDict)
-        onExit(pid, rv)
-        return 
-    #--------------------------------------------------------------
-    thread = threading.Thread(target=runInThread, args=(pid, callArgList, callDict, onExit))
-    thread.start()
-    # returns immediately after the thread starts
-    return thread
-
 
 #NOQ class CProcessManager():
 class CProcessManager(QtCore.QObject):
@@ -441,12 +422,6 @@ class CProcessManager(QtCore.QObject):
         except Exception as e:
             print('runHandler Error', e)
             self.processInfo[pid]['errorReport'].appendPythonException(self.__class__, str(e))
-
-    def PopenInThreadExit(self, pid, rv):
-        #print 'PopenInThreadExit',pid,rv
-        #self.processInfo[pid]['finishTime'] = time.time()
-        self.handleFinish(None, pid, rv, 0)
-        #self.runHandler(pid)
 
     @QtCore.Slot(str,int,int)
     def handleFinish(self, qp, pid, exitCode=0, exitStatus=0):
