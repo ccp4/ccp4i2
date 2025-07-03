@@ -1,5 +1,9 @@
 # CCP4i2 Changelog
 
+## [2.3.4] - 2025-07-03
+
+- Capturing stderr of sub-jobs
+
 ## [2.3.3] - 2025-05-29
 
 - Fix to Coot output files
