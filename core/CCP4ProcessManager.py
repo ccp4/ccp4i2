@@ -271,9 +271,9 @@ class CProcessManager(QtCore.QObject):
                     callDict['stdin'] = open(self.processInfo[pid]['inputFile'])
                 if self.processInfo[pid]['logFile'] is not None:
                     logFileName = self.processInfo[pid]['logFile']
-                    logErrName = logFileName[:logFileName.rfind(".")]+"_err.txt" if logFileName.rfind(".")>-1 else logFileName+"_err.txt"
+                    errFileName = os.path.splitext(logFileName)[0] + "_err.txt"
                     callDict['stdout'] = open(logFileName,'w')
-                    callDict['stderr'] = open(logErrName,'w')
+                    callDict['stderr'] = open(errFileName,'w')
                 callDict['env'] = self.ccp4Env(self.processInfo[pid]['resetEnv'])
                 if self.processInfo[pid]['cwd'] is not None:
                     callDict['cwd'] = self.processInfo[pid]['cwd']
@@ -407,9 +407,9 @@ class CProcessManager(QtCore.QObject):
             p.setStandardInputFile(QtCore.QProcess.nullDevice())
         if self.processInfo[pid]['logFile'] is not None:
             logFileName = self.processInfo[pid]['logFile']
-            logErrName = logFileName[:logFileName.rfind(".")]+"_err.txt" if logFileName.rfind(".")>-1 else logFileName+"_err.txt"
+            errFileName = os.path.splitext(logFileName)[0] + "_err.txt"
             p.setStandardOutputFile(logFileName)
-            p.setStandardErrorFile(logErrName)
+            p.setStandardErrorFile(errFileName)
         if self.processInfo[pid]['readyReadStandardOutputHandler'] is not None:
             p.readyReadStandardOutput.connect(self.processInfo[pid]['readyReadStandardOutputHandler'])
         p.start(self.processInfo[pid]['command'], qArgList)
@@ -466,16 +466,16 @@ class CProcessManager(QtCore.QObject):
             sys.stderr.flush()
             if "logFile" in self.processInfo[pid] and self.processInfo[pid]["logFile"]:
                 logFileName = self.processInfo[pid]["logFile"]
-                logErrName = logFileName[:logFileName.rfind(".")]+"_err.txt" if logFileName.rfind(".")>-1 else logFileName+"_err.txt"
+                errFileName = os.path.splitext(logFileName)[0] + "_err.txt"
             else:
                 logFileName = os.path.join(self.processInfo[pid]["cwd"],"log.txt")
-                logErrName = os.path.join(self.processInfo[pid]["cwd"],"log_err.txt")
+                errFileName = os.path.join(self.processInfo[pid]["cwd"],"log_err.txt")
             if len(out)>0:
                 logFile = open(logFileName)
                 logFile.write(out)
                 logFile.close()
             if len(err)>0:
-                errFile = open(logErrName,"w")
+                errFile = open(errFileName,"w")
                 errFile.write(err)
                 errFile.close()
         if "logFile" in self.processInfo[pid] and self.processInfo[pid]["logFile"]:
