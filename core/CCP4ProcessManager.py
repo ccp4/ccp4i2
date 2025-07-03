@@ -423,7 +423,7 @@ class CProcessManager(QtCore.QObject):
             print('runHandler Error', e)
             self.processInfo[pid]['errorReport'].appendPythonException(self.__class__, str(e))
 
-    @QtCore.Slot(str,int,int)
+    @QtCore.Slot(QtCore.QProcess, str, int, int)
     def handleFinish(self, qp, pid, exitCode=0, exitStatus=0):
         print('Process finished:', pid, 'exit code:', exitCode, 'exit status:', exitStatus,'time:', time.strftime('%H:%M:%S %d/%b/%Y', time.localtime(time.time())))
         self.processInfo[pid]['finishTime'] = time.time()
