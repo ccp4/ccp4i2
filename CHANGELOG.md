@@ -1,7 +1,8 @@
 # CCP4i2 Changelog
 
-## [2.4.0] - 2025-06-23
+## [2.4.0] - 2025-07-03
 
+- Capturing stderr of sub-jobs
 - Servalcat refinement against unmerged data
 - Servalcat option for van der Waals restraint weight
 - More graphs in the Servalcat report
