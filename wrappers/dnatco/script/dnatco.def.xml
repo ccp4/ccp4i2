@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <userId>martinmaly</userId>
+    <creationTime>13:15 27/Jun/25</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.1</ccp4iVersion>
+    <pluginName>dnatco</pluginName>
+    <pluginTitle>DNATCO - Restrain and validate nucleic acid structures</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="dnatco">
+
+    <container id="inputData">
+      <content id="XYZIN">
+         <className>CPdbDataFile</className>
+         <qualifiers>
+            <mustExist>True</mustExist>
+            <allowUndefined>False</allowUndefined>
+            <fromPreviousJob>True</fromPreviousJob>
+         </qualifiers>
+      </content>
+      <!--<content id="HKLIN">
+          <className>CObsDataFile</className>
+          <qualifiers>
+              <mustExist>True</mustExist>
+              <allowUndefined>True</allowUndefined>
+              <fromPreviousJob>True</fromPreviousJob>
+              <toolTip>File containing structure factor amplitudes/intensities and uncertainties (F/SigF or I/SigI).</toolTip>
+          </qualifiers>
+      </content>-->
+    </container>
+
+    <container id="outputData">
+      <content id="RESTRAINTS">
+        <className>CRefmacRestraintsDataFile</className>
+        <qualifiers>
+        </qualifiers>
+	    </content>
+      <content id="CIFOUT">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <default>
+            <subType>1</subType>
+            <contentFlag>2</contentFlag>
+          </default>
+          <saveToDb>False</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="PDFOUT">
+        <className>CPDFDataFile</className>
+        <qualifiers>
+          <default>
+            <annotation>DNATCO report (PDF)</annotation>
+          </default>
+          <saveToDb>False</saveToDb>
+          </qualifiers>
+      </content>
+    </container>
+
+    <container id="controlParameters">
+      <content id="MAX_RMSD">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.5</default>
+          <guiLabel>Maximum allowed NtC RMSD (in angstroem)</guiLabel>
+          <toolTip>Maximum allowed NtC RMSD (in angstroem)</toolTip>
+        </qualifiers>
+      </content>
+      <content id="RESTRAINTS_SIGMA">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>1.0</default>
+          <guiLabel>Restraints sigma factor</guiLabel>
+          <toolTip>Restraints sigma factor</toolTip>
+        </qualifiers>
+      </content>
+      <content id="GENERATE_RESTRAINTS">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <guiLabel>Generate restraints</guiLabel>
+        </qualifiers>
+      </content>
+    </container>
+
+  </ccp4i2_body>
+</ccp4i2>

@@ -17,12 +17,6 @@
      GNU Lesser General Public License for more details.
 """
 
-"""
-     Andrey Lebedev September 2011 - refmac_martin gui
-     Liz Potterton Aug 2012 - convert for MTZ ADO's demo
-     Liz Potterton Oct 2012 - Moved mini-MTZ version to refmac_martin
-"""
-
 from PySide2 import QtWidgets,QtCore
 from qtgui import CCP4TaskWidget
 from core import CCP4XtalData
@@ -171,7 +165,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.drawAdvanced() # small change introduced to allow for automatically loading a keyword file in the 'advanced' tab
     self.setProsmartProteinMode()
     self.setProsmartNucleicAcidMode()
-    self.setLibgMode()
+    self.setDnatcoMode()
     return
 
   def twinHelpPressed(self):
@@ -319,6 +313,36 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'label', '<i>Not available.</i>' ] )
     self.closeSubFrame()
 
+    self.createLine( [ 'subtitle', 'DNATCO External Restraints for Nucleic Acids'] )
+    if self.isEditable():
+       self.container.dnatco.TOGGLE_RESTRAINTS.dataChanged.connect(self.setDnatcoMode)
+       self.container.controlParameters.REFINEMENT_MODE.dataChanged.connect(self.setDnatcoMode)
+       self.container.controlParameters.UNRESTRAINED.dataChanged.connect(self.setDnatcoMode)
+       self.container.controlParameters.FIX_XYZ.dataChanged.connect(self.setDnatcoMode)
+       self.container.controlParameters.JELLY_ONLY.dataChanged.connect(self.setDnatcoMode)
+    self.openSubFrame(frame=[True], toggle = ['dnatco.MODE', 'open', [ 'DISABLED' ] ] )
+    self.createLine( [ 'label', '<i>Specify atomic model before setting up external restraints</i>' ] )
+    self.closeSubFrame()
+    self.openSubFrame(frame=[True], toggle = ['dnatco.MODE', 'open', [ 'NONUCLEICACID' ] ] )
+    self.createLine( [ 'label', '<i>Input atomic model contains no nucleotide chains</i>' ] )
+    self.closeSubFrame()
+    self.openSubFrame(frame=[True], toggle = ['dnatco.MODE', 'open', [ 'RIGIDMODE' ] ] )
+    self.createLine( [ 'label', '<i>Not available in Rigid Body mode.</i>' ] )
+    self.closeSubFrame()
+    self.openSubFrame(frame=[True], toggle = ['dnatco.MODE', 'open', [ 'NOTUSED' ] ] )
+    self.createLine( [ 'label', '<i>Not available.</i>' ] )
+    self.closeSubFrame()
+    self.openSubFrame(frame=[True], toggle = ['dnatco.MODE', 'open', [ 'UNSELECTED' ] ] )
+    self.createLine( [ 'widget', 'dnatco.TOGGLE_RESTRAINTS', 'label', 'Generate and apply restraints for nucleic acids (experimental)' ] )
+    self.closeSubFrame()
+    self.openSubFrame(frame=[True], toggle = ['dnatco.MODE', 'open', [ 'SELECTED' ] ] )
+    self.createLine( [ 'widget', 'dnatco.TOGGLE_RESTRAINTS', 'label', 'Generate and apply restraints for nucleic acids (experimental):' ] )
+    self.autoGenerate(
+         self.container.dnatco,
+         selection={"includeParameters": ["MAX_RMSD", "RESTRAINTS_SIGMA"]},
+      )
+    self.closeSubFrame()
+
     self.createLine( [ 'subtitle', 'ProSMART External Restraints for Protein Chains'] )
     if self.isEditable():
        self.container.prosmartProtein.TOGGLE.dataChanged.connect(self.setProsmartProteinMode)
@@ -419,9 +443,6 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
 
   def hideProsmartNucleicAcidBfac(self):
      return self.container.prosmartNucleicAcid.ADVANCED and not self.container.prosmartNucleicAcid.TOGGLE_BFAC
-  
-  def showLibgOptions(self):
-     return str(self.container.libg.OPTION) == 'MANUAL'
 
   def drawAdvanced( self ):
     indent = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
@@ -460,6 +481,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'widget', 'VALIDATE_IRIS', 'label', 'Generate Iris validation report' ] )
     self.createLine( [ 'widget', 'VALIDATE_RAMACHANDRAN', 'label', 'Generate Ramachandran plots' ] )
     self.createLine( [ 'widget', 'VALIDATE_MOLPROBITY', 'label', 'Run MolProbity to analyse geometry' ] )
+    self.createLine( [ 'widget', 'dnatco.TOGGLE_VALIDATION', 'label', 'Run DNATCO to validate nucleic acids' ] )
 
     self.createLine( [ 'widget', 'RUN_ADP_ANALYSIS', 'label', 'Run ADP analysis' ] )
     self.createLine( [ 'label', 'Atoms with a B-value lower than <i>the first quartile - factor * interquartile_range</i><br />or higher than <i>the third quartile + factor * interquartile_range</i> to be reported. Factor:',
@@ -520,7 +542,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
            self.updateViewFromModel()
      self.setProsmartProteinMode()
      self.setProsmartNucleicAcidMode()
-     self.setLibgMode()
+     self.setDnatcoMode()
      self.getMonomersWithMetals()
 
   @QtCore.Slot()
@@ -572,21 +594,23 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
      self.validate()
 
   @QtCore.Slot()
-  def setLibgMode(self):
+  def setDnatcoMode(self):
      if self.ToggleRigidModeOn():
-        self.container.libg.MODE.set('RIGIDMODE')
+        self.container.dnatco.MODE.set('RIGIDMODE')
      elif self.container.inputData.XYZIN.isSet():
         if self.container.inputData.NUCLEOTIDE_CHAINS.isSet():
            if self.container.inputData.NUCLEOTIDE_CHAINS:
-              if self.container.libg.TOGGLE:
-                 self.container.libg.MODE.set('SELECTED')
+              if self.container.dnatco.TOGGLE_RESTRAINTS:
+                 self.container.dnatco.MODE.set('SELECTED')
               else:
-                 self.container.libg.MODE.set('UNSELECTED')
+                 self.container.dnatco.MODE.set('UNSELECTED')
+              self.container.dnatco.TOGGLE_VALIDATION.set(True)
               self.validate()
               return
-        self.container.libg.MODE.set('NONUCLEICACID')
+        self.container.dnatco.MODE.set('NONUCLEICACID')
+        self.container.dnatco.TOGGLE_VALIDATION.set(False)
      else:
-        self.container.libg.MODE.set('DISABLED')
+        self.container.dnatco.MODE.set('DISABLED')
      self.validate()
 
   def getMonomersWithMetals(self):

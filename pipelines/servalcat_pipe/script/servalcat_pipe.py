@@ -34,7 +34,7 @@ class servalcat_pipe(CPluginScript):
 
     TASKMODULE = 'refinement'
     SHORTTASKTITLE = 'Servalcat'
-    TASKTITLE = 'Refinement against diffraction data or SPA map & optional restraints from ProSMART & MetalCoord'
+    TASKTITLE = 'Refinement against diffraction data or SPA map & optional restraints from ProSMART, MetalCoord and DNATCO'
     TASKNAME = 'servalcat_pipe'  # Task name - same as class name
     MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
     TASKVERSION= 0.1
@@ -43,7 +43,7 @@ class servalcat_pipe(CPluginScript):
     TIMEOUT_PERIOD = 240
     MAXNJOBS = 4
     PERFORMANCECLASS = 'CServalcatPerformance'
-    SUBTASKS=['servalcat','prosmart','metalCoord']
+    SUBTASKS=['servalcat','prosmart','metalCoord','dnatco_pipe']
     RUNEXTERNALPROCESS=False
     PURGESEARCHLIST =  [[ 'refmac%*/hklout.mtz', 0, "hklout" ], [ 'refmac%*/hklout.mtz', 7, "hklout" ], [ '*%*/ANOMFPHIOUT.mtz', 1, "ANOMFPHIOUT" ], [ '*%*/DIFANOMFPHIOUT.mtz', 1, "DIFANOMFPHIOUT" ]]
 
@@ -64,6 +64,12 @@ class servalcat_pipe(CPluginScript):
             self.executeProsmartNucleicAcid()
         except Exception as e:
             sys.stderr.write("ERROR while running ProSMART: " + str(e) + "\n")
+            self.reportStatus(CPluginScript.FAILED)
+            return CPluginScript.FAILED
+        try:
+            self.executeDnatcoRestraints()
+        except Exception as e:
+            sys.stderr.write("ERROR while running DNATCO restraints generation: " + str(e) + "\n")
             self.reportStatus(CPluginScript.FAILED)
             return CPluginScript.FAILED
         try:
@@ -131,6 +137,44 @@ class servalcat_pipe(CPluginScript):
 
     @QtCore.Slot(dict)
     def prosmartNucleicAcidFinished(self, statusDict):
+        status = statusDict['finishStatus']
+        if status == CPluginScript.FAILED:
+            self.reportStatus(status)
+
+    def executeDnatcoRestraints(self):
+        # DNATCO job for restraints generation before refinement
+        if bool(self.container.dnatco.TOGGLE_RESTRAINTS):
+            self.dnatco = self.makePluginObject('dnatco')
+            self.dnatco.container.inputData.XYZIN.set(self.container.inputData.XYZIN)
+            self.dnatco.container.controlParameters.GENERATE_RESTRAINTS.set(True)
+            self.dnatco.container.controlParameters.MAX_RMSD.set(self.container.dnatco.MAX_RMSD)
+            self.dnatco.container.controlParameters.RESTRAINTS_SIGMA.set(self.container.dnatco.RESTRAINTS_SIGMA)
+            self.connectSignal(self.dnatco, 'finished', self.dnatcoRestraintsFinished)
+            self.dnatco.waitForFinished = -1
+            self.dnatco.process()
+
+    @QtCore.Slot(dict)
+    def dnatcoRestraintsFinished(self, statusDict):
+        status = statusDict['finishStatus']
+        if status == CPluginScript.FAILED:
+            self.reportStatus(status)
+
+    def executeDnatcoValidation(self):
+        # DNATCO job for structure validation - structure models before and after refinement
+        # Needs to be fixed
+        return
+        if bool(self.container.dnatco.TOGGLE_VALIDATION):
+            self.dnatcoValidation = self.makePluginObject('dnatco_pipe')
+            self.dnatcoValidation.container.inputData.XYZIN1.set(self.container.inputData.XYZIN)
+            self.dnatcoValidation.container.inputData.XYZIN2.set(self.container.outputData.CIFFILE)
+            self.dnatcoValidation.container.controlParameters.GENERATE_RESTRAINTS.set(False)
+            self.dnatcoValidation.container.controlParameters.TOGGLE_XYZIN2.set(True)
+            self.connectSignal(self.dnatcoValidation, 'finished', self.dnatcoValidationFinished)
+            self.dnatcoValidation.waitForFinished = -1
+            self.dnatcoValidation.process()
+
+    @QtCore.Slot(dict)
+    def dnatcoValidationFinished(self, statusDict):
         status = statusDict['finishStatus']
         if status == CPluginScript.FAILED:
             self.reportStatus(status)
@@ -292,6 +336,8 @@ class servalcat_pipe(CPluginScript):
                     # else report error?
             else:
                 result.container.inputData.METALCOORD_RESTRAINTS=self.container.metalCoordPipeline.METALCOORD_RESTRAINTS
+        if self.container.dnatco.TOGGLE_RESTRAINTS:
+            result.container.inputData.DNATCO_RESTRAINTS=self.dnatco.container.outputData.RESTRAINTS
         if self.container.prosmartProtein.TOGGLE:
             result.container.controlParameters.PROSMART_PROTEIN_SGMN=self.container.prosmartProtein.SGMN
             result.container.controlParameters.PROSMART_PROTEIN_SGMX=self.container.prosmartProtein.SGMX
@@ -796,6 +842,7 @@ class servalcat_pipe(CPluginScript):
                     cleanup.purgeJob(self.servalcatPostCootPlugin.jobId,context="extended_intermediate",reportMode="skip")
 
         self.multimericValidation()
+        self.executeDnatcoValidation()
         if self.container.controlParameters.RUN_ADP_ANALYSIS:
             self.adp_analysis(
                 str(self.container.outputData.CIFFILE.fullPath),

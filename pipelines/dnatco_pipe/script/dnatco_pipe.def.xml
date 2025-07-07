@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <userId>martinmaly</userId>
+    <creationTime>13:15 27/Jun/25</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.1</ccp4iVersion>
+    <pluginName>dnatco_pipe</pluginName>
+    <pluginTitle>DNATCO - Restrain and validate nucleic acid structures</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="dnatco">
+
+        <file>
+            <CI2XmlDataFile>
+                <project>CCP4I2_TOP</project>
+                <relPath>wrappers/dnatco/script</relPath>
+                <baseName>dnatco.def.xml</baseName>
+            </CI2XmlDataFile>
+        </file>
+
+    <container id="inputData">
+      <content id="XYZIN1">
+         <className>CPdbDataFile</className>
+         <qualifiers>
+            <mustExist>True</mustExist>
+            <allowUndefined>False</allowUndefined>
+            <fromPreviousJob>True</fromPreviousJob>
+         </qualifiers>
+      </content>
+      <content id="XYZIN2">
+         <className>CPdbDataFile</className>
+         <qualifiers>
+            <allowUndefined>True</allowUndefined>
+            <fromPreviousJob>True</fromPreviousJob>
+         </qualifiers>
+      </content>
+    </container>
+
+    <container id="outputData">
+      <content id="RESTRAINTS">
+        <className>CRefmacRestraintsDataFile</className>
+        <qualifiers>
+        </qualifiers>
+	    </content>
+    </container>
+
+    <container id="controlParameters">
+      <content id="TOGGLE_XYZIN2">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <guiLabel>Compare with another structure model</guiLabel>
+        </qualifiers>
+      </content>
+    </container>
+
+  </ccp4i2_body>
+</ccp4i2>

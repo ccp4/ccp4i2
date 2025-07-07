@@ -92,6 +92,16 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                   <guiLabel>MetalCoord restraints for metal sites</guiLabel>
                </qualifiers>
             </content>
+            <content id="DNATCO_RESTRAINTS">
+               <className>CRefmacRestraintsDataFile</className>
+               <qualifiers>
+                  <saveToDb>True</saveToDb>
+                  <mustExist>True</mustExist>
+                  <allowUndefined>True</allowUndefined>
+                  <fromPreviousJob>True</fromPreviousJob>
+                  <guiLabel>DNATCO restraints for nucleic acids</guiLabel>
+               </qualifiers>
+            </content>
             <content id="PROSMART_PROTEIN_RESTRAINTS">
                <className>CRefmacRestraintsDataFile</className>
                <qualifiers>
