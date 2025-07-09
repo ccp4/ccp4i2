@@ -21,7 +21,7 @@
 from report.CCP4ReportParser import *
 from core import CCP4Modules
 from wrappers.dnatco.script.dnatco_report import dnatco_report
-import os
+from pathlib import Path
 
 
 class dnatco_pipe_report(Report):
@@ -37,7 +37,7 @@ class dnatco_pipe_report(Report):
         jobNumber = self.jobInfo.get("jobnumber", None)
         jobId = self.jobInfo.get("jobid", None)
         jobDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId)
-        self.jobLog = os.path.join(jobDirectory, "log.txt")
+        self.jobLog = str(Path(jobDirectory) / "log.txt")
         if jobStatus is not None and jobStatus.lower() == "running":
             self.runningReport(parent=self)
         else:
@@ -47,7 +47,7 @@ class dnatco_pipe_report(Report):
     def runningReport(self, parent=None):
         if parent is None:
             parent = self
-        if os.path.isfile(self.jobLog):
+        if Path(self.jobLog).is_file():
             jobLogFold = parent.addFold(label="DNATCO log", initiallyOpen=True)
             jobLogFold.addPre("DNATCO is running...")
 
@@ -57,14 +57,10 @@ class dnatco_pipe_report(Report):
             parent = self
         self.addDiv(style="clear:both;")  # gives space for the title
 
-        jobId = self.jobInfo.get("jobid", None)
-        jobDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId = jobId)
-
-        jobDirectory1 = os.path.join(jobDirectory, "job_1")  # TODO: derive from jobId?
-        jobDirectory2 = os.path.join(jobDirectory, "job_2")  # TODO: derive from jobId?
-        jobDirectories = [jobDirectory1]
-        if os.path.isdir(jobDirectory2):
-            jobDirectories.append(jobDirectory2)
-
+        ciffile1Path = str(self.jobInfo['filenames']['CIFOUT1'])
+        ciffile2Path = str(self.jobInfo['filenames']['CIFOUT2'])
+        ciffilePaths = [ciffile1Path]
+        if Path(ciffile2Path).is_file():
+            ciffilePaths.append(ciffile2Path)
         dnatco_report1 = dnatco_report()
-        dnatco_report1.defaultReport(parent, jobDirectories)
+        dnatco_report1.defaultReport(parent, ciffilePaths)

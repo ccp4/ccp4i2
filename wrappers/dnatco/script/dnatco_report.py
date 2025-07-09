@@ -20,7 +20,7 @@
 
 from report.CCP4ReportParser import *
 from core import CCP4Modules
-import os
+from pathlib import Path
 import gemmi
 
 
@@ -37,7 +37,7 @@ class dnatco_report(Report):
         jobNumber = self.jobInfo.get("jobnumber", None)
         jobId = self.jobInfo.get("jobid", None)
         jobDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId)
-        self.jobLog = os.path.join(jobDirectory, "log.txt")
+        self.jobLog = str(Path(jobDirectory) / "log.txt")
         if jobStatus is not None and jobStatus.lower() == "running":
             self.runningReport(parent=self)
         else:
@@ -47,45 +47,32 @@ class dnatco_report(Report):
     def runningReport(self, parent=None):
         if parent is None:
             parent = self
-        if os.path.isfile(self.jobLog):
+        if Path(self.jobLog).is_file():
             jobLogFold = parent.addFold(label="DNATCO log", initiallyOpen=True)
             jobLogFold.addPre("DNATCO is running...")
 
 
-    def defaultReport(self, parent=None, jobDirectories=[]):
+    def defaultReport(self, parent=None, ciffilePaths=[]):
+
         if parent is None:
             parent = self
         self.addDiv(style="clear:both;")  # gives space for the title
 
-        if jobDirectories:
-            if len(jobDirectories) == 2:
+        if ciffilePaths:
+            if len(ciffilePaths) == 2:
                 compare_two = True
             else:
                 compare_two = False
         else:
-            # only one job directory
+            # only one mmCIF file from this job
             compare_two = False
-            jobId = self.jobInfo.get("jobid", None)
-            jobDirectories = [CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId = jobId)]
-
-        # load data
-        import glob
-
-        def get_cif_data(job_dir, parent):
-            cif_files = glob.glob(os.path.join(job_dir, "*_extended.cif"))
-            ciffile_path = cif_files[0] if cif_files else ""
-            if not os.path.isfile(ciffile_path):
-                noteDiv = parent.addDiv(style='font-size:110%;color:red;')
-                noteDiv.append(
-                    f"DNATCO did not generate the extended CIF file in {job_dir}. No report can be generated.<br>"
-                    " Please check the log files for more information."
-                )
-                return None
-            return self.read_data_from_cif(ciffile_path)
-
-        cif_data1 = get_cif_data(jobDirectories[0], parent)
+            if self.jobInfo:
+                if 'filenames' in self.jobInfo and 'CIFOUT' in self.jobInfo['filenames']:
+                    ciffilePaths = [self.jobInfo['filenames']['CIFOUT']]
+            
+        cif_data1 = self.read_data_from_cif(ciffilePaths[0], parent)
         if compare_two:
-            cif_data2 = get_cif_data(jobDirectories[1], parent)
+            cif_data2 = self.read_data_from_cif(ciffilePaths[1], parent)
 
         # draw report
         overallFold = parent.addFold(label="Overall structure quality", initiallyOpen=True)
@@ -231,7 +218,15 @@ class dnatco_report(Report):
         self.addDiv(style="clear:both;")
 
 
-    def read_data_from_cif(self, ciffilePath):
+    def read_data_from_cif(self, ciffilePath, parent=None):
+        if not Path(ciffilePath).is_file():
+            noteDiv = parent.addDiv(style='font-size:110%;color:red;')
+            noteDiv.append(
+                f"DNATCO did not generate the extended CIF file (expected path: {ciffilePath})."
+                " No report could be generated.<br>"
+                " Please check the log files for more information."
+            )
+            return None
         ciffile = gemmi.cif.read_file(ciffilePath)
         cif_data = {}
 

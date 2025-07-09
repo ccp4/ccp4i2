@@ -39,6 +39,26 @@
     </container>
 
     <container id="outputData">
+      <content id="CIFOUT1">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <default>
+            <subType>1</subType>
+            <contentFlag>2</contentFlag>
+          </default>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="CIFOUT2">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <default>
+            <subType>1</subType>
+            <contentFlag>2</contentFlag>
+          </default>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
       <content id="RESTRAINTS">
         <className>CRefmacRestraintsDataFile</className>
         <qualifiers>

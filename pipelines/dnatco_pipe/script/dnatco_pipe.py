@@ -18,7 +18,7 @@
     GNU Lesser General Public License for more details.
 """
 
-import os
+from pathlib import Path
 import shutil
 import xml.etree.ElementTree as ET
 from PySide2 import QtCore
@@ -46,7 +46,7 @@ class dnatco_pipe(CPluginScript):
         self.dnatco1.process()
         if (
             bool(self.container.controlParameters.TOGGLE_XYZIN2)
-            and os.path.isfile(str(self.container.inputData.XYZIN2.fullPath))
+            and Path(str(self.container.inputData.XYZIN2.fullPath)).is_file()
         ):
             self.dnatco2 = self.dnatcoCreate(self.container.inputData.XYZIN2)
             self.dnatco2.process()
@@ -79,12 +79,30 @@ class dnatco_pipe(CPluginScript):
         with open(self.makeFileName('PROGRAMXML'), 'w', encoding="utf-8") as programXML:
             CCP4Utils.writeXML(programXML, ET.tostring(xmlroot))
 
+
+        ciffile1PathJob = str(self.dnatco1.container.outputData.CIFOUT.fullPath)
+        ciffile1PathPipeline = str(self.container.outputData.CIFOUT1.fullPath)
+        if Path(ciffile1PathJob).is_file():
+            shutil.copyfile(ciffile1PathJob, ciffile1PathPipeline)
+            self.container.outputData.CIFOUT1.annotation.set(self.dnatco1.container.outputData.CIFOUT.annotation)
+        if bool(self.container.controlParameters.TOGGLE_XYZIN2):
+            ciffile2PathJob = str(self.dnatco2.container.outputData.CIFOUT.fullPath)
+            ciffile2PathPipeline = str(self.container.outputData.CIFOUT2.fullPath)
+            if Path(ciffile2PathJob).is_file():
+                shutil.copyfile(ciffile2PathJob, ciffile2PathPipeline)
+                self.container.outputData.CIFOUT1.annotation.set(
+                    str(self.dnatco1.container.outputData.CIFOUT.annotation).replace("model", "model 1")
+                    )
+                self.container.outputData.CIFOUT2.annotation.set(
+                    str(self.dnatco2.container.outputData.CIFOUT.annotation).replace("model", "model 2")
+                    )
+
         if bool(self.container.controlParameters.GENERATE_RESTRAINTS):
             dnatco_obj = self.dnatco2 if bool(self.container.controlParameters.TOGGLE_XYZIN2) else self.dnatco1
             self.container.outputData.RESTRAINTS.annotation.set(dnatco_obj.container.outputData.RESTRAINTS.annotation)
             restraintsPathJob = str(dnatco_obj.container.outputData.RESTRAINTS.fullPath)
             restraintsPathPipeline = str(self.container.outputData.RESTRAINTS.fullPath)
-            if os.path.isfile(restraintsPathJob):
+            if Path(restraintsPathJob).is_file():
                 shutil.copyfile(restraintsPathJob, restraintsPathPipeline)
 
         self.reportStatus(CPluginScript.SUCCEEDED)
