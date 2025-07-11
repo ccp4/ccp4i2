@@ -109,9 +109,11 @@ class dnatco_report(Report):
         outliersFold = parent.addFold(label="Dinucleotides outliers", initiallyOpen=True)
         noteDiv = outliersFold.addDiv(style='font-size:110%;')
         noteDiv.append(
-            "List all unassigned dinucleotide steps. Dinucleotide conformer (NtC),"
-            " resp. conformational alphabet of nucleic acids (CANA) classes in"
-            " the table below represent the closest NtC, resp. CANA class that would be assigned to the given"
+            "List all unassigned dinucleotide steps. Dinucleotide conformer (NtC)"
+            #", resp. conformational alphabet of nucleic acids (CANA) classes "
+            " in the table below represent the closest NtC"
+            #", resp. CANA class"
+            " that would be assigned to the given"
             " dinucleotide if all assignment criteria were met."
             )
         if (
@@ -122,9 +124,9 @@ class dnatco_report(Report):
             table.addData(title="Step ID", data=cif_data1['step_id_outliers'])
             table.addData(title="Chain", data=cif_data1['chain_display_outliers'])
             table.addData(title="Step", data=cif_data1['steps_outliers'])
-            table.addData(title=f"Closest CANA{model_label}", data=cif_data1['assigned_CANA_outliers'])
-            if compare_two:
-                table.addData(title="Closest CANA (model 2)", data=cif_data2['assigned_CANA_outliers'])
+            #table.addData(title=f"Closest CANA{model_label}", data=cif_data1['assigned_CANA_outliers'])
+            #if compare_two:
+            #    table.addData(title="Closest CANA (model 2)", data=cif_data2['assigned_CANA_outliers'])
             table.addData(title=f"Closest NtC1{model_label}", data=cif_data1['assigned_NtC_outliers'])
             if compare_two:
                 table.addData(title="Closest NtC (model 2)", data=cif_data2['assigned_NtC_outliers'])
@@ -155,9 +157,9 @@ class dnatco_report(Report):
             table.addData(title="Step ID", data=cif_data1['step_id_improvables'])
             table.addData(title="Chain", data=cif_data1['chain_display_improvables'])
             table.addData(title="Step", data=cif_data1['steps_improvables'])
-            table.addData(title=f"Closest CANA{model_label}", data=cif_data1['assigned_CANA_improvables'])
-            if compare_two:
-                table.addData(title="Closest CANA (model 2)", data=cif_data2['assigned_CANA_improvables'])
+            #table.addData(title=f"Closest CANA{model_label}", data=cif_data1['assigned_CANA_improvables'])
+            #if compare_two:
+            #    table.addData(title="Closest CANA (model 2)", data=cif_data2['assigned_CANA_improvables'])
             table.addData(title=f"Closest NtC{model_label}", data=cif_data1['assigned_NtC_improvables'])
             if compare_two:
                 table.addData(title="Closest NtC (model 2)", data=cif_data2['assigned_NtC_improvables'])
@@ -202,9 +204,9 @@ class dnatco_report(Report):
         table.addData(title="Step ID", data=cif_data1['step_id'])
         table.addData(title="Chain", data=cif_data1['chain_display'])
         table.addData(title="Step", data=cif_data1['steps'])
-        table.addData(title=f"Assigned CANA{model_label}", data=cif_data1['assigned_CANA'])
-        if compare_two:
-            table.addData(title="Assigned CANA (model 2)", data=cif_data2['assigned_CANA'])
+        #table.addData(title=f"Assigned CANA{model_label}", data=cif_data1['assigned_CANA'])
+        #if compare_two:
+        #    table.addData(title="Assigned CANA (model 2)", data=cif_data2['assigned_CANA'])
         table.addData(title=f"Assigned NtC{model_label}", data=cif_data1['assigned_NtC'])
         if compare_two:
             table.addData(title="Assigned NtC (model 2)", data=cif_data2['assigned_NtC'])
@@ -277,7 +279,7 @@ class dnatco_report(Report):
         table_step = ciffile[0].find(
             '_ndb_struct_ntc_step_summary.',
             ['step_id',
-             'assigned_CANA',
+             #'assigned_CANA',
              'assigned_NtC',
              'confal_score',
              'euclidean_distance_NtC_ideal',
@@ -287,13 +289,13 @@ class dnatco_report(Report):
              'closest_step_golden']
             )
         cif_data['step_id'] = table_step.find_column('step_id')
-        cif_data['assigned_CANA'] = table_step.find_column('assigned_CANA')
+        #cif_data['assigned_CANA'] = table_step.find_column('assigned_CANA')
         cif_data['assigned_NtC'] = table_step.find_column('assigned_NtC')
         cif_data['confal_score'] = table_step.find_column('confal_score')
         # cif_data['euclidean_distance_NtC_ideal'] = table_step.find_column('euclidean_distance_NtC_ideal')
         cif_data['rmsd'] = table_step.find_column('cartesian_rmsd_closest_NtC_representative')
         cif_data['closest_NtC'] = table_step.find_column('closest_NtC')
-        cif_data['closest_CANA'] = table_step.find_column('closest_CANA')
+        #cif_data['closest_CANA'] = table_step.find_column('closest_CANA')
         cif_data['rmsd_NtC_assigned'] = [
             f"{float(rmsd):.2f} ({closest_NtC})"
             if closest_NtC != '.'
@@ -327,18 +329,18 @@ class dnatco_report(Report):
         cif_data['step_id_improvables'] = [cif_data['step_id'][i] for i in cif_data['idx_improvables']]
         cif_data['chain_display_improvables'] = [cif_data['chain_display'][i] for i in cif_data['idx_improvables']]
         cif_data['steps_improvables'] = [cif_data['steps'][i] for i in cif_data['idx_improvables']]
-        cif_data['assigned_CANA_improvables'] = [cif_data['closest_CANA'][i] for i in cif_data['idx_improvables']]
+        #cif_data['assigned_CANA_improvables'] = [cif_data['closest_CANA'][i] for i in cif_data['idx_improvables']]
         cif_data['assigned_NtC_improvables'] = [cif_data['closest_NtC'][i] for i in cif_data['idx_improvables']]
         cif_data['rmsd_NtC_improvables'] = [cif_data['rmsd'][i] for i in cif_data['idx_improvables']]
 
         cif_data['step_id_outliers'] = [cif_data['step_id'][i] for i in cif_data['idx_outliers']]
         cif_data['chain_display_outliers'] = [cif_data['chain_display'][i] for i in cif_data['idx_outliers']]
         cif_data['steps_outliers'] = [cif_data['steps'][i] for i in cif_data['idx_outliers']]
-        cif_data['assigned_CANA_outliers'] = [ cif_data['closest_CANA'][i] for i in cif_data['idx_outliers']]
+        #cif_data['assigned_CANA_outliers'] = [ cif_data['closest_CANA'][i] for i in cif_data['idx_outliers']]
         cif_data['assigned_NtC_outliers'] = [cif_data['closest_NtC'][i] for i in cif_data['idx_outliers']]
         cif_data['rmsd_NtC_outliers'] = [cif_data['rmsd'][i] for i in cif_data['idx_outliers']]
 
-        cif_data['assigned_CANA'] = [cana if cana != 'NAN' else '-' for cana in cif_data['assigned_CANA']]
+        #cif_data['assigned_CANA'] = [cana if cana != 'NAN' else '-' for cana in cif_data['assigned_CANA']]
         cif_data['assigned_NtC'] = [ntc if ntc != 'NANT' else '-' for ntc in cif_data['assigned_NtC']]
 
         return cif_data
