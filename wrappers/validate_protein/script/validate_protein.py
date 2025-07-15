@@ -65,22 +65,7 @@ class validate_protein(CPluginScript):
 
         print ("Using Iris installation: " + iris_validation.__file__.replace(f"/__init__.py", ""))
 
-        self.latest_model_path = str(self.container.inputData.XYZIN_1)
-        if self.container.inputData.F_SIGF_1.isSet() :
-            self.latest_reflections_path, _ = self.makeHklin([['F_SIGF_1',
-                                                             CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]], 
-                                                             hklin='F_SIGF_1')
-        else: 
-            self.latest_reflections_path = None
-        
         if self.container.controlParameters.TWO_DATASETS :
-            self.previous_model_path = str(self.container.inputData.XYZIN_2)
-            if self.container.inputData.F_SIGF_2.isSet() :
-                self.previous_reflections_path, _ = self.makeHklin([['F_SIGF_2',
-                                                                CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]], 
-                                                                hklin='F_SIGF_2')
-            else:
-                self.previous_reflections_path = None
             log_string += _print_and_return('\n\nCalculating metrics for two datasets...\n\n')
         else :
             log_string += _print_and_return('\n\nCalculating metrics for one dataset...\n\n')
@@ -144,10 +129,22 @@ class validate_protein(CPluginScript):
     def calculate_iris_metrics(self):
         log_string = ''
         xml_root = etree.Element('Model_info')
+        xyzin1 = str(self.container.inputData.XYZIN_1)
+        fsigf1 = None
+        if self.container.inputData.F_SIGF_1.isSet():
+            fsigf1, _ = self.makeHklin(
+                [['F_SIGF_1', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]], hklin='F_SIGF_1'
+            )
         if self.container.controlParameters.TWO_DATASETS :
-            print("PATHS\n",self.latest_model_path, self.previous_model_path,self.latest_reflections_path, self.previous_reflections_path)
-            self.model_series = metrics_model_series_from_files(model_paths=(self.latest_model_path, self.previous_model_path),
-                                                                reflections_paths=(self.latest_reflections_path, self.previous_reflections_path),
+            xyzin2 = str(self.container.inputData.XYZIN_2)
+            fsigf2 = None
+            if self.container.inputData.F_SIGF_2.isSet() :
+                fsigf2, _ = self.makeHklin(
+                    [['F_SIGF_2', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]], hklin='F_SIGF_2'
+                )
+            print("PATHS\n", xyzin1, xyzin2, fsigf1, fsigf2)
+            self.model_series = metrics_model_series_from_files(model_paths=(xyzin1, xyzin2),
+                                                                reflections_paths=(fsigf1, fsigf2),
                                                                 sequence_paths=(None, None),
                                                                 distpred_paths=(None, None),
                                                                 model_json_paths=(None, None),
@@ -159,9 +156,9 @@ class validate_protein(CPluginScript):
             etree.SubElement(xml_root, 'Chain_count').text = str(self.latest_model.chain_count)
             return log_string, xml_root
         else :
-            print("PATHS\n",self.latest_model_path, self.latest_reflections_path )
-            self.model_series = metrics_model_series_from_files(model_paths=(self.latest_model_path,),
-                                                                reflections_paths=(self.latest_reflections_path,),
+            print("PATHS\n", xyzin1, fsigf1)
+            self.model_series = metrics_model_series_from_files(model_paths=(xyzin1,),
+                                                                reflections_paths=(fsigf1,),
                                                                 sequence_paths=(None,),
                                                                 distpred_paths=(None,),
                                                                 model_json_paths=(None,),
