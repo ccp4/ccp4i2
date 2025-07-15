@@ -10,6 +10,7 @@
 - Fix for deprecated numpy.float
 - More AceDrg i2run tests
 - Support for 5-letter ligand codes in AceDRG make link
+- Fix for Coot 0.9 anomalous map colouring
 
 ## [2.3.3] - 2025-05-29
 
