@@ -9,6 +9,7 @@
 - More Servalcat i2 run tests
 - Fix for deprecated numpy.float
 - More AceDrg i2run tests
+- Support for 5-letter ligand codes in AceDRG make link
 
 ## [2.3.3] - 2025-05-29
 
