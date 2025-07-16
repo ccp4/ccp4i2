@@ -120,6 +120,10 @@ class dnatco_report(Report):
             (compare_two and len(cif_data2['idx_outliers']) > 0)
             or (not compare_two and len(cif_data1['idx_outliers']) > 0)
             ):
+            n_outliers = len(cif_data2['idx_outliers']) if compare_two else len(cif_data1['idx_outliers'])
+            noteDiv.append(
+                f"{n_outliers} dinucleotide outliers reported.<br />"
+            )
             table = outliersFold.addTable(title="Dinucleotides outliers")
             table.addData(title="Step ID", data=cif_data1['step_id_outliers'])
             table.addData(title="Chain", data=cif_data1['chain_display_outliers'])
@@ -145,7 +149,7 @@ class dnatco_report(Report):
         improvablesFold = parent.addFold(label="Improvable dinucleotide outliers", initiallyOpen=True)
         noteDiv = improvablesFold.addDiv(style='font-size:110%;')
         noteDiv.append(
-            "List of unassigned dinucleotide steps that are considered"
+            " List of unassigned dinucleotide steps that are considered"
             " sufficiently close to a representative from the Golden Set. Closeness criterion is defined as RMSD"
             " value less or equal to 0.5 Å."
             )
@@ -153,6 +157,10 @@ class dnatco_report(Report):
             (compare_two and len(cif_data2['idx_improvables']) > 0)
             or (not compare_two and len(cif_data1['idx_improvables']) > 0)
             ):
+            n_improvables = len(cif_data2['idx_improvables']) if compare_two else len(cif_data1['idx_improvables'])
+            noteDiv.append(
+                f"{n_improvables} improvable dinucleotide outliers reported.<br />"
+            )
             table = improvablesFold.addTable(title="Improvable dinucleotide outliers")
             table.addData(title="Step ID", data=cif_data1['step_id_improvables'])
             table.addData(title="Chain", data=cif_data1['chain_display_improvables'])
@@ -322,9 +330,12 @@ class dnatco_report(Report):
         cif_data['idx_outliers'] = []
         for i, (ntc, rmsd) in enumerate(zip(cif_data['assigned_NtC'], cif_data['rmsd'])):
             if ntc == 'NANT':
-                if rmsd not in ('.', '?') and rmsd.isnumeric() and float(rmsd) <= 0.5:
-                    cif_data['idx_improvables'].append(i)
-                else:
+                try:
+                    if rmsd not in ('.', '?') and float(rmsd) <= 0.5:
+                        cif_data['idx_improvables'].append(i)
+                    else:
+                        cif_data['idx_outliers'].append(i)
+                except (ValueError, TypeError):
                     cif_data['idx_outliers'].append(i)
         cif_data['step_id_improvables'] = [cif_data['step_id'][i] for i in cif_data['idx_improvables']]
         cif_data['chain_display_improvables'] = [cif_data['chain_display'][i] for i in cif_data['idx_improvables']]
