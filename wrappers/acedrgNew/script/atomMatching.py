@@ -13,42 +13,61 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 import rdkit
 
+from gemmi import cif
+
 from .dictFileToMonomer import dictFileToMonomer
 
-def quote_quotes(t):
-    if '"' in t:
-        print("double, quoting single")
-        print(t)
-        print("'" + t +"'")
-        return "'" + t +"'"
-    elif "'" in t:
-        print("single, quoting double")
-        print(t)
-        print('"' + t + '"')
-        return '"' + t + '"'
-    else:
-        return t
+def changeDictionaryAtomNames(doc,changes):
+    # loops which reference atoms
+    loop_names = ["_chem_comp_tor.", "_chem_comp_angle.", "_chem_comp_bond.", "_chem_comp_acedrg.", "_chem_comp_plane_atom.", "_chem_comp_ring_atom.", "_chem_comp_atom.","_chem_comp_chir." ]
+
+    for block in doc:  # Iterate over blocks
+        for item in block: # Iterate over items in block
+            if hasattr(item,"loop") and item.loop is not None: # select just loops
+                for lname in loop_names: # Iterate over our loops which reference atoms
+                    short_tags = []
+                    if len(item.loop.tags)>0 and item.loop.tags[0].startswith(lname):
+                        for t in item.loop.tags:
+                            short_tags.append(t[len(lname):]) # get tag name without loop prefix
+                        for cc in block.find(lname, short_tags): # Get Table.Rows associated with loop
+                            for index,v  in enumerate(cc): # Loop over the objects in the row
+                                if "atom_id" in item.loop.tags[index]:
+                                    if v in changes:
+                                        # Apply the changes. Give temporary name in case new name is a different old name
+                                        # Quotes need to be considered because gemmi does nothing clever with these strings.
+                                        if "'" in changes[v]:
+                                            cc[index] = '"'+changes[v]+'"'+"_tmp"
+                                        elif '"' in changes[v]:
+                                            cc[index] = "'"+changes[v]+"'"+"_tmp"
+                                        else:
+                                            cc[index] = changes[v]+"_tmp"
+    # repeat above to remove "_tmp"
+    for block in doc:
+        for item in block:
+            if hasattr(item,"loop") and item.loop is not None:
+                for lname in loop_names:
+                    short_tags = []
+                    if len(item.loop.tags)>0 and item.loop.tags[0].startswith(lname):
+                        for t in item.loop.tags:
+                            short_tags.append(t[len(lname):])
+                        for cc in block.find(lname, short_tags):
+                            for index,v  in enumerate(cc):
+                                if "atom_id" in item.loop.tags[index]:
+                                    if v.endswith("_tmp"):
+                                        cc[index] = v[:-4]
 
 def replaceMatchesInDict(matches,theDict,outfile):
-    """
-    Replace all replacements at once.
-    http://stackoverflow.com/questions/6116978/python-replace-multiple-strings
-    """
-    lines = []
-    outlines = []
 
-    matches = dict((re.escape(k), v) for k, v in matches.items())
-    pattern = re.compile("|".join(list(matches.keys())))
+    #Gemmi returns the vaules in the cif document with no leading/trailing whitespace.
+    matches_gemmi = {}
+    for k,v in matches.items(): matches_gemmi[k.strip()] = v
 
-    with open(theDict) as f:
-        lines = f.readlines()
-
-    for l in lines:
-        text = pattern.sub(lambda m:" "+ quote_quotes(matches[re.escape(m.group(0))])+" " , l.rstrip())
-        outlines.append(text+"\n")
-
-    with open(outfile,"w+") as f:
-        f.writelines(outlines)
+    try:
+        doc = cif.read_file(theDict)
+        changeDictionaryAtomNames(doc,matches_gemmi)
+        doc.write_file(outfile)
+    except Exception as e:
+        print("Failed to change CIF dictionary names %s" % e)
 
 def initSRS():
     SRS = ccp4srs.Manager()
