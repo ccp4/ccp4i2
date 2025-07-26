@@ -50,7 +50,13 @@ class edstats_report(Report):
         else :
             ligands.append ( residue )
 
-    self.xmlnode.append(new_tree)
+    # Append new_tree to self.xmlnode, checking if it has an append method
+    print(self.xmlnode)
+    if hasattr(self.xmlnode, 'append') and callable(getattr(self.xmlnode, 'append')):
+        self.xmlnode.append(new_tree)
+    else:
+        # Assume it's an ElementTree and get the root
+        self.xmlnode.getroot().append(new_tree)
 
     for chain in list_of_chains :
 
