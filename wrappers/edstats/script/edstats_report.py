@@ -51,7 +51,6 @@ class edstats_report(Report):
             ligands.append ( residue )
 
     # Append new_tree to self.xmlnode, checking if it has an append method
-    print(self.xmlnode)
     if hasattr(self.xmlnode, 'append') and callable(getattr(self.xmlnode, 'append')):
         self.xmlnode.append(new_tree)
     else:
