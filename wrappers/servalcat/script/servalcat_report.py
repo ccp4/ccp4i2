@@ -566,8 +566,8 @@ class servalcat_report(Report):
             graphMnIoIcTitle = "Mean Io and mean Ic"
             graphMnIoIc = gallery.addFlotGraph(
                 xmlnode=xmlnode,
-                title=graphDtitle,
-                internalId=graphDtitle,
+                title=graphMnIoIcTitle,
+                internalId=graphMnIoIcTitle,
                 outputXml=self.outputXml,
                 label=graphMnIoIcTitle,
                 style=galleryGraphStyle)
