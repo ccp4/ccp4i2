@@ -531,39 +531,10 @@ class servalcat_report(Report):
             plotLine.append('colour', 'orange')
             plotLine.append('symbolsize', '0')
 
-        #  MnD0FC0, MnD1FCbulk - only for servalcat_xtal_norefmac
-        if len(xmlnode.findall('.//cycle[last()]/data/binned/MnD0FC0')) > 0 and \
-                len(xmlnode.findall('.//cycle[last()]/data/binned/MnD1FCbulk')) > 0:
-            graphDtitle = "Mean |D0*FC0| and |D1*FCbulk|"
-            graphD = gallery.addFlotGraph(
-                xmlnode=xmlnode,
-                title=graphDtitle,
-                internalId=graphDtitle,
-                outputXml=self.outputXml,
-                label=graphDtitle,
-                style=galleryGraphStyle)
-            graphD.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
-            graphD.addData(title="Mean|D0*FC0|", select=".//cycle[last()]/data/binned/./MnD0FC0")
-            graphD.addData(title="Mean|D1*FCbulk|", select=".//cycle[last()]/data/binned/./MnD1FCbulk")
-            plotD = graphD.addPlotObject()
-            plotD.append('title', graphDtitle)
-            plotD.append('plottype', 'xy')
-            plotD.append('xlabel', 'Resolution (&Aring;)')
-            plotD.append('xscale', 'oneoversqrt')
-            plotD.append('yrange', min=0.0)
-            plotD.append('legendposition', x=1, y=1)
-            plotLine = plotD.append('plotline', xcol=1, ycol=2)
-            plotLine.append('colour', 'blue')
-            plotLine.append('symbolsize', '0')
-            plotD.append('yrange', rightaxis='true')
-            plotLine = plotD.append('plotline', xcol=1, ycol=3, rightaxis='true')
-            plotLine.append('colour', 'red')
-            plotLine.append('symbolsize', '0')
-
         # MnIo, MnIc - only for servalcat_xtal_norefmac
         if len(xmlnode.findall('.//cycle[last()]/data/binned/MnIo')) > 0 and \
                 len(xmlnode.findall('.//cycle[last()]/data/binned/MnIc')) > 0:
-            graphMnIoIcTitle = "Mean Io and mean Ic"
+            graphMnIoIcTitle = "Mean Io and Ic"
             graphMnIoIc = gallery.addFlotGraph(
                 xmlnode=xmlnode,
                 title=graphMnIoIcTitle,
@@ -585,6 +556,40 @@ class servalcat_report(Report):
             plotLine.append('colour', 'blue')
             plotLine.append('symbolsize', '0')
             plotLine = plotMnIoIc.append('plotline', xcol=1, ycol=3)
+            plotLine.append('colour', 'red')
+            plotLine.append('symbolsize', '0')
+
+        #  MnD0FC0, MnD1FCbulk - only for servalcat_xtal_norefmac
+        MnD_parent = ""
+        MnD_parents = ["binned", "ml"]
+        for p in MnD_parents:
+            if len(xmlnode.findall(f'.//cycle[last()]/data/{p}/MnD0FC0')) > 0 and \
+                    len(xmlnode.findall(f'.//cycle[last()]/data/{p}/MnD1FCbulk')) > 0:
+                MnD_parent = p
+        if MnD_parent:
+            graphDtitle = "Mean |D0*FC0| and |D1*FCbulk|"
+            graphD = gallery.addFlotGraph(
+                xmlnode=xmlnode,
+                title=graphDtitle,
+                internalId=graphDtitle,
+                outputXml=self.outputXml,
+                label=graphDtitle,
+                style=galleryGraphStyle)
+            graphD.addData(title="Resolution(&Aring;)", select=f".//cycle[last()]/data/{MnD_parent}/./d_min_4ssqll")
+            graphD.addData(title="Mean|D0*FC0|", select=f".//cycle[last()]/data/{MnD_parent}/./MnD0FC0")
+            graphD.addData(title="Mean|D1*FCbulk|", select=f".//cycle[last()]/data/{MnD_parent}/./MnD1FCbulk")
+            plotD = graphD.addPlotObject()
+            plotD.append('title', graphDtitle)
+            plotD.append('plottype', 'xy')
+            plotD.append('xlabel', 'Resolution (&Aring;)')
+            plotD.append('xscale', 'oneoversqrt')
+            plotD.append('yrange', min=0.0)
+            plotD.append('legendposition', x=1, y=1)
+            plotLine = plotD.append('plotline', xcol=1, ycol=2)
+            plotLine.append('colour', 'blue')
+            plotLine.append('symbolsize', '0')
+            plotD.append('yrange', rightaxis='true')
+            plotLine = plotD.append('plotline', xcol=1, ycol=3, rightaxis='true')
             plotLine.append('colour', 'red')
             plotLine.append('symbolsize', '0')
 
