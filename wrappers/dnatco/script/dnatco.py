@@ -18,7 +18,7 @@
     GNU Lesser General Public License for more details.
 """
 
-from pathlib import Path
+import os
 import xml.etree.ElementTree as ET
 from core.CCP4PluginScript import CPluginScript
 from core.CCP4ErrorHandling import *
@@ -70,23 +70,28 @@ class dnatco(CPluginScript):
 
         # outputCifFilename = outputFilenamePrefix + '_extended.cif'
         # outputCifPath = os.path.normpath(os.path.join(self.getWorkDirectory(), outputCifFilename))
-        work_dir = Path(self.workDirectory)
-        cif_files = list(work_dir.glob("*_extended.cif"))
-        if not cif_files or not Path(str(cif_files[0])).is_file():
-            self.appendErrorReport(202, str(cif_files[0]))
+        import glob
+        cif_files = glob.glob(os.path.join(self.workDirectory, "*_extended.cif"))
+        if cif_files:
+            outputCifPath = cif_files[0]
+        else:
+            outputCifPath = ""
+        if os.path.isfile(outputCifPath):
+            self.container.outputData.CIFOUT.setFullPath(outputCifPath)
+            self.container.outputData.CIFOUT.annotation.set('Extended model (mmCIF format)')
+        else:
+            self.appendErrorReport(202, outputCifPath)
             return CPluginScript.FAILED
-        self.container.outputData.CIFOUT.setFullPath(str(cif_files[0]))
-        self.container.outputData.CIFOUT.annotation.set('Extended model (mmCIF format)')
 
         if bool(self.container.controlParameters.GENERATE_RESTRAINTS):
             # outputRestraintsFilename = outputFilenamePrefix + '_restraints_refmac.txt'
             # outputRestraintsPath = os.path.normpath(os.path.join(self.getWorkDirectory(), outputRestraintsFilename))
-            restraint_files = list(work_dir.glob("*_restraints_refmac.txt"))
-            if restraint_files:
-                outputRestraintsPath = str(restraint_files[0])
+            cif_files = glob.glob(os.path.join(self.workDirectory, "*_restraints_refmac.txt"))
+            if cif_files:
+                outputRestraintsPath = cif_files[0]
             else:
                 outputRestraintsPath = ""
-            if Path(outputRestraintsPath).is_file():
+            if os.path.isfile(outputRestraintsPath):
                 self.container.outputData.RESTRAINTS.setFullPath(outputRestraintsPath)
                 self.container.outputData.RESTRAINTS.annotation.set('DNATCO restraints')
             else:
