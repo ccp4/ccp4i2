@@ -460,46 +460,76 @@
            </content>
         </container>
 
-        <container id="dnatco">
-            <content id="TOGGLE_RESTRAINTS">
+        <container id="libg">
+           <content id="MODE">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>DISABLED,SELECTED,UNSELECTED,NONUCLEICACID,RIGIDMODE</enumerators>
+                 <default>DISABLED</default>
+              </qualifiers>
+           </content>
+           <content id="TOGGLE">
               <className>CBoolean</className>
               <qualifiers>
                  <default>False</default>
               </qualifiers>
-            </content>
-            <content id="TOGGLE_VALIDATION">
+           </content>
+           <content id="OPTION">
+              <className>CString</className>
+              <qualifiers>
+                 <allowUndefined>False</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
+                 <enumerators>ALL,MANUAL</enumerators>
+                 <menuText>all,specify restraint types</menuText>
+                 <default>ALL</default>
+              </qualifiers>
+           </content>
+           <content id="BP">
               <className>CBoolean</className>
               <qualifiers>
                  <default>False</default>
               </qualifiers>
+           </content>
+           <content id="ADVANCED">
+              <className>CBoolean</className>
+              <qualifiers>
+                 <default>False</default>
+              </qualifiers>
+           </content>
+           <content id="KEYWORDS">
+              <className>CString</className>
+              <qualifiers>
+                 <default># Replace this with optional additional libg keywords</default>
+              </qualifiers>
+           </content>
+        </container>
+
+        <container id="platonyzer">
+            <content id="TOGGLE">
+                <className>CBoolean</className>
+                <qualifiers>
+                  <default>False</default>
+                </qualifiers>
             </content>
             <content id="MODE">
                <className>CString</className>
                <qualifiers>
                   <allowUndefined>False</allowUndefined>
                   <onlyEnumerators>True</onlyEnumerators>
-                  <enumerators>DISABLED,SELECTED,UNSELECTED,NONUCLEICACID,RIGIDMODE</enumerators>
-                  <default>DISABLED</default>
+                  <enumerators>ZN,NA_MG</enumerators>
+                  <menuText>Zinc,Zinc/Sodium/Magnesium</menuText>
+                  <default>ZN</default>
                </qualifiers>
             </content>
-            <content id="MAX_RMSD">
-               <className>CFloat</className>
-               <qualifiers>
-                  <default>0.5</default>
-                  <guiLabel>Maximum allowed NtC RMSD (in angstroem)</guiLabel>
-                  <toolTip>Maximum allowed NtC RMSD (in angstroem)</toolTip>
-               </qualifiers>
-            </content>
-            <content id="RESTRAINTS_SIGMA">
-               <className>CFloat</className>
-               <qualifiers>
-                  <default>1.0</default>
-                  <guiLabel>Restraints sigma factor</guiLabel>
-                  <toolTip>Restraints sigma factor</toolTip>
-               </qualifiers>
+            <content id="RM_VDW">
+                <className>CBoolean</className>
+                <qualifiers>
+                  <default>True</default>
+                </qualifiers>
             </content>
         </container>
-
         <container id="monitor">
             <content id="RUN_COORDADPDEV_ANALYSIS">
                <className>CBoolean</className>

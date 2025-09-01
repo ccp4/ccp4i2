@@ -1,6 +1,6 @@
 """
     servalcat.py: CCP4 GUI Project
-    Copyright (C) 2024 University of Southampton, MRC-LMB Cambridge
+    Copyright (C) 2024 MRC-LBM, University of Southampton
     
     This library is free software: you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public License
@@ -475,7 +475,7 @@ class servalcat(CPluginScript):
 
         keywordFilePath = str(os.path.join(self.getWorkDirectory(), 'keywords.txt'))
 
-        if str(float(self.container.controlParameters.VDWR_WEIGHT)) != "1.0":
+        if str(float(self.container.controlParameters.VDWR_WEIGHT)) != "1":
             with open(keywordFilePath, "a+") as keywordFile:
                 keywordFile.write("VDWR " + str(self.container.controlParameters.VDWR_WEIGHT) + "\n")
         # Occupancy refinement
@@ -510,9 +510,6 @@ class servalcat(CPluginScript):
         if self.container.inputData.METALCOORD_RESTRAINTS.isSet():
             with open(keywordFilePath, "a+") as keywordFile:
                 keywordFile.write("\n@%s"%(str(self.container.inputData.METALCOORD_RESTRAINTS.fullPath)))
-        if self.container.inputData.DNATCO_RESTRAINTS.isSet():
-            with open(keywordFilePath, "a+") as keywordFile:
-                keywordFile.write("\n@%s"%(str(self.container.inputData.DNATCO_RESTRAINTS.fullPath)))
         if self.container.inputData.PROSMART_PROTEIN_RESTRAINTS.isSet():
             with open(keywordFilePath, "a+") as keywordFile:
                 if self.container.controlParameters.PROSMART_PROTEIN_SGMN.isSet():
@@ -585,6 +582,6 @@ class servalcat(CPluginScript):
                 CCP4Utils.writeXML(programXmlFile, newXml)
             shutil.move(self.makeFileName('PROGRAMXML')+'_tmp', self.makeFileName('PROGRAMXML'))
 
-    """def setProgramVersion(self):
-      print('servalcat.getProgramVersion')
-      return CPluginScript.setProgramVersion(self,'servalcat')"""
+    def setProgramVersion(self):
+      print('refmac.getProgramVersion')
+      return CPluginScript.setProgramVersion(self,'Refmac_5')

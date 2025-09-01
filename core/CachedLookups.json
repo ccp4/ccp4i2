@@ -141,9 +141,6 @@
             "morda_i2",
             "phaser_singleMR"
         ],
-        "pipelines": [
-            "dnatco_pipe"
-        ],
         "preferences": [
             "guipreferences"
         ],
@@ -160,7 +157,6 @@
             "pdb_redo_api",
             "sheetbend",
             "zanuda",
-            "dnatco_pipe",
             "phaser_rnp_pipeline"
         ],
         "test": [
@@ -226,7 +222,6 @@
             "buccaneer_mr",
             "cmapcoeff",
             "cpatterson",
-            "dnatco",
             "import_mosflm",
             "metalCoord",
             "prosmart",
@@ -993,28 +988,6 @@
                 "clsModule": "wrappers.dials_rlattice.script.dials_rlattice_report",
                 "clsName": "dials_rlattice_report",
                 "modes": []
-            }
-        },
-        "dnatco": {
-            "0.0.0": {
-                "MAINTAINER": "Nobody",
-                "class": "wrappers.dnatco.script.dnatco_reportdnatco_report",
-                "clsModule": "wrappers.dnatco.script.dnatco_report",
-                "clsName": "dnatco_report",
-                "modes": [
-                    "Running"
-                ]
-            }
-        },
-        "dnatco_pipe": {
-            "0.0.0": {
-                "MAINTAINER": "Nobody",
-                "class": "pipelines.dnatco_pipe.script.dnatco_pipe_reportdnatco_pipe_report",
-                "clsModule": "pipelines.dnatco_pipe.script.dnatco_pipe_report",
-                "clsName": "dnatco_pipe_report",
-                "modes": [
-                    "Running"
-                ]
             }
         },
         "dr_mr_modelbuild_pipeline": {
@@ -2850,32 +2823,6 @@
                 "subTasks": []
             }
         },
-        "dnatco": {
-            "0.1": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "martin.maly@mrc-lmb.cam.ac.uk",
-                "TASKTITLE": null,
-                "class": "wrappers.dnatco.script.dnatcodnatco",
-                "clsModule": "wrappers.dnatco.script.dnatco",
-                "clsName": "dnatco",
-                "internal": false,
-                "subTasks": []
-            }
-        },
-        "dnatco_pipe": {
-            "0.1": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "martin.maly@mrc-lmb.cam.ac.uk",
-                "TASKTITLE": null,
-                "class": "pipelines.dnatco_pipe.script.dnatco_pipednatco_pipe",
-                "clsModule": "pipelines.dnatco_pipe.script.dnatco_pipe",
-                "clsName": "dnatco_pipe",
-                "internal": false,
-                "subTasks": []
-            }
-        },
         "dr_mr_modelbuild_pipeline": {
             "null": {
                 "DESCRIPTION": null,
@@ -3124,7 +3071,7 @@
             }
         },
         "metalCoord": {
-            "0.2": {
+            "0.1": {
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "martin.maly@mrc-lmb.cam.ac.uk",
@@ -3886,7 +3833,7 @@
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "martin.maly@mrc-lmb.cam.ac.uk",
-                "TASKTITLE": "Refinement against diffraction data or SPA map & optional restraints from ProSMART, MetalCoord and DNATCO",
+                "TASKTITLE": "Refinement against diffraction data or SPA map & optional restraints from ProSMART & MetalCoord",
                 "class": "pipelines.servalcat_pipe.script.servalcat_pipeservalcat_pipe",
                 "clsModule": "pipelines.servalcat_pipe.script.servalcat_pipe",
                 "clsName": "servalcat_pipe",
@@ -3894,8 +3841,7 @@
                 "subTasks": [
                     "servalcat",
                     "prosmart",
-                    "metalCoord",
-                    "dnatco_pipe"
+                    "metalCoord"
                 ]
             }
         },
@@ -4227,7 +4173,6 @@
         "coot_script_lines": "qticons/coot_script_lines.png",
         "coot_stepped_refine": "qticons/ccp4.png",
         "cpatterson": "qticons/cpatterson.png",
-        "cphasematch": "qticons/cphasematch.png",
         "crank2": "qticons/crank2.png",
         "crank2_comb_phdmmb": "qticons/ccp4.png",
         "crank2_dmfull": "qticons/ccp4.png",
@@ -4249,7 +4194,6 @@
         "developer_tools": "qticons/developer_tools.png",
         "dials_image": "qticons/dials_image.png",
         "dials_rlattice": "qticons/dials_rlattice.png",
-        "dnatco_pipe": "qticons/dnatco_pipe.png",
         "dr_mr_modelbuild_pipeline": "qticons/ccp4.png",
         "dui": "qticons/dui.png",
         "dummy": "qticons/ccp4.png",
@@ -5547,20 +5491,6 @@
                 "taskVersion": 0.0
             }
         },
-        "dnatco_pipe": {
-            "0.0.0": {
-                "DESCRIPTION": "Restrain and validate nucleic acid structures",
-                "MAINTAINER": "Nobody",
-                "RANK": null,
-                "TASKTITLE": "DNATCO",
-                "class": "pipelines.dnatco_pipe.script.dnatco_pipe_guidnatco_pipe_gui",
-                "clsModule": "pipelines.dnatco_pipe.script.dnatco_pipe_gui",
-                "clsName": "dnatco_pipe_gui",
-                "shortTitle": "DNATCO",
-                "taskName": "dnatco_pipe",
-                "taskVersion": 0.1
-            }
-        },
         "dr_mr_modelbuild_pipeline": {
             "0.0.0": {
                 "DESCRIPTION": "Data Reduction, MR, Model build pipeline",
@@ -5824,7 +5754,7 @@
                 "clsName": "CmetalCoord_gui",
                 "shortTitle": "MetalCoord",
                 "taskName": "metalCoord",
-                "taskVersion": 0.2
+                "taskVersion": 1.0
             }
         },
         "modelcraft": {
