@@ -458,8 +458,7 @@ class servalcat_report(Report):
             plotLine.append('symbolsize', '0')
 
         # Number of reflections - only for servalcat_xtal_norefmac
-        if len(xmlnode.findall('.//cycle[last()]/data/binned/n_obs')) > 0 and \
-                len(xmlnode.findall('.//cycle[last()]/data/binned/n_work')) > 0:
+        if len(xmlnode.findall('.//cycle[last()]/data/binned/n_obs')) > 0:
             graphNtitle = "Number of reflections"
             graphN = gallery.addFlotGraph(
                 xmlnode=xmlnode,
@@ -470,9 +469,13 @@ class servalcat_report(Report):
                 style=galleryGraphStyle)
             graphN.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
             graphN.addData(title="Nobs", select=".//cycle[last()]/data/binned/./n_obs")
-            graphN.addData(title="Nwork", select=".//cycle[last()]/data/binned/./n_work")
-            if len(xmlnode.findall('.//cycle[last()]/data/binned/n_free')) > 0:
-                graphN.addData(title="Nfree", select=".//cycle[last()]/data/binned/./n_free")
+            graphNplots = 1
+            if len(xmlnode.findall('.//cycle[last()]/data/binned/n_work')) > 0:
+                graphN.addData(title="Nwork", select=".//cycle[last()]/data/binned/./n_work")
+                graphNplots += 1
+                if len(xmlnode.findall('.//cycle[last()]/data/binned/n_free')) > 0:
+                    graphN.addData(title="Nfree", select=".//cycle[last()]/data/binned/./n_free")
+                    graphNplots += 1
             plotN = graphN.addPlotObject()
             plotN.append('title', graphNtitle)
             plotN.append('plottype', 'xy')
@@ -482,13 +485,14 @@ class servalcat_report(Report):
             plotLine = plotN.append('plotline', xcol=1, ycol=2)
             plotLine.append('colour', 'red')
             plotLine.append('symbolsize', '0')
-            plotLine = plotN.append('plotline', xcol=1, ycol=3)
-            plotLine.append('colour', 'orange')
-            plotLine.append('symbolsize', '0')
-            plotN.append('yrange', rightaxis='true')
-            plotLine = plotN.append('plotline', xcol=1, ycol=4) # , rightaxis='true')
-            plotLine.append('colour', 'blue')
-            plotLine.append('symbolsize', '0')
+            if graphNplots >= 2:
+                plotLine = plotN.append('plotline', xcol=1, ycol=3)
+                plotLine.append('colour', 'orange')
+                plotLine.append('symbolsize', '0')
+            if graphNplots >= 3:
+                plotLine = plotN.append('plotline', xcol=1, ycol=4) # , rightaxis='true')
+                plotLine.append('colour', 'blue')
+                plotLine.append('symbolsize', '0')
 
         # Number of reflections used for R1 calculation - only for servalcat_xtal_norefmac
         if len(xmlnode.findall('.//cycle[last()]/data/binned/n_R1')) > 0 or \
