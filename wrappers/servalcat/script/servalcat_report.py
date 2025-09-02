@@ -457,6 +457,7 @@ class servalcat_report(Report):
             plotLine.append('colour', 'blue')
             plotLine.append('symbolsize', '0')
 
+        # Number of reflections - only for servalcat_xtal_norefmac
         if len(xmlnode.findall('.//cycle[last()]/data/binned/n_obs')) > 0 and \
                 len(xmlnode.findall('.//cycle[last()]/data/binned/n_work')) > 0:
             graphNtitle = "Number of reflections"
@@ -479,15 +480,50 @@ class servalcat_report(Report):
             plotN.append('legendposition', x=0, y=1)
             plotN.append('xscale', 'oneoversqrt')
             plotLine = plotN.append('plotline', xcol=1, ycol=2)
-            plotLine.append('colour', 'orange')
+            plotLine.append('colour', 'red')
             plotLine.append('symbolsize', '0')
             plotLine = plotN.append('plotline', xcol=1, ycol=3)
-            plotLine.append('colour', 'blue')
+            plotLine.append('colour', 'orange')
             plotLine.append('symbolsize', '0')
             plotN.append('yrange', rightaxis='true')
             plotLine = plotN.append('plotline', xcol=1, ycol=4) # , rightaxis='true')
-            plotLine.append('colour', 'red')
+            plotLine.append('colour', 'blue')
             plotLine.append('symbolsize', '0')
+
+        # Number of reflections used for R1 calculation - only for servalcat_xtal_norefmac
+        if len(xmlnode.findall('.//cycle[last()]/data/binned/n_R1')) > 0 or \
+                len(xmlnode.findall('.//cycle[last()]/data/binned/n_R1work')) > 0 or \
+                len(xmlnode.findall('.//cycle[last()]/data/binned/n_R1free')) > 0:
+            graphNR1title = "Number of reflections used for R1 calculation"
+            graphNR1 = gallery.addFlotGraph(
+                xmlnode=xmlnode,
+                title=graphNR1title,
+                internalId=graphNR1title,
+                outputXml=self.outputXml,
+                label=graphNR1title,
+                style=galleryGraphStyle)
+            second_plot = False
+            graphNR1.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
+            if len(xmlnode.findall('.//cycle[last()]/data/binned/n_R1')) > 0:
+                graphNR1.addData(title="N_R1", select=".//cycle[last()]/data/binned/./n_R1")
+            elif len(xmlnode.findall('.//cycle[last()]/data/binned/n_R1work')) > 0:
+                graphNR1.addData(title="N_R1work", select=".//cycle[last()]/data/binned/./n_R1work")
+                if len(xmlnode.findall('.//cycle[last()]/data/binned/n_R1free')) > 0:
+                    graphNR1.addData(title="N_R1free", select=".//cycle[last()]/data/binned/./n_R1free")
+                    second_plot = True
+            plotNR1 = graphNR1.addPlotObject()
+            plotNR1.append('title', graphNR1title)
+            plotNR1.append('plottype', 'xy')
+            plotNR1.append('xlabel', 'Resolution (&Aring;)')
+            plotNR1.append('legendposition', x=0, y=1)
+            plotNR1.append('xscale', 'oneoversqrt')
+            plotLine = plotNR1.append('plotline', xcol=1, ycol=2)
+            plotLine.append('colour', 'orange')
+            plotLine.append('symbolsize', '0')
+            if second_plot:
+                plotLine = plotNR1.append('plotline', xcol=1, ycol=3)
+                plotLine.append('colour', 'blue')
+                plotLine.append('symbolsize', '0')
 
         # Completeness - only for servalcat_xtal_norefmac
         if len(xmlnode.findall('.//cycle[last()]/data/binned/Cmpl')) > 0:
