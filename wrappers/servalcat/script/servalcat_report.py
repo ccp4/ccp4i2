@@ -608,22 +608,33 @@ class servalcat_report(Report):
             plotLine.append('colour', 'orange')
             plotLine.append('symbolsize', '0')
 
-        # MnIo, MnIc - only for servalcat_xtal_norefmac
-        if len(xmlnode.findall('.//cycle[last()]/data/binned/MnIo')) > 0 and \
-                len(xmlnode.findall('.//cycle[last()]/data/binned/MnIc')) > 0:
-            graphMnIoIcTitle = "Mean Io and Ic"
-            graphMnIoIc = gallery.addFlotGraph(
+        # MnIo & MnIc or MnFo & MnFc - only for servalcat_xtal_norefmac
+        if (
+            len(xmlnode.findall('.//cycle[last()]/data/binned/MnIo')) > 0
+            or len(xmlnode.findall('.//cycle[last()]/data/binned/MnFo')) > 0
+        ):
+            if len(xmlnode.findall('.//cycle[last()]/data/binned/MnIo')) > 0 and \
+                    len(xmlnode.findall('.//cycle[last()]/data/binned/MnIc')) > 0:
+                graphMnOCTitle = "Mean Io and Ic"
+                MnO = "MnIo"
+                MnC = "MnIc"
+            elif len(xmlnode.findall('.//cycle[last()]/data/binned/MnFo')) > 0 and \
+                    len(xmlnode.findall('.//cycle[last()]/data/binned/MnFc')) > 0:
+                graphMnOCTitle = "Mean Fo and Fc"
+                MnO = "MnFo"
+                MnC = "MnFc"
+            graphMnOC = gallery.addFlotGraph(
                 xmlnode=xmlnode,
-                title=graphMnIoIcTitle,
-                internalId=graphMnIoIcTitle,
+                title=graphMnOCTitle,
+                internalId=graphMnOCTitle,
                 outputXml=self.outputXml,
-                label=graphMnIoIcTitle,
+                label=graphMnOCTitle,
                 style=galleryGraphStyle)
-            graphMnIoIc.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
-            graphMnIoIc.addData(title="MeanIo", select=".//cycle[last()]/data/binned/./MnIo")
-            graphMnIoIc.addData(title="MeanIc", select=".//cycle[last()]/data/binned/./MnIc")
-            plotMnIoIc = graphMnIoIc.addPlotObject()
-            plotMnIoIc.append('title', graphMnIoIcTitle)
+            graphMnOC.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
+            graphMnOC.addData(title=MnO, select=f".//cycle[last()]/data/binned/./{MnO}")
+            graphMnOC.addData(title=MnC, select=f".//cycle[last()]/data/binned/./{MnC}")
+            plotMnIoIc = graphMnOC.addPlotObject()
+            plotMnIoIc.append('title', graphMnOCTitle)
             plotMnIoIc.append('plottype', 'xy')
             plotMnIoIc.append('xlabel', 'Resolution (&Aring;)')
             plotMnIoIc.append('xscale', 'oneoversqrt')
