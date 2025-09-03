@@ -639,11 +639,15 @@ class prosmart_refmac(CPluginScript):
            if hasattr(self.container.controlParameters,"VALIDATE_RAMACHANDRAN"):
               validate_ramachandran = self.container.controlParameters.VALIDATE_RAMACHANDRAN
 
+           validate_tortoize = False
+           if hasattr(self.container.controlParameters,"VALIDATE_TORTOIZE"):
+               validate_tortoize = self.container.controlParameters.VALIDATE_TORTOIZE
+
            validate_molprobity = False
            if hasattr(self.container.controlParameters,"VALIDATE_MOLPROBITY"):
               validate_molprobity = self.container.controlParameters.VALIDATE_MOLPROBITY
 
-           if validate_baverage or validate_molprobity or validate_ramachandran or validate_iris:
+           if validate_baverage or validate_molprobity or validate_ramachandran or validate_tortoize or validate_iris:
              xml_validation = etree.SubElement(self.xmlroot,"Validation")
              xml_validation_status = etree.SubElement(xml_validation,"Success")
              try:
@@ -670,6 +674,7 @@ class prosmart_refmac(CPluginScript):
                 self.validate.container.controlParameters.DO_IRIS = validate_iris
                 self.validate.container.controlParameters.DO_BFACT = validate_baverage
                 self.validate.container.controlParameters.DO_RAMA = validate_ramachandran
+                self.validate.container.controlParameters.DO_TORTOISE = validate_tortoize
                 self.validate.container.controlParameters.DO_MOLPROBITY = validate_molprobity
 
                 self.validate.doAsync = False
