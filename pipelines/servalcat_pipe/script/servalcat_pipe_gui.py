@@ -459,6 +459,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.openSubFrame(frame=[True])
     self.createLine( [ 'widget', 'VALIDATE_IRIS', 'label', 'Generate Iris validation report' ] )
     self.createLine( [ 'widget', 'VALIDATE_RAMACHANDRAN', 'label', 'Generate Ramachandran plots' ] )
+    self.createLine( [ 'widget', 'VALIDATE_TORTOIZE', 'label', 'Calculate Rama-Z score using <i>tortoize</i>' ] )
     self.createLine( [ 'widget', 'VALIDATE_MOLPROBITY', 'label', 'Run MolProbity to analyse geometry' ] )
 
     self.createLine( [ 'widget', 'RUN_ADP_ANALYSIS', 'label', 'Run ADP analysis' ] )
