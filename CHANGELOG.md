@@ -2,6 +2,7 @@
 
 ## [2.4.1] - 2025-09-04
 
+- Fix Coot map coluring with multiple models
 - PDB-REDO text change
 
 ## [2.4.0] - 2025-07-15
@@ -14,6 +15,7 @@
 - Fix for deprecated numpy.float
 - More AceDrg i2run tests
 - Support for 5-letter ligand codes in AceDRG make link
+- Fix for Coot 0.9 anomalous map colouring
 
 ## [2.3.3] - 2025-05-29
 
