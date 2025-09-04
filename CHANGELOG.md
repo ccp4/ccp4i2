@@ -2,6 +2,7 @@
 
 ## [2.4.1] - 2025-09-04
 
+- Fix Coot map coluring with multiple models
 - PDB-REDO text change
 
 ## [2.4.0] - 2025-07-15
