@@ -1,5 +1,9 @@
 # CCP4i2 Changelog
 
+## [2.4.1] - 2025-09-04
+
+- PDB-REDO text change
+
 ## [2.4.0] - 2025-07-15
 
 - Servalcat refinement against unmerged data
