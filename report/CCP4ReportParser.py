@@ -3927,7 +3927,7 @@ class CopyToClipboard:
     return obj
 
 class CopyUrlToClipboard:
-  def __init__(self,text="",label="Copy to clipboard (by url...)",**kw):
+  def __init__(self,text="",label="Copy to clipboard",**kw):
     self.text=text
     self.label=label
     self.projectId=kw.get("projectId")
