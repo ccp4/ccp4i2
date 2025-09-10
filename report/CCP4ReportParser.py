@@ -982,6 +982,9 @@ class Container(ReportClass):
   def addCopyToClipboard(self,xrtnode=None,xmlnode=None,jobInfo=None,text="",label="",**kw):
       return self.addObjectOfClass(CopyToClipboard, text=text,label=label, **kw)
 
+  def addCopyUrlToClipboard(self,xrtnode=None,xmlnode=None,jobInfo=None,text="",label="",**kw):
+      return self.addObjectOfClass(CopyUrlToClipboard, text=text,label=label, **kw)
+
   def addResults(self,xrtnode=None,xmlnode=None,jobInfo=None,**kw):
       return self.addObjectOfClass(Results, xrtnode, xmlnode, jobInfo, **kw)
 
@@ -3754,6 +3757,8 @@ class JobLogFiles(ReportClass):
     jobId = self.jobInfo["jobid"]
     jobDirectory = PROJECTSMANAGER().makeFileName(jobId=jobId,mode='ROOT')
 
+    """
+#TODO = Need a whole bunch of fetches.
     allText = ""
     for root, subFolders, files in os.walk(jobDirectory):
         for fn in files:
@@ -3769,21 +3774,17 @@ class JobLogFiles(ReportClass):
                         print("Could not read file",fn)
 
     download = logFold.addCopyToClipboard(text=allText,label="Copy all to clipboard")
+    """
 
     for root, subFolders, files in os.walk(jobDirectory):
         for fn in files:
             if (fn.endswith(".log") or fn.endswith(".txt")) and os.path.exists(os.path.join(root,fn)):
                 fileName = os.path.join(root,fn)
                 if os.path.exists(fileName):
-                    fileFold = Fold(label=fileName,brief=os.path.basename(fileName))
+                    fileFold = Fold(label=os.path.relpath(fileName,jobDirectory),brief=os.path.basename(fileName))
                     logFold.append(fileFold)
-                    t = ""
-                    try:
-                        f = open(fileName)
-                        t = f.read()
-                    except:
-                        print("Could not read file",fn)
-                    download = fileFold.addCopyToClipboard(text=t,label="Copy "+os.path.basename(fileName)+" to clipboard")
+                    t = os.path.relpath(fileName,jobDirectory)
+                    download = fileFold.addCopyUrlToClipboard(text=t,label="Copy "+os.path.basename(fileName)+" to clipboard",projectId=self.jobInfo['projectid'],jobnumber=self.jobInfo['jobnumber'])
                     logPre = fileFold.addPre()
                     logPre.text = t
 
@@ -3925,6 +3926,32 @@ class CopyToClipboard:
 
     return obj
 
+class CopyUrlToClipboard:
+  def __init__(self,text="",label="Copy to clipboard (by url...)",**kw):
+    self.text=text
+    self.label=label
+    self.projectId=kw.get("projectId")
+    self.jobnumber=kw.get("jobnumber")
+
+  def as_etree(self):
+    import json
+
+    obj = etree.Element('button')
+
+    obj.set('style','line-height: 14pt; box-sizing: border-box;')
+    obj.text = self.label
+    obj.set('title',"CopyUrlToClipboard")
+
+    n = 4096
+    split_text = [escapeI2Quotify(self.text[i:i+n]) for i in range(0, len(self.text), n)]
+
+    url = htmlBase().rstrip("/report_files/"+CURRENT_CSS_VERSION)+"/database/?getProjectJobFile?projectId="+self.projectId+"?jobNumber="+self.jobnumber+"?fileName="+self.text
+
+    escaped = escapeI2Quotify('fetch("'+url+'").then(response => {if(response.ok) response.text().then(text => {navigator.clipboard.writeText(text)})})')
+
+    obj.set('onclick',"eval("+escaped+")")
+
+    return obj
 
 class Download:
   
