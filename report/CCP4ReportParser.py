@@ -934,6 +934,9 @@ class Container(ReportClass):
   def addPre(self,xrtnode=None,xmlnode=None,jobInfo=None,**kw):
       return self.addObjectOfClass(Pre, xrtnode, xmlnode, jobInfo, **kw)
 
+  def addFetchPre(self,xrtnode=None,xmlnode=None,jobInfo=None,**kw):
+      return self.addObjectOfClass(FetchPre, xrtnode, xmlnode, jobInfo, **kw)
+
   def addGraph(self,xrtnode=None,xmlnode=None,jobInfo=None,**kw):
       return self.addObjectOfClass(Graph, xrtnode, xmlnode, jobInfo, **kw)
 
@@ -1732,7 +1735,6 @@ class DrillDown(ReportClass):
       
     return retSubJobs
 
-
 def foldTitleLine(label, initiallyOpen, brief = None):
   root = etree.Element('root')
   anchor = etree.Element('a')
@@ -1901,6 +1903,21 @@ class Text(ReportClass):
 
 class Pre(Text):
     tag='pre'
+
+class FetchPre(Text):
+    tag='pre'
+    def data_as_xml(self, fileName=None):
+        dataXml = Text.data_as_xml(self, fileName)
+        if(hasattr(dataXml,"findall")):
+            pres = dataXml.findall("pre")
+            if len(pres)>0:
+                thePre = pres[0]
+                theClass = thePre.get("class")
+                if not theClass:
+                    thePre.set("class","urlfetchtag")
+                else:
+                    thePre.set("class",theClass+" urlfetchtag")
+        return dataXml
 
 # Status class
 class Status(Container):
@@ -3785,8 +3802,9 @@ class JobLogFiles(ReportClass):
                     logFold.append(fileFold)
                     t = os.path.relpath(fileName,jobDirectory)
                     download = fileFold.addCopyUrlToClipboard(text=t,label="Copy "+os.path.basename(fileName)+" to clipboard",projectId=self.jobInfo['projectid'],jobnumber=self.jobInfo['jobnumber'])
-                    logPre = fileFold.addPre()
-                    logPre.text = t
+                    logPre = fileFold.addFetchPre()
+                    url = htmlBase().rstrip("/report_files/"+CURRENT_CSS_VERSION)+"/database/?getProjectJobFile?projectId="+self.jobInfo['projectid']+"?jobNumber="+self.jobInfo['jobnumber']+"?fileName="+t
+                    logPre.text = url
 
     return logFold.as_etree()
 
