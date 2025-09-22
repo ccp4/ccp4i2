@@ -86,9 +86,7 @@ def sequenceAlignment(xyzinPath, asuin):
         etree.SubElement(alignment, "identity_1").text = str(result.calculate_identity(1))
         etree.SubElement(alignment, "identity_2").text = str(result.calculate_identity(2))
         etree.SubElement(alignment, "CIGAR").text = str(result.cigar_str())
-        etree.SubElement(alignment, "align_1").text = result.add_gaps(
-            gemmi.one_letter_code(seq), 1
-        )
+        etree.SubElement(alignment, "align_1").text = result.add_gaps(gemmi.one_letter_code(seq), 1)
         etree.SubElement(alignment, "align_match").text = result.match_string
         etree.SubElement(alignment, "align_2").text = result.add_gaps(
             gemmi.one_letter_code(chain.get_polymer().extract_sequence()), 2
@@ -97,9 +95,37 @@ def sequenceAlignment(xyzinPath, asuin):
     polymer_types = [gemmi.PolymerType.PeptideL, gemmi.PolymerType.PeptideD, gemmi.PolymerType.Dna, gemmi.PolymerType.Rna, gemmi.PolymerType.DnaRnaHybrid]
 
     nonAligned = etree.SubElement(xml, "NonAlignedModelChains")
+
+    list_seq = []
+    for seq in asuin.fileContent.seqList:
+        residueKind, polymerType = {
+            "PROTEIN": (gemmi.ResidueKind.AA, gemmi.PolymerType.PeptideL),
+            "DNA": (gemmi.ResidueKind.DNA, gemmi.PolymerType.Dna),
+            "RNA": (gemmi.ResidueKind.RNA, gemmi.PolymerType.Rna),
+        }[seq.polymerType]
+        list_seq.append((gemmi.expand_one_letter_sequence(str(seq.sequence), residueKind),polymerType))
+
     for chain in structure[0]:
         if not chain.name in matched_model_chains and chain.get_polymer().check_polymer_type() in polymer_types:
-            etree.SubElement(nonAligned, "ChainID").text = chain.name
+
+            iseq = 0
+            for fullSeq, polymerType in list_seq:
+                alignment = etree.SubElement(nonAligned, "Alignment")
+                scoring = gemmi.AlignmentScoring()
+                result = gemmi.align_sequence_to_polymer(fullSeq, chain.get_polymer(), polymerType, scoring)
+                etree.SubElement(alignment, "SeqAUNo").text = str(iseq)
+                etree.SubElement(alignment, "ChainID").text = chain.name
+                etree.SubElement(alignment, "match_count").text = str(result.match_count)
+                etree.SubElement(alignment, "identity").text = str(result.calculate_identity())
+                etree.SubElement(alignment, "identity_1").text = str(result.calculate_identity(1))
+                etree.SubElement(alignment, "identity_2").text = str(result.calculate_identity(2))
+                etree.SubElement(alignment, "CIGAR").text = str(result.cigar_str())
+                etree.SubElement(alignment, "align_1").text = result.add_gaps(gemmi.one_letter_code(fullSeq), 1)
+                etree.SubElement(alignment, "align_match").text = result.match_string
+                etree.SubElement(alignment, "align_2").text = result.add_gaps( gemmi.one_letter_code(chain.get_polymer().extract_sequence()), 2)
+                iseq += 1
+
+
     return xml
 
 
