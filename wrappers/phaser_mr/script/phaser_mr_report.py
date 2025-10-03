@@ -69,7 +69,12 @@ class pimpleGraph():
                 plotline.set('xcol',str(intXcol+originalNColumns))
                 intYcol = int(plotline.get('ycol'))
                 plotline.set('ycol',str(intYcol+originalNColumns))
-            self.xmlnode.append(copiedPlot)
+            # Append new_tree to self.xmlnode, checking if it has an append method
+            if hasattr(self.xmlnode, 'append') and callable(getattr(self.xmlnode, 'append')):
+                self.xmlnode.append(copiedPlot)
+            else:
+                # Assume it's an ElementTree and get the root
+                self.xmlnode.getroot().append(copiedPlot)
         return
 
     def columnWithHeader(self,header):
