@@ -244,7 +244,7 @@ def matchAtoms(ifname,ofname=None,dictMatchName=None,selection="",dictFileName=N
                                     retMatches[res.GetAtom(i).GetAtomName()] = guessName
                                     allMatchNames.append(guessName)
                                     break
-                        else:
+                        elif len(element) > 2:
                             print("bad element",res.GetAtom(i).element)
 
             print(allMatchNames)
