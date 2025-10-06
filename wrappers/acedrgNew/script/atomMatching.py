@@ -13,7 +13,7 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 import rdkit
 
-from gemmi import cif
+import gemmi
 
 from .dictFileToMonomer import dictFileToMonomer
 
@@ -63,7 +63,7 @@ def replaceMatchesInDict(matches,theDict,outfile):
     for k,v in matches.items(): matches_gemmi[k.strip()] = v
 
     try:
-        doc = cif.read_file(theDict)
+        doc = gemmi.cif.read_file(theDict)
         changeDictionaryAtomNames(doc,matches_gemmi)
         doc.write_file(outfile)
     except Exception as e:
@@ -229,33 +229,23 @@ def matchAtoms(ifname,ofname=None,dictMatchName=None,selection="",dictFileName=N
                     print(res.GetAtom(i).name, "not matched")
                     if res.GetAtom(i).name in allMatchNames:
                         print("Problem this name is already used",res.GetAtom(i).name)
-                        elLen = len(res.GetAtom(i).element.strip())
-                        iguess = 1
-                        if elLen == 1:
-                            haveName = False
-                            while iguess < 1000 and not haveName:
+                        element = res.GetAtom(i).element.strip()
+                        if len(element) == 1:
+                            for iguess in range(1, 1000):
                                 if iguess < 10:
-                                    guessName = ' ' + res.GetAtom(i).element.strip() + str(iguess) + ' '
+                                    guessName = f" {element}{iguess} "
                                 elif iguess < 100:
-                                    guessName = ' ' + res.GetAtom(i).element.strip() + str(iguess)
+                                    guessName = f" {element}{iguess}"
                                 elif iguess < 1000:
-                                    guessName = res.GetAtom(i).element.strip() + str(iguess)
-                                if not guessName in allMatchNames:
-                                    taken = False
+                                    guessName = f"{element}{iguess}"
+                                if guessName not in allMatchNames:
                                     for j in range(res.GetNumberOfAtoms()):
                                         if res.GetAtom(j).name == guessName:
-                                            taken = True
-                                    if not taken:
-                                        print(guessName,"is plausible")
-                                        retMatches[res.GetAtom(i).GetAtomName()] = guessName
-                                        allMatchNames.append(guessName)
-                                        haveName = True
-                                        break
-                                iguess += 1
-                        elif elLen == 1:
-                            pass
-                        elif elLen == 2:
-                            pass
+                                            continue
+                                    print(guessName,"is plausible")
+                                    retMatches[res.GetAtom(i).GetAtomName()] = guessName
+                                    allMatchNames.append(guessName)
+                                    break
                         else:
                             print("bad element",res.GetAtom(i).element)
 
