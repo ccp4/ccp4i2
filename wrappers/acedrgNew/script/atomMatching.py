@@ -232,11 +232,9 @@ def matchAtoms(ifname,ofname=None,dictMatchName=None,selection="",dictFileName=N
                         element = res.GetAtom(i).element.strip()
                         if len(element) == 1:
                             for iguess in range(1, 1000):
-                                if iguess < 10:
-                                    guessName = f" {element}{iguess} "
-                                elif iguess < 100:
-                                    guessName = f" {element}{iguess}"
-                                elif iguess < 1000:
+                                if iguess < 100:
+                                    guessName = f" {element}{iguess:<2}"
+                                else:
                                     guessName = f"{element}{iguess}"
                                 if guessName not in allMatchNames:
                                     for j in range(res.GetNumberOfAtoms()):
