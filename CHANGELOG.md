@@ -4,6 +4,7 @@
 
 - Fix Coot map coluring with multiple models
 - Fix for AceDRG atom name matching
+- Improved graphs in Servalcat report
 - Added checks before xmlnode append
 - Searching Python 3.11 paths for CCP4 10
 - PDB-REDO text change
