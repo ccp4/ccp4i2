@@ -331,11 +331,15 @@ class servalcat_pipe(CPluginScript):
         if hasattr(self.container.controlParameters,"VALIDATE_RAMACHANDRAN"):
             validate_ramachandran = self.container.controlParameters.VALIDATE_RAMACHANDRAN
 
+        validate_tortoize = False
+        if hasattr(self.container.controlParameters,"VALIDATE_TORTOIZE"):
+            validate_tortoize = self.container.controlParameters.VALIDATE_TORTOIZE
+
         validate_molprobity = False
         if hasattr(self.container.controlParameters,"VALIDATE_MOLPROBITY"):
             validate_molprobity = self.container.controlParameters.VALIDATE_MOLPROBITY
 
-        if validate_iris or validate_baverage or validate_molprobity or validate_ramachandran:
+        if validate_iris or validate_baverage or validate_molprobity or validate_ramachandran or validate_tortoize:
             self.validate = self.makePluginObject('validate_protein')
             self.validate.container.inputData.XYZIN_2.set(self.container.outputData.CIFFILE)
             self.validate.container.inputData.XYZIN_1.set(self.container.inputData.XYZIN)
@@ -355,6 +359,7 @@ class servalcat_pipe(CPluginScript):
             self.validate.container.controlParameters.DO_IRIS.set(validate_iris)
             self.validate.container.controlParameters.DO_BFACT.set(validate_baverage)
             self.validate.container.controlParameters.DO_RAMA.set(validate_ramachandran)
+            self.validate.container.controlParameters.DO_TORTOIZE.set(validate_tortoize)
             self.validate.container.controlParameters.DO_MOLPROBITY.set(validate_molprobity)
 
             self.validate.doAsync = False
