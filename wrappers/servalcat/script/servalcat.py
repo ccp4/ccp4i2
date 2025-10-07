@@ -243,9 +243,9 @@ class servalcat(CPluginScript):
                             d_min = entry.get('d_min')
                             d_max = entry.get('d_max')
                             # Only calculate if values are present and non-zero
-                            if d_min is not None:
+                            if d_min:
                                 entry['d_min_4ssqll'] = 1 / (d_min * d_min)
-                            if d_max is not None:
+                            if d_max:
                                 entry['d_max_4ssqll'] = 1 / (d_max * d_max)
             xmlText = json2xml(jsonStats, tag_name_subroot="cycle")
             xmlFilePath = str(os.path.join(self.getWorkDirectory(), "refined_stats.xml"))
