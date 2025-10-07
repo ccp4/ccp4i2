@@ -30,6 +30,27 @@ if (!Function.prototype.bind) {
 if (typeof Float64Array === 'undefined') Float64Array = Float32Array;
 
 //Some lingering globals for the report
+
+function fetchAndDecode(url) {
+  return fetch(url.innerHTML).then(response => {
+    if(!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    } else {
+      if(response.headers.get("content-type") === "text/plain") {
+        return response.text();
+      } else {
+        return url.innerHTML+" is not plain text. Ignoring."
+      }
+    }
+  })
+  .catch(e => {
+    console.log(`There has been a problem with your fetch operation for resource "${url}": ` + e.message);
+  })
+  .finally(() => {
+    //console.log(`fetch attempt for "${url}" finished.`);
+  })
+}
+
 function toggleview(obj) {
     src = obj
     while ( (' ' + obj.className +' ').indexOf(' hidesection ') == -1){
@@ -38,14 +59,21 @@ function toggleview(obj) {
         else                                return;
     }
     if ( (' ' + obj.className +' ').indexOf(' displayed ') > -1 ) {
-        $(obj).slideUp(300,function(){obj.className = obj.className.replace( 'displayed' , 'hidden' );})
-        //src.childNodes[0].nodeValue = src.childNodes[0].nodeValue.replace( "Hide", "Show" );
+        $(obj).slideUp(50,function(){
+            obj.className = obj.className.replace( 'displayed' , 'hidden' );
+        })
         src.childNodes[0].nodeValue = src.childNodes[0].nodeValue.replace( "\u25BC", "\u25B6" );
-        
     } else if ( (' ' + obj.className +' ').indexOf(' hidden ') > -1 )  {
-        $(obj).slideDown(300,function(){obj.className = obj.className.replace( 'hidden' , 'displayed' );})
-        //obj.className = obj.className.replace( /(?:^|\s)hidden(?!\S)/g , 'displayed' )
-        //src.childNodes[0].nodeValue = src.childNodes[0].nodeValue.replace( "Show", "Hide");
+        $(obj).slideDown(50,function(){
+            var matches = obj.querySelectorAll(":scope .urlfetchtag");
+            if(matches.length===1) {
+                fetchAndDecode(matches[0]).then(res => {
+                  matches[0].innerHTML = res
+                  matches[0].classList.remove("urlfetchtag")
+                })
+            }
+            obj.className = obj.className.replace( 'hidden' , 'displayed' );
+        })
         src.childNodes[0].nodeValue = src.childNodes[0].nodeValue.replace( "\u25B6", "\u25BC" );
     }
 }
