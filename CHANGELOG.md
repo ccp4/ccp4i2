@@ -5,6 +5,7 @@
 - Fix Coot map coluring with multiple models
 - Fix for AceDRG atom name matching
 - Added checks before xmlnode append
+- Searching Python 3.11 paths for CCP4 10
 - PDB-REDO text change
 
 ## [2.4.0] - 2025-07-15
