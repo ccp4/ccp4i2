@@ -234,13 +234,19 @@ class servalcat(CPluginScript):
             return CPluginScript.FAILED
         try:
             jsonStats = list(json.loads(jsonText))
-            # add d_max_4ssqll and d_min_4ssqll
-            for i in range(len(jsonStats)):
-                for j in range(len(jsonStats[i]["data"]["binned"])):
-                    jsonStats[i]["data"]["binned"][j]['d_min_4ssqll'] = \
-                        1 / (list(jsonStats)[i]["data"]["binned"][j]['d_min'] * list(jsonStats)[i]["data"]["binned"][j]['d_min'])
-                    jsonStats[i]["data"]["binned"][j]['d_max_4ssqll'] = \
-                        1 / (list(jsonStats)[i]["data"]["binned"][j]['d_max'] * list(jsonStats)[i]["data"]["binned"][j]['d_max'])
+            # add d_max_4ssqll and d_min_4ssqll to 'binned' and 'ml' if present
+            for stat in jsonStats:
+                data = stat.get("data", {})
+                for p in ("binned", "ml"):
+                    if p in data:
+                        for entry in data[p]:
+                            d_min = entry.get('d_min')
+                            d_max = entry.get('d_max')
+                            # Only calculate if values are present and non-zero
+                            if d_min is not None:
+                                entry['d_min_4ssqll'] = 1 / (d_min * d_min)
+                            if d_max is not None:
+                                entry['d_max_4ssqll'] = 1 / (d_max * d_max)
             xmlText = json2xml(jsonStats, tag_name_subroot="cycle")
             xmlFilePath = str(os.path.join(self.getWorkDirectory(), "refined_stats.xml"))
             xmlText = self.xmlAddRoot(xmlText, xmlFilePath, xmlRootName="SERVALCAT")
