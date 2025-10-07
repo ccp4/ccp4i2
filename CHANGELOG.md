@@ -1,5 +1,13 @@
 # CCP4i2 Changelog
 
+## [2.4.1] - 2025-10-07
+
+- Fix Coot map coluring with multiple models
+- Fix for AceDRG atom name matching
+- Added checks before xmlnode append
+- Searching Python 3.11 paths for CCP4 10
+- PDB-REDO text change
+
 ## [2.4.0] - 2025-07-15
 
 - Servalcat refinement against unmerged data
@@ -10,6 +18,7 @@
 - Fix for deprecated numpy.float
 - More AceDrg i2run tests
 - Support for 5-letter ligand codes in AceDRG make link
+- Fix for Coot 0.9 anomalous map colouring
 
 ## [2.3.3] - 2025-05-29
 

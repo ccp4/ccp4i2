@@ -1022,7 +1022,7 @@ class CMainWindow(QtWidgets.QMainWindow):
                                                        slot = functools.partial(self.handleProjectMenu, 'import_project'), enabled = 1, icon = 'import_arrow_new'))
         self.setActionDefinition('serverSetup',dict(text="Configure servers for 'remote' run jobs", tip = "Specify host and mechanism to run remote jobs",
                                                     slot = self.openServerSetup, checked = self.isServerSetupOpen))
-        self.setActionDefinition('pdb_redo_setup',dict(text="Set login tokens for PDB_REDO", tip = "This must be done at least once per year to enable PDB_REDO jobs to work",
+        self.setActionDefinition('pdb_redo_setup',dict(text="Set login tokens for PDB-REDO", tip = "This must be done at least once per year to enable PDB-REDO jobs to work",
                                                     slot = self.openConfigurePDBREDOTokens))
         self.setActionDefinition('redo_report',dict(text="Remake report", tip="Remake the task report",
                                                     slot=functools.partial(self.handleDeveloperTools, 'redo_report'),
@@ -1269,10 +1269,10 @@ class CMainWindow(QtWidgets.QMainWindow):
 
     def openConfigurePDBREDOTokens(self):
         dialog = QtWidgets.QDialog()
-        dialog.setWindowTitle("Generate PDB_REDO tokens")
+        dialog.setWindowTitle("Generate PDB-REDO tokens")
         layout = QtWidgets.QGridLayout()
         dialog.setLayout(layout)
-        layout.addWidget(QtWidgets.QLabel("Please enter your PDB-REDO web services token and secret required by the PDB_REDO task"),0,0,1,2)
+        layout.addWidget(QtWidgets.QLabel("Please enter your PDB-REDO web services token and secret required by the PDB-REDO task"),0,0,1,2)
         layout.addWidget(QtWidgets.QLabel("PDB-REDO token id:"))
         tokenIdEdit = QtWidgets.QLineEdit()
         layout.addWidget(tokenIdEdit,layout.rowCount()-1,1)
@@ -1288,7 +1288,7 @@ class CMainWindow(QtWidgets.QMainWindow):
             if len(tokenIdEdit.text()) > 0 and len(secretEdit.text()) > 0:
                     CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_ID.set(tokenIdEdit.text())
                     CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_SECRET.set(secretEdit.text())
-                    QtWidgets.QMessageBox.information(self,'Successfully set PDB_REDO token','Successfully set PDB_REDO token<br/>You should now be able use the PDB_REDO task.'.format(payload.get('expires')),QtWidgets.QMessageBox.Ok)
+                    QtWidgets.QMessageBox.information(self,'Successfully set PDB-REDO token','Successfully set PDB-REDO token<br/>You should now be able use the PDB-REDO task.'.format(payload.get('expires')),QtWidgets.QMessageBox.Ok)
 
 
     def openServerSetup(self):
