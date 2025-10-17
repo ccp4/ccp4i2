@@ -7,6 +7,7 @@ from report.CCP4ReportParser import *
 
 from wrappers.refmac_i2.script import refmac_report
 from wrappers.validate_protein.script import validate_protein_report
+from wrappers.modelASUCheck.script import modelASUCheck_report
 
 class prosmart_refmac_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -333,6 +334,9 @@ class prosmart_refmac_report(Report):
                 tableText += "</table>\n"
                 suggestedDiv.append(tableText)
                 suggestedDiv.append('<p><b>You can do this by clicking the <i>"Re-run with suggested parameters"</i> button at the bottom of this report.</b></p>')
+
+        align_report = modelASUCheck_report.modelASUCheck_report(xmlnode=self.xmlnode, jobInfo=self.jobInfo)
+        align_report.addAlignReport(xmlnode, parent=self)
 
         self.showWarnings()
 
