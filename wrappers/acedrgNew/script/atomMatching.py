@@ -13,28 +13,31 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 import rdkit
 
+from gemmi import cif
+
 from .dictFileToMonomer import dictFileToMonomer
 
+def changeDictionaryAtomNames(doc, changes):
+    for block in doc:
+        for item in block:
+            if item.loop is None:
+                continue
+            for tag in item.loop.tags:
+                if "atom_id" in tag:
+                    col = block.find_values(tag)
+                    for i, atomId in enumerate(col):
+                        if atomId in changes:
+                            col[i] = cif.quote(changes[atomId])
+
 def replaceMatchesInDict(matches,theDict,outfile):
-    """
-    Replace all replacements at once.
-    http://stackoverflow.com/questions/6116978/python-replace-multiple-strings
-    """
-    lines = []
-    outlines = []
-
-    matches = dict((re.escape(k), v) for k, v in matches.items())
-    pattern = re.compile("|".join(list(matches.keys())))
-
-    with open(theDict) as f:
-        lines = f.readlines()
-
-    for l in lines:
-        text = pattern.sub(lambda m: matches[re.escape(m.group(0))], l.rstrip())
-        outlines.append(text+"\n")
-
-    with open(outfile,"w+") as f:
-        f.writelines(outlines)
+    #Gemmi returns the vaules in the cif document with no leading/trailing whitespace.
+    matches = {k.strip(): v for k, v in matches.items()}
+    try:
+        doc = cif.read_file(theDict)
+        changeDictionaryAtomNames(doc,matches)
+        doc.write_file(outfile)
+    except Exception as e:
+        print("Failed to change CIF dictionary names %s" % e)
 
 def initSRS():
     SRS = ccp4srs.Manager()
@@ -195,30 +198,23 @@ def matchAtoms(ifname,ofname=None,dictMatchName=None,selection="",dictFileName=N
                 if not matched:
                     print(res.GetAtom(i).name, "not matched")
                     if res.GetAtom(i).name in allMatchNames:
-                        print("Problem this name is already used")
-                        elLen = len(res.GetAtom(i).element.strip())
-                        iguess = 1
-                        if elLen == 1:
-                            haveName = False
-                            while iguess < 10:
-                                if iguess < 10:
-                                    guessName = ' ' + res.GetAtom(i).element.strip() + str(iguess) + ' '
-                                elif iguess < 100:
-                                    guessName = ' ' + res.GetAtom(i).element.strip() + str(iguess)
-                                elif iguess < 1000:
-                                    guessName = res.GetAtom(i).element.strip() + str(iguess)
-                                if not guessName in allMatchNames:
+                        print("Problem this name is already used",res.GetAtom(i).name)
+                        element = res.GetAtom(i).element.strip()
+                        if len(element) == 1:
+                            for iguess in range(1, 1000):
+                                if iguess < 100:
+                                    guessName = f" {element}{iguess:<2}"
+                                else:
+                                    guessName = f"{element}{iguess}"
+                                if guessName not in allMatchNames:
+                                    for j in range(res.GetNumberOfAtoms()):
+                                        if res.GetAtom(j).name == guessName:
+                                            continue
                                     print(guessName,"is plausible")
                                     retMatches[res.GetAtom(i).GetAtomName()] = guessName
                                     allMatchNames.append(guessName)
-                                    haveName = True
                                     break
-                                iguess += 1
-                        elif elLen == 1:
-                            pass
-                        elif elLen == 2:
-                            pass
-                        else:
+                        elif len(element) > 2:
                             print("bad element",res.GetAtom(i).element)
 
             print(allMatchNames)
