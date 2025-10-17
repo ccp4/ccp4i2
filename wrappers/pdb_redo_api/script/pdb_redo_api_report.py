@@ -56,7 +56,7 @@ class pdb_redo_api_report(Report):
         if len(xmlnode.findall('.//PDB_REDO_JOB_ID'))>0:
             jobNo = xmlnode.findall('.//PDB_REDO_JOB_ID')[0].text
             self.append("<p><b>Results for PDB-REDO job {0} <em>(job number on PDB-REDO web site).</em></b></p>".format(jobNo))
-            self.append("<p>You can see a report for this job, including plots comparing these results with results for structures with similar resolutions, on the PDB_REDO website for 21 days.</p>".format(jobNo))
+            self.append("<p>You can see a report for this job, including plots comparing these results with results for structures with similar resolutions, on the PDB-REDO website for 21 days.</p>".format(jobNo))
 
         clearDiv = self.addDiv(style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
         """
@@ -200,7 +200,7 @@ class pdb_redo_api_report(Report):
 
         logFilesFold = self.addFold(label='Log files', brief='Log Files', initiallyOpen=True)
 
-        processFilesFold = logFilesFold.addFold(label='PDB_REDO log', brief='PDB_REDO log', initiallyOpen=False)
+        processFilesFold = logFilesFold.addFold(label='PDB-REDO log', brief='PDB-REDO log', initiallyOpen=False)
         if len(xmlnode.findall('.//PDB_REDO_LOG_FILE'))>0 and len(xmlnode.findall('.//PDB_REDO_LOG_FILE'))>0:
             pdbLogFile = xmlnode.findall('.//PDB_REDO_LOG_FILE')[0].text
             with open(os.path.join(jobDir,pdbLogFile)) as f:

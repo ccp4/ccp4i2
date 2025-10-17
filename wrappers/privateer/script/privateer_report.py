@@ -69,7 +69,12 @@ class privateer_report(Report):
             low_energy_pyranoses.append ( sugar )
         else : other_issues_pyranoses.append ( sugar )
 
-    self.xmlnode.append ( new_tree )
+    # Append new_tree to self.xmlnode, checking if it has an append method
+    if hasattr(self.xmlnode, 'append') and callable(getattr(self.xmlnode, 'append')):
+        self.xmlnode.append(new_tree)
+    else:
+        # Assume it's an ElementTree and get the root
+        self.xmlnode.getroot().append(new_tree)
 
     graph = results.addFlotGraph(title="graphical representations", select=".//privateer_report/pyranoses", style="height:300px; width:450px; border:0px; float:left;" )
     graph.addData ( title="phi_pyranose_he"  , select="high_energy/Pyranose/SugarPhi"      )

@@ -234,13 +234,19 @@ class servalcat(CPluginScript):
             return CPluginScript.FAILED
         try:
             jsonStats = list(json.loads(jsonText))
-            # add d_max_4ssqll and d_min_4ssqll
-            for i in range(len(jsonStats)):
-                for j in range(len(jsonStats[i]["data"]["binned"])):
-                    jsonStats[i]["data"]["binned"][j]['d_min_4ssqll'] = \
-                        1 / (list(jsonStats)[i]["data"]["binned"][j]['d_min'] * list(jsonStats)[i]["data"]["binned"][j]['d_min'])
-                    jsonStats[i]["data"]["binned"][j]['d_max_4ssqll'] = \
-                        1 / (list(jsonStats)[i]["data"]["binned"][j]['d_max'] * list(jsonStats)[i]["data"]["binned"][j]['d_max'])
+            # add d_max_4ssqll and d_min_4ssqll to 'binned' and 'ml' if present
+            for stat in jsonStats:
+                data = stat.get("data", {})
+                for p in ("binned", "ml"):
+                    if p in data:
+                        for entry in data[p]:
+                            d_min = entry.get('d_min')
+                            d_max = entry.get('d_max')
+                            # Only calculate if values are present and non-zero
+                            if d_min:
+                                entry['d_min_4ssqll'] = 1 / (d_min * d_min)
+                            if d_max:
+                                entry['d_max_4ssqll'] = 1 / (d_max * d_max)
             xmlText = json2xml(jsonStats, tag_name_subroot="cycle")
             xmlFilePath = str(os.path.join(self.getWorkDirectory(), "refined_stats.xml"))
             xmlText = self.xmlAddRoot(xmlText, xmlFilePath, xmlRootName="SERVALCAT")
@@ -449,7 +455,7 @@ class servalcat(CPluginScript):
         if self.container.controlParameters.BFACSETUSE and \
                 str(self.container.controlParameters.BFACSET):
             self.appendCommandLine(['--bfactor', str(self.container.controlParameters.BFACSET)])
-        if str(float(self.container.controlParameters.ADPR_WEIGHT)) != "1":
+        if float(self.container.controlParameters.ADPR_WEIGHT) != 1.0:
             self.appendCommandLine(['--adpr_weight', str(self.container.controlParameters.ADPR_WEIGHT)])
         if self.container.controlParameters.MAX_DIST_FOR_ADP_RESTRAINT.isSet():
             self.appendCommandLine(['--max_dist_for_adp_restraint', str(self.container.controlParameters.MAX_DIST_FOR_ADP_RESTRAINT)])

@@ -1,10 +1,25 @@
 # CCP4i2 Changelog
 
-## [2.3.4] - 2025-06-23
+## [2.4.1] - 2025-10-07
 
-- New task to validate a model against the ASU contents
+- Fix Coot map coluring with multiple models
+- Fix for AceDRG atom name matching
+- Improved graphs in Servalcat report
+- Added checks before xmlnode append
+- Searching Python 3.11 paths for CCP4 10
+- PDB-REDO text change
+
+## [2.4.0] - 2025-07-15
+
+- Servalcat refinement against unmerged data
+- Servalcat option for van der Waals restraint weight
+- Updated Iris validation to work with v0.3.3
+- More graphs in the Servalcat report
+- More Servalcat i2 run tests
 - Fix for deprecated numpy.float
 - More AceDrg i2run tests
+- Support for 5-letter ligand codes in AceDRG make link
+- Fix for Coot 0.9 anomalous map colouring
 
 ## [2.3.3] - 2025-05-29
 

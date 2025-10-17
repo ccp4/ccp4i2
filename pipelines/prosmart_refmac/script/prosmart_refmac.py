@@ -651,16 +651,16 @@ class prosmart_refmac(CPluginScript):
              xml_validation_status = etree.SubElement(xml_validation,"Success")
              try:
                 self.validate = self.makePluginObject('validate_protein')
-                self.validate.container.inputData.XYZIN_1.set(self.container.outputData.XYZOUT)
-                self.validate.container.inputData.XYZIN_2.set(self.container.inputData.XYZIN)
+                self.validate.container.inputData.XYZIN_2.set(self.container.outputData.CIFFILE)
+                self.validate.container.inputData.XYZIN_1.set(self.container.inputData.XYZIN)
                 if str(self.container.controlParameters.SCATTERING_FACTORS) == "XRAY":
-                    self.validate.container.inputData.F_SIGF_1.set(self.container.inputData.F_SIGF)
                     self.validate.container.inputData.F_SIGF_2.set(self.container.inputData.F_SIGF)
+                    self.validate.container.inputData.F_SIGF_1.set(self.container.inputData.F_SIGF)
                 else:
-                    self.validate.container.inputData.F_SIGF_1.set(None)
                     self.validate.container.inputData.F_SIGF_2.set(None)
-                self.validate.container.inputData.NAME_1 = "Refined"
-                self.validate.container.inputData.NAME_2 = "Input"
+                    self.validate.container.inputData.F_SIGF_1.set(None)
+                self.validate.container.inputData.NAME_2 = "Refined"
+                self.validate.container.inputData.NAME_1 = "Input"
                 #MN...Using "="" to set this is an odd thing and breaks under some circumstances.
                 #Specifically, the path for this is now in the prosmart_refmac (i.e. parent job) directory,
                 #but it is an output of the validate_protein subjob.  When that subjob seeks to save it to the
@@ -669,6 +669,7 @@ class prosmart_refmac(CPluginScript):
                 #Agirre and Rob Nicholls
                 self.validate.container.outputData.COOTSCRIPTOUT = self.container.outputData.COOTSCRIPTOUT
 
+                self.validate.container.controlParameters.TWO_DATASETS.set(True)
                 self.validate.container.controlParameters.DO_IRIS = validate_iris
                 self.validate.container.controlParameters.DO_BFACT = validate_baverage
                 self.validate.container.controlParameters.DO_RAMA = validate_ramachandran
