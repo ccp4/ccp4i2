@@ -6,6 +6,7 @@
 - Reducing size of reports by fetching log files instead of embedding them
 - Fix for reflection CIF files containing both merged and unmerged data
 - New Pointless options to remove lattice centering reflections
+- Fix to Servalcat report type handling
 
 ## [2.4.1] - 2025-10-07
 
