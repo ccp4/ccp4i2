@@ -2,6 +2,7 @@ from report.CCP4ReportParser import *
 import sys
 from xml.etree import ElementTree as ET
 from numpy import sign
+import re
 
 
 def isnumber(n):
@@ -51,6 +52,7 @@ class servalcat_report(Report):
             perCycleFold = parent.addFold(label='Per cycle statistics', brief='Per cycle', initiallyOpen=False)
             self.addTablePerCycle(cycle_data, parent=perCycleFold, initialFinalOnly=False)
             self.addGraphsVsResolution()
+            self.addTwinningAnalysis()
             self.addOutlierAnalysis()
 
     def addGraphPerCycle(self, parent=None, xmlnode=None):
@@ -680,6 +682,66 @@ class servalcat_report(Report):
             plotLine = plotD.append('plotline', xcol=1, ycol=3, rightaxis='true')
             plotLine.append('colour', 'red')
             plotLine.append('symbolsize', '0')
+
+        clearingDiv = parent.addDiv(style="clear:both;")
+
+
+    def addTwinningAnalysis(self, parent=None, xmlnode=None):
+        if parent is None: parent = self
+        if xmlnode is None: xmlnode = self.xmlnode
+        if len(xmlnode.findall('.//cycle[last()]/twin_alpha')) == 0:
+            # No twinning analysis
+            return
+        twinFold = parent.addFold(label="Twinning analysis", brief='Twinning', initiallyOpen=True)
+        divLeft = twinFold.addDiv(style='font-size:110%;float:left')
+
+        try:
+            twin_alpha = xmlnode.findall('.//cycle[last()]/twin_alpha')[0]
+            twin_operators = [
+                child.tag for child in twin_alpha
+                if child.tag and (child.text and child.text.strip() != "")
+            ]
+            twin_fraction_final_values = []
+            for op in twin_operators:
+                val = twin_alpha.find(op)
+                val_txt = val.text.strip() if (val is not None and val.text) else ""
+                try:
+                    twin_fraction_final_values.append(f"{float(val_txt):.2f}")
+                except Exception:
+                    twin_fraction_final_values.append(val_txt)
+            twin_operators_labels = [op.replace("minus", "-") for op in twin_operators]
+            twin_operators_labels = [",".join(re.findall(r'-?[A-Za-z]', op)) for op in twin_operators_labels]
+
+
+            twinGraph = divLeft.addFlotGraph(
+                title="Twin fraction vs cycle",
+                xmlnode=self.xmlnode,
+                style="height:250px;width:400px;float:left;")
+            twinGraph.addData(title="Cycle", select=".//cycle/Ncyc") # ycol=1
+            for i, twin_op in enumerate(twin_operators):
+                twinGraph.addData(
+                    title=twin_operators_labels[i],
+                    select=f".//cycle/twin_alpha/{twin_op}"
+                )
+            plotTwin = twinGraph.addPlotObject()
+            plotTwin.append('title', 'Twin fraction vs cycle')
+            plotTwin.append('plottype', 'xy')
+            plotTwin.append('xlabel', 'Cycle')
+            plotTwin.append('ylabel', 'Twin fraction vs cycle')
+            plotTwin.append('xintegral', 'true')
+            plotTwin.append('legendposition', x=0, y=0)
+            plotTwin.append('yrange', min=0.0, max=1.0)
+            for i, twin_op in enumerate(twin_operators):
+                plotLine = plotTwin.append('plotline', xcol=1, ycol=i + 2)
+                plotLine.append('symbolsize', '0')
+
+            divRight = twinFold.addDiv(style='font-size:110%;float:left;margin-left:1em;')
+            divRight.append("Final twin fractions after refinement:")
+            tableTwin = divRight.addTable()
+            tableTwin.addData(title="Twin operator", data=twin_operators_labels)
+            tableTwin.addData(title="Twin fraction", data=twin_fraction_final_values)
+        except:
+            divLeft.append("Error: Twinning report was not found.")
 
         clearingDiv = parent.addDiv(style="clear:both;")
 

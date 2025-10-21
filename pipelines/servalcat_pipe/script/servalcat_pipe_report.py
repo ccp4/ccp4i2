@@ -113,6 +113,7 @@ class servalcat_pipe_report(Report):
                 perCycleFold1 = self.addFold(label='Per cycle statistics after addition of water molecules', brief='Per cycle after waters', initiallyOpen=False)
                 servalcatReport1.addTablePerCycle(cycle_data1, parent=perCycleFold1, initialFinalOnly=False)
             servalcatReport.addGraphsVsResolution(parent=self, xmlnode=servalcatReportNodeLast)
+            servalcatReport.addTwinningAnalysis(parent=self, xmlnode=servalcatReportNodeLast)
             validationFold = self.addFold ( label="Validation", initiallyOpen=False, brief='Validation' )
             indentDiv = validationFold.addDiv(style="margin-left:1.5em;")
             servalcatReport.addOutlierAnalysis(parent=indentDiv, xmlnode=servalcatReportNodeLast)
