@@ -133,7 +133,6 @@ class pointless_report(Report):
   # - - - - - - - - - - - - - - - - -
   def extraLatticeWarning(self, parent=None, addTrailer=True):
     if len(self.xmlnode.findall('ExtraLatticeCentering'))>0:
-      #warning = self.xmlnode.findall('ExtraLatticeCentering/Message')
       warning = self.xmlnode.findall('ExtraLatticeCentering/Message')[0].text
 
       warning = colourText(warning, 'red', '110%')
@@ -143,6 +142,44 @@ class pointless_report(Report):
           'red')
       warning = html_linebreak(warning,mutate=False)
       parent.append(warning)
+
+  # - - - - - - - - - - - - - - - - -
+  def extraLatticeHeadline(self, parent=None, addTrailer=True):
+    # Headline version
+    if len(self.xmlnode.findall('LatticeMessage'))>0:
+      warning = self.xmlnode.findall('LatticeMessage')[0].text
+      nl = warning[-1]
+      if nl != '\n':
+        warning += '\n'   #  this should be fixed in Pointless!
+      lattype = self.getExtraLatticeType()
+      if lattype != ' ':
+        warning += 'Lattice type found: ' + lattype
+      
+      warning = colourText(warning, 'red', '110%')
+      if addTrailer:
+        warning += colourText(
+          "(See details of possible lattice centering under 'Details of space group determination' below)",
+          'red', '90%')
+
+      if len(self.xmlnode.findall('StripLattice'))>0:
+        warning += colourText(
+          '\nCheck your indexing: if lattice is truly centred then you should re-integrate the images in the centred lattice',
+          'Purple', '90%', style='; font-weight: bold')
+        
+      warning = html_linebreak(warning,mutate=False)
+      parent.append(warning)
+
+  
+  # - - - - - - - - - - - - - - - - -
+  def getExtraLatticeType(self):
+    # extract found lattice type from message, if present
+    lattype = ' '
+    if len(self.xmlnode.findall('ExtraLatticeCentering'))>0:
+      warning = self.xmlnode.findall('ExtraLatticeCentering/Message')[0].text
+      fields = warning.split(' ')
+      lattype = fields[fields.index('type')+1]
+      
+    return lattype
       
   # - - - - - - - - - - - - - - - - -
   def setFileRoot(self, fileroot):
@@ -166,13 +203,15 @@ class pointless_report(Report):
       nremoved = self.xmlnode.findall('StripLattice/Nremoved')[0].text
       nbefore = self.xmlnode.findall('StripLattice/Nbefore')[0].text
       #print(oldLattype, newLattype, newSG, nremoved, nbefore)
-      s = "\nCentred lattice absences have been removed for lattice type "+\
+      s = "\nCentred lattice absences have been REMOVED for lattice type "+\
           newLattype+", original lattice type "+oldLattype
       s += "\nNumber of observation parts removed "+nremoved+" from "+nbefore
       s += "\nAfter lattice removal, space group first changed to "+newSG
       s = html_linebreak(s)
       parent.append("<br/>")
       parent.append('<span style="color:blue">'+s+'</span>')
+
+    self.extraLatticeHeadline(parent)
       
     if len(self.xmlnode.findall("ReflectionFile[@stream='HKLIN']/MergedData"))>0:
       merged = self.xmlnode.findall("ReflectionFile[@stream='HKLIN']/MergedData")[0].text
@@ -200,8 +239,7 @@ class pointless_report(Report):
 
       parent.append(solstring)
 
-    self.extraLatticeWarning(parent)
-
+    
     if len(self.xmlnode.findall('BestReindex'))>0:
       source = ""
       if len(self.xmlnode.findall("BestReindex/HKLREF"))>0:
