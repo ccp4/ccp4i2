@@ -54,16 +54,23 @@ class servalcat(CPluginScript):
 
     @QtCore.Slot()
     def handleReadyReadStandardOutput(self):
-        if not hasattr(self,'logFileHandle'): self.logFileHandle = open(self.makeFileName('LOG'),'w')
+        if not hasattr(self,'logFileHandle'):
+            logFilePath = pathlib.Path(self.makeFileName('LOG'))
+            self.logFileHandle = logFilePath.open('w')
+        if not hasattr(self,'errFileHandle'):
+            logFilePath = pathlib.Path(self.makeFileName('LOG'))
+            errFilePath = logFilePath.with_stem(logFilePath.stem + "_err")
+            self.errFileHandle = errFilePath.open('w')
+
         if not hasattr(self,'logFileBuffer'): self.logFileBuffer = ''
         pid = self.getProcessId()
         qprocess = CCP4Modules.PROCESSMANAGER().getJobData(pid,attribute='qprocess')
         availableStdout = qprocess.readAllStandardOutput()
-        if sys.version_info > (3,0):
-            self.logFileHandle.write(availableStdout.data().decode("utf-8"))
-        else:
-            self.logFileHandle.write(availableStdout)
+        self.logFileHandle.write(availableStdout.data().decode("utf-8"))
         self.logFileHandle.flush()
+        availableStderr = qprocess.readAllStandardError()
+        self.errFileHandle.write(availableStderr.data().decode("utf-8"))
+        self.errFileHandle.flush()
 
     def xmlAddRoot(self, xmlText, xmlFilePath=None, xmlRootName=None):
         if xmlRootName:
@@ -234,13 +241,19 @@ class servalcat(CPluginScript):
             return CPluginScript.FAILED
         try:
             jsonStats = list(json.loads(jsonText))
-            # add d_max_4ssqll and d_min_4ssqll
-            for i in range(len(jsonStats)):
-                for j in range(len(jsonStats[i]["data"]["binned"])):
-                    jsonStats[i]["data"]["binned"][j]['d_min_4ssqll'] = \
-                        1 / (list(jsonStats)[i]["data"]["binned"][j]['d_min'] * list(jsonStats)[i]["data"]["binned"][j]['d_min'])
-                    jsonStats[i]["data"]["binned"][j]['d_max_4ssqll'] = \
-                        1 / (list(jsonStats)[i]["data"]["binned"][j]['d_max'] * list(jsonStats)[i]["data"]["binned"][j]['d_max'])
+            # add d_max_4ssqll and d_min_4ssqll to 'binned' and 'ml' if present
+            for stat in jsonStats:
+                data = stat.get("data", {})
+                for p in ("binned", "ml"):
+                    if p in data:
+                        for entry in data[p]:
+                            d_min = entry.get('d_min')
+                            d_max = entry.get('d_max')
+                            # Only calculate if values are present and non-zero
+                            if d_min:
+                                entry['d_min_4ssqll'] = 1 / (d_min * d_min)
+                            if d_max:
+                                entry['d_max_4ssqll'] = 1 / (d_max * d_max)
             xmlText = json2xml(jsonStats, tag_name_subroot="cycle")
             xmlFilePath = str(os.path.join(self.getWorkDirectory(), "refined_stats.xml"))
             xmlText = self.xmlAddRoot(xmlText, xmlFilePath, xmlRootName="SERVALCAT")
