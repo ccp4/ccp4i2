@@ -446,13 +446,11 @@ class CProcessManager(QtCore.QObject):
                 logFileName = os.path.join(self.processInfo[pid]["cwd"],"log.txt")
                 errFileName = os.path.join(self.processInfo[pid]["cwd"],"log_err.txt")
             if len(out)>0:
-                logFile = open(logFileName)
-                logFile.write(out)
-                logFile.close()
+                with open(logFileName, "w") as logFile:
+                    logFile.write(out)
             if len(err)>0:
-                errFile = open(errFileName,"w")
-                errFile.write(err)
-                errFile.close()
+                with open(errFileName, "w") as errFile:
+                    errFile.write(err)
         if "logFile" in self.processInfo[pid] and self.processInfo[pid]["logFile"]:
             if "jobId" in self.processInfo[pid] and self.processInfo[pid]["jobId"]:
                 jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=self.processInfo[pid]["jobId"])
