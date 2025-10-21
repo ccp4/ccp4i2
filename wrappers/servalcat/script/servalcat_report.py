@@ -729,26 +729,41 @@ class servalcat_report(Report):
                 except:
                     outData['z'][i] = '-'
                     outData['z_abs'][i] = '-'
-                try:
-                    outType = int(outlier.findall('type')[0].text)
-                    if outType == 1:
-                        outData['note'][i] = "Van der Waals"
-                    elif outType == 2:
-                        outData['note'][i] = "Torsion"
-                    elif outType == 3:
-                        outData['note'][i] = "Hydrogen bond"
-                    elif outType == 4:
-                        outData['note'][i] = "Metal"
-                    elif outType == 5:
-                        outData['note'][i] = "Dummy-nondummy"
-                    elif outType == 6:
-                        outData['note'][i] = "Dummy-nondummy"
-                    elif outType > 6:
-                        outData['note'][i] = "Symmetry related"
-                    outData['type'][i] = -outType
-                except:
-                    outData['type'][i] = '-'
-                    outData['note'][i] = '-'
+
+                # Outlier type
+                outType = outlier.findall('type')[0].text
+                if (isinstance(outType, int)) or (isinstance(outType, str) and outType.isdigit()):
+                    # before Servalcat 0.4.123
+                    # convert outlier type given as integer to description
+                    try:
+                        outType = int(outType)
+                        if outType == 1:
+                            outData['note'][i] = "Van der Waals"
+                        elif outType == 2:
+                            outData['note'][i] = "Torsion"
+                        elif outType == 3:
+                            outData['note'][i] = "Hydrogen bond"
+                        elif outType == 4:
+                            outData['note'][i] = "Metal"
+                        elif outType == 5:
+                            outData['note'][i] = "Dummy-nondummy"
+                        elif outType == 6:
+                            outData['note'][i] = "Dummy-nondummy"
+                        elif outType > 6:
+                            outData['note'][i] = "Symmetry related"
+                        outData['type'][i] = -outType
+                    except:
+                        outData['type'][i] = '-'
+                        outData['note'][i] = '-'
+                else:
+                    # Servalcat 0.4.123 and later
+                    try:
+                        outData['type'][i] = outType
+                        outData['note'][i] = outType
+                    except:
+                        outData['type'][i] = '-'
+                        outData['note'][i] = '-'
+
                 try:
                     # difference = | value - ideal |
                     difference = abs(float(outlier.findall('value')[0].text) - float(outlier.findall('ideal')[0].text))
