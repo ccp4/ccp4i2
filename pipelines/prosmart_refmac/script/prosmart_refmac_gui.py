@@ -533,9 +533,10 @@ class Cprosmart_refmac(CCP4TaskWidget.CTaskWidget):
 
     self.createLine( [ 'subtitle', 'Validation and Analysis' ] )
     self.openSubFrame(frame=[True], toggleFunction=[self.ToggleRigidModeOff,['REFINEMENT_MODE']])
-    self.createLine( [ 'widget', 'VALIDATE_IRIS', 'label', 'Generate Iris report' ] )
+    self.createLine( [ 'widget', 'VALIDATE_IRIS', 'label', 'Generate Iris validation report' ] )
     self.createLine( [ 'widget', 'VALIDATE_BAVERAGE', 'label', 'Analyse B-factor distributions' ] )
     self.createLine( [ 'widget', 'VALIDATE_RAMACHANDRAN', 'label', 'Generate Ramachandran plots' ] )
+    self.createLine( [ 'widget', 'VALIDATE_TORTOIZE', 'label', 'Calculate Rama-Z score using <i>tortoize</i>' ] )
     self.createLine( [ 'widget', 'VALIDATE_MOLPROBITY', 'label', 'Run MolProbity to analyse geometry' ] )
     #self.createLine( [ 'widget', 'RUN_MOLPROBITY', 'label', 'Run standalone MolProbity (to be deprecated)' ] )
     self.closeSubFrame()
