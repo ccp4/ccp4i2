@@ -34,7 +34,7 @@ class servalcat_pipe(CPluginScript):
 
     TASKMODULE = 'refinement'
     SHORTTASKTITLE = 'Servalcat'
-    TASKTITLE = 'Refinement against diffraction data & optional restraints from ProSMART & MetalCoord'
+    TASKTITLE = 'Refinement against diffraction data with optional restraints (ProSMART, MetalCoord)'
     TASKNAME = 'servalcat_pipe'  # Task name - same as class name
     MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
     TASKVERSION= 0.1
