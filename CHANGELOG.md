@@ -1,5 +1,9 @@
 # CCP4i2 Changelog
 
+## [2.4.2] - 2025-10-21
+
+- Capturing stderr for subjobs in Refmac, Servalcat and Lorestr pipelines.
+
 ## [2.4.1] - 2025-10-07
 
 - Fix Coot map coluring with multiple models
