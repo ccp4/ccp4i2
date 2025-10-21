@@ -19,7 +19,7 @@ from __future__ import print_function
 
 import os
 import shutil
-
+import pathlib
 from core.CCP4PluginScript import CPluginScript
 from lxml import etree
 import core.CCP4Utils
@@ -119,12 +119,12 @@ class lorestr_i2(CPluginScript):
         print('Runtime call handleReadyReadStandardOutput\n\n')
 
         if not hasattr(self,'logFileHandle'):
-            logFileName = self.makeFileName('LOG')
-            self.logFileHandle = open(logFileName,'w')
+            logFilePath = pathlib.Path(self.makeFileName('LOG'))
+            self.logFileHandle = logFilePath.open('w')
         if not hasattr(self,'errFileHandle'):
-            logFileName = self.makeFileName('LOG')
-            logErrName = logFileName[:logFileName.rfind(".")]+"_err.txt" if logFileName.rfind(".")>-1 else logFileName+"_err.txt"
-            self.errFileHandle = open(logErrName,'w')
+            logFilePath = pathlib.Path(self.makeFileName('LOG'))
+            errFilePath = logFilePath.with_stem(logFilePath.stem + "_err")
+            self.errFileHandle = errFilePath.open('w')
 
         if not hasattr(self,'logFileBuffer'): self.logFileBuffer = ''
         pid = self.getProcessId()
