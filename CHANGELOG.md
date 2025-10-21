@@ -3,6 +3,7 @@
 ## [2.4.2] - 2025-10-21
 
 - Capturing stderr for subjobs in Refmac, Servalcat and Lorestr pipelines.
+- Reducing size of reports by fetching log files instead of embedding them.
 
 ## [2.4.1] - 2025-10-07
 
