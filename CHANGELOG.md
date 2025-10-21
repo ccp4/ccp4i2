@@ -7,6 +7,7 @@
 - Fix for reflection CIF files containing both merged and unmerged data
 - New Pointless options to remove lattice centering reflections
 - Fix to Servalcat report type handling
+- Added option to do Tortoize Rama-Z calculation in Refmac & Servalcat pipelines
 
 ## [2.4.1] - 2025-10-07
 
