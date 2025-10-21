@@ -3,6 +3,7 @@ import sys
 from xml.etree import ElementTree as ET
 from numpy import sign
 import re
+import json
 
 
 def isnumber(n):
@@ -28,9 +29,15 @@ class servalcat_report(Report):
         # 'nooutput' mode would be used by another report class that wanted
         # to use some method(s) from this class for its own report
         self.outputXml = jobStatus is not None and jobStatus.lower().count('running')
+
         if jobStatus is not None and jobStatus.lower() == 'nooutput':
             return
-        
+
+        outputJsonPath = os.path.normpath(
+            os.path.join(self.jobInfo["fileroot"], "refined_stats.json")
+        )
+        self.outputJson = json.load(open(outputJsonPath)) if os.path.isfile(outputJsonPath) else None
+
         self.addDiv(style='clear:both;')
 
         if jobStatus.lower().count('running'):
@@ -52,7 +59,7 @@ class servalcat_report(Report):
             perCycleFold = parent.addFold(label='Per cycle statistics', brief='Per cycle', initiallyOpen=False)
             self.addTablePerCycle(cycle_data, parent=perCycleFold, initialFinalOnly=False)
             self.addGraphsVsResolution()
-            self.addTwinningAnalysis()
+            self.addTwinningAnalysis(outputJson=self.outputJson)
             self.addOutlierAnalysis()
 
     def addGraphPerCycle(self, parent=None, xmlnode=None):
@@ -686,42 +693,38 @@ class servalcat_report(Report):
         clearingDiv = parent.addDiv(style="clear:both;")
 
 
-    def addTwinningAnalysis(self, parent=None, xmlnode=None):
+    def addTwinningAnalysis(self, outputJson=None, parent=None, xmlnode=None):
         if parent is None: parent = self
         if xmlnode is None: xmlnode = self.xmlnode
-        if len(xmlnode.findall('.//cycle[last()]/twin_alpha')) == 0:
+        if outputJson is None: outputJson = self.outputJson
+        # if len(xmlnode.findall('.//cycle[last()]/twin_alpha')) == 0:
+        if not outputJson or outputJson[-1].get('twin_alpha', {}) == {}:
             # No twinning analysis
             return
         twinFold = parent.addFold(label="Twinning analysis", brief='Twinning', initiallyOpen=True)
         divLeft = twinFold.addDiv(style='font-size:110%;float:left')
 
         try:
-            twin_alpha = xmlnode.findall('.//cycle[last()]/twin_alpha')[0]
-            twin_operators = [
-                child.tag for child in twin_alpha
-                if child.tag and (child.text and child.text.strip() != "")
-            ]
-            twin_fraction_final_values = []
-            for op in twin_operators:
-                val = twin_alpha.find(op)
-                val_txt = val.text.strip() if (val is not None and val.text) else ""
-                try:
-                    twin_fraction_final_values.append(f"{float(val_txt):.2f}")
-                except Exception:
-                    twin_fraction_final_values.append(val_txt)
-            twin_operators_labels = [op.replace("minus", "-") for op in twin_operators]
-            twin_operators_labels = [",".join(re.findall(r'-?[A-Za-z]', op)) for op in twin_operators_labels]
-
+            twin_alpha_final = outputJson[-1]['twin_alpha']
+            twin_operators = list(twin_alpha_final.keys())
+            twin_fraction_final_values = list(twin_alpha_final.values())
+            twin_fraction_final_values = ["{:.2f}".format(v) for v in twin_fraction_final_values]
+            twin_operators_labels = twin_operators
+            twin_alpha_data = {op: [] for op in twin_operators}
+            cycles_list = list(range(1, len(outputJson) + 1))
+            for c in outputJson:
+                for op in twin_operators:
+                    twin_alpha_data[op].append(c.get('twin_alpha', {}).get(op, 0.0))
 
             twinGraph = divLeft.addFlotGraph(
                 title="Twin fraction vs cycle",
                 xmlnode=self.xmlnode,
                 style="height:250px;width:400px;float:left;")
-            twinGraph.addData(title="Cycle", select=".//cycle/Ncyc") # ycol=1
+            twinGraph.addData(title="Cycle", data=cycles_list)
             for i, twin_op in enumerate(twin_operators):
                 twinGraph.addData(
                     title=twin_operators_labels[i],
-                    select=f".//cycle/twin_alpha/{twin_op}"
+                    data=twin_alpha_data[twin_op],
                 )
             plotTwin = twinGraph.addPlotObject()
             plotTwin.append('title', 'Twin fraction vs cycle')
