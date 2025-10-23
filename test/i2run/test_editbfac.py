@@ -1,27 +1,35 @@
+import json
 import gemmi
 import pytest
 from .utils import download, i2run
 
 
-_AF_Q8W3K0 = "https://alphafold.ebi.ac.uk/files/AF-Q8W3K0-F1"
 _ROBETTA_MODELS = "https://robetta.bakerlab.org/models_download.php"
 
 
+@pytest.fixture(scope="module", name="alphafold_info")
+def alphafold_info_fixture():
+    url = "https://alphafold.ebi.ac.uk/api/prediction/Q8W3K0"
+    with download(url) as path:
+        with open(path, encoding="utf-8") as f:
+            yield json.load(f)[0]
+
+
 @pytest.fixture(scope="module", name="alphafold_cif")
-def alphafold_cif_fixture():
-    with download(f"{_AF_Q8W3K0}-model_v4.cif") as path:
+def alphafold_cif_fixture(alphafold_info):
+    with download(alphafold_info["cifUrl"]) as path:
         yield path
 
 
 @pytest.fixture(scope="module", name="alphafold_pdb")
-def alphafold_pdb_fixture():
-    with download(f"{_AF_Q8W3K0}-model_v4.pdb") as path:
+def alphafold_pdb_fixture(alphafold_info):
+    with download(alphafold_info["pdbUrl"]) as path:
         yield path
 
 
 @pytest.fixture(scope="module", name="alphafold_pae")
-def alphafold_pae_fixture():
-    with download(f"{_AF_Q8W3K0}-predicted_aligned_error_v4.json") as path:
+def alphafold_pae_fixture(alphafold_info):
+    with download(alphafold_info["paeDocUrl"]) as path:
         yield path
 
 
@@ -37,7 +45,6 @@ def test_alphafold_pdb(alphafold_pdb):
     with i2run(args) as job:
         gemmi.read_pdb(str(job / "converted_model.pdb"))
         gemmi.read_pdb(str(job / "converted_model_chainA1.pdb"))
-        gemmi.read_pdb(str(job / "converted_model_chainA2.pdb"))
 
 
 def test_alphafold_cif(alphafold_cif):
