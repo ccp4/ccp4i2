@@ -151,7 +151,7 @@ def createMissingDATABASEdbXML():
                     for jobDir in jobDirs:
                         thisJobDir = os.path.join(d,"CCP4_JOBS",jobDir)
                         job_mtime = os.stat(thisJobDir).st_mtime
-                        if jobsDir_mtime > dbxml_mtime:
+                        if job_mtime > dbxml_mtime:
                             print(thisJobDir,"newer than",dbxml)
                             updateDBXML = True
                             break
