@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <pluginName>phaser_tng_picard</pluginName>
+        <userId>paul.bond@york.ac.uk</userId>
+    </ccp4i2_header>
+    <ccp4i2_body id="phaser_tng_picard">
+        <container id="inputData">
+            <content id="OBSIN">
+                <className>CObsDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="FREERFLAG">
+                <className>CFreeRDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <sameCrystalAs>OBSIN</sameCrystalAs>
+                </qualifiers>
+            </content>
+            <content id="ASUIN">
+                <className>CAsuDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
+            <content id="XYZIN_LIST">
+                <className>CList</className>
+                <subItem>
+                    <className>CPdbDataFile</className>
+                    <qualifiers>
+                        <allowUndefined>False</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+                        <mustExist>True</mustExist>
+                    </qualifiers>
+                </subItem>
+            </content>
+        </container>
+        <container id="outputData">
+            <content id="XYZOUT">
+                <className>CPdbDataFile</className>
+            </content>
+        </container>
+    </ccp4i2_body>
+</ccp4i2>

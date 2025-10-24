@@ -139,7 +139,8 @@
             "comit",
             "i2Dimple",
             "morda_i2",
-            "phaser_singleMR"
+            "phaser_singleMR",
+            "phaser_tng_picard"
         ],
         "preferences": [
             "guipreferences"
@@ -180,6 +181,7 @@
             "phaser_analysis",
             "phaser_mr",
             "phaser_phil",
+            "phaser_tng_picard",
             "pyphaser_mr",
             "scalepack2mtz",
             "x2mtz",
@@ -1494,6 +1496,15 @@
                 "class": "wrappers.phaser_singleMR.script.phaser_singleMR_reportphaser_singleMR_report",
                 "clsModule": "wrappers.phaser_singleMR.script.phaser_singleMR_report",
                 "clsName": "phaser_singleMR_report",
+                "modes": []
+            }
+        },
+        "phaser_tng_picard": {
+            "0.0.0": {
+                "MAINTAINER": "Nobody",
+                "class": "wrappers.phaser_tng_picard.script.phaser_tng_picard_reportphaser_tng_picard_report",
+                "clsModule": "wrappers.phaser_tng_picard.script.phaser_tng_picard_report",
+                "clsName": "phaser_tng_picard_report",
                 "modes": []
             }
         },
@@ -3071,7 +3082,7 @@
             }
         },
         "metalCoord": {
-            "0.1": {
+            "0.2": {
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "martin.maly@mrc-lmb.cam.ac.uk",
@@ -3586,6 +3597,19 @@
                 "class": "wrappers.phaser_singleMR.script.phaser_singleMRphaser_singleMR",
                 "clsModule": "wrappers.phaser_singleMR.script.phaser_singleMR",
                 "clsName": "phaser_singleMR",
+                "internal": false,
+                "subTasks": []
+            }
+        },
+        "phaser_tng_picard": {
+            "0.1": {
+                "DESCRIPTION": null,
+                "INTERRUPTLABEL": null,
+                "MAINTAINER": "paul.bond@york.ac.uk",
+                "TASKTITLE": "Molecular replacement with Phaser TNG Picard",
+                "class": "wrappers.phaser_tng_picard.script.phaser_tng_picardphaser_tng_picard",
+                "clsModule": "wrappers.phaser_tng_picard.script.phaser_tng_picard",
+                "clsName": "phaser_tng_picard",
                 "internal": false,
                 "subTasks": []
             }
@@ -4248,6 +4272,7 @@
         "phaser_rnp_pipeline": "qticons/phaser_rnp_pipeline.png",
         "phaser_simple": "qticons/phaser_simple.png",
         "phaser_singleMR": "qticons/phaser_singleMR.png",
+        "phaser_tng_picard": "qticons/ccp4.png",
         "pisapipe": "qticons/pisapipe.png",
         "pointless_reindexToMatch": "qticons/pointless_reindexToMatch.png",
         "preferences": "qticons/ccp4.png",
@@ -5754,7 +5779,7 @@
                 "clsName": "CmetalCoord_gui",
                 "shortTitle": "MetalCoord",
                 "taskName": "metalCoord",
-                "taskVersion": 1.0
+                "taskVersion": 0.2
             }
         },
         "modelcraft": {
@@ -6147,6 +6172,20 @@
                 "shortTitle": "Single Atom MR",
                 "taskName": "phaser_singleMR",
                 "taskVersion": 0.0
+            }
+        },
+        "phaser_tng_picard": {
+            "0.0.0": {
+                "DESCRIPTION": "Automated MR with Phaser (The Next Generation) Picard pipeline",
+                "MAINTAINER": "Nobody",
+                "RANK": null,
+                "TASKTITLE": "Molecular replacement with Phaser TNG Picard",
+                "class": "wrappers.phaser_tng_picard.script.phaser_tng_picard_guiphaser_tng_picard_gui",
+                "clsModule": "wrappers.phaser_tng_picard.script.phaser_tng_picard_gui",
+                "clsName": "phaser_tng_picard_gui",
+                "shortTitle": "PhaserTNG",
+                "taskName": "phaser_tng_picard",
+                "taskVersion": "0.0.0"
             }
         },
         "pisapipe": {
