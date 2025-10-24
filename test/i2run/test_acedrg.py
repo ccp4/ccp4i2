@@ -39,8 +39,7 @@ def test_from_cif_rcsb_metal_AF3():
 
 
 def test_from_mol():
-    molUrl = "https://www.ebi.ac.uk/chebi/saveStructure.do"
-    molUrl += "?defaultImage=true&chebiId=46195&imageId=0"
+    molUrl = "https://www.ebi.ac.uk/chebi/backend/api/public/molfile/46195"
     with download(molUrl) as molPath:
         args = ["LidiaAcedrgNew"]
         args += ["--MOLSMILESORSKETCH", "MOL"]

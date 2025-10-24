@@ -1,5 +1,14 @@
 # CCP4i2 Changelog
 
+## [2.4.2] - 2025-10-22
+
+- Capturing stderr for subjobs in Refmac, Servalcat and Lorestr pipelines
+- Reducing size of reports by fetching log files instead of embedding them
+- Fix for reflection CIF files containing both merged and unmerged data
+- New Pointless options to remove lattice centering reflections
+- Fix to Servalcat report type handling
+- Fixes to i2run testing
+
 ## [2.4.1] - 2025-10-07
 
 - Fix Coot map coluring with multiple models

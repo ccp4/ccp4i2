@@ -3833,7 +3833,7 @@
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "martin.maly@mrc-lmb.cam.ac.uk",
-                "TASKTITLE": "Refinement against diffraction data or SPA map & optional restraints from ProSMART & MetalCoord",
+                "TASKTITLE": "Refinement against diffraction data with optional restraints (ProSMART, MetalCoord)",
                 "class": "pipelines.servalcat_pipe.script.servalcat_pipeservalcat_pipe",
                 "clsModule": "pipelines.servalcat_pipe.script.servalcat_pipe",
                 "clsName": "servalcat_pipe",
@@ -6305,7 +6305,7 @@
         },
         "servalcat_pipe": {
             "0.0.0": {
-                "DESCRIPTION": "Refinement against diffraction data or cryo-EM SPA map with optional restraints from ProSmart and/or MetalCoord",
+                "DESCRIPTION": "Refinement against diffraction data with optional restraints (ProSMART, MetalCoord)",
                 "MAINTAINER": "Nobody",
                 "RANK": 1,
                 "TASKTITLE": "Refinement - Servalcat",
