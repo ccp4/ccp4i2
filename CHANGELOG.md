@@ -1,8 +1,9 @@
 # CCP4i2 Changelog
 
-## [2.4.3] - 2025-10-24
+## [2.4.3] - 2025-10-27
 
 - Improved checking/rebuilding of database and project-list XML files on startup
+- Standardised ModelCraft output file name
 
 ## [2.4.2] - 2025-10-22
 
