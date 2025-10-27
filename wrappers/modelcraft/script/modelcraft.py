@@ -108,22 +108,8 @@ class modelcraft(CPluginScript):
         modelcraft_cif = os.path.join(directory, "modelcraft.cif")
         modelcraft_mtz = os.path.join(directory, "modelcraft.mtz")
         modelcraft_json = os.path.join(directory, "modelcraft.json")
-        XYZOUT_path = os.path.join(self.getWorkDirectory(), "XYZOUT.cif")
-        shutil.copy(modelcraft_cif, XYZOUT_path)
         outputData = self.container.outputData
-        outputData.XYZOUT.setFullPath(XYZOUT_path)
-        outputData.XYZOUT.annotation.set("ModelCraft model")
-        outputData.XYZOUT.subType.set(CPdbDataFile.SUBTYPE_MODEL)
-        outputData.XYZOUT.contentFlag.set(CPdbDataFile.CONTENT_FLAG_MMCIF)
-        outputData.FPHIOUT.annotation.set("ModelCraft best map")
-        outputData.FPHIOUT.subType.set(CMapCoeffsDataFile.SUBTYPE_NORMAL)
-        outputData.FPHIOUT.contentFlag.set(CMapCoeffsDataFile.CONTENT_FLAG_FPHI)
-        outputData.DIFFPHIOUT.annotation.set("Modelcraft difference map")
-        outputData.DIFFPHIOUT.subType.set(CMapCoeffsDataFile.SUBTYPE_DIFFERENCE)
-        outputData.DIFFPHIOUT.contentFlag.set(CMapCoeffsDataFile.CONTENT_FLAG_FPHI)
-        outputData.ABCDOUT.annotation.set("ModelCraft phases")
-        outputData.ABCDOUT.subType.set(CPhsDataFile.SUBTYPE_BIASED)
-        outputData.ABCDOUT.contentFlag.set(CPhsDataFile.CONTENT_FLAG_HL)
+        shutil.copy(modelcraft_cif, str(outputData.XYZOUT))
         files = ["FPHIOUT", "DIFFPHIOUT", "ABCDOUT"]
         columns = ["FWT,PHWT", "DELFWT,PHDELWT", "HLACOMB,HLBCOMB,HLCCOMB,HLDCOMB"]
         error = self.splitHklout(files, columns, modelcraft_mtz)
