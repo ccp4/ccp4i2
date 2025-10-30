@@ -1,5 +1,9 @@
 # CCP4i2 Changelog
 
+## [2.5.0] - 2025-10-30
+
+- New task to check a model against AU contents
+
 ## [2.4.3] - 2025-10-24
 
 - Improved checking/rebuilding of database and project-list XML files on startup
