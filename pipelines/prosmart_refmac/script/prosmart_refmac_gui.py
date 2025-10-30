@@ -583,6 +583,8 @@ class Cprosmart_refmac(CCP4TaskWidget.CTaskWidget):
 
     #self.createLine( [ 'widget', 'OPTIMISE_WEIGHT', 'label', 'Execute multiple refinement runs in order to optimise X-ray/geometry weight' ] )
 
+    self.createLine( [ 'label', 'Optional list of sequences to align with model sequences for validation at end of refinement.' ] )
+    self.createLine( [ 'widget', 'ASUIN' ] )
     self.createLine( [ 'widget', 'REFMAC_CLEANUP', 'label', 'Clean up intermediate files at end of job' ] )
 
     self.createLine( [ 'widget', '-guiMode','multiLine','EXTRAREFMACKEYWORDS' ] )

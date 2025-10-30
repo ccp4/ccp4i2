@@ -128,6 +128,15 @@ def createMissingDATABASEdbXML():
         if not os.path.exists(dbxml):
 #DATABASE.db.xml does not exist, so we create one.
             updateDBXML = True
+        elif os.path.getsize(dbxml) < len('<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">'):
+            """
+            This is a sledgehammer, but otherwise CCP4File.CI2XmlDataFile(fullPath=fileName) fails
+            in DBApi and the CCP4File code is *very* complicated. However this should be reasonably
+            safe as we are only ever attempting to delete files named DATABASE.db.xml. Moreover,
+            os.remove is used all over the place in CCP4i2.
+            """
+            os.remove(dbxml)
+            updateDBXML = True
         else:
             dbxml_mtime = os.stat(dbxml).st_mtime
 #Check mtime of CCP4_JOBS and subdirs with mtime of DATABASE.db.xml
@@ -142,7 +151,7 @@ def createMissingDATABASEdbXML():
                     for jobDir in jobDirs:
                         thisJobDir = os.path.join(d,"CCP4_JOBS",jobDir)
                         job_mtime = os.stat(thisJobDir).st_mtime
-                        if jobsDir_mtime > dbxml_mtime:
+                        if job_mtime > dbxml_mtime:
                             print(thisJobDir,"newer than",dbxml)
                             updateDBXML = True
                             break
@@ -174,22 +183,28 @@ def createMissingDATABASEdbXML():
     
         with open(dbListBackupName, 'r') as infile: 
             s = infile.read()
-            tree = parse_from_unicode(s)
-            projs = tree.xpath("//project")
-            setXML = set([str(x.text) for x in projs])
-            setDB = set([str(x[2]) for x in proj_dir_list0])
-            if (setXML!=setDB):
-                if setXML.issubset(setDB):
-                    print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-                    print("Project directory list is not up to date, recreating")
-                    CCP4Modules.PROJECTSMANAGER().backupDBXML()
-                    print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-                else:
-                   dirListStr =  "<br/>".join([str(x) for x in (setXML - setDB)])
-                   print("Backup project list is inconsistent with database contents. This might be a serious problem.")
-                   res = QtWidgets.QMessageBox.warning(None,"Database file / Project list backup","Backup project list file "+dbListBackupName+" is inconsistent with database contents. This might be a serious problem.<br/><br/>The following project directories contained in "+dbListBackupName+" do not correspond to anything in the database:<br/><br/>"+dirListStr+"<br/><br/>If you think all is well, then click 'OK', otherwise click 'Abort' and investigate the problem.<br/><br/>Do not click 'OK' if you are not sure what is wrong.",QtWidgets.QMessageBox.Ok|QtWidgets.QMessageBox.Abort)
-                   if res == QtWidgets.QMessageBox.Abort:
-                       sys.exit()
+            try:
+                tree = parse_from_unicode(s)
+                projs = tree.xpath("//project")
+                setXML = set([str(x.text) for x in projs])
+                setDB = set([str(x[2]) for x in proj_dir_list0])
+                if (setXML!=setDB):
+                    if setXML.issubset(setDB):
+                        print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+                        print("Project directory list is not up to date, recreating")
+                        CCP4Modules.PROJECTSMANAGER().backupDBXML()
+                        print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+                    else:
+                       dirListStr =  "<br/>".join([str(x) for x in (setXML - setDB)])
+                       print("Backup project list is inconsistent with database contents. This might be a serious problem.")
+                       res = QtWidgets.QMessageBox.warning(None,"Database file / Project list backup","Backup project list file "+dbListBackupName+" is inconsistent with database contents. This might be a serious problem.<br/><br/>The following project directories contained in "+dbListBackupName+" do not correspond to anything in the database:<br/><br/>"+dirListStr+"<br/><br/>If you think all is well, then click 'OK', otherwise click 'Abort' and investigate the problem.<br/><br/>Do not click 'OK' if you are not sure what is wrong.",QtWidgets.QMessageBox.Ok|QtWidgets.QMessageBox.Abort)
+                       if res == QtWidgets.QMessageBox.Abort:
+                           sys.exit()
+            except:
+                print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+                print("Project directory list is corrupted, recreating")
+                CCP4Modules.PROJECTSMANAGER().backupDBXML()
+                print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
 
 def startBrowser(args, app=None, splash=None):
     from core import CCP4Modules
