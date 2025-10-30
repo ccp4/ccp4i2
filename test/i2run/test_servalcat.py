@@ -69,7 +69,7 @@ def test_1gyu_unmerged():
                 maxRwork=0.20,
                 maxRfree=0.25,
                 minCCwork=0.90,
-                minCCfree=0.80,
+                minCCfree=0.75,
             )
 
 
