@@ -5,7 +5,7 @@
 - New task to check a model against AU contents
 - Standardised ModelCraft output file name
 
-## [2.4.3] - 2025-10-27
+## [2.4.3] - 2025-10-24
 
 - Improved checking/rebuilding of database and project-list XML files on startup
 
