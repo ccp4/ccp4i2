@@ -3,6 +3,7 @@
 ## [2.5.0] - 2025-10-30
 
 - New task to check a model against AU contents
+- Standardised ModelCraft output file name
 
 ## [2.4.3] - 2025-10-24
 
