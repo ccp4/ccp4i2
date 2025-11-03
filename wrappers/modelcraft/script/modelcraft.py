@@ -1,28 +1,9 @@
-"""
-    modelcraft.py: CCP4 GUI Project
-
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-"""
-
 import json
 import os
 import shutil
 from core.CCP4ErrorHandling import SEVERITY_WARNING
-from core.CCP4ModelData import CPdbDataFile
 from core.CCP4PluginScript import CPluginScript
-from core.CCP4XtalData import CMapCoeffsDataFile, CObsDataFile, CPhsDataFile
+from core.CCP4XtalData import CObsDataFile, CPhsDataFile
 
 
 class modelcraft(CPluginScript):
@@ -126,22 +107,8 @@ class modelcraft(CPluginScript):
         modelcraft_cif = os.path.join(directory, "modelcraft.cif")
         modelcraft_mtz = os.path.join(directory, "modelcraft.mtz")
         modelcraft_json = os.path.join(directory, "modelcraft.json")
-        XYZOUT_path = os.path.join(self.getWorkDirectory(), "XYZOUT.cif")
-        shutil.copy(modelcraft_cif, XYZOUT_path)
         outputData = self.container.outputData
-        outputData.XYZOUT.setFullPath(XYZOUT_path)
-        outputData.XYZOUT.annotation.set("ModelCraft model")
-        outputData.XYZOUT.subType.set(CPdbDataFile.SUBTYPE_MODEL)
-        outputData.XYZOUT.contentFlag.set(CPdbDataFile.CONTENT_FLAG_MMCIF)
-        outputData.FPHIOUT.annotation.set("ModelCraft best map")
-        outputData.FPHIOUT.subType.set(CMapCoeffsDataFile.SUBTYPE_NORMAL)
-        outputData.FPHIOUT.contentFlag.set(CMapCoeffsDataFile.CONTENT_FLAG_FPHI)
-        outputData.DIFFPHIOUT.annotation.set("Modelcraft difference map")
-        outputData.DIFFPHIOUT.subType.set(CMapCoeffsDataFile.SUBTYPE_DIFFERENCE)
-        outputData.DIFFPHIOUT.contentFlag.set(CMapCoeffsDataFile.CONTENT_FLAG_FPHI)
-        outputData.ABCDOUT.annotation.set("ModelCraft phases")
-        outputData.ABCDOUT.subType.set(CPhsDataFile.SUBTYPE_BIASED)
-        outputData.ABCDOUT.contentFlag.set(CPhsDataFile.CONTENT_FLAG_HL)
+        shutil.copy(modelcraft_cif, str(outputData.XYZOUT))
         files = ["FPHIOUT", "DIFFPHIOUT", "ABCDOUT"]
         columns = ["FWT,PHWT", "DELFWT,PHDELWT", "HLACOMB,HLBCOMB,HLCCOMB,HLDCOMB"]
         error = self.splitHklout(files, columns, modelcraft_mtz)
