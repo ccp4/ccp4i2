@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+    <ccp4i2_header>
+        <function>DEF</function>
+        <pluginName>modelASUCheck</pluginName>
+    </ccp4i2_header>
+    <ccp4i2_body id="modelASUCheck">
+        <container id="inputData">
+            <content id="XYZIN">
+                <className>CPdbDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                </qualifiers>
+            </content>
+            <content id="ASUIN">
+                <className>CAsuDataFile</className>
+                <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <mustExist>True</mustExist>
+                    <fromPreviousJob>False</fromPreviousJob>
+                    <selectionMode>0</selectionMode>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="outputData">
+        </container>
+    </ccp4i2_body>
+</ccp4i2>

@@ -135,15 +135,43 @@
         <container id="outputData">
             <content id="XYZOUT">
                 <className>CPdbDataFile</className>
+                <qualifiers>
+                    <default>
+                        <annotation>ModelCraft model</annotation>
+                        <subType>1</subType>
+                        <contentFlag>2</contentFlag>
+                    </default>
+                </qualifiers>
             </content>
             <content id="FPHIOUT">
                 <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <default>
+                        <annotation>ModelCraft best map</annotation>
+                        <subType>1</subType>
+                        <contentFlag>1</contentFlag>
+                    </default>
+                </qualifiers>
             </content>
             <content id="DIFFPHIOUT">
                 <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <default>
+                        <annotation>ModelCraft difference map</annotation>
+                        <subType>2</subType>
+                        <contentFlag>1</contentFlag>
+                    </default>
+                </qualifiers>
             </content>
             <content id="ABCDOUT">
                 <className>CPhsDataFile</className>
+                <qualifiers>
+                    <default>
+                        <annotation>ModelCraft phases</annotation>
+                        <subType>2</subType>
+                        <contentFlag>1</contentFlag>
+                    </default>
+                </qualifiers>
             </content>
             <content id="PERFORMANCE">
                 <className>CRefinementPerformance</className>

@@ -2,6 +2,8 @@ from report.CCP4ReportParser import *
 import sys
 from xml.etree import ElementTree as ET
 from numpy import sign
+import re
+import json
 
 
 def isnumber(n):
@@ -27,9 +29,15 @@ class servalcat_report(Report):
         # 'nooutput' mode would be used by another report class that wanted
         # to use some method(s) from this class for its own report
         self.outputXml = jobStatus is not None and jobStatus.lower().count('running')
+
         if jobStatus is not None and jobStatus.lower() == 'nooutput':
             return
-        
+
+        outputJsonPath = os.path.normpath(
+            os.path.join(self.jobInfo["fileroot"], "refined_stats.json")
+        )
+        self.outputJson = json.load(open(outputJsonPath)) if os.path.isfile(outputJsonPath) else None
+
         self.addDiv(style='clear:both;')
 
         if jobStatus.lower().count('running'):
@@ -51,6 +59,7 @@ class servalcat_report(Report):
             perCycleFold = parent.addFold(label='Per cycle statistics', brief='Per cycle', initiallyOpen=False)
             self.addTablePerCycle(cycle_data, parent=perCycleFold, initialFinalOnly=False)
             self.addGraphsVsResolution()
+            self.addTwinningAnalysis(outputJson=self.outputJson)
             self.addOutlierAnalysis()
 
     def addGraphPerCycle(self, parent=None, xmlnode=None):
@@ -680,6 +689,62 @@ class servalcat_report(Report):
             plotLine = plotD.append('plotline', xcol=1, ycol=3, rightaxis='true')
             plotLine.append('colour', 'red')
             plotLine.append('symbolsize', '0')
+
+        clearingDiv = parent.addDiv(style="clear:both;")
+
+
+    def addTwinningAnalysis(self, outputJson=None, parent=None, xmlnode=None):
+        if parent is None: parent = self
+        if xmlnode is None: xmlnode = self.xmlnode
+        if outputJson is None: outputJson = self.outputJson
+        # if len(xmlnode.findall('.//cycle[last()]/twin_alpha')) == 0:
+        if not outputJson or outputJson[-1].get('twin_alpha', {}) == {}:
+            # No twinning analysis
+            return
+        twinFold = parent.addFold(label="Twinning analysis", brief='Twinning', initiallyOpen=True)
+        divLeft = twinFold.addDiv(style='font-size:110%;float:left')
+
+        try:
+            twin_alpha_final = outputJson[-1]['twin_alpha']
+            twin_operators = list(twin_alpha_final.keys())
+            twin_fraction_final_values = list(twin_alpha_final.values())
+            twin_fraction_final_values = ["{:.2f}".format(v) for v in twin_fraction_final_values]
+            twin_operators_labels = twin_operators
+            twin_alpha_data = {op: [] for op in twin_operators}
+            cycles_list = list(range(1, len(outputJson) + 1))
+            for c in outputJson:
+                for op in twin_operators:
+                    twin_alpha_data[op].append(c.get('twin_alpha', {}).get(op, 0.0))
+
+            twinGraph = divLeft.addFlotGraph(
+                title="Twin fraction vs cycle",
+                xmlnode=self.xmlnode,
+                style="height:250px;width:400px;float:left;")
+            twinGraph.addData(title="Cycle", data=cycles_list)
+            for i, twin_op in enumerate(twin_operators):
+                twinGraph.addData(
+                    title=twin_operators_labels[i],
+                    data=twin_alpha_data[twin_op],
+                )
+            plotTwin = twinGraph.addPlotObject()
+            plotTwin.append('title', 'Twin fraction vs cycle')
+            plotTwin.append('plottype', 'xy')
+            plotTwin.append('xlabel', 'Cycle')
+            plotTwin.append('ylabel', 'Twin fraction vs cycle')
+            plotTwin.append('xintegral', 'true')
+            plotTwin.append('legendposition', x=0, y=0)
+            plotTwin.append('yrange', min=0.0, max=1.0)
+            for i, twin_op in enumerate(twin_operators):
+                plotLine = plotTwin.append('plotline', xcol=1, ycol=i + 2)
+                plotLine.append('symbolsize', '0')
+
+            divRight = twinFold.addDiv(style='font-size:110%;float:left;margin-left:1em;')
+            divRight.append("Final twin fractions after refinement:")
+            tableTwin = divRight.addTable()
+            tableTwin.addData(title="Twin operator", data=twin_operators_labels)
+            tableTwin.addData(title="Twin fraction", data=twin_fraction_final_values)
+        except:
+            divLeft.append("Error: Twinning report was not found.")
 
         clearingDiv = parent.addDiv(style="clear:both;")
 

@@ -10,7 +10,11 @@ def json2xml(json_obj, tag_name=None, tag_name_subroot="subroot"):
         tag_name_clean = tag_name_clean.replace("/", "")
         tag_name_clean = tag_name_clean.replace("|", "")
         tag_name_clean = tag_name_clean.replace("*", "")
+        tag_name_clean = tag_name_clean.replace(">", "_gt_")
+        tag_name_clean = tag_name_clean.replace("<", "_lt_")
+        tag_name_clean = tag_name_clean.replace("=", "_eq_")
         tag_name_clean = tag_name_clean.replace(":", "_")
+        tag_name_clean = tag_name_clean.replace(";", "_")
         return tag_name_clean
     result_list = list()
     json_obj_type = type(json_obj)
