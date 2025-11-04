@@ -1,10 +1,11 @@
 # CCP4i2 Changelog
 
-## [2.5.0] - 2025-11-03
+## [2.5.0] - 2025-11-04
 
 - New task to check a model against AU contents
 - Standardised ModelCraft output file name
 - Twinning analysis in Servalcat report
+- Stop the Refmac pipeline producing map files by default
 
 ## [2.4.3] - 2025-10-24
 
