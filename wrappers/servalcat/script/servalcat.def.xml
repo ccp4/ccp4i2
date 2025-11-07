@@ -731,12 +731,13 @@ hydrogens are only to be used if already present in the input coordinate file.</
            </content>
           <content id="PROSMART_PROTEIN_ALPHA"><!--Note this used to be GMWT-->
              <className>CFloat</className>
+             <qualifiers>
+             </qualifiers>
           </content>
           <content id="PROSMART_PROTEIN_DMAX">
              <className>CFloat</className>
-          </content>
-          <content id="PROSMART_NUCLEICACID_WEIGHT">
-             <className>CFloat</className>
+             <qualifiers>
+             </qualifiers>
           </content>
            <content id="PROSMART_NUCLEICACID_SGMN">
               <className>CFloat</className>
@@ -758,9 +759,13 @@ hydrogens are only to be used if already present in the input coordinate file.</
            </content>
           <content id="PROSMART_NUCLEICACID_ALPHA"><!--Note this used to be GMWT-->
              <className>CFloat</className>
+             <qualifiers>
+             </qualifiers>
           </content>
           <content id="PROSMART_NUCLEICACID_DMAX">
              <className>CFloat</className>
+             <qualifiers>
+             </qualifiers>
           </content>
 
             <!-- artefacts... -->
