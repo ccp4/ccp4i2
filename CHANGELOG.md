@@ -1,10 +1,11 @@
 # CCP4i2 Changelog
 
-## [2.5.0] - 2025-11-03
+## [2.5.0] - 2025-11-10
 
 - New task to check a model against AU contents
 - Standardised ModelCraft output file name
 - Twinning analysis in Servalcat report
+- Preserving ProSMART parameters when cloning Servalcat jobs
 
 ## [2.4.3] - 2025-10-24
 
