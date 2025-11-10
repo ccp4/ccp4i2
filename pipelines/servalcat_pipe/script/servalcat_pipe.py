@@ -292,6 +292,8 @@ class servalcat_pipe(CPluginScript):
                     # else report error?
             else:
                 result.container.inputData.METALCOORD_RESTRAINTS=self.container.metalCoordPipeline.METALCOORD_RESTRAINTS
+
+        # Set parameters if there is prior ProSMART (for job cloning)
         if self.container.prosmartProtein.TOGGLE:
             result.container.controlParameters.PROSMART_PROTEIN_SGMN=self.container.prosmartProtein.SGMN
             result.container.controlParameters.PROSMART_PROTEIN_SGMX=self.container.prosmartProtein.SGMX
