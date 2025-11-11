@@ -2474,23 +2474,10 @@
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "Nobody",
-                "TASKTITLE": "Find waters with coot",
+                "TASKTITLE": "Find waters with Coot API",
                 "class": "pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waterscoot_find_waters",
                 "clsModule": "pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters",
                 "clsName": "coot_find_waters",
-                "internal": false,
-                "subTasks": []
-            }
-        },
-        "coot_fit_residues": {
-            "0.0": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "Nobody",
-                "TASKTITLE": "Coot fit residues",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residuescoot_fit_residues",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues",
-                "clsName": "coot_fit_residues",
                 "internal": false,
                 "subTasks": []
             }
@@ -2504,19 +2491,6 @@
                 "class": "wrappers.coot_rebuild.script.coot_rebuildcoot_rebuild",
                 "clsModule": "wrappers.coot_rebuild.script.coot_rebuild",
                 "clsName": "coot_rebuild",
-                "internal": false,
-                "subTasks": []
-            }
-        },
-        "coot_rsr_morph": {
-            "202110261437": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "stuart.mcnicholas@york.ac.uk",
-                "TASKTITLE": "Real space refinement morphing with coot",
-                "class": "wrappers.coot_rsr_morph.script.coot_rsr_morphcoot_rsr_morph",
-                "clsModule": "wrappers.coot_rsr_morph.script.coot_rsr_morph",
-                "clsName": "coot_rsr_morph",
                 "internal": false,
                 "subTasks": []
             }
@@ -4196,7 +4170,6 @@
         "coot_script_lines": "qticons/coot_script_lines.png",
         "coot_stepped_refine": "qticons/ccp4.png",
         "cpatterson": "qticons/cpatterson.png",
-        "cphasematch": "qticons/cphasematch.png",
         "crank2": "qticons/crank2.png",
         "crank2_comb_phdmmb": "qticons/ccp4.png",
         "crank2_dmfull": "qticons/ccp4.png",
