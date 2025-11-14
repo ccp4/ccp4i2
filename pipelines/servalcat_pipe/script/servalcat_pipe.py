@@ -826,33 +826,6 @@ class servalcat_pipe(CPluginScript):
         self.appendErrorReport(40,str(self.TIMEOUT_PERIOD))
         self.reportStatus(CPluginScript.FAILED)
 
-def coefficientsToMap(coefficientsPath, mapPath=None, overSample=1.0):
-    import clipper
-    mtz_file = clipper.CCP4MTZfile()
-    hkl_info = clipper.HKL_info()
-    mtz_file.open_read (str(coefficientsPath))
-    mtz_file.import_hkl_info ( hkl_info )
-    fphidata = clipper.HKL_data_F_phi_float(hkl_info)
-    mtz_file.import_hkl_data( fphidata, str("/*/*/[F,PHI]") );
-    mtz_file.close_read()
-    #Clipper will sample the output map according to Fourier theory and hte nominal resolution
-    #for visualisation, it is generally nicer to make things a bit more finely sampled
-    fudgedResolution = hkl_info.resolution()
-    fudgedResolution.init(hkl_info.resolution().limit()/overSample)
-    mygrid=clipper.Grid_sampling ( hkl_info.spacegroup(), hkl_info.cell(), fudgedResolution )
-    mymap = clipper.Xmap_float(hkl_info.spacegroup(), hkl_info.cell(), mygrid )
-    mymap.fft_from_float(fphidata)
-
-    mapout = clipper.CCP4MAPfile()
-    if mapPath is None:
-        coefficientsRoot, extension = os.path.splitext(os.path.abspath(coefficientsPath))
-        mapPath = coefficientsRoot+".map"
-
-    mapout.open_write( mapPath )
-    mapout.export_xmap_float( mymap )
-    mapout.close_write()
-    return mapPath
-
 # Function called from gui to support exporting MTZ files
 def exportJobFile(jobId=None,mode=None,fileInfo={}):
     from core import CCP4Modules

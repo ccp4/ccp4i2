@@ -6,6 +6,7 @@
 - Standardised ModelCraft output file name
 - Twinning analysis in Servalcat report
 - Preserving ProSMART parameters when cloning Servalcat jobs
+- Stop the Refmac pipeline producing map files by default
 
 ## [2.4.3] - 2025-10-24
 
