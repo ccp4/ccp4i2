@@ -65,8 +65,3 @@ class SubstituteLigand_report(Report):
                 objectMap['DICT'] = 'DICTOUT'
             elif self.jobInfo['filenames'].get('DICTIN', None) is not None:
                 objectMap['DICT'] = 'DICTIN'
-#FIXME - XML PICTURE
-            """
-            if not self.jobStatus.lower().count('running'):
-                refmac_report.addRefinementPictures(parent=self, objectNameMap=objectMap, initiallyOpen=True)
-            """

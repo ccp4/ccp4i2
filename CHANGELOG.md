@@ -6,9 +6,7 @@
 - Standardised ModelCraft output file name
 - Twinning analysis in Servalcat report
 - Preserving ProSMART parameters when cloning Servalcat jobs
-- Changed coot_rsr_morph and coot_add_waters to use CHAPI
-- Fix to Servalcat USE_WORK_IN_EST
-- Fix to user selected columns in split MTZ task
+- Stop the Refmac pipeline producing map files by default
 
 ## [2.4.3] - 2025-10-24
 
