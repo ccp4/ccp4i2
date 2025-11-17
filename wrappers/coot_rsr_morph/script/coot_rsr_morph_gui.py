@@ -1,28 +1,15 @@
-"""
-     tasks/coot_rsr_morph
-"""
-
-from PySide2 import QtGui, QtWidgets,QtCore
-
 from qtgui.CCP4TaskWidget import CTaskWidget
 
-#-------------------------------------------------------------------
 class Ccoot_rsr_morph(CTaskWidget):
-#-------------------------------------------------------------------
-
-# Subclass CTaskWidget to give specific task window
   TASKNAME = 'coot_rsr_morph'
-  TASKVERSION = 202110070909
+  TASKVERSION = 202511171635
   TASKMODULE='refinement'
   TASKTITLE='Real space refinement morphing with coot'
   DESCRIPTION='Real space refinement morphing with coot'
 
   def drawContents(self):
-
     self.setProgramHelpFile('coot_rsr_morph')
-
     self.openFolder(folderFunction='inputData')
-
     self.createLine( [ 'subtitle', 'Main inputs' ])
     self.openSubFrame(frame=[True])
     self.createLine( [ 'tip', 'input structure', 'widget', 'XYZIN' ] )
@@ -34,4 +21,3 @@ class Ccoot_rsr_morph(CTaskWidget):
     self.createLine( [ 'label', 'GM alpha', 'widget', 'GM_ALPHA' ] )
     self.createLine( [ 'label', 'Blur B-factor', 'widget', 'BLUR_B_FACTOR' ] )
     self.closeSubFrame()
-

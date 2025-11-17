@@ -1,33 +1,25 @@
-from __future__ import print_function
-
-import ctypes
-import pathlib
 import os
-import sys
+import pathlib
 
-import chapi
-import lxml
+import coot_headless_api
 import gemmi
 
-from core import CCP4File
 from core.CCP4ModelData import CPdbDataFile
 from core.CCP4PluginScript import CPluginScript
 
 
 class coot_rsr_morph(CPluginScript):
-
     TASKMODULE = "refinement"
     TASKTITLE = "Real space refinement morphing with Coot API"
     TASKNAME = "coot_rsr_morph"
-    TASKVERSION = 202409171000
+    TASKVERSION = 202511171635
     WHATNEXT = ["prosmart_refmac"]
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = "stuart.mcnicholas@york.ac.uk"
+    RUNEXTERNALPROCESS = False
 
-    def chapi_rsr_morph(self):
-        sys.stdout.flush()
-        sys.stderr.flush()
+    def startProcess(self, command=None, handler=None, **kw):
         outFormat = "cif" if self.container.inputData.XYZIN.isMMCIF() else "pdb"
         oldFullPath = pathlib.Path(str(self.container.outputData.XYZOUT.fullPath))
         if outFormat == "cif":
@@ -41,7 +33,7 @@ class coot_rsr_morph(CPluginScript):
         gm_alpha = self.container.controlParameters.GM_ALPHA
         blur_b_factor = self.container.controlParameters.BLUR_B_FACTOR
 
-        mc = chapi.molecules_container_py(True)
+        mc = coot_headless_api.molecules_container_py(True)
         mc.set_use_gemmi(True)
         imol = mc.read_pdb(pdb_path)
         gemmiStructure = gemmi.read_structure(pdb_path)
@@ -60,30 +52,8 @@ class coot_rsr_morph(CPluginScript):
 
         mc.write_coordinates(imol,out_path)
 
-        libc = ctypes.CDLL(None)
-        if sys.platform == "darwin":
-            c_stdout = ctypes.c_void_p.in_dll(libc, '__stdoutp')
-            libc.fflush(c_stdout)
-        elif sys.platform.startswith("linux"):
-            c_stdout = ctypes.c_void_p.in_dll(libc, 'stdout')
-            libc.fflush(c_stdout)
-
-        return CPluginScript.SUCCEEDED
-
-    def process(self, command=None, handler=None, **kw):
-        self.chapi_rsr_morph()
         status = CPluginScript.FAILED
-        if os.path.exists(self.container.outputData.XYZOUT.__str__()):
+        if os.path.exists(str(self.container.outputData.XYZOUT)):
             status = CPluginScript.SUCCEEDED
-        print(
-            "coot_rsr_morph.handleFinish",
-            self.container.outputData.XYZOUT,
-            os.path.exists(self.container.outputData.XYZOUT.__str__()),
-        )
-        # Create a trivial xml output file
-        root = lxml.etree.Element("coot_rsr_morph")
-        self.container.outputData.XYZOUT.subType = 1
-        xml_file = CCP4File.CXmlDataFile(fullPath=self.makeFileName("PROGRAMXML"))
-        xml_file.saveFile(root)
         self.reportStatus(status)
         return status

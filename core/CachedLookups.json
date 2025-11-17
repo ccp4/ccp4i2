@@ -2495,6 +2495,19 @@
                 "subTasks": []
             }
         },
+        "coot_rsr_morph": {
+            "202511171635": {
+                "DESCRIPTION": null,
+                "INTERRUPTLABEL": null,
+                "MAINTAINER": "stuart.mcnicholas@york.ac.uk",
+                "TASKTITLE": "Real space refinement morphing with Coot API",
+                "class": "wrappers.coot_rsr_morph.script.coot_rsr_morphcoot_rsr_morph",
+                "clsModule": "wrappers.coot_rsr_morph.script.coot_rsr_morph",
+                "clsName": "coot_rsr_morph",
+                "internal": false,
+                "subTasks": []
+            }
+        },
         "coot_script_lines": {
             "0.0": {
                 "DESCRIPTION": null,
@@ -5220,7 +5233,7 @@
                 "clsName": "Ccoot_rsr_morph",
                 "shortTitle": "Real space refinement morphing with coot",
                 "taskName": "coot_rsr_morph",
-                "taskVersion": 202110070909
+                "taskVersion": 202511171635
             }
         },
         "coot_script_lines": {
