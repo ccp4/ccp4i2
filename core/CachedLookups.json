@@ -746,8 +746,8 @@
         "coot_find_waters": {
             "0.0.0": {
                 "MAINTAINER": "Nobody",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters_reportcoot_find_waters_report",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters_report",
+                "class": "wrappers.coot_find_waters.script.coot_find_waters_reportcoot_find_waters_report",
+                "clsModule": "wrappers.coot_find_waters.script.coot_find_waters_report",
                 "clsName": "coot_find_waters_report",
                 "modes": []
             }
@@ -773,8 +773,8 @@
         "coot_script_lines": {
             "0.0.0": {
                 "MAINTAINER": "Nobody",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines_reportcoot_script_lines_report",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines_report",
+                "class": "wrappers.coot_script_lines.script.coot_script_lines_reportcoot_script_lines_report",
+                "clsModule": "wrappers.coot_script_lines.script.coot_script_lines_report",
                 "clsName": "coot_script_lines_report",
                 "modes": []
             }
@@ -2438,8 +2438,8 @@
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "Nobody",
                 "TASKTITLE": "Find waters with Coot API",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waterscoot_find_waters",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters",
+                "class": "wrappers.coot_find_waters.script.coot_find_waterscoot_find_waters",
+                "clsModule": "wrappers.coot_find_waters.script.coot_find_waters",
                 "clsName": "coot_find_waters",
                 "internal": false,
                 "subTasks": []
@@ -2477,8 +2477,8 @@
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "Nobody",
                 "TASKTITLE": "Execute arbitrary script code within Coot",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_linescoot_script_lines",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines",
+                "class": "wrappers.coot_script_lines.script.coot_script_linescoot_script_lines",
+                "clsModule": "wrappers.coot_script_lines.script.coot_script_lines",
                 "clsName": "coot_script_lines",
                 "internal": false,
                 "subTasks": []
@@ -5106,8 +5106,8 @@
                 "MAINTAINER": "Nobody",
                 "RANK": null,
                 "TASKTITLE": "Find waters - COOT",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters_guiCcoot_find_waters",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters_gui",
+                "class": "wrappers.coot_find_waters.script.coot_find_waters_guiCcoot_find_waters",
+                "clsModule": "wrappers.coot_find_waters.script.coot_find_waters_gui",
                 "clsName": "Ccoot_find_waters",
                 "shortTitle": "Find waters - COOT",
                 "taskName": "coot_find_waters",
@@ -5148,8 +5148,8 @@
                 "MAINTAINER": "Nobody",
                 "RANK": null,
                 "TASKTITLE": "Scripted model building - COOT",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines_guiCcoot_script_lines",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines_gui",
+                "class": "wrappers.coot_script_lines.script.coot_script_lines_guiCcoot_script_lines",
+                "clsModule": "wrappers.coot_script_lines.script.coot_script_lines_gui",
                 "clsName": "Ccoot_script_lines",
                 "shortTitle": "Scripted COOT",
                 "taskName": "coot_script_lines",
