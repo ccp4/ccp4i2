@@ -202,7 +202,6 @@
             "mrbump_model_prep",
             "phaser_MR_RNP",
             "pisapipe",
-            "coot_stepped_refine",
             "reindex_minimtz",
             "reindex_processed_data",
             "tableone",
@@ -784,17 +783,6 @@
                 "clsModule": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines_report",
                 "clsName": "coot_script_lines_report",
                 "modes": []
-            }
-        },
-        "coot_stepped_refine": {
-            "0.0.0": {
-                "MAINTAINER": "Nobody",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine_reportcoot_stepped_refine_report",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine_report",
-                "clsName": "coot_stepped_refine_report",
-                "modes": [
-                    "Running"
-                ]
             }
         },
         "cpatterson": {
@@ -2511,19 +2499,6 @@
                 "subTasks": []
             }
         },
-        "coot_stepped_refine": {
-            "0.0": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "Nobody",
-                "TASKTITLE": "Coot stepped refinement",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refinecoot_stepped_refine",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine",
-                "clsName": "coot_stepped_refine",
-                "internal": false,
-                "subTasks": []
-            }
-        },
         "cpatterson": {
             "0.0": {
                 "DESCRIPTION": null,
@@ -4170,7 +4145,6 @@
         "coot_rebuild": "qticons/coot_rebuild.png",
         "coot_rsr_morph": "qticons/coot_rsr_morph.png",
         "coot_script_lines": "qticons/coot_script_lines.png",
-        "coot_stepped_refine": "qticons/ccp4.png",
         "cpatterson": "qticons/cpatterson.png",
         "crank2": "qticons/crank2.png",
         "crank2_comb_phdmmb": "qticons/ccp4.png",
@@ -5222,20 +5196,6 @@
                 "clsName": "Ccoot_script_lines",
                 "shortTitle": "Scripted COOT",
                 "taskName": "coot_script_lines",
-                "taskVersion": 0.1
-            }
-        },
-        "coot_stepped_refine": {
-            "0.0.0": {
-                "DESCRIPTION": null,
-                "MAINTAINER": "Nobody",
-                "RANK": null,
-                "TASKTITLE": "Coot stepped refinement",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine_guiCcoot_stepped_refine",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine_gui",
-                "clsName": "Ccoot_stepped_refine",
-                "shortTitle": "Coot stepped refinement",
-                "taskName": "coot_stepped_refine",
                 "taskVersion": 0.1
             }
         },
