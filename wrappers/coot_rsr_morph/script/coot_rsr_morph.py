@@ -28,7 +28,7 @@ class coot_rsr_morph(CPluginScript):
 
         xyzin = str(self.container.inputData.XYZIN.fullPath)
         mtzin = str(self.container.inputData.FPHIIN.fullPath)
-        out_path = os.path.normpath(str(self.container.outputData.XYZOUT))
+        xyzout = os.path.normpath(str(self.container.outputData.XYZOUT))
         local_radius = self.container.controlParameters.LOCAL_RADIUS
         gm_alpha = self.container.controlParameters.GM_ALPHA
         blur_b_factor = self.container.controlParameters.BLUR_B_FACTOR
@@ -43,7 +43,8 @@ class coot_rsr_morph(CPluginScript):
         mc.generate_self_restraints(imol, local_radius)
         mc.set_refinement_geman_mcclure_alpha(gm_alpha)
         success = mc.refine_residues_using_atom_cid(imol, "//", "ALL", 4000)
-        mc.write_coordinates(imol, out_path)
+        mc.write_coordinates(imol, xyzout)
+
         shutil.rmtree("coot-backup", ignore_errors=True)
 
         status = CPluginScript.FAILED
