@@ -19,8 +19,14 @@ def test_8xfm(cif8xfm, mtz8xfm):
     args = ["coot_find_waters"]
     args += ["--XYZIN", xyzin]
     args += ["--FPHIIN", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FWT,PHWT]"]
+    args += ["--THRESHOLD", "0.1"]
+    args += ["--MINDIST", "0.1"]
+    args += ["--MAXDIST", "9.9"]
     try:
         with i2run(args) as job:
+            tree = ET.parse(job / "program.xml")
+            waters = int(tree.findall(".//WatersFound")[-1].text)
+            assert waters > 0
             assert hasLongLigandName(job / "XYZOUT.cif")
             assert has_water(job / "XYZOUT.cif")
     finally:
