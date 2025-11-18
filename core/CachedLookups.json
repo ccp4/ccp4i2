@@ -81,9 +81,6 @@
             "adding_stats_to_mmcif_i2",
             "mergeMtz"
         ],
-        "expt_data_util": [
-            "reindex_processed_data"
-        ],
         "expt_data_utility": [
             "pointless_reindexToMatch",
             "phaser_EP_LLG",
@@ -202,8 +199,6 @@
             "mrbump_model_prep",
             "phaser_MR_RNP",
             "pisapipe",
-            "reindex_minimtz",
-            "reindex_processed_data",
             "tableone",
             "uniqueify"
         ],
@@ -226,8 +221,7 @@
             "prosmart",
             "refmac",
             "servalcat",
-            "pdb_extract_wrapper",
-            "reindex_minimtz"
+            "pdb_extract_wrapper"
         ]
     },
     "performanceClasses": {
@@ -1592,15 +1586,6 @@
                 "modes": [
                     "Running"
                 ]
-            }
-        },
-        "reindex_processed_data": {
-            "0.0.0": {
-                "MAINTAINER": "Nobody",
-                "class": "pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data_reportreindex_processed_data_report",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data_report",
-                "clsName": "reindex_processed_data_report",
-                "modes": []
             }
         },
         "scaleit": {
@@ -3725,32 +3710,6 @@
                 "subTasks": []
             }
         },
-        "reindex_minimtz": {
-            "0.0": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "Nobody",
-                "TASKTITLE": "reindex_minimtz",
-                "class": "pipelines.prosmart_refmac.wrappers.reindex_minimtz.script.reindex_minimtzreindex_minimtz",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.reindex_minimtz.script.reindex_minimtz",
-                "clsName": "reindex_minimtz",
-                "internal": false,
-                "subTasks": []
-            }
-        },
-        "reindex_processed_data": {
-            "0.0": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "Nobody",
-                "TASKTITLE": "reindex_processed_data",
-                "class": "pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_datareindex_processed_data",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data",
-                "clsName": "reindex_processed_data",
-                "internal": false,
-                "subTasks": []
-            }
-        },
         "scaleit": {
             "0.0": {
                 "DESCRIPTION": null,
@@ -4231,8 +4190,6 @@
         "pyphaser_mr": "qticons/ccp4.png",
         "qtpisa": "qticons/qtpisa.png",
         "refinement": "qticons/refinement.png",
-        "reindex_minimtz": "qticons/ccp4.png",
-        "reindex_processed_data": "qticons/ccp4.png",
         "scaleit": "qticons/scaleit.png",
         "sculptor": "qticons/sculptor.png",
         "servalcat_pipe": "qticons/servalcat_pipe.png",
@@ -6205,34 +6162,6 @@
                 "shortTitle": "PISA",
                 "taskName": "qtpisa",
                 "taskVersion": 0.1
-            }
-        },
-        "reindex_minimtz": {
-            "0.0.0": {
-                "DESCRIPTION": null,
-                "MAINTAINER": "Nobody",
-                "RANK": null,
-                "TASKTITLE": "Reindex any miniMTZ",
-                "class": "pipelines.prosmart_refmac.wrappers.reindex_minimtz.script.reindex_minimtz_guiCreindex_minimtz",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.reindex_minimtz.script.reindex_minimtz_gui",
-                "clsName": "Creindex_minimtz",
-                "shortTitle": "Reindex any miniMTZ",
-                "taskName": "reindex_minimtz",
-                "taskVersion": 0.0
-            }
-        },
-        "reindex_processed_data": {
-            "0.0.0": {
-                "DESCRIPTION": "Reindex processed data to correspond to a master dataset (Reindex)",
-                "MAINTAINER": "Nobody",
-                "RANK": null,
-                "TASKTITLE": "Reindex observed and FreeR data",
-                "class": "pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data_guiCreindex_processed_data",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data_gui",
-                "clsName": "Creindex_processed_data",
-                "shortTitle": "Reindex observed and FreeR data",
-                "taskName": "reindex_processed_data",
-                "taskVersion": 0.0
             }
         },
         "scaleit": {
