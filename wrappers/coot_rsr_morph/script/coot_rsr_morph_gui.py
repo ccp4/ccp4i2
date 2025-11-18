@@ -2,7 +2,7 @@ from qtgui.CCP4TaskWidget import CTaskWidget
 
 class Ccoot_rsr_morph(CTaskWidget):
   TASKNAME = 'coot_rsr_morph'
-  TASKVERSION = 202511171635
+  TASKVERSION = 202110070909
   TASKMODULE='refinement'
   TASKTITLE='Real space refinement morphing with coot'
   DESCRIPTION='Real space refinement morphing with coot'
