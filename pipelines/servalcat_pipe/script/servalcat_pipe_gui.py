@@ -433,7 +433,10 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'label', 'Diffraction experiment type:', 'widget', 'SCATTERING_FACTORS' ] )
     if self.isEditable():
         self.container.controlParameters.SCATTERING_FACTORS.dataChanged.connect(self.ExperimentChanged)
-    self.createLine( [ 'widget', 'USE_WORK_IN_EST', 'label', 'Use work reflections in maximum likelihood parameter estimates' ] )
+    # Deprecated from Serlvalcat 0.4.123
+    # self.createLine( [ 'widget', 'USE_WORK_IN_EST', 'label', 'Use work reflections in maximum likelihood parameter estimates' ] )
+    use_in_est = self.createLine( [ 'widget', 'USE_IN_EST_TOGGLE', 'label', 'Specify which set of reflections to use for the maximum-likelihood parameter estimation' ] )
+    self.createLine( [ 'label', ':', 'widget', 'USE_IN_EST' ], toggle = ['USE_IN_EST_TOGGLE', 'open', [ True ] ], appendLine=use_in_est )
     self.closeSubFrame()
 
     self.createLine( [ 'widget', 'CROSS_VALIDATION', 'label', 'Cross validation with half maps' ], toggle = ['DATA_METHOD', 'open', [ 'spa' ] ] )

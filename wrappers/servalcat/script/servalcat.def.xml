@@ -586,11 +586,28 @@ hydrogens are only to be used if already present in the input coordinate file.</
                 <default>False</default>
              </qualifiers>
           </content>
-          <content id="USE_WORK_IN_EST">
+          <content id="USE_WORK_IN_EST"><!-- deprecated from Servalcat 0.4.123 -->
              <className>CBoolean</className>
              <qualifiers>
                  <default>False</default>
                  <toolTip>Use work reflections in maximum-likelihood parameter estimates.</toolTip>
+             </qualifiers>
+          </content>
+          <content id="USE_IN_EST_TOGGLE"><!-- new in Servalcat 0.4.123 -->
+             <className>CBoolean</className>
+             <qualifiers>
+                 <default>False</default>
+                 <toolTip>Specify which set of reflections to use for the maximum-likelihood parameter estimation. Default: 'work' for twin refinement; otherwise 'test'.</toolTip>
+             </qualifiers>
+          </content>
+          <content id="USE_IN_EST">
+             <className>CString</className><!-- new in Servalcat 0.4.123 -->
+             <qualifiers>
+                  <onlyEnumerators>True</onlyEnumerators>
+                  <enumerators>all,work,test</enumerators>
+                  <menuText>all,work,test</menuText>
+                  <default>test</default>
+                  <toolTip>Specify which set of reflections to use for the maximum-likelihood parameter estimation. Default: 'work' for twin refinement; otherwise 'test'.</toolTip>
              </qualifiers>
           </content>
 
