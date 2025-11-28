@@ -1,15 +1,17 @@
 import xml.etree.ElementTree as ET
+from os import environ
+from pathlib import Path
+from tempfile import NamedTemporaryFile
 import gemmi
-from .utils import demoData, i2run
-
-
-# TODO: Test long ligand names (e.g. 8xfm)
+from .utils import demoData, hasLongLigandName, i2run
 
 
 def test_substitute_ligand():
     args = ["SubstituteLigand"]
     args += ["--XYZIN", demoData("mdm2", "4hg7.cif")]
+    args += ["--OBSAS", "UNMERGED"]
     args += ["--UNMERGEDFILES", "file=" + demoData("mdm2", "mdm2_unmerged.mtz")]
+    args += ["--LIGANDAS", "SMILES"]
     args += ["--SMILESIN", '"CC(C)OC1=C(C=CC(=C1)OC)C2=NC(C(N2C(=O)N3CCNC(=O)C3)C4=CC=C(C=C4)Cl)C5=CC=C(C=C5)C"']
     args += ["--PIPELINE", "DIMPLE"]
     with i2run(args) as job:
@@ -29,3 +31,26 @@ def test_substitute_ligand():
         rfrees = [float(e.text) for e in xml.iter("r_free")]
         assert rworks[-1] < 0.23
         assert rfrees[-1] < 0.25
+
+def test_8xfm(cif8xfm, mtz8xfm):
+    structure = gemmi.read_structure(cif8xfm)
+    for model in structure:
+        for chain in model:
+            for i, residue in reversed(list(enumerate(chain))):
+                if residue.name == "A1LU6":
+                    del chain[i]
+    with NamedTemporaryFile(suffix=".cif", delete=False) as temp:
+        xyzin = temp.name
+    structure.make_mmcif_document().write_file(xyzin)
+    args = ["SubstituteLigand"]
+    args += ["--XYZIN", xyzin]
+    args += ["--OBSAS", "MERGED"]
+    args += ["--F_SIGF_IN", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FP,SIGFP]"]
+    args += ["--LIGANDAS", "DICT"]
+    args += ["--DICTIN", str(Path(environ["CLIBD_MON"], "a", "A1LU6.cif"))]
+    args += ["--PIPELINE", "PHASER_RNP"]
+    try:
+        with i2run(args) as job:
+            assert hasLongLigandName(job / "XYZOUT.cif")
+    finally:
+        Path(xyzin).unlink(missing_ok=True)
