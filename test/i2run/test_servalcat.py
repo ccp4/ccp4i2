@@ -23,6 +23,7 @@ def test_8xfm(cif8xfm, mtz8xfm):
     args += ["--VALIDATE_MOLPROBITY", "False"]
     args += ["--RUN_ADP_ANALYSIS", "False"]
     args += ["--RUN_COORDADPDEV_ANALYSIS", "False"]
+    args += ["--USE_WORK_IN_EST", "True"]
     with i2run(args) as job:
         assert hasLongLigandName(job / "CIFFILE.pdb")
         xml = ET.parse(job / "program.xml")
