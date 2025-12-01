@@ -397,7 +397,7 @@ class servalcat(CPluginScript):
                     self.appendCommandLine(['--d_max', str(self.container.controlParameters.RES_MAX)])
             self.appendCommandLine(['--source', str(self.container.controlParameters.SCATTERING_FACTORS)])
             if self.container.controlParameters.USE_WORK_IN_EST:
-                self.appendCommandLine(['--use_work_in_est'])
+                self.appendCommandLine(['--use_in_est', 'work'])
             if self.container.controlParameters.NO_SOLVENT:
                 self.appendCommandLine(['--no_solvent'])          
 
