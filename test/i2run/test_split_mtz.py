@@ -38,7 +38,6 @@ def mtzColumnArgs(labels, types, datasets):
             f"columnList[{i}]/columnLabel={label}",
             f"columnList[{i}]/columnType={colType}",
             f"columnList[{i}]/dataset={dataset}",
-            f"columnList[{i}]/groupIndex=1",
         ]
     return args
 
