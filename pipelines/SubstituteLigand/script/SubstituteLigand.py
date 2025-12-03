@@ -22,17 +22,11 @@ class SubstituteLigand(CPluginScript):
         self.xmlroot = etree.Element('SubstituteLigand')
         self.obsToUse = None
         self.freerToUse = None
-    
-        if self.container.controlParameters.OBSAS.__str__() != 'UNMERGED':
-            #remove any (potentially invalid) entries from UNMERGED list
-            while len(self.container.inputData.UNMERGEDFILES)>0:
-                self.container.inputData.UNMERGEDFILES.remove(self.container.inputData.UNMERGEDFILES[-1])
 
     def process(self):
+        if str(self.container.controlParameters.OBSAS) != 'UNMERGED':
+            self.container.inputData.UNMERGEDFILES.unSet()
         invalidFiles = self.checkInputData()
-        for invalidFile in invalidFiles:
-            if self.container.controlParameters.OBSAS.__str__() == 'MERGED' and invalidFile.__str__() == 'UNMERGEDFILES':
-                invalidFiles.remove(invalidFile)
         if len(invalidFiles)>0:
             self.reportStatus(CPluginScript.FAILED)
         self.checkOutputData()
