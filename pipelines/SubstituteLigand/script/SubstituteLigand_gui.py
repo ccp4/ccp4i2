@@ -78,10 +78,8 @@ class SubstituteLigand_gui(CTaskWidget):
     def OBSASChanged(self):
         if self.container.controlParameters.OBSAS.__str__() == 'MERGED':
             self.container.inputData.F_SIGF_IN.setQualifiers({'allowUndefined' : False } )
-            self.container.inputData.FREERFLAG_IN.setQualifiers({'allowUndefined' : True } )
         else:
             self.container.inputData.F_SIGF_IN.setQualifiers({'allowUndefined' : True } )
-            self.container.inputData.FREERFLAG_IN.setQualifiers({'allowUndefined' : True } )
 
     @QtCore.Slot()
     def LIGANDASChanged(self):
