@@ -9,10 +9,10 @@ from .utils import demoData, hasLongLigandName, i2run
 def test_substitute_ligand():
     args = ["SubstituteLigand"]
     args += ["--XYZIN", demoData("mdm2", "4hg7.cif")]
-    args += ["--OBSAS", "UNMERGED"]
     args += ["--UNMERGEDFILES", "file=" + demoData("mdm2", "mdm2_unmerged.mtz")]
-    args += ["--LIGANDAS", "SMILES"]
     args += ["--SMILESIN", '"CC(C)OC1=C(C=CC(=C1)OC)C2=NC(C(N2C(=O)N3CCNC(=O)C3)C4=CC=C(C=C4)Cl)C5=CC=C(C=C5)C"']
+    args += ["--OBSAS", "UNMERGED"]
+    args += ["--LIGANDAS", "SMILES"]
     args += ["--PIPELINE", "DIMPLE"]
     with i2run(args) as job:
         doc = gemmi.cif.read(str(job / "DICTOUT.cif"))
@@ -24,13 +24,14 @@ def test_substitute_ligand():
             "FREERFLAG_OUT",
         ):
             gemmi.read_mtz_file(str(job / f"{name}.mtz"))
-        gemmi.read_structure(str(job / "selected_atoms.pdb"), format=gemmi.CoorFormat.Mmcif)
+        gemmi.read_structure(str(job / "selected_atoms.cif"))
         gemmi.read_structure(str(job / "XYZOUT.pdb"))
         xml = ET.parse(job / "program.xml")
         rworks = [float(e.text) for e in xml.iter("r_factor")]
         rfrees = [float(e.text) for e in xml.iter("r_free")]
         assert rworks[-1] < 0.23
         assert rfrees[-1] < 0.25
+
 
 def test_8xfm(cif8xfm, mtz8xfm):
     structure = gemmi.read_structure(cif8xfm)
@@ -44,10 +45,11 @@ def test_8xfm(cif8xfm, mtz8xfm):
     structure.make_mmcif_document().write_file(xyzin)
     args = ["SubstituteLigand"]
     args += ["--XYZIN", xyzin]
-    args += ["--OBSAS", "MERGED"]
     args += ["--F_SIGF_IN", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FP,SIGFP]"]
-    args += ["--LIGANDAS", "DICT"]
+    args += ["--FREERFLAG_IN", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FREE]"]
     args += ["--DICTIN", str(Path(environ["CLIBD_MON"], "a", "A1LU6.cif"))]
+    args += ["--OBSAS", "MERGED"]
+    args += ["--LIGANDAS", "DICT"]
     args += ["--PIPELINE", "PHASER_RNP"]
     try:
         with i2run(args) as job:
