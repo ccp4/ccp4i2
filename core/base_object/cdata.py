@@ -770,13 +770,18 @@ class CData(HierarchicalObject):
         Returns:
             List of child names in serialization order
         """
-        # Get all actual child names
+        # Get all actual child names from children()
         all_children = set()
         for child in self.children():
             if hasattr(child, 'objectName'):
                 name = child.objectName()
                 if name:
                     all_children.add(name)
+
+        # Also include children from _data_order that may not be in children() yet
+        # This ensures defined but unset children are included in serialization
+        if hasattr(self, '_data_order') and self._data_order:
+            all_children.update(self._data_order)
 
         # Get preferred ordering from various sources
         preferred_order = []

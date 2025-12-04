@@ -84,13 +84,33 @@ class CCP4i2JsonEncoder(json.JSONEncoder):
                 value = list(o) if hasattr(o, '__iter__') else []
             else:
                 # All other CData (CContainer, CDataFile, and any @cdata_class objects)
-                # Build dict of children by name
+                # Build dict of children by name from children()
                 children_by_name = {}
                 for child in o.children():
                     if isinstance(child, CData):
                         child_name = child.objectName()
                         if child_name:
                             children_by_name[child_name] = child
+
+                # Also check for any children defined in _data_order or CONTENT_ORDER
+                # that might not be in children() yet (e.g., unset CDataFile objects)
+                # This ensures the UI can display widgets for all defined parameters
+                defined_children = set()
+                if hasattr(o, '_data_order') and o._data_order:
+                    defined_children.update(o._data_order)
+                if hasattr(o, 'CONTENT_ORDER') and o.CONTENT_ORDER:
+                    defined_children.update(o.CONTENT_ORDER)
+
+                # For any defined child not yet in children_by_name, try to access it
+                # via getattr which may trigger lazy initialization
+                for name in defined_children:
+                    if name not in children_by_name:
+                        try:
+                            child = getattr(o, name, None)
+                            if child is not None and isinstance(child, CData):
+                                children_by_name[name] = child
+                        except Exception:
+                            pass  # Skip any errors during lazy access
 
                 # Use dataOrder() for complete ordering - it already handles
                 # preferred order + remaining children
