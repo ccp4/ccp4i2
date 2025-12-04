@@ -39,7 +39,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const lastProcessedFreeRFlag = useRef<any>(null);
 
   // Get task items
-  const { value: HKLINValue } = useTaskItem("servalcat_pipe.inputData.HKLIN");
+  const { value: HKLINValue } = useTaskItem("servalcat_pipe.container.inputData.HKLIN");
   const { value: MAP_SHARP } = useTaskItem("MAP_SHARP");
   const { value: MAP_SHARP_CUSTOM } = useTaskItem("MAP_SHARP_CUSTOM");
   const { value: freeRFlag } = useTaskItem("FREERFLAG");
@@ -95,7 +95,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
     // Add FreeR flag warning if not set
     if (!freeRFlag?.dbFileId?.length) {
-      newProcessedErrors["servalcat_pipe.inputData.FREERFLAG"] = {
+      newProcessedErrors["servalcat_pipe.container.inputData.FREERFLAG"] = {
         messages: [
           "Setting the Free R flag file is strongly recommended for refinement",
           "You are advised to select an existing set or create a new one",
@@ -181,7 +181,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             >
               <CCP4i2TaskElement
                 {...props}
-                itemName="servalcat_pipe.inputData.XYZIN"
+                itemName="servalcat_pipe.container.inputData.XYZIN"
                 qualifiers={{
                   guiLabel: "Input coordinates",
                   toolTip: "Macromolecular coordinates for refinement",

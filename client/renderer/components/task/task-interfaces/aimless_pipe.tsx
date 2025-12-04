@@ -28,7 +28,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     if (!validation) return null;
 
     const filtered = Object.keys(validation)
-      .filter((key) => !key.startsWith("aimless_pipe.controlParameters.CELL."))
+      .filter((key) => !key.startsWith("aimless_pipe.container.controlParameters.CELL."))
       .reduce((acc, key) => ({ ...acc, [key]: validation[key] }), {});
 
     // Add custom validation for HKLIN_REF
@@ -38,7 +38,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       taskValues.referenceDataset === "HKL" &&
       !taskValues.hklinRef?.dbFileId
     ) {
-      filtered["aimless_pipe.inputData.HKLIN_REF"] = {
+      filtered["aimless_pipe.container.inputData.HKLIN_REF"] = {
         messages: ["HKLIN_REF must be set when being used for match"],
         maxSeverity: 2,
       };

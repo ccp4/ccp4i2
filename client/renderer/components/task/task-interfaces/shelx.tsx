@@ -139,7 +139,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     if (!ATOM_TYPEValue || ATOM_TYPEValue.trim() === "") {
       const processedErrors = {
         ...validation,
-        "crank2.inputData.ATOM_TYPE": {
+        "crank2.container.inputData.ATOM_TYPE": {
           maxSeverity: 2,
           messages: ["ATOM_TYPE is required"],
         },
