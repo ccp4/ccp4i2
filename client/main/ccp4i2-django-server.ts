@@ -34,18 +34,27 @@ function getNextRunNumber(logDir: string): number {
 }
 
 /**
- * Finds the Python executable in the project's virtual environment.
- * Checks multiple possible venv locations in order of preference.
+ * Finds the Python executable, preferring ccp4-python from the CCP4 installation.
+ * Falls back to project's virtual environment if ccp4-python is not available.
  *
- * @param projectRoot - The path to the cdata-codegen project root.
+ * @param CCP4Dir - The path to the CCP4 installation directory.
+ * @param projectRoot - The path to the project root (fallback for .venv).
  * @returns The path to the Python executable, or null if not found.
  */
-function findVenvPython(projectRoot: string): string | null {
+function findPython(CCP4Dir: string, projectRoot: string): string | null {
   const isWindows = process.platform === "win32";
+
+  // Prefer ccp4-python from CCP4 installation
+  const ccp4PythonBin = isWindows ? "ccp4-python.bat" : "ccp4-python";
+  const ccp4PythonPath = path.join(CCP4Dir, "bin", ccp4PythonBin);
+  if (fs.existsSync(ccp4PythonPath)) {
+    return ccp4PythonPath;
+  }
+
+  // Fallback to project's virtual environment
   const pythonBin = isWindows ? "python.exe" : "python";
   const binDir = isWindows ? "Scripts" : "bin";
 
-  // Check possible venv locations in order of preference
   const venvPaths = [
     path.join(projectRoot, ".venv", binDir, pythonBin),
     path.join(projectRoot, ".venv.py311", binDir, pythonBin),
@@ -63,10 +72,10 @@ function findVenvPython(projectRoot: string): string | null {
 
 /**
  * Starts the Django server using Uvicorn with the specified configuration.
- * Uses the project's virtual environment Python instead of ccp4-python.
+ * Prefers ccp4-python from the CCP4 installation, falls back to .venv if not available.
  *
- * @param CCP4Dir - The path to the CCP4 directory (for environment variables like $CLIBD).
- * @param projectRoot - The path to the cdata-codegen project (where .venv lives).
+ * @param CCP4Dir - The path to the CCP4 directory (provides ccp4-python and env vars like $CLIBD).
+ * @param projectRoot - The path to the ccp4i2 project root (fallback .venv location).
  * @param UVICORN_PORT - The port number for the Uvicorn server.
  * @param NEXT_PORT - The port number for the Next.js server.
  * @param isDev - A boolean flag indicating whether the server is running in development mode.
@@ -88,12 +97,13 @@ export async function startDjangoServer(
     ccp4_setup_sh(CCP4Dir);
   }
 
-  // Find Python in project's venv
-  const VENV_PYTHON = findVenvPython(projectRoot);
-  if (!VENV_PYTHON) {
+  // Find Python interpreter (prefers ccp4-python, falls back to .venv)
+  const PYTHON_PATH = findPython(CCP4Dir, projectRoot);
+  if (!PYTHON_PATH) {
     throw new Error(
-      `Could not find Python virtual environment in ${projectRoot}. ` +
-        `Please ensure .venv exists with a valid Python installation.`
+      `Could not find Python interpreter. ` +
+        `Please ensure CCP4 is installed with ccp4-python in ${CCP4Dir}/bin, ` +
+        `or create a .venv in ${projectRoot}.`
     );
   }
 
@@ -106,7 +116,7 @@ export async function startDjangoServer(
   process.env.CCP4I2_ROOT = projectRoot;
 
   console.log(`🚀 Next.js running on http://localhost:${NEXT_PORT}`);
-  console.log(`🐍 Using Python: ${VENV_PYTHON}`);
+  console.log(`🐍 Using Python: ${PYTHON_PATH}`);
   console.log(`📁 Project root (CCP4I2_ROOT): ${projectRoot}`);
 
   const oldCWD = process.cwd();
@@ -149,7 +159,7 @@ export async function startDjangoServer(
   console.log(`🐍`, pythonEnv);
   // Run migrations with the updated environment
   try {
-    execSync(`"${VENV_PYTHON}" manage.py migrate`, {
+    execSync(`"${PYTHON_PATH}" manage.py migrate`, {
       env: pythonEnv,
       stdio: "inherit", // Show migration output
     });
@@ -160,7 +170,7 @@ export async function startDjangoServer(
     if (process.platform === "win32") {
       try {
         execSync(
-          `"${VENV_PYTHON}" -c "import os; os.environ['MPLBACKEND']='Agg'; import django; django.setup(); from django.core.management import execute_from_command_line; execute_from_command_line(['manage.py', 'migrate'])"`,
+          `"${PYTHON_PATH}" -c "import os; os.environ['MPLBACKEND']='Agg'; import django; django.setup(); from django.core.management import execute_from_command_line; execute_from_command_line(['manage.py', 'migrate'])"`,
           {
             env: pythonEnv,
             cwd: serverSrcPath,
@@ -200,7 +210,7 @@ export async function startDjangoServer(
     ? ["-m", "uvicorn", "asgi:application", "--reload"]
     : ["-m", "uvicorn", "asgi:application"];
 
-  pythonProcess = spawn(VENV_PYTHON, uvicornArgs, {
+  pythonProcess = spawn(PYTHON_PATH, uvicornArgs, {
     env: pythonEnv,
     shell: true,
     cwd: serverSrcPath, // Ensure we're in the right directory
