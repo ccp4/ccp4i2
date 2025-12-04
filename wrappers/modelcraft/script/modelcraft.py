@@ -54,8 +54,9 @@ class modelcraft(CPluginScript):
             }
             if seqObj.polymerType == "PROTEIN" and params.SELENOMET:
                 polymer["modifications"] = ["M->MSE"]
+            # Convert CString to str for dictionary key lookup
             key = {"PROTEIN": "proteins", "RNA": "rnas", "DNA": "dnas"}[
-                seqObj.polymerType
+                str(seqObj.polymerType)
             ]
             contents.setdefault(key, []).append(polymer)
         with open(self.seqin, "w") as stream:
