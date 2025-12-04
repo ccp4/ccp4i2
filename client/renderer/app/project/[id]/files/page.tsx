@@ -7,6 +7,7 @@ import EditableTypography from "../../../../components/editable-typography";
 import FilesTable from "../../../../components/files-table";
 import FileUpload from "../../../../components/file-upload";
 import { useProject } from "../../../../utils";
+import { usePopcorn } from "../../../../providers/popcorn-provider";
 
 export default function FilesPage({
   params,
@@ -17,8 +18,9 @@ export default function FilesPage({
   const { id } = use(params);
   const { data: project } = api.get<Project>(`projects/${id}`);
   const { files, mutateFiles } = useProject(parseInt(id || "0"));
+  const { setMessage } = usePopcorn();
 
-  function importFiles(event: ChangeEvent<HTMLInputElement>) {
+  async function importFiles(event: ChangeEvent<HTMLInputElement>) {
     const fileList = event.target.files;
     if (fileList && project) {
       for (let i = 0; i < fileList.length; i++) {
@@ -27,7 +29,17 @@ export default function FilesPage({
         formData.append("file", fileList[i]);
         formData.append("name", fileList[i].name);
         formData.append("size", fileList[i].size.toString());
-        api.post("files", formData).then(() => mutateFiles());
+        try {
+          const result: any = await api.post("files", formData);
+          if (result?.success === false) {
+            setMessage(`Failed to import ${fileList[i].name}: ${result?.error || "Unknown error"}`, "error");
+          } else {
+            mutateFiles();
+            setMessage(`Imported ${fileList[i].name}`, "success");
+          }
+        } catch (error) {
+          setMessage(`Error importing ${fileList[i].name}: ${error instanceof Error ? error.message : String(error)}`, "error");
+        }
       }
     }
   }

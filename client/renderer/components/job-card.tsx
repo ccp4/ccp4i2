@@ -127,11 +127,19 @@ export const JobCard: React.FC<JobCardProps> = ({
     setAnchorEl(null);
   };
   const handleClone = async () => {
-    const cloneResult: Job = await api.post(`jobs/${job.id}/clone/`);
-    if (cloneResult?.id) {
-      mutateJobs();
-      setAnchorEl(null);
-      router.push(`/project/${projectId}/job/${cloneResult.id}`);
+    try {
+      const cloneResult: any = await api.post(`jobs/${job.id}/clone/`);
+      if (cloneResult?.success === false) {
+        setMessage(`Failed to clone job: ${cloneResult?.error || "Unknown error"}`, "error");
+        return;
+      }
+      if (cloneResult?.id) {
+        mutateJobs();
+        setAnchorEl(null);
+        router.push(`/project/${projectId}/job/${cloneResult.id}`);
+      }
+    } catch (error) {
+      setMessage(`Error cloning job: ${error instanceof Error ? error.message : String(error)}`, "error");
     }
   };
   const handleRun = async () => {
@@ -140,11 +148,19 @@ export const JobCard: React.FC<JobCardProps> = ({
     if (!confirmed) {
       return;
     }
-    const runResult: Job = await api.post(`jobs/${job.id}/run/`);
-    setMessage(`Submitted job ${runResult?.number}: ${runResult?.task_name}`);
-    if (runResult?.id) {
-      mutateJobs();
-      router.push(`/project/${projectId}/job/${runResult.id}`);
+    try {
+      const runResult: any = await api.post(`jobs/${job.id}/run/`);
+      if (runResult?.success === false) {
+        setMessage(`Failed to run job: ${runResult?.error || "Unknown error"}`, "error");
+        return;
+      }
+      setMessage(`Submitted job ${runResult?.number}: ${runResult?.task_name}`, "success");
+      if (runResult?.id) {
+        mutateJobs();
+        router.push(`/project/${projectId}/job/${runResult.id}`);
+      }
+    } catch (error) {
+      setMessage(`Error running job: ${error instanceof Error ? error.message : String(error)}`, "error");
     }
   };
 

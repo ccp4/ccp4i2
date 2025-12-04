@@ -77,11 +77,19 @@ export default function ToolBar() {
 
   const handleClone = async () => {
     if (job) {
-      const cloneResult: Job = await api.post(`jobs/${job?.id}/clone/`);
-      if (cloneResult?.id) {
-        mutateJob();
-        mutateJobs();
-        router.push(`/project/${projectId}/job/${cloneResult.id}`);
+      try {
+        const cloneResult: any = await api.post(`jobs/${job?.id}/clone/`);
+        if (cloneResult?.success === false) {
+          setMessage(`Failed to clone job: ${cloneResult?.error || "Unknown error"}`, "error");
+          return;
+        }
+        if (cloneResult?.id) {
+          mutateJob();
+          mutateJobs();
+          router.push(`/project/${projectId}/job/${cloneResult.id}`);
+        }
+      } catch (error) {
+        setMessage(`Error cloning job: ${error instanceof Error ? error.message : String(error)}`, "error");
       }
     }
   };
@@ -90,13 +98,21 @@ export default function ToolBar() {
     if (job) {
       const confirmed = await confirmTaskRun(job.id);
       if (!confirmed) return;
-      const runResult: Job = await api.post(`jobs/${job.id}/run/`);
-      setMessage(`Submitted job ${runResult?.number}: ${runResult?.task_name}`);
-      if (runResult?.id) {
-        setTimeout(() => {
-          mutateJob();
-          mutateJobs();
-        }, 1000);
+      try {
+        const runResult: any = await api.post(`jobs/${job.id}/run/`);
+        if (runResult?.success === false) {
+          setMessage(`Failed to run job: ${runResult?.error || "Unknown error"}`, "error");
+          return;
+        }
+        setMessage(`Submitted job ${runResult?.number}: ${runResult?.task_name}`, "success");
+        if (runResult?.id) {
+          setTimeout(() => {
+            mutateJob();
+            mutateJobs();
+          }, 1000);
+        }
+      } catch (error) {
+        setMessage(`Error running job: ${error instanceof Error ? error.message : String(error)}`, "error");
       }
     }
   };

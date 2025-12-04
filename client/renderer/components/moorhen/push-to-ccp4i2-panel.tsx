@@ -72,71 +72,90 @@ export const PushToCCP4i2Panel: React.FC<PushToCCP4i2Props> = ({
     console.log({ molNo, item });
     // Implement your push logic here
     if (selectedProject && item) {
-      setMessage("Pushing model coordinates to CCP4i2...");
-      console.log("Pushing to CCP4i2:", selectedProject);
-      const result = await api.post<CreateTaskResponse>(
-        `projects/${selectedProject.id}/create_task/`,
-        {
-          task_name: "coordinate_selector",
+      try {
+        setMessage("Pushing model coordinates to CCP4i2...", "info");
+        console.log("Pushing to CCP4i2:", selectedProject);
+        const result = await api.post<CreateTaskResponse>(
+          `projects/${selectedProject.id}/create_task/`,
+          {
+            task_name: "coordinate_selector",
+          }
+        );
+
+        if ((result as any)?.success === false) {
+          setMessage(`Failed to create task: ${(result as any)?.error || 'Unknown error'}`, "error");
+          return;
         }
-      );
-      //console.log({ result });
-      mutateJobs();
-      const modelCoords =
-        item.type === "molecule"
-          ? await (item as moorhen.Molecule).getAtoms()
-          : null;
-      if (!modelCoords) return;
 
-      const format = detectCoordinateFormat(modelCoords);
-      setMessage(`Detected coordinate format: ${format}`);
+        mutateJobs();
+        const modelCoords =
+          item.type === "molecule"
+            ? await (item as moorhen.Molecule).getAtoms()
+            : null;
+        if (!modelCoords) return;
 
-      const slugify = (name: string) =>
-        name
-          .replace(/[/\\?%*:|"<>]/g, "") // Remove illegal filename chars
-          .replace(/\s+/g, "_") // Replace whitespace with underscores
-          .replace(/[^a-zA-Z0-9._-]/g, "") // Remove other non-safe chars
-          .replace(/^_+|_+$/g, ""); // Trim leading/trailing underscores
+        const format = detectCoordinateFormat(modelCoords);
+        setMessage(`Detected coordinate format: ${format}`, "info");
 
-      const moleculeName =
-        slugify((item as moorhen.Molecule).name) +
-        (format === "mmcif" ? ".cif" : ".pdb");
+        const slugify = (name: string) =>
+          name
+            .replace(/[/\\?%*:|"<>]/g, "") // Remove illegal filename chars
+            .replace(/\s+/g, "_") // Replace whitespace with underscores
+            .replace(/[^a-zA-Z0-9._-]/g, "") // Remove other non-safe chars
+            .replace(/^_+|_+$/g, ""); // Trim leading/trailing underscores
 
-      const formData = new FormData();
-      formData.append("objectPath", "coordinate_selector.inputData.XYZIN");
-      formData.append(
-        "file",
-        new Blob([modelCoords], {
-          type: format === "mmcif" ? "chemical/x-cif" : "chemical/x-pdb",
-        }),
-        moleculeName
-      );
-      const newJobId = result.data?.new_job?.id;
-      if (!newJobId) {
-        setMessage(`Failed to create job: ${result.error || 'Unknown error'}`);
-        return;
+        const moleculeName =
+          slugify((item as moorhen.Molecule).name) +
+          (format === "mmcif" ? ".cif" : ".pdb");
+
+        const formData = new FormData();
+        formData.append("objectPath", "coordinate_selector.inputData.XYZIN");
+        formData.append(
+          "file",
+          new Blob([modelCoords], {
+            type: format === "mmcif" ? "chemical/x-cif" : "chemical/x-pdb",
+          }),
+          moleculeName
+        );
+        const newJobId = result.data?.new_job?.id;
+        if (!newJobId) {
+          setMessage(`Failed to create job: ${(result as any)?.error || 'Unknown error'}`, "error");
+          return;
+        }
+        // Note: Direct API call is OK here because:
+        // 1. This uploads to a NEWLY created job (not an existing one with SWR cache)
+        // 2. No concurrent SWR fetching exists for this job yet
+        // 3. The job runs immediately after upload, so no UI race conditions
+        // For existing jobs, use uploadFileParam from useJob() for proper intent tracking
+        const uploadResult = await api.post<any>(
+          `jobs/${newJobId}/upload_file_param`,
+          formData
+        );
+
+        if (uploadResult?.success === false) {
+          setMessage(`Upload failed: ${uploadResult?.error || 'Unknown error'}`, "error");
+          return;
+        }
+
+        const run_result = await api.post<CreateTaskResponse>(
+          //Call run_local for more responsive task execution of this (which should be faster )
+          `jobs/${newJobId}/run_local/`,
+          {
+            task_name: "coordinate_selector",
+          }
+        );
+
+        if ((run_result as any)?.success === false) {
+          setMessage(`Run failed: ${(run_result as any)?.error || 'Unknown error'}`, "error");
+          return;
+        }
+        setMessage(`Model pushed to CCP4i2 successfully`, "success");
+        if (onClose) onClose();
+      } catch (error) {
+        setMessage(`Error pushing to CCP4i2: ${error instanceof Error ? error.message : String(error)}`, "error");
       }
-      // Note: Direct API call is OK here because:
-      // 1. This uploads to a NEWLY created job (not an existing one with SWR cache)
-      // 2. No concurrent SWR fetching exists for this job yet
-      // 3. The job runs immediately after upload, so no UI race conditions
-      // For existing jobs, use uploadFileParam from useJob() for proper intent tracking
-      const uploadResult = await api.post<any>(
-        `jobs/${newJobId}/upload_file_param`,
-        formData
-      );
-      setMessage(`Upload result: ${uploadResult.success ? 'Success' : uploadResult.error}`);
-      const run_result = await api.post<CreateTaskResponse>(
-        //Call run_local for more responsive task execution of this (which should be faster )
-        `jobs/${newJobId}/run_local/`,
-        {
-          task_name: "coordinate_selector",
-        }
-      );
-      setMessage(`Run result: ${run_result.success ? 'Success' : run_result.error}`);
-      if (onClose) onClose();
     }
-  }, [selectedProject, molNo, item]);
+  }, [selectedProject, molNo, item, api, mutateJobs, onClose, setMessage]);
 
   return (
     <Box sx={{ p: 2 }}>

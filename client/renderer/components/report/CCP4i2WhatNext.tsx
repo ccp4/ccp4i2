@@ -6,6 +6,7 @@ import { Job } from "../../types/models";
 import { useCallback } from "react";
 import { useTheme } from "../../theme/theme-provider";
 import { useRouter } from "next/navigation";
+import { usePopcorn } from "../../providers/popcorn-provider";
 
 export const CCP4i2WhatNext = () => {
   const api = useApi();
@@ -14,6 +15,7 @@ export const CCP4i2WhatNext = () => {
   const { mutateJobs } = useProject(job?.project || -1);
   const { customColors } = useTheme();
   const router = useRouter();
+  const { setMessage } = usePopcorn();
   const { data: what_next } = api.get_endpoint<any>({
     type: "jobs",
     id: job?.id,
@@ -23,20 +25,27 @@ export const CCP4i2WhatNext = () => {
   const handleTaskSelect = useCallback(
     async (task_name: string) => {
       if (!job) return;
-      const created_job_result: any = await api.post(
-        `projects/${job.project}/create_task/`,
-        {
-          task_name,
-          context_job_uuid: job.uuid,
+      try {
+        const created_job_result: any = await api.post(
+          `projects/${job.project}/create_task/`,
+          {
+            task_name,
+            context_job_uuid: job.uuid,
+          }
+        );
+        if (created_job_result?.success && created_job_result.data?.new_job) {
+          const created_job: Job = created_job_result.data.new_job;
+          mutateJobs();
+          router.push(`/project/${job.project}/job/${created_job.id}`);
+        } else {
+          const errorMessage = created_job_result?.error || "Failed to create task";
+          setMessage(`Failed to create task: ${errorMessage}`, "error");
         }
-      );
-      if (created_job_result?.success && created_job_result.data?.new_job) {
-        const created_job: Job = created_job_result.data.new_job;
-        mutateJobs();
-        router.push(`/project/${job.project}/job/${created_job.id}`);
+      } catch (error) {
+        setMessage(`Error creating task: ${error instanceof Error ? error.message : String(error)}`, "error");
       }
     },
-    [job, mutateJobs]
+    [job, mutateJobs, api, router, setMessage]
   );
 
   // Extract result from new API format: {success: true, data: {result: [...]}}

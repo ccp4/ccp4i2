@@ -45,6 +45,7 @@ import { shortDate } from "../pipes";
 import { useDeleteDialog } from "../providers/delete-dialog";
 import { useSet } from "../hooks";
 import SearchField from "./search-field";
+import { usePopcorn } from "../providers/popcorn-provider";
 
 // Component to display project tag chips
 const ProjectTagChips = React.memo(
@@ -443,6 +444,7 @@ export default function ProjectsTable() {
   const [viewMode, setViewMode] = useState<ViewMode>("cards");
   const [currentPage, setCurrentPage] = useState(1);
   const deleteDialog = useDeleteDialog();
+  const { setMessage } = usePopcorn();
 
   const filteredProjects = useMemo(() => {
     if (!Array.isArray(projects)) return [];
@@ -523,23 +525,27 @@ export default function ProjectsTable() {
   async function exportProject(project: Project) {
     try {
       // Start the export process by calling the API endpoint
-      const exportResult = await api.post(`projects/${project.id}/export/`, {});
+      const exportResult: any = await api.post(`projects/${project.id}/export/`, {});
 
-      // Show success notification (you might want to use a snackbar or toast instead)
+      if (exportResult?.success === false) {
+        setMessage(`Failed to export "${project.name}": ${exportResult?.error || "Unknown error"}`, "error");
+        return;
+      }
+
+      // Show success notification
       console.log(
         `Export started for project "${project.name}":`,
         exportResult
       );
-
-      // Optional: Show a user notification that export has started
-      // You could implement a toast/snackbar notification here if desired
-      alert(
-        `Export started for project "${project.name}". The export is running in the background and will be available in File/Projects → Exports when complete.`
+      setMessage(
+        `Export started for "${project.name}". Available in File/Projects → Exports when complete.`,
+        "success"
       );
     } catch (error) {
       console.error(`Failed to export project "${project.name}":`, error);
-      alert(
-        `Failed to start export for project "${project.name}". Please try again.`
+      setMessage(
+        `Failed to start export for "${project.name}": ${error instanceof Error ? error.message : String(error)}`,
+        "error"
       );
     }
   }
@@ -551,14 +557,17 @@ export default function ProjectsTable() {
       );
 
       if (!selectedProjects || selectedProjects.length === 0) {
-        alert("No projects selected for export.");
+        setMessage("No projects selected for export.", "warning");
         return;
       }
 
       // Start exports for all selected projects
       const exportPromises = selectedProjects.map(async (project) => {
         try {
-          const result = await api.post(`projects/${project.id}/export/`, {});
+          const result: any = await api.post(`projects/${project.id}/export/`, {});
+          if (result?.success === false) {
+            return { project: project.name, success: false, error: result?.error };
+          }
           return { project: project.name, success: true, result };
         } catch (error) {
           console.error(`Failed to export project "${project.name}":`, error);
@@ -571,25 +580,27 @@ export default function ProjectsTable() {
       const failed = results.filter((r) => !r.success);
 
       // Show results to user
-      let message = "";
-      if (successful.length > 0) {
-        message += `Successfully started exports for ${successful.length} project${successful.length > 1 ? "s" : ""}: ${successful.map((r) => r.project).join(", ")}.`;
-      }
-      if (failed.length > 0) {
-        if (message) message += "\n";
-        message += `Failed to export ${failed.length} project${failed.length > 1 ? "s" : ""}: ${failed.map((r) => r.project).join(", ")}.`;
-      }
-
-      if (message) {
-        message +=
-          "\n\nExports are running in the background and will be available in File/Projects → Exports when complete.";
-        alert(message);
+      if (successful.length > 0 && failed.length === 0) {
+        setMessage(
+          `Started exports for ${successful.length} project${successful.length > 1 ? "s" : ""}. Available in File/Projects → Exports when complete.`,
+          "success"
+        );
+      } else if (failed.length > 0 && successful.length === 0) {
+        setMessage(
+          `Failed to export ${failed.length} project${failed.length > 1 ? "s" : ""}: ${failed.map((r) => r.project).join(", ")}`,
+          "error"
+        );
+      } else if (successful.length > 0 && failed.length > 0) {
+        setMessage(
+          `Exported ${successful.length}, failed ${failed.length}: ${failed.map((r) => r.project).join(", ")}`,
+          "warning"
+        );
       }
 
       console.log("Bulk export results:", results);
     } catch (error) {
       console.error("Failed to export selected projects:", error);
-      alert("Failed to start exports. Please try again.");
+      setMessage(`Failed to start exports: ${error instanceof Error ? error.message : String(error)}`, "error");
     }
   }
 

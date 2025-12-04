@@ -230,9 +230,13 @@ export const CCP4i2ReportVerdict: React.FC<CCP4i2ReportElementProps> = ({
     async (updatedParams: SuggestedParameters) => {
       try {
         setCreatingTask(true);
-        const cloneResult: Job = await api.post(`jobs/${job.id}/clone/`);
+        const cloneResult: any = await api.post(`jobs/${job.id}/clone/`);
+        if (cloneResult?.success === false) {
+          setMessage(`Failed to clone job: ${cloneResult?.error || "Unknown error"}`, "error");
+          return;
+        }
         if (!cloneResult?.id) {
-          console.log("Failed to clone job");
+          setMessage("Failed to clone job: No job ID returned", "error");
           return;
         }
         await mutateJobs();
@@ -242,18 +246,26 @@ export const CCP4i2ReportVerdict: React.FC<CCP4i2ReportElementProps> = ({
           if (key) {
             try {
               // Await each call to ensure serial execution
-              await api.post(`jobs/${cloneResult.id}/set_parameter/`, {
+              const paramResult: any = await api.post(`jobs/${cloneResult.id}/set_parameter/`, {
                 object_path: key,
                 value,
               });
+              if (paramResult?.success === false) {
+                console.warn(`Failed to set parameter ${key}:`, paramResult?.error);
+              }
             } catch (paramError) {
               console.warn(`Failed to set parameter ${key}:`, paramError);
             }
           }
         }
-        const runResult: Job = await api.post(`jobs/${cloneResult.id}/run/`);
+        const runResult: any = await api.post(`jobs/${cloneResult.id}/run/`);
+        if (runResult?.success === false) {
+          setMessage(`Failed to run job: ${runResult?.error || "Unknown error"}`, "error");
+          return;
+        }
         setMessage(
-          `Submitted job ${runResult?.number}: ${runResult?.task_name}`
+          `Submitted job ${runResult?.number}: ${runResult?.task_name}`,
+          "success"
         );
         if (runResult?.id) {
           mutateJobs();
@@ -265,12 +277,12 @@ export const CCP4i2ReportVerdict: React.FC<CCP4i2ReportElementProps> = ({
         );
       } catch (error) {
         console.error("Error creating patched task:", error);
-        // You might want to show a toast notification here
+        setMessage(`Error creating task: ${error instanceof Error ? error.message : String(error)}`, "error");
       } finally {
         setCreatingTask(false);
       }
     },
-    [job.id, api, mutateJobs]
+    [job.id, api, mutateJobs, setMessage, router, job.project]
   );
 
   const handleApplySuggestedParameters = useCallback(async () => {
