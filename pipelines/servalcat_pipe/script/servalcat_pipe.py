@@ -58,6 +58,22 @@ class servalcat_pipe(CPluginScript):
         self.xmlroot = etree.Element("SERVALCAT")
         self.xmlroot2 = etree.Element("SERVALCAT")
 
+    def validity(self):
+        """
+        Override validity to adjust qualifiers for embedded wrapper inputs.
+
+        The metalCoordWrapper embeds metalCoord, which requires XYZIN when run standalone.
+        However, in the context of servalcat_pipe, XYZIN is programmatically filled from
+        the pipeline's own XYZIN, so we set allowUndefined=True before validation.
+        """
+        # metalCoordWrapper.inputData.XYZIN is filled programmatically in executeMetalCoord()
+        # from self.container.inputData.XYZIN, so it should be allowUndefined for validation
+        if hasattr(self.container, 'metalCoordWrapper'):
+            metal_coord_xyzin = self.container.metalCoordWrapper.inputData.XYZIN
+            metal_coord_xyzin.set_qualifier('allowUndefined', True)
+
+        return super().validity()
+
     def startProcess(self, processId):
         try:
             self.executeProsmartProtein()
