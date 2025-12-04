@@ -123,21 +123,36 @@ export async function startDjangoServer(
 
   const oldCWD = process.cwd();
   let serverSrcPath: string;
+  let ccp4i2Path: string;
+  const pythonPathSeparator = process.platform === "win32" ? ";" : ":";
 
   if (isDev) {
     // In development, server/ is alongside client/ in the repo
+    // ccp4i2 modules are pip-installed, so no PYTHONPATH needed
     serverSrcPath = path.join(process.cwd(), "..", "server");
+    ccp4i2Path = ""; // pip handles this in dev mode
     process.chdir(serverSrcPath);
   } else {
-    // In packaged app, server/ is bundled in resources
+    // In packaged app, server/ and ccp4i2/ are bundled in resources
     const resourcesPath = (process as any).resourcesPath as string;
     serverSrcPath = path.join(resourcesPath, "server");
+    ccp4i2Path = path.join(resourcesPath, "ccp4i2");
     process.chdir(serverSrcPath);
   }
 
-  // With pip-installed ccp4i2 and ccp4x, PYTHONPATH is no longer needed for
-  // Python modules (they're in site-packages). We only need CCP4I2_ROOT for
-  // resource files (qticons, svgicons, data, etc.)
+  // Build PYTHONPATH for packaged mode (bundled ccp4i2 modules)
+  // In dev mode, pip handles module discovery
+  const pythonPathParts: string[] = [];
+  if (ccp4i2Path) {
+    pythonPathParts.push(ccp4i2Path); // Bundled ccp4i2 modules
+  }
+  if (serverSrcPath) {
+    pythonPathParts.push(serverSrcPath); // server/ccp4x for Django
+  }
+  const pythonPath = pythonPathParts.length > 0
+    ? pythonPathParts.join(pythonPathSeparator)
+    : undefined;
+
   const pythonEnv: Record<string, string | undefined> = {
     ...process.env,
     UVICORN_PORT: `${UVICORN_PORT}`,
@@ -145,7 +160,9 @@ export async function startDjangoServer(
     // Force local execution mode for Electron app
     EXECUTION_MODE: "local",
     MPLBACKEND: "Agg", // Force matplotlib to use non-GUI backend
-    CCP4I2_ROOT: projectRoot,
+    CCP4I2_ROOT: isDev ? projectRoot : ccp4i2Path, // Resource files location
+    // PYTHONPATH for packaged mode (bundled modules)
+    ...(pythonPath && { PYTHONPATH: pythonPath }),
     // Windows-specific DLL path fixes
     ...(process.platform === "win32" && {
       PATH: `${path.join(CCP4Dir, "bin")};${process.env.PATH}`,
