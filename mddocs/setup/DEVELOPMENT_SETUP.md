@@ -5,6 +5,7 @@ This guide walks through setting up a development environment for ccp4i2-django 
 ## Prerequisites
 
 - **CCP4 Suite 2024/2025** - Download from [CCP4 Downloads](https://ccp4serv6.rc-harwell.ac.uk/10/)
+- **Node.js 18+** and **npm 9+** - For the Electron client (download from [nodejs.org](https://nodejs.org/))
 - **Git** for version control
 - **macOS, Linux, or WSL** (Unix-like environment)
 
@@ -75,6 +76,64 @@ ccp4-python -c "import clipper; import phaser; print('CCP4 libraries OK')"
 ```
 
 Test projects are stored in `~/.cache/ccp4i2-tests/`. Cleanup instructions are printed after each test run.
+
+---
+
+## Running the Electron Client
+
+The Electron client provides a modern GUI for CCP4i2 with a React frontend and Django backend.
+
+### Prerequisites
+
+- **Node.js 18+** and **npm 9+** (check with `node --version` and `npm --version`)
+- **CCP4 with ccp4-python** installed and accessible
+- **uvicorn** installed in ccp4-python (see Step 4 above)
+
+### CCP4 Detection
+
+The client automatically detects your CCP4 installation. In development mode, it searches:
+
+1. **Sibling directories** - Scans `../` for `ccp4-*` folders (e.g., `../ccp4-20251105`)
+2. **Standard locations** - `/Applications/ccp4-9` (macOS), `C:\CCP4\ccp4-9` (Windows), `/opt/ccp4` (Linux)
+
+The first directory containing `bin/ccp4-python` is used. Newer versions are preferred (sorted by name descending).
+
+**Note**: You do NOT need to source `ccp4.setup-sh` before running the client - the Electron app sets up the CCP4 environment internally.
+
+### Running in Development Mode
+
+```bash
+cd client
+rm -rf node_modules  # Clean install (first time or after package.json changes)
+npm install
+npm run start:electron
+```
+
+This will:
+1. Install npm dependencies
+2. Build the Electron main process
+3. Start Next.js development server
+4. Launch the Electron window
+
+### Configuration
+
+On first launch, the client opens a configuration page where you can:
+- Verify/change the CCP4 installation path
+- Set the projects directory
+- Configure other settings
+
+Settings are persisted in `electron-store` (platform-specific location).
+
+### Environment File
+
+The client uses `client/renderer/.env.local` for configuration (not tracked in git).
+Copy from template if needed:
+
+```bash
+cp client/renderer/.env.local.template client/renderer/.env.local
+```
+
+Default configuration runs without authentication. See `.env.local.auth-example` for Azure AD setup.
 
 ---
 
@@ -215,6 +274,26 @@ The Electron client uses uvicorn as the ASGI server:
 ```bash
 ccp4-python -m pip install uvicorn==0.20.0
 ```
+
+### Electron client can't find CCP4
+
+The client looks for `ccp4-python` in sibling directories first, then standard locations.
+Verify your CCP4 installation:
+```bash
+ls ../ccp4-*/bin/ccp4-python  # Should show your CCP4 installation
+```
+
+If CCP4 is elsewhere, you can configure the path in the client's config page on first launch.
+
+### npm install fails
+
+Ensure you have Node.js 18+ and npm 9+:
+```bash
+node --version  # Should be v18.x or higher
+npm --version   # Should be 9.x or higher
+```
+
+If using an older version, update Node.js from [nodejs.org](https://nodejs.org/).
 
 ### NumPy Version Conflicts
 
