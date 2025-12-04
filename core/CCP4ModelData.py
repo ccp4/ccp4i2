@@ -1803,25 +1803,19 @@ class CPdbDataFile(CPdbDataFileStub):
         except Exception:
             return None
 
-    def setContentFlag(self):
+    def _introspect_content_flag(self):
         """
-        Introspect the PDB/mmCIF file using gemmi to determine the format type.
-
-        Sets self.contentFlag to:
-        - 1 (CONTENT_FLAG_PDB): PDB format
-        - 2 (CONTENT_FLAG_MMCIF): mmCIF format
-        - 0: If content type cannot be determined
+        Override base class to introspect PDB/mmCIF file using gemmi.
 
         Returns:
-            int: The detected content flag value
+            int: CONTENT_FLAG_PDB (1), CONTENT_FLAG_MMCIF (2), or None if undetermined
         """
         import gemmi
         from pathlib import Path
 
         input_path = self.getFullPath()
         if not input_path or not Path(input_path).exists():
-            self.contentFlag.set(0)
-            return 0
+            return None
 
         try:
             # Use gemmi to read the structure - it auto-detects format
@@ -1833,15 +1827,12 @@ class CPdbDataFile(CPdbDataFileStub):
 
             # mmCIF files
             if suffix in ['.cif', '.mmcif']:
-                self.contentFlag.set(self.CONTENT_FLAG_MMCIF)
                 return self.CONTENT_FLAG_MMCIF
             # PDB files
             elif suffix in ['.pdb', '.ent']:
-                self.contentFlag.set(self.CONTENT_FLAG_PDB)
                 return self.CONTENT_FLAG_PDB
             else:
                 # Default to PDB if ambiguous
-                self.contentFlag.set(self.CONTENT_FLAG_PDB)
                 return self.CONTENT_FLAG_PDB
 
         except Exception as e:
@@ -1850,14 +1841,11 @@ class CPdbDataFile(CPdbDataFileStub):
                 with open(input_path, 'r') as f:
                     first_line = f.readline().strip()
                     if first_line.startswith('data_') or first_line.startswith('loop_'):
-                        self.contentFlag.set(self.CONTENT_FLAG_MMCIF)
                         return self.CONTENT_FLAG_MMCIF
                     else:
-                        self.contentFlag.set(self.CONTENT_FLAG_PDB)
                         return self.CONTENT_FLAG_PDB
             except Exception:
-                self.contentFlag.set(0)
-                return 0
+                return None
 
     def fileExtensions(self):
         """

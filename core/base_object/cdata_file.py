@@ -256,15 +256,20 @@ class CDataFile(CData):
         # Walk up parent hierarchy
         current = self.parent()
         depth = 0
+        path_trace = [f"self={self.objectName() if hasattr(self, 'objectName') else type(self).__name__}"]
         while current is not None:
+            current_name = current.objectName() if hasattr(current, 'objectName') else type(current).__name__
+            path_trace.append(current_name)
             if isinstance(current, CPluginScript):
+                logger.debug(f"_find_plugin_parent: Found plugin at depth {depth}: {' -> '.join(path_trace)}")
                 return current
             # parent is now a method, not a property - must call it
             current = current.parent() if hasattr(current, 'parent') and callable(current.parent) else None
             depth += 1
             if depth > 10:  # Safety limit
-                logger.debug("_find_plugin_parent: Depth limit reached")
+                logger.debug(f"_find_plugin_parent: Depth limit reached, path: {' -> '.join(path_trace)}")
                 break
+        logger.debug(f"_find_plugin_parent: No plugin found, path: {' -> '.join(path_trace)}")
         return None
 
     def _get_db_handler(self):
@@ -597,18 +602,15 @@ class CDataFile(CData):
 
             if db_file_id:
                 db_handler = self._get_db_handler()
-                print(f"[DEBUG getFullPath] dbFileId={db_file_id}, db_handler={db_handler}")
                 if db_handler:
                     try:
                         import uuid
                         file_uuid = uuid.UUID(str(db_file_id))
                         path = db_handler.get_file_path_sync(file_uuid)
-                        print(f"[DEBUG getFullPath] db lookup returned path={path}")
                         if path:
                             logger.debug(f"Retrieved path from database via dbFileId: {path}")
                             return path
                     except Exception as e:
-                        print(f"[DEBUG getFullPath] db lookup exception: {e}")
                         logger.debug(f"Failed to retrieve path from database: {e}")
 
         # Standard path construction: workDirectory + relPath + baseName
@@ -650,9 +652,6 @@ class CDataFile(CData):
 
                 # Determine base directory: PROJECT root for imported files, workDirectory for job outputs
                 plugin = self._find_plugin_parent()
-                # DEBUG: Log plugin resolution for CCP4_IMPORTED_FILES
-                if relpath_str == 'CCP4_IMPORTED_FILES' or relpath_str.startswith('CCP4_IMPORTED_FILES/'):
-                    print(f"[DEBUG getFullPath] CCP4_IMPORTED_FILES case: baseName={basename_value}, plugin={plugin}, parent={self.parent()}")
                 if plugin:
                     # For CCP4_IMPORTED_FILES, use project directory as base
                     if relpath_str == 'CCP4_IMPORTED_FILES' or relpath_str.startswith('CCP4_IMPORTED_FILES/'):
@@ -809,12 +808,8 @@ class CDataFile(CData):
         """
         from pathlib import Path
         path = self.getFullPath()
-        print(f"[DEBUG exists] getFullPath returned: {path}")
         if path:
-            result = Path(path).exists()
-            print(f"[DEBUG exists] Path.exists() returned: {result}")
-            return result
-        print(f"[DEBUG exists] No path, returning False")
+            return Path(path).exists()
         return False
 
     def getExt(self) -> str:
