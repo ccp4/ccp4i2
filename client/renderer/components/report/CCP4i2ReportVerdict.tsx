@@ -275,9 +275,10 @@ export const CCP4i2ReportVerdict: React.FC<CCP4i2ReportElementProps> = ({
         console.log(
           `Created new job ${cloneResult.id} with suggested parameters`
         );
-      } catch (error) {
-        console.error("Error creating patched task:", error);
-        setMessage(`Error creating task: ${error instanceof Error ? error.message : String(error)}`, "error");
+      } catch (err: unknown) {
+        console.error("Error creating patched task:", err);
+        const error = err as Error;
+        setMessage(`Error creating task: ${error?.message || String(err)}`, "error");
       } finally {
         setCreatingTask(false);
       }
