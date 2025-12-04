@@ -17,7 +17,7 @@
     """
 
 from qtgui.CCP4TaskWidget import CTaskWidget
-from PySide2 import QtCore
+from baselayer import QtCore
 import sys, os
 from core import CCP4Utils
 import gemmi

@@ -1,0 +1,55 @@
+import { LinearProgress, Paper, Typography } from "@mui/material";
+import { CCP4i2TaskInterfaceProps } from "../task-container";
+import { CCP4i2TaskElement } from "../../task-elements/task-element";
+import { CCP4i2Tab, CCP4i2Tabs } from "../../task-elements/tabs";
+import { CCP4i2ContainerElement } from "../../task-elements/ccontainer";
+import { useJob } from "../../../../utils";
+
+const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
+  const { useTaskItem, container } = useJob(props.job.id);
+  
+  if (!container) return <LinearProgress />;
+  
+  return (
+    <Paper>
+      <CCP4i2Tabs>
+        <CCP4i2Tab key="inputData" label="Input data">
+          <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
+            Key bindings
+          </Typography>
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ initiallyOpen: true }}
+            containerHint="BlockLevel"
+          >
+            <CCP4i2TaskElement itemName="USEKEYBINDINGS" {...props} qualifiers={{ guiLabel: "Use Bernhard and Paul Key bindings" }} />
+          </CCP4i2ContainerElement>
+          <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
+            Coordinates
+          </Typography>
+          <CCP4i2TaskElement itemName="XYZIN_LIST" {...props} />
+          <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
+            Electron density maps
+          </Typography>
+          <CCP4i2TaskElement itemName="FPHIIN_LIST" {...props} />
+          <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
+            Difference density maps
+          </Typography>
+          <CCP4i2TaskElement itemName="DELFPHIIN_LIST" {...props} />
+          <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
+            Anomalous difference density maps
+          </Typography>
+          <CCP4i2TaskElement itemName="DELFPHIINANOM_LIST" {...props} />
+          <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
+            Additional data
+          </Typography>
+          <CCP4i2TaskElement itemName="DICT" {...props} />
+          <CCP4i2TaskElement itemName="COOTSCRIPTFILE" {...props} />
+        </CCP4i2Tab>
+      </CCP4i2Tabs>
+    </Paper>
+  );
+};
+
+export default TaskInterface;

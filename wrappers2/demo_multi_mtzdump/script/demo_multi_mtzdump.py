@@ -25,7 +25,7 @@ from __future__ import print_function
 from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER # Utility to access CCP4i modules
 from core.CCP4PluginScript import CPluginScript
 
-from PySide2 import QtCore
+from baselayer import QtCore
      
 class demo_multi_mtzdump(CPluginScript):
 

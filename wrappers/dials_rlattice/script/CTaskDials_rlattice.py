@@ -1,7 +1,7 @@
 
 from core import CCP4Modules
 from qtgui import CCP4TaskWidget
-from PySide2 import QtCore
+from baselayer import QtCore
 
 class CTaskDials_rlattice(CCP4TaskWidget.CTaskWidget):
 

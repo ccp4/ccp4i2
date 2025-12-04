@@ -1,5 +1,5 @@
 
-from PySide2 import QtCore
+from baselayer import QtCore
 from qtgui import CCP4TaskWidget
 import os, sys, re, subprocess
 from Bio.SeqUtils.ProtParam import ProteinAnalysis

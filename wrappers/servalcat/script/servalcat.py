@@ -17,7 +17,7 @@
     GNU Lesser General Public License for more details.
     """
 
-from PySide2 import QtCore
+from baselayer import QtCore
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core.CCP4ErrorHandling import *

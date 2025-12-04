@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-from PySide2 import QtCore,QtGui, QtWidgets
+from baselayer import QtCore,QtGui, QtWidgets
 import os
 
 MYAPPLICATION = None

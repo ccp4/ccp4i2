@@ -5,7 +5,7 @@
 #  Acknowledgements: based on code by Graeme Winter and Martin Noble.
 #
 
-from PySide2 import QtGui, QtWidgets, QtCore
+from baselayer import QtGui, QtWidgets, QtCore
 
 from qtgui.CCP4TaskWidget import CTaskWidget
 from core import CCP4Container

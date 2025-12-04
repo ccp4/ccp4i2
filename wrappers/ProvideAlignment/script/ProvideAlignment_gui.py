@@ -5,7 +5,7 @@ from __future__ import print_function
     Martin Noble
     """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from baselayer import QtGui, QtWidgets,QtCore
 from qtgui.CCP4TaskWidget import CTaskWidget
 from .ProvideAlignment import importAlignment
 from qtgui import CCP4Widgets
@@ -196,7 +196,7 @@ class CTaskProvideAlignment(CTaskWidget):
                     invalidElements.remove(self.container.controlParameters.SEQUENCETEXT)
             else:
                 '''
-                from PySide2 import QtGui, QtWidgets,QtCore
+                from baselayer import QtGui, QtWidgets,QtCore
                 box =  QtWidgets.QMessageBox()
                 box.setText("Failed to interpret text with following messages:\n"+commentary.getvalue())
                 box.setWindowTitle('Failure to interpret text')

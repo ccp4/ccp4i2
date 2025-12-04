@@ -7,7 +7,7 @@
 
 
 from qtgui.CCP4TaskWidget import CTaskWidget
-from PySide2 import QtGui, QtWidgets,QtCore
+from baselayer import QtGui, QtWidgets,QtCore
 
 #-------------------------------------------------------------------
 class clustalw_gui(CTaskWidget):

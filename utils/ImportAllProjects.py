@@ -17,7 +17,7 @@ It can be used in two ways:
         python3 ImportAllProjects.py input_folder_containing_zip_files output_folder_where_project_files_will_go [-a|--append] [-d|--dbFile=outputdbname]
 """
 
-from PySide2 import QtCore
+from baselayer import QtCore
 
 def ImportZipFile(compressedFile,destDirName):
 

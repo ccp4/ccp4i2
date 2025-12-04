@@ -2,7 +2,7 @@
      tasks/coot_find_waters
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from baselayer import QtGui, QtWidgets,QtCore
 
 from qtgui.CCP4TaskWidget import CTaskWidget
 

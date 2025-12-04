@@ -10,7 +10,7 @@ Martyn Winn August 2012 - aimless_pipe gui
 Phil Evans 2014
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from baselayer import QtGui, QtWidgets,QtCore
 from qtgui import CCP4TaskWidget
 from qtgui import CCP4Widgets
 

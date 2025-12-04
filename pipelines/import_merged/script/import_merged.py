@@ -21,7 +21,7 @@ from __future__ import print_function
 
 import sys
 import os,shutil
-from PySide2 import QtCore
+from baselayer import QtCore
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
 from core.CCP4ErrorHandling import *

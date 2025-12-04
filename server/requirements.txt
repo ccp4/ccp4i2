@@ -1,0 +1,49 @@
+# CCP4i2 Django Azure - Python Package Requirements
+# 
+# CRITICAL: NumPy must be <2.0 for compatibility with CCP4's compiled extensions
+# CCP4's PySide2, shiboken2, and other binary packages were built against NumPy 1.x
+#
+# Installation:
+#   python3 -m pip install --target /mnt/ccp4data/py-packages -r requirements.txt
+
+# Django and Web Framework (compatible with typing-extensions 3.x from CCP4)
+django==3.2.25  # LTS version compatible with asgiref 3.3.x
+asgiref==3.3.4  # Does NOT require typing-extensions upgrade for Python 3.9+
+django-cors-headers==3.13.0  # Compatible with Django 3.2
+django-filter==23.5
+djangorestframework==3.14.0  # Compatible with Django 3.2
+
+# Web Servers
+gunicorn==23.0.0
+uvicorn==0.20.0  # Compatible with older asgiref
+whitenoise==6.11.0
+
+# Database
+psycopg2-binary==2.9.10
+
+# Scientific Computing (CRITICAL: Must be <2.0 for CCP4 compatibility)
+numpy<2.0  # Installs 1.26.4 - compatible with CCP4 binaries
+scipy<2.0  # Installs 1.15.3 - requires NumPy 1.x
+pandas<3.0  # Installs 2.3.3 - compatible with NumPy 1.x
+
+# CCP4-related
+# gemmi - DO NOT INSTALL: Must use CCP4's bundled version to avoid conflicts
+#         Installing gemmi from PyPI can cause issues with CCP4's internal gemmi integration
+biopython==1.85
+
+# Testing
+pytest==8.4.2
+
+# XML Processing
+lxml_html_clean==0.4.3  # Required by prosmart_refmac_report.py (lxml.html.clean moved to separate package)
+
+# Utilities
+requests==2.32.5
+requests-cache==1.2.1
+tomli==2.2.1
+Pillow==11.3.0
+
+# DO NOT INSTALL (built-in to Python 3.4+):
+# - pathlib (Python 2.7 backport that breaks Path.home())
+# - configparser (built-in to Python 3)
+# - typing (built-in to Python 3.5+)

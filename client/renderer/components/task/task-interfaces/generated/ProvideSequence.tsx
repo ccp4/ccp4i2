@@ -1,0 +1,47 @@
+import { LinearProgress, Paper, Typography } from "@mui/material";
+import { CCP4i2TaskInterfaceProps } from "../task-container";
+import { CCP4i2TaskElement } from "../../task-elements/task-element";
+import { CCP4i2Tab, CCP4i2Tabs } from "../../task-elements/tabs";
+import { CCP4i2ContainerElement } from "../../task-elements/ccontainer";
+import { useJob } from "../../../../utils";
+
+const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
+  const { useTaskItem, container } = useJob(props.job.id);
+  
+  if (!container) return <LinearProgress />;
+  
+  return (
+    <Paper>
+      <CCP4i2Tabs>
+        <CCP4i2Tab key="inputData" label="Optional objects from which to start definition">
+          <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
+            Starting from file/object...
+          </Typography>
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ initiallyOpen: true }}
+            containerHint="BlockLevel"
+          >
+            <CCP4i2TaskElement itemName="SEQIN" {...props} qualifiers={{ toolTip: "Sequence object or file" }} />
+          </CCP4i2ContainerElement>
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ initiallyOpen: true }}
+            containerHint="BlockLevel"
+          >
+            <CCP4i2TaskElement itemName="XYZMODE" {...props} qualifiers={{ toolTip: "Whether to determine sequence from coordinates or SEQRES" }} />
+            <CCP4i2TaskElement itemName="XYZIN" {...props} qualifiers={{ toolTip: "Coordinate object or file" }} />
+          </CCP4i2ContainerElement>
+          <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
+            Or enter the text of the sequence in a valid format...
+          </Typography>
+          <CCP4i2TaskElement itemName="SEQUENCETEXT" {...props} />
+        </CCP4i2Tab>
+      </CCP4i2Tabs>
+    </Paper>
+  );
+};
+
+export default TaskInterface;

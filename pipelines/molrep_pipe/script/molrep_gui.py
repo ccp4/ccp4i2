@@ -24,7 +24,7 @@ from __future__ import print_function
      Andrey Lebedev September 2011 - molrep_mr gui
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from baselayer import QtGui, QtWidgets,QtCore
 from qtgui import CCP4TaskWidget
 from qtgui import CCP4Widgets
 

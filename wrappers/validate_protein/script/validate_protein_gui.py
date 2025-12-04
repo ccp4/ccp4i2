@@ -4,7 +4,7 @@
     Author: William Rochira and Jon Agirre
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from baselayer import QtGui, QtWidgets,QtCore
 from qtgui.CCP4TaskWidget import CTaskWidget
 from qtgui import CCP4Widgets
 

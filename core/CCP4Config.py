@@ -268,9 +268,34 @@ def GRAPHICAL():
 def QT():
     # Beware this loads config params file with dependencies
     # on CCP4Data which may not yet be properly loaded
+    # In Django mode, always return False to disable Qt
+    try:
+        from baselayer import QT as _BASELAYER_QT
+        if not _BASELAYER_QT():
+            return False
+    except ImportError:
+        pass
     if not CConfig.insts:
         CConfig()
     return CConfig.insts.qt
+
+
+def DJANGO():
+    """
+    Check if running in Django backend mode (Qt-free).
+
+    This function uses the baselayer environment detection to determine
+    if we're running in the modern Django/Qt-free environment.
+
+    Returns:
+        bool: True if using Django backend, False if using Qt backend
+    """
+    try:
+        from baselayer import DJANGO as _BASELAYER_DJANGO
+        return _BASELAYER_DJANGO()
+    except ImportError:
+        # If baselayer not available, we're not in Django mode
+        return False
 
 def XMLPARSER():
     # Ditto comments in QT()

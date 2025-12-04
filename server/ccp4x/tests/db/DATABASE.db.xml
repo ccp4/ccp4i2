@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+  <ccp4i2_header>
+    <function>PROJECTDATABASE</function>
+    <userId>nmemn</userId>
+    <hostName>MN-MacBook-Pro.local</hostName>
+    <creationTime>15:39 21/Dec/24</creationTime>
+    <ccp4iVersion>alpha_rev_90003</ccp4iVersion>
+    <projectName>MDM2CCP4X</projectName>
+    <projectId>aa38cbf8b9f811ef839c56d135b7511f</projectId>
+  </ccp4i2_header>
+  <ccp4i2_body>
+    <databaseTable>
+      <database databaseid="4d560c8cd28511ec9b5556d135b7511f" creationtime="1652423051.1770282" creationhostname="MN-MacBook-Pro.local" creationusername="nmemn" schemaversion="0.1.22" schemadate="23-09-2016"/>
+    </databaseTable>
+    <projectTable>
+      <project projectid="aa38cbf8b9f811ef839c56d135b7511f" projectname="MDM2CCP4X" projectcreated="1734166313.065283" lastjobnumber="2" projectdirectory="/Users/nmemn/CCP4I2_PROJECTS/MDM2CCP4X" username="nmemn"/>
+    </projectTable>
+    <jobTable>
+      <job jobid="aef11b32b9f811ef839c56d135b7511f" jobnumber="1" creationtime="1734166320.9834728" finishtime="1734166438.4762628" status="6" useragent="1" projectid="aa38cbf8b9f811ef839c56d135b7511f" taskname="aimless_pipe"/>
+      <job jobid="ea01e4c2b9f811efae1856d135b7511f" jobnumber="1.1" creationtime="1734166420.077612" finishtime="1734166421.0774322" status="6" useragent="1" projectid="aa38cbf8b9f811ef839c56d135b7511f" taskname="pointless" parentjobid="aef11b32b9f811ef839c56d135b7511f"/>
+      <job jobid="eaa6f516b9f811efae1856d135b7511f" jobnumber="1.2" creationtime="1734166421.160995" finishtime="1734166428.582172" status="6" useragent="1" projectid="aa38cbf8b9f811ef839c56d135b7511f" taskname="aimless" parentjobid="aef11b32b9f811ef839c56d135b7511f"/>
+      <job jobid="ef4e169eb9f811efae1856d135b7511f" jobnumber="1.3" creationtime="1734166428.9673002" finishtime="1734166432.227225" status="6" useragent="1" projectid="aa38cbf8b9f811ef839c56d135b7511f" taskname="phaser_analysis" parentjobid="aef11b32b9f811ef839c56d135b7511f"/>
+      <job jobid="f151537ab9f811efae1856d135b7511f" jobnumber="1.4" creationtime="1734166432.343487" finishtime="1734166437.9390981" status="6" useragent="1" projectid="aa38cbf8b9f811ef839c56d135b7511f" taskname="ctruncate" parentjobid="aef11b32b9f811ef839c56d135b7511f"/>
+      <job jobid="f4b0f804b9f811efae1856d135b7511f" jobnumber="1.5" creationtime="1734166438.00393" finishtime="1734166438.35811" status="6" useragent="1" projectid="aa38cbf8b9f811ef839c56d135b7511f" taskname="freerflag" parentjobid="aef11b32b9f811ef839c56d135b7511f"/>
+      <job jobid="fdd45732b9f811ef839c56d135b7511f" jobnumber="2" creationtime="1734166453.3346229" finishtime="1734166551.020871" status="6" useragent="1" projectid="aa38cbf8b9f811ef839c56d135b7511f" taskname="prosmart_refmac" preceedingjobid="aef11b32b9f811ef839c56d135b7511f"/>
+      <job jobid="10b6feeab9f911efb8f556d135b7511f" jobnumber="2.1" creationtime="1734166485.01773" finishtime="1734166518.707731" status="6" useragent="1" projectid="aa38cbf8b9f811ef839c56d135b7511f" taskname="refmac" parentjobid="fdd45732b9f811ef839c56d135b7511f"/>
+      <job jobid="250899f8b9f911efb8f556d135b7511f" jobnumber="2.2" creationtime="1734166519.108783" finishtime="1734166550.91361" status="6" useragent="1" projectid="aa38cbf8b9f811ef839c56d135b7511f" taskname="validate_protein" parentjobid="fdd45732b9f811ef839c56d135b7511f"/>
+    </jobTable>
+    <fileTable>
+      <file fileid="e95f947eb9f811ef839c56d135b7511f" filename="mdm2_unmerged_1.mtz" jobid="aef11b32b9f811ef839c56d135b7511f" jobparamname="file" filetypeid="6" annotation="Unmerged reflections loaded from mdm2_unmerged.mtz by job 1" pathflag="2"/>
+      <file fileid="e9637d46b9f811ef839c56d135b7511f" filename="XYZIN_REF-coordinates.pdb" jobid="aef11b32b9f811ef839c56d135b7511f" jobparamname="XYZIN_REF" filetypeid="2" annotation="Atomic model imported from 4hg7.pdb by job 1" filesubtype="0" pathflag="1"/>
+      <file fileid="f4f89fd8b9f811efae1856d135b7511f" filename="HKLOUT_0-observed_data.mtz" jobid="aef11b32b9f811ef839c56d135b7511f" jobparamname="HKLOUT" filetypeid="11" annotation="/DEFAULT/NATIVE" filesubtype="1" filecontent="1" pathflag="1"/>
+      <file fileid="f4f8b7e8b9f811efae1856d135b7511f" filename="HKLOUT_0-observed_data_asIMEAN.mtz" jobid="aef11b32b9f811ef839c56d135b7511f" jobparamname="IMEANOUT" filetypeid="11" annotation="Mean intensities for twin refinement" filesubtype="1" filecontent="3" pathflag="1"/>
+      <file fileid="f4f8ccc4b9f811efae1856d135b7511f" filename="FREERFLAG.mtz" jobid="aef11b32b9f811ef839c56d135b7511f" jobparamname="FREEROUT" filetypeid="10" annotation="New Freer; Spg:P 65 2 2;Resln:1.25A;Cell:71.5,71.5,104.3,90.0,90.0,120.0" filecontent="1" pathflag="1"/>
+      <file fileid="f4f8e146b9f811efae1856d135b7511f" filename="1_mdm2ccp4x_xmlout_aimless_pipe.xml" jobid="aef11b32b9f811ef839c56d135b7511f" jobparamname="XMLOUT" filetypeid="0" annotation="Pipeline XML" pathflag="1"/>
+      <file fileid="f4f8ff00b9f811efae1856d135b7511f" filename="HKLOUT_unmerged.mtz" jobid="aef11b32b9f811ef839c56d135b7511f" jobparamname="UNMERGEDOUT" filetypeid="6" annotation="Scaled unmerged data: NATIVE" pathflag="1"/>
+      <file fileid="ea9a20cab9f811efae1856d135b7511f" filename="MTZUNMERGEDOUT.mtz" jobid="ea01e4c2b9f811efae1856d135b7511f" jobparamname="MTZUNMERGEDOUT" filetypeid="0" pathflag="1"/>
+      <file fileid="ef1317ecb9f811efae1856d135b7511f" filename="HKLOUT.mtz" jobid="eaa6f516b9f811efae1856d135b7511f" jobparamname="MTZMERGEDOUT" filetypeid="4" pathflag="1"/>
+      <file fileid="ef13307eb9f811efae1856d135b7511f" filename="HKLOUT_unmerged.mtz" jobid="eaa6f516b9f811efae1856d135b7511f" jobparamname="MTZUNMERGEDOUT" filetypeid="0" pathflag="1"/>
+      <file fileid="ef1345a0b9f811efae1856d135b7511f" filename="SCALES.scales" jobid="eaa6f516b9f811efae1856d135b7511f" jobparamname="SCALES" filetypeid="14" pathflag="1"/>
+      <file fileid="380cedf6b9f911efb8f556d135b7511f" filename="2_mdm2ccp4x_xyzout_prosmart_refmac.pdb" jobid="fdd45732b9f811ef839c56d135b7511f" jobparamname="XYZOUT" filetypeid="2" annotation="Model from refinement (PDB format)" filesubtype="1" filecontent="1" pathflag="1"/>
+      <file fileid="380d0732b9f911efb8f556d135b7511f" filename="2_mdm2ccp4x_ciffile_prosmart_refmac.cif" jobid="fdd45732b9f811ef839c56d135b7511f" jobparamname="CIFFILE" filetypeid="2" annotation="Model from refinement (mmCIF format)" filesubtype="0" filecontent="2" pathflag="1"/>
+      <file fileid="380d1c5eb9f911efb8f556d135b7511f" filename="2_mdm2ccp4x_fphiout_prosmart_refmac.mtz" jobid="fdd45732b9f811ef839c56d135b7511f" jobparamname="FPHIOUT" filetypeid="13" annotation="Weighted map from refinement" filesubtype="1" filecontent="1" pathflag="1"/>
+      <file fileid="380d370cb9f911efb8f556d135b7511f" filename="2_mdm2ccp4x_diffphiout_prosmart_refmac.mtz" jobid="fdd45732b9f811ef839c56d135b7511f" jobparamname="DIFFPHIOUT" filetypeid="13" annotation="Weighted difference map from refinement" filesubtype="2" filecontent="1" pathflag="1"/>
+      <file fileid="380d4d50b9f911efb8f556d135b7511f" filename="2_mdm2ccp4x_anomfphiout_prosmart_refmac.mtz" jobid="fdd45732b9f811ef839c56d135b7511f" jobparamname="ANOMFPHIOUT" filetypeid="13" annotation="Weighted anomalous difference map from refinement" filesubtype="3" filecontent="1" pathflag="1"/>
+      <file fileid="380d6272b9f911efb8f556d135b7511f" filename="2_mdm2ccp4x_difanomfphiout_prosmart_refmac.mtz" jobid="fdd45732b9f811ef839c56d135b7511f" jobparamname="DIFANOMFPHIOUT" filetypeid="13" annotation="Weighted differences of anomalous difference map" filesubtype="3" filecontent="1" pathflag="1"/>
+      <file fileid="380d813ab9f911efb8f556d135b7511f" filename="2_mdm2ccp4x_abcdout_prosmart_refmac.mtz" jobid="fdd45732b9f811ef839c56d135b7511f" jobparamname="ABCDOUT" filetypeid="12" annotation="Calculated phases from refinement" filesubtype="1" filecontent="1" pathflag="1"/>
+      <file fileid="380dd392b9f911efb8f556d135b7511f" filename="2_mdm2ccp4x_cootscriptout_prosmart_refmac.scm" jobid="fdd45732b9f811ef839c56d135b7511f" jobparamname="COOTSCRIPTOUT" filetypeid="17" annotation="Coot script written from refinement" filesubtype="2" filecontent="1" pathflag="1"/>
+      <file fileid="24ca50eeb9f911efb8f556d135b7511f" filename="XYZOUT.pdb" jobid="10b6feeab9f911efb8f556d135b7511f" jobparamname="XYZOUT" filetypeid="2" annotation="Model from refinement" filesubtype="1" filecontent="1" pathflag="1"/>
+      <file fileid="24ca8000b9f911efb8f556d135b7511f" filename="XYZOUT.mmcif" jobid="10b6feeab9f911efb8f556d135b7511f" jobparamname="CIFFILE" filetypeid="2" annotation="MMCIF Model from refinement" filesubtype="0" filecontent="2" pathflag="1"/>
+      <file fileid="24cac132b9f911efb8f556d135b7511f" filename="ANOMFPHIOUT.mtz" jobid="10b6feeab9f911efb8f556d135b7511f" jobparamname="ANOMFPHIOUT" filetypeid="13" annotation="Anomalous map coefficients" filesubtype="3" filecontent="1" pathflag="1"/>
+      <file fileid="24cad5b4b9f911efb8f556d135b7511f" filename="DIFANOMFPHIOUT.mtz" jobid="10b6feeab9f911efb8f556d135b7511f" jobparamname="DIFANOMFPHIOUT" filetypeid="13" annotation="Difference anomalous map coefficients (LLG map)" filesubtype="3" filecontent="1" pathflag="1"/>
+      <file fileid="24cb391eb9f911efb8f556d135b7511f" filename="COOTSCRIPTOUT.scm" jobid="10b6feeab9f911efb8f556d135b7511f" jobparamname="COOTSCRIPTOUT" filetypeid="17" filesubtype="2" filecontent="1" pathflag="1"/>
+    </fileTable>
+    <fileuseTable>
+      <fileuse fileid="e9637d46b9f811ef839c56d135b7511f" jobid="fdd45732b9f811ef839c56d135b7511f" roleid="1" jobparamname="XYZIN"/>
+      <fileuse fileid="f4f89fd8b9f811efae1856d135b7511f" jobid="fdd45732b9f811ef839c56d135b7511f" roleid="1" jobparamname="F_SIGF"/>
+      <fileuse fileid="f4f8ccc4b9f811efae1856d135b7511f" jobid="fdd45732b9f811ef839c56d135b7511f" roleid="1" jobparamname="FREERFLAG"/>
+    </fileuseTable>
+    <importfileTable>
+      <importfile importid="e96005dab9f811ef839c56d135b7511f" fileid="e95f947eb9f811ef839c56d135b7511f" creationtime="1734166419.018739" lastmodifiedtime="1723721164.0" checksum="c2c00a5271817c6f341d8fddf5b3ae3d" sourcefilename="/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/demo_data/mdm2/mdm2_unmerged.mtz" annotation="Unmerged reflections loaded from mdm2_unmerged.mtz by job 1" importnumber="1"/>
+      <importfile importid="e9638070b9f811ef839c56d135b7511f" fileid="e9637d46b9f811ef839c56d135b7511f" creationtime="1734166419.041503" lastmodifiedtime="1723721164.0" checksum="fcf19096847be9b53b037f0af057aea6" sourcefilename="/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/demo_data/mdm2/4hg7.pdb" annotation="Atomic model loaded from 4hg7.pdb by job 1" importnumber="1"/>
+    </importfileTable>
+    <exportfileTable/>
+    <xdataTable/>
+    <commentTable/>
+    <projectcommentTable>
+      <projectcomment projectcommentid="aa4238e6b9f811ef839c56d135b7511f" projectid="aa38cbf8b9f811ef839c56d135b7511f" userid="4d560b9cd28511ec9b5556d135b7511f" timeofcomment="1734795563.145916" comment="Description of this MDM2 project"/>
+    </projectcommentTable>
+    <jobkeyvalueTable>
+      <jobkeyvalue jobid="aef11b32b9f811ef839c56d135b7511f" keytypeid="5" value="1.25"/>
+      <jobkeyvalue jobid="aef11b32b9f811ef839c56d135b7511f" keytypeid="6" value="0.07"/>
+      <jobkeyvalue jobid="fdd45732b9f811ef839c56d135b7511f" keytypeid="1" value="0.219"/>
+      <jobkeyvalue jobid="fdd45732b9f811ef839c56d135b7511f" keytypeid="2" value="0.241"/>
+      <jobkeyvalue jobid="10b6feeab9f911efb8f556d135b7511f" keytypeid="1" value="0.219"/>
+      <jobkeyvalue jobid="10b6feeab9f911efb8f556d135b7511f" keytypeid="2" value="0.241"/>
+    </jobkeyvalueTable>
+    <jobkeycharvalueTable>
+      <jobkeycharvalue jobid="aef11b32b9f811ef839c56d135b7511f" keytypeid="4" value="P 65 2 2"/>
+    </jobkeycharvalueTable>
+    <fileassociationmemberTable/>
+    <fileassociationTable/>
+    <projecttagTable>
+      <projecttag tagid="a4086b1cbfb111ef8d1456d135b7511f" projectid="aa38cbf8b9f811ef839c56d135b7511f"/>
+    </projecttagTable>
+    <tagTable>
+      <tag tagid="a4086b1cbfb111ef8d1456d135b7511f" text="An MDM2 Project"/>
+    </tagTable>
+    <projectexportTable>
+      <projectexport projectexportid="cfb5ce4ebfb111ef8d1456d135b7511f" projectexporttime="1734795588.6691"/>
+    </projectexportTable>
+  </ccp4i2_body>
+</ccp4:ccp4i2>

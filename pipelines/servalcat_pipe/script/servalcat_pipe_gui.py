@@ -23,7 +23,7 @@
      Liz Potterton Oct 2012 - Moved mini-MTZ version to refmac_martin
 """
 
-from PySide2 import QtWidgets,QtCore
+from baselayer import QtWidgets,QtCore
 from qtgui import CCP4TaskWidget
 from core import CCP4XtalData
 from pipelines.import_merged.script.dybuttons import ChoiceButtons
@@ -676,7 +676,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
             if str(self.container.inputData.XYZIN.fileContent.mmdbManager.GetSpaceGroup()) != str(self.container.inputData.HKLIN.fileContent.spaceGroup): sgMismatch = True
             if cellMismatch or sgMismatch:
                if functionNames[-2] == 'runTask':
-                     from PySide2.QtWidgets import QMessageBox
+                     from baselayer.QtWidgets import QMessageBox
                      msg = QMessageBox()
                      msg.setIcon(QMessageBox.Question)
                      msg.setText("Warning")
@@ -696,7 +696,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
 
          if functionNames[-2] == 'runTask':
             if not self.container.inputData.FREERFLAG.isSet():
-               from PySide2.QtWidgets import QMessageBox
+               from baselayer.QtWidgets import QMessageBox
                msg = QMessageBox()
                msg.setIcon(QMessageBox.Question)
 
@@ -740,7 +740,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
       elif str(self.container.controlParameters.DATA_METHOD) == 'spa':
          if not self.container.inputData.MAPIN1.isSet() or not self.container.inputData.MAPIN2.isSet():
             if functionNames[-2] == 'runTask':
-               from PySide2.QtWidgets import QMessageBox
+               from baselayer.QtWidgets import QMessageBox
                msg = QMessageBox()
                msg.setIcon(QMessageBox.Critical)
                msg.setText("Error")
@@ -754,7 +754,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
                   invalidElements.append(self.container.inputData.MAPIN2)
          if not self.container.inputData.MAPMASK.isSet():
             if functionNames[-2] == 'runTask':
-               from PySide2.QtWidgets import QMessageBox
+               from baselayer.QtWidgets import QMessageBox
                msg = QMessageBox()
                msg.setIcon(QMessageBox.Critical)
                msg.setText("Error")
@@ -765,7 +765,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
                invalidElements.append(self.container.inputData.MAPMASK)
          if not self.container.controlParameters.RES_MIN.isSet():
             if functionNames[-2] == 'runTask':
-               from PySide2.QtWidgets import QMessageBox
+               from baselayer.QtWidgets import QMessageBox
                msg = QMessageBox()
                msg.setIcon(QMessageBox.Critical)
                msg.setText("Error")

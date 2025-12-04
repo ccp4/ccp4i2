@@ -6,7 +6,7 @@
     """
 
 from qtgui.CCP4TaskWidget import CTaskWidget
-from PySide2 import QtCore
+from baselayer import QtCore
 
 #-------------------------------------------------------------------
 class phaser_MR_RNP_gui(CTaskWidget):

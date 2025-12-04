@@ -4,7 +4,7 @@ import os
 import time
 import functools
 
-from PySide2 import QtCore
+from baselayer import QtCore
 
 if __name__ == "__main__":
     sys.path.append(os.path.join(os.path.dirname(__file__),".."))

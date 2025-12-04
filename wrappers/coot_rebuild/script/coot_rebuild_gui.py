@@ -2,7 +2,7 @@
      coot_rebuild task widget
 """
 
-from PySide2 import QtGui, QtWidgets,QtCore
+from baselayer import QtGui, QtWidgets,QtCore
 
 from qtgui.CCP4TaskWidget import CTaskWidget
 from core import CCP4Modules

@@ -16,7 +16,7 @@
     GNU Lesser General Public License for more details.
 """
 
-from PySide2 import QtCore, QtWidgets
+from baselayer import QtCore, QtWidgets
 from qtgui.CCP4TaskWidget import CTaskWidget
 
 

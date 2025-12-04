@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-from PySide2 import QtCore
+from baselayer import QtCore
 
 """
      tasks/molrep_mr/Cmolrep_mr.py: CCP4 GUI Project

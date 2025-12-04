@@ -1,5 +1,5 @@
 from qtgui.CCP4TaskWidget import CTaskWidget
-from PySide2 import QtCore
+from baselayer import QtCore
 
 #-------------------------------------------------------------------
 class CTaskPisapipe(CTaskWidget):

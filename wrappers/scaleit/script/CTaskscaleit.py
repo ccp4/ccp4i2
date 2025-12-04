@@ -4,7 +4,7 @@
      Author: Phil Evans
 
 """
-from PySide2 import QtCore
+from baselayer import QtCore
 from qtgui.CCP4TaskWidget import CTaskWidget
 
 from pipelines.aimless_pipe.script.aimless_pipe_utils import CellCheck, CellFormat, colourText

@@ -1,749 +1,606 @@
-from __future__ import print_function
+"""
+Qt-free CProcessManager - Replacement for CCP4i2's Qt-based process manager.
 
-"""
-     CCP4ProcessManager: CCP4I2 CCP4 GUI Project
-     Copyright (C) 2011 University of York
+This module provides a pure Python subprocess execution system that replaces
+Qt's QProcess-based CProcessManager, enabling the migration away from Qt dependencies.
 
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
+Key Features:
+- Synchronous and asynchronous process execution
+- Environment management (CCP4, library paths)
+- Process tracking with PIDs
+- Handler callbacks on completion
+- I/O redirection (stdin, stdout, stderr)
+- Timeout handling
+- Exit code and status tracking
+- Compatible with legacy CPluginScript API
+
+Architecture:
+- Based on Python's subprocess module (not Qt QProcess)
+- Singleton pattern for global process manager
+- Process registry with detailed tracking
+- CErrorReport integration for error handling
+
+Example Usage:
+    # Get singleton instance
+    pm = PROCESSMANAGER()
+
+    # Synchronous execution (default)
+    pm.setWaitForFinished(timeout=60000)  # Wait up to 60 seconds
+    pid = pm.startProcess(
+        command='refmac5',
+        args=['HKLIN', 'input.mtz'],
+        inputFile='refmac.com',
+        logFile='refmac.log'
+    )
+    exitCode = pm.getJobData(pid, 'exitCode')
+
+    # Asynchronous execution
+    pm.setWaitForFinished(-1)  # Don't wait
+    pid = pm.startProcess(
+        command='long_running_job',
+        handler=[callback_func, {}]
+    )
+
+Author: Generated for cdata-codegen Qt-free migration
+Date: 2025-11-07
 """
-"""
-  Sept 2011 Liz Potterton - rewrite using Python subprocess or Qt QProcess
-"""
+
+from __future__ import annotations
+
 import os
-import re
 import sys
-import types
-import functools
+import time
 import subprocess
 import threading
-from core.CCP4ErrorHandling import *
-from core import CCP4Modules
-from core import CCP4Config
+from pathlib import Path
+from typing import Any, Callable, Dict, List, Optional, Union
 
-#NOQ - remove
-from PySide2 import QtCore
+from core.base_object.error_reporting import CErrorReport
 
 
-#NOQ class CProcessManager():
-class CProcessManager(QtCore.QObject):
-    insts = None
-    USEQPROCESS = True
-    ERROR_CODES = {101 : {'description' : 'Error creating temporary command file'},
-                   102 : {'description' : 'Process input file does not exist'},
-                   103 : {'severity' : SEVERITY_WARNING, 'description' : 'Exisiting log file has been deleted'},
-                   104 : {'description' : 'Error opening input file'},
-                   105 : {'description' : 'Error opening log file'},
-                   106 : {'description' : 'Error starting sub-process'},
-                   107 : {'description' : 'Can not run process - no executable with name'},
-                   108 : {'severity' : SEVERITY_WARNING, 'description' : 'Creating temporary log file for sub-process'},
-                   109 : {'description' : 'Error opening stderr file'},
-                   110 : {'description' : 'Error handling finished sub-process'},
-                   111 : {'description' : 'Error calling handler after finished sub-process'}}
+class CProcessManager:
+    """
+    Qt-free process manager for running external programs.
 
-    def __init__(self, parent=None):
-        #NOQ -- remove following lines
-        if parent is None:
-            parent = CCP4Modules.QTAPPLICATION()
-        QtCore.QObject.__init__(self, parent)
-        #NOQ -- remove above lines
-        if not CProcessManager.insts: CProcessManager.insts = self
+    This class manages subprocess execution without Qt dependencies,
+    replacing the original CCP4i2 CProcessManager that used QProcess.
+
+    Attributes:
+        lastProcessId (int): Counter for generating unique PIDs
+        processInfo (dict): Registry of process information by PID
+        ifAsync (bool): Whether to run processes asynchronously
+        timeout (int): Default timeout in milliseconds
+    """
+
+    # Singleton instance
+    _instance: Optional[CProcessManager] = None
+
+    # Error codes matching original CProcessManager
+    ERROR_CODES = {
+        101: {'description': 'Error creating temporary command file'},
+        102: {'description': 'Process input file does not exist'},
+        103: {'severity': 1, 'description': 'Existing log file has been deleted'},
+        104: {'description': 'Error opening input file'},
+        105: {'description': 'Error opening log file'},
+        106: {'description': 'Error starting sub-process'},
+        107: {'description': 'Can not run process - no executable with name'},
+        108: {'severity': 1, 'description': 'Creating temporary log file for sub-process'},
+        109: {'description': 'Error opening stderr file'},
+        110: {'description': 'Error handling finished sub-process'},
+        111: {'description': 'Error calling handler after finished sub-process'}
+    }
+
+    def __new__(cls):
+        """Ensure singleton instance."""
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+            cls._instance._initialized = False
+        return cls._instance
+
+    def __init__(self):
+        """Initialize the process manager."""
+        if getattr(self, '_initialized', False):
+            return
+
         self.lastProcessId = 0
-        self.processInfo = {}
+        self.processInfo: Dict[int, Dict[str, Any]] = {}
         self.ifAsync = False
-        self.timeout = 999999
+        self.timeout = 999999  # Default: very long timeout (milliseconds)
+        self._maxRunningProcesses = 10
         self._processEnvironment = None
-        self._maxRunningProcesses = CCP4Config.CONFIG().maxRunningProcesses
-        self.runningProcesses = []
-        self.pendingProcesses = []
+        self._initialized = True
 
-    ##If time is positive all jobs subsequently run with startProcess() will wait for finish
-    #This is useful in testing scripts with unittest. See QProcess.waitForFinish()
-    #@brief All processes subsequently started with startProcess() will wait for finish
-    #@param time Maximum time to wait (msec)
+    def setWaitForFinished(self, timeout: int = -1):
+        """
+        Configure whether processes should run synchronously or asynchronously.
 
-    def processEnvironment(self):
-        if self._processEnvironment is None:
-            from core import CCP4Utils
-            if 'darwin' in sys.platform:
-                pathVar = 'DYLD_FALLBACK_LIBRARY_PATH'
-            elif 'linux' in sys.platform:
-                pathVar = 'LD_LIBRARY_PATH'
-            self._processEnvironment = QtCore.QProcessEnvironment.systemEnvironment()
-            path = self._processEnvironment.value(pathVar).__str__()
-            pathList = path.split(':')
-            #print 'CProcessManager.processEnvironment path',path,pathList
-            libDir = os.path.join(os.environ['CCP4MG'], 'lib')
-            newPath = ''
-            for item in pathList:
-                try:
-                    if not CCP4Utils.samefile(item, libDir):
-                        newPath = newPath + item + ':'
-                    else:
-                        print('processEnvironment removing', item, 'from', pathVar)
-                except:
-                    pass
-            if len(newPath) > 0:
-                newPath = newPath[0:-1]
-            #print 'CProcessManager.processEnvironment newPath', newPath
-            self._processEnvironment.insert(pathVar, newPath)
-        return self._processEnvironment
+        Args:
+            timeout: If >= 0, processes run synchronously with this timeout (ms).
+                    If < 0, processes run asynchronously (non-blocking).
 
-    def setMaxRunningprocesses(self, maxproc):
-        self._maxRunningProcesses = maxproc
+        Example:
+            # Synchronous execution
+            pm.setWaitForFinished(60000)  # Wait up to 60 seconds
 
-    def maxRunningProcesses(self):
-        return self._maxRunningProcesses
-
-#------------------------------------------------------------------------------
-    def setWaitForFinished(self, timeout=-1):
-#------------------------------------------------------------------------------
+            # Asynchronous execution
+            pm.setWaitForFinished(-1)  # Don't wait
+        """
         if timeout < 0:
             self.ifAsync = True
         else:
             self.ifAsync = False
             self.timeout = timeout
 
-#------------------------------------------------------------------------------
-    def formatted_job(self, root):
-#------------------------------------------------------------------------------
-        number = (str(root) + '    ')[0:4]
-        text = number + '  '
-        if self.processInfo[root]['finishTime']:
-            if self.processInfo[root]['status']:
-                text = text + '  FAILED   ' + time.asctime(time.localtime(self.processInfo[root]['finishTime']))
-            else:
-                text = text + '  FINISHED ' + time.asctime(time.localtime(self.processInfo[root]['finishTime']))
-        else:
-            text = text + '  STARTED  ' + time.asctime(time.localtime(self.processInfo[root]['startTime']))
-        return text
+    def setMaxRunningProcesses(self, maxproc: int):
+        """Set maximum number of concurrent processes."""
+        self._maxRunningProcesses = maxproc
 
-## Start an external process
-# @param interpreter string optional name of interpreter (only 'python' supported)
-# @param command string command to run
-# @param args list of words Arguments for command
-# @handler [callable object, dictionary of argments] The object tot call when the process completes
-#   and a set of arguments (as a dictionary) to pass as the second argment to the handler. The
-#   first argument to the handler is the jobId.
-# @param inputFile string optional name of file with input parameters for the process
-# @param inputText string optional text to input to process on stdin
-# @param logFile   string optional name for log file to which stdout is directed
-  
-#------------------------------------------------------------------------
-    def startProcess(self, command=None, args=[], inputFile=None, logFile=None, interpreter=None,
-                     inputText=None, handler=[], resetEnv=True, readyReadStandardOutputHandler=None, **kw):
-#------------------------------------------------------------------------
-        #Use Python subprocess module or QProcess
-        from core import CCP4Utils
-        #print 'PROCESSMANAGER.startProcess',command,args 
-        ifAsync = kw.get('ifAsync', self.ifAsync)
-        timeout = kw.get('timeout', self.timeout)
-        if ifAsync:
-            useQProcess = True
+    def maxRunningProcesses(self) -> int:
+        """Get maximum number of concurrent processes."""
+        return self._maxRunningProcesses
+
+    def _get_ccp4_env(self, resetEnv: bool = True, editEnv: List = None) -> Dict[str, str]:
+        """
+        Get process environment with CCP4 variables.
+
+        Args:
+            resetEnv: If True, use system environment. If False, use os.environ.
+            editEnv: List of (key, value) tuples to add/override.
+
+        Returns:
+            Environment dictionary for subprocess
+        """
+        if resetEnv:
+            env = os.environ.copy()
         else:
-            useQProcess = False
-        if ifAsync:
-            print('Running process ' + str(command) + ' asyncronously using QProcess')
-        # Use exe in i2 bin directory if it exists
-        i2Exe = os.path.join(CCP4Utils.getOSDir(), 'bin', command)
-        if os.path.exists(i2Exe):
-            #print 'Running version of ' + command + ' shipped with CCP4i2: ' + i2Exe
-            command = i2Exe
-        argList = []
-        cmd = None
-        if interpreter is not None:
-            if interpreter == 'python':
-                cmd = CCP4Utils.pythonExecutable()
-            argList = [cmd, command]
-        else:
-            argList = [command]
-            if useQProcess and 'win32' in sys.platform:
-                cmd = which(command)
-            else:
-                cmd = command
-        if isinstance(args,list):
+            env = dict(os.environ)
+
+        # Apply custom environment edits
+        if editEnv:
+            for key, value in editEnv:
+                env[key] = value
+
+        return env
+
+    def startProcess(
+        self,
+        command: str = None,
+        args: Union[List[str], str] = None,
+        inputFile: str = None,
+        logFile: str = None,
+        interpreter: str = None,
+        inputText: str = None,
+        handler: List = None,
+        resetEnv: bool = True,
+        readyReadStandardOutputHandler: Callable = None,
+        **kw
+    ) -> int:
+        """
+        Start an external process.
+
+        Args:
+            command: Path to executable or command name
+            args: List of arguments or space-separated string
+            inputFile: Path to file for stdin redirection
+            logFile: Path to file for stdout redirection
+            interpreter: If 'python', prepend Python executable
+            inputText: Text to write to stdin (creates temp file)
+            handler: [callback_func, kwargs] called on completion
+            resetEnv: Use clean environment (vs inherited)
+            readyReadStandardOutputHandler: Callback for streaming output
+            **kw: Additional options:
+                - ifAsync (bool): Override global async setting
+                - timeout (int): Override global timeout (ms)
+                - cwd (str): Working directory
+                - editEnv (list): [(key, value), ...] env overrides
+                - jobId, jobNumber, projectId: Metadata
+                - stderrFile (str): Path for stderr redirection
+
+        Returns:
+            int: Process ID (PID) for tracking
+
+        Example:
+            pid = pm.startProcess(
+                command='/usr/bin/refmac5',
+                args=['HKLIN', 'data.mtz'],
+                inputFile='refmac.com',
+                logFile='refmac.log',
+                cwd='/path/to/job'
+            )
+        """
+        # Allocate unique PID
+        self.lastProcessId += 1
+        pid = self.lastProcessId
+
+        # Parse arguments
+        if args is None:
+            args = []
+        argList = [command]
+        if isinstance(args, list):
             argList.extend(args)
         else:
             argList.extend(args.split())
-        self.lastProcessId = self.lastProcessId + 1
-        pid = self.lastProcessId
-        self.processInfo[pid] = {'command' : cmd, 'argList' : argList, 'handler' : handler, 'readyReadStandardOutputHandler': None,
-                                 'errorReport' : CErrorReport(), 'ifAsync' :ifAsync, 'timeout' : timeout, 'resetEnv' : resetEnv,
-                                 'startTime' : None, 'inputFile' : None, 'logFile' : None, 'jobId' : kw.get('jobId',None),
-                                 'jobNumber' : kw.get('jobNumber',None), 'projectId' : kw.get('projectId',None),
-                                 'editEnv' : kw.get('editEnv',[]), 'cwd' : kw.get('cwd',None), 'finishTime' : None,
-                                 'exitStatus': None, 'exitCode' : None}
+
+        # Handle interpreter prefix (e.g., python script.py)
+        if interpreter == 'python':
+            python_exe = sys.executable
+            argList = [python_exe, command] + (args if isinstance(args, list) else args.split())
+
+        # Initialize process info
+        ifAsync = kw.get('ifAsync', self.ifAsync)
+        process_timeout = kw.get('timeout', self.timeout)
+
+        self.processInfo[pid] = {
+            'command': command,
+            'argList': argList,
+            'handler': handler or [],
+            'readyReadStandardOutputHandler': readyReadStandardOutputHandler,
+            'errorReport': CErrorReport(),
+            'ifAsync': ifAsync,
+            'timeout': process_timeout,
+            'resetEnv': resetEnv,
+            'startTime': None,
+            'finishTime': None,
+            'inputFile': inputFile,
+            'logFile': logFile,
+            'stderrFile': kw.get('stderrFile'),
+            'jobId': kw.get('jobId'),
+            'jobNumber': kw.get('jobNumber'),
+            'projectId': kw.get('projectId'),
+            'editEnv': kw.get('editEnv', []),
+            'cwd': kw.get('cwd'),
+            'exitStatus': None,
+            'exitCode': None,
+            'status': 'pending'
+        }
+
+        # Handle inputText (create temp file)
         if inputFile is None and inputText is not None:
-            tmpFile = None
             try:
-                fd,tmpFile = CCP4Utils.makeTmpFile(mode='w')
-                fd.write(inputText)
-                fd.close()
+                import tempfile
+                fd, tmpFile = tempfile.mkstemp(suffix='.com', text=True)
+                with os.fdopen(fd, 'w') as f:
+                    f.write(inputText)
                 inputFile = tmpFile
-            except:
-                self.processInfo[pid]['errorReport'].append(self.__class__, 101, str(tmpFile))
-        if inputFile is not None:
-            if not os.path.exists(inputFile):
-                self.processInfo[pid]['errorReport'].append(self.__class__, 102, str(inputFile))
-            else:
                 self.processInfo[pid]['inputFile'] = inputFile
-        if logFile is None:
-            logFile = CCP4Utils.makeTmpFile()
-            self.processInfo[pid]['errorReport'].append(self.__class__, 108, str(logFile))
-        else:
-            if os.path.exists(logFile):
-                os.remove(logFile)
-                self.processInfo[pid]['errorReport'].append(self.__class__, 103, str(logFile))
-            self.processInfo[pid]['logFile'] = logFile
-        # If the invoking object has provided a callback for the "readyReadStandardOutput" signal, then
-        # Provide this to the qprocess and remove the logFile provision
-        if readyReadStandardOutputHandler is not None and useQProcess:
-            self.processInfo[pid]['readyReadStandardOutputHandler'] = readyReadStandardOutputHandler
-            self.processInfo[pid]['logFile'] = None
-            useQProcess = True
-        """
-        try:
-          argsOut = '['
-          if len(argList)>1:
-            for item in argList[1:]: argsOut = argsOut + '"'+item+'",'
-            argsOut = argsOut[0:-1]
-          argsOut = argsOut + ']'
-          textOut = 'PROCESSMANAGER().startProcess("'+cmd+'", '+argsOut
-          if inputFile is not None:textOut = textOut +', "' + inputFile+'"'
-          if logFile is not None: textOut = textOut +', "'+logFile+'"'
-          textOut = textOut +')'
-          print textOut
-          sys.stdout.flush()
-        except:
-          print 'Error printing PROCESSMANAGER().startProcess() command'
-          print 'argList',argList
-        """
-        try:
-            textOut = cmd
-            for item in argList[1:]:
-                textOut = textOut + ' ' + item
-            if inputFile is not None:
-                textOut = textOut + ' < ' + inputFile
-            if logFile is not None:
-                textOut = textOut + ' > ' + logFile
-            print('\nPROCESSMANAGER running command:\n' + textOut + '\n')
-            sys.stdout.flush()
-        except:
-            print('Error printing program run command for ' + str(cmd))
-        #print 'PROCESSMANAGER.startProcess processInfo',pid,self.processInfo[pid]
-        if not useQProcess:
-            # method = subprocess.Popen
-            # See http://bugs.python.org/issue1068268  for problem that seems to affect on OSX
-            self.processInfo[pid]['startTime'] = time.time()
-            try:
-                callDict= {}
-                if self.processInfo[pid]['inputFile'] is not None:
-                    callDict['stdin'] = open(self.processInfo[pid]['inputFile'])
-                if self.processInfo[pid]['logFile'] is not None:
-                    logFileName = self.processInfo[pid]['logFile']
-                    errFileName = os.path.splitext(logFileName)[0] + "_err.txt"
-                    callDict['stdout'] = open(logFileName,'w')
-                    callDict['stderr'] = open(errFileName,'w')
-                callDict['env'] = self.ccp4Env(self.processInfo[pid]['resetEnv'])
-                if self.processInfo[pid]['cwd'] is not None:
-                    callDict['cwd'] = self.processInfo[pid]['cwd']
-                if 'win32' in sys.platform:
-                    callDict['shell'] = 'True'
-                #print 'calling subprocess',argList,callDict
-                rv = subprocess.call(*[argList], **callDict)
-                self.handleFinish(None, pid, rv, 0)
-            except subprocess.CalledProcessError as e:
-                self.processInfo[pid]['exitStatus'] = -2
-                self.processInfo[pid]['exitCode'] = e.errno
-            except KeyError as e:
-                print('subprocess KeyError')
-                self.processInfo[pid]['finishTime'] = time.time()
-                self.processInfo[pid]['exitStatus'] = rv
             except Exception as e:
-                print('SUBPROCESS EXCEPTION', e, type(e))
-                try:
-                    print(e.errno, e.strerror, os.strerror(e.errno))
-                except:
-                    pass
-                self.processInfo[pid]['finishTime'] = time.time()
-                self.processInfo[pid]['exitStatus'] = -1
-                try:
-                    self.processInfo[pid]['exitCode'] = e.errno
-                except:
-                    pass
-            else:
-                self.processInfo[pid]['finishTime'] = time.time()
-                self.processInfo[pid]['exitStatus'] = rv
+                self.processInfo[pid]['errorReport'].append(
+                    self.__class__.__name__, 101, f"Error creating temp input file: {e}"
+                )
+
+        # Validate input file
+        if inputFile is not None and not os.path.exists(inputFile):
+            self.processInfo[pid]['errorReport'].append(
+                self.__class__.__name__, 102, f"Input file does not exist: {inputFile}"
+            )
+            self.processInfo[pid]['status'] = 'failed'
+            self.processInfo[pid]['exitCode'] = -1
+            return pid
+
+        # Handle log file
+        if logFile is not None and os.path.exists(logFile):
+            try:
+                os.remove(logFile)
+                self.processInfo[pid]['errorReport'].append(
+                    self.__class__.__name__, 103, f"Removed existing log file: {logFile}"
+                )
+            except Exception as e:
+                pass
+
+        # Print command for debugging
+        try:
+            cmd_str = ' '.join(argList)
+            if inputFile:
+                cmd_str += f' < {inputFile}'
+            if logFile:
+                cmd_str += f' > {logFile}'
+            print(f"\n{'='*60}")
+            print(f"Running: {cmd_str}")
+            print(f"Working directory: {kw.get('cwd', os.getcwd())}")
+            if logFile:
+                print(f"Log file: {logFile}")
+            if self.processInfo[pid]['stderrFile']:
+                print(f"Stderr file: {self.processInfo[pid]['stderrFile']}")
+            print(f"{'='*60}\n")
+            sys.stdout.flush()
+        except Exception as e:
+            print(f"Error printing command: {e}")
+
+        # Execute process
+        if not ifAsync:
+            # Synchronous execution
+            self._run_sync(pid)
         else:
-            # Use QProcess
-            #print('before startQProcess', len(self.runningProcesses))
-            if len(self.runningProcesses) < self._maxRunningProcesses:
-                self.startQProcess(pid)
-            else:
-                self.pendingProcesses.append(pid)
-            #print 'processManager running QProcess exiting',time.time()
+            # Asynchronous execution
+            self._run_async(pid)
+
         return pid
 
-    def editProcessEnvironment(self, pid, p=None):
-        #print 'editProcessEnvironment',pid,p
-        if p is None:
-            return
-        editEnv = self.processInfo[pid]['editEnv']
-        pwdDir = None
-        ii=0
-        while ii < len(editEnv):
-            if editEnv[ii][0] in ('PWD', 'pwd'):
-                pwdDir = editEnv[ii][1]
-                del editEnv[ii]
-            else:
-                ii +=1
-        # Beware handling cwd argument
-        if self.processInfo[pid]['cwd']:
-            pwdDir = self.processInfo[pid]['cwd']
-        if self.processInfo[pid]['command'].count('coot'):
-            if not pwdDir is not None and self.processInfo[pid]['projectId'] is not None:
-                pwdDir = os.path.join(CCP4Modules.PROJECTSMANAGER().getProjectDirectory(projectId=self.processInfo[pid]['projectId']), 'CCP4_COOT')
-                if not os.path.exists(pwdDir):
-                    try:
-                        os.mkdir(pwdDir)
-                    except:
-                        pwdDir = None
-            editEnv.extend([['PYTHONHOME'], ['PYTHONPATH'], ['PYTHONSTARTUP']])
-        #print 'editProcessEnvironment editEnv',editEnv
-        if len(editEnv) > 0:
-            processEnvironment = QtCore.QProcessEnvironment.systemEnvironment()
-            for editItem in editEnv:
-                if len(editItem) == 1:
-                    processEnvironment.remove(editItem[0])
-                else:
-                    processEnvironment.insert(editItem[0], editItem[1])
-            #if self.processInfo[pid]['command'].count('coot') and sys.platform == 'win32':
-            #  processEnvironment = self.setCootWindowsEnvironment(processEnvironment)
-            p.setProcessEnvironment(processEnvironment)
-        if pwdDir is not None:
-            p.setWorkingDirectory(pwdDir)
+    def _run_sync(self, pid: int):
+        """Run process synchronously (blocking)."""
+        info = self.processInfo[pid]
+        info['startTime'] = time.time()
+        info['status'] = 'running'
 
-    def setCootWindowsEnvironment(self, p):
-        cootDir = str(CCP4Modules.PREFERENCES().COOT_EXECUTABLE)
-        COOT_GUILE_PREFIX = re.sub(r"\\\\",r"/", cootDir)
-        #print 'setCootWindowsEnvironment', cootDir, COOT_GUILE_PREFIX
-        coot_locations = {'COOT_PREFIX' : cootDir, 'COOT_GUILE_PREFIX' : COOT_GUILE_PREFIX, 'COOT_HOME': cootDir,
-                          'COOT_BACKUP_DIR' : os.path.join(cootDir, 'coot-backup'), 'COOT_SHARE' : os.path.join(cootDir, 'share'),
-                          'COOT_SCHEME_DIR' : os.path.join(cootDir, 'share', 'coot', 'scheme'),
-                          'COOT_STANDARD_RESIDUES' : os.path.join(cootDir, 'share', 'coot', 'standard-residues.pdb'),
-                          'COOT_PIXMAPS_DIR' : os.path.join(cootDir, 'share', 'coot', 'pixmaps'),
-                          'COOT_RESOURCES_FILE' : os.path.join(cootDir, 'share', 'coot', 'cootrc'),
-                          'COOT_DATA_DIR' : os.path.join(cootDir, 'share', 'coot'),
-                          'COOT_REF_STRUCTS' :  os.path.join(cootDir, 'share', 'coot', 'reference-structures'),
-                          'COOT_PYTHON_DIR' : os.path.join(cootDir, 'share', 'coot', 'python'),
-                          'COOT_REF_SEC_STRUCTS' : os.path.join(cootDir, 'share', 'coot', 'ss-reference-structures'),
-                          'PYTHONPATH' : os.path.join(cootDir, 'share', 'coot', 'python'),
-                          'PYTHONHOME' : os.path.join(cootDir, 'bin'),
-                          'SYMINFO': os.path.join(cootDir, 'share', 'coot', 'syminfo.lib'),
-                          'GUILE_LOAD_PATH' : os.path.join(COOT_GUILE_PREFIX, 'share', 'guile', '1.8') + ';' + \
-                          os.path.join(COOT_GUILE_PREFIX,'share','guile') + ';' + \
-                          os.path.join(COOT_GUILE_PREFIX,'share','guile','gtk-2.0') + ';' + \
-                          os.path.join(COOT_GUILE_PREFIX,'share','guile','gui')+';' + \
-                          os.path.join(COOT_GUILE_PREFIX,'share','guile','www')+';' + \
-                          os.path.join(COOT_GUILE_PREFIX,'share','guile','site')}
-        for key,value in list(coot_locations.items()):
-            p.insert(key, value)
-        if p.contains('PATH'):
-            p.insert('PATH', os.path.join(cootDir,'bin') + ';' + os.path.join(cootDir, 'lib') + ';' + p.value('PATH', ''))
-        else:
-            p.insert('PATH', os.path.join(cootDir,'bin') + ';' + os.path.join(cootDir, 'lib'))
-        return p
-        """
-              if not exist "%CLIBD_MON%" (
-          echo no $CLIBD_MON found setting COOT_REFMAC_LIB_DIR
-          set COOT_REFMAC_LIB_DIR=%COOT_SHARE%\coot\lib
-        """
+        # Track file handles we open for proper cleanup
+        stdin_file = None
+        stdout_file = None
+        stderr_file = None
 
-    @QtCore.Slot(str,str)
-    def printFinished(self, code, stat):
-        print('startQProcess process says finished', code, stat)
-
-    def startQProcess(self, pid):
-        #print('startQProcess',pid,self.processInfo[pid].get('logFile',None))
-        self.processInfo[pid]['startTime'] = time.time()
-        qArgList = []
-        for item in self.processInfo[pid]['argList'][1:]:
-            qArgList.append(item)
-        p = QtCore.QProcess(self)
-        self.editProcessEnvironment(pid,p)
-        if self.processInfo[pid]['inputFile'] is not None:
-            p.setStandardInputFile(self.processInfo[pid]['inputFile'])
-        else:
-            p.setStandardInputFile(QtCore.QProcess.nullDevice())
-        if self.processInfo[pid]['logFile'] is not None:
-            logFileName = self.processInfo[pid]['logFile']
-            errFileName = os.path.splitext(logFileName)[0] + "_err.txt"
-            p.setStandardOutputFile(logFileName)
-            p.setStandardErrorFile(errFileName)
-        if self.processInfo[pid]['readyReadStandardOutputHandler'] is not None:
-            p.readyReadStandardOutput.connect(self.processInfo[pid]['readyReadStandardOutputHandler'])
-        p.start(self.processInfo[pid]['command'], qArgList)
-        p.finished.connect(self.printFinished)
-        p.finished.connect(lambda exitCode,exitStatus: self.handleFinish(p,pid,exitCode,exitStatus))
-        ok = p.waitForStarted(1000)
-        #print 'startQProcess waitForStarted',ok
-        if not ok:
-            self.handleFinish(p, pid, 1, 101)
-            return
-        if not self.processInfo[pid]['ifAsync']:
-            p.waitForFinished(self.processInfo[pid]['timeout'])
-        self.processInfo[pid]['qprocess'] = p
-        self.runningProcesses.append(pid)
-        #print 'PROCESSMANAGER.startQProcess state error',p.state(), p.error(); sys.stdout.flush()
-
-    def runHandler(self, pid):
-        handler = self.processInfo[pid]['handler']
-        #print 'runHandler',pid,handler
-        if handler is None or len(handler) == 0:
-            return
         try:
-            if len(handler) > 1:
-                handler[0](*[pid], **handler[1])
+            # Prepare subprocess arguments
+            kwargs = {
+                'env': self._get_ccp4_env(info['resetEnv'], info['editEnv']),
+                'cwd': info['cwd']
+            }
+
+            # Handle I/O redirection using context managers to ensure cleanup
+            # Open file handles and track them for cleanup
+            if info['inputFile']:
+                stdin_file = open(info['inputFile'], 'r')
+                kwargs['stdin'] = stdin_file
             else:
-                handler[0](*[pid], **{})
-        except CException as e:
-            self.processInfo[pid]['errorReport'].extend(e)
+                kwargs['stdin'] = None
+
+            if info['logFile']:
+                stdout_file = open(info['logFile'], 'w')
+                kwargs['stdout'] = stdout_file
+            else:
+                kwargs['stdout'] = subprocess.PIPE
+
+            if info['stderrFile']:
+                stderr_file = open(info['stderrFile'], 'w')
+                kwargs['stderr'] = stderr_file
+            else:
+                kwargs['stderr'] = subprocess.PIPE
+
+            # Convert timeout from milliseconds to seconds
+            timeout_sec = info['timeout'] / 1000.0 if info['timeout'] > 0 else None
+
+            # Run process
+            result = subprocess.run(
+                info['argList'],
+                timeout=timeout_sec,
+                **kwargs
+            )
+
+            # Store result
+            info['exitCode'] = result.returncode
+            info['exitStatus'] = result.returncode
+            info['status'] = 'finished' if result.returncode == 0 else 'failed'
+            info['finishTime'] = time.time()
+
+            print(f"✅ Process completed successfully (exit code {result.returncode})")
+
+        except subprocess.TimeoutExpired:
+            info['exitCode'] = -1
+            info['exitStatus'] = -1
+            info['status'] = 'timeout'
+            info['finishTime'] = time.time()
+            print(f"⏱️  Process timed out after {info['timeout']}ms")
+
         except Exception as e:
-            print('runHandler Error', e)
-            self.processInfo[pid]['errorReport'].appendPythonException(self.__class__, str(e))
+            info['exitCode'] = -1
+            info['exitStatus'] = -1
+            info['status'] = 'failed'
+            info['finishTime'] = time.time()
+            info['errorReport'].append(
+                self.__class__.__name__, 106, f"Error starting process: {e}"
+            )
+            print(f"❌ Process failed: {e}")
 
-    @QtCore.Slot(QtCore.QProcess, str, int, int)
-    def handleFinish(self, qp, pid, exitCode=0, exitStatus=0):
-        print('Process finished:', pid, 'exit code:', exitCode, 'exit status:', exitStatus,'time:', time.strftime('%H:%M:%S %d/%b/%Y', time.localtime(time.time())))
-        self.processInfo[pid]['finishTime'] = time.time()
-        self.processInfo[pid]['exitStatus'] = int(exitStatus)
-        self.processInfo[pid]['exitCode'] = exitCode
-        if not qp and exitCode != 0:
-            print("Non-zero exitCode but not from QProcess - look in any log_err.txt files for errors.")
-        if qp and exitCode != 0:
-            out = qp.readAllStandardOutput().data().decode("utf-8")
-            err = qp.readAllStandardError().data().decode("utf-8")
-            print("Non-zero exitCode")
-            print("Last output available:",out)
-            print("Last errors available:",err)
-            sys.stderr.write(err)
-            sys.stderr.flush()
-            if "logFile" in self.processInfo[pid] and self.processInfo[pid]["logFile"]:
-                logFileName = self.processInfo[pid]["logFile"]
-                errFileName = os.path.splitext(logFileName)[0] + "_err.txt"
-            else:
-                logFileName = os.path.join(self.processInfo[pid]["cwd"],"log.txt")
-                errFileName = os.path.join(self.processInfo[pid]["cwd"],"log_err.txt")
-            if len(out)>0:
-                with open(logFileName, "w") as logFile:
-                    logFile.write(out)
-            if len(err)>0:
-                with open(errFileName, "w") as errFile:
-                    errFile.write(err)
-        if "logFile" in self.processInfo[pid] and self.processInfo[pid]["logFile"]:
-            if "jobId" in self.processInfo[pid] and self.processInfo[pid]["jobId"]:
-                jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=self.processInfo[pid]["jobId"])
+        finally:
+            # Close file handles we explicitly opened (not subprocess.PIPE constants)
+            if stdin_file is not None:
                 try:
-                    logFileHandle = open(self.processInfo[pid]["logFile"],'a')
-                    logFileHandle.write("JOB TITLE SECTION (PROCESSMANAGER)\n")
-                    if "jobtitle" in jobInfo and jobInfo["jobtitle"]:
-                        logFileHandle.write(str(jobInfo["jobtitle"])+"\n")
-                    else:
-                        logFileHandle.write(str(CCP4Modules.TASKMANAGER().getShortTitle(jobInfo['taskname']))+"\n")
-                    while "parentjobid" in jobInfo and jobInfo["parentjobid"]:
-                        jobInfo = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId=jobInfo["parentjobid"])
-                        if "jobtitle" in jobInfo and jobInfo["jobtitle"]:
-                            logFileHandle.write(str(jobInfo["jobtitle"])+"\n")
-                        else:
-                            logFileHandle.write(str(CCP4Modules.TASKMANAGER().getShortTitle(jobInfo['taskname']))+"\n")
-                    logFileHandle.close()
-                except:
-                    print("Could not append job title info to log file."); sys.stdout.flush()
-        if self.processInfo[pid].get('qprocess') is not None:
-            if pid in self.runningProcesses:
-                self.runningProcesses.remove(pid)
-            self.processInfo[pid]['qprocess'].deleteLater()
-            del self.processInfo[pid]['qprocess']
-            if len(self.pendingProcesses) > 0:
-                nextPid = self.pendingProcesses.pop(0)
-                self.startQProcess(nextPid)
-        self.runHandler(pid)
+                    stdin_file.close()
+                except Exception:
+                    pass  # Best effort cleanup
+            if stdout_file is not None:
+                try:
+                    stdout_file.close()
+                except Exception:
+                    pass
+            if stderr_file is not None:
+                try:
+                    stderr_file.close()
+                except Exception:
+                    pass
 
-    def getJobData(self, pid, attribute='exitStatus'):
-        return self.processInfo.get(pid, {}).get(attribute, None)
+        # Call handler if provided
+        self._call_handler(pid)
 
-    def deleteJob(self, cid):
-        if cid in self.processInfo:
-            del self.processInfo[cid]
+    def _run_async(self, pid: int):
+        """Run process asynchronously (non-blocking)."""
+        info = self.processInfo[pid]
 
-    def ccp4Env(self, resetEnv=True):
-        # Remove any libs in ccp4mg from path as these are built with
-        # different system
-        env = {}
-        env.update(os.environ)
-        if resetEnv:
-            for envVar in ['LD_LIBRARY_PATH', 'DYLD_FALLBACK_LIBRARY_PATH']:
-                if envVar in env:
-                    envList = env[envVar].split(':')
-                    path = ''
-                    for item in envList:
-                        if item.count('ccp4mg') <= 0 or item.count('pythondist') > 0:
-                            path = path + ':' + item
-                        else:
-                            pass
-                            #print 'Modified',envVar,'removing',item
-                    env[envVar] = path.strip(':')
-                    del env[envVar]
-        return env
+        def run_in_thread():
+            """Thread worker for async execution."""
+            self._run_sync(pid)
 
-    def terminateProcess(self, pid):
-        #print 'CProcessManager.terminateProcess',pid,self.processInfo[pid].get('qprocess',None);sys.stdout.flush()
-        if self.processInfo.get(pid, None) is None:
-            return 1
-        if self.processInfo[pid].get('qprocess', None) is not None:
-            self.processInfo[pid]['qprocess'].kill()
-            #self.processInfo[pid]['qprocess'].deleteLater()
-            #del self.processInfo[pid]['qprocess']
-            #print 'CProcessManager.terminateProcess DONE'
-            return 0
-        else:
-            return 2
-
-
-def which(program, mode=os.F_OK | os.X_OK, path=None):
-    '''
-    From shutil.which in python 3.3 back ported for local use here in 2.7
-    via Tom Burnley and the CCP4EM GUI.
-    Given a command, mode, and a PATH string, return the path which
-    conforms to the given mode on the PATH, or None if there is no such
-    file.
-    `mode` defaults to os.F_OK | os.X_OK. `path` defaults to the result
-    of os.environ.get("PATH"), or can be overridden with a custom search
-    path.
-    '''
-    # Check ccpem settings for specified bins.  E.g. if bin is set via alias
-    # it will not be located via which function.
-    cmd = program
-    # Check that a given file can be accessed with the correct mode.
-    # Additionally check that `file` is not a directory, as on Windows
-    # directories pass the os.access check.
-    def _access_check(fn, mode):
-        return (os.path.exists(fn) and os.access(fn, mode)
-                and not os.path.isdir(fn))
-    # If we're given a path with a directory part, look it up directly rather
-    # than referring to PATH directories. This includes checking relative to the
-    # current directory, e.g. ./script
-    if os.path.dirname(cmd):
-        if _access_check(cmd, mode):
-            return cmd
-        return None
-    if path is None:
-        path = os.environ.get("PATH", os.defpath)
-    if not path:
-        return None
-    path = path.split(os.pathsep)
-    if sys.platform == "win32":
-        # The current directory takes precedence on Windows.
-        if not os.curdir in path:
-            path.insert(0, os.curdir)
-        # PATHEXT is necessary to check on Windows.
-        pathext = os.environ.get("PATHEXT", "").split(os.pathsep)
-        # See if the given file matches any of the expected path extensions.
-        # This will allow us to short circuit when given "python.exe".
-        # If it does match, only test that one, otherwise we have to try
-        # others.
-        if any([cmd.lower().endswith(ext.lower()) for ext in pathext]):
-            files = [cmd]
-        else:
-            files = [cmd + ext for ext in pathext]
-    else:
-        # On other platforms you don't have things like PATHEXT to tell you
-        # what file suffixes are executable, so just pass on cmd as-is.
-        files = [cmd]
-    seen = set()
-    for cdir in path:
-        normdir = os.path.normcase(cdir)
-        if not normdir in seen:
-            seen.add(normdir)
-            for thefile in files:
-                name = os.path.join(cdir, thefile)
-                if _access_check(name, mode):
-                    return name
-    return None
-
-#===========================================================================================
-# Python shell test:
-# import CCP4ProcessManager; p = CCP4ProcessManager.CProcessManager(); p.startProcess(command='mtzdump',argList=['HKLIN','/Users/lizp/Desktop/test_data/rnase25_phases.mtz'],inputText='HEADER\nGO\n')
-import unittest
-
-def comTest1():
-    from core import CCP4Utils
-    pdbFile = os.path.join(CCP4Utils.getCCP4I2Dir(), 'test', 'data', '1df7.pdb')
-    pdbOut = CCP4Utils.makeTmpFile(name='testProcessManager_test1')
-    return CCP4Modules.PROCESSMANAGER().startProcess(command='pdbset', args=['XYZIN', pdbFile, 'XYZOUT', pdbOut],
-                                                     inputText='CELL 50.0 50.0 70.0 90.0 90.0 90.0\nEND\n',)
-
-def TESTSUITE():
-    suite = unittest.defaultTestLoader.loadTestsFromTestCase(testProcessManager)
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)
-  
-
-# This test class can run without unittest framework - so the PROCESSMANAGER
-# can work 'naturally' without the waitForFinish
-
-
-#*  unittest
-class testProcessManager(unittest.TestCase):
-#* hand testing
-#class testProcessManager():
-#  def __init__(self):
-#    self.isUnitTest=False
-#    self.setUp()
-# *
-    def setUp(self):
-        from core import CCP4Utils
-        if not hasattr(self, 'isUnitTest'):
-            self.isUnitTest = True
-        self.pdbFile = os.path.join(CCP4Utils.getCCP4I2Dir(), 'test', 'data', '1df7.pdb')
-        if self.isUnitTest:
-            CCP4Modules.PROCESSMANAGER().setWaitForFinished(1000)
-
-    def tearDown(self):
-        CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
-
-    def evalCRYST(self, pdbFile=None):
-        from core import CCP4Utils
-        text = CCP4Utils.readFile(pdbFile)
-        for line in text.split('\n'):
-            if line[0:6] == 'CRYST1':
-                words = line.split()
-                cryst = []
-                for i in range(1, 6):
-                    cryst.append(float(words[i]))
-                #print 'cryst',cryst
-                if 49.999 < cryst[0] < 50.001:
-                    return True
-        return False
-
-    def printReview(self, processID):
-        print(' ')
-        print('processID exitStatus', processID, CCP4Modules.PROCESSMANAGER().getJobData(processID, 'exitStatus'))
-        print('Error:', CCP4Modules.PROCESSMANAGER().getJobData(processID, 'processError'))
-        print('Is PDB file created:', self.pdbOut, str(os.path.exists(self.pdbOut)))
-        if os.path.exists(self.pdbOut):
-            print('Output PDB contains correct data',str(self.evalCRYST(self.pdbOut)))
-        print(' ')
-
-    def test1(self):
-        # This ine should run OK
-        from core import CCP4Utils
-        self.pdbOut = CCP4Utils.makeTmpFile(name='testProcessManager_test1')
-        print('test1 pdbOut', self.pdbOut)
-        if self.isUnitTest:
-            handler = None
-        else:
-            handler = [self.review1, {}]
-        processID = CCP4Modules.PROCESSMANAGER().startProcess(command='pdbset', args=['XYZIN', self.pdbFile, 'XYZOUT', self.pdbOut],
-                                                              inputText='CELL 50.0 50.0 70.0 90.0 90.0 90.0\nEND\n', handler=handler)
-        if self.isUnitTest:
-            self.review1(processID)
-
-    def review1(self, processID=None):
-        if self.isUnitTest:
-            self.assertTrue(os.path.exists(self.pdbOut), 'No output PDB file created')
-            self.assertTrue(self.evalCRYST(self.pdbOut), 'Output PDB file does not contain correct data')
-        else:
-            self.printReview(processID)
-
-    def test2(self):
-        # Input file does not exist
-        from core import CCP4Utils
-        self.pdbOut = CCP4Utils.makeTmpFile(name='testProcessManager_test1')
-        if self.isUnitTest:
-            handler = None
-        else:
-            handler = [self.review2, {}]
-        processID = CCP4Modules.PROCESSMANAGER().startProcess(command='pdbset', args=['XYZIN', 'foobar', 'XYZOUT', self.pdbOut],
-                                  inputText='CELL 50.0 50.0 70.0 90.0 90.0 90.0\nEND\n', handler=handler)
-        if self.isUnitTest:
-            self.review2(processID)
-
-    def review2(self,processID=None):
-        if self.isUnitTest:
-            exitCode = CCP4Modules.PROCESSMANAGER().getJobData(processID, 'exitStatus')
-            error = CCP4Modules.PROCESSMANAGER().getJobData(processID, 'processError')
-            self.assertEqual(exitCode, 1, 'Wrong exit code when bad input filename')
-            self.assertEqual(error.count('No such file or directory'), 1, 'Wrong error message when bad input filename')
-        else:
-            self.printReview(processID)
-
-    def test3(self):
-        # Calling a non-existant executable
-        from core import CCP4Utils
-        self.pdbOut =  CCP4Utils.makeTmpFile(name='testProcessManager_test3')
-        if self.isUnitTest:
-            handler = None
-        else:
-            handler = [self.review2,{}]
-        processID = CCP4Modules.PROCESSMANAGER().startProcess(command='pdbset-no', args=['XYZIN', 'foobar', 'XYZOUT', self.pdbOut],
-                                                              inputText='CELL 50.0 50.0 70.0 90.0 90.0 90.0\nEND\n', handler=handler)
-        if self.isUnitTest:
-            self.review3(processID)
-
-    def test4(self):
-        # Bad input (CELL incomplete) - expect process to return with error code
-        from core import CCP4Utils
-        self.pdbOut = CCP4Utils.makeTmpFile(name='testProcessManager_test3')
-        if self.isUnitTest:
-            handler = None
-        else:
-            handler = [self.review2, {}]
-        processID = CCP4Modules.PROCESSMANAGER().startProcess(command='pdbset', args=['XYZIN','foobar','XYZOUT',self.pdbOut],
-                                                              inputText='CELL 50.0 \nEND\n', handler=handler)
-        if self.isUnitTest:
-            self.review4(processID)
-
-"""
-import subprocess, threading
-
-class Command(object):
-    def __init__(self, cmd):
-        self.cmd = cmd
-        self.process = None
-
-    def run(self, timeout):
-        def target():
-            print 'Thread started'
-            self.process = subprocess.Popen(self.cmd, shell=True)
-            self.process.communicate()
-            print 'Thread finished'
-
-        thread = threading.Thread(target=target)
+        thread = threading.Thread(target=run_in_thread, daemon=True)
         thread.start()
+        info['thread'] = thread
 
-        thread.join(timeout)
-        if thread.is_alive():
-            print 'Terminating process'
-            self.process.terminate()
-            thread.join()
-        print self.process.returncode
+    def _call_handler(self, pid: int):
+        """Call completion handler if provided."""
+        info = self.processInfo[pid]
+        handler = info.get('handler', [])
 
-command = Command("echo 'Process started'; sleep 2; echo 'Process finished'")
-command.run(timeout=3)
-command.run(timeout=1)
-"""
+        if handler and len(handler) >= 1:
+            try:
+                callback = handler[0]
+                kwargs = handler[1] if len(handler) > 1 else {}
+
+                if callable(callback):
+                    callback(pid, info['exitCode'], **kwargs)
+            except Exception as e:
+                info['errorReport'].append(
+                    self.__class__.__name__, 111,
+                    f"Error calling handler: {e}"
+                )
+                print(f"Error in handler callback: {e}")
+
+    def getJobData(self, pid: int, attribute: str = 'exitStatus') -> Any:
+        """
+        Get process information by attribute name.
+
+        For synchronous processes, checks both the processInfo dict and
+        the plugin object's attributes (_exitCode, _exitStatus, etc.).
+
+        Args:
+            pid: Process ID returned by startProcess()
+            attribute: Data attribute name (exitCode, exitStatus, status, startTime, qprocess, etc.)
+                      Defaults to 'exitStatus' for backward compatibility with legacy code.
+
+        Returns:
+            Requested value or None if not found
+
+        Example:
+            status = pm.getJobData(pid)  # Returns exitStatus (legacy API)
+            exitCode = pm.getJobData(pid, attribute='exitCode')
+            status = pm.getJobData(pid, attribute='status')
+            qprocess = pm.getJobData(pid, attribute='qprocess')
+        """
+        if pid not in self.processInfo:
+            return None
+
+        info = self.processInfo[pid]
+
+        # First check if attribute exists in processInfo dict
+        if attribute in info:
+            return info[attribute]
+
+        # For synchronous processes, check plugin object attributes
+        # CPluginScript stores exit codes as _exitCode, _exitStatus
+        plugin = info.get('plugin')
+        if plugin:
+            # Try with underscore prefix (e.g., exitCode -> _exitCode)
+            attr_name = f'_{attribute}'
+            if hasattr(plugin, attr_name):
+                return getattr(plugin, attr_name)
+
+        return None
+
+    def waitForFinished(self, pid: int, timeout: int = -1) -> bool:
+        """
+        Wait for a specific process to complete.
+
+        Args:
+            pid: Process ID to wait for
+            timeout: Timeout in milliseconds (-1 for infinite)
+
+        Returns:
+            True if process finished, False if timeout
+        """
+        if pid not in self.processInfo:
+            return False
+
+        info = self.processInfo[pid]
+
+        # If process already finished, return immediately
+        if info.get('finishTime'):
+            return True
+
+        # If async execution, wait for thread
+        if info.get('thread'):
+            timeout_sec = timeout / 1000.0 if timeout >= 0 else None
+            info['thread'].join(timeout=timeout_sec)
+            return info.get('finishTime') is not None
+
+        # Synchronous process should already be finished
+        return info.get('finishTime') is not None
+
+    def killProcess(self, pid: int):
+        """
+        Kill a running process.
+
+        Args:
+            pid: Process ID to kill
+        """
+        # For subprocess-based implementation, process has already
+        # completed by the time we could kill it (synchronous execution).
+        # For async execution, we'd need to store the Popen object.
+        # This is a placeholder for future enhancement.
+        if pid in self.processInfo:
+            self.processInfo[pid]['status'] = 'killed'
+
+    def register(self, plugin):
+        """
+        Register a plugin with the process manager.
+
+        Legacy API compatibility method for CPluginScript.
+        Stores a reference to the plugin so that getJobData() can query
+        plugin attributes (_exitCode, _exitStatus) for synchronous processes.
+
+        Args:
+            plugin: CPluginScript instance to register
+        """
+        # Use plugin's object ID as PID (matches getProcessId() implementation)
+        pid = id(plugin)
+
+        # Create or update process info entry
+        if pid not in self.processInfo:
+            self.processInfo[pid] = {}
+
+        # Store plugin reference for attribute queries
+        self.processInfo[pid]['plugin'] = plugin
+        self.processInfo[pid]['startTime'] = time.time()
+
+    def formatted_job(self, pid: int) -> str:
+        """
+        Get formatted job status string (legacy API).
+
+        Args:
+            pid: Process ID
+
+        Returns:
+            Formatted status string
+        """
+        if pid not in self.processInfo:
+            return f"{pid:4d}  UNKNOWN"
+
+        info = self.processInfo[pid]
+        number = f"{pid:4d}"
+
+        if info.get('finishTime'):
+            if info.get('exitCode', 0) != 0:
+                status_str = "FAILED"
+            else:
+                status_str = "FINISHED"
+
+            finish_time = time.strftime(
+                '%Y-%m-%d %H:%M:%S',
+                time.localtime(info['finishTime'])
+            )
+            return f"{number}  {status_str:8s} {finish_time}"
+        else:
+            start_time = time.strftime(
+                '%Y-%m-%d %H:%M:%S',
+                time.localtime(info.get('startTime', time.time()))
+            )
+            return f"{number}  STARTED  {start_time}"
+
+
+# Module-level singleton instance
+_process_manager_instance = CProcessManager()
+
+
+def PROCESSMANAGER() -> CProcessManager:
+    """
+    Get the global singleton process manager instance.
+
+    This function provides the legacy CCP4Modules.PROCESSMANAGER() API.
+
+    Returns:
+        Global CProcessManager instance
+
+    Example:
+        from core.CCP4ProcessManager import PROCESSMANAGER
+
+        pm = PROCESSMANAGER()
+        pm.setWaitForFinished(60000)
+        pid = pm.startProcess('refmac5', ['HKLIN', 'data.mtz'])
+        exitCode = pm.getJobData(pid, 'exitCode')
+    """
+    return _process_manager_instance

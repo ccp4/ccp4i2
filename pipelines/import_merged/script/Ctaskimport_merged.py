@@ -3,7 +3,7 @@ from qtgui import CCP4XtalWidgets
 from qtgui.CCP4TaskWidget import CTaskWidget
 
 import gemmi
-from PySide2 import QtCore, QtWidgets
+from baselayer import QtCore, QtWidgets
 
 from  pipelines.import_merged.script.mmcifutils import *
 from  pipelines.import_merged.script.dybuttons import *

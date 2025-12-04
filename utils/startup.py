@@ -31,7 +31,7 @@ import shutil
 import atexit
 import time
 import tempfile
-from PySide2 import QtCore, QtGui, QtWidgets
+from baselayer import QtCore, QtGui, QtWidgets
 
 class DatabaseFailException(Exception):
     pass

@@ -1,0 +1,971 @@
+{
+  "_comment": "Task metadata extracted from CCP4 CachedLookups.json. Contains TASKTITLE, DESCRIPTION, MAINTAINER, shortTitle for UI display.",
+  "_architecture_note": "CCP4i2 has a GUI/Plugin split: CTaskWidget (GUI) classes define TASKMODULE, DESCRIPTION, and reference a CPluginScript via TASKNAME. Multiple GUIs can reference the same plugin (one-to-many). This file currently captures a flattened view (one entry per plugin).",
+  "_todo": "FUTURE: Parse GUI classes (*_gui.py, CTask*.py) without importing Qt. Extract TASKNAME to link GUI→Plugin. Support multiple GUI entries per plugin for different use cases/folders.",
+  "AMPLE": {
+    "TASKTITLE": "Molecular Replacement with unconventional models - AMPLE",
+    "DESCRIPTION": "This task is for running Molecular Replacement with unconventional models",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "AMPLE Molecular Replacement Pipeline",
+    "RANK": null
+  },
+  "AUSPEX": {
+    "TASKTITLE": "Graphical diagnostics by AUSPEX plots",
+    "DESCRIPTION": "Use AUSPEX, generate graphical diagnostics for data set",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "AUSPEX",
+    "RANK": null
+  },
+  "AcedrgLink": {
+    "TASKTITLE": "AceDRG in link generation mode",
+    "DESCRIPTION": "AceDRG in link generation mode",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "AceDRG in link generation mode",
+    "RANK": null
+  },
+  "AlternativeImportXIA2": {
+    "TASKTITLE": "Import Xia2 results",
+    "DESCRIPTION": "Harvest merged and unmerged files from selected XIA2 data reduction protocols",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Import Xia2 results",
+    "RANK": null
+  },
+  "LidiaAcedrg": {
+    "TASKTITLE": "MAKE LIGAND",
+    "DESCRIPTION": "Generate a PDB file and dictionary (acedrg) from MOL file, SMILES, or sketch (lidia)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "MAKE LIGAND",
+    "RANK": 1
+  },
+  "LidiaAcedrgNew": {
+    "TASKTITLE": "Make Ligand - AceDRG",
+    "DESCRIPTION": "Generate a PDB file and dictionary (acedrg) from MOL file, SMILES string/file, or sketch (lidia).<br>Optionally match atom names to known structures.",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Make Ligand - AceDRG",
+    "RANK": 1
+  },
+  "MakeLink": {
+    "TASKTITLE": "Make Covalent Link - AceDRG",
+    "DESCRIPTION": "Generate a link dictionary to describe a covalent bond between two monomers, allowing modification of the linked monomers",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Make Covalent Link - AceDRG",
+    "RANK": null
+  },
+  "MakeMonster": {
+    "TASKTITLE": "Export monster mtz",
+    "DESCRIPTION": "Build an MTZ file from data objects",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Export monster mtz",
+    "RANK": null
+  },
+  "MakeProjectsAndDoLigandPipeline": {
+    "TASKTITLE": "Make projects and do ligand pipeline",
+    "DESCRIPTION": "A task to generate projects and apply ligand pipeline for multiple datasets",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Make projects and do ligand pipeline",
+    "RANK": null
+  },
+  "PrepareDeposit": {
+    "TASKTITLE": "Prepare files for deposition",
+    "DESCRIPTION": "Prepare files for deposition",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Prepare files for deposition",
+    "RANK": null
+  },
+  "ProvideAlignment": {
+    "TASKTITLE": "Import an alignment",
+    "DESCRIPTION": "Enter an alignment from a file or by cut and paste",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Import an alignment",
+    "RANK": null
+  },
+  "ProvideAsuContents": {
+    "TASKTITLE": "Define AU contents",
+    "DESCRIPTION": "Define AU contents, estimate molecular weight, Matthews probability from list of sequences",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Define AU contents",
+    "RANK": null
+  },
+  "ProvideSequence": {
+    "TASKTITLE": "Import sequence(s)",
+    "DESCRIPTION": "Enter one or more sequences from a sequence file, from a PDB, or by cut and paste",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Import sequence(s)",
+    "RANK": null
+  },
+  "ProvideTLS": {
+    "TASKTITLE": "Import and/or edit TLS set definitions",
+    "DESCRIPTION": "Enter TLS information to be used later in the project",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Import TLS",
+    "RANK": null
+  },
+  "SIMBAD": {
+    "TASKTITLE": "Sequence Free Molecular Replacement - SIMBAD",
+    "DESCRIPTION": "This task is for running Molecular Replacement without a sequence",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "SIMBAD Molecular Replacement Pipeline",
+    "RANK": null
+  },
+  "ShelxCD": {
+    "TASKTITLE": "Find HA sites - SHELXC/D",
+    "DESCRIPTION": "Find sites from SAD/MAD/SIR/SIRAS/RIP/RIPAS data",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "ShelxCD",
+    "RANK": null
+  },
+  "ShelxCE": {
+    "TASKTITLE": "Experimental phasing from heavy atom sites with ShelxE",
+    "DESCRIPTION": "Phasing, density modification and autobuilding",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Phasing -ShelxE",
+    "RANK": null
+  },
+  "ShelxCECompareHands": {
+    "TASKTITLE": "ShelxE Compare hands pipeline",
+    "DESCRIPTION": "Phasing, density modification and autobuilding - both hands of the HA structure",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Compare HA hands - ShelxE",
+    "RANK": null
+  },
+  "SubstituteLigand": {
+    "TASKTITLE": "Automated solution of isomorphous ligand complex",
+    "DESCRIPTION": "A ligand workflow, starting from merged or unmerged reflections, SMILES, and an isomorphous parent structure",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Isomorphous ligand solution",
+    "RANK": 1
+  },
+  "SubtractNative": {
+    "TASKTITLE": "Subtract a defied fraction of an atom map from an input map",
+    "DESCRIPTION": "Reads a set of map coefficients, generates a corresponding map, and modifies it by subtracting some fraction of the FC map corresponding to a set of coordinates that have been provided. The output is a set of modified map coefficients",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Subtract native map",
+    "RANK": null
+  },
+  "SyncToDjango": {
+    "TASKTITLE": "Exchange projects with Django Back end",
+    "DESCRIPTION": "Synchronization utility for CCP4i2 projects in locations which have a django-based project archive set up",
+    "MAINTAINER": "martin.noble@ncl.ac.uk",
+    "shortTitle": "Exchange projects with Django Back end",
+    "RANK": 2
+  },
+  "TestObsConversions": {
+    "TASKTITLE": "Test CCP4i2 observed data interconversions",
+    "DESCRIPTION": "Exercise CCP4i2 Observed data representation conversions",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Test CCP4i2 observed data interconversions",
+    "RANK": null
+  },
+  "ZZPipelineNameZZ": {
+    "TASKTITLE": "ZZLongTitleZZ",
+    "DESCRIPTION": "ZZDescriptionZZ",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "ZZShortTitleZZ",
+    "RANK": null
+  },
+  "ZZPluginNameZZ": {
+    "TASKTITLE": "ZZLongTitleZZ",
+    "DESCRIPTION": "ZZDescriptionZZ",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "ZZShortTitleZZ",
+    "RANK": null
+  },
+  "acorn": {
+    "TASKTITLE": "ACORN - Phase Refinement with Dynamic Density Modification",
+    "DESCRIPTION": "Un-biased improvement of initial phases for high resolution data (1.5 Angstoms and better)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "ACORN",
+    "RANK": null
+  },
+  "add_fractional_coords": {
+    "TASKTITLE": "Add Fractional Coordinates",
+    "DESCRIPTION": "Calculate fractional coordinates and output them in mmCIF format",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Add Fractional Coordinates",
+    "RANK": null
+  },
+  "adding_stats_to_mmcif_i2": {
+    "TASKTITLE": "Prepare and validate files for deposition",
+    "DESCRIPTION": "Add data reduction statistics and sequence information into coordinates for deposition",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "New deposition task",
+    "RANK": null
+  },
+  "aimless_pipe": {
+    "TASKTITLE": "Data reduction - AIMLESS",
+    "DESCRIPTION": "Scale and analyse unmerged data and suggest space group (Pointless, Aimless, Ctruncate, FreeRflag)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Data reduction",
+    "RANK": 1
+  },
+  "arcimboldo": {
+    "TASKTITLE": "Ab initio phasing and chain tracing - ARCIMBOLDO (LITE, BORGES, SHREDDER)",
+    "DESCRIPTION": "Structure solution from ideal molecular fragments using PHASER and SHELXE",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Arcimboldo",
+    "RANK": null
+  },
+  "arp_warp_classic": {
+    "TASKTITLE": "ARP/wARP",
+    "DESCRIPTION": "Build model (ARP/wARP classic)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "ARP/wARP",
+    "RANK": null
+  },
+  "buccaneer_build_refine_mr": {
+    "TASKTITLE": "Autobuild protein - BUCCANEER",
+    "DESCRIPTION": "Iterations of model building (Buccaneer) and refinement (Refmac5, Prosmart and Coot)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "BUCCANEER",
+    "RANK": 1
+  },
+  "buster": {
+    "TASKTITLE": "Refinement - BUSTER",
+    "DESCRIPTION": "Refine (BUSTER, Global Phasing Limited) with optional solvent/water update",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "BUSTER",
+    "RANK": null
+  },
+  "ccp4mg_edit_model": {
+    "TASKTITLE": "Interactive model preparation - CCP4mg and MrBUMP",
+    "DESCRIPTION": "Identify MR models with MrBUMP, display and select with CCP4mg",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "CCP4mg MrBUMP",
+    "RANK": null
+  },
+  "ccp4mg_edit_nomrbump": {
+    "TASKTITLE": "Interactive selection of MR model components - CCP4mg",
+    "DESCRIPTION": "Use CCP4mg to select components of a search model and output to i2 for MR",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "CCP4mg atom select",
+    "RANK": null
+  },
+  "ccp4mg_general": {
+    "TASKTITLE": "Molecular graphics visualization and figure creation - CCP4MG",
+    "DESCRIPTION": "Interactive molecular graphics: visualization, figure preparation, analysis.",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "CCP4MG",
+    "RANK": null
+  },
+  "chainsaw": {
+    "TASKTITLE": "Truncate search model - CHAINSAW",
+    "DESCRIPTION": "Truncate and renumber model prior to molecular replacement",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "CHAINSAW",
+    "RANK": null
+  },
+  "chltofom": {
+    "TASKTITLE": "Convert HL phase to and from Phi/Fom",
+    "DESCRIPTION": "Interconvert phases between Hendrickson Lattman and Phi/FOM representation",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Convert HL phase to and from Phi/Fom",
+    "RANK": null
+  },
+  "cif2mtz": {
+    "TASKTITLE": "Import merged mmCIF X-ray data",
+    "DESCRIPTION": "Import merged mmCIF X-ray data e.g. from the PDB database",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Import merged mmCIF X-ray data",
+    "RANK": null
+  },
+  "clustalw": {
+    "TASKTITLE": "Align sequences - CLUSTALW",
+    "DESCRIPTION": "Align sequences using clustalw",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "CLUSTALW",
+    "RANK": null
+  },
+  "cmapcoeff": {
+    "TASKTITLE": "Calculate unusual map coefficients",
+    "DESCRIPTION": "Compute map coefficients from set of observations and phases (cmapcoeff)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Calculate map coefficients",
+    "RANK": null
+  },
+  "comit": {
+    "TASKTITLE": "Calculate omit map to reduce model bias after molecular replacement or for validation",
+    "DESCRIPTION": "Calculate omit map to reduce model bias",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Calculate omit map",
+    "RANK": null
+  },
+  "coordinate_selector": {
+    "TASKTITLE": "Import a coordinate set - optional selection of subset",
+    "DESCRIPTION": "Select (potentially complicated) subset from a coordinate set",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Import coordinates",
+    "RANK": null
+  },
+  "coot1": {
+    "TASKTITLE": "Coot 1",
+    "DESCRIPTION": "Interactive model building with Coot 1",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Coot 1",
+    "RANK": null
+  },
+  "coot_find_waters": {
+    "TASKTITLE": "Find waters - COOT",
+    "DESCRIPTION": "Find and filter waters based on electron density and contacts (non-interactive Coot)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Find waters - COOT",
+    "RANK": null
+  },
+  "coot_fit_residues": {
+    "TASKTITLE": "Coot fit residues",
+    "DESCRIPTION": null,
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Coot fit residues",
+    "RANK": null
+  },
+  "coot_rebuild": {
+    "TASKTITLE": "Model building - COOT 0.9",
+    "DESCRIPTION": "Interactive building (Coot 0.9)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "COOT",
+    "RANK": null
+  },
+  "coot_rsr_morph": {
+    "TASKTITLE": "Real space refinement morphing with coot",
+    "DESCRIPTION": "Real space refinement morphing with coot",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Real space refinement morphing with coot",
+    "RANK": null
+  },
+  "coot_script_lines": {
+    "TASKTITLE": "Scripted model building - COOT",
+    "DESCRIPTION": "Use scripts to fit sidechains, perform stepped refinement, fill and fit... (non-interactive Coot)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Scripted COOT",
+    "RANK": null
+  },
+  "coot_stepped_refine": {
+    "TASKTITLE": "Coot stepped refinement",
+    "DESCRIPTION": null,
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Coot stepped refinement",
+    "RANK": null
+  },
+  "cpatterson": {
+    "TASKTITLE": "Calculate Patterson map",
+    "DESCRIPTION": "Calculate Patterson map (cpatterson)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Calculate Patterson map",
+    "RANK": null
+  },
+  "crank2": {
+    "TASKTITLE": "Automated structure solution - CRANK2 phasing and building",
+    "DESCRIPTION": "CRANK2 experimental phasing pipeline",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "CRANK2",
+    "RANK": 1
+  },
+  "crank2_comb_phdmmb": {
+    "TASKTITLE": "Model building",
+    "DESCRIPTION": "Crank2 model building",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Model building",
+    "RANK": 1
+  },
+  "crank2_dmfull": {
+    "TASKTITLE": "Density modification",
+    "DESCRIPTION": "Crank2 density modification",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Density modification",
+    "RANK": 1
+  },
+  "crank2_faest": {
+    "TASKTITLE": "FA estimation",
+    "DESCRIPTION": "Crank2 FA estimation and other phasing preparations",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "FA estimation",
+    "RANK": 1
+  },
+  "crank2_handdet": {
+    "TASKTITLE": "Hand determination",
+    "DESCRIPTION": "Crank2 determination of handedness",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Hand determination",
+    "RANK": 1
+  },
+  "crank2_mbref": {
+    "TASKTITLE": "Model building",
+    "DESCRIPTION": "Crank2 model building",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Model building",
+    "RANK": 1
+  },
+  "crank2_phas": {
+    "TASKTITLE": "Phasing",
+    "DESCRIPTION": "Crank2 phasing",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Phasing",
+    "RANK": 1
+  },
+  "crank2_phdmmb": {
+    "TASKTITLE": "Density modification, poly-Ala tracing",
+    "DESCRIPTION": "SHELXE density modification and poly-Ala tracing",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Density modification, poly-Ala tracing",
+    "RANK": 1
+  },
+  "crank2_ref": {
+    "TASKTITLE": "Refinement",
+    "DESCRIPTION": "Crank2 refinement",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Refinement",
+    "RANK": 1
+  },
+  "crank2_refatompick": {
+    "TASKTITLE": "Iterative atom picking",
+    "DESCRIPTION": "Crank2 substructure improvement",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Iterative atom picking",
+    "RANK": 1
+  },
+  "crank2_substrdet": {
+    "TASKTITLE": "Substructure detection",
+    "DESCRIPTION": "Crank2 substructure detection",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Substructure detection",
+    "RANK": 1
+  },
+  "csymmatch": {
+    "TASKTITLE": "Match model to reference structure",
+    "DESCRIPTION": "Match symmetry and origin of output model to reference structure (Csymmatch)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "MATCH MODEL",
+    "RANK": null
+  },
+  "ctruncate": {
+    "TASKTITLE": "Convert intensities to amplitudes",
+    "DESCRIPTION": "Convert reflection intensities to structure factors (ctruncate)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Convert intensities to amplitudes",
+    "RANK": null
+  },
+  "density_calculator": {
+    "TASKTITLE": "Density Calculator",
+    "DESCRIPTION": "Calculate a map for a structure",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Density Calculator",
+    "RANK": null
+  },
+  "dials_image": {
+    "TASKTITLE": "DIALS Image Viewer",
+    "DESCRIPTION": "DIALS Image Viewer",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "DIALS Image Viewer",
+    "RANK": null
+  },
+  "dials_rlattice": {
+    "TASKTITLE": "DIALS Reciprocal Lattice Viewer",
+    "DESCRIPTION": "DIALS Reciprocal Lattice Viewer",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "DIALS rLattice Viewer",
+    "RANK": null
+  },
+  "dr_mr_modelbuild_pipeline": {
+    "TASKTITLE": "Data Reduction, MR, Model build pipeline",
+    "DESCRIPTION": "Data Reduction, MR, Model build pipeline",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Data Rection, MR, model building",
+    "RANK": 1
+  },
+  "dui": {
+    "TASKTITLE": "Integrate images with DIALS",
+    "DESCRIPTION": "Launch DUI and capture output",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "DIALS User Interface",
+    "RANK": null
+  },
+  "dummy": {
+    "TASKTITLE": "Task interface demo code",
+    "DESCRIPTION": "Demo code for developers - does not run",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "DumMee",
+    "RANK": null
+  },
+  "editbfac": {
+    "TASKTITLE": "Process Predicted Models",
+    "DESCRIPTION": "Process Predicted Models - automatically process predicted models",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Process Predicted Models",
+    "RANK": null
+  },
+  "edstats": {
+    "TASKTITLE": "Analyse agreement between model and density - EDSTATS",
+    "DESCRIPTION": "Calculates real-space metrics for evaluating the agreement between model and density (Edstats, cfft)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "EDSTATS",
+    "RANK": 1
+  },
+  "findmyseq": {
+    "TASKTITLE": "Find My Sequence",
+    "DESCRIPTION": "Find the most likely sequence in a database for a given map and model",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Find My Sequence",
+    "RANK": null
+  },
+  "freerflag": {
+    "TASKTITLE": "Generate a Free R set",
+    "DESCRIPTION": "Generate a Free R set for a complete set of reflection indices to a given resolution (FreeRflag)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Generate a Free R set",
+    "RANK": 2
+  },
+  "gesamt": {
+    "TASKTITLE": "Structural alignment - Gesamt",
+    "DESCRIPTION": "Superpose one protein structure on another",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "GESAMT",
+    "RANK": null
+  },
+  "guipreferences": {
+    "TASKTITLE": "CCP4i2 Preferences",
+    "DESCRIPTION": null,
+    "MAINTAINER": "Nobody",
+    "shortTitle": "CCP4i2 Preferences",
+    "RANK": null
+  },
+  "i2Dimple": {
+    "TASKTITLE": "DIMPLE - Simple reflections + coordinates to map pipeline",
+    "DESCRIPTION": "This task uses the DIMPLE pipeline to generate maps for a new dataset, provided a possible starting model is available.  For simple cases of isomorphous data, the pipeline will use rigid body refinement in REFMAC to 'tweak' the starting model. Where unit cells are incompatible, it will attempt automated molecular replacement.",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "DIMPLE",
+    "RANK": null
+  },
+  "imosflm": {
+    "TASKTITLE": "Integrate images with Mosflm",
+    "DESCRIPTION": "Launch iMosflm and capture output",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Integrate images with Mosflm",
+    "RANK": null
+  },
+  "import_merged": {
+    "TASKTITLE": "Import merged reflection data",
+    "DESCRIPTION": "Import reflection data in any format, report on contents and create CCP4i2 data objects",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Import merged",
+    "RANK": null
+  },
+  "import_mosflm": {
+    "TASKTITLE": "Import iMosflm X-ray data",
+    "DESCRIPTION": "Import merged and unmerged X-ray reflections from Mosflm",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Import iMosflm X-ray data",
+    "RANK": null
+  },
+  "import_serial": {
+    "TASKTITLE": "Import Serial",
+    "DESCRIPTION": "Import merged data from CrystFEL",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Import Serial Data",
+    "RANK": null
+  },
+  "import_serial_pipe": {
+    "TASKTITLE": "Import Serial Pipeline",
+    "DESCRIPTION": "Import merged data from CrystFEL",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Import Serial Data",
+    "RANK": null
+  },
+  "lorestr_i2": {
+    "TASKTITLE": "Low Resolution Refinement Pipeline (LORESTR)",
+    "DESCRIPTION": "Automated Low Resolution Structure Refinement Pipeline (LORESTR)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "LORESTR",
+    "RANK": null
+  },
+  "matthews": {
+    "TASKTITLE": "Estimate AU content",
+    "DESCRIPTION": "Estimate number of molecules in the asymmetric unit and solvent content (Matthews_coeff)",
+    "MAINTAINER": "liz.potterton@york.ac.uk",
+    "shortTitle": "Estimate AU content",
+    "RANK": 2
+  },
+  "mergeMtz": {
+    "TASKTITLE": "Merge experimental data objects to MTZ",
+    "DESCRIPTION": "Export 'old' style MTZ file",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Merge to MTZ",
+    "RANK": null
+  },
+  "metalCoord": {
+    "TASKTITLE": "MetalCoord",
+    "DESCRIPTION": "Generate restraints for metal-containing monomers",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "MetalCoord",
+    "RANK": null
+  },
+  "modelcraft": {
+    "TASKTITLE": "Autobuild with ModelCraft, Buccaneer and Nautilus",
+    "DESCRIPTION": "Automated model building of protein, nucleic acid and water",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "ModelCraft",
+    "RANK": null
+  },
+  "molrep_den": {
+    "TASKTITLE": "Molecular replacement with electron density - MOLREP",
+    "DESCRIPTION": "Use electron density as the search model (Molrep)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "MOLREP with density",
+    "RANK": null
+  },
+  "molrep_mr": {
+    "TASKTITLE": "Molecular Replacement and refinement- MOLREP",
+    "DESCRIPTION": "Molecular replacement (Molrep)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "MOLREP MR",
+    "RANK": null
+  },
+  "molrep_pipe": {
+    "TASKTITLE": "Molecular Replacement and refinement - MOLREP",
+    "DESCRIPTION": "Molecular replacement (Molrep)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "MOLREP",
+    "RANK": 1
+  },
+  "molrep_selfrot": {
+    "TASKTITLE": "Calculate self rotation function",
+    "DESCRIPTION": "Evaluate data for anisotropy, optical resolution, pseudo translation and perform self-rotation function (Molrep)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Calculate self rotation function",
+    "RANK": 2
+  },
+  "morda_i2": {
+    "TASKTITLE": "Automated molecular replacement - MORDA",
+    "DESCRIPTION": "Molecular Replacement with Domains and Assemblies",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "MORDA",
+    "RANK": 1
+  },
+  "mosflm": {
+    "TASKTITLE": "Integrate images - MOSFLM",
+    "DESCRIPTION": "Use a script that you provide",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Integrate images - MOSFLM",
+    "RANK": null
+  },
+  "mrbump_basic": {
+    "TASKTITLE": "Automated structure solution - MrBUMP",
+    "DESCRIPTION": "Run a quick MrBUMP job with streamlined settings",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Automated structure solution - MrBUMP",
+    "RANK": 1
+  },
+  "mrbump_model_prep": {
+    "TASKTITLE": "MrBUMP model preparation",
+    "DESCRIPTION": "Model preparation with MrBUMP for data reduction/MR/model build pipeline",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "MrBUMP model prep",
+    "RANK": 1
+  },
+  "mrparse": {
+    "TASKTITLE": "MrParse",
+    "DESCRIPTION": "Search online PDB and EBI-AFDB databases to find and process search models for use in molecular replacement",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "mrparse",
+    "RANK": null
+  },
+  "mtzutils": {
+    "TASKTITLE": "Add or delete MTZ columns",
+    "DESCRIPTION": null,
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Add or delete MTZ columns",
+    "RANK": null
+  },
+  "nautilus_build_refine": {
+    "TASKTITLE": "Autobuild RNA/DNA (Nautilus pipeline)",
+    "DESCRIPTION": "Iterations of model building (Nautilus) and refinement (Refmac5)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Autobuild RNA - NAUTILUS",
+    "RANK": null
+  },
+  "pairef": {
+    "TASKTITLE": "Pairef",
+    "DESCRIPTION": "Paired Refinement with Pairef",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Pairef",
+    "RANK": null
+  },
+  "parrot": {
+    "TASKTITLE": "Density modification - PARROT",
+    "DESCRIPTION": "Modify the electron density (Parrot)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "PARROT",
+    "RANK": null
+  },
+  "pdb_redo_api": {
+    "TASKTITLE": "PDB-REDO Web services",
+    "DESCRIPTION": "Refine structures using PDB-REDO Web service",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "PDB-REDO",
+    "RANK": null
+  },
+  "pdbset_ui": {
+    "TASKTITLE": "Scripted structure edits - Pdbset",
+    "DESCRIPTION": "Structure edits with the pdbset program",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "PDBSET",
+    "RANK": null
+  },
+  "pdbview_edit": {
+    "TASKTITLE": "Edit PDB/CIF files by hand",
+    "DESCRIPTION": "Edit PDB/CIF files by hand with the PdbView program",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Edit PDB/CIF",
+    "RANK": null
+  },
+  "phaser_EP": {
+    "TASKTITLE": "SAD phasing - PHASER",
+    "DESCRIPTION": "Complete a heavy atom model and calculate phases",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "SAD phasing - PHASER",
+    "RANK": 1
+  },
+  "phaser_EP_AUTO": {
+    "TASKTITLE": "SAD phasing from heavy atom sites - PHASER",
+    "DESCRIPTION": "Complete a heavy atom model and calculate phases",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "SAD phasing from heavy atom sites - PHASER",
+    "RANK": null
+  },
+  "phaser_EP_LLG": {
+    "TASKTITLE": "Anomalous map from coordinates - PHASER",
+    "DESCRIPTION": "Calculate anomalous LLG map phased by coordinates to highlight anomalous scatterers (Phaser)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Anomalous map from coordinates - PHASER",
+    "RANK": null
+  },
+  "phaser_MR_AUTO": {
+    "TASKTITLE": "Molecular Replacement - Phaser",
+    "DESCRIPTION": "Molecular replacement (Phaser)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Molecular Replacement - Phaser",
+    "RANK": null
+  },
+  "phaser_MR_RNP": {
+    "TASKTITLE": "Run rigid body refinement - PHASER",
+    "DESCRIPTION": "Rigid body refinement usng PHASER in MR_RNP mode",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Run rigid body refinement - PHASER",
+    "RANK": null
+  },
+  "phaser_ensembler": {
+    "TASKTITLE": "Build an ensemble for PHASER",
+    "DESCRIPTION": "Compile assorted related structures into an ensemble for use in PHASER",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Build an ensemble for PHASER",
+    "RANK": null
+  },
+  "phaser_phil": {
+    "TASKTITLE": "Phaser auto generated GUI",
+    "DESCRIPTION": "Phaser auto generated GUI",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "phaser_phil",
+    "RANK": null
+  },
+  "phaser_pipeline": {
+    "TASKTITLE": "Expert Mode Molecular Replacement - PHASER",
+    "DESCRIPTION": "Advanced MR options followed by refinement and rebuilding (Phaser, Refmac5, Coot)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Expert MR - PHASER",
+    "RANK": 1
+  },
+  "phaser_rnp_pipeline": {
+    "TASKTITLE": "Rigid body refinement - PHASER",
+    "DESCRIPTION": "Define rigid bodies for refinement (Phaser), fill partial residues (Coot) and refine (Refmac)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Rigid body PHASER",
+    "RANK": null
+  },
+  "phaser_simple": {
+    "TASKTITLE": "Basic Molecular Replacement - PHASER",
+    "DESCRIPTION": "Simple MR with optional refinement and rebuilding (Phaser)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Basic MR - PHASER",
+    "RANK": 1
+  },
+  "phaser_singleMR": {
+    "TASKTITLE": "Single Atom Molecular Replacement",
+    "DESCRIPTION": "Perform Single Atom MR using Phaser",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Single Atom MR",
+    "RANK": null
+  },
+  "pisapipe": {
+    "TASKTITLE": "Structure analysis with Pisa",
+    "DESCRIPTION": "Analyse tertiary structure and interfaces of a protein",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Structure analysis with Pisa",
+    "RANK": null
+  },
+  "pointless_reindexToMatch": {
+    "TASKTITLE": "Reindex reflections or change spacegroup",
+    "DESCRIPTION": "Reindex: match to reference data/coordinates; change space group; analyse symmetry; or expand to P1 (Pointless)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Reindex reflections or change spacegroup",
+    "RANK": 2
+  },
+  "privateer": {
+    "TASKTITLE": "Validation of carbohydrate structures - Privateer",
+    "DESCRIPTION": "Validation, re-refinement and graphical analysis of carbohydrate structures",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Privateer",
+    "RANK": null
+  },
+  "prosmart": {
+    "TASKTITLE": "ProSMART - Restraint generation and structural comparison",
+    "DESCRIPTION": null,
+    "MAINTAINER": "Nobody",
+    "shortTitle": "ProSMART - Restraint generation and structural comparison",
+    "RANK": null
+  },
+  "prosmart_refmac": {
+    "TASKTITLE": "Refinement - Refmacat/Refmac5",
+    "DESCRIPTION": "Refine (Refmacat/Refmac5) with optional restraints (Prosmart, Platonyzer)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "REFMAC5",
+    "RANK": 1
+  },
+  "pyphaser_mr": {
+    "TASKTITLE": "MR using Phaser (pythonic)",
+    "DESCRIPTION": null,
+    "MAINTAINER": "Nobody",
+    "shortTitle": "MR using Phaser (pythonic)",
+    "RANK": null
+  },
+  "qtpisa": {
+    "TASKTITLE": "Interface and quaternary structure analysis - PISA",
+    "DESCRIPTION": "Interface and assembly analysis (qtpisa)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "PISA",
+    "RANK": null
+  },
+  "reindex_minimtz": {
+    "TASKTITLE": "Reindex any miniMTZ",
+    "DESCRIPTION": null,
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Reindex any miniMTZ",
+    "RANK": null
+  },
+  "reindex_processed_data": {
+    "TASKTITLE": "Reindex observed and FreeR data",
+    "DESCRIPTION": "Reindex processed data to correspond to a master dataset (Reindex)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Reindex observed and FreeR data",
+    "RANK": null
+  },
+  "scaleit": {
+    "TASKTITLE": "Compare two or more datasets",
+    "DESCRIPTION": "Compare two or more datasets by running SCALEIT",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Compare two or more datasets",
+    "RANK": null
+  },
+  "sculptor": {
+    "TASKTITLE": "Truncate search model - SCULPTOR",
+    "DESCRIPTION": "Truncate model prior to molecular replacement",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "SCULPTOR",
+    "RANK": null
+  },
+  "servalcat_pipe": {
+    "TASKTITLE": "Refinement - Servalcat",
+    "DESCRIPTION": "Refinement against diffraction data or cryo-EM SPA map with optional restraints from ProSmart and/or MetalCoord",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Servalcat",
+    "RANK": 1
+  },
+  "sheetbend": {
+    "TASKTITLE": "Fast preliminary refinement of atomic model coordinates or temperature factors, including at low resolution",
+    "DESCRIPTION": "Fast preliminary refinement of atomic model using the program sheetbend",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Shift field refinement",
+    "RANK": null
+  },
+  "shelx": {
+    "TASKTITLE": "Automated structure solution - SHELXC/D/E phasing and building",
+    "DESCRIPTION": "Experimental phasing pipeline SHELX (run via Crank2)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "SHELX",
+    "RANK": 1
+  },
+  "shelxeMR": {
+    "TASKTITLE": "Model building from Molecular Replacement solution using Shelxe",
+    "DESCRIPTION": "Use Shelxe to attempt to improve (or verify) a solution from Molecular Replacement",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "SHELXE-MR",
+    "RANK": null
+  },
+  "slicendice": {
+    "TASKTITLE": "SliceNDice - Auto model processing and MR",
+    "DESCRIPTION": "Automated processing of predicted or deposited search models and Molecular Replacement",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "SliceNDice - Auto model processing and MR",
+    "RANK": 1
+  },
+  "splitMtz": {
+    "TASKTITLE": "Import and Split MTZ into experimental data objects",
+    "DESCRIPTION": "Select groups of columns from the MTZ file (csplitmtz)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Import and Split MTZ",
+    "RANK": null
+  },
+  "tableone": {
+    "TASKTITLE": "Generate Table One",
+    "DESCRIPTION": "Generate Table One for publications.",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Table One",
+    "RANK": null
+  },
+  "validate_protein": {
+    "TASKTITLE": "Multimetric model validation - Iris",
+    "DESCRIPTION": "Calculates per-residue metrics including B-factors, density fit quality, Ramachandran plots, rotamer outliers, and clashes (Iris-Validation & MolProbity)",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Multimetric validation",
+    "RANK": 1
+  },
+  "workflow": {
+    "TASKTITLE": null,
+    "DESCRIPTION": null,
+    "MAINTAINER": "Nobody",
+    "shortTitle": null,
+    "RANK": null
+  },
+  "xia2_dials": {
+    "TASKTITLE": "Automated integration of images with DIALS using xia2",
+    "DESCRIPTION": "Select a directory containing images and integrate them",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "xia2/dials",
+    "RANK": 1
+  },
+  "xia2_multiplex": {
+    "TASKTITLE": "Automated combination of datasets using xia2.multiplex",
+    "DESCRIPTION": "Select previous xia2 runs",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "multiplex",
+    "RANK": 1
+  },
+  "xia2_ssx_reduce": {
+    "TASKTITLE": "Reduction of serial datasets using xia2.ssx_reduce",
+    "DESCRIPTION": "Select integrated data from xia2.ssx or dials.stills_process",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "xia2.ssx_reduce",
+    "RANK": 1
+  },
+  "xia2_xds": {
+    "TASKTITLE": "Automated integration of images with XDS using xia2",
+    "DESCRIPTION": "Select a directory containing images and integrate them",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "xia2/xds",
+    "RANK": 1
+  },
+  "zanuda": {
+    "TASKTITLE": "Zanuda",
+    "DESCRIPTION": "Space group validation",
+    "MAINTAINER": "Nobody",
+    "shortTitle": "Zanuda",
+    "RANK": null
+  }
+}

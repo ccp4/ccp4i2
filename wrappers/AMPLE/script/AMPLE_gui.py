@@ -28,7 +28,7 @@ from qtgui.CCP4TaskWidget import CTaskWidget
 # David's handy debug console
 #from phil2etree import debug_console
 
-from PySide2 import QtCore
+from baselayer import QtCore
 from multiprocessing import cpu_count
 
 class AMPLE_gui(CTaskWidget):
