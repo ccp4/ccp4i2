@@ -516,6 +516,10 @@ class ProjectViewSet(ModelViewSet):
             - title: Job title (optional)
             - parent_job_uuid: Parent job UUID for nested jobs (optional)
             - input_params: Dict of input parameters (optional)
+            - context_job_uuid: Context job UUID for input population (optional).
+                If not provided, uses the most recent job in the project.
+            - auto_context: Whether to auto-select context job (default: True).
+                Set to False to create a job without context-based input population.
 
         Returns:
             JSON with status and new job details
@@ -534,6 +538,14 @@ class ProjectViewSet(ModelViewSet):
             title = body.get("title")
             parent_job_uuid = body.get("parent_job_uuid")
             input_params = body.get("input_params")
+            auto_context = body.get("auto_context", True)
+
+            # Convert context_job_uuid string to UUID if provided
+            context_job_uuid_str = body.get("context_job_uuid")
+            context_job_uuid = None
+            if context_job_uuid_str:
+                import uuid as uuid_module
+                context_job_uuid = uuid_module.UUID(context_job_uuid_str)
 
             # Use modern async job creation (same as management command)
             # Use async_to_sync to properly handle Django database connections
@@ -543,7 +555,9 @@ class ProjectViewSet(ModelViewSet):
                 title=title,
                 parent_job_uuid=parent_job_uuid,
                 save_params=True,
-                input_params=input_params
+                input_params=input_params,
+                context_job_uuid=context_job_uuid,
+                auto_context=auto_context,
             )
 
             # Get the created job from database

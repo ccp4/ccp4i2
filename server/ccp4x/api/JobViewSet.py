@@ -770,6 +770,7 @@ class JobViewSet(ModelViewSet):
             the_job = models.Job.objects.get(id=pk)
 
             # Modern approach: Use CPluginScript architecture
+            # get_job_plugin automatically creates a dbHandler for file path resolution
             plugin = get_job_plugin(the_job)
 
             # Serialize container to JSON using modern encoder
