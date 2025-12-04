@@ -295,8 +295,12 @@ class DefXmlParser:
                 result[tag] = None
             elif text.lower() in ("true", "false"):
                 result[tag] = text.lower() == "true"
-            elif "," in text and tag in ("enumerators", "menuText", "fileExtensions"):
-                result[tag] = [item.strip() for item in text.split(",")]
+            elif tag in ("enumerators", "menuText", "fileExtensions"):
+                # These are always arrays, even with a single value
+                if "," in text:
+                    result[tag] = [item.strip() for item in text.split(",")]
+                else:
+                    result[tag] = [text.strip()]
             elif tag in ("min", "max", "default") and self._is_number(text):
                 result[tag] = self._parse_number(text)
             else:
