@@ -13,6 +13,7 @@ def gemmi_split_mtz(
     input_file_path: pathlib.Path = None,
     input_column_path: str = None,
     preferred_dest: pathlib.Path = None,
+    return_metadata: bool = False,
 ):
     """
     Splits an MTZ file based on specified columns and writes the result to a new file.
@@ -21,6 +22,7 @@ def gemmi_split_mtz(
         input_file_path (pathlib.Path): Path to the input MTZ file. Must be provided and must exist.
         input_column_path (str): Path to the columns to be extracted, e.g., '/*/*/[F,SIGFP]'. Must be provided.
         preferred_dest (pathlib.Path): Preferred destination path for the split file. Must be provided.
+        return_metadata (bool): If True, return a dict with path and metadata instead of just the path.
 
     Raises:
         Exception: If any of the required arguments are not provided or if the input file does not exist.
@@ -28,6 +30,8 @@ def gemmi_split_mtz(
 
     Returns:
         pathlib.Path: Path to the newly created MTZ file with the selected columns.
+        OR (if return_metadata=True):
+        dict: {"path": pathlib.Path, "metadata": {"crystal_name": str, "dataset_name": str, "column_labels": list}}
     """
     logger.warning("Starting gemmi_split_mtz with input_file_path=%s, input_column_path=%s, preferred_dest=%s",
                    input_file_path, input_column_path, preferred_dest)  
@@ -124,6 +128,16 @@ def gemmi_split_mtz(
 
     mtzout.history = [f"MTZ file created from {input_file_path.name} using gemmi."]
     mtzout.write_to_file(str(final_dest))
+
+    if return_metadata:
+        # Extract metadata for annotation
+        metadata = {
+            "crystal_name": dataset.crystal_name if dataset != hkl_base else None,
+            "dataset_name": dataset.dataset_name if dataset != hkl_base else None,
+            "column_labels": output_column_labels,
+            "original_columns": [col.label for col in output_columns],
+        }
+        return {"path": final_dest, "metadata": metadata}
 
     return final_dest
 

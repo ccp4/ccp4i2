@@ -28,6 +28,44 @@ from ccp4x.db import models
 logger = logging.getLogger(f"ccp4x:{__name__}")
 
 
+def build_file_annotation(original_filename: str, mtz_metadata: dict = None) -> str:
+    """
+    Build a file annotation string, including MTZ metadata if available.
+
+    Args:
+        original_filename: The original uploaded file name
+        mtz_metadata: Optional dict with keys: crystal_name, dataset_name, column_labels, original_columns
+
+    Returns:
+        Annotation string like:
+        - "Imported from data.mtz" (no metadata)
+        - "Imported from data.mtz; Crystal: xtal1; Dataset: native; Columns: F, SIGF" (with metadata)
+    """
+    annotation = f"Imported from {original_filename}"
+
+    if mtz_metadata:
+        parts = []
+
+        crystal_name = mtz_metadata.get("crystal_name")
+        if crystal_name:
+            parts.append(f"Crystal: {crystal_name}")
+
+        dataset_name = mtz_metadata.get("dataset_name")
+        if dataset_name:
+            parts.append(f"Dataset: {dataset_name}")
+
+        # Use original_columns (the actual column labels from the source file)
+        # rather than column_labels (the standardized output labels)
+        original_columns = mtz_metadata.get("original_columns")
+        if original_columns:
+            parts.append(f"Columns: {', '.join(original_columns)}")
+
+        if parts:
+            annotation = f"{annotation}; {'; '.join(parts)}"
+
+    return annotation
+
+
 def normalize_object_path(object_path: str) -> str:
     """
     Normalize object paths from frontend to match backend container structure.
@@ -167,6 +205,9 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
         file_type,
     )
 
+    # Track metadata from MTZ splitting for richer annotations
+    mtz_metadata = None
+
     if isinstance(param_object, CMtzDataFileStub):
         # Check for enhanced multi-selector format first (JSON array)
         column_selectors_json = request.POST.get("column_selectors", None)
@@ -182,25 +223,30 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
                 )
                 imported_file_path = multi_result["primaryPath"]
                 additional_paths = multi_result.get("additionalPaths", [])
+                mtz_metadata = multi_result.get("metadata")
                 logger.info(
-                    "handle_reflections_multi returned: primary=%s, additional=%s",
-                    imported_file_path, additional_paths
+                    "handle_reflections_multi returned: primary=%s, additional=%s, metadata=%s",
+                    imported_file_path, additional_paths, mtz_metadata
                 )
                 # Note: additional_paths contains alternate representations
                 # These could be stored or returned to frontend in future enhancement
             except json.JSONDecodeError as e:
                 logger.error("Failed to parse column_selectors JSON: %s", e)
                 # Fall back to single selector mode
-                imported_file_path = handle_reflections(
+                result = handle_reflections(
                     job, param_object, files[0].name, column_selector, downloaded_file_path
                 )
+                imported_file_path = result["path"]
+                mtz_metadata = result.get("metadata")
         else:
             # Legacy single-selector mode
             logger.info("MTZ path - column_selector: %s", column_selector)
-            imported_file_path = handle_reflections(
+            result = handle_reflections(
                 job, param_object, files[0].name, column_selector, downloaded_file_path
             )
-            logger.info("handle_reflections returned: %s", imported_file_path)
+            imported_file_path = result["path"]
+            mtz_metadata = result.get("metadata")
+            logger.info("handle_reflections returned: %s, metadata=%s", imported_file_path, mtz_metadata)
     else:
         logger.info("Non-MTZ path - using downloaded file directly")
         imported_file_path = downloaded_file_path
@@ -248,12 +294,15 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
     # value from just before the first array-indirection brackets.  hence coot_rebuild.outputData.XYZOUT[0] becomes
     # job_param_name XYZOUT[0]. This is a bit of a hack, but it works.
 
+    # Build annotation - include MTZ metadata if available
+    annotation = build_file_annotation(files[0].name, mtz_metadata)
+
     new_file = models.File(
         job=job,
         name=str(imported_file_path.name),
         directory=models.File.Directory.IMPORT_DIR,
         type=file_type_obj,
-        annotation=f"Imported from {files[0].name}",
+        annotation=annotation,
         job_param_name=job_param_name,
         sub_type=subType,
         content=contentFlag,
@@ -328,7 +377,7 @@ def handle_reflections(
 ):
     """
     Handle single column selector (backward compatible).
-    Returns the path to the imported file.
+    Returns dict with path and optional metadata for annotation.
     """
     logger.info(
         "Dealing with a reflection object, class=%s, column_selector=%s",
@@ -352,7 +401,7 @@ def handle_reflections(
         dest = available_file_name_based_on(dest)
         import shutil
         shutil.copy2(downloaded_file_path, dest)
-        return dest
+        return {"path": dest, "metadata": None}
 
     # For specific reflection types (CObsDataFile, etc.) or when column_selector
     # is provided, proceed with column extraction
@@ -374,8 +423,8 @@ def handle_reflections(
         / slugify(pathlib.Path(file_name).stem)
     ).with_suffix(pathlib.Path(downloaded_file_path).suffix)
     logger.info("Preferred imported file destination is %s", dest)
-    imported_file_path = gemmi_split_mtz(downloaded_file_path, column_selector, dest)
-    return imported_file_path
+    result = gemmi_split_mtz(downloaded_file_path, column_selector, dest, return_metadata=True)
+    return result
 
 
 def handle_reflections_multi(
@@ -415,10 +464,10 @@ def handle_reflections_multi(
     # Handle case where column_selectors is empty or None
     if not column_selectors:
         # Fall back to single-file behavior
-        primary_path = handle_reflections(
+        result = handle_reflections(
             job, param_object, file_name, None, downloaded_file_path
         )
-        return {"primaryPath": primary_path, "additionalPaths": []}
+        return {"primaryPath": result["path"], "additionalPaths": [], "metadata": result.get("metadata")}
 
     # CMtzDataFile without selectors: copy as-is
     is_general_container = type(param_object).__name__ == "CMtzDataFile"
@@ -432,7 +481,7 @@ def handle_reflections_multi(
         dest = available_file_name_based_on(dest)
         import shutil
         shutil.copy2(downloaded_file_path, dest)
-        return {"primaryPath": dest, "additionalPaths": []}
+        return {"primaryPath": dest, "additionalPaths": [], "metadata": None}
 
     # Ensure the MTZ file is readable
     try:
@@ -453,6 +502,7 @@ def handle_reflections_multi(
     )
 
     primary_path = None
+    primary_metadata = None
     additional_paths = []
     base_stem = slugify(pathlib.Path(file_name).stem)
     suffix = pathlib.Path(downloaded_file_path).suffix
@@ -486,12 +536,13 @@ def handle_reflections_multi(
             signature, is_primary, dest
         )
 
-        # Extract columns
-        imported_path = gemmi_split_mtz(downloaded_file_path, column_selector, dest)
-
+        # Extract columns - get metadata for primary file
         if is_primary:
-            primary_path = imported_path
+            result = gemmi_split_mtz(downloaded_file_path, column_selector, dest, return_metadata=True)
+            primary_path = result["path"]
+            primary_metadata = result.get("metadata")
         else:
+            imported_path = gemmi_split_mtz(downloaded_file_path, column_selector, dest)
             additional_paths.append({
                 "path": imported_path,
                 "signature": signature,
@@ -504,7 +555,7 @@ def handle_reflections_multi(
         first = additional_paths.pop(0)
         primary_path = first["path"]
 
-    return {"primaryPath": primary_path, "additionalPaths": additional_paths}
+    return {"primaryPath": primary_path, "additionalPaths": additional_paths, "metadata": primary_metadata}
 
 
 def gemmi_convert_to_mtz(dobj: CMtzDataFile, downloaded_file_path: pathlib.Path):

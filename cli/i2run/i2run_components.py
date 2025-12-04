@@ -799,16 +799,29 @@ class PluginPopulator:
 
                     logger.warning(f"Splitting MTZ to: {split_dest}")
 
-                    # Split the MTZ with specified columns
-                    split_file = gemmi_split_mtz(
+                    # Split the MTZ with specified columns and get metadata for annotation
+                    split_result = gemmi_split_mtz(
                         input_file_path=file_path,
                         input_column_path=parsed_values["columnLabels"],
-                        preferred_dest=split_dest
+                        preferred_dest=split_dest,
+                        return_metadata=True
                     )
 
                     # Use the split file instead of original
+                    split_file = split_result["path"]
                     parsed_values["fullPath"] = str(split_file)
                     logger.warning(f"Using split MTZ file with standardized columns: {split_file.name}")
+
+                    # Build informative annotation from metadata
+                    metadata = split_result.get("metadata", {})
+                    annotation_parts = [f"Imported from {file_path.name}"]
+                    if metadata.get("crystal_name"):
+                        annotation_parts.append(f"Crystal: {metadata['crystal_name']}")
+                    if metadata.get("dataset_name"):
+                        annotation_parts.append(f"Dataset: {metadata['dataset_name']}")
+                    if metadata.get("original_columns"):
+                        annotation_parts.append(f"Columns: {', '.join(metadata['original_columns'])}")
+                    parsed_values["annotation"] = "; ".join(annotation_parts)
 
                 except Exception as e:
                     logger.warning(
