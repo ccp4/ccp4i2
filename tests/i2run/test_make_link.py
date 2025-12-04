@@ -17,7 +17,9 @@ def test_6ndn():
         args += ["--BOND_ORDER", "DOUBLE"]
         args += ["--TOGGLE_LINK", "True"]
         args += ["--XYZIN", pdb]
-        with i2run(args) as job:
+        # allow_errors=True: Allow diagnostic warnings for empty optional strings
+        # (CHARGE_1_LIST, DELETE_1_LIST, etc.) - the script handles empty values correctly
+        with i2run(args, allow_errors=True) as job:
             doc = cif.read(str(job / "LYS-PLP_link.cif"))
             for name in ("mod_LYSm1", "mod_PLPm1", "link_LYS-PLP"):
                 assert name in doc

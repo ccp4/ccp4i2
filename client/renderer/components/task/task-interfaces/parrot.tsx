@@ -25,6 +25,12 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     useRunCheck();
 
   // 2. Define a callback to create an ASUIN task if it is not already set
+  // NOTE: This is a valid client-side pattern for triggering UI actions based on input state.
+  // Unlike validity filtering (which should be in Python), this extraDialogAction pattern is
+  // appropriate here because:
+  // - ASUIN has allowUndefined=True (optional input)
+  // - We're triggering a helpful UI action, not filtering validation errors
+  // - The check is simple: isSet() == false triggers "Create ASU Contents task" button
 
   const createAsuTask = useCallback(async () => {
     await createPeerTask("ProvideAsuContents").then((created_job: Job) => {

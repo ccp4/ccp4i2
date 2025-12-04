@@ -133,7 +133,10 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     initializationDone.current = false;
   }, [job?.id]);
 
-  //Here to process errors
+  // Process validation errors - add custom ATOM_TYPE validation
+  // TODO: This client-side validation should be moved to Python's validity() method
+  // in pipelines/crank2/script/crank2.py (SHELX uses crank2 under the hood).
+  // Python validity() can check ATOM_TYPE and add appropriate error messages server-side.
   useEffect(() => {
     if (!validation || !setProcessedErrors) return;
     if (!ATOM_TYPEValue || ATOM_TYPEValue.trim() === "") {

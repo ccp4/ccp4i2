@@ -24,6 +24,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   );
 
   // Process validation errors
+  // TODO: This client-side validity filtering should be moved to Python's validity() method
+  // in pipelines/aimless_pipe/script/aimless_pipe.py to avoid race conditions and GUI complexity.
+  // The Python validity() method can adjust qualifiers (e.g., allowUndefined) before validation runs.
   const processedValidationErrors = useMemo(() => {
     if (!validation) return null;
 

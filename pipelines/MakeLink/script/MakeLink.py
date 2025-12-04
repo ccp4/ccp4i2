@@ -19,6 +19,7 @@ from __future__ import print_function
 
 import os
 from core.CCP4PluginScript import CPluginScript
+from core import CCP4ErrorHandling
 
 class MakeLink(CPluginScript):
     TASKNAME = 'MakeLink'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -53,6 +54,56 @@ class MakeLink(CPluginScript):
         self.container.inputData.CHANGE_BOND_1_TYPE.setQualifier('onlyEnumerators', False)
         self.container.inputData.CHANGE_BOND_2_TYPE.setQualifier('onlyEnumerators', False)
         self.container.controlParameters.MODEL_RES_LIST.setQualifier('onlyEnumerators', False)
+
+    def validity(self):
+        """Override to adjust allowUndefined based on MON_TYPE selection.
+
+        MakeLink has conditional field requirements:
+        - When MON_1_TYPE='TLC', the TLC fields are required and CIF fields are optional
+        - When MON_1_TYPE='CIF', the CIF fields are required and TLC fields are optional
+        - LIST fields are populated via GUI dropdowns and are optional for command-line use
+        - Toggle-controlled fields (DELETE, CHARGE, CHANGE_BOND) are optional
+
+        This mirrors the logic in MakeLink_gui.py which dynamically sets allowUndefined
+        based on user selection, but the def.xml has allowUndefined=False for all.
+        """
+        inp = self.container.inputData
+        ctrl = self.container.controlParameters
+
+        # Determine which mode we're in (defaults to TLC from def.xml)
+        mon_1_type = str(inp.MON_1_TYPE) if inp.MON_1_TYPE.isSet() else 'TLC'
+        mon_2_type = str(inp.MON_2_TYPE) if inp.MON_2_TYPE.isSet() else 'TLC'
+
+        # Set allowUndefined for fields based on mode
+        # For monomer 1
+        if mon_1_type == 'TLC':
+            # TLC mode: CIF fields are optional
+            inp.RES_NAME_1_CIF.setQualifier('allowUndefined', True)
+            inp.ATOM_NAME_1_CIF.setQualifier('allowUndefined', True)
+        else:
+            # CIF mode: TLC fields are optional
+            inp.RES_NAME_1_TLC.setQualifier('allowUndefined', True)
+            inp.ATOM_NAME_1_TLC.setQualifier('allowUndefined', True)
+
+        # For monomer 2
+        if mon_2_type == 'TLC':
+            inp.RES_NAME_2_CIF.setQualifier('allowUndefined', True)
+            inp.ATOM_NAME_2_CIF.setQualifier('allowUndefined', True)
+        else:
+            inp.RES_NAME_2_TLC.setQualifier('allowUndefined', True)
+            inp.ATOM_NAME_2_TLC.setQualifier('allowUndefined', True)
+
+        # LIST fields are populated by GUI dropdowns - make them optional for CLI use
+        inp.DELETE_1_LIST.setQualifier('allowUndefined', True)
+        inp.DELETE_2_LIST.setQualifier('allowUndefined', True)
+        inp.CHARGE_1_LIST.setQualifier('allowUndefined', True)
+        inp.CHARGE_2_LIST.setQualifier('allowUndefined', True)
+        inp.CHANGE_BOND_1_LIST.setQualifier('allowUndefined', True)
+        inp.CHANGE_BOND_2_LIST.setQualifier('allowUndefined', True)
+        ctrl.MODEL_RES_LIST.setQualifier('allowUndefined', True)
+
+        # Now call parent validity() which will use our updated allowUndefined settings
+        return super(MakeLink, self).validity()
 
     def createLinkInstruction(self):
        instruct = "LINK:"

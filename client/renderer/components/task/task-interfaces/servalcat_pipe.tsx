@@ -83,6 +83,10 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   }, [createPeerTask, job.project, router, setRunTaskRequested]);
 
   // Process validation errors with cycle prevention
+  // TODO: The filtering of metalCoordWrapper.inputData.XYZIN should be moved to Python's validity()
+  // method in pipelines/servalcat_pipe/script/servalcat_pipe.py (already partially done there).
+  // Client-side filtering can cause race conditions. Python validity() can set allowUndefined=True
+  // on the metalCoordWrapper.inputData.XYZIN qualifier before validation runs.
   const processErrors = useCallback(() => {
     if (!validation) return;
 
