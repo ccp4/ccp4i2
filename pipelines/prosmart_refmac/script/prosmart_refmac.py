@@ -45,8 +45,18 @@ class prosmart_refmac(CPluginScript):
     PURGESEARCHLIST =  [[ 'refmac%*/hklout.mtz', 0, "hklout" ], [ 'refmac%*/hklout.mtz', 7, "hklout" ], [ '*%*/ANOMFPHIOUT.mtz', 1, "ANOMFPHIOUT" ], [ '*%*/DIFANOMFPHIOUT.mtz', 1, "DIFANOMFPHIOUT" ]]
 
 
-    ERROR_CODES = { 101 : { 'description' : 'Error copying data file from final job to pipeline directory' }
-                    }
+    ERROR_CODES = {
+        101: {'description': 'Error copying data file from final job to pipeline directory'},
+        102: {'description': 'ProSMART protein restraints failed'},
+        103: {'description': 'ProSMART nucleic acid restraints failed'},
+        104: {'description': 'Platonyzer restraints failed'},
+        105: {'description': 'Refmac refinement failed'},
+        106: {'description': 'Refmac output file not created'},
+        107: {'description': 'Coot find waters failed'},
+        108: {'description': 'Post-coot refmac failed'},
+        109: {'description': 'Weight optimization failed'},
+        110: {'description': 'Validation failed'},
+    }
 
     def __init__(self, *args, **kws):
         super(prosmart_refmac,self).__init__(*args, **kws)
@@ -55,24 +65,48 @@ class prosmart_refmac(CPluginScript):
         self.xmlroot = etree.Element("RefmacOptimiseWeight")
         self.xmlroot2 = etree.Element("RefmacOptimiseWeight")
 
-#    def startProcess(self, processId):
-#        if self.container.prosmartProtein.TOGGLE:
-#            self.executeProsmartProtein()
-#        else:
-#            if self.container.controlParameters.WEIGHT_OPT.__str__()=='MANUAL' and self.container.controlParameters.WEIGHT.isSet(): withWeight = float(self.container.controlParameters.WEIGHT)
-#            else: withWeight = -1.
-#            self.executeFirstRefmac(withWeight)
-#        return CPluginScript.SUCCEEDED
-
     def startProcess(self, processId):
+        """
+        Main pipeline execution - runs ProSMART, Platonyzer, then Refmac.
+
+        Each phase uses try/except with proper CErrorReport logging including traceback.
+        """
+        # Phase 1: ProSMART protein restraints (optional)
         try:
-           self.executeProsmartProtein()
-           self.executeProsmartNucleicAcid()
-           self.executePlatonyzer()
-           self.executeFirstRefmac()
-        except:
-           self.reportStatus(CPluginScript.FAILED)
-           return CPluginScript.FAILED
+            self.executeProsmartProtein()
+        except Exception as e:
+            tb = traceback.format_exc()
+            self.appendErrorReport(102, f'ProSMART protein restraints: {e}\n{tb}')
+            self.reportStatus(CPluginScript.FAILED)
+            return CPluginScript.FAILED
+
+        # Phase 2: ProSMART nucleic acid restraints (optional)
+        try:
+            self.executeProsmartNucleicAcid()
+        except Exception as e:
+            tb = traceback.format_exc()
+            self.appendErrorReport(103, f'ProSMART nucleic acid restraints: {e}\n{tb}')
+            self.reportStatus(CPluginScript.FAILED)
+            return CPluginScript.FAILED
+
+        # Phase 3: Platonyzer restraints (optional)
+        try:
+            self.executePlatonyzer()
+        except Exception as e:
+            tb = traceback.format_exc()
+            self.appendErrorReport(104, f'Platonyzer restraints: {e}\n{tb}')
+            self.reportStatus(CPluginScript.FAILED)
+            return CPluginScript.FAILED
+
+        # Phase 4: Refmac refinement
+        try:
+            self.executeFirstRefmac()
+        except Exception as e:
+            tb = traceback.format_exc()
+            self.appendErrorReport(105, f'Refmac refinement: {e}\n{tb}')
+            self.reportStatus(CPluginScript.FAILED)
+            return CPluginScript.FAILED
+
         return CPluginScript.SUCCEEDED
 
     def executeProsmartProtein(self):
@@ -150,20 +184,17 @@ class prosmart_refmac(CPluginScript):
             return
 
     def executeFirstRefmac(self, withWeight=-1):
-        #create wrapper
+        """Execute the main Refmac refinement step."""
+        # Create wrapper
         self.firstRefmac = self.refmacJobWithWeight(withWeight)
-        #Run asynchronously ...this is needed so that commands downsrteam ofprocess launch (i.e. logwather) will be called
-        #before process completion
+        # Run asynchronously - needed so logwatcher callbacks work before process completion
         self.firstRefmac.doAsync = self.doAsync
         self.firstRefmac.connectSignal(self.firstRefmac,'finished',self.firstRefmacFinished)
-        #Install xml node for an in progress refmac
+        # Install xml node for in-progress refmac
         self.xmlLength = 0
-        #Start process
+        # Start process with file watching for live XML updates
         firstRefmacXMLFilename = self.firstRefmac.makeFileName(format='PROGRAMXML')
-        print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-        print("executeFirstRefmac, firstRefmacXMLFilename",firstRefmacXMLFilename)
         self.watchFile(firstRefmacXMLFilename, handler=self.handleXmlChanged, minDeltaSize=34, unwatchWhileHandling=True)
-        print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
         rv = self.firstRefmac.process()
 
     @QtCore.Slot(str)
@@ -255,9 +286,9 @@ class prosmart_refmac(CPluginScript):
 
     @QtCore.Slot(dict)
     def firstRefmacFinished(self, statusDict):
-        print("AAA1")
+        """Handle completion of the first Refmac refinement job."""
+        # Handle unsatisfactory result (e.g., ligand geometry issues)
         if statusDict['finishStatus'] == CPluginScript.UNSATISFACTORY:
-            print("AAA1.UNSATISFACTORY")
             import os
             if os.path.isfile(self.firstRefmac.container.outputData.LIBOUT.__str__()):
                 from wrappers.acedrg.script import acedrg
@@ -267,8 +298,8 @@ class prosmart_refmac(CPluginScript):
                     molRemovedHs = Chem.RemoveHs(rdkitMol)
                     svgXml = acedrg.svgFromMol(molRemovedHs)
                     self.xmlroot.append(svgXml)
-                except:
-                    print('Unable to generate svg from DICT')
+                except Exception as e:
+                    self.appendErrorReport(106, f'Unable to generate SVG from ligand dictionary: {e}')
                 import shutil
                 shutil.copyfile(self.firstRefmac.container.outputData.LIBOUT.__str__(), self.container.outputData.LIBOUT.__str__())
                 self.container.outputData.LIBOUT.annotation = 'Refmac-generated library...use with caution'
@@ -278,67 +309,69 @@ class prosmart_refmac(CPluginScript):
             with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
                 CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot,pretty_print=True))
             self.reportStatus(CPluginScript.UNSATISFACTORY)
+            return
 
-        elif self.firstRefmac.errorReport.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
-            print("AAA1.MAXSEVERITY")
-            #This gets done in thefirstRefmac.reportStatus() - Liz
-            #self.extendErrorReport(self.firstRefmac.errorReport)
+        # Handle errors with severity > warning
+        if self.firstRefmac.errorReport.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
             try:
-              refmacEtree = CCP4Utils.openFileToEtree(self.firstRefmac.makeFileName('PROGRAMXML'))
-              refmacXML = refmacEtree.xpath('//REFMAC')
-              if len(refmacXML) == 1: self.xmlroot.append(refmacXML[0])
-            except:
-              print('Failed attempt to read XML file from first Refmac')
+                refmacEtree = CCP4Utils.openFileToEtree(self.firstRefmac.makeFileName('PROGRAMXML'))
+                refmacXML = refmacEtree.xpath('//REFMAC')
+                if len(refmacXML) == 1:
+                    self.xmlroot.append(refmacXML[0])
+            except Exception as e:
+                self.appendErrorReport(105, f'Failed to read Refmac XML output: {e}')
             try:
-              newXml = etree.tostring(self.xmlroot,pretty_print=True)
-              aFile = open(self.pipelinexmlfile,'w')
-              CCP4Utils.writeXML(aFile,newXml)
-              aFile.close()
-            except:
-               print('Failed attempt to write pipeline XML file')
+                newXml = etree.tostring(self.xmlroot,pretty_print=True)
+                with open(self.pipelinexmlfile,'w') as aFile:
+                    CCP4Utils.writeXML(aFile,newXml)
+            except Exception as e:
+                self.appendErrorReport(105, f'Failed to write pipeline XML: {e}')
             self.reportStatus(CPluginScript.FAILED)
             return
-        print("AAA11")
 
+        # Update XML with refmac results
         self.handleXmlChanged(self.firstRefmac.makeFileName(format='PROGRAMXML'))
 
-        print("AAA10")
-        import os
+        # Handle explicit failure status
         if statusDict['finishStatus'] == CPluginScript.FAILED:
-            #This gets done in the firstRefmac.reportStatus() - Liz
             self.fileSystemWatcher = None
+            self.appendErrorReport(105, 'Refmac reported failure status')
             self.reportStatus(CPluginScript.FAILED)
             return
-        else:
-            print("AAA12")
-            self.addCycleXML(self.firstRefmac)
-            aFile=open( self.pipelinexmlfile,'w')
-            CCP4Utils.writeXML(aFile, etree.tostring(self.xmlroot,pretty_print=True) )
-            aFile.close()
-            print("AAA13")
-            if self.container.controlParameters.OPTIMISE_WEIGHT:
-                print("AAA14")
-                self.fileSystemWatcher = None
+
+        # Success path - add cycle XML and continue
+        self.addCycleXML(self.firstRefmac)
+        with open(self.pipelinexmlfile,'w') as aFile:
+            CCP4Utils.writeXML(aFile, etree.tostring(self.xmlroot,pretty_print=True))
+
+        # Check if weight optimization is requested
+        if self.container.controlParameters.OPTIMISE_WEIGHT:
+            self.fileSystemWatcher = None
+            try:
                 weightUsed = float(self.xmlroot.xpath('//weight')[-1].text)
                 self.tryVariousRefmacWeightsAround(weightUsed)
-            else:
-               print("AAA15")
-               best_r_free = self.firstRefmac.container.outputData.PERFORMANCEINDICATOR.RFactor
-               print("AAA15.1")
-               if self.container.controlParameters.ADD_WATERS and best_r_free < self.container.controlParameters.REFPRO_RSR_RWORK_LIMIT :
-                   print("AAA16")
-                   self.currentCoordinates = self.firstRefmac.container.outputData.CIFFILE
-                   self.cootPlugin = self.makeCootPlugin()
-                   self.cootPlugin.doAsync = self.doAsync
-                   self.cootPlugin.connectSignal(self.cootPlugin,'finished',self.cootFinished)
-                   print("AAA17")
-                   rv = self.cootPlugin.process()
-                   if rv == CPluginScript.FAILED:
+            except Exception as e:
+                self.appendErrorReport(109, f'Weight optimization: {e}')
+                self.reportStatus(CPluginScript.FAILED)
+        else:
+            # Check if water finding should be done
+            best_r_free = self.firstRefmac.container.outputData.PERFORMANCEINDICATOR.RFactor
+            if self.container.controlParameters.ADD_WATERS and best_r_free < self.container.controlParameters.REFPRO_RSR_RWORK_LIMIT:
+                try:
+                    self.currentCoordinates = self.firstRefmac.container.outputData.CIFFILE
+                    self.cootPlugin = self.makeCootPlugin()
+                    self.cootPlugin.doAsync = self.doAsync
+                    self.cootPlugin.connectSignal(self.cootPlugin,'finished',self.cootFinished)
+                    rv = self.cootPlugin.process()
+                    if rv == CPluginScript.FAILED:
+                        self.appendErrorReport(107, 'Coot find waters process() returned FAILED')
                         self.reportStatus(rv)
-               else:
-                     self.fileSystemWatcher = None
-                     self.finishUp(self.firstRefmac)
-        print('done prosmart_refmac.firstRefmacFinished')
+                except Exception as e:
+                    self.appendErrorReport(107, f'Coot find waters: {e}')
+                    self.reportStatus(CPluginScript.FAILED)
+            else:
+                self.fileSystemWatcher = None
+                self.finishUp(self.firstRefmac)
         return
 
     def makeCootPlugin(self):
@@ -473,26 +506,27 @@ class prosmart_refmac(CPluginScript):
         self.finishUp(refmacJob)
 
     def finishUp(self, refmacJob):
+        """
+        Copy output files from refmac job to pipeline output and finalize.
+
+        Handles validation, cleanup, and optional molprobity analysis.
+        """
         from core import CCP4ProjectsManager
         import shutil
-        print('into prosmart_refmac.finishUp')
+
+        # Copy output files from refmac job to pipeline directory
         for attr in self.container.outputData.dataOrder():
-            print('prosmart_refmac.finishUp attr',attr)
             wrappersAttr = getattr(refmacJob.container.outputData, attr)
             pipelinesAttr = getattr(self.container.outputData, attr)
-            if attr in [ "PERFORMANCEINDICATOR"]:
+            if attr in ["PERFORMANCEINDICATOR"]:
                 setattr(self.container.outputData, attr, wrappersAttr)
             else:
                 if os.path.exists(str(wrappersAttr.fullPath)):
-                  try:
-                    shutil.copyfile( str(wrappersAttr.fullPath), str(pipelinesAttr.fullPath) )
-                  except:
-                    self.appendErrorReport(101,str(wrappersAttr.fullPath)+' to '+str(pipelinesAttr.fullPath))
-                  #self.container.outputData.copyData(refmacJob.container.outputData,[attr])
-                if attr == "XMLOUT":
-                    pass
+                    try:
+                        shutil.copyfile(str(wrappersAttr.fullPath), str(pipelinesAttr.fullPath))
+                    except Exception as e:
+                        self.appendErrorReport(101, f'{wrappersAttr.fullPath} to {pipelinesAttr.fullPath}: {e}')
 
-        print('prosmart_refmac.finishUp 1')
         from core import CCP4XtalData
         # Apply database annotations
         self.container.outputData.XYZOUT.annotation.set('Model from refinement (PDB format)')
@@ -509,126 +543,101 @@ class prosmart_refmac(CPluginScript):
         self.container.outputData.ANOMFPHIOUT.annotation = 'Weighted anomalous difference map from refinement'
         self.container.outputData.DIFANOMFPHIOUT.annotation = 'Weighted differences of anomalous difference map'
 
-        print('prosmart_refmac.finishUp 2')
+        # Set ligand dictionary annotations
         if self.container.outputData.DICT.exists():
-           self.container.outputData.DICT.annotation = 'Accumulated ligand geometry dictionary'
+            self.container.outputData.DICT.annotation = 'Accumulated ligand geometry dictionary'
         if self.container.outputData.LIBOUT.exists():
-          annotation = 'Refmac generated geometry'
-          try:
-            print('LIBOUT monomerList',self.container.outputData.LIBOUT.fileContent.monomerList)
-            if len(self.container.outputData.LIBOUT.fileContent.monomerList)>0:
-              annotation = 'Refmac generated geometry for:'
-              for item in self.container.outputData.LIBOUT.fileContent.monomerList:
-                annotation = annotation + ' ' + str(item.three_letter_code)
-              ligxml = etree.SubElement(self.xmlroot,"LIGANDS")
-              for item in self.container.outputData.LIBOUT.fileContent.monomerList:
-                ligNode = etree.SubElement(ligxml,"ligand")
-                ligNode.text = str(item.three_letter_code)
-              self.saveXml()
-          except:
-              print('Error creating LIBOUT annotation')
-              self.container.outputData.LIBOUT.annotation = annotation
-          try:
-              self.mergeDictToProjectLib(fileName=self.container.outputData.LIBOUT.__str__())
-          except:
-              print('Error merging library to Project Dictionary')
-        print('prosmart_refmac.finishUp 3'); sys.stdout.flush()
-#
+            annotation = 'Refmac generated geometry'
+            try:
+                if len(self.container.outputData.LIBOUT.fileContent.monomerList) > 0:
+                    annotation = 'Refmac generated geometry for:'
+                    for item in self.container.outputData.LIBOUT.fileContent.monomerList:
+                        annotation = annotation + ' ' + str(item.three_letter_code)
+                    ligxml = etree.SubElement(self.xmlroot, "LIGANDS")
+                    for item in self.container.outputData.LIBOUT.fileContent.monomerList:
+                        ligNode = etree.SubElement(ligxml, "ligand")
+                        ligNode.text = str(item.three_letter_code)
+                    self.saveXml()
+            except Exception as e:
+                # Non-fatal - just use default annotation
+                self.container.outputData.LIBOUT.annotation = annotation
+            try:
+                self.mergeDictToProjectLib(fileName=self.container.outputData.LIBOUT.__str__())
+            except Exception as e:
+                # Non-fatal - dictionary merge is optional
+                pass
+
+        # Optional cleanup of intermediate files
         cleanUpIntermediate = False
-        if hasattr(self.container.controlParameters,"REFMAC_CLEANUP"):
+        if hasattr(self.container.controlParameters, "REFMAC_CLEANUP"):
             cleanUpIntermediate = self.container.controlParameters.REFMAC_CLEANUP
             if cleanUpIntermediate:
-                print('prosmart_refmac.finishUp 4'); sys.stdout.flush()
-                cleanup = CCP4ProjectsManager.CPurgeProject(self.firstRefmac._dbProjectId)
-                print('prosmart_refmac.finishUp 5'); sys.stdout.flush()
-                cleanup.purgeJob(self.firstRefmac.jobId,context="extended_intermediate",reportMode="skip")
+                try:
+                    cleanup = CCP4ProjectsManager.CPurgeProject(self.firstRefmac._dbProjectId)
+                    cleanup.purgeJob(self.firstRefmac.jobId, context="extended_intermediate", reportMode="skip")
 
-                if hasattr(self,"refmacPostCootPlugin"):
-                    print('prosmart_refmac.finishUp 6'); sys.stdout.flush()
-                    cleanup = CCP4ProjectsManager.CPurgeProject(self.refmacPostCootPlugin._dbProjectId)
-                    print('prosmart_refmac.finishUp 7'); sys.stdout.flush()
-                    cleanup.purgeJob(self.refmacPostCootPlugin.jobId,context="extended_intermediate",reportMode="skip")
+                    if hasattr(self, "refmacPostCootPlugin"):
+                        cleanup = CCP4ProjectsManager.CPurgeProject(self.refmacPostCootPlugin._dbProjectId)
+                        cleanup.purgeJob(self.refmacPostCootPlugin.jobId, context="extended_intermediate", reportMode="skip")
+                except Exception as e:
+                    # Non-fatal - cleanup failure shouldn't fail the job
+                    pass
 
         if not str(self.container.controlParameters.REFINEMENT_MODE) == 'RIGID':
            #Geometry validation not performed in rigid body mode
 
+           # Optional molprobity analysis
            runMolprobity = False
-           if hasattr(self.container.controlParameters,"RUN_MOLPROBITY"):
-              runMolprobity = self.container.controlParameters.RUN_MOLPROBITY
-              if runMolprobity:
-                 #MN: First order attempt at providing molprobity analysis
-                 try:
-                     print("Attempting molprobity run after refinement...")
-                     from mmtbx.command_line import molprobity
-                     coordPath = self.container.outputData.XYZOUT.fullPath.__str__()
-                     fileRoot, fileExt = os.path.splitext(coordPath)
-                     sanitizedCoordPath = fileRoot + "+asPDB.pdb"
+           if hasattr(self.container.controlParameters, "RUN_MOLPROBITY"):
+               runMolprobity = self.container.controlParameters.RUN_MOLPROBITY
+               if runMolprobity:
+                   try:
+                       from mmtbx.command_line import molprobity
+                       coordPath = self.container.outputData.XYZOUT.fullPath.__str__()
+                       fileRoot, fileExt = os.path.splitext(coordPath)
+                       sanitizedCoordPath = fileRoot + "+asPDB.pdb"
 
-                     #Use mmdb to do some sanitization
-                     import ccp4mg
-                     import mmdb2
-                     mmdb2.InitMatType()
-                     m = mmdb2.Manager()
+                       # Use mmdb to sanitize the coordinate file
+                       import ccp4mg
+                       import mmdb2
+                       mmdb2.InitMatType()
+                       m = mmdb2.Manager()
+                       m.SetFlag(mmdb2.MMDBF_IgnoreSegID)
+                       m.ReadCoorFile(coordPath)
 
-                     #This line ought to just do it, but seems not to...
-                     m.SetFlag(mmdb2.MMDBF_IgnoreSegID)
-                     m.ReadCoorFile(coordPath)
+                       # Remove SEGIDs which can confuse molprobity if heterogeneous
+                       sel = m.NewSelection()
+                       m.SelectAtoms(sel, 0, "*", mmdb2.ANY_RES, "*", mmdb2.ANY_RES, "*", "*", "*", "*", "*", mmdb2.SKEY_OR)
+                       selindexp = mmdb2.intp()
+                       selAtoms = mmdb2.GetAtomSelIndex(m, sel, selindexp)
+                       nSelAtoms = selindexp.value()
+                       for i in range(nSelAtoms):
+                           at = mmdb2.getPCAtom(selAtoms, i)
+                           at.segID = b"    "
+                       m.FinishStructEdit()
+                       m.WritePDBASCII(sanitizedCoordPath)
 
-                     #Remove any SEGIDs (which can confuse molprobity if heterogenous)
-                     sel = m.NewSelection()
-                     m.SelectAtoms(sel, 0,"*",mmdb2.ANY_RES,"*",mmdb2.ANY_RES,"*","*","*","*","*",mmdb2.SKEY_OR )
-                     selindexp = mmdb2.intp()
-                     selAtoms = mmdb2.GetAtomSelIndex(m,sel,selindexp)
-                     nSelAtoms = selindexp.value()
-                     # ... but this certainly does.
-                     for i in range(nSelAtoms):
-                         at = mmdb2.getPCAtom(selAtoms,i)
-                         at.segID = b"    "
-                     m.FinishStructEdit()
+                       fileRoot = os.path.join(self.getWorkDirectory(), "molprobity")
+                       molprobity.run(["input.pdb.file_name={}".format(sanitizedCoordPath),
+                                       "output.prefix={}".format(fileRoot)])
+                       mpCootScriptPath = fileRoot + "_coot.py"
+                       mpProbePath = fileRoot + "_probe.txt"
+                       if os.path.isfile(mpCootScriptPath):
+                           with open(self.container.outputData.COOTSCRIPTOUT.fullPath.__str__(), "a+") as cootScript:
+                               cootScript.write("\n")
+                               with open(mpCootScriptPath, "r") as mpCootScript:
+                                   content = mpCootScript.read()
+                                   content = content.replace('"molprobity_probe.txt"', '"{}"'.format(mpProbePath))
+                                   cootScript.write(content)
 
-                     #Looking at the molprobity output, it seems to me that it tres to handle alternates properly...
-                     #I am not sure that the following code is appropriate, so am commenting out MN
-                     '''
-                     #Delete alternate locations using mmdb logic
-                     sel = m.NewSelection()
-                     m.SelectAtoms(sel, 0,"*",mmdb2.ANY_RES,"*",mmdb2.ANY_RES,"*","*","*","*","! ",mmdb2.SKEY_OR )
-                     selindexp = mmdb2.intp()
-                     selAtoms = mmdb2.GetAtomSelIndex(m,sel,selindexp)
-                     nSelAtoms = selindexp.value()
-                     # Edit out the SEGIDs - should have happened at read time ?
-                     residuesWithAltes = set()
-                     for i in range(nSelAtoms):
-                         at = mmdb2.getPCAtom(selAtoms,i)
-                         residuesWithAltes.add(at.GetResidue())
-                     for residue in residuesWithAltes:
-                         residue.DeleteAltLocs()
-                     m.FinishStructEdit()
-                     '''
-                     m.WritePDBASCII(sanitizedCoordPath)
-
-                     fileRoot = os.path.join(self.getWorkDirectory(),"molprobity")
-                     molprobity.run(["input.pdb.file_name={}".format(sanitizedCoordPath),
-                                     "output.prefix={}".format(fileRoot)])
-                     mpCootScriptPath = fileRoot+"_coot.py"
-                     mpProbePath = fileRoot+"_probe.txt"
-                     if os.path.isfile(mpCootScriptPath):
-                         with (open(self.container.outputData.COOTSCRIPTOUT.fullPath.__str__(),"a+")) as cootScript:
-                             cootScript.write("\n")
-                             with open(mpCootScriptPath,"r") as mpCootScript:
-                                 content = mpCootScript.read()
-                                 content = content.replace('"molprobity_probe.txt"',
-                                                           '"{}"'.format(mpProbePath))
-                                 cootScript.write(content)
-
-                     mpOutPath = fileRoot+".out"
-                     if os.path.isfile(mpOutPath):
-                         etree.SubElement(etree.SubElement(self.xmlroot,"Molprobity"), "Output").text = etree.CDATA(open(mpOutPath).read())
-                     self.saveXml()
-                     print("...Succeeded molprobity run after refinement :-)")
-                 except Exception as err:
-                     etree.SubElement(etree.SubElement(self.xmlroot,"Molprobity"), "Output").text = etree.CDATA(str(err))
-                     self.saveXml()
-                     print("...Failed molprobity run after refinement :-(", err)
+                       mpOutPath = fileRoot + ".out"
+                       if os.path.isfile(mpOutPath):
+                           etree.SubElement(etree.SubElement(self.xmlroot, "Molprobity"), "Output").text = etree.CDATA(open(mpOutPath).read())
+                       self.saveXml()
+                   except Exception as err:
+                       # Non-fatal - molprobity is optional
+                       etree.SubElement(etree.SubElement(self.xmlroot, "Molprobity"), "Output").text = etree.CDATA(str(err))
+                       self.saveXml()
 
            validate_iris = False
            if hasattr(self.container.controlParameters,"VALIDATE_IRIS"):
@@ -737,19 +746,15 @@ class prosmart_refmac(CPluginScript):
                           xml_suggestedParameters_k.text = str(v)
 
                        self.saveXml()
-                   except:
-                       print("Some problem with verdict...."); sys.stdout.flush()
-                       exc_type, exc_value, exc_tb = sys.exc_info()[:3]
-                       sys.stderr.write(str(exc_type) + '\n')
-                       sys.stderr.write(str(exc_value) + '\n')
-                       traceback.print_tb(exc_tb)
+                   except Exception as e:
+                       # Non-fatal - verdict analysis is optional
+                       pass
                 xml_validation_status.text = "SUCCESS"
                 self.saveXml()
              except Exception as err:
                 xml_validation_status.text = "FAILURE"
                 self.saveXml()
-                traceback.print_exc()
-                print("...Failed validation run after refinement", err)
+                self.appendErrorReport(110, f'Validation failed: {err}')
 
         logfiles = []
         if hasattr(self,"firstRefmac"):
@@ -764,19 +769,18 @@ class prosmart_refmac(CPluginScript):
                 xyzinPath = str(self.container.outputData.XYZOUT)
                 self.xmlroot.append(sequenceAlignment(xyzinPath, asuin))
             except Exception as err:
-                traceback.print_exc()
-                print("...importing sequences for alignment test failed", err)
+                # Non-fatal - sequence alignment is optional
+                pass
 
         self.createWarningsXML(logfiles)
         self.saveXml()
 
-        print('done prosmart_refmac.finishUp'); sys.stdout.flush()
         self.reportStatus(CPluginScript.SUCCEEDED)
 
     def tryVariousRefmacWeightsAround(self, weight):
         import math
-        print('Generating jobs with weights around ', weight)
-        #make an array to hold the child-jobs
+        # Generate jobs with weights around the initial weight
+        # make an array to hold the child-jobs
         refmacJobs = []
         for factorExponent in range(-3,4):
             if factorExponent != 0:
@@ -793,7 +797,6 @@ class prosmart_refmac(CPluginScript):
             job.doAsync  = True
             job.connectSignal(job,'finished',self.handleDone)
             self.jobsToSubmit.append(job)
-        print('ready to submit from list of length ',len(self.jobsToSubmit))
 
         for job in self.jobsToSubmit:
             if len(self.jobsInTrain) < prosmart_refmac.MAXNJOBS:
@@ -801,10 +804,9 @@ class prosmart_refmac(CPluginScript):
 
     def submitJob(self,job):
         rv = job.process()
-        #The mtzdump instance must be saved to keep it in scope and everything else can be got from that.
+        # The job instance must be saved to keep it in scope
         self.jobsInTrain[str(job.processId)]=job
         self.jobsToSubmit.remove(job)
-        print('submitted job 0')
 
     @QtCore.Slot(dict)
     def handleDone(self, ret):
@@ -813,15 +815,6 @@ class prosmart_refmac(CPluginScript):
         if  status == CPluginScript.FAILED:
             self.reportStatus(status)
             return
-        import sys
-        # callback is passed the jobId (=Non
-        # if not in ccp4i2-db context) and processId that
-        # can serve at identifier for subProcess
-        import sys
-        import time
-        from copy import deepcopy
-
-        #print 'demo_multi_mtzdump.handleDone',ret
 
         rtask = self.jobsInTrain[str(pid)]
 
@@ -859,13 +852,10 @@ class prosmart_refmac(CPluginScript):
         xmlcyc.append (rstats[0])
 
     def handleTimeout(self):
-        import sys;sys.stdout.flush()
-
         for rtask in self.jobsInTrain:
-            print('TERMINATING', rtask.processId,sys.stdout.flush())
             try:
                 rtask.terminate()
-            except:
+            except Exception:
                 pass
 
         self.appendErrorReport(40,str(self.TIMEOUT_PERIOD))

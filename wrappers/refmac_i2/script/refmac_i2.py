@@ -77,10 +77,7 @@ class refmac_i2(CPluginScript):
         if len(newXml)>self.xmlLength:
             self.xmlLength = len(newXml)
             with open (self.makeFileName('PROGRAMXML')+'_tmp','w') as programXmlFile:
-                if sys.version_info > (3,0):
-                    programXmlFile.write(newXml.decode("utf-8"))
-                else:
-                    programXmlFile.write(newXml)
+                programXmlFile.write(newXml.decode("utf-8"))
             import shutil
             shutil.move(self.makeFileName('PROGRAMXML')+'_tmp', self.makeFileName('PROGRAMXML'))
 
@@ -603,7 +600,11 @@ class refmac_i2(CPluginScript):
             if self.container.controlParameters.WAVELENGTH.isSet():
                 self.appendCommandScript("ANOMALOUS WAVELENGTH %10.5f"%self.container.controlParameters.WAVELENGTH)
             else:
-                self.appendCommandScript("ANOMALOUS WAVELENGTH %10.5f"%self.container.inputData.F_SIGF.fileContent.getListOfWavelengths()[-1])
+                # Get wavelength from MTZ file if available
+                wavelengths = self.container.inputData.F_SIGF.fileContent.getListOfWavelengths()
+                if wavelengths:
+                    self.appendCommandScript("ANOMALOUS WAVELENGTH %10.5f"%wavelengths[-1])
+                # If no wavelength available, skip the ANOMALOUS WAVELENGTH line (refmac will use default)
         # Additional input/output
         if self.container.controlParameters.PHOUT:
             self.appendCommandScript("PHOUT")

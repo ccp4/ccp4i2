@@ -29,9 +29,12 @@ class crank2_basepipe():
     self.base_steps_ind = dict( (item,i) for i,item in enumerate(self.base_steps) )
 
   def CheckStartEnd(self, step):
+    # Convert CString to str for dictionary lookup (CString uses identity-based hashing)
+    start_pipeline = str(self.container.inputData.START_PIPELINE)
+    end_pipeline = str(self.container.inputData.END_PIPELINE)
     return step in self.base_steps and \
-           self.base_steps_ind[self.container.inputData.START_PIPELINE] <= self.base_steps_ind[step] and \
-           self.base_steps_ind[self.container.inputData.END_PIPELINE] >= self.base_steps_ind[step]
+           self.base_steps_ind[start_pipeline] <= self.base_steps_ind[step] and \
+           self.base_steps_ind[end_pipeline] >= self.base_steps_ind[step]
 
   def ToggleDetection(self):
     return self.CheckStartEnd('substrdet')

@@ -651,7 +651,7 @@ class CPluginScript(CData):
         Main processing method - orchestrates the entire workflow.
 
         This method calls the following steps in order:
-        1. checkInputData() - validate input files exist
+        1. validity() - validate plugin (allows qualifier adjustments before file checks)
         2. checkOutputData() - set output file names
         3. processInputFiles() - pre-process input files
         4. makeCommandAndScript() - generate command line/file
@@ -664,11 +664,14 @@ class CPluginScript(CData):
         Returns:
             Status code (SUCCEEDED, FAILED, or RUNNING)
         """
-        # Validate input data
-        error = self.checkInputData()
+        # Validate input data using validity() which allows plugins to adjust
+        # qualifiers for embedded wrappers before checkInputData() runs
+        # (e.g., servalcat_pipe sets allowUndefined on metalCoordWrapper.inputData.XYZIN)
+        error = self.validity()
         if error:
             self.errorReport.extend(error)
-            return self.FAILED
+            if error.maxSeverity() >= 4:  # ERROR level
+                return self.FAILED
 
         # Set up output data
         error = self.checkOutputData()

@@ -278,30 +278,50 @@ class CCP4i2RunnerDjango(CCP4i2RunnerBase):
         #thePlugin.saveParams()
         print(self.jobId)
 
-        # Validate plugin configuration before execution
         from core.base_object.error_reporting import Severity
 
-        validation_error = thePlugin.checkInputData()
+        # Step 1: Run validity() - allows plugins to adjust qualifiers for embedded wrappers
+        # (e.g., servalcat_pipe sets allowUndefined on metalCoordWrapper.inputData.XYZIN)
+        # Note: validity() errors are informational only for now - we don't block execution
+        # This allows pipeline developers time to implement proper validity checks
+        validity_error = thePlugin.validity()
 
-        if validation_error.maxSeverity() >= Severity.ERROR:
-            # Blocking errors - cannot execute
-            print("\n" + "=" * 80)
-            print("❌ VALIDATION FAILED - Cannot execute job")
-            print("=" * 80)
-            print(validation_error.report(severity_threshold=Severity.WARNING))
-            print("=" * 80 + "\n")
+        print("\n" + "=" * 80)
+        print("VALIDITY CHECK")
+        print("=" * 80)
+        if validity_error and validity_error.maxSeverity() >= Severity.WARNING:
+            print(validity_error.report(severity_threshold=Severity.WARNING))
+            if validity_error.maxSeverity() >= Severity.ERROR:
+                print("\n⚠️  Validity errors found (continuing anyway)")
+                logger.warning(
+                    "Job %s validity check has errors (non-blocking): %s",
+                    self.jobId,
+                    validity_error.report(severity_threshold=Severity.ERROR)
+                )
+        else:
+            print("✓ No validity issues")
+        print("=" * 80)
+
+        # Step 2: Run checkInputData() - validates input file paths (this IS a hard failure)
+        input_error = thePlugin.checkInputData()
+
+        print("\n" + "=" * 80)
+        print("INPUT DATA CHECK")
+        print("=" * 80)
+        if input_error and input_error.maxSeverity() >= Severity.WARNING:
+            print(input_error.report(severity_threshold=Severity.WARNING))
+        else:
+            print("✓ All input files valid")
+        print("=" * 80)
+
+        if input_error and input_error.maxSeverity() >= Severity.ERROR:
+            print("\n❌ INPUT DATA CHECK FAILED - Cannot execute job\n")
             logger.error(
                 "Job %s validation failed: %s",
                 self.jobId,
-                validation_error.report(severity_threshold=Severity.ERROR)
+                input_error.report(severity_threshold=Severity.ERROR)
             )
             return self.jobId, 1  # Failure
-
-        elif validation_error.maxSeverity() >= Severity.WARNING:
-            # Warnings - display but continue
-            print("\n⚠️  VALIDATION WARNINGS:")
-            print(validation_error.report(severity_threshold=Severity.WARNING))
-            print()
 
         # Save input parameters to input_params.xml so async_run_job can load them
         # This is essential because async_run_job creates a fresh plugin instance

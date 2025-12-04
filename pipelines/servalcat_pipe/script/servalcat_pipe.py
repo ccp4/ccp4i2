@@ -60,19 +60,22 @@ class servalcat_pipe(CPluginScript):
 
     def validity(self):
         """
-        Override validity to adjust qualifiers for embedded wrapper inputs.
+        Validate plugin, adjusting qualifiers for embedded wrappers first.
 
         The metalCoordWrapper embeds metalCoord, which requires XYZIN when run standalone.
         However, in the context of servalcat_pipe, XYZIN is programmatically filled from
-        the pipeline's own XYZIN, so we set allowUndefined=True before validation.
+        the pipeline's own XYZIN in executeMetalCoord(), so we set allowUndefined=True.
+
+        This override is called by the i2run workflow after parameters are loaded from
+        input_params.xml, allowing qualifier adjustments to be based on actual parameter values.
         """
-        # metalCoordWrapper.inputData.XYZIN is filled programmatically in executeMetalCoord()
-        # from self.container.inputData.XYZIN, so it should be allowUndefined for validation
+        # Adjust qualifiers for embedded metalCoordWrapper inputs
         if hasattr(self.container, 'metalCoordWrapper'):
             metal_coord_xyzin = self.container.metalCoordWrapper.inputData.XYZIN
             metal_coord_xyzin.set_qualifier('allowUndefined', True)
 
-        return super().validity()
+        # Call parent validity
+        return super(servalcat_pipe, self).validity()
 
     def startProcess(self, processId):
         try:

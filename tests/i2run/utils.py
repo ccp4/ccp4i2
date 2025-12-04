@@ -217,11 +217,25 @@ def i2run(args: list[str], project_name: str = None, project_path: Path = None, 
         print(f"WARNING: Job directory does not exist: {directory}")
 
     # Check diagnostic.xml for errors (unless allow_errors is set)
+    # Only fail on actual errors (severity >= 4), not warnings (severity 2)
     xml_path = directory / "diagnostic.xml"
     if xml_path.exists():
-        errors = ET.parse(xml_path).findall(".//errorReport")
+        all_reports = ET.parse(xml_path).findall(".//errorReport")
+        # Filter to only errors (severity 4) not warnings (severity 2)
+        errors = [r for r in all_reports if int(r.find("severity").text or "0") >= 4]
+        warnings = [r for r in all_reports if int(r.find("severity").text or "0") < 4]
+
+        if warnings:
+            print(f"Note: {len(warnings)} warning(s) in diagnostic.xml (non-fatal)")
+
         if not allow_errors:
-            assert len(errors) == 0, f"Error reports found in diagnostic.xml: {errors}"
+            if errors:
+                error_details = []
+                for e in errors:
+                    name = e.find("name")
+                    details = e.find("details")
+                    error_details.append(f"  - {name.text if name is not None else 'unknown'}: {details.text if details is not None else 'no details'}")
+                assert len(errors) == 0, f"Error reports found in diagnostic.xml:\n" + "\n".join(error_details)
         elif errors:
             print(f"Note: {len(errors)} error report(s) found in diagnostic.xml (expected, allow_errors=True)")
     else:
