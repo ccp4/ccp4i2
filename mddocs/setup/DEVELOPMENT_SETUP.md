@@ -90,66 +90,64 @@ Test projects are stored in `~/.cache/ccp4i2-tests/`. Cleanup instructions are p
 
 ---
 
-## CLI Tools (Django Management Commands)
+## CLI Tools
 
-CLI tools are implemented as Django management commands. Run them via `ccp4-python` with the `manage.py` script:
+The `i2` command provides a clean interface for CCP4i2 operations. It wraps Django management commands with intuitive syntax.
+
+### Quick Reference
+
+```bash
+# Projects
+i2 projects                     # List all projects
+i2 projects create myproject    # Create a project
+i2 projects show <id>           # Show project details
+i2 projects tree <id>           # Show project job tree
+
+# Jobs
+i2 jobs <project>               # List jobs in a project
+i2 jobs create <project> <task> # Create a job
+i2 jobs run <job_id>            # Run an existing job
+i2 jobs tree <job_id>           # Show job file tree
+i2 jobs clone <job_id>          # Clone a job
+
+# Run a task directly (create + run)
+i2 run <task> [options]         # e.g., i2 run refmac --hklin data.mtz
+
+# Files
+i2 files <job_id>               # List files in a job
+i2 files cat <job_id> <name>    # Display file contents
+
+# Reports
+i2 report <job_id>              # Generate job report
+
+# Import/Export
+i2 export job <job_id>          # Export job to archive
+i2 export project <project_id>  # Export project
+i2 import <zipfile>             # Import legacy CCP4 project
+```
+
+### Examples
+
+```bash
+# Create a project and run a task
+i2 projects create toxd
+i2 run parrot --hklin toxd.mtz --xyzin toxd.pdb
+
+# List jobs and view a report
+i2 jobs toxd
+i2 report 42
+```
+
+### Django Management Commands
+
+For advanced usage, Django management commands are also available:
 
 ```bash
 cd server
 ccp4-python manage.py <command> [options]
 ```
 
-### Available Commands
-
-**Job Execution:**
-- `i2run <task> [options]` - Run a task (equivalent to legacy i2run)
-- `create_job <task>` - Create a job without running it
-- `run_job <job_id>` - Run an existing job
-- `execute_job <job_id>` - Execute a job (internal)
-
-**Project Management:**
-- `list_projects` - List all projects
-- `list_project <project_id>` - Show project details
-- `create_project <name>` - Create a new project
-- `tree_project <project_id>` - Show project job tree
-
-**Job Management:**
-- `list_jobs [project_id]` - List jobs in a project
-- `tree_job <job_id>` - Show job file tree
-- `clone_job <job_id>` - Clone a job
-- `set_job_status <job_id> <status>` - Update job status
-- `set_job_parameter <job_id> <param> <value>` - Set job parameter
-- `validate_job <job_id>` - Validate job configuration
-
-**File Operations:**
-- `list_files <job_id>` - List files in a job
-- `list_filetypes` - List available file types
-- `cat_job_file <job_id> <filename>` - Display job file contents
-- `cat_project_file <project_id> <filename>` - Display project file contents
-- `preview_file <file_id>` - Preview file contents
-
-**Import/Export:**
-- `export_job <job_id>` - Export job to archive
-- `export_project <project_id>` - Export project to archive
-- `import_ccp4_project_zip <zipfile>` - Import legacy CCP4 project
-- `import_i2xml <xmlfile>` - Import i2 XML file
-
-**Reports:**
-- `get_job_report <job_id>` - Generate job report
-
-### Examples
-
-```bash
-# Run a refinement task
-cd server
-ccp4-python manage.py i2run refmac --hklin data.mtz --xyzin model.pdb
-
-# List all projects
-ccp4-python manage.py list_projects
-
-# Show job tree
-ccp4-python manage.py tree_job 42
-```
+Commands include: `i2run`, `list_projects`, `list_jobs`, `create_job`, `run_job`, `tree_job`, `export_job`, `import_ccp4_project_zip`, and more. Run `ccp4-python manage.py --help` for the full list.
 
 ---
 
@@ -266,23 +264,24 @@ For development requiring packages not in CCP4, you can create a Python virtual 
 
 ### Environment Variables
 
-The test runner (`run_test.sh`) automatically sets these, but for manual testing:
+After pip installation (`ccp4-python -m pip install -e ".[django]"`), PYTHONPATH is handled automatically. The key environment variables are:
 
 ```bash
-export CCP4I2_ROOT=/path/to/ccp4i2           # Project root
-export DJANGO_SETTINGS_MODULE=ccp4x.config.test_settings
-export PYTHONPATH=$CCP4I2_ROOT:$CCP4I2_ROOT/server:$PYTHONPATH
+export CCP4I2_ROOT=/path/to/ccp4i2           # For resource files (qticons, data, etc.)
+export DJANGO_SETTINGS_MODULE=ccp4x.config.settings  # Or test_settings for tests
 ```
+
+The test runner (`run_test.sh`) sets these automatically.
 
 ### Optional .env File
 
-Create a `.env` file in the project root for local configuration:
+Create a `.env` file in the project root for local CCP4 configuration:
 
 ```bash
 CCP4_ROOT=/path/to/ccp4-20251105
-CCP4_VERSION=ccp4-20251105
-PYTHON_VERSION=3.11
 ```
+
+This is used by `run_test.sh` to find CCP4 if not already in the environment.
 
 ---
 
