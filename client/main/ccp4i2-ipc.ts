@@ -15,7 +15,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
  * Finds the Python executable in the project's virtual environment.
  * Checks multiple possible venv locations in order of preference.
  *
- * @param projectRoot - The path to the cdata-codegen project root.
+ * @param projectRoot - The path to the ccp4i2 project root.
  * @returns The path to the Python executable, or null if not found.
  */
 function findVenvPython(projectRoot: string): string | null {
@@ -37,6 +37,28 @@ function findVenvPython(projectRoot: string): string | null {
   }
 
   return null;
+}
+
+/**
+ * Finds the Python executable, preferring ccp4-python from the CCP4 installation.
+ * Falls back to project's virtual environment if ccp4-python is not available.
+ *
+ * @param CCP4Dir - The path to the CCP4 installation directory.
+ * @param projectRoot - The path to the project root (fallback for .venv).
+ * @returns The path to the Python executable, or null if not found.
+ */
+function findPython(CCP4Dir: string, projectRoot: string): string | null {
+  const isWindows = platform() === "win32";
+
+  // Prefer ccp4-python from CCP4 installation
+  const ccp4PythonBin = isWindows ? "ccp4-python.bat" : "ccp4-python";
+  const ccp4PythonPath = path.join(CCP4Dir, "bin", ccp4PythonBin);
+  if (fs.existsSync(ccp4PythonPath)) {
+    return ccp4PythonPath;
+  }
+
+  // Fallback to project's virtual environment
+  return findVenvPython(projectRoot);
 }
 
 /**
@@ -73,9 +95,12 @@ export const installIpcHandlers = (
 ) => {
   const getConfigResponse = () => {
     const projectRoot = store.get("projectRoot") || "";
-    const venv_python = findVenvPython(projectRoot);
+    const CCP4Dir = store.get("CCP4Dir") || "";
+    // Prefer ccp4-python from CCP4 installation, fall back to venv
+    const python_path = findPython(CCP4Dir, projectRoot);
     const config: any = store.store; // Retrieve all values from the electron-store
-    config.venv_python = venv_python;
+    // Use venv_python key for backwards compatibility with the UI
+    config.venv_python = python_path;
     config.UVICORN_PORT = djangoServerPort;
     config.NEXT_PORT = nextServerPort;
     console.log("get-config", config);
@@ -272,15 +297,16 @@ export const installIpcHandlers = (
 
   ipcMain.on("check-requirements", (event, _data) => {
     const projectRoot = store.get("projectRoot") || "";
-    const venvPythonPath = findVenvPython(projectRoot);
+    const CCP4Dir = store.get("CCP4Dir") || "";
+    const pythonPath = findPython(CCP4Dir, projectRoot);
 
-    console.log("In check-requirements", venvPythonPath);
+    console.log("In check-requirements", pythonPath);
 
     // Validate that the executable exists before spawning
-    if (!venvPythonPath) {
+    if (!pythonPath) {
       event.reply("message-from-main", {
         message: "requirements-missing",
-        error: `Python virtual environment not found in project root: ${projectRoot}`,
+        error: `Python not found. Please configure CCP4 installation or project virtual environment.`,
       });
       return;
     }
@@ -289,7 +315,7 @@ export const installIpcHandlers = (
 
     // Add error handling for spawn
     try {
-      const child = spawn(venvPythonPath, ["-c", "import rest_framework"], {
+      const child = spawn(pythonPath, ["-c", "import rest_framework"], {
         stdio: ["ignore", "ignore", "pipe"],
         // Add shell option for Windows compatibility
         shell: process.platform === "win32",
@@ -328,13 +354,14 @@ export const installIpcHandlers = (
 
   ipcMain.on("install-requirements", (event, _config) => {
     const projectRoot = store.get("projectRoot") || "";
-    const venvPythonPath = findVenvPython(projectRoot);
+    const CCP4Dir = store.get("CCP4Dir") || "";
+    const pythonPath = findPython(CCP4Dir, projectRoot);
 
-    if (!venvPythonPath) {
+    if (!pythonPath) {
       event.sender.send("message-from-main", {
         message: "install-requirements-progress",
         status: "failed",
-        output: `Python virtual environment not found in project root: ${projectRoot}`,
+        output: `Python not found. Please configure CCP4 installation or project virtual environment.`,
       });
       return;
     }
@@ -346,7 +373,7 @@ export const installIpcHandlers = (
     const requirementsPath = path.join(serverPath, "requirements.txt");
 
     // Spawn pip install process
-    const pipProcess = spawn(venvPythonPath, [
+    const pipProcess = spawn(pythonPath, [
       "-m",
       "pip",
       "install",

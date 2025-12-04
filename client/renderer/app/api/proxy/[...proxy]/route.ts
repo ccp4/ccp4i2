@@ -40,6 +40,9 @@ interface RequestInitWithDuplex extends RequestInit {
 }
 // Common handler for all HTTP methods
 async function handleProxy(req: NextRequest, params: { proxy: string[] }) {
+  // Priority: runtime API_BASE_URL (set by Electron) > build-time NEXT_PUBLIC > default
+  // Note: NEXT_PUBLIC_* vars are embedded at build time, so we check API_BASE_URL first
+  // for runtime configuration in packaged Electron apps
   let backendBaseUrl =
     process.env.API_BASE_URL ||
     process.env.NEXT_PUBLIC_API_BASE_URL ||

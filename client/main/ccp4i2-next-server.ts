@@ -54,7 +54,7 @@ export const startNextServer = async (
       "'self' https://www.ebi.ac.uk https://www.uniprot.org https://pubmed.ncbi.nlm.nih.gov https://raw.githubusercontent.com/MonomerLibrary/monomers/master/ " +
       "https://login.microsoftonline.com https://graph.microsoft.com https://*.microsoftonline.com https://*.microsoft.com " +
       "https://graph.windows.net https://management.azure.com " +
-      process.env.NEXT_PUBLIC_API_BASE_URL,
+      (process.env.API_BASE_URL || process.env.NEXT_PUBLIC_API_BASE_URL || ""),
     styleSrc:
       "'self' https://cdn.jsdelivr.net 'unsafe-inline' https://fonts.googleapis.com/css2",
     fontSrc:

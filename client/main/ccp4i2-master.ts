@@ -148,6 +148,9 @@ app
     installWillDownloadHandler(session.defaultSession);
     addNewWindowMenuItem(nextServerPort, djangoServerPort);
     setupZoomLevel(store);
+    // Set both API_BASE_URL (runtime, for server-side proxy routes) and
+    // NEXT_PUBLIC_API_BASE_URL (for any client-side code that needs it)
+    process.env.API_BASE_URL = `http://localhost:${djangoServerPort}`;
     process.env.NEXT_PUBLIC_API_BASE_URL = `http://localhost:${djangoServerPort}`;
     nextServer = await startNextServer(isDev, nextServerPort, djangoServerPort);
   })

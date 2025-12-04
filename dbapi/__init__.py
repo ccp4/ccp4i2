@@ -50,7 +50,7 @@ def _is_django_mode():
 if _is_django_mode():
     # Django mode: Use Django ORM models
     try:
-        from server.ccp4x.db.models import (
+        from ccp4x.db.models import (
             Project,
             Job,
             File,

@@ -41,8 +41,8 @@ def main():
         try:
             from .CCP4i2RunnerDjango import CCP4i2RunnerDjango as Runner
         except ImportError:
-            # Fall back to server path
-            from server.ccp4x.i2run.CCP4i2RunnerDjango import CCP4i2RunnerDjango as Runner
+            # Fall back to ccp4x path (installed from server/)
+            from ccp4x.i2run.CCP4i2RunnerDjango import CCP4i2RunnerDjango as Runner
 
         command_line = ' '.join(sys.argv[1:])
         runner = Runner(command_line=command_line)

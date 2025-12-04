@@ -371,12 +371,12 @@ export const ConfigContent: React.FC = () => {
               </Stack>
             </Paper>
 
-            {/* Virtual Environment Python */}
+            {/* Python Interpreter (ccp4-python or venv) */}
             <Paper variant="outlined" sx={{ p: 2 }}>
               <Stack spacing={2}>
                 <Box display="flex" alignItems="center" gap={1}>
                   <Typography variant="subtitle1" fontWeight={500}>
-                    Virtual Environment Python
+                    Python Interpreter
                   </Typography>
                   {existingFiles?.venv_python ? (
                     <Check color="success" />
@@ -394,7 +394,7 @@ export const ConfigContent: React.FC = () => {
                     borderRadius: 1,
                   }}
                 >
-                  {config.venv_python || "Not found - check Project Root"}
+                  {config.venv_python || "Not found - check CCP4 installation"}
                 </Typography>
               </Stack>
             </Paper>

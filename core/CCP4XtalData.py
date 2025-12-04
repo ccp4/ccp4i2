@@ -1109,7 +1109,7 @@ class CMtzData(CMtzDataStub):
         Includes all standard children plus type-specific attributes like
         datasets, wavelengths, crystalNames, listOfColumns, and datasetCells.
         """
-        from server.ccp4x.lib.utils.parameters.value_dict import value_dict_for_object
+        from ccp4x.lib.utils.parameters.value_dict import value_dict_for_object
 
         # Start with base serialization from children
         result = {}
@@ -2437,7 +2437,7 @@ class CUnmergedDataContent(CUnmergedDataContentStub):
         Includes all standard children plus type-specific attributes like
         datasets, wavelengths, crystalNames, listOfColumns, and datasetCells.
         """
-        from server.ccp4x.lib.utils.parameters.value_dict import value_dict_for_object
+        from ccp4x.lib.utils.parameters.value_dict import value_dict_for_object
 
         # Start with base serialization from children
         result = {}

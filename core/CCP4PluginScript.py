@@ -317,7 +317,7 @@ class CPluginScript(CData):
                     # Set default value from job database if available
                     if hasattr(self, '_dbJobId') and self._dbJobId:
                         try:
-                            from server.ccp4x.models import Job
+                            from ccp4x.db.models import Job
                             job = Job.objects.get(uuid=self._dbJobId)
                             if job.name:
                                 job_title.value = job.name
