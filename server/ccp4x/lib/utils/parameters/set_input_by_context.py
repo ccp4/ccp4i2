@@ -1,29 +1,37 @@
 import logging
 import uuid
-from typing import List
-from xml.etree import ElementTree as ET
+from typing import Optional, Any
 
-from core import CCP4Container
 from core.CCP4Container import CContainer
-from core import CCP4File
-from core import CCP4Data
-from core.base_object.fundamental_types import CList
 from core.base_object.cdata_file import CDataFile
 
 from ccp4x.db import models
 from ..plugins.get_plugin import get_job_plugin
 from .save_params import save_params_for_job
 from ..files.get_by_context import get_file_by_job_context
-from ..containers.find_objects import find_objects
-from typing import Optional
 
 logger = logging.getLogger(f"ccp4x:{__name__}")
 
 
 def set_input_by_context_job(
-    job_id: Optional[str] = None, context_job_id: Optional[str] = None
+    job_id: Optional[str] = None,
+    context_job_id: Optional[str] = None,
+    plugin: Optional[Any] = None,
+    save_params: bool = True,
 ):
+    """
+    Populate job inputs from a context job's outputs.
 
+    Finds all input files with `fromPreviousJob=True` qualifier and attempts
+    to match them with output files from the context job (or its ancestors).
+
+    Args:
+        job_id: UUID string of the job to populate
+        context_job_id: UUID string of the context job to draw inputs from
+        plugin: Optional plugin instance to use. If not provided, creates a new one.
+        save_params: Whether to save params after modification (default True).
+                    Set to False if caller will handle saving.
+    """
     assert job_id is not None
 
     logger.info(
@@ -35,62 +43,61 @@ def set_input_by_context_job(
     job_uuid = uuid.UUID(job_id)
 
     the_job = models.Job.objects.get(uuid=job_uuid)
-    the_job_plugin = get_job_plugin(the_job)
+
+    # Use provided plugin or create a new one
+    if plugin is not None:
+        the_job_plugin = plugin
+    else:
+        the_job_plugin = get_job_plugin(the_job)
+
     the_container: CContainer = the_job_plugin.container
     input_data: CContainer = the_container.inputData
 
-    def cdata_func(item):
-        if isinstance(item, CCP4File.CDataFile):
-            return item.qualifiers("fromPreviousJob")
-        return False
+    # Use modern find_all_files() to get all file objects in inputData
+    # Then filter for those with fromPreviousJob=True qualifier
+    all_input_files = input_data.find_all_files()
+    dobj_list = [
+        f for f in all_input_files
+        if f.qualifiers("fromPreviousJob")
+    ]
 
-    dobj_list = find_objects(
-        input_data,
-        cdata_func,
-        multiple=True,
+    logger.debug(
+        "Found %d input files with fromPreviousJob=True",
+        len(dobj_list)
     )
-
-    # Now find input data that is a list of files, add an item of such lists to the list of dObjs for which we need to set the input
-    def clist_func(item):
-        if isinstance(item, CCP4Data.CList):
-            return item.qualifiers("fromPreviousJob")
-        return False
-
-    list_list = find_objects(
-        input_data,
-        clist_func,
-        multiple=True,
-    )
-    a_list: CList
-    for a_list in list_list:
-        try:
-            a_list.unSet()
-            # We may need to make a new item of the list, as the list is empty
-            if len(a_list) == 0:
-                a_list_item = a_list.makeItem()
-            else:
-                a_list_item = a_list[0]
-            # We need to check if the item is a file, as it may be a list of other things
-            if isinstance(a_list_item, CCP4File.CDataFile):
-                a_list.append(a_list_item)
-                dobj_list.append(a_list_item)
-        except Exception as err:
-            logger.exception(
-                "Exception in set_input_by_context_job for %s",
-                a_list.objectPath(),
-                exc_info=err,
-            )
 
     dobj: CDataFile
     for dobj in dobj_list:
         if context_job_id is None:
             dobj.unSet()
             continue
+
+        # Parse qualifiers - they may be comma-separated strings representing lists
+        sub_type = dobj.qualifiers("requiredSubType")
+        content_flag = dobj.qualifiers("requiredContentFlag")
+
+        # Convert comma-separated strings to lists of integers
+        if isinstance(sub_type, str) and "," in sub_type:
+            sub_type = [int(x.strip()) for x in sub_type.split(",")]
+        elif sub_type is not None and sub_type != "":
+            try:
+                sub_type = int(sub_type)
+            except (ValueError, TypeError):
+                sub_type = None
+
+        if isinstance(content_flag, str) and "," in content_flag:
+            content_flag = [int(x.strip()) for x in content_flag.split(",")]
+        elif content_flag is not None and content_flag != "":
+            try:
+                content_flag = int(content_flag)
+            except (ValueError, TypeError):
+                content_flag = None
+
         file_id_list = get_file_by_job_context(
             contextJobId=context_job_id,
             fileType=dobj.qualifiers("mimeTypeName"),
-            subType=dobj.qualifiers("requiredSubType"),
-            contentFlag=dobj.qualifiers("requiredContentFlag"),
+            subType=sub_type,
+            contentFlag=content_flag,
             projectId=str(the_job.project.uuid),
         )
 
@@ -108,6 +115,10 @@ def set_input_by_context_job(
                 }
             )
             dobj.loadFile()
-            dobj.setContentFlag(reset=True)
+            # Auto-detect content flag from file (base CDataFile.setContentFlag
+            # handles the case where contentFlag is None or not applicable)
+            dobj.setContentFlag()
 
-    save_params_for_job(the_job_plugin, the_job=the_job)
+    # Only save params if requested (caller may handle saving themselves)
+    if save_params:
+        save_params_for_job(the_job_plugin, the_job=the_job)

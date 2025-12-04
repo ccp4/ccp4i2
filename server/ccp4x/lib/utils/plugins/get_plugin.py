@@ -3,8 +3,8 @@ import traceback
 
 from core import CCP4TaskManager
 
-# from ccp4x.db.ccp4i2_django_db_handler import CCP4i2DjangoDbHandler
 from ccp4x.db.models import Job
+from ccp4x.db.async_db_handler import AsyncDatabaseHandler
 
 logger = logging.getLogger(f"ccp4x:{__name__}")
 
@@ -16,7 +16,9 @@ def get_job_plugin(the_job: Job, parent=None, dbHandler=None):
     Args:
         the_job (Job): The job object containing details such as task name and directory.
         parent (optional): The parent object, if any. Defaults to None.
-        dbHandler (CCP4i2DjangoDbHandler, optional): The database handler for CCP4i2. Defaults to None.
+        dbHandler (optional): The database handler for CCP4i2. If not provided, an
+            AsyncDatabaseHandler will be created automatically using the job's project UUID.
+            This ensures CDataFile objects can resolve paths via dbFileId.
 
     Returns:
         pluginInstance: An instance of the plugin class initialized with the job's parameters.
@@ -27,6 +29,11 @@ def get_job_plugin(the_job: Job, parent=None, dbHandler=None):
     """
 
     taskManager = CCP4TaskManager.CTaskManager()
+
+    # Create a default database handler if one wasn't provided
+    # This ensures CDataFile objects can resolve paths via dbFileId
+    if dbHandler is None:
+        dbHandler = AsyncDatabaseHandler(project_uuid=str(the_job.project.uuid))
 
     pluginClass = taskManager.get_plugin_class(the_job.task_name)
     try:

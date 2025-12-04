@@ -30,6 +30,7 @@ from ..db.async_db_handler import AsyncDatabaseHandler
 from .utils.containers.remove_defaults import remove_container_default_values
 from .utils.parameters.save_params import save_params_for_job
 from .utils.files.set_names import set_output_file_names
+from .utils.parameters.set_input_by_context import set_input_by_context_job
 
 
 logger = logging.getLogger(f"ccp4x:{__name__}")
@@ -44,6 +45,8 @@ async def create_job_async(
     job_id: Optional[uuid.UUID] = None,
     save_params: bool = True,
     input_params: Optional[Dict[str, Any]] = None,
+    context_job_uuid: Optional[uuid.UUID] = None,
+    auto_context: bool = True,
 ) -> Dict[str, Any]:
     """
     Create a new job with full directory structure and parameter files.
@@ -53,8 +56,9 @@ async def create_job_async(
     2. Creates the job directory structure
     3. Instantiates the plugin with correct work directory
     4. Patches output file paths to job directory
-    5. Optionally saves parameters to XML file
-    6. Sets input parameters if provided
+    5. Applies context-based input population (from previous job outputs)
+    6. Optionally saves parameters to XML file
+    7. Sets input parameters if provided (overrides context-based inputs)
 
     Args:
         project_uuid: UUID of the project
@@ -65,6 +69,10 @@ async def create_job_async(
         job_id: Optional explicit job UUID (auto-generated if not provided)
         save_params: Whether to save parameter file to job directory (default: True)
         input_params: Optional dict of input parameters to set on plugin
+        context_job_uuid: Optional context job UUID for input population. If not provided
+            and auto_context is True, uses the most recent top-level job in the project.
+        auto_context: Whether to auto-select context job if not provided (default: True).
+            Set to False to create a job without any context-based input population.
 
     Returns:
         Dict containing:
@@ -146,7 +154,18 @@ async def create_job_async(
 
     logger.debug(f"Created plugin instance: {plugin.__class__.__name__}")
 
-    # Set input parameters if provided
+    # Apply context-based input population
+    # This sets inputs based on outputs from previous jobs in the project
+    # Pass the plugin so changes are made to the same instance we'll save later
+    await _apply_context_inputs(
+        job=job,
+        project=project,
+        context_job_uuid=context_job_uuid,
+        auto_context=auto_context,
+        plugin=plugin,
+    )
+
+    # Set input parameters if provided (overrides context-based inputs)
     if input_params:
         await _set_input_parameters(plugin, input_params)
 
@@ -271,6 +290,67 @@ async def create_subjob_async(
 # ============================================================================
 # Internal helper functions
 # ============================================================================
+
+
+async def _apply_context_inputs(
+    job: models.Job,
+    project: models.Project,
+    context_job_uuid: Optional[uuid.UUID],
+    auto_context: bool,
+    plugin: Optional[Any] = None,
+):
+    """
+    Apply context-based input population from a previous job's outputs.
+
+    This finds files with matching types from the context job (or its ancestors)
+    and populates the new job's inputs accordingly.
+
+    Args:
+        job: The newly created job
+        project: The project containing the job
+        context_job_uuid: Explicit context job UUID, or None to auto-select
+        auto_context: Whether to auto-select context job if not provided
+        plugin: Optional plugin instance to modify. If provided, changes are made
+               directly to this instance and caller is responsible for saving.
+    """
+    @sync_to_async
+    def _apply():
+        # Determine context job
+        context_job = None
+
+        if context_job_uuid is not None:
+            try:
+                context_job = models.Job.objects.get(uuid=context_job_uuid)
+                logger.debug(f"Using explicit context job: {context_job.number}")
+            except models.Job.DoesNotExist:
+                logger.warning(f"Context job {context_job_uuid} does not exist")
+                context_job = None
+        elif auto_context:
+            # Auto-select: use the most recent top-level job in the project (excluding this job)
+            context_job = (
+                models.Job.objects.filter(parent__isnull=True, project=project)
+                .exclude(id=job.id)
+                .last()
+            )
+            if context_job:
+                logger.debug(f"Auto-selected context job: {context_job.number}")
+            else:
+                logger.debug("No context job available (first job in project)")
+
+        # Apply context-based input population
+        if context_job is not None:
+            logger.info(f"Applying context from job {context_job.number} to job {job.number}")
+            # Pass plugin if provided, and don't save params (caller handles saving)
+            set_input_by_context_job(
+                str(job.uuid),
+                str(context_job.uuid),
+                plugin=plugin,
+                save_params=(plugin is None),  # Only save if we created our own plugin
+            )
+        else:
+            logger.debug("No context job - skipping input population")
+
+    await _apply()
 
 
 async def _update_job_uuid(job: models.Job, new_uuid: uuid.UUID):
