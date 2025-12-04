@@ -226,8 +226,8 @@ class phaser_MR(CPluginScript):
                             iSol = int(solutionString.split(":")[0].strip())
                             trial = loadrf.__getitem__(0).RLIST[iSol]
                             inputObject.addSOLU_TRIAL_ENSE_EULER(trial.MODLID, trial.EULER, trial.RF, trial.RFZ)
-            except:
-                self.appendErrorReport(106)
+            except Exception as e:
+                self.appendErrorReport(106, 'Failed to parse solutions from RFILEIN in MR_FTF mode: ' + str(e))
                 return CPluginScript.FAILED
         elif inp.MODE_TY in ['MR_AUTO', 'MR_PAK', 'MR_RNP']:
             try:
@@ -242,15 +242,15 @@ class phaser_MR(CPluginScript):
                             iSol = int(solutionString.split(":")[0].strip())
                             filteredSolutionsObject.append(solutionsObject.__getitem__(iSol))
                         inputObject.setSOLU(filteredSolutionsObject)
-            except:
-                self.appendErrorReport(106)
+            except Exception as e:
+                self.appendErrorReport(106, 'Failed to parse solutions from SOLIN in MR_AUTO/MR_PAK/MR_RNP mode: ' + str(e))
                 return CPluginScript.FAILED
         try:
             if self.container.inputData.FIXENSEMBLES.isSet():
                 for ensembleName in self.container.inputData.FIXENSEMBLES:
                     inputObject.addSOLU_ORIG_ENSE(ensembleName.__str__())
-        except:
-            self.appendErrorReport(108)
+        except Exception as e:
+            self.appendErrorReport(108, 'Failed to add fixed ensemble solutions (FIXENSEMBLES): ' + str(e))
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 

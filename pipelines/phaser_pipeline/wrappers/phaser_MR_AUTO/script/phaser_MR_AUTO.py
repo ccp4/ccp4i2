@@ -104,9 +104,10 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
             inputObject.setHIRES(float(inp.RESOLUTION_HIGH))
         inputObject.setMUTE(False)
         resultObject = phaser.runMR_DAT(inputObject, outputObject)
-        with open (self.makeFileName('LOG'),'w') as logfile:
-            logfile.write(resultObject.logfile())
-        
+        # Note: Don't write logfile() here - it truncates the LOG while C++ stdout
+        # is still redirected to it. The logfile() write is done after
+        # finishCaptureCPlusPlusStdout() in startProcess().
+
         if not resultObject.Success():
             self.appendErrorReport(105, resultObject.ErrorName() + '-' + resultObject.ErrorMessage())
             return CPluginScript.FAILED
@@ -116,18 +117,20 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
         import phaser
         outputObject = phaser.Output()
         outputObject.setPhenixCallback(self.callbackObject)
-
         self.prepareCaptureCPlusPlusStdoutToLog()
         resultObject = self.runMR_DAT(outputObject)
         self.finishCaptureCPlusPlusStdout()
+        # Write phaser's internal log buffer AFTER restoring stdout (not before!)
+        # The first call uses 'w' to start fresh, subsequent calls use 'a' to append
+        if resultObject != CPluginScript.FAILED:
+            with open(self.makeFileName('LOG'), 'w') as logfile:
+                logfile.write(resultObject.logfile())
 
         if resultObject == CPluginScript.FAILED: return CPluginScript.FAILED
-
         self.inputHall = resultObject.getSpaceGroupHall()
         self.inputSpaceGroup = resultObject.getSpaceGroupName()
         inputObject = phaser.InputMR_AUTO()
         inputObject.setKILL_FILE(os.path.join(self.getWorkDirectory(),'INTERRUPT'))
-
         inputObject.setSPAC_HALL(resultObject.getSpaceGroupHall())
         inputObject.setCELL6(resultObject.getUnitCell())
         #print '\n\n\nresutObject',dir(resultObject)
@@ -149,7 +152,6 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
             inputObject.setKILL_FILE(self.container.inputData.KILLFILEPATH.__str__())
         else:
             inputObject.setKILL_FILE(os.path.join(self.getWorkDirectory(),'INTERRUPT'))
-
         #Alternative space groups
         #print '\n\n\n****Dir of autoMR input object'
         #print [word+'\n' for word in dir(inputObject) if 'sg' in word.lower()]
@@ -165,7 +167,6 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
         #underlying C++ calls
         inputObject.setMUTE(False)
         self.prepareCaptureCPlusPlusStdoutToLog()
-
         inputObject.setKEYW(True)
         try:
             self.resultObject = phaser.runMR_AUTO(inputObject, outputObject)
@@ -176,10 +177,14 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
 
 
         self.finishCaptureCPlusPlusStdout()
+        # Write phaser's internal log buffer for the main MR_AUTO phase (append mode)
+        with open(self.makeFileName('LOG'), 'a') as logfile:
+            logfile.write(self.resultObject.logfile())
+
         if not self.resultObject.Success():
             self.appendErrorReport(105, self.resultObject.ErrorName() + '-' + self.resultObject.ErrorMessage())
             return CPluginScript.FAILED
-            
+
         self.analyseResults(self.resultObject)
         return CPluginScript.SUCCEEDED
 
@@ -214,6 +219,7 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
     # also writes the XML file, previously done by postProcess()
     def processOutputFiles(self):
         import phaser
+        import sys
         resultObject = self.resultObject
         num_sol = len(resultObject.getPdbFiles())
         for i in range(1,num_sol+1):
@@ -367,14 +373,16 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
 
     def flushXML(self, xml):
         from lxml import etree
+        import sys
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
+        finalFilename = self.makeFileName('PROGRAMXML')
         with open(tmpFilename,'w') as tmpFile:
             xmlText = etree.tostring(xml, pretty_print=True)
             CCP4Utils.writeXML(tmpFile,xmlText)
             #Here adapt the update frequency to depend on the size of the current XML structure
             xmlUpdateDelay = max(5, int(len(xmlText)/100000))
             self.callbackObject.minimumDelayInSeconds = xmlUpdateDelay
-        self.renameFile(tmpFilename, self.makeFileName('PROGRAMXML'))
+        self.renameFile(tmpFilename, finalFilename)
 
     def prepareCaptureCPlusPlusStdoutToLog(self):
         # This suggested by Stack Overflow

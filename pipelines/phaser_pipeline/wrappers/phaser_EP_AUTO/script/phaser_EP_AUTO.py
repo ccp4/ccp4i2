@@ -115,6 +115,7 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
         i.addCRYS_ANOM_DATA(xtalid,waveid,Fpos,Spos,Ppos,Fneg,Sneg,Pneg)
 
         if self.setKeywords(i) == CPluginScript.FAILED:
+            self.appendErrorReport(102, 'Failed to set phaser keywords in phaser_EP_AUTO')
             return CPluginScript.FAILED
 
         if self.container.inputData.PARTIALMODELORMAP.__str__() == 'MODEL':
@@ -143,6 +144,7 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
         i.setWAVE(float(self.container.inputData.WAVELENGTH))
 
         if self.parseContent(i) == CPluginScript.FAILED:
+            self.appendErrorReport(104, 'Failed to parse ASU content in phaser_EP_AUTO')
             return CPluginScript.FAILED
 
         i.setMUTE(False)
@@ -172,6 +174,7 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
             for report in error._reports:
                 if report['code'] == 32:
                     report['details'] = 'F+ and F- cannot be derived from data. Check file import.'
+            self.appendErrorReport(201, 'Failed to prepare input MTZ file (makeHklin failed). ' + str(error))
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
     
