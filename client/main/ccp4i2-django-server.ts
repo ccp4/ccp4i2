@@ -112,7 +112,9 @@ export async function startDjangoServer(
     process.env.CCP4I2_DB_FILE = path.join(CCP4I2_PROJECTS_DIR, "db.sqlite3");
   }
 
-  // Set CCP4I2_ROOT to the project root (used by backend for plugin discovery)
+  // Set CCP4I2_ROOT to the project root (used by backend for resource discovery)
+  // After pip install -e ".[django]", ccp4i2 and ccp4x are in site-packages,
+  // but we still need CCP4I2_ROOT for qticons, svgicons, data, etc.
   process.env.CCP4I2_ROOT = projectRoot;
 
   console.log(`🚀 Next.js running on http://localhost:${NEXT_PORT}`);
@@ -120,24 +122,22 @@ export async function startDjangoServer(
   console.log(`📁 Project root (CCP4I2_ROOT): ${projectRoot}`);
 
   const oldCWD = process.cwd();
-  const oldPythonPath = process.env.PYTHONPATH || "";
   let serverSrcPath: string;
 
   if (isDev) {
+    // In development, server/ is alongside client/ in the repo
     serverSrcPath = path.join(process.cwd(), "..", "server");
-    process.chdir(path.join(process.cwd(), "..", "server"));
+    process.chdir(serverSrcPath);
   } else {
-    // process.resourcesPath is an Electron-specific property
+    // In packaged app, server/ is bundled in resources
     const resourcesPath = (process as any).resourcesPath as string;
     serverSrcPath = path.join(resourcesPath, "server");
-    process.chdir(path.join(resourcesPath, "server"));
+    process.chdir(serverSrcPath);
   }
 
-  // Set environment variables BEFORE any Python operations
-  // PYTHONPATH needs both server/ (for Django) and projectRoot (for core/ module)
-  const pythonPathSeparator = process.platform === "win32" ? ";" : ":";
-  const pythonPath = [serverSrcPath, projectRoot].join(pythonPathSeparator);
-
+  // With pip-installed ccp4i2 and ccp4x, PYTHONPATH is no longer needed for
+  // Python modules (they're in site-packages). We only need CCP4I2_ROOT for
+  // resource files (qticons, svgicons, data, etc.)
   const pythonEnv: Record<string, string | undefined> = {
     ...process.env,
     UVICORN_PORT: `${UVICORN_PORT}`,
@@ -145,7 +145,6 @@ export async function startDjangoServer(
     // Force local execution mode for Electron app
     EXECUTION_MODE: "local",
     MPLBACKEND: "Agg", // Force matplotlib to use non-GUI backend
-    PYTHONPATH: pythonPath,
     CCP4I2_ROOT: projectRoot,
     // Windows-specific DLL path fixes
     ...(process.platform === "win32" && {
@@ -156,7 +155,6 @@ export async function startDjangoServer(
     }),
   };
 
-  console.log(`🐍`, pythonEnv);
   // Run migrations with the updated environment
   try {
     execSync(`"${PYTHON_PATH}" manage.py migrate`, {
@@ -218,8 +216,7 @@ export async function startDjangoServer(
 
   console.log(`🚀 Uvicorn running on http://localhost:${UVICORN_PORT}`);
 
-  // Restore original environment
-  process.env.PYTHONPATH = oldPythonPath;
+  // Restore original working directory
   process.chdir(oldCWD);
 
   pythonProcess.stdout.on("data", (data) => {

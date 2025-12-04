@@ -44,8 +44,8 @@ class CallbackObject(object):
     def loggraph(self, arg1, arg2):
         #print '\n**loggraph called',arg1
         try:
-            from pimple import MGQTmatplotlib
-            tableelement = MGQTmatplotlib.CCP4LogToEtree(arg2)
+            from pimple.logtable import CCP4LogToEtree
+            tableelement = CCP4LogToEtree(arg2)
             self.xmlroot.append(tableelement)
         except:
             print('\n\n\ failed reading MGQTMatPlotLib')

@@ -361,7 +361,7 @@ class phaser_mr(CPluginScript):
         import smartie
         logfile = smartie.parselog(self.makeFileName( 'LOG' ))
         
-        from pimple import MGQTmatplotlib
+        from pimple.logtable import CCP4LogToEtree
         import string
         import sys
         #Collect a list of graphs of different types
@@ -369,18 +369,18 @@ class phaser_mr(CPluginScript):
         translationTables = []
         packingTables = []
         refinementTables = []
-        
+
         rotationTablesDict = {}
         translationTablesDict = {}
         refinementTablesDict = {}
         packingTablesDict = {}
-        
+
         #print 'Log contained tableCount ',str(len(logfile.tables()))
         for smartieTable in logfile.tables():
             #print '\n\n** found a table'
             if smartieTable.ngraphs() > 0:
                 #print '\n\n** found a graph table'
-                tableelement = MGQTmatplotlib.CCP4LogToEtree(smartieTable.rawtable())
+                tableelement = CCP4LogToEtree(smartieTable.rawtable())
                 graphTableNodes = tableelement.xpath('.//CCP4Table')
                 #print '\n\n** found %d graphTableNodes'%len(graphTableNodes)
                 graphTableNode = None

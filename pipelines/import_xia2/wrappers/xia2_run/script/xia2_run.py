@@ -245,11 +245,11 @@ class xia2_run(CCP4PluginScript.CPluginScript):
         sys.path.append(smartiePath)
         import smartie
                        
-      from pimple import MGQTmatplotlib
+      from pimple.logtable import CCP4LogToEtree
       logfile = smartie.parselog(logFiles[0])
       for smartieTable in logfile.tables():
         if smartieTable.ngraphs() > 0:
-          tableelement = MGQTmatplotlib.CCP4LogToEtree(smartieTable.rawtable() )
+          tableelement = CCP4LogToEtree(smartieTable.rawtable())
           root.append(tableelement)
 
       summaryCount = logfile.nsummaries()

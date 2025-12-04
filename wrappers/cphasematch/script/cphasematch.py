@@ -98,7 +98,7 @@ class cphasematch(CPluginScript):
     def scrapeSmartieGraphs(self, smartieNode):
         import sys, os
         from core import CCP4Utils
-        from pimple import MGQTmatplotlib        
+        from pimple.logtable import CCP4LogToEtree
         from lxml import etree
         smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
         sys.path.append(smartiePath)
@@ -107,7 +107,7 @@ class cphasematch(CPluginScript):
         logfile = smartie.parselog(self.makeFileName('LOG'))
         for smartieTable in logfile.tables():
             if smartieTable.ngraphs() > 0:
-                tableetree = MGQTmatplotlib.CCP4LogToEtree(smartieTable.rawtable())
+                tableetree = CCP4LogToEtree(smartieTable.rawtable())
                 smartieNode.append(tableetree)
         return
 

@@ -1,0 +1,150 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ccp4i2"
+version = "3.0.0-dev"
+description = "CCP4i2 - Graphical interface and scripting environment for CCP4"
+readme = "README.md"
+license = {text = "BSD-3-Clause"}
+requires-python = ">=3.9"
+authors = [
+    {name = "CCP4 Developers", email = "ccp4@ccp4.ac.uk"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: X11 Applications :: Qt",
+    "Environment :: Web Environment",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Topic :: Scientific/Engineering :: Chemistry",
+]
+keywords = ["crystallography", "ccp4", "structural biology", "macromolecular"]
+
+# Core dependencies - minimal set for base functionality
+# Most scientific dependencies come from CCP4's Python environment
+dependencies = [
+    "lxml>=4.9.0",
+]
+
+[project.optional-dependencies]
+# Django backend dependencies
+django = [
+    "django>=3.2,<4.0",
+    "djangorestframework>=3.14.0",
+    "django-cors-headers>=3.13.0",
+    "django-filter>=23.5",
+    "whitenoise>=6.0.0",
+    "uvicorn>=0.20.0",
+]
+# Testing dependencies
+test = [
+    "pytest>=7.0.0",
+    "pytest-django>=4.5.0",
+    "pytest-asyncio>=0.21.0",
+]
+# Full installation with all optional dependencies
+full = [
+    "ccp4i2[django,test]",
+]
+
+[project.urls]
+Homepage = "https://www.ccp4.ac.uk/"
+Repository = "https://github.com/ccp4/ccp4i2"
+Documentation = "https://www.ccp4.ac.uk/html/INDEX.html"
+
+# CLI tools are implemented as Django management commands:
+#   ccp4-python -m django i2run <task> [options]
+#   ccp4-python manage.py i2run <task> [options]
+# See server/ccp4x/db/management/commands/ for available commands
+
+# Use automatic package discovery
+[tool.setuptools.packages.find]
+where = [".", "server"]
+include = [
+    "ccp4i2*",
+    "baselayer*",
+    "cli*",
+    "core*",
+    "ccp4x*",
+    "dbapi*",
+    "pimple*",
+    "pipelines*",
+    "report*",
+    "tasks*",
+    "utils*",
+    "wrappers*",
+]
+exclude = [
+    "client*",
+    "tests*",
+    "docs*",
+    "demo_data*",
+    "migration*",
+    "mddocs*",
+    "stubs*",
+    "smartie*",
+]
+
+[tool.setuptools.package-data]
+# Include static assets and non-Python files within packages
+"*" = [
+    "*.xml",
+    "*.xsd",
+    "*.xrt",
+    "*.def.xml",
+    "*.params.xml",
+    "*.bibtex.txt",
+    "*.medline.txt",
+    "*.com",
+    "*.json",
+    "*.txt",
+    "*.rst",
+    "*.md",
+    "*.py",
+]
+# Wrapper script templates
+"wrappers" = ["**/*.com", "**/*.xml", "**/*.xrt"]
+"wrappers2" = ["**/*.com", "**/*.xml", "**/*.xrt"]
+"pipelines" = ["**/*.com", "**/*.xml", "**/*.xrt"]
+# Report templates
+"report" = ["**/*.xsl", "**/*.css", "**/*.js", "**/*.html"]
+
+# Note: qticons, svgicons, data, tipsOfTheDay are NOT Python packages
+# They are accessed via CCP4I2_ROOT environment variable or the
+# ccp4i2.get_resource_path() helper function
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py39", "py310", "py311"]
+exclude = '''
+/(
+    \.git
+    | \.venv
+    | client
+    | node_modules
+    | __pycache__
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
+skip = [".git", ".venv", "client", "node_modules"]

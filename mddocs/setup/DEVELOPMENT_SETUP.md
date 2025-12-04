@@ -40,17 +40,28 @@ which ccp4-python
 ccp4-python --version  # Should show Python 3.11.x
 ```
 
-### Step 4: Install Django Dependencies
+### Step 4: Replace CCP4's ccp4i2 with This Branch
 
-CCP4 includes Django, but we need a few additional packages:
+CCP4 ships with its own version of ccp4i2 in site-packages. To use this development branch instead:
 
 ```bash
-# Core Django extensions
-ccp4-python -m pip install django-cors-headers django-filter djangorestframework whitenoise
+# First, remove CCP4's bundled ccp4i2
+CCP4_SITE=$(ccp4-python -c "import site; print(site.getsitepackages()[0])")
+rm -rf "$CCP4_SITE/ccp4i2"
 
-# For running the Electron client (ASGI server)
-ccp4-python -m pip install uvicorn==0.20.0
+# Install this branch in editable mode with Django dependencies
+ccp4-python -m pip install -e ".[django]"
+
+# Or install everything (Django + test dependencies)
+ccp4-python -m pip install -e ".[full]"
+
+# Note: pip may show an error about "checking for conflicts" - this is a known
+# issue with some CCP4 packages and can be ignored if the install succeeds.
 ```
+
+This replaces CCP4's bundled ccp4i2 with a link to your development checkout, so changes you make are immediately reflected. It also installs/upgrades Django and related packages (djangorestframework, django-cors-headers, django-filter, whitenoise, uvicorn).
+
+**To revert to CCP4's original version**: Re-install CCP4 or copy the ccp4i2 directory from a fresh CCP4 installation.
 
 ### Step 5: Verify Setup
 
@@ -79,6 +90,69 @@ Test projects are stored in `~/.cache/ccp4i2-tests/`. Cleanup instructions are p
 
 ---
 
+## CLI Tools (Django Management Commands)
+
+CLI tools are implemented as Django management commands. Run them via `ccp4-python` with the `manage.py` script:
+
+```bash
+cd server
+ccp4-python manage.py <command> [options]
+```
+
+### Available Commands
+
+**Job Execution:**
+- `i2run <task> [options]` - Run a task (equivalent to legacy i2run)
+- `create_job <task>` - Create a job without running it
+- `run_job <job_id>` - Run an existing job
+- `execute_job <job_id>` - Execute a job (internal)
+
+**Project Management:**
+- `list_projects` - List all projects
+- `list_project <project_id>` - Show project details
+- `create_project <name>` - Create a new project
+- `tree_project <project_id>` - Show project job tree
+
+**Job Management:**
+- `list_jobs [project_id]` - List jobs in a project
+- `tree_job <job_id>` - Show job file tree
+- `clone_job <job_id>` - Clone a job
+- `set_job_status <job_id> <status>` - Update job status
+- `set_job_parameter <job_id> <param> <value>` - Set job parameter
+- `validate_job <job_id>` - Validate job configuration
+
+**File Operations:**
+- `list_files <job_id>` - List files in a job
+- `list_filetypes` - List available file types
+- `cat_job_file <job_id> <filename>` - Display job file contents
+- `cat_project_file <project_id> <filename>` - Display project file contents
+- `preview_file <file_id>` - Preview file contents
+
+**Import/Export:**
+- `export_job <job_id>` - Export job to archive
+- `export_project <project_id>` - Export project to archive
+- `import_ccp4_project_zip <zipfile>` - Import legacy CCP4 project
+- `import_i2xml <xmlfile>` - Import i2 XML file
+
+**Reports:**
+- `get_job_report <job_id>` - Generate job report
+
+### Examples
+
+```bash
+# Run a refinement task
+cd server
+ccp4-python manage.py i2run refmac --hklin data.mtz --xyzin model.pdb
+
+# List all projects
+ccp4-python manage.py list_projects
+
+# Show job tree
+ccp4-python manage.py tree_job 42
+```
+
+---
+
 ## Running the Electron Client
 
 The Electron client provides a modern GUI for CCP4i2 with a React frontend and Django backend.
@@ -87,7 +161,7 @@ The Electron client provides a modern GUI for CCP4i2 with a React frontend and D
 
 - **Node.js 18+** and **npm 9+** (check with `node --version` and `npm --version`)
 - **CCP4 with ccp4-python** installed and accessible
-- **uvicorn** installed in ccp4-python (see Step 4 above)
+- **ccp4i2 installed** with Django dependencies (Step 4: `ccp4-python -m pip install -e ".[django]"`)
 
 ### CCP4 Detection
 

@@ -39,8 +39,8 @@ class makeGraphs:
     
     # - - - - - - - - -  - - - - - - - - -  - - - - - - - - - 
     def xmlForSmartieTable(self, table, parent):
-        from pimple import MGQTmatplotlib
-        tableetree = MGQTmatplotlib.CCP4LogToEtree(table.rawtable())
+        from pimple.logtable import CCP4LogToEtree
+        tableetree = CCP4LogToEtree(table.rawtable())
         parent.append(tableetree)
         return tableetree
 
