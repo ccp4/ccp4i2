@@ -44,7 +44,11 @@ ccp4-python --version  # Should show Python 3.11.x
 CCP4 includes Django, but we need a few additional packages:
 
 ```bash
+# Core Django extensions
 ccp4-python -m pip install django-cors-headers django-filter djangorestframework whitenoise
+
+# For running the Electron client (ASGI server)
+ccp4-python -m pip install uvicorn==0.20.0
 ```
 
 ### Step 5: Verify Setup
@@ -203,6 +207,13 @@ Test projects are created in `~/.cache/ccp4i2-tests/` with timestamped names:
 Install missing Django packages:
 ```bash
 ccp4-python -m pip install django-cors-headers django-filter djangorestframework whitenoise
+```
+
+### No module named 'uvicorn' (Electron client)
+
+The Electron client uses uvicorn as the ASGI server:
+```bash
+ccp4-python -m pip install uvicorn==0.20.0
 ```
 
 ### NumPy Version Conflicts

@@ -68,7 +68,7 @@ git checkout ccp4i2-django
 source /path/to/ccp4-20251105/bin/ccp4.setup-sh
 
 # Install additional Django dependencies into ccp4-python
-ccp4-python -m pip install django-cors-headers django-filter djangorestframework whitenoise
+ccp4-python -m pip install django-cors-headers django-filter djangorestframework whitenoise uvicorn==0.20.0
 
 # Verify setup
 ccp4-python -c "import django; print(f'Django {django.__version__}')"
