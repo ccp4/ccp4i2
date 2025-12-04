@@ -112,14 +112,12 @@ export async function startDjangoServer(
     process.env.CCP4I2_DB_FILE = path.join(CCP4I2_PROJECTS_DIR, "db.sqlite3");
   }
 
-  // Set CCP4I2_ROOT to the project root (used by backend for resource discovery)
-  // After pip install -e ".[django]", ccp4i2 and ccp4x are in site-packages,
-  // but we still need CCP4I2_ROOT for qticons, svgicons, data, etc.
-  process.env.CCP4I2_ROOT = projectRoot;
+  // Note: CCP4I2_ROOT is set later in pythonEnv, after we determine ccp4i2Path
+  // In dev mode: points to projectRoot (where qticons/, svgicons/ exist)
+  // In packaged mode: points to Resources/ccp4i2/ (where icons are bundled)
 
   console.log(`🚀 Next.js running on http://localhost:${NEXT_PORT}`);
   console.log(`🐍 Using Python: ${PYTHON_PATH}`);
-  console.log(`📁 Project root (CCP4I2_ROOT): ${projectRoot}`);
 
   const oldCWD = process.cwd();
   let serverSrcPath: string;
@@ -171,6 +169,8 @@ export async function startDjangoServer(
       MPLCONFIGDIR: path.join(os.tmpdir(), "matplotlib-config"),
     }),
   };
+
+  console.log(`📁 CCP4I2_ROOT: ${pythonEnv.CCP4I2_ROOT}`);
 
   // Run migrations with the updated environment
   try {

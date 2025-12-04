@@ -202,13 +202,21 @@ STATICFILES_STORAGE = (
 )
 
 # Keep your existing STATICFILES_DIRS - WhiteNoise will serve directly from these
-# PROJECT_ROOT is the cdata-codegen root (parent of server/)
-PROJECT_ROOT = BASE_DIR.parent.parent
+# CCP4I2_ROOT is set by Electron app (packaged: Resources/ccp4i2, dev: project root)
+# Fall back to calculating from BASE_DIR for standalone Django usage
+CCP4I2_ROOT_ENV = os.environ.get("CCP4I2_ROOT")
+if CCP4I2_ROOT_ENV:
+    CCP4I2_ROOT = Path(CCP4I2_ROOT_ENV)
+else:
+    # Standalone Django: BASE_DIR is server/ccp4x/config, so go up to project root
+    CCP4I2_ROOT = BASE_DIR.parent.parent
 
 STATICFILES_DIRS = [
-    # Icon directories from project root - served at /djangostatic/qticons/ and /djangostatic/svgicons/
-    ("qticons", str(PROJECT_ROOT / "qticons")),
-    ("svgicons", str(PROJECT_ROOT / "svgicons")),
+    # Icon directories - served at /djangostatic/qticons/ and /djangostatic/svgicons/
+    # In packaged app: CCP4I2_ROOT points to Resources/ccp4i2/ (where qticons/ and svgicons/ are bundled)
+    # In development: CCP4I2_ROOT points to project root (where qticons/ and svgicons/ exist)
+    ("qticons", str(CCP4I2_ROOT / "qticons")),
+    ("svgicons", str(CCP4I2_ROOT / "svgicons")),
 ]
 
 # Disable manifest storage features that require collectstatic
