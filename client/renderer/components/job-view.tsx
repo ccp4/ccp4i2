@@ -87,7 +87,7 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
   return !project || !jobs || !job ? (
     <LinearProgress />
   ) : (
-    <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+    <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
       <ToolBar />
       <Container
         sx={{
