@@ -126,9 +126,9 @@ export async function startDjangoServer(
 
   if (isDev) {
     // In development, server/ is alongside client/ in the repo
-    // ccp4i2 modules are pip-installed, so no PYTHONPATH needed
+    // Add project root to PYTHONPATH for core/, pipelines/, etc.
     serverSrcPath = path.join(process.cwd(), "..", "server");
-    ccp4i2Path = ""; // pip handles this in dev mode
+    ccp4i2Path = path.join(process.cwd(), ".."); // Project root for core/, pipelines/, etc.
     process.chdir(serverSrcPath);
   } else {
     // In packaged app, server/ and ccp4i2/ are bundled in resources
