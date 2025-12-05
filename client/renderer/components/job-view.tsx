@@ -113,7 +113,7 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
         {/* Scroll container with fixed height calc - TODO: make responsive to header height */}
         <Box
           sx={(theme) => ({
-            height: "calc(100vh - 16rem)",
+            height: "calc(100vh - 20rem)",
             overflowY: "auto",
             // Theme-aware scrollbar styling
             scrollbarColor: `${theme.palette.action.disabled} transparent`,
