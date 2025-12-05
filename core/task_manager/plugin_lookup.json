@@ -181,6 +181,32 @@
       }
     }
   },
+  "xia2_multiplex": {
+    "module": "wrappers.xia2_multiplex.script.xia2_multiplex",
+    "class": "Cxia2_multiplex",
+    "COMTEMPLATE": null,
+    "TASKMODULE": "data_reduction",
+    "TASKTITLE": "Data set combination with xia2.multiplex",
+    "TASKNAME": "xia2_multiplex",
+    "TASKVERSION": 0.0,
+    "WHATNEXT": [
+      "phaser_pipeline",
+      "molrep_pipe",
+      "crank2",
+      "ShelxCD",
+      "ShelxCDE"
+    ],
+    "ASYNCHRONOUS": true,
+    "PERFORMANCECLASS": "CDataReductionPerformance",
+    "ERROR_CODES": {
+      "200": {
+        "description": "Failed harvesting integrated data"
+      },
+      "205": {
+        "description": "Failed parsing xia2.json"
+      }
+    }
+  },
   "adding_stats_to_mmcif_i2": {
     "module": "wrappers.adding_stats_to_mmcif_i2.script.adding_stats_to_mmcif_i2",
     "class": "adding_stats_to_mmcif_i2",
@@ -804,6 +830,26 @@
       }
     }
   },
+  "SIMBAD": {
+    "module": "wrappers.SIMBAD.script.SIMBAD",
+    "class": "SIMBAD",
+    "COMTEMPLATE": null,
+    "TASKMODULE": null,
+    "TASKTITLE": null,
+    "TASKNAME": "SIMBAD",
+    "TASKVERSION": 0.1,
+    "WHATNEXT": [
+      "prosmart_refmac",
+      "modelcraft",
+      "coot_rebuild"
+    ],
+    "ASYNCHRONOUS": false,
+    "ERROR_CODES": {
+      "1": {
+        "description": "Something not very good has happened."
+      }
+    }
+  },
   "phaser_mr": {
     "module": "wrappers.phaser_mr.script.phaser_mr",
     "class": "phaser_mr",
@@ -831,6 +877,75 @@
       },
       "204": {
         "description": "Failed analysing log"
+      }
+    }
+  },
+  "edstats": {
+    "module": "wrappers.edstats.script.edstats",
+    "class": "edstats",
+    "COMTEMPLATE": null,
+    "TASKMODULE": "validation",
+    "TASKTITLE": "Measure agreement between model and density",
+    "TASKNAME": "edstats",
+    "TASKVERSION": 0.1,
+    "WHATNEXT": [
+      "coot_rebuild"
+    ],
+    "ASYNCHRONOUS": false,
+    "PURGESEARCHLIST": [
+      [
+        "fft%*/MAPOUT.map",
+        1
+      ]
+    ],
+    "ERROR_CODES": {
+      "200": {
+        "description": "Error merging MTZ files"
+      },
+      "201": {
+        "description": "Invalid miniMtzsIn specification"
+      },
+      "202": {
+        "description": "File object has no CONTENT_SIGNATURE_LIST"
+      },
+      "203": {
+        "description": "File object has no path set"
+      },
+      "204": {
+        "description": "MTZ file not found"
+      },
+      "205": {
+        "description": "File object not found in inputData or outputData"
+      },
+      "206": {
+        "description": "Invalid contentFlag for file type"
+      },
+      "207": {
+        "description": "Invalid item format in miniMtzsIn"
+      },
+      "208": {
+        "description": "Conversion method not found on file object"
+      },
+      "209": {
+        "description": "Conversion to requested format not yet implemented"
+      },
+      "210": {
+        "description": "Error during MTZ file conversion"
+      },
+      "300": {
+        "description": "Input MTZ file not found for split operation"
+      },
+      "301": {
+        "description": "miniMtzsOut and programColumnNames length mismatch"
+      },
+      "302": {
+        "description": "Output object not found in container.outputData"
+      },
+      "303": {
+        "description": "Output object has no path set"
+      },
+      "304": {
+        "description": "Error splitting MTZ file"
       }
     }
   },
@@ -4501,6 +4616,34 @@
       }
     }
   },
+  "xia2_ssx_reduce": {
+    "module": "wrappers.xia2_ssx_reduce.script.xia2_ssx_reduce",
+    "class": "Cxia2_ssx_reduce",
+    "COMTEMPLATE": null,
+    "TASKMODULE": "data_reduction",
+    "TASKTITLE": "Reduction of serial datasets using xia2.ssx_reduce",
+    "TASKNAME": "xia2_ssx_reduce",
+    "TASKVERSION": 0.0,
+    "WHATNEXT": [
+      "xia2_ssx_reduce",
+      "phaser_pipeline",
+      "molrep_pipe",
+      "prosmart_refmac"
+    ],
+    "ASYNCHRONOUS": true,
+    "PERFORMANCECLASS": "CDataReductionCCPerformance",
+    "ERROR_CODES": {
+      "200": {
+        "description": "Failed harvesting integrated data"
+      },
+      "225": {
+        "description": "Unable to find merged MTZ files"
+      },
+      "226": {
+        "description": "A process in the process pool was terminated abruptly while the future was running or pending.\nOverload of RAM memory occured likely.\nRe-run the job with lower batch size and number of processes."
+      }
+    }
+  },
   "demo_copycell": {
     "module": "wrappers2.demo_copycell.script.demo_copycell",
     "class": "demo_copycell",
@@ -5043,6 +5186,33 @@
     "ERROR_CODES": {
       "101": {
         "description": "Error copying data file from final job to pipeline directory"
+      },
+      "102": {
+        "description": "ProSMART protein restraints failed"
+      },
+      "103": {
+        "description": "ProSMART nucleic acid restraints failed"
+      },
+      "104": {
+        "description": "Platonyzer restraints failed"
+      },
+      "105": {
+        "description": "Refmac refinement failed"
+      },
+      "106": {
+        "description": "Refmac output file not created"
+      },
+      "107": {
+        "description": "Coot find waters failed"
+      },
+      "108": {
+        "description": "Post-coot refmac failed"
+      },
+      "109": {
+        "description": "Weight optimization failed"
+      },
+      "110": {
+        "description": "Validation failed"
       }
     }
   },
@@ -5638,6 +5808,9 @@
       "200": {
         "description": "Phaser exited with error status"
       },
+      "201": {
+        "description": "Exception in phaser pipeline setup"
+      },
       "202": {
         "description": "Failed in harvest operation"
       },
@@ -5645,7 +5818,28 @@
         "description": "Columns not present"
       },
       "204": {
-        "description": "Failed in plugin:"
+        "description": "Failed in plugin"
+      },
+      "205": {
+        "description": "Exception in pointless_reindexToMatch"
+      },
+      "206": {
+        "description": "Exception in csymmatch"
+      },
+      "207": {
+        "description": "No output files in list"
+      },
+      "208": {
+        "description": "Exception in coot_script_lines"
+      },
+      "209": {
+        "description": "Exception in sheetbend"
+      },
+      "210": {
+        "description": "Exception in refmac"
+      },
+      "211": {
+        "description": "Exception in harvestFile"
       }
     }
   },
@@ -5660,8 +5854,35 @@
     "TASKVERSION": 0.0,
     "ASYNCHRONOUS": false,
     "ERROR_CODES": {
+      "201": {
+        "description": "ShelxCD sub-job failed"
+      },
       "202": {
         "description": "Failed in harvest operation"
+      },
+      "203": {
+        "description": "phaser_EP_AUTO sub-job failed"
+      },
+      "204": {
+        "description": "Exception in ShelxCD setup"
+      },
+      "205": {
+        "description": "Exception in phaser_EP_AUTO setup"
+      },
+      "206": {
+        "description": "Exception in Parrot setup"
+      },
+      "207": {
+        "description": "Exception in ModelCraft setup"
+      },
+      "208": {
+        "description": "Exception in XML update"
+      },
+      "209": {
+        "description": "Parrot sub-job failed"
+      },
+      "210": {
+        "description": "ModelCraft sub-job failed"
       }
     }
   },
@@ -5729,6 +5950,48 @@
     "ERROR_CODES": {
       "101": {
         "description": "Error copying data file from final job to pipeline directory"
+      },
+      "102": {
+        "description": "ProSMART protein restraints failed"
+      },
+      "103": {
+        "description": "ProSMART nucleic acid restraints failed"
+      },
+      "104": {
+        "description": "MetalCoord restraints failed"
+      },
+      "105": {
+        "description": "Servalcat refinement failed"
+      },
+      "106": {
+        "description": "Servalcat output file not created"
+      },
+      "107": {
+        "description": "Coot find waters failed"
+      },
+      "108": {
+        "description": "Post-coot servalcat failed"
+      },
+      "109": {
+        "description": "Weight optimization failed"
+      },
+      "110": {
+        "description": "Validation failed"
+      },
+      "111": {
+        "description": "Failed to create servalcat wrapper"
+      },
+      "112": {
+        "description": "Failed to load container data"
+      },
+      "113": {
+        "description": "Failed to set up MetalCoord plugin"
+      },
+      "114": {
+        "description": "Failed to convert MetalCoord JSON to restraints"
+      },
+      "115": {
+        "description": "Failed to copy ProSMART restraints to servalcat"
       }
     }
   },
@@ -6804,17 +7067,14 @@
     "ASYNCHRONOUS": false,
     "PERFORMANCECLASS": "CRefinementPerformance",
     "ERROR_CODES": {
-      "200": {
-        "description": "Phaser exited with error status"
+      "301": {
+        "description": "Exception in createEnsembleElements"
       },
-      "202": {
-        "description": "Failed in harvest operation"
+      "302": {
+        "description": "Exception setting up search model ensemble"
       },
-      "203": {
-        "description": "Columns not present"
-      },
-      "204": {
-        "description": "Failed in plugin:"
+      "303": {
+        "description": "Exception setting up fixed structure ensemble"
       }
     }
   }
