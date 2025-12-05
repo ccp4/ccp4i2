@@ -1,6 +1,6 @@
 "use client";
 import { use, useEffect, useMemo, useState } from "react";
-import { Container, LinearProgress, Paper, Tab, Tabs } from "@mui/material";
+import { Box, Container, LinearProgress, Tab, Tabs } from "@mui/material";
 import { useApi } from "../api";
 import { Editor } from "@monaco-editor/react";
 import { JobHeader } from "../components/job-header";
@@ -110,65 +110,80 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
           <Tab value={9} label="Directory" />
           <Tab value={10} label="Logs" />
         </Tabs>
-        {tabValue == 0 && (
-          <TaskProvider>
-            <TaskContainer />
-          </TaskProvider>
-        )}
-        {devMode && tabValue == 1 && params_xml && (
-          <Editor
-            height="calc(100vh - 15rem)"
-            value={params_xml}
-            language="xml"
-            theme={mode === "dark" ? "vs-dark" : "light"}
-          />
-        )}
-        {devMode && tabValue == 2 && report_xml && (
-          <Editor
-            height="calc(100vh - 15rem)"
-            value={prettifyXml(report_xml)}
-            language="xml"
-            theme={mode === "dark" ? "vs-dark" : "light"}
-          />
-        )}
-        {tabValue == 3 && jobid && <CCP4i2ReportXMLView />}
-        {(devMode || job?.status === 5) && tabValue == 4 && diagnostic_xml && (
-          <Diagnostic xmlDocument={diagnostic_xml} />
-        )}
-        {devMode && tabValue == 5 && def_xml && (
-          <Editor
-            height="calc(100vh - 15rem)"
-            value={def_xml}
-            language="xml"
-            theme={mode === "dark" ? "vs-dark" : "light"}
-          />
-        )}
-        {(devMode || job?.status === 1) && tabValue == 6 && validation && (
-          <ValidationViewer job={job} />
-        )}
-        {tabValue == 7 && container && (
-          <Editor
-            height="calc(100vh - 15rem)"
-            value={JSON.stringify(container.container, null, 2)}
-            language="json"
-            theme={mode === "dark" ? "vs-dark" : "light"}
-          />
-        )}
-        {tabValue == 8 && container && (
-          <>
+        {/* Single consistent scroll container for all tab content */}
+        <Box
+          sx={(theme) => ({
+            height: "calc(100vh - 15rem)",
+            overflowY: "auto",
+            // Theme-aware scrollbar styling
+            scrollbarColor: `${theme.palette.action.disabled} transparent`,
+            scrollbarWidth: "thin",
+            "&::-webkit-scrollbar": {
+              width: 8,
+            },
+            "&::-webkit-scrollbar-track": {
+              background: "transparent",
+            },
+            "&::-webkit-scrollbar-thumb": {
+              backgroundColor: theme.palette.action.disabled,
+              borderRadius: 4,
+            },
+          })}
+        >
+          {tabValue == 0 && (
+            <TaskProvider>
+              <TaskContainer />
+            </TaskProvider>
+          )}
+          {devMode && tabValue == 1 && params_xml && (
+            <Editor
+              height="100%"
+              value={params_xml}
+              language="xml"
+              theme={mode === "dark" ? "vs-dark" : "light"}
+            />
+          )}
+          {devMode && tabValue == 2 && report_xml && (
+            <Editor
+              height="100%"
+              value={prettifyXml(report_xml)}
+              language="xml"
+              theme={mode === "dark" ? "vs-dark" : "light"}
+            />
+          )}
+          {tabValue == 3 && jobid && <CCP4i2ReportXMLView />}
+          {(devMode || job?.status === 5) && tabValue == 4 && diagnostic_xml && (
+            <Diagnostic xmlDocument={diagnostic_xml} />
+          )}
+          {devMode && tabValue == 5 && def_xml && (
+            <Editor
+              height="100%"
+              value={def_xml}
+              language="xml"
+              theme={mode === "dark" ? "vs-dark" : "light"}
+            />
+          )}
+          {(devMode || job?.status === 1) && tabValue == 6 && validation && (
+            <ValidationViewer job={job} />
+          )}
+          {tabValue == 7 && container && (
+            <Editor
+              height="100%"
+              value={JSON.stringify(container.container, null, 2)}
+              language="json"
+              theme={mode === "dark" ? "vs-dark" : "light"}
+            />
+          )}
+          {tabValue == 8 && container && (
             <JobCommentEditor jobId={job.id} />
-          </>
-        )}
-        {tabValue == 9 && job && project && (
-          <Paper sx={{ height: "calc(100vh - 20rem)", overflowY: "auto" }}>
+          )}
+          {tabValue == 9 && job && project && (
             <JobDirectoryView job={job} project={project} />
-          </Paper>
-        )}
-        {tabValue == 10 && job && project && (
-          <Paper sx={{ height: "calc(100vh - 20rem)", overflowY: "auto" }}>
+          )}
+          {tabValue == 10 && job && project && (
             <JobLogViewer job={job} project={project} />
-          </Paper>
-        )}
+          )}
+        </Box>
         <JobMenu />
       </Container>
     </>
