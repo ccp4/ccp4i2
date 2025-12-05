@@ -11,7 +11,7 @@ from core.CCP4Container import CContainer
 from core.base_object.cdata_file import CDataFile
 from core.base_object.cdata import CData
 from core.CCP4XtalData import CGenericReflDataFile, CMapDataFile, CMtzDataFile
-from core.CCP4ModelData import CPdbDataFile, CDictDataFile
+from core.CCP4ModelData import CPdbDataFile, CDictDataFile, CAsuDataFile
 # Import stub class for isinstance checks - subclasses like CObsDataFile inherit from
 # stubs (CMtzDataFileStub) not implementations (CMtzDataFile)
 from core.cdata_stubs.CCP4XtalData import CMtzDataFileStub
@@ -278,6 +278,8 @@ def digest_file_object(file_object: CDataFile):
         return digest_cseqdata_file_object(file_object)
     if isinstance(file_object, (CCP4ModelData.CDictDataFile, CDictDataFile)):
         return digest_cdictdata_file_object(file_object)
+    if isinstance(file_object, (CCP4ModelData.CAsuDataFile, CAsuDataFile)):
+        return digest_casudatafile_file_object(file_object)
     if type(file_object) is CCP4File.CDataFile:
         return digest_cdatafile_file_object(file_object)
     return digest_other_file_object(file_object)
@@ -340,6 +342,105 @@ def digest_cseqdata_file_object(file_object: CPdbDataFile):
         return {
             "status": "Failed",
             "reason": f"Failed digesting CSeqDataFile {err}",
+            "digest": {},
+        }
+
+
+def digest_casudatafile_file_object(file_object: CAsuDataFile):
+    """
+    Digest a CAsuDataFile to provide sequence selection information.
+
+    Returns a dict with:
+    - sequences: List of sequence entries with index, name, polymerType, nCopies, selected
+    - This allows the frontend to render checkboxes for sequence selection
+    """
+    if not isinstance(file_object, (CCP4ModelData.CAsuDataFile, CAsuDataFile)):
+        return {"status": "Failed", "reason": "Not a CAsuDataFile object", "digest": {}}
+    if not file_object.isSet():
+        return {"status": "Failed", "reason": "File object is not set", "digest": {}}
+    try:
+        file_object.loadFile()
+        contents = file_object.getFileContent()  # CAsuContent
+
+        if contents is None:
+            return {"status": "Failed", "reason": "No file content loaded", "digest": {}}
+
+        # Get the selection CDict from the file object
+        selection = file_object.selection if hasattr(file_object, 'selection') else None
+
+        # Build sequence list with selection state
+        sequences = []
+        if hasattr(contents, 'seqList') and contents.seqList is not None:
+            for idx, seq in enumerate(contents.seqList):
+                # Get sequence name
+                name = ""
+                if hasattr(seq, 'name') and seq.name is not None:
+                    if hasattr(seq.name, 'value') and seq.name.isSet():
+                        name = str(seq.name.value)
+                    elif seq.isSet('name'):
+                        name = str(seq.name)
+                if not name:
+                    name = f"Sequence_{idx}"
+
+                # Get polymer type
+                polymer_type = "PROTEIN"
+                if hasattr(seq, 'polymerType') and seq.polymerType is not None:
+                    if hasattr(seq.polymerType, 'value') and seq.polymerType.isSet():
+                        polymer_type = str(seq.polymerType.value)
+                    elif seq.isSet('polymerType'):
+                        polymer_type = str(seq.polymerType)
+
+                # Get nCopies
+                n_copies = 1
+                if hasattr(seq, 'nCopies') and seq.nCopies is not None:
+                    if hasattr(seq.nCopies, 'value') and seq.nCopies.isSet():
+                        n_copies = int(seq.nCopies.value)
+                    elif seq.isSet('nCopies'):
+                        n_copies = int(seq.nCopies)
+
+                # Get sequence string (truncated for display)
+                sequence_str = ""
+                if hasattr(seq, 'sequence') and seq.sequence is not None:
+                    if hasattr(seq.sequence, 'value') and seq.sequence.isSet():
+                        sequence_str = str(seq.sequence.value)
+                    elif seq.isSet('sequence'):
+                        sequence_str = str(seq.sequence)
+
+                # Get description
+                description = ""
+                if hasattr(seq, 'description') and seq.description is not None:
+                    if hasattr(seq.description, 'value') and seq.description.isSet():
+                        description = str(seq.description.value)
+                    elif seq.isSet('description'):
+                        description = str(seq.description)
+
+                # Determine selection state from CDict
+                # Default is True (selected) if not explicitly set
+                selected = True
+                if selection is not None and hasattr(selection, 'get'):
+                    selected = selection.get(name, True)
+
+                sequences.append({
+                    "index": idx,
+                    "name": name,
+                    "polymerType": polymer_type,
+                    "nCopies": n_copies,
+                    "sequenceLength": len(sequence_str),
+                    "sequencePreview": sequence_str[:50] + "..." if len(sequence_str) > 50 else sequence_str,
+                    "description": description,
+                    "selected": selected,
+                })
+
+        return {
+            "sequences": sequences,
+            "sequenceCount": len(sequences),
+        }
+
+    except Exception as err:
+        logger.exception("Error digesting CAsuDataFile %s", file_object, exc_info=err)
+        return {
+            "status": "Failed",
+            "reason": f"Failed digesting CAsuDataFile: {err}",
             "digest": {},
         }
 
