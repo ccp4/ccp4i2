@@ -69,6 +69,16 @@ async def run_job_async(job_uuid: uuid.UUID, project_uuid: Optional[uuid.UUID] =
         # Update job status to RUNNING
         await db_handler.update_job_status(job.uuid, models.Job.Status.RUNNING)
 
+        # Run validity() to allow plugins to adjust qualifiers
+        # This is critical for pipelines like servalcat_pipe which set allowUndefined=True
+        # on embedded wrappers (e.g., metalCoordWrapper.inputData.XYZIN)
+        logger.info("Running validity check...")
+        validity_error = await sync_to_async(plugin.validity)()
+        if validity_error and hasattr(validity_error, 'maxSeverity'):
+            from core.base_object.error_reporting import Severity
+            if validity_error.maxSeverity() >= Severity.WARNING:
+                logger.warning(f"Validity check has warnings/errors (continuing): {validity_error.report()}")
+
         # Import input files (async)
         logger.info("Importing input files...")
         files_imported = await import_input_files_async(job, plugin, db_handler)

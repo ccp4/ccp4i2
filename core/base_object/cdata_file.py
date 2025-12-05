@@ -1407,6 +1407,8 @@ class CDataFile(CData):
         Checks the following conditions:
         - If allowUndefined=False and no file path is set → ERROR
         - If mustExist=True and file path is set but file doesn't exist → ERROR
+        - If file path is not set (even when allowUndefined=True) → WARNING
+          This helps draw the user's eye to unset optional files in the GUI
 
         This validation is part of the CData hierarchy - CDataFile knows its
         own validation rules (allowUndefined, mustExist qualifiers) and reports
@@ -1438,6 +1440,16 @@ class CDataFile(CData):
                 details=f'Required input file not set: {obj_path}',
                 name=obj_path,
                 severity=SEVERITY_ERROR
+            )
+        elif allow_undefined is True and not has_path:
+            # Optional file not set - add WARNING to draw user's attention in GUI
+            obj_path = self.object_path()
+            report.append(
+                klass=self.__class__.__name__,
+                code=103,
+                details=f'Optional input file not set: {obj_path}',
+                name=obj_path,
+                severity=SEVERITY_WARNING
             )
 
         # Check mustExist

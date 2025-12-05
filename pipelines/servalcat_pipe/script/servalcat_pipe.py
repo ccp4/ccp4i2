@@ -48,8 +48,23 @@ class servalcat_pipe(CPluginScript):
     PURGESEARCHLIST =  [[ 'refmac%*/hklout.mtz', 0, "hklout" ], [ 'refmac%*/hklout.mtz', 7, "hklout" ], [ '*%*/ANOMFPHIOUT.mtz', 1, "ANOMFPHIOUT" ], [ '*%*/DIFANOMFPHIOUT.mtz', 1, "DIFANOMFPHIOUT" ]]
 
 
-    ERROR_CODES = { 101 : { 'description' : 'Error copying data file from final job to pipeline directory' }
-                    }
+    ERROR_CODES = {
+        101: {'description': 'Error copying data file from final job to pipeline directory'},
+        102: {'description': 'ProSMART protein restraints failed'},
+        103: {'description': 'ProSMART nucleic acid restraints failed'},
+        104: {'description': 'MetalCoord restraints failed'},
+        105: {'description': 'Servalcat refinement failed'},
+        106: {'description': 'Servalcat output file not created'},
+        107: {'description': 'Coot find waters failed'},
+        108: {'description': 'Post-coot servalcat failed'},
+        109: {'description': 'Weight optimization failed'},
+        110: {'description': 'Validation failed'},
+        111: {'description': 'Failed to create servalcat wrapper'},
+        112: {'description': 'Failed to load container data'},
+        113: {'description': 'Failed to set up MetalCoord plugin'},
+        114: {'description': 'Failed to convert MetalCoord JSON to restraints'},
+        115: {'description': 'Failed to copy ProSMART restraints to servalcat'},
+    }
 
     def __init__(self, *args, **kws):
         super(servalcat_pipe, self).__init__(*args, **kws)
@@ -71,32 +86,85 @@ class servalcat_pipe(CPluginScript):
         """
         # Adjust qualifiers for embedded metalCoordWrapper inputs
         if hasattr(self.container, 'metalCoordWrapper'):
-            metal_coord_xyzin = self.container.metalCoordWrapper.inputData.XYZIN
-            metal_coord_xyzin.set_qualifier('allowUndefined', True)
+            self.container.metalCoordWrapper.inputData.XYZIN.set_qualifier('allowUndefined', True)
 
         # Call parent validity
         return super(servalcat_pipe, self).validity()
 
     def startProcess(self, processId):
+        """
+        Main pipeline execution - runs ProSMART, MetalCoord, then Servalcat.
+
+        Each phase uses try/except with proper CErrorReport logging including traceback.
+        """
+        print(f"[servalcat_pipe] startProcess called with processId={processId}")
+        print(f"[servalcat_pipe] workDirectory: {self.getWorkDirectory()}")
+        print(f"[servalcat_pipe] container type: {type(self.container)}")
+
+        # Log input data state
         try:
+            print(f"[servalcat_pipe] Checking inputData...")
+            if hasattr(self.container, 'inputData'):
+                if hasattr(self.container.inputData, 'XYZIN'):
+                    xyzin_path = str(self.container.inputData.XYZIN.fullPath) if self.container.inputData.XYZIN.isSet() else 'NOT SET'
+                    print(f"[servalcat_pipe] XYZIN: {xyzin_path}")
+                if hasattr(self.container.inputData, 'HKLIN'):
+                    hklin_path = str(self.container.inputData.HKLIN.fullPath) if self.container.inputData.HKLIN.isSet() else 'NOT SET'
+                    print(f"[servalcat_pipe] HKLIN: {hklin_path}")
+            else:
+                print(f"[servalcat_pipe] WARNING: container has no inputData attribute")
+        except Exception as e:
+            print(f"[servalcat_pipe] Error logging input data: {e}")
+
+        # Phase 1: ProSMART protein restraints (optional)
+        try:
+            print("[servalcat_pipe] Phase 1: Executing ProSMART protein restraints...")
             self.executeProsmartProtein()
+            print("[servalcat_pipe] Phase 1: ProSMART protein restraints completed")
+        except Exception as e:
+            tb = traceback.format_exc()
+            print(f"[servalcat_pipe] Phase 1 FAILED: {e}")
+            self.appendErrorReport(102, f'ProSMART protein restraints: {e}\n{tb}')
+            self.reportStatus(CPluginScript.FAILED)
+            return CPluginScript.FAILED
+
+        # Phase 2: ProSMART nucleic acid restraints (optional)
+        try:
+            print("[servalcat_pipe] Phase 2: Executing ProSMART nucleic acid restraints...")
             self.executeProsmartNucleicAcid()
+            print("[servalcat_pipe] Phase 2: ProSMART nucleic acid restraints completed")
         except Exception as e:
-            sys.stderr.write("ERROR while running ProSMART: " + str(e) + "\n")
+            tb = traceback.format_exc()
+            print(f"[servalcat_pipe] Phase 2 FAILED: {e}")
+            self.appendErrorReport(103, f'ProSMART nucleic acid restraints: {e}\n{tb}')
             self.reportStatus(CPluginScript.FAILED)
             return CPluginScript.FAILED
+
+        # Phase 3: MetalCoord restraints (optional)
         try:
+            print("[servalcat_pipe] Phase 3: Executing MetalCoord restraints...")
             self.executeMetalCoords()
+            print("[servalcat_pipe] Phase 3: MetalCoord restraints completed")
         except Exception as e:
-            sys.stderr.write("ERROR while running MetalCoord: " + str(e) + "\n")
+            tb = traceback.format_exc()
+            print(f"[servalcat_pipe] Phase 3 FAILED: {e}")
+            self.appendErrorReport(104, f'MetalCoord restraints: {e}\n{tb}')
             self.reportStatus(CPluginScript.FAILED)
             return CPluginScript.FAILED
+
+        # Phase 4: Servalcat refinement
         try:
+            print("[servalcat_pipe] Phase 4: Executing Servalcat refinement...")
             self.executeFirstServalcat()
+            print("[servalcat_pipe] Phase 4: Servalcat refinement started successfully")
         except Exception as e:
-            sys.stderr.write("ERROR while running Servalcat: " + str(e) + "\n")
+            tb = traceback.format_exc()
+            print(f"[servalcat_pipe] Phase 4 FAILED: {e}")
+            self.appendErrorReport(105, f'Servalcat refinement: {e}\n{tb}')
             self.reportStatus(CPluginScript.FAILED)
             return CPluginScript.FAILED
+
+        print("[servalcat_pipe] startProcess completed successfully")
         return CPluginScript.SUCCEEDED
 
     def executeProsmartProtein(self):
@@ -222,21 +290,53 @@ class servalcat_pipe(CPluginScript):
             self.reportStatus(status)
 
     def executeFirstServalcat(self, withWeight=-1):
-        #create wrapper
-        self.firstServalcat = self.createServalcatJob(withWeight)
-        # Run asynchronously ...this is needed so that commands downstream of process launch
-        # (i.e. logwatcher) will be calledbefore process completion
+        """Execute the main Servalcat refinement step with detailed logging."""
+        print("[servalcat_pipe] executeFirstServalcat: Creating servalcat wrapper...")
+
+        # Create wrapper with error handling
+        try:
+            self.firstServalcat = self.createServalcatJob(withWeight)
+            print(f"[servalcat_pipe] executeFirstServalcat: Wrapper created, workDir={self.firstServalcat.getWorkDirectory()}")
+        except Exception as e:
+            tb = traceback.format_exc()
+            print(f"[servalcat_pipe] executeFirstServalcat: Failed to create wrapper: {e}")
+            self.appendErrorReport(111, f'Failed to create servalcat wrapper: {e}\n{tb}')
+            raise
+
+        # Run asynchronously - needed so logwatcher callbacks work before process completion
         self.firstServalcat.doAsync = self.doAsync
-        self.firstServalcat.connectSignal(self.firstServalcat,'finished',self.firstServalcatFinished)
-        # Install xml node for an in progress from core import CCP4ProjectsManager
+        print(f"[servalcat_pipe] executeFirstServalcat: doAsync={self.firstServalcat.doAsync}")
+
+        self.firstServalcat.connectSignal(self.firstServalcat, 'finished', self.firstServalcatFinished)
+        print("[servalcat_pipe] executeFirstServalcat: Connected finished signal")
+
+        # Install xml node for in-progress
         self.xmlLength = 0
-        # Start process
+
+        # Start process with file watching for live XML updates
         firstServalcatXMLFilename = self.firstServalcat.makeFileName(format='PROGRAMXML')
-        print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-        print("executeFirstServalcat, firstServalcatXMLFilename", firstServalcatXMLFilename)
+        print(f"[servalcat_pipe] executeFirstServalcat: XML file will be: {firstServalcatXMLFilename}")
+
         self.watchFile(firstServalcatXMLFilename, handler=self.handleXmlChanged, minDeltaSize=34, unwatchWhileHandling=True)
-        print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-        self.firstServalcat.process()
+        print("[servalcat_pipe] executeFirstServalcat: File watcher installed")
+
+        # Log servalcat input data state before running
+        try:
+            if hasattr(self.firstServalcat.container, 'inputData'):
+                xyzin = self.firstServalcat.container.inputData.XYZIN
+                hklin = self.firstServalcat.container.inputData.HKLIN
+                print(f"[servalcat_pipe] executeFirstServalcat: servalcat XYZIN isSet={xyzin.isSet()}")
+                print(f"[servalcat_pipe] executeFirstServalcat: servalcat HKLIN isSet={hklin.isSet()}")
+                if xyzin.isSet():
+                    print(f"[servalcat_pipe] executeFirstServalcat: servalcat XYZIN path={xyzin.fullPath}")
+                if hklin.isSet():
+                    print(f"[servalcat_pipe] executeFirstServalcat: servalcat HKLIN path={hklin.fullPath}")
+        except Exception as e:
+            print(f"[servalcat_pipe] executeFirstServalcat: Error logging servalcat inputs: {e}")
+
+        print("[servalcat_pipe] executeFirstServalcat: Starting servalcat.process()...")
+        rv = self.firstServalcat.process()
+        print(f"[servalcat_pipe] executeFirstServalcat: servalcat.process() returned {rv}")
 
     @QtCore.Slot(str)
     def handleXmlChanged2(self, xmlFilename2):
@@ -287,9 +387,26 @@ class servalcat_pipe(CPluginScript):
            self.xmlLength = len(newXml)
 
     def createServalcatJob(self, withWeight=-1, inputCoordinates=None, ncyc=-1):
-        result = self.makePluginObject('servalcat')
-        #input data for this servalcat instance is the same as the input data for the program
-        result.container.inputData.copyData(self.container.inputData)
+        """Create a servalcat wrapper job with detailed logging."""
+        print("[servalcat_pipe] createServalcatJob: Creating servalcat plugin object...")
+
+        try:
+            result = self.makePluginObject('servalcat')
+            print(f"[servalcat_pipe] createServalcatJob: Plugin created, type={type(result)}")
+        except Exception as e:
+            print(f"[servalcat_pipe] createServalcatJob: makePluginObject('servalcat') failed: {e}")
+            raise
+
+        # Input data for this servalcat instance is the same as the input data for the program
+        print("[servalcat_pipe] createServalcatJob: Copying inputData from pipeline to servalcat...")
+        try:
+            result.container.inputData.copyData(self.container.inputData)
+            print("[servalcat_pipe] createServalcatJob: inputData copied successfully")
+        except Exception as e:
+            tb = traceback.format_exc()
+            print(f"[servalcat_pipe] createServalcatJob: copyData failed: {e}")
+            self.appendErrorReport(112, f'Failed to copy input data: {e}\n{tb}')
+            raise
 
         #Copy over most of the control parameters
         for attr in self.container.controlParameters.dataOrder():
