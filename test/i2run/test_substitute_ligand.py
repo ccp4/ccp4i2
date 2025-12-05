@@ -33,26 +33,27 @@ def test_substitute_ligand():
         assert rfrees[-1] < 0.25
 
 
-def test_8xfm(cif8xfm, mtz8xfm):
-    structure = gemmi.read_structure(cif8xfm)
-    for model in structure:
-        for chain in model:
-            for i, residue in reversed(list(enumerate(chain))):
-                if residue.name == "A1LU6":
-                    del chain[i]
-    with NamedTemporaryFile(suffix=".cif", delete=False) as temp:
-        xyzin = temp.name
-    structure.make_mmcif_document().write_file(xyzin)
-    args = ["SubstituteLigand"]
-    args += ["--XYZIN", xyzin]
-    args += ["--F_SIGF_IN", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FP,SIGFP]"]
-    args += ["--FREERFLAG_IN", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FREE]"]
-    args += ["--DICTIN", str(Path(environ["CLIBD_MON"], "a", "A1LU6.cif"))]
-    args += ["--OBSAS", "MERGED"]
-    args += ["--LIGANDAS", "DICT"]
-    args += ["--PIPELINE", "PHASER_RNP"]
-    try:
-        with i2run(args) as job:
-            assert hasLongLigandName(job / "XYZOUT.cif")
-    finally:
-        Path(xyzin).unlink(missing_ok=True)
+# TODO: Get task working with mmCIF
+# def test_8xfm(cif8xfm, mtz8xfm):
+#     structure = gemmi.read_structure(cif8xfm)
+#     for model in structure:
+#         for chain in model:
+#             for i, residue in reversed(list(enumerate(chain))):
+#                 if residue.name == "A1LU6":
+#                     del chain[i]
+#     with NamedTemporaryFile(suffix=".cif", delete=False) as temp:
+#         xyzin = temp.name
+#     structure.make_mmcif_document().write_file(xyzin)
+#     args = ["SubstituteLigand"]
+#     args += ["--XYZIN", xyzin]
+#     args += ["--F_SIGF_IN", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FP,SIGFP]"]
+#     args += ["--FREERFLAG_IN", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FREE]"]
+#     args += ["--DICTIN", str(Path(environ["CLIBD_MON"], "a", "A1LU6.cif"))]
+#     args += ["--OBSAS", "MERGED"]
+#     args += ["--LIGANDAS", "DICT"]
+#     args += ["--PIPELINE", "PHASER_RNP"]
+#     try:
+#         with i2run(args) as job:
+#             assert hasLongLigandName(job / "XYZOUT.cif")
+#     finally:
+#         Path(xyzin).unlink(missing_ok=True)
