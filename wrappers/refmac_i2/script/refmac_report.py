@@ -462,12 +462,14 @@ class refmac_report(Report):
         import os
         baseScenePath = os.path.join(ccp4i2_root,'pipelines','prosmart_refmac','script','prosmart_refmac_1.scene.xml')
         monomerNodes = xmlnode.findall('.//ModelComposition[last()]/Monomer')
-        
-        #Subsets for snapshotting are each observed monomer and the whole molecule
-        interestingBitsSet = set([monomerNode.get('id') for monomerNode in monomerNodes])
-        for filterString in ['(SO4)','(SUL)','(GOL)','(EDO)','(CA)','(MG)']:
-            interestingBitsSet -= set([monomerNode.get('id') for monomerNode in monomerNodes if filterString in monomerNode.get('id')])
-        interestingBits=list(interestingBitsSet)+['all']
+
+        # Ligands are now pre-filtered by CPdbDataComposition:
+        # - Only NonPolymer entities (not polymer chains)
+        # - Not water molecules
+        # - Not single metal ions
+        # - At least 5 atoms (significant ligands)
+        # Format: "chain:resname:seqnum" e.g. "A:ATP:501"
+        interestingBits = [monomerNode.get('id') for monomerNode in monomerNodes] + ['all']
         
         for iMonomer, interestingBit in enumerate(interestingBits):
             baseSceneXML = CCP4Utils.openFileToEtree(baseScenePath,useLXML=False) #This is lxml, not xml ...
@@ -531,12 +533,14 @@ class refmac_report(Report):
             selectionText=interestingBit
             self.appendMolDisp(molDataNode=molDataNode, selectionText=selectionText, carbonColour='yellow', othersByElement=True,style='BALLSTICK',bondOrder=True)
 
-            # Dump out the XML
+            # Dump out the XML with deterministic filename based on ligand ID
             et = etree.ElementTree(baseSceneXML)
-            sceneFilePath = os.path.join(jobDirectory,'monomer'+str(iMonomer)+'.scene.xml')
+            # Sanitize ligand ID for filename (replace : with _ to avoid filesystem issues)
+            safe_ligand_id = interestingBit.replace(':', '_')
+            sceneFilePath = os.path.join(jobDirectory, f'ligand_{safe_ligand_id}.scene.xml')
             et.write(sceneFilePath)
             # And add the picture
-            pic = pictureGallery.addPicture(sceneFile=sceneFilePath,label='Picture of selection "'+interestingBit+'"')
+            pic = pictureGallery.addPicture(sceneFile=sceneFilePath, label=f'Ligand {interestingBit}')
 
         #And finally the full monty picture :-)
         baseSceneXML = CCP4Utils.openFileToEtree(baseScenePath,useLXML=False)

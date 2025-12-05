@@ -3317,6 +3317,13 @@ class LaunchTask:
 
 
 class Picture:
+    """
+    Picture element for CCP4mg/Moorhen scene visualization.
+
+    When a sceneFile is provided, it is used directly without copying.
+    When building a scene from scratch (via xrtnode or scene param),
+    a new scene file is created with a deterministic name based on label.
+    """
 
     ERROR_CODES = {
         101: {
@@ -3325,11 +3332,17 @@ class Picture:
                 'description': 'Error parsing xml from scene description'}, 104: {
                     'description': 'No scene description provided'}}
 
+    # Class-level counter for generating unique scene file names within a session
+    _scene_counter = {}
+
     def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
         import copy
         self.id = kw.get('id', None)
         self.class_ = kw.get('class_', None)
         self.launchList = []
+
+        # Track whether we're using an externally-provided scene file
+        external_scene_file = None
 
         bodyEle = etree.Element('ccp4i2_body')
         sceneEle = etree.Element('scene')
@@ -3356,6 +3369,8 @@ class Picture:
                 try:
                     sceneRoot = etree.fromstring(
                         open(fileName).read(), PARSER())
+                    # Remember that we have an external scene file - no need to copy
+                    external_scene_file = fileName
                 except BaseException:
                     raise CException(self.__class__, 102, fileName)
 
@@ -3369,31 +3384,44 @@ class Picture:
         # print etree.tostring(bodyEle,pretty_print=True)
 
         from core import CCP4File
-        import glob
-        sceneFileList = glob.glob(
-            jobInfo.get(
-                'fileroot',
-                '') +
-            'scene_*.scene.xml')
-        indx = 0
-        for sceneFile in sceneFileList:
-            indx = max(indx, int(sceneFile[0:-10].split('_')[-1]))
-        # print 'Picture.__init__',sceneFileList,indx
+        import os
 
-        if 'fileroot' in jobInfo and jobInfo['fileroot'] is not None:
-            self.picDefFile = CCP4File.CI2XmlDataFile(
-                fullPath=jobInfo['fileroot'] + 'scene_' + str(indx + 1) + '.scene.xml')
+        # If an external scene file was provided, use it directly without copying
+        if external_scene_file is not None:
+            self.picDefFile = external_scene_file
         else:
-            self.picDefFile = CCP4File.CI2XmlDataFile(os.path.join(
-                os.getcwd(), 'scene_' + str(indx + 1) + '.scene.xml'))
-        self.picDefFile.header.setCurrent()
-        self.picDefFile.header.function.set('MGSCENE')
-        self.picDefFile.header.projectId.set(jobInfo.get('projectid', None))
-        self.picDefFile.header.projectName.set(
-            jobInfo.get('projectname', None))
-        self.picDefFile.header.jobId.set(jobInfo.get('jobid', None))
-        self.picDefFile.header.jobNumber.set(jobInfo.get('jobnumber', None))
-        self.picDefFile.saveFile(bodyEtree=bodyEle, useLXML=False)
+            # Generate a deterministic scene file name based on job and label
+            # Use label if available, otherwise use a counter per job
+            job_id = jobInfo.get('jobid', 'unknown')
+            label = kw.get('label', None)
+            if xrtnode is not None:
+                label = xrtnode.get('label', label)
+
+            if label:
+                # Create filename from label (sanitize for filesystem)
+                safe_label = "".join(c if c.isalnum() or c in '_-' else '_' for c in label)
+                scene_name = f'scene_{safe_label}.scene.xml'
+            else:
+                # Use counter for this job
+                if job_id not in Picture._scene_counter:
+                    Picture._scene_counter[job_id] = 0
+                Picture._scene_counter[job_id] += 1
+                scene_name = f'scene_{Picture._scene_counter[job_id]}.scene.xml'
+
+            if 'fileroot' in jobInfo and jobInfo['fileroot'] is not None:
+                scene_path = jobInfo['fileroot'] + scene_name
+            else:
+                scene_path = os.path.join(os.getcwd(), scene_name)
+
+            self.picDefFile = CCP4File.CI2XmlDataFile(fullPath=scene_path)
+            self.picDefFile.header.setCurrent()
+            self.picDefFile.header.function.set('MGSCENE')
+            self.picDefFile.header.projectId.set(jobInfo.get('projectid', None))
+            self.picDefFile.header.projectName.set(
+                jobInfo.get('projectname', None))
+            self.picDefFile.header.jobId.set(jobInfo.get('jobid', None))
+            self.picDefFile.header.jobNumber.set(jobInfo.get('jobnumber', None))
+            self.picDefFile.saveFile(bodyEtree=bodyEle, useLXML=False)
 
         # report.pictureQueue.append(self.picDefFile.__str__())
         if xrtnode is not None:

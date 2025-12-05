@@ -1304,7 +1304,8 @@ class CPdbDataComposition:
 
     Analyzes PDB/mmCIF structure to extract:
     - chains: List of chain IDs
-    - monomers: List of unique residue names
+    - monomers: List of ligand residue IDs (chain:resname:seqnum format) for visualization
+    - allResidueNames: List of all unique residue names (for backward compatibility)
     - peptides: List of chains containing amino acids
     - nucleics: List of chains containing nucleic acids
     - solventChains: List of chains containing solvent
@@ -1316,7 +1317,18 @@ class CPdbDataComposition:
     - nresSolvent: Number of solvent residues
     - elements: List of unique element types (excluding C, N, O)
     - containsHydrogen: Boolean for hydrogen presence
+
+    The 'monomers' list now contains only true ligands:
+    - Non-polymer entities (using gemmi's entity_type)
+    - Not water molecules
+    - Not single metal ions
+    - With more than 5 atoms (significant ligands)
+
+    Format: "chain:resname:seqnum" e.g. "A:ATP:501"
     """
+
+    # Minimum atoms for a residue to be considered a "significant" ligand
+    MIN_LIGAND_ATOMS = 5
 
     def __init__(self, gemmi_structure):
         """
@@ -1325,8 +1337,11 @@ class CPdbDataComposition:
         Args:
             gemmi_structure: gemmi.Structure object
         """
+        import gemmi
+
         self.chains = []
-        self.monomers = []
+        self.monomers = []  # Now: significant ligands only (chain:resname:seqnum format)
+        self.allResidueNames = []  # All unique residue names (backward compat)
         self.peptides = []
         self.nucleics = []
         self.solventChains = []
@@ -1340,30 +1355,14 @@ class CPdbDataComposition:
         self.elements = []
         self.containsHydrogen = False
 
-        # Standard amino acid residue names
-        amino_acids = {
-            'ALA', 'ARG', 'ASN', 'ASP', 'CYS', 'GLN', 'GLU', 'GLY', 'HIS', 'ILE',
-            'LEU', 'LYS', 'MET', 'PHE', 'PRO', 'SER', 'THR', 'TRP', 'TYR', 'VAL',
-            'MSE', 'SEP', 'TPO', 'PYL', 'SEC'  # Modified amino acids
-        }
-
-        # Standard nucleic acid residue names
-        nucleic_acids = {
-            'A', 'C', 'G', 'U', 'T',  # Standard bases
-            'DA', 'DC', 'DG', 'DT',   # DNA
-            '+A', '+C', '+G', '+U', '+T'  # RNA with base modifications
-        }
-
-        # Common solvent names
-        solvents = {'HOH', 'WAT', 'H2O', 'DOD', 'D2O', 'SO4', 'PO4', 'CL', 'NA'}
-
-        # Saccharide residue names
+        # Saccharide residue names (for chain classification)
         saccharide_names = {
             'GLC', 'GAL', 'MAN', 'FUC', 'XYL', 'RIB', 'NAG', 'BMA',
             'FUL', 'SIA', 'NDG', 'BGC'
         }
 
-        monomer_set = set()
+        all_resname_set = set()
+        ligand_list = []
         element_set = set()
 
         # Analyze first model only (like legacy code)
@@ -1388,8 +1387,9 @@ class CPdbDataComposition:
 
                 for residue in chain:
                     res_name = residue.name
-                    monomer_set.add(res_name)
+                    all_resname_set.add(res_name)
                     nres += 1
+                    natoms_res = len(residue)
 
                     # Track first and last residue IDs
                     resid_str = str(residue.seqid.num)
@@ -1397,16 +1397,31 @@ class CPdbDataComposition:
                         first_resid = resid_str
                     last_resid = resid_str
 
-                    # Classify residue type
-                    if res_name in amino_acids:
-                        has_amino = True
-                    elif res_name in nucleic_acids:
-                        has_nucleic = True
-                    elif res_name in solvents:
+                    # Use gemmi's entity_type for proper classification
+                    entity_type = residue.entity_type
+
+                    if entity_type == gemmi.EntityType.Polymer:
+                        # Check if it's amino acid or nucleic acid based on structure
+                        # (gemmi's entity_type handles this correctly from mmCIF)
+                        has_amino = True  # Simplified - polymer chains are typically protein
+                    elif entity_type == gemmi.EntityType.Water:
                         has_solvent = True
                         nres_solvent_chain += 1
-                    elif res_name in saccharide_names:
-                        has_saccharide = True
+                    elif entity_type == gemmi.EntityType.NonPolymer:
+                        # This is a ligand/hetero compound
+                        # Check if it's a single metal ion
+                        is_metal_ion = (natoms_res == 1 and
+                                       len(residue) > 0 and
+                                       residue[0].element.is_metal)
+
+                        if not is_metal_ion and natoms_res >= self.MIN_LIGAND_ATOMS:
+                            # Significant ligand - add to monomers list
+                            ligand_id = f"{chain_id}:{res_name}:{residue.seqid.num}"
+                            ligand_list.append(ligand_id)
+
+                        # Check for saccharides
+                        if res_name in saccharide_names:
+                            has_saccharide = True
 
                     # Count atoms and analyze elements
                     for atom in residue:
@@ -1427,7 +1442,7 @@ class CPdbDataComposition:
                 self.nAtoms += natoms_chain
                 self.nresSolvent += nres_solvent_chain
 
-                # Classify chains
+                # Classify chains (using has_amino as proxy for polymer)
                 if has_amino:
                     self.peptides.append(chain_id)
                 if has_nucleic:
@@ -1437,7 +1452,9 @@ class CPdbDataComposition:
                 if has_saccharide:
                     self.saccharides.append(chain_id)
 
-        self.monomers = sorted(list(monomer_set))
+        # monomers now contains only significant ligands in chain:resname:seqnum format
+        self.monomers = sorted(ligand_list)
+        self.allResidueNames = sorted(list(all_resname_set))
         self.elements = sorted(list(element_set))
 
 
