@@ -382,7 +382,7 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   }, [item, qualifiers]);
 
   // Should show selection builder?
-  const showSelectionBuilder = overriddenQualifiers.ifAtomSelection && hasContent;
+  const showSelectionBuilder = true && hasContent;
 
   // Force expanded if selection is set
   const forceExpanded = !!selectionString && selectionString.length > 0;
@@ -391,6 +391,7 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
 
   return (
     <CSimpleDataFileElement {...props} forceExpanded={forceExpanded}>
+      {overriddenQualifiers.ifAtomSelection && "isAtomSelection"} {hasContent && "- Build atom selection:"}
       {showSelectionBuilder && (
         <Stack spacing={1} sx={{ mt: 1 }}>
           {/* Selection Builder Header */}
