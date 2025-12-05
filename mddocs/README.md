@@ -16,7 +16,11 @@ This directory contains documentation for the ccp4i2-django project.
 ### Detailed Architecture Docs
 
 - [architecture/](architecture/) - System design documentation
-- [api/](api/) - REST API documentation
+
+### REST API
+
+- **[API Overview](api/API_OVERVIEW.md)** - REST API endpoints and usage
+- [api/](api/) - Detailed API documentation and analysis
 
 ## Migration Documentation
 
@@ -26,9 +30,18 @@ Historical documentation from the Qt-to-Django migration:
 - [API_HARMONIZATION_*.md](.) - API harmonization across CData classes
 - [MILESTONE_ASYNC_EXECUTION.md](MILESTONE_ASYNC_EXECUTION.md) - Async execution system milestone
 
+## Pipeline Development
+
+Best practices and patterns for developing CCP4i2 pipelines:
+
+- **[Error Handling Patterns](pipeline/ERROR_HANDLING_PATTERNS.md)** - CErrorReport usage, try/except patterns, ERROR_CODES
+- **[Validity Patterns](pipeline/VALIDITY_PATTERNS.md)** - Content-aware validation using validity() overrides
+
 ## CLI Documentation
 
-- [cli/](cli/) - Command-line interface documentation
+- **[CLI Reference](cli/CLI.md)** - Full command-line interface documentation
+- **[CLI Quick Reference](cli/CLI_QUICK_REFERENCE.md)** - One-page CLI cheat sheet
+- **[i2run Guide](cli/I2RUN_GUIDE.md)** - Task runner with complex data object construction
 
 ## Historical Notes
 

@@ -459,9 +459,14 @@ def on_finished(self, status):
 
 ## Further Reading
 
+### Pipeline Development
+- **[pipeline/ERROR_HANDLING_PATTERNS.md](pipeline/ERROR_HANDLING_PATTERNS.md)** - CErrorReport, try/except patterns, ERROR_CODES
+- **[pipeline/VALIDITY_PATTERNS.md](pipeline/VALIDITY_PATTERNS.md)** - Content-aware validation with validity() overrides
+
+### Architecture
 - **MILESTONE_ASYNC_EXECUTION.md** - Comprehensive architecture documentation
 - **CLAUDE.md** - Project overview and metadata system
-- **core/CCP4PluginScript.py** - Main plugin implementation (1400+ lines, heavily documented)
+- **core/CCP4PluginScript.py** - Main plugin implementation (heavily documented)
 - **core/CCP4ComTemplate.py** - Template expansion system
 - **tests/test_demo_copycell_integration.py** - Real-world pipeline example
 
