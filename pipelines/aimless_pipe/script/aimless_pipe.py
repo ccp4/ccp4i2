@@ -81,15 +81,16 @@ class aimless_pipe(CPluginScript):
         (self.container.controlParameters,
          ['EXCLUDE_BATCH','EXCLUDED_BATCHES',
           'POINTLESS_USE_RESOLUTION_RANGE', 'RESOLUTION_RANGE',
-          'ISIGLIMIT','CCHALFLIMIT','TOLERANCE','MODE','REFERENCE_DATASET','SET_SETTING',
+          'ISIGLIMIT','CCHALFLIMIT','TOLERANCE','MODE','SET_SETTING',
           'CHOOSE_MODE','CHOOSE_SOLUTION_NO','CHOOSE_LAUEGROUP','CHOOSE_SPACEGROUP',
           'REINDEX_OPERATOR','CELL','WAVELENGTH','RUN_MODE','RUN_BATCHLIST',
           'REMOVE_LATTICE_CENTERING','LATTICE_CENTERING',
           'KEEP_LATTICE_CENTERING','LATTICE_CENTERING_THRESHOLD',
           'ALLOW_NONCHIRAL',
           'MMCIF_SELECTED_BLOCK'])
+      # Note: REFERENCE_DATASET removed - aimless_pipe uses HKL/XYZ but pointless uses HKL_MERGED/HKL_UNMERGED/XYZ
 
-      
+
       self.connectSignal(self.pointless,'finished',self.process_cycle_aimless)
       self.pointless.process()
 

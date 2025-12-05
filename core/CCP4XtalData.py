@@ -108,6 +108,35 @@ class CCell(CCellStub):
     Add file I/O, validation, and business logic here.
     """
 
+    def validity(self):
+        """Validate the cell parameters.
+
+        If the cell is optional (allowUndefined=True or not specified) and not set,
+        skip validation of child parameters (a, b, c, alpha, beta, gamma) entirely.
+        This prevents validation errors for unset optional cell parameters.
+
+        Returns:
+            CErrorReport containing any validation errors/warnings
+        """
+        from core.base_object.error_reporting import CErrorReport
+
+        # Check if this cell is optional
+        allow_undefined = self.get_qualifier('allowUndefined')
+        is_optional = allow_undefined is None or allow_undefined is True
+
+        # Check if the cell has any parameters set
+        has_any_set = any(
+            getattr(self, param) and getattr(self, param).isSet()
+            for param in ['a', 'b', 'c', 'alpha', 'beta', 'gamma']
+        )
+
+        # If optional and nothing is set, skip validation entirely
+        if is_optional and not has_any_set:
+            return CErrorReport()
+
+        # Otherwise, use the standard validation (which validates children)
+        return super().validity()
+
     def guiLabel(self) -> str:
         """
         Return a compact string representation of cell parameters.
@@ -662,13 +691,84 @@ class CImosflmXmlDataFile(CImosflmXmlDataFileStub):
 class CImportUnmerged(CImportUnmergedStub):
     """
     QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
+
     Extends CImportUnmergedStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
-    # Add your methods here
-    pass
+    def populateFromFile(self):
+        """
+        Auto-populate dataset, crystalName, cell, and wavelength from MTZ file metadata.
+
+        This should be called after the file is set to populate required fields
+        that can be derived from the MTZ header.
+
+        Returns:
+            bool: True if fields were populated successfully, False otherwise
+        """
+        if not hasattr(self, 'file') or self.file is None or not self.file.isSet():
+            return False
+
+        file_path = self.file.getFullPath()
+        if not file_path:
+            return False
+
+        try:
+            import gemmi
+            from pathlib import Path
+
+            if not Path(file_path).exists():
+                return False
+
+            mtz = gemmi.read_mtz_file(file_path)
+
+            # Find the first non-HKL_base dataset
+            for dataset in mtz.datasets:
+                if dataset.dataset_name and dataset.dataset_name != 'HKL_base':
+                    # Set dataset name if not already set
+                    if hasattr(self, 'dataset') and self.dataset is not None:
+                        if not self.dataset.isSet():
+                            self.dataset.set(dataset.dataset_name)
+
+                    # Set crystal name if not already set
+                    if hasattr(self, 'crystalName') and self.crystalName is not None:
+                        if not self.crystalName.isSet():
+                            crystal_name = dataset.crystal_name or dataset.dataset_name
+                            self.crystalName.set(crystal_name)
+
+                    # Set cell parameters if not already set
+                    if hasattr(self, 'cell') and self.cell is not None:
+                        if not self.cell.isSet():
+                            self.cell.a.set(mtz.cell.a)
+                            self.cell.b.set(mtz.cell.b)
+                            self.cell.c.set(mtz.cell.c)
+                            self.cell.alpha.set(mtz.cell.alpha)
+                            self.cell.beta.set(mtz.cell.beta)
+                            self.cell.gamma.set(mtz.cell.gamma)
+
+                    # Set wavelength if available and not already set
+                    if hasattr(self, 'wavelength') and self.wavelength is not None:
+                        if not self.wavelength.isSet() and dataset.wavelength > 0:
+                            self.wavelength.set(dataset.wavelength)
+
+                    return True
+
+            # Fallback: use cell from MTZ even if no named dataset found
+            if hasattr(self, 'cell') and self.cell is not None and not self.cell.isSet():
+                self.cell.a.set(mtz.cell.a)
+                self.cell.b.set(mtz.cell.b)
+                self.cell.c.set(mtz.cell.c)
+                self.cell.alpha.set(mtz.cell.alpha)
+                self.cell.beta.set(mtz.cell.beta)
+                self.cell.gamma.set(mtz.cell.gamma)
+
+            return False
+
+        except Exception as e:
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.debug(f"Failed to populate CImportUnmerged from file: {e}")
+            return False
 
 
 class CImportUnmergedList(CImportUnmergedListStub):

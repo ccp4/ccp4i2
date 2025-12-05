@@ -19,13 +19,13 @@
           <qualifiers>
             <crystalName>
               <guiLabel>crystal name</guiLabel>
-              <allowUndefined>False</allowUndefined>
+              <allowUndefined>True</allowUndefined>
               <minLength>1</minLength>
               <allowedCharsCode>1</allowedCharsCode>
             </crystalName>
             <dataset>
               <guiLabel>dataset name</guiLabel>
-              <allowUndefined>False</allowUndefined>
+              <allowUndefined>True</allowUndefined>
               <minLength>1</minLength>
               <allowedCharsCode>1</allowedCharsCode>
             </dataset>
@@ -33,26 +33,32 @@
               <a>
                 <guiLabel>a</guiLabel>
                 <toolTip>Cell length a in A</toolTip>
+                <allowUndefined>True</allowUndefined>
               </a>
               <b>
                 <guiLabel>b</guiLabel>
                 <toolTip>Cell length b in A</toolTip>
+                <allowUndefined>True</allowUndefined>
               </b>
               <c>
                 <guiLabel>c</guiLabel>
                 <toolTip>Cell length c in A</toolTip>
+                <allowUndefined>True</allowUndefined>
               </c>
               <alpha>
                 <guiLabel>alpha</guiLabel>
                 <toolTip>Cell angle alpha in degrees</toolTip>
+                <allowUndefined>True</allowUndefined>
               </alpha>
               <beta>
                 <guiLabel>beta</guiLabel>
                 <toolTip>Cell angle beta in degrees</toolTip>
+                <allowUndefined>True</allowUndefined>
               </beta>
               <gamma>
                 <guiLabel>gamma</guiLabel>
                 <toolTip>Cell angle gamma in degrees</toolTip>
+                <allowUndefined>True</allowUndefined>
               </gamma>
             </cell>
             <file>
@@ -412,26 +418,32 @@
           <a>
             <guiLabel>a</guiLabel>
             <toolTip>Cell length a in A</toolTip>
+            <allowUndefined>True</allowUndefined>
           </a>
           <b>
             <guiLabel>b</guiLabel>
             <toolTip>Cell length b in A</toolTip>
+            <allowUndefined>True</allowUndefined>
           </b>
           <c>
             <guiLabel>c</guiLabel>
             <toolTip>Cell length c in A</toolTip>
+            <allowUndefined>True</allowUndefined>
           </c>
           <alpha>
             <guiLabel>alpha</guiLabel>
             <toolTip>Cell angle alpha in degrees</toolTip>
+            <allowUndefined>True</allowUndefined>
           </alpha>
           <beta>
             <guiLabel>beta</guiLabel>
             <toolTip>Cell angle beta in degrees</toolTip>
+            <allowUndefined>True</allowUndefined>
           </beta>
           <gamma>
             <guiLabel>gamma</guiLabel>
             <toolTip>Cell angle gamma in degrees</toolTip>
+            <allowUndefined>True</allowUndefined>
           </gamma>
         </qualifiers>
       </content>

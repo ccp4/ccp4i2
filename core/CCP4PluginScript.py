@@ -903,15 +903,21 @@ class CPluginScript(CData):
 
     def checkInputData(self) -> CErrorReport:
         """
-        Validate that input data is correct and files exist.
+        Check that required input data is set.
 
         This method recursively checks all CDataFile descendants in the
         entire container hierarchy and verifies that files marked with
         mustExist actually exist.
 
+        Only returns actual errors (SEVERITY_ERROR), not warnings about
+        optional files. Warnings are for GUI display, not for blocking
+        job execution.
+
         Returns:
-            CErrorReport with any validation errors
+            CErrorReport with any validation errors (no warnings)
         """
+        from core.base_object.error_reporting import SEVERITY_ERROR
+
         error = CErrorReport()
 
         # Find all CDataFile descendants recursively in the entire container
@@ -921,7 +927,11 @@ class CPluginScript(CData):
         for name, obj in file_items:
             obj_error = obj.validity()
             if obj_error:
-                error.extend(obj_error)
+                # Only include actual errors, not warnings
+                # Warnings are for GUI display, not for blocking execution
+                for err_item in obj_error._errors:
+                    if err_item.get('severity', 0) >= SEVERITY_ERROR:
+                        error.append(**err_item)
 
         return error
 

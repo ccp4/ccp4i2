@@ -6433,8 +6433,8 @@ specific to coordinates, reflections or geometry data.
     contents_order=['file', 'crystalName', 'dataset', 'excludeSelection'],
     content_qualifiers={
         "file": {'allowUndefined': False, 'mustExist': True, 'fromPreviousJob': True},
-        "crystalName": {'allowUndefined': False, 'minLength': 1, 'guiLabel': 'crystal name', 'allowedCharsCode': 1},
-        "dataset": {'allowUndefined': False, 'minLength': 1, 'guiLabel': 'dataset name', 'allowedCharsCode': 1},
+        "crystalName": {'allowUndefined': True, 'minLength': 1, 'guiLabel': 'crystal name', 'allowedCharsCode': 1},
+        "dataset": {'allowUndefined': True, 'minLength': 1, 'guiLabel': 'dataset name', 'allowedCharsCode': 1},
         "excludeSelection": {'allowUndefined': True},
     },
 )
