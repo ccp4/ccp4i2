@@ -391,7 +391,6 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
 
   return (
     <CSimpleDataFileElement {...props} forceExpanded={forceExpanded}>
-      {overriddenQualifiers.ifAtomSelection && "isAtomSelection"} {hasContent && "- Build atom selection:"}
       {showSelectionBuilder && (
         <Stack spacing={1} sx={{ mt: 1 }}>
           {/* Selection Builder Header */}
