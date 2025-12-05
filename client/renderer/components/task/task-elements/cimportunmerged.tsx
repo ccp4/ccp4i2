@@ -154,7 +154,7 @@ export const CImportUnmergedElement: React.FC<CCP4i2TaskElementProps> = (
         </Grid2>
         <Grid2 size={{ xs: 8 }}>
           <Typography variant="body1">
-            {fileDigest?.data?.batchs && JSON.stringify(fileDigest.data.batchs)}
+            {fileDigest?.batchs && JSON.stringify(fileDigest.batchs)}
           </Typography>
         </Grid2>
 

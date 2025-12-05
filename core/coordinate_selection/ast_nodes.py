@@ -6,6 +6,46 @@ Represents the parsed structure of mmdb CID selection expressions.
 
 from typing import Optional, Union, List
 from dataclasses import dataclass
+from enum import Enum, auto
+
+
+class CategoryType(Enum):
+    """Category types for semantic selection."""
+    PROTEIN = auto()      # amino acid residues
+    NUCLEIC = auto()      # nucleic acid residues
+    SOLVENT = auto()      # water and common solvents
+    LIGAND = auto()       # non-polymer, non-solvent small molecules
+    SUGAR = auto()        # carbohydrate residues
+    POLYMER = auto()      # protein + nucleic + sugar (all polymer chains)
+    BACKBONE = auto()     # backbone atoms only
+    SIDECHAIN = auto()    # sidechain atoms only
+    HETERO = auto()       # HETATM records
+
+
+@dataclass
+class CategorySelector:
+    """
+    Represents a semantic category selector.
+
+    Selects atoms based on residue/atom classification rather than
+    explicit names. This is evaluated against the structure using
+    gemmi's residue type detection.
+
+    Examples:
+        protein       -> all amino acid residues
+        nucleic       -> all nucleic acid residues
+        solvent       -> HOH, WAT, etc.
+        ligand        -> non-polymer small molecules
+        sugar         -> carbohydrate residues
+        polymer       -> protein + nucleic + sugar
+        backbone      -> backbone atoms (N, CA, C, O for protein)
+        sidechain     -> sidechain atoms
+        hetero        -> HETATM records
+    """
+    category: CategoryType
+
+    def __repr__(self):
+        return f"CategorySelector({self.category.name})"
 
 
 @dataclass
@@ -82,4 +122,4 @@ class LogicalNot:
 
 
 # Type alias for any selection node
-SelectionNode = Union[CIDSelector, LogicalAnd, LogicalOr, LogicalNot]
+SelectionNode = Union[CIDSelector, CategorySelector, LogicalAnd, LogicalOr, LogicalNot]

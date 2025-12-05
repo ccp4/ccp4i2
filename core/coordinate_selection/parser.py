@@ -8,15 +8,30 @@ Grammar (simplified):
     or_expr := and_expr ('or' and_expr)*
     and_expr := not_expr ('and' not_expr)*
     not_expr := 'not' not_expr | primary
-    primary := cid_selector | '(' expression ')' | '{' expression '}'
+    primary := category_selector | cid_selector | '(' expression ')' | '{' expression '}'
+    category_selector := 'protein' | 'nucleic' | 'solvent' | 'ligand' | 'sugar' | 'polymer' | ...
     cid_selector := ['/' model] ['/' chain] ['/' residue] ['/' atom]
 """
 
 from typing import List, Optional
 from .tokenizer import Token, TokenType, tokenize
 from .ast_nodes import (
-    CIDSelector, LogicalAnd, LogicalOr, LogicalNot, SelectionNode
+    CIDSelector, CategorySelector, CategoryType,
+    LogicalAnd, LogicalOr, LogicalNot, SelectionNode
 )
+
+# Map token types to category types
+CATEGORY_TOKEN_MAP = {
+    TokenType.PROTEIN: CategoryType.PROTEIN,
+    TokenType.NUCLEIC: CategoryType.NUCLEIC,
+    TokenType.SOLVENT: CategoryType.SOLVENT,
+    TokenType.LIGAND: CategoryType.LIGAND,
+    TokenType.SUGAR: CategoryType.SUGAR,
+    TokenType.POLYMER: CategoryType.POLYMER,
+    TokenType.BACKBONE: CategoryType.BACKBONE,
+    TokenType.SIDECHAIN: CategoryType.SIDECHAIN,
+    TokenType.HETERO: CategoryType.HETERO,
+}
 
 
 class ParseError(Exception):
@@ -103,8 +118,13 @@ class Parser:
         return self.parse_primary()
 
     def parse_primary(self) -> SelectionNode:
-        """Parse primary expression (CID selector or grouped expression)."""
+        """Parse primary expression (category selector, CID selector, or grouped expression)."""
         token = self.current_token()
+
+        # Category selectors (protein, nucleic, solvent, etc.)
+        if token.type in CATEGORY_TOKEN_MAP:
+            self.advance()  # consume the category keyword
+            return CategorySelector(category=CATEGORY_TOKEN_MAP[token.type])
 
         # Grouped expression with parentheses OR residue name selector
         if token.type == TokenType.LPAREN:

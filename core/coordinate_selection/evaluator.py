@@ -7,8 +7,50 @@ Applies selection criteria to gemmi.Structure objects.
 from typing import List, Set, Tuple
 import re
 from .ast_nodes import (
-    CIDSelector, LogicalAnd, LogicalOr, LogicalNot, SelectionNode
+    CIDSelector, CategorySelector, CategoryType,
+    LogicalAnd, LogicalOr, LogicalNot, SelectionNode
 )
+
+
+# ============================================================================
+# Residue and Atom Classification Sets
+# ============================================================================
+
+# Standard amino acid residue names (including common modified)
+AMINO_ACIDS = {
+    'ALA', 'ARG', 'ASN', 'ASP', 'CYS', 'GLN', 'GLU', 'GLY', 'HIS', 'ILE',
+    'LEU', 'LYS', 'MET', 'PHE', 'PRO', 'SER', 'THR', 'TRP', 'TYR', 'VAL',
+    'MSE', 'SEP', 'TPO', 'PYL', 'SEC',  # Modified amino acids
+    'HYP', 'PTR', 'MLY', 'M3L', 'CSO', 'OCS', 'CME',  # More modifications
+}
+
+# Standard nucleic acid residue names
+NUCLEIC_ACIDS = {
+    'A', 'C', 'G', 'U', 'T',          # Standard bases
+    'DA', 'DC', 'DG', 'DT', 'DU',     # DNA
+    '+A', '+C', '+G', '+U', '+T',     # RNA with modifications
+    'ADE', 'CYT', 'GUA', 'URA', 'THY',  # Full names
+}
+
+# Common solvent residue names
+SOLVENTS = {
+    'HOH', 'WAT', 'H2O', 'DOD', 'D2O',  # Water
+    'SO4', 'PO4', 'CL', 'NA', 'K', 'MG', 'CA', 'ZN',  # Common ions
+    'GOL', 'EDO', 'PEG', 'MPD', 'DMS',  # Common cryo/crystallization agents
+}
+
+# Saccharide/sugar residue names
+SACCHARIDES = {
+    'GLC', 'GAL', 'MAN', 'FUC', 'XYL', 'RIB', 'NAG', 'BMA',
+    'FUL', 'SIA', 'NDG', 'BGC', 'GLA', 'GCS', 'NGA', 'A2G',
+    'RAM', 'ARA', 'LYX', 'ALL', 'ALT', 'GUP', 'IDO', 'TAL',
+}
+
+# Protein backbone atom names
+PROTEIN_BACKBONE_ATOMS = {'N', 'CA', 'C', 'O', 'OXT'}
+
+# Nucleic acid backbone atom names
+NUCLEIC_BACKBONE_ATOMS = {"P", "OP1", "OP2", "O5'", "C5'", "C4'", "O4'", "C3'", "O3'", "C2'", "O2'", "C1'"}
 
 
 class SelectionEvaluator:
@@ -36,6 +78,8 @@ class SelectionEvaluator:
         """
         if isinstance(node, CIDSelector):
             return self._evaluate_cid(node)
+        elif isinstance(node, CategorySelector):
+            return self._evaluate_category(node)
         elif isinstance(node, LogicalAnd):
             left_atoms = set(self.evaluate(node.left))
             right_atoms = set(self.evaluate(node.right))
@@ -85,6 +129,80 @@ class SelectionEvaluator:
 
                     for atom in residue:
                         if self._matches_atom(atom, cid):
+                            selected_atoms.append((model, chain, residue, atom))
+
+        return selected_atoms
+
+    def _evaluate_category(self, cat: CategorySelector) -> List[Tuple]:
+        """
+        Evaluate a category selector.
+
+        Returns list of (model, chain, residue, atom) tuples matching the category.
+        """
+        selected_atoms = []
+        category = cat.category
+
+        for model in self.structure:
+            for chain in model:
+                for residue in chain:
+                    res_name = residue.name
+
+                    # Determine residue type
+                    is_protein = res_name in AMINO_ACIDS
+                    is_nucleic = res_name in NUCLEIC_ACIDS
+                    is_solvent = res_name in SOLVENTS
+                    is_sugar = res_name in SACCHARIDES
+                    is_polymer = is_protein or is_nucleic or is_sugar
+                    # Ligand = not polymer, not solvent (i.e., small molecule)
+                    is_ligand = not is_polymer and not is_solvent
+                    # Hetero = has het flag or is not standard polymer
+                    is_hetero = getattr(residue, 'het_flag', '') == 'H' or (not is_protein and not is_nucleic)
+
+                    # Check if residue matches category (for residue-level categories)
+                    residue_matches = False
+                    if category == CategoryType.PROTEIN:
+                        residue_matches = is_protein
+                    elif category == CategoryType.NUCLEIC:
+                        residue_matches = is_nucleic
+                    elif category == CategoryType.SOLVENT:
+                        residue_matches = is_solvent
+                    elif category == CategoryType.SUGAR:
+                        residue_matches = is_sugar
+                    elif category == CategoryType.POLYMER:
+                        residue_matches = is_polymer
+                    elif category == CategoryType.LIGAND:
+                        residue_matches = is_ligand
+                    elif category == CategoryType.HETERO:
+                        residue_matches = is_hetero
+                    elif category in (CategoryType.BACKBONE, CategoryType.SIDECHAIN):
+                        # For backbone/sidechain, we match residue but filter atoms
+                        residue_matches = is_protein or is_nucleic
+
+                    if not residue_matches:
+                        continue
+
+                    # Now filter atoms based on category
+                    for atom in residue:
+                        atom_matches = True
+
+                        if category == CategoryType.BACKBONE:
+                            # Backbone atoms only
+                            if is_protein:
+                                atom_matches = atom.name in PROTEIN_BACKBONE_ATOMS
+                            elif is_nucleic:
+                                atom_matches = atom.name in NUCLEIC_BACKBONE_ATOMS
+                            else:
+                                atom_matches = False
+                        elif category == CategoryType.SIDECHAIN:
+                            # Sidechain atoms only (not backbone)
+                            if is_protein:
+                                atom_matches = atom.name not in PROTEIN_BACKBONE_ATOMS
+                            elif is_nucleic:
+                                atom_matches = atom.name not in NUCLEIC_BACKBONE_ATOMS
+                            else:
+                                atom_matches = False
+
+                        if atom_matches:
                             selected_atoms.append((model, chain, residue, atom))
 
         return selected_atoms

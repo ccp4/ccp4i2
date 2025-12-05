@@ -1151,19 +1151,22 @@ export const useJob = (jobId: number | null | undefined): JobData => {
 
   // Custom hook to fetch file digest using SWR
   // Note: objectPath should be the full path like "prosmart_refmac.inputData.F_SIGF"
+  // Returns unwrapped digest data (extracts .data from API response)
   const useFileDigest = (objectPath: string): SWRResponse<any, Error> => {
     // Create a unique key for SWR caching
     const swrKey = objectPath
       ? `jobs/${job?.id}/digest?object_path=${objectPath}`
       : null;
-    const fetcher = async (): Promise<string> => {
+    const fetcher = async (): Promise<any> => {
       if (!swrKey) {
         throw new Error("Parameter not found");
       }
-      return apiJson(swrKey);
+      // Unwrap API response format: {success: true, data: {...}}
+      const result = await apiJson(swrKey);
+      return result?.data ?? result;
     };
 
-    return useSWR<string, Error>(swrKey, swrKey ? fetcher : null, {
+    return useSWR<any, Error>(swrKey, swrKey ? fetcher : null, {
       // SWR options
       revalidateOnFocus: false,
       revalidateOnReconnect: true,

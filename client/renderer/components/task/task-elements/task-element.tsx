@@ -6,6 +6,7 @@ import { CStringElement } from "./cstring";
 import { useJob } from "../../../utils";
 import { CFloatElement } from "./cfloat";
 import { CPdbDataFileElement } from "./cpdbdatafile";
+import { CAsuDataFileElement } from "./casudatafile";
 import { CMiniMtzDataFileElement } from "./cminimtzdatafile";
 import { CBooleanElement } from "./cboolean";
 import { CListElement } from "./clist";
@@ -132,12 +133,19 @@ export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
             qualifiers={qualifiers}
           />
         );
+      case "CAsuDataFile":
+        return (
+          <CAsuDataFileElement
+            key={the_uuid}
+            {...props}
+            qualifiers={qualifiers}
+          />
+        );
       case "CDictDataFile":
       case "CTLSDataFile":
       case "CPhaserSolDataFile":
       case "CPhaserRFileDataFile":
       case "CRefmacRestraintsDataFile":
-      case "CAsuDataFile":
       case "CSeqDataFile":
       case "CSeqAlignDataFile":
       case "CHhpredDataFile":

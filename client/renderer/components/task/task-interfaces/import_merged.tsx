@@ -59,9 +59,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   //This is wrapped in a useCallback, since it will include calls to methods that will be defined dynamically
   // and we do not want the actual function to be called when those methods are updated (hence not symply put into the useEffect)
   const handleDigestChanged = useCallback(
-    (digest: any) => {
-      // API returns {success: true, data: {...}} - extract the data
-      const digestData = digest?.data;
+    (digestData: any) => {
+      // digestData is now unwrapped by useFileDigest
       if (
         !digestData ||
         Object.keys(digestData).length == 0 ||
@@ -119,8 +118,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       if (!setHKLIN_OBS_CONTENT_FLAG) return;
       if (!setHKLIN_OBS_COLUMNS) return;
 
-      // API returns {success: true, data: {...}} - extract the data
-      const digestData = HKLINDigest?.data;
+      // HKLINDigest is now unwrapped by useFileDigest
+      const digestData = HKLINDigest;
 
       const match = columnPath.match(/\[([^\]]+)\]/);
       console.log({ match });
@@ -384,8 +383,8 @@ interface MmcifPanelProps extends CCP4i2TaskElementProps {
 const MmcifPanel: React.FC<MmcifPanelProps> = (props) => {
   const api = useApi();
   const { digest, job } = props;
-  // API returns {success: true, data: {...}} - extract the data
-  const digestData = digest?.data;
+  // digest is now unwrapped by useFileDigest
+  const digestData = digest;
   const { useTaskItem, mutateContainer, mutateValidation } = useJob(job.id);
   const { value: MMCIF_SELECTED_BLOCKValue } = useTaskItem(
     "MMCIF_SELECTED_BLOCK"

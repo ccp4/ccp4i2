@@ -58,8 +58,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     if (!updateWAVELENGTH || !F_SIGFanomDigest || !job || job.status !== 1)
       return;
 
-    // API returns {success: true, data: {...}} - extract the data
-    const digestData = F_SIGFanomDigest?.data;
+    // F_SIGFanomDigest is now unwrapped by useFileDigest
+    const digestData = F_SIGFanomDigest;
 
     // Extract wavelength from digest
     if (digestData?.wavelengths?.length > 0) {

@@ -26,10 +26,21 @@ class TokenType(Enum):
     DASH = auto()            # - (for ranges)
     STAR = auto()            # * (wildcard)
 
-    # Keywords
+    # Logical keywords
     AND = auto()             # and
     OR = auto()              # or
     NOT = auto()             # not
+
+    # Category keywords (semantic selectors)
+    PROTEIN = auto()         # protein - amino acid residues
+    NUCLEIC = auto()         # nucleic - nucleic acid residues
+    SOLVENT = auto()         # solvent/water - HOH, WAT, etc.
+    LIGAND = auto()          # ligand - non-polymer, non-solvent
+    SUGAR = auto()           # sugar/saccharide - carbohydrate residues
+    POLYMER = auto()         # polymer - protein + nucleic + sugar
+    BACKBONE = auto()        # backbone - backbone atoms only
+    SIDECHAIN = auto()       # sidechain - sidechain atoms only
+    HETERO = auto()          # hetero/hetatm - HETATM records
 
     # Values
     IDENTIFIER = auto()      # Chain IDs, residue names, atom names, etc.
@@ -55,9 +66,23 @@ class Tokenizer:
 
     # Keywords (case-insensitive)
     KEYWORDS = {
+        # Logical operators
         'and': TokenType.AND,
         'or': TokenType.OR,
         'not': TokenType.NOT,
+        # Category selectors
+        'protein': TokenType.PROTEIN,
+        'nucleic': TokenType.NUCLEIC,
+        'solvent': TokenType.SOLVENT,
+        'water': TokenType.SOLVENT,      # alias for solvent
+        'ligand': TokenType.LIGAND,
+        'sugar': TokenType.SUGAR,
+        'saccharide': TokenType.SUGAR,   # alias for sugar
+        'polymer': TokenType.POLYMER,
+        'backbone': TokenType.BACKBONE,
+        'sidechain': TokenType.SIDECHAIN,
+        'hetero': TokenType.HETERO,
+        'hetatm': TokenType.HETERO,      # alias for hetero
     }
 
     def __init__(self, input_string: str):

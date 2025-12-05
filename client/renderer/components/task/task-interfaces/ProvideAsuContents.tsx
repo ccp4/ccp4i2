@@ -59,12 +59,12 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { data: matthewsAnalysis, mutate: mutateMatthews } = useSWR(
     // Only fetch when we have molecular weight AND HKLIN digest
     // API response format: {success: true, data: {result: <value>}}
-    molWeight?.data?.result && HKLINDigest?.data
+    molWeight?.data?.result && HKLINDigest
       ? [
           `jobs/${job.id}/object_method`,
           "matthewsCoeff",
           molWeight.data.result,
-          HKLINDigest.data,
+          HKLINDigest,
         ]
       : null,
     ([url, , molWeightResult]) =>
@@ -176,11 +176,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 onChange={() => mutateHKLINDigest()}
               />
               {/* Show MTZ file info when digest is available */}
-              {HKLINDigest?.data && (
+              {HKLINDigest && (
                 <Stack spacing={1} sx={{ mt: 1 }}>
-                  <BaseSpacegroupCellElement data={HKLINDigest.data} />
+                  <BaseSpacegroupCellElement data={HKLINDigest} />
                   {/* Warning if no wavelengths (e.g., FreeR-only file) */}
-                  {HKLINDigest.data.cell && (!HKLINDigest.data.wavelengths || HKLINDigest.data.wavelengths.length === 0) && (
+                  {HKLINDigest.cell && (!HKLINDigest.wavelengths || HKLINDigest.wavelengths.length === 0) && (
                     <Alert severity="info" sx={{ py: 0 }}>
                       No wavelength information in this MTZ file
                     </Alert>
