@@ -434,3 +434,120 @@ After setup:
    - Qt-free compatibility layer at `baselayer/`
    - Automatic Qt vs Django mode detection
    - Use `from baselayer import QtCore` instead of `from PySide2 import QtCore`
+
+---
+
+## Cross-Branch Development: Setting Up Baselayer in Main Branch
+
+The `baselayer` package provides a compatibility layer that allows code to work in both:
+- **ccp4i2-django branch**: Qt-free mode with stub implementations
+- **main branch**: Full Qt/PySide2 mode with real implementations
+
+This enables pipeline and wrapper code to be trivially merged between branches.
+
+### Why This Matters
+
+Code in `wrappers/`, `wrappers2/`, and `pipelines/` uses imports like:
+```python
+from baselayer import QtCore, Signal, Slot, QObject
+from baselayer import DJANGO, QT
+```
+
+In ccp4i2-django, `baselayer` provides Qt-free stubs. In the main branch, `baselayer` must re-export from PySide2.
+
+### Setting Up Baselayer in Main Branch
+
+To enable merging of pipeline enhancements from ccp4i2-django into the main branch, create a simple `baselayer` package that re-exports PySide2:
+
+1. **Create the baselayer directory** in the main branch:
+   ```bash
+   mkdir -p baselayer
+   ```
+
+2. **Create `baselayer/__init__.py`**:
+   ```python
+   """
+   CCP4i2 BaseLayer - PySide2 Re-export for Main Branch
+
+   This module re-exports PySide2 components to match the baselayer API
+   used in ccp4i2-django. This allows code using baselayer imports to
+   work unchanged in both branches.
+   """
+
+   # Backend detection functions (always Qt in main branch)
+   def BACKEND():
+       """Return 'qt' - main branch always uses Qt."""
+       return 'qt'
+
+   def DJANGO():
+       """Return False - main branch uses Qt, not Django."""
+       return False
+
+   def QT():
+       """Return True - main branch uses Qt/PySide2."""
+       return True
+
+   # Re-export from PySide2
+   from PySide2.QtCore import (
+       Signal,
+       Slot,
+       QObject,
+       QThread,
+       QTimer,
+       Qt,
+       Property,
+       QEventLoop,
+       QCoreApplication,
+   )
+   from PySide2.QtWidgets import QApplication
+
+   # Import real Qt modules for "from baselayer import QtCore" usage
+   from PySide2 import QtCore
+   from PySide2 import QtGui
+   from PySide2 import QtWidgets
+   from PySide2 import QtSql
+
+   __version__ = "1.0.0"
+   __backend__ = "qt"
+   ```
+
+3. **Verify it works**:
+   ```bash
+   ccp4-python -c "from baselayer import QtCore, Signal, DJANGO; print(f'DJANGO: {DJANGO()}')"
+   # Should print: DJANGO: False
+   ```
+
+### Usage Pattern for Cross-Branch Code
+
+When writing code intended to work in both branches:
+
+```python
+from baselayer import DJANGO, QT
+
+if DJANGO():
+    # Django-specific imports or behavior
+    from django.db import models
+else:
+    # Qt-specific imports or behavior
+    from PySide2.QtWidgets import QMessageBox
+
+# Common code using baselayer abstractions
+from baselayer import Signal, Slot, QObject
+```
+
+### Merging Workflow
+
+With baselayer set up in both branches:
+
+1. **Develop in ccp4i2-django** using baselayer imports
+2. **Cherry-pick or merge** pipeline changes to main branch
+3. **No import changes needed** - baselayer re-exports handle the difference
+
+### What Baselayer Provides
+
+| Import | ccp4i2-django | main branch |
+|--------|---------------|-------------|
+| `from baselayer import QtCore` | Qt-free stub module | `PySide2.QtCore` |
+| `from baselayer import Signal` | Stub class | `PySide2.QtCore.Signal` |
+| `from baselayer import DJANGO` | Returns `True` | Returns `False` |
+| `from baselayer import QObject` | Stub class | `PySide2.QtCore.QObject` |
