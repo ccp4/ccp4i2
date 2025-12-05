@@ -430,7 +430,11 @@ After setup:
    - [Migration Strategy](../MIGRATION_STRATEGY.md)
    - [Quick Reference](../QUICK_REFERENCE.md)
 
-3. **Understand the baselayer**:
+3. **Frontend development** (if working on the UI):
+   - [Frontend README](../../client/README.md) - Quick start
+   - [Frontend Development Guide](../../client/FRONTEND_DEVELOPMENT.md) - Full documentation
+
+4. **Understand the baselayer**:
    - Qt-free compatibility layer at `baselayer/`
    - Automatic Qt vs Django mode detection
    - Use `from baselayer import QtCore` instead of `from PySide2 import QtCore`
