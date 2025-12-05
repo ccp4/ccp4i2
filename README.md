@@ -43,6 +43,11 @@ This branch represents a major architectural migration from Qt/PySide2 to a mode
 - [Migration Strategy](mddocs/MIGRATION_STRATEGY.md) - Technical details of the Qt→Django migration
 - [Architecture Overview](mddocs/architecture/) - System design documentation
 
+### Frontend Development
+
+- [Frontend README](client/README.md) - Quick start for the Electron/React frontend
+- [Frontend Development Guide](client/FRONTEND_DEVELOPMENT.md) - Comprehensive developer documentation
+
 ### API Documentation
 
 - [Plugin Registry](mddocs/PLUGIN_REGISTRY_README.md) - Plugin discovery and registration
@@ -101,7 +106,7 @@ ccp4i2/
 │       ├── db/         # Django ORM models
 │       ├── i2run/      # Job runner
 │       └── config/     # Django settings
-├── client/             # React/Electron frontend (planned)
+├── client/             # Electron + Next.js/React frontend
 ├── tests/              # Test suite
 │   └── i2run/          # Integration tests
 ├── mddocs/             # Documentation
