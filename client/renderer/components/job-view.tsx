@@ -87,11 +87,26 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
   return !project || !jobs || !job ? (
     <LinearProgress />
   ) : (
-    <>
+    <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
       <ToolBar />
-      <Container>
-        <JobHeader job={job} mutateJobs={mutateJobs} />
-        <Tabs value={tabValue} onChange={handleTabChange} variant="fullWidth">
+      <Container
+        sx={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          minHeight: 0, // Critical: allows flex children to shrink below content size
+          pb: 1,
+        }}
+      >
+        <Box sx={{ flexShrink: 0 }}>
+          <JobHeader job={job} mutateJobs={mutateJobs} />
+        </Box>
+        <Tabs
+          value={tabValue}
+          onChange={handleTabChange}
+          variant="fullWidth"
+          sx={{ flexShrink: 0 }}
+        >
           <Tab value={0} label="Task interface" />
           {devMode && <Tab value={1} label="Params as xml" />}
           {devMode && <Tab value={2} label="Report as xml" />}
@@ -110,10 +125,11 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
           <Tab value={9} label="Directory" />
           <Tab value={10} label="Logs" />
         </Tabs>
-        {/* Single consistent scroll container for all tab content */}
+        {/* Scroll container fills remaining space via flexbox */}
         <Box
           sx={(theme) => ({
-            height: "calc(100vh - 15rem)",
+            flex: 1,
+            minHeight: 0, // Critical: allows this flex child to shrink and scroll
             overflowY: "auto",
             // Theme-aware scrollbar styling
             scrollbarColor: `${theme.palette.action.disabled} transparent`,
@@ -186,6 +202,6 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
         </Box>
         <JobMenu />
       </Container>
-    </>
+    </Box>
   );
 };
