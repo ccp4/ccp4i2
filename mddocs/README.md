@@ -37,6 +37,15 @@ Best practices and patterns for developing CCP4i2 pipelines:
 - **[Error Handling Patterns](pipeline/ERROR_HANDLING_PATTERNS.md)** - CErrorReport usage, try/except patterns, ERROR_CODES
 - **[Validity Patterns](pipeline/VALIDITY_PATTERNS.md)** - Content-aware validation using validity() overrides
 
+## Frontend Development
+
+- **[Frontend README](../client/README.md)** - Quick start and overview
+- **[Frontend Development Guide](../client/FRONTEND_DEVELOPMENT.md)** - Comprehensive developer documentation
+  - Architecture, components, data flow
+  - Task interface system
+  - Report system
+  - Adding new features
+
 ## CLI Documentation
 
 - **[CLI Reference](cli/CLI.md)** - Full command-line interface documentation
