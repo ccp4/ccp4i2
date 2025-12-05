@@ -99,6 +99,19 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                               sx={{
                                 height: "calc(100% - 48px)",
                                 overflow: "auto",
+                                // Theme-aware scrollbar styling
+                                scrollbarColor: `${theme.palette.action.disabled} transparent`,
+                                scrollbarWidth: "thin",
+                                "&::-webkit-scrollbar": {
+                                  width: 8,
+                                },
+                                "&::-webkit-scrollbar-track": {
+                                  background: "transparent",
+                                },
+                                "&::-webkit-scrollbar-thumb": {
+                                  backgroundColor: theme.palette.action.disabled,
+                                  borderRadius: 4,
+                                },
                               }}
                             >
                               {mobileTabValue === 0 && project && (
@@ -123,6 +136,19 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                               sx={{
                                 overflowY: "auto",
                                 height: "calc(100vh - 10rem)",
+                                // Theme-aware scrollbar styling
+                                scrollbarColor: `${theme.palette.action.disabled} transparent`,
+                                scrollbarWidth: "thin",
+                                "&::-webkit-scrollbar": {
+                                  width: 8,
+                                },
+                                "&::-webkit-scrollbar-track": {
+                                  background: "transparent",
+                                },
+                                "&::-webkit-scrollbar-thumb": {
+                                  backgroundColor: theme.palette.action.disabled,
+                                  borderRadius: 4,
+                                },
                               }}
                             >
                               <Tabs
