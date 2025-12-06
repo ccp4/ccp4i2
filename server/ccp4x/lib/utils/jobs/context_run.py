@@ -292,6 +292,12 @@ def run_job_local(job):
         # Inherit current environment (includes CCP4 vars, PYTHONPATH, etc.)
         env = os.environ.copy()
 
+        # Update job status to QUEUED before starting subprocess
+        # (Matches Azure mode behavior - job is considered queued once submitted)
+        from ccp4x.db import models
+        job.status = models.Job.Status.QUEUED
+        job.save()
+
         # Start job in detached process
         subprocess.Popen(
             [

@@ -271,8 +271,9 @@ export function useApi() {
 
     /**
      * Fetch from typed endpoint (returns raw response)
+     * Pass null to skip fetching (conditional fetch pattern)
      */
-    get_endpoint<T>(ef: EndpointFetch, refreshInterval: number = 0) {
+    get_endpoint<T>(ef: EndpointFetch | null, refreshInterval: number = 0) {
       return useSWR<T>(getEndpointKey(ef), endpointFetcher as any, { refreshInterval });
     },
 

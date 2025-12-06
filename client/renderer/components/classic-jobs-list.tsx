@@ -1,9 +1,10 @@
 import React, {
   forwardRef,
   useCallback,
-  useContext,
   useMemo,
   useState,
+  createContext,
+  useContext,
 } from "react";
 import { Button, Chip, Skeleton, Stack, Typography } from "@mui/material";
 import {
@@ -26,135 +27,211 @@ import { EndpointFetch, useApi } from "../api";
 import {
   Job,
   File as DjangoFile,
-  JobCharValue,
-  JobFloatValue,
 } from "../types/models";
 import { CCP4i2JobAvatar } from "./job-avatar";
 import { FileAvatar } from "./file-avatar";
 import { useCCP4i2Window } from "../app-context";
 import { JobWithChildren, useJobMenu } from "../providers/job-context-menu";
 import { useFileMenu } from "../providers/file-context-menu";
+import { useRecentlyStartedJobs } from "../providers/recently-started-jobs-context";
 
+// =============================================================================
 // Types
+// =============================================================================
+
 interface ClassicJobListProps {
   projectId: number;
   parent?: number;
   withSubtitles?: boolean;
 }
 
+/** Job node with embedded files and KPIs from job_tree endpoint
+ * We use Omit to override the files property type (Job has number[] for IDs,
+ * JobTreeNode has full DjangoFile objects).
+ */
+interface JobTreeNode extends Omit<Job, 'files'> {
+  files: DjangoFile[];
+  kpis: {
+    float_values: Record<string, number>;
+    char_values: Record<string, string>;
+  };
+  children: JobTreeNode[];
+}
+
+/** Response from job_tree endpoint */
+interface JobTreeResponse {
+  job_tree: JobTreeNode[];
+  total_jobs: number;
+  total_files: number;
+}
+
+/** Tree item type for RichTreeView - combines JobTreeNode with children */
+interface TreeViewItem extends Omit<JobTreeNode, 'children'> {
+  children: (TreeViewItem | DjangoFile)[];
+}
+
 interface TreeItemData {
-  job?: Job;
+  job?: JobTreeNode;
   file?: DjangoFile;
   isJob: boolean;
   displayLabel: string;
   timestamp?: string;
 }
 
+// =============================================================================
 // Constants
-const CACHE_TIME = 10000;
+// =============================================================================
+
+/** Polling interval when jobs are actively running (2, 3, or 7) */
+const ACTIVE_POLL_INTERVAL = 3000;
+/** Polling interval when all jobs are idle */
+const IDLE_POLL_INTERVAL = 30000;
+/** Job statuses that indicate active work: Queued (2), Running (3), Running remotely (7) */
+const ACTIVE_JOB_STATUSES = [2, 3, 7];
+
 const TREE_ITEM_BORDER_STYLE = { border: "1px solid #999" };
 const TIME_DISPLAY_STYLE = { fontSize: "75%" };
 
+// =============================================================================
+// Context for sharing job tree data with tree items
+// =============================================================================
+
+interface JobTreeContextValue {
+  jobsByUuid: Map<string, JobTreeNode>;
+  filesByUuid: Map<string, DjangoFile>;
+}
+
+const JobTreeContext = createContext<JobTreeContextValue>({
+  jobsByUuid: new Map(),
+  filesByUuid: new Map(),
+});
+
+// =============================================================================
 // Custom hooks
-const useProjectData = (projectId: number) => {
+// =============================================================================
+
+/**
+ * Check if any job in the tree has an active status (queued, running, running remotely)
+ */
+const hasActiveJobs = (jobTree: JobTreeNode[] | undefined): boolean => {
+  if (!jobTree) return false;
+
+  const checkNode = (node: JobTreeNode): boolean => {
+    if (ACTIVE_JOB_STATUSES.includes(node.status)) return true;
+    return node.children.some(checkNode);
+  };
+
+  return jobTree.some(checkNode);
+};
+
+/**
+ * Fetch job tree data using consolidated endpoint.
+ * Replaces 4 separate calls (jobs, files, job_char_values, job_float_values)
+ * with a single optimized request.
+ *
+ * Uses adaptive polling: faster when jobs are running OR recently started,
+ * slower when all jobs are idle.
+ */
+const useJobTree = (projectId: number) => {
   const api = useApi();
+  // Track whether jobs are active to determine polling interval
+  const [jobsActive, setJobsActive] = useState(false);
+
+  // Check if any jobs were recently started (grace period for DB latency)
+  const { hasRecentlyStartedJobsInProject } = useRecentlyStartedJobs();
+  const hasRecentlyStarted = hasRecentlyStartedJobsInProject(projectId);
 
   const endpointFetch: EndpointFetch = {
     type: "projects",
     id: projectId,
-    endpoint: "jobs",
+    endpoint: "job_tree",
   };
 
-  const { data: jobs } = api.get_endpoint<Job[]>(endpointFetch, CACHE_TIME);
-  const { data: files } = api.get_endpoint<DjangoFile[]>(
-    {
-      type: "projects",
-      id: projectId,
-      endpoint: "files",
-    },
-    CACHE_TIME
-  );
-  const { data: jobCharValues } = api.get_endpoint<JobCharValue[]>(
-    {
-      type: "projects",
-      id: projectId,
-      endpoint: "job_char_values/",
-    },
-    CACHE_TIME
-  );
-  const { data: jobFloatValues } = api.get_endpoint<JobFloatValue[]>(
-    {
-      type: "projects",
-      id: projectId,
-      endpoint: "job_float_values/",
-    },
-    CACHE_TIME
+  // Use adaptive polling interval based on job activity OR recent starts
+  // This handles the race condition where DB status hasn't updated yet
+  const pollInterval = (jobsActive || hasRecentlyStarted) ? ACTIVE_POLL_INTERVAL : IDLE_POLL_INTERVAL;
+
+  const { data, isLoading, error } = api.get_endpoint<JobTreeResponse>(
+    endpointFetch,
+    pollInterval
   );
 
+  // Update active state when data changes
+  // Using useEffect for side effect (updating state based on data)
+  React.useEffect(() => {
+    if (data?.job_tree) {
+      const active = hasActiveJobs(data.job_tree);
+      setJobsActive(active);
+    }
+  }, [data?.job_tree]);
+
   return {
-    jobs,
-    files,
-    jobCharValues,
-    jobFloatValues,
-    isLoading: !jobs || !files,
+    jobTree: data?.job_tree,
+    totalJobs: data?.total_jobs ?? 0,
+    totalFiles: data?.total_files ?? 0,
+    isLoading,
+    error,
+    jobsActive: jobsActive || hasRecentlyStarted, // Include recently started in active state
   };
 };
 
-const useDecoratedJobs = (
-  jobs: Job[] | undefined,
-  files: DjangoFile[] | undefined,
-  parent: number | null
-) => {
-  return useMemo<(JobWithChildren | DjangoFile)[] | undefined>(() => {
-    if (!jobs?.filter) return [];
+/**
+ * Build lookup maps for O(1) access to jobs and files by UUID.
+ * This allows tree items to efficiently find their data.
+ */
+const useJobTreeLookups = (jobTree: JobTreeNode[] | undefined) => {
+  return useMemo(() => {
+    const jobsByUuid = new Map<string, JobTreeNode>();
+    const filesByUuid = new Map<string, DjangoFile>();
 
-    // Helper function to parse job number into comparable array
-    const parseJobNumber = (jobNumber: string): number[] => {
-      return jobNumber.split(".").map((num) => parseInt(num, 10) || 0);
+    if (!jobTree) {
+      return { jobsByUuid, filesByUuid };
+    }
+
+    // Recursively index all jobs and files
+    const indexNode = (node: JobTreeNode) => {
+      jobsByUuid.set(node.uuid, node);
+      node.files.forEach((file) => filesByUuid.set(file.uuid, file));
+      node.children.forEach(indexNode);
     };
 
-    // Helper function to compare job numbers (highest ordinal first)
-    const compareJobNumbers = (a: string, b: string): number => {
-      const aParts = parseJobNumber(a);
-      const bParts = parseJobNumber(b);
+    jobTree.forEach(indexNode);
 
-      // Compare each part
-      for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
-        const aPart = aParts[i] || 0;
-        const bPart = bParts[i] || 0;
+    return { jobsByUuid, filesByUuid };
+  }, [jobTree]);
+};
 
-        if (aPart !== bPart) {
-          // Higher numbers first (descending order)
-          return bPart - aPart;
-        }
-      }
+/**
+ * Transform job tree to format expected by RichTreeView.
+ * Merges files into children array for each job.
+ */
+const useTreeViewItems = (jobTree: JobTreeNode[] | undefined): TreeViewItem[] => {
+  return useMemo(() => {
+    if (!jobTree) return [];
 
-      // If all parts are equal, maintain original order
-      return 0;
+    const transformNode = (node: JobTreeNode): TreeViewItem => {
+      // Combine child jobs and files into children array
+      const transformedChildren: (TreeViewItem | DjangoFile)[] = [
+        ...node.children.map(transformNode),
+        ...node.files,
+      ];
+
+      return {
+        ...node,
+        children: transformedChildren,
+      };
     };
 
-    return jobs
-      .filter((job) => job.parent === parent)
-      .map((job) => {
-        const childJobs: (Job | DjangoFile)[] = jobs.filter(
-          (childJob) => childJob.parent === job.id
-        );
-        const childFiles = files?.filter((file) => file.job === job.id) || [];
-        return {
-          ...job,
-          children: [...childJobs, ...childFiles],
-        };
-      })
-      .sort((a, b) => compareJobNumbers(a.number, b.number));
-  }, [jobs, files, parent]);
+    return jobTree.map(transformNode);
+  }, [jobTree]);
 };
 
 const useItemLabel = () => {
-  return useCallback((jobOrFile: JobWithChildren | DjangoFile): string => {
+  return useCallback((jobOrFile: TreeViewItem | DjangoFile): string => {
     const isJob = "parent" in jobOrFile;
 
     if (isJob) {
-      const job = jobOrFile as Job;
+      const job = jobOrFile as TreeViewItem;
       return `${job.number}: ${job.title}`;
     }
 
@@ -165,14 +242,12 @@ const useItemLabel = () => {
   }, []);
 };
 
-const useTreeItemData = (
-  itemId: string,
-  jobs?: Job[],
-  files?: DjangoFile[]
-): TreeItemData => {
+const useTreeItemData = (itemId: string): TreeItemData => {
+  const { jobsByUuid, filesByUuid } = useContext(JobTreeContext);
+
   return useMemo(() => {
-    const job = jobs?.find((j) => j.uuid === itemId);
-    const file = files?.find((f) => f.uuid === itemId);
+    const job = jobsByUuid.get(itemId);
+    const file = filesByUuid.get(itemId);
     const isJob = Boolean(job);
 
     let displayLabel = "";
@@ -200,11 +275,14 @@ const useTreeItemData = (
       displayLabel,
       timestamp,
     };
-  }, [itemId, jobs, files]);
+  }, [itemId, jobsByUuid, filesByUuid]);
 };
 
+// =============================================================================
 // Utility functions
-const shouldShowTreeItemBorder = (job?: Job): boolean => {
+// =============================================================================
+
+const shouldShowTreeItemBorder = (job?: JobTreeNode): boolean => {
   return Boolean(job && !job.number.includes("."));
 };
 
@@ -212,7 +290,10 @@ const formatFloatValue = (value: number): string => {
   return value.toPrecision(3);
 };
 
+// =============================================================================
 // Main component
+// =============================================================================
+
 export const ClassicJobList: React.FC<ClassicJobListProps> = ({
   projectId,
   parent = null,
@@ -221,21 +302,28 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
   const [selectedItems, setSelectedItems] = useState<string | null>(null);
   const navigate = useRouter();
 
-  const { jobs, files, isLoading } = useProjectData(projectId);
-  const decoratedJobs = useDecoratedJobs(jobs, files, parent);
+  // Single consolidated API call
+  const { jobTree, isLoading } = useJobTree(projectId);
+
+  // Build lookup maps for tree items
+  const lookups = useJobTreeLookups(jobTree);
+
+  // Transform to tree view format
+  const treeViewItems = useTreeViewItems(jobTree);
+
   const getItemLabel = useItemLabel();
 
   const handleSelectedItemsChange = useCallback(
     (event: React.SyntheticEvent, ids: string | null) => {
-      if (!ids || !jobs) return;
+      if (!ids) return;
 
-      const job = jobs.find((job) => job.uuid === ids);
+      const job = lookups.jobsByUuid.get(ids);
       if (job) {
         navigate.push(`/project/${job.project}/job/${job.id}`);
       }
       setSelectedItems(ids);
     },
-    [jobs, navigate]
+    [lookups.jobsByUuid, navigate]
   );
 
   const handleTreeSelection = useCallback(
@@ -256,36 +344,33 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
     return <Skeleton variant="rectangular" width="100%" height={200} />;
   }
 
-  if (!decoratedJobs) {
+  if (!treeViewItems.length) {
     return null;
   }
 
   return (
-    <RichTreeView
-      items={decoratedJobs}
-      isItemEditable={() => true}
-      experimentalFeatures={{ labelEditing: true }}
-      getItemId={(jobOrFile) => jobOrFile.uuid}
-      getItemLabel={getItemLabel}
-      slots={{ item: CustomTreeItem }}
-      onSelectedItemsChange={handleTreeSelection}
-      selectedItems={selectedItems}
-    />
+    <JobTreeContext.Provider value={lookups}>
+      <RichTreeView
+        items={treeViewItems}
+        isItemEditable={() => true}
+        experimentalFeatures={{ labelEditing: true }}
+        getItemId={(jobOrFile) => jobOrFile.uuid}
+        getItemLabel={getItemLabel}
+        slots={{ item: CustomTreeItem }}
+        onSelectedItemsChange={handleTreeSelection}
+        selectedItems={selectedItems}
+      />
+    </JobTreeContext.Provider>
   );
 };
 
+// =============================================================================
 // Custom Tree Item Component
+// =============================================================================
+
 const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
   function CustomTreeItem({ id, itemId, label, disabled, children }, ref) {
-    const { projectId } = useCCP4i2Window();
-    const { jobs, files, jobCharValues, jobFloatValues } = useProjectData(
-      projectId ?? 0
-    );
-    const { job, file, isJob, timestamp } = useTreeItemData(
-      itemId,
-      jobs,
-      files
-    );
+    const { job, file, isJob, timestamp } = useTreeItemData(itemId);
 
     const { setJobMenuAnchorEl, setJob } = useJobMenu();
     const { setFileMenuAnchorEl, setFile } = useFileMenu();
@@ -307,37 +392,48 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
       status,
     } = useTreeItem2({ id, itemId, label, disabled, children, rootRef: ref });
 
-    // KPI content for jobs
+    // KPI content for jobs - now uses embedded data, no filtering needed
     const kpiContent = useMemo(() => {
-      if (!job || !jobCharValues || !jobFloatValues) return null;
+      if (!job) return null;
 
-      const charValues = jobCharValues
-        .filter((item) => item.job === job.id)
-        .map((item) => (
+      const { kpis } = job;
+
+      // Debug: log KPI data with actual counts
+      const floatCount = Object.keys(kpis?.float_values || {}).length;
+      const charCount = Object.keys(kpis?.char_values || {}).length;
+      if (floatCount > 0 || charCount > 0) {
+        console.log(`Job ${job.number} has ${floatCount} float KPIs, ${charCount} char KPIs:`, kpis);
+      }
+
+      if (!kpis) return null;
+
+      const charChips = Object.entries(kpis.char_values || {}).map(
+        ([key, value]) => (
+          <Chip key={`char_${key}`} label={`${key}: ${value}`} size="small" />
+        )
+      );
+
+      const floatChips = Object.entries(kpis.float_values || {}).map(
+        ([key, value]) => (
           <Chip
-            key={item.key}
-            label={`${item.key}: ${item.value}`}
+            key={`float_${key}`}
+            label={`${key}: ${formatFloatValue(value)}`}
             size="small"
           />
-        ));
+        )
+      );
 
-      const floatValues = jobFloatValues
-        .filter((item) => item.job === job.id)
-        .map((item) => (
-          <Chip
-            key={item.key}
-            label={`${item.key}: ${formatFloatValue(item.value)}`}
-            size="small"
-          />
-        ));
+      if (charChips.length === 0 && floatChips.length === 0) {
+        return null;
+      }
 
       return (
         <Stack direction="row" spacing={0.5} flexWrap="wrap">
-          {charValues}
-          {floatValues}
+          {charChips}
+          {floatChips}
         </Stack>
       );
-    }, [job, jobCharValues, jobFloatValues]);
+    }, [job]);
 
     const handleMenuClick = useCallback(
       (event: React.MouseEvent<HTMLElement>) => {
@@ -346,7 +442,9 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
 
         if (job) {
           setJobMenuAnchorEl(event.currentTarget);
-          setJob(job);
+          // Cast to Job since setJob expects Job type but we have JobTreeNode
+          // They share the same properties except files array type
+          setJob(job as unknown as Job);
         } else if (file) {
           setFileMenuAnchorEl(event.currentTarget);
           setFile(file);
@@ -386,7 +484,7 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
       if (job) {
         return (
           <CCP4i2JobAvatar
-            job={job}
+            job={job as unknown as Job}
             ref={setNodeRef}
             {...listeners}
             {...attributes}
@@ -458,7 +556,7 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
               alignItems: "center",
               justifyContent: "center",
               borderRadius: 4,
-              backgroundColor: children ? "rgba(0,0,0,0.04)" : "transparent", // Only show background if there are children
+              backgroundColor: children ? "rgba(0,0,0,0.04)" : "transparent",
               boxSizing: "border-box",
               mr: 1,
             }}

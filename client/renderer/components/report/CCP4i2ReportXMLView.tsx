@@ -19,6 +19,7 @@ import useSWR from "swr";
 import { swrFetcher } from "../../api-fetch";
 import { useTheme } from "../../theme/theme-provider";
 import { CCP4i2WhatNext } from "./CCP4i2WhatNext";
+import { useIsJobEffectivelyActive } from "../../providers/recently-started-jobs-context";
 
 export const CCP4i2ReportXMLView = () => {
   const { customColors } = useTheme();
@@ -31,10 +32,14 @@ export const CCP4i2ReportXMLView = () => {
     endpoint: "jobs",
   });
 
+  // Use grace period-aware hook to handle DB latency after job submission
+  // This ensures we keep polling even if the job status hasn't updated yet
+  const isJobActive = useIsJobEffectivelyActive(job?.id, job?.status);
+
   const { data: report_xml_json, error: fetchError, mutate: mutateReportXml } = useSWR<any>(
     job ? `/api/proxy/jobs/${job.id}/report_xml/` : null,
     swrFetcher,
-    { refreshInterval: job?.status == 3 || job?.status == 2 ? 5000 : 0 }
+    { refreshInterval: isJobActive ? 5000 : 0 }
   );
 
   // Debug logging
@@ -46,8 +51,10 @@ export const CCP4i2ReportXMLView = () => {
       console.error(`[Report] Fetch error for job ${job?.id}:`, fetchError);
     }
     if (report_xml_json) {
+      // Handle both wrapped response {success: true, data: {xml: ...}} and direct {xml: ...}
+      const xmlString = report_xml_json.data?.xml || report_xml_json.xml;
       console.log(`[Report] Received response for job ${job?.id}:`,
-        report_xml_json.xml ? `${report_xml_json.xml.length} chars` : 'no xml field',
+        xmlString ? `${xmlString.length} chars` : 'no xml field',
         report_xml_json);
     }
   }, [job, fetchError, report_xml_json]);
@@ -66,14 +73,21 @@ export const CCP4i2ReportXMLView = () => {
 
   const { setMessage } = usePopcorn();
 
+  // Detect job status transitions from active to inactive
   useEffect(() => {
-    if (job && oldJob && job.status !== oldJob.status) {
-      if (job.status > 3 && job.id === oldJob.id) {
-        setMessage(`Job finished with status ${job.status}`);
-        mutateReportXml(() => null); // Force re-fetch
-      }
+    if (!job || !oldJob || job.id !== oldJob.id) return;
+    if (job.status === oldJob.status) return;
+
+    // Check if job transitioned from active (running/queued) to inactive (finished/failed)
+    const wasActive = [2, 3, 7].includes(oldJob.status);
+    const isNowInactive = ![2, 3, 7].includes(job.status);
+
+    if (wasActive && isNowInactive) {
+      console.log(`[Report] Job ${job.id} finished (${oldJob.status} -> ${job.status}), refreshing report`);
+      setMessage(`Job finished with status ${job.status}`);
+      mutateReportXml(); // Force re-fetch
     }
-  }, [job, oldJob]);
+  }, [job, oldJob, setMessage, mutateReportXml]);
 
   const reportContent = useMemo<ReactNode[] | null>(() => {
     if (!report_xml) return null;

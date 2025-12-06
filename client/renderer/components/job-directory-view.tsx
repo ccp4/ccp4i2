@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from "react";
 import { Job, Project } from "../types/models";
-import { useProject } from "../utils";
+import { useJobDirectory } from "../utils";
 import { useFileSystemFileBrowser } from "../providers/file-system-file-browser-context";
 import DirectoryBrowser, { FileSystemItem } from "./directory-browser";
 import { FileSystemFileMenu } from "./file-system-file-menu";
@@ -14,7 +14,8 @@ export const JobDirectoryView: React.FC<JobDirectoryViewProps> = ({
   job,
   project,
 }) => {
-  const { directory } = useProject(project.id);
+  // Use job-aware directory hook for adaptive polling based on job status
+  const { directory } = useJobDirectory(project.id, job);
 
   const { closeMenu } = useFileSystemFileBrowser();
 

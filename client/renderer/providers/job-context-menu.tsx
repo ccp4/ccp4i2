@@ -43,6 +43,7 @@ import { useRunCheck } from "./run-check-provider";
 import { CCP4i2MoorhenIcon } from "../components/General/CCP4i2Icons";
 import { useJob } from "../utils";
 import ExportJobMenu from "../components/export-job-file-menu";
+import { useRecentlyStartedJobs } from "./recently-started-jobs-context";
 
 interface JobMenuContextDataProps {
   jobMenuAnchorEl: HTMLElement | null;
@@ -104,6 +105,7 @@ export const JobMenu: React.FC = () => {
   const router = useRouter();
   const { setMessage } = usePopcorn();
   const { confirmTaskRun } = useRunCheck();
+  const { markJobAsStarting } = useRecentlyStartedJobs();
 
   const deleteDialog = useDeleteDialog();
   const [statusMenuAnchorEl, setStatusMenuAnchorEl] = useState<
@@ -126,6 +128,19 @@ export const JobMenu: React.FC = () => {
     id: job?.project,
     endpoint: "jobs",
   });
+
+  // Also get mutator for job_tree endpoint (used by classic-jobs-list)
+  const { mutate: mutateJobTree } = api.get_endpoint<any>({
+    type: "projects",
+    id: job?.project,
+    endpoint: "job_tree",
+  });
+
+  // Combined mutation function that invalidates both endpoints
+  const mutateAllJobs = useCallback(() => {
+    mutateJobs();
+    mutateJobTree();
+  }, [mutateJobs, mutateJobTree]);
 
   const { data: dependentJobs } = api.get_endpoint<Job[]>({
     type: "jobs",
@@ -166,12 +181,12 @@ export const JobMenu: React.FC = () => {
         formData.append("title", value);
 
         await api.patch(`jobs/${job.id}/`, formData);
-        mutateJobs(); // Refresh the jobs list
+        mutateAllJobs(); // Refresh the jobs list (both jobs and job_tree endpoints)
       } catch (error) {
         console.error("Failed to update job annotation:", error);
       }
     },
-    [job, api, mutateJobs]
+    [job, api, mutateAllJobs]
   );
 
   // Handle Enter and Escape key presses in the text field
@@ -283,7 +298,7 @@ export const JobMenu: React.FC = () => {
       try {
         const cloneResult: Job = await api.post(`jobs/${job.id}/clone/`);
         if (cloneResult?.id) {
-          mutateJobs();
+          mutateAllJobs();
           setJobMenuAnchorEl(null);
           setMessage(`Job ${job.number} cloned successfully`);
           router.push(`/project/${job.project}/job/${cloneResult.id}`);
@@ -293,7 +308,7 @@ export const JobMenu: React.FC = () => {
         console.error("Clone failed:", error);
       }
     },
-    [job, mutateJobs, setMessage]
+    [job, mutateAllJobs, setMessage]
   );
 
   // Add state for run loading (add this near the other useState declarations)
@@ -328,7 +343,15 @@ export const JobMenu: React.FC = () => {
         );
 
         if (runResult?.id) {
-          mutateJobs();
+          // Mark job as recently started to trigger grace period polling
+          // even if the database status hasn't caught up yet
+          markJobAsStarting(
+            runResult.id,
+            job.project,
+            runResult.number,
+            runResult.task_name || job.title
+          );
+          mutateAllJobs();
           router.push(`/project/${job.project}/job/${runResult.id}`);
         }
       } catch (error) {
@@ -338,7 +361,7 @@ export const JobMenu: React.FC = () => {
         setIsRunning(false);
       }
     },
-    [job, mutateJobs, setMessage, isRunning]
+    [job, mutateAllJobs, setMessage, isRunning, markJobAsStarting]
   );
 
   const handleTerminalInJobDirectory = useCallback(
@@ -383,7 +406,7 @@ export const JobMenu: React.FC = () => {
           onDelete: async () => {
             const deleteResult = await api.delete(`jobs/${job.id}`);
             console.log(deleteResult);
-            mutateJobs();
+            mutateAllJobs();
             setJobMenuAnchorEl(null);
             setJob(null);
             router.push(`/project/${job.project}`);
@@ -427,7 +450,7 @@ export const JobMenu: React.FC = () => {
           ),
         });
     },
-    [dependentJobs, job, mutateJobs]
+    [dependentJobs, job, mutateAllJobs]
   );
 
   const handleExportJob = useCallback(
@@ -586,25 +609,47 @@ interface StatusMenuProps {
 const StatusMenu: React.FC<StatusMenuProps> = ({ job, anchorEl, onClose }) => {
   const api = useApi();
 
+  // Ensure we have a valid project ID for the mutation
+  const projectId = job?.project;
+
   const { mutate: mutateJobs } = api.get_endpoint<Job[]>({
     type: "projects",
-    id: job?.project,
+    id: projectId,
     endpoint: "jobs",
   });
 
+  const { mutate: mutateJobTree } = api.get_endpoint<any>({
+    type: "projects",
+    id: projectId,
+    endpoint: "job_tree",
+  });
+
+  const mutateAllJobs = useCallback(() => {
+    console.log(`StatusMenu: mutating jobs for project ${projectId}`);
+    mutateJobs();
+    mutateJobTree();
+  }, [mutateJobs, mutateJobTree, projectId]);
+
   const setStatus = useCallback(
     async (status: number) => {
+      if (!projectId) {
+        console.error("StatusMenu: Cannot update status - no project ID");
+        return;
+      }
+
       const formData = new FormData();
       formData.append("status", `${status}`);
 
+      console.log(`StatusMenu: Setting job ${job.id} status to ${status}`);
       const result = await api.patch(`jobs/${job.id}/`, formData);
+      console.log("StatusMenu: Patch result:", result);
+
       if (result) {
-        console.log(result);
-        mutateJobs();
+        mutateAllJobs();
         onClose();
       }
     },
-    [job, mutateJobs, onClose]
+    [job, projectId, mutateAllJobs, onClose, api]
   );
 
   return (

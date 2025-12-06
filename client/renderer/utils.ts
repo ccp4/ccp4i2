@@ -13,6 +13,7 @@ import {
 import { useRunCheck } from "./providers/run-check-provider";
 import { useParameterChangeIntent } from "./providers/parameter-change-intent-provider";
 import { apiJson, apiText } from "./api-fetch";
+import { useIsJobEffectivelyActive } from "./providers/recently-started-jobs-context";
 
 // ============================================================================
 // Types and Interfaces
@@ -72,6 +73,9 @@ export interface ProjectData {
   mutateDirectory: () => void;
   jobs: Job[] | undefined;
   mutateJobs: KeyedMutator<Job[]>;
+  mutateJobTree: () => void;
+  /** Combined mutation that invalidates both jobs and job_tree endpoints */
+  mutateAllJobs: () => void;
   files: DjangoFile[] | undefined;
   mutateFiles: KeyedMutator<DjangoFile[]>;
   jobCharValues: JobCharValue[] | undefined;
@@ -623,6 +627,19 @@ export const useProject = (projectId: number): ProjectData => {
     endpoint: "jobs",
   });
 
+  // Also get mutator for job_tree endpoint (used by classic-jobs-list)
+  const { mutate: mutateJobTree } = api.get_endpoint<any>({
+    type: "projects",
+    id: projectId,
+    endpoint: "job_tree",
+  });
+
+  // Combined mutation that invalidates both jobs and job_tree endpoints
+  const mutateAllJobs = useCallback(() => {
+    mutateJobs();
+    mutateJobTree();
+  }, [mutateJobs, mutateJobTree]);
+
   const { data: files, mutate: mutateFiles } = api.get_endpoint<DjangoFile[]>({
     type: "projects",
     id: projectId,
@@ -651,12 +668,85 @@ export const useProject = (projectId: number): ProjectData => {
     mutateDirectory,
     jobs,
     mutateJobs,
+    mutateJobTree,
+    mutateAllJobs,
     files,
     mutateFiles,
     jobCharValues,
     mutateJobCharValues,
     jobFloatValues,
     mutateJobFloatValues,
+  };
+};
+
+// ============================================================================
+// Job-aware Directory Hook
+// ============================================================================
+
+/** Polling interval when active job is running */
+const DIRECTORY_ACTIVE_POLL_INTERVAL = 5000;
+/** Job statuses that indicate active work: Queued (2), Running (3), Running remotely (7) */
+const ACTIVE_JOB_STATUSES = [2, 3, 7];
+
+/**
+ * Hook for fetching directory data with job-aware polling.
+ *
+ * - Polls frequently (5s) when the active job is running/queued OR was recently started
+ * - Stops polling when job is idle
+ * - Forces a refresh when job transitions from running to not-running
+ * - Uses grace period tracking to handle DB latency after job submission
+ *
+ * @param projectId - The project ID to fetch directory for
+ * @param activeJob - The currently active job (optional)
+ */
+export const useJobDirectory = (
+  projectId: number | undefined,
+  activeJob: Job | undefined | null
+) => {
+  const api = useApi();
+
+  // Use grace period-aware hook to handle DB latency after job submission
+  // This also updates the observed status for stall detection
+  const isJobActive = useIsJobEffectivelyActive(activeJob?.id, activeJob?.status);
+
+  // Track previous job status for transition detection
+  const previousJob = usePrevious(activeJob);
+
+  // Use adaptive polling - fast when job is running, no polling when idle
+  const pollInterval = isJobActive ? DIRECTORY_ACTIVE_POLL_INTERVAL : 0;
+
+  const { data: directory, mutate: mutateDirectory } = api.get_endpoint<any>(
+    projectId
+      ? {
+          type: "projects",
+          id: projectId,
+          endpoint: "directory",
+        }
+      : null,
+    pollInterval
+  );
+
+  // Detect status transitions from running to not-running and force refresh
+  useEffect(() => {
+    if (!activeJob || !previousJob) return;
+
+    // Check if job transitioned from running to finished
+    const wasActive = ACTIVE_JOB_STATUSES.includes(previousJob.status);
+    const isNowIdle = !ACTIVE_JOB_STATUSES.includes(activeJob.status);
+
+    // Only refresh if this is the same job (not a job switch) and it just finished
+    if (wasActive && isNowIdle && activeJob.id === previousJob.id) {
+      console.log(
+        `[useJobDirectory] Job ${activeJob.id} finished (${previousJob.status} -> ${activeJob.status}), refreshing directory`
+      );
+      mutateDirectory();
+    }
+  }, [activeJob, previousJob, mutateDirectory]);
+
+  return {
+    directory,
+    mutateDirectory,
+    isJobActive,
   };
 };
 

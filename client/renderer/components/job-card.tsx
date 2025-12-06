@@ -39,6 +39,7 @@ import { useProject } from "../utils";
 import { usePopcorn } from "../providers/popcorn-provider";
 import { useRunCheck } from "../providers/run-check-provider";
 import { useCCP4i2Window } from "../app-context";
+import { useRecentlyStartedJobs } from "../providers/recently-started-jobs-context";
 
 const MyCard = styled(Card)(({ theme }) => ({
   padding: theme.spacing(1),
@@ -63,6 +64,7 @@ export const JobCard: React.FC<JobCardProps> = ({
   const {
     jobs,
     mutateJobs,
+    mutateAllJobs,
     files,
     jobCharValues,
     jobFloatValues,
@@ -70,6 +72,7 @@ export const JobCard: React.FC<JobCardProps> = ({
   } = useProject(job.project);
 
   const { confirmTaskRun } = useRunCheck();
+  const { markJobAsStarting } = useRecentlyStartedJobs();
 
   const subJobs: any[] | undefined = useMemo(() => {
     return jobs?.filter((aJob) => aJob.parent === job.id);
@@ -134,7 +137,7 @@ export const JobCard: React.FC<JobCardProps> = ({
         return;
       }
       if (cloneResult?.id) {
-        mutateJobs();
+        mutateAllJobs();
         setAnchorEl(null);
         router.push(`/project/${projectId}/job/${cloneResult.id}`);
       }
@@ -156,7 +159,14 @@ export const JobCard: React.FC<JobCardProps> = ({
       }
       setMessage(`Submitted job ${runResult?.number}: ${runResult?.task_name}`, "success");
       if (runResult?.id) {
-        mutateJobs();
+        // Mark job as recently started to trigger grace period polling
+        markJobAsStarting(
+          runResult.id,
+          projectId,
+          runResult.number,
+          runResult.task_name || job.title
+        );
+        mutateAllJobs();
         router.push(`/project/${projectId}/job/${runResult.id}`);
       }
     } catch (error) {
@@ -171,7 +181,7 @@ export const JobCard: React.FC<JobCardProps> = ({
         what: `${job.number}: ${job.title}`,
         onDelete: () => {
           api.delete(`jobs/${job.id}`).then(() => {
-            mutateJobs();
+            mutateAllJobs();
             if (setJobId && jobId === job.id) setJobId(null);
           });
         },
@@ -204,7 +214,7 @@ export const JobCard: React.FC<JobCardProps> = ({
             dependentJobs.some((dependentJob: Job) => dependentJob.status == 6))
         ),
       });
-  }, [dependentJobs]);
+  }, [dependentJobs, mutateAllJobs]);
 
   const renderMenu = (
     <Menu

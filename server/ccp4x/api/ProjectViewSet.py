@@ -25,6 +25,7 @@ from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from django.db.models import Prefetch
 from . import serializers
 from ..db import models
 from ..lib.utils.navigation.dependencies import delete_job_and_dependents
@@ -322,6 +323,133 @@ class ProjectViewSet(ModelViewSet):
         project.last_access = datetime.datetime.now(tz=timezone("UTC"))
         project.save()
         return Response(serializer.data)
+
+    @action(
+        detail=True,
+        methods=["get"],
+        permission_classes=[],
+    )
+    def job_tree(self, request, pk=None):
+        """
+        Consolidated endpoint for job tree view.
+
+        Returns hierarchical job data with embedded files and KPIs in a single request.
+        This replaces 4 separate calls to: jobs/, files/, job_float_values/, job_char_values/
+
+        The response is structured as a tree where each job includes:
+        - All job fields (id, uuid, number, title, status, etc.)
+        - files: Array of files associated with this job
+        - kpis: Object with float_values and char_values for this job
+        - children: Array of child jobs (recursively structured the same way)
+
+        Jobs are sorted by job number (highest first) at each level.
+
+        Args:
+            request (Request): The HTTP request object.
+            pk (int, optional): The primary key of the project.
+
+        Returns:
+            Response: A Response object containing the hierarchical job tree.
+        """
+        try:
+            project = models.Project.objects.get(pk=pk)
+
+            # Single optimized query with all related data prefetched
+            # Note: related_name values from models.py:
+            #   File.job -> related_name="files"
+            #   JobFloatValue.job -> related_name="float_values"
+            #   JobCharValue.job -> related_name="char_values"
+            jobs = list(
+                models.Job.objects.filter(project=project)
+                .prefetch_related(
+                    Prefetch(
+                        "files",
+                        queryset=models.File.objects.all(),
+                    ),
+                    # JobValueKey.name is the primary key, so we just need key_id (no select_related needed)
+                    Prefetch(
+                        "float_values",
+                        queryset=models.JobFloatValue.objects.all(),
+                    ),
+                    Prefetch(
+                        "char_values",
+                        queryset=models.JobCharValue.objects.all(),
+                    ),
+                )
+                .select_related("parent")
+            )
+
+            # Build lookup dictionaries for O(1) access
+            jobs_by_id = {job.id: job for job in jobs}
+            children_by_parent = {}
+            for job in jobs:
+                parent_id = job.parent_id
+                if parent_id not in children_by_parent:
+                    children_by_parent[parent_id] = []
+                children_by_parent[parent_id].append(job)
+
+            def parse_job_number(job_number: str) -> list:
+                """Parse job number like '1.2.3' into [1, 2, 3] for sorting."""
+                try:
+                    return [int(part) for part in job_number.split(".")]
+                except (ValueError, AttributeError):
+                    return [0]
+
+            def build_job_node(job):
+                """Build a single job node with embedded files and KPIs."""
+                # Serialize job data
+                job_data = serializers.JobSerializer(job).data
+
+                # Add embedded files (uses prefetched 'files' relation)
+                job_data["files"] = serializers.FileSerializer(
+                    job.files.all(), many=True
+                ).data
+
+                # Add embedded KPIs as a structured object
+                # JobValueKey.name is the primary key, so kv.key_id gives us the string name directly
+                float_vals = {kv.key_id: kv.value for kv in job.float_values.all()}
+                char_vals = {kv.key_id: kv.value for kv in job.char_values.all()}
+
+                # Debug logging
+                if float_vals or char_vals:
+                    logger.info(f"Job {job.number} KPIs: float={float_vals}, char={char_vals}")
+
+                job_data["kpis"] = {
+                    "float_values": float_vals,
+                    "char_values": char_vals,
+                }
+
+                # Recursively build children
+                child_jobs = children_by_parent.get(job.id, [])
+                # Sort children by job number (highest first)
+                child_jobs.sort(key=lambda j: parse_job_number(j.number), reverse=True)
+                job_data["children"] = [build_job_node(child) for child in child_jobs]
+
+                return job_data
+
+            # Build tree starting from root jobs (parent=None)
+            root_jobs = children_by_parent.get(None, [])
+            # Sort root jobs by job number (highest first)
+            root_jobs.sort(key=lambda j: parse_job_number(j.number), reverse=True)
+            job_tree = [build_job_node(job) for job in root_jobs]
+
+            # Update last_access only once
+            project.last_access = datetime.datetime.now(tz=timezone("UTC"))
+            project.save()
+
+            return Response(
+                {
+                    "job_tree": job_tree,
+                    "total_jobs": len(jobs),
+                    "total_files": sum(len(job.files.all()) for job in jobs),
+                }
+            )
+
+        except models.Project.DoesNotExist:
+            return api_error("Project not found", status=404)
+        except Exception as e:
+            logger.exception("Failed to build job tree for project %s", pk, exc_info=e)
+            return api_error(str(e), status=500)
 
     @action(
         detail=True,

@@ -1,6 +1,6 @@
 import { useMemo, useEffect, useContext } from "react";
 import { Job, Project } from "../types/models";
-import { useProject } from "../utils";
+import { useJobDirectory } from "../utils";
 import { Box } from "@mui/material";
 import DirectoryBrowser from "./directory-browser";
 import { FileSystemFileMenu } from "./file-system-file-menu";
@@ -13,7 +13,8 @@ interface JobLogViewerProps {
 }
 
 export const JobLogViewer: React.FC<JobLogViewerProps> = ({ job, project }) => {
-  const { directory } = useProject(project.id);
+  // Use job-aware directory hook for adaptive polling based on job status
+  const { directory } = useJobDirectory(project.id, job);
   const { closeMenu } = useFileSystemFileBrowser();
   const { setContentSpecification } = useFilePreviewContext();
 
