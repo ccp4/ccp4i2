@@ -215,6 +215,8 @@ def _find_python_interpreter(project_root: pathlib.Path) -> tuple:
 
     # Priority 1: ccp4-python on PATH (preferred for CCP4 environment)
     ccp4_python = shutil.which("ccp4-python")
+    print(f"[DEBUG _find_python_interpreter] shutil.which('ccp4-python') returned: {ccp4_python}")
+    print(f"[DEBUG _find_python_interpreter] PATH = {os.environ.get('PATH', 'NOT SET')[:500]}")
     if ccp4_python:
         logger.info("Found ccp4-python on PATH: %s", ccp4_python)
         return ccp4_python, "ccp4-python"

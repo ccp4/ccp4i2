@@ -41,7 +41,7 @@ Example Usage:
         handler=[callback_func, {}]
     )
 
-Author: Generated for cdata-codegen Qt-free migration
+Author: Generated for CCP4i2 Qt-free migration
 Date: 2025-11-07
 """
 

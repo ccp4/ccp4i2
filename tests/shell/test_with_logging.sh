@@ -9,24 +9,16 @@ echo "Testing CCP4i2 Workflow with Clean Logging Output"
 echo "=================================================="
 echo ""
 
-# Set environment
-export CCP4I2_ROOT=/Users/nmemn/Developer/cdata-codegen
+# Source common setup (sets CCP4I2_ROOT, sources CCP4 and venv)
+source "$(dirname "$0")/common.sh"
 export CCP4_LOG_LEVEL=ERROR  # Suppress all DEBUG output!
-
-# Activate CCP4 environment first
-echo "[1] Setting up CCP4 environment..."
-source /Users/nmemn/Developer/ccp4-20251105/bin/ccp4.setup-sh
-
-# Then activate venv (takes precedence)
-echo "[2] Activating virtual environment..."
-source .venv/bin/activate
 
 # Verify Python
 echo "[3] Using Python: $(which python)"
 echo ""
 
 # Change to server directory
-cd /Users/nmemn/Developer/cdata-codegen/server
+cd $CCP4I2_ROOT/server
 
 # Clean test name
 PROJECT_NAME="clean_test_$$"

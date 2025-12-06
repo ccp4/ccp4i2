@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Modern CLI for cdata-codegen (CCP4i2 replacement).
+Modern CLI for CCP4i2.
 
 This is the main entry point for the user-facing CLI. It provides a clean,
 resource-oriented interface following modern CLI design patterns.
@@ -34,7 +34,7 @@ sys.path.insert(0, str(SERVER_DIR))
 # Ensure CCP4I2_ROOT is set for plugin discovery
 # The ccp4i2 wrapper script should set this, but if not, detect it
 if 'CCP4I2_ROOT' not in os.environ:
-    # Server is in cdata-codegen/server, so project root is parent
+    # Server is in ccp4i2/server, so project root is parent
     project_root = SERVER_DIR.parent
     os.environ['CCP4I2_ROOT'] = str(project_root)
     print(f"DEBUG: Auto-detected CCP4I2_ROOT={os.environ['CCP4I2_ROOT']}", file=sys.stderr)

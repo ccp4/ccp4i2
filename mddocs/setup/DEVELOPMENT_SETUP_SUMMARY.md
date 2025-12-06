@@ -1,6 +1,6 @@
 # Package Management Summary
 
-This document provides a quick reference for the hybrid package management strategy used in cdata-codegen.
+This document provides a quick reference for the hybrid package management strategy used in ccp4i2.
 
 ## Environment
 - **Python**: 3.11.11
@@ -219,7 +219,7 @@ ln -s "$CCP4_SITE_PACKAGES/smtbx" .
 ln -s "$CCP4_SITE_PACKAGES/boost_adaptbx" .
 
 # CCTBX build environment (1 symlink - required for libtbx.env)
-cd /Users/nmemn/Developer/cdata-codegen
+cd $CCP4I2_ROOT
 ln -sf /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/share/cctbx .venv/share/cctbx
 
 # 5. Verify
@@ -280,7 +280,7 @@ ln -s "$CCP4_SITE/smtbx" .
 ln -s "$CCP4_SITE/boost_adaptbx" .
 
 # 3. Symlink CCTBX build environment
-cd /Users/nmemn/Developer/cdata-codegen
+cd $CCP4I2_ROOT
 ln -sf /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/share/cctbx .venv/share/cctbx
 
 # 4. Verify MolProbity detection works

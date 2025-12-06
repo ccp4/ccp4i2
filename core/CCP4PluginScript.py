@@ -789,7 +789,6 @@ class CPluginScript(CData):
         # This is essential for subjobs created via makePluginObject() which don't go
         # through the async track_job context manager
         if status == self.SUCCEEDED:
-            print(f"[DEBUG process()] About to call _glean_output_files_sync for {self.__class__.__name__}")
             self._glean_output_files_sync()
 
         # Emit finished signal so pipelines can continue
@@ -2146,7 +2145,6 @@ class CPluginScript(CData):
 
         # Increment child job counter
         self._childJobCounter += 1
-        print(f"[DEBUG makePluginObject] Parent {self.objectName()} (id={id(self)}) incremented counter to {self._childJobCounter}")
 
         # Create subdirectory following convention: job_1, job_2, etc.
         child_work_dir = Path(self.workDirectory) / f"job_{self._childJobCounter}"
@@ -2225,13 +2223,9 @@ class CPluginScript(CData):
                 except Exception as e:
                     logger.debug(f"[DEBUG makePluginObject] Warning: Exception saving params.xml: {e}")
 
-            print(f"[DEBUG makePluginObject] About to instantiate {taskName} with kwargs: name={plugin_kwargs.get('name')}, workDirectory={plugin_kwargs.get('workDirectory')}")
             plugin_instance = plugin_class(**plugin_kwargs)
-            # Debug: Check counter value and instance ID after instantiation
-            print(f"[DEBUG makePluginObject] Created instance id={id(plugin_instance)}, counter={plugin_instance._childJobCounter}")
             # Ensure child job counter is reset for new instance (prevents state pollution)
             plugin_instance._childJobCounter = 0
-            print(f"[DEBUG makePluginObject] Successfully instantiated {taskName}")
 
             # Set pluginTitle on container header if provided (legacy CCP4i2 API)
             if plugin_title is not None and hasattr(plugin_instance, 'container') and plugin_instance.container is not None:
@@ -2241,11 +2235,9 @@ class CPluginScript(CData):
 
             # Propagate database context to nested plugin so it can resolve file paths
             # Nested plugins need the dbHandler to lookup files via dbFileId
-            print(f"[DEBUG makePluginObject] Checking dbHandler: hasattr={hasattr(self, '_dbHandler')}, value={getattr(self, '_dbHandler', 'N/A')}")
             if hasattr(self, '_dbHandler') and self._dbHandler is not None:
                 plugin_instance._dbHandler = self._dbHandler
-                print(f"[DEBUG makePluginObject] Propagated dbHandler to nested plugin")
-                logger.debug(f"[DEBUG makePluginObject] Propagated dbHandler to nested plugin")
+                logger.debug(f"Propagated dbHandler to nested plugin")
             if hasattr(self, '_dbProjectId') and self._dbProjectId is not None:
                 plugin_instance._dbProjectId = self._dbProjectId
                 logger.debug(f"[DEBUG makePluginObject] Propagated dbProjectId to nested plugin")
@@ -2605,25 +2597,14 @@ class CPluginScript(CData):
                 needs_detection = False
                 if cf is None:
                     needs_detection = True
-                    print(f"[DEBUG makeHklinGemmi] '{name}': contentFlag is None, needs detection")
                 elif hasattr(cf, 'isSet') and not cf.isSet():
                     needs_detection = True
-                    print(f"[DEBUG makeHklinGemmi] '{name}': contentFlag.isSet() = False, needs detection")
                 elif int(file_obj.contentFlag) == 0:
                     needs_detection = True
-                    print(f"[DEBUG makeHklinGemmi] '{name}': contentFlag value is 0, needs detection")
 
                 if needs_detection:
-                    print(f"[DEBUG makeHklinGemmi] Calling setContentFlag() for '{name}'...")
-                    print(f"[DEBUG makeHklinGemmi]   file_obj class: {file_obj.__class__.__name__}")
-                    print(f"[DEBUG makeHklinGemmi]   file_obj.getFullPath(): {file_obj.getFullPath()}")
-                    print(f"[DEBUG makeHklinGemmi]   has CONTENT_SIGNATURE_LIST: {hasattr(file_obj.__class__, 'CONTENT_SIGNATURE_LIST')}")
-                    if hasattr(file_obj.__class__, 'CONTENT_SIGNATURE_LIST'):
-                        print(f"[DEBUG makeHklinGemmi]   CONTENT_SIGNATURE_LIST: {file_obj.__class__.CONTENT_SIGNATURE_LIST}")
-                    logger.debug(f"[DEBUG makeHklinGemmi] Auto-detecting contentFlag for '{name}'")
+                    logger.debug(f"Auto-detecting contentFlag for '{name}'")
                     file_obj.setContentFlag()
-                    print(f"[DEBUG makeHklinGemmi] setContentFlag() returned, contentFlag.isSet(): {file_obj.contentFlag.isSet() if hasattr(file_obj.contentFlag, 'isSet') else 'N/A'}")
-                    print(f"[DEBUG makeHklinGemmi] setContentFlag() returned, contentFlag value: {int(file_obj.contentFlag)}")
 
             # Check if conversion is needed
             current_content_flag = int(file_obj.contentFlag)

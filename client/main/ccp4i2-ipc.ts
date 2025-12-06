@@ -143,7 +143,7 @@ export const installIpcHandlers = (
       });
   });
 
-  // IPC communication to trigger file dialog to locate the cdata-codegen project root
+  // IPC communication to trigger file dialog to locate the ccp4i2 project root
   ipcMain.on("locate-project-root", (event, _data) => {
     const mainWindow: BrowserWindow | null = getMainWindow();
     if (!mainWindow) {
@@ -154,8 +154,8 @@ export const installIpcHandlers = (
     dialog
       .showOpenDialog(mainWindow, {
         properties: ["openDirectory"],
-        title: "Select cdata-codegen Project Directory",
-        message: "Select the root directory of the cdata-codegen project (containing .venv)",
+        title: "Select CCP4i2 Project Directory",
+        message: "Select the root directory of the ccp4i2 project (containing .venv)",
       })
       .then((result) => {
         if (!result.canceled) {

@@ -259,7 +259,7 @@ AttributeError: 'NoneType' object has no attribute 'seqList'
 
 **Example Error**:
 ```
-FileNotFoundError: [Errno 2] unable to open() file /Users/nmemn/Developer/cdata-codegen/...
+FileNotFoundError: [Errno 2] unable to open() file $CCP4I2_ROOT/...
 ```
 
 **Root Cause**: File path handling issues:
@@ -419,11 +419,11 @@ def getTMP(**kw):
 
 ```bash
 # Command used
-export CCP4I2_ROOT=/Users/nmemn/Developer/cdata-codegen
+export CCP4I2_ROOT=$CCP4I2_ROOT
 .venv/bin/python core/task_manager/plugin_lookup.py
 
 # Results
-Building plugin lookup from: /Users/nmemn/Developer/cdata-codegen
+Building plugin lookup from: $CCP4I2_ROOT
 Scanning wrappers...
   Found 100 plugins in wrappers    # Up from 98
 Scanning wrappers2...
@@ -619,7 +619,7 @@ def __init__(self, parent=None, name=None, **kwargs):
 
 ```bash
 # Environment Setup
-export CCP4I2_ROOT=/Users/nmemn/Developer/cdata-codegen
+export CCP4I2_ROOT=$CCP4I2_ROOT
 export DJANGO_SETTINGS_MODULE=ccp4x.settings
 source /Applications/ccp4-9/bin/ccp4.setup-sh
 source .venv/bin/activate

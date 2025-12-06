@@ -36,7 +36,7 @@ Original API tests focusing on core workflows:
 
 ### Setup
 ```bash
-export CCP4I2_ROOT=/Users/nmemn/Developer/cdata-codegen
+export CCP4I2_ROOT=$CCP4I2_ROOT
 source .venv/bin/activate
 ```
 

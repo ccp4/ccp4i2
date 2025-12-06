@@ -48,7 +48,7 @@ Generate **complete, production-ready, directly-usable** Python classes that:
 ### Architecture
 
 ```
-cdata-codegen/
+ccp4i2/
 ├── migration/
 │   └── CData/
 │       ├── cdata.json                    # Source metadata (generated from CCP4i2)

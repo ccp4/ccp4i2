@@ -90,7 +90,6 @@ class aimless_pipe(CPluginScript):
           'MMCIF_SELECTED_BLOCK'])
       # Note: REFERENCE_DATASET removed - aimless_pipe uses HKL/XYZ but pointless uses HKL_MERGED/HKL_UNMERGED/XYZ
 
-
       self.connectSignal(self.pointless,'finished',self.process_cycle_aimless)
       self.pointless.process()
 

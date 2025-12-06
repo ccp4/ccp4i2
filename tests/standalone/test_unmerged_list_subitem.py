@@ -5,13 +5,15 @@ Quick test to verify that CUnmergedDataFileList properly specifies its subItem t
 
 import sys
 import os
+from pathlib import Path
 
-# Set up environment
-os.environ['CCP4I2_ROOT'] = '/Users/nmemn/Developer/cdata-codegen'
+# Set up environment using relative path
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+os.environ['CCP4I2_ROOT'] = str(PROJECT_ROOT)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'ccp4x.settings'
 
 # Add project root to path
-sys.path.insert(0, os.environ['CCP4I2_ROOT'])
+sys.path.insert(0, str(PROJECT_ROOT))
 
 from core.CCP4XtalData import CUnmergedDataFileList, CUnmergedDataFile
 

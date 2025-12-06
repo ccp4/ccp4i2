@@ -4,8 +4,9 @@
 
 set -e  # Exit on error
 
-export CCP4I2_ROOT=/Users/nmemn/Developer/cdata-codegen
-cd /Users/nmemn/Developer/cdata-codegen/server
+# Source common setup (sets CCP4I2_ROOT, sources CCP4 and venv)
+source "$(dirname "$0")/common.sh"
+cd $CCP4I2_ROOT/server
 
 echo "=========================================="
 echo "Testing New Management Commands"

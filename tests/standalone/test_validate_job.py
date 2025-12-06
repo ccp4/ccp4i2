@@ -4,14 +4,16 @@ Test script for validate_job function using CPluginScript architecture.
 """
 import os
 import sys
+from pathlib import Path
 
-# Set up environment
+# Set up environment using relative path
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4x.settings')
-os.environ.setdefault('CCP4I2_ROOT', '/Users/nmemn/Developer/cdata-codegen')
+os.environ.setdefault('CCP4I2_ROOT', str(PROJECT_ROOT))
 os.environ.setdefault('CCP4_LOG_LEVEL', 'INFO')
 
 # Add server directory to path
-sys.path.insert(0, '/Users/nmemn/Developer/cdata-codegen/server')
+sys.path.insert(0, str(PROJECT_ROOT / 'server'))
 
 import django
 django.setup()

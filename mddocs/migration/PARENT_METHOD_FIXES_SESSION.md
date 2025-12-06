@@ -7,7 +7,7 @@ This session focused on fixing critical regressions introduced by the Hierarchic
 ## Problems Identified
 
 ### 1. Output Files Written to Wrong Location
-**Symptom**: Files like `LYS-PLP_link.cif` written to project root (`/Users/nmemn/Developer/cdata-codegen/`) instead of job directories
+**Symptom**: Files like `LYS-PLP_link.cif` written to project root (`$CCP4I2_ROOT/`) instead of job directories
 
 **Root Cause**: Hierarchy traversal code using `getattr(current, 'parent', None)` pattern. After parent became a method, this returned the bound method object instead of calling it to get the parent.
 

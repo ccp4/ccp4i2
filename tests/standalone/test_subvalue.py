@@ -3,13 +3,15 @@
 
 import os
 import sys
+from pathlib import Path
 
-# Set up environment
-os.environ['CCP4I2_ROOT'] = '/Users/nmemn/Developer/cdata-codegen'
+# Set up environment using relative path
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+os.environ['CCP4I2_ROOT'] = str(PROJECT_ROOT)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'ccp4x.config.settings'
 
 # Add server to path
-sys.path.insert(0, os.path.join(os.environ['CCP4I2_ROOT'], 'server'))
+sys.path.insert(0, str(PROJECT_ROOT / 'server'))
 
 # Initialize Django
 import django

@@ -256,20 +256,14 @@ class CDataFile(CData):
         # Walk up parent hierarchy
         current = self.parent()
         depth = 0
-        path_trace = [f"self={self.objectName() if hasattr(self, 'objectName') else type(self).__name__}"]
         while current is not None:
-            current_name = current.objectName() if hasattr(current, 'objectName') else type(current).__name__
-            path_trace.append(current_name)
             if isinstance(current, CPluginScript):
-                logger.debug(f"_find_plugin_parent: Found plugin at depth {depth}: {' -> '.join(path_trace)}")
                 return current
             # parent is now a method, not a property - must call it
             current = current.parent() if hasattr(current, 'parent') and callable(current.parent) else None
             depth += 1
             if depth > 10:  # Safety limit
-                logger.debug(f"_find_plugin_parent: Depth limit reached, path: {' -> '.join(path_trace)}")
                 break
-        logger.debug(f"_find_plugin_parent: No plugin found, path: {' -> '.join(path_trace)}")
         return None
 
     def _get_db_handler(self):

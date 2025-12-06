@@ -5,11 +5,13 @@ Test i2run parameter parsing and setting with modern approach.
 import os
 import sys
 import django
+from pathlib import Path
 
-# Setup paths
-sys.path.insert(0, '/Users/nmemn/Developer/cdata-codegen')
-sys.path.insert(0, '/Users/nmemn/Developer/cdata-codegen/server')
-os.environ['CCP4I2_ROOT'] = '/Users/nmemn/Developer/cdata-codegen'
+# Setup paths relative to this file's location
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
+sys.path.insert(0, str(PROJECT_ROOT / 'server'))
+os.environ['CCP4I2_ROOT'] = str(PROJECT_ROOT)
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4x.config.settings')
 
 # Initialize Django

@@ -455,7 +455,7 @@ async def manual_gleaning():
 
 ```bash
 # Run design tests
-CCP4I2_ROOT=/Users/nmemn/Developer/cdata-codegen python -m pytest tests/test_cdata_database_integration.py -v
+CCP4I2_ROOT=$CCP4I2_ROOT python -m pytest tests/test_cdata_database_integration.py -v
 
 # Run with Django (requires Django test setup)
 python manage.py test server.ccp4x.tests.test_async_integration

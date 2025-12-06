@@ -100,7 +100,7 @@ def container(self, request, pk=None):
 ### Step 3: Test
 
 ```bash
-export CCP4I2_ROOT=/Users/nmemn/Developer/cdata-codegen
+export CCP4I2_ROOT=$CCP4I2_ROOT
 pytest server/ccp4x/tests/api/test_viewsets_comprehensive.py::JobViewSetTests::test_job_container -xvs
 ```
 

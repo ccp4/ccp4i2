@@ -8,20 +8,12 @@ echo "Testing validate_job (CPluginScript Architecture)"
 echo "=================================================="
 echo ""
 
-# Set environment
-export CCP4I2_ROOT=/Users/nmemn/Developer/cdata-codegen
+# Source common setup (sets CCP4I2_ROOT, sources CCP4 and venv)
+source "$(dirname "$0")/common.sh"
 export CCP4_LOG_LEVEL=INFO
 
-# Activate CCP4 environment
-echo "[1] Setting up CCP4 environment..."
-source /Users/nmemn/Developer/ccp4-20251105/bin/ccp4.setup-sh
-
-# Activate venv
-echo "[2] Activating virtual environment..."
-source .venv/bin/activate
-
 # Change to server directory
-cd /Users/nmemn/Developer/cdata-codegen/server
+cd $CCP4I2_ROOT/server
 
 echo "[3] Using Python: $(which python)"
 echo ""
@@ -46,9 +38,8 @@ echo ""
 echo "[5] Getting job UUID via Python..."
 JOB_UUID=$(python -c "
 import django, os, sys
-sys.path.insert(0, '/Users/nmemn/Developer/cdata-codegen/server')
+sys.path.insert(0, os.environ['CCP4I2_ROOT'] + '/server')
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4x.settings')
-os.environ.setdefault('CCP4I2_ROOT', '/Users/nmemn/Developer/cdata-codegen')
 django.setup()
 from ccp4x.db.models import Job, Project
 proj = Project.objects.filter(name='$PROJECT_NAME').first()

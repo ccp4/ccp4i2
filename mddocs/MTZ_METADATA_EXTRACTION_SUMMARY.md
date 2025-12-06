@@ -49,7 +49,7 @@ From `/Users/nmemn/Developer/ccp4i2/core/CCP4XtalData.py`, extracted class-level
 
 ## Files Modified
 
-### 1. `/Users/nmemn/Developer/cdata-codegen/migration/CData/cdata.json`
+### 1. `$CCP4I2_ROOT/migration/CData/cdata.json`
 
 Added two new top-level keys to each CMiniMtzDataFile subclass:
 
@@ -75,7 +75,7 @@ Added two new top-level keys to each CMiniMtzDataFile subclass:
 }
 ```
 
-### 2. `/Users/nmemn/Developer/cdata-codegen/migration/CData/add_mtz_metadata.py`
+### 2. `$CCP4I2_ROOT/migration/CData/add_mtz_metadata.py`
 
 Created script to automate metadata addition. Can be re-run if needed.
 
@@ -84,7 +84,7 @@ Created script to automate metadata addition. Can be re-run if needed.
 python3 migration/CData/add_mtz_metadata.py
 ```
 
-### 3. `/Users/nmemn/Developer/cdata-codegen/MAKEHKLIN_REFACTOR_PLAN.md`
+### 3. `$CCP4I2_ROOT/MAKEHKLIN_REFACTOR_PLAN.md`
 
 Updated refactoring plan with:
 - Complete content flag definitions
@@ -184,6 +184,6 @@ FMEAN columns: ['F', 'SIGF']
 ## References
 
 - **Source**: `/Users/nmemn/Developer/ccp4i2/core/CCP4XtalData.py` (lines 3081-3472)
-- **Updated**: `/Users/nmemn/Developer/cdata-codegen/migration/CData/cdata.json`
-- **Plan**: `/Users/nmemn/Developer/cdata-codegen/MAKEHKLIN_REFACTOR_PLAN.md`
-- **Script**: `/Users/nmemn/Developer/cdata-codegen/migration/CData/add_mtz_metadata.py`
+- **Updated**: `$CCP4I2_ROOT/migration/CData/cdata.json`
+- **Plan**: `$CCP4I2_ROOT/MAKEHKLIN_REFACTOR_PLAN.md`
+- **Script**: `$CCP4I2_ROOT/migration/CData/add_mtz_metadata.py`

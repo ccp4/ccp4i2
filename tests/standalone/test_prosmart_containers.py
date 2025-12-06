@@ -4,15 +4,17 @@ Test script to verify that prosmart_refmac loads all containers from .def.xml
 """
 import os
 import sys
+from pathlib import Path
 
-# Set CCP4I2_ROOT environment variable
-os.environ['CCP4I2_ROOT'] = '/Users/nmemn/Developer/cdata-codegen'
+# Set up environment using relative path
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+os.environ['CCP4I2_ROOT'] = str(PROJECT_ROOT)
 
 # Add project root to path
-sys.path.insert(0, '/Users/nmemn/Developer/cdata-codegen')
+sys.path.insert(0, str(PROJECT_ROOT))
 
 # Import the plugin class directly
-sys.path.insert(0, '/Users/nmemn/Developer/cdata-codegen/pipelines/prosmart_refmac/script')
+sys.path.insert(0, str(PROJECT_ROOT / 'pipelines/prosmart_refmac/script'))
 from prosmart_refmac import prosmart_refmac
 
 print("[TEST] Creating prosmart_refmac plugin instance...")
@@ -55,7 +57,7 @@ else:
     # Re-parse the .def.xml file to see what it actually contains
     from core.task_manager.def_xml_handler import DefXmlParser
     parser = DefXmlParser()
-    parsed = parser.parse_def_xml('/Users/nmemn/Developer/cdata-codegen/pipelines/prosmart_refmac/script/prosmart_refmac.def.xml')
+    parsed = parser.parse_def_xml(str(PROJECT_ROOT / 'pipelines/prosmart_refmac/script/prosmart_refmac.def.xml'))
     print(f"\n[TEST] Parsed container has {len(parsed.children())} children:")
     for child in parsed.children():
         print(f"  - {child.name} ({type(child).__name__})")

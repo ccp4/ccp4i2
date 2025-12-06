@@ -95,7 +95,7 @@ const getDefaultCCP4Dir = () => {
   }
 
   // Fallback to first standard location (user will need to configure)
-  return isMac ? "/Applications/ccp4-9" : isWindows ? "C:\\CCP4\\ccp4-9" : "/opt/ccp4";
+  return isMac ? "/Applications/ccp4-9x" : isWindows ? "C:\\CCP4\\ccp4-9" : "/opt/ccp4";
 };
 
 export const store = new Store<StoreSchema>({

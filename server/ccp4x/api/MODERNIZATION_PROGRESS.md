@@ -213,7 +213,7 @@ Start with:
 
 ```bash
 # Single test
-export CCP4I2_ROOT=/Users/nmemn/Developer/cdata-codegen
+export CCP4I2_ROOT=$CCP4I2_ROOT
 pytest server/ccp4x/tests/api/test_viewsets_comprehensive.py::JobViewSetTests::test_job_container -xvs
 
 # Full JobViewSet suite

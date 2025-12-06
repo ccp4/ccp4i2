@@ -1,4 +1,4 @@
-# Core requirements for cdata-codegen project
+# Core requirements for ccp4i2 project
 # Python 3.11+ / CCP4-10 Compatible
 
 # Django for database and web framework
@@ -114,6 +114,6 @@ matplotlib>=3.10
 #   ln -sf /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/share/cctbx .venv.py311/share/cctbx
 #
 #   # mmut stub (from project stubs)
-#   ln -sf /Users/nmemn/Developer/cdata-codegen/stubs/mmut.py.stub $VENV_SITE/mmut.py
+#   ln -sf $CCP4I2_ROOT/stubs/mmut.py.stub $VENV_SITE/mmut.py
 #
 # See CLAUDE.md for detailed setup instructions

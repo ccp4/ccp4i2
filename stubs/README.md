@@ -36,7 +36,7 @@ The stubs are automatically added to Python's path via `.pth` file in the virtua
 
 ```bash
 # This is done automatically during setup
-echo "/Users/nmemn/Developer/cdata-codegen/stubs" > .venv/lib/python3.11/site-packages/ccp4_stubs.pth
+echo "/Users/nmemn/Developer/ccp4i2/stubs" > .venv/lib/python3.11/site-packages/ccp4_stubs.pth
 ```
 
 ## Usage

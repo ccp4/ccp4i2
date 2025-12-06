@@ -1,6 +1,6 @@
 # CCP4i2 Command Line Interface
 
-Modern CLI for the cdata-codegen project (CCP4i2 replacement).
+Modern CLI for the ccp4i2 project (CCP4i2 replacement).
 
 ## Table of Contents
 
@@ -30,12 +30,12 @@ chmod +x ccp4i2
 
 **Option A: Symlink to /usr/local/bin**
 ```bash
-sudo ln -s /path/to/cdata-codegen/ccp4i2 /usr/local/bin/ccp4i2
+sudo ln -s /path/to/ccp4i2/ccp4i2 /usr/local/bin/ccp4i2
 ```
 
 **Option B: Add to your PATH in ~/.bashrc or ~/.zshrc**
 ```bash
-export PATH="/path/to/cdata-codegen:$PATH"
+export PATH="/path/to/ccp4i2:$PATH"
 ```
 
 ### Windows
@@ -51,7 +51,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 2. Add to PATH or create an alias in your PowerShell profile:
 ```powershell
-Set-Alias ccp4i2 "C:\path\to\cdata-codegen\ccp4i2.ps1"
+Set-Alias ccp4i2 "C:\path\to\ccp4i2\ccp4i2.ps1"
 ```
 
 ## Quick Start
@@ -826,14 +826,14 @@ The new CLI is:
 
 Make sure the `ccp4i2` script is in your PATH or create a symlink:
 ```bash
-sudo ln -s /path/to/cdata-codegen/ccp4i2 /usr/local/bin/ccp4i2
+sudo ln -s /path/to/ccp4i2/ccp4i2 /usr/local/bin/ccp4i2
 ```
 
 ### Virtual environment not activated
 
 The wrapper script should handle this automatically. If you see warnings, check:
 ```bash
-ls -la /path/to/cdata-codegen/.venv
+ls -la /path/to/ccp4i2/.venv
 ```
 
 ### CCP4 environment not found

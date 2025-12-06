@@ -57,7 +57,7 @@ CObsDataFile.__mro__ =
 
 Now `CObsDataFile` **can access** all methods from `CMiniMtzDataFile`!
 
-## Implementation in cdata-codegen
+## Implementation in ccp4i2
 
 ### File: `core/CCP4XtalData.py`
 

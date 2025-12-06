@@ -1,6 +1,6 @@
 # Task Manager and Plugin/Report Registry
 
-This directory contains the plugin and report registry systems for cdata-codegen.
+This directory contains the plugin and report registry systems for CCP4i2.
 
 ## Directory Structure
 
@@ -31,7 +31,7 @@ This directory contains the plugin and report registry systems for cdata-codegen
 Use the CTaskManager `--rebuild` option to regenerate all lookup files at once:
 
 ```bash
-export CCP4I2_ROOT=/Users/nmemn/Developer/cdata-codegen
+export CCP4I2_ROOT=/path/to/ccp4i2
 .venv/bin/python core/CCP4TaskManager.py --rebuild
 ```
 
@@ -47,7 +47,7 @@ This will regenerate:
 ### Regenerating Plugin Registry Only
 
 ```bash
-export CCP4I2_ROOT=/Users/nmemn/Developer/cdata-codegen
+export CCP4I2_ROOT=/path/to/ccp4i2
 .venv/bin/python core/task_manager/plugin_lookup.py
 ```
 
@@ -98,7 +98,7 @@ The report registry discovers report classes (subclasses of `Report` from `repor
 ### Regenerating Report Registry Only
 
 ```bash
-export CCP4I2_ROOT=/Users/nmemn/Developer/cdata-codegen
+export CCP4I2_ROOT=/path/to/ccp4i2
 .venv/bin/python core/task_manager/report_lookup.py
 ```
 
@@ -158,7 +158,7 @@ Reports generally follow the pattern `{taskname}_report.py` with class `{tasknam
 ### Regenerating DEF.XML Lookup Only
 
 ```bash
-export CCP4I2_ROOT=/Users/nmemn/Developer/cdata-codegen
+export CCP4I2_ROOT=/path/to/ccp4i2
 python core/task_manager/defxml_lookup.py
 ```
 
@@ -183,7 +183,7 @@ def_xml_path = task_mgr.locate_def_xml('refmac')
 **CRITICAL**: All tests and the plugin/report system require `CCP4I2_ROOT` to be set:
 
 ```bash
-export CCP4I2_ROOT=/Users/nmemn/Developer/cdata-codegen
+export CCP4I2_ROOT=/path/to/ccp4i2
 ```
 
 The project root contains:

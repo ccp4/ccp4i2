@@ -331,4 +331,4 @@ pytest tests/test_obs_conversions.py -v -s
 ---
 
 *Last updated: 2025-01-XX*
-*Maintainer: cdata-codegen project*
+*Maintainer: CCP4i2 project*

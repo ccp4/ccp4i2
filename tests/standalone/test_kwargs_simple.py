@@ -4,6 +4,7 @@ Simple unit test to verify kwargs forwarding - bypassing plugin infrastructure
 """
 
 import inspect
+from pathlib import Path
 
 
 def test_kwargs_in_signature():
@@ -12,7 +13,8 @@ def test_kwargs_in_signature():
     # Import after sys.path setup
     import sys
     import os
-    sys.path.insert(0, '/Users/nmemn/Developer/cdata-codegen')
+    PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+    sys.path.insert(0, str(PROJECT_ROOT))
 
     from core.CCP4PluginScript import CPluginScript
 

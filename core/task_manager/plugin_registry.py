@@ -229,10 +229,10 @@ class PluginRegistry:
         try:
             module_name = metadata["_import_module"]
             class_name = metadata["_import_class"]
-            
+
             # Import the module
             module = __import__(module_name, fromlist=[class_name])
-            
+
             # Get the class
             plugin_class = getattr(module, class_name)
             

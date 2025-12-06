@@ -80,7 +80,7 @@ CCP4_ROOT=/path/to/ccp4         # CCP4 installation directory
 VENV_DIR=.venv                  # Virtual environment directory
 PYTHON_VERSION=3.11             # Python version (informational)
 DJANGO_SETTINGS_MODULE=ccp4x.config.settings
-CCP4I2_ROOT=/Users/nmemn/Developer/cdata-codegen
+CCP4I2_ROOT=$CCP4I2_ROOT
 ```
 
 ## Use Cases

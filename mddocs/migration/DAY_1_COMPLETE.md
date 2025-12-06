@@ -269,6 +269,6 @@ When you're ready, we can:
 ---
 
 **Generated**: 2025-10-31
-**Project**: cdata-codegen
+**Project**: ccp4i2
 **Session**: Day 1 Architecture Refactoring
 **Status**: ✅ COMPLETE & SUCCESSFUL

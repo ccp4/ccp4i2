@@ -97,7 +97,7 @@ curl -X POST "http://localhost:8000/api/jobs/${JOB_UUID}/set_parameter/" \
 ## Project Structure (Reorganized)
 
 ```
-cdata-codegen/
+ccp4i2/
 ├── server/ccp4x/          # Django backend
 │   ├── api/               # REST API endpoints
 │   ├── db/                # Database models

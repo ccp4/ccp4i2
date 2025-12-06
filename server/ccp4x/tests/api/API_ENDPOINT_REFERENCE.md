@@ -169,7 +169,7 @@ These ViewSets provide standard REST operations with no job_utils dependencies:
 
 ### Phase 2: Run Tests
 ```bash
-export CCP4I2_ROOT=/Users/nmemn/Developer/cdata-codegen
+export CCP4I2_ROOT=$CCP4I2_ROOT
 pytest server/ccp4x/tests/api/test_viewsets_comprehensive.py -v
 ```
 

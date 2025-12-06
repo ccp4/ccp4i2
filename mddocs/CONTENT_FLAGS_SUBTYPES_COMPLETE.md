@@ -351,7 +351,7 @@ Not applicable (Scheme script files, not binary data).
 
 ### Metadata Extraction Script
 
-Created `/Users/nmemn/Developer/cdata-codegen/migration/CData/add_all_content_metadata.py` to:
+Created `$CCP4I2_ROOT/migration/CData/add_all_content_metadata.py` to:
 - Define complete metadata for all 6 classes
 - Update cdata.json with CONTENT_FLAGS and SUBTYPES
 - Preserve existing metadata (CONTENTS, QUALIFIERS, etc.)
@@ -359,7 +359,7 @@ Created `/Users/nmemn/Developer/cdata-codegen/migration/CData/add_all_content_me
 
 Script execution:
 ```bash
-cd /Users/nmemn/Developer/cdata-codegen/migration/CData
+cd $CCP4I2_ROOT/migration/CData
 python add_all_content_metadata.py
 ```
 
@@ -402,7 +402,7 @@ Classes with CONTENT_FLAGS added: 5
 
 ### 1. Metadata Source
 
-**`/Users/nmemn/Developer/cdata-codegen/migration/CData/cdata.json`**
+**`$CCP4I2_ROOT/migration/CData/cdata.json`**
 
 Added complete CONTENT_FLAGS and SUBTYPES metadata to 6 classes:
 
@@ -431,24 +431,24 @@ Added complete CONTENT_FLAGS and SUBTYPES metadata to 6 classes:
 
 ### 2. Generated Stub Files
 
-**`/Users/nmemn/Developer/cdata-codegen/core/cdata_stubs/CCP4XtalData.py`**
+**`$CCP4I2_ROOT/core/cdata_stubs/CCP4XtalData.py`**
 Updated with class constants for:
 - CObsDataFileStub
 - CPhsDataFileStub
 - CMapCoeffsDataFileStub
 - CFreeRDataFileStub
 
-**`/Users/nmemn/Developer/cdata-codegen/core/cdata_stubs/CCP4ModelData.py`**
+**`$CCP4I2_ROOT/core/cdata_stubs/CCP4ModelData.py`**
 Updated with class constants for:
 - CPdbDataFileStub
 
-**`/Users/nmemn/Developer/cdata-codegen/core/cdata_stubs/CCP4CootData.py`**
+**`$CCP4I2_ROOT/core/cdata_stubs/CCP4CootData.py`**
 Updated with class constants for:
 - CCootHistoryDataFileStub
 
 ### 3. Implementation Files
 
-**`/Users/nmemn/Developer/cdata-codegen/core/CCP4XtalData.py`**
+**`$CCP4I2_ROOT/core/CCP4XtalData.py`**
 
 Added conversion methods to CMiniMtzDataFile and subclasses:
 - `CMiniMtzDataFile._get_conversion_output_path()` (base helper method)
@@ -458,7 +458,7 @@ Added conversion methods to CMiniMtzDataFile and subclasses:
 
 ### 4. Plugin System
 
-**`/Users/nmemn/Developer/cdata-codegen/core/CCP4PluginScript.py`**
+**`$CCP4I2_ROOT/core/CCP4PluginScript.py`**
 
 Updated makeHklin to handle content type conversions:
 - `_get_content_flag_name()` helper method
@@ -468,7 +468,7 @@ Updated makeHklin to handle content type conversions:
 
 ### 5. Tests
 
-**`/Users/nmemn/Developer/cdata-codegen/tests/test_cpluginscript_makehklin.py`**
+**`$CCP4I2_ROOT/tests/test_cpluginscript_makehklin.py`**
 
 Updated tests to verify conversion system:
 - `test_override_content_flag_triggers_conversion()` - Expects NotImplementedError
@@ -545,7 +545,7 @@ if hasattr(pdb_file, 'subtype'):
 Full test suite run: **151 tests passed, 26 skipped, 2 warnings**
 
 ```bash
-$ python -m pytest /Users/nmemn/Developer/cdata-codegen/tests/ -v --tb=short
+$ python -m pytest $CCP4I2_ROOT/tests/ -v --tb=short
 ...
 ================= 151 passed, 26 skipped, 2 warnings in 1.56s ==================
 ```

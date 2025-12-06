@@ -3,10 +3,20 @@
 
 set -e
 
-# Setup environment
-source /Users/nmemn/Developer/ccp4-20251105/bin/ccp4.setup-sh
-export CCP4I2_ROOT=/Users/nmemn/Developer/cdata-codegen
-export PYTHONPATH=/Users/nmemn/Developer/cdata-codegen/server:/Users/nmemn/Developer/cdata-codegen:$PYTHONPATH
+# Determine project root from script location
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+# Find and source CCP4 environment
+for dir in "$PROJECT_ROOT"/../ccp4-*/bin/ccp4.setup-sh; do
+    if [ -f "$dir" ]; then
+        source "$dir"
+        break
+    fi
+done
+
+export CCP4I2_ROOT="$PROJECT_ROOT"
+export PYTHONPATH="$PROJECT_ROOT/server:$PROJECT_ROOT:$PYTHONPATH"
 export DJANGO_SETTINGS_MODULE=ccp4x.config.test_settings
 
 # Create temp database and projects
