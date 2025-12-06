@@ -75,7 +75,14 @@ class refmac_i2(CPluginScript):
         self.logScraper.processLogChunk(availableStdout.data().decode("utf-8"))
     
     def flushXML(self):
-        """Write XML atomically and emit progress signal."""
+        """Write XML atomically and emit progress signal (throttled).
+
+        To avoid excessive CPU usage, we:
+        1. Always write the XML file (for consistency)
+        2. Only emit the progressUpdated signal at most every 2 seconds
+        """
+        import time
+
         newXml = etree.tostring(self.xmlroot, pretty_print=True)
         if len(newXml) > self.xmlLength:
             self.xmlLength = len(newXml)
@@ -85,8 +92,14 @@ class refmac_i2(CPluginScript):
                 programXmlFile.write(newXml.decode("utf-8"))
             import shutil
             shutil.move(tmpPath, self.makeFileName('PROGRAMXML'))
-            # Emit progress signal for parent pipelines
-            self.progressUpdated.emit({'source': 'refmac', 'xmlLength': len(newXml)})
+
+            # Throttle signal emission to reduce CPU thrashing
+            # Only emit at most every 2 seconds
+            now = time.time()
+            last_emit = getattr(self, '_lastProgressEmit', 0)
+            if now - last_emit >= 2.0:
+                self._lastProgressEmit = now
+                self.progressUpdated.emit({'source': 'refmac', 'xmlLength': len(newXml)})
 
     def onProcessOutput(self, line):
         """Handle a line of process output for streaming mode.

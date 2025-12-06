@@ -2098,7 +2098,7 @@ class CPluginScript(CData):
 
         def poll_file():
             """Background thread to poll file for changes."""
-            poll_interval = 1.0  # Check every second
+            poll_interval = 2.0  # Check every 2 seconds (reduced from 1s to lower CPU usage)
             last_size = 0
 
             while watch_info["active"]:
