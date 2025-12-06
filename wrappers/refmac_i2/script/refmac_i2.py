@@ -50,6 +50,8 @@ class refmac_i2(CPluginScript):
         from .refmacLogScraper import logScraper
         self.logScraper = logScraper(xmlroot=self.xmlroot, flushXML=self.flushXML)
         self.xmlLength = 0
+        # Enable streaming mode in Django environment for real-time progress updates
+        self._useStreamingMode = True
 
     @QtCore.Slot()
     def handleReadyReadStandardOutput(self):
@@ -73,13 +75,45 @@ class refmac_i2(CPluginScript):
         self.logScraper.processLogChunk(availableStdout.data().decode("utf-8"))
     
     def flushXML(self):
-        newXml = etree.tostring(self.xmlroot,pretty_print=True)
-        if len(newXml)>self.xmlLength:
+        """Write XML atomically and emit progress signal."""
+        newXml = etree.tostring(self.xmlroot, pretty_print=True)
+        if len(newXml) > self.xmlLength:
             self.xmlLength = len(newXml)
-            with open (self.makeFileName('PROGRAMXML')+'_tmp','w') as programXmlFile:
+            # Atomic write: temp file + rename
+            tmpPath = self.makeFileName('PROGRAMXML') + '_tmp'
+            with open(tmpPath, 'w') as programXmlFile:
                 programXmlFile.write(newXml.decode("utf-8"))
             import shutil
-            shutil.move(self.makeFileName('PROGRAMXML')+'_tmp', self.makeFileName('PROGRAMXML'))
+            shutil.move(tmpPath, self.makeFileName('PROGRAMXML'))
+            # Emit progress signal for parent pipelines
+            self.progressUpdated.emit({'source': 'refmac', 'xmlLength': len(newXml)})
+
+    def onProcessOutput(self, line):
+        """Handle a line of process output for streaming mode.
+
+        This is called by _startProcessWithStreaming for each line of stdout.
+        We feed the line to the logScraper which builds XML and calls flushXML
+        when significant events occur (new cycle, R-factors, etc.).
+        """
+        self.logScraper.processLine(line)
+
+    def startProcess(self):
+        """Start refmac process, using streaming mode in Django environment."""
+        # Check if we should use streaming mode
+        # In Qt mode, QProcess signals handle stdout; in Django mode, use streaming
+        if getattr(self, '_useStreamingMode', False) and not self._isQtEnvironment():
+            return self._startProcessWithStreaming(lineHandler=self.onProcessOutput)
+        else:
+            # Fall back to parent implementation (Qt mode or sync mode)
+            return super(refmac_i2, self).startProcess()
+
+    def _isQtEnvironment(self):
+        """Check if we're running in a Qt environment with QProcess available."""
+        try:
+            from PySide2.QtCore import QProcess
+            return True
+        except ImportError:
+            return False
 
     def processInputFiles(self):
         from core import CCP4XtalData

@@ -105,10 +105,12 @@ class CPluginScript(CData):
         # Store dummy flag for later reference
         self._dummy = dummy
 
-        # Create finished signal (inherits SignalManager from HierarchicalObject)
-        # This signal is emitted when the plugin completes execution
+        # Create signals (inherits SignalManager from HierarchicalObject)
         from core.base_object.signal_system import Signal
+        # Emitted when the plugin completes execution
         self.finished = self._signal_manager.create_signal("finished", dict)
+        # Emitted during streaming execution when progress is available (e.g., new refinement cycle)
+        self.progressUpdated = self._signal_manager.create_signal("progressUpdated", dict)
 
         # Initialize infrastructure components
         self._def_parser = DefXmlParser()
@@ -1723,6 +1725,139 @@ class CPluginScript(CData):
 
         return error
 
+    def _startProcessWithStreaming(self, lineHandler=None) -> CErrorReport:
+        """
+        Process execution with streaming stdout capture.
+
+        Uses subprocess.Popen() to capture stdout line-by-line, enabling
+        real-time processing of program output without file-watching race conditions.
+
+        Args:
+            lineHandler: Optional callback function(line: str) called for each line.
+                        If None, uses self.onProcessOutput if defined.
+
+        The output is:
+        1. Passed to lineHandler for real-time processing (e.g., log scraping)
+        2. Written to the LOG file for archival
+        3. Available for post-processing after completion
+
+        Example usage in a plugin:
+            def onProcessOutput(self, line):
+                self.logScraper.processLine(line)
+
+            def startProcess(self):
+                return self._startProcessWithStreaming(lineHandler=self.onProcessOutput)
+        """
+        import subprocess
+        import os
+
+        error = CErrorReport()
+
+        # Register with PROCESSMANAGER
+        from core.CCP4Modules import PROCESSMANAGER
+        PROCESSMANAGER().register(self)
+
+        # Prepare execution environment
+        prep = self._prepareProcessExecution()
+        command = prep['command']
+        stdout_path = prep['stdout_path']
+        stderr_path = prep['stderr_path']
+        stdin_input = prep['stdin_input']
+        env = prep['env']
+
+        # Determine handler - use provided callback or instance method
+        handler = lineHandler
+        if handler is None and hasattr(self, 'onProcessOutput'):
+            handler = self.onProcessOutput
+
+        try:
+            with open(stdout_path, 'w') as stdout_file, open(stderr_path, 'w') as stderr_file:
+                # Write formatted header
+                stdout_file.write("="*70 + "\n")
+                stdout_file.write(f"CCP4i2 Task: {self.TASKNAME}\n")
+                stdout_file.write("="*70 + "\n\n")
+                stdout_file.write("Command Line:\n")
+                stdout_file.write("-" * 70 + "\n")
+                stdout_file.write(f"{' '.join(command)}\n\n")
+
+                if self.commandScript:
+                    stdout_file.write("Command Script (stdin):\n")
+                    stdout_file.write("-" * 70 + "\n")
+                    for line in self.commandScript:
+                        stdout_file.write(line)
+                    stdout_file.write("\n")
+
+                stdout_file.write("="*70 + "\n")
+                stdout_file.write("Program Output:\n")
+                stdout_file.write("="*70 + "\n\n")
+                stdout_file.flush()
+
+                # Start process with stdout captured via PIPE
+                process = subprocess.Popen(
+                    command,
+                    cwd=self.workDirectory,
+                    stdin=subprocess.PIPE if stdin_input else None,
+                    stdout=subprocess.PIPE,
+                    stderr=stderr_file,
+                    text=True,
+                    bufsize=1,  # Line buffered
+                    env=env
+                )
+
+                # Write stdin if needed, then close
+                if stdin_input:
+                    process.stdin.write(stdin_input)
+                    process.stdin.close()
+
+                # Read stdout line by line
+                for line in process.stdout:
+                    # Write to log file immediately
+                    stdout_file.write(line)
+                    stdout_file.flush()
+
+                    # Call handler for real-time processing
+                    if handler:
+                        try:
+                            handler(line.rstrip('\n'))
+                        except Exception as e:
+                            logger.warning(f"Error in lineHandler: {e}")
+
+                # Wait for process to complete
+                process.wait()
+
+                # Store exit code
+                self._exitCode = process.returncode
+                self._exitStatus = 0 if process.returncode == 0 else 1
+
+                if process.returncode != 0:
+                    error.append(
+                        klass=self.__class__.__name__,
+                        code=101,
+                        details=f"Process {self.TASKCOMMAND} exited with code {process.returncode}"
+                    )
+
+        except subprocess.TimeoutExpired:
+            error.append(
+                klass=self.__class__.__name__,
+                code=102,
+                details=f"Process {self.TASKCOMMAND} timed out"
+            )
+        except FileNotFoundError:
+            error.append(
+                klass=self.__class__.__name__,
+                code=103,
+                details=f"Executable {self.TASKCOMMAND} not found"
+            )
+        except Exception as e:
+            logger.exception(f"Error running {self.TASKCOMMAND}: {e}")
+            error.append(
+                klass=self.__class__.__name__,
+                code=104,
+                details=f"Error running {self.TASKCOMMAND}: {str(e)}"
+            )
+
+        return error
+
     def _startProcessAsync(self) -> CErrorReport:
         """
         Asynchronous process execution using AsyncProcessManager.
@@ -1932,15 +2067,10 @@ class CPluginScript(CData):
         return self._watchedDirectories
 
     def watchFile(self, fileName, handler, minDeltaSize=0, unwatchWhileHandling=False):
-        """Watch a file for changes (legacy API compatibility).
+        """Watch a file for changes using background thread polling.
 
-        In the legacy Qt-based implementation, this used QFileSystemWatcher
-        to monitor file changes. In the modern async implementation, file
-        watching is handled differently (via async file monitoring in the
-        database handler or through explicit polling).
-
-        This method is provided for backward compatibility with legacy plugins
-        that call watchFile(), but it's a no-op in the new architecture.
+        In the legacy Qt-based implementation, this used QFileSystemWatcher.
+        This implementation uses a background thread to poll the file for changes.
 
         Args:
             fileName: Path to file to watch
@@ -1949,21 +2079,84 @@ class CPluginScript(CData):
             unwatchWhileHandling: Whether to temporarily unwatch during handling
         """
         import os
+        import threading
+        import time
+
         parentDirectoryPath, fileRoot = os.path.split(fileName)
 
-        # Store watch metadata for compatibility
-        self.watchedFiles()[fileName] = {
+        # Store watch metadata
+        watch_info = {
             "parentDirectoryPath": parentDirectoryPath,
             "handler": handler,
             "maxSizeYet": 0,
             "minDeltaSize": minDeltaSize,
-            "unwatchWhileHandling": unwatchWhileHandling
+            "unwatchWhileHandling": unwatchWhileHandling,
+            "active": True,
+            "handling": False
         }
+        self.watchedFiles()[fileName] = watch_info
 
-        # Note: In the Qt-free implementation, actual file watching would be
-        # handled by the async framework or database handler, not here.
-        # This is just a compatibility stub.
-        logger.debug(f"watchFile called for {fileName} (compatibility mode - no actual watching)")
+        def poll_file():
+            """Background thread to poll file for changes."""
+            poll_interval = 1.0  # Check every second
+            last_size = 0
+
+            while watch_info["active"]:
+                try:
+                    if os.path.exists(fileName):
+                        current_size = os.path.getsize(fileName)
+                        size_delta = current_size - last_size
+
+                        # Check if file has grown enough to trigger handler
+                        if size_delta >= minDeltaSize and current_size > watch_info["maxSizeYet"]:
+                            # Skip if we're already handling and unwatchWhileHandling is True
+                            if unwatchWhileHandling and watch_info["handling"]:
+                                time.sleep(poll_interval)
+                                continue
+
+                            watch_info["handling"] = True
+                            watch_info["maxSizeYet"] = current_size
+
+                            try:
+                                logger.debug(f"File changed: {fileName} (size: {current_size})")
+                                handler(fileName)
+                            except Exception as e:
+                                logger.error(f"Error in file watch handler for {fileName}: {e}")
+                            finally:
+                                watch_info["handling"] = False
+
+                        last_size = current_size
+
+                except Exception as e:
+                    logger.debug(f"Error polling file {fileName}: {e}")
+
+                time.sleep(poll_interval)
+
+        # Start background polling thread
+        watcher_thread = threading.Thread(target=poll_file, daemon=True, name=f"FileWatcher-{fileRoot}")
+        watcher_thread.start()
+        logger.debug(f"Started file watcher for {fileName}")
+
+    def unwatchFile(self, fileName):
+        """Stop watching a file for changes.
+
+        Args:
+            fileName: Path to file to stop watching
+        """
+        if fileName in self.watchedFiles():
+            self.watchedFiles()[fileName]["active"] = False
+            del self.watchedFiles()[fileName]
+            logger.debug(f"Stopped file watcher for {fileName}")
+
+    def stopAllFileWatchers(self):
+        """Stop all file watchers.
+
+        Called during cleanup to ensure all background polling threads terminate.
+        """
+        for fileName, watch_info in list(self.watchedFiles().items()):
+            watch_info["active"] = False
+        self._watchedFiles = {}
+        logger.debug("Stopped all file watchers")
 
     def watchDirectory(self, directoryName, handler):
         """Watch a directory for changes (legacy API compatibility).

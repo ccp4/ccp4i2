@@ -189,13 +189,32 @@ class prosmart_refmac(CPluginScript):
         self.firstRefmac = self.refmacJobWithWeight(withWeight)
         # Run asynchronously - needed so logwatcher callbacks work before process completion
         self.firstRefmac.doAsync = self.doAsync
-        self.firstRefmac.connectSignal(self.firstRefmac,'finished',self.firstRefmacFinished)
+        self.firstRefmac.connectSignal(self.firstRefmac, 'finished', self.firstRefmacFinished)
         # Install xml node for in-progress refmac
         self.xmlLength = 0
-        # Start process with file watching for live XML updates
+
+        # Connect to progressUpdated signal for streaming updates (preferred in Django mode)
+        # This avoids file-watching race conditions
         firstRefmacXMLFilename = self.firstRefmac.makeFileName(format='PROGRAMXML')
+        self.firstRefmac.connectSignal(self.firstRefmac, 'progressUpdated', self.handleRefmacProgress)
+
+        # Also keep file watching as fallback for Qt mode where QProcess is used
         self.watchFile(firstRefmacXMLFilename, handler=self.handleXmlChanged, minDeltaSize=34, unwatchWhileHandling=True)
+
         rv = self.firstRefmac.process()
+
+    def handleRefmacProgress(self, progressInfo):
+        """Handle progress signal from refmac (streaming mode).
+
+        This is called when refmac emits progressUpdated signal, avoiding
+        file-watching race conditions. We read the XML file that refmac
+        just wrote atomically.
+        """
+        try:
+            firstRefmacXMLFilename = self.firstRefmac.makeFileName(format='PROGRAMXML')
+            self.handleXmlChanged(firstRefmacXMLFilename)
+        except Exception as e:
+            print(f"Warning: Error handling refmac progress: {e}")
 
     @QtCore.Slot(str)
     def handleXmlChanged2(self, xmlFilename):
@@ -639,21 +658,17 @@ class prosmart_refmac(CPluginScript):
                        etree.SubElement(etree.SubElement(self.xmlroot, "Molprobity"), "Output").text = etree.CDATA(str(err))
                        self.saveXml()
 
-           validate_iris = False
-           if hasattr(self.container.controlParameters,"VALIDATE_IRIS"):
-               validate_iris = self.container.controlParameters.VALIDATE_IRIS
+           # Stop file watcher before validation to prevent handleXmlChanged from clearing xmlroot
+           if hasattr(self, 'firstRefmac'):
+               firstRefmacXMLFilename = self.firstRefmac.makeFileName(format='PROGRAMXML')
+               self.unwatchFile(firstRefmacXMLFilename)
 
-           validate_baverage = False
-           if hasattr(self.container.controlParameters,"VALIDATE_BAVERAGE"):
-               validate_baverage = self.container.controlParameters.VALIDATE_BAVERAGE
+           # Get validation settings - defaults match def.xml (True for all except MOLPROBITY which is test-controlled)
+           validate_iris = getattr(self.container.controlParameters, "VALIDATE_IRIS", True)
+           validate_baverage = getattr(self.container.controlParameters, "VALIDATE_BAVERAGE", True)
+           validate_ramachandran = getattr(self.container.controlParameters, "VALIDATE_RAMACHANDRAN", True)
+           validate_molprobity = getattr(self.container.controlParameters, "VALIDATE_MOLPROBITY", True)
 
-           validate_ramachandran = False
-           if hasattr(self.container.controlParameters,"VALIDATE_RAMACHANDRAN"):
-              validate_ramachandran = self.container.controlParameters.VALIDATE_RAMACHANDRAN
-
-           validate_molprobity = False
-           if hasattr(self.container.controlParameters,"VALIDATE_MOLPROBITY"):
-              validate_molprobity = self.container.controlParameters.VALIDATE_MOLPROBITY
 
            if validate_baverage or validate_molprobity or validate_ramachandran or validate_iris:
              xml_validation = etree.SubElement(self.xmlroot,"Validation")
@@ -696,8 +711,9 @@ class prosmart_refmac(CPluginScript):
                    if len(validateXML.xpath("//Validate_geometry_CCP4i2/Iris"))>0:
                       xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Iris")[0])
                 if self.validate.container.controlParameters.DO_BFACT:
-                   if len(validateXML.xpath("//Validate_geometry_CCP4i2/B_factors"))>0:
-                      xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/B_factors")[0])
+                   bfactors_found = validateXML.xpath("//Validate_geometry_CCP4i2/B_factors")
+                   if len(bfactors_found)>0:
+                      xml_validation.append(bfactors_found[0])
                    if len(validateXML.xpath("//Validate_geometry_CCP4i2/B_averages"))>0:
                       xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/B_averages")[0])
                 if self.validate.container.controlParameters.DO_RAMA:

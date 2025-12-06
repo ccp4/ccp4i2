@@ -2488,13 +2488,30 @@ class CShelxLabel(CShelxLabelStub):
 class CSpaceGroup(CSpaceGroupStub):
     """
     A string holding the space group
-    
+
     Extends CSpaceGroupStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
-    # Add your methods here
-    pass
+    def fix(self, value: str) -> str:
+        """
+        Normalize a space group string.
+
+        Takes a space group string (e.g., from program output) and returns
+        a normalized version suitable for storage.
+
+        Args:
+            value: Space group string to normalize
+
+        Returns:
+            Normalized space group string
+        """
+        if value is None:
+            return ""
+        # Strip whitespace and return
+        # More sophisticated normalization (e.g., P 21 21 21 -> P212121)
+        # can be added here if needed
+        return str(value).strip()
 
 
 class CSpaceGroupCell(CSpaceGroupCellStub):
