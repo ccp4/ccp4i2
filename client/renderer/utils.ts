@@ -658,6 +658,48 @@ export const useProject = (projectId: number): ProjectData => {
 };
 
 // ============================================================================
+// Project Files Hook with Optional Polling
+// ============================================================================
+
+/** Polling interval for files when task tab is open */
+const FILES_POLL_INTERVAL = 5000;
+
+/**
+ * Hook for fetching project files with optional polling.
+ *
+ * When a task widget is open, files should be polled to pick up newly created
+ * output files from completed jobs. Pass `shouldPoll=true` when the task tab
+ * is active to enable 5-second polling.
+ *
+ * @param projectId - The project ID to fetch files for
+ * @param shouldPoll - Whether to enable polling (e.g., when task tab is open)
+ */
+export const useProjectFiles = (
+  projectId: number | undefined,
+  shouldPoll: boolean = false
+) => {
+  const api = useApi();
+
+  const pollInterval = shouldPoll ? FILES_POLL_INTERVAL : 0;
+
+  const { data: files, mutate: mutateFiles } = api.get_endpoint<DjangoFile[]>(
+    projectId
+      ? {
+          type: "projects",
+          id: projectId,
+          endpoint: "files",
+        }
+      : null,
+    pollInterval
+  );
+
+  return {
+    files,
+    mutateFiles,
+  };
+};
+
+// ============================================================================
 // Job-aware Directory Hook
 // ============================================================================
 

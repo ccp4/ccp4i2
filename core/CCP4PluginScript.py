@@ -932,7 +932,9 @@ class CPluginScript(CData):
                 # Warnings are for GUI display, not for blocking execution
                 for err_item in obj_error._errors:
                     if err_item.get('severity', 0) >= SEVERITY_ERROR:
-                        error.append(**err_item)
+                        # Directly append to _errors list since err_item dict uses
+                        # 'class' as key but append() takes 'klass' as parameter
+                        error._errors.append(err_item)
 
         return error
 

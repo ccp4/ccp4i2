@@ -191,6 +191,11 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
               onChange={(event) => {
                 setIdentifier(event.target.value);
               }}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" && identifier && !inFlight) {
+                  handleFetch();
+                }
+              }}
             />
           </>
         ) : (
