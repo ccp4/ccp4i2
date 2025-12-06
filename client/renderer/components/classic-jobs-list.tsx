@@ -397,14 +397,6 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
       if (!job) return null;
 
       const { kpis } = job;
-
-      // Debug: log KPI data with actual counts
-      const floatCount = Object.keys(kpis?.float_values || {}).length;
-      const charCount = Object.keys(kpis?.char_values || {}).length;
-      if (floatCount > 0 || charCount > 0) {
-        console.log(`Job ${job.number} has ${floatCount} float KPIs, ${charCount} char KPIs:`, kpis);
-      }
-
       if (!kpis) return null;
 
       const charChips = Object.entries(kpis.char_values || {}).map(
