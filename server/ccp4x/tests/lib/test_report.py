@@ -7,7 +7,7 @@ from ...db.models import Job
 from ...db.import_i2xml import import_ccp4_project_zip
 from ...lib.utils.reporting.i2_report import (
     get_report_job_info,
-    make_old_report,
+    generate_job_report,
 )
 from ...lib.utils.jobs.get_container import get_job_container
 from ...db.ccp4i2_django_projects_manager import CCP4i2DjangoProjectsManager
@@ -62,9 +62,9 @@ class CCP4i2TestCase(TestCase):
         result = get_report_job_info(the_job.uuid)
         self.assertEqual(result["finishtime"], 1594563149.18)
 
-    def test_make_old_report(self):
+    def test_generate_job_report(self):
         the_job = Job.objects.get(id=1)
-        self.assertTrue(isinstance(make_old_report(the_job), ET.Element))
+        self.assertTrue(isinstance(generate_job_report(the_job), ET.Element))
 
     def test_ccp4_db(self):
         a = CCP4i2DjangoDbApi()

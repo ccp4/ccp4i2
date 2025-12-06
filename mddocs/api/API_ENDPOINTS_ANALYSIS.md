@@ -98,7 +98,7 @@ def validation(self, request, pk=None):
 | Endpoint | Method | Architecture | Utility Function | Management Command | Status |
 |----------|--------|--------------|------------------|-------------------|--------|
 | `params_xml/` | GET | ⚠️ **DIRECT** - Reads filesystem directly | ❌ No utility | `get_job_report --type params` | **COULD REFACTOR** |
-| `report_xml/` | GET | ⚠️ **PARTIAL** - Uses `make_old_report()` | `make_old_report()` | `get_job_report --type report` | **COULD REFACTOR** |
+| `report_xml/` | GET | ⚠️ **PARTIAL** - Uses `generate_job_report()` | `generate_job_report()` | `get_job_report --type report` | **COULD REFACTOR** |
 | `diagnostic_xml/` | GET | ⚠️ **DIRECT** - Reads filesystem directly | ❌ No utility | `get_job_report --type diagnostic` | **COULD REFACTOR** |
 | `def_xml/` | GET | ⚠️ **DIRECT** - Reads filesystem directly | ❌ No utility | ❌ No command | **OK AS IS** |
 
@@ -236,7 +236,7 @@ These are helper/utility endpoints that don't modify job state. Current implemen
 ### 🟢 LOW PRIORITY (Optional Consistency)
 
 5. **Report endpoints** (`params_xml/`, `report_xml/`, `diagnostic_xml/`)
-   - **Current**: Mix of direct filesystem reads and `make_old_report()`
+   - **Current**: Mix of direct filesystem reads and `generate_job_report()`
    - **Could use**: Unified utilities from `ccp4x.lib.utils.jobs.reports`
    - **Benefit**: Consistency, centralized logic
    - **Impact**: LOW - Current approach works well

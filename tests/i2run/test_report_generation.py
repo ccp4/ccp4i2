@@ -5,7 +5,7 @@ These tests run actual CCP4 jobs via i2run, then test the report generation
 system by:
 1. Running a job that produces program.xml output
 2. Verifying the job is stored in the database
-3. Calling make_old_report() to generate the report
+3. Calling generate_job_report() to generate the report
 4. Validating the report structure and content
 
 This ensures the full report generation pipeline works with real job data.
@@ -26,7 +26,7 @@ def test_refmac_report_generation():
     - It's commonly used and representative of refinement tasks
     """
     from ccp4x.db import models
-    from ccp4x.lib.utils.reporting.i2_report import make_old_report
+    from ccp4x.lib.utils.reporting.i2_report import generate_job_report
 
     # Run a simple refmac job using gamma demo data
     args = [
@@ -53,7 +53,7 @@ def test_refmac_report_generation():
 
         # Test report generation
         print(f"\n=== Testing report generation for {job.task_name} job {job.number} ===")
-        report_xml = make_old_report(job)
+        report_xml = generate_job_report(job)
 
         # Validate report structure
         assert report_xml is not None, "Report generation returned None"
@@ -91,7 +91,7 @@ def test_pointless_report_generation():
     Pointless uses XMLOUT.xml format which is a different code path.
     """
     from ccp4x.db import models
-    from ccp4x.lib.utils.reporting.i2_report import make_old_report
+    from ccp4x.lib.utils.reporting.i2_report import generate_job_report
 
     args = [
         "pointless",
@@ -106,7 +106,7 @@ def test_pointless_report_generation():
         assert job is not None, f"Job not found in database"
 
         print(f"\n=== Testing report generation for {job.task_name} job {job.number} ===")
-        report_xml = make_old_report(job)
+        report_xml = generate_job_report(job)
 
         assert report_xml is not None
         report_str = ET.tostring(report_xml, encoding="unicode")
@@ -128,7 +128,7 @@ def test_import_merged_report_generation():
     Import tasks often don't have program.xml, testing the fallback behavior.
     """
     from ccp4x.db import models
-    from ccp4x.lib.utils.reporting.i2_report import make_old_report
+    from ccp4x.lib.utils.reporting.i2_report import generate_job_report
 
     # Use gamma merged intensities which exist
     args = [
@@ -144,7 +144,7 @@ def test_import_merged_report_generation():
         assert job is not None
 
         print(f"\n=== Testing report generation for {job.task_name} job {job.number} ===")
-        report_xml = make_old_report(job)
+        report_xml = generate_job_report(job)
 
         assert report_xml is not None
         report_str = ET.tostring(report_xml, encoding="unicode")
@@ -212,7 +212,7 @@ def test_csymmatch_report_generation():
     Uses the gamma crystal structure which is small and fast.
     """
     from ccp4x.db import models
-    from ccp4x.lib.utils.reporting.i2_report import make_old_report
+    from ccp4x.lib.utils.reporting.i2_report import generate_job_report
 
     args = [
         "csymmatch",
@@ -228,7 +228,7 @@ def test_csymmatch_report_generation():
         assert job is not None
 
         print(f"\n=== Testing report generation for {job.task_name} job {job.number} ===")
-        report_xml = make_old_report(job)
+        report_xml = generate_job_report(job)
 
         assert report_xml is not None
         report_str = ET.tostring(report_xml, encoding="unicode")

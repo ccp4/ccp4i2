@@ -234,7 +234,7 @@ from .params_xml import get_job_params_xml      # NEW
 from .report_xml import get_job_report_xml      # NEW
 from .diagnostic_xml import get_job_diagnostic_xml  # NEW
 from .def_xml import get_job_def_xml            # NEW
-from .ccp4i2_report import make_old_report      # EXISTING
+from .ccp4i2_report import generate_job_report      # EXISTING
 
 # job_utils/workflow/
 from .what_next import get_what_next
@@ -807,7 +807,7 @@ def test_get_job_params_command(test_job):
 | `/set_context_job/` | POST | Inline | `job_utils/parameters/` |
 | `/object_method/` | POST | `object_method()` | ✅ `job_utils/container/` |
 | `/params_xml/` | GET | Inline | `job_utils/reporting/` |
-| `/report_xml/` | GET | Inline + `make_old_report()` | `job_utils/reporting/` |
+| `/report_xml/` | GET | Inline + `generate_job_report()` | `job_utils/reporting/` |
 | `/dependent_jobs/` | GET | `find_dependent_jobs()` | ✅ `job_utils/workflow/` |
 | `/clone/` | POST | `clone_job()` | ✅ `job_utils/lifecycle/` |
 | `/run/` | POST | `context_dependent_run()` | ✅ `job_utils/lifecycle/` |

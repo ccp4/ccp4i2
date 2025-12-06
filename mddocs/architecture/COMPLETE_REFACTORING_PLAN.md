@@ -56,7 +56,7 @@ These already have utilities in `ccp4x.lib.utils.jobs.reports`!
 **Benefit**: Consistency + better error handling
 
 #### 2. `report_xml/` ✅ Utility Exists
-**Current**: Mix of `make_old_report()` and filesystem
+**Current**: Mix of `generate_job_report()` and filesystem
 **Target**: Use `get_job_report_xml(job)` from `ccp4x.lib.utils.jobs.reports`
 **Effort**: 5 minutes
 **Benefit**: Consistency + caching logic centralized

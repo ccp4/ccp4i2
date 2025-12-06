@@ -14,7 +14,7 @@ from django.conf import settings
 from ccp4x.db.import_i2xml import import_ccp4_project_zip
 from ccp4x.db.models import Job
 from ccp4x.lib.utils.reporting.i2_report import (
-    make_old_report,
+    generate_job_report,
     get_report_job_info,
     simple_failed_report,
 )
@@ -69,7 +69,7 @@ class ReportGenerationTests(TestCase):
         print(f"\nTesting report for job: {job.task_name} #{job.number}")
 
         # Generate report
-        report_xml = make_old_report(job)
+        report_xml = generate_job_report(job)
 
         # Validate report
         self.assertIsNotNone(report_xml)
@@ -159,7 +159,7 @@ class ReportGenerationTests(TestCase):
         job.save()
 
         try:
-            report_xml = make_old_report(job)
+            report_xml = generate_job_report(job)
 
             # Should return a failure report, not raise an exception
             self.assertIsNotNone(report_xml)

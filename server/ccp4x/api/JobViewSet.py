@@ -60,7 +60,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from . import serializers
 from ..db import models
-from ..lib.utils.reporting.i2_report import make_old_report
+from ..lib.utils.reporting.i2_report import generate_job_report
 from ..lib.utils.jobs.clone import clone_job  # Modern clone utility with Result pattern
 from ..lib.utils.navigation.dependencies import find_dependent_jobs
 from ..lib.utils.navigation.dependencies import delete_job_and_dependents

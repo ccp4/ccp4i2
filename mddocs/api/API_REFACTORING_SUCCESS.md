@@ -284,7 +284,7 @@ python manage.py validate_job --jobuuid 4f04d478-6ca7-4b14-a5a3-9101c285e967
 | `upload_file_param/` | Legacy `job_utils` | Create unified utility |
 | `set_context_job/` | Legacy `job_utils` | Create unified utility |
 | `params_xml/` | Direct filesystem read | Use `ccp4x.lib.utils.jobs.reports` |
-| `report_xml/` | Partial (uses `make_old_report`) | Use unified utility |
+| `report_xml/` | Partial (uses `generate_job_report`) | Use unified utility |
 
 ### 🟢 OK As Is (Low Priority)
 

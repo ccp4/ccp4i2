@@ -59,7 +59,7 @@
    - Benefit: Consistent error handling, proper fallback logic
 
 2. **`report_xml/`**
-   - Before: Mix of `make_old_report()` and filesystem (35 lines)
+   - Before: Mix of `generate_job_report()` and filesystem (35 lines)
    - After: Uses `get_job_report_xml()` (35 lines)
    - Benefit: Centralized caching logic, regenerate parameter support
 

@@ -9,7 +9,7 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 from ccp4x.db import models
 from ccp4x.lib.response import Result
-from ..reporting.i2_report import make_old_report
+from ..reporting.i2_report import generate_job_report
 
 logger = logging.getLogger(f"ccp4x:{__name__}")
 
@@ -113,7 +113,7 @@ def get_job_report_xml(job: models.Job, regenerate: bool = False) -> Result[byte
                     return Result.ok(f.read())
 
             # Generate new report
-            report_xml = make_old_report(job)
+            report_xml = generate_job_report(job)
             ET.indent(report_xml, space="\t", level=0)
             xml_bytes = ET.tostring(report_xml)
 
@@ -133,7 +133,7 @@ def get_job_report_xml(job: models.Job, regenerate: bool = False) -> Result[byte
             return Result.ok(xml_bytes)
 
         # For running jobs
-        report_xml = make_old_report(job)
+        report_xml = generate_job_report(job)
         ET.indent(report_xml, space="\t", level=0)
         return Result.ok(ET.tostring(report_xml))
 
