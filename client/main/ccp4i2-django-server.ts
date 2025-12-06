@@ -221,9 +221,11 @@ export async function startDjangoServer(
 
   // Start Python process with the corrected environment
   let pythonProcess: any;
+  // In dev mode: use 2 workers for concurrent requests (no --reload, requires manual restart)
+  // Single worker with --reload caused blocking - all requests queue up
   const uvicornArgs = isDev
-    ? ["-m", "uvicorn", "asgi:application", "--reload"]
-    : ["-m", "uvicorn", "asgi:application"];
+    ? ["-m", "uvicorn", "asgi:application", "--workers", "2"]
+    : ["-m", "uvicorn", "asgi:application", "--workers", "2"];
 
   pythonProcess = spawn(PYTHON_PATH, uvicornArgs, {
     env: pythonEnv,

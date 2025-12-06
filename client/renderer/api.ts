@@ -257,8 +257,9 @@ export function useApi() {
 
     /**
      * Generic GET request with SWR caching
+     * Pass null to skip fetching (conditional fetch pattern)
      */
-    get<T>(endpoint: string, refreshInterval: number = 0) {
+    get<T>(endpoint: string | null, refreshInterval: number = 0) {
       return useSWR<T>(getStringKey(endpoint), jsonFetcher, { refreshInterval });
     },
 

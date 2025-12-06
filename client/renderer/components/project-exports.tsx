@@ -92,12 +92,16 @@ export const ProjectExportsDialog: React.FC<ProjectExportsDialogProps> = ({
     { refreshInterval: open ? 5000 : 0 }
   );
 
+  // Only poll exports when the dialog is open
   const {
     data: exports,
     error,
     isLoading,
     mutate: mutateExports,
-  } = api.get<ProjectExport[]>(`projects/${projectId}/exports/`, 5000);
+  } = api.get<ProjectExport[]>(
+    open && projectId ? `projects/${projectId}/exports/` : null,
+    open ? 5000 : 0
+  );
 
   //console.log("Project exports:", exports);
   // Force fresh data when dialog opens

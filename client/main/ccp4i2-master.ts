@@ -35,15 +35,17 @@ const getProjectsDir = () => {
     : path.join(homeDir, ".ccp4x", "CCP4X_PROJECTS");
 };
 
-// Get a sensible default for projectRoot based on dev vs packaged mode
-const getDefaultProjectRoot = () => {
-  const isDev = !app.isPackaged;
+// Compute projectRoot based on dev vs packaged mode
+// This is NOT user-configurable - it's always derived from the app location
+// In dev: parent of client/ directory (the ccp4i2 repo root where qticons/, svgicons/ exist)
+// In packaged: resources/ccp4i2 (bundled modules and icons)
+export const getProjectRoot = () => {
   if (isDev) {
     // In dev mode, client is at ccp4i2/client, so parent is projectRoot
     return path.resolve(process.cwd(), "..");
   }
-  // In packaged mode, user must configure this
-  return "";
+  // In packaged mode, bundled ccp4i2 is in resources
+  return path.join((process as any).resourcesPath as string, "ccp4i2");
 };
 
 // Get a sensible default for CCP4Dir by checking common locations
@@ -101,13 +103,16 @@ const getDefaultCCP4Dir = () => {
 export const store = new Store<StoreSchema>({
   defaults: {
     CCP4Dir: getDefaultCCP4Dir(),
-    projectRoot: getDefaultProjectRoot(),
+    projectRoot: getProjectRoot(), // Computed, not user-configurable
     devMode: false,
     zoomLevel: -2,
     CCP4I2_PROJECTS_DIR: getProjectsDir(),
     theme: "dark",
   },
 });
+
+// Note: projectRoot is always computed via getProjectRoot(), not read from store
+// The store default is just for schema compatibility
 
 let mainWindow: BrowserWindow | null = null;
 let nextServerPort: number | null = null;

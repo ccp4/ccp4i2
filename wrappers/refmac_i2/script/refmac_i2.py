@@ -121,7 +121,19 @@ class refmac_i2(CPluginScript):
             return super(refmac_i2, self).startProcess()
 
     def _isQtEnvironment(self):
-        """Check if we're running in a Qt environment with QProcess available."""
+        """Check if we're running in a Qt GUI environment (not Django execution mode).
+
+        We check for Django execution context rather than just PySide2 availability,
+        because PySide2 is installed in CCP4 but we may be running via Django.
+        """
+        import os
+        # If Django settings module is set, we're in Django execution mode
+        if os.environ.get('DJANGO_SETTINGS_MODULE'):
+            return False
+        # Also check explicit backend setting
+        if os.environ.get('CCP4I2_BACKEND') == 'django':
+            return False
+        # Otherwise check for real Qt (not baselayer stub)
         try:
             from PySide2.QtCore import QProcess
             return True

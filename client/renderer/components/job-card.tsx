@@ -1,6 +1,5 @@
 import { useApi } from "../api";
 import {
-  Avatar,
   Button,
   Card,
   CardActions,
@@ -16,10 +15,8 @@ import {
   Paper,
   styled,
   Toolbar,
-  Typography,
 } from "@mui/material";
-import { File, Job, JobCharValue, JobFloatValue } from "../types/models";
-import EditableTypography from "./editable-typography";
+import { Job } from "../types/models";
 import { useCallback, useMemo, useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { MyExpandMore } from "./expand-more";
@@ -46,12 +43,21 @@ const MyCard = styled(Card)(({ theme }) => ({
   borderRadius: 20,
 }));
 
+/** Embedded KPIs structure from job_tree endpoint */
+interface EmbeddedKPIs {
+  float_values: Record<string, number>;
+  char_values: Record<string, string>;
+}
+
 interface JobCardProps {
   job: Job;
+  /** Embedded KPIs from job_tree endpoint (preferred) */
+  kpis?: EmbeddedKPIs;
   withSubtitle?: boolean;
 }
 export const JobCard: React.FC<JobCardProps> = ({
   job,
+  kpis,
   withSubtitle = false,
 }) => {
   const api = useApi();
@@ -66,8 +72,6 @@ export const JobCard: React.FC<JobCardProps> = ({
     mutateJobs,
     mutateAllJobs,
     files,
-    jobCharValues,
-    jobFloatValues,
     mutateFiles,
   } = useProject(job.project);
 
@@ -92,30 +96,36 @@ export const JobCard: React.FC<JobCardProps> = ({
   }, [jobs]);
 
   const kpiContent = useMemo(() => {
+    if (!kpis) return null;
+
+    const charChips = Object.entries(kpis.char_values || {}).map(
+      ([key, value]) => (
+        <Chip
+          key={`char_${key}`}
+          avatar={<div style={{ width: "5rem" }}>{key}</div>}
+          label={value}
+        />
+      )
+    );
+
+    const floatChips = Object.entries(kpis.float_values || {}).map(
+      ([key, value]) => (
+        <Chip
+          key={`float_${key}`}
+          sx={{ backgroundColor: "#DFD" }}
+          avatar={<div style={{ width: "5rem" }}>{key}</div>}
+          label={value.toPrecision(3)}
+        />
+      )
+    );
+
     return (
       <>
-        {jobCharValues
-          ?.filter((item: JobCharValue) => item.job === job.id)
-          .map((item: JobCharValue) => (
-            <Chip
-              key={item.key}
-              avatar={<div style={{ width: "5rem" }}>{item.key}</div>}
-              label={item.value}
-            />
-          ))}
-        {jobFloatValues
-          ?.filter((item: JobFloatValue) => item.job === job.id)
-          .map((item) => (
-            <Chip
-              key={item.key}
-              sx={{ backgroundColor: "#DFD" }}
-              avatar={<div style={{ width: "5rem" }}>{item.key}</div>}
-              label={item.value.toPrecision(3)}
-            />
-          ))}
+        {charChips}
+        {floatChips}
       </>
     );
-  }, [jobCharValues, jobFloatValues]);
+  }, [kpis]);
 
   const [jobsExpanded, setJobsExpanded] = useState(false);
   const [filesExpanded, setFilesExpanded] = useState(false);

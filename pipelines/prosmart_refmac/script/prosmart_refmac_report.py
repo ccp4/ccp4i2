@@ -378,7 +378,6 @@ class prosmart_refmac_report(Report):
             xmlPath = './/'+tag+'/Cycle'
             xmlNodes = xmlnode.findall(xmlPath)
             nCycles = len(xmlNodes)
-            print("addProgressTable nCycles",nCycles)
             if nCycles>0:
                 nodeData = {'number':['-']*nCycles,'Rfactor':['-']*nCycles,'Rfree':['-']*nCycles,'rmsBonds':['-']*nCycles}
                 cycleNodes = self.xmlnode.findall('.//'+tag+'/Cycle')
@@ -398,19 +397,11 @@ class prosmart_refmac_report(Report):
                 nodeSelect = [0, nCycles-offset-1, nCycles-offset]
                 if nCycles-offset <= 0: nodeSelect = [0]
                 if nCycles-offset == 1: nodeSelect = [0, 1]
-                print("nodeSelect",nodeSelect)
 
 #                selectString = "//RefmacOptimiseWeight/"+tag+"/Cycle[1]"
 #                for i in range(2,nCycles):
 #                    selectString += " | //RefmacOptimiseWeight/"+tag+"/Cycle[%d]" % i
                 progressTable = progressTableDiv.addTable(style="height:250px; width:260px;float:left;", outputXml=self.outputXml, internalId=internalId)
-#                progressTable.addData(title="Cycle", select="number")
-#                progressTable.addData(title="R-factor", select="r_factor")
-#                progressTable.addData(title="R-free",   select="r_free",   expr="x if float(x)>=0.0 else '-'")
-                print("number",[nodeData['number'][i] for i in nodeSelect])
-                print("Rfactors",[nodeData['Rfactor'][i] for i in nodeSelect])
-                print("Rfree",[nodeData['Rfree'][i] for i in nodeSelect])
-                print("rmsBonds",[nodeData['rmsBonds'][i] for i in nodeSelect])
                 progressTable.addData(title="Cycle", data=[nodeData['number'][i] for i in nodeSelect])
                 progressTable.addData(title="R-factor", data=[nodeData['Rfactor'][i] for i in nodeSelect])
                 rfree_data = [nodeData['Rfree'][i] for i in nodeSelect]

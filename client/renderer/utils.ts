@@ -5,8 +5,6 @@ import useSWR, { KeyedMutator, mutate, SWRResponse } from "swr";
 import { useApi } from "./api";
 import {
   Job,
-  JobCharValue,
-  JobFloatValue,
   Project,
   File as DjangoFile,
 } from "./types/models";
@@ -78,10 +76,6 @@ export interface ProjectData {
   mutateAllJobs: () => void;
   files: DjangoFile[] | undefined;
   mutateFiles: KeyedMutator<DjangoFile[]>;
-  jobCharValues: JobCharValue[] | undefined;
-  mutateJobCharValues: () => void;
-  jobFloatValues: JobFloatValue[] | undefined;
-  mutateJobFloatValues: () => void;
 }
 
 /**
@@ -646,20 +640,8 @@ export const useProject = (projectId: number): ProjectData => {
     endpoint: "files",
   });
 
-  const { data: jobFloatValues, mutate: mutateJobFloatValues } =
-    api.get_endpoint<JobFloatValue[]>({
-      type: "projects",
-      id: projectId,
-      endpoint: "job_float_values/",
-    });
-
-  const { data: jobCharValues, mutate: mutateJobCharValues } = api.get_endpoint<
-    JobCharValue[]
-  >({
-    type: "projects",
-    id: projectId,
-    endpoint: "job_char_values/",
-  });
+  // Note: KPIs are now embedded in job_tree endpoint, so we no longer need
+  // separate job_float_values and job_char_values API calls
 
   return {
     project,
@@ -672,10 +654,6 @@ export const useProject = (projectId: number): ProjectData => {
     mutateAllJobs,
     files,
     mutateFiles,
-    jobCharValues,
-    mutateJobCharValues,
-    jobFloatValues,
-    mutateJobFloatValues,
   };
 };
 

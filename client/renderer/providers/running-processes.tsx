@@ -45,7 +45,11 @@ export const RunningProcessesProvider: React.FC<PropsWithChildren> = (
   const [jobsAndProcessesDialogOpen, setJobsAndProcessesDialogOpen] =
     useState<boolean>(false);
   const api = useApi();
-  const { data: activeJobs } = api.get<any>("active_jobs/", 5000);
+  // Only poll active_jobs when the dialog is open
+  const { data: activeJobs } = api.get<any>(
+    jobsAndProcessesDialogOpen ? "active_jobs/" : null,
+    jobsAndProcessesDialogOpen ? 5000 : 0
+  );
   const { data: projects } = api.get<Project[]>("projects/");
   // Handle new API response format: {success: true, data: {active_jobs: [...]}}
   const runningProcesses =

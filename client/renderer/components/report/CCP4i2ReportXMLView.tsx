@@ -1,40 +1,37 @@
-import { ReactNode, useCallback, useEffect, useMemo } from "react";
+import { ReactNode, useEffect, useMemo } from "react";
 import $ from "jquery";
 import {
-  Avatar,
-  Button,
   Paper,
   Skeleton,
-  Stack,
   Typography,
 } from "@mui/material";
-import { Job } from "../../types/models";
 import { CCP4i2ReportElement } from "./CCP4i2ReportElement";
-import { useApi } from "../../api";
 import { useCCP4i2Window } from "../../app-context";
-import { useJob, usePrevious } from "../../utils";
-import { useRouter } from "next/navigation";
+import { useJob, usePrevious, useProject } from "../../utils";
 import { usePopcorn } from "../../providers/popcorn-provider";
 import useSWR from "swr";
 import { swrFetcher } from "../../api-fetch";
-import { useTheme } from "../../theme/theme-provider";
 import { CCP4i2WhatNext } from "./CCP4i2WhatNext";
 import { useIsJobEffectivelyActive } from "../../providers/recently-started-jobs-context";
 
 export const CCP4i2ReportXMLView = () => {
-  const { customColors } = useTheme();
-  const api = useApi();
-  const { jobId } = useCCP4i2Window();
-  const { job } = useJob(jobId);
-  const { mutate: mutateJobs } = api.get_endpoint<Job[]>({
-    type: "projects",
-    id: job?.project,
-    endpoint: "jobs",
-  });
+  const { jobId, projectId } = useCCP4i2Window();
 
-  // Use grace period-aware hook to handle DB latency after job submission
-  // This ensures we keep polling even if the job status hasn't updated yet
-  const isJobActive = useIsJobEffectivelyActive(job?.id, job?.status);
+  // Get jobs from job_tree (always current status)
+  const { jobs } = useProject(projectId || 0);
+  const jobFromTree = useMemo(() => {
+    return jobs?.find((j) => j.id === jobId);
+  }, [jobs, jobId]);
+
+  // Get full job data for rendering (status may lag behind job_tree)
+  const { job } = useJob(jobId);
+
+  // Use job_tree status for polling (consistent with jobs list)
+  const currentStatus = jobFromTree?.status ?? job?.status;
+  const isJobActive = useIsJobEffectivelyActive(jobId ?? undefined, currentStatus);
+
+  // Debug: Log polling state on every render
+  console.log(`[Report] jobId=${jobId}, treeStatus=${jobFromTree?.status}, jobStatus=${job?.status}, isJobActive=${isJobActive}, will poll=${isJobActive ? 'yes (5s)' : 'no'}`);
 
   const { data: report_xml_json, error: fetchError, mutate: mutateReportXml } = useSWR<any>(
     job ? `/api/proxy/jobs/${job.id}/report_xml/` : null,
@@ -68,8 +65,6 @@ export const CCP4i2ReportXMLView = () => {
   }, [report_xml_json]);
 
   const oldJob = usePrevious(job);
-
-  const router = useRouter();
 
   const { setMessage } = usePopcorn();
 
@@ -108,8 +103,11 @@ export const CCP4i2ReportXMLView = () => {
       .toArray();
   }, [report_xml, job]);
 
-  // Show error state
-  if (fetchError) {
+  // Show error state (but ignore abort errors - they're normal during polling)
+  const isAbortError = fetchError?.name === 'AbortError' ||
+    String(fetchError?.message || '').includes('abort');
+
+  if (fetchError && !isAbortError) {
     return (
       <Paper sx={{ p: 2, m: 2 }}>
         <Typography color="error" variant="h6">

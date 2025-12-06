@@ -1,7 +1,6 @@
 "use client";
-import { use, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { Box, Container, LinearProgress, Tab, Tabs } from "@mui/material";
-import { useApi } from "../api";
 import { Editor } from "@monaco-editor/react";
 import { JobHeader } from "../components/job-header";
 import { CCP4i2ReportXMLView } from "../components/report/CCP4i2ReportXMLView";
@@ -22,16 +21,27 @@ import { ValidationViewer } from "../components/validation-viewer";
 import { useRunCheck } from "../providers/run-check-provider";
 import { useJobTab } from "../providers/job-tab-provider";
 import { useTheme } from "../theme/theme-provider";
+import { useIsJobEffectivelyActive } from "../providers/recently-started-jobs-context";
 
 export interface JobViewProps {
   jobid: number;
 }
 export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
-  const { job, params_xml, validation, diagnostic_xml, def_xml, container } =
-    useJob(jobid);
-  const { project, jobs, mutateJobs } = useProject(job?.project || 0);
   const { devMode, jobId, setJobId, projectId, setProjectId } =
     useCCP4i2Window();
+
+  // Get project and jobs list first (from job_tree - always up to date)
+  const { project, jobs, mutateJobs } = useProject(projectId || 0);
+
+  // Find job status from jobs array (consistent with jobs list icons)
+  const jobFromTree = useMemo(() => {
+    return jobs?.find((j) => j.id === jobid);
+  }, [jobs, jobid]);
+
+  // Get detailed job data (params_xml, container, etc.) - status may lag behind
+  const { job, params_xml, validation, diagnostic_xml, def_xml, container } =
+    useJob(jobid);
+
   const {
     setExtraDialogActions,
     setProcessedErrors,
@@ -40,13 +50,33 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
   } = useRunCheck();
   const { mode } = useTheme();
 
+  // Use job_tree status (jobFromTree) for polling - it's always current
+  // Fall back to useJob's status if job_tree hasn't loaded yet
+  const currentStatus = jobFromTree?.status ?? job?.status;
+  const isJobActive = useIsJobEffectivelyActive(jobid, currentStatus);
+
+  // Create merged job with current status from job_tree for consistent UI
+  // This ensures JobHeader shows the same status as the jobs list
+  const jobWithCurrentStatus = useMemo(() => {
+    if (!job) return undefined;
+    if (jobFromTree?.status !== undefined && jobFromTree.status !== job.status) {
+      return { ...job, status: jobFromTree.status };
+    }
+    return job;
+  }, [job, jobFromTree?.status]);
+
+  // Debug: log status sources
+  console.log(`[JobView] jobid=${jobid}, treeStatus=${jobFromTree?.status}, jobStatus=${job?.status}, mergedStatus=${jobWithCurrentStatus?.status}, isJobActive=${isJobActive}`);
+
   const previousJob = usePrevious(job);
   const { jobTabValue: tabValue, setJobTabValue: setTabValue } = useJobTab();
-  //const [tabValue, setTabValue] = useState<Number>(job?.status == 1 ? 0 : 3);
-  const { data: report_xml_json, mutate: mutateReportXml } = useSWR<any>(
+
+  // This SWR is for the raw XML editor view (tabValue == 2)
+  // Uses same key as CCP4i2ReportXMLView so SWR deduplicates - keep polling logic consistent
+  const { data: report_xml_json } = useSWR<any>(
     job ? `/api/proxy/jobs/${job.id}/report_xml/` : null,
     swrFetcher,
-    { refreshInterval: job?.status == 3 || job?.status == 2 ? 5000 : 0 }
+    { refreshInterval: isJobActive ? 5000 : 0 }
   );
 
   const report_xml: XMLDocument | null = useMemo(() => {
@@ -70,12 +100,17 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
       if (job && setProjectId && job.project !== projectId) {
         setProjectId(job.project);
       }
-      if (job && job != previousJob) {
-        setTabValue(job.status == 1 ? 0 : [3, 6].includes(job.status) ? 3 : 4);
+      // Use currentStatus (from job_tree) for tab selection to be consistent with UI
+      // Status mapping: 1=Pending, 2=Queued, 3=Running, 4=Failed, 5=Unsatisfactory, 6=Finished, 7=Running remotely
+      // - Pending (1) → Task interface (tab 0)
+      // - Queued/Running/Finished/Running remotely (2,3,6,7) → Report (tab 3) with polling
+      // - Failed/Unsatisfactory (4,5) → Diagnostics (tab 4)
+      if (job && job != previousJob && currentStatus !== undefined) {
+        setTabValue(currentStatus == 1 ? 0 : [2, 3, 6, 7].includes(currentStatus) ? 3 : 4);
       }
     };
     asyncFunc();
-  }, [job, setJobId]);
+  }, [job, setJobId, currentStatus]);
 
   //Here a useEffect that will clear processedErrors and extraDialogActions when job changes
   useEffect(() => {
@@ -84,25 +119,25 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
     if (processedErrors) setProcessedErrors(null);
   }, [jobid, setExtraDialogActions, setProcessedErrors]);
 
-  return !project || !jobs || !job ? (
+  return !project || !jobs || !jobWithCurrentStatus ? (
     <LinearProgress />
   ) : (
     <>
       <ToolBar />
       <Container>
-        <JobHeader job={job} mutateJobs={mutateJobs} />
+        <JobHeader job={jobWithCurrentStatus} mutateJobs={mutateJobs} />
         <Tabs value={tabValue} onChange={handleTabChange} variant="fullWidth">
           <Tab value={0} label="Task interface" />
           {devMode && <Tab value={1} label="Params as xml" />}
           {devMode && <Tab value={2} label="Report as xml" />}
-          {(devMode || [3, 4, 6, 7, 9, 10].includes(job?.status)) && (
+          {(devMode || [3, 4, 6, 7, 9, 10].includes(jobWithCurrentStatus.status)) && (
             <Tab value={3} label="Report" />
           )}
-          {(devMode || job?.status === 5) && (
+          {(devMode || jobWithCurrentStatus.status === 5) && (
             <Tab value={4} label="Diagnostics" />
           )}
           {devMode && <Tab value={5} label="Def xml" />}
-          {(devMode || job?.status === 1) && (
+          {(devMode || jobWithCurrentStatus.status === 1) && (
             <Tab value={6} label="Validation report" />
           )}
           {devMode && <Tab value={7} label="Job container" />}
@@ -152,7 +187,7 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
             />
           )}
           {tabValue == 3 && jobid && <CCP4i2ReportXMLView />}
-          {(devMode || job?.status === 5) && tabValue == 4 && diagnostic_xml && (
+          {(devMode || jobWithCurrentStatus.status === 5) && tabValue == 4 && diagnostic_xml && (
             <Diagnostic xmlDocument={diagnostic_xml} />
           )}
           {devMode && tabValue == 5 && def_xml && (
@@ -163,8 +198,8 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
               theme={mode === "dark" ? "vs-dark" : "light"}
             />
           )}
-          {(devMode || job?.status === 1) && tabValue == 6 && validation && (
-            <ValidationViewer job={job} />
+          {(devMode || jobWithCurrentStatus.status === 1) && tabValue == 6 && validation && (
+            <ValidationViewer job={jobWithCurrentStatus} />
           )}
           {tabValue == 7 && container && (
             <Editor
@@ -175,13 +210,13 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
             />
           )}
           {tabValue == 8 && container && (
-            <JobCommentEditor jobId={job.id} />
+            <JobCommentEditor jobId={jobWithCurrentStatus.id} />
           )}
-          {tabValue == 9 && job && project && (
-            <JobDirectoryView job={job} project={project} />
+          {tabValue == 9 && project && (
+            <JobDirectoryView job={jobWithCurrentStatus} project={project} />
           )}
-          {tabValue == 10 && job && project && (
-            <JobLogViewer job={job} project={project} />
+          {tabValue == 10 && project && (
+            <JobLogViewer job={jobWithCurrentStatus} project={project} />
           )}
         </Box>
         <JobMenu />

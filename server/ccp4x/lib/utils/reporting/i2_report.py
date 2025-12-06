@@ -364,16 +364,7 @@ def generate_job_report(job: Job) -> ET.Element:
 
     # Step 1: Get report class from registry
     task_manager: CTaskManager = TASKMANAGER()
-
-    # DEBUG: Check what's happening
-    import os
-    print(f"DEBUG: Looking up report for task '{task_name}'")
-    print(f"DEBUG: CCP4I2_ROOT = {os.environ.get('CCP4I2_ROOT', 'NOT SET')}")
-    print(f"DEBUG: has_report('{task_name}') = {task_manager.has_report(task_name)}")
-    print(f"DEBUG: list_reports()[:5] = {task_manager.list_reports()[:5]}")
-
     report_class = task_manager.getReportClass(name=task_name)
-    print(f"DEBUG: report_class = {report_class}")
 
     if report_class is None:
         logger.error(
@@ -416,24 +407,39 @@ def generate_job_report(job: Job) -> ET.Element:
         )
 
     # Step 4: Parse XML if we have one
+    # Use retry logic to handle rare race conditions with atomic writes
     output_xml = None
     if xml_path is not None:
-        try:
-            output_xml = ET.parse(xml_path).getroot()
-            logger.debug("Parsed XML file: %s", xml_path)
-        except ET.ParseError as err:
-            logger.error("Failed to parse XML file %s: %s", xml_path, err)
-            return simple_failed_report(
-                "Failed to parse program XML",
-                task_name,
-                details=f"File: {xml_path}\nError: {err}",
-            )
+        import time
+        max_retries = 3
+        retry_delay = 0.1  # 100ms between retries
+        last_error = None
+
+        for attempt in range(max_retries):
+            try:
+                output_xml = ET.parse(xml_path).getroot()
+                logger.debug("Parsed XML file: %s", xml_path)
+                break
+            except ET.ParseError as err:
+                last_error = err
+                if attempt < max_retries - 1:
+                    logger.warning(
+                        "XML parse attempt %d failed for %s, retrying: %s",
+                        attempt + 1, xml_path, err
+                    )
+                    time.sleep(retry_delay)
+                else:
+                    logger.error("Failed to parse XML file %s after %d attempts: %s",
+                                 xml_path, max_retries, err)
+                    return simple_failed_report(
+                        "Failed to parse program XML",
+                        task_name,
+                        details=f"File: {xml_path}\nError: {err}",
+                    )
 
     # Step 5: Collect job info from database
     try:
         report_job_info = get_report_job_info(job.uuid)
-        print(f"DEBUG: report_job_info descendentjobs = {report_job_info.get('descendentjobs', 'NOT FOUND')}")
-        print(f"DEBUG: report_job_info fileroot = {report_job_info.get('fileroot', 'NOT FOUND')}")
     except Exception as err:
         logger.error("Failed to get job info for %s: %s", job.uuid, err)
         return simple_failed_report(

@@ -841,8 +841,6 @@ class Container(ReportClass):
         for child in self.children:
             if hasattr(child, 'as_data_etree'):
                 root.append(child.as_data_etree())
-            else:
-                print('No as_data_etree on ', type(child).__name__)
         return root
 
     def graph_data_as_rtf(self, fileName=None):
@@ -2757,8 +2755,6 @@ class Plot(GenericElement):
             raise
             return CErrorReport(self.__class__, 101, schemafile)
 
-        print("SCHEMA", schema)
-
         tree = self.as_etree()
 
         table = etree.Element('CCP4Table')
@@ -2802,9 +2798,6 @@ class IODataList(ReportClass):
             return root
 
         for fileInfo in self.jobInfo[role]:
-
-            print(fileInfo)
-
             outerDiv = etree.Element('div')
             outerDiv.set('class', 'dataline')
             obj = etree.Element('div')
@@ -2830,7 +2823,6 @@ class IODataList(ReportClass):
             else:
                 obj.text = str(fileInfo['annotation'])
 
-            print(params)
             """
 #TODO - Quite a lot!
 PhaserRFileDataFile

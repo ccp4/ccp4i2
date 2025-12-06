@@ -5,7 +5,6 @@ import React, {
   useContext,
   useState,
   useCallback,
-  useRef,
   useEffect,
 } from "react";
 
@@ -80,6 +79,9 @@ const CLEANUP_INTERVAL_MS = 5000;
 
 /** Active job statuses: Queued (2), Running (3), Running remotely (7) */
 const ACTIVE_JOB_STATUSES = [2, 3, 7];
+
+/** Statuses that indicate job has NOT started: Unknown (0), Pending (1) */
+const PENDING_JOB_STATUSES = [0, 1];
 
 // ============================================================================
 // Context
@@ -208,13 +210,13 @@ export const RecentlyStartedJobsProvider: React.FC<
             // Grace period expired
             hasChanges = true;
 
-            // Check if job became active
-            const becameActive =
+            // Check if job started (any status except Unknown/Pending)
+            const jobStarted =
               info.lastObservedStatus !== undefined &&
-              ACTIVE_JOB_STATUSES.includes(info.lastObservedStatus);
+              !PENDING_JOB_STATUSES.includes(info.lastObservedStatus);
 
-            if (!becameActive && !info.warnedAboutStall) {
-              // Job didn't become active within grace period - likely stalled
+            if (!jobStarted && !info.warnedAboutStall) {
+              // Job didn't start within grace period - likely stalled
               console.warn(
                 `[RecentlyStartedJobs] Job ${info.jobNumber} (${jobId}) appears stalled - ` +
                   `last observed status: ${info.lastObservedStatus ?? "unknown"}`
@@ -225,7 +227,7 @@ export const RecentlyStartedJobsProvider: React.FC<
                 jobTitle: info.jobTitle,
                 message: `Job ${info.jobNumber} "${info.jobTitle}" may not have started - check the server logs`,
               });
-            } else if (becameActive) {
+            } else if (jobStarted) {
               console.log(
                 `[RecentlyStartedJobs] Job ${info.jobNumber} successfully started (status: ${info.lastObservedStatus})`
               );

@@ -20,7 +20,7 @@ from __future__ import print_function
     """
 
 from lxml import etree
-from baselayer import QtCore
+from baselayer import QtCore, DJANGO
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core import CCP4Utils
@@ -193,13 +193,14 @@ class prosmart_refmac(CPluginScript):
         # Install xml node for in-progress refmac
         self.xmlLength = 0
 
-        # Connect to progressUpdated signal for streaming updates (preferred in Django mode)
-        # This avoids file-watching race conditions
         firstRefmacXMLFilename = self.firstRefmac.makeFileName(format='PROGRAMXML')
-        self.firstRefmac.connectSignal(self.firstRefmac, 'progressUpdated', self.handleRefmacProgress)
 
-        # Also keep file watching as fallback for Qt mode where QProcess is used
-        self.watchFile(firstRefmacXMLFilename, handler=self.handleXmlChanged, minDeltaSize=34, unwatchWhileHandling=True)
+        if DJANGO():
+            # Django mode: Use Signal/Slot for streaming updates (atomic writes, no race conditions)
+            self.firstRefmac.connectSignal(self.firstRefmac, 'progressUpdated', self.handleRefmacProgress)
+        else:
+            # Qt mode: Use file watching as QProcess doesn't support our streaming mechanism
+            self.watchFile(firstRefmacXMLFilename, handler=self.handleXmlChanged, minDeltaSize=34, unwatchWhileHandling=True)
 
         rv = self.firstRefmac.process()
 
@@ -659,7 +660,8 @@ class prosmart_refmac(CPluginScript):
                        self.saveXml()
 
            # Stop file watcher before validation to prevent handleXmlChanged from clearing xmlroot
-           if hasattr(self, 'firstRefmac'):
+           # (Only in Qt mode - in Django mode we use Signal/Slot, not file watching)
+           if not DJANGO() and hasattr(self, 'firstRefmac'):
                firstRefmacXMLFilename = self.firstRefmac.makeFileName(format='PROGRAMXML')
                self.unwatchFile(firstRefmacXMLFilename)
 

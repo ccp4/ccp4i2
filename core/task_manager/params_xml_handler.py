@@ -160,14 +160,11 @@ class ParamsXmlHandler:
             # Import all parameter values
             imported_count = self._import_container_values(body, task)
 
-            print(f"✅ Imported {imported_count} parameters from: {params_xml_path}")
+            logger.debug("Imported %d parameters from: %s", imported_count, params_xml_path)
             return True
 
         except Exception as e:
-            print(f"❌ Error importing params XML: {e}")
-            import traceback
-
-            traceback.print_exc()
+            logger.error("Error importing params XML: %s", e, exc_info=True)
             return False
 
     def _export_container(self, container: CData, parent_elem: ET.Element, parent_context: str = None, exclude_unset: bool = True):

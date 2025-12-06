@@ -1,10 +1,6 @@
 import {
   Button,
   Stack,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
   Menu as MuiMenu,
   MenuItem,
   IconButton,
@@ -31,6 +27,8 @@ import { usePopcorn } from "../providers/popcorn-provider";
 import { useRunCheck } from "../providers/run-check-provider";
 import { useJobTab } from "../providers/job-tab-provider";
 import { I2RunDialog } from "./i2run-dialog";
+import { useRecentlyStartedJobs } from "../providers/recently-started-jobs-context";
+import { mutate } from "swr";
 
 interface ToolbarButton {
   label: string;
@@ -62,7 +60,15 @@ export default function ToolBar() {
   const { setMessage } = usePopcorn();
   const { confirmTaskRun } = useRunCheck();
   const { setJobTabValue } = useJobTab();
+  const { markJobAsStarting } = useRecentlyStartedJobs();
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
+
+  // Helper to mutate both jobs endpoints (flat list and tree)
+  const mutateAllJobs = () => {
+    mutateJobs();
+    // Also invalidate the job_tree endpoint used by classic-jobs-list
+    mutate((key: string) => typeof key === 'string' && key.includes(`/projects/${projectId}/job_tree`));
+  };
 
   useEffect(() => {
     if (!panelRef.current) return;
@@ -85,7 +91,7 @@ export default function ToolBar() {
         }
         if (cloneResult?.id) {
           mutateJob();
-          mutateJobs();
+          mutateAllJobs();
           router.push(`/project/${projectId}/job/${cloneResult.id}`);
         }
       } catch (error) {
@@ -106,10 +112,19 @@ export default function ToolBar() {
         }
         setMessage(`Submitted job ${runResult?.number}: ${runResult?.task_name}`, "success");
         if (runResult?.id) {
-          setTimeout(() => {
-            mutateJob();
-            mutateJobs();
-          }, 1000);
+          // Mark job as recently started to trigger grace period polling
+          markJobAsStarting(
+            runResult.id,
+            projectId!,
+            runResult.number,
+            runResult.task_name || job.title
+          );
+          mutateJob();
+          mutateAllJobs();
+          // Navigate to the running job if it's a new job (different from current)
+          if (runResult.id !== job.id) {
+            router.push(`/project/${projectId}/job/${runResult.id}`);
+          }
         }
       } catch (error) {
         setMessage(`Error running job: ${error instanceof Error ? error.message : String(error)}`, "error");

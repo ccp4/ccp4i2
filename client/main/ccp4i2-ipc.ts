@@ -8,6 +8,7 @@ import fs from "node:fs";
 import { spawn, ChildProcessWithoutNullStreams } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { StoreSchema } from "../types/store";
+import { getProjectRoot } from "./ccp4i2-master";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -94,11 +95,13 @@ export const installIpcHandlers = (
   setDjangoServer: (server: ChildProcessWithoutNullStreams) => void
 ) => {
   const getConfigResponse = () => {
-    const projectRoot = store.get("projectRoot") || "";
+    const projectRoot = getProjectRoot(); // Always computed, not from store
     const CCP4Dir = store.get("CCP4Dir") || "";
     // Prefer ccp4-python from CCP4 installation, fall back to venv
     const python_path = findPython(CCP4Dir, projectRoot);
     const config: any = store.store; // Retrieve all values from the electron-store
+    // Override projectRoot with computed value (not user-configurable)
+    config.projectRoot = projectRoot;
     // Use venv_python key for backwards compatibility with the UI
     config.venv_python = python_path;
     config.UVICORN_PORT = djangoServerPort;
@@ -216,7 +219,7 @@ export const installIpcHandlers = (
     if (!nextServerPort) return;
     const djangoServer = await startDjangoServer(
       store.get("CCP4Dir"),
-      store.get("projectRoot"),
+      getProjectRoot(), // Always computed, not from store
       djangoServerPort,
       nextServerPort,
       isDev,
