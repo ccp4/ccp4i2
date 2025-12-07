@@ -1,23 +1,62 @@
 import { CCP4i2TaskElement, CCP4i2TaskElementProps } from "./task-element";
 import { useJob } from "../../../utils";
-import { Card, CardContent, CardHeader, Grid2, Paper } from "@mui/material";
-import { ErrorInfo } from "./error-info";
+import { Grid2, Paper } from "@mui/material";
 import { useMemo } from "react";
+import { useInferredVisibility } from "./hooks/useInferredVisibility";
 
 export const CEnsembleElement: React.FC<CCP4i2TaskElementProps> = (props) => {
   const { job, itemName } = props;
   const { useTaskItem, getValidationColor } = useJob(job.id);
   const { item } = useTaskItem(itemName);
 
-  const inferredVisibility = useMemo(() => {
-    if (!props.visibility) return true;
-    if (typeof props.visibility === "function") {
-      return props.visibility();
-    }
-    return props.visibility;
-  }, [props.visibility]);
+  // Fetch all child items at top level to comply with React hooks rules
+  const numberPath = item ? `${item._objectPath}.number` : "";
+  const labelPath = item ? `${item._objectPath}.label` : "";
+  const usePath = item ? `${item._objectPath}.use` : "";
+  const pdbItemListPath = item ? `${item._objectPath}.pdbItemList` : "";
 
-  return inferredVisibility ? (
+  const { item: numberItem } = useTaskItem(numberPath);
+  const { item: useItem } = useTaskItem(usePath);
+  const { item: pdbItemListItem } = useTaskItem(pdbItemListPath);
+
+  const isVisible = useInferredVisibility(props.visibility);
+
+  // Memoize qualifiers to avoid creating new objects on each render
+  const numberQualifiers = useMemo(
+    () => ({
+      ...numberItem?._qualifiers,
+      guiLabel: "copies",
+    }),
+    [numberItem?._qualifiers]
+  );
+
+  const labelQualifiers = useMemo(
+    () => ({
+      ...props.qualifiers,
+      guiLabel: "label",
+    }),
+    [props.qualifiers]
+  );
+
+  const useQualifiers = useMemo(
+    () => ({
+      ...useItem?._qualifiers,
+      guiLabel: "use",
+    }),
+    [useItem?._qualifiers]
+  );
+
+  const pdbItemListQualifiers = useMemo(
+    () => ({
+      ...pdbItemListItem?._qualifiers,
+      guiLabel: "PDBs",
+    }),
+    [pdbItemListItem?._qualifiers]
+  );
+
+  if (!isVisible) return null;
+
+  return (
     <Paper
       sx={{
         border: "3px solid",
@@ -27,47 +66,40 @@ export const CEnsembleElement: React.FC<CCP4i2TaskElementProps> = (props) => {
     >
       {item && (
         <Grid2 container rowSpacing={0}>
-          <Grid2 key={"number"} size={{ xs: 4 }}>
+          <Grid2 key="number" size={{ xs: 4 }}>
             <CCP4i2TaskElement
               {...props}
               sx={{ my: 0, py: 0, minWidth: "10rem" }}
-              itemName={`${item._objectPath}.number`}
-              qualifiers={{
-                ...useTaskItem(`${item._objectPath}.number`).item._qualifiers,
-                guiLabel: "copies",
-              }}
+              itemName={numberPath}
+              qualifiers={numberQualifiers}
             />
           </Grid2>
-          <Grid2 key={"label"} size={{ xs: 4 }}>
+          <Grid2 key="label" size={{ xs: 4 }}>
             <CCP4i2TaskElement
               {...props}
               sx={{ my: 0, py: 0, minWidth: "10rem" }}
-              itemName={`${item._objectPath}.label`}
-              qualifiers={{ ...props.qualifiers, guiLabel: "label" }}
+              itemName={labelPath}
+              qualifiers={labelQualifiers}
             />
           </Grid2>
-          <Grid2 key={"use"} size={{ xs: 4 }}>
+          <Grid2 key="use" size={{ xs: 4 }}>
             <CCP4i2TaskElement
               {...props}
               sx={{ my: 0, py: 0, minWidth: "10rem" }}
-              itemName={`${item._objectPath}.use`}
-              qualifiers={{
-                ...useTaskItem(`${item._objectPath}.use`).item._qualifiers,
-                guiLabel: "use",
-              }}
+              itemName={usePath}
+              qualifiers={useQualifiers}
             />
           </Grid2>
         </Grid2>
       )}
-      <CCP4i2TaskElement
-        {...props}
-        sx={{ my: 0, py: 0, minWidth: "10rem" }}
-        itemName={`${item._objectPath}.pdbItemList`}
-        qualifiers={{
-          ...useTaskItem(`${item._objectPath}.pdbItemList`).item._qualifiers,
-          guiLabel: "PDBs",
-        }}
-      />
+      {item && (
+        <CCP4i2TaskElement
+          {...props}
+          sx={{ my: 0, py: 0, minWidth: "10rem" }}
+          itemName={pdbItemListPath}
+          qualifiers={pdbItemListQualifiers}
+        />
+      )}
     </Paper>
-  ) : null;
+  );
 };

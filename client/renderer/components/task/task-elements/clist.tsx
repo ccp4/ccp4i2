@@ -1,25 +1,25 @@
 import React, { useCallback, useMemo, useState } from "react";
 import {
+  Box,
   Card,
   CardContent,
   CardHeader,
   Collapse,
-  FormControl,
-  FormLabel,
   Grid2,
   IconButton,
   Stack,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { Add, Delete, ExpandMore as ExpandMoreIcon } from "@mui/icons-material";
 
 import { CCP4i2TaskElement, CCP4i2TaskElementProps } from "./task-element";
-import { useApi } from "../../../api";
 import { useJob, useProject, valueOfItem } from "../../../utils";
 import { MyExpandMore } from "../../expand-more";
 import { useCCP4i2Window } from "../../../app-context";
 import { Project } from "../../../types/models";
 import { ErrorTrigger } from "./error-info";
+import { useInferredVisibility } from "./hooks/useInferredVisibility";
 
 // Types
 interface CListElementProps extends CCP4i2TaskElementProps {
@@ -76,20 +76,6 @@ const useGuiLabel = (item: any, qualifiers: any): string => {
   }, [item, qualifiers]);
 };
 
-const useVisibility = (visibility: any): boolean => {
-  return useMemo(() => {
-    if (!visibility) return true;
-    if (typeof visibility === "function") {
-      try {
-        return visibility();
-      } catch (error) {
-        console.error("Error evaluating visibility function:", error);
-        return true; // Default to visible on error
-      }
-    }
-    return Boolean(visibility);
-  }, [visibility]);
-};
 
 const useValidationBorderColor = (
   itemName: string,
@@ -185,7 +171,6 @@ export const CListElement: React.FC<CListElementProps> = ({
   visibility,
   ...restProps
 }) => {
-  const api = useApi();
   const { useTaskItem, setParameter, getValidationColor } = useJob(job.id);
   const { projectId } = useCCP4i2Window();
   const { project } = projectId
@@ -196,7 +181,7 @@ export const CListElement: React.FC<CListElementProps> = ({
   // Custom hooks
   const { expanded, toggleExpanded } = useListState(initiallyOpen);
   const guiLabel = useGuiLabel(item, qualifiers);
-  const isVisible = useVisibility(visibility);
+  const isVisible = useInferredVisibility(visibility);
   const validationBorderColor = useValidationBorderColor(
     itemName,
     item,
@@ -371,7 +356,7 @@ export const CListElement: React.FC<CListElementProps> = ({
       key={content._objectPath || `item-${index}`}
       container
       spacing={1}
-      sx={{ mb: 1 }}
+      sx={{ mb: 1, alignItems: "center" }}
     >
       <Grid2 size={GRID_SIZES.ELEMENT}>
         <CCP4i2TaskElement
@@ -384,31 +369,26 @@ export const CListElement: React.FC<CListElementProps> = ({
       </Grid2>
 
       <Grid2 size={GRID_SIZES.DELETE_BUTTON}>
-        <FormControl fullWidth>
-          <FormLabel
-            component="legend"
-            sx={{
-              fontSize: "0.75rem",
-              mb: 0.5,
-            }}
-          >
-            Delete
-          </FormLabel>
-          <IconButton
-            disabled={!isEditable}
-            onClick={() => handleDeleteItem(content)}
-            size="small"
-            color="error"
-            aria-label={`Delete item ${index + 1}`}
-            sx={{
-              "&:hover": {
-                backgroundColor: "error.lighter",
-              },
-            }}
-          >
-            <Delete />
-          </IconButton>
-        </FormControl>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Tooltip title={`Delete item ${index + 1}`} placement="left">
+            <span>
+              <IconButton
+                disabled={!isEditable}
+                onClick={() => handleDeleteItem(content)}
+                size="small"
+                color="error"
+                aria-label={`Delete item ${index + 1}`}
+                sx={{
+                  "&:hover": {
+                    backgroundColor: "error.lighter",
+                  },
+                }}
+              >
+                <Delete />
+              </IconButton>
+            </span>
+          </Tooltip>
+        </Box>
       </Grid2>
     </Grid2>
   );

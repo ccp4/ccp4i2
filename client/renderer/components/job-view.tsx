@@ -138,7 +138,7 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
           )}
           {devMode && <Tab value={5} label="Def xml" />}
           {(devMode || jobWithCurrentStatus.status === 1) && (
-            <Tab value={6} label="Validation report" />
+            <Tab value={6} label="Validation" />
           )}
           {devMode && <Tab value={7} label="Job container" />}
           <Tab value={8} label="Comments" />

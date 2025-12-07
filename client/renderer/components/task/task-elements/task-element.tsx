@@ -22,15 +22,9 @@ import { v4 as uuid4 } from "uuid";
 import { CAsuContentSeqElement } from "./casucontentseq";
 import { CColumnGroupElement } from "./ccolumngroup";
 import { CPdbEnsembleItemElement } from "./cpdbensembleitem";
-import { Breakpoint } from "@mui/system";
 import { CAsuContentSeqListElement } from "./casucontentseqlist";
-type ResponsiveStyleValue<T> =
-  | T
-  | Array<T | null>
-  | Partial<Record<Breakpoint, T>>;
-
-type GridSize = number | "auto" | boolean;
-type ResponsiveGridSize = ResponsiveStyleValue<GridSize>;
+import { useInferredVisibility } from "./hooks/useInferredVisibility";
+import type { ItemClass } from "./types/item-classes";
 
 export interface CCP4i2TaskElementProps extends PropsWithChildren {
   job: Job;
@@ -59,16 +53,9 @@ export interface CCP4i2TaskElementProps extends PropsWithChildren {
 export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
   const { job } = props;
   const { useTaskItem } = useJob(job.id);
-
-  const inferredVisibility = useMemo(() => {
-    if (!props.visibility) return true;
-    if (typeof props.visibility === "function") {
-      return props.visibility();
-    }
-    return props.visibility;
-  }, [props.visibility]);
-
   const { item } = useTaskItem(props.itemName);
+
+  const isVisible = useInferredVisibility(props.visibility);
   // Use a stable key based on the item's object path instead of generating a new UUID on each render
   // A new UUID on each render causes the component to unmount/remount, losing all state
   const the_uuid = useMemo(
@@ -91,7 +78,10 @@ export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
   }, [item]);
 
   const interfaceElement = useMemo(() => {
-    switch (item?._class) {
+    // Cast to ItemClass for type checking - unknown classes fall through to default
+    const itemClass = item?._class as ItemClass | undefined;
+
+    switch (itemClass) {
       case "CInt":
         return (
           <CIntElement key={the_uuid} {...props} qualifiers={qualifiers} />
@@ -307,5 +297,5 @@ export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
     }
   }, [item]);
 
-  return inferredVisibility ? <>{interfaceElement}</> : null;
+  return isVisible ? <>{interfaceElement}</> : null;
 };

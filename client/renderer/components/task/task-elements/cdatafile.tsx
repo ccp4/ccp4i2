@@ -13,12 +13,10 @@ import {
   AutocompleteChangeReason,
   Avatar,
   Button,
-  Collapse,
   IconButton,
   LinearProgress,
   Stack,
   TextField,
-  Typography,
 } from "@mui/material";
 import {
   Menu as MenuIcon,
@@ -37,6 +35,7 @@ import { ErrorTrigger } from "./error-info";
 import { InputFileFetch } from "./input-file-fetch";
 import { InputFileUpload } from "./input-file-upload";
 import { FIELD_SPACING } from "./field-sizes";
+import { ExpandableSection } from "./expandable-section";
 
 const BORDER_RADIUS_STYLES = {
   none: { borderRadius: 0 },
@@ -399,39 +398,16 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
       </Stack>
 
       {hasChildren && (
-        <Collapse in={isExpanded} timeout={200}>
-          <Stack
-            sx={{
-              px: 2,
-              pb: 1,
-              pt: 0,
-              backgroundColor: hasValidationError
-                ? "error.lighter"
-                : "background.paper",
-              borderTop: "1px solid",
-              borderTopColor: hasValidationError ? "error.light" : "divider",
-              borderBottomLeftRadius: "0.4rem",
-              borderBottomRightRadius: "0.4rem",
-            }}
-            spacing={0.5}
-          >
-            <Typography
-              variant="caption"
-              color={hasValidationError ? "error.main" : "text.secondary"}
-              sx={{
-                fontWeight: 500,
-                textTransform: "uppercase",
-                letterSpacing: 0.5,
-                mb: 0.5,
-              }}
-            >
-              {hasValidationError
-                ? "Required Options (Error)"
-                : "Additional Options"}
-            </Typography>
-            {children}
-          </Stack>
-        </Collapse>
+        <ExpandableSection
+          expanded={isExpanded}
+          onToggle={(expanded) => setIsManuallyExpanded(expanded)}
+          forceExpanded={hasValidationError || forceExpanded}
+          hasError={hasValidationError}
+          title="Additional Options"
+          forceExpandedTitle="Required Options (Error)"
+        >
+          {children}
+        </ExpandableSection>
       )}
     </Stack>
   );
