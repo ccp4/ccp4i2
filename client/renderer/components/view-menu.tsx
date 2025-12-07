@@ -105,15 +105,15 @@ export default function ViewMenu() {
           <DevModeToggle />
         </MenuItem>
         {project && (
-          <MenuItem>
-            <IconButton
-              color="info"
-              aria-label="View network"
-              onClick={() => router.push(`/project/${projectId}/network`)}
-              sx={{ ml: 1 }}
-            >
-              <LanIcon />
-            </IconButton>
+          <MenuItem
+            onClick={() => {
+              router.push(`/project/${projectId}/network`);
+              handleClose();
+            }}
+          >
+            <ListItemIcon>
+              <LanIcon fontSize="small" />
+            </ListItemIcon>
             <ListItemText>Project Network</ListItemText>
           </MenuItem>
         )}
