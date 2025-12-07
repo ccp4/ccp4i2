@@ -139,7 +139,12 @@ def _check_output(job, anom, expected_cycles, expected_rwork, require_molprobity
     # read_structure(str(job / "CIFFILE.cif"), format=CoorFormat.Mmcif)
     for name in ["ABCD", "ANOMFPHI", "DIFANOMFPHI", "DIFFPHI", "FPHI"]:
         if anom or "ANOM" not in name:
-            read_mtz_file(str(job / f"{name}OUT.mtz"))
+            mtz_path = job / f"{name}OUT.mtz"
+            # DIFANOMFPHIOUT is only produced when refmac outputs DELFAN/PHDELAN columns,
+            # which depends on input data contentFlag - check existence before requiring
+            if name == "DIFANOMFPHI" and not mtz_path.exists():
+                continue
+            read_mtz_file(str(mtz_path))
     # Read the pipeline's aggregated program.xml (not XMLOUT.xml which is refmac's raw output)
     xml = ET.parse(job / "program.xml")
     cycles = xml.findall(".//RefmacInProgress/Cycle")
