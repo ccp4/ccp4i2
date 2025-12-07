@@ -35,7 +35,8 @@ import {
   SmsFailed,
   TerminalOutlined,
   Edit,
-  Download, // Add this import
+  Download,
+  Refresh,
 } from "@mui/icons-material";
 import { createContext } from "react";
 import { usePopcorn } from "./popcorn-provider";
@@ -44,6 +45,7 @@ import { CCP4i2MoorhenIcon } from "../components/General/CCP4i2Icons";
 import { useJob } from "../utils";
 import ExportJobMenu from "../components/export-job-file-menu";
 import { useRecentlyStartedJobs } from "./recently-started-jobs-context";
+import { useSWRConfig } from "swr";
 
 interface JobMenuContextDataProps {
   jobMenuAnchorEl: HTMLElement | null;
@@ -106,6 +108,7 @@ export const JobMenu: React.FC = () => {
   const { setMessage } = usePopcorn();
   const { confirmTaskRun } = useRunCheck();
   const { markJobAsStarting } = useRecentlyStartedJobs();
+  const { mutate: globalMutate } = useSWRConfig();
 
   const deleteDialog = useDeleteDialog();
   const [statusMenuAnchorEl, setStatusMenuAnchorEl] = useState<
@@ -485,6 +488,29 @@ export const JobMenu: React.FC = () => {
     [job, setFileExportJobId, setJobMenuAnchorEl]
   );
 
+  const handleRegenerateReport = useCallback(
+    async (ev: SyntheticEvent) => {
+      if (!job) return;
+      ev.stopPropagation();
+
+      setMessage(`Regenerating report for job ${job.number}...`);
+      setJobMenuAnchorEl(null);
+
+      try {
+        await api.post(`jobs/${job.id}/regenerate_report/`);
+
+        // Invalidate the report_xml SWR cache to trigger refetch
+        await globalMutate(`/api/proxy/jobs/${job.id}/report_xml/`);
+
+        setMessage(`Report regenerated for job ${job.number}`);
+      } catch (error) {
+        console.error("Failed to regenerate report:", error);
+        setMessage(`Failed to regenerate report for job ${job.number}`);
+      }
+    },
+    [job, api, globalMutate, setMessage, setJobMenuAnchorEl]
+  );
+
   return (
     job && (
       <>
@@ -520,6 +546,13 @@ export const JobMenu: React.FC = () => {
             onClick={handleExportOptions}
           >
             <Download sx={{ mr: 1 }} /> Export options
+          </MenuItem>
+          <MenuItem
+            key="RegenerateReport"
+            disabled={job.status === 1}
+            onClick={handleRegenerateReport}
+          >
+            <Refresh sx={{ mr: 1 }} /> Regenerate report
           </MenuItem>
           <MenuItem
             key="Delete"

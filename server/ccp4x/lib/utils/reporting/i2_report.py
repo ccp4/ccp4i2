@@ -160,7 +160,8 @@ def _get_descendent_jobs(job: Job) -> List[Tuple[str, List[str]]]:
 
 def _input_files(job: Job):
     """Generate input file metadata for report."""
-    for file_use in FileUse.objects.filter(job=job):
+    # role=1 means INPUT files (role=0 is OUTPUT)
+    for file_use in FileUse.objects.filter(job=job, role=1):
         try:
             path_flag = file_use.file.directory
             input_file = {

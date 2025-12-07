@@ -504,6 +504,68 @@ class JobViewSet(ModelViewSet):
 
     @action(
         detail=True,
+        methods=["post"],
+        permission_classes=[],
+        serializer_class=serializers.JobSerializer,
+    )
+    def regenerate_report(self, request, pk=None):
+        """
+        Force regeneration of the job's report XML.
+
+        Deletes any cached report and regenerates it from scratch. This is useful
+        when report generation logic has been updated or when the cached report
+        may be stale or corrupted.
+
+        Args:
+            request (Request): HTTP request object
+            pk (int): Primary key of the job
+
+        Returns:
+            Response: Success status with regenerated report XML
+
+        Response Format:
+            {
+                "status": "Success",
+                "data": {
+                    "regenerated": true,
+                    "xml": "<report>...</report>"
+                }
+            }
+
+        Example:
+            POST /api/jobs/123/regenerate_report/
+        """
+        try:
+            the_job = models.Job.objects.get(id=pk)
+
+            # Use unified utility with regenerate=True
+            from ..lib.utils.jobs.reports import get_job_report_xml
+
+            result = get_job_report_xml(the_job, regenerate=True)
+
+            if result.success:
+                response = api_success({
+                    "regenerated": True,
+                    "xml": result.data
+                })
+                # Add no-cache headers
+                response["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+                response["Pragma"] = "no-cache"
+                response["Expires"] = "0"
+                return response
+            else:
+                error_status = 404 if "not found" in result.error.lower() else 500
+                return api_error(result.error, status=error_status)
+
+        except models.Job.DoesNotExist as err:
+            logger.exception("Failed to retrieve job with id %s", pk, exc_info=err)
+            return api_error(f"Job not found: {str(err)}", status=404)
+        except Exception as err:
+            logger.exception("Unexpected error regenerating report for job %s", pk, exc_info=err)
+            return api_error(f"Unexpected error: {str(err)}", status=500)
+
+    @action(
+        detail=True,
         methods=["get"],
         permission_classes=[],
         serializer_class=serializers.JobSerializer,

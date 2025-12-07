@@ -510,7 +510,6 @@ class CCP4i2DjangoDbApi(object):
                 if file_obj.uuid not in seen_uuids:
                     unique_files.append(file_obj)
                     seen_uuids.add(file_obj.uuid)
-            print(f"Total unique files found: {len(unique_files)} {mode}")
 
             # Format output based on mode parameter
             if mode == "fileId":
