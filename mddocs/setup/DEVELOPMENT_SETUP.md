@@ -427,6 +427,29 @@ Verify the symlink works:
 
 **Note**: The modern Coot 1.x (`coot-1`) uses Python 3 and is available in recent CCP4 builds, but many CCP4i2 wrappers still require the Python 2 version.
 
+### SHELXE Not Found
+
+SHELXE may not be included in recent CCP4 distributions. If you see errors like:
+
+```
+shelxe: command not found
+```
+
+Copy `shelxe` from an older CCP4 installation:
+
+```bash
+# macOS example
+cp /Applications/ccp4-9/bin/shelxe /path/to/ccp4-20251105/bin/
+
+# Linux example
+cp /opt/ccp4-9/bin/shelxe /path/to/ccp4-20251105/bin/
+```
+
+Verify it works:
+```bash
+shelxe --version
+```
+
 ### Segmentation Fault on Import
 
 Python version mismatch. Ensure you're using Python 3.11 matching CCP4:
