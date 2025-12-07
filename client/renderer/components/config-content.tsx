@@ -1,12 +1,10 @@
 "use client";
 import React, { useCallback } from "react";
 import {
-  Box,
   Button,
   Dialog,
   DialogContent,
   DialogTitle,
-  FormControlLabel,
   Stack,
   Switch,
   Typography,
@@ -25,7 +23,7 @@ import { useTheme } from "../theme/theme-provider";
 
 export const ConfigContent: React.FC = () => {
   const api = useApi();
-  const { setTheme, mode, customColors } = useTheme();
+  const { setTheme } = useTheme();
   const [config, setConfig] = useState<any | null>(null);
   const router = useRouter();
   const { devMode, setDevMode } = useCCP4i2Window();
@@ -222,284 +220,167 @@ export const ConfigContent: React.FC = () => {
     });
   };
 
+  // Check if ready to launch
+  const isReadyToLaunch =
+    config &&
+    typeof window !== "undefined" &&
+    window.electronAPI &&
+    existingFiles?.venv_python &&
+    (devMode || requirementsExist);
+
   return (
-    <Stack spacing={3}>
-      {/* Appearance Section - Available regardless of config */}
-      <Stack spacing={2}>
-        <Typography variant="h6" color="primary" fontWeight={600}>
-          Appearance
-        </Typography>
-
-        <Paper variant="outlined" sx={{ p: 2 }}>
-          <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
+    <Stack spacing={1.5}>
+      {/* Launch Button - Prominent at top */}
+      <Paper
+        variant="outlined"
+        sx={{
+          p: 2,
+          textAlign: "center",
+          bgcolor: isReadyToLaunch ? "success.dark" : undefined,
+          borderColor: isReadyToLaunch ? "success.main" : undefined,
+        }}
+      >
+        <Stack direction="row" spacing={2} alignItems="center" justifyContent="center">
+          <Button
+            variant="contained"
+            size="large"
+            startIcon={<Folder />}
+            onClick={config ? onStartUvicorn : () => router.push("/")}
+            disabled={config ? !isReadyToLaunch : false}
+            sx={{
+              minWidth: 200,
+              bgcolor: isReadyToLaunch || !config ? green[500] : undefined,
+              "&:hover": {
+                bgcolor: isReadyToLaunch || !config ? green[600] : undefined,
+              },
+            }}
           >
-            <Box>
-              <Typography variant="subtitle1" fontWeight={500}>
-                Theme
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Choose between light and dark theme
-              </Typography>
-            </Box>
-            <ThemeToggle />
-          </Stack>
-        </Paper>
-      </Stack>
-
-      {/* Launch Section - Available regardless of config */}
-      <Stack spacing={2}>
-        <Typography variant="h6" color="primary" fontWeight={600}>
-          Launch Application
-        </Typography>
-
-        <Paper variant="outlined" sx={{ p: 3, textAlign: "center" }}>
-          <Stack spacing={2} alignItems="center">
-            <Typography variant="body1" color="text.secondary">
-              {config
-                ? typeof window !== "undefined" && window.electronAPI
-                  ? existingFiles?.venv_python && (devMode || requirementsExist)
-                    ? "Ready to start CCP4i2 with current configuration"
-                    : "Configure paths and install requirements to launch CCP4i2"
-                  : "CCP4i2 configuration - running in web mode"
-                : "Access CCP4i2 web interface"}
+            Launch CCP4i2
+          </Button>
+          {config && !isReadyToLaunch && (
+            <Typography variant="caption" color="error">
+              Configure paths and install requirements first
             </Typography>
-            <Button
-              variant="contained"
-              size="large"
-              startIcon={<Folder />}
-              onClick={config ? onStartUvicorn : () => router.push("/")}
-              disabled={
-                config
-                  ? !(typeof window !== "undefined" && window.electronAPI) ||
-                    !existingFiles?.venv_python ||
-                    (!devMode && !requirementsExist)
-                  : false
-              }
-              sx={{
-                minWidth: 300,
-                bgcolor: config
-                  ? typeof window !== "undefined" &&
-                    window.electronAPI &&
-                    existingFiles?.venv_python &&
-                    (devMode || requirementsExist)
-                    ? green[500]
-                    : undefined
-                  : green[500], // Always green for web launch
-                "&:hover": {
-                  bgcolor: config
-                    ? typeof window !== "undefined" &&
-                      window.electronAPI &&
-                      existingFiles?.venv_python &&
-                      (devMode || requirementsExist)
-                      ? green[600]
-                      : undefined
-                    : green[600], // Always green hover for web launch
-                },
-                "&.Mui-disabled": {
-                  bgcolor: "action.disabledBackground",
-                  color: "action.disabled",
-                },
-              }}
-            >
-              {config
-                ? typeof window !== "undefined" && window.electronAPI
-                  ? "Launch CCP4i2"
-                  : "Web Mode - Launch Unavailable"
-                : "Launch CCP4i2"}
-            </Button>
-            {config &&
-              (!existingFiles?.venv_python ||
-                (!devMode && !requirementsExist) ||
-                !(typeof window !== "undefined" && window.electronAPI)) && (
-                <Typography variant="caption" color="error">
-                  {typeof window !== "undefined" && window.electronAPI
-                    ? "Please configure paths and install requirements first"
-                    : "CCP4i2 launch requires Electron environment"}
-                </Typography>
-              )}
-          </Stack>
-        </Paper>
-      </Stack>
+          )}
+        </Stack>
+      </Paper>
 
       {config && (
         <>
-          {/* File Paths Section */}
-          <Stack spacing={2}>
-            <Typography variant="h6" color="primary" fontWeight={600}>
-              File Paths
+          {/* File Paths - Compact table format */}
+          <Paper variant="outlined" sx={{ p: 1.5 }}>
+            <Typography variant="subtitle2" color="primary" fontWeight={600} sx={{ mb: 1 }}>
+              Configuration
             </Typography>
-
-            {/* CCP4Dir */}
-            <Paper variant="outlined" sx={{ p: 2 }}>
-              <Stack spacing={2}>
-                <Box display="flex" alignItems="center" gap={1}>
-                  <Typography variant="subtitle1" fontWeight={500}>
-                    CCP4 Installation Directory
-                  </Typography>
-                  {existingFiles?.CCP4Dir ? (
-                    <Check color="success" />
-                  ) : (
-                    <Cancel color="error" />
-                  )}
-                </Box>
+            <Stack spacing={1}>
+              {/* CCP4 Directory */}
+              <Stack direction="row" alignItems="center" spacing={1}>
+                {existingFiles?.CCP4Dir ? (
+                  <Check color="success" fontSize="small" />
+                ) : (
+                  <Cancel color="error" fontSize="small" />
+                )}
+                <Typography variant="body2" sx={{ minWidth: 100, fontWeight: 500 }}>
+                  CCP4 Dir
+                </Typography>
                 <Typography
                   variant="body2"
                   color="text.secondary"
                   sx={{
+                    flex: 1,
                     fontFamily: "monospace",
-                    bgcolor: mode === "dark" ? "grey.800" : "grey.50",
-                    p: 1,
-                    borderRadius: 1,
+                    fontSize: "0.75rem",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
                   }}
                 >
                   {config.CCP4Dir}
                 </Typography>
                 <Button
-                  variant="outlined"
-                  startIcon={<Folder />}
+                  size="small"
                   onClick={onLaunchBrowser}
-                  disabled={
-                    !(typeof window !== "undefined" && window.electronAPI)
-                  }
-                  sx={{ alignSelf: "flex-start" }}
+                  disabled={!(typeof window !== "undefined" && window.electronAPI)}
                 >
-                  Select Directory...
+                  Change
                 </Button>
               </Stack>
-            </Paper>
 
-            {/* Python Interpreter (ccp4-python or venv) */}
-            <Paper variant="outlined" sx={{ p: 2 }}>
-              <Stack spacing={2}>
-                <Box display="flex" alignItems="center" gap={1}>
-                  <Typography variant="subtitle1" fontWeight={500}>
-                    Python Interpreter
-                  </Typography>
-                  {existingFiles?.venv_python ? (
-                    <Check color="success" />
-                  ) : (
-                    <Cancel color="error" />
-                  )}
-                </Box>
+              {/* Python */}
+              <Stack direction="row" alignItems="center" spacing={1}>
+                {existingFiles?.venv_python ? (
+                  <Check color="success" fontSize="small" />
+                ) : (
+                  <Cancel color="error" fontSize="small" />
+                )}
+                <Typography variant="body2" sx={{ minWidth: 100, fontWeight: 500 }}>
+                  Python
+                </Typography>
                 <Typography
                   variant="body2"
                   color="text.secondary"
                   sx={{
+                    flex: 1,
                     fontFamily: "monospace",
-                    bgcolor: mode === "dark" ? "grey.800" : "grey.50",
-                    p: 1,
-                    borderRadius: 1,
+                    fontSize: "0.75rem",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
                   }}
                 >
-                  {config.venv_python || "Not found - check CCP4 installation"}
+                  {config.venv_python || "Not found"}
                 </Typography>
               </Stack>
-            </Paper>
 
-            {/* Projects Directory */}
-            <Paper variant="outlined" sx={{ p: 2 }}>
-              <Stack spacing={2}>
-                <Box display="flex" alignItems="center" gap={1}>
-                  <Typography variant="subtitle1" fontWeight={500}>
-                    CCP4i2 Projects Directory
-                  </Typography>
-                  {existingFiles?.CCP4I2_PROJECTS_DIR ? (
-                    <Check color="success" />
-                  ) : (
-                    <Cancel color="error" />
-                  )}
-                </Box>
+              {/* Projects Directory */}
+              <Stack direction="row" alignItems="center" spacing={1}>
+                {existingFiles?.CCP4I2_PROJECTS_DIR ? (
+                  <Check color="success" fontSize="small" />
+                ) : (
+                  <Cancel color="error" fontSize="small" />
+                )}
+                <Typography variant="body2" sx={{ minWidth: 100, fontWeight: 500 }}>
+                  Projects
+                </Typography>
                 <Typography
                   variant="body2"
                   color="text.secondary"
                   sx={{
+                    flex: 1,
                     fontFamily: "monospace",
-                    bgcolor: mode === "dark" ? "grey.800" : "grey.50",
-                    p: 1,
-                    borderRadius: 1,
+                    fontSize: "0.75rem",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
                   }}
                 >
                   {config.CCP4I2_PROJECTS_DIR}
                 </Typography>
                 <Button
-                  variant="outlined"
-                  startIcon={<Folder />}
+                  size="small"
                   onClick={onSelectProjectsDir}
-                  disabled={
-                    !(typeof window !== "undefined" && window.electronAPI)
-                  }
-                  sx={{ alignSelf: "flex-start" }}
+                  disabled={!(typeof window !== "undefined" && window.electronAPI)}
                 >
-                  Select Directory...
+                  Change
                 </Button>
               </Stack>
-            </Paper>
-          </Stack>
 
-          {/* Server Configuration Section */}
-          <Stack spacing={2}>
-            <Typography variant="h6" color="primary" fontWeight={600}>
-              Server Configuration
-            </Typography>
-
-            <Box display="flex" gap={2} flexWrap="wrap">
-              <Paper variant="outlined" sx={{ p: 2, flex: 1, minWidth: 200 }}>
-                <Stack spacing={1}>
-                  <Typography variant="subtitle2" color="text.secondary">
-                    Next.js Port
-                  </Typography>
-                  <Typography variant="h4" color="primary" fontWeight={600}>
-                    {config.NEXT_PORT}
-                  </Typography>
-                </Stack>
-              </Paper>
-
-              <Paper variant="outlined" sx={{ p: 2, flex: 1, minWidth: 200 }}>
-                <Stack spacing={1}>
-                  <Typography variant="subtitle2" color="text.secondary">
-                    Uvicorn Port
-                  </Typography>
-                  <Typography variant="h4" color="primary" fontWeight={600}>
-                    {config.UVICORN_PORT}
-                  </Typography>
-                </Stack>
-              </Paper>
-            </Box>
-          </Stack>
-
-          {/* System Setup Section */}
-          <Stack spacing={2}>
-            <Typography variant="h6" color="primary" fontWeight={600}>
-              System Setup
-            </Typography>
-
-            {/* Requirements */}
-            <Paper variant="outlined" sx={{ p: 2 }}>
-              <Stack
-                direction="row"
-                alignItems="center"
-                justifyContent="space-between"
-              >
-                <Box display="flex" alignItems="center" gap={2}>
-                  <Box>
-                    <Typography variant="subtitle1" fontWeight={500}>
-                      Python Requirements
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Required packages for CCP4i2 operation
-                    </Typography>
-                  </Box>
-                  {requirementsExist ? (
-                    <Check color="success" />
-                  ) : (
-                    <Cancel color="error" />
-                  )}
-                </Box>
+              {/* Requirements */}
+              <Stack direction="row" alignItems="center" spacing={1}>
+                {requirementsExist ? (
+                  <Check color="success" fontSize="small" />
+                ) : (
+                  <Cancel color="error" fontSize="small" />
+                )}
+                <Typography variant="body2" sx={{ minWidth: 100, fontWeight: 500 }}>
+                  Requirements
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ flex: 1 }}>
+                  {requirementsExist ? "Installed" : "Not installed"}
+                </Typography>
                 <Button
-                  variant="contained"
+                  size="small"
+                  variant={requirementsExist ? "text" : "contained"}
                   onClick={onInstallRequirements}
                   disabled={
                     !(typeof window !== "undefined" && window.electronAPI) ||
@@ -509,41 +390,61 @@ export const ConfigContent: React.FC = () => {
                   {requirementsExist ? "Reinstall" : "Install"}
                 </Button>
               </Stack>
+            </Stack>
+          </Paper>
+
+          {/* Settings Row - Theme, Dev Mode, Ports */}
+          <Stack direction="row" spacing={1.5}>
+            {/* Theme */}
+            <Paper variant="outlined" sx={{ p: 1.5, flex: 1 }}>
+              <Stack direction="row" alignItems="center" justifyContent="space-between">
+                <Typography variant="body2" fontWeight={500}>
+                  Theme
+                </Typography>
+                <ThemeToggle />
+              </Stack>
             </Paper>
 
             {/* Dev Mode */}
-            <Paper variant="outlined" sx={{ p: 2 }}>
-              <Stack
-                direction="row"
-                alignItems="center"
-                justifyContent="space-between"
-              >
-                <Box>
-                  <Typography variant="subtitle1" fontWeight={500}>
-                    Development Mode
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Enable additional debugging features
-                  </Typography>
-                </Box>
-                <FormControlLabel
-                  control={
-                    <Switch
-                      checked={devMode}
-                      onChange={onToggleDevMode}
-                      name="devModeToggle"
-                      color="primary"
-                      disabled={
-                        !(typeof window !== "undefined" && window.electronAPI)
-                      }
-                    />
-                  }
-                  label={devMode ? "Enabled" : "Disabled"}
+            <Paper variant="outlined" sx={{ p: 1.5, flex: 1 }}>
+              <Stack direction="row" alignItems="center" justifyContent="space-between">
+                <Typography variant="body2" fontWeight={500}>
+                  Dev Mode
+                </Typography>
+                <Switch
+                  size="small"
+                  checked={devMode}
+                  onChange={onToggleDevMode}
+                  disabled={!(typeof window !== "undefined" && window.electronAPI)}
                 />
+              </Stack>
+            </Paper>
+
+            {/* Ports */}
+            <Paper variant="outlined" sx={{ p: 1.5, flex: 1 }}>
+              <Stack direction="row" alignItems="center" justifyContent="space-between">
+                <Typography variant="body2" fontWeight={500}>
+                  Ports
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {config.NEXT_PORT} / {config.UVICORN_PORT}
+                </Typography>
               </Stack>
             </Paper>
           </Stack>
         </>
+      )}
+
+      {/* Minimal config when no electron config */}
+      {!config && (
+        <Paper variant="outlined" sx={{ p: 1.5 }}>
+          <Stack direction="row" alignItems="center" justifyContent="space-between">
+            <Typography variant="body2" fontWeight={500}>
+              Theme
+            </Typography>
+            <ThemeToggle />
+          </Stack>
+        </Paper>
       )}
 
       {/* Installation Progress Dialog */}
