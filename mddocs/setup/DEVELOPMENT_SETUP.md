@@ -76,13 +76,39 @@ ccp4-python -c "from baselayer import DJANGO; print(f'DJANGO mode: {DJANGO()}')"
 ccp4-python -c "import clipper; import phaser; print('CCP4 libraries OK')"
 ```
 
-### Step 6: Run Tests
+### Step 6: Install Test Dependencies
+
+The test suite requires additional pytest plugins:
+
+```bash
+ccp4-python -m pip install pytest-django pytest-xdist
+```
+
+Or install all test dependencies at once:
+```bash
+ccp4-python -m pip install -e ".[test]"
+```
+
+**Note:** If you installed ccp4i2 before `pytest-xdist` was added to `pyproject.toml`, pip may not install it automatically on subsequent `pip install -e ".[test]"` runs because pip caches the dependency list. To fix this, either:
+
+1. Install the missing packages explicitly:
+   ```bash
+   ccp4-python -m pip install pytest-django pytest-xdist
+   ```
+
+2. Or force pip to re-evaluate dependencies:
+   ```bash
+   ccp4-python -m pip install -e ".[test]" --force-reinstall --no-deps
+   ccp4-python -m pip install -e ".[test]"
+   ```
+
+### Step 7: Run Tests
 
 ```bash
 # Run a quick test
 ./run_test.sh tests/i2run/test_parrot.py -v
 
-# Run multiple tests in parallel
+# Run multiple tests in parallel (requires pytest-xdist)
 ./run_test.sh tests/i2run/ -n 4
 ```
 
@@ -395,6 +421,18 @@ ln -sf /path/to/ccp4/share/cctbx .venv/share/
 Ensure settings module is configured:
 ```bash
 export DJANGO_SETTINGS_MODULE=ccp4x.config.test_settings
+```
+
+### fixture 'django_db_blocker' not found
+
+This error means `pytest-django` is not installed:
+```bash
+ccp4-python -m pip install pytest-django pytest-xdist
+```
+
+Or install all test dependencies:
+```bash
+ccp4-python -m pip install -e ".[test]"
 ```
 
 ---
