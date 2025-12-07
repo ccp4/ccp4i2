@@ -15,7 +15,16 @@ class SubstituteLigand(CPluginScript):
     WHATNEXT = ['coot_rebuild']
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
 
-    ERROR_CODES = { 201 : { 'description' : 'Failed in SubstituteLigand' },}
+    ERROR_CODES = {
+        201: {'description': 'Failed in SubstituteLigand'},
+        202: {'description': 'Failed in harvest operation'},
+        203: {'description': 'Exception in LidiaAcedrg ligand generation'},
+        204: {'description': 'Exception in aimless pipeline'},
+        205: {'description': 'Exception in phaser_rnp_pipeline'},
+        206: {'description': 'Exception in i2Dimple'},
+        207: {'description': 'Exception in coot ligand fitting'},
+        208: {'description': 'Exception in coot postprocessing'},
+    }
 
     def __init__(self, *args,**kws):
         super(SubstituteLigand, self).__init__(*args, **kws)
@@ -63,17 +72,22 @@ class SubstituteLigand(CPluginScript):
     @QtCore.Slot(dict)
     def lidiaAcedrg_finished(self, status):
         if status.get('finishStatus') == CPluginScript.FAILED:
+            self.appendErrorReport(203, 'LidiaAcedrg plugin failed')
             self.reportStatus(CPluginScript.FAILED)
-        pluginRoot = CCP4Utils.openFileToEtree(self.lidiaAcedrgPlugin.makeFileName('PROGRAMXML'))
-        self.xmlroot.append(pluginRoot)
-        self.flushXML()
-        self.harvestFile(self.lidiaAcedrgPlugin.container.outputData.DICTOUT_LIST[0], self.container.outputData.DICTOUT)
-        self.dictToUse = self.container.outputData.DICTOUT
-        self.dictDone()
+            return
+        try:
+            pluginRoot = CCP4Utils.openFileToEtree(self.lidiaAcedrgPlugin.makeFileName('PROGRAMXML'))
+            self.xmlroot.append(pluginRoot)
+            self.flushXML()
+            self.harvestFile(self.lidiaAcedrgPlugin.container.outputData.DICTOUT_LIST[0], self.container.outputData.DICTOUT)
+            self.dictToUse = self.container.outputData.DICTOUT
+            self.dictDone()
+        except Exception as e:
+            self.appendErrorReport(203, 'Exception in lidiaAcedrg_finished: ' + str(e))
+            self.reportStatus(CPluginScript.FAILED)
             
     def dictDone(self):
         if self.container.controlParameters.OBSAS.__str__() == 'UNMERGED':
-            self.aimlessCycle = 0
             self.aimlessPipe()
         else:
             self.obsToUse = self.container.inputData.F_SIGF_IN
@@ -87,6 +101,7 @@ class SubstituteLigand(CPluginScript):
         self.aimlessPlugin.container.controlParameters.SCALING_PROTOCOL.set('DEFAULT')
         self.aimlessPlugin.container.controlParameters.ONLYMERGE.set(False)
         self.aimlessPlugin.container.controlParameters.REFERENCE_DATASET.set('XYZ')
+        self.aimlessPlugin.container.controlParameters.AUTOCUTOFF.set(True)
         self.aimlessPlugin.container.inputData.copyData(self.container.inputData,['UNMERGEDFILES'])
         self.aimlessPlugin.container.inputData.XYZIN_REF = self.container.inputData.XYZIN
         self.aimlessPlugin.container.controlParameters.TOLERANCE.set(10.)
@@ -94,49 +109,26 @@ class SubstituteLigand(CPluginScript):
             self.aimlessPlugin.container.inputData.FREERFLAG = self.container.inputData.FREERFLAG_IN
         self.connectSignal(self.aimlessPlugin,'finished',self.aimlessPlugin_finished)
         self.aimlessPlugin.process()
-        
+
     @QtCore.Slot(dict)
     def aimlessPlugin_finished(self, status):
         if status.get('finishStatus') == CPluginScript.FAILED:
+            self.appendErrorReport(204, 'Aimless pipeline failed')
             self.reportStatus(CPluginScript.FAILED)
-        
-        pluginRoot = CCP4Utils.openFileToEtree(self.aimlessPlugin.makeFileName('PROGRAMXML'))
-        self.xmlroot.append(pluginRoot)
-        #Here check on the resolution estimate, and cut dataset back accordingly
-        if self.aimlessCycle == 0:
-            datasetresultnodes = pluginRoot.xpath("//Result/Dataset")
-            if len(datasetresultnodes) == 0:
-                self.appendErrorReport(201,'No result nodes found')
-                self.reportStatus(CPluginScript.FAILED)
-            datasetresultnode = datasetresultnodes[0]
-            dataresonodes = datasetresultnode.xpath("ResolutionHigh/Overall")
-            reslimitnodes = datasetresultnode.xpath("ResolutionLimitEstimate")
-            if len(dataresonodes)<1 or len(reslimitnodes)< 1:
-                self.appendErrorReport(201,'Unable to identify resolution estimate limits')
-                self.reportStatus(CPluginScript.FAILED)
-            datareso = datasetresultnode.xpath("ResolutionHigh/Overall")[0].text
-            reslimitnodes = datasetresultnode.xpath("ResolutionLimitEstimate")
-            if reslimitnodes[0].get("type") == "CChalf":
-                reslimit = reslimitnodes[0].xpath("MaximumResolution")[0].text
-            else:
-                self.appendErrorReport(201,'Reso detection failed (first estimate not on CCHalf)')
-                self.reportStatus(CPluginScript.FAILED)
-            if float(reslimit) == float(datareso):
-                self.aimlessCyclesFinished()
-            else:
-                self.aimlessCycle = 1
-                self.container.controlParameters.RESOLUTION_RANGE.end = float(reslimit)
-                self.aimlessPipe()
-        else:
-            self.aimlessCyclesFinished()
+            return
 
-    def aimlessCyclesFinished(self):
-        self.flushXML()
-        self.harvestFile(self.aimlessPlugin.container.outputData.FREEROUT, self.container.outputData.FREERFLAG_OUT)
-        self.harvestFile(self.aimlessPlugin.container.outputData.HKLOUT[0], self.container.outputData.F_SIGF_OUT)
-        self.obsToUse = self.container.outputData.F_SIGF_OUT
-        self.freerToUse = self.container.outputData.FREERFLAG_OUT
-        self.rigidBodyPipeline()
+        try:
+            pluginRoot = CCP4Utils.openFileToEtree(self.aimlessPlugin.makeFileName('PROGRAMXML'))
+            self.xmlroot.append(pluginRoot)
+            self.flushXML()
+            self.harvestFile(self.aimlessPlugin.container.outputData.FREEROUT, self.container.outputData.FREERFLAG_OUT)
+            self.harvestFile(self.aimlessPlugin.container.outputData.HKLOUT[0], self.container.outputData.F_SIGF_OUT)
+            self.obsToUse = self.container.outputData.F_SIGF_OUT
+            self.freerToUse = self.container.outputData.FREERFLAG_OUT
+            self.rigidBodyPipeline()
+        except Exception as e:
+            self.appendErrorReport(204, 'Exception in aimlessPlugin_finished: ' + str(e))
+            self.reportStatus(CPluginScript.FAILED)
 
     def rigidBodyPipeline(self):
         inp = self.container.inputData
@@ -157,7 +149,9 @@ class SubstituteLigand(CPluginScript):
     @QtCore.Slot(dict)
     def rnpPlugin_finished(self, status):
         if status.get('finishStatus') == CPluginScript.FAILED:
-            self.reportStatus(status)
+            self.appendErrorReport(205, 'phaser_rnp_pipeline failed')
+            self.reportStatus(CPluginScript.FAILED)
+            return
         try:
             pluginRoot = CCP4Utils.openFileToEtree(self.rnpPlugin.makeFileName('PROGRAMXML'))
             self.xmlroot.append(pluginRoot)
@@ -177,8 +171,8 @@ class SubstituteLigand(CPluginScript):
             else:
                 self.coordinatesForCoot = self.rnpPlugin.container.outputData.XYZOUT_REFMAC
                 self.cootAddLigand()
-        except:
-            self.appendErrorReport(201,'Failed in rnpplugin finished')
+        except Exception as e:
+            self.appendErrorReport(205, 'Exception in rnpPlugin_finished: ' + str(e))
             self.reportStatus(CPluginScript.FAILED)
         
     def i2Dimple(self):
@@ -192,7 +186,9 @@ class SubstituteLigand(CPluginScript):
     @QtCore.Slot(dict)
     def i2Dimple_finished(self, status):
         if status.get('finishStatus') == CPluginScript.FAILED:
-            self.reportStatus(status)
+            self.appendErrorReport(206, 'i2Dimple pipeline failed')
+            self.reportStatus(CPluginScript.FAILED)
+            return
         try:
             pluginRoot = CCP4Utils.openFileToEtree(self.i2Dimple.makeFileName('PROGRAMXML'))
             self.xmlroot.append(pluginRoot)
@@ -211,21 +207,22 @@ class SubstituteLigand(CPluginScript):
             else:
                 self.coordinatesForCoot = self.i2Dimple.container.outputData.XYZOUT
                 self.cootAddLigand()
-        except:
-            self.appendErrorReport(201,'Failed in i2Dimple finished')
+        except Exception as e:
+            self.appendErrorReport(206, 'Exception in i2Dimple_finished: ' + str(e))
             self.reportStatus(CPluginScript.FAILED)
         
     def cootAddLigand(self):
-        self.cootPlugin = self.makePluginObject('coot_script_lines')
-        xyzinList = self.cootPlugin.container.inputData.XYZIN
-        xyzinList.append(xyzinList.makeItem())
-        xyzinList[-1].set(self.coordinatesForCoot)
-        fphiinList = self.cootPlugin.container.inputData.FPHIIN
-        fphiinList.append(fphiinList.makeItem())
-        fphiinList[-1].set(self.mapToUse)
-        self.cootPlugin.container.inputData.DICT = self.dictToUse
-        #coot_stepped_refine,coot_fit_residues,coot_script_lines
-        self.cootPlugin.container.controlParameters.SCRIPT = '''#Script to fit lignad into density
+        try:
+            self.cootPlugin = self.makePluginObject('coot_script_lines')
+            xyzinList = self.cootPlugin.container.inputData.XYZIN
+            xyzinList.append(xyzinList.makeItem())
+            xyzinList[-1].set(self.coordinatesForCoot)
+            fphiinList = self.cootPlugin.container.inputData.FPHIIN
+            fphiinList.append(fphiinList.makeItem())
+            fphiinList[-1].set(self.mapToUse)
+            self.cootPlugin.container.inputData.DICT = self.dictToUse
+            #coot_stepped_refine,coot_fit_residues,coot_script_lines
+            self.cootPlugin.container.controlParameters.SCRIPT = '''#Script to fit lignad into density
 monomerMolNo = get_monomer('DRG')
 add_ligand_clear_ligands()
 set_ligand_search_protein_molecule(MolHandle_1)
@@ -245,46 +242,55 @@ if nToCopy > 0:
     merge_molecules(ligandsToCopy,0)
 
 write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))'''
-        self.connectSignal(self.cootPlugin,'finished',self.cootPlugin_finished)
-        self.cootPlugin.process()
+            self.connectSignal(self.cootPlugin,'finished',self.cootPlugin_finished)
+            self.cootPlugin.process()
+        except Exception as e:
+            self.appendErrorReport(207, 'Exception in cootAddLigand setup: ' + str(e))
+            self.reportStatus(CPluginScript.FAILED)
 
     @QtCore.Slot(dict)
     def cootPlugin_finished(self, status):
-        print("\n\n1", status)
         if status.get('finishStatus') == CPluginScript.FAILED:
-            self.reportStatus(status)
-        print("\n\n1","beyond")
+            self.appendErrorReport(207, 'Coot ligand fitting failed')
+            self.reportStatus(CPluginScript.FAILED)
+            return
 
-        self.harvestFile(self.cootPlugin.container.outputData.XYZOUT[0], self.container.outputData.XYZOUT)
-        #Substitute the composition section of REFMAC output to include new monomers
-        #Perform analysis of output coordinate file composition
-        if os.path.isfile(str(self.container.outputData.XYZOUT.fullPath)):
-            from core.CCP4ModelData import CPdbData
-            aCPdbData = CPdbData()
-            aCPdbData.loadFile(self.container.outputData.XYZOUT.fullPath)
-            #print 'aCPdbData',aCPdbData
-            #print 'aCPdbData.chains',aCPdbData.composition.chains
-            #print 'aCPdbData.monomers',aCPdbData.composition.monomers
-            modelCompositionNode = None
-            modelCompositionNodes = self.xmlroot.xpath('//ModelComposition')
-            if len(modelCompositionNodes) > 0: modelCompositionNode = modelCompositionNodes[-1]
-            else:
-                refmacNodes = self.xmlroot.xpath('//REFMAC')
-                if len(refmacNodes) > 0: modelCompositionNode = etree.SubElement(refmacNodes[-1],"ModelComposition")
-            if modelCompositionNode is not None:
-                for monomer in aCPdbData.composition.monomers:
-                    monomerNode = etree.SubElement(modelCompositionNode,'Monomer',id=monomer)
-        self.finishWithStatus(CPluginScript.SUCCEEDED)
+        try:
+            self.harvestFile(self.cootPlugin.container.outputData.XYZOUT[0], self.container.outputData.XYZOUT)
+        except Exception as e:
+            self.appendErrorReport(207, 'Exception harvesting coot output: ' + str(e))
+            self.reportStatus(CPluginScript.FAILED)
+            return
+
+        try:
+            #Substitute the composition section of REFMAC output to include new monomers
+            #Perform analysis of output coordinate file composition
+            if os.path.isfile(str(self.container.outputData.XYZOUT.fullPath)):
+                from core.CCP4ModelData import CPdbData
+                aCPdbData = CPdbData()
+                aCPdbData.loadFile(self.container.outputData.XYZOUT.fullPath)
+                modelCompositionNode = None
+                modelCompositionNodes = self.xmlroot.xpath('//ModelComposition')
+                if len(modelCompositionNodes) > 0: modelCompositionNode = modelCompositionNodes[-1]
+                else:
+                    refmacNodes = self.xmlroot.xpath('//REFMAC')
+                    if len(refmacNodes) > 0: modelCompositionNode = etree.SubElement(refmacNodes[-1],"ModelComposition")
+                if modelCompositionNode is not None:
+                    for monomer in aCPdbData.composition.monomers:
+                        etree.SubElement(modelCompositionNode,'Monomer',id=monomer)
+            self.finishWithStatus(CPluginScript.SUCCEEDED)
+        except Exception as e:
+            self.appendErrorReport(208, 'Exception in coot postprocessing: ' + str(e))
+            self.reportStatus(CPluginScript.FAILED)
 
     def harvestFile(self, pluginOutputItem, pipelineOutputItem):
         try:
             shutil.copyfile(str(pluginOutputItem.fullPath), str(pipelineOutputItem.fullPath))
             pipelineOutputItem.annotation = pluginOutputItem.annotation
             pipelineOutputItem.contentFlag = pluginOutputItem.contentFlag
-            #print '#harvestFile',pluginOutputItem.fullPath, pluginOutputItem.contentFlag
             pipelineOutputItem.subType = pluginOutputItem.subType
-        except:
-            self.appendErrorReport(202,str(pluginOutputItem.fullPath)+' '+str(pipelineOutputItem.fullPath))
+        except Exception as e:
+            self.appendErrorReport(202, 'Failed to harvest file: ' + str(pluginOutputItem.fullPath) + ' -> ' + str(pipelineOutputItem.fullPath) + ': ' + str(e))
             self.finishWithStatus(CPluginScript.FAILED)
 
     def appendXML(self, changedFile, replacingElementOfType=None):
@@ -296,14 +302,13 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))'''
             CCP4Utils.writeXML(xmlfile,etree.tostring(self.xmlroot,pretty_print=True))
 
     def checkFinishStatus( self, statusDict,failedErrCode,outputFile = None,noFileErrCode= None):
-        import os
         if len(statusDict)>0 and statusDict['finishStatus'] == CPluginScript.FAILED:
             self.appendErrorReport(failedErrCode)
             self.reportStatus(statusDict['finishStatus'])
         try:
             assert outputFile.exists(),'Entity provided is not CDataFile or does not exist'
-        except:
-            self.appendErrorReport(noFileErrCode,'Expected file: '+str(outputFile))
+        except Exception as e:
+            self.appendErrorReport(noFileErrCode,'Expected file: '+str(outputFile) + ': ' + str(e))
             self.finishWithStatus(CPluginScript.FAILED)
 
     def finishWithStatus(self, status=CPluginScript.SUCCEEDED):
