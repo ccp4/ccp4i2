@@ -66,9 +66,20 @@ npm run dev
 ```
 
 ### Tests
+
+Run tests with proper CCP4 environment configuration:
 ```bash
+# Run all tests
 ./run_test.sh
+
+# Run a specific test file
+./run_test.sh tests/i2run/test_substitute_ligand.py
+
+# Run tests matching a pattern
+./run_test.sh -k "test_aimless"
 ```
+
+The `run_test.sh` script sets up the required environment variables and paths.
 
 ## Import Pattern
 

@@ -401,6 +401,32 @@ CCP4 modules require NumPy 1.x:
 pip install "numpy<2"
 ```
 
+### Coot Python 2 Not Found
+
+Some CCP4i2 wrappers (e.g., `coot_find_waters`, `coot_script_lines`) require the legacy Python 2 version of Coot. Recent CCP4 builds may not include `coot_py2`. If you see errors like:
+
+```
+exec: .../coot_py2/bin/coot: No such file or directory
+```
+
+You need to symlink `coot_py2` from an older CCP4 installation (e.g., CCP4 9):
+
+```bash
+# macOS example
+ln -s /Applications/ccp4-9/coot_py2 /path/to/ccp4-20251105/coot_py2
+
+# Linux example
+ln -s /opt/ccp4-9/coot_py2 /path/to/ccp4-20251105/coot_py2
+```
+
+Verify the symlink works:
+```bash
+/path/to/ccp4-20251105/bin/coot --version
+# Should show: 0.9.8.x with python 2.7.x embedded
+```
+
+**Note**: The modern Coot 1.x (`coot-1`) uses Python 3 and is available in recent CCP4 builds, but many CCP4i2 wrappers still require the Python 2 version.
+
 ### Segmentation Fault on Import
 
 Python version mismatch. Ensure you're using Python 3.11 matching CCP4:
