@@ -88,7 +88,12 @@ class aimless_pipe(CPluginScript):
           'KEEP_LATTICE_CENTERING','LATTICE_CENTERING_THRESHOLD',
           'ALLOW_NONCHIRAL',
           'MMCIF_SELECTED_BLOCK'])
-      # Note: REFERENCE_DATASET removed - aimless_pipe uses HKL/XYZ but pointless uses HKL_MERGED/HKL_UNMERGED/XYZ
+      # Map REFERENCE_DATASET: aimless_pipe uses HKL/XYZ, pointless uses HKL_MERGED/HKL_UNMERGED/XYZ
+      # XYZ is compatible, HKL maps to HKL_MERGED (the default reference type for merged data)
+      if self.container.controlParameters.REFERENCE_DATASET.__str__() == 'XYZ':
+          self.pointless.container.controlParameters.REFERENCE_DATASET.set('XYZ')
+      elif self.container.controlParameters.REFERENCE_DATASET.__str__() == 'HKL':
+          self.pointless.container.controlParameters.REFERENCE_DATASET.set('HKL_MERGED')
 
       self.connectSignal(self.pointless,'finished',self.process_cycle_aimless)
       self.pointless.process()
