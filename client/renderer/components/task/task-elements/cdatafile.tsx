@@ -403,7 +403,7 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
           onToggle={(expanded) => setIsManuallyExpanded(expanded)}
           forceExpanded={hasValidationError || forceExpanded}
           hasError={hasValidationError}
-          title="Additional Options"
+          hideTitle
           forceExpandedTitle="Required Options (Error)"
         >
           {children}

@@ -2120,6 +2120,50 @@ class CPdbEnsembleItem(CPdbEnsembleItemStub):
 
         return elem
 
+    def validity(self):
+        """
+        Validate the ensemble item.
+
+        Checks:
+        - Structure file must be set
+        - At least one of identity_to_target or rms_to_target must be set and non-zero
+
+        Returns:
+            CErrorReport containing validation errors/warnings
+        """
+        from core.base_object.error_reporting import CErrorReport, SEVERITY_ERROR
+
+        report = CErrorReport()
+
+        # First, validate the structure file (call parent/child validity)
+        if hasattr(self, 'structure') and self.structure is not None:
+            structure_report = self.structure.validity()
+            report.extend(structure_report)
+
+        # Check that at least one similarity metric is set and non-zero
+        identity_val = 0.0
+        rms_val = 0.0
+
+        if hasattr(self, 'identity_to_target') and self.identity_to_target is not None:
+            identity_val = getattr(self.identity_to_target, 'value', 0.0) or 0.0
+
+        if hasattr(self, 'rms_to_target') and self.rms_to_target is not None:
+            rms_val = getattr(self.rms_to_target, 'value', 0.0) or 0.0
+
+        has_valid_metric = (identity_val != 0.0) or (rms_val != 0.0)
+
+        if not has_valid_metric:
+            obj_path = self.object_path() if hasattr(self, 'object_path') else self.objectName()
+            report.append(
+                klass=self.__class__.__name__,
+                code=100,
+                details="Ensemble item requires either Identity or RMS to be set (non-zero)",
+                name=obj_path,
+                severity=SEVERITY_ERROR
+            )
+
+        return report
+
 
 class CResidueRange(CResidueRangeStub):
     """

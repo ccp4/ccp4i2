@@ -58,6 +58,13 @@ export interface ExpandableSectionProps extends PropsWithChildren {
   hasError?: boolean;
 
   /**
+   * Hide the title row entirely (saves vertical space).
+   * The title will still be shown when hasError is true.
+   * @default false
+   */
+  hideTitle?: boolean;
+
+  /**
    * Additional styles for the container.
    */
   sx?: SxProps<Theme>;
@@ -88,6 +95,7 @@ export const ExpandableSection: React.FC<ExpandableSectionProps> = ({
   title = "Additional Options",
   forceExpandedTitle = "Required Options (Error)",
   hasError = false,
+  hideTitle = false,
   sx,
   contentSx,
 }) => {
@@ -121,6 +129,8 @@ export const ExpandableSection: React.FC<ExpandableSectionProps> = ({
   if (!children) return null;
 
   const displayTitle = hasError ? forceExpandedTitle : title;
+  // Show title row when there's an error, or when hideTitle is false
+  const showTitleRow = hasError || !hideTitle;
 
   return (
     <Collapse in={isExpanded} timeout={200}>
@@ -128,7 +138,7 @@ export const ExpandableSection: React.FC<ExpandableSectionProps> = ({
         sx={{
           px: 2,
           pb: 1,
-          pt: 0,
+          pt: showTitleRow ? 0 : 1,
           backgroundColor: hasError ? "error.lighter" : "background.paper",
           borderTop: "1px solid",
           borderTopColor: hasError ? "error.light" : "divider",
@@ -138,40 +148,42 @@ export const ExpandableSection: React.FC<ExpandableSectionProps> = ({
         }}
         spacing={0.5}
       >
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-          sx={{ cursor: canToggle ? "pointer" : "default" }}
-          onClick={handleToggle}
-        >
-          <Typography
-            variant="caption"
-            color={hasError ? "error.main" : "text.secondary"}
-            sx={{
-              fontWeight: 500,
-              textTransform: "uppercase",
-              letterSpacing: 0.5,
-              mb: 0.5,
-            }}
+        {showTitleRow && (
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+            sx={{ cursor: canToggle ? "pointer" : "default" }}
+            onClick={handleToggle}
           >
-            {displayTitle}
-          </Typography>
-
-          {canToggle && (
-            <IconButton
-              size="small"
+            <Typography
+              variant="caption"
+              color={hasError ? "error.main" : "text.secondary"}
               sx={{
-                p: 0,
-                transition: "transform 0.2s ease-in-out",
-                transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
+                fontWeight: 500,
+                textTransform: "uppercase",
+                letterSpacing: 0.5,
+                mb: 0.5,
               }}
-              aria-label={isExpanded ? "Collapse section" : "Expand section"}
             >
-              <ChevronRightIcon fontSize="small" />
-            </IconButton>
-          )}
-        </Stack>
+              {displayTitle}
+            </Typography>
+
+            {canToggle && (
+              <IconButton
+                size="small"
+                sx={{
+                  p: 0,
+                  transition: "transform 0.2s ease-in-out",
+                  transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
+                }}
+                aria-label={isExpanded ? "Collapse section" : "Expand section"}
+              >
+                <ChevronRightIcon fontSize="small" />
+              </IconButton>
+            )}
+          </Stack>
+        )}
 
         <Stack sx={contentSx}>{children}</Stack>
       </Stack>
