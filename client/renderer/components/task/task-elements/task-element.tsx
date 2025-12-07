@@ -20,6 +20,7 @@ import { CReindexOperatorElement } from "./creindexoperator";
 import { CRangeElement } from "./crange";
 import { v4 as uuid4 } from "uuid";
 import { CAsuContentSeqElement } from "./casucontentseq";
+import { CColumnGroupElement } from "./ccolumngroup";
 import { CPdbEnsembleItemElement } from "./cpdbensembleitem";
 import { Breakpoint } from "@mui/system";
 import { CAsuContentSeqListElement } from "./casucontentseqlist";
@@ -222,6 +223,7 @@ export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
       case "CList":
       case "CImportUnmergedList":
       case "CAltSpaceGroupList":
+        case "CColumnGroupList":
       case "CEnsembleList":
         return (
           <CListElement key={the_uuid} {...props} qualifiers={qualifiers} />
@@ -283,6 +285,14 @@ export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
       case "CAltSpaceGroup":
         return (
           <CAltSpaceGroupElement
+            key={the_uuid}
+            {...props}
+            qualifiers={qualifiers}
+          />
+        );
+      case "CColumnGroup":
+        return (
+          <CColumnGroupElement
             key={the_uuid}
             {...props}
             qualifiers={qualifiers}

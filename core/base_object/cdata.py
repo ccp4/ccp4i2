@@ -1389,6 +1389,21 @@ class CData(HierarchicalObject):
             return  # Don't replace the object, just update its path
 
         elif (
+            isinstance(value, list)
+            and existing_attr is not None
+            and hasattr(existing_attr, 'set')
+            and hasattr(existing_attr, '_items')  # Duck-type check for CList
+        ):
+            # Special case: Assigning a list to an existing CList
+            # e.g., columnGroup.columnList = [dict1, dict2, ...]
+            # Use CList.set() to properly handle dict-to-object conversion via subItem
+            existing_attr.set(value)
+            # Mark as explicitly set
+            if hasattr(self, "_value_states"):
+                self._value_states[name] = ValueState.EXPLICITLY_SET
+            return  # Don't replace the object, just update its items
+
+        elif (
             existing_attr is not None and isinstance(existing_attr, CData)
             and existing_attr._is_value_type()
         ):

@@ -23,6 +23,7 @@ import PhaserPipelineInterface from "./phaser_pipeline";
 import ParrotInterface from "./parrot";
 import SHELXInterface from "./shelx";
 import CSymmatchInterface from "./csymmatch";
+import SplitMtzInterface from "./splitMtz";
 import { useJob } from "../../../utils";
 
 // Auto-generated interfaces from legacy GUI files
@@ -133,6 +134,8 @@ export const TaskContainer = () => {
         return <SubstituteLigandInterface job={job} />;
       case "shelx":
         return <SHELXInterface job={job} />;
+      case "splitMtz":
+        return <SplitMtzInterface job={job} />;
 
       // Auto-generated interfaces from legacy GUI files
       case "AMPLE":

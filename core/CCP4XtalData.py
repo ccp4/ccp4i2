@@ -190,13 +190,41 @@ class CCellLength(CCellLengthStub):
 class CColumnGroup(CColumnGroupStub):
     """
     Groups of columns in MTZ - probably from analysis by hklfile
-    
+
     Extends CColumnGroupStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
-    # Add your methods here
-    pass
+    def __init__(self, parent=None, name=None, **kwargs):
+        super().__init__(parent=parent, name=name, **kwargs)
+        # Set subItem qualifier on columnList so CList.set() knows to convert
+        # dict items to CMtzColumn objects. Accessing columnList will auto-create
+        # it if not yet instantiated.
+        self.columnList.set_qualifier('subItem', {'class': CMtzColumn})
+
+    def columnListStr(self, withTypes: bool = True, splitter: str = ',') -> str:
+        """
+        Return a string representation of column labels in this group.
+
+        Args:
+            withTypes: If True, append column type in parentheses (e.g., "F(F)")
+            splitter: Separator between columns (default: ',')
+
+        Returns:
+            String like "F,SIGF" or "F(F),SIGF(Q)" depending on withTypes
+        """
+        column_list = self.columnList
+        if len(column_list) == 0:
+            return ''
+
+        parts = []
+        for col in column_list:
+            label = str(col.columnLabel) if col.columnLabel else ''
+            if withTypes and col.columnType:
+                label = label + '(' + str(col.columnType) + ')'
+            parts.append(label)
+
+        return splitter.join(parts)
 
 
 class CColumnGroupItem(CColumnGroupItemStub):
@@ -214,13 +242,12 @@ class CColumnGroupItem(CColumnGroupItemStub):
 class CColumnGroupList(CColumnGroupListStub):
     """
     A list with all items of one CData sub-class
-    
+
     Extends CColumnGroupListStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
-    # Add your methods here
-    pass
+    SUBITEM = {'class': CColumnGroup}
 
 
 class CColumnType(CColumnTypeStub):
@@ -393,14 +420,17 @@ class CMiniMtzDataFile(CMiniMtzDataFileStub):
 
     # Note: _get_conversion_output_path() is now in CDataFile base class
 
-    def columnNames(self, asString=False):
+    def columnNames(self, asString=False, ifString=None):
         """
-        Get column names from the file content.
+        Get column names from the file content, or expected names based on contentFlag.
 
         Legacy compatibility method that inspects fileContent to return column names.
+        If fileContent is not available, falls back to CONTENT_SIGNATURE_LIST based
+        on the contentFlag.
 
         Args:
             asString: If True, return comma-separated string. If False, return list.
+            ifString: Legacy parameter name for asString (for backwards compatibility)
 
         Returns:
             list or str: Column names as list or comma-separated string
@@ -411,6 +441,10 @@ class CMiniMtzDataFile(CMiniMtzDataFileStub):
             >>> mtz_file.columnNames(True)
             'H,K,L,F,SIGF'
         """
+        # Support legacy ifString parameter
+        if ifString is not None:
+            asString = ifString
+
         col_names = []
 
         # Try to get from fileContent.listOfColumns
@@ -425,6 +459,18 @@ class CMiniMtzDataFile(CMiniMtzDataFileStub):
                         col_names.append(str(label.value))
                     else:
                         col_names.append(str(label))
+
+        # Fall back to CONTENT_SIGNATURE_LIST if no fileContent columns
+        if not col_names and hasattr(self.__class__, 'CONTENT_SIGNATURE_LIST'):
+            content_flag = None
+            if hasattr(self, 'contentFlag') and self.contentFlag:
+                cf = self.contentFlag
+                content_flag = cf.value if hasattr(cf, 'value') else int(cf)
+
+            signature_list = self.__class__.CONTENT_SIGNATURE_LIST
+            if content_flag is not None and 1 <= content_flag <= len(signature_list):
+                # contentFlag is 1-indexed
+                col_names = list(signature_list[content_flag - 1])
 
         if asString:
             return ','.join(col_names)
@@ -1490,12 +1536,14 @@ class CMtzData(CMtzDataStub):
 
     def getColumnGroups(self):
         """
-        Build list of column groups from MTZ column info (for mini-mtz's).
+        Build list of column groups from MTZ column info by pattern matching.
 
-        This method analyzes the columns in listOfColumns and groups them by:
-        1. Dataset and groupIndex
-        2. Special handling for map coefficients (F-Phi pairs)
-        3. Assigns column group types (Obs, Phs, MapCoeffs, FreeR) based on signatures
+        This method scans through the columns and identifies sequential patterns
+        that match known content signatures for CMiniMtzData subtypes:
+        - CObsDataFile: FQ (F,sigF), JQ (I,sigI), GLGL (F+,sigF+,F-,sigF-), KMKM (I+,sigI+,I-,sigI-)
+        - CMapCoeffsDataFile: FP (F,Phi), FQP (F,sigF,Phi)
+        - CPhsDataFile: AAAA (HLA,HLB,HLC,HLD), PW (Phi,FOM)
+        - CFreeRDataFile: I (integer flag)
 
         Returns:
             list: List of CColumnGroup objects with columnList, columnGroupType, contentFlag
@@ -1505,7 +1553,6 @@ class CMtzData(CMtzDataStub):
             >>> for group in groups:
             ...     print(f"{group.columnGroupType}: {group.columnList}")
         """
-        groupIndex = 0  # MapCoeffs broken KJS
         groupList = []
 
         # Get listOfColumns - handle both CList and plain list
@@ -1516,109 +1563,97 @@ class CMtzData(CMtzDataStub):
         if not columns:
             return groupList
 
-        # Sort listOfColumns into a list of grouped columns
-        for ii in range(len(columns)):
-            fileColumn = columns[ii]
-            col_group_idx = fileColumn.groupIndex.value if hasattr(fileColumn.groupIndex, 'value') else fileColumn.groupIndex
+        # Helper to extract column info
+        def get_col_info(col):
+            label = col.columnLabel.value if hasattr(col.columnLabel, 'value') else col.columnLabel
+            ctype = col.columnType.value if hasattr(col.columnType, 'value') else col.columnType
+            dataset = col.dataset.value if hasattr(col.dataset, 'value') else col.dataset
+            group_idx = col.groupIndex.value if hasattr(col.groupIndex, 'value') else col.groupIndex
+            return str(label), str(ctype), str(dataset) if dataset else '', group_idx
 
-            if col_group_idx != groupIndex:
-                col_dataset = fileColumn.dataset.value if hasattr(fileColumn.dataset, 'value') else fileColumn.dataset
-                groupList.append(CColumnGroup(dataset=str(col_dataset)))
-                groupIndex = int(col_group_idx)
+        # Build type string for pattern matching
+        col_infos = [get_col_info(col) for col in columns]
+        type_string = ''.join(info[1] for info in col_infos)
 
-            # Ensure we have at least one group (defensive check for first column)
-            if not groupList:
-                col_dataset = fileColumn.dataset.value if hasattr(fileColumn.dataset, 'value') else fileColumn.dataset
-                groupList.append(CColumnGroup(dataset=str(col_dataset)))
-                groupIndex = int(col_group_idx)
+        # Define signature patterns with their data types and content flags
+        # Order matters: check longer patterns first to avoid partial matches
+        # Format: (pattern, group_type, content_flag)
+        from core.base_object.class_metadata import get_class_metadata_by_type
 
-            col_label = fileColumn.columnLabel.value if hasattr(fileColumn.columnLabel, 'value') else fileColumn.columnLabel
-            col_type = fileColumn.columnType.value if hasattr(fileColumn.columnType, 'value') else fileColumn.columnType
-            col_dataset = fileColumn.dataset.value if hasattr(fileColumn.dataset, 'value') else fileColumn.dataset
-            col_group_idx = fileColumn.groupIndex.value if hasattr(fileColumn.groupIndex, 'value') else fileColumn.groupIndex
+        # Build pattern list from class metadata
+        patterns = []
+        for cls, label in [(CObsDataFile, 'Obs'), (CPhsDataFile, 'Phs'),
+                          (CMapCoeffsDataFile, 'MapCoeffs'), (CFreeRDataFile, 'FreeR')]:
+            meta = get_class_metadata_by_type(cls)
+            correct_columns = meta.qualifiers.get('correctColumns') if meta and meta.qualifiers else None
+            if correct_columns:
+                for idx, sig in enumerate(correct_columns):
+                    patterns.append((sig, label, idx + 1))
 
-            groupList[-1].columnList.append(CMtzColumn(
-                columnLabel=col_label,
-                columnType=col_type,
-                groupIndex=col_group_idx,
-                dataset=col_dataset
-            ))
+        # Sort by pattern length (longest first) to match longer patterns before shorter ones
+        patterns.sort(key=lambda x: len(x[0]), reverse=True)
 
-        # Loop over and catch map-coefs (F-Phi pairs)
-        for i, col1 in enumerate(columns[:-1]):
-            col2 = columns[i+1]
-            col1_type = col1.columnType.value if hasattr(col1.columnType, 'value') else col1.columnType
-            col2_type = col2.columnType.value if hasattr(col2.columnType, 'value') else col2.columnType
-            MapT = (col1_type == 'F' and col2_type == 'P')  # Map (FP): F-Phi / Phases (PW): Phi-FOM
+        # Track which columns have been assigned to a group
+        used = [False] * len(col_infos)
 
-            if MapT:
-                col1_dataset = col1.dataset.value if hasattr(col1.dataset, 'value') else col1.dataset
-                groupList.append(CColumnGroup(dataset=str(col1_dataset)))
+        # Scan for patterns
+        i = 0
+        while i < len(col_infos):
+            if used[i]:
+                i += 1
+                continue
 
-                col1_label = col1.columnLabel.value if hasattr(col1.columnLabel, 'value') else col1.columnLabel
-                col1_group = col1.groupIndex.value if hasattr(col1.groupIndex, 'value') else col1.groupIndex
-                col2_label = col2.columnLabel.value if hasattr(col2.columnLabel, 'value') else col2.columnLabel
-                col2_group = col2.groupIndex.value if hasattr(col2.groupIndex, 'value') else col2.groupIndex
+            matched = False
+            for pattern, group_type, content_flag in patterns:
+                pattern_len = len(pattern)
+                if i + pattern_len > len(col_infos):
+                    continue
 
-                groupList[-1].columnList.append(CMtzColumn(
-                    columnLabel=col1_label,
-                    columnType=col1_type,
-                    groupIndex=col1_group,
-                    dataset=col1_dataset
-                ))
-                groupList[-1].columnList.append(CMtzColumn(
-                    columnLabel=col2_label,
-                    columnType=col2_type,
-                    groupIndex=col2_group,
-                    dataset=col1_dataset
-                ))
+                # Check if pattern matches at this position
+                candidate = type_string[i:i + pattern_len]
+                if candidate == pattern:
+                    # Special check for FreeR: label must contain 'free'
+                    if group_type == 'FreeR':
+                        label = col_infos[i][0]
+                        if 'free' not in label.lower():
+                            continue
 
-        # Assign the columnGroupType and contentFlag based on column signatures
-        for group in groupList:
-            signature = ''
-            labels = []
-            col_list = group.columnList.value if hasattr(group.columnList, 'value') else group.columnList
-            for col in col_list:
-                col_type = col.columnType.value if hasattr(col.columnType, 'value') else col.columnType
-                col_label = col.columnLabel.value if hasattr(col.columnLabel, 'value') else col.columnLabel
+                    # For Obs data, columns must come from the same dataset
+                    # (when crystal/dataset names are present in the MTZ)
+                    if group_type == 'Obs':
+                        first_dataset = col_infos[i][2]
+                        if first_dataset:  # Only check if dataset info is present
+                            same_dataset = all(
+                                col_infos[i + j][2] == first_dataset
+                                for j in range(pattern_len)
+                            )
+                            if not same_dataset:
+                                continue
 
-                # Skip H-type columns (Miller indices H, K, L) when building signature
-                if col_type != 'H':
-                    signature = signature + str(col_type)
-                    labels.append(str(col_label))
+                    # Create a new column group
+                    dataset = col_infos[i][2]
+                    group = CColumnGroup(dataset=dataset)
+                    group.columnGroupType = group_type
+                    group.contentFlag = content_flag
 
-            # Check against known column signatures for each data type
-            from core.base_object.class_metadata import get_class_metadata_by_type
-            for cls, label in [[CObsDataFile, 'Obs'], [CPhsDataFile, 'Phs'],
-                              [CMapCoeffsDataFile, 'MapCoeffs'], [CFreeRDataFile, 'FreeR']]:
-                meta = get_class_metadata_by_type(cls)
-                correct_columns = meta.qualifiers.get('correctColumns') if meta and meta.qualifiers else None
-                if correct_columns and signature in correct_columns:
-                    if label == 'FreeR':
-                        # Is this really FreeR? check column label
-                        if (len(labels) == 1) and ('free' in str(labels[0]).lower()):
-                            print(f"Column recognised as FreeR, label: {str(labels[0])}")
-                            group.columnGroupType = label
-                            group.contentFlag = correct_columns.index(signature) + 1
-                    else:
-                        group.columnGroupType = label
-                        group.contentFlag = correct_columns.index(signature) + 1
+                    # Add the matching columns
+                    for j in range(pattern_len):
+                        label, ctype, ds, grp_idx = col_infos[i + j]
+                        group.columnList.append(CMtzColumn(
+                            columnLabel=label,
+                            columnType=ctype,
+                            groupIndex=grp_idx,
+                            dataset=ds
+                        ))
+                        used[i + j] = True
 
-            # Handle special cases if columnGroupType not set
-            if not group.columnGroupType.isSet():
-                if signature == 'FPW':
-                    group.columnGroupType = 'Phs'
-                    group.contentFlag = 2
-                    col_list.pop(0)
-                elif signature == 'PWF':
-                    group.columnGroupType = 'Phs'
-                    group.contentFlag = 2
-                    col_list.pop(2)
-                elif signature == 'FQDQ':
-                    group.columnGroupType = 'Obs'
-                    col_list.pop(3)
-                    col_list.pop(2)
-                    group.contentFlag = 4
+                    groupList.append(group)
+                    i += pattern_len
+                    matched = True
+                    break
+
+            if not matched:
+                i += 1
 
         return groupList
 
@@ -1948,14 +1983,17 @@ class CMtzDataFile(CMtzDataFileStub):
         """
         return ['mtz']
 
-    def columnNames(self, asString=False):
+    def columnNames(self, asString=False, ifString=None):
         """
-        Get column names from the file content.
+        Get column names from the file content, or expected names based on contentFlag.
 
         Legacy compatibility method that inspects fileContent to return column names.
+        If fileContent is not available, falls back to CONTENT_SIGNATURE_LIST based
+        on the contentFlag.
 
         Args:
             asString: If True, return comma-separated string. If False, return list.
+            ifString: Legacy parameter name for asString (for backwards compatibility)
 
         Returns:
             list or str: Column names as list or comma-separated string
@@ -1966,6 +2004,10 @@ class CMtzDataFile(CMtzDataFileStub):
             >>> mtz_file.columnNames(True)
             'H,K,L,F,SIGF'
         """
+        # Support legacy ifString parameter
+        if ifString is not None:
+            asString = ifString
+
         col_names = []
 
         # Try to get from fileContent.listOfColumns
@@ -1980,6 +2022,18 @@ class CMtzDataFile(CMtzDataFileStub):
                         col_names.append(str(label.value))
                     else:
                         col_names.append(str(label))
+
+        # Fall back to CONTENT_SIGNATURE_LIST if no fileContent columns
+        if not col_names and hasattr(self.__class__, 'CONTENT_SIGNATURE_LIST'):
+            content_flag = None
+            if hasattr(self, 'contentFlag') and self.contentFlag:
+                cf = self.contentFlag
+                content_flag = cf.value if hasattr(cf, 'value') else int(cf)
+
+            signature_list = self.__class__.CONTENT_SIGNATURE_LIST
+            if content_flag is not None and 1 <= content_flag <= len(signature_list):
+                # contentFlag is 1-indexed
+                col_names = list(signature_list[content_flag - 1])
 
         if asString:
             return ','.join(col_names)

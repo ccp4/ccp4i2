@@ -180,9 +180,7 @@ class ParamsXmlHandler:
             exclude_unset: If True, only export explicitly set parameters (default: True)
         """
         from core.base_object.fundamental_types import CList
-        import traceback
-        import sys
-        traceback.print_stack(file=sys.stdout)
+
         # DEBUG: Print what container we're exporting
         container_name = getattr(container, 'name', 'unnamed')
         container_type = type(container).__name__
@@ -222,7 +220,6 @@ class ParamsXmlHandler:
                     continue
 
                 cdata_attrs_found += 1
-                print(f"[DEBUG] Found CData attribute: {attr_name} (type: {type(attr).__name__})")
 
                 if hasattr(attr, "name"):  # It's a CData object
 

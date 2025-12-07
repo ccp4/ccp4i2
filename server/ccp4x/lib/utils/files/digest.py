@@ -505,6 +505,18 @@ def digest_cgenericrefldatafile_file_object(file_object: CGenericReflDataFile):
                 blkinfo = mmcifutils.CifBlockInfo(rb)
                 rblock_infos.append(flatten_instance(blkinfo))
             content_dict["rblock_infos"] = rblock_infos
+
+        # Add column groups for MTZ files
+        if contents and hasattr(contents, 'getColumnGroups'):
+            try:
+                column_groups = contents.getColumnGroups()
+                # Use value_dict_for_object for proper recursive CData serialization
+                content_dict["columnGroups"] = [
+                    value_dict_for_object(grp) for grp in column_groups
+                ]
+            except Exception as col_err:
+                logger.warning("Failed to get column groups: %s", col_err)
+
         return content_dict
     except Exception as err:
         logger.exception("Error digesting file %s", file_object, exc_info=err)

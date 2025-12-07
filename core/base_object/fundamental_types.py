@@ -1590,7 +1590,11 @@ class CList(CData):
                 raise v
 
         # Get subItem class for dict conversion
+        # First check instance qualifier, then fallback to SUBITEM class attribute
         sub_item_def = self.get_qualifier('subItem')
+        if not sub_item_def:
+            # Check for SUBITEM class attribute (legacy CCP4i2 pattern)
+            sub_item_def = getattr(self.__class__, 'SUBITEM', None)
         item_class = sub_item_def.get('class') if isinstance(sub_item_def, dict) else None
 
         # Clear current items
@@ -1680,8 +1684,12 @@ class CList(CData):
             >>> new_item = my_list.makeItem()
             >>> my_list.append(new_item)
         """
-        # Get subItem qualifier
+        # Get subItem qualifier or SUBITEM class attribute
         sub_item_def = self.get_qualifier('subItem')
+
+        if not sub_item_def:
+            # Check for SUBITEM class attribute (legacy CCP4i2 pattern)
+            sub_item_def = getattr(self.__class__, 'SUBITEM', None)
 
         if not sub_item_def:
             # Default to CString for simple lists (common in legacy plugins)
