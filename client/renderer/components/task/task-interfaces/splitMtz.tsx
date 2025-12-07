@@ -10,12 +10,21 @@ import {
   Button,
   Chip,
   CircularProgress,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   Divider,
+  FormControl,
+  IconButton,
+  InputLabel,
   List,
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  MenuItem,
   Paper,
+  Select,
   Stack,
   Typography,
 } from "@mui/material";
@@ -24,6 +33,9 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import TableChartIcon from "@mui/icons-material/TableChart";
+import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
+import BuildIcon from "@mui/icons-material/Build";
 
 // Type definitions
 interface MtzColumn {
@@ -168,6 +180,49 @@ const TYPE_LABELS: Record<string, string> = {
   MapCoeffs: "Map Coefficients",
   FreeR: "Free R Flag",
 };
+
+/**
+ * Column type requirements for each file type + contentFlag combination.
+ * Used by the custom column group builder to validate user selections.
+ * Format: { types: column type codes, labels: human-readable slot names }
+ */
+interface ColumnRequirement {
+  types: string[];
+  labels: string[];
+  description: string;
+}
+
+const COLUMN_REQUIREMENTS: Record<string, Record<number, ColumnRequirement>> = {
+  Obs: {
+    1: { types: ["F", "Q"], labels: ["F", "SIGF"], description: "Mean SFs (F, sigF)" },
+    2: { types: ["J", "Q"], labels: ["I", "SIGI"], description: "Mean Is (I, sigI)" },
+    3: { types: ["G", "L", "G", "L"], labels: ["F+", "sigF+", "F-", "sigF-"], description: "Anomalous SFs" },
+    4: { types: ["K", "M", "K", "M"], labels: ["I+", "sigI+", "I-", "sigI-"], description: "Anomalous Is" },
+  },
+  MapCoeffs: {
+    1: { types: ["F", "P"], labels: ["F", "PHI"], description: "F, Phi" },
+    2: { types: ["F", "Q", "P"], labels: ["F", "SIGF", "PHI"], description: "F, sigF, Phi" },
+  },
+  Phs: {
+    1: { types: ["A", "A", "A", "A"], labels: ["HLA", "HLB", "HLC", "HLD"], description: "Hendrickson-Lattman" },
+    2: { types: ["P", "W"], labels: ["PHI", "FOM"], description: "Phi-FOM" },
+  },
+  FreeR: {
+    1: { types: ["I"], labels: ["FREE"], description: "Integer flag" },
+  },
+};
+
+/**
+ * Get available content flags for a given file type.
+ */
+function getContentFlagsForType(fileType: string): { value: number; label: string }[] {
+  const requirements = COLUMN_REQUIREMENTS[fileType];
+  if (!requirements) return [];
+  return Object.entries(requirements).map(([flag, req]) => ({
+    value: parseInt(flag),
+    label: req.description,
+  }));
+}
 
 /**
  * Helper to extract value, handling _value wrapper from JSON encoder.
@@ -467,6 +522,277 @@ const MtzFileInfo: React.FC<{ digest: MtzDigest }> = ({ digest }) => {
 };
 
 /**
+ * CustomColumnGroupDialog - Modal for creating custom column groups
+ */
+const CustomColumnGroupDialog: React.FC<{
+  open: boolean;
+  onClose: () => void;
+  onAdd: (group: ColumnGroup) => void;
+  onDelete: (group: ColumnGroup) => void;
+  availableColumns: MtzColumn[];
+  customGroups: ColumnGroup[];
+  disabled: boolean;
+}> = ({ open, onClose, onAdd, onDelete, availableColumns, customGroups, disabled }) => {
+  const [fileType, setFileType] = useState<string>("");
+  const [contentFlag, setContentFlag] = useState<number>(0);
+  const [selectedColumns, setSelectedColumns] = useState<(MtzColumn | null)[]>([]);
+  const [dataset, setDataset] = useState<string>("");
+
+  // Get available datasets from columns
+  const datasets = useMemo(() => {
+    const unique = new Set(availableColumns.map((c) => c.dataset).filter(Boolean));
+    return Array.from(unique);
+  }, [availableColumns]);
+
+  // Get requirements for current selection
+  const requirements = useMemo(() => {
+    if (!fileType || !contentFlag) return null;
+    return COLUMN_REQUIREMENTS[fileType]?.[contentFlag] || null;
+  }, [fileType, contentFlag]);
+
+  // Reset column selections when requirements change
+  const handleFileTypeChange = (newType: string) => {
+    setFileType(newType);
+    setContentFlag(0);
+    setSelectedColumns([]);
+  };
+
+  const handleContentFlagChange = (newFlag: number) => {
+    setContentFlag(newFlag);
+    const req = COLUMN_REQUIREMENTS[fileType]?.[newFlag];
+    if (req) {
+      setSelectedColumns(new Array(req.types.length).fill(null));
+    } else {
+      setSelectedColumns([]);
+    }
+  };
+
+  // Get columns matching a specific type
+  const getColumnsForType = (typeCode: string): MtzColumn[] => {
+    return availableColumns.filter((col) => col.columnType === typeCode);
+  };
+
+  // Check if the current selection is valid
+  const isValid = useMemo(() => {
+    if (!requirements) return false;
+    if (selectedColumns.length !== requirements.types.length) return false;
+    return selectedColumns.every((col, idx) => {
+      if (!col) return false;
+      return col.columnType === requirements.types[idx];
+    });
+  }, [requirements, selectedColumns]);
+
+  // Handle adding the custom group
+  const handleAdd = () => {
+    if (!isValid || !requirements) return;
+
+    const newGroup: ColumnGroup = {
+      columnGroupType: fileType,
+      contentFlag: contentFlag,
+      dataset: dataset || selectedColumns[0]?.dataset || "",
+      columnList: selectedColumns.filter((c): c is MtzColumn => c !== null),
+    };
+
+    onAdd(newGroup);
+
+    // Reset form
+    setFileType("");
+    setContentFlag(0);
+    setSelectedColumns([]);
+    setDataset("");
+  };
+
+  const fileTypes = Object.keys(COLUMN_REQUIREMENTS);
+  const contentFlags = getContentFlagsForType(fileType);
+
+  return (
+    <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
+      <DialogTitle>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <BuildIcon />
+          Custom Column Groups
+        </Box>
+      </DialogTitle>
+      <DialogContent>
+        {/* Existing custom groups */}
+        {customGroups.length > 0 && (
+          <Box sx={{ mb: 3 }}>
+            <Typography variant="subtitle2" sx={{ mb: 1 }}>
+              Existing Custom Groups
+            </Typography>
+            <Paper variant="outlined">
+              <List dense>
+                {customGroups.map((group, idx) => {
+                  const key = `custom-${idx}-${getGroupKey(group)}`;
+                  const chipColor = TYPE_COLORS[group.columnGroupType] || "default";
+                  const typeLabel = TYPE_LABELS[group.columnGroupType] || group.columnGroupType;
+                  const columnsStr = group.columnList.map((c) => c.columnLabel).join(", ");
+                  return (
+                    <ListItemButton key={key} sx={{ py: 0.5 }}>
+                      <ListItemIcon sx={{ minWidth: 36 }}>
+                        <TableChartIcon fontSize="small" color={chipColor as any} />
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={
+                          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                            <Chip label={typeLabel} color={chipColor} size="small" sx={{ height: 20, fontSize: "0.7rem" }} />
+                            <Chip label="Custom" size="small" variant="outlined" sx={{ height: 20, fontSize: "0.7rem" }} />
+                            <Typography variant="body2" color="text.secondary">
+                              {group.dataset || "-"}
+                            </Typography>
+                          </Box>
+                        }
+                        secondary={
+                          <Typography variant="caption" sx={{ fontFamily: "monospace", color: "text.secondary" }}>
+                            {columnsStr}
+                          </Typography>
+                        }
+                      />
+                      <IconButton
+                        size="small"
+                        onClick={() => onDelete(group)}
+                        disabled={disabled}
+                        title="Remove custom group"
+                      >
+                        <DeleteIcon fontSize="small" />
+                      </IconButton>
+                    </ListItemButton>
+                  );
+                })}
+              </List>
+            </Paper>
+          </Box>
+        )}
+
+        {/* Create new custom group */}
+        <Typography variant="subtitle2" sx={{ mb: 2 }}>
+          Create New Custom Group
+        </Typography>
+
+        <Stack spacing={2}>
+          {/* File type selector */}
+          <FormControl fullWidth size="small">
+            <InputLabel>File Type</InputLabel>
+            <Select
+              value={fileType}
+              label="File Type"
+              onChange={(e) => handleFileTypeChange(e.target.value)}
+              disabled={disabled}
+            >
+              {fileTypes.map((type) => (
+                <MenuItem key={type} value={type}>
+                  {TYPE_LABELS[type] || type}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          {/* Content flag selector */}
+          {fileType && (
+            <FormControl fullWidth size="small">
+              <InputLabel>Data Type</InputLabel>
+              <Select
+                value={contentFlag || ""}
+                label="Data Type"
+                onChange={(e) => handleContentFlagChange(Number(e.target.value))}
+                disabled={disabled}
+              >
+                {contentFlags.map((cf) => (
+                  <MenuItem key={cf.value} value={cf.value}>
+                    {cf.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          )}
+
+          {/* Dataset selector (optional) */}
+          {requirements && datasets.length > 0 && (
+            <FormControl fullWidth size="small">
+              <InputLabel>Dataset (optional)</InputLabel>
+              <Select
+                value={dataset}
+                label="Dataset (optional)"
+                onChange={(e) => setDataset(e.target.value)}
+                disabled={disabled}
+              >
+                <MenuItem value="">
+                  <em>Auto-detect</em>
+                </MenuItem>
+                {datasets.map((ds) => (
+                  <MenuItem key={ds} value={ds}>
+                    {ds}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          )}
+
+          {/* Column selectors */}
+          {requirements && (
+            <Box>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                Select columns for each slot:
+              </Typography>
+              <Stack spacing={1}>
+                {requirements.labels.map((label, idx) => {
+                  const requiredType = requirements.types[idx];
+                  const matchingColumns = getColumnsForType(requiredType);
+                  const selectedCol = selectedColumns[idx];
+
+                  return (
+                    <FormControl key={idx} fullWidth size="small">
+                      <InputLabel>
+                        {label} (type: {requiredType})
+                      </InputLabel>
+                      <Select
+                        value={selectedCol?.columnLabel || ""}
+                        label={`${label} (type: ${requiredType})`}
+                        onChange={(e) => {
+                          const col = matchingColumns.find((c) => c.columnLabel === e.target.value);
+                          const newSelected = [...selectedColumns];
+                          newSelected[idx] = col || null;
+                          setSelectedColumns(newSelected);
+                        }}
+                        disabled={disabled}
+                        error={matchingColumns.length === 0}
+                      >
+                        {matchingColumns.length === 0 ? (
+                          <MenuItem disabled>
+                            <em>No columns of type {requiredType} available</em>
+                          </MenuItem>
+                        ) : (
+                          matchingColumns.map((col) => (
+                            <MenuItem key={col.columnLabel} value={col.columnLabel}>
+                              {col.columnLabel} ({col.dataset || "no dataset"})
+                            </MenuItem>
+                          ))
+                        )}
+                      </Select>
+                    </FormControl>
+                  );
+                })}
+              </Stack>
+            </Box>
+          )}
+        </Stack>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={onClose}>Close</Button>
+        <Button
+          variant="contained"
+          startIcon={<AddIcon />}
+          onClick={handleAdd}
+          disabled={disabled || !isValid}
+        >
+          Add to Selection
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
+};
+
+/**
  * SplitMtz Task Interface
  *
  * Architecture:
@@ -487,6 +813,10 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
   const isEditable = job.status === 1;
 
+  // Custom group builder dialog state
+  const [customDialogOpen, setCustomDialogOpen] = useState(false);
+  const [customGroups, setCustomGroups] = useState<ColumnGroup[]>([]);
+
   // Extract file UUID for display purposes
   const fileUuid = useMemo(() => {
     if (!hklinItem) return null;
@@ -503,6 +833,12 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     mutate: mutateDigest,
   } = useFileDigest(hklinObjectPath ? `splitMtz.inputData.HKLIN` : "");
 
+  // Get raw columns from digest for custom group builder
+  const availableColumns = useMemo(() => {
+    if (!digest?.listOfColumns) return [];
+    return digest.listOfColumns;
+  }, [digest]);
+
   // Compute substrate groups from digest
   const substrateGroups = useMemo(() => {
     if (!digest) return [];
@@ -515,16 +851,21 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     return [];
   }, [digest]);
 
+  // Combined substrate = auto-detected groups + custom groups
+  const combinedSubstrate = useMemo(() => {
+    return [...substrateGroups, ...customGroups];
+  }, [substrateGroups, customGroups]);
+
   // Selected groups come from container (COLUMNGROUPLIST)
   const selectedGroups = useMemo(() => {
     return containerValueToColumnGroups(containerColumnGroups || []);
   }, [containerColumnGroups]);
 
-  // Available groups = substrate minus selected
+  // Available groups = combined substrate minus selected
   const availableGroups = useMemo(() => {
     const selectedKeys = new Set(selectedGroups.map(getGroupKey));
-    return substrateGroups.filter((g) => !selectedKeys.has(getGroupKey(g)));
-  }, [substrateGroups, selectedGroups]);
+    return combinedSubstrate.filter((g) => !selectedKeys.has(getGroupKey(g)));
+  }, [combinedSubstrate, selectedGroups]);
 
   /**
    * Handle HKLIN file change - clear selection and trigger digest refresh.
@@ -533,6 +874,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const handleHklinChange = useCallback(async () => {
     // Clear the selection - old column groups are no longer valid
     await updateColumnGroupList([]);
+    // Clear custom groups too - they reference columns from the old file
+    setCustomGroups([]);
     // Trigger SWR to revalidate/refetch the digest
     mutateDigest();
   }, [mutateDigest, updateColumnGroupList]);
@@ -576,6 +919,35 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const handleDeselectAll = useCallback(async () => {
     await updateColumnGroupList([]);
   }, [updateColumnGroupList]);
+
+  /**
+   * Handle adding a custom group - adds to both custom groups list and selected groups.
+   */
+  const handleAddCustomGroup = useCallback(
+    async (group: ColumnGroup) => {
+      // Add to custom groups list
+      setCustomGroups((prev) => [...prev, group]);
+      // Also add to selected groups
+      const newSelected = [...selectedGroups, group];
+      await updateColumnGroupList(columnGroupsToContainerValue(newSelected));
+    },
+    [selectedGroups, updateColumnGroupList]
+  );
+
+  /**
+   * Handle deleting a custom group - removes from both custom groups list and selected groups.
+   */
+  const handleDeleteCustomGroup = useCallback(
+    async (group: ColumnGroup) => {
+      const keyToRemove = getGroupKey(group);
+      // Remove from custom groups list
+      setCustomGroups((prev) => prev.filter((g) => getGroupKey(g) !== keyToRemove));
+      // Also remove from selected groups if present
+      const newSelected = selectedGroups.filter((g) => getGroupKey(g) !== keyToRemove);
+      await updateColumnGroupList(columnGroupsToContainerValue(newSelected));
+    },
+    [selectedGroups, updateColumnGroupList]
+  );
 
   return (
     <CCP4i2Tabs {...props}>
@@ -632,9 +1004,20 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <>
               <MtzFileInfo digest={digest} />
               <Divider sx={{ my: 1 }} />
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                Click items to highlight, then use arrows to transfer between Available and Selected.
-              </Typography>
+              <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 1 }}>
+                <Typography variant="body2" color="text.secondary">
+                  Click items to highlight, then use arrows to transfer between Available and Selected.
+                </Typography>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  startIcon={<BuildIcon />}
+                  onClick={() => setCustomDialogOpen(true)}
+                  disabled={!isEditable || availableColumns.length === 0}
+                >
+                  Custom Group{customGroups.length > 0 ? ` (${customGroups.length})` : ""}
+                </Button>
+              </Box>
               <TwoColumnSelector
                 availableGroups={availableGroups}
                 selectedGroups={selectedGroups}
@@ -650,6 +1033,17 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                   exported as separate files.
                 </Typography>
               )}
+
+              {/* Custom Column Group Builder Dialog */}
+              <CustomColumnGroupDialog
+                open={customDialogOpen}
+                onClose={() => setCustomDialogOpen(false)}
+                onAdd={handleAddCustomGroup}
+                onDelete={handleDeleteCustomGroup}
+                availableColumns={availableColumns}
+                customGroups={customGroups}
+                disabled={!isEditable}
+              />
             </>
           )}
         </CCP4i2ContainerElement>
