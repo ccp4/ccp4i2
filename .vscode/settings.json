@@ -8,6 +8,14 @@
 // W293: blank line contains whitespace
 {
     "cmake.configureOnOpen": false,
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/.pytest_cache": true,
+        "**/*.egg-info": true,
+        "**/*.pyc": true,
+    },
     "flake8.args": [
         "--ignore=E1,E2,E302,E501,E701,E722,W293"
     ],
