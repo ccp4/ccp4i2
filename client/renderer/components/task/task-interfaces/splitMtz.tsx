@@ -64,13 +64,19 @@ function getGroupKey(group: ColumnGroup): string {
 /**
  * Pattern definitions for column type signatures.
  * Format: [typeSignature, groupType, contentFlag]
+ *
+ * contentFlag values must match backend CONTENT_SIGNATURE_LIST order in CObsDataFileStub:
+ * - Obs: 1=Anom I (KMKM), 2=Anom SF (GLGL), 3=Mean I (JQ), 4=Mean SF (FQ)
+ * - Phs: 1=HL (AAAA), 2=Phi-FOM (PW)
+ * - MapCoeffs: 1=F,Phi (FP), 2=F,sigF,Phi (FQP)
+ * - FreeR: 1=Integer (I)
  */
 const COLUMN_PATTERNS: [string, string, number][] = [
-  // Observations - longer patterns first
-  ["KMKM", "Obs", 4], // I+, sigI+, I-, sigI-
-  ["GLGL", "Obs", 3], // F+, sigF+, F-, sigF-
-  ["JQ", "Obs", 2], // I, sigI
-  ["FQ", "Obs", 1], // F, sigF
+  // Observations - longer patterns first (anomalous before mean)
+  ["KMKM", "Obs", 1], // I+, sigI+, I-, sigI- (Anomalous Intensities)
+  ["GLGL", "Obs", 2], // F+, sigF+, F-, sigF- (Anomalous SFs)
+  ["JQ", "Obs", 3], // I, sigI (Mean Intensities)
+  ["FQ", "Obs", 4], // F, sigF (Mean SFs)
   // Phases
   ["AAAA", "Phs", 1], // HLA, HLB, HLC, HLD (Hendrickson-Lattman)
   ["PW", "Phs", 2], // Phi, FOM
@@ -181,23 +187,28 @@ const TYPE_LABELS: Record<string, string> = {
   FreeR: "Free R Flag",
 };
 
-/**
- * Column type requirements for each file type + contentFlag combination.
- * Used by the custom column group builder to validate user selections.
- * Format: { types: column type codes, labels: human-readable slot names }
- */
 interface ColumnRequirement {
   types: string[];
   labels: string[];
   description: string;
 }
 
+/**
+ * Column type requirements for each file type + contentFlag combination.
+ * Used by the custom column group builder to validate user selections.
+ *
+ * contentFlag values must match backend CONTENT_SIGNATURE_LIST order:
+ * - Obs: 1=Anom I, 2=Anom SF, 3=Mean I, 4=Mean SF
+ * - Phs: 1=HL, 2=Phi-FOM
+ * - MapCoeffs: 1=F,Phi, 2=F,sigF,Phi
+ * - FreeR: 1=Integer
+ */
 const COLUMN_REQUIREMENTS: Record<string, Record<number, ColumnRequirement>> = {
   Obs: {
-    1: { types: ["F", "Q"], labels: ["F", "SIGF"], description: "Mean SFs (F, sigF)" },
-    2: { types: ["J", "Q"], labels: ["I", "SIGI"], description: "Mean Is (I, sigI)" },
-    3: { types: ["G", "L", "G", "L"], labels: ["F+", "sigF+", "F-", "sigF-"], description: "Anomalous SFs" },
-    4: { types: ["K", "M", "K", "M"], labels: ["I+", "sigI+", "I-", "sigI-"], description: "Anomalous Is" },
+    1: { types: ["K", "M", "K", "M"], labels: ["I+", "sigI+", "I-", "sigI-"], description: "Anomalous Is" },
+    2: { types: ["G", "L", "G", "L"], labels: ["F+", "sigF+", "F-", "sigF-"], description: "Anomalous SFs" },
+    3: { types: ["J", "Q"], labels: ["I", "SIGI"], description: "Mean Is (I, sigI)" },
+    4: { types: ["F", "Q"], labels: ["F", "SIGF"], description: "Mean SFs (F, sigF)" },
   },
   MapCoeffs: {
     1: { types: ["F", "P"], labels: ["F", "PHI"], description: "F, Phi" },
