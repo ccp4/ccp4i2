@@ -285,3 +285,187 @@ class TestDefXmlLoading:
         # Check object paths work
         assert plugin.object_path() == 'pointless'
         assert 'pointless' in plugin.container.object_path()
+
+
+# ============================================================================
+# Tests for dbHandler propagation
+# ============================================================================
+
+class TestDbHandlerPropagation:
+    """Tests for database handler propagation through plugin hierarchy."""
+
+    def test_dbhandler_captured_from_kwargs(self):
+        """Test that dbHandler passed to __init__ is properly captured.
+
+        This is a regression test for a bug where dbHandler was passed via
+        **kwargs but never extracted, leaving _dbHandler as None.
+        """
+        # Create a mock database handler
+        class MockDbHandler:
+            def __init__(self):
+                self.project_uuid = "test-project-uuid"
+
+        mock_handler = MockDbHandler()
+
+        # Create plugin with dbHandler in kwargs
+        script = CPluginScript(name="test_script", dbHandler=mock_handler)
+
+        # The handler should be captured
+        assert script._dbHandler is not None, \
+            "dbHandler passed to __init__ should be captured in _dbHandler"
+        assert script._dbHandler is mock_handler, \
+            "Captured dbHandler should be the same object that was passed"
+
+    def test_dbhandler_none_when_not_provided(self):
+        """Test that _dbHandler is None when not provided."""
+        script = CPluginScript(name="test_script")
+
+        assert script._dbHandler is None, \
+            "_dbHandler should be None when not provided"
+
+    def test_dbhandler_accessible_from_child_cdatafile(self):
+        """Test that CDataFile can access dbHandler via parent hierarchy.
+
+        This tests the full chain: CDataFile -> container -> plugin -> _dbHandler
+        """
+        from core.base_object.cdata_file import CDataFile
+
+        class MockDbHandler:
+            def __init__(self):
+                self.project_uuid = "test-project-uuid"
+
+            def get_file_path_sync(self, file_uuid):
+                return f"/mock/path/{file_uuid}"
+
+        mock_handler = MockDbHandler()
+
+        # Create plugin with dbHandler
+        script = CPluginScript(name="test_script", dbHandler=mock_handler)
+
+        # Create a CDataFile as a child of inputData
+        test_file = CDataFile(parent=script.container.inputData, name="TEST_FILE")
+
+        # The file should be able to find the plugin via _find_plugin_parent()
+        found_plugin = test_file._find_plugin_parent()
+        assert found_plugin is script, \
+            "CDataFile should find the plugin in its parent hierarchy"
+
+        # The file should be able to get the dbHandler via _get_db_handler()
+        found_handler = test_file._get_db_handler()
+        assert found_handler is mock_handler, \
+            "CDataFile._get_db_handler() should return the plugin's _dbHandler"
+
+    def test_setdbdata_also_sets_handler(self):
+        """Test that setDbData() can also set the dbHandler."""
+        class MockDbHandler:
+            pass
+
+        mock_handler = MockDbHandler()
+
+        script = CPluginScript(name="test_script")
+        assert script._dbHandler is None
+
+        # setDbData should set the handler
+        script.setDbData(handler=mock_handler)
+
+        assert script._dbHandler is mock_handler, \
+            "setDbData() should set _dbHandler"
+
+    def test_dbhandler_from_kwargs_not_passed_to_parent(self):
+        """Test that dbHandler is popped from kwargs and not passed to parent class.
+
+        If dbHandler is not popped, it would be passed to CData.__init__() via
+        super().__init__(**kwargs), which might cause unexpected behavior.
+        """
+        class MockDbHandler:
+            pass
+
+        mock_handler = MockDbHandler()
+
+        # This should not raise any errors about unexpected kwargs
+        script = CPluginScript(name="test_script", dbHandler=mock_handler)
+
+        # Verify it was captured
+        assert script._dbHandler is mock_handler
+
+    def test_getfullpath_uses_dbhandler_for_dbfileid_resolution(self):
+        """Test that CDataFile.getFullPath() uses dbHandler when dbFileId is set.
+
+        This is the key integration test: when a file has dbFileId set (from
+        autopopulation), getFullPath() should use the dbHandler to resolve the
+        path. Without the dbHandler fix, this would fail and return just the
+        baseName instead of the full path.
+        """
+        from core.base_object.cdata_file import CDataFile
+        import uuid
+
+        test_file_uuid = str(uuid.uuid4())
+        expected_path = "/projects/test/CCP4_JOBS/job_1/output.mtz"
+
+        class MockDbHandler:
+            def __init__(self):
+                self.project_uuid = "test-project-uuid"
+
+            def get_file_path_sync(self, file_uuid):
+                """Return the full path for a given file UUID."""
+                if str(file_uuid) == test_file_uuid:
+                    return expected_path
+                return None
+
+        mock_handler = MockDbHandler()
+
+        # Create plugin with dbHandler
+        script = CPluginScript(name="test_script", dbHandler=mock_handler)
+
+        # Create a CDataFile as a child of inputData
+        test_file = CDataFile(parent=script.container.inputData, name="TEST_FILE")
+
+        # Set file attributes as would happen during autopopulation
+        test_file.set({
+            "baseName": "output.mtz",
+            "relPath": "CCP4_JOBS/job_1",
+            "dbFileId": test_file_uuid,
+        })
+
+        # getFullPath() should use dbHandler.get_file_path_sync() to resolve
+        full_path = test_file.getFullPath()
+
+        assert full_path == expected_path, \
+            f"getFullPath() should return '{expected_path}' via dbHandler, got '{full_path}'"
+
+    def test_getfullpath_fails_without_dbhandler(self):
+        """Test that path resolution fails gracefully without dbHandler.
+
+        When dbHandler is not available, getFullPath() falls back to baseName,
+        which is incorrect for autopopulated files. This test documents the
+        expected fallback behavior.
+        """
+        from core.base_object.cdata_file import CDataFile
+        import uuid
+
+        test_file_uuid = str(uuid.uuid4())
+
+        # Create plugin WITHOUT dbHandler (simulates the bug)
+        script = CPluginScript(name="test_script")  # No dbHandler!
+
+        # Verify dbHandler is None
+        assert script._dbHandler is None
+
+        # Create a CDataFile as a child of inputData
+        test_file = CDataFile(parent=script.container.inputData, name="TEST_FILE")
+
+        # Set file attributes as would happen during autopopulation
+        test_file.set({
+            "baseName": "output.mtz",
+            "relPath": "CCP4_JOBS/job_1",
+            "dbFileId": test_file_uuid,
+        })
+
+        # Without dbHandler, getFullPath() cannot resolve via dbFileId
+        # It will fall back to baseName (which is wrong for autopopulated files)
+        full_path = test_file.getFullPath()
+
+        # The path should just be the baseName since dbHandler is not available
+        # and the file doesn't actually exist on disk
+        assert full_path == "output.mtz", \
+            f"Without dbHandler, should fall back to baseName, got '{full_path}'"

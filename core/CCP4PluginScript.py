@@ -139,7 +139,8 @@ class CPluginScript(CData):
 
         # Database integration attributes (for database-backed environments)
         # These are set by the database handler when running in CCP4i2 GUI
-        self._dbHandler = None        # Database handler object
+        # Extract dbHandler from kwargs if provided (e.g., from get_job_plugin())
+        self._dbHandler = kwargs.pop('dbHandler', None)
         self._dbProjectId = None       # Project identifier in database
         self._dbProjectName = None     # Project name
         self._dbJobId = None           # Job identifier in database
