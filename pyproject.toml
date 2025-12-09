@@ -64,7 +64,7 @@ Documentation = "https://www.ccp4.ac.uk/html/INDEX.html"
 [project.scripts]
 # i2 - Modern CLI wrapper for Django management commands
 # Usage: i2 projects, i2 jobs, i2 run, i2 files, i2 report
-i2 = "cli.i2:main"
+i2 = "ccp4i2.cli.i2:main"
 
 # Use automatic package discovery
 [tool.setuptools.packages.find]
