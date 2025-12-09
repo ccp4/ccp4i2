@@ -3844,7 +3844,7 @@ class CAsuContentSeqListStub(CList):
         "polymerType": attribute(AttributeType.STRING),
         "name": attribute(AttributeType.STRING),
         "description": attribute(AttributeType.STRING),
-        "source": attribute(AttributeType.CUSTOM, custom_class="CDataFile"),
+        "source": attribute(AttributeType.CUSTOM, custom_class="CSeqDataFileStub"),
     },
     error_codes={
         "0": {
@@ -3997,7 +3997,7 @@ class CAsuContentSeqStub(CData):
     polymerType: Optional[CString] = None
     name: Optional[CString] = None
     description: Optional[CString] = None
-    source: Optional[CDataFile] = None
+    source: Optional[CSeqDataFileStub] = None
 
     def __init__(self, parent=None, name=None, **kwargs):
         """
