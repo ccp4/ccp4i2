@@ -627,8 +627,21 @@ class AsyncDatabaseHandler:
 
                 # Map to legacy field names for database registration
                 from ..lib.cdata_utils import get_file_type_from_class
+
+                # Extract param_name from objectPath() for proper list item naming
+                # e.g., "outputData.HKLOUT[0]" -> "HKLOUT[0]"
+                # e.g., "outputData.FREEROUT" -> "FREEROUT"
+                full_path = file_obj.objectPath()
+                if '.outputData.' in full_path:
+                    param_name = full_path.split('.outputData.', 1)[1]
+                elif 'outputData.' in full_path:
+                    param_name = full_path.split('outputData.', 1)[1]
+                else:
+                    # Fallback to objectName() if path doesn't contain outputData
+                    param_name = file_obj.objectName()
+
                 metadata = {
-                    'name': file_obj.objectName(),
+                    'name': param_name,
                     'file_type': get_file_type_from_class(file_obj),
                     'content_flag': core_metadata.get('contentFlag'),
                     'sub_type': core_metadata.get('subType'),
