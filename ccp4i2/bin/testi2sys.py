@@ -167,7 +167,7 @@ if __name__ == '__main__':
     #sys.argv =  [sys.argv[0]]
 
     from ccp4i2.core import CCP4Modules
-    from utils import startup
+    from ccp4i2.utils import startup
     app = CCP4Modules.QTAPPLICATION(graphical=graphical)
     pm = startup.startProjectsManager(dbFileName=dbFile,loadDiagnostic=False)
     pm.startCheckForFinishedJobs()

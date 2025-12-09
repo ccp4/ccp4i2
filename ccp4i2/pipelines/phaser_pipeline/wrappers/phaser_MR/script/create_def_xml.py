@@ -7,8 +7,8 @@ import re
 from lxml import etree
 ccp4i2_dir = os.path.join(os.environ['CCP4'], 'share', 'ccp4i2')
 sys.path.append(ccp4i2_dir)
-from utils.phil_handlers import Phil2Etree
-from utils.phil_handlers import PhilTaskCreator
+from ccp4i2.utils.phil_handlers import Phil2Etree
+from ccp4i2.utils.phil_handlers import PhilTaskCreator
 import phaser
 
 class PhaserPhil2Etree(Phil2Etree):

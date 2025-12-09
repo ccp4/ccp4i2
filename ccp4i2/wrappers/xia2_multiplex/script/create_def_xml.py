@@ -15,7 +15,7 @@ from lxml import etree
 this_dir = os.path.dirname(os.path.realpath(__file__))
 ccp4i2_dir = os.path.dirname(os.path.dirname(os.path.dirname(this_dir)))
 sys.path.append(ccp4i2_dir)
-from utils.phil_handlers import PhilTaskCreator
+from ccp4i2.utils.phil_handlers import PhilTaskCreator
 
 
 class Xia2MultiplexTaskCreator(PhilTaskCreator):

@@ -363,7 +363,7 @@ class CI2Runner(object):
             jobDirectory = kwargs['jobDirectory']
         else:
             from ccp4i2.core import CCP4ProjectsManager
-            from utils import startup
+            from ccp4i2.utils import startup
             CCP4ProjectsManager.CProjectsManager.insts = None
             
             self.pm = startup.startProjectsManager(dbFileName=kwargs.get('dbFile',None))

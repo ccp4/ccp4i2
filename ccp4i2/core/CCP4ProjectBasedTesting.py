@@ -27,7 +27,7 @@ import sys
 import copy
 import shutil
 import time
-from utils import startup
+from ccp4i2.utils import startup
 from dbapi import CCP4DbApi
 from dbapi import CCP4DbUtils
 from ccp4i2.core import CCP4Container

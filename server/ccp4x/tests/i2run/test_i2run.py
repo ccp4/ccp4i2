@@ -14,7 +14,7 @@ from ccp4i2.core import CCP4PerformanceData
 from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core import CCP4Data
 from ccp4i2.core import CCP4File
-from utils import QApp
+from ccp4i2.utils import QApp
 from ccp4i2.core.base_object.cdata_file import CDataFile
 from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 from ccp4i2.core import CCP4Container
