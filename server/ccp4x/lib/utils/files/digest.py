@@ -15,7 +15,7 @@ from ccp4i2.core.CCP4ModelData import CPdbDataFile, CDictDataFile, CAsuDataFile
 # Import stub class for isinstance checks - subclasses like CObsDataFile inherit from
 # stubs (CMtzDataFileStub) not implementations (CMtzDataFile)
 from ccp4i2.core.cdata_stubs.CCP4XtalData import CMtzDataFileStub
-from pipelines.import_merged.script import mmcifutils
+from ccp4i2.pipelines.import_merged.script import mmcifutils
 from ..containers.find_objects import find_objects
 from ..containers.get_container import get_job_container
 from ..containers.json_encoder import CCP4i2JsonEncoder

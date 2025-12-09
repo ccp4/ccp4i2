@@ -8,7 +8,7 @@ except:
   from report.CCP4ReportParser import *
 
 #from aimless_pipe_utils import *
-from pipelines.aimless_pipe.script.aimless_pipe_utils import *
+from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import *
 
 # - - - - - - - - - - - - - - - - -
 class EstimatesofResolution:

@@ -7,9 +7,9 @@
 from ccp4i2.baselayer import QtCore
 from qtgui.CCP4TaskWidget import CTaskWidget
 
-from pipelines.aimless_pipe.script.aimless_pipe_utils import CellCheck, CellFormat, colourText
+from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import CellCheck, CellFormat, colourText
 from ccp4i2.wrappers.scaleit.script.scaleit_utils import DatalistCheck
-from pipelines.import_merged.script.dybuttons import MyMessageBox
+from ccp4i2.pipelines.import_merged.script.dybuttons import MyMessageBox
 
 
 class CTaskscaleit(CTaskWidget):

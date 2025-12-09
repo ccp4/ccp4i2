@@ -319,11 +319,11 @@ def export_job_mtz_file(job_uuid):
                 jobNumber =  self.db().getJobInfo(jobId=fileInfoList[0]['jobId'], mode='jobnumber')
                 if taskName == 'aimless_pipe':
                     mode = 'Data reduction'
-                    from pipelines.aimless_pipe.script import aimless_pipe
+                    from ccp4i2.pipelines.aimless_pipe.script import aimless_pipe
                     reflnFile = aimless_pipe.exportJobFile(jobId=fileInfoList[0]['jobId'], mode='complete_mtz')
                 elif taskName == 'import_merged':
                     mode = 'Imported by import merged'
-                    from pipelines.import_merged.script import import_merged
+                    from ccp4i2.pipelines.import_merged.script import import_merged
                     reflnFile = import_merged.exportJobFile(jobId=fileInfoList[0]['jobId'], mode='complete_mtz')
                 elif taskName == 'AlternativeImportXIA2':
                     mode = 'Imported from XIA2'

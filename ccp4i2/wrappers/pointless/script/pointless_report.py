@@ -15,7 +15,7 @@ except:
   exec(compile(open(os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc')).read(), os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc'), 'exec'))
   from report.CCP4ReportParser import *
 
-from pipelines.aimless_pipe.script.aimless_pipe_utils import *
+from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import *
 
 # - - - - - - - - - - - - - - - - -
 class pointless_report(Report):
