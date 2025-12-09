@@ -30,8 +30,12 @@ export const CAltSpaceGroupElement: React.FC<CCP4i2TaskElementProps> = (
   }, [props.visibility]);
 
   useEffect(() => {
-    if (stringValue)
-      setValue(spaceGroups.find((sg: SpaceGroup) => sg.name === stringValue));
+    if (stringValue) {
+      const normalizedValue = stringValue.replace(/\s+/g, '');
+      setValue(spaceGroups.find((sg: SpaceGroup) =>
+        sg.name === stringValue || sg.name.replace(/\s+/g, '') === normalizedValue
+      ));
+    }
   }, [stringValue]);
 
   const handleInputChanged = async (arg: SpaceGroup) => {

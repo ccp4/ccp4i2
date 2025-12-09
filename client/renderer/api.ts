@@ -147,20 +147,27 @@ function parseValidationXml(data: { xml: string } | null): ValidationErrors {
  * Build lookup table for container navigation
  */
 function buildLookup(container: any, lookup: Record<string, any> = {}): Record<string, any> {
+  // Skip items without _objectPath (e.g., top-level container)
   const objectPath = container._objectPath;
-  const pathElements = objectPath.split(".");
+  if (objectPath) {
+    const pathElements = objectPath.split(".");
 
-  // Add all suffix paths to lookup
-  for (let i = 0; i < pathElements.length; i++) {
-    const subPath = pathElements.slice(-i).join(".");
-    lookup[subPath] = container;
+    // Add all suffix paths to lookup
+    for (let i = 0; i < pathElements.length; i++) {
+      const subPath = pathElements.slice(-i).join(".");
+      lookup[subPath] = container;
+    }
   }
 
   // Recurse into children
-  if (container._baseClass === "CList") {
-    container._value.forEach((item: any) => buildLookup(item, lookup));
+  if (container._baseClass === "CList" && Array.isArray(container._value)) {
+    container._value.forEach((item: any) => {
+      if (item && typeof item === "object") buildLookup(item, lookup);
+    });
   } else if (container._value?.constructor === Object) {
-    Object.values(container._value).forEach((item: any) => buildLookup(item, lookup));
+    Object.values(container._value).forEach((item: any) => {
+      if (item && typeof item === "object") buildLookup(item, lookup);
+    });
   }
 
   return lookup;

@@ -167,7 +167,7 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
         >
           {tabValue == 0 && (
             <TaskProvider>
-              <TaskContainer />
+              <TaskContainer jobId={jobid} />
             </TaskProvider>
           )}
           {devMode && tabValue == 1 && params_xml && (

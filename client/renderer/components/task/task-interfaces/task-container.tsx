@@ -86,8 +86,14 @@ export interface CCP4i2TaskInterfaceProps {
   job: Job;
 }
 
-export const TaskContainer = () => {
-  const { jobId } = useCCP4i2Window();
+export interface TaskContainerProps {
+  jobId?: number;
+}
+
+export const TaskContainer: React.FC<TaskContainerProps> = ({ jobId: propJobId }) => {
+  const { jobId: contextJobId } = useCCP4i2Window();
+  // Prefer prop jobId over context jobId for immediate rendering
+  const jobId = propJobId ?? contextJobId;
   const { job, container } = useJob(jobId);
 
   const taskInterface = useMemo(() => {
