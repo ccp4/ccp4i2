@@ -375,20 +375,36 @@ class AsyncDatabaseHandler:
                     defaults={"description": f"File type: {file_type}"}
                 )
 
-                # Create file record
-                file_obj = models.File.objects.create(
-                    name=file_path.name,
-                    directory=models.File.Directory.JOB_DIR,
-                    type=file_type_obj,
-                    sub_type=sub_type,
-                    content=content_flag,
-                    annotation=annotation,
+                # Get or create file record - prevent duplicates
+                # Use job + job_param_name as unique identifier since a job
+                # shouldn't have two output files with the same param_name
+                file_obj, created = models.File.objects.get_or_create(
                     job=job,
                     job_param_name=param_name,
+                    defaults={
+                        "name": file_path.name,
+                        "directory": models.File.Directory.JOB_DIR,
+                        "type": file_type_obj,
+                        "sub_type": sub_type,
+                        "content": content_flag,
+                        "annotation": annotation,
+                    }
                 )
 
-                # Create FileUse record
-                models.FileUse.objects.create(
+                if not created:
+                    # File already exists - update metadata if needed
+                    logger.debug(f"File record already exists for {param_name} in job {job_uuid}")
+                    # Update fields that might have changed
+                    file_obj.name = file_path.name
+                    file_obj.type = file_type_obj
+                    file_obj.sub_type = sub_type
+                    file_obj.content = content_flag
+                    if annotation:
+                        file_obj.annotation = annotation
+                    file_obj.save()
+
+                # Get or create FileUse record - also prevent duplicates
+                models.FileUse.objects.get_or_create(
                     file=file_obj,
                     job=job,
                     role=models.FileUse.Role.OUT,
@@ -696,6 +712,14 @@ class AsyncDatabaseHandler:
                 # e.g., "outputData.HKLOUT[0]" -> "HKLOUT[0]"
                 # e.g., "outputData.FREEROUT" -> "FREEROUT"
                 full_path = file_obj.objectPath()
+
+                # IMPORTANT: Only process files that are actually in outputData
+                # Pipeline code often assigns inputData references to variables that
+                # then get traversed. Skip any files not in the outputData hierarchy.
+                if 'outputData' not in full_path:
+                    logger.debug(f"Skipping file not in outputData: {full_path}")
+                    continue
+
                 if '.outputData.' in full_path:
                     param_name = full_path.split('.outputData.', 1)[1]
                 elif 'outputData.' in full_path:
