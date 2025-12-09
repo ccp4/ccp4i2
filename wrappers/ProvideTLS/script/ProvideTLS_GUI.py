@@ -75,7 +75,7 @@ class CProveideTLS(CCP4TaskWidget.CTaskWidget):
         import os
         if os.path.isfile(filePath):
             import mmut
-            from core.CCP4ModelData import CPdbData
+            from ccp4i2.core.CCP4ModelData import CPdbData
             aCPdbData = CPdbData()
             aCPdbData.loadFile(filePath)
             for chain in aCPdbData.composition.peptides:

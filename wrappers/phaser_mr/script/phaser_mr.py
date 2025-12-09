@@ -8,9 +8,9 @@ from __future__ import print_function
      Note also python bindings, and XML output of Phaser.
 """
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core import CCP4Utils
 
 class phaser_mr(CPluginScript):
 
@@ -163,7 +163,7 @@ class phaser_mr(CPluginScript):
       return 0
 
     def processInputFiles(self):
-      from core import CCP4XtalData
+      from ccp4i2.core import CCP4XtalData
       import functools
       self.xmlText = None
       self.oldLogLength = 0
@@ -197,7 +197,7 @@ class phaser_mr(CPluginScript):
 
     #self.splitHkloutList(miniMtzsOut=['MAPOUT','DIFMAPOUT'],programColumnNames=['FWT,PHWT','DELFWT,PHDELWT'],outputBaseName=['MAPOUT','DIFMAPOUT'],infileList=self.container.outputData.HKLOUT)
         # Need to set the expected content flag  for phases data
-        from core import CCP4XtalData
+        from ccp4i2.core import CCP4XtalData
         self.splitHkloutList(miniMtzsOut=['MAPOUT','DIFMAPOUT','PHASEOUT'],programColumnNames=['FWT,PHWT','DELFWT,PHDELWT','PHIC,FOM'],outputBaseName=['MAPOUT','DIFMAPOUT','PHASEOUT'],outputContentFlags=[0,0,CCP4XtalData.CPhsDataFile.CONTENT_FLAG_PHIFOM],infileList=self.container.outputData.HKLOUT)
     
         for indx in range(len(self.container.outputData.MAPOUT)):

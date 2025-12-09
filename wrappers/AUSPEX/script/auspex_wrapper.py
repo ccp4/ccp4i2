@@ -1,6 +1,6 @@
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4XtalData
-from core import CCP4ErrorHandling
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4XtalData
+from ccp4i2.core import CCP4ErrorHandling
 import os
 import glob
 

@@ -181,7 +181,7 @@ class ReportRegistryTests(TestCase):
 
     def test_report_registry_initialization(self):
         """Test that report registry loads correctly."""
-        from core.CCP4TaskManager import TASKMANAGER
+        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
         task_manager = TASKMANAGER()
 
@@ -192,7 +192,7 @@ class ReportRegistryTests(TestCase):
 
     def test_report_metadata_access(self):
         """Test accessing report metadata without importing."""
-        from core.CCP4TaskManager import TASKMANAGER
+        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
         task_manager = TASKMANAGER()
 
@@ -207,7 +207,7 @@ class ReportRegistryTests(TestCase):
 
     def test_report_class_lazy_loading(self):
         """Test that report classes are loaded lazily."""
-        from core.CCP4TaskManager import TASKMANAGER
+        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
         task_manager = TASKMANAGER()
 
@@ -225,7 +225,7 @@ class ReportRegistryTests(TestCase):
 
     def test_has_report(self):
         """Test has_report method."""
-        from core.CCP4TaskManager import TASKMANAGER
+        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
         task_manager = TASKMANAGER()
 

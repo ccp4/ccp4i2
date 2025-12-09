@@ -1,5 +1,5 @@
 from __future__ import print_function
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 from lxml import etree
 import os
 from wrappers.ShelxCDE.script import ShelxCDEBase
@@ -53,7 +53,7 @@ class ShelxCE(ShelxCDEBase.ShelxCDEBase):
     def processOutputFiles(self):
         print('#shelxcd processOutputFiles')
         processId = self.getProcessId()
-        from core import CCP4Modules
+        from ccp4i2.core import CCP4Modules
         exitStatus = CCP4Modules.PROCESSMANAGER().getJobData(processId,'exitStatus')
         exitCode = CCP4Modules.PROCESSMANAGER().getJobData(processId,'exitCode')
         if exitStatus != CPluginScript.SUCCEEDED:

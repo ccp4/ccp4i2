@@ -14,9 +14,9 @@ from __future__ import print_function
 import os
 import sys
 from lxml import etree
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4XtalData
-from core import CCP4ErrorHandling
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4XtalData
+from ccp4i2.core import CCP4ErrorHandling
 
 
 class phaser_singleMR(CPluginScript):
@@ -154,7 +154,7 @@ class phaser_singleMR(CPluginScript):
     def parseLogfile(self):
         logfile = self.makeFileName('LOG')
         # Load ccp4 smartie and qtr code
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         smpth = os.path.join(CCP4Utils.getCCP4Dir(), 'share', 'smartie')
         sys.path.append(smpth)
         import smartie

@@ -6,7 +6,7 @@ except:
 import mmut
 
 from pipelines.phaser_pipeline.script import phaser_pipeline
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class phaser_simple(phaser_pipeline.phaser_pipeline):
     TASKNAME = 'phaser_simple'                                  # Task name - should be same as class name
@@ -33,7 +33,7 @@ class phaser_simple(phaser_pipeline.phaser_pipeline):
         ENSEMBLES is intentionally empty at validation time because it's
         populated programmatically by createEnsembleElements() during process().
         """
-        from core import CCP4ErrorHandling
+        from ccp4i2.core import CCP4ErrorHandling
 
         # Get parent validation
         error = super(phaser_simple, self).validity()
@@ -57,7 +57,7 @@ class phaser_simple(phaser_pipeline.phaser_pipeline):
 
     def createEnsembleElements(self):
         try:
-            from core.CCP4ModelData import CPdbDataFile, CAtomSelection, CPdbEnsembleItem
+            from ccp4i2.core.CCP4ModelData import CPdbDataFile, CAtomSelection, CPdbEnsembleItem
             elements = self.container.inputData.ENSEMBLES
             #Before removing all elements from this list, I have to set its listMinLength to 0
             self.container.inputData.ENSEMBLES.setQualifiers({'listMinLength':0})

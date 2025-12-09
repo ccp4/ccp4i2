@@ -30,7 +30,7 @@ import xml.etree.ElementTree as ET
 import pathlib
 import logging
 from typing import Optional, Dict, List
-from core import CCP4File
+from ccp4i2.core import CCP4File
 
 
 logger = logging.getLogger(f"ccp4x:{__name__}")

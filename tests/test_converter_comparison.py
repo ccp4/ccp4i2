@@ -11,9 +11,9 @@ Both converters provide:
 
 Usage:
     # Swap converters by changing a single import:
-    from core.conversions.servalcat_converter import ServalcatConverter as Converter
+    from ccp4i2.core.conversions.servalcat_converter import ServalcatConverter as Converter
     # OR
-    from core.conversions.ctruncate_converter import CtruncateConverter as Converter
+    from ccp4i2.core.conversions.ctruncate_converter import CtruncateConverter as Converter
 
     # Same API for both:
     output_path = Converter.to_fmean(obs_file, work_dir)
@@ -52,8 +52,8 @@ class TestConverterAPICompatibility:
 
     def test_servalcat_imean_to_fmean(self, gamma_imean_data, tmp_path):
         """Test ServalcatConverter IMEAN → FMEAN conversion."""
-        from core.CCP4XtalData import CObsDataFile
-        from core.conversions.servalcat_converter import ServalcatConverter
+        from ccp4i2.core.CCP4XtalData import CObsDataFile
+        from ccp4i2.core.conversions.servalcat_converter import ServalcatConverter
         import shutil
 
         # Create test file
@@ -76,8 +76,8 @@ class TestConverterAPICompatibility:
 
     def test_ctruncate_imean_to_fmean(self, gamma_imean_data, tmp_path):
         """Test CtruncateConverter IMEAN → FMEAN conversion."""
-        from core.CCP4XtalData import CObsDataFile
-        from core.conversions.ctruncate_converter import CtruncateConverter
+        from ccp4i2.core.CCP4XtalData import CObsDataFile
+        from ccp4i2.core.conversions.ctruncate_converter import CtruncateConverter
         import shutil
 
         # Create test file
@@ -105,7 +105,7 @@ class TestConverterAPICompatibility:
         This test shows how easy it is to swap between converters
         by changing a single import alias.
         """
-        from core.CCP4XtalData import CObsDataFile
+        from ccp4i2.core.CCP4XtalData import CObsDataFile
         import shutil
 
         # Prepare test data
@@ -150,9 +150,9 @@ class TestConverterComparison:
     @pytest.mark.skip(reason="IPAIR data needs to be verified first")
     def test_ipair_to_fpair_comparison(self, gamma_ipair_data, tmp_path):
         """Compare IPAIR → FPAIR conversion between converters."""
-        from core.CCP4XtalData import CObsDataFile
-        from core.conversions.servalcat_converter import ServalcatConverter
-        from core.conversions.ctruncate_converter import CtruncateConverter
+        from ccp4i2.core.CCP4XtalData import CObsDataFile
+        from ccp4i2.core.conversions.servalcat_converter import ServalcatConverter
+        from ccp4i2.core.conversions.ctruncate_converter import CtruncateConverter
         import shutil
         import gemmi
 
@@ -198,8 +198,8 @@ class TestConverterComparison:
 
 def test_api_documentation():
     """Verify both converters expose the same methods."""
-    from core.conversions.servalcat_converter import ServalcatConverter
-    from core.conversions.ctruncate_converter import CtruncateConverter
+    from ccp4i2.core.conversions.servalcat_converter import ServalcatConverter
+    from ccp4i2.core.conversions.ctruncate_converter import CtruncateConverter
 
     # Both converters should have the same public methods
     required_methods = ['ipair_to_fpair', 'ipair_to_imean', 'to_fmean']

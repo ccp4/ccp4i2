@@ -23,8 +23,8 @@ from ccp4i2.baselayer import QtCore
 import os
 from dbapi import CCP4DbApi
 import functools
-from core.CCP4Modules import PROJECTSMANAGER
-from core.CCP4ErrorHandling import CException
+from ccp4i2.core.CCP4Modules import PROJECTSMANAGER
+from ccp4i2.core.CCP4ErrorHandling import CException
 import xml.etree.ElementTree as ET
 
 # -------------------------------------------------------------------

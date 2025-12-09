@@ -19,7 +19,7 @@ from __future__ import print_function
      GNU Lesser General Public License for more details.
 """
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
      
 class pdbset(CPluginScript):
 
@@ -45,16 +45,16 @@ class testPdbset(unittest.TestCase):
 
    def setUp(self):
     # make all background jobs wait for completion
-    from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
+    from ccp4i2.core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
     self.app = QTAPPLICATION()
     PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    from core.CCP4Modules import PROCESSMANAGER
+    from ccp4i2.core.CCP4Modules import PROCESSMANAGER
     PROCESSMANAGER().setWaitForFinished(-1)
 
    def testPdbset(self):
-     from core.CCP4Modules import QTAPPLICATION
+     from ccp4i2.core.CCP4Modules import QTAPPLICATION
      import os
 
      wrapper = pdbset(parent=QTAPPLICATION(),name='pdbset')

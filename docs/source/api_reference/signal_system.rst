@@ -18,7 +18,7 @@ Emits notifications to connected callbacks.
 
 .. code-block:: python
 
-    from core.base_object.signal_system import Signal
+    from ccp4i2.core.base_object.signal_system import Signal
 
     # Create signal
     finished = Signal("finished", dict)

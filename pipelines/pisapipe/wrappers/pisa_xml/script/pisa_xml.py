@@ -1,9 +1,9 @@
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 from lxml import etree
 import os
-from core import CCP4Modules
-from core import CCP4Utils
+from ccp4i2.core import CCP4Modules
+from ccp4i2.core import CCP4Utils
 
 from ccp4i2.baselayer import QtCore
 

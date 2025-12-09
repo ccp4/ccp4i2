@@ -18,8 +18,8 @@ from __future__ import print_function
     GNU Lesser General Public License for more details.
     """
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4ErrorHandling
 from lxml import etree
 import sys, os
 
@@ -120,7 +120,7 @@ class pointless_reindexToMatch(CPluginScript):
         '''
 print "PRM postProcessCheck"
         processId = self.getProcessId()
-        from core import CCP4Modules
+        from ccp4i2.core import CCP4Modules
         exitStatus = CCP4Modules.PROCESSMANAGER().getJobData(processId,'exitStatus')
         exitCode = CCP4Modules.PROCESSMANAGER().getJobData(processId,'exitCode')
         print "exitStatus", exitStatus
@@ -137,7 +137,7 @@ print "PRM postProcessCheck"
                 self.processHKLOUT()
             # Process XML 
             try:
-                from core import CCP4Utils
+                from ccp4i2.core import CCP4Utils
                 
                 with open(self.makeFileName('PROGRAMXML'),'r') as unfixedXMLFile:
                     text = unfixedXMLFile.read()

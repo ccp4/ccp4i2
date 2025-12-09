@@ -6,12 +6,12 @@ from xml.etree import ElementTree as ET
 from django.test import TestCase, override_settings
 from django.conf import settings
 import gemmi
-from core import CCP4PerformanceData
-from core import CCP4ErrorHandling
-from core import CCP4Data
+from ccp4i2.core import CCP4PerformanceData
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core import CCP4Data
 from ccp4i2.googlecode import diff_match_patch_py3
-from core import CCP4Container
-from core import CCP4TaskManager
+from ccp4i2.core import CCP4Container
+from ccp4i2.core import CCP4TaskManager
 from ...db.models import Job, File
 from ...db.import_i2xml import import_ccp4_project_zip
 

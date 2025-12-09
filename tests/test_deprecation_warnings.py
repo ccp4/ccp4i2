@@ -7,10 +7,10 @@ functions emit proper warnings when called.
 
 import pytest
 import warnings
-from core.base_object.ccontainer import CContainer
-from core.base_object.fundamental_types import CInt, CString
-from core.base_object.cdata_file import CDataFile
-from core import CCP4XtalData
+from ccp4i2.core.base_object.ccontainer import CContainer
+from ccp4i2.core.base_object.fundamental_types import CInt, CString
+from ccp4i2.core.base_object.cdata_file import CDataFile
+from ccp4i2.core import CCP4XtalData
 
 
 class TestDeprecationWarnings:

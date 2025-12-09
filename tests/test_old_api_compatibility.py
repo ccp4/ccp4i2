@@ -8,8 +8,8 @@ import pytest
 # Add project root to path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from core.base_object.base_classes import CData, CContainer
-from core.base_object.fundamental_types import CInt, CFloat, CString, CBoolean
+from ccp4i2.core.base_object.base_classes import CData, CContainer
+from ccp4i2.core.base_object.fundamental_types import CInt, CFloat, CString, CBoolean
 
 
 def test_object_path():
@@ -42,7 +42,7 @@ def test_set_default():
     # Value should be set
     assert num.value == 42
     # Should be marked as DEFAULT state
-    from core.base_object.base_classes import ValueState
+    from ccp4i2.core.base_object.base_classes import ValueState
     assert num.getValueState('value') == ValueState.DEFAULT
 
 

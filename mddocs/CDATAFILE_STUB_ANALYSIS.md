@@ -37,12 +37,12 @@ self.base_classes = {
    └─ No imports from cdata_stubs/
 
 2. cdata_stubs/CCP4XtalData.py
-   ├─ Imports: from core.base_object.base_classes import CDataFile
+   ├─ Imports: from ccp4i2.core.base_object.base_classes import CDataFile
    ├─ Defines: CObsDataFileStub(CMiniMtzDataFileStub)
    └─ (Generated, no circular dependency)
 
 3. core/CCP4XtalData.py
-   ├─ Imports: from core.cdata_stubs.CCP4XtalData import CObsDataFileStub
+   ├─ Imports: from ccp4i2.core.cdata_stubs.CCP4XtalData import CObsDataFileStub
    ├─ Defines: CObsDataFile(CObsDataFileStub, CMiniMtzDataFile)
    └─ All good!
 ```
@@ -55,19 +55,19 @@ self.base_classes = {
 
 ```
 1. cdata_stubs/CCP4File.py (NEW!)
-   ├─ Imports: from core.base_object.base_classes import CData  ← Problem!
+   ├─ Imports: from ccp4i2.core.base_object.base_classes import CData  ← Problem!
    ├─ Defines: CDataFileStub(CData)
    └─ (Generated stub)
 
 2. base_object/base_classes.py
-   ├─ Imports: from core.cdata_stubs.CCP4File import CDataFileStub  ← Problem!
+   ├─ Imports: from ccp4i2.core.cdata_stubs.CCP4File import CDataFileStub  ← Problem!
    ├─ Defines: CData (hand-written base)
    ├─ Defines: CDataFile(CDataFileStub)  ← Now imports stub!
    └─ ⚠️  CIRCULAR IMPORT RISK!
 
 3. cdata_stubs/CCP4XtalData.py
-   ├─ Imports: from core.cdata_stubs.CCP4File import CDataFileStub  ← OK
-   ├─ OR from core.base_object.base_classes import CDataFile  ← Which one???
+   ├─ Imports: from ccp4i2.core.cdata_stubs.CCP4File import CDataFileStub  ← OK
+   ├─ OR from ccp4i2.core.base_object.base_classes import CDataFile  ← Which one???
    └─ ⚠️  AMBIGUITY!
 ```
 
@@ -79,13 +79,13 @@ self.base_classes = {
 
 ```python
 # base_object/base_classes.py
-from core.cdata_stubs.CCP4File import CDataFileStub  # Imports stub
+from ccp4i2.core.cdata_stubs.CCP4File import CDataFileStub  # Imports stub
 
 class CDataFile(CDataFileStub):
     pass
 
 # cdata_stubs/CCP4File.py
-from core.base_object.base_classes import CData  # Imports base
+from ccp4i2.core.base_object.base_classes import CData  # Imports base
 
 class CDataFileStub(CData):
     pass
@@ -113,7 +113,7 @@ But CData is in the same file that wants to import CDataFileStub!
 Should descendant stubs import:
 ```python
 # Option A: Import stub
-from core.cdata_stubs.CCP4File import CDataFileStub
+from ccp4i2.core.cdata_stubs.CCP4File import CDataFileStub
 
 class CObsDataFileStub(CMiniMtzDataFileStub):  # Which inherits from CDataFileStub
     pass
@@ -123,7 +123,7 @@ OR
 
 ```python
 # Option B: Import full-fat
-from core.base_object.base_classes import CDataFile
+from ccp4i2.core.base_object.base_classes import CDataFile
 
 class CObsDataFileStub(...):
     # But this breaks the stub-only pattern!
@@ -210,7 +210,7 @@ class CDataFile(CData):  # Temporarily inherit from CData
     def __init__(self, *args, **kwargs):
         # Import stub at runtime
         if not hasattr(CDataFile, '_stub_injected'):
-            from core.cdata_stubs.CCP4File import CDataFileStub
+            from ccp4i2.core.cdata_stubs.CCP4File import CDataFileStub
             # Dynamically change base class (HACKY!)
             CDataFile.__bases__ = (CDataFileStub,)
             CDataFile._stub_injected = True
@@ -248,7 +248,7 @@ class CDataFileStub(CData):
     pass
 
 # Descendant stubs import full-fat
-from core.base_object.base_classes import CDataFile  # Not the stub!
+from ccp4i2.core.base_object.base_classes import CDataFile  # Not the stub!
 
 class CObsDataFileStub(CMiniMtzDataFileStub):  # Which inherits from CDataFile (full-fat)
     pass
@@ -270,7 +270,7 @@ Keep current architecture - some base classes are special and hand-written.
 
 ```python
 # Tests depend on:
-from core.CCP4XtalData import CObsDataFile
+from ccp4i2.core.CCP4XtalData import CObsDataFile
 ```
 
 If CDataFile changes, need to verify:
@@ -395,7 +395,7 @@ Import chain:
 ```python
 # base_object/base_classes.py
 
-from core.base_object.class_metadata import cdata_class, attribute, AttributeType
+from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType
 
 @cdata_class(
     attributes={

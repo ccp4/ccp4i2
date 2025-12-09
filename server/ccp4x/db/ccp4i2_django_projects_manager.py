@@ -2,7 +2,7 @@ from pathlib import Path
 import logging
 import os
 import uuid
-from core import CCP4ModelData
+from ccp4i2.core import CCP4ModelData
 from . import models
 from .ccp4i2_django_dbapi import CCP4i2DjangoDbApi
 from ..lib.utils.files.set_names import set_output_file_names

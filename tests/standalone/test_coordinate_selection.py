@@ -6,13 +6,13 @@ including the new category keywords (protein, nucleic, solvent, etc.).
 """
 
 import pytest
-from core.coordinate_selection.tokenizer import tokenize, TokenType
-from core.coordinate_selection.parser import parse_selection, ParseError
-from core.coordinate_selection.ast_nodes import (
+from ccp4i2.core.coordinate_selection.tokenizer import tokenize, TokenType
+from ccp4i2.core.coordinate_selection.parser import parse_selection, ParseError
+from ccp4i2.core.coordinate_selection.ast_nodes import (
     CIDSelector, CategorySelector, CategoryType,
     LogicalAnd, LogicalOr, LogicalNot
 )
-from core.coordinate_selection.evaluator import (
+from ccp4i2.core.coordinate_selection.evaluator import (
     evaluate_selection,
     AMINO_ACIDS, NUCLEIC_ACIDS, SOLVENTS, SACCHARIDES,
     PROTEIN_BACKBONE_ATOMS, NUCLEIC_BACKBONE_ATOMS

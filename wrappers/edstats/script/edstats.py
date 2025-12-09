@@ -25,11 +25,11 @@ from __future__ import print_function
 
 """
 
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4Modules import PROCESSMANAGER
-from core import CCP4ErrorHandling
-from core.CCP4ClipperUtils import is_aminoacid
-from core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4Modules import PROCESSMANAGER
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core.CCP4ClipperUtils import is_aminoacid
+from ccp4i2.core import CCP4Utils
 
 
 class edstats(CPluginScript):
@@ -45,7 +45,7 @@ class edstats(CPluginScript):
     MAINTAINER = 'jon.agirre@york.ac.uk'
 
     def processInputFiles(self):
-      from core import CCP4XtalData
+      from ccp4i2.core import CCP4XtalData
 
       self.cfftPlugin1 = self.makeCfftPlugin1 ( )
       error = self.cfftPlugin1.process ( )
@@ -343,7 +343,7 @@ class edstats(CPluginScript):
 
     def makeCommandAndScript(self):
       import os
-      from core import CCP4XtalData
+      from ccp4i2.core import CCP4XtalData
 
       self.path_wrk = str( self.getWorkDirectory() )
       edstatsOut = os.path.join ( self.path_wrk, 'edstats.out' )
@@ -398,7 +398,7 @@ class testEdstats(unittest.TestCase):
 
     def test1(self):
       # Test creation of log file using ../test_data/test1.params.xml input
-      from core.CCP4Utils import getCCP4I2Dir
+      from ccp4i2.core.CCP4Utils import getCCP4I2Dir
       import os
       workDirectory = CCP4Utils.getTestTmpDir()
       logFile = os.path.join(workDirectory,'edstats_test1.log')

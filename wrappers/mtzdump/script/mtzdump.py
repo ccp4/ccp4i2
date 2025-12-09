@@ -21,7 +21,7 @@ from __future__ import print_function
      etc
 """
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
      
 class mtzdump(CPluginScript):
 
@@ -120,16 +120,16 @@ class testMtzdump(unittest.TestCase):
   
   def setUp(self):
     # make all background jobs wait for completion
-    from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
+    from ccp4i2.core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
     self.app = QTAPPLICATION()
     PROCESSMANAGER().setWaitForFinished(10000)
 
   def tearDown(self):
-    from core.CCP4Modules import PROCESSMANAGER
+    from ccp4i2.core.CCP4Modules import PROCESSMANAGER
     PROCESSMANAGER().setWaitForFinished(-1)
 
   def testMtzdump(self):
-    from core.CCP4Modules import QTAPPLICATION
+    from ccp4i2.core.CCP4Modules import QTAPPLICATION
     self.wrapper = mtzdump(parent=QTAPPLICATION(),name='test_mtzdump')
     self.wrapper.container.inputData.HKLIN.set({'project':'CCP4I2_TOP','baseName':'gere_nat.mtz','relPath':'test/data'})
     pid = self.wrapper.process()

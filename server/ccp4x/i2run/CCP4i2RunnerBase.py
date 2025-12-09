@@ -16,13 +16,13 @@ import shlex
 import numpy
 import traceback
 
-from core.CCP4Container import CContainer
-from core.CCP4ErrorHandling import CException
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Container
-from core.CCP4TaskManager import TASKMANAGER
-from core import CCP4Data
-from core import CCP4XtalData
+from ccp4i2.core.CCP4Container import CContainer
+from ccp4i2.core.CCP4ErrorHandling import CException
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Container
+from ccp4i2.core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core import CCP4Data
+from ccp4i2.core import CCP4XtalData
 
 from ..lib.utils.parameters.set_parameter import set_parameter_container
 from ..lib.utils.containers.find_objects import find_object_by_path

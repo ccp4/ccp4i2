@@ -21,9 +21,9 @@ from __future__ import print_function
 
 import os, shutil
 from ccp4i2.baselayer import QtCore
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core.CCP4ErrorHandling import *
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4ErrorHandling import *
 from lxml import etree
 
 class molrep_pipe(CPluginScript):

@@ -30,7 +30,7 @@ from qtgui import CCP4Widgets
 
 
 def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None):
-    from core import CCP4Modules
+    from ccp4i2.core import CCP4Modules
     jobStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId,'status')
     if jobStatus == 'Unsatisfactory':
         returnList = ['molrep_pipe', 'phaser_pipeline']

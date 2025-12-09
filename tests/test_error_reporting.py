@@ -8,9 +8,9 @@ import pytest
 # Add project root to path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from core.base_object.base_classes import CContainer
-from core.base_object.fundamental_types import CInt, CFloat, CString, CBoolean
-from core.base_object.error_reporting import (
+from ccp4i2.core.base_object.base_classes import CContainer
+from ccp4i2.core.base_object.fundamental_types import CInt, CFloat, CString, CBoolean
+from ccp4i2.core.base_object.error_reporting import (
     CErrorReport, CException,
     SEVERITY_OK, SEVERITY_WARNING, SEVERITY_ERROR
 )
@@ -269,7 +269,7 @@ def test_multiple_validation_errors():
 
 def test_cdata_validity_base():
     """Test CData base validity() method."""
-    from core.base_object.base_classes import CData
+    from ccp4i2.core.base_object.base_classes import CData
     obj = CData(name="test")
     report = obj.validity()
 

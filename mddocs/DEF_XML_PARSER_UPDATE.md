@@ -80,7 +80,7 @@ Comprehensive testing shows the parser working perfectly:
 ## Example Usage
 
 ```python
-from core.task_manager.def_xml_handler import parse_def_xml_file
+from ccp4i2.core.task_manager.def_xml_handler import parse_def_xml_file
 
 # Parse a .def.xml file
 result = parse_def_xml_file("path/to/task.def.xml")

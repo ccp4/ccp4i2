@@ -4,10 +4,10 @@ import json
 import logging
 import traceback
 
-from core import CCP4File
-from core import CCP4Data
-from core import CCP4Container
-from core.CCP4Container import CContainer
+from ccp4i2.core import CCP4File
+from ccp4i2.core import CCP4Data
+from ccp4i2.core import CCP4Container
+from ccp4i2.core.CCP4Container import CContainer
 from ccp4x.db import models
 from ..plugins.get_plugin import get_job_plugin
 from ..containers.json_encoder import CCP4i2JsonEncoder

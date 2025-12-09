@@ -1,10 +1,10 @@
-from core.CCP4Container import CContainer
-from core.base_object.fundamental_types import CList
-from core.base_object.cdata import CData
-from core.base_object.cdata_file import CDataFile
-from core import CCP4File
-from core import CCP4Data
-from core import CCP4Container
+from ccp4i2.core.CCP4Container import CContainer
+from ccp4i2.core.base_object.fundamental_types import CList
+from ccp4i2.core.base_object.cdata import CData
+from ccp4i2.core.base_object.cdata_file import CDataFile
+from ccp4i2.core import CCP4File
+from ccp4i2.core import CCP4Data
+from ccp4i2.core import CCP4Container
 
 from ccp4x.db import models
 from ..containers.get_container import get_job_container

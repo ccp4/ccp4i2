@@ -6,8 +6,8 @@ Tests the gemmi-based MTZ file loading with proper CData setters.
 
 import pytest
 from pathlib import Path
-from core.CCP4XtalData import CMtzData, CMtzDataFile
-from core.base_object.error_reporting import CErrorReport
+from ccp4i2.core.CCP4XtalData import CMtzData, CMtzDataFile
+from ccp4i2.core.base_object.error_reporting import CErrorReport
 
 
 class TestCMtzDataLoadFile:

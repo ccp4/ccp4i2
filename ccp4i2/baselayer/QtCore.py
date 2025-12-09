@@ -14,7 +14,7 @@ FuncT = TypeVar('FuncT', bound=Callable[..., Any])
 
 # Import our modern event system
 try:
-    from core.base_object.event_system import EventLoop as ModernEventLoop
+    from ccp4i2.core.base_object.event_system import EventLoop as ModernEventLoop
 except ImportError:
     # Fallback for module loading issues
     ModernEventLoop = None

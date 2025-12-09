@@ -16,7 +16,7 @@
      GNU Lesser General Public License for more details.
 """
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class cphasematch(CPluginScript):
 
@@ -28,7 +28,7 @@ class cphasematch(CPluginScript):
     TASKVERSION= 0.0
 
     def processInputFiles ( self ):
-        from core import CCP4XtalData
+        from ccp4i2.core import CCP4XtalData
         inp = self.container.inputData
         colgrps = [ ['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN],
                     'ABCD1', 'ABCD2' ] 
@@ -97,7 +97,7 @@ class cphasematch(CPluginScript):
 
     def scrapeSmartieGraphs(self, smartieNode):
         import sys, os
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         from pimple.logtable import CCP4LogToEtree
         from lxml import etree
         smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')

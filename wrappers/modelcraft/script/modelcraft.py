@@ -1,9 +1,9 @@
 import json
 import os
 import shutil
-from core.CCP4ErrorHandling import SEVERITY_WARNING
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4XtalData import CObsDataFile, CPhsDataFile
+from ccp4i2.core.CCP4ErrorHandling import SEVERITY_WARNING
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4XtalData import CObsDataFile, CPhsDataFile
 
 
 class modelcraft(CPluginScript):

@@ -16,7 +16,7 @@ Getting/Setting Data
 
 ::
 
-   from core.CCP4Data import *
+   from ccp4i2.core.CCP4Data import *
    i = CInt(5)
    print type(i),i        >>>>>   <class 'CCP4Data.CInt'> 5
    i.set(7)
@@ -93,7 +93,7 @@ CDataFile
 
 ::
 
-   from core.CCP4File import *
+   from ccp4i2.core.CCP4File import *
 
    f = CDataFile('/Users/lizp/Desktop/whatsit.wht')
    print f                 >>>>>   /Users/lizp/Desktop/whatsit.wht
@@ -133,7 +133,7 @@ CI2XmlFile - XML Files
 
 ::
 
-   from core.CCP4File import *
+   from ccp4i2.core.CCP4File import *
    f = CI2XmlDataFile(project='CCP4I2',relPath='test/data',baseName='pdbset.def.xml')
    f.header.get()           >>>>>  {'function': 'DEF', 'comment': None, 'creationTime': None,
                                     'userId': 'lizp', 'ccp4iVersion': '0.1', 'jobId': None,
@@ -149,7 +149,7 @@ Creating an XML file
 
 ::
 
-   from core.CCP4File import *
+   from ccp4i2.core.CCP4File import *
    from lxml import etree
 
    f = CI2XmlDataFile ('/Users/lizp/Desktop/whatsit.xml')
@@ -178,7 +178,7 @@ integer value 1 is created.
 
 ::
 
-   from core.CCP4Data import *
+   from ccp4i2.core.CCP4Data import *
    l = CList(subItem= { 'class' : CInt, 'qualifiers' : { 'min' : 1 , 'default' : 1 }}, listMinLength=1)
    print l >>>>  [1]
    l.append(6)
@@ -195,7 +195,7 @@ first and last residue.
 
 ::
 
-   from core.CCP4ModelData import *
+   from ccp4i2.core.CCP4ModelData import *
    l = CResidueRangeList()
    l.append({'chainId':'A','firstRes':'23','lastRes':'45'})
    print l,type(l[0])   >>>> [{'firstRes': '23', 'chainId': 'A', 'lastRes': '45'}] , 

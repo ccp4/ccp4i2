@@ -1,11 +1,11 @@
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.baselayer import QtCore
 import os,glob,re,time,sys,shutil
-from core import CCP4XtalData
+from ccp4i2.core import CCP4XtalData
 from lxml import etree
 import math
-from core import CCP4Modules,CCP4Utils
+from ccp4i2.core import CCP4Modules,CCP4Utils
 
 class clustalw(CPluginScript):
     TASKTITLE = 'clustalw'     # A short title for gui menu

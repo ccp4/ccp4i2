@@ -215,7 +215,7 @@ def show_file_hierarchy(root_path: Path):
 async def main():
     """Run the test and inspect results."""
     from ccp4x.db.async_db_handler import AsyncDatabaseHandler
-    from core.CCP4TaskManager import TASKMANAGER
+    from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
     # Setup temporary database and project directory
     temp_db = tempfile.NamedTemporaryFile(suffix='.sqlite3', delete=False)

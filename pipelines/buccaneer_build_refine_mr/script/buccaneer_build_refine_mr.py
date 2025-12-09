@@ -26,10 +26,10 @@ import os
 import shutil
 from lxml import etree
 from copy import deepcopy
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core import CCP4ModelData
-from core import CCP4ProjectsManager
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core import CCP4ModelData
+from ccp4i2.core import CCP4ProjectsManager
 
 class buccaneer_build_refine_mr(CPluginScript):
 
@@ -515,17 +515,17 @@ class test_buccaneer_build_refine_mr(unittest.TestCase):
 
     def setUp(self):
         # make all background jobs wait for completion
-        from core.CCP4Modules import QTAPPLICATION, PROCESSMANAGER
+        from ccp4i2.core.CCP4Modules import QTAPPLICATION, PROCESSMANAGER
         self.app = QTAPPLICATION()
         PROCESSMANAGER().setWaitForFinished(10000)
 
     def tearDown(self):
-        from core.CCP4Modules import PROCESSMANAGER
+        from ccp4i2.core.CCP4Modules import PROCESSMANAGER
         PROCESSMANAGER().setWaitForFinished(-1)
 
     def test_1(self):
-        from core.CCP4Modules import QTAPPLICATION
-        from core.CCP4Utils import getCCP4I2Dir
+        from ccp4i2.core.CCP4Modules import QTAPPLICATION
+        from ccp4i2.core.CCP4Utils import getCCP4I2Dir
 
         # Run the pipeline
         wrapper = buccaneer_build_refine_mr(parent=QTAPPLICATION(), name='buccaneer_build_refine_mr')

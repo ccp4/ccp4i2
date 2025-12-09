@@ -10,7 +10,7 @@ from qtgui import CCP4TaskWidget
 from qtgui import CCP4Widgets
 import glob
 import os
-from core import CCP4Utils
+from ccp4i2.core import CCP4Utils
 from lxml import etree
 
 class CTaskAlternativeImportXIA2(CCP4TaskWidget.CTaskWidget):
@@ -59,7 +59,7 @@ class CTaskAlternativeImportXIA2(CCP4TaskWidget.CTaskWidget):
         candidateJobs = [os.path.split(path)[1] for path in glob.glob(pattern)]
         
         runSummaries = self.container.controlParameters.runSummaries
-        from core.CCP4ErrorHandling import CException
+        from ccp4i2.core.CCP4ErrorHandling import CException
         runSummaries.setQualifiers({'listMinLength' : 0})
         while len(runSummaries) > 0:
             try:

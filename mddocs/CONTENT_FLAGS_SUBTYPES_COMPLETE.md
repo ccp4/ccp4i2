@@ -481,7 +481,7 @@ Updated tests to verify conversion system:
 ### Using Content Flags in Stubs
 
 ```python
-from core.cdata_stubs.CCP4XtalData import CObsDataFileStub
+from ccp4i2.core.cdata_stubs.CCP4XtalData import CObsDataFileStub
 
 # Access constants
 flag = CObsDataFileStub.CONTENT_FLAG_FMEAN  # 4

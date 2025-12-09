@@ -5,7 +5,7 @@
 from ccp4i2.baselayer import QtGui, QtWidgets,QtCore
 
 from qtgui.CCP4TaskWidget import CTaskWidget
-from core import CCP4Modules
+from ccp4i2.core import CCP4Modules
 
 #-------------------------------------------------------------------
 class Cccp4mg_edit_nomrbump(CTaskWidget):

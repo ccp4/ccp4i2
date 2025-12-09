@@ -4,9 +4,9 @@ import sys
 from lxml import etree
 from ccp4i2.baselayer import QtCore
 
-from core import CCP4ErrorHandling
-from core import CCP4Utils
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class lidiaAcedrgNew(CPluginScript):

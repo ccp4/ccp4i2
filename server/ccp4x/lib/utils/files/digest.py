@@ -4,17 +4,17 @@ import gemmi
 import importlib
 from typing import Dict, Type
 
-from core import CCP4File
-from core import CCP4XtalData
-from core import CCP4ModelData
-from core.CCP4Container import CContainer
-from core.base_object.cdata_file import CDataFile
-from core.base_object.cdata import CData
-from core.CCP4XtalData import CGenericReflDataFile, CMapDataFile, CMtzDataFile
-from core.CCP4ModelData import CPdbDataFile, CDictDataFile, CAsuDataFile
+from ccp4i2.core import CCP4File
+from ccp4i2.core import CCP4XtalData
+from ccp4i2.core import CCP4ModelData
+from ccp4i2.core.CCP4Container import CContainer
+from ccp4i2.core.base_object.cdata_file import CDataFile
+from ccp4i2.core.base_object.cdata import CData
+from ccp4i2.core.CCP4XtalData import CGenericReflDataFile, CMapDataFile, CMtzDataFile
+from ccp4i2.core.CCP4ModelData import CPdbDataFile, CDictDataFile, CAsuDataFile
 # Import stub class for isinstance checks - subclasses like CObsDataFile inherit from
 # stubs (CMtzDataFileStub) not implementations (CMtzDataFile)
-from core.cdata_stubs.CCP4XtalData import CMtzDataFileStub
+from ccp4i2.core.cdata_stubs.CCP4XtalData import CMtzDataFileStub
 from pipelines.import_merged.script import mmcifutils
 from ..containers.find_objects import find_objects
 from ..containers.get_container import get_job_container

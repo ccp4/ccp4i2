@@ -55,7 +55,7 @@ else:
     print(f"\n[TEST] Debugging: Let's check what the parser returned...")
 
     # Re-parse the .def.xml file to see what it actually contains
-    from core.task_manager.def_xml_handler import DefXmlParser
+    from ccp4i2.core.task_manager.def_xml_handler import DefXmlParser
     parser = DefXmlParser()
     parsed = parser.parse_def_xml(str(PROJECT_ROOT / 'pipelines/prosmart_refmac/script/prosmart_refmac.def.xml'))
     print(f"\n[TEST] Parsed container has {len(parsed.children())} children:")

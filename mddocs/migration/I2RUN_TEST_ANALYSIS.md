@@ -362,7 +362,7 @@ FileNotFoundError: [Errno 2] unable to open() file $CCP4I2_ROOT/...
 
 ### Fix 1: Fundamental Type Re-exports
 
-**Problem**: Legacy plugins use `from core.CCP4Data import CString` but `CString` is in `core.base_object.fundamental_types`
+**Problem**: Legacy plugins use `from ccp4i2.core.CCP4Data import CString` but `CString` is in `core.base_object.fundamental_types`
 
 **Solution**: Added re-export imports to maintain backward compatibility
 
@@ -371,7 +371,7 @@ FileNotFoundError: [Errno 2] unable to open() file $CCP4I2_ROOT/...
 # Re-export fundamental types for legacy code compatibility
 # Many legacy files use "CCP4Data.CList", "CCP4Data.CString", etc.
 # which are actually in base_object.fundamental_types
-from core.base_object.fundamental_types import CList, CString, CInt, CFloat, CBoolean
+from ccp4i2.core.base_object.fundamental_types import CList, CString, CInt, CFloat, CBoolean
 ```
 
 **Impact**:
@@ -381,7 +381,7 @@ from core.base_object.fundamental_types import CList, CString, CInt, CFloat, CBo
 
 ### Fix 2: getTMP() Utility Function
 
-**Problem**: `arcimboldo` plugin imports `from core.CCP4Utils import getTMP` but function didn't exist
+**Problem**: `arcimboldo` plugin imports `from ccp4i2.core.CCP4Utils import getTMP` but function didn't exist
 
 **Solution**: Added backward compatibility function matching legacy ccp4i2 behavior
 

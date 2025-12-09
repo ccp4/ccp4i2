@@ -21,7 +21,7 @@ os.environ["CCP4I2_ROOT"] = str(project_root)
 def test_qualifier_inheritance():
     """Test that fileContentClassName is inherited from CMtzDataFile."""
 
-    from core.CCP4XtalData import (
+    from ccp4i2.core.CCP4XtalData import (
         CMtzDataFile,
         CMiniMtzDataFile,
         CObsDataFile,

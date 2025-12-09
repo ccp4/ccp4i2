@@ -27,7 +27,7 @@ from typing import Optional, Dict, Any, List, Iterator, Type, Callable, TYPE_CHE
 from xml.etree import ElementTree as ET
 import logging
 
-from core.base_object.hierarchy_system import HierarchicalObject
+from ccp4i2.core.base_object.hierarchy_system import HierarchicalObject
 from report.errors import DiagnosticCollector, ReportDiagnostic, DiagnosticLevel
 
 if TYPE_CHECKING:

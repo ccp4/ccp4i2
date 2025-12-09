@@ -27,7 +27,7 @@ file generation is usually handled by
 
 ::
 
-       from core.CCP4ComTemplate import CComTemplate
+       from ccp4i2.core.CCP4ComTemplate import CComTemplate
        comTemplate = CComTemplate(parent=self)
        # Load the template from a file
        errorReport = comTemplate.loadTemplateFromFile(fileName)
@@ -38,7 +38,7 @@ Alternatively if the template is in a text string:
 
 ::
 
-       from core.CCP4ComTemplate import CComTemplate
+       from ccp4i2.core.CCP4ComTemplate import CComTemplate
        comTemplate = CComTemplate(parent=self,template=templateString)
        # make a command script - pass makeComScript a CContainer containing the data
        comScript,errorReport = comTemplate.makeComScript(container)

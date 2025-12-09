@@ -12,7 +12,7 @@ try:
 except ImportError:
     GEMMI_AVAILABLE = False
 
-from core.CCP4Utils import merge_mtz_files, MtzMergeError
+from ccp4i2.core.CCP4Utils import merge_mtz_files, MtzMergeError
 
 
 # Skip all tests if gemmi is not installed

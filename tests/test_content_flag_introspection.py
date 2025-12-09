@@ -9,8 +9,8 @@ import pytest
 from pathlib import Path
 
 # Import the classes we're testing
-from core.CCP4XtalData import CObsDataFile, CFreeRDataFile, CPhsDataFile
-from core.CCP4ModelData import CPdbDataFile
+from ccp4i2.core.CCP4XtalData import CObsDataFile, CFreeRDataFile, CPhsDataFile
+from ccp4i2.core.CCP4ModelData import CPdbDataFile
 
 
 class TestContentFlagIntrospection:

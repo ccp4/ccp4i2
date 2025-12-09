@@ -1,10 +1,10 @@
 """JSON encoder for CData container serialization."""
 import json
 import logging
-from core import CCP4Container
-from core import CCP4File
-from core.base_object import CData
-from core.base_object.fundamental_types import (
+from ccp4i2.core import CCP4Container
+from ccp4i2.core import CCP4File
+from ccp4i2.core.base_object import CData
+from ccp4i2.core.base_object.fundamental_types import (
     CInt, CFloat, CString, CBoolean, CList
 )
 

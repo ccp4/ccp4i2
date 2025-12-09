@@ -17,8 +17,8 @@
     """
 
 import os
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Utils
 
 class comit(CPluginScript):
     TASKNAME = 'comit'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -31,10 +31,10 @@ class comit(CPluginScript):
         super(comit, self).__init__(*args, **kws)
 
     def processInputFiles(self):
-        from core import CCP4XtalData
+        from ccp4i2.core import CCP4XtalData
         colgrps = [ ['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN], 'F_PHI_IN' ] 
         self.hklin, columns, error = self.makeHklin0( colgrps )
-        from core import CCP4ErrorHandling
+        from ccp4i2.core import CCP4ErrorHandling
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
@@ -63,7 +63,7 @@ class comit(CPluginScript):
         infile = os.path.join(self.workDirectory,'hklout.mtz')
         error = self.splitHklout( ['F_PHI_OUT'],['i2.F_phi.F,i2.F_phi.phi'], infile=infile )
         self.container.outputData.F_PHI_OUT.subType = 1
-        from core import CCP4ErrorHandling
+        from ccp4i2.core import CCP4ErrorHandling
         if error.maxSeverity ( ) > CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
 

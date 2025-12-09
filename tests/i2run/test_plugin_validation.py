@@ -180,7 +180,7 @@ def test_plugin_validity_method():
             "CPluginScript should have validity() method"
 
         # Call validity() and check it returns a CErrorReport
-        from core.base_object.error_reporting import CErrorReport
+        from ccp4i2.core.base_object.error_reporting import CErrorReport
         error_report = plugin.validity()
 
         assert isinstance(error_report, CErrorReport), (

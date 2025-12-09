@@ -4,7 +4,7 @@
 """
 
 import os,shutil
-from core import CCP4PluginScript
+from ccp4i2.core import CCP4PluginScript
 from pipelines.import_xia2.wrappers.xia2_run.script import xia2_run
 
 class import_xia2(CCP4PluginScript.CPluginScript):

@@ -6,7 +6,7 @@ import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from core.base_object.base_classes import CDataFile
+from ccp4i2.core.base_object.base_classes import CDataFile
 
 
 class TestCDataFilePaths:
@@ -79,7 +79,7 @@ class TestCDataFilePaths:
 
     def test_cdatafile_with_basename_attribute(self):
         """Test CDataFile when baseName attribute exists."""
-        from core.CCP4ModelData import CPdbDataFile
+        from ccp4i2.core.CCP4ModelData import CPdbDataFile
 
         # CPdbDataFile should have baseName as CFilePath
         pdb_file = CPdbDataFile()
@@ -124,7 +124,7 @@ class TestCDataFilePaths:
 
     def test_cdatafile_with_parent_and_name(self):
         """Test that CDataFile works with parent and name in hierarchy."""
-        from core.base_object.base_classes import CContainer
+        from ccp4i2.core.base_object.base_classes import CContainer
 
         container = CContainer(name="files")
         file_obj = CDataFile(

@@ -15,7 +15,7 @@ os.environ["CCP4I2_ROOT"] = str(project_root)
 
 def test_fileContent_autoload_with_valid_path():
     """Test that fileContent auto-loads when file has a valid path."""
-    from core.CCP4XtalData import CObsDataFile
+    from ccp4i2.core.CCP4XtalData import CObsDataFile
     from pathlib import Path
 
     # Use the demo data file

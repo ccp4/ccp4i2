@@ -10,8 +10,8 @@ def test_plugin_script_initialization():
     # Import Django models inside the test function after Django is configured
     from django.core.management import call_command
     from ccp4x.db.models import Project, Job
-    from core.CCP4TaskManager import TASKMANAGER
-    from core.CCP4PluginScript import CPluginScript
+    from ccp4i2.core.CCP4TaskManager import TASKMANAGER
+    from ccp4i2.core.CCP4PluginScript import CPluginScript
     from ccp4x.db.async_db_handler import AsyncDatabaseHandler
     print("[TEST] Testing plugin script initialization for 'parrot'")
     call_command("create_project", "test_project", "--directory", "./CCP4_PROJECTS/test_project")

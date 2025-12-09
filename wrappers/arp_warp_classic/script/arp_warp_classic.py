@@ -1,8 +1,8 @@
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core import CCP4ErrorHandling, CCP4XtalData
-from core import CCP4Modules
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core import CCP4ErrorHandling, CCP4XtalData
+from ccp4i2.core import CCP4Modules
 import os, sys, shutil
 
 class arp_warp_classic(CPluginScript):
@@ -205,7 +205,7 @@ class arp_warp_classic(CPluginScript):
       if os.path.isfile(xyzwrk):
         #shutil.copy(xyzwrk, xyzout)
         # LP - make sure there are no 'DUM' atoms in the file - save any to 'dummy_atoms.pdb'
-        #from core import CCP4ModelData
+        #from ccp4i2.core import CCP4ModelData
         #pdbobj = CCP4ModelData.CPdbDataFile(xyzwrk)
         #pdbobj.removeDummyAtoms(str(self.container.outputData.XYZOUT),os.path.join(self.workDirectory,'XYZOUT_dummy_atoms.pdb'))
         # AL - the above code is broken and replaced with a hack below;

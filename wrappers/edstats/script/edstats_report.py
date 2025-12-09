@@ -1,6 +1,6 @@
 from report.CCP4ReportParser import *
-from core import CCP4Utils
-from core.CCP4ClipperUtils import is_aminoacid
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4ClipperUtils import is_aminoacid
 import os
 import xml.etree.ElementTree as etree
 

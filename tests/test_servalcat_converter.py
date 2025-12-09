@@ -19,7 +19,7 @@ def test_servalcat_fw_available():
 
 def test_imean_to_fmean_conversion(tmp_path):
     """Test IMEAN → FMEAN conversion using servalcat fw."""
-    from core.CCP4XtalData import CObsDataFile
+    from ccp4i2.core.CCP4XtalData import CObsDataFile
     import shutil
 
     # Use existing test data (IMEAN from gamma dataset)
@@ -82,7 +82,7 @@ def test_imean_to_fmean_conversion(tmp_path):
 
 def test_monolithic_mtz_contains_all_columns(tmp_path):
     """Test that servalcat creates monolithic MTZ with all outputs."""
-    from core.CCP4XtalData import CObsDataFile
+    from ccp4i2.core.CCP4XtalData import CObsDataFile
     import shutil
 
     # Use IMEAN test data from gamma dataset

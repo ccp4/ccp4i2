@@ -7,7 +7,7 @@
 
 from ccp4i2.baselayer import QtGui, QtWidgets,QtCore
 from qtgui.CCP4TaskWidget import CTaskWidget
-from core.CCP4ErrorHandling import CErrorReport
+from ccp4i2.core.CCP4ErrorHandling import CErrorReport
 
 class ctruncate_gui(CTaskWidget):
 

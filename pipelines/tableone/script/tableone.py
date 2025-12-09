@@ -5,10 +5,10 @@ import re
 import sys
 import math
 from lxml import etree
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4XtalData
-from core import CCP4ErrorHandling
-from core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4XtalData
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core import CCP4Utils
 import clipper
 from wrappers.validate_protein.script import validate_protein
 from iotbx import mtz

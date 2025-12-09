@@ -66,7 +66,7 @@ ccp4i2/
 │   └── extensions/                       # NEW: Manual extensions (if needed)
 │       ├── __init__.py
 │       └── README.md                     # "Add custom methods here"
-└── tests/                                # Tests import from core.generated.*
+└── tests/                                # Tests import from ccp4i2.core.generated.*
 ```
 
 ### Key Design Decisions
@@ -92,11 +92,11 @@ class TypeResolver:
 
         Examples:
         - resolve_import("CUUID", "CCP4Data.py")
-          → "from core.base_object.fundamental_types import CUUID"
+          → "from ccp4i2.core.base_object.fundamental_types import CUUID"
         - resolve_import("CAsuContentSeqList", "CCP4ModelData.py")
           → "" (same file, no import needed)
         - resolve_import("CDataFileContent", "CCP4ModelData.py")
-          → "from core.base_object.base_classes import CDataFileContent"
+          → "from ccp4i2.core.base_object.base_classes import CDataFileContent"
         """
 ```
 
@@ -211,7 +211,7 @@ from .CCP4ModelData import *
 
 # In core/extensions/__init__.py (Manual extensions welcome)
 # Example: Add custom methods to generated classes
-from core.generated import CPdbDataFile
+from ccp4i2.core.generated import CPdbDataFile
 
 class CPdbDataFileExtended(CPdbDataFile):
     """Extended version with custom save logic."""
@@ -381,12 +381,12 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 # Base classes (always needed)
-from core.base_object.base_classes import CData, CContainer, CDataFile, CDataFileContent
-from core.base_object.class_metadata import cdata_class, attribute, AttributeType
-from core.base_object.fundamental_types import CInt, CFloat, CString, CBoolean, CList
+from ccp4i2.core.base_object.base_classes import CData, CContainer, CDataFile, CDataFileContent
+from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType
+from ccp4i2.core.base_object.fundamental_types import CInt, CFloat, CString, CBoolean, CList
 
 # Type aliases (import only if used)
-from core.base_object.fundamental_types import CUUID, CFilePath, CProjectId, COneWord
+from ccp4i2.core.base_object.fundamental_types import CUUID, CFilePath, CProjectId, COneWord
 # ... others as needed
 
 # Cross-file imports (only if needed)

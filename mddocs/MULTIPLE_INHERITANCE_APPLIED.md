@@ -95,7 +95,7 @@ Due to **definition order constraints**, these classes cannot inherit from their
 ### Example: CRefinementPerformance
 
 ```python
-from core.CCP4PerformanceData import CRefinementPerformance
+from ccp4i2.core.CCP4PerformanceData import CRefinementPerformance
 
 print(CRefinementPerformance.__mro__)
 
@@ -115,7 +115,7 @@ print(CRefinementPerformance.__mro__)
 ### Example: CObsDataFile
 
 ```python
-from core.CCP4XtalData import CObsDataFile
+from ccp4i2.core.CCP4XtalData import CObsDataFile
 
 # 0: CObsDataFile
 # 1: CObsDataFileStub                  ← Stub (metadata)

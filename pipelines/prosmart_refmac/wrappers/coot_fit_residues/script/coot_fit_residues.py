@@ -1,6 +1,6 @@
 from lxml import etree
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class coot_fit_residues(CPluginScript):
     
@@ -24,7 +24,7 @@ class coot_fit_residues(CPluginScript):
         self.xmlLength = 0
         # watch the log file
         logFilename = self.makeFileName('LOG')
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         CCP4Utils.saveFile(logFilename,'')
         self.watchFile(logFilename,self.handleLogChanged)
     
@@ -82,7 +82,7 @@ class coot_fit_residues(CPluginScript):
         graphColumnElement = etree.SubElement(graphElement,"Column", label='FinalBonds', positionInList=str(2))
         
         if iRow%20 == 0 or inHandleFinish:
-            from core import CCP4File
+            from ccp4i2.core import CCP4File
             f = CCP4File.CXmlDataFile(fullPath=self.makeFileName('PROGRAMXML'))
             newXml = etree.tostring(self.xmlroot,pretty_print=True)
             
@@ -92,7 +92,7 @@ class coot_fit_residues(CPluginScript):
                 self.xmlLength = len(newXml)
     
     def processOutputFiles(self):
-        from core.CCP4PluginScript import CPluginScript
+        from ccp4i2.core.CCP4PluginScript import CPluginScript
         import os
         status = CPluginScript.FAILED
         if os.path.exists(self.container.outputData.XYZOUT.__str__()): status = CPluginScript.SUCCEEDED
@@ -114,16 +114,16 @@ class test_coot_fit_residues(unittest.TestCase):
     def setUp(self):
         # make all background jobs wait for completion
         # this is essential for unittest to work
-        from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
+        from ccp4i2.core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
         self.app = QTAPPLICATION()
         PROCESSMANAGER().setWaitForFinished(10000)
     
     def tearDown(self):
-        from core.CCP4Modules import PROCESSMANAGER
+        from ccp4i2.core.CCP4Modules import PROCESSMANAGER
         PROCESSMANAGER().setWaitForFinished(-1)
     
     def test_1(self):
-        from core.CCP4Modules import QTAPPLICATION
+        from ccp4i2.core.CCP4Modules import QTAPPLICATION
         wrapper = coot_fit_residues(parent=QTAPPLICATION(),name='coot_fit_residues_test1')
         wrapper.container.loadDataFromXml()
 

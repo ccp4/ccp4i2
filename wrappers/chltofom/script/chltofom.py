@@ -1,8 +1,8 @@
 from __future__ import print_function
 
 
-from core import CCP4PluginScript
-from core import CCP4XtalData
+from ccp4i2.core import CCP4PluginScript
+from ccp4i2.core import CCP4XtalData
 
   
 class chltofom(CCP4PluginScript.CPluginScript):
@@ -26,7 +26,7 @@ class chltofom(CCP4PluginScript.CPluginScript):
         self.appendCommandLine ( ['-colin-hl', '/*/*/[HLA,HLB,HLC,HLD]' ])
         self.appendCommandLine ( ['-colout','/*/*/[PHI,FOM]' ])
       if self.container.controlParameters.OUTPUTMINIMTZ:
-          from core import CCP4Utils
+          from ccp4i2.core import CCP4Utils
           self.tmpHklout = CCP4Utils.makeTmpFile(extension='mtz')
           self.appendCommandLine( [ '-mtzout',self.tmpHklout] )
       else:
@@ -71,16 +71,16 @@ class testchltofom(unittest.TestCase):
    def setUp(self):
     # make all background jobs wait for completion
     # this is essential for unittest to work
-    from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
+    from ccp4i2.core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
     self.app = QTAPPLICATION()
 
    def tearDown(self):
-    from core.CCP4Modules import PROCESSMANAGER
+    from ccp4i2.core.CCP4Modules import PROCESSMANAGER
     PROCESSMANAGER().setWaitForFinished(-1)
 
    def test_1(self):
-     from core.CCP4Modules import QTAPPLICATION
-     from core import CCP4Utils
+     from ccp4i2.core.CCP4Modules import QTAPPLICATION
+     from ccp4i2.core import CCP4Utils
      import os
 
      workDirectory = CCP4Utils.getTestTmpDir()

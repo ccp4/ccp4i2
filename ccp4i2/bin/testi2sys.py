@@ -21,12 +21,12 @@ def quitThread(thread):
     print('quitThread',thread); sys.stdout.flush()
     #thread.quit()
     #thread.wait()
-    from core import CCP4Modules
+    from ccp4i2.core import CCP4Modules
     CCP4Modules.QTAPPLICATION(graphical=False).quit()
     sys.exit()
 
 def updateI2():
-    from core import CCP4Update
+    from ccp4i2.core import CCP4Update
     version = 'Unknown - update failed'
     try:
         u =CCP4Update.CUpdateForTestSys()
@@ -91,7 +91,7 @@ if __name__ == '__main__':
     selectedJobs = pns.jobs
     update = pns.update
 
-    from core import CCP4ProjectBasedTesting
+    from ccp4i2.core import CCP4ProjectBasedTesting
     kw = {}
     for name,defn in CCP4ProjectBasedTesting.MODES.items():
         kw[name] = getattr(pns, name)
@@ -104,7 +104,7 @@ if __name__ == '__main__':
     else:
         version = 'Unknown - no bzr update'
 
-    from core import CCP4Utils
+    from ccp4i2.core import CCP4Utils
     source = CCP4Utils.getCCP4I2Dir()
     t = time.localtime()
     startTime = time.strftime('%y-%m-%d-%H-%M',t)
@@ -133,7 +133,7 @@ if __name__ == '__main__':
 
 
     # Use the specified config file or dbFile
-    from core import CCP4Config
+    from ccp4i2.core import CCP4Config
     if configFile is not None:
         config = CCP4Config.CONFIG(configFile)
         print('Running tests using config file:',configFile)
@@ -166,7 +166,7 @@ if __name__ == '__main__':
 
     #sys.argv =  [sys.argv[0]]
 
-    from core import CCP4Modules
+    from ccp4i2.core import CCP4Modules
     from utils import startup
     app = CCP4Modules.QTAPPLICATION(graphical=graphical)
     pm = startup.startProjectsManager(dbFileName=dbFile,loadDiagnostic=False)
@@ -176,7 +176,7 @@ if __name__ == '__main__':
     #jc.setConfigFile(configFile)
     if dbFile is not None: jc.setDbFile(dbFile)
     pm.doCheckForFinishedJobs.connect(pm.checkForFinishedJobs)
-    from core import CCP4DataManager
+    from ccp4i2.core import CCP4DataManager
     CCP4DataManager.DATAMANAGER().buildClassLookup()
 
     print('Test results will be saved to: '+os.path.join(outputDirectory,'test-'+startTime+'.log')+' and database '+dbFile)

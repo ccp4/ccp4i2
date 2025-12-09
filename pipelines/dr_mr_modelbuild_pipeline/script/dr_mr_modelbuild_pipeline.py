@@ -34,9 +34,9 @@ try:
 except:
     from PyQt4.QtCore import pyqtSlot as Slot
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core.CCP4ErrorHandling import *
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4ErrorHandling import *
 from lxml import etree
 
 try:

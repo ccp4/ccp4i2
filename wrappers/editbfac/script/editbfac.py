@@ -11,7 +11,7 @@ from iotbx.data_manager import DataManager
 from mmtbx import process_predicted_model
 from mmtbx.domains_from_pae import parse_pae_file
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class editbfac(CPluginScript):
 
@@ -163,7 +163,7 @@ class editbfac(CPluginScript):
             outputXYZFILES[-1].annotation = os.path.basename(afile)
         status = CPluginScript.SUCCEEDED
         # Create a trivial xml output file
-        from core import CCP4File
+        from ccp4i2.core import CCP4File
         root = etree.Element('editbfac')
         self.container.outputData.XYZOUT.subType = 1
         f = CCP4File.CXmlDataFile(fullPath=self.makeFileName('PROGRAMXML'))
@@ -273,7 +273,7 @@ class editbfac(CPluginScript):
 #         if os.path.exists(self.container.outputData.XYZOUT.__str__()): status = CPluginScript.SUCCEEDED
 #         print('editbfac.handleFinish',self.container.outputData.XYZOUT, os.path.exists(self.container.outputData.XYZOUT.__str__()))
 #         # Create a trivial xml output file
-#         from core import CCP4File
+#         from ccp4i2.core import CCP4File
 #         from lxml import etree
 #         root = etree.Element('editbfac')
 # 

@@ -207,7 +207,7 @@ and is:
 
 ::
 
-   from core.CCP4PluginScript import CPluginScript
+   from ccp4i2.core.CCP4PluginScript import CPluginScript
         
    class pdbset(CPluginScript):
 
@@ -328,7 +328,7 @@ report before returning a CPluginScipt.FAILED:
 
 ::
 
-   from core.CCP4Modules import PROCESSMANAGER
+   from ccp4i2.core.CCP4Modules import PROCESSMANAGER
 
    class myPluginScript(CPluginScript):
      ERROR_CODES = { 201 : {'description' : 'My program failed with error code' } }
@@ -551,13 +551,13 @@ and *unittest.TestCase.tearDown()* methods thus:
 
       def setUp(self):
        # Create a Qt application
-       from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
+       from ccp4i2.core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
        self.app = QTAPPLICATION()
        # make all background jobs wait for completion
        PROCESSMANAGER().setWaitForFinished(10000)
 
       def tearDown(self):
-       from core.CCP4Modules import PROCESSMANAGER
+       from ccp4i2.core.CCP4Modules import PROCESSMANAGER
        PROCESSMANAGER().setWaitForFinished(-1)
 
 To ensure portability of the tests you need to avoid any fixed filepaths
@@ -565,7 +565,7 @@ in your tests. Please use a 'standard' temporary work directory:
 
 ::
 
-      from core import CCP4Utils
+      from ccp4i2.core import CCP4Utils
       workDirectory = CCP4Utils.getTestTmpDir()
 
 This will set *workDirectory* to your $HOME/ccp4i2_test. If this
@@ -582,18 +582,18 @@ like this:
    class test_my_pipeline(unittest.TestCase):
 
       def setUp(self):
-       from core import CCP4Modules
+       from ccp4i2.core import CCP4Modules
        self.app = CCP4Modules.QTAPPLICATION()
        # make all background jobs wait for completion
        # this is essential for unittest to work
        CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
 
       def tearDown(self):
-       from core import CCP4Modules
+       from ccp4i2.core import CCP4Modules
        CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
 
       def test_1(self):
-        from core import CCP4Modules, CCP4Utils
+        from ccp4i2.core import CCP4Modules, CCP4Utils
         import os
 
         workDirectory = os.path.join(CCP4Utils.getTestTmpDir(),'test1')
@@ -1756,7 +1756,7 @@ Exporting files from a job
 
 ::
 
-       from core import CCP4Modules
+       from ccp4i2.core import CCP4Modules
        childJobs =CCP4Modules.PROJECTSMANAGER().db().getChildJobs(jobId=jobId,details=True,decendents=False)
        for jobNo,jobId,taskName  in childJobs:
          if taskName == 'ctruncate':
@@ -1794,8 +1794,8 @@ Example:
 
    def exportJobFile(jobId=None,mode=None):
        import os
-       from core import CCP4Modules
-       from core import CCP4XtalData
+       from ccp4i2.core import CCP4Modules
+       from ccp4i2.core import CCP4XtalData
 
        jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
        exportFile = os.path.join(jobDir,'exportMtz.mtz')
@@ -2003,7 +2003,7 @@ running job:
 
 ::
 
-   from core import CCP4Modules
+   from ccp4i2.core import CCP4Modules
    status = CCP4Modules.PROCESSMANAGER().getJobData(pid=self.runningProcessId,attribute='exitStatus')
 
 The pid is an integer and is i2's internal unique id for a process.
@@ -2146,7 +2146,7 @@ module. An example to create a 'program' XML file in a CPluginScript:
 ::
 
          from lxml import etree
-         from core import CCP4Utils
+         from ccp4i2.core import CCP4Utils
          # Create a 'root' element and add a 'mode' subElement
          rootEle = etree.Element('MYPROGRAM')
          modeEle = etree.SubElement(rootEle,'mode')

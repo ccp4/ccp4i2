@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 from report.CCP4ReportParser import *
-from core import CCP4Utils
+from ccp4i2.core import CCP4Utils
 import sys
 import xml.etree.ElementTree as etree
 

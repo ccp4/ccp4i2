@@ -6,9 +6,9 @@ import os
 # Add project root to path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from core.base_object.base_classes import CData
-from core.base_object.fundamental_types import CInt, CList, CString
-from core.base_object.class_metadata import cdata_class, attribute, AttributeType
+from ccp4i2.core.base_object.base_classes import CData
+from ccp4i2.core.base_object.fundamental_types import CInt, CList, CString
+from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType
 
 
 def test_custom_attribute_with_clist():
@@ -153,8 +153,8 @@ def test_censemble_label_is_coneword():
     from its type annotations. CEnsemble has type annotation `label: Optional[COneWord]`
     but may not have explicit attribute metadata in the @cdata_class decorator.
     """
-    from core.CCP4ModelData import CEnsemble
-    from core.CCP4Data import COneWord
+    from ccp4i2.core.CCP4ModelData import CEnsemble
+    from ccp4i2.core.CCP4Data import COneWord
 
     ensemble = CEnsemble(name="testEnsemble")
 

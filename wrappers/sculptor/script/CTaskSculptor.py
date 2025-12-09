@@ -91,7 +91,7 @@ class CTaskSculptor(CTaskWidget):
   def xyzinChanged(self):
       import os
       if self.container.inputData.XYZIN.isSet() and os.path.isfile(self.container.inputData.XYZIN.__str__()):
-        from core.CCP4ModelData import CPdbData
+        from ccp4i2.core.CCP4ModelData import CPdbData
         aCPdbData = CPdbData()
         aCPdbData.loadFile(self.container.inputData.XYZIN.fullPath)
         enumerators = []

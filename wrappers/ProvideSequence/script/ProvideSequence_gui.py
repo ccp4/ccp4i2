@@ -54,7 +54,7 @@ PASTERYOURSEQUENCEINHERE"""
         self.getWidget('SEQUENCETEXT').widget.textChanged.connect(self.validate)
 #I am changing this 'unSet' to occur only if job is 'Pending'. This might still be unnecessary but better, I think.
         try:
-            from core import CCP4Modules
+            from ccp4i2.core import CCP4Modules
             jobId = self.jobId()
             status = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId,'status')
             if status == "Pending":
@@ -132,7 +132,7 @@ PASTERYOURSEQUENCEINHERE"""
         sequences = {}
         import mmut
         if os.path.isfile(filePath):
-            from core.CCP4ModelData import CPdbData
+            from ccp4i2.core.CCP4ModelData import CPdbData
             aCPdbData = CPdbData()
             aCPdbData.loadFile(filePath)
             mmdbManager = aCPdbData.mmdbManager

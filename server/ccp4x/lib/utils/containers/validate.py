@@ -1,7 +1,7 @@
 import logging
 from xml.etree import ElementTree as ET
-from core import CCP4Container
-from core import CCP4ErrorHandling
+from ccp4i2.core import CCP4Container
+from ccp4i2.core import CCP4ErrorHandling
 
 
 logger = logging.getLogger(f"ccp4x:{__name__}")

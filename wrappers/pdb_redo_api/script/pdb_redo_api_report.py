@@ -1,7 +1,7 @@
 from report.CCP4ReportParser import *
 import sys
 import shutil
-from core import CCP4Modules
+from ccp4i2.core import CCP4Modules
 
 class pdb_redo_api_report(Report):
     # Specify which gui task and/or pluginscript this applies to

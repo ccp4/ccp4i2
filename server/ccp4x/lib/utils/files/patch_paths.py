@@ -1,12 +1,12 @@
 import os
 import logging
 from django.utils.text import slugify
-from core.base_object.cdata_file import CDataFile
-from core.CCP4ModelData import CPdbDataFile
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4File
-from core import CCP4Data
-from core import CCP4ModelData
+from ccp4i2.core.base_object.cdata_file import CDataFile
+from ccp4i2.core.CCP4ModelData import CPdbDataFile
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4File
+from ccp4i2.core import CCP4Data
+from ccp4i2.core import CCP4ModelData
 from ccp4x.db import models
 
 logger = logging.getLogger(f"ccp4x:{__name__}")

@@ -484,7 +484,7 @@ def postProcessWrapper(self, finishStatus):
 ### 1. Creating a Simple Plugin
 
 ```python
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class MyPlugin(CPluginScript):
     TASKNAME = 'myplugin'

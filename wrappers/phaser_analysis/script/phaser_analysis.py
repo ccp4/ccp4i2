@@ -22,10 +22,10 @@ import os
 
 import math
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Modules
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Modules
 from lxml import etree
-from core import CCP4Utils
+from ccp4i2.core import CCP4Utils
 
 #from phaser_analysis_utils import *
 from .phaser_analysis_utils import Tabledata, AnalyseGraph, AnalysisLog, Makexmlgraph

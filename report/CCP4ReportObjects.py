@@ -20,8 +20,8 @@
 """
    Liz Potterton Aug 2011 -Kludged report objects
 """
-from core import CCP4Data
-from core.CCP4ErrorHandling import *
+from ccp4i2.core import CCP4Data
+from ccp4i2.core.CCP4ErrorHandling import *
 import types
 
 

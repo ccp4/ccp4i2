@@ -6,7 +6,7 @@ from __future__ import print_function
 
 import os,shutil,glob
 from lxml import etree
-from core import CCP4PluginScript
+from ccp4i2.core import CCP4PluginScript
 
 RUN_TITLES = {
     '2d' : 'Mosflm-Scala integration and processing',
@@ -200,7 +200,7 @@ class xia2_run(CCP4PluginScript.CPluginScript):
       ispyb = os.path.join(self.container.inputData.XIA2_DIRECTORY.__str__(),runMode+'-run','ispyb.xml')
       #print 'xia2_run.setPerformance',ispyb
       try:
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         xml = CCP4Utils.openFileToEtree(ispyb)
       except:
         self.appendErrorReport(110,ispyb,stack=False)
@@ -214,7 +214,7 @@ class xia2_run(CCP4PluginScript.CPluginScript):
          
     def makeXml(self,runMode):
       from lxml import etree
-      from core import CCP4Utils
+      from ccp4i2.core import CCP4Utils
       self.xmlroot = etree.Element('XIA2Import')
       runXML = etree.SubElement(self.xmlroot,'XIA2Run',name=str(runMode))
       ispyb = os.path.join(self.container.inputData.XIA2_DIRECTORY.__str__(),runMode+'-run','ispyb.xml')
@@ -239,7 +239,7 @@ class xia2_run(CCP4PluginScript.CPluginScript):
       try:
         import smartie
       except:
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
         import sys
         sys.path.append(smartiePath)

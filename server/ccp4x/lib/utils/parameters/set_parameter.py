@@ -2,14 +2,14 @@ import logging
 import warnings
 import uuid
 from typing import Union
-from core.CCP4Container import CContainer
-from core.CCP4Data import CDict
+from ccp4i2.core.CCP4Container import CContainer
+from ccp4i2.core.CCP4Data import CDict
 import json
-from core import CCP4XtalData
-from core import CCP4ModelData
-from core import CCP4File
-from core import CCP4Data
-from core.base_object.cdata_file import CDataFile
+from ccp4i2.core import CCP4XtalData
+from ccp4i2.core import CCP4ModelData
+from ccp4i2.core import CCP4File
+from ccp4i2.core import CCP4Data
+from ccp4i2.core.base_object.cdata_file import CDataFile
 from .save_params import save_params_for_job
 from ..containers.find_objects import find_object_by_path
 from ..plugins.get_plugin import get_job_plugin

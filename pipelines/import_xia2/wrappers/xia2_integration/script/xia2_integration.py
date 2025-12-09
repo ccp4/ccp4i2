@@ -5,7 +5,7 @@ from __future__ import print_function
 """
 
 import os,shutil,glob
-from core import CCP4PluginScript
+from ccp4i2.core import CCP4PluginScript
 
 class xia2_integration(CCP4PluginScript.CPluginScript):
 

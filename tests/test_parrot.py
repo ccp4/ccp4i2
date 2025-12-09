@@ -5,7 +5,7 @@ Tests for building and using parrot plugin.
 import pytest
 import os
 from pathlib import Path
-from core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
 
 def get_mtz_columns(mtz_path):
@@ -45,7 +45,7 @@ def test_as_fmean_conversion(tmp_path):
     Args:
         tmp_path: Pytest fixture providing a temporary directory for test outputs
     """
-    from core.CCP4XtalData import CObsDataFile
+    from ccp4i2.core.CCP4XtalData import CObsDataFile
 
     ccp4_root = os.environ["CCP4I2_ROOT"]
 
@@ -116,7 +116,7 @@ def test_parrot_makehklin(tmp_path):
     # This should trigger conversion of intensities to F, SIGF if needed
     # makeHklInput returns (outfile, colnames, error) tuple
     # Use [name, contentFlag] syntax to request FMEAN (4) conversion
-    from core.CCP4XtalData import CObsDataFile
+    from ccp4i2.core.CCP4XtalData import CObsDataFile
     hklin_path, colnames, error = task.makeHklInput(
         miniMtzsIn=[['F_SIGF', CObsDataFile.CONTENT_FLAG_FMEAN], 'ABCD']
     )

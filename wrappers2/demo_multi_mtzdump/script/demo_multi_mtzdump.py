@@ -22,8 +22,8 @@ from __future__ import print_function
 # Simple example of running external processes in blocking mode
 # Multiple calls to mtzdump to find the cell in a list of mtzfiles
 
-from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER # Utility to access CCP4i modules
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER # Utility to access CCP4i modules
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 from ccp4i2.baselayer import QtCore
      
@@ -39,7 +39,7 @@ class demo_multi_mtzdump(CPluginScript):
     def process(self):
       # Run mtzdump on multiple mtzs to get the cell parameters
       import glob,os,time
-      from core.CCP4Utils import getCCP4I2Dir
+      from ccp4i2.core.CCP4Utils import getCCP4I2Dir
       # Get a list on MTZ files to work on
       self.mtzlist = glob.glob(os.path.join(getCCP4I2Dir(),'wrappers','*','test_data','*.mtz'))
       #self.mtzlist.extend(glob.glob(os.path.join(getCCP4I2Dir(),'pipelines','*','test_data','*.mtz')))

@@ -176,7 +176,7 @@ by:
 ::
 
      from qtcore import CCP4JobController
-     from core import CCP4Modules
+     from ccp4i2.core import CCP4Modules
      params =CCP4JobController.CServerParams(machine='xxx.xxx.xxx',ccp4Dir='/y/xtal/ccp4',
         mechanism='ssh_shared',username='me',password='secret')
      CCP4Modules.JOBCONTROLLER().setServerParams(jobId,params)

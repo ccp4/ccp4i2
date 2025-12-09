@@ -11,7 +11,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 os.environ['CCP4I2_ROOT'] = str(PROJECT_ROOT)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'ccp4x.settings'
 
-from core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
 def test_resmax_not_set():
     """Verify RESMAX without default stays NOT_SET and is excluded from XML."""

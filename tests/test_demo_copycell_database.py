@@ -97,7 +97,7 @@ class TestDemoCopycellDatabase:
         """
         from ccp4x.db.async_db_handler import AsyncDatabaseHandler
         from ccp4x.db import models
-        from core.CCP4PluginScript import CPluginScript
+        from ccp4i2.core.CCP4PluginScript import CPluginScript
         from asgiref.sync import sync_to_async
 
         print(f"\n{'='*70}")
@@ -112,7 +112,7 @@ class TestDemoCopycellDatabase:
         handler = AsyncDatabaseHandler(project_uuid=test_project.uuid)
 
         # Get plugin class from TASKMANAGER
-        from core.CCP4TaskManager import TASKMANAGER
+        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
         copycell_class = TASKMANAGER().get_plugin_class('demo_copycell')
         assert copycell_class is not None, "demo_copycell plugin not found in registry"
@@ -287,7 +287,7 @@ class TestDemoCopycellDatabase:
         """
         from ccp4x.db.async_db_handler import AsyncDatabaseHandler
         from ccp4x.db import models
-        from core.CCP4PluginScript import CPluginScript
+        from ccp4i2.core.CCP4PluginScript import CPluginScript
         from asgiref.sync import sync_to_async
 
         print(f"\n{'='*70}")
@@ -308,7 +308,7 @@ class TestDemoCopycellDatabase:
 
         # Step 2: Create and configure pipeline
         print("Step 2: Configuring pipeline...")
-        from core.CCP4TaskManager import TASKMANAGER
+        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
         copycell_class = TASKMANAGER().get_plugin_class('demo_copycell')
         assert copycell_class is not None, "demo_copycell plugin not found"
@@ -397,7 +397,7 @@ class TestDemoCopycellDatabase:
         # Track events
         events = []
 
-        from core.CCP4TaskManager import TASKMANAGER
+        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
         copycell_class = TASKMANAGER().get_plugin_class('demo_copycell')
         pipeline = copycell_class(name="event_test_copycell")
 

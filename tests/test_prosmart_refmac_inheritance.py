@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 if "CCP4I2_ROOT" not in os.environ:
     os.environ["CCP4I2_ROOT"] = str(Path(__file__).parent.parent)
 
-from core.task_manager.def_xml_handler import parse_def_xml_file
+from ccp4i2.core.task_manager.def_xml_handler import parse_def_xml_file
 
 
 def test_refmac_has_ncycles():

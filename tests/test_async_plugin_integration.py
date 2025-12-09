@@ -10,8 +10,8 @@ import asyncio
 import time
 import tempfile
 from pathlib import Path
-from core.base_object.signal_system import Signal, Slot
-from core.async_process_manager import AsyncProcessManager
+from ccp4i2.core.base_object.signal_system import Signal, Slot
+from ccp4i2.core.async_process_manager import AsyncProcessManager
 
 
 class MockPlugin:

@@ -22,8 +22,8 @@ from typing import Optional, Dict, Any, Union
 
 from asgiref.sync import sync_to_async
 
-from core import CCP4TaskManager
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4TaskManager
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 from ..db import models
 from ..db.async_db_handler import AsyncDatabaseHandler

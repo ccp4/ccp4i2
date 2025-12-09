@@ -11,7 +11,7 @@ import pytest
 import os
 import shutil
 from pathlib import Path
-from core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
 
 def get_mtz_columns(mtz_path):
@@ -54,7 +54,7 @@ def test_ctruncate_intensity_to_fmean(tmp_path):
     Args:
         tmp_path: Pytest fixture providing a temporary directory
     """
-    from core.CCP4PluginScript import CPluginScript
+    from ccp4i2.core.CCP4PluginScript import CPluginScript
 
     ccp4_root = os.environ["CCP4I2_ROOT"]
 

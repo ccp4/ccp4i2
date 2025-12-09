@@ -28,7 +28,7 @@ class ShelxCE_gui(CTaskWidget):
     def drawContents(self):
         self.openFolder(folderFunction='inputData')
         
-        from core import CCP4Utils,CCP4Modules
+        from ccp4i2.core import CCP4Utils,CCP4Modules
         if not (hasattr(CCP4Modules.PREFERENCES(),'SHELXDIR')) and CCP4Utils.which('shelxc') is None:
             if (not CCP4Modules.PREFERENCES().SHELXDIR.exists()) and CCP4Utils.which('shelxc') is None:
               self.createLine ( [ 'warning','The Shelx programs have not been found. They are not part of CCP4 but you can get them from\nhttp://shelx.uni-ac.gwdg.de/SHELX/download.php\nIf you already have them make sure they are on the search path\nOR specify where they are in the Preferences window - under Other Software.' ])

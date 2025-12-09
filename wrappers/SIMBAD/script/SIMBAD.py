@@ -22,7 +22,7 @@ import shutil
 import platform
 
 # CCP4 imports
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 from simbad.util import SIMBAD_DIRNAME
 from simbad.util.simbad_results import SimbadResults
 
@@ -59,8 +59,8 @@ class SIMBAD(CPluginScript):
         #                       the input data objects
         #                       3) A CCP4 Error object
         """
-        from core import CCP4XtalData
-        from core import CCP4ErrorHandling
+        from ccp4i2.core import CCP4XtalData
+        from ccp4i2.core import CCP4ErrorHandling
         self.hklin, error = self.makeHklin([['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
 
         if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:

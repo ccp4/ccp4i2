@@ -18,8 +18,8 @@ from __future__ import print_function
     """
 
 import os
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4ErrorHandling
 
 class MakeLink(CPluginScript):
     TASKNAME = 'MakeLink'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -491,7 +491,7 @@ class MakeLink(CPluginScript):
     def processOutputFiles(self):
         #Create (dummy) PROGRAMXML
         from lxml import etree
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         import sys, os, shutil
         pipelineXMLStructure = etree.Element("MakeLink")
         

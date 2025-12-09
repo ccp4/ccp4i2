@@ -3,7 +3,7 @@ import logging
 import gemmi
 from typing import List
 import re
-from core import CCP4XtalData
+from ccp4i2.core import CCP4XtalData
 from ..files.available_name import available_file_name_based_on
 
 logger = logging.getLogger(f"ccp4x:{__name__}")

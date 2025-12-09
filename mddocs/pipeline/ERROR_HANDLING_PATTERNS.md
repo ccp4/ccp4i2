@@ -27,15 +27,15 @@ These systems work together to provide comprehensive error handling.
 ### Location
 
 ```python
-from core.base_object.error_reporting import CErrorReport, SEVERITY_ERROR, SEVERITY_WARNING
+from ccp4i2.core.base_object.error_reporting import CErrorReport, SEVERITY_ERROR, SEVERITY_WARNING
 # Or via the legacy import:
-from core import CCP4ErrorHandling
+from ccp4i2.core import CCP4ErrorHandling
 ```
 
 ### Severity Levels
 
 ```python
-from core.base_object.error_reporting import (
+from ccp4i2.core.base_object.error_reporting import (
     SEVERITY_OK,            # 0 - No error
     SEVERITY_UNDEFINED,     # 1 - Value not set
     SEVERITY_WARNING,       # 2 - Warning (non-blocking)
@@ -177,7 +177,7 @@ def appendErrorReport(self, code=0, details='', name=None, label=None, cls=None,
 ```python
 def createEnsembleElements(self):
     try:
-        from core.CCP4ModelData import CPdbDataFile, CAtomSelection, CPdbEnsembleItem
+        from ccp4i2.core.CCP4ModelData import CPdbDataFile, CAtomSelection, CPdbEnsembleItem
         elements = self.container.inputData.ENSEMBLES
         # ... setup ensemble elements ...
 

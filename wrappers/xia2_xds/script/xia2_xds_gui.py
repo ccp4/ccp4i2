@@ -8,9 +8,9 @@
 from ccp4i2.baselayer import QtGui, QtWidgets, QtCore
 
 from qtgui.CCP4TaskWidget import CTaskWidget
-from core import CCP4Container
-from core import CCP4Utils
-from core import CCP4Modules
+from ccp4i2.core import CCP4Container
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core import CCP4Modules
 
 from wrappers.xia2_dials.script import xia2_dials_gui
 

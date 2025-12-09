@@ -9,7 +9,7 @@ from pathlib import Path
 
 def test_extract_columns_basic(tmp_path):
     """Test basic column extraction from MTZ file."""
-    from core.conversions.mtz_utils import extract_columns
+    from ccp4i2.core.conversions.mtz_utils import extract_columns
     import gemmi
     import numpy as np
 
@@ -64,7 +64,7 @@ def test_extract_columns_basic(tmp_path):
 
 def test_extract_columns_rename(tmp_path):
     """Test column extraction with renaming."""
-    from core.conversions.mtz_utils import extract_columns
+    from ccp4i2.core.conversions.mtz_utils import extract_columns
     import gemmi
     import numpy as np
 
@@ -108,7 +108,7 @@ def test_extract_columns_rename(tmp_path):
 
 def test_extract_columns_missing_column(tmp_path):
     """Test that missing column raises error."""
-    from core.conversions.mtz_utils import extract_columns
+    from ccp4i2.core.conversions.mtz_utils import extract_columns
     import gemmi
     import numpy as np
 
@@ -142,7 +142,7 @@ def test_extract_columns_missing_column(tmp_path):
 
 def test_get_column_labels(tmp_path):
     """Test getting column labels from MTZ."""
-    from core.conversions.mtz_utils import get_column_labels
+    from ccp4i2.core.conversions.mtz_utils import get_column_labels
     import gemmi
     import numpy as np
 
@@ -172,7 +172,7 @@ def test_get_column_labels(tmp_path):
 
 def test_has_columns(tmp_path):
     """Test checking for required columns."""
-    from core.conversions.mtz_utils import has_columns
+    from ccp4i2.core.conversions.mtz_utils import has_columns
     import gemmi
     import numpy as np
 

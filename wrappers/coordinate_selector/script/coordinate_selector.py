@@ -19,8 +19,8 @@ from __future__ import print_function
     """
 
 import os
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Utils
 import pathlib
 
 class coordinate_selector(CPluginScript):
@@ -63,7 +63,7 @@ class coordinate_selector(CPluginScript):
             self.container.outputData.XYZOUT.subType = int(self.container.controlParameters.OVERRIDE_SUBTYPE)
         self.container.outputData.XYZOUT.annotation.set(self.container.inputData.XYZIN.selection.__str__()+' of '+self.container.inputData.XYZIN.annotation.__str__())
 
-        from core.CCP4ModelData import CPdbData
+        from ccp4i2.core.CCP4ModelData import CPdbData
         aCPdbData = CPdbData()
         aCPdbData.loadFile(self.container.outputData.XYZOUT.fullPath)
         from lxml import etree

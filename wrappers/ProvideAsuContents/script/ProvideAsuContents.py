@@ -1,6 +1,6 @@
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ModelData
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4ModelData
 import os,sys
 import shutil
 from lxml import etree

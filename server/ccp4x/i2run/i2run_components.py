@@ -14,9 +14,9 @@ import logging
 from pathlib import Path
 from typing import List, Dict, Any
 
-from core.CCP4Container import CContainer
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Data
+from ccp4i2.core.CCP4Container import CContainer
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Data
 
 logger = logging.getLogger(__name__)
 
@@ -63,7 +63,7 @@ class KeywordExtractor:
         Returns:
             List of keyword dictionaries with metadata
         """
-        from core.CCP4TaskManager import TASKMANAGER
+        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
         # Instantiate plugin to get its structure
         plugin_class = TASKMANAGER().get_plugin_class(task_name)
@@ -382,7 +382,7 @@ class PluginPopulator:
             target: Target parameter object
             values: List of values to set
         """
-        from core.CCP4File import CDataFile
+        from ccp4i2.core.CCP4File import CDataFile
 
         # For CList, add each item
         if isinstance(target, CCP4Data.CList):
@@ -438,7 +438,7 @@ class PluginPopulator:
             value: Value to parse and set (string, list, or dict)
             is_list: Whether this is being added to a CList
         """
-        from core.CCP4File import CDataFile
+        from ccp4i2.core.CCP4File import CDataFile
 
         # Handle list values - join them or convert to appropriate format
         if isinstance(value, list):
@@ -498,7 +498,7 @@ class PluginPopulator:
                                     # bypass __setattr__ and create CData values directly
                                     try:
                                         # Import CString locally
-                                        from core.base_object.fundamental_types import CString, CInt, CFloat, CBoolean
+                                        from ccp4i2.core.base_object.fundamental_types import CString, CInt, CFloat, CBoolean
 
                                         # Check if attribute already exists
                                         existing = getattr(current, final_key, None)
@@ -524,7 +524,7 @@ class PluginPopulator:
                                 # we must bypass __setattr__ and create CData values directly
                                 try:
                                     # Import CString locally
-                                    from core.base_object.fundamental_types import CString, CInt, CFloat, CBoolean
+                                    from ccp4i2.core.base_object.fundamental_types import CString, CInt, CFloat, CBoolean
 
                                     # Check if attribute already exists
                                     existing = getattr(target, key, None)
@@ -604,8 +604,8 @@ class PluginPopulator:
         #
         # This type-based approach is cleaner than quote-based escaping and prevents
         # accidental misparsing of chemical notation, mathematical expressions, etc.
-        from core.base_object.fundamental_types import CInt, CFloat, CString, CBoolean, CList
-        from core.base_object.base_classes import CData
+        from ccp4i2.core.base_object.fundamental_types import CInt, CFloat, CString, CBoolean, CList
+        from ccp4i2.core.base_object.base_classes import CData
 
         is_fundamental_type = isinstance(target, (CInt, CFloat, CString, CBoolean))
         is_composite_type = isinstance(target, (CDataFile, CData)) and not is_fundamental_type
@@ -673,7 +673,7 @@ class PluginPopulator:
             target: CDataFile instance
             values: List of key=value strings
         """
-        from core.CCP4File import CDataFile
+        from ccp4i2.core.CCP4File import CDataFile
 
         # Parse all key=value pairs first to check for special handling opportunities
         parsed_values = {}

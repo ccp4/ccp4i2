@@ -9,8 +9,8 @@ Tests loading of unmerged reflection data from multiple formats:
 
 import pytest
 from pathlib import Path
-from core.CCP4XtalData import CUnmergedDataContent, CUnmergedDataFile
-from core.base_object.error_reporting import CErrorReport
+from ccp4i2.core.CCP4XtalData import CUnmergedDataContent, CUnmergedDataFile
+from ccp4i2.core.base_object.error_reporting import CErrorReport
 
 
 class TestCUnmergedDataContent:

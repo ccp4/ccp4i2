@@ -2,10 +2,10 @@ import logging
 import pathlib
 import getpass
 from xml.etree import ElementTree as ET
-from core import CCP4File
-from core import CCP4Utils
-from core import CCP4PluginScript
-from core import CCP4Container
+from ccp4i2.core import CCP4File
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core import CCP4PluginScript
+from ccp4i2.core import CCP4Container
 from ccp4x.db import models
 
 logger = logging.getLogger(f"ccp4x:{__name__}")

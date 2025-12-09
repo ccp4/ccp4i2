@@ -18,8 +18,8 @@
 
 import os, shutil
 from lxml import etree
-from core import CCP4Utils
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class nautilus_build_refine(CPluginScript):
 

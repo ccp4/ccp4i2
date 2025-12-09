@@ -17,11 +17,11 @@
     GNU Lesser General Public License for more details.
     """
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core.CCP4ErrorHandling import *
-from core import CCP4Modules
-from core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core.CCP4ErrorHandling import *
+from ccp4i2.core import CCP4Modules
+from ccp4i2.core import CCP4Utils
 from lxml import etree
 
 class TestObsConversions(CPluginScript):
@@ -92,7 +92,7 @@ class TestObsConversions(CPluginScript):
             self.appendErrorReport(202, 'F_SIGF_INTERMEDIATE' + " conversion to type number " + str(self.container.controlParameters.OUTPUT_REPRESENTATION))
             return CPluginScript.FAILED
 
-        from core.CCP4XtalData import CObsDataFile
+        from ccp4i2.core.CCP4XtalData import CObsDataFile
         outputFiles = ['F_SIGF_FINAL']
         outputColumns = [columns]
         error = self.splitHklout(outputFiles,outputColumns,infile=self.hklin)

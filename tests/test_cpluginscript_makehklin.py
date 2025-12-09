@@ -12,10 +12,10 @@ try:
 except ImportError:
     GEMMI_AVAILABLE = False
 
-from core.CCP4PluginScript import CPluginScript
-from core.base_object.base_classes import CContainer
-from core.base_object.fundamental_types import CInt
-from core.base_object.error_reporting import CErrorReport, SEVERITY_OK
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.base_object.base_classes import CContainer
+from ccp4i2.core.base_object.fundamental_types import CInt
+from ccp4i2.core.base_object.error_reporting import CErrorReport, SEVERITY_OK
 
 # Skip all tests if gemmi is not installed
 pytestmark = pytest.mark.skipif(not GEMMI_AVAILABLE, reason="gemmi not installed")
@@ -231,7 +231,7 @@ class TestMakeHklinGemmi:
     def test_merge_strategy_error(self, plugin_script, temp_dir):
         """Test error strategy on column conflict."""
         # Add same file twice - should conflict on F, SIGF columns
-        from core.CCP4Utils import MtzMergeError
+        from ccp4i2.core.CCP4Utils import MtzMergeError
 
         with pytest.raises((ValueError, MtzMergeError), match="conflict"):
             plugin_script.makeHklinGemmi(
@@ -425,7 +425,7 @@ class TestMakeHklinEdgeCases:
 
     def test_empty_file_list(self, plugin_script):
         """Test error with empty file list."""
-        from core.CCP4Utils import MtzMergeError
+        from ccp4i2.core.CCP4Utils import MtzMergeError
 
         with pytest.raises((ValueError, MtzMergeError)):
             plugin_script.makeHklinGemmi([])

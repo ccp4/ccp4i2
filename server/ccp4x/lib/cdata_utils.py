@@ -9,8 +9,8 @@ import warnings
 from typing import List, Dict, Any, Optional, Type, Callable
 from pathlib import Path
 
-from core import CCP4Data
-from core.base_object.cdata_file import CDataFile
+from ccp4i2.core import CCP4Data
+from ccp4i2.core.base_object.cdata_file import CDataFile
 
 logger = logging.getLogger(__name__)
 

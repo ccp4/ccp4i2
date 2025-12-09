@@ -1,4 +1,4 @@
-from core import CCP4Modules
+from ccp4i2.core import CCP4Modules
 from ccp4i2.baselayer import QtCore
 from qtgui import CCP4TaskWidget
 

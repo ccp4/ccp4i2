@@ -21,7 +21,7 @@ from report.CCP4ReportParser import Report
 import sys
 #from lxml import etree
 import xml.etree.ElementTree as etree
-from core import CCP4Utils
+from ccp4i2.core import CCP4Utils
 
 class MakeLink_report(Report):
     # Specify which gui task and/or pluginscript this applies to

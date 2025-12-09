@@ -1,9 +1,9 @@
 from __future__ import print_function
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 import os
 import re
-from core import CCP4Data
+from ccp4i2.core import CCP4Data
 
 from lxml import etree
 class CallbackObject(object):

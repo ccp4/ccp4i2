@@ -1,7 +1,7 @@
 from ccp4i2.baselayer import QtGui, QtWidgets,QtCore
 from qtgui import CCP4TaskWidget
 from qtgui import CCP4Widgets
-from core import CCP4Modules
+from ccp4i2.core import CCP4Modules
 
 class CTaskPDB_REDO(CCP4TaskWidget.CTaskWidget):
 

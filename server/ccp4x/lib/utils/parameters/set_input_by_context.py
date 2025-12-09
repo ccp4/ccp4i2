@@ -2,8 +2,8 @@ import logging
 import uuid
 from typing import Optional, Any
 
-from core.CCP4Container import CContainer
-from core.base_object.cdata_file import CDataFile
+from ccp4i2.core.CCP4Container import CContainer
+from ccp4i2.core.base_object.cdata_file import CDataFile
 
 from ccp4x.db import models
 from ..plugins.get_plugin import get_job_plugin

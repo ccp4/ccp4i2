@@ -99,7 +99,7 @@ class TestAsyncPluginWithDatabase:
         """
         from ccp4x.db.async_db_handler import AsyncDatabaseHandler
         from ccp4x.db import models
-        from core.CCP4PluginScript import CPluginScript
+        from ccp4i2.core.CCP4PluginScript import CPluginScript
         from asgiref.sync import sync_to_async
 
         print(f"\n{'='*70}")
@@ -113,7 +113,7 @@ class TestAsyncPluginWithDatabase:
         handler = AsyncDatabaseHandler(project_uuid=test_project.uuid)
 
         # Create plugin using TASKMANAGER (loads task definition properly)
-        from core.CCP4TaskManager import TASKMANAGER
+        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
         # Get the plugin class for ctruncate
         ctruncate_class = TASKMANAGER().get_plugin_class('ctruncate')
@@ -364,7 +364,7 @@ class TestAsyncPluginWithDatabase:
         """
         from ccp4x.db.async_db_handler import AsyncDatabaseHandler
         from ccp4x.db import models
-        from core.CCP4PluginScript import CPluginScript
+        from ccp4i2.core.CCP4PluginScript import CPluginScript
         from asgiref.sync import sync_to_async
 
         print(f"\n{'='*70}")
@@ -385,7 +385,7 @@ class TestAsyncPluginWithDatabase:
 
         # Step 2: Create and configure plugin
         print("Step 2: Configuring plugin...")
-        from core.CCP4TaskManager import TASKMANAGER
+        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
         # Get the plugin class
         ctruncate_class = TASKMANAGER().get_plugin_class('ctruncate')

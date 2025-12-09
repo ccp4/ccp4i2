@@ -145,7 +145,7 @@ class phaser_simple(phaser_pipeline.phaser_pipeline):
         ENSEMBLES is intentionally empty at validation time because it's
         populated programmatically by createEnsembleElements() during process().
         """
-        from core import CCP4ErrorHandling
+        from ccp4i2.core import CCP4ErrorHandling
 
         # Get parent validation
         error = super(phaser_simple, self).validity()

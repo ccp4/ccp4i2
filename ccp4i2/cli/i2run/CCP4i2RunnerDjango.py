@@ -219,7 +219,7 @@ class CCP4i2RunnerDjango(CCP4i2RunnerBase):
         logger.info(f"Work directory: {workDirectory}")
 
         # Create plugin instance
-        from core.CCP4TaskManager import TASKMANAGER
+        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
         thePlugin = TASKMANAGER().get_plugin_class(
             parsed_args.task_name
         )(jobId=jobId, workDirectory=workDirectory, parent=None)
@@ -278,7 +278,7 @@ class CCP4i2RunnerDjango(CCP4i2RunnerBase):
         #thePlugin.saveParams()
         print(self.jobId)
 
-        from core.base_object.error_reporting import Severity
+        from ccp4i2.core.base_object.error_reporting import Severity
 
         # Step 1: Run validity() - allows plugins to adjust qualifiers for embedded wrappers
         # (e.g., servalcat_pipe sets allowUndefined on metalCoordWrapper.inputData.XYZIN)

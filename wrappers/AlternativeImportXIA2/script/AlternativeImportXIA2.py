@@ -1,10 +1,10 @@
 from __future__ import print_function
 
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 import os, sys
 from lxml import etree
-from core import CCP4Utils
+from ccp4i2.core import CCP4Utils
 import shutil
 import glob
 
@@ -99,7 +99,7 @@ class AlternativeImportXIA2(CPluginScript):
                     logFile = os.path.join(self.workDirectory,'cmtzsplit.log')
                     status = self.splitMtz(srcPath,[[obsPath,colin,colout],[freerPath,colfree,colfreeout]],logFile)
                     if status == CPluginScript.SUCCEEDED:
-                        from core import CCP4XtalData
+                        from ccp4i2.core import CCP4XtalData
                         obsOut.append(obsOut.makeItem())
                         obsOut[-1].fullPath = obsPath
                         obsOut[-1].annotation = runName+' of '+srcFilename[:-8]
@@ -170,7 +170,7 @@ class AlternativeImportXIA2(CPluginScript):
 # Function called from gui to support exporting MTZ files
 def exportJobFile(jobId=None,mode=None,fileInfo={}):
     import os,glob
-    from core import CCP4Modules
+    from ccp4i2.core import CCP4Modules
     #print 'AlternativeImportXIA2.exportJobFile',mode
     if mode == 'complete_mtz':
       if fileInfo.get('fullPath',None) is not None:
@@ -209,16 +209,16 @@ class testProvideTLS(unittest.TestCase):
    def setUp(self):
     # make all background jobs wait for completion
     # this is essential for unittest to work
-    from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
+    from ccp4i2.core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
     self.app = QTAPPLICATION()
     PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    from core.CCP4Modules import PROCESSMANAGER
+    from ccp4i2.core.CCP4Modules import PROCESSMANAGER
     PROCESSMANAGER().setWaitForFinished(-1)
 
    def test_1(self):
-     from core.CCP4Modules import QTAPPLICATION
+     from ccp4i2.core.CCP4Modules import QTAPPLICATION
      wrapper = ProvideTLS(parent=QTAPPLICATION(),name='ProvideTLS_test1')
      wrapper.container.loadDataFromXml()
      

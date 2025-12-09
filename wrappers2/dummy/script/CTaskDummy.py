@@ -201,7 +201,7 @@ class CTaskDummy(CTaskWidget):
       # Can not assume that the gesamt widget is still there - must instead query the database for output file
       # Use CDbApi.getJobFilesInfo() which returns a list of dicts containing description of files output by the job
       # The best way to set the file object ot a new value is by setDbFileId()
-      from core import CCP4Modules
+      from ccp4i2.core import CCP4Modules
       gesamtFileList = CCP4Modules.PROJECTSMANAGER().db().getJobFilesInfo(jobId=jobId,jobParamName='XYZOUT')
       #print 'CTaskDummy.handleLaunchedJob ',gesamtFileList
       if len(gesamtFileList)>0:
@@ -218,7 +218,7 @@ class CTaskDummy(CTaskWidget):
 
 
   def taskValidity(self):
-    from core import CCP4ErrorHandling
+    from ccp4i2.core import CCP4ErrorHandling
     rv = CCP4ErrorHandling.CErrorReport()
     # Check the space group is same in MTZ and PDB
     if self.container.inputData.PDBIN.exists():

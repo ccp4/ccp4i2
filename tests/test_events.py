@@ -2,7 +2,7 @@
 import pytest
 import asyncio
 import time
-from core.base_object.event_system import Application
+from ccp4i2.core.base_object.event_system import Application
 
 
 

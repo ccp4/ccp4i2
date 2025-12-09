@@ -11,7 +11,7 @@ This test suite validates that getColumnGroups() correctly:
 import pytest
 import gemmi
 from pathlib import Path
-from core.CCP4XtalData import (
+from ccp4i2.core.CCP4XtalData import (
     CMtzDataFile, CMtzData, CUnmergedDataContent,
     CObsDataFile, CPhsDataFile, CMapCoeffsDataFile, CFreeRDataFile
 )
@@ -167,7 +167,7 @@ class TestGetColumnGroupsEdgeCases:
         """Test that defensive check prevents IndexError on first column"""
         # This tests the fix for Bug 3 (IndexError when groupList is empty)
         # Create MTZ data with columns that all have groupIndex == 0
-        from core.CCP4XtalData import CMtzColumn
+        from ccp4i2.core.CCP4XtalData import CMtzColumn
 
         mtz_data = CMtzData()
         mtz_data.listOfColumns = []
@@ -196,8 +196,8 @@ class TestGetColumnGroupsSignatures:
 
     def test_obs_signatures(self):
         """Test all CObsDataFile.correctColumns signatures"""
-        from core.CCP4XtalData import CMtzColumn
-        from core.base_object.class_metadata import get_class_metadata_by_type
+        from ccp4i2.core.CCP4XtalData import CMtzColumn
+        from ccp4i2.core.base_object.class_metadata import get_class_metadata_by_type
 
         # Get correctColumns from CObsDataFile metadata
         meta = get_class_metadata_by_type(CObsDataFile)
@@ -208,7 +208,7 @@ class TestGetColumnGroupsSignatures:
 
     def test_phs_signatures(self):
         """Test all CPhsDataFile.correctColumns signatures"""
-        from core.base_object.class_metadata import get_class_metadata_by_type
+        from ccp4i2.core.base_object.class_metadata import get_class_metadata_by_type
 
         # Get correctColumns from CPhsDataFile metadata
         meta = get_class_metadata_by_type(CPhsDataFile)
@@ -219,7 +219,7 @@ class TestGetColumnGroupsSignatures:
 
     def test_mapcoeffs_signatures(self):
         """Test all CMapCoeffsDataFile.correctColumns signatures"""
-        from core.base_object.class_metadata import get_class_metadata_by_type
+        from ccp4i2.core.base_object.class_metadata import get_class_metadata_by_type
 
         # Get correctColumns from CMapCoeffsDataFile metadata
         meta = get_class_metadata_by_type(CMapCoeffsDataFile)
@@ -230,7 +230,7 @@ class TestGetColumnGroupsSignatures:
 
     def test_freer_signatures(self):
         """Test all CFreeRDataFile.correctColumns signatures"""
-        from core.base_object.class_metadata import get_class_metadata_by_type
+        from ccp4i2.core.base_object.class_metadata import get_class_metadata_by_type
 
         # Get correctColumns from CFreeRDataFile metadata
         meta = get_class_metadata_by_type(CFreeRDataFile)
@@ -279,7 +279,7 @@ class TestUnmergedDataContent:
 
         # CUnmergedDataContent is used by CUnmergedDataFile
         # Load via parent file to test integration
-        from core.CCP4XtalData import CUnmergedDataFile
+        from ccp4i2.core.CCP4XtalData import CUnmergedDataFile
 
         unmerged_file = CUnmergedDataFile()
         unmerged_file.setFullPath(str(unmerged_path))

@@ -20,15 +20,15 @@ from __future__ import print_function
 import os
 import shutil
 import pathlib
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 from lxml import etree
-import core.CCP4Utils
-import core.CCP4ErrorHandling
-from core.CCP4ErrorHandling import *
-from core import CCP4Modules
+import ccp4i2.core.CCP4Utils
+import ccp4i2.core.CCP4ErrorHandling
+from ccp4i2.core.CCP4ErrorHandling import *
+from ccp4i2.core import CCP4Modules
 from lxml import etree
 from xml.etree import ElementTree as ET
-from core import CCP4Utils
+from ccp4i2.core import CCP4Utils
 
 class lorestr_i2(CPluginScript):
     TASKNAME = 'lorestr_i2'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -84,7 +84,7 @@ class lorestr_i2(CPluginScript):
         self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.selectedCoordinatesPath)
         '''
 
-        from core import CCP4XtalData
+        from ccp4i2.core import CCP4XtalData
         error = None
         self.hklin = None
         dataObjects = []
@@ -108,7 +108,7 @@ class lorestr_i2(CPluginScript):
             dataObjects += ['FREERFLAG']
         self.hklin,error = self.makeHklin(dataObjects)
 
-        from core import CCP4ErrorHandling
+        from ccp4i2.core import CCP4ErrorHandling
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
         else:
@@ -331,7 +331,7 @@ class lorestr_i2(CPluginScript):
 # End of CCP4i2 validation
 
 
-        from core import CCP4ErrorHandling
+        from ccp4i2.core import CCP4ErrorHandling
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
 

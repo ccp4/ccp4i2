@@ -19,9 +19,9 @@ from future.utils import raise_
      GNU Lesser General Public License for more details.
 """
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling, CCP4Utils, CCP4XtalData
-from core import CCP4Modules
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4ErrorHandling, CCP4Utils, CCP4XtalData
+from ccp4i2.core import CCP4Modules
 from pipelines.crank2.script import crank2_basepipe
 
 import sys,os,shutil

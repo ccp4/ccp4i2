@@ -1,9 +1,9 @@
 import logging
-from core import CCP4PluginScript
+from ccp4i2.core import CCP4PluginScript
 
 # Note that these seem to have to be imported from "core" rather than "ccp4i2.core" for isinstance to work
 # MN
-from core import CCP4File
+from ccp4i2.core import CCP4File
 from ..containers.find_objects import find_objects
 
 logger = logging.getLogger(f"ccp4x:{__name__}")

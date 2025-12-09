@@ -1,13 +1,13 @@
 from __future__ import print_function
 
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.baselayer import QtCore
 import os,glob,re,time,sys
-from core import CCP4XtalData
+from ccp4i2.core import CCP4XtalData
 from lxml import etree
 import math
-from core import CCP4Modules,CCP4Utils
+from ccp4i2.core import CCP4Modules,CCP4Utils
 from . import atomMatching, cifToMolBlock
 import platform
 from rdkit import Chem

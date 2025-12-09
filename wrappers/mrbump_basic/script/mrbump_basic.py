@@ -1,7 +1,7 @@
 from __future__ import print_function
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4Modules import PROCESSMANAGER
-from core import CCP4ErrorHandling
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4Modules import PROCESSMANAGER
+from ccp4i2.core import CCP4ErrorHandling
 
 class mrbump_basic(CPluginScript):
 
@@ -39,7 +39,7 @@ class mrbump_basic(CPluginScript):
         return filtered
 
     def processInputFiles(self):
-        from core import CCP4XtalData
+        from ccp4i2.core import CCP4XtalData
         error = None
         self.hklin = None
         dataObjects = []
@@ -62,7 +62,7 @@ class mrbump_basic(CPluginScript):
       gui = self.container.guiParameters
       out = self.container.outputData
 
-      from core import CCP4Utils
+      from ccp4i2.core import CCP4Utils
       import os
 
       # Set the max number of processors
@@ -273,8 +273,8 @@ class mrbump_basic(CPluginScript):
         if os.path.exists(hklout):
             self.container.outputData.HKLOUT=hklout
 
-        from core import CCP4XtalData
-        from core import CCP4File
+        from ccp4i2.core import CCP4XtalData
+        from ccp4i2.core import CCP4File
         import os
         
         # Need to set the expected content flag  for phases data
@@ -318,7 +318,7 @@ class testmrbump_basic( unittest.TestCase ) :
 
    def test1( self ) :
 
-      from core.CCP4Utils import getCCP4I2Dir
+      from ccp4i2.core.CCP4Utils import getCCP4I2Dir
       import os
 
       xmlInput = os.path.join( getCCP4I2Dir(), 'wrappers', 'mrbump_basic', 'test_data', 'test1'+'.params.xml' )

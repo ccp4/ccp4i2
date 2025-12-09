@@ -21,9 +21,9 @@ from __future__ import print_function
 
 from lxml import etree
 from ccp4i2.baselayer import QtCore, DJANGO
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core import CCP4Utils
 import os,sys,shutil,re
 import traceback
 from wrappers.modelASUCheck.script.modelASUCheck import sequenceAlignment
@@ -531,7 +531,7 @@ class prosmart_refmac(CPluginScript):
 
         Handles validation, cleanup, and optional molprobity analysis.
         """
-        from core import CCP4ProjectsManager
+        from ccp4i2.core import CCP4ProjectsManager
         import shutil
 
         # Copy output files from refmac job to pipeline directory
@@ -547,7 +547,7 @@ class prosmart_refmac(CPluginScript):
                     except Exception as e:
                         self.appendErrorReport(101, f'{wrappersAttr.fullPath} to {pipelinesAttr.fullPath}: {e}')
 
-        from core import CCP4XtalData
+        from ccp4i2.core import CCP4XtalData
         # Apply database annotations
         self.container.outputData.XYZOUT.annotation.set('Model from refinement (PDB format)')
         self.container.outputData.CIFFILE.annotation.set('Model from refinement (mmCIF format)')
@@ -882,7 +882,7 @@ class prosmart_refmac(CPluginScript):
 # Function called from gui to support exporting MTZ files
 def exportJobFile(jobId=None,mode=None,fileInfo={}):
     import os
-    from core import CCP4Modules
+    from ccp4i2.core import CCP4Modules
 
     theDb = CCP4Modules.PROJECTSMANAGER().db()
     if mode == 'complete_mtz':
@@ -913,7 +913,7 @@ class testRefmac(unittest.TestCase):
 
     def test1(self):
         # Test creation of log file using ../test_data/test1.params.xml input
-        from core.CCP4Utils import getCCP4I2Dir
+        from ccp4i2.core.CCP4Utils import getCCP4I2Dir
         import os
         workDirectory = CCP4Utils.getTestTmpDir()
         logFile = os.path.join(workDirectory,'prosmart_refmac_test1.log')

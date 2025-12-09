@@ -15,8 +15,8 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'ccp4x.settings'
 # Add project root to path
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Modules
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Modules
 
 
 class TestPlugin(CPluginScript):

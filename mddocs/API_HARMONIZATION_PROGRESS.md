@@ -287,8 +287,8 @@ Implemented a comprehensive error reporting system based on the CCP4i2 error han
 ### Using New API Methods
 
 ```python
-from core.base_object.base_classes import CContainer
-from core.base_object.fundamental_types import CInt, CString
+from ccp4i2.core.base_object.base_classes import CContainer
+from ccp4i2.core.base_object.fundamental_types import CInt, CString
 
 # Create a task container
 task = CContainer(name="myTask")

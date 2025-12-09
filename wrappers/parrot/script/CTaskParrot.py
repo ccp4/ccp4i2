@@ -107,5 +107,5 @@ class CTaskParrot(CCP4TaskWidget.CTaskWidget):
     if inp.XYZIN_HA.isSet() and inp.XYZIN_MODE != 'ha': inp.XYZIN_HA.unSet()
     if inp.XYZIN_MR.isSet() and inp.XYZIN_MODE != 'mr': inp.XYZIN_MR.unSet()
 
-    from core import CCP4ErrorHandling
+    from ccp4i2.core import CCP4ErrorHandling
     return CCP4ErrorHandling.CErrorReport()

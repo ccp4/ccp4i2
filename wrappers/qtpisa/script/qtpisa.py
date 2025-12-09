@@ -1,11 +1,11 @@
 from __future__ import print_function
 
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.baselayer import QtCore
 import os,re,time,sys
 from lxml import etree
-from core import CCP4Utils
+from ccp4i2.core import CCP4Utils
 
 class qtpisa(CPluginScript):
     
@@ -21,7 +21,7 @@ class qtpisa(CPluginScript):
     ERROR_CODES = {  200 : { 'description' : 'QtPisa exited with error status' }, 201 : { 'description' : 'Failed in harvest operation' },202 : { 'description' : 'Failed in processOutputFiles' }}
 
     def makeCommandAndScript(self):
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         self.dropDir = os.path.join(self.workDirectory,'QTPISA_FILE_DROP')
         if not os.path.exists(self.dropDir):
           try:

@@ -1,11 +1,11 @@
 from __future__ import print_function
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.baselayer import QtCore
 import os,re,time,sys
-from core import CCP4XtalData
+from ccp4i2.core import CCP4XtalData
 from lxml import etree
 import math
-from core import CCP4Modules,CCP4Utils
+from ccp4i2.core import CCP4Modules,CCP4Utils
 
 class ShelxCDEBase(CPluginScript):
     
@@ -155,7 +155,7 @@ class ShelxCDEBase(CPluginScript):
             datasets = {'RIPA':inp.RIPA,'NAT':inp.NAT}
         
         for datasetName in datasets:
-            from core.CCP4XtalData import CObsDataFile
+            from ccp4i2.core.CCP4XtalData import CObsDataFile
             if datasets[datasetName].isSet():
                 self.makeHklin([datasetName])
                 mtzFilepath = os.path.join(self.getWorkDirectory(),'hklin.mtz')
@@ -256,7 +256,7 @@ class ShelxCDEBase(CPluginScript):
         elif self.container.controlParameters.MODE.__str__() == 'RIPAS':
             datasetNames = ['RIPA','NAT']
 
-        from core.CCP4XtalData import CObsDataFile
+        from ccp4i2.core.CCP4XtalData import CObsDataFile
         inp = self.container.inputData
         for datasetName in datasetNames:
             dataset = getattr(inp,datasetName)
@@ -658,7 +658,7 @@ OUTPUT frac
 
         """
         # This code (with the alternate definition of coord above) is better way to create PDB file
-        from core import CCP4ModelData
+        from ccp4i2.core import CCP4ModelData
         pdb = CCP4ModelData.CPdbData()
         cellString, spaceGroupNumber, extantFile = self.cellString()
         pdb.makeOneResPdb(atomDefList=coords,cell=extantFile.fileContent.cell,spaceGroup=extantFile.fileContent.spaceGroup,fileName=outputPDBPath)

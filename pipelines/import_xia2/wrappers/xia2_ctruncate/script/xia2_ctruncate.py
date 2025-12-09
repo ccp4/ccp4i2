@@ -4,7 +4,7 @@
 """
 
 import os,shutil,glob
-from core import CCP4PluginScript
+from ccp4i2.core import CCP4PluginScript
 
 class xia2_ctruncate(CCP4PluginScript.CPluginScript):
 

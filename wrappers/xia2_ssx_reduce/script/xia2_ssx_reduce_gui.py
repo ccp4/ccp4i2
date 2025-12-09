@@ -6,7 +6,7 @@
 
 from ccp4i2.baselayer import QtCore, QtWidgets
 from qtgui.CCP4TaskWidget import CTaskWidget
-from core import CCP4Container
+from ccp4i2.core import CCP4Container
 import qtgui
 from .find_expt_refl import find_expt_refl
 from dxtbx.serialize import load

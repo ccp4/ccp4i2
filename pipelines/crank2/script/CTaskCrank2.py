@@ -23,7 +23,7 @@ import functools
 import traceback
 from qtgui import CCP4TaskWidget
 from qtgui import CCP4Widgets
-from core import CCP4Utils
+from ccp4i2.core import CCP4Utils
 from . import crank2_basepipe
 from ccp4i2.baselayer import QtGui, QtWidgets, QtCore
 
@@ -743,7 +743,7 @@ class CTaskCrank2(CCP4TaskWidget.CTaskWidget):
     # here we assume that input mtz will be converted to mini-mtz in ccp4 dir. without this we'd get
     # double generation and thus slow response. However if mini-mtz is not created then no generation
     # will take place - these two lines would have to be removed in such case!
-    from core.CCP4Modules import PROJECTSMANAGER
+    from ccp4i2.core.CCP4Modules import PROJECTSMANAGER
     if not os.path.realpath(path).startswith(os.path.realpath(CCP4Utils.getTestTmpDir())) and \
        not os.path.realpath(path).startswith(os.path.realpath(PROJECTSMANAGER().getProjectDirectory(projectId=self.projectId()))):
       return 0
@@ -762,8 +762,8 @@ class CTaskCrank2(CCP4TaskWidget.CTaskWidget):
   @QtCore.Slot(object)
   def setDefaultParameters(self,trig_by=None):
 
-    from core.CCP4PluginScript import CPluginScript
-    from core import CCP4XtalData
+    from ccp4i2.core.CCP4PluginScript import CPluginScript
+    from ccp4i2.core import CCP4XtalData
     ctrl = self.container.controlParameters
     inp  = self.container.inputData
     fsigf_supplied = True
@@ -863,7 +863,7 @@ class CTaskCrank2(CCP4TaskWidget.CTaskWidget):
       print("Starting generating defaults.")
       self.ConnectDefaultGenTrig(disconnect=True)
       try:
-        from core import CCP4Modules
+        from ccp4i2.core import CCP4Modules
         workDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(self.jobId(),subDir='TMP')
       except:
         workDir = None
@@ -996,7 +996,7 @@ class CTaskCrank2(CCP4TaskWidget.CTaskWidget):
       self.getcont('USER_'+param).set( True )
 
   def taskValidity(self):
-    from core import CCP4ErrorHandling
+    from ccp4i2.core import CCP4ErrorHandling
     rv = CCP4ErrorHandling.CErrorReport()
     ctrl, inp = self.container.controlParameters, self.container.inputData
     if not inp.NON_MTZ:
@@ -1020,13 +1020,13 @@ class CTaskCrank2(CCP4TaskWidget.CTaskWidget):
   # defining job_started so that DNAME etc is not cleared on i2 internal data file path changes etc
   def fix(self):
     self.job_started=True
-    from core import CCP4ErrorHandling
+    from ccp4i2.core import CCP4ErrorHandling
     return CCP4ErrorHandling.CErrorReport()
 
 def PrepCont(cont,name='crank2'):
   # helper function preparing a new container from an existing one
-  from core import CCP4Container
-  from core import CCP4File
+  from ccp4i2.core import CCP4Container
+  from ccp4i2.core import CCP4File
   cont_new = CCP4Container.CContainer(name=name)
   cont_new.__dict__['header'] = CCP4File.CI2XmlHeader()
   cont_new.__dict__['header'].pluginName = 'crank2' #name
@@ -1039,9 +1039,9 @@ def PrepCont(cont,name='crank2'):
   return cont_new
 
 def whatNext(jobId,childTaskName,childJobNumber,projectName):
-  from core import CCP4Modules
-  from core import CCP4Container
-  from core import CCP4File
+  from ccp4i2.core import CCP4Modules
+  from ccp4i2.core import CCP4Container
+  from ccp4i2.core import CCP4File
   whatnext = []
   cont = CCP4Modules.PROJECTSMANAGER().getJobParams(jobId)
   if cont.outputData.XYZOUT.isSet():
@@ -1088,10 +1088,10 @@ def whatNext(jobId,childTaskName,childJobNumber,projectName):
 def exportMtzColumnLabels(jobId=None,paramNameList=None,sourceInfoList=[]):
   colLabels = { 'FPHOUT_HL':'FPHOUT_HL', 'FPHOUT_DIFF':'FPHOUT_DIFF', 'FPHOUT_2FOFC':'FPHOUT_2FOFC', 'FPHOUT_DIFFANOM':'FPHOUT_DIFFANOM' }
   #print 'CTaskCrank2.exportMtzColumnLabel',jobId,paramNameList,sourceInfoList
-  from core import CCP4Modules
+  from ccp4i2.core import CCP4Modules
   paramsFile = CCP4Modules.PROJECTSMANAGER().makeFileName(jobId = jobId,mode='PARAMS')
   #print 'CTaskCrank2.exportMtzColumnLabel paramsFile',paramsFile
-  from core import CCP4Container
+  from ccp4i2.core import CCP4Container
   c = CCP4Container.CContainer()
   c.loadDataFromXml(paramsFile)
   ret = []

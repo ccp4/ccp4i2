@@ -1,7 +1,7 @@
 import logging
 import traceback
 
-from core import CCP4TaskManager
+from ccp4i2.core import CCP4TaskManager
 
 from ccp4x.db.models import Job
 from ccp4x.db.async_db_handler import AsyncDatabaseHandler

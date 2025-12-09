@@ -1,14 +1,14 @@
 from __future__ import print_function
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 import os
 import sys
 import pickle
-from core import CCP4ErrorHandling
-from core import CCP4Modules
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core import CCP4Modules
 from pipelines.phaser_pipeline.wrappers.phaser_MR.script import phaser_MR
 from lxml import etree
-from core import CCP4Utils
+from ccp4i2.core import CCP4Utils
 
 class MRAUTOCallbackObject(phaser_MR.CallbackObject):
     def __init__(self, xmlroot=None, xmlResponders = [],workDirectory=None):
@@ -189,7 +189,7 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
         return CPluginScript.SUCCEEDED
 
     def processInputFiles(self):
-        from core import CCP4XtalData
+        from ccp4i2.core import CCP4XtalData
         # Changed Mtz merging to included phases. Due to issues with makeHkln() (column names), I used cad to manually merge files.
         cnMtz = ['F_SIGF']
         if self.container.inputData.F_OR_I.isSet() and self.container.inputData.F_OR_I.__str__() == 'I':
@@ -240,7 +240,7 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
                 self.appendErrorReport(201,hklout)
                 return CPluginScript.FAILED
 
-        from core import CCP4XtalData
+        from ccp4i2.core import CCP4XtalData
         self.splitHkloutList(miniMtzsOut=['MAPOUT','DIFMAPOUT','PHASEOUT'],programColumnNames=['FWT,PHWT','DELFWT,PHDELWT','PHIC,FOM'],outputBaseName=['MAPOUT','DIFMAPOUT','PHASEOUT'],outputContentFlags=[1,1,CCP4XtalData.CPhsDataFile.CONTENT_FLAG_PHIFOM],infileList=self.container.outputData.HKLOUT)
 
         for indx in range(len(self.container.outputData.MAPOUT)):

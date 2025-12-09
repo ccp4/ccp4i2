@@ -8,7 +8,7 @@ import pytest
 import asyncio
 import time
 from pathlib import Path
-from core.async_process_manager import AsyncProcessManager
+from ccp4i2.core.async_process_manager import AsyncProcessManager
 
 
 class TestAsyncProcessManager:

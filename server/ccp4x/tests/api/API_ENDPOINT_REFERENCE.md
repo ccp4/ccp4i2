@@ -202,7 +202,7 @@ def json_for_job_container(job):
 **Modern approach (CData introspection):**
 ```python
 # In lib/utils/jobs/container.py
-from core.cdata_utils import serialize_cdata_to_json
+from ccp4i2.core.cdata_utils import serialize_cdata_to_json
 
 def json_for_job_container(job):
     plugin = get_job_plugin(job)

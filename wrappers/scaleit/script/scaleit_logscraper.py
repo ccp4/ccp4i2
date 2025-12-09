@@ -8,9 +8,9 @@ CCP4I2_ROOT = os.environ.get("CCP4I2_ROOT",
                              str(Path(lxml.__file__).parents[1] / "ccp4i2"))
 sys.path.append(str(CCP4I2_ROOT))
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core import CCP4Utils
 
 class makeGraphs:
     def __init__(self, logfilename):
@@ -24,7 +24,7 @@ class makeGraphs:
 
     # - - - - - - - - -  - - - - - - - - -  - - - - - - - - - 
     def scrapeSmartieGraphs(self, smartieNode):
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
         sys.path.append(smartiePath)
         import smartie

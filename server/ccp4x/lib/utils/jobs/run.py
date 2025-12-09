@@ -2,8 +2,8 @@ import logging
 import contextlib
 from xml.etree import ElementTree as ET
 
-from core.CCP4TaskManager import TASKMANAGER
-from core import CCP4PluginScript
+from ccp4i2.core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core import CCP4PluginScript
 from PySide2 import QtCore
 
 from ccp4x.db import models

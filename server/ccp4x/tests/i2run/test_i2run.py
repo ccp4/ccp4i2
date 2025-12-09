@@ -10,20 +10,20 @@ from xml.etree import ElementTree as ET
 from django.test import TestCase, override_settings
 from django.conf import settings
 from ccp4i2.baselayer import QtCore
-from core import CCP4PerformanceData
-from core import CCP4ErrorHandling
-from core import CCP4Data
-from core import CCP4File
+from ccp4i2.core import CCP4PerformanceData
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core import CCP4Data
+from ccp4i2.core import CCP4File
 from utils import QApp
-from core.base_object.cdata_file import CDataFile
-from core.CCP4TaskManager import TASKMANAGER
-from core import CCP4Container
-from core import CCP4TaskManager
+from ccp4i2.core.base_object.cdata_file import CDataFile
+from ccp4i2.core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core import CCP4Container
+from ccp4i2.core import CCP4TaskManager
 from ccp4x.db.models import Job, Project, File, JobCharValue, JobFloatValue
 from ccp4x.db.import_i2xml import import_ccp4_project_zip
 
 from ccp4x.i2run import CCP4i2RunnerDjango
-from core import CCP4Modules
+from ccp4i2.core import CCP4Modules
 
 # Set CCP4I2_TOP to the project root
 os.environ.setdefault(

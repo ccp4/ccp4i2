@@ -19,10 +19,10 @@ from __future__ import print_function
     GNU Lesser General Public License for more details.
     """
 from ccp4i2.baselayer import QtCore
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core.CCP4ErrorHandling import *
-from core import CCP4Modules
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core.CCP4ErrorHandling import *
+from ccp4i2.core import CCP4Modules
 from lxml import etree
 import pathlib
 
@@ -141,7 +141,7 @@ class refmac_i2(CPluginScript):
             return False
 
     def processInputFiles(self):
-        from core import CCP4XtalData
+        from ccp4i2.core import CCP4XtalData
         error = None
         self.hklin = None
         dataObjects = []
@@ -150,7 +150,7 @@ class refmac_i2(CPluginScript):
         
         obsTypeRoot = 'CONTENT_FLAG_F'
         if self.container.controlParameters.USE_TWIN and self.container.inputData.F_SIGF.isSet():
-            from core import CCP4XtalData
+            from ccp4i2.core import CCP4XtalData
             if self.container.inputData.F_SIGF.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR:
                 obsTypeRoot = 'CONTENT_FLAG_I'
             elif self.container.inputData.F_SIGF.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN:
@@ -206,7 +206,7 @@ class refmac_i2(CPluginScript):
             self.logScraper.scrapeFile( self.makeFileName('LOG') )
         
         #First up check for exit status of the program
-        from core.CCP4Modules import PROCESSMANAGER
+        from ccp4i2.core.CCP4Modules import PROCESSMANAGER
         exitStatus = 0
         exitCode=0
         try:
@@ -247,8 +247,8 @@ class refmac_i2(CPluginScript):
                 self.appendErrorReport(201,'Exit code: '+str(exitCode))
             return CPluginScript.FAILED
 
-        from core import CCP4XtalData
-        from core import CCP4File
+        from ccp4i2.core import CCP4XtalData
+        from ccp4i2.core import CCP4File
         import os
         
         # Need to set the expected content flag  for phases data
@@ -286,7 +286,7 @@ class refmac_i2(CPluginScript):
             outputFiles += ['ANOMFPHIOUT']
             outputColumns += ['FAN,PHAN']
         
-        from core import CCP4XtalData
+        from ccp4i2.core import CCP4XtalData
         import os
         hkloutFile=CCP4XtalData.CMtzDataFile(os.path.join(self.getWorkDirectory(), "hklout.mtz"))
         hkloutFile.loadFile()
@@ -302,7 +302,7 @@ class refmac_i2(CPluginScript):
             return CPluginScript.FAILED
 
         #Use Refmacs XMLOUT as the basis for output XML.  If not existent (probably due to failure), then create a new one
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         rxml = None
         try:
             rxml = CCP4Utils.openFileToEtree(os.path.normpath(os.path.join(self.getWorkDirectory(),'XMLOUT.xml')))
@@ -377,7 +377,7 @@ class refmac_i2(CPluginScript):
             
     def scrapeSmartieGraphs(self, smartieNode):
         import sys, os
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
         sys.path.append(smartiePath)
         import smartie
@@ -398,7 +398,7 @@ class refmac_i2(CPluginScript):
 
     def makeCommandAndScript(self):
         import os
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         self.hklout = os.path.join(self.workDirectory,"hklout.mtz")
         # make refmac command script
         self.appendCommandLine(['XYZIN',self.inputCoordPath])
@@ -709,7 +709,7 @@ class refmac_i2(CPluginScript):
         labin = "LABIN FP=F SIGFP=SIGF"
         if self.container.controlParameters.USE_TWIN:
             if self.container.inputData.F_SIGF.isSet():
-                from core import CCP4XtalData
+                from ccp4i2.core import CCP4XtalData
                 if self.container.inputData.F_SIGF.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN or self.container.inputData.F_SIGF.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR:
                     labin = "LABIN IP=I SIGIP=SIGI"
         else:
@@ -730,7 +730,7 @@ class refmac_i2(CPluginScript):
 #                labin = "LABIN FP=F SIGFP=SIGF"
 
         if self.container.inputData.ABCD.isSet():
-            from core import CCP4XtalData
+            from ccp4i2.core import CCP4XtalData
             if  self.container.inputData.ABCD.contentFlag == CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL:
                 labin += " HLA=HLA HLB=HLB HLC=HLC HLD=HLD"
             else:

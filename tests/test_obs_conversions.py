@@ -25,7 +25,7 @@ import pytest
 import os
 import shutil
 from pathlib import Path
-from core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
 
 def get_mtz_columns(mtz_path):
@@ -63,7 +63,7 @@ def test_ipair_to_fpair_conversion(tmp_path):
     Converts anomalous intensities (I+/I-) to anomalous structure factor
     amplitudes (F+/F-) using French-Wilson conversion.
     """
-    from core.CCP4XtalData import CObsDataFile
+    from ccp4i2.core.CCP4XtalData import CObsDataFile
 
     ccp4_root = os.environ["CCP4I2_ROOT"]
 
@@ -124,7 +124,7 @@ def test_ipair_to_imean_conversion(tmp_path):
     Converts anomalous intensities (I+/I-) to mean intensities (I, SIGI)
     by averaging I+ and I-.
     """
-    from core.CCP4XtalData import CObsDataFile
+    from ccp4i2.core.CCP4XtalData import CObsDataFile
 
     ccp4_root = os.environ["CCP4I2_ROOT"]
 
@@ -184,7 +184,7 @@ def test_fpair_to_fmean_conversion(tmp_path):
     First converts IPAIR → FPAIR to get an FPAIR file,
     then converts FPAIR → FMEAN.
     """
-    from core.CCP4XtalData import CObsDataFile
+    from ccp4i2.core.CCP4XtalData import CObsDataFile
 
     ccp4_root = os.environ["CCP4I2_ROOT"]
 
@@ -246,7 +246,7 @@ def test_conversion_chain_ipair_to_fmean(tmp_path):
 
     This tests that we can perform multiple conversions in sequence.
     """
-    from core.CCP4XtalData import CObsDataFile
+    from ccp4i2.core.CCP4XtalData import CObsDataFile
 
     ccp4_root = os.environ["CCP4I2_ROOT"]
 

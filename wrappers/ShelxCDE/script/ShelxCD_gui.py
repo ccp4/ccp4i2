@@ -13,11 +13,11 @@ from qtgui.CCP4TaskWidget import CTaskWidget
 def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None):
     import os
     from lxml import etree
-    from core import CCP4Modules
-    from core import CCP4Utils
-    from core import CCP4File
-    from core import CCP4Container
-    from core import CCP4Data
+    from ccp4i2.core import CCP4Modules
+    from ccp4i2.core import CCP4Utils
+    from ccp4i2.core import CCP4File
+    from ccp4i2.core import CCP4Container
+    from ccp4i2.core import CCP4Data
     try:
         jobDirectory = CCP4Modules.PROJECTSMANAGER().db().jobDirectory(jobId=jobId)
         returnList = []
@@ -87,8 +87,8 @@ class ShelxCD_gui(CTaskWidget):
         
         self.openFolder(folderFunction='inputData')
        
-        from core import CCP4Utils
-        from core import CCP4Modules
+        from ccp4i2.core import CCP4Utils
+        from ccp4i2.core import CCP4Modules
         if (not hasattr(CCP4Modules.PREFERENCES(),'SHELXDIR')) and CCP4Utils.which('shelxc') is None:
             if (not CCP4Modules.PREFERENCES().SHELXDIR.exists()) and CCP4Utils.which('shelxc') is None:
               self.createLine ( [ 'warning','The Shelx programs have not been found. They are not part of CCP4 but you can get them from\nhttp://shelx.uni-ac.gwdg.de/SHELX/download.php\nIf you already have them make sure they are on the search path\nOR specify where they are in the Preferences window - under Other Software.' ])
@@ -136,7 +136,7 @@ class ShelxCD_gui(CTaskWidget):
 
     def whichShelx(self):
         # Test and report is shelx executable available
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         if CCP4Utils.which('shelxc') is None:
             QtWidgets.QMessageBox.warning( self, 'Shelx', 'The ShelxC program has not been found.\nIt is not part of CCP4 but you can get if from\nhttp://shelx.uni-ac.gwdg.de/SHELX/download.php\nIf you already have it then make sure it is on the search path or specify where it is in the Preferences window - under Other Software.' )
 

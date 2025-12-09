@@ -95,7 +95,7 @@ def test_hl_to_phifom_conversion(tmp_path):
     best phase estimate (PHI) and figure of merit (FOM) using numerical
     optimization of the phase probability distribution.
     """
-    from core.CCP4XtalData import CPhsDataFile
+    from ccp4i2.core.CCP4XtalData import CPhsDataFile
 
     ccp4_root = os.environ["CCP4I2_ROOT"]
 
@@ -176,7 +176,7 @@ def test_phifom_to_hl_conversion(tmp_path):
     First converts HL → PHIFOM to get a PHIFOM file,
     then converts PHIFOM → HL using centrosymmetric approximation.
     """
-    from core.CCP4XtalData import CPhsDataFile
+    from ccp4i2.core.CCP4XtalData import CPhsDataFile
 
     ccp4_root = os.environ["CCP4I2_ROOT"]
 
@@ -244,7 +244,7 @@ def test_hl_phifom_roundtrip(tmp_path):
     This tests that we can perform multiple conversions in sequence
     and that the PHIFOM→HL conversion produces reasonable HL coefficients.
     """
-    from core.CCP4XtalData import CPhsDataFile
+    from ccp4i2.core.CCP4XtalData import CPhsDataFile
 
     ccp4_root = os.environ["CCP4I2_ROOT"]
 
@@ -331,7 +331,7 @@ def test_hl_numerical_accuracy(tmp_path):
     Verifies that the calculated PHI and FOM values are numerically
     stable and reasonable.
     """
-    from core.CCP4XtalData import CPhsDataFile
+    from ccp4i2.core.CCP4XtalData import CPhsDataFile
 
     ccp4_root = os.environ["CCP4I2_ROOT"]
 

@@ -3,8 +3,8 @@ from __future__ import print_function
 import os
 import tempfile
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Utils
 import pathlib
 
 class pdbset_ui(CPluginScript):

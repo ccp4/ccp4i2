@@ -12,7 +12,7 @@ os.environ['CCP4I2_ROOT'] = str(PROJECT_ROOT)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'ccp4x.settings'
 
 # Import the plugin
-from core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
 def test_freerflag_save():
     """Create a freerflag plugin and save params to see what gets written."""

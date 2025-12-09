@@ -10,8 +10,8 @@ import pytest
 # Add project root to path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from core.base_object.base_classes import CContainer
-from core.base_object.fundamental_types import CInt, CFloat, CString, CBoolean
+from ccp4i2.core.base_object.base_classes import CContainer
+from ccp4i2.core.base_object.fundamental_types import CInt, CFloat, CString, CBoolean
 import xml.etree.ElementTree as ET
 
 

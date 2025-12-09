@@ -50,9 +50,9 @@ import xml.etree.ElementTree as etree
 
 from lxml import html as lxml_html
 
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import PROJECTSMANAGER
-from core.base_object.hierarchy_system import HierarchicalObject
+from ccp4i2.core.CCP4ErrorHandling import *
+from ccp4i2.core.CCP4Modules import PROJECTSMANAGER
+from ccp4i2.core.base_object.hierarchy_system import HierarchicalObject
 
 # Import error handling (lazy to avoid circular imports)
 _diagnostics_module = None
@@ -866,13 +866,13 @@ class Container(ReportClass):
         return err
 
     def loadXmlFile(self, fileName):
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         text = CCP4Utils.readFile(fileName)
         ele = etree.fromstring(text)
         return ele
 
     def scriptErrorReport(self):
-        from core import CCP4ErrorHandling, CCP4File
+        from ccp4i2.core import CCP4ErrorHandling, CCP4File
         if self._scriptErrorReport is None:
             self._scriptErrorReport = CCP4ErrorHandling.CErrorReport()
             root = self.jobInfo.get('fileroot', None)
@@ -1060,7 +1060,7 @@ class Report(Container):
         for insertEle in xrtnode.iterfind('.//' + XRTNS + 'insertXrt'):
             ele = None
             if insertEle.get('filename') is not None:
-                from core import CCP4Utils
+                from ccp4i2.core import CCP4Utils
                 fileName = insertEle.get('filename')
                 if fileName[0:8] == '$CCP4I2/':
                     fileName = os.path.join(
@@ -1163,7 +1163,7 @@ class Report(Container):
             pretty_print=True,
             htmlBase=None,
             cssVersion=None):
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         text = self.as_html(htmlBase=htmlBase, cssVersion=cssVersion)
         if pretty_print:
             try:
@@ -1221,7 +1221,7 @@ class Report(Container):
             title = 'CCP4 Report'
 
     def makeCSVFiles(self, directory=None):
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         if directory is None:
             directory = os.getcwd()
         graphList = findChildren(self, Graph)
@@ -1240,7 +1240,7 @@ class Report(Container):
                     self.errReport.extend(obj.data_as_csv(fileName=fileName))
 
     def makeXMLFiles(self, directory=None):
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         if directory is None:
             directory = os.getcwd()
         for ofClass in [Table, FlotGraph, FlotGraphGroup, Progress, Text, Pre]:
@@ -1260,7 +1260,7 @@ class Report(Container):
                             obj.data_as_xml(fileName=fileName))
 
     def clearXMLFiles(self, directory=None):
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         if directory is None:
             directory = os.getcwd()
         for ofClass in [Table, FlotGraph, Progress, Pre]:
@@ -1292,7 +1292,7 @@ class Report(Container):
             taskName = self.TASKNAME
         if not hasattr(self, 'referenceList'):
             self.referenceList = []
-        from core import CCP4TaskManager
+        from ccp4i2.core import CCP4TaskManager
         helpFileList = CCP4TaskManager.TASKMANAGER().searchReferenceFile(
             name=taskName, drillDown=drillDown)
         # print 'Report.addTaskReferences',helpFileList
@@ -1418,7 +1418,7 @@ class DrillDown(ReportClass):
 
     def getSubJobs(self, jobDir):
         import glob
-        from core import CCP4File
+        from ccp4i2.core import CCP4File
         if jobDir is None:
             return []
         globDirs = glob.glob(os.path.join(jobDir, 'job_*'))
@@ -2435,7 +2435,7 @@ class Graph(ReportClass):
         if xrtnode is None:
             # try:
             if kw.get('plotFile', None):
-                from core import CCP4Utils
+                from ccp4i2.core import CCP4Utils
                 try:
                     text = CCP4Utils.readFile(kw['plotFile'])
                     import re
@@ -2741,7 +2741,7 @@ class Plot(GenericElement):
         GenericElement.__init__(self, tag='plot', text=text, **kw)
 
     def validate(self):
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         import os
         from lxml import etree as lxml_etree
         try:
@@ -3100,7 +3100,7 @@ class JobDetails(ReportClass):
                 'diagnostic.xml'))
         # print 'JobDetails.getI2Version diagfile',diagfile
         if os.path.exists(diagfile):
-            from core import CCP4File
+            from ccp4i2.core import CCP4File
             x = CCP4File.CI2XmlHeader()
             x.loadFromXml(diagfile)
             return str(x.ccp4iVersion)
@@ -3152,7 +3152,7 @@ class JobLogFiles(ReportClass):
                 'diagnostic.xml'))
         # print 'JobDetails.getI2Version diagfile',diagfile
         if os.path.exists(diagfile):
-            from core import CCP4File
+            from ccp4i2.core import CCP4File
             x = CCP4File.CI2XmlHeader()
             x.loadFromXml(diagfile)
             return str(x.ccp4iVersion)
@@ -3198,7 +3198,7 @@ class Help:
         if self.ref is not None and self.ref[0] == '$':
             import sys
             import re
-            from core import CCP4Utils
+            from ccp4i2.core import CCP4Utils
             if sys.platform == "win32":
                 # This had better be sane.
                 tweak = CCP4Utils.getCCP4I2Dir().replace('\\', '/')
@@ -3349,7 +3349,7 @@ class Picture:
             except BaseException:
                 raise CException(self.__class__, 103, kw['scene'])
         elif kw.get('sceneFile', None) is not None:
-            from core import CCP4Utils
+            from ccp4i2.core import CCP4Utils
             import os
             fileName = kw.get('sceneFile')
             if fileName[0:8] == '$CCP4I2/':
@@ -3375,7 +3375,7 @@ class Picture:
 
         # print etree.tostring(bodyEle,pretty_print=True)
 
-        from core import CCP4File
+        from ccp4i2.core import CCP4File
         import os
 
         # If an external scene file was provided, use it directly without copying
@@ -3492,7 +3492,7 @@ class ReferenceGroup(Container):
 
     def loadFromMedLine(self, taskName=None, fileName=None):
         if fileName is None and taskName is not None:
-            from core import CCP4TaskManager
+            from ccp4i2.core import CCP4TaskManager
             fileNameList = CCP4TaskManager.TASKMANAGER().searchReferenceFile(taskName)
             if len(fileNameList) > 0:
                 fileName = fileNameList[0]
@@ -3507,7 +3507,7 @@ class ReferenceGroup(Container):
             return
         self.taskName = taskName
         import re
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         try:
             text = CCP4Utils.readFile(fileName=fileName)
         except CException as e:
@@ -3633,7 +3633,7 @@ class BaublesHtml:
             return tableName, graphTitleList, graphTypeList, graphColumnsList, columnNameList, columnDataList
 
     def saveFile(self, fileName):
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         text = lxml_html.tostring(self.fileNode, method='html')
         CCP4Utils.saveFile(fileName, text)
 
@@ -3691,7 +3691,7 @@ def test(arg1, arg2, arg3=None):
         print(report.errReport.report())
     text = etree.tostring(tree)
     # print text
-    from core import CCP4Utils
+    from ccp4i2.core import CCP4Utils
     CCP4Utils.saveFile('report.html', text=text)
     if report.containsPictures():
         import functools

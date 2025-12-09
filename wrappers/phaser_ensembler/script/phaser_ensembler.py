@@ -1,6 +1,6 @@
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Utils
 
 class phaser_ensembler(CPluginScript):
     TASKNAME = 'phaser_ensembler'                                  # Task name - should be same as class name
@@ -48,7 +48,7 @@ class phaser_ensembler(CPluginScript):
             remarkedFilePath = os.path.join(self.getWorkDirectory(),'ensemble_remarked.pdb')
             if self.container.inputData.OVERRIDEID.isSet():
                 with open(remarkedFilePath,'w') as remarkedFile:
-                    from core.CCP4ModelData import CPdbData
+                    from ccp4i2.core.CCP4ModelData import CPdbData
                     ensembledUnremarked = CPdbData()
                     ensembledUnremarked.loadFile(fileIfMadePath)
                     mmdbManager = ensembledUnremarked.mmdbManager

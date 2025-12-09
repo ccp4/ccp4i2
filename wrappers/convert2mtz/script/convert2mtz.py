@@ -6,7 +6,7 @@
      Wrapper to convert2mtz
 """
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 from wrappers.x2mtz.script import x2mtz
 
 class convert2mtz(x2mtz.x2mtz):

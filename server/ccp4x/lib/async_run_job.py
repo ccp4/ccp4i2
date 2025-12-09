@@ -75,7 +75,7 @@ async def run_job_async(job_uuid: uuid.UUID, project_uuid: Optional[uuid.UUID] =
         logger.info("Running validity check...")
         validity_error = await sync_to_async(plugin.validity)()
         if validity_error and hasattr(validity_error, 'maxSeverity'):
-            from core.base_object.error_reporting import Severity
+            from ccp4i2.core.base_object.error_reporting import Severity
             if validity_error.maxSeverity() >= Severity.WARNING:
                 logger.warning(f"Validity check has warnings/errors (continuing): {validity_error.report()}")
 
@@ -183,7 +183,7 @@ async def create_plugin_for_job(job, db_handler):
     Returns:
         CPluginScript instance
     """
-    from core import CCP4TaskManager
+    from ccp4i2.core import CCP4TaskManager
     from .utils.plugins.get_plugin import get_job_plugin
 
     # Get plugin class

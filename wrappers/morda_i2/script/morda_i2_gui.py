@@ -19,7 +19,7 @@
 
 import os, sys
 from qtgui.CCP4TaskWidget import CTaskWidget
-from core.CCP4ErrorHandling import CErrorReport
+from ccp4i2.core.CCP4ErrorHandling import CErrorReport
 try:
     from morda import version as mrd_version
 

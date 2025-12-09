@@ -17,7 +17,7 @@
     """
 
 from qtgui.CCP4TaskWidget import CTaskWidget
-from core import CCP4Container
+from ccp4i2.core import CCP4Container
 
 #-------------------------------------------------------------------
 class phaser_phil_gui(CTaskWidget):

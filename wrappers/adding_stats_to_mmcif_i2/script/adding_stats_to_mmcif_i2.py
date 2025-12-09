@@ -21,15 +21,15 @@ import os
 import sys
 import shutil
 import time
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 import gemmi
 import numpy as np
 import pandas
-from core import CCP4ModelData
-from core import CCP4Container
-from core.CCP4Modules import PROJECTSMANAGER
-from core import CCP4Utils
-from core import CCP4ErrorHandling
+from ccp4i2.core import CCP4ModelData
+from ccp4i2.core import CCP4Container
+from ccp4i2.core.CCP4Modules import PROJECTSMANAGER
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core import CCP4ErrorHandling
 import ccp4mg
 import hklfile
 import logging

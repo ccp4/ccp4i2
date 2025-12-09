@@ -56,7 +56,7 @@ class lidiaAcedrgNew_report(Report):
     def addPictures(self, parent=None):
         #Note...this cnnot be moved into the acedrg_report because it uses this jobs jobInfo
         if parent is None: parent = self
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         ccp4i2_root = CCP4Utils.getCCP4I2Dir()
         import os
         baseScenePath = os.path.join(ccp4i2_root,'wrappers','acedrg','script','acedrg.scene.xml')

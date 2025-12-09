@@ -8,7 +8,7 @@
 from ccp4i2.baselayer import QtGui, QtWidgets, QtCore
 
 from qtgui.CCP4TaskWidget import CTaskWidget
-from core import CCP4Container
+from ccp4i2.core import CCP4Container
 
 
 class xia2_dials_gui(CTaskWidget):

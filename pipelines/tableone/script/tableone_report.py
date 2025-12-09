@@ -1,7 +1,7 @@
-from core import CCP4Modules
+from ccp4i2.core import CCP4Modules
 
 from report.CCP4ReportParser import *
-from core import CCP4ErrorHandling
+from ccp4i2.core import CCP4ErrorHandling
 from docx import Document
 from iotbx import mtz
 import re

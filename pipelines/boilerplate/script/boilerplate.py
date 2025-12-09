@@ -17,7 +17,7 @@
     """
 
 import os
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class ZZPipelineNameZZ(CPluginScript):
     TASKNAME = 'ZZPipelineNameZZ'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -68,7 +68,7 @@ class ZZPipelineNameZZ(CPluginScript):
     def processOutputFiles(self):
         #Create (dummy) PROGRAMXML
         from lxml import etree
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         import sys, os, shutil
         pipelineXMLStructure = etree.Element("ZZPipelineNameZZ")
         

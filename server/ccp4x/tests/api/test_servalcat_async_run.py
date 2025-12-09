@@ -63,7 +63,7 @@ class TestServalcatAsyncRun:
         This is a more focused test that just checks the validity() behavior
         without actually running the job.
         """
-        from core.CCP4TaskManager import CTaskManager
+        from ccp4i2.core.CCP4TaskManager import CTaskManager
 
         task_manager = CTaskManager()
         plugin_class = task_manager.get_plugin_class("servalcat_pipe")
@@ -95,7 +95,7 @@ class TestServalcatAsyncRun:
 
         # The error report should NOT contain ERROR for metalCoordWrapper.inputData.XYZIN
         # (it may contain WARNING though, which is fine)
-        from core.base_object.error_reporting import SEVERITY_ERROR
+        from ccp4i2.core.base_object.error_reporting import SEVERITY_ERROR
         errors_for_xyzin = [
             e for e in error_report.getErrors()
             if 'metalCoordWrapper.inputData.XYZIN' in e.get('name', '')

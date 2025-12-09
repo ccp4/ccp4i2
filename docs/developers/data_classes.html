@@ -241,7 +241,7 @@ class CPhaserSolDataFile(CCP4File.CDataFile):
  <a name="File content"/><h3>File content classes and <i>contentFlag</i> and <i>subType</i> flags</h3>
  <p>The classes derived from <i>CDataFile</i> such as <i>CPdbDataFile</i> and the various forms of mini MTZ such as <i>CObsDataFile</i> basically serve as a reference to the data file holding the file path and some additional flags discussed later. A <i>fileContent</i> class such as <i>CPdbData</i> or <i>CMtzData</i> can hold some data extracted from the file. A example of using these:
  <pre>
-   >>> from core import CCP4XtalData
+   >>> from ccp4i2.core import CCP4XtalData
    >>> mtzData = CCP4XtalData.CMtzDataFile('/y/people/lizp/rnase25.mtz')
    >>> print type(f.fileContent)
    &lt;class 'CCP4XtalData.CMtzData'&gt;

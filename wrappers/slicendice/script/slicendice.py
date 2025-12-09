@@ -4,13 +4,13 @@ import shutil
 import json
 import multiprocessing
 from lxml import etree
-from core import CCP4Utils
-from core import CCP4XtalData
-from core import CCP4File
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4Modules import PROCESSMANAGER
-from core import CCP4ErrorHandling
-from core.CCP4ErrorHandling import *
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core import CCP4XtalData
+from ccp4i2.core import CCP4File
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4Modules import PROCESSMANAGER
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core.CCP4ErrorHandling import *
 
 class slicendice(CPluginScript):
 
@@ -204,7 +204,7 @@ class testslicendice( unittest.TestCase ) :
 #- def test2( self ) :
 
    def test1( self ) :
-      from core.CCP4Utils import getCCP4I2Dir
+      from ccp4i2.core.CCP4Utils import getCCP4I2Dir
       xmlInput = os.path.join( getCCP4I2Dir(), 'wrappers', 'slicendice', 'test_data', 'test1'+'.params.xml' )
       self.wrapper = slicendice( name='job' )
       self.wrapper.container.loadDataFromXml( xmlInput )

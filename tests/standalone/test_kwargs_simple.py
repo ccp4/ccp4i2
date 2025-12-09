@@ -16,7 +16,7 @@ def test_kwargs_in_signature():
     PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
     sys.path.insert(0, str(PROJECT_ROOT))
 
-    from core.CCP4PluginScript import CPluginScript
+    from ccp4i2.core.CCP4PluginScript import CPluginScript
 
     # Check process() signature
     sig = inspect.signature(CPluginScript.process)

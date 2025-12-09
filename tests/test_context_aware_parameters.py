@@ -6,9 +6,9 @@ parent context and enables database synchronization when appropriate.
 """
 
 import pytest
-from core.base_object.ccontainer import CContainer
-from core.base_object.fundamental_types import CInt, CString
-from core.base_object.cdata_file import CDataFile
+from ccp4i2.core.base_object.ccontainer import CContainer
+from ccp4i2.core.base_object.fundamental_types import CInt, CString
+from ccp4i2.core.base_object.cdata_file import CDataFile
 
 
 class TestContainerSetParameter:
@@ -87,7 +87,7 @@ class TestPluginParentDetection:
         """Test finding CPluginScript parent when it exists."""
         # Import CPluginScript
         try:
-            from core.CCP4PluginScript import CPluginScript
+            from ccp4i2.core.CCP4PluginScript import CPluginScript
         except ImportError:
             pytest.skip("CPluginScript not available")
 
@@ -102,7 +102,7 @@ class TestPluginParentDetection:
     def test_find_plugin_parent_nested_containers(self):
         """Test finding plugin parent through nested container hierarchy."""
         try:
-            from core.CCP4PluginScript import CPluginScript
+            from ccp4i2.core.CCP4PluginScript import CPluginScript
         except ImportError:
             pytest.skip("CPluginScript not available")
 
@@ -130,7 +130,7 @@ class TestDatabaseAwareParameterSetting:
     def test_set_parameter_without_dbhandler(self):
         """Test that setting parameter works without dbHandler (no exception)."""
         try:
-            from core.CCP4PluginScript import CPluginScript
+            from ccp4i2.core.CCP4PluginScript import CPluginScript
         except ImportError:
             pytest.skip("CPluginScript not available")
 
@@ -147,7 +147,7 @@ class TestDatabaseAwareParameterSetting:
     def test_set_parameter_with_mock_dbhandler(self):
         """Test that dbHandler.updateJobStatus() is called when available."""
         try:
-            from core.CCP4PluginScript import CPluginScript
+            from ccp4i2.core.CCP4PluginScript import CPluginScript
         except ImportError:
             pytest.skip("CPluginScript not available")
 

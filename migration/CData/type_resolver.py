@@ -21,7 +21,7 @@ class TypeResolver:
         """
         self.classes_data = classes_data
 
-        # Fundamental types from core.base_object.fundamental_types
+        # Fundamental types from ccp4i2.core.base_object.fundamental_types
         self.fundamental_types = {
             'CInt', 'CFloat', 'CString', 'CBoolean', 'CList'
         }
@@ -167,21 +167,21 @@ class TypeResolver:
 
         # Always import base decorator and metadata classes
         imports.append('# Metadata system')
-        imports.append('from core.base_object.class_metadata import cdata_class, attribute, AttributeType')
+        imports.append('from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType')
         imports.append('')
 
         # Import base classes
         if needed_base_classes:
             base_imports = ', '.join(sorted(needed_base_classes))
             imports.append('# Base classes')
-            imports.append(f'from core.base_object.base_classes import {base_imports}')
+            imports.append(f'from ccp4i2.core.base_object.base_classes import {base_imports}')
             imports.append('')
 
         # Import fundamental types
         if needed_fundamentals:
             fund_imports = ', '.join(sorted(needed_fundamentals))
             imports.append('# Fundamental types')
-            imports.append(f'from core.base_object.fundamental_types import {fund_imports}')
+            imports.append(f'from ccp4i2.core.base_object.fundamental_types import {fund_imports}')
             imports.append('')
 
         # Import custom classes from other files

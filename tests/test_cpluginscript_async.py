@@ -9,8 +9,8 @@ import pytest
 import time
 from pathlib import Path
 import tempfile
-from core.CCP4PluginScript import CPluginScript
-from core.base_object.signal_system import Slot
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.base_object.signal_system import Slot
 
 
 class SimpleAsyncPlugin(CPluginScript):

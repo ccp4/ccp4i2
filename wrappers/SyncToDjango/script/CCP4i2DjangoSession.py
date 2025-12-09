@@ -230,7 +230,7 @@ class CCP4i2DjangoSession(DjangoSession):
         self.pushProjectWithId(projectId)
         
     def pushProjectWithId(self, projectId, jobList=None):
-        from core import CCP4NonGuiProjectUtils
+        from ccp4i2.core import CCP4NonGuiProjectUtils
         
         projectList = self.projectsManager().db().listProjects()
         projectNameList = [projectTuple[1] for projectTuple in projectList if projectId in projectTuple[0]]
@@ -293,7 +293,7 @@ class CCP4i2DjangoSession(DjangoSession):
             if not chunk: break
             tmpArchive.write(chunk)
         tmpArchive.close()
-        from core import CCP4NonGuiProjectUtils
+        from ccp4i2.core import CCP4NonGuiProjectUtils
         importer = CCP4NonGuiProjectUtils.CCP4NonGuiProjectUtils(tmpArchive.name)
         self.projectsManager().db().commit()
         return tmpArchive.name

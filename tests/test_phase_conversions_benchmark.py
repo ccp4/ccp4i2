@@ -155,7 +155,7 @@ def test_benchmark_hl_to_phifom_vs_chltofom(tmp_path):
     CCP4 reference tool to validate correctness.
     """
     import subprocess
-    from core.CCP4XtalData import CPhsDataFile
+    from ccp4i2.core.CCP4XtalData import CPhsDataFile
 
     ccp4_root = os.environ["CCP4I2_ROOT"]
     input_file = os.path.join(
@@ -299,7 +299,7 @@ def test_benchmark_phifom_to_hl_vs_chltofom(tmp_path):
     against chltofom's output.
     """
     import subprocess
-    from core.CCP4XtalData import CPhsDataFile
+    from ccp4i2.core.CCP4XtalData import CPhsDataFile
 
     ccp4_root = os.environ["CCP4I2_ROOT"]
     input_file = os.path.join(

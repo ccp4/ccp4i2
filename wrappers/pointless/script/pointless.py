@@ -5,7 +5,7 @@ from __future__ import print_function
      Copyright (C) 2012 STFC
 """
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class pointless(CPluginScript):
 
@@ -216,18 +216,18 @@ import unittest
 class testpointless(unittest.TestCase):
 
    def setUp(self):
-    from core import CCP4Modules
+    from ccp4i2.core import CCP4Modules
     self.app = CCP4Modules.QTAPPLICATION()
     # make all background jobs wait for completion
     # this is essential for unittest to work
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    from core import CCP4Modules
+    from ccp4i2.core import CCP4Modules
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
 
    def test_1(self):
-     from core import CCP4Modules, CCP4Utils
+     from ccp4i2.core import CCP4Modules, CCP4Utils
      import os
 
      workDirectory = os.path.join(CCP4Utils.getTestTmpDir(),'test1')
@@ -242,7 +242,7 @@ class testpointless(unittest.TestCase):
      if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
 
    def test_2(self):
-     from core import CCP4Modules, CCP4Utils
+     from ccp4i2.core import CCP4Modules, CCP4Utils
      import os
 
      workDirectory = os.path.join(CCP4Utils.getTestTmpDir(),'test2')
@@ -257,7 +257,7 @@ class testpointless(unittest.TestCase):
      if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
 
    def test_3(self):
-     from core import CCP4Modules, CCP4Utils
+     from ccp4i2.core import CCP4Modules, CCP4Utils
      import os
 
      workDirectory = os.path.join(CCP4Utils.getTestTmpDir(),'test3')
@@ -272,7 +272,7 @@ class testpointless(unittest.TestCase):
      if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
 
    def test_4(self):
-     from core import CCP4Modules, CCP4Utils
+     from ccp4i2.core import CCP4Modules, CCP4Utils
      import os
 
      workDirectory = os.path.join(CCP4Utils.getTestTmpDir(),'test4')

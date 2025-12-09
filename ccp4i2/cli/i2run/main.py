@@ -51,7 +51,7 @@ def main():
     else:
         # Qt mode: Use legacy CCP4I2Runner
         try:
-            from core.CCP4I2Runner import main as legacy_main
+            from ccp4i2.core.CCP4I2Runner import main as legacy_main
             legacy_main()
         except ImportError as e:
             print(f"Error: Could not import legacy runner: {e}")

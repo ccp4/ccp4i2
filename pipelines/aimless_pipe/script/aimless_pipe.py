@@ -8,13 +8,13 @@ from __future__ import print_function
 import sys
 import os
 from ccp4i2.baselayer import QtCore
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 from lxml import etree as lxml_etree
 from pipelines.aimless_pipe.script.aimless_pipe_utils import *
 from  pipelines.aimless_pipe.script.aimless_cifstats import *
 
-from core import CCP4Utils
-from core.CCP4Data import CString
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4Data import CString
 
 class aimless_pipe(CPluginScript):
 
@@ -347,7 +347,7 @@ class aimless_pipe(CPluginScript):
           fname = os.path.split(str(unmergedfile))[1]
 
           # File content to get datasetName
-          from core.CCP4XtalData import CUnmergedDataContent
+          from ccp4i2.core.CCP4XtalData import CUnmergedDataContent
           unmergedcontent = CUnmergedDataContent()
           unmergedcontent.loadFile(unmergedfile.fullPath)
           dname = str(unmergedcontent.datasetName)
@@ -384,7 +384,7 @@ class aimless_pipe(CPluginScript):
         filePath = os.path.join(self.workDirectory,'HKLOUT_'+str(self.ndatasets_processed)+'-observed_data.mtz')
         self.ctruncateOutputDataObject = hkloutList[-1]
         hkloutList[-1].setFullPath(filePath)
-        from core import CCP4XtalData
+        from ccp4i2.core import CCP4XtalData
         hkloutList[-1].contentFlag = CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR
         try:
           name =  os.path.splitext(os.path.split(self.container.inputData.UNMERGEDFILES[len(hkloutList)-1].file.__str__())[1])[0]
@@ -1002,8 +1002,8 @@ class aimless_pipe(CPluginScript):
 # Function to return list of names of exportable MTZ(s)
 def exportJobFile(jobId=None,mode=None):
     import os
-    from core import CCP4Modules
-    from core import CCP4XtalData
+    from ccp4i2.core import CCP4Modules
+    from ccp4i2.core import CCP4XtalData
 
     jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
     exportFile = os.path.join(jobDir,'exportMtz.mtz')
@@ -1166,18 +1166,18 @@ import unittest
 class testaimless_pipe(unittest.TestCase):
 
    def setUp(self):
-    from core import CCP4Modules
+    from ccp4i2.core import CCP4Modules
     self.app = CCP4Modules.QTAPPLICATION()
     # make all background jobs wait for completion
     # this is essential for unittest to work
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    from core import CCP4Modules
+    from ccp4i2.core import CCP4Modules
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
 
    def test_1(self):
-     from core import CCP4Modules
+     from ccp4i2.core import CCP4Modules
      import os
 
      workDirectory = os.path.join(CCP4Utils.getTestTmpDir(),'test1')

@@ -22,12 +22,12 @@ import traceback
 import xml.etree.ElementTree as ET
 from typing import Optional, Dict, Any, List, Tuple
 
-from core.CCP4TaskManager import TASKMANAGER
-from core.CCP4Container import CContainer
-from core.base_object.fundamental_types import CList
-from core.CCP4TaskManager import CTaskManager
+from ccp4i2.core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core.CCP4Container import CContainer
+from ccp4i2.core.base_object.fundamental_types import CList
+from ccp4i2.core.CCP4TaskManager import CTaskManager
 from report.CCP4ReportParser import ReportClass
-from core import CCP4File
+from ccp4i2.core import CCP4File
 from ccp4x.db.models import Job, FileUse, File
 from ..plugins.get_plugin import get_job_plugin
 from ccp4x.db.ccp4i2_static_data import (

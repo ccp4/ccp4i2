@@ -24,7 +24,7 @@ from django.test import Client
 from django.conf import settings
 from django.test import TestCase, override_settings
 from django.core.files.uploadedfile import SimpleUploadedFile
-from core import CCP4Container
+from ccp4i2.core import CCP4Container
 from ...db.import_i2xml import import_i2xml_from_file
 from ...db.import_i2xml import import_ccp4_project_zip
 from ...db import models

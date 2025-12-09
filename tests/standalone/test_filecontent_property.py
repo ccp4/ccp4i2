@@ -9,7 +9,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 os.environ['CCP4I2_ROOT'] = str(PROJECT_ROOT)
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from core.CCP4ModelData import CPdbDataFile
+from ccp4i2.core.CCP4ModelData import CPdbDataFile
 
 print("[TEST] Creating CPdbDataFile...")
 pdb_file = CPdbDataFile(name="XYZOUT")

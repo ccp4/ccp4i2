@@ -42,7 +42,7 @@ class CTaskEdstats(CCP4TaskWidget.CTaskWidget):
                     201 : { 'description' : 'Density map and difference density map cell dimensions do not match' },}
 
   def taskValidity(self):
-      from core import CCP4ErrorHandling
+      from ccp4i2.core import CCP4ErrorHandling
       rv = CCP4ErrorHandling.CErrorReport()
       if self.container.inputData.FPHIIN1.isSet():
           if self.container.inputData.XYZIN.isSet():

@@ -25,7 +25,7 @@ from __future__ import print_function
 
 import functools
 from ccp4i2.baselayer import QtGui, QtWidgets,QtCore
-from core.CCP4ErrorHandling import *
+from ccp4i2.core.CCP4ErrorHandling import *
 from qtgui import CCP4TaskWidget
 from qtgui import CCP4Widgets
 
@@ -87,7 +87,7 @@ class CTaskSplitMtz(CCP4TaskWidget.CTaskWidget):
 
   @QtCore.Slot(str,str)
   def drawSelectColumns(self,dataType,contentFlag):
-    from core import CCP4XtalData
+    from ccp4i2.core import CCP4XtalData
     for iR in (0,1):
       for iC in (0,1):
         layoutItem = self.selectFrame.layout().itemAtPosition(iR,iC)

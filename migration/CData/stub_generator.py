@@ -89,21 +89,21 @@ class StubTypeResolver(TypeResolver):
 
         # Metadata system
         lines.append('# Metadata system')
-        lines.append('from core.base_object.class_metadata import cdata_class, attribute, AttributeType')
+        lines.append('from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType')
         lines.append('')
 
         # Base classes
         if needed_base_classes:
             lines.append('# Base classes')
             base_imports = ', '.join(sorted(needed_base_classes))
-            lines.append(f'from core.base_object.base_classes import {base_imports}')
+            lines.append(f'from ccp4i2.core.base_object.base_classes import {base_imports}')
             lines.append('')
 
         # Fundamental types
         if needed_fundamental:
             lines.append('# Fundamental types')
             fund_imports = ', '.join(sorted(needed_fundamental))
-            lines.append(f'from core.base_object.fundamental_types import {fund_imports}')
+            lines.append(f'from ccp4i2.core.base_object.fundamental_types import {fund_imports}')
             lines.append('')
 
         # Custom classes from other stub files

@@ -283,7 +283,7 @@ Python's MRO ensures no method is called twice and no conflicts occur.
 Check MRO at runtime:
 
 ```python
-from core.CCP4XtalData import CObsDataFile
+from ccp4i2.core.CCP4XtalData import CObsDataFile
 
 print("CObsDataFile MRO:")
 for i, cls in enumerate(CObsDataFile.__mro__):

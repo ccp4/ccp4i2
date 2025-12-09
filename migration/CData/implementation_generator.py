@@ -111,7 +111,7 @@ class ImplementationGenerator:
         lines.append('"""')
         lines.append(f'Implementation classes for {filename}')
         lines.append('')
-        lines.append('Extends stub classes from core.cdata_stubs with methods and business logic.')
+        lines.append('Extends stub classes from ccp4i2.core.cdata_stubs with methods and business logic.')
         lines.append('This file is safe to edit - add your implementation code here.')
         lines.append('"""')
         lines.append('')
@@ -195,7 +195,7 @@ class ImplementationGenerator:
             '"""',
             'CData implementation classes.',
             '',
-            'These classes extend the stubs from core.cdata_stubs with methods and business logic.',
+            'These classes extend the stubs from ccp4i2.core.cdata_stubs with methods and business logic.',
             '"""',
             '',
         ]

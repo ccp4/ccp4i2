@@ -1,6 +1,6 @@
 import logging
 import traceback
-from core import CCP4ProjectsManager
+from ccp4i2.core import CCP4ProjectsManager
 from .ccp4i2_django_projects_manager import CCP4i2DjangoProjectsManager
 
 logger = logging.getLogger(f"ccp4x:{__name__}")

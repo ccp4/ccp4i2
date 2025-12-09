@@ -2,8 +2,8 @@ from __future__ import print_function
 from ccp4i2.baselayer import QtGui, QtWidgets,QtCore
 
 from qtgui.CCP4TaskWidget import CTaskWidget
-from core.CCP4Modules import PROJECTSMANAGER
-from core.CCP4ErrorHandling import *
+from ccp4i2.core.CCP4Modules import PROJECTSMANAGER
+from ccp4i2.core.CCP4ErrorHandling import *
 from . import CCP4i2DjangoSession
 import functools
 import sys, os
@@ -26,7 +26,7 @@ class SyncToDjango(CTaskWidget):
     def drawContents(self):
         from lxml import etree
         self.openFolder(folderFunction='inputData',followFrom=False)
-        from core import CCP4Modules
+        from ccp4i2.core import CCP4Modules
         container = CCP4Modules.SERVERSETUP()
         container.load()
         serversEtree = container.getEtree(excludeUnset=True)
@@ -154,7 +154,7 @@ class SyncToDjango(CTaskWidget):
     def cootSelected(self, item):
         for anIndex in self.projectsTree.selectionModel().selection().indexes():
             projectId = anIndex.internalPointer().ref.projectTuple[0]
-            from core.CCP4Modules import PREFERENCES
+            from ccp4i2.core.CCP4Modules import PREFERENCES
             archiveName = self.ccp4i2DjangoSession().lastLigandPipelineExportForProjectId(projectId)
             import subprocess
             currentDirectory = os.path.realpath(PROJECTSMANAGER().db().jobDirectory(self.jobId()))

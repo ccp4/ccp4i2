@@ -181,7 +181,7 @@ def test_report_metadata_access():
 
     This tests the new report registry functionality.
     """
-    from core.CCP4TaskManager import TASKMANAGER
+    from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
     task_manager = TASKMANAGER()
 

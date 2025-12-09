@@ -26,7 +26,7 @@ if __name__ == '__main__':
     setupEnvironment()
     setupPythonpath(top=top_path,mode='qtgui')
     setupGuiPluginsPath(top=top_path)
-    from core.CCP4Modules import QTAPPLICATION
+    from ccp4i2.core.CCP4Modules import QTAPPLICATION
     app = QTAPPLICATION(graphical=True)
 
     defEd = startDefEd()

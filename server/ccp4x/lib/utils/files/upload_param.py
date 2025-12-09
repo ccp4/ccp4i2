@@ -3,16 +3,16 @@ import pathlib
 import json
 import gemmi
 import re
-from core.base_object.cdata_file import CDataFile
-from core.CCP4XtalData import CMtzDataFile
+from ccp4i2.core.base_object.cdata_file import CDataFile
+from ccp4i2.core.CCP4XtalData import CMtzDataFile
 # Import stub class for isinstance checks - subclasses like CObsDataFile inherit from
 # stubs (CMtzDataFileStub) not implementations (CMtzDataFile)
-from core.cdata_stubs.CCP4XtalData import CMtzDataFileStub
+from ccp4i2.core.cdata_stubs.CCP4XtalData import CMtzDataFileStub
 from django.utils.text import slugify
 from django.http import HttpRequest
-from core import CCP4File
-from core import CCP4XtalData
-from core.CCP4XtalData import CMtzDataFile
+from ccp4i2.core import CCP4File
+from ccp4i2.core import CCP4XtalData
+from ccp4i2.core.CCP4XtalData import CMtzDataFile
 
 # Use core method for find_by_path - no import needed
 from .available_name import available_file_name_based_on

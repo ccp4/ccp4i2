@@ -2,8 +2,8 @@ import logging
 from pathlib import Path
 import datetime
 from pytz import timezone
-from core import CCP4TaskManager
-from core.CCP4Container import CContainer
+from ccp4i2.core import CCP4TaskManager
+from ccp4i2.core.CCP4Container import CContainer
 from ccp4x.db import models
 from ccp4x.lib.utils.parameters.save_params import save_params_for_job
 from ccp4x.lib.utils.files.patch_paths import patch_output_file_paths

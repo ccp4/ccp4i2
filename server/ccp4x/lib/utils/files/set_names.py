@@ -1,10 +1,10 @@
 import logging
 from pathlib import Path
 from django.utils.text import slugify
-from core import CCP4ErrorHandling
-from core import CCP4Container
-from core import CCP4File
-from core import CCP4ModelData
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core import CCP4Container
+from ccp4i2.core import CCP4File
+from ccp4i2.core import CCP4ModelData
 from ccp4x.db import models
 
 logger = logging.getLogger(f"ccp4x:{__name__}")

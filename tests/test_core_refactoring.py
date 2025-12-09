@@ -11,10 +11,10 @@ This test suite verifies the new core methods added to eliminate duplication:
 
 import pytest
 from pathlib import Path
-from core.base_object.ccontainer import CContainer
-from core.base_object.fundamental_types import CInt, CString, CFloat
-from core.base_object.cdata_file import CDataFile
-from core import CCP4XtalData
+from ccp4i2.core.base_object.ccontainer import CContainer
+from ccp4i2.core.base_object.fundamental_types import CInt, CString, CFloat
+from ccp4i2.core.base_object.cdata_file import CDataFile
+from ccp4i2.core import CCP4XtalData
 
 
 class TestContainerNavigation:

@@ -18,10 +18,10 @@
     """
 
 from ccp4i2.baselayer import QtCore
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core.CCP4ErrorHandling import *
-from core import CCP4Modules, CCP4XtalData, CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core.CCP4ErrorHandling import *
+from ccp4i2.core import CCP4Modules, CCP4XtalData, CCP4Utils
 from xml.etree import ElementTree as ET
 from .json2xml import json2xml
 import pathlib
@@ -150,7 +150,7 @@ class servalcat(CPluginScript):
             self.xmlroot.clear()
         
         # First up check for exit status of the program
-        from core.CCP4Modules import PROCESSMANAGER
+        from ccp4i2.core.CCP4Modules import PROCESSMANAGER
         exitStatus = 0
         exitCode = 0
         try:
@@ -178,7 +178,7 @@ class servalcat(CPluginScript):
             return CPluginScript.FAILED
 
         import os
-        from core import CCP4XtalData
+        from ccp4i2.core import CCP4XtalData
 
         outputCifPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined.mmcif'))
         self.container.outputData.CIFFILE.setFullPath(outputCifPath)

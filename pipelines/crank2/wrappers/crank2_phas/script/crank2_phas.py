@@ -17,7 +17,7 @@
      GNU Lesser General Public License for more details.
 """
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 from pipelines.crank2.script import crank2_script
 
 class crank2_phas(crank2_script.crank2):

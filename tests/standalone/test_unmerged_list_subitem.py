@@ -15,7 +15,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'ccp4x.settings'
 # Add project root to path
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from core.CCP4XtalData import CUnmergedDataFileList, CUnmergedDataFile
+from ccp4i2.core.CCP4XtalData import CUnmergedDataFileList, CUnmergedDataFile
 
 
 def test_unmerged_list_subitem():

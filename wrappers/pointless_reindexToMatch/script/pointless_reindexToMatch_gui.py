@@ -137,7 +137,7 @@ class pointless_reindexToMatch_gui(CTaskWidget):
     # from dummy job example
     def taskValidity(self):
         # based on dummy job example
-        from core import CCP4ErrorHandling
+        from ccp4i2.core import CCP4ErrorHandling
         rv = CCP4ErrorHandling.CErrorReport()
         if str(self.container.controlParameters.REFERENCE) == 'SPECIFY':
             # for explicit reindex, must define either Spacegroup or Reindex or both

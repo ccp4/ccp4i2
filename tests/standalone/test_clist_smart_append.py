@@ -16,8 +16,8 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'ccp4x.settings'
 # Add project root to path
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from core.base_object.fundamental_types import CList
-from core.CCP4XtalData import CUnmergedMtzDataFile
+from ccp4i2.core.base_object.fundamental_types import CList
+from ccp4i2.core.CCP4XtalData import CUnmergedMtzDataFile
 
 
 def test_clist_smart_append_string_to_file():

@@ -1,4 +1,4 @@
-from core.CCP4TaskManager import CTaskManager
+from ccp4i2.core.CCP4TaskManager import CTaskManager
 
 
 def get_task_tree():

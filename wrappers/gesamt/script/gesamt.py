@@ -2,8 +2,8 @@ from __future__ import print_function
 
 import re
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Utils
 import pathlib
 import csv
 
@@ -162,7 +162,7 @@ class gesamt(CPluginScript):
 
     
         if eulerValues is not None and translationValues is not None and rmsValue is not None and qValue is not None and nResValue is not None:
-            from core.CCP4MathsData import CTransformation
+            from ccp4i2.core.CCP4MathsData import CTransformation
             self.container.outputData.TRANSFORMATION = CTransformation()
             self.container.outputData.TRANSFORMATION.alpha.set(eulerValues[0])
             self.container.outputData.TRANSFORMATION.beta.set(eulerValues[1])

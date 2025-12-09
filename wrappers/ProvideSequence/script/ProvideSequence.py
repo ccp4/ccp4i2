@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 import os
 import sys
 
@@ -9,8 +9,8 @@ try:
     from StringIO import StringIO
 except ImportError:
     from io import StringIO
-from core import CCP4ModelData
-from core import CCP4Utils
+from ccp4i2.core import CCP4ModelData
+from ccp4i2.core import CCP4Utils
 from lxml import etree
 
 class ProvideSequence(CPluginScript):
@@ -112,16 +112,16 @@ class testProvideSequence(unittest.TestCase):
    def setUp(self):
     # make all background jobs wait for completion
     # this is essential for unittest to work
-    from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
+    from ccp4i2.core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
     self.app = QTAPPLICATION()
     PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    from core.CCP4Modules import PROCESSMANAGER
+    from ccp4i2.core.CCP4Modules import PROCESSMANAGER
     PROCESSMANAGER().setWaitForFinished(-1)
 
    def test_1(self):
-     from core.CCP4Modules import QTAPPLICATION
+     from ccp4i2.core.CCP4Modules import QTAPPLICATION
      wrapper = ProvideSequence(parent=QTAPPLICATION(),name='ProvideSequence_test1')
      wrapper.container.loadDataFromXml()
      

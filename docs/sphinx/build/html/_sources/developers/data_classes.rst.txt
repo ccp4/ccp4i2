@@ -538,7 +538,7 @@ using these:
 
 ::
 
-           >>> from core import CCP4XtalData
+           >>> from ccp4i2.core import CCP4XtalData
            >>> mtzData = CCP4XtalData.CMtzDataFile('/y/people/lizp/rnase25.mtz')
            >>> print type(f.fileContent)
            <class 'CCP4XtalData.CMtzData'>

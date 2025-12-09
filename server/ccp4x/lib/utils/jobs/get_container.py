@@ -5,7 +5,7 @@ Loads job parameters and returns the CContainer for manipulation.
 """
 
 import logging
-from core.CCP4Container import CContainer
+from ccp4i2.core.CCP4Container import CContainer
 from ccp4x.db import models
 from ..containers.get_container import get_job_container as _legacy_get_job_container
 

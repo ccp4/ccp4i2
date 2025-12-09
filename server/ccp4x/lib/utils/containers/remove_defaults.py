@@ -3,7 +3,7 @@ from typing import Set
 
 # Note that these seem to have to be imported from "core" rather than "ccp4i2.core" for isinstance to work
 # MN
-from core import CCP4Container
+from ccp4i2.core import CCP4Container
 
 logger = logging.getLogger(f"ccp4x:{__name__}")
 

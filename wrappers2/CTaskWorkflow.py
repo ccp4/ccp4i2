@@ -26,10 +26,10 @@ from __future__ import print_function
 import functools,os
 from ccp4i2.baselayer import QtGui, QtWidgets,QtCore
 from qtgui import CCP4TaskWidget
-from core import CCP4WorkflowManager,CCP4Container
+from ccp4i2.core import CCP4WorkflowManager,CCP4Container
 from qtgui import CCP4ProjectViewer
-from core.CCP4Modules import WORKFLOWMANAGER,PROJECTSMANAGER
-from core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core.CCP4Modules import WORKFLOWMANAGER,PROJECTSMANAGER
+from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
 class CTaskWorkflow(CCP4TaskWidget.CTaskWidget):
 

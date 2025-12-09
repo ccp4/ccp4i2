@@ -1,8 +1,8 @@
 from os import environ
 from pathlib import Path
 from sys import platform
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4ModelData import CPdbDataFile
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4ModelData import CPdbDataFile
 
 
 def coot1Command():

@@ -21,8 +21,8 @@ import os
 import shutil
 
 # CCP4 imports
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4ErrorHandling
 
 # AMPLE imports
 from ample.constants import AMPLE_PKL
@@ -72,7 +72,7 @@ class AMPLE(CPluginScript):
         #                       the input data objects
         #                       3) A CCP4 Error object
         '''
-        from core import CCP4XtalData
+        from ccp4i2.core import CCP4XtalData
         # No idea why we need the 'AMPLE_F_SIGF' bit...
         self.hklin, self.columns, error = self.makeHklin0(
             [['AMPLE_F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])

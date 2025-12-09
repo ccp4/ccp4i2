@@ -4,7 +4,7 @@ Tests for building and using chainsaw.
 
 import pytest
 import os
-from core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
 
 @pytest.mark.skipif(

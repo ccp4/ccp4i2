@@ -25,10 +25,10 @@ from lxml import etree
 
 import os, subprocess, sys, time, json, re
 from distutils.dir_util import copy_tree
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4XtalData
-from core import CCP4Utils
-from core import CCP4Modules
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4XtalData
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core import CCP4Modules
 
 ccp4_home = os.environ.get ( "CCP4", "not_set" )
 
@@ -239,7 +239,7 @@ class arcimboldo(CPluginScript):
 #=====================================================================================================
 
 import unittest
-from core.CCP4Utils import getCCP4I2Dir,getTMP
+from ccp4i2.core.CCP4Utils import getCCP4I2Dir,getTMP
 
 # unit testing asynchronous processes potential tricky but QProcess has option to wait for finished
  

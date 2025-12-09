@@ -40,8 +40,8 @@ class CGuiPreferences(CTaskWidget):
 
   def drawContents(self):
     
-    from core import CCP4Modules
-    from core.CCP4Config import DEVELOPER
+    from ccp4i2.core import CCP4Modules
+    from ccp4i2.core.CCP4Config import DEVELOPER
 
     self.container.WINDOWS_STYLE.setQualifier('enumerators',CCP4Modules.QTAPPLICATION().getStyleKeys())
 

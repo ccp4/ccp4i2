@@ -4,9 +4,9 @@ from typing import List
 from django.test import Client
 from django.conf import settings
 from django.test import TestCase, override_settings
-from core import CCP4Container
-from core.CCP4ModelData import CDictDataFile
-from core.base_object.cdata_file import CDataFile
+from ccp4i2.core import CCP4Container
+from ccp4i2.core.CCP4ModelData import CDictDataFile
+from ccp4i2.core.base_object.cdata_file import CDataFile
 from ...lib.utils.jobs.i2run import i2run_for_job
 from ...db.import_i2xml import import_ccp4_project_zip
 from ...db.ccp4i2_django_projects_manager import CCP4i2DjangoProjectsManager

@@ -50,7 +50,7 @@ async def main():
     print(f"✓ Created project: {project.name} ({project.uuid})\n")
 
     # Load task library and create plugin
-    from core.CCP4TaskManager import TASKMANAGER
+    from ccp4i2.core.CCP4TaskManager import TASKMANAGER
     task_mgr = TASKMANAGER()
     task_mgr.loadTaskLibrary(str(Path(__file__).parent.parent / "wrappers"))
 

@@ -19,9 +19,9 @@
 from __future__ import print_function
 
 import os
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core import CCP4Utils
 
 class MakeProjectsAndDoLigandPipeline(CPluginScript):
     TASKNAME = 'MakeProjectsAndDoLigandPipeline'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -64,7 +64,7 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
 
     #The startProcess method is where you build in the pipeline logic
     def startProcess(self, command, **kws):
-        from core.CCP4Modules import PROJECTSMANAGER, JOBCONTROLLER
+        from ccp4i2.core.CCP4Modules import PROJECTSMANAGER, JOBCONTROLLER
         from dbapi import CCP4DbApi
         import sys, os
         import functools
@@ -139,7 +139,7 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
                 continue
 
             #Create a dbHandler for the plugin
-            from core.CCP4PluginScript import CDatabaseHandler
+            from ccp4i2.core.CCP4PluginScript import CDatabaseHandler
             try:
                 dbHandler = CDatabaseHandler(projectId= projectId,jobNumber = jobNumber, projectName=projectNameStr)
                 # Db is already running so _dbHandler should pick up that one
@@ -164,7 +164,7 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
             name = projectNameStr+'_'+str(jobNumber)
 
             #Retrieve plugin
-            from core import CCP4TaskManager
+            from ccp4i2.core import CCP4TaskManager
             cls = CCP4TaskManager.TASKMANAGER().getPluginScriptClass(pluginName)
             if cls is None:
                 self.appendErrorReport(206, pluginName)

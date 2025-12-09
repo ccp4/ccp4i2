@@ -10,9 +10,9 @@ from __future__ import print_function
 """
 
 import sys
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core import CCP4Modules
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core import CCP4Modules
 
 class pyphaser_mr(CPluginScript):
 
@@ -183,7 +183,7 @@ class pyphaser_mr(CPluginScript):
        self.xmlfile.flush()
 
     def processInputFiles(self):
-      from core import CCP4XtalData
+      from ccp4i2.core import CCP4XtalData
 
       self.hklin,error = self.makeHklin([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
       if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:

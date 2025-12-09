@@ -9,8 +9,8 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 os.environ['CCP4I2_ROOT'] = str(PROJECT_ROOT)
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from core.base_object.ccontainer import CContainer
-from core.base_object.fundamental_types import CInt, CString, CBoolean
+from ccp4i2.core.base_object.ccontainer import CContainer
+from ccp4i2.core.base_object.fundamental_types import CInt, CString, CBoolean
 
 print("[TEST] Creating source container with data...")
 source = CContainer(name="source")

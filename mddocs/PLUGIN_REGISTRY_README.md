@@ -31,7 +31,7 @@ Scans CCP4i2 directory and generates:
 ### Runtime Usage
 
 ```python
-from core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
 tm = TASKMANAGER()
 
@@ -112,7 +112,7 @@ class CTaskManager:
 ## Example: Building a Plugin Launcher
 
 ```python
-from core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
 tm = TASKMANAGER()
 

@@ -18,9 +18,9 @@
 """
 
 import os, sys, shutil, re
-from core import CCP4PluginScript
-from core import CCP4ErrorHandling
-from core import CCP4XtalData
+from ccp4i2.core import CCP4PluginScript
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core import CCP4XtalData
 
 class morda_i2(CCP4PluginScript.CPluginScript):
     TASKNAME = 'morda_i2'

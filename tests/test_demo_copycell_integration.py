@@ -30,8 +30,8 @@ if CCP4I2_ROOT not in sys.path:
 # Now try to import the real demo_copycell plugin
 try:
     # Import our modern CPluginScript first
-    from core.CCP4PluginScript import CPluginScript as ModernCPluginScript
-    from core.base_object.signal_system import Slot
+    from ccp4i2.core.CCP4PluginScript import CPluginScript as ModernCPluginScript
+    from ccp4i2.core.base_object.signal_system import Slot
 
     # Try to import the legacy plugin
     # This might fail if Qt dependencies aren't satisfied

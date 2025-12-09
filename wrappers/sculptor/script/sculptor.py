@@ -8,7 +8,7 @@ from __future__ import print_function
      Wrapper to phaser.sculptor
 """
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class sculptor(CPluginScript):
 
@@ -96,7 +96,7 @@ class sculptor(CPluginScript):
         # Import PDB files that have been output
 
         import os, glob, shutil
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         globPath = os.path.normpath(os.path.join(self.workDirectory,'_*.pdb'))
         outList = glob.glob(globPath)
         xyzoutList = self.container.outputData.XYZOUT
@@ -121,7 +121,7 @@ class sculptor(CPluginScript):
             xyzoutList[-1].subType = 2
 
         # Create a trivial xml output file
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         from lxml import etree
         root = etree.Element('sculptor')
         e = etree.Element('number_output_files')

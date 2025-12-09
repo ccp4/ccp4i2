@@ -1,5 +1,5 @@
 from report.CCP4ReportParser import *
-from core import CCP4Modules
+from ccp4i2.core import CCP4Modules
 import sys,os
 
 class prosmart_report(Report):

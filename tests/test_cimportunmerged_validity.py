@@ -13,7 +13,7 @@ sys.path.insert(0, os.environ['CCP4I2_ROOT'])
 sys.path.insert(0, os.path.join(os.environ['CCP4I2_ROOT'], 'stubs'))
 
 import pytest
-from core.cdata_stubs.CCP4XtalData import CImportUnmergedStub
+from ccp4i2.core.cdata_stubs.CCP4XtalData import CImportUnmergedStub
 
 
 class TestCImportUnmergedValidity:
@@ -74,7 +74,7 @@ class TestCImportUnmergedViaAimlessPipe:
 
     def test_additem_creates_item_with_content_qualifiers(self):
         """Test that addItem() creates items with content_qualifiers applied."""
-        from core.task_manager.plugin_registry import PluginRegistry
+        from ccp4i2.core.task_manager.plugin_registry import PluginRegistry
 
         registry = PluginRegistry()
         plugin_class = registry.get_plugin_class('aimless_pipe')
@@ -97,7 +97,7 @@ class TestCImportUnmergedViaAimlessPipe:
 
     def test_list_validity_includes_item_errors(self):
         """Test that list validity() aggregates errors from items."""
-        from core.task_manager.plugin_registry import PluginRegistry
+        from ccp4i2.core.task_manager.plugin_registry import PluginRegistry
 
         registry = PluginRegistry()
         plugin_class = registry.get_plugin_class('aimless_pipe')
@@ -123,7 +123,7 @@ class TestCImportUnmergedViaAimlessPipe:
 
     def test_container_validity_includes_nested_errors(self):
         """Test that container validity includes nested list item errors."""
-        from core.task_manager.plugin_registry import PluginRegistry
+        from ccp4i2.core.task_manager.plugin_registry import PluginRegistry
 
         registry = PluginRegistry()
         plugin_class = registry.get_plugin_class('aimless_pipe')

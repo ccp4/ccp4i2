@@ -1,7 +1,7 @@
 import logging
 
-from core import CCP4TaskManager
-from core import CCP4Container
+from ccp4i2.core import CCP4TaskManager
+from ccp4i2.core import CCP4Container
 from ....db import models
 
 logger = logging.getLogger(f"ccp4x:{__name__}")

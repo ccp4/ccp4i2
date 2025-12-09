@@ -1,11 +1,11 @@
 import os
 import json
 from lxml import etree
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4XtalData
-from core import CCP4ErrorHandling
-from core import CCP4Utils
-from core import CCP4Modules
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4XtalData
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core import CCP4Modules
 
 class findmyseq(CPluginScript):
     TASKMODULE = 'bioinformatics'         # Gui location

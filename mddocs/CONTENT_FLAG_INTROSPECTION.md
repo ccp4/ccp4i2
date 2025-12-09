@@ -197,7 +197,7 @@ CPdbDataFile (CCP4ModelData.py)
 ### Auto-Detection
 
 ```python
-from core.CCP4XtalData import CObsDataFile
+from ccp4i2.core.CCP4XtalData import CObsDataFile
 
 # Create file object
 obs_file = CObsDataFile(file_path="/path/to/data.mtz")

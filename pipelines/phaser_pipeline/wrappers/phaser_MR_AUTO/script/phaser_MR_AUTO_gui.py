@@ -205,7 +205,7 @@ class phaser_MR_AUTO_gui(CTaskWidget):
         #Here override logic of whether this is a valid task to allow for CSeqDataFile from the
         #CASUComponentList being required ONLY IF COMP_BY has the value "ASU"
         invalidElements = CTaskWidget.isValid(self)
-        from core import CCP4ModelData, CCP4XtalData
+        from ccp4i2.core import CCP4ModelData, CCP4XtalData
         widgLib = {"COMP_BY":"Not set yet"}
         self.getParams(widgLib)
         if not self.container.inputData.COMP_BY == "ASU":

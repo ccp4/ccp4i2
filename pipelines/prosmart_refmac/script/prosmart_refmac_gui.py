@@ -30,11 +30,11 @@ from lxml import etree
 from ccp4i2.baselayer import QtGui, QtWidgets,QtCore
 from qtgui import CCP4TaskWidget
 from qtgui import CCP4Widgets
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None):
     import os
-    from core import CCP4Modules, CCP4Utils, CCP4File, CCP4Container, CCP4Data, CCP4PluginScript
+    from ccp4i2.core import CCP4Modules, CCP4Utils, CCP4File, CCP4Container, CCP4Data, CCP4PluginScript
     jobStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId,'status')
     if jobStatus == 'Unsatisfactory':
         returnList = ['LidiaAcedrg', 'prosmart_refmac']
@@ -72,7 +72,7 @@ class Cprosmart_refmac(CCP4TaskWidget.CTaskWidget):
 
   def ToggleTLSModeOn(self):
     if str(self.container.controlParameters.TLSMODE) != 'NONE':
-        from core import CCP4Modules
+        from ccp4i2.core import CCP4Modules
         CurrentStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(self._jobId,'status')
         if CurrentStatus == "Pending":
             self.container.controlParameters.BFACSETUSE = True
@@ -81,7 +81,7 @@ class Cprosmart_refmac(CCP4TaskWidget.CTaskWidget):
 
   def ToggleTLSModeOff(self):
     if str(self.container.controlParameters.TLSMODE) == 'NONE':
-        from core import CCP4Modules
+        from ccp4i2.core import CCP4Modules
         CurrentStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(self._jobId,'status')
         if CurrentStatus == "Pending":
             self.container.controlParameters.BFACSETUSE = False

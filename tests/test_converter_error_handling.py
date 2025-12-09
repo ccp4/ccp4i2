@@ -18,8 +18,8 @@ import pytest
 from pathlib import Path
 from unittest.mock import Mock
 
-from core.CCP4ErrorHandling import CException
-from core.conversions import (
+from ccp4i2.core.CCP4ErrorHandling import CException
+from ccp4i2.core.conversions import (
     PhaseDataConverter,
     ObsDataConverter,
     ModelConverter

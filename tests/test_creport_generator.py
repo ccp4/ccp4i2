@@ -212,7 +212,7 @@ class TestCReportGeneratorClass:
     def test_hierarchical_object_inheritance(self):
         """Test that CReportGenerator inherits from HierarchicalObject."""
         from report.CCP4ReportGenerator import CReportGenerator
-        from core.base_object.hierarchy_system import HierarchicalObject
+        from ccp4i2.core.base_object.hierarchy_system import HierarchicalObject
 
         gen = CReportGenerator(jobId="test-id")
 

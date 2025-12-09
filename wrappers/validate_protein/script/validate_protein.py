@@ -40,17 +40,17 @@ from iris_validation.metrics import metrics_model_series_from_files
 import iris_validation
 
 try:
-    from core import CCP4Utils, CCP4XtalData
-    from core.CCP4PluginScript import CPluginScript
-    from core import CCP4Modules
+    from ccp4i2.core import CCP4Utils, CCP4XtalData
+    from ccp4i2.core.CCP4PluginScript import CPluginScript
+    from ccp4i2.core import CCP4Modules
 except ImportError:
     if 'CCP4' not in os.environ:
         sys.exit('Error: CCP4 environment variable must be set')
     sys.path.append(os.path.join(os.environ['CCP4'], 'share', 'ccp4i2'))
     try:
-        from core import CCP4Utils
-        from core.CCP4PluginScript import CPluginScript
-        from core import CCP4Modules
+        from ccp4i2.core import CCP4Utils
+        from ccp4i2.core.CCP4PluginScript import CPluginScript
+        from ccp4i2.core import CCP4Modules
     except ImportError:
         sys.exit('Error: Failed to import CCP4 core modules')
 

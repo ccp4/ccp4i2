@@ -19,9 +19,9 @@
 
 from lxml import etree
 from ccp4i2.baselayer import QtCore
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core import CCP4Utils
 from . import monitor_differences
 import os, sys, shutil
 import traceback
@@ -872,7 +872,7 @@ class servalcat_pipe(CPluginScript):
         self.finishUp(servalcatJob)
 
     def finishUp(self, servalcatJob):
-        from core import CCP4ProjectsManager
+        from ccp4i2.core import CCP4ProjectsManager
         print('into servalcat_pipe.finishUp')
         for attr in self.container.outputData.dataOrder():
             try:
@@ -964,7 +964,7 @@ class servalcat_pipe(CPluginScript):
 
 # Function called from gui to support exporting MTZ files
 def exportJobFile(jobId=None,mode=None,fileInfo={}):
-    from core import CCP4Modules
+    from ccp4i2.core import CCP4Modules
 
     theDb = CCP4Modules.PROJECTSMANAGER().db()
     if mode == 'complete_mtz':

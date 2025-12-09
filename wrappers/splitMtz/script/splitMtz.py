@@ -9,9 +9,9 @@ import os
 import unittest
 from pathlib import Path
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4XtalData
-from core.CCP4Utils import split_mtz_file
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4XtalData
+from ccp4i2.core.CCP4Utils import split_mtz_file
 
 
 # Map columnGroupType to output file class
@@ -252,12 +252,12 @@ class splitMtz(CPluginScript):
 class testsplitMtz(unittest.TestCase):
 
     def setUp(self):
-        from core.CCP4Modules import QTAPPLICATION, PROCESSMANAGER
+        from ccp4i2.core.CCP4Modules import QTAPPLICATION, PROCESSMANAGER
         self.app = QTAPPLICATION()
         PROCESSMANAGER().setWaitForFinished(10000)
 
     def tearDown(self):
-        from core.CCP4Modules import PROCESSMANAGER
+        from ccp4i2.core.CCP4Modules import PROCESSMANAGER
         PROCESSMANAGER().setWaitForFinished(-1)
 
 

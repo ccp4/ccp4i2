@@ -1,7 +1,7 @@
 from ccp4i2.baselayer import QtGui, QtWidgets,QtCore
 
 from qtgui.CCP4TaskWidget import CTaskWidget
-from core.CCP4ErrorHandling import *
+from ccp4i2.core.CCP4ErrorHandling import *
 import functools
 
 #-------------------------------------------------------------------
@@ -153,7 +153,7 @@ class matthews_gui(CTaskWidget):
 
 
         from report import CCP4ReportParser
-        from core import CCP4Modules
+        from ccp4i2.core import CCP4Modules
         report = CCP4ReportParser.Report()
        
         # Fixed CCP4ReportParser so this should actually work now

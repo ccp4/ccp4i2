@@ -2,7 +2,7 @@
 Django-specific logging configuration for CCP4i2.
 
 This module provides Django LOGGING settings that integrate with the core
-logging infrastructure from core.base_object.logging_config.
+logging infrastructure from ccp4i2.core.base_object.logging_config.
 
 Import this in your Django settings.py:
     from ccp4x.config.logging_config import LOGGING

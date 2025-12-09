@@ -5,9 +5,9 @@ Martin Maly, MRC-LMB
 import os
 import json
 import xml.etree.ElementTree as ET
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4ErrorHandling import SEVERITY_WARNING
-from core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4ErrorHandling import SEVERITY_WARNING
+from ccp4i2.core import CCP4Utils
 from wrappers.servalcat.script.json2xml import json2xml
 from . import json2restraints
 

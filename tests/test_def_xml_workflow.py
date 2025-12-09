@@ -15,8 +15,8 @@ import pytest
 # Add project root to path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from core.task_manager.def_xml_handler import parse_def_xml_file
-from core.base_object.base_classes import ValueState
+from ccp4i2.core.task_manager.def_xml_handler import parse_def_xml_file
+from ccp4i2.core.base_object.base_classes import ValueState
 
 # Sample DEF XML for testing workflow
 SAMPLE_DEF_XML = """<?xml version="1.0" encoding="UTF-8"?>

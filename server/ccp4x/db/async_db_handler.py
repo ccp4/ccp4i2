@@ -16,7 +16,7 @@ from asgiref.sync import sync_to_async
 from django.db import transaction
 from django.utils import timezone
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 # Import using Django's registered app name to avoid app registry errors
 from ccp4x.db import models
@@ -646,7 +646,7 @@ class AsyncDatabaseHandler:
                 file_path = Path(str(file_obj))
 
                 # Handle CPdbDataFile: rename mmcif files to .cif extension
-                from core.CCP4ModelData import CPdbDataFile
+                from ccp4i2.core.CCP4ModelData import CPdbDataFile
                 if isinstance(file_obj, CPdbDataFile):
                     print(f"[GLEAN DEBUG] Found CPdbDataFile: {file_obj.objectName()}")
                     print(f"[GLEAN DEBUG]   Current file_path: {file_path}")
@@ -734,10 +734,10 @@ class AsyncDatabaseHandler:
         from ..lib.cdata_utils import extract_kpi_values
         # Will need to import CPerformanceIndicator type
         try:
-            from core.CCP4PerformanceData import CPerformanceIndicator
+            from ccp4i2.core.CCP4PerformanceData import CPerformanceIndicator
         except ImportError:
             try:
-                from core.CCP4PerformanceData import CPerformanceIndicator
+                from ccp4i2.core.CCP4PerformanceData import CPerformanceIndicator
             except ImportError:
                 logger.warning("Could not import CPerformanceIndicator")
                 return 0

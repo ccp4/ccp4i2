@@ -38,7 +38,7 @@ Usage Example
 
 .. code-block:: python
 
-    from core.base_object.error_reporting import CErrorReport, SEVERITY_ERROR
+    from ccp4i2.core.base_object.error_reporting import CErrorReport, SEVERITY_ERROR
 
     # Create error report
     error = CErrorReport()
@@ -64,6 +64,6 @@ allowing errors to be both raised and tracked.
 
 .. code-block:: python
 
-    from core.base_object.error_reporting import CException, SEVERITY_ERROR
+    from ccp4i2.core.base_object.error_reporting import CException, SEVERITY_ERROR
 
     raise CException("MyPlugin", 101, "File not found", "XYZIN", SEVERITY_ERROR)

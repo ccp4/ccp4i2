@@ -20,7 +20,7 @@ from __future__ import print_function
 """
 
 from ccp4i2.baselayer import QtCore
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class demo_copycell(CPluginScript):
 
@@ -68,18 +68,18 @@ class test_demo_copycell(unittest.TestCase):
   
   def setUp(self):
     # make all background jobs wait for completion
-    from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
+    from ccp4i2.core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
     self.app = QTAPPLICATION()
     PROCESSMANAGER().setWaitForFinished(10000)
 
   def tearDown(self):
-    from core.CCP4Modules import PROCESSMANAGER
+    from ccp4i2.core.CCP4Modules import PROCESSMANAGER
     PROCESSMANAGER().setWaitForFinished(-1)
 
   def test_1(self):
-    from core.CCP4Modules import QTAPPLICATION
+    from ccp4i2.core.CCP4Modules import QTAPPLICATION
     import os
-    from core.CCP4Utils import getCCP4I2Dir
+    from ccp4i2.core.CCP4Utils import getCCP4I2Dir
 
     # Run the pipeline
     wrapper = demo_copycell(parent=QTAPPLICATION(),name='demo_copycell')

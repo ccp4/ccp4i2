@@ -21,7 +21,7 @@ os.environ["CCP4I2_ROOT"] = str(project_root)
 def test_title_fallback_logic():
     """Test that title falls back to taskName when TASKTITLE is None."""
 
-    from core.CCP4TaskManager import CTaskManager
+    from ccp4i2.core.CCP4TaskManager import CTaskManager
 
     task_manager = CTaskManager()
 

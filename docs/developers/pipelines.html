@@ -117,7 +117,7 @@
 <p>The actual script to run <i>pdbset</i> is in the file <a href="../../wrappers/pdbset/script/pdbset.py"><i>$CCP4I2/wrappers/pdbset/script/pdbset.py</i></a> and is:
 
 <pre>
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
      
 class pdbset(CPluginScript):
 
@@ -173,7 +173,7 @@ COMTEMPLATE - a template for the program command file. The templates are describ
 <p>The </i>CPluginScript</i> process handling will handle the case of an externally run program clearly failing (i.e. the Process Manager has a 'failed' error code - see <a href="#process_manager">the Process Manager appendix</a> but does not check the exit status of the external process as the output from differnt programs is unpredictable. The task implementer can do this in the <i>processOutputFiles()</i> method and should make an error report before returning a CPluginScipt.FAILED:</p>
 
 <pre>
-from core.CCP4Modules import PROCESSMANAGER
+from ccp4i2.core.CCP4Modules import PROCESSMANAGER
 
 class myPluginScript(CPluginScript):
   ERROR_CODES = { 201 : {'description' : 'My program failed with error code' } }
@@ -322,19 +322,19 @@ class demo_copycell(CPluginScript):
 <pre>
    def setUp(self):
     # Create a Qt application
-    from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
+    from ccp4i2.core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
     self.app = QTAPPLICATION()
     # make all background jobs wait for completion
     PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    from core.CCP4Modules import PROCESSMANAGER
+    from ccp4i2.core.CCP4Modules import PROCESSMANAGER
     PROCESSMANAGER().setWaitForFinished(-1)
 </pre>
 
 <p>To ensure portability of the tests you need to avoid any fixed filepaths in your tests. Please use a 'standard' temporary work directory:</p>
 <pre>
-   from core import CCP4Utils
+   from ccp4i2.core import CCP4Utils
    workDirectory = CCP4Utils.getTestTmpDir()
 </pre>
 <p>This will set <i>workDirectory</i> to your $HOME/ccp4i2_test. If this directory does not exist then it will be created. If you do not like this choice of directory then edit your local copy of CCP4Utils.</p>
@@ -346,18 +346,18 @@ import unittest,os
 class test_my_pipeline(unittest.TestCase):
 
    def setUp(self):
-    from core import CCP4Modules
+    from ccp4i2.core import CCP4Modules
     self.app = CCP4Modules.QTAPPLICATION()
     # make all background jobs wait for completion
     # this is essential for unittest to work
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    from core import CCP4Modules
+    from ccp4i2.core import CCP4Modules
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
 
    def test_1(self):
-     from core import CCP4Modules, CCP4Utils
+     from ccp4i2.core import CCP4Modules, CCP4Utils
      import os
 
      workDirectory = os.path.join(CCP4Utils.getTestTmpDir(),'test1')
@@ -779,7 +779,7 @@ After you have attempted to run a script from the gui there will be a job direct
 <br>&nbsp;&nbsp;&nbsp;&nbsp;the mime type of the exported file (see CCP4CustomMimeTypes) - used by the file selection dialog for file extensions etc.
 <br/><br/><b>exportJobFile( jobId , mode)</b> - is called when the user selects one of the options from the <i>Export</i> sub-menu. The function is passed the jobId of the selected job and the identifier from the sub-menu item. The function should return the filename of the file to export - it may need to create a temporary file.  There is an example of this in the aimless_pipe script. A code fragment that might be useful in this context:<p>
 <pre>
-    from core import CCP4Modules
+    from ccp4i2.core import CCP4Modules
     childJobs =CCP4Modules.PROJECTSMANAGER().db().getChildJobs(jobId=jobId,details=True,decendents=False)
     for jobNo,jobId,taskName  in childJobs:
       if taskName == 'ctruncate':
@@ -797,8 +797,8 @@ After you have attempted to run a script from the gui there will be a job direct
 <pre>
 def exportJobFile(jobId=None,mode=None):
     import os
-    from core import CCP4Modules
-    from core import CCP4XtalData
+    from ccp4i2.core import CCP4Modules
+    from ccp4i2.core import CCP4XtalData
 
     jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
     exportFile = os.path.join(jobDir,'exportMtz.mtz')
@@ -905,7 +905,7 @@ def exportJobFile(jobId=None,mode=None):
 <a name="process_manager"/><h5>The Process Manager</h5>
 <p>The process manager currently just starts jobs on the local mchine but is intended in future to be the interface to access batch queues and remote resources etc.. There is one instance of a process manager for each Python process but note that if that process is a pipeline there may be many different plugins (instances of <i>CPluginScript</i>) run in that one Python process. The developer implementing a plugin should not normally need to access the process manager directly but the method <i>PROCESSMANAGER().getJobData()</i> may be used to retrieve information on a running job:</p>
 <pre>
-from core import CCP4Modules
+from ccp4i2.core import CCP4Modules
 status = CCP4Modules.PROCESSMANAGER().getJobData(pid=self.runningProcessId,attribute='exitStatus')
 </pre>
 <p>The pid is an integer and is i2's internal unique id for a process.<i> CPluginScript.runningProcessId</i> is the pid of the last process run by the plugin.  The attributes are listed below - a value of None will be returned if the attribute is not set.</p>
@@ -963,7 +963,7 @@ status = CCP4Modules.PROCESSMANAGER().getJobData(pid=self.runningProcessId,attri
 <p>There are some tools for handling XML files in CCP4i2. The Python library for <i>lxml</i> is included and has many tools which are described at <a href="http://lxml.de/index.html">lxml website</a>.  The internal representation of XML is as an <a href="lxml.de/tutorial.html">etree.Element</a> for which there is brief (but likely enough for ccp4i2 developers) documentation within the Python documentation <a href="http://docs.python.org/2/library/xml.etree.elementtree.html#module-xml.etree.ElementTree">here</a> (scroll down for Element). See also the comments in the CCP4i2 documentation for  <a href="./reports.html#xml">Reports</a>.  The <i>etree</i> functionality is used to build up an internal representation of XML which can be written to a file with the <i>CCP4Utils.saveEtreeToFile()</i> module.  An example to create a 'program' XML file in a CPluginScript:</p>
 <pre>
       from lxml import etree
-      from core import CCP4Utils
+      from ccp4i2.core import CCP4Utils
       # Create a 'root' element and add a 'mode' subElement
       rootEle = etree.Element('MYPROGRAM')
       modeEle = etree.SubElement(rootEle,'mode')

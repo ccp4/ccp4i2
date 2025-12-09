@@ -1,9 +1,9 @@
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 import os,glob,re,time,sys
-from core import CCP4XtalData
+from ccp4i2.core import CCP4XtalData
 from lxml import etree
 import math
-from core import CCP4Modules,CCP4Utils
+from ccp4i2.core import CCP4Modules,CCP4Utils
 
 class hklin2cif(CPluginScript):
     DESCRIPTION = 'Convert hklin file (+/- scaled unmerged data) creates as aprt of adding_stats_to_mmcif pipeline'

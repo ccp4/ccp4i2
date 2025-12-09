@@ -19,9 +19,9 @@ from __future__ import print_function
     """
 
 import os
-from core import CCP4XtalData
-from core import CCP4ErrorHandling
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4XtalData
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class nautilus(CPluginScript):

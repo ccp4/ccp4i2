@@ -10,8 +10,8 @@ from pathlib import Path
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
-from core.CCP4ModelData import CAsuContentSeq, CAsuContentSeqList
-from core.base_object.fundamental_types import CString, CInt
+from ccp4i2.core.CCP4ModelData import CAsuContentSeq, CAsuContentSeqList
+from ccp4i2.core.base_object.fundamental_types import CString, CInt
 import xml.etree.ElementTree as ET
 
 print("\n" + "="*80)

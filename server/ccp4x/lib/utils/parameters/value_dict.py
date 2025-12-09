@@ -1,8 +1,8 @@
 import logging
-from core import CCP4Data
-from core.base_object.cdata import CData
-from core.base_object.fundamental_types import CList, CFloat, CInt, CString, CBoolean
-from core.base_object.base_classes import CContainer
+from ccp4i2.core import CCP4Data
+from ccp4i2.core.base_object.cdata import CData
+from ccp4i2.core.base_object.fundamental_types import CList, CFloat, CInt, CString, CBoolean
+from ccp4i2.core.base_object.base_classes import CContainer
 
 logger = logging.getLogger(f"ccp4x:{__name__}")
 

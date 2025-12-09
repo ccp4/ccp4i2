@@ -1,7 +1,7 @@
 from __future__ import print_function
 import gtk
-from core import CCP4Modules
-from core import CCP4Utils
+from ccp4i2.core import CCP4Modules
+from ccp4i2.core import CCP4Utils
 from wrappers.SyncToDjango.script import CCP4i2DjangoSession
 import os
 from xml.etree import ElementTree as ET

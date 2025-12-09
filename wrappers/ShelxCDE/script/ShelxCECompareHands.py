@@ -1,11 +1,11 @@
 from __future__ import print_function
 from ccp4i2.baselayer import QtCore
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 from lxml import etree
 import os
 from wrappers.ShelxCDE.script import ShelxCE
 import functools
-from core import CCP4Utils
+from ccp4i2.core import CCP4Utils
 
 class ShelxCECompareHands(ShelxCE.ShelxCE):
     TASKNAME = 'ShelxCECompareHands'                     # Task name - should be same as class name

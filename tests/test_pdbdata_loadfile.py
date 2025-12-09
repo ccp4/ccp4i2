@@ -6,8 +6,8 @@ Tests the gemmi-based PDB/mmCIF file loading.
 
 import pytest
 from pathlib import Path
-from core.CCP4ModelData import CPdbData, CPdbDataFile
-from core.base_object.error_reporting import CErrorReport
+from ccp4i2.core.CCP4ModelData import CPdbData, CPdbDataFile
+from ccp4i2.core.base_object.error_reporting import CErrorReport
 
 
 class TestCPdbDataLoadFile:

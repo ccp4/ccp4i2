@@ -8,11 +8,11 @@ from __future__ import print_function
 import os
 from lxml import etree
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core.CCP4ErrorHandling import *
-from core import CCP4Utils
-from core import CCP4XtalData
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core.CCP4ErrorHandling import *
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core import CCP4XtalData
 
 from wrappers.scaleit.script.scaleit_logscraper import *
 from wrappers.scaleit.script.scaleit_utils import DatalistCheck

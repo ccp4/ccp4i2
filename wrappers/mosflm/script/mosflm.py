@@ -1,13 +1,13 @@
 from __future__ import print_function
 
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 from lxml import etree
 import threading
 import socketserver
 import os, sys
 from ccp4i2.baselayer import QtCore
-from core import CCP4Utils
+from ccp4i2.core import CCP4Utils
 
 class MosflmRequestHandler(socketserver.StreamRequestHandler):
     commandLines = []

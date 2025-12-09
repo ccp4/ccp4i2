@@ -25,7 +25,7 @@
 
 from ccp4i2.baselayer import QtWidgets,QtCore
 from qtgui import CCP4TaskWidget
-from core import CCP4XtalData
+from ccp4i2.core import CCP4XtalData
 from pipelines.import_merged.script.dybuttons import ChoiceButtons
 import os
 import shutil
@@ -34,7 +34,7 @@ import gemmi
 
 def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None):
     import os
-    from core import CCP4Modules, CCP4Utils, CCP4File, CCP4Container, CCP4Data, CCP4PluginScript
+    from ccp4i2.core import CCP4Modules, CCP4Utils, CCP4File, CCP4Container, CCP4Data, CCP4PluginScript
     jobStatus = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(jobId,'status')
     if jobStatus == 'Unsatisfactory':
         returnList = ['LidiaAcedrgNew', 'servalcat_pipe']

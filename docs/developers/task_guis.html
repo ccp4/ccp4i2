@@ -312,7 +312,7 @@ in the <a
 href="../../pipelines/crank2/script/CtaskCrank2.py">Crank2 task</a>.
 The significant code there is:
 <pre>
-  from core import CCP4Modules,CCP4PluginScript
+  from ccp4i2.core import CCP4Modules,CCP4PluginScript
   try:
     workDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(self.jobId(),subDir='TMP')
   except:
@@ -530,7 +530,7 @@ class Cmolrep_den(CCP4TaskWidget.CTaskWidget):
       # Can not assume that the gesamt widget is still there - must instead query the database for output file
       # Use CDbApi.getJobFilesInfo() which returns a list of dicts containing description of files output by the job
       # The best way to set the file object ot a new value is by setDbFileId()
-      from core import CCP4Modules
+      from ccp4i2.core import CCP4Modules
       gesamtFileList = CCP4Modules.PROJECTSMANAGER().db().getJobFilesInfo(jobId=jobId,jobParamName='XYZOUT')
       if len(gesamtFileList)>0:
         self.getWidget('XYZIN').model.setDbFileId(gesamtFileList[0]['fileId'])

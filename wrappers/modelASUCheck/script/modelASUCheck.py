@@ -5,8 +5,8 @@ from scipy.optimize import linear_sum_assignment
 import gemmi
 import numpy as np
 
-from core import CCP4Utils
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class modelASUCheck(CPluginScript):

@@ -9,7 +9,7 @@ class mrbump_basic_report(Report):
   def __init__(self,xmlnode=None,jobInfo={},**kw):
     Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo,cssVersion=self.CSS_VERSION,**kw)
   
-    from core import CCP4Utils
+    from ccp4i2.core import CCP4Utils
     import os
     
     results = self.addResults()

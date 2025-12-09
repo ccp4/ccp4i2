@@ -1,7 +1,7 @@
 import logging
 
-from core import CCP4TaskManager
-from core import CCP4XtalData
+from ccp4i2.core import CCP4TaskManager
+from ccp4i2.core import CCP4XtalData
 from .get_source_reflection_file import get_source_reflection_file
 from ccp4x.db import models
 from ccp4x.db.ccp4i2_static_data import FILETYPES_TEXT
@@ -206,8 +206,8 @@ def export_job_mtz_file(job_uuid):
 
 
 """ def exportJobMtzFile(self, jobId):
-        from core import CCP4XtalData
-        from core import CCP4TaskManager
+        from ccp4i2.core import CCP4XtalData
+        from ccp4i2.core import CCP4TaskManager
         # Devise name for the merged file and check if it has already been created
         jobDir = self.jobDirectory(jobId=jobId, create=False)
         jobInfo = self.db().getJobInfo(jobId, ['taskname', 'jobnumber'])
@@ -300,8 +300,8 @@ def export_job_mtz_file(job_uuid):
         return outfile
 
     def getSourceReflectionFile(self, jobId=None, jobParamNameList=None):
-        from core import CCP4XtalData
-        from core import CCP4TaskManager
+        from ccp4i2.core import CCP4XtalData
+        from ccp4i2.core import CCP4TaskManager
         exportTaskName = self.db().getJobInfo(jobId=jobId, mode='taskname')
         #print 'into getSourceReflectionFile',exportTaskName
         if not isinstance(jobParamNameList,list):

@@ -3,7 +3,7 @@ from __future__ import print_function
 import sys, os
 
 def checkForPythonNameClash(nameRoot):
-    from core import CCP4Modules
+    from ccp4i2.core import CCP4Modules
     taskManager=CCP4Modules.TASKMANAGER()
     nameClash = True
     
@@ -37,7 +37,7 @@ if __name__ == "__main__":
     setupEnvironment(path=CCP4I2_TOP)
     setupPythonpath(top=CCP4I2_TOP,mode='qtgui')
     import argparse
-    from core import CCP4TaskManager
+    from ccp4i2.core import CCP4TaskManager
     destinations = CCP4TaskManager.MODULE_ORDER
     parser = argparse.ArgumentParser(description='Initiate CCP4i2 plugin from boiler plate')
     parser.add_argument('-n','--name', required=True, help='name of the plugin...this will end up as a class name and so should have no spaces')

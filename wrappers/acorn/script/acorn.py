@@ -12,10 +12,10 @@ from __future__ import print_function
 #
 #=======================================================================================
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core import CCP4ErrorHandling, CCP4XtalData
-from core import CCP4Modules
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core import CCP4ErrorHandling, CCP4XtalData
+from ccp4i2.core import CCP4Modules
 import time
 from io import *
 import os, sys, string, traceback

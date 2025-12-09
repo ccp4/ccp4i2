@@ -19,8 +19,8 @@ from __future__ import print_function
     GNU Lesser General Public License for more details.
     """
 from ccp4i2.baselayer import QtCore
-from core.CCP4PluginScript import CPluginScript
-import core.CCP4ErrorHandling
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+import ccp4i2.core.CCP4ErrorHandling
 
 
 class reindex_processed_data(CPluginScript):
@@ -39,7 +39,7 @@ class reindex_processed_data(CPluginScript):
         return CPluginScript.SUCCEEDED
     
     def processOutputFiles(self):
-        from core import CCP4XtalData
+        from ccp4i2.core import CCP4XtalData
         # Need to set the expected content flag  for phases data
         self.container.outputData.HKLOUT.annotation = 'Reindexed reflections'
         
@@ -105,7 +105,7 @@ class reindex_processed_data(CPluginScript):
             self.reportStatus(CPluginScript.FAILED)
         self.container.outputData.FREEROUT.annotation = "Reindexed FREE-R Set (%s)"%(str(self.container.controlParameters.NEWSPACEGROUP))
         
-        from core import CCP4XtalData
+        from ccp4i2.core import CCP4XtalData
         xmlout = str( self.makeFileName( 'PROGRAMXML' ) )
         xmlfile = open( xmlout, "w" )
         xmlfile.write( '<?xml version="1.0" encoding="ASCII" standalone="yes"?>\n<ReindexMiniMTZResult/>')

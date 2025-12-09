@@ -5,7 +5,7 @@ import uuid
 
 from django.utils import timezone
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 from . import models
 from .ccp4i2_django_dbapi import CCP4i2DjangoDbApi

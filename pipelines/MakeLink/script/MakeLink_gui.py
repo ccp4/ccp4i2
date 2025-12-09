@@ -19,7 +19,7 @@
 from qtgui.CCP4TaskWidget import CTaskWidget
 from ccp4i2.baselayer import QtCore
 import sys, os
-from core import CCP4Utils
+from ccp4i2.core import CCP4Utils
 import gemmi
 
 #-------------------------------------------------------------------

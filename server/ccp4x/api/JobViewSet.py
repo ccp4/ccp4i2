@@ -36,10 +36,10 @@ from pytz import timezone
 from django.http import Http404
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, JSONParser
-from core import CCP4TaskManager
-from core.CCP4TaskManager import CTaskManager
-from core.CCP4Container import CContainer
-from core import CCP4ErrorHandling
+from ccp4i2.core import CCP4TaskManager
+from ccp4i2.core.CCP4TaskManager import CTaskManager
+from ccp4i2.core.CCP4Container import CContainer
+from ccp4i2.core import CCP4ErrorHandling
 from ..lib.utils.jobs.i2run import i2run_for_job
 from ..lib.utils.parameters.load_xml import load_nested_xml
 # validate_container no longer used - validation/ endpoint now uses unified validate_job utility

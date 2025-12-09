@@ -1,4 +1,4 @@
-from core.CCP4ErrorHandling import *
+from ccp4i2.core.CCP4ErrorHandling import *
 from qtgui import CCP4XtalWidgets
 from qtgui.CCP4TaskWidget import CTaskWidget
 

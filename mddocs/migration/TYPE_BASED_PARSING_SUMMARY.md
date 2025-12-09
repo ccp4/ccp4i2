@@ -28,8 +28,8 @@ if isinstance(value, str):
 
 # TYPE-BASED PARSING DECISION
 # Only CDataFile and CData composite types support key=value syntax
-from core.base_object.fundamental_types import CInt, CFloat, CString, CBoolean, CList
-from core.base_object.base_classes import CData
+from ccp4i2.core.base_object.fundamental_types import CInt, CFloat, CString, CBoolean, CList
+from ccp4i2.core.base_object.base_classes import CData
 
 is_fundamental_type = isinstance(target, (CInt, CFloat, CString, CBoolean))
 is_composite_type = isinstance(target, (CDataFile, CData)) and not is_fundamental_type

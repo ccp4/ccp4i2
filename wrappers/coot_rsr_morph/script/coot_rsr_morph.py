@@ -5,9 +5,9 @@ import os
 import textwrap
 import lxml
 
-from core import CCP4File
-from core.CCP4ModelData import CPdbDataFile
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4File
+from ccp4i2.core.CCP4ModelData import CPdbDataFile
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class coot_rsr_morph(CPluginScript):

@@ -10,8 +10,8 @@ import time
 import tempfile
 from pathlib import Path
 
-from core.CCP4PluginScript import CPluginScript
-from core.base_object.signal_system import Slot
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.base_object.signal_system import Slot
 
 
 class LegacyAsyncPlugin(CPluginScript):

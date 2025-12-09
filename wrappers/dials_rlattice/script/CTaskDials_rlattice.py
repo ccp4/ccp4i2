@@ -1,5 +1,5 @@
 
-from core import CCP4Modules
+from ccp4i2.core import CCP4Modules
 from qtgui import CCP4TaskWidget
 from ccp4i2.baselayer import QtCore
 

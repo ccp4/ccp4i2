@@ -116,7 +116,7 @@ from pathlib import Path
 from ccp4x.db.models import Job, Project
 from ccp4x.db.ccp4i2_django_db_handler import CCP4i2DjangoDbHandler
 from ccp4x.lib.job_utils.get_job_plugin import get_job_plugin
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4x.lib.response import Result
 
 logger = logging.getLogger(__name__)

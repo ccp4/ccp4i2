@@ -12,10 +12,10 @@ import logging
 # from lxml import etree
 import xml.etree.ElementTree as etree
 
-from core.CCP4ErrorHandling import *
-from core.CCP4Modules import PREFERENCES
-from core import CCP4Utils
-from core.base_object.hierarchy_system import HierarchicalObject
+from ccp4i2.core.CCP4ErrorHandling import *
+from ccp4i2.core.CCP4Modules import PREFERENCES
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core.base_object.hierarchy_system import HierarchicalObject
 
 # Import Django dbapi adapter constants for file type lookups
 from ccp4x.db.ccp4i2_static_data import FILETYPES_CLASS, FINISHED_JOB_STATUS
@@ -105,7 +105,7 @@ class CReportGenerator(HierarchicalObject):
             self.jobInfo = None
 
     def getReportClass(self, doReload=False):
-        from core import CCP4TaskManager, CCP4Modules
+        from ccp4i2.core import CCP4TaskManager, CCP4Modules
         # print 'getReportClass',self.jobId
         taskName = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(
             jobId=self.jobId, mode='taskname')
@@ -116,7 +116,7 @@ class CReportGenerator(HierarchicalObject):
         return taskName, cls, xrtFile
 
     def getCustomFailedReport(self):
-        from core import CCP4Modules, CCP4File, CCP4PluginScript
+        from ccp4i2.core import CCP4Modules, CCP4File, CCP4PluginScript
         reportName = CCP4Modules.PROJECTSMANAGER().makeFileName(
             jobId=self.jobId, mode='DIAGNOSTIC')
         # print 'getCustomFailedReport',reportName
@@ -146,7 +146,7 @@ class CReportGenerator(HierarchicalObject):
         return 'http://127.0.0.1:' + str(port) + '/report_files'
 
     def getOutputXml(self):
-        from core import CCP4Modules
+        from ccp4i2.core import CCP4Modules
         from report import CCP4ReportParser
         import os
         outputXml = None
@@ -203,9 +203,9 @@ class CReportGenerator(HierarchicalObject):
         # report page is created and needs to be uploaded, or "NEWDATA" if an
         # existing report.html needs only to be updated with new data for
         # graphs, tables etc.
-        from core import CCP4Modules
+        from ccp4i2.core import CCP4Modules
         import os
-        from core import CCP4ErrorHandling
+        from ccp4i2.core import CCP4ErrorHandling
         from report import CCP4ReportParser
 
         newPageOrNewData = "NEWPAGE"
@@ -337,7 +337,7 @@ class CReportGenerator(HierarchicalObject):
 
         """
     if self.report.containsPictures():
-      from core import CCP4Config
+      from ccp4i2.core import CCP4Config
       try:
         self.mgProcess = self.runMg(pictureQueue=self.report.pictureQueue ,callBack=lambda exitCode,exitStatus: self.handleMgFinished(self.jobId,self.report.pictureQueue[1:],exitCode,exitStatus))
       except:
@@ -370,7 +370,7 @@ class CReportGenerator(HierarchicalObject):
     def makeFailedReportFile(self, redo=False):
         import glob
         from report import CCP4ReportParser
-        from core import CCP4Modules
+        from ccp4i2.core import CCP4Modules
         if self.jobStatus != 'Failed':
             self.reportFile = CCP4Modules.PROJECTSMANAGER().makeFileName(
                 jobId=self.jobId, mode='DIAGNOSTIC_REPORT')
@@ -527,7 +527,7 @@ class CReportGenerator(HierarchicalObject):
         return fullFileList
 
     def extractJobId(self, path):
-        from core import CCP4Modules
+        from ccp4i2.core import CCP4Modules
         num = ''
         continu = True
         while continu:
@@ -550,7 +550,7 @@ class CReportGenerator(HierarchicalObject):
             return num[0:-1], subJobId
 
     def getErrorReport(self, fileName):
-        from core import CCP4File
+        from ccp4i2.core import CCP4File
         f = CCP4File.CI2XmlDataFile(fullPath=fileName)
         body = f.getEtreeRoot().find('ccp4i2_body')
         report = CErrorReport()
@@ -606,7 +606,7 @@ class CReportGenerator(HierarchicalObject):
 
     def runMg(self, pictureQueue=[], callBack=None):
         # print 'CReportGenerator.runMg pictureQueue',pictureQueue
-        from core import CCP4Modules, CCP4Config
+        from ccp4i2.core import CCP4Modules, CCP4Config
         import os
         import re
         mgExe = CCP4Modules.LAUNCHER().getExecutable('CCP4MG')
@@ -631,7 +631,7 @@ class CReportGenerator(HierarchicalObject):
         argList.append('-RO')
         argList.append(re.sub(': ', ':', str(options)))
 
-        from core import CCP4Modules
+        from ccp4i2.core import CCP4Modules
         process = CCP4Modules.LAUNCHER().launch(
             viewer='ccp4mg', argList=argList, callBack=callBack)
         return process
@@ -671,7 +671,7 @@ def getReportJobInfo(jobId=None, projectName=None, jobNumber=None):
         dict: Job information dictionary with keys like 'taskname', 'status',
               'inputfiles', 'outputfiles', 'filenames', etc.
     """
-    from core import CCP4Modules, CCP4TaskManager, CCP4Data
+    from ccp4i2.core import CCP4Modules, CCP4TaskManager, CCP4Data
 
     # File role constants (matching legacy CCP4DbApi constants)
     FILE_ROLE_OUT = 0

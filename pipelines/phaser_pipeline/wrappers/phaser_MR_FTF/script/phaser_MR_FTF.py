@@ -1,9 +1,9 @@
 from __future__ import print_function
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 import sys, os
-from core import CCP4ErrorHandling
-from core import CCP4Modules
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core import CCP4Modules
 from pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script import phaser_MR_AUTO
 from lxml import etree
 

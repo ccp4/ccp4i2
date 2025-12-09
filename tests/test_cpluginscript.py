@@ -5,8 +5,8 @@ Tests for CPluginScript base class.
 import pytest
 import os
 from pathlib import Path
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
 
 def test_cpluginscript_instantiation():
@@ -87,7 +87,7 @@ def test_cpluginscript_hierarchy():
     script = CPluginScript(name="test_script")
 
     # CPluginScript should inherit from CData
-    from core.base_object.base_classes import CData
+    from ccp4i2.core.base_object.base_classes import CData
     assert isinstance(script, CData)
 
     # Container should be a child of the script
@@ -122,7 +122,7 @@ def test_cpluginscript_events():
     script.child_added.connect(on_child_added)
 
     # Adding a new container should fire the event
-    from core.base_object.base_classes import CContainer
+    from ccp4i2.core.base_object.base_classes import CContainer
     new_container = CContainer(parent=script, name="test_container")
 
     assert len(event_fired) == 1
@@ -328,7 +328,7 @@ class TestDbHandlerPropagation:
 
         This tests the full chain: CDataFile -> container -> plugin -> _dbHandler
         """
-        from core.base_object.cdata_file import CDataFile
+        from ccp4i2.core.base_object.cdata_file import CDataFile
 
         class MockDbHandler:
             def __init__(self):
@@ -396,7 +396,7 @@ class TestDbHandlerPropagation:
         path. Without the dbHandler fix, this would fail and return just the
         baseName instead of the full path.
         """
-        from core.base_object.cdata_file import CDataFile
+        from ccp4i2.core.base_object.cdata_file import CDataFile
         import uuid
 
         test_file_uuid = str(uuid.uuid4())
@@ -440,7 +440,7 @@ class TestDbHandlerPropagation:
         which is incorrect for autopopulated files. This test documents the
         expected fallback behavior.
         """
-        from core.base_object.cdata_file import CDataFile
+        from ccp4i2.core.base_object.cdata_file import CDataFile
         import uuid
 
         test_file_uuid = str(uuid.uuid4())

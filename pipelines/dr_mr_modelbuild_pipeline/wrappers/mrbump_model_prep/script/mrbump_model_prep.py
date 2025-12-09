@@ -23,9 +23,9 @@ import sys, os, shutil, copy
 import json
 from collections import OrderedDict
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core import CCP4ErrorHandling
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core import CCP4ErrorHandling
 from lxml import etree
 
 class mrbump_model_prep(CPluginScript):
@@ -92,7 +92,7 @@ class mrbump_model_prep(CPluginScript):
                  sys.write("Error: Can't find MrBUMP models json file:\n %s\n" % modelsJsonFile)
 
     def processInputFiles(self):
-        from core import CCP4XtalData
+        from ccp4i2.core import CCP4XtalData
         error = None
         self.hklin = None
         dataObjects = []
@@ -114,7 +114,7 @@ class mrbump_model_prep(CPluginScript):
       inp = self.container.inputData
       out = self.container.outputData
 
-      from core import CCP4Utils
+      from ccp4i2.core import CCP4Utils
       import os
 
       keyin = "GESMAX 1\n" 

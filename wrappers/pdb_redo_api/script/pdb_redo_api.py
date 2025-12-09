@@ -8,11 +8,11 @@ import json
 
 from lxml import etree
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core.CCP4XtalData import CMapCoeffsDataFile, CObsDataFile, CPhsDataFile
-from core.CCP4ErrorHandling import SEVERITY_WARNING
-from core import CCP4Modules
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4XtalData import CMapCoeffsDataFile, CObsDataFile, CPhsDataFile
+from ccp4i2.core.CCP4ErrorHandling import SEVERITY_WARNING
+from ccp4i2.core import CCP4Modules
 
 from . import test_api
 

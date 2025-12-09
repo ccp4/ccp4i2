@@ -21,10 +21,10 @@ from __future__ import print_function
 
 import os
 import sys
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core import CCP4ErrorHandling
-from core import CCP4XtalData
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core import CCP4XtalData
 
 
 class parrot(CPluginScript):
@@ -174,8 +174,8 @@ class parrot(CPluginScript):
 '''
 def exportJobFile(jobId=None,mode=None):
     import os
-    from core import CCP4Modules
-    from core import CCP4XtalData
+    from ccp4i2.core import CCP4Modules
+    from ccp4i2.core import CCP4XtalData
 
     # Devise name for the merged file and check if it has already been created
     jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)

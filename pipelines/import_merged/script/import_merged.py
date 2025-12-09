@@ -22,9 +22,9 @@ from __future__ import print_function
 import sys
 import os,shutil
 from ccp4i2.baselayer import QtCore
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
-from core.CCP4ErrorHandling import *
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4ErrorHandling import *
 from lxml import etree
 from pipelines.aimless_pipe.script.aimless_pipe_utils import *
 
@@ -676,8 +676,8 @@ def exportJobFile(jobId=None,mode=None):
     #     don't use ctruncate output which has intensities derived from F^2
     #     which would mean truncate applied twice
     import os
-    from core import CCP4Modules
-    from core import CCP4XtalData
+    from ccp4i2.core import CCP4Modules
+    from ccp4i2.core import CCP4XtalData
 
     print("\nexportJobFile")
     jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)

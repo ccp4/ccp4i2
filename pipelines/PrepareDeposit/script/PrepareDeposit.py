@@ -1,15 +1,15 @@
 from __future__ import print_function
 
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.baselayer import QtCore
 import os,glob,re,time,sys,shutil
-from core import CCP4XtalData
+from ccp4i2.core import CCP4XtalData
 from lxml import etree
 import math
-from core import CCP4Modules
-from core import CCP4Utils
-from core import CCP4ErrorHandling
+from ccp4i2.core import CCP4Modules
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core import CCP4ErrorHandling
 
 class PrepareDeposit(CPluginScript):
     TASKNAME = 'PrepareDeposit'
@@ -34,7 +34,7 @@ class PrepareDeposit(CPluginScript):
         
         #Do sequence alignments if needed
         if self.container.inputData.PROVIDESEQUENCES:
-          from core import CCP4ModelData
+          from ccp4i2.core import CCP4ModelData
           chainMatch = CCP4ModelData.CChainMatch(self.container.inputData.XYZIN,self.container.inputData.ASUIN)
           self.xmlroot.append(chainMatch.reportXmlAlignments())
         

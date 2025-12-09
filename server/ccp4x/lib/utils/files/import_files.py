@@ -8,12 +8,12 @@ import re
 
 from django.utils import timezone
 
-from core import CCP4Container
-from core.base_object.cdata_file import CDataFile
-from core import CCP4File
-from core import CCP4PluginScript
-from core.base_object.fundamental_types import CList
-from core.CCP4File import CI2XmlDataFile as CI2XmlDataFile
+from ccp4i2.core import CCP4Container
+from ccp4i2.core.base_object.cdata_file import CDataFile
+from ccp4i2.core import CCP4File
+from ccp4i2.core import CCP4PluginScript
+from ccp4i2.core.base_object.fundamental_types import CList
+from ccp4i2.core.CCP4File import CI2XmlDataFile as CI2XmlDataFile
 
 from ccp4x.db import models
 from ..parameters.save_params import save_params_for_job

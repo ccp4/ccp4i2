@@ -92,10 +92,10 @@ python migration/CData/production_generator.py \
 
 ```python
 # Old way (broken)
-from core.CCP4Data import CFollowFromJob  # NameError!
+from ccp4i2.core.CCP4Data import CFollowFromJob  # NameError!
 
 # New way (works!)
-from core.generated.CCP4Data import CFollowFromJob  # ✓
+from ccp4i2.core.generated.CCP4Data import CFollowFromJob  # ✓
 ```
 
 ## Comparison: Before vs. After
@@ -127,7 +127,7 @@ class CFollowFromJob(CUUID):  # NameError
 
 **Output:** `core/generated/CCP4Data.py`
 ```python
-from core.base_object.fundamental_types import CString, CUUID
+from ccp4i2.core.base_object.fundamental_types import CString, CUUID
 
 @cdata_class(...)
 class CFollowFromJob(CUUID):
@@ -207,7 +207,7 @@ python migration/CData/production_generator.py --verify
 pytest tests/
 
 # Test specific import
-python3 -c "from core.generated.CCP4Data import CFollowFromJob; print('Success!')"
+python3 -c "from ccp4i2.core.generated.CCP4Data import CFollowFromJob; print('Success!')"
 ```
 
 ## Conclusion

@@ -457,7 +457,7 @@ class refmac_report(Report):
         pictureGallery = pictureFold.addObjectGallery(style='float:left;',height='550px', tableWidth='260px', contentWidth='450px')
         clearingDiv = parent.addDiv(style="clear:both;")
         jobDirectory = jobInfo['fileroot']
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         ccp4i2_root = CCP4Utils.getCCP4I2Dir()
         import os
         baseScenePath = os.path.join(ccp4i2_root,'pipelines','prosmart_refmac','script','prosmart_refmac_1.scene.xml')

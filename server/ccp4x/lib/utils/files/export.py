@@ -27,8 +27,8 @@ from pathlib import Path
 from typing import Tuple, Optional
 
 from django.http import JsonResponse, FileResponse
-from core import CCP4TaskManager
-from core.CCP4TaskManager import CTaskManager
+from ccp4i2.core import CCP4TaskManager
+from ccp4i2.core.CCP4TaskManager import CTaskManager
 
 from ccp4x.db import models
 

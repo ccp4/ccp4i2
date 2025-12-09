@@ -2,8 +2,8 @@ from pathlib import Path
 import logging
 import uuid
 
-from core import CCP4TaskManager
-from core.CCP4Container import CContainer
+from ccp4i2.core import CCP4TaskManager
+from ccp4i2.core.CCP4Container import CContainer
 
 from ccp4x.db import models
 from ..containers.remove_defaults import remove_container_default_values

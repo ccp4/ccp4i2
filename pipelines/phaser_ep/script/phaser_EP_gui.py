@@ -78,7 +78,7 @@ class phaser_EP_gui(phaser_EP_AUTO_gui.phaser_EP_AUTO_gui):
         self.validate()
 
     def taskValidity(self):
-        from core import CCP4ErrorHandling
+        from ccp4i2.core import CCP4ErrorHandling
         rv = CCP4ErrorHandling.CErrorReport()
         # Check the space group is same in both input Mini-MTZ files 
         if self.container.controlParameters.RUNBUCCANEER:

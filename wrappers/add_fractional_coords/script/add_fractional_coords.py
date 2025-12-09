@@ -18,8 +18,8 @@
 
 import inspect
 import os
-from core.CCP4ModelData import CPdbDataFile
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4ModelData import CPdbDataFile
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class add_fractional_coords(CPluginScript):

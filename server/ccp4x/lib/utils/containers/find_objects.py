@@ -2,13 +2,13 @@ import logging
 import warnings
 import re
 from xml.etree import ElementTree as ET
-from core import CCP4Container
-from core import CCP4ModelData
-from core import CCP4Data
-from core.base_object.cdata import CData
-from core import CCP4File
-from core.CCP4Container import CContainer
-from core.base_object.fundamental_types import CList
+from ccp4i2.core import CCP4Container
+from ccp4i2.core import CCP4ModelData
+from ccp4i2.core import CCP4Data
+from ccp4i2.core.base_object.cdata import CData
+from ccp4i2.core import CCP4File
+from ccp4i2.core.CCP4Container import CContainer
+from ccp4i2.core.base_object.fundamental_types import CList
 
 logger = logging.getLogger(f"ccp4x:{__name__}")
 

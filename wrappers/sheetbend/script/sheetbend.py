@@ -17,7 +17,7 @@
     """
 
 import os
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 from lxml import etree
 import pathlib
 
@@ -35,11 +35,11 @@ class sheetbend(CPluginScript):
         super(sheetbend, self).__init__(*args, **kws)
 
     def processInputFiles(self):
-        from core import CCP4XtalData
+        from ccp4i2.core import CCP4XtalData
         colgrps = [ ['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN] ]
         if self.container.inputData.FREERFLAG.isSet(): colgrps.append( 'FREERFLAG' )
         self.hklin, columns, error = self.makeHklin0( colgrps )
-        from core import CCP4ErrorHandling
+        from ccp4i2.core import CCP4ErrorHandling
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
         #Preprocess coordinates to extract a subset

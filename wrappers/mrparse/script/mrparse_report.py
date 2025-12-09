@@ -1,6 +1,6 @@
 
 from report.CCP4ReportParser import *
-from core.CCP4Modules import PREFERENCES
+from ccp4i2.core.CCP4Modules import PREFERENCES
 import os
 import re
 import shutil

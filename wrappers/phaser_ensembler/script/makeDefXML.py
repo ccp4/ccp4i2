@@ -79,7 +79,7 @@ if __name__ == "__main__":
     sys.path.append(os.path.join(CCP4,'share','ccp4i2','report'))
     sys.path.append(os.path.join(CCP4,'share','ccp4i2','dbapi'))
     sys.path.append(os.path.join(CCP4,'share','ccp4i2','utils'))
-    from core import CCP4Container
+    from ccp4i2.core import CCP4Container
 
     paramsContainer = CCP4Container.CContainer()
     header = paramsContainer.addHeader()

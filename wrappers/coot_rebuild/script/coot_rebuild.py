@@ -1,7 +1,7 @@
 from __future__ import print_function
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Utils
 
 from ccp4i2.baselayer import QtCore
 import os,re,time,sys
@@ -230,7 +230,7 @@ file_to_preferences('template_key_bindings.py')
         clArgs += ['--script',self.cootScriptPath ]
 
         '''if  self.container.inputData.COOTSTATEFILE.exists():
-          from core import CCP4Utils
+          from ccp4i2.core import CCP4Utils
           contents = CCP4Utils.readFile(self.container.inputData.COOTSTATEFILE.__str__())
           if len(contents)>5:
             clArgs += ['--script',self.container.inputData.COOTSTATEFILE.__str__()]

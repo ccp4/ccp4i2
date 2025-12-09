@@ -1,8 +1,8 @@
 from __future__ import print_function
 
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4Utils
 import pathlib
 
 class csymmatch(CPluginScript):
@@ -95,19 +95,19 @@ import unittest
 class testcsymmatch( unittest.TestCase ) :
 
    def setUp(self):
-    from core import CCP4Modules
+    from ccp4i2.core import CCP4Modules
     self.app = CCP4Modules.QTAPPLICATION()
     # make all background jobs wait for completion
     # this is essential for unittest to work
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(10000)
 
    def tearDown(self):
-    from core import CCP4Modules
+    from ccp4i2.core import CCP4Modules
     CCP4Modules.PROCESSMANAGER().setWaitForFinished(-1)
 
    def test1( self ) :
 
-      from core import CCP4Modules
+      from ccp4i2.core import CCP4Modules
       import os
 
       workDirectory = CCP4Utils.getTestTmpDir()

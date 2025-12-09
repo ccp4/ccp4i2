@@ -17,8 +17,8 @@ sys.path.insert(0, str(project_root / "server"))
 # Set CCP4I2_ROOT for plugin discovery
 os.environ["CCP4I2_ROOT"] = str(project_root)
 
-from core.CCP4Container import CContainer
-from core.base_object.fundamental_types import CInt, CFloat
+from ccp4i2.core.CCP4Container import CContainer
+from ccp4i2.core.base_object.fundamental_types import CInt, CFloat
 
 
 def test_multiple_cints_with_same_value():

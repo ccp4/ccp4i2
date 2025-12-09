@@ -13,12 +13,12 @@ from . import ShelxCE_gui
 def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None):
     import os
     from lxml import etree
-    from core import CCP4Modules
-    from core import CCP4Utils
-    from core import CCP4File
-    from core import CCP4Container
-    from core import CCP4Data
-    from core import CCP4ModelData
+    from ccp4i2.core import CCP4Modules
+    from ccp4i2.core import CCP4Utils
+    from ccp4i2.core import CCP4File
+    from ccp4i2.core import CCP4Container
+    from ccp4i2.core import CCP4Data
+    from ccp4i2.core import CCP4ModelData
     returnList = ['coot_rebuild','parrot',['modelcraft','$CCP4I2/wrappers/modelcraft/script/experimental.params.xml']]
     try:
         jobDirectory = CCP4Modules.PROJECTSMANAGER().db().jobDirectory(jobId=jobId)

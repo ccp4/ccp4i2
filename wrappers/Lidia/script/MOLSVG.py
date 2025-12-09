@@ -203,7 +203,7 @@ class MDLMolecule(object):
         return svgNode
 
 if __name__ == '__main__':
-    from core import CCP4Utils
+    from ccp4i2.core import CCP4Utils
     newLigand = MDLMolecule('job_1/prodrg-in.mdl')
     newLigand.normalize()
     aNode = newLigand.svgXML()

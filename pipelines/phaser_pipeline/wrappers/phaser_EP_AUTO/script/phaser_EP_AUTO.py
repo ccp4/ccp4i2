@@ -1,12 +1,12 @@
 from __future__ import print_function
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 import sys, os
-from core import CCP4ErrorHandling
-from core import CCP4Modules
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core import CCP4Modules
 from pipelines.phaser_pipeline.wrappers.phaser_MR.script import phaser_MR
 from lxml import etree
-from core import CCP4Utils
+from ccp4i2.core import CCP4Utils
 
 class EPAUTOCallbackObject(phaser_MR.CallbackObject):
     def __init__(self, xmlroot=None, xmlResponders = [],workDirectory=None):
@@ -168,7 +168,7 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
         return CPluginScript.SUCCEEDED
 
     def processInputFiles(self):
-        from core import CCP4XtalData
+        from ccp4i2.core import CCP4XtalData
         self.hklin,error = self.makeHklin([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FPAIR]])
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             for report in error._reports:
@@ -196,7 +196,7 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
         import os,shutil
         resultObject = self.resultObject
 
-        from core import CCP4XtalData
+        from ccp4i2.core import CCP4XtalData
 
         for hand in ['','.hand']:
             possibleCoords = os.path.join(self.getWorkDirectory(),'PHASER.1'+hand+'.pdb')

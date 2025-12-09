@@ -17,9 +17,9 @@
     """
 
 import os
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4XtalData
-from core import CCP4ErrorHandling
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core import CCP4XtalData
+from ccp4i2.core import CCP4ErrorHandling
 import platform
 
 class i2Dimple(CPluginScript):
@@ -67,7 +67,7 @@ class i2Dimple(CPluginScript):
         if result == 0:
             temp_pdb = os.path.join(self.getWorkDirectory(),"selected_xyzin_temp.pdb")
             RC=testLoader.WritePDBASCII(self.xyzin)
-            from core.CCP4ModelData import CPdbDataFile
+            from ccp4i2.core.CCP4ModelData import CPdbDataFile
             temporaryObject = CPdbDataFile(fullPath=self.xyzin)
             temporaryObject.loadFile()
             if self.container.inputData.XYZIN.isSelectionSet():

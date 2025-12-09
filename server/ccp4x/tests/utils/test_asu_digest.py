@@ -11,7 +11,7 @@ from pathlib import Path
 
 import pytest
 
-from core.CCP4ModelData import CAsuDataFile
+from ccp4i2.core.CCP4ModelData import CAsuDataFile
 
 logger = logging.getLogger(f"ccp4x::{__name__}")
 

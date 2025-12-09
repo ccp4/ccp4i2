@@ -2,9 +2,9 @@ from __future__ import print_function
 
 from lxml import etree
 
-from core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.baselayer import QtCore
-from core import CCP4Utils
+from ccp4i2.core import CCP4Utils
 
 class coot_script_lines(CPluginScript):
     
@@ -83,7 +83,7 @@ class coot_script_lines(CPluginScript):
     def processOutputFiles(self):
         print('#coot_script_lines.processOutputFiles')
         #First up check for exit status of the program
-        from core.CCP4Modules import PROCESSMANAGER
+        from ccp4i2.core.CCP4Modules import PROCESSMANAGER
         exitStatus = 0
         try:
             exitStatus = PROCESSMANAGER().getJobData(pid=self.getProcessId(), attribute='exitStatus')
@@ -127,7 +127,7 @@ class coot_script_lines(CPluginScript):
             return CPluginScript.FAILED
 
         # Create a trivial xml output file
-        from core import CCP4File
+        from ccp4i2.core import CCP4File
         self.xmlroot = etree.Element('coot_script_lines')
         e = etree.Element('number_output_pdbs')
         e.text = str(iPDBOut)
@@ -196,16 +196,16 @@ class testcoot_script_lines(unittest.TestCase):
     def setUp(self):
         # make all background jobs wait for completion
         # this is essential for unittest to work
-        from core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
+        from ccp4i2.core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
         self.app = QTAPPLICATION()
         PROCESSMANAGER().setWaitForFinished(10000)
     
     def tearDown(self):
-        from core.CCP4Modules import PROCESSMANAGER
+        from ccp4i2.core.CCP4Modules import PROCESSMANAGER
         PROCESSMANAGER().setWaitForFinished(-1)
     
     def test_1(self):
-        from core.CCP4Modules import QTAPPLICATION
+        from ccp4i2.core.CCP4Modules import QTAPPLICATION
         wrapper = coot_script_lines(parent=QTAPPLICATION(),name='coot_script_lines_test1')
         wrapper.container.loadDataFromXml()
 
