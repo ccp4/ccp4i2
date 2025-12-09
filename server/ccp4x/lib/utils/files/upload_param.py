@@ -277,9 +277,29 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
 
     logger.info("subType: %s, contentFlag: %s", subType, contentFlag)
 
+    # Map detected file types to MIME types for fallback when mimeTypeName is empty
+    DETECTED_TYPE_TO_MIME = {
+        "FASTA file": "application/CCP4-seq",
+        "PIR file": "application/CCP4-seq",
+        "MTZ file": "application/CCP4-mtz",
+        "mmCIF coordinate file": "chemical/x-pdb",
+        "mmCIF reflection file": "application/CCP4-generic-reflections",
+        "mmCIF ligand/geometry file": "application/refmac-dictionary",
+        "PDB file": "chemical/x-pdb",
+    }
+
     try:
         # Use modern CData API: get_qualifier() instead of QUALIFIERS dict
         mime_type_name = param_object.get_qualifier("mimeTypeName")
+
+        # If mimeTypeName is empty or not set, try to infer from detected file type
+        if not mime_type_name and file_type in DETECTED_TYPE_TO_MIME:
+            mime_type_name = DETECTED_TYPE_TO_MIME[file_type]
+            logger.info("Inferred mimeTypeName '%s' from detected file type '%s'", mime_type_name, file_type)
+
+        if not mime_type_name:
+            raise ValueError("No mimeTypeName available")
+
         file_type_obj, created = models.FileType.objects.get_or_create(
             name=mime_type_name,
             defaults={"description": f"MIME type: {mime_type_name}"}
