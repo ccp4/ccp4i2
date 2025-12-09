@@ -82,6 +82,12 @@ export const NewProjectContent: React.FC = () => {
     setName(event.target.value);
   }
 
+  function handleNameKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === "Enter" && nameError.length === 0 && directoryError.length === 0) {
+      createProject();
+    }
+  }
+
   function handleCustomDirectoryChange(
     event: React.MouseEvent<HTMLElement>,
     value: any
@@ -125,9 +131,11 @@ export const NewProjectContent: React.FC = () => {
           label="Name"
           value={name}
           onChange={handleNameChange}
+          onKeyDown={handleNameKeyDown}
           required
           error={nameError.length > 0}
           helperText={nameError}
+          autoFocus
         />
         <ToggleButtonGroup
           exclusive

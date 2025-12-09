@@ -750,15 +750,13 @@ class CDataFile(CData):
                                 break
 
         # FINAL FALLBACK: Try to construct path without plugin
-        # This handles cases where files were imported but plugin hierarchy isn't available
-        # (e.g., after loading from XML during job execution)
-        # NOTE: Only search for EXISTING files - this is for INPUT files only!
-        # Output files should not use this fallback as they don't exist yet.
+        # This handles cases where files were imported/autopopulated but plugin hierarchy
+        # isn't available (e.g., after loading from XML during job execution)
+        # NOTE: Only returns paths to EXISTING files - safe for both input and output files
+        # because the exists() check ensures we don't return phantom paths.
         if relpath_value and basename_value:
             relpath_str = str(relpath_value).strip()
-            # Skip this fallback for output files (CCP4_JOBS paths)
-            # Output files are in job directories and don't exist until the job runs
-            if relpath_str and not relpath_str.startswith('CCP4_JOBS'):
+            if relpath_str:
                 # Try to find project directory from CCP4I2_PROJECTS_DIR + project UUID
                 import os
                 if 'CCP4I2_PROJECTS_DIR' in os.environ:
@@ -781,7 +779,7 @@ class CDataFile(CData):
                                     # We need to match by checking if CCP4_IMPORTED_FILES or similar exists
                                     test_path = project_dir / relpath_str / str(basename_value)
                                     if test_path.exists():
-                                        logger.debug(f"Found imported file via CCP4I2_PROJECTS_DIR search: {test_path}")
+                                        logger.debug(f"Found file via CCP4I2_PROJECTS_DIR search: {test_path}")
                                         return str(test_path)
 
         # Return baseName as-is (may be relative path, or empty)

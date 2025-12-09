@@ -957,10 +957,12 @@ class JobViewSet(ModelViewSet):
         """
         try:
             the_job = models.Job.objects.get(id=pk)
-            logger.info("Digesting file %s", request.GET.get("object_path"))
-            response_dict = digest_param_file(
-                the_job, request.GET.get("object_path")[:-1]
-            )
+            object_path = request.GET.get("object_path", "")
+            # Strip trailing slash if present (but don't strip last character otherwise)
+            if object_path.endswith("/"):
+                object_path = object_path[:-1]
+            logger.info("Digesting file %s", object_path)
+            response_dict = digest_param_file(the_job, object_path)
             return api_success(response_dict)
         except (ValueError, models.Job.DoesNotExist) as err:
             logging.exception("Failed to retrieve job with id %s", pk, exc_info=err)

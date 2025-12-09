@@ -84,7 +84,20 @@ def _get_job_files(
     file_qs = models.File.objects.filter(**filter_dict)
 
     job_file_qs = file_qs.filter(job=context_job)
-    job_file_id_list = [str(jobFile.uuid) for jobFile in job_file_qs]
+
+    # Filter out files that don't exist on disk
+    # This prevents autopopulation from setting references to deleted/missing files
+    existing_job_files = []
+    for jobFile in job_file_qs:
+        if jobFile.path and jobFile.path.exists():
+            existing_job_files.append(jobFile)
+        else:
+            logger.warning(
+                "Skipping file %s (%s) from job %s - file does not exist on disk at %s",
+                jobFile.name, jobFile.uuid, context_job.number, jobFile.path
+            )
+
+    job_file_id_list = [str(jobFile.uuid) for jobFile in existing_job_files]
 
     file_imports = models.FileImport.objects.filter(file__uuid__in=job_file_id_list)
     import_file_ids = [str(importFile.file.uuid) for importFile in file_imports]
@@ -120,10 +133,29 @@ def _get_file_uses(
     fileuse_qs = models.FileUse.objects.filter(**filter_dict)
     jobfileuse_qs = fileuse_qs.filter(job=context_job)
 
+    # Helper to check if file exists on disk
+    def file_exists(file_use):
+        file_obj = file_use.file
+        if file_obj.path and file_obj.path.exists():
+            return True
+        logger.warning(
+            "Skipping file use %s (%s) from job %s - file does not exist on disk at %s",
+            file_obj.name, file_obj.uuid, context_job.number, file_obj.path
+        )
+        return False
+
     output_file_qs = jobfileuse_qs.filter(role=0)
-    output_id_list = [str(outputFileUse.file.uuid) for outputFileUse in output_file_qs]
+    output_id_list = [
+        str(outputFileUse.file.uuid)
+        for outputFileUse in output_file_qs
+        if file_exists(outputFileUse)
+    ]
 
     inputfile_qs = jobfileuse_qs.filter(role=1)
-    input_id_list = [str(inputFile.file.uuid) for inputFile in inputfile_qs]
+    input_id_list = [
+        str(inputFile.file.uuid)
+        for inputFile in inputfile_qs
+        if file_exists(inputFile)
+    ]
 
     return output_id_list + input_id_list

@@ -497,14 +497,41 @@ def digest_cgenericrefldatafile_file_object(file_object: CGenericReflDataFile):
         content_dict = value_dict_for_object(contents)
         content_dict["format"] = file_object.getFormat()
         content_dict["merged"] = file_object.getMerged()
+
+        # Initialize FreeR summary fields
+        content_dict["hasFreeR"] = False
+        content_dict["freerValid"] = False
+        content_dict["freerWarnings"] = []
+
         if file_object.getFormat() == "mmcif":
             mmcif = gemmi.cif.read_file(file_object.fullPath.__str__())
             rblocks = gemmi.as_refln_blocks(mmcif)
             rblock_infos = []
             for rb in rblocks:
                 blkinfo = mmcifutils.CifBlockInfo(rb)
-                rblock_infos.append(flatten_instance(blkinfo))
+                block_dict = flatten_instance(blkinfo)
+
+                # Add explicit FreeR fields from CifBlockInfo
+                block_dict["hasFreeR"] = blkinfo.haveFreeR()
+                block_dict["freerValid"] = blkinfo.validFreeR() or False
+                block_dict["freerWarnings"] = blkinfo.freerWarning() or []
+
+                # Add labelsets type codes for content type detection
+                if hasattr(blkinfo, 'labelsets') and blkinfo.labelsets:
+                    block_dict["typeCodes"] = blkinfo.labelsets.getTypeCodes()
+                    block_dict["columnSetsText"] = blkinfo.labelsets.columnsetstext()
+
+                rblock_infos.append(block_dict)
+
             content_dict["rblock_infos"] = rblock_infos
+
+            # Set summary FreeR info from first block with merged data
+            for block_info in rblock_infos:
+                if block_info.get("hasFreeR"):
+                    content_dict["hasFreeR"] = True
+                    content_dict["freerValid"] = block_info.get("freerValid", False)
+                    content_dict["freerWarnings"] = block_info.get("freerWarnings", [])
+                    break
 
         # Add column groups for MTZ files
         if contents and hasattr(contents, 'getColumnGroups'):
@@ -514,6 +541,21 @@ def digest_cgenericrefldatafile_file_object(file_object: CGenericReflDataFile):
                 content_dict["columnGroups"] = [
                     value_dict_for_object(grp) for grp in column_groups
                 ]
+
+                # Extract FreeR info from MTZ column groups
+                for grp in column_groups:
+                    grp_type = str(grp.columnGroupType) if hasattr(grp, 'columnGroupType') else None
+                    if grp_type == 'FreeR':
+                        content_dict["hasFreeR"] = True
+                        # For MTZ, FreeR is valid if the column exists
+                        # More detailed validation would require reading the data
+                        content_dict["freerValid"] = True
+                        # Get the FreeR column label
+                        if hasattr(grp, 'columnList') and len(grp.columnList) > 0:
+                            freer_label = str(grp.columnList[0].columnLabel) if hasattr(grp.columnList[0], 'columnLabel') else None
+                            content_dict["freerColumnLabel"] = freer_label
+                        break
+
             except Exception as col_err:
                 logger.warning("Failed to get column groups: %s", col_err)
 

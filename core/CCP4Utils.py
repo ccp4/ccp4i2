@@ -686,6 +686,37 @@ def saveEtreeToFile(etree_element, fileName: Union[str, Path], pretty_print: boo
     tree.write(str(file_path), encoding='utf-8', xml_declaration=True)
 
 
+def safeOneWord(name: str) -> str:
+    """
+    Make a string safe for use as an identifier by keeping only alphanumeric characters.
+
+    Removes all characters except letters (A-Z, a-z) and numbers (0-9),
+    effectively making the string a valid single "word" identifier suitable
+    for use as crystal names, dataset names, project names, etc.
+
+    Args:
+        name: Input string to sanitize
+
+    Returns:
+        String containing only alphanumeric characters
+
+    Example:
+        >>> safeOneWord("My Crystal-1")
+        'MyCrystal1'
+        >>> safeOneWord("data set (2023)")
+        'dataset2023'
+        >>> safeOneWord("")
+        ''
+    """
+    import re
+
+    if not name:
+        return ""
+
+    # Keep only alphanumeric characters (A-Z, a-z, 0-9)
+    return re.sub(r'[^A-Za-z0-9]', '', str(name))
+
+
 def backupFile(file_path: Union[str, Path], delete: bool = True) -> Optional[Path]:
     """
     Backup a file by renaming it with a numeric suffix.
