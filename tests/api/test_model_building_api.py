@@ -26,9 +26,18 @@ class TestModelcraftAPI(APITestBase):
         self.create_project("test_modelcraft_ep")
         self.create_job()
 
-        self.upload_file("inputData.F_SIGF", gamma_mtz)
-        self.upload_file("inputData.FREERFLAG", gamma_freer_mtz)
-        self.upload_file("inputData.PHASES", gamma_phases_mtz)
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", gamma_mtz,
+            column_labels="/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"
+        )
+        self.upload_file_with_columns(
+            "inputData.FREERFLAG", gamma_freer_mtz,
+            column_labels="/*/*/[FREER]"
+        )
+        self.upload_file_with_columns(
+            "inputData.PHASES", gamma_phases_mtz,
+            column_labels="/*/*/[HLA,HLB,HLC,HLD]"
+        )
         self.upload_file("inputData.ASUIN", gamma_asu_xml)
 
         self.set_param("controlParameters.USE_MODEL_PHASES", False)
@@ -94,8 +103,14 @@ class TestParrotAPI(APITestBase):
         self.create_project("test_parrot")
         self.create_job()
 
-        self.upload_file("inputData.F_SIGF", gamma_mtz)
-        self.upload_file("inputData.ABCD", gamma_phases_mtz)
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", gamma_mtz,
+            column_labels="/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"
+        )
+        self.upload_file_with_columns(
+            "inputData.ABCD", gamma_phases_mtz,
+            column_labels="/*/*/[HLA,HLB,HLC,HLD]"
+        )
         self.upload_file("inputData.ASUIN", gamma_asu_xml)
 
         self.run_and_wait()
@@ -122,8 +137,14 @@ class TestShelxeMRAPI(APITestBase):
         self.create_project("test_shelxe_mr")
         self.create_job()
 
-        self.upload_file("inputData.F_SIGF", gamma_mtz)
-        self.upload_file("inputData.FREERFLAG", gamma_freer_mtz)
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", gamma_mtz,
+            column_labels="/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"
+        )
+        self.upload_file_with_columns(
+            "inputData.FREERFLAG", gamma_freer_mtz,
+            column_labels="/*/*/[FREER]"
+        )
         self.upload_file("inputData.XYZIN", gamma_model_pdb)
 
         self.set_param("controlParameters.NTCYCLES", 5)
@@ -155,7 +176,10 @@ class TestAcornAPI(APITestBase):
         self.create_project("test_acorn")
         self.create_job()
 
-        self.upload_file("inputData.F_SIGF", gamma_mtz)
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", gamma_mtz,
+            column_labels="/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"
+        )
         self.upload_file("inputData.XYZIN", gamma_model_pdb)
 
         self.run_and_wait()

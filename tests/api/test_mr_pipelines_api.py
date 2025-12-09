@@ -27,8 +27,11 @@ class TestPhaserSimpleAPI(APITestBase):
         self.create_project("test_phaser_simple_basic")
         self.create_job()
 
-        # Upload input files
-        self.upload_file("inputData.F_SIGF", gamma_mtz)
+        # Upload input files with column specification for anomalous intensities
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", gamma_mtz,
+            column_labels="/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"
+        )
         self.upload_file("inputData.XYZIN", gamma_model_pdb)
 
         # Disable post-processing for faster test
@@ -53,7 +56,10 @@ class TestPhaserSimpleAPI(APITestBase):
         self.create_project("test_phaser_sheetbend")
         self.create_job()
 
-        self.upload_file("inputData.F_SIGF", gamma_mtz)
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", gamma_mtz,
+            column_labels="/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"
+        )
         self.upload_file("inputData.XYZIN", gamma_model_pdb)
 
         self.set_param("controlParameters.RUNREFMAC", False)
@@ -71,7 +77,10 @@ class TestPhaserSimpleAPI(APITestBase):
         self.create_project("test_phaser_full")
         self.create_job()
 
-        self.upload_file("inputData.F_SIGF", gamma_mtz)
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", gamma_mtz,
+            column_labels="/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"
+        )
         # Can add multiple search models
         self.upload_file("inputData.XYZIN", gamma_model_pdb)
 
@@ -97,7 +106,10 @@ class TestPhaserSimpleAPI(APITestBase):
         self.create_job()
 
         # Use gamma data with rnase model - shouldn't find solution
-        self.upload_file("inputData.F_SIGF", gamma_mtz)
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", gamma_mtz,
+            column_labels="/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"
+        )
         self.upload_file("inputData.XYZIN", rnase_model_pdb)
 
         # Lower resolution to speed up
@@ -123,8 +135,14 @@ class TestMolrepPipeAPI(APITestBase):
         self.create_project("test_molrep")
         self.create_job()
 
-        self.upload_file("inputData.F_SIGF", gamma_mtz)
-        self.upload_file("inputData.FREERFLAG", gamma_freer_mtz)
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", gamma_mtz,
+            column_labels="/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"
+        )
+        self.upload_file_with_columns(
+            "inputData.FREERFLAG", gamma_freer_mtz,
+            column_labels="/*/*/[FREER]"
+        )
         self.upload_file("inputData.XYZIN", gamma_model_pdb)
 
         self.run_and_wait()
@@ -157,7 +175,10 @@ class TestDimpleAPI(APITestBase):
         self.create_project("test_dimple")
         self.create_job()
 
-        self.upload_file("inputData.F_SIGF", gamma_native_mtz)
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", gamma_native_mtz,
+            column_labels="/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"
+        )
         self.upload_file("inputData.XYZIN", gamma_model_pdb)
 
         self.run_and_wait()
@@ -179,8 +200,14 @@ class TestMrBumpAPI(APITestBase):
         self.create_project("test_mrbump")
         self.create_job()
 
-        self.upload_file("inputData.F_SIGF", gamma_mtz)
-        self.upload_file("inputData.FREERFLAG", gamma_freer_mtz)
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", gamma_mtz,
+            column_labels="/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"
+        )
+        self.upload_file_with_columns(
+            "inputData.FREERFLAG", gamma_freer_mtz,
+            column_labels="/*/*/[FREER]"
+        )
         self.upload_file("inputData.ASUIN", gamma_asu_xml)
 
         # Limit search for faster testing

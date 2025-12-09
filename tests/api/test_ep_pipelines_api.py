@@ -172,7 +172,10 @@ class TestPhaserEPAPI(APITestBase):
         self.create_project("test_phaser_ep")
         self.create_job()
 
-        self.upload_file("inputData.F_SIGF", gamma_mtz)
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", gamma_mtz,
+            column_labels="/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"
+        )
         self.upload_file("inputData.XYZIN_PARTIAL", gamma_heavy_atoms_pdb)
         self.upload_file("inputData.XYZIN_HA", gamma_heavy_atoms_pdb)
         self.upload_file("inputData.ASUFILE", gamma_asu_xml)

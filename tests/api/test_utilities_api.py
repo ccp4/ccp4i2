@@ -16,7 +16,7 @@ runs the job, and validates outputs.
 import os
 import pytest
 
-from .base import APITestBase, demo_data, download, URLs
+from .base import APITestBase, download, URLs
 
 
 @pytest.mark.usefixtures("file_based_db")
@@ -123,7 +123,10 @@ class TestAuspexAPI(APITestBase):
         self.create_project("test_auspex")
         self.create_job()
 
-        self.upload_file("inputData.F_SIGF", gamma_mtz)
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", gamma_mtz,
+            column_labels="/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"
+        )
 
         self.run_and_wait()
 

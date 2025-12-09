@@ -26,7 +26,10 @@ class TestProsmartRefmacAPI(APITestBase):
         self.create_project("test_refmac_gamma")
         self.create_job()
 
-        self.upload_file("inputData.F_SIGF", gamma_mtz)
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", gamma_mtz,
+            column_labels="/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"
+        )
         self.upload_file("inputData.XYZIN", gamma_model_pdb)
 
         # Basic refinement settings
