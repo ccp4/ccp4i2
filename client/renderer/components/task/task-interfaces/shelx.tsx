@@ -5,10 +5,7 @@ import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { useJob } from "../../../utils";
-import {
-  CCP4i2ErrorReport,
-  useRunCheck,
-} from "../../../providers/run-check-provider";
+import { useRunCheck } from "../../../providers/run-check-provider";
 
 /**
  * Task interface component for SHELX - Experimental Phasing Pipeline.
@@ -33,7 +30,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   // Get task items for file handling and parameter updates
   const { value: ATOM_TYPEValue } = useTaskItem("ATOM_TYPE");
   const { item: F_SIGFanomItem, value: F_SIGFanomValue } = useTaskItem("F_SIGFanom");
-  const { updateNoMutate: updateWAVELENGTH } = useTaskItem("WAVELENGTH");
+  const { value: WAVELENGTHValue, updateNoMutate: updateWAVELENGTH } = useTaskItem("WAVELENGTH");
   const { updateNoMutate: updateSHELXCDE } = useTaskItem("SHELXCDE");
   const { updateNoMutate: updateUSE_COMB } = useTaskItem("USE_COMB");
   const { updateNoMutate: updateSHELX_SEPAR } = useTaskItem("SHELX_SEPAR");
@@ -55,7 +52,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const f_sigfanomDigestPath = hasF_SIGFanom && F_SIGFanomItem?._objectPath ? F_SIGFanomItem._objectPath : "";
   const { data: F_SIGFanomDigest } = useFileDigest(f_sigfanomDigestPath);
 
-  // Wavelength extraction handler for F_SIGFanom onChange
+  // Wavelength extraction handler for F_SIGFanom onChange (imperative)
   const handleF_SIGFanomChange = useCallback(async () => {
     if (!updateWAVELENGTH || !F_SIGFanomDigest || !job || job.status !== 1)
       return;
@@ -75,13 +72,51 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             `Extracting wavelength from F_SIGFanom: ${newWavelength}`
           );
           await updateWAVELENGTH(newWavelength);
-          await mutateContainer();
+          mutateContainer();
         } catch (error) {
           console.error("Error updating wavelength:", error);
         }
       }
     }
   }, [updateWAVELENGTH, F_SIGFanomDigest, job?.status, mutateContainer]);
+
+  // Passive wavelength population: if file was auto-populated before task loaded,
+  // and wavelength is unset (zero or undefined), extract from digest
+  const wavelengthInitialized = useRef(false);
+  useEffect(() => {
+    // Only run once per job, when job is editable
+    if (wavelengthInitialized.current || !job || job.status !== 1) return;
+    if (!updateWAVELENGTH || !F_SIGFanomDigest) return;
+
+    // Check if wavelength is unset (zero, undefined, or null)
+    const wavelengthIsUnset = !WAVELENGTHValue || WAVELENGTHValue === 0;
+    if (!wavelengthIsUnset) {
+      wavelengthInitialized.current = true;
+      return;
+    }
+
+    // Extract wavelength from digest
+    const digestData = F_SIGFanomDigest;
+    if (digestData?.wavelengths?.length > 0) {
+      const newWavelength =
+        digestData.wavelengths[digestData.wavelengths.length - 1];
+
+      // Only update if wavelength is valid
+      if (newWavelength && newWavelength < 9) {
+        console.log(
+          `Passively populating wavelength from F_SIGFanom digest: ${newWavelength}`
+        );
+        updateWAVELENGTH(newWavelength);
+        mutateContainer();
+        wavelengthInitialized.current = true;
+      }
+    }
+  }, [job?.status, WAVELENGTHValue, F_SIGFanomDigest, updateWAVELENGTH, mutateContainer]);
+
+  // Reset wavelength initialization flag when job changes
+  useEffect(() => {
+    wavelengthInitialized.current = false;
+  }, [job?.id]);
 
   // Element configurations
   const elementConfigs = useMemo(
