@@ -1,5 +1,5 @@
 from core import CCP4Modules
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 from qtgui import CCP4TaskWidget
 
 class CTaskDials_image(CCP4TaskWidget.CTaskWidget):

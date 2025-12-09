@@ -22,7 +22,7 @@ from __future__ import print_function
      Jon Agirre         2014 - Started development
 
 """
-from baselayer import QtGui, QtWidgets,QtCore
+from ccp4i2.baselayer import QtGui, QtWidgets,QtCore
 from qtgui import CCP4TaskWidget
 from qtgui import CCP4Widgets
 import multiprocessing

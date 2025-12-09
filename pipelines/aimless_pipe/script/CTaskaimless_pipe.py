@@ -10,7 +10,7 @@ Martyn Winn August 2012 - aimless_pipe gui
 Phil Evans 2014
 """
 
-from baselayer import QtGui, QtWidgets,QtCore
+from ccp4i2.baselayer import QtGui, QtWidgets,QtCore
 from qtgui import CCP4TaskWidget
 from qtgui import CCP4Widgets
 

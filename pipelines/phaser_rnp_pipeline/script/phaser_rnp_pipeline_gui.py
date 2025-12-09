@@ -6,7 +6,7 @@
     """
 
 from qtgui.CCP4TaskWidget import CTaskWidget
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 from pipelines.phaser_pipeline.wrappers.phaser_MR_RNP.script import phaser_MR_RNP_gui
 
 #-------------------------------------------------------------------

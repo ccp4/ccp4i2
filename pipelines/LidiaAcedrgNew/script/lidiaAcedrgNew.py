@@ -2,7 +2,7 @@ import os
 import sys
 
 from lxml import etree
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 
 from core import CCP4ErrorHandling
 from core import CCP4Utils

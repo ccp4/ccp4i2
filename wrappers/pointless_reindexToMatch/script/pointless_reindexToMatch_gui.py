@@ -7,7 +7,7 @@ from __future__ import print_function
     """
 
 from qtgui.CCP4TaskWidget import CTaskWidget
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 
 #-------------------------------------------------------------------
 class pointless_reindexToMatch_gui(CTaskWidget):

@@ -5,7 +5,7 @@ from __future__ import print_function
     Martin Noble
     """
 
-from baselayer import QtGui, QtWidgets,QtCore,QtWebEngine, QtWebEngineWidgets
+from ccp4i2.baselayer import QtGui, QtWidgets,QtCore,QtWebEngine, QtWebEngineWidgets
 from qtgui.CCP4TaskWidget import CTaskWidget
 from qtgui import CCP4Widgets
 import os

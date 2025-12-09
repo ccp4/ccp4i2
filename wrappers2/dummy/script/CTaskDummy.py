@@ -23,7 +23,7 @@ from __future__ import print_function
      Liz Potterton Jan 2010 - Create demo.py prototype
 """
 
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 
 from qtgui.CCP4TaskWidget import CTaskWidget
 

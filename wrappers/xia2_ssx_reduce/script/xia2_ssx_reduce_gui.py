@@ -4,7 +4,7 @@
 #  Author: Martin Maly, David Waterman
 #
 
-from baselayer import QtCore, QtWidgets
+from ccp4i2.baselayer import QtCore, QtWidgets
 from qtgui.CCP4TaskWidget import CTaskWidget
 from core import CCP4Container
 import qtgui

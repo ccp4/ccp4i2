@@ -70,7 +70,7 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
         import functools
         from datetime import datetime
         from lxml import etree
-        from baselayer import QtCore
+        from ccp4i2.baselayer import QtCore
         pm = PROJECTSMANAGER()
         
         for iLigand, projectName in enumerate(self.container.inputData.PROJECTNAME_LIST):

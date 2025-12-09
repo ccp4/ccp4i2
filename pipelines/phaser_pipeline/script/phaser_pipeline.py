@@ -7,7 +7,7 @@ except:
     print('FAILED CCP4ModelData imported ccp4mg')
 import mmut
 
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 from core.CCP4PluginScript import CPluginScript
 import sys, os
 from core import CCP4ErrorHandling

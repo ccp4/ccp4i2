@@ -18,7 +18,7 @@ from __future__ import print_function
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
     """
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core.CCP4ErrorHandling import *

@@ -5,17 +5,13 @@ import subprocess
 import glob
 import json
 from lxml import etree
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4XtalData
 from core import CCP4ErrorHandling
 from core import CCP4Utils
 from core import CCP4Modules
-# try:
-#     from baselayer.QtCore import Slot
-# except:
-#     from PyQt4.QtCore import pyqtSlot as Slot
 
 class import_serial_pipe(CPluginScript):
     TASKMODULE = 'data_entry'         # GIU menu location

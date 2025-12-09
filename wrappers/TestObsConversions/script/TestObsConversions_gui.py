@@ -3,7 +3,7 @@
     Martin Noble
     """
 
-from baselayer import QtGui, QtWidgets,QtCore
+from ccp4i2.baselayer import QtGui, QtWidgets,QtCore
 from qtgui.CCP4TaskWidget import CTaskWidget
 from qtgui import CCP4Widgets
 import os

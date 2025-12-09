@@ -6,7 +6,7 @@ import glob
 import tempfile
 import functools
 
-from baselayer import QtCore, QtGui, QtWidgets
+from ccp4i2.baselayer import QtCore, QtGui, QtWidgets
 
 import ccp4mg
 import mmdb2

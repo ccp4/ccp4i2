@@ -7,7 +7,7 @@ import glob
 import functools
 from inspect import getsourcefile
 
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 
 def InstallSaveToi2MenuItem(workDirectory):
   import displayTableObjects
@@ -16,7 +16,7 @@ def InstallSaveToi2MenuItem(workDirectory):
   from global_definitions import get_dispobj
   
   def SequenceView__init__(self,parent=None):
-      from baselayer import QtGui, QtWidgets
+      from ccp4i2.baselayer import QtGui, QtWidgets
       SequenceViewer.SequenceView.old__init__(self,parent)
       children = self.findChildren(QtWidgets.QAction)
       for child in children:
@@ -24,7 +24,7 @@ def InstallSaveToi2MenuItem(workDirectory):
            child.setText("Load sequence/alignment from file")
 
   def setDelegateACVs(self):
-      from baselayer import QtGui, QtWidgets
+      from ccp4i2.baselayer import QtGui, QtWidgets
       import point_funcs
       atomColourVectors = []
       for sd in self.sequence_displays:
@@ -50,7 +50,7 @@ def InstallSaveToi2MenuItem(workDirectory):
 
 
   def GetColourByNucleotideAtomTable():
-    from baselayer import QtGui, QtWidgets
+    from ccp4i2.baselayer import QtGui, QtWidgets
     colourByNucleotideAtomTable = {}
     colourByNucleotideAtomTable["A"] = QtGui.QColor(255,0,0);     # red
     colourByNucleotideAtomTable["T"] = QtGui.QColor(255,255,0);   # yellow
@@ -65,7 +65,7 @@ def InstallSaveToi2MenuItem(workDirectory):
     return colourByNucleotideAtomTable
 
   def GetColourByAtomTable():
-    from baselayer import QtGui, QtWidgets
+    from ccp4i2.baselayer import QtGui, QtWidgets
     colourByAtomTable = {}
     colourByAtomTable["A"] = QtGui.QColor(255,127,80);  # coral
     colourByAtomTable["R"] = QtGui.QColor(0,0,255);     # blue

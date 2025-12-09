@@ -11,9 +11,9 @@ Environment detection is automatic based on:
 3. Availability of Django vs PySide2 imports (fallback)
 
 Usage:
-    from baselayer import QtCore, Signal, Slot, QObject
+    from ccp4i2.baselayer import QtCore, Signal, Slot, QObject
     # or
-    from baselayer import DJANGO, QT
+    from ccp4i2.baselayer import DJANGO, QT
     if DJANGO():
         # Django-specific code
     else:
@@ -113,7 +113,7 @@ if DJANGO():
         QApplication,
     )
 
-    # Import Qt module stubs for "from baselayer import QtCore" usage
+    # Import Qt module stubs for "from ccp4i2.baselayer import QtCore" usage
     from . import QtCore
     from . import QtGui
     from . import QtWidgets

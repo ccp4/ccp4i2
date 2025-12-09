@@ -2,7 +2,7 @@
      MakeMonster task widget
 """
 
-from baselayer import QtGui, QtWidgets,QtCore
+from ccp4i2.baselayer import QtGui, QtWidgets,QtCore
 
 from qtgui.CCP4TaskWidget import CTaskWidget
 from core import CCP4Modules

@@ -270,7 +270,7 @@ def QT():
     # on CCP4Data which may not yet be properly loaded
     # In Django mode, always return False to disable Qt
     try:
-        from baselayer import QT as _BASELAYER_QT
+        from ccp4i2.baselayer import QT as _BASELAYER_QT
         if not _BASELAYER_QT():
             return False
     except ImportError:
@@ -291,7 +291,7 @@ def DJANGO():
         bool: True if using Django backend, False if using Qt backend
     """
     try:
-        from baselayer import DJANGO as _BASELAYER_DJANGO
+        from ccp4i2.baselayer import DJANGO as _BASELAYER_DJANGO
         return _BASELAYER_DJANGO()
     except ImportError:
         # If baselayer not available, we're not in Django mode

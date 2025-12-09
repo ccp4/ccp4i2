@@ -16,7 +16,7 @@
     GNU Lesser General Public License for more details.
 """
 
-from baselayer import QtCore, QtWidgets
+from ccp4i2.baselayer import QtCore, QtWidgets
 from qtgui.CCP4TaskWidget import CTaskWidget
 
 

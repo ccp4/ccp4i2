@@ -18,7 +18,7 @@
 
 from __future__ import print_function
 
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 
 from qtgui.CCP4TaskWidget import CTaskWidget
 
@@ -40,7 +40,7 @@ class MakeProjectsAndDoLigandPipeline_gui(CTaskWidget):
         CTaskWidget.__init__(self,parent)
 
     def drawContents(self):
-        from baselayer import QtGui, QtWidgets,QtCore
+        from ccp4i2.baselayer import QtGui, QtWidgets,QtCore
         self.openFolder(folderFunction='inputData',followFrom=False)
 
         self.createLine(['subtitle','Root directory'])
@@ -166,7 +166,7 @@ class MakeProjectsAndDoLigandPipeline_gui(CTaskWidget):
 
         self.editor.repaint()
 
-from baselayer import QtCore, QtGui, QtWidgets
+from ccp4i2.baselayer import QtCore, QtGui, QtWidgets
 #------------------------------------------------------------------------------------------------------
 #------------------------------------------------------------------------------------------------------
 #------------------------------------------------------------------------------------------------------

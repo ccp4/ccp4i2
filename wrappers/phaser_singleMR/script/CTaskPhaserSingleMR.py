@@ -10,7 +10,7 @@
 #=======================================================================================
 
 from qtgui import CCP4TaskWidget
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 
 class CTaskPhaserSingleMR(CCP4TaskWidget.CTaskWidget):
 

@@ -7,7 +7,7 @@ from __future__ import print_function
 
 import sys
 import os
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 from core.CCP4PluginScript import CPluginScript
 from lxml import etree as lxml_etree
 from pipelines.aimless_pipe.script.aimless_pipe_utils import *

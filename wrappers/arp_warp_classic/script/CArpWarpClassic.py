@@ -1,5 +1,5 @@
 
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 from qtgui import CCP4TaskWidget
 import os, sys, re, subprocess
 from Bio.SeqUtils.ProtParam import ProteinAnalysis

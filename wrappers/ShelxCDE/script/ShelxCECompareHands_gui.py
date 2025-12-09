@@ -6,7 +6,7 @@ from __future__ import print_function
     
     """
 
-from baselayer import QtGui, QtWidgets,QtCore
+from ccp4i2.baselayer import QtGui, QtWidgets,QtCore
 
 from . import ShelxCE_gui
 

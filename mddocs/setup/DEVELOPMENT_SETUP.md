@@ -70,7 +70,7 @@ This replaces CCP4's bundled ccp4i2 with a link to your development checkout, so
 ccp4-python -c "import django; print(f'Django {django.__version__}')"
 
 # Test baselayer (Qt-free compatibility)
-ccp4-python -c "from baselayer import DJANGO; print(f'DJANGO mode: {DJANGO()}')"
+ccp4-python -c "from ccp4i2.baselayer import DJANGO; print(f'DJANGO mode: {DJANGO()}')"
 
 # Test crystallographic libraries
 ccp4-python -c "import clipper; import phaser; print('CCP4 libraries OK')"
@@ -524,7 +524,7 @@ After setup:
 4. **Understand the baselayer**:
    - Qt-free compatibility layer at `baselayer/`
    - Automatic Qt vs Django mode detection
-   - Use `from baselayer import QtCore` instead of `from PySide2 import QtCore`
+   - Use `from ccp4i2.baselayer import QtCore` instead of `from PySide2 import QtCore`
 
 ---
 
@@ -540,8 +540,8 @@ This enables pipeline and wrapper code to be trivially merged between branches.
 
 Code in `wrappers/`, `wrappers2/`, and `pipelines/` uses imports like:
 ```python
-from baselayer import QtCore, Signal, Slot, QObject
-from baselayer import DJANGO, QT
+from ccp4i2.baselayer import QtCore, Signal, Slot, QObject
+from ccp4i2.baselayer import DJANGO, QT
 ```
 
 In ccp4i2-django, `baselayer` provides Qt-free stubs. In the main branch, `baselayer` must re-export from PySide2.
@@ -592,7 +592,7 @@ To enable merging of pipeline enhancements from ccp4i2-django into the main bran
    )
    from PySide2.QtWidgets import QApplication
 
-   # Import real Qt modules for "from baselayer import QtCore" usage
+   # Import real Qt modules for "from ccp4i2.baselayer import QtCore" usage
    from PySide2 import QtCore
    from PySide2 import QtGui
    from PySide2 import QtWidgets
@@ -604,7 +604,7 @@ To enable merging of pipeline enhancements from ccp4i2-django into the main bran
 
 3. **Verify it works**:
    ```bash
-   ccp4-python -c "from baselayer import QtCore, Signal, DJANGO; print(f'DJANGO: {DJANGO()}')"
+   ccp4-python -c "from ccp4i2.baselayer import QtCore, Signal, DJANGO; print(f'DJANGO: {DJANGO()}')"
    # Should print: DJANGO: False
    ```
 
@@ -613,7 +613,7 @@ To enable merging of pipeline enhancements from ccp4i2-django into the main bran
 When writing code intended to work in both branches:
 
 ```python
-from baselayer import DJANGO, QT
+from ccp4i2.baselayer import DJANGO, QT
 
 if DJANGO():
     # Django-specific imports or behavior
@@ -623,7 +623,7 @@ else:
     from PySide2.QtWidgets import QMessageBox
 
 # Common code using baselayer abstractions
-from baselayer import Signal, Slot, QObject
+from ccp4i2.baselayer import Signal, Slot, QObject
 ```
 
 ### Merging Workflow
@@ -638,7 +638,7 @@ With baselayer set up in both branches:
 
 | Import | ccp4i2-django | main branch |
 |--------|---------------|-------------|
-| `from baselayer import QtCore` | Qt-free stub module | `PySide2.QtCore` |
-| `from baselayer import Signal` | Stub class | `PySide2.QtCore.Signal` |
-| `from baselayer import DJANGO` | Returns `True` | Returns `False` |
-| `from baselayer import QObject` | Stub class | `PySide2.QtCore.QObject` |
+| `from ccp4i2.baselayer import QtCore` | Qt-free stub module | `PySide2.QtCore` |
+| `from ccp4i2.baselayer import Signal` | Stub class | `PySide2.QtCore.Signal` |
+| `from ccp4i2.baselayer import DJANGO` | Returns `True` | Returns `False` |
+| `from ccp4i2.baselayer import QObject` | Stub class | `PySide2.QtCore.QObject` |

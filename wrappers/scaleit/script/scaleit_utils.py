@@ -1,4 +1,4 @@
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 from qtgui.CCP4TaskWidget import CTaskWidget
 
 from pipelines.aimless_pipe.script.aimless_pipe_utils import CellCheck, CellFormat, colourText

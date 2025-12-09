@@ -6,7 +6,7 @@ from lxml import etree
 import threading
 import socketserver
 import os, sys
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 from core import CCP4Utils
 
 class MosflmRequestHandler(socketserver.StreamRequestHandler):

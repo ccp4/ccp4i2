@@ -31,7 +31,7 @@ def main():
 
     # Detect backend
     try:
-        from baselayer import DJANGO
+        from ccp4i2.baselayer import DJANGO
         use_django = DJANGO()
     except ImportError:
         use_django = False

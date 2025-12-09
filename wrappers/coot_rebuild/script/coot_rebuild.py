@@ -3,7 +3,7 @@ from __future__ import print_function
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
 
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 import os,re,time,sys
 
 class coot_rebuild(CPluginScript):

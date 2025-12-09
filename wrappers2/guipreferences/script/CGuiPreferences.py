@@ -23,7 +23,7 @@ from __future__ import print_function
      Liz Potterton Sept 2011 - Create a task window for GUI preferences
 """
 import sys
-from baselayer import QtGui, QtWidgets,QtCore
+from ccp4i2.baselayer import QtGui, QtWidgets,QtCore
 
 from qtgui.CCP4TaskWidget import CTaskWidget
 

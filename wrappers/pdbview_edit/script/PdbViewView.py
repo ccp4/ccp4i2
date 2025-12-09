@@ -2,7 +2,7 @@ from __future__ import print_function
 
 import sys
 
-from baselayer import QtCore, QtGui, QtWidgets
+from ccp4i2.baselayer import QtCore, QtGui, QtWidgets
 
 import ccp4mg
 import PdbView

@@ -4,7 +4,7 @@
      Author: Martyn Winn
 
 """
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 from qtgui.CCP4TaskWidget import CTaskWidget
 
 class CTaskFreerflag(CTaskWidget):

@@ -1,6 +1,6 @@
 
 from core.CCP4PluginScript import CPluginScript
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 import os,re,time,sys
 import platform
 

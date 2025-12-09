@@ -2,7 +2,7 @@ from __future__ import print_function
 
 # Some classes to help handle dynamic GUI buttons
 
-from baselayer import QtCore,QtGui, QtWidgets
+from ccp4i2.baselayer import QtCore,QtGui, QtWidgets
 
 import math
 import functools

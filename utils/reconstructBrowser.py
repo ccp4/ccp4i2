@@ -8,7 +8,7 @@ import sqlite3
 
 from os.path import expanduser
 
-from baselayer import QtCore, QtGui, QtWidgets
+from ccp4i2.baselayer import QtCore, QtGui, QtWidgets
 
 import reconstructDBFromXML
 if __name__ == "__main__":

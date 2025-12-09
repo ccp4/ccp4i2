@@ -8,7 +8,7 @@ from __future__ import print_function
      This is modelled on the old unix script
 """
 import os,shutil
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 
 from core.CCP4PluginScript import CPluginScript
 

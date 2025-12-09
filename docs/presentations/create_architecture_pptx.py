@@ -238,7 +238,7 @@ def create_presentation():
             "Key insight: same import works in both worlds"
         ],
         code_block="""# Same wrapper code works in Qt OR Django
-from baselayer import QtCore, Signal, Slot
+from ccp4i2.baselayer import QtCore, Signal, Slot
 
 class MyWrapper(CPluginScript):
     finished = Signal(int)  # Works in both environments

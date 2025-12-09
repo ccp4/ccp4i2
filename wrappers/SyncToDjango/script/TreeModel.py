@@ -10,7 +10,7 @@ class TreeNode(object):
     def _getChildren(self):
         raise NotImplementedError()
 
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 class TreeModel(QtCore.QAbstractItemModel):
     def __init__(self):
         QtCore.QAbstractItemModel.__init__(self)

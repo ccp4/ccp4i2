@@ -1,5 +1,5 @@
 from __future__ import print_function
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 from core.CCP4PluginScript import CPluginScript
 from lxml import etree
 import os

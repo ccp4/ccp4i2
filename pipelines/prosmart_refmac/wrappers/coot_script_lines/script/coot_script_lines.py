@@ -3,7 +3,7 @@ from __future__ import print_function
 from lxml import etree
 
 from core.CCP4PluginScript import CPluginScript
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 from core import CCP4Utils
 
 class coot_script_lines(CPluginScript):

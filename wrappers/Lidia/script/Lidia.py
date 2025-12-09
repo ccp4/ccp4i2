@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 import platform
 import sys
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 from lxml import etree
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4Modules

@@ -18,7 +18,7 @@
     """
 
 from lxml import etree
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core import CCP4Utils

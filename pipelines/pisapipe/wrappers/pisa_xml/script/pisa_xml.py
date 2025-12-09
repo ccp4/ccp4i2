@@ -5,7 +5,7 @@ import os
 from core import CCP4Modules
 from core import CCP4Utils
 
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 
 class pisa_xml(CPluginScript):
 

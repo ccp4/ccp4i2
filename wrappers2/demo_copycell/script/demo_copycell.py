@@ -19,7 +19,7 @@ from __future__ import print_function
      GNU Lesser General Public License for more details.
 """
 
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 from core.CCP4PluginScript import CPluginScript
 
 class demo_copycell(CPluginScript):

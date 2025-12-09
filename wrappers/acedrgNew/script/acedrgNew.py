@@ -2,7 +2,7 @@ from __future__ import print_function
 
 
 from core.CCP4PluginScript import CPluginScript
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 import os,glob,re,time,sys
 from core import CCP4XtalData
 from lxml import etree

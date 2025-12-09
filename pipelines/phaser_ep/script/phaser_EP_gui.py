@@ -1,4 +1,4 @@
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 from pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script import phaser_EP_AUTO_gui
 
 

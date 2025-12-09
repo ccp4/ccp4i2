@@ -26,7 +26,7 @@ from core import CCP4WorkflowManager,CCP4Modules
 from core.CCP4ErrorHandling import *
 from core import CCP4Data
 
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 
 class workflow(CPluginScript):
 

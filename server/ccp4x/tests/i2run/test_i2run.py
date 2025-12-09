@@ -9,7 +9,7 @@ from argparse import ArgumentParser
 from xml.etree import ElementTree as ET
 from django.test import TestCase, override_settings
 from django.conf import settings
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 from core import CCP4PerformanceData
 from core import CCP4ErrorHandling
 from core import CCP4Data

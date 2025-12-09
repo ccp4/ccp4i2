@@ -7,7 +7,7 @@
 
 from qtgui.CCP4TaskWidget import CTaskWidget
 from pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script import phaser_MR_AUTO_gui
-from baselayer import QtCore
+from ccp4i2.baselayer import QtCore
 from core import CCP4ErrorHandling
 
 #-------------------------------------------------------------------

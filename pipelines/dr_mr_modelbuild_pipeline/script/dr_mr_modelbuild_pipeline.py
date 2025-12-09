@@ -30,7 +30,7 @@ import sys, os, shutil, copy
 import json
 
 try:
-    from baselayer.QtCore import Slot
+    from ccp4i2.baselayer.QtCore import Slot
 except:
     from PyQt4.QtCore import pyqtSlot as Slot
 

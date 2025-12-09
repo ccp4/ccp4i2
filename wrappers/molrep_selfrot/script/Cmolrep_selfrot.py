@@ -22,7 +22,7 @@
      Andrey Lebedev September 2011 - molrep_mr gui
 """
 
-from baselayer import QtGui, QtWidgets,QtCore
+from ccp4i2.baselayer import QtGui, QtWidgets,QtCore
 from qtgui import CCP4TaskWidget
 from qtgui import CCP4Widgets
 

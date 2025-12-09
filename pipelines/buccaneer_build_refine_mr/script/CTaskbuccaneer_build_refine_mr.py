@@ -22,7 +22,7 @@
      Jon Agirre 2014 - Add new MR options, revise the gui and simplify it
 """
 
-from baselayer import QtGui, QtWidgets,QtCore
+from ccp4i2.baselayer import QtGui, QtWidgets,QtCore
 from qtgui import CCP4TaskWidget
 from qtgui import CCP4Widgets
 

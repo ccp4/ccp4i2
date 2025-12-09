@@ -5,7 +5,7 @@
 #  Acknowledgements: based on code by Graeme Winter and Martin Noble.
 #
 
-from baselayer import QtGui, QtWidgets, QtCore
+from ccp4i2.baselayer import QtGui, QtWidgets, QtCore
 
 from qtgui.CCP4TaskWidget import CTaskWidget
 from core import CCP4Container

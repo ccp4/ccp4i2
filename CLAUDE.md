@@ -83,7 +83,7 @@ The `run_test.sh` script sets up the required environment variables and paths.
 
 Code in wrappers/pipelines uses the baselayer compatibility module:
 ```python
-from baselayer import QtCore, Signal, Slot
+from ccp4i2.baselayer import QtCore, Signal, Slot
 # Works in both Django and Qt environments
 ```
 
