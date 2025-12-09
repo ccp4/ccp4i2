@@ -275,6 +275,70 @@ class AsyncDatabaseHandler:
 
         await _update()
 
+    def updateJobStatus(
+        self,
+        jobId=None,
+        status=None,
+        finishStatus=None,
+        container=None,
+        dbOutputData=None,
+    ):
+        """
+        Legacy sync wrapper for updating job status.
+
+        This method provides compatibility with the legacy CPluginScript interface
+        that calls updateJobStatus synchronously after job completion.
+
+        Args:
+            jobId: Job UUID as string
+            status: Direct status value (optional)
+            finishStatus: Plugin finish status (0=SUCCEEDED, 1=FAILED, etc.)
+            container: Job container for gleaning output files
+            dbOutputData: Deprecated, ignored
+
+        Returns:
+            CPluginScript.SUCCEEDED
+        """
+        from asgiref.sync import async_to_sync
+
+        logger.debug(
+            "updateJobStatus (sync wrapper): jobId=%s, status=%s, finishStatus=%s",
+            jobId, status, finishStatus
+        )
+
+        if jobId is None:
+            logger.warning("updateJobStatus called with no jobId")
+            return CPluginScript.SUCCEEDED
+
+        try:
+            job_uuid = uuid.UUID(jobId) if isinstance(jobId, str) else jobId
+
+            # Convert finishStatus to database status
+            if status is None and finishStatus is not None:
+                # Map plugin finish status to Job.Status
+                # CPluginScript: SUCCEEDED=0, FAILED=1, MARK_TO_DELETE=2, etc.
+                if finishStatus == 0:
+                    status = models.Job.Status.FINISHED
+                elif finishStatus in (1, 2):
+                    status = models.Job.Status.FAILED
+                else:
+                    status = models.Job.Status.UNSATISFACTORY
+
+            if status is not None:
+                async_to_sync(self.update_job_status)(job_uuid, status)
+
+                # Glean files if job finished successfully
+                if status == models.Job.Status.FINISHED and container is not None:
+                    try:
+                        async_to_sync(self.glean_job_files)(job_uuid, container)
+                    except Exception as e:
+                        logger.warning("Failed to glean job files: %s", e)
+
+        except Exception as e:
+            logger.error("Error in updateJobStatus: %s", e, exc_info=True)
+
+        return CPluginScript.SUCCEEDED
+
     async def register_output_file(
         self,
         job_uuid: uuid.UUID,

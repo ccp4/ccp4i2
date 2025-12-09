@@ -1203,7 +1203,7 @@ class CDataFile(CData):
         # Last resort: same as input (may fail at write time if not writable)
         return str(input_dir / output_name)
 
-    def setContentFlag(self, content_flag: Optional[int] = None):
+    def setContentFlag(self, content_flag: Optional[int] = None, reset: bool = False):
         """
         Set or auto-detect the content flag for this file.
 
@@ -1214,6 +1214,8 @@ class CDataFile(CData):
             content_flag: If provided, sets contentFlag to this value directly.
                          If None, attempts to auto-detect by inspecting the file
                          (behavior depends on subclass implementation).
+            reset: If True, forces re-detection of content flag (legacy parameter,
+                   currently equivalent to calling without content_flag argument).
 
         Examples:
             >>> # Explicit assignment
@@ -1221,7 +1223,13 @@ class CDataFile(CData):
 
             >>> # Auto-detection (for MTZ files)
             >>> obs_file.setContentFlag()  # Introspects file, sets based on columns
+
+            >>> # Force re-detection (legacy API)
+            >>> obs_file.setContentFlag(reset=True)
         """
+        # If reset=True is passed, treat as auto-detection request
+        if reset and content_flag is None:
+            content_flag = None  # Trigger auto-detection path below
         if content_flag is not None:
             flag_value = content_flag
         else:

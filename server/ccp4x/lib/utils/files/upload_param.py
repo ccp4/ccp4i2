@@ -280,11 +280,21 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
     try:
         # Use modern CData API: get_qualifier() instead of QUALIFIERS dict
         mime_type_name = param_object.get_qualifier("mimeTypeName")
-        file_type_obj = models.FileType.objects.get(name=mime_type_name)
-        logger.info("FileType from mimeTypeName '%s': %s", mime_type_name, file_type_obj)
-    except models.FileType.DoesNotExist:
-        file_type_obj = models.FileType.objects.get(name="Unknown")
-        logger.info("FileType not found, using Unknown")
+        file_type_obj, created = models.FileType.objects.get_or_create(
+            name=mime_type_name,
+            defaults={"description": f"MIME type: {mime_type_name}"}
+        )
+        if created:
+            logger.info("Created FileType '%s'", mime_type_name)
+        else:
+            logger.info("FileType from mimeTypeName '%s': %s", mime_type_name, file_type_obj)
+    except Exception as e:
+        # Fallback to Unknown if mimeTypeName not available
+        file_type_obj, _ = models.FileType.objects.get_or_create(
+            name="Unknown",
+            defaults={"description": "Unknown file type"}
+        )
+        logger.info("FileType not found (error: %s), using Unknown", e)
 
     # Okay, so here is a thing. I do not think that the apropriate value for "job_param_name" is param_object.object_name()
     # Consider the "source" file in a CAsuContentSeq object. The object name is "source" but the relevant parameter name is

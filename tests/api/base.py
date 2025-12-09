@@ -273,7 +273,7 @@ class APITestBase:
     def upload_file_with_columns(self, object_path: str, file_path: str,
                                   column_labels: str = None, prefix: str = None) -> dict:
         """
-        Upload an MTZ file and set column labels.
+        Upload an MTZ file with column selection.
 
         Args:
             object_path: Path like "inputData.F_SIGF"
@@ -281,12 +281,23 @@ class APITestBase:
             column_labels: Column selection like "/*/*/[FP,SIGFP]"
             prefix: Override task name prefix
         """
-        result = self.upload_file(object_path, file_path, prefix)
+        assert self.job_id, "Must create job first"
 
-        if column_labels:
-            self.set_param(f"{object_path}.columnLabels", column_labels, prefix)
+        if prefix is None:
+            prefix = f"{self.task_name}.container"
+        full_path = f"{prefix}.{object_path}" if prefix else object_path
 
-        return result
+        with open(file_path, 'rb') as f:
+            post_data = {'objectPath': full_path, 'file': f}
+            if column_labels:
+                post_data['column_selector'] = column_labels
+            response = self.client.post(
+                f'/jobs/{self.job_id}/upload_file_param/',
+                post_data
+            )
+
+        assert response.status_code == 200, f"Failed to upload file: {response.content}"
+        return response.json()
 
     # --- Validation ---
 
