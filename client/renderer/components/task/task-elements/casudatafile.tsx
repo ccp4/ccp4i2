@@ -47,12 +47,15 @@ export const CAsuDataFileElement: React.FC<CCP4i2TaskElementProps> = (
 ) => {
   const { job, itemName, qualifiers } = props;
   const { useTaskItem, useFileDigest, setParameter, mutateContainer } = useJob(job.id);
-  const { item } = useTaskItem(itemName);
+  const { item, value } = useTaskItem(itemName);
 
-  // Get the file digest which contains sequence information
-  const { data: fileDigest, mutate: mutateDigest } = useFileDigest(
-    item?._objectPath
-  ) as { data: CAsuDataFileDigest | undefined; mutate: () => void };
+  // Only fetch digest when a file has been uploaded (has dbFileId)
+  const hasFile = Boolean(value?.dbFileId);
+  const digestPath = hasFile && item?._objectPath ? item._objectPath : "";
+  const { data: fileDigest, mutate: mutateDigest } = useFileDigest(digestPath) as {
+    data: CAsuDataFileDigest | undefined;
+    mutate: () => void;
+  };
 
   // Local state for checkbox values (optimistic updates)
   const [localSelections, setLocalSelections] = useState<Record<string, boolean>>({});

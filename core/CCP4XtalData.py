@@ -13,6 +13,48 @@ from core.base_object.error_reporting import CErrorReport
 from core.cdata_stubs.CCP4XtalData import CAltSpaceGroupStub, CAltSpaceGroupListStub, CAnomalousColumnGroupStub, CAnomalousIntensityColumnGroupStub, CAnomalousScatteringElementStub, CAsuComponentStub, CAsuComponentListStub, CCellStub, CCellAngleStub, CCellLengthStub, CColumnGroupStub, CColumnGroupItemStub, CColumnGroupListStub, CColumnTypeStub, CColumnTypeListStub, CCrystalNameStub, CDatasetStub, CDatasetListStub, CDatasetNameStub, CDialsJsonFileStub, CDialsPickleFileStub, CExperimentalDataTypeStub, CFPairColumnGroupStub, CFSigFColumnGroupStub, CFormFactorStub, CFreeRColumnGroupStub, CFreeRDataFileStub, CGenericReflDataFileStub, CHLColumnGroupStub, CIPairColumnGroupStub, CISigIColumnGroupStub, CImageFileStub, CImageFileListStub, CImosflmXmlDataFileStub, CImportUnmergedStub, CImportUnmergedListStub, CMapCoeffsDataFileStub, CMapColumnGroupStub, CMapDataFileStub, CMergeMiniMtzStub, CMergeMiniMtzListStub, CMiniMtzDataFileStub, CMiniMtzDataFileListStub, CMmcifReflDataStub, CMmcifReflDataFileStub, CMtzColumnStub, CMtzColumnGroupStub, CMtzColumnGroupTypeStub, CMtzDataStub, CMtzDataFileStub, CMtzDatasetStub, CObsDataFileStub, CPhaserRFileDataFileStub, CPhaserSolDataFileStub, CPhiFomColumnGroupStub, CPhsDataFileStub, CProgramColumnGroupStub, CProgramColumnGroup0Stub, CRefmacKeywordFileStub, CReindexOperatorStub, CResolutionRangeStub, CRunBatchRangeStub, CRunBatchRangeListStub, CShelxFADataFileStub, CShelxLabelStub, CSpaceGroupStub, CSpaceGroupCellStub, CUnmergedDataContentStub, CUnmergedDataFileStub, CUnmergedDataFileListStub, CUnmergedMtzDataFileStub, CWavelengthStub, CXia2ImageSelectionStub, CXia2ImageSelectionListStub
 from core.CCP4TaskManager import TASKMANAGER
 
+
+def _compact_batch_ranges(numbers: list) -> str:
+    """
+    Convert a list of batch numbers to compact range notation.
+
+    Example: [1, 2, 3, 4, 5, 302, 303, 304, 305] -> "1-5, 302-305"
+
+    Args:
+        numbers: Sorted list of batch numbers
+
+    Returns:
+        String with compact range notation
+    """
+    if not numbers:
+        return ""
+
+    ranges = []
+    start = numbers[0]
+    end = numbers[0]
+
+    for num in numbers[1:]:
+        if num == end + 1:
+            # Extend current range
+            end = num
+        else:
+            # End current range and start new one
+            if start == end:
+                ranges.append(str(start))
+            else:
+                ranges.append(f"{start}-{end}")
+            start = num
+            end = num
+
+    # Add the last range
+    if start == end:
+        ranges.append(str(start))
+    else:
+        ranges.append(f"{start}-{end}")
+
+    return ", ".join(ranges)
+
+
 class CAltSpaceGroup(CAltSpaceGroupStub):
     """
     A string holding the space group
@@ -2606,7 +2648,7 @@ class CUnmergedDataContent(CUnmergedDataContentStub):
         Convert CUnmergedDataContent to a dictionary for serialization.
 
         Includes all standard children plus type-specific attributes like
-        datasets, wavelengths, crystalNames, listOfColumns, and datasetCells.
+        datasets, wavelengths, crystalNames, listOfColumns, datasetCells, and batchs.
         """
         from ccp4x.lib.utils.parameters.value_dict import value_dict_for_object
 
@@ -2626,16 +2668,19 @@ class CUnmergedDataContent(CUnmergedDataContentStub):
         except Exception:
             pass
 
-        # Add type-specific attributes that may be plain Python lists
+        # Add type-specific attributes that may be plain Python lists or strings
         type_specific_attrs = [
-            'datasets', 'wavelengths', 'crystalNames', 'datasetCells', 'listOfColumns'
+            'datasets', 'wavelengths', 'crystalNames', 'datasetCells', 'listOfColumns', 'batchs'
         ]
         for attr_name in type_specific_attrs:
             if attr_name not in result and hasattr(self, attr_name):
                 try:
                     attr_value = getattr(self, attr_name)
                     if attr_value is not None:
-                        if isinstance(attr_value, list) and len(attr_value) > 0:
+                        if isinstance(attr_value, str) and attr_value:
+                            # Handle string attributes like batchs
+                            result[attr_name] = attr_value
+                        elif isinstance(attr_value, list) and len(attr_value) > 0:
                             result[attr_name] = value_dict_for_object(attr_value)
                         elif hasattr(attr_value, 'value') and attr_value.value:
                             result[attr_name] = value_dict_for_object(attr_value)
@@ -2816,10 +2861,14 @@ class CUnmergedDataContent(CUnmergedDataContentStub):
         if hasattr(self, 'numberofdatasets') and self.numberofdatasets is not None:
             self.numberofdatasets = len(mtz.datasets)
 
-        # Number of lattices (count of batches)
+        # Number of lattices (count of batches) and batch numbers
         if has_batch:
             if hasattr(self, 'numberLattices') and self.numberLattices is not None:
                 self.numberLattices = len(mtz.batches)
+            # Populate batchs with compact range notation (e.g., "1-100, 302-305")
+            if hasattr(self, 'batchs') and mtz.batches:
+                batch_numbers = sorted([batch.number for batch in mtz.batches])
+                self.batchs = _compact_batch_ranges(batch_numbers)
 
         # Extract column information as CMtzColumn objects
         # Skip H-type columns (Miller indices H, K, L)

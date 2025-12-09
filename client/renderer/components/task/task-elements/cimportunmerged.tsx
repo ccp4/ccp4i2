@@ -26,12 +26,20 @@ export const CImportUnmergedElement: React.FC<CCP4i2TaskElementProps> = (
   const { value: crystalName } = useTaskItem(`${itemName}.crystalName`);
   const { value: dataset } = useTaskItem(`${itemName}.dataset`);
 
+  // Get the nested file item to check if a file is uploaded
+  const { value: fileValue } = useTaskItem(`${itemName}.file`);
+
+  // File object path is always constructed if item exists (for rendering)
   const fileObjectPath = useMemo(
-    () => (item?._objectPath ? `${item._objectPath}.file` : null),
-    [item]
+    () => (item?._objectPath ? `${item._objectPath}.file` : ""),
+    [item?._objectPath]
   );
+
+  // Only fetch digest when a file has been uploaded (has dbFileId)
+  const hasFile = Boolean(fileValue?.dbFileId);
+  const digestPath = hasFile ? fileObjectPath : "";
   // fileDigest used only for declarative presentation (batch display)
-  const { data: fileDigest } = useFileDigest(fileObjectPath || "");
+  const { data: fileDigest } = useFileDigest(digestPath);
 
   /**
    * Imperative handler: only called when user explicitly changes the file.

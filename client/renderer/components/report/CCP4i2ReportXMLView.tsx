@@ -9,13 +9,13 @@ import { CCP4i2ReportElement } from "./CCP4i2ReportElement";
 import { useCCP4i2Window } from "../../app-context";
 import { useJob, usePrevious, useProject } from "../../utils";
 import { usePopcorn } from "../../providers/popcorn-provider";
-import useSWR from "swr";
-import { swrFetcher } from "../../api-fetch";
+import { useApi } from "../../api";
 import { CCP4i2WhatNext } from "./CCP4i2WhatNext";
 import { useIsJobEffectivelyActive } from "../../providers/recently-started-jobs-context";
 
 export const CCP4i2ReportXMLView = () => {
   const { jobId, projectId } = useCCP4i2Window();
+  const api = useApi();
 
   // Get jobs from job_tree (always current status)
   const { jobs } = useProject(projectId || 0);
@@ -33,10 +33,10 @@ export const CCP4i2ReportXMLView = () => {
   // Debug: Log polling state on every render
   console.log(`[Report] jobId=${jobId}, treeStatus=${jobFromTree?.status}, jobStatus=${job?.status}, isJobActive=${isJobActive}, will poll=${isJobActive ? 'yes (5s)' : 'no'}`);
 
-  const { data: report_xml_json, error: fetchError, mutate: mutateReportXml } = useSWR<any>(
-    job ? `/api/proxy/jobs/${job.id}/report_xml/` : null,
-    swrFetcher,
-    { refreshInterval: isJobActive ? 5000 : 0 }
+  // Use centralized API hook for report XML fetching
+  const { data: report_xml_json, error: fetchError, mutate: mutateReportXml } = api.jobReportXml(
+    job?.id,
+    isJobActive
   );
 
   // Debug logging

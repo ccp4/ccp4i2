@@ -94,21 +94,16 @@ async function handleProxy(req: NextRequest, params: { proxy: string[] }) {
 
   let targetUrl = `${backendBaseUrl}${path}`;
 
-  // Ensure the backend URL ends with a slash
-  //console.log("req_url", req.url);
-  if (!targetUrl.includes("/djangostatic") && !targetUrl.endsWith("/")) {
+  // Ensure trailing slash for Django REST Framework endpoints
+  // (except for static files which shouldn't have trailing slashes)
+  if (!path.includes("djangostatic") && !targetUrl.endsWith("/")) {
     targetUrl += "/";
   }
 
-  // Append query parameters if any
+  // Append query parameters if any (after the trailing slash)
   const searchParams = req.nextUrl.searchParams.toString();
   if (searchParams) {
     targetUrl += `?${searchParams}`;
-  }
-  if (["PATCH", "DELETE", "PUT", "POST"].includes(req.method)) {
-    if (!targetUrl.endsWith("/")) {
-      targetUrl += "/";
-    }
   }
   //console.log("targetUrl", targetUrl, "req_url", req.url);
   try {

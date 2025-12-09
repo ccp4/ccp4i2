@@ -171,7 +171,7 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   const { useTaskItem, useFileDigest, setParameter, mutateContainer } = useJob(
     job.id
   );
-  const { item } = useTaskItem(itemName);
+  const { item, value } = useTaskItem(itemName);
 
   // Selection text path
   const selectionItemName = useMemo(() => {
@@ -181,10 +181,13 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   const { value: selectionString, update: updateSelectionString } =
     useTaskItem(selectionItemName);
 
-  // Get the file digest
-  const { data: fileDigest, mutate: mutateDigest } = useFileDigest(
-    item?._objectPath
-  ) as { data: CPdbDataFileDigest | undefined; mutate: () => void };
+  // Only fetch digest when a file has been uploaded (has dbFileId)
+  const hasFile = Boolean(value?.dbFileId);
+  const digestPath = hasFile && item?._objectPath ? item._objectPath : "";
+  const { data: fileDigest, mutate: mutateDigest } = useFileDigest(digestPath) as {
+    data: CPdbDataFileDigest | undefined;
+    mutate: () => void;
+  };
 
   // UI state
   const [selectedChains, setSelectedChains] = useState<Set<string>>(new Set());

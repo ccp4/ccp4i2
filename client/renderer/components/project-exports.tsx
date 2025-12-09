@@ -19,8 +19,6 @@ import { ProjectExport } from "../types/models";
 import { useCCP4i2Window } from "../app-context";
 import { useProject } from "../utils";
 import { useApi } from "../api";
-import { apiJson } from "../api-fetch";
-import useSWR from "swr";
 
 interface ProjectExportsDialogProps {
   open: boolean;
@@ -86,10 +84,11 @@ export const ProjectExportsDialog: React.FC<ProjectExportsDialogProps> = ({
   const { projectId } = useCCP4i2Window();
 
   const { project } = useProject(projectId || 0);
-  const { data: directory, mutate: mutateDirectory } = useSWR<any>(
-    project && open ? `/api/proxy/projects/${project.id}/directory/` : null,
-    apiJson,
-    { refreshInterval: open ? 5000 : 0 }
+
+  // Use centralized API hook for directory fetching
+  const { data: directory, mutate: mutateDirectory } = api.projectDirectory(
+    project && open ? project.id : null,
+    open
   );
 
   // Only poll exports when the dialog is open

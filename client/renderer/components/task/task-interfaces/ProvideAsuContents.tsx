@@ -15,23 +15,23 @@ import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { useJob } from "../../../utils";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { useCallback } from "react";
-import useSWR from "swr";
-import { apiPost } from "../../../api-fetch";
+import { useApi } from "../../../api";
 import { BaseSpacegroupCellElement } from "../task-elements/base-spacegroup-cell-element";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
+  const api = useApi();
   const { useTaskItem, useFileDigest, fetchDigest, getErrors, mutateValidation } = useJob(job.id);
   const { update: setAsuContent } = useTaskItem("ASU_CONTENT");
   const { item: asuContentInItem } = useTaskItem("ASUCONTENTIN");
   const { item: asuContentItem } = useTaskItem("ASU_CONTENT");
+  const { value: HKLINValue } = useTaskItem("HKLIN");
 
   // File digest for HKLIN (used for Matthews calculation)
-  // Uses SWR for automatic caching and revalidation - works on initial load
-  // and when returning to a previously configured interface
-  const { data: HKLINDigest, mutate: mutateHKLINDigest } = useFileDigest(
-    `ProvideAsuContents.inputData.HKLIN`
-  );
+  // Only fetch when a file has been uploaded (has dbFileId) - otherwise digest endpoint fails
+  const hasHKLINFile = Boolean(HKLINValue?.dbFileId);
+  const hklinDigestPath = hasHKLINFile ? "ProvideAsuContents.inputData.HKLIN" : "";
+  const { data: HKLINDigest, mutate: mutateHKLINDigest } = useFileDigest(hklinDigestPath);
 
   // ASU content is valid when there are no validation errors for it
   // Uses the existing validation infrastructure from useJob().getErrors()
@@ -43,37 +43,26 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
    * Fetches the molecular weight for the current job's ASU content using SWR.
    * Only fetches when ASU_CONTENT is valid (passes all validation checks).
    */
-  const { data: molWeight, mutate: mutateMolWeight } = useSWR(
-    isAsuContentValid ? [`jobs/${job.id}/object_method`, "molecularWeight"] : null,
-    ([url]) =>
-      apiPost(url, {
-        object_path: "ProvideAsuContents.inputData.ASU_CONTENT",
-        method_name: "molecularWeight",
-      })
+  const { data: molWeight, mutate: mutateMolWeight } = api.objectMethod<any>(
+    job.id,
+    "ProvideAsuContents.inputData.ASU_CONTENT",
+    "molecularWeight",
+    {},
+    [],
+    isAsuContentValid
   );
 
   /**
    * Fetches and caches the Matthews coefficient analysis for the current job using SWR.
    * Only fetches when we have both a valid molecular weight result AND an HKLIN file.
    */
-  const { data: matthewsAnalysis, mutate: mutateMatthews } = useSWR(
-    // Only fetch when we have molecular weight AND HKLIN digest
-    // API response format: {success: true, data: {result: <value>}}
-    molWeight?.data?.result && HKLINDigest
-      ? [
-          `jobs/${job.id}/object_method`,
-          "matthewsCoeff",
-          molWeight.data.result,
-          HKLINDigest,
-        ]
-      : null,
-    ([url, , molWeightResult]) =>
-      apiPost(url, {
-        object_path: "ProvideAsuContents.inputData.HKLIN.fileContent",
-        method_name: "matthewsCoeff",
-        kwargs: { molWt: molWeightResult },
-      }),
-    { keepPreviousData: true }
+  const { data: matthewsAnalysis, mutate: mutateMatthews } = api.objectMethod<any>(
+    job.id,
+    "ProvideAsuContents.inputData.HKLIN.fileContent",
+    "matthewsCoeff",
+    { molWt: molWeight?.data?.result },
+    [molWeight?.data?.result, HKLINDigest],
+    !!(molWeight?.data?.result && HKLINDigest)
   );
 
   /**

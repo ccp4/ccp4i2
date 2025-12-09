@@ -30,10 +30,15 @@ const DEFAULT_CONFIG: ApiFetchConfig = {
  *
  * - If URL starts with "http://" or "https://", return as-is (absolute URL)
  * - If URL starts with "/api/", return as-is (already prefixed)
- * - Otherwise, prepend "/api/proxy/" and ensure trailing slash
+ * - Otherwise, prepend "/api/proxy/"
+ *
+ * NOTE: Trailing slashes are NOT added here. The proxy route (route.ts) handles
+ * adding trailing slashes when forwarding to Django. This avoids 308 redirects
+ * from Next.js when trailingSlash config doesn't match the URL.
  *
  * @example
- * normalizeApiUrl("jobs/123/digest") => "/api/proxy/jobs/123/digest/"
+ * normalizeApiUrl("jobs/123/digest") => "/api/proxy/jobs/123/digest"
+ * normalizeApiUrl("jobs/123/digest?foo=bar") => "/api/proxy/jobs/123/digest?foo=bar"
  * normalizeApiUrl("/api/proxy/jobs/123") => "/api/proxy/jobs/123"
  * normalizeApiUrl("/api/config") => "/api/config"
  * normalizeApiUrl("https://example.com/data") => "https://example.com/data"
@@ -52,13 +57,7 @@ function normalizeApiUrl(url: string): string {
   // Strip leading slash if present for consistency
   const endpoint = url.startsWith("/") ? url.slice(1) : url;
 
-  // Build the API URL with trailing slash
-  let apiUrl = `/api/proxy/${endpoint}`;
-  if (!apiUrl.endsWith("/")) {
-    apiUrl += "/";
-  }
-
-  return apiUrl;
+  return `/api/proxy/${endpoint}`;
 }
 
 /**

@@ -32,7 +32,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
   // Get task items for file handling and parameter updates
   const { value: ATOM_TYPEValue } = useTaskItem("ATOM_TYPE");
-  const { item: F_SIGFanomItem } = useTaskItem("F_SIGFanom");
+  const { item: F_SIGFanomItem, value: F_SIGFanomValue } = useTaskItem("F_SIGFanom");
   const { updateNoMutate: updateWAVELENGTH } = useTaskItem("WAVELENGTH");
   const { updateNoMutate: updateSHELXCDE } = useTaskItem("SHELXCDE");
   const { updateNoMutate: updateUSE_COMB } = useTaskItem("USE_COMB");
@@ -50,8 +50,10 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     [useTaskItem]
   );
 
-  // File digest for wavelength extraction
-  const { data: F_SIGFanomDigest } = useFileDigest(F_SIGFanomItem?._objectPath);
+  // File digest for wavelength extraction - only fetch when file has been uploaded
+  const hasF_SIGFanom = Boolean(F_SIGFanomValue?.dbFileId);
+  const f_sigfanomDigestPath = hasF_SIGFanom && F_SIGFanomItem?._objectPath ? F_SIGFanomItem._objectPath : "";
+  const { data: F_SIGFanomDigest } = useFileDigest(f_sigfanomDigestPath);
 
   // Wavelength extraction handler for F_SIGFanom onChange
   const handleF_SIGFanomChange = useCallback(async () => {

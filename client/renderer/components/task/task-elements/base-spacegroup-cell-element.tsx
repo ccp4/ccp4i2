@@ -1,5 +1,4 @@
 import {
-  Grid2,
   Stack,
   Table,
   TableBody,
@@ -20,10 +19,20 @@ interface CResolutionRange {
   low: number;
   high: number;
 }
+
+/**
+ * Digest data from MTZ/reflection files.
+ * Supports both formats:
+ * - Legacy: resolutionRange.low / resolutionRange.high
+ * - Current: lowRes / highRes (from digest API)
+ */
 interface CObsData {
   cell?: CCell;
   spaceGroup?: string;
   resolutionRange?: CResolutionRange;
+  // Alternative resolution format from digest API
+  lowRes?: number;
+  highRes?: number;
 }
 
 interface BaseSpacegroupCellElementProps {
@@ -76,14 +85,18 @@ export const BaseSpacegroupCellElement: React.FC<
           <TableRow>
             <TableCell variant="head">Resolution</TableCell>
             <TableCell variant="body" key="low">
-              {props.data?.resolutionRange?.low?.toPrecision
-                ? props.data.resolutionRange.low.toPrecision(4)
-                : "?"}
+              {(() => {
+                // Support both formats: resolutionRange.low (legacy) and lowRes (digest API)
+                const low = props.data?.resolutionRange?.low ?? props.data?.lowRes;
+                return typeof low === "number" ? low.toPrecision(4) : "?";
+              })()}
             </TableCell>
             <TableCell variant="body" key="high">
-              {props.data?.resolutionRange?.high?.toPrecision
-                ? props.data.resolutionRange.high.toPrecision(4)
-                : "?"}
+              {(() => {
+                // Support both formats: resolutionRange.high (legacy) and highRes (digest API)
+                const high = props.data?.resolutionRange?.high ?? props.data?.highRes;
+                return typeof high === "number" ? high.toPrecision(4) : "?";
+              })()}
             </TableCell>
           </TableRow>
         </TableBody>

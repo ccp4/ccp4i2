@@ -22,12 +22,13 @@ export const CMiniMtzDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   const { job, itemName, onChange, visibility } = props;
   const { useTaskItem, useFileDigest, uploadFileParam, container } = useJob(job.id);
   const { mutateJobs, mutateFiles } = useProject(job.project);
-  const { item } = useTaskItem(itemName);
+  const { item, value } = useTaskItem(itemName);
   const { cootModule } = useCCP4i2Window();
 
-  const { data: fileDigest, mutate: mutateDigest } = useFileDigest(
-    item?._objectPath || ""
-  );
+  // Only fetch digest when a file has been uploaded (has dbFileId)
+  const hasFile = Boolean(value?.dbFileId);
+  const digestPath = hasFile && item?._objectPath ? item._objectPath : "";
+  const { data: fileDigest, mutate: mutateDigest } = useFileDigest(digestPath);
 
   const infoContent = useMemo(
     () => <BaseSpacegroupCellElement data={fileDigest} />,

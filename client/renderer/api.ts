@@ -1,4 +1,4 @@
-import useSWR, { SWRConfiguration } from "swr";
+import useSWR, { SWRConfiguration, SWRResponse } from "swr";
 import $ from "jquery";
 import { prettifyXml } from "./utils";
 import {
@@ -9,6 +9,16 @@ import {
   apiPatch,
   apiDelete,
 } from "./api-fetch";
+
+// =============================================================================
+// Constants
+// =============================================================================
+
+/** Standard polling interval for active jobs/dialogs */
+export const POLL_INTERVAL = {
+  ACTIVE: 5000,
+  DISABLED: 0,
+} as const;
 
 // =============================================================================
 // Types
@@ -359,6 +369,86 @@ export function useApi() {
         ? `files/${djangoFile.dbFileId}/download_by_uuid`
         : null;
       return useSWR<string>(swrKey, apiText);
+    },
+
+    // =========================================================================
+    // Specialized hooks for common patterns (replaces direct useSWR calls)
+    // =========================================================================
+
+    /**
+     * Fetch job report XML with optional polling.
+     * Handles both wrapped {success, data: {xml}} and direct {xml} response formats.
+     *
+     * @param jobId - Job ID to fetch report for (null to skip)
+     * @param shouldPoll - Whether to enable polling (e.g., when job is active)
+     */
+    jobReportXml(jobId: number | null | undefined, shouldPoll: boolean = false): SWRResponse<any> {
+      const swrKey = jobId ? `jobs/${jobId}/report_xml` : null;
+      return useSWR<any>(
+        getStringKey(swrKey),
+        jsonFetcher,
+        { refreshInterval: shouldPoll ? POLL_INTERVAL.ACTIVE : POLL_INTERVAL.DISABLED }
+      );
+    },
+
+    /**
+     * Fetch project directory with optional polling.
+     *
+     * @param projectId - Project ID to fetch directory for (null to skip)
+     * @param shouldPoll - Whether to enable polling (e.g., when dialog is open)
+     */
+    projectDirectory(projectId: number | null | undefined, shouldPoll: boolean = false): SWRResponse<any> {
+      const swrKey = projectId ? `projects/${projectId}/directory` : null;
+      return useSWR<any>(
+        getStringKey(swrKey),
+        jsonFetcher,
+        { refreshInterval: shouldPoll ? POLL_INTERVAL.ACTIVE : POLL_INTERVAL.DISABLED }
+      );
+    },
+
+    /**
+     * Fetch a file by ID.
+     *
+     * @param fileId - File ID to fetch (null to skip)
+     */
+    file<T>(fileId: number | string | null | undefined): SWRResponse<T> {
+      const swrKey = fileId ? `files/${fileId}` : null;
+      return useSWR<T>(getStringKey(swrKey), jsonFetcher);
+    },
+
+    /**
+     * Call an object method on a job with SWR caching.
+     * Uses array keys for proper cache invalidation based on dependencies.
+     *
+     * @param jobId - Job ID
+     * @param objectPath - Object path for the method call
+     * @param methodName - Method name to call
+     * @param kwargs - Optional keyword arguments for the method
+     * @param deps - Optional dependencies that invalidate the cache when changed
+     * @param enabled - Whether to enable fetching (for conditional fetches)
+     */
+    objectMethod<T>(
+      jobId: number | null | undefined,
+      objectPath: string,
+      methodName: string,
+      kwargs: Record<string, any> = {},
+      deps: any[] = [],
+      enabled: boolean = true
+    ): SWRResponse<T> {
+      // Build a cache key that includes all dependencies
+      const swrKey = enabled && jobId
+        ? [`jobs/${jobId}/object_method`, methodName, ...deps]
+        : null;
+
+      const fetcher = async ([url]: [string]) => {
+        return apiPost<T>(url, {
+          object_path: objectPath,
+          method_name: methodName,
+          kwargs,
+        });
+      };
+
+      return useSWR<T>(swrKey, fetcher, { keepPreviousData: true });
     },
   };
 }

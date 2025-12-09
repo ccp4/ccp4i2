@@ -11,10 +11,9 @@ import ToolBar from "../components/tool-bar";
 import { JobCommentEditor } from "../components/job-comment-editor";
 import { JobMenu } from "../providers/job-context-menu";
 import { JobDirectoryView } from "../components/job-directory-view";
-import useSWR from "swr";
+import { useApi } from "../api";
 import $ from "jquery";
 import Diagnostic from "../components/diagnostic";
-import { swrFetcher } from "../api-fetch";
 import { JobLogViewer } from "../components/job-log-viewer";
 import { TaskProvider } from "../providers/task-provider";
 import { ValidationViewer } from "../components/validation-viewer";
@@ -29,6 +28,7 @@ export interface JobViewProps {
 export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
   const { devMode, jobId, setJobId, projectId, setProjectId } =
     useCCP4i2Window();
+  const api = useApi();
 
   // Get project and jobs list first (from job_tree - always up to date)
   const { project, jobs, mutateJobs } = useProject(projectId || 0);
@@ -71,13 +71,9 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
   const previousJob = usePrevious(job);
   const { jobTabValue: tabValue, setJobTabValue: setTabValue } = useJobTab();
 
-  // This SWR is for the raw XML editor view (tabValue == 2)
+  // This is for the raw XML editor view (tabValue == 2)
   // Uses same key as CCP4i2ReportXMLView so SWR deduplicates - keep polling logic consistent
-  const { data: report_xml_json } = useSWR<any>(
-    job ? `/api/proxy/jobs/${job.id}/report_xml/` : null,
-    swrFetcher,
-    { refreshInterval: isJobActive ? 5000 : 0 }
-  );
+  const { data: report_xml_json } = api.jobReportXml(job?.id, isJobActive);
 
   const report_xml: XMLDocument | null = useMemo(() => {
     if (!report_xml_json) return null;

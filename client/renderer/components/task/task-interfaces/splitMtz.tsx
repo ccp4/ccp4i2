@@ -828,21 +828,23 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const [customDialogOpen, setCustomDialogOpen] = useState(false);
   const [customGroups, setCustomGroups] = useState<ColumnGroup[]>([]);
 
-  // Extract file UUID for display purposes
-  const fileUuid = useMemo(() => {
+  // Extract file UUID for display purposes and digest guard
+  const hklinValue = useMemo(() => {
     if (!hklinItem) return null;
-    const value = valueOfItem(hklinItem);
-    return value?.dbFileId || null;
+    return valueOfItem(hklinItem);
   }, [hklinItem]);
 
-  // Use SWR-based digest hook - automatically fetches when objectPath is available
-  const hklinObjectPath = hklinItem?._objectPath || null;
+  const fileUuid = hklinValue?.dbFileId || null;
+
+  // Only fetch digest when a file has been uploaded (has dbFileId)
+  const hasFile = Boolean(fileUuid);
+  const digestPath = hasFile ? `splitMtz.inputData.HKLIN` : "";
   const {
     data: digest,
     error: digestError,
     isLoading: loading,
     mutate: mutateDigest,
-  } = useFileDigest(hklinObjectPath ? `splitMtz.inputData.HKLIN` : "");
+  } = useFileDigest(digestPath);
 
   // Get raw columns from digest for custom group builder
   const availableColumns = useMemo(() => {
