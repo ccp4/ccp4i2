@@ -34,13 +34,13 @@ class TestShelxAPI(APITestBase):
         )
         self.upload_file("inputData.SEQIN", gamma_asu_xml)
 
-        # Set phasing parameters
-        self.set_param("controlParameters.ATOM_TYPE", "Xe")
-        self.set_param("controlParameters.NUMBER_SUBSTRUCTURE", 2)
-        self.set_param("controlParameters.WAVELENGTH", 1.54179)
-        self.set_param("controlParameters.FPRIME", -0.79)
-        self.set_param("controlParameters.FDPRIME", 7.36)
-        self.set_param("controlParameters.END_PIPELINE", "substrdet")
+        # Set phasing parameters (these are in inputData for shelx)
+        self.set_param("inputData.ATOM_TYPE", "Xe")
+        self.set_param("inputData.NUMBER_SUBSTRUCTURE", 2)
+        self.set_param("inputData.WAVELENGTH", 1.54179)
+        self.set_param("inputData.FPRIME", -0.79)
+        self.set_param("inputData.FDPRIME", 7.36)
+        self.set_param("inputData.END_PIPELINE", "substrdet")
 
         self.run_and_wait()
 
@@ -58,11 +58,11 @@ class TestShelxAPI(APITestBase):
         )
         self.upload_file("inputData.SEQIN", gamma_asu_xml)
 
-        self.set_param("controlParameters.ATOM_TYPE", "Xe")
-        self.set_param("controlParameters.NUMBER_SUBSTRUCTURE", 2)
-        self.set_param("controlParameters.WAVELENGTH", 1.54179)
-        self.set_param("controlParameters.FPRIME", -0.79)
-        self.set_param("controlParameters.FDPRIME", 7.36)
+        self.set_param("inputData.ATOM_TYPE", "Xe")
+        self.set_param("inputData.NUMBER_SUBSTRUCTURE", 2)
+        self.set_param("inputData.WAVELENGTH", 1.54179)
+        self.set_param("inputData.FPRIME", -0.79)
+        self.set_param("inputData.FDPRIME", 7.36)
 
         self.run_and_wait()
 
@@ -101,13 +101,13 @@ class TestShelxAPI(APITestBase):
         )
         self.upload_file("inputData.SEQIN", gamma_asu_xml)
 
-        self.set_param("controlParameters.NATIVE", True)
-        self.set_param("controlParameters.EXPTYPE", "SIRAS")
-        self.set_param("controlParameters.ATOM_TYPE", "Xe")
-        self.set_param("controlParameters.NUMBER_SUBSTRUCTURE", 2)
-        self.set_param("controlParameters.WAVELENGTH", 1.54179)
-        self.set_param("controlParameters.FPRIME", -0.79)
-        self.set_param("controlParameters.FDPRIME", 7.36)
+        self.set_param("inputData.NATIVE", True)
+        self.set_param("inputData.EXPTYPE", "SIRAS")
+        self.set_param("inputData.ATOM_TYPE", "Xe")
+        self.set_param("inputData.NUMBER_SUBSTRUCTURE", 2)
+        self.set_param("inputData.WAVELENGTH", 1.54179)
+        self.set_param("inputData.FPRIME", -0.79)
+        self.set_param("inputData.FDPRIME", 7.36)
 
         self.run_and_wait()
 
@@ -139,12 +139,12 @@ class TestCrank2API(APITestBase):
         )
         self.upload_file("inputData.SEQIN", gamma_asu_xml)
 
-        self.set_param("controlParameters.NUMBER_SUBSTRUCTURE", 2)
-        self.set_param("controlParameters.ATOM_TYPE", "Xe")
-        self.set_param("controlParameters.FPRIME", -0.79)
-        self.set_param("controlParameters.FDPRIME", 7.36)
-        self.set_param("controlParameters.WAVELENGTH", 1.54179)
-        self.set_param("controlParameters.END_PIPELINE", "dmfull")
+        self.set_param("inputData.NUMBER_SUBSTRUCTURE", 2)
+        self.set_param("inputData.ATOM_TYPE", "Xe")
+        self.set_param("inputData.FPRIME", -0.79)
+        self.set_param("inputData.FDPRIME", 7.36)
+        self.set_param("inputData.WAVELENGTH", 1.54179)
+        self.set_param("inputData.END_PIPELINE", "dmfull")
 
         self.run_and_wait()
 
