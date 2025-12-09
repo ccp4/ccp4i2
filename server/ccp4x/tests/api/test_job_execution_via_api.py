@@ -24,7 +24,7 @@ from ...db.import_i2xml import import_ccp4_project_zip
 from ...db import models
 
 # Import demoData utility - same pattern as i2run tests
-from tests.i2run.utils import demoData
+from ccp4i2.tests.i2run.utils import demoData
 
 logger = logging.getLogger(f"ccp4x::{__name__}")
 
