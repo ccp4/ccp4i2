@@ -14,7 +14,6 @@ import os
 import sys
 import gc
 from pathlib import Path
-from shutil import rmtree
 
 import pytest
 import django
@@ -178,13 +177,11 @@ def isolated_test_db(request, django_db_blocker, monkeypatch, test_project_path)
     # Place SQLite database inside the project directory
     test_db_path = test_project_dir / "project.sqlite"
 
-    # Close any existing connections to ensure clean slate
-    connections.close_all()
-
     # Store original database configuration
     original_db_settings = settings.DATABASES['default'].copy()
 
     # Update database configuration for this test
+    # IMPORTANT: Update settings BEFORE closing connections so Django reconnects to new path
     monkeypatch.setitem(settings.DATABASES['default'], 'NAME', str(test_db_path))
 
     # Set environment variables for subprocesses
@@ -194,10 +191,35 @@ def isolated_test_db(request, django_db_blocker, monkeypatch, test_project_path)
     # Also update Django settings directly (env var may not be picked up after startup)
     monkeypatch.setattr(settings, 'CCP4I2_PROJECTS_DIR', test_project_dir)
 
+    # Force Django to use the new database by reconfiguring the connection
+    # First, close all existing connections
+    connections.close_all()
+
+    # Reset the connection handler to force it to re-read settings
+    # This is more aggressive than close_all() which just closes the connection
+    # but keeps the DatabaseWrapper object with its cached settings_dict
+    connections._databases = settings.DATABASES
+
+    # Also update the default connection's settings_dict directly
+    # Django caches this when the connection is first created
+    if hasattr(connections._connections, 'default'):
+        del connections._connections.default
+
     # Unblock database access for migrations
     with django_db_blocker.unblock():
-        # Create and migrate the test database
-        call_command('migrate', '--run-syncdb', verbosity=0)
+        # Ensure the database file exists and is ready
+        test_db_path.touch()
+
+        # Create and migrate the test database using explicit database option
+        call_command('migrate', '--run-syncdb', '--database=default', verbosity=0)
+
+        # Verify tables were created
+        from django.db import connection
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='ccp4x_job';")
+            result = cursor.fetchone()
+            if not result:
+                raise RuntimeError(f"Migration failed - ccp4x_job table not created in {test_db_path}")
 
     # Run the test
     yield
