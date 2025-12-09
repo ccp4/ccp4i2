@@ -230,7 +230,7 @@ class PhaseDataConverter:
             sys.path.insert(0, ccp4i2_root)
 
         try:
-            from wrappers.chltofom.script import chltofom
+            from ccp4i2.wrappers.chltofom.script import chltofom
         except ImportError as e:
             raise CException(
                 PhaseDataConverter, 4,

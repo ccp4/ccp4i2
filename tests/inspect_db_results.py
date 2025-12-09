@@ -250,7 +250,7 @@ async def main():
     )
 
     # Create and run plugin
-    from wrappers.ctruncate.script.ctruncate import ctruncate
+    from ccp4i2.wrappers.ctruncate.script.ctruncate import ctruncate
 
     plugin = ctruncate(name='test_ctruncate', parent=None)
 

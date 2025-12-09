@@ -3,18 +3,18 @@ import sys
 import copy
 import json
 from report.CCP4ReportParser import *
-from wrappers.refmac_i2.script.refmac_report import refmac_report
+from ccp4i2.wrappers.refmac_i2.script.refmac_report import refmac_report
 #from lxml import etree
 import xml.etree.ElementTree as etree
-from wrappers.sheetbend.script.sheetbend_report import sheetbend_report
-from wrappers.pointless.script import pointless_report
-from wrappers.aimless.script import aimless_report
-from wrappers.ctruncate.script import ctruncate_report
-from wrappers.phaser_analysis.script import phaser_analysis_report
+from ccp4i2.wrappers.sheetbend.script.sheetbend_report import sheetbend_report
+from ccp4i2.wrappers.pointless.script import pointless_report
+from ccp4i2.wrappers.aimless.script import aimless_report
+from ccp4i2.wrappers.ctruncate.script import ctruncate_report
+from ccp4i2.wrappers.phaser_analysis.script import phaser_analysis_report
 from pipelines.aimless_pipe.script.aimless_pipe_utils import *
 from pipelines.buccaneer_build_refine_mr.script import buccaneer_build_refine_mr_report
 from pipelines.aimless_pipe.script import aimless_pipe_report
-from wrappers.modelcraft.script import modelcraft_report
+from ccp4i2.wrappers.modelcraft.script import modelcraft_report
 
 class MyRefmacReport(refmac_report):
     def addSummary(self, xmlnode=None, parent=None, withTables=True):

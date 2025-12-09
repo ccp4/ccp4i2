@@ -5,7 +5,7 @@ import sys
 #from lxml import etree
 import xml.etree.ElementTree as etree
 import math
-from wrappers.acedrgNew.script.acedrgNew_report import acedrgNew_report
+from ccp4i2.wrappers.acedrgNew.script.acedrgNew_report import acedrgNew_report
 class lidiaAcedrgNew_report(Report):
     # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'LidiaAcedrgNew'

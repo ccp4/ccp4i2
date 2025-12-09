@@ -941,7 +941,7 @@ class aimless_pipe(CPluginScript):
               print('Cells not compatible', status)
               return status, freerReportXML
 
-      from wrappers.freerflag.script import freerflag
+      from ccp4i2.wrappers.freerflag.script import freerflag
       freerReportXML = None
       self.freerflag = self.makePluginObject('freerflag')
       self.freerflag.container.inputData.F_SIGF = self.container.outputData.HKLOUT[0]

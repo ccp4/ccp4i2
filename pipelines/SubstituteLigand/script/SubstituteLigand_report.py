@@ -26,12 +26,12 @@ class SubstituteLigand_report(Report):
             summaryFold = parent.addFold(label='Key reflection summary', brief='Reflections', initiallyOpen=True)
             pointlessNodes = self.xmlnode.findall('.//POINTLESS')
             if len(pointlessNodes) > 0:
-                from wrappers.pointless.script.pointless_report import pointless_report
+                from ccp4i2.wrappers.pointless.script.pointless_report import pointless_report
                 pointlessreport = pointless_report(pointlessNodes[-1])
                 pointlessreport.keyText(summaryFold)
             aimlessNodes = self.xmlnode.findall('.//AIMLESS')
             if len(aimlessNodes) > 0:
-                from wrappers.aimless.script.aimless_report import aimless_report
+                from ccp4i2.wrappers.aimless.script.aimless_report import aimless_report
                 aimlessreport = aimless_report(aimlessNodes[-1],jobNumber='0')
                 aimlessreport.keyText(None, parent=summaryFold)
     
@@ -56,7 +56,7 @@ class SubstituteLigand_report(Report):
     
         refmacNodes = self.xmlnode.findall('.//REFMAC')
         if len(refmacNodes) > 0:
-            from wrappers.refmac_i2.script.refmac_report import refmac_report
+            from ccp4i2.wrappers.refmac_i2.script.refmac_report import refmac_report
             refmac_report = refmac_report(xmlnode=refmacNodes[0], jobStatus='nooutput', jobInfo=self.jobInfo)
             refmac_report.addSummary(parent=self, withTables=False)
             objectMap = {}

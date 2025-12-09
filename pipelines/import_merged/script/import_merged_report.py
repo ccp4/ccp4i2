@@ -14,11 +14,11 @@ try:
   from aimless_pipe_utils import *
   import phaser_analysis_report
 except:
-  from wrappers.pointless.script import pointless_report
-  from wrappers.aimless.script import aimless_report
-  from wrappers.ctruncate.script import ctruncate_report
+  from ccp4i2.wrappers.pointless.script import pointless_report
+  from ccp4i2.wrappers.aimless.script import aimless_report
+  from ccp4i2.wrappers.ctruncate.script import ctruncate_report
   from pipelines.aimless_pipe.script.aimless_pipe_utils import *
-  from wrappers.phaser_analysis.script import phaser_analysis_report
+  from ccp4i2.wrappers.phaser_analysis.script import phaser_analysis_report
 
 class import_merged_report(Report):
   TASKNAME = 'import_merged'

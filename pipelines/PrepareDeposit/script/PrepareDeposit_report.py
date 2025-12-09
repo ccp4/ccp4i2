@@ -3,7 +3,7 @@ import sys
 #from lxml import etree
 import xml.etree.ElementTree as etree
 import math
-from wrappers.refmac_i2.script.refmac_report import refmac_report
+from ccp4i2.wrappers.refmac_i2.script.refmac_report import refmac_report
 class PrepareDeposit_report(Report):
     # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'PrepareDeposit'

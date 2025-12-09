@@ -1,8 +1,8 @@
 from report.CCP4ReportParser import *
 import sys
-from wrappers.refmac_i2.script.refmac_report import refmac_report
-from wrappers.csymmatch.script.csymmatch_report import csymmatch_report
-from wrappers.sheetbend.script.sheetbend_report import sheetbend_report
+from ccp4i2.wrappers.refmac_i2.script.refmac_report import refmac_report
+from ccp4i2.wrappers.csymmatch.script.csymmatch_report import csymmatch_report
+from ccp4i2.wrappers.sheetbend.script.sheetbend_report import sheetbend_report
 
 class phaser_pipeline_report(Report):
     # Specify which gui task and/or pluginscript this applies to

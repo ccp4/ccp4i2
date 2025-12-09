@@ -10,7 +10,7 @@ os.environ['CCP4I2_ROOT'] = '/Users/nmemn/Developer/ccp4i2'
 sys.path.insert(0, '/Users/nmemn/Developer/ccp4i2')
 
 # Import mt zdump plugin
-from wrappers.mtzdump.script.mtzdump import mtzdump
+from ccp4i2.wrappers.mtzdump.script.mtzdump import mtzdump
 
 def test_template_expansion():
     """Test if template expansion works for mtzdump."""

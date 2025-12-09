@@ -26,7 +26,7 @@ from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core import CCP4Utils
 import os,sys,shutil,re
 import traceback
-from wrappers.modelASUCheck.script.modelASUCheck import sequenceAlignment
+from ccp4i2.wrappers.modelASUCheck.script.modelASUCheck import sequenceAlignment
 
 
 class prosmart_refmac(CPluginScript):
@@ -311,7 +311,7 @@ class prosmart_refmac(CPluginScript):
         if statusDict['finishStatus'] == CPluginScript.UNSATISFACTORY:
             import os
             if os.path.isfile(self.firstRefmac.container.outputData.LIBOUT.__str__()):
-                from wrappers.acedrg.script import acedrg
+                from ccp4i2.wrappers.acedrg.script import acedrg
                 try:
                     rdkitMol = acedrg.molFromDict(self.firstRefmac.container.outputData.LIBOUT.__str__())
                     from rdkit import Chem

@@ -3,7 +3,7 @@ import json
 import os
 import xml.etree.ElementTree as etree
 from report.CCP4ReportParser import Report
-from wrappers.modelcraft.script.modelcraft_report import modelcraft_report
+from ccp4i2.wrappers.modelcraft.script.modelcraft_report import modelcraft_report
 
 
 class phaser_EP_report(Report):
@@ -42,7 +42,7 @@ class phaser_EP_report(Report):
         if parent is None: parent = self
         if len(self.xmlnode.findall('ShelxCD'))>0:
             shelxNode = self.xmlnode.findall('ShelxCD')[0]
-            from wrappers.ShelxCDE.script.ShelxCD_report import ShelxCD_report
+            from ccp4i2.wrappers.ShelxCDE.script.ShelxCD_report import ShelxCD_report
             shelx_report = ShelxCD_report (xmlnode=shelxNode, jobStatus='nooutput')
             self.addDiv(style='clear:both;')
             if len(shelxNode.findall('.//Shelxd'))>0:
@@ -64,7 +64,7 @@ class phaser_EP_report(Report):
 
         if len(self.xmlnode.findall('.//original/ParrotResult'))>0:
             parrotOriginalHandNode = self.xmlnode.findall('.//original/ParrotResult')[0]
-            from wrappers.parrot.script.parrot_report import parrot_report
+            from ccp4i2.wrappers.parrot.script.parrot_report import parrot_report
             parrotOriginalNode = etree.fromstring(etree.tostring(parrotOriginalHandNode))
             parrot_original_report = parrot_report(xmlnode=parrotOriginalNode, jobStatus='nooutput')
             parrot_original_hand = parent.addFold(label='Density modification: Original hand', initiallyOpen=False)
@@ -72,7 +72,7 @@ class phaser_EP_report(Report):
             parrot_original_hand.addDiv(style="clear:both;")
         if len(self.xmlnode.findall('.//inverted/ParrotResult'))>0:
             parrotInvertedHandNode = self.xmlnode.findall('.//inverted/ParrotResult')[0]
-            from wrappers.parrot.script.parrot_report import parrot_report
+            from ccp4i2.wrappers.parrot.script.parrot_report import parrot_report
             parrotInvertedNode = etree.fromstring(etree.tostring(parrotInvertedHandNode))
             parrot_inverted_report = parrot_report(xmlnode=parrotInvertedNode, jobStatus='nooutput')
             parrot_inverted_hand = parent.addFold(label='Density modification: Inverted hand', initiallyOpen=False)

@@ -253,7 +253,7 @@ class servalcat_pipe(CPluginScript):
                 stPath = None
                 keep_links = True
             print("Converting MetalCoord analyses from JSON files to restraints")
-            from wrappers.metalCoord.script import json2restraints
+            from ccp4i2.wrappers.metalCoord.script import json2restraints
             json2restraints.main(
                 jsonPaths=self.metalCoordOutputJsonPaths,
                 stPath=stPath,

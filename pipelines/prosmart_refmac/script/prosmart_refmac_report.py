@@ -5,9 +5,9 @@ import sys
 import xml.etree.ElementTree as etree
 from report.CCP4ReportParser import *
 
-from wrappers.refmac_i2.script import refmac_report
-from wrappers.validate_protein.script import validate_protein_report
-from wrappers.modelASUCheck.script import modelASUCheck_report
+from ccp4i2.wrappers.refmac_i2.script import refmac_report
+from ccp4i2.wrappers.validate_protein.script import validate_protein_report
+from ccp4i2.wrappers.modelASUCheck.script import modelASUCheck_report
 
 class prosmart_refmac_report(Report):
     # Specify which gui task and/or pluginscript this applies to

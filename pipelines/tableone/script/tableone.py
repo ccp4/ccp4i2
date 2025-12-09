@@ -10,7 +10,7 @@ from ccp4i2.core import CCP4XtalData
 from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core import CCP4Utils
 import clipper
-from wrappers.validate_protein.script import validate_protein
+from ccp4i2.wrappers.validate_protein.script import validate_protein
 from iotbx import mtz
 import ccp4mg
 import mmdb2

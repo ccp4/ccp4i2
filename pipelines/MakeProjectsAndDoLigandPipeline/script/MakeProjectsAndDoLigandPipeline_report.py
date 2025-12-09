@@ -52,7 +52,7 @@ class MakeProjectsAndDoLigandPipeline_report(Report):
                     projectName = datasetNode.findall("ProjectName/text()")[-1]
                     smilesString = datasetNode.findall("SMILES/text()")[-1]
                     svgFilename = os.path.join(self.jobInfo['fileroot'], projectName+".svg")
-                    from wrappers.acedrg.script import acedrg
+                    from ccp4i2.wrappers.acedrg.script import acedrg
                     mol = Chem.MolFromSmiles(smilesString)
                     confId2D = AllChem.Compute2DCoords(mol)
                     svgStructure = acedrg.svgFromMol(mol)

@@ -4,8 +4,8 @@ from xml.etree import ElementTree as ET
 from report.CCP4ReportParser import *
 from report import CCP4ReportGenerator
 
-from wrappers.servalcat.script import servalcat_report
-from wrappers.validate_protein.script import validate_protein_report
+from ccp4i2.wrappers.servalcat.script import servalcat_report
+from ccp4i2.wrappers.validate_protein.script import validate_protein_report
 import base64
 import json
 
