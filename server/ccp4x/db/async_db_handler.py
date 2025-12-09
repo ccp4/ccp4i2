@@ -17,8 +17,6 @@ from django.db import transaction
 from django.utils import timezone
 
 from core.CCP4PluginScript import CPluginScript
-# DISABLED: Old ccp4i2 import
-# from ccp4i2.dbapi import CCP4DbApi
 
 # Import using Django's registered app name to avoid app registry errors
 from ccp4x.db import models

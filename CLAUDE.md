@@ -6,7 +6,6 @@ CCP4i2 provides an environment for crystallographic computing. This branch (ccp4
 
 ### Backend
 - **Django REST API** (`server/`) - Database interactions via ORM, REST API with Django REST Framework
-- **Persistence Layer** (`dbapi/`) - Environment-aware compatibility layer (Django ORM or legacy QtSql)
 - **Core Modules** (`core/`) - Business logic, data containers, task management
 
 ### Frontend
@@ -26,7 +25,6 @@ CCP4i2 provides an environment for crystallographic computing. This branch (ccp4
 | `client/` | Electron/React frontend |
 | `core/` | Core Python modules and business logic |
 | `cli/` | Command-line tools (i2run, utilities) |
-| `dbapi/` | Database API compatibility layer |
 | `wrappers/` | Task wrappers for crystallographic programs |
 | `wrappers2/` | Additional task wrappers |
 | `pipelines/` | Multi-step crystallographic pipelines |
