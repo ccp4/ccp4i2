@@ -361,7 +361,7 @@ class phaser_mr(CPluginScript):
         import smartie
         logfile = smartie.parselog(self.makeFileName( 'LOG' ))
         
-        from pimple.logtable import CCP4LogToEtree
+        from ccp4i2.pimple.logtable import CCP4LogToEtree
         import string
         import sys
         #Collect a list of graphs of different types

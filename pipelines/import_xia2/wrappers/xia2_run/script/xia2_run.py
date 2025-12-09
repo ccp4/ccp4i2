@@ -245,7 +245,7 @@ class xia2_run(CCP4PluginScript.CPluginScript):
         sys.path.append(smartiePath)
         import smartie
                        
-      from pimple.logtable import CCP4LogToEtree
+      from ccp4i2.pimple.logtable import CCP4LogToEtree
       logfile = smartie.parselog(logFiles[0])
       for smartieTable in logfile.tables():
         if smartieTable.ngraphs() > 0:

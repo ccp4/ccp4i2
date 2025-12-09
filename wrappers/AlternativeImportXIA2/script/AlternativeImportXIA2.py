@@ -161,7 +161,7 @@ class AlternativeImportXIA2(CPluginScript):
         return pointlessEtree
                 
     def xmlForSmartieTable(self, table, parent):
-        from pimple.logtable import CCP4LogToEtree
+        from ccp4i2.pimple.logtable import CCP4LogToEtree
         tableetree = CCP4LogToEtree(table.rawtable())
         parent.append(tableetree)
         return tableetree

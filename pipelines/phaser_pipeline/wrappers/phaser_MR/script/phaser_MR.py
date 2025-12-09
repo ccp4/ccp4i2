@@ -44,7 +44,7 @@ class CallbackObject(object):
     def loggraph(self, arg1, arg2):
         #print '\n**loggraph called',arg1
         try:
-            from pimple.logtable import CCP4LogToEtree
+            from ccp4i2.pimple.logtable import CCP4LogToEtree
             tableelement = CCP4LogToEtree(arg2)
             self.xmlroot.append(tableelement)
         except:
