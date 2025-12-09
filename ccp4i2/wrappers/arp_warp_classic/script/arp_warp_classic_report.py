@@ -1,5 +1,5 @@
 
-from report.CCP4RvapiParser import RvapiReport
+from ccp4i2.report.CCP4RvapiParser import RvapiReport
 
 class arp_warp_classic_report(RvapiReport):
   TASKNAME = 'arp_warp_classic'

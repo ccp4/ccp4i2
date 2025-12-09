@@ -1,4 +1,4 @@
-from report.CCP4ReportParser import *
+from ccp4i2.report.CCP4ReportParser import *
 import sys
 import math
 from ccp4i2.pipelines.pisapipe.wrappers.pisa_xml.script.pisa_xml_report import pisa_xml_report

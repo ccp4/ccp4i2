@@ -2,7 +2,7 @@ import copy
 import json
 import os
 import xml.etree.ElementTree as etree
-from report.CCP4ReportParser import Report
+from ccp4i2.report.CCP4ReportParser import Report
 from ccp4i2.wrappers.modelcraft.script.modelcraft_report import modelcraft_report
 
 

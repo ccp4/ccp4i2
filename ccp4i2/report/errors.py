@@ -6,7 +6,7 @@ reporting errors and diagnostics during report generation. Diagnostics
 flow through to the frontend for clean user-facing error messages.
 
 Usage:
-    from report.errors import DiagnosticCollector, ReportDiagnostic
+    from ccp4i2.report.errors import DiagnosticCollector, ReportDiagnostic
 
     collector = DiagnosticCollector()
     collector.warning("TABLE_EMPTY", "Table has no data rows")

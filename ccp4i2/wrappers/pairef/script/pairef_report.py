@@ -1,6 +1,6 @@
 import os
 
-from report.CCP4ReportParser import *
+from ccp4i2.report.CCP4ReportParser import *
 
 class pairef_report(Report):
 

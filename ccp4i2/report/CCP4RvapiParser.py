@@ -19,7 +19,7 @@ Version history:
 import os, re
 #from lxml import etree as ET
 import xml.etree.ElementTree as ET
-from report.CCP4ReportParser import Report,CCP4NS,PARSER
+from ccp4i2.report.CCP4ReportParser import Report,CCP4NS,PARSER
 
 class RvapiReport(Report):
   MAINTAINER    = 'andrey.lebedev@stfc.ac.uk'

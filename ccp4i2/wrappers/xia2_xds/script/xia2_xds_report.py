@@ -6,7 +6,7 @@
 #
 
 import os
-from report.CCP4ReportParser import Report
+from ccp4i2.report.CCP4ReportParser import Report
 import json
 
 from ccp4i2.wrappers.xia2_dials.script import xia2_dials_report

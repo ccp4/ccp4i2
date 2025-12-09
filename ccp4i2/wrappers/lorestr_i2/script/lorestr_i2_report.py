@@ -16,7 +16,7 @@
     GNU Lesser General Public License for more details.
     """
 
-from report.CCP4ReportParser import Report
+from ccp4i2.report.CCP4ReportParser import Report
 import sys
 from ccp4i2.wrappers.validate_protein.script import validate_protein_report
 

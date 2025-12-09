@@ -115,7 +115,7 @@ class adding_stats_to_mmcif_i2_gui(CTaskWidget):
             self.container.inputData.DICT_LIST.remove(
                 self.container.inputData.DICT_LIST[-1])
 
-        from report.CCP4ReportGenerator import getReportJobInfo
+        from ccp4i2.report.CCP4ReportGenerator import getReportJobInfo
         # print getReportJobInfo(jobId=jobId)
 
         paramsContainer = PROJECTSMANAGER().db().getParamsContainer(jobId=jobId)

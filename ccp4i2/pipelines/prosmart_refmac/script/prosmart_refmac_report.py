@@ -3,7 +3,7 @@ from __future__ import print_function
 import sys
 #from lxml import etree
 import xml.etree.ElementTree as etree
-from report.CCP4ReportParser import *
+from ccp4i2.report.CCP4ReportParser import *
 
 from ccp4i2.wrappers.refmac_i2.script import refmac_report
 from ccp4i2.wrappers.validate_protein.script import validate_protein_report

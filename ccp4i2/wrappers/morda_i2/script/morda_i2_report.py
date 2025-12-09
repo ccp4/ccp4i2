@@ -1,5 +1,5 @@
 
-from report.CCP4RvapiParser import RvapiReport
+from ccp4i2.report.CCP4RvapiParser import RvapiReport
 
 class morda_i2_report(RvapiReport):
   TASKNAME = 'morda_i2'

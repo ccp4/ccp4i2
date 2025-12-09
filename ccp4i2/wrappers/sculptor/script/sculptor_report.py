@@ -1,4 +1,4 @@
-from report.CCP4ReportParser import *
+from ccp4i2.report.CCP4ReportParser import *
 
 class sculptor_report(Report):
     TASKNAME = 'sculptor'

@@ -1,5 +1,5 @@
 
-from report.CCP4ReportParser import *
+from ccp4i2.report.CCP4ReportParser import *
 from ccp4i2.core import CCP4Utils
 import numpy
 import os

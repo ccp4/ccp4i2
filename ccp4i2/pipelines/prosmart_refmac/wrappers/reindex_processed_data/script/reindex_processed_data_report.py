@@ -1,6 +1,6 @@
 import sys
 from lxml import etree
-from report.CCP4ReportParser import *
+from ccp4i2.report.CCP4ReportParser import *
 
 class reindex_processed_data_report(Report):
     # Specify which gui task and/or pluginscript this applies to

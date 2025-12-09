@@ -1,4 +1,4 @@
-from report.CCP4ReportParser import *
+from ccp4i2.report.CCP4ReportParser import *
 import sys
 from ccp4i2.wrappers.refmac_i2.script.refmac_report import refmac_report
 from ccp4i2.wrappers.csymmatch.script.csymmatch_report import csymmatch_report

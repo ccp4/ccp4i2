@@ -1,11 +1,11 @@
-# from report.CCP4ReportParser import *
+# from ccp4i2.report.CCP4ReportParser import *
 
 # ## @package arcimboldo_report
 # # The initialisation method creates the whole report.
 # # Offers functionalised report components for use on
 # # pipeline reports.
 
-from report.CCP4ReportParser import *
+from ccp4i2.report.CCP4ReportParser import *
 
 class arcimboldo_report ( Report ) :
 	TASKNAME="arcimboldo"

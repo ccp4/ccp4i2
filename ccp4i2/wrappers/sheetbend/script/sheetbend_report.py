@@ -17,7 +17,7 @@
     """
 
 from __future__ import print_function
-from report.CCP4ReportParser import Report
+from ccp4i2.report.CCP4ReportParser import Report
 import sys
 
 class sheetbend_report(Report):

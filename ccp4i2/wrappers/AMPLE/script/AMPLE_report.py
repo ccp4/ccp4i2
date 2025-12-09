@@ -31,7 +31,7 @@ if __name__ == '__main__':
     sys.path.append(os.path.join(ccp4, 'lib', 'python2.7', 'site-packages'))
 
 from lxml import etree as ET
-from report.CCP4ReportParser import Report
+from ccp4i2.report.CCP4ReportParser import Report
 # from CCP4RvapiParser import RvapiReport
 
 from ample.util.ample_util import I2DIR

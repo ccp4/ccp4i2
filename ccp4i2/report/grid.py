@@ -6,7 +6,7 @@ report authors to create responsive, grid-based layouts. The grid system
 maps directly to MUI Grid2 components in the React frontend.
 
 Usage:
-    from report.grid import GridContainer, GridItem, GridSpan
+    from ccp4i2.report.grid import GridContainer, GridItem, GridSpan
 
     # Create a two-column layout
     grid = GridContainer(spacing=2)
@@ -44,7 +44,7 @@ from enum import Enum
 
 # Import from CCP4ReportParser to get all the addXxx methods (addDiv, addTable, etc.)
 # This ensures GridItem can be used as a drop-in container replacement
-from report.CCP4ReportParser import Container
+from ccp4i2.report.CCP4ReportParser import Container
 
 
 class GridDirection(Enum):

@@ -21,7 +21,7 @@ Error Handling:
     ReportErrorCodes - Standard error codes
 
 Example:
-    from report import Report, GridContainer, GridItem, GridSpan
+    from ccp4i2.report import Report, GridContainer, GridItem, GridSpan
 
     class MyReport(Report):
         TASKNAME = "mytask"
@@ -44,7 +44,7 @@ Example:
 """
 
 # Re-export main classes from CCP4ReportParser for backward compatibility
-from report.CCP4ReportParser import (
+from ccp4i2.report.CCP4ReportParser import (
     Report,
     Container,
     Fold,
@@ -79,14 +79,14 @@ from report.CCP4ReportParser import (
 )
 
 # New modern base classes
-from report.base import (
+from ccp4i2.report.base import (
     ReportElement,
     ReportContainer,
     ElementRegistry,
 )
 
 # Grid layout system
-from report.grid import (
+from ccp4i2.report.grid import (
     GridContainer,
     GridItem,
     GridRow,
@@ -102,7 +102,7 @@ from report.grid import (
 )
 
 # Error handling
-from report.errors import (
+from ccp4i2.report.errors import (
     DiagnosticCollector,
     ReportDiagnostic,
     DiagnosticLevel,

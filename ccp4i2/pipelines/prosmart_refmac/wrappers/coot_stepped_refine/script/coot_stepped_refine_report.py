@@ -1,5 +1,5 @@
 import sys
-from report.CCP4ReportParser import *
+from ccp4i2.report.CCP4ReportParser import *
 
 class coot_stepped_refine_report(Report):
     # Specify which gui task and/or pluginscript this applies to

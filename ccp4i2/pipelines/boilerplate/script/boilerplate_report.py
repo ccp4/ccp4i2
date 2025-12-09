@@ -18,7 +18,7 @@ from __future__ import print_function
     GNU Lesser General Public License for more details.
     """
 
-from report.CCP4ReportParser import Report
+from ccp4i2.report.CCP4ReportParser import Report
 import sys
 #from lxml import etree
 import xml.etree.ElementTree as etree

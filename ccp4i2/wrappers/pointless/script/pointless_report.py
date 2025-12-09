@@ -10,10 +10,10 @@ from __future__ import print_function
 
 import os,sys
 try:
-  from report.CCP4ReportParser import *
+  from ccp4i2.report.CCP4ReportParser import *
 except:
   exec(compile(open(os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc')).read(), os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc'), 'exec'))
-  from report.CCP4ReportParser import *
+  from ccp4i2.report.CCP4ReportParser import *
 
 from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import *
 

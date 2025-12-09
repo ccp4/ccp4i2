@@ -65,7 +65,7 @@
 <p>There are also optional arguments to specify the <i>id</i> or <i>class</i> attribute for the html element that may be useful for customising the appearance of the report. Note that <i>class</i> is a reserved word in Python so the Python argument is called <i>class_</i> and also some report features have a fixed <i>class</i> attribute needed to support the standard functionality.</p>
 <p>The Python report definition should usually begin:</p>
 <pre>
-from report.CCP4ReportParser import *
+from ccp4i2.report.CCP4ReportParser import *
 from ccp4i2.core.CCP4ErrorHandling import *
 
 class my_task_report(Report):

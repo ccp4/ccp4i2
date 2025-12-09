@@ -1,4 +1,4 @@
-from report.CCP4ReportParser import *
+from ccp4i2.report.CCP4ReportParser import *
 import sys
 from lxml import etree
 from ccp4i2.wrappers.import_mosflm.script import import_mosflm_report

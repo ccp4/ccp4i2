@@ -1,6 +1,6 @@
 from __future__ import print_function
-from report.CCP4ReportParser import *
-from report import CCP4RvapiParser
+from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.report import CCP4RvapiParser
 import os,shutil
 
 if sys.version_info >= (3,0):

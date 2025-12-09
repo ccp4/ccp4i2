@@ -145,7 +145,7 @@ The Python report definition should usually begin:
 
 ::
 
-   from report.CCP4ReportParser import *
+   from ccp4i2.report.CCP4ReportParser import *
    from ccp4i2.core.CCP4ErrorHandling import *
 
    class my_task_report(Report):

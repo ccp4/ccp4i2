@@ -1,6 +1,6 @@
 from __future__ import print_function
 import sys
-from report.CCP4ReportParser import *
+from ccp4i2.report.CCP4ReportParser import *
 from ccp4i2.wrappers.refmac_i2.script.refmac_report import refmac_report
 #from lxml import etree
 import xml.etree.ElementTree as etree

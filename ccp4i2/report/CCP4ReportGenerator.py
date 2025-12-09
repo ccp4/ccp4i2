@@ -1,5 +1,5 @@
 from __future__ import print_function
-from report.CCP4ReportParser import Report
+from ccp4i2.report.CCP4ReportParser import Report
 
 
 # ==============================================================================================
@@ -147,7 +147,7 @@ class CReportGenerator(HierarchicalObject):
 
     def getOutputXml(self):
         from ccp4i2.core import CCP4Modules
-        from report import CCP4ReportParser
+        from ccp4i2.report import CCP4ReportParser
         import os
         outputXml = None
         outputXmlFile = CCP4Modules.PROJECTSMANAGER().makeFileName(
@@ -206,7 +206,7 @@ class CReportGenerator(HierarchicalObject):
         from ccp4i2.core import CCP4Modules
         import os
         from ccp4i2.core import CCP4ErrorHandling
-        from report import CCP4ReportParser
+        from ccp4i2.report import CCP4ReportParser
 
         newPageOrNewData = "NEWPAGE"
 
@@ -348,7 +348,7 @@ class CReportGenerator(HierarchicalObject):
         return self.reportFile, newPageOrNewData
 
     def makePleaseWaitReport(self, jobRunning=True):
-        from report import CCP4ReportParser
+        from ccp4i2.report import CCP4ReportParser
         if self.jobInfo is None:
             self.jobInfo = getReportJobInfo(self.jobId)
         doc = CCP4ReportParser.htmlDoc()
@@ -369,7 +369,7 @@ class CReportGenerator(HierarchicalObject):
 
     def makeFailedReportFile(self, redo=False):
         import glob
-        from report import CCP4ReportParser
+        from ccp4i2.report import CCP4ReportParser
         from ccp4i2.core import CCP4Modules
         if self.jobStatus != 'Failed':
             self.reportFile = CCP4Modules.PROJECTSMANAGER().makeFileName(

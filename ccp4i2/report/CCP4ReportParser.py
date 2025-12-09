@@ -34,7 +34,7 @@ Backward Compatibility:
 Modern Usage:
     New reports can use the grid layout system for responsive layouts:
 
-        from report import GridContainer, GridItem, GridSpan
+        from ccp4i2.report import GridContainer, GridItem, GridSpan
 
         grid = GridContainer(spacing=2)
         left = grid.item(span=GridSpan(xs=12, md=8))
@@ -62,7 +62,7 @@ def _get_diagnostics():
     """Lazy import of diagnostics module to avoid circular imports."""
     global _diagnostics_module
     if _diagnostics_module is None:
-        from report import errors as _diagnostics_module
+        from ccp4i2.report import errors as _diagnostics_module
     return _diagnostics_module
 
 
@@ -763,7 +763,7 @@ class Container(ReportClass):
             right = grid.addItem(xs=12, md=4)
             right.append(self.addGraph(...))
         """
-        from report.grid import GridContainer, GridDirection
+        from ccp4i2.report.grid import GridContainer, GridDirection
         if isinstance(direction, str):
             direction = GridDirection(direction)
         grid = GridContainer(spacing=spacing, direction=direction, parent=self, **kw)
@@ -788,7 +788,7 @@ class Container(ReportClass):
         Returns:
             GridItem that can have content added
         """
-        from report.grid import GridItem, GridSpan
+        from ccp4i2.report.grid import GridItem, GridSpan
         span = GridSpan(xs=xs, sm=sm, md=md, lg=lg, xl=xl)
         item = GridItem(span=span, parent=self, **kw)
         self.children.append(item)
@@ -814,7 +814,7 @@ class Container(ReportClass):
             left.append(self.addTable(...))
             right.append(self.addGraph(...))
         """
-        from report.grid import GridContainer, GridItem, GridSpan
+        from ccp4i2.report.grid import GridContainer, GridItem, GridSpan
         grid = GridContainer(spacing=spacing, parent=self, **kw)
         self.children.append(grid)
 
@@ -1024,7 +1024,7 @@ class Report(Container):
         self.cssVersion = kw.get('cssVersion', None)
         if 'jobId' in kw:
             try:
-                from report import CCP4ReportGenerator
+                from ccp4i2.report import CCP4ReportGenerator
                 jobInfo = CCP4ReportGenerator.getReportJobInfo(kw['jobId'])
                 self.jobInfo.update(jobInfo)
             except BaseException:
@@ -3676,7 +3676,7 @@ def test(arg1, arg2, arg3=None):
     standardise = False
     xreport = xrt.findall("/report")[0]
     # Get the jobInfo
-    from report import CCP4ReportGenerator
+    from ccp4i2.report import CCP4ReportGenerator
     if arg3 is not None:
         g = CCP4ReportGenerator.CReportGenerator(jobId=arg3)
         jobInfo = g.getJobInfo(arg3)

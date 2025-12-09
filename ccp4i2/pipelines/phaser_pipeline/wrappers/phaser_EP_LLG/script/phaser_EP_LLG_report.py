@@ -1,4 +1,4 @@
-from report.CCP4ReportParser import Report
+from ccp4i2.report.CCP4ReportParser import Report
 import sys
 
 class phaser_EP_LLG_report(Report):

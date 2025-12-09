@@ -78,7 +78,7 @@ An alternative source of data is the CCP4i2 database which contains the jobs inp
    </table>
    <p>The files $CCP4I2/test/data/test_report_loops.xrt and $CCP4I2/test/data/test_report_loops.xml demonstrate this and can be run in the <i>ccp4py</i> interpreter by:</p>
   <pre>
-    prompt> from report.CCP4ReportParser import test
+    prompt> from ccp4i2.report.CCP4ReportParser import test
     prompt> test('test/data/test_report_loops.xrt','test/data/test_report_loops.xml')
   </pre>
    <p>The resulting file, <i>report.html</i> is placed in your current working directory.</p>
@@ -221,7 +221,7 @@ prompt> makeReport xrtFileName xmlFileName [-j jobId] [-o outputFileName] [-p]
 <p>The jobId allows the report generator to access the database for extra info without which some of the features will be missing. The jobId is not the same as the job number seen on the gui. A test value can be found as described below. <i>-p</i> list the resultant file to console.</p>
 <p>Alternatively the report generator can be run from the <a href="./introduction.html#console">i2 Python console<a> with the following:
 <pre>
->>> from report import CCP4ReportParser
+>>> from ccp4i2.report import CCP4ReportParser
 >>> CCP4ReportParser.test(xrtfile,xmldatafile,jobId)
 </pre>
 <p>This will list the report to the terminal and write it to <i>report.html</i> in the running directory. The <i>jobId</i> parameter is used to retrieve information from the database. The best way to get this is to run a job of the appropriate task from the gui and then look in the meta data at the top of the params.xml file.</p>

@@ -1,4 +1,4 @@
-from report.CCP4ReportParser import *
+from ccp4i2.report.CCP4ReportParser import *
 import sys
 
 class phaser_EP_AUTO_report(Report):

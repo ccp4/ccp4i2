@@ -1,4 +1,4 @@
-from report import CCP4ReportParser
+from ccp4i2.report import CCP4ReportParser
 
 class mergeMtz_report(CCP4ReportParser.Report):
   TASKNAME = 'mergeMtz'

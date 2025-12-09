@@ -35,18 +35,18 @@ class TestSignalClass:
 
     def test_signal_import(self):
         """Test that Signal can be imported without Qt."""
-        from report.CCP4ReportGenerator import Signal
+        from ccp4i2.report.CCP4ReportGenerator import Signal
         assert Signal is not None
 
     def test_signal_instantiation(self):
         """Test that Signal can be instantiated."""
-        from report.CCP4ReportGenerator import Signal
+        from ccp4i2.report.CCP4ReportGenerator import Signal
         sig = Signal()
         assert sig._callbacks == []
 
     def test_signal_connect(self):
         """Test connecting a callback to a signal."""
-        from report.CCP4ReportGenerator import Signal
+        from ccp4i2.report.CCP4ReportGenerator import Signal
         sig = Signal()
 
         results = []
@@ -58,7 +58,7 @@ class TestSignalClass:
 
     def test_signal_emit(self):
         """Test emitting a signal calls connected callbacks."""
-        from report.CCP4ReportGenerator import Signal
+        from ccp4i2.report.CCP4ReportGenerator import Signal
         sig = Signal()
 
         results = []
@@ -72,7 +72,7 @@ class TestSignalClass:
 
     def test_signal_emit_multiple_callbacks(self):
         """Test that emit calls all connected callbacks."""
-        from report.CCP4ReportGenerator import Signal
+        from ccp4i2.report.CCP4ReportGenerator import Signal
         sig = Signal()
 
         results1 = []
@@ -88,7 +88,7 @@ class TestSignalClass:
 
     def test_signal_disconnect(self):
         """Test disconnecting a callback from a signal."""
-        from report.CCP4ReportGenerator import Signal
+        from ccp4i2.report.CCP4ReportGenerator import Signal
         sig = Signal()
 
         results = []
@@ -103,7 +103,7 @@ class TestSignalClass:
 
     def test_signal_emit_with_exception_handling(self):
         """Test that exceptions in callbacks don't break emission."""
-        from report.CCP4ReportGenerator import Signal
+        from ccp4i2.report.CCP4ReportGenerator import Signal
         sig = Signal()
 
         results = []
@@ -127,12 +127,12 @@ class TestCReportGeneratorClass:
 
     def test_import_without_qt(self):
         """Test that CReportGenerator can be imported without Qt."""
-        from report.CCP4ReportGenerator import CReportGenerator
+        from ccp4i2.report.CCP4ReportGenerator import CReportGenerator
         assert CReportGenerator is not None
 
     def test_instantiation(self):
         """Test basic instantiation of CReportGenerator."""
-        from report.CCP4ReportGenerator import CReportGenerator
+        from ccp4i2.report.CCP4ReportGenerator import CReportGenerator
 
         # Should be able to create with just a job ID
         gen = CReportGenerator(jobId="test-job-id-123")
@@ -144,7 +144,7 @@ class TestCReportGeneratorClass:
 
     def test_instantiation_with_status(self):
         """Test instantiation with custom status."""
-        from report.CCP4ReportGenerator import CReportGenerator
+        from ccp4i2.report.CCP4ReportGenerator import CReportGenerator
 
         gen = CReportGenerator(
             jobId="test-id",
@@ -155,7 +155,7 @@ class TestCReportGeneratorClass:
 
     def test_to_delete_status_becomes_finished(self):
         """Test that 'To delete' status becomes 'Finished'."""
-        from report.CCP4ReportGenerator import CReportGenerator
+        from ccp4i2.report.CCP4ReportGenerator import CReportGenerator
 
         gen = CReportGenerator(
             jobId="test-id",
@@ -166,7 +166,7 @@ class TestCReportGeneratorClass:
 
     def test_job_number_kwarg(self):
         """Test that jobNumber can be passed as kwarg."""
-        from report.CCP4ReportGenerator import CReportGenerator
+        from ccp4i2.report.CCP4ReportGenerator import CReportGenerator
 
         gen = CReportGenerator(
             jobId="test-id",
@@ -177,7 +177,7 @@ class TestCReportGeneratorClass:
 
     def test_finished_pictures_signal(self):
         """Test that each instance has its own FinishedPictures signal."""
-        from report.CCP4ReportGenerator import CReportGenerator, Signal
+        from ccp4i2.report.CCP4ReportGenerator import CReportGenerator, Signal
 
         gen1 = CReportGenerator(jobId="job1")
         gen2 = CReportGenerator(jobId="job2")
@@ -189,7 +189,7 @@ class TestCReportGeneratorClass:
 
     def test_set_job_status(self):
         """Test setJobStatus method."""
-        from report.CCP4ReportGenerator import CReportGenerator
+        from ccp4i2.report.CCP4ReportGenerator import CReportGenerator
 
         gen = CReportGenerator(jobId="test-id")
         gen.jobInfo = {"some": "data"}
@@ -201,7 +201,7 @@ class TestCReportGeneratorClass:
 
     def test_set_job_status_finished_clears_job_info(self):
         """Test that setting a finished status clears jobInfo."""
-        from report.CCP4ReportGenerator import CReportGenerator
+        from ccp4i2.report.CCP4ReportGenerator import CReportGenerator
 
         gen = CReportGenerator(jobId="test-id", jobStatus="Running")
         gen.jobInfo = {"some": "data"}
@@ -211,7 +211,7 @@ class TestCReportGeneratorClass:
 
     def test_hierarchical_object_inheritance(self):
         """Test that CReportGenerator inherits from HierarchicalObject."""
-        from report.CCP4ReportGenerator import CReportGenerator
+        from ccp4i2.report.CCP4ReportGenerator import CReportGenerator
         from ccp4i2.core.base_object.hierarchy_system import HierarchicalObject
 
         gen = CReportGenerator(jobId="test-id")
@@ -230,7 +230,7 @@ class TestCReportGeneratorClass:
 
     def test_hierarchical_parent_child(self):
         """Test parent-child relationship between generators."""
-        from report.CCP4ReportGenerator import CReportGenerator
+        from ccp4i2.report.CCP4ReportGenerator import CReportGenerator
 
         parent_gen = CReportGenerator(jobId="parent-job")
         child_gen = CReportGenerator(jobId="child-job", parent=parent_gen)
@@ -247,7 +247,7 @@ class TestGetReportJobInfoFunction:
 
     def test_import(self):
         """Test that getReportJobInfo can be imported."""
-        from report.CCP4ReportGenerator import getReportJobInfo
+        from ccp4i2.report.CCP4ReportGenerator import getReportJobInfo
         assert callable(getReportJobInfo)
 
 
@@ -256,7 +256,7 @@ class TestModernizationCompleteness:
 
     def test_no_qt_imports(self):
         """Verify no Qt imports remain in the module (excluding comments/docstrings)."""
-        import report.CCP4ReportGenerator as module
+        import ccp4i2.report.CCP4ReportGenerator as module
         import re
 
         source_file = module.__file__
@@ -279,7 +279,7 @@ class TestModernizationCompleteness:
 
     def test_no_legacy_dbapi_import(self):
         """Verify legacy dbapi import has been replaced."""
-        import report.CCP4ReportGenerator as module
+        import ccp4i2.report.CCP4ReportGenerator as module
 
         source_file = module.__file__
         with open(source_file, 'r') as f:
@@ -291,7 +291,7 @@ class TestModernizationCompleteness:
 
     def test_uses_static_data_constants(self):
         """Verify the module uses ccp4x.db.ccp4i2_static_data constants."""
-        import report.CCP4ReportGenerator as module
+        import ccp4i2.report.CCP4ReportGenerator as module
 
         source_file = module.__file__
         with open(source_file, 'r') as f:
@@ -303,7 +303,7 @@ class TestModernizationCompleteness:
 
     def test_error_codes_defined(self):
         """Verify ERROR_CODES are still defined."""
-        from report.CCP4ReportGenerator import CReportGenerator
+        from ccp4i2.report.CCP4ReportGenerator import CReportGenerator
 
         assert hasattr(CReportGenerator, 'ERROR_CODES')
         assert isinstance(CReportGenerator.ERROR_CODES, dict)

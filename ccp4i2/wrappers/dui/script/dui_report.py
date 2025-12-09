@@ -4,7 +4,7 @@ import re
 import mmap
 import json
 
-from report.CCP4ReportParser import *
+from ccp4i2.report.CCP4ReportParser import *
 
 class dui_report(Report):
 

@@ -20,7 +20,7 @@ from cProfile import run
 import json
 import os
 import re
-from report.CCP4ReportParser import Report
+from ccp4i2.report.CCP4ReportParser import Report
 
 class zanuda_report(Report):
     TASKNAME = 'zanuda'

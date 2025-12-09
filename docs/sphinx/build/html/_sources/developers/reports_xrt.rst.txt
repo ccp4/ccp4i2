@@ -127,7 +127,7 @@ in the *ccp4py* interpreter by:
 
 ::
 
-       prompt> from report.CCP4ReportParser import test
+       prompt> from ccp4i2.report.CCP4ReportParser import test
        prompt> test('test/data/test_report_loops.xrt','test/data/test_report_loops.xml')
      
 
@@ -467,7 +467,7 @@ console <./introduction.html#console>`__ with the following:
 
 ::
 
-   >>> from report import CCP4ReportParser
+   >>> from ccp4i2.report import CCP4ReportParser
    >>> CCP4ReportParser.test(xrtfile,xmldatafile,jobId)
 
 This will list the report to the terminal and write it to *report.html*

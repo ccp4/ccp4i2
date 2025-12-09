@@ -26,7 +26,7 @@ from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 from ccp4i2.core.CCP4Container import CContainer
 from ccp4i2.core.base_object.fundamental_types import CList
 from ccp4i2.core.CCP4TaskManager import CTaskManager
-from report.CCP4ReportParser import ReportClass
+from ccp4i2.report.CCP4ReportParser import ReportClass
 from ccp4i2.core import CCP4File
 from ccp4x.db.models import Job, FileUse, File
 from ..plugins.get_plugin import get_job_plugin

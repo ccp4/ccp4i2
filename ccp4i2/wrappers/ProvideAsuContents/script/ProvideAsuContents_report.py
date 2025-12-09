@@ -1,8 +1,8 @@
 from __future__ import print_function
 
-from report.CCP4ReportParser import *
+from ccp4i2.report.CCP4ReportParser import *
 from ccp4i2.core import CCP4ModelData, CCP4Modules
-from report import CCP4ReportParser
+from ccp4i2.report import CCP4ReportParser
 import sys,os
 import xml.etree.ElementTree as etree
 

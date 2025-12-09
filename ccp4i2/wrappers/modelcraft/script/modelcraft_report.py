@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from report.CCP4ReportParser import Report
+from ccp4i2.report.CCP4ReportParser import Report
 
 
 class modelcraft_report(Report):

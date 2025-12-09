@@ -23,7 +23,7 @@ if __name__ == '__main__':
     exec(compile(open(os.path.join(top_path,'utils','startup.py')).read(), os.path.join(top_path,'utils','startup.py'), 'exec'))
     setupEnvironment()
     setupPythonpath(top=top_path,mode='qtcore')
-    from report import CCP4ReportGenerator,CCP4ReportParser
+    from ccp4i2.report import CCP4ReportGenerator,CCP4ReportParser
 
     argList = sys.argv[1:]
     print('argList',argList,len(argList))

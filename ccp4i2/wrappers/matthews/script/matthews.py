@@ -152,7 +152,7 @@ class matthews_gui(CTaskWidget):
         self.resultWidget.setReadOnly(True)
 
 
-        from report import CCP4ReportParser
+        from ccp4i2.report import CCP4ReportParser
         from ccp4i2.core import CCP4Modules
         report = CCP4ReportParser.Report()
        

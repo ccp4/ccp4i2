@@ -5,7 +5,7 @@
 #
 
 import os
-from report.CCP4ReportParser import Report
+from ccp4i2.report.CCP4ReportParser import Report
 import json
 from collections import OrderedDict
 from math import sqrt
