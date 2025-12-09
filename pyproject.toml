@@ -71,25 +71,13 @@ i2 = "ccp4i2.cli.i2:main"
 where = [".", "server"]
 include = [
     "ccp4i2*",
-    "cli*",
-    "core*",
     "ccp4x*",
-    "pimple*",
-    "pipelines*",
-    "report*",
-    "tasks*",
-    "utils*",
-    "wrappers*",
 ]
 exclude = [
     "client*",
-    "tests*",
-    "docs*",
-    "demo_data*",
     "migration*",
     "mddocs*",
     "stubs*",
-    "smartie*",
 ]
 
 [tool.setuptools.package-data]
