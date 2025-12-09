@@ -2,7 +2,7 @@ from __future__ import print_function
 
 
 import os, sys, time
-import smartie as SM
+from ccp4i2.smartie import smartie as SM
 from xml.etree import ElementTree as ET
 import shutil,glob
 

@@ -27,7 +27,7 @@ class makeGraphs:
         from ccp4i2.core import CCP4Utils
         smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
         sys.path.append(smartiePath)
-        import smartie
+        from ccp4i2.smartie import smartie
         
         logfile = smartie.parselog(self.logfilename)
         for smartieTable in logfile.tables():

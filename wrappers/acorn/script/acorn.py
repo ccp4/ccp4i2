@@ -165,7 +165,7 @@ class acorn(CPluginScript):
         # Use the ccp4 Smartie Class to parse the ascii log file from Acorn.
         smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
         sys.path.append(smartiePath)
-        import smartie
+        from ccp4i2.smartie import smartie
         
         aclfile = self.makeFileName('LOG')
         smfile  = smartie.parselog(aclfile)

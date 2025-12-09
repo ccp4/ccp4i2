@@ -157,7 +157,7 @@ class phaser_singleMR(CPluginScript):
         from ccp4i2.core import CCP4Utils
         smpth = os.path.join(CCP4Utils.getCCP4Dir(), 'share', 'smartie')
         sys.path.append(smpth)
-        import smartie
+        from ccp4i2.smartie import smartie
         import qtrgeneric
         from qtrgeneric import CLReader, LogConverter
         # Use ccp4 automated output. Note this is replacing I2's internal xml file handling.

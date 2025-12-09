@@ -21,7 +21,7 @@ tags to standard out."""
 
 __cvs_id__ = "$Id: show_summary.py,v 1.1 2008/08/26 14:23:39 pjx Exp $"
 
-import smartie
+from ccp4i2.smartie import smartie
 import sys
 
 if __name__ == "__main__":

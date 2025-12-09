@@ -358,7 +358,7 @@ class phaser_mr(CPluginScript):
         #print '\n\n** In appendSmartie'
         smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
         sys.path.append(smartiePath)
-        import smartie
+        from ccp4i2.smartie import smartie
         logfile = smartie.parselog(self.makeFileName( 'LOG' ))
         
         from ccp4i2.pimple.logtable import CCP4LogToEtree

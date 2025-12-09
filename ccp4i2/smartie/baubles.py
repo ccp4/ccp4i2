@@ -36,7 +36,7 @@ from __future__ import print_function
 # Backend for a smarter logfile browser
 # using smartie
 #
-import smartie
+from ccp4i2.smartie import smartie
 import sys
 import os
 import re
