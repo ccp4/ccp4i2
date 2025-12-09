@@ -35,7 +35,7 @@ try:
 
     # Try to import the legacy plugin
     # This might fail if Qt dependencies aren't satisfied
-    from wrappers2.demo_copycell.script.demo_copycell import demo_copycell
+    from ccp4i2.wrappers2.demo_copycell.script.demo_copycell import demo_copycell
     DEMO_COPYCELL_AVAILABLE = True
 except ImportError as e:
     print(f"Could not import demo_copycell: {e}")
