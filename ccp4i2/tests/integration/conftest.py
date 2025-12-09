@@ -62,9 +62,8 @@ else:
 # Initialize Django
 django.setup()
 
-# Import from i2run package using absolute imports
-from i2run.urls import pdbe_fasta, redo_cif, redo_mtz, rcsb_mmcif
-from i2run.utils import download
+from ..i2run.urls import pdbe_fasta, redo_cif, redo_mtz, rcsb_mmcif
+from ..i2run.utils import download
 
 
 def pytest_collection_modifyitems(items):
