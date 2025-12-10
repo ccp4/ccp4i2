@@ -18,10 +18,9 @@ import os
 import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional
 from dataclasses import dataclass, field
 
-from ccp4i2.core.base_object.error_reporting import CErrorReport
 
 logger = logging.getLogger(__name__)
 
