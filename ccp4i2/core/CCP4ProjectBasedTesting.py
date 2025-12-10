@@ -86,7 +86,6 @@ def run(sourceProjectList=[], outputDirectory=None, dbFile=None):
 
 
 class CProjectBasedTesting(QtCore.QObject):
-    reportUpdated = QtCore.Signal(str)
     finished = QtCore.Signal()
 
     ERROR_CODES = {101 : {'description' : 'Failed to open database'},
@@ -177,8 +176,6 @@ class CProjectBasedTesting(QtCore.QObject):
         if jobId is None or jobId != self.runningJobId:
             return
         self.analyseJob(self.sourceJobInfo['jobid'], jobId)
-        if len(self.logFiles) > 0:
-            self.reportUpdated.emit(self.logFiles[0])
         self.nextJob()
 
     @QtCore.Slot()
@@ -431,8 +428,6 @@ class CProjectBasedTesting(QtCore.QObject):
         if self.log is not None:
             self.log.write('\nTESTS FINISHED\n')
             self.log.close()
-            if len(self.logFiles) > 0:
-                self.reportUpdated.emit(self.logFiles[0])
         self.finished.emit()
 
     def compareComFiles(self, sourceJobId, testJobId):
