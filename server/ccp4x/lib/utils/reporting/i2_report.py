@@ -130,8 +130,12 @@ def _get_basic_job_info(job: Job) -> Dict[str, Any]:
         "jobid": str(job.uuid),
         "descendentjobs": _get_descendent_jobs(job),
     }
+    # finishtime is required by CCP4ReportParser (JobDetails, JobLogFiles classes)
+    # Use finish_time if available, otherwise fall back to creation_time
     if job.finish_time is not None:
         result["finishtime"] = job.finish_time.timestamp()
+    else:
+        result["finishtime"] = job.creation_time.timestamp()
     logger.debug("Basic job info: %s", result)
     return result
 

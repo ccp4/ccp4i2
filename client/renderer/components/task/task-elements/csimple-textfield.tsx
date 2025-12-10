@@ -260,19 +260,31 @@ export const CSimpleTextFieldElement: React.FC<CCP4i2CSimpleElementProps> = ({
       }
 
       let parsedValue = newValue;
-      if (
-        type === INPUT_TYPES.INT &&
-        typeof newValue === "string" &&
-        /^\d+$/.test(newValue)
-      ) {
-        parsedValue = parseInt(newValue, 10);
+
+      // Handle numeric types - empty strings can't be converted to numbers on the server
+      if (type === INPUT_TYPES.INT) {
+        if (typeof newValue === "string") {
+          if (newValue.trim() === "") {
+            // Empty string - skip update (don't send invalid value to server)
+            console.log("Skipping empty string update for INT field");
+            return;
+          }
+          if (/^\d+$/.test(newValue)) {
+            parsedValue = parseInt(newValue, 10);
+          }
+        }
       }
-      if (
-        type === INPUT_TYPES.FLOAT &&
-        typeof newValue === "string" &&
-        /^-?\d*\.?\d+$/.test(newValue)
-      ) {
-        parsedValue = parseFloat(newValue);
+      if (type === INPUT_TYPES.FLOAT) {
+        if (typeof newValue === "string") {
+          if (newValue.trim() === "") {
+            // Empty string - skip update (don't send invalid value to server)
+            console.log("Skipping empty string update for FLOAT field");
+            return;
+          }
+          if (/^-?\d*\.?\d+$/.test(newValue)) {
+            parsedValue = parseFloat(newValue);
+          }
+        }
       }
 
       const setParameterArg = {

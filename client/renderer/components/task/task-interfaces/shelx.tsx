@@ -28,9 +28,10 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const initializationDone = useRef(false);
 
   // Get task items for file handling and parameter updates
-  const { value: ATOM_TYPEValue } = useTaskItem("ATOM_TYPE");
+  const { item: ATOM_TYPEItem, value: ATOM_TYPEValue } = useTaskItem("ATOM_TYPE");
   const { item: F_SIGFanomItem, value: F_SIGFanomValue } = useTaskItem("F_SIGFanom");
   const { value: WAVELENGTHValue, updateNoMutate: updateWAVELENGTH } = useTaskItem("WAVELENGTH");
+  const { updateNoMutate: updateUSER_WAVELENGTH } = useTaskItem("USER_WAVELENGTH");
   const { updateNoMutate: updateSHELXCDE } = useTaskItem("SHELXCDE");
   const { updateNoMutate: updateUSE_COMB } = useTaskItem("USE_COMB");
   const { updateNoMutate: updateSHELX_SEPAR } = useTaskItem("SHELX_SEPAR");
@@ -72,13 +73,17 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             `Extracting wavelength from F_SIGFanom: ${newWavelength}`
           );
           await updateWAVELENGTH(newWavelength);
+          // Set USER_WAVELENGTH=true so crank2 knows to use it
+          if (updateUSER_WAVELENGTH) {
+            await updateUSER_WAVELENGTH(true);
+          }
           mutateContainer();
         } catch (error) {
           console.error("Error updating wavelength:", error);
         }
       }
     }
-  }, [updateWAVELENGTH, F_SIGFanomDigest, job?.status, mutateContainer]);
+  }, [updateWAVELENGTH, updateUSER_WAVELENGTH, F_SIGFanomDigest, job?.status, mutateContainer]);
 
   // Passive wavelength population: if file was auto-populated before task loaded,
   // and wavelength is unset (zero or undefined), extract from digest
@@ -107,11 +112,15 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           `Passively populating wavelength from F_SIGFanom digest: ${newWavelength}`
         );
         updateWAVELENGTH(newWavelength);
+        // Set USER_WAVELENGTH=true so crank2 knows to use it
+        if (updateUSER_WAVELENGTH) {
+          updateUSER_WAVELENGTH(true);
+        }
         mutateContainer();
         wavelengthInitialized.current = true;
       }
     }
-  }, [job?.status, WAVELENGTHValue, F_SIGFanomDigest, updateWAVELENGTH, mutateContainer]);
+  }, [job?.status, WAVELENGTHValue, F_SIGFanomDigest, updateWAVELENGTH, updateUSER_WAVELENGTH, mutateContainer]);
 
   // Reset wavelength initialization flag when job changes
   useEffect(() => {
@@ -175,18 +184,22 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   // in pipelines/crank2/script/crank2.py (SHELX uses crank2 under the hood).
   // Python validity() can check ATOM_TYPE and add appropriate error messages server-side.
   useEffect(() => {
-    if (!validation || !setProcessedErrors) return;
+    if (!setProcessedErrors || !ATOM_TYPEItem?._objectPath) return;
     if (!ATOM_TYPEValue || ATOM_TYPEValue.trim() === "") {
-      const processedErrors = {
-        ...validation,
-        "crank2.container.inputData.ATOM_TYPE": {
+      // ATOM_TYPE is empty - add error using the actual item's objectPath
+      const errors = {
+        ...(validation || {}),
+        [ATOM_TYPEItem._objectPath]: {
           maxSeverity: 2,
           messages: ["ATOM_TYPE is required"],
         },
       };
-      setProcessedErrors(processedErrors);
+      setProcessedErrors(errors);
+    } else {
+      // ATOM_TYPE is valid - clear custom errors (revert to server validation)
+      setProcessedErrors(null);
     }
-  }, [job, validation, setProcessedErrors, ATOM_TYPEValue]);
+  }, [validation, setProcessedErrors, ATOM_TYPEItem?._objectPath, ATOM_TYPEValue]);
 
   // Initialize defaults once when job becomes editable
   // Use a direct effect with minimal dependencies to avoid cycles
