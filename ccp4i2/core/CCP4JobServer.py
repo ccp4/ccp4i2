@@ -100,8 +100,6 @@ class CServerParams:
 
 class CJobServer(QtCore.QObject):
 
-    testRemoteFilesSignal = QtCore.Signal(tuple)
-
     DB_KEYS = ['jobId', 'machine', 'username', 'mechanism', 'remotePath', 'customCodeFile', 'validate',
                'keyFilename', 'serverProcessId', 'serverGroup']
     ERROR_CODES = {301 : {'description' : 'Failed opening SSH connection'},
@@ -519,7 +517,7 @@ class CJobServer(QtCore.QObject):
             ret.append(out.count('Found') > 0)
         client.close()
         self.deleteServerParam(jobId, 'sshThreadRemoteFiles')
-        self.testRemoteFilesSignal.emit((jobId, ret))
+        self.pollForFinishedFlagFile1((jobId, ret))
 
     def runOnServer(self, jobId=None):
         '''Run ssh or qsub with or without shared file system
@@ -808,12 +806,7 @@ class CJobServer(QtCore.QObject):
         return ret
 
     def killSSHJob(self, jobId):
-        sP =  self.serverParams(jobId)
-        '''
-        if sP.serverProcessId is None: self.getPidFileContent(jobId)
-        if sP.serverProcessId is None:
-           raise CException(self.__class__,340)
-        '''
+        self.serverParams(jobId)
         self.sendSSHCommand(jobId, comLine='pkill -F ' + self.pidFile(jobId), retHandler=self.handleRemoteDel)
 
     def killQsubJob(self, jobId):
@@ -891,7 +884,6 @@ class CJobServer(QtCore.QObject):
         self.handleFinishedServerJob(jobId)
 
     def pollForFinishedFlagFile(self):
-        self.testRemoteFilesSignal.connect(self.pollForFinishedFlagFile1)
         pollByMachine = {}
         for jobId in self.getJobsToPollFinish([1]):
             sP = self.serverParams(jobId)
@@ -913,9 +905,7 @@ class CJobServer(QtCore.QObject):
                 #print 'pollForFinishedFlagFile finfileList',finfileList
             if len(finfileList) > 0:
                 self.testRemoteFiles(jobId=jobId, machine=sP.machine, username=sP.username, password=sP.password, keyFilename=sP.keyFilename, remoteFileList=finfileList)
-            
-              
-    @QtCore.Slot(tuple)
+
     def pollForFinishedFlagFile1(self, jobId_fileStatus):
         jobId, fileStatus = jobId_fileStatus
         if self._diagnostic:
