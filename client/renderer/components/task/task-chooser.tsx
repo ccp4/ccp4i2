@@ -211,9 +211,7 @@ const CCP4i2TaskTreeFolder: React.FC<CCP4i2TaskTreeFolderProps> = ({
         </CardContent>
       )}
     </Card>
-  ) : (
-    <Skeleton />
-  );
+  ) : null;  // Don't render empty folders when filtering
 };
 
 const CCP4i2TaskCard: React.FC<CCP4i2TaskCardProps> = ({

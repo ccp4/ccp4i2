@@ -33,6 +33,8 @@ class RvapiReport(Report):
   RVAPI_STD_HEADER = True
 
   def __init__(self, jobInfo={}, **kw):
+    # Set standardise early in case we return before Report.__init__ is called
+    self.standardise = kw.get('standardise', False)
     try:
       work_absdir = jobInfo['fileroot']
       data_dir = 'tables_as_xml_files'
