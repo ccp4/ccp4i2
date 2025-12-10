@@ -275,6 +275,70 @@ class AsyncDatabaseHandler:
 
         await _update()
 
+    def updateJobStatus(
+        self,
+        jobId=None,
+        status=None,
+        finishStatus=None,
+        container=None,
+        dbOutputData=None,
+    ):
+        """
+        Legacy sync wrapper for updating job status.
+
+        This method provides compatibility with the legacy CPluginScript interface
+        that calls updateJobStatus synchronously after job completion.
+
+        Args:
+            jobId: Job UUID as string
+            status: Direct status value (optional)
+            finishStatus: Plugin finish status (0=SUCCEEDED, 1=FAILED, etc.)
+            container: Job container for gleaning output files
+            dbOutputData: Deprecated, ignored
+
+        Returns:
+            CPluginScript.SUCCEEDED
+        """
+        from asgiref.sync import async_to_sync
+
+        logger.debug(
+            "updateJobStatus (sync wrapper): jobId=%s, status=%s, finishStatus=%s",
+            jobId, status, finishStatus
+        )
+
+        if jobId is None:
+            logger.warning("updateJobStatus called with no jobId")
+            return CPluginScript.SUCCEEDED
+
+        try:
+            job_uuid = uuid.UUID(jobId) if isinstance(jobId, str) else jobId
+
+            # Convert finishStatus to database status
+            if status is None and finishStatus is not None:
+                # Map plugin finish status to Job.Status
+                # CPluginScript: SUCCEEDED=0, FAILED=1, MARK_TO_DELETE=2, etc.
+                if finishStatus == 0:
+                    status = models.Job.Status.FINISHED
+                elif finishStatus in (1, 2):
+                    status = models.Job.Status.FAILED
+                else:
+                    status = models.Job.Status.UNSATISFACTORY
+
+            if status is not None:
+                async_to_sync(self.update_job_status)(job_uuid, status)
+
+                # Glean files if job finished successfully
+                if status == models.Job.Status.FINISHED and container is not None:
+                    try:
+                        async_to_sync(self.glean_job_files)(job_uuid, container)
+                    except Exception as e:
+                        logger.warning("Failed to glean job files: %s", e)
+
+        except Exception as e:
+            logger.error("Error in updateJobStatus: %s", e, exc_info=True)
+
+        return CPluginScript.SUCCEEDED
+
     async def register_output_file(
         self,
         job_uuid: uuid.UUID,
@@ -311,20 +375,36 @@ class AsyncDatabaseHandler:
                     defaults={"description": f"File type: {file_type}"}
                 )
 
-                # Create file record
-                file_obj = models.File.objects.create(
-                    name=file_path.name,
-                    directory=models.File.Directory.JOB_DIR,
-                    type=file_type_obj,
-                    sub_type=sub_type,
-                    content=content_flag,
-                    annotation=annotation,
+                # Get or create file record - prevent duplicates
+                # Use job + job_param_name as unique identifier since a job
+                # shouldn't have two output files with the same param_name
+                file_obj, created = models.File.objects.get_or_create(
                     job=job,
                     job_param_name=param_name,
+                    defaults={
+                        "name": file_path.name,
+                        "directory": models.File.Directory.JOB_DIR,
+                        "type": file_type_obj,
+                        "sub_type": sub_type,
+                        "content": content_flag,
+                        "annotation": annotation,
+                    }
                 )
 
-                # Create FileUse record
-                models.FileUse.objects.create(
+                if not created:
+                    # File already exists - update metadata if needed
+                    logger.debug(f"File record already exists for {param_name} in job {job_uuid}")
+                    # Update fields that might have changed
+                    file_obj.name = file_path.name
+                    file_obj.type = file_type_obj
+                    file_obj.sub_type = sub_type
+                    file_obj.content = content_flag
+                    if annotation:
+                        file_obj.annotation = annotation
+                    file_obj.save()
+
+                # Get or create FileUse record - also prevent duplicates
+                models.FileUse.objects.get_or_create(
                     file=file_obj,
                     job=job,
                     role=models.FileUse.Role.OUT,
@@ -627,8 +707,29 @@ class AsyncDatabaseHandler:
 
                 # Map to legacy field names for database registration
                 from ..lib.cdata_utils import get_file_type_from_class
+
+                # Extract param_name from objectPath() for proper list item naming
+                # e.g., "outputData.HKLOUT[0]" -> "HKLOUT[0]"
+                # e.g., "outputData.FREEROUT" -> "FREEROUT"
+                full_path = file_obj.objectPath()
+
+                # IMPORTANT: Only process files that are actually in outputData
+                # Pipeline code often assigns inputData references to variables that
+                # then get traversed. Skip any files not in the outputData hierarchy.
+                if 'outputData' not in full_path:
+                    logger.debug(f"Skipping file not in outputData: {full_path}")
+                    continue
+
+                if '.outputData.' in full_path:
+                    param_name = full_path.split('.outputData.', 1)[1]
+                elif 'outputData.' in full_path:
+                    param_name = full_path.split('outputData.', 1)[1]
+                else:
+                    # Fallback to objectName() if path doesn't contain outputData
+                    param_name = file_obj.objectName()
+
                 metadata = {
-                    'name': file_obj.objectName(),
+                    'name': param_name,
                     'file_type': get_file_type_from_class(file_obj),
                     'content_flag': core_metadata.get('contentFlag'),
                     'sub_type': core_metadata.get('subType'),

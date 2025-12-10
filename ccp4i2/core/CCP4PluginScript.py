@@ -2013,8 +2013,18 @@ class CPluginScript(CData):
         # Save params
         self.saveParams()
 
-        # Report to database (placeholder)
-        # In real implementation, would notify database
+        # Report final status to database
+        if hasattr(self, '_dbHandler') and self._dbHandler is not None:
+            if hasattr(self, '_dbJobId') and self._dbJobId is not None:
+                try:
+                    self._dbHandler.updateJobStatus(
+                        jobId=str(self._dbJobId),
+                        finishStatus=status,
+                        container=self.container
+                    )
+                except Exception as e:
+                    import logging
+                    logging.getLogger(__name__).warning(f"Failed to update job status in database: {e}")
 
         # Emit finished signal with status dict (modern API)
         # Legacy plugins may expect just int, handled by connectSignal() wrapper

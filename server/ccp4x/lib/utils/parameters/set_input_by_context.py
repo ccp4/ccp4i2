@@ -110,7 +110,7 @@ def set_input_by_context_job(
                     "project": str(the_job.project.uuid).replace("-", ""),
                     "annotation": str(the_file.annotation),
                     "dbFileId": str(the_file.uuid).replace("-", ""),
-                    "content": the_file.content,
+                    "contentFlag": the_file.content,  # DB uses 'content', CDataFile uses 'contentFlag'
                     "subType": the_file.sub_type,
                 }
             )

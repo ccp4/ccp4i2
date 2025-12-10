@@ -208,13 +208,15 @@ class CCP4i2DjangoDbHandler:
                 status = plugin_status_to_job_status(finishStatus)
             try:
                 the_job = models.Job.objects.get(uuid=job_uuid)
-                the_job.status = status
-                the_job.save()
-                if models.Job.Status(status).label == "Finished":
+                # Only update status if explicitly provided (not None)
+                if status is not None:
+                    the_job.status = status
+                    the_job.save()
+                if status is not None and models.Job.Status(status).label == "Finished":
                     the_job.finish_time = timezone.now()
                     the_job.save()
                     self.db.gleanJobFiles(container=container, jobId=jobId)
-                if the_job.parent() is None and models.Job.Status(
+                if the_job.parent is None and models.Job.Status(
                     the_job.status
                 ).label in [
                     "Finished",

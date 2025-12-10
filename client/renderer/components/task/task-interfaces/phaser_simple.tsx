@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useEffect } from "react";
+import React, { useCallback, useRef, useEffect, useMemo } from "react";
 import { Paper } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
@@ -6,6 +6,7 @@ import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { FieldRow } from "../task-elements/field-row";
 import { useJob } from "../../../utils";
+import { useOptionalInputWarning } from "../../../providers/run-check-provider";
 
 /**
  * Task interface component for Phaser Simple - Molecular Replacement.
@@ -19,7 +20,42 @@ import { useJob } from "../../../utils";
  */
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
-  const { useTaskItem } = useJob(job.id);
+  const { useTaskItem, createPeerTask, validation } = useJob(job.id);
+
+  // Get ASUFILE for conditional ASU content warning
+  const { value: ASUFILE } = useTaskItem("ASUFILE");
+  const { value: COMP_BY_value_for_warning } = useTaskItem("COMP_BY");
+
+  // Conditional ASU content warning - only warn when COMP_BY is "ASU" and file is not set
+  // We create a synthetic "inputValue" that appears "set" unless both conditions are met
+  const asuFileWarningValue = useMemo(() => {
+    // If COMP_BY is not "ASU", consider the warning "satisfied" (no warning needed)
+    if (COMP_BY_value_for_warning !== "ASU") {
+      return { dbFileId: "satisfied" }; // Fake a "set" value to suppress warning
+    }
+    // Otherwise, return the actual ASUFILE value (warning shows if not set)
+    return ASUFILE;
+  }, [COMP_BY_value_for_warning, ASUFILE]);
+
+  // Use optional input warning for ASU file (conditional on COMP_BY)
+  useOptionalInputWarning({
+    job,
+    validation,
+    createPeerTask,
+    warnings: [
+      {
+        key: "ASUFILE",
+        inputValue: asuFileWarningValue,
+        errorKey: "phaser_simple.container.inputData.ASUFILE",
+        messages: [
+          "ASU content file is required when specifying scattering content by ASU file",
+          "Please provide an ASU content file or change 'How to specify scattering content'",
+        ],
+        createTaskName: "ProvideAsuContents",
+        buttonLabel: "Create ASU Contents task",
+      },
+    ],
+  });
 
   // Use refs to track processed values and prevent cycles
   const lastProcessedF_SIGFValue = useRef<any>(null);

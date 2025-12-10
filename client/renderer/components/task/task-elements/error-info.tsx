@@ -350,50 +350,51 @@ const SimpleCard = memo<{
 SimpleCard.displayName = "SimpleCard";
 
 // Main error trigger component
-export const ErrorTrigger: React.FC<ErrorTriggerProps> = memo(
-  ({ item, job }) => {
-    const { setErrorInfoAnchor, setErrorInfoItem } = useTaskInterface();
-    const { getValidationColor } = useJob(job.id);
+// Note: Not using memo() here because this component depends on processedErrors
+// from context (via useJob -> useRunCheck), which wouldn't trigger re-renders
+// if we memoized based only on props.
+export const ErrorTrigger: React.FC<ErrorTriggerProps> = ({ item, job }) => {
+  const { setErrorInfoAnchor, setErrorInfoItem } = useTaskInterface();
+  const { getValidationColor } = useJob(job.id);
 
-    const validationColor = useMemo(
-      () => getValidationColor(item),
-      [getValidationColor, item]
-    );
+  const validationColor = useMemo(
+    () => getValidationColor(item),
+    [getValidationColor, item]
+  );
 
-    const icon = useValidationIcon(validationColor);
+  const icon = useValidationIcon(validationColor);
 
-    const handleClick = useCallback(
-      (event: SyntheticEvent) => {
-        event.stopPropagation();
-        event.preventDefault();
-        setErrorInfoAnchor(event.currentTarget);
-        setErrorInfoItem(item);
-      },
-      [setErrorInfoAnchor, setErrorInfoItem, item]
-    );
+  const handleClick = useCallback(
+    (event: SyntheticEvent) => {
+      event.stopPropagation();
+      event.preventDefault();
+      setErrorInfoAnchor(event.currentTarget);
+      setErrorInfoItem(item);
+    },
+    [setErrorInfoAnchor, setErrorInfoItem, item]
+  );
 
-    return (
-      <Button
-        size="small"
-        variant="text"
-        onClick={handleClick}
-        sx={{
-          minWidth: "auto",
-          p: 0.5,
-          color: validationColor,
-          "&:hover": {
-            backgroundColor: `${validationColor}20`,
-          },
-        }}
-        aria-label={`Show validation information for ${formatObjectPath(
-          item?._objectPath
-        )}`}
-      >
-        {icon}
-      </Button>
-    );
-  }
-);
+  return (
+    <Button
+      size="small"
+      variant="text"
+      onClick={handleClick}
+      sx={{
+        minWidth: "auto",
+        p: 0.5,
+        color: validationColor,
+        "&:hover": {
+          backgroundColor: `${validationColor}20`,
+        },
+      }}
+      aria-label={`Show validation information for ${formatObjectPath(
+        item?._objectPath
+      )}`}
+    >
+      {icon}
+    </Button>
+  );
+};
 
 ErrorTrigger.displayName = "ErrorTrigger";
 

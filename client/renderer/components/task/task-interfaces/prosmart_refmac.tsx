@@ -6,6 +6,7 @@ import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { FieldRow } from "../task-elements/field-row";
 import { useJob } from "../../../utils";
+import { useFreeRWarning } from "../../../providers/run-check-provider";
 
 /**
  * Task interface component for Prosmart-Refmac - Prosmart-guided Refinement.
@@ -19,10 +20,20 @@ import { useJob } from "../../../utils";
  */
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
-  const { useTaskItem, fetchDigest } = useJob(job.id);
+  const { useTaskItem, fetchDigest, createPeerTask, validation } = useJob(job.id);
 
   // Get task items with update functions and/or values
   const { item: F_SIGFItem, value: F_SIGFValue } = useTaskItem("F_SIGF");
+  const { value: freeRFlag } = useTaskItem("FREERFLAG");
+
+  // Use centralized FreeR warning hook
+  useFreeRWarning({
+    job,
+    taskName: "prosmart_refmac",
+    freeRFlag,
+    validation,
+    createPeerTask,
+  });
   const { update: updateWAVELENGTH } = useTaskItem("WAVELENGTH");
   const { update: updateUSEANOMALOUS } = useTaskItem("USEANOMALOUS");
   const { update: updateUSE_TWIN } = useTaskItem("USE_TWIN");

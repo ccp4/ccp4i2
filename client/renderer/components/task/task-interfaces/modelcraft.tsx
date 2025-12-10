@@ -1,17 +1,26 @@
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
-import { useApi } from "../../../api";
 import { useJob } from "../../../utils";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { useCallback } from "react";
+import { useAsuContentWarning } from "../../../providers/run-check-provider";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
-  const api = useApi();
   const { job } = props;
-  const { useTaskItem } = useJob(job.id);
+  const { useTaskItem, createPeerTask, validation } = useJob(job.id);
   const { value: USE_MODEL_PHASES } = useTaskItem("USE_MODEL_PHASES");
   const { value: XYZIN, update: setXYZIN } = useTaskItem("XYZIN");
+  const { value: ASUIN } = useTaskItem("ASUIN");
+
+  // Use centralized ASU content warning hook
+  useAsuContentWarning({
+    job,
+    taskName: "modelcraft",
+    asuContent: ASUIN,
+    validation,
+    createPeerTask,
+  });
 
   const handleUSE_MODEL_PHASES = useCallback(
     async (new_USE_MODEL_PHASES: any) => {

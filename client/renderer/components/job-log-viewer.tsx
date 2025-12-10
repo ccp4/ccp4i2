@@ -74,7 +74,7 @@ export const JobLogViewer: React.FC<JobLogViewerProps> = ({ job, project }) => {
     }
 
     // Show common log file extensions
-    const logExtensions = [".log", ".out", ".err", ".txt", ".xml", ".json"];
+    const logExtensions = [".log", ".out", ".err", ".txt", ".xml", ".json", ".inp"];
 
     //Return draft parameter files
     const excludePattern = [

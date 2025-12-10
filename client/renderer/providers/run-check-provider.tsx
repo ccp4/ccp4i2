@@ -1,5 +1,6 @@
 import React, {
   createContext,
+  useCallback,
   useContext,
   useState,
   ReactNode,
@@ -13,8 +14,10 @@ import {
   DialogTitle,
 } from "@mui/material";
 import { Button } from "@mui/material";
+import { useRouter } from "next/navigation";
 import { useCCP4i2Window } from "../app-context";
 import { useJob } from "../utils";
+import { Job } from "../types/models";
 
 /**
  * An error report keyed by parameter name or error type.
@@ -231,4 +234,374 @@ export const useRunCheck = (): RunCheckContextType => {
     throw new Error("useRunCheck must be used within a RunCheckProvider");
   }
   return context;
+};
+
+/**
+ * Configuration for a single optional input warning.
+ */
+export interface OptionalInputWarningConfig {
+  /** Unique key for this warning (e.g., "FREERFLAG", "ASUIN", "SEQIN") */
+  key: string;
+  /** The input value from useTaskItem - checked for dbFileId?.length > 0 */
+  inputValue: any;
+  /** Error key path (e.g., "prosmart_refmac.container.inputData.FREERFLAG") */
+  errorKey: string;
+  /** Warning messages to display */
+  messages: string[];
+  /** Task name to create when button is clicked (e.g., "freerflag", "ProvideAsuContents") */
+  createTaskName: string;
+  /** Button label (e.g., "Create FreeR task", "Create ASU Contents task") */
+  buttonLabel: string;
+}
+
+/**
+ * Configuration for the optional input warning hook.
+ */
+interface UseOptionalInputWarningOptions {
+  /** The job object */
+  job: Job;
+  /** Server validation errors */
+  validation: CCP4i2ErrorReport | null;
+  /** Function to create a peer task */
+  createPeerTask: (taskName: string) => Promise<Job | undefined>;
+  /** Array of warning configurations for each optional input */
+  warnings: OptionalInputWarningConfig[];
+  /** Optional function to filter/transform validation errors before processing */
+  filterErrors?: (errors: CCP4i2ErrorReport) => CCP4i2ErrorReport;
+}
+
+/**
+ * Generic hook to manage warnings for optional-but-recommended inputs.
+ *
+ * This hook:
+ * 1. Adds warnings (maxSeverity: 3) for unset optional inputs
+ * 2. Adds action buttons to the run confirmation dialog for creating related tasks
+ * 3. Removes warnings/buttons when inputs are set
+ *
+ * @example
+ * ```tsx
+ * const { value: freeRFlag } = useTaskItem("FREERFLAG");
+ * const { value: asuIn } = useTaskItem("ASUIN");
+ *
+ * useOptionalInputWarning({
+ *   job,
+ *   validation,
+ *   createPeerTask,
+ *   warnings: [
+ *     {
+ *       key: "FREERFLAG",
+ *       inputValue: freeRFlag,
+ *       errorKey: "parrot.container.inputData.FREERFLAG",
+ *       messages: ["Free R flag is recommended for refinement"],
+ *       createTaskName: "freerflag",
+ *       buttonLabel: "Create FreeR task",
+ *     },
+ *     {
+ *       key: "ASUIN",
+ *       inputValue: asuIn,
+ *       errorKey: "parrot.container.inputData.ASUIN",
+ *       messages: ["ASU content is recommended for accurate solvent estimation"],
+ *       createTaskName: "ProvideAsuContents",
+ *       buttonLabel: "Create ASU Contents task",
+ *     },
+ *   ],
+ * });
+ * ```
+ */
+export const useOptionalInputWarning = ({
+  job,
+  validation,
+  createPeerTask,
+  warnings,
+  filterErrors,
+}: UseOptionalInputWarningOptions): void => {
+  const router = useRouter();
+  const {
+    processedErrors,
+    setProcessedErrors,
+    extraDialogActions,
+    setExtraDialogActions,
+    setRunTaskRequested,
+  } = useRunCheck();
+
+  // Create task handler factory
+  const createTaskHandler = useCallback(
+    (taskName: string) => async () => {
+      try {
+        const createdJob: Job | undefined = await createPeerTask(taskName);
+        if (createdJob) {
+          router.push(`/project/${job.project}/job/${createdJob.id}`);
+          setRunTaskRequested(null);
+        }
+      } catch (error) {
+        console.error(`Error creating ${taskName} task:`, error);
+      }
+    },
+    [createPeerTask, job.project, router, setRunTaskRequested]
+  );
+
+  // Process validation errors - add warnings for unset inputs
+  const processErrors = useCallback(() => {
+    if (!validation) return;
+
+    // Start with existing validation errors, optionally filtered
+    let newProcessedErrors = { ...(validation as CCP4i2ErrorReport) };
+    if (filterErrors) {
+      newProcessedErrors = filterErrors(newProcessedErrors);
+    }
+
+    // Add warnings for each unset input
+    for (const warning of warnings) {
+      if (!warning.inputValue?.dbFileId?.length) {
+        newProcessedErrors[warning.errorKey] = {
+          messages: warning.messages,
+          maxSeverity: 3, // Allows execution but shows warning
+        };
+      }
+    }
+
+    // Only update if errors have actually changed
+    const newErrorsKey = JSON.stringify(newProcessedErrors);
+    const currentErrorsKey = JSON.stringify(processedErrors);
+
+    if (newErrorsKey !== currentErrorsKey) {
+      setProcessedErrors(newProcessedErrors);
+    }
+  }, [validation, warnings, processedErrors, setProcessedErrors, filterErrors]);
+
+  // Handle extra dialog actions
+  const updateExtraDialogActions = useCallback(() => {
+    let newActions = { ...extraDialogActions };
+    let hasChanges = false;
+
+    for (const warning of warnings) {
+      const isUnset = !warning.inputValue?.dbFileId?.length;
+      const hasAction = !!newActions?.[warning.key];
+
+      if (isUnset && !hasAction) {
+        // Add action button for unset input
+        newActions[warning.key] = (
+          <Button
+            variant="contained"
+            onClick={createTaskHandler(warning.createTaskName)}
+          >
+            {warning.buttonLabel}
+          </Button>
+        );
+        hasChanges = true;
+      } else if (!isUnset && hasAction) {
+        // Remove action button when input is set
+        delete newActions[warning.key];
+        hasChanges = true;
+      }
+    }
+
+    if (hasChanges) {
+      setExtraDialogActions(
+        Object.keys(newActions).length > 0 ? newActions : null
+      );
+    }
+  }, [warnings, extraDialogActions, setExtraDialogActions, createTaskHandler]);
+
+  // Effect for error processing
+  useEffect(() => {
+    const allDefined = warnings.every((w) => w.inputValue !== undefined);
+    if (allDefined) {
+      processErrors();
+    }
+  }, [warnings, processErrors]);
+
+  // Effect for handling extra dialog actions
+  useEffect(() => {
+    updateExtraDialogActions();
+  }, [updateExtraDialogActions]);
+};
+
+/**
+ * Configuration for the FreeR warning hook.
+ */
+interface UseFreeRWarningOptions {
+  /** The job object */
+  job: Job;
+  /** The task name prefix for the error key (e.g., "prosmart_refmac", "servalcat_pipe") */
+  taskName: string;
+  /** The FreeR flag value from useTaskItem("FREERFLAG") */
+  freeRFlag: any;
+  /** Server validation errors */
+  validation: CCP4i2ErrorReport | null;
+  /** Function to create a peer task */
+  createPeerTask: (taskName: string) => Promise<Job | undefined>;
+  /** Optional function to filter/transform validation errors before processing */
+  filterErrors?: (errors: CCP4i2ErrorReport) => CCP4i2ErrorReport;
+}
+
+/**
+ * Hook to manage FreeR flag warnings for refinement tasks.
+ * This is a convenience wrapper around useOptionalInputWarning.
+ *
+ * @example
+ * ```tsx
+ * const { value: freeRFlag } = useTaskItem("FREERFLAG");
+ * useFreeRWarning({
+ *   job,
+ *   taskName: "prosmart_refmac",
+ *   freeRFlag,
+ *   validation,
+ *   createPeerTask,
+ * });
+ * ```
+ */
+export const useFreeRWarning = ({
+  job,
+  taskName,
+  freeRFlag,
+  validation,
+  createPeerTask,
+  filterErrors,
+}: UseFreeRWarningOptions): void => {
+  useOptionalInputWarning({
+    job,
+    validation,
+    createPeerTask,
+    filterErrors,
+    warnings: [
+      {
+        key: "FREERFLAG",
+        inputValue: freeRFlag,
+        errorKey: `${taskName}.container.inputData.FREERFLAG`,
+        messages: [
+          "Setting the Free R flag file is strongly recommended for refinement",
+          "You are advised to select an existing set or create a new one",
+        ],
+        createTaskName: "freerflag",
+        buttonLabel: "Create FreeR task",
+      },
+    ],
+  });
+};
+
+/**
+ * Configuration for the ASU content warning hook.
+ */
+interface UseAsuContentWarningOptions {
+  /** The job object */
+  job: Job;
+  /** The task name prefix for the error key (e.g., "parrot", "modelcraft") */
+  taskName: string;
+  /** The ASU content value from useTaskItem("ASUIN") or similar */
+  asuContent: any;
+  /** Server validation errors */
+  validation: CCP4i2ErrorReport | null;
+  /** Function to create a peer task */
+  createPeerTask: (taskName: string) => Promise<Job | undefined>;
+  /** Optional function to filter/transform validation errors before processing */
+  filterErrors?: (errors: CCP4i2ErrorReport) => CCP4i2ErrorReport;
+}
+
+/**
+ * Hook to manage ASU content warnings for phasing/building tasks.
+ * This is a convenience wrapper around useOptionalInputWarning.
+ *
+ * @example
+ * ```tsx
+ * const { value: asuIn } = useTaskItem("ASUIN");
+ * useAsuContentWarning({
+ *   job,
+ *   taskName: "parrot",
+ *   asuContent: asuIn,
+ *   validation,
+ *   createPeerTask,
+ * });
+ * ```
+ */
+export const useAsuContentWarning = ({
+  job,
+  taskName,
+  asuContent,
+  validation,
+  createPeerTask,
+  filterErrors,
+}: UseAsuContentWarningOptions): void => {
+  useOptionalInputWarning({
+    job,
+    validation,
+    createPeerTask,
+    filterErrors,
+    warnings: [
+      {
+        key: "ASUIN",
+        inputValue: asuContent,
+        errorKey: `${taskName}.container.inputData.ASUIN`,
+        messages: [
+          "Providing ASU content information is strongly recommended",
+          "It improves solvent estimation and Matthews coefficient calculation",
+        ],
+        createTaskName: "ProvideAsuContents",
+        buttonLabel: "Create ASU Contents task",
+      },
+    ],
+  });
+};
+
+/**
+ * Configuration for the sequence warning hook.
+ */
+interface UseSequenceWarningOptions {
+  /** The job object */
+  job: Job;
+  /** The task name prefix for the error key (e.g., "shelx") */
+  taskName: string;
+  /** The sequence value from useTaskItem("SEQIN") or similar */
+  sequence: any;
+  /** Server validation errors */
+  validation: CCP4i2ErrorReport | null;
+  /** Function to create a peer task */
+  createPeerTask: (taskName: string) => Promise<Job | undefined>;
+  /** Optional function to filter/transform validation errors before processing */
+  filterErrors?: (errors: CCP4i2ErrorReport) => CCP4i2ErrorReport;
+}
+
+/**
+ * Hook to manage sequence input warnings for tasks that benefit from sequence information.
+ * This is a convenience wrapper around useOptionalInputWarning.
+ *
+ * @example
+ * ```tsx
+ * const { value: seqIn } = useTaskItem("SEQIN");
+ * useSequenceWarning({
+ *   job,
+ *   taskName: "shelx",
+ *   sequence: seqIn,
+ *   validation,
+ *   createPeerTask,
+ * });
+ * ```
+ */
+export const useSequenceWarning = ({
+  job,
+  taskName,
+  sequence,
+  validation,
+  createPeerTask,
+  filterErrors,
+}: UseSequenceWarningOptions): void => {
+  useOptionalInputWarning({
+    job,
+    validation,
+    createPeerTask,
+    filterErrors,
+    warnings: [
+      {
+        key: "SEQIN",
+        inputValue: sequence,
+        errorKey: `${taskName}.container.inputData.SEQIN`,
+        messages: [
+          "Providing sequence information is strongly recommended",
+          "It enables molecular weight calculation and improves model building",
+        ],
+        createTaskName: "ProvideAsuContents",
+        buttonLabel: "Create ASU Contents task",
+      },
+    ],
+  });
 };
