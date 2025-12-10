@@ -1,76 +1,24 @@
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
-import { useApi } from "../../../api";
 import { useJob } from "../../../utils";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
-import { Button } from "@mui/material";
-import { useRunCheck } from "../../../providers/run-check-provider";
-import { useCallback, useContext, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { Job } from "../../../types/models";
+import { useAsuContentWarning } from "../../../providers/run-check-provider";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
-  const api = useApi();
   const { job } = props;
-  const { useTaskItem, createPeerTask } = useJob(job.id);
+  const { useTaskItem, createPeerTask, validation } = useJob(job.id);
   const { value: XYZIN_MODE } = useTaskItem("XYZIN_MODE");
   const { value: ASUIN } = useTaskItem("ASUIN");
-  const router = useRouter();
 
-  // 1. Retrieve the function for installing extraDialogActions from the relevant context
-  // layer
-
-  const { extraDialogActions, setExtraDialogActions, setRunTaskRequested } =
-    useRunCheck();
-
-  // 2. Define a callback to create an ASUIN task if it is not already set
-  // NOTE: This is a valid client-side pattern for triggering UI actions based on input state.
-  // Unlike validity filtering (which should be in Python), this extraDialogAction pattern is
-  // appropriate here because:
-  // - ASUIN has allowUndefined=True (optional input)
-  // - We're triggering a helpful UI action, not filtering validation errors
-  // - The check is simple: isSet() == false triggers "Create ASU Contents task" button
-
-  const createAsuTask = useCallback(async () => {
-    await createPeerTask("ProvideAsuContents").then((created_job: Job) => {
-      if (created_job) {
-        // If the task was created successfully, we can navigate to it
-        router.push(`/project/${job.project}/job/${created_job.id}`);
-        //Shut down the run check dialog
-        setRunTaskRequested(null);
-      }
-    });
-  }, [job, createPeerTask]);
-
-  // 3. Use a useEffect to install the extraDialogActions
-
-  useEffect(() => {
-    if (!(ASUIN?.dbFileId?.length > 0)) {
-      // If the ASUIN is not set, we add an action to create a ProvideAsuContents task
-      // This will be shown in the confirm dialog.  As ever when changing state,
-      // we check if the action is already there to avoid unnecessary re-renders.
-      if (!extraDialogActions || !extraDialogActions["ASUIN"]) {
-        const newExtraDialogActions = {
-          ASUIN: (
-            <Button variant="contained" onClick={createAsuTask}>
-              Create ASU Contents task
-            </Button>
-          ),
-        };
-        setExtraDialogActions(newExtraDialogActions);
-      }
-    }
-  }, [ASUIN, extraDialogActions, setExtraDialogActions]);
-
-  //This is a really important cleanup function to avoid memory leaks
-  //It ensures that processedErrors and extraDialogActions are cleared when the component unmounts
-  useEffect(() => {
-    // Cleanup function to reset context values when the component unmounts
-    return () => {
-      setExtraDialogActions(null);
-    };
-  }, [setExtraDialogActions]);
+  // Use centralized ASU content warning hook
+  useAsuContentWarning({
+    job,
+    taskName: "parrot",
+    asuContent: ASUIN,
+    validation,
+    createPeerTask,
+  });
 
   return (
     <CCP4i2Tabs {...props}>

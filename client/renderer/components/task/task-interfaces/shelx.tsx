@@ -5,7 +5,10 @@ import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { useJob } from "../../../utils";
-import { useRunCheck } from "../../../providers/run-check-provider";
+import {
+  useRunCheck,
+  useSequenceWarning,
+} from "../../../providers/run-check-provider";
 
 /**
  * Task interface component for SHELX - Experimental Phasing Pipeline.
@@ -19,10 +22,22 @@ import { useRunCheck } from "../../../providers/run-check-provider";
  */
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
-  const { useTaskItem, useFileDigest, mutateContainer, validation } = useJob(
+  const { useTaskItem, useFileDigest, mutateContainer, validation, createPeerTask } = useJob(
     job.id
   );
   const { setProcessedErrors } = useRunCheck();
+
+  // Get SEQIN for sequence warning
+  const { value: SEQIN } = useTaskItem("SEQIN");
+
+  // Use centralized sequence warning hook
+  useSequenceWarning({
+    job,
+    taskName: "shelx",
+    sequence: SEQIN,
+    validation,
+    createPeerTask,
+  });
 
   // Refs for preventing cycles
   const initializationDone = useRef(false);
