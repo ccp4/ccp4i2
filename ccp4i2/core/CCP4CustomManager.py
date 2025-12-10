@@ -1,29 +1,5 @@
-"""
-     CCP4CustomManager.py: CCP4 GUI Project
-     Copyright (C) 2013 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-"""
-     Liz Potterton July 2013 - create and manage customisation
-"""
-
 import os
 import glob
-from PySide2 import QtCore
 from ccp4i2.core import CCP4Modules
 from ccp4i2.core import CCP4File
 from ccp4i2.core.CCP4QtObject import CObject
@@ -31,8 +7,6 @@ from ccp4i2.core.CCP4ErrorHandling import *
 
 
 class CCustomManager(CObject):
-    listChanged = QtCore.Signal()
-
     ERROR_CODES = {101 : { 'description' : 'Error attempting to create directory to save customisation'},
                    104 : { 'description' : 'Error attempting to overwrite directory to save customisation'},
                    105 : { 'description' : 'Error attempting to open compressed file for write'},
@@ -128,7 +102,6 @@ class CCustomManager(CObject):
         except:
             return 1
         else:
-            self.listChanged.emit()
             return 0
 
     def export(self, name, fileName):
@@ -168,8 +141,6 @@ class CCustomManager(CObject):
             fileObj.saveFile(fileObj.getBodyEtree())
         except:
             raise CException(self.__class__, 114, fileName)
-        self.listChanged.emit()
-        return
 
     def testImport(self, fileName):
         import tempfile
@@ -211,7 +182,3 @@ class CCustomManager(CObject):
             raise CException(self.__class__, 108,'Extracting from ' + fileName + ' to ' + targetDir)
         tf.close()
         #print 'uncompress done', os.path.samefile(targetDir,self.getDirectory())
-        if os.path.samefile(targetDir,self.getDirectory()):
-            self.listChanged.emit()
-
-

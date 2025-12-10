@@ -1,32 +1,6 @@
-from __future__ import print_function
-
-from PySide2 import QtCore
-
-"""
-     CCP4WorkflowManager.py: CCP4 GUI Project
-     Copyright (C) 2013 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-"""
-     Liz Potterton July 2013 - create and manage workflows
-"""
+"Liz Potterton July 2013 - create and manage workflows"
 
 import os
-import re
 import glob
 from ccp4i2.core import CCP4Modules
 from ccp4i2.core import CCP4Data
@@ -37,8 +11,6 @@ from .CCP4ErrorHandling import *
 from .CCP4TaskManager import TASKMANAGER
 
 class CWorkflowManager(CCP4CustomManager.CCustomManager):
-
-    listChanged = QtCore.Signal()
 
     ERROR_CODES = {101 : {'description' : 'Error attempting to create directory to save workflow'},
                    102 : {'description' : 'Selected job for workflow did not finish successfully'},
@@ -157,7 +129,6 @@ class CWorkflowManager(CCP4CustomManager.CCustomManager):
         #print 'CWorkflowMananger.createWorkflow',self.getCustomFile(name=name,mustExist=False),workflowParams.jobDef.get()
         workflowParams.saveDataToXml(self.getCustomFile(name=name ,mustExist=False), function='WORKFLOW')
         err = self.saveJobZeroDef(name=name, inputDataContainer=jobZeroInputParams, outputDataContainer=jobZeroOutputParams)
-        self.listChanged.emit()
         return CErrorReport()
 
     def uniqueKey(self, keyIn, container):
