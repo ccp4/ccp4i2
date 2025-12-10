@@ -1,28 +1,5 @@
-from __future__ import print_function
+"Liz Potterton Apr 2016 - Separate 'remote' server code out from CCP4JobController"
 
-
-"""
-     CCP4JobServer.py: CCP4 GUI Project
-     Copyright (C) 2016 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-"""
-   Liz Potterton Apr 2016 - Separate 'remote' server code out from CCP4JobController
-"""
 import os
 import re
 from PySide2 import QtCore
@@ -95,39 +72,6 @@ class CServerParams:
         else:
             return self.remotePath[0:-1]+'.FINISHED'
 
-    '''
-    @property
-    def jobNumber(self):
-        """Get the jobNumber"""
-        print 'jobNumber',self.jobId
-        if self._jobNumber is None:
-            jobInfo = self.db.getJobInfo(jobId=self.jobId,mode=['jobnumber','projectid'])
-            self._jobNumber = jobInfo['jobnumber']
-            self._projectId = jobInfo['projectid']
-        return self._jobNumber
-
-    @property
-    def projectName(self):
-        """Get the projectName"""
-        if self._projectName is None:
-            if self._projectId is None: self.jobNumber()
-            projectInfo = self.db.getProjectInfo(projectId=self._projectId)
-            self._projectName = projectInfo['projectname']
-            self._projectDirectory = projectInfo['projectdirectory']
-        return self._projectName
-
-    @property
-    def projectDirectory(self):
-        """Get the projectDirectory"""
-        print 'projectDirectory',self._projectId
-        if self._projectDirectory is None:
-            if self._projectId is None: self.jobNumber()
-            projectInfo = self.db.getProjectInfo(projectId=self._projectId)
-            self._projectName = projectInfo['projectname']
-            self._projectDirectory = projectInfo['projectdirectory']
-        return self._projectDirectory
-    '''
-
     def getEtree(self):
         from lxml import etree
         ele = etree.Element('serverParams')
@@ -156,12 +100,7 @@ class CServerParams:
 
 class CJobServer(QtCore.QObject):
 
-    failedOpenConnection = QtCore.Signal(tuple)
-    failedRemoteCommand = QtCore.Signal(tuple)
-    testMessage = QtCore.Signal(str)
-    remoteJobMessage = QtCore.Signal(str,str)
     testRemoteFilesSignal = QtCore.Signal(tuple)
-    remoteProcessesList = QtCore.Signal(tuple)
 
     DB_KEYS = ['jobId', 'machine', 'username', 'mechanism', 'remotePath', 'customCodeFile', 'validate',
                'keyFilename', 'serverProcessId', 'serverGroup']
@@ -438,12 +377,6 @@ class CJobServer(QtCore.QObject):
             return False
         if finishHandler is None:
             finishHandler = self._transportFilesFinished
-        """
-        sP.sshThreadTransport = UtilityThread.UtilityThread(functools.partial(self._transportFiles, jobId, copyList, mode, failSignal, diagnostic))
-        sP.sshThreadTransport.finished.connect(functools.partial(finishHandler, jobId))
-        self.runInSSHThreads.append(sP.sshThreadTransport)
-        sP.sshThreadTransport.start()
-        """
         self._transportFiles( jobId, copyList, mode, failSignal, diagnostic)
         finishHandler(jobId)
         return True
@@ -459,14 +392,6 @@ class CJobServer(QtCore.QObject):
                 mach = sP.machine
                 port = PARAMIKO_PORT
 
-            """
-            transport = paramiko.Transport((mach, port))
-            if sP.validate in ['key_filename', 'pass_key_filename'] and sP.keyFilename is not None and len(sP.keyFilename) > 0:
-                transport.connect(username=sP.username, password=sP.password, pkey=self.getPKey(jobId))
-            else:
-                transport.connect(username=sP.username, password=sP.password)
-            sftp = paramiko.SFTPClient.from_transport(transport)
-            """
             ssh = paramiko.SSHClient()
             ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
             if sP.validate in ['key_filename', 'pass_key_filename'] and sP.keyFilename is not None and len(sP.keyFilename) > 0:
@@ -478,8 +403,6 @@ class CJobServer(QtCore.QObject):
             print('ERROR setting up paramiko FTP file transfer')
             print(e)
             err = CException(self.__class__, 330, 'Machine:' + str(self.getServerParam(jobId, 'machine')) + '\n' + str(e))
-            if failSignal:
-                self.failedOpenConnection.emit((jobId, err))
             raise err
         err = CException()
         for localName,remoteName in copyList:
@@ -502,13 +425,6 @@ class CJobServer(QtCore.QObject):
                         print('ERROR copying files',str(localName),'from',str(remoteName))
                     err.append(self.__class__, 332, 'Local:' + str(localName) + ' Remote:' + str(remoteName) + '\n' + str(e))
         sftp.close()
-        """
-        transport.close()
-        """
-        if len(err) > 0:
-            if failSignal:
-                self.failedOpenConnection.emit((jobId, err))
-            #raise err
 
     def _transportFilesFinished(self,jobId):
         #print '_transportFilesFinished',jobId
@@ -520,8 +436,6 @@ class CJobServer(QtCore.QObject):
         client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         connected= False
         ntries = 0
-        #print 'openSSHConnection',machine,username,keyFilename,timeout,maxTries
-        self.testMessage.emit('Connecting to ' + machine + ' with timeout ' + str(timeout))
         while ntries < maxTries and not connected:
             failCode = 0
             try:
@@ -553,19 +467,12 @@ class CJobServer(QtCore.QObject):
                 failCode = 4
                 mess = str(e)
                 print(e)
-            #print 'runOnServer try', ntries, 'failCode', failCode
-            if not connected:
-                self.testMessage.emit('   Try: ' + str(ntries) + ' failed: ' + str(mess))
-            else:
-                self.testMessage.emit('   Try: ' + str(ntries) + ' succeeded')
             ntries = ntries + 1
         if not connected:
             print("Some error submitting job")
             exc_type, exc_value, exc_tb = sys.exc_info()[:3]
             print("Error running job using ssh" + str(exc_type) + "\n" + str(exc_value))
             err = CException(self.__class__, 300 + failCode, 'Machine:' + machine + '\n' + str(exc_type) + "\n" + str(exc_value) + '\n')
-            if emitFail:
-                self.failedOpenConnection.emit((jobId, err))
             sys.stderr.write(mach)
             sys.stderr.write(port)
             raise err
@@ -609,10 +516,6 @@ class CJobServer(QtCore.QObject):
                 err += line
             if self._diagnostic:
                 print('testRemoteFiles', remoteFile, out, '*', err)
-            if out.count('Found') > 0:
-                self.testMessage.emit('   File: ' + str(remoteFile) + ' exists')
-            else:
-                self.testMessage.emit('   File: ' + str(remoteFile) + ' not found')
             ret.append(out.count('Found') > 0)
         client.close()
         self.deleteServerParam(jobId, 'sshThreadRemoteFiles')
@@ -758,9 +661,7 @@ class CJobServer(QtCore.QObject):
             print('Remote start stdout:', out)
             print('Remote start stderr:', err)
         if len(err) > 0:
-            exc = CException(self.__class__, 350, err)
-            if emitFail:
-                self.failedRemoteCommand.emit((jobId, exc))
+            CException(self.__class__, 350, err)
         if retHandler:
             try:
                 retHandler(jobId, out, err)
@@ -839,8 +740,7 @@ class CJobServer(QtCore.QObject):
     def handleRemoteSSHStatus(self, jobId, out, err):
         if self._diagnostic:
             print('handleRemoteSSHStatus', jobId, out, err)
-        sP = self.serverParams(jobId)
-        self.remoteJobMessage.emit(jobId, 'The process id for this job: ' + str(sP.serverProcessId), out, sP.machine)
+        self.serverParams(jobId)
 
     def checkLocalQsubStatus(self, jobId):
         try:      # KJS : Problem here. This func looks broken.
@@ -873,18 +773,15 @@ class CJobServer(QtCore.QObject):
 
     def handleRemoteQsubStatus(self, jobId, out, err):
         # VU: It seems this function is not used at all.
-        sP = self.serverParams(jobId)
+        self.serverParams(jobId)
         # VU: this check makes no sense, if the cluster runs other jobs, too
         if len(out) < 10:
             out = 'No jobs in queue (imples all finished/failed)'
-        self.remoteJobMessage.emit(jobId, 'QSub status on ' + sP.machine, out, sP.machine)
-        #print('handleRemoteQsubStatus: '+out)
 
     def handleRemoteSlurmStatus(self, jobId, out, err):
-        sP = self.serverParams(jobId)
+        self.serverParams(jobId)
         if str(jobId) not in out:
             out = 'The job is not in queue (implies it has finished or failed).'
-        self.remoteJobMessage.emit(jobId, 'Squeue status on ' + sP.machine, out, sP.machine)
 
     def getPidFileContent(self, jobId):
         from ccp4i2.core import CCP4Utils
@@ -972,7 +869,6 @@ class CJobServer(QtCore.QObject):
         self.deleteServerParams(jobId)
         CCP4Modules.PROJECTSMANAGER().db().updateJobStatus(jobId=jobId, status=CCP4DbApi.JOB_STATUS_FAILED)
 
-          
     def killRemoteJob(self, jobId):
         sP = self.serverParams(jobId)
         if sP is None:
@@ -995,8 +891,7 @@ class CJobServer(QtCore.QObject):
         self.handleFinishedServerJob(jobId)
 
     def pollForFinishedFlagFile(self):
-        if getattr(self,'pollFinishConnected',None) is None:
-            self.testRemoteFilesSignal.connect(self.pollForFinishedFlagFile1)
+        self.testRemoteFilesSignal.connect(self.pollForFinishedFlagFile1)
         pollByMachine = {}
         for jobId in self.getJobsToPollFinish([1]):
             sP = self.serverParams(jobId)
@@ -1108,10 +1003,3 @@ class CJobServer(QtCore.QObject):
                 except Exception as e:
                     print('Failed evaling the return from listRemoteProcesses')
                     print('Error:', e)
-        #print 'processes',processes
-        #print 'atTime',atTime
-        try:
-            self.remoteProcessesList.emit((machine, jobDict, processes, atTime)) # KJS : Another basic error here by the looks of it.
-        except:
-            print('ERROR in handling listing of remote processes')
-            print('execing line', line)
