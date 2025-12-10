@@ -1,8 +1,4 @@
-from ccp4i2.baselayer import QtCore
-from qtgui.CCP4TaskWidget import CTaskWidget
-
-from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import CellCheck, CellFormat, colourText
-from ccp4i2.pipelines.import_merged.script.dybuttons import MyMessageBox
+from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import CellCheck, CellFormat
 
 
 class DatalistCheck:
@@ -60,47 +56,6 @@ class DatalistCheck:
     valid = cellcheck.isValid()
     #print("compareCells", valid)
     return valid
-
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-  def popup(self):
-    #  for call from isValid on Run
-    # Returns:
-    #   'Onefile'  if < two files
-    #   'OK'       if files match
-    #   'No'       If they do not match
-    nfiles = len(self.obslist)
-    if nfiles < 2:
-      # must have at least two files
-      mbox = MyMessageBox()
-      #mbox.warning()
-      mbox.singleButton()
-      message = 'You must define at least two input datasets'
-      reply = mbox.displayText(message)
-      return 'Onefile' # just return to interface without further pop-ups
-
-    # Check cells
-    validlist = self.compareAllCells()
-    if False in validlist:
-      cellsgformat = self.formatAllCellSGs()
-      mbox = MyMessageBox()
-      mbox.warning()
-      mbox.singleButton()
-      details = ''
-      for i in range(nfiles):
-        if validlist[i]:
-          details += cellsgformat[i]
-        else:
-          details += colourText(cellsgformat[i], 'red')
-        if i < nfiles-1:
-          details += '<br/>'
-          
-      mbox.setInformativeText(details)
-
-      message = 'Cell mismatch compared to the first dataset'
-      reply = mbox.displayText(message)
-      return 'No'
-
-    return 'OK'
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   def formatAllCellSGs(self):

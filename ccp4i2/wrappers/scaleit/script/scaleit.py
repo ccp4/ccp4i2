@@ -1,17 +1,8 @@
-from __future__ import print_function
-
-"""
-     scaleit.py: CCP4 GUI Projecta
-     Copyright (C) 2011 STFC
-"""
-
 import os
 from lxml import etree
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core.CCP4ErrorHandling import *
-from ccp4i2.core import CCP4Utils
 from ccp4i2.core import CCP4XtalData
 
 from ccp4i2.wrappers.scaleit.script.scaleit_logscraper import *
