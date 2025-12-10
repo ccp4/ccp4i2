@@ -1,12 +1,5 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-} from "react";
-import { Button, Paper, Typography } from "@mui/material";
-import { useRouter } from "next/navigation";
+import React, { useCallback, useMemo } from "react";
+import { Paper, Typography } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
@@ -15,9 +8,8 @@ import { FieldRow } from "../task-elements/field-row";
 import { useJob } from "../../../utils";
 import {
   CCP4i2ErrorReport,
-  useRunCheck,
+  useFreeRWarning,
 } from "../../../providers/run-check-provider";
-import { Job } from "../../../types/models";
 
 /**
  * Task interface component for ServalCat Pipe - Macromolecular Refinement Pipeline.
@@ -31,12 +23,7 @@ import { Job } from "../../../types/models";
  */
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
-  const router = useRouter();
   const { useTaskItem, createPeerTask, validation } = useJob(job.id);
-
-  // Use refs to track processed states and prevent cycles
-  const lastProcessedValidation = useRef<any>(null);
-  const lastProcessedFreeRFlag = useRef<any>(null);
 
   // Get task items
   const { value: HKLINValue } = useTaskItem("servalcat_pipe.container.inputData.HKLIN");
@@ -44,14 +31,28 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { value: MAP_SHARP_CUSTOM } = useTaskItem("MAP_SHARP_CUSTOM");
   const { value: freeRFlag } = useTaskItem("FREERFLAG");
 
-  // Context for error handling
-  const {
-    processedErrors,
-    setProcessedErrors,
-    extraDialogActions,
-    setExtraDialogActions,
-    setRunTaskRequested,
-  } = useRunCheck();
+  // Filter out metalCoordWrapper.inputData.XYZIN validation errors
+  // TODO: This should be moved to Python's validity() method in servalcat_pipe.py
+  const filterServalcatErrors = useCallback(
+    (errors: CCP4i2ErrorReport): CCP4i2ErrorReport => {
+      return Object.fromEntries(
+        Object.entries(errors).filter(
+          ([key, _]) => key !== "servalcat_pipe.metalCoordWrapper.inputData.XYZIN"
+        )
+      );
+    },
+    []
+  );
+
+  // Use centralized FreeR warning hook
+  useFreeRWarning({
+    job,
+    taskName: "servalcat_pipe",
+    freeRFlag,
+    validation,
+    createPeerTask,
+    filterErrors: filterServalcatErrors,
+  });
 
   // Derived state (memoized for performance)
   const intensitiesAvailable = useMemo(() => {
@@ -68,92 +69,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     }),
     [MAP_SHARP, MAP_SHARP_CUSTOM, intensitiesAvailable]
   );
-
-  // Stable task creation function
-  const createFreeRTask = useCallback(async () => {
-    try {
-      const createdJob: Job | undefined = await createPeerTask("freerflag");
-      if (createdJob) {
-        router.push(`/project/${job.project}/job/${createdJob.id}`);
-        setRunTaskRequested(null);
-      }
-    } catch (error) {
-      console.error("Error creating FreeR task:", error);
-    }
-  }, [createPeerTask, job.project, router, setRunTaskRequested]);
-
-  // Process validation errors with cycle prevention
-  // TODO: The filtering of metalCoordWrapper.inputData.XYZIN should be moved to Python's validity()
-  // method in pipelines/servalcat_pipe/script/servalcat_pipe.py (already partially done there).
-  // Client-side filtering can cause race conditions. Python validity() can set allowUndefined=True
-  // on the metalCoordWrapper.inputData.XYZIN qualifier before validation runs.
-  const processErrors = useCallback(() => {
-    if (!validation) return;
-
-    // Filter out specific validation errors
-    const newProcessedErrors = Object.fromEntries(
-      Object.entries(validation as CCP4i2ErrorReport).filter(
-        ([key, _]) => key !== "servalcat_pipe.metalCoordWrapper.inputData.XYZIN"
-      )
-    );
-
-    // Add FreeR flag warning if not set
-    if (!freeRFlag?.dbFileId?.length) {
-      newProcessedErrors["servalcat_pipe.container.inputData.FREERFLAG"] = {
-        messages: [
-          "Setting the Free R flag file is strongly recommended for refinement",
-          "You are advised to select an existing set or create a new one",
-        ],
-        maxSeverity: 3, // Allows execution but shows warning
-      };
-    }
-
-    // Only update if errors have actually changed
-    const newErrorsKey = JSON.stringify(newProcessedErrors);
-    const currentErrorsKey = JSON.stringify(processedErrors);
-
-    if (newErrorsKey !== currentErrorsKey) {
-      setProcessedErrors(newProcessedErrors);
-    }
-  }, [validation, freeRFlag, processedErrors, setProcessedErrors]);
-
-  // Handle extra dialog actions for FreeR flag
-  const updateExtraDialogActions = useCallback(() => {
-    if (!freeRFlag?.dbFileId?.length) {
-      // Only add action if it doesn't already exist
-      if (!extraDialogActions?.FREERFLAG) {
-        const newExtraDialogActions = {
-          ...extraDialogActions,
-          FREERFLAG: (
-            <Button variant="contained" onClick={createFreeRTask}>
-              Create FreeR task
-            </Button>
-          ),
-        };
-        setExtraDialogActions(newExtraDialogActions);
-      }
-    } else {
-      // Remove action if FreeR flag is now set
-      if (extraDialogActions?.FREERFLAG) {
-        const { FREERFLAG, ...remainingActions } = extraDialogActions;
-        setExtraDialogActions(
-          Object.keys(remainingActions).length > 0 ? remainingActions : null
-        );
-      }
-    }
-  }, [freeRFlag, extraDialogActions, setExtraDialogActions, createFreeRTask]);
-
-  // Effect for error processing with minimal dependencies
-  useEffect(() => {
-    if (freeRFlag !== undefined) {
-      processErrors();
-    }
-  }, [freeRFlag, processErrors]);
-
-  // Effect for handling extra dialog actions
-  useEffect(() => {
-    updateExtraDialogActions();
-  }, [updateExtraDialogActions]);
 
   return (
     <Paper>

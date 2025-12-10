@@ -1,5 +1,6 @@
 import React, {
   createContext,
+  useCallback,
   useContext,
   useState,
   ReactNode,
@@ -13,8 +14,10 @@ import {
   DialogTitle,
 } from "@mui/material";
 import { Button } from "@mui/material";
+import { useRouter } from "next/navigation";
 import { useCCP4i2Window } from "../app-context";
 import { useJob } from "../utils";
+import { Job } from "../types/models";
 
 /**
  * An error report keyed by parameter name or error type.
@@ -231,4 +234,141 @@ export const useRunCheck = (): RunCheckContextType => {
     throw new Error("useRunCheck must be used within a RunCheckProvider");
   }
   return context;
+};
+
+/**
+ * Configuration for the FreeR warning hook.
+ */
+interface UseFreeRWarningOptions {
+  /** The job object */
+  job: Job;
+  /** The task name prefix for the error key (e.g., "prosmart_refmac", "servalcat_pipe") */
+  taskName: string;
+  /** The FreeR flag value from useTaskItem("FREERFLAG") */
+  freeRFlag: any;
+  /** Server validation errors */
+  validation: CCP4i2ErrorReport | null;
+  /** Function to create a peer task */
+  createPeerTask: (taskName: string) => Promise<Job | undefined>;
+  /** Optional function to filter/transform validation errors before processing */
+  filterErrors?: (errors: CCP4i2ErrorReport) => CCP4i2ErrorReport;
+}
+
+/**
+ * Hook to manage FreeR flag warnings for refinement tasks.
+ *
+ * This hook:
+ * 1. Adds a warning (maxSeverity: 3) when FreeR flag is not set
+ * 2. Adds a "Create FreeR task" button to the run confirmation dialog
+ * 3. Removes the warning/button when FreeR flag is set
+ *
+ * @example
+ * ```tsx
+ * const { value: freeRFlag } = useTaskItem("FREERFLAG");
+ * useFreeRWarning({
+ *   job,
+ *   taskName: "prosmart_refmac",
+ *   freeRFlag,
+ *   validation,
+ *   createPeerTask,
+ * });
+ * ```
+ */
+export const useFreeRWarning = ({
+  job,
+  taskName,
+  freeRFlag,
+  validation,
+  createPeerTask,
+  filterErrors,
+}: UseFreeRWarningOptions): void => {
+  const router = useRouter();
+  const {
+    processedErrors,
+    setProcessedErrors,
+    extraDialogActions,
+    setExtraDialogActions,
+    setRunTaskRequested,
+  } = useRunCheck();
+
+  // Stable task creation function for FreeR
+  const createFreeRTask = useCallback(async () => {
+    try {
+      const createdJob: Job | undefined = await createPeerTask("freerflag");
+      if (createdJob) {
+        router.push(`/project/${job.project}/job/${createdJob.id}`);
+        setRunTaskRequested(null);
+      }
+    } catch (error) {
+      console.error("Error creating FreeR task:", error);
+    }
+  }, [createPeerTask, job.project, router, setRunTaskRequested]);
+
+  // Process validation errors - add FreeR flag warning if not set
+  const processErrors = useCallback(() => {
+    if (!validation) return;
+
+    // Start with existing validation errors, optionally filtered
+    let newProcessedErrors = { ...(validation as CCP4i2ErrorReport) };
+    if (filterErrors) {
+      newProcessedErrors = filterErrors(newProcessedErrors);
+    }
+
+    // Add FreeR flag warning if not set
+    if (!freeRFlag?.dbFileId?.length) {
+      newProcessedErrors[`${taskName}.container.inputData.FREERFLAG`] = {
+        messages: [
+          "Setting the Free R flag file is strongly recommended for refinement",
+          "You are advised to select an existing set or create a new one",
+        ],
+        maxSeverity: 3, // Allows execution but shows warning
+      };
+    }
+
+    // Only update if errors have actually changed
+    const newErrorsKey = JSON.stringify(newProcessedErrors);
+    const currentErrorsKey = JSON.stringify(processedErrors);
+
+    if (newErrorsKey !== currentErrorsKey) {
+      setProcessedErrors(newProcessedErrors);
+    }
+  }, [validation, freeRFlag, processedErrors, setProcessedErrors, taskName, filterErrors]);
+
+  // Handle extra dialog actions for FreeR flag
+  const updateExtraDialogActions = useCallback(() => {
+    if (!freeRFlag?.dbFileId?.length) {
+      // Only add action if it doesn't already exist
+      if (!extraDialogActions?.FREERFLAG) {
+        const newExtraDialogActions = {
+          ...extraDialogActions,
+          FREERFLAG: (
+            <Button variant="contained" onClick={createFreeRTask}>
+              Create FreeR task
+            </Button>
+          ),
+        };
+        setExtraDialogActions(newExtraDialogActions);
+      }
+    } else {
+      // Remove action if FreeR flag is now set
+      if (extraDialogActions?.FREERFLAG) {
+        const { FREERFLAG, ...remainingActions } = extraDialogActions;
+        setExtraDialogActions(
+          Object.keys(remainingActions).length > 0 ? remainingActions : null
+        );
+      }
+    }
+  }, [freeRFlag, extraDialogActions, setExtraDialogActions, createFreeRTask]);
+
+  // Effect for error processing
+  useEffect(() => {
+    if (freeRFlag !== undefined) {
+      processErrors();
+    }
+  }, [freeRFlag, processErrors]);
+
+  // Effect for handling extra dialog actions
+  useEffect(() => {
+    updateExtraDialogActions();
+  }, [updateExtraDialogActions]);
 };
