@@ -11,22 +11,20 @@ Usage:
     # Get the root directory for resource files (icons, data, etc.)
     from ccp4i2 import get_resource_path
     icons_dir = get_resource_path('qticons')
-
-    # Check if running in Django mode
-    from ccp4i2 import is_django_mode
-    if is_django_mode():
-        # Django-specific code
-        pass
 """
 
-import os
+from os import environ
+from datetime import datetime
 from pathlib import Path
 
-__version__ = "3.0.0-dev"
+MAJOR = 3
+MINOR = 0
+PATCH = 0
+DEV = True
 
-# Determine the root directory of the ccp4i2 installation
-# Priority: CCP4I2_ROOT env var > package location
-_ROOT_DIR = None
+__version__ = f"{MAJOR}.{MINOR}.{PATCH}-{'dev' if DEV else 'release'}"
+__version_date__ = datetime(2025, 12, 10)
+__version_info__ = (MAJOR, MINOR, PATCH)
 
 
 def get_root_dir() -> Path:
@@ -42,21 +40,15 @@ def get_root_dir() -> Path:
     Returns:
         Path to the ccp4i2 root directory
     """
-    global _ROOT_DIR
-
-    if _ROOT_DIR is not None:
-        return _ROOT_DIR
-
     # Check environment variable first
-    env_root = os.environ.get('CCP4I2_ROOT')
-    if env_root and os.path.isdir(env_root):
-        _ROOT_DIR = Path(env_root)
-        return _ROOT_DIR
+    root = environ.get('CCP4I2_ROOT')
+    if root:
+        path = Path(root)
+        if path.is_dir():
+            return path
 
     # Fall back to package location
-    # This file is at ccp4i2/__init__.py, so parent.parent is the root
-    _ROOT_DIR = Path(__file__).parent.parent
-    return _ROOT_DIR
+    return Path(__file__).parent
 
 
 def get_resource_path(resource_name: str) -> Path:
@@ -84,39 +76,3 @@ def get_resource_path(resource_name: str) -> Path:
             return share_path
 
     return resource_path
-
-
-def is_django_mode() -> bool:
-    """
-    Check if running in Django backend mode (vs Qt mode).
-
-    Returns:
-        True if running in Django mode, False otherwise
-    """
-    # Check explicit environment variable
-    backend = os.environ.get('CCP4I2_BACKEND', '').lower()
-    if backend == 'django':
-        return True
-    if backend == 'qt':
-        return False
-
-    # Check for Django settings module
-    if os.environ.get('DJANGO_SETTINGS_MODULE'):
-        return True
-
-    # Try import detection
-    try:
-        from PySide2 import QtCore
-        return False  # Qt is available
-    except ImportError:
-        return True  # Assume Django mode if Qt not available
-
-
-def is_qt_mode() -> bool:
-    """
-    Check if running in Qt mode (vs Django mode).
-
-    Returns:
-        True if running in Qt mode, False otherwise
-    """
-    return not is_django_mode()

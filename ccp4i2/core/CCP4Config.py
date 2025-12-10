@@ -1,28 +1,3 @@
-from __future__ import print_function
-
-"""
-     CCP4Config.py: CCP4 GUI Project
-     Copyright (C) 2010 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-"""
-   Liz Potterton Sept 2010 - Separate CCP4Config out from ccp4i2.core.CCP4Modules
-"""
-
 import os
 import sys
 import re
@@ -265,40 +240,7 @@ def GRAPHICAL():
         CConfig()
     return CConfig.insts.graphical
 
-def QT():
-    # Beware this loads config params file with dependencies
-    # on CCP4Data which may not yet be properly loaded
-    # In Django mode, always return False to disable Qt
-    try:
-        from ccp4i2.baselayer import QT as _BASELAYER_QT
-        if not _BASELAYER_QT():
-            return False
-    except ImportError:
-        pass
-    if not CConfig.insts:
-        CConfig()
-    return CConfig.insts.qt
-
-
-def DJANGO():
-    """
-    Check if running in Django backend mode (Qt-free).
-
-    This function uses the baselayer environment detection to determine
-    if we're running in the modern Django/Qt-free environment.
-
-    Returns:
-        bool: True if using Django backend, False if using Qt backend
-    """
-    try:
-        from ccp4i2.baselayer import DJANGO as _BASELAYER_DJANGO
-        return _BASELAYER_DJANGO()
-    except ImportError:
-        # If baselayer not available, we're not in Django mode
-        return False
-
 def XMLPARSER():
-    # Ditto comments in QT()
     if  not CConfig.insts:
         CConfig()
     return CConfig.insts.xmlMode()

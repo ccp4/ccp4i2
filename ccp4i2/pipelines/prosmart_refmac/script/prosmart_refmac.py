@@ -193,16 +193,10 @@ class prosmart_refmac(CPluginScript):
         # Install xml node for in-progress refmac
         self.xmlLength = 0
 
-        firstRefmacXMLFilename = self.firstRefmac.makeFileName(format='PROGRAMXML')
+        # Django mode: Use Signal/Slot for streaming updates (atomic writes, no race conditions)
+        self.firstRefmac.connectSignal(self.firstRefmac, 'progressUpdated', self.handleRefmacProgress)
 
-        if DJANGO():
-            # Django mode: Use Signal/Slot for streaming updates (atomic writes, no race conditions)
-            self.firstRefmac.connectSignal(self.firstRefmac, 'progressUpdated', self.handleRefmacProgress)
-        else:
-            # Qt mode: Use file watching as QProcess doesn't support our streaming mechanism
-            self.watchFile(firstRefmacXMLFilename, handler=self.handleXmlChanged, minDeltaSize=34, unwatchWhileHandling=True)
-
-        rv = self.firstRefmac.process()
+        self.firstRefmac.process()
 
     def handleRefmacProgress(self, progressInfo):
         """Handle progress signal from refmac (streaming mode).
@@ -658,12 +652,6 @@ class prosmart_refmac(CPluginScript):
                        # Non-fatal - molprobity is optional
                        etree.SubElement(etree.SubElement(self.xmlroot, "Molprobity"), "Output").text = etree.CDATA(str(err))
                        self.saveXml()
-
-           # Stop file watcher before validation to prevent handleXmlChanged from clearing xmlroot
-           # (Only in Qt mode - in Django mode we use Signal/Slot, not file watching)
-           if not DJANGO() and hasattr(self, 'firstRefmac'):
-               firstRefmacXMLFilename = self.firstRefmac.makeFileName(format='PROGRAMXML')
-               self.unwatchFile(firstRefmacXMLFilename)
 
            # Get validation settings - defaults match def.xml (True for all except MOLPROBITY which is test-controlled)
            validate_iris = getattr(self.container.controlParameters, "VALIDATE_IRIS", True)

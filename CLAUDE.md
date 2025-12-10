@@ -13,8 +13,6 @@ CCP4i2 provides an environment for crystallographic computing. This branch (ccp4
 
 ### Compatibility Layer
 - **BaseLayer** (`baselayer/`) - Qt-free implementations of PySide2 APIs
-  - Enables code to work in both Django and legacy Qt environments
-  - Environment detection via `CCP4I2_BACKEND` env var or auto-detection
 
 ## Key Directories
 
@@ -33,19 +31,10 @@ CCP4i2 provides an environment for crystallographic computing. This branch (ccp4
 | `report/` | Report generation and parsing |
 | `tests/` | Test suite |
 
-## Environment Detection
-
-The system automatically detects which backend to use:
-
-1. **Explicit**: Set `CCP4I2_BACKEND=django` or `CCP4I2_BACKEND=qt`
-2. **Django context**: Presence of `DJANGO_SETTINGS_MODULE`
-3. **Auto-detection**: Try importing PySide2; if unavailable, use Django mode
-
 ## Running
 
 ### Django Mode
 ```bash
-export CCP4I2_BACKEND=django
 export DJANGO_SETTINGS_MODULE=ccp4x.config.settings
 python -m cli.i2run <task> [options]
 ```
@@ -84,7 +73,6 @@ The `run_test.sh` script sets up the required environment variables and paths.
 Code in wrappers/pipelines uses the baselayer compatibility module:
 ```python
 from ccp4i2.baselayer import QtCore, Signal, Slot
-# Works in both Django and Qt environments
 ```
 
 ## Files Preserved from Legacy

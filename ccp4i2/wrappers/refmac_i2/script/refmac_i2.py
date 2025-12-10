@@ -50,8 +50,6 @@ class refmac_i2(CPluginScript):
         from .refmacLogScraper import logScraper
         self.logScraper = logScraper(xmlroot=self.xmlroot, flushXML=self.flushXML)
         self.xmlLength = 0
-        # Enable streaming mode in Django environment for real-time progress updates
-        self._useStreamingMode = True
 
     @QtCore.Slot()
     def handleReadyReadStandardOutput(self):
@@ -114,31 +112,7 @@ class refmac_i2(CPluginScript):
         """Start refmac process, using streaming mode in Django environment."""
         # Check if we should use streaming mode
         # In Qt mode, QProcess signals handle stdout; in Django mode, use streaming
-        if getattr(self, '_useStreamingMode', False) and not self._isQtEnvironment():
-            return self._startProcessWithStreaming(lineHandler=self.onProcessOutput)
-        else:
-            # Fall back to parent implementation (Qt mode or sync mode)
-            return super(refmac_i2, self).startProcess()
-
-    def _isQtEnvironment(self):
-        """Check if we're running in a Qt GUI environment (not Django execution mode).
-
-        We check for Django execution context rather than just PySide2 availability,
-        because PySide2 is installed in CCP4 but we may be running via Django.
-        """
-        import os
-        # If Django settings module is set, we're in Django execution mode
-        if os.environ.get('DJANGO_SETTINGS_MODULE'):
-            return False
-        # Also check explicit backend setting
-        if os.environ.get('CCP4I2_BACKEND') == 'django':
-            return False
-        # Otherwise check for real Qt (not baselayer stub)
-        try:
-            from PySide2.QtCore import QProcess
-            return True
-        except ImportError:
-            return False
+        return self._startProcessWithStreaming(lineHandler=self.onProcessOutput)
 
     def processInputFiles(self):
         from ccp4i2.core import CCP4XtalData
