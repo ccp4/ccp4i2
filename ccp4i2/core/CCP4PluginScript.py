@@ -3599,7 +3599,7 @@ class CPluginScript(CData):
             ... )
             >>> # Creates: MAPOUT_1.mtz, ABCDOUT_1.mtz, MAPOUT_2.mtz, ABCDOUT_2.mtz
         """
-        from ccp4i2.core.CCP4ErrorReport import CErrorReport
+        from ccp4i2.core.base_object.error_reporting import CErrorReport
         from pathlib import Path
         error = CErrorReport()
 
