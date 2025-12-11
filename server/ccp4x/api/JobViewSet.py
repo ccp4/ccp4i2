@@ -744,34 +744,58 @@ class JobViewSet(ModelViewSet):
         always executes jobs via subprocess on the current machine.
 
         Args:
-            request (Request): HTTP request object
+            request (Request): HTTP request object with optional JSON body:
+                - synchronous (bool): If True, blocks until job completes.
+                    Default is False (returns immediately after starting).
             pk (int): Primary key of the job to execute
 
         Returns:
-            Response: Updated job data with appropriate status
+            Response: Updated job data with appropriate status.
+            When synchronous=True, returns the final job state after completion.
+
+        Request Body (optional):
+            {
+                "synchronous": true
+            }
 
         Example:
+            # Asynchronous (default) - returns immediately
             POST /api/jobs/123/run_local/
+
+            # Synchronous - blocks until job completes
+            POST /api/jobs/123/run_local/
+            {"synchronous": true}
 
         Note:
             - Requires CCP4 installation on local machine
             - May not work in pure container environments
             - Frontend can selectively use this for specific task types
+            - Synchronous mode is useful for scripting and automation
         """
         try:
             from ..lib.utils.jobs.context_run import run_job_context_aware
 
             job = models.Job.objects.get(id=pk)
 
+            # Parse synchronous parameter from request body
+            synchronous = False
+            if request.body:
+                try:
+                    body_data = json.loads(request.body.decode("utf-8"))
+                    synchronous = body_data.get("synchronous", False)
+                except (json.JSONDecodeError, UnicodeDecodeError):
+                    pass  # Use default (False) if body is invalid
+
             logger.info(
-                "Forcing local execution for job %s (uuid=%s, task=%s)",
+                "Forcing local execution for job %s (uuid=%s, task=%s, synchronous=%s)",
                 job.id,
                 job.uuid,
                 job.task_name,
+                synchronous,
             )
 
             # Execute job with forced local mode
-            result = run_job_context_aware(job, force_local=True)
+            result = run_job_context_aware(job, force_local=True, synchronous=synchronous)
 
             if result["success"]:
                 serializer = serializers.JobSerializer(result["data"])

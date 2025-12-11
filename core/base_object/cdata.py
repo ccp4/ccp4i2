@@ -1090,8 +1090,6 @@ class CData(HierarchicalObject):
                     # This overwrites the EXPLICITLY_SET state that setattr() created
                     if hasattr(source, '_value_states') and attr in source._value_states:
                         if hasattr(self, '_value_states'):
-                            import sys
-                            pass #print(f"[DEBUG _smart_assign_from_cdata] Copying value state for {self.objectName() if hasattr(self, 'objectName') else 'unknown'}.{attr}: {source._value_states[attr]} -> self {self._value_states.get(attr, 'N/A')}", file=sys.stderr)
                             self._value_states[attr] = source._value_states[attr]
                     return
 
@@ -1103,7 +1101,6 @@ class CData(HierarchicalObject):
                     if key:
                         setattr(self, key, child)
         else:
-            pass #print(f"[DEBUG _smart_assign_from_cdata] Handling complex type assignment for {self.objectName() if hasattr(self, 'objectName') else 'unknown'} from source {source.objectName() if hasattr(source, 'objectName') else 'unknown'}")
             # Complex type assignment (like containers and lists)
             # For CList types, copy items from source to self
             from .fundamental_types import CList
@@ -1120,7 +1117,6 @@ class CData(HierarchicalObject):
             if isinstance(self, CContainer) and isinstance(source, CContainer):
                 # Container merging: iterate over source's hierarchical children
                 # Use children() to get only actual CData children, not all dir() entries
-                pass #print(f"[DEBUG _smart_assign_from_cdata] Merging CContainer {self.objectName() if hasattr(self, 'objectName') else 'unknown'} from source {source.objectName() if hasattr(source, 'objectName') else 'unknown'}")
                 for child in source.children():
                     # Only copy CData objects
                     if not isinstance(child, CData):
@@ -1149,12 +1145,42 @@ class CData(HierarchicalObject):
                 # Non-container complex type: copy hierarchical children, but only if explicitly set
                 # This prevents NOT_SET fields from being marked as EXPLICITLY_SET
                 # Use children() to get only actual hierarchical children, not all __dict__ entries
-                pass #print(f"[DEBUG _smart_assign_from_cdata] Copying attributes for complex type {self.objectName() if hasattr(self, 'objectName') else 'unknown'} from source {source.objectName() if hasattr(source, 'objectName') else 'unknown'}")
+
+                # For CDataFile types, preserve existing path-related fields (relPath, baseName, project)
+                # when the destination already has them explicitly set. This prevents subjob paths
+                # from overwriting pre-configured main job destination paths during RegisterSubOutputAsMain.
+                # Path fields define WHERE a file should be located, while content fields (contentFlag,
+                # subType, annotation) define WHAT the file contains.
+                #
+                # IMPORTANT: dbFileId is a special case - it should NEVER be copied from source to dest.
+                # The dbFileId points to a specific database record for the SOURCE file. If we copy it,
+                # getFullPath() will use it to look up the path in the database, which returns the
+                # SOURCE file's path, not the DESTINATION file's intended path. The destination should
+                # get its own dbFileId when it's registered in the database with its own path.
+                from .cdata_file import CDataFile
+                is_file_type = isinstance(self, CDataFile)
+                # Fields to preserve if destination has them set
+                path_fields_preserve = {'relPath', 'baseName', 'project'}
+                # Fields to NEVER copy (database identity fields that must be unique per file)
+                path_fields_never_copy = {'dbFileId'}
+
                 for child in source.children():
                     # Get the child's name within the source
                     key = child.objectName() if hasattr(child, 'objectName') else None
                     if not key:
                         continue
+
+                    # For CDataFile, NEVER copy dbFileId - it's the source's database identity
+                    if is_file_type and key in path_fields_never_copy:
+                        continue
+
+                    # For CDataFile, preserve existing path fields if already explicitly set
+                    # This allows content to be copied without overwriting the destination path
+                    if is_file_type and key in path_fields_preserve:
+                        existing = getattr(self, key, None)
+                        if existing is not None and hasattr(existing, 'isSet') and existing.isSet(allowDefault=False):
+                            # Destination already has this path field set - preserve it
+                            continue
 
                     # For CData attributes, only copy if explicitly set
                     if isinstance(child, CData) and hasattr(child, 'isSet'):
@@ -1366,8 +1392,6 @@ class CData(HierarchicalObject):
                 pass
             else:
                 # Same instance or non-plugin objects - use smart assignment
-                if name in ['contentFlag', 'subType']:  # DEBUG
-                    logger.debug("Branch: CData to CData for %s", name)  # DEBUG
                 existing_attr._smart_assign_from_cdata(value)
                 # Mark as explicitly set since we're assigning a new value
                 if hasattr(self, "_value_states"):

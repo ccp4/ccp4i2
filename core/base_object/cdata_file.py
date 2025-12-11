@@ -229,6 +229,22 @@ class CDataFile(CData):
                     # Otherwise set it directly
                     self.baseName = path
                     logger.debug("  Set baseName = %s", path)
+
+                # IMPORTANT: Clear relPath when setting an absolute path in non-DB mode.
+                # This prevents getFullPath() from using stale relPath values that
+                # might have been set when this object was part of a different job
+                # (e.g., copied from subjob to main job via RegisterSubOutputAsMain).
+                # Without this, getFullPath() would see that relPath is set, strip
+                # baseName to just the filename, and reconstruct a wrong path using
+                # the old relPath.
+                from pathlib import Path as PathLib
+                if path and PathLib(path).is_absolute():
+                    if hasattr(self, 'relPath'):
+                        if hasattr(self.relPath, 'set'):
+                            self.relPath.set('')
+                        elif hasattr(self.relPath, 'value'):
+                            self.relPath.value = ''
+                        logger.debug("  Cleared relPath (non-DB mode with absolute path)")
             else:
                 # baseName doesn't exist yet - store in file_path for now
                 object.__setattr__(self, 'file_path', path)
@@ -260,7 +276,8 @@ class CDataFile(CData):
             if isinstance(current, CPluginScript):
                 return current
             # parent is now a method, not a property - must call it
-            current = current.parent() if hasattr(current, 'parent') and callable(current.parent) else None
+            next_parent = current.parent() if hasattr(current, 'parent') and callable(current.parent) else None
+            current = next_parent
             depth += 1
             if depth > 10:  # Safety limit
                 break
@@ -272,6 +289,46 @@ class CDataFile(CData):
         if plugin and hasattr(plugin, '_dbHandler'):
             return plugin._dbHandler
         return None
+
+    def _create_adhoc_db_handler(self, project_uuid_str: str):
+        """
+        Create an ad-hoc AsyncDatabaseHandler for database operations.
+
+        This is used when the parent chain doesn't provide a db handler (e.g.,
+        when a CDataFile has been copied from a subjob to the main job via
+        RegisterSubOutputAsMain and the parent chain still points to the subjob).
+
+        Args:
+            project_uuid_str: Project UUID as string
+
+        Returns:
+            AsyncDatabaseHandler instance, or None if Django is not available
+        """
+        try:
+            # Check if Django is available/configured
+            import os
+            if not os.environ.get('DJANGO_SETTINGS_MODULE'):
+                return None
+
+            # Import Django components
+            import django
+            try:
+                django.setup()
+            except RuntimeError:
+                pass  # Already configured
+
+            from server.ccp4x.db.async_db_handler import AsyncDatabaseHandler
+            import uuid
+
+            project_uuid = uuid.UUID(str(project_uuid_str))
+            return AsyncDatabaseHandler(project_uuid)
+
+        except ImportError as e:
+            logger.debug(f"Cannot create ad-hoc db handler: Django not available: {e}")
+            return None
+        except Exception as e:
+            logger.debug(f"Failed to create ad-hoc db handler: {e}")
+            return None
 
     def _update_from_database(self, path: str, plugin):
         """Update file attributes from database if the file matches an existing database record.
@@ -389,13 +446,14 @@ class CDataFile(CData):
         jobs_match = re.search(r'(CCP4_JOBS/job_\d+(?:/job_\d+)*)', path_str)
         if jobs_match:
             rel_path = jobs_match.group(1)
+            new_basename = Path(path_str).name
             # For project paths, set project UUID and extract baseName
             if hasattr(self, 'project') and hasattr(self.project, 'set'):
                 self.project.set(str(project_id))
                 logger.debug("  Set project = %s", project_id)
             if hasattr(self, 'baseName') and hasattr(self.baseName, 'set'):
-                self.baseName.set(Path(path_str).name)
-                logger.debug("  Set baseName = %s", Path(path_str).name)
+                self.baseName.set(new_basename)
+                logger.debug("  Set baseName = %s", new_basename)
             if hasattr(self, 'relPath') and hasattr(self.relPath, 'set'):
                 self.relPath.set(rel_path)
                 logger.debug("  Set relPath = %s (from CCP4_JOBS pattern)", rel_path)
@@ -563,22 +621,17 @@ class CDataFile(CData):
                 has_relpath = hasattr(self, 'relPath') and self.relPath is not None and \
                              (hasattr(self.relPath, 'value') and self.relPath.value) or self.relPath
 
-                pass  # DEBUG: print(f"[DEBUG getFullPath] baseName is absolute: {basename_str}, exists={abs_path.exists()}, is_temp_file={is_temp_file}, has_relpath={has_relpath}")
-
                 # If file exists at the absolute path, use it
                 if abs_path.exists():
-                    pass  # DEBUG: print(f"[DEBUG getFullPath] File exists at absolute path, returning: {basename_str}")
                     return basename_str
 
                 # If we have relPath set, the absolute path in baseName is likely stale
                 # (from CWD-relative path expansion). Strip to just filename and use relPath logic.
                 if has_relpath:
-                    pass  # DEBUG: print(f"[DEBUG getFullPath] Have relPath, treating absolute baseName as stale, stripping to filename")
                     basename_value = abs_path.name
                     basename_str = basename_value
                 elif not is_temp_file:
                     # No relPath, not a temp file, use the absolute path as-is
-                    pass  # DEBUG: print(f"[DEBUG getFullPath] No relPath, using absolute baseName as-is: {basename_str}")
                     return basename_str
                 else:
                     # Temp file that doesn't exist - strip to filename
@@ -663,6 +716,9 @@ class CDataFile(CData):
                         if project_id:
                             # Try to get project directory from database handler
                             db_handler = self._get_db_handler()
+                            # If no db_handler from parent chain, try ad-hoc handler
+                            if not db_handler:
+                                db_handler = self._create_adhoc_db_handler(project_id)
                             if db_handler and hasattr(db_handler, 'getProjectDirectory'):
                                 try:
                                     project_dir = db_handler.getProjectDirectory(project_id)
@@ -716,6 +772,11 @@ class CDataFile(CData):
                     if project_id:
                         # Get project directory from database
                         db_handler = self._get_db_handler()
+                        # If no db_handler from parent chain, try ad-hoc handler
+                        # This is needed when CDataFile was copied from subjob to main job
+                        # and the parent chain still points to the subjob's plugin
+                        if not db_handler:
+                            db_handler = self._create_adhoc_db_handler(project_id)
                         if db_handler and hasattr(db_handler, 'getProjectDirectory'):
                             try:
                                 project_dir = db_handler.getProjectDirectory(project_id)
@@ -748,6 +809,36 @@ class CDataFile(CData):
                             current = current.parent
                             if current == current.parent:  # Reached filesystem root
                                 break
+
+        # AD-HOC DB HANDLER FALLBACK: Use stored self.project to get project directory
+        # This handles cases where CDataFile has project/relPath/baseName set directly
+        # (e.g., via RegisterSubOutputAsMain) but the parent chain doesn't lead to
+        # a properly configured plugin. We can still resolve the path using the
+        # stored project UUID and an ad-hoc db handler.
+        if relpath_value and basename_value:
+            relpath_str = str(relpath_value).strip()
+            if relpath_str and relpath_str.startswith('CCP4_JOBS'):
+                # Get project UUID from self.project attribute
+                project_id = None
+                if hasattr(self, 'project') and self.project is not None:
+                    if hasattr(self.project, 'value'):
+                        project_id = self.project.value
+                    else:
+                        project_id = str(self.project)
+
+                if project_id and str(project_id).strip():
+                    # Try ad-hoc db handler
+                    adhoc_handler = self._create_adhoc_db_handler(str(project_id))
+                    if adhoc_handler and hasattr(adhoc_handler, 'getProjectDirectory'):
+                        try:
+                            project_dir = adhoc_handler.getProjectDirectory(str(project_id))
+                            if project_dir:
+                                base_dir = Path(project_dir)
+                                full_path = base_dir / relpath_str / str(basename_value)
+                                logger.debug("Constructed path via ad-hoc db handler: %s", full_path)
+                                return str(full_path)
+                        except Exception as e:
+                            logger.debug(f"Ad-hoc db handler failed to get project directory: {e}")
 
         # FINAL FALLBACK: Try to construct path without plugin
         # This handles cases where files were imported/autopopulated but plugin hierarchy
@@ -782,8 +873,38 @@ class CDataFile(CData):
                                         logger.debug(f"Found file via CCP4I2_PROJECTS_DIR search: {test_path}")
                                         return str(test_path)
 
+                # ADDITIONAL FALLBACK: For job output files during pipeline execution
+                # If relPath starts with CCP4_JOBS/, try constructing path from CWD
+                # This handles crank2 pseudo-plugins that don't have a proper plugin parent
+                # but are executing within a job directory context.
+                if relpath_str.startswith('CCP4_JOBS/'):
+                    # Walk up from CWD to find project root (directory containing CCP4_JOBS)
+                    cwd = Path(os.getcwd())
+                    current = cwd
+                    for _ in range(10):  # Max 10 levels up
+                        test_path = current / relpath_str / str(basename_value)
+                        if test_path.exists():
+                            logger.debug(f"Found file via CWD traversal: {test_path}")
+                            return str(test_path)
+                        # Also check if CWD itself is the project root
+                        if (current / 'CCP4_JOBS').exists():
+                            test_path = current / relpath_str / str(basename_value)
+                            if test_path.exists():
+                                logger.debug(f"Found file via project root from CWD: {test_path}")
+                                return str(test_path)
+                        current = current.parent
+                        if current == current.parent:  # Reached filesystem root
+                            break
+
         # Return baseName as-is (may be relative path, or empty)
         if basename_value is not None:
+            # Debug: log when we're falling back to just baseName
+            if relpath_value:
+                logger.warning(
+                    "[getFullPath FALLBACK] Returning just baseName='%s' but relPath='%s' is set! "
+                    "This may cause path resolution issues. File object: %s",
+                    basename_value, relpath_value, self.objectName() if hasattr(self, 'objectName') else 'unknown'
+                )
             return str(basename_value) if basename_value else ""
 
         # Fallback to legacy file_path
