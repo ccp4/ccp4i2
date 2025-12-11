@@ -31,7 +31,6 @@ import json
 import logging
 import subprocess
 import pathlib
-import platform
 
 logger = logging.getLogger(__name__)
 
@@ -234,7 +233,7 @@ def _find_python_interpreter(project_root: pathlib.Path) -> tuple:
     return None, None
 
 
-def run_job_local(job):
+def run_job_local(job, synchronous=False):
     """
     Execute job via local subprocess.
 
@@ -247,10 +246,13 @@ def run_job_local(job):
         job: Job model instance with attributes:
             - id: Job primary key
             - uuid: Job UUID
+        synchronous (bool): If True, blocks until job completes and returns
+            the final job state. If False (default), starts the job in the
+            background and returns immediately.
 
     Returns:
         dict: Result dictionary with keys:
-            - success (bool): True if job started successfully
+            - success (bool): True if job started/completed successfully
             - data (dict): Serialized job data (if success)
             - error (str): Error message (if failure)
             - status (int): HTTP status code
@@ -263,7 +265,11 @@ def run_job_local(job):
     Raises:
         No exceptions - all errors returned in result dict
     """
-    logger.info("Running job %s in LOCAL mode via subprocess", job.id)
+    logger.info(
+        "Running job %s in LOCAL mode via subprocess (synchronous=%s)",
+        job.id,
+        synchronous
+    )
 
     try:
         # Path: context_run.py -> jobs -> utils -> lib -> ccp4x -> server -> manage.py
@@ -296,29 +302,69 @@ def run_job_local(job):
         job.status = models.Job.Status.QUEUED
         job.save()
 
-        # Start job in detached process
-        subprocess.Popen(
-            [
-                python_interpreter,
-                manage_py,
-                "run_job",
-                "-ju",
-                str(job.uuid),
-            ],
-            start_new_session=True,
-            env=env,
-        )
+        if synchronous:
+            # Synchronous execution: block until job completes
+            logger.info(
+                "Running job %s (%s) synchronously using %s",
+                job.id, job.uuid, interpreter_name
+            )
 
-        logger.info(
-            "Started job %s (%s) via subprocess using %s",
-            job.id, job.uuid, interpreter_name
-        )
+            result = subprocess.run(
+                [
+                    python_interpreter,
+                    manage_py,
+                    "run_job",
+                    "-ju",
+                    str(job.uuid),
+                ],
+                env=env,
+                capture_output=True,
+                text=True,
+            )
 
-        return {
-            "success": True,
-            "data": job,
-            "status": 200,
-        }
+            # Refresh job from database to get final status
+            job.refresh_from_db()
+
+            if result.returncode != 0:
+                logger.warning(
+                    "Job %s completed with non-zero exit code %d: %s",
+                    job.id, result.returncode, result.stderr
+                )
+
+            logger.info(
+                "Job %s (%s) completed synchronously with status %s",
+                job.id, job.uuid, job.status
+            )
+
+            return {
+                "success": True,
+                "data": job,
+                "status": 200,
+            }
+        else:
+            # Asynchronous execution: start job in detached process
+            subprocess.Popen(
+                [
+                    python_interpreter,
+                    manage_py,
+                    "run_job",
+                    "-ju",
+                    str(job.uuid),
+                ],
+                start_new_session=True,
+                env=env,
+            )
+
+            logger.info(
+                "Started job %s (%s) via subprocess using %s",
+                job.id, job.uuid, interpreter_name
+            )
+
+            return {
+                "success": True,
+                "data": job,
+                "status": 200,
+            }
 
     except Exception as error:
         logger.exception("Failed to start job via subprocess", exc_info=error)
@@ -329,7 +375,7 @@ def run_job_local(job):
         }
 
 
-def run_job_context_aware(job, force_local=False):
+def run_job_context_aware(job, force_local=False, synchronous=False):
     """
     Execute job using environment-appropriate backend.
 
@@ -342,6 +388,8 @@ def run_job_context_aware(job, force_local=False):
     Args:
         job: Job model instance
         force_local (bool): If True, forces local execution regardless of environment
+        synchronous (bool): If True, blocks until job completes (local mode only).
+            Azure mode always returns immediately after queuing.
 
     Returns:
         dict: Result dictionary with keys:
@@ -358,6 +406,9 @@ def run_job_context_aware(job, force_local=False):
 
         # Force local execution
         result = run_job_context_aware(job, force_local=True)
+
+        # Synchronous local execution (blocks until complete)
+        result = run_job_context_aware(job, force_local=True, synchronous=True)
 
         if result["success"]:
             serializer = JobSerializer(result["data"])
@@ -380,13 +431,20 @@ def run_job_context_aware(job, force_local=False):
         execution_mode = get_execution_mode()
 
     logger.info(
-        "Executing job %s (uuid=%s) in %s mode",
+        "Executing job %s (uuid=%s) in %s mode (synchronous=%s)",
         job.id,
         job.uuid,
         execution_mode.upper(),
+        synchronous,
     )
 
     if execution_mode == "azure":
+        if synchronous:
+            logger.warning(
+                "Synchronous execution requested but Azure mode does not support it. "
+                "Job %s will be queued asynchronously.",
+                job.id,
+            )
         return run_job_azure(job)
-    else:
-        return run_job_local(job)
+
+    return run_job_local(job, synchronous=synchronous)
