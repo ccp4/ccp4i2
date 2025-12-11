@@ -64,16 +64,9 @@ class ccp4mg_edit_model_report(Report):
             table.addData(title="Source",data=source)
     
         self.append('<div style="clear:both;"/>')
-            
-#FIXME - XML PICTURE
-        """    
-        if len(self.jobInfo['filenames']["XYZOUT"]) > 0:
-            self.drawPictures()
-            self.append('<div style="clear:both;"/>')
-        """    
+
         self.addMrBUMPLogs()
         self.append('<div style="clear:both;"/>')
-        #self.drawWarnings()
 
     def drawWarnings(self, parent=None):
         if parent is None: parent = self
