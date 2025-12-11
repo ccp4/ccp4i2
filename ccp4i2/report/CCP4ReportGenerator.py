@@ -335,16 +335,6 @@ class CReportGenerator(HierarchicalObject):
         if not makePictures:
             return self.reportFile, newPageOrNewData
 
-        """
-    if self.report.containsPictures():
-      from ccp4i2.core import CCP4Config
-      try:
-        self.mgProcess = self.runMg(pictureQueue=self.report.pictureQueue ,callBack=lambda exitCode,exitStatus: self.handleMgFinished(self.jobId,self.report.pictureQueue[1:],exitCode,exitStatus))
-      except:
-        print('ERROR making report, running CCP4mg to create pictures')
-      else:
-        pass
-    """
         return self.reportFile, newPageOrNewData
 
     def makePleaseWaitReport(self, jobRunning=True):
@@ -606,7 +596,7 @@ class CReportGenerator(HierarchicalObject):
 
     def runMg(self, pictureQueue=[], callBack=None):
         # print 'CReportGenerator.runMg pictureQueue',pictureQueue
-        from ccp4i2.core import CCP4Modules, CCP4Config
+        from ccp4i2.core import CCP4Modules
         import os
         import re
         mgExe = CCP4Modules.LAUNCHER().getExecutable('CCP4MG')
