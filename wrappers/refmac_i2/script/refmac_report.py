@@ -30,10 +30,14 @@ class refmac_report(Report):
     def addSummary(self, xmlnode=None, parent=None, withTables=True):
         if parent is None: parent=self
         if xmlnode is None: xmlnode = self.xmlnode
-        
+
         summaryFold = parent.addFold(label='Summary of refinement', brief='Summary', initiallyOpen=True)
-        self.addScrollableDownloadableTable1(parent=summaryFold)
-        self.addProgressGraph(parent=summaryFold)
+
+        # Use grid layout to place table and graph side by side
+        left, right = summaryFold.addTwoColumnLayout(left_span=5, right_span=7, spacing=2)
+        self.addScrollableDownloadableTable1(parent=left)
+        self.addProgressGraph(parent=right)
+
         if withTables: self.addTables(parent=summaryFold)
     
     def addRunningProgressGraph(self, parent):
@@ -68,10 +72,9 @@ class refmac_report(Report):
     def addProgressGraph(self, parent=None,xmlnode=None):
         if parent is None: parent=self
         if xmlnode is None: xmlnode = self.xmlnode
-        #I *do not know* why This is needed
-        
+
         #Note that when I add the progressgraph, I have to ensure that the select is rooted in my own xmlnode
-        progressGraph = parent.addFlotGraph( title="Refinement results", xmlnode=self.xmlnode, select = ".//Overall_stats/stats_vs_cycle/new_cycle",style="height:250px; width:400px;float:left;")
+        progressGraph = parent.addFlotGraph( title="Refinement results", xmlnode=self.xmlnode, select = ".//Overall_stats/stats_vs_cycle/new_cycle",style="height:250px; width:100%;")
         progressGraph.addData(title="Cycle",   select=".//cycle")
         progressGraph.addData(title="R-free",   select=".//r_free", expr="x if float(x)>=0.0 else '-'")
         progressGraph.addData(title="R-factor", select=".//r_factor", expr="x if float(x)>=0.0 else ''")
@@ -626,11 +629,11 @@ class refmac_report(Report):
     def addScrollableDownloadableTable1(self, xmlnode=None, parent=None,internalId='Table1'):
         if xmlnode is None: xmlnode = self.xmlnode
         if parent is None: parent = self
-        
+
         #create a "shell" div to contain the scrollable table and the hyperlink
-        scrollableDownloadableTableDiv = parent.addDiv(style="height:250px; width:315px;float:left;margin-top:2px;")
+        scrollableDownloadableTableDiv = parent.addDiv(style="height:250px; width:100%; margin-top:2px;")
         #place a scrollable div into the shell: the table will be inserted into this div
-        scrollableTableDiv = scrollableDownloadableTableDiv.addDiv(style="height:225px; width:300px;clear:both;overflow:auto;")
+        scrollableTableDiv = scrollableDownloadableTableDiv.addDiv(style="height:225px; width:100%; overflow:auto;")
         #Put table1 into this (autoscrolling) div
         table1 = self.addTable1(xmlnode=xmlnode, parent=scrollableTableDiv,internalId=internalId)
         #scrollableDownloadableTableDiv.addDiv(style="height:10px;width:15px; float:right;")
@@ -641,8 +644,8 @@ class refmac_report(Report):
     def addTable1(self, xmlnode=None, parent=None, downloadable=False,internalId='Table1'):
         if xmlnode is None: xmlnode = self.xmlnode
         if parent is None: parent = self
-        
-        table1 = parent.addTable(xmlnode=xmlnode, style="width:240px;float:left;", downloadable=downloadable,outputXml=self.outputXml,internalId=internalId)
+
+        table1 = parent.addTable(xmlnode=xmlnode, style="width:100%;", downloadable=downloadable,outputXml=self.outputXml,internalId=internalId)
         
         ResolutionLowNode =xmlnode.findall('.//Overall_stats/resolution_low')
         ResolutionHighNode =xmlnode.findall('.//Overall_stats/resolution_high')
