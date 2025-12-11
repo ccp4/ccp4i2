@@ -6,7 +6,6 @@ This file is safe to edit - add your implementation code here.
 """
 
 from __future__ import annotations
-from typing import Optional, Any
 
 from ccp4i2.core.cdata_stubs.CCP4Annotation import CAnnotationStub, CAnnotationListStub, CAuthorStub, CBibReferenceStub, CBibReferenceGroupStub, CDateRangeStub, CFontStub, CHostNameStub, CHostnameStub, CMetaDataTagStub, CMetaDataTagListStub, CServerGroupStub, CTimeStub, CUserAddressStub, CUserIdStub
 
