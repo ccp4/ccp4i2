@@ -6,9 +6,9 @@ from ccp4i2.core import CCP4File
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core import CCP4PluginScript
 from ccp4i2.core import CCP4Container
-from ccp4x.db import models
+from ccp4i2.db import models
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def save_params_for_job(

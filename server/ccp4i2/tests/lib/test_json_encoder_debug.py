@@ -6,10 +6,10 @@ from shutil import rmtree
 from django.test import TestCase, override_settings
 from django.conf import settings
 
-from ccp4x.db.import_i2xml import import_ccp4_project_zip
-from ccp4x.db.models import Job
-from ccp4x.lib.utils.plugins.get_plugin import get_job_plugin
-from ccp4x.lib.utils.containers.json_encoder import CCP4i2JsonEncoder
+from ccp4i2.db.import_i2xml import import_ccp4_project_zip
+from ccp4i2.db.models import Job
+from ccp4i2.lib.utils.plugins.get_plugin import get_job_plugin
+from ccp4i2.lib.utils.containers.json_encoder import CCP4i2JsonEncoder
 
 
 @override_settings(

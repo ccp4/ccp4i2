@@ -1,6 +1,6 @@
 import uuid
 from django.core.management.base import BaseCommand
-from ccp4x.db.models import Job, Project
+from ccp4i2.db.models import Job, Project
 
 
 class Command(BaseCommand):

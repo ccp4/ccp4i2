@@ -21,7 +21,7 @@ from .models import (
 )
 from .ccp4i2_static_data import FILETYPELIST, KEYTYPELIST
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def generate_project_xml_tree(

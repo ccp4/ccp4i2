@@ -19,7 +19,7 @@ temp_db = tempfile.NamedTemporaryFile(suffix='.sqlite3', delete=False)
 temp_db.close()
 temp_projects = tempfile.mkdtemp(prefix='standalone_test_')
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'ccp4x.config.test_settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'ccp4i2.config.test_settings'
 os.environ['CCP4I2_DB_FILE'] = temp_db.name
 os.environ['CCP4I2_PROJECTS_DIR'] = temp_projects
 os.environ['CCP4I2_ROOT'] = str(Path(__file__).parent.parent)
@@ -29,8 +29,8 @@ import django
 django.setup()
 
 from django.core.management import call_command
-from ccp4x.db import models
-from ccp4x.db.async_db_handler import AsyncDatabaseHandler
+from ccp4i2.db import models
+from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 from asgiref.sync import sync_to_async
 
 print(f"🗄️  Database: {temp_db.name}")

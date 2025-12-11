@@ -8,7 +8,7 @@ from pathlib import Path
 
 # Set up environment using relative path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4x.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4i2.settings')
 os.environ.setdefault('CCP4I2_ROOT', str(PROJECT_ROOT))
 os.environ.setdefault('CCP4_LOG_LEVEL', 'INFO')
 
@@ -18,8 +18,8 @@ sys.path.insert(0, str(PROJECT_ROOT / 'server'))
 import django
 django.setup()
 
-from ccp4x.db.models import Job, Project
-from ccp4x.lib.utils.jobs.validate import validate_job
+from ccp4i2.db.models import Job, Project
+from ccp4i2.lib.utils.jobs.validate import validate_job
 
 def main():
     # Find the test project

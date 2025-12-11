@@ -1,7 +1,7 @@
 import json
 from django.core.management.base import BaseCommand
-from ccp4x.db.models import Project
-from ccp4x.lib.utils.navigation.list_project import list_project
+from ccp4i2.db.models import Project
+from ccp4i2.lib.utils.navigation.list_project import list_project
 
 
 class Command(BaseCommand):

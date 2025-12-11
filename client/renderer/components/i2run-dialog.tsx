@@ -49,7 +49,7 @@ export const I2RunDialog: React.FC<I2RunDialogProps> = ({
 
   const fullCommand = useMemo(() => {
     if (!config || !cwd) return "";
-    return `${cwd}/ccp4x/i2run/i2run.sh ${command} --dbFile ${config.CCP4I2_PROJECTS_DIR}/db.sqlite3`;
+    return `${cwd}/ccp4i2/i2run/i2run.sh ${command} --dbFile ${config.CCP4I2_PROJECTS_DIR}/db.sqlite3`;
   }, [config, cwd, command]);
 
   const handleCopy = () => {

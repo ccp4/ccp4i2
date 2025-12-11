@@ -4,8 +4,8 @@ import subprocess
 import platform
 from django.core.management.base import BaseCommand
 from asgiref.sync import async_to_sync
-from ccp4x.db.models import Job, Project
-from ccp4x.lib.async_run_job import run_job_async
+from ccp4i2.db.models import Job, Project
+from ccp4i2.lib.async_run_job import run_job_async
 
 
 class Command(BaseCommand):

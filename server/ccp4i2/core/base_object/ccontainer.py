@@ -570,7 +570,7 @@ class CContainer(CData):
     def find_by_path(self, path: str, skip_first: bool = True):
         """Find a descendant object by dot-separated path.
 
-        Replaces server/ccp4x/lib/utils/containers/find_objects.find_object_by_path()
+        Replaces server/ccp4i2/lib/utils/containers/find_objects.find_object_by_path()
         as a core CContainer method.
 
         Args:
@@ -673,7 +673,7 @@ class CContainer(CData):
     def find_all_files(self):
         """Find all CDataFile objects in container hierarchy.
 
-        Replaces server/ccp4x/lib/cdata_utils.find_all_files() as a core method.
+        Replaces server/ccp4i2/lib/cdata_utils.find_all_files() as a core method.
 
         Returns:
             List of all CDataFile objects found in hierarchy (deduplicated by id)

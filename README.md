@@ -101,7 +101,7 @@ ccp4i2/
 ├── wrappers/           # Single-program task wrappers
 ├── wrappers2/          # Modern wrapper implementations
 ├── server/             # Django backend
-│   └── ccp4x/
+│   └── ccp4i2/
 │       ├── api/        # REST API ViewSets
 │       ├── db/         # Django ORM models
 │       ├── i2run/      # Job runner

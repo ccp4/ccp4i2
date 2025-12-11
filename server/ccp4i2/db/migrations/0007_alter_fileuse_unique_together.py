@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ccp4x', '0006_alter_jobcharvalue_job_alter_jobfloatvalue_key'),
+        ('ccp4i2', '0006_alter_jobcharvalue_job_alter_jobfloatvalue_key'),
     ]
 
     operations = [

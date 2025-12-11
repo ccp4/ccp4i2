@@ -281,7 +281,7 @@ async with handler.track_job(plugin):
 ## File Structure
 
 ```
-server/ccp4x/
+server/ccp4i2/
 ├── db/
 │   ├── async_db_handler.py           ⭐ NEW - Modern async handler
 │   ├── ccp4i2_django_db_handler.py   📦 LEGACY - Keep for compatibility
@@ -313,7 +313,7 @@ tests/
 
 ```python
 import asyncio
-from server.ccp4x.db.async_db_handler import AsyncDatabaseHandler
+from server.ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 async def run_simple_job():
@@ -337,7 +337,7 @@ asyncio.run(run_simple_job())
 ### Example 2: Full Pipeline with File Import
 
 ```python
-from server.ccp4x.lib.async_run_job import run_pipeline_async
+from server.ccp4i2.lib.async_run_job import run_pipeline_async
 
 async def run_full_pipeline():
     job_uuid = await run_pipeline_async(
@@ -356,7 +356,7 @@ async def run_full_pipeline():
 ### Example 3: Nested Jobs
 
 ```python
-from server.ccp4x.lib.async_run_job import run_nested_jobs_async
+from server.ccp4i2.lib.async_run_job import run_nested_jobs_async
 
 async def run_nested_pipeline():
     parent_uuid = await run_nested_jobs_async(
@@ -383,7 +383,7 @@ async def run_nested_pipeline():
 ### Example 4: Manual File Gleaning
 
 ```python
-from server.ccp4x.lib.async_glean_files import glean_all_async
+from server.ccp4i2.lib.async_glean_files import glean_all_async
 
 async def manual_gleaning():
     handler = AsyncDatabaseHandler(project_uuid=project.uuid)
@@ -458,7 +458,7 @@ async def manual_gleaning():
 CCP4I2_ROOT=$CCP4I2_ROOT python -m pytest tests/test_cdata_database_integration.py -v
 
 # Run with Django (requires Django test setup)
-python manage.py test server.ccp4x.tests.test_async_integration
+python manage.py test server.ccp4i2.tests.test_async_integration
 ```
 
 ## Next Steps

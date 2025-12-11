@@ -17,7 +17,7 @@ done
 
 export CCP4I2_ROOT="$PROJECT_ROOT"
 export PYTHONPATH="$PROJECT_ROOT/server:$PROJECT_ROOT:$PYTHONPATH"
-export DJANGO_SETTINGS_MODULE=ccp4x.config.test_settings
+export DJANGO_SETTINGS_MODULE=ccp4i2.config.test_settings
 
 # Create temp database and projects
 TMP_DB=$(mktemp -t test_db_XXXXXX).sqlite3
@@ -57,7 +57,7 @@ from pathlib import Path
 # Django is already set up from env vars
 django.setup()
 
-from ccp4x.db import models
+from ccp4i2.db import models
 
 # Get the most recent project
 project = models.Project.objects.order_by('-creation_time').first()

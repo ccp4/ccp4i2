@@ -5,7 +5,7 @@ from typing import Set
 # MN
 from ccp4i2.core import CCP4Container
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def remove_container_default_values(

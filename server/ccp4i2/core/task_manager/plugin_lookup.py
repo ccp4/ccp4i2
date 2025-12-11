@@ -31,7 +31,7 @@ if CCP4I2_ROOT not in sys.path:
     sys.path.insert(0, CCP4I2_ROOT)
 
 # Configure Django before importing any plugins that might use Django models
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ccp4x.config.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ccp4i2.config.settings")
 try:
     import django
     django.setup()

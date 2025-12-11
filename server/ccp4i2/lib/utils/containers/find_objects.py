@@ -10,7 +10,7 @@ from ccp4i2.core import CCP4File
 from ccp4i2.core.CCP4Container import CContainer
 from ccp4i2.core.base_object.fundamental_types import CList
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def find_objects(within, func, multiple=False, growing_list=None, growing_name=None):

@@ -9,7 +9,7 @@ from ccp4i2.core.base_object.fundamental_types import (
 )
 
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def base_class(o):

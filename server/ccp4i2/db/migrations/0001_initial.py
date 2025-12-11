@@ -50,7 +50,7 @@ class Migration(migrations.Migration):
                 ('finish_time', models.DateTimeField(blank=True, null=True)),
                 ('task_name', models.CharField(max_length=100)),
                 ('process_id', models.IntegerField(blank=True, null=True)),
-                ('parent', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='children', to='ccp4x.job')),
+                ('parent', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='children', to='ccp4i2.job')),
             ],
         ),
         migrations.CreateModel(
@@ -75,13 +75,13 @@ class Migration(migrations.Migration):
                 ('last_job_number', models.IntegerField(default=0)),
                 ('i1_project_name', models.TextField(blank=True)),
                 ('i1_project_directory', models.TextField(blank=True)),
-                ('follow_from_job', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='ccp4x.job')),
+                ('follow_from_job', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='ccp4i2.job')),
             ],
         ),
         migrations.CreateModel(
             name='FileImport',
             fields=[
-                ('file', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='ccp4x.file')),
+                ('file', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='ccp4i2.file')),
                 ('time', models.DateTimeField(default=django.utils.timezone.now)),
                 ('name', models.TextField()),
                 ('checksum', models.CharField(max_length=32)),
@@ -91,7 +91,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ServerJob',
             fields=[
-                ('job', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='ccp4x.job')),
+                ('job', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='ccp4i2.job')),
                 ('server_process_id', models.IntegerField(blank=True, null=True)),
                 ('machine', models.CharField(blank=True, max_length=255)),
                 ('username', models.CharField(blank=True, max_length=100)),
@@ -109,7 +109,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('data_class', models.TextField(db_column='class')),
                 ('xml', models.TextField()),
-                ('job', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.RESTRICT, related_name='xdatas', to='ccp4x.job')),
+                ('job', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.RESTRICT, related_name='xdatas', to='ccp4i2.job')),
             ],
         ),
         migrations.CreateModel(
@@ -117,7 +117,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('time', models.DateTimeField(default=django.utils.timezone.now)),
-                ('project', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='imports', to='ccp4x.project')),
+                ('project', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='imports', to='ccp4i2.project')),
             ],
         ),
         migrations.CreateModel(
@@ -125,13 +125,13 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('time', models.DateTimeField(default=django.utils.timezone.now)),
-                ('project', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='exports', to='ccp4x.project')),
+                ('project', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='exports', to='ccp4i2.project')),
             ],
         ),
         migrations.AddField(
             model_name='job',
             name='project',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='jobs', to='ccp4x.project'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='jobs', to='ccp4i2.project'),
         ),
         migrations.CreateModel(
             name='FileExport',
@@ -139,26 +139,26 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('time', models.DateTimeField(default=django.utils.timezone.now)),
                 ('name', models.TextField()),
-                ('file', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='exports', to='ccp4x.file')),
+                ('file', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='exports', to='ccp4i2.file')),
             ],
         ),
         migrations.AddField(
             model_name='file',
             name='job',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='files', to='ccp4x.job'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='files', to='ccp4i2.job'),
         ),
         migrations.AddField(
             model_name='file',
             name='type',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, related_name='files', to='ccp4x.filetype'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, related_name='files', to='ccp4i2.filetype'),
         ),
         migrations.CreateModel(
             name='ProjectTag',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('text', models.CharField(max_length=50)),
-                ('parent', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='children', to='ccp4x.projecttag')),
-                ('projects', models.ManyToManyField(related_name='tags', to='ccp4x.project')),
+                ('parent', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='children', to='ccp4i2.projecttag')),
+                ('projects', models.ManyToManyField(related_name='tags', to='ccp4i2.project')),
             ],
             options={
                 'unique_together': {('parent', 'text')},
@@ -169,8 +169,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('value', models.FloatField()),
-                ('job', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='float_values', to='ccp4x.job')),
-                ('key', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='+', to='ccp4x.jobvaluekeys')),
+                ('job', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='float_values', to='ccp4i2.job')),
+                ('key', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='+', to='ccp4i2.jobvaluekeys')),
             ],
             options={
                 'unique_together': {('job', 'key')},
@@ -181,8 +181,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('value', models.CharField(max_length=255)),
-                ('job', models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, related_name='char_values', to='ccp4x.job')),
-                ('key', models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, related_name='+', to='ccp4x.jobvaluekeys')),
+                ('job', models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, related_name='char_values', to='ccp4i2.job')),
+                ('key', models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, related_name='+', to='ccp4i2.jobvaluekeys')),
             ],
             options={
                 'unique_together': {('job', 'key')},
@@ -198,8 +198,8 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('role', models.IntegerField(choices=[(0, 'Out'), (1, 'In')])),
                 ('job_param_name', models.CharField(blank=True, max_length=32)),
-                ('file', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='file_uses', to='ccp4x.file')),
-                ('job', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='file_uses', to='ccp4x.job')),
+                ('file', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='file_uses', to='ccp4i2.file')),
+                ('job', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='file_uses', to='ccp4i2.job')),
             ],
             options={
                 'unique_together': {('file', 'job', 'role')},

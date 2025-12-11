@@ -2,8 +2,8 @@ import uuid
 import subprocess
 import pathlib
 from django.core.management.base import BaseCommand
-from ccp4x.db.models import Project, File
-from ccp4x.lib.utils.files.preview import preview_file
+from ccp4i2.db.models import Project, File
+from ccp4i2.lib.utils.files.preview import preview_file
 
 
 class Command(BaseCommand):

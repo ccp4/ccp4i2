@@ -30,9 +30,9 @@ from django.http import JsonResponse, FileResponse
 from ccp4i2.core import CCP4TaskManager
 from ccp4i2.core.CCP4TaskManager import CTaskManager
 
-from ccp4x.db import models
+from ccp4i2.db import models
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 logger.setLevel(logging.DEBUG)
 
 

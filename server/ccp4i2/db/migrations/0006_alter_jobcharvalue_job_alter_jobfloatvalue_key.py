@@ -7,18 +7,18 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ccp4x', '0005_alter_file_directory_alter_fileuse_role_and_more'),
+        ('ccp4i2', '0005_alter_file_directory_alter_fileuse_role_and_more'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='jobcharvalue',
             name='job',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='char_values', to='ccp4x.job'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='char_values', to='ccp4i2.job'),
         ),
         migrations.AlterField(
             model_name='jobfloatvalue',
             name='key',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, related_name='+', to='ccp4x.jobvaluekey'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, related_name='+', to='ccp4i2.jobvaluekey'),
         ),
     ]

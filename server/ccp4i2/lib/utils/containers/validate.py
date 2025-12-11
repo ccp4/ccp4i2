@@ -4,7 +4,7 @@ from ccp4i2.core import CCP4Container
 from ccp4i2.core import CCP4ErrorHandling
 
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 # Mapping from severity codes to text
 SEVERITY_TEXT = {

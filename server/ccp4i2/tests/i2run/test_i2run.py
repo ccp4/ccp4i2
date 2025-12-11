@@ -6,10 +6,10 @@ import uuid
 from argparse import ArgumentParser
 from django.test import TestCase, override_settings
 from django.conf import settings
-from ccp4x.db.models import Job, Project, File, JobCharValue, JobFloatValue
-from ccp4x.db.import_i2xml import import_ccp4_project_zip
+from ccp4i2.db.models import Job, Project, File, JobCharValue, JobFloatValue
+from ccp4i2.db.import_i2xml import import_ccp4_project_zip
 
-from ccp4x.i2run import CCP4i2RunnerDjango
+from ccp4i2.i2run import CCP4i2RunnerDjango
 from ccp4i2.core import CCP4Modules
 
 # Set CCP4I2_TOP to the project root

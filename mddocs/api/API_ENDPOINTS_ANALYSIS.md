@@ -38,7 +38,7 @@ def set_parameter(self, request, pk=None):
 **RECOMMENDATION**: Refactor to use new unified utility:
 ```python
 # SHOULD BE:
-from ccp4x.lib.utils.parameters.set_param import set_parameter as set_job_param
+from ccp4i2.lib.utils.parameters.set_param import set_parameter as set_job_param
 
 def set_parameter(self, request, pk=None):
     result = set_job_param(job, object_path, value)  # ← Uses CPluginScript
@@ -76,7 +76,7 @@ def validation(self, request, pk=None):
 **RECOMMENDATION**: Refactor to use unified utility:
 ```python
 # SHOULD BE:
-from ccp4x.lib.utils.jobs.validate import validate_job
+from ccp4i2.lib.utils.jobs.validate import validate_job
 
 def validation(self, request, pk=None):
     result = validate_job(the_job)  # ← Uses CPluginScript
@@ -117,7 +117,7 @@ def params_xml(self, request, pk=None):
 **RECOMMENDATION**: Optionally refactor to use unified utility:
 ```python
 # COULD BE (for consistency):
-from ccp4x.lib.utils.jobs.reports import get_job_params_xml
+from ccp4i2.lib.utils.jobs.reports import get_job_params_xml
 
 def params_xml(self, request, pk=None):
     result = get_job_params_xml(the_job)
@@ -207,15 +207,15 @@ These are helper/utility endpoints that don't modify job state. Current implemen
 
 ### 🔴 HIGH PRIORITY (Functional Improvements)
 
-1. **`set_parameter/` endpoint** - Should use new `ccp4x.lib.utils.parameters.set_param.set_parameter()`
+1. **`set_parameter/` endpoint** - Should use new `ccp4i2.lib.utils.parameters.set_param.set_parameter()`
    - **Current**: Uses legacy `job_utils.set_parameter` (doesn't use CPluginScript properly)
-   - **Should use**: `ccp4x.lib.utils.parameters.set_param.set_parameter()` (CPluginScript + dbHandler)
+   - **Should use**: `ccp4i2.lib.utils.parameters.set_param.set_parameter()` (CPluginScript + dbHandler)
    - **Benefit**: Proper DB sync, consistent with management command
    - **Impact**: HIGH - This is a core data modification endpoint
 
-2. **`validation/` endpoint** - Should use new `ccp4x.lib.utils.jobs.validate.validate_job()`
+2. **`validation/` endpoint** - Should use new `ccp4i2.lib.utils.jobs.validate.validate_job()`
    - **Current**: Uses `get_job_container()` + `validate_container()`
-   - **Should use**: `ccp4x.lib.utils.jobs.validate.validate_job()` (CPluginScript)
+   - **Should use**: `ccp4i2.lib.utils.jobs.validate.validate_job()` (CPluginScript)
    - **Benefit**: Uses new CErrorReport API, consistent with management command
    - **Impact**: MEDIUM - Affects validation workflow
 
@@ -223,13 +223,13 @@ These are helper/utility endpoints that don't modify job state. Current implemen
 
 3. **`upload_file_param/` endpoint** - Should have unified utility
    - **Current**: Uses legacy `job_utils.upload_file_param`
-   - **Should have**: New utility in `ccp4x.lib.utils.parameters.upload_file.py`
+   - **Should have**: New utility in `ccp4i2.lib.utils.parameters.upload_file.py`
    - **Benefit**: Consistency, proper error handling
    - **Impact**: MEDIUM - File uploads are important but less frequent
 
 4. **`set_context_job/` endpoint** - Should have unified utility
    - **Current**: Uses legacy `job_utils.set_input_by_context_job`
-   - **Should have**: New utility in `ccp4x.lib.utils.jobs.context.py`
+   - **Should have**: New utility in `ccp4i2.lib.utils.jobs.context.py`
    - **Benefit**: Consistency with other utilities
    - **Impact**: LOW-MEDIUM - Used for workflow automation
 
@@ -237,7 +237,7 @@ These are helper/utility endpoints that don't modify job state. Current implemen
 
 5. **Report endpoints** (`params_xml/`, `report_xml/`, `diagnostic_xml/`)
    - **Current**: Mix of direct filesystem reads and `generate_job_report()`
-   - **Could use**: Unified utilities from `ccp4x.lib.utils.jobs.reports`
+   - **Could use**: Unified utilities from `ccp4i2.lib.utils.jobs.reports`
    - **Benefit**: Consistency, centralized logic
    - **Impact**: LOW - Current approach works well
 
@@ -280,7 +280,7 @@ API Endpoint → Unified Utility Function → get_plugin_with_context() → CPlu
 
 **Step 1**: Refactor `set_parameter/` endpoint
 ```python
-# File: server/ccp4x/api/JobViewSet.py (line 1111)
+# File: server/ccp4i2/api/JobViewSet.py (line 1111)
 
 # OLD:
 from ..lib.job_utils.set_parameter import set_parameter
@@ -310,7 +310,7 @@ def set_parameter(self, request, pk=None):
 
 **Step 2**: Refactor `validation/` endpoint
 ```python
-# File: server/ccp4x/api/JobViewSet.py (line 1049)
+# File: server/ccp4i2/api/JobViewSet.py (line 1049)
 
 # OLD:
 from ..lib.job_utils.get_job_container import get_job_container
@@ -373,8 +373,8 @@ For each refactored endpoint:
 
 ### Immediate Next Steps
 
-1. **Refactor `set_parameter/` endpoint** to use `ccp4x.lib.utils.parameters.set_param`
-2. **Refactor `validation/` endpoint** to use `ccp4x.lib.utils.jobs.validate`
+1. **Refactor `set_parameter/` endpoint** to use `ccp4i2.lib.utils.parameters.set_param`
+2. **Refactor `validation/` endpoint** to use `ccp4i2.lib.utils.jobs.validate`
 3. **Test both endpoints** with real HTTP requests
 4. **Document changes** and update API documentation
 

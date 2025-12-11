@@ -12,7 +12,7 @@ The user correctly identified a critical error handling gap: when the SMILES str
 
 ### 1. Silent Failures in PluginPopulator
 
-**Location**: `server/ccp4x/i2run/i2run_components.py:447-538` (`_handle_single_value()`)
+**Location**: `server/ccp4i2/i2run/i2run_components.py:447-538` (`_handle_single_value()`)
 
 **Problem**: When argument parsing fails, the code calls `logger.warning()` but does NOT raise exceptions.
 
@@ -71,7 +71,7 @@ else:
 
 ### 2. ⚠️ TODO: Strict Argument Parsing Errors
 
-**Location**: `server/ccp4x/i2run/i2run_components.py:447-538`
+**Location**: `server/ccp4i2/i2run/i2run_components.py:447-538`
 
 **Proposal**: Replace `logger.warning()` with exceptions for critical failures.
 

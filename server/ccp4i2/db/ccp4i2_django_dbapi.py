@@ -10,7 +10,7 @@ from . import models
 from .ccp4i2_static_data import FILETYPELIST
 from ..lib.utils.jobs.directory import job_directory
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def get_file_type_id_from_mimetype(mimetype):

@@ -60,15 +60,15 @@ These files correctly use `.parent()` as a method on HierarchicalObject instance
    - Line 241: `current = self.parent()`
    - ✅ Correct - This is a CDataFile object (HierarchicalObject)
 
-3. **server/ccp4x/lib/utils/jobs/run.py** (2 locations)
+3. **server/ccp4i2/lib/utils/jobs/run.py** (2 locations)
    - Lines 95, 176: `str(application_inst.parent())`, `application_inst: QtCore.QEventLoop = the_plugin.parent()`
    - ✅ Correct - These are plugin objects (HierarchicalObject)
 
-4. **server/ccp4x/db/async_db_handler.py** (2 locations)
+4. **server/ccp4i2/db/async_db_handler.py** (2 locations)
    - Lines 678, 679: `if plugin.parent() and hasattr(plugin.parent(), 'get_db_job_id')`
    - ✅ Correct - Plugin objects (HierarchicalObject)
 
-5. **server/ccp4x/db/ccp4i2_django_db_handler.py** (1 location)
+5. **server/ccp4i2/db/ccp4i2_django_db_handler.py** (1 location)
    - Line 163: `if the_job.parent() is None`
    - ✅ Correct - Job object (HierarchicalObject)
 
@@ -91,24 +91,24 @@ These files incorrectly had `.parent()` on `pathlib.Path` objects and were fixed
 5. **core/task_manager/def_xml_handler.py**
    - Line 28: `Path(__file__).parent().parent().parent()` → `Path(__file__).parent.parent.parent`
 
-6. **server/ccp4x/lib/utils/parameters/load_xml.py** (2 locations)
+6. **server/ccp4i2/lib/utils/parameters/load_xml.py** (2 locations)
    - Line 186: `pathlib.Path(CCP4File.__file__).parent.parent()` → `.parent.parent`
    - Line 558: `pathlib.Path(CCP4File.__file__).parent.parent()` → `.parent.parent`
 
-7. **server/ccp4x/lib/utils/files/import_files.py**
+7. **server/ccp4i2/lib/utils/files/import_files.py**
    - Line 61: `destFilePath.parent()` → `destFilePath.parent`
 
-8. **server/ccp4x/lib/async_import_files.py**
+8. **server/ccp4i2/lib/async_import_files.py**
    - Line 172: `source_resolved.parent()` → `source_resolved.parent`
 
-9. **server/ccp4x/lib/utils/formats/seq_to_asu.py**
+9. **server/ccp4i2/lib/utils/formats/seq_to_asu.py**
    - Line 248: `output_path.parent().mkdir()` → `output_path.parent.mkdir()`
 
 ## Related Fixes (Discovered During Migration)
 
 ### 1. CCP4i2RunnerBase.parent Parameter
 
-**File**: [server/ccp4x/i2run/CCP4i2RunnerBase.py:94](server/ccp4x/i2run/CCP4i2RunnerBase.py#L94)
+**File**: [server/ccp4i2/i2run/CCP4i2RunnerBase.py:94](server/ccp4i2/i2run/CCP4i2RunnerBase.py#L94)
 
 **Issue**: Tried to call `self.set_parent(parent)` but runner classes don't inherit from HierarchicalObject.
 
@@ -186,9 +186,9 @@ def PREFERENCES():
 - core/base_object/cdata.py
 - core/base_object/cdata_file.py
 - core/base_object/hierarchy_system.py
-- server/ccp4x/lib/utils/jobs/run.py
-- server/ccp4x/db/async_db_handler.py
-- server/ccp4x/db/ccp4i2_django_db_handler.py
+- server/ccp4i2/lib/utils/jobs/run.py
+- server/ccp4i2/db/async_db_handler.py
+- server/ccp4i2/db/ccp4i2_django_db_handler.py
 
 **Fixed to use .parent property (Path)**:
 - core/CCP4File.py
@@ -196,10 +196,10 @@ def PREFERENCES():
 - core/conversions/phase_data_converter.py
 - core/base_object/cdata_file.py
 - core/task_manager/def_xml_handler.py
-- server/ccp4x/lib/utils/parameters/load_xml.py
-- server/ccp4x/lib/utils/files/import_files.py
-- server/ccp4x/lib/async_import_files.py
-- server/ccp4x/lib/utils/formats/seq_to_asu.py
+- server/ccp4i2/lib/utils/parameters/load_xml.py
+- server/ccp4i2/lib/utils/files/import_files.py
+- server/ccp4i2/lib/async_import_files.py
+- server/ccp4i2/lib/utils/formats/seq_to_asu.py
 
 ### Comprehensive Test Suite
 

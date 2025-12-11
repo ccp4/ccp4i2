@@ -4,7 +4,7 @@ from ccp4i2.core import CCP4TaskManager
 from ccp4i2.core import CCP4Container
 from ....db import models
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def get_job_container(the_job: models.Job):

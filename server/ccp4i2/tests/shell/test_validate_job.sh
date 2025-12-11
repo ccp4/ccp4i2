@@ -39,9 +39,9 @@ echo "[5] Getting job UUID via Python..."
 JOB_UUID=$(python -c "
 import django, os, sys
 sys.path.insert(0, os.environ['CCP4I2_ROOT'] + '/server')
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4x.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4i2.settings')
 django.setup()
-from ccp4x.db.models import Job, Project
+from ccp4i2.db.models import Job, Project
 proj = Project.objects.filter(name='$PROJECT_NAME').first()
 if proj:
     job = Job.objects.filter(project=proj, number=$JOB_NUMBER).first()

@@ -9,12 +9,12 @@ from ..ccp4i2_static_data import FILETYPELIST, KEYTYPELIST
 def install_statics(apps, schema_editor):
 
     for file_type_item in FILETYPELIST:
-        FileType: Type = apps.get_model("ccp4x", "FileType")
+        FileType: Type = apps.get_model("ccp4i2", "FileType")
         file_type = FileType(name=file_type_item[1], description=file_type_item[2])
         file_type.save()
 
     for key_type_item in KEYTYPELIST:
-        JobValueKey: Type = apps.get_model("ccp4x", "JobValueKey")
+        JobValueKey: Type = apps.get_model("ccp4i2", "JobValueKey")
         job_value_key = JobValueKey(name=key_type_item[1], description=key_type_item[2])
         job_value_key.save()
 
@@ -22,8 +22,8 @@ def install_statics(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("ccp4x", "0001_initial"),
-        ("ccp4x", "0002_rename_jobvaluekeys_jobvaluekey"),
+        ("ccp4i2", "0001_initial"),
+        ("ccp4i2", "0002_rename_jobvaluekeys_jobvaluekey"),
     ]
 
     operations = [migrations.RunPython(install_statics)]

@@ -15,7 +15,7 @@ sys.path.insert(0, str(project_root / "server"))
 # Set CCP4I2_ROOT for plugin discovery
 os.environ["CCP4I2_ROOT"] = str(project_root)
 
-from ccp4x.lib.utils.parameters.load_xml import load_nested_xml
+from ccp4i2.lib.utils.parameters.load_xml import load_nested_xml
 
 
 def test_count_all_control_params():

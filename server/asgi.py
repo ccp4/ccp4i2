@@ -1,5 +1,5 @@
 """
-ASGI config for ccp4x project.
+ASGI config for ccp4i2 project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -17,6 +17,6 @@ except ImportError:
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ccp4x.config.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ccp4i2.config.settings")
 
 application = get_asgi_application()

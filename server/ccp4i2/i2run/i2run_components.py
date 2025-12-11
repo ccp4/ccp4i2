@@ -686,7 +686,7 @@ class PluginPopulator:
 
         # Special handling for sequence files with seqFile= (CAsuDataFile)
         if has_key_value_syntax and "seqFile" in parsed_values:
-            from ccp4x.lib.utils.formats.seq_to_asu import convert_sequence_file_to_asu
+            from ccp4i2.lib.utils.formats.seq_to_asu import convert_sequence_file_to_asu
             import tempfile
             import os
 
@@ -763,7 +763,7 @@ class PluginPopulator:
             logger.info(f"Checking for MTZ splitting on file: {file_path}")
             if file_path.suffix.lower() == ".mtz" and file_path.exists():
                 try:
-                    from ccp4x.lib.utils.formats.gemmi_split_mtz import gemmi_split_mtz
+                    from ccp4i2.lib.utils.formats.gemmi_split_mtz import gemmi_split_mtz
                     import tempfile
                     import os
 

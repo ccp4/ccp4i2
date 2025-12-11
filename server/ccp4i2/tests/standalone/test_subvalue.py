@@ -8,7 +8,7 @@ from pathlib import Path
 # Set up environment using relative path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 os.environ['CCP4I2_ROOT'] = str(PROJECT_ROOT)
-os.environ['DJANGO_SETTINGS_MODULE'] = 'ccp4x.config.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'ccp4i2.config.settings'
 
 # Add server to path
 sys.path.insert(0, str(PROJECT_ROOT / 'server'))
@@ -21,7 +21,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-from ccp4x.i2run.CCP4i2RunnerBase import CCP4i2RunnerBase
+from ccp4i2.i2run.CCP4i2RunnerBase import CCP4i2RunnerBase
 
 # Test 1: fullPath subValue
 print("=" * 60)
@@ -39,7 +39,7 @@ try:
     plugin1 = runner1.getPlugin()
 
     # Check if XYZIN.fullPath was set
-    from server.ccp4x.lib.utils.containers.find_objects import find_object_by_path
+    from server.ccp4i2.lib.utils.containers.find_objects import find_object_by_path
     xyzin = find_object_by_path(plugin1.container, "inputData.XYZIN")
     if xyzin:
         print(f"✓ XYZIN object found")
@@ -69,7 +69,7 @@ try:
     plugin2 = runner2.getPlugin()
 
     # Check if XYZIN.selection.text was set
-    from server.ccp4x.lib.utils.containers.find_objects import find_object_by_path
+    from server.ccp4i2.lib.utils.containers.find_objects import find_object_by_path
     xyzin = find_object_by_path(plugin2.container, "inputData.XYZIN")
     if xyzin:
         print(f"✓ XYZIN object found")
@@ -106,7 +106,7 @@ try:
     plugin3 = runner3.getPlugin()
 
     # Check if both were set
-    from server.ccp4x.lib.utils.containers.find_objects import find_object_by_path
+    from server.ccp4i2.lib.utils.containers.find_objects import find_object_by_path
     xyzin = find_object_by_path(plugin3.container, "inputData.XYZIN")
     if xyzin:
         print(f"✓ XYZIN object found")

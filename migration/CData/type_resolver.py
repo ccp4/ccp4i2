@@ -65,7 +65,7 @@ class TypeResolver:
         if type_str.startswith("<class '") and type_str.endswith("'>"):
             type_str = type_str[8:-2]
 
-        # Handle fully qualified names like "ccp4x.data_scan.CCP4ModelData.CAsuContent"
+        # Handle fully qualified names like "ccp4i2.data_scan.CCP4ModelData.CAsuContent"
         # or "core.CCP4Data.CString"
         if '.' in type_str:
             parts = type_str.split('.')

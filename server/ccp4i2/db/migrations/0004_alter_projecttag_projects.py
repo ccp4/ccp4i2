@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("ccp4x", "0003_data_migrations"),
+        ("ccp4i2", "0003_data_migrations"),
     ]
 
     operations = [
@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
             model_name="projecttag",
             name="projects",
             field=models.ManyToManyField(
-                blank=True, related_name="tags", to="ccp4x.project"
+                blank=True, related_name="tags", to="ccp4i2.project"
             ),
         ),
     ]

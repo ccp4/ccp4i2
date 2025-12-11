@@ -10,11 +10,11 @@
 ## Completed (16/24) ✅
 
 ### High Priority - Refactored Today
-1. ✅ `set_parameter/` - Uses `ccp4x.lib.utils.parameters.set_param`
-2. ✅ `validation/` - Uses `ccp4x.lib.utils.jobs.validate`
-3. ✅ `params_xml/` - Uses `ccp4x.lib.utils.jobs.reports.get_job_params_xml`
-4. ✅ `report_xml/` - Uses `ccp4x.lib.utils.jobs.reports.get_job_report_xml`
-5. ✅ `diagnostic_xml/` - Uses `ccp4x.lib.utils.jobs.reports.get_job_diagnostic_xml`
+1. ✅ `set_parameter/` - Uses `ccp4i2.lib.utils.parameters.set_param`
+2. ✅ `validation/` - Uses `ccp4i2.lib.utils.jobs.validate`
+3. ✅ `params_xml/` - Uses `ccp4i2.lib.utils.jobs.reports.get_job_params_xml`
+4. ✅ `report_xml/` - Uses `ccp4i2.lib.utils.jobs.reports.get_job_report_xml`
+5. ✅ `diagnostic_xml/` - Uses `ccp4i2.lib.utils.jobs.reports.get_job_diagnostic_xml`
 
 ### Already Using Proper Architecture
 6. ✅ `clone/` - Uses `clone_job()` utility
@@ -72,12 +72,12 @@
 
 4. **`set_parameter/`**
    - Before: Legacy `job_utils.set_parameter`
-   - After: Uses `ccp4x.lib.utils.parameters.set_param` (CPluginScript)
+   - After: Uses `ccp4i2.lib.utils.parameters.set_param` (CPluginScript)
    - Benefit: Proper DB sync, shared with management command
 
 5. **`validation/`**
    - Before: `get_job_container()` + `validate_container()`
-   - After: Uses `ccp4x.lib.utils.jobs.validate` (CPluginScript)
+   - After: Uses `ccp4i2.lib.utils.jobs.validate` (CPluginScript)
    - Benefit: New CErrorReport API, shared with management command
 
 ---
@@ -128,7 +128,7 @@
 ### Medium Priority
 
 #### 1. `upload_file_param/` 🔴 Complex
-**File**: `server/ccp4x/lib/job_utils/upload_file_param.py` (355 lines!)
+**File**: `server/ccp4i2/lib/job_utils/upload_file_param.py` (355 lines!)
 **Complexity**: HIGH
 
 **Why Complex**:
@@ -149,7 +149,7 @@
 - Benefits don't justify immediate effort
 
 #### 2. `set_context_job/` 🟡 Moderate
-**File**: `server/ccp4x/lib/job_utils/set_input_by_context_job.py`
+**File**: `server/ccp4i2/lib/job_utils/set_input_by_context_job.py`
 **Complexity**: MODERATE
 **Effort Estimate**: 30-45 minutes
 
@@ -160,7 +160,7 @@
 
 **Recommendation**:
 - Could refactor if workflow automation is important
-- Creates `ccp4x/lib/utils/jobs/context.py`
+- Creates `ccp4i2/lib/utils/jobs/context.py`
 - Moderate benefit for consistency
 
 ---
@@ -222,7 +222,7 @@ The remaining 6 endpoints are specialized/helper functions:
 4. ⏭️ **Consider** refactoring `set_context_job/` if workflow automation is important
    - Effort: 30-45 minutes
    - Benefit: Consistency for workflow features
-   - Creates: `ccp4x/lib/utils/jobs/context.py`
+   - Creates: `ccp4i2/lib/utils/jobs/context.py`
 
 ### Long-term (Low Priority)
 

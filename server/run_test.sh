@@ -53,7 +53,7 @@ fi
 
 # Set environment for tests
 export CCP4I2_ROOT=$(pwd)
-export DJANGO_SETTINGS_MODULE="${DJANGO_SETTINGS_MODULE:-ccp4x.config.test_settings}"
+export DJANGO_SETTINGS_MODULE="${DJANGO_SETTINGS_MODULE:-ccp4i2.config.test_settings}"
 
 # Verify ccp4i2 is installed
 if ! ccp4-python -c "import ccp4i2" 2>/dev/null; then

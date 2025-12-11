@@ -19,7 +19,7 @@ except ImportError:
 
 def main():
     """Run administrative tasks."""
-    environ.setdefault("DJANGO_SETTINGS_MODULE", "ccp4x.config.settings")
+    environ.setdefault("DJANGO_SETTINGS_MODULE", "ccp4i2.config.settings")
     execute_from_command_line(argv)
 
 

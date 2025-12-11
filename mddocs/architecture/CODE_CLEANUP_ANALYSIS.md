@@ -1,7 +1,7 @@
 # Code Cleanup Analysis: job_utils Refactoring
 
 **Date**: 2025-10-31
-**Purpose**: Identify redundant code in `server/ccp4x/lib/job_utils/` that can be safely removed after API endpoint refactoring
+**Purpose**: Identify redundant code in `server/ccp4i2/lib/job_utils/` that can be safely removed after API endpoint refactoring
 **Current Status**: 16/24 API endpoints refactored to use unified architecture
 
 ---
@@ -86,7 +86,7 @@ These have newer versions in `lib/utils/`. Redirect imports and deprecate origin
 **Status**: Duplicate - identical code exists in `lib/utils/files/upload_param.py`
 **Current API usage**: `JobViewSet.upload_file_param()` (line 67)
 
-**Replacement**: `ccp4x.lib.utils.files.upload_param.upload_file_param()`
+**Replacement**: `ccp4i2.lib.utils.files.upload_param.upload_file_param()`
 
 **Action Plan**:
 1. Update JobViewSet line 67 to import from `lib.utils.files.upload_param`
@@ -101,7 +101,7 @@ These have newer versions in `lib/utils/`. Redirect imports and deprecate origin
 **Status**: Replacement exists in `lib/utils/parameters/set_input_by_context.py`
 **Current API usage**: `JobViewSet.set_context_job()` (line 48)
 
-**Replacement**: `ccp4x.lib.utils.parameters.set_input_by_context.set_input_by_context_job()`
+**Replacement**: `ccp4i2.lib.utils.parameters.set_input_by_context.set_input_by_context_job()`
 
 **Action Plan**:
 1. Update JobViewSet line 48 to import from `lib.utils.parameters.set_input_by_context`
@@ -118,7 +118,7 @@ These have newer versions in `lib/utils/`. Redirect imports and deprecate origin
 - `JobViewSet.container()` endpoint (line 68)
 - Test files
 
-**Replacement**: `ccp4x.lib.utils.jobs.get_container.get_job_container()`
+**Replacement**: `ccp4i2.lib.utils.jobs.get_container.get_job_container()`
 
 **Action Plan**:
 1. Update JobViewSet line 68 to import from `lib.utils.jobs.get_container`
@@ -225,9 +225,9 @@ These have **ZERO** usages across the entire codebase. Safe to delete immediatel
 
 **Remove completely unused modules**:
 ```bash
-rm server/ccp4x/lib/job_utils/open_terminal_in_directory.py
-rm server/ccp4x/lib/job_utils/parse_cif_ligand_summary.py
-rm server/ccp4x/lib/job_utils/import_files.py
+rm server/ccp4i2/lib/job_utils/open_terminal_in_directory.py
+rm server/ccp4i2/lib/job_utils/parse_cif_ligand_summary.py
+rm server/ccp4i2/lib/job_utils/import_files.py
 ```
 
 **Impact**: Clean up 3 unused files, reduce confusion
@@ -274,11 +274,11 @@ from ..lib.utils.jobs.get_container import get_job_container
 Add deprecation warnings to old modules:
 
 ```python
-# At top of server/ccp4x/lib/job_utils/upload_file_param.py
+# At top of server/ccp4i2/lib/job_utils/upload_file_param.py
 import warnings
 warnings.warn(
-    "ccp4x.lib.job_utils.upload_file_param is deprecated. "
-    "Use ccp4x.lib.utils.files.upload_param instead.",
+    "ccp4i2.lib.job_utils.upload_file_param is deprecated. "
+    "Use ccp4i2.lib.utils.files.upload_param instead.",
     DeprecationWarning,
     stacklevel=2
 )

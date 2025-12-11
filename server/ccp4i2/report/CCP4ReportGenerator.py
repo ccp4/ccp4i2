@@ -18,9 +18,9 @@ from ccp4i2.core import CCP4Utils
 from ccp4i2.core.base_object.hierarchy_system import HierarchicalObject
 
 # Import Django dbapi adapter constants for file type lookups
-from ccp4x.db.ccp4i2_static_data import FILETYPES_CLASS, FINISHED_JOB_STATUS
+from ccp4i2.db.ccp4i2_static_data import FILETYPES_CLASS, FINISHED_JOB_STATUS
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 class Signal:

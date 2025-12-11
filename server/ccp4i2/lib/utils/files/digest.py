@@ -25,7 +25,7 @@ from ..parameters.value_dict import value_dict_for_object
 from ....db import models
 from ...parse import identify_data_type
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def normalize_object_path(object_path: str) -> str:

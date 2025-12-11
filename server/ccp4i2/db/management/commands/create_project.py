@@ -15,7 +15,7 @@ Example:
 """
 
 from django.core.management.base import BaseCommand, CommandError
-from ccp4x.api.serializers import ProjectSerializer
+from ccp4i2.api.serializers import ProjectSerializer
 
 
 class Command(BaseCommand):

@@ -1,8 +1,8 @@
 import logging
 import uuid
-from ccp4x.db import models
+from ccp4i2.db import models
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def get_file_by_job_context(

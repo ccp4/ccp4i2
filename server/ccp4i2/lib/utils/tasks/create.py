@@ -2,9 +2,9 @@ import uuid
 import logging
 from .create_job import create_job
 from .set_input_by_context_job import set_input_by_context_job
-from ccp4x.db import models
+from ccp4i2.db import models
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def create_task(the_project: models.Project, arg: any):

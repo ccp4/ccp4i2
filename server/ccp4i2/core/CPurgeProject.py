@@ -29,7 +29,7 @@ import logging
 from typing import Optional, List, Tuple, Dict
 from pathlib import Path
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 class CPurgeProject:
@@ -131,7 +131,7 @@ class CPurgeProject:
                 # NOTE: Django MUST be configured before this is called (via django.setup() or pytest-django)
                 # DO NOT call django.setup() here - it must be done in the main thread before any async workers
                 # Import without 'server.' prefix since server/ is in sys.path (added by conftest or main)
-                from ccp4x.db.ccp4i2_django_dbapi import CCP4i2DjangoDbApi
+                from ccp4i2.db.ccp4i2_django_dbapi import CCP4i2DjangoDbApi
                 self._db = CCP4i2DjangoDbApi()
             except Exception as e:
                 logger.error(f"Failed to initialize Django database: {e}")

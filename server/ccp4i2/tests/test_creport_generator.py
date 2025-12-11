@@ -290,7 +290,7 @@ class TestModernizationCompleteness:
             "Legacy dbapi import still present"
 
     def test_uses_static_data_constants(self):
-        """Verify the module uses ccp4x.db.ccp4i2_static_data constants."""
+        """Verify the module uses ccp4i2.db.ccp4i2_static_data constants."""
         import ccp4i2.report.CCP4ReportGenerator as module
 
         source_file = module.__file__
@@ -299,7 +299,7 @@ class TestModernizationCompleteness:
 
         # Should import from ccp4i2_static_data
         assert 'ccp4i2_static_data' in content, \
-            "Should import from ccp4x.db.ccp4i2_static_data"
+            "Should import from ccp4i2.db.ccp4i2_static_data"
 
     def test_error_codes_defined(self):
         """Verify ERROR_CODES are still defined."""

@@ -261,7 +261,7 @@ While fixing RESMAX, we also recovered important infrastructure improvements fro
 **Files Cleaned**:
 - [core/base_object/cdata.py](core/base_object/cdata.py) - Removed 15 DEBUG getEtree statements
 - [core/CCP4File.py](core/CCP4File.py) - Removed 13 DEBUG saveFile statements
-- [server/ccp4x/lib/utils/parameters/save_params.py](server/ccp4x/lib/utils/parameters/save_params.py) - Removed 45 lines DEBUG save_params
+- [server/ccp4i2/lib/utils/parameters/save_params.py](server/ccp4i2/lib/utils/parameters/save_params.py) - Removed 45 lines DEBUG save_params
 **Result**: Clean test output focusing on actual test failures
 
 ### 9. CBoolean False Serialization Fix

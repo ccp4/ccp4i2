@@ -297,7 +297,7 @@ for kpi in kpis:
 
 ```python
 import uuid
-from server.ccp4x.db.async_db_handler import AsyncDatabaseHandler
+from server.ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 async def run_ctruncate_job(project_uuid: uuid.UUID):
@@ -324,7 +324,7 @@ async def run_ctruncate_job(project_uuid: uuid.UUID):
 ### Example 2: Manual File Gleaning
 
 ```python
-from server.ccp4x.lib.cdata_utils import find_all_files, extract_file_metadata
+from server.ccp4i2.lib.cdata_utils import find_all_files, extract_file_metadata
 
 async def glean_output_files(job_uuid, output_container, db_handler):
     """Manually glean output files from a container"""

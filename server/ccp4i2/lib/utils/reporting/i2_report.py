@@ -28,9 +28,9 @@ from ccp4i2.core.base_object.fundamental_types import CList
 from ccp4i2.core.CCP4TaskManager import CTaskManager
 from ccp4i2.report.CCP4ReportParser import ReportClass
 from ccp4i2.core import CCP4File
-from ccp4x.db.models import Job, FileUse, File
+from ccp4i2.db.models import Job, FileUse, File
 from ..plugins.get_plugin import get_job_plugin
-from ccp4x.db.ccp4i2_static_data import (
+from ccp4i2.db.ccp4i2_static_data import (
     PATH_FLAG_JOB_DIR,
     PATH_FLAG_IMPORT_DIR,
     FILETYPES_CLASS,
@@ -38,7 +38,7 @@ from ccp4x.db.ccp4i2_static_data import (
 )
 
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 # Standard XML file search order for program output

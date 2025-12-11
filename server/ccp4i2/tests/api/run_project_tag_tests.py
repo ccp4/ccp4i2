@@ -5,11 +5,11 @@ Test runner script for ProjectTag API tests
 This script demonstrates how to run the ProjectTag API tests.
 Run from the server directory with:
 
-    python -m pytest ccp4x/tests/api/test_project_tag_api.py -v
+    python -m pytest ccp4i2/tests/api/test_project_tag_api.py -v
 
 Or using Django's test runner:
 
-    python manage.py test ccp4x.tests.api.test_project_tag_api
+    python manage.py test ccp4i2.tests.api.test_project_tag_api
 
 """
 
@@ -23,15 +23,15 @@ def main():
     print()
     print("1. Using pytest (recommended):")
     print("   cd /path/to/server")
-    print("   python -m pytest ccp4x/tests/api/test_project_tag_api.py -v")
+    print("   python -m pytest ccp4i2/tests/api/test_project_tag_api.py -v")
     print()
     print("2. Using Django test runner:")
     print("   cd /path/to/server")
-    print("   python manage.py test ccp4x.tests.api.test_project_tag_api")
+    print("   python manage.py test ccp4i2.tests.api.test_project_tag_api")
     print()
     print("3. Run specific test:")
     print(
-        "   python manage.py test ccp4x.tests.api.test_project_tag_api.ProjectTagAPITestCase.test_create_project_tag"
+        "   python manage.py test ccp4i2.tests.api.test_project_tag_api.ProjectTagAPITestCase.test_create_project_tag"
     )
     print()
     print("Test Coverage:")

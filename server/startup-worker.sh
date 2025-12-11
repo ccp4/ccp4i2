@@ -18,7 +18,7 @@ echo "DB_SSL_REQUIRE_CERT: ${DB_SSL_REQUIRE_CERT:-NOT_SET}"
 # Access environment variables (including secrets passed as env vars)
 CCP4_DATA_PATH=${CCP4_DATA_PATH:-"/mnt/ccp4data"}
 CCP4I2_PROJECTS_DIR=${CCP4I2_PROJECTS_DIR:-"/mnt/ccp4data/ccp4i2-projects"}
-DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE:-"ccp4x.config.settings"}
+DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE:-"ccp4i2.config.settings"}
 SECRET_KEY=${SECRET_KEY}
 DB_HOST=${DB_HOST:-"db-host"}
 DB_USER=${DB_USER:-"db-user"}

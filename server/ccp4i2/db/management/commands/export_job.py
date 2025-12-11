@@ -9,8 +9,8 @@ Usage:
 import uuid
 from pathlib import Path
 from django.core.management.base import BaseCommand, CommandError
-from ccp4x.db.models import Job, Project
-from ccp4x.lib.utils.jobs.export import export_job
+from ccp4i2.db.models import Job, Project
+from ccp4i2.lib.utils.jobs.export import export_job
 
 
 class Command(BaseCommand):

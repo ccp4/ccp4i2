@@ -6,7 +6,7 @@ from ccp4i2.core import CCP4PluginScript
 from ccp4i2.core import CCP4File
 from ..containers.find_objects import find_objects
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def unset_output_data(the_job_plugin: CCP4PluginScript.CPluginScript):

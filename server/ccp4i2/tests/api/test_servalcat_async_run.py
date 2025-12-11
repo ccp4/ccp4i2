@@ -20,7 +20,7 @@ import pytest
 
 from ...db import models
 
-logger = logging.getLogger(f"ccp4x::{__name__}")
+logger = logging.getLogger(f"ccp4i2::{__name__}")
 
 
 # Create a unique test directory

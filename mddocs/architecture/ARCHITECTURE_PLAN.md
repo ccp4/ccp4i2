@@ -14,7 +14,7 @@ The goal is to eliminate code duplication and create reusable business logic tha
 
 ### What Exists
 
-#### 1. **Django REST API** (`server/ccp4x/api/`)
+#### 1. **Django REST API** (`server/ccp4i2/api/`)
 Currently implemented ViewSets:
 - `JobViewSet` - 30+ custom action endpoints for job management
 - `ProjectViewSet` - Project CRUD and related operations
@@ -24,7 +24,7 @@ Currently implemented ViewSets:
 - `ProjectExportViewSet` - Project export operations
 - `ProjectTagViewSet` - Tag management
 
-#### 2. **Job Utilities Library** (`server/ccp4x/lib/job_utils/`)
+#### 2. **Job Utilities Library** (`server/ccp4i2/lib/job_utils/`)
 45 utility modules providing core functionality:
 
 **Job Lifecycle:**
@@ -71,7 +71,7 @@ Currently implemented ViewSets:
 - `mtz_as_dict.py` - Parse MTZ files
 - `json_encoder.py` - Custom JSON encoding
 
-#### 3. **Django Management Commands** (`server/ccp4x/db/management/commands/`)
+#### 3. **Django Management Commands** (`server/ccp4i2/db/management/commands/`)
 Currently implemented CLI commands:
 - `create_project.py` - Create new projects
 - `list_projects.py` - List all projects
@@ -155,7 +155,7 @@ We need a **consistent error handling strategy**.
    - **CLI Layer**: Thin wrappers that handle command-line concerns
 
 2. **Single Source of Truth**:
-   - All business logic lives in `server/ccp4x/lib/`
+   - All business logic lives in `server/ccp4i2/lib/`
    - API endpoints call library functions
    - Management commands call library functions
 
@@ -171,7 +171,7 @@ We need a **consistent error handling strategy**.
 ### Directory Structure
 
 ```
-server/ccp4x/lib/
+server/ccp4i2/lib/
 ├── job_utils/           # Job-related operations (EXISTING, enhance)
 │   ├── lifecycle/       # NEW: Create, clone, run, delete
 │   ├── parameters/      # NEW: Set, get, validate parameters
@@ -341,7 +341,7 @@ class FileOperationError(CCP4OperationError):
 
 1. **Create new directory structure**
    ```bash
-   mkdir -p server/ccp4x/lib/{project_utils,file_utils,container_utils,response}
+   mkdir -p server/ccp4i2/lib/{project_utils,file_utils,container_utils,response}
    ```
 
 2. **Implement response types**
@@ -435,8 +435,8 @@ class FileOperationError(CCP4OperationError):
 2. **Each command follows template**:
    ```python
    from django.core.management.base import BaseCommand
-   from ccp4x.lib.job_utils.lifecycle import run_job
-   from ccp4x.lib.response.result import Result
+   from ccp4i2.lib.job_utils.lifecycle import run_job
+   from ccp4i2.lib.response.result import Result
 
    class Command(BaseCommand):
        help = "Run a CCP4i2 job"
@@ -535,9 +535,9 @@ def params_xml(self, request, pk=None):
 # lib/job_utils/reporting/params_xml.py
 from typing import Optional
 from pathlib import Path
-from ccp4x.db import models
-from ccp4x.lib.response.result import Result
-from ccp4x.lib.response.exceptions import JobNotFoundError, FileOperationError
+from ccp4i2.db import models
+from ccp4i2.lib.response.result import Result
+from ccp4i2.lib.response.exceptions import JobNotFoundError, FileOperationError
 
 def get_job_params_xml(job: models.Job) -> Result[str]:
     """
@@ -583,7 +583,7 @@ def get_job_params_xml(job: models.Job) -> Result[str]:
 
 
 # api/JobViewSet.py (simplified)
-from ccp4x.lib.job_utils.reporting import get_job_params_xml
+from ccp4i2.lib.job_utils.reporting import get_job_params_xml
 
 @action(detail=True, methods=["get"])
 def params_xml(self, request, pk=None):
@@ -606,8 +606,8 @@ def params_xml(self, request, pk=None):
 
 # db/management/commands/get_job_params.py (NEW)
 from django.core.management.base import BaseCommand, CommandError
-from ccp4x.db import models
-from ccp4x.lib.job_utils.reporting import get_job_params_xml
+from ccp4i2.db import models
+from ccp4i2.lib.job_utils.reporting import get_job_params_xml
 
 class Command(BaseCommand):
     help = "Get job parameters XML"
@@ -896,9 +896,9 @@ ensuring uniform error handling, logging, and user interaction.
 """
 
 from django.core.management.base import BaseCommand, CommandError
-from ccp4x.db import models
-from ccp4x.lib.response.result import Result
-from ccp4x.lib.response.exceptions import CCP4OperationError
+from ccp4i2.db import models
+from ccp4i2.lib.response.result import Result
+from ccp4i2.lib.response.exceptions import CCP4OperationError
 import json
 import logging
 
@@ -974,7 +974,7 @@ class Command(BaseCommand):
                 raise CommandError(f"Not found: {arg_value}")
 
             # Call library function
-            from ccp4x.lib.module_name import function_name
+            from ccp4i2.lib.module_name import function_name
             result: Result = function_name(model_instance)
 
             # Handle result

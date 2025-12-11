@@ -24,7 +24,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.auth",  # Required by DRF
     "rest_framework",  # Django REST Framework
-    "ccp4x.db.config.DbConfig",  # Our database app
+    "ccp4i2.db.config.DbConfig",  # Our database app
 ]
 
 MIDDLEWARE = []
@@ -37,7 +37,7 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [],
 }
 
-ROOT_URLCONF = "ccp4x.api.urls"  # Set default URL conf for API tests
+ROOT_URLCONF = "ccp4i2.api.urls"  # Set default URL conf for API tests
 
 TEMPLATES = []
 
@@ -57,7 +57,7 @@ USE_TZ = True
 STATIC_URL = "/static/"
 
 # Test projects directory
-USER_DIR = Path.home().resolve() / ".ccp4x_test"
+USER_DIR = Path.home().resolve() / ".ccp4i2_test"
 USER_DIR.mkdir(exist_ok=True)
 
 CCP4I2_PROJECTS_DIR = USER_DIR / "test_projects"

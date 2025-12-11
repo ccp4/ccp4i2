@@ -80,7 +80,7 @@ from django.utils.text import slugify
 # Uniform API response helpers
 from ..lib.response import api_success, api_error
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 class JobViewSet(ModelViewSet):
@@ -375,7 +375,7 @@ class JobViewSet(ModelViewSet):
         Returns the job's parameter configuration in XML format, either from
         params.xml (for completed jobs) or input_params.xml (for pending jobs).
 
-        Uses the unified utility from ccp4x.lib.utils.jobs.reports for
+        Uses the unified utility from ccp4i2.lib.utils.jobs.reports for
         consistent behavior with CLI commands.
 
         Args:
@@ -437,7 +437,7 @@ class JobViewSet(ModelViewSet):
         and analysis outcomes. Reports are cached for performance and regenerated
         as needed based on job status.
 
-        Uses the unified utility from ccp4x.lib.utils.jobs.reports for
+        Uses the unified utility from ccp4i2.lib.utils.jobs.reports for
         consistent behavior with CLI commands.
 
         Args:
@@ -685,7 +685,7 @@ class JobViewSet(ModelViewSet):
         - Azure Mode: Queues job via Service Bus (container apps)
 
         The execution mode is determined from environment variables.
-        See ccp4x.lib.context_dependent_run for implementation details.
+        See ccp4i2.lib.context_dependent_run for implementation details.
 
         Args:
             request (Request): HTTP request object
@@ -898,7 +898,7 @@ class JobViewSet(ModelViewSet):
         Returns detailed diagnostic data generated during job execution,
         including error messages, warnings, and debugging information.
 
-        Uses the unified utility from ccp4x.lib.utils.jobs.reports for
+        Uses the unified utility from ccp4i2.lib.utils.jobs.reports for
         consistent behavior with CLI commands.
 
         Args:

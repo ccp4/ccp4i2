@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ccp4x', '0008_projectgroup_projectgroupmembership_and_more'),
+        ('ccp4i2', '0008_projectgroup_projectgroupmembership_and_more'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='projecttag',
             name='projects',
-            field=models.ManyToManyField(blank=True, related_name='tags', to='ccp4x.Project'),
+            field=models.ManyToManyField(blank=True, related_name='tags', to='ccp4i2.Project'),
         ),
     ]

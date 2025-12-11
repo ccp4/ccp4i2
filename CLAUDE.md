@@ -35,7 +35,7 @@ CCP4i2 provides an environment for crystallographic computing. This branch (ccp4
 
 ### Django Mode
 ```bash
-export DJANGO_SETTINGS_MODULE=ccp4x.config.settings
+export DJANGO_SETTINGS_MODULE=ccp4i2.config.settings
 python -m cli.i2run <task> [options]
 ```
 

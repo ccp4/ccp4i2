@@ -25,7 +25,7 @@ from pathlib import Path
 from typing import List, Optional
 
 # Ensure Django settings are configured
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4x.config.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4i2.config.settings')
 
 # Add server directory to path
 SERVER_DIR = Path(__file__).resolve().parent
@@ -1026,7 +1026,7 @@ For help on any command:
             sys.argv = i2run_argv
 
             # Import and run the i2run command directly
-            from ccp4x.db.management.commands.i2run import Command as I2RunCommand
+            from ccp4i2.db.management.commands.i2run import Command as I2RunCommand
             cmd = I2RunCommand()
 
             # Execute the command - handle() reads sys.argv directly
@@ -1053,7 +1053,7 @@ For help on any command:
 
     def _resolve_job_uuid(self, project_identifier: str, job_identifier: str):
         """Resolve project + job identifiers to job UUID."""
-        from ccp4x.db.models import Job, Project
+        from ccp4i2.db.models import Job, Project
         import uuid
 
         try:

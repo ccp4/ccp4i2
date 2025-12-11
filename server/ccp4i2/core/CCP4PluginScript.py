@@ -320,7 +320,7 @@ class CPluginScript(CData):
                     # Set default value from job database if available
                     if hasattr(self, '_dbJobId') and self._dbJobId:
                         try:
-                            from ccp4x.db.models import Job
+                            from ccp4i2.db.models import Job
                             job = Job.objects.get(uuid=self._dbJobId)
                             if job.name:
                                 job_title.value = job.name
@@ -596,7 +596,7 @@ class CPluginScript(CData):
             CErrorReport indicating success or failure
         """
         import logging
-        logger = logging.getLogger(f"ccp4x:{__name__}")
+        logger = logging.getLogger(f"ccp4i2:{__name__}")
         logger.info(f"saveDataToXml called with fileName: {fileName}, exclude_unset: {exclude_unset}")
 
         error = CErrorReport()

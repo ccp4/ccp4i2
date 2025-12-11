@@ -9,10 +9,10 @@ def test_plugin_script_initialization():
     """Test that plugin scripts can be initialized with database-aware path handling."""
     # Import Django models inside the test function after Django is configured
     from django.core.management import call_command
-    from ccp4x.db.models import Project, Job
+    from ccp4i2.db.models import Project, Job
     from ccp4i2.core.CCP4TaskManager import TASKMANAGER
     from ccp4i2.core.CCP4PluginScript import CPluginScript
-    from ccp4x.db.async_db_handler import AsyncDatabaseHandler
+    from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
     print("[TEST] Testing plugin script initialization for 'parrot'")
     call_command("create_project", "test_project", "--directory", "./CCP4_PROJECTS/test_project")
     call_command("create_job", "-pn", "test_project", "-tn", "prosmart_refmac")

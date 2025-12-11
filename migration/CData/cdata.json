@@ -9,7 +9,7 @@
   },
   "classes": {
     "CAsuContent": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CAsuContent",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "Base class for classes holding file contents",
@@ -28,7 +28,7 @@
       ],
       "CONTENTS": {
         "seqList": {
-          "class": "<class 'ccp4x.data_scan.CCP4ModelData.CAsuContentSeqList'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4ModelData.CAsuContentSeqList'>"
         }
       },
       "CONTENTS_ORDER": [],
@@ -84,7 +84,7 @@
       }
     },
     "CAsuContentSeq": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CAsuContentSeq",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -102,7 +102,7 @@
       ],
       "CONTENTS": {
         "sequence": {
-          "class": "<class 'ccp4x.data_scan.CCP4ModelData.CSequenceString'>",
+          "class": "<class 'ccp4i2.data_scan.CCP4ModelData.CSequenceString'>",
           "qualifiers": {
             "allowUndefined": false,
             "minLength": 1
@@ -313,7 +313,7 @@
       }
     },
     "CAsuContentSeqList": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CAsuContentSeqList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -367,11 +367,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4ModelData.CAsuContentSeq'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4ModelData.CAsuContentSeq'>"
       }
     },
     "CAsuDataFile": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CAsuDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A reference to an XML file with CCP4i2 Header",
@@ -466,7 +466,7 @@
       }
     },
     "CAtomRefmacSelection": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CAtomRefmacSelection",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A residue range selection for rigid body groups",
@@ -654,7 +654,7 @@
       }
     },
     "CAtomRefmacSelectionGroups": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CAtomRefmacSelectionGroups",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A group selection for occupancy groups",
@@ -830,7 +830,7 @@
       }
     },
     "CAtomRefmacSelectionList": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CAtomRefmacSelectionList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -914,11 +914,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4ModelData.CAtomRefmacSelection'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4ModelData.CAtomRefmacSelection'>"
       }
     },
     "CAtomRefmacSelectionOccupancy": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CAtomRefmacSelectionOccupancy",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A residue range selection for occupancy groups",
@@ -1114,7 +1114,7 @@
       }
     },
     "CAtomSelection": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CAtomSelection",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -1264,7 +1264,7 @@
       }
     },
     "CBlastData": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CBlastData",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "Base class for classes holding file contents",
@@ -1288,7 +1288,7 @@
         "alignmentList": {
           "class": "<class 'core.CCP4Data.CList'>",
           "subItem": {
-            "class": "<class 'ccp4x.data_scan.CCP4ModelData.CBlastItem'>"
+            "class": "<class 'ccp4i2.data_scan.CCP4ModelData.CBlastItem'>"
           }
         }
       },
@@ -1349,7 +1349,7 @@
       }
     },
     "CBlastDataFile": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CBlastDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -1543,7 +1543,7 @@
       }
     },
     "CBlastItem": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CBlastItem",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -1723,7 +1723,7 @@
       }
     },
     "CChemComp": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CChemComp",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "Component of CDictDataFile contents",
@@ -1815,7 +1815,7 @@
       }
     },
     "CDictData": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CDictData",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -1835,7 +1835,7 @@
         "monomerList": {
           "class": "<class 'core.CCP4Data.CList'>",
           "subItem": {
-            "class": "<class 'ccp4x.data_scan.CCP4ModelData.CChemComp'>"
+            "class": "<class 'ccp4i2.data_scan.CCP4ModelData.CChemComp'>"
           }
         }
       },
@@ -1908,7 +1908,7 @@
       }
     },
     "CDictDataFile": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CDictDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A refmac dictionary file",
@@ -2064,7 +2064,7 @@
       }
     },
     "CElement": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CElement",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "Chemical element ",
@@ -2246,7 +2246,7 @@
       }
     },
     "CEnsemble": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CEnsemble",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "An ensemble of models. Typically, this would be a set of related\nPDB files, but models could also be xtal or EM maps. This should\nbe indicated by the types entry.\nA single ensemble is a CList of structures.",
@@ -2312,7 +2312,7 @@
         "pdbItemList": {
           "class": "<class 'core.CCP4Data.CList'>",
           "subItem": {
-            "class": "<class 'ccp4x.data_scan.CCP4ModelData.CPdbEnsembleItem'>"
+            "class": "<class 'ccp4i2.data_scan.CCP4ModelData.CPdbEnsembleItem'>"
           },
           "qualifiers": {
             "listMinLength": 1
@@ -2467,7 +2467,7 @@
       }
     },
     "CEnsembleList": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CEnsembleList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -2548,11 +2548,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4ModelData.CEnsemble'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4ModelData.CEnsemble'>"
       }
     },
     "CEnsemblePdbDataFile": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CEnsemblePdbDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A PDB coordinate file containing ensemble of structures as 'NMR' models",
@@ -2615,7 +2615,7 @@
           }
         },
         "selection": {
-          "class": "<class 'ccp4x.data_scan.CCP4ModelData.CAtomSelection'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4ModelData.CAtomSelection'>"
         }
       },
       "CONTENTS_ORDER": [],
@@ -2703,7 +2703,7 @@
       }
     },
     "CHhpredData": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CHhpredData",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "Base class for classes holding file contents",
@@ -2724,7 +2724,7 @@
         "alignmentList": {
           "class": "<class 'core.CCP4Data.CList'>",
           "subItem": {
-            "class": "<class 'ccp4x.data_scan.CCP4ModelData.CHhpredItem'>"
+            "class": "<class 'ccp4i2.data_scan.CCP4ModelData.CHhpredItem'>"
           }
         }
       },
@@ -2781,7 +2781,7 @@
       }
     },
     "CHhpredDataFile": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CHhpredDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -2973,7 +2973,7 @@
       }
     },
     "CHhpredItem": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CHhpredItem",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -3153,7 +3153,7 @@
       }
     },
     "CMDLMolDataFile": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CMDLMolDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A molecule definition file (MDL)",
@@ -3346,7 +3346,7 @@
       }
     },
     "CMol2DataFile": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CMol2DataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A molecule definition file (MOL2)",
@@ -3538,7 +3538,7 @@
       }
     },
     "CMonomer": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CMonomer",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A monomer compound. ?smiles",
@@ -3738,7 +3738,7 @@
       }
     },
     "COccRefmacSelectionList": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "COccRefmacSelectionList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -3822,11 +3822,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4ModelData.CAtomRefmacSelectionOccupancy'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4ModelData.CAtomRefmacSelectionOccupancy'>"
       }
     },
     "COccRelationRefmacList": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "COccRelationRefmacList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -3910,11 +3910,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4ModelData.CAtomRefmacSelectionGroups'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4ModelData.CAtomRefmacSelectionGroups'>"
       }
     },
     "CPdbData": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CPdbData",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "Contents of a PDB file - a subset with functionality for GUI",
@@ -4024,7 +4024,7 @@
       }
     },
     "CPdbDataFile": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CPdbDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -4086,7 +4086,7 @@
           }
         },
         "selection": {
-          "class": "<class 'ccp4x.data_scan.CCP4ModelData.CAtomSelection'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4ModelData.CAtomSelection'>"
         }
       },
       "CONTENTS_ORDER": [],
@@ -4212,7 +4212,7 @@
       }
     },
     "CPdbDataFileList": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CPdbDataFileList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -4296,7 +4296,7 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4ModelData.CPdbDataFile'>",
+        "class": "<class 'ccp4i2.data_scan.CCP4ModelData.CPdbDataFile'>",
         "qualifiers": {
           "allowUndefined": false,
           "mustExist": true
@@ -4304,7 +4304,7 @@
       }
     },
     "CPdbEnsembleItem": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CPdbEnsembleItem",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -4322,7 +4322,7 @@
       ],
       "CONTENTS": {
         "structure": {
-          "class": "<class 'ccp4x.data_scan.CCP4ModelData.CPdbDataFile'>",
+          "class": "<class 'ccp4i2.data_scan.CCP4ModelData.CPdbDataFile'>",
           "qualifiers": {
             "allowUndefined": false,
             "mustExist": true,
@@ -4395,7 +4395,7 @@
       }
     },
     "CResidueRange": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CResidueRange",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A residue range selection",
@@ -4552,7 +4552,7 @@
       }
     },
     "CResidueRangeList": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CResidueRangeList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A list of residue range selections",
@@ -4636,11 +4636,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4ModelData.CResidueRange'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4ModelData.CResidueRange'>"
       }
     },
     "CSeqAlignDataFile": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CSeqAlignDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A (multiple) sequence alignment file",
@@ -4754,7 +4754,7 @@
       }
     },
     "CSeqDataFile": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CSeqDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A sequence file",
@@ -4906,7 +4906,7 @@
       }
     },
     "CSeqDataFileList": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CSeqDataFileList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -4969,14 +4969,14 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4ModelData.CSeqDataFile'>",
+        "class": "<class 'ccp4i2.data_scan.CCP4ModelData.CSeqDataFile'>",
         "qualifiers": {
           "allowUndefined": false
         }
       }
     },
     "CSequence": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CSequence",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A string of sequence one-letter codes\nNeed to be able to parse common seq file formats\nDo we need to support alternative residues\nWhat about nucleic/polysach?",
@@ -5170,7 +5170,7 @@
       }
     },
     "CSequenceAlignment": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CSequenceAlignment",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "An alignment of two or more sequences.\nEach sequence is obviously related to class CSequence, but\nwill also contain gaps relevant to the alignment. We could\nimplement the contents as a list of CSequence objects?\nThe alignment is typically formatted in a file as consecutive \nor interleaved sequences.",
@@ -5368,7 +5368,7 @@
       }
     },
     "CSequenceMeta": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CSequenceMeta",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -5454,7 +5454,7 @@
       }
     },
     "CSequenceString": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CSequenceString",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A string",
@@ -5535,7 +5535,7 @@
       }
     },
     "CTLSDataFile": {
-      "module": "ccp4x.data_scan.CCP4ModelData",
+      "module": "ccp4i2.data_scan.CCP4ModelData",
       "class": "CTLSDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ModelData.py",
       "docstring": "A refmac TLS file",
@@ -5727,7 +5727,7 @@
       }
     },
     "CImportedJobData": {
-      "module": "ccp4x.data_scan.CCP4ImportedJobManager",
+      "module": "ccp4i2.data_scan.CCP4ImportedJobManager",
       "class": "CImportedJobData",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ImportedJobManager.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -5918,7 +5918,7 @@
       }
     },
     "CImportedJobDataList": {
-      "module": "ccp4x.data_scan.CCP4ImportedJobManager",
+      "module": "ccp4i2.data_scan.CCP4ImportedJobManager",
       "class": "CImportedJobDataList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ImportedJobManager.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -5999,11 +5999,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4ImportedJobManager.CImportedJobData'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4ImportedJobManager.CImportedJobData'>"
       }
     },
     "CImportedJobDefinition": {
-      "module": "ccp4x.data_scan.CCP4ImportedJobManager",
+      "module": "ccp4i2.data_scan.CCP4ImportedJobManager",
       "class": "CImportedJobDefinition",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ImportedJobManager.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -6243,7 +6243,7 @@
       }
     },
     "CAngle": {
-      "module": "ccp4x.data_scan.CCP4MathsData",
+      "module": "ccp4i2.data_scan.CCP4MathsData",
       "class": "CAngle",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4MathsData.py",
       "docstring": "An angle",
@@ -6314,7 +6314,7 @@
       }
     },
     "CEulerRotation": {
-      "module": "ccp4x.data_scan.CCP4MathsData",
+      "module": "ccp4i2.data_scan.CCP4MathsData",
       "class": "CEulerRotation",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4MathsData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -6332,13 +6332,13 @@
       ],
       "CONTENTS": {
         "alpha": {
-          "class": "<class 'ccp4x.data_scan.CCP4MathsData.CAngle'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4MathsData.CAngle'>"
         },
         "beta": {
-          "class": "<class 'ccp4x.data_scan.CCP4MathsData.CAngle'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4MathsData.CAngle'>"
         },
         "gamma": {
-          "class": "<class 'ccp4x.data_scan.CCP4MathsData.CAngle'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4MathsData.CAngle'>"
         }
       },
       "CONTENTS_ORDER": [
@@ -6498,7 +6498,7 @@
       }
     },
     "CMatrix33": {
-      "module": "ccp4x.data_scan.CCP4MathsData",
+      "module": "ccp4i2.data_scan.CCP4MathsData",
       "class": "CMatrix33",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4MathsData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -6668,7 +6668,7 @@
       }
     },
     "CTransformation": {
-      "module": "ccp4x.data_scan.CCP4MathsData",
+      "module": "ccp4i2.data_scan.CCP4MathsData",
       "class": "CTransformation",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4MathsData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -6686,10 +6686,10 @@
       ],
       "CONTENTS": {
         "translation": {
-          "class": "<class 'ccp4x.data_scan.CCP4MathsData.CXyz'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4MathsData.CXyz'>"
         },
         "rotation": {
-          "class": "<class 'ccp4x.data_scan.CCP4MathsData.CEulerRotation'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4MathsData.CEulerRotation'>"
         }
       },
       "CONTENTS_ORDER": [
@@ -6848,7 +6848,7 @@
       }
     },
     "CXyz": {
-      "module": "ccp4x.data_scan.CCP4MathsData",
+      "module": "ccp4i2.data_scan.CCP4MathsData",
       "class": "CXyz",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4MathsData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -6931,7 +6931,7 @@
       }
     },
     "CXyzBox": {
-      "module": "ccp4x.data_scan.CCP4MathsData",
+      "module": "ccp4i2.data_scan.CCP4MathsData",
       "class": "CXyzBox",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4MathsData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -7017,7 +7017,7 @@
       }
     },
     "CAtomCountPerformance": {
-      "module": "ccp4x.data_scan.CCP4PerformanceData",
+      "module": "ccp4i2.data_scan.CCP4PerformanceData",
       "class": "CAtomCountPerformance",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4PerformanceData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -7113,7 +7113,7 @@
       }
     },
     "CDataReductionCCPerformance": {
-      "module": "ccp4x.data_scan.CCP4PerformanceData",
+      "module": "ccp4i2.data_scan.CCP4PerformanceData",
       "class": "CDataReductionCCPerformance",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4PerformanceData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -7216,7 +7216,7 @@
       }
     },
     "CDataReductionPerformance": {
-      "module": "ccp4x.data_scan.CCP4PerformanceData",
+      "module": "ccp4i2.data_scan.CCP4PerformanceData",
       "class": "CDataReductionPerformance",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4PerformanceData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -7319,7 +7319,7 @@
       }
     },
     "CExpPhasPerformance": {
-      "module": "ccp4x.data_scan.CCP4PerformanceData",
+      "module": "ccp4i2.data_scan.CCP4PerformanceData",
       "class": "CExpPhasPerformance",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4PerformanceData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -7454,7 +7454,7 @@
       }
     },
     "CModelBuildPerformance": {
-      "module": "ccp4x.data_scan.CCP4PerformanceData",
+      "module": "ccp4i2.data_scan.CCP4PerformanceData",
       "class": "CModelBuildPerformance",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4PerformanceData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -7560,7 +7560,7 @@
       }
     },
     "CPairefPerformance": {
-      "module": "ccp4x.data_scan.CCP4PerformanceData",
+      "module": "ccp4i2.data_scan.CCP4PerformanceData",
       "class": "CPairefPerformance",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4PerformanceData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -7655,7 +7655,7 @@
       }
     },
     "CPerformanceIndicator": {
-      "module": "ccp4x.data_scan.CCP4PerformanceData",
+      "module": "ccp4i2.data_scan.CCP4PerformanceData",
       "class": "CPerformanceIndicator",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4PerformanceData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -7753,7 +7753,7 @@
       }
     },
     "CPhaseErrorPerformance": {
-      "module": "ccp4x.data_scan.CCP4PerformanceData",
+      "module": "ccp4i2.data_scan.CCP4PerformanceData",
       "class": "CPhaseErrorPerformance",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4PerformanceData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -7862,7 +7862,7 @@
       }
     },
     "CRefinementPerformance": {
-      "module": "ccp4x.data_scan.CCP4PerformanceData",
+      "module": "ccp4i2.data_scan.CCP4PerformanceData",
       "class": "CRefinementPerformance",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4PerformanceData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -7986,7 +7986,7 @@
       }
     },
     "CServalcatPerformance": {
-      "module": "ccp4x.data_scan.CCP4PerformanceData",
+      "module": "ccp4i2.data_scan.CCP4PerformanceData",
       "class": "CServalcatPerformance",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4PerformanceData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -8163,7 +8163,7 @@
       }
     },
     "CSuperposePerformance": {
-      "module": "ccp4x.data_scan.CCP4PerformanceData",
+      "module": "ccp4i2.data_scan.CCP4PerformanceData",
       "class": "CSuperposePerformance",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4PerformanceData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -8259,7 +8259,7 @@
       }
     },
     "CTestObsConversionsPerformance": {
-      "module": "ccp4x.data_scan.CCP4PerformanceData",
+      "module": "ccp4i2.data_scan.CCP4PerformanceData",
       "class": "CTestObsConversionsPerformance",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4PerformanceData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -8351,7 +8351,7 @@
       }
     },
     "CCootHistoryDataFile": {
-      "module": "ccp4x.data_scan.CCP4CootData",
+      "module": "ccp4i2.data_scan.CCP4CootData",
       "class": "CCootHistoryDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4CootData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -8562,7 +8562,7 @@
       }
     },
     "CPreferences": {
-      "module": "ccp4x.data_scan.CCP4Preferences",
+      "module": "ccp4i2.data_scan.CCP4Preferences",
       "class": "CPreferences",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Preferences.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -8802,7 +8802,7 @@
       }
     },
     "CCustomComFile": {
-      "module": "ccp4x.data_scan.CCP4CustomTaskManager",
+      "module": "ccp4i2.data_scan.CCP4CustomTaskManager",
       "class": "CCustomComFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4CustomTaskManager.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -8982,7 +8982,7 @@
       }
     },
     "CCustomComFileList": {
-      "module": "ccp4x.data_scan.CCP4CustomTaskManager",
+      "module": "ccp4i2.data_scan.CCP4CustomTaskManager",
       "class": "CCustomComFileList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4CustomTaskManager.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -9066,11 +9066,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4CustomTaskManager.CCustomComFile'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4CustomTaskManager.CCustomComFile'>"
       }
     },
     "CCustomTaskDefinition": {
-      "module": "ccp4x.data_scan.CCP4CustomTaskManager",
+      "module": "ccp4i2.data_scan.CCP4CustomTaskManager",
       "class": "CCustomTaskDefinition",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4CustomTaskManager.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -9310,7 +9310,7 @@
       }
     },
     "CCustomTaskFileFunction": {
-      "module": "ccp4x.data_scan.CCP4CustomTaskManager",
+      "module": "ccp4i2.data_scan.CCP4CustomTaskManager",
       "class": "CCustomTaskFileFunction",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4CustomTaskManager.py",
       "docstring": "A string",
@@ -9392,7 +9392,7 @@
       }
     },
     "CCustomTaskParam": {
-      "module": "ccp4x.data_scan.CCP4CustomTaskManager",
+      "module": "ccp4i2.data_scan.CCP4CustomTaskManager",
       "class": "CCustomTaskParam",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4CustomTaskManager.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -9434,7 +9434,7 @@
           }
         },
         "function": {
-          "class": "<class 'ccp4x.data_scan.CCP4CustomTaskManager.CCustomTaskFileFunction'>",
+          "class": "<class 'ccp4i2.data_scan.CCP4CustomTaskManager.CCustomTaskFileFunction'>",
           "qualifiers": {
             "default": "input"
           }
@@ -9608,7 +9608,7 @@
       }
     },
     "CCustomTaskParamList": {
-      "module": "ccp4x.data_scan.CCP4CustomTaskManager",
+      "module": "ccp4i2.data_scan.CCP4CustomTaskManager",
       "class": "CCustomTaskParamList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4CustomTaskManager.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -9692,11 +9692,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4CustomTaskManager.CCustomTaskParam'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4CustomTaskManager.CCustomTaskParam'>"
       }
     },
     "CBaseData": {
-      "module": "ccp4x.data_scan.CCP4Data",
+      "module": "ccp4i2.data_scan.CCP4Data",
       "class": "CBaseData",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Data.py",
       "docstring": "Base class for simple classes",
@@ -9836,7 +9836,7 @@
       }
     },
     "CBoolean": {
-      "module": "ccp4x.data_scan.CCP4Data",
+      "module": "ccp4i2.data_scan.CCP4Data",
       "class": "CBoolean",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Data.py",
       "docstring": "A Boolean",
@@ -9881,7 +9881,7 @@
       }
     },
     "CCollection": {
-      "module": "ccp4x.data_scan.CCP4Data",
+      "module": "ccp4i2.data_scan.CCP4Data",
       "class": "CCollection",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Data.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -10050,11 +10050,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4Data.CString'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4Data.CString'>"
       }
     },
     "CDict": {
-      "module": "ccp4x.data_scan.CCP4Data",
+      "module": "ccp4i2.data_scan.CCP4Data",
       "class": "CDict",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Data.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -10121,11 +10121,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4Data.CString'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4Data.CString'>"
       }
     },
     "CFloat": {
-      "module": "ccp4x.data_scan.CCP4Data",
+      "module": "ccp4i2.data_scan.CCP4Data",
       "class": "CFloat",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Data.py",
       "docstring": "A float",
@@ -10195,7 +10195,7 @@
       }
     },
     "CFloatRange": {
-      "module": "ccp4x.data_scan.CCP4Data",
+      "module": "ccp4i2.data_scan.CCP4Data",
       "class": "CFloatRange",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Data.py",
       "docstring": "Two floats defining start and end of range",
@@ -10214,10 +10214,10 @@
       ],
       "CONTENTS": {
         "start": {
-          "class": "<class 'ccp4x.data_scan.CCP4Data.CFloat'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4Data.CFloat'>"
         },
         "end": {
-          "class": "<class 'ccp4x.data_scan.CCP4Data.CFloat'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4Data.CFloat'>"
         }
       },
       "CONTENTS_ORDER": [
@@ -10246,7 +10246,7 @@
       }
     },
     "CFollowFromJob": {
-      "module": "ccp4x.data_scan.CCP4Data",
+      "module": "ccp4i2.data_scan.CCP4Data",
       "class": "CFollowFromJob",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Data.py",
       "docstring": "A string",
@@ -10329,7 +10329,7 @@
       }
     },
     "CI2DataType": {
-      "module": "ccp4x.data_scan.CCP4Data",
+      "module": "ccp4i2.data_scan.CCP4Data",
       "class": "CI2DataType",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Data.py",
       "docstring": "A string",
@@ -10420,7 +10420,7 @@
       }
     },
     "CInt": {
-      "module": "ccp4x.data_scan.CCP4Data",
+      "module": "ccp4i2.data_scan.CCP4Data",
       "class": "CInt",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Data.py",
       "docstring": "An integer",
@@ -10494,7 +10494,7 @@
       }
     },
     "CIntRange": {
-      "module": "ccp4x.data_scan.CCP4Data",
+      "module": "ccp4i2.data_scan.CCP4Data",
       "class": "CIntRange",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Data.py",
       "docstring": "Two integers defining start and end of range",
@@ -10513,10 +10513,10 @@
       ],
       "CONTENTS": {
         "start": {
-          "class": "<class 'ccp4x.data_scan.CCP4Data.CInt'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4Data.CInt'>"
         },
         "end": {
-          "class": "<class 'ccp4x.data_scan.CCP4Data.CInt'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4Data.CInt'>"
         }
       },
       "CONTENTS_ORDER": [
@@ -10545,7 +10545,7 @@
       }
     },
     "CJobStatus": {
-      "module": "ccp4x.data_scan.CCP4Data",
+      "module": "ccp4i2.data_scan.CCP4Data",
       "class": "CJobStatus",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Data.py",
       "docstring": "An integer",
@@ -10620,7 +10620,7 @@
       }
     },
     "CJobTitle": {
-      "module": "ccp4x.data_scan.CCP4Data",
+      "module": "ccp4i2.data_scan.CCP4Data",
       "class": "CJobTitle",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Data.py",
       "docstring": "A string",
@@ -10702,7 +10702,7 @@
       }
     },
     "CList": {
-      "module": "ccp4x.data_scan.CCP4Data",
+      "module": "ccp4i2.data_scan.CCP4Data",
       "class": "CList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Data.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -10785,11 +10785,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4Data.CString'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4Data.CString'>"
       }
     },
     "COneWord": {
-      "module": "ccp4x.data_scan.CCP4Data",
+      "module": "ccp4i2.data_scan.CCP4Data",
       "class": "COneWord",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Data.py",
       "docstring": "A single word string - no white space",
@@ -10862,7 +10862,7 @@
       }
     },
     "COutputFileList": {
-      "module": "ccp4x.data_scan.CCP4Data",
+      "module": "ccp4i2.data_scan.CCP4Data",
       "class": "COutputFileList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Data.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -10952,11 +10952,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4Data.CString'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4Data.CString'>"
       }
     },
     "CPatchSelection": {
-      "module": "ccp4x.data_scan.CCP4Data",
+      "module": "ccp4i2.data_scan.CCP4Data",
       "class": "CPatchSelection",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Data.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -10974,10 +10974,10 @@
       ],
       "CONTENTS": {
         "taskName": {
-          "class": "<class 'ccp4x.data_scan.CCP4Data.CString'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4Data.CString'>"
         },
         "patch": {
-          "class": "<class 'ccp4x.data_scan.CCP4Data.CString'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4Data.CString'>"
         }
       },
       "CONTENTS_ORDER": [
@@ -11136,7 +11136,7 @@
       }
     },
     "CRange": {
-      "module": "ccp4x.data_scan.CCP4Data",
+      "module": "ccp4i2.data_scan.CCP4Data",
       "class": "CRange",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Data.py",
       "docstring": "Base class for CIntRange and CFloatRange",
@@ -11179,7 +11179,7 @@
       }
     },
     "CRangeSelection": {
-      "module": "ccp4x.data_scan.CCP4Data",
+      "module": "ccp4i2.data_scan.CCP4Data",
       "class": "CRangeSelection",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Data.py",
       "docstring": "A string",
@@ -11255,7 +11255,7 @@
       }
     },
     "CString": {
-      "module": "ccp4x.data_scan.CCP4Data",
+      "module": "ccp4i2.data_scan.CCP4Data",
       "class": "CString",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Data.py",
       "docstring": "A string",
@@ -11336,7 +11336,7 @@
       }
     },
     "CUUID": {
-      "module": "ccp4x.data_scan.CCP4Data",
+      "module": "ccp4i2.data_scan.CCP4Data",
       "class": "CUUID",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Data.py",
       "docstring": "A string",
@@ -11418,7 +11418,7 @@
       }
     },
     "CPatchDefinition": {
-      "module": "ccp4x.data_scan.CCP4ComFilePatchManager",
+      "module": "ccp4i2.data_scan.CCP4ComFilePatchManager",
       "class": "CPatchDefinition",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4ComFilePatchManager.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -11658,7 +11658,7 @@
       }
     },
     "CContainer": {
-      "module": "ccp4x.data_scan.CCP4Container",
+      "module": "ccp4i2.data_scan.CCP4Container",
       "class": "CContainer",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Container.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -11897,7 +11897,7 @@
       }
     },
     "CAnnotation": {
-      "module": "ccp4x.data_scan.CCP4Annotation",
+      "module": "ccp4i2.data_scan.CCP4Annotation",
       "class": "CAnnotation",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Annotation.py",
       "docstring": "Annotation text with user id and time",
@@ -11922,14 +11922,14 @@
           }
         },
         "time": {
-          "class": "<class 'ccp4x.data_scan.CCP4Annotation.CTime'>",
+          "class": "<class 'ccp4i2.data_scan.CCP4Annotation.CTime'>",
           "qualifiers": {
             "allowUndefined": true,
             "default": null
           }
         },
         "author": {
-          "class": "<class 'ccp4x.data_scan.CCP4Annotation.CUserId'>",
+          "class": "<class 'ccp4i2.data_scan.CCP4Annotation.CUserId'>",
           "qualifiers": {
             "allowUndefined": true,
             "default": null
@@ -12084,7 +12084,7 @@
       }
     },
     "CAnnotationList": {
-      "module": "ccp4x.data_scan.CCP4Annotation",
+      "module": "ccp4i2.data_scan.CCP4Annotation",
       "class": "CAnnotationList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Annotation.py",
       "docstring": "A list of annotation",
@@ -12168,11 +12168,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4Annotation.CAnnotation'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4Annotation.CAnnotation'>"
       }
     },
     "CAuthor": {
-      "module": "ccp4x.data_scan.CCP4Annotation",
+      "module": "ccp4i2.data_scan.CCP4Annotation",
       "class": "CAuthor",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Annotation.py",
       "docstring": "Placeholder for bibliographic author",
@@ -12254,7 +12254,7 @@
       }
     },
     "CBibReference": {
-      "module": "ccp4x.data_scan.CCP4Annotation",
+      "module": "ccp4i2.data_scan.CCP4Annotation",
       "class": "CBibReference",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Annotation.py",
       "docstring": "Bibliographic reference",
@@ -12280,7 +12280,7 @@
         "authorList": {
           "class": "<class 'core.CCP4Data.CList'>",
           "subItem": {
-            "class": "<class 'ccp4x.data_scan.CCP4Annotation.CAuthor'>"
+            "class": "<class 'ccp4i2.data_scan.CCP4Annotation.CAuthor'>"
           }
         },
         "source": {
@@ -12350,7 +12350,7 @@
       }
     },
     "CBibReferenceGroup": {
-      "module": "ccp4x.data_scan.CCP4Annotation",
+      "module": "ccp4i2.data_scan.CCP4Annotation",
       "class": "CBibReferenceGroup",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Annotation.py",
       "docstring": "Set of bibliographic references for a task",
@@ -12379,7 +12379,7 @@
         "references": {
           "class": "<class 'core.CCP4Data.CList'>",
           "subItem": {
-            "class": "<class 'ccp4x.data_scan.CCP4Annotation.CBibReference'>"
+            "class": "<class 'ccp4i2.data_scan.CCP4Annotation.CBibReference'>"
           }
         }
       },
@@ -12444,7 +12444,7 @@
       }
     },
     "CDateRange": {
-      "module": "ccp4x.data_scan.CCP4Annotation",
+      "module": "ccp4i2.data_scan.CCP4Annotation",
       "class": "CDateRange",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Annotation.py",
       "docstring": "A date range - may be on a scale of years,months or days",
@@ -12681,7 +12681,7 @@
       }
     },
     "CFont": {
-      "module": "ccp4x.data_scan.CCP4Annotation",
+      "module": "ccp4i2.data_scan.CCP4Annotation",
       "class": "CFont",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Annotation.py",
       "docstring": "Simplified Qt font options",
@@ -12905,7 +12905,7 @@
       }
     },
     "CHostName": {
-      "module": "ccp4x.data_scan.CCP4Annotation",
+      "module": "ccp4i2.data_scan.CCP4Annotation",
       "class": "CHostName",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Annotation.py",
       "docstring": "Computer name",
@@ -12982,7 +12982,7 @@
       }
     },
     "CHostname": {
-      "module": "ccp4x.data_scan.CCP4Annotation",
+      "module": "ccp4i2.data_scan.CCP4Annotation",
       "class": "CHostname",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Annotation.py",
       "docstring": "Computer name",
@@ -13060,7 +13060,7 @@
       }
     },
     "CMetaDataTag": {
-      "module": "ccp4x.data_scan.CCP4Annotation",
+      "module": "ccp4i2.data_scan.CCP4Annotation",
       "class": "CMetaDataTag",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Annotation.py",
       "docstring": "This class will extend list of enumerators if new value for string is entered",
@@ -13212,7 +13212,7 @@
       }
     },
     "CMetaDataTagList": {
-      "module": "ccp4x.data_scan.CCP4Annotation",
+      "module": "ccp4i2.data_scan.CCP4Annotation",
       "class": "CMetaDataTagList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Annotation.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -13293,11 +13293,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4Annotation.CMetaDataTag'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4Annotation.CMetaDataTag'>"
       }
     },
     "CServerGroup": {
-      "module": "ccp4x.data_scan.CCP4Annotation",
+      "module": "ccp4i2.data_scan.CCP4Annotation",
       "class": "CServerGroup",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Annotation.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -13346,7 +13346,7 @@
             "minLength": 1
           },
           "subItem": {
-            "class": "<class 'ccp4x.data_scan.CCP4Annotation.CHostname'>",
+            "class": "<class 'ccp4i2.data_scan.CCP4Annotation.CHostname'>",
             "qualifiers": {
               "default": null,
               "allowUndefind": false
@@ -13585,7 +13585,7 @@
       }
     },
     "CTime": {
-      "module": "ccp4x.data_scan.CCP4Annotation",
+      "module": "ccp4i2.data_scan.CCP4Annotation",
       "class": "CTime",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Annotation.py",
       "docstring": "The time. Uses Python time module",
@@ -13633,7 +13633,7 @@
       }
     },
     "CUserAddress": {
-      "module": "ccp4x.data_scan.CCP4Annotation",
+      "module": "ccp4i2.data_scan.CCP4Annotation",
       "class": "CUserAddress",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Annotation.py",
       "docstring": "User id and platform node",
@@ -13654,7 +13654,7 @@
           "class": "<class 'core.CCP4Data.CString'>"
         },
         "userId": {
-          "class": "<class 'ccp4x.data_scan.CCP4Annotation.CUserId'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4Annotation.CUserId'>"
         }
       },
       "CONTENTS_ORDER": [
@@ -13808,7 +13808,7 @@
       }
     },
     "CUserId": {
-      "module": "ccp4x.data_scan.CCP4Annotation",
+      "module": "ccp4i2.data_scan.CCP4Annotation",
       "class": "CUserId",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Annotation.py",
       "docstring": "A user ID",
@@ -13857,7 +13857,7 @@
       }
     },
     "CRefmacAnomalousAtom": {
-      "module": "ccp4x.data_scan.CCP4RefmacData",
+      "module": "ccp4i2.data_scan.CCP4RefmacData",
       "class": "CRefmacAnomalousAtom",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4RefmacData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -14047,7 +14047,7 @@
       }
     },
     "CRefmacRestraintsDataFile": {
-      "module": "ccp4x.data_scan.CCP4RefmacData",
+      "module": "ccp4i2.data_scan.CCP4RefmacData",
       "class": "CRefmacRestraintsDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4RefmacData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -14237,7 +14237,7 @@
       }
     },
     "CRefmacRigidGroupItem": {
-      "module": "ccp4x.data_scan.CCP4RefmacData",
+      "module": "ccp4i2.data_scan.CCP4RefmacData",
       "class": "CRefmacRigidGroupItem",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4RefmacData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -14260,7 +14260,7 @@
         "segmentList": {
           "class": "<class 'core.CCP4Data.CList'>",
           "subItem": {
-            "class": "<class 'ccp4x.data_scan.CCP4RefmacData.CRefmacRigidGroupSegment'>"
+            "class": "<class 'ccp4i2.data_scan.CCP4RefmacData.CRefmacRigidGroupSegment'>"
           },
           "qualifiers": {
             "listMinLength": 1
@@ -14420,7 +14420,7 @@
       }
     },
     "CRefmacRigidGroupList": {
-      "module": "ccp4x.data_scan.CCP4RefmacData",
+      "module": "ccp4i2.data_scan.CCP4RefmacData",
       "class": "CRefmacRigidGroupList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4RefmacData.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -14504,11 +14504,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4RefmacData.CRefmacRigidGroupItem'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4RefmacData.CRefmacRigidGroupItem'>"
       }
     },
     "CRefmacRigidGroupSegment": {
-      "module": "ccp4x.data_scan.CCP4RefmacData",
+      "module": "ccp4i2.data_scan.CCP4RefmacData",
       "class": "CRefmacRigidGroupSegment",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4RefmacData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -14602,7 +14602,7 @@
       }
     },
     "CDataFile": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -14620,13 +14620,13 @@
       ],
       "CONTENTS": {
         "project": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CProjectId'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CProjectId'>"
         },
         "baseName": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "relPath": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "annotation": {
           "class": "<class 'core.CCP4Data.CString'>"
@@ -14796,7 +14796,7 @@
       }
     },
     "CDataFileContent": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CDataFileContent",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "Base class for classes holding file contents",
@@ -14966,7 +14966,7 @@
       }
     },
     "CDataReflFile": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CDataReflFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "Reflection file from DIALS",
@@ -14985,13 +14985,13 @@
       ],
       "CONTENTS": {
         "project": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CProjectId'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CProjectId'>"
         },
         "baseName": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "relPath": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "annotation": {
           "class": "<class 'core.CCP4Data.CString'>"
@@ -15152,7 +15152,7 @@
       }
     },
     "CEBIValidationXMLDataFile": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CEBIValidationXMLDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "An XLM file returned from the EBI validation server ",
@@ -15172,13 +15172,13 @@
       ],
       "CONTENTS": {
         "project": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CProjectId'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CProjectId'>"
         },
         "baseName": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "relPath": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "annotation": {
           "class": "<class 'core.CCP4Data.CString'>"
@@ -15319,7 +15319,7 @@
       }
     },
     "CExePath": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CExePath",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -15340,7 +15340,7 @@
           "class": "<class 'core.CCP4Data.CString'>"
         },
         "exePath": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CDataFile'>",
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CDataFile'>",
           "qualifiers": {
             "mustExist": true,
             "allowUndefined": false
@@ -15495,7 +15495,7 @@
       }
     },
     "CExePathList": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CExePathList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -15576,11 +15576,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4File.CExePath'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4File.CExePath'>"
       }
     },
     "CExportedFile": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CExportedFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -15754,7 +15754,7 @@
       }
     },
     "CExportedFileList": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CExportedFileList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -15838,11 +15838,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4File.CExportedFile'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4File.CExportedFile'>"
       }
     },
     "CFileFunction": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CFileFunction",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "List of recognised XML file functions",
@@ -15918,7 +15918,7 @@
       }
     },
     "CFilePath": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CFilePath",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "A file path",
@@ -15979,7 +15979,7 @@
       }
     },
     "CI2XmlDataFile": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CI2XmlDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "A reference to an XML file with CCP4i2 Header",
@@ -15999,16 +15999,16 @@
       ],
       "CONTENTS": {
         "project": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CProjectId'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CProjectId'>"
         },
         "baseName": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "relPath": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "header": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CI2XmlHeader'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CI2XmlHeader'>"
         }
       },
       "CONTENTS_ORDER": [],
@@ -16040,7 +16040,7 @@
       }
     },
     "CI2XmlHeader": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CI2XmlHeader",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "Container for header info from XML file",
@@ -16058,7 +16058,7 @@
       ],
       "CONTENTS": {
         "function": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFileFunction'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFileFunction'>"
         },
         "userId": {
           "class": "<class 'core.CCP4Annotation.CUserId'>"
@@ -16070,22 +16070,22 @@
           "class": "<class 'core.CCP4Annotation.CTime'>"
         },
         "ccp4iVersion": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CVersion'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CVersion'>"
         },
         "pluginName": {
           "class": "<class 'core.CCP4Data.CString'>"
         },
         "pluginVersion": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CVersion'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CVersion'>"
         },
         "pluginTitle": {
           "class": "<class 'core.CCP4Data.CString'>"
         },
         "projectName": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CProjectName'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CProjectName'>"
         },
         "projectId": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CProjectId'>",
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CProjectId'>",
           "qualifiers": {
             "allowUnfound": true
           }
@@ -16165,7 +16165,7 @@
       }
     },
     "CMmcifData": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CMmcifData",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "Generic mmCIF data.\nThis is intended to be a base class for other classes\nspecific to coordinates, reflections or geometry data.",
@@ -16336,7 +16336,7 @@
       }
     },
     "CMmcifDataFile": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CMmcifDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "A generic mmCIF format file.\nThis is intended to be a base class for other classes\nspecific to coordinates, reflections or geometry data.",
@@ -16355,13 +16355,13 @@
       ],
       "CONTENTS": {
         "project": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CProjectId'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CProjectId'>"
         },
         "baseName": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "relPath": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "annotation": {
           "class": "<class 'core.CCP4Data.CString'>"
@@ -16522,7 +16522,7 @@
       }
     },
     "CPDFDataFile": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CPDFDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "An PDF format file",
@@ -16541,13 +16541,13 @@
       ],
       "CONTENTS": {
         "project": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CProjectId'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CProjectId'>"
         },
         "baseName": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "relPath": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "annotation": {
           "class": "<class 'core.CCP4Data.CString'>"
@@ -16709,7 +16709,7 @@
       }
     },
     "CPostscriptDataFile": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CPostscriptDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "A postscript format file",
@@ -16728,13 +16728,13 @@
       ],
       "CONTENTS": {
         "project": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CProjectId'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CProjectId'>"
         },
         "baseName": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "relPath": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "annotation": {
           "class": "<class 'core.CCP4Data.CString'>"
@@ -16896,7 +16896,7 @@
       }
     },
     "CProjectId": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CProjectId",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "The CCP4i2 database project id - a global unique id",
@@ -16961,7 +16961,7 @@
       }
     },
     "CProjectName": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CProjectName",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "The name of a CCP4i project or directory alias",
@@ -17035,7 +17035,7 @@
       }
     },
     "CSceneDataFile": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CSceneDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "An xml format file for defining scene in CCP4mg.",
@@ -17054,13 +17054,13 @@
       ],
       "CONTENTS": {
         "project": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CProjectId'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CProjectId'>"
         },
         "baseName": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "relPath": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "annotation": {
           "class": "<class 'core.CCP4Data.CString'>"
@@ -17225,7 +17225,7 @@
       }
     },
     "CSearchPath": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CSearchPath",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -17246,7 +17246,7 @@
           "class": "<class 'core.CCP4Data.CString'>"
         },
         "path": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CDataFile'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CDataFile'>"
         }
       },
       "CONTENTS_ORDER": [],
@@ -17402,7 +17402,7 @@
       }
     },
     "CSearchPathList": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CSearchPathList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -17486,11 +17486,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4File.CSearchPath'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4File.CSearchPath'>"
       }
     },
     "CTextDataFile": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CTextDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "A text data file",
@@ -17509,13 +17509,13 @@
       ],
       "CONTENTS": {
         "project": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CProjectId'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CProjectId'>"
         },
         "baseName": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "relPath": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "annotation": {
           "class": "<class 'core.CCP4Data.CString'>"
@@ -17679,7 +17679,7 @@
       }
     },
     "CVersion": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CVersion",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "A (string) version number of the form n.m.i",
@@ -17729,7 +17729,7 @@
       }
     },
     "CXmgrDataFile": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CXmgrDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "An xmgr format file. This is the input format for xmgrace, as output by scala or aimless",
@@ -17748,13 +17748,13 @@
       ],
       "CONTENTS": {
         "project": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CProjectId'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CProjectId'>"
         },
         "baseName": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "relPath": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "annotation": {
           "class": "<class 'core.CCP4Data.CString'>"
@@ -17915,7 +17915,7 @@
       }
     },
     "CXmlDataFile": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CXmlDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "A reference to an XML file",
@@ -17934,13 +17934,13 @@
       ],
       "CONTENTS": {
         "project": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CProjectId'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CProjectId'>"
         },
         "baseName": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "relPath": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "annotation": {
           "class": "<class 'core.CCP4Data.CString'>"
@@ -18081,7 +18081,7 @@
       }
     },
     "CYmlFile": {
-      "module": "ccp4x.data_scan.CCP4File",
+      "module": "ccp4i2.data_scan.CCP4File",
       "class": "CYmlFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4File.py",
       "docstring": "A yml data file",
@@ -18100,13 +18100,13 @@
       ],
       "CONTENTS": {
         "project": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CProjectId'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CProjectId'>"
         },
         "baseName": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "relPath": {
-          "class": "<class 'ccp4x.data_scan.CCP4File.CFilePath'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4File.CFilePath'>"
         },
         "annotation": {
           "class": "<class 'core.CCP4Data.CString'>"
@@ -18269,7 +18269,7 @@
       }
     },
     "CAltSpaceGroup": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CAltSpaceGroup",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A string holding the space group",
@@ -18363,7 +18363,7 @@
       }
     },
     "CAltSpaceGroupList": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CAltSpaceGroupList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -18447,11 +18447,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4XtalData.CAltSpaceGroup'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CAltSpaceGroup'>"
       }
     },
     "CAnomalousColumnGroup": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CAnomalousColumnGroup",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "Selection of F/I and AnomF/I columns from MTZ.\nExpected to be part of ab initio phasing dataset ( CDataset)",
@@ -18529,7 +18529,7 @@
       }
     },
     "CAnomalousIntensityColumnGroup": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CAnomalousIntensityColumnGroup",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "Selection of I and AnomI columns from MTZ.\nExpected to be part of ab initio phasing dataset ( CDataset)",
@@ -18608,7 +18608,7 @@
       }
     },
     "CAnomalousScatteringElement": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CAnomalousScatteringElement",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "Definition of a anomalous scattering element",
@@ -18685,7 +18685,7 @@
       }
     },
     "CAsuComponent": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CAsuComponent",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A component of the asymmetric unit. This is for use in MR, defining\nwhat we are searching for. ",
@@ -18904,7 +18904,7 @@
       }
     },
     "CAsuComponentList": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CAsuComponentList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -18986,11 +18986,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4XtalData.CAsuComponent'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CAsuComponent'>"
       }
     },
     "CCell": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CCell",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A unit cell",
@@ -19008,42 +19008,42 @@
       ],
       "CONTENTS": {
         "a": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CCellLength'>",
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CCellLength'>",
           "qualifiers": {
             "toolTip": "Cell length a in A",
             "guiLabel": "a"
           }
         },
         "b": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CCellLength'>",
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CCellLength'>",
           "qualifiers": {
             "toolTip": "Cell length b in A",
             "guiLabel": "b"
           }
         },
         "c": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CCellLength'>",
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CCellLength'>",
           "qualifiers": {
             "toolTip": "Cell length c in A",
             "guiLabel": "c"
           }
         },
         "alpha": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CCellAngle'>",
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CCellAngle'>",
           "qualifiers": {
             "toolTip": "Cell angle alpha in degrees",
             "guiLabel": "alpha"
           }
         },
         "beta": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CCellAngle'>",
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CCellAngle'>",
           "qualifiers": {
             "toolTip": "Cell angle beta in degrees",
             "guiLabel": "beta"
           }
         },
         "gamma": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CCellAngle'>",
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CCellAngle'>",
           "qualifiers": {
             "toolTip": "Cell angle gamma in degrees",
             "guiLabel": "gamma"
@@ -19205,7 +19205,7 @@
       }
     },
     "CCellAngle": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CCellAngle",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A cell angle",
@@ -19276,7 +19276,7 @@
       }
     },
     "CCellLength": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CCellLength",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A cell length",
@@ -19346,7 +19346,7 @@
       }
     },
     "CColumnGroup": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CColumnGroup",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "Groups of columns in MTZ - probably from analysis by hklfile",
@@ -19384,7 +19384,7 @@
         "columnList": {
           "class": "<class 'core.CCP4Data.CList'>",
           "subItem": {
-            "class": "<class 'ccp4x.data_scan.CCP4XtalData.CMtzColumn'>"
+            "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CMtzColumn'>"
           }
         },
         "selected": {
@@ -19544,7 +19544,7 @@
       }
     },
     "CColumnGroupItem": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CColumnGroupItem",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "Definition of set of columns that form a 'group'",
@@ -19568,7 +19568,7 @@
           "class": "<class 'core.CCP4Data.CString'>"
         },
         "columnType": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CColumnTypeList'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CColumnTypeList'>"
         },
         "partnerTo": {
           "class": "<class 'core.CCP4Data.COneWord'>"
@@ -19630,7 +19630,7 @@
       }
     },
     "CColumnGroupList": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CColumnGroupList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -19714,11 +19714,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4XtalData.CColumnGroup'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CColumnGroup'>"
       }
     },
     "CColumnType": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CColumnType",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A list of recognised MTZ column types",
@@ -19814,7 +19814,7 @@
       }
     },
     "CColumnTypeList": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CColumnTypeList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A list of acceptable MTZ column types",
@@ -19898,11 +19898,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4XtalData.CColumnType'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CColumnType'>"
       }
     },
     "CCrystalName": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CCrystalName",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A string",
@@ -19981,7 +19981,7 @@
       }
     },
     "CDataset": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CDataset",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "The experimental data model for ab initio phasing",
@@ -20002,16 +20002,16 @@
           "class": "<class 'core.CCP4Data.CBoolean'>"
         },
         "obsDataFile": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CObsDataFile'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CObsDataFile'>"
         },
         "crystalName": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CCrystalName'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CCrystalName'>"
         },
         "datasetName": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CDatasetName'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CDatasetName'>"
         },
         "formFactors": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CFormFactor'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CFormFactor'>"
         },
         "formFactorSource": {
           "class": "<class 'core.CCP4Data.CString'>",
@@ -20184,7 +20184,7 @@
       }
     },
     "CDatasetList": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CDatasetList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -20268,11 +20268,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4XtalData.CDataset'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CDataset'>"
       }
     },
     "CDatasetName": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CDatasetName",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A string",
@@ -20351,7 +20351,7 @@
       }
     },
     "CDialsJsonFile": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CDialsJsonFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -20544,7 +20544,7 @@
       }
     },
     "CDialsPickleFile": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CDialsPickleFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -20736,7 +20736,7 @@
       }
     },
     "CExperimentalDataType": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CExperimentalDataType",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "Experimental data type e.g. native or peak",
@@ -20823,7 +20823,7 @@
       }
     },
     "CFPairColumnGroup": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CFPairColumnGroup",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A group of MTZ columns required for program input",
@@ -20898,7 +20898,7 @@
       }
     },
     "CFSigFColumnGroup": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CFSigFColumnGroup",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A group of MTZ columns required for program input",
@@ -20973,7 +20973,7 @@
       }
     },
     "CFormFactor": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CFormFactor",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "The for factor (Fp and Fpp) for a giving element and wavelength",
@@ -21159,7 +21159,7 @@
       }
     },
     "CFreeRColumnGroup": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CFreeRColumnGroup",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A group of MTZ columns required for program input",
@@ -21234,7 +21234,7 @@
       }
     },
     "CFreeRDataFile": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CFreeRDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "An MTZ experimental data file",
@@ -21301,7 +21301,7 @@
           "I"
         ],
         "columnGroupClassList": [
-          "<class 'ccp4x.data_scan.CCP4XtalData.CFreeRColumnGroup'>"
+          "<class 'ccp4i2.data_scan.CCP4XtalData.CFreeRColumnGroup'>"
         ],
         "helpFile": "data_files#FreeR"
       },
@@ -21391,7 +21391,7 @@
       }
     },
     "CGenericReflDataFile": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CGenericReflDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -21591,7 +21591,7 @@
       }
     },
     "CHLColumnGroup": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CHLColumnGroup",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A group of MTZ columns required for program input",
@@ -21666,7 +21666,7 @@
       }
     },
     "CIPairColumnGroup": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CIPairColumnGroup",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A group of MTZ columns required for program input",
@@ -21741,7 +21741,7 @@
       }
     },
     "CISigIColumnGroup": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CISigIColumnGroup",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A group of MTZ columns required for program input",
@@ -21816,7 +21816,7 @@
       }
     },
     "CImageFile": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CImageFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -22011,7 +22011,7 @@
       }
     },
     "CImageFileList": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CImageFileList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -22095,11 +22095,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4XtalData.CImageFile'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CImageFile'>"
       }
     },
     "CImosflmXmlDataFile": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CImosflmXmlDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "An iMosflm data file",
@@ -22289,7 +22289,7 @@
       }
     },
     "CImportUnmerged": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CImportUnmerged",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -22307,7 +22307,7 @@
       ],
       "CONTENTS": {
         "file": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CUnmergedDataFile'>",
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CUnmergedDataFile'>",
           "qualifiers": {
             "allowUndefined": false,
             "mustExist": true,
@@ -22315,10 +22315,10 @@
           }
         },
         "cell": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CCell'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CCell'>"
         },
         "wavelength": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CWavelength'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CWavelength'>"
         },
         "crystalName": {
           "class": "<class 'core.CCP4Data.CString'>",
@@ -22498,7 +22498,7 @@
       }
     },
     "CImportUnmergedList": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CImportUnmergedList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -22579,11 +22579,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4XtalData.CImportUnmerged'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CImportUnmerged'>"
       }
     },
     "CMapCoeffsDataFile": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CMapCoeffsDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "An MTZ experimental data file",
@@ -22661,7 +22661,7 @@
           "FQP"
         ],
         "columnGroupClassList": [
-          "<class 'ccp4x.data_scan.CCP4XtalData.CMapColumnGroup'>"
+          "<class 'ccp4i2.data_scan.CCP4XtalData.CMapColumnGroup'>"
         ],
         "downloadModes": [
           "Uppsala-EDS"
@@ -22769,7 +22769,7 @@
       }
     },
     "CMapColumnGroup": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CMapColumnGroup",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A group of MTZ columns required for program input",
@@ -22844,7 +22844,7 @@
       }
     },
     "CMapDataFile": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CMapDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A CCP4 Map file",
@@ -23036,7 +23036,7 @@
       }
     },
     "CMergeMiniMtz": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CMergeMiniMtz",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -23054,7 +23054,7 @@
       ],
       "CONTENTS": {
         "fileName": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CMiniMtzDataFile'>",
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CMiniMtzDataFile'>",
           "qualifiers": {
             "fromPreviousJob": false
           }
@@ -23123,7 +23123,7 @@
       }
     },
     "CMergeMiniMtzList": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CMergeMiniMtzList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -23205,11 +23205,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4XtalData.CMergeMiniMtz'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CMergeMiniMtz'>"
       }
     },
     "CMiniMtzDataFile": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CMiniMtzDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "An MTZ experimental data file",
@@ -23358,7 +23358,7 @@
       }
     },
     "CMiniMtzDataFileList": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CMiniMtzDataFileList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -23442,11 +23442,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4XtalData.CMiniMtzDataFile'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CMiniMtzDataFile'>"
       }
     },
     "CMmcifReflData": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CMmcifReflData",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "Generic mmCIF data.\nThis is intended to be a base class for other classes\nspecific to coordinates, reflections or geometry data.",
@@ -23466,13 +23466,13 @@
       ],
       "CONTENTS": {
         "cell": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CCell'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CCell'>"
         },
         "spaceGroup": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CSpaceGroup'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CSpaceGroup'>"
         },
         "wavelength": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CWavelength'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CWavelength'>"
         },
         "haveFreeRColumn": {
           "class": "<class 'core.CCP4Data.CBoolean'>"
@@ -23543,7 +23543,7 @@
       }
     },
     "CMmcifReflDataFile": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CMmcifReflDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A reflection file in mmCIF format",
@@ -23731,7 +23731,7 @@
       }
     },
     "CMtzColumn": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CMtzColumn",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "An MTZ column with column label and column type",
@@ -23755,7 +23755,7 @@
           }
         },
         "columnType": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CColumnType'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CColumnType'>"
         },
         "dataset": {
           "class": "<class 'core.CCP4Data.COneWord'>"
@@ -23917,7 +23917,7 @@
       }
     },
     "CMtzColumnGroup": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CMtzColumnGroup",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -23935,12 +23935,12 @@
       ],
       "CONTENTS": {
         "groupType": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CMtzColumnGroupType'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CMtzColumnGroupType'>"
         },
         "columns": {
           "class": "<class 'core.CCP4Data.CList'>",
           "subItem": {
-            "class": "<class 'ccp4x.data_scan.CCP4XtalData.CMtzColumn'>"
+            "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CMtzColumn'>"
           }
         }
       },
@@ -24097,7 +24097,7 @@
       }
     },
     "CMtzColumnGroupType": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CMtzColumnGroupType",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A list of recognised MTZ column types",
@@ -24194,7 +24194,7 @@
       }
     },
     "CMtzData": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CMtzData",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "Base class for classes holding file contents",
@@ -24213,18 +24213,18 @@
       ],
       "CONTENTS": {
         "cell": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CCell'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CCell'>"
         },
         "spaceGroup": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CSpaceGroup'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CSpaceGroup'>"
         },
         "resolutionRange": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CResolutionRange'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CResolutionRange'>"
         },
         "listOfColumns": {
           "class": "<class 'core.CCP4Data.CList'>",
           "subItem": {
-            "class": "<class 'ccp4x.data_scan.CCP4XtalData.CMtzColumn'>"
+            "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CMtzColumn'>"
           }
         },
         "datasets": {
@@ -24242,13 +24242,13 @@
         "wavelengths": {
           "class": "<class 'core.CCP4Data.CList'>",
           "subItem": {
-            "class": "<class 'ccp4x.data_scan.CCP4XtalData.CWavelength'>"
+            "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CWavelength'>"
           }
         },
         "datasetCells": {
           "class": "<class 'core.CCP4Data.CList'>",
           "subItem": {
-            "class": "<class 'ccp4x.data_scan.CCP4XtalData.CCell'>"
+            "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CCell'>"
           }
         },
         "merged": {
@@ -24340,7 +24340,7 @@
       }
     },
     "CMtzDataFile": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CMtzDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "An MTZ experimental data file",
@@ -24468,7 +24468,7 @@
       }
     },
     "CMtzDataset": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CMtzDataset",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -24491,7 +24491,7 @@
         "columnGroups": {
           "class": "<class 'core.CCP4Data.CList'>",
           "subItem": {
-            "class": "<class 'ccp4x.data_scan.CCP4XtalData.CMtzColumnGroup'>"
+            "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CMtzColumnGroup'>"
           }
         }
       },
@@ -24648,7 +24648,7 @@
       }
     },
     "CObsDataFile": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CObsDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "An MTZ experimental data file",
@@ -24728,10 +24728,10 @@
           "FQ"
         ],
         "columnGroupClassList": [
-          "<class 'ccp4x.data_scan.CCP4XtalData.CIPairColumnGroup'>",
-          "<class 'ccp4x.data_scan.CCP4XtalData.CFPairColumnGroup'>",
-          "<class 'ccp4x.data_scan.CCP4XtalData.CISigIColumnGroup'>",
-          "<class 'ccp4x.data_scan.CCP4XtalData.CFSigFColumnGroup'>"
+          "<class 'ccp4i2.data_scan.CCP4XtalData.CIPairColumnGroup'>",
+          "<class 'ccp4i2.data_scan.CCP4XtalData.CFPairColumnGroup'>",
+          "<class 'ccp4i2.data_scan.CCP4XtalData.CISigIColumnGroup'>",
+          "<class 'ccp4i2.data_scan.CCP4XtalData.CFSigFColumnGroup'>"
         ],
         "downloadModes": [
           "ebiSFs"
@@ -24827,7 +24827,7 @@
       }
     },
     "CPhaserRFileDataFile": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CPhaserRFileDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -25018,7 +25018,7 @@
       }
     },
     "CPhaserSolDataFile": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CPhaserSolDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -25210,7 +25210,7 @@
       }
     },
     "CPhiFomColumnGroup": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CPhiFomColumnGroup",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A group of MTZ columns required for program input",
@@ -25285,7 +25285,7 @@
       }
     },
     "CPhsDataFile": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CPhsDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "An MTZ experimental data file",
@@ -25361,8 +25361,8 @@
           "PW"
         ],
         "columnGroupClassList": [
-          "<class 'ccp4x.data_scan.CCP4XtalData.CHLColumnGroup'>",
-          "<class 'ccp4x.data_scan.CCP4XtalData.CPhiFomColumnGroup'>"
+          "<class 'ccp4i2.data_scan.CCP4XtalData.CHLColumnGroup'>",
+          "<class 'ccp4i2.data_scan.CCP4XtalData.CPhiFomColumnGroup'>"
         ],
         "helpFile": "data_files#Phs"
       },
@@ -25473,7 +25473,7 @@
       }
     },
     "CProgramColumnGroup": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CProgramColumnGroup",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A group of MTZ columns required for program input",
@@ -25550,7 +25550,7 @@
       }
     },
     "CProgramColumnGroup0": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CProgramColumnGroup0",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -25568,7 +25568,7 @@
       ],
       "CONTENTS": {
         "columnGroup": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CMtzColumnGroup'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CMtzColumnGroup'>"
         },
         "datasetName": {
           "class": "<class 'core.CCP4Data.CString'>"
@@ -25620,7 +25620,7 @@
       }
     },
     "CRefmacKeywordFile": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CRefmacKeywordFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -25811,7 +25811,7 @@
       }
     },
     "CReindexOperator": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CReindexOperator",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -25907,7 +25907,7 @@
       }
     },
     "CResolutionRange": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CResolutionRange",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -25989,7 +25989,7 @@
       }
     },
     "CRunBatchRange": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CRunBatchRange",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -26089,7 +26089,7 @@
       }
     },
     "CRunBatchRangeList": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CRunBatchRangeList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -26170,11 +26170,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4XtalData.CRunBatchRange'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CRunBatchRange'>"
       }
     },
     "CShelxFADataFile": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CShelxFADataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -26366,7 +26366,7 @@
       }
     },
     "CShelxLabel": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CShelxLabel",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A string",
@@ -26462,7 +26462,7 @@
       }
     },
     "CSpaceGroup": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CSpaceGroup",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A string holding the space group",
@@ -26555,7 +26555,7 @@
       }
     },
     "CSpaceGroupCell": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CSpaceGroupCell",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "Cell space group and parameters",
@@ -26573,13 +26573,13 @@
       ],
       "CONTENTS": {
         "spaceGroup": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CSpaceGroup'>",
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CSpaceGroup'>",
           "qualifiers": {
             "guilabel": "space group"
           }
         },
         "cell": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CCell'>",
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CCell'>",
           "qualifiers": {
             "guilabel": "cell"
           }
@@ -26651,7 +26651,7 @@
       }
     },
     "CUnmergedDataContent": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CUnmergedDataContent",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "Base class for classes holding file contents",
@@ -26698,16 +26698,16 @@
           }
         },
         "crystalName": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CCrystalName'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CCrystalName'>"
         },
         "datasetName": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CDatasetName'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CDatasetName'>"
         },
         "cell": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CCell'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CCell'>"
         },
         "spaceGroup": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CSpaceGroup'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CSpaceGroup'>"
         },
         "batchs": {
           "class": "<class 'core.CCP4Data.CString'>"
@@ -26728,7 +26728,7 @@
           "class": "<class 'core.CCP4Data.CInt'>"
         },
         "wavelength": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CWavelength'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CWavelength'>"
         },
         "numberofdatasets": {
           "class": "<class 'core.CCP4Data.CInt'>"
@@ -26887,7 +26887,7 @@
       }
     },
     "CUnmergedDataFile": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CUnmergedDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "Handle MTZ, XDS and scalepack files. Allow wildcard filename",
@@ -27084,7 +27084,7 @@
       }
     },
     "CUnmergedDataFileList": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CUnmergedDataFileList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -27168,11 +27168,11 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4XtalData.CUnmergedDataFile'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CUnmergedDataFile'>"
       }
     },
     "CUnmergedMtzDataFile": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CUnmergedMtzDataFile",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "An MTZ experimental data file",
@@ -27298,7 +27298,7 @@
       }
     },
     "CWavelength": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CWavelength",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "Wavelength in Angstrom",
@@ -27366,7 +27366,7 @@
       }
     },
     "CXia2ImageSelection": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CXia2ImageSelection",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None",
@@ -27384,7 +27384,7 @@
       ],
       "CONTENTS": {
         "imageFile": {
-          "class": "<class 'ccp4x.data_scan.CCP4XtalData.CImageFile'>"
+          "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CImageFile'>"
         },
         "imageStart": {
           "class": "<class 'core.CCP4Data.CInt'>",
@@ -27552,7 +27552,7 @@
       }
     },
     "CXia2ImageSelectionList": {
-      "module": "ccp4x.data_scan.CCP4XtalData",
+      "module": "ccp4i2.data_scan.CCP4XtalData",
       "class": "CXia2ImageSelectionList",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4XtalData.py",
       "docstring": "A list with all items of one CData sub-class",
@@ -27636,7 +27636,7 @@
         }
       },
       "SUBITEM": {
-        "class": "<class 'ccp4x.data_scan.CCP4XtalData.CXia2ImageSelection'>"
+        "class": "<class 'ccp4i2.data_scan.CCP4XtalData.CXia2ImageSelection'>"
       }
     }
   }

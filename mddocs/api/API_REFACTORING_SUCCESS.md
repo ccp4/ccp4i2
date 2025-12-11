@@ -16,7 +16,7 @@ Successfully refactored 2 high-priority API endpoints to use the unified CPlugin
 
 ### 1. `POST /api/jobs/{id}/set_parameter/` ✅
 
-**File**: `server/ccp4x/api/JobViewSet.py` (lines 1111-1193)
+**File**: `server/ccp4i2/api/JobViewSet.py` (lines 1111-1193)
 
 **Before**:
 ```python
@@ -46,7 +46,7 @@ def set_parameter(self, request, pk=None):
 ```
 
 **Changes**:
-- ✅ Now uses `ccp4x.lib.utils.parameters.set_param.set_parameter()`
+- ✅ Now uses `ccp4i2.lib.utils.parameters.set_param.set_parameter()`
 - ✅ Uses Result[T] pattern for consistent error handling
 - ✅ Proper HTTP status codes (400 for failures, 404 for not found, 500 for errors)
 - ✅ Better error messages with details
@@ -62,7 +62,7 @@ def set_parameter(self, request, pk=None):
 
 ### 2. `GET /api/jobs/{id}/validation/` ✅
 
-**File**: `server/ccp4x/api/JobViewSet.py` (lines 1049-1133)
+**File**: `server/ccp4i2/api/JobViewSet.py` (lines 1049-1133)
 
 **Before**:
 ```python
@@ -100,7 +100,7 @@ def validation(self, request, pk=None):
 ```
 
 **Changes**:
-- ✅ Now uses `ccp4x.lib.utils.jobs.validate.validate_job()`
+- ✅ Now uses `ccp4i2.lib.utils.jobs.validate.validate_job()`
 - ✅ Uses CPluginScript instead of orphaned container
 - ✅ Uses new CErrorReport.getErrors() API instead of old _reports
 - ✅ Result[T] pattern for consistent error handling
@@ -271,11 +271,11 @@ python manage.py validate_job --jobuuid 4f04d478-6ca7-4b14-a5a3-9101c285e967
 
 | Endpoint | Utility Function | Management Command | Status |
 |----------|------------------|-------------------|--------|
-| `set_parameter/` | `ccp4x.lib.utils.parameters.set_param` | `set_job_parameter` | ✅ DONE |
-| `validation/` | `ccp4x.lib.utils.jobs.validate` | `validate_job` | ✅ DONE |
-| `clone/` | `ccp4x.lib.utils.jobs.clone` | `clone_job` | ✅ Already good |
-| `run/` | `ccp4x.lib.utils.jobs.execute` | `execute_job` | ✅ Already good |
-| `export_job/` | `ccp4x.lib.utils.jobs.export` | `export_job` | ✅ Already good |
+| `set_parameter/` | `ccp4i2.lib.utils.parameters.set_param` | `set_job_parameter` | ✅ DONE |
+| `validation/` | `ccp4i2.lib.utils.jobs.validate` | `validate_job` | ✅ DONE |
+| `clone/` | `ccp4i2.lib.utils.jobs.clone` | `clone_job` | ✅ Already good |
+| `run/` | `ccp4i2.lib.utils.jobs.execute` | `execute_job` | ✅ Already good |
+| `export_job/` | `ccp4i2.lib.utils.jobs.export` | `export_job` | ✅ Already good |
 
 ### 🟡 Could Be Refactored (Medium Priority)
 
@@ -283,7 +283,7 @@ python manage.py validate_job --jobuuid 4f04d478-6ca7-4b14-a5a3-9101c285e967
 |----------|------------------|----------------------|
 | `upload_file_param/` | Legacy `job_utils` | Create unified utility |
 | `set_context_job/` | Legacy `job_utils` | Create unified utility |
-| `params_xml/` | Direct filesystem read | Use `ccp4x.lib.utils.jobs.reports` |
+| `params_xml/` | Direct filesystem read | Use `ccp4i2.lib.utils.jobs.reports` |
 | `report_xml/` | Partial (uses `generate_job_report`) | Use unified utility |
 
 ### 🟢 OK As Is (Low Priority)
@@ -296,7 +296,7 @@ python manage.py validate_job --jobuuid 4f04d478-6ca7-4b14-a5a3-9101c285e967
 
 ## Files Modified
 
-### 1. `server/ccp4x/api/JobViewSet.py`
+### 1. `server/ccp4i2/api/JobViewSet.py`
 
 **Lines Modified**:
 - Lines 43-68: Import cleanup and comments

@@ -170,7 +170,7 @@ These ViewSets provide standard REST operations with no job_utils dependencies:
 ### Phase 2: Run Tests
 ```bash
 export CCP4I2_ROOT=$CCP4I2_ROOT
-pytest server/ccp4x/tests/api/test_viewsets_comprehensive.py -v
+pytest server/ccp4i2/tests/api/test_viewsets_comprehensive.py -v
 ```
 
 ### Phase 3: Refactor job_utils
@@ -184,7 +184,7 @@ For each job_utils module:
 ### Phase 4: Integration Tests
 After refactoring, run full test suite:
 ```bash
-pytest server/ccp4x/tests/api/ -v
+pytest server/ccp4i2/tests/api/ -v
 pytest tests/ -v
 ```
 
@@ -212,7 +212,7 @@ def json_for_job_container(job):
 
 ## Modernization Utilities
 
-Create these utilities in `server/ccp4x/lib/cdata_utils/`:
+Create these utilities in `server/ccp4i2/lib/cdata_utils/`:
 
 1. **`serialize_cdata_to_json(obj)`**: Convert CData to JSON
    - Use get_merged_metadata() for type info

@@ -15,7 +15,7 @@ Example:
 """
 
 from django.core.management.base import BaseCommand, CommandError
-from ccp4x.db import models
+from ccp4i2.db import models
 from django.db.models import Count
 import fnmatch
 

@@ -18,13 +18,13 @@ if str(server_dir) not in sys.path:
     sys.path.insert(0, str(server_dir))
 
 # Set Django settings if not already set (pytest-django will call django.setup())
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4x.config.test_settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4i2.config.test_settings')
 
 
 @pytest.fixture
 def projects_base():
     """Get the base directory for test projects"""
-    projects_dir = Path(os.environ.get('CCP4I2_PROJECTS_DIR', Path.home() / '.ccp4x_test' / 'test_projects'))
+    projects_dir = Path(os.environ.get('CCP4I2_PROJECTS_DIR', Path.home() / '.ccp4i2_test' / 'test_projects'))
     projects_dir.mkdir(parents=True, exist_ok=True)
     return projects_dir
 
@@ -32,7 +32,7 @@ def projects_base():
 @pytest.fixture
 def test_project(projects_base, db):
     """Create a test project for testing"""
-    from ccp4x.db import models
+    from ccp4i2.db import models
     import shutil
 
     # Create unique project directory
@@ -63,7 +63,7 @@ class TestAsyncDatabaseHandlerIntegration:
     @pytest.mark.asyncio
     async def test_create_job(self, test_project):
         """Test creating a job in the database"""
-        from ccp4x.db.async_db_handler import AsyncDatabaseHandler
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 
         handler = AsyncDatabaseHandler(project_uuid=test_project.uuid)
 
@@ -85,7 +85,7 @@ class TestAsyncDatabaseHandlerIntegration:
     @pytest.mark.asyncio
     async def test_create_nested_jobs(self, test_project):
         """Test creating nested jobs with automatic numbering"""
-        from ccp4x.db.async_db_handler import AsyncDatabaseHandler
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 
         handler = AsyncDatabaseHandler(project_uuid=test_project.uuid)
 
@@ -124,8 +124,8 @@ class TestAsyncDatabaseHandlerIntegration:
     @pytest.mark.asyncio
     async def test_update_job_status(self, test_project):
         """Test updating job status"""
-        from ccp4x.db.async_db_handler import AsyncDatabaseHandler
-        from ccp4x.db import models
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
+        from ccp4i2.db import models
         from asgiref.sync import sync_to_async
 
         handler = AsyncDatabaseHandler(project_uuid=test_project.uuid)
@@ -154,8 +154,8 @@ class TestAsyncDatabaseHandlerIntegration:
     @pytest.mark.asyncio
     async def test_register_job_values(self, test_project):
         """Test registering KPI values"""
-        from ccp4x.db.async_db_handler import AsyncDatabaseHandler
-        from ccp4x.db import models
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
+        from ccp4i2.db import models
         from asgiref.sync import sync_to_async
 
         handler = AsyncDatabaseHandler(project_uuid=test_project.uuid)
@@ -214,7 +214,7 @@ class TestAsyncDatabaseHandlerIntegration:
     @pytest.mark.asyncio
     async def test_job_directory_creation(self, test_project):
         """Test that job directories follow the correct convention"""
-        from ccp4x.db.async_db_handler import AsyncDatabaseHandler
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 
         handler = AsyncDatabaseHandler(project_uuid=test_project.uuid)
 
@@ -247,7 +247,7 @@ class TestCDataUtilitiesIntegration:
 
     def test_extract_file_metadata_with_mock(self):
         """Test metadata extraction with a mock file object"""
-        from ccp4x.lib.cdata_utils import extract_file_metadata
+        from ccp4i2.lib.cdata_utils import extract_file_metadata
         from unittest.mock import Mock
 
         # Create mock file

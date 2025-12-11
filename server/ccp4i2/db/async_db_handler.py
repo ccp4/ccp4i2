@@ -19,7 +19,7 @@ from django.utils import timezone
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 # Import using Django's registered app name to avoid app registry errors
-from ccp4x.db import models
+from ccp4i2.db import models
 
 logger = logging.getLogger(__name__)
 

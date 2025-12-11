@@ -20,7 +20,7 @@ from typing import Optional
 from asgiref.sync import sync_to_async
 from django.utils import timezone
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 async def run_job_async(job_uuid: uuid.UUID, project_uuid: Optional[uuid.UUID] = None):

@@ -8,12 +8,12 @@ The `run_test.sh` script sets up the environment and runs pytest with proper con
 
 #### Run all tests in a file:
 ```bash
-./run_test.sh server/ccp4x/tests/i2run/test_i2run.py
+./run_test.sh server/ccp4i2/tests/i2run/test_i2run.py
 ```
 
 #### Run a specific test:
 ```bash
-./run_test.sh server/ccp4x/tests/i2run/test_i2run.py test_case1
+./run_test.sh server/ccp4i2/tests/i2run/test_i2run.py test_case1
 ```
 
 #### Run tests from other directories:
@@ -29,16 +29,16 @@ If you prefer to run pytest directly, set up the environment first:
 ```bash
 export CCP4I2_ROOT=$(pwd)
 export PYTHONPATH=$(pwd):$(pwd)/server:$PYTHONPATH
-export DJANGO_SETTINGS_MODULE=ccp4x.settings
+export DJANGO_SETTINGS_MODULE=ccp4i2.settings
 
 # Then run pytest
-python -m pytest server/ccp4x/tests/i2run/test_i2run.py -v -s
-python -m pytest server/ccp4x/tests/i2run/test_i2run.py::TestI2Run::test_case1 -v -s
+python -m pytest server/ccp4i2/tests/i2run/test_i2run.py -v -s
+python -m pytest server/ccp4i2/tests/i2run/test_i2run.py::TestI2Run::test_case1 -v -s
 ```
 
 ### Available Test Suites
 
-- **i2run tests**: `server/ccp4x/tests/i2run/test_i2run.py`
+- **i2run tests**: `server/ccp4i2/tests/i2run/test_i2run.py`
   - `test_shlex` - Test argument parsing
   - `test_case1` - Test aimless_pipe
   - `test_case2` - Test aimless_pipe with reference
@@ -83,7 +83,7 @@ If Django tests fail:
 2. Check database migrations are up to date
 3. Verify test database can be created
 
-If i2run tests fail with "NOT NULL constraint failed: ccp4x_job.title":
-- This has been fixed in `server/ccp4x/lib/utils/jobs/create.py`
+If i2run tests fail with "NOT NULL constraint failed: ccp4i2_job.title":
+- This has been fixed in `server/ccp4i2/lib/utils/jobs/create.py`
 - Jobs now fallback to using `taskName` if plugin doesn't define TASKTITLE
 - All jobs will have a valid title set

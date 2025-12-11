@@ -9,7 +9,7 @@ Usage:
 
 import json
 from django.core.management.base import BaseCommand
-from ccp4x.db.models import File, Project, Job
+from ccp4i2.db.models import File, Project, Job
 
 
 class Command(BaseCommand):
@@ -100,7 +100,7 @@ class Command(BaseCommand):
 
     def _get_job_files(self, job_identifier):
         """Get files used by a specific job."""
-        from ccp4x.db.models import FileUse
+        from ccp4i2.db.models import FileUse
 
         try:
             # Try UUID first

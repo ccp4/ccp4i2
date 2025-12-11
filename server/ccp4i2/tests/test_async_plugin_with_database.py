@@ -33,13 +33,13 @@ if str(server_dir) not in sys.path:
     sys.path.insert(0, str(server_dir))
 
 # Set Django settings
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4x.config.test_settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4i2.config.test_settings')
 
 
 @pytest.fixture
 def projects_base():
     """Get the base directory for test projects"""
-    projects_dir = Path(os.environ.get('CCP4I2_PROJECTS_DIR', Path.home() / '.ccp4x_test' / 'test_projects'))
+    projects_dir = Path(os.environ.get('CCP4I2_PROJECTS_DIR', Path.home() / '.ccp4i2_test' / 'test_projects'))
     projects_dir.mkdir(parents=True, exist_ok=True)
     return projects_dir
 
@@ -47,7 +47,7 @@ def projects_base():
 @pytest.fixture
 def test_project(projects_base, db):
     """Create a test project for testing"""
-    from ccp4x.db import models
+    from ccp4i2.db import models
     import shutil
     import uuid
 
@@ -97,8 +97,8 @@ class TestAsyncPluginWithDatabase:
         - Output files: HKLOUT (MTZ file with F/SIGF)
         - KPIs: Various statistics from ctruncate
         """
-        from ccp4x.db.async_db_handler import AsyncDatabaseHandler
-        from ccp4x.db import models
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
+        from ccp4i2.db import models
         from ccp4i2.core.CCP4PluginScript import CPluginScript
         from asgiref.sync import sync_to_async
 
@@ -362,8 +362,8 @@ class TestAsyncPluginWithDatabase:
         - Glean output files
         - Register KPIs
         """
-        from ccp4x.db.async_db_handler import AsyncDatabaseHandler
-        from ccp4x.db import models
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
+        from ccp4i2.db import models
         from ccp4i2.core.CCP4PluginScript import CPluginScript
         from asgiref.sync import sync_to_async
 

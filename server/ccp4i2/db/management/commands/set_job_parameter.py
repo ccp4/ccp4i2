@@ -9,8 +9,8 @@ Usage:
 import uuid
 import json
 from django.core.management.base import BaseCommand, CommandError
-from ccp4x.db.models import Job, Project
-from ccp4x.lib.utils.parameters.set_param import set_parameter
+from ccp4i2.db.models import Job, Project
+from ccp4i2.lib.utils.parameters.set_param import set_parameter
 
 
 class Command(BaseCommand):

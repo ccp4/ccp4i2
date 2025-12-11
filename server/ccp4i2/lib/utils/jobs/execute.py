@@ -5,11 +5,11 @@ Provides environment-aware job execution (local or remote).
 """
 
 import logging
-from ccp4x.db import models
-from ccp4x.lib.response import Result
+from ccp4i2.db import models
+from ccp4i2.lib.response import Result
 from .context_run import run_job_context_aware
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def execute_job(job: models.Job, force_local: bool = False) -> Result[models.Job]:

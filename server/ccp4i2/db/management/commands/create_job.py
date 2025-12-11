@@ -2,10 +2,10 @@ import uuid
 import logging
 import asyncio
 from django.core.management.base import BaseCommand
-from ccp4x.db.models import Job, Project
-from ccp4x.lib.async_create_job import create_job_async
+from ccp4i2.db.models import Job, Project
+from ccp4i2.lib.async_create_job import create_job_async
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 class Command(BaseCommand):

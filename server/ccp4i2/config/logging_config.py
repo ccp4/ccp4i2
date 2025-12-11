@@ -5,7 +5,7 @@ This module provides Django LOGGING settings that integrate with the core
 logging infrastructure from ccp4i2.core.base_object.logging_config.
 
 Import this in your Django settings.py:
-    from ccp4x.config.logging_config import LOGGING
+    from ccp4i2.config.logging_config import LOGGING
 """
 import os
 from pathlib import Path
@@ -72,23 +72,23 @@ LOGGING = {
         },
     },
     'loggers': {
-        # CCP4X application loggers
-        'ccp4x': {
+        # CCP4i2 application loggers
+        'ccp4i2': {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
             'propagate': False,
         },
-        'ccp4x.api': {
+        'ccp4i2.api': {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
             'propagate': False,
         },
-        'ccp4x.db': {
+        'ccp4i2.db': {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
             'propagate': False,
         },
-        'ccp4x.lib': {
+        'ccp4i2.lib': {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
             'propagate': False,

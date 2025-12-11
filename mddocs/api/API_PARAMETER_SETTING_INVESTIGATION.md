@@ -182,22 +182,22 @@ This means `plugin.container.set_parameter(...)` is returning a plain int, not a
    - Fixed `find_by_path()` to handle `find()` returning -1 (not found)
    - Fixed `set_parameter()` to reject plain Python types - now raises AttributeError
 
-2. **server/ccp4x/tests/api/test_parameter_setting_api.py**
+2. **server/ccp4i2/tests/api/test_parameter_setting_api.py**
    - Fixed all parameter paths from `inputData.*` to `controlParameters.*`
    - Fixed `test_set_parameter_null_value` to expect 400 error (CInt can't be None)
 
 ## Files Modified (Session 1 - Clone API Fixes)
 
-1. **server/ccp4x/lib/utils/files/patch_paths.py**
+1. **server/ccp4i2/lib/utils/files/patch_paths.py**
    - Lines 44-72: Complete rewrite of `handle_cdatafile()`
    - Fixed `setFullPath()` signature
    - Added safety checks for array access and method existence
 
-2. **server/ccp4x/lib/utils/plugins/get_plugin.py**
+2. **server/ccp4i2/lib/utils/plugins/get_plugin.py**
    - Lines 53-65: Made params file optional
    - Allows fresh plugin loading for new PENDING jobs
 
-3. **server/ccp4x/tests/api/test_parameter_setting_api.py**
+3. **server/ccp4i2/tests/api/test_parameter_setting_api.py**
    - Lines 70-73: Removed empty XML creation
    - Now relies on fresh `.def.xml` loading
 

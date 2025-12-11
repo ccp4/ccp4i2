@@ -110,7 +110,7 @@ def test_load_nested_xml_expansion():
     if str(server_path) not in sys.path:
         sys.path.insert(0, str(server_path))
 
-    from ccp4x.lib.utils.parameters.load_xml import load_nested_xml
+    from ccp4i2.lib.utils.parameters.load_xml import load_nested_xml
 
     prosmart_def = Path(__file__).parent.parent / "pipelines/prosmart_refmac/script/prosmart_refmac.def.xml"
 

@@ -9,7 +9,7 @@ import tempfile
 # Set up environment using relative path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 os.environ['CCP4I2_ROOT'] = str(PROJECT_ROOT)
-os.environ['DJANGO_SETTINGS_MODULE'] = 'ccp4x.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'ccp4i2.settings'
 
 from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 

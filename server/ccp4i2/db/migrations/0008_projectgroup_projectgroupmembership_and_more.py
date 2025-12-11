@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ccp4x', '0007_alter_fileuse_unique_together'),
+        ('ccp4i2', '0007_alter_fileuse_unique_together'),
     ]
 
     operations = [
@@ -24,8 +24,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('type', models.CharField(choices=[('parent', 'Parent'), ('member', 'Member')], max_length=16)),
-                ('group', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='memberships', to='ccp4x.projectgroup')),
-                ('project', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='group_memberships', to='ccp4x.project')),
+                ('group', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='memberships', to='ccp4i2.projectgroup')),
+                ('project', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='group_memberships', to='ccp4i2.project')),
             ],
             options={
                 'unique_together': {('group', 'project')},
@@ -34,6 +34,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='projectgroup',
             name='projects',
-            field=models.ManyToManyField(related_name='groups', through='ccp4x.ProjectGroupMembership', to='ccp4x.project'),
+            field=models.ManyToManyField(related_name='groups', through='ccp4i2.ProjectGroupMembership', to='ccp4i2.project'),
         ),
     ]

@@ -111,7 +111,7 @@ def value(self, val):
 
 ### 5. Removed Obsolete File
 
-- Deleted `tests/test_complete_xml_workflow.py` (had old `ccp4x` imports)
+- Deleted `tests/test_complete_xml_workflow.py` (had old `ccp4i2` imports)
 - Replaced with proper `test_def_xml_workflow.py`
 
 ## Test Results

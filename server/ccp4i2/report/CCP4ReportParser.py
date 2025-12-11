@@ -66,7 +66,7 @@ def _get_diagnostics():
     return _diagnostics_module
 
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 XRTNS = "{http://www.ccp4.ac.uk/xrt}"
 CCP4NS = "http://www.ccp4.ac.uk/ccp4ns"
@@ -852,7 +852,7 @@ class Container(ReportClass):
         Use data_as_csv() for data export instead.
         """
         import logging
-        logger = logging.getLogger(f"ccp4x:{__name__}")
+        logger = logging.getLogger(f"ccp4i2:{__name__}")
         logger.warning(
             "graph_data_as_rtf() is deprecated - RTF export requires Qt which is no longer available")
         return None
@@ -2585,7 +2585,7 @@ class Graph(ReportClass):
         Use data_as_csv() for data export instead.
         """
         import logging
-        logger = logging.getLogger(f"ccp4x:{__name__}")
+        logger = logging.getLogger(f"ccp4i2:{__name__}")
         logger.warning(
             "data_as_rtf() is deprecated - RTF export requires Qt which is no longer available")
         return None

@@ -8,12 +8,12 @@ from pathlib import Path
 
 # Setup Django
 sys.path.insert(0, str(Path(__file__).parent.parent / "server"))
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4x.config.test_settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4i2.config.test_settings')
 
 import django
 django.setup()
 
-from ccp4x.db import models
+from ccp4i2.db import models
 from asgiref.sync import sync_to_async
 import asyncio
 import tempfile
@@ -214,7 +214,7 @@ def show_file_hierarchy(root_path: Path):
 
 async def main():
     """Run the test and inspect results."""
-    from ccp4x.db.async_db_handler import AsyncDatabaseHandler
+    from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
     from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
     # Setup temporary database and project directory

@@ -4,7 +4,7 @@ from rest_framework.parsers import FormParser, MultiPartParser, JSONParser
 from . import serializers
 from ..db import models
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 class ProjectTagViewSet(ModelViewSet):

@@ -20,12 +20,12 @@ from ...lib.utils.parameters.get_param import get_parameter
 from ...db.import_i2xml import import_ccp4_project_zip
 from ...db import models
 
-logger = logging.getLogger(f"ccp4x::{__name__}")
+logger = logging.getLogger(f"ccp4i2::{__name__}")
 
 
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_API_PARAMETER_DIRECTORY",
-    ROOT_URLCONF="ccp4x.api.urls",
+    ROOT_URLCONF="ccp4i2.api.urls",
 )
 class ParameterSettingAPITests(TestCase):
     """Tests for parameter setting API endpoints with context-aware database sync"""

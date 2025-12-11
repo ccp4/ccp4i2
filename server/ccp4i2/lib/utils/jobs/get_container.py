@@ -6,10 +6,10 @@ Loads job parameters and returns the CContainer for manipulation.
 
 import logging
 from ccp4i2.core.CCP4Container import CContainer
-from ccp4x.db import models
+from ccp4i2.db import models
 from ..containers.get_container import get_job_container as _legacy_get_job_container
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def get_job_container(job: models.Job) -> CContainer:

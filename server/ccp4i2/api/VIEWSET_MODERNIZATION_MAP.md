@@ -4,8 +4,8 @@ This document maps ViewSet endpoints to their modern utility functions, followin
 
 ## Pattern: Management Commands → ViewSet Endpoints
 
-Management commands in `server/ccp4x/db/management/commands/` demonstrate the **correct modern approach**:
-- Use utilities from `ccp4x.lib.utils.*`
+Management commands in `server/ccp4i2/db/management/commands/` demonstrate the **correct modern approach**:
+- Use utilities from `ccp4i2.lib.utils.*`
 - Work with CPluginScript architecture
 - Return `Result[T]` objects with `.success`, `.data`, `.error`
 - Handle async database operations properly
@@ -230,7 +230,7 @@ For each endpoint updated:
 
 1. **Run specific test**:
    ```bash
-   pytest server/ccp4x/tests/api/test_viewsets_comprehensive.py::JobViewSetTests::test_job_container -xvs
+   pytest server/ccp4i2/tests/api/test_viewsets_comprehensive.py::JobViewSetTests::test_job_container -xvs
    ```
 
 2. **Verify Result pattern**:

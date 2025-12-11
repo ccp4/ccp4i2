@@ -21,7 +21,7 @@ from ..api import serializers
 from ..lib.utils.jobs.create import create_job
 from ..lib.utils.parameters.save_params import save_params_for_job
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 class CCP4i2RunnerDjango(CCP4i2RunnerBase):
@@ -333,7 +333,7 @@ class CCP4i2RunnerDjango(CCP4i2RunnerBase):
 
         # Execute job using async runner
         from asgiref.sync import async_to_sync
-        from ccp4x.lib.async_run_job import run_job_async
+        from ccp4i2.lib.async_run_job import run_job_async
 
         try:
             async_to_sync(run_job_async)(self.jobId)

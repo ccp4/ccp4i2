@@ -21,7 +21,7 @@ from typing import Optional, Dict, Any
 # Import CPurgeProject for backward compatibility with legacy plugins
 from ccp4i2.core.CPurgeProject import CPurgeProject
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 # Ensure Django is configured early to prevent app registry errors in async/subprocess contexts
@@ -56,7 +56,7 @@ def _ensure_django_configured():
 
     # Ensure DJANGO_SETTINGS_MODULE is set
     if 'DJANGO_SETTINGS_MODULE' not in os.environ:
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4x.settings')
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4i2.settings')
 
     # Configure Django
     try:
@@ -118,7 +118,7 @@ class CProjectsManager:
                 # NOTE: Django MUST be configured before this is called (via django.setup() or pytest-django)
                 # DO NOT call django.setup() here - it must be done in the main thread before any async workers
                 # Import without 'server.' prefix since server/ is in sys.path (added by conftest or main)
-                from ccp4x.db.ccp4i2_django_dbapi import CCP4i2DjangoDbApi
+                from ccp4i2.db.ccp4i2_django_dbapi import CCP4i2DjangoDbApi
                 self._db = CCP4i2DjangoDbApi()
             except Exception as e:
                 logger.error(f"Failed to initialize Django database: {e}")

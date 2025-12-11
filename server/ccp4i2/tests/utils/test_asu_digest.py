@@ -13,7 +13,7 @@ import pytest
 
 from ccp4i2.core.CCP4ModelData import CAsuDataFile
 
-logger = logging.getLogger(f"ccp4x::{__name__}")
+logger = logging.getLogger(f"ccp4i2::{__name__}")
 
 
 class TestCAsuDataFileDigest:
@@ -46,7 +46,7 @@ class TestCAsuDataFileDigest:
 
     def test_digest_casudatafile_returns_sequences(self, gamma_asu_file):
         """Test that digest function returns sequence information."""
-        from ccp4x.lib.utils.files.digest import digest_casudatafile_file_object
+        from ccp4i2.lib.utils.files.digest import digest_casudatafile_file_object
 
         asu_file = CAsuDataFile()
         asu_file.setFullPath(gamma_asu_file)
@@ -74,7 +74,7 @@ class TestCAsuDataFileDigest:
 
     def test_digest_casudatafile_with_empty_file(self):
         """Test that digest handles unset file gracefully."""
-        from ccp4x.lib.utils.files.digest import digest_casudatafile_file_object
+        from ccp4i2.lib.utils.files.digest import digest_casudatafile_file_object
 
         asu_file = CAsuDataFile()
         # Don't set any path
@@ -87,7 +87,7 @@ class TestCAsuDataFileDigest:
 
     def test_digest_casudatafile_sequence_selection(self, gamma_asu_file):
         """Test that digest respects selection CDict values."""
-        from ccp4x.lib.utils.files.digest import digest_casudatafile_file_object
+        from ccp4i2.lib.utils.files.digest import digest_casudatafile_file_object
 
         asu_file = CAsuDataFile()
         asu_file.setFullPath(gamma_asu_file)

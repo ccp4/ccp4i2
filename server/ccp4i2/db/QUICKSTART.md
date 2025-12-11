@@ -7,7 +7,7 @@ The modern async database integration is **complete and ready to use**. It repla
 ## 30-Second Example
 
 ```python
-from server.ccp4x.db.async_db_handler import AsyncDatabaseHandler
+from server.ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 # Create plugin
@@ -113,7 +113,7 @@ await handler.update_job_status(job.uuid, models.Job.Status.FINISHED)
 ## File Locations
 
 ```
-server/ccp4x/
+server/ccp4i2/
 ├── db/
 │   ├── async_db_handler.py          ⭐ Main handler
 │   ├── QUICKSTART.md                📖 This file

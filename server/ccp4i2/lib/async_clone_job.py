@@ -32,7 +32,7 @@ from ..db.async_db_handler import AsyncDatabaseHandler
 from .utils.files.set_names import set_output_file_names
 
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 async def clone_job_async(

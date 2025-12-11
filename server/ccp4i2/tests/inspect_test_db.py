@@ -19,7 +19,7 @@ def inspect_database(db_path):
     # 1. PROJECT
     print("\n📁 PROJECT")
     print("-" * 120)
-    cursor.execute("SELECT * FROM ccp4x_project ORDER BY creation_time DESC LIMIT 1")
+    cursor.execute("SELECT * FROM ccp4i2_project ORDER BY creation_time DESC LIMIT 1")
     project = cursor.fetchone()
 
     if not project:
@@ -37,7 +37,7 @@ def inspect_database(db_path):
     print(f"{'Job #':<8} {'Task':<18} {'Title':<30} {'Status':<12} {'Started':<20} {'Finished':<20}")
     print("-" * 120)
     cursor.execute("""
-        SELECT * FROM ccp4x_job WHERE project_id = ? ORDER BY start_time
+        SELECT * FROM ccp4i2_job WHERE project_id = ? ORDER BY start_time
     """, (project['id'],))
 
     for job in cursor.fetchall():
@@ -52,9 +52,9 @@ def inspect_database(db_path):
 
     cursor.execute("""
         SELECT f.*, j.number as job_number, ft.name as type_name
-        FROM ccp4x_file f
-        JOIN ccp4x_job j ON f.job_id = j.id
-        LEFT JOIN ccp4x_filetype ft ON f.type_id = ft.id
+        FROM ccp4i2_file f
+        JOIN ccp4i2_job j ON f.job_id = j.id
+        LEFT JOIN ccp4i2_filetype ft ON f.type_id = ft.id
         WHERE j.project_id = ?
     """, (project['id'],))
 
@@ -82,9 +82,9 @@ def inspect_database(db_path):
 
     cursor.execute("""
         SELECT fu.*, j.number as job_number, f.name as file_name
-        FROM ccp4x_fileuse fu
-        JOIN ccp4x_job j ON fu.job_id = j.id
-        JOIN ccp4x_file f ON fu.file_id = f.id
+        FROM ccp4i2_fileuse fu
+        JOIN ccp4i2_job j ON fu.job_id = j.id
+        JOIN ccp4i2_file f ON fu.file_id = f.id
         WHERE j.project_id = ?
     """, (project['id'],))
 
@@ -101,9 +101,9 @@ def inspect_database(db_path):
 
     cursor.execute("""
         SELECT DISTINCT ft.*
-        FROM ccp4x_filetype ft
-        JOIN ccp4x_file f ON f.type_id = ft.id
-        JOIN ccp4x_job j ON f.job_id = j.id
+        FROM ccp4i2_filetype ft
+        JOIN ccp4i2_file f ON f.type_id = ft.id
+        JOIN ccp4i2_job j ON f.job_id = j.id
         WHERE j.project_id = ?
     """, (project['id'],))
 

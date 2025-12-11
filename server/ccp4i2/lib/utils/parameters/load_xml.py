@@ -33,7 +33,7 @@ from typing import Optional, Dict, List
 from ccp4i2.core import CCP4File
 
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def load_nested_xml(src: ET.Element, dest: Optional[ET.Element] = None) -> ET.Element:

@@ -37,7 +37,7 @@ $ python manage.py set_job_parameter \
 
 **Verification**:
 ```bash
-$ grep CYCLES ~/.ccp4x/CCP4X_PROJECTS/set_param_test_29987/CCP4_JOBS/job_1/params.xml
+$ grep CYCLES ~/.ccp4i2/CCP4X_PROJECTS/set_param_test_29987/CCP4_JOBS/job_1/params.xml
 <CYCLES>5</CYCLES>
 ```
 
@@ -66,7 +66,7 @@ def unSet(self, field_name: str = 'value'):
 
 **Solution**: Removed incorrect references:
 ```python
-# server/ccp4x/lib/job_utils/set_parameter.py
+# server/ccp4i2/lib/job_utils/set_parameter.py
 # BEFORE:
 isinstance(object_element, (CDataFile, CCP4File.CDataFile))
 
@@ -106,7 +106,7 @@ plugin.container.saveDataToXml(str(params_file))
 
 **Solution**: Removed invalid arguments:
 ```python
-# server/ccp4x/lib/job_utils/get_job_plugin.py
+# server/ccp4i2/lib/job_utils/get_job_plugin.py
 # BEFORE:
 pluginInstance.container.loadDataFromXml(str(params_file), check=False, loadHeader=False)
 
@@ -162,14 +162,14 @@ pluginInstance.container.loadDataFromXml(str(params_file))
 ## Files Modified
 
 ### Created:
-- [`server/ccp4x/lib/utils/plugins/plugin_context.py`](server/ccp4x/lib/utils/plugins/plugin_context.py) - **NEW!** Canonical plugin loading
+- [`server/ccp4i2/lib/utils/plugins/plugin_context.py`](server/ccp4i2/lib/utils/plugins/plugin_context.py) - **NEW!** Canonical plugin loading
 - [`test_set_parameter.sh`](test_set_parameter.sh) - Comprehensive test script
 
 ### Modified:
 - [`core/base_object/cdata.py`](core/base_object/cdata.py) - `unSet()` default argument
-- [`server/ccp4x/lib/utils/parameters/set_param.py`](server/ccp4x/lib/utils/parameters/set_param.py) - Use CPluginScript architecture
-- [`server/ccp4x/lib/job_utils/set_parameter.py`](server/ccp4x/lib/job_utils/set_parameter.py) - Fix type handling, remove invalid args
-- [`server/ccp4x/lib/job_utils/get_job_plugin.py`](server/ccp4x/lib/job_utils/get_job_plugin.py) - Remove invalid loadDataFromXml args
+- [`server/ccp4i2/lib/utils/parameters/set_param.py`](server/ccp4i2/lib/utils/parameters/set_param.py) - Use CPluginScript architecture
+- [`server/ccp4i2/lib/job_utils/set_parameter.py`](server/ccp4i2/lib/job_utils/set_parameter.py) - Fix type handling, remove invalid args
+- [`server/ccp4i2/lib/job_utils/get_job_plugin.py`](server/ccp4i2/lib/job_utils/get_job_plugin.py) - Remove invalid loadDataFromXml args
 
 ---
 
@@ -205,7 +205,7 @@ pluginInstance.container.loadDataFromXml(str(params_file))
 
 ```python
 # From management command or API
-from ccp4x.lib.utils.parameters.set_param import set_parameter
+from ccp4i2.lib.utils.parameters.set_param import set_parameter
 
 result = set_parameter(job, "container.controlParameters.CYCLES", 5)
 

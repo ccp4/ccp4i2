@@ -5,7 +5,7 @@ This document compares the legacy `CCP4i2DjangoDbHandler` with the new `AsyncDat
 ## Legacy Handler (Old API)
 
 ```python
-from server.ccp4x.db.ccp4i2_django_db_handler import CCP4i2DjangoDbHandler
+from server.ccp4i2.db.ccp4i2_django_db_handler import CCP4i2DjangoDbHandler
 
 # Create handler
 handler = CCP4i2DjangoDbHandler()
@@ -37,7 +37,7 @@ handler.updateJobStatus(
 ### Basic Usage: Manual Control
 
 ```python
-from server.ccp4x.db.async_db_handler import AsyncDatabaseHandler
+from server.ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 import uuid
 
 # Create handler for a project
@@ -78,7 +78,7 @@ await handler.register_input_file(
 The most powerful feature is the `track_job()` context manager that handles everything automatically:
 
 ```python
-from server.ccp4x.db.async_db_handler import AsyncDatabaseHandler
+from server.ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 # Create plugin instance

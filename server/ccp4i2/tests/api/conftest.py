@@ -26,8 +26,8 @@ sys.path.insert(0, str(server_path))
 sys.path.insert(0, str(project_root))
 
 # Configure Django settings
-# Force use of test_settings even if run_test.sh set ccp4x.config.settings
-os.environ["DJANGO_SETTINGS_MODULE"] = "ccp4x.config.test_settings"
+# Force use of test_settings even if run_test.sh set ccp4i2.config.settings
+os.environ["DJANGO_SETTINGS_MODULE"] = "ccp4i2.config.test_settings"
 
 # Set up CCP4I2_ROOT for plugin discovery (.def.xml files)
 if "CCP4I2_ROOT" not in os.environ:
@@ -216,10 +216,10 @@ def isolated_test_db(request, django_db_blocker, monkeypatch, test_project_path)
         # Verify tables were created
         from django.db import connection
         with connection.cursor() as cursor:
-            cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='ccp4x_job';")
+            cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='ccp4i2_job';")
             result = cursor.fetchone()
             if not result:
-                raise RuntimeError(f"Migration failed - ccp4x_job table not created in {test_db_path}")
+                raise RuntimeError(f"Migration failed - ccp4i2_job table not created in {test_db_path}")
 
     # Run the test
     yield

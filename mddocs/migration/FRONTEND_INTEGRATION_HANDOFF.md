@@ -13,7 +13,7 @@ The CCP4i2 backend has been migrated from Qt-based ccp4-python to a modern Pytho
 **Before**: Jobs executed via `ccp4-python`
 **After**: Jobs executed via project's `.venv/bin/python`
 
-Location: [server/ccp4x/lib/utils/jobs/context_run.py](../../server/ccp4x/lib/utils/jobs/context_run.py)
+Location: [server/ccp4i2/lib/utils/jobs/context_run.py](../../server/ccp4i2/lib/utils/jobs/context_run.py)
 
 ```python
 # Now uses project venv instead of ccp4-python
@@ -98,7 +98,7 @@ curl -X POST "http://localhost:8000/api/jobs/${JOB_UUID}/set_parameter/" \
 
 ```
 ccp4i2/
-├── server/ccp4x/          # Django backend
+├── server/ccp4i2/          # Django backend
 │   ├── api/               # REST API endpoints
 │   ├── db/                # Database models
 │   └── lib/utils/jobs/    # Job execution (context_run.py)
@@ -164,11 +164,11 @@ For the backend to work:
 
 | Concern | File |
 |---------|------|
-| Job execution | `server/ccp4x/lib/utils/jobs/context_run.py` |
-| API endpoints | `server/ccp4x/api/views/` |
-| Job model | `server/ccp4x/db/models/job.py` |
-| Project model | `server/ccp4x/db/models/project.py` |
-| Parameter setting | `server/ccp4x/lib/utils/jobs/params.py` |
+| Job execution | `server/ccp4i2/lib/utils/jobs/context_run.py` |
+| API endpoints | `server/ccp4i2/api/views/` |
+| Job model | `server/ccp4i2/db/models/job.py` |
+| Project model | `server/ccp4i2/db/models/project.py` |
+| Parameter setting | `server/ccp4i2/lib/utils/jobs/params.py` |
 
 ---
 *Generated: 2025-11-27*

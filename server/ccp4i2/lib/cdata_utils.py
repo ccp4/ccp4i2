@@ -36,7 +36,7 @@ def get_file_type_from_class(file_obj: CDataFile) -> str:
         >>> file_type = get_file_type_from_class(mtz_file)
         >>> print(file_type)  # "application/CCP4-mtz"
     """
-    from ccp4x.db.ccp4i2_static_data import FILETYPES_CLASS, FILETYPES_TEXT
+    from ccp4i2.db.ccp4i2_static_data import FILETYPES_CLASS, FILETYPES_TEXT
 
     # Get the class name and strip leading 'C'
     class_name = file_obj.__class__.__name__

@@ -31,7 +31,7 @@ def task_tree(request):
 @api_view(["GET"])
 def active_jobs(request):
     """
-    Returns a list of all running jobs in the ccp4x job queue.
+    Returns a list of all running jobs in the ccp4i2 job queue.
     """
     running_jobs = models.Job.objects.filter(status=models.Job.Status.RUNNING)
     active_jobs_list = []

@@ -33,7 +33,7 @@ from .utils.files.set_names import set_output_file_names
 from .utils.parameters.set_input_by_context import set_input_by_context_job
 
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 async def create_job_async(

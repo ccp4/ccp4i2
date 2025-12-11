@@ -30,7 +30,7 @@ if [ -z "$JOB_ID" ]; then
     echo "❌ Could not get job ID - trying direct query..."
     # Fall back to querying database directly
     JOB_ID=$(cd server && python manage.py shell <<EOF 2>&1 | grep "^[0-9]*$" | head -1
-from ccp4x.db.models import Job
+from ccp4i2.db.models import Job
 job = Job.objects.get(uuid='$JOB_UUID')
 print(job.id)
 EOF

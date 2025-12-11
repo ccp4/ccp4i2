@@ -7,11 +7,11 @@ Provides access to various job reports: parameters, execution results, diagnosti
 import logging
 from pathlib import Path
 from xml.etree import ElementTree as ET
-from ccp4x.db import models
-from ccp4x.lib.response import Result
+from ccp4i2.db import models
+from ccp4i2.lib.response import Result
 from ..reporting.i2_report import generate_job_report
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def get_job_params_xml(job: models.Job) -> Result[str]:

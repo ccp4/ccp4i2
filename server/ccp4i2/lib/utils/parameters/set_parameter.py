@@ -15,11 +15,11 @@ from ..containers.find_objects import find_object_by_path
 from ..plugins.get_plugin import get_job_plugin
 from ..containers.json_encoder import CCP4i2JsonEncoder
 from .value_dict import value_dict_for_object
-from ccp4x.db import models
+from ccp4i2.db import models
 import xml.etree.ElementTree as ET
 
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def set_parameter(
@@ -44,11 +44,11 @@ def set_parameter(
 
     Example:
         >>> # Old way (deprecated):
-        >>> from ccp4x.lib.utils.parameters.set_parameter import set_parameter
+        >>> from ccp4i2.lib.utils.parameters.set_parameter import set_parameter
         >>> result = set_parameter(job, "inputData.XYZIN", "/path/to/file.pdb")
         >>>
         >>> # New way (preferred):
-        >>> from ccp4x.lib.utils.parameters.set_param import set_parameter
+        >>> from ccp4i2.lib.utils.parameters.set_param import set_parameter
         >>> result = set_parameter(job, "inputData.XYZIN", "/path/to/file.pdb")
         >>> if result.success:
         ...     print(result.data)

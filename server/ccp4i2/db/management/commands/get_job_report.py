@@ -9,8 +9,8 @@ Usage:
 
 import uuid
 from django.core.management.base import BaseCommand, CommandError
-from ccp4x.db.models import Job, Project
-from ccp4x.lib.utils.jobs.reports import (
+from ccp4i2.db.models import Job, Project
+from ccp4i2.lib.utils.jobs.reports import (
     get_job_params_xml,
     get_job_report_xml,
     get_job_diagnostic_xml

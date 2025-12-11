@@ -8,7 +8,7 @@ from ...db import models
 from ...db.models import Project, ProjectTag
 from ...db.import_i2xml import import_ccp4_project_zip
 
-logger = logging.getLogger(f"ccp4x::{__name__}")
+logger = logging.getLogger(f"ccp4i2::{__name__}")
 
 
 @override_settings(

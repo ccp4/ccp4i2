@@ -190,7 +190,7 @@ validate_job()
 
 ## Files Modified
 
-### 1. `server/ccp4x/lib/utils/jobs/validate.py`
+### 1. `server/ccp4i2/lib/utils/jobs/validate.py`
 
 **Changes**:
 - Import `get_plugin_with_context` instead of `get_job_container`
@@ -200,7 +200,7 @@ validate_job()
 
 **Lines Changed**: 19-119 (entire function)
 
-### 2. `server/ccp4x/lib/job_utils/validate_container.py`
+### 2. `server/ccp4i2/lib/job_utils/validate_container.py`
 
 **Changes**:
 - Added `SEVERITY_TEXT` mapping constant (lines 10-16)
@@ -239,8 +239,8 @@ validate_job()
 ### Basic Validation
 
 ```python
-from ccp4x.db.models import Job
-from ccp4x.lib.utils.jobs.validate import validate_job
+from ccp4i2.db.models import Job
+from ccp4i2.lib.utils.jobs.validate import validate_job
 
 job = Job.objects.get(uuid="...")
 result = validate_job(job)

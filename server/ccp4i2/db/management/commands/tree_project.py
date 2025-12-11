@@ -9,8 +9,8 @@ Usage:
 
 import uuid
 from django.core.management.base import BaseCommand, CommandError
-from ccp4x.db.models import Project
-from ccp4x.lib.utils.directory_tree import visualize_project_directory
+from ccp4i2.db.models import Project
+from ccp4i2.lib.utils.directory_tree import visualize_project_directory
 
 
 class Command(BaseCommand):
@@ -59,7 +59,7 @@ class Command(BaseCommand):
         show_hidden = options['show_hidden']
 
         # Import here to avoid circular dependency
-        from ccp4x.lib.utils.directory_tree import DirectoryTree
+        from ccp4i2.lib.utils.directory_tree import DirectoryTree
         from pathlib import Path
 
         # Generate tree

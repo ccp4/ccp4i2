@@ -33,7 +33,7 @@ from ccp4i2.report.errors import DiagnosticCollector, ReportDiagnostic, Diagnost
 if TYPE_CHECKING:
     from ccp4i2.report.CCP4ReportParser import Report
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 class ReportElement(HierarchicalObject):

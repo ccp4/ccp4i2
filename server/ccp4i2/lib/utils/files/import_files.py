@@ -15,12 +15,12 @@ from ccp4i2.core import CCP4PluginScript
 from ccp4i2.core.base_object.fundamental_types import CList
 from ccp4i2.core.CCP4File import CI2XmlDataFile as CI2XmlDataFile
 
-from ccp4x.db import models
+from ccp4i2.db import models
 from ..parameters.save_params import save_params_for_job
 from ..containers.find_objects import find_objects
 
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def extract_from_first_bracketed(path: str) -> str:

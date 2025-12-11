@@ -15,7 +15,7 @@ Environment Variables:
     CCP4: Path to CCP4 installation (required for local mode)
 
 Example Usage:
-    from ccp4x.lib.context_dependent_run import run_job_context_aware
+    from ccp4i2.lib.context_dependent_run import run_job_context_aware
 
     result = run_job_context_aware(job)
     if result["success"]:
@@ -166,7 +166,7 @@ def run_job_azure(job):
 
         # Update job status to QUEUED
         # Import here to avoid circular imports
-        from ccp4x.db import models
+        from ccp4i2.db import models
 
         job.status = models.Job.Status.QUEUED
         job.save()
@@ -272,7 +272,7 @@ def run_job_local(job, synchronous=False):
     )
 
     try:
-        # Path: context_run.py -> jobs -> utils -> lib -> ccp4x -> server -> manage.py
+        # Path: context_run.py -> jobs -> utils -> lib -> ccp4i2 -> server -> manage.py
         server_dir = pathlib.Path(__file__).parent.parent.parent.parent.parent
         manage_py = str(server_dir / "manage.py")
         project_root = server_dir.parent
@@ -298,7 +298,7 @@ def run_job_local(job, synchronous=False):
 
         # Update job status to QUEUED before starting subprocess
         # (Matches Azure mode behavior - job is considered queued once submitted)
-        from ccp4x.db import models
+        from ccp4i2.db import models
         job.status = models.Job.Status.QUEUED
         job.save()
 
@@ -399,7 +399,7 @@ def run_job_context_aware(job, force_local=False, synchronous=False):
             - status (int): HTTP status code
 
     Example:
-        from ccp4x.lib.context_dependent_run import run_job_context_aware
+        from ccp4i2.lib.context_dependent_run import run_job_context_aware
 
         # Normal context-aware execution
         result = run_job_context_aware(job)

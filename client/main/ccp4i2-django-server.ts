@@ -145,7 +145,7 @@ export async function startDjangoServer(
     pythonPathParts.push(ccp4i2Path); // Bundled ccp4i2 modules
   }
   if (serverSrcPath) {
-    pythonPathParts.push(serverSrcPath); // server/ccp4x for Django
+    pythonPathParts.push(serverSrcPath); // server/ccp4i2 for Django
   }
   const pythonPath = pythonPathParts.length > 0
     ? pythonPathParts.join(pythonPathSeparator)
@@ -207,9 +207,9 @@ export async function startDjangoServer(
   let logStream: fs.WriteStream | null = null;
   if (!isDev) {
     const homeDir = os.homedir();
-    let logDir = path.join(homeDir, ".ccp4x");
+    let logDir = path.join(homeDir, ".ccp4i2");
     if (!fs.existsSync(logDir)) {
-      logDir = path.join(homeDir, "ccp4x");
+      logDir = path.join(homeDir, "ccp4i2");
     }
 
     const runNumber = getNextRunNumber(logDir);

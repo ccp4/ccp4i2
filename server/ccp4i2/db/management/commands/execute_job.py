@@ -10,8 +10,8 @@ Usage:
 
 import uuid
 from django.core.management.base import BaseCommand, CommandError
-from ccp4x.db.models import Job, Project
-from ccp4x.lib.utils.jobs.execute import execute_job
+from ccp4i2.db.models import Job, Project
+from ccp4i2.lib.utils.jobs.execute import execute_job
 
 
 class Command(BaseCommand):

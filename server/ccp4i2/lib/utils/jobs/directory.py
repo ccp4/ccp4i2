@@ -1,10 +1,10 @@
-from ccp4x.db import models
+from ccp4i2.db import models
 import logging
 import uuid
 from pytz import timezone
 from ccp4i2.core import CCP4TaskManager
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def job_directory(jobId=None, projectName=None, jobNumber=None, create=False, projectId=None, projectDirectory=None ):

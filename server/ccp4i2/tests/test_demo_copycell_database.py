@@ -49,7 +49,7 @@ class TestDemoCopycellDatabase:
     @pytest.fixture
     async def test_project(self):
         """Create a test project for database operations."""
-        from ccp4x.db import models
+        from ccp4i2.db import models
         from asgiref.sync import sync_to_async
         import uuid
 
@@ -95,8 +95,8 @@ class TestDemoCopycellDatabase:
         - Output files: XYZOUT (modified PDB)
         - KPIs: Cell parameters, space group, etc.
         """
-        from ccp4x.db.async_db_handler import AsyncDatabaseHandler
-        from ccp4x.db import models
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
+        from ccp4i2.db import models
         from ccp4i2.core.CCP4PluginScript import CPluginScript
         from asgiref.sync import sync_to_async
 
@@ -285,8 +285,8 @@ class TestDemoCopycellDatabase:
         This is useful for custom workflows or when you need fine-grained
         control over the database integration.
         """
-        from ccp4x.db.async_db_handler import AsyncDatabaseHandler
-        from ccp4x.db import models
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
+        from ccp4i2.db import models
         from ccp4i2.core.CCP4PluginScript import CPluginScript
         from asgiref.sync import sync_to_async
 
@@ -384,8 +384,8 @@ class TestDemoCopycellDatabase:
         - Concurrent database updates
         - Event history capture
         """
-        from ccp4x.db.async_db_handler import AsyncDatabaseHandler
-        from ccp4x.db import models
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
+        from ccp4i2.db import models
         from asgiref.sync import sync_to_async
 
         print(f"\n{'='*70}")

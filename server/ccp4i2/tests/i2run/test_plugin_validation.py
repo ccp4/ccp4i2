@@ -25,9 +25,9 @@ def test_bare_prosmart_refmac_validation():
     - XYZIN (coordinate file)
     """
     # Import Django models and utilities
-    from ccp4x.db import models
-    from ccp4x.lib.utils.jobs.validate import validate_job
-    from ccp4x.lib.utils.plugins.plugin_context import get_plugin_with_context
+    from ccp4i2.db import models
+    from ccp4i2.lib.utils.jobs.validate import validate_job
+    from ccp4i2.lib.utils.plugins.plugin_context import get_plugin_with_context
 
     from pathlib import Path
     import tempfile
@@ -133,8 +133,8 @@ def test_plugin_validity_method():
     This tests the CPluginScript.validity() method directly, ensuring it
     returns a CErrorReport with validation issues.
     """
-    from ccp4x.db import models
-    from ccp4x.lib.utils.plugins.plugin_context import get_plugin_with_context
+    from ccp4i2.db import models
+    from ccp4i2.lib.utils.plugins.plugin_context import get_plugin_with_context
     from pathlib import Path
     import tempfile
 
@@ -205,8 +205,8 @@ def test_plugin_validity_as_xml_method():
 
     This tests the convenience method that returns validation as XML Element.
     """
-    from ccp4x.db import models
-    from ccp4x.lib.utils.plugins.plugin_context import get_plugin_with_context
+    from ccp4i2.db import models
+    from ccp4i2.lib.utils.plugins.plugin_context import get_plugin_with_context
     from pathlib import Path
     import tempfile
 

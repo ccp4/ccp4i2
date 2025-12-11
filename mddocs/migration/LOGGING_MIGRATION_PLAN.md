@@ -21,8 +21,8 @@
    - **Key offenders**:
      - `core/base_object/cdata.py` - 11 print statements (including `[DEBUG]` initialization)
      - `core/base_object/cdata_file.py` - 17 print statements (including `[DEBUG]` in setFullPath)
-     - `server/ccp4x/db/async_db_handler.py` - 22 print statements
-     - `server/ccp4x/lib/cdata_utils.py` - 16 print statements
+     - `server/ccp4i2/db/async_db_handler.py` - 22 print statements
+     - `server/ccp4i2/lib/cdata_utils.py` - 16 print statements
 
 3. **Example problematic output**:
    ```
@@ -119,7 +119,7 @@ def configure_debug_mode():
     logging.basicConfig(level=logging.DEBUG)
 ```
 
-**File**: `server/ccp4x/config/logging_config.py` (Django-specific)
+**File**: `server/ccp4i2/config/logging_config.py` (Django-specific)
 
 ```python
 """
@@ -153,7 +153,7 @@ LOGGING = {
         },
     },
     'loggers': {
-        'ccp4x': {
+        'ccp4i2': {
             'handlers': ['console', 'file'],
             'level': 'DEBUG',
             'propagate': False,
@@ -211,8 +211,8 @@ def __init__(self, value=None, parent=None, name=None):
 ### Phase 3: Migrate Management Commands (1 hour)
 
 **Files to update**:
-- `server/ccp4x/db/management/commands/create_job.py`
-- `server/ccp4x/db/management/commands/list_project.py`
+- `server/ccp4i2/db/management/commands/create_job.py`
+- `server/ccp4i2/db/management/commands/list_project.py`
 - All new commands (clone_job, validate_job, etc.)
 
 **Management command pattern**:
@@ -257,9 +257,9 @@ class Command(BaseCommand):
 ### Phase 4: Migrate Server Code (1 hour)
 
 **Priority files**:
-- `server/ccp4x/db/async_db_handler.py` (22 prints)
-- `server/ccp4x/lib/cdata_utils.py` (16 prints)
-- `server/ccp4x/api/JobViewSet.py` (7 prints)
+- `server/ccp4i2/db/async_db_handler.py` (22 prints)
+- `server/ccp4i2/lib/cdata_utils.py` (16 prints)
+- `server/ccp4i2/api/JobViewSet.py` (7 prints)
 
 **API endpoint pattern**:
 
@@ -293,7 +293,7 @@ def clone(self, request, pk=None):
 ```bash
 python manage.py clone_job --jobuuid abc123
 # Output:
-# 2025-10-31 10:00:00 - ccp4x.db.commands.clone_job - INFO - Cloning job abc123
+# 2025-10-31 10:00:00 - ccp4i2.db.commands.clone_job - INFO - Cloning job abc123
 # ✓ Job cloned successfully
 ```
 
@@ -304,8 +304,8 @@ python manage.py clone_job --jobuuid abc123
 # Output:
 # 2025-10-31 10:00:00 - core.base_object.cdata - DEBUG - Initializing CData instance...
 # 2025-10-31 10:00:00 - core.base_object.cdata - DEBUG - Branch: CData to CData for contentFlag
-# 2025-10-31 10:00:00 - ccp4x.db.commands.clone_job - INFO - Cloning job abc123
-# 2025-10-31 10:00:00 - ccp4x.lib.utils.jobs.clone - DEBUG - Loading source job container
+# 2025-10-31 10:00:00 - ccp4i2.db.commands.clone_job - INFO - Cloning job abc123
+# 2025-10-31 10:00:00 - ccp4i2.lib.utils.jobs.clone - DEBUG - Loading source job container
 # ✓ Job cloned successfully
 ```
 
@@ -360,7 +360,7 @@ def configure_logging(request):
 
 ### Phase 1: Setup (30 min)
 - [ ] Create `core/base_object/logging_config.py`
-- [ ] Create `server/ccp4x/config/logging_config.py`
+- [ ] Create `server/ccp4i2/config/logging_config.py`
 - [ ] Add logging config to Django settings
 - [ ] Test basic logger functionality
 
@@ -377,9 +377,9 @@ def configure_logging(request):
 - [ ] Test JSON output with LOG_LEVEL=ERROR
 
 ### Phase 4: Server Code (1 hour)
-- [ ] Migrate `server/ccp4x/db/async_db_handler.py`
-- [ ] Migrate `server/ccp4x/lib/cdata_utils.py`
-- [ ] Migrate ViewSets in `server/ccp4x/api/`
+- [ ] Migrate `server/ccp4i2/db/async_db_handler.py`
+- [ ] Migrate `server/ccp4i2/lib/cdata_utils.py`
+- [ ] Migrate ViewSets in `server/ccp4i2/api/`
 - [ ] Test API responses
 
 ### Phase 5: Testing & Documentation (30 min)

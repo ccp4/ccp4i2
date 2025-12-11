@@ -6,11 +6,11 @@ Provides functions to export jobs as ZIP archives.
 
 import logging
 from pathlib import Path
-from ccp4x.db import models
-from ccp4x.lib.response import Result
-from ccp4x.db.export_project import export_project_to_zip
+from ccp4i2.db import models
+from ccp4i2.lib.response import Result
+from ccp4i2.db.export_project import export_project_to_zip
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def export_job(job: models.Job, output_path: Path) -> Result[Path]:

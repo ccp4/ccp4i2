@@ -17,7 +17,7 @@
 
 ### Implementation
 
-**Location**: `server/ccp4x/i2run/i2run_components.py:478-504` (`_handle_single_value()`)
+**Location**: `server/ccp4i2/i2run/i2run_components.py:478-504` (`_handle_single_value()`)
 
 **Code**:
 ```python

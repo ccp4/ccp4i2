@@ -7,7 +7,7 @@ Usage:
 """
 
 from django.core.management.base import BaseCommand
-from ccp4x.db.models import FileType
+from ccp4i2.db.models import FileType
 
 
 class Command(BaseCommand):

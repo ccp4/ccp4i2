@@ -29,12 +29,12 @@ from ...db.import_i2xml import import_i2xml_from_file
 from ...db.import_i2xml import import_ccp4_project_zip
 from ...db import models
 
-logger = logging.getLogger(f"ccp4x::{__name__}")
+logger = logging.getLogger(f"ccp4i2::{__name__}")
 
 
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_PROJECT_DIRECTORY",
-    ROOT_URLCONF="ccp4x.api.urls",
+    ROOT_URLCONF="ccp4i2.api.urls",
 )
 class FileViewSetTests(TestCase):
     """Tests for FileViewSet API endpoints"""
@@ -133,7 +133,7 @@ class FileViewSetTests(TestCase):
 
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_PROJECT_DIRECTORY",
-    ROOT_URLCONF="ccp4x.api.urls",
+    ROOT_URLCONF="ccp4i2.api.urls",
 )
 class JobViewSetTests(TestCase):
     """Tests for JobViewSet API endpoints"""
@@ -377,7 +377,7 @@ class JobViewSetTests(TestCase):
 
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_PROJECT_DIRECTORY",
-    ROOT_URLCONF="ccp4x.api.urls",
+    ROOT_URLCONF="ccp4i2.api.urls",
 )
 class ProjectViewSetTests(TestCase):
     """Tests for ProjectViewSet API endpoints"""
@@ -552,7 +552,7 @@ class ProjectViewSetTests(TestCase):
 
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_PROJECT_DIRECTORY",
-    ROOT_URLCONF="ccp4x.api.urls",
+    ROOT_URLCONF="ccp4i2.api.urls",
 )
 class SimpleViewSetTests(TestCase):
     """Tests for simple CRUD ViewSets: FileImport, FileUse, FileType, ProjectTag"""
@@ -615,7 +615,7 @@ class SimpleViewSetTests(TestCase):
 
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_PROJECT_DIRECTORY",
-    ROOT_URLCONF="ccp4x.api.urls",
+    ROOT_URLCONF="ccp4i2.api.urls",
 )
 class ProjectExportViewSetTests(TestCase):
     """Tests for ProjectExportViewSet API endpoints"""

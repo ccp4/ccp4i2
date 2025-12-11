@@ -1,4 +1,4 @@
-from ccp4x.db import models
+from ccp4i2.db import models
 from django.http import JsonResponse
 from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 from ..plugins.get_plugin import get_job_plugin

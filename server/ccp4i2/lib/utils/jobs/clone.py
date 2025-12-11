@@ -4,12 +4,12 @@ import datetime
 from pytz import timezone
 from ccp4i2.core import CCP4TaskManager
 from ccp4i2.core.CCP4Container import CContainer
-from ccp4x.db import models
-from ccp4x.lib.utils.parameters.save_params import save_params_for_job
-from ccp4x.lib.utils.files.patch_paths import patch_output_file_paths
-from ccp4x.lib.response import Result
+from ccp4i2.db import models
+from ccp4i2.lib.utils.parameters.save_params import save_params_for_job
+from ccp4i2.lib.utils.files.patch_paths import patch_output_file_paths
+from ccp4i2.lib.response import Result
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def clone_job(jobId: str = None) -> Result[models.Job]:

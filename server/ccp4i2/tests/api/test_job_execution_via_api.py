@@ -26,12 +26,12 @@ from ...db import models
 # Import demoData utility - same pattern as i2run tests
 from ccp4i2.tests.i2run.utils import demoData
 
-logger = logging.getLogger(f"ccp4x::{__name__}")
+logger = logging.getLogger(f"ccp4i2::{__name__}")
 
 
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_JOB_EXECUTION_DIRECTORY",
-    ROOT_URLCONF="ccp4x.api.urls",
+    ROOT_URLCONF="ccp4i2.api.urls",
 )
 class JobExecutionViaAPITests(TestCase):
     """Integration tests for complete job configuration and execution via API"""

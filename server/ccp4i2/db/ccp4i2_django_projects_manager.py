@@ -9,7 +9,7 @@ from ..lib.utils.files.set_names import set_output_file_names
 from ..lib.utils.jobs.directory import job_directory
 
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 class CCP4i2DjangoProjectsManager(object):

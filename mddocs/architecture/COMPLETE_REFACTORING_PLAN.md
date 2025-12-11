@@ -10,8 +10,8 @@
 ## Quick Status
 
 ### ✅ Already Done (13 endpoints)
-1. `set_parameter/` - Uses `ccp4x.lib.utils.parameters.set_param` ✅
-2. `validation/` - Uses `ccp4x.lib.utils.jobs.validate` ✅
+1. `set_parameter/` - Uses `ccp4i2.lib.utils.parameters.set_param` ✅
+2. `validation/` - Uses `ccp4i2.lib.utils.jobs.validate` ✅
 3. `clone/` - Uses `clone_job()` utility ✅
 4. `run/` - Uses `run_job_context_aware()` ✅
 5. `run_local/` - Uses `run_job_context_aware()` ✅
@@ -47,23 +47,23 @@
 
 ### Phase 1: Quick Wins (Report Endpoints)
 
-These already have utilities in `ccp4x.lib.utils.jobs.reports`!
+These already have utilities in `ccp4i2.lib.utils.jobs.reports`!
 
 #### 1. `params_xml/` ✅ Utility Exists
 **Current**: Direct filesystem read
-**Target**: Use `get_job_params_xml(job)` from `ccp4x.lib.utils.jobs.reports`
+**Target**: Use `get_job_params_xml(job)` from `ccp4i2.lib.utils.jobs.reports`
 **Effort**: 5 minutes
 **Benefit**: Consistency + better error handling
 
 #### 2. `report_xml/` ✅ Utility Exists
 **Current**: Mix of `generate_job_report()` and filesystem
-**Target**: Use `get_job_report_xml(job)` from `ccp4x.lib.utils.jobs.reports`
+**Target**: Use `get_job_report_xml(job)` from `ccp4i2.lib.utils.jobs.reports`
 **Effort**: 5 minutes
 **Benefit**: Consistency + caching logic centralized
 
 #### 3. `diagnostic_xml/` ✅ Utility Exists
 **Current**: Direct filesystem read
-**Target**: Use `get_job_diagnostic_xml(job)` from `ccp4x.lib.utils.jobs.reports`
+**Target**: Use `get_job_diagnostic_xml(job)` from `ccp4i2.lib.utils.jobs.reports`
 **Effort**: 5 minutes
 **Benefit**: Consistency + better error handling
 
@@ -73,13 +73,13 @@ These already have utilities in `ccp4x.lib.utils.jobs.reports`!
 
 #### 4. `upload_file_param/` ⚠️ Needs Utility
 **Current**: Uses legacy `job_utils.upload_file_param`
-**Target**: Create `ccp4x.lib.utils.parameters.upload_file.py`
+**Target**: Create `ccp4i2.lib.utils.parameters.upload_file.py`
 **Effort**: 20 minutes (create utility + refactor endpoint)
 **Benefit**: Consistency + shares code with potential CLI command
 
 **New Utility Structure**:
 ```python
-# ccp4x/lib/utils/parameters/upload_file.py
+# ccp4i2/lib/utils/parameters/upload_file.py
 def upload_file_param(job: models.Job, request) -> Result[Dict]:
     """Upload file and set as parameter using CPluginScript."""
     # Extract file from request
@@ -91,13 +91,13 @@ def upload_file_param(job: models.Job, request) -> Result[Dict]:
 
 #### 5. `set_context_job/` ⚠️ Needs Utility
 **Current**: Uses legacy `job_utils.set_input_by_context_job`
-**Target**: Create `ccp4x.lib.utils.jobs.context.py`
+**Target**: Create `ccp4i2.lib.utils.jobs.context.py`
 **Effort**: 20 minutes
 **Benefit**: Consistency + workflow automation
 
 **New Utility Structure**:
 ```python
-# ccp4x/lib/utils/jobs/context.py
+# ccp4i2/lib/utils/jobs/context.py
 def set_input_by_context(job: models.Job, context_job_uuid: str) -> Result[models.Job]:
     """Set input parameters based on context job outputs."""
     # Get both jobs with context
@@ -114,13 +114,13 @@ These are less critical but we'll do them for completeness:
 
 #### 6. `object_method/` 🟢 Low Priority
 **Current**: Uses legacy `object_method()`
-**Target**: Create `ccp4x.lib.utils.objects.method_call.py`
+**Target**: Create `ccp4i2.lib.utils.objects.method_call.py`
 **Effort**: 15 minutes
 **Benefit**: Minimal (specialized operation)
 
 #### 7. `container/` 🟢 Low Priority
 **Current**: Uses `json_for_job_container()`
-**Target**: Create `ccp4x.lib.utils.jobs.container_json.py`
+**Target**: Create `ccp4i2.lib.utils.jobs.container_json.py`
 **Effort**: 15 minutes
 **Benefit**: Minimal (specialized operation)
 
@@ -139,12 +139,12 @@ These are less critical but we'll do them for completeness:
 - **Result**: 16/24 endpoints done
 
 ### Step 2: Create Upload File Utility (20 minutes) ✅
-- Create `ccp4x.lib.utils.parameters.upload_file.py`
+- Create `ccp4i2.lib.utils.parameters.upload_file.py`
 - Refactor `upload_file_param/` endpoint
 - **Result**: 17/24 endpoints done
 
 ### Step 3: Create Context Job Utility (20 minutes) ✅
-- Create `ccp4x.lib.utils.jobs.context.py`
+- Create `ccp4i2.lib.utils.jobs.context.py`
 - Refactor `set_context_job/` endpoint
 - **Result**: 18/24 endpoints done
 

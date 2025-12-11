@@ -6,7 +6,7 @@ import re
 from ccp4i2.core import CCP4XtalData
 from ..files.available_name import available_file_name_based_on
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def gemmi_split_mtz(

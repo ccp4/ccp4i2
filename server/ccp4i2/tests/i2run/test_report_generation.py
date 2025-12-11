@@ -25,8 +25,8 @@ def test_refmac_report_generation():
     - Its report class (refmac_report) is well-tested
     - It's commonly used and representative of refinement tasks
     """
-    from ccp4x.db import models
-    from ccp4x.lib.utils.reporting.i2_report import generate_job_report
+    from ccp4i2.db import models
+    from ccp4i2.lib.utils.reporting.i2_report import generate_job_report
 
     # Run a simple refmac job using gamma demo data
     args = [
@@ -90,8 +90,8 @@ def test_pointless_report_generation():
 
     Pointless uses XMLOUT.xml format which is a different code path.
     """
-    from ccp4x.db import models
-    from ccp4x.lib.utils.reporting.i2_report import generate_job_report
+    from ccp4i2.db import models
+    from ccp4i2.lib.utils.reporting.i2_report import generate_job_report
 
     args = [
         "pointless",
@@ -127,8 +127,8 @@ def test_import_merged_report_generation():
 
     Import tasks often don't have program.xml, testing the fallback behavior.
     """
-    from ccp4x.db import models
-    from ccp4x.lib.utils.reporting.i2_report import generate_job_report
+    from ccp4i2.db import models
+    from ccp4i2.lib.utils.reporting.i2_report import generate_job_report
 
     # Use gamma merged intensities which exist
     args = [
@@ -155,7 +155,7 @@ def test_report_for_nonexistent_task():
     """
     Test that report generation handles missing report classes gracefully.
     """
-    from ccp4x.lib.utils.reporting.i2_report import simple_failed_report
+    from ccp4i2.lib.utils.reporting.i2_report import simple_failed_report
 
     # Test the simple_failed_report function directly
     report = simple_failed_report(
@@ -211,8 +211,8 @@ def test_csymmatch_report_generation():
 
     Uses the gamma crystal structure which is small and fast.
     """
-    from ccp4x.db import models
-    from ccp4x.lib.utils.reporting.i2_report import generate_job_report
+    from ccp4i2.db import models
+    from ccp4i2.lib.utils.reporting.i2_report import generate_job_report
 
     args = [
         "csymmatch",

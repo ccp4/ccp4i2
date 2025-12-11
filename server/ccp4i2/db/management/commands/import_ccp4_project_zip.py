@@ -3,7 +3,7 @@ import subprocess
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
-from ccp4x.db.import_i2xml import import_ccp4_project_zip
+from ccp4i2.db.import_i2xml import import_ccp4_project_zip
 
 
 class Command(BaseCommand):

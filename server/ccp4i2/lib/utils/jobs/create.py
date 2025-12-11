@@ -5,14 +5,14 @@ import uuid
 from ccp4i2.core import CCP4TaskManager
 from ccp4i2.core.CCP4Container import CContainer
 
-from ccp4x.db import models
+from ccp4i2.db import models
 from ..containers.remove_defaults import remove_container_default_values
 from ..parameters.save_params import save_params_for_job
 from ..files.patch_paths import patch_output_file_paths
 from ..plugins.get_plugin import get_job_plugin
 
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def create_job(

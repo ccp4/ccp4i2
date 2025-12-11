@@ -1608,7 +1608,7 @@ class CData(HierarchicalObject):
     def find_children_by_type(self, target_type):
         """Find all descendant objects of a specific type.
 
-        Replaces server/ccp4x/lib/cdata_utils.find_objects_by_type() as a core method.
+        Replaces server/ccp4i2/lib/cdata_utils.find_objects_by_type() as a core method.
 
         Args:
             target_type: Type to search for (e.g., CPerformanceIndicator, CInt)
@@ -1649,7 +1649,7 @@ class CData(HierarchicalObject):
     def find_children_matching(self, predicate):
         """Find all descendant objects matching a predicate function.
 
-        Replaces server/ccp4x/lib/cdata_utils.find_objects_matching() as a core method.
+        Replaces server/ccp4i2/lib/cdata_utils.find_objects_matching() as a core method.
 
         Args:
             predicate: Function that takes an object and returns True for matches

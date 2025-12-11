@@ -17,7 +17,7 @@ def _check_performance_indicators_in_db(job):
     Returns:
         dict: Performance indicators found (key -> value)
     """
-    from ccp4x.db import models
+    from ccp4i2.db import models
 
     # Extract job number from path (e.g., .../job_1 -> "1")
     job_number = job.name.replace("job_", "")
@@ -53,7 +53,7 @@ def _check_subjob_hierarchy_in_db(job):
     Returns:
         dict: Database hierarchy info for inspection
     """
-    from ccp4x.db import models
+    from ccp4i2.db import models
 
     # Extract job number from path (e.g., .../job_1 -> "1")
     job_number = job.name.replace("job_", "")

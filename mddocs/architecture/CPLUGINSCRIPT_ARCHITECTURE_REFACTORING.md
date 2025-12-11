@@ -12,7 +12,7 @@
 ### What We're Doing Now (WRONG)
 
 ```python
-# server/ccp4x/lib/utils/parameters/set_param.py
+# server/ccp4i2/lib/utils/parameters/set_param.py
 def set_parameter(job: Job, path: str, value: Any) -> Result[Dict]:
     # ❌ Creates standalone container with no database connection
     container = get_job_container(job.uuid)
@@ -102,7 +102,7 @@ CPluginScript (has dbHandler, knows job context)
 
 ### Step 1: Create Unified Plugin Context Utility
 
-**File**: `server/ccp4x/lib/utils/plugins/plugin_context.py`
+**File**: `server/ccp4i2/lib/utils/plugins/plugin_context.py`
 
 ```python
 """
@@ -113,11 +113,11 @@ import logging
 from typing import Optional
 from pathlib import Path
 
-from ccp4x.db.models import Job, Project
-from ccp4x.db.ccp4i2_django_db_handler import CCP4i2DjangoDbHandler
-from ccp4x.lib.job_utils.get_job_plugin import get_job_plugin
+from ccp4i2.db.models import Job, Project
+from ccp4i2.db.ccp4i2_django_db_handler import CCP4i2DjangoDbHandler
+from ccp4i2.lib.job_utils.get_job_plugin import get_job_plugin
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4x.lib.response import Result
+from ccp4i2.lib.response import Result
 
 logger = logging.getLogger(__name__)
 
@@ -194,7 +194,7 @@ def get_plugin_with_context(
 
 ### Step 2: Refactor set_parameter
 
-**File**: `server/ccp4x/lib/utils/parameters/set_param.py`
+**File**: `server/ccp4i2/lib/utils/parameters/set_param.py`
 
 ```python
 """
@@ -204,10 +204,10 @@ import logging
 from typing import Any
 from pathlib import Path
 
-from ccp4x.db.models import Job
-from ccp4x.lib.response import Result
-from ccp4x.lib.utils.plugins.plugin_context import get_plugin_with_context
-from ccp4x.lib.job_utils.set_parameter import set_object_value
+from ccp4i2.db.models import Job
+from ccp4i2.lib.response import Result
+from ccp4i2.lib.utils.plugins.plugin_context import get_plugin_with_context
+from ccp4i2.lib.job_utils.set_parameter import set_object_value
 
 logger = logging.getLogger(__name__)
 
@@ -301,7 +301,7 @@ def set_parameter(job: Job, path: str, value: Any) -> Result[dict]:
 
 ### Step 3: Refactor validate_job
 
-**File**: `server/ccp4x/lib/utils/jobs/validate.py`
+**File**: `server/ccp4i2/lib/utils/jobs/validate.py`
 
 ```python
 """
@@ -310,9 +310,9 @@ Validate job parameters using CPluginScript architecture.
 import logging
 from xml.etree import ElementTree as ET
 
-from ccp4x.db.models import Job
-from ccp4x.lib.response import Result
-from ccp4x.lib.utils.plugins.plugin_context import get_plugin_with_context
+from ccp4i2.db.models import Job
+from ccp4i2.lib.response import Result
+from ccp4i2.lib.utils.plugins.plugin_context import get_plugin_with_context
 
 logger = logging.getLogger(__name__)
 
@@ -364,7 +364,7 @@ def validate_job(job: Job) -> Result[ET.Element]:
 
 ### Step 4: Refactor get_job_reports
 
-**File**: `server/ccp4x/lib/utils/jobs/reports.py`
+**File**: `server/ccp4i2/lib/utils/jobs/reports.py`
 
 ```python
 """
@@ -374,9 +374,9 @@ import logging
 from xml.etree import ElementTree as ET
 from pathlib import Path
 
-from ccp4x.db.models import Job
-from ccp4x.lib.response import Result
-from ccp4x.lib.utils.plugins.plugin_context import get_plugin_with_context
+from ccp4i2.db.models import Job
+from ccp4i2.lib.response import Result
+from ccp4i2.lib.utils.plugins.plugin_context import get_plugin_with_context
 
 logger = logging.getLogger(__name__)
 
@@ -476,7 +476,7 @@ def get_job_diagnostic_xml(job: Job) -> Result[ET.Element]:
 ## Migration Strategy
 
 ### Phase 1: Create Infrastructure (30 min)
-1. ✅ Create `server/ccp4x/lib/utils/plugins/plugin_context.py`
+1. ✅ Create `server/ccp4i2/lib/utils/plugins/plugin_context.py`
 2. ✅ Test `get_plugin_with_context()` with simple job
 
 ### Phase 2: Refactor Core Utilities (1 hour)

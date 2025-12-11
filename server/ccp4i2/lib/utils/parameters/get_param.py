@@ -8,9 +8,9 @@ Uses CPluginScript to ensure proper object hierarchy and access.
 import logging
 from typing import Any, Dict
 
-from ccp4x.db import models
-from ccp4x.lib.response import Result
-from ccp4x.lib.utils.plugins.plugin_context import get_plugin_with_context
+from ccp4i2.db import models
+from ccp4i2.lib.response import Result
+from ccp4i2.lib.utils.plugins.plugin_context import get_plugin_with_context
 
 logger = logging.getLogger(__name__)
 

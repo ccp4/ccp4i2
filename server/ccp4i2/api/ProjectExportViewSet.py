@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from . import serializers
 from ..db import models
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 class ProjectExportViewSet(ModelViewSet):

@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ccp4x', '0004_alter_projecttag_projects'),
+        ('ccp4i2', '0004_alter_projecttag_projects'),
     ]
 
     operations = [
@@ -28,6 +28,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='projecttag',
             name='projects',
-            field=models.ManyToManyField(related_name='tags', to='ccp4x.project'),
+            field=models.ManyToManyField(related_name='tags', to='ccp4i2.project'),
         ),
     ]

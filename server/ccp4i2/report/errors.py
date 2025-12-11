@@ -25,7 +25,7 @@ from xml.etree import ElementTree as ET
 import logging
 import traceback
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 class DiagnosticLevel(Enum):

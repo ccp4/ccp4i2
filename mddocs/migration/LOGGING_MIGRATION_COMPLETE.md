@@ -22,7 +22,7 @@ Successfully migrated print statements to Python logging in critical paths, elim
 - `CCP4_LOG_LEVEL` environment variable support (DEBUG, INFO, WARNING, ERROR, CRITICAL)
 - Helper functions: `configure_quiet_mode()`, `configure_debug_mode()`, `configure_silent_mode()`
 
-✅ **Created `server/ccp4x/config/logging_config.py`**
+✅ **Created `server/ccp4i2/config/logging_config.py`**
 - Django-specific logging configuration
 - Log rotation (10MB max, 5 backups)
 - Multiple formatters (verbose, simple, JSON)
@@ -90,7 +90,7 @@ python manage.py create_project "test_project" --json
   "uuid": "22e337c5-77f7-4ba1-bfe3-1cd73da326f7",
   "name": "clean_test_4149",
   "description": "",
-  "directory": "/Users/nmemn/.ccp4x/CCP4X_PROJECTS/clean_test_4149",
+  "directory": "/Users/nmemn/.ccp4i2/CCP4X_PROJECTS/clean_test_4149",
   "creation_time": "2025-10-31T09:45:58.206382+00:00"
 }
 # ← Clean, parseable JSON! ✅
@@ -147,15 +147,15 @@ pytest tests/
 
 ### Created Files
 1. `core/base_object/logging_config.py` (120 lines)
-2. `server/ccp4x/config/logging_config.py` (140 lines)
+2. `server/ccp4i2/config/logging_config.py` (140 lines)
 3. `LOGGING_MIGRATION_PLAN.md` (700+ lines)
 4. `test_with_logging.sh` (test script)
 
 ### Modified Files
 1. `core/base_object/cdata.py` (11 print → logger.debug/warning)
 2. `core/base_object/cdata_file.py` (17 print → logger.debug)
-3. `server/ccp4x/db/management/commands/create_job.py` (1 print → stdout.write)
-4. `server/ccp4x/db/management/commands/list_project.py` (1 print → stdout.write)
+3. `server/ccp4i2/db/management/commands/create_job.py` (1 print → stdout.write)
+4. `server/ccp4i2/db/management/commands/list_project.py` (1 print → stdout.write)
 
 ---
 
@@ -198,8 +198,8 @@ The immediate pain points are **solved**. Remaining work is optional cleanup:
 - Various other core files (~100 more print statements)
 
 ### Phase 5: Server Code (Optional)
-- `server/ccp4x/db/async_db_handler.py` (22 print statements)
-- `server/ccp4x/lib/cdata_utils.py` (16 print statements)
+- `server/ccp4i2/db/async_db_handler.py` (22 print statements)
+- `server/ccp4i2/lib/cdata_utils.py` (16 print statements)
 - Various job_utils files (~100 more print statements)
 
 **These can be migrated incrementally as needed** - they don't interfere with test output since we're using `CCP4_LOG_LEVEL=ERROR`.

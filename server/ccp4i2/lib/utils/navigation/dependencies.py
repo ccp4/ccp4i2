@@ -2,9 +2,9 @@ from typing import List
 import logging
 import shutil
 
-from ccp4x.db import models
+from ccp4i2.db import models
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 logger.setLevel(logging.WARNING)
 
 

@@ -18,7 +18,7 @@ from .ccp4i2_static_data import (
 )
 
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 logger.setLevel(logging.WARNING)
 
 

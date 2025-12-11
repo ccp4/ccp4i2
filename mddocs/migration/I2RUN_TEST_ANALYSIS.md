@@ -452,7 +452,7 @@ This is expected - `clipper` is a specialized crystallography library not in sta
 
 ### 1. seqFile= Parameter Implementation
 
-**File**: [server/ccp4x/lib/utils/formats/seq_to_asu.py](server/ccp4x/lib/utils/formats/seq_to_asu.py)
+**File**: [server/ccp4i2/lib/utils/formats/seq_to_asu.py](server/ccp4i2/lib/utils/formats/seq_to_asu.py)
 
 Created a complete BioPython-based converter supporting:
 - Multiple formats: FASTA, PIR, GenBank, EMBL
@@ -460,7 +460,7 @@ Created a complete BioPython-based converter supporting:
 - CCP4i2 XML generation with proper structure
 - Reusable module for future CLI/GUI/web service usage
 
-**Integration**: [server/ccp4x/i2run/i2run_components.py:483-537](server/ccp4x/i2run/i2run_components.py#L483-L537)
+**Integration**: [server/ccp4i2/i2run/i2run_components.py:483-537](server/ccp4i2/i2run/i2run_components.py#L483-L537)
 
 Added special handling in argument parser:
 - Detect `seqFile=` syntax
@@ -505,7 +505,7 @@ This requires hashable, comparable plain strings, not CString objects.
 
 ### 4. CList Item Creation Fix
 
-**File**: [server/ccp4x/i2run/i2run_components.py:373-380](server/ccp4x/i2run/i2run_components.py#L373-L380)
+**File**: [server/ccp4i2/i2run/i2run_components.py:373-380](server/ccp4i2/i2run/i2run_components.py#L373-L380)
 
 Fixed handling of `--REFERENCE_MODELS fullPath=/path` style arguments:
 ```python
@@ -538,7 +538,7 @@ def __init__(self, parent=None, name=None, **kwargs):
 
 ## Files Modified This Session
 
-1. **server/ccp4x/lib/utils/formats/seq_to_asu.py** (NEW - 337 lines)
+1. **server/ccp4i2/lib/utils/formats/seq_to_asu.py** (NEW - 337 lines)
    - Complete sequence file to ASU XML converter
    - BioPython-based parsing
    - Polymer type detection algorithm
@@ -553,7 +553,7 @@ def __init__(self, parent=None, name=None, **kwargs):
    - Added `polymerType` property override (lines 34-58)
    - Added `CAsuContentSeqList.__init__()` (lines 69-74)
 
-5. **server/ccp4x/i2run/i2run_components.py**
+5. **server/ccp4i2/i2run/i2run_components.py**
    - Added seqFile= handling (lines 483-537)
    - Fixed list value handling (lines 403-419)
    - Fixed CList item creation (lines 373-380)
@@ -620,7 +620,7 @@ def __init__(self, parent=None, name=None, **kwargs):
 ```bash
 # Environment Setup
 export CCP4I2_ROOT=$CCP4I2_ROOT
-export DJANGO_SETTINGS_MODULE=ccp4x.settings
+export DJANGO_SETTINGS_MODULE=ccp4i2.settings
 source /Applications/ccp4-9/bin/ccp4.setup-sh
 source .venv/bin/activate
 

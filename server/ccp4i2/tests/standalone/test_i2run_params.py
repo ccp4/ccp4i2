@@ -12,12 +12,12 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / 'server'))
 os.environ['CCP4I2_ROOT'] = str(PROJECT_ROOT)
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4x.config.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4i2.config.settings')
 
 # Initialize Django
 django.setup()
 
-from ccp4x.i2run.CCP4i2RunnerBase import CCP4i2RunnerBase
+from ccp4i2.i2run.CCP4i2RunnerBase import CCP4i2RunnerBase
 
 def test_keyword_extraction():
     """Test that keywords are extracted from plugin."""

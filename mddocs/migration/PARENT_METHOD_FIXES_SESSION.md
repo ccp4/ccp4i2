@@ -61,7 +61,7 @@ file_path.parent().mkdir(parents=True, exist_ok=True)
 file_path.parent.mkdir(parents=True, exist_ok=True)
 ```
 
-**server/ccp4x/lib/async_import_files.py:305**:
+**server/ccp4i2/lib/async_import_files.py:305**:
 ```python
 # BEFORE:
 parent = dest_path.parent()
@@ -218,7 +218,7 @@ Type matters in Python comparisons:
 1. `core/base_object/cdata_file.py` - Line 247
 2. `core/base_object/cdata.py` - Line 369
 3. `core/CCP4File.py` - Lines 402, 415
-4. `server/ccp4x/lib/async_import_files.py` - Line 305
+4. `server/ccp4i2/lib/async_import_files.py` - Line 305
 5. `core/CCP4TaskManager.py` - Lines 82-131
 6. `core/CCP4PluginScript.py` - Lines 317-339
 

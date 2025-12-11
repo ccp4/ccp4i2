@@ -9,7 +9,7 @@ API Response Format:
     Failure: {"success": false, "error": "message", "details": {...}}
 
 Usage in ViewSets:
-    from ccp4x.lib.response import api_success, api_error, Result
+    from ccp4i2.lib.response import api_success, api_error, Result
 
     # Quick responses
     return api_success({"job_id": 123})

@@ -6,7 +6,7 @@ This example shows how to update the JobViewSet `container` endpoint from legacy
 
 ## Current Implementation (Legacy)
 
-**File**: `server/ccp4x/api/JobViewSet.py` (lines ~792-800)
+**File**: `server/ccp4i2/api/JobViewSet.py` (lines ~792-800)
 
 ```python
 # Legacy imports
@@ -101,7 +101,7 @@ def container(self, request, pk=None):
 
 ```bash
 export CCP4I2_ROOT=$CCP4I2_ROOT
-pytest server/ccp4x/tests/api/test_viewsets_comprehensive.py::JobViewSetTests::test_job_container -xvs
+pytest server/ccp4i2/tests/api/test_viewsets_comprehensive.py::JobViewSetTests::test_job_container -xvs
 ```
 
 ## Alternative: Full Result Pattern
@@ -117,10 +117,10 @@ import logging
 import json
 from typing import Dict, Any
 
-from ccp4x.db import models
-from ccp4x.lib.response import Result
-from ccp4x.lib.utils.plugins.get_plugin import get_job_plugin
-from ccp4x.lib.utils.containers.json_encoder import CCP4i2JsonEncoder
+from ccp4i2.db import models
+from ccp4i2.lib.response import Result
+from ccp4i2.lib.utils.plugins.get_plugin import get_job_plugin
+from ccp4i2.lib.utils.containers.json_encoder import CCP4i2JsonEncoder
 
 logger = logging.getLogger(__name__)
 

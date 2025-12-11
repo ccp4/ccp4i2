@@ -8,13 +8,13 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ccp4x', '0010_alter_projectgroup_projects'),
+        ('ccp4i2', '0010_alter_projectgroup_projects'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='jobcharvalue',
             name='key',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, related_name='+', to='ccp4x.jobvaluekey'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, related_name='+', to='ccp4i2.jobvaluekey'),
         ),
     ]

@@ -3,10 +3,10 @@ import traceback
 
 from ccp4i2.core import CCP4TaskManager
 
-from ccp4x.db.models import Job
-from ccp4x.db.async_db_handler import AsyncDatabaseHandler
+from ccp4i2.db.models import Job
+from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def get_job_plugin(the_job: Job, parent=None, dbHandler=None):

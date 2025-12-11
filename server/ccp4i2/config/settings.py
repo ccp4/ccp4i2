@@ -43,8 +43,8 @@ INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.staticfiles",
-    "ccp4x.api.config.ApiConfig",
-    "ccp4x.db.config.DbConfig",
+    "ccp4i2.api.config.ApiConfig",
+    "ccp4i2.db.config.DbConfig",
     "rest_framework",
     "whitenoise",
 ]
@@ -87,7 +87,7 @@ else:
         CORS_ALLOW_ALL_ORIGINS = False
         print(f"Production mode: CORS_ALLOWED_ORIGINS={CORS_ALLOWED_ORIGINS}")
 
-ROOT_URLCONF = "ccp4x.api.urls"
+ROOT_URLCONF = "ccp4i2.api.urls"
 
 TEMPLATES = [
     {
@@ -99,7 +99,7 @@ TEMPLATES = [
 STATIC_URL = "/djangostatic/"
 MEDIA_URL = "files/"
 
-USER_DIR = Path.home().resolve() / ".ccp4x"
+USER_DIR = Path.home().resolve() / ".ccp4i2"
 USER_DIR.mkdir(exist_ok=True)
 MEDIA_ROOT = USER_DIR / "files"
 
@@ -180,7 +180,7 @@ TIME_ZONE = "UTC"
 USE_TZ = True
 CCP4I2_PROJECTS_DIR = Path(
     os.environ.get(
-        "CCP4I2_PROJECTS_DIR", Path.home().resolve() / ".ccp4x" / "CCP4X_PROJECTS"
+        "CCP4I2_PROJECTS_DIR", Path.home().resolve() / ".ccp4i2" / "CCP4X_PROJECTS"
     )
 )
 CCP4I2_PROJECTS_DIR.mkdir(exist_ok=True)
@@ -208,7 +208,7 @@ CCP4I2_ROOT_ENV = os.environ.get("CCP4I2_ROOT")
 if CCP4I2_ROOT_ENV:
     CCP4I2_ROOT = Path(CCP4I2_ROOT_ENV)
 else:
-    # Standalone Django: BASE_DIR is server/ccp4x/config, so go up to project root
+    # Standalone Django: BASE_DIR is server/ccp4i2/config, so go up to project root
     CCP4I2_ROOT = BASE_DIR.parent.parent
 
 STATICFILES_DIRS = [

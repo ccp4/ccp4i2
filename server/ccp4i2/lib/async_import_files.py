@@ -17,7 +17,7 @@ from asgiref.sync import sync_to_async
 # Import CData utilities for legacy field name mapping
 from .cdata_utils import get_file_type_from_class
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 async def import_input_files_async(job, plugin, db_handler):

@@ -5,12 +5,12 @@ from typing import Optional, Any
 from ccp4i2.core.CCP4Container import CContainer
 from ccp4i2.core.base_object.cdata_file import CDataFile
 
-from ccp4x.db import models
+from ccp4i2.db import models
 from ..plugins.get_plugin import get_job_plugin
 from .save_params import save_params_for_job
 from ..files.get_by_context import get_file_by_job_context
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def set_input_by_context_job(

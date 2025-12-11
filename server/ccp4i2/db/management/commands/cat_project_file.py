@@ -11,7 +11,7 @@ Usage:
 import uuid
 from pathlib import Path
 from django.core.management.base import BaseCommand, CommandError
-from ccp4x.db.models import Project
+from ccp4i2.db.models import Project
 
 
 class Command(BaseCommand):

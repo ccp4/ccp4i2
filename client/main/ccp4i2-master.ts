@@ -31,8 +31,8 @@ const getProjectsDir = () => {
   const homeDir = os.homedir();
   const isWindows = process.platform === "win32";
   return isWindows
-    ? path.join(homeDir, "ccp4x", "CCP4X_PROJECTS")
-    : path.join(homeDir, ".ccp4x", "CCP4X_PROJECTS");
+    ? path.join(homeDir, "ccp4i2", "CCP4X_PROJECTS")
+    : path.join(homeDir, ".ccp4i2", "CCP4X_PROJECTS");
 };
 
 // Compute projectRoot based on dev vs packaged mode

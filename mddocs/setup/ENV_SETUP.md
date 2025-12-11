@@ -79,7 +79,7 @@ CCP4_VERSION=ccp4-20251105      # CCP4 distribution name
 CCP4_ROOT=/path/to/ccp4         # CCP4 installation directory
 VENV_DIR=.venv                  # Virtual environment directory
 PYTHON_VERSION=3.11             # Python version (informational)
-DJANGO_SETTINGS_MODULE=ccp4x.config.settings
+DJANGO_SETTINGS_MODULE=ccp4i2.config.settings
 CCP4I2_ROOT=$CCP4I2_ROOT
 ```
 

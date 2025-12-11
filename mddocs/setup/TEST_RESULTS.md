@@ -97,7 +97,7 @@ TypeError: CTaskManager.locate_def_xml() got an unexpected keyword argument 'nam
 - But method signature doesn't accept keyword argument
 
 **Location**:
-- File: `server/ccp4x/lib/job_utils/get_job_container.py:25`
+- File: `server/ccp4i2/lib/job_utils/get_job_container.py:25`
 - Function: `get_job_container()`
 
 **Fix Required**: Change from:

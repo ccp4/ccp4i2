@@ -5,8 +5,8 @@ import platform
 from pathlib import Path
 from typing import Set
 from django.core.management.base import BaseCommand
-from ccp4x.db.models import Project, Job
-from ccp4x.db.export_project import export_project_to_zip
+from ccp4i2.db.models import Project, Job
+from ccp4i2.db.export_project import export_project_to_zip
 
 
 class Command(BaseCommand):

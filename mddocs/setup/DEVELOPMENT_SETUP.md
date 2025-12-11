@@ -291,7 +291,7 @@ After pip installation (`ccp4-python -m pip install -e ".[django]"`), PYTHONPATH
 
 ```bash
 export CCP4I2_ROOT=/path/to/ccp4i2           # For resource files (qticons, data, etc.)
-export DJANGO_SETTINGS_MODULE=ccp4x.config.settings  # Or test_settings for tests
+export DJANGO_SETTINGS_MODULE=ccp4i2.config.settings  # Or test_settings for tests
 ```
 
 The test runner (`run_test.sh`) sets these automatically.
@@ -466,7 +466,7 @@ ln -sf /path/to/ccp4/share/cctbx .venv/share/
 
 Ensure settings module is configured:
 ```bash
-export DJANGO_SETTINGS_MODULE=ccp4x.config.test_settings
+export DJANGO_SETTINGS_MODULE=ccp4i2.config.test_settings
 ```
 
 ### fixture 'django_db_blocker' not found

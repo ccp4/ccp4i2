@@ -42,17 +42,17 @@ source .venv/bin/activate
 
 ### Run All API Tests
 ```bash
-pytest server/ccp4x/tests/api/ -v
+pytest server/ccp4i2/tests/api/ -v
 ```
 
 ### Run Specific Test Class
 ```bash
-pytest server/ccp4x/tests/api/test_viewsets_comprehensive.py::JobViewSetTests -v
+pytest server/ccp4i2/tests/api/test_viewsets_comprehensive.py::JobViewSetTests -v
 ```
 
 ### Run Single Test
 ```bash
-pytest server/ccp4x/tests/api/test_viewsets_comprehensive.py::JobViewSetTests::test_job_clone -v
+pytest server/ccp4i2/tests/api/test_viewsets_comprehensive.py::JobViewSetTests::test_job_clone -v
 ```
 
 ## Purpose

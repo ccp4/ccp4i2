@@ -7,9 +7,9 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core import CCP4File
 from ccp4i2.core import CCP4Data
 from ccp4i2.core import CCP4ModelData
-from ccp4x.db import models
+from ccp4i2.db import models
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def patch_output_file_paths(

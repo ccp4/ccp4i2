@@ -9,8 +9,8 @@ Usage:
 
 import uuid
 from django.core.management.base import BaseCommand, CommandError
-from ccp4x.db.models import Job, Project
-from ccp4x.lib.utils.jobs.validate import validate_job
+from ccp4i2.db.models import Job, Project
+from ccp4i2.lib.utils.jobs.validate import validate_job
 from xml.etree import ElementTree as ET
 
 

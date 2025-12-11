@@ -317,7 +317,7 @@ class CDataFile(CData):
             except RuntimeError:
                 pass  # Already configured
 
-            from server.ccp4x.db.async_db_handler import AsyncDatabaseHandler
+            from server.ccp4i2.db.async_db_handler import AsyncDatabaseHandler
             import uuid
 
             project_uuid = uuid.UUID(str(project_uuid_str))
@@ -1453,7 +1453,7 @@ class CDataFile(CData):
         """
         Extract complete metadata as dict for DB storage/serialization.
 
-        Replaces server/ccp4x/lib/cdata_utils.extract_file_metadata() as a core method.
+        Replaces server/ccp4i2/lib/cdata_utils.extract_file_metadata() as a core method.
 
         This method collects all file metadata including:
         - File paths (fullPath, baseName, relPath)

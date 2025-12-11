@@ -2,7 +2,7 @@ from os import PathLike
 import gemmi
 import logging
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def identify_data_type(path: str):

@@ -190,7 +190,7 @@ class CCP4i2TestCase(TestCase):
 
         self.assertEqual(
             str(the_job_plugin.container.outputData.XYZOUT[-1]),
-            "/Users/nmemn/Developer/ccp4x/CCP4I2_TEST_PROJECT_DIRECTORY/refmac_gamma_test_0/CCP4_JOBS/job_2/2_refmac_gamma_test_0__coot_rebuild_9.pdb",
+            "/Users/nmemn/Developer/ccp4i2/CCP4I2_TEST_PROJECT_DIRECTORY/refmac_gamma_test_0/CCP4_JOBS/job_2/2_refmac_gamma_test_0__coot_rebuild_9.pdb",
         )
 
 

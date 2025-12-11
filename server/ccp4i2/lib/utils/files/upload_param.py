@@ -23,9 +23,9 @@ from ..containers.json_encoder import CCP4i2JsonEncoder
 from ..parameters.value_dict import value_dict_for_object
 from .detect_type import detect_file_type
 from ..parameters.set_parameter import set_parameter, set_parameter_container
-from ccp4x.db import models
+from ccp4i2.db import models
 
-logger = logging.getLogger(f"ccp4x:{__name__}")
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 def build_file_annotation(original_filename: str, mtz_metadata: dict = None) -> str:

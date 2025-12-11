@@ -21,7 +21,7 @@
    - Follows pattern from management commands
 
 3. Fixed `get_plugin.py` import path:
-   - Changed from `...db.models` to `ccp4x.db.models`
+   - Changed from `...db.models` to `ccp4i2.db.models`
 
 4. Fixed `get_plugin.py` API compatibility:
    - Added fallback for `loadDataFromXml()` signature variations
@@ -183,7 +183,7 @@ The set_parameter failures are due to tests using non-existent parameters. Need 
 
 ## Key Learnings
 
-1. **Import Paths Matter**: The relative imports (`...db`) don't work from all locations - use absolute (`ccp4x.db`)
+1. **Import Paths Matter**: The relative imports (`...db`) don't work from all locations - use absolute (`ccp4i2.db`)
 
 2. **API Compatibility**: `loadDataFromXml()` signature varies - need try/except fallback
 
@@ -214,13 +214,13 @@ Start with:
 ```bash
 # Single test
 export CCP4I2_ROOT=$CCP4I2_ROOT
-pytest server/ccp4x/tests/api/test_viewsets_comprehensive.py::JobViewSetTests::test_job_container -xvs
+pytest server/ccp4i2/tests/api/test_viewsets_comprehensive.py::JobViewSetTests::test_job_container -xvs
 
 # Full JobViewSet suite
-pytest server/ccp4x/tests/api/test_viewsets_comprehensive.py::JobViewSet Tests -v --tb=no
+pytest server/ccp4i2/tests/api/test_viewsets_comprehensive.py::JobViewSet Tests -v --tb=no
 
 # All API tests
-pytest server/ccp4x/tests/api/ -v
+pytest server/ccp4i2/tests/api/ -v
 ```
 
 ## Success Metrics

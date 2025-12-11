@@ -85,7 +85,7 @@ class Command(BaseCommand):
 ## Files to Know
 
 - **`core/base_object/logging_config.py`** - Core logging setup
-- **`server/ccp4x/config/logging_config.py`** - Django logging config
+- **`server/ccp4i2/config/logging_config.py`** - Django logging config
 - **`LOGGING_MIGRATION_PLAN.md`** - Full migration plan
 - **`LOGGING_MIGRATION_COMPLETE.md`** - What was done
 

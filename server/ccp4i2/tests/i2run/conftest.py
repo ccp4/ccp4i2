@@ -12,8 +12,8 @@ sys.path.insert(0, str(server_path))
 sys.path.insert(0, str(project_root))
 
 # Configure Django settings
-# Force use of test_settings even if run_test.sh set ccp4x.config.settings
-os.environ["DJANGO_SETTINGS_MODULE"] = "ccp4x.config.test_settings"
+# Force use of test_settings even if run_test.sh set ccp4i2.config.settings
+os.environ["DJANGO_SETTINGS_MODULE"] = "ccp4i2.config.test_settings"
 
 # Set up CCP4I2_ROOT for plugin discovery (.def.xml files)
 if "CCP4I2_ROOT" not in os.environ:
