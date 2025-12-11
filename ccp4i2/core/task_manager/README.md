@@ -244,8 +244,7 @@ icons = task_mgr.task_icon_lookup
 
 Some plugins require dependencies not available in the venv:
 - `qtgui` - Qt GUI components (skip these, backend-only)
-- `mmut` - mmCIF utilities (use stub in `stubs/mmut.py.stub`)
-- `ccp4mg`, `mmdb2`, `ccp4srs` - Use stubs in `stubs/` directory
+- `ccp4srs` - Use stubs in `stubs/` directory
 
 ### Stale Registry Data
 

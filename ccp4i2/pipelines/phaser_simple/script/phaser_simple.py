@@ -1,10 +1,3 @@
-try:
-    import ccp4mg
-    import mmdb2 as mmdb
-except:
-    print('FAILED CCP4ModelData imported ccp4mg')
-import mmut
-
 from ccp4i2.pipelines.phaser_pipeline.script import phaser_pipeline
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 

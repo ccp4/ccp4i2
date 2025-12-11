@@ -1,24 +1,3 @@
-from __future__ import print_function
-
-"""
-    dr_mr_modelbuild.py: CCP4 GUI Project
-     Copyright (C) 2020 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
 """
 TODO
 
@@ -26,25 +5,19 @@ TODO
 
 """
 
-import sys, os, shutil, copy
+import copy
 import json
+import os
+import shutil
+import sys
 
-try:
-    from ccp4i2.baselayer.QtCore import Slot
-except:
-    from PyQt4.QtCore import pyqtSlot as Slot
-
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core import CCP4Utils
-from ccp4i2.core.CCP4ErrorHandling import *
 from lxml import etree
 
-try:
-    import ccp4mg
-    import mmdb2 as mmdb
-except:
-    print('FAILED CCP4ModelData imported ccp4mg')
-import mmut
+from ccp4i2.baselayer.QtCore import Slot
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4ErrorHandling import *
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class dr_mr_modelbuild_pipeline(CPluginScript):
 

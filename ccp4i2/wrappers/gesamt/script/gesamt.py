@@ -1,11 +1,11 @@
-from __future__ import print_function
-
+import csv
 import re
+import pathlib
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core import CCP4Utils
-import pathlib
-import csv
+from ccp4i2.core.mgimports import mmut
+from ccp4i2.core.mgimports import pygl_coord
 
 class gesamt(CPluginScript):
 
@@ -32,15 +32,6 @@ class gesamt(CPluginScript):
               f.loadFile()
               self.appendCommandLine( [ xyzin_file ] )
 
-          """
-          #I guess everythinbg moves.
-          if par.OUTPUT_COORDS == "minusO":
-              self.appendCommandLine( [ '-o', str( out.XYZOUT.fullPath ) ] )
-          elif par.OUTPUT_COORDS == "minusOF":
-              a,b = os.path.splitext ( inp.XYZIN_TARGET.fullPath )
-              self.tmpOut = a + "_2" + b
-              self.appendCommandLine( [ '-o-f' ] )
-          """
           if par.MODE.isSet():
               self.appendCommandLine( [ '-'+str( par.MODE ) ] )
 
@@ -197,8 +188,6 @@ class gesamt(CPluginScript):
             if perResidueNode is not None: transformationNode.append(perResidueNode)
         
             if len(transformationMatrix) == 12:
-                from ccp4mg import mmut
-                from ccp4mg import pygl_coord
                 inp = self.container.inputData
                 xyzin_query_file = str( inp.XYZIN_QUERY.fullPath )
                 molHnd = mmut.CMMANManager()

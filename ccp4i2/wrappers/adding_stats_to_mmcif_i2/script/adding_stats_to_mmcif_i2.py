@@ -1,39 +1,14 @@
-from __future__ import print_function
-"""
-    adding_stats_to_mmcif_i2.py: CCP4 GUI Project
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
-
-import os
-import sys
-import shutil
-import time
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-import gemmi
-import numpy as np
-import pandas
-from ccp4i2.core import CCP4ModelData
-from ccp4i2.core import CCP4Container
-from ccp4i2.core.CCP4Modules import PROJECTSMANAGER
-from ccp4i2.core import CCP4Utils
-from ccp4i2.core import CCP4ErrorHandling
-import ccp4mg
-import hklfile
 import logging
+import os
+import shutil
+import sys
+import time
+
 from lxml import etree
+
+from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 logger = logging.getLogger()
 FORMAT = "%(filename)s - %(funcName)s - %(message)s"
 logging.basicConfig(format=FORMAT)
@@ -79,7 +54,6 @@ class adding_stats_to_mmcif_i2(CPluginScript):
     def __init__(self, *args, **kws):
         super(adding_stats_to_mmcif_i2, self).__init__(*args, **kws)
         self.xmlroot = etree.Element('adding_stats_to_mmcif')
-        #print("db=", PROJECTSMANAGER().db())
 
     def processInputFiles(self):
 
@@ -94,6 +68,7 @@ class adding_stats_to_mmcif_i2(CPluginScript):
         self.createReflectionsCif()
 
         from adding_stats_to_mmcif.__main__ import run_process
+
         #print("Imported adding_stats_to_mmcif")
         if self.container.controlParameters.USEAIMLESSXML:
             aimless_xml_file = str(

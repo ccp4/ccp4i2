@@ -1,20 +1,12 @@
-from __future__ import print_function
+import os
 
-try:
-    import ccp4mg
-    import mmdb2 as mmdb
-except:
-    print('FAILED CCP4ModelData imported ccp4mg')
-import mmut
+from lxml import etree
 
 from ccp4i2.baselayer import QtCore
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-import sys, os
-from ccp4i2.core import CCP4ErrorHandling
-from ccp4i2.core import CCP4Modules
-from lxml import etree
 from ccp4i2.core import CCP4Utils
-  
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
+
 class phaser_pipeline(CPluginScript):
 
     TASKNAME = 'phaser_pipeline'                                  # Task name - should be same as class name
@@ -42,13 +34,7 @@ class phaser_pipeline(CPluginScript):
         211: {'description': 'Exception in harvestFile'},
     }
     WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
-    
 
-    '''
-    def __init__(self,parent=None,name=None,workDirectory=''):
-      CPluginScript. __init__(self,parent=parent,name=name)
-    '''
-    
     def process(self):
         invalidFiles = self.checkInputData()
         if len(invalidFiles)>0:
@@ -79,8 +65,6 @@ class phaser_pipeline(CPluginScript):
         self.phaserPlugin.container.inputData.set(self.container.inputData)
         self.phaserPlugin.container.inputData.KILLFILEPATH.set(os.path.join(self.getWorkDirectory(),'INTERRUPT'))
         self.phaserPlugin.doAsync = False
-        #self.phaserPlugin.waitForFinished = -1
-        #self.phaserPlugin.setFinishHandler(self.phaser_MR_AUTO_Finished)
         self.connectSignal(self.phaserPlugin,'finished', self.phaserFinished)
         self.oldXMLLength = 0
         self.phaserPlugin.callbackObject.addResponder(self.phaserXMLUpdated)

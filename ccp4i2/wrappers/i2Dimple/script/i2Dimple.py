@@ -1,26 +1,11 @@
-"""
-    i2Dimple.py: CCP4 GUI Project
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
-
 import os
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core import CCP4XtalData
-from ccp4i2.core import CCP4ErrorHandling
 import platform
+
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core import CCP4XtalData
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.mgimports import mmdb2 as mmdb
+
 
 class i2Dimple(CPluginScript):
     TASKNAME = 'i2Dimple'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -56,9 +41,7 @@ class i2Dimple(CPluginScript):
         #                       the input data objects that were input
         #                       3) A CCP4 Error object
         self.columnsAsArray = self.columns.split(",")
-        
-        import ccp4mg
-        import mmdb2 as mmdb
+
         self.xyzin = os.path.join(self.getWorkDirectory(),"selected_xyzin.pdb")
 
         #A work around to cast input coordinates into PDB format for dimple if necessary

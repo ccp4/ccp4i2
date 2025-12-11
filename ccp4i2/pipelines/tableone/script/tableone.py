@@ -1,20 +1,18 @@
-from __future__ import print_function
-
+import math
 import os
 import re
 import sys
-import math
-from lxml import etree
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core import CCP4XtalData
-from ccp4i2.core import CCP4ErrorHandling
-from ccp4i2.core import CCP4Utils
+
 import clipper
-from ccp4i2.wrappers.validate_protein.script import validate_protein
 from iotbx import mtz
-import ccp4mg
-import mmdb2
+from lxml import etree
 from mmtbx.command_line import molprobity
+
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.mgimports import mmdb2
+from ccp4i2.wrappers.validate_protein.script import validate_protein
+
 
 class tableone(CPluginScript):
 

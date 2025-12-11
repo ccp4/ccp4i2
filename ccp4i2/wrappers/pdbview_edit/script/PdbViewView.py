@@ -1,11 +1,8 @@
-from __future__ import print_function
-
 import sys
 
-from ccp4i2.baselayer import QtCore, QtGui, QtWidgets
+from ccp4i2.baselayer import QtCore, QtWidgets
+from ccp4i2.core.mgimports import PdbView
 
-import ccp4mg
-import PdbView
 
 if __name__ == "__main__":
 

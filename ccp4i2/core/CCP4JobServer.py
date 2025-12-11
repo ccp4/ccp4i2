@@ -4,6 +4,8 @@ import os
 import re
 from PySide2 import QtCore
 from ccp4i2.core.CCP4ErrorHandling import *
+from ccp4i2.core.mgimports import UtilityThread
+
 
 PARAMIKO_PORT=22
 
@@ -367,8 +369,6 @@ class CJobServer(QtCore.QObject):
             return None
 
     def transportFiles(self, jobId, copyList=[], mode='put', finishHandler=None, failSignal=True, diagnostic=True):
-        import functools
-        import UtilityThread
         sP = self.serverParams(jobId)
         #print  'transport files',mode,copyList
         if getattr(sP, 'sshThreadTransport', None) is not None:
@@ -478,7 +478,6 @@ class CJobServer(QtCore.QObject):
             return client
 
     def testRemoteFiles(self, jobId=None, machine=None, username=None, password=None, keyFilename=None, remoteFileList=[], timeout=None, maxTries=2):
-        import UtilityThread
         import functools
         if self.getServerParam(jobId, 'sshThreadRemoteFiles') is not None:
             return
@@ -624,8 +623,6 @@ class CJobServer(QtCore.QObject):
 
     def sendSSHCommand(self, jobId, comLine, finishHandler=None, retHandler=None, emitFail=True):
         import functools
-        import UtilityThread
-        from ccp4i2.core import CCP4Utils
         if self._diagnostic:
             print('Remote server command:', comLine)
         sP = self.serverParams(jobId)

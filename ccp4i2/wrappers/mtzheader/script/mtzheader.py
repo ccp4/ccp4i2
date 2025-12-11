@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      mtzheader.py: CCP4 GUI Project
      Copyright (C) 2011 STFC
@@ -11,7 +9,9 @@ from __future__ import print_function
      set in ccp4i2/utils/setup.sh
 """
 
+from ccp4i2.core.mgimports import hklfile
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class mtzheader(CPluginScript):
 
@@ -28,9 +28,6 @@ class mtzheader(CPluginScript):
          return
 
        # No output files, so skip checkOutputData
-       import ccp4mg
-       import hklfile
-
        reflection_list = hklfile.ReflectionList()
        reflection_list.init(str(self.container.inputData.HKLIN))
 

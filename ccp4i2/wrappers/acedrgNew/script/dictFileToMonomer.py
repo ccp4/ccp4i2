@@ -1,10 +1,9 @@
-from __future__ import print_function
-
 import collections
 
-import ccp4mg
-import mmdb2
 import ccp4srs
+
+from ccp4i2.core.mgimports import mmdb2
+
 
 def dictFileToMonomer(dictFileName):
     f = mmdb2.File()

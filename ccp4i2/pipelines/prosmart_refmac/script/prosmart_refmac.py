@@ -1,31 +1,13 @@
-from __future__ import print_function
-
-"""
-    refmac.py: CCP4 GUI Project
-    Copyright (C) 2010 University of York
-
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
+import os
+import shutil
+import traceback
 
 from lxml import etree
-from ccp4i2.baselayer import QtCore, DJANGO
+
+from ccp4i2.baselayer import QtCore
+from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core import CCP4ErrorHandling
-from ccp4i2.core import CCP4Utils
-import os,sys,shutil,re
-import traceback
+from ccp4i2.core.mgimports import mmdb2
 from ccp4i2.wrappers.modelASUCheck.script.modelASUCheck import sequenceAlignment
 
 
@@ -457,6 +439,7 @@ class prosmart_refmac(CPluginScript):
     @QtCore.Slot(dict)
     def cootFinished(self, statusDict={}):
         import functools
+
         # Check coot status and start refmac
         self.checkFinishStatus(statusDict=statusDict,failedErrCode=204, outputFile= self.cootPlugin.container.outputData.XYZOUT,noFileErrCode=205)
         try:
@@ -525,8 +508,9 @@ class prosmart_refmac(CPluginScript):
 
         Handles validation, cleanup, and optional molprobity analysis.
         """
-        from ccp4i2.core import CCP4ProjectsManager
         import shutil
+
+        from ccp4i2.core import CCP4ProjectsManager
 
         # Copy output files from refmac job to pipeline directory
         for attr in self.container.outputData.dataOrder():
@@ -542,6 +526,7 @@ class prosmart_refmac(CPluginScript):
                         self.appendErrorReport(101, f'{wrappersAttr.fullPath} to {pipelinesAttr.fullPath}: {e}')
 
         from ccp4i2.core import CCP4XtalData
+
         # Apply database annotations
         self.container.outputData.XYZOUT.annotation.set('Model from refinement (PDB format)')
         self.container.outputData.CIFFILE.annotation.set('Model from refinement (mmCIF format)')
@@ -612,8 +597,6 @@ class prosmart_refmac(CPluginScript):
                        sanitizedCoordPath = fileRoot + "+asPDB.pdb"
 
                        # Use mmdb to sanitize the coordinate file
-                       import ccp4mg
-                       import mmdb2
                        mmdb2.InitMatType()
                        m = mmdb2.Manager()
                        m.SetFlag(mmdb2.MMDBF_IgnoreSegID)
@@ -785,6 +768,7 @@ class prosmart_refmac(CPluginScript):
 
     def tryVariousRefmacWeightsAround(self, weight):
         import math
+
         # Generate jobs with weights around the initial weight
         # make an array to hold the child-jobs
         refmacJobs = []
@@ -870,6 +854,7 @@ class prosmart_refmac(CPluginScript):
 # Function called from gui to support exporting MTZ files
 def exportJobFile(jobId=None,mode=None,fileInfo={}):
     import os
+
     from ccp4i2.core import CCP4Modules
 
     theDb = CCP4Modules.PROJECTSMANAGER().db()
@@ -897,12 +882,15 @@ def exportJobFileMenu(jobId=None):
 
 #============================================================================================
 import unittest
+
+
 class testRefmac(unittest.TestCase):
 
     def test1(self):
         # Test creation of log file using ../test_data/test1.params.xml input
-        from ccp4i2.core.CCP4Utils import getCCP4I2Dir
         import os
+
+        from ccp4i2.core.CCP4Utils import getCCP4I2Dir
         workDirectory = CCP4Utils.getTestTmpDir()
         logFile = os.path.join(workDirectory,'prosmart_refmac_test1.log')
         # Delete any existing log file

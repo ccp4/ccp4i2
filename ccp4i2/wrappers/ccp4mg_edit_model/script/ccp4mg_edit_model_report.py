@@ -1,8 +1,5 @@
-from __future__ import print_function
-
 from ccp4i2.report.CCP4ReportParser import *
 from ccp4i2.core import CCP4Utils
-import sys
 import xml.etree.ElementTree as etree
 
 class ccp4mg_edit_model_report(Report):

@@ -1,17 +1,9 @@
-from __future__ import print_function
-
 import sys
 import os
 import argparse
-import re
 
-import ccp4mg
-import mmdb2
+from ccp4i2.core.mgimports import mmdb2
 import ccp4srs
-
-from rdkit import Chem
-from rdkit.Chem import AllChem
-import rdkit
 
 from gemmi import cif
 
@@ -369,10 +361,3 @@ if __name__ == "__main__":
     dictFileName = args.f
     retMatches = matchAtoms(ifname,ofname,dictMatchName,selection,dictFileName)
     print(retMatches)
-
-"""
-mol = Chem.rdmolfiles.MolFromPDBFile(sys.argv[1],removeHs=False)
-print mol
-This is how we'd get to PDB file from RDKit.
-print Chem.rdmolfiles.MolToPDBBlock(mol)
-"""

@@ -337,36 +337,6 @@ class ccp4mg_general(CPluginScript):
                 xyzoutList[-1].annotation = "CCP4MG coordinate output file number"+str(iFile)
                 xyzoutList[-1].subType = 1
 
-            """
-            # Comment out this for now, may be used in future ...
-            # I believe that these will need processing into mini mtz files somehow.... So this is likely to be very different
-            globPath = os.path.normpath(os.path.join(self.dropDir,'mtzout*.mtz'))
-            outList = glob.glob(globPath)
-            xyzoutList = self.container.outputData.FPHIOUT
-            for outputMTZ in outList:
-                fpath,fname = os.path.split(outputMTZ)
-                iFile = int(fname[6:-4])
-                xyzoutList.append(xyzoutList.makeItem())
-                outputFilePath = os.path.normpath(os.path.join(self.workDirectory,'MTZOUT_'+str(iFile)+'-density.mtz'))
-                shutil.copyfile(outputMTZ, outputFilePath)
-                xyzoutList[-1].setFullPath(outputFilePath)
-                xyzoutList[-1].annotation = "CCP4MG density output file number"+str(iFile)
-                xyzoutList[-1].subType = 1
-
-            globPath = os.path.normpath(os.path.join(self.dropDir,'delmtz*.mtz'))
-            outList = glob.glob(globPath)
-            xyzoutList = self.container.outputData.DELFPHIOUT
-            for outputMTZ in outList:
-                fpath,fname = os.path.split(outputMTZ)
-                iFile = int(fname[6:-4])
-                xyzoutList.append(xyzoutList.makeItem())
-                outputFilePath = os.path.normpath(os.path.join(self.workDirectory,'DELMTZ_'+str(iFile)+'-density.mtz'))
-                shutil.copyfile(outputMTZ, outputFilePath)
-                xyzoutList[-1].setFullPath(outputFilePath)
-                xyzoutList[-1].annotation = "CCP4MG difference density output file number"+str(iFile)
-                xyzoutList[-1].subType = 1
-            """
-
             # Create a trivial xml output file
             from lxml import etree
             self.xmlroot = etree.Element('ccp4mg_general')

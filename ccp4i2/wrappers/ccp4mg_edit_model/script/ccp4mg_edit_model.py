@@ -1,11 +1,14 @@
-from __future__ import print_function
+import os
+import re
+import sys
 
-
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.baselayer import QtCore
-import os,re,time,sys
 from lxml import etree
+
+from ccp4i2.baselayer import QtCore
 from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.mgimports import PhmmerReportNoGui
+
 
 class ccp4mg_edit_model(CPluginScript):
     
@@ -163,7 +166,8 @@ class ccp4mg_edit_model(CPluginScript):
 
     @QtCore.Slot(str)
     def handleFileDrop(self,directory):
-        import time,glob
+        import glob
+        import time
         print('ccp4mg_edit_model',time.time())
         print('ccp4mg_edit_model',glob.glob(os.path.join(self.workDirectory,'*.*')))
         #print 'handleFileDrop',directory
@@ -177,7 +181,9 @@ class ccp4mg_edit_model(CPluginScript):
         try:
             # First up import PDB files that have been output
             
-            import os, glob, shutil
+            import glob
+            import os
+            import shutil
             globPath = os.path.normpath(os.path.join(self.dropDir,'output*.pdb'))
             outList = glob.glob(globPath)
             
@@ -224,9 +230,6 @@ class ccp4mg_edit_model(CPluginScript):
                             shutil.copyfile(log, os.path.join(self.workDirectory,"mrbump_"+os.path.basename(log)))
                     if mrBumpDir is not None:
                         try:
-                            import ccp4mg
-                            sys.path.append(os.path.join(os.path.dirname(ccp4mg.__file__),"qtgui","plugins","Sequence"))
-                            from phmmerReport import PhmmerReportNoGui
                             win = PhmmerReportNoGui()
                             win.setResultsDir(mrBumpDir)
                             svg = win.svg(500,short=True)
@@ -247,12 +250,6 @@ class ccp4mg_edit_model(CPluginScript):
             self.appendErrorReport(202,'Data harvesting failed')
             
         CCP4Utils.saveEtreeToFile(self.xmlroot,self.makeFileName('PROGRAMXML'))
-        """
-        if ( len(outList) ) > 0:
-          return CPluginScript.SUCCEEDED
-        else:
-          return CPluginScript.MARK_TO_DELETE
-        """
         return CPluginScript.SUCCEEDED
 
     def addReportWarning(self, text):
