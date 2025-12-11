@@ -1,24 +1,11 @@
 import shlex
 import os
-import glob
-import sys
 from pathlib import Path
 from shutil import rmtree
 import uuid
 from argparse import ArgumentParser
-from xml.etree import ElementTree as ET
 from django.test import TestCase, override_settings
 from django.conf import settings
-from ccp4i2.baselayer import QtCore
-from ccp4i2.core import CCP4PerformanceData
-from ccp4i2.core import CCP4ErrorHandling
-from ccp4i2.core import CCP4Data
-from ccp4i2.core import CCP4File
-from ccp4i2.utils import QApp
-from ccp4i2.core.base_object.cdata_file import CDataFile
-from ccp4i2.core.CCP4TaskManager import TASKMANAGER
-from ccp4i2.core import CCP4Container
-from ccp4i2.core import CCP4TaskManager
 from ccp4x.db.models import Job, Project, File, JobCharValue, JobFloatValue
 from ccp4x.db.import_i2xml import import_ccp4_project_zip
 
