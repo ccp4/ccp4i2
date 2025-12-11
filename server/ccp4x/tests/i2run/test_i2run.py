@@ -66,7 +66,6 @@ class CCP4i2TestCase(TestCase):
         self.app = CCP4Modules.QTAPPLICATION(graphical=False)
 
     def setUp(self):
-        # QApp.MYAPPLICATION = None
         Path(settings.CCP4I2_PROJECTS_DIR).mkdir()
         import_ccp4_project_zip(
             Path(__file__).parent.parent.parent.parent.parent.parent
@@ -92,8 +91,6 @@ class CCP4i2TestCase(TestCase):
         self.assertEqual(len(shlex.split(case1, comments=True)), 7)
 
     def test_case1(self):
-        # QApp.MYAPPLICATION = None
-        # self.app = CCP4Modules.QTAPPLICATION(graphical=False)
         args = shlex.split(os.path.expandvars(case1), comments=True)
         print(args)
         i2Runner = CCP4i2RunnerDjango.CCP4i2RunnerDjango(
@@ -111,8 +108,6 @@ class CCP4i2TestCase(TestCase):
         self.assertEqual(JobCharValue.objects.filter(job=the_job)[0].value, "P 61 2 2")
 
     def test_case2(self):
-        # QApp.MYAPPLICATION = None
-        # self.app = CCP4Modules.QTAPPLICATION(graphical=False)
         args = shlex.split(os.path.expandvars(case2b), comments=True)
         print(args)
         self.assertEqual(
