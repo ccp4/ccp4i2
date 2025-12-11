@@ -71,23 +71,19 @@ class phaser_analysis_report(Report):
     heading = 'Analysis of dataset ['+self.pxdname+'] using Phaser'
     parent.addText(text=heading, style='text-align:center: border:1px solid black;')
 
-    mainDiv = parent.addDiv(\
-      style="width:100%;border-width: 0px; clear:both; margin:0px; padding:0px;")
+    mainDiv = parent.addDiv(style="width:100%;margin:0px; padding:0px;")
 
-
-    leftDiv = mainDiv.addDiv(\
-        style="width:49%;float:left;text-align:center;margin:0px; padding:0px; line-height:100%;")
-    rightDiv = mainDiv.addDiv(\
-      style="width:49%;float:right;text-align:center;margin:0px; padding:0px; line-height:100%;")
+    # Use grid layout for twin analysis and resolution side by side
+    leftDiv, rightDiv = mainDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
 
     if drawresol:
       self.drawresolution(rightDiv)
 
     self.drawtwin(leftDiv)
-    
-    ncsDiv = mainDiv.addDiv(style="width:49%;float:right;margin:0px;padding:0px;")
+
+    # Use grid layout for NCS and anisotropy analysis side by side
+    ncsDiv, anisoDiv = mainDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
     self.drawtNCS(ncsDiv)
-    anisoDiv = mainDiv.addDiv(style="width:49%;float:right;margin:0px;padding:0px;")
     self.drawanisotropy(anisoDiv)
 
   # - - - - - - - - - - - - - - - - -
