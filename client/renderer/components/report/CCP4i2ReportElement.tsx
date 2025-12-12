@@ -1,5 +1,7 @@
 import { useMemo } from "react";
 import $ from "jquery";
+import { Button } from "@mui/material";
+import { OpenInNew } from "@mui/icons-material";
 import { Job } from "../../types/models";
 
 import { CCP4i2ReportFlotGraphGroup } from "./CCP4i2ReportFlotGraphGroup";
@@ -91,6 +93,28 @@ export const CCP4i2ReportElement: React.FC<CCP4i2ReportElementProps> = ({
           />
         );
       } else if (["CCP4i2ReportFlotGraph"].includes(tagName)) {
+        // Check for launcher attribute - if present, render a button to open in new window
+        const launcherLabel = $(item).attr("launcher");
+        const graphKey = $(item).attr("key");
+        if (launcherLabel && graphKey && job?.id) {
+          return (
+            <Button
+              key={`${iItem}`}
+              variant="outlined"
+              startIcon={<OpenInNew />}
+              onClick={() => {
+                window.open(
+                  `/graph-viewer/${job.id}/${graphKey}`,
+                  "_blank",
+                  "width=800,height=600"
+                );
+              }}
+              sx={{ my: 1 }}
+            >
+              {launcherLabel}
+            </Button>
+          );
+        }
         return <CCP4i2ApplicationOutputView output={item} />;
       } else if (
         ["CCP4i2ReportGeneric", "CCP4i2ReportGenericElement"].includes(tagName)
