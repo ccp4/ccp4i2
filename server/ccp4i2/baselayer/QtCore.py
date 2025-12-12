@@ -285,7 +285,3 @@ class QCoreApplication:
         loop = asyncio.get_event_loop()
         if loop.is_running():
             asyncio.create_task(asyncio.sleep(0))
-
-
-# Alias for compatibility
-QApplication = QCoreApplication

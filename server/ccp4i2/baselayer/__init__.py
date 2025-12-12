@@ -4,7 +4,6 @@ from .QtCore import (
     QObject,
     Property,
     QCoreApplication,
-    QApplication,
 )
 
 # Import Qt module stubs for "from ccp4i2.baselayer import QtCore" usage
@@ -15,6 +14,5 @@ __all__ = [
     "QObject",
     "Property",
     "QCoreApplication",
-    "QApplication",
     "QtCore",
 ]
