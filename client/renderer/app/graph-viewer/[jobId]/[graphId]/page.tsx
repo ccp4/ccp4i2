@@ -37,9 +37,9 @@ export default function GraphViewerPage() {
 
     try {
       const xmlDoc = $.parseXML(xmlString);
-      // Find the graph element by its key attribute (which contains the internalId)
-      const $graph = $(xmlDoc).find(`CCP4i2ReportFlotGraph[key="${graphId}"]`);
 
+      // First try to find a standard CCP4i2ReportFlotGraph by key attribute
+      const $graph = $(xmlDoc).find(`CCP4i2ReportFlotGraph[key="${graphId}"]`);
       if ($graph.length > 0) {
         // Extract title for the window
         const graphTitle = $graph.attr("title");
@@ -50,6 +50,18 @@ export default function GraphViewerPage() {
         const dataElement = $graph.find("ccp4\\:ccp4_data, ccp4_data, ns0\\:ccp4_data").get(0);
         return dataElement ?? $graph.get(0) ?? null;
       }
+
+      // If not found, try to find an RVAPI-style ccp4_data element by id attribute
+      const $rvapiData = $(xmlDoc).find(`ccp4\\:ccp4_data[id="${graphId}"], ccp4_data[id="${graphId}"], ns0\\:ccp4_data[id="${graphId}"]`);
+      if ($rvapiData.length > 0) {
+        // Extract title for the window
+        const graphTitle = $rvapiData.attr("title");
+        if (graphTitle) {
+          setTitle(graphTitle);
+        }
+        return $rvapiData.get(0) ?? null;
+      }
+
       return null;
     } catch (err) {
       console.error("Failed to parse report XML:", err);
