@@ -70,7 +70,7 @@ class servalcat_report(Report):
         progressGraph = parent.addFlotGraph(
             title="Refinement results",
             xmlnode=self.xmlnode,
-            style="height:250px;width:400px;float:left;")
+            style="height:250px;width:100%;")
         progressGraph.addData(title="Cycle", select=".//cycle/Ncyc") # ycol=1
         progressGraph.addData(title="-LL", select=".//cycle/data/summary/minusLL") # ycol=2
         spa_refinement = False
@@ -129,14 +129,14 @@ class servalcat_report(Report):
         plotLine.append('colour', 'blue')
         plotLine.append('symbolsize', '0')
 
-        clearingDiv = parent.addDiv(style="float:left;width=100px;")
+        clearingDiv = parent.addDiv(style="clear:both;")
         clearingDiv.append('&#160;&#160;')
 
         if len(xmlnode.findall('.//cycle/geom/summary/rmsd/Bond_distances_non_H')) > 0:
             progressGraph2 = parent.addFlotGraph(
                 title="Deviation from standard geometry",
                 xmlnode=self.xmlnode,
-                style="height:250px;width:400px;float:left;")
+                style="height:250px;width:100%;")
             progressGraph2.addData(title="Cycle", select=".//cycle/Ncyc")
             progressGraph2.addData(title="RMSD_bond", select=".//cycle/geom/summary/rmsd/Bond_distances_non_H", expr="x if float(x)>=0.0 else '-'")
             progressGraph2.addData(title="RMSD_angle", select=".//cycle/geom/summary/rmsd/Bond_angles_non_H", expr="x if float(x)>=0.0 else '-'")

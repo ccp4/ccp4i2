@@ -670,17 +670,45 @@ class CPluginScript(CData):
         # Validate input data using validity() which allows plugins to adjust
         # qualifiers for embedded wrappers before checkInputData() runs
         # (e.g., servalcat_pipe sets allowUndefined on metalCoordWrapper.inputData.XYZIN)
-        error = self.validity()
-        if error:
-            self.errorReport.extend(error)
-            if error.maxSeverity() >= 4:  # ERROR level
-                return self.FAILED
+        try:
+            error = self.validity()
+            if error:
+                self.errorReport.extend(error)
+                if error.maxSeverity() >= 4:  # ERROR level
+                    return self.FAILED
+        except Exception as e:
+            # Catch Python exceptions in validity() and add to error report
+            import traceback
+            tb_str = ''.join(traceback.format_exception(type(e), e, e.__traceback__))
+            self.errorReport.append(
+                klass=self.__class__.__name__,
+                code=998,
+                details=f'Python exception in validity(): {type(e).__name__}: {str(e)}\n\n{tb_str}',
+                name='validity',
+                severity=4  # ERROR
+            )
+            self.reportStatus(self.FAILED)
+            return self.FAILED
 
         # Set up output data
-        error = self.checkOutputData()
-        if error:
-            self.errorReport.extend(error)
-            # Don't fail - checkOutputData should fix issues
+        try:
+            error = self.checkOutputData()
+            if error:
+                self.errorReport.extend(error)
+                # Don't fail - checkOutputData should fix issues
+        except Exception as e:
+            # Catch Python exceptions in checkOutputData() and add to error report
+            import traceback
+            tb_str = ''.join(traceback.format_exception(type(e), e, e.__traceback__))
+            self.errorReport.append(
+                klass=self.__class__.__name__,
+                code=997,
+                details=f'Python exception in checkOutputData(): {type(e).__name__}: {str(e)}\n\n{tb_str}',
+                name='checkOutputData',
+                severity=4  # ERROR
+            )
+            self.reportStatus(self.FAILED)
+            return self.FAILED
 
         # Save params.xml after setting output file attributes
         # This ensures output files have project/relPath/baseName set before execution
@@ -714,89 +742,139 @@ class CPluginScript(CData):
             pass  # DEBUG: print(f"[DEBUG process] Skipping params save (no database context)")
 
         # Pre-process input files if needed
-        result = self.processInputFiles()
-        # Handle both modern API (CErrorReport) and legacy API (int)
-        if isinstance(result, int):
-            # Legacy API: returns SUCCEEDED (0) or FAILED (1)
-            if result != self.SUCCEEDED:
-                return result
-        elif result:
-            # Modern API: returns CErrorReport (truthy if has errors)
-            self.errorReport.extend(result)
+        try:
+            result = self.processInputFiles()
+            # Handle both modern API (CErrorReport) and legacy API (int)
+            if isinstance(result, int):
+                # Legacy API: returns SUCCEEDED (0) or FAILED (1)
+                if result != self.SUCCEEDED:
+                    return result
+            elif result:
+                # Modern API: returns CErrorReport (truthy if has errors)
+                self.errorReport.extend(result)
+                return self.FAILED
+        except Exception as e:
+            # Catch Python exceptions in processInputFiles() and add to error report
+            import traceback
+            tb_str = ''.join(traceback.format_exception(type(e), e, e.__traceback__))
+            self.errorReport.append(
+                klass=self.__class__.__name__,
+                code=996,
+                details=f'Python exception in processInputFiles(): {type(e).__name__}: {str(e)}\n\n{tb_str}',
+                name='processInputFiles',
+                severity=4  # ERROR
+            )
+            self.reportStatus(self.FAILED)
             return self.FAILED
 
         # Generate command and script
-        error = self.makeCommandAndScript()
-        if error:
-            self.errorReport.extend(error)
+        try:
+            error = self.makeCommandAndScript()
+            if error:
+                self.errorReport.extend(error)
+                return self.FAILED
+        except Exception as e:
+            # Catch Python exceptions in makeCommandAndScript() and add to error report
+            import traceback
+            tb_str = ''.join(traceback.format_exception(type(e), e, e.__traceback__))
+            self.errorReport.append(
+                klass=self.__class__.__name__,
+                code=995,
+                details=f'Python exception in makeCommandAndScript(): {type(e).__name__}: {str(e)}\n\n{tb_str}',
+                name='makeCommandAndScript',
+                severity=4  # ERROR
+            )
+            self.reportStatus(self.FAILED)
             return self.FAILED
 
         # Start the process
         # Legacy compatibility: plugins have various startProcess signatures
         # Inspect the signature and call with appropriate arguments
-        import inspect
-        sig = inspect.signature(self.startProcess)
-        params = list(sig.parameters.keys())
+        try:
+            import inspect
+            sig = inspect.signature(self.startProcess)
+            params = list(sig.parameters.keys())
 
-        if len(params) == 0:
-            # Modern signature: startProcess(self)
-            result = self.startProcess(**kwargs)
-        elif 'processId' in params:
-            # Legacy signature: startProcess(self, processId, ...)
-            result = self.startProcess(processId=0, **kwargs)
-        elif 'comList' in params or (len(params) > 0 and params[0] == 'comList'):
-            # Legacy signature: startProcess(self, comList, **kw)
-            # Pass empty list for comList
-            result = self.startProcess([], **kwargs)
-        elif 'command' in params or (len(params) > 0 and params[0] == 'command'):
-            # Legacy signature: startProcess(self, command, **kw)
-            # Pass None for command (used by phaser plugins with Python-based logic)
-            result = self.startProcess(None, **kwargs)
-        else:
-            # Unknown signature - try with empty args and let **kwargs catch extras
-            try:
+            if len(params) == 0:
+                # Modern signature: startProcess(self)
                 result = self.startProcess(**kwargs)
-            except TypeError:
-                # If that fails, try passing None for the first positional param
+            elif 'processId' in params:
+                # Legacy signature: startProcess(self, processId, ...)
+                result = self.startProcess(processId=0, **kwargs)
+            elif 'comList' in params or (len(params) > 0 and params[0] == 'comList'):
+                # Legacy signature: startProcess(self, comList, **kw)
+                # Pass empty list for comList
+                result = self.startProcess([], **kwargs)
+            elif 'command' in params or (len(params) > 0 and params[0] == 'command'):
+                # Legacy signature: startProcess(self, command, **kw)
+                # Pass None for command (used by phaser plugins with Python-based logic)
                 result = self.startProcess(None, **kwargs)
+            else:
+                # Unknown signature - try with empty args and let **kwargs catch extras
+                try:
+                    result = self.startProcess(**kwargs)
+                except TypeError:
+                    # If that fails, try passing None for the first positional param
+                    result = self.startProcess(None, **kwargs)
 
-        # Handle both modern API (CErrorReport) and legacy API (int)
-        if isinstance(result, int):
-            # Legacy API: returns SUCCEEDED (0) or FAILED (1)
-            if result != self.SUCCEEDED:
-                return result
-        elif result:
-            # Modern API: returns CErrorReport (truthy if has errors)
-            self.errorReport.extend(result)
+            # Handle both modern API (CErrorReport) and legacy API (int)
+            if isinstance(result, int):
+                # Legacy API: returns SUCCEEDED (0) or FAILED (1)
+                if result != self.SUCCEEDED:
+                    return result
+            elif result:
+                # Modern API: returns CErrorReport (truthy if has errors)
+                self.errorReport.extend(result)
+                return self.FAILED
+        except Exception as e:
+            # Catch Python exceptions in startProcess() and add to error report
+            import traceback
+            tb_str = ''.join(traceback.format_exception(type(e), e, e.__traceback__))
+            self.errorReport.append(
+                klass=self.__class__.__name__,
+                code=994,
+                details=f'Python exception in startProcess(): {type(e).__name__}: {str(e)}\n\n{tb_str}',
+                name='startProcess',
+                severity=4  # ERROR
+            )
+            self.reportStatus(self.FAILED)
             return self.FAILED
 
         # For synchronous execution (subprocess.run), process is complete when startProcess returns
-        # Call processOutputFiles to extract output data
-        status = self.SUCCEEDED
-        try:
-            error = self.processOutputFiles()
-            if error:
-                self.errorReport.extend(error)
-                # Don't fail the job for processOutputFiles errors if the process succeeded
-                # Legacy wrappers often have non-fatal issues in processOutputFiles
-                print(f"Warning: processOutputFiles() returned errors but process completed successfully")
-                # status = self.FAILED  # Commented out - don't fail for postprocessing errors
-        except Exception as e:
-            # Legacy wrappers may not have processOutputFiles implemented
-            print(f"Warning: processOutputFiles() exception: {type(e).__name__}: {str(e)}")
-            import traceback
-            traceback.print_exc()
-            # Don't change status - process succeeded even if postprocessing failed
+        # Check if the process succeeded by examining exit code
+        status = self.postProcessCheck()
+        import logging
+        logger = logging.getLogger(__name__)
+        logger.info(f"[DEBUG process] postProcessCheck returned status: {status} (SUCCEEDED={self.SUCCEEDED}, FAILED={self.FAILED})")
 
-        # Glean output files to database if in database-connected mode
-        # This is essential for subjobs created via makePluginObject() which don't go
-        # through the async track_job context manager
+        # Only proceed with output processing if the process succeeded
         if status == self.SUCCEEDED:
+            # Call processOutputFiles to extract output data
+            try:
+                error = self.processOutputFiles()
+                if error:
+                    self.errorReport.extend(error)
+                    # Don't fail the job for processOutputFiles errors if the process succeeded
+                    # Legacy wrappers often have non-fatal issues in processOutputFiles
+                    print(f"Warning: processOutputFiles() returned errors but process completed successfully")
+                    # status = self.FAILED  # Commented out - don't fail for postprocessing errors
+            except Exception as e:
+                # Legacy wrappers may not have processOutputFiles implemented
+                print(f"Warning: processOutputFiles() exception: {type(e).__name__}: {str(e)}")
+                import traceback
+                traceback.print_exc()
+                # Don't change status - process succeeded even if postprocessing failed
+
+            # Glean output files to database if in database-connected mode
+            # This is essential for subjobs created via makePluginObject() which don't go
+            # through the async track_job context manager
             self._glean_output_files_sync()
 
         # Emit finished signal so pipelines can continue
         # This is essential for sub-plugins in pipelines (e.g., mtzdump in demo_copycell)
+        logger.info(f"[DEBUG process] Calling reportStatus with status: {status}")
         self.reportStatus(status)
+        logger.info(f"[DEBUG process] Returning status: {status}")
 
         return status
 
@@ -1691,7 +1769,8 @@ class CPluginScript(CData):
                 error.append(
                     klass=self.__class__.__name__,
                     code=101,
-                    details=f"Process {self.TASKCOMMAND} exited with code {result.returncode}"
+                    details=f"Process {self.TASKCOMMAND} exited with code {result.returncode}",
+                    severity=4  # ERROR
                 )
 
                 # Read stderr for error details
@@ -1836,7 +1915,8 @@ class CPluginScript(CData):
                     error.append(
                         klass=self.__class__.__name__,
                         code=101,
-                        details=f"Process {self.TASKCOMMAND} exited with code {process.returncode}"
+                        details=f"Process {self.TASKCOMMAND} exited with code {process.returncode}",
+                        severity=4  # ERROR
                     )
 
         except subprocess.TimeoutExpired:
@@ -1975,16 +2055,85 @@ class CPluginScript(CData):
 
         return status
 
-    def postProcessCheck(self) -> int:
+    def postProcessCheck(self, processId=None):
         """
         Check if the program process completed successfully.
 
+        Args:
+            processId: (Legacy) Optional process ID for backward compatibility with old plugins.
+                      If provided, returns tuple (status, exitStatus, exitCode) for compatibility.
+                      If not provided, returns just status.
+
+        Checks:
+        1. Process exit code (for both sync and async processes)
+        2. Presence of expected output files
+        3. Log file contents for errors
+
         Returns:
-            SUCCEEDED or FAILED
+            int: SUCCEEDED or FAILED (new signature)
+            tuple: (status, exitStatus, exitCode) if processId provided (legacy signature)
         """
-        # Check process exit code, log files, etc.
-        # For now, placeholder implementation
-        return self.SUCCEEDED
+        import os
+        import logging
+        logger = logging.getLogger(__name__)
+
+        exit_code = None
+        exit_status = None
+        status = self.SUCCEEDED
+
+        # Check exit code from synchronous execution (subprocess.run)
+        if hasattr(self, '_exitCode') and self._exitCode is not None:
+            logger.info(f"[DEBUG postProcessCheck] Checking sync exit code: {self._exitCode}")
+            exit_code = self._exitCode
+            exit_status = self._exitStatus if hasattr(self, '_exitStatus') else (0 if exit_code == 0 else 1)
+            if exit_code != 0:
+                # Process failed - error already added by _startProcessSync
+                logger.info(f"[DEBUG postProcessCheck] Returning FAILED due to non-zero exit code: {exit_code}")
+                status = self.FAILED
+
+        # For async processes, check the exit code from the process manager
+        elif hasattr(self, '_runningProcessId') and self._runningProcessId is not None:
+            from core.async_process_manager import ASYNC_PROCESSMANAGER
+            pm = ASYNC_PROCESSMANAGER()
+
+            exit_code = pm.getJobData(self._runningProcessId, 'exitCode')
+            exit_status = pm.getJobData(self._runningProcessId, 'exitStatus')
+
+            if exit_code is not None and exit_code != 0:
+                # Process failed - add to error report
+                self.errorReport.append(
+                    klass=self.__class__.__name__,
+                    code=993,
+                    details=f'Program {self.TASKCOMMAND} exited with error code {exit_code}. '
+                           f'Check {self.makeFileName("LOG")} and {self.makeFileName("STDERR")} for details.',
+                    name='postProcessCheck',
+                    severity=4  # ERROR
+                )
+                status = self.FAILED
+
+            elif exit_status is not None and exit_status != 0:
+                # Process marked as failed by process manager
+                self.errorReport.append(
+                    klass=self.__class__.__name__,
+                    code=992,
+                    details=f'Program {self.TASKCOMMAND} failed during execution. '
+                           f'Check {self.makeFileName("LOG")} and {self.makeFileName("STDERR")} for details.',
+                    name='postProcessCheck',
+                    severity=4  # ERROR
+                )
+                status = self.FAILED
+
+        # For backward compatibility with legacy plugins that expect (status, exitStatus, exitCode) tuple
+        if processId is not None:
+            # Legacy signature - return tuple
+            if exit_code is None:
+                exit_code = 0
+            if exit_status is None:
+                exit_status = 0 if status == self.SUCCEEDED else 1
+            return status, exit_status, exit_code
+
+        # New signature - return just status
+        return status
 
     def processOutputFiles(self) -> CErrorReport:
         """
@@ -2010,21 +2159,35 @@ class CPluginScript(CData):
         Args:
             status: Final status (SUCCEEDED or FAILED)
         """
+        import logging
+        logger = logging.getLogger(__name__)
+
+        logger.info(f"[DEBUG reportStatus] Called with status: {status} (SUCCEEDED={self.SUCCEEDED}, FAILED={self.FAILED})")
+
         # Save params
         self.saveParams()
 
         # Report final status to database
         if hasattr(self, '_dbHandler') and self._dbHandler is not None:
+            logger.info(f"[DEBUG reportStatus] _dbHandler exists: {self._dbHandler}")
             if hasattr(self, '_dbJobId') and self._dbJobId is not None:
+                logger.info(f"[DEBUG reportStatus] _dbJobId exists: {self._dbJobId}")
                 try:
+                    logger.info(f"[DEBUG reportStatus] Calling updateJobStatus with jobId={self._dbJobId}, finishStatus={status}")
                     self._dbHandler.updateJobStatus(
                         jobId=str(self._dbJobId),
                         finishStatus=status,
                         container=self.container
                     )
+                    logger.info(f"[DEBUG reportStatus] Successfully updated job status in database")
                 except Exception as e:
-                    import logging
-                    logging.getLogger(__name__).warning(f"Failed to update job status in database: {e}")
+                    logger.warning(f"Failed to update job status in database: {e}")
+                    import traceback
+                    traceback.print_exc()
+            else:
+                logger.warning(f"[DEBUG reportStatus] _dbJobId not set (hasattr={hasattr(self, '_dbJobId')}, value={getattr(self, '_dbJobId', None)})")
+        else:
+            logger.warning(f"[DEBUG reportStatus] _dbHandler not set (hasattr={hasattr(self, '_dbHandler')}, value={getattr(self, '_dbHandler', None)})")
 
         # Emit finished signal with status dict (modern API)
         # Legacy plugins may expect just int, handled by connectSignal() wrapper

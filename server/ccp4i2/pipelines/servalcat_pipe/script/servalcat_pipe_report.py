@@ -108,8 +108,10 @@ class servalcat_pipe_report(Report):
 
         if servalcatReportNode0 is not None and not self.jobStatus.lower().count('running'): # Report when job is finished
             summaryFold = self.addFold(label='Summary of refinement', initiallyOpen=True, brief='Refinement')
-            servalcatReport.addTablePerCycle(cycle_data, parent=summaryFold, initialFinalOnly=True)
-            servalcatReport.addGraphPerCycle(parent=summaryFold)
+            # Use grid layout to present table and graph side by side
+            left, right = summaryFold.addTwoColumnLayout(left_span=5, right_span=7, spacing=2)
+            servalcatReport.addTablePerCycle(cycle_data, parent=left, initialFinalOnly=True)
+            servalcatReport.addGraphPerCycle(parent=right)
             #if withTables:
             clearingDiv = self.addDiv(style="clear:both;")
             perCycleFold = self.addFold(label='Per cycle statistics', brief='Per cycle', initiallyOpen=False)
@@ -121,8 +123,10 @@ class servalcat_pipe_report(Report):
                 clearingDiv = self.addDiv(style="clear:both;")
             if servalcatReportNode1:
                 summaryFold1 = self.addFold(label='Summary of refinement after addition of water molecules', initiallyOpen=True, brief='Refinement after waters')
-                servalcatReport1.addTablePerCycle(cycle_data1, parent=summaryFold1, initialFinalOnly=True)
-                servalcatReport1.addGraphPerCycle(parent=summaryFold1)
+                # Use grid layout to present table and graph side by side
+                left1, right1 = summaryFold1.addTwoColumnLayout(left_span=5, right_span=7, spacing=2)
+                servalcatReport1.addTablePerCycle(cycle_data1, parent=left1, initialFinalOnly=True)
+                servalcatReport1.addGraphPerCycle(parent=right1)
                 clearingDiv = self.addDiv(style="clear:both;")
                 perCycleFold1 = self.addFold(label='Per cycle statistics after addition of water molecules', brief='Per cycle after waters', initiallyOpen=False)
                 servalcatReport1.addTablePerCycle(cycle_data1, parent=perCycleFold1, initialFinalOnly=False)

@@ -6,9 +6,8 @@ This module has no CData dependencies - pure utility functions.
 """
 
 from pathlib import Path
-from typing import List, Dict, Union, Optional
+from typing import List, Union, Optional
 import gemmi
-import numpy as np
 
 
 class MtzMergeError(Exception):
@@ -299,7 +298,7 @@ def merge_mtz_files(
     out_mtz.cell = first_mtz.cell
 
     # Add HKL_base dataset for H, K, L columns
-    hkl_base = out_mtz.add_dataset('HKL_base')
+    _ = out_mtz.add_dataset('HKL_base')  # Dataset needed but not directly used
     out_mtz.add_column('H', 'H')
     out_mtz.add_column('K', 'H')
     out_mtz.add_column('L', 'H')
@@ -477,7 +476,7 @@ def getCCP4Dir():
     return target
 
 
-def getTMP(**kw):
+def getTMP(**kw) -> str:
     """
     Get the temporary directory for CCP4 jobs.
 
@@ -487,7 +486,7 @@ def getTMP(**kw):
     Notes:
         - Legacy compatibility function for plugins that call getTMP()
         - Returns value from $TMP, $TEMP, or $TMPDIR environment variables
-        - Falls back to '/tmp' on Unix or 'C:\\Temp' on Windows
+        - Falls back to system default temporary directory
         - Creates the directory if it doesn't exist
     """
     import os
@@ -501,16 +500,79 @@ def getTMP(**kw):
         tmp_dir = tempfile.gettempdir()
 
     # Ensure directory exists
-    if tmp_dir and not os.path.exists(tmp_dir):
-        try:
-            os.makedirs(tmp_dir, exist_ok=True)
-        except Exception:
-            pass
+    tmp_path = Path(tmp_dir)
+    tmp_path.mkdir(parents=True, exist_ok=True)
 
-    return os.path.normpath(tmp_dir) if tmp_dir else tempfile.gettempdir()
+    return str(tmp_path)
 
 
-def getCCP4I2Dir(**kw):
+def makeTmpFile(name: str = 'tmp', extension: str = 'tmp', mode: Optional[str] = None, cdir: bool = False):
+    """
+    Create a unique temporary file or directory.
+
+    Legacy compatibility function used by plugins to create temporary files.
+    Creates a unique filename in the temporary directory and optionally
+    opens it or creates a directory.
+
+    Args:
+        name: Base name for the temporary file (default: 'tmp')
+        extension: File extension without the dot (default: 'tmp')
+        mode: If specified, open the file with this mode and return (fd, fileName)
+              If None, just return the fileName
+        cdir: If True, create a directory instead of a file
+
+    Returns:
+        - If cdir=True: Path to created directory (str)
+        - If mode is not None: Tuple of (file_descriptor, fileName)
+        - Otherwise: Path to the temporary file (str)
+
+    Example:
+        >>> # Just get a unique filename
+        >>> tmpfile = makeTmpFile(extension='mtz')
+        '/tmp/tmp_1234567890_1.mtz'
+
+        >>> # Create and open a file
+        >>> fd, tmpfile = makeTmpFile(name='output', extension='log', mode='w')
+
+        >>> # Create a temporary directory
+        >>> tmpdir = makeTmpFile(name='workdir', cdir=True)
+    """
+    import tempfile
+    import os
+
+    suffix = f'.{extension}' if extension else ''
+    prefix = f'{name}_'
+
+    tmp_dir = getTMP()
+
+    if cdir:
+        # Create temporary directory using standard library
+        dir_path = tempfile.mkdtemp(prefix=prefix, dir=tmp_dir)
+        return dir_path
+
+    if mode is not None:
+        # Create and open temporary file
+        # Use encoding for text mode, None for binary
+        encoding = 'utf-8' if 'b' not in mode else None
+        fd = tempfile.NamedTemporaryFile(
+            mode=mode,
+            prefix=prefix,
+            suffix=suffix,
+            dir=tmp_dir,
+            delete=False,
+            encoding=encoding
+        )
+        return (fd, fd.name)
+
+    # Just return a unique filename without creating it
+    # Use mkstemp and close immediately to get unique name
+    fd_int, file_path = tempfile.mkstemp(prefix=prefix, suffix=suffix, dir=tmp_dir)
+    os.close(fd_int)  # Close the file descriptor
+    os.unlink(file_path)  # Remove the file (just need the name)
+    return file_path
+
+
+def getCCP4I2Dir(**kw) -> str:
     """
     Get the CCP4i2 installation directory.
 
@@ -526,17 +588,15 @@ def getCCP4I2Dir(**kw):
         >>> ccp4i2_root = getCCP4I2Dir()
         >>> smartie_path = os.path.join(ccp4i2_root, 'smartie')
     """
-    import os
-    import sys
-
     # Use the module's file location to find CCP4i2 root
     # CCP4Utils is at <CCP4I2_ROOT>/core/CCP4Utils.py
     # So we go up one level from core/ to get CCP4I2_ROOT
-    f = os.path.normpath(__import__('core.CCP4Utils').__file__)
-    return os.path.split(os.path.split(f)[0])[0]
+    module_file = Path(__import__('core.CCP4Utils').__file__)
+    ccp4i2_root = module_file.parent.parent
+    return str(ccp4i2_root)
 
 
-def writeXML(file, xml_string):
+def writeXML(file, xml_string: Union[str, bytes]) -> None:
     """
     Write XML string to file.
 
@@ -545,6 +605,10 @@ def writeXML(file, xml_string):
     Args:
         file: File object opened for writing
         xml_string: XML content as string or bytes
+
+    Note:
+        This function assumes the file is opened in text mode.
+        If xml_string is bytes, it will be decoded as UTF-8.
     """
     if isinstance(xml_string, bytes):
         xml_string = xml_string.decode('utf-8')
@@ -568,14 +632,16 @@ def openFileToEtree(fileName: Union[str, Path], printout: bool = False, useLXML:
         ElementTree element representing the parsed XML
 
     Raises:
+        FileNotFoundError: If file doesn't exist
         Exception: If file cannot be read or parsed
     """
-    import os
+    # Normalize path and read file - use Path from top-level import
+    file_path = Path(fileName)
 
-    # Normalize path and read file
-    file_path = os.path.normpath(str(fileName))
-    with open(file_path, 'r', encoding='utf-8') as f:
-        xml_content = f.read()
+    if not file_path.exists():
+        raise FileNotFoundError(f"XML file not found: {file_path}")
+
+    xml_content = file_path.read_text(encoding='utf-8')
 
     # Parse using appropriate parser
     if useLXML:
@@ -756,3 +822,106 @@ def backupFile(file_path: Union[str, Path], delete: bool = True) -> Optional[Pat
         shutil.copy2(str(file_path), str(backup_path))
 
     return backup_path
+
+
+def openFile(fileName: Union[str, Path], mode: str = 'r', overwrite: int = 1):
+    """
+    Open a file with legacy CCP4i2 API compatibility.
+
+    Modern replacement for legacy openFile() that handles text/binary modes
+    correctly across platforms.
+
+    Args:
+        fileName: Path to file to open
+        mode: File mode ('r', 'w', 'w+', etc.)
+        overwrite: Control behavior for existing files:
+                  1 = overwrite (default)
+                  0 = raise error if exists
+                  -1 = return None if exists
+
+    Returns:
+        File object or None if overwrite=-1 and file exists
+
+    Raises:
+        FileExistsError: If mode is 'w', file exists, and overwrite=0
+        IOError: If file cannot be opened
+
+    Example:
+        >>> f = openFile('output.txt', 'w')
+        >>> f.write('Hello')
+        >>> f.close()
+    """
+    import os
+
+    fileName = os.path.normpath(str(fileName))
+
+    # Handle overwrite logic
+    if mode == 'w' and os.path.exists(fileName):
+        if overwrite == -1:
+            return None
+        elif overwrite == 0:
+            raise FileExistsError(f"File exists and overwrite=0: {fileName}")
+
+    # Open the file
+    try:
+        # Modern Python 3 handles text mode correctly without binary mode hacks
+        f = open(fileName, mode, encoding='utf-8' if 'b' not in mode else None)
+    except Exception as e:
+        raise IOError(f"Cannot open file {fileName} with mode {mode}: {e}")
+
+    return f
+
+
+def saveFile(fileName: Union[str, Path], text: Optional[str] = None,
+             text_list: Optional[List[str]] = None, overwrite: int = 0):
+    """
+    Save text to a file with legacy CCP4i2 API compatibility.
+
+    Modern replacement for legacy saveFile() that properly handles Unicode
+    text across platforms.
+
+    Args:
+        fileName: Path to output file
+        text: String to write to file (optional)
+        text_list: List of strings to write to file (optional)
+        overwrite: Control behavior for existing files (passed to openFile)
+
+    Raises:
+        IOError: If file cannot be written
+
+    Example:
+        >>> saveFile('output.txt', text='Hello world')
+        >>> saveFile('output.txt', text_list=['Line 1\n', 'Line 2\n'])
+
+    Note:
+        Either text or text_list should be provided, not both.
+        If both are provided, text_list takes precedence.
+    """
+    import os
+
+    # Normalize path
+    fileName = os.path.normpath(str(fileName))
+
+    # Determine write mode
+    if os.path.exists(fileName):
+        mode = 'w+'
+    else:
+        mode = 'w'
+
+    # Open file
+    f = openFile(fileName, mode, overwrite=overwrite)
+    if f is None:
+        return  # openFile returned None (overwrite=-1 case)
+
+    # Write to file
+    try:
+        if text_list is not None and len(text_list) > 0:
+            # Write list of strings
+            f.writelines(text_list)
+        elif text is not None:
+            # Write single string
+            f.write(text)
+        f.close()
+    except Exception as e:
+        f.close()
+        raise IOError(f"Cannot write to file {fileName}: {e}")

@@ -463,8 +463,8 @@ class ctruncate_report(Report):
             #fold.append("Anisotropy will be corrected for in the truncation procedure.")
             if len(self.xmlnode.findall('AnisotropyAnalysis/BAniso'))>0:
                 fold.append("<p><b>ML Anisotropy matrices:</b></p>")
-                aDiv = fold.addDiv(style="width:50%;float:left;border-width: 0px; border-color: black;text-align:left; margin:0px; padding:0px;")
-                bDiv = fold.addDiv(style="width:50%;float:left;border-width: 0px; border-color: black;text-align:left; margin:0px; padding:0px;")
+                # Use grid layout for anisotropy matrices side by side
+                aDiv, bDiv = fold.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
                 result = path[0].findall("BAniso/Orthogonal")[0].text
                 list = result.split()
                 list.insert(6,'<br/>')
@@ -777,8 +777,8 @@ class ctruncate_report(Report):
         #fold.append("<p><font color='red'>any stats</font></p>")
         if len(twinblock.findall('Moments'))>0:
             fold.append("<p><b><i>Wilson ratios and moments plot</i></b></p>")
-            aDiv = fold.addDiv(style="width:50%;float:left;border-width: 0px; border-color: black;text-align:left; margin:0px; padding:0px;")
-            bDiv = fold.addDiv(style="width:50%;float:left;border-width: 0px; border-color: black;text-align:left; margin:0px; padding:0px;")
+            # Use grid layout for acentric/centric moments side by side
+            aDiv, bDiv = fold.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
             #problem is have amplitudes too
             mlist = twinblock.findall("Moments[@id='acentric']/Moment")
             if len(mlist)>0:

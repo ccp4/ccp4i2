@@ -24,9 +24,21 @@ def find_dependent_jobs(
     descendent_files = models.File.objects.filter(job=the_job)
     # Do I also have to worry about FileImports in this job ? I don't think so...those should have an associated FileUse
     descendent_file_uses = models.FileUse.objects.filter(file__in=descendent_files)
-    unsorted_descendent_jobs = list(
-        {file_use.job for file_use in descendent_file_uses if file_use.job != the_job}
-    ) + list(models.Job.objects.filter(parent=the_job))
+
+    # Build set of dependent jobs, handling cases where jobs may have been deleted
+    # (CASCADE delete removes FileUse when its Job is deleted)
+    dependent_job_set = set()
+    for file_use in descendent_file_uses:
+        try:
+            # Access the job - this may raise DoesNotExist if job was cascade-deleted
+            if file_use.job and file_use.job != the_job:
+                dependent_job_set.add(file_use.job)
+        except models.Job.DoesNotExist:
+            # Job was already deleted (cascade delete from parent), skip it
+            logger.debug("Skipping FileUse with deleted job")
+            continue
+
+    unsorted_descendent_jobs = list(dependent_job_set) + list(models.Job.objects.filter(parent=the_job))
     # Reduce to uniques
     unsorted_descendent_jobs = list(set(unsorted_descendent_jobs))
     # Sort so that "leaves" will be processed first

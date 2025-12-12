@@ -314,31 +314,27 @@ class aimless_pipe_report(Report):
     overallfold = overallsummaryDiv.addFold(label='Overall summary',
                                             brief='Summary',initiallyOpen=True)
     # Put the key messages about spacegroup and resolution at the very top
-    headlineDiv = overallfold.addDiv(style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:5px;")
-    leftDiv = headlineDiv.addDiv(style="width:49%;float:left;text-align:center;margin:0px; padding:0px; line-height:100%; font-size:100%;border:0px;")
-    if not self.merged:  
-      # for merged files, not usually much intereseting in Pointless output
-      if havePointlessReport:
+    # Container for headline content and subsequent graphs
+    headlineDiv = overallfold.addDiv(style="margin:0px; padding:5px;")
+
+    # Use grid layout for responsive two-column display
+    if self.numberofdatasets == 1:
+      # Single dataset: Pointless summary (left), Aimless stats (right)
+      leftDiv, rightDiv = headlineDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
+      if not self.merged and havePointlessReport:
         self.addPointlessSummary(leftDiv)
-
-        # Pointless element table in:
-        #    (1) if 1 dataset, in leftDiv with Pointless summary
-        #    (2) if >1 dataset in new Div on right of Pointless summary
-        if self.numberofdatasets == 1:
-          nextDiv = leftDiv.addDiv(style="border: 1px solid black; margin: 1px; padding:1px;")
-        else:
-          nextDiv = headlineDiv.addDiv(style="width:49%;float:left;margin:1px;text-align:center; \
-          padding:3px;border:1px solid black;")
-
-          self.pointlessreport.ElementScoresTable(nextDiv)
+      if haveAimlessReport:
+        statsDiv = rightDiv
+    else:
+      # Multiple datasets: Pointless summary (left), Element scores (right), Aimless below
+      headlineLeft, headlineRight = headlineDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
+      if not self.merged and havePointlessReport:
+        self.addPointlessSummary(headlineLeft)
+        self.pointlessreport.ElementScoresTable(headlineRight)
+      if haveAimlessReport:
+        statsDiv = overallfold.addDiv(style="border:1px solid black; margin:5px; padding:10px;")
 
     if haveAimlessReport:
-      # Aimless summary
-      if self.numberofdatasets == 1:
-        statsDiv = headlineDiv.addDiv(style="width:46%;float:left;text-align:center;margin:0px; padding:10px;border:1px solid black;")
-      else:
-        statsDiv = overallfold.addDiv(style="border:1px solid black; clear:both; margin:5px; padding:10px;")
-
       table_info = None
       if havePhaserReport:
         # getinformation content for the Table 1, in resolution bins
@@ -364,9 +360,8 @@ class aimless_pipe_report(Report):
       # Main graphs as function of resolution and batch
       self.aimlessreport.importantGraphs(headlineDiv, self.merged)
 
-      nextDiv = overallfold.addDiv(style="clear:both;")
-      nextleftDiv = nextDiv.addDiv(style="width:48%;float:left;text-align:center;margin:6px; padding:0px; ")
-      nextrightDiv = nextDiv.addDiv(style="width:48%;float:left;text-align:center;margin:6px; padding:0px; ")
+      # Wilson plot and Phaser info in two columns
+      nextleftDiv, nextrightDiv = overallfold.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
 
       if self.ctruncatereports != None:
         self.addTruncateWilson(nextleftDiv)
@@ -410,13 +405,11 @@ class aimless_pipe_report(Report):
             ctruncateDiv.addText(text='This dataset is probably NOT twinned',
                               style='font-style:italic; color:green;')
 
-          twinDiv = ctruncateDiv.addDiv()
-          twinleftDiv = twinDiv.addDiv(style="width:48%;float:left;text-align:center;margin:6px; padding:0px; ")
+          # Twin analysis in two columns
+          twinleftDiv, twinrightDiv = ctruncateDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
           twinleftDiv.addText(text='L-test for twinning',style="font-weight:bold;x font-size:130%;")
           twinleftDiv.append('<br/>')
           ctruncatereport.CtruncateLtest(twinleftDiv)
-
-          twinrightDiv = twinDiv.addDiv(style="width:48%;float:left;text-align:center;margin:6px; padding:0px; ")
           ctruncatereport.acentricMoments(twinrightDiv)
 
 
@@ -438,19 +431,18 @@ class aimless_pipe_report(Report):
       
       details2Div = parent.addDiv(style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
       fold = details2Div.addFold(label="Details of merging", brief='Details')
-      #  Resolution estimates
-      leftDiv = fold.addDiv(style="width:50%;float:left;text-align:center;margin:0px; padding:0px; line-height:100%; font-size:100%;")
-      aHeaderDiv = leftDiv.addDiv(style="clear:both;font-weight:bold; font-size:130%;")
-      aHeaderDiv.append('Resolution estimates')      
+      #  Resolution estimates and other stats in two columns
+      leftDiv, rightDiv = fold.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
+      aHeaderDiv = leftDiv.addDiv(style="font-weight:bold; font-size:130%;")
+      aHeaderDiv.append('Resolution estimates')
       self.aimlessreport.resolutionEstimateTable(leftDiv)
 
       # Other stuff
-      rightDiv = fold.addDiv(style="width:50%;float:left;text-align:center;margin:0px; padding:0px; line-height:100%; font-size:100%;")
       self.aimlessreport.otherStatistics(rightDiv)
       
       fold.append('<br/>')
-      crossDiv = fold.addDiv(style="width:100%;float:left;text-align:center;margin:0px; padding:0px; line-height:100%; font-size:100%;")
-      crossHDiv = crossDiv.addDiv(style="clear:both;font-weight:bold; font-size:130%;text-align:left")
+      crossDiv = fold.addDiv(style="width:100%;text-align:center;margin:0px; padding:0px;")
+      crossHDiv = crossDiv.addDiv(style="font-weight:bold; font-size:130%;text-align:left")
 
       self.aimlessreport.interRunTable(crossDiv)
       
@@ -715,10 +707,10 @@ class aimless_pipe_report(Report):
       style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
 
     # Put the key messages about spacegroup and resolution at the very top
-    headlineDiv = overallsummaryDiv.addDiv(style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:5px;")
-    leftDiv = headlineDiv.addDiv(style="width:49%;float:left;text-align:center;margin:0px; padding:0px; line-height:100%; font-size:100%;border:0px;")
+    # Use grid layout for responsive two-column display
+    headlineDiv = overallsummaryDiv.addDiv(style="padding:5px;")
+    leftDiv, rightDiv = headlineDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
     self.addPointlessSummary(leftDiv)
-    rightDiv = headlineDiv.addDiv(style="width:50%;float:left;text-align:center;margin:0px; padding:0px; line-height:100%; font-size:100%;border:1px solid black;")
 
     if havePointlessReport:
       self.pointlessreport.ElementScoresTable(rightDiv)

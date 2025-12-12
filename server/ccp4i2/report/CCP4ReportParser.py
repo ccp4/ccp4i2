@@ -2658,11 +2658,13 @@ class FlotGraph(Graph):
         # if kw.get('launcher',None) is not None:
         self.launch = None
         self.launchOnly = False
+        self.launcherLabel = None
         self.flot_id = kw.get('internalId', None)
         ele = etree.Element('launch')
         if kw.get('launcher', None) is not None:
             self.launchOnly = True
-            ele.set('label', kw.get('launcher', 'More graphs'))
+            self.launcherLabel = kw.get('launcher', 'More graphs')
+            ele.set('label', self.launcherLabel)
             ele.set('exe', 'loggraph')
             if kw.get('withLaunch', True):
                 self.launch = Launch(
@@ -2674,6 +2676,9 @@ class FlotGraph(Graph):
     def as_data_etree(self):
         self.makeTableText()
         root = super().as_data_etree()
+        # Add launcher attribute if this graph should be launched in a separate window
+        if self.launchOnly and self.launcherLabel:
+            root.set('launcher', self.launcherLabel)
         root.append(self.data_as_etree())
         return root
 

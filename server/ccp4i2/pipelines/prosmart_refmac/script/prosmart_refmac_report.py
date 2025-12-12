@@ -102,13 +102,15 @@ class prosmart_refmac_report(Report):
         if refmacReportNode0 is not None:
             refmacReport = refmac_report.refmac_report(xmlnode=refmacReportNode0, jobStatus='nooutput', jobInfo=self.jobInfo)
 
-        topElementsDiv = summaryFold.addDiv(style='width:800px; height:270px;overflow:auto;')
-        if refmacReport is not None and not self.jobStatus.lower().count('running'):
-            refmacReport.addScrollableDownloadableTable1(parent=topElementsDiv)
-        else:
-            self.addProgressTable(topElementsDiv, xmlnode)
+        # Use grid layout to present table and graph side by side
+        left, right = summaryFold.addTwoColumnLayout(left_span=5, right_span=7, spacing=2)
 
-        self.addProgressGraph(topElementsDiv, xmlnode)
+        if refmacReport is not None and not self.jobStatus.lower().count('running'):
+            refmacReport.addScrollableDownloadableTable1(parent=left)
+        else:
+            self.addProgressTable(left, xmlnode)
+
+        self.addProgressGraph(right, xmlnode)
 
         try:
             cootAddWatersNode = xmlnode.findall('.//CootAddWaters')[0]
@@ -227,15 +229,16 @@ class prosmart_refmac_report(Report):
                 summaryFold2 = self.addFold(label='Refinement after Running Coot Add waters', initiallyOpen=True,brief='After Coot scripts')
                 clearingDiv2 = self.addDiv(style="clear:both;")
                 refmacReport2 = refmac_report.refmac_report(xmlnode=refmacReportNode1, jobStatus='nooutput', jobInfo=self.jobInfo)
-                topElementsDiv2 = summaryFold2.addDiv(style='width:800px; height:270px;overflow:auto;')
+                # Use grid layout for post-Coot summary
+                left2, right2 = summaryFold2.addTwoColumnLayout(left_span=5, right_span=7, spacing=2)
                 if refmacReport2 is not None and not self.jobStatus.lower().count('running'):
-                    refmacReport2.addScrollableDownloadableTable1(parent=topElementsDiv2,internalId='Table1PostCoot')
+                    refmacReport2.addScrollableDownloadableTable1(parent=left2,internalId='Table1PostCoot')
                 else:
-                    self.addProgressTable(topElementsDiv2, xmlnode,internalId='Table1PostCootRunning')
+                    self.addProgressTable(left2, xmlnode,internalId='Table1PostCootRunning')
                 if self.jobStatus.lower().count('running'):
-                    self.addProgressGraph(topElementsDiv2, refmacReportNode1,internalId="SummaryGraphPostCoot",tag="RefmacPostCootInProgress")
+                    self.addProgressGraph(right2, refmacReportNode1,internalId="SummaryGraphPostCoot",tag="RefmacPostCootInProgress")
                 else:
-                    self.addProgressGraph(topElementsDiv2, refmacReportNode1,internalId="SummaryGraphPostCoot",tag="refmacPostCoot/REFMAC")
+                    self.addProgressGraph(right2, refmacReportNode1,internalId="SummaryGraphPostCoot",tag="refmacPostCoot/REFMAC")
                     # Could also add other graphs.
                     """
                     refmacReport2.addSmartieGraphs(self,internalIdPrefix='postCoot')
@@ -342,7 +345,7 @@ class prosmart_refmac_report(Report):
 
     def addProgressGraph(self, parent, xmlnode,internalId="SummaryGraph",tag="RefmacInProgress"):
         if len(self.xmlnode.findall(tag))>0:
-            progressGraph = parent.addFlotGraph(title="Running refmac",select=tag+"/Cycle",style="height:250px; width:400px;float:left;border:0px;",outputXml=self.outputXml,internalId=internalId)
+            progressGraph = parent.addFlotGraph(title="Running refmac",select=tag+"/Cycle",style="height:250px; width:100%;",outputXml=self.outputXml,internalId=internalId)
             progressGraph.addData(title="Cycle",    select="number")
             progressGraph.addData(title="R_Factor", select="r_factor")
             progressGraph.addData(title="R_Free",  select="r_free")
@@ -373,7 +376,7 @@ class prosmart_refmac_report(Report):
             tag = "RefmacPostCootInProgress"
         else:
             tag = "RefmacInProgress"
-        progressTableDiv = parent.addDiv(style='border:0px solid black; height:250px; width:260px; float:left; margin-top:1px; margin-right:0px;overflow:auto;')
+        progressTableDiv = parent.addDiv(style='height:250px; width:100%; margin-top:1px; overflow:auto;')
         if len(xmlnode.findall("RefmacInProgress"))>0:
             xmlPath = './/'+tag+'/Cycle'
             xmlNodes = xmlnode.findall(xmlPath)
@@ -401,7 +404,7 @@ class prosmart_refmac_report(Report):
 #                selectString = "//RefmacOptimiseWeight/"+tag+"/Cycle[1]"
 #                for i in range(2,nCycles):
 #                    selectString += " | //RefmacOptimiseWeight/"+tag+"/Cycle[%d]" % i
-                progressTable = progressTableDiv.addTable(style="height:250px; width:260px;float:left;", outputXml=self.outputXml, internalId=internalId)
+                progressTable = progressTableDiv.addTable(style="height:250px; width:100%;", outputXml=self.outputXml, internalId=internalId)
                 progressTable.addData(title="Cycle", data=[nodeData['number'][i] for i in nodeSelect])
                 progressTable.addData(title="R-factor", data=[nodeData['Rfactor'][i] for i in nodeSelect])
                 rfree_data = [nodeData['Rfree'][i] for i in nodeSelect]

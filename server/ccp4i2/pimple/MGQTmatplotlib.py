@@ -30,6 +30,7 @@ import glob
 import functools
 import traceback
 import copy
+import html
 from collections.abc import Callable
 
 from matplotlib.backends.qt_compat import QtCore, QtGui, QtWidgets

@@ -14,9 +14,17 @@ export const CCP4i2RVAPIRow: React.FC<CCP4i2ReportElementProps> = (props) => {
       .find("td")
       .map((iCol, col) => {
         if ($(col).find("div[data-renderer]").length > 0) {
+          // For RVAPI graphs, extract the ID from the ccp4_data element
+          const dataElement = $(col).find("ccp4\\:ccp4_data, ccp4_data, ns0\\:ccp4_data").first();
+          const graphKey = dataElement.attr("id");
+
           return (
             <Grid2 size={{ xs: 6 }} key={iCol}>
-              <CCP4i2ApplicationOutputView output={col} />
+              <CCP4i2ApplicationOutputView
+                output={col}
+                jobId={props.job?.id}
+                graphId={graphKey}
+              />
             </Grid2>
           );
         } else {

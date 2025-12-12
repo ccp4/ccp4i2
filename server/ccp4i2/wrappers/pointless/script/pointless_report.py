@@ -80,27 +80,22 @@ class pointless_report(Report):
     haveElements = len(self.xmlnode.findall(".//ElementScores"))>0
     
     nextDiv = parent.addDiv(\
-      style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+      style="width:100%;border-width: 1px; border-color: black; margin:0px; padding:0px;")
     if haveElements:
-      # we need 2 divs, main and right
-      mainDiv = nextDiv.addDiv(style="width:48%;float:left;text-align:center;margin:6px; padding:0px; ")
-      rightDiv = nextDiv.addDiv(style="width:48%;float:left;text-align:center;margin:6px; padding:0px; ")
+      # Use grid layout for two-column display
+      mainDiv, rightDiv = nextDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
     else:
-      # otherwise just one
-      mainDiv = nextDiv.addDiv(style="width:100%;float:left;text-align:center;margin:6px; padding:0px; ")
-
-    #mainDiv.append("Left")
-    #rightDiv.append("Right")
+      # otherwise just one full-width div
+      mainDiv = nextDiv.addDiv(style="width:100%;text-align:center;margin:6px; padding:0px; ")
 
     self.twinWarning(mainDiv)
     self.BestSolutionType(mainDiv)
     self.BestReindex(mainDiv)
-    #    self.CopyMessage(mainDiv)
 
-    if haveElements:    
+    if haveElements:
       self.ElementScoresTable(rightDiv)
 
-    detailDiv = nextDiv.addDiv(style="width:100%;float:left;text-align:center;margin:6px; padding:0px; ")
+    detailDiv = nextDiv.addDiv(style="width:100%;text-align:center;margin:6px; padding:0px; ")
     detailText = ""   # default use default
     if len(self.xmlnode.findall('CopyMessage'))>0:
       detailText = "Details"
@@ -371,22 +366,21 @@ class pointless_report(Report):
     haveElements = len(self.xmlnode.findall(".//ElementScores"))>0
     
     nextDiv = parent.addDiv(\
-      style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+      style="width:100%;border-width: 1px; border-color: black; margin:0px; padding:0px;")
     if haveElements:
-      # we need 2 divs, main and right
-      mainDiv = nextDiv.addDiv(style="width:48%;float:left;text-align:center;margin:6px; padding:0px; ")
-      rightDiv = nextDiv.addDiv(style="width:48%;float:left;text-align:center;margin:6px; padding:0px; ")
+      # Use grid layout for two-column display
+      mainDiv, rightDiv = nextDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
     else:
-      # otherwise just one
-      mainDiv = nextDiv.addDiv(style="width:100%;float:left;text-align:center;margin:6px; padding:0px; ")
+      # otherwise just one full-width div
+      mainDiv = nextDiv.addDiv(style="width:100%;text-align:center;margin:6px; padding:0px; ")
 
     self.BestSolutionType(mainDiv)
     self.BestReindex(mainDiv)
 
-    if haveElements:    
+    if haveElements:
       self.ElementScoresTable(rightDiv)
 
-    detailDiv = nextDiv.addDiv(style="width:100%;float:left;text-align:center;margin:6px; padding:0px; ")
+    detailDiv = nextDiv.addDiv(style="width:100%;text-align:center;margin:6px; padding:0px; ")
     detailText = ""   # default use default
     if len(self.xmlnode.findall('CopyMessage'))>0:
       detailText = "Details"
@@ -1003,8 +997,8 @@ class pointless_report(Report):
                             brief='Cutoff/Twin',
                             initiallyOpen=True)
 
-      leftDiv = fold.addDiv(style="width:47%;float:left;text-align:left;margin:0px; padding:0px; line-height:100%; font-size:100%;")
-      rightDiv = fold.addDiv(style="width:48%;float:left;text-align:left;margin:0px; padding:10px;")
+      # Use grid layout for resolution and twinning graphs
+      leftDiv, rightDiv = fold.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
       self.ResolutionGraphs(leftDiv, idt=id1)
       self.TwinningGraphs(rightDiv, idt=id2)
     

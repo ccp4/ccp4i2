@@ -52,8 +52,14 @@ export const CCP4i2ReportFlotGraphGroup: React.FC<CCP4i2ReportElementProps> = (
     if (xmlGraphs && props.job) {
       const result = xmlGraphs.map((child, iChild) => {
         const tableNode = $(child).find("ccp4_data, ns0\\:ccp4_data")[0];
+        const graphKey = $(child).attr("key");
         const result = (
-          <CCP4i2ApplicationOutputView key={`${iChild}`} output={tableNode} />
+          <CCP4i2ApplicationOutputView
+            key={`${iChild}`}
+            output={tableNode}
+            jobId={props.job?.id}
+            graphId={graphKey}
+          />
         );
         return result;
       });

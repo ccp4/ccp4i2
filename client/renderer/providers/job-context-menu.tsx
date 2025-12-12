@@ -37,6 +37,7 @@ import {
   Edit,
   Download,
   Refresh,
+  FolderCopy,
 } from "@mui/icons-material";
 import { createContext } from "react";
 import { usePopcorn } from "./popcorn-provider";
@@ -511,6 +512,40 @@ export const JobMenu: React.FC = () => {
     [job, api, globalMutate, setMessage, setJobMenuAnchorEl]
   );
 
+  const handleCopyDirectory = useCallback(
+    async (ev: SyntheticEvent) => {
+      if (!job) return;
+      ev.stopPropagation();
+
+      try {
+        // If directory is already available on the job object, use it
+        if (job.directory) {
+          await navigator.clipboard.writeText(job.directory);
+          setMessage(`Copied to clipboard: ${job.directory}`);
+          setJobMenuAnchorEl(null);
+          return;
+        }
+
+        // Otherwise fetch the full job data to get the directory property
+        const response = await fetch(`/api/proxy/jobs/${job.id}/`);
+        const jobData = await response.json();
+
+        if (jobData?.directory) {
+          await navigator.clipboard.writeText(jobData.directory);
+          setMessage(`Copied to clipboard: ${jobData.directory}`);
+        } else {
+          setMessage(`Job directory not available`);
+        }
+      } catch (error) {
+        console.error("Failed to copy directory path:", error);
+        setMessage(`Failed to copy directory path`);
+      }
+
+      setJobMenuAnchorEl(null);
+    },
+    [job, setMessage, setJobMenuAnchorEl]
+  );
+
   return (
     job && (
       <>
@@ -581,6 +616,13 @@ export const JobMenu: React.FC = () => {
             onClick={handleTerminalInJobDirectory}
           >
             <TerminalOutlined sx={{ mr: 1 }} /> Terminal in job directory
+          </MenuItem>
+          <MenuItem
+            key="CopyDirectory"
+            disabled={false}
+            onClick={handleCopyDirectory}
+          >
+            <FolderCopy sx={{ mr: 1 }} /> Copy directory path
           </MenuItem>
         </Menu>
 

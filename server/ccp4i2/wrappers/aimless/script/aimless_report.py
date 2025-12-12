@@ -223,25 +223,22 @@ class aimless_report(Report):
     self.keyText(None, summaryDiv)
     
     mainDiv = parent.addDiv(\
-      style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:10px 0px 10px 0px;")
-    
+      style="width:100%;border-width: 1px; border-color: black; margin:0px; padding:10px 0px 10px 0px;")
 
     if self.numberofdatasets == 1:
-      leftDiv = mainDiv.addDiv(style="width:47%;float:left;text-align:center;margin:0px; padding:0px; line-height:100%; font-size:100%;border:1px solid black;")
-      rightDiv = mainDiv.addDiv(style="width:48%;float:left;text-align:center;margin:0px; padding:10px;border:1px solid black;")
-    
+      # Use grid layout for two-column display
+      leftDiv, rightDiv = mainDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
       self.addAimlessSummary(rightDiv)
-    
-      leftDiv.append('Resolution estimates')      
+      leftDiv.append('Resolution estimates')
       self.resolutionEstimateTable(leftDiv)
       self.otherStatistics(leftDiv)
 
     else:  #  > 1 datasets
-      tableDiv = mainDiv.addDiv(style="width:100%;float:left;text-align:center;margin:0px; padding:0px; line-height:100%; font-size:100%;border:1px solid black;")
+      tableDiv = mainDiv.addDiv(style="width:100%;text-align:center;margin:0px; padding:0px; border:1px solid black;")
       self.addAimlessSummary(tableDiv)
-      leftDiv = mainDiv.addDiv(style="width:47%;float:left;text-align:center;margin:0px; padding:0px; line-height:100%; font-size:100%;border:1px solid black;")
-      rightDiv = mainDiv.addDiv(style="width:48%;float:left;text-align:center;margin:0px; padding:10px;border:1px solid black;")
-      leftDiv.append('Resolution estimates')      
+      # Use grid layout for resolution/other stats
+      leftDiv, rightDiv = mainDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
+      leftDiv.append('Resolution estimates')
       self.resolutionEstimateTable(leftDiv)
       self.otherStatistics(rightDiv)
 
@@ -551,44 +548,47 @@ class aimless_report(Report):
                               style='font-size:150%; color: orange;')
 
     # Put the key graphs that report on data quality and image-to-image quality at the top
-##      byResolutionDiv = summaryGraphsDiv.addDiv(style="width:370px;float:left;font-weight:bold; font-size:130%; text-align:center;margin:0px; padding:0px; ")
-    byResolutionDiv = summaryGraphsDiv.addDiv(style="width:48%;float:left;text-align:center;margin:6px; padding:0px; ")
+    if not merged:
+      # Use grid layout for resolution and batch graphs side by side
+      byResolutionDiv, byBatchDiv = summaryGraphsDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
+    else:
+      # For merged data, just resolution graph
+      byResolutionDiv = summaryGraphsDiv.addDiv(style="width:100%;text-align:center;margin:6px; padding:0px; ")
+
     byResolutionDiv.addText(text='Analysis as a function of resolution',style='font-size:130%;font-weight:bold;')
     byResolutionDiv.append('<br/>')
-    
+
     if merged:
       self.ByResolutionGraphsMerged(byResolutionDiv)
     else:
-      resmessage = "Plot of CC(1/2) vs. resolution may indicate a suitable resolution cutoff, and indicate presence of an anomalous signal"  
+      resmessage = "Plot of CC(1/2) vs. resolution may indicate a suitable resolution cutoff, and indicate presence of an anomalous signal"
       byResolutionDiv.addText(text=resmessage,style='font-size:100%;font-style:italic;')
       byResolutionDiv.append('<br/>')
-      resmessage = "(but check anisotropy)"  
+      resmessage = "(but check anisotropy)"
       byResolutionDiv.addText(text=resmessage,style='font-size:100%;font-style:italic;')
       byResolutionDiv.append('<br/>')
       self.ByResolutionGraphs(byResolutionDiv)
-    
+
     if not merged:
-      byBatchDiv = summaryGraphsDiv.addDiv(style="width:48%;float:left;text-align:center;margin:6px; padding:0px; ")
       byBatchDiv.addText(text='Analysis as a function of batch',style='font-size:130%;font-weight:bold;')
       byBatchDiv.append('<br/>')
-      batchmessage = "Analyses against Batch may show radiation damage, and which parts of the data should be removed"  
+      batchmessage = "Analyses against Batch may show radiation damage, and which parts of the data should be removed"
       byBatchDiv.addText(text=batchmessage,style='font-size:100%;font-style:italic;')
       byBatchDiv.append('<br/>')
-      batchmessage = " (but consider completeness)"  
+      batchmessage = " (but consider completeness)"
       byBatchDiv.addText(text=batchmessage,style='font-size:100%;font-style:italic;')
       byBatchDiv.append('<br/>')
-      # print("Important graphs")
       self.ByBatchGraphs(byBatchDiv)
 
     if self.referencedata is not None:
       if not merged:
         # We may have a graph of statistics against reference vs batch
-        referenceDiv = summaryGraphsDiv.addDiv(style="width:98%;float:left;text-align:center;margin:6px; padding:0px; ")
+        referenceDiv = summaryGraphsDiv.addDiv(style="width:100%;text-align:center;margin:6px; padding:0px; ")
         referenceDiv.addText(text="Analysis of agreement with reference by batch",
                              style="font-weight:bold; font-size:125%;")
         self.referenceGraph(referenceDiv)
       else:
-        referenceDiv = summaryGraphsDiv.addDiv(style="width:48%;float:left;text-align:center;margin:6px; padding:0px; ")
+        referenceDiv = summaryGraphsDiv.addDiv(style="width:100%;text-align:center;margin:6px; padding:0px; ")
 
       # and reference vs resolution
       referenceDiv.addText(text="Analysis of agreement with reference by resolution",
@@ -600,15 +600,12 @@ class aimless_report(Report):
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   def moreGraphs(self, parent=None):
     ''' all graphs and scatterplots etc '''
-    othergraphDiv = parent.addDiv(style="width:48%;float:left;text-align:center;margin:0px; padding:0px; ")
+    # Use grid layout for graphs and scatter plots side by side
+    othergraphDiv, scatterplotDiv = parent.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
     othergraphDiv.addText(text='Other merging statistics graphs',style='font-weight:bold; font-size:130%;')
     othergraphDiv.append('<br/>')
     self.Graphs(othergraphDiv, select="All")
-    #self.Graphs(othergraphDiv, select="Batch")
-    #self.Graphs(othergraphDiv, select="notBatch")
-    
-    scatterplotDiv = parent.addDiv(style="width:48%;float:left;font-weight:bold; font-size:130%;\
-    text-align:center;margin:0px; padding:0px;")
+
     scatterplotDiv.append('Scatter plots etc')
     scatterplotDiv.append('<br/>')
     self.aimlessScatterPlots(scatterplotDiv)
@@ -619,29 +616,26 @@ class aimless_report(Report):
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   def addInterDatasetGraphs(self,parent=None):
-    tableDiv = parent.addDiv(style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+    tableDiv = parent.addDiv(style="border-width: 1px; border-color: black; margin:0px; padding:0px;")
 
-    leftDiv = tableDiv.addDiv(style="width:50%;float:left;font-weight:bold;text-align:center;margin:0px; padding:0px; ")
-    rightDiv = tableDiv.addDiv(style="width:50%;float:left;font-weight:bold; text-align:center;margin:0px; padding:0px; ")
-
-    # Intensity correlations
+    # Intensity correlations in grid layout
+    leftDiv, rightDiv = tableDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
     self.interdatasetIntensityTable(leftDiv)
     self.interdatasetIntensityGraph(rightDiv)
 
-    leftDiv = tableDiv.addDiv(style="width:50%;float:left;font-weight:bold;text-align:center;margin:0px; padding:0px; ")
-    rightDiv = tableDiv.addDiv(style="width:50%;float:left;font-weight:bold; text-align:center;margin:0px; padding:0px; ")
-    self.interdatasetAnomalousTable(leftDiv)
+    # Anomalous/Dispersion section in grid layout
+    leftDiv2, rightDiv2 = tableDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
+    self.interdatasetAnomalousTable(leftDiv2)
 
     if self.numberofdatasets > 2:
-      self.interdatasetDispersionTable(rightDiv)
-      #  dispersive difference on right if present
-      self.interdatasetAnomalousGraph(leftDiv)
-      self.interdatasetDispersionGraph(rightDiv)
-
+      self.interdatasetDispersionTable(rightDiv2)
+      # Anomalous and dispersive graphs in another row
+      leftDiv3, rightDiv3 = tableDiv.addTwoColumnLayout(left_span=6, right_span=6, spacing=2)
+      self.interdatasetAnomalousGraph(leftDiv3)
+      self.interdatasetDispersionGraph(rightDiv3)
     else:
-      #  if no dispersive differences, put anomalous graph on right
-      rightDiv = tableDiv.addDiv(style="width:50%;float:left;font-weight:bold; text-align:center;margin:0px; padding:0px; ")
-      self.interdatasetAnomalousGraph(rightDiv)
+      # if no dispersive differences, put anomalous graph on right
+      self.interdatasetAnomalousGraph(rightDiv2)
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   def aimlessScatterPlots(self, parent=None):
@@ -1774,10 +1768,10 @@ class aimless_report(Report):
       scales.append(dl[hdr.split().index('0k')])
       bfacs.append(dl[hdr.split().index('Bfactor')])
 
-    kbDiv = parent.addDiv(style="width:100%;float:left;text-align:center;margin:0px; padding:0px; line-height:100%; font-size:100%;border:1px solid black;")
+    kbDiv = parent.addDiv(style="width:100%;text-align:center;margin:0px; padding:0px; border:1px solid black;")
 
-    leftDiv = kbDiv.addDiv(style="width:55%;float:left;text-align:center;margin:0px; padding:0px; line-height:100%; font-size:100%;")
-    rightDiv = kbDiv.addDiv(style="width:42%;float:right;text-align:center;margin:0px; padding:10px;")
+    # Use grid layout for scale/bfactor display
+    leftDiv, rightDiv = kbDiv.addTwoColumnLayout(left_span=7, right_span=5, spacing=2)
 
     leftDiv.append("Relative scales and B-factors between merged datasets")
     table = rightDiv.addTable(transpose=True,
