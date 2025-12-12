@@ -2030,6 +2030,153 @@ class CPdbDataFile(CPdbDataFileStub):
             traceback.print_exc()
             return 1
 
+    def convertFormat(self, toFormat, fileName):
+        """
+        Convert PDB/mmCIF file to specified format and write to fileName.
+
+        Legacy compatibility method for wrappers that call convertFormat.
+        Uses gemmi for format conversion.
+
+        Args:
+            toFormat: Target format ('pdb', 'cif', 'mmcif', etc.)
+            fileName: Output file path (may be string, CString, or CFilePath)
+
+        Raises:
+            Exception: If file doesn't exist, can't be loaded, or can't be written
+        """
+        from core.base_object.error_reporting import CException
+        import os
+
+        # Convert fileName to string if it's a CData object (CString, CFilePath, etc.)
+        output_path = str(fileName)
+
+        # Check if source file exists - try getFullPath() first, then str(self)
+        source_path = self.getFullPath()
+        if not source_path:
+            source_path = str(self)
+
+        if not source_path or not os.path.exists(source_path):
+            raise CException(self.__class__, 410, f"Source file does not exist: {source_path}")
+
+        # Load the file content if not already loaded
+        self.loadFile()
+
+        # Check if gemmi structure was loaded
+        if not hasattr(self.fileContent, '_gemmi_structure') or self.fileContent._gemmi_structure is None:
+            raise CException(self.__class__, 411, f"Failed to load structure from {source_path}")
+
+        # Remove existing output file if present
+        if os.path.exists(output_path):
+            try:
+                os.remove(output_path)
+            except Exception as e:
+                raise CException(self.__class__, 412, f"Cannot remove existing file {output_path}: {str(e)}")
+
+        # Write in requested format using gemmi
+        try:
+            import gemmi
+
+            if toFormat.lower() in ['cif', 'mmcif']:
+                # Write as mmCIF
+                self.fileContent._gemmi_structure.make_mmcif_document().write_file(output_path)
+            else:
+                # Write as PDB (default)
+                pdb_str = self.fileContent._gemmi_structure.make_pdb_string()
+                with open(output_path, 'w') as f:
+                    f.write(pdb_str)
+
+        except Exception as e:
+            raise CException(self.__class__, 413, f"Failed to write {output_path}: {str(e)}")
+
+        if not os.path.exists(output_path):
+            raise CException(self.__class__, 413, f"Output file was not created: {output_path}")
+
+    def replaceMSE(self, fileName):
+        """
+        Replace MSE (selenomethionine) residues with MET (methionine) and write to fileName.
+
+        Legacy compatibility method for wrappers that call replaceMSE.
+        Uses gemmi to load, modify, and write the structure.
+        Preserves the input file format (PDB or mmCIF).
+
+        This converts:
+        - MSE residue name -> MET
+        - SE atom name -> SD (sulfur delta)
+        - HETATM records -> ATOM records
+
+        Args:
+            fileName: Output file path (may be string, CString, or CFilePath)
+
+        Raises:
+            Exception: If file doesn't exist, can't be loaded, or can't be written
+        """
+        from core.base_object.error_reporting import CException
+        import os
+
+        # Convert fileName to string if it's a CData object (CString, CFilePath, etc.)
+        output_path = str(fileName)
+
+        # Check if source file exists - try getFullPath() first, then str(self)
+        source_path = self.getFullPath()
+        if not source_path:
+            source_path = str(self)
+
+        if not source_path or not os.path.exists(source_path):
+            raise CException(self.__class__, 410, f"Source file does not exist: {source_path}")
+
+        # Detect input format and load the structure using gemmi
+        try:
+            import gemmi
+
+            # Try to detect if input is mmCIF or PDB
+            is_mmcif = False
+            try:
+                gemmi.cif.read(source_path)
+                is_mmcif = True
+            except (ValueError, RuntimeError):
+                # Not mmCIF, assume PDB
+                is_mmcif = False
+
+            # Load the structure
+            structure = gemmi.read_structure(source_path)
+        except Exception as e:
+            raise CException(self.__class__, 411, f"Failed to load structure from {source_path}: {str(e)}")
+
+        # Replace MSE with MET
+        for model in structure:
+            for chain in model:
+                for residue in chain:
+                    if residue.name == 'MSE':
+                        residue.name = 'MET'
+                        # Rename SE atom to SD
+                        for atom in residue:
+                            if atom.name == 'SE' or atom.name.strip() == 'SE':
+                                atom.name = 'SD'
+                                atom.element = gemmi.Element('S')
+
+        # Remove existing output file if present
+        if os.path.exists(output_path):
+            try:
+                os.remove(output_path)
+            except Exception as e:
+                raise CException(self.__class__, 412, f"Cannot remove existing file {output_path}: {str(e)}")
+
+        # Write the modified structure preserving the input format
+        try:
+            if is_mmcif:
+                # Write as mmCIF
+                structure.make_mmcif_document().write_file(output_path)
+            else:
+                # Write as PDB
+                pdb_str = structure.make_pdb_string()
+                with open(output_path, 'w') as f:
+                    f.write(pdb_str)
+        except Exception as e:
+            raise CException(self.__class__, 413, f"Failed to write {output_path}: {str(e)}")
+
+        if not os.path.exists(output_path):
+            raise CException(self.__class__, 413, f"Output file was not created: {output_path}")
+
 
 class CPdbDataFileList(CPdbDataFileListStub):
     """
@@ -2192,13 +2339,119 @@ class CResidueRangeList(CResidueRangeListStub):
 class CSeqAlignDataFile(CSeqAlignDataFileStub):
     """
     A (multiple) sequence alignment file
-    
+
     Extends CSeqAlignDataFileStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
-    # Add your methods here
-    pass
+    def identifyFile(self):
+        """
+        Identify the format of an alignment file using BioPython.
+
+        Returns:
+            tuple: (format_name, id_list) where format_name is the detected format
+                   and id_list is list of sequence IDs in the alignment
+        """
+        from core.base_object.error_reporting import CErrorReport
+        import os
+
+        err = CErrorReport()
+        idList = []
+
+        fileName = self.__str__()
+        if not os.path.exists(fileName):
+            err.append(self.__class__, 204, fileName, stack=False)
+            return err, idList
+
+        # Try common alignment formats with BioPython
+        formats_to_try = ['clustal', 'fasta', 'phylip', 'stockholm']
+
+        for fmt in formats_to_try:
+            try:
+                import Bio.AlignIO
+                alignments = Bio.AlignIO.read(fileName, fmt)
+                # Success - store format and extract IDs
+                object.__setattr__(self, 'format', fmt)
+                for record in alignments:
+                    try:
+                        idList.append(record.id)
+                    except:
+                        err.append(self.__class__, 205, fileName, stack=False)
+                return err, idList
+            except:
+                continue
+
+        # If no format worked, mark as unknown
+        object.__setattr__(self, 'format', 'unknown')
+        err.append(self.__class__, 204, fileName, stack=False)
+        return err, idList
+
+    def convertFormat(self, toFormat, fileName, reorder=None):
+        """
+        Convert alignment file to specified format and write to fileName.
+
+        Legacy compatibility method for wrappers that call convertFormat.
+        Uses BioPython for alignment format conversion.
+
+        Args:
+            toFormat: Target format ('clustal', 'fasta', 'phylip', 'stockholm', etc.)
+            fileName: Output file path
+            reorder: Optional reordering specification:
+                    - None: Keep original order
+                    - 'reverse': Reverse sequence order
+                    - list: Reorder to specified indices
+
+        Returns:
+            CErrorReport with any errors encountered
+        """
+        from core.base_object.error_reporting import CErrorReport
+        import os
+
+        # Identify source format if not already done
+        if not hasattr(self, 'format') or self.format is None or self.format == 'unknown':
+            self.identifyFile()
+
+        if not hasattr(self, 'format') or self.format == 'unknown':
+            return CErrorReport(self.__class__, 250, self.__str__() + ' to ' + str(fileName), stack=False)
+
+        # Try reading the input file
+        try:
+            import Bio.AlignIO
+            alignments = Bio.AlignIO.read(self.__str__(), self.format)
+        except Exception as e:
+            return CErrorReport(self.__class__, 202, f"{self.__str__()}: {str(e)}", stack=False)
+
+        # Apply reordering if specified
+        if reorder == 'reverse':
+            from Bio.Align import MultipleSeqAlignment
+            aliout = MultipleSeqAlignment([])
+            for ii in range(len(alignments) - 1, -1, -1):
+                aliout.append(alignments[ii])
+            alignments = aliout
+        elif isinstance(reorder, list):
+            # Custom reordering by index list
+            from Bio.Align import MultipleSeqAlignment
+            aliout = MultipleSeqAlignment([])
+            for idx in reorder:
+                if 0 <= idx < len(alignments):
+                    aliout.append(alignments[idx])
+            alignments = aliout
+
+        # Remove existing output file if present
+        try:
+            if os.path.exists(fileName):
+                os.remove(fileName)
+        except:
+            return CErrorReport(self.__class__, 251, fileName)
+
+        # Write output in requested format
+        try:
+            with open(fileName, "w") as out:
+                Bio.AlignIO.write(alignments, out, toFormat)
+        except Exception as e:
+            return CErrorReport(self.__class__, 252, f"{fileName}: {str(e)}", stack=False)
+
+        return CErrorReport()
 
 
 class CSeqDataFile(CSeqDataFileStub):

@@ -53,33 +53,19 @@ class molrep_mr(CPluginScript):
 
         
       if self.container.guiParameters.PERFORM != 'srf':
-        if self.container.inputData.XYZIN.isSelectionSet():
-          self.selectedXYZIN = os.path.join(self.workDirectory,'XYZIN_selected_atoms.pdb')
-          rv = self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.selectedXYZIN)
-        elif self.container.inputData.XYZIN.getExt() != '.pdb':
-          self.selectedXYZIN = os.path.join(self.workDirectory,'XYZIN_pdb.pdb')
-          self.container.inputData.XYZIN.convertFormat('pdb',self.selectedXYZIN )
-        else:
-          self.selectedXYZIN = str( self.container.inputData.XYZIN)
+        # Check if XYZIN is actually set before processing
+        if self.container.inputData.XYZIN.isSet():
+          if self.container.inputData.XYZIN.isSelectionSet():
+            self.selectedXYZIN = os.path.join(self.workDirectory,'XYZIN_selected_atoms.pdb')
+            rv = self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.selectedXYZIN)
+          elif self.container.inputData.XYZIN.getExt() != '.pdb':
+            self.selectedXYZIN = os.path.join(self.workDirectory,'XYZIN_pdb.pdb')
+            self.container.inputData.XYZIN.convertFormat('pdb',self.selectedXYZIN )
+          else:
+            self.selectedXYZIN = str( self.container.inputData.XYZIN)
           
           
       return CPluginScript.SUCCEEDED
-            
-    @staticmethod
-    def replace_MSE(model, pdbin):
-      with open(model) as istream:
-        content = istream.read()
-
-      inp = '(:?HETATM|ATOM  ).{11}MSE .*'
-      out = lambda x: x.group(0)\
-        .replace('MSE', 'MET')\
-        .replace('SE', ' S')\
-        .replace('S   MET', 'SD  MET')\
-        .replace('HETATM', 'ATOM  ')
-      content = re.sub(inp, out, content)
-
-      with open(pdbin, 'w') as ostream:
-        ostream.write(content)
 
     def makeCommandAndScript(self):
 
@@ -95,9 +81,9 @@ class molrep_mr(CPluginScript):
       #print "self.path_wrk", self.path_wrk
       #print "self.path_scr", self.path_scr
 
-      if str( gui.PERFORM ) != 'srf' :
+      if str( gui.PERFORM ) != 'srf' and inp.XYZIN.isSet():
          pdbin = os.path.join(self.path_wrk, 'molrep_input.pdb')
-         self.replace_MSE(self.selectedXYZIN, pdbin)
+         inp.XYZIN.replaceMSE(pdbin)
          self.appendCommandLine( [ '-m', pdbin ] )
 
 
