@@ -2055,9 +2055,14 @@ class CPluginScript(CData):
 
         return status
 
-    def postProcessCheck(self) -> int:
+    def postProcessCheck(self, processId=None):
         """
         Check if the program process completed successfully.
+
+        Args:
+            processId: (Legacy) Optional process ID for backward compatibility with old plugins.
+                      If provided, returns tuple (status, exitStatus, exitCode) for compatibility.
+                      If not provided, returns just status.
 
         Checks:
         1. Process exit code (for both sync and async processes)
@@ -2065,23 +2070,29 @@ class CPluginScript(CData):
         3. Log file contents for errors
 
         Returns:
-            SUCCEEDED or FAILED
+            int: SUCCEEDED or FAILED (new signature)
+            tuple: (status, exitStatus, exitCode) if processId provided (legacy signature)
         """
         import os
         import logging
         logger = logging.getLogger(__name__)
 
+        exit_code = None
+        exit_status = None
+        status = self.SUCCEEDED
+
         # Check exit code from synchronous execution (subprocess.run)
         if hasattr(self, '_exitCode') and self._exitCode is not None:
             logger.info(f"[DEBUG postProcessCheck] Checking sync exit code: {self._exitCode}")
-            if self._exitCode != 0:
+            exit_code = self._exitCode
+            exit_status = self._exitStatus if hasattr(self, '_exitStatus') else (0 if exit_code == 0 else 1)
+            if exit_code != 0:
                 # Process failed - error already added by _startProcessSync
-                # Just return FAILED status
-                logger.info(f"[DEBUG postProcessCheck] Returning FAILED due to non-zero exit code: {self._exitCode}")
-                return self.FAILED
+                logger.info(f"[DEBUG postProcessCheck] Returning FAILED due to non-zero exit code: {exit_code}")
+                status = self.FAILED
 
         # For async processes, check the exit code from the process manager
-        if hasattr(self, '_runningProcessId') and self._runningProcessId is not None:
+        elif hasattr(self, '_runningProcessId') and self._runningProcessId is not None:
             from core.async_process_manager import ASYNC_PROCESSMANAGER
             pm = ASYNC_PROCESSMANAGER()
 
@@ -2098,9 +2109,9 @@ class CPluginScript(CData):
                     name='postProcessCheck',
                     severity=4  # ERROR
                 )
-                return self.FAILED
+                status = self.FAILED
 
-            if exit_status is not None and exit_status != 0:
+            elif exit_status is not None and exit_status != 0:
                 # Process marked as failed by process manager
                 self.errorReport.append(
                     klass=self.__class__.__name__,
@@ -2110,11 +2121,19 @@ class CPluginScript(CData):
                     name='postProcessCheck',
                     severity=4  # ERROR
                 )
-                return self.FAILED
+                status = self.FAILED
 
-        # Check for expected output files (subclasses can override this)
-        # For now, just return success if no exit code issues
-        return self.SUCCEEDED
+        # For backward compatibility with legacy plugins that expect (status, exitStatus, exitCode) tuple
+        if processId is not None:
+            # Legacy signature - return tuple
+            if exit_code is None:
+                exit_code = 0
+            if exit_status is None:
+                exit_status = 0 if status == self.SUCCEEDED else 1
+            return status, exit_status, exit_code
+
+        # New signature - return just status
+        return status
 
     def processOutputFiles(self) -> CErrorReport:
         """
