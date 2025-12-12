@@ -15,13 +15,9 @@ The script will:
 
 Import patterns handled:
     from PySide2 import QtCore          -> from ccp4i2.baselayer import QtCore
-    from PySide2 import QtGui           -> from ccp4i2.baselayer import QtGui
     from PySide2 import QtWidgets       -> from ccp4i2.baselayer import QtWidgets
-    from PySide2 import QtSql           -> from ccp4i2.baselayer import QtSql
     from PySide2.QtCore import X, Y     -> from ccp4i2.baselayer.QtCore import X, Y
-    from PySide2.QtGui import X, Y      -> from ccp4i2.baselayer.QtGui import X, Y
     from PySide2.QtWidgets import X, Y  -> from ccp4i2.baselayer.QtWidgets import X, Y
-    from PySide2.QtSql import X, Y      -> from ccp4i2.baselayer.QtSql import X, Y
 """
 
 import os
@@ -35,18 +31,14 @@ from typing import List, Tuple, Set
 
 # Import replacement patterns
 IMPORT_PATTERNS = [
-    # Module imports: from PySide2 import QtCore, QtGui, QtWidgets
+    # Module imports: from PySide2 import QtCore, QtWidgets
     (r'from\s+PySide2\s+import\s+', 'from ccp4i2.baselayer import '),
     # Specific imports: from PySide2.QtCore import Signal, Slot
     (r'from\s+PySide2\.QtCore\s+import\s+', 'from ccp4i2.baselayer.QtCore import '),
-    (r'from\s+PySide2\.QtGui\s+import\s+', 'from ccp4i2.baselayer.QtGui import '),
     (r'from\s+PySide2\.QtWidgets\s+import\s+', 'from ccp4i2.baselayer.QtWidgets import '),
-    (r'from\s+PySide2\.QtSql\s+import\s+', 'from ccp4i2.baselayer.QtSql import '),
     # Direct module reference (less common)
     (r'import\s+PySide2\.QtCore\b', 'from ccp4i2.baselayer import QtCore'),
-    (r'import\s+PySide2\.QtGui\b', 'from ccp4i2.baselayer import QtGui'),
     (r'import\s+PySide2\.QtWidgets\b', 'from ccp4i2.baselayer import QtWidgets'),
-    (r'import\s+PySide2\.QtSql\b', 'from ccp4i2.baselayer import QtSql'),
     (r'import\s+PySide2\b', 'import ccp4i2.baselayer'),
 ]
 
@@ -74,9 +66,7 @@ SKIP_DIRECTORIES = {
 SKIP_FILES = {
     'baselayer/__init__.py',
     'baselayer/QtCore.py',
-    'baselayer/QtGui.py',
     'baselayer/QtWidgets.py',
-    'baselayer/QtSql.py',
 }
 
 
