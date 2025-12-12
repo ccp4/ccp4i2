@@ -157,25 +157,39 @@ async def run_job_async(job_uuid: uuid.UUID, project_uuid: Optional[uuid.UUID] =
         # so that exit code errors are captured in the error report
         logger.info(f"Calling postProcessCheck for job {job.number}")
 
-        # Get processId for legacy plugins that override postProcessCheck(processId)
-        # The base implementation accepts optional processId for backward compatibility
-        process_id = getattr(plugin, '_runningProcessId', None)
+        status = plugin.SUCCEEDED
+        try:
+            # Get processId for legacy plugins that override postProcessCheck(processId)
+            # The base implementation accepts optional processId for backward compatibility
+            process_id = getattr(plugin, '_runningProcessId', None)
 
-        # Call with processId to support both old and new signatures
-        result_val = await sync_to_async(plugin.postProcessCheck)(process_id)
+            # Call with processId to support both old and new signatures
+            result_val = await sync_to_async(plugin.postProcessCheck)(process_id)
 
-        # Handle both return types: int (new) or tuple (legacy)
-        if isinstance(result_val, tuple):
-            # Legacy signature returns (status, exitStatus, exitCode)
-            status = result_val[0]
-        else:
-            # New signature returns just status
-            status = result_val
+            # Handle both return types: int (new) or tuple (legacy)
+            if isinstance(result_val, tuple):
+                # Legacy signature returns (status, exitStatus, exitCode)
+                status = result_val[0]
+            else:
+                # New signature returns just status
+                status = result_val
 
-        logger.info(f"postProcessCheck returned status: {status} (SUCCEEDED={plugin.SUCCEEDED}, FAILED={plugin.FAILED})")
+            logger.info(f"postProcessCheck returned status: {status} (SUCCEEDED={plugin.SUCCEEDED}, FAILED={plugin.FAILED})")
+
+        except Exception as post_exc:
+            # If postProcessCheck itself fails, add to error report
+            logger.exception(f"postProcessCheck failed for job {job.number}: {post_exc}")
+            plugin.errorReport.append(
+                klass=plugin.__class__.__name__,
+                code=994,
+                details=f"postProcessCheck failed: {str(post_exc)}",
+                name="postProcessCheck",
+                severity=4  # ERROR
+            )
+            status = plugin.FAILED
 
         # Write diagnostic.xml with error report (always, for debugging)
-        # This includes any errors found by postProcessCheck
+        # This includes any errors found by postProcessCheck or errors during postProcessCheck itself
         await write_diagnostic_xml(plugin, job.directory)
 
         # Check if postProcessCheck found errors
