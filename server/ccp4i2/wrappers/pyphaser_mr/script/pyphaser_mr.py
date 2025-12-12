@@ -47,7 +47,6 @@ class pyphaser_mr(CPluginScript):
        self.initialResults = phaser.runMR_DAT(inp)
        self.xmlfile = None
        self.outputInitialXml()
-       CCP4Modules.QTAPPLICATION().sendPostedEvents()
 
        if self.container.controlParameters.MODE == "MR_AUTO":
           inp = phaser.InputMR_AUTO()
@@ -62,21 +61,6 @@ class pyphaser_mr(CPluginScript):
        inp.setCELL6(self.initialResults.getUnitCell())
        inp.setREFL(self.initialResults.getMiller(),self.initialResults.getFobs(),self.initialResults.getSigFobs())
 
-       # contents of target asu
-       '''
-    setCOMP_BY(str ["AVERAGE" | "SOLVENT" | "ASU" ])
-    setCOMP_PERC(float <SOLVENT>)
-    addCOMP_PROT_MW_NUM(float <MW>,float <NUM>)
-    addCOMP_PROT_STR_NUM(str <SEQ>,float <NUM>)
-    addCOMP_PROT_NRES_NUM(float <NRES>,float <NUM>)
-    addCOMP_PROT_SEQ_NUM(str <FILE>,float <NUM>)
-    addCOMP_NUCL_MW_NUM(float <MW>,float <NUM>)
-    addCOMP_NUCL_STR_NUM(str <SEQ>,float <NUM>)
-    addCOMP_NUCL_NRES_NUM(float <NRES>,float <NUM>)
-    addCOMP_NUCL_SEQ_NUM(str <FILE>,float <NUM>)
-    addCOMP_ATOM(str <TYPE>,float <NUM>)
-    -->
-'''
        controlParameters = self.container.controlParameters
        if controlParameters.COMP_BY == 'DEFAULT':
            #Default is 50% solvent ?
