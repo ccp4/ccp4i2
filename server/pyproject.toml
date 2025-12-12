@@ -7,7 +7,14 @@ name = "ccp4i2"
 dynamic = ["version"]
 description = "CCP4i2 - Graphical interface and scripting environment for CCP4"
 readme = "README.md"
-keywords = ["Crystallography", "CCP4", "Structural Biology", "MX", "Macromolecular", "Interface"]
+keywords = [
+    "Crystallography",
+    "CCP4",
+    "Structural Biology",
+    "MX",
+    "Macromolecular",
+    "Interface",
+]
 authors = [{ name = "CCP4", email = "ccp4@ccp4.ac.uk" }]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -19,67 +26,66 @@ classifiers = [
 ]
 requires-python = ">=3.9"
 dependencies = [
-    "autopep8>=2.0.0",             # Code formatting and linting
-    "asgiref>=3.7.0",              # async database operations
-    "biopython>=1.80",             # sequence file parsing and biological data
-    "chardet>=5.0.0",              # Character encoding detection
-    "dials",
-    "django-cors-headers>=4.0.0",
-    "django-filter>=23.5",
-    "django>=5.2",                 # database and web framework
-    "djangorestframework>=3.14.0", # API
-    "dxtbx",
-    "gemmi>=0.6.0",                # crystallography
-    "lxml>=4.9.0",                 # XML
-    "matplotlib",
-    "mrcfile>=1.4.0",              # MRC/CCP4 electron density map files
-    "mypy>=1.0.0",                 # Type checking
-    "networkx>=3.0",               # network/graph analysis
-    "numpy<2,>=1.24.0",            # IMPORTANT: NumPy must be < 2.0 for CCP4 compatibility
-    "onedep_api",
-    "pandas>=2.0.0",               # data analysis
-    "paramiko",
-    "matplotlib>=3.10",            # plotting
-    "psutil>=5.9.0",               # system and process utilities
-    "PySide2",
-    "pytest-asyncio>=0.21.0",      # testing
-    "pytest-django>=4.5.0",        # testing
-    "pytest-xdist>=3.3.0",         # parallel test execution
-    "pytest>=7.4.0",               # testing
-    "python-dateutil",
-    "python-docx",
-    "pytz>=2023.3",
-    "PyYAML>=6.0",                 # YAML
-    "rdkit>=2023.3.1",             # chemistry
-    "requests>=2.31.0",            # HTTP requests
-    "scipy>=1.16.0",
-    "shiboken2",
-    "svgwrite>=1.4.0",             # SVG
-    "uvicorn>=0.20.0",
-    "whitenoise>=6.5.0",
-    "xia2",
+    "autopep8",
+    "django-cors-headers",
+    "django-filter",
+    "djangorestframework",
+    "mypy",
+    "pytest-asyncio",
+    "pytest-django",
+    "pytest-xdist",
+    "uvicorn",
+    "whitenoise",
+    "requests-cache",
     "xmlschema",
+    "lxml_html_clean",     # lxml.html.clean moved to separate package
 ]
 
-# Non-PyPI dependencies in CCP4 site-packages:
+# Dependencies in CCP4 site-packages:
 # - acedrg
 # - adding_stats_to_mmcif
 # - ample
+# - asgiref
+# - biopython
 # - ccp4mg
 # - ccp4srs
+# - chardet
 # - chem_data
 # - clipper
+# - dials
+# - django
+# - dxtbx
+# - gemmi
 # - iotbx
+# - iris_validation
+# - lxml
+# - matplotlib
 # - mmtbx
 # - mrbump
+# - mrcfile
 # - mrparse
+# - networkx
+# - onedep_api
+# - pandas
+# - paramiko
 # - phaser
-# - iris_validation
 # - phaser_ext
+# - psutil
 # - pyrvapi
+# - PySide2
+# - pytest
+# - python-dateutil
+# - python-docx
+# - pytz
+# - rdkit
+# - requests
+# - scipy
+# - shiboken2
 # - simbad
+# - svgwrite
+# - xia2
 
-# Missing dependencies included by modifying sys.path:
+# Dependencies outside site-packages included by modifying sys.path:
 # - pycofe
 
 [project.urls]
