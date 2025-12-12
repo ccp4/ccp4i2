@@ -3,7 +3,6 @@ from .QtCore import (
     Slot,
     QObject,
     Property,
-    QEventLoop,
     QCoreApplication,
     QApplication,
 )
@@ -15,7 +14,6 @@ __all__ = [
     "Slot",
     "QObject",
     "Property",
-    "QEventLoop",
     "QCoreApplication",
     "QApplication",
     "QtCore",

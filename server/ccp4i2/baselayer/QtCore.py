@@ -122,7 +122,7 @@ def Property(type, *args, **kwargs):
 
 
 # Qt Event Loop - bridges to our modern event system
-class QEventLoop:
+class _QEventLoop:
     """
     Qt-compatible event loop that bridges to core.base_object.event_system.EventLoop.
 
@@ -266,7 +266,7 @@ class QCoreApplication:
     def exec_(self):
         """Start the application event loop (Qt naming)."""
         if self._event_loop is None:
-            self._event_loop = QEventLoop()
+            self._event_loop = _QEventLoop()
         return self._event_loop.exec_()
 
     def exit(self, returnCode=0):
@@ -279,7 +279,7 @@ class QCoreApplication:
         self.exit(0)
 
     @staticmethod
-    def processEvents(flags=QEventLoop.AllEvents):
+    def processEvents(flags=_QEventLoop.AllEvents):
         """Process pending events (static Qt API)."""
         # This is a class method in Qt that processes events for the app
         loop = asyncio.get_event_loop()
