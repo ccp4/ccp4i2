@@ -1,10 +1,18 @@
-import functools
-import glob
-import os
-import sys
+# Not an i2 script. Do not edit.
 
-from ccp4i2.baselayer import QtCore, QtWidgets
-from ccp4i2.core.mgimports import PdbView
+from __future__ import print_function
+
+import sys
+import os
+import glob
+import tempfile
+import functools
+
+from PySide2 import QtCore, QtGui, QtWidgets
+
+import ccp4mg
+import mmdb2
+import PdbView
 
 #workDirectory = "XXXXX_WORK_DIR_XXXXX"
 
