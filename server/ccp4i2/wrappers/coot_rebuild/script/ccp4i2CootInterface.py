@@ -73,10 +73,6 @@ class ccp4i2CootInterface():
         add_simple_coot_menu_menuitem(fileMenu, "Save mol to CCP4i2...", lambda func : self.selectAndSave() )
         add_simple_coot_menu_menuitem(fileMenu, "Save to CCP4i2", lambda func : self.saveToDatabase(0) )
 
-    # def launchDjangoWidget(self):
-    #     from ccp4i2.wrappers.SyncToDjango.script import testTree
-    #     self.djangoWidget = testTree.DjangoInteractionWidget()
-
     def populateMenus(self, menuitem):
         import gtk
         self.files = []
