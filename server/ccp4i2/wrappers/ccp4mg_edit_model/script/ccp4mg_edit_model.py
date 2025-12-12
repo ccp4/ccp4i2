@@ -144,13 +144,7 @@ class ccp4mg_edit_model(CPluginScript):
 
         self.appendCommandLine(clArgs)
 
-        # Use Qt class to watch the drop directory
-        self.fileSystemWatcher = QtCore.QFileSystemWatcher(parent=self)
-        self.fileSystemWatcher.addPath(self.dropDir)
-        self.fileSystemWatcher.directoryChanged.connect(self.handleFileDrop)
-
         return CPluginScript.SUCCEEDED
-
 
     def numberOfOutputFiles(self):
         import glob
@@ -164,17 +158,6 @@ class ccp4mg_edit_model(CPluginScript):
            maxIndx =  max(maxIndx,int(fname[6:-4]))
         return maxIndx
 
-    @QtCore.Slot(str)
-    def handleFileDrop(self,directory):
-        import glob
-        import time
-        print('ccp4mg_edit_model',time.time())
-        print('ccp4mg_edit_model',glob.glob(os.path.join(self.workDirectory,'*.*')))
-        #print 'handleFileDrop',directory
-        #Note that I don't copy the file to the appropriate xyzout filename here, since the file may not yet
-        #be closed and/or flushed
-
-        
     def processOutputFiles(self):
         import shutil
         from stat import S_ISREG, ST_CTIME, ST_MODE

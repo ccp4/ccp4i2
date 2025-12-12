@@ -33,10 +33,6 @@ class qtpisa(CPluginScript):
         clArgs = [ '-i2dir',self.dropDir,str(self.container.inputData.XYZIN) ]
 
         self.appendCommandLine(clArgs)
-        # Use Qt class to watch the drop directory
-        self.fileSystemWatcher = QtCore.QFileSystemWatcher(parent=self)
-        self.fileSystemWatcher.addPath(self.dropDir)
-        self.fileSystemWatcher.directoryChanged.connect(self.handleFileDrop)
 
         return CPluginScript.SUCCEEDED
 
@@ -48,15 +44,6 @@ class qtpisa(CPluginScript):
         #print 'numberOfOutputFiles xmlList',glob.glob(os.path.normpath(os.path.join(self.workDirectory,'*.xml')))
         return len(outList)
 
-    @QtCore.Slot(str)
-    def handleFileDrop(self,directory):
-        import time,glob
-        print('qtpisa',time.time())
-        print('qtpisa',glob.glob(os.path.join(self.workDirectory,'*.*')))
-        #print 'handleFileDrop',directory
-        #Note that I don't copy the file to the appropriate xyzout filename here, since the file may not yet
-        #be closed and/or flushed
-  
     def processOutputFiles(self):
         try:
             # First up import PDB files that have been output

@@ -287,12 +287,6 @@ class ccp4mg_general(CPluginScript):
             for sequenceFile in self.container.inputData.SEQUENCE_LIST:
                clArgs.append(sequenceFile)
 
-        self.appendCommandLine(clArgs)
-        # Use Qt class to watch the drop directory
-        self.fileSystemWatcher = QtCore.QFileSystemWatcher(parent=self)
-        self.fileSystemWatcher.addPath(self.dropDir)
-        self.fileSystemWatcher.directoryChanged.connect(self.handleFileDrop)
-
         return CPluginScript.SUCCEEDED
 
 
@@ -308,16 +302,6 @@ class ccp4mg_general(CPluginScript):
            maxIndx =  max(maxIndx,int(fname[6:-4]))
         return maxIndx
 
-    @QtCore.Slot(str)
-    def handleFileDrop(self,directory):
-        import time,glob
-        print('ccp4mg_general',time.time())
-        print('ccp4mg_general',glob.glob(os.path.join(self.workDirectory,'*.*')))
-        #print 'handleFileDrop',directory
-        #Note that I don't copy the file to the appropriate xyzout filename here, since the file may not yet
-        #be closed and/or flushed
-
-        
     def processOutputFiles(self):
         try:
             # First up import PDB files that have been output

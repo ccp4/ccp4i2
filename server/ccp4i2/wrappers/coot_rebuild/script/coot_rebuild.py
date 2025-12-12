@@ -229,22 +229,7 @@ file_to_preferences('template_key_bindings.py')
         #i2 is used, but is incorporated into script.py above.
         clArgs += ['--script',self.cootScriptPath ]
 
-        '''if  self.container.inputData.COOTSTATEFILE.exists():
-          from ccp4i2.core import CCP4Utils
-          contents = CCP4Utils.readFile(self.container.inputData.COOTSTATEFILE.__str__())
-          if len(contents)>5:
-            clArgs += ['--script',self.container.inputData.COOTSTATEFILE.__str__()]
-          else:
-            clArgs += ['--script',self.cootScriptPath ]
-        else:
-          clArgs += ['--script',self.cootScriptPath ]
-        '''
-
         self.appendCommandLine(clArgs)
-        # Use Qt class to watch the drop directory
-        self.fileSystemWatcher = QtCore.QFileSystemWatcher(parent=self)
-        self.fileSystemWatcher.addPath(self.dropDir)
-        self.fileSystemWatcher.directoryChanged.connect(self.handleFileDrop)
 
         return CPluginScript.SUCCEEDED
 
@@ -261,16 +246,6 @@ file_to_preferences('template_key_bindings.py')
            #print 'numberOfOutputFiles  fpath,fname', fpath,fname
            maxIndx =  max(maxIndx,int(fname[6:-4]))
         return maxIndx
-
-    @QtCore.Slot(str)
-    def handleFileDrop(self,directory):
-        import time,glob
-        print('coot_rebuild',time.time())
-        print('coot_rebuild',glob.glob(os.path.join(self.workDirectory,'*.*')))
-        #print 'handleFileDrop',directory
-        #Note that I don't copy the file to the appropriate xyzout filename here, since the file may not yet
-        #be closed and/or flushed
-
 
     def processOutputFiles(self):
         try:
