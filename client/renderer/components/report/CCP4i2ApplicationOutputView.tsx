@@ -265,9 +265,30 @@ export const CCP4i2ApplicationOutputView: React.FC<
     doc.setFontSize(16);
     doc.text(selectedPlot.title || "Chart", 14, 20);
 
-    // Add chart image
-    const imgData = chartRef.current.toBase64Image();
-    doc.addImage(imgData, "PNG", 14, 30, 180, 100);
+    // Add chart image with maintained aspect ratio
+    const canvas = chartRef.current.canvas;
+    if (canvas) {
+      const imgData = chartRef.current.toBase64Image();
+
+      // Calculate dimensions to fit within PDF while maintaining aspect ratio
+      const canvasAspectRatio = canvas.width / canvas.height;
+      const maxWidth = 180; // Max width in PDF units
+      const maxHeight = 100; // Max height in PDF units
+
+      let imgWidth = maxWidth;
+      let imgHeight = maxWidth / canvasAspectRatio;
+
+      // If height exceeds max, scale down based on height instead
+      if (imgHeight > maxHeight) {
+        imgHeight = maxHeight;
+        imgWidth = maxHeight * canvasAspectRatio;
+      }
+
+      // Center the image horizontally
+      const xOffset = 14 + (maxWidth - imgWidth) / 2;
+
+      doc.addImage(imgData, "PNG", xOffset, 30, imgWidth, imgHeight);
+    }
 
     // Add data table
     const parsedBlocks = table.parsedDataBlocks;
@@ -417,9 +438,9 @@ export const CCP4i2ApplicationOutputView: React.FC<
         open={Boolean(exportMenuAnchor)}
         onClose={() => setExportMenuAnchor(null)}
       >
-        <MenuItem onClick={handleExportPNG}>Export as PNG</MenuItem>
-        <MenuItem onClick={handleExportSVG}>Export as SVG</MenuItem>
-        <MenuItem onClick={handleExportPDF}>Export as PDF (Chart + Data)</MenuItem>
+        <MenuItem onClick={handleExportPNG}>Export Chart as PNG</MenuItem>
+        <MenuItem onClick={handleExportSVG}>Export Chart as SVG (raster embedded)</MenuItem>
+        <MenuItem onClick={handleExportPDF}>Export as PDF (Chart + Data Table)</MenuItem>
         <MenuItem onClick={handleExportCSV}>Export Data as CSV</MenuItem>
         <MenuItem onClick={handleExportExcel}>Export Data as Excel</MenuItem>
       </Menu>
