@@ -99,7 +99,10 @@ export default function GraphViewerPage() {
         {title}
       </Typography>
       <Box sx={{ height: "calc(100vh - 120px)" }}>
-        <CCP4i2ApplicationOutputView output={graphElement} />
+        <CCP4i2ApplicationOutputView
+          output={graphElement}
+          height="100%"
+        />
       </Box>
     </Container>
   );

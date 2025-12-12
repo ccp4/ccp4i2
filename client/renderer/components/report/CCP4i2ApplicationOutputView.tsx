@@ -51,6 +51,7 @@ ChartJS.register(
 
 interface CCP4i2ApplicationOutputViewProps {
   output: Element;
+  height?: string | number;
 }
 
 const colours = [
@@ -67,7 +68,7 @@ interface ChartArgs {
 }
 export const CCP4i2ApplicationOutputView: React.FC<
   CCP4i2ApplicationOutputViewProps
-> = ({ output }) => {
+> = ({ output, height = "400px" }) => {
   const [table, setTable] = useState<CCP4Table | null>(null);
   const [selectedPlot, setSelectedPlot] = useState<Plot | null>(null);
   const [showJson, setShowJson] = useState(false);
@@ -158,7 +159,7 @@ export const CCP4i2ApplicationOutputView: React.FC<
             </Button>
           }
         />
-        <CardContent sx={{ height: "400px" }}>
+        <CardContent sx={{ height }}>
           {chartArgs && (
             <Scatter
               key={
