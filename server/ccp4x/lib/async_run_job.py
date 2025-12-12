@@ -156,7 +156,22 @@ async def run_job_async(job_uuid: uuid.UUID, project_uuid: Optional[uuid.UUID] =
         # This must be done AFTER process() completes and BEFORE writing diagnostic.xml
         # so that exit code errors are captured in the error report
         logger.info(f"Calling postProcessCheck for job {job.number}")
-        status = await sync_to_async(plugin.postProcessCheck)()
+
+        # Get processId for legacy plugins that override postProcessCheck(processId)
+        # The base implementation accepts optional processId for backward compatibility
+        process_id = getattr(plugin, '_runningProcessId', None)
+
+        # Call with processId to support both old and new signatures
+        result_val = await sync_to_async(plugin.postProcessCheck)(process_id)
+
+        # Handle both return types: int (new) or tuple (legacy)
+        if isinstance(result_val, tuple):
+            # Legacy signature returns (status, exitStatus, exitCode)
+            status = result_val[0]
+        else:
+            # New signature returns just status
+            status = result_val
+
         logger.info(f"postProcessCheck returned status: {status} (SUCCEEDED={plugin.SUCCEEDED}, FAILED={plugin.FAILED})")
 
         # Write diagnostic.xml with error report (always, for debugging)
