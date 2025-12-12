@@ -66,14 +66,3 @@ class import_xia2(CCP4PluginScript.CPluginScript):
           
 
       self.finished.emit(CCP4PluginScript.CPluginScript.SUCCEEDED)
-
-'''
-import unittest
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(test_import_xia2)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)
-'''

@@ -184,36 +184,3 @@ class coot_script_lines(CPluginScript):
         graphColumnElement = etree.SubElement(graphElement,"Column", label='FinalBonds', positionInList=str(2))
         
         return tableelement
-
-#====================================================================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-import unittest
-
-class testcoot_script_lines(unittest.TestCase):
-    
-    def setUp(self):
-        # make all background jobs wait for completion
-        # this is essential for unittest to work
-        from ccp4i2.core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
-        self.app = QTAPPLICATION()
-        PROCESSMANAGER().setWaitForFinished(10000)
-    
-    def tearDown(self):
-        from ccp4i2.core.CCP4Modules import PROCESSMANAGER
-        PROCESSMANAGER().setWaitForFinished(-1)
-    
-    def test_1(self):
-        from ccp4i2.core.CCP4Modules import QTAPPLICATION
-        wrapper = coot_script_lines(parent=QTAPPLICATION(),name='coot_script_lines_test1')
-        wrapper.container.loadDataFromXml()
-
-
-def TESTSUITE():
-    suite = unittest.TestLoader().loadTestsFromTestCase(testcoot_script_lines)
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)

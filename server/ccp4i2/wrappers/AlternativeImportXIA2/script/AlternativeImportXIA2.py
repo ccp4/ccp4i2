@@ -194,39 +194,3 @@ def exportJobFileMenu(jobId=None):
     # Return a list of items to appear on the 'Export' menu - each has three subitems:
     # [ unique identifier - will be mode argument to exportJobFile() , menu item , mime type (see CCP4CustomMimeTypes module) ]
     return [ [ 'complete_mtz' ,'MTZ file' , 'application/CCP4-mtz' ] ]
-
-
-    
-
-#====================================================================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-import unittest
-
-class testProvideTLS(unittest.TestCase):
-
-   def setUp(self):
-    # make all background jobs wait for completion
-    # this is essential for unittest to work
-    from ccp4i2.core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
-    self.app = QTAPPLICATION()
-    PROCESSMANAGER().setWaitForFinished(10000)
-
-   def tearDown(self):
-    from ccp4i2.core.CCP4Modules import PROCESSMANAGER
-    PROCESSMANAGER().setWaitForFinished(-1)
-
-   def test_1(self):
-     from ccp4i2.core.CCP4Modules import QTAPPLICATION
-     wrapper = ProvideTLS(parent=QTAPPLICATION(),name='ProvideTLS_test1')
-     wrapper.container.loadDataFromXml()
-     
-
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(testProvideTLS)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)

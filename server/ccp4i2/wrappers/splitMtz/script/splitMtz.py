@@ -6,7 +6,6 @@ Uses gemmi directly via CCP4Utils.split_mtz_file for clean, CData-agnostic split
 from __future__ import print_function
 
 import os
-import unittest
 from pathlib import Path
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
@@ -243,29 +242,3 @@ class splitMtz(CPluginScript):
             self.appendErrorReport(203, 'Error splitting ' + str(column_labels) + ': ' + str(e))
             self.reportStatus(CPluginScript.FAILED)
             return CPluginScript.FAILED
-
-
-# ====================================================================================================
-# PLUGIN TESTS
-
-
-class testsplitMtz(unittest.TestCase):
-
-    def setUp(self):
-        from ccp4i2.core.CCP4Modules import QTAPPLICATION, PROCESSMANAGER
-        self.app = QTAPPLICATION()
-        PROCESSMANAGER().setWaitForFinished(10000)
-
-    def tearDown(self):
-        from ccp4i2.core.CCP4Modules import PROCESSMANAGER
-        PROCESSMANAGER().setWaitForFinished(-1)
-
-
-def TESTSUITE():
-    suite = unittest.TestLoader().loadTestsFromTestCase(testsplitMtz)
-    return suite
-
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)

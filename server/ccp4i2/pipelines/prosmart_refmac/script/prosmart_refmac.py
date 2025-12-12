@@ -879,35 +879,3 @@ def exportJobFileMenu(jobId=None):
     # Return a list of items to appear on the 'Export' menu - each has three subitems:
     # [ unique identifier - will be mode argument to exportJobFile() , menu item , mime type (see CCP4CustomMimeTypes module) ]
     return [[ 'complete_mtz' ,'MTZ file' , 'application/CCP4-mtz' ]]
-
-#============================================================================================
-import unittest
-
-
-class testRefmac(unittest.TestCase):
-
-    def test1(self):
-        # Test creation of log file using ../test_data/test1.params.xml input
-        import os
-
-        from ccp4i2.core.CCP4Utils import getCCP4I2Dir
-        workDirectory = CCP4Utils.getTestTmpDir()
-        logFile = os.path.join(workDirectory,'prosmart_refmac_test1.log')
-        # Delete any existing log file
-        if os.path.exists(logFile): os.remove(logFile)
-        self.wrapper = prosmart_refmac(name='prosmart_refmac_test1',workDirectory=workDirectory)
-        self.wrapper.container.loadDataFromXml(os.path.join(getCCP4I2Dir(),'wrappers','prosmart_refmac','test_data','test1.params.xml'))
-        self.wrapper.setWaitForFinished(1000000)
-        pid = self.wrapper.process()
-        self.wrapper.setWaitForFinished(-1)
-        if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-#self.assertTrue(os.path.exists(logFile),'No log file found')
-
-
-def TESTSUITE():
-    suite = unittest.TestLoader().loadTestsFromTestCase(testRefmac)
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)

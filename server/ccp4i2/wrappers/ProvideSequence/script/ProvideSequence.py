@@ -98,38 +98,3 @@ class ProvideSequence(CPluginScript):
         except Exception as err:
             print("Failed to create CASUCONTENTOUT with error", err)
         return CPluginScript.SUCCEEDED
-
-
-
-#====================================================================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-import unittest
-
-class testProvideSequence(unittest.TestCase):
-
-   def setUp(self):
-    # make all background jobs wait for completion
-    # this is essential for unittest to work
-    from ccp4i2.core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
-    self.app = QTAPPLICATION()
-    PROCESSMANAGER().setWaitForFinished(10000)
-
-   def tearDown(self):
-    from ccp4i2.core.CCP4Modules import PROCESSMANAGER
-    PROCESSMANAGER().setWaitForFinished(-1)
-
-   def test_1(self):
-     from ccp4i2.core.CCP4Modules import QTAPPLICATION
-     wrapper = ProvideSequence(parent=QTAPPLICATION(),name='ProvideSequence_test1')
-     wrapper.container.loadDataFromXml()
-     
-
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(testProvideSequence)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)

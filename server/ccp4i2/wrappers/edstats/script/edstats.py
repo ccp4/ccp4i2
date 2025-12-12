@@ -391,32 +391,3 @@ class edstats(CPluginScript):
         cfftPlugin2.container.inputData.FPHIIN = self.container.inputData.FPHIIN2
         cfftPlugin2.container.inputData.RESOLUTION = self.container.inputData.RES_HIGH * 3.0 / 4.1
         return cfftPlugin2
-
-#=============================================================================================
-import unittest
-class testEdstats(unittest.TestCase):
-
-    def test1(self):
-      # Test creation of log file using ../test_data/test1.params.xml input
-      from ccp4i2.core.CCP4Utils import getCCP4I2Dir
-      import os
-      workDirectory = CCP4Utils.getTestTmpDir()
-      logFile = os.path.join(workDirectory,'edstats_test1.log')
-      # Delete any existing log file
-      if os.path.exists(logFile): os.remove(logFile)
-      self.wrapper = edstats(name='edstats_test1',workDirectory=workDirectory)
-      self.wrapper.container.loadDataFromXml(os.path.join(getCCP4I2Dir(),'wrappers','edstats','test_data','test1.params.xml'))
-      self.wrapper.setWaitForFinished(1000000)
-      pid = self.wrapper.process()
-      self.wrapper.setWaitForFinished(-1)
-      if len(self.wrapper.errorReport)>0: print(self.wrapper.errorReport.report())
-      #self.assertTrue(os.path.exists(logFile),'No log file found')
-
-
-def TESTSUITE():
-  suite = unittest.TestLoader().loadTestsFromTestCase(testEdstats)
-  return suite
-
-def testModule():
-  suite = TESTSUITE()
-  unittest.TextTestRunner(verbosity=2).run(suite)

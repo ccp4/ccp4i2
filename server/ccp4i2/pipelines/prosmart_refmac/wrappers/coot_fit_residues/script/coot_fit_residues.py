@@ -102,37 +102,3 @@ class coot_fit_residues(CPluginScript):
         # Create a trivial xml output file
         self.handleLogChanged(self.makeFileName('LOG'), inHandleFinish=True)
         self.reportStatus(finishStatus=status)
-
-#====================================================================================================
-# PLUGIN TESTS
-# See Python documentation on unittest module
-
-import unittest
-
-class test_coot_fit_residues(unittest.TestCase):
-    
-    def setUp(self):
-        # make all background jobs wait for completion
-        # this is essential for unittest to work
-        from ccp4i2.core.CCP4Modules import QTAPPLICATION,PROCESSMANAGER
-        self.app = QTAPPLICATION()
-        PROCESSMANAGER().setWaitForFinished(10000)
-    
-    def tearDown(self):
-        from ccp4i2.core.CCP4Modules import PROCESSMANAGER
-        PROCESSMANAGER().setWaitForFinished(-1)
-    
-    def test_1(self):
-        from ccp4i2.core.CCP4Modules import QTAPPLICATION
-        wrapper = coot_fit_residues(parent=QTAPPLICATION(),name='coot_fit_residues_test1')
-        wrapper.container.loadDataFromXml()
-
-
-def TESTSUITE():
-    suite = unittest.TestLoader().loadTestsFromTestCase(test_coot_fit_residues)
-    return suite
-
-def testModule():
-    suite = TESTSUITE()
-    unittest.TextTestRunner(verbosity=2).run(suite)
-
