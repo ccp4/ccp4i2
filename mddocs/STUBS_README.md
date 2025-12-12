@@ -27,7 +27,7 @@ We use a hybrid approach:
 
 ### PySide2/ - Qt GUI Framework Stubs
 Provides minimal Qt classes and decorators:
-- **QtCore.py**: Slot decorator, Signal, QObject, QThread, Qt enums, Property
+- **QtCore.py**: Slot decorator, Signal, QObject, Qt enums, Property
   - Note: Our `Slot` decorator is compatible with `core/base_object/signal_system.py`
 
 **Why stub instead of install?** We're replacing PySide2/Qt with our own

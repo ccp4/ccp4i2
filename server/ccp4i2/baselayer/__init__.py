@@ -2,9 +2,6 @@
 from .QtCore import (
     Slot,
     QObject,
-    QThread,
-    QTimer,
-    Qt,
     Property,
     QEventLoop,
     QCoreApplication,
@@ -13,3 +10,13 @@ from .QtCore import (
 
 # Import Qt module stubs for "from ccp4i2.baselayer import QtCore" usage
 from . import QtCore
+
+__all__ = [
+    "Slot",
+    "QObject",
+    "Property",
+    "QEventLoop",
+    "QCoreApplication",
+    "QApplication",
+    "QtCore",
+]

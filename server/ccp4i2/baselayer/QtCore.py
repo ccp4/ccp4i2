@@ -114,27 +114,6 @@ class QObject:
         self._parent = parent
 
 
-# Other common QtCore items that might be imported
-class QThread:
-    """Stub QThread class."""
-    pass
-
-
-class QTimer:
-    """Stub QTimer class."""
-    pass
-
-
-class Qt:
-    """Stub Qt namespace class."""
-    # Common Qt enum values
-    AlignLeft = 0x0001
-    AlignRight = 0x0002
-    AlignCenter = 0x0004
-    AlignTop = 0x0020
-    AlignBottom = 0x0040
-
-
 class QFileSystemWatcher:
     """
     Qt-free file system watcher implementation.
