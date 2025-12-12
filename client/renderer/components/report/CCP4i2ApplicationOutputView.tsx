@@ -31,7 +31,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { Preview } from "@mui/icons-material";
+import { OpenInNew, Preview } from "@mui/icons-material";
 import { useTheme } from "../../theme/theme-provider";
 
 // Register components for both Scatter and Bar charts
@@ -52,6 +52,8 @@ ChartJS.register(
 interface CCP4i2ApplicationOutputViewProps {
   output: Element;
   height?: string | number;
+  jobId?: number;
+  graphId?: string;
 }
 
 const colours = [
@@ -68,7 +70,7 @@ interface ChartArgs {
 }
 export const CCP4i2ApplicationOutputView: React.FC<
   CCP4i2ApplicationOutputViewProps
-> = ({ output, height = "400px" }) => {
+> = ({ output, height = "400px", jobId, graphId }) => {
   const [table, setTable] = useState<CCP4Table | null>(null);
   const [selectedPlot, setSelectedPlot] = useState<Plot | null>(null);
   const [showJson, setShowJson] = useState(false);
@@ -150,13 +152,30 @@ export const CCP4i2ApplicationOutputView: React.FC<
             )
           }
           action={
-            <Button
-              onClick={() => {
-                setShowJson(true);
-              }}
-            >
-              <Preview />
-            </Button>
+            <>
+              {jobId && graphId && (
+                <Button
+                  onClick={() => {
+                    window.open(
+                      `/graph-viewer/${jobId}/${graphId}`,
+                      "_blank",
+                      "width=1000,height=700"
+                    );
+                  }}
+                  title="Open in standalone viewer"
+                >
+                  <OpenInNew />
+                </Button>
+              )}
+              <Button
+                onClick={() => {
+                  setShowJson(true);
+                }}
+                title="Show JSON data"
+              >
+                <Preview />
+              </Button>
+            </>
           }
         />
         <CardContent sx={{ height }}>

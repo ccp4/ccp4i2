@@ -115,7 +115,13 @@ export const CCP4i2ReportElement: React.FC<CCP4i2ReportElementProps> = ({
             </Button>
           );
         }
-        return <CCP4i2ApplicationOutputView output={item} />;
+        return (
+          <CCP4i2ApplicationOutputView
+            output={item}
+            jobId={job?.id}
+            graphId={graphKey}
+          />
+        );
       } else if (
         ["CCP4i2ReportGeneric", "CCP4i2ReportGenericElement"].includes(tagName)
       ) {
