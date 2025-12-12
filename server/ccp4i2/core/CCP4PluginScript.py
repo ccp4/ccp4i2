@@ -842,10 +842,10 @@ class CPluginScript(CData):
 
         # For synchronous execution (subprocess.run), process is complete when startProcess returns
         # Check if the process succeeded by examining exit code
-        status = self.postProcessCheck()
+        status, exit_status, exit_code = self.postProcessCheck()
         import logging
         logger = logging.getLogger(__name__)
-        logger.info(f"[DEBUG process] postProcessCheck returned status: {status} (SUCCEEDED={self.SUCCEEDED}, FAILED={self.FAILED})")
+        logger.info(f"[DEBUG process] postProcessCheck returned status: {status}, exitStatus: {exit_status}, exitCode: {exit_code} (SUCCEEDED={self.SUCCEEDED}, FAILED={self.FAILED})")
 
         # Only proceed with output processing if the process succeeded
         if status == self.SUCCEEDED:
@@ -2032,7 +2032,7 @@ class CPluginScript(CData):
             Status code (SUCCEEDED or FAILED)
         """
         # Check if process succeeded
-        status = self.postProcessCheck()
+        status, exit_status, exit_code = self.postProcessCheck()
 
         if status == self.SUCCEEDED:
             # Extract output data
@@ -2060,9 +2060,8 @@ class CPluginScript(CData):
         Check if the program process completed successfully.
 
         Args:
-            processId: (Legacy) Optional process ID for backward compatibility with old plugins.
-                      If provided, returns tuple (status, exitStatus, exitCode) for compatibility.
-                      If not provided, returns just status.
+            processId: Optional process ID (for legacy compatibility, not currently used
+                      as we check self._runningProcessId internally)
 
         Checks:
         1. Process exit code (for both sync and async processes)
@@ -2070,8 +2069,10 @@ class CPluginScript(CData):
         3. Log file contents for errors
 
         Returns:
-            int: SUCCEEDED or FAILED (new signature)
-            tuple: (status, exitStatus, exitCode) if processId provided (legacy signature)
+            tuple: (status, exitStatus, exitCode) where:
+                   status: SUCCEEDED or FAILED
+                   exitStatus: 0 for success, 1 for failure
+                   exitCode: The actual process exit code
         """
         import os
         import logging
@@ -2123,17 +2124,13 @@ class CPluginScript(CData):
                 )
                 status = self.FAILED
 
-        # For backward compatibility with legacy plugins that expect (status, exitStatus, exitCode) tuple
-        if processId is not None:
-            # Legacy signature - return tuple
-            if exit_code is None:
-                exit_code = 0
-            if exit_status is None:
-                exit_status = 0 if status == self.SUCCEEDED else 1
-            return status, exit_status, exit_code
+        # Always return tuple for consistency
+        if exit_code is None:
+            exit_code = 0
+        if exit_status is None:
+            exit_status = 0 if status == self.SUCCEEDED else 1
 
-        # New signature - return just status
-        return status
+        return status, exit_status, exit_code
 
     def processOutputFiles(self) -> CErrorReport:
         """
@@ -4141,7 +4138,7 @@ class CPluginScript(CData):
         return id(self)
 
     def appendErrorReport(self, code=0, details='', name=None, label=None, cls=None,
-                         recordTime=False, stack=True, exc_info=None):
+                         recordTime=False, stack=True, exc_info=None, severity=None):
         """
         Append an error to the plugin's error report.
 
@@ -4156,6 +4153,7 @@ class CPluginScript(CData):
             recordTime: Whether to record timestamp
             stack: Whether to include stack trace
             exc_info: Exception info tuple
+            severity: Error severity (defaults to ERROR if 'exception' in details, otherwise WARNING)
         """
         if cls is None:
             cls = self.__class__
@@ -4166,12 +4164,19 @@ class CPluginScript(CData):
         else:
             name = f'Error in wrapper {name}'
 
-        # Add to error report with WARNING severity by default
-        # (legacy code often uses appendErrorReport for non-fatal issues)
-        from ccp4i2.core.base_object.error_reporting import SEVERITY_WARNING
+        # Determine severity
+        # If severity not explicitly provided, use ERROR for exceptions, WARNING otherwise
+        if severity is None:
+            # If details mention 'exception', treat as ERROR
+            if 'exception' in details.lower():
+                severity = SEVERITY_ERROR
+            else:
+                # Legacy code often uses appendErrorReport for non-fatal issues
+                severity = SEVERITY_WARNING
+
         self.errorReport.append(
             klass=cls.__name__,
             code=code,
             details=details,
-            severity=SEVERITY_WARNING
+            severity=severity
         )

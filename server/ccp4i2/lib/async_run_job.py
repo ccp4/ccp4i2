@@ -132,6 +132,17 @@ async def run_job_async(job_uuid: uuid.UUID, project_uuid: Optional[uuid.UUID] =
             # (checkOutputData may or may not be called if plugin overrides process)
             try:
                 result = await sync_to_async(plugin.process)()
+
+                # Check if process() returned FAILED
+                # This catches failures in processInputFiles, makeCommandAndScript, etc.
+                # that don't throw exceptions but return FAILED status
+                if result == plugin.FAILED:
+                    logger.error(f"Job {job.number} - process() returned FAILED")
+                    # Error should already be in errorReport, so just write diagnostic and fail
+                    await write_diagnostic_xml(plugin, job.directory)
+                    await db_handler.update_job_status(job.uuid, models.Job.Status.FAILED)
+                    raise Exception(f"Job failed during process() - see diagnostic.xml for details")
+
             except Exception as proc_exc:
                 # Capture Python exceptions into the error report
                 # This ensures they appear in diagnostic.xml, not just cplusplus_stdout.txt
@@ -160,21 +171,14 @@ async def run_job_async(job_uuid: uuid.UUID, project_uuid: Optional[uuid.UUID] =
         status = plugin.SUCCEEDED
         try:
             # Get processId for legacy plugins that override postProcessCheck(processId)
-            # The base implementation accepts optional processId for backward compatibility
+            # Pass it for backward compatibility with legacy plugin signatures
             process_id = getattr(plugin, '_runningProcessId', None)
 
-            # Call with processId to support both old and new signatures
-            result_val = await sync_to_async(plugin.postProcessCheck)(process_id)
+            # postProcessCheck always returns tuple (status, exitStatus, exitCode)
+            status, exit_status, exit_code = await sync_to_async(plugin.postProcessCheck)(process_id)
 
-            # Handle both return types: int (new) or tuple (legacy)
-            if isinstance(result_val, tuple):
-                # Legacy signature returns (status, exitStatus, exitCode)
-                status = result_val[0]
-            else:
-                # New signature returns just status
-                status = result_val
-
-            logger.info(f"postProcessCheck returned status: {status} (SUCCEEDED={plugin.SUCCEEDED}, FAILED={plugin.FAILED})")
+            logger.info(f"postProcessCheck returned status: {status}, exitStatus: {exit_status}, exitCode: {exit_code} "
+                       f"(SUCCEEDED={plugin.SUCCEEDED}, FAILED={plugin.FAILED})")
 
         except Exception as post_exc:
             # If postProcessCheck itself fails, add to error report
