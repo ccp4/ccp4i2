@@ -559,6 +559,17 @@ export const checkForRightAxis = (selectedPlot: Plot, result: ChartOptions) => {
 };
 
 /**
+ * Decodes HTML entities in a string (e.g., &nbsp; -> space, &lt; -> <)
+ * @param text - The text containing HTML entities
+ * @returns The decoded text
+ */
+const decodeHTMLEntities = (text: string): string => {
+  const textarea = document.createElement('textarea');
+  textarea.innerHTML = text;
+  return textarea.value;
+};
+
+/**
  * Extracts the datasets for a chart from the provided data blocks.
  *
  * @param {Plot} selectedPlot - The plot object containing the chart configuration.
@@ -657,8 +668,12 @@ export const extractPlotLineDataset = (
   plotline: PlotLine,
   iPlotline: number
 ) => {
+  // Decode HTML entities in label (e.g., &nbsp; -> space)
+  const rawLabel = allHeaders[plotline.ycol - 1];
+  const decodedLabel = rawLabel ? decodeHTMLEntities(rawLabel) : rawLabel;
+
   const result = {
-    label: allHeaders[plotline.ycol - 1],
+    label: decodedLabel,
     labels: dataAsGrid.map((row: any) => row[parseInt(`${plotline.xcol}`) - 1]),
     yAxisID: plotline.rightaxis
       ? plotline.rightaxis === "true"
@@ -699,8 +714,13 @@ export const extractBarChartDataset = (
 ) => {
   if (!barChart?.col) return null;
   if (!barChart?.tcol) return null;
+
+  // Decode HTML entities in label (e.g., &nbsp; -> space)
+  const rawLabel = allHeaders[barChart.tcol - 1];
+  const decodedLabel = rawLabel ? decodeHTMLEntities(rawLabel) : rawLabel;
+
   const result = {
-    label: allHeaders[barChart.tcol - 1],
+    label: decodedLabel,
     type: "bar",
     labels: dataAsGrid.map((row: any) => row[parseInt(`${barChart.col}`) - 1]),
     yAxisID: barChart.rightaxis

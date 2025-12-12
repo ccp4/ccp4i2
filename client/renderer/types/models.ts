@@ -64,7 +64,8 @@ export class Job {
     public creation_time: string,
     public finish_time: string,
     public task_name: string,
-    public process_id: number
+    public process_id: number,
+    public directory?: string
   ) {}
 }
 export class ServerJob {

@@ -54,7 +54,23 @@ def get_directory_tree(
     return tree
 
 
-def list_project(the_project_uuid: str, max_depth=10, max_files=10000):
+def list_project(the_project_uuid: str, max_depth=10, max_files=50000):
+    """
+    List all files and directories in a project directory.
+
+    Args:
+        the_project_uuid: UUID of the project
+        max_depth: Maximum depth to traverse (default: 10)
+        max_files: Maximum number of files to process (default: 50000)
+
+    Returns:
+        Directory tree structure with files and subdirectories
+
+    Note:
+        If max_files limit is exceeded during traversal, some directories
+        may not have their contents populated. Consider increasing the limit
+        for large projects.
+    """
     the_project = models.Project.objects.get(uuid=uuid.UUID(the_project_uuid))
     return get_directory_tree(
         str(the_project.directory), max_depth=max_depth, max_files=max_files

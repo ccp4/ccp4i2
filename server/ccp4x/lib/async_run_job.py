@@ -130,10 +130,44 @@ async def run_job_async(job_uuid: uuid.UUID, project_uuid: Optional[uuid.UUID] =
             # Call process() in a thread since it's not async
             # process() handles: checkInputData, makeCommandAndScript, startProcess
             # (checkOutputData may or may not be called if plugin overrides process)
-            result = await sync_to_async(plugin.process)()
+            try:
+                result = await sync_to_async(plugin.process)()
+            except Exception as proc_exc:
+                # Capture Python exceptions into the error report
+                # This ensures they appear in diagnostic.xml, not just cplusplus_stdout.txt
+                import traceback
+                tb_str = ''.join(traceback.format_exception(type(proc_exc), proc_exc, proc_exc.__traceback__))
+
+                # Add to plugin's error report
+                plugin.errorReport.append(
+                    klass=plugin.__class__.__name__,
+                    code=999,  # Generic Python exception code
+                    details=f'Python exception during process(): {type(proc_exc).__name__}: {str(proc_exc)}\n\n{tb_str}',
+                    name='process',
+                    severity=4  # ERROR level
+                )
+
+                logger.exception(f"Job {job.number} failed with Python exception: {proc_exc}")
+
+                # Re-raise to trigger outer exception handler
+                raise
+
+        # For async tasks, call postProcessCheck to examine exit codes
+        # This must be done AFTER process() completes and BEFORE writing diagnostic.xml
+        # so that exit code errors are captured in the error report
+        logger.info(f"Calling postProcessCheck for job {job.number}")
+        status = await sync_to_async(plugin.postProcessCheck)()
+        logger.info(f"postProcessCheck returned status: {status} (SUCCEEDED={plugin.SUCCEEDED}, FAILED={plugin.FAILED})")
 
         # Write diagnostic.xml with error report (always, for debugging)
+        # This includes any errors found by postProcessCheck
         await write_diagnostic_xml(plugin, job.directory)
+
+        # Check if postProcessCheck found errors
+        if status == plugin.FAILED:
+            logger.error(f"Job {job.number} failed - postProcessCheck returned FAILED")
+            await db_handler.update_job_status(job.uuid, models.Job.Status.FAILED)
+            raise Exception(f"Job failed - see diagnostic.xml for details")
 
         logger.info(f"Job {job.number} completed successfully")
         return result
@@ -142,6 +176,7 @@ async def run_job_async(job_uuid: uuid.UUID, project_uuid: Optional[uuid.UUID] =
         logger.exception(f"Job {job.number} failed: {e}")
 
         # Write diagnostic.xml before updating status (critical for debugging failures)
+        # This will now include the exception details added above
         await write_diagnostic_xml(plugin, job.directory)
 
         # Update status to FAILED

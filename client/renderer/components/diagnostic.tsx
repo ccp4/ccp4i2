@@ -50,7 +50,7 @@ interface HeaderInfo {
 }
 
 const Diagnostic: React.FC<DiagnosticProps> = ({ xmlDocument }) => {
-  const [expandedCard, setExpandedCard] = useState<number>(0); // First card open by default
+  const [expandedCard, setExpandedCard] = useState<number>(-1); // Initially nothing expanded
   const [expandedStacks, setExpandedStacks] = useState<Set<number>>(new Set()); // Track which stack traces are open
 
   const parseXML = (xmlString: string) => {
@@ -92,7 +92,7 @@ const Diagnostic: React.FC<DiagnosticProps> = ({ xmlDocument }) => {
         className: getTextContent("className"),
         code: getTextContent("code"),
         description: getTextContent("description"),
-        severity: getTextContent("severity"),
+        severity: getTextContent("severityName") || getTextContent("severity"),
         details: getTextContent("details"),
         stack: getTextContent("stack"),
       });
@@ -105,6 +105,16 @@ const Diagnostic: React.FC<DiagnosticProps> = ({ xmlDocument }) => {
     () => parseXML(xmlDocument),
     [xmlDocument]
   );
+
+  // Auto-expand the first ERROR on mount
+  React.useEffect(() => {
+    const firstErrorIndex = errorReports.findIndex(
+      (report) => report.severity.toUpperCase() === "ERROR"
+    );
+    if (firstErrorIndex !== -1) {
+      setExpandedCard(firstErrorIndex);
+    }
+  }, [errorReports]);
 
   const getSeverityIcon = (severity: string) => {
     switch (severity.toUpperCase()) {
@@ -224,21 +234,38 @@ const Diagnostic: React.FC<DiagnosticProps> = ({ xmlDocument }) => {
         Error Reports ({errorReports.length})
       </Typography>
 
-      {errorReports.map((report, index) => (
-        <Accordion
-          key={index}
-          expanded={expandedCard === index}
-          onChange={() => handleCardToggle(index)}
-          sx={{ mb: 1 }}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+      {errorReports.map((report, index) => {
+        const isError = report.severity.toUpperCase() === "ERROR";
+        return (
+          <Accordion
+            key={index}
+            expanded={expandedCard === index}
+            onChange={() => handleCardToggle(index)}
             sx={{
-              backgroundColor:
-                expandedCard === index ? "action.selected" : "background.paper",
-              "&:hover": { backgroundColor: "action.hover" },
+              mb: 1,
+              ...(isError && {
+                border: "1px solid",
+                borderColor: "error.main",
+                borderLeft: "4px solid",
+                borderLeftColor: "error.main",
+              }),
             }}
           >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              sx={{
+                backgroundColor: isError
+                  ? expandedCard === index
+                    ? "error.light"
+                    : "error.lighter"
+                  : expandedCard === index
+                  ? "action.selected"
+                  : "background.paper",
+                "&:hover": {
+                  backgroundColor: isError ? "error.light" : "action.hover",
+                },
+              }}
+            >
             <Box
               sx={{
                 display: "flex",
@@ -351,7 +378,8 @@ const Diagnostic: React.FC<DiagnosticProps> = ({ xmlDocument }) => {
             </Box>
           </AccordionDetails>
         </Accordion>
-      ))}
+        );
+      })}
     </Box>
   );
 };
