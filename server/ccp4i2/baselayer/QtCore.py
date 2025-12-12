@@ -221,19 +221,6 @@ class _QEventLoop:
         """Check if the event loop is running."""
         return self._is_running
 
-    def processEvents(self, flags=AllEvents):
-        """
-        Process pending events (Qt API).
-
-        In our async system, this yields control to allow other tasks to run.
-        """
-        if self._modern_loop:
-            # Let other tasks run
-            loop = asyncio.get_event_loop()
-            if loop.is_running():
-                # Schedule a brief pause to process events
-                asyncio.create_task(asyncio.sleep(0))
-
 
 class QCoreApplication:
     """
@@ -277,11 +264,3 @@ class QCoreApplication:
     def quit(self):
         """Exit the application with code 0."""
         self.exit(0)
-
-    @staticmethod
-    def processEvents(flags=_QEventLoop.AllEvents):
-        """Process pending events (static Qt API)."""
-        # This is a class method in Qt that processes events for the app
-        loop = asyncio.get_event_loop()
-        if loop.is_running():
-            asyncio.create_task(asyncio.sleep(0))
