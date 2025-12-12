@@ -2,7 +2,6 @@ import logging
 import contextlib
 from xml.etree import ElementTree as ET
 
-from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 from ccp4i2.core import CCP4PluginScript
 from PySide2 import QtCore
 
@@ -192,5 +191,4 @@ def executePlugin(
         logger.exception(f"Failed to execute plugin {new_job.task_name}", exc_info=err)
         new_job.status = models.Job.Status.FAILED
         new_job.save()
-        # backupProjectDb(new_job.projectid)
         raise err

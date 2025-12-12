@@ -1,5 +1,4 @@
 import logging
-import traceback
 
 from ccp4i2.core import CCP4TaskManager
 

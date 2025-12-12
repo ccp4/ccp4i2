@@ -8,8 +8,6 @@ Improvements:
 - Better error messages
 """
 
-import os
-import shlex
 import logging
 from pathlib import Path
 from django.conf import settings
