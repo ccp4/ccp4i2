@@ -181,67 +181,6 @@
       }
     }
   },
-  "xia2_multiplex": {
-    "module": "wrappers.xia2_multiplex.script.xia2_multiplex",
-    "class": "Cxia2_multiplex",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "data_reduction",
-    "TASKTITLE": "Data set combination with xia2.multiplex",
-    "TASKNAME": "xia2_multiplex",
-    "TASKVERSION": 0.0,
-    "WHATNEXT": [
-      "phaser_pipeline",
-      "molrep_pipe",
-      "crank2",
-      "ShelxCD",
-      "ShelxCDE"
-    ],
-    "ASYNCHRONOUS": true,
-    "PERFORMANCECLASS": "CDataReductionPerformance",
-    "ERROR_CODES": {
-      "200": {
-        "description": "Failed harvesting integrated data"
-      },
-      "205": {
-        "description": "Failed parsing xia2.json"
-      }
-    }
-  },
-  "adding_stats_to_mmcif_i2": {
-    "module": "wrappers.adding_stats_to_mmcif_i2.script.adding_stats_to_mmcif_i2",
-    "class": "adding_stats_to_mmcif_i2",
-    "COMTEMPLATE": null,
-    "TASKMODULE": null,
-    "TASKTITLE": null,
-    "TASKNAME": "adding_stats_to_mmcif_i2",
-    "TASKVERSION": 0.1,
-    "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
-    "PURGESEARCHLIST": [
-      [
-        "hklin.mtz",
-        0
-      ],
-      [
-        "log_mtzjoin.txt",
-        0
-      ]
-    ],
-    "ERROR_CODES": {
-      "201": {
-        "description": "Failed to analyse output files"
-      },
-      "202": {
-        "description": "Failed applying selection ot PDB file"
-      },
-      "203": {
-        "description": "Input XML file contains neither AIMLESS nor AIMLESS_PIPE nodes"
-      },
-      "204": {
-        "description": "Failed with adding_stats_to_mmcif"
-      }
-    }
-  },
   "cif2mtz": {
     "module": "wrappers.cif2mtz.script.cif2mtz",
     "class": "cif2mtz",
@@ -647,70 +586,6 @@
       }
     }
   },
-  "editbfac": {
-    "module": "wrappers.editbfac.script.editbfac",
-    "class": "editbfac",
-    "COMTEMPLATE": null,
-    "TASKMODULE": [
-      "alpha_fold",
-      "model_data_utility"
-    ],
-    "TASKTITLE": "Process Predicted Models",
-    "TASKNAME": "editbfac",
-    "TASKVERSION": 0.0,
-    "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
-    "ERROR_CODES": {
-      "200": {
-        "description": "Error merging MTZ files"
-      },
-      "201": {
-        "description": "Invalid miniMtzsIn specification"
-      },
-      "202": {
-        "description": "File object has no CONTENT_SIGNATURE_LIST"
-      },
-      "203": {
-        "description": "File object has no path set"
-      },
-      "204": {
-        "description": "MTZ file not found"
-      },
-      "205": {
-        "description": "File object not found in inputData or outputData"
-      },
-      "206": {
-        "description": "Invalid contentFlag for file type"
-      },
-      "207": {
-        "description": "Invalid item format in miniMtzsIn"
-      },
-      "208": {
-        "description": "Conversion method not found on file object"
-      },
-      "209": {
-        "description": "Conversion to requested format not yet implemented"
-      },
-      "210": {
-        "description": "Error during MTZ file conversion"
-      },
-      "300": {
-        "description": "Input MTZ file not found for split operation"
-      },
-      "301": {
-        "description": "miniMtzsOut and programColumnNames length mismatch"
-      },
-      "302": {
-        "description": "Output object not found in container.outputData"
-      },
-      "303": {
-        "description": "Output object has no path set"
-      },
-      "304": {
-        "description": "Error splitting MTZ file"
-      }
-    }
-  },
   "x2mtz": {
     "module": "wrappers.x2mtz.script.x2mtz",
     "class": "x2mtz",
@@ -830,26 +705,6 @@
       }
     }
   },
-  "SIMBAD": {
-    "module": "wrappers.SIMBAD.script.SIMBAD",
-    "class": "SIMBAD",
-    "COMTEMPLATE": null,
-    "TASKMODULE": null,
-    "TASKTITLE": null,
-    "TASKNAME": "SIMBAD",
-    "TASKVERSION": 0.1,
-    "WHATNEXT": [
-      "prosmart_refmac",
-      "modelcraft",
-      "coot_rebuild"
-    ],
-    "ASYNCHRONOUS": false,
-    "ERROR_CODES": {
-      "1": {
-        "description": "Something not very good has happened."
-      }
-    }
-  },
   "phaser_mr": {
     "module": "wrappers.phaser_mr.script.phaser_mr",
     "class": "phaser_mr",
@@ -877,75 +732,6 @@
       },
       "204": {
         "description": "Failed analysing log"
-      }
-    }
-  },
-  "edstats": {
-    "module": "wrappers.edstats.script.edstats",
-    "class": "edstats",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "validation",
-    "TASKTITLE": "Measure agreement between model and density",
-    "TASKNAME": "edstats",
-    "TASKVERSION": 0.1,
-    "WHATNEXT": [
-      "coot_rebuild"
-    ],
-    "ASYNCHRONOUS": false,
-    "PURGESEARCHLIST": [
-      [
-        "fft%*/MAPOUT.map",
-        1
-      ]
-    ],
-    "ERROR_CODES": {
-      "200": {
-        "description": "Error merging MTZ files"
-      },
-      "201": {
-        "description": "Invalid miniMtzsIn specification"
-      },
-      "202": {
-        "description": "File object has no CONTENT_SIGNATURE_LIST"
-      },
-      "203": {
-        "description": "File object has no path set"
-      },
-      "204": {
-        "description": "MTZ file not found"
-      },
-      "205": {
-        "description": "File object not found in inputData or outputData"
-      },
-      "206": {
-        "description": "Invalid contentFlag for file type"
-      },
-      "207": {
-        "description": "Invalid item format in miniMtzsIn"
-      },
-      "208": {
-        "description": "Conversion method not found on file object"
-      },
-      "209": {
-        "description": "Conversion to requested format not yet implemented"
-      },
-      "210": {
-        "description": "Error during MTZ file conversion"
-      },
-      "300": {
-        "description": "Input MTZ file not found for split operation"
-      },
-      "301": {
-        "description": "miniMtzsOut and programColumnNames length mismatch"
-      },
-      "302": {
-        "description": "Output object not found in container.outputData"
-      },
-      "303": {
-        "description": "Output object has no path set"
-      },
-      "304": {
-        "description": "Error splitting MTZ file"
       }
     }
   },
@@ -1010,43 +796,6 @@
       },
       "304": {
         "description": "Error splitting MTZ file"
-      }
-    }
-  },
-  "coot1": {
-    "module": "wrappers.coot1.script.coot1",
-    "class": "coot1",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "model_building",
-    "TASKTITLE": "Coot 1",
-    "TASKNAME": "coot1",
-    "TASKVERSION": 0.1,
-    "WHATNEXT": [
-      "prosmart_refmac",
-      "coot_rebuild",
-      "modelcraft"
-    ],
-    "ASYNCHRONOUS": true,
-    "TIMEOUT_PERIOD": 9999999.9,
-    "ERROR_CODES": {}
-  },
-  "AMPLE": {
-    "module": "wrappers.AMPLE.script.AMPLE",
-    "class": "AMPLE",
-    "COMTEMPLATE": null,
-    "TASKMODULE": null,
-    "TASKTITLE": null,
-    "TASKNAME": "AMPLE",
-    "TASKVERSION": 0.1,
-    "WHATNEXT": [
-      "prosmart_refmac",
-      "modelcraft",
-      "coot_rebuild"
-    ],
-    "ASYNCHRONOUS": false,
-    "ERROR_CODES": {
-      "1": {
-        "description": "Something not very good has happened."
       }
     }
   },
@@ -1406,23 +1155,6 @@
       }
     }
   },
-  "acorn": {
-    "module": "wrappers.acorn.script.acorn",
-    "class": "acorn",
-    "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
-    "TASKMODULE": "density_modification",
-    "TASKTITLE": "Acorn",
-    "TASKNAME": "acorn",
-    "TASKVERSION": 1.0,
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CExpPhasPerformance",
-    "ERROR_CODES": {
-      "200": {
-        "description": "Unexpected reflections in input file, list in stdout.txt"
-      }
-    }
-  },
   "freerflag": {
     "module": "wrappers.freerflag.script.freerflag",
     "class": "freerflag",
@@ -1494,113 +1226,6 @@
     "TASKVERSION": 0.0,
     "ASYNCHRONOUS": false,
     "PERFORMANCECLASS": "CModelBuildPerformance",
-    "ERROR_CODES": {
-      "200": {
-        "description": "Error merging MTZ files"
-      },
-      "201": {
-        "description": "Invalid miniMtzsIn specification"
-      },
-      "202": {
-        "description": "File object has no CONTENT_SIGNATURE_LIST"
-      },
-      "203": {
-        "description": "File object has no path set"
-      },
-      "204": {
-        "description": "MTZ file not found"
-      },
-      "205": {
-        "description": "File object not found in inputData or outputData"
-      },
-      "206": {
-        "description": "Invalid contentFlag for file type"
-      },
-      "207": {
-        "description": "Invalid item format in miniMtzsIn"
-      },
-      "208": {
-        "description": "Conversion method not found on file object"
-      },
-      "209": {
-        "description": "Conversion to requested format not yet implemented"
-      },
-      "210": {
-        "description": "Error during MTZ file conversion"
-      },
-      "300": {
-        "description": "Input MTZ file not found for split operation"
-      },
-      "301": {
-        "description": "miniMtzsOut and programColumnNames length mismatch"
-      },
-      "302": {
-        "description": "Output object not found in container.outputData"
-      },
-      "303": {
-        "description": "Output object has no path set"
-      },
-      "304": {
-        "description": "Error splitting MTZ file"
-      }
-    }
-  },
-  "acedrgNew": {
-    "module": "wrappers.acedrgNew.script.acedrgNew",
-    "class": "acedrgNew",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "wrappers",
-    "TASKTITLE": "acedrgNew",
-    "TASKNAME": "acedrgNew",
-    "TASKVERSION": 0.0,
-    "ASYNCHRONOUS": false,
-    "TIMEOUT_PERIOD": 9999999.9,
-    "ERROR_CODES": {
-      "200": {
-        "description": "Failed to add item to mol list"
-      },
-      "201": {
-        "description": "Failed to setFullPath"
-      },
-      "202": {
-        "description": "Failed to dump XMML"
-      },
-      "203": {
-        "description": "Failed to make RDKit Mol from DICT"
-      }
-    }
-  },
-  "modelASUCheck": {
-    "module": "wrappers.modelASUCheck.script.modelASUCheck",
-    "class": "modelASUCheck",
-    "COMTEMPLATE": null,
-    "TASKMODULE": null,
-    "TASKTITLE": null,
-    "TASKNAME": "modelASUCheck",
-    "TASKVERSION": 0.1,
-    "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
-    "ERROR_CODES": {
-      "201": {
-        "description": "Failed to analyse output files"
-      },
-      "202": {
-        "description": "Failed applying selection ot PDB file"
-      }
-    }
-  },
-  "validate_protein": {
-    "module": "wrappers.validate_protein.script.validate_protein",
-    "class": "validate_protein",
-    "COMTEMPLATE": null,
-    "TASKMODULE": null,
-    "TASKTITLE": null,
-    "TASKNAME": "validate_protein",
-    "TASKVERSION": null,
-    "WHATNEXT": [
-      "coot_rebuild"
-    ],
-    "ASYNCHRONOUS": false,
     "ERROR_CODES": {
       "200": {
         "description": "Error merging MTZ files"
@@ -2324,67 +1949,6 @@
     "TASKTITLE": null,
     "TASKNAME": "ProvideAsuContents",
     "TASKVERSION": null,
-    "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
-    "ERROR_CODES": {
-      "200": {
-        "description": "Error merging MTZ files"
-      },
-      "201": {
-        "description": "Invalid miniMtzsIn specification"
-      },
-      "202": {
-        "description": "File object has no CONTENT_SIGNATURE_LIST"
-      },
-      "203": {
-        "description": "File object has no path set"
-      },
-      "204": {
-        "description": "MTZ file not found"
-      },
-      "205": {
-        "description": "File object not found in inputData or outputData"
-      },
-      "206": {
-        "description": "Invalid contentFlag for file type"
-      },
-      "207": {
-        "description": "Invalid item format in miniMtzsIn"
-      },
-      "208": {
-        "description": "Conversion method not found on file object"
-      },
-      "209": {
-        "description": "Conversion to requested format not yet implemented"
-      },
-      "210": {
-        "description": "Error during MTZ file conversion"
-      },
-      "300": {
-        "description": "Input MTZ file not found for split operation"
-      },
-      "301": {
-        "description": "miniMtzsOut and programColumnNames length mismatch"
-      },
-      "302": {
-        "description": "Output object not found in container.outputData"
-      },
-      "303": {
-        "description": "Output object has no path set"
-      },
-      "304": {
-        "description": "Error splitting MTZ file"
-      }
-    }
-  },
-  "phaser_analysis": {
-    "module": "wrappers.phaser_analysis.script.phaser_analysis",
-    "class": "phaser_analysis",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "test",
-    "TASKTITLE": "phaser_analysis",
-    "TASKNAME": "phaser_analysis",
-    "TASKVERSION": 0.0,
     "ASYNCHRONOUS": false,
     "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
@@ -3480,57 +3044,24 @@
     "TASKMODULE": null,
     "TASKTITLE": "Import and Split MTZ to experimental data objects",
     "TASKNAME": "splitMtz",
-    "TASKVERSION": 0.0,
+    "TASKVERSION": 0.1,
     "ASYNCHRONOUS": false,
     "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "200": {
-        "description": "Error merging MTZ files"
+        "description": "No column groups selected for splitting"
       },
       "201": {
-        "description": "Invalid miniMtzsIn specification"
+        "description": "Unknown column group type"
       },
       "202": {
-        "description": "File object has no CONTENT_SIGNATURE_LIST"
+        "description": "No columns found in column group"
       },
       "203": {
-        "description": "File object has no path set"
+        "description": "Failed to split MTZ file"
       },
       "204": {
-        "description": "MTZ file not found"
-      },
-      "205": {
-        "description": "File object not found in inputData or outputData"
-      },
-      "206": {
-        "description": "Invalid contentFlag for file type"
-      },
-      "207": {
-        "description": "Invalid item format in miniMtzsIn"
-      },
-      "208": {
-        "description": "Conversion method not found on file object"
-      },
-      "209": {
-        "description": "Conversion to requested format not yet implemented"
-      },
-      "210": {
-        "description": "Error during MTZ file conversion"
-      },
-      "300": {
-        "description": "Input MTZ file not found for split operation"
-      },
-      "301": {
-        "description": "miniMtzsOut and programColumnNames length mismatch"
-      },
-      "302": {
-        "description": "Output object not found in container.outputData"
-      },
-      "303": {
-        "description": "Output object has no path set"
-      },
-      "304": {
-        "description": "Error splitting MTZ file"
+        "description": "Input MTZ file not found"
       }
     }
   },
@@ -4616,34 +4147,6 @@
       }
     }
   },
-  "xia2_ssx_reduce": {
-    "module": "wrappers.xia2_ssx_reduce.script.xia2_ssx_reduce",
-    "class": "Cxia2_ssx_reduce",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "data_reduction",
-    "TASKTITLE": "Reduction of serial datasets using xia2.ssx_reduce",
-    "TASKNAME": "xia2_ssx_reduce",
-    "TASKVERSION": 0.0,
-    "WHATNEXT": [
-      "xia2_ssx_reduce",
-      "phaser_pipeline",
-      "molrep_pipe",
-      "prosmart_refmac"
-    ],
-    "ASYNCHRONOUS": true,
-    "PERFORMANCECLASS": "CDataReductionCCPerformance",
-    "ERROR_CODES": {
-      "200": {
-        "description": "Failed harvesting integrated data"
-      },
-      "225": {
-        "description": "Unable to find merged MTZ files"
-      },
-      "226": {
-        "description": "A process in the process pool was terminated abruptly while the future was running or pending.\nOverload of RAM memory occured likely.\nRe-run the job with lower batch size and number of processes."
-      }
-    }
-  },
   "demo_copycell": {
     "module": "wrappers2.demo_copycell.script.demo_copycell",
     "class": "demo_copycell",
@@ -5138,84 +4641,6 @@
       }
     }
   },
-  "prosmart_refmac": {
-    "module": "pipelines.prosmart_refmac.script.prosmart_refmac",
-    "class": "prosmart_refmac",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "refinement",
-    "TASKTITLE": "Refine with Refmac & optional restraints from Prosmart & Platonyzer",
-    "TASKNAME": "prosmart_refmac",
-    "TASKVERSION": 0.0,
-    "WHATNEXT": [
-      "prosmart_refmac",
-      "modelcraft",
-      "coot_rebuild"
-    ],
-    "ASYNCHRONOUS": true,
-    "TIMEOUT_PERIOD": 240,
-    "MAXNJOBS": 4,
-    "PERFORMANCECLASS": "CRefinementPerformance",
-    "SUBTASKS": [
-      "Platonyzer",
-      "prosmart",
-      "refmac"
-    ],
-    "RUNEXTERNALPROCESS": false,
-    "PURGESEARCHLIST": [
-      [
-        "refmac%*/hklout.mtz",
-        0,
-        "hklout"
-      ],
-      [
-        "refmac%*/hklout.mtz",
-        7,
-        "hklout"
-      ],
-      [
-        "*%*/ANOMFPHIOUT.mtz",
-        1,
-        "ANOMFPHIOUT"
-      ],
-      [
-        "*%*/DIFANOMFPHIOUT.mtz",
-        1,
-        "DIFANOMFPHIOUT"
-      ]
-    ],
-    "ERROR_CODES": {
-      "101": {
-        "description": "Error copying data file from final job to pipeline directory"
-      },
-      "102": {
-        "description": "ProSMART protein restraints failed"
-      },
-      "103": {
-        "description": "ProSMART nucleic acid restraints failed"
-      },
-      "104": {
-        "description": "Platonyzer restraints failed"
-      },
-      "105": {
-        "description": "Refmac refinement failed"
-      },
-      "106": {
-        "description": "Refmac output file not created"
-      },
-      "107": {
-        "description": "Coot find waters failed"
-      },
-      "108": {
-        "description": "Post-coot refmac failed"
-      },
-      "109": {
-        "description": "Weight optimization failed"
-      },
-      "110": {
-        "description": "Validation failed"
-      }
-    }
-  },
   "import_merged": {
     "module": "pipelines.import_merged.script.import_merged",
     "class": "import_merged",
@@ -5311,6 +4736,27 @@
     "ERROR_CODES": {
       "201": {
         "description": "Failed in SubstituteLigand"
+      },
+      "202": {
+        "description": "Failed in harvest operation"
+      },
+      "203": {
+        "description": "Exception in LidiaAcedrg ligand generation"
+      },
+      "204": {
+        "description": "Exception in aimless pipeline"
+      },
+      "205": {
+        "description": "Exception in phaser_rnp_pipeline"
+      },
+      "206": {
+        "description": "Exception in i2Dimple"
+      },
+      "207": {
+        "description": "Exception in coot ligand fitting"
+      },
+      "208": {
+        "description": "Exception in coot postprocessing"
       }
     }
   },
@@ -5535,68 +4981,6 @@
       }
     }
   },
-  "tableone": {
-    "module": "pipelines.tableone.script.tableone",
-    "class": "tableone",
-    "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
-    "TASKMODULE": "test",
-    "TASKTITLE": "Generate Table One",
-    "TASKNAME": "tableone",
-    "TASKVERSION": 1.0,
-    "ASYNCHRONOUS": true,
-    "PERFORMANCECLASS": "CExpPhasPerformance",
-    "ERROR_CODES": {
-      "200": {
-        "description": "Error merging MTZ files"
-      },
-      "201": {
-        "description": "Invalid miniMtzsIn specification"
-      },
-      "202": {
-        "description": "File object has no CONTENT_SIGNATURE_LIST"
-      },
-      "203": {
-        "description": "File object has no path set"
-      },
-      "204": {
-        "description": "MTZ file not found"
-      },
-      "205": {
-        "description": "File object not found in inputData or outputData"
-      },
-      "206": {
-        "description": "Invalid contentFlag for file type"
-      },
-      "207": {
-        "description": "Invalid item format in miniMtzsIn"
-      },
-      "208": {
-        "description": "Conversion method not found on file object"
-      },
-      "209": {
-        "description": "Conversion to requested format not yet implemented"
-      },
-      "210": {
-        "description": "Error during MTZ file conversion"
-      },
-      "300": {
-        "description": "Input MTZ file not found for split operation"
-      },
-      "301": {
-        "description": "miniMtzsOut and programColumnNames length mismatch"
-      },
-      "302": {
-        "description": "Output object not found in container.outputData"
-      },
-      "303": {
-        "description": "Output object has no path set"
-      },
-      "304": {
-        "description": "Error splitting MTZ file"
-      }
-    }
-  },
   "phaser_MR_FRF": {
     "module": "pipelines.phaser_pipeline.wrappers.phaser_MR_FRF.script.phaser_MR_FRF",
     "class": "phaser_MR_FRF",
@@ -5788,61 +5172,6 @@
       }
     }
   },
-  "phaser_pipeline": {
-    "module": "pipelines.phaser_pipeline.script.phaser_pipeline",
-    "class": "phaser_pipeline",
-    "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
-    "TASKMODULE": null,
-    "TASKTITLE": null,
-    "TASKNAME": "phaser_pipeline",
-    "TASKVERSION": 0.0,
-    "WHATNEXT": [
-      "prosmart_refmac",
-      "modelcraft",
-      "coot_rebuild"
-    ],
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CRefinementPerformance",
-    "ERROR_CODES": {
-      "200": {
-        "description": "Phaser exited with error status"
-      },
-      "201": {
-        "description": "Exception in phaser pipeline setup"
-      },
-      "202": {
-        "description": "Failed in harvest operation"
-      },
-      "203": {
-        "description": "Columns not present"
-      },
-      "204": {
-        "description": "Failed in plugin"
-      },
-      "205": {
-        "description": "Exception in pointless_reindexToMatch"
-      },
-      "206": {
-        "description": "Exception in csymmatch"
-      },
-      "207": {
-        "description": "No output files in list"
-      },
-      "208": {
-        "description": "Exception in coot_script_lines"
-      },
-      "209": {
-        "description": "Exception in sheetbend"
-      },
-      "210": {
-        "description": "Exception in refmac"
-      },
-      "211": {
-        "description": "Exception in harvestFile"
-      }
-    }
-  },
   "phaser_EP": {
     "module": "pipelines.phaser_ep.script.phaser_EP",
     "class": "phaser_EP",
@@ -5883,22 +5212,6 @@
       },
       "210": {
         "description": "ModelCraft sub-job failed"
-      }
-    }
-  },
-  "shelx": {
-    "module": "pipelines.shelx.script.shelx_script",
-    "class": "shelx",
-    "COMTEMPLATE": null,
-    "TASKMODULE": null,
-    "TASKTITLE": "SHELX",
-    "TASKNAME": "shelx",
-    "TASKVERSION": 0.01,
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CExpPhasPerformance",
-    "ERROR_CODES": {
-      "0": {
-        "description": " "
       }
     }
   },
@@ -5995,86 +5308,6 @@
       }
     }
   },
-  "crank2_refatompick": {
-    "module": "pipelines.crank2.wrappers.crank2_refatompick.script.crank2_refatompick",
-    "class": "crank2_refatompick",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "test",
-    "TASKTITLE": "Crank2",
-    "TASKNAME": "crank2_refatompick",
-    "TASKVERSION": 0.01,
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CExpPhasPerformance",
-    "ERROR_CODES": {
-      "0": {
-        "description": " "
-      }
-    }
-  },
-  "crank2_handdet": {
-    "module": "pipelines.crank2.wrappers.crank2_handdet.script.crank2_handdet",
-    "class": "crank2_handdet",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "test",
-    "TASKTITLE": "Crank2",
-    "TASKNAME": "crank2_handdet",
-    "TASKVERSION": 0.01,
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CExpPhasPerformance",
-    "ERROR_CODES": {
-      "0": {
-        "description": " "
-      }
-    }
-  },
-  "crank2_mbref": {
-    "module": "pipelines.crank2.wrappers.crank2_mbref.script.crank2_mbref",
-    "class": "crank2_mbref",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "test",
-    "TASKTITLE": "Crank2",
-    "TASKNAME": "crank2_mbref",
-    "TASKVERSION": 0.01,
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CExpPhasPerformance",
-    "ERROR_CODES": {
-      "0": {
-        "description": " "
-      }
-    }
-  },
-  "crank2_phdmmb": {
-    "module": "pipelines.crank2.wrappers.crank2_phdmmb.script.crank2_phdmmb",
-    "class": "crank2_phdmmb",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "test",
-    "TASKTITLE": "Crank2",
-    "TASKNAME": "crank2_phdmmb",
-    "TASKVERSION": 0.01,
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CExpPhasPerformance",
-    "ERROR_CODES": {
-      "0": {
-        "description": " "
-      }
-    }
-  },
-  "crank2_dmfull": {
-    "module": "pipelines.crank2.wrappers.crank2_dmfull.script.crank2_dmfull",
-    "class": "crank2_dmfull",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "test",
-    "TASKTITLE": "Crank2",
-    "TASKNAME": "crank2_dmfull",
-    "TASKVERSION": 0.01,
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CExpPhasPerformance",
-    "ERROR_CODES": {
-      "0": {
-        "description": " "
-      }
-    }
-  },
   "crank2_createfree": {
     "module": "pipelines.crank2.wrappers.crank2_createfree.script.crank2_createfree",
     "class": "crank2_createfree",
@@ -6132,136 +5365,6 @@
       },
       "304": {
         "description": "Error splitting MTZ file"
-      }
-    }
-  },
-  "crank2_comb_phdmmb": {
-    "module": "pipelines.crank2.wrappers.crank2_comb_phdmmb.script.crank2_comb_phdmmb",
-    "class": "crank2_comb_phdmmb",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "test",
-    "TASKTITLE": "Crank2",
-    "TASKNAME": "crank2_comb_phdmmb",
-    "TASKVERSION": 0.01,
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CExpPhasPerformance",
-    "ERROR_CODES": {
-      "0": {
-        "description": " "
-      }
-    }
-  },
-  "crank2_ref": {
-    "module": "pipelines.crank2.wrappers.crank2_ref.script.crank2_ref",
-    "class": "crank2_ref",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "test",
-    "TASKTITLE": "Crank2",
-    "TASKNAME": "crank2_ref",
-    "TASKVERSION": 0.01,
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CExpPhasPerformance",
-    "ERROR_CODES": {
-      "0": {
-        "description": " "
-      }
-    }
-  },
-  "crank2_phas": {
-    "module": "pipelines.crank2.wrappers.crank2_phas.script.crank2_phas",
-    "class": "crank2_phas",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "test",
-    "TASKTITLE": "Crank2",
-    "TASKNAME": "crank2_phas",
-    "TASKVERSION": 0.01,
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CExpPhasPerformance",
-    "ERROR_CODES": {
-      "0": {
-        "description": " "
-      }
-    }
-  },
-  "crank2_faest": {
-    "module": "pipelines.crank2.wrappers.crank2_faest.script.crank2_faest",
-    "class": "crank2_faest",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "test",
-    "TASKTITLE": "Crank2",
-    "TASKNAME": "crank2_faest",
-    "TASKVERSION": 0.01,
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CExpPhasPerformance",
-    "ERROR_CODES": {
-      "0": {
-        "description": " "
-      }
-    }
-  },
-  "crank2_substrdet": {
-    "module": "pipelines.crank2.wrappers.crank2_substrdet.script.crank2_substrdet",
-    "class": "crank2_substrdet",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "test",
-    "TASKTITLE": "Crank2",
-    "TASKNAME": "crank2_substrdet",
-    "TASKVERSION": 0.01,
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CExpPhasPerformance",
-    "ERROR_CODES": {
-      "0": {
-        "description": " "
-      }
-    }
-  },
-  "crank2": {
-    "module": "pipelines.crank2.script.crank2_script",
-    "class": "crank2",
-    "COMTEMPLATE": null,
-    "TASKMODULE": null,
-    "TASKTITLE": "Crank2",
-    "TASKNAME": "crank2",
-    "TASKVERSION": 0.02,
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CExpPhasPerformance",
-    "ERROR_CODES": {
-      "0": {
-        "description": " "
-      }
-    }
-  },
-  "phaser_rnp_pipeline": {
-    "module": "pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline",
-    "class": "phaser_rnp_pipeline",
-    "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
-    "TASKMODULE": null,
-    "TASKTITLE": null,
-    "TASKNAME": "phaser_rnp_pipeline",
-    "TASKVERSION": 0.0,
-    "WHATNEXT": [
-      "prosmart_refmac",
-      "modelcraft",
-      "coot_rebuild"
-    ],
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CRefinementPerformance",
-    "ERROR_CODES": {
-      "200": {
-        "description": "Phaser exited with error statut"
-      },
-      "202": {
-        "description": "Failed in harvest operation"
-      },
-      "203": {
-        "description": "Columns not present"
-      },
-      "204": {
-        "description": "Failed in plugin:",
-        "205": {
-          "description": "Failed in pointless reindex operation"
-        }
       }
     }
   },
@@ -6798,43 +5901,6 @@
       }
     }
   },
-  "dr_mr_modelbuild_pipeline": {
-    "module": "pipelines.dr_mr_modelbuild_pipeline.script.dr_mr_modelbuild_pipeline",
-    "class": "dr_mr_modelbuild_pipeline",
-    "COMTEMPLATE": null,
-    "TASKMODULE": null,
-    "TASKTITLE": null,
-    "TASKNAME": "dr_mr_modelbuild_pipeline",
-    "TASKVERSION": null,
-    "WHATNEXT": [],
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CRefinementPerformance",
-    "PURGESEARCHLIST": [
-      [
-        "molrep_mr%*/align.pdb",
-        1
-      ],
-      [
-        "molrep_mr%*/molrep_mtz.cif",
-        1
-      ],
-      [
-        "molrep_mr%*/molrep.doc.txt",
-        5
-      ]
-    ],
-    "ERROR_CODES": {
-      "301": {
-        "description": "Error reading program xml output from first molrep run"
-      },
-      "302": {
-        "description": "No Laue results in program xml output from first molrep run"
-      },
-      "202": {
-        "description": "Failed in harvesting file from lidia/acedrg"
-      }
-    }
-  },
   "uniqueify": {
     "module": "pipelines.uniqueify.script.uniqueify",
     "class": "uniqueify",
@@ -7047,34 +6113,6 @@
       },
       "203": {
         "description": "Required input data not set"
-      }
-    }
-  },
-  "phaser_simple": {
-    "module": "pipelines.phaser_simple.script.phaser_simple",
-    "class": "phaser_simple",
-    "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
-    "TASKMODULE": null,
-    "TASKTITLE": null,
-    "TASKNAME": "phaser_simple",
-    "TASKVERSION": 0.0,
-    "WHATNEXT": [
-      "prosmart_refmac",
-      "modelcraft",
-      "coot_rebuild"
-    ],
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CRefinementPerformance",
-    "ERROR_CODES": {
-      "301": {
-        "description": "Exception in createEnsembleElements"
-      },
-      "302": {
-        "description": "Exception setting up search model ensemble"
-      },
-      "303": {
-        "description": "Exception setting up fixed structure ensemble"
       }
     }
   }
