@@ -19,9 +19,8 @@
 """
 
 import re
-import shutil
 from core.CCP4PluginScript import CPluginScript
-from core.CCP4ErrorHandling import *
+from core.CCP4ErrorHandling import SEVERITY_WARNING
 
 class molrep_mr(CPluginScript):
 
@@ -31,377 +30,332 @@ class molrep_mr(CPluginScript):
     TASKMODULE = 'wrappers'
     MAINTAINER = 'andrey.lebedev@stfc.ac.uk'
 
-    ERROR_CODES = { 101 : { 'severity': SEVERITY_WARNING, 'description' : 'Failed extracting tables from molrep.doc' },
-                    102 : { 'severity': SEVERITY_WARNING, 'description' : 'Failed writing tables to program.xml' },
-                    103 : { 'severity': SEVERITY_WARNING, 'description' : 'No tables extracted from molrep.doc' },
-                    104 : { 'description' : 'No output coordinate file from Molrep' },
-                    105 : { 'description' : 'No output log file from Molrep' },
-                    106 : { 'description' : 'Error parsing log file from Molrep' }
-                    }
-
+    ERROR_CODES = {
+        101: {'severity': SEVERITY_WARNING, 'description': 'Failed extracting tables from molrep.doc'},
+        102: {'severity': SEVERITY_WARNING, 'description': 'Failed writing tables to program.xml'},
+        103: {'severity': SEVERITY_WARNING, 'description': 'No tables extracted from molrep.doc'},
+        104: {'description': 'No output coordinate file from Molrep'},
+        105: {'description': 'No output log file from Molrep'},
+        106: {'description': 'Error parsing log file from Molrep'},
+        107: {'severity': SEVERITY_WARNING, 'description': 'molrep.doc file not found - molrep may have failed'},
+        108: {'severity': SEVERITY_WARNING, 'description': 'Failed to convert input observations to F_SIGF'},
+        109: {'severity': SEVERITY_WARNING, 'description': 'Failed to process input coordinate file'},
+        110: {'severity': SEVERITY_WARNING, 'description': 'Failed to create scratch directory'},
+        111: {'severity': SEVERITY_WARNING, 'description': 'Failed to prepare model for Molrep'},
+        112: {'severity': SEVERITY_WARNING, 'description': 'Failed to write sequence file'},
+        113: {'severity': SEVERITY_WARNING, 'description': 'Failed to process output coordinate file'},
+        114: {'severity': SEVERITY_WARNING, 'description': 'Failed to read molrep.doc file'},
+        115: {'severity': SEVERITY_WARNING, 'description': 'Failed to save program XML'},
+        116: {'severity': SEVERITY_WARNING, 'description': 'Failed to extract Laue data from log'},
+    }
 
     def processInputFiles(self):
-      import os
-      # Ensure the obs data is in form of F_SIGF
-      if self.container.guiParameters.PERFORM != 'den':
-        from core import CCP4XtalData
-        # Using CObsDataFile.convert() did not work for input of anomalous Is (as from aimless)
-        self.F_SIGF_hklin,errReport = self.makeHklin([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
-        #self.F_SIGF_hklin,errReport = self.container.inputData.F_SIGF.convert(targetContent=CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN)
-        #print 'molrep_mr.processInputFiles',self.F_SIGF_hklin,errReport
-        if self.F_SIGF_hklin is None: return CPluginScript.FAILED
+        import os
+        # Ensure the obs data is in form of F_SIGF
+        if self.container.guiParameters.PERFORM != 'den':
+            try:
+                from core import CCP4XtalData
+                # Using CObsDataFile.convert() did not work for input of anomalous Is (as from aimless)
+                self.F_SIGF_hklin, errReport = self.makeHklin([['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
+                if self.F_SIGF_hklin is None:
+                    self.appendErrorReport(108, 'makeHklin returned None')
+                    return CPluginScript.FAILED
+            except Exception as e:
+                self.appendErrorReport(108, str(e))
+                return CPluginScript.FAILED
 
-        
-      if self.container.guiParameters.PERFORM != 'srf':
-        # Check if XYZIN is actually set before processing
-        if self.container.inputData.XYZIN.isSet():
-          if self.container.inputData.XYZIN.isSelectionSet():
-            self.selectedXYZIN = os.path.join(self.workDirectory,'XYZIN_selected_atoms.pdb')
-            rv = self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.selectedXYZIN)
-          elif self.container.inputData.XYZIN.getExt() != '.pdb':
-            self.selectedXYZIN = os.path.join(self.workDirectory,'XYZIN_pdb.pdb')
-            self.container.inputData.XYZIN.convertFormat('pdb',self.selectedXYZIN )
-          else:
-            self.selectedXYZIN = str( self.container.inputData.XYZIN)
-          
-          
-      return CPluginScript.SUCCEEDED
+        if self.container.guiParameters.PERFORM != 'srf':
+            # Check if XYZIN is actually set before processing
+            if self.container.inputData.XYZIN.isSet():
+                try:
+                    if self.container.inputData.XYZIN.isSelectionSet():
+                        self.selectedXYZIN = os.path.join(self.workDirectory, 'XYZIN_selected_atoms.pdb')
+                        self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.selectedXYZIN)
+                    elif self.container.inputData.XYZIN.getExt() != '.pdb':
+                        self.selectedXYZIN = os.path.join(self.workDirectory, 'XYZIN_pdb.pdb')
+                        self.container.inputData.XYZIN.convertFormat('pdb', self.selectedXYZIN)
+                    else:
+                        self.selectedXYZIN = str(self.container.inputData.XYZIN)
+                except Exception as e:
+                    self.appendErrorReport(109, str(e))
+                    return CPluginScript.FAILED
+
+        return CPluginScript.SUCCEEDED
 
     def makeCommandAndScript(self):
+        inp = self.container.inputData
+        par = self.container.controlParameters
+        gui = self.container.guiParameters
 
-      inp = self.container.inputData
-      par = self.container.controlParameters
-      gui = self.container.guiParameters
+        import os
+        self.path_wrk = str(self.getWorkDirectory())
+        self.path_scr = os.path.join(self.path_wrk, 'scratch')
 
-      from core import CCP4Utils
-      import os
-      self.path_wrk = str( self.getWorkDirectory() )
-      self.path_scr = os.path.join( self.path_wrk, 'scratch' )
-      if not os.path.exists(self.path_scr): os.mkdir( self.path_scr )
-      #print "self.path_wrk", self.path_wrk
-      #print "self.path_scr", self.path_scr
-
-      if str( gui.PERFORM ) != 'srf' and inp.XYZIN.isSet():
-         pdbin = os.path.join(self.path_wrk, 'molrep_input.pdb')
-         inp.XYZIN.replaceMSE(pdbin)
-         self.appendCommandLine( [ '-m', pdbin ] )
-
-
-      if inp.ASUIN.isSet() and par.SEQ.__str__() != 'n':
-        seqin = os.path.join(self.workDirectory,'SEQIN.fasta')
-        inp.ASUIN.writeFasta(seqin)
-        self.appendCommandLine( [ '-s', seqin ] )
-
-      if str( gui.PERFORM ) == 'pat' :
-         if  inp.XYZIN_FIX.isSet() :
-            self.appendCommandLine( [ '-mx', str( inp.XYZIN_FIX.fullPath ) ] )
-
-      if str( gui.PERFORM ) == 'den' :
-         self.appendCommandLine( [ '-mx', str( inp.XYZIN_FIX.fullPath ) ] )
-
-      self.appendCommandLine( [ '-ps', str( self.path_scr ) + '/' ] )
-      self.appendCommandLine( [ '-po', str( self.path_wrk ) + '/' ] )
-      self.appendCommandLine( [ '-i' ] )
-
-      if str( gui.PERFORM ) == 'den' :
-         self.appendCommandLine( [ '-f', str( inp.F_PHI_MAP.fullPath ) ] )
-         self.appendCommandScript( "labin F=F PH=PHI" )
-         self.appendCommandScript( "diff m" )
-
-      else :
-         #self.appendCommandLine( [ '-f', str( inp.F_SIGF.fullPath ) ] )
-         self.appendCommandLine( [ '-f', self.F_SIGF_hklin ] )
-         self.appendCommandScript( "labin F=F SIGF=SIGF" )
-
-      if str( gui.PERFORM ) == 'den' :
-         if str( par.PRF ) == 'n' :
-            pass
-#-          self.appendCommandScript( "prf n" )
-         elif str( par.PRF ) == 'y' :
-            self.appendCommandScript( "prf y" )
-         elif str( par.PRF ) == 's' :
-            self.appendCommandScript( "prf s" )
-         else :
-            raise Exception()
-
-      if str( par.NP ) != 'Auto' :
-         self.appendCommandScript( "np %s" %( str( par.NP ) ) )
-
-      if str( par.NMON ) != 'Auto' :
-         self.appendCommandScript( "nmon %s" %( str( par.NMON ) ) )
-
-      if par.SCORE.isSet() :
-         if str( par.SCORE ) == 'y' :
-            pass
-#-          self.appendCommandScript( "score y" )
-         elif str( par.SCORE ) == 'n' :
-            self.appendCommandScript( "score n" )
-         elif str( par.SCORE ) == 'c' :
-            self.appendCommandScript( "score c" )
-         else :
-            raise Exception()
-
-      if par.ANISO.isSet() :
-         if str( par.ANISO ) == 'y' :
-            pass
-#-          self.appendCommandScript( "aniso y" )
-         elif str( par.ANISO ) == 'n' :
-            self.appendCommandScript( "aniso n" )
-         elif str( par.ANISO ) == 'k' :
-            self.appendCommandScript( "aniso k" )
-         else :
-            raise Exception()
-
-#-    if par.HIGH_PATH_VAR.isSet() :
-#-       if str( gui.HIGH_PATH_VAR ) == 's' :
-#-          pass
-##          self.appendCommandScript( "high_pass_var s" )
-#-       elif str( gui.HIGH_PATH_VAR ) == 'i' :
-#-          self.appendCommandScript( "high_pass_var i" )
-#-       elif str( gui.HIGH_PATH_VAR ) == 'r' :
-#-          self.appendCommandScript( "high_pass_var r" )
-#-       elif str( gui.HIGH_PATH_VAR ) == 'b' :
-#-          self.appendCommandScript( "high_pass_var b" )
-#-       else :
-#-          raise Exception()
-
-#-    if par.LOW_PATH_VAR.isSet() :
-#-       if str( gui.LOW_PATH_VAR ) == 'c' :
-#-          pass
-##          self.appendCommandScript( "low_pass_var c" )
-#-       elif str( gui.LOW_PATH_VAR ) == 'r' :
-#-          self.appendCommandScript( "low_pass_var r" )
-#-       elif str( gui.LOW_PATH_VAR ) == 'b' :
-#-          self.appendCommandScript( "low_pass_var b" )
-#-       else :
-#-          raise Exception()
-
-      if par.SEQ.isSet() :
-         if str( par.SEQ ) == 'y' :
-            pass
-#-          self.appendCommandScript( "seq y" )
-         elif str( par.SEQ ) == 'd' :
-            self.appendCommandScript( "seq d" )
-         elif str( par.SEQ ) == 'n' :
-            self.appendCommandScript( "seq n" )
-         else :
-            raise Exception()
-
-      if par.SURF.isSet() :
-         if str( par.SURF ) == 'y' :
-            pass
-#-          self.appendCommandScript( "surf y" )
-         elif str( par.SURF ) == 'c' :
-            self.appendCommandScript( "surf c" )
-         elif str( par.SURF ) == 'n' :
-            self.appendCommandScript( "surf n" )
-         elif str( par.SURF ) == '2' :
-            self.appendCommandScript( "surf 2" )
-         elif str( par.SURF ) == 'a' :
-            self.appendCommandScript( "surf a" )
-         else :
-            raise Exception()
-
-      if par.NMON_EXP.isSet() :
-         if str( par.NMON_EXP ) != 'Auto' :
-            self.appendCommandScript( "nmon_exp %s" %( str( par.NMON_EXP ) ) )
-
-      if par.RESMIN.isSet(): self.appendCommandScript( "resmin %s" %( str( par.RESMIN ) ) )
-      if par.RESMAX.isSet(): self.appendCommandScript( "resmax %s" %( str( par.RESMAX ) ) )
-
-      if par.SG_OPTIONS == 'specify':
-        if par.SG.isSet():  self.appendCommandScript( "sg %s" %( str( par.SG ) ) )
-      elif par.SG_OPTIONS == 'laue':
-        self.appendCommandScript( "sg all")
-#-    out = self.container.outputData
-#-    print str( out.XYZOUT.fullPath )
-
-
-#-    print
-#-    print '------------------------------------------'
-#-    print self.commandLine
-#-    print self.commandScript
-#-    print '------------------------------------------'
-#-    print
-
-      return 0
-
-    def processOutputFiles( self ) :
-
-      import os
-      out = self.container.outputData
-      gui = self.container.guiParameters
-      par = self.container.controlParameters
-
-      
-      # Rename output file or report failure
-      if not par.SG_OPTIONS == 'laue' and not gui.PERFORM == 'srf':
-        fileName = os.path.join( self.path_wrk, 'molrep.pdb' )
-        #print 'molrep_mr.processOutputFiles XYZOUT',fileName,  os.path.isfile( fileName )
-        if os.path.isfile( fileName ) :
-           with open(fileName) as istream:
-             content = istream.read()
-
-           content = re.sub(r'\n#MOLECULE\s+[0-9]+\s*', '\n', content)
-           with open(str(out.XYZOUT.fullPath), 'w') as ostream:
-             ostream.write(content)
-
-        else:
-          self.appendErrorReport(104,str( out.XYZOUT ) , stack=False)
-          return CPluginScript.FAILED
-    
-      if gui.PERFORM == 'pat':
-        out.XYZOUT.annotation = 'Model from molrep MR'
-      elif gui.PERFORM == 'den':
-        out.XYZOUT.annotation = 'Model from molrep density search'
-
-#-    file = os.path.join( self.path_wrk, 'molrep.xml' )
-#-    if os.path.isfile( file ) :
-#-       os.rename( file, xmlout )
-
-#-    print str( out.XYZOUT.fullPath )
-
-      docout = os.path.join( self.path_wrk, 'molrep.doc' )
-      xmlout = str( self.makeFileName( 'PROGRAMXML' ) )
-      self.saveProgramXml(docout,xmlout )
-      os.rename(docout,docout+'.txt')
-      
-
-      if  gui.PERFORM == 'srf':
-        psfile = os.path.join(self.getWorkDirectory(),'molrep_rf.ps')
-        if os.path.exists(psfile):
-          out.PSOUT.set(psfile)
-          out.PSOUT.annotation.set('Self-rotation function')
-      
-      return CPluginScript.SUCCEEDED
-
-
-
-    def saveProgramXml ( self, docFileName, programXmlFileName ) :
-      from core import CCP4Utils
-      titles = []
-      status = 0
-      from lxml import etree
-      results = etree.Element('MolrepResult')
-      tf = etree.Element('MR_TF')
-      results.append(tf)
-      for key,value in [ ['err_level','0'],
-                         ['err_message','normal termination'],
-                         ['n_solution','1'],
-                         ['mr_score','0.0000'] ]:
-          
-        e = etree.Element(key)
-        e.text = value
-        tf.append(e)
-
-      '''
-      table = [ '<?xml version="1.0" encoding="ASCII" standalone="yes"?>' ]
-      table.append( "<MolrepResult>" )
-      table.append( "<MR_TF>" )
-      table.append( "Error <err_level>0</err_level>" )
-      table.append( "Message <err_message>normal termination</err_message>" )
-      table.append( "nmon_solution <n_solution>1</n_solution>" )
-      table.append( "mr_score <mr_score>0.0000</mr_score>" )
-      table.append( "</MR_TF>" )
-      table.append( " <RFpeaks>" )
-      '''
-
-      docfileText = CCP4Utils.readFile(docFileName)
-      docfileList = docfileText.split('\n')
-      
-      for line in docfileList :
-         #print 'line in docfile',status,line
-         if status == 0 :
-            lstr = line.strip()
-            lst1 = "--- Translation function ---"
-            lst2 = "--- phased translation function ---"
-            if lstr == lst1 or lstr == lst2 :
-              status = 1
-
-         elif status == 1 :
-            if line.strip().startswith( 'RF ' ) :
-              titles = line.replace( "(", " " ).replace( ")", "" ).replace( "/", "_" ).split()
-              #print 'titles',titles
-              rf = etree.Element('RFpeaks')
-              results.append(rf)
-
-            else:
-              words = line.replace( "(", " " ).replace( ")", "" ).replace( "-", " -" ).split()
-              if len( words ) == len( titles ) :
-                try :
-                  for i in (0,1): ii = int( words[i] )
-                  for i in range(2,len(words)): ii = float( words[i] )
-                  peak = etree.Element('RFpeak')
-                  for key,value in zip( titles, words ) :
-                    #print ' key,value', key,value
-                    e = etree.Element(key)
-                    e.text = str(float(value))
-                    peak.append(e)
-                except :
-                  pass
-                else:
-                  rf.append(peak)
-                 
-      if self.container.controlParameters.SG_OPTIONS == 'laue':
-        data = self.extractLaueDataFromLog()
         try:
-          scores = ['%6.4f' %float(e1.findall('RFpeak')[-1].findtext('for')) for e1 in results.findall('RFpeaks')]
-          assert len(scores) == len(data)
-        except:
-          scores = None
-        eleNames = ['space_group','score','contrast']
-        eLaue = etree.Element('laue_group_alternatives')
-        for d in data:
-          eTest = etree.Element('test')
-          eLaue.append(eTest)
-          for ii in range(3):
-            e = etree.Element(eleNames[ii])
-            e.text = str(d[ii])
-            eTest.append(e)     
-          if scores:
-            eTest.find('score').text = scores.pop(0)
-        results.append(eLaue)
-          
-      CCP4Utils.saveEtreeToFile(results,programXmlFileName)
-                
+            if not os.path.exists(self.path_scr):
+                os.mkdir(self.path_scr)
+        except Exception as e:
+            self.appendErrorReport(110, str(e))
+            return CPluginScript.FAILED
+
+        if str(gui.PERFORM) != 'srf' and inp.XYZIN.isSet():
+            try:
+                pdbin = os.path.join(self.path_wrk, 'molrep_input.pdb')
+                inp.XYZIN.replaceMSE(pdbin)
+                self.appendCommandLine(['-m', pdbin])
+            except Exception as e:
+                self.appendErrorReport(111, str(e))
+                return CPluginScript.FAILED
+
+        if inp.ASUIN.isSet() and par.SEQ.__str__() != 'n':
+            try:
+                seqin = os.path.join(self.workDirectory, 'SEQIN.fasta')
+                inp.ASUIN.writeFasta(seqin)
+                self.appendCommandLine(['-s', seqin])
+            except Exception as e:
+                self.appendErrorReport(112, str(e))
+
+        if str(gui.PERFORM) == 'pat':
+            if inp.XYZIN_FIX.isSet():
+                self.appendCommandLine(['-mx', str(inp.XYZIN_FIX.fullPath)])
+
+        if str(gui.PERFORM) == 'den':
+            self.appendCommandLine(['-mx', str(inp.XYZIN_FIX.fullPath)])
+
+        self.appendCommandLine(['-ps', str(self.path_scr) + '/'])
+        self.appendCommandLine(['-po', str(self.path_wrk) + '/'])
+        self.appendCommandLine(['-i'])
+
+        if str(gui.PERFORM) == 'den':
+            self.appendCommandLine(['-f', str(inp.F_PHI_MAP.fullPath)])
+            self.appendCommandScript("labin F=F PH=PHI")
+            self.appendCommandScript("diff m")
+        else:
+            self.appendCommandLine(['-f', self.F_SIGF_hklin])
+            self.appendCommandScript("labin F=F SIGF=SIGF")
+
+        if str(gui.PERFORM) == 'den':
+            if str(par.PRF) == 'n':
+                pass
+            elif str(par.PRF) == 'y':
+                self.appendCommandScript("prf y")
+            elif str(par.PRF) == 's':
+                self.appendCommandScript("prf s")
+
+        if str(par.NP) != 'Auto':
+            self.appendCommandScript("np %s" % str(par.NP))
+
+        if str(par.NMON) != 'Auto':
+            self.appendCommandScript("nmon %s" % str(par.NMON))
+
+        if par.SCORE.isSet():
+            if str(par.SCORE) == 'y':
+                pass
+            elif str(par.SCORE) == 'n':
+                self.appendCommandScript("score n")
+            elif str(par.SCORE) == 'c':
+                self.appendCommandScript("score c")
+
+        if par.ANISO.isSet():
+            if str(par.ANISO) == 'y':
+                pass
+            elif str(par.ANISO) == 'n':
+                self.appendCommandScript("aniso n")
+            elif str(par.ANISO) == 'k':
+                self.appendCommandScript("aniso k")
+
+        if par.SEQ.isSet():
+            if str(par.SEQ) == 'y':
+                pass
+            elif str(par.SEQ) == 'd':
+                self.appendCommandScript("seq d")
+            elif str(par.SEQ) == 'n':
+                self.appendCommandScript("seq n")
+
+        if par.SURF.isSet():
+            if str(par.SURF) == 'y':
+                pass
+            elif str(par.SURF) == 'c':
+                self.appendCommandScript("surf c")
+            elif str(par.SURF) == 'n':
+                self.appendCommandScript("surf n")
+            elif str(par.SURF) == '2':
+                self.appendCommandScript("surf 2")
+            elif str(par.SURF) == 'a':
+                self.appendCommandScript("surf a")
+
+        if par.NMON_EXP.isSet():
+            if str(par.NMON_EXP) != 'Auto':
+                self.appendCommandScript("nmon_exp %s" % str(par.NMON_EXP))
+
+        if par.RESMIN.isSet():
+            self.appendCommandScript("resmin %s" % str(par.RESMIN))
+        if par.RESMAX.isSet():
+            self.appendCommandScript("resmax %s" % str(par.RESMAX))
+
+        if par.SG_OPTIONS == 'specify':
+            if par.SG.isSet():
+                self.appendCommandScript("sg %s" % str(par.SG))
+        elif par.SG_OPTIONS == 'laue':
+            self.appendCommandScript("sg all")
+
+        return 0
+
+    def processOutputFiles(self):
+        import os
+        out = self.container.outputData
+        gui = self.container.guiParameters
+        par = self.container.controlParameters
+
+        # Rename output file or report failure
+        if par.SG_OPTIONS != 'laue' and gui.PERFORM != 'srf':
+            fileName = os.path.join(self.path_wrk, 'molrep.pdb')
+            if os.path.isfile(fileName):
+                try:
+                    with open(fileName) as istream:
+                        content = istream.read()
+                    content = re.sub(r'\n#MOLECULE\s+[0-9]+\s*', '\n', content)
+                    with open(str(out.XYZOUT.fullPath), 'w') as ostream:
+                        ostream.write(content)
+                except Exception as e:
+                    self.appendErrorReport(113, str(e))
+                    return CPluginScript.FAILED
+            else:
+                self.appendErrorReport(104, str(out.XYZOUT), stack=False)
+                return CPluginScript.FAILED
+
+            if gui.PERFORM == 'pat':
+                out.XYZOUT.annotation = 'Model from molrep MR'
+            elif gui.PERFORM == 'den':
+                out.XYZOUT.annotation = 'Model from molrep density search'
+
+        docout = os.path.join(self.path_wrk, 'molrep.doc')
+        xmlout = str(self.makeFileName('PROGRAMXML'))
+
+        if os.path.exists(docout):
+            try:
+                self.saveProgramXml(docout, xmlout)
+                os.rename(docout, docout + '.txt')
+            except Exception as e:
+                self.appendErrorReport(115, str(e))
+        else:
+            self.appendErrorReport(107, docout, stack=False)
+
+        if gui.PERFORM == 'srf':
+            psfile = os.path.join(self.getWorkDirectory(), 'molrep_rf.ps')
+            if os.path.exists(psfile):
+                out.PSOUT.set(psfile)
+                out.PSOUT.annotation.set('Self-rotation function')
+
+        return CPluginScript.SUCCEEDED
+
+    def saveProgramXml(self, docFileName, programXmlFileName):
+        from core import CCP4Utils
+        from lxml import etree
+
+        titles = []
+        status = 0
+        rf = None
+
+        results = etree.Element('MolrepResult')
+        tf = etree.Element('MR_TF')
+        results.append(tf)
+
+        for key, value in [['err_level', '0'],
+                           ['err_message', 'normal termination'],
+                           ['n_solution', '1'],
+                           ['mr_score', '0.0000']]:
+            e = etree.Element(key)
+            e.text = value
+            tf.append(e)
+
+        try:
+            docfileText = CCP4Utils.readFile(docFileName)
+            docfileList = docfileText.split('\n')
+        except Exception as e:
+            self.appendErrorReport(114, str(e))
+            return
+
+        for line in docfileList:
+            if status == 0:
+                lstr = line.strip()
+                lst1 = "--- Translation function ---"
+                lst2 = "--- phased translation function ---"
+                if lstr == lst1 or lstr == lst2:
+                    status = 1
+            elif status == 1:
+                if line.strip().startswith('RF '):
+                    titles = line.replace("(", " ").replace(")", "").replace("/", "_").split()
+                    rf = etree.Element('RFpeaks')
+                    results.append(rf)
+                else:
+                    words = line.replace("(", " ").replace(")", "").replace("-", " -").split()
+                    if len(words) == len(titles):
+                        try:
+                            for i in (0, 1):
+                                int(words[i])
+                            for i in range(2, len(words)):
+                                float(words[i])
+                            peak = etree.Element('RFpeak')
+                            for key, value in zip(titles, words):
+                                e = etree.Element(key)
+                                e.text = str(float(value))
+                                peak.append(e)
+                            if rf is not None:
+                                rf.append(peak)
+                        except (ValueError, IndexError):
+                            pass
+
+        if self.container.controlParameters.SG_OPTIONS == 'laue':
+            data = self.extractLaueDataFromLog()
+            if data:
+                try:
+                    scores = ['%6.4f' % float(e1.findall('RFpeak')[-1].findtext('for'))
+                              for e1 in results.findall('RFpeaks')]
+                    if len(scores) != len(data):
+                        scores = None
+                except (ValueError, IndexError, AttributeError):
+                    scores = None
+
+                eleNames = ['space_group', 'score', 'contrast']
+                eLaue = etree.Element('laue_group_alternatives')
+                for d in data:
+                    eTest = etree.Element('test')
+                    eLaue.append(eTest)
+                    for ii in range(3):
+                        e = etree.Element(eleNames[ii])
+                        e.text = str(d[ii])
+                        eTest.append(e)
+                    if scores:
+                        eTest.find('score').text = scores.pop(0)
+                results.append(eLaue)
+
+        CCP4Utils.saveEtreeToFile(results, programXmlFileName)
 
     def extractLaueDataFromLog(self):
-      from core import CCP4Utils
-      try:
-        text = CCP4Utils.readFile(self.makeFileName('LOG'))
-      except:
-        self.appendErrorReport(105,(self.makeFileName('LOG')))
-        return                       
-                               
-      m = re.search(r'(.*)Space Group Checking(.*)',text,re.DOTALL)
-      if m is None:
-        self.appendErrorReport(106)
-        return
-      lines = m.groups()[1].split('\n')[4:]
-      #print 'lines',lines
-      data = []
-      for line in lines:
-        if line.find('+-')>=0: break
-        spg = line[14:30].strip()
-        score = line[44:49].strip()
-        cntr = line[50:56].strip()
-        data.append([spg,score,cntr])
-        #print 'spg,score',spg,score
-      return data
+        from core import CCP4Utils
+        try:
+            text = CCP4Utils.readFile(self.makeFileName('LOG'))
+        except Exception as e:
+            self.appendErrorReport(105, f"{self.makeFileName('LOG')}: {str(e)}")
+            return []
 
-'''       
-0123456789012345678901234567890123456789012345678901234567890
- +-------------------------------------------------------+
- |        Nsg     sg                        Score   Cntr |
- +-------------------------------------------------------+
- |    1   19   P 21 21 21                   0.656 24.887 |
- |    2   16   P 2 2 2                      0.275  5.305 |
- |    3   17   P 2 2 21                     0.289 14.153 |
- |    4 1017   P 21 2 2                     0.288  9.549 |
- |    5 2017   P 2 21 2                     0.293  9.750 |
- |    6   18   P 21 21 2                    0.312  5.950 |
- |    7 2018   P 21 2 21                    0.288  4.563 |
- |    8 3018   P 2 21 21                    0.296 13.246 |
- +-------------------------------------------------------+
-'''       
+        m = re.search(r'(.*)Space Group Checking(.*)', text, re.DOTALL)
+        if m is None:
+            self.appendErrorReport(116, 'Space Group Checking section not found in log')
+            return []
 
+        lines = m.groups()[1].split('\n')[4:]
+        data = []
+        for line in lines:
+            if line.find('+-') >= 0:
+                break
+            try:
+                spg = line[14:30].strip()
+                score = line[44:49].strip()
+                cntr = line[50:56].strip()
+                if spg:
+                    data.append([spg, score, cntr])
+            except IndexError:
+                continue
+        return data
