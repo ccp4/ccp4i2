@@ -302,6 +302,17 @@ export const FileMenu: React.FC = () => {
     [file, api, setFileMenuAnchorEl]
   );
 
+  const handlePreviewFileInPostScript = useCallback(
+    async (ev: SyntheticEvent) => {
+      ev.stopPropagation();
+      if (file) {
+        api.post<any>(`files/${file.id}/preview/`, { viewer: "postscript" });
+        setFileMenuAnchorEl(null);
+      }
+    },
+    [file, api, setFileMenuAnchorEl]
+  );
+
   // Handle edit annotation menu item click
   const handleEditAnnotation = useCallback(
     async (ev: SyntheticEvent) => {
@@ -377,6 +388,14 @@ export const FileMenu: React.FC = () => {
             <Preview sx={{ mr: 1 }} /> ViewHKL
           </MenuItem>
         )}
+        {file &&
+          ["application/postscript", "application/x-pdf"].includes(
+            file.type
+          ) && (
+            <MenuItem key="PostScript" onClick={handlePreviewFileInPostScript}>
+              <Preview sx={{ mr: 1 }} /> Document Viewer
+            </MenuItem>
+          )}
         {file && (
           <MenuItem key="DIGEST" onClick={handlePreviewFileDigest}>
             <Preview sx={{ mr: 1 }} /> DIGEST

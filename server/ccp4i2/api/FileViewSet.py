@@ -153,3 +153,9 @@ class FileViewSet(ModelViewSet):
         except models.File.DoesNotExist as err:
             logging.exception("Failed to retrieve file with id %s", pk, exc_info=err)
             return api_error(str(err), status=404)
+        except ValueError as err:
+            logger.warning("Unsupported viewer requested: %s", err)
+            return api_error(str(err), status=400)
+        except Exception as err:
+            logger.exception("Failed to preview file %s", pk, exc_info=err)
+            return api_error(str(err), status=500)
