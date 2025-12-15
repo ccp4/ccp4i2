@@ -84,11 +84,8 @@ class phaser_pipeline(CPluginScript):
         self.connectSignal(self.phaserPlugin,'finished', self.phaserFinished)
         self.oldXMLLength = 0
         self.phaserPlugin.callbackObject.addResponder(self.phaserXMLUpdated)
-        print('Off to see the wizard')
         rv = self.phaserPlugin.process()
-        print('Rv', rv)
         if rv == CPluginScript.FAILED:
-            print('Oh')
             # Check if LOG file exists before reading it
             # In standalone/i2run mode, subjobs with RUNEXTERNALPROCESS=False don't create LOG files
             # In GUI mode, subjobs run as proper database jobs and do create LOG files
@@ -97,7 +94,6 @@ class phaser_pipeline(CPluginScript):
             if os.path.exists(log_file_path):
                 with open(log_file_path, "r") as logFile:
                     wasInterrupted = 'KILL-FILE DETECTED ERROR' in logFile.read()
-                    print('Was interrupted', wasInterrupted)
             if wasInterrupted:
                 self.reportStatus('CPluginScript.INTERRUPTED')
                 return CPluginScript.INTERRUPTED
@@ -118,6 +114,17 @@ class phaser_pipeline(CPluginScript):
 
     @QtCore.Slot(dict)
     def phaserFinished(self, statusDict = {}):
+        # Extract finish status from statusDict (handles both int and dict formats)
+        if isinstance(statusDict, dict):
+            finish_status = statusDict.get('finishStatus', CPluginScript.SUCCEEDED)
+        else:
+            finish_status = statusDict
+
+        # If phaser subjob failed, propagate the failure status
+        if finish_status == CPluginScript.FAILED:
+            self.reportStatus(CPluginScript.FAILED)
+            return
+
         if self.container.inputData.MODE_TY in ['MR_FRF', 'MR_FTF', 'MR_PAK']:
             pluginOutputs=self.phaserPlugin.container.outputData
             pipelineOutputs = self.container.outputData

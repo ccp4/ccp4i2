@@ -2316,10 +2316,14 @@ class CPdbEnsembleItem(CPdbEnsembleItemStub):
         rms_val = 0.0
 
         if hasattr(self, 'identity_to_target') and self.identity_to_target is not None:
-            identity_val = getattr(self.identity_to_target, 'value', 0.0) or 0.0
+            raw_val = getattr(self.identity_to_target, 'value', 0.0)
+            # Convert CFloat to Python float to avoid bool() issues with CData types
+            identity_val = float(raw_val) if raw_val is not None else 0.0
 
         if hasattr(self, 'rms_to_target') and self.rms_to_target is not None:
-            rms_val = getattr(self.rms_to_target, 'value', 0.0) or 0.0
+            raw_val = getattr(self.rms_to_target, 'value', 0.0)
+            # Convert CFloat to Python float to avoid bool() issues with CData types
+            rms_val = float(raw_val) if raw_val is not None else 0.0
 
         has_valid_metric = (identity_val != 0.0) or (rms_val != 0.0)
 

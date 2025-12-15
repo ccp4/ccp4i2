@@ -76,8 +76,9 @@ class phaser_simple(phaser_pipeline.phaser_pipeline):
             elif self.container.inputData.ID_RMS == 'RMS':
                 pdbItem.rms_to_target.set(self.container.inputData.SEARCHRMS)
             else:
-                pdbItem.identity_to_target.set(None)
-                pdbItem.rms_to_target.set(None)
+                # Default to identity of 0.9 when ID_RMS is 'CARD' or not set
+                # This prevents validity errors requiring either identity or RMS to be set
+                pdbItem.identity_to_target.set(0.9)
         except Exception as e:
             self.appendErrorReport(302, 'Exception setting up search model ensemble: ' + str(e))
             self.reportStatus(CPluginScript.FAILED)
