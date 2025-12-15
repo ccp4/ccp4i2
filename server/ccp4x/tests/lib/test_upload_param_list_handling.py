@@ -36,10 +36,11 @@ class TestSmartListResolution:
 
         mock_container.find_by_path = Mock(side_effect=mock_find_by_path)
 
-        # Mock list.append() to increment length
-        def mock_append():
+        # Mock list.addItem() to increment length and return the new item
+        def mock_add_item():
             mock_list.__len__ = Mock(return_value=3)
-        mock_list.append = Mock(side_effect=mock_append)
+            return mock_new_item
+        mock_list.addItem = Mock(side_effect=mock_add_item)
 
         # Call resolve_list_upload_path
         param_object, final_path = resolve_list_upload_path(
@@ -48,8 +49,8 @@ class TestSmartListResolution:
             skip_first=True
         )
 
-        # Verify append was called
-        mock_list.append.assert_called_once()
+        # Verify addItem was called
+        mock_list.addItem.assert_called_once()
 
         # Verify the final path has [2] appended (new item at index 2)
         assert final_path == "task.prosmartProtein.REFERENCE_MODELS[2]"
@@ -71,7 +72,7 @@ class TestSmartListResolution:
             raise AttributeError(f"Path not found: {path}")
 
         mock_container.find_by_path = Mock(side_effect=mock_find_by_path)
-        mock_list.append = Mock()  # Should NOT be called
+        mock_list.addItem = Mock()  # Should NOT be called
 
         # Call with existing index [1]
         param_object, final_path = resolve_list_upload_path(
@@ -80,8 +81,8 @@ class TestSmartListResolution:
             skip_first=True
         )
 
-        # Verify append was NOT called (item already exists)
-        mock_list.append.assert_not_called()
+        # Verify addItem was NOT called (item already exists)
+        mock_list.addItem.assert_not_called()
 
         # Verify path unchanged
         assert final_path == "task.prosmartProtein.REFERENCE_MODELS[1]"
@@ -107,10 +108,11 @@ class TestSmartListResolution:
 
         mock_container.find_by_path = Mock(side_effect=mock_find_by_path)
 
-        # Mock append to increment length
-        def mock_append():
+        # Mock addItem to increment length and return a mock item
+        def mock_add_item():
             current_length[0] += 1
-        mock_list.append = Mock(side_effect=mock_append)
+            return Mock(spec=CDataFile)
+        mock_list.addItem = Mock(side_effect=mock_add_item)
 
         # Call with index [5] when list only has 2 items
         param_object, final_path = resolve_list_upload_path(
@@ -119,8 +121,8 @@ class TestSmartListResolution:
             skip_first=True
         )
 
-        # Verify append was called 4 times (to get from 2 items to 6 items)
-        assert mock_list.append.call_count == 4
+        # Verify addItem was called 4 times (to get from 2 items to 6 items)
+        assert mock_list.addItem.call_count == 4
 
         # Verify path unchanged
         assert final_path == "task.prosmartProtein.REFERENCE_MODELS[5]"

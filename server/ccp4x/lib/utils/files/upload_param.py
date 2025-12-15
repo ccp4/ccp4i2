@@ -85,8 +85,8 @@ def resolve_list_upload_path(container, normalized_path: str, skip_first: bool =
                 logger.info(f"Appending {items_to_add} items to reach index {requested_index}")
 
                 for i in range(items_to_add):
-                    # Append creates a new item based on the list's contentClass
-                    list_object.append()
+                    # addItem() creates a new item based on the list's contentClass and appends it
+                    new_item = list_object.addItem()
                     logger.info(f"Appended item {current_length + i}, list now has {len(list_object)} items")
 
         # Now resolve the full path with index
@@ -107,8 +107,8 @@ def resolve_list_upload_path(container, normalized_path: str, skip_first: bool =
         if isinstance(target_object, (CList, CCP4Data.CList)):
             logger.info(f"Target is a list with {len(target_object)} items - appending new item")
 
-            # Append a new item
-            target_object.append()
+            # addItem() creates a new item based on the list's contentClass and appends it
+            new_item = target_object.addItem()
             new_index = len(target_object) - 1
             logger.info(f"Appended new item at index {new_index}, list now has {len(target_object)} items")
 
