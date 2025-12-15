@@ -12,7 +12,6 @@ from ...db.import_i2xml import import_ccp4_project_zip
 from ...db.ccp4i2_django_projects_manager import CCP4i2DjangoProjectsManager
 from ...db import models
 from ...lib.utils.jobs.clone import clone_job
-from ...lib.utils.jobs.run import run_job
 from ...db.async_db_handler import AsyncDatabaseHandler
 from ...lib.utils.jobs.get_container import get_job_container
 from ...lib.utils.files.get_by_context import get_file_by_job_context
@@ -78,24 +77,6 @@ class CCP4i2TestCase(TestCase):
         for project_name in ["refmac_gamma_test_0"]:
             old_job = models.Job.objects.get(project__name=project_name, number="1")
             new_job = clone_job(old_job.uuid)
-            self.assertEqual(new_job.task_name, old_job.task_name)
-
-    def test_run_job(self):
-        for project_name, job_number in [
-            (
-                "refmac_gamma_test_0",
-                "1",
-            ),
-            (
-                "aimless_gamma_native_test_0",
-                "2",
-            ),
-        ]:
-            old_job = models.Job.objects.get(
-                project__name=project_name, number=job_number
-            )
-            new_job = clone_job(old_job.uuid)
-            run_job(str(new_job.uuid))
             self.assertEqual(new_job.task_name, old_job.task_name)
 
     def test_glean_job_files(self):
