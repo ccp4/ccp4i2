@@ -31,9 +31,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
             Spacegroup and indexing
           </Typography>
-          {(REFERENCE === "ANALYSE" || REFERENCE === "EXPAND") && (
             <CCP4i2TaskElement itemName="REFERENCE" {...props} qualifiers={{ guiLabel: "Define new indexing and spacegroup using" }} />
-          )}
           {(REFERENCE === "ANALYSE") && (
             <CCP4i2TaskElement itemName="REFERENCE" {...props} qualifiers={{ guiLabel: "Analyse data symmetry" }} />
           )}

@@ -31,18 +31,43 @@ CCP4i2 provides an environment for crystallographic computing. This branch (ccp4
 | `report/` | Report generation and parsing |
 | `tests/` | Test suite |
 
+## Environment Detection
+
+The system automatically detects which backend to use:
+
+1. **Explicit**: Set `CCP4I2_BACKEND=django` or `CCP4I2_BACKEND=qt`
+2. **Django context**: Presence of `DJANGO_SETTINGS_MODULE`
+3. **Auto-detection**: Try importing PySide2; if unavailable, use Django mode
+
+## CCP4 Environment Setup
+
+**IMPORTANT**: CCP4i2 requires the CCP4 suite with `ccp4-python` to run. Before running any Python commands:
+
+```bash
+# Source the CCP4 setup script (adjust path as needed)
+source ../ccp4-20251105/bin/ccp4.setup-sh
+
+# This sets up:
+# - ccp4-python interpreter with all dependencies (gemmi, clipper, etc.)
+# - CCP4 environment variables
+# - CCP4 binaries in PATH
+```
+
+All Python commands below should use `ccp4-python` instead of `python`.
+
 ## Running
 
 ### Django Mode
 ```bash
-export DJANGO_SETTINGS_MODULE=ccp4i2.config.settings
-python -m cli.i2run <task> [options]
+export CCP4I2_BACKEND=django
+export DJANGO_SETTINGS_MODULE=ccp4x.config.settings
+ccp4-python -m cli.i2run <task> [options]
 ```
 
 ### Development Server
 ```bash
 cd server
-python manage.py runserver
+ccp4-python manage.py runserver
 ```
 
 ### Frontend
@@ -74,6 +99,35 @@ Code in wrappers/pipelines uses the baselayer compatibility module:
 ```python
 from ccp4i2.baselayer import QtCore, Signal, Slot
 ```
+
+## Plugin Registry
+
+The plugin registry (`core/task_manager/plugin_registry.py`) provides lazy loading of task plugins:
+
+```python
+from core import CCP4Modules
+TASKMANAGER = CCP4Modules.TASKMANAGER()
+
+# List all available plugins
+plugins = TASKMANAGER.list_plugins()  # Returns 176 plugins
+
+# Get a specific plugin class
+acorn_class = TASKMANAGER.get_plugin_class('acorn')
+```
+
+### Regenerating the Registry
+
+If plugins are added or modified, regenerate the registry:
+
+```bash
+source ../ccp4-20251105/bin/ccp4.setup-sh
+export CCP4I2_ROOT=$(pwd)
+ccp4-python core/task_manager/plugin_lookup.py
+```
+
+This scans `wrappers/`, `wrappers2/`, and `pipelines/` directories and generates:
+- `plugin_registry.py` - Explicit imports for lazy loading
+- `plugin_lookup.json` - Plugin metadata cache
 
 ## Files Preserved from Legacy
 
