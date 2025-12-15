@@ -108,19 +108,21 @@ def demo_data(*paths):
 # Job status constants
 class JobStatus:
     """Job status enum matching Django model."""
-    PENDING = 0
-    QUEUED = 1
-    RUNNING = 2
-    PAUSED = 3
-    HELD = 4
-    FINISHING = 5
+    UNKNOWN = 0
+    PENDING = 1
+    QUEUED = 2
+    RUNNING = 3
+    INTERRUPTED = 4
+    FAILED = 5
     FINISHED = 6
-    FAILED = 7
-    UNSATISFACTORY = 8
+    RUNNING_REMOTELY = 7
+    FILE_HOLDER = 8
+    TO_DELETE = 9
+    UNSATISFACTORY = 10
 
     @classmethod
     def is_terminal(cls, status):
-        return status in (cls.FINISHED, cls.FAILED, cls.UNSATISFACTORY)
+        return status in (cls.FINISHED, cls.FAILED, cls.UNSATISFACTORY, cls.INTERRUPTED)
 
     @classmethod
     def is_success(cls, status):
