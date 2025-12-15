@@ -30,7 +30,7 @@ class CCP4i2RunnerDjango(CCP4i2RunnerBase):
     for file operations.
     """
 
-    def __init__(self, the_args=None, command_line=None, parser=None, parent=None):
+    def __init__(self, the_args=None, command_line=None, parser=None):
         """
         Initialize Django runner.
 
@@ -40,7 +40,6 @@ class CCP4i2RunnerDjango(CCP4i2RunnerBase):
             the_args=the_args,
             command_line=command_line,
             parser=parser,
-            parent=parent
         )
 
     def fileForFileUse(

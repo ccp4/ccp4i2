@@ -49,7 +49,6 @@ class Command(BaseCommand):
             self.i2_runner = CCP4i2RunnerDjango(
                 the_args=the_args,
                 parser=parser,
-                parent=None,  # No Qt spoof needed - using modern async approach
             )
 
             self.i2_runner.parseArgs()

@@ -61,10 +61,6 @@ OLD_CCP4I2_PROJECTS_DIR = settings.CCP4I2_PROJECTS_DIR
     / "CCP4I2_TEST_PROJECT_DIRECTORY"
 )
 class CCP4i2TestCase(TestCase):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.app = CCP4Modules.QTAPPLICATION(graphical=False)
-
     def setUp(self):
         Path(settings.CCP4I2_PROJECTS_DIR).mkdir()
         import_ccp4_project_zip(
@@ -96,12 +92,10 @@ class CCP4i2TestCase(TestCase):
         i2Runner = CCP4i2RunnerDjango(
             the_args=args,
             parser=ArgumentParser(),
-            parent=self.app,
         )
         # i2Runner.parseArgs()
         print("Initial file count", File.objects.count())
         i2Runner.execute()
-        # self.app.exit()
         self.assertEqual(Job.objects.last().project.name, "refmac_gamma_test_0")
         self.assertEqual(Job.objects.last().number, "2.5")
         the_job = Job.objects.get(uuid=uuid.UUID(i2Runner.jobId))
@@ -116,10 +110,8 @@ class CCP4i2TestCase(TestCase):
         i2Runner = CCP4i2RunnerDjango(
             the_args=args,
             parser=ArgumentParser(),
-            parent=self.app,
         )
         i2Runner.execute()
-        # self.app.exit()
         self.assertEqual(Job.objects.last().project.name, "SubstituteLigand_test_0")
         self.assertEqual(Job.objects.filter(parent__isnull=True).last().number, "2")
         the_job = Job.objects.get(uuid=uuid.UUID(i2Runner.jobId))
@@ -134,7 +126,6 @@ class CCP4i2TestCase(TestCase):
         i2Runner = CCP4i2RunnerDjango(
             the_args=args,
             parser=ArgumentParser(),
-            parent=self.app,
         )
         try:
             i2Runner.execute()
