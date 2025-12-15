@@ -1691,3 +1691,28 @@ class CData(HierarchicalObject):
         traverse(self)
         return matches
 
+    def __bool__(self):
+        """Return True if this parameter has a value set (explicitly or via default).
+
+        The semantic meaning of `if param:` is "does this parameter have a value?"
+        rather than checking the truthiness of the underlying value. This matches
+        the common usage pattern in plugin code:
+            if plugin.controlParameters.SOMEPARAM:
+                # Use the parameter's value
+
+        The query above intends to check whether SOMEPARAM has been configured (is set),
+        not whether its value is truthy for the underlying Python type.
+
+        For code that needs to check the actual value's truthiness, convert to the
+        native type first: `if bool(int(param))` or `if float(param) != 0:`
+
+        For code that needs to check explicit vs default: use `isSet(allowDefault=False)`
+
+        Note: CBoolean overrides this to return both set AND truthy, since boolean
+        parameters typically want to check both presence and value.
+
+        Returns:
+            True if the value is set (explicitly or via default), False otherwise
+        """
+        return self.isSet(allowDefault=True)
+

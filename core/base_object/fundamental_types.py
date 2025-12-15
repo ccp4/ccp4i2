@@ -535,15 +535,6 @@ class CFloat(CData):
             return other.value - self.value
         return other - self.value
 
-    def __bool__(self):
-        """Return True if this value has been explicitly set, False otherwise.
-
-        This allows wrapper code to use patterns like:
-            if self.container.controlParameters.RESMAX:
-                # Only write RESOL command if RESMAX was actually set by user
-        """
-        return self.isSet(allowDefault=False)
-
     def set(self, value: float):
         """Set the value directly using .set() method.
 
@@ -1323,16 +1314,28 @@ class CBoolean(CData):
         return str(self.value)
 
     def __bool__(self):
-        """Return the boolean value itself.
+        """Return True if this boolean parameter is set AND has a True value.
 
-        For CBoolean, __bool__() must return the actual boolean value, not whether
-        it's set, because legacy wrapper code uses patterns like:
-            p.some_option = self.container.controlParameters.SOME_BOOL
-        and expects the CBoolean object to evaluate to its value when assigned.
+        For CBoolean, we check both:
+        1. Is the parameter set? (explicitly or via default)
+        2. Is the value True?
 
-        To check if a boolean parameter is set, use .isSet(allowDefault=False).
+        This matches the common pattern where boolean flags should be both
+        present and True to trigger behavior:
+            if self.container.controlParameters.USE_FEATURE:
+                # Feature is configured AND enabled
+
+        Returns False if:
+        - The parameter is not set (no value configured)
+        - The parameter is set to False (explicitly disabled)
+
+        Returns True if:
+        - The parameter is set (explicitly or via default) to True
+
+        To check only if set (regardless of value): use .isSet(allowDefault=True)
+        To check only the value (regardless of set state): use bool(param.value)
         """
-        return bool(self.value)
+        return self.isSet(allowDefault=True) and bool(self.value)
 
     def set(self, value: bool):
         """Set the value directly using .set() method.
