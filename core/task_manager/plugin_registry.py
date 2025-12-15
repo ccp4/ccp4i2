@@ -17,6 +17,9 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     This function uses explicit import statements for each plugin,
     providing clear traceability and IDE support.
     """
+    if plugin_name == 'AMPLE':
+        from wrappers.AMPLE.script.AMPLE import AMPLE
+        return AMPLE
     if plugin_name == 'AUSPEX':
         from wrappers.AUSPEX.script.auspex_wrapper import AUSPEX
         return AUSPEX
@@ -62,6 +65,9 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'ProvideTLS':
         from wrappers.ProvideTLS.script.ProvideTLS import ProvideTLS
         return ProvideTLS
+    if plugin_name == 'SIMBAD':
+        from wrappers.SIMBAD.script.SIMBAD import SIMBAD
+        return SIMBAD
     if plugin_name == 'ShelxCD':
         from wrappers.ShelxCDE.script.ShelxCD import ShelxCD
         return ShelxCD
@@ -89,9 +95,18 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'acedrg':
         from wrappers.acedrg.script.acedrg import acedrg
         return acedrg
+    if plugin_name == 'acedrgNew':
+        from wrappers.acedrgNew.script.acedrgNew import acedrgNew
+        return acedrgNew
+    if plugin_name == 'acorn':
+        from wrappers.acorn.script.acorn import acorn
+        return acorn
     if plugin_name == 'add_fractional_coords':
         from wrappers.add_fractional_coords.script.add_fractional_coords import add_fractional_coords
         return add_fractional_coords
+    if plugin_name == 'adding_stats_to_mmcif_i2':
+        from wrappers.adding_stats_to_mmcif_i2.script.adding_stats_to_mmcif_i2 import adding_stats_to_mmcif_i2
+        return adding_stats_to_mmcif_i2
     if plugin_name == 'aimless':
         from wrappers.aimless.script.aimless import aimless
         return aimless
@@ -152,6 +167,9 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'coordinate_selector':
         from wrappers.coordinate_selector.script.coordinate_selector import coordinate_selector
         return coordinate_selector
+    if plugin_name == 'coot1':
+        from wrappers.coot1.script.coot1 import coot1
+        return coot1
     if plugin_name == 'coot_find_waters':
         from pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters import coot_find_waters
         return coot_find_waters
@@ -176,9 +194,42 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'cphasematch':
         from wrappers.cphasematch.script.cphasematch import cphasematch
         return cphasematch
+    if plugin_name == 'crank2':
+        from pipelines.crank2.script.crank2_script import crank2
+        return crank2
+    if plugin_name == 'crank2_comb_phdmmb':
+        from pipelines.crank2.wrappers.crank2_comb_phdmmb.script.crank2_comb_phdmmb import crank2_comb_phdmmb
+        return crank2_comb_phdmmb
     if plugin_name == 'crank2_createfree':
         from pipelines.crank2.wrappers.crank2_createfree.script.crank2_createfree import crank2_createfree
         return crank2_createfree
+    if plugin_name == 'crank2_dmfull':
+        from pipelines.crank2.wrappers.crank2_dmfull.script.crank2_dmfull import crank2_dmfull
+        return crank2_dmfull
+    if plugin_name == 'crank2_faest':
+        from pipelines.crank2.wrappers.crank2_faest.script.crank2_faest import crank2_faest
+        return crank2_faest
+    if plugin_name == 'crank2_handdet':
+        from pipelines.crank2.wrappers.crank2_handdet.script.crank2_handdet import crank2_handdet
+        return crank2_handdet
+    if plugin_name == 'crank2_mbref':
+        from pipelines.crank2.wrappers.crank2_mbref.script.crank2_mbref import crank2_mbref
+        return crank2_mbref
+    if plugin_name == 'crank2_phas':
+        from pipelines.crank2.wrappers.crank2_phas.script.crank2_phas import crank2_phas
+        return crank2_phas
+    if plugin_name == 'crank2_phdmmb':
+        from pipelines.crank2.wrappers.crank2_phdmmb.script.crank2_phdmmb import crank2_phdmmb
+        return crank2_phdmmb
+    if plugin_name == 'crank2_ref':
+        from pipelines.crank2.wrappers.crank2_ref.script.crank2_ref import crank2_ref
+        return crank2_ref
+    if plugin_name == 'crank2_refatompick':
+        from pipelines.crank2.wrappers.crank2_refatompick.script.crank2_refatompick import crank2_refatompick
+        return crank2_refatompick
+    if plugin_name == 'crank2_substrdet':
+        from pipelines.crank2.wrappers.crank2_substrdet.script.crank2_substrdet import crank2_substrdet
+        return crank2_substrdet
     if plugin_name == 'csymmatch':
         from wrappers.csymmatch.script.csymmatch import csymmatch
         return csymmatch
@@ -200,9 +251,18 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'dials_rlattice':
         from wrappers.dials_rlattice.script.dials_rlattice import dials_rlattice
         return dials_rlattice
+    if plugin_name == 'dr_mr_modelbuild_pipeline':
+        from pipelines.dr_mr_modelbuild_pipeline.script.dr_mr_modelbuild_pipeline import dr_mr_modelbuild_pipeline
+        return dr_mr_modelbuild_pipeline
     if plugin_name == 'dui':
         from wrappers.dui.script.dui import dui
         return dui
+    if plugin_name == 'editbfac':
+        from wrappers.editbfac.script.editbfac import editbfac
+        return editbfac
+    if plugin_name == 'edstats':
+        from wrappers.edstats.script.edstats import edstats
+        return edstats
     if plugin_name == 'fft':
         from wrappers.fft.script.fft import fft
         return fft
@@ -251,6 +311,9 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'metalCoord':
         from wrappers.metalCoord.script.metalCoord import metalCoord
         return metalCoord
+    if plugin_name == 'modelASUCheck':
+        from wrappers.modelASUCheck.script.modelASUCheck import modelASUCheck
+        return modelASUCheck
     if plugin_name == 'modelcraft':
         from wrappers.modelcraft.script.modelcraft import modelcraft
         return modelcraft
@@ -347,6 +410,9 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'phaser_MR_RNP':
         from pipelines.phaser_pipeline.wrappers.phaser_MR_RNP.script.phaser_MR_RNP import phaser_MR_RNP
         return phaser_MR_RNP
+    if plugin_name == 'phaser_analysis':
+        from wrappers.phaser_analysis.script.phaser_analysis import phaser_analysis
+        return phaser_analysis
     if plugin_name == 'phaser_ensembler':
         from wrappers.phaser_ensembler.script.phaser_ensembler import phaser_ensembler
         return phaser_ensembler
@@ -356,6 +422,15 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'phaser_phil':
         from wrappers.phaser_phil.script.phaser_phil import phaser_phil
         return phaser_phil
+    if plugin_name == 'phaser_pipeline':
+        from pipelines.phaser_pipeline.script.phaser_pipeline import phaser_pipeline
+        return phaser_pipeline
+    if plugin_name == 'phaser_rnp_pipeline':
+        from pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline import phaser_rnp_pipeline
+        return phaser_rnp_pipeline
+    if plugin_name == 'phaser_simple':
+        from pipelines.phaser_simple.script.phaser_simple import phaser_simple
+        return phaser_simple
     if plugin_name == 'phaser_singleMR':
         from wrappers.phaser_singleMR.script.phaser_singleMR import phaser_singleMR
         return phaser_singleMR
@@ -380,6 +455,9 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'prosmart':
         from wrappers.prosmart.script.prosmart import prosmart
         return prosmart
+    if plugin_name == 'prosmart_refmac':
+        from pipelines.prosmart_refmac.script.prosmart_refmac import prosmart_refmac
+        return prosmart_refmac
     if plugin_name == 'pyphaser_mr':
         from wrappers.pyphaser_mr.script.pyphaser_mr import pyphaser_mr
         return pyphaser_mr
@@ -410,6 +488,9 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'sheetbend':
         from wrappers.sheetbend.script.sheetbend import sheetbend
         return sheetbend
+    if plugin_name == 'shelx':
+        from pipelines.shelx.script.shelx_script import shelx
+        return shelx
     if plugin_name == 'shelxeMR':
         from wrappers.shelxeMR.script.shelxeMR import shelxeMR
         return shelxeMR
@@ -419,12 +500,18 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'splitMtz':
         from wrappers.splitMtz.script.splitMtz import splitMtz
         return splitMtz
+    if plugin_name == 'tableone':
+        from pipelines.tableone.script.tableone import tableone
+        return tableone
     if plugin_name == 'unique':
         from wrappers.unique.script.unique import unique
         return unique
     if plugin_name == 'uniqueify':
         from pipelines.uniqueify.script.uniqueify import uniqueify
         return uniqueify
+    if plugin_name == 'validate_protein':
+        from wrappers.validate_protein.script.validate_protein import validate_protein
+        return validate_protein
     if plugin_name == 'x2mtz':
         from wrappers.x2mtz.script.x2mtz import x2mtz
         return x2mtz
@@ -440,12 +527,18 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'xia2_integration':
         from pipelines.import_xia2.wrappers.xia2_integration.script.xia2_integration import xia2_integration
         return xia2_integration
+    if plugin_name == 'xia2_multiplex':
+        from wrappers.xia2_multiplex.script.xia2_multiplex import Cxia2_multiplex
+        return Cxia2_multiplex
     if plugin_name == 'xia2_pointless':
         from pipelines.import_xia2.wrappers.xia2_pointless.script.xia2_pointless import xia2_pointless
         return xia2_pointless
     if plugin_name == 'xia2_run':
         from pipelines.import_xia2.wrappers.xia2_run.script.xia2_run import xia2_run
         return xia2_run
+    if plugin_name == 'xia2_ssx_reduce':
+        from wrappers.xia2_ssx_reduce.script.xia2_ssx_reduce import Cxia2_ssx_reduce
+        return Cxia2_ssx_reduce
     if plugin_name == 'xia2_xds':
         from wrappers.xia2_xds.script.xia2_xds import Cxia2_xds
         return Cxia2_xds
@@ -457,6 +550,7 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
 
 # Plugin names for fast lookup without loading metadata
 PLUGIN_NAMES: set[str] = {
+    'AMPLE',
     'AUSPEX',
     'AcedrgLink',
     'AlternativeImportXIA2',
@@ -472,6 +566,7 @@ PLUGIN_NAMES: set[str] = {
     'ProvideAsuContents',
     'ProvideSequence',
     'ProvideTLS',
+    'SIMBAD',
     'ShelxCD',
     'ShelxCE',
     'ShelxCECompareHands',
@@ -481,7 +576,10 @@ PLUGIN_NAMES: set[str] = {
     'ZZPipelineNameZZ',
     'ZZPluginNameZZ',
     'acedrg',
+    'acedrgNew',
+    'acorn',
     'add_fractional_coords',
+    'adding_stats_to_mmcif_i2',
     'aimless',
     'aimless_pipe',
     'arcimboldo',
@@ -502,6 +600,7 @@ PLUGIN_NAMES: set[str] = {
     'comit',
     'convert2mtz',
     'coordinate_selector',
+    'coot1',
     'coot_find_waters',
     'coot_fit_residues',
     'coot_rebuild',
@@ -510,7 +609,18 @@ PLUGIN_NAMES: set[str] = {
     'coot_stepped_refine',
     'cpatterson',
     'cphasematch',
+    'crank2',
+    'crank2_comb_phdmmb',
     'crank2_createfree',
+    'crank2_dmfull',
+    'crank2_faest',
+    'crank2_handdet',
+    'crank2_mbref',
+    'crank2_phas',
+    'crank2_phdmmb',
+    'crank2_ref',
+    'crank2_refatompick',
+    'crank2_substrdet',
     'csymmatch',
     'ctruncate',
     'demo_copycell',
@@ -518,7 +628,10 @@ PLUGIN_NAMES: set[str] = {
     'density_calculator',
     'dials_image',
     'dials_rlattice',
+    'dr_mr_modelbuild_pipeline',
     'dui',
+    'editbfac',
+    'edstats',
     'fft',
     'findmyseq',
     'freerflag',
@@ -535,6 +648,7 @@ PLUGIN_NAMES: set[str] = {
     'lorestr_i2',
     'mergeMtz',
     'metalCoord',
+    'modelASUCheck',
     'modelcraft',
     'molrep_den',
     'molrep_mr',
@@ -567,9 +681,13 @@ PLUGIN_NAMES: set[str] = {
     'phaser_MR_FTF',
     'phaser_MR_PAK',
     'phaser_MR_RNP',
+    'phaser_analysis',
     'phaser_ensembler',
     'phaser_mr',
     'phaser_phil',
+    'phaser_pipeline',
+    'phaser_rnp_pipeline',
+    'phaser_simple',
     'phaser_singleMR',
     'pisa_analyse',
     'pisa_list',
@@ -578,6 +696,7 @@ PLUGIN_NAMES: set[str] = {
     'pointless',
     'pointless_reindexToMatch',
     'prosmart',
+    'prosmart_refmac',
     'pyphaser_mr',
     'qtpisa',
     'refmac',
@@ -588,18 +707,23 @@ PLUGIN_NAMES: set[str] = {
     'servalcat',
     'servalcat_pipe',
     'sheetbend',
+    'shelx',
     'shelxeMR',
     'slicendice',
     'splitMtz',
+    'tableone',
     'unique',
     'uniqueify',
+    'validate_protein',
     'x2mtz',
     'xia2_aimless',
     'xia2_ctruncate',
     'xia2_dials',
     'xia2_integration',
+    'xia2_multiplex',
     'xia2_pointless',
     'xia2_run',
+    'xia2_ssx_reduce',
     'xia2_xds',
     'zanuda',
 }
