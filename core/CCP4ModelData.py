@@ -464,6 +464,30 @@ class CAsuDataFile(CAsuDataFileStub):
     # No custom overrides needed - base CDataFile.loadFile() handles everything!
     # Just need CAsuContent.loadFile() implementation below
 
+    def isSelected(self, seqObj) -> bool:
+        """
+        Check if a sequence object is selected.
+
+        The selection is stored in self.selection as a dict mapping sequence names
+        to boolean values. If selection is not set, all sequences are considered
+        selected by default.
+
+        Args:
+            seqObj: A CAsuContentSeq object from fileContent.seqList
+
+        Returns:
+            True if the sequence is selected (or selection not set), False otherwise
+        """
+        # Get the sequence name
+        name = str(seqObj.name) if hasattr(seqObj, 'name') else str(seqObj)
+
+        # If selection is not set, all sequences are selected by default
+        if not hasattr(self, 'selection') or not self.selection.isSet():
+            return True
+
+        # Look up in selection dict, default to True if not found
+        return self.selection.get(name, True)
+
     def saveFile(self, dbInfo=None):
         """
         Save fileContent to an XML file.
