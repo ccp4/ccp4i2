@@ -20,9 +20,8 @@ from pathlib import Path
 MAJOR = 3
 MINOR = 0
 PATCH = 0
-DEV = True
 
-__version__ = f"{MAJOR}.{MINOR}.{PATCH}-{'dev' if DEV else 'release'}"
+__version__ = f"{MAJOR}.{MINOR}.{PATCH}"
 __version_date__ = datetime(2025, 12, 10)
 __version_info__ = (MAJOR, MINOR, PATCH)
 
