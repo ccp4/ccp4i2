@@ -371,15 +371,46 @@ class APITestBase:
         Returns:
             Final job status code
         """
+        import sqlite3
+        import os
+        from django.db import connections
+
         timeout = timeout or self.timeout
         start = time.time()
 
-        while time.time() - start < timeout:
-            job_data = self.get_job_status()
-            status = job_data.get('status')
+        # Get database path from environment (set by test fixture)
+        db_path = os.environ.get("CCP4I2_DB_FILE")
 
-            if JobStatus.is_terminal(status):
-                return status
+        while time.time() - start < timeout:
+            # Close database connections to force fresh read from disk
+            # This ensures we see updates made by the subprocess job runner
+            connections.close_all()
+
+            if db_path and db_path != ":memory:":
+                # Query database directly with sqlite3 to bypass Django ORM caching
+                try:
+                    conn = sqlite3.connect(db_path)
+                    cursor = conn.cursor()
+                    cursor.execute("SELECT status FROM ccp4x_job WHERE id = ?", (self.job_id,))
+                    result = cursor.fetchone()
+                    conn.close()
+
+                    if result:
+                        status = result[0]
+                        if JobStatus.is_terminal(status):
+                            return status
+                except Exception as e:
+                    # Fall back to Django ORM if direct query fails
+                    job_data = self.get_job_status()
+                    status = job_data.get('status')
+                    if JobStatus.is_terminal(status):
+                        return status
+            else:
+                # Use Django ORM for in-memory database
+                job_data = self.get_job_status()
+                status = job_data.get('status')
+                if JobStatus.is_terminal(status):
+                    return status
 
             time.sleep(self.poll_interval)
 
