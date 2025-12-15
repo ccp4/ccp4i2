@@ -89,15 +89,21 @@ class phaser_pipeline(CPluginScript):
         print('Rv', rv)
         if rv == CPluginScript.FAILED:
             print('Oh')
-            with open(self.phaserPlugin.makeFileName('LOG'),"r") as logFile:
-                wasInterrupted = 'KILL-FILE DETECTED ERROR' in logFile.read()
-                print('Was interrupted',wasInterrupted)
-                if wasInterrupted:
-                    self.reportStatus('CPluginScript.INTERRUPTED')
-                    return CPluginScript.INTERRUPTED
-                else:
-                    self.reportStatus(rv)
-                    return CPluginScript.FAILED
+            # Check if LOG file exists before reading it
+            # In standalone/i2run mode, subjobs with RUNEXTERNALPROCESS=False don't create LOG files
+            # In GUI mode, subjobs run as proper database jobs and do create LOG files
+            log_file_path = self.phaserPlugin.makeFileName('LOG')
+            wasInterrupted = False
+            if os.path.exists(log_file_path):
+                with open(log_file_path, "r") as logFile:
+                    wasInterrupted = 'KILL-FILE DETECTED ERROR' in logFile.read()
+                    print('Was interrupted', wasInterrupted)
+            if wasInterrupted:
+                self.reportStatus('CPluginScript.INTERRUPTED')
+                return CPluginScript.INTERRUPTED
+            else:
+                self.reportStatus(rv)
+                return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 
     def phaserXMLUpdated(self, newXML):
