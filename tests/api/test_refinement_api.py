@@ -176,7 +176,7 @@ class TestServalcatAPI(APITestBase):
             self.set_param("controlParameters.VALIDATE_RAMACHANDRAN", False)
             self.set_param("controlParameters.VALIDATE_MOLPROBITY", False)
             self.set_param("controlParameters.RUN_ADP_ANALYSIS", False)
-            self.set_param("controlParameters.RUN_COORDADPDEV_ANALYSIS", False)
+            self.set_param("monitor.RUN_COORDADPDEV_ANALYSIS", False)
 
             self.run_and_wait()
 
