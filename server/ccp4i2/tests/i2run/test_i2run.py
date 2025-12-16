@@ -1,3 +1,7 @@
+import pytest
+
+pytest.skip("Historic tests - require test101 project zips", allow_module_level=True)
+
 import shlex
 import os
 from pathlib import Path
