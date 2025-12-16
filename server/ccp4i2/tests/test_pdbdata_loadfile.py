@@ -8,6 +8,11 @@ import pytest
 from pathlib import Path
 from ccp4i2.core.CCP4ModelData import CPdbData, CPdbDataFile
 from ccp4i2.core.base_object.error_reporting import CErrorReport
+from ccp4i2.core import CCP4Utils
+
+# Get the path to test data
+CCP4I2_ROOT = Path(CCP4Utils.getCCP4I2Dir())
+TEST_PDB = CCP4I2_ROOT / "wrappers/chainsaw/test_data/1a80_A.pdb"
 
 
 class TestCPdbDataLoadFile:
@@ -39,12 +44,12 @@ class TestCPdbDataLoadFile:
         assert error.count() == 0
 
     @pytest.mark.skipif(
-        not Path('/Users/nmemn/Developer/ccp4i2/wrappers/chainsaw/test_data/1a80_A.pdb').exists(),
+        not TEST_PDB.exists(),
         reason="Test PDB file not available"
     )
     def test_loadfile_real_pdb(self):
         """Test loading a real PDB file."""
-        test_pdb = '/Users/nmemn/Developer/ccp4i2/wrappers/chainsaw/test_data/1a80_A.pdb'
+        test_pdb = str(TEST_PDB)
 
         pdb_data = CPdbData()
         error = pdb_data.loadFile(test_pdb)
@@ -75,12 +80,12 @@ class TestCPdbDataLoadFile:
                 print(f"  Residues in first chain: {len(chain)}")
 
     @pytest.mark.skipif(
-        not Path('/Users/nmemn/Developer/ccp4i2/wrappers/chainsaw/test_data/1a80_A.pdb').exists(),
+        not TEST_PDB.exists(),
         reason="Test PDB file not available"
     )
     def test_cdatafile_loadfile_integration(self):
         """Test CDataFile.loadFile() correctly instantiates CPdbData and loads."""
-        test_pdb = '/Users/nmemn/Developer/ccp4i2/wrappers/chainsaw/test_data/1a80_A.pdb'
+        test_pdb = str(TEST_PDB)
 
         # Create a CPdbDataFile
         pdb_file = CPdbDataFile()

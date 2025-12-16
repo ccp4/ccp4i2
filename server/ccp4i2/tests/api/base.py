@@ -12,31 +12,17 @@ Re-exports from i2run for convenience:
 """
 import json
 import os
-import sys
 import time
 from pathlib import Path
 
 import pytest
 from django.test import Client
 
-
-# Add tests/ directory to path so i2run package is importable
-# (tests/i2run/ has __init__.py making it a package named 'i2run')
-_tests_dir = Path(__file__).parent.parent
-if str(_tests_dir) not in sys.path:
-    sys.path.insert(0, str(_tests_dir))
-
-# Also add tests/i2run/ to path for direct imports (like test_config)
-# This is needed because i2run/utils.py uses 'from test_config import ...'
-_i2run_dir = _tests_dir / "i2run"
-if str(_i2run_dir) not in sys.path:
-    sys.path.insert(0, str(_i2run_dir))
-
 # Re-export download from i2run.utils
-from i2run.utils import download
+from ccp4i2.tests.i2run.utils import download
 
 # Re-export URL functions from i2run.urls and wrap in URLs class for backward compatibility
-from i2run import urls as _urls
+from ccp4i2.tests.i2run import urls as _urls
 
 
 class URLs:

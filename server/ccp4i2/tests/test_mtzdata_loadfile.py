@@ -8,6 +8,11 @@ import pytest
 from pathlib import Path
 from ccp4i2.core.CCP4XtalData import CMtzData, CMtzDataFile
 from ccp4i2.core.base_object.error_reporting import CErrorReport
+from ccp4i2.core import CCP4Utils
+
+# Get the path to test data
+CCP4I2_ROOT = Path(CCP4Utils.getCCP4I2Dir())
+TEST_MTZ = CCP4I2_ROOT / "wrappers/pointless/test_data/brap_pk_6A.mtz"
 
 
 class TestCMtzDataLoadFile:
@@ -39,12 +44,12 @@ class TestCMtzDataLoadFile:
         assert error.count() == 0
 
     @pytest.mark.skipif(
-        not Path('/Users/nmemn/Developer/ccp4i2/wrappers/pointless/test_data/brap_pk_6A.mtz').exists(),
+        not TEST_MTZ.exists(),
         reason="Test MTZ file not available"
     )
     def test_loadfile_real_mtz(self):
         """Test loading a real MTZ file extracts metadata correctly."""
-        test_mtz = '/Users/nmemn/Developer/ccp4i2/wrappers/pointless/test_data/brap_pk_6A.mtz'
+        test_mtz = str(TEST_MTZ)
 
         mtz_data = CMtzData()
         error = mtz_data.loadFile(test_mtz)
@@ -92,12 +97,12 @@ class TestCMtzDataLoadFile:
         print(f"  Columns ({len(columns)}): {columns[:5]}...")  # First 5 columns
 
     @pytest.mark.skipif(
-        not Path('/Users/nmemn/Developer/ccp4i2/wrappers/pointless/test_data/brap_pk_6A.mtz').exists(),
+        not TEST_MTZ.exists(),
         reason="Test MTZ file not available"
     )
     def test_cdatafile_loadfile_integration(self):
         """Test CDataFile.loadFile() correctly instantiates CMtzData and loads."""
-        test_mtz = '/Users/nmemn/Developer/ccp4i2/wrappers/pointless/test_data/brap_pk_6A.mtz'
+        test_mtz = str(TEST_MTZ)
 
         # Create a CMtzDataFile
         mtz_file = CMtzDataFile()

@@ -51,7 +51,7 @@ Of these 44, only **6 have CONTENT_FLAGS or SUBTYPES metadata**.
 
 ### 1. CObsDataFile (Observed Diffraction Data)
 
-**Source**: `/Users/nmemn/Developer/ccp4i2/core/CCP4XtalData.py`
+**Source**: `$CCP4I2_ROOT/core/CCP4XtalData.py`
 **Purpose**: MTZ files containing experimental diffraction data
 
 #### Subtypes
@@ -118,7 +118,7 @@ def as_FMEAN(self, work_directory: Optional[Any] = None) -> str
 
 ### 2. CPhsDataFile (Phase Probability Data)
 
-**Source**: `/Users/nmemn/Developer/ccp4i2/core/CCP4XtalData.py`
+**Source**: `$CCP4I2_ROOT/core/CCP4XtalData.py`
 **Purpose**: MTZ files containing phase probability information
 
 #### Subtypes
@@ -173,7 +173,7 @@ def as_PHIFOM(self, work_directory: Optional[Any] = None) -> str
 
 ### 3. CMapCoeffsDataFile (Map Coefficients)
 
-**Source**: `/Users/nmemn/Developer/ccp4i2/core/CCP4XtalData.py`
+**Source**: `$CCP4I2_ROOT/core/CCP4XtalData.py`
 **Purpose**: MTZ files containing map coefficients for electron density calculation
 
 #### Subtypes
@@ -221,7 +221,7 @@ def as_FPHI(self, work_directory: Optional[Any] = None) -> str
 
 ### 4. CFreeRDataFile (Free R Flags)
 
-**Source**: `/Users/nmemn/Developer/ccp4i2/core/CCP4XtalData.py`
+**Source**: `$CCP4I2_ROOT/core/CCP4XtalData.py`
 **Purpose**: MTZ files containing Free R flags for cross-validation
 
 #### Subtypes
@@ -256,7 +256,7 @@ None needed (only one content type).
 
 ### 5. CPdbDataFile (Protein Coordinate Files)
 
-**Source**: `/Users/nmemn/Developer/ccp4i2/core/CCP4ModelData.py`
+**Source**: `$CCP4I2_ROOT/core/CCP4ModelData.py`
 **Purpose**: Protein/nucleic acid coordinate files in PDB or mmCIF format
 
 #### Subtypes
@@ -303,7 +303,7 @@ Not implemented. PDB↔mmCIF conversion would use a different pattern (likely ge
 
 ### 6. CCootHistoryDataFile (Coot Modeling History)
 
-**Source**: `/Users/nmemn/Developer/ccp4i2/core/CCP4CootData.py`
+**Source**: `$CCP4I2_ROOT/core/CCP4CootData.py`
 **Purpose**: Coot modeling session history files (.scm Scheme scripts)
 
 #### Subtypes
@@ -336,15 +336,15 @@ Not applicable (Scheme script files, not binary data).
 
 ### Discovery Process
 
-1. **Comprehensive Scan**: Used grep to search all Python files in `/Users/nmemn/Developer/ccp4i2/core/` for:
+1. **Comprehensive Scan**: Used grep to search all Python files in `$CCP4I2_ROOT/core/` for:
    - Classes with `CONTENT_FLAG_*` constants
    - Classes with `SUBTYPE_*` constants
 
 2. **Source Files Examined**:
    ```
-   /Users/nmemn/Developer/ccp4i2/core/CCP4XtalData.py    (MTZ data classes)
-   /Users/nmemn/Developer/ccp4i2/core/CCP4ModelData.py   (Model/coordinate classes)
-   /Users/nmemn/Developer/ccp4i2/core/CCP4CootData.py    (Coot integration classes)
+   $CCP4I2_ROOT/core/CCP4XtalData.py    (MTZ data classes)
+   $CCP4I2_ROOT/core/CCP4ModelData.py   (Model/coordinate classes)
+   $CCP4I2_ROOT/core/CCP4CootData.py    (Coot integration classes)
    ```
 
 3. **Validation**: Cross-referenced findings against cdata.json MRO to confirm all classes are CDataFile descendants

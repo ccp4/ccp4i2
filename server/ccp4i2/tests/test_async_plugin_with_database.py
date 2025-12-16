@@ -13,11 +13,12 @@ Run with:
 
 import pytest
 import os
-import sys
 from pathlib import Path
 
+from ccp4i2.core import CCP4Utils
+
 # Check for CCP4I2_ROOT
-CCP4I2_ROOT = os.environ.get('CCP4I2_ROOT')
+CCP4I2_ROOT = CCP4Utils.getCCP4I2Dir()
 if not CCP4I2_ROOT:
     pytest.skip("CCP4I2_ROOT not set", allow_module_level=True)
 
@@ -26,14 +27,6 @@ demo_data_path = Path(CCP4I2_ROOT) / 'demo_data' / 'gamma'
 test_mtz = demo_data_path / 'merged_intensities_native.mtz'
 if not test_mtz.exists():
     pytest.skip(f"Test data not found: {test_mtz}", allow_module_level=True)
-
-# Add server directory to path for Django imports
-server_dir = Path(__file__).parent.parent / 'server'
-if str(server_dir) not in sys.path:
-    sys.path.insert(0, str(server_dir))
-
-# Set Django settings
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4i2.config.test_settings')
 
 
 @pytest.fixture

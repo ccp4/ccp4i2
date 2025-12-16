@@ -4,30 +4,7 @@ Unit tests for the modernized CReportGenerator.
 These tests verify that the CReportGenerator class works correctly after
 being modernized to remove Qt dependencies and use Django for database access.
 """
-import sys
-import os
 import pytest
-
-# Ensure the main report module is used, not tests/report
-# The main report/ directory should be in the path
-project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-report_path = os.path.join(project_root, 'report')
-
-# Remove tests/report from path if present
-for p in sys.path[:]:
-    if 'tests/report' in p or p.endswith('tests'):
-        # Don't remove tests itself, but ensure report/ is earlier in path
-        pass
-
-# Add main report directory early in path
-if report_path not in sys.path:
-    sys.path.insert(0, project_root)
-
-# Now import from the main report module
-import importlib
-if 'report.CCP4ReportGenerator' in sys.modules:
-    # Reload to get the correct module
-    del sys.modules['report.CCP4ReportGenerator']
 
 
 class TestSignalClass:

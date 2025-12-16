@@ -18,7 +18,7 @@ The `cctbx-base==2025.10` package from PyPI installed 21 broken MolProbity execu
 
 After removing broken executables:
 - ✅ MolProbity tools point to correct CCP4 location
-- ✅ `which molprobity.ramalyze` returns `/Users/nmemn/Developer/ccp4-20251105/bin/molprobity.ramalyze`
+- ✅ `which molprobity.ramalyze` returns `$CCP4/bin/molprobity.ramalyze`
 - ✅ Manual execution works: `molprobity.ramalyze <file>` succeeds
 - ❌ Tests still fail: iris_validation unable to run MolProbity
 
@@ -35,7 +35,7 @@ There appears to be a deeper issue with how `iris_validation` invokes MolProbity
 
 ```bash
 # Manual test - WORKS
-source /Users/nmemn/Developer/ccp4-20251105/bin/ccp4.setup-sh
+source $CCP4/bin/ccp4.setup-sh
 source .venv/bin/activate
 cd tests/i2run/test_projects/.../CCP4_IMPORTED_FILES
 molprobity.ramalyze tmpv9usefsg_8ola_final.cif

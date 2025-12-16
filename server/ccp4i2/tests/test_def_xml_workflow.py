@@ -5,15 +5,10 @@ Note: This test focuses on DEF XML parsing and parameter modification.
 The params XML export/import functionality will be tested separately once implemented.
 """
 
-import sys
-import os
 import tempfile
 from pathlib import Path
 
 import pytest
-
-# Add project root to path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from ccp4i2.core.task_manager.def_xml_handler import parse_def_xml_file
 from ccp4i2.core.base_object.base_classes import ValueState

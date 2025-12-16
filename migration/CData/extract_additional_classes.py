@@ -201,7 +201,7 @@ def main():
     """Main extraction routine."""
 
     # Paths
-    ccp4i2_core = Path('/Users/nmemn/Developer/ccp4i2/core')
+    ccp4i2_core = Path(__file__).parent.parent.parent / 'core'
     cdata_json_path = Path(__file__).parent / 'cdata.json'
 
     # Files to extract

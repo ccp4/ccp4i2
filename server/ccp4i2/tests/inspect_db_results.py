@@ -3,11 +3,8 @@
 Inspect database contents after running ctruncate with database tracking.
 """
 import os
-import sys
 from pathlib import Path
 
-# Setup Django
-sys.path.insert(0, str(Path(__file__).parent.parent / "server"))
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4i2.config.test_settings')
 
 import django

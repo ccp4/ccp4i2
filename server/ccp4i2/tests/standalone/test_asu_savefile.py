@@ -3,12 +3,8 @@
 Test CAsuDataFile.saveFile() after using CList.set()
 """
 import sys
-from pathlib import Path
 import tempfile
-
-# Add project root to path
-project_root = Path(__file__).parent
-sys.path.insert(0, str(project_root))
+from pathlib import Path
 
 from ccp4i2.core.CCP4ModelData import CAsuContentSeq, CAsuContentSeqList, CAsuDataFile
 

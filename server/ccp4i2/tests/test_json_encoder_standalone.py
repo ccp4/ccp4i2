@@ -1,21 +1,12 @@
 """Standalone test for JSON encoder to debug inputData.XYZIN issue."""
 import json
-import os
-import sys
-from pathlib import Path
-
-# Set up environment
-os.environ.setdefault("CCP4I2_ROOT", str(Path(__file__).parent.parent))
-sys.path.insert(0, str(Path(__file__).parent.parent))
-sys.path.insert(0, str(Path(__file__).parent.parent / "server"))
-sys.path.insert(0, str(Path(__file__).parent.parent / "pipelines/prosmart_refmac/script"))
 
 from ccp4i2.core import CCP4TaskManager
 from ccp4i2.core import CCP4Container
 from ccp4i2.core.base_object import CData
 from ccp4i2.core.base_object.fundamental_types import CString
 from ccp4i2.lib.utils.containers.json_encoder import CCP4i2JsonEncoder
-from prosmart_refmac import prosmart_refmac
+from ccp4i2.pipelines.prosmart_refmac.script.prosmart_refmac import prosmart_refmac
 
 
 def test_cdatafile_children_serialization():

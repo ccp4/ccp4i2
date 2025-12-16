@@ -5,25 +5,17 @@ This test verifies that prosmart_refmac properly inherits parameters
 like NCYCLES from its parent plugin refmac_i2 via the <file> mechanism.
 """
 
-import sys
-import os
 from pathlib import Path
 
 import pytest
 
-# Add project root to path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
-# Set CCP4I2_ROOT for plugin discovery
-if "CCP4I2_ROOT" not in os.environ:
-    os.environ["CCP4I2_ROOT"] = str(Path(__file__).parent.parent)
-
+from ccp4i2.core import CCP4Utils
 from ccp4i2.core.task_manager.def_xml_handler import parse_def_xml_file
 
 
 def test_refmac_has_ncycles():
     """Test that refmac_i2 has NCYCLES parameter."""
-    refmac_def = Path(__file__).parent.parent / "wrappers/refmac_i2/script/refmac.def.xml"
+    refmac_def = Path(CCP4Utils.getCCP4I2Dir()) / "wrappers/refmac_i2/script/refmac.def.xml"
 
     if not refmac_def.exists():
         pytest.skip(f"refmac.def.xml not found at {refmac_def}")
@@ -47,7 +39,7 @@ def test_refmac_has_ncycles():
 
 def test_prosmart_refmac_inherits_ncycles():
     """Test that prosmart_refmac inherits NCYCLES from refmac_i2."""
-    prosmart_def = Path(__file__).parent.parent / "pipelines/prosmart_refmac/script/prosmart_refmac.def.xml"
+    prosmart_def = Path(CCP4Utils.getCCP4I2Dir()) / "pipelines/prosmart_refmac/script/prosmart_refmac.def.xml"
 
     if not prosmart_def.exists():
         pytest.skip(f"prosmart_refmac.def.xml not found at {prosmart_def}")
@@ -77,7 +69,7 @@ def test_prosmart_refmac_file_reference():
     """Test that prosmart_refmac has the correct <file> reference to refmac."""
     import xml.etree.ElementTree as ET
 
-    prosmart_def = Path(__file__).parent.parent / "pipelines/prosmart_refmac/script/prosmart_refmac.def.xml"
+    prosmart_def = Path(CCP4Utils.getCCP4I2Dir()) / "pipelines/prosmart_refmac/script/prosmart_refmac.def.xml"
 
     if not prosmart_def.exists():
         pytest.skip(f"prosmart_refmac.def.xml not found at {prosmart_def}")
@@ -105,14 +97,9 @@ def test_load_nested_xml_expansion():
     """Test that load_nested_xml properly expands <file> references."""
     import xml.etree.ElementTree as ET
 
-    # Add server path for importing
-    server_path = Path(__file__).parent.parent / 'server'
-    if str(server_path) not in sys.path:
-        sys.path.insert(0, str(server_path))
-
     from ccp4i2.lib.utils.parameters.load_xml import load_nested_xml
 
-    prosmart_def = Path(__file__).parent.parent / "pipelines/prosmart_refmac/script/prosmart_refmac.def.xml"
+    prosmart_def = Path(CCP4Utils.getCCP4I2Dir()) / "pipelines/prosmart_refmac/script/prosmart_refmac.def.xml"
 
     if not prosmart_def.exists():
         pytest.skip(f"prosmart_refmac.def.xml not found at {prosmart_def}")

@@ -6,19 +6,10 @@ Run with:
 """
 
 import os
-import sys
 import pytest
 import asyncio
 import uuid
 from pathlib import Path
-
-# Add server directory to path if needed
-server_dir = Path(__file__).parent.parent / 'server'
-if str(server_dir) not in sys.path:
-    sys.path.insert(0, str(server_dir))
-
-# Set Django settings if not already set (pytest-django will call django.setup())
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4i2.config.test_settings')
 
 
 @pytest.fixture

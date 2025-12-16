@@ -8,7 +8,7 @@ This script adds CONTENT_FLAGS and SUBTYPES metadata to CMiniMtzDataFile subclas
 import json
 from pathlib import Path
 
-# Metadata extracted from /Users/nmemn/Developer/ccp4i2/core/CCP4XtalData.py
+# Metadata extracted from core/CCP4XtalData.py
 
 MTZ_CLASS_METADATA = {
     'CObsDataFile': {

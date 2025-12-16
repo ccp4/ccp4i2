@@ -1,14 +1,9 @@
 """Test DEF XML parser with full servalcat_pipe task definition."""
 
-import sys
-import os
 import tempfile
 from pathlib import Path
 
 import pytest
-
-# Add project root to path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from ccp4i2.core.task_manager.def_xml_handler import parse_def_xml_file
 

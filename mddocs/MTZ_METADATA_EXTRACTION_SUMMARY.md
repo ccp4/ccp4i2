@@ -5,7 +5,7 @@
 
 ## What Was Extracted
 
-From `/Users/nmemn/Developer/ccp4i2/core/CCP4XtalData.py`, extracted class-level metadata for all CMiniMtzDataFile subclasses:
+From `$CCP4I2_ROOT/core/CCP4XtalData.py`, extracted class-level metadata for all CMiniMtzDataFile subclasses:
 
 ### 1. CObsDataFile (Observed Crystallographic Data)
 
@@ -183,7 +183,7 @@ FMEAN columns: ['F', 'SIGF']
 
 ## References
 
-- **Source**: `/Users/nmemn/Developer/ccp4i2/core/CCP4XtalData.py` (lines 3081-3472)
+- **Source**: `$CCP4I2_ROOT/core/CCP4XtalData.py` (lines 3081-3472)
 - **Updated**: `$CCP4I2_ROOT/migration/CData/cdata.json`
 - **Plan**: `$CCP4I2_ROOT/MAKEHKLIN_REFACTOR_PLAN.md`
 - **Script**: `$CCP4I2_ROOT/migration/CData/add_mtz_metadata.py`

@@ -4,19 +4,12 @@ Simple unit test to verify kwargs forwarding - bypassing plugin infrastructure
 """
 
 import inspect
-from pathlib import Path
+
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 def test_kwargs_in_signature():
     """Verify that process() signature accepts **kwargs"""
-
-    # Import after sys.path setup
-    import sys
-    import os
-    PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-    sys.path.insert(0, str(PROJECT_ROOT))
-
-    from ccp4i2.core.CCP4PluginScript import CPluginScript
 
     # Check process() signature
     sig = inspect.signature(CPluginScript.process)

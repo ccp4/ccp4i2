@@ -1,15 +1,9 @@
 #!/usr/bin/env python3
 """Simple test to verify RESMAX stays NOT_SET and is excluded from XML."""
 
-import os
 import sys
-from pathlib import Path
 import tempfile
-
-# Set up environment using relative path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-os.environ['CCP4I2_ROOT'] = str(PROJECT_ROOT)
-os.environ['DJANGO_SETTINGS_MODULE'] = 'ccp4i2.settings'
+from pathlib import Path
 
 from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 

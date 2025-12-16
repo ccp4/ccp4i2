@@ -15,7 +15,7 @@ import gemmi
 import sys
 
 # Import test configuration utilities for project naming
-from test_config import make_test_project_name
+from ccp4i2.tests.i2run.test_config import make_test_project_name
 
 # Try to import from legacy ccp4i2 for getCCP4I2Dir, but make it optional
 try:

@@ -188,9 +188,11 @@ class CCP4i2TestCase(TestCase):
         the_job = Job.objects.get(uuid=coot_job_uuid)
         the_job_plugin = get_job_plugin(the_job)
 
-        self.assertEqual(
-            str(the_job_plugin.container.outputData.XYZOUT[-1]),
-            "/Users/nmemn/Developer/ccp4i2/CCP4I2_TEST_PROJECT_DIRECTORY/refmac_gamma_test_0/CCP4_JOBS/job_2/2_refmac_gamma_test_0__coot_rebuild_9.pdb",
+        # Verify the output path ends with the expected filename pattern
+        output_path = str(the_job_plugin.container.outputData.XYZOUT[-1])
+        self.assertTrue(
+            output_path.endswith("coot_rebuild_9.pdb"),
+            f"Output path {output_path} should end with coot_rebuild_9.pdb",
         )
 
 

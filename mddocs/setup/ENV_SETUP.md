@@ -21,7 +21,7 @@ This project supports testing with multiple Python and CCP4 versions to help iso
 ## Available Environments
 
 ### Python 3.11 (CCP4-20251105) - Default
-- **CCP4 Root**: `/Users/nmemn/Developer/ccp4-20251105`
+- **CCP4 Root**: `$CCP4`
 - **Virtual env**: `.venv`
 - **Config file**: `.env.py311`
 - **Status**: Newer, active development
@@ -43,7 +43,7 @@ source .venv/bin/activate
 pip install autopep8 pytest django
 
 # Symlink mrbump
-ln -sf /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/mrbump \
+ln -sf $CCP4/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/mrbump \
     .venv/lib/python3.11/site-packages/mrbump
 ```
 

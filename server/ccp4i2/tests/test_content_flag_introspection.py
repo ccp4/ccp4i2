@@ -11,6 +11,7 @@ from pathlib import Path
 # Import the classes we're testing
 from ccp4i2.core.CCP4XtalData import CObsDataFile, CFreeRDataFile, CPhsDataFile
 from ccp4i2.core.CCP4ModelData import CPdbDataFile
+from ccp4i2.core import CCP4Utils
 
 
 class TestContentFlagIntrospection:
@@ -27,17 +28,17 @@ class TestContentFlagIntrospection:
     @pytest.fixture
     def gamma_demo_data_dir(self):
         """Path to gamma demo data directory in CCP4i2."""
-        return Path("/Users/nmemn/Developer/ccp4i2/demo_data/gamma")
+        return Path(CCP4Utils.getCCP4I2Dir()) / "demo_data" / "gamma"
 
     @pytest.fixture
     def baz2b_demo_data_dir(self):
         """Path to baz2b demo data directory in CCP4i2."""
-        return Path("/Users/nmemn/Developer/ccp4i2/demo_data/baz2b")
+        return Path(CCP4Utils.getCCP4I2Dir()) / "demo_data" / "baz2b"
 
     @pytest.fixture
     def mdm2_demo_data_dir(self):
         """Path to mdm2 demo data directory in CCP4i2."""
-        return Path("/Users/nmemn/Developer/ccp4i2/demo_data/mdm2")
+        return Path(CCP4Utils.getCCP4I2Dir()) / "demo_data" / "mdm2"
 
     def test_obs_ipair_introspection(self, gamma_demo_data_dir):
         """Test CObsDataFile detects IPAIR content flag from merged_intensities_native.mtz."""

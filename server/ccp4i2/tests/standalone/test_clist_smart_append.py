@@ -5,16 +5,6 @@ This fixes the aimless wrapper bug where it appends string paths to MTZUNMERGEDO
 """
 
 import sys
-import os
-from pathlib import Path
-
-# Set up environment using relative path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-os.environ['CCP4I2_ROOT'] = str(PROJECT_ROOT)
-os.environ['DJANGO_SETTINGS_MODULE'] = 'ccp4i2.settings'
-
-# Add project root to path
-sys.path.insert(0, str(PROJECT_ROOT))
 
 from ccp4i2.core.base_object.fundamental_types import CList
 from ccp4i2.core.CCP4XtalData import CUnmergedMtzDataFile

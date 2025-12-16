@@ -1,4 +1,4 @@
-// filepath: /Users/nmemn/Developer/ccp4i2-django/client/renderer/components/task/task-chooser.tsx
+// filepath: client/renderer/components/task/task-chooser.tsx
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import {
   Avatar,

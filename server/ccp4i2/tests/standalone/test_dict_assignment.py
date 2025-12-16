@@ -2,16 +2,11 @@
 """
 Test if direct __dict__ assignment works for CData serialization.
 """
-import sys
-from pathlib import Path
-
-# Add project root to path
-project_root = Path(__file__).parent
-sys.path.insert(0, str(project_root))
+import xml.etree.ElementTree as ET
+from xml.dom import minidom
 
 from ccp4i2.core.CCP4ModelData import CAsuContentSeq
 from ccp4i2.core.base_object.fundamental_types import CString, CInt
-import xml.etree.ElementTree as ET
 
 print("\n" + "="*80)
 print("Testing __dict__ Assignment for CData Serialization")
@@ -45,7 +40,6 @@ etree = item.getEtree()
 xml_str = ET.tostring(etree, encoding='unicode')
 
 # Pretty print
-from xml.dom import minidom
 dom = minidom.parseString(xml_str)
 pretty_xml = dom.toprettyxml(indent="  ")
 print(pretty_xml)

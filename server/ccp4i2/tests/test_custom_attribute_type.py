@@ -1,11 +1,5 @@
 """Test that AttributeType.CUSTOM works correctly with @cdata_class decorator."""
 
-import sys
-import os
-
-# Add project root to path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 from ccp4i2.core.base_object.base_classes import CData
 from ccp4i2.core.base_object.fundamental_types import CInt, CList, CString
 from ccp4i2.core.base_object.class_metadata import cdata_class, attribute, AttributeType

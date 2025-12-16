@@ -2,20 +2,7 @@
 """
 Test i2run parameter parsing and setting with modern approach.
 """
-import os
 import sys
-import django
-from pathlib import Path
-
-# Setup paths relative to this file's location
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
-sys.path.insert(0, str(PROJECT_ROOT / 'server'))
-os.environ['CCP4I2_ROOT'] = str(PROJECT_ROOT)
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4i2.config.settings')
-
-# Initialize Django
-django.setup()
 
 from ccp4i2.cli.i2run.CCP4i2RunnerBase import CCP4i2RunnerBase
 

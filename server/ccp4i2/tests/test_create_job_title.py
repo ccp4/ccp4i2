@@ -5,18 +5,6 @@ This test verifies the fix for the NOT NULL constraint error on Job.title
 when creating jobs for plugins that don't have TASKTITLE in their metadata.
 """
 
-import sys
-import os
-from pathlib import Path
-
-# Add project root to path
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
-sys.path.insert(0, str(project_root / "server"))
-
-# Set CCP4I2_ROOT for plugin discovery
-os.environ["CCP4I2_ROOT"] = str(project_root)
-
 
 def test_title_fallback_logic():
     """Test that title falls back to taskName when TASKTITLE is None."""

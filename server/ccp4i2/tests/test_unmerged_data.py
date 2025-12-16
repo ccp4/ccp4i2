@@ -11,6 +11,13 @@ import pytest
 from pathlib import Path
 from ccp4i2.core.CCP4XtalData import CUnmergedDataContent, CUnmergedDataFile
 from ccp4i2.core.base_object.error_reporting import CErrorReport
+from ccp4i2.core import CCP4Utils
+
+# Get the path to test data
+CCP4I2_ROOT = Path(CCP4Utils.getCCP4I2Dir())
+TEST_MTZ = CCP4I2_ROOT / "wrappers/pointless/test_data/brap_pk_6A.mtz"
+TEST_SCA_MERGED = CCP4I2_ROOT / "demo_data/baz2b/BAZ2BA_x839.xia2/3daii-run/DataFiles/nt5073v16_xBAZ2BAx8392_scaled.sca"
+TEST_SCA_UNMERGED = CCP4I2_ROOT / "demo_data/baz2b/BAZ2BA_x839.xia2/3daii-run/DataFiles/nt5073v16_xBAZ2BAx8392_scaled_unmerged.sca"
 
 
 class TestCUnmergedDataContent:
@@ -42,12 +49,12 @@ class TestCUnmergedDataContent:
         assert error.count() == 0
 
     @pytest.mark.skipif(
-        not Path('/Users/nmemn/Developer/ccp4i2/wrappers/pointless/test_data/brap_pk_6A.mtz').exists(),
+        not TEST_MTZ.exists(),
         reason="Test MTZ file not available"
     )
     def test_loadfile_unmerged_mtz(self):
         """Test loading an unmerged MTZ file."""
-        test_mtz = '/Users/nmemn/Developer/ccp4i2/wrappers/pointless/test_data/brap_pk_6A.mtz'
+        test_mtz = str(TEST_MTZ)
 
         data = CUnmergedDataContent()
         error = data.loadFile(test_mtz)
@@ -77,12 +84,12 @@ class TestCUnmergedDataContent:
         print(f"  Known cell: {data.knowncell.value}")
 
     @pytest.mark.skipif(
-        not Path('/Users/nmemn/Developer/ccp4i2/demo_data/baz2b/BAZ2BA_x839.xia2/3daii-run/DataFiles/nt5073v16_xBAZ2BAx8392_scaled.sca').exists(),
+        not TEST_SCA_MERGED.exists(),
         reason="Test Scalepack merged file not available"
     )
     def test_loadfile_scalepack_merged(self):
         """Test loading a merged Scalepack file."""
-        test_sca = '/Users/nmemn/Developer/ccp4i2/demo_data/baz2b/BAZ2BA_x839.xia2/3daii-run/DataFiles/nt5073v16_xBAZ2BAx8392_scaled.sca'
+        test_sca = str(TEST_SCA_MERGED)
 
         data = CUnmergedDataContent()
         error = data.loadFile(test_sca)
@@ -114,12 +121,12 @@ class TestCUnmergedDataContent:
         print(f"  Known wavelength: {data.knownwavelength.value}")
 
     @pytest.mark.skipif(
-        not Path('/Users/nmemn/Developer/ccp4i2/demo_data/baz2b/BAZ2BA_x839.xia2/3daii-run/DataFiles/nt5073v16_xBAZ2BAx8392_scaled_unmerged.sca').exists(),
+        not TEST_SCA_UNMERGED.exists(),
         reason="Test Scalepack unmerged file not available"
     )
     def test_loadfile_scalepack_unmerged(self):
         """Test loading an unmerged Scalepack file."""
-        test_sca = '/Users/nmemn/Developer/ccp4i2/demo_data/baz2b/BAZ2BA_x839.xia2/3daii-run/DataFiles/nt5073v16_xBAZ2BAx8392_scaled_unmerged.sca'
+        test_sca = str(TEST_SCA_UNMERGED)
 
         data = CUnmergedDataContent()
         error = data.loadFile(test_sca)
@@ -150,12 +157,12 @@ class TestCUnmergedDataContent:
         print(f"  Known wavelength: {data.knownwavelength.value}")
 
     @pytest.mark.skipif(
-        not Path('/Users/nmemn/Developer/ccp4i2/wrappers/pointless/test_data/brap_pk_6A.mtz').exists(),
+        not TEST_MTZ.exists(),
         reason="Test MTZ file not available"
     )
     def test_cdatafile_loadfile_integration(self):
         """Test CDataFile.loadFile() correctly instantiates CUnmergedDataContent and loads."""
-        test_mtz = '/Users/nmemn/Developer/ccp4i2/wrappers/pointless/test_data/brap_pk_6A.mtz'
+        test_mtz = str(TEST_MTZ)
 
         # Create a CUnmergedDataFile
         data_file = CUnmergedDataFile()

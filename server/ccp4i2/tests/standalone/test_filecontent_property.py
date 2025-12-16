@@ -1,14 +1,5 @@
 #!/usr/bin/env python3
 """Test script to verify fileContent property works"""
-import os
-import sys
-from pathlib import Path
-
-# Set CCP4I2_ROOT environment variable using relative path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-os.environ['CCP4I2_ROOT'] = str(PROJECT_ROOT)
-sys.path.insert(0, str(PROJECT_ROOT))
-
 from ccp4i2.core.CCP4ModelData import CPdbDataFile
 
 print("[TEST] Creating CPdbDataFile...")

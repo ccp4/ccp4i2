@@ -1,17 +1,9 @@
 #!/usr/bin/env python3
 """Test freerflag saveParams() behavior."""
 
-import os
-import sys
-from pathlib import Path
 import tempfile
+from pathlib import Path
 
-# Set up environment using relative path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-os.environ['CCP4I2_ROOT'] = str(PROJECT_ROOT)
-os.environ['DJANGO_SETTINGS_MODULE'] = 'ccp4i2.settings'
-
-# Import the plugin
 from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
 def test_freerflag_save():

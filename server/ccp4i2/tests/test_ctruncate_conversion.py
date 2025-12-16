@@ -4,7 +4,7 @@ Test ctruncate plugin for converting intensity data to structure factors.
 This test requires:
 - CCP4I2_ROOT environment variable set
 - CCP4 installed and ctruncate executable available
-  (typically via: source /Users/nmemn/Developer/ccp4-20251105/bin/ccp4.setup-sh)
+  (run via: ./run_test.sh which sets up the CCP4 environment)
 """
 
 import pytest

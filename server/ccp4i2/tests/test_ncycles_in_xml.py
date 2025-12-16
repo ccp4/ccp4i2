@@ -2,26 +2,17 @@
 Check if NCYCLES appears in the expanded prosmart_refmac XML.
 """
 
-import sys
-import os
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-# Add project root and server to path
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
-sys.path.insert(0, str(project_root / "server"))
-
-# Set CCP4I2_ROOT for plugin discovery
-os.environ["CCP4I2_ROOT"] = str(project_root)
-
+from ccp4i2.core import CCP4Utils
 from ccp4i2.lib.utils.parameters.load_xml import load_nested_xml
 
 
 def test_ncycles_in_expanded_xml():
     """Test that NCYCLES appears in the expanded XML after load_nested_xml."""
 
-    prosmart_def = project_root / "pipelines/prosmart_refmac/script/prosmart_refmac.def.xml"
+    prosmart_def = Path(CCP4Utils.getCCP4I2Dir()) / "pipelines/prosmart_refmac/script/prosmart_refmac.def.xml"
 
     if not prosmart_def.exists():
         print(f"❌ prosmart_refmac.def.xml not found at {prosmart_def}")

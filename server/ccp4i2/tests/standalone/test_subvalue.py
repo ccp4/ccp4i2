@@ -1,22 +1,6 @@
 #!/usr/bin/env python
 """Test script to verify subValue argument handling."""
 
-import os
-import sys
-from pathlib import Path
-
-# Set up environment using relative path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-os.environ['CCP4I2_ROOT'] = str(PROJECT_ROOT)
-os.environ['DJANGO_SETTINGS_MODULE'] = 'ccp4i2.config.settings'
-
-# Add server to path
-sys.path.insert(0, str(PROJECT_ROOT / 'server'))
-
-# Initialize Django
-import django
-django.setup()
-
 import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

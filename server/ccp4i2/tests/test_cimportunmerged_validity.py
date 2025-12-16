@@ -4,13 +4,6 @@ These tests verify that when a new CImportUnmerged item is added to a list
 via addItem(), the per-field qualifiers (like allowUndefined=False) from
 content_qualifiers are properly applied and generate validity errors.
 """
-import os
-import sys
-
-# Ensure CCP4I2_ROOT is set
-os.environ.setdefault('CCP4I2_ROOT', os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.insert(0, os.environ['CCP4I2_ROOT'])
-sys.path.insert(0, os.path.join(os.environ['CCP4I2_ROOT'], 'stubs'))
 
 import pytest
 from ccp4i2.core.cdata_stubs.CCP4XtalData import CImportUnmergedStub

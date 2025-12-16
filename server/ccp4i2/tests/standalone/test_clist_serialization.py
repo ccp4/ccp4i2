@@ -6,14 +6,10 @@ This tests whether populated CAsuContentSeq items in a list properly serialize t
 """
 
 import sys
-from pathlib import Path
-
-# Add project root to path
-project_root = Path(__file__).parent
-sys.path.insert(0, str(project_root))
+import xml.etree.ElementTree as ET
+from xml.dom import minidom
 
 from ccp4i2.core.CCP4ModelData import CAsuContentSeq, CAsuContentSeqList
-import xml.etree.ElementTree as ET
 
 
 def test_clist_serialization():
@@ -89,7 +85,6 @@ def test_clist_serialization():
         print(f"\n8. XML Output:")
         print("-" * 80)
         # Pretty print
-        from xml.dom import minidom
         dom = minidom.parseString(xml_str)
         pretty_xml = dom.toprettyxml(indent="  ")
         # Skip XML declaration line

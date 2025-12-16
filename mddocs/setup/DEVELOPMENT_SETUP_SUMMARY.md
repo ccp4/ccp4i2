@@ -4,7 +4,7 @@ This document provides a quick reference for the hybrid package management strat
 
 ## Environment
 - **Python**: 3.11.11
-- **CCP4 Distribution**: CCP4-20251105 (`/Users/nmemn/Developer/ccp4-20251105`)
+- **CCP4 Distribution**: CCP4-20251105 (`$CCP4`)
 - **Virtual Environment**: `.venv/` (Python 3.11)
 
 ## Pip-Installed Packages (56 total)
@@ -54,7 +54,7 @@ Installed via `pip install -r requirements.txt`:
 ## Symlinked CCP4 Modules (17 required)
 
 Symlinked from CCP4-20251105 distribution at:
-`/Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/`
+`$CCP4/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/`
 
 **IMPORTANT**: For MolProbity validation to work, you must also symlink `share/cctbx` (see section 9 below).
 
@@ -131,7 +131,7 @@ ln -s $CCP4_SITE_PACKAGES/smtbx .venv/lib/python3.11/site-packages/
 ln -s $CCP4_SITE_PACKAGES/boost_adaptbx .venv/lib/python3.11/site-packages/
 
 # Symlink CCTBX build environment (contains libtbx_env)
-ln -sf /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/share/cctbx .venv/share/cctbx
+ln -sf $CCP4/Frameworks/Python.framework/Versions/3.11/share/cctbx .venv/share/cctbx
 ```
 **Purpose**: Computational Crystallography Toolbox - core libraries for MolProbity
 **Why critical?**:
@@ -185,7 +185,7 @@ With all 56 pip packages + 17 symlinked modules:
 
 ```bash
 # 1. Create venv with CCP4's Python 3.11
-/Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/bin/python3.11 -m venv .venv
+$CCP4/Frameworks/Python.framework/Versions/3.11/bin/python3.11 -m venv .venv
 
 # 2. Install pip packages
 source .venv/bin/activate
@@ -195,7 +195,7 @@ pip install -r requirements.txt
 ./setup_venv.sh
 
 # 4. Symlink CCP4 modules
-CCP4_SITE_PACKAGES="/Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages"
+CCP4_SITE_PACKAGES="$CCP4/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages"
 cd .venv/lib/python3.11/site-packages
 
 # Core modules (10 symlinks)
@@ -220,7 +220,7 @@ ln -s "$CCP4_SITE_PACKAGES/boost_adaptbx" .
 
 # CCTBX build environment (1 symlink - required for libtbx.env)
 cd $CCP4I2_ROOT
-ln -sf /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/share/cctbx .venv/share/cctbx
+ln -sf $CCP4/Frameworks/Python.framework/Versions/3.11/share/cctbx .venv/share/cctbx
 
 # 5. Verify
 python -c "import clipper, rdkit, phaser; print('✅ Core modules OK')"
@@ -270,7 +270,7 @@ MolProbity validation requires `libtbx.env.has_module("probe")` to return True. 
 rm .venv/bin/molprobity.*
 
 # 2. Symlink CCTBX suite modules (see section 9 under "Symlinked CCP4 Modules")
-CCP4_SITE="/Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages"
+CCP4_SITE="$CCP4/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages"
 cd .venv/lib/python3.11/site-packages
 ln -s "$CCP4_SITE/cctbx" .
 ln -s "$CCP4_SITE/mmtbx" .
@@ -281,7 +281,7 @@ ln -s "$CCP4_SITE/boost_adaptbx" .
 
 # 3. Symlink CCTBX build environment
 cd $CCP4I2_ROOT
-ln -sf /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/share/cctbx .venv/share/cctbx
+ln -sf $CCP4/Frameworks/Python.framework/Versions/3.11/share/cctbx .venv/share/cctbx
 
 # 4. Verify MolProbity detection works
 source /path/to/ccp4-20251105/bin/ccp4.setup-sh

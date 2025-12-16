@@ -90,7 +90,7 @@ python manage.py create_project "test_project" --json
   "uuid": "22e337c5-77f7-4ba1-bfe3-1cd73da326f7",
   "name": "clean_test_4149",
   "description": "",
-  "directory": "/Users/nmemn/.ccp4i2/CCP4X_PROJECTS/clean_test_4149",
+  "directory": "$HOME/.ccp4i2/CCP4X_PROJECTS/clean_test_4149",
   "creation_time": "2025-10-31T09:45:58.206382+00:00"
 }
 # ← Clean, parseable JSON! ✅

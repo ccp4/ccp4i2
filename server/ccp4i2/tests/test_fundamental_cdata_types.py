@@ -2,9 +2,7 @@
 Pytest tests for fundamental CData types
 """
 import pytest
-import sys
-from pathlib import Path
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 from ccp4i2.core.base_object.fundamental_types import CInt, CFloat, CString, CBoolean, CList
 from ccp4i2.core.base_object.base_classes import CContainer
 

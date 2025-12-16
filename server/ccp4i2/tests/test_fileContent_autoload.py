@@ -1,25 +1,16 @@
 """Test that fileContent auto-loads when accessing the property."""
 
-import sys
-import os
 from pathlib import Path
 
-# Add project root to path
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
-sys.path.insert(0, str(project_root / "server"))
-
-# Set CCP4I2_ROOT for plugin discovery
-os.environ["CCP4I2_ROOT"] = str(project_root)
+from ccp4i2.core import CCP4Utils
 
 
 def test_fileContent_autoload_with_valid_path():
     """Test that fileContent auto-loads when file has a valid path."""
     from ccp4i2.core.CCP4XtalData import CObsDataFile
-    from pathlib import Path
 
     # Use the demo data file
-    demo_file = Path(project_root) / "demo_data" / "gamma" / "merged_intensities_Xe.mtz"
+    demo_file = Path(CCP4Utils.getCCP4I2Dir()) / "demo_data" / "gamma" / "merged_intensities_Xe.mtz"
     assert demo_file.exists(), f"Demo file not found: {demo_file}"
 
     # Create file object and set path

@@ -4,15 +4,12 @@ Standalone test that creates database entries and shows them.
 Does NOT use pytest, so database persists for inspection.
 """
 import os
-import sys
 import asyncio
 import tempfile
 import uuid as uuid_module
 from pathlib import Path
 
-# Setup paths
-sys.path.insert(0, str(Path(__file__).parent.parent / "server"))
-sys.path.insert(0, str(Path(__file__).parent.parent))
+from ccp4i2.core import CCP4Utils
 
 # Setup temp database and projects
 temp_db = tempfile.NamedTemporaryFile(suffix='.sqlite3', delete=False)
@@ -22,7 +19,6 @@ temp_projects = tempfile.mkdtemp(prefix='standalone_test_')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'ccp4i2.config.test_settings'
 os.environ['CCP4I2_DB_FILE'] = temp_db.name
 os.environ['CCP4I2_PROJECTS_DIR'] = temp_projects
-os.environ['CCP4I2_ROOT'] = str(Path(__file__).parent.parent)
 
 # Import Django and setup
 import django

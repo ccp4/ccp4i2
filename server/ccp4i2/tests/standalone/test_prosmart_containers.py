@@ -2,20 +2,9 @@
 """
 Test script to verify that prosmart_refmac loads all containers from .def.xml
 """
-import os
 import sys
-from pathlib import Path
 
-# Set up environment using relative path
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-os.environ['CCP4I2_ROOT'] = str(PROJECT_ROOT)
-
-# Add project root to path
-sys.path.insert(0, str(PROJECT_ROOT))
-
-# Import the plugin class directly
-sys.path.insert(0, str(PROJECT_ROOT / 'pipelines/prosmart_refmac/script'))
-from prosmart_refmac import prosmart_refmac
+from ccp4i2.pipelines.prosmart_refmac.script.prosmart_refmac import prosmart_refmac
 
 print("[TEST] Creating prosmart_refmac plugin instance...")
 plugin = prosmart_refmac()
@@ -51,13 +40,16 @@ if hasattr(plugin.container, 'prosmartProtein'):
         for child in plugin.container.prosmartProtein.children():
             print(f"    - {child.name} ({type(child).__name__})")
 else:
-    print(f"\n[TEST] FAILED! prosmartProtein container does not exist")
-    print(f"\n[TEST] Debugging: Let's check what the parser returned...")
+    print("\n[TEST] FAILED! prosmartProtein container does not exist")
+    print("\n[TEST] Debugging: Let's check what the parser returned...")
 
     # Re-parse the .def.xml file to see what it actually contains
+    import os
     from ccp4i2.core.task_manager.def_xml_handler import DefXmlParser
+    from ccp4i2.core import CCP4Utils
     parser = DefXmlParser()
-    parsed = parser.parse_def_xml(str(PROJECT_ROOT / 'pipelines/prosmart_refmac/script/prosmart_refmac.def.xml'))
+    def_xml_path = os.path.join(CCP4Utils.getCCP4I2Dir(), 'pipelines/prosmart_refmac/script/prosmart_refmac.def.xml')
+    parsed = parser.parse_def_xml(def_xml_path)
     print(f"\n[TEST] Parsed container has {len(parsed.children())} children:")
     for child in parsed.children():
         print(f"  - {child.name} ({type(child).__name__})")

@@ -1,8 +1,5 @@
 import pytest
 
-import sys
-import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from ccp4i2.core.base_object.fundamental_types import CInt, CList
 
 class TestExample:

@@ -249,7 +249,7 @@ def makeHklin(
 
 ### Standard Column Mappings
 
-**Extracted from `/Users/nmemn/Developer/ccp4i2/core/CCP4XtalData.py`**
+**Extracted from `$CCP4I2_ROOT/core/CCP4XtalData.py`**
 
 The system defines four CMiniMtzDataFile subclasses, each with their own content flags:
 

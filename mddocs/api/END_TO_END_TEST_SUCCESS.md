@@ -41,7 +41,7 @@ python manage.py create_project "test_workflow_1761908136" \
 ```
 ✅ Project UUID:  c14de3df-5a92-4ff3-9d6e-0cf52ee89ced
 ✅ Name:          test_workflow_1761908136
-✅ Directory:     /Users/nmemn/.ccp4i2/CCP4X_PROJECTS/test_workflow_1761908136
+✅ Directory:     $HOME/.ccp4i2/CCP4X_PROJECTS/test_workflow_1761908136
 ✅ Subdirectories: CCP4_JOBS/, CCP4_IMPORTED_FILES/, CCP4_COOT/, etc.
 ```
 

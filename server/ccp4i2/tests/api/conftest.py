@@ -11,42 +11,18 @@ Usage:
     ./run_test.sh tests/api/test_data_reduction_api.py -v
 """
 import os
-import sys
 import gc
 from pathlib import Path
 
 import pytest
 import django
 
-
-# Add server directory and project root to Python path
-server_path = Path(__file__).parent.parent.parent / "server"
-project_root = Path(__file__).parent.parent.parent
-sys.path.insert(0, str(server_path))
-sys.path.insert(0, str(project_root))
-
 # Configure Django settings
 # Force use of test_settings even if run_test.sh set ccp4i2.config.settings
 os.environ["DJANGO_SETTINGS_MODULE"] = "ccp4i2.config.test_settings"
 
-# Set up CCP4I2_ROOT for plugin discovery (.def.xml files)
-if "CCP4I2_ROOT" not in os.environ:
-    os.environ["CCP4I2_ROOT"] = str(project_root)
-
-# Add tests/ directory to path so i2run package is importable
-# (tests/i2run/ has __init__.py making it a package named 'i2run')
-tests_dir = Path(__file__).parent.parent
-if str(tests_dir) not in sys.path:
-    sys.path.insert(0, str(tests_dir))
-
-# Also add tests/i2run/ to path for direct imports (like test_config)
-# This is needed because i2run/utils.py uses 'from test_config import ...'
-i2run_dir = tests_dir / "i2run"
-if str(i2run_dir) not in sys.path:
-    sys.path.insert(0, str(i2run_dir))
-
 # Import test configuration utilities (shared with i2run tests)
-from test_config import get_test_projects_dir, make_test_project_name, get_cleanup_message
+from ccp4i2.tests.i2run.test_config import get_test_projects_dir, make_test_project_name, get_cleanup_message
 
 # Set up test projects directory (now defaults to ~/.cache/ccp4i2-tests/)
 TEST_PROJECTS_DIR = get_test_projects_dir()
@@ -56,8 +32,8 @@ os.environ["CCP4I2_PROJECTS_DIR"] = str(TEST_PROJECTS_DIR)
 django.setup()
 
 # Import URL helpers from i2run
-from i2run.urls import pdbe_fasta, redo_cif, redo_mtz, rcsb_mmcif
-from i2run.utils import download
+from ccp4i2.tests.i2run.urls import pdbe_fasta, redo_cif, redo_mtz, rcsb_mmcif
+from ccp4i2.tests.i2run.utils import download
 
 
 def pytest_collection_modifyitems(items):
