@@ -2094,7 +2094,7 @@ class CPluginScript(CData):
 
         # For async processes, check the exit code from the process manager
         elif hasattr(self, '_runningProcessId') and self._runningProcessId is not None:
-            from core.async_process_manager import ASYNC_PROCESSMANAGER
+            from ccp4i2.core.async_process_manager import ASYNC_PROCESSMANAGER
             pm = ASYNC_PROCESSMANAGER()
 
             exit_code = pm.getJobData(self._runningProcessId, 'exitCode')

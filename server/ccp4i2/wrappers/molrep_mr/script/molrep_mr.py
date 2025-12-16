@@ -250,7 +250,7 @@ class molrep_mr(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def saveProgramXml(self, docFileName, programXmlFileName):
-        from core import CCP4Utils
+        from ccp4i2.core import CCP4Utils
         from lxml import etree
 
         titles = []

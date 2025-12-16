@@ -2068,7 +2068,7 @@ class CPdbDataFile(CPdbDataFileStub):
         Raises:
             Exception: If file doesn't exist, can't be loaded, or can't be written
         """
-        from core.base_object.error_reporting import CException
+        from ccp4i2.core.base_object.error_reporting import CException
         import os
 
         # Convert fileName to string if it's a CData object (CString, CFilePath, etc.)
@@ -2134,7 +2134,7 @@ class CPdbDataFile(CPdbDataFileStub):
         Raises:
             Exception: If file doesn't exist, can't be loaded, or can't be written
         """
-        from core.base_object.error_reporting import CException
+        from ccp4i2.core.base_object.error_reporting import CException
         import os
 
         # Convert fileName to string if it's a CData object (CString, CFilePath, etc.)
@@ -2376,7 +2376,7 @@ class CSeqAlignDataFile(CSeqAlignDataFileStub):
             tuple: (format_name, id_list) where format_name is the detected format
                    and id_list is list of sequence IDs in the alignment
         """
-        from core.base_object.error_reporting import CErrorReport
+        from ccp4i2.core.base_object.error_reporting import CErrorReport
         import os
 
         err = CErrorReport()
@@ -2428,7 +2428,7 @@ class CSeqAlignDataFile(CSeqAlignDataFileStub):
         Returns:
             CErrorReport with any errors encountered
         """
-        from core.base_object.error_reporting import CErrorReport
+        from ccp4i2.core.base_object.error_reporting import CErrorReport
         import os
 
         # Identify source format if not already done

@@ -833,20 +833,26 @@ class AsyncDatabaseHandler:
         """
         # Import here to avoid circular dependency
         from ..lib.cdata_utils import extract_kpi_values
-        # Will need to import CPerformanceIndicator type
-        try:
-            from ccp4i2.core.CCP4PerformanceData import CPerformanceIndicator
-        except ImportError:
-            try:
-                from ccp4i2.core.CCP4PerformanceData import CPerformanceIndicator
-            except ImportError:
-                logger.warning("Could not import CPerformanceIndicator")
-                return 0
 
         count = 0
 
-        # Find all performance indicator objects
-        kpis = container.find_children_by_type(CPerformanceIndicator)
+        # Find performance indicators by looking for PERFORMANCEINDICATOR attribute
+        # We can't use isinstance() because the plugin may have imported the class
+        # from a different module path (e.g., 'core.CCP4PerformanceData' vs
+        # 'ccp4i2.core.CCP4PerformanceData'), making isinstance() return False.
+        # Instead, check by class name in the MRO.
+        def is_performance_indicator(obj):
+            """Check if obj is a CPerformanceIndicator by class name (module-agnostic)."""
+            for cls in obj.__class__.__mro__:
+                if cls.__name__ in ('CPerformanceIndicator', 'CRefinementPerformance'):
+                    return True
+            return False
+
+        # Collect KPIs by traversing the container
+        kpis = []
+        perf = getattr(container, 'PERFORMANCEINDICATOR', None)
+        if perf is not None and is_performance_indicator(perf):
+            kpis.append(perf)
 
         for kpi in kpis:
             try:
