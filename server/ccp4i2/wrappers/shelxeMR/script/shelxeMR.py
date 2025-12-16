@@ -1,4 +1,3 @@
-from __future__ import print_function
 #=======================================================================================
 #
 #    shelxeMR.py : shelxeMR(CPluginScript)
@@ -22,7 +21,6 @@ from ccp4i2.core import CCP4Utils
 from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core import CCP4XtalData
 from ccp4i2.core import CCP4Modules
-from ccp4i2.core.CCP4ErrorHandling import CErrorReport, CException
 
 class shelxeMR(CPluginScript):
 
@@ -39,11 +37,6 @@ class shelxeMR(CPluginScript):
     filecaught = False
 
     def __init__(self, *args, **kwargs):
-        # Append paths to MrBump parsers
-        mrbump_pth1 = os.path.join(CCP4Utils.getCCP4Dir(), 'lib', 'py2', 'mrbump', 'parsers')
-        mrbump_pth2 = os.path.join(CCP4Utils.getCCP4Dir(), 'lib', 'py2', 'mrbump', 'file_info')
-        sys.path.append(mrbump_pth1)
-        sys.path.append(mrbump_pth2)
         CPluginScript.__init__(self, *args, **kwargs)
         self.MTZ = None
         self.shelx_fname = "shelxrun"
@@ -156,8 +149,6 @@ class shelxeMR(CPluginScript):
         outfile = os.path.join(self.getWorkDirectory(),self.shelx_fname + '.hkl')
         arglist = ['HKLIN', infile, 'HKLOUT', outfile]
         logFile = os.path.normpath(os.path.join(self.getWorkDirectory(), 'mtz2various.log'))
-        mrbumpf_pth = os.path.join(CCP4Utils.getCCP4Dir(), 'share', 'mrbump', 'include', 'file_info')
-        sys.path.append(mrbumpf_pth)
         self.mtz = MTZ_parse.MTZ_parse()
         self.mtz.run_mtzdmp(infile)
         # Extra input needed to be read-in by mtz2various

@@ -18,11 +18,14 @@ Usage:
     ccp4i2 jobs run toxd 1 --detach
 """
 
-import sys
-import os
 import argparse
+import os
+import sys
 from pathlib import Path
 from typing import List, Optional
+
+import django
+from django.core.management import call_command
 
 # Ensure Django settings are configured
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4i2.config.settings')
@@ -39,11 +42,7 @@ if 'CCP4I2_ROOT' not in os.environ:
     os.environ['CCP4I2_ROOT'] = str(project_root)
     print(f"DEBUG: Auto-detected CCP4I2_ROOT={os.environ['CCP4I2_ROOT']}", file=sys.stderr)
 
-import django
 django.setup()
-
-from django.core.management import call_command
-
 
 class CLI:
     """Main CLI dispatcher."""
@@ -1053,8 +1052,9 @@ For help on any command:
 
     def _resolve_job_uuid(self, project_identifier: str, job_identifier: str):
         """Resolve project + job identifiers to job UUID."""
-        from ccp4i2.db.models import Job, Project
         import uuid
+
+        from ccp4i2.db.models import Job, Project
 
         try:
             # If job is already a UUID, use it directly

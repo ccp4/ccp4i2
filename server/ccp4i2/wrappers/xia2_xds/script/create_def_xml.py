@@ -7,27 +7,16 @@
 
 """Create xia2_xds.def.xml from PHIL parameters"""
 
-import sys
-import os
-
-# Nasty trick required to import Xia2DialsTaskCreator when running with
-# ccp4-python
-this_dir = os.path.dirname(os.path.realpath(__file__))
-ccp4i2_dir = os.path.dirname(os.path.dirname(os.path.dirname(this_dir)))
-sys.path.append(ccp4i2_dir)
 from ccp4i2.wrappers.xia2_dials.script.create_def_xml import Xia2DialsTaskCreator
 
 
 class Xia2XDSTaskCreator(Xia2DialsTaskCreator):
     def __init__(self, debug=False):
-
-        Xia2DialsTaskCreator.__init__(self, debug)
+        super().__init__(debug)
         self.fmt_dic["PLUGINNAME"] = "xia2_xds"
-
         self._elts_to_remove = ["dials", "strategy", "xia2__settings__input__image"]
 
     def __call__(self):
-
         # Modify the pipeline parameter to only allow XDS versions
         for cont in self.phil_tree.iter():
             if cont.get("id") == "xia2__settings__pipeline":
@@ -42,8 +31,7 @@ class Xia2XDSTaskCreator(Xia2DialsTaskCreator):
                 qual.find("enumerators").text = "3d,3dd,3di,3dii"
                 qual.find("default").text = "3dii"
                 break
-
-        super(Xia2XDSTaskCreator, self).__call__()
+        super().__call__()
 
 
 if __name__ == "__main__":

@@ -29,36 +29,13 @@ class coot_rebuild(CPluginScript):
             self.dropDir = self.workDirectory
             print('Could not make dropDir reset to',self.dropDir)
 
-        '''
-        # Look for a state file with name like the input coordinate file -
-        # only works if the coord file is from coot
-        if not self.container.inputData.COOTSTATEFILE.isSet() and self.container.inputData.XYZIN.fullPath.count('COOT_FILE_DROP')>0:
-          statePath,fileName = os.path.split(self.container.inputData.XYZIN.fullPath)
-          statePath = os.path.join(statePath,re.sub('output','state',fileName))
-          print 'coot_rebuild derived state file',statePath, os.path.exists(statePath)
-          if os.path.exists(statePath):
-              self.container.inputData.COOTSTATEFILE.setFullPath(statePath)
-        '''
         # Copy a startup state file to the drop directory
         if self.container.inputData.COOTSTATEFILE.isSet(): self.copyStateFile()
 
-        '''
-          import shutil
-          try:
-            shutil.copyfile(self.container.inputData.COOTSTATEFILE.__str__(),os.path.join(self.dropDir,'0-coot-history.py'))
-          except:
-            pass
-        '''
-
         # Make a script file with additional menu options to save to i2
         self.cootScriptPath = os.path.normpath(os.path.join(self.workDirectory,'script.py'))
-        if sys.platform == 'win32':
-          self.cootScriptPath = re.sub(r'\\\\',r'\\',self.cootScriptPath)
         # Declare script text then re.sub in the variables
-        if sys.platform == "win32":
-          i2dir = CCP4Utils.getCCP4I2Dir().replace('\\','/')
-        else:
-          i2dir = CCP4Utils.getCCP4I2Dir()
+        i2dir = CCP4Utils.getCCP4I2Dir()
         script = """
 from __future__ import division
 import os, sys

@@ -28,21 +28,6 @@ if not CCP4I2_ROOT:
 
 CCP4I2_ROOT = os.path.abspath(CCP4I2_ROOT)
 
-# Add project root to sys.path for stub modules (PySide2, lxml, etc.)
-script_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.dirname(os.path.dirname(script_dir))
-if project_root not in sys.path:
-    sys.path.insert(0, project_root)
-
-# Add server directory to sys.path for Django imports
-server_path = os.path.join(project_root, "server")
-if server_path not in sys.path:
-    sys.path.insert(0, server_path)
-
-# Add CCP4I2_ROOT to sys.path so plugin imports can work
-if CCP4I2_ROOT not in sys.path:
-    sys.path.insert(0, CCP4I2_ROOT)
-
 # Configure Django before importing any plugins that might use Django models
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ccp4i2.config.settings")
 try:
@@ -189,9 +174,6 @@ def build_report_lookup_from_dir(root_dir: str) -> Dict[str, Any]:
     Crawl a directory tree, import *_report.py files, and build a lookup mapping
     taskName to report class metadata.
     """
-    if root_dir not in sys.path:
-        sys.path.insert(0, root_dir)
-
     lookup = {}
     for _, fname, fpath, module_name in discover_report_files(root_dir):
         logger.debug(f"Scanning report file: {fpath}")

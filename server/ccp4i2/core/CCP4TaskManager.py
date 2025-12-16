@@ -158,11 +158,6 @@ class CTaskManager:
         except Exception as e:
             print(f"Error loading task_metadata.json: {e}")
 
-        # Set up CCP4I2_ROOT for plugin imports
-        ccp4i2_root = os.environ.get("CCP4I2_ROOT")
-        if ccp4i2_root and ccp4i2_root not in sys.path:
-            sys.path.insert(0, ccp4i2_root)
-
         # Initialize plugin and report registries (lazy loading)
         self._plugin_registry = None
         self._report_registry = None

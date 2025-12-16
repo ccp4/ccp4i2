@@ -34,8 +34,6 @@ class tableone(CPluginScript):
 
     def process(self):
         CPluginScript.process(self)
-        valpro_pth1 = os.path.join(CCP4Utils.getCCP4Dir(), 'share', 'ccp4i2', 'wrappers', 'validate_protein', 'script')
-        sys.path.append(valpro_pth1)
         # Be careful with this. validate_protein may well change, best to co-ordinate this.
         vprotein = validate_protein.validate_protein()
         l1, x1 = vprotein.b_averages(str(self.container.inputData.XYZIN))

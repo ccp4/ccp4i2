@@ -1,58 +1,26 @@
-"""
-     validate_protein.py: CCP4i2 validation task
-     Copyright (C) 2022-2024 William Rochira & Jon Agirre
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
 ## @package validate_protein
 # This package computes various metrics used in validation and deposition,
 # for example average B-factors by chain, ligands, etc. and Ramachandran statistics.
 
-import os
-import sys
-import shutil
 import json
-from math import pi
+import os
+import shutil
 import traceback
-
-# Ignore NumPy warnings
 import warnings
-warnings.filterwarnings('ignore')
+from math import pi
 
+import iris_validation
 import numpy as np
-from lxml import etree
-
 from iris_validation.graphics import Panel
 from iris_validation.metrics import metrics_model_series_from_files
-import iris_validation
+from lxml import etree
 
-try:
-    from ccp4i2.core import CCP4Utils, CCP4XtalData
-    from ccp4i2.core.CCP4PluginScript import CPluginScript
-    from ccp4i2.core import CCP4Modules
-except ImportError:
-    if 'CCP4' not in os.environ:
-        sys.exit('Error: CCP4 environment variable must be set')
-    sys.path.append(os.path.join(os.environ['CCP4'], 'share', 'ccp4i2'))
-    try:
-        from ccp4i2.core import CCP4Utils
-        from ccp4i2.core.CCP4PluginScript import CPluginScript
-        from ccp4i2.core import CCP4Modules
-    except ImportError:
-        sys.exit('Error: Failed to import CCP4 core modules')
+from ccp4i2.core import CCP4Modules, CCP4Utils, CCP4XtalData
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
+# Ignore NumPy warnings
+warnings.filterwarnings('ignore')
+
 
 class validate_protein(CPluginScript):
     TASKNAME = 'validate_protein'

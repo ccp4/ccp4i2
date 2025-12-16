@@ -9,7 +9,6 @@ import pytest
 import time
 import tempfile
 import os
-import sys
 from pathlib import Path
 import shutil
 
@@ -22,10 +21,6 @@ if not CCP4I2_ROOT:
 demo_data_path = Path(CCP4I2_ROOT) / 'demo_data' / 'mdm2'
 if not demo_data_path.exists():
     pytest.skip(f"Demo data not found: {demo_data_path}", allow_module_level=True)
-
-# Add legacy ccp4i2 to path (at the end to avoid conflicts)
-if CCP4I2_ROOT not in sys.path:
-    sys.path.append(CCP4I2_ROOT)
 
 # Now try to import the real demo_copycell plugin
 try:

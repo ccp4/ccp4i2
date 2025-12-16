@@ -1,15 +1,15 @@
-from __future__ import print_function
 # Based on create_def_xml.py for xia2 written by David Waterman
 
 """create phaser_MR_AUTO.def.xml from PHIL parameters"""
-import os, sys
+import os
 import re
-from lxml import etree
-ccp4i2_dir = os.path.join(os.environ['CCP4'], 'share', 'ccp4i2')
-sys.path.append(ccp4i2_dir)
-from ccp4i2.utils.phil_handlers import Phil2Etree
-from ccp4i2.utils.phil_handlers import PhilTaskCreator
+import sys
+
 import phaser
+from lxml import etree
+
+from ccp4i2.utils.phil_handlers import Phil2Etree, PhilTaskCreator
+
 
 class PhaserPhil2Etree(Phil2Etree):
   

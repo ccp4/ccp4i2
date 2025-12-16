@@ -8,10 +8,6 @@ import argparse
 
 from lxml import etree
 
-if __name__ == "__main__":
-    sys.path.append(os.path.join(os.path.dirname(__file__),".."))
-import importDir
-
 utf8_parser = etree.XMLParser(encoding='utf-8')
 
 def parse_from_unicode(unicode_str):

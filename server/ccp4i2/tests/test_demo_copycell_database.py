@@ -14,20 +14,16 @@ Features demonstrated:
 - File gleaning for pipeline outputs
 """
 
-import pytest
-import os
-import sys
 import asyncio
+import os
 from pathlib import Path
+
+import pytest
 
 # Ensure Django and CCP4I2_ROOT are set up
 CCP4I2_ROOT = os.environ.get('CCP4I2_ROOT')
 if not CCP4I2_ROOT:
     pytest.skip("CCP4I2_ROOT not set", allow_module_level=True)
-
-# Add to path
-if CCP4I2_ROOT not in sys.path:
-    sys.path.append(CCP4I2_ROOT)
 
 # Check for demo data
 demo_data_path = Path(CCP4I2_ROOT) / 'demo_data' / 'mdm2'
@@ -49,9 +45,11 @@ class TestDemoCopycellDatabase:
     @pytest.fixture
     async def test_project(self):
         """Create a test project for database operations."""
-        from ccp4i2.db import models
-        from asgiref.sync import sync_to_async
         import uuid
+
+        from asgiref.sync import sync_to_async
+
+        from ccp4i2.db import models
 
         # Generate unique project name
         project_name = f"test_project_{uuid.uuid4().hex[:8]}"
@@ -95,10 +93,11 @@ class TestDemoCopycellDatabase:
         - Output files: XYZOUT (modified PDB)
         - KPIs: Cell parameters, space group, etc.
         """
-        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
-        from ccp4i2.db import models
-        from ccp4i2.core.CCP4PluginScript import CPluginScript
         from asgiref.sync import sync_to_async
+
+        from ccp4i2.core.CCP4PluginScript import CPluginScript
+        from ccp4i2.db import models
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 
         print(f"\n{'='*70}")
         print("RUNNING: demo_copycell Pipeline with Database Tracking")
@@ -285,10 +284,11 @@ class TestDemoCopycellDatabase:
         This is useful for custom workflows or when you need fine-grained
         control over the database integration.
         """
-        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
-        from ccp4i2.db import models
-        from ccp4i2.core.CCP4PluginScript import CPluginScript
         from asgiref.sync import sync_to_async
+
+        from ccp4i2.core.CCP4PluginScript import CPluginScript
+        from ccp4i2.db import models
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 
         print(f"\n{'='*70}")
         print("RUNNING: Manual Pipeline Control Test")
@@ -384,9 +384,10 @@ class TestDemoCopycellDatabase:
         - Concurrent database updates
         - Event history capture
         """
-        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
-        from ccp4i2.db import models
         from asgiref.sync import sync_to_async
+
+        from ccp4i2.db import models
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 
         print(f"\n{'='*70}")
         print("RUNNING: Event-Driven Status Updates Test")

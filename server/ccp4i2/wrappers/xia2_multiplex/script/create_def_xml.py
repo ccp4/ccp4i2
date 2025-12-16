@@ -7,14 +7,8 @@
 
 """Create xia2_multiplex.def.xml from PHIL parameters"""
 
-import sys
-import os
 from lxml import etree
 
-# Nasty trick required to import PhilTaskCreator when running with ccp4-python
-this_dir = os.path.dirname(os.path.realpath(__file__))
-ccp4i2_dir = os.path.dirname(os.path.dirname(os.path.dirname(this_dir)))
-sys.path.append(ccp4i2_dir)
 from ccp4i2.utils.phil_handlers import PhilTaskCreator
 
 

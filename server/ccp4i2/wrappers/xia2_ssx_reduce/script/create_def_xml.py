@@ -7,23 +7,14 @@
 
 """Create xia2_ssx_reduce.def.xml from PHIL parameters"""
 
-import sys
-import os
 from lxml import etree
-
-# Nasty trick required to import PhilTaskCreator when running with ccp4-python
-this_dir = os.path.dirname(os.path.realpath(__file__))
-ccp4i2_dir = os.path.dirname(os.path.dirname(os.path.dirname(this_dir)))
-sys.path.append(ccp4i2_dir)
+from xia2.cli.ssx_reduce import phil_scope
 from ccp4i2.utils.phil_handlers import PhilTaskCreator
 
 
 class Xia2SsxReduceTaskCreator(PhilTaskCreator):
     def __init__(self, debug=False):
-
-        from xia2.cli.ssx_reduce import phil_scope
-
-        PhilTaskCreator.__init__(self, phil_scope, debug)
+        super().__init__(phil_scope, debug)
         self.fmt_dic["PLUGINNAME"] = "xia2_ssx_reduce"
 
         self.inputDataXML = etree.fromstring(
@@ -131,7 +122,7 @@ class Xia2SsxReduceTaskCreator(PhilTaskCreator):
         if self.debug:
             print(etree.tostring(self.phil_tree, pretty_print=True))
 
-        super(Xia2SsxReduceTaskCreator, self).__call__()
+        super().__call__()
 
 
 if __name__ == "__main__":

@@ -221,21 +221,7 @@ class PhaseDataConverter:
         import gemmi
 
         # Import the chltofom plugin wrapper
-        import sys
-        ccp4i2_path = Path(input_path).parent.parent.parent  # Assuming we're in demo_data
-        # Try to find CCP4I2_ROOT
-        import os
-        ccp4i2_root = os.environ.get('CCP4I2_ROOT')
-        if ccp4i2_root:
-            sys.path.insert(0, ccp4i2_root)
-
-        try:
-            from ccp4i2.wrappers.chltofom.script import chltofom
-        except ImportError as e:
-            raise CException(
-                PhaseDataConverter, 4,
-                details=f"ImportError: {str(e)}"
-            )
+        from ccp4i2.wrappers.chltofom.script import chltofom
 
         # Detect input format to determine which columns to extract
         input_mtz = gemmi.read_mtz_file(input_path)

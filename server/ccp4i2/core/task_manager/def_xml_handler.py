@@ -9,26 +9,18 @@ classes with hierarchical relationships, smart assignment, and set state trackin
 """
 
 import xml.etree.ElementTree as ET
-from typing import Dict, Any, Optional, Union, List, Type
+from typing import Dict, Any, Optional, Union, Type
 from pathlib import Path
-import json
-import re
-import sys
 
 from ..base_object.base_classes import CData, CContainer, ValueState
 from ..base_object.fundamental_types import (
     CInt, CFloat, CBoolean, CString, CList
 )
 from ..base_object.metadata_system import (
-    FieldMetadata, ClassMetadata, MetadataRegistry
+    FieldMetadata, MetadataRegistry
 )
 
 # Import load_nested_xml for handling .def.xml inheritance
-# Add server path to sys.path if not already present to import from server module
-server_path = Path(__file__).parent.parent.parent / 'server'
-if str(server_path) not in sys.path:
-    sys.path.insert(0, str(server_path))
-
 from ccp4i2.lib.utils.parameters.load_xml import load_nested_xml
 
 

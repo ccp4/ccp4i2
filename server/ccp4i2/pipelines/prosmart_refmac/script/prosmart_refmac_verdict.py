@@ -1,13 +1,15 @@
-from __future__ import print_function
-
-import sys,os
-
+import gemmi
 from lxml import etree
 
-import gemmi
 
-sys.path.append(os.path.join(os.environ["CCP4"],"share","jscofe"))
+# Temporary sys.path hack to allow import of pycofe.verdicts
+import os
+import sys
+old_sys_path = sys.path.copy()
+sys.path.append(os.environ["CCP4"], "share", "jscofe")
 from pycofe.verdicts import verdict_refmac
+sys.path = old_sys_path
+
 
 def getJSCOFERefmac5Verdict(programxml=None,pdbfile=None,refmaclog=None):
     verdict_meta_refmac = verdict_refmac.parseRefmacLog(refmaclog)

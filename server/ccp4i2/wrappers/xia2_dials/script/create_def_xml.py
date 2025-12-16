@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 #
 #  Copyright (C) 2016 STFC Rutherford Appleton Laboratory, UK.
 #
@@ -9,14 +7,8 @@ from __future__ import print_function
 
 """Create xia2_dials.def.xml from PHIL parameters"""
 
-import sys
-import os
 from lxml import etree
 
-# Nasty trick required to import PhilTaskCreator when running with ccp4-python
-this_dir = os.path.dirname(os.path.realpath(__file__))
-ccp4i2_dir = os.path.dirname(os.path.dirname(os.path.dirname(this_dir)))
-sys.path.append(ccp4i2_dir)
 from ccp4i2.utils.phil_handlers import PhilTaskCreator
 
 

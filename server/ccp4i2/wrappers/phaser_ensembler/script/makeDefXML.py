@@ -1,6 +1,9 @@
-from __future__ import print_function
-import sys,os
+import re
+
 from lxml import etree
+from phaser.ensembler import PHIL_MASTER
+
+from ccp4i2.core import CCP4Container
 
 # define mappings for .type to <className>
 phil_type_as_class_name = {
@@ -11,7 +14,7 @@ phil_type_as_class_name = {
                     "choice" : "CString",
 }
 
-import re
+
 def parse_choice_options (phil_def) :
     return ",".join([ re.sub(r"\*", "", word.value) for word in phil_def.words ])
 
@@ -70,17 +73,7 @@ def flattenScope(scope, root):
             flattenScope(object, root)
 
 
-
-
 if __name__ == "__main__":
-    CCP4=os.environ['CCP4']
-    print(CCP4)
-    sys.path.append(os.path.join(CCP4,'share','ccp4i2','core'))
-    sys.path.append(os.path.join(CCP4,'share','ccp4i2','report'))
-    sys.path.append(os.path.join(CCP4,'share','ccp4i2','dbapi'))
-    sys.path.append(os.path.join(CCP4,'share','ccp4i2','utils'))
-    from ccp4i2.core import CCP4Container
-
     paramsContainer = CCP4Container.CContainer()
     header = paramsContainer.addHeader()
     header.setCurrent()
@@ -132,21 +125,10 @@ if __name__ == "__main__":
 </dummyRoot>
         ''')
     for child in inputDataXML: root.append(child)
-
-    #Get the "phil" information  as a scope to translate into def.xml
-    sys.path.append(os.path.join(CCP4,'lib','py2','site-packages','phaser'))
-    from phaser.ensembler import PHIL_MASTER
     
     #And flatten this into a container called keywords
     keywordElement = etree.SubElement(root,'container',id='keywords')
     flattenScope(PHIL_MASTER, keywordElement)
     
-    
     paramsContainer.loadContentsFromEtree(root, overwrite=True)
     paramsContainer.saveContentsToXml(fileName='phaser_ensembler.def.xml')
-
-
-
-
-
-

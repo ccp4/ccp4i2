@@ -91,4 +91,3 @@ def my_function(*args, **kwargs):
 - These stubs are ONLY used during plugin discovery
 - They are NOT used at runtime when actually running plugins
 - They have no real functionality - just enough to make imports work
-- The stubs are added to sys.path by plugin_lookup.py automatically
