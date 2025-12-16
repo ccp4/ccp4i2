@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env ccp4-python
 """
 i2 - Modern CLI for CCP4i2
 
