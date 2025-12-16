@@ -236,15 +236,7 @@ class xia2_run(CCP4PluginScript.CPluginScript):
       if len(logFiles)==0: return None        
       root = etree.Element(programName.upper())
       
-      try:
-        from ccp4i2.smartie import smartie
-      except:
-        from ccp4i2.core import CCP4Utils
-        smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
-        import sys
-        sys.path.append(smartiePath)
-        from ccp4i2.smartie import smartie
-                       
+      from ccp4i2.smartie import smartie
       from ccp4i2.pimple.logtable import CCP4LogToEtree
       logfile = smartie.parselog(logFiles[0])
       for smartieTable in logfile.tables():

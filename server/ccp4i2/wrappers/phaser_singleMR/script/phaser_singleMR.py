@@ -154,12 +154,8 @@ class phaser_singleMR(CPluginScript):
     def parseLogfile(self):
         logfile = self.makeFileName('LOG')
         # Load ccp4 smartie and qtr code
-        from ccp4i2.core import CCP4Utils
-        smpth = os.path.join(CCP4Utils.getCCP4Dir(), 'share', 'smartie')
-        sys.path.append(smpth)
         from ccp4i2.smartie import smartie
-        import qtrgeneric
-        from qtrgeneric import CLReader, LogConverter
+        from ccp4i2.smartie.qtrgeneric import CLReader, LogConverter
         # Use ccp4 automated output. Note this is replacing I2's internal xml file handling.
         infi = CLReader({'REP_XML': 'program.xml', 'REP_XRT': 'program.xrt', 'LOGFILE': logfile})
         smin = smartie.parselog(logfile)

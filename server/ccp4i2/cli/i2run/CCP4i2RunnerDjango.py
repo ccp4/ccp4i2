@@ -225,7 +225,7 @@ class CCP4i2RunnerDjango(CCP4i2RunnerBase):
 
         # Attach Django database handler for database-aware operations
         if job is not None:
-            from ..db.async_db_handler import AsyncDatabaseHandler
+            from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
             thePlugin._dbHandler = AsyncDatabaseHandler(project_uuid=str(job.project.uuid))
             thePlugin._dbProjectId = str(job.project.uuid).replace("-", "")
             logger.debug(f"Attached dbHandler with project {job.project.uuid}")
@@ -323,7 +323,7 @@ class CCP4i2RunnerDjango(CCP4i2RunnerBase):
         # Save input parameters to input_params.xml so async_run_job can load them
         # This is essential because async_run_job creates a fresh plugin instance
         # and needs to populate it with the command-line arguments we just processed
-        from ..db import models
+        from ccp4i2.db import models
         job = models.Job.objects.get(uuid=self.jobId)
         save_params_for_job(thePlugin, the_job=job, mode="JOB_INPUT", exclude_unset=True)
         logger.info(f"Saved input parameters to input_params.xml for async runner to load")

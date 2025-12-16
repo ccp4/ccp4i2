@@ -1,5 +1,3 @@
-import sys
-import pathlib
 from django.core.management.base import BaseCommand
 from django.apps import apps
 from django.db.models.fields import (
@@ -17,9 +15,6 @@ from django.db.models.fields.reverse_related import (
     ManyToOneRel,
     OneToOneRel,
 )
-# DISABLED: Old ccp4i2 imports
-# from ccp4i2.googlecode import diff_match_patch_py3
-# sys.path.append(str(pathlib.Path(diff_match_patch_py3.__file__).parent.parent))
 
 
 class Command(BaseCommand):

@@ -353,11 +353,7 @@ class phaser_mr(CPluginScript):
 
 
     def appendSmartieStuff(self, programEtree):
-        import os, sys
         from lxml import etree
-        #print '\n\n** In appendSmartie'
-        smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
-        sys.path.append(smartiePath)
         from ccp4i2.smartie import smartie
         logfile = smartie.parselog(self.makeFileName( 'LOG' ))
         

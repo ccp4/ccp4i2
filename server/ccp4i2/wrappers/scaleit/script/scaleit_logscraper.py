@@ -1,12 +1,5 @@
-import os, sys
-import lxml
+import os
 from lxml import etree
-
-from pathlib import Path
-
-CCP4I2_ROOT = os.environ.get("CCP4I2_ROOT",
-                             str(Path(lxml.__file__).parents[1] / "ccp4i2"))
-sys.path.append(str(CCP4I2_ROOT))
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core import CCP4ErrorHandling
@@ -22,11 +15,8 @@ class makeGraphs:
     def getXML(self):
         return self.scaleitgraphs
 
-    # - - - - - - - - -  - - - - - - - - -  - - - - - - - - - 
+    # - - - - - - - - -  - - - - - - - - -  - - - - - - - - -
     def scrapeSmartieGraphs(self, smartieNode):
-        from ccp4i2.core import CCP4Utils
-        smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
-        sys.path.append(smartiePath)
         from ccp4i2.smartie import smartie
         
         logfile = smartie.parselog(self.logfilename)

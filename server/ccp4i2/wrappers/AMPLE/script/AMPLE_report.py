@@ -1,4 +1,3 @@
-from __future__ import print_function
 """
         AMPLE_report.py: CCP4 GUI Project
 
@@ -18,17 +17,8 @@ from __future__ import print_function
         """
 
 
-
 import os
 import re
-
-if __name__ == '__main__':
-    import sys
-    ccp4 = os.environ['CCP4']
-    sys.path.append(os.path.join(ccp4, 'share', 'ccp4i2'))
-    #sys.path.append(os.path.join(ccp4, 'share', 'ccp4i2', 'report'))
-    #sys.path.append(os.path.join(ccp4, 'share', 'ccp4i2', 'core'))
-    sys.path.append(os.path.join(ccp4, 'lib', 'python2.7', 'site-packages'))
 
 from lxml import etree as ET
 from ccp4i2.report.CCP4ReportParser import Report

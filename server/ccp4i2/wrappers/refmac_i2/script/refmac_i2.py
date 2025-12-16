@@ -350,10 +350,6 @@ class refmac_i2(CPluginScript):
             
             
     def scrapeSmartieGraphs(self, smartieNode):
-        import sys, os
-        from ccp4i2.core import CCP4Utils
-        smartiePath = os.path.join(CCP4Utils.getCCP4I2Dir(),'smartie')
-        sys.path.append(smartiePath)
         from ccp4i2.smartie import smartie
         
         logfile = smartie.parselog(self.makeFileName('LOG'))

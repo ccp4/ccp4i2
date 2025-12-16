@@ -5,11 +5,14 @@ import sys
 import tempfile
 from pathlib import Path
 
-# Set up environment
-os.environ['CCP4I2_ROOT'] = '/Users/nmemn/Developer/ccp4i2'
-sys.path.insert(0, '/Users/nmemn/Developer/ccp4i2')
+# Set up environment using project root detection
+project_root = Path(__file__).resolve().parents[2]
+server_path = project_root / "server"
+if str(server_path) not in sys.path:
+    sys.path.insert(0, str(server_path))
+os.environ.setdefault('CCP4I2_ROOT', str(project_root))
 
-# Import mt zdump plugin
+# Import mtzdump plugin
 from ccp4i2.wrappers.mtzdump.script.mtzdump import mtzdump
 
 def test_template_expansion():
