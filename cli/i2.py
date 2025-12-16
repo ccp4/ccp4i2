@@ -13,7 +13,7 @@ Usage:
 
     i2 jobs <project> [list]        List jobs in a project
     i2 jobs create <project> <task> Create a new job
-    i2 jobs run <project> <job>     Run an existing job
+    i2 jobs run <project> <job> [-y] Run an existing job
     i2 jobs tree <project> <job>    Show job file tree
     i2 jobs clone <project> <job>   Clone a job
     i2 jobs kpi <project> <job>     Show job KPIs (float/char values)
