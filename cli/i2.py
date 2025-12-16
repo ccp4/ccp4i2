@@ -16,6 +16,7 @@ Usage:
     i2 jobs run <project> <job>     Run an existing job
     i2 jobs tree <project> <job>    Show job file tree
     i2 jobs clone <project> <job>   Clone a job
+    i2 jobs kpi <project> <job>     Show job KPIs (float/char values)
 
     i2 run <task> [options]         Create and run a task (i2run shortcut)
 
@@ -34,6 +35,7 @@ Examples:
     i2 jobs toxd
     i2 jobs run toxd 5
     i2 jobs clone toxd 3
+    i2 jobs kpi toxd 5
     i2 files toxd 5
     i2 report toxd 5
     i2 run refmac --hklin data.mtz --xyzin model.pdb
@@ -143,7 +145,7 @@ def main():
     # ─────────────────────────────────────────────────────────────────────────
     elif resource == 'jobs':
         if not rest:
-            print("Usage: i2 jobs <project> [list|create|run|tree|clone]", file=sys.stderr)
+            print("Usage: i2 jobs <project> [list|create|run|tree|clone|kpi]", file=sys.stderr)
             sys.exit(1)
 
         # Check if first arg is an action or a project name
@@ -172,6 +174,11 @@ def main():
                 print("Usage: i2 jobs clone <project> <job>", file=sys.stderr)
                 sys.exit(1)
             run_management_command('clone_job', *job_args(rest[1], rest[2]), *rest[3:])
+        elif rest[0] == 'kpi':
+            if len(rest) < 3:
+                print("Usage: i2 jobs kpi <project> <job>", file=sys.stderr)
+                sys.exit(1)
+            run_management_command('job_kpi', *job_args(rest[1], rest[2]), *rest[3:])
         else:
             # Assume first arg is project name, list jobs in that project
             run_management_command('list_jobs', rest[0])
