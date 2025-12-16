@@ -17,7 +17,7 @@ sys.path.insert(0, str(project_root / "server"))
 # Set CCP4I2_ROOT for plugin discovery
 os.environ["CCP4I2_ROOT"] = str(project_root)
 
-from ccp4i2.i2run.CCP4i2RunnerBase import CCP4i2RunnerBase
+from ccp4i2.cli.i2run.CCP4i2RunnerBase import CCP4i2RunnerBase
 
 
 def test_prosmart_refmac_has_ncycles_argument():

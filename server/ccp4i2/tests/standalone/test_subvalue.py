@@ -21,7 +21,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-from ccp4i2.i2run.CCP4i2RunnerBase import CCP4i2RunnerBase
+from ccp4i2.cli.i2run.CCP4i2RunnerBase import CCP4i2RunnerBase
 
 # Test 1: fullPath subValue
 print("=" * 60)

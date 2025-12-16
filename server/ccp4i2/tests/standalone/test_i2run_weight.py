@@ -12,7 +12,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4i2.config.settings')
 import django
 django.setup()
 
-from ccp4i2.i2run.CCP4i2RunnerBase import CCP4i2RunnerBase
+from ccp4i2.cli.i2run.CCP4i2RunnerBase import CCP4i2RunnerBase
 
 # Test with WEIGHT (which we know is in children())
 args = ['prosmart_refmac', '--WEIGHT', 'AUTO']

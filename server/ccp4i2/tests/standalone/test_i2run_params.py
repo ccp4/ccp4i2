@@ -17,7 +17,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ccp4i2.config.settings')
 # Initialize Django
 django.setup()
 
-from ccp4i2.i2run.CCP4i2RunnerBase import CCP4i2RunnerBase
+from ccp4i2.cli.i2run.CCP4i2RunnerBase import CCP4i2RunnerBase
 
 def test_keyword_extraction():
     """Test that keywords are extracted from plugin."""

@@ -12,7 +12,7 @@ import logging
 from pathlib import Path
 from django.conf import settings
 from django.utils.text import slugify
-from .CCP4i2RunnerBase import CCP4i2RunnerBase
+from ..cli.i2run.CCP4i2RunnerBase import CCP4i2RunnerBase
 from .i2run_components import PluginPopulator
 from ..db import models
 from ..api import serializers
