@@ -110,7 +110,7 @@ class pointless_reindexToMatch(CPluginScript):
             self.appendErrorReport(201,'Pointless_reindexToMatch: processInputFiles: exception in process')
             return CPluginScript.FAILED
 
-    def postProcessCheck(self, processId):
+    def postProcessCheck(self, processId=None):
         status, exitStatus, exitCode = super(pointless_reindexToMatch,self).postProcessCheck(processId)
         if (exitStatus != CPluginScript.SUCCEEDED) or (exitCode != 0):
             print("postProcessCheck FAIL")

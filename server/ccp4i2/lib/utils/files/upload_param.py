@@ -4,6 +4,7 @@ import json
 import gemmi
 import re
 from ccp4i2.core.base_object.cdata_file import CDataFile
+from ccp4i2.core.base_object.fundamental_types import CList
 from ccp4i2.core.CCP4XtalData import CMtzDataFile
 # Import stub class for isinstance checks - subclasses like CObsDataFile inherit from
 # stubs (CMtzDataFileStub) not implementations (CMtzDataFile)
@@ -12,6 +13,7 @@ from django.utils.text import slugify
 from django.http import HttpRequest
 from ccp4i2.core import CCP4File
 from ccp4i2.core import CCP4XtalData
+from ccp4i2.core import CCP4Data
 from ccp4i2.core.CCP4XtalData import CMtzDataFile
 
 # Use core method for find_by_path - no import needed
@@ -26,6 +28,101 @@ from ..parameters.set_parameter import set_parameter, set_parameter_container
 from ccp4i2.db import models
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
+
+
+def resolve_list_upload_path(container, normalized_path: str, skip_first: bool = True):
+    """
+    Smart resolution of upload paths for list parameters.
+
+    Handles three cases:
+    1. Path points to list without index (e.g., "prosmartProtein.REFERENCE_MODELS")
+       → Append a new item to the list
+
+    2. Path points to list with index that exists (e.g., "REFERENCE_MODELS[1]" when list has 3+ items)
+       → Use existing item at that index
+
+    3. Path points to list with index beyond current length (e.g., "REFERENCE_MODELS[5]" when list has 2 items)
+       → Append items until list has enough entries (index + 1 items)
+
+    Args:
+        container: The plugin container to search in
+        normalized_path: Normalized object path (e.g., "prosmart_refmac.prosmartProtein.REFERENCE_MODELS[1]")
+        skip_first: If True, skip first path element (task name)
+
+    Returns:
+        tuple: (param_object, final_path_with_index)
+            - param_object: The CDataFile object at the resolved path
+            - final_path_with_index: Path with index added (e.g., "...REFERENCE_MODELS[0]")
+
+    Raises:
+        AttributeError: If path does not point to a valid list or file parameter
+    """
+    # Check if path ends with array indexing
+    array_match = re.search(r'(\w+)(\[(\d+)\])$', normalized_path)
+
+    if array_match:
+        # Path already has an index - extract the list path and index
+        path_before_index = normalized_path[:array_match.start(2)]
+        requested_index = int(array_match.group(3))
+
+        logger.info(f"Path has index [{requested_index}], checking if list needs expansion")
+
+        # Try to get the list object
+        try:
+            list_object = container.find_by_path(path_before_index, skip_first=skip_first)
+        except AttributeError:
+            # Path not found - let original error propagate
+            raise
+
+        # Check if it's a list
+        if isinstance(list_object, (CList, CCP4Data.CList)):
+            current_length = len(list_object)
+            logger.info(f"List currently has {current_length} items, requested index {requested_index}")
+
+            # If requested index is beyond current length, append items
+            if requested_index >= current_length:
+                items_to_add = (requested_index + 1) - current_length
+                logger.info(f"Appending {items_to_add} items to reach index {requested_index}")
+
+                for i in range(items_to_add):
+                    # addItem() creates a new item based on the list's contentClass and appends it
+                    new_item = list_object.addItem()
+                    logger.info(f"Appended item {current_length + i}, list now has {len(list_object)} items")
+
+        # Now resolve the full path with index
+        param_object = container.find_by_path(normalized_path, skip_first=skip_first)
+        return param_object, normalized_path
+
+    else:
+        # Path does NOT have an index - check if it points to a list
+        logger.info(f"Path has no index, checking if it points to a list")
+
+        try:
+            target_object = container.find_by_path(normalized_path, skip_first=skip_first)
+        except AttributeError:
+            # Path not found - let original error propagate
+            raise
+
+        # Check if target is a list
+        if isinstance(target_object, (CList, CCP4Data.CList)):
+            logger.info(f"Target is a list with {len(target_object)} items - appending new item")
+
+            # addItem() creates a new item based on the list's contentClass and appends it
+            new_item = target_object.addItem()
+            new_index = len(target_object) - 1
+            logger.info(f"Appended new item at index {new_index}, list now has {len(target_object)} items")
+
+            # Build the final path with index
+            final_path = f"{normalized_path}[{new_index}]"
+
+            # Get the newly created item
+            param_object = container.find_by_path(final_path, skip_first=skip_first)
+            return param_object, final_path
+
+        else:
+            # Not a list - just return the object as-is
+            logger.info(f"Target is not a list (type: {type(target_object).__name__}) - using as-is")
+            return target_object, normalized_path
 
 
 def build_file_annotation(original_filename: str, mtz_metadata: dict = None) -> str:
@@ -124,12 +221,18 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
     normalized_path = normalize_object_path(object_path)
     logger.info("normalized_path: %s", normalized_path)
 
-    param_object = container.find_by_path(normalized_path, skip_first=True)
+    # Use smart list resolution to handle list parameters
+    # If path points to a list without index, append a new item
+    # If path points to a list with index beyond length, create items up to that index
+    param_object, final_path_with_index = resolve_list_upload_path(container, normalized_path, skip_first=True)
     logger.info("param_object: %s (type: %s)", param_object, type(param_object).__name__)
+    logger.info("final_path_with_index: %s", final_path_with_index)
+
     # Look for existing file import for this job/job_param_name and delete
     # the associated file if exists
 
-    job_param_name = extract_from_first_bracketed(object_path)
+    # Use the final path (with index) for job_param_name extraction
+    job_param_name = extract_from_first_bracketed(final_path_with_index)
 
     # Look to see if file import(s) already exist(s) for this param in the current job
     try:
@@ -356,11 +459,11 @@ def upload_file_param(job: models.Job, request: HttpRequest) -> dict:
         "subType": new_file.sub_type,
         "contentFlag": new_file.content,
     }
-    logger.info("Calling set_parameter_container with path: %s", normalized_path)
+    logger.info("Calling set_parameter_container with path: %s", final_path_with_index)
     logger.info("updated_object_dict: %s", updated_object_dict)
     updated_object = set_parameter_container(
         container,
-        normalized_path,
+        final_path_with_index,
         updated_object_dict,
     )
     logger.info("set_parameter_container returned: %s", updated_object)

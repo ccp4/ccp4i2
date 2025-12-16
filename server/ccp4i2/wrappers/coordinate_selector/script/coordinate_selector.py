@@ -52,9 +52,16 @@ class coordinate_selector(CPluginScript):
             self.appendErrorReport(202)         
             return(CPluginScript.FAILED)
             
-    def postProcessCheck(self, processId):
-        if not os.path.isfile(str(self.container.outputData.XYZOUT.fullPath)): return CPluginScript.FAILED
-        return CPluginScript.SUCCEEDED
+    def postProcessCheck(self, processId=None):
+        if not os.path.isfile(str(self.container.outputData.XYZOUT.fullPath)):
+            status = CPluginScript.FAILED
+        else:
+            status = CPluginScript.SUCCEEDED
+
+        # Return tuple (status, exit_status, exit_code) as expected by base class
+        exit_status = 0 if status == CPluginScript.SUCCEEDED else 1
+        exit_code = 0  # No external process for this plugin
+        return status, exit_status, exit_code
         
     def processOutputFiles(self):
         import gemmi

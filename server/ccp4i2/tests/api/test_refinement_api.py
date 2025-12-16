@@ -123,7 +123,7 @@ class TestServalcatAPI(APITestBase):
         self.set_param("controlParameters.VALIDATE_RAMACHANDRAN", False)
         self.set_param("controlParameters.VALIDATE_MOLPROBITY", False)
         self.set_param("controlParameters.RUN_ADP_ANALYSIS", False)
-        self.set_param("controlParameters.RUN_COORDADPDEV_ANALYSIS", False)
+        self.set_param("monitor.RUN_COORDADPDEV_ANALYSIS", False)
 
         self.run_and_wait()
 
@@ -162,13 +162,13 @@ class TestServalcatAPI(APITestBase):
             self.set_param("controlParameters.USE_JELLY", True)
 
             # ProSMART reference
-            self.set_param("controlParameters.prosmartProtein.TOGGLE", True)
-            self.set_param("controlParameters.prosmartProtein.MODE", "SELECTED")
-            self.upload_file("controlParameters.prosmartProtein.REFERENCE_MODELS", cif7ber)
-            self.set_param("controlParameters.prosmartProtein.CHAINLIST_1", "A")
-            self.set_param("controlParameters.prosmartProtein.ALL_BEST", "ALL")
-            self.set_param("controlParameters.prosmartProtein.SEQID", 75)
-            self.set_param("controlParameters.prosmartProtein.SIDE_MAIN", "SIDE")
+            self.set_param("prosmartProtein.TOGGLE", True)
+            self.set_param("prosmartProtein.MODE", "SELECTED")
+            self.upload_file("prosmartProtein.REFERENCE_MODELS[0]", cif7ber)
+            self.set_param("prosmartProtein.CHAINLIST_1", "A")
+            self.set_param("prosmartProtein.ALL_BEST", "ALL")
+            self.set_param("prosmartProtein.SEQID", 75)
+            self.set_param("prosmartProtein.SIDE_MAIN", "SIDE")
 
             # Disable validation
             self.set_param("controlParameters.VALIDATE_IRIS", False)
@@ -176,7 +176,7 @@ class TestServalcatAPI(APITestBase):
             self.set_param("controlParameters.VALIDATE_RAMACHANDRAN", False)
             self.set_param("controlParameters.VALIDATE_MOLPROBITY", False)
             self.set_param("controlParameters.RUN_ADP_ANALYSIS", False)
-            self.set_param("controlParameters.RUN_COORDADPDEV_ANALYSIS", False)
+            self.set_param("monitor.RUN_COORDADPDEV_ANALYSIS", False)
 
             self.run_and_wait()
 

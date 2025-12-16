@@ -35,8 +35,8 @@ class TestPhaserSimpleAPI(APITestBase):
         self.upload_file("inputData.XYZIN", gamma_model_pdb)
 
         # Disable post-processing for faster test
-        self.set_param("controlParameters.RUNREFMAC", False)
-        self.set_param("controlParameters.RUNSHEETBEND", False)
+        self.set_param("inputData.RUNREFMAC", False)
+        self.set_param("inputData.RUNSHEETBEND", False)
 
         self.run_and_wait()
 
@@ -62,8 +62,8 @@ class TestPhaserSimpleAPI(APITestBase):
         )
         self.upload_file("inputData.XYZIN", gamma_model_pdb)
 
-        self.set_param("controlParameters.RUNREFMAC", False)
-        self.set_param("controlParameters.RUNSHEETBEND", True)
+        self.set_param("inputData.RUNREFMAC", False)
+        self.set_param("inputData.RUNSHEETBEND", True)
 
         self.run_and_wait()
 
@@ -85,8 +85,8 @@ class TestPhaserSimpleAPI(APITestBase):
         self.upload_file("inputData.XYZIN", gamma_model_pdb)
 
         # Full pipeline with refmac and sheetbend
-        self.set_param("controlParameters.RUNREFMAC", True)
-        self.set_param("controlParameters.RUNSHEETBEND", True)
+        self.set_param("inputData.RUNREFMAC", True)
+        self.set_param("inputData.RUNSHEETBEND", True)
 
         self.run_and_wait(timeout=600)  # Longer timeout for refinement
 
@@ -113,7 +113,7 @@ class TestPhaserSimpleAPI(APITestBase):
         self.upload_file("inputData.XYZIN", rnase_model_pdb)
 
         # Lower resolution to speed up
-        self.set_param("controlParameters.RESOLUTION_HIGH", 5.0)
+        self.set_param("inputData.RESOLUTION_HIGH", 5.0)
 
         # Expect failure - no solution
         self.run_and_wait(expect_success=False)
@@ -211,8 +211,8 @@ class TestMrBumpAPI(APITestBase):
         self.upload_file("inputData.ASUIN", gamma_asu_xml)
 
         # Limit search for faster testing
-        self.set_param("controlParameters.MRMAX", 5)
-        self.set_param("controlParameters.REDUNDANCYLEVEL", 95)
+        self.set_param("modelParameters.MRMAX", 5)
+        self.set_param("modelParameters.REDUNDANCYLEVEL", 95)
         self.set_param("controlParameters.PJOBS", 2)
         self.set_param("controlParameters.NCYC", 10)
 

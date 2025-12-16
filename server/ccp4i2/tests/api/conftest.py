@@ -213,9 +213,16 @@ def isolated_test_db(request, django_db_blocker, monkeypatch, test_project_path)
         # Create and migrate the test database using explicit database option
         call_command('migrate', '--run-syncdb', '--database=default', verbosity=0)
 
-        # Verify tables were created
+        # Enable WAL mode for better concurrent access between test process and subprocess
+        # WAL mode allows multiple readers and one writer simultaneously
         from django.db import connection
         with connection.cursor() as cursor:
+            cursor.execute("PRAGMA journal_mode=WAL;")
+            cursor.execute("PRAGMA synchronous=NORMAL;")
+            # Disable timeout to avoid lock errors (default is 5 seconds)
+            cursor.execute("PRAGMA busy_timeout=30000;")  # 30 seconds
+
+            # Verify tables were created
             cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='ccp4i2_job';")
             result = cursor.fetchone()
             if not result:
