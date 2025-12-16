@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env ccp4-python
 """
 i2 - Modern CLI for CCP4i2
 
@@ -8,28 +8,37 @@ Django management commands with a more intuitive syntax.
 Usage:
     i2 projects [list]              List all projects
     i2 projects create <name>       Create a new project
-    i2 projects show <id>           Show project details
-    i2 projects tree <id>           Show project job tree
+    i2 projects show <project>      Show project details
+    i2 projects tree <project>      Show project job tree
 
     i2 jobs <project> [list]        List jobs in a project
     i2 jobs create <project> <task> Create a new job
-    i2 jobs run <job_id>            Run an existing job
-    i2 jobs tree <job_id>           Show job file tree
-    i2 jobs clone <job_id>          Clone a job
+    i2 jobs run <project> <job> [-y] Run an existing job
+    i2 jobs tree <project> <job>    Show job file tree
+    i2 jobs clone <project> <job>   Clone a job
+    i2 jobs kpi <project> <job>     Show job KPIs (float/char values)
 
     i2 run <task> [options]         Create and run a task (i2run shortcut)
 
-    i2 files <job_id> [list]        List files in a job
-    i2 files cat <job_id> <name>    Display file contents
+    i2 files <project> <job> [list] List files in a job
+    i2 files cat <project> <job> <name>  Display file contents
 
-    i2 report <job_id>              Generate job report
+    i2 report <project> <job>       Generate job report
+
+    i2 export job <project> <job>   Export a job to zip
+    i2 export project <project>     Export a project to zip
+    i2 import <zipfile>             Import a project from zip
 
 Examples:
     i2 projects
     i2 projects create toxd
     i2 jobs toxd
+    i2 jobs run toxd 5
+    i2 jobs clone toxd 3
+    i2 jobs kpi toxd 5
+    i2 files toxd 5
+    i2 report toxd 5
     i2 run refmac --hklin data.mtz --xyzin model.pdb
-    i2 report 42
 """
 
 import os
@@ -87,6 +96,15 @@ def run_management_command(command, *args):
     sys.exit(result.returncode)
 
 
+def job_args(project, job_number):
+    """
+    Convert a project name and job number to command-line arguments.
+
+    Returns a list of arguments like ['--projectname', 'toxd', '--jobnumber', '5']
+    """
+    return ['--projectname', project, '--jobnumber', job_number]
+
+
 def main():
     args = sys.argv[1:]
 
@@ -127,37 +145,42 @@ def main():
     # ─────────────────────────────────────────────────────────────────────────
     elif resource == 'jobs':
         if not rest:
-            print("Usage: i2 jobs <project_id> [list|create|run|tree|clone]", file=sys.stderr)
+            print("Usage: i2 jobs <project> [list|create|run|tree|clone|kpi]", file=sys.stderr)
             sys.exit(1)
 
-        # Check if first arg is an action or a project ID
+        # Check if first arg is an action or a project name
         if rest[0] == 'list':
             if len(rest) < 2:
-                print("Usage: i2 jobs list <project_id>", file=sys.stderr)
+                print("Usage: i2 jobs list <project>", file=sys.stderr)
                 sys.exit(1)
             run_management_command('list_jobs', rest[1])
         elif rest[0] == 'create':
             if len(rest) < 3:
-                print("Usage: i2 jobs create <project_id> <task>", file=sys.stderr)
+                print("Usage: i2 jobs create <project> <task>", file=sys.stderr)
                 sys.exit(1)
             run_management_command('create_job', *rest[1:])
         elif rest[0] == 'run':
-            if len(rest) < 2:
-                print("Usage: i2 jobs run <job_id>", file=sys.stderr)
+            if len(rest) < 3:
+                print("Usage: i2 jobs run <project> <job>", file=sys.stderr)
                 sys.exit(1)
-            run_management_command('run_job', rest[1], *rest[2:])
+            run_management_command('run_job', *job_args(rest[1], rest[2]), *rest[3:])
         elif rest[0] == 'tree':
-            if len(rest) < 2:
-                print("Usage: i2 jobs tree <job_id>", file=sys.stderr)
+            if len(rest) < 3:
+                print("Usage: i2 jobs tree <project> <job>", file=sys.stderr)
                 sys.exit(1)
-            run_management_command('tree_job', rest[1])
+            run_management_command('tree_job', rest[1], rest[2], *rest[3:])
         elif rest[0] == 'clone':
-            if len(rest) < 2:
-                print("Usage: i2 jobs clone <job_id>", file=sys.stderr)
+            if len(rest) < 3:
+                print("Usage: i2 jobs clone <project> <job>", file=sys.stderr)
                 sys.exit(1)
-            run_management_command('clone_job', rest[1], *rest[2:])
+            run_management_command('clone_job', *job_args(rest[1], rest[2]), *rest[3:])
+        elif rest[0] == 'kpi':
+            if len(rest) < 3:
+                print("Usage: i2 jobs kpi <project> <job>", file=sys.stderr)
+                sys.exit(1)
+            run_management_command('job_kpi', *job_args(rest[1], rest[2]), *rest[3:])
         else:
-            # Assume first arg is project ID, list jobs in that project
+            # Assume first arg is project name, list jobs in that project
             run_management_command('list_jobs', rest[0])
 
     # ─────────────────────────────────────────────────────────────────────────
@@ -174,52 +197,55 @@ def main():
     # ─────────────────────────────────────────────────────────────────────────
     elif resource == 'files':
         if not rest:
-            print("Usage: i2 files <job_id> [list|cat]", file=sys.stderr)
+            print("Usage: i2 files <project> <job> [list|cat]", file=sys.stderr)
             sys.exit(1)
 
         if rest[0] == 'list':
-            if len(rest) < 2:
-                print("Usage: i2 files list <job_id>", file=sys.stderr)
-                sys.exit(1)
-            run_management_command('list_files', rest[1])
-        elif rest[0] == 'cat':
             if len(rest) < 3:
-                print("Usage: i2 files cat <job_id> <filename>", file=sys.stderr)
+                print("Usage: i2 files list <project> <job>", file=sys.stderr)
                 sys.exit(1)
-            run_management_command('cat_job_file', rest[1], rest[2])
+            run_management_command('list_files', *job_args(rest[1], rest[2]))
+        elif rest[0] == 'cat':
+            if len(rest) < 4:
+                print("Usage: i2 files cat <project> <job> <filename>", file=sys.stderr)
+                sys.exit(1)
+            run_management_command('cat_job_file', *job_args(rest[1], rest[2]), rest[3])
         else:
-            # Assume it's a job ID, list files
-            run_management_command('list_files', rest[0])
+            # Assume first two args are project and job number
+            if len(rest) < 2:
+                print("Usage: i2 files <project> <job>", file=sys.stderr)
+                sys.exit(1)
+            run_management_command('list_files', *job_args(rest[0], rest[1]))
 
     # ─────────────────────────────────────────────────────────────────────────
     # Report
     # ─────────────────────────────────────────────────────────────────────────
     elif resource == 'report':
-        if not rest:
-            print("Usage: i2 report <job_id>", file=sys.stderr)
+        if len(rest) < 2:
+            print("Usage: i2 report <project> <job>", file=sys.stderr)
             sys.exit(1)
-        run_management_command('get_job_report', rest[0], *rest[1:])
+        run_management_command('get_job_report', *job_args(rest[0], rest[1]), *rest[2:])
 
     # ─────────────────────────────────────────────────────────────────────────
     # Import/Export
     # ─────────────────────────────────────────────────────────────────────────
     elif resource == 'export':
         if not rest:
-            print("Usage: i2 export <job|project> <id>", file=sys.stderr)
+            print("Usage: i2 export <job|project> ...", file=sys.stderr)
             sys.exit(1)
         if rest[0] == 'job':
-            if len(rest) < 2:
-                print("Usage: i2 export job <job_id>", file=sys.stderr)
+            if len(rest) < 3:
+                print("Usage: i2 export job <project> <job>", file=sys.stderr)
                 sys.exit(1)
-            run_management_command('export_job', rest[1], *rest[2:])
+            run_management_command('export_job', *job_args(rest[1], rest[2]), *rest[3:])
         elif rest[0] == 'project':
             if len(rest) < 2:
-                print("Usage: i2 export project <project_id>", file=sys.stderr)
+                print("Usage: i2 export project <project>", file=sys.stderr)
                 sys.exit(1)
-            run_management_command('export_project', rest[1], *rest[2:])
+            run_management_command('export_project', '--projectname', rest[1], *rest[2:])
         else:
             print(f"Unknown export target: {rest[0]}", file=sys.stderr)
-            print("Usage: i2 export <job|project> <id>", file=sys.stderr)
+            print("Usage: i2 export <job|project> ...", file=sys.stderr)
             sys.exit(1)
 
     elif resource == 'import':

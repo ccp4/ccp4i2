@@ -295,29 +295,29 @@ class Command(BaseCommand):
                     self.stdout.write(self.style.SUCCESS(f"Jobs in Project: {project_name} ({len(jobs)} found)"))
                 self.stdout.write(self.style.SUCCESS(f"{'='*140}\n"))
 
-                # Table header
+                # Table header - Job # is the key identifier used with project name
                 if list_all:
                     self.stdout.write(
-                        f"{'#':<6} {'Title':<25} {'Task':<20} {'Status':<15} {'Eval':<8} {'Project':<20} {'Created':<20}"
+                        f"{'#':<8} {'Title':<28} {'Task':<20} {'Status':<12} {'Eval':<8} {'Project':<20}"
                     )
                 else:
                     self.stdout.write(
-                        f"{'#':<6} {'Title':<30} {'Task':<25} {'Status':<15} {'Eval':<8} {'Created':<20}"
+                        f"{'#':<8} {'Title':<32} {'Task':<24} {'Status':<12} {'Eval':<8} {'Created':<20}"
                     )
-                self.stdout.write("-" * 140)
+                self.stdout.write("-" * 120)
 
                 # Table rows
                 for job in jobs:
-                    # Format fields
-                    number = job.number[:5] if len(job.number) > 5 else job.number
+                    # Format fields - job number is the primary identifier
+                    number = job.number[:7] if len(job.number) > 7 else job.number
 
                     if list_all:
-                        title = job.title[:24] if len(job.title) > 24 else job.title
+                        title = job.title[:27] if len(job.title) > 27 else job.title
                         task = job.task_name[:19] if len(job.task_name) > 19 else job.task_name
                         project = job.project.name[:19] if len(job.project.name) > 19 else job.project.name
                     else:
-                        title = job.title[:29] if len(job.title) > 29 else job.title
-                        task = job.task_name[:24] if len(job.task_name) > 24 else job.task_name
+                        title = job.title[:31] if len(job.title) > 31 else job.title
+                        task = job.task_name[:23] if len(job.task_name) > 23 else job.task_name
 
                     status = models.Job.Status(job.status).label
                     evaluation = models.Job.Evaluation(job.evaluation).label
@@ -325,11 +325,11 @@ class Command(BaseCommand):
 
                     if list_all:
                         self.stdout.write(
-                            f"{number:<6} {title:<25} {task:<20} {status:<15} {evaluation:<8} {project:<20} {created:<20}"
+                            f"{number:<8} {title:<28} {task:<20} {status:<12} {evaluation:<8} {project:<20}"
                         )
                     else:
                         self.stdout.write(
-                            f"{number:<6} {title:<30} {task:<25} {status:<15} {evaluation:<8} {created:<20}"
+                            f"{number:<8} {title:<32} {task:<24} {status:<12} {evaluation:<8} {created:<20}"
                         )
 
                 # Summary footer

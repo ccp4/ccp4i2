@@ -10,25 +10,18 @@ from ccp4i2.lib.async_run_job import run_job_async
 
 class Command(BaseCommand):
     """
-    A Django management command to import a project and run a job.
+    A Django management command to run a job.
 
-    Attributes:
-        help (str): Description of the command.
-        requires_system_checks (list): List of system checks required before running the command.
+    If the job is not in PENDING status, prompts for confirmation before running
+    (unless -y/--yes is specified).
 
-    Methods:
-        add_arguments(parser):
-            Adds command-line arguments to the parser.
-
-        handle(*args, **options):
-            Handles the command execution. Retrieves the job based on provided options and runs it.
-            If the detach option is specified, the job is run in a detached subprocess.
-
-        get_job(options):
-            Retrieves the job based on the provided options. Raises Job.DoesNotExist if no job is found.
+    Usage:
+        python manage.py run_job --projectname toxd --jobnumber 5
+        python manage.py run_job --projectname toxd --jobnumber 5 -y  # Skip confirmation
+        python manage.py run_job --jobid 42 --detach
     """
 
-    help = "Import a project"
+    help = "Run a job"
     requires_system_checks = []
 
     def add_arguments(self, parser):
@@ -39,6 +32,11 @@ class Command(BaseCommand):
         parser.add_argument("-pu", "--projectuuid", help="Project uuid", type=str)
         parser.add_argument("-jn", "--jobnumber", help="Job number", type=str)
         parser.add_argument("-d", "--detach", help="Detach job", action="store_true")
+        parser.add_argument(
+            "-y", "--yes",
+            help="Skip confirmation prompt for non-pending jobs",
+            action="store_true"
+        )
 
     def handle(self, *args, **options):
         try:
@@ -46,6 +44,27 @@ class Command(BaseCommand):
         except (Job.DoesNotExist, Project.DoesNotExist) as e:
             self.stderr.write(self.style.ERROR(str(e)))
             return
+
+        # Check if job is not in PENDING status
+        if the_job.status not in [Job.Status.PENDING, Job.Status.QUEUED]:
+            status_label = Job.Status(the_job.status).label
+            if not options.get("yes"):
+                self.stdout.write(
+                    self.style.WARNING(
+                        f"Job #{the_job.number} '{the_job.title}' has status '{status_label}' (not Pending)."
+                    )
+                )
+                self.stdout.write(
+                    f"Re-running this job will overwrite existing results."
+                )
+                try:
+                    response = input("Continue? [y/N] ").strip().lower()
+                    if response not in ('y', 'yes'):
+                        self.stdout.write("Aborted.")
+                        return
+                except (EOFError, KeyboardInterrupt):
+                    self.stdout.write("\nAborted.")
+                    return
 
         if options["detach"]:
             # Determine the program name based on the OS
