@@ -24,9 +24,9 @@ from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 from ccp4i2.core import CCP4Data
 from ccp4i2.core import CCP4XtalData
 
-from ..lib.utils.parameters.set_parameter import set_parameter_container
-from ..lib.utils.containers.find_objects import find_object_by_path
-from ..lib.utils.formats.gemmi_split_mtz import gemmi_split_mtz
+from ccp4i2.lib.utils.parameters.set_parameter import set_parameter_container
+from ccp4i2.lib.utils.containers.find_objects import find_object_by_path
+from ccp4i2.lib.utils.formats.gemmi_split_mtz import gemmi_split_mtz
 
 # Import refactored components
 from .i2run_components import KeywordExtractor, ArgumentBuilder, PluginPopulator
