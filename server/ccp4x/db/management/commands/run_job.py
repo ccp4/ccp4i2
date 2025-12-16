@@ -46,7 +46,7 @@ class Command(BaseCommand):
             return
 
         # Check if job is not in PENDING status
-        if the_job.status != Job.Status.PENDING:
+        if the_job.status not in [Job.Status.PENDING, Job.Status.QUEUED]:
             status_label = Job.Status(the_job.status).label
             if not options.get("yes"):
                 self.stdout.write(
