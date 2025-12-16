@@ -4,7 +4,7 @@ import argparse
 import traceback
 
 from django.core.management.base import BaseCommand
-from ....i2run import CCP4i2RunnerDjango
+from ccp4i2.cli.i2run.CCP4i2RunnerDjango import CCP4i2RunnerDjango
 from xml.etree import ElementTree as ET
 
 # Get an instance of a logger
@@ -46,7 +46,7 @@ class Command(BaseCommand):
             parser = argparse.ArgumentParser()
 
             # Modern approach: No Qt parent needed
-            self.i2_runner = CCP4i2RunnerDjango.CCP4i2RunnerDjango(
+            self.i2_runner = CCP4i2RunnerDjango(
                 the_args=the_args,
                 parser=parser,
                 parent=None,  # No Qt spoof needed - using modern async approach

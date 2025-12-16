@@ -9,7 +9,7 @@ from django.conf import settings
 from ccp4i2.db.models import Job, Project, File, JobCharValue, JobFloatValue
 from ccp4i2.db.import_i2xml import import_ccp4_project_zip
 
-from ccp4i2.i2run import CCP4i2RunnerDjango
+from ccp4i2.cli.i2run.CCP4i2RunnerDjango import CCP4i2RunnerDjango
 from ccp4i2.core import CCP4Modules
 
 # Set CCP4I2_TOP to the project root
@@ -93,7 +93,7 @@ class CCP4i2TestCase(TestCase):
     def test_case1(self):
         args = shlex.split(os.path.expandvars(case1), comments=True)
         print(args)
-        i2Runner = CCP4i2RunnerDjango.CCP4i2RunnerDjango(
+        i2Runner = CCP4i2RunnerDjango(
             the_args=args,
             parser=ArgumentParser(),
             parent=self.app,
@@ -113,7 +113,7 @@ class CCP4i2TestCase(TestCase):
         self.assertEqual(
             Project.objects.filter(name="SubstituteLigand_test_0").count(), 1
         )
-        i2Runner = CCP4i2RunnerDjango.CCP4i2RunnerDjango(
+        i2Runner = CCP4i2RunnerDjango(
             the_args=args,
             parser=ArgumentParser(),
             parent=self.app,
@@ -131,7 +131,7 @@ class CCP4i2TestCase(TestCase):
 
     def test_case3(self):
         args = shlex.split(os.path.expandvars(case3), comments=True)
-        i2Runner = CCP4i2RunnerDjango.CCP4i2RunnerDjango(
+        i2Runner = CCP4i2RunnerDjango(
             the_args=args,
             parser=ArgumentParser(),
             parent=self.app,

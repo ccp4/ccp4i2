@@ -8,18 +8,16 @@ Improvements:
 - Better error messages
 """
 
-import os
-import shlex
 import logging
 from pathlib import Path
 from django.conf import settings
 from django.utils.text import slugify
 from .CCP4i2RunnerBase import CCP4i2RunnerBase
 from .i2run_components import PluginPopulator
-from ..db import models
-from ..api import serializers
-from ..lib.utils.jobs.create import create_job
-from ..lib.utils.parameters.save_params import save_params_for_job
+from ...db import models
+from ...api import serializers
+from ...lib.utils.jobs.create import create_job
+from ...lib.utils.parameters.save_params import save_params_for_job
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
