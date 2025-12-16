@@ -7,17 +7,8 @@ our async-first event loop architecture.
 """
 
 from typing import Any, Callable, TypeVar
-import sys
-import asyncio
 
 FuncT = TypeVar('FuncT', bound=Callable[..., Any])
-
-# Import our modern event system
-try:
-    from ccp4i2.core.base_object.event_system import EventLoop as ModernEventLoop
-except ImportError:
-    # Fallback for module loading issues
-    ModernEventLoop = None
 
 
 def Slot(*arg_types, **kwargs) -> Callable[[FuncT], FuncT]:
