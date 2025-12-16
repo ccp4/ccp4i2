@@ -39,7 +39,7 @@ try:
     plugin1 = runner1.getPlugin()
 
     # Check if XYZIN.fullPath was set
-    from server.ccp4i2.lib.utils.containers.find_objects import find_object_by_path
+    from ccp4i2.lib.utils.containers.find_objects import find_object_by_path
     xyzin = find_object_by_path(plugin1.container, "inputData.XYZIN")
     if xyzin:
         print(f"✓ XYZIN object found")
@@ -69,7 +69,7 @@ try:
     plugin2 = runner2.getPlugin()
 
     # Check if XYZIN.selection.text was set
-    from server.ccp4i2.lib.utils.containers.find_objects import find_object_by_path
+    from ccp4i2.lib.utils.containers.find_objects import find_object_by_path
     xyzin = find_object_by_path(plugin2.container, "inputData.XYZIN")
     if xyzin:
         print(f"✓ XYZIN object found")
@@ -106,7 +106,7 @@ try:
     plugin3 = runner3.getPlugin()
 
     # Check if both were set
-    from server.ccp4i2.lib.utils.containers.find_objects import find_object_by_path
+    from ccp4i2.lib.utils.containers.find_objects import find_object_by_path
     xyzin = find_object_by_path(plugin3.container, "inputData.XYZIN")
     if xyzin:
         print(f"✓ XYZIN object found")

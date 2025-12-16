@@ -313,7 +313,7 @@ tests/
 
 ```python
 import asyncio
-from server.ccp4i2.db.async_db_handler import AsyncDatabaseHandler
+from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 async def run_simple_job():
@@ -337,7 +337,7 @@ asyncio.run(run_simple_job())
 ### Example 2: Full Pipeline with File Import
 
 ```python
-from server.ccp4i2.lib.async_run_job import run_pipeline_async
+from ccp4i2.lib.async_run_job import run_pipeline_async
 
 async def run_full_pipeline():
     job_uuid = await run_pipeline_async(
@@ -356,7 +356,7 @@ async def run_full_pipeline():
 ### Example 3: Nested Jobs
 
 ```python
-from server.ccp4i2.lib.async_run_job import run_nested_jobs_async
+from ccp4i2.lib.async_run_job import run_nested_jobs_async
 
 async def run_nested_pipeline():
     parent_uuid = await run_nested_jobs_async(
@@ -383,7 +383,7 @@ async def run_nested_pipeline():
 ### Example 4: Manual File Gleaning
 
 ```python
-from server.ccp4i2.lib.async_glean_files import glean_all_async
+from ccp4i2.lib.async_glean_files import glean_all_async
 
 async def manual_gleaning():
     handler = AsyncDatabaseHandler(project_uuid=project.uuid)

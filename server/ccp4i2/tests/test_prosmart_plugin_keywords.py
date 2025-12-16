@@ -58,7 +58,7 @@ def test_prosmart_refmac_keywords_include_ncycles():
     """Test that keywordsOfTaskName includes NCYCLES."""
 
     # Import after setting paths
-    from server.ccp4i2.i2run.CCP4i2RunnerBase import CCP4i2RunnerBase
+    from ccp4i2.i2run.CCP4i2RunnerBase import CCP4i2RunnerBase
 
     # Get keywords for prosmart_refmac
     keywords = CCP4i2RunnerBase.keywordsOfTaskName('prosmart_refmac', parent=None)

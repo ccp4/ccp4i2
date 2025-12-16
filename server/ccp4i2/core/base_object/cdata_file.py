@@ -317,7 +317,7 @@ class CDataFile(CData):
             except RuntimeError:
                 pass  # Already configured
 
-            from server.ccp4i2.db.async_db_handler import AsyncDatabaseHandler
+            from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
             import uuid
 
             project_uuid = uuid.UUID(str(project_uuid_str))

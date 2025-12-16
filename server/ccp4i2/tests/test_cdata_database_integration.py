@@ -24,7 +24,7 @@ class TestCDataUtilities:
 
     def test_extract_file_metadata(self):
         """Test extracting metadata from a file object"""
-        from server.ccp4i2.lib.cdata_utils import extract_file_metadata
+        from ccp4i2.lib.cdata_utils import extract_file_metadata
 
         # Create mock file object
         mock_file = Mock()
@@ -67,7 +67,7 @@ class TestCDataUtilities:
 
     def test_extract_parameter_name(self):
         """Test parameter name extraction"""
-        from server.ccp4i2.lib.cdata_utils import extract_parameter_name
+        from ccp4i2.lib.cdata_utils import extract_parameter_name
 
         # Test with name attribute
         mock_obj = Mock()
@@ -82,7 +82,7 @@ class TestCDataUtilities:
 
     def test_validate_file_metadata_completeness(self):
         """Test metadata validation"""
-        from server.ccp4i2.lib.cdata_utils import validate_file_metadata_completeness
+        from ccp4i2.lib.cdata_utils import validate_file_metadata_completeness
 
         # Mock file with complete metadata
         mock_file = Mock()
@@ -115,7 +115,7 @@ class TestAsyncDatabaseHandler:
     @pytest.mark.asyncio
     async def test_handler_creation(self):
         """Test creating a database handler"""
-        from server.ccp4i2.db.async_db_handler import AsyncDatabaseHandler
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 
         project_uuid = uuid.uuid4()
         handler = AsyncDatabaseHandler(project_uuid=project_uuid)
@@ -126,7 +126,7 @@ class TestAsyncDatabaseHandler:
     @pytest.mark.asyncio
     async def test_track_job_context_manager(self):
         """Test that track_job works as an async context manager"""
-        from server.ccp4i2.db.async_db_handler import AsyncDatabaseHandler
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 
         # This test requires mocking Django models
         # For now, verify the API exists
@@ -174,7 +174,7 @@ class TestComparisonLegacyVsModern:
         # Modern approach (new cdata_utils.py)
         def modern_extract_metadata(item):
             """New way: type-safe, clean"""
-            from server.ccp4i2.lib.cdata_utils import extract_file_metadata
+            from ccp4i2.lib.cdata_utils import extract_file_metadata
             return extract_file_metadata(item)
 
         # Create mock for comparison
@@ -218,7 +218,7 @@ class TestRealWorldScenarios:
 
         # This would be the actual usage:
         """
-        from server.ccp4i2.db.async_db_handler import AsyncDatabaseHandler
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
         from ccp4i2.core.CCP4PluginScript import CPluginScript
 
         # Create plugin
@@ -397,12 +397,12 @@ def test_api_surface_documentation():
     }
 
     # Verify all documented functions exist
-    from server.ccp4i2.db.async_db_handler import AsyncDatabaseHandler
+    from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
     for method in api_documentation['async_db_handler.py']['AsyncDatabaseHandler']:
         method_name = method.replace('()', '')
         assert hasattr(AsyncDatabaseHandler, method_name), f"Missing method: {method_name}"
 
-    from server.ccp4i2.lib import cdata_utils
+    from ccp4i2.lib import cdata_utils
     for func in api_documentation['cdata_utils.py']:
         func_name = func.replace('()', '')
         assert hasattr(cdata_utils, func_name), f"Missing function: {func_name}"

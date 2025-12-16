@@ -7,7 +7,7 @@ The modern async database integration is **complete and ready to use**. It repla
 ## 30-Second Example
 
 ```python
-from server.ccp4i2.db.async_db_handler import AsyncDatabaseHandler
+from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 # Create plugin

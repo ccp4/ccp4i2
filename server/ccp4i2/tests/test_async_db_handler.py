@@ -33,7 +33,7 @@ class TestAsyncDatabaseHandlerDesign:
     def test_handler_api_surface(self):
         """Test that the handler has the expected modern API"""
         # Import after mocking
-        from server.ccp4i2.db.async_db_handler import AsyncDatabaseHandler
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 
         project_uuid = uuid.uuid4()
         handler = AsyncDatabaseHandler(project_uuid)
@@ -53,7 +53,7 @@ class TestAsyncDatabaseHandlerDesign:
 
     def test_handler_uses_type_hints(self):
         """Verify that the handler has proper type hints"""
-        from server.ccp4i2.db.async_db_handler import AsyncDatabaseHandler
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
         import inspect
 
         # Check constructor
@@ -68,8 +68,8 @@ class TestAsyncDatabaseHandlerDesign:
 
     def test_plugin_status_conversion(self):
         """Test conversion from CPluginScript status to Job.Status"""
-        from server.ccp4i2.db.async_db_handler import plugin_status_to_job_status
-        from server.ccp4i2.db import models
+        from ccp4i2.db.async_db_handler import plugin_status_to_job_status
+        from ccp4i2.db import models
 
         # Mock the models.Job.Status enum
         models.Job.Status = Mock()
@@ -92,7 +92,7 @@ class TestAsyncDatabaseHandlerDesign:
     @pytest.mark.asyncio
     async def test_context_manager_pattern(self):
         """Test that track_job() can be used as an async context manager"""
-        from server.ccp4i2.db.async_db_handler import AsyncDatabaseHandler
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 
         handler = AsyncDatabaseHandler(uuid.uuid4())
         plugin = Mock(spec=CPluginScript)
@@ -131,14 +131,14 @@ class TestAsyncDatabaseHandlerDesign:
         This test serves as living documentation of the improvements.
         """
         # Legacy handler uses camelCase
-        from server.ccp4i2.db.ccp4i2_django_db_handler import CCP4i2DjangoDbHandler
+        from ccp4i2.db.ccp4i2_django_db_handler import CCP4i2DjangoDbHandler
         legacy = CCP4i2DjangoDbHandler()
 
         assert hasattr(legacy, 'createJob')  # camelCase
         assert hasattr(legacy, 'updateJobStatus')  # camelCase
 
         # New handler uses snake_case
-        from server.ccp4i2.db.async_db_handler import AsyncDatabaseHandler
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
         modern = AsyncDatabaseHandler(uuid.uuid4())
 
         assert hasattr(modern, 'create_job')  # snake_case
@@ -180,7 +180,7 @@ class TestAsyncDatabaseHandlerDesign:
         2. Automatically update database on status changes
         3. Disconnect signal on exit
         """
-        from server.ccp4i2.db.async_db_handler import AsyncDatabaseHandler
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 
         handler = AsyncDatabaseHandler(uuid.uuid4())
         plugin = Mock(spec=CPluginScript)
@@ -239,7 +239,7 @@ class TestUsagePatterns:
         Document the basic usage pattern for the new handler.
         """
         example_code = """
-        from server.ccp4i2.db.async_db_handler import AsyncDatabaseHandler
+        from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 
         # Create handler for a project
         handler = AsyncDatabaseHandler(project_uuid=my_project_uuid)
