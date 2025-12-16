@@ -421,18 +421,6 @@ class Application(EventLoop):
         return self._config.get(key, default)
 
 
-# Context manager for temporary event loops
-@asynccontextmanager
-async def temporary_event_loop(name: str = "TempLoop"):
-    """Context manager for temporary event loops."""
-    loop = EventLoop(name)
-    try:
-        await loop.start()
-        yield loop
-    finally:
-        await loop.shutdown()
-
-
 # Example usage and testing
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
