@@ -72,11 +72,3 @@ class freerflag_report(Report):
                   glres+' \xc5'
         parent.append(' <br/>')
         parent.addText(text=message)
-
-# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-if __name__ == "__main__":
-    report = freerflag_report(xmlFile = sys.argv[1] )
-    tree= report.as_etree()
-    #  print etree.tostring(tree,pretty_print=True)
-    report.as_html_file(fileName='./test-freer.html')
-

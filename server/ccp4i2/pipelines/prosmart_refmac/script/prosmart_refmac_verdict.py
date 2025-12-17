@@ -79,39 +79,3 @@ def getJSCOFERefmac5Verdict(programxml=None,pdbfile=None,refmaclog=None):
     }
 
     return verdict_refmac.calculate(verdict_meta)
-
-if __name__ == "__main__":
-    programxml = "/Users/stuart/CCP4I2_PROJECTS/MGScene/CCP4_JOBS/job_54/program.xml"
-    pdbfile = "/Users/stuart/CCP4I2_PROJECTS/MGScene/CCP4_JOBS/job_54/54_mgscene_xyzout_prosmart_refmac.pdb"
-    refmaclog = "/Users/stuart/CCP4I2_PROJECTS/MGScene/CCP4_JOBS/job_54/job_1/log.txt"
-
-    result = getJSCOFERefmac5Verdict(programxml=programxml,pdbfile=pdbfile,refmaclog=refmaclog)
-    verdict_score = result["score"]
-    verdict_message  = result["message"]
-    bottomline = result["bottomLine"]
-    meanRfree = result["meanRfree"]
-    medianClash = result["medianClash"]
-    ramaOutliers = result["ramaOutliers"]
-    suggestedParameters = result["suggestedParameters"]
-
-    print("verdict_score")
-    print(verdict_score)
-    print()
-    print("verdict_message")
-    print(verdict_message)
-    print()
-    print("bottomline")
-    print(bottomline)
-    print()
-    print("meanRfree")
-    print(meanRfree)
-    print()
-    print("medianClash")
-    print(medianClash)
-    print()
-    print("ramaOutliers")
-    print(ramaOutliers)
-    print()
-    print("suggestedParameters")
-    print(suggestedParameters)
-    print()

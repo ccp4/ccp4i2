@@ -242,10 +242,3 @@ class phaser_analysis(CPluginScript):
     # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
     def getXML(self):
         return self.xmlroot
-
-############################################################################
-if __name__ == "__main__":
-
-    phan = phaser_analysis()
-    dummy = None
-    phan.startProcess(dummy, filename='gx.mtz')

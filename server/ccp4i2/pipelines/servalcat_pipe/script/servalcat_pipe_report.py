@@ -362,8 +362,3 @@ class servalcat_pipe_report(Report):
             ADPDevDiv.append("No B-value shift with an<br />absolute value higher than " + \
                 str(coordADPAbsMinReported) + " &#8491;<sup>2</sup>.")
         clearingDiv = devFold.addDiv(style="clear:both;")
-
-
-if __name__ == "__main__":
-    import sys
-    servalcat_pipe_report(xmlFile=sys.argv[1],jobId=sys.argv[2])

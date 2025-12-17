@@ -374,14 +374,3 @@ def html_linebreak(line, mutate=True):
     if i > 0: linenew += '<br/>'
     linenew += line
   return linenew
-
-
-
-############################################################################
-if __name__ == "__main__":
-
-  report = scaleit_report(xmlFile = sys.argv[1],jobStatus="Finished" )
-  tree= report.as_etree()
-  #print etree.tostring(tree,pretty_print=True)
-  report.as_html_file(fileName='./test-scaleit.html')
-  if len(report.errorReport())>0: print('ERRORS:',r.errorReport())

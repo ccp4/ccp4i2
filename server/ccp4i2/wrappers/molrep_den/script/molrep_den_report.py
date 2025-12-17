@@ -48,7 +48,3 @@ class molrep_den_report(Report):
         table.addData(title=title,select=select)
 
     self.addTaskReferences()
-    
-if __name__ == "__main__":
-  import sys
-  molrep_den_report(xmlFile=sys.argv[1],jobId=sys.argv[2])

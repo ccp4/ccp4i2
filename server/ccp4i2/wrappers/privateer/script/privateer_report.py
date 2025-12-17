@@ -410,14 +410,9 @@ class privateer_report(Report):
         nq    += diagnostics.text.count ( "Q=" )
 
     tableSummary = summaryFold.addTable ( transpose=True )
-    #tableSummary.addData ( title = "Check ring geometry", data = [ ngeom ] )
     tableSummary.addData ( title = "Stereochemical problems", data = [ nanom + ndl ] )
     tableSummary.addData ( title = "Unphysical puckering amplitude", data = [ nq ] )
     tableSummary.addData ( title = "In unlikely ring conformation", data = [ nconf ] )
-
-#    svgFile = '<svg width="100" height="100"><circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" /></svg>'
-
-#    results.append(svgFile)
 
     totalIssues = ngeom + nconf + nanom + ndl + nq
 
@@ -428,14 +423,3 @@ class privateer_report(Report):
         summaryFold.append ( "No issues were found while analysing the data." )
 
     self.addTaskReferences()
-
-
-#    def unescape(s):
-#        s = s.replace("&lt;", "<")
-#        s = s.replace("&gt;", ">")
-#        s = s.replace("&amp;", "&")
-#        return s
-
-if __name__ == "__main__":
-  import sys
-  privateer_report(xmlFile=sys.argv[1],jobId=sys.argv[2])

@@ -503,12 +503,4 @@ class dr_mr_modelbuild_pipeline_report(Report):
               clearingDiv = summaryfold2.addDiv(style="clear:both;")
               self.buccreport2.alignment()
               clearingDiv = summaryfold2.addDiv(style="clear:both;")
-#FIXME - XML PICTURE
-              #self.buccreport2.picture(summaryfold2)
               clearingDiv = summaryfold2.addDiv(style="clear:both;")
-
-if __name__ == "__main__":
-  import sys
-  dr_mr_modelbuild_pipeline_report(xmlFile=sys.argv[1], jobId=sys.argv[2])
-
-

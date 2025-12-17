@@ -11,7 +11,3 @@ class cmapcoeff_report(Report):
 
         results = self.addResults()
         results.append ( 'Please find below the output files. If you want to do a peak search, you can select <i>Manual model rebuilding</i>. ' ) 
-
-if __name__ == "__main__":
-
-    cmapcoeff_report(xmlFile=sys.argv[1],jobId=sys.argv[2])

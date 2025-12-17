@@ -443,9 +443,3 @@ class CellFormat:
     s += self.formatCellAngle(cell.beta).strip()+', '
     s += self.formatCellAngle(cell.gamma).strip()
     return s
-
-# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-#if __name__ == "__main__":
-#    sdcd = SDcorrectionData("label", 1.1, 5.3, 0.01, 20.0)
-#    print sdcd.tag, sdcd.SDfac
-#    print sdcd.format()

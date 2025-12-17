@@ -1467,8 +1467,3 @@ def addRValuesProgress(progressGraph):
     line = plot.append('plotline', xcol=1, ycol=5)
     line.append('colour', 'blue')
     line.append('symbolsize', '0')
-
-
-if __name__ == "__main__":
-    import sys
-    servalcat_report(xmlFile=sys.argv[1],jobId=sys.argv[2])

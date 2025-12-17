@@ -1040,13 +1040,3 @@ class pointless_report(Report):
       return a+b+c+alpha+beta+gamma
     else:
       return [[a,b,c],[alpha,beta,gamma]]
-
-
-############################################################################
-if __name__ == "__main__":
-#  report = PointlessReport(xmlFile = os.path.join(os.environ['CCP4I2_TOP'],'test','report_test','gam_1.xml' ))
-
-  report = pointless_report(xmlFile = sys.argv[1] )
-  tree= report.as_etree()
-  #  print etree.tostring(tree,pretty_print=True)
-  report.as_html_file(fileName='./test.html')

@@ -405,7 +405,3 @@ class edstats_report(Report):
             table1.addData(title=subtitle, subtitle=subtitle, select=select)
 
     self.addTaskReferences()
-
-if __name__ == "__main__":
-  import sys
-  edstats_report(xmlFile=sys.argv[1],jobId=sys.argv[2])
