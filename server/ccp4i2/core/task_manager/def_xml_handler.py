@@ -74,7 +74,7 @@ class DefXmlParser:
 
             for module_name in implementation_modules:
                 try:
-                    module = importlib.import_module(f'core.{module_name}')
+                    module = importlib.import_module(f'ccp4i2.core.{module_name}')
                     for attr_name in dir(module):
                         if attr_name.startswith('_'):
                             continue
