@@ -17,540 +17,506 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     This function uses explicit import statements for each plugin,
     providing clear traceability and IDE support.
     """
-    if plugin_name == 'AMPLE':
-        from wrappers.AMPLE.script.AMPLE import AMPLE
-        return AMPLE
     if plugin_name == 'AUSPEX':
-        from wrappers.AUSPEX.script.auspex_wrapper import AUSPEX
+        from ccp4i2.wrappers.AUSPEX.script.auspex_wrapper import AUSPEX
         return AUSPEX
     if plugin_name == 'AcedrgLink':
-        from wrappers.AcedrgLink.script.AcedrgLink import AcedrgLink
+        from ccp4i2.wrappers.AcedrgLink.script.AcedrgLink import AcedrgLink
         return AcedrgLink
     if plugin_name == 'AlternativeImportXIA2':
-        from wrappers.AlternativeImportXIA2.script.AlternativeImportXIA2 import AlternativeImportXIA2
+        from ccp4i2.wrappers.AlternativeImportXIA2.script.AlternativeImportXIA2 import AlternativeImportXIA2
         return AlternativeImportXIA2
     if plugin_name == 'Lidia':
-        from wrappers.Lidia.script.Lidia import lidia
+        from ccp4i2.wrappers.Lidia.script.Lidia import lidia
         return lidia
     if plugin_name == 'LidiaAcedrg':
-        from pipelines.LidiaAcedrg.script.lidiaAcedrg import lidiaAcedrg
+        from ccp4i2.pipelines.LidiaAcedrg.script.lidiaAcedrg import lidiaAcedrg
         return lidiaAcedrg
     if plugin_name == 'LidiaAcedrgNew':
-        from pipelines.LidiaAcedrgNew.script.lidiaAcedrgNew import lidiaAcedrgNew
+        from ccp4i2.pipelines.LidiaAcedrgNew.script.lidiaAcedrgNew import lidiaAcedrgNew
         return lidiaAcedrgNew
     if plugin_name == 'MakeLink':
-        from pipelines.MakeLink.script.MakeLink import MakeLink
+        from ccp4i2.pipelines.MakeLink.script.MakeLink import MakeLink
         return MakeLink
     if plugin_name == 'MakeMonster':
-        from wrappers.MakeMonster.script.MakeMonster import MakeMonster
+        from ccp4i2.wrappers.MakeMonster.script.MakeMonster import MakeMonster
         return MakeMonster
     if plugin_name == 'MakeProjectsAndDoLigandPipeline':
-        from pipelines.MakeProjectsAndDoLigandPipeline.script.MakeProjectsAndDoLigandPipeline import MakeProjectsAndDoLigandPipeline
+        from ccp4i2.pipelines.MakeProjectsAndDoLigandPipeline.script.MakeProjectsAndDoLigandPipeline import MakeProjectsAndDoLigandPipeline
         return MakeProjectsAndDoLigandPipeline
     if plugin_name == 'Platonyzer':
-        from wrappers.Platonyzer.script.Platonyzer import Platonyzer
+        from ccp4i2.wrappers.Platonyzer.script.Platonyzer import Platonyzer
         return Platonyzer
     if plugin_name == 'PrepareDeposit':
-        from pipelines.PrepareDeposit.script.PrepareDeposit import PrepareDeposit
+        from ccp4i2.pipelines.PrepareDeposit.script.PrepareDeposit import PrepareDeposit
         return PrepareDeposit
     if plugin_name == 'ProvideAlignment':
-        from wrappers.ProvideAlignment.script.ProvideAlignment import ProvideAlignment
+        from ccp4i2.wrappers.ProvideAlignment.script.ProvideAlignment import ProvideAlignment
         return ProvideAlignment
     if plugin_name == 'ProvideAsuContents':
-        from wrappers.ProvideAsuContents.script.ProvideAsuContents import ProvideAsuContents
+        from ccp4i2.wrappers.ProvideAsuContents.script.ProvideAsuContents import ProvideAsuContents
         return ProvideAsuContents
     if plugin_name == 'ProvideSequence':
-        from wrappers.ProvideSequence.script.ProvideSequence import ProvideSequence
+        from ccp4i2.wrappers.ProvideSequence.script.ProvideSequence import ProvideSequence
         return ProvideSequence
     if plugin_name == 'ProvideTLS':
-        from wrappers.ProvideTLS.script.ProvideTLS import ProvideTLS
+        from ccp4i2.wrappers.ProvideTLS.script.ProvideTLS import ProvideTLS
         return ProvideTLS
-    if plugin_name == 'SIMBAD':
-        from wrappers.SIMBAD.script.SIMBAD import SIMBAD
-        return SIMBAD
     if plugin_name == 'ShelxCD':
-        from wrappers.ShelxCDE.script.ShelxCD import ShelxCD
+        from ccp4i2.wrappers.ShelxCDE.script.ShelxCD import ShelxCD
         return ShelxCD
     if plugin_name == 'ShelxCE':
-        from wrappers.ShelxCDE.script.ShelxCE import ShelxCE
+        from ccp4i2.wrappers.ShelxCDE.script.ShelxCE import ShelxCE
         return ShelxCE
     if plugin_name == 'ShelxCECompareHands':
-        from wrappers.ShelxCDE.script.ShelxCECompareHands import ShelxCECompareHands
+        from ccp4i2.wrappers.ShelxCDE.script.ShelxCECompareHands import ShelxCECompareHands
         return ShelxCECompareHands
     if plugin_name == 'SubstituteLigand':
-        from pipelines.SubstituteLigand.script.SubstituteLigand import SubstituteLigand
+        from ccp4i2.pipelines.SubstituteLigand.script.SubstituteLigand import SubstituteLigand
         return SubstituteLigand
     if plugin_name == 'SubtractNative':
-        from wrappers.SubtractNative.script.SubtractNative import SubtractNative
+        from ccp4i2.wrappers.SubtractNative.script.SubtractNative import SubtractNative
         return SubtractNative
     if plugin_name == 'TestObsConversions':
-        from wrappers.TestObsConversions.script.TestObsConversions import TestObsConversions
+        from ccp4i2.wrappers.TestObsConversions.script.TestObsConversions import TestObsConversions
         return TestObsConversions
     if plugin_name == 'ZZPipelineNameZZ':
-        from pipelines.boilerplate.script.boilerplate import ZZPipelineNameZZ
+        from ccp4i2.pipelines.boilerplate.script.boilerplate import ZZPipelineNameZZ
         return ZZPipelineNameZZ
     if plugin_name == 'ZZPluginNameZZ':
-        from wrappers.boilerplate.script.boilerplate import ZZPluginNameZZ
+        from ccp4i2.wrappers.boilerplate.script.boilerplate import ZZPluginNameZZ
         return ZZPluginNameZZ
     if plugin_name == 'acedrg':
-        from wrappers.acedrg.script.acedrg import acedrg
+        from ccp4i2.wrappers.acedrg.script.acedrg import acedrg
         return acedrg
-    if plugin_name == 'acedrgNew':
-        from wrappers.acedrgNew.script.acedrgNew import acedrgNew
-        return acedrgNew
     if plugin_name == 'acorn':
-        from wrappers.acorn.script.acorn import acorn
+        from ccp4i2.wrappers.acorn.script.acorn import acorn
         return acorn
     if plugin_name == 'add_fractional_coords':
-        from wrappers.add_fractional_coords.script.add_fractional_coords import add_fractional_coords
+        from ccp4i2.wrappers.add_fractional_coords.script.add_fractional_coords import add_fractional_coords
         return add_fractional_coords
     if plugin_name == 'adding_stats_to_mmcif_i2':
-        from wrappers.adding_stats_to_mmcif_i2.script.adding_stats_to_mmcif_i2 import adding_stats_to_mmcif_i2
+        from ccp4i2.wrappers.adding_stats_to_mmcif_i2.script.adding_stats_to_mmcif_i2 import adding_stats_to_mmcif_i2
         return adding_stats_to_mmcif_i2
     if plugin_name == 'aimless':
-        from wrappers.aimless.script.aimless import aimless
+        from ccp4i2.wrappers.aimless.script.aimless import aimless
         return aimless
-    if plugin_name == 'aimless_pipe':
-        from pipelines.aimless_pipe.script.aimless_pipe import aimless_pipe
-        return aimless_pipe
     if plugin_name == 'arcimboldo':
-        from wrappers.arcimboldo.script.arcimboldo import arcimboldo
+        from ccp4i2.wrappers.arcimboldo.script.arcimboldo import arcimboldo
         return arcimboldo
-    if plugin_name == 'arp_warp_classic':
-        from wrappers.arp_warp_classic.script.arp_warp_classic import arp_warp_classic
-        return arp_warp_classic
     if plugin_name == 'baverage':
-        from wrappers.baverage.script.baverage import baverage
+        from ccp4i2.wrappers.baverage.script.baverage import baverage
         return baverage
     if plugin_name == 'buccaneer_build_refine_mr':
-        from pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mr import buccaneer_build_refine_mr
+        from ccp4i2.pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mr import buccaneer_build_refine_mr
         return buccaneer_build_refine_mr
     if plugin_name == 'buccaneer_mr':
-        from wrappers.buccaneer_mr.script.buccaneer_mr import buccaneer_mr
+        from ccp4i2.wrappers.buccaneer_mr.script.buccaneer_mr import buccaneer_mr
         return buccaneer_mr
     if plugin_name == 'buster':
-        from wrappers.buster.script.buster import buster
+        from ccp4i2.wrappers.buster.script.buster import buster
         return buster
     if plugin_name == 'cad_copy_column':
-        from wrappers.cad_copy_column.script.cad_copy_column import cad_copy_column
+        from ccp4i2.wrappers.cad_copy_column.script.cad_copy_column import cad_copy_column
         return cad_copy_column
     if plugin_name == 'ccp4mg_edit_model':
-        from wrappers.ccp4mg_edit_model.script.ccp4mg_edit_model import ccp4mg_edit_model
+        from ccp4i2.wrappers.ccp4mg_edit_model.script.ccp4mg_edit_model import ccp4mg_edit_model
         return ccp4mg_edit_model
     if plugin_name == 'ccp4mg_edit_nomrbump':
-        from wrappers.ccp4mg_edit_nomrbump.script.ccp4mg_edit_nomrbump import ccp4mg_edit_nomrbump
+        from ccp4i2.wrappers.ccp4mg_edit_nomrbump.script.ccp4mg_edit_nomrbump import ccp4mg_edit_nomrbump
         return ccp4mg_edit_nomrbump
     if plugin_name == 'ccp4mg_general':
-        from wrappers.ccp4mg_general.script.ccp4mg_general import ccp4mg_general
+        from ccp4i2.wrappers.ccp4mg_general.script.ccp4mg_general import ccp4mg_general
         return ccp4mg_general
     if plugin_name == 'chainsaw':
-        from wrappers.chainsaw.script.chainsaw import chainsaw
+        from ccp4i2.wrappers.chainsaw.script.chainsaw import chainsaw
         return chainsaw
     if plugin_name == 'chltofom':
-        from wrappers.chltofom.script.chltofom import chltofom
+        from ccp4i2.wrappers.chltofom.script.chltofom import chltofom
         return chltofom
     if plugin_name == 'cif2mtz':
-        from wrappers.cif2mtz.script.cif2mtz import cif2mtz
+        from ccp4i2.wrappers.cif2mtz.script.cif2mtz import cif2mtz
         return cif2mtz
     if plugin_name == 'clustalw':
-        from wrappers.clustalw.script.clustalw import clustalw
+        from ccp4i2.wrappers.clustalw.script.clustalw import clustalw
         return clustalw
     if plugin_name == 'cmapcoeff':
-        from wrappers.cmapcoeff.script.cmapcoeff import cmapcoeff
+        from ccp4i2.wrappers.cmapcoeff.script.cmapcoeff import cmapcoeff
         return cmapcoeff
     if plugin_name == 'comit':
-        from wrappers.comit.script.comit import comit
+        from ccp4i2.wrappers.comit.script.comit import comit
         return comit
     if plugin_name == 'convert2mtz':
-        from wrappers.convert2mtz.script.convert2mtz import convert2mtz
+        from ccp4i2.wrappers.convert2mtz.script.convert2mtz import convert2mtz
         return convert2mtz
     if plugin_name == 'coordinate_selector':
-        from wrappers.coordinate_selector.script.coordinate_selector import coordinate_selector
+        from ccp4i2.wrappers.coordinate_selector.script.coordinate_selector import coordinate_selector
         return coordinate_selector
-    if plugin_name == 'coot1':
-        from wrappers.coot1.script.coot1 import coot1
-        return coot1
     if plugin_name == 'coot_find_waters':
-        from pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters import coot_find_waters
+        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters import coot_find_waters
         return coot_find_waters
     if plugin_name == 'coot_fit_residues':
-        from pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues import coot_fit_residues
+        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues import coot_fit_residues
         return coot_fit_residues
     if plugin_name == 'coot_rebuild':
-        from wrappers.coot_rebuild.script.coot_rebuild import coot_rebuild
+        from ccp4i2.wrappers.coot_rebuild.script.coot_rebuild import coot_rebuild
         return coot_rebuild
     if plugin_name == 'coot_rsr_morph':
-        from wrappers.coot_rsr_morph.script.coot_rsr_morph import coot_rsr_morph
+        from ccp4i2.wrappers.coot_rsr_morph.script.coot_rsr_morph import coot_rsr_morph
         return coot_rsr_morph
     if plugin_name == 'coot_script_lines':
-        from pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines import coot_script_lines
+        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines import coot_script_lines
         return coot_script_lines
     if plugin_name == 'coot_stepped_refine':
-        from pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine import coot_stepped_refine
+        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine import coot_stepped_refine
         return coot_stepped_refine
     if plugin_name == 'cpatterson':
-        from wrappers.cpatterson.script.cpatterson import cpatterson
+        from ccp4i2.wrappers.cpatterson.script.cpatterson import cpatterson
         return cpatterson
     if plugin_name == 'cphasematch':
-        from wrappers.cphasematch.script.cphasematch import cphasematch
+        from ccp4i2.wrappers.cphasematch.script.cphasematch import cphasematch
         return cphasematch
     if plugin_name == 'crank2':
-        from pipelines.crank2.script.crank2_script import crank2
+        from ccp4i2.pipelines.crank2.script.crank2_script import crank2
         return crank2
     if plugin_name == 'crank2_comb_phdmmb':
-        from pipelines.crank2.wrappers.crank2_comb_phdmmb.script.crank2_comb_phdmmb import crank2_comb_phdmmb
+        from ccp4i2.pipelines.crank2.wrappers.crank2_comb_phdmmb.script.crank2_comb_phdmmb import crank2_comb_phdmmb
         return crank2_comb_phdmmb
     if plugin_name == 'crank2_createfree':
-        from pipelines.crank2.wrappers.crank2_createfree.script.crank2_createfree import crank2_createfree
+        from ccp4i2.pipelines.crank2.wrappers.crank2_createfree.script.crank2_createfree import crank2_createfree
         return crank2_createfree
     if plugin_name == 'crank2_dmfull':
-        from pipelines.crank2.wrappers.crank2_dmfull.script.crank2_dmfull import crank2_dmfull
+        from ccp4i2.pipelines.crank2.wrappers.crank2_dmfull.script.crank2_dmfull import crank2_dmfull
         return crank2_dmfull
     if plugin_name == 'crank2_faest':
-        from pipelines.crank2.wrappers.crank2_faest.script.crank2_faest import crank2_faest
+        from ccp4i2.pipelines.crank2.wrappers.crank2_faest.script.crank2_faest import crank2_faest
         return crank2_faest
     if plugin_name == 'crank2_handdet':
-        from pipelines.crank2.wrappers.crank2_handdet.script.crank2_handdet import crank2_handdet
+        from ccp4i2.pipelines.crank2.wrappers.crank2_handdet.script.crank2_handdet import crank2_handdet
         return crank2_handdet
     if plugin_name == 'crank2_mbref':
-        from pipelines.crank2.wrappers.crank2_mbref.script.crank2_mbref import crank2_mbref
+        from ccp4i2.pipelines.crank2.wrappers.crank2_mbref.script.crank2_mbref import crank2_mbref
         return crank2_mbref
     if plugin_name == 'crank2_phas':
-        from pipelines.crank2.wrappers.crank2_phas.script.crank2_phas import crank2_phas
+        from ccp4i2.pipelines.crank2.wrappers.crank2_phas.script.crank2_phas import crank2_phas
         return crank2_phas
     if plugin_name == 'crank2_phdmmb':
-        from pipelines.crank2.wrappers.crank2_phdmmb.script.crank2_phdmmb import crank2_phdmmb
+        from ccp4i2.pipelines.crank2.wrappers.crank2_phdmmb.script.crank2_phdmmb import crank2_phdmmb
         return crank2_phdmmb
     if plugin_name == 'crank2_ref':
-        from pipelines.crank2.wrappers.crank2_ref.script.crank2_ref import crank2_ref
+        from ccp4i2.pipelines.crank2.wrappers.crank2_ref.script.crank2_ref import crank2_ref
         return crank2_ref
     if plugin_name == 'crank2_refatompick':
-        from pipelines.crank2.wrappers.crank2_refatompick.script.crank2_refatompick import crank2_refatompick
+        from ccp4i2.pipelines.crank2.wrappers.crank2_refatompick.script.crank2_refatompick import crank2_refatompick
         return crank2_refatompick
     if plugin_name == 'crank2_substrdet':
-        from pipelines.crank2.wrappers.crank2_substrdet.script.crank2_substrdet import crank2_substrdet
+        from ccp4i2.pipelines.crank2.wrappers.crank2_substrdet.script.crank2_substrdet import crank2_substrdet
         return crank2_substrdet
     if plugin_name == 'csymmatch':
-        from wrappers.csymmatch.script.csymmatch import csymmatch
+        from ccp4i2.wrappers.csymmatch.script.csymmatch import csymmatch
         return csymmatch
     if plugin_name == 'ctruncate':
-        from wrappers.ctruncate.script.ctruncate import ctruncate
+        from ccp4i2.wrappers.ctruncate.script.ctruncate import ctruncate
         return ctruncate
     if plugin_name == 'demo_copycell':
-        from wrappers2.demo_copycell.script.demo_copycell import demo_copycell
+        from ccp4i2.wrappers2.demo_copycell.script.demo_copycell import demo_copycell
         return demo_copycell
     if plugin_name == 'demo_multi_mtzdump':
-        from wrappers2.demo_multi_mtzdump.script.demo_multi_mtzdump import demo_multi_mtzdump
+        from ccp4i2.wrappers2.demo_multi_mtzdump.script.demo_multi_mtzdump import demo_multi_mtzdump
         return demo_multi_mtzdump
     if plugin_name == 'density_calculator':
-        from wrappers.density_calculator.script.density_calculator import density_calculator
+        from ccp4i2.wrappers.density_calculator.script.density_calculator import density_calculator
         return density_calculator
     if plugin_name == 'dials_image':
-        from wrappers.dials_image.script.dials_image import dials_image
+        from ccp4i2.wrappers.dials_image.script.dials_image import dials_image
         return dials_image
     if plugin_name == 'dials_rlattice':
-        from wrappers.dials_rlattice.script.dials_rlattice import dials_rlattice
+        from ccp4i2.wrappers.dials_rlattice.script.dials_rlattice import dials_rlattice
         return dials_rlattice
     if plugin_name == 'dr_mr_modelbuild_pipeline':
-        from pipelines.dr_mr_modelbuild_pipeline.script.dr_mr_modelbuild_pipeline import dr_mr_modelbuild_pipeline
+        from ccp4i2.pipelines.dr_mr_modelbuild_pipeline.script.dr_mr_modelbuild_pipeline import dr_mr_modelbuild_pipeline
         return dr_mr_modelbuild_pipeline
     if plugin_name == 'dui':
-        from wrappers.dui.script.dui import dui
+        from ccp4i2.wrappers.dui.script.dui import dui
         return dui
     if plugin_name == 'editbfac':
-        from wrappers.editbfac.script.editbfac import editbfac
+        from ccp4i2.wrappers.editbfac.script.editbfac import editbfac
         return editbfac
     if plugin_name == 'edstats':
-        from wrappers.edstats.script.edstats import edstats
+        from ccp4i2.wrappers.edstats.script.edstats import edstats
         return edstats
     if plugin_name == 'fft':
-        from wrappers.fft.script.fft import fft
+        from ccp4i2.wrappers.fft.script.fft import fft
         return fft
     if plugin_name == 'findmyseq':
-        from wrappers.findmyseq.script.findmyseq import findmyseq
+        from ccp4i2.wrappers.findmyseq.script.findmyseq import findmyseq
         return findmyseq
     if plugin_name == 'freerflag':
-        from wrappers.freerflag.script.freerflag import freerflag
+        from ccp4i2.wrappers.freerflag.script.freerflag import freerflag
         return freerflag
     if plugin_name == 'gesamt':
-        from wrappers.gesamt.script.gesamt import gesamt
+        from ccp4i2.wrappers.gesamt.script.gesamt import gesamt
         return gesamt
     if plugin_name == 'hklin2cif':
-        from pipelines.PrepareDeposit.wrappers.hklin2cif.script.hklin2cif import hklin2cif
+        from ccp4i2.pipelines.PrepareDeposit.wrappers.hklin2cif.script.hklin2cif import hklin2cif
         return hklin2cif
     if plugin_name == 'i2Dimple':
-        from wrappers.i2Dimple.script.i2Dimple import i2Dimple
+        from ccp4i2.wrappers.i2Dimple.script.i2Dimple import i2Dimple
         return i2Dimple
     if plugin_name == 'imosflm':
-        from wrappers.imosflm.script.imosflm import imosflm
+        from ccp4i2.wrappers.imosflm.script.imosflm import imosflm
         return imosflm
-    if plugin_name == 'import_merged':
-        from pipelines.import_merged.script.import_merged import import_merged
-        return import_merged
     if plugin_name == 'import_mosflm':
-        from wrappers.import_mosflm.script.import_mosflm import import_mosflm
+        from ccp4i2.wrappers.import_mosflm.script.import_mosflm import import_mosflm
         return import_mosflm
     if plugin_name == 'import_serial':
-        from wrappers.import_serial.script.import_serial import import_serial
+        from ccp4i2.wrappers.import_serial.script.import_serial import import_serial
         return import_serial
     if plugin_name == 'import_serial_pipe':
-        from pipelines.import_serial_pipe.script.import_serial_pipe import import_serial_pipe
+        from ccp4i2.pipelines.import_serial_pipe.script.import_serial_pipe import import_serial_pipe
         return import_serial_pipe
     if plugin_name == 'import_xia2':
-        from pipelines.import_xia2.script.import_xia2 import import_xia2
+        from ccp4i2.pipelines.import_xia2.script.import_xia2 import import_xia2
         return import_xia2
     if plugin_name == 'libcheck':
-        from wrappers.libcheck.script.libcheck import libcheck
+        from ccp4i2.wrappers.libcheck.script.libcheck import libcheck
         return libcheck
     if plugin_name == 'lorestr_i2':
-        from wrappers.lorestr_i2.script.lorestr_i2 import lorestr_i2
+        from ccp4i2.wrappers.lorestr_i2.script.lorestr_i2 import lorestr_i2
         return lorestr_i2
     if plugin_name == 'mergeMtz':
-        from wrappers.mergeMtz.script.mergeMtz import mergeMtz
+        from ccp4i2.wrappers.mergeMtz.script.mergeMtz import mergeMtz
         return mergeMtz
-    if plugin_name == 'metalCoord':
-        from wrappers.metalCoord.script.metalCoord import metalCoord
-        return metalCoord
     if plugin_name == 'modelASUCheck':
-        from wrappers.modelASUCheck.script.modelASUCheck import modelASUCheck
+        from ccp4i2.wrappers.modelASUCheck.script.modelASUCheck import modelASUCheck
         return modelASUCheck
     if plugin_name == 'modelcraft':
-        from wrappers.modelcraft.script.modelcraft import modelcraft
+        from ccp4i2.wrappers.modelcraft.script.modelcraft import modelcraft
         return modelcraft
     if plugin_name == 'molrep_den':
-        from wrappers.molrep_den.script.molrep_den import molrep_den
+        from ccp4i2.wrappers.molrep_den.script.molrep_den import molrep_den
         return molrep_den
     if plugin_name == 'molrep_mr':
-        from wrappers.molrep_mr.script.molrep_mr import molrep_mr
+        from ccp4i2.wrappers.molrep_mr.script.molrep_mr import molrep_mr
         return molrep_mr
     if plugin_name == 'molrep_pipe':
-        from pipelines.molrep_pipe.script.molrep_pipe import molrep_pipe
+        from ccp4i2.pipelines.molrep_pipe.script.molrep_pipe import molrep_pipe
         return molrep_pipe
     if plugin_name == 'molrep_selfrot':
-        from wrappers.molrep_selfrot.script.molrep_selfrot import molrep_selfrot
+        from ccp4i2.wrappers.molrep_selfrot.script.molrep_selfrot import molrep_selfrot
         return molrep_selfrot
     if plugin_name == 'morda_i2':
-        from wrappers.morda_i2.script.morda_i2 import morda_i2
+        from ccp4i2.wrappers.morda_i2.script.morda_i2 import morda_i2
         return morda_i2
     if plugin_name == 'mosflm':
-        from wrappers.mosflm.script.mosflm import mosflm
+        from ccp4i2.wrappers.mosflm.script.mosflm import mosflm
         return mosflm
     if plugin_name == 'mrbump_basic':
-        from wrappers.mrbump_basic.script.mrbump_basic import mrbump_basic
+        from ccp4i2.wrappers.mrbump_basic.script.mrbump_basic import mrbump_basic
         return mrbump_basic
     if plugin_name == 'mrbump_model_prep':
-        from pipelines.dr_mr_modelbuild_pipeline.wrappers.mrbump_model_prep.script.mrbump_model_prep import mrbump_model_prep
+        from ccp4i2.pipelines.dr_mr_modelbuild_pipeline.wrappers.mrbump_model_prep.script.mrbump_model_prep import mrbump_model_prep
         return mrbump_model_prep
     if plugin_name == 'mrparse':
-        from wrappers.mrparse.script.mrparse_wrapper import mrparse
+        from ccp4i2.wrappers.mrparse.script.mrparse_wrapper import mrparse
         return mrparse
     if plugin_name == 'mrparse_simple':
-        from pipelines.dr_mr_modelbuild_pipeline.wrappers.mrparse_simple.script.mrparse_simple_wrapper import mrparse_simple
+        from ccp4i2.pipelines.dr_mr_modelbuild_pipeline.wrappers.mrparse_simple.script.mrparse_simple_wrapper import mrparse_simple
         return mrparse_simple
     if plugin_name == 'mtzdump':
-        from wrappers.mtzdump.script.mtzdump import mtzdump
+        from ccp4i2.wrappers.mtzdump.script.mtzdump import mtzdump
         return mtzdump
     if plugin_name == 'mtzheader':
-        from wrappers.mtzheader.script.mtzheader import mtzheader
+        from ccp4i2.wrappers.mtzheader.script.mtzheader import mtzheader
         return mtzheader
     if plugin_name == 'mtzutils':
-        from wrappers.mtzutils.script.mtzutils import mtzutils
+        from ccp4i2.wrappers.mtzutils.script.mtzutils import mtzutils
         return mtzutils
     if plugin_name == 'nautilus':
-        from wrappers.nautilus.script.nautilus import nautilus
+        from ccp4i2.wrappers.nautilus.script.nautilus import nautilus
         return nautilus
     if plugin_name == 'nautilus_build_refine':
-        from pipelines.nautilus_build_refine.script.nautilus_build_refine import nautilus_build_refine
+        from ccp4i2.pipelines.nautilus_build_refine.script.nautilus_build_refine import nautilus_build_refine
         return nautilus_build_refine
     if plugin_name == 'pairef':
-        from wrappers.pairef.script.pairef import pairef
+        from ccp4i2.wrappers.pairef.script.pairef import pairef
         return pairef
     if plugin_name == 'parrot':
-        from wrappers.parrot.script.parrot import parrot
+        from ccp4i2.wrappers.parrot.script.parrot import parrot
         return parrot
     if plugin_name == 'pdb_extract_wrapper':
-        from pipelines.PrepareDeposit.wrappers.pdb_extract_wrapper.script.pdb_extract_wrapper import pdb_extract_wrapper
+        from ccp4i2.pipelines.PrepareDeposit.wrappers.pdb_extract_wrapper.script.pdb_extract_wrapper import pdb_extract_wrapper
         return pdb_extract_wrapper
-    if plugin_name == 'pdb_redo_api':
-        from wrappers.pdb_redo_api.script.pdb_redo_api import pdb_redo_api
-        return pdb_redo_api
     if plugin_name == 'pdbset':
-        from wrappers.pdbset.script.pdbset import pdbset
+        from ccp4i2.wrappers.pdbset.script.pdbset import pdbset
         return pdbset
     if plugin_name == 'pdbset_ui':
-        from wrappers.pdbset_ui.script.pdbset_ui import pdbset_ui
+        from ccp4i2.wrappers.pdbset_ui.script.pdbset_ui import pdbset_ui
         return pdbset_ui
     if plugin_name == 'pdbview_edit':
-        from wrappers.pdbview_edit.script.pdbview_edit import pdbview_edit
+        from ccp4i2.wrappers.pdbview_edit.script.pdbview_edit import pdbview_edit
         return pdbview_edit
     if plugin_name == 'phaser_EP':
-        from pipelines.phaser_ep.script.phaser_EP import phaser_EP
+        from ccp4i2.pipelines.phaser_ep.script.phaser_EP import phaser_EP
         return phaser_EP
     if plugin_name == 'phaser_EP_AUTO':
-        from pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script.phaser_EP_AUTO import phaser_EP_AUTO
+        from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script.phaser_EP_AUTO import phaser_EP_AUTO
         return phaser_EP_AUTO
     if plugin_name == 'phaser_EP_LLG':
-        from pipelines.phaser_pipeline.wrappers.phaser_EP_LLG.script.phaser_EP_LLG import phaser_EP_LLG
+        from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_EP_LLG.script.phaser_EP_LLG import phaser_EP_LLG
         return phaser_EP_LLG
     if plugin_name == 'phaser_MR':
-        from pipelines.phaser_pipeline.wrappers.phaser_MR.script.phaser_MR import phaser_MR
+        from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR.script.phaser_MR import phaser_MR
         return phaser_MR
     if plugin_name == 'phaser_MR_AUTO':
-        from pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script.phaser_MR_AUTO import phaser_MR_AUTO
+        from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script.phaser_MR_AUTO import phaser_MR_AUTO
         return phaser_MR_AUTO
     if plugin_name == 'phaser_MR_FRF':
-        from pipelines.phaser_pipeline.wrappers.phaser_MR_FRF.script.phaser_MR_FRF import phaser_MR_FRF
+        from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_FRF.script.phaser_MR_FRF import phaser_MR_FRF
         return phaser_MR_FRF
     if plugin_name == 'phaser_MR_FTF':
-        from pipelines.phaser_pipeline.wrappers.phaser_MR_FTF.script.phaser_MR_FTF import phaser_MR_FTF
+        from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_FTF.script.phaser_MR_FTF import phaser_MR_FTF
         return phaser_MR_FTF
     if plugin_name == 'phaser_MR_PAK':
-        from pipelines.phaser_pipeline.wrappers.phaser_MR_PAK.script.phaser_MR_PAK import phaser_MR_PAK
+        from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_PAK.script.phaser_MR_PAK import phaser_MR_PAK
         return phaser_MR_PAK
     if plugin_name == 'phaser_MR_RNP':
-        from pipelines.phaser_pipeline.wrappers.phaser_MR_RNP.script.phaser_MR_RNP import phaser_MR_RNP
+        from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_RNP.script.phaser_MR_RNP import phaser_MR_RNP
         return phaser_MR_RNP
-    if plugin_name == 'phaser_analysis':
-        from wrappers.phaser_analysis.script.phaser_analysis import phaser_analysis
-        return phaser_analysis
     if plugin_name == 'phaser_ensembler':
-        from wrappers.phaser_ensembler.script.phaser_ensembler import phaser_ensembler
+        from ccp4i2.wrappers.phaser_ensembler.script.phaser_ensembler import phaser_ensembler
         return phaser_ensembler
     if plugin_name == 'phaser_mr':
-        from wrappers.phaser_mr.script.phaser_mr import phaser_mr
+        from ccp4i2.wrappers.phaser_mr.script.phaser_mr import phaser_mr
         return phaser_mr
     if plugin_name == 'phaser_phil':
-        from wrappers.phaser_phil.script.phaser_phil import phaser_phil
+        from ccp4i2.wrappers.phaser_phil.script.phaser_phil import phaser_phil
         return phaser_phil
     if plugin_name == 'phaser_pipeline':
-        from pipelines.phaser_pipeline.script.phaser_pipeline import phaser_pipeline
+        from ccp4i2.pipelines.phaser_pipeline.script.phaser_pipeline import phaser_pipeline
         return phaser_pipeline
     if plugin_name == 'phaser_rnp_pipeline':
-        from pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline import phaser_rnp_pipeline
+        from ccp4i2.pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline import phaser_rnp_pipeline
         return phaser_rnp_pipeline
     if plugin_name == 'phaser_simple':
-        from pipelines.phaser_simple.script.phaser_simple import phaser_simple
+        from ccp4i2.pipelines.phaser_simple.script.phaser_simple import phaser_simple
         return phaser_simple
     if plugin_name == 'phaser_singleMR':
-        from wrappers.phaser_singleMR.script.phaser_singleMR import phaser_singleMR
+        from ccp4i2.wrappers.phaser_singleMR.script.phaser_singleMR import phaser_singleMR
         return phaser_singleMR
     if plugin_name == 'pisa_analyse':
-        from pipelines.pisapipe.wrappers.pisa_analyse.script.pisa_analyse import pisa_analyse
+        from ccp4i2.pipelines.pisapipe.wrappers.pisa_analyse.script.pisa_analyse import pisa_analyse
         return pisa_analyse
     if plugin_name == 'pisa_list':
-        from pipelines.pisapipe.wrappers.pisa_list.script.pisa_list import pisa_list
+        from ccp4i2.pipelines.pisapipe.wrappers.pisa_list.script.pisa_list import pisa_list
         return pisa_list
     if plugin_name == 'pisa_xml':
-        from pipelines.pisapipe.wrappers.pisa_xml.script.pisa_xml import pisa_xml
+        from ccp4i2.pipelines.pisapipe.wrappers.pisa_xml.script.pisa_xml import pisa_xml
         return pisa_xml
     if plugin_name == 'pisapipe':
-        from pipelines.pisapipe.script.pisapipe import pisapipe
+        from ccp4i2.pipelines.pisapipe.script.pisapipe import pisapipe
         return pisapipe
     if plugin_name == 'pointless':
-        from wrappers.pointless.script.pointless import pointless
+        from ccp4i2.wrappers.pointless.script.pointless import pointless
         return pointless
     if plugin_name == 'pointless_reindexToMatch':
-        from wrappers.pointless_reindexToMatch.script.pointless_reindexToMatch import pointless_reindexToMatch
+        from ccp4i2.wrappers.pointless_reindexToMatch.script.pointless_reindexToMatch import pointless_reindexToMatch
         return pointless_reindexToMatch
     if plugin_name == 'prosmart':
-        from wrappers.prosmart.script.prosmart import prosmart
+        from ccp4i2.wrappers.prosmart.script.prosmart import prosmart
         return prosmart
     if plugin_name == 'prosmart_refmac':
-        from pipelines.prosmart_refmac.script.prosmart_refmac import prosmart_refmac
+        from ccp4i2.pipelines.prosmart_refmac.script.prosmart_refmac import prosmart_refmac
         return prosmart_refmac
     if plugin_name == 'pyphaser_mr':
-        from wrappers.pyphaser_mr.script.pyphaser_mr import pyphaser_mr
+        from ccp4i2.wrappers.pyphaser_mr.script.pyphaser_mr import pyphaser_mr
         return pyphaser_mr
     if plugin_name == 'qtpisa':
-        from wrappers.qtpisa.script.qtpisa import qtpisa
+        from ccp4i2.wrappers.qtpisa.script.qtpisa import qtpisa
         return qtpisa
     if plugin_name == 'refmac':
-        from wrappers.refmac_i2.script.refmac_i2 import refmac_i2
+        from ccp4i2.wrappers.refmac_i2.script.refmac_i2 import refmac_i2
         return refmac_i2
     if plugin_name == 'reindex_minimtz':
-        from pipelines.prosmart_refmac.wrappers.reindex_minimtz.script.reindex_minimtz import reindex_minimtz
+        from ccp4i2.pipelines.prosmart_refmac.wrappers.reindex_minimtz.script.reindex_minimtz import reindex_minimtz
         return reindex_minimtz
     if plugin_name == 'reindex_processed_data':
-        from pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data import reindex_processed_data
+        from ccp4i2.pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data import reindex_processed_data
         return reindex_processed_data
+    if plugin_name == 'scaleit':
+        from ccp4i2.wrappers.scaleit.script.scaleit import scaleit
+        return scaleit
     if plugin_name == 'scalepack2mtz':
-        from wrappers.scalepack2mtz.script.scalepack2mtz import scalepack2mtz
+        from ccp4i2.wrappers.scalepack2mtz.script.scalepack2mtz import scalepack2mtz
         return scalepack2mtz
     if plugin_name == 'sculptor':
-        from wrappers.sculptor.script.sculptor import sculptor
+        from ccp4i2.wrappers.sculptor.script.sculptor import sculptor
         return sculptor
-    if plugin_name == 'servalcat':
-        from wrappers.servalcat.script.servalcat import servalcat
-        return servalcat
-    if plugin_name == 'servalcat_pipe':
-        from pipelines.servalcat_pipe.script.servalcat_pipe import servalcat_pipe
-        return servalcat_pipe
     if plugin_name == 'sheetbend':
-        from wrappers.sheetbend.script.sheetbend import sheetbend
+        from ccp4i2.wrappers.sheetbend.script.sheetbend import sheetbend
         return sheetbend
     if plugin_name == 'shelx':
-        from pipelines.shelx.script.shelx_script import shelx
+        from ccp4i2.pipelines.shelx.script.shelx_script import shelx
         return shelx
     if plugin_name == 'shelxeMR':
-        from wrappers.shelxeMR.script.shelxeMR import shelxeMR
+        from ccp4i2.wrappers.shelxeMR.script.shelxeMR import shelxeMR
         return shelxeMR
     if plugin_name == 'slicendice':
-        from wrappers.slicendice.script.slicendice import slicendice
+        from ccp4i2.wrappers.slicendice.script.slicendice import slicendice
         return slicendice
     if plugin_name == 'splitMtz':
-        from wrappers.splitMtz.script.splitMtz import splitMtz
+        from ccp4i2.wrappers.splitMtz.script.splitMtz import splitMtz
         return splitMtz
     if plugin_name == 'tableone':
-        from pipelines.tableone.script.tableone import tableone
+        from ccp4i2.pipelines.tableone.script.tableone import tableone
         return tableone
     if plugin_name == 'unique':
-        from wrappers.unique.script.unique import unique
+        from ccp4i2.wrappers.unique.script.unique import unique
         return unique
     if plugin_name == 'uniqueify':
-        from pipelines.uniqueify.script.uniqueify import uniqueify
+        from ccp4i2.pipelines.uniqueify.script.uniqueify import uniqueify
         return uniqueify
     if plugin_name == 'validate_protein':
-        from wrappers.validate_protein.script.validate_protein import validate_protein
+        from ccp4i2.wrappers.validate_protein.script.validate_protein import validate_protein
         return validate_protein
     if plugin_name == 'x2mtz':
-        from wrappers.x2mtz.script.x2mtz import x2mtz
+        from ccp4i2.wrappers.x2mtz.script.x2mtz import x2mtz
         return x2mtz
     if plugin_name == 'xia2_aimless':
-        from pipelines.import_xia2.wrappers.xia2_aimless.script.xia2_aimless import xia2_aimless
+        from ccp4i2.pipelines.import_xia2.wrappers.xia2_aimless.script.xia2_aimless import xia2_aimless
         return xia2_aimless
     if plugin_name == 'xia2_ctruncate':
-        from pipelines.import_xia2.wrappers.xia2_ctruncate.script.xia2_ctruncate import xia2_ctruncate
+        from ccp4i2.pipelines.import_xia2.wrappers.xia2_ctruncate.script.xia2_ctruncate import xia2_ctruncate
         return xia2_ctruncate
     if plugin_name == 'xia2_dials':
-        from wrappers.xia2_dials.script.xia2_dials import Cxia2_dials
+        from ccp4i2.wrappers.xia2_dials.script.xia2_dials import Cxia2_dials
         return Cxia2_dials
     if plugin_name == 'xia2_integration':
-        from pipelines.import_xia2.wrappers.xia2_integration.script.xia2_integration import xia2_integration
+        from ccp4i2.pipelines.import_xia2.wrappers.xia2_integration.script.xia2_integration import xia2_integration
         return xia2_integration
     if plugin_name == 'xia2_multiplex':
-        from wrappers.xia2_multiplex.script.xia2_multiplex import Cxia2_multiplex
+        from ccp4i2.wrappers.xia2_multiplex.script.xia2_multiplex import Cxia2_multiplex
         return Cxia2_multiplex
     if plugin_name == 'xia2_pointless':
-        from pipelines.import_xia2.wrappers.xia2_pointless.script.xia2_pointless import xia2_pointless
+        from ccp4i2.pipelines.import_xia2.wrappers.xia2_pointless.script.xia2_pointless import xia2_pointless
         return xia2_pointless
     if plugin_name == 'xia2_run':
-        from pipelines.import_xia2.wrappers.xia2_run.script.xia2_run import xia2_run
+        from ccp4i2.pipelines.import_xia2.wrappers.xia2_run.script.xia2_run import xia2_run
         return xia2_run
     if plugin_name == 'xia2_ssx_reduce':
-        from wrappers.xia2_ssx_reduce.script.xia2_ssx_reduce import Cxia2_ssx_reduce
+        from ccp4i2.wrappers.xia2_ssx_reduce.script.xia2_ssx_reduce import Cxia2_ssx_reduce
         return Cxia2_ssx_reduce
     if plugin_name == 'xia2_xds':
-        from wrappers.xia2_xds.script.xia2_xds import Cxia2_xds
+        from ccp4i2.wrappers.xia2_xds.script.xia2_xds import Cxia2_xds
         return Cxia2_xds
     if plugin_name == 'zanuda':
-        from wrappers.zanuda.script.zanuda import zanuda
+        from ccp4i2.wrappers.zanuda.script.zanuda import zanuda
         return zanuda
     return None
 
 
 # Plugin names for fast lookup without loading metadata
 PLUGIN_NAMES: set[str] = {
-    'AMPLE',
     'AUSPEX',
     'AcedrgLink',
     'AlternativeImportXIA2',
@@ -566,7 +532,6 @@ PLUGIN_NAMES: set[str] = {
     'ProvideAsuContents',
     'ProvideSequence',
     'ProvideTLS',
-    'SIMBAD',
     'ShelxCD',
     'ShelxCE',
     'ShelxCECompareHands',
@@ -576,14 +541,11 @@ PLUGIN_NAMES: set[str] = {
     'ZZPipelineNameZZ',
     'ZZPluginNameZZ',
     'acedrg',
-    'acedrgNew',
     'acorn',
     'add_fractional_coords',
     'adding_stats_to_mmcif_i2',
     'aimless',
-    'aimless_pipe',
     'arcimboldo',
-    'arp_warp_classic',
     'baverage',
     'buccaneer_build_refine_mr',
     'buccaneer_mr',
@@ -600,7 +562,6 @@ PLUGIN_NAMES: set[str] = {
     'comit',
     'convert2mtz',
     'coordinate_selector',
-    'coot1',
     'coot_find_waters',
     'coot_fit_residues',
     'coot_rebuild',
@@ -639,7 +600,6 @@ PLUGIN_NAMES: set[str] = {
     'hklin2cif',
     'i2Dimple',
     'imosflm',
-    'import_merged',
     'import_mosflm',
     'import_serial',
     'import_serial_pipe',
@@ -647,7 +607,6 @@ PLUGIN_NAMES: set[str] = {
     'libcheck',
     'lorestr_i2',
     'mergeMtz',
-    'metalCoord',
     'modelASUCheck',
     'modelcraft',
     'molrep_den',
@@ -668,7 +627,6 @@ PLUGIN_NAMES: set[str] = {
     'pairef',
     'parrot',
     'pdb_extract_wrapper',
-    'pdb_redo_api',
     'pdbset',
     'pdbset_ui',
     'pdbview_edit',
@@ -681,7 +639,6 @@ PLUGIN_NAMES: set[str] = {
     'phaser_MR_FTF',
     'phaser_MR_PAK',
     'phaser_MR_RNP',
-    'phaser_analysis',
     'phaser_ensembler',
     'phaser_mr',
     'phaser_phil',
@@ -702,10 +659,9 @@ PLUGIN_NAMES: set[str] = {
     'refmac',
     'reindex_minimtz',
     'reindex_processed_data',
+    'scaleit',
     'scalepack2mtz',
     'sculptor',
-    'servalcat',
-    'servalcat_pipe',
     'sheetbend',
     'shelx',
     'shelxeMR',

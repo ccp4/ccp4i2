@@ -830,26 +830,6 @@
       }
     }
   },
-  "SIMBAD": {
-    "module": "wrappers.SIMBAD.script.SIMBAD",
-    "class": "SIMBAD",
-    "COMTEMPLATE": null,
-    "TASKMODULE": null,
-    "TASKTITLE": null,
-    "TASKNAME": "SIMBAD",
-    "TASKVERSION": 0.1,
-    "WHATNEXT": [
-      "prosmart_refmac",
-      "modelcraft",
-      "coot_rebuild"
-    ],
-    "ASYNCHRONOUS": false,
-    "ERROR_CODES": {
-      "1": {
-        "description": "Something not very good has happened."
-      }
-    }
-  },
   "phaser_mr": {
     "module": "wrappers.phaser_mr.script.phaser_mr",
     "class": "phaser_mr",
@@ -1010,43 +990,6 @@
       },
       "304": {
         "description": "Error splitting MTZ file"
-      }
-    }
-  },
-  "coot1": {
-    "module": "wrappers.coot1.script.coot1",
-    "class": "coot1",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "model_building",
-    "TASKTITLE": "Coot 1",
-    "TASKNAME": "coot1",
-    "TASKVERSION": 0.1,
-    "WHATNEXT": [
-      "prosmart_refmac",
-      "coot_rebuild",
-      "modelcraft"
-    ],
-    "ASYNCHRONOUS": true,
-    "TIMEOUT_PERIOD": 9999999.9,
-    "ERROR_CODES": {}
-  },
-  "AMPLE": {
-    "module": "wrappers.AMPLE.script.AMPLE",
-    "class": "AMPLE",
-    "COMTEMPLATE": null,
-    "TASKMODULE": null,
-    "TASKTITLE": null,
-    "TASKNAME": "AMPLE",
-    "TASKVERSION": 0.1,
-    "WHATNEXT": [
-      "prosmart_refmac",
-      "modelcraft",
-      "coot_rebuild"
-    ],
-    "ASYNCHRONOUS": false,
-    "ERROR_CODES": {
-      "1": {
-        "description": "Something not very good has happened."
       }
     }
   },
@@ -1480,93 +1423,6 @@
       },
       "304": {
         "description": "Error splitting MTZ file"
-      }
-    }
-  },
-  "arp_warp_classic": {
-    "module": "wrappers.arp_warp_classic.script.arp_warp_classic",
-    "class": "arp_warp_classic",
-    "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
-    "TASKMODULE": null,
-    "TASKTITLE": "ARP/WARP classic",
-    "TASKNAME": "arp_warp_classic",
-    "TASKVERSION": 0.0,
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CModelBuildPerformance",
-    "ERROR_CODES": {
-      "200": {
-        "description": "Error merging MTZ files"
-      },
-      "201": {
-        "description": "Invalid miniMtzsIn specification"
-      },
-      "202": {
-        "description": "File object has no CONTENT_SIGNATURE_LIST"
-      },
-      "203": {
-        "description": "File object has no path set"
-      },
-      "204": {
-        "description": "MTZ file not found"
-      },
-      "205": {
-        "description": "File object not found in inputData or outputData"
-      },
-      "206": {
-        "description": "Invalid contentFlag for file type"
-      },
-      "207": {
-        "description": "Invalid item format in miniMtzsIn"
-      },
-      "208": {
-        "description": "Conversion method not found on file object"
-      },
-      "209": {
-        "description": "Conversion to requested format not yet implemented"
-      },
-      "210": {
-        "description": "Error during MTZ file conversion"
-      },
-      "300": {
-        "description": "Input MTZ file not found for split operation"
-      },
-      "301": {
-        "description": "miniMtzsOut and programColumnNames length mismatch"
-      },
-      "302": {
-        "description": "Output object not found in container.outputData"
-      },
-      "303": {
-        "description": "Output object has no path set"
-      },
-      "304": {
-        "description": "Error splitting MTZ file"
-      }
-    }
-  },
-  "acedrgNew": {
-    "module": "wrappers.acedrgNew.script.acedrgNew",
-    "class": "acedrgNew",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "wrappers",
-    "TASKTITLE": "acedrgNew",
-    "TASKNAME": "acedrgNew",
-    "TASKVERSION": 0.0,
-    "ASYNCHRONOUS": false,
-    "TIMEOUT_PERIOD": 9999999.9,
-    "ERROR_CODES": {
-      "200": {
-        "description": "Failed to add item to mol list"
-      },
-      "201": {
-        "description": "Failed to setFullPath"
-      },
-      "202": {
-        "description": "Failed to dump XMML"
-      },
-      "203": {
-        "description": "Failed to make RDKit Mol from DICT"
       }
     }
   },
@@ -2377,67 +2233,6 @@
       }
     }
   },
-  "phaser_analysis": {
-    "module": "wrappers.phaser_analysis.script.phaser_analysis",
-    "class": "phaser_analysis",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "test",
-    "TASKTITLE": "phaser_analysis",
-    "TASKNAME": "phaser_analysis",
-    "TASKVERSION": 0.0,
-    "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
-    "ERROR_CODES": {
-      "200": {
-        "description": "Error merging MTZ files"
-      },
-      "201": {
-        "description": "Invalid miniMtzsIn specification"
-      },
-      "202": {
-        "description": "File object has no CONTENT_SIGNATURE_LIST"
-      },
-      "203": {
-        "description": "File object has no path set"
-      },
-      "204": {
-        "description": "MTZ file not found"
-      },
-      "205": {
-        "description": "File object not found in inputData or outputData"
-      },
-      "206": {
-        "description": "Invalid contentFlag for file type"
-      },
-      "207": {
-        "description": "Invalid item format in miniMtzsIn"
-      },
-      "208": {
-        "description": "Conversion method not found on file object"
-      },
-      "209": {
-        "description": "Conversion to requested format not yet implemented"
-      },
-      "210": {
-        "description": "Error during MTZ file conversion"
-      },
-      "300": {
-        "description": "Input MTZ file not found for split operation"
-      },
-      "301": {
-        "description": "miniMtzsOut and programColumnNames length mismatch"
-      },
-      "302": {
-        "description": "Output object not found in container.outputData"
-      },
-      "303": {
-        "description": "Output object has no path set"
-      },
-      "304": {
-        "description": "Error splitting MTZ file"
-      }
-    }
-  },
   "Lidia": {
     "module": "wrappers.Lidia.script.Lidia",
     "class": "lidia",
@@ -2483,6 +2278,24 @@
       },
       "202": {
         "description": "Failed applying selection ot PDB file"
+      }
+    }
+  },
+  "scaleit": {
+    "module": "wrappers.scaleit.script.scaleit",
+    "class": "scaleit",
+    "COMTEMPLATE": null,
+    "TASKMODULE": "test",
+    "TASKTITLE": "Compare two or more datafiles",
+    "TASKNAME": "scaleit",
+    "TASKVERSION": 0.0,
+    "ASYNCHRONOUS": false,
+    "ERROR_CODES": {
+      "200": {
+        "description": "Too few datasets defined"
+      },
+      "201": {
+        "description": "Inconsistent cells between datasets"
       }
     }
   },
@@ -2652,32 +2465,6 @@
       },
       "304": {
         "description": "Error splitting MTZ file"
-      }
-    }
-  },
-  "servalcat": {
-    "module": "wrappers.servalcat.script.servalcat",
-    "class": "servalcat",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "wrappers",
-    "TASKTITLE": "Refinement (servalcat)",
-    "TASKNAME": "servalcat",
-    "TASKVERSION": 0.0,
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CServalcatPerformance",
-    "ERROR_CODES": {
-      "201": {
-        "description": "Refmac returned with non zero status"
-      },
-      "202": {
-        "description": "New library created but strictly required"
-      },
-      "203": {
-        "description": "New library created",
-        "severity": 2
-      },
-      "204": {
-        "description": "Program completed without generating XMLOUT."
       }
     }
   },
@@ -3325,68 +3112,6 @@
       },
       "204": {
         "description": "Program completed without generating XMLOUT."
-      }
-    }
-  },
-  "pdb_redo_api": {
-    "module": "wrappers.pdb_redo_api.script.pdb_redo_api",
-    "class": "pdb_redo_api",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "refinement",
-    "TASKTITLE": "PDB-REDO Web services",
-    "TASKNAME": "pdb_redo_api",
-    "TASKVERSION": 0.0,
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CRefinementPerformance",
-    "RUNEXTERNALPROCESS": false,
-    "ERROR_CODES": {
-      "200": {
-        "description": "Error merging MTZ files"
-      },
-      "201": {
-        "description": "Invalid miniMtzsIn specification"
-      },
-      "202": {
-        "description": "File object has no CONTENT_SIGNATURE_LIST"
-      },
-      "203": {
-        "description": "File object has no path set"
-      },
-      "204": {
-        "description": "MTZ file not found"
-      },
-      "205": {
-        "description": "File object not found in inputData or outputData"
-      },
-      "206": {
-        "description": "Invalid contentFlag for file type"
-      },
-      "207": {
-        "description": "Invalid item format in miniMtzsIn"
-      },
-      "208": {
-        "description": "Conversion method not found on file object"
-      },
-      "209": {
-        "description": "Conversion to requested format not yet implemented"
-      },
-      "210": {
-        "description": "Error during MTZ file conversion"
-      },
-      "300": {
-        "description": "Input MTZ file not found for split operation"
-      },
-      "301": {
-        "description": "miniMtzsOut and programColumnNames length mismatch"
-      },
-      "302": {
-        "description": "Output object not found in container.outputData"
-      },
-      "303": {
-        "description": "Output object has no path set"
-      },
-      "304": {
-        "description": "Error splitting MTZ file"
       }
     }
   },
@@ -4171,25 +3896,6 @@
       },
       "202": {
         "description": "Failed in processOutputFiles"
-      }
-    }
-  },
-  "metalCoord": {
-    "module": "wrappers.metalCoord.script.metalCoord",
-    "class": "metalCoord",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "wrappers",
-    "TASKTITLE": null,
-    "TASKNAME": "metalCoord",
-    "TASKVERSION": 0.2,
-    "ASYNCHRONOUS": false,
-    "ERROR_CODES": {
-      "201": {
-        "description": "No output JSON file from metalCoord"
-      },
-      "202": {
-        "description": "Log file does not report successful job completion",
-        "severity": 2
       }
     }
   },
@@ -5250,43 +4956,6 @@
       }
     }
   },
-  "import_merged": {
-    "module": "pipelines.import_merged.script.import_merged",
-    "class": "import_merged",
-    "COMTEMPLATE": null,
-    "TASKMODULE": null,
-    "TASKTITLE": null,
-    "TASKNAME": "import_merged",
-    "TASKVERSION": null,
-    "WHATNEXT": [],
-    "ASYNCHRONOUS": false,
-    "PURGESEARCHLIST": [
-      [
-        "HKLIN*.mtz",
-        1
-      ],
-      [
-        "aimless_pipe%*/HKLOUT*.mtz",
-        1
-      ],
-      [
-        "hklout.mtz",
-        5
-      ],
-      [
-        "HKLOUT.mtz",
-        5
-      ]
-    ],
-    "ERROR_CODES": {
-      "301": {
-        "description": "No output file found after conversion program"
-      },
-      "302": {
-        "description": "Output from conversion does not contain recognised reflection or FreeR set data"
-      }
-    }
-  },
   "nautilus_build_refine": {
     "module": "pipelines.nautilus_build_refine.script.nautilus_build_refine",
     "class": "nautilus_build_refine",
@@ -5411,7 +5080,6 @@
   "xia2_run": {
     "module": "pipelines.import_xia2.wrappers.xia2_run.script.xia2_run",
     "class": "xia2_run",
-    "module_file": "../../pipelines/import_xia2/wrappers/xia2_run/script/xia2_run.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Import data processing results from XIA2",
@@ -5957,99 +5625,6 @@
       }
     }
   },
-  "servalcat_pipe": {
-    "module": "pipelines.servalcat_pipe.script.servalcat_pipe",
-    "class": "servalcat_pipe",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "refinement",
-    "TASKTITLE": "Refinement against diffraction data with optional restraints (ProSMART, MetalCoord)",
-    "TASKNAME": "servalcat_pipe",
-    "TASKVERSION": 0.1,
-    "WHATNEXT": [
-      "servalcat_pipe",
-      "coot_rebuild",
-      "modelcraft"
-    ],
-    "ASYNCHRONOUS": true,
-    "TIMEOUT_PERIOD": 240,
-    "MAXNJOBS": 4,
-    "PERFORMANCECLASS": "CServalcatPerformance",
-    "SUBTASKS": [
-      "servalcat",
-      "prosmart",
-      "metalCoord"
-    ],
-    "RUNEXTERNALPROCESS": false,
-    "PURGESEARCHLIST": [
-      [
-        "refmac%*/hklout.mtz",
-        0,
-        "hklout"
-      ],
-      [
-        "refmac%*/hklout.mtz",
-        7,
-        "hklout"
-      ],
-      [
-        "*%*/ANOMFPHIOUT.mtz",
-        1,
-        "ANOMFPHIOUT"
-      ],
-      [
-        "*%*/DIFANOMFPHIOUT.mtz",
-        1,
-        "DIFANOMFPHIOUT"
-      ]
-    ],
-    "ERROR_CODES": {
-      "101": {
-        "description": "Error copying data file from final job to pipeline directory"
-      },
-      "102": {
-        "description": "ProSMART protein restraints failed"
-      },
-      "103": {
-        "description": "ProSMART nucleic acid restraints failed"
-      },
-      "104": {
-        "description": "MetalCoord restraints failed"
-      },
-      "105": {
-        "description": "Servalcat refinement failed"
-      },
-      "106": {
-        "description": "Servalcat output file not created"
-      },
-      "107": {
-        "description": "Coot find waters failed"
-      },
-      "108": {
-        "description": "Post-coot servalcat failed"
-      },
-      "109": {
-        "description": "Weight optimization failed"
-      },
-      "110": {
-        "description": "Validation failed"
-      },
-      "111": {
-        "description": "Failed to create servalcat wrapper"
-      },
-      "112": {
-        "description": "Failed to load container data"
-      },
-      "113": {
-        "description": "Failed to set up MetalCoord plugin"
-      },
-      "114": {
-        "description": "Failed to convert MetalCoord JSON to restraints"
-      },
-      "115": {
-        "description": "Failed to copy ProSMART restraints to servalcat"
-      }
-    }
-  },
   "crank2_refatompick": {
     "module": "pipelines.crank2.wrappers.crank2_refatompick.script.crank2_refatompick",
     "class": "crank2_refatompick",
@@ -6561,44 +6136,6 @@
       },
       "304": {
         "description": "Error splitting MTZ file"
-      }
-    }
-  },
-  "aimless_pipe": {
-    "module": "pipelines.aimless_pipe.script.aimless_pipe",
-    "class": "aimless_pipe",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "data_reduction",
-    "TASKTITLE": "Scale and merge data",
-    "TASKNAME": "aimless_pipe",
-    "TASKVERSION": 0.0,
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CDataReductionPerformance",
-    "PURGESEARCHLIST": [
-      [
-        "ctruncate%*/hklout.mtz",
-        0
-      ],
-      [
-        "aimless%*/*.xmgr",
-        1
-      ]
-    ],
-    "ERROR_CODES": {
-      "201": {
-        "description": "Pointless failed"
-      },
-      "202": {
-        "description": "Aimless failed"
-      },
-      "203": {
-        "description": "Ctruncate failed"
-      },
-      "204": {
-        "description": "FreeR  failed"
-      },
-      "205": {
-        "description": "Data useless"
       }
     }
   },
